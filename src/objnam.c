@@ -803,6 +803,10 @@ ring:
 	if(obj->owornmask & W_QUIVER) Strcat(bp, " (in quiver)");
 	if(!Hallucination && obj->unpaid)
 		Strcat(bp, " (unpaid)");
+#ifdef WIZARD
+	if (wizard && obj->in_use)	/* Can't use "(in use)", see leashes */
+		Strcat(bp, " (finishing)");	/* always a bug */
+#endif
 	if (!strncmp(prefix, "a ", 2) &&
 			index(vowels, *(prefix+2) ? *(prefix+2) : *bp)
 			&& (*(prefix+2) || (strncmp(bp, "uranium", 7)

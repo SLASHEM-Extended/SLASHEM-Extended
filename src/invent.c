@@ -2293,8 +2293,10 @@ long numused;
 
 	/* burn_floor_paper() keeps an object pointer that it tries to
 	 * useupf() multiple times, so obj must survive if plural */
-	if (obj->quan > numused)
+	if (obj->quan > numused) {
 		otmp = splitobj(obj, obj->quan - numused);
+		obj->in_use = FALSE;		/* rest no longer in use */
+	}
 	else
 		otmp = obj;
 	if(costly_spot(otmp->ox, otmp->oy)) {
