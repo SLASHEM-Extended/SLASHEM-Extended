@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmisc.c,v 1.2 2000-10-14 18:40:38 j_ali Exp $
+  $Id: gtkmisc.c,v 1.3 2000-11-27 07:13:12 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -68,6 +68,9 @@ static struct GTK_Option{
 };
 
 static void	nh_option_set(void);
+static void	nh_option_get(void);
+static int	nh_option_has_changed(void);
+static int	nh_option_more_confirm(void);
 
 static gint
 default_destroy(GtkWidget *widget, gpointer data)
@@ -101,6 +104,18 @@ default_clicked(GtkWidget *widget, gpointer data)
 	keysym = '\n';
 
     if(keysym == 'm'){
+	if (nh_option_has_changed()) {
+	    switch(nh_option_more_confirm()){
+		case -1:	/* Cancel "more options" */
+		    keysym = 0;
+		    return FALSE;
+		default:	/* Discard changes */
+		    break;
+		case 1:		/* Apply changes first */
+		    nh_option_get();
+		    break;
+	    }
+	}
 	doset();
 	nh_option_set();
     }
@@ -108,6 +123,108 @@ default_clicked(GtkWidget *widget, gpointer data)
 	gtk_main_quit();
 
     return FALSE;
+}
+
+/* ALI
+ * Extra dialogue to confirm action before bringing up "more options"
+ * dialogue if any of the options have been changed first.
+ *
+ * Returns: -1: Cancel, 0: Discard, 1: Apply
+ */
+
+static gint
+mc_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
+{
+    keysym = nh_keysym(event);
+    gtk_main_quit();
+    return FALSE;
+}
+
+static gint
+mc_clicked(GtkWidget *widget, gpointer data)
+{
+    keysym = (int)data;
+    gtk_main_quit();
+    return FALSE;
+}
+
+static int
+nh_option_more_confirm(void)
+{
+    guint hid;	
+    GtkWidget *w;
+    GtkWidget *frame;
+    GtkWidget *vbox, *hbox;
+    GtkWidget *button1;
+    GtkWidget *button2;
+    GtkWidget *button3;
+
+    w = gtk_window_new(GTK_WINDOW_DIALOG);
+    gtk_signal_connect(
+      GTK_OBJECT(w), "key_press_event",
+      GTK_SIGNAL_FUNC(mc_key_press), NULL);
+    hid = gtk_signal_connect(
+      GTK_OBJECT(w), "destroy",
+      GTK_SIGNAL_FUNC(default_destroy), &hid);
+    gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_MOUSE);
+
+    frame = nh_gtk_new_and_add(gtk_frame_new(NULL), w, "");
+    gtk_container_border_width(GTK_CONTAINER(frame), NH_PAD);
+    vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), frame, "");
+    hbox = nh_gtk_new_and_pack(
+      gtk_hbox_new(FALSE, 0), vbox, "",
+      FALSE, FALSE, 0);
+    nh_gtk_new_and_pack(
+      gtk_label_new("Commit changes made?"),
+      hbox, "", FALSE, FALSE, 0);
+    nh_gtk_new_and_pack(
+      gtk_vseparator_new(), vbox, "", FALSE, FALSE, NH_PAD);
+    hbox = nh_gtk_new_and_pack(
+      gtk_hbox_new(FALSE, 0), vbox, "",
+      FALSE, FALSE, NH_PAD);
+
+    button1 = nh_gtk_new_and_pack(
+      gtk_button_new_with_label("Yes"), hbox, "",
+      FALSE, FALSE, NH_PAD);
+    button2 = nh_gtk_new_and_pack(
+      gtk_button_new_with_label("No"), hbox, "",
+      FALSE, FALSE, NH_PAD);
+    button3 = nh_gtk_new_and_pack(
+      gtk_button_new_with_label("Cancel"), hbox, "",
+      FALSE, FALSE, NH_PAD);
+    gtk_signal_connect(
+      GTK_OBJECT(button1), "clicked",
+      GTK_SIGNAL_FUNC(mc_clicked), (gpointer)'y');
+    gtk_signal_connect(
+      GTK_OBJECT(button2), "clicked",
+      GTK_SIGNAL_FUNC(mc_clicked), (gpointer)'n');
+    gtk_signal_connect(
+      GTK_OBJECT(button3), "clicked",
+      GTK_SIGNAL_FUNC(mc_clicked), (gpointer)'c');
+
+    gtk_widget_show_all(w);
+    gtk_grab_add(w);
+    main_hook();
+
+    if(hid > 0){
+	gtk_signal_disconnect(GTK_OBJECT(w), hid);
+	gtk_widget_destroy(w);
+    }
+    switch(keysym)
+    {
+	case 'a':
+	case 'A':
+	case 'y':
+	case 'Y':
+	case '\n':
+	    return 1;
+	case '\033':
+	case 'c':
+	case 'C':
+	    return -1;
+	default:
+	    return 0;
+    }
 }
 
 static void
@@ -160,6 +277,145 @@ nh_option_set(void)
 
     gtk_toggle_button_set_active(
       GTK_TOGGLE_BUTTON(tileTab[nh_get_map_visual()].data), TRUE);
+}
+
+static void
+nh_option_get(void)
+{
+    int i;
+    struct GTK_Option *p;
+#ifdef NH_EXTENSION
+    char buf[BUFSIZ];
+    char port[16];
+#endif
+
+    Strcpy(plname, gtk_entry_get_text(GTK_ENTRY(entry_plname)));
+    Strcpy(catname, gtk_entry_get_text(GTK_ENTRY(entry_catname)));
+    Strcpy(dogname, gtk_entry_get_text(GTK_ENTRY(entry_dogname)));
+    Strcpy(pl_fruit, gtk_entry_get_text(GTK_ENTRY(entry_fruit)));
+#ifdef NH_EXTENSION
+    set_homeurl(gtk_entry_get_text(GTK_ENTRY(entry_url)));
+    sprintf(port, "%s", gtk_entry_get_text(GTK_ENTRY(entry_proxy_port)));
+    if(*port)
+	snprintf(buf, BUFSIZ, "%s:%s", 
+	  gtk_entry_get_text(GTK_ENTRY(entry_proxy)), port);
+    else
+	snprintf(buf, BUFSIZ, "%s", 
+	  gtk_entry_get_text(GTK_ENTRY(entry_proxy)));
+    set_proxy(buf);
+#endif
+
+    if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_k)))
+	preferred_pet = 'c';
+    else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_d)))
+	preferred_pet = 'd';
+    else
+	preferred_pet = 0;
+
+    if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_menu_t)))
+	flags.menu_style = MENU_TRADITIONAL;
+    else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_menu_c)))
+	flags.menu_style = MENU_COMBINATION;
+    else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_menu_p)))
+	flags.menu_style = MENU_PARTIAL;
+    else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_menu_f)))
+	flags.menu_style = MENU_FULL;
+
+    for(i=0 ; i<sizeof(gtk_option)/sizeof(struct GTK_Option) ; ++i){
+	p = &gtk_option[i];
+	if(p->opt_name){
+	    if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(p->radio1)))
+		*p->opt_p = !p->not;
+	    else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(p->radio2)))
+		*p->opt_p = !!p->not;
+	}
+    }
+    for(i = 0; i <= no_tileTab; i++)
+	if(tileTab[i].data &&
+	  gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(tileTab[i].data))){
+	    nh_set_map_visual(i);
+	    break;
+	}
+}
+
+static int
+nh_option_has_changed(void)
+{
+    int i;
+    struct GTK_Option *p;
+    GtkWidget *button;
+#ifdef NH_EXTENSION
+    char buf[BUFSIZ];
+    char port[16];
+#endif
+
+    if (strcmp(plname, gtk_entry_get_text(GTK_ENTRY(entry_plname))))
+	return TRUE;
+    if (strcmp(catname, gtk_entry_get_text(GTK_ENTRY(entry_catname))))
+	return TRUE;
+    if (strcmp(dogname, gtk_entry_get_text(GTK_ENTRY(entry_dogname))))
+	return TRUE;
+    if (strcmp(pl_fruit, gtk_entry_get_text(GTK_ENTRY(entry_fruit))))
+	return TRUE;
+#ifdef NH_EXTENSION
+    if (strcmp(get_homeurl(), gtk_entry_get_text(GTK_ENTRY(entry_url))))
+	return TRUE;
+    sprintf(port, "%s", gtk_entry_get_text(GTK_ENTRY(entry_proxy_port)));
+    if(*port)
+	snprintf(buf, BUFSIZ, "%s:%s", 
+	  gtk_entry_get_text(GTK_ENTRY(entry_proxy)), port);
+    else
+	snprintf(buf, BUFSIZ, "%s", 
+	  gtk_entry_get_text(GTK_ENTRY(entry_proxy)));
+    if (strcmp(get_proxy(), buf))
+	return TRUE;
+#endif
+
+    switch(preferred_pet) {
+	case 'c':
+	case 'k':
+	    button = radio_k;
+	    break;
+	case 'd':
+	    button = radio_d;
+	    break;
+	default:
+	    button = radio_r;
+	    break;
+    }
+    if(!gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)))
+	return TRUE;
+
+    switch(flags.menu_style) {
+	case MENU_TRADITIONAL:
+	    button = radio_menu_t;
+	    break;
+	case MENU_COMBINATION:
+	    button = radio_menu_c;
+	    break;
+	case MENU_PARTIAL:
+	    button = radio_menu_p;
+	    break;
+	default:
+	    button = radio_menu_f;
+	    break;
+    }
+    if(!gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)))
+	return TRUE;
+
+    for(i=0 ; i<sizeof(gtk_option)/sizeof(struct GTK_Option) ; ++i){
+	p = &gtk_option[i];
+	if(p->opt_name && p->opt_p){
+	    if (*p->opt_p == !p->not &&
+	      !gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(p->radio1)))
+		return TRUE;
+	    if (*p->opt_p != !p->not &&
+	      !gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(p->radio2)))
+		return TRUE;
+	}
+    }
+    i = nh_get_map_visual();
+    return !gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(tileTab[i].data));
 }
 
 static GtkWidget*
@@ -622,7 +878,6 @@ nh_option_new()
   GtkWidget *button1;
   GtkWidget *button2;
   GtkWidget *button3;
-  int i;
 
   w = gtk_window_new(GTK_WINDOW_DIALOG);
   gtk_container_border_width(GTK_CONTAINER(w), NH_PAD);
@@ -700,67 +955,8 @@ nh_option_new()
 
   main_hook();
 
-  if(keysym == '\n'){
-      Strcpy(plname, gtk_entry_get_text(GTK_ENTRY(entry_plname)));
-      Strcpy(catname, gtk_entry_get_text(GTK_ENTRY(entry_catname)));
-      Strcpy(dogname, gtk_entry_get_text(GTK_ENTRY(entry_dogname)));
-      Strcpy(pl_fruit, gtk_entry_get_text(GTK_ENTRY(entry_fruit)));
-#ifdef NH_EXTENSION
-      set_homeurl(gtk_entry_get_text(GTK_ENTRY(entry_url)));
-      {
-	  char buf[BUFSIZ];
-	  char port[16];
-
-	  sprintf(port, "%s", gtk_entry_get_text(GTK_ENTRY(entry_proxy_port)));
-	  if(*port)
-	      snprintf(buf, BUFSIZ, "%s:%s", 
-		       gtk_entry_get_text(GTK_ENTRY(entry_proxy)), port);
-	  else
-	      snprintf(buf, BUFSIZ, "%s", 
-		       gtk_entry_get_text(GTK_ENTRY(entry_proxy)));
-
-	  set_proxy(buf);
-      }
-#endif
-
-      if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_k)))
-	  preferred_pet = 'c';
-      else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_d)))
-	  preferred_pet = 'd';
-      else
-	  preferred_pet = 0;
-
-      if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_menu_t)))
-	  flags.menu_style = MENU_TRADITIONAL;
-      else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_menu_p)))
-	  flags.menu_style = MENU_COMBINATION;
-      else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_menu_c)))
-	  flags.menu_style = MENU_PARTIAL;
-      else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_menu_f)))
-	  flags.menu_style = MENU_FULL;
-
-      {
-	  int i;
-	  struct GTK_Option *p;
-
-	  for(i=0 ; i<sizeof(gtk_option)/sizeof(struct GTK_Option) ; ++i){
-	      p = &gtk_option[i];
-	      if(p->opt_name){
-		  if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(p->radio1)))
-		      *p->opt_p = !p->not;
-		  else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(p->radio2)))
-		      *p->opt_p = !!p->not;
-	      }
-	  }
-      }
-      for(i = 0; i <= no_tileTab; i++){
-	  if(tileTab[i].data &&
-	    gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(tileTab[i].data))){
-	      nh_set_map_visual(i);
-	      break;
-	  }
-      }
-  }
+  if(keysym == '\n')
+      nh_option_get();
   nh_status_index_update();
 
   if(hid > 0){
