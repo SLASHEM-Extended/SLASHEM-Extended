@@ -175,7 +175,6 @@ CXX=g++
 
 # GTK windowing system
 WINGTKCONFIG=gtk-config
-# WINGTKCONFIG=PKG_CONFIG_PATH=/usr/devel/lib/pkgconfig pkg-config gtk+-2.0
 WINGTKCFLAGS=`$(WINGTKCONFIG) --cflags`
 
 # Set the WINSRC, WINOBJ, and WINLIB lines to correspond to your desired
@@ -208,17 +207,6 @@ WINGTKSRC = ../win/gtk/gtk.c ../win/gtk/gtkgetlin.c ../win/gtk/gtkstatus.c \
 	../win/gtk/xshmmap.c ../win/gtk/xshm.c
 WINGTKOBJ = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
 	gtkmap.o gtkmessage.o gtkmisc.o xshmmap.o xshm.o nhwin.a
-# Files for a GTK 2.0 port (not included in stable distribution)
-# WINGTKSRC = ../win/gtk2/gtk.c ../win/gtk2/gtkgetlin.c \
-#	../win/gtk2/gtkstatus.c ../win/gtk2/gtkmenu.c ../win/gtk2/gtkyn.c \
-#	../win/gtk2/gtkextcmd.c ../win/gtk2/gtkmap.c ../win/gtk2/gtkmessage.c \
-#	../win/gtk2/gtkmisc.c ../win/gtk2/gtktile.c ../win/gtk2/xshmmap.c \
-#	../win/gtk2/gtkext.c ../win/gtk2/gtkint.c
-#	#../win/gtk2/panic.c
-# WINGTKOBJ = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
-# 	gtkmap.o gtktile.o gtkmessage.o gtkmisc.o xshmmap.o gtkext.o \
-#	nhwin.a gtkint.o
-#	#panic.o
 #
 # Files for a Gnome port
 #
@@ -242,28 +230,6 @@ WINBEOBJ =
 #     ../win/BeOS/NHMenuWindow.cpp ../win/BeOS/NHMapWindow.cpp
 #WINBEOBJ = winbe.o NHWindow.o NHMenuWindow.o NHMapWindow.o nhwin.a
 #
-# Files for a proxy interface -- not ready for prime time
-WINPROXYSRC = ../win/proxy/winproxy.c ../win/proxy/callback.c
-WINPROXYOBJ = winproxy.o callback.o nhwin.a
-#
-# Common files for proxy window interface and window servers.
-PROXYCOMSRC = ../win/proxy/nhext.c ../win/proxy/nhxdr.c \
-	../win/proxy/nhextxdr.c ../win/proxy/compxdr.c
-PROXYCOMOBJ = nhext.o nhxdr.o nhextxdr.o compxdr.o
-#
-# Files for the proxy utility modules. These are provided for use with window
-# ports that support the proxy interface. The GTK2 window interface needs
-# these files regardless of whether proxy support is enabled or not.
-PROXYUTLSRC = ../win/proxy/dlbh.c ../win/proxy/mapid.c \
-	../win/proxy/riputil.c ../win/proxy/getopt.c
-PROXYUTLOBJ = dlbh.o mapid.o riputil.o getopt.o
-#
-# Files for the proxy window server interface. These are needed to support
-# external window ports and provide the interface to the game executable.
-# Currently, only the GTK2 window interface supports proxy window servers.
-PROXYSVRSRC = ../win/proxy/proxysvc.c ../win/proxy/proxycb.c
-PROXYSVROBJ = proxysvc.o proxycb.o
-
 # Use these declarations if you only want to support the TTY windowing system
 WINSRC = $(WINTTYSRC)
 WINOBJ = $(WINTTYOBJ)
@@ -276,11 +242,6 @@ WINOBJ = $(WINTTYOBJ)
 # Use these declarations if you want to support the GTK windowing system
 # WINSRC = $(WINTTYSRC) $(WINGTKSRC)
 # WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ)
-# When the proxy interface is finished, it might need something like these
-# WINSRC = $(WINTTYSRC) $(WINGTKSRC) $(WINPROXYSRC) $(PROXYUTLSRC) \
-#	 $(PROXYSVRSRC) $(PROXYCOMSRC)
-# WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ) $(WINPROXYOBJ) $(PROXYUTLOBJ) \
-#	 $(PROXYSVROBJ) $(PROXYCOMOBJ)
 #
 # You must also change the definition of WINLIB (below) to match these
 
@@ -324,9 +285,6 @@ WINGEMLIB = -le_gem -lgem
 #
 # libraries for BeOS
 WINBELIB = -lbe
-#
-# libraries for proxy
-WINPROXYLIB =
 
 # Use this declaration if you only want to support the TTY windowing system
 WINLIB = $(WINTTYLIB)
@@ -416,7 +374,7 @@ SYSCSRC = ../sys/atari/tos.c ../sys/share/pcmain.c ../sys/share/pcsys.c \
 
 # all windowing-system-dependent .c (for dependencies and such)
 WINCSRC = $(WINTTYSRC) $(WINX11SRC) $(WINGTKSRC) $(WINGNOMESRC) $(WINGEMSRC) \
-	$(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYSVRSRC) $(PROXYCOMSRC) tile.c
+	tile.c
 # all windowing-system-dependent .cpp (for dependencies and such)
 WINCXXSRC = $(WINQTSRC) $(WINBESRC)
 
@@ -521,10 +479,6 @@ DUMB.Setup:	../include/extern.h
 	@touch DUMB.Setup
 
 all:	$(GAME)
-
-slashem-gtk:	$(WINGTKOBJ) $(PROXYSVROBJ) $(PROXYCOMOBJ) alloc.o hacklib.o
-	$(CC) $(LFLAGS) -o $@ $(WINGTKOBJ) $(PROXYSVROBJ) $(PROXYCOMOBJ) \
-		alloc.o hacklib.o $(WINGTKLIB) $(LIBS)
 
 #	dependencies for makedefs and its outputs, which the util
 #	Makefile is responsible for keeping up to date
@@ -747,15 +701,6 @@ xshmmap.o: ../win/gtk/xshmmap.c ../include/winGTK.h $(HACK_H) \
 xshm.o: ../win/gtk/xshm.c ../include/winGTK.h $(HACK_H) ../include/winproxy.h \
 		../include/xshm.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshm.c
-gtkint.o: ../win/gtk2/gtkint.c ../include/winGTK.h $(HACK_H) \
-		../include/winproxy.h ../include/func_tab.h ../include/dlb.h \
-		../include/patchlevel.h
-gtkext.o: ../win/gtk2/gtkext.c ../include/winGTK.h $(HACK_H) \
-		../include/winproxy.h
-	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk2/gtkext.c
-panic.o: ../win/gtk2/panic.c ../include/winGTK.h $(HACK_H) \
-		../include/winproxy.h
-	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk2/panic.c
 gnaskstr.o: ../win/gnome/gnaskstr.c ../win/gnome/gnaskstr.h \
 		../win/gnome/gnmain.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c ../win/gnome/gnaskstr.c
@@ -802,35 +747,6 @@ wingem1.o: ../win/gem/wingem1.c ../include/gem_rsc.h ../include/load_img.h \
 	$(CC) $(CFLAGS) -c ../win/gem/wingem1.c
 load_img.o: ../win/gem/load_img.c ../include/load_img.h
 	$(CC) $(CFLAGS) -c ../win/gem/load_img.c
-winproxy.o: ../win/proxy/winproxy.c $(HACK_H) ../include/nhxdr.h \
-		../include/winproxy.h #../include/win32api.h
-	$(CC) $(CFLAGS) -c ../win/proxy/winproxy.c
-nhext.o: ../win/proxy/nhext.c $(HACK_H) ../include/nhxdr.h ../include/winproxy.h
-	$(CC) $(CFLAGS) -c ../win/proxy/nhext.c
-nhxdr.o: ../win/proxy/nhxdr.c $(HACK_H) ../include/nhxdr.h
-	$(CC) $(CFLAGS) -c ../win/proxy/nhxdr.c
-nhextxdr.o: ../win/proxy/nhextxdr.c $(HACK_H) ../include/nhxdr.h
-	$(CC) $(CFLAGS) -c ../win/proxy/nhextxdr.c
-compxdr.o: ../win/proxy/compxdr.c $(HACK_H) ../include/nhxdr.h \
-		../include/winproxy.h
-	$(CC) $(CFLAGS) -c ../win/proxy/compxdr.c
-dlbh.o: ../win/proxy/dlbh.c $(HACK_H) ../include/dlb.h
-	$(CC) $(CFLAGS) -c ../win/proxy/dlbh.c
-mapid.o: ../win/proxy/mapid.c $(HACK_H) ../include/nhxdr.h ../include/winproxy.h
-	$(CC) $(CFLAGS) -c ../win/proxy/mapid.c
-riputil.o: ../win/proxy/riputil.c $(HACK_H)
-	$(CC) $(CFLAGS) -c ../win/proxy/riputil.c
-getopt.o: ../win/proxy/getopt.c $(HACK_H)
-	$(CC) $(CFLAGS) -c ../win/proxy/getopt.c
-proxysvc.o: ../win/proxy/proxysvc.c $(HACK_H) ../include/nhxdr.h \
-		../include/winproxy.h #../include/win32api.h
-	$(CC) $(CFLAGS) -c ../win/proxy/proxysvc.c
-proxycb.o: ../win/proxy/proxycb.c $(HACK_H) ../include/nhxdr.h \
-		../include/winproxy.h ../include/proxycb.h
-	$(CC) $(CFLAGS) -c ../win/proxy/proxycb.c
-callback.o: ../win/proxy/callback.c $(HACK_H) ../include/nhxdr.h \
-		../include/winproxy.h ../include/proxycb.h
-	$(CC) $(CFLAGS) -c ../win/proxy/callback.c
 tile.o: tile.c $(HACK_H)
 qt_win.o: ../win/Qt/qt_win.cpp $(HACK_H) ../include/func_tab.h \
 		../include/dlb.h ../include/patchlevel.h ../include/qt_win.h \
