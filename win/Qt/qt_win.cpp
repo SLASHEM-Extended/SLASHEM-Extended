@@ -55,6 +55,7 @@ extern "C" {
 #include "hack.h"
 #include "func_tab.h"
 #include "dlb.h"
+#include "date.h"
 #include "patchlevel.h"
 #include "tile2x11.h"
 #undef Warning
