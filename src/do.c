@@ -1639,6 +1639,14 @@ long timeout;
 	    pmtype = -1; /* cantcreate might have changed it so change it back */
     	else {
 	    	body->corpsenm = pmtype;
+
+		/* oeaten isn't used for hp calc here, and zeroing it 
+		 * prevents eaten_stat() from worrying when you've eaten more
+		 * from the corpse than the newly grown mold's nutrition
+		 * value.
+		 */
+		body->oeaten = 0;
+
 		/* [ALI] If we allow revive_corpse() to get rid of revived
 		 * corpses from hero's inventory then we run into problems
 		 * with unpaid corpses.

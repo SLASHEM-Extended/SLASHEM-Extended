@@ -390,6 +390,7 @@ ver 0.0.6E6 [?] [Released by ?]
 -fixed bug 583448: No apply with healtstone.
 -Added new SDL/GL windowing port.
 -Added spooky sounds to nightmare level (Tina Hall).
+-fixed bug 542027: Drained corpse gets moldy (Darshan Shaligram).
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).
