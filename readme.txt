@@ -373,6 +373,7 @@ ver 0.0.6E4F8 [?] [Released by ?]
 -fixed bug 528174: having shopkeepers enchant daggers crash.
 -fixed bug 499055: Bug in power-draining trap.
 -refixed bug 459699: Oops. add_to_billobjs: obj is timed.
+-applied patches 457587, 457592, 457593 & 457601: Building with Makefile.nt
 
 ver 0.0.6E4F7 [February 28/2002] [Released by Ali]
 -Improvements to database (Lars Huttar)

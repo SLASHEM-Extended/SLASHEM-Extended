@@ -33,11 +33,11 @@ copy ..\..\win\win32\recover.dsp ..\..
 
 :nowin32
 
-if exist .\nethack.ico goto hasicon
-if exist .\nhico.uu uudecode nhico.uu >nul
-if NOT exist .\nethack.ico goto err_nouu
+if exist .\slashem.ico goto hasicon
+if exist .\seico.uu uudecode seico.uu >nul
+if NOT exist .\slashem.ico goto err_nouu
 :hasicon
-echo NetHack icon exists ok.
+echo SlashEM icon exists ok.
 echo done!
 echo.
 echo Proceed with the next step documented in Install.nt
@@ -45,17 +45,17 @@ echo.
 goto done
 :err_nouu
 echo Apparently you have no UUDECODE utility in your path.  You need a UUDECODE
-echo utility in order to turn "nhico.uu" into "nethack.ico".
-echo Check "Install.nt" for a list of the steps required to build NetHack.
+echo utility in order to turn "seico.uu" into "slashem.ico".
+echo Check "Install.nt" for a list of the steps required to build SlashEM.
 goto done
 :err_plev
 echo A required file ..\..\include\patchlev.h seems to be missing.
-echo Check "Files." in the root directory for your NetHack distribution
+echo Check "Files." in the root directory for your SlashEM distribution
 echo and make sure that all required files exist.
 goto done
 :err_data
 echo A required file ..\..\dat\data.bas seems to be missing.
-echo Check "Files." in the root directory for your NetHack distribution
+echo Check "Files." in the root directory for your SlashEM distribution
 echo and make sure that all required files exist.
 goto done
 :err_dir

@@ -95,8 +95,8 @@ Setting Up
 3.  Go to the sys\winnt directory and run the nhsetup.bat batch file.
     The necessary Makefile movements will be accomplished for you. It
     will also verify that your directories are set up properly.  It
-    will also attempt to uudecode the NetHack icon contained in the
-    file sys/winnt/nhico.uu.  You must uudecode this file manually 
+    will also attempt to uudecode the SlashEM icon contained in the
+    file sys/winnt/seico.uu.  You must uudecode this file manually 
     if the batch file fails to do so.
 
 4.  Now go to the include subdirectory to check a couple of the header
