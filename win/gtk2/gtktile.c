@@ -1,5 +1,5 @@
 /*
-  $Id: gtktile.c,v 1.5 2002-09-12 18:21:47 j_ali Exp $
+  $Id: gtktile.c,v 1.6 2002-09-13 19:22:47 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -24,6 +24,7 @@ int total_tiles_used;
 int tiles_per_row;
 int tiles_per_col;
 #else
+extern short glyph2tile[];
 /* from tile.c */
 extern int total_tiles_used;
 extern int tiles_per_row;
@@ -487,8 +488,10 @@ x_tile_destroy()
 	gdk_image_destroy(tile_image);
 	tile_image = NULL;
     }
+#ifdef GTK_PROXY
     free(GTK_glyph2tile);
     GTK_glyph2tile = (short *)0;
+#endif
 }
 
 #define nh_pixbuf_get_pixel(x, y, pixel) \

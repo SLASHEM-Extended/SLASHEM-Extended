@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.12 2002-09-12 18:21:47 j_ali Exp $
+  $Id: gtkmap.c,v 1.13 2002-09-13 19:22:46 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -677,10 +677,12 @@ nh_map_destroy()
 	gdk_font_unref(map_font);
 	free(map_xoffsets);
     }
+#ifdef GTK_PROXY
     if (map_glyph2colsym) {
 	free(map_glyph2colsym);
 	map_glyph2colsym = (short *)0;
     }
+#endif
     gdk_gc_unref(map_gc);
     for (i = 0; i < N_NH_COLORS; i++)
 	gdk_gc_unref(map_color_gc[i]);
