@@ -850,8 +850,13 @@ level_tele()
 
 	    /* if in Knox and the requested level > 0, stay put.
 	     * we let negative values requests fall into the "heaven" loop.
+	     * [ALI] Add other single level dungeons entered via portal.
 	     */
-	    if (Is_knox(&u.uz) && newlev > 0) {
+	    if ((Is_knox(&u.uz) ||
+#ifdef BLACKMARKET
+		    Is_blackmarket(&u.uz) ||
+#endif
+		    Is_aligned_quest(&u.uz)) && newlev > 0) {
 		You(shudder_for_moment);
 		return;
 	    }
@@ -1422,8 +1427,12 @@ random_teleport_level()
 {
 	int nlev, max_depth, min_depth;
 
-	if (!rn2(5) || Is_knox(&u.uz))
-		return (int)depth(&u.uz);
+	if (!rn2(5) || Is_knox(&u.uz) ||
+#ifdef BLACKMARKET
+		Is_blackmarket(&u.uz) ||
+#endif
+		Is_aligned_quest(&u.uz))
+	    return (int)depth(&u.uz);
 
 	/* Get a random value relative to the current dungeon */
 	/* Range is 1 to current+3, current not counting */
@@ -1445,6 +1454,8 @@ random_teleport_level()
 	 * above; endgame is handled in the caller due to its different
 	 * message ("disoriented").
 	 * --KAA
+	 * [ALI] Also check for Sam's blackmarket and the three aligned quests
+	 * above.
 	 */
 	min_depth = 1;
 	max_depth = dunlevs_in_dungeon(&u.uz) +

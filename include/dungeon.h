@@ -122,6 +122,12 @@ typedef struct branch {
 #define Is_geryon_level(x)      (on_level(x, &geryon_level))
 #define Is_dispater_level(x)    (on_level(x, &dispater_level))
 
+#define Is_lawful_quest(x)	(on_level(x, &lawful_quest_level))
+#define Is_neutral_quest(x)	(on_level(x, &neutral_quest_level))
+#define Is_chaotic_quest(x)	(on_level(x, &chaotic_quest_level))
+#define Is_aligned_quest(x)	(Is_lawful_quest(x) || Is_neutral_quest(x) || \
+				 Is_chaotic_quest(x))
+
 #define Is_qstart(x)		(on_level(x, &qstart_level))
 #define Is_qlocate(x)		(on_level(x, &qlocate_level))
 #define Is_nemesis(x)		(on_level(x, &nemesis_level))

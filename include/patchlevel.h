@@ -27,7 +27,7 @@
 #define COPYRIGHT_BANNER_C \
 "See license for details. Bug reports to slashem-discuss@lists.sourceforge.net"
 
-#if 1
+#if 0
 /*
  * If two successive patchlevels have compatible data files (fat chance),
  * defining this with the value of the older one will allow its bones and
@@ -37,7 +37,7 @@
  * PP = patch level, ee = edit level, L = literal suffix "L",
  * with all four numbers specified as two hexadecimal digits.
  */
-#define VERSION_COMPATIBILITY 0x00000701L
+#define VERSION_COMPATIBILITY 0x00000000L
 #endif
 
 /*patchlevel.h*/
