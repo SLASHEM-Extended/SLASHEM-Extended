@@ -441,27 +441,15 @@ void
 readmail(otmp)
 struct obj *otmp;
 {
-    static char *junk[] = {
-    "Please disregard previous letter.",
-/* WAC updated with SLASHEM info
-    "Welcome to NetHack.",
-*/
-        "Welcome to SLASH'EM!",
-#ifdef AMIGA
-    "Only Amiga makes it possible.",
-    "CATS have all the answers.",
-#endif
-/* WAC updated with SLASHEM info
-	"Report bugs to <devteam@nethack.org>."
-*/
-        "To submit bug reports and suggestions go to our web page, http://www.slashem.org",
-        "Talk about Slash'EM on <slashem-discuss@lists.sourceforge.net>"
-    };
-
+    const char *line;
+    char buf[BUFSZ];
+    line = getrumor(bcsign(otmp), buf, TRUE);
+    if (!*line)
+	   line = "NetHack rumors file closed for renovation.";
     if (Blind) {
 	pline("Unfortunately you cannot see what it says.");
     } else
-	pline("It reads:  \"%s\"", junk[rn2(SIZE(junk))]);
+	pline("It reads:  \"%s\"", line);
 
 }
 
