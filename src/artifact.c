@@ -1500,7 +1500,7 @@ arti_invoke(obj)
 	case CHARGE_OBJ: {
 	    struct obj *otmp = getobj(recharge_type, "charge");
 	    boolean b_effect;
-            if (!rn2(4)) {
+
 	    if (!otmp) {
 		obj->age = 0;
 		return 0;
@@ -1509,9 +1509,6 @@ arti_invoke(obj)
 		(Role_switch == oart->role || !oart->role);
 	    recharge(otmp, b_effect ? 1 : obj->cursed ? -1 : 0);
 	    update_inventory();
-	    break;
-	  }
-	    else pline("Nothing happens.");
 	    break;
 	  }
 	case LEV_TELE:
