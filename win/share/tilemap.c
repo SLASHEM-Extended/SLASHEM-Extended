@@ -163,12 +163,23 @@ struct conditionals {
 	{ OBJ_GLYPH, BEARTRAP, "spoon" },
 #endif
 
+#ifndef LIGHTSABERS
+	{ OBJ_GLYPH, TORCH, "green lightsaber" },
+	{ OBJ_GLYPH, TORCH, "blue lightsaber" },
+	{ OBJ_GLYPH, TORCH, "red lightsaber" },
+	{ OBJ_GLYPH, TORCH, "red double lightsaber" },
+#else
 #ifndef D_SABER
 	{ OBJ_GLYPH, GREEN_LIGHTSABER, "blue lightsaber" },
 #endif
+#endif
 
 #ifndef TOURIST
+#ifdef LIGHTSABERS
 	{ OBJ_GLYPH, RED_DOUBLE_LIGHTSABER, "expensive camera" },
+#else
+	{ OBJ_GLYPH, TORCH, "expensive camera" },
+#endif
 #endif
 
 #ifndef STEED
