@@ -198,6 +198,9 @@ struct instance_flags {
 	boolean prevmsg_window;	/* show more old messages at a time */
 	boolean  extmenu;	/* extended commands use menu interface */
 #endif
+#ifdef MENU_COLOR
+        boolean use_menu_color; /* use color in menus; only if wc_color */
+#endif
 #ifdef MFLOPPY
 	boolean  checkspace;	/* check disk space before writing files */
 				/* (in iflags to allow restore after moving

@@ -75,6 +75,9 @@ Boolean options if TEXTCOLOR was set at compile time:
 color      use different colors for objects on screen   [TRUE for micros]
 hilite_pet display pets in a highlighted manner                   [FALSE]
 
+Boolean option if TEXTCOLOR and MENU_COLOR were set at compile time:
+menucolors use different colors for menus               [TRUE for micros]
+
 Boolean option if TIMED_DELAY was set at compile time (tty interface only):
 timed_delay    on unix and VMS, use a timer instead of sending    [TRUE]
                extra screen output when attempting to pause for
@@ -197,6 +200,19 @@ gender     Your starting gender (gender:male or gender:female).
            options, the "gender" option will take precedence.  [RANDOM]
 horsename  the name of your first horse  [NONE]
 ghoulname  the name of your first ghoul  [NONE]
+menucolor  Set colors for menus. (menucolor:"regex_string"=color)
+           If boolean option ``menucolors'' is true, menus will be shown
+           with different colors.
+           For example, setting ``menucolor:" blessed "=green'' shows
+           all lines in a menu with the text " blessed " in green.
+           The string is matched using regular expressions.
+           Valid values for the color are black, red, green, brown, blue,
+           magenta, cyan, gray, orange, lightgreen, yellow, lightblue,
+           lightmagenta, lightcyan and white.
+           You can define menucolor as many times as you wish; those
+           defined later will take precedence.
+           Setting menucolor has effect only if TEXTCOLOR and MENU_COLOR
+           were set at compile time.  [NONE]
 menu_*     create single character accelerators for menu commands.  Below
            is a list of all commands.  Each is followed by a list of window-
            ports that implement them:  'x' is X11, 't' is tty, 'g' is Gem,
