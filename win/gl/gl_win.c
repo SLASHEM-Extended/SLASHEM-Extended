@@ -897,6 +897,13 @@ int sdlgl_internal_key_handler(SDL_keysym *key, int repeat)
         sdlgl_flush();
         return 1;
 
+      case SDLK_F4:
+        assert(text_wins[sdlgl_map_win]);
+        text_wins[sdlgl_map_win]->write_cursor ^= 1;
+        Sdlgl_cliparound(u.ux, u.uy);
+        sdlgl_flush();
+        return 1;
+        
       default:
         return 0;
     }

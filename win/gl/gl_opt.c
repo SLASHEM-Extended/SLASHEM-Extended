@@ -680,6 +680,7 @@ void Sdlgl_preference_update(const char *pref)
   if (strcmpi(pref, "scroll_margin") == 0)
   {
     Sdlgl_cliparound(u.ux, u.uy);
+    sdlgl_flush();
     return;
   }
 }

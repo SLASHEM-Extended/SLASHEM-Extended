@@ -905,7 +905,9 @@ struct TextWindow
    */
   int write_x, write_y;
 
-  /* whether we show a cursor at the current write position */
+  /* whether we show a cursor at the current write position.  Also
+   * used for NHW_MAP windows for cursor on player.
+   */
   int write_cursor;
 
   /* current writing color */

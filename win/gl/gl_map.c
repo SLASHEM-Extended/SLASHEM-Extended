@@ -26,7 +26,11 @@ static int zoom_sets[] =
   128
 };
 
-#define MAX_ZOOM  (sizeof(zoom_sets) / sizeof(zoom_sets[0]))
+/* Note well the (int) here !  Without it, the value ends up as
+ * unsigned, causing comparisons with negative numbers (especially
+ * the min() macro) to fail.  Unsigned types really suck.
+ */
+#define NUM_ZOOM  ((int)(sizeof(zoom_sets) / sizeof(zoom_sets[0])))
 
 
 int sdlgl_quantize_zoom(int zoom_h)
@@ -48,8 +52,14 @@ int sdlgl_quantize_zoom(int zoom_h)
         (iflags.wc_tile_height / 2) : iflags.wc_tile_height;
   }
 
-  for (i=MAX_ZOOM; i > 0; i--)
+  for (i=NUM_ZOOM-1; i > 0; i--)
   {
+    if (zoom_sets[i] > iflags.wc_tile_height * 4)
+      continue;
+
+    if (zoom_sets[i-1] <= iflags.wc_tile_height / 4)
+      break;
+
     if (zoom_h >= zoom_sets[i])
       break;
   }
@@ -690,7 +700,7 @@ void Sdlgl_cliparound(int x, int y)
   update_jail(win);
 
   /* draw cursor, unless it's on the player */
-  if (x == player_x && y == player_y)
+  if (!win->write_cursor && x == player_x && y == player_y)
   {
     sdlgl_set_cursor(win->base, -1, -1, 1);
   }
@@ -758,7 +768,7 @@ static void do_zoom(struct TextWindow *win, int zoom_h)
   th = win->base->scale_h;
   tk = win->base->scale_skew;
 
-  win->map_px = win->focus_x * tw + tw / 2 - cur_y + win->focus_y * tk;
+  win->map_px = win->focus_x * tw + tw / 2 - cur_x + win->focus_y * tk;
   win->map_py = win->focus_y * th + th / 2 - cur_y;
 
   /* move jail center towards focus, upto 1 tile step.  The rough
@@ -832,16 +842,15 @@ void sdlgl_zoom_map(int adjust)
     {
       int i;
 
-      for (i=0; i < MAX_ZOOM; i++)
+      for (i=0; i < NUM_ZOOM; i++)
         if (zoom_sets[i] == win->zoom_h)
           break;
 
-      assert(i != MAX_ZOOM);
+      assert(i != NUM_ZOOM);
 
-      if ((i + adjust) < 0 || (i + adjust) >= MAX_ZOOM)
-        return;
+      i = max(0, min(NUM_ZOOM-1, i + adjust));
 
-      zoom_h = zoom_sets[i + adjust];
+      zoom_h = sdlgl_quantize_zoom(zoom_sets[i]);
     }
   }
  
