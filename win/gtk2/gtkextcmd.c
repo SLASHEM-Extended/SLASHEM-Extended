@@ -1,5 +1,5 @@
 /*
-  $Id: gtkextcmd.c,v 1.3 2002-06-23 18:31:23 j_ali Exp $
+  $Id: gtkextcmd.c,v 1.4 2002-07-23 19:27:44 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -61,8 +61,8 @@ static int extcmd = 0;
 
 static void extcmd_init(boolean init)
 {
-#ifdef GTK_PROXY
     int i;
+#ifdef GTK_PROXY
     struct proxycb_get_extended_commands_res *list;
 #endif
     if (!init) {	/* Exit */
@@ -82,7 +82,7 @@ static void extcmd_init(boolean init)
 #else
     for(n_extcmds = 0; extcmdlist[n_extcmds].ef_txt; n_extcmds++)
 	;
-    extcmdlist = (const char **)malloc(n_extcmds * sizeof(const char *));
+    extcmds = (const char **)malloc(n_extcmds * sizeof(const char *));
     for(i = 0; i < n_extcmds; i++)
 	extcmds[i] = strdup(extcmdlist[i].ef_txt);
 #endif

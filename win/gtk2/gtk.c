@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.19 2002-07-09 13:24:54 j_ali Exp $
+  $Id: gtk.c,v 1.20 2002-07-23 19:27:44 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -100,7 +100,9 @@ GdkColor	  nh_color[N_NH_COLORS] = {
     {0, 255*257, 255*257, 255*257,},	/* fixed white */
 };
 
+#ifdef GTK_PROXY
 static struct proxycb_get_player_choices_res *player_choices = NULL;
+#endif
 
 char *
 GTK_ext_askname() {
@@ -1177,10 +1179,27 @@ valid_align(int role, int race, int align)
 {
     return proxy_cb_is_valid_selection(role, race, -1, align);
 }
+#define number_roles		(proxy_choices->n_roles)
+#define number_races		(proxy_choices->n_races)
+#define number_genders		(proxy_choices->n_genders)
+#define number_aligns		(proxy_choices->n_aligns)
+#define PLAYER_ROLE_M(i)	(proxy_choices->roles[i].male)
+#define PLAYER_ROLE_F(i)	(proxy_choices->roles[i].female)
+#define PLAYER_RACE(i)		(proxy_choices->races[i])
+#define PLAYER_GENDER(i)	(proxy_choices->genders[i])
+#define PLAYER_ALIGN(i)		(proxy_choices->aligns[i])
 #else	/* GTK_PROXY */
-#define valid_race	validrace
-#define valid_gend	validgend
-#define valid_align	validalign
+#define valid_race		validrace
+#define valid_gend		validgend
+#define valid_align		validalign
+static int number_roles, number_races;
+#define number_genders		ROLE_GENDERS
+#define number_aligns		ROLE_ALIGNS
+#define PLAYER_ROLE_M(i)	(roles[i].name.m)
+#define PLAYER_ROLE_F(i)	(roles[i].name.f)
+#define PLAYER_RACE(i)		(races[i].noun)
+#define PLAYER_GENDER(i)	(genders[i].adj)
+#define PLAYER_ALIGN(i)		(aligns[i].adj)
 #endif	/* GTK_PROXY */
 
 /*
@@ -1207,7 +1226,7 @@ select_node_option(unsigned long key, int level, int indx)
 	    /* Role */
 	    if (select_player_flags.role >= 0)
 		return indx ? -1 : select_player_flags.role;
-	    for (i = 0; i < player_choices->n_roles; i++)
+	    for (i = 0; i < number_roles; i++)
 		if (!indx--)
 		    return i;
 	    return -1;
@@ -1218,7 +1237,7 @@ select_node_option(unsigned long key, int level, int indx)
 	    if (select_player_flags.race >= 0 &&
 	      (rolenum < 0 || valid_race(rolenum, select_player_flags.race)))
 		return indx ? -1 : select_player_flags.race;
-	    for (i = 0; i < player_choices->n_races; i++)
+	    for (i = 0; i < number_races; i++)
 		if (rolenum < 0 || valid_race(rolenum, i))
 		    if (!indx--)
 			return i;
@@ -1231,13 +1250,13 @@ select_node_option(unsigned long key, int level, int indx)
 	    /* Gender */
 	    if (level == 2)
 	    {
-		n = player_choices->n_genders;
+		n = number_genders;
 		valid = valid_gend;
 		i = select_player_flags.gend;
 	    }
 	    else
 	    {
-		n = player_choices->n_aligns;
+		n = number_aligns;
 		valid = valid_align;
 		i = select_player_flags.align;
 	    }
@@ -1250,13 +1269,13 @@ select_node_option(unsigned long key, int level, int indx)
 			return indx ? -1 : i;
 		    else
 		    {
-			for (j = 0; j < player_choices->n_roles; j++)
+			for (j = 0; j < number_roles; j++)
 			    if (valid(j, racenum, i))
 				return indx ? -1 : i;
 		    }
 		else if (racenum < 0)
 		{
-		    for (j = 0; j < player_choices->n_races; j++)
+		    for (j = 0; j < number_races; j++)
 			if (valid(rolenum, j, i))
 			    return indx ? -1 : i;
 		}
@@ -1272,7 +1291,7 @@ select_node_option(unsigned long key, int level, int indx)
 		else
 		{
 		    for (i = 0; i < n; i++)
-			for (j = 0; j < player_choices->n_roles; j++)
+			for (j = 0; j < number_roles; j++)
 			    if (valid(j, racenum, i))
 			    {
 				if (!indx--)
@@ -1283,7 +1302,7 @@ select_node_option(unsigned long key, int level, int indx)
 	    else if (racenum < 0)
 	    {
 		for (i = 0; i < n; i++)
-		    for (j = 0; j < player_choices->n_races; j++)
+		    for (j = 0; j < number_races; j++)
 			if (valid(rolenum, j, i))
 			{
 			    if (!indx--)
@@ -1370,22 +1389,22 @@ select_node_path(unsigned long key, int level, char *leaf)
     len = 11 + level;
     if (level > 0)
 	if (rolenum >= 0)
-	    len += strlen(player_choices->roles[rolenum].male);
+	    len += strlen(PLAYER_ROLE_M(rolenum));
 	else
 	    len += 6;
     if (level > 1)
 	if (racenum >= 0)
-	    len += strlen(player_choices->races[racenum]);
+	    len += strlen(PLAYER_RACE(racenum));
 	else
 	    len += 6;
     if (level > 2)
 	if (gendnum >= 0)
-	    len += strlen(player_choices->genders[gendnum]);
+	    len += strlen(PLAYER_GENDER(gendnum));
 	else
 	    len += 6;
     if (level > 3)
 	if (alignnum >= 0)
-	    len += strlen(player_choices->aligns[alignnum]);
+	    len += strlen(PLAYER_ALIGN(alignnum));
 	else
 	    len += 6;
     if (leaf)
@@ -1396,22 +1415,22 @@ select_node_path(unsigned long key, int level, char *leaf)
     if (level > 0)
     {
 	strcat(path, "/");
-	strcat(path, SELECT_STR(rolenum, player_choices->roles[rolenum].male));
+	strcat(path, SELECT_STR(rolenum, PLAYER_ROLE_M(rolenum)));
     }
     if (level > 1)
     {
 	strcat(path, "/");
-	strcat(path, SELECT_STR(racenum, player_choices->races[racenum]));
+	strcat(path, SELECT_STR(racenum, PLAYER_RACE(racenum)));
     }
     if (level > 2)
     {
 	strcat(path, "/");
-	strcat(path, SELECT_STR(gendnum, player_choices->genders[gendnum]));
+	strcat(path, SELECT_STR(gendnum, PLAYER_GENDER(gendnum)));
     }
     if (level > 3)
     {
 	strcat(path, "/");
-	strcat(path, SELECT_STR(alignnum, player_choices->aligns[alignnum]));
+	strcat(path, SELECT_STR(alignnum, PLAYER_ALIGN(alignnum)));
     }
     if (leaf)
     {
@@ -1534,7 +1553,7 @@ select_node_dump(struct select_node *node, int level)
 	case 1:
 	    if (SELECT_KEY_ROLENUM(node->key) >= 0)
 		fprintf(stderr, "%s%s", buf,
-		  player_choices->roles[SELECT_KEY_ROLENUM(node->key)].m);
+		  PLAYER_ROLE_M(SELECT_KEY_ROLENUM(node->key)));
 	    else {
 		fprintf(stderr, "[%d] ---\n", count - 1);
 		for(i = 0; i < level; i++)
@@ -1545,7 +1564,7 @@ select_node_dump(struct select_node *node, int level)
 	case 2:
 	    if (SELECT_KEY_RACENUM(node->key) >= 0)
 		fprintf(stderr, "%s%s", buf,
-		  player_choices->races[SELECT_KEY_RACENUM(node->key)]);
+		  PLAYER_RACE(SELECT_KEY_RACENUM(node->key)));
 	    else {
 		fprintf(stderr, "[%d] ---\n", count - 1);
 		for(i = 0; i < level; i++)
@@ -1556,7 +1575,7 @@ select_node_dump(struct select_node *node, int level)
 	case 3:
 	    if (SELECT_KEY_GENDNUM(node->key) >= 0)
 		fprintf(stderr, "%s%s", buf,
-		  player_choices->genders[SELECT_KEY_GENDNUM(node->key)]);
+		  PLAYER_GENDER(SELECT_KEY_GENDNUM(node->key)));
 	    else {
 		fprintf(stderr, "[%d] ---\n", count - 1);
 		for(i = 0; i < level; i++)
@@ -1567,7 +1586,7 @@ select_node_dump(struct select_node *node, int level)
 	case 4:
 	    if (SELECT_KEY_ALIGNNUM(node->key) >= 0)
 		fprintf(stderr, "%s%s", buf,
-		  player_choices->aligns[SELECT_KEY_ALIGNNUM(node->key)]);
+		  PLAYER_ALIGN(SELECT_KEY_ALIGNNUM(node->key)));
 	    else {
 		fprintf(stderr, "[%d] ---\n", count - 1);
 		for(i = 0; i < level; i++)
@@ -1613,11 +1632,20 @@ init_select_player(boolean init)
 	nmenu_items = 0;
 	free(menu_items);
 	menu_items = NULL;
+#ifdef GTK_PROXY
 	proxy_cb_free_player_choices(player_choices);
 	player_choices = NULL;
+#endif
 	return;
     }
+#ifdef GTK_PROXY
     player_choices = proxy_cb_get_player_choices();
+#else
+    for(number_roles = 0; roles[number_roles].name.m; number_roles++)
+	;
+    for(number_races = 0; races[number_races].noun; number_races++)
+	;
+#endif
     root = (struct select_node *)alloc(sizeof(struct select_node));
     root->key = 0;
     num_opts = select_node_fill(root, 0);
