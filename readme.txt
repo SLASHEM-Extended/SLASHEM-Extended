@@ -67,45 +67,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E5 [January 20/2004] [Released by Ali]
--fixed bug 854683: gtkhack produces many warnings on start-up
--fixed bug 846444: [0.0.7e3] Negative disarm skill
--fixed bug 583464: Uncharged use of spellbooks
--fixed bug 436054: Striking unusual monsters' vital organs
--fixed bug 731772: Two-weapon skill categorization
--GtkHack: Added provision for disabling asynchronous NhExt
--Merged vanilla 3.4.3 codebase.
--fixed bug 857644: Gnome: tty_raw_print should be removed
--fixed bug 857488: gtkprogress not handled in proxified build
--GtkHack: Added user-level logging
--fixed bug 858984: GTK: Dialogs don't open until after the next game command
--Gtk: Smother scrolling
--Gtk: Upgrade file display window to use GtkTextView instead of broken GtkText
--Gtk: Add facility to change font used in help windows
--Improved tile2png to use paletted images where possible
--Winnt: Add support for png tilesets and build them by default
--fixed bug 456453: Deep dragon resistances
--fixed bug 662821: magic candles burn in the candelabrum of invocation
--fixed bug 863646: Fails to compile under Gtk 2.0
--fixed bug 863679: GTK interface fails to build as an internal port
--Winnt: Use pkg-config in build (for Gtk+ and libpng) based on cc-gtk
--fixed bug 864193: Using Arrow keys in win32 GTK
--fixed bug 866750: The number_pad windowing API is not called correctly
--fixed bug 821864: [0.0.7e2] Recharge lightsaber loses enchantment
--fixed bug 790120: Wolf form can't hold Torch but can if already holding
--fixed bug 603184: Stacking explosives
--fixed bug 857651: Gnome: tileset refreshing
--fixed bug 567573: Killed lichen corpses don't merge
--fixed bug 575178: Fighting with a weapon and a bare fist
--fixed bug 869951: Random crashes shortly after restore
--fixed bug 870027: GTK: Closing main window has no effect until after next cmd
--fixed bug 870762: Lighting a candle from a stack lights the remainder
-		   (Nico Kist)
--fixed bug 857492: gtkrc not removed by make spotless (Clive Crous)
--fixed bug 873593: runtime delta showweight doesn't reconfig status
-		   (Clive Crous)
--fixed bug 788895: [X11] showweight option not supported (Clive Crous)
--GtkHack: Profile versioning
+ver 0.0.7E6 [?] [Released by ?]
 
 See history.txt for changes made in previous versions.
 
