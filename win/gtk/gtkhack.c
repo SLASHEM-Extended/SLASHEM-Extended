@@ -1,4 +1,4 @@
-/* $Id: gtkhack.c,v 1.2 2003-05-27 09:48:45 j_ali Exp $ */
+/* $Id: gtkhack.c,v 1.3 2003-05-30 08:48:08 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -120,6 +120,50 @@ GTK_connection_add(const char *name, const char *scheme, const char *address)
     }
 }
 
+static gboolean save(GtkTreeModel *model, GtkTreePath *path,
+  GtkTreeIter *iter, gpointer data)
+{
+    gchar *name, *scheme, *address;
+    GString *str = data;
+    gtk_tree_model_get(model, iter, COLUMN_NAME, &name, COLUMN_SCHEME, &scheme, 
+      COLUMN_ADDRESS, &address, -1);
+    g_string_append_printf(str, "{\"%s\",\"%s\",\"%s\"},",
+      g_strescape(name, ""), scheme, g_strescape(address, ""));
+    g_free(name);
+    g_free(scheme);
+    g_free(address);
+    return FALSE;
+}
+
+void
+GTK_connection_save(struct gtkhackrc *rc)
+{
+    gchar *name;
+    GtkTreeIter iter;
+    GtkTreePath *path;
+    GString *str = g_string_new("connections = [");
+    gtk_tree_model_foreach(GTK_TREE_MODEL(GTK_connections),
+      (GtkTreeModelForeachFunc)save, str);
+    g_string_truncate(str, str->len - 1);	/* Remove final ',' */
+    g_string_append_c(str, ']');
+    nh_gtkhackrc_store(rc, str->str);
+    if (GTK_default_connection &&
+      gtk_tree_row_reference_valid(GTK_default_connection)) {
+	path = gtk_tree_row_reference_get_path(GTK_default_connection);
+	if (gtk_tree_model_get_iter(GTK_TREE_MODEL(GTK_connections), &iter,
+	  path)) {
+	    gtk_tree_model_get(GTK_TREE_MODEL(GTK_connections), &iter,
+	      COLUMN_NAME, &name, -1);
+	    g_string_printf(str, "default_connection = \"%s\"",
+	      g_strescape(name, ""));
+	    g_free(name);
+	    nh_gtkhackrc_store(rc, str->str);
+	}
+	gtk_tree_path_free(path);
+    }
+    (void)g_string_free(str, TRUE);
+}
+
 static void GTK_proxy_clnt_errhandler(const char *error)
 {
     GtkWidget *w;
@@ -157,7 +201,16 @@ main(int argc, char **argv)
     GTK_connections = gtk_list_store_new(N_COLUMNS,
       G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
     GTK_init_gtk(&argc, argv);
-    connections=create_Connections();
+    connections = create_Connections();
+    /* Stop the clicked signal from propogating from the revert button
+     * to the dialog and thus causing gtk_dialog_run() to return. Really,
+     * we should arrange for the revert button to be a non-activatable
+     * widget but glade doesn't have support for this.
+     */
+    g_signal_handlers_block_matched(lookup_widget(connections, "revertbutton1"),
+      G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_DATA,
+      g_signal_lookup("clicked", GTK_TYPE_BUTTON), 0, NULL, NULL,
+      G_OBJECT(connections));
     if (!gtk_tree_model_iter_n_children(GTK_TREE_MODEL(GTK_connections), NULL))
 	GTK_connection_add("local", "file", "slashem");
     treeview = lookup_widget(connections, "ConnectionsTreeView");
@@ -235,6 +288,7 @@ main(int argc, char **argv)
 	    g_free(address);
 	    if (!retval) {
 		gtk_widget_destroy(connections);
+		nh_write_gtkhackrc();
 		proxy_start_client_services();
 		exit(0);
 	    }

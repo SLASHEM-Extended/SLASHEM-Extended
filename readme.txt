@@ -128,6 +128,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -GtkHack: Added connections dialogs.
 -fixed bug 731418: #twoweaponing?
 -fixed bug 742693: Cannot read engravings without spending a turn.
+-GtkHack: Connections are now stored in profile.
 
 See history.txt for changes made in previous versions.
 

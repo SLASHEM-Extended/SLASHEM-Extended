@@ -1,4 +1,4 @@
-/* $Id: gtkhackrc.c,v 1.4 2003-05-20 18:36:10 j_ali Exp $ */
+/* $Id: gtkhackrc.c,v 1.5 2003-05-30 08:48:08 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -62,6 +62,7 @@ struct gtkhackrc_value {
     } u;
 };
 
+extern void rc_version(GScanner *scanner, GtkHackRcValue *value);
 extern void rc_window_position(GScanner *scanner, GtkHackRcVList *params,
   GtkHackRcValue *value);
 extern void rc_window_size(GScanner *scanner, GtkHackRcVList *params,
@@ -69,8 +70,10 @@ extern void rc_window_size(GScanner *scanner, GtkHackRcVList *params,
 extern void rc_map_font(GScanner *scanner, GtkHackRcValue *value);
 extern void rc_map_clip_dist2(GScanner *scanner, GtkHackRcValue *value);
 extern void rc_radar(GScanner *scanner, GtkHackRcValue *value);
+#ifdef GTKHACK
 extern void rc_connections(GScanner *scanner, GtkHackRcValue *value);
 extern void rc_default_connection(GScanner *scanner, GtkHackRcValue *value);
+#endif
 
 #define GTKHACKRC_VARIABLE	0
 #define GTKHACKRC_FUNCTION	1
@@ -87,12 +90,13 @@ struct gtkhackrc_setting {
 	  GtkHackRcValue *value);
     } handler;
 } gtkhackrc_settings[] = {
+    GTKHACKRC_VARIABLE, "version", rc_version,
     GTKHACKRC_FUNCTION, "window.position", rc_window_position,
     GTKHACKRC_FUNCTION, "window.size", rc_window_size,
     GTKHACKRC_VARIABLE, "map.font", rc_map_font,
     GTKHACKRC_VARIABLE, "map.clip_dist2", rc_map_clip_dist2,
     GTKHACKRC_VARIABLE, "radar", rc_radar,
-#if 0
+#ifdef GTKHACK
     GTKHACKRC_VARIABLE, "connections", rc_connections,
     GTKHACKRC_VARIABLE, "default_connection", rc_default_connection,
 #endif
@@ -118,6 +122,9 @@ struct gtkhackrc {
     FILE *fp;
 #endif
 };
+
+/* Preserved for writing back to file */
+static GSList *unrecognized_settings = NULL;
 
 static int
 action_setting(GScanner *scanner, GtkHackRcValue *lhs, GtkHackRcValue *rhs);
@@ -466,11 +473,88 @@ parse_value_list(GScanner *scanner, int failok)
     return retval;
 }
 
+static GString *print_value_list(GtkHackRcVList *vl);
+
+static GString *print_variable(GtkHackRcVariable *var)
+{
+    int i, n;
+    GString *str;
+    n = var->n_idents;
+    for(i = 0; i < var->n_idents; i++)
+	n += strlen(var->idents[i]);
+    str = g_string_sized_new(n - 1);
+    for(i = 0; i < var->n_idents; i++) {
+	if (i)
+	    g_string_append_c(str, '.');
+	g_string_append(str, var->idents[i]);
+    }
+    return str;
+}
+
+static GString *print_value(GtkHackRcValue *var)
+{
+    int i;
+    GString *str, *vl;
+    switch(var->type) {
+	case PARSE_VALUE_TYPE_NUMBER:
+	    str = g_string_new("");
+	    g_string_printf(str, "%ld", var->u.number);
+	    return str;
+	case PARSE_VALUE_TYPE_STRING:
+	    str = g_string_new("");
+	    g_string_printf(str, "\"%s\"", g_strescape(var->u.string, ""));
+	    return str;
+	case PARSE_VALUE_TYPE_VARIABLE:
+	    return print_variable(&var->u.var);
+	case PARSE_VALUE_TYPE_FUNCTION:
+	    str = print_variable(&var->u.func.var);
+	    g_string_append_c(str, '(');
+	    if (var->u.func.params.n_values) {
+		vl = print_value_list(&var->u.func.params);
+		g_string_append_len(str, vl->str, vl->len);
+		g_string_free(vl, TRUE);
+	    }
+	    g_string_append_c(str, ')');
+	    return str;
+	case PARSE_VALUE_TYPE_RECORD:
+	    str = g_string_new("{");
+	    vl = print_value_list(&var->u.record);
+	    g_string_append_len(str, vl->str, vl->len);
+	    g_string_free(vl, TRUE);
+	    g_string_append_c(str, '}');
+	    return str;
+	case PARSE_VALUE_TYPE_VECTOR:
+	    str = g_string_new("[");
+	    vl = print_value_list(&var->u.vector);
+	    g_string_append_len(str, vl->str, vl->len);
+	    g_string_free(vl, TRUE);
+	    g_string_append_c(str, ']');
+	    return str;
+	case PARSE_VALUE_TYPE_VALUE_LIST:
+	    return print_value_list(&var->u.vlist);
+    }
+}
+
+static GString *print_value_list(GtkHackRcVList *vl)
+{
+    int i;
+    GString *str, *v;
+    str = print_value(vl->values[0]);
+    for(i = 1; i < vl->n_values; i++) {
+	g_string_append_c(str, ',');
+	v = print_value(vl->values[i]);
+	g_string_append_len(str, v->str, v->len);
+	g_string_free(v, TRUE);
+    }
+    return str;
+}
+
 static int
 action_setting(GScanner *scanner, GtkHackRcValue *lhs, GtkHackRcValue *rhs)
 {
     int i, n, retval = 0;
     gchar *name;
+    GString *str, *value;
     GtkHackRcVariable *var;
     {
 	if (lhs->type == PARSE_VALUE_TYPE_VARIABLE)
@@ -519,9 +603,28 @@ action_setting(GScanner *scanner, GtkHackRcValue *lhs, GtkHackRcValue *rhs)
 #endif
 	    }
 	    g_free(name);
+	    if (i >= SIZE(gtkhackrc_settings)) {
+		str = print_value(lhs);
+		g_string_append(str, " = ");
+		value = print_value(rhs);
+		g_string_append_len(str, value->str, value->len);
+		g_string_free(value, TRUE);
+		unrecognized_settings =
+		  g_slist_append(unrecognized_settings, str->str);
+		g_string_free(str, FALSE);
+	    }
 	}
     }
     return retval;
+}
+
+static void clear_unrecognized()
+{
+    if (unrecognized_settings) {
+	g_slist_foreach(unrecognized_settings, (GFunc)g_free, NULL);
+	g_slist_free(unrecognized_settings);
+	unrecognized_settings = NULL;
+    }
 }
 
 /*
@@ -555,6 +658,7 @@ nh_scan_gtkhackrc(GScanner *scanner)
 	RegCloseKey(key);
 	return FALSE;
     }
+    clear_unrecognized();
     for(i = no_values - 1; i >= 0; i--) {
 	value_count = value_len + 1;
 	data_count = data_len + 1;
@@ -621,6 +725,7 @@ nh_scan_gtkhackrc(GScanner *scanner)
     }
     scanner->input_name = file;
     g_scanner_input_file(scanner, fd);
+    clear_unrecognized();
     while((retval = parse_setting(scanner, TRUE)) == PARSE_OK)
 	;
     if (retval == PARSE_ERROR) {
@@ -717,6 +822,7 @@ void
 nh_write_gtkhackrc(void)
 {
     struct gtkhackrc rc;
+    GSList *list;
 #ifdef WIN32
     RegDeleteKey(HKEY_CURRENT_USER, "Software\\NetHack\\GtkHack\\0.1");
     RegCreateKeyEx(HKEY_CURRENT_USER, "Software\\NetHack\\GtkHack\\0.1",
@@ -744,6 +850,12 @@ nh_write_gtkhackrc(void)
 #endif
     nh_session_save(&rc);
     GTK_preferences_save(&rc);
+#ifdef GTKHACK
+    GTK_connection_save(&rc);
+#endif
+    if (unrecognized_settings)
+	for(list = unrecognized_settings; list; list = list->next)
+	    nh_gtkhackrc_store(&rc, "%s", (gchar *)list->data);
 #ifdef WIN32
     RegCloseKey(rc.key);
 #else
@@ -780,6 +892,11 @@ int gtkhackrc_check_type(GScanner *scanner, GtkHackRcValue *value,
 	return FALSE;
     } else
 	return TRUE;
+}
+
+void rc_version(GScanner *scanner, GtkHackRcValue *value)
+{
+    /* We don't currently take any account of the version */
 }
 
 void rc_window_position(GScanner *scanner, GtkHackRcVList *params,
@@ -838,3 +955,38 @@ void rc_radar(GScanner *scanner, GtkHackRcValue *value)
 	return;
     nh_radar_set_use(value->u.number);
 }
+
+#ifdef GTKHACK
+void rc_connections(GScanner *scanner, GtkHackRcValue *value)
+{
+    int i, n;
+    GtkHackRcValue *con;
+    if (!gtkhackrc_check_type(scanner, value, "value", PARSE_VALUE_TYPE_VECTOR))
+	return;
+    n = value->u.vector.n_values;
+    for(i = 0; i < n; i++) {
+	con = value->u.vector.values[i];
+	if (gtkhackrc_check_type(scanner, con, "connection",
+	    PARSE_VALUE_TYPE_RECORD) &&
+	  gtkhackrc_check_no(scanner, &con->u.record, "fields in connection",
+	    3) &&
+	  gtkhackrc_check_type(scanner, con->u.record.values[0], "name",
+	    PARSE_VALUE_TYPE_STRING) &&
+	  gtkhackrc_check_type(scanner, con->u.record.values[1], "scheme",
+	    PARSE_VALUE_TYPE_STRING) &&
+	  gtkhackrc_check_type(scanner, con->u.record.values[2], "address",
+	    PARSE_VALUE_TYPE_STRING)) {
+	    GTK_connection_add(con->u.record.values[0]->u.string,
+	      con->u.record.values[1]->u.string,
+	      con->u.record.values[2]->u.string);
+	}
+    }
+}
+
+void rc_default_connection(GScanner *scanner, GtkHackRcValue *value)
+{
+    if (!gtkhackrc_check_type(scanner, value, "value", PARSE_VALUE_TYPE_STRING))
+	return;
+    GTK_connection_set_default(value->u.string);
+}
+#endif
