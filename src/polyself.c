@@ -453,7 +453,7 @@ polyself()
 			if (u.umonnum != PM_VAMPIRE_BAT)
 				mntmp = PM_VAMPIRE_BAT;
 			else
-				mntmp = PM_VAMPIRE;
+				mntmp = PM_HUMAN; /* newman() */
 		}
 		/* if polymon fails, "you feel" message has been given
 		   so don't follow up with another polymon or newman */
