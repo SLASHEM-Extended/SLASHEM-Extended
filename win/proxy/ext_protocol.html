@@ -7,7 +7,7 @@
 <body>
 <h1>NhExt: A protocol for NetHack plug-in window ports</h1>
 
-<p>This document describes my proposal of a protocol to be used when NetHack
+<p>This document describes NhExt 0.1, a protocol to be used when NetHack
 calls a function located inside a plug-in window port and for when that window
 port function in turn calls a function located inside NetHack (a call back).
 The protocol specifies no limit to the depth of recursion which may occur.
@@ -47,6 +47,13 @@ by one space character.
 
 <p>The following tags will <em>always</em> be present:
 <ul>
+<li><strong>standard</strong>. The NhExt standard to which the server compiles.
+NhExt standards are always of the form major.minor where major and minor are
+non-negative decimal numbers. When considering compatibility, clients should
+treat all standards earlier than 1.0 as incompatible with each other. From
+NhExt 1.0, servers complying to a later standard will be compatible with clients
+complying with an earlier standard in the same series (having the same major
+number).
 <li><strong>game</strong>. This value can be used to distinguish vanilla
 NetHack (which uses the value "NetHack") from its variants
 (eg., Slash'EM uses the value "SlashEM").
@@ -58,7 +65,7 @@ NetHack (which uses the value "NetHack") from its variants
 
 <p>Example:
 <pre>
-NhExt game "NetHack" version "3.3.2" protocols "1" junk "foo \" bar"
+NhExt standard "1.0" game "NetHack" version "3.3.2" protocols "1" junk "foo \" bar"
 </pre>
 
 <p>The window-port should reply with either an error or an acknowledgment
@@ -240,7 +247,7 @@ window-port and decode it as follows:
 	length = (value & 0xffff) << 2;
 </pre>
 
-If <code>ID</code> is non-zero, this is a callback (protocol not yet defined).
+If <code>ID</code> is non-zero, this is a <a href="#callbacks">callback</a>.
 
 <p>If <code>ID</code> is zero, this is a reply to the active procedure. The
 proxy module will read that many bytes from the plug-in window-port and
@@ -1013,7 +1020,7 @@ Glyphs are
 Note: This procedure will only be called if the interface flag
 EXT_IM_DISPLAY_LAYERS is set.
 
-<h2>Standard window port call backs</h2>
+<h2><a name="callbacks">Standard window port call backs</a></h2>
 
 Plug-in window ports may assume that the following call backs are supported.
 

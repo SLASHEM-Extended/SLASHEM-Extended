@@ -1,4 +1,4 @@
-/* $Id: proxysvc.c,v 1.15 2003-01-01 12:13:33 j_ali Exp $ */
+/* $Id: proxysvc.c,v 1.16 2003-01-01 22:50:59 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -869,7 +869,8 @@ int
 win_proxy_clnt_init(read_h, write_h)
 void *read_h, *write_h;
 {
-    int i;
+    int i, j;
+    int major, minor;
     char *s;
     NhExtIO *rd, *wr;
     struct nhext_line *lp, line;
@@ -900,10 +901,23 @@ failed:
 	return FALSE;
     }
     if (strcmp(lp->type, "NhExt") || win_proxy_clnt_gettag(lp, "game") < 0 ||
+      (j = win_proxy_clnt_gettag(lp, "standard")) < 0 ||
       win_proxy_clnt_gettag(lp, "version") < 0 ||
       (i = win_proxy_clnt_gettag(lp, "protocols")) < 0) {
 	nhext_subprotocol0_free_line(lp);
 	goto failed;
+    }
+    if (sscanf(lp->values[j], "%d.%d", &major, &minor) != 2 ||
+      major != EXT_STANDARD_MAJOR || !major && minor != EXT_STANDARD_MINOR) {
+	nhext_subprotocol0_free_line(lp);
+	fprintf(stderr, "proxy_clnt: Incompatible NhExt standard (%s).\n",
+	  lp->values[j]);
+	s = "Error mesg \"Incompatible NhExt standard\"\n";
+	(void)nhext_io_write(wr, s, strlen(s));
+	nhext_end();
+	nhext_io_close(wr);
+	nhext_io_close(rd);
+	return FALSE;
     }
     s = strchr(lp->values[i], '1');
     if (!s || s > lp->values[i] && s[-1] != ',' || s[1] && s[1] != ',') {
