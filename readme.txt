@@ -363,6 +363,7 @@ ver 0.0.6E5 [May 3/2001] [Released by Warren]
 -fixed bug 225227: Vampires start with food rations.
 
 ver 0.0.6E4F8 [?] [Released by ?]
+-Implemented "none" as a possible random place in level compiler.
 
 ver 0.0.6E4F7 [February 28/2002] [Released by Ali]
 -Improvements to database (Lars Huttar)

@@ -77,7 +77,7 @@ static NEARDATA char xsize, ysize;
 STATIC_DCL void FDECL(set_wall_property, (XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,int));
 STATIC_DCL int NDECL(rnddoor);
 STATIC_DCL int NDECL(rndtrap);
-STATIC_DCL void FDECL(get_location, (schar *,schar *,int));
+STATIC_DCL boolean FDECL(get_location, (schar *,schar *,int));
 STATIC_DCL void FDECL(sp_lev_shuffle, (char *,char *,int));
 STATIC_DCL void FDECL(light_region, (region *));
 STATIC_DCL void FDECL(load_common_data, (dlb *,int));
@@ -167,7 +167,7 @@ rndtrap()
 
 STATIC_DCL boolean FDECL(is_ok_location, (SCHAR_P, SCHAR_P, int));
 
-STATIC_OVL void
+STATIC_OVL boolean
 get_location(x, y, humidity)
 schar *x, *y;
 int humidity;
@@ -178,8 +178,12 @@ int humidity;
 		*x += xstart;
 		*y += ystart;
 	} else if (*x > -11) {		/* special locations */
+	    if (rloc_y[ - *y - 1] == (char)-1 || rloc_x[ - *x - 1] == (char)-1)
+		return FALSE;		/* nowhere */
+	    else {
 		*y = ystart + rloc_y[ - *y - 1];
 		*x = xstart + rloc_x[ - *x - 1];
+	    }
 	} else {			/* random location */
 	    do {
 		*x = xstart + rn2((int)xsize);
@@ -204,6 +208,7 @@ found_it:;
 	    impossible("get_location:  (%d,%d) out of bounds", *x, *y);
 	    *x = x_maze_max; *y = y_maze_max;
 	}
+	return TRUE;
 }
 
 STATIC_OVL boolean
@@ -726,7 +731,8 @@ struct mkroom	*croom;
 	if (croom)
 	    get_free_room_loc(&x, &y, croom);
 	else
-	    get_location(&x, &y, DRY);
+	    if (!get_location(&x, &y, DRY))
+		return;
 
 	tm.x = x;
 	tm.y = y;
@@ -829,12 +835,15 @@ struct mkroom	*croom;
 	if (croom)
 	    get_room_loc(&x, &y, croom);
 	else {
+	    boolean found;
 	    if (!pm || !is_swimmer(pm))
-		get_location(&x, &y, DRY);
+		found = get_location(&x, &y, DRY);
 	    else if (pm->mlet == S_EEL)
-		get_location(&x, &y, WET);
+		found = get_location(&x, &y, WET);
 	    else
-		get_location(&x, &y, DRY|WET);
+		found = get_location(&x, &y, DRY|WET);
+	    if (!found)
+		goto m_done;	/* nowhere */
 	}
 	/* try to find a close place if someone else is already there */
 	if (MON_AT(x,y) && enexto(&cc, x, y, pm))
@@ -950,7 +959,8 @@ struct mkroom	*croom;
 	if (croom)
 	    get_room_loc(&x, &y, croom);
 	else
-	    get_location(&x, &y, DRY);
+	    if (!get_location(&x, &y, DRY))	/* nowhere */
+		goto o_done;
 
 	if (o->class >= 0)
 	    c = o->class;
@@ -1083,14 +1093,16 @@ engraving *e;
 struct mkroom *croom;
 {
 	xchar x, y;
+	boolean found = TRUE;
 
 	x = e->x,  y = e->y;
 	if (croom)
 	    get_room_loc(&x, &y, croom);
 	else
-	    get_location(&x, &y, DRY);
+	    found = get_location(&x, &y, DRY);
 
-	make_engr_at(x, y, e->engr.str, 0L, e->etype);
+	if (found)
+	    make_engr_at(x, y, e->engr.str, 0L, e->etype);
 	free((genericptr_t) e->engr.str);
 }
 
@@ -1132,7 +1144,8 @@ create_altar(a, croom)
 	    if (croom->rtype != TEMPLE)
 		croom_is_temple = FALSE;
 	} else {
-	    get_location(&x, &y, DRY);
+	    if (!get_location(&x, &y, DRY))
+		return;		/* nowhere */
 	    if ((sproom = (schar) *in_rooms(x, y, TEMPLE)) != 0)
 		croom = &rooms[sproom - ROOMOFFSET];
 	    else
@@ -1196,7 +1209,8 @@ struct mkroom	*croom;
 	if (croom)
 	    get_room_loc(&x, &y, croom);
 	else
-	    get_location(&x, &y, DRY);
+	    if (!get_location(&x, &y, DRY))
+		return;		/* nowhere */
 
 	if (g->amount == -1)
 	    g->amount = rnd(200);
@@ -1228,7 +1242,8 @@ int		typ;
 	    if(trycnt > 200)
 		return;
 	} else {
-	    get_location(&x, &y, DRY);
+	    if (!get_location(&x, &y, DRY))
+		return;		/* nowhere */
 	}
 	/* Don't cover up an existing feature (particularly randomly
 	   placed stairs).  However, if the _same_ feature is already
@@ -2259,6 +2274,7 @@ dlb *fd;
 	}
 
 	while(n--) {
+	    boolean found = TRUE;
 	    Fread((genericptr_t) &tmplregion, sizeof(tmplregion), 1, fd);
 	    if ((size = tmplregion.rname.len) != 0) {
 		tmplregion.rname.str = (char *) alloc((unsigned)size + 1);
@@ -2267,17 +2283,19 @@ dlb *fd;
 	    } else
 		tmplregion.rname.str = (char *) 0;
 	    if(!tmplregion.in_islev) {
-		get_location(&tmplregion.inarea.x1, &tmplregion.inarea.y1,
-								DRY|WET);
-		get_location(&tmplregion.inarea.x2, &tmplregion.inarea.y2,
-								DRY|WET);
+		found &= get_location(&tmplregion.inarea.x1,
+				      &tmplregion.inarea.y1, DRY|WET);
+		found &= get_location(&tmplregion.inarea.x2,
+				      &tmplregion.inarea.y2, DRY|WET);
 	    }
 	    if(!tmplregion.del_islev) {
-		get_location(&tmplregion.delarea.x1, &tmplregion.delarea.y1,
-								DRY|WET);
-		get_location(&tmplregion.delarea.x2, &tmplregion.delarea.y2,
-								DRY|WET);
+		found &= get_location(&tmplregion.delarea.x1,
+				      &tmplregion.delarea.y1, DRY|WET);
+		found &= get_location(&tmplregion.delarea.x2,
+				      &tmplregion.delarea.y2, DRY|WET);
 	    }
+	    if (!found)
+		panic("reading special level with region located nowhere");
 	    lregions[(int)n] = tmplregion;
 	}
 
@@ -2321,8 +2339,9 @@ dlb *fd;
 		    tmpregion.rlit = (rnd(1+abs(depth(&u.uz))) < 11 && rn2(77))
 			? TRUE : FALSE;
 
-		get_location(&tmpregion.x1, &tmpregion.y1, DRY|WET);
-		get_location(&tmpregion.x2, &tmpregion.y2, DRY|WET);
+		if (!get_location(&tmpregion.x1, &tmpregion.y1, DRY|WET) ||
+		  !get_location(&tmpregion.x2, &tmpregion.y2, DRY|WET))
+		    panic("reading special level with region located nowhere");
 
 		/* for an ordinary room, `prefilled' is a flag to force
 		   an actual room to be created (such rooms are used to
@@ -2373,14 +2392,15 @@ dlb *fd;
 		x = tmpdoor.x;	y = tmpdoor.y;
 		typ = tmpdoor.mask == -1 ? rnddoor() : tmpdoor.mask;
 
-		get_location(&x, &y, DRY);
-		if(levl[x][y].typ != SDOOR)
+		if (get_location(&x, &y, DRY)) {
+		    if(levl[x][y].typ != SDOOR)
 			levl[x][y].typ = DOOR;
-		else {
+		    else {
 			if(typ < D_CLOSED)
 			    typ = D_CLOSED; /* force it to be closed */
+		    }
+		    levl[x][y].doormask = typ;
 		}
-		levl[x][y].doormask = typ;
 
 		/* Now the complicated part, list it with each subroom */
 		/* The dog move and mail daemon routines use this */
@@ -2431,10 +2451,10 @@ dlb *fd;
 		Fread((genericptr_t)&tmpdb, 1, sizeof(tmpdb), fd);
 
 		x = tmpdb.x;  y = tmpdb.y;
-		get_location(&x, &y, DRY|WET);
-
-		if (!create_drawbridge(x, y, tmpdb.dir, tmpdb.db_open))
-		    impossible("Cannot create drawbridge.");
+		if (get_location(&x, &y, DRY|WET)) {
+		    if (!create_drawbridge(x, y, tmpdb.dir, tmpdb.db_open))
+			impossible("Cannot create drawbridge.");
+		}
 	}
 
 	Fread((genericptr_t) &n, 1, sizeof(n), fd);
@@ -2442,9 +2462,8 @@ dlb *fd;
 	while(n--) {
 		Fread((genericptr_t)&tmpwalk, 1, sizeof(tmpwalk), fd);
 
-		get_location(&tmpwalk.x, &tmpwalk.y, DRY|WET);
-
-		walklist[nwalk++] = tmpwalk;
+		if (get_location(&tmpwalk.x, &tmpwalk.y, DRY|WET))
+		    walklist[nwalk++] = tmpwalk;
 	}
 
 	Fread((genericptr_t) &n, 1, sizeof(n), fd);
@@ -2477,15 +2496,15 @@ dlb *fd;
 		Fread((genericptr_t)&tmplad, 1, sizeof(tmplad), fd);
 
 		x = tmplad.x;  y = tmplad.y;
-		get_location(&x, &y, DRY);
-
-		levl[x][y].typ = LADDER;
-		if (tmplad.up == 1) {
+		if (get_location(&x, &y, DRY)) {
+		    levl[x][y].typ = LADDER;
+		    if (tmplad.up == 1) {
 			xupladder = x;	yupladder = y;
 			levl[x][y].ladder = LA_UP;
-		} else {
+		    } else {
 			xdnladder = x;	ydnladder = y;
 			levl[x][y].ladder = LA_DOWN;
+		    }
 		}
 	}
 
@@ -2493,14 +2512,17 @@ dlb *fd;
 	Fread((genericptr_t) &n, 1, sizeof(n), fd);
 						/* Number of stairs */
 	while(n--) {
+		boolean found;
 		Fread((genericptr_t)&tmpstair, 1, sizeof(tmpstair), fd);
 
 		xi = 0;
 		do {
 		    x = tmpstair.x;  y = tmpstair.y;
-		    get_location(&x, &y, DRY);
-		} while(prevstair.x && xi++ < 100 &&
+		    found = get_location(&x, &y, DRY);
+		} while(found && prevstair.x && xi++ < 100 &&
 			distmin(x,y,prevstair.x,prevstair.y) <= 8);
+		if (!found)
+		    continue;
 		if ((badtrap = t_at(x,y)) != 0) deltrap(badtrap);
 		mkstairs(x, y, (char)tmpstair.up, (struct mkroom *)0);
 		prevstair.x = x;

@@ -434,6 +434,7 @@ GRAMMAR
                        ;
 
        place           : coord
+                       | NONE
                        ;
 
        monster         : CHAR

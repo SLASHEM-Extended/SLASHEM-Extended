@@ -1651,6 +1651,11 @@ a_register	: A_REGISTER '[' INTEGER ']'
 		;
 
 place		: coord
+		| NONE
+		  {
+			current_coord.x = (char)-1;
+			current_coord.y = (char)-1;
+		  }
 		;
 
 monster		: CHAR
