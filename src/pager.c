@@ -821,22 +821,32 @@ static const char *help_menu_items[] = {
 /* 6*/	"Longer explanation of game options.",
 /* 7*/	"List of extended commands.",
 /* 8*/	"The NetHack license.",
+#ifndef MAC
 /*WAC Add access to txt guidebook*/
 /* 9*/  "The Slash'EM Guidebook.",
+#endif
 #ifdef PORT_HELP
 	"%s-specific help and commands.",
-#define PORT_HELP_ID 100
-/*#define WIZHLP_SLOT 10*/
-#define WIZHLP_SLOT 11
-#else
-/*#define WIZHLP_SLOT 9*/
-#define WIZHLP_SLOT 10
 #endif
 #ifdef WIZARD
 	"List of wizard-mode commands.",
 #endif
 	"",
 	(char *)0
+};
+
+enum {
+  LICENSE_SLOT=8,
+#ifndef MAC
+  GUIDEBOOK_SLOT,
+#endif
+#ifdef PORT_HELP
+  PORT_HELP_ID,
+#endif
+#ifdef WIZARD
+  WIZHLP_SLOT,
+#endif
+  NULL_SLOT
 };
 
 STATIC_OVL boolean
@@ -905,18 +915,19 @@ dohelp()
 			case  8:  display_file_area(NH_LICENSE_AREA,
 				    NH_LICENSE, TRUE);
 				  break;
+#ifndef MAC
 /*WAC add guidebook.*/
-                        case  9:  display_file_area(NH_GUIDEBOOK_AREA,
+                        case  GUIDEBOOK_SLOT:  display_file_area(NH_GUIDEBOOK_AREA,
 				    NH_GUIDEBOOK, TRUE);
-				  break;
-#ifdef WIZARD
-                        /* handle slot 10 or 11 */
-			default:  display_file_area(NH_DEBUGHELP_AREA,
-				    NH_DEBUGHELP, TRUE);
 				  break;
 #endif
 #ifdef PORT_HELP
 			case PORT_HELP_ID:  port_help();  break;
+#endif
+#ifdef WIZARD
+                        case  WIZHLP_SLOT:  display_file_area(NH_DEBUGHELP_AREA,
+				    NH_DEBUGHELP, TRUE);
+				  break;
 #endif
 		}
 	}
