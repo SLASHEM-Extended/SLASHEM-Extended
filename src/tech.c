@@ -1025,9 +1025,9 @@ int tech_no;
 		t_timeout = rn1(1000,500);
 		break;	    
 	    case T_BLINK:
-	    	You("feel the flow of time slow to a crawl.");
-                techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/10 + 1)) + 2;
-		t_timeout = rn1(1000,500);	    
+	    	You("feel the flow of time slow down.");
+                techt_inuse(tech_no) = rnd(techlev(tech_no) + 1) + 2;
+		t_timeout = rn1(1000,500);
 	    	break;
             case T_CHI_STRIKE:
             	if (!blitz_chi_strike()) return(0);

@@ -402,6 +402,7 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -fixed bug 453083: Vecna doesn't always leave his hand.
 -fixed bug 455346: onbill: unpaid obj not on bill?
 -fixed bug 456459: Weak steeds can jump into poly traps.
+-fixed bug 425541: 'Blink' hobbit tech doesn't do anything.
 
 ver 0.0.6E4F4mac0 [May 13/2001] [Released by Paul]
 -built Mac 68K port
