@@ -4191,7 +4191,8 @@ shk_uncurse(slang, shkp)
 
 	/* Shopkeeper responses */
 	/* KMH -- fixed bknown, curse(), bless(), uncurse() */
-	if (!obj->bknown && !Role_if(PM_PRIEST) && !no_cheat)
+	if (!obj->bknown && !Role_if(PM_PRIEST) && !Role_if(PM_NECROMANCER) &&
+	    !no_cheat)
 	{
 		/* Not identified! */
 		pline("%s snickers and says \"See, nice and uncursed!\"",
