@@ -1574,12 +1574,27 @@ int atyp;
 	}
 }
 
+static struct {
+    int mon;
+    int reqtime;
+    boolean merge;
+} draconic;
+
+STATIC_PTR
+int
+mage_transform()	/* called each move during transformation process */
+{
+    if (--draconic.reqtime)
+	return 1;
+    if (draconic.merge)
+	merge_with_armor();
+    polymon(draconic.mon);
+    return 0;
+}
 
 int
-polyatwill()      /* Polymorph at will for Doppelganger class */
+polyatwill()      /* Polymorph under conscious control (#youpoly) */
 {
-	int mon;
-
 #define EN_DOPP 	20 	/* This is the "base cost" for a polymorph
 				 * Actual cost is this base cost + 5 * monster level
 				 * of the final form you actually assume.
@@ -1650,46 +1665,46 @@ polyatwill()      /* Polymorph at will for Doppelganger class */
 	     *   energy level 10 or less (not enough energy).
 	     * - Not wearing scale mail and experience level 6 or less
 	     *   (not experienced enough).
+	     *
+	     * The transformation takes a few turns. If interrupted during this
+	     * period then the ritual must be begun again from the beginning.
+	     * We deliberately don't say what form the ritual takes since it
+	     * is unaffected by blindness, confusion, stun etc. 
 	     */
-	    if (yn("Polymorph to your draconic form?") == 'n') 
+	    if (yn("Transform into your draconic form?") == 'n') 
 		can_polyatwill = TRUE;
 	    else if (!scales && !scale_mail && u.uen <= EN_BABY_DRAGON) {
 		You("don't have the energy to polymorph.");
 		return 0;		
-	    /* Check if you can do the adult form */
-	    } else if (u.ulevel > 13 && u.uen > EN_ADULT_DRAGON || 
-	    	scales && u.uen > EN_BABY_DRAGON || scale_mail) {
+	    } else {
+		/* Check if you can do the adult form */
+		if (u.ulevel > 13 && u.uen > EN_ADULT_DRAGON || 
+			scales && u.uen > EN_BABY_DRAGON || scale_mail) {
 		    /* If you have scales, energy cost is less */
 		    /* If you have scale mail,  there is no cost! */
 		    if (!scale_mail) {
 			if (scales) u.uen -= EN_BABY_DRAGON; 
 			else u.uen -= EN_ADULT_DRAGON;
 		    }
-		
-		    /* Get the adult dragon form */
-		    if (Role_if(PM_FLAME_MAGE)) mon = PM_RED_DRAGON;
-		    else mon = PM_WHITE_DRAGON;
 
-		    if (!(mvitals[mon].mvflags & G_GENOD) &&
-			    (scales || scale_mail)) {
-			merge_with_armor();
-		    }
-		
-		    polymon(mon); /* Goto adult form */
-		    return 1;
-	    /* Otherwise use the baby form */
-	    } else {
+		    draconic.mon = Role_if(PM_FLAME_MAGE) ?
+			    PM_RED_DRAGON : PM_WHITE_DRAGON;
+		    draconic.merge = scales || scale_mail;
+		/* Otherwise use the baby form */
+		} else {
 		    if (!scales) u.uen -= EN_BABY_DRAGON;
-		
-		    if (Role_if(PM_FLAME_MAGE)) mon = PM_BABY_RED_DRAGON;
-		    else mon = PM_BABY_WHITE_DRAGON;
 
-		    if (!(mvitals[mon].mvflags & G_GENOD) && scales) {
-		    	merge_with_armor();
-		    }
-
-		    polymon(mon); /* Goto baby form */
-		    return 1; 
+		    draconic.mon = Role_if(PM_FLAME_MAGE) ?
+			    PM_BABY_RED_DRAGON : PM_BABY_WHITE_DRAGON;
+		    draconic.merge = scales;
+		}
+		draconic.reqtime = 2;
+		if (mvitals[draconic.mon].mvflags & G_GENOD)
+		    draconic.merge = FALSE;
+		set_occupation(mage_transform,
+			"transforming into your draconic form", 0);
+		You("begin the transformation ritual.");
+		return 1;
 	    }
 	}
 	if (Race_if(PM_DOPPELGANGER)) {

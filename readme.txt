@@ -122,6 +122,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -Actioned feature request 716698: rothe color is different from 3.4.1
 -fixed bug 739987: impossible boolean condition.
 -Actioned feature request 464475: recentering view with gtk: optional.
+-Actioned feature request 421203: Mages' draconic polymorph.
 
 See history.txt for changes made in previous versions.
 
