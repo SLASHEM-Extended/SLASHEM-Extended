@@ -1542,8 +1542,12 @@ register struct obj *obj;
 		return;
 	}
 	if (!(corpse = getobj((const char *)tinnables, "tin"))) return;
-	if (corpse->oeaten || corpse->odrained) {
+	if (corpse->otyp == CORPSE && (corpse->oeaten || corpse->odrained)) {
 		You("cannot tin %s which is partly eaten.",something);
+		return;
+	}
+	if (!tinnable(corpse)) {
+		You_cant("tin that!");
 		return;
 	}
 	if (touch_petrifies(&mons[corpse->corpsenm])
