@@ -355,5 +355,5 @@ read 'File' (1207,"Yeo-goal.lev") "Yeo-goal.lev";
 read 'File' (1208,"Yeo-loca.lev") "Yeo-loca.lev";
 read 'File' (1209,"Yeo-strt.lev") "Yeo-strt.lev";
 
-read 'File' (1210,"Guidebook.txt") "Guidebook.txt";
+read 'File' (1210,"Guidebook.txt") "::doc:Guidebook.txt";
 #endif
