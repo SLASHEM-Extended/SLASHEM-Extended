@@ -151,7 +151,7 @@ LFLAGS =
 # SuSE 6.1
 # QTDIR=/usr/lib/qt
 # RedHat 6.1
-# QTDIR=/usr/lib/qt-1.44
+# QTDIR=/usr/lib/qt-2.0.1
 #
 QTLIBDIR=$(QTDIR)/lib
 QTINCDIR=$(QTDIR)/include

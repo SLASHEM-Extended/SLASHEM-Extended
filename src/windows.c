@@ -15,9 +15,6 @@ extern void NDECL(win_X11_init);
 #ifdef QT_GRAPHICS
 extern struct window_procs Qt_procs;
 #endif
-#ifdef QT_GRAPHICS
-extern struct window_procs Qt_procs;
-#endif
 #ifdef GTK_GRAPHICS
 /*
  * GTK interface (By issei@guru.gr.jp)

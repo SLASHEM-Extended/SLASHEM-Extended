@@ -785,9 +785,6 @@ static const char *window_opts[] = {
 #ifdef GTK_GRAPHICS
 		"GTK",
 #endif
-#ifdef QT_GRAPHICS
-		"Qt",
-#endif
 #ifdef GNOME_GRAPHICS
 		"Gnome",
 #endif
