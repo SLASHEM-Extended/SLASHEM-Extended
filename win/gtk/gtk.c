@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.50 2004-04-10 14:30:50 j_ali Exp $
+  $Id: gtk.c,v 1.51 2004-04-10 14:53:10 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1030,6 +1030,8 @@ static gint
 main_window_delete(GtkWidget *widget, gpointer data)
 {
     exiting++;
+    if (in_player_selection)
+	gtk_main_quit();
     return TRUE;
 }
 
@@ -3502,7 +3504,7 @@ GTK_ext_player_selection(int *role, int *race, int *gend, int *align)
     *align = select_player_flags.align;
 
     in_player_selection = FALSE;
-    return FALSE;		/* User didn't quit */
+    return exiting;
 }
 
 static void
