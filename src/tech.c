@@ -1070,7 +1070,8 @@ int tech_no;
 			if (obj->otyp != CORPSE) continue;
 			/* Only generate undead */
 			corpsenm = mon_to_zombie(obj->corpsenm);
-			if (corpsenm != -1) {
+			if (corpsenm != -1 && !cant_create(&corpsenm, TRUE) &&
+			  (!obj->oxlth || obj->oattached != OATTACHED_MONST)) {
 			    /* Maintain approx. proportion of oeaten to cnutrit
 			     * so that the zombie's HP relate roughly to how
 			     * much of the original corpse was left.
