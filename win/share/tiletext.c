@@ -386,6 +386,7 @@ void
 merge_colormap()
 {
 	int i, j;
+	pixel trans_pix = DEFAULT_BACKGROUND;
 
 	for (i = 0; i < colorsinmap; i++) {
 #ifdef FUZZ
@@ -397,6 +398,16 @@ merge_colormap()
 			MainColorMap[CM_GREEN][j] == ColorMap[CM_GREEN][i] &&
 			MainColorMap[CM_BLUE][j] == ColorMap[CM_BLUE][i])
 			    break;
+		    
+		    /* [AJA] make sure that we DO NOT convert any
+		     *       colors into the transparency color.
+		     */
+		    if (MainColorMap[CM_RED][j] == trans_pix.r &&
+			MainColorMap[CM_GREEN][j] == trans_pix.g &&
+			MainColorMap[CM_BLUE][j] == trans_pix.b) {
+			    continue;
+		    }
+
 #ifdef FUZZ
 		    if ((fuzz == -1) || 
 		    	((fuzz >= MAX3(
