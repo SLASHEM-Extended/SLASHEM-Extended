@@ -331,7 +331,7 @@ spotless:
 	-rm -f spec_levs quest_levs *.lev $(VARDAT) dungeon dungeon.pdf
 	-rm -f nhshare nhushare x11tiles x11bigtiles x11big3dtiles beostiles
 	-rm -f x11tiles.map x11bigtiles.map x11big3dtiles.map
-       -rm -f gtkrc
+	-rm -f gtkrc
 	-rm -f gl*.png
 	-rm -f pet_mark.xbm rip.xpm mapbg.xpm
 	-rm -f rip.img GEM_RSC.RSC title.img nh16.img SlashEM.ad
