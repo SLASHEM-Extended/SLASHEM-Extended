@@ -1,5 +1,5 @@
-/*	SCCS Id: @(#)lev_main.c	3.3	2000/08/01	*/
-/*      Copyright (c) 1989 by Jean-Christophe Collet */
+/*	SCCS Id: @(#)lev_main.c	3.4	2000/08/01	*/
+/*	Copyright (c) 1989 by Jean-Christophe Collet */
 /* NetHack may be freely redistributed.  See license for details. */
 
 /*
@@ -23,7 +23,7 @@
 #  define MPWTOOL
 #  include <CursorCtl.h>
 # else
-#  define PREFIX ":lib:"        /* place output files here */
+#  define PREFIX ":lib:"	/* place output files here */
 # endif
 #endif
 
@@ -38,10 +38,10 @@
 #ifndef O_WRONLY
 #include <fcntl.h>
 #endif
-#ifndef O_CREAT /* some older BSD systems do not define O_CREAT in <fcntl.h> */
+#ifndef O_CREAT	/* some older BSD systems do not define O_CREAT in <fcntl.h> */
 #include <sys/file.h>
 #endif
-#ifndef O_BINARY        /* used for micros, no-op for others */
+#ifndef O_BINARY	/* used for micros, no-op for others */
 # define O_BINARY 0
 #endif
 
@@ -57,16 +57,16 @@
 # define NEWLINE 13
 #endif
 
-#define ERR             (-1)
+#define ERR		(-1)
 
-#define NewTab(type, size)      (type **) alloc(sizeof(type *) * size)
-#define Free(ptr)               if(ptr) free((genericptr_t) (ptr))
+#define NewTab(type, size)	(type **) alloc(sizeof(type *) * size)
+#define Free(ptr)		if(ptr) free((genericptr_t) (ptr))
 #define Write(fd, item, size)	if (write(fd, (genericptr_t)(item), size) != size) return FALSE;
 
 #ifdef __BORLANDC__
 extern unsigned _stklen = STKSIZ;
 #endif
-#define MAX_ERRORS      25
+#define MAX_ERRORS	25
 
 extern int  NDECL (yyparse);
 extern void FDECL (init_yyin, (FILE *));
@@ -110,28 +110,28 @@ static struct {
 	const char *name;
 	int type;
 } trap_types[] = {
-	{ "arrow",      ARROW_TRAP },
-	{ "dart",       DART_TRAP },
+	{ "arrow",	ARROW_TRAP },
+	{ "dart",	DART_TRAP },
 	{ "falling rock", ROCKTRAP },
-	{ "board",      SQKY_BOARD },
-	{ "bear",       BEAR_TRAP },
-	{ "land mine",  LANDMINE },
-	{ "rolling boulder",    ROLLING_BOULDER_TRAP },
-	{ "sleep gas",  SLP_GAS_TRAP },
-	{ "rust",       RUST_TRAP },
-	{ "fire",       FIRE_TRAP },
-	{ "pit",        PIT },
-	{ "spiked pit", SPIKED_PIT },
-	{ "hole",       HOLE },
+	{ "board",	SQKY_BOARD },
+	{ "bear",	BEAR_TRAP },
+	{ "land mine",	LANDMINE },
+	{ "rolling boulder",	ROLLING_BOULDER_TRAP },
+	{ "sleep gas",	SLP_GAS_TRAP },
+	{ "rust",	RUST_TRAP },
+	{ "fire",	FIRE_TRAP },
+	{ "pit",	PIT },
+	{ "spiked pit",	SPIKED_PIT },
+	{ "hole",	HOLE },
 	{ "trap door",	TRAPDOOR },
-	{ "teleport",   TELEP_TRAP },
+	{ "teleport",	TELEP_TRAP },
 	{ "level teleport", LEVEL_TELEP },
 	{ "magic portal",   MAGIC_PORTAL },
-	{ "web",        WEB },
-	{ "statue",     STATUE_TRAP },
-	{ "magic",      MAGIC_TRAP },
-	{ "anti magic", ANTI_MAGIC },
-	{ "polymorph",  POLY_TRAP },
+	{ "web",	WEB },
+	{ "statue",	STATUE_TRAP },
+	{ "magic",	MAGIC_TRAP },
+	{ "anti magic",	ANTI_MAGIC },
+	{ "polymorph",	POLY_TRAP },
 	{ 0, 0 }
 };
 
@@ -141,28 +141,28 @@ static struct {
 } room_types[] = {
 	/* for historical reasons, room types are not contiguous numbers */
 	/* (type 1 is skipped) */
-	{ "ordinary",    OROOM },
-	{ "throne",      COURT },
-	{ "swamp",       SWAMP },
-	{ "vault",       VAULT },
-	{ "beehive",     BEEHIVE },
-	{ "morgue",      MORGUE },
-	{ "barracks",    BARRACKS },
-	{ "zoo",         ZOO },
-	{ "delphi",      DELPHI },
-	{ "temple",      TEMPLE },
-	{ "shop",        SHOPBASE },
-	{ "armor shop",  ARMORSHOP },
+	{ "ordinary",	 OROOM },
+	{ "throne",	 COURT },
+	{ "swamp",	 SWAMP },
+	{ "vault",	 VAULT },
+	{ "beehive",	 BEEHIVE },
+	{ "morgue",	 MORGUE },
+	{ "barracks",	 BARRACKS },
+	{ "zoo",	 ZOO },
+	{ "delphi",	 DELPHI },
+	{ "temple",	 TEMPLE },
+	{ "shop",	 SHOPBASE },
+	{ "armor shop",	 ARMORSHOP },
 	{ "scroll shop", SCROLLSHOP },
 	{ "potion shop", POTIONSHOP },
 	{ "weapon shop", WEAPONSHOP },
-	{ "food shop",   FOODSHOP },
-	{ "ring shop",   RINGSHOP },
-	{ "wand shop",   WANDSHOP },
-	{ "tool shop",   TOOLSHOP },
+	{ "food shop",	 FOODSHOP },
+	{ "ring shop",	 RINGSHOP },
+	{ "wand shop",	 WANDSHOP },
+	{ "tool shop",	 TOOLSHOP },
 	{ "pet shop",    PETSHOP },	/* Stephen White */
 	{ "tin shop",    TINSHOP }, /* Robin Johnson */
-	{ "book shop",   BOOKSHOP },
+	{ "book shop",	 BOOKSHOP },
 	{ "candle shop", CANDLESHOP },
 #ifdef BLACKMARKET
 	{ "black market", BLACKSHOP },
@@ -223,7 +223,7 @@ char **argv;
 	int i;
 	boolean errors_encountered = FALSE;
 #if defined(MAC) && (defined(THINK_C) || defined(__MWERKS__))
-	static char *mac_argv[] = {     "lev_comp",     /* dummy argv[0] */
+	static char *mac_argv[] = {	"lev_comp",	/* dummy argv[0] */
 	/* KMH -- had to add more from SLASH'EM */
 				":dat:Arch.des",
 				":dat:Barb.des",
@@ -302,13 +302,13 @@ char **argv;
 	init_obj_classes();
 
 	init_yyout(stdout);
-	if (argc == 1) {                /* Read standard input */
+	if (argc == 1) {		/* Read standard input */
 	    init_yyin(stdin);
 	    (void) yyparse();
 	    if (fatal_error > 0) {
 		    errors_encountered = TRUE;
 	    }
-	} else {                        /* Otherwise every argument is a filename */
+	} else {			/* Otherwise every argument is a filename */
 	    for(i=1; i<argc; i++) {
 		    fname = argv[i];
 		    if(!strcmp(fname, "-w")) {
@@ -375,7 +375,7 @@ const char *s;
 #else
 	  "File %s ; Line %d # WARNING : %s\n",
 #endif
-	  fname, colon_line_number, s);
+				fname, colon_line_number, s);
 }
 
 /*
@@ -654,8 +654,8 @@ char *map;
 }
 
 /*
- *      If we have drawn a map without walls, this allows us to
- *      auto-magically wallify it.
+ *	If we have drawn a map without walls, this allows us to
+ *	auto-magically wallify it.
  */
 #define Map_point(x,y) *(tmppart[npart]->map[y] + x)
 
@@ -677,8 +677,8 @@ wallify_map()
 			if (IS_ROOM(Map_point(xx,yy)) ||
 				Map_point(xx,yy) == CROSSWALL) {
 			    Map_point(x,y) = (yy != y) ? HWALL : VWALL;
-			    yy = hi_yy;         /* end `yy' loop */
-			    break;              /* end `xx' loop */
+			    yy = hi_yy;		/* end `yy' loop */
+			    break;		/* end `xx' loop */
 			}
 	    }
 	}
@@ -690,9 +690,9 @@ wallify_map()
 boolean
 check_subrooms()
 {
-	unsigned   i, j, n_subrooms;
-	boolean found, ok = TRUE;
-	char    *last_parent, msg[256];
+	unsigned i, j, n_subrooms;
+	boolean	found, ok = TRUE;
+	char	*last_parent, msg[256];
 
 	for (i = 0; i < nrooms; i++)
 	    if (tmproom[i]->parent) {
@@ -719,10 +719,10 @@ check_subrooms()
 		n_subrooms = 0;
 		for(j = i; j < nrooms; j++) {
 /*
- *      This is by no means perfect, but should cut down the duplicate error
- *      messages by over 90%.  The only problem will be when either subrooms
- *      are mixed in the level definition (not likely but possible) or rooms
- *      have subrooms that have subrooms.
+ *	This is by no means perfect, but should cut down the duplicate error
+ *	messages by over 90%.  The only problem will be when either subrooms
+ *	are mixed in the level definition (not likely but possible) or rooms
+ *	have subrooms that have subrooms.
  */
 		    if (!strcmp(tmproom[i]->parent, last_parent)) continue;
 		    if (tmproom[j]->parent &&
@@ -1047,14 +1047,14 @@ long flgs;
 {
 	char c;
 	uchar len;
-        static struct version_info version_data = {
+	static struct version_info version_data = {
 			VERSION_NUMBER, VERSION_FEATURES,
 			VERSION_SANITY1, VERSION_SANITY2
 	};
 
-        Write(fd, &version_data, sizeof version_data);
+	Write(fd, &version_data, sizeof version_data);
 	c = typ;
-	Write(fd, &c, sizeof(c));       /* 1 byte header */
+	Write(fd, &c, sizeof(c));	/* 1 byte header */
 	Write(fd, init, sizeof(lev_init));
 	Write(fd, &flgs, sizeof flgs);
 
@@ -1122,7 +1122,7 @@ object ***objects_p;
 	for (j = 0; j < n; j++) {
 	    o = (*objects_p)[j];
 	    name = o->name.str;
-	    o->name.str = 0;    /* reset in case `len' is narrower */
+	    o->name.str = 0;	/* reset in case `len' is narrower */
 	    o->name.len = name ? strlen(name) : 0;
 	    Write(fd, o, sizeof *o);
 	    if (name) {
@@ -1156,7 +1156,7 @@ engraving ***engravings_p;
 	for (j = 0; j < n; j++) {
 	    e = (*engravings_p)[j];
 	    engr = e->engr.str;
-	    e->engr.str = 0;    /* reset in case `len' is narrower */
+	    e->engr.str = 0;	/* reset in case `len' is narrower */
 	    e->engr.len = strlen(engr);
 	    Write(fd, e, sizeof *e);
 	    Write(fd, engr, e->engr.len);
@@ -1247,7 +1247,7 @@ specialmaze *maze;
 	    for (j = 0; j < pt->nlreg; j++) {
 		lev_region *l = pt->lregions[j];
 		char *rname = l->rname.str;
-		l->rname.str = 0;       /* reset in case `len' is narrower */
+		l->rname.str = 0;	/* reset in case `len' is narrower */
 		l->rname.len = rname ? strlen(rname) : 0;
 		Write(fd, l, sizeof *l);
 		if (rname) {
@@ -1632,6 +1632,6 @@ struct window_procs windowprocs;
 # ifdef DEFINE_OSPEED
 short ospeed;
 # endif
-#endif  /* STRICT_REF_DEF */
+#endif	/* STRICT_REF_DEF */
 
 /*lev_main.c*/

@@ -5,7 +5,7 @@
 /* NetHack may be freely redistributed.  See license for details. */
 
 #define MAKEDEFS_C      /* use to conditionally include file sections */
-/* #define DEBUG *//* uncomment for debugging info */
+/* #define DEBUG */	/* uncomment for debugging info */
 
 #include "config.h"
 #include "permonst.h"
@@ -22,20 +22,20 @@
 
 /* version information */
 #ifdef SHORT_FILENAMES
-#include "patchlev.h"
+# include "patchlev.h"
 #else
-#include "patchlevel.h"
+# include "patchlevel.h"
 #endif
 
 #ifdef MAC
-# ifdef applec  /* Means the MPW compiler, I hope */
+# ifdef MAC_MPW
 #  define MPWTOOL
-#include <CursorCtl.h>
-#include <string.h>
-#include <ctype.h>
+#  include <CursorCtl.h>
+#  include <string.h>
+#  include <ctype.h>
 # else          /* MAC without MPWTOOL */
 #  define MACsansMPWTOOL
-# endif
+# endif /* MAC_MPW */
 #endif /* MAC */
 
 #ifndef MPWTOOL
@@ -87,7 +87,11 @@ static	const char	SCCS_Id[] = "@(#)makedefs.c\t3.3\t1999/08/16";
 #   define INCLUDE_TEMPLATE     ":include:%s"
 #   define SOURCE_TEMPLATE      ":src:%s"
 #   define DGN_TEMPLATE         ":dat:%s"  /* where dungeon.pdf file goes */
+#  ifndef MAC_MPW
 #   define DATA_TEMPLATE        ":lib:%s"
+#  else
+#   define DATA_TEMPLATE        (data_template())
+#  endif /* MAC_MPW */
 #   define DATA_IN_TEMPLATE     ":dat:%s"
 # else /* MAC */
 #  ifdef OS2
@@ -114,6 +118,19 @@ static const char
 
 static struct version_info version;
 
+#ifdef MAC_MPW
+static const char *data_template()
+{
+	static char *result;
+	if (result)
+		return result;
+	result = malloc(strlen(getenv("ObjDir"))+3);
+	strcpy(result, getenv("ObjDir"));
+	strcat(result, "%s");
+	return result;
+}
+#endif
+
 /* definitions used for vision tables */
 #define TEST_WIDTH  COLNO
 #define TEST_HEIGHT ROWNO
@@ -131,7 +148,7 @@ static char xclear[MAX_ROW][MAX_COL];
 #endif
 /*-end of vision defs-*/
 
-static char     in_line[256], filename[60];
+static char     in_line[256], filename[600];
 
 #ifdef FILE_PREFIX
 		/* if defined, a first argument not starting with - is
@@ -352,9 +369,10 @@ const char *str;
 void
 do_rumors()
 {
-	char    infile[60];
+	char    *infile;
 	long    true_rumor_size;
 
+	infile = malloc(strlen(DATA_IN_TEMPLATE) - 2 + strlen(RUMOR_FILE) + 5);
 	filename[0]='\0';
 #ifdef FILE_PREFIX
 	Strcat(filename,file_prefix);
@@ -411,6 +429,7 @@ do_rumors()
 
 	Fclose(ifp);
 	Fclose(ofp);
+	free(infile);
 	return;
 }
 
@@ -456,6 +475,9 @@ make_version()
 			| (1L << 11)
 #endif
 		/* flag bits and/or other global variables (15..26) */
+#ifdef DISPLAY_LAYERS
+			| (1L << 15)
+#endif
 #ifdef BLACKMARKET
 			| (1L << 16)
 #endif
@@ -544,9 +566,10 @@ void
 do_date()
 {
 	long    clocktim = 0;
-	char *c,  cbuf[60], buf[BUFSZ];
+	char *c,  *cbuf, buf[BUFSZ];
 	const char *ul_sfx;
 	
+	cbuf = malloc(600);
 	filename[0]='\0';
 #ifdef FILE_PREFIX
 	Strcat(filename,file_prefix);
@@ -598,6 +621,7 @@ do_date()
 	}
 #endif
 	Fclose(ofp);
+	free(cbuf);
 	return;
 }
 
@@ -694,6 +718,9 @@ static const char *build_opts[] = {
 #ifdef SCORE_ON_BOTL
 		"score on status line",
 #endif
+#ifdef DISPLAY_LAYERS
+		"display layers",
+#endif
 #ifdef CLIPPING
 		"screen clipping",
 #endif
@@ -754,6 +781,9 @@ static const char *build_opts[] = {
 #ifdef TOURIST
 		"tourists",
 #endif
+#ifdef PREFIXES_IN_USE
+		"variable playground",
+#endif
 #ifdef VISION_TABLES
 		"vision tables",
 #endif
@@ -782,14 +812,26 @@ static const char *window_opts[] = {
 #ifdef GTK_GRAPHICS
 		"GTK",
 #endif
+#ifdef GNOME_GRAPHICS
+		"Gnome",
+#endif
 #ifdef MAC
 		"Mac",
 #endif
 #ifdef AMIGA_INTUITION
 		"Amiga Intuition",
 #endif
+#ifdef GEM_GRAPHICS
+		"Gem",
+#endif
 #ifdef WIN32_GRAPHICS
 		"Win32",
+#endif
+#ifdef BEOS_GRAPHICS
+		"BeOS InterfaceKit",
+#endif
+#ifdef PROXY_GRAPHICS
+		"Plug-in modules",
 #endif
 		0
 	};
@@ -889,11 +931,13 @@ text-b/text-c           at fseek(0x01234567L + 456L)
 void
 do_data()
 {
-	char    infile[60], tempfile[60];
+	char    *infile, *tempfile;
 	boolean ok;
 	long    txt_offset;
 	int     entry_cnt, line_cnt;
 
+	infile = malloc(strlen(DATA_IN_TEMPLATE) - 2 + strlen(DATA_FILE) + 6);
+	tempfile = malloc(strlen(DATA_TEMPLATE) - 2 + strlen("database.tmp") + 1);
 	Sprintf(tempfile, DATA_TEMPLATE, "database.tmp");
 	filename[0]='\0';
 #ifdef FILE_PREFIX
@@ -917,6 +961,7 @@ do_data()
 		Fclose(ifp);
 		exit(EXIT_FAILURE);
 	}
+	free(infile);
 	if (!(tfp = fopen(tempfile, WRTMODE))) {        /* database.tmp */
 		perror(tempfile);
 		Fclose(ifp);
@@ -962,6 +1007,7 @@ do_data()
 	/* finished with scratch file */
 	Fclose(tfp);
 	Unlink(tempfile);       /* remove it */
+	free(tempfile);
 
 	/* update the first record of the output file; prepare error msg 1st */
 	Sprintf(in_line, "rewind of \"%s\"", filename);
@@ -1032,12 +1078,14 @@ static const char *special_oracle[] = {
 void
 do_oracles()
 {
-	char    infile[60], tempfile[60];
+	char    *infile, *tempfile;
 	boolean in_oracle, ok;
 	long    txt_offset, offset, fpos;
 	int     oracle_cnt;
 	register int i;
 
+	infile = malloc(strlen(DATA_IN_TEMPLATE) - 2 + strlen(ORACLE_FILE) + 5);
+	tempfile = malloc(strlen(DATA_TEMPLATE) - 2 + strlen("oracles.tmp") + 1);
 	Sprintf(tempfile, DATA_TEMPLATE, "oracles.tmp");
 	filename[0]='\0';
 #ifdef FILE_PREFIX
@@ -1050,6 +1098,7 @@ do_oracles()
 		perror(infile);
 		exit(EXIT_FAILURE);
 	}
+	free(infile);
 	if (!(ofp = fopen(filename, WRTMODE))) {
 		perror(filename);
 		Fclose(ifp);
@@ -1117,6 +1166,7 @@ do_oracles()
 	/* finished with scratch file */
 	Fclose(tfp);
 	Unlink(tempfile);       /* remove it */
+	free(tempfile);
 
 	/* update the first record of the output file; prepare error msg 1st */
 	Sprintf(in_line, "rewind of \"%s\"", filename);
@@ -1562,7 +1612,6 @@ adjust_qt_hdrs()
 			count += msg_hdr[i].qt_msg[j].size;
 	    }
 	return;
-	return;
 }
 
 static void
@@ -1617,7 +1666,8 @@ void
 do_questtxt()
 {
 	Sprintf(filename, DATA_IN_TEMPLATE, QTXT_I_FILE);
-	if(!(ifp = fopen(filename, RDTMODE))) {
+	ifp = fopen(filename, RDTMODE);
+	if(!ifp) {
 		perror(filename);
 		exit(EXIT_FAILURE);
 	}
@@ -2187,13 +2237,13 @@ clear_path(you_row,you_col,y2,x2)
 void
 do_filenames()
 {
-	char    infile[60];
+	char    *infile;
 	int i;
 	char buf[BUFSZ];
 	char lname[20] = DEF_GAME_NAME;
 	char uname[20] = DEF_GAME_NAME;
 
-
+	infile = malloc(strlen(INCLUDE_TEMPLATE) - 2 + strlen(FILE_H) + 1);
 	(void) lcase(lname);
 	(void) ucase(uname);
 
@@ -2221,6 +2271,7 @@ do_filenames()
         Unlink(filename);       /* kill empty output file */
         exit(EXIT_FAILURE);
      }
+     free(infile);
      do {
         fgets(in_line, sizeof in_line, ifp);
         if (*in_line != '#') continue;

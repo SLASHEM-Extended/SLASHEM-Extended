@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)muse.c	3.3	2000/06/02	*/
+/*	SCCS Id: @(#)muse.c	3.4	2002/02/07	*/
 /*	Copyright (C) 1990 by Ken Arromdee			   */
 /* NetHack may be freely redistributed.  See license for details.  */
 
