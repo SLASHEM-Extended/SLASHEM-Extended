@@ -1007,6 +1007,7 @@ $(OBJ)\lev_lex.o  : $(UTIL)\$(CB) $(HACK_H) $(INCL)\sp_lev.h $(INCL)\lev_comp.h
 $(OBJ)\lev_main.o : $(UTIL)\$(CB) $(HACK_H) $(INCL)\sp_lev.h $(INCL)\tcap.h
 	$(UTILCC)
 
+$(INCL)\lev_comp.h : $(UTIL)\lev_yacc.c
 $(UTIL)\lev_yacc.c : $(UTIL)\lev_comp.y
 	$(MAKEB) YY=lev do_yacc
 
@@ -1036,6 +1037,7 @@ $(OBJ)\dgn_lex.o  : $(UTIL)\$(CB) $(CONFIG_H) $(INCL)\dgn_comp.h $(INCL)\dgn_fil
 $(OBJ)\dgn_main.o : $(UTIL)\$(CB) $(CONFIG_H)
 	$(UTILCC)
 
+$(INCL)\dgn_comp.h : $(UTIL)\dgn_yacc.c
 $(UTIL)\dgn_yacc.c : $(UTIL)\dgn_comp.y
 	$(MAKEB) YY=dgn do_yacc
 
