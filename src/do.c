@@ -1705,11 +1705,12 @@ long timeout;
 		    body->quan++;
 		oldquan = body->quan;
 	    	if (revive_corpse(body, TRUE)) {
-		    if (oldquan != 1)		/* Corpse still valid */
+		    if (oldquan != 1) {		/* Corpse still valid */
 			body->corpsenm = oldtyp;
-		    if (body->where == OBJ_INVENT) {
-			useup(body);
-			oldquan--;
+			if (body->where == OBJ_INVENT) {
+			    useup(body);
+			    oldquan--;
+			}
 		    }
 		    if (oldquan == 1)
 			body = (struct obj *)0;	/* Corpse gone */

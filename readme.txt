@@ -104,6 +104,7 @@ ver 0.0.7E6F3 [?] [Released by ?]
 -fixed bug 1010421: Thiefbane drains your levels even if you aren't hit
 -fixed bug 976157: Dipping into !oAmnesia didn't use up potion
 -fixed bug 982331: Can't name Cursed scrolls of teleport after reading them
+-fixed some theoretical bugs thrown up by valgrind
 
 See history.txt for changes made in previous versions.
 
