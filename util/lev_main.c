@@ -21,7 +21,6 @@
 #ifdef MAC
 # ifdef MAC_MPW
 #  define MPWTOOL
-#  define PREFIX ":dungeon:"	/* place output files here */
 #  include <CursorCtl.h>
 # else
 #  define PREFIX ":lib:"	/* place output files here */
