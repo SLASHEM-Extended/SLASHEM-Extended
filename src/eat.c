@@ -1561,12 +1561,6 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	if (mvitals[mnum].eaten < 255) mvitals[mnum].eaten++;
 #endif
 
-	/* KMH, conduct */
-	if (!vegan(&mons[mnum]))
-	     u.uconduct.unvegan++;
-	if (!vegetarian(&mons[mnum]))
-	     violated_vegetarian();
-
 	return(retcode);
 }
 

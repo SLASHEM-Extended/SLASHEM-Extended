@@ -362,6 +362,7 @@ ver 0.0.6E6 [?] [Released by ?]
 -fixed bug 558228: Liquid leap should anger peacefulls.
 -fixed bug 558229: Bad input in techinque menu.
 -fixed bug 566538: zero payment in money2mon!
+-fixed bug 566564: Monk breaking the vegetarian conduct.
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).

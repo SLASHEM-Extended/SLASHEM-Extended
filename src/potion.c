@@ -1024,6 +1024,7 @@ peffects(otmp)
 	case POT_VAMPIRE_BLOOD:
 		unkn++;
 		if (maybe_polyd(is_vampire(youmonst.data), Race_if(PM_VAMPIRE))) {
+		    violated_vegetarian();
 		    if (otmp->cursed)
 			pline("Yecch!  This %s.", Hallucination ?
 			"liquid could do with a good stir" : "blood has congealed");
@@ -1047,8 +1048,9 @@ peffects(otmp)
 		    }
 		}
 		else if (otmp->otyp == POT_VAMPIRE_BLOOD) {
-		    if (u.ualign.type == A_LAWFUL) {
-			You_feel("guilty about drinking such a vile liquid.");
+		    if (u.ualign.type == A_LAWFUL || Role_if(PM_MONK)) {
+			You_feel("%sguilty about drinking such a vile liquid.",
+				Role_if(PM_MONK) ? "especially " : "");
 			u.ugangr++;
 			adjalign(-15);
 		    } else if (u.ualign.type == A_NEUTRAL)
@@ -1056,8 +1058,13 @@ peffects(otmp)
 		    exercise(A_CON, FALSE);
 		    if (!Unchanging && polymon(PM_VAMPIRE))
 			u.mtimedone = 0;	/* "Permament" change */
+			/* [CWC] fix conducts for potions of (vampire) blood -
+			   doesn't use violated_vegetarian() to prevent
+			   duplicated "you feel guilty" messages */
+			u.uconduct.unvegetarian++;
 		}
 		else {
+		    violated_vegetarian();
 		    pline("Ugh.  That was vile.");
 		    make_vomiting(Vomiting+d(10,8), TRUE);
 		}
