@@ -101,6 +101,7 @@ ver 0.0.7E6F3 [?] [Released by ?]
 -fixed bug 1020983: Typo in doc/sources.txt (cloack)
 -fixed bug 956891: Breeders are explosive
 -fixed bug 1007127: diluted potion of water
+-fixed bug 1010421: Thiefbane drains your levels even if you aren't hit
 
 See history.txt for changes made in previous versions.
 
