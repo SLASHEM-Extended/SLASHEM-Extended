@@ -898,6 +898,8 @@ int thrown;
 			}
 # endif /* P_SPOON */
 			if (ammo_and_launcher(obj, launcher)) {
+			    if (launcher->oartifact)
+				tmp += spec_dbon(launcher, mon, tmp);
 			    /* Elves and Samurai do extra damage using
 			     * their bows&arrows; they're highly trained.
 			     */

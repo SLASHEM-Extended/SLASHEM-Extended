@@ -1214,6 +1214,7 @@ int thrown;
 		} else {
 		    tmp += launcher->spe - greatest_erosion(launcher);
 		    tmp += weapon_hit_bonus(launcher);
+		    tmp += launcher->oartifact ? spec_abon(launcher, mon) : 0;
 		    /*
 		     * Elves and Samurais are highly trained w/bows,
 		     * especially their own special types of bow.

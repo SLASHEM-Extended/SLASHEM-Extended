@@ -730,7 +730,11 @@ int tmp;
 	register const struct artifact *weap = get_artifact(otmp);
 
 	if ((spec_dbon_applies = (weap && spec_applies(weap, mon))) != 0)
-	    return weap->attk.damd ? (int)weap->attk.damd : max(tmp,1);
+	    return weap->attk.damd ? (int)weap->attk.damd :
+		    /* [ALI] Unlike melee weapons, damd == 0 means no
+		     * bonus for launchers.
+		     */
+		    is_launcher(otmp) ? 0 : max(tmp,1);
 	return 0;
 }
 
