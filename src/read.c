@@ -1674,16 +1674,11 @@ do_it:
 	    /* hallways remain dark on the rogue level */
 	} else
 #endif
-	     
-/* STEPHEN WHITE'S NEW CODE */
-	if (obj->oartifact) {
-	    do_clear_area(u.ux,u.uy, 12,
-		set_lit, (genericptr_t)((on)? 1 : -1));
-	} else {
-	do_clear_area(u.ux,u.uy,
+	    do_clear_area(u.ux,u.uy,
+		obj->oartifact ? 12 :
 		(obj && obj->oclass==SCROLL_CLASS && obj->blessed) ? 9 : 5,
 		set_lit, (genericptr_t)(on ? &is_lit : (char *)0));
-	}
+
 	/*
 	 *  If we are not blind, then force a redraw on all positions in sight
 	 *  by temporarily blinding the hero.  The vision recalculation will

@@ -1348,6 +1348,7 @@ arti_invoke(obj)
 	    register struct permonst *pm;
 
     int summon_loop;
+    int unseen;
 /*
     int kill_loop;
  */
@@ -1436,33 +1437,35 @@ arti_invoke(obj)
 	    break;
  /* STEPHEN WHITE'S NEW CODE */       
 	case LIGHT_AREA:
-	    if (!Blind) pline("%s shines brightly for an instant!", The(xname(obj)));
-	    else pline("%s grows warm for a second!");
+	    if (!Blind)
+		pline("%s shines brightly for an instant!", The(xname(obj)));
+	    else
+		pline("%s grows warm for a second!", The(xname(obj)));
 
 	    litroom(TRUE, obj); /* Light up the room */
 
 	    vision_recalc(0); /*clean up vision*/
-	        
+
 	    /* Undead and Demonics can't stand the light */
-	    for (mtmp = fmon; mtmp; mtmp = mtmp2) {
-	    	/* Undead in take 1/2 damage */
-	    	mtmp2 = mtmp->nmon;
-	    	
+	    unseen = 0;
+	    for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+		if (DEADMONSTER(mtmp)) continue;
 	    	/* Range is 9 paces */
 	    	if (distu(mtmp->mx,mtmp->my) > 81) continue;
 
-		if (couldsee(mtmp->mx, mtmp->my) && 
-		     (is_undead(mtmp->data) || is_demon(mtmp->data))) {
-			if (!resist(mtmp, '\0', 0, TELL)) {
-				if (canseemon(mtmp)) 
-					pline("%s burns in the radiance!",Monnam(mtmp));
-				else You("hear cry of intense pain!");
-				mtmp->mhp /= 2;
-				if (mtmp->mhp < 1) mtmp->mhp = 1;
-			}
+		if (couldsee(mtmp->mx, mtmp->my) &&
+			(is_undead(mtmp->data) || is_demon(mtmp->data)) &&
+			!resist(mtmp, '\0', 0, TELL)) {
+		    if (canseemon(mtmp))
+			pline("%s burns in the radiance!", Monnam(mtmp));
+		    else
+			unseen++;
+		    mtmp->mhp /= 2;
+		    if (mtmp->mhp < 1) mtmp->mhp = 1;
 		}
 	    }
-
+	    if (unseen)
+		You("hear %s of intense pain!", unseen > 1 ? "cries" : "a cry");
 	    break;
 	case DEATH_GAZE:
 	    if (u.uluck < -9) { /* uh oh... */
