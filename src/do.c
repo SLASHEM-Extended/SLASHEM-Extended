@@ -1472,7 +1472,6 @@ long timeout;
 
     /* Turn the corpse into a mold corpse if molds are available */
     oldtyp = body->corpsenm;
-    oldquan = body->quan;
 
     /* Weight towards non-motile fungi.
      */
@@ -1495,8 +1494,23 @@ long timeout;
 	    pmtype = -1; /* cantcreate might have changed it so change it back */
     	else {
 	    	body->corpsenm = pmtype;
-	    	if (revive_corpse(body, TRUE) && oldquan == 1)
-		    body = (struct obj *)0;	/* Corpse gone */
+		/* [ALI] If we allow revive_corpse() to get rid of revived
+		 * corpses from hero's inventory then we run into problems
+		 * with unpaid corpses.
+		 */
+		if (body->where == OBJ_INVENT)
+		    body->quan++;
+		oldquan = body->quan;
+	    	if (revive_corpse(body, TRUE)) {
+		    if (oldquan != 1)		/* Corpse still valid */
+			body->corpsenm = oldtyp;
+		    if (body->where == OBJ_INVENT) {
+			useup(body);
+			oldquan--;
+		    }
+		    if (oldquan == 1)
+			body = (struct obj *)0;	/* Corpse gone */
+		}
     	}
     }
     
