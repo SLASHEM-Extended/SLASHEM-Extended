@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.37 2003-04-21 20:44:30 j_ali Exp $
+  $Id: gtk.c,v 1.38 2003-04-26 08:10:37 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -650,8 +650,10 @@ session_window_configure_event(GtkWidget *widget, GdkEventConfigure *event,
 		session_window_info[i].oy = session_window_info[j].oy;
 	    } else {
 		gdk_window_get_frame_extents(widget->window, &frame);
+#ifdef DEBUG_SESSION
 		fprintf(stderr, "frame is %d x %d @ (%d, %d)\n",
 		  frame.width, frame.height, frame.x, frame.y);
+#endif
 		session_window_info[i].ox = event->x - frame.x;
 		session_window_info[i].oy = event->y - frame.y;
 	    }
