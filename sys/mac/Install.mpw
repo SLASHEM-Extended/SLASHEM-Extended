@@ -1,7 +1,7 @@
 How to make Mac Slash'EM using MPW
 ==================================
 Copyright (c) 1992-11-23 Jon W{tte
-Modifications copyright (c) 1999-2001 Paul Hurtley
+Modifications copyright (c) 1999-2004 Paul Hurtley
 
 Please read these instructions through carefully before starting to
 build Slash'EM for the Macintosh.  Most important is the part about
@@ -10,11 +10,11 @@ keeping the folder structure intact.
 1)	Suggested Requirements:
 	- MPW development software
 	- Macintosh computer system
-	- 70 MB free disk (my Power-Mac only build area used this much)
+	- 72 MB free disk (my Power-Mac only build area uses this much)
 	- bison, from http://perso.wanadoo.fr/gilles.depeyrot/DevTools_en.html#Bison;
-	  other yacc-alikes should also work, or you can do without.
+	  other yacc-alikes should also work.
 	- lex, from http://perso.wanadoo.fr/gilles.depeyrot/DevTools_en.html#Flex;
-	  other lex-alikes should also work, or you can do without.
+	  other lex-alikes should also work.
     - MacCVS Pro, from http://sourceforge.net/projects/maccvspro/
 	  This will allow you to keep up-to-date with our development sources.
 	  Other CVS clients should also work, or you can do without
@@ -39,12 +39,7 @@ keeping the folder structure intact.
 7)	When the build is done the results are in the DungeonPPC, DungeonFat or
     Dungeon68K folder, depending on which Processor you have chosen.  Enjoy!
 
-8)	If you want to make any changes to the dungeon compiler or the special
-	level compiler, you will need to get bison and lex; the outputs are 
-	included in the distribution (in the :Grammar folder), so the build
-	rules should not be invoked if you don't change the .l or .y files.
-
-9)	If, heaven forbid, you experience any configuration problems or make
+8)	If, heaven forbid, you experience any configuration problems or make
 	errors, try to fix it yourself (there are several READMEs and the
 	like you can check)[though not very many of them have been updated
 	for Slash'EM], but be sure to save a copy of the original files
@@ -59,7 +54,7 @@ keeping the folder structure intact.
 	version of MPW and C and the headers you use, where you got the
 	Slash'EM source etc. etc.
 
-10)	This code is provided "as is" free of charge, and no warranty of any
+9)	This code is provided "as is" free of charge, and no warranty of any
 	kind can or will cover it.  Use at your own risk.  This code is
 	protected under copyright law, and may only be re-distributed under
 	the terms of the NetHack license also found in this package, or
