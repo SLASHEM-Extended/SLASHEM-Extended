@@ -364,6 +364,7 @@ ver 0.0.6E4F7 [?] [Released by ?]
 -fixed bug 488589: Burned-out lamps cannot be turned off.
 -fixed bug 490478: obj_is_local.
 -fixed bug 490405: Eating merged food still buggy.
+-fixed bug 460578: Macintosh window mode broken
 
 ver 0.0.6E4F6 [November 30/2001] [Released by Ali]
 -fixed bug 453246: Genetic engineers attacking monsters.
