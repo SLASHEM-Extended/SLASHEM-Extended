@@ -667,17 +667,17 @@ int tech_no;
 		    } else pline("If only you had a scalpel...");
 		}
 		if (u.uhp < u.uhpmax) {
-		    obj = use_medical_kit(BANDAGE, FALSE,
+		    otmp = use_medical_kit(BANDAGE, FALSE,
 			    "bandage your wounds with");
-		    if (obj) {
-			check_unpaid(obj);
+		    if (otmp) {
+			check_unpaid(otmp);
 			if (otmp->quan > 1L)
 			    otmp->quan--;
 			else {
 			    obj_extract_self(otmp);
 			    obfree(otmp, (struct obj *)0);
 			}
-			pline("Using %s, you bandage your wounds.", yname(obj));
+			pline("Using %s, you bandage your wounds.", yname(otmp));
 			u.uhp += (techlev(tech_no) * (rnd(2)+1)) + rn1(5,5);
 		    } else {
 			pline("You strap your wounds as best you can.");

@@ -68,6 +68,7 @@ http://www.slashem.org/
 -----------
 
 ver 0.0.7E6F1 [?] [Released by ?]
+-fixed bug 909623: Surgery technique causes crash
 
 See history.txt for changes made in previous versions.
 
