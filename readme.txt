@@ -118,6 +118,7 @@ ver 0.0.7E6F3 [?] [Released by ?]
 -fixed bug 1024200: Problems about Thiefbane
 -fixed bug 1024202: Dipping a loadstone into a potion of amnesia
 -fixed bug 1038151: Power surge becomes permanent if lost
+-fixed bug 1025486: Pets can't follow lvl telep from Blk Mkt
 
 See history.txt for changes made in previous versions.
 
