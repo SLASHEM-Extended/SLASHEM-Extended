@@ -11,6 +11,7 @@
 #include <gdk/gdk.h>
 #include <sys/time.h>
 #include <unistd.h>
+#include <signal.h>
 #include "hack.h"
 #include "date.h"
 
@@ -651,9 +652,55 @@ parse_args (int argc, char *argv[])
   return;
 }
 
+/*
+ * [ALI] Gnome installs its own handler(s) for SIGBUS, SIGFPE and SIGSEGV.
+ * These handlers will fork and exec a helper program. When that helper
+ * comes to initialize GTK+, it may fail if setuid/setgid. We solve this
+ * by dropping privileges before passing the signal along the chain.
+ * Note: We don't need to either drop or mask the saved ID since this
+ * will be reset when the child process performs the execve() anyway.
+ */
+
+static struct {
+    int signum;
+    void (*handler)(int);
+} ghack_chain[] = {
+    {SIGBUS},
+    {SIGFPE},
+    {SIGSEGV},
+    {SIGILL}		/* Not currently handled by Gnome */
+};
+
+static void ghack_sig_handler(int signum)
+{
+    int i;
+    uid_t uid, euid;
+    gid_t gid, egid;
+    uid = getuid();
+    euid = geteuid();
+    gid = getgid();
+    egid = getegid();
+    if (gid != egid)
+	setgid(gid);
+    if (uid != euid)
+	setuid(uid);
+    for(i = SIZE(ghack_chain) - 1; i >= 0; i--)
+	if (ghack_chain[i].signum == signum) {
+	    ghack_chain[i].handler(signum);
+	    break;
+	}
+    if (i < 0)
+	impossible("Unhandled ghack signal");
+    if (uid != euid)
+	setuid(euid);
+    if (gid != egid)
+	setgid(egid);
+}
+
 /* initialize gnome and fir up the main window */
 void ghack_init_main_window( int argc, char** argv)
 {
+    int i;
     struct timeval tv;
     uid_t uid, euid;
 
@@ -672,7 +719,9 @@ void ghack_init_main_window( int argc, char** argv)
     euid = geteuid();
     if (uid != euid)
       setuid(uid);
+    hide_privileges(TRUE);
     gnome_init ("nethack", VERSION_STRING, argc, argv);
+    hide_privileges(FALSE);
     parse_args (argc, argv);
 
     /* Initialize the i18n stuff (not that gnomehack supperts it yet...) */
@@ -712,6 +761,9 @@ void ghack_init_main_window( int argc, char** argv)
      * has already been shown */
     if (uid != euid)
       setuid(euid);
+    for(i = 0; i < SIZE(ghack_chain); i++)
+	ghack_chain[i].handler =
+	  signal(ghack_chain[i].signum, ghack_sig_handler);
 }
 
 void ghack_main_window_add_map_window(GtkWidget* win) 

@@ -2074,6 +2074,12 @@ E void FDECL(unlock_file_area, (const char *, const char *));
 #endif
 #endif /* UNIX */
 
+/* ### unixres.c ### */
+
+#ifdef UNIX
+E int FDECL(hide_privileges, (BOOLEAN_P));
+#endif /* UNIX */
+
 /* ### vault.c ### */
 
 E boolean FDECL(grddead, (struct monst *));

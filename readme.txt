@@ -332,6 +332,7 @@ ver 0.0.6E5 [? ?/2001] [Released by ?]
 ver 0.0.6E4F4 [? ?/2001] [Released by ?]
 -fixed bug 404825: wands of teleportation that explode/zapped at yourself
 -Integrated Mac port
+-Subverted setguid check in GTK+ version 1.2.9 and above
 
 ver 0.0.6E4F3 [February 28/2001] [Released by Ali]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined

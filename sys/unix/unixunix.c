@@ -706,3 +706,52 @@ const char *filearea, *filename;
 /* ----------  END FILE LOCKING HANDLING ----------- */
 
 #endif	/* FILE_AREAS */
+
+#ifdef GETRES_SUPPORT
+
+extern int FDECL(nh_getresuid, (uid_t *, uid_t *, uid_t *));
+extern uid_t NDECL(nh_getuid);
+extern uid_t NDECL(nh_geteuid);
+extern int FDECL(nh_getresgid, (gid_t *, gid_t *, gid_t *));
+extern gid_t NDECL(nh_getgid);
+extern gid_t NDECL(nh_getegid);
+
+int
+(getresuid)(ruid, euid, suid)
+uid_t *ruid, *euid, *suid;
+{
+    return nh_getresuid(ruid, euid, suid);
+}
+
+uid_t
+(getuid)()
+{
+    return nh_getuid();
+}
+
+uid_t
+(geteuid)()
+{
+    return nh_geteuid();
+}
+
+int
+(getresgid)(rgid, egid, sgid)
+gid_t *rgid, *egid, *sgid;
+{
+    return nh_getresgid(rgid, egid, sgid);
+}
+
+gid_t
+(getgid)()
+{
+    return nh_getgid();
+}
+
+gid_t
+(getegid)()
+{
+    return nh_getegid();
+}
+
+#endif	/* GETRES_SUPPORT */
