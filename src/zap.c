@@ -1516,10 +1516,10 @@ poly_obj(obj, id)
 
 #ifdef UNPOLYPILE
 	/* WAC -- Attach unpoly timer if this is a standard poly */
-	if (unpoly && obj->otyp != otmp->otyp /* && !rn2(20) */) {
-		if (!Blind && carried(obj))
+	if (unpoly /* && !rn2(20) */) {
+		set_obj_poly(otmp, obj);
+		if (is_fuzzy(otmp) && !Blind && carried(obj))
 			pline("%s seems fuzzy.", Yname2(otmp));
-		if (unpoly) set_obj_poly(otmp, obj->otyp);
 	}
 #endif
 

@@ -2135,9 +2135,10 @@ dodip()
 	    }
 	    return(1);
 #ifdef UNPOLYPILE
-	} else if (potion->otyp == POT_RESTORE_ABILITY &&
-		   stop_timer(UNPOLY_OBJ, (genericptr_t) obj)) {
+	} else if (potion->otyp == POT_RESTORE_ABILITY && is_fuzzy(obj)) {
 		/* KMH -- Restore ability will stop unpolymorphing */
+		stop_timer(UNPOLY_OBJ, (genericptr_t) obj);
+		obj->oldtyp = STRANGE_OBJECT;
 		if (!Blind)
 			pline("%s seems less fuzzy.", Yname2(obj));
 		useup(potion);

@@ -115,6 +115,11 @@ struct obj {
 #define newobj(xl)	(struct obj *)alloc((unsigned)(xl) + sizeof(struct obj))
 #define ONAME(otmp)	(((char *)(otmp)->oextra) + (otmp)->oxlth)
 
+/* All objects */
+#ifdef UNPOLYPILE
+#define is_fuzzy(otmp)	((otmp)->oldtyp != STRANGE_OBJECT)
+#endif
+
 /* Weapons and weapon-tools */
 /* KMH -- now based on skill categories.  Formerly:
  *	#define is_sword(otmp)	(otmp->oclass == WEAPON_CLASS && \

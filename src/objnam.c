@@ -578,15 +578,7 @@ register struct obj *obj;
 	if (obj->oinvis) Strcat(prefix,"invisible ");
 #endif
 #if defined(WIZARD) && defined(UNPOLYPILE)
-	if (wizard && obj->timed) {
-	    long expiretime;
-	    expiretime = stop_timer(UNPOLY_OBJ, (genericptr_t) obj);
-	    if (expiretime) {
-		Strcat(prefix,"fuzzy ");
-		start_timer(expiretime, TIMER_OBJECT,
-		  UNPOLY_OBJ, (genericptr_t) obj);
-	    }
-	}
+	if (wizard && is_fuzzy(obj)) Strcat(prefix,"fuzzy ");
 #endif
 
 	if ((!Hallucination || Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER)) &&

@@ -424,18 +424,20 @@ boolean wakeup_msg;
 #ifdef UNPOLYPILE
 /* WAC polymorph an object
  * Unlike monsters,  this function is called after the polymorph
- * no need to check - just attach the timer
  */
 void
-set_obj_poly(obj, oldtyp)
-struct obj *obj;
-short oldtyp;
+set_obj_poly(obj, old)
+struct obj *obj, *old;
 {
 	/* Same unpolytime (500,500) as for player */
-	/* Stop any old timers.   */
-	if (stop_timer(UNPOLY_OBJ, (genericptr_t) obj) == 0L)
-		obj->oldtyp = oldtyp;
-	(void) start_timer(rn1(500,500), TIMER_OBJECT,
+	if (is_fuzzy(old))
+	    obj->oldtyp = old->oldtyp;
+	else
+	    obj->oldtyp = old->otyp;
+	if (obj->oldtyp == obj->otyp)
+	    obj->oldtyp = STRANGE_OBJECT;
+	else
+	    (void) start_timer(rn1(500,500), TIMER_OBJECT,
 			UNPOLY_OBJ, (genericptr_t) obj);
 	return;
 }
@@ -451,6 +453,7 @@ unpoly_obj(arg, timeout)
 	boolean silent = (timeout != monstermoves);     /* unpoly'ed while away */
 
 	obj = (struct obj *) arg;
+	if (!is_fuzzy(obj)) return;
 	oldobj = obj->oldtyp;
 
 	if (carried(obj) && !silent) /* silent == TRUE is a strange case... */
