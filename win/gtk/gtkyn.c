@@ -1,5 +1,5 @@
 /*
-  $Id: gtkyn.c,v 1.6 2000-12-15 15:38:10 j_ali Exp $
+  $Id: gtkyn.c,v 1.7 2001-04-12 14:44:31 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -15,6 +15,7 @@
 static int		keysym;
 static const char	*yn_resp;
 static int		yn_def;
+static int		yn_isdir;
 
 static void
 yn_clicked(GtkWidget *widget, gpointer data)
@@ -38,7 +39,10 @@ yn_destroy(GtkWidget *widget, gpointer data)
 static gint
 yn_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
-    keysym = nh_keysym(event);
+    keysym = yn_isdir ? nh_dir_keysym(event) : 0;
+
+    if (!keysym)
+	keysym = nh_keysym(event);
     
     if(keysym){
 	if(!yn_resp || index(yn_resp, keysym))
@@ -92,6 +96,7 @@ GTK_yn_function(const char *query, const char *resp, CHAR_P def)
 
     yn_def = def;
     yn_resp = resp;
+    yn_isdir = FALSE;
 
     window = gtk_window_new(GTK_WINDOW_DIALOG);
     nh_position_popup_dialog(GTK_WIDGET(window));
@@ -249,6 +254,7 @@ GTK_yn_function(const char *query, const char *resp, CHAR_P def)
 			(iflags.num_pad ? (gpointer)np_dirstr[i][j].key : 
 			    (gpointer)dirstr[i][j].key));
 		}
+	    yn_isdir = TRUE;
 	}
     }
 

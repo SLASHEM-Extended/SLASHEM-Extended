@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.14 2001-04-12 06:19:00 j_ali Exp $
+  $Id: winGTK.h,v 1.15 2001-04-12 14:44:31 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -190,6 +190,7 @@ extern void		nh_status_update(void);
 extern void		nh_status_index_update(void);
 
 extern int		nh_keysym(GdkEventKey *ev);
+extern int		nh_dir_keysym(GdkEventKey *ev);
 
 extern void		nh_option_new(void);
 extern void		nh_option_lock(void);

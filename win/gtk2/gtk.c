@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.1 2001-04-12 06:19:00 j_ali Exp $
+  $Id: gtk.c,v 1.2 2001-04-12 14:44:32 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -753,54 +753,70 @@ default_destroy(GtkWidget *widget, gpointer data)
     return FALSE;
 }
 
-gint
-GTK_default_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
+int
+nh_dir_keysym(GdkEventKey *ev)
 {
-    switch(event->keyval)
+    int ret;
+
+    switch(ev->keyval)
     {
 	case GDK_End:
 	case GDK_KP_End:
-	    keysym = dir_keys[GTK_SOUTHWEST][!!iflags.num_pad];
+	    ret = dir_keys[GTK_SOUTHWEST][!!iflags.num_pad];
 	    break;
 	case GDK_Down:
 	case GDK_KP_Down:
-	    keysym = dir_keys[GTK_SOUTH][!!iflags.num_pad];
+	    ret = dir_keys[GTK_SOUTH][!!iflags.num_pad];
 	    break;
 	case GDK_Page_Down:
 	case GDK_KP_Page_Down:
-	    keysym = dir_keys[GTK_SOUTHEAST][!!iflags.num_pad];
+	    ret = dir_keys[GTK_SOUTHEAST][!!iflags.num_pad];
 	    break;
 	case GDK_Left:
 	case GDK_KP_Left:
-	    keysym = dir_keys[GTK_WEST][!!iflags.num_pad];
+	    ret = dir_keys[GTK_WEST][!!iflags.num_pad];
 	    break;
 	case GDK_Begin:
 	case GDK_KP_Begin:
-	    keysym = '.';
+	    ret = '.';
 	    break;
 	case GDK_Right:
 	case GDK_KP_Right:
-	    keysym = dir_keys[GTK_EAST][!!iflags.num_pad];
+	    ret = dir_keys[GTK_EAST][!!iflags.num_pad];
 	    break;
 	case GDK_Home:
 	case GDK_KP_Home:
-	    keysym = dir_keys[GTK_NORTHWEST][!!iflags.num_pad];
+	    ret = dir_keys[GTK_NORTHWEST][!!iflags.num_pad];
 	    break;
 	case GDK_Up:
 	case GDK_KP_Up:
-	    keysym = dir_keys[GTK_NORTH][!!iflags.num_pad];
+	    ret = dir_keys[GTK_NORTH][!!iflags.num_pad];
 	    break;
 	case GDK_Page_Up:
 	case GDK_KP_Page_Up:
-	    keysym = dir_keys[GTK_NORTHEAST][!!iflags.num_pad];
-	    break;
-	case GDK_Insert:
-	case GDK_KP_Insert:
-	    keysym = 'i';
+	    ret = dir_keys[GTK_NORTHEAST][!!iflags.num_pad];
 	    break;
 	default:
-	    keysym = nh_keysym(event);
+	    ret = 0;
     }
+
+    return ret;
+}
+
+gint
+GTK_default_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
+{
+    keysym = nh_dir_keysym(event);
+    if (!keysym)
+	switch(event->keyval)
+	{
+	    case GDK_Insert:
+	    case GDK_KP_Insert:
+		keysym = 'i';
+		break;
+	    default:
+		keysym = nh_keysym(event);
+	}
 
     if(keysym)
 	quit_hook();
