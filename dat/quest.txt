@@ -2164,7 +2164,6 @@ lest one leave it in ruins and simplify the task of %n.
 truly ready for this quest.  May %d guide you in this task."
 %E
 %Cc Nec 00021
-%E
 "Yes, %p, you truly are ready for this dire task.  Listen,
 carefully, for what I tell you now will be of vital importance.
 
@@ -2183,6 +2182,7 @@ to %n.
 find and overcome %n, and return %o to me.
 
 "Go now, with %d, and return freedom to our tower."
+%E
 %Cp Nec 00025
 "Beware, for %n is immune to most magical attacks."
 %E
