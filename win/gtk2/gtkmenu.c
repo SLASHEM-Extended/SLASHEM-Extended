@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.6 2001-12-11 20:43:49 j_ali Exp $
+  $Id: gtkmenu.c,v 1.7 2001-12-24 07:56:33 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -477,7 +477,7 @@ GTK_end_menu(winid id, const char *prompt)
 	  menu->nhMenuItem = new;
      }
 
-     menu->prompt = strdup(prompt);
+     menu->prompt = prompt ? strdup(prompt) : (char *)0;
 }
 
 int 
@@ -668,6 +668,7 @@ move_menu(struct menu *src_menu, struct menu *dest_menu)
     src_menu->nhMenuItem = (NHMenuItem *)0;
     src_menu->alloc_menuitem = 0;
     src_menu->n_menuitem = 0;
+    src_menu->prompt = (char *)0;
 }
 
 static void

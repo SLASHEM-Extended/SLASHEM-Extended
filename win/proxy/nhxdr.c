@@ -1,4 +1,4 @@
-/* $Id: nhxdr.c,v 1.2 2001-09-06 18:06:38 j_ali Exp $ */
+/* $Id: nhxdr.c,v 1.3 2001-12-24 07:56:33 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -29,6 +29,16 @@ unsigned int pos;
 	return FALSE;
     xdrs->x_pos = pos;
     return TRUE;
+}
+
+void
+nhext_xdr_free(codec, addr)
+char *addr;
+boolean (*codec)(NhExtXdr *, void *);
+{
+    NhExtXdr xdrs;
+    xdrs.x_op = NHEXT_XDR_FREE;
+    (void)(*codec)(&xdrs, addr);
 }
 
 static boolean

@@ -78,10 +78,15 @@ MAKEBIN  = make
 #COPY = xcopy		# MSDOS xcopy command
 COPY = cp		# UNIX copy command
 #COPY = copy		# MSDOS copy command (gets confused by '+')
+RCOPY = xcopy /s
+#RCOPY = cp -r
 #DEL = command.com /c del
 #DEL = cmd.exe /c del	# Same as above, but for Windows NT
 #DEL = rm -f 		#UNIX del command
 DEL = del 		#MSDOS del command
+#RDEL = deltree
+RDEL = rd /s /q
+#RDEL = rm -rf
 #ECHO = command.com /c echo     # For some reason this doesn't seem to work
 #ECHO = cmd.exe /c $(ECHO)	# Same as above, but for Windows NT
 #ECHO = echo.exe # UNIX echo command
@@ -129,10 +134,19 @@ USE_DLB = Y
 SUPPRESS_GRAPHICS = 
 
 #
-# Uncomment the line below if you want to compile with the GTK windowsystem
-# You will also need to modify config.h
+# Uncomment exactly one of the lines below. Use 'N' if you do not want to
+# compile with the GTK windowsystem.  You will also need to modify config.h
+# as follows:
+#	USE_GTK = 1.2		Define GTK_GRAPHICS
+#	USE_GTK = 2.0		Define GTK_GRAPHICS and GTK_V20
+#	USE_GTK = proxy		Define GTK_GRAPHICS, GTK_V20 and PROXY_GRAPHICS
+#
+# Note: Only N or 1.2 is supported in the stable distribution.
 
-USE_GTK = Y
+#USE_GTK = N
+USE_GTK = 1.2
+#USE_GTK = 2.0
+#USE_GTK = proxy
 
 #
 # Uncomment the line below if you want to compile with the internal malloc
@@ -195,6 +209,15 @@ endif
 #WINGTKCFLAGS=-Ic:/mingw32/src/gtk+ -Ic:/mingw32/src/glib -Ic:/mingw32/src/gtk+/gdk
 #WINGTKCFLAGS=-I$(MW32GTK)/include
 WINGTKCFLAGS=-I$(MW32GTK)
+ifeq ($(USE_GTK),1.2)
+GTK_TARGET = 1.2
+endif
+ifeq ($(USE_GTK),2.0)
+GTK_TARGET = 2.0
+endif
+ifeq ($(USE_GTK),proxy)
+GTK_TARGET = 2.0
+endif
 
 # Set the WINSRC, WINOBJ, and WINLIB lines to correspond to your desired
 # combination of windowing systems.  Also set windowing systems in config.h.
@@ -206,17 +229,67 @@ WINTTYOBJ = getline.o termcap.o topl.o wintty.o
 #
 # files for a GTK port
 # (tile.c is included in the defn. for WINCSRC, below)
+ifeq ($(GTK_TARGET),1.2)
 WINGTKSRC = ../win/gtk/gtk.c ../win/gtk/gtkgetlin.c ../win/gtk/gtkstatus.c \
 	../win/gtk/gtkmenu.c ../win/gtk/gtkyn.c ../win/gtk/gtkextcmd.c \
 	../win/gtk/gtkmap.c ../win/gtk/gtkmessage.c ../win/gtk/gtkmisc.c \
 	../win/gtk/xshmmap.c ../win/gtk/xshm.c
-WINGTKOBJ = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
-	gtkmap.o gtkmessage.o gtkmisc.o \
-	xshmmap.o xshm.o
+WINGTKOBJ1 = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
+	gtkmap.o gtkmessage.o gtkmisc.o xshmmap.o
+WINGTKOBJ2 = xshm.o
+endif
+# files for a GTK 2.0 port (not included in stable distribution)
+# (tile.c is included in the defn. for WINCSRC, below)
+ifeq ($(GTK_TARGET),2.0)
+WINGTKSRC = ../win/gtk2/gtk.c ../win/gtk2/gtkgetlin.c ../win/gtk2/gtkstatus.c \
+	../win/gtk2/gtkmenu.c ../win/gtk2/gtkyn.c ../win/gtk2/gtkextcmd.c \
+	../win/gtk2/gtkmap.c ../win/gtk2/gtkmessage.c ../win/gtk2/gtkmisc.c \
+	../win/gtk2/xshmmap.c ../win/gtk2/gtktile.c ../win/gtk2/gtkint.c \
+	../win/gtk2/gtkext.c
+WINGTKOBJ1 = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
+	gtkmap.o gtkmessage.o gtkmisc.o xshmmap.o
+WINGTKOBJ2 = gtktile.o gtkint.o gtkext.o
+endif
+#
+# Files for a proxy interface -- not ready for prime time
+ifeq ($(USE_GTK),proxy)
+WINPROXYSRC = ../win/proxy/winproxy.c ../win/proxy/nhext.c \
+	../win/proxy/nhxdr.c ../win/proxy/nhextxdr.c ../win/proxy/compxdr.c
+WINPROXYOBJ = winproxy.o nhext.o nhxdr.o nhextxdr.o compxdr.o
+endif
+#
+# Files for the call back interface. These are needed to support window ports
+# that use the external window interface whether linked with the game executable
+# or not. Currently this only includes the GTK2 window interface
+ifeq ($(GTK_TARGET),2.0)
+WINCALLBACKSRC = ../win/proxy/dlbh.c ../win/proxy/mapid.c \
+	../win/proxy/riputil.c
+WINCALLBACKOBJ = dlbh.o mapid.o riputil.o
+endif
+#
+# Files for the proxy window server interface. These are needed to support
+# external window ports and provide the interface to the game executable.
+# Currently, only the GTK2 window interface supports proxy window servers.
+ifeq ($(USE_GTK),proxy)
+PROXYSVRSRC = ../win/proxy/proxysvc.c
+PROXYSVROBJ = proxysvc.o
+endif
 
-ifeq ($(USE_GTK),Y)
+ifneq ($(USE_GTK),N)
+ifeq ($(USE_GTK),1.2)
 WINSRC = $(WINTTYSRC) $(WINGTKSRC)
-WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ) tile.o
+WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ1) $(WINGTKOBJ2) tile.o
+endif
+ifeq ($(USE_GTK),2.0)
+WINSRC = $(WINTTYSRC) $(WINGTKSRC) $(WINCALLBACKSRC)
+WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ1) $(WINGTKOBJ2) $(WINCALLBACKOBJ) tile.o
+endif
+ifeq ($(USE_GTK),proxy)
+WINSRC = $(WINTTYSRC) $(WINGTKSRC) $(WINCALLBACKSRC) $(WINPROXYSRC) \
+	$(PROXYSVRSRC)
+WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ1) $(WINGTKOBJ2) $(WINCALLBACKOBJ) \
+	$(WINPROXYOBJ) $(PROXYSVROBJ) tile.o
+endif
 CCOMPILE = $(CC) -fnative-struct
 else
 WINSRC = $(WINTTYSRC)
@@ -231,12 +304,26 @@ endif
 WINTTYLIB = 
 # libraries for GTK
 # WINGTKLIB = `gtk-config --libs`
-WINGTKLIB1 = $(MW32GTK)/src/gtk+/gtk/libgtk-1.3.a $(MW32GTK)/src/gtk+/gdk/libgdk-1.3.a 
-WINGTKLIB2 = $(MW32GTK)/src/glib/libglib-1.3.a
-#WINGTKLIB = /mingw32/src/libgtk-1.3.a /mingw32/src/libgdk-1.3.a /mingw32/src/libglib-1.3.a
+ifeq ($(GTK_TARGET),2.0)
+WINGTKLIB1 = $(MW32GTK)/lib/libgtk-win32-1.3.dll.a $(MW32GTK)/lib/libgdk-win32-1.3.dll.a 
+WINGTKLIB2 = $(MW32GTK)/lib/libglib-1.3.dll.a $(MW32GTK)/lib/libgdk_pixbuf-1.3.dll.a
+WINGTKLIB3 = $(MW32GTK)/lib/libgobject-1.3.dll.a $(MW32GTK)/lib/libpango.dll.a
+endif
+ifeq ($(GTK_TARGET),1.2)
+WINGTKLIB1 = $(MW32GTK)/src/gtk+/gtk/libgtk-1.3.a
+WINGTKLIB2 = $(MW32GTK)/src/gtk+/gdk/libgdk-1.3.a
+WINGTKLIB3 = $(MW32GTK)/src/glib/libglib-1.3.a
+#WINGTKLIB1 = $(MW32GTK)/lib/libgtk.dll.a
+#WINGTKLIB2 = $(MW32GTK)/lib/libgdk.dll.a 
+#WINGTKLIB3 = $(MW32GTK)/lib/libglib-1.3.dll.a
+endif
 
-ifeq ($(USE_GTK),Y)
-WINLIB = $(WINTTYLIB) $(WINGTKLIB)
+ifeq ($(USE_GTK),proxy)
+WINPROXYLIB = libwsock32.a
+endif
+
+ifneq ($(USE_GTK),N)
+WINLIB = $(WINTTYLIB) $(WINGTKLIB1) $(WINGTKLIB2) $(WINGTKLIB3) $(WINPROXYLIB)
 else
 WINLIB = $(WINTTYLIB)
 endif
@@ -246,7 +333,7 @@ endif
 # per discussions in Install.X11, Install.Qt and Install.GTK
 CNF_SHARE_GTKND = x11bigtiles x11big3dtiles x11tiles rip.xpm credit.xpm
 
-ifeq ($(USE_GTK),Y)
+ifneq ($(USE_GTK),N)
 CNF_SHARE_DATND = $(CNF_SHARE_GTKND)
 else
 CNF_SHARE_DATND =
@@ -451,7 +538,7 @@ else
 	$(COPY) $(DAT)\*.lev         $(GAMEDIR)
 #	$(DEL) $(GAMEDIR)\makefile.
 endif
-ifeq ($(USE_GTK),Y)
+ifneq ($(USE_GTK),N)
 	$(COPY) $(WGTK)\GTKRC.w32    $(GAMEDIR)\gtkrc
 	$(COPY) rip.xpm              $(GAMEDIR)
 	$(COPY) credit.xpm           $(GAMEDIR)
@@ -465,7 +552,15 @@ ifeq ($(USE_GTK),Y)
 #	$(COPY) $(MW32GTK)\src\gtk+\gtk\gtk*.dll $(GAMEDIR)
 #	$(COPY) $(MW32GTK)\src\libiconv-1.3\src\iconv*.dll $(GAMEDIR)
 #	$(COPY) $(MW32GTK)\src\intl\gnu*.dll $(GAMEDIR)
-	$(COPY) $(GNUDLL)\*.* $(GAMEDIR)
+	$(COPY) $(GNUDLL)\\*.dll $(GAMEDIR)
+ifeq ($(GTK_TARGET),2.0)
+	$(RCOPY) $(MW32GTK)\etc $(GAMEDIR)
+	-$(RDEL) $(GAMEDIR)\lib
+	mkdir $(GAMEDIR)\lib
+	$(RCOPY) $(MW32GTK)\lib\pango $(GAMEDIR)\lib
+	$(RCOPY) $(MW32GTK)\lib\glib-2.0 $(GAMEDIR)\lib
+	$(RCOPY) $(MW32GTK)\lib\gtk-2.0 $(GAMEDIR)\lib
+endif
 	$(COPY) $(WSYS)\winnt.cnf    $(GAMEDIR)\defaults.nh
 else
 	$(COPY) $(SSHR)\NetHack.cnf  $(GAMEDIR)\defaults.nh
@@ -514,10 +609,22 @@ $(GAME).lnk: $(ALLOBJ)
 	@echo INPUT( $(SOBJ)   )>> $@
 	@echo INPUT( $(VVOBJ)  )>> $@
 	@echo INPUT( $(WINTTYOBJ)  )>> $@
-ifeq ($(USE_GTK),Y)
-	@echo INPUT( $(WINGTKOBJ)  )>> $@
+ifneq ($(USE_GTK),N)
+	@echo INPUT( $(WINGTKOBJ1)  )>> $@
+	@echo INPUT( $(WINGTKOBJ2)  )>> $@
+ifeq ($(GTK_TARGET),2.0)
+	@echo INPUT( $(WINCALLBACKOBJ)  )>> $@
+endif
+ifeq ($(USE_GTK),proxy)
+	@echo INPUT( $(WINPROXYOBJ)  )>> $@
+	@echo INPUT( $(PROXYSVROBJ)  )>> $@
+endif
 	@echo INPUT( $(WINGTKLIB1)  )>> $@
 	@echo INPUT( $(WINGTKLIB2)  )>> $@
+	@echo INPUT( $(WINGTKLIB3)  )>> $@
+ifeq ($(USE_GTK),proxy)
+	@echo INPUT( $(WINPROXYLIB)  )>> $@
+endif
 	@echo INPUT( tile.o  )>> $@
 endif
 ifeq ($(USE_NHALLOC),Y)
@@ -1272,43 +1379,86 @@ wintty.o : $(HACK_H) $(WTTY)\wintty.c
 	$(COPY) $(WTTY)\wintty.c .
 	$(CCOMPILE) $(CFLAGS) -o$@ wintty.c
 
-# win/gtk
-gtk.o: ../win/gtk/gtk.c ../include/winGTK.h $(HACK_H) ../include/func_tab.h \
+# win/gtk, win/gtk2
+gtk.o: $(WGTK)/gtk.c ../include/winGTK.h $(HACK_H) ../include/func_tab.h \
 		../include/dlb.h ../include/patchlevel.h
 	$(COPY) $(WGTK)\gtk.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtk.c
-gtkgetlin.o: ../win/gtk/gtkgetlin.c ../include/winGTK.h $(HACK_H)
+gtkgetlin.o: $(WGTK)/gtkgetlin.c ../include/winGTK.h $(HACK_H)
 	$(COPY) $(WGTK)\gtkgetlin.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkgetlin.c
-gtkstatus.o: ../win/gtk/gtkstatus.c ../include/winGTK.h $(HACK_H)
+gtkstatus.o: $(WGTK)/gtkstatus.c ../include/winGTK.h $(HACK_H)
 	$(COPY) $(WGTK)\gtkstatus.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkstatus.c
-gtkmenu.o: ../win/gtk/gtkmenu.c ../include/winGTK.h $(HACK_H)
+gtkmenu.o: $(WGTK)/gtkmenu.c ../include/winGTK.h $(HACK_H)
 	$(COPY) $(WGTK)\gtkmenu.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkmenu.c
-gtkyn.o: ../win/gtk/gtkyn.c ../include/winGTK.h $(HACK_H)
+gtkyn.o: $(WGTK)/gtkyn.c ../include/winGTK.h $(HACK_H)
 	$(COPY) $(WGTK)\gtkyn.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkyn.c
-gtkextcmd.o: ../win/gtk/gtkextcmd.c ../include/winGTK.h $(HACK_H) \
+gtkextcmd.o: $(WGTK)/gtkextcmd.c ../include/winGTK.h $(HACK_H) \
 		../include/func_tab.h
 	$(COPY) $(WGTK)\gtkextcmd.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkextcmd.c
-gtkmap.o: ../win/gtk/gtkmap.c ../include/winGTK.h $(HACK_H) ../include/dlb.h \
+gtkmap.o: $(WGTK)/gtkmap.c ../include/winGTK.h $(HACK_H) ../include/dlb.h \
 		../include/patchlevel.h
 	$(COPY) $(WGTK)\gtkmap.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkmap.c
-gtkmessage.o: ../win/gtk/gtkmessage.c ../include/winGTK.h $(HACK_H)
+gtkmessage.o: $(WGTK)/gtkmessage.c ../include/winGTK.h $(HACK_H)
 	$(COPY) $(WGTK)\gtkmessage.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkmessage.c
-gtkmisc.o: ../win/gtk/gtkmisc.c ../include/winGTK.h $(HACK_H)
+gtkmisc.o: $(WGTK)/gtkmisc.c ../include/winGTK.h $(HACK_H)
 	$(COPY) $(WGTK)\gtkmisc.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkmisc.c
-xshmmap.o: ../win/gtk/xshmmap.c ../include/winGTK.h $(HACK_H) ../include/xshm.h
+xshmmap.o: $(WGTK)/xshmmap.c ../include/winGTK.h $(HACK_H) ../include/xshm.h
 	$(COPY) $(WGTK)\xshmmap.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c xshmmap.c
-xshm.o: ../win/gtk/xshm.c ../include/xshm.h
+xshm.o: $(WGTK)/xshm.c ../include/xshm.h
 	$(COPY) $(WGTK)\xshm.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c xshm.c
+gtktile.o: $(WGTK)/gtktile.c ../include/winGTK.h ../include/dlb.h
+	$(COPY) $(WGTK)\gtktile.c .
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtktile.c
+gtkint.o: $(WGTK)/gtkint.c ../include/winGTK.h ../include/winproxy.h
+		../include/dlb.h ../include/patchlevel.h
+	$(COPY) $(WGTK)\gtkint.c .
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkint.c
+gtkext.o: $(WGTK)/gtkext.c ../include/winGTK.h ../include/winproxy.h
+		../include/dlb.h ../include/patchlevel.h
+	$(COPY) $(WGTK)\gtkext.c .
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkext.c
+# win/proxy
+winproxy.o: ../win/proxy/winproxy.c $(HACK_H) ../include/nhxdr.h \
+		../include/winproxy.h
+	$(COPY) ..\win\proxy\winproxy.c .
+	$(CCOMPILE) $(CFLAGS) -c winproxy.c
+nhext.o: ../win/proxy/nhext.c $(HACK_H) ../include/nhxdr.h ../include/winproxy.h
+	$(COPY) ..\win\proxy\nhext.c .
+	$(CCOMPILE) $(CFLAGS) -c nhext.c
+nhxdr.o: ../win/proxy/nhxdr.c $(HACK_H) ../include/nhxdr.h
+	$(COPY) ..\win\proxy\nhxdr.c .
+	$(CCOMPILE) $(CFLAGS) -c nhxdr.c
+nhextxdr.o: ../win/proxy/nhextxdr.c $(HACK_H) ../include/nhxdr.h
+	$(COPY) ..\win\proxy\nhextxdr.c .
+	$(CCOMPILE) $(CFLAGS) -c nhextxdr.c
+compxdr.o: ../win/proxy/compxdr.c $(HACK_H) ../include/nhxdr.h \
+		../include/winproxy.h
+	$(COPY) ..\win\proxy\compxdr.c .
+	$(CCOMPILE) $(CFLAGS) -c compxdr.c
+dlbh.o: ../win/proxy/dlbh.c $(HACK_H) ../include/dlb.h
+	$(COPY) ..\win\proxy\dlbh.c .
+	$(CCOMPILE) $(CFLAGS) -c dlbh.c
+mapid.o: ../win/proxy/mapid.c $(HACK_H) ../include/nhxdr.h \
+		../include/winproxy.h
+	$(COPY) ..\win\proxy\mapid.c .
+	$(CCOMPILE) $(CFLAGS) -c mapid.c
+riputil.o: ../win/proxy/riputil.c $(HACK_H)
+	$(COPY) ..\win\proxy\riputil.c .
+	$(CCOMPILE) $(CFLAGS) -c riputil.c
+proxysvc.o: ../win/proxy/proxysvc.c $(HACK_H) ../include/nhxdr.h \
+		../include/winproxy.h
+	$(COPY) ..\win\proxy\proxysvc.c .
+	$(CCOMPILE) $(CFLAGS) -c proxysvc.c
 
 # src dependencies
 allmain.o:  $(HACK_H)

@@ -182,12 +182,12 @@ struct proxy_select_menu_res {
 };
 
 #ifdef NHXDR_H
-E int FDECL(proxy_xdr_init_nhwindow_req,
+E boolean FDECL(proxy_xdr_init_nhwindow_req,
 		(NhExtXdr *, struct proxy_init_nhwindow_req *));
-E int FDECL(proxy_xdr_init_nhwindow_res,
+E boolean FDECL(proxy_xdr_init_nhwindow_res,
 		(NhExtXdr *, struct proxy_init_nhwindow_res *));
 E boolean FDECL(proxy_xdr_proxy_mi, (NhExtXdr *, struct proxy_mi *));
-E int FDECL(proxy_xdr_select_menu_res, (NhExtXdr *, struct proxy_select_menu_res *));
+E boolean FDECL(proxy_xdr_select_menu_res, (NhExtXdr *, struct proxy_select_menu_res *));
 #endif	/* NHXDR_H */
 
 struct window_ext_procs {

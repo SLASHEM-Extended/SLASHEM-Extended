@@ -1,4 +1,4 @@
-/* $Id: nhxdr.h,v 1.1 2001-12-11 20:43:49 j_ali Exp $ */
+/* $Id: nhxdr.h,v 1.2 2001-12-24 07:56:32 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -40,6 +40,7 @@ typedef struct nhext_xdr {
 
 E unsigned int FDECL(nhext_xdr_getpos, (NhExtXdr *));
 E boolean FDECL(nhext_xdr_setpos, (NhExtXdr *, unsigned int));
+E void FDECL(nhext_xdr_free, (boolean (*)(), char *));
 E void FDECL(nhext_xdrmem_create, (NhExtXdr *, char *, unsigned int,
 			enum nhext_xdr_op));
 

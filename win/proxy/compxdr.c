@@ -1,4 +1,4 @@
-/* $Id: compxdr.c,v 1.1 2001-12-11 20:43:49 j_ali Exp $ */
+/* $Id: compxdr.c,v 1.2 2001-12-24 07:56:33 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -11,7 +11,7 @@
  * NhExt needs.
  */
 
-int proxy_xdr_init_nhwindow_req(xdr, datum)
+boolean proxy_xdr_init_nhwindow_req(xdr, datum)
 NhExtXdr *xdr;
 struct proxy_init_nhwindow_req *datum;
 {
@@ -19,7 +19,7 @@ struct proxy_init_nhwindow_req *datum;
       &datum->argc, (unsigned int)-1, sizeof(char *), nhext_xdr_wrapstring);
 }
 
-int proxy_xdr_init_nhwindow_res(xdr, datum)
+boolean proxy_xdr_init_nhwindow_res(xdr, datum)
 NhExtXdr *xdr;
 struct proxy_init_nhwindow_res *datum;
 {
@@ -36,7 +36,7 @@ struct proxy_mi *datum;
     return nhext_xdr_int(xdrs, &datum->item) && nhext_xdr_long(xdrs, &datum->count);
 }
 
-int proxy_xdr_select_menu_res(xdr, datum)
+boolean proxy_xdr_select_menu_res(xdr, datum)
 NhExtXdr *xdr;
 struct proxy_select_menu_res *datum;
 {

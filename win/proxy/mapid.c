@@ -1,4 +1,4 @@
-/* $Id: mapid.c,v 1.1 2001-12-11 20:43:49 j_ali Exp $ */
+/* $Id: mapid.c,v 1.2 2001-12-24 07:56:33 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -32,6 +32,8 @@ static int mapid__add_winid(id)
 winid id;
 {
     int i;
+    if (id == WIN_ERR)
+	panic("mapid__add_winid: Bad window ID");
     for(i = 0; i < mapid__no_windows; i++)
 	if (mapid__windows[i].id == id)
 	    return i;
@@ -62,6 +64,8 @@ void mapid_del_winid(id)
 winid id;
 {
     int i;
+    if (id == WIN_ERR)
+	panic("mapid_del_winid: Bad window ID");
     for(i = 0; i < mapid__no_windows; i++)
 	if (mapid__windows[i].id == id) {
 	    if (mapid__windows[i].no_identifiers)
@@ -113,6 +117,8 @@ anything *identifier;
 	identifier->a_void = 0;
 	return;
     }
+    if (id == WIN_ERR)
+	panic("mapid_unmap_identifier: Bad window ID");
     for(i = 0; i < mapid__no_windows; i++)
 	if (mapid__windows[i].id == id)
 	    break;
@@ -139,6 +145,8 @@ void mapid_del_identifiers(id)
 winid id;
 {
     int i;
+    if (id == WIN_ERR)
+	panic("mapid_del_indentifiers: Bad window ID");
     for(i = 0; i < mapid__no_windows; i++)
 	if (mapid__windows[i].id == id) {
 	    if (mapid__windows[i].no_identifiers)

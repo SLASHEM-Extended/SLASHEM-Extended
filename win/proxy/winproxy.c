@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.3 2001-12-11 20:43:49 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.4 2001-12-24 07:56:33 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -11,6 +11,9 @@
 #include "hack.h"
 #include "nhxdr.h"
 #include "winproxy.h"
+#ifdef WIN32
+#include "win32api.h"
+#endif
 
 /* Interface definition for plug-in windowing ports */
 struct window_procs proxy_procs = {
@@ -153,7 +156,11 @@ proxy_player_selection()
 void
 proxy_askname()
 {
-    nhext_rpc(EXT_FID_ASKNAME, 0, 1, EXT_STRING_P(plname));
+    char *name = (char *)0;
+    nhext_rpc(EXT_FID_ASKNAME, 0, 1, EXT_STRING_P(name));
+    strncpy(plname, name, sizeof(plname) - 1);
+    plname[sizeof(plname) - 1] = '\0';
+    free(name);
 }
 
 void
@@ -310,7 +317,7 @@ menu_item **menu_list;
 	(*menu_list)[i].count = ret.selected[i].count;
     }
     i = ret.retval;
-    xdr_free(proxy_xdr_select_menu_res, &ret);
+    nhext_xdr_free(proxy_xdr_select_menu_res, (char *)&ret);
     return i;
 }
 
@@ -540,6 +547,103 @@ int how;
 	genl_outrip(window, how);
 }
 
+struct nhext_svc proxy_callbacks[] = {
+    0, NULL,
+};
+
+#ifdef DEBUG
+static int FDECL(debug_read, (void *, void *, unsigned int));
+static int FDECL(debug_write, (void *, void *, unsigned int));
+#endif
+
+#ifdef WIN32
+static HANDLE to_parent[2], to_child[2];
+
+/* Create an anonymous pipe with one end inheritable. */
+
+static int pipe_create(HANDLE *handles, int non_inherit)
+{
+    HANDLE h;
+    SECURITY_ATTRIBUTES sa;
+    sa.nLength = sizeof(sa);
+    sa.bInheritHandle = TRUE;
+    sa.lpSecurityDescriptor = NULL;
+    if (!CreatePipe(&handles[0], &handles[1], &sa, 0))
+	return FALSE;
+    if (!DuplicateHandle(GetCurrentProcess(), handles[non_inherit],
+      GetCurrentProcess(), &h, 0, FALSE, DUPLICATE_SAME_ACCESS)) {
+	CloseHandle(handles[0]);
+	CloseHandle(handles[1]);
+	return FALSE;
+    }
+    CloseHandle(handles[non_inherit]);
+    handles[non_inherit] = h;
+    return TRUE;
+}
+
+static void pipe_close(HANDLE *handles)
+{
+    CloseHandle(handles[0]);
+    CloseHandle(handles[1]);
+}
+
+int proxy_read(handle, buf, len)
+void *handle;
+void *buf;
+int len;
+{
+    DWORD nb;
+    /*
+     * Hack for single process operation - let the server handle the pending
+     * call; issue any call backs and write a reply.
+     */
+    win_proxy_svr_iteration();
+    if (!ReadFile((HANDLE)handle, buf, len, &nb, NULL))
+	return -1;
+    else
+	return nb;
+}
+
+int proxy_write(handle, buf, len)
+void *handle;
+void *buf;
+int len;
+{
+    DWORD nb;
+    if (!WriteFile((HANDLE)handle, buf, len, &nb, NULL))
+	return -1;
+    else
+	return nb;
+}
+
+static int
+proxy_init()
+{
+    if (!pipe_create(to_parent, 0))
+	return FALSE;
+    if (!pipe_create(to_child, 1)) {
+	pipe_close(to_parent);
+	return FALSE;
+    }
+    proxy_connection =
+#ifndef DEBUG
+      nhext_subprotocol1_init(proxy_read, (void *)to_parent[0],
+      proxy_write, (void *)to_child[1], proxy_callbacks);
+#else
+      nhext_subprotocol1_init(debug_read, (void *)to_parent[0],
+      debug_write, (void *)to_child[1], proxy_callbacks);
+#endif
+    if (proxy_connection < 0)
+    {
+	pipe_close(to_parent);
+	pipe_close(to_child);
+	return FALSE;
+    }
+    if (!win_proxy_svr_init(to_child[0], to_parent[1]))
+	return FALSE;
+    return TRUE;
+}
+#else	/* WIN32 */
 static int to_parent[2], to_child[2];
 
 static int
@@ -575,6 +679,39 @@ unsigned int len;
     else
 	return -1;
 }
+
+static int
+proxy_init()
+{
+    if (pipe(to_child))
+	return FALSE;
+    if (pipe(to_parent))
+    {
+	close(to_child[0]);
+	close(to_child[1]);
+	return FALSE;
+    }
+    proxy_connection =
+#ifndef DEBUG
+      nhext_subprotocol1_init(proxy_read, (void *)to_parent[0],
+      proxy_write, (void *)to_child[1], proxy_callbacks);
+#else
+      nhext_subprotocol1_init(debug_read, (void *)to_parent[0],
+      debug_write, (void *)to_child[1], proxy_callbacks);
+#endif
+    if (proxy_connection < 0)
+    {
+	close(to_child[0]);
+	close(to_child[1]);
+	close(to_parent[0]);
+	close(to_parent[1]);
+	return FALSE;
+    }
+    if (!win_proxy_svr_init(to_child[0], to_parent[1]))
+	return FALSE;
+    return TRUE;
+}
+#endif	/* WIN32 */
 
 #ifdef DEBUG
 static void
@@ -654,42 +791,6 @@ unsigned int len;
     return retval;
 }
 #endif	/* DEBUG */
-
-struct nhext_svc proxy_callbacks[] = {
-    0, NULL,
-};
-
-static int
-proxy_init()
-{
-    if (pipe(to_child))
-	return FALSE;
-    if (pipe(to_parent))
-    {
-	close(to_child[0]);
-	close(to_child[1]);
-	return FALSE;
-    }
-    proxy_connection =
-#ifndef DEBUG
-      nhext_subprotocol1_init(proxy_read, (void *)to_parent[0],
-      proxy_write, (void *)to_child[1], proxy_callbacks);
-#else
-      nhext_subprotocol1_init(debug_read, (void *)to_parent[0],
-      debug_write, (void *)to_child[1], proxy_callbacks);
-#endif
-    if (proxy_connection < 0)
-    {
-	close(to_child[0]);
-	close(to_child[1]);
-	close(to_parent[0]);
-	close(to_parent[1]);
-	return FALSE;
-    }
-    if (!win_proxy_svr_init(to_child[0], to_parent[1]))
-	return FALSE;
-    return TRUE;
-}
 
 void
 win_proxy_init()

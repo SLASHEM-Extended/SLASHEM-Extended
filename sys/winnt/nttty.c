@@ -56,6 +56,12 @@ CONSOLE_SCREEN_BUFFER_INFO csbi;
 COORD ntcoord;
 INPUT_RECORD ir;
 
+/* [ALI] Flag for whether nttty_open() has been called. This is important
+ * because we shouldn't call tty_ routines unless the tty interface is active
+ * (nttty_open() is called by the tty interface initialization routine).
+ */
+static int TTYInitialized = FALSE;
+
 /* Flag for whether NetHack was launched via the GUI, not the command line.
  * The reason we care at all, is so that we can get
  * a final RETURN at the end of the game when launched from the GUI
@@ -188,6 +194,7 @@ nttty_open()
 		cmode = 0; 	/* just to have a statement to break on for debugger */
 	}
 	get_scr_size();
+	TTYInitialized = TRUE;
 }
 
 /*
@@ -586,8 +593,10 @@ clear_screen()
 void
 home()
 {
-	tty_curs(BASE_WINDOW, 1, 0);
-	ttyDisplay->curx = ttyDisplay->cury = 0;
+	if (TTYInitialized) {
+	    tty_curs(BASE_WINDOW, 1, 0);
+	    ttyDisplay->curx = ttyDisplay->cury = 0;
+	}
 }
 
 
