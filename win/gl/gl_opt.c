@@ -571,6 +571,18 @@ void sdlgl_validate_wincap_options(void)
     SET_WARN("Tile height", iflags.wc_tile_height, DEF_TILE_HEIGHT);
   }
 
+  /* set the tileset name if not already set.
+   */
+#ifndef VANILLA_GLHACK
+  if (tileset[0] == 0)
+  {
+    if (iflags.wc_tile_height == 16)
+      strcpy(tileset, "Small tiles");
+    else
+      strcpy(tileset, "Big tiles");
+  }
+#endif
+
   if (iflags.wc_vary_msgcount <= 0)
   {
     iflags.wc_vary_msgcount = DEF_VARY_MSGCOUNT;
