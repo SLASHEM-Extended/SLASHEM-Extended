@@ -110,8 +110,8 @@ TOUCH	= touch
 #	names.
 #
 
-YTABC	= y_tab.c
-YTABH	= y_tab.h
+YTABC	= y.tab.c
+YTABH	= y.tab.h
 LEXYYC	= lexyy.c
 
 #
@@ -401,12 +401,12 @@ default : all
 #	don't get overwritten.
 #
 
-do_yacc : yacc_cpy	# use pre-generated files
-do_lex :  lex_cpy	#	- " -
+#do_yacc : yacc_cpy	# use pre-generated files
+#do_lex :  lex_cpy	#	- " -
 #do_yacc : yacc_msg	# show message if changed
 #do_lex :  lex_msg	#	- " -
-#do_yacc : yacc_act	# re-process files
-#do_lex :  lex_act	#	- " -
+do_yacc : yacc_act	# re-process files
+do_lex :  lex_act	#	- " -
 
 #
 #	If you have the TOUCH utility the upper line is ok.  Otherwise
