@@ -1,4 +1,4 @@
-/* $Id: tile_t.h,v 1.2 2003-02-25 15:24:48 j_ali Exp $ */
+/* $Id: tile_t.h,v 1.3 2003-05-21 04:15:53 wacko Exp $ */
 /* NetHack may be freely redistributed.  See license for details. */
 
 typedef unsigned char pixval;
@@ -29,9 +29,11 @@ extern int tile_x, tile_y;
 /*
 #define MAX_TILE_X 32
 #define MAX_TILE_Y 32
-*/
 #define MAX_TILE_X 48
 #define MAX_TILE_Y 64
+*/
+#define MAX_TILE_X 128
+#define MAX_TILE_Y 128
 
 #define Fprintf (void) fprintf
 

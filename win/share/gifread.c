@@ -686,8 +686,13 @@ char *argv[];
 	tile_y = 32;
 */
 
+/*
 	tile_x = 48;
 	tile_y = 64;
+*/
+
+	tile_x = 128;
+	tile_y = 128;
 
 
 #ifndef INDEX

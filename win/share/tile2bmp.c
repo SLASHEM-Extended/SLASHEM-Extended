@@ -32,12 +32,12 @@ extern char *FDECL(tilename, (int, int));
 #define MAX_X 640		/* 2 per byte, 4 bits per pixel */
 #define MAX_Y 960
 #else
-#define MAX_X (32 * 40)	
-#define MAX_Y (960 * 2) /* Arbitrarily large */
+#define MAX_X (40 * 128)	
+#define MAX_Y (40 * 128) /* Arbitrarily large */
 #endif	
 
 #define MAX_X_TILES 40
-#define MAX_Y_TILES 60
+#define MAX_Y_TILES 120
 
 /* GCC fix by Paolo Bonzini 1999/03/28 */
 #ifdef __GNUC__
@@ -203,6 +203,20 @@ char *argv[];
 		}
 		(void) fclose_text_file();
 		++filenum;
+	}
+
+	/* fill the rest with the checkerboard */
+	for (j=0; j < tile_y; j++)
+	{
+		for (i = xoffset; i < maxbmp_x; i+=2) {
+		  int y = (maxbmp_y - 1) - (j + yoffset);
+#if BITCOUNT==4
+		  packtile[y][i] = 	(uchar)(1) | (uchar)(0<<4);
+#else
+		  packtile[y][i] = (uchar)0;
+		  packtile[y][i+1] = (uchar)1;
+#endif
+		}
 	}
 
 	if (colorsinmap <= 16)
