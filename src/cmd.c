@@ -2403,7 +2403,7 @@ sanity_check()
 static int
 wiz_show_display()
 {
-    int ans;
+    int ans, glyph;
     coord cc;
     winid win;
     char buf[BUFSZ];
@@ -2416,7 +2416,7 @@ wiz_show_display()
     if (ans < 0 || cc.x < 0)
 	return 0;	/* done */
     lev = &levl[cc.x][cc.y];
-    win = create_nhwindow(NHW_TEXT);
+    win = create_nhwindow(NHW_MENU);
     Sprintf(buf, "Contents of hero's memory at (%d, %d):", cc.x, cc.y);
     putstr(win, 0, buf);
     putstr(win, 0, "");
@@ -2438,6 +2438,35 @@ wiz_show_display()
 	    defsyms[trap_to_defsym(lev->mem_trap)].explanation : "none");
     putstr(win, 0, buf);
     Sprintf(buf, "Backgroud: %s", defsyms[lev->mem_bg].explanation);
+    putstr(win, 0, buf);
+    putstr(win, 0, "");
+    glyph = glyph_at(cc.x, cc.y);
+    Sprintf(buf, "Buffered (3rd screen): ");
+    if (glyph_is_monster(glyph)) {
+	Strcat(buf, mons[glyph_to_mon(glyph)].mname);
+	if (glyph_is_pet(glyph))
+	    Strcat(buf, " (tame)");
+	if (glyph_is_ridden_monster(glyph))
+	    Strcat(buf, " (ridden)");
+	if (glyph_is_detected_monster(glyph))
+	    Strcat(buf, " (detected)");
+    } else if (glyph_is_object(glyph)) {
+	if (glyph_is_body(glyph)) {
+	    int corpse = glyph_to_body(glyph);
+	    if (mons[corpse].geno & G_UNIQ)
+		Sprintf(eos(buf), "%s%s corpse",
+			type_is_pname(&mons[corpse]) ? "" : "the ",
+			s_suffix(mons[corpse].mname));
+	    else
+		Sprintf(eos(buf), "%s corpse", mons[corpse].mname);
+	} else
+	    Strcat(buf, obj_typename(glyph_to_obj(glyph)));
+    } else if (glyph_is_invisible(glyph))
+	Strcat(buf, "invisible monster");
+    else if (glyph_is_cmap(glyph))
+	Strcat(buf, defsyms[glyph_to_cmap(glyph)].explanation);
+    else
+	Sprintf(eos(buf), "[%d]", glyph);
     putstr(win, 0, buf);
     display_nhwindow(win, FALSE);
     destroy_nhwindow(win);
