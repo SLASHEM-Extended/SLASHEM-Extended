@@ -1740,11 +1740,14 @@ const char *dir;
 # pragma unused(dir)
 #endif
 	int fd;
+#ifndef FILE_AREAS
+	const char *fq_record;
+#endif
+	
 #if defined(UNIX) || defined(VMS)
 # ifdef FILE_AREAS
 	fd = open_area(RECORD_AREA, RECORD, O_RDWR, 0);
 # else
-	const char *fq_record;
 	fq_record = fqname(RECORD, SCOREPREFIX, 0);
 	fd = open(fq_record, O_RDWR, 0);
 # endif
