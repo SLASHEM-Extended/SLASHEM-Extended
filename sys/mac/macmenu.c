@@ -37,7 +37,6 @@
 
 /******** Local Defines ********/
 
-// #ifdef MAC_MPW
 # define ResetAlrtStage ResetAlertStage
 # define GetItem GetMenuItemText
 # define SetItem SetMenuItemText
@@ -48,7 +47,6 @@
 # define SelIText SelectDialogItemText
 # define GetIText GetDialogItemText
 # define SetIText SetDialogItemText
-// #endif
 
 /* 'MNU#' (menu list record) */
 typedef union menuRefUnn
@@ -215,7 +213,7 @@ static	unsigned char *menuErrStr[err_Menu_total] =
 static	menuListPtr	pMenuList[2];
 static	short		theMenubar = mbarDA;	/* force initial update */
 static	short		kAdjustWizardMenu = 1;
-static  WindowPtr   mapWindow;
+
 
 /******** Prototypes ********/
 static	void alignAD(Rect *, short);
@@ -323,9 +321,9 @@ ask_redraw (WindowPtr wind, DialogItemIndex item)
 	GetDItem(wind, item, &type, &handle, &rect);
 	switch (item) {
 		case RSRC_ASK_DEFAULT:
-		PenSize(3, 3);
+			PenSize(3, 3);
 			FrameRoundRect(&rect, 16, 16);
-		break;
+			break;
 
 		case RSRC_ASK_ROLE:
 		case RSRC_ASK_RACE:
@@ -336,7 +334,7 @@ ask_redraw (WindowPtr wind, DialogItemIndex item)
 				RGBForeColor(&blackcolor);
 				RGBBackColor(&backcolor);
 			}
-		PenNormal();
+			PenNormal();
 			TextMode(srcOr);
 			EraseRect(&rect);
 
@@ -403,7 +401,7 @@ ask_redraw (WindowPtr wind, DialogItemIndex item)
 				/* Restore the foreground color */
 				RGBForeColor(&color);
 			}
-		break;
+			break;
 
 		case RSRC_ASK_NAME:
 			PenNormal();
@@ -414,7 +412,7 @@ ask_redraw (WindowPtr wind, DialogItemIndex item)
 			} else {
 				PenMode(notPatCopy);
 				TextMode(srcBic);
-	}
+			}
 			InsetRect(&rect, -1, -1);
 			FrameRect(&rect);
 			InsetRect(&rect, -1, -1);
@@ -479,7 +477,7 @@ ask_filter (WindowPtr wind, EventRecord *event, DialogItemIndex *item)
 		default:
 			return (FALSE);
 	}
-	}
+}
 
 
 void mac_askname ()
@@ -509,28 +507,28 @@ void mac_askname ()
 	}
 #if 0
 	{
-	Str32 pName ;
-		pName [ 0 ] = 0 ;
-		if ( plname && plname [ 0 ] ) {
-			strcpy ( ( char * ) pName , plname ) ;
-			c2pstr ( ( char * ) pName ) ;
+	Str32 pName;
+		pName [0] = 0;
+		if (plname && plname [0]) {
+			strcpy ((char *) pName, plname);
+			c2pstr ((char *) pName);
 		} else {
-			Handle h ;
-			h = GetResource ( 'STR ' , -16096 ) ;
-			if ( ( (Handle) 0 != h ) && ( GetHandleSize ( h ) > 0 ) ) {
-				DetachResource ( h ) ;
-				HLock ( h ) ;
-				if ( * * h > 31 ) {
-					* * h = 31 ;
+			Handle h;
+			h = GetResource ('STR ', -16096);
+			if (((Handle) 0 != h) && (GetHandleSize (h) > 0)) {
+				DetachResource (h);
+				HLock (h);
+				if (**h > 31) {
+					**h = 31;
 				}
-				BlockMove ( * h , pName , * * h + 1 )  ;
-				DisposeHandle ( h ) ;
+				BlockMove (*h, pName, **h + 1);
+				DisposeHandle (h);
 			}
 		}
-		if ( pName [ 0 ] ) {
+		if (pName [0]) {
 			GetDItem(askdialog, RSRC_ASK_NAME, &type, &handle, &rect);
 			SetIText(handle, pName);
-			if ( pName [ 0 ] > 2 && pName [ pName [ 0 ] - 1 ] == '-' ) {
+			if (pName [0] > 2 && pName [pName [0] - 1] == '-') {
 			    short role = (*pANR).anMenu[anRole];
 			    char suffix = (char) pName[pName[0]],
 				*sfxindx = strchr(pl_classes, suffix);
@@ -570,7 +568,7 @@ void mac_askname ()
 	InsertMenu(askmenu[RSRC_ASK_RACE], hierMenu);
 	if (flags.initrace >= 0)
 	    currrace = flags.initrace;
-				else
+	else
 	    currrace = randrace(currrole);
 
 	/* Initialize the gender popup menu */
@@ -607,7 +605,7 @@ void mac_askname ()
 	AppendMenu(askmenu[RSRC_ASK_MODE], "\pNormal");
 	AppendMenu(askmenu[RSRC_ASK_MODE], "\pExplore");
 #ifdef WIZARD
-	AppendMenu(askmenu[RSRC_ASK_MODE], "\pWizard");
+	AppendMenu(askmenu[RSRC_ASK_MODE], "\pDebug");
 #endif
 	InsertMenu(askmenu[RSRC_ASK_MODE], hierMenu);
 	currmode = 0;
@@ -714,32 +712,32 @@ void mac_askname ()
 	    case RSRC_ASK_MODE:
 	    	GetDItem(askdialog, item, &type, &handle, &rect);
 	    	pt = *(Point *)&rect;
-			LocalToGlobal(&pt);
+	    	LocalToGlobal(&pt);
 	    	if (!!(i = PopUpMenuSelect(askmenu[item], pt.v, pt.h,
 	    			askselect[item] + 1)))
 	    		askselect[item] = LoWord(i) - 1;
 	    	InvalRect(&rect);
-			break;
+	    	break;
 	    case RSRC_ASK_NAME:
 #if 0
-			/* limit the data here to 25 chars */
-			{
-				short beepTEDelete = 1;
+	    /* limit the data here to 25 chars */
+	    {
+	    	short beepTEDelete = 1;
 
-				while ((**dRec.textH).teLength > 25)
-				{
-					if (beepTEDelete++ <= 3)
-						SysBeep(3);
-					TEKey('\b', dRec.textH);
-				}
-			}
+	    	while ((**dRec.textH).teLength > 25)
+	    	{
+	    		if (beepTEDelete++ <= 3)
+	    			SysBeep(3);
+	    		TEKey('\b', dRec.textH);
+	    	}
+	    }
 
-			/* special case filter (that doesn't plug all the holes!) */
-			if (((**dRec.textH).teLength == 1) && (**((**dRec.textH).hText) < 32))
-				TEKey('\b', dRec.textH);
+	    /* special case filter (that doesn't plug all the holes!) */
+	    if (((**dRec.textH).teLength == 1) && (**((**dRec.textH).hText) < 32))
+	    	TEKey('\b', dRec.textH);
 #endif
-			break;
-		}
+	    	break;
+	    }
 	} while ((item != RSRC_ASK_PLAY) && (item != RSRC_ASK_QUIT));
 
 	/* Process the name */
@@ -771,7 +769,7 @@ void mac_askname ()
 	    discover = 1;
 	    break;
 #ifdef WIZARD
-	case 2:		/*Wizard */
+	case 2:		/* Debug */
 	    wizard = 1;
 	    strcpy(plname, WIZARD);
 	    break;
@@ -794,7 +792,7 @@ void mac_askname ()
 	flags.initalign = curralign;
 
 	return;
-		}
+}
 
 
 
@@ -810,7 +808,7 @@ alignAD(Rect *pRct, short vExempt)
 	(*pRct).top += vExempt;
 	(*pRct).right += (*pRct).left;
 	(*pRct).bottom += (*pRct).top;
-	}
+}
 
 static void
 mustGetMenuAlerts()
@@ -821,7 +819,7 @@ mustGetMenuAlerts()
 	for (i = alrt_Menu_start; i < alrt_Menu_limit; i++)
 	{
 		if (! (hRct = (Rect **) GetResource('ALRT', i)))	/* AlertTHndl */
-	{
+		{
 			for (i = 0; i < beepMenuAlertErr; i++)
 				SysBeep(3);
 			ExitToShell();
@@ -848,14 +846,14 @@ menuError(short menuErr)
 void
 InitMenuRes()
 {
-static Boolean was_inited = 0 ;
-short			i, j;
-menuListHandle	mlHnd;
-MenuHandle		mHnd;
+	static Boolean was_inited = 0;
+	short			i, j;
+	menuListHandle	mlHnd;
+	MenuHandle		mHnd;
 
 	if (was_inited)
-		return ;
-	was_inited = 1 ;
+		return;
+	was_inited = 1;
 
 	mustGetMenuAlerts();
 
@@ -892,15 +890,15 @@ MenuHandle		mHnd;
 void
 AdjustMenus(short dimMenubar)
 {
-short		newMenubar = mbarRegular;
-WindowPeek	peekWindow = (WindowPeek) FrontWindow();
-short		i;
+	short		newMenubar = mbarRegular;
+	WindowPeek	peekWindow = (WindowPeek) FrontWindow();
+	short		i;
 
-/*
- *	if ( windowprocs != mac_procs ) {
- *		return ;
- *	}
- */
+	/*
+	 *	if (windowprocs != mac_procs) {
+	 *		return;
+	 *	}
+	 */
 	/* determine the new menubar state */
 	if (dimMenubar) {
 		newMenubar = mbarDim;
@@ -928,7 +926,7 @@ short		i;
 		{
 			kAdjustWizardMenu = 0;
 
-			SetMenuItemText(MHND_FILE, menuFilePlayMode, "\pWizard");
+			SetMenuItemText(MHND_FILE, menuFilePlayMode, "\pDebug");
 		}
 	}
 #endif
@@ -1072,7 +1070,7 @@ DoMenuEvt(long menuEntry)
 
 			for (i = 1; ((i <= mstr[0]) && (mstr[i] != mstrEndChar)); i++)
 				AddToKeyQueue(mstr[i], false);
-#ifdef MAC_MPW
+
 			/* Special processing for extended commands. The command
 			   selection appears before mstrEndChar, the rest appears
 			   after. The rest is used only when in Mac windows mode.
@@ -1086,7 +1084,6 @@ DoMenuEvt(long menuEntry)
 						AddToKeyQueue(mstr[i], false);
 				AddToKeyQueue('\n', false);
 			}
-#endif /* MAC_MPW */
 		}
 		break;
 	}
@@ -1135,49 +1132,12 @@ aboutNetHack() {
 	}
 }
 
-static void
-openMap()
-{
-#if 0
-	WindowPeek	peekWindow = *(WindowPeek*) LMGetWindowList();
-
-	while (peekWindow && (peekWindow->windowKind != WKND_MAP))
-		peekWindow = peekWindow->nextWindow;
-
-	if (! peekWindow)
-		return;				/* impossible? */
-
-	ShowWindow((WindowPtr) peekWindow);
-	SelectWindow((WindowPtr) peekWindow);
-#else
-	ShowWindow(mapWindow);
-	SelectWindow(mapWindow);
-#endif
-}
-
-static void
-closeFrontWindow()
-{
-	WindowPeek	peekWindow = (WindowPeek) FrontWindow();
-
-	if (! peekWindow)
-		return;				/* impossible? */
-	else if (peekWindow->windowKind < 0)
-		CloseDeskAcc(peekWindow->windowKind);
-	else if (peekWindow->windowKind == WKND_MAP) {
-		HideWindow((WindowPtr) peekWindow);
-		mapWindow = (WindowPtr)peekWindow;
-	}
-	else
-		WindowGoAway((EventRecord *) 0L, (WindowPtr) peekWindow);
-}
-
 
 static void
 askSave()
 {
-Boolean doSave = 1 ;
-Boolean doYes = 0 ;
+	Boolean doSave = 1;
+	Boolean doYes = 0;
 
 	if (theMenubar < mbarRegular) {
 	short	itemHit;
@@ -1203,10 +1163,16 @@ Boolean doYes = 0 ;
 static void
 askQuit()
 {
-Boolean doQuit = 1 ;
-Boolean doYes = 0 ;
-	char *quitinput = "#quit";
+	Boolean doQuit = 1;
+	Boolean doYes = 0;
+	Boolean winMac;
+	char *quitinput;
 
+	if (!strcmp (windowprocs.name, "mac"))
+		winMac = 1;
+	else
+		winMac = 0;
+		
 	if (theMenubar < mbarRegular) {
 	short	itemHit;
 
@@ -1215,27 +1181,30 @@ Boolean doYes = 0 ;
 		ResetAlrtStage();
 
 		if (itemHit != bttnMenuAlertYes) {
-			doQuit = 0 ;
+			doQuit = 0;
 		} else {
-			doYes = 1 ;
+			doYes = 1;
 		}
 	}
-	if ( doQuit ) {
-#ifndef MAC_MPW
-		AddToKeyQueue ( 'Q' , 1 ) ;
-#else
-		AddToKeyQueue ( '#' , 1 ) ;
-		AddToKeyQueue ( 'q' , 1 ) ;
-		if ( windowprocs.win_init_nhwindows == mac_procs.win_init_nhwindows )
-		{
-			AddToKeyQueue ( 'u' , 1 ) ;
-			AddToKeyQueue ( 'i' , 1 ) ;
-			AddToKeyQueue ( 't' , 1 ) ;
-		}
-		AddToKeyQueue ( '\n' , 1 ) ;
-#endif /* MAC_MPW */
-		if ( doYes ) {
-			AddToKeyQueue ( 'y' , 1 ) ;
+	if (doQuit) {
+		/* MWM -- forgive me lord, an even uglier kludge to deal with differences
+			in command input handling
+		 */
+		 if (winMac)
+			quitinput = "#quit\r";
+		else
+			quitinput = "#q\r";
+			
+		/* KMH -- Ugly kludge */
+		while (*quitinput)
+			AddToKeyQueue(*quitinput++, 1);
+		if (doYes) {
+			if (winMac)
+				quitinput = "y\rq\r\r\r";
+			else
+				quitinput = "yq\r";
+			while (*quitinput)
+				AddToKeyQueue(*quitinput++, 1);
 		}
 	}
 }

@@ -63,10 +63,17 @@ pascal OSErr GetIconSuite(Handle *theIconSuite, short theResID, long selector)
 	= {0x303C, 0x0501, 0xABC9};
 #endif
 
-#if !defined(__MWERKS__)
+#if defined(MAC_MPW)
 QDGlobals qd;
 #endif
 
+#define ResetAlrtStage ResetAlertStage
+#define SetDItem SetDialogItem
+#define GetDItem GetDialogItem
+#define GetItem GetMenuItemText
+#define DisposHandle DisposeHandle
+#define AddResMenu AppendResMenu
+#define DisposPtr DisposePtr
 
 /**** Application defines ****/
 
@@ -431,11 +438,7 @@ warmup()
 
 		/* expand the apple menu */
 		if (i == menuApple)
-#ifndef MAC_MPW
 			AddResMenu(mHnd[menuApple], 'DRVR');
-#else
-			AppendResMenu(mHnd[menuApple], 'DRVR');
-#endif /* MAC_MPW */
 
 		InsertMenu(mHnd[i], 0);
 	}
@@ -497,11 +500,7 @@ nmCompletion(NMRec * pNMR)
 	(void) NMRemove(pNMR);
 
 	(* (short *) (pNMR->nmPending))--;	/* decrement pending note level */
-#ifndef MAC_MPW
 	((notifPtr) pNMR)->nmDispose = 1;	/* allow DisposPtr() */
-#else
-	((notifPtr) pNMR)->nmDispose = 1;	/* allow DisposePtr() */
-#endif /* MAC_MPW */
 }
 
 /*
@@ -591,11 +590,7 @@ note(short errorSignal, short alertID, unsigned char *msg)
 	/* in front and no error so use an alert */
 	ParamText(msg, "\p", "\p", "\p");
 	(void) Alert(alertID, (ModalFilterUPP) 0L);
-#ifndef MAC_MPW
 	ResetAlrtStage();
-#else
-	ResetAlertStage();
-#endif /* MAC_MPW */
 
 	memActivity++;
 }
@@ -676,10 +671,6 @@ adjustMemory()
 
 	if (MaxMem(&grow) < pBytes->memWarning)
 		note(noErr, alidNote, "\pWarning: Memory is running low");
-
-#ifndef MAC_MPW
-	(void) ResrvMem((Size) FreeMem());		/* move all handles high */
-#endif /* MAC_MPW */
 }
 
 /* show memory stats: FreeMem, MaxBlock, PurgeSpace, and StackSpace */
@@ -726,11 +717,7 @@ optionMemStats()
 	MoveHHi(strHnd);
 	HLock(strHnd);
 	note(noErr, alidNote, (unsigned char *) *strHnd);
-#ifdef MAC_MPW
-	DisposeHandle(strHnd);
-#else
 	DisposHandle(strHnd);
-#endif
 }
 
 static void
@@ -756,11 +743,7 @@ RecoverMenuEvent(long menuEntry)
 			{
 				unsigned char	daName[32];
 
-#ifndef MAC_MPW
 				GetItem(mHnd[menuApple], menuItem, * (Str255 *) &daName);
-#else
-				GetMenuItemText(mHnd[menuApple], menuItem, * (Str255 *) &daName);
-#endif /* MAC_MPW */
 				(void) OpenDeskAcc(daName);
 
 				memActivity++;
@@ -808,9 +791,6 @@ eventLoop()
 {
 	short	wneMask = (in.Front ? everyEvent : (osMask + updateMask));
 	long	wneSleep = (in.Front ? 0L : 3L);
-#ifdef MAC_MPW
-	boolean isDialogEvent;
-#endif /* MAC_MPW */
 
 	while (1)
 	{
@@ -823,11 +803,7 @@ eventLoop()
 		(void) WaitNextEvent(wneMask, &wnEvt, wneSleep, (RgnHandle) 0L);
 
 		if (in.Dialog)
-#ifndef MAC_MPW
 			(void) IsDialogEvent(&wnEvt);
-#else
-			isDialogEvent = IsDialogEvent(&wnEvt);
-#endif /* MAC_MPW */
 
 		switch (wnEvt.what)
 		{
@@ -846,11 +822,7 @@ eventLoop()
 			{
 				notifPtr pNMX = pNMQ->nmNext;
 
-#ifndef MAC_MPW
 				DisposPtr((Ptr) pNMQ);
-#else
-				DisposePtr((Ptr) pNMQ);
-#endif /* MAC_MPW */
 				pNMQ = pNMX;
 
 				memActivity++;
@@ -923,9 +895,7 @@ eventLoop()
 			short		itemHit;
 
 			(void) DialogSelect(&wnEvt, &dPtr, &itemHit);
-#ifdef MAC_MPW
 			break;
-#endif /* MAC_MPW */
 		}
 
 		case diskEvt:
@@ -958,17 +928,10 @@ cooldown()
 
 /* draw the progress thermometer and frame.  1 level <=> 1 horiz. pixel */
 pascal void
-#ifndef MAC_MPW
 drawThermo(WindowPtr wPtr, short inum)
-#else
-drawThermo(DialogPtr dlog, short inum)
-#endif /* MAC_MPW */
 {
 	itemizeThermo(drawItem);
 }
-#ifdef MAC_MPW
-static UserItemUPP DrawThermoUPP;
-#endif /* MAC_MPW */
 
 /* manage progress thermometer dialog */
 static void
@@ -978,20 +941,12 @@ itemizeThermo(short itemMode)
 	Handle	iHnd;
 	Rect	iRct;
 
-#ifdef MAC_MPW
-	GetDialogItem(DLGTHM, uitmThermo, &iTyp, &iHnd, &iRct);
-#else
 	GetDItem(DLGTHM, uitmThermo, &iTyp, &iHnd, &iRct);
-#endif
 
 	switch(itemMode)
 	{
 	case initItem:
-#ifdef MAC_MPW
-		SetDialogItem(DLGTHM, uitmThermo, iTyp, (Handle) drawThermoUPP, &iRct);
-#else
 		SetDItem(DLGTHM, uitmThermo, iTyp, (Handle) drawThermoUPP, &iRct);
-#endif
 		break;
 
 	case invalItem:
@@ -1142,11 +1097,7 @@ endRecover()
 	/* close the progress thermometer dialog */
 	in.Dialog = 0;
 	CloseDialog(DLGTHM);
-#ifndef MAC_MPW
 	DisposHandle(dlgThermo.items);
-#else
-	DisposeHandle(dlgThermo.items);
-#endif /* MAC_MPW */
 	memActivity++;
 }
 

@@ -26,47 +26,47 @@
 
 void
 mac_speaker (struct obj *instr, char *melody) {
-	SndChannelPtr theChannel = (SndChannelPtr) 0 ;
-	SndCommand theCmd ;
-	Handle theSound ;
-	unsigned char theName [ 32 ] ;
-	char * n = ( char * ) & theName [ 1 ] ;
-	int typ = instr -> otyp ;
-	const char * actualn = OBJ_NAME ( objects [ typ ] ) ;
+	SndChannelPtr theChannel = (SndChannelPtr) 0;
+	SndCommand theCmd;
+	Handle theSound;
+	unsigned char theName [32];
+	char *n = (char *) &theName [1];
+	int typ = instr->otyp;
+	const char *actualn = OBJ_NAME (objects [typ]);
 
 	/*
 	 * First: are we in the library ?
 	 */
-	if ( flags . silent ) {
-		return ;
+	if (flags.silent) {
+		return;
 	}
 
 	/*
 	 * Is this a known instrument ?
 	 */
-	strcpy ( n , actualn ) ;
-	theName [ 0 ] = strlen ( n ) ;
-	theSound = GetNamedResource ( 'snd ' , theName ) ;
-	if ( ! theSound ) {
-		return ;
+	strcpy (n, actualn);
+	theName [0] = strlen (n);
+	theSound = GetNamedResource ('snd ', theName);
+	if (! theSound) {
+		return;
 	}
-	HLock ( theSound ) ;
+	HLock (theSound);
 
 	/*
 	 * Set up the synth
 	 */
-	if ( itworked ( SndNewChannel ( & theChannel , sampledSynth , initMono +
-		initNoInterp , ( void * ) 0 ) ) ) {
+	if (itworked (SndNewChannel (&theChannel, sampledSynth, initMono +
+		initNoInterp, (void *) 0))) {
 
-		char midi_note [ ] = { 57 , 59 , 60 , 62 , 64 , 65 , 67 } ;
+		char midi_note [] = {57, 59, 60, 62, 64, 65, 67};
 
-		short err ;
-		short snd_len = SND_LEN ( theSound ) / 18 ;
+		short err;
+		short snd_len = SND_LEN (theSound) / 18;
 
-		theCmd . cmd = soundCmd ;
-		theCmd . param1 = 0 ;
-		theCmd . param2 = (long) SND_BUFFER ( theSound ) ;
-		err = SndDoCommand ( theChannel , & theCmd , false ) ;
+		theCmd.cmd = soundCmd;
+		theCmd.param1 = 0;
+		theCmd.param2 = (long) SND_BUFFER (theSound);
+		err = SndDoCommand (theChannel, &theCmd, false);
 
 	/*
 	 * We rack 'em up all in a row
@@ -74,23 +74,23 @@ mac_speaker (struct obj *instr, char *melody) {
 	 * we do a sync close below.
 	 *
 	 */
-		while ( * melody && ! err ) {
-			while ( * melody > 'G' ) {
-				* melody -= 8 ;
+		while (*melody && ! err) {
+			while (*melody > 'G') {
+				*melody -= 8;
 			}
-			while ( * melody < 'A' ) {
-				* melody += 8 ;
+			while (*melody < 'A') {
+				*melody += 8;
 			}
-			theCmd . cmd = freqDurationCmd ;
-			theCmd . param1 = snd_len ;
-			theCmd . param2 = midi_note [ * melody - 'A' ] ;
-			err = SndDoCommand ( theChannel , & theCmd , false ) ;
-			melody ++ ;
+			theCmd.cmd = freqDurationCmd;
+			theCmd.param1 = snd_len;
+			theCmd.param2 = midi_note [*melody - 'A'];
+			err = SndDoCommand (theChannel, &theCmd, false);
+			melody ++;
 		}
 		SndDisposeChannel (theChannel, false);	/* Sync wait for completion */
-		ReleaseResource ( theSound ) ;
+		ReleaseResource (theSound);
 
-		mustwork ( err ) ;
+		mustwork (err);
 	}
 }
 

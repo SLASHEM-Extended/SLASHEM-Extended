@@ -12,12 +12,10 @@
 #include <OSUtils.h>
 #include <files.h>
 #include <Types.h>
-
-#ifdef MAC_MPW
+#ifdef MAC_MPW32
 #include <String.h>
 #include <Strings.h>
 #endif
-
 #include <Dialogs.h>
 #include <Packages.h>
 #include <ToolUtils.h>
@@ -34,18 +32,18 @@ finder_file_request(void);
 int NDECL(main);
 
 int
-main ( void )
+main (void)
 {
 	register int fd = -1;
 	int argc = 1;
 
-	windowprocs = mac_procs ;
-	InitMac ( ) ;
+	windowprocs = mac_procs;
+	InitMac ();
 
 	theWindows = (NhWindow *) NewPtrClear (NUM_MACWINDOWS * sizeof (NhWindow));
 	mustwork(MemError());
 
-	hname = "Slash'EM" ;
+	hname = "Slash'EM";
 	hackpid = getpid();
 
 	/*
@@ -63,13 +61,14 @@ main ( void )
 	setrandom();
 	initoptions();
 	init_nhwindows(&argc, (char **)&hname);
+	DimMenuBar();
 
 	/*
 	 * It seems you really want to play.
 	 */
 	u.uhp = 1;	/* prevent RIP on early quits */
 
-	finder_file_request ( ) ;
+	finder_file_request ();
 
 	dlb_init();		/* must be before newgame() */
 
@@ -92,8 +91,8 @@ main ( void )
 				/* again if suffix was whole name */
 				/* accepts any suffix */
 
-	Sprintf ( lock , "%ld%s" , (long)getuid ( ) , plname ) ;
-	getlock ( ) ;
+	Sprintf (lock, "%d%s", getuid (), plname);
+	getlock ();
 
 	if ((fd = restore_saved_game()) >= 0) {
 #ifdef WIZARD
@@ -113,17 +112,17 @@ main ( void )
 		game_active = 1;
 		if (dorecover(fd)) {
 #ifdef WIZARD
-		if(!wizard && remember_wiz_mode) wizard = TRUE;
+			if(!wizard && remember_wiz_mode) wizard = TRUE;
 #endif
-		check_special_room(FALSE);
+			check_special_room(FALSE);
 
-		if (discover || wizard) {
-			if(yn("Do you want to keep the save file?") == 'n')
-			    (void) delete_savefile();
-			else {
+			if (discover || wizard) {
+				if(yn("Do you want to keep the save file?") == 'n')
+					(void) delete_savefile();
+				else {
 			    compress_area(FILE_AREA_SAVE, SAVEF);
+				}
 			}
-		}
 		}
 		else {
 			fd = -1; /* set bad status */
@@ -141,7 +140,7 @@ main ( void )
 		You("are in non-scoring discovery mode.");
 	flags.move = 0;
 
-	UndimMenuBar ( ) ; /* Yes, this is the place for it (!) */
+	UndimMenuBar (); /* Yes, this is the place for it (!) */
 	
 	moveloop();
 
@@ -153,10 +152,10 @@ main ( void )
 
 static OSErr
 copy_file(short src_vol, long src_dir, short dst_vol, long dst_dir,
-		  Str255 fName,
-		  pascal OSErr (*opener)(short vRefNum, long dirID,
-								 ConstStr255Param fileName,
-								 signed char permission, short *refNum)) {
+		Str255 fName,
+		pascal OSErr (*opener)(short vRefNum, long dirID,
+								ConstStr255Param fileName,
+								signed char permission, short *refNum)) {
 	short src_ref, dst_ref;
 	OSErr err = (*opener)(src_vol, src_dir, fName, fsRdPerm, &src_ref);
 	if (err == noErr) {
@@ -201,7 +200,7 @@ static void
 force_hdelete(short vol, long dir, Str255 fName)
 {
 	HRstFLock(vol, dir, fName);
-	HDelete  (vol, dir, fName);
+	HDelete (vol, dir, fName);
 }
 
 
@@ -219,35 +218,35 @@ process_openfile (short src_vol, long src_dir, Str255 fName, OSType ftype)
 		HCreate(theDirs.dataRefNum, theDirs.dataDirID, fName, MAC_CREATOR, SAVE_TYPE);
 		err = copy_file(src_vol, src_dir, theDirs.dataRefNum, theDirs.dataDirID,
 						fName, &HOpen); /* HOpenDF is only there under 7.0 */
-				if (err == noErr)
+		if (err == noErr)
 			err = copy_file(src_vol, src_dir, theDirs.dataRefNum, theDirs.dataDirID,
 							fName, &HOpenRF);
-				if (err == noErr)
+		if (err == noErr)
 			force_hdelete(src_vol, src_dir, fName);
-				else
+		else
 			HDelete(theDirs.dataRefNum, theDirs.dataDirID, fName);
-			}
+	}
 
-			if (err == noErr) {
+	if (err == noErr) {
 		short ref;
 
 		ref = HOpenResFile(theDirs.dataRefNum, theDirs.dataDirID, fName, fsRdPerm);
-				if (ref != -1) {
-					Handle name = Get1Resource('STR ', PLAYER_NAME_RES_ID);
-					if (name) {
-						Str255 save_f_p;
-						P2C(*(StringHandle)name, plname);
-						set_savefile_name();
-						C2P(SAVEF, save_f_p);
+		if (ref != -1) {
+			Handle name = Get1Resource('STR ', PLAYER_NAME_RES_ID);
+			if (name) {
+				Str255 save_f_p;
+				P2C(*(StringHandle)name, plname);
+				set_savefile_name();
+				C2P(fqname(SAVEF, SAVEPREFIX, 0), save_f_p);
 				force_hdelete(theDirs.dataRefNum, theDirs.dataDirID, save_f_p);
 
 				if (HRename(theDirs.dataRefNum, theDirs.dataDirID, fName, save_f_p) == noErr)
 					macFlags.gotOpen = 1;
-					}
-					CloseResFile(ref);
-				}
 			}
+			CloseResFile(ref);
 		}
+	}
+}
 
 
 static void
@@ -263,9 +262,10 @@ finder_file_request(void)
 				AEProcessAppleEvent(&event);
 				if (macFlags.gotOpen)
 					break;
-			  }
-	  }
-}
+			}
+		}	
+	}
+#if 0
 #ifdef MAC68K
 	else {
 		short finder_msg, file_count;
@@ -281,10 +281,11 @@ finder_file_request(void)
 				process_openfile (filespec.vRefNum, filespec.parID, filespec.name, src.fType);
 				if (macFlags.gotOpen)
 					ClrAppFiles(1);
+			}
+		}
 	}
-}
-}
 #endif /* MAC68K */
+#endif /* 0 */
 }
 
 /*macmain.c*/

@@ -12,7 +12,7 @@
 #include "macpopup.h"
 
 #ifdef MAC_MPW
-# include <controlDefinitions.h>
+#include <ControlDefinitions.h>
 #endif
 
 #define GetDItem GetDialogItem
@@ -35,7 +35,7 @@ FlashButton (WindowPtr wind, short item) {
 
 
 #if ENABLE_MAC_POPUP
-static void mv_handle_click (EventRecord * theEvent);
+static void mv_handle_click (EventRecord *theEvent);
 
 #define MAX_MV_DIALOGS 20
 static int old_dialog_count = 0;
@@ -93,8 +93,8 @@ static DialogPtr
 mv_get_new_dialog(short dialogID) {
 	DialogPtr dialog;
 	int d_idx = old_dialog_count;
-	Rect oldRect ;
-	Boolean hadOld = 0 ;
+	Rect oldRect;
+	Boolean hadOld = 0;
 
 	old_dialog[0].id = dialogID;
 	while (old_dialog[d_idx].id != dialogID)
@@ -109,21 +109,21 @@ mv_get_new_dialog(short dialogID) {
  *
  */
 
-	if ( d_idx ) {
-		dialog = old_dialog [ d_idx ] . dialog ;
-		oldRect = dialog -> portBits . bounds ;
-		DisposeDialog ( dialog ) ;
-		old_dialog [ d_idx ] . dialog = ( DialogPtr ) 0 ;
-		hadOld = 1 ;
+	if (d_idx) {
+		dialog = old_dialog [d_idx] . dialog;
+		oldRect = dialog->portBits . bounds;
+		DisposeDialog (dialog);
+		old_dialog [d_idx] . dialog = (DialogPtr) 0;
+		hadOld = 1;
 
 	} else {
-		d_idx = ++ old_dialog_count ;
+		d_idx = ++ old_dialog_count;
 	}
 
 	dialog = GetNewDialog(dialogID, nil, (WindowPtr)-1);
 	if (dialog) {
-		if ( hadOld ) {
-			MoveWindow ( dialog , - oldRect . left , - oldRect . top , FALSE ) ;
+		if (hadOld) {
+			MoveWindow (dialog, - oldRect . left, - oldRect . top, FALSE);
 		}
 		old_dialog[d_idx].id = dialogID;
 		old_dialog[d_idx].init_visible
@@ -143,28 +143,28 @@ static void mv_close_dialog(DialogPtr dialog) {
    comments in mv_modal_dialog for more information. */
 static void
 mv_handle_click (EventRecord *theEvent) {
-	int code ;
-	WindowPtr theWindow ;
-	Rect r = ( * GetGrayRgn ( ) ) -> rgnBBox ;
+	int code;
+	WindowPtr theWindow;
+	Rect r = (*GetGrayRgn ())->rgnBBox;
 
-	InsetRect ( & r , 4 , 4 ) ;
-	InitCursor ( ) ;
+	InsetRect (&r, 4, 4);
+	InitCursor ();
 
-	code = FindWindow ( theEvent -> where , & theWindow ) ;
+	code = FindWindow (theEvent->where, &theWindow);
 
-	switch ( code ) {
+	switch (code) {
 	case inContent :
-		if ( theWindow != FrontWindow ( ) ) {
-			nhbell ( ) ;
+		if (theWindow != FrontWindow ()) {
+			nhbell ();
 		}
-		break ;
+		break;
 	case inDrag :
 		SetCursor(&qd.arrow);
-		DragWindow ( theWindow , theEvent -> where , & r ) ;
-		SaveWindowPos ( theWindow ) ;
-		break ;
+		DragWindow (theWindow, theEvent->where, &r);
+		SaveWindowPos (theWindow);
+		break;
 	default :
-		HandleEvent ( theEvent ) ;
+		HandleEvent (theEvent);
 	}
 }
 
@@ -180,7 +180,7 @@ mv_modal_dialog(ModalFilterProcPtr filterProc, short *itemHit) {
 		WaitNextEvent(everyEvent, &evt, GetCaretTime(), (RgnHandle) nil);
 
 		if (evt.what == keyDown)
-			if (evt.modifiers & cmdKey) {
+			if (evt.modifiers &cmdKey) {
 				if ((evt.message & charCodeMask) == '.') {
 					/* 0x351b is the key code and character code of the esc key. */
 					evt.message = 0x351b;
