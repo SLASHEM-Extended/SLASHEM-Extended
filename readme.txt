@@ -125,6 +125,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 1020980: Objects are forgotten when you search blind
 -fixed bug 954414: pickup_thrown option includes some non-throw weapons
 -fixed bug 937239: Wrong cause of death from exploding wands
+-fixed bug 962572: Inventory item prints to console instead of chat buffer
 
 See history.txt for changes made in previous versions.
 

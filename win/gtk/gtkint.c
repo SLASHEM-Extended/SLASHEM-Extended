@@ -1,5 +1,5 @@
 /*
-  $Id: gtkint.c,v 1.6 2003-10-25 18:06:01 j_ali Exp $
+  $Id: gtkint.c,v 1.7 2004-11-03 09:29:54 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -161,6 +161,7 @@ GTK_proxy_init_nhwindows(int *argcp, char **argv)
 #ifdef WIN32
     /* Win32 has no concept of fork, so we simply execute ourselves */
     char *s;
+    iflags.window_inited = 1;
     proxy_svc_set_ext_procs(win_GTK_init, &GTK_ext_procs);
     s = g_find_program_in_path(argv[0]);
     retval = proxy_connect("file", s ? s : argv[0], argcp, argv);
@@ -175,6 +176,7 @@ GTK_proxy_init_nhwindows(int *argcp, char **argv)
 #endif
     if (pipe(to_game) || pipe(from_game))
 	panic("%s: Can't create NhExt stream", argv[0]);
+    iflags.window_inited = 1;
     if (fork()) {
 	dup2(to_game[0],0);
 	dup2(from_game[1],1);

@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.54 2004-08-07 11:46:55 j_ali Exp $
+  $Id: gtk.c,v 1.55 2004-11-03 09:29:54 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -2183,6 +2183,17 @@ GTK_init_nhwindows(char ***capvp)
     gtkWindows[NHW_STATUS].w = main_window;	
     gtkWindows[NHW_MAP].type = NHW_MAP;
     gtkWindows[NHW_MAP].w = main_window;	
+
+#if !defined(GTKHACK) && defined(GTK_PROXY)
+    /*
+     * GtkHack doesn't have (or need) this variable. Conventional window
+     * interfaces share it with the game core (which is responsible for
+     * setting it). Proxified window interfaces, however, need to maintain
+     * their own copy so that pline() can be called from the window interface
+     * and still direct its output to the mesage window.
+     */
+    WIN_MESSAGE = NHW_MESSAGE;
+#endif
 
 #ifdef GTK_PROXY
     proxy_cb_interface_mode(EXT_IM_STATUS|EXT_IM_DISPLAY_LAYERS);
