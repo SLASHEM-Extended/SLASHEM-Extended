@@ -6,10 +6,6 @@
 #include "dgn_file.h"
 #include "dlb.h"
 
-#ifdef macintosh
-#define getch() getchar()
-#endif
-
 #ifdef OVL1
 
 #define DUNGEON_AREA    FILE_AREA_UNSHARE
@@ -74,7 +70,7 @@ dumpit()
 		    DD.flags.rogue_like ? " rogue_like" : "",
 		    DD.flags.maze_like  ? " maze_like"  : "",
 		    DD.flags.hellish    ? " hellish"    : "");
-	    getch();
+	    getchar();
 	}
 	fprintf(stderr,"\nSpecial levels:\n");
 	for(x = sp_levchn; x; x = x->next) {
@@ -85,7 +81,7 @@ dumpit()
 		    x->flags.maze_like  ? " maze_like"  : "",
 		    x->flags.hellish    ? " hellish"    : "",
 		    x->flags.town       ? " town"       : "");
-	    getch();
+	    getchar();
 	}
 	fprintf(stderr,"\nBranches:\n");
 	for (br = branches; br; br = br->next) {
@@ -100,9 +96,9 @@ dumpit()
 		br->end2.dnum, br->end2.dlevel,
 		br->end1_up ? "end1 up" : "end1 down");
 	}
-	getch();
+	getchar();
 	fprintf(stderr,"\nDone\n");
-	getch();
+	getchar();
 }
 #endif
 
@@ -828,9 +824,8 @@ init_dungeons()
 #ifdef DDEBUG
 	    fprintf(stderr, "--- end of dungeon %d ---\n", i);
 	    fflush(stderr);
-	    getch();
+	    getchar();
 #endif
-
 	    for (; pd.start < pd.n_levs; pd.start++)
 		if (pd.final_lev[pd.start]) add_level(pd.final_lev[pd.start]);
 
