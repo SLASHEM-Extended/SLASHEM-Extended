@@ -624,8 +624,6 @@ int	mntmp;
 		pline(use_thec,monsterc,"use your breath weapon");
 	    if (attacktype(youmonst.data, AT_SPIT))
 		pline(use_thec,monsterc,"spit venom");
-	    if (attacktype(youmonst.data, AT_GAZE))
-			pline(use_thec,monsterc,"gaze");
 	    if (youmonst.data->mlet == S_NYMPH)
 		pline(use_thec,monsterc,"remove an iron ball");
 	    if (attacktype(youmonst.data, AT_GAZE))
