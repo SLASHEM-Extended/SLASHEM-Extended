@@ -322,7 +322,7 @@ E void FDECL(goto_level, (d_level *,BOOLEAN_P,BOOLEAN_P,BOOLEAN_P));
 E void FDECL(schedule_goto, (d_level *,BOOLEAN_P,BOOLEAN_P,int,
 			     const char *,const char *));
 E void NDECL(deferred_goto);
-E boolean FDECL(revive_corpse, (struct obj *, boolean));
+E boolean FDECL(revive_corpse, (struct obj *, BOOLEAN_P));
 E void FDECL(revive_mon, (genericptr_t, long));
 E void FDECL(moldy_corpse, (genericptr_t, long));
 E int NDECL(donull);
@@ -1142,7 +1142,7 @@ E void NDECL(rescham);
 E void NDECL(restartcham);
 E void FDECL(restore_cham, (struct monst *));
 E void FDECL(mon_animal_list, (BOOLEAN_P));
-E int FDECL(newcham, (struct monst *,struct permonst *, boolean));
+E int FDECL(newcham, (struct monst *,struct permonst *, BOOLEAN_P));
 E int FDECL(can_be_hatched, (int));
 E int FDECL(egg_type_from_parent, (int,BOOLEAN_P));
 E boolean FDECL(dead_species, (int,BOOLEAN_P));
@@ -1928,7 +1928,7 @@ E void FDECL(fall_asleep, (int, BOOLEAN_P));
 E void FDECL(set_obj_poly, (struct obj *, SHORT_P));
 E void FDECL(unpoly_obj, (genericptr_t, long));
 #endif
-E int FDECL(mon_poly, (struct monst *, boolean));
+E int FDECL(mon_poly, (struct monst *, BOOLEAN_P));
 E int FDECL(mon_spec_poly, (struct monst *, struct permonst *, long));
 E void FDECL(unpoly_mon, (genericptr_t, long));
 E void FDECL(attach_bomb_blow_timeout, (struct obj *, int, BOOLEAN_P));
@@ -2016,7 +2016,7 @@ E void NDECL(u_init);
 /* ### uhitm.c ### */
 
 E void FDECL(hurtmarmor,(struct monst *,int));
-E int FDECL(attack_checks, (struct monst *,boolean));
+E int FDECL(attack_checks, (struct monst *,BOOLEAN_P));
 E schar FDECL(find_roll_to_hit, (struct monst *));
 E boolean FDECL(attack, (struct monst *));
 E boolean FDECL(hmon, (struct monst *,struct obj *,int));
@@ -2060,7 +2060,7 @@ E int FDECL(child, (int));
 #ifdef FILE_AREAS
 E char *FDECL(make_file_name, (const char *, const char *));
 E FILE *FDECL(fopen_datafile_area, (const char *,const char *,const char *,
-				boolean));
+				BOOLEAN_P));
 E FILE *FDECL(freopen_area, (const char *,const char *,const char *, FILE *));
 E int FDECL(chmod_area, (const char *, const char *, int));
 E int FDECL(open_area, (const char *, const char *, int, int));
