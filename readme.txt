@@ -393,6 +393,7 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -fixed bug 450460: The plural of drow should be drow.
 -fixed bug 452167: Rust from toilet water.
 -fixed bug 455511: Finishing off scrolls on restore.
+-fixed bug 455390: rogue quest message.
 
 ver 0.0.6E4F4mac0 [May 13/2001] [Released by Paul]
 -built Mac 68K port

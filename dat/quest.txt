@@ -5780,6 +5780,9 @@ You couldn't quite make out that last message.
 %Cp - 00003
 You again sense %l pleading for help.
 %E
+%Cp - 00004
+You again sense %l demanding your attendance.
+%E
 # Completed the quest by returning with artifact, but not carrying
 # the Bell of Opening; quest leader lets you know that it is needed.
 #[ Should this be role-specific so that each leader has variant text? ]
