@@ -9,9 +9,9 @@
 
 # *** WIN32/GTK ***
 # The default, graphical interface
-TILESET=name:Small tiles,file:x11tiles
-TILESET=name:Big tiles,file:x11bigtiles,transparent
-TILESET=name:Big 3D tiles,file:x11big3dtiles,transparent,pseudo3D
+TILESET=name:Small tiles,file:gltile16.png
+TILESET=name:Big tiles,file:gltile32.png,transparent
+TILESET=name:Big 3D tiles,file:gltile64.png,transparent,pseudo3D
 OPTIONS=windowtype:gtk
 # Choose one of the three tileset names to use
 OPTIONS=tiles:Big tiles
