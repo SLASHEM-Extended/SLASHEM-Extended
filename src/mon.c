@@ -1617,7 +1617,7 @@ mondead(mtmp)
 register struct monst *mtmp;
 {
 	struct permonst *mptr;
-	int tmp, i, x = mtmp->mx, y = mtmp->my;
+	int tmp;
 
 	/* WAC just in case caller forgot to...*/
 	if (mtmp->mhp) mtmp->mhp = -1;
@@ -2018,7 +2018,7 @@ xkilled(mtmp, dest)
 	register struct trap *t;
 	boolean redisp = FALSE;
 	boolean wasinside = u.uswallow && (u.ustuck == mtmp);
-	int i;
+
 
 	/* KMH, conduct */
 	u.uconduct.killer++;

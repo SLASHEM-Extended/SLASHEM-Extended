@@ -534,11 +534,11 @@ const char *change_fmt;
  */
 
 int
-mon_spec_poly(mtmp, type, time, polyspot, transform_msg, system_shock,
+mon_spec_poly(mtmp, type, when, polyspot, transform_msg, system_shock,
 	your_fault)
 struct monst *mtmp;
 struct permonst *type;
-long time;
+long when;
 boolean polyspot;
 boolean transform_msg;
 boolean system_shock;
@@ -561,7 +561,7 @@ boolean your_fault;
 	    /* Stop any old timers.   */
 	    (void) stop_timer(UNPOLY_MON, (genericptr_t) mtmp);
 	    /* Lengthen unpolytime - was 500,500  for player */
-	    (void) start_timer(time ? time : rn1(1000, 1000), TIMER_MONSTER,
+	    (void) start_timer(when ? when : rn1(1000, 1000), TIMER_MONSTER,
 		    UNPOLY_MON, (genericptr_t) mtmp);
 	}
 	return i;
@@ -1694,9 +1694,9 @@ cleanup_burn(arg, expire_time)
  */
 
 void 
-burn_faster(obj, time) 
+burn_faster(obj, adj) 
 struct obj *obj;
-long time;
+long adj;
 {
 
   if (!obj->lamplit) {
@@ -1704,7 +1704,7 @@ long time;
     return;
   }
 
-  accelerate_timer(BURN_OBJECT, obj, time);
+  accelerate_timer(BURN_OBJECT, obj, adj);
 }
 
 void
@@ -2188,10 +2188,10 @@ write_timer(fd, timer)
  */
 
 STATIC_OVL void
-accelerate_timer(func_index, arg, time) 
+accelerate_timer(func_index, arg, adj) 
 short func_index;
 genericptr_t arg;
-long time;
+long adj;
 { 
     timer_element *timer;
 
@@ -2200,7 +2200,7 @@ long time;
 
     timer = remove_timer(&timer_base, func_index, arg);    
 
-    for (; time > 0; time--) {
+    for (; adj > 0; adj--) {
       timer->timeout--;
 
       if (timer->timeout <= monstermoves) {
@@ -2211,9 +2211,8 @@ long time;
       }
     }
 
-    if (time == 0) {
+    if (adj == 0)
       insert_timer(timer);
-    }    
 }
 
 /*

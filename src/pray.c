@@ -819,10 +819,6 @@ pleased(g_align)
 	/* don't use p_trouble, worst trouble may get fixed while praying */
 	int trouble = in_trouble();	/* what's your worst difficulty? */
 	int pat_on_head = 0, kick_on_butt;
-	boolean wiz_spe=FALSE;
-/*
-	int pet_chance = 0;
- */
 
 	You_feel("that %s is %s.", align_gname(g_align),
 	    u.ualign.record >= DEVOUT ?
@@ -1789,9 +1785,6 @@ boolean praying;	/* false means no messages should be given */
 int
 dopray()
 {
-    char    c;
-    char    qbuf[QBUFSZ];
-
     /* Confirm accidental slips of Alt-P */
     if (flags.prayconfirm)
 	if (yn("Are you sure you want to pray?") == 'n')

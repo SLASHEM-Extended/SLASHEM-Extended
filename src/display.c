@@ -318,7 +318,9 @@ void
 unmap_object(x, y)
     register int x, y;
 {
+#ifndef DISPLAY_LAYERS
     register struct trap *trap;
+#endif
 
     if (!level.flags.hero_memory) return;
 

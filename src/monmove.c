@@ -97,12 +97,12 @@ int
 dochugw(mtmp)
 register struct monst *mtmp;
 {
-	register struct permonst *mdat = mtmp->data;        
 	register int x = mtmp->mx, y = mtmp->my;
 	boolean already_saw_mon = !occupation ? 0 : canspotmon(mtmp);
 	int rd = dochug(mtmp);
 #if 0
 	/* part of the original warning code which was replaced in 3.3.1 */
+	register struct permonst *mdat = mtmp->data;        
 	int dd;
 	if(Warning && !rd && !mtmp->mpeaceful &&
 			(dd = distu(mtmp->mx,mtmp->my)) < distu(x,y) &&

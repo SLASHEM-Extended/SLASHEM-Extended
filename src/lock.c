@@ -710,7 +710,6 @@ doforce()		/* try to force a chest with your weapon */
 			You("force your %s into a crack and pry.", xname(uwep));
 		    else
 			You("start bashing it with your %s.", xname(uwep));
-		    xlock.box = otmp;
 #ifdef LIGHTSABERS
 		    if (is_lightsaber(uwep))
 			xlock.chance = uwep->spe + 38;
