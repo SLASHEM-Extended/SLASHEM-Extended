@@ -1073,6 +1073,7 @@ int tech_no;
 		}
 		break;
 	    case T_DAZZLE:
+	    	/* Short range stun attack */
 	    	if (Blind) {
 	    		You("can't see anything!");
 	    		return(0);
@@ -1083,9 +1084,13 @@ int tech_no;
 			You("can't see yourself!");
 			return(0);
 		}
-		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+		for(i = 0; (i  <= ((techlev(tech_no) / 8) + 1) 
+			&& isok(u.ux + (i*u.dx), u.uy + (i*u.dy))); i++) {
+		    mtmp = m_at(u.ux + (i*u.dx), u.uy + (i*u.dy));
+		    if (mtmp && canseemon(mtmp)) break;
+		}
 		if (!mtmp || !canseemon(mtmp)) {
-			You("don't see anything there!");
+			You("fail to make eye contact with anything!");
 			return (0);
 		}
                 You("stare at %s.", mon_nam(mtmp));
@@ -1282,10 +1287,12 @@ tech_timeout()
 			/* Bleed but don't kill */
 			if (u.uhpmax > 1) u.uhpmax--;
 			if (u.uhp > 1) u.uhp--;
+			break;
 		    case T_POWER_SURGE:
-			/* Bleed off power */
+			/* Bleed off power.  Can go to zero as 0 power is not fatal */
 			if (u.uenmax > 1) u.uenmax--;
 			if (u.uen > 0) u.uen--;
+			break;
 	            default:
 	            	break;
 	        }

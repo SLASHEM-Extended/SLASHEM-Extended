@@ -325,7 +325,7 @@ TODO:
 	-it appears to be segfaulting (randomly?)
 -tofix: using the nethack config files.
 
-ver 0.0.6E3F2 [September XX/2000]
+ver 0.0.6E4F0 [September XX/2000]
 -changed some checks in tech.c to use DEADMONSTER()
 -updated Guidebook
 -fixed bug 112478: game crashes whenever the Amulet of Yendor is referred to
@@ -351,6 +351,9 @@ ver 0.0.6E3F2 [September XX/2000]
 -fixed bug 113396: X11 port was crashing when displaying rip.xpm
 -fixed unlogged bug: X11 port wouldn't compile if USE_XPM wasn't defined
 -fixed bug 113523: Couldn't compile if UNPOLYPILE not defined
+-fixed bug 112108: can now select between human and hobbit archeologists
+-fixed bug 112614: rage eruption no longer drains energy
+-fixed bug 112616: dazzle no longer causes segfault, has limited range
 
 ver 0.0.6E3F1 [August 21/2000] [Released by Ali]
 -fixed some bugs in the zap/cast code for magic missile, fire, cold, fireball, etc.
