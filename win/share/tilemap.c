@@ -83,10 +83,10 @@ struct conditionals {
 #endif
 
 	/* commented out in monst.c at present */
-	{ MON_GLYPH, PM_WIZARD_OF_BALANCE, "Lolth" },
+	{ MON_GLYPH, PM_NEFERET_THE_GREEN, "Lolth" },
 
 #ifndef YEOMAN
-	{ MON_GLYPH, PM_WIZARD_OF_BALANCE, "Chief Yeoman Warder" },
+	{ MON_GLYPH, PM_NEFERET_THE_GREEN, "Chief Yeoman Warder" },
 #endif
 
 	/* commented out in monst.c at present */
@@ -108,7 +108,6 @@ struct conditionals {
 	{ MON_GLYPH, PM_FROSTER, "fiend" },
 	{ MON_GLYPH, PM_ATTENDANT, "proudfoot" },
 	{ MON_GLYPH, PM_ATTENDANT, "intern" },
-
 	{ MON_GLYPH, PM_NINJA, "ronin" },
 
 #ifndef TOURIST
@@ -240,81 +239,6 @@ struct {
 	S_sw_bl,	"swallow bottom left",
 	S_sw_bc,	"swallow bottom center",
 	S_sw_br,	"swallow bottom right",
-#ifdef S_mexplode1
-	S_mexplode1,	"magical explosion top left",
-	S_mexplode2,	"magical explosion top center",
-	S_mexplode3,	"magical explosion top right",
-	S_mexplode4,	"magical explosion middle left",
-	S_mexplode5,	"magical explosion middle center",
-	S_mexplode6,	"magical explosion middle right",
-	S_mexplode7,	"magical explosion bottom left",
-	S_mexplode8,	"magical explosion bottom center",
-	S_mexplode9,	"magical explosion bottom right",
-#endif
-	S_explode1,	"explosion top left",
-	S_explode2,	"explosion top center",
-	S_explode3,	"explosion top right",
-	S_explode4,	"explosion middle left",
-	S_explode5,	"explosion middle center",
-	S_explode6,	"explosion middle right",
-	S_explode7,	"explosion bottom left",
-	S_explode8,	"explosion bottom center",
-	S_explode9,	"explosion bottom right",
-#ifdef S_cexplode1
-	S_cexplode1,	"cold explosion top left",
-	S_cexplode2,	"cold explosion top center",
-	S_cexplode3,	"cold explosion top right",
-	S_cexplode4,	"cold explosion middle left",
-	S_cexplode5,	"cold explosion middle center",
-	S_cexplode6,	"cold explosion middle right",
-	S_cexplode7,	"cold explosion bottom left",
-	S_cexplode8,	"cold explosion bottom center",
-	S_cexplode9,	"cold explosion bottom right",
-#endif
-#ifdef S_dexplode1
-	S_dexplode1,	"death explosion top left",
-	S_dexplode2,	"death explosion top center",
-	S_dexplode3,	"death explosion top right",
-	S_dexplode4,	"death explosion middle left",
-	S_dexplode5,	"death explosion middle center",
-	S_dexplode6,	"death explosion middle right",
-	S_dexplode7,	"death explosion bottom left",
-	S_dexplode8,	"death explosion bottom center",
-	S_dexplode9,	"death explosion bottom right",
-#endif
-#ifdef S_lexplode1
-	S_lexplode1,	"lightning explosion top left",
-	S_lexplode2,	"lightning explosion top center",
-	S_lexplode3,	"lightning explosion top right",
-	S_lexplode4,	"lightning explosion middle left",
-	S_lexplode5,	"lightning explosion middle center",
-	S_lexplode6,	"lightning explosion middle right",
-	S_lexplode7,	"lightning explosion bottom left",
-	S_lexplode8,	"lightning explosion bottom center",
-	S_lexplode9,	"lightning explosion bottom right",
-#endif
-#ifdef S_pexplode1
-	S_pexplode1,	"poison explosion top left",
-	S_pexplode2,	"poison explosion top center",
-	S_pexplode3,	"poison explosion top right",
-	S_pexplode4,	"poison explosion middle left",
-	S_pexplode5,	"poison explosion middle center",
-	S_pexplode6,	"poison explosion middle right",
-	S_pexplode7,	"poison explosion bottom left",
-	S_pexplode8,	"poison explosion bottom center",
-	S_pexplode9,	"poison explosion bottom right",
-#endif
-#ifdef S_aexplode1
-	S_aexplode1,	"acid explosion top left",
-	S_aexplode2,	"acid explosion top center",
-	S_aexplode3,	"acid explosion top right",
-	S_aexplode4,	"acid explosion middle left",
-	S_aexplode5,	"acid explosion middle center",
-	S_aexplode6,	"acid explosion middle right",
-	S_aexplode7,	"acid explosion bottom left",
-	S_aexplode8,	"acid explosion bottom center",
-	S_aexplode9,	"acid explosion bottom right",
-#endif
 };
 
 /*
@@ -386,7 +310,7 @@ int set, entry;
 		tilenum = 0;	/* set-relative number */
 	in_set = set == OTH_GLYPH || set == COM_GLYPH;
 	oth_origin = tilenum;
-	for (i = 0; i < MAXPCHARS; i++) {
+	for (i = 0; i < (MAXPCHARS - MAXEXPCHARS); i++) {
 		if (in_set && tilenum == entry) {
 			if (*defsyms[i].explanation)
 				return defsyms[i].explanation;
@@ -427,7 +351,22 @@ int set, entry;
 			tilenum++;
 		}
 	}
-	
+	/* explosions */
+	tilenum = MAXPCHARS - MAXEXPCHARS;
+	i = entry - tilenum;
+	if (i < (MAXEXPCHARS * EXPL_MAX)) {
+	    if (set == OTH_GLYPH) {
+		static char *explosion_types[] = { /* hack.h */
+			"dark", "noxious", "muddy", "wet",
+			"magical", "fiery", "frosty"
+		};
+		Sprintf(buf, "explosion %s %d",
+			explosion_types[i / MAXEXPCHARS], i % MAXEXPCHARS);
+		return buf;
+	    }
+	}
+	tilenum += (MAXEXPCHARS * EXPL_MAX);
+
 	i = entry - tilenum;
 	if (i < (NUM_ZAP << 2)) {
 		if (in_set) {
@@ -655,7 +594,7 @@ init_tilemap()
 	}
 	lastobjtile = tilenum - 1;
 
-	for (i = 0; i < MAXPCHARS; i++) {
+	for (i = 0; i < (MAXPCHARS - MAXEXPCHARS); i++) {
 		tilemap[GLYPH_CMAP_OFF+i] = tilenum;
 		tilenum++;
 		while (conditionals[condnum].sequence == OTH_GLYPH &&
@@ -665,11 +604,21 @@ init_tilemap()
 		}
 	}
 
+	for (i = 0; i < (MAXEXPCHARS * EXPL_MAX); i++) {
+		tilemap[GLYPH_EXPLODE_OFF+i] = tilenum;
+		tilenum++;
+		while (conditionals[condnum].sequence == OTH_GLYPH &&
+			conditionals[condnum].predecessor == (i + MAXPCHARS)) {
+			condnum++;
+			tilenum++;
+		}
+	}
+
 	for (i = 0; i < NUM_ZAP << 2; i++) {
 		tilemap[GLYPH_ZAP_OFF+i] = tilenum;
 		tilenum++;
 		while (conditionals[condnum].sequence == OTH_GLYPH &&
-			conditionals[condnum].predecessor == (i + MAXPCHARS)) {
+			conditionals[condnum].predecessor == (i + MAXEXPCHARS)) {
 			condnum++;
 			tilenum++;
 		}
