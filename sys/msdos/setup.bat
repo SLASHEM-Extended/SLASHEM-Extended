@@ -97,8 +97,6 @@ goto err_set
 echo Symbolic links, msdos style
 echo "Makefile.GCC -> ..\..\src\makefile"
 copy makefile.GCC ..\..\src\makefile
-echo "Makefile.DOC -> ..\..\doc\makefile"
-copy makefile.DOC ..\..\doc\makefile
 goto done
 
 :ok_msc
@@ -167,4 +165,3 @@ echo Setup Done!
 echo Please continue with next step from Install.dos.
 
 :end
-@echo on
