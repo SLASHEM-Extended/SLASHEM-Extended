@@ -455,7 +455,7 @@ boolean message;
 		nomovemsg = 0;
 	} else if (message)
 		You("finish %s %s.", victual.piece->odrained ? "draining" :
-		  "eating", the(food_xname(victual.piece, TRUE)));
+		  "eating", food_xname(victual.piece, TRUE));
 
 	if(victual.piece->otyp == CORPSE) {
 		if (!victual.piece->odrained || Race_if(PM_VAMPIRE) && !rn2(5))
@@ -1545,7 +1545,7 @@ start_eating(otmp)              /* called as you start to eat */
 	}
 
 	Sprintf(msgbuf, "%s %s", otmp->odrained ? "draining" : "eating",
-	  the(food_xname(otmp, TRUE)));
+	  food_xname(otmp, TRUE));
 	set_occupation(eatfood, msgbuf, 0);
 }
 

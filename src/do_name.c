@@ -580,6 +580,7 @@ boolean called;
 	struct permonst *mdat = mtmp->data;
 	boolean do_hallu, do_invis, do_it, do_saddle;
 	boolean name_at_start, has_adjectives;
+	char *bp;
 
 	if (program_state.gameover)
 	    suppress |= SUPPRESS_HALLUCINATION;
@@ -676,6 +677,17 @@ boolean called;
 	    } else if (called) {
 		Sprintf(eos(buf), "%s called %s", mdat->mname, name);
 		name_at_start = (boolean)type_is_pname(mdat);
+	    } else if (is_mplayer(mdat) && (bp = strstri(name, " the ")) != 0) {
+		/* <name> the <adjective> <invisible> <saddled> <rank> */
+		char pbuf[BUFSZ];
+		Strcpy(pbuf, name);
+		pbuf[bp - name + 5] = '\0';
+		if (has_adjectives)
+		    Strcat(pbuf, buf);
+		Strcat(pbuf, bp + 5);
+		Strcpy(buf, pbuf);
+		article = ARTICLE_NONE;
+		name_at_start = TRUE;
 	    } else {
 		Strcat(buf, name);
 		name_at_start = TRUE;

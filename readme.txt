@@ -404,6 +404,7 @@ ver 0.0.6E4F1 [October XX/2000]
 -fixed bug 121216: Crashes when kicking a stack of objects.
 -fixed bug 116922: Bug with vampire race and self-polymorph.
 -fixed bug 115780: Missing messages when grenades explode.
+-fixed bug 115908: Spurious "the" in messages about invisible mplayers.
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()
