@@ -905,6 +905,7 @@ char *FDECL((*func), (OBJ_P));
 	savequan = otmp->quan;
 	otmp->quan = 1L;
 #ifdef SHOW_WEIGHT
+	saveowt = otmp->owt;
 	otmp->owt = weight(otmp);
 #endif
 	nam = (*func)(otmp);
