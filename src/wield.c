@@ -404,8 +404,8 @@ int can_twoweapon ()
 
 	if (cantwield(youmonst.data) && (uwep || uswapwep)) {
 		You("cannot wield weaponsweapons in this form.");
-	} else if (uwep && bimanual(uwep) || uswapwep && bimanual(uswapwep)) {
-		otmp = uwep && bimanual(uwep) ? uwep : uswapwep;
+	} else if ((uwep && bimanual(uwep)) || (uswapwep && bimanual(uswapwep))) {
+		otmp = (uwep && bimanual(uwep)) ? uwep : uswapwep;
 		pline("%s isn't one-handed.", Yname2(otmp));
 	} else if (uarms)
 		You_cant("use two weapons while wearing a shield.");

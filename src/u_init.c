@@ -732,6 +732,7 @@ static struct def_skill Skill_K[] = {
     { P_NONE, 0 }
 };
 
+#if 0 /* OBSOLETE */
 static struct def_skill Skill_L[] = {
     { P_DAGGER, P_BASIC },              { P_KNIFE,  P_SKILLED },
     { P_AXE, P_SKILLED },               { P_PICK_AXE, P_BASIC },
@@ -751,6 +752,7 @@ static struct def_skill Skill_L[] = {
     { P_BARE_HANDED_COMBAT, P_GRAND_MASTER },
     { P_NONE, 0 }
 };
+#endif
 
 static struct def_skill Skill_Mon[] = {
     { P_PADDLE, P_SKILLED },
@@ -759,7 +761,7 @@ static struct def_skill Skill_Mon[] = {
     { P_SHURIKEN, P_BASIC },            { P_MARTIAL_ARTS, P_GRAND_MASTER },
 
     { P_ATTACK_SPELL, P_BASIC },	{ P_HEALING_SPELL, P_EXPERT },
-    { P_DIVINATION_SPELL, P_BASIC },	{ P_ENCHANTMENT_SPELL, P_BASIC },
+    { P_DIVINATION_SPELL, P_BASIC },	{ P_ENCHANTMENT_SPELL, P_SKILLED },
     { P_PROTECTION_SPELL, P_EXPERT },	{ P_BODY_SPELL, P_BASIC },
     { P_MATTER_SPELL, P_BASIC },
 /*WAC - monks are good healers - expert healing - and expert protect*/

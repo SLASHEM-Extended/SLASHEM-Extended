@@ -3592,10 +3592,7 @@ register int dx,dy;
 			    pline("%s resurrects!", Monnam(mon));
 			}
 			mon->mhp = mon->mhpmax;
-#if 0
-/*wAC beam is not absorbed,  so should keep on going*/
                         break; /* Out of while loop */
-#endif
                     } else if (tmp == MAGIC_COOKIE) { /* disintegration */
 			struct obj *otmp2, *m_amulet = mlifesaver(mon);
   

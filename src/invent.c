@@ -2130,16 +2130,28 @@ doprgold()
 int
 doprwep()
 {
-	/* WAC now also prints the quiver, uswapwep */
-#if 0
     if (!uwep) {
-	You("are empty %s.", body_part(HANDED));
+	if (!u.twoweap){
+	    You("are empty %s.", body_part(HANDED));
+	    return 0;
+	}
+	/* Avoid printing "right hand empty" and "other hand empty" */
+	if (!uswapwep) {
+	    You("are attacking with both %s.", makeplural(body_part(HAND)));
+	    return 0;
+	}
+	Your("right %s is empty.", body_part(HAND));
     } else {
 	prinv((char *)0, uwep, 0L);
-	if (u.twoweap) prinv((char *)0, uswapwep, 0L);
+    }
+    if (u.twoweap) {
+    	if (uswapwep)
+    	    prinv((char *)0, uswapwep, 0L);
+    	else
+    	    Your("other %s is empty.", body_part(HAND));
     }
     return 0;
-#endif
+#if 0
 	if(!uwep && !uswapwep && !uquiver) You("are empty %s.", body_part(HANDED));
 	else {
 		char lets[3];
@@ -2152,6 +2164,7 @@ doprwep()
 		(void) display_inventory(lets, FALSE);
 	}
 	return 0;
+#endif
 }
 
 int

@@ -323,14 +323,17 @@ TODO:
 	-anticipating using allegro on other systems
 	-currently need to redo the font loading code (at least)
 	-it appears to be segfaulting (randomly?)
+-tofix: using the nethack config files.
 
 ver 0.0.6E3F2 [September XX/2000]
-
 -changed some checks in tech.c to use DEADMONSTER()
 -updated Guidebook
 -fixed bug 112478: game crashes whenever the Amulet of Yendor is referred to
 -fixed bug 112489: #twoweapon while no secondary weapon seg. faults
 -fixed bug 112520: game crashes when beams reflect diagonally
+-the ')' command now prints varying messages depending on twoweap status
+	and mentions empty hands if needed. (invent.c)
+-Monks starting with the sleep spell no longer get warnings on startup (u_init.c)
 
 ver 0.0.6E3F1 [August 21/2000] [Released by Ali]
 -fixed some bugs in the zap/cast code for magic missile, fire, cold, fireball, etc.
