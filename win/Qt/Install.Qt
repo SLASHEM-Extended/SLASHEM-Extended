@@ -39,6 +39,9 @@ To use this code:
 	the appropriate place. You can also change the definitions of
 	QTLIBDIR etc. if your installation is particularly unusual.
 
+	Ensure CXX and LD are set to the compiler and linker you need
+	for compiling and linking C++ software (e.g., set both to g++).
+
 	To support multiple windowing ports, change the definitions
 	of WINSRC, WINOBJ and WINLIB to include all the relevant
 	variables.

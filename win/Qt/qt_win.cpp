@@ -3329,32 +3329,6 @@ void NetHackQtMainWindow::closeEvent(QCloseEvent* e)
     }
 }
 
-void NetHackQtMainWindow::closeEvent(QCloseEvent* e)
-{
-    if ( program_state.something_worth_saving ) {
-	switch ( QMessageBox::information( this, "NetHack",
-	    "This will end your NetHack session",
-	    "&Save", "&Quit", "&Cancel", 0, 2 ) )
-	{
-	    case 0:
-		// See dosave() function
-		if (dosave0()) {
-		    u.uhp = -1;
-		    terminate(EXIT_SUCCESS);
-		}
-		break;
-	    case 1:
-		u.uhp = -1;
-		terminate(EXIT_SUCCESS);
-		break;
-	    case 2:
-		break; // ignore the event
-	}
-    } else {
-	e->accept();
-    }
-}
-
 void NetHackQtMainWindow::ShowIfReady()
 {
     if (message && map && status) {
