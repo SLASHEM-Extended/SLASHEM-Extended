@@ -1151,6 +1151,20 @@ int
 has_color(color)
 int color;
 {
+#ifdef X11_GRAPHICS
+	/* XXX has_color() should be added to windowprocs */
+	if (windowprocs.name != NULL &&
+	    !strcmpi(windowprocs.name, "X11")) return TRUE;
+#endif
+#ifdef GEM_GRAPHICS
+	/* XXX has_color() should be added to windowprocs */
+	if (windowprocs.name != NULL &&
+	    !strcmpi(windowprocs.name, "Gem")) return TRUE;
+#endif
+#ifdef AMII_GRAPHICS
+	/* hilites[] not used */
+	return iflags.use_color;
+#endif
 	return hilites[color] != (char *)0;
 }
 
