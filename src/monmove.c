@@ -66,8 +66,20 @@ register struct monst *mtmp;
 			verbalize("Halt, thief!  You're under arrest!");
 			(void) angry_guards(!(flags.soundok));
 		  } else {
+			int i;
 			verbalize("Hey, stop picking that lock!");
-			levl[x][y].looted |=  D_WARNED;
+			/* [ALI] Since marking a door as warned will have
+			 * the side effect of trapping the door, it must be
+			 * included in the doors[] array in order that trap
+			 * detection will find it.
+			 */
+			for(i = doorindex - 1; i >= 0; i--)
+			    if (x == doors[i].x && y == doors[i].y)
+				break;
+			if (i < 0)
+			    i = add_door(x, y, (struct mkroom *)0);
+			if (i >= 0)
+			    levl[x][y].looted |= D_WARNED;
 		  }
 		  stop_occupation();
 		}

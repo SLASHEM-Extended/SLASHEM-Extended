@@ -78,6 +78,7 @@ ver 0.0.7E3 [?] [Released by ?]
 -fixed bug 781997: GTK's concept of the initial value of number_pad is wrong.
 -fixed bug 781998: No confirmation of exit when main window closed.
 -fixed bug 782002: Gdk errors: window unexpectedly destroyed.
+-fixed bug 454798: Program in Disorder - No door at (50,12).
 
 See history.txt for changes made in previous versions.
 

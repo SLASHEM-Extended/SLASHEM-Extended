@@ -359,20 +359,22 @@ register struct mkroom *aroom;
 	register struct mkroom *broom;
 	register int tmp;
 
+	if (doorindex == DOORMAX)
+	    return -1;
+
 	if (aroom) {
-	aroom->doorct++;
-	broom = aroom+1;
-	}
-	else
-		/* ALI
-		 * Roomless doors must go right at the beginning of the list
-		 */
-		broom = &rooms[0];
+	    aroom->doorct++;
+	    broom = aroom+1;
+	} else
+	    /* ALI
+	     * Roomless doors must go right at the beginning of the list
+	     */
+	    broom = &rooms[0];
 	if(broom->hx < 0)
-		tmp = doorindex;
+	    tmp = doorindex;
 	else
-		for(tmp = doorindex; tmp > broom->fdoor; tmp--)
-			doors[tmp] = doors[tmp-1];
+	    for(tmp = doorindex; tmp > broom->fdoor; tmp--)
+		doors[tmp] = doors[tmp-1];
 	doorindex++;
 	doors[tmp].x = x;
 	doors[tmp].y = y;
