@@ -1731,6 +1731,14 @@ u_init()
 	    knows_object(ELVEN_BOOTS);
 	    knows_object(ELVEN_CLOAK);
 	    break;
+	case PM_DROW:
+	    /* Drows can recognize all droven objects */
+	    knows_object(DARK_ELVEN_SHORT_SWORD);
+	    knows_object(DARK_ELVEN_ARROW);
+	    knows_object(DARK_ELVEN_BOW);
+	    knows_object(DARK_ELVEN_DAGGER);
+	    knows_object(DARK_ELVEN_MITHRIL_COAT);
+	    break;
 
 	case PM_DWARF:
 	    /* Dwarves can recognize all dwarvish objects */
