@@ -1012,8 +1012,8 @@ POTION("amnesia", "sparkling",          1, 0,          16, 100, CLR_CYAN),
 		SCROLL_CLASS, prob, 0, 5, cost, 0, 0, 0, 0, 6, HI_PAPER )
 /* Attack */
 SCROLL("create monster",        "LEP GEX VEN ZEA",      P_ATTACK_SPELL, 1,  45, 200),
-/* Healing */
-SCROLL("taming",                "PRIRUTSENIE",          P_HEALING_SPELL, 1,  15, 200),
+/* Enchantment */
+SCROLL("taming",                "PRIRUTSENIE",          P_ENCHANTMENT_SPELL, 1,  15, 200),
 /* Divination */
 SCROLL("light",                 "VERR YED HORRE",       P_DIVINATION_SPELL, 1,  90,  50),
 SCROLL("food detection",        "YUM YUM",              P_DIVINATION_SPELL, 1,  25, 100),
