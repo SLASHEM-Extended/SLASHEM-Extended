@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.1 2000-08-15 19:55:12 wacko Exp $
+  $Id: gtkmap.c,v 1.2 2000-08-23 12:26:58 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -535,9 +535,9 @@ tile_scan(void)
 	if(!tileTab[i])
 	    continue;
 #ifdef FILE_AREAS
-	fp = fopen_datafile_area(FILE_AREA_SHARE, tileTab[i]->file, RDTMODE);
+	fp = fopen_datafile_area(FILE_AREA_SHARE, tileTab[i]->file, RDTMODE, FALSE);
 #else
-	fp = fopen_datafile(tileTab[i]->file, RDTMODE);
+	fp = fopen_datafile(tileTab[i]->file, RDTMODE, FALSE);
 #endif
 	if(!fp){
 	    tileTab[i] = NULL;

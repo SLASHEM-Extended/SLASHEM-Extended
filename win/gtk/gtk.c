@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.1 2000-08-15 19:55:10 wacko Exp $
+  $Id: gtk.c,v 1.2 2000-08-23 12:26:58 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -446,9 +446,9 @@ static void
 help_license(GtkWidget *widget, gpointer data)
 {
 #ifndef FILE_AREAS    
-    GTK_display_file(LICENSE, TRUE);
+    GTK_display_file(NH_LICENSE, TRUE);
 #else
-    GTK_display_file(LICENSE_AREA, LICENSE, TRUE);
+    GTK_display_file(NH_LICENSE_AREA, NH_LICENSE, TRUE);
 #endif
     keysym = '\0';
 }
@@ -465,9 +465,9 @@ static void
 help_option(GtkWidget *widget, gpointer data)
 {
 #ifndef FILE_AREAS    
-    GTK_display_file(OPTIONFILE, TRUE);
+    GTK_display_file(NH_OPTIONFILE, TRUE);
 #else
-    GTK_display_file(OPTIONAREA, OPTIONFILE, TRUE);
+    GTK_display_file(NH_OPTIONAREA, NH_OPTIONFILE, TRUE);
 #endif
     keysym = '\0';
 }
@@ -476,9 +476,9 @@ static void
 help_shelp(GtkWidget *widget, gpointer data)
 {
 #ifndef FILE_AREAS    
-    GTK_display_file(SHELP, TRUE);
+    GTK_display_file(NH_SHELP, TRUE);
 #else
-    GTK_display_file(SHELP_AREA, SHELP, TRUE);
+    GTK_display_file(NH_SHELP_AREA, NH_SHELP, TRUE);
 #endif
     keysym = '\0';
 }
@@ -487,9 +487,9 @@ static void
 help_help(GtkWidget *widget, gpointer data)
 {
 #ifndef FILE_AREAS    
-    GTK_display_file(HELP, TRUE);
+    GTK_display_file(NH_HELP, TRUE);
 #else
-    GTK_display_file(HELP_AREA, HELP, TRUE);
+    GTK_display_file(NH_HELP_AREA, NH_HELP, TRUE);
 #endif
     keysym = '\0';
 }

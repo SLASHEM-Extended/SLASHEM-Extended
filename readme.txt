@@ -340,6 +340,7 @@ ver 0.0.6E3F2 [September XX/2000]
  there is a random chance each turn that you are in LIMIT mode. In limit mode,
  all your known techniques are useable (even the ones usually Not Prepared) 
  (tech.c)
+-fixed bug 112553: GTK interface failed to compile
 
 ver 0.0.6E3F1 [August 21/2000] [Released by Ali]
 -fixed some bugs in the zap/cast code for magic missile, fire, cold, fireball, etc.
