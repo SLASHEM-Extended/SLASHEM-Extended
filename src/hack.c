@@ -227,7 +227,7 @@ boolean showmsg, update;
    
    rndmappos(&x,&y);
    lev = &levl[x][y];
-   if (IS_TREE(lev->typ) && !(lev->looted & TREE_LOOTED)) {
+   if (IS_TREE(lev->typ) && !(lev->looted & TREE_LOOTED) && may_dig(x,y)) {
       coord pos;
       int dir, dofs = rn2(8);
       for (dir = 0; dir < 8; dir++) {
@@ -281,7 +281,7 @@ xchar x,y;
    struct rm *lev;
    
    rndmappos(&x,&y);
-   if (IS_TREE(levl[x][y].typ)) {
+   if (IS_TREE(levl[x][y].typ) && may_dig(x,y)) {
       int dir = rn2(8);
       dtoxy(&pos, dir);
       pos.x += x;
