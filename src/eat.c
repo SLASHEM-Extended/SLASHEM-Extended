@@ -545,8 +545,9 @@ register int pm;
 	    case PM_HOUSECAT:
 	    case PM_LARGE_CAT:
 		if (!CANNIBAL_ALLOWED()) {
-		    You_feel("that %s the %s was a bad idea.",
-		      victual.eating ? "eating" : "biting", mons[pm].mname);
+		    You_feel("that %s the %s%s was a bad idea.",
+		      victual.eating ? "eating" : "biting",
+		      occupation == opentin ? "tinned " : "", mons[pm].mname);
 		    HAggravate_monster |= FROMOUTSIDE;
 		}
 		break;
