@@ -302,16 +302,13 @@ mattackm(magr, mdef)
 		}
 		dieroll = rnd(20 + i);
 		strike = (tmp > dieroll);
-		/* KMH -- don't accumulate to-hit bonuses */
-		if (otmp)
-		    tmp -= hitval(otmp, mdef);
-		/* KMH -- don't accumulate to-hit bonuses */
-		if (otmp)
-		    tmp -= hitval(otmp, mdef);
 		if (strike)
 		    res[i] = hitmm(magr, mdef, mattk);
 		else
 		    missmm(magr, mdef, tmp, dieroll, mattk);
+		/* KMH -- don't accumulate to-hit bonuses */
+		if (otmp)
+		    tmp -= hitval(otmp, mdef);
 		break;
 
 	    case AT_HUGS:       /* automatic if prev two attacks succeed */

@@ -339,6 +339,7 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -fixed bug 420519: Unicorn horns, sliming, and bad message.
 -fixed bug 421136: engraving with wands of draining.
 -fixed bug 420947: remembered map ignores transparency.
+-fixed bug 421733: Monster on monster attacks.
 
 ver 0.0.6E4F4 [May 2/2001] [Released by Ali]
 -fixed bug 404825: wands of teleportation that explode/zapped at yourself
