@@ -427,7 +427,7 @@ dofire()
 			result = throw_obj(uquiver, shotlimit, THROW_UWEP);
 			if ((result == 1) && uquiver) 
 			    result += throw_obj(uquiver, shotlimit, THROW_USWAPWEP);
-			result--;
+			if (result > 1) result--;
 			return(result);
 		}
 	}
