@@ -730,7 +730,8 @@ AMULET("amulet versus stone",     "lunate",   /*STONE_RES*/0,60),
 OBJECT(OBJ("cheap plastic imitation of the Amulet of Yendor",
 	"Amulet of Yendor"), BITS(0,0,1,0,0,0,0,0,0,0,0,0,PLASTIC), 0,
 	AMULET_CLASS, 0, 0, 20,    0, 0, 0, 0, 0,  1, HI_METAL),
-OBJECT(OBJ("Amulet of Yendor",(char *)0), BITS(1,0,1,0,1,0,1,1,0,0,0,0,MITHRIL), 0,
+OBJECT(OBJ("Amulet of Yendor",	/* note: description == name */
+	"Amulet of Yendor"), BITS(0,0,1,0,1,0,1,1,0,0,0,0,MITHRIL), 0,
 	AMULET_CLASS, 0, 0, 20, 3500, 0, 0, 0, 0, 20, HI_METAL),
 #undef AMULET
 
