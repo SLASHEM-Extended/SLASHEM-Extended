@@ -176,12 +176,15 @@
 
 #ifdef UNIX
 /* path and file name extension for compression program */
-# define COMPRESS "/usr/bin/compress" /* Lempel-Ziv compression */
-# define COMPRESS_EXTENSION ".Z"	     /* compress's extension */
+/* # define COMPRESS "/usr/bin/compress" *//* Lempel-Ziv compression */
+/* # define COMPRESS_EXTENSION ".Z"	 *//* compress's extension */
 
 /* An example of one alternative you might want to use: */
-/* # define COMPRESS "/usr/local/bin/gzip" */   /* FSF gzip compression */
-/* # define COMPRESS_EXTENSION ".gz" */	     /* normal gzip extension */
+# define COMPRESS "/usr/bin/gzip"	  /* FSF gzip compression */
+# define COMPRESS_EXTENSION ".gz"	  /* normal gzip extension */
+
+/* # define COMPRESS "/usr/bin/bzip2"	*//* bzip2 compression */
+/* # define COMPRESS_EXTENSION ".bz2"	*//* bzip2 extension */
 #endif
 #ifndef COMPRESS
 # define INTERNAL_COMP	/* control use of NetHack's compression routines */
@@ -192,7 +195,7 @@
  *	a tar-like file, thus making a neater installation.  See *conf.h
  *	for detailed configuration.
  */
-/* #define DLB */             /* not supported on all platforms */
+#define DLB             /* not supported on all platforms */
 
 /*
  *	Defining INSURANCE slows down level changes, but allows games that
@@ -292,7 +295,7 @@ typedef unsigned char	uchar;
  */
 #define BITFIELDS	/* Good bitfield handling */
 
-/* #define STRNCMPI */ /* compiler/library has the strncmpi function */
+#define STRNCMPI	/* compiler/library has the strncmpi function */
 
 /*
  * There are various choices for the NetHack vision system.  There is a
@@ -385,9 +388,9 @@ typedef unsigned char	uchar;
 #endif
 
 #define EXP_ON_BOTL	/* Show experience on bottom line */
-/* #define SCORE_ON_BOTL */	/* added by Gary Erickson (erickson@ucivax) */
+#define SCORE_ON_BOTL /* added by Gary Erickson (erickson@ucivax) */
 /* #define BORG */            /* Works only under DOS */
-/* #define KEEP_SAVE */       /* Keep savefiles after Restore (wac@intergate.bc.ca)*/
+#define KEEP_SAVE        /* Keep savefiles after Restore (wac@intergate.bc.ca)*/
 /*#define CHARON */          /* Charon's boat, enables Cerebus */
 #define SHOW_DMG        /* WAC made dmg reports optional (wac@intergate.bc.ca)*/
 #define SHOW_WEIGHT     /* [max] added display of object weight when picking up */

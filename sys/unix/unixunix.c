@@ -172,14 +172,14 @@ eraseoldlocks()
 #ifdef FILE_AREAS
 		(void) remove_area(FILE_AREA_LEVL, lock);
 #else
-		(void) unlink(lock);
+		(void) unlink(fqname(lock, LEVELPREFIX, 0));
 #endif
 	}
 	set_levelfile_name(lock, 0);
 #ifdef FILE_AREAS
 	if(remove_area(FILE_AREA_LEVL, lock))
 #else
-	if(unlink(lock))
+	if(unlink(fqname(lock, LEVELPREFIX, 0)))
 #endif
 		return(0);			/* cannot remove it */
 	return(1);					/* success! */
@@ -206,7 +206,7 @@ getlock()
 #endif
 
 	/* we ignore QUIT and INT at this point */
-	if (!lock_file_area(HLOCK_AREA, HLOCK, 10)) {
+	if (!lock_file_area(HLOCK_AREA, HLOCK, LOCKPREFIX, 10)) {
 		wait_synch();
 		error("%s", "");
 	}
@@ -221,14 +221,14 @@ getlock()
 			lock[0] = 'a' + i++;
 
 #ifndef FILE_AREAS
-			if((fd = open(lock, 0, 0)) == -1) {
+			if((fd = open(fq_lock, 0, 0)) == -1) {
 #else
-			if((fd = open_area(FILE_AREA_LEVL, lock, 0, 0)) == -1) {
+			if((fd = open_area(FILE_AREA_LEVL, fq_lock, 0, 0)) == -1) {
 #endif
 			    if(errno == ENOENT) goto gotlock; /* no such file */
-			    perror(lock);
+			    perror(fq_lock);
 			    unlock_file_area(HLOCK_AREA, HLOCK);
-			    error("Cannot open %s", lock);
+			    error("Cannot open %s", fq_lock);
 			}
 
 			if(veryold(fd) /* closes fd if true */
@@ -240,15 +240,16 @@ getlock()
 		unlock_file_area(HLOCK_AREA, HLOCK);
 		error("Too many hacks running now.");
 	} else {
+		fq_lock = fqname(lock, LEVELPREFIX, 0);
 #ifndef FILE_AREAS
-		if((fd = open(lock, 0, 0)) == -1) {
+		if((fd = open(fq_lock, 0, 0)) == -1) {
 #else
-		if((fd = open_area(FILE_AREA_LEVL, lock, 0, 0)) == -1) {
+		if((fd = open_area(FILE_AREA_LEVL, fq_lock, 0, 0)) == -1) {
 #endif
 			if(errno == ENOENT) goto gotlock;    /* no such file */
-			perror(lock);
+			perror(fq_lock);
 			unlock_file_area(HLOCK_AREA, HLOCK);
-			error("Cannot open %s", lock);
+			error("Cannot open %s", fq_lock);
 		}
 
 		if(veryold(fd) /* closes fd if true */ && eraseoldlocks())
@@ -281,20 +282,20 @@ getlock()
 
 gotlock:
 #ifndef FILE_AREAS
-	fd = creat(lock, FCMASK);
+	fd = creat(fq_lock, FCMASK);
 #else
-	fd = creat_area(FILE_AREA_LEVL, lock, FCMASK);
+	fd = creat_area(FILE_AREA_LEVL, fq_lock, FCMASK);
 #endif
 	unlock_file_area(HLOCK_AREA, HLOCK);
 	if(fd == -1) {
-		error("cannot creat lock file.");
+		error("cannot creat lock file (%s).", fq_lock);
 	} else {
 		if(write(fd, (genericptr_t) &hackpid, sizeof(hackpid))
 		    != sizeof(hackpid)){
-			error("cannot write lock");
+			error("cannot write lock (%s)", fq_lock);
 		}
 		if(close(fd) == -1) {
-			error("cannot close lock");
+			error("cannot close lock (%s)", fq_lock);
 		}
 	}
 }
@@ -550,7 +551,7 @@ char *lockname;
 	Strcat(lockname, filename);
 # else
 	Strcpy(lockname, filename);
-# endif
+# endif /* FILE_AREAS */
 # endif	/* NO_FILE_LINKS */
 	Strcat(lockname, "_lock");
 	return lockname;
@@ -573,7 +574,7 @@ const char *filename, *lockname;
 	lockfd=-1;
 	return TRUE;
     }
-# endif
+# endif /* NO_FILE_LINKS */
 }
 
 /*
@@ -581,7 +582,9 @@ const char *filename, *lockname;
  *
  * Note: The area says where the file is, not where the lock is.
  */
-
+/* JRN: This should be ifndef lock_file_area in the current setup
+ *  (I think, it's confusing) to get it to build without file areas,
+ *  but I don't want to confuse CVS so I'll just let Ali sort it out */
 boolean
 lock_file_area(filearea, filename, retryct)
 const char *filearea, *filename;
@@ -666,7 +669,6 @@ const char *filearea, *filename;
 
 	nesting--;
 }
-
 /* ----------  END FILE LOCKING HANDLING ----------- */
 
 #endif	/* FILE_AREAS */

@@ -353,7 +353,6 @@ int how;
 	    }
 	    goto showwin;
 	}
-
 	if (!lock_file_area(RECORD_AREA, RECORD, SCOREPREFIX, 60))
 		goto destroywin;
 

@@ -108,8 +108,9 @@ extern int n_dgns;              /* from dungeon.c */
 STATIC_DCL char *FDECL(set_bonesfile_name, (char *,d_level*));
 STATIC_DCL char *NDECL(set_bonestemp_name);
 #ifdef COMPRESS
-STATIC_DCL void FDECL(redirect, (char *,char *,FILE *,BOOLEAN_P));
-STATIC_DCL void FDECL(docompress_file, (char *,BOOLEAN_P));
+STATIC_DCL void FDECL(redirect, (const char *,const char *,const char *,
+	FILE *,BOOLEAN_P));
+STATIC_DCL void FDECL(docompress_file, (const char *,const char *,BOOLEAN_P));
 #endif
 STATIC_DCL char *FDECL(make_lockname, (const char *,char *));
 STATIC_DCL FILE *FDECL(fopen_config_file, (const char *));
