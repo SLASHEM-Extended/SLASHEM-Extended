@@ -1110,14 +1110,6 @@ curs_on_u()
 int
 doredraw()
 {
-    int i;
-    transp = FALSE;
-    if (tileset[0])
-	for(i = 0; i < no_tilesets; ++i)
-	    if (!strcmpi(tileset, tilesets[i].name)) {
-		transp = !!(tilesets[i].flags & TILESET_TRANSPARENT);
-		break;
-	    }
     docrt();
     return 0;
 }
@@ -1127,8 +1119,17 @@ docrt()
 {
     register int x,y;
     register struct rm *lev;
+    int i;
 
     if (!u.ux) return; /* display isn't ready yet */
+
+    transp = FALSE;
+    if (tileset[0])
+	for(i = 0; i < no_tilesets; ++i)
+	    if (!strcmpi(tileset, tilesets[i].name)) {
+		transp = !!(tilesets[i].flags & TILESET_TRANSPARENT);
+		break;
+	    }
 
     if (u.uswallow) {
 	swallowed(1);
@@ -1241,7 +1242,13 @@ show_glyph(x,y,glyph)
 	return;
     }
 
-    if (gbuf[y][x].glyph != glyph) {
+    /* [ALI] In transparent mode it is not sufficient just to consider
+     * the foreground glyph, we also need to consider the background.
+     * Rather than extend the display module to do this, for the time
+     * being we just turn off optimization and rely on the windowing port
+     * to ignore redundant calls to print_glyph().
+     */
+    if (transp || gbuf[y][x].glyph != glyph) {
 	gbuf[y][x].glyph = glyph;
 	gbuf[y][x].new   = 1;
 	if (gbuf_start[y] > x) gbuf_start[y] = x;
