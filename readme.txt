@@ -371,6 +371,7 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -fixed bug 422165: Slow screen update on vaporizing boulders.
 -fixed bug 423217: "Silent" grenade blasts.
 -fixed bug 440005: Call a wand of polymorph.
+-fixed bug 440052: Making Sam angry.
 
 ver 0.0.6E4F4 [May 2/2001] [Released by Ali]
 -fixed bug 404825: wands of teleportation that explode/zapped at yourself

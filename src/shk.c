@@ -332,17 +332,30 @@ void
 blkmar_guards(shkp)
 register struct monst *shkp;
 {
-  register struct monst *mt;
+    register struct monst *mt;
+    register struct eshk *eshkp = ESHK(shkp);
+    boolean mesg_given = FALSE;	/* Only give message if assistants peaceful */
+    static boolean lock = FALSE; /* Prevent recursive calls (via wakeup) */
 
-/* wake up assistants */
-  pline("%s calls for his assistants!", Monnam(shkp));
-  for (mt = fmon; mt; mt = mt->nmon) {
-/* non-tame named monsters are presumably black marketeer's assistants */
-    if (!mt->mtame && NAME(mt) && *NAME(mt) &&
-	inside_shop(mt->mx, mt->my)) {
-      wakeup(mt);
+    if (lock)  return;
+    lock = TRUE;
+
+    /* wake up assistants */
+    for (mt = fmon; mt; mt = mt->nmon) {
+	if (DEADMONSTER(mt)) continue;
+	/* non-tame named monsters are presumably
+	 * black marketeer's assistants */
+	if (!mt->mtame && NAME(mt) && *NAME(mt) && mt->mpeaceful &&
+		mt != shkp && inside_shop(mt->mx, mt->my) == eshkp->shoproom) {
+	    if (!mesg_given) {
+		pline("%s calls for %s assistants!",
+			noit_Monnam(shkp), his[gender(shkp)]);
+		mesg_given = TRUE;
+	    }
+	    wakeup(mt);
+	}
     }
-  }
+    lock = FALSE;
 }
 #endif /* BLACKMARKET */
 

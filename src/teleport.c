@@ -1180,8 +1180,36 @@ boolean give_feedback;
 	    if (is_rider(mtmp->data) && rn2(13) &&
 		    enexto(&cc, u.ux, u.uy, mtmp->data))
 		rloc_to(mtmp, cc.x, cc.y);
-	    else
+	    else {
+#ifdef WIZARD
+                if (wizard && Teleport_control)
+		{
+		    /*
+		     * [ALI] This code will only allow monsters to be
+		     * teleported to positions acceptable to rloc_pos_ok().
+		     * We could use goodpos() which would allow more
+		     * locations but, in my view, is less informative.
+		     */
+		    xchar omx, omy;
+		    pline("To what position do you want %s to be teleported?",
+			   mon_nam(mtmp));
+		    cc.x = omx = mtmp->mx;
+		    cc.y = omy = mtmp->my;
+		    if (getpos(&cc, TRUE, "the desired position") < 0)
+			rloc(mtmp);	/* abort */
+		    else if (rloc_pos_ok(cc.x, cc.y, mtmp)) {
+			rloc_to(mtmp, cc.x, cc.y);
+			/* As rloc() ... */
+			if (mtmp->isshk && !inhishop(mtmp))
+			  make_angry_shk(mtmp, omx, omy);
+		    } else {
+			pline("Sorry...");
+			rloc(mtmp);
+		    }
+		} else
+#endif /* WIZARD */
 		rloc(mtmp);
+	    }
 	    return TRUE;
 	}
 }
