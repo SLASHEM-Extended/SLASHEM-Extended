@@ -56,12 +56,13 @@
 /* #define KDE */		/* KDE Interface */
 /* #define GTK_GRAPHICS */	/* GTK Interface */
 /* #define GNOME_GRAPHICS */	/* Gnome interface */
+/* #define PROXY_GRAHICS */	/* Plug-in interfaces (not yet supported) */
 
 /*
  * Define the default window system.  This should be one that is compiled
  * into your system (see defines above).  Known window systems are:
  *
- *	tty, X11, mac, amii, BeOS, Qt, Gem, Gnome, gtk
+ *	tty, X11, mac, amii, BeOS, Qt, Gem, Gnome, gtk, proxy
  */
 
 /* MAC also means MAC windows */
