@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)gnglyph.c	3.3	2000/07/16	*/
+/*	SCCS Id: @(#)gnglyph.c	3.4	2000/07/16	*/
 /* Copyright (C) 1998 by Erik Andersen <andersee@debian.org> */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -61,9 +61,15 @@ ghack_init_glyphs( const char *xpmFile)
   gdk_imlib_render(ghack_glyphs.im, ghack_glyphs.im->rgb_width,
 	  ghack_glyphs.im->rgb_height);
 
-  ghack_glyphs.count = total_tiles_used;
-  ghack_glyphs.width  = ghack_glyphs.im->rgb_width / tiles_per_row;
+  if (ghack_glyphs.im->rgb_width % tiles_per_row ||
+  	ghack_glyphs.im->rgb_height % tiles_per_col) {
+	  g_error("%s is not a multiple of %d, %d (tiles/row, tiles/col) pixels wide",
+	  xpmFile, tiles_per_row, tiles_per_col);
+	  return -1;
+  }
+  ghack_glyphs.width = ghack_glyphs.im->rgb_width / tiles_per_row;
   ghack_glyphs.height = ghack_glyphs.im->rgb_height / tiles_per_col;
+  ghack_glyphs.count = total_tiles_used;
 
   ghack_tiles = g_new0( GdkImlibImage*, ghack_glyphs.count );
   if (ghack_tiles == NULL)
@@ -188,8 +194,8 @@ ghack_image_from_glyph( int glyph, gboolean force )
 	    (force==TRUE)? "TRUE" : "FALSE");
     }
 
-  if (!ghack_tiles[tile] || force)
-  {
+  if (!ghack_tiles[tile] || force) {
+      int src_x, src_y;
 #if 0
       fprintf( stderr, "crop_and_clone: glyph=%d, tile=%d, ptr=%p, x=%d, y=%d, w=%d, h=%d\n", glyph, tile,
 	      (void*)&(ghack_tiles[tile]), 0,
@@ -199,9 +205,10 @@ ghack_image_from_glyph( int glyph, gboolean force )
 #endif
       if (ghack_glyphs.im->pixmap == NULL)
 	  g_warning( "Aiiee!  ghack_glyphs.im->pixmap==NULL!!!!\n");
+      src_x = tile % tiles_per_row * ghack_glyphs.width;
+      src_y = tile / tiles_per_row * ghack_glyphs.height;
       ghack_tiles[tile] = gdk_imlib_crop_and_clone_image(ghack_glyphs.im,
-	      tile % tiles_per_row * ghack_glyphs.width,
-	      tile / tiles_per_row * ghack_glyphs.height,
+	      src_x, src_y,
 	      ghack_glyphs.height,
 	      ghack_glyphs.width);
   }
@@ -219,4 +226,3 @@ ghack_image_from_glyph( int glyph, gboolean force )
 
   return ghack_tiles[tile];
 }
-

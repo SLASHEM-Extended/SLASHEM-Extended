@@ -196,6 +196,7 @@ ghack_init_map_window ( )
   else {
     gdk_imlib_render( background, background->rgb_width,
 	  background->rgb_height);
+
     /* Tile the map background */
     for (y = 0; y < height+background->rgb_height; y+=background->rgb_height)
     {
@@ -245,9 +246,10 @@ ghack_init_map_window ( )
   else {
       gdk_imlib_render( petmark, petmark->rgb_width,
 	  petmark->rgb_height);
+
       /* ghack_map.overlay is an array of canvas images used to
        * overlay tile images...
-      */
+       */
       for (i=0, y = 0; y < height; y+=ghack_glyph_height())
 	{
 	  for (x = 0; x < width; x+=ghack_glyph_width())
