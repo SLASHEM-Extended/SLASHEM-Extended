@@ -1,4 +1,4 @@
-/* $Id: gtkhackrc.c,v 1.11 2004-01-10 16:37:15 j_ali Exp $ */
+/* $Id: gtkhackrc.c,v 1.12 2004-01-17 12:30:01 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -974,18 +974,24 @@ int check_rc_version(GScanner *scanner, GtkHackRcValue *value)
     if (!gtkhackrc_check_type(scanner, value, "value",
       PARSE_VALUE_TYPE_STRING)) {
 	GTKHACKRC(scanner)->error_type = PARSE_ERROR_INCOMPATIBLE;
+#ifndef WIN32
 	write_verspecific_file = TRUE;
+#endif
 	return PARSE_ERROR;
     }
     if (sscanf(value->u.string, "%d.%d", &major, &minor) != 2) {
 	GTKHACKRC(scanner)->error_type = PARSE_ERROR_INCOMPATIBLE;
+#ifndef WIN32
 	write_verspecific_file = TRUE;
+#endif
 	return PARSE_ERROR;
     }
     if (major != GTKHACKRC_VER_MAJOR || minor > GTKHACKRC_VER_MINOR) {
 	GTKHACKRC(scanner)->error_type = PARSE_ERROR_INCOMPATIBLE;
+#ifndef WIN32
 	if (major >= GTKHACKRC_VER_MAJOR)
 	    write_verspecific_file = TRUE;
+#endif
 	return PARSE_ERROR;
     }
     return 0;
