@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.15 2000-11-08 07:16:58 j_ali Exp $
+  $Id: gtk.c,v 1.16 2000-11-09 16:26:39 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1667,7 +1667,7 @@ GTK_nhgetch(void)
 
     keysym = keysym1;
     keysym1 = 0;
-    if(!keysym)
+    while(!keysym)
 	main_hook();
 
     key = keysym;
@@ -1688,7 +1688,7 @@ GTK_nh_poskey(int *x, int *y, int *mod)
     keysym = keysym1;
     keysym1 = 0;
 
-    if(!keysym)
+    while(!keysym)
     {
 	nh_map_click(TRUE);
 	main_hook();
