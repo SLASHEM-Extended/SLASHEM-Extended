@@ -303,7 +303,11 @@ register struct monst *mtmp;
 				  /* [arbitrary reason why it isn't moving] */
 	else if (mtmp->mstrategy & STRAT_WAITMASK)
 				  Strcat(info, ", meditating");
-	else if (mtmp->mflee)	  Strcat(info, ", scared");
+	else if (mtmp->mflee) {	  Strcat(info, ", scared");
+#ifdef WIZARD
+	    if (wizard)		  Sprintf(eos(info), " (%d)", mtmp->mfleetim);
+#endif
+	}
 	if (mtmp->mtrapped)	  Strcat(info, ", trapped");
 	if (mtmp->mspeed)	  Strcat(info,
 					mtmp->mspeed == MFAST ? ", fast" :
