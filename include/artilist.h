@@ -271,9 +271,15 @@ A("Stormbringer",               RUNESWORD,
 	DRLI(5,2),	DRLI(0,0),	NO_CARY,	0, A_CHAOTIC, NON_PM, NON_PM ),
 
 #ifdef BLACKMARKET
+#ifdef DEVEL_BRANCH
+A("Thiefbane",                  LONG_SWORD,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_BEHEAD|SPFX_DCLAS|SPFX_DRLI), 0, S_HUMAN,
+	DRLI(5,1),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, NON_PM, NON_PM ),
+#else
 A("Thiefbane",                  LONG_SWORD,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_BEHEAD|SPFX_DCLAS), 0, S_HUMAN,
 	DRLI(5,1),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, NON_PM, NON_PM ),
+#endif
 #endif /* BLACKMARKET */
 
 A("Deathsword",                   TWO_HANDED_SWORD,
