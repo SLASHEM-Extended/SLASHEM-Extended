@@ -365,10 +365,6 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	boolean remember_discover = discover;
 	struct obj *otmp;
 	int uid;
-	boolean is_stuck = FALSE;
-#ifdef STEED
-	boolean is_mounted = FALSE;
-#endif
 
 	mread(fd, (genericptr_t) &uid, sizeof uid);
 	if (uid != getuid()) {		/* strange ... */
@@ -391,22 +387,6 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	amii_setpens(amii_numcolors);	/* use colors from save file */
 #endif
 	mread(fd, (genericptr_t) &u, sizeof(struct you));
-
-	/* these pointers won't be valid while we're processing the
-	 * game state, but they'll be reset again by restlevelstate()
-	 * afterwards, and in the meantime at least u.usteed may mislead
-	 * see_monsters().
-	 */
-	if(u.ustuck) {
-	    is_stuck = TRUE;
-	    setustuck((struct monst *)0);
-	}
-#ifdef STEED
-	if(u.usteed) {
-	    is_mounted = TRUE;
-	    u.usteed = (struct monst *)0;
-	}
-#endif
 	init_uasmon();
 #ifdef CLIPPING
 	cliparound(u.ux, u.uy);
@@ -430,6 +410,13 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	migrating_objs = restobjchn(fd, FALSE, FALSE);
 	migrating_mons = restmonchn(fd, FALSE);
 	mread(fd, (genericptr_t) mvitals, sizeof(mvitals));
+
+	/*
+	 * There are some things after this that can have unintended display
+	 * side-effects too early in the game.
+	 * Disable see_monsters() here, re-enable it at the top of moveloop()
+	 */
+	defer_see_monsters = TRUE;
 
 	/* this comes after inventory has been loaded */
 	for(otmp = invent; otmp; otmp = otmp->nobj)
@@ -466,10 +453,10 @@ unsigned int *stuckid, *steedid;	/* STEED */
 			sizeof(struct tech) * (MAXTECH + 1));
 	restore_artifacts(fd);
 	restore_oracles(fd);
-	if (is_stuck)
+	if (u.ustuck)
 		mread(fd, (genericptr_t) stuckid, sizeof (*stuckid));
 #ifdef STEED
-	if (is_mounted)
+	if (u.usteed)
 		mread(fd, (genericptr_t) steedid, sizeof (*steedid));
 #endif
 	mread(fd, (genericptr_t) pl_character, sizeof (pl_character));
