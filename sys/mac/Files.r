@@ -1,3 +1,4 @@
+#include "MacTypes.r"
 #include "BalloonTypes.r"
 
 #include "date.h"
