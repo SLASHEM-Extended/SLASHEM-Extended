@@ -16,7 +16,7 @@
  */
 #define PATCHLEVEL      8
 #define EDITLEVEL	0
-#define FIXLEVEL        0
+/* #define FIXLEVEL        0 */
 
 #define COPYRIGHT_BANNER_A \
 "This is SuperLotsoAddedStuffHack-Extended Magic 1997-2004"
