@@ -291,8 +291,8 @@ SlashEMSrcs = ¶
 	"{TtyDir}"wintty.c
 
 SlashEMRsrcs = 	¶
-	"{MacDir}"NetHack.r ¶
-	"{MacDir}"Sounds.r ¶
+	"{MacDir}"NHrsrc.r ¶
+	"{MacDir}"NHsound.r ¶
 	"{MacDir}"Files.r ¶
 	"{LibDir}"Levels.r
 
@@ -523,10 +523,10 @@ Levels Ä "{LibDir}"Levels.list "{MacDir}"Levels.make
 
 RecoverSrcs = "{MacDir}"MRecover.c
 
-RecoverRsrcs = "{ObjDir}"MRecover.rsrc
+RecoverRsrcs = "{MacDir}"MRecover.r
 	
 "{ObjDir}"Recover.make	Ä
-		CreateMake "{ObjDir}"Recover {RecoverSrcs} {RecoverRsrcs} -{Processor} ¶
+		CreateMake "{ObjDir}"Recover {RecoverSrcs} -{Processor} ¶
 			-i "{Preserve}" -i "{ObjDir}" -i {Include} ¶
 			-objdir "{ObjDir}" -sym -depends -c {RecoverCreator} ¶
 			-ppccoptions "{COptions}" ¶
@@ -549,13 +549,15 @@ RecoverRsrcs = "{ObjDir}"MRecover.rsrc
 
 "{Results}"Recover Recover.lnk ÄÄ "{ObjDir}"Recover.make
 		BuildProgram "{ObjDir}"Recover
+		Rez Types.r SysTypes.r {RecoverRsrcs} -o "{ObjDir}"Recover -c {RecoverCreator} ¶
+			-i "{MacDir}" -i "{ObjDir}"  -i "{Include}" -i "{Preserve}" -s "{Top}" -append
 		SetFile -a B "{ObjDir}"Recover
 		Move -y "{ObjDir}"Recover "{Results}"Recover 	
 
 "{ObjDir}"MRecover.rsrc	Ä	"{MacDir}"MRecover.r
 		Rez Types.r SysTypes.r "{MacDir}"MRecover.r -o "{ObjDir}"MRecover.rsrc
 	
-#---------------- The application -------------------
+#---------------- The Slash'EM application -------------------
 
 "{ObjDir}"SlashEM.make	Ä 
 		CreateMake "{ObjDir}"SlashEM {SlashEMSrcs} -{Processor} ¶
@@ -586,12 +588,12 @@ RecoverRsrcs = "{ObjDir}"MRecover.rsrc
 		SetFile -a B "{ObjDir}"SlashEM
 		Move -y "{ObjDir}"SlashEM "{Results}"Slash¶'EM 	
 
-"{ObjDir}"NetHack.rsrc Ä "{MacDir}"Nethack.r
-		Rez Types.r SysTypes.r "{MacDir}"NetHack.r -o "{ObjDir}"NetHack.rsrc ¶
+"{ObjDir}"NHrsrc.rsrc Ä "{MacDir}"NHrsrc.r
+		Rez Types.r SysTypes.r "{MacDir}"NHrsrc.r -o "{ObjDir}"NHrsrc.rsrc ¶
 			-i "{Include}" -i "{Preserve}"
 
-"{ObjDir}"Sounds.rsrc Ä "{MacDir}"Sounds.r
-		Rez Types.r SysTypes.r "{MacDir}"Sounds.r -o "{ObjDir}"Sounds.rsrc
+"{ObjDir}"NHsound.rsrc Ä "{MacDir}"NHsound.r
+		Rez Types.r SysTypes.r "{MacDir}"NHsound.r -o "{ObjDir}"NHsound.rsrc
 
 #---------------- Dependencies -------------------
 
@@ -649,11 +651,11 @@ Spotless	Ä	Clean
 
 #---------------- Pack -------------------
 
-Pack	Ä	"{ObjDir}"NetHack.rsrc "{ObjDir}"Sounds.rsrc "{ObjDir}"MRecover.rsrc
-		DeRez "{ObjDir}"NetHack.rsrc Types.r SysTypes.r > "{MacDir}"NetHack.r
-		DeRez "{ObjDir}"Sounds.rsrc Types.r SysTypes.r > "{MacDir}"Sounds.r
+Pack	Ä	"{ObjDir}"NHrsrc.rsrc "{ObjDir}"NHsound.rsrc "{ObjDir}"MRecover.rsrc
+		DeRez "{ObjDir}"NHrsrc.rsrc Types.r SysTypes.r > "{MacDir}"NHrsrc.r
+		DeRez "{ObjDir}"NHsound.rsrc Types.r SysTypes.r > "{MacDir}"NHsound.r
 		DeRez "{ObjDir}"MRecover.rsrc Types.r SysTypes.r > "{MacDir}"MRecover.r
 
 #---------------- Unpack -------------------
 
-Unpack	Ä	"{ObjDir}"NetHack.rsrc "{ObjDir}"Sounds.rsrc "{ObjDir}"MRecover.rsrc
+Unpack	Ä	"{ObjDir}"NHrsrc.rsrc "{ObjDir}"NHsound.rsrc "{ObjDir}"MRecover.rsrc
