@@ -37,12 +37,26 @@ static char *no_slant[] = {
 	"fire trap",
 	"magic portal",
 	"grave",
+	"cmap / thrown boomerang, open left",
+	"cmap / thrown boomerang, open right",
+	"cmap / magic shield 1",
+	"cmap / magic shield 2",
+	"cmap / magic shield 3",
+	"cmap / magic shield 4",
 	"warning 0",
 	"warning 1",
 	"warning 2",
 	"warning 3",
 	"warning 4",
 	"warning 5",
+	};
+
+static char *raised_up[] = {  /* these matches are partial */
+	"explosion",
+	"zap",
+	"cmap / dig beam",
+	"cmap / camera flash",
+	"cmap / swallow",
 	};
 
 static int tilecount;
@@ -79,11 +93,12 @@ const char *name;
 }
 
 static int
-write_slanttile(pixels, ttype, number, name)
+write_slanttile(pixels, ttype, number, name, yoffset)
 pixel (*pixels)[MAX_TILE_X];
 const char *ttype;
 int number;
 const char *name;
+int yoffset;
 {
 	int i, j;
 	int retval;
@@ -95,7 +110,7 @@ const char *name;
 			bigpixels[j][i] = default_background;
 	for(j = 0; j < tile_y; j++)
 		for(i = 0; i < tile_x; i++)
-			bigpixels[j + tile_y][i + tile_x / 2 - j / 2] =
+			bigpixels[j + tile_y - yoffset][i + tile_x / 2 - j / 2] =
 			  pixels[j][i];
 	i = tile_x;
 	j = tile_y;
@@ -138,7 +153,18 @@ char *argv[];
 				if (i < SIZE(no_slant))
 					write_padtile(pixels, ttype, tile_no, buf);
 				else
-					write_slanttile(pixels, ttype, tile_no, buf);
+				{
+					int yoffset = 0;
+
+					for (i = 0; i < SIZE(raised_up); i++)
+						if (!strncmp(buf, raised_up[i], strlen(raised_up[i])))
+							break;
+
+					if (i < SIZE(raised_up))
+						yoffset = 14;
+
+					write_slanttile(pixels, ttype, tile_no, buf, yoffset);
+				}
 			}
 			tilecount_per_file++;
 			tilecount++;
