@@ -552,19 +552,26 @@ int ttyp;
 
 		} else {
 		    d_level newlevel;
+		    const char *You_fall = "You fall through...";
 
 		    if (*u.ushops && madeby_u)
 			shopdig(1); /* shk might snatch pack */
 
-		    You("fall through...");
 		    /* Earlier checks must ensure that the destination
 		     * level exists and is in the present dungeon.
 		     */
 		    newlevel.dnum = u.uz.dnum;
 		    newlevel.dlevel = u.uz.dlevel + 1;
-		    goto_level(&newlevel, FALSE, TRUE, FALSE);
-		    /* messages for arriving in special rooms */
-		    spoteffects(FALSE);
+		    /* Cope with holes caused by monster's actions -- ALI */
+		    if (flags.mon_moving) {
+			schedule_goto(&newlevel, FALSE, TRUE, FALSE,
+			  You_fall, (char *)0);
+		    } else {
+			pline(You_fall);
+			goto_level(&newlevel, FALSE, TRUE, FALSE);
+			/* messages for arriving in special rooms */
+			spoteffects(FALSE);
+		    }
 		}
 	    } else {
 		if (shopdoor && madeby_u) pay_for_damage("ruin");
