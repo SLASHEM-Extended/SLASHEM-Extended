@@ -719,6 +719,10 @@ E void FDECL(gypsy_chat, (struct monst *));
 
 /* ### hack.c ### */
 
+#ifdef DUNGEON_GROWTH
+E void FDECL(catchup_dgn_growths, (int));
+E void FDECL(dgn_growths, (BOOLEAN_P,BOOLEAN_P));
+#endif
 E boolean FDECL(revive_nasty, (int,int,const char*));
 E void FDECL(movobj, (struct obj *,XCHAR_P,XCHAR_P));
 E boolean FDECL(may_dig, (XCHAR_P,XCHAR_P));

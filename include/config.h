@@ -451,6 +451,7 @@ typedef unsigned char	uchar;
                         /* and in inventory (madmax@fly.cc.fer.hr). */
                         /* Originally added by zaga. */
 #define OTHER_SERVICES  /* shopkeeper services */
+#define DUNGEON_GROWTH
 
 /* #define SHOUT */ /* JRN -- shouting and petcommands - not implemented */
 

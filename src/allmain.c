@@ -171,6 +171,9 @@ moveloop()
 		    nh_timeout();
 		    run_regions();
 
+#ifdef DUNGEON_GROWTH
+		    dgn_growths(TRUE, TRUE);
+#endif
 
 		    if (u.ublesscnt)  u.ublesscnt--;
 		    

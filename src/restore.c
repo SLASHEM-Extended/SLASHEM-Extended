@@ -906,7 +906,9 @@ boolean ghostly;
 	relink_timers(ghostly);
 	relink_light_sources(ghostly);
 	reset_oattached_mids(ghostly);
-
+#ifdef DUNGEON_GROWTH
+	if (!ghostly) catchup_dgn_growths((monstermoves - omoves) / 5);
+#endif
 	if (ghostly)
 	    clear_id_mapping();
 }
