@@ -241,16 +241,16 @@ WINPROXYSRC = ../win/proxy/winproxy.c ../win/proxy/callback.c
 WINPROXYOBJ = winproxy.o callback.o nhwin.a
 #
 # Common files for proxy window interface and plug-in window interfaces.
-PROXYCOMSRC = ../win/proxy/nhext.c ../win/proxy/nhxdr.c \
+PROXYCOMSRC = ../win/proxy/nhext.c ../win/proxy/nhxdr.c ../win/proxy/md5.c \
 	../win/proxy/nhextxdr.c ../win/proxy/nhextio.c ../win/proxy/compxdr.c
-PROXYCOMOBJ = nhext.o nhxdr.o nhextxdr.o nhextio.o compxdr.o
+PROXYCOMOBJ = nhext.o nhxdr.o md5.o nhextxdr.o nhextio.o compxdr.o
 #
 # Files for the proxy utility modules. These are provided for use with window
 # ports that support the proxy interface. The GTK window interface needs
 # these files regardless of whether proxy support is enabled or not.
-PROXYUTLSRC = ../win/proxy/dlbh.c ../win/proxy/mapid.c ../win/proxy/md5.c \
+PROXYUTLSRC = ../win/proxy/dlbh.c ../win/proxy/mapid.c \
 	../win/proxy/riputil.c ../win/proxy/getopt.c ../win/proxy/glyphmap.c
-PROXYUTLOBJ = dlbh.o mapid.o md5.o riputil.o getopt.o glyphmap.o
+PROXYUTLOBJ = dlbh.o mapid.o riputil.o getopt.o glyphmap.o
 #
 # Files for plug-in window interfaces. These are needed to support external
 # window ports and provide the interface to the game executable.  Currently,
