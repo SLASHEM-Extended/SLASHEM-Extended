@@ -6,8 +6,8 @@
 #
 # by Michaelª Hamel and Ross Brown 1991 : michael@otago.ac.nz
 #
-# Updated for Slash'EM 0.0.5-2 to .6-7
-# Paul Hurtley, August 1999 to September 2002
+# Updated for Slash'EM 0.0.5-2 to .6-8
+# Paul Hurtley, August 1999 to January 2003
 
 #--------------------------------------------------------------------------
 #
@@ -40,10 +40,10 @@ MacTty		= {Top}Sys:Mac:
 Share		= {Top}Sys:Share:
 
 # These folders are new
-ObjDir     = {Top}Obj{Processor}{Debug}:		# "Temporary" stuff
-LibDir     = {Top}Lib:							# "Temporary" stuff
-Preserve   = {Top}Preserve:						# Generated items for source distribution
-Results	   = {Top}Dungeon{Processor}{Debug}:	# Where the game goes
+ObjDir     = {Top}:Obj{Processor}{Debug}:		# "Temporary" stuff
+LibDir     = {Top}:Lib:							# "Temporary" stuff
+Preserve   = {Top}:Preserve:					# Generated items for source distribution
+Results	   = {Top}:Dungeon{Processor}{Debug}:	# Where the game goes
 
 # Override the settings in "{Include}"config.h
 # NHConfig = -d PORT_LEVEL='¶".0¶"' 
@@ -340,7 +340,7 @@ LevCompSrcs= "{Src}"monst.c		¶
 	Echo "" > "{LibDir}"Levels.r
 	Set index 1200
 	For file in Å.lev
-		Echo "read 'File' ({index},¶"{file}¶") ¶":lib:{file}¶";" >> "{LibDir}"Levels.r 
+		Echo "read 'File' ({index},¶"{file}¶") ¶"::lib:{file}¶";" >> "{LibDir}"Levels.r 
 		Set index `Evaluate {index} + 1`
 	End
 	Echo "" >> "{LibDir}"Levels.list
