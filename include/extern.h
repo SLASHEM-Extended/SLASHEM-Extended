@@ -908,6 +908,7 @@ E boolean FDECL(boxlock, (struct obj *,struct obj *));
 E boolean FDECL(doorlock, (struct obj *,int,int));
 E int NDECL(doopen);
 E int NDECL(doclose);
+E int FDECL(artifact_door, (int,int));
 
 #ifdef MAC
 /* These declarations are here because the main code calls them. */
