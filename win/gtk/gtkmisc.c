@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmisc.c,v 1.10 2003-05-24 15:15:15 j_ali Exp $
+  $Id: gtkmisc.c,v 1.11 2003-12-13 12:52:58 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -969,7 +969,7 @@ nh_option_new()
     GtkWidget *button2;
     GtkWidget *button3;
 
-    w = nh_gtk_window_dialog(TRUE);
+    w = nh_gtk_window_dialog(FALSE);
     gtk_container_border_width(GTK_CONTAINER(w), NH_PAD);
     nh_gtk_focus_set_master(GTK_WINDOW(w),
       GTK_SIGNAL_FUNC(default_key_press), 0);
@@ -1024,8 +1024,6 @@ nh_option_new()
     gtk_widget_set_sensitive(GTK_WIDGET(entry_catname), !option_lock);
 
     gtk_widget_show_all(w);
-
-    gtk_grab_add(w);
 
     gtk_main();
 

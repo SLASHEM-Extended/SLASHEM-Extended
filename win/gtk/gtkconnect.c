@@ -236,6 +236,7 @@ create_AddConnection (void)
   GtkWidget *hseparator3;
   GtkWidget *label14;
   GtkWidget *DisableAsync;
+  GtkWidget *EnableLogging;
   GtkWidget *dialog_action_area2;
   GtkWidget *cancelbutton2;
   GtkWidget *okbutton2;
@@ -338,6 +339,11 @@ create_AddConnection (void)
   gtk_widget_show (DisableAsync);
   gtk_box_pack_start (GTK_BOX (vbox2), DisableAsync, FALSE, FALSE, 0);
 
+  EnableLogging = gtk_check_button_new_with_mnemonic ("Enable _logging");
+  gtk_widget_set_name (EnableLogging, "EnableLogging");
+  gtk_widget_show (EnableLogging);
+  gtk_box_pack_start (GTK_BOX (vbox2), EnableLogging, FALSE, FALSE, 0);
+
   dialog_action_area2 = GTK_DIALOG (AddConnection)->action_area;
   gtk_widget_set_name (dialog_action_area2, "dialog_action_area2");
   gtk_widget_show (dialog_action_area2);
@@ -382,6 +388,7 @@ create_AddConnection (void)
   GLADE_HOOKUP_OBJECT (AddConnection, hseparator3, "hseparator3");
   GLADE_HOOKUP_OBJECT (AddConnection, label14, "label14");
   GLADE_HOOKUP_OBJECT (AddConnection, DisableAsync, "DisableAsync");
+  GLADE_HOOKUP_OBJECT (AddConnection, EnableLogging, "EnableLogging");
   GLADE_HOOKUP_OBJECT_NO_REF (AddConnection, dialog_action_area2, "dialog_action_area2");
   GLADE_HOOKUP_OBJECT (AddConnection, cancelbutton2, "cancelbutton2");
   GLADE_HOOKUP_OBJECT (AddConnection, okbutton2, "okbutton2");
@@ -617,5 +624,243 @@ create_ConnectTerminal (void)
   GLADE_HOOKUP_OBJECT (ConnectTerminal, textview1, "textview1");
 
   return ConnectTerminal;
+}
+
+GtkWidget*
+create_Troubleshooting (void)
+{
+  GtkWidget *Troubleshooting;
+  GtkWidget *dialog_vbox5;
+  GtkWidget *vbox4;
+  GtkWidget *label15;
+  GtkWidget *label16;
+  GtkWidget *label17;
+  GtkWidget *hseparator4;
+  GtkWidget *DisableAsync;
+  GtkWidget *EnableLogging;
+  GtkWidget *dialog_action_area5;
+  GtkWidget *ViewLog;
+  GtkWidget *closebutton1;
+
+  Troubleshooting = gtk_dialog_new ();
+  gtk_widget_set_name (Troubleshooting, "Troubleshooting");
+  gtk_window_set_title (GTK_WINDOW (Troubleshooting), "Troubleshooting");
+  gtk_window_set_destroy_with_parent (GTK_WINDOW (Troubleshooting), TRUE);
+
+  dialog_vbox5 = GTK_DIALOG (Troubleshooting)->vbox;
+  gtk_widget_set_name (dialog_vbox5, "dialog_vbox5");
+  gtk_widget_show (dialog_vbox5);
+
+  vbox4 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_set_name (vbox4, "vbox4");
+  gtk_widget_show (vbox4);
+  gtk_box_pack_start (GTK_BOX (dialog_vbox5), vbox4, TRUE, TRUE, 0);
+
+  label15 = gtk_label_new ("Are you having trouble with the connection to the game server?");
+  gtk_widget_set_name (label15, "label15");
+  gtk_widget_show (label15);
+  gtk_box_pack_start (GTK_BOX (vbox4), label15, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label15), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label15), 0, 0.5);
+
+  label16 = gtk_label_new ("These settings control how gtkhack connects to servers.");
+  gtk_widget_set_name (label16, "label16");
+  gtk_widget_show (label16);
+  gtk_box_pack_start (GTK_BOX (vbox4), label16, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label16), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label16), 0, 0.5);
+
+  label17 = gtk_label_new ("They allow you to troubleshoot connection related problems.");
+  gtk_widget_set_name (label17, "label17");
+  gtk_widget_show (label17);
+  gtk_box_pack_start (GTK_BOX (vbox4), label17, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label17), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label17), 0, 0.5);
+
+  hseparator4 = gtk_hseparator_new ();
+  gtk_widget_set_name (hseparator4, "hseparator4");
+  gtk_widget_show (hseparator4);
+  gtk_box_pack_start (GTK_BOX (vbox4), hseparator4, TRUE, FALSE, 4);
+
+  DisableAsync = gtk_check_button_new_with_mnemonic ("Disable _asynchronous support on future connections");
+  gtk_widget_set_name (DisableAsync, "DisableAsync");
+  gtk_widget_show (DisableAsync);
+  gtk_box_pack_start (GTK_BOX (vbox4), DisableAsync, FALSE, FALSE, 4);
+
+  EnableLogging = gtk_check_button_new_with_mnemonic ("Enable _logging");
+  gtk_widget_set_name (EnableLogging, "EnableLogging");
+  gtk_widget_show (EnableLogging);
+  gtk_box_pack_start (GTK_BOX (vbox4), EnableLogging, FALSE, FALSE, 4);
+
+  dialog_action_area5 = GTK_DIALOG (Troubleshooting)->action_area;
+  gtk_widget_set_name (dialog_action_area5, "dialog_action_area5");
+  gtk_widget_show (dialog_action_area5);
+  gtk_button_box_set_layout (GTK_BUTTON_BOX (dialog_action_area5), GTK_BUTTONBOX_END);
+
+  ViewLog = gtk_button_new_with_mnemonic ("_View log");
+  gtk_widget_set_name (ViewLog, "ViewLog");
+  gtk_widget_show (ViewLog);
+  gtk_dialog_add_action_widget (GTK_DIALOG (Troubleshooting), ViewLog, 0);
+  GTK_WIDGET_SET_FLAGS (ViewLog, GTK_CAN_DEFAULT);
+
+  closebutton1 = gtk_button_new_from_stock ("gtk-close");
+  gtk_widget_set_name (closebutton1, "closebutton1");
+  gtk_widget_show (closebutton1);
+  gtk_dialog_add_action_widget (GTK_DIALOG (Troubleshooting), closebutton1, GTK_RESPONSE_CLOSE);
+  GTK_WIDGET_SET_FLAGS (closebutton1, GTK_CAN_DEFAULT);
+
+  g_signal_connect_swapped ((gpointer) Troubleshooting, "response",
+                            G_CALLBACK (gtk_widget_destroy),
+                            GTK_OBJECT (Troubleshooting));
+  g_signal_connect ((gpointer) DisableAsync, "toggled",
+                    G_CALLBACK (on_DisableAsync_toggled),
+                    NULL);
+  g_signal_connect ((gpointer) EnableLogging, "toggled",
+                    G_CALLBACK (on_EnableLogging_toggled),
+                    NULL);
+  g_signal_connect ((gpointer) ViewLog, "clicked",
+                    G_CALLBACK (on_ViewLog_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (Troubleshooting, Troubleshooting, "Troubleshooting");
+  GLADE_HOOKUP_OBJECT_NO_REF (Troubleshooting, dialog_vbox5, "dialog_vbox5");
+  GLADE_HOOKUP_OBJECT (Troubleshooting, vbox4, "vbox4");
+  GLADE_HOOKUP_OBJECT (Troubleshooting, label15, "label15");
+  GLADE_HOOKUP_OBJECT (Troubleshooting, label16, "label16");
+  GLADE_HOOKUP_OBJECT (Troubleshooting, label17, "label17");
+  GLADE_HOOKUP_OBJECT (Troubleshooting, hseparator4, "hseparator4");
+  GLADE_HOOKUP_OBJECT (Troubleshooting, DisableAsync, "DisableAsync");
+  GLADE_HOOKUP_OBJECT (Troubleshooting, EnableLogging, "EnableLogging");
+  GLADE_HOOKUP_OBJECT_NO_REF (Troubleshooting, dialog_action_area5, "dialog_action_area5");
+  GLADE_HOOKUP_OBJECT (Troubleshooting, ViewLog, "ViewLog");
+  GLADE_HOOKUP_OBJECT (Troubleshooting, closebutton1, "closebutton1");
+
+  return Troubleshooting;
+}
+
+GtkWidget*
+create_ViewLog (void)
+{
+  GtkWidget *ViewLog;
+  GtkWidget *vbox5;
+  GtkWidget *menubar1;
+  GtkWidget *menuitem4;
+  GtkWidget *menuitem4_menu;
+  GtkWidget *clear1;
+  GtkWidget *save_as1;
+  GtkWidget *separatormenuitem1;
+  GtkWidget *quit1;
+  GtkWidget *menuitem5;
+  GtkWidget *menuitem5_menu;
+  GtkWidget *copy1;
+  GtkWidget *scrolledwindow3;
+  GtkWidget *ViewLogTextView;
+  GtkAccelGroup *accel_group;
+
+  accel_group = gtk_accel_group_new ();
+
+  ViewLog = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_widget_set_name (ViewLog, "ViewLog");
+  gtk_window_set_title (GTK_WINDOW (ViewLog), "View connection log");
+
+  vbox5 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_set_name (vbox5, "vbox5");
+  gtk_widget_show (vbox5);
+  gtk_container_add (GTK_CONTAINER (ViewLog), vbox5);
+
+  menubar1 = gtk_menu_bar_new ();
+  gtk_widget_set_name (menubar1, "menubar1");
+  gtk_widget_show (menubar1);
+  gtk_box_pack_start (GTK_BOX (vbox5), menubar1, FALSE, FALSE, 0);
+
+  menuitem4 = gtk_menu_item_new_with_mnemonic ("_File");
+  gtk_widget_set_name (menuitem4, "menuitem4");
+  gtk_widget_show (menuitem4);
+  gtk_container_add (GTK_CONTAINER (menubar1), menuitem4);
+
+  menuitem4_menu = gtk_menu_new ();
+  gtk_widget_set_name (menuitem4_menu, "menuitem4_menu");
+  gtk_menu_item_set_submenu (GTK_MENU_ITEM (menuitem4), menuitem4_menu);
+
+  clear1 = gtk_image_menu_item_new_from_stock ("gtk-clear", accel_group);
+  gtk_widget_set_name (clear1, "clear1");
+  gtk_widget_show (clear1);
+  gtk_container_add (GTK_CONTAINER (menuitem4_menu), clear1);
+
+  save_as1 = gtk_image_menu_item_new_from_stock ("gtk-save-as", accel_group);
+  gtk_widget_set_name (save_as1, "save_as1");
+  gtk_widget_show (save_as1);
+  gtk_container_add (GTK_CONTAINER (menuitem4_menu), save_as1);
+
+  separatormenuitem1 = gtk_menu_item_new ();
+  gtk_widget_set_name (separatormenuitem1, "separatormenuitem1");
+  gtk_widget_show (separatormenuitem1);
+  gtk_container_add (GTK_CONTAINER (menuitem4_menu), separatormenuitem1);
+  gtk_widget_set_sensitive (separatormenuitem1, FALSE);
+
+  quit1 = gtk_image_menu_item_new_from_stock ("gtk-quit", accel_group);
+  gtk_widget_set_name (quit1, "quit1");
+  gtk_widget_show (quit1);
+  gtk_container_add (GTK_CONTAINER (menuitem4_menu), quit1);
+
+  menuitem5 = gtk_menu_item_new_with_mnemonic ("_Edit");
+  gtk_widget_set_name (menuitem5, "menuitem5");
+  gtk_widget_show (menuitem5);
+  gtk_container_add (GTK_CONTAINER (menubar1), menuitem5);
+
+  menuitem5_menu = gtk_menu_new ();
+  gtk_widget_set_name (menuitem5_menu, "menuitem5_menu");
+  gtk_menu_item_set_submenu (GTK_MENU_ITEM (menuitem5), menuitem5_menu);
+
+  copy1 = gtk_image_menu_item_new_from_stock ("gtk-copy", accel_group);
+  gtk_widget_set_name (copy1, "copy1");
+  gtk_widget_show (copy1);
+  gtk_container_add (GTK_CONTAINER (menuitem5_menu), copy1);
+
+  scrolledwindow3 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_set_name (scrolledwindow3, "scrolledwindow3");
+  gtk_widget_show (scrolledwindow3);
+  gtk_box_pack_start (GTK_BOX (vbox5), scrolledwindow3, TRUE, TRUE, 0);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow3), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+
+  ViewLogTextView = gtk_text_view_new ();
+  gtk_widget_set_name (ViewLogTextView, "ViewLogTextView");
+  gtk_widget_show (ViewLogTextView);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow3), ViewLogTextView);
+  gtk_text_view_set_editable (GTK_TEXT_VIEW (ViewLogTextView), FALSE);
+
+  g_signal_connect ((gpointer) clear1, "activate",
+                    G_CALLBACK (on_viewlog_clear),
+                    NULL);
+  g_signal_connect ((gpointer) save_as1, "activate",
+                    G_CALLBACK (on_viewlog_save_as),
+                    NULL);
+  g_signal_connect ((gpointer) quit1, "activate",
+                    G_CALLBACK (on_viewlog_quit),
+                    NULL);
+  g_signal_connect ((gpointer) copy1, "activate",
+                    G_CALLBACK (on_viewlog_copy),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (ViewLog, ViewLog, "ViewLog");
+  GLADE_HOOKUP_OBJECT (ViewLog, vbox5, "vbox5");
+  GLADE_HOOKUP_OBJECT (ViewLog, menubar1, "menubar1");
+  GLADE_HOOKUP_OBJECT (ViewLog, menuitem4, "menuitem4");
+  GLADE_HOOKUP_OBJECT (ViewLog, menuitem4_menu, "menuitem4_menu");
+  GLADE_HOOKUP_OBJECT (ViewLog, clear1, "clear1");
+  GLADE_HOOKUP_OBJECT (ViewLog, save_as1, "save_as1");
+  GLADE_HOOKUP_OBJECT (ViewLog, separatormenuitem1, "separatormenuitem1");
+  GLADE_HOOKUP_OBJECT (ViewLog, quit1, "quit1");
+  GLADE_HOOKUP_OBJECT (ViewLog, menuitem5, "menuitem5");
+  GLADE_HOOKUP_OBJECT (ViewLog, menuitem5_menu, "menuitem5_menu");
+  GLADE_HOOKUP_OBJECT (ViewLog, copy1, "copy1");
+  GLADE_HOOKUP_OBJECT (ViewLog, scrolledwindow3, "scrolledwindow3");
+  GLADE_HOOKUP_OBJECT (ViewLog, ViewLogTextView, "ViewLogTextView");
+
+  gtk_window_add_accel_group (GTK_WINDOW (ViewLog), accel_group);
+
+  return ViewLog;
 }
 

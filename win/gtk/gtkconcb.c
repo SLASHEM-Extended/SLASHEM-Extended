@@ -1,7 +1,9 @@
-/* $Id: gtkconcb.c,v 1.2 2003-12-08 22:20:49 j_ali Exp $ */
+/* $Id: gtkconcb.c,v 1.3 2003-12-13 12:52:58 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
+#include <stdlib.h>
+#include <errno.h>
 #include <gtk/gtk.h>
 #include "gtkconcb.h"
 #include "gtkconnect.h"
@@ -97,12 +99,15 @@ GTK_create_connection(GtkWidget *dialog, gpointer user_data)
     GtkWidget *ConnectionName = lookup_widget(dialog, "ConnectionName");
     GtkWidget *ServerType = lookup_widget(dialog, "ServerType");
     GtkWidget *DisableAsync = lookup_widget(dialog, "DisableAsync");
+    GtkWidget *EnableLogging = lookup_widget(dialog, "EnableLogging");
     GtkTreeRowReference *ref;
     const gchar *name = gtk_entry_get_text(GTK_ENTRY(ConnectionName));
     const gchar *type = gtk_entry_get_text(GTK_ENTRY(ServerType));
     unsigned long flags = 0UL;
     if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(DisableAsync)))
 	flags |= PROXY_CLNT_SYNCHRONOUS;
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(EnableLogging)))
+	flags |= PROXY_CLNT_LOGGED;
     if (!*name) {
 	w = gtk_message_dialog_new(GTK_WINDOW(dialog),
 	  GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
@@ -224,4 +229,139 @@ GTK_add_tcp_server(GtkWidget *RemoteExecutable, gpointer user_data)
     GTK_connection_add(name, "tcp", address, flags);
     g_free(address);
     gtk_widget_destroy(RemoteExecutable);
+}
+
+void
+on_DisableAsync_toggled(GtkToggleButton *button, gpointer user_data)
+{
+    unsigned long flags;
+    GtkTreePath *path;
+    GtkTreeIter iter;
+    path = gtk_tree_row_reference_get_path(GTK_current_connection);
+    if (gtk_tree_model_get_iter(GTK_TREE_MODEL(GTK_connections), &iter, path)) {
+	gtk_tree_model_get(GTK_TREE_MODEL(GTK_connections), &iter,
+	  COLUMN_FLAGS, &flags, -1);
+	if (gtk_toggle_button_get_active(button))
+	    flags |= PROXY_CLNT_SYNCHRONOUS;
+	else
+	    flags &= ~PROXY_CLNT_SYNCHRONOUS;
+	gtk_list_store_set(GTK_connections, &iter, COLUMN_FLAGS, flags, -1);
+    }
+    gtk_tree_path_free(path);
+}
+
+void
+on_EnableLogging_toggled(GtkToggleButton *button, gpointer user_data)
+{
+    unsigned long flags;
+    GtkTreePath *path;
+    GtkTreeIter iter;
+    path = gtk_tree_row_reference_get_path(GTK_current_connection);
+    if (gtk_tree_model_get_iter(GTK_TREE_MODEL(GTK_connections), &iter, path)) {
+	gtk_tree_model_get(GTK_TREE_MODEL(GTK_connections), &iter,
+	  COLUMN_FLAGS, &flags, -1);
+	if (gtk_toggle_button_get_active(button))
+	    flags |= PROXY_CLNT_LOGGED;
+	else
+	    flags &= ~PROXY_CLNT_LOGGED;
+	gtk_list_store_set(GTK_connections, &iter, COLUMN_FLAGS, flags, -1);
+    }
+    gtk_tree_path_free(path);
+    gtkhack_enable_logging(flags & PROXY_CLNT_LOGGED);
+}
+
+void
+on_ViewLog_clicked(GtkButton *button, gpointer user_data)
+{
+    static GtkWidget *ViewLog = NULL;
+    GtkWidget *textview;
+    if (ViewLog)
+	gtk_window_present(GTK_WINDOW(ViewLog));
+    else {
+	ViewLog = create_ViewLog();
+	textview = lookup_widget(ViewLog, "ViewLogTextView");
+	gtk_text_view_set_buffer(GTK_TEXT_VIEW(textview), GTK_nhext_log);
+	gtk_window_set_default_size(GTK_WINDOW(ViewLog), 200, 300);
+	gtk_widget_show(ViewLog);
+	gtk_signal_connect(GTK_OBJECT(ViewLog), "destroy",
+	  GTK_SIGNAL_FUNC(gtk_widget_destroyed), &ViewLog);
+    }
+}
+
+void
+on_viewlog_clear(GtkMenuItem *menuitem, gpointer user_data)
+{
+    gtk_text_buffer_set_text(GTK_nhext_log, "", 0);
+}
+
+void
+on_viewlog_saveas_ok(GtkButton *button, GtkFileSelection *fs)
+{
+    gint resp;
+    FILE *fp;
+    const gchar *filename;
+    gchar *text;
+    GtkTextIter start, end;
+    GtkWidget *dialog;
+    filename = gtk_file_selection_get_filename(fs);
+    if (g_file_test(filename, G_FILE_TEST_EXISTS)) {
+	dialog = gtk_message_dialog_new(GTK_WINDOW(fs),
+	   GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_WARNING,
+	   GTK_BUTTONS_NONE, "File '%s' exists.", filename);
+	gtk_dialog_add_buttons(GTK_DIALOG(dialog), "gtk-cancel",
+	  GTK_RESPONSE_CANCEL, "_Overwrite", GTK_RESPONSE_OK, NULL);
+	gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_OK);
+	resp = gtk_dialog_run(GTK_DIALOG(dialog));
+	gtk_widget_destroy(dialog);
+	if (resp != GTK_RESPONSE_OK)
+	    return;
+    }
+    fp = fopen(filename, "w");
+    gtk_text_buffer_get_bounds(GTK_nhext_log, &start, &end);
+    text = gtk_text_buffer_get_text(GTK_nhext_log, &start, &end, FALSE);
+    if (fwrite(text, strlen(text), 1, fp) != 1) {
+	dialog = gtk_message_dialog_new(GTK_WINDOW(fs),
+	   GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR,
+	   GTK_BUTTONS_CLOSE, "Error saving file '%s': %s",
+	   filename, g_strerror(errno));
+	gtk_dialog_run(GTK_DIALOG(dialog));
+	gtk_widget_destroy(dialog);
+    }
+    fclose(fp);
+    free(text);
+    gtk_widget_destroy(GTK_WIDGET(fs));
+}
+
+void
+on_viewlog_save_as(GtkMenuItem *menuitem, gpointer user_data)
+{
+    static GtkWidget *SaveAs = NULL;
+    if (SaveAs)
+	gtk_window_present(GTK_WINDOW(SaveAs));
+    else {
+	GtkWidget *SaveAs = gtk_file_selection_new("Save connection log");
+	g_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(SaveAs)->ok_button),
+	  "clicked", G_CALLBACK(on_viewlog_saveas_ok), SaveAs);
+	g_signal_connect_swapped(
+	  GTK_OBJECT(GTK_FILE_SELECTION(SaveAs)->cancel_button), "clicked",
+	  G_CALLBACK(gtk_widget_destroy), SaveAs); 
+	gtk_widget_show(SaveAs);
+	gtk_signal_connect(GTK_OBJECT(SaveAs), "destroy",
+	  GTK_SIGNAL_FUNC(gtk_widget_destroyed), &SaveAs);
+    }
+}
+
+void
+on_viewlog_quit(GtkMenuItem *menuitem, gpointer user_data)
+{
+    GtkWidget *w;
+    w = lookup_widget(GTK_WIDGET(menuitem), "ViewLog");
+    gtk_widget_destroy(w);
+}
+
+void
+on_viewlog_copy(GtkMenuItem *menuitem, gpointer user_data)
+{
+    GtkClipboard *clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
+    gtk_text_buffer_copy_clipboard( GTK_nhext_log, clipboard);
 }

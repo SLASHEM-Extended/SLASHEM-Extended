@@ -1,4 +1,4 @@
-/* $Id: gtkhackrc.c,v 1.7 2003-12-08 22:20:49 j_ali Exp $ */
+/* $Id: gtkhackrc.c,v 1.8 2003-12-13 12:52:58 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -10,6 +10,7 @@
 #endif
 #include <glib.h>
 #include "winGTK.h"
+#include "prxyclnt.h"
 
 #define PARSE_OK		0
 #define PARSE_FAIL		1
@@ -897,9 +898,14 @@ int gtkhackrc_check_no(GScanner *scanner, GtkHackRcVList *params,
 int gtkhackrc_check_type(GScanner *scanner, GtkHackRcValue *value,
   const char *name, int type)
 {
+    char *types[]={"number", "string", "variable", "function", "record",
+      "vector", "value list"};
     if (value->type != type) {
 	g_scanner_warn(scanner, "incompatible type for %s of `%s'", name,
 	  GTKHACKRC(scanner)->variable);
+	g_scanner_warn(scanner, "(expected %s, got %s)", types[type],
+	  value->type >= 0 && value->type < SIZE(types) ? types[value->type] :
+	  "value of unknown type");
 	return FALSE;
     } else
 	return TRUE;
@@ -970,9 +976,9 @@ void rc_radar(GScanner *scanner, GtkHackRcValue *value)
 #ifdef GTKHACK
 void rc_connections(GScanner *scanner, GtkHackRcValue *value)
 {
-    int i, n;
+    int i, j, n, nflags;
     unsigned long flags;
-    GtkHackRcValue *con;
+    GtkHackRcValue *con, *flag;
     if (!gtkhackrc_check_type(scanner, value, "value", PARSE_VALUE_TYPE_VECTOR))
 	return;
     n = value->u.vector.n_values;
@@ -989,9 +995,21 @@ void rc_connections(GScanner *scanner, GtkHackRcValue *value)
 	  gtkhackrc_check_type(scanner, con->u.record.values[2], "address",
 	    PARSE_VALUE_TYPE_STRING)) {
 	    if (con->u.record.n_values < 4 || gtkhackrc_check_type(scanner,
-	      con->u.record.values[3], "flags", PARSE_VALUE_TYPE_NUMBER)) {
-		flags = con->u.record.n_values < 4 ? 0 :
-		  (unsigned long)con->u.record.values[3]->u.number;
+	      con->u.record.values[3], "flags", PARSE_VALUE_TYPE_VECTOR)) {
+		flags = 0;
+		if (con->u.record.n_values >= 4) {
+		    nflags = con->u.record.values[3]->u.vector.n_values;
+		    for(j = 0; j < nflags; j++) {
+			flag = con->u.record.values[3]->u.vector.values[j];
+			if (gtkhackrc_check_type(scanner, flag, "flag",
+			  PARSE_VALUE_TYPE_STRING)) {
+			    if (!strcmp(flag->u.string, "synchronous"))
+				flags |= PROXY_CLNT_SYNCHRONOUS;
+			    else if (!strcmp(flag->u.string, "logged"))
+				flags |= PROXY_CLNT_LOGGED;
+			}
+		    }
+		}
 		GTK_connection_add(con->u.record.values[0]->u.string,
 		  con->u.record.values[1]->u.string,
 		  con->u.record.values[2]->u.string, flags);

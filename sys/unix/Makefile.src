@@ -805,7 +805,7 @@ xshmmap.o: ../win/gtk/xshmmap.c ../include/winGTK.h $(HACK_H) \
 		../include/nhxdr.h ../include/proxycom.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshmmap.c
 gtkhackrc.o: ../win/gtk/gtkhackrc.c ../include/winGTK.h $(HACK_H) \
-		../include/nhxdr.h ../include/proxycom.h
+		../include/nhxdr.h ../include/proxycom.h ../include/prxyclnt.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkhackrc.c
 gtkprefs.o: ../win/gtk/gtkprefs.c ../include/winGTK.h $(HACK_H) \
 		../include/nhxdr.h ../include/proxycom.h ../include/patchlevel.h

@@ -1,4 +1,4 @@
-/* $Id: proxysvc.c,v 1.25 2003-12-08 22:20:49 j_ali Exp $ */
+/* $Id: proxysvc.c,v 1.26 2003-12-13 12:52:58 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -1415,8 +1415,11 @@ win_proxy_clnt_log_open(nhext_io_func func, void *handle)
 {
     if (proxy_clnt_log)
 	nhext_io_close(proxy_clnt_log);
-    proxy_clnt_log = nhext_io_open(func, handle,
-      NHEXT_IO_WRONLY | NHEXT_IO_LINEBUF);
+    if (func)
+	proxy_clnt_log = nhext_io_open(func, handle,
+	  NHEXT_IO_WRONLY | NHEXT_IO_LINEBUF);
+    else
+	proxy_clnt_log = (NhExtIO *)0;
     return !!proxy_clnt_log;
 }
 

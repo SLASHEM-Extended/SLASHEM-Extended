@@ -7,3 +7,5 @@ GtkWidget* create_AddConnection (void);
 GtkWidget* create_RemoteMachine (void);
 GtkWidget* create_LocalExecutable (void);
 GtkWidget* create_ConnectTerminal (void);
+GtkWidget* create_Troubleshooting (void);
+GtkWidget* create_ViewLog (void);

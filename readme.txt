@@ -79,6 +79,7 @@ ver 0.0.7E5 [?] [Released by ?]
 -Merged vanilla 3.4.3 codebase.
 -fixed bug 857644: Gnome: tty_raw_print should be removed
 -fixed bug 857488: gtkprogress not handled in proxified build
+-GtkHack: Added user-level logging
 
 See history.txt for changes made in previous versions.
 

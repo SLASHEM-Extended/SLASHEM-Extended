@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.44 2003-09-30 12:43:19 j_ali Exp $
+  $Id: gtk.c,v 1.45 2003-12-13 12:52:58 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -42,6 +42,9 @@ static void game_option(GtkWidget *w, gpointer data);
 static void game_preferences(GtkWidget *w, gpointer data);
 static void game_quit(GtkWidget *w, gpointer data);
 static void game_topten(GtkWidget *w, gpointer data);
+#ifdef GTKHACK
+static void game_troubleshooting(GtkWidget *widget, gpointer data);
+#endif
 static void nh_menu_sensitive(char *menu, boolean f);
 
 static int GTK_display_file(char *name);
@@ -159,6 +162,9 @@ static GtkItemFactoryEntry mainmenu_items[] = {
     {"/Game/Option",		"<shift>O",	game_option,	'O',    NULL},
     {"/Game/Preferences",	NULL,		game_preferences, 0,    NULL},
     {"/Game/Score",		NULL,		game_topten,	0,	NULL},
+#ifdef GTKHACK
+    {"/Game/Troubleshooting",	NULL,		game_troubleshooting, 0,NULL},
+#endif
     {"/Game/Gsep2",		NULL,		NULL,		0,	"<Separator>"},
     {"/Game/Quit",		NULL,		game_quit,	0,	NULL},
 };
@@ -856,7 +862,8 @@ game_preferences(GtkWidget *widget, gpointer data)
 	gtk_window_present(GTK_WINDOW(GTK_prefs));
     else {
 	GTK_prefs = GTK_preferences_new();
-	gtk_widget_destroyed(GTK_prefs, &GTK_prefs);
+	gtk_signal_connect(GTK_OBJECT(GTK_prefs), "destroy",
+	  GTK_SIGNAL_FUNC(gtk_widget_destroyed), &GTK_prefs);
     }
 }
 
@@ -883,6 +890,21 @@ game_topten(GtkWidget *widget, gpointer data)
 #endif
     in_topten--;
 }
+
+#ifdef GTKHACK
+static void
+game_troubleshooting(GtkWidget *widget, gpointer data)
+{
+    static GtkWidget *GTK_troubleshooting = NULL;
+    if (GTK_troubleshooting)
+	gtk_window_present(GTK_WINDOW(GTK_troubleshooting));
+    else {
+	GTK_troubleshooting = GTK_troubleshooting_new();
+	gtk_signal_connect(GTK_OBJECT(GTK_troubleshooting), "destroy",
+	  GTK_SIGNAL_FUNC(gtk_widget_destroyed), &GTK_troubleshooting);
+    }
+}
+#endif
 
 static void
 help_license(GtkWidget *widget, gpointer data)

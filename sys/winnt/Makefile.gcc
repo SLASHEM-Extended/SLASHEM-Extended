@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.43 2003-12-12 12:36:59 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.44 2003-12-13 12:52:57 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -1649,7 +1649,7 @@ xshmmap.o: ../win/gtk/xshmmap.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/xshmmap.c
 gtkhackrc.o: ../win/gtk/gtkhackrc.c $(INCL)/winGTK.h $(HACK_H) \
-		$(INCL)/nhxdr.h $(INCL)/proxycom.h
+		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/proxyclnt.h
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkhackrc.c
 gtkprefs.o: ../win/gtk/gtkprefs.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h

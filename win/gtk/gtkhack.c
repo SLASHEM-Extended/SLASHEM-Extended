@@ -1,4 +1,4 @@
-/* $Id: gtkhack.c,v 1.6 2003-12-08 22:20:49 j_ali Exp $ */
+/* $Id: gtkhack.c,v 1.7 2003-12-13 12:52:58 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -13,7 +13,9 @@
 static GtkWidget *treeview = NULL;
 
 GtkTreeRowReference *GTK_default_connection = NULL;
+GtkTreeRowReference *GTK_current_connection;
 GtkListStore *GTK_connections;
+GtkTextBuffer *GTK_nhext_log = NULL;
 
 struct lookup_datum {
     const char *name;
@@ -128,13 +130,24 @@ GTK_connection_add(const char *name, const char *scheme, const char *address,
 static gboolean save(GtkTreeModel *model, GtkTreePath *path,
   GtkTreeIter *iter, gpointer data)
 {
+    int n = 0;
     gchar *name, *scheme, *address;
     gulong flags;
     GString *str = data;
     gtk_tree_model_get(model, iter, COLUMN_NAME, &name, COLUMN_SCHEME, &scheme, 
       COLUMN_ADDRESS, &address, COLUMN_FLAGS, &flags, -1);
-    g_string_append_printf(str, "{\"%s\",\"%s\",\"%s\",%lu},",
-      g_strescape(name, ""), scheme, g_strescape(address, ""), flags);
+    g_string_append_printf(str, "{\"%s\",\"%s\",\"%s\",[",
+      g_strescape(name, ""), scheme, g_strescape(address, ""));
+    if (flags & PROXY_CLNT_SYNCHRONOUS) {
+	n++;
+	g_string_append(str, "\"synchronous\"");
+    }
+    if (flags & PROXY_CLNT_LOGGED) {
+	if (n++)
+	    g_string_append(str, ", ");
+	g_string_append(str, "\"logged\"");
+    }
+    g_string_append(str, "]},");
     g_free(name);
     g_free(scheme);
     g_free(address);
@@ -228,6 +241,58 @@ GTK_ext_send_config_file(int fh)
     }
 }
 
+static gtkhack_nhext_log(void *handle, void *buf, unsigned int len)
+{
+    GtkTextBuffer *t = GTK_TEXT_BUFFER(handle);
+    GtkTextIter iter;
+    gtk_text_buffer_get_end_iter(t, &iter);
+    gtk_text_buffer_insert(t, &iter, buf, len);
+    return len;
+}
+
+void
+gtkhack_enable_logging(gboolean setting)
+{
+    if (setting) {
+	if (!GTK_nhext_log)
+	    GTK_nhext_log = gtk_text_buffer_new(NULL);
+	win_proxy_clnt_log_open(gtkhack_nhext_log, GTK_nhext_log);
+    } else
+	win_proxy_clnt_log_open(NULL, NULL);
+}
+
+GtkWidget*
+GTK_troubleshooting_new(void)
+{
+    unsigned long flags;
+    GtkTreePath *path;
+    GtkTreeIter iter;
+    GtkWidget *cb;
+    GtkWidget *w = create_Troubleshooting();
+    path = gtk_tree_row_reference_get_path(GTK_current_connection);
+    if (gtk_tree_model_get_iter(GTK_TREE_MODEL(GTK_connections), &iter, path)) {
+	gtk_tree_model_get(GTK_TREE_MODEL(GTK_connections), &iter,
+	  COLUMN_FLAGS, &flags, -1);
+    }
+    gtk_tree_path_free(path);
+    cb = lookup_widget(w, "DisableAsync");
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb),
+      flags & PROXY_CLNT_SYNCHRONOUS);
+    cb = lookup_widget(w, "EnableLogging");
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb),
+      flags & PROXY_CLNT_LOGGED);
+    /* Stop the clicked signal from propogating from the ViewLog button
+     * to the dialog and thus causing gtk_dialog_run() to return. Really,
+     * we should arrange for the ViewLog button to be a non-activatable
+     * widget but glade doesn't have support for this.
+     */
+    g_signal_handlers_block_matched(lookup_widget(w, "ViewLog"),
+      G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_DATA,
+      g_signal_lookup("clicked", GTK_TYPE_BUTTON), 0, NULL, NULL, G_OBJECT(w));
+    gtk_widget_show(w);
+    return w;
+}
+
 int
 main(int argc, char **argv)
 {
@@ -292,6 +357,9 @@ main(int argc, char **argv)
     while (gtk_dialog_run(GTK_DIALOG(connections)) == GTK_RESPONSE_OK) {
 	sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
 	if (gtk_tree_selection_get_selected(sel, &model, &iter)) {
+	    path = gtk_tree_model_get_path(model, &iter);
+	    GTK_current_connection =  gtk_tree_row_reference_new(model, path);
+	    gtk_tree_path_free(path);
 	    gtk_tree_model_get(model, &iter, COLUMN_NAME, &name,
 	      COLUMN_SCHEME, &scheme, COLUMN_ADDRESS, &address,
 	      COLUMN_FLAGS, &flags, -1);
@@ -306,6 +374,9 @@ main(int argc, char **argv)
 	    proxy_clnt_set_errhandler(GTK_proxy_clnt_errhandler);
 	    nhext_set_errhandler(GTK_nhext_errhandler);
 	    win_proxy_clnt_set_flags(PROXY_CLNT_SYNCHRONOUS, flags);
+	    gtkhack_enable_logging(TRUE);
+	    if (flags & PROXY_CLNT_LOGGED)
+		gtkhack_enable_logging(TRUE);
 	    gtk_widget_realize(progress);
 	    cursor = gdk_cursor_new_for_display(
 	      gdk_drawable_get_display(progress->window), GDK_WATCH);
