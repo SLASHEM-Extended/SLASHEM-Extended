@@ -332,6 +332,7 @@ ver 0.0.6E4F3 (Might become 0.0.6E5) [February XX/2001]
 -fixed bug 128019: Player can eat corpses which are underwater.
 -fixed bug 130386: Unused candles merge with partly used ones.
 -fixed bug 130263: Polymorphing into a new version of yourself seems buggy.
+-quick fix for bug 130857: Wrong location given for death.
 
 ver 0.0.6E4F2 DOS? (or perhaps merge into F3) [XXX XX/2001]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined

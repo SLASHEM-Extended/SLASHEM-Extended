@@ -612,6 +612,13 @@ boolean so;
 	    if (t1->deathdnum == astral_level.dnum) {
 		const char *arg, *fmt = " on the Plane of %s";
 
+		/* [ALI] Quick hack to cope with the fact that 0.0.6E4
+		 * is missing the dummy surface level. This hack can
+		 * be removed once dungeon.def is corrected. See bug
+		 * 130857: Wrong location given for death.
+		 */
+		if (find_level("dummy") == 0) t1->deathlev--;
+
 		switch (t1->deathlev) {
 		case -5:
 			fmt = " on the %s Plane";
