@@ -83,9 +83,8 @@ A("Excalibur",                  LONG_SWORD,
 	PHYS(5,10),	DRLI(0,0),	NO_CARY,	0, A_LAWFUL, PM_KNIGHT, NON_PM ),
 
 A("Sunsword",                   LONG_SWORD,
-	(SPFX_RESTR|SPFX_INTEL|SPFX_DFLAG2|SPFX_DEFN), 0, M2_UNDEAD,
+	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_UNDEAD,
 	PHYS(5,0),	DFNS(AD_BLND),	NO_CARY,	0, A_LAWFUL, NON_PM, NON_PM ),
-                    /*DFNS(AD_BLND)*/
 
 /*
  *	Ah, never shall I forget the cry,
