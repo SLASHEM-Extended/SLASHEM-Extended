@@ -2735,7 +2735,7 @@ use_weapon:
 			mhit = used_uwep ? HIT_USWAPWEP : HIT_UWEP;
 			used_uwep = !used_uwep;
 			if (mhit == HIT_USWAPWEP && !u.twoweap)
-			    break;	/* Skip this attack */
+			    continue;	/* Skip this attack */
 
 			/* WAC if attacking cockatrice/etc, player is smart
 			   if wielding a weapon.  So don't let him

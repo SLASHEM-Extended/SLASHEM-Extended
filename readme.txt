@@ -76,6 +76,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 929546: Flaming spheres won't attack acid blobs
 -fixed bug 951991: Reading spellbooks not safe for wizards
 -fixed bug 914894: "Beautiful" gnome thief seduced female character
+-fixed bug 918178: Double message "You are suddenly very hot/cold!"
 
 See history.txt for changes made in previous versions.
 
