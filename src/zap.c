@@ -28,7 +28,6 @@ STATIC_DCL boolean FDECL(zap_updown, (struct obj *));
 STATIC_DCL int FDECL(zhitm, (struct monst *,int,int, struct obj **));
 STATIC_DCL void FDECL(zhitu, (int,int,const char *,XCHAR_P,XCHAR_P));
 STATIC_DCL void FDECL(revive_egg, (struct obj *));
-STATIC_DCL boolean FDECL(hits_bars, (struct obj *));
 STATIC_DCL void FDECL(throwstorm, (struct obj *, int, int, int));
 #ifdef STEED
 STATIC_DCL boolean FDECL(zap_steed, (struct obj *));
@@ -3033,7 +3032,7 @@ register struct monst *mtmp;
 #ifdef OVL1
 
 /* return TRUE if obj_type can't pass through iron bars */
-static boolean
+boolean
 hits_bars(obj)
 struct obj *obj;
 {

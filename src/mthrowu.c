@@ -367,14 +367,9 @@ m_throw(mon, x, y, dx, dy, range, obj)
 	    }
 	    dx = rn2(3)-1;
 	    dy = rn2(3)-1;
-	    /* pre-check validity of new direction */
-	    if((!dx && !dy)
-	       || !isok(bhitpos.x+dx,bhitpos.y+dy)
-	       /* missile hits the wall */
-	       || IS_ROCK(levl[bhitpos.x+dx][bhitpos.y+dy].typ)) {
-			(void) drop_throw(mon, singleobj, 0, bhitpos.x, bhitpos.y);
+	    /* check validity of new direction */
+	    if (!dx && !dy)
 		return;
-	    }
 	}
 
 	/* Note: drop_throw may destroy singleobj.  Since obj must be destroyed
@@ -385,6 +380,14 @@ m_throw(mon, x, y, dx, dy, range, obj)
 	while(range-- > 0) { /* Actually the loop is always exited by break */
 		bhitpos.x += dx;
 		bhitpos.y += dy;
+		if (!isok(bhitpos.x, bhitpos.y)
+			/* missile hits the wall */
+			|| IS_ROCK(levl[bhitpos.x][bhitpos.y].typ)) {
+		    bhitpos.x -= dx;
+		    bhitpos.y -= dy;
+		    (void) drop_throw(mon, singleobj, 0, bhitpos.x, bhitpos.y);
+		    break;
+		}
 		if ((mtmp = m_at(bhitpos.x, bhitpos.y)) != 0) {
 		    if (ohitmon(mon, mtmp, singleobj, range, TRUE))
 			break;
@@ -496,11 +499,13 @@ m_throw(mon, x, y, dx, dy, range, obj)
                         (void) drop_throw(mon, singleobj, hitu, u.ux, u.uy);
 			break;
 		    }
-		} else if (!range	/* reached end of path */
-			/* missile hits edge of screen */
-			|| !isok(bhitpos.x+dx,bhitpos.y+dy)
-			/* missile hits the wall */
-			|| IS_ROCK(levl[bhitpos.x+dx][bhitpos.y+dy].typ)
+		}
+		if (!range	/* reached end of path */
+			/* missile hit closed door */
+			|| closed_door(bhitpos.x, bhitpos.y)
+			/* missile hit bars */
+			|| levl[bhitpos.x][bhitpos.y].typ == IRONBARS &&
+			   hits_bars(singleobj)
 #ifdef SINKS
 			/* Thrown objects "sink" */
 			|| IS_SINK(levl[bhitpos.x][bhitpos.y].typ)
