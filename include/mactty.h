@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)mactty.h	3.3	93/03/01	*/
+/*	SCCS Id: @(#)mactty.h	3.4	1993/03/01	*/
 /* Copyright (c) Jon W{tte 1993.					*/
 /* NetHack may be freely redistributed.  See license for details.	*/
 
@@ -44,7 +44,9 @@
 #undef red			/* undef internal color const strings from decl */
 #undef green
 #undef blue
-#include <windows.h>
+#if !TARGET_API_MAC_CARBON
+# include <windows.h>
+#endif
 
 /*
  * Error code returned when it's probably our fault, or

@@ -11,10 +11,15 @@
 #include "config.h"
 #include "dlb.h"
 
+/* Macintosh-specific code */
+#if defined(__APPLE__) && defined(__MACH__)
+  /* MacOS X has Unix-style files and processes */
+# undef MAC
+#endif
 #ifdef MAC
 # ifdef MAC_MPW
 #  define MPWTOOL
-#  include <CursorCtl.h>
+#include <CursorCtl.h>
 # else
    /* put dungeon file in library location */
 #  define PREFIX ":lib:"
@@ -154,13 +159,9 @@ char **argv;
 	    perror(outfile);
 	    errors_encountered = TRUE;
 	}
-#ifndef MAC_MPW
 	exit(errors_encountered ? EXIT_FAILURE : EXIT_SUCCESS);
 	/*NOTREACHED*/
 	return 0;
-#else
-	return (errors_encountered ? EXIT_FAILURE : EXIT_SUCCESS);
-#endif
 }
 
 /*

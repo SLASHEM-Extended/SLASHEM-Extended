@@ -25,7 +25,9 @@
 #  define MPWTOOL
 #  include <CursorCtl.h>
 # else
+#  if !defined(__MACH__)
 #  define PREFIX ":lib:"	/* place output files here */
+# endif
 # endif
 #endif
 
@@ -611,7 +613,7 @@ char *map;
 	    if (*s1 < '0' || *s1 > '9')
 		*s2++ = *s1;
 	*s2 = '\0';
- 
+
 	/* Second, find the max width of the map */
 	s1 = map;
 	while (s1 && *s1) {
@@ -627,7 +629,6 @@ char *map;
 	}
 
 	/* Then parse it now */
-
 	while (map && *map) {
 		tmpmap[max_hig] = (char *) alloc(max_len);
 		s1 = index(map, '\n');
