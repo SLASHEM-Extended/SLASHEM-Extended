@@ -559,6 +559,7 @@ newgame()
 	init_artifacts();	/* before u_init() in case $WIZKIT specifies
 				 * any artifacts */
 	u_init();
+	init_artifacts1();	/* must be after u_init() */
 
 #ifndef NO_SIGNAL
 	(void) signal(SIGINT, (SIG_RET_TYPE) done1);

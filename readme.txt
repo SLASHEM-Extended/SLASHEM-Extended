@@ -72,6 +72,7 @@ ver 0.0.7E6 [?] [Released by ?]
 -fixed bug 876094: Tiles are miscoloured in allegro port (Clive Crous)
 -fixed bug 876096: Tiles are misdrawn/cropped in allegro port (Clive Crous)
 -fixed bug 510249: poisoned frag grenade (Nico Kist)
+-fixed bug 873349: <artifact> should be at least expert. Fixing...
 
 See history.txt for changes made in previous versions.
 

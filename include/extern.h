@@ -54,6 +54,7 @@ E int FDECL(wand_explode, (struct obj *,BOOLEAN_P));
 /* ### artifact.c ### */
 
 E void NDECL(init_artifacts);
+E void NDECL(init_artifacts1);
 E void FDECL(save_artifacts, (int));
 E void FDECL(restore_artifacts, (int));
 E const char *FDECL(artiname, (int));

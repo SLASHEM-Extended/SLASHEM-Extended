@@ -53,7 +53,7 @@ STATIC_DCL void NDECL(hack_artifacts);
 STATIC_DCL boolean FDECL(attacks, (int,struct obj *));
 
 
-/* handle some special cases; must be called after u_init() */
+/* handle some special cases; must be called after role_init() */
 STATIC_OVL void
 hack_artifacts()
 {
@@ -88,7 +88,6 @@ hack_artifacts()
 	return;
 }
 
-
 /* zero out the artifact existence list */
 void
 init_artifacts()
@@ -96,50 +95,55 @@ init_artifacts()
 	(void) memset((genericptr_t) artiexist, 0, sizeof artiexist);
 	(void) memset((genericptr_t) artidisco, 0, sizeof artidisco);
 	hack_artifacts();
-
-#if 0
-	/* KMH -- Should be at least skilled in first artifact gifts */
-	if (urole.gift1arti &&
-		(objects[artilist[urole.gift1arti].otyp].oc_class == WEAPON_CLASS ||
-		 objects[artilist[urole.gift1arti].otyp].oc_class == TOOL_CLASS)) {
-		int skill = objects[artilist[urole.gift1arti].otyp].oc_skill;
-
-		if (skill > P_NONE && P_SKILL(skill) < P_UNSKILLED)
-			P_SKILL(skill) = P_UNSKILLED;
-		if (skill > P_NONE && P_MAX_SKILL(skill) < P_SKILLED) {
-			pline("Warning: %s should be at least skilled.  Fixing...",
-					artilist[urole.gift1arti].name);
-			P_MAX_SKILL(skill) = P_SKILLED;
-		}
-	}
-	if (urole.gift2arti &&
-		(objects[artilist[urole.gift2arti].otyp].oc_class == WEAPON_CLASS ||
-		 objects[artilist[urole.gift2arti].otyp].oc_class == TOOL_CLASS)) {
-		int skill = objects[artilist[urole.gift2arti].otyp].oc_skill;
-
-	    if (skill > P_NONE && P_SKILL(skill) < P_UNSKILLED)
-		P_SKILL(skill) = P_UNSKILLED;
-	    if (skill > P_NONE && P_MAX_SKILL(skill) < P_SKILLED) {
-		pline("Warning: %s should be at least skilled.  Fixing...",
-				artilist[urole.gift1arti].name);
-	    	P_MAX_SKILL(skill) = P_SKILLED;
-	    }
-	}
-#endif 
-	/* KMH -- Should be expert in quest artifact */
-	if (urole.questarti &&
-		(objects[artilist[urole.questarti].otyp].oc_class == WEAPON_CLASS ||
-		 objects[artilist[urole.questarti].otyp].oc_class == TOOL_CLASS)) {
-		int skill = objects[artilist[urole.questarti].otyp].oc_skill;
-
-	    if (skill > P_NONE && P_SKILL(skill) < P_UNSKILLED)
-		P_SKILL(skill) = P_UNSKILLED;
-	    if (skill > P_NONE && P_MAX_SKILL(skill) < P_SKILLED) {
-		pline("Warning: %s should be at least expert.  Fixing...",
-				artilist[urole.questarti].name);
-		P_MAX_SKILL(skill) = P_EXPERT;
-	    }
 }
+
+/* Post u_init() initialization */
+void
+init_artifacts1()
+{
+#if 0
+    /* KMH -- Should be at least skilled in first artifact gifts */
+    if (urole.gift1arti &&
+	    (objects[artilist[urole.gift1arti].otyp].oc_class == WEAPON_CLASS ||
+	     objects[artilist[urole.gift1arti].otyp].oc_class == TOOL_CLASS)) {
+	int skill = objects[artilist[urole.gift1arti].otyp].oc_skill;
+
+	if (skill > P_NONE && P_SKILL(skill) < P_UNSKILLED)
+	    P_SKILL(skill) = P_UNSKILLED;
+	if (skill > P_NONE && P_MAX_SKILL(skill) < P_SKILLED) {
+	    pline("Warning: %s should be at least skilled.  Fixing...",
+		    artilist[urole.gift1arti].name);
+		P_MAX_SKILL(skill) = P_SKILLED;
+	}
+    }
+    if (urole.gift2arti &&
+	    (objects[artilist[urole.gift2arti].otyp].oc_class == WEAPON_CLASS ||
+	     objects[artilist[urole.gift2arti].otyp].oc_class == TOOL_CLASS)) {
+	int skill = objects[artilist[urole.gift2arti].otyp].oc_skill;
+
+	if (skill > P_NONE && P_SKILL(skill) < P_UNSKILLED)
+	    P_SKILL(skill) = P_UNSKILLED;
+	if (skill > P_NONE && P_MAX_SKILL(skill) < P_SKILLED) {
+	    pline("Warning: %s should be at least skilled.  Fixing...",
+		    artilist[urole.gift1arti].name);
+	    P_MAX_SKILL(skill) = P_SKILLED;
+	}
+    }
+#endif 
+    /* KMH -- Should be expert in quest artifact */
+    if (urole.questarti &&
+	    (objects[artilist[urole.questarti].otyp].oc_class == WEAPON_CLASS ||
+	     objects[artilist[urole.questarti].otyp].oc_class == TOOL_CLASS)) {
+	int skill = objects[artilist[urole.questarti].otyp].oc_skill;
+
+	if (skill > P_NONE && P_SKILL(skill) < P_UNSKILLED)
+	    P_SKILL(skill) = P_UNSKILLED;
+	if (skill > P_NONE && P_MAX_SKILL(skill) < P_EXPERT) {
+	    pline("Warning: %s should be at least expert.  Fixing...",
+		    artilist[urole.questarti].name);
+	    P_MAX_SKILL(skill) = P_EXPERT;
+	}
+    }
 }
 
 void
