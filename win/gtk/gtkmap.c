@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.15 2000-11-04 11:36:15 j_ali Exp $
+  $Id: gtkmap.c,v 1.16 2000-11-10 17:59:36 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -572,7 +572,7 @@ tile_scan(void)
 	if ((tilesets[i].flags & ~(TILESET_TRANSPARENT | TILESET_PSEUDO3D)) != 0)
 	    continue;	/* Unsupported flag set */
 #ifdef FILE_AREAS
-	fp = fopen_datafile_area(FILE_AREA_SHARE, tilesets[i]->file, RDTMODE, FALSE);
+	fp = fopen_datafile_area(FILE_AREA_SHARE, tilesets[i].file, RDTMODE, FALSE);
 #else
 	fp = fopen_datafile(tilesets[i].file, RDTMODE, FALSE);
 #endif

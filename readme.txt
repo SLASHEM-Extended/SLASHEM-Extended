@@ -410,6 +410,7 @@ ver 0.0.6E4F1 [November 10/2000] [Released by Ali]
 -fixed bug 115822: Elves are peaceful to drows.
 -fixed bug 119856: GTK port takes a turn to set options.
 -fixed bug 114646: Role-selection broken.
+-fixed bug 122139: GTK interface doesn't support FILE_AREAS.
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()

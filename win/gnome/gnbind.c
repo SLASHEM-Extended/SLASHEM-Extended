@@ -413,7 +413,12 @@ void gnome_putstr(winid wid, int attr, const char *text)
 /* Display the file named str.  Complain about missing files
                    iff complain is TRUE.
 */
+#ifdef FILE_AREAS
+void gnome_display_file(const char *filearea,const char *filename,
+		BOOLEAN_P must_exist)
+#else
 void gnome_display_file(const char *filename,BOOLEAN_P must_exist)
+#endif
 {
 	/* Strange -- for some reason it makes us create a new text window
 	 * instead of reusing any existing ones -- perhaps we can work out
@@ -422,7 +427,11 @@ void gnome_display_file(const char *filename,BOOLEAN_P must_exist)
         
 	dlb *f;
        
+#ifdef FILE_AREAS
+        f = dlb_fopen_area(filearea, filename, "r");
+#else
         f = dlb_fopen(filename, "r");
+#endif
         if (!f) {
 	  if (must_exist) {
 	    GtkWidget *box;
@@ -475,7 +484,11 @@ void gnome_display_file(const char *filename,BOOLEAN_P must_exist)
 	   */
 	  textlines = (char *) alloc((unsigned int) charcount);
 	  textlines[0] = '\0';
+#ifdef FILE_AREAS
+	  f = dlb_fopen_area(filearea, filename, "r");
+#else
 	  f = dlb_fopen( filename, RDTMODE);
+#endif
 
 	  while (dlb_fgets(line, LLEN, f)) {
 	    (void) strcat(textlines, line);
