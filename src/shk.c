@@ -435,10 +435,10 @@ register struct monst *shkp;
     register struct monst *mt;
     register struct eshk *eshkp = ESHK(shkp);
     boolean mesg_given = FALSE;	/* Only give message if assistants peaceful */
-    static boolean lock = FALSE; /* Prevent recursive calls (via wakeup) */
+    static boolean rlock = FALSE; /* Prevent recursive calls (via wakeup) */
 
-    if (lock)  return;
-    lock = TRUE;
+    if (rlock)  return;
+    rlock = TRUE;
 
     /* wake up assistants */
     for (mt = fmon; mt; mt = mt->nmon) {
@@ -455,7 +455,7 @@ register struct monst *shkp;
 	    wakeup(mt);
 	}
     }
-    lock = FALSE;
+    rlock = FALSE;
 }
 #endif /* BLACKMARKET */
 
@@ -692,7 +692,7 @@ register char *enterstring;
 		       *mattock = carrying(DWARVISH_MATTOCK);
 
 	    if (pick || mattock) {
-		int cnt = 1;
+		cnt = 1;
 		if (pick && mattock) {	/* carrying both types */
 		    tool = "digging tool";
 		    cnt = 2;	/* `more than 1' is all that matters */
@@ -1767,9 +1767,6 @@ proceed:
 		s_suffix(shkname(shkp)),
 		shtypes[eshkp->shoptype - SHOPBASE].name);
 	return(1);
-#ifdef OTHER_SERVICES
-	shk_other_services();
-#endif
 }
 
 #ifdef OTHER_SERVICES
@@ -1782,8 +1779,8 @@ proceed:
 static void
 shk_other_services()
 {
-	char *slang;                    /* What shk calls you           */
-	struct monst *shkp;             /* The shopkeeper               */
+	char *slang;		/* What shk calls you		*/
+	struct monst *shkp;		/* The shopkeeper		*/
 	/*WAC - Windowstuff*/
 	winid tmpwin;
 	anything any;
@@ -1795,7 +1792,7 @@ shk_other_services()
 
 	/* Init your name */
 	if (!is_human(youmonst.data))
-		slang="ugly";
+		slang = "ugly";
 	else
 		slang = (flags.female) ? "lady" : "buddy";
 

@@ -846,7 +846,6 @@ void
 whetstone_sink_effects(obj)
 register struct obj *obj;
 {
-	struct obj *otmp;
 	struct monst *mtmp;
 
 	if (Levitation) {

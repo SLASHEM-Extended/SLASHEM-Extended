@@ -177,8 +177,6 @@ mkshop()
 	}
 
 	if(i < 0) {			/* shoptype not yet determined */
-	    register int j;
-
 	    /* pick a shop type at random */
 	    for (j = rnd(100), i = 0; (j -= shtypes[i].prob) > 0; i++)
 		continue;

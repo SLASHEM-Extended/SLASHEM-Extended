@@ -632,7 +632,7 @@ register int sh;
      * door get objects).
      */
     /* [max] removed register int cl,  char buf[bufsz] */
-    register int i, sx, sy, first, next, total, partial, typ;
+    int i, sx, sy, first = 0, next = 0, total, partial, typ;
     struct obj *otmp;
     int blkmar_gen[NUM_OBJECTS+2];
     int *clp, *lastclp;

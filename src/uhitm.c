@@ -6,7 +6,9 @@
 
 STATIC_DCL boolean FDECL(known_hitum, (struct monst *,int,int *,struct attack *));
 STATIC_DCL void FDECL(steal_it, (struct monst *, struct attack *));
+#if 0
 STATIC_DCL boolean FDECL(hitum, (struct monst *,int,int,struct attack *));
+#endif
 STATIC_DCL boolean FDECL(hmon_hitmon, (struct monst *,struct obj *,int));
 #ifdef STEED
 STATIC_DCL int FDECL(joust, (struct monst *,struct obj *));
@@ -553,12 +555,12 @@ struct attack *uattk;
 			--u.uconduct.weaphit;
 		}
 		if (mon->wormno && *mhit) {
-		    int hit = *mhit;
-		    if (!u.twoweap || (hit & HIT_UWEP)) {
+		    int dohit = *mhit;
+		    if (!u.twoweap || (dohit & HIT_UWEP)) {
 			if (cutworm(mon, x, y, uwep))
-			    hit = 0;	/* Don't try and cut a worm twice */
+			    dohit = 0;	/* Don't try and cut a worm twice */
 		    }
-		    if (u.twoweap && (hit & HIT_USWAPWEP))
+		    if (u.twoweap && (dohit & HIT_USWAPWEP))
 			(void) cutworm(mon, x, y, uswapwep);
 		}
 	    }
@@ -702,7 +704,7 @@ struct monst *mon;
 struct obj *obj;
 int thrown;
 {
-	int tmp, canhitmon = 0, objenchant, mdx, mdy;
+	int tmp, canhitmon = 0, objenchant;
 	struct permonst *mdat = mon->data;
 	int barehand_silver_rings = 0;
 	/* The basic reason we need all these booleans is that we don't want

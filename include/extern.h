@@ -151,7 +151,7 @@ E void NDECL(bot);
 E const char * FDECL(shorten_bot1, (const char *, int));
 #endif
 #ifdef TTY_GRAPHICS
-E const char * FDECL(shorten_bot2, (const char *, int));
+E const char * FDECL(shorten_bot2, (const char *, unsigned int));
 #endif
 
 /* ### cmd.c ### */

@@ -920,7 +920,7 @@ int spellbook;
 void
 u_init()
 {
-	register int i, temp, temp2;
+	register int i, temp;
 	int no_extra_food = FALSE;
 
 	flags.female = flags.initgend;

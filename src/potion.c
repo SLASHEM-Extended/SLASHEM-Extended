@@ -783,13 +783,15 @@ peffects(otmp)
 		break;
 	case POT_ESP:
 	{
-		char *mod = (char *) 0;
-
+		const char *mod;
 
 		/* KMH -- handle cursed, blessed */
 		if (otmp->cursed) {
 			if (HTelepat) mod = "less ";
-			else unkn++;
+			else {
+			    unkn++;
+			    mod = NULL;
+			}
 			HTelepat = 0;
 		} else if (otmp->blessed) {
 			mod = "fully ";
@@ -1116,11 +1118,12 @@ healup_mon(mtmp, nhp, nxtra, curesick, cureblind)
 		mtmp->mhp += nhp;
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = (mtmp->mhpmax += nxtra);
 	}
-	if(cureblind)   ; /* NOT DONE YET */
-	if(curesick)    ; /* NOT DONE YET */
+#if 0
+	if(cureblind) ; /* NOT DONE YET */
+	if(curesick)  ; /* NOT DONE YET */
+#endif 
 	return;
 }
-
 
 void
 strange_feeling(obj,txt)
@@ -1770,7 +1773,7 @@ register struct obj *o1, *o2;
 	/* MRKR: Extra alchemical effects. */
 
 	if (o2->otyp == POT_ACID && o1->oclass == GEM_CLASS) {
-	  char *potion_descr = NULL;
+	  const char *potion_descr;
 
 	  /* Note: you can't create smoky, milky or clear potions */
 
@@ -1785,6 +1788,7 @@ register struct obj *o1, *o2;
 	    break;
 	  case DIAMOND:
 	    /* won't dissolve */
+	    potion_descr = NULL;
 	    break;
 	  case OPAL:
 	    potion_descr = "cloudy";
@@ -1870,6 +1874,7 @@ register struct obj *o1, *o2;
 	  case OBSIDIAN:
 	    potion_descr = "effervescent";
 	    break;
+	  default: potion_descr = NULL;
 	  }
 
 	  if (potion_descr) {
