@@ -1524,6 +1524,7 @@ long timeout;
      */
     if (body) {
     	body->corpsenm = oldtyp; /* Fixup corpse after (attempted) revival */
+	body->owt = weight(body);
 	(void) start_timer(250L - (monstermoves-peek_at_iced_corpse_age(body)),
 					TIMER_OBJECT, ROT_CORPSE, arg);
     }
