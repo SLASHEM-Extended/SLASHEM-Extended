@@ -2789,7 +2789,7 @@
           pictures instead of the traditional characters), tile sets can be
           defined using a  line  in  the  configuration  file  that  begins
           ``TILESET=''.  There  should  be one tile set definition line for
-          each available tile set. Once defined, tile sets can  be  slected
+          each available tile set. Once defined, tile sets can be  selected
           for  initial  display (using the tiles option) or dynamically se-
           lected during the game (for those windowing  ports  that  support
           this).
