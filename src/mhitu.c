@@ -1962,7 +1962,9 @@ dopois:
 	    mdamageu(mtmp, dmg);
 	}
 
-	if (dmg)
+	if (DEADMONSTER(mtmp))
+	    res = 2;
+	else if (dmg)
 	    res = passiveum(olduasmon, mtmp, mattk);
 	else
 	    res = 1;
