@@ -44,18 +44,16 @@ c       close   close a door
 C       call    name an individual monster (ex. baptize your dog)
 d       drop    drop an object.  d7a:  drop seven items of object 'a'
 D       Drop    drop selected types of objects
-f       fire    fire ammunition from quiver
-F       fight   followed by direction, fight a monster
 e       eat     eat something (or drain corpse, if vampire)
 E       engrave write a message in the dust on the floor  (E-  use fingers)
 f	fire    fire item from quiver           
+F       fight   followed by direction, fight a monster
 i       invent  list your inventory (all objects you are carrying)
 I       Invent  list selected parts of your inventory
                 Iu: list unpaid objects
                 Ix: list unpaid but used up items
                 I$: count your money
 n#      repeat  repeat next command             
-Q       quiver  select ammunition for quiver
 N       name    name or classify an item
 o       open    open a door
 p       pay     pay your bill (in a shop)/shopkeeper services
