@@ -327,6 +327,8 @@ TODO:
 -tofix: using the nethack config files.
 -vampires shouldn't be allowed to become Flame Mages
 
+ver 0.0.6E9 [?] [Released by ?]
+
 ver 0.0.6E8 [January 24/2003] [Released by Ali]
 -fixed bug 233901: Gtk-Critical errors from gtk_main_quit.
 -Proxy: Implement proxified GTK interface.
