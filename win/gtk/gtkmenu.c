@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.7 2000-09-29 15:56:53 j_ali Exp $
+  $Id: gtkmenu.c,v 1.8 2000-10-19 19:57:26 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -525,6 +525,8 @@ GTK_select_menu(winid id, int how, MENU_ITEM_P **menu_list)
 	return 0;
     gtk_grab_add(w->w);
     gtk_main();
+    if (menu_info->cancelled)
+	return 0;
 
     c = GTK_CLIST(w->clist);
 /*    

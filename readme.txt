@@ -372,6 +372,7 @@ ver 0.0.6E4F1 [October XX/2000]
 -Allegro: scroll_lim read properly from config file
 -fixed default tileset declaration in decl.c
 -fixed bug 115821: Molds grow from corpses underwater.
+-fixed bug 115598: Gtk-WARNING if you kill the "more options" window.
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()
