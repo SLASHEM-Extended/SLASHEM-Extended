@@ -2494,9 +2494,14 @@ const char *dir;
 #else /* MICRO || WIN32*/
 
 # ifdef MAC
-	/* Create the "record" file, if necessary */
+	/* Create the record file, if necessary */
 	fq_record = fqname(NH_RECORD, SCOREPREFIX, 0);
-	fd = macopen (fq_record, O_RDWR | O_CREAT, TEXT_TYPE);
+	fd = macopen (fq_record, O_RDWR | O_CREAT, LOGF_TYPE);
+	if (fd != -1) macclose (fd);
+
+	/* Create the logfile, if necessary */
+	fq_record = fqname(LOGFILE, SCOREPREFIX, 0);
+	fd = macopen (fq_record, O_RDWR | O_CREAT, LOGF_TYPE);
 	if (fd != -1) macclose (fd);
 # endif /* MAC */
 
