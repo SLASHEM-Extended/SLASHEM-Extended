@@ -99,7 +99,9 @@ Commands:
         f       Fire ammunition from quiver.
         F       Followed by direction, fight a monster (even if you don't
                 sense it).
-        e       Eat food.
+        e       Eat food. Vampires cannot eat as such. However, they can
+                gain nutrition by draining blood from fresh corpses using
+                this command.
         E       Engrave a message on the floor.
                 E- - write in the dust with your fingers.
         f       Fire ammunition from quiver.

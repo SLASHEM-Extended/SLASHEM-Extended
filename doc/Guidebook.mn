@@ -559,7 +559,8 @@ D%u - drop only unpaid food.
 .lp ^D
 Kick something (usually a door).
 .lp e
-Eat food.
+Eat food. Vampires cannot eat as such. However, they can gain nutrition by
+draining blood from fresh corpses using this command.
 .lp E
 Engrave a message on the floor.
 Engraving the word ``Elbereth'' will cause most monsters to not attack
