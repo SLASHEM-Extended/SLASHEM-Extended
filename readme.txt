@@ -119,6 +119,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -Proxy: Added window interface capabilities.
 -GTK: Added preferences dialog.
 -Actioned feature request 710544: Rename Fuzzy Spellbook.
+-Actioned feature request 716698: rothe color is different from 3.4.1
 
 See history.txt for changes made in previous versions.
 
