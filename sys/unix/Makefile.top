@@ -290,7 +290,7 @@ dofiles:
 	$(MAKE) dofiles-$${target-nodlb}
 	cp src/$(GAME) $(FILE_AREA_UNSHARE)
 	cp util/recover $(FILE_AREA_UNSHARE)
-	cp license doc/Guidebook.txt $(FILE_AREA_DOC)
+	cp dat/license doc/Guidebook.txt $(FILE_AREA_DOC)
 #	cp win/Qt/KDE/kslashem.kdelnk $(KDEDIR)/share/applnk/Games
 	-rm -f $(SHELLDIR)/$(GAME)
 	sed -e 's;/usr/games/lib/nethackdir;$(FILE_AREA_UNSHARE);' \
