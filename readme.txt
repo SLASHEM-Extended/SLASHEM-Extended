@@ -40,7 +40,7 @@
 
 The development of version 0.0.7 of Slash'EM started with version 0.0.6E5
 (yes, we realise our version numbers are a little odd - it made sense at
-the time!). Version 0.0.7E6 is the first beta release.
+the time!). Version 0.0.7E6 was the first beta release.
 
 If you find any bugs then please submit a report via the offical bug page:
 
@@ -67,7 +67,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E6F1 [?] [Released by ?]
+ver 0.0.7E6F1 [March 20/2004] [Released by Ali]
 -fixed bug 909623: Surgery technique causes crash
 -fixed bug 909397: Windows help|about twice crashes
 -New branding for MS-Windows native GUI port
