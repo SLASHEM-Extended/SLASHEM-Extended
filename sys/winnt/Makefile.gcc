@@ -1472,34 +1472,32 @@ xshm.o: $(WGTK)/xshm.c ../include/xshm.h
 gtktile.o: $(WGTK)/gtktile.c ../include/winGTK.h ../include/dlb.h
 	$(COPY) $(WGTK)\gtktile.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtktile.c
-gtkint.o: $(WGTK)/gtkint.c ../include/winGTK.h ../include/winproxy.h \
-		../include/dlb.h ../include/patchlevel.h
+gtkint.o: $(WGTK)/gtkint.c ../include/winGTK.h ../include/dlb.h \
+		../include/patchlevel.h
 	$(COPY) $(WGTK)\gtkint.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkint.c
-gtkext.o: $(WGTK)/gtkext.c ../include/winGTK.h ../include/winproxy.h \
+gtkext.o: $(WGTK)/gtkext.c ../include/winGTK.h ../include/proxysvr.h \
 		../include/dlb.h ../include/patchlevel.h
 	$(COPY) $(WGTK)\gtkext.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkext.c
 # win/proxy
 winproxy.o: ../win/proxy/winproxy.c $(HACK_H) ../include/nhxdr.h \
-		../include/winproxy.h
+		../include/proxycom.h ../include/winproxy.h
 	$(COPY) ..\win\proxy\winproxy.c .
 	$(CCOMPILE) $(CFLAGS) -c winproxy.c
-nhext.o: ../win/proxy/nhext.c $(HACK_H) ../include/nhxdr.h \
-		../include/proxycom.h ../include/winproxy.h
+nhext.o: ../win/proxy/nhext.c ../include/nhxdr.h ../include/proxycom.h
 	$(COPY) ..\win\proxy\nhext.c .
 	$(CCOMPILE) $(CFLAGS) -c nhext.c
-nhxdr.o: ../win/proxy/nhxdr.c $(HACK_H) ../include/nhxdr.h
+nhxdr.o: ../win/proxy/nhxdr.c ../include/nhxdr.h
 	$(COPY) ..\win\proxy\nhxdr.c .
 	$(CCOMPILE) $(CFLAGS) -c nhxdr.c
-nhextxdr.o: ../win/proxy/nhextxdr.c $(HACK_H) ../include/nhxdr.h
+nhextxdr.o: ../win/proxy/nhextxdr.c ../include/nhxdr.h
 	$(COPY) ..\win\proxy\nhextxdr.c .
 	$(CCOMPILE) $(CFLAGS) -c nhextxdr.c
-nhextio.o: ../win/proxy/nhextio.c ../include/proxycom.h
+nhextio.o: ../win/proxy/nhextio.c ../include/nhxdr.h ../include/proxycom.h
 	$(COPY) ..\win\proxy\nhextio.c .
 	$(CCOMPILE) $(CFLAGS) -c nhextio.c
-compxdr.o: ../win/proxy/compxdr.c $(HACK_H) ../include/nhxdr.h \
-		../include/winproxy.h
+compxdr.o: ../win/proxy/compxdr.c ../include/nhxdr.h ../include/proxycom.h
 	$(COPY) ..\win\proxy\compxdr.c .
 	$(CCOMPILE) $(CFLAGS) -c compxdr.c
 dlbh.o: ../win/proxy/dlbh.c $(HACK_H) ../include/dlb.h
@@ -1513,34 +1511,34 @@ riputil.o: ../win/proxy/riputil.c $(HACK_H)
 	$(COPY) ..\win\proxy\riputil.c .
 	$(CCOMPILE) $(CFLAGS) -c riputil.c
 glyphmap.o: ../win/proxy/glyphmap.c $(HACK_H) ../include/nhxdr.h \
-		../include/proxycb.h ../include/winproxy.h
+		../include/winproxy.h
 	$(COPY) ..\win\proxy\glyphmap.c .
 	$(CCOMPILE) $(CFLAGS) -c glyphmap.c
 getopt.o: ../win/proxy/getopt.c $(HACK_H)
 	$(COPY) ..\win\proxy\getopt.c .
 	$(CCOMPILE) $(CFLAGS) -c getopt.c
 callback.o: ../win/proxy/callback.c $(HACK_H) ../include/nhxdr.h \
-		../include/winproxy.h ../include/proxycb.h
+		../include/proxycom.h ../include/winproxy.h
 	$(COPY) ..\win\proxy\callback.c .
 	$(CCOMPILE) $(CFLAGS) -c callback.c
-proxysvc.o: ../win/proxy/proxysvc.c $(HACK_H) ../include/nhxdr.h \
-		../include/winproxy.h
+proxysvc.o: ../win/proxy/proxysvc.c ../include/nhxdr.h \
+		../include/proxycom.h ../include/proxysvr.h
 	$(COPY) ..\win\proxy\proxysvc.c .
 	$(CCOMPILE) $(CFLAGS) -c proxysvc.c
-proxycb.o: ../win/proxy/proxycb.c $(HACK_H) ../include/nhxdr.h \
-		../include/winproxy.h ../include/proxycb.h
+proxycb.o: ../win/proxy/proxycb.c ../include/nhxdr.h ../include/proxycom.h \
+		../include/proxycb.h
 	$(COPY) ..\win\proxy\proxycb.c .
 	$(CCOMPILE) $(CFLAGS) -c proxycb.c
-prxymap.o: ../win/proxy/prxymap.c $(HACK_H) ../include/winproxy.h \
-		../include/proxysvr.h ../include/proxycb.h
+prxymap.o: ../win/proxy/prxymap.c ../include/nhxdr.h ../include/proxycom.h \
+		../include/proxysvr.h
 	$(COPY) ..\win\proxy\prxymap.c .
 	$(CCOMPILE) $(CFLAGS) -c prxymap.c
-prxychar.o: ../win/proxy/prxychar.c $(HACK_H) ../include/winproxy.h \
-		../include/proxysvr.h ../include/proxycb.h
+prxychar.o: ../win/proxy/prxychar.c ../include/nhxdr.h ../include/proxycom.h \
+		../include/proxysvr.h
 	$(COPY) ..\win\proxy\prxychar.c .
 	$(CCOMPILE) $(CFLAGS) -c prxychar.c
-prxytile.o: ../win/proxy/prxytile.c $(HACK_H) ../include/winproxy.h \
-		../include/proxysvr.h ../include/proxycb.h
+prxytile.o: ../win/proxy/prxytile.c ../include/nhxdr.h ../include/proxycom.h \
+		../include/proxysvr.h
 	$(COPY) ..\win\proxy\prxytile.c .
 	$(CCOMPILE) $(CFLAGS) -c prxytile.c
 

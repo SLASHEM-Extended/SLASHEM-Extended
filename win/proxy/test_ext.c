@@ -1,4 +1,4 @@
-/* $Id: test_ext.c,v 1.2 2001-12-11 20:43:49 j_ali Exp $ */
+/* $Id: test_ext.c,v 1.3 2002-11-02 15:47:04 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -16,7 +16,7 @@
 
 #include "hack.h"
 #include "nhxdr.h"
-#include "winproxy.h"
+#include "proxycom.h"
 
 static int is_child=0;
 static int connection, server_connection;
@@ -411,11 +411,11 @@ void svc_test6(unsigned short id, NhExtXdr *request, NhExtXdr *reply)
     int i;
     char *s;
     winid w;
-    boolean b;
+    nhext_xdr_bool_t b;
     char c;
-    nhext_rpc_params(request, 5, EXT_INT_P(i), EXT_WINID_P(w), EXT_CHAR_P(c),
+    nhext_rpc_params(request, 5, EXT_INT_P(i), EXT_INT_P(w), EXT_CHAR_P(c),
       EXT_STRING_P(s), EXT_BOOLEAN_P(b));
-    nhext_rpc_params(reply, 5, EXT_WINID(w), EXT_STRING(s), EXT_CHAR(c),
+    nhext_rpc_params(reply, 5, EXT_INT(w), EXT_STRING(s), EXT_CHAR(c),
       EXT_INT(i), EXT_BOOLEAN(b));
     free(s);
 }
@@ -472,7 +472,7 @@ void run_tests(void)
 {
     int i, retval;
     char c, *s;
-    boolean b;
+    nhext_xdr_bool_t b;
     winid w;
     int total;
     struct test5_request req;
@@ -508,9 +508,9 @@ void run_tests(void)
     fprintf(stderr, "Test 5 %s.\n", retval ? "passed" : "failed");
     fprintf(stderr, "Test 6...\n");
     retval = nhext_rpc_c(connection, EXT_FID_TEST6,
-      5, EXT_INT(37), EXT_WINID(2), EXT_CHAR('l'), EXT_STRING("Shalom"),
+      5, EXT_INT(37), EXT_INT(2), EXT_CHAR('l'), EXT_STRING("Shalom"),
          EXT_BOOLEAN(TRUE),
-      5, EXT_WINID_P(w), EXT_STRING_P(s), EXT_CHAR_P(c), EXT_INT_P(i),
+      5, EXT_INT_P(w), EXT_STRING_P(s), EXT_CHAR_P(c), EXT_INT_P(i),
          EXT_BOOLEAN_P(b));
     if (w != 2 || strcmp(s, "Shalom") || c != 'l' || i != 37 || !b)
 	retval = FALSE;

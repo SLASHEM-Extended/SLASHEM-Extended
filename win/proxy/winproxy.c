@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.11 2002-10-05 19:22:55 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.12 2002-11-02 15:47:04 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -10,6 +10,7 @@
 #endif
 #include "hack.h"
 #include "nhxdr.h"
+#include "proxycom.h"
 #include "winproxy.h"
 #ifdef WIN32
 #include "win32api.h"
@@ -148,7 +149,7 @@ void
 proxy_player_selection()
 {
     int role, race, gend, align;
-    boolean quit;
+    nhext_xdr_bool_t quit;
     nhext_rpc(EXT_FID_PLAYER_SELECTION,
       4, EXT_INT(flags.initrole), EXT_INT(flags.initrace),
          EXT_INT(flags.initgend), EXT_INT(flags.initalign),
@@ -207,7 +208,7 @@ proxy_create_nhwindow(type)
 int type;
 {
     winid id;
-    nhext_rpc(EXT_FID_CREATE_NHWINDOW, 1, EXT_INT(type), 1, EXT_WINID_P(id));
+    nhext_rpc(EXT_FID_CREATE_NHWINDOW, 1, EXT_INT(type), 1, EXT_INT_P(id));
     return id;
 }
 
@@ -215,7 +216,7 @@ void
 proxy_clear_nhwindow(window)
 winid window;
 {
-    nhext_rpc(EXT_FID_CLEAR_NHWINDOW, 1, EXT_WINID(window), 0);
+    nhext_rpc(EXT_FID_CLEAR_NHWINDOW, 1, EXT_INT(window), 0);
 }
 
 void
@@ -224,14 +225,14 @@ winid window;
 boolean blocking;
 {
     nhext_rpc(EXT_FID_DISPLAY_NHWINDOW,
-      2, EXT_WINID(window), EXT_BOOLEAN(blocking), 0);
+      2, EXT_INT(window), EXT_BOOLEAN((nhext_xdr_bool_t)blocking), 0);
 }
 
 void
 proxy_destroy_nhwindow(window)
 winid window;
 {
-    nhext_rpc(EXT_FID_DESTROY_NHWINDOW, 1, EXT_WINID(window), 0);
+    nhext_rpc(EXT_FID_DESTROY_NHWINDOW, 1, EXT_INT(window), 0);
     mapid_del_winid(window);
 }
 
@@ -243,7 +244,7 @@ winid window;
 int x, y;
 {
     proxy_curs_on_u = x == u.ux && y == u.uy;
-    nhext_rpc(EXT_FID_CURS, 3, EXT_WINID(window), EXT_INT(x), EXT_INT(y), 0);
+    nhext_rpc(EXT_FID_CURS, 3, EXT_INT(window), EXT_INT(x), EXT_INT(y), 0);
 }
 
 void
@@ -253,7 +254,7 @@ int attr;
 const char *str;
 {
     nhext_rpc(EXT_FID_PUTSTR,
-      3, EXT_WINID(window), EXT_INT(attr), EXT_STRING(str), 0);
+      3, EXT_INT(window), EXT_INT(attr), EXT_STRING(str), 0);
 }
 
 void
@@ -285,7 +286,7 @@ void
 proxy_start_menu(window)
 winid window;
 {
-    nhext_rpc(EXT_FID_START_MENU, 1, EXT_WINID(window), 0);
+    nhext_rpc(EXT_FID_START_MENU, 1, EXT_INT(window), 0);
     mapid_del_identifiers(window);
 }
 
@@ -303,7 +304,7 @@ BOOLEAN_P preselected;
     if (glyph != NO_GLYPH)
 	glyph = glyph2proxy[glyph];
     nhext_rpc(EXT_FID_ADD_MENU,
-      8, EXT_WINID(window), EXT_INT(glyph), EXT_INT(mapping), EXT_INT(ch),
+      8, EXT_INT(window), EXT_INT(glyph), EXT_INT(mapping), EXT_INT(ch),
          EXT_INT(gch), EXT_INT(attr), EXT_STRING(str),
 	 EXT_BOOLEAN(preselected),
       0);
@@ -314,7 +315,7 @@ proxy_end_menu(window, prompt)
 winid window;
 const char *prompt;
 {
-    nhext_rpc(EXT_FID_END_MENU, 2, EXT_WINID(window), EXT_STRING(prompt), 0);
+    nhext_rpc(EXT_FID_END_MENU, 2, EXT_INT(window), EXT_STRING(prompt), 0);
 }
 
 int
@@ -326,7 +327,7 @@ menu_item **menu_list;
     int i;
     struct proxy_select_menu_res ret = {0, 0, (struct proxy_mi *)0};
     nhext_rpc(EXT_FID_SELECT_MENU,
-      2, EXT_WINID(window), EXT_INT(how),
+      2, EXT_INT(window), EXT_INT(how),
       1, EXT_XDRF(proxy_xdr_select_menu_res, &ret));
     *menu_list = (menu_item *) alloc(ret.n * sizeof(menu_item));
     for(i = 0; i < ret.n; i++) {
@@ -440,7 +441,7 @@ int glyph;
     else
 #endif
     nhext_rpc(EXT_FID_PRINT_GLYPH,
-      4, EXT_WINID(window), EXT_INT(x), EXT_INT(y), EXT_INT(glyph2proxy[glyph]),
+      4, EXT_INT(window), EXT_INT(x), EXT_INT(y), EXT_INT(glyph2proxy[glyph]),
       0);
 }
 
@@ -585,7 +586,7 @@ winid window;
 char *font;
 {
     int ret;
-    nhext_rpc(EXT_FID_SET_FONT_NAME, 2, EXT_WINID(window), EXT_STRING(font),
+    nhext_rpc(EXT_FID_SET_FONT_NAME, 2, EXT_INT(window), EXT_STRING(font),
       1, EXT_INT_P(ret));
     return (short)ret;
 }
@@ -617,10 +618,10 @@ proxy_outrip(window, how)
 winid window;
 int how;
 {
-    boolean handled;
+    nhext_xdr_bool_t handled;
     char *killed_by;
     killed_by = get_killer_string(how);
-    nhext_rpc(EXT_FID_OUTRIP, 2, EXT_WINID(window), EXT_STRING(killed_by),
+    nhext_rpc(EXT_FID_OUTRIP, 2, EXT_INT(window), EXT_STRING(killed_by),
       1, EXT_BOOLEAN_P(handled));
     if (!handled)
 	genl_outrip(window, how);

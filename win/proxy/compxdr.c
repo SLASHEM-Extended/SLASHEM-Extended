@@ -1,18 +1,17 @@
-/* $Id: compxdr.c,v 1.8 2002-09-01 21:58:19 j_ali Exp $ */
+/* $Id: compxdr.c,v 1.9 2002-11-02 15:47:03 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
-#include "hack.h"
+#include <stdlib.h>
 #include "nhxdr.h"
-#include "winproxy.h"
-#include "proxycb.h"
+#include "proxycom.h"
 
 /*
  * This module implements the XDR routines for non-trivial compound types that
  * NhExt needs.
  */
 
-boolean proxy_xdr_init_nhwindow_req(xdr, datum)
+nhext_xdr_bool_t proxy_xdr_init_nhwindow_req(xdr, datum)
 NhExtXdr *xdr;
 struct proxy_init_nhwindow_req *datum;
 {
@@ -20,7 +19,7 @@ struct proxy_init_nhwindow_req *datum;
       &datum->argc, (unsigned int)-1, sizeof(char *), nhext_xdr_wrapstring);
 }
 
-boolean proxy_xdr_init_nhwindow_res(xdr, datum)
+nhext_xdr_bool_t proxy_xdr_init_nhwindow_res(xdr, datum)
 NhExtXdr *xdr;
 struct proxy_init_nhwindow_res *datum;
 {
@@ -30,14 +29,14 @@ struct proxy_init_nhwindow_res *datum;
     return retval;
 }
 
-boolean proxy_xdr_proxy_mi(xdrs, datum)
+nhext_xdr_bool_t proxy_xdr_proxy_mi(xdrs, datum)
 NhExtXdr *xdrs;
 struct proxy_mi *datum;
 {
     return nhext_xdr_int(xdrs, &datum->item) && nhext_xdr_long(xdrs, &datum->count);
 }
 
-boolean proxy_xdr_select_menu_res(xdr, datum)
+nhext_xdr_bool_t proxy_xdr_select_menu_res(xdr, datum)
 NhExtXdr *xdr;
 struct proxy_select_menu_res *datum;
 {
@@ -48,7 +47,7 @@ struct proxy_select_menu_res *datum;
     return retval;
 }
 
-boolean proxy_xdr_status_req(xdr, datum)
+nhext_xdr_bool_t proxy_xdr_status_req(xdr, datum)
 NhExtXdr *xdr;
 struct proxy_status_req *datum;
 {
@@ -57,7 +56,7 @@ struct proxy_status_req *datum;
       &datum->nv, (unsigned int)-1, sizeof(char *), nhext_xdr_wrapstring);
 }
 
-boolean proxy_xdr_print_glyph_layered_req(xdr, datum)
+nhext_xdr_bool_t proxy_xdr_print_glyph_layered_req(xdr, datum)
 NhExtXdr *xdr;
 struct proxy_print_glyph_layered_req *datum;
 {
@@ -67,7 +66,7 @@ struct proxy_print_glyph_layered_req *datum;
       &datum->ng, (unsigned int)-1, sizeof(int), nhext_xdr_int);
 }
 
-boolean proxycb_xdr_get_player_choices_res_role(xdr, datum)
+nhext_xdr_bool_t proxycb_xdr_get_player_choices_res_role(xdr, datum)
 NhExtXdr *xdr;
 struct proxycb_get_player_choices_res_role *datum;
 {
@@ -75,7 +74,7 @@ struct proxycb_get_player_choices_res_role *datum;
       nhext_xdr_wrapstring(xdr, (char **)&datum->female);
 }
 
-boolean proxycb_xdr_get_player_choices_res(xdr, datum)
+nhext_xdr_bool_t proxycb_xdr_get_player_choices_res(xdr, datum)
 NhExtXdr *xdr;
 struct proxycb_get_player_choices_res *datum;
 {
@@ -90,7 +89,7 @@ struct proxycb_get_player_choices_res *datum;
 	proxycb_xdr_get_player_choices_res_role);
 }
 
-boolean proxycb_xdr_get_extended_commands_res(xdr, datum)
+nhext_xdr_bool_t proxycb_xdr_get_extended_commands_res(xdr, datum)
 NhExtXdr *xdr;
 struct proxycb_get_extended_commands_res *datum;
 {
@@ -98,7 +97,7 @@ struct proxycb_get_extended_commands_res *datum;
         (unsigned int)-1, sizeof(char *), nhext_xdr_wrapstring);
 }
 
-boolean proxycb_xdr_get_tilesets_res_tileset(xdr, datum)
+nhext_xdr_bool_t proxycb_xdr_get_tilesets_res_tileset(xdr, datum)
 NhExtXdr *xdr;
 struct proxycb_get_tilesets_res_tileset *datum;
 {
@@ -108,7 +107,7 @@ struct proxycb_get_tilesets_res_tileset *datum;
       nhext_xdr_long(xdr, &datum->flags);
 }
 
-boolean proxycb_xdr_get_tilesets_res(xdr, datum)
+nhext_xdr_bool_t proxycb_xdr_get_tilesets_res(xdr, datum)
 NhExtXdr *xdr;
 struct proxycb_get_tilesets_res *datum;
 {
@@ -117,7 +116,7 @@ struct proxycb_get_tilesets_res *datum;
 	proxycb_xdr_get_tilesets_res_tileset);
 }
 
-boolean proxycb_xdr_get_glyph_mapping_res_symdef(xdr, datum)
+nhext_xdr_bool_t proxycb_xdr_get_glyph_mapping_res_symdef(xdr, datum)
 NhExtXdr *xdr;
 struct proxycb_get_glyph_mapping_res_symdef *datum;
 {
@@ -125,7 +124,7 @@ struct proxycb_get_glyph_mapping_res_symdef *datum;
       nhext_xdr_wrapstring(xdr, (char **)&datum->description);
 }
 
-boolean proxycb_xdr_get_glyph_mapping_res_submapping(xdr, datum)
+nhext_xdr_bool_t proxycb_xdr_get_glyph_mapping_res_submapping(xdr, datum)
 NhExtXdr *xdr;
 struct proxycb_get_glyph_mapping_res_submapping *datum;
 {
@@ -138,7 +137,7 @@ struct proxycb_get_glyph_mapping_res_submapping *datum;
     return retval;
 }
 
-boolean proxycb_xdr_get_glyph_mapping_res_mapping(xdr, datum)
+nhext_xdr_bool_t proxycb_xdr_get_glyph_mapping_res_mapping(xdr, datum)
 NhExtXdr *xdr;
 struct proxycb_get_glyph_mapping_res_mapping *datum;
 {
@@ -152,7 +151,7 @@ struct proxycb_get_glyph_mapping_res_mapping *datum;
 	proxycb_xdr_get_glyph_mapping_res_submapping);
 }
 
-boolean proxycb_xdr_get_glyph_mapping_res(xdr, datum)
+nhext_xdr_bool_t proxycb_xdr_get_glyph_mapping_res(xdr, datum)
 NhExtXdr *xdr;
 struct proxycb_get_glyph_mapping_res *datum;
 {

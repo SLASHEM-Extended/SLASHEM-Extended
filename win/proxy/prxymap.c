@@ -1,13 +1,12 @@
-/* $Id: prxymap.c,v 1.2 2002-10-05 19:22:55 j_ali Exp $ */
+/* $Id: prxymap.c,v 1.3 2002-11-02 15:47:04 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "hack.h"
-#include "winproxy.h"
+#include "nhxdr.h"
+#include "proxycom.h"
 #include "proxysvr.h"
-#include "proxycb.h"
 
 static void
 proxy_set_description(struct proxy_glyph_mapping *datum, int level,

@@ -747,37 +747,39 @@ wintext.o: ../win/X11/wintext.c $(HACK_H) ../include/winX.h ../include/xwindow.h
 	$(CC) $(CFLAGS) -c ../win/X11/wintext.c
 winval.o: ../win/X11/winval.c $(HACK_H) ../include/winX.h
 	$(CC) $(CFLAGS) -c ../win/X11/winval.c
-gtk.o: ../win/gtk/gtk.c ../include/winGTK.h $(HACK_H) ../include/winproxy.h \
-		../include/func_tab.h ../include/dlb.h ../include/patchlevel.h
+gtk.o: ../win/gtk/gtk.c ../include/winGTK.h $(HACK_H) ../include/nhxdr.h \
+		../include/proxycom.h ../include/func_tab.h ../include/dlb.h \
+		../include/patchlevel.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtk.c
 gtkgetlin.o: ../win/gtk/gtkgetlin.c ../include/winGTK.h $(HACK_H) \
-		../include/winproxy.h
+		../include/nhxdr.h ../include/proxycom.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkgetlin.c
 gtkstatus.o: ../win/gtk/gtkstatus.c ../include/winGTK.h $(HACK_H) \
-		../include/winproxy.h
+		../include/nhxdr.h ../include/proxycom.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkstatus.c
 gtkmenu.o: ../win/gtk/gtkmenu.c ../include/winGTK.h $(HACK_H) \
-		../include/winproxy.h ../include/patchlevel.h
+		../include/nhxdr.h ../include/proxycom.h ../include/patchlevel.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmenu.c
-gtkyn.o: ../win/gtk/gtkyn.c ../include/winGTK.h $(HACK_H) ../include/winproxy.h
+gtkyn.o: ../win/gtk/gtkyn.c ../include/winGTK.h $(HACK_H) ../include/nhxdr.h \
+		../include/proxycom.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkyn.c
 gtkextcmd.o: ../win/gtk/gtkextcmd.c ../include/winGTK.h $(HACK_H) \
-		../include/winproxy.h ../include/func_tab.h
+		../include/nhxdr.h ../include/proxycom.h ../include/func_tab.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkextcmd.c
-gtkmap.o: ../win/gtk/gtkmap.c ../include/winGTK.h $(HACK_H) \
-		../include/winproxy.h ../include/dlb.h ../include/patchlevel.h
+gtkmap.o: ../win/gtk/gtkmap.c ../include/winGTK.h $(HACK_H) ../include/nhxdr.h \
+		../include/proxycom.h ../include/dlb.h ../include/patchlevel.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmap.c
 gtkmessage.o: ../win/gtk/gtkmessage.c ../include/winGTK.h $(HACK_H) \
-		../include/winproxy.h
+		../include/nhxdr.h ../include/proxycom.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmessage.c
 gtkmisc.o: ../win/gtk/gtkmisc.c ../include/winGTK.h $(HACK_H) \
-		../include/winproxy.h
+		../include/nhxdr.h ../include/proxycom.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmisc.c
 xshmmap.o: ../win/gtk/xshmmap.c ../include/winGTK.h $(HACK_H) \
-		../include/winproxy.h ../include/xshm.h
+		../include/nhxdr.h ../include/proxycom.h ../include/xshm.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshmmap.c
-xshm.o: ../win/gtk/xshm.c ../include/winGTK.h $(HACK_H) ../include/winproxy.h \
-		../include/xshm.h
+xshm.o: ../win/gtk/xshm.c ../include/winGTK.h $(HACK_H) ../include/nhxdr.h \
+		../include/proxycom.h ../include/xshm.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshm.c
 gnaskstr.o: ../win/gnome/gnaskstr.c ../win/gnome/gnaskstr.h \
 		../win/gnome/gnmain.h
@@ -828,10 +830,11 @@ load_img.o: ../win/gem/load_img.c ../include/load_img.h
 gr_rect.o: ../win/gem/gr_rect.c ../include/gr_rect.h
 	$(CC) $(CFLAGS) -c ../win/gem/gr_rect.c
 winproxy.o: ../win/proxy/winproxy.c $(HACK_H) ../include/nhxdr.h \
-		../include/winproxy.h #../include/win32api.h
+		../include/proxycom.h ../include/winproxy.h \
+		#../include/win32api.h
 	$(CC) $(CFLAGS) -c ../win/proxy/winproxy.c
 callback.o: ../win/proxy/callback.c $(HACK_H) ../include/func_tab.h \
-		../include/nhxdr.h ../include/winproxy.h ../include/proxycb.h
+		../include/nhxdr.h ../include/proxycom.h ../include/winproxy.h
 	$(CC) $(CFLAGS) -c ../win/proxy/callback.c
 dlbh.o: ../win/proxy/dlbh.c $(HACK_H) ../include/dlb.h
 	$(CC) $(CFLAGS) -c ../win/proxy/dlbh.c
@@ -842,35 +845,32 @@ riputil.o: ../win/proxy/riputil.c $(HACK_H)
 getopt.o: ../win/proxy/getopt.c $(HACK_H)
 	$(CC) $(CFLAGS) -c ../win/proxy/getopt.c
 glyphmap.o: ../win/proxy/glyphmap.c $(HACK_H) ../include/nhxdr.h \
-		../include/proxycb.h ../include/winproxy.h
+		../include/winproxy.h
 	$(CC) $(CFLAGS) -c ../win/proxy/glyphmap.c
-proxysvc.o: ../win/proxy/proxysvc.c $(HACK_H) ../include/nhxdr.h \
-		../include/winproxy.h ../include/proxysvr.h \
-		#../include/win32api.h
+proxysvc.o: ../win/proxy/proxysvc.c ../include/nhxdr.h ../include/proxycom.h \
+		../include/proxysvr.h
 	$(CC) $(CFLAGS) -c ../win/proxy/proxysvc.c
-proxycb.o: ../win/proxy/proxycb.c $(HACK_H) ../include/nhxdr.h \
-		../include/winproxy.h ../include/proxycb.h
+proxycb.o: ../win/proxy/proxycb.c ../include/nhxdr.h ../include/proxycom.h \
+		../include/proxycb.h
 	$(CC) $(CFLAGS) -c ../win/proxy/proxycb.c
-prxymap.o: ../win/proxy/prxymap.c $(HACK_H) ../include/winproxy.h \
-		../include/proxysvr.h ../include/proxycb.h
+prxymap.o: ../win/proxy/prxymap.c ../include/nhxdr.h ../include/proxycom.h \
+		../include/proxysvr.h
 	$(CC) $(CFLAGS) -c ../win/proxy/prxymap.c
-prxychar.o: ../win/proxy/prxychar.c $(HACK_H) ../include/winproxy.h \
-		../include/proxysvr.h ../include/proxycb.h
+prxychar.o: ../win/proxy/prxychar.c ../include/nhxdr.h ../include/proxycom.h \
+		../include/proxysvr.h
 	$(CC) $(CFLAGS) -c ../win/proxy/prxychar.c
-prxytile.o: ../win/proxy/prxytile.c $(HACK_H) ../include/winproxy.h \
-		../include/proxysvr.h ../include/proxycb.h
+prxytile.o: ../win/proxy/prxytile.c ../include/nhxdr.h ../include/proxycom.h \
+		../include/proxysvr.h
 	$(CC) $(CFLAGS) -c ../win/proxy/prxytile.c
-nhext.o: ../win/proxy/nhext.c $(HACK_H) ../include/nhxdr.h \
-		../include/proxycom.h ../include/winproxy.h
+nhext.o: ../win/proxy/nhext.c ../include/nhxdr.h ../include/proxycom.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhext.c
-nhxdr.o: ../win/proxy/nhxdr.c $(HACK_H) ../include/nhxdr.h
+nhxdr.o: ../win/proxy/nhxdr.c ../include/nhxdr.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhxdr.c
-nhextxdr.o: ../win/proxy/nhextxdr.c $(HACK_H) ../include/nhxdr.h
+nhextxdr.o: ../win/proxy/nhextxdr.c ../include/nhxdr.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhextxdr.c
-nhextio.o: ../win/proxy/nhextio.c ../include/proxycom.h
+nhextio.o: ../win/proxy/nhextio.c ../include/nhxdr.h ../include/proxycom.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhextio.c
-compxdr.o: ../win/proxy/compxdr.c $(HACK_H) ../include/nhxdr.h \
-		../include/winproxy.h ../include/proxycb.h
+compxdr.o: ../win/proxy/compxdr.c ../include/nhxdr.h ../include/proxycom.h
 	$(CC) $(CFLAGS) -c ../win/proxy/compxdr.c
 gl_conf.o: ../win/gl/gl_conf.c $(HACK_H) ../include/dlb.h \
 		../include/patchlevel.h ../include/winGL.h

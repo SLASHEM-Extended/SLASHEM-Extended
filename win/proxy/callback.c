@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.9 2002-09-01 21:58:19 j_ali Exp $ */
+/* $Id: callback.c,v 1.10 2002-11-02 15:47:03 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -7,8 +7,8 @@
 #include "hack.h"
 #include "func_tab.h"
 #include "nhxdr.h"
+#include "proxycom.h"
 #include "winproxy.h"
-#include "proxycb.h"
 
 static void FDECL(callback_display_inventory, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));

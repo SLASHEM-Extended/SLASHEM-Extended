@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.26 2002-09-01 21:58:18 j_ali Exp $
+  $Id: winGTK.h,v 1.27 2002-11-02 15:47:02 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -42,7 +42,8 @@
 #include "hack.h"
 #include "wintty.h"
 #if defined(GTK_V20)
-#include "winproxy.h"
+#include "nhxdr.h"
+#include "proxycom.h"
 #endif
 
 #define WINGTK_MENU_IMAGES	/* Pretty images (tiles) in first column */

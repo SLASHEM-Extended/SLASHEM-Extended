@@ -1,12 +1,11 @@
-/* $Id: nhext.c,v 1.10 2002-10-09 16:20:35 j_ali Exp $ */
+/* $Id: nhext.c,v 1.11 2002-11-02 15:47:03 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
-#define NEED_VARARGS
-#include "hack.h"
+#include <stdlib.h>
+#include <stdarg.h>
 #include "nhxdr.h"
 #include "proxycom.h"
-#include "winproxy.h"
 
 /*
  * This module implements the low-level NhExt protocols.
@@ -86,8 +85,7 @@ int nhext_rpc_vparams(NhExtXdr *xdrs, int no, va_list *app)
     int *param_pi;
     char *param_s;
     char **param_ps, *param_pc;
-    winid *param_pw;
-    boolean param_b, *param_pb;
+    nhext_xdr_bool_t param_b, *param_pb;
     int (*param_codec)();
     void *param_addr;
     ap = *app;
@@ -111,10 +109,6 @@ int nhext_rpc_vparams(NhExtXdr *xdrs, int no, va_list *app)
 		param_i = va_arg(ap, int);
 		retval = nhext_xdr_bytes(xdrs, &param_s, &param_i,
 			(unsigned int)-1);
-		break;
-	    case EXT_PARAM_WINID:
-		param_i = va_arg(ap, winid);
-		retval = nhext_xdr_int(xdrs, &param_i);
 		break;
 	    case EXT_PARAM_BOOLEAN:
 		param_b = va_arg(ap, int);	/* boolean is promoted to int */
@@ -143,13 +137,8 @@ int nhext_rpc_vparams(NhExtXdr *xdrs, int no, va_list *app)
 		param_pi = va_arg(ap, int *);
 		nhext_xdr_bytes(xdrs, param_ps, param_pi, (unsigned int)-1);
 		break;
-	    case EXT_PARAM_PTR | EXT_PARAM_WINID:
-		param_pw = va_arg(ap, winid *);
-		retval = nhext_xdr_int(xdrs, &param_i);
-		*param_pw = (winid)param_i;
-		break;
 	    case EXT_PARAM_PTR | EXT_PARAM_BOOLEAN:
-		param_pb = va_arg(ap, boolean *);
+		param_pb = va_arg(ap, nhext_xdr_bool_t *);
 		retval = nhext_xdr_bool(xdrs, param_pb);
 		break;
 	    case EXT_PARAM_PTR | EXT_PARAM_CHAR:

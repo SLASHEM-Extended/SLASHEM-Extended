@@ -3,10 +3,51 @@ Introduction
 This file documents the proxy windowing interface. It is far from complete.
 
 Contents:
-	I.    Adding a standard procedure
-	II.   Adding a standard callback
+	I.    An overview of the components
+	II.   Adding a standard procedure
+	III.  Adding a standard callback
 
-I.  Adding a standard procedure
+I.   An overview of the components
+
+The proxy window interface is made up of a number of components. This is
+because it is intended to be used both as a standard window interface to
+be linked with the game executable and as a library that can be linked
+with an external window port to handle the communication with the game.
+The modules can be broken down into the following types:
+
+A.  Common modules used in both processes (proxycom)
+B.  The proxy window interface (winproxy)
+C.  Utility modules used in the game executable (proxyutl)
+D.  Server modules used only by the external process (proxysvr)
+
+The main game executable is built with the winproxy, proxyutl and proxycom
+modules; external interfaces are built with the nhproxy library which
+consists of the proxysvr and proxycom modules.
+
+When building a window interface as an external port, the proxyutl modules
+are just a special case of the winproxy modules. However, if a window
+interface is designed to be built as either an external port or as an
+internal window interface then the code can normally be simplified by
+using the proxyutl modules in the internal window interface.
+
+The proxy window interface has a number of include files which are used
+as follows:
+
+A.  Common include files:
+
+nhxdr.h
+proxycom.h
+
+B.  Proxy window interface include files:
+
+winproxy.h
+
+C.  External process include files:
+
+proxysvr.h
+proxycb.h
+
+II.  Adding a standard procedure
 
 First choose a name for the new procedure. We will use ${name} to refer to
 the lowercase version of the chosen name in this document and ${NAME} to
@@ -26,19 +67,22 @@ A.  win/proxy/ext_protocol.html
  o If you have access to rpcgen then you can use the relevant makefile
    to build rpcgen-nhext_xdr.c and so check your syntax.
 
-B.  include/winproxy.h
+B.  include/proxysvr.h
 
- o Add a new procedure ID to the list using the ID chosen above:
-	#define EXT_FID_${NAME}		0x##
  o Add a new field to the end of struct window_ext_procs to hold a pointer
    to a function which takes the relevant parameters and returns the
    relevant result. The field should be named winext_${name}.
+
+C.  include/proxycom.h
+
+ o Add a new procedure ID to the list using the ID chosen above:
+	#define EXT_FID_${NAME}		0x##
  o If any of the parameters or return value are too complex for nhext_rpc()
    then define a struct proxy_${name}_req and/or proxy_${name}_res
-   and declare an XDR function to handle it (enclose the declaration
+   and declare an XDR function to handle it (enclose the additions
    inside an #ifdef NHXDR_H ... #endif pair).
 
-C.  win/proxy/compxdr.c
+D.  win/proxy/compxdr.c
 
 If you declared an XDR function in winproxy.h, then you need to define
 it in this file. Many XDR functions consist simply of calling standard
@@ -47,7 +91,7 @@ bitwise AND of their return values. XDR functions should not return
 early if an error occurs so the use of logical AND operators is
 generally to be avoided.
 
-D.  win/proxy/winproxy.c
+E.  win/proxy/winproxy.c
 
 Define the proxy_${name} function you declared above. This function will
 be called by the game when it wants to perform the relevant procedure.
@@ -62,7 +106,7 @@ It should:
    read back the reply.
  o Return the result (if any).
 
-E.  win/proxy/proxysvc.c
+F.  win/proxy/proxysvc.c
 
 This module implements the support in the windowing interface(s) for the
 procedure. You should:
@@ -82,7 +126,7 @@ procedure. You should:
  o Add an entry to the services array as follows:
 	EXT_FID_${NAME},		proxy_svc_${name},
 
-F.  external window interface(s)
+G.  external window interface(s)
 
 Add an entry to the window_ext_procs structure for each external window
 interface for the newly defined winext_${name} field. This should either
@@ -91,11 +135,11 @@ be a hook function that does nothing except return an appropriate result
 a function to do the work for the new procedure as newly documented in
 ext_protocol.html.
 
-G.  game source
+H.  game source
 
 Add code to call proxy_${name} at the appropriate points in the game source.
 
-II.  Adding a standard callback
+III.  Adding a standard callback
 
 First choose a name for the new callback. We will use ${name} to refer to
 the lowercase version of the chosen name in this document and ${NAME} to
@@ -117,16 +161,19 @@ A.  win/proxy/ext_protocol.html
 
 B.  include/proxycb.h
 
- o Add a new callback ID to the list using the ID chosen above:
-	#define EXT_CID_${NAME}		0x##
  o Declare proxy_cb_${name} as a function which takes the relevant
    parameters and returns the relevant result.
+
+C.  include/proxycom.h
+
+ o Add a new callback ID to the list using the ID chosen above:
+	#define EXT_CID_${NAME}		0x##
  o If any of the parameters or return value are too complex for nhext_rpc()
    then define a struct proxycb_${name}_req and/or proxycb_${name}_res
-   and declare an XDR function to handle it (enclose the declaration
+   and declare an XDR function to handle it (enclose the additions
    inside an #ifdef NHXDR_H ... #endif pair).
 
-C.  win/proxy/compxdr.c
+D.  win/proxy/compxdr.c
 
 If you declared an XDR function in proxycb.h, then you need to define
 it in this file. Many XDR functions consist simply of calling standard
@@ -135,7 +182,7 @@ bitwise AND of their return values. XDR functions should not return
 early if an error occurs so the use of logical AND operators is
 generally to be avoided.
 
-D.  win/proxy/proxycb.c
+E.  win/proxy/proxycb.c
 
 Define the proxy_cb_${name} function you declared above. This
 function will be called by windowing interfaces when they want
@@ -150,7 +197,7 @@ to perform the relevant callback. It should:
    the reply.
  o Return the result (if any).
 
-E.  win/proxy/callback.c
+F.  win/proxy/callback.c
 
 This module implements the support in the game executable for the
 call back. You should:
@@ -170,7 +217,7 @@ call back. You should:
  o Add an entry to the proxy_callbacks array as follows:
 	EXT_CID_${NAME},		callback_${name},
 
-F.  external window interface(s)
+G.  external window interface(s)
 
 Add code to call proxy_cb_${name} to the external window interfaces which
 need the new callback.

@@ -1,14 +1,16 @@
-/* $Id: proxysvc.c,v 1.8 2002-10-05 19:22:55 j_ali Exp $ */
+/* $Id: proxysvc.c,v 1.9 2002-11-02 15:47:03 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
-#include "hack.h"
-#include "nhxdr.h"
-#include "winproxy.h"
-#include "proxysvr.h"
+#include <stdlib.h>
+#include <stdio.h>
 #ifdef WIN32
-#include "win32api.h"
+#include <windows.h>
+#include <commctrl.h>
 #endif
+#include "nhxdr.h"
+#include "proxycom.h"
+#include "proxysvr.h"
 
 static void NDECL((*proxy_ini));		/* optional (can be 0) */
 static struct window_ext_procs *proxy_svc;
@@ -130,10 +132,10 @@ unsigned short id;
 NhExtXdr *request, *reply;
 {
     int role, race, gend, align;
-    boolean quit;
+    nhext_xdr_bool_t quit;
     nhext_rpc_params(request, 4, EXT_INT_P(role), EXT_INT_P(race),
       EXT_INT_P(gend), EXT_INT_P(align));
-    quit = (boolean)
+    quit = (nhext_xdr_bool_t)
       (*proxy_svc->winext_player_selection)(&role, &race, &gend, &align);
     nhext_rpc_params(reply,
       5, EXT_INT(role), EXT_INT(race), EXT_INT(gend), EXT_INT(align),
@@ -195,10 +197,10 @@ unsigned short id;
 NhExtXdr *request, *reply;
 {
     int type;
-    winid window;
+    int window;
     nhext_rpc_params(request, 1, EXT_INT_P(type));
     window = (*proxy_svc->winext_create_nhwindow)(type);
-    nhext_rpc_params(reply, 1, EXT_WINID(window));
+    nhext_rpc_params(reply, 1, EXT_INT(window));
 }
 
 static void
@@ -206,8 +208,8 @@ proxy_svc_clear_nhwindow(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    winid window;
-    nhext_rpc_params(request, 1, EXT_WINID_P(window));
+    int window;
+    nhext_rpc_params(request, 1, EXT_INT_P(window));
     (*proxy_svc->winext_clear_nhwindow)(window);
 }
 
@@ -216,9 +218,9 @@ proxy_svc_display_nhwindow(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    winid window;
-    boolean blocking;
-    nhext_rpc_params(request, 2, EXT_WINID_P(window), EXT_BOOLEAN_P(blocking));
+    int window;
+    nhext_xdr_bool_t blocking;
+    nhext_rpc_params(request, 2, EXT_INT_P(window), EXT_BOOLEAN_P(blocking));
     (*proxy_svc->winext_display_nhwindow)(window, blocking);
 }
 
@@ -227,8 +229,8 @@ proxy_svc_destroy_nhwindow(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    winid window;
-    nhext_rpc_params(request, 1, EXT_WINID_P(window));
+    int window;
+    nhext_rpc_params(request, 1, EXT_INT_P(window));
     (*proxy_svc->winext_destroy_nhwindow)(window);
 }
 
@@ -237,9 +239,9 @@ proxy_svc_curs(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    winid window;
+    int window;
     int x, y;
-    nhext_rpc_params(request, 3, EXT_WINID_P(window),
+    nhext_rpc_params(request, 3, EXT_INT_P(window),
       EXT_INT_P(x), EXT_INT_P(y));
     (*proxy_svc->winext_curs)(window, x, y);
 }
@@ -249,11 +251,11 @@ proxy_svc_putstr(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    winid window;
+    int window;
     int attr;
     char *str = (char *)0;
     nhext_rpc_params(request,
-      3, EXT_WINID_P(window), EXT_INT_P(attr), EXT_STRING_P(str));
+      3, EXT_INT_P(window), EXT_INT_P(attr), EXT_STRING_P(str));
     (*proxy_svc->winext_putstr)(window, attr, str);
     free(str);
 }
@@ -273,8 +275,8 @@ proxy_svc_start_menu(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    winid window;
-    nhext_rpc_params(request, 1, EXT_WINID_P(window));
+    int window;
+    nhext_rpc_params(request, 1, EXT_INT_P(window));
     (*proxy_svc->winext_start_menu)(window);
 }
 
@@ -283,12 +285,12 @@ proxy_svc_add_menu(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    winid window;
+    int window;
     int glyph, identifier, accelerator, groupacc, attr;
     char *str = (char *)0;
-    boolean preselected;
+    nhext_xdr_bool_t preselected;
     nhext_rpc_params(request,
-      8, EXT_WINID_P(window), EXT_INT_P(glyph), EXT_INT_P(identifier),
+      8, EXT_INT_P(window), EXT_INT_P(glyph), EXT_INT_P(identifier),
          EXT_INT_P(accelerator), EXT_INT_P(groupacc), EXT_INT_P(attr),
 	 EXT_STRING_P(str), EXT_BOOLEAN_P(preselected));
     (*proxy_svc->winext_add_menu)(window, glyph, identifier, accelerator,
@@ -301,9 +303,9 @@ proxy_svc_end_menu(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    winid window;
+    int window;
     char *prompt = (char *)0;
-    nhext_rpc_params(request, 2, EXT_WINID_P(window), EXT_STRING_P(prompt));
+    nhext_rpc_params(request, 2, EXT_INT_P(window), EXT_STRING_P(prompt));
     (*proxy_svc->winext_end_menu)(window, prompt);
     free(prompt);
 }
@@ -314,11 +316,11 @@ unsigned short id;
 NhExtXdr *request, *reply;
 {
     int i;
-    winid window;
+    int window;
     int how;
     struct proxy_mi *selected;
     struct proxy_select_menu_res ret;
-    nhext_rpc_params(request, 2, EXT_WINID_P(window), EXT_INT_P(how));
+    nhext_rpc_params(request, 2, EXT_INT_P(window), EXT_INT_P(how));
     ret.retval = (*proxy_svc->winext_select_menu)(window, how, &selected);
     ret.n = ret.retval > 0 && selected ? ret.retval : 0;
     if (ret.n) {
@@ -401,10 +403,10 @@ proxy_svc_print_glyph(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    winid window;
+    int window;
     int x, y, glyph;
     nhext_rpc_params(request,
-      4, EXT_WINID_P(window), EXT_INT_P(x), EXT_INT_P(y), EXT_INT_P(glyph));
+      4, EXT_INT_P(window), EXT_INT_P(x), EXT_INT_P(y), EXT_INT_P(glyph));
     (*proxy_svc->winext_print_glyph)(window, x, y, glyph);
 }
 
@@ -532,7 +534,7 @@ NhExtXdr *request, *reply;
 {
     int color;
     long rgb;
-    boolean reverse;
+    nhext_xdr_bool_t reverse;
     nhext_rpc_params(request,
       3, EXT_INT_P(color), EXT_LONG_P(rgb), EXT_BOOLEAN_P(reverse));
     (*proxy_svc->winext_change_color)(color, rgb, reverse);
@@ -543,7 +545,7 @@ proxy_svc_change_background(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    boolean white_or_black;
+    nhext_xdr_bool_t white_or_black;
     nhext_rpc_params(request, 1, EXT_BOOLEAN_P(white_or_black));
     (*proxy_svc->winext_change_background)(white_or_black);
 }
@@ -553,10 +555,10 @@ proxy_svc_set_font_name(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    winid window;
+    int window;
     char *font = (char *)0;
     int ret;
-    nhext_rpc_params(request, 2, EXT_WINID_P(window), EXT_STRING_P(font));
+    nhext_rpc_params(request, 2, EXT_INT_P(window), EXT_STRING_P(font));
     ret = (*proxy_svc->winext_set_font_name)(window, font);
     nhext_rpc_params(reply, 1, EXT_INT(ret));
     free(font);
@@ -594,11 +596,11 @@ proxy_svc_outrip(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    winid window;
+    int window;
     char *killed_by = (char *)0;
-    boolean handled;
-    nhext_rpc_params(request, 2, EXT_WINID_P(window), EXT_STRING_P(killed_by));
-    handled = (boolean)(*proxy_svc->winext_outrip)(window, killed_by);
+    nhext_xdr_bool_t handled;
+    nhext_rpc_params(request, 2, EXT_INT_P(window), EXT_STRING_P(killed_by));
+    handled = (nhext_xdr_bool_t)(*proxy_svc->winext_outrip)(window, killed_by);
     nhext_rpc_params(reply, 1, EXT_BOOLEAN(handled));
     free(killed_by);
 }

@@ -1,8 +1,8 @@
-/* $Id: nhextxdr.c,v 1.4 2002-07-10 16:31:24 j_ali Exp $ */
+/* $Id: nhextxdr.c,v 1.5 2002-11-02 15:47:03 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
-#include "hack.h"
+#include <stdlib.h>
 #include "nhxdr.h"
 
 /*
@@ -23,7 +23,7 @@
  * will correctly encode and decode this quantity.
  */
 
-boolean
+nhext_xdr_bool_t
 nhext_xdr_long(xdrs, datum)
 NhExtXdr *xdrs;
 long *datum;
@@ -44,7 +44,7 @@ long *datum;
     return retval;
 }
 
-boolean
+nhext_xdr_bool_t
 nhext_xdr_u_long(xdrs, datum)
 NhExtXdr *xdrs;
 unsigned long *datum;
@@ -57,7 +57,7 @@ unsigned long *datum;
     return retval;
 }
 
-boolean
+nhext_xdr_bool_t
 nhext_xdr_short(xdrs, datum)
 NhExtXdr *xdrs;
 short *datum;
@@ -70,7 +70,7 @@ short *datum;
     return retval;
 }
 
-boolean
+nhext_xdr_bool_t
 nhext_xdr_u_short(xdrs, datum)
 NhExtXdr *xdrs;
 unsigned short *datum;
@@ -83,7 +83,7 @@ unsigned short *datum;
     return retval;
 }
 
-boolean
+nhext_xdr_bool_t
 nhext_xdr_int(xdrs, datum)
 NhExtXdr *xdrs;
 int *datum;
@@ -96,7 +96,7 @@ int *datum;
     return retval;
 }
 
-boolean
+nhext_xdr_bool_t
 nhext_xdr_u_int(xdrs, datum)
 NhExtXdr *xdrs;
 unsigned int *datum;
@@ -109,7 +109,7 @@ unsigned int *datum;
     return retval;
 }
 
-boolean
+nhext_xdr_bool_t
 nhext_xdr_char(xdrs, datum)
 NhExtXdr *xdrs;
 char *datum;
@@ -122,7 +122,7 @@ char *datum;
     return retval;
 }
 
-boolean
+nhext_xdr_bool_t
 nhext_xdr_u_char(xdrs, datum)
 NhExtXdr *xdrs;
 unsigned char *datum;
@@ -135,7 +135,7 @@ unsigned char *datum;
     return retval;
 }
 
-boolean
+nhext_xdr_bool_t
 nhext_xdr_enum(xdrs, datum)
 NhExtXdr *xdrs;
 int *datum;
@@ -148,16 +148,16 @@ int *datum;
     return retval;
 }
 
-boolean
+nhext_xdr_bool_t
 nhext_xdr_bool(xdrs, datum)
 NhExtXdr *xdrs;
-boolean *datum;
+nhext_xdr_bool_t *datum;
 {
     int retval;
     long l;
     l = !!*datum;
     retval = nhext_xdr_long(xdrs, &l);
-    *datum = (boolean)l;
+    *datum = (nhext_xdr_bool_t)l;
     return retval;
 }
 
@@ -165,7 +165,7 @@ boolean *datum;
  * A common routine for nhext_xdr_string() and nhext_xdr_bytes()
  */
 
-static boolean
+static nhext_xdr_bool_t
 nhext_xdr_bytestring(xdrs, datum, len, maxlen, ext)
 NhExtXdr *xdrs;
 char **datum;
@@ -203,7 +203,7 @@ unsigned int maxlen, ext;
     return retval;
 }
 
-boolean
+nhext_xdr_bool_t
 nhext_xdr_string(xdrs, datum, maxsize)
 NhExtXdr *xdrs;
 char **datum;
@@ -219,7 +219,7 @@ unsigned int maxsize;
     return retval;
 }
 
-boolean
+nhext_xdr_bool_t
 nhext_xdr_bytes(xdrs, datum, len, maxlen)
 NhExtXdr *xdrs;
 char **datum;
@@ -229,7 +229,7 @@ unsigned int maxlen;
     return nhext_xdr_bytestring(xdrs, datum, len, maxlen, 0);
 }
 
-boolean
+nhext_xdr_bool_t
 nhext_xdr_wrapstring(xdrs, datum)
 NhExtXdr *xdrs;
 char **datum;
@@ -237,13 +237,13 @@ char **datum;
     return nhext_xdr_string(xdrs, datum, (unsigned int)-1);
 }
 
-boolean
+nhext_xdr_bool_t
 nhext_xdr_vector(xdrs, addr, len, size, codec)
 NhExtXdr *xdrs;
 char *addr;
 unsigned int len;
 unsigned int size;
-boolean (*codec)(NhExtXdr *, void *);
+nhext_xdr_bool_t (*codec)(NhExtXdr *, void *);
 {
     for(; len > 0; len--) {
 	if (!(*codec)(xdrs, addr))
@@ -253,14 +253,14 @@ boolean (*codec)(NhExtXdr *, void *);
     return TRUE;
 }
 
-boolean
+nhext_xdr_bool_t
 nhext_xdr_array(xdrs, addr, len, maxlen, size, codec)
 NhExtXdr *xdrs;
 char **addr;
 unsigned int *len;
 unsigned int maxlen;
 unsigned int size;
-boolean (*codec)(NhExtXdr *, void *);
+nhext_xdr_bool_t (*codec)(NhExtXdr *, void *);
 {
     int retval;
     long slen;

@@ -1,4 +1,4 @@
-# $Id: Makefile.w32,v 1.1 2002-10-05 19:22:54 j_ali Exp $
+# $Id: Makefile.w32,v 1.2 2002-11-02 15:47:03 j_ali Exp $
 # Copyright (c) Slash'EM Development Team 2002
 # NetHack may be freely redistributed.  See license for details.
 #
@@ -104,8 +104,7 @@ gtk.o: gtk.c ../../include/winGTK.h ../../include/wintype.h ../../include/func_t
 		../../include/dlb.h ../../include/patchlevel.h ../../include/proxycb.h
 gtkgetlin.o: gtkgetlin.c ../../include/winGTK.h
 gtkstatus.o: gtkstatus.c ../../include/winGTK.h
-gtkmenu.o: gtkmenu.c ../../include/winGTK.h ../../include/winproxy.h \
-		../../include/patchlevel.h
+gtkmenu.o: gtkmenu.c ../../include/winGTK.h ../../include/patchlevel.h
 gtkyn.o: gtkyn.c ../../include/winGTK.h
 gtkextcmd.o: gtkextcmd.c ../../include/winGTK.h ../../include/proxycb.h \
 		../../include/func_tab.h
@@ -117,7 +116,7 @@ gtkmisc.o: gtkmisc.c ../../include/winGTK.h ../../include/proxycb.h
 gtktile.o: gtktile.c ../../include/winGTK.h ../../include/dlb.h ../../include/proxycb.h \
 		../../include/proxysvr.h
 xshmmap.o: xshmmap.c ../../include/winGTK.h
-gtkext.o: gtkext.c ../../include/winGTK.h ../../include/winproxy.h
+gtkext.o: gtkext.c ../../include/winGTK.h ../../include/proxysvr.h
 panic.o: panic.c $(CONFIG_H)
 # DEPENDENCIES MUST END AT END OF FILE
 # IF YOU PUT STUFF HERE IT WILL GO AWAY

@@ -1,8 +1,8 @@
-/* $Id: nhxdr.c,v 1.3 2001-12-24 07:56:33 j_ali Exp $ */
+/* $Id: nhxdr.c,v 1.4 2002-11-02 15:47:03 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001 */
 /* NetHack may be freely redistributed.  See license for details. */
 
-#include "hack.h"
+#include <stdlib.h>
 #include "nhxdr.h"
 
 /*
@@ -20,7 +20,7 @@ NhExtXdr *xdrs;
     return xdrs->x_pos;
 }
 
-boolean
+nhext_xdr_bool_t
 nhext_xdr_setpos(xdrs, pos)
 NhExtXdr *xdrs;
 unsigned int pos;
@@ -34,14 +34,14 @@ unsigned int pos;
 void
 nhext_xdr_free(codec, addr)
 char *addr;
-boolean (*codec)(NhExtXdr *, void *);
+nhext_xdr_bool_t (*codec)(NhExtXdr *, void *);
 {
     NhExtXdr xdrs;
     xdrs.x_op = NHEXT_XDR_FREE;
     (void)(*codec)(&xdrs, addr);
 }
 
-static boolean
+static nhext_xdr_bool_t
 nhext_xdrmem_read(xdrs, addr, size)
 NhExtXdr *xdrs;
 char *addr;
@@ -56,7 +56,7 @@ int size;
     return TRUE;
 }
 
-static boolean
+static nhext_xdr_bool_t
 nhext_xdrmem_write(xdrs, addr, size)
 NhExtXdr *xdrs;
 const char *addr;

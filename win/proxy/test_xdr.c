@@ -1,4 +1,4 @@
-/* $Id: test_xdr.c,v 1.2 2001-12-11 20:43:49 j_ali Exp $ */
+/* $Id: test_xdr.c,v 1.3 2002-11-02 15:47:04 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -20,12 +20,11 @@
 #else
 #include "hack.h"
 #include "nhxdr.h"
-#include "winproxy.h"
 #endif	/* RPCGEN */
 
 #ifdef RPCGEN
 #define SIZE(array)		(sizeof(array)/sizeof(*(array)))
-#define boolean			bool_t
+#define nhext_xdr_bool_t	bool_t
 
 #define NHEXT_XDR_DECODE	XDR_DECODE
 #define NHEXT_XDR_ENCODE	XDR_ENCODE
@@ -53,7 +52,7 @@ typedef xdrproc_t nhext_xdrproc_t;
 #define nhext_xdr_array		xdr_array
 #define nhext_xdr_string	xdr_string
 #else
-typedef boolean (*nhext_xdrproc_t) ();
+typedef nhext_xdr_bool_t (*nhext_xdrproc_t) ();
 #endif	/* RPCGEN */
 
 int
@@ -203,7 +202,7 @@ test_bool(xdrs, op)
 NhExtXdr *xdrs;
 enum nhext_xdr_op op;
 {
-    boolean bool = TRUE;
+    nhext_xdr_bool_t bool = TRUE;
     if (!nhext_xdr_bool(xdrs, &bool)) {
 	fprintf(stderr, "nhext_xdr_bool failed\n");
 	return FALSE;

@@ -1,13 +1,13 @@
-/* $Id: prxytile.c,v 1.3 2002-10-05 19:22:55 j_ali Exp $ */
+/* $Id: prxytile.c,v 1.4 2002-11-02 15:47:04 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "hack.h"
-#include "winproxy.h"
+#include <string.h>
+#include "nhxdr.h"
+#include "proxycom.h"
 #include "proxysvr.h"
-#include "proxycb.h"
 
 /* #define DEBUG */
 
@@ -338,7 +338,11 @@ struct proxy_tilemap *tile_map;
     } while(k);
     free(forward_refs);
     /* Make certain all glyphs map to _something_ */
+#if 0	/* FIXME */
     glyph = cmap_to_glyph(S_stone);
+#else
+    glyph = 0;
+#endif
     j = glyph2tile[glyph];
     if (j < 0)
 	j = 0;

@@ -1,4 +1,4 @@
-/* $Id: nhextio.c,v 1.1 2002-10-09 16:20:35 j_ali Exp $ */
+/* $Id: nhextio.c,v 1.2 2002-11-02 15:47:03 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -6,6 +6,7 @@
 
 #include <stdlib.h>
 #include <limits.h>
+#include "nhxdr.h"
 #include "proxycom.h"
 
 struct NhExtIO_ {

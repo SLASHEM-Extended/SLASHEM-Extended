@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.12 2002-07-04 13:09:10 j_ali Exp $
+  $Id: gtkmenu.c,v 1.13 2002-11-02 15:47:03 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -11,7 +11,6 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include "winGTK.h"
-#include "winproxy.h"
 #ifdef SHORT_FILENAMES
 #include "patchlev.h"
 #else
