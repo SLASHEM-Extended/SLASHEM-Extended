@@ -2456,7 +2456,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    	    if (mon_reflects(mtmp,
 		    			"The gaze is reflected away by %s %s!"))
 				break;
-			    pline("%s is killed by it's own gaze of death!",
+			    pline("%s is killed by its own gaze of death!",
 							Monnam(mtmp));
 			}
 			killed(mtmp);

@@ -110,6 +110,7 @@ ver 0.0.7E6F3 [?] [Released by ?]
 -fixed bug 926202: Gnome thieves don't eat (Andy Ruse)
 -fixed bug 926200: Dwarf thieves have M2_NOPOLY (Andy Ruse)
 -fixed bug 962568: Mjollnir can't be thrown - code comment incorrect (Andy Ruse)
+-fixed bug 1005587: Beholder killed by "it's" own gaze (Andy Ruse)
 
 See history.txt for changes made in previous versions.
 
