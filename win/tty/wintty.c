@@ -1983,14 +1983,16 @@ tty_putstr(window, attr, str)
 	    if(nb && nb > str+2)
 		str = nb - 2;
 	}
-	k = -1;
+	k = 0;
 	/* WAC - attempt to break or shorten line 2 if it's too long */
 	if(cw->cury && (int)strlen(str) >= CO) {
 	    if(cw->cury < (cw->maxrow - 1))
 		for(k = CO - 1; k && str[k] != ' ';)
 		    k--;
-	    else
-			str = shorten_bot2(str, CO);
+	    if(!k || (int)strlen(str + k + 1) >= CO) {
+		str = shorten_bot2(str, CO);
+		k = 0;
+	    }
 	}
 
 	nb = str;
@@ -2008,13 +2010,13 @@ tty_putstr(window, attr, str)
 	    if(*ob) ob++;
 
 	    /* String break? --WAC */
-	    if ((k > 0) && (i == k)) {
+	    if(i == k) {
 		(void) strncpy(&cw->data[cw->cury][j], str, cw->cols - j - 1);
-		cw->data[cw->cury][++k] = '\0';
+		cw->data[cw->cury][min(k+1, cw->cols-1)] = '\0';
 
 		if(*ob || flags.botlx) {
 		    /* last char printed may be in middle of line */
-		    tty_curs(WIN_STATUS, k, cw->cury);
+		    tty_curs(WIN_STATUS, k+1, cw->cury);
 		    cl_end();
 		}
 		nb++;
@@ -2035,7 +2037,7 @@ tty_putstr(window, attr, str)
 	(void) strncpy(&cw->data[cw->cury][j], str, cw->cols - j - 1);
 	cw->data[cw->cury][cw->cols-1] = '\0'; /* null terminate */
 	/* ALI - Clear third line if present and unused */
-	if (cw->cury == 1 && cw->cury < (cw->maxrow - 1) && k < 0)
+	if (cw->cury == 1 && cw->cury < (cw->maxrow - 1))
 	{
 	    cw->data[cw->cury + 1][0] = '\0';
 	    tty_curs(WIN_STATUS, 1, cw->cury + 1);
