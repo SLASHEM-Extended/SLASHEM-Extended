@@ -2046,6 +2046,7 @@ blitz_g_slam()
 	int i = 0, tech_no, tmp;
 	struct monst *mtmp;
 	struct trap *chasm;
+	int canhitmon, objenchant;
 
 	tech_no = (get_tech_no(T_G_SLAM));
 
@@ -2059,27 +2060,49 @@ blitz_g_slam()
 		return (0);
 	}
 	if (!attack(mtmp)) return (0);
-	
+
 	/* Slam the monster into the ground */
 	mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 	if (!mtmp || u.uswallow) return(1);
-	
+
 	You("hurl %s downwards...", mon_nam(mtmp));
 	if (Is_airlevel(&u.uz) || Is_waterlevel(&u.uz)) return(1);
-	
+
+	if (need_four(mtmp)) canhitmon = 4;
+	else if (need_three(mtmp)) canhitmon = 3;
+	else if (need_two(mtmp)) canhitmon = 2;
+	else if (need_one(mtmp)) canhitmon = 1;
+	else canhitmon = 0;
+	if (Upolyd) {
+	    if (hit_as_four(&youmonst))	objenchant = 4;
+	    else if (hit_as_three(&youmonst)) objenchant = 3;
+	    else if (hit_as_two(&youmonst)) objenchant = 2;
+	    else if (hit_as_one(&youmonst)) objenchant = 1;
+	    else if (need_four(&youmonst)) objenchant = 4;
+	    else if (need_three(&youmonst)) objenchant = 3;
+	    else if (need_two(&youmonst)) objenchant = 2;
+	    else if (need_one(&youmonst)) objenchant = 1;
+	    else objenchant = 0;
+	} else
+	    objenchant = u.ulevel / 4;
+
 	tmp = (5 + rnd(6) + (techlev(tech_no) / 5));
 	
-	chasm = maketrap(u.ux + u.dx, u.uy + u.dy,PIT);
+	chasm = maketrap(u.ux + u.dx, u.uy + u.dy, PIT);
 	if (chasm) {
-		chasm->tseen = 1;
-		levl[(u.ux + u.dx)][(u.uy + u.dy)].doormask = 0;
-		pline("%s slams into the ground, creating a crater!", Monnam(mtmp));
-		tmp *= 2;
+	    if (!is_flyer(mtmp->data) && !is_clinger(mtmp->data))
+		mtmp->mtrapped = 1;
+	    chasm->tseen = 1;
+	    levl[u.ux + u.dx][u.uy + u.dy].doormask = 0;
+	    pline("%s slams into the ground, creating a crater!", Monnam(mtmp));
+	    tmp *= 2;
 	}
 
 	mselftouch(mtmp, "Falling, ", TRUE);
-	if (!DEADMONSTER(mtmp))
-	    if ((mtmp->mhp -= tmp) <= 0) {
+	if (!DEADMONSTER(mtmp)) {
+	    if (objenchant < canhitmon)
+		pline("%s doesn't seem to be harmed.", Monnam(mtmp));
+	    else if ((mtmp->mhp -= tmp) <= 0) {
 		if(!cansee(u.ux + u.dx, u.uy + u.dy))
 		    pline("It is destroyed!");
 		else {
@@ -2088,9 +2111,9 @@ blitz_g_slam()
 			    ? x_monnam(mtmp, ARTICLE_THE, "poor",
 				mtmp->mnamelth ? SUPPRESS_SADDLE : 0, FALSE)
 			    : mon_nam(mtmp));
-
 		}
 		xkilled(mtmp,0);
+	    }
 	}
 
 	return(1);
