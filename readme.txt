@@ -71,6 +71,7 @@ http://www.slashem.org/
 
 ver 0.0.7E5 [?] [Released by ?]
 -fixed bug 854683: gtkhack produces many warnings on start-up
+-fixed bug 846444: [0.0.7e3] Negative disarm skill
 
 See history.txt for changes made in previous versions.
 

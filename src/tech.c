@@ -377,6 +377,7 @@ dotechmenu(how, tech_no)
 	char let = 'a';
 	char *prefix;
 	int techs_useable;
+	int level;
 
 	tmpwin = create_nhwindow(NHW_MENU);
 	start_menu(tmpwin);
@@ -400,32 +401,38 @@ dotechmenu(how, tech_no)
 	for (i = 0; i < MAXTECH; i++) {
 	    if (techid(i) == NO_TECH)
 		continue;
-	    if (!techtout(i)) {
+	    level = techlev(i);
+	    if (!techtout(i) && level > 0) {
 		/* Ready to use */
 		techs_useable++;
 		prefix = "";
-	    } else 
+		any.a_int = i + 1;
+	    } else {
 		prefix = "    ";
+		any.a_int = 0;
+	    }
 #ifdef WIZARD
 	    if (wizard) 
 		if (!iflags.menu_tab_sep)			
 		    Sprintf(buf, "%s%-*s %2d%c%c%c   %s(%i)",
-			    prefix, longest, techname(i), techlev(i),
+			    prefix, longest, techname(i), level,
 			    tech_list[i].t_intrinsic & FROMEXPER ? 'X' : ' ',
 			    tech_list[i].t_intrinsic & FROMRACE ? 'R' : ' ',
 			    tech_list[i].t_intrinsic & FROMOUTSIDE ? 'O' : ' ',
 			    tech_inuse(techid(i)) ? "Active" :
+			    level <= 0 ? "Beyond recall" :
 			    can_limitbreak() ? "LIMIT" :
 			    !techtout(i) ? "Prepared" : 
 			    techtout(i) > 100 ? "Not Ready" : "Soon",
 			    techtout(i));
 		else
 		    Sprintf(buf, "%s%s\t%2d%c%c%c\t%s(%i)",
-			    prefix, techname(i), techlev(i),
+			    prefix, techname(i), level,
 			    tech_list[i].t_intrinsic & FROMEXPER ? 'X' : ' ',
 			    tech_list[i].t_intrinsic & FROMRACE ? 'R' : ' ',
 			    tech_list[i].t_intrinsic & FROMOUTSIDE ? 'O' : ' ',
 			    tech_inuse(techid(i)) ? "Active" :
+			    level <= 0 ? "Beyond recall" :
 			    can_limitbreak() ? "LIMIT" :
 			    !techtout(i) ? "Prepared" : 
 			    techtout(i) > 100 ? "Not Ready" : "Soon",
@@ -434,20 +441,21 @@ dotechmenu(how, tech_no)
 #endif
 	    if (!iflags.menu_tab_sep)			
 		Sprintf(buf, "%s%-*s %5d   %s",
-			prefix, longest, techname(i), techlev(i),
+			prefix, longest, techname(i), level,
 			tech_inuse(techid(i)) ? "Active" :
+			level <= 0 ? "Beyond recall" :
 			can_limitbreak() ? "LIMIT" :
 			!techtout(i) ? "Prepared" : 
 			techtout(i) > 100 ? "Not Ready" : "Soon");
 	    else
 		Sprintf(buf, "%s%s\t%5d\t%s",
-			prefix, techname(i), techlev(i),
+			prefix, techname(i), level,
 			tech_inuse(techid(i)) ? "Active" :
+			level <= 0 ? "Beyond recall" :
 			can_limitbreak() ? "LIMIT" :
 			!techtout(i) ? "Prepared" : 
 			techtout(i) > 100 ? "Not Ready" : "Soon");
 
-	    any.a_int = techtout(i) ? 0 : i + 1;
 	    add_menu(tmpwin, NO_GLYPH, &any,
 		    techtout(i) ? 0 : let, 0, ATR_NONE, buf, MENU_UNSELECTED);
 	    if (let++ == 'z') let = 'A';
