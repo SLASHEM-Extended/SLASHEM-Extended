@@ -37,8 +37,8 @@ Levels Ä LevelList
 		SetFile -t "{FileType}" -c "{FileCreator}" Å.lev
 		Move -y Å.lev "{LibDir}"
 
-"{LibDir}"cavefill.lev	Ä "{Dat}"caves.des "{ObjDir}"LevComp
-		"{ObjDir}"LevComp "{Dat}"caves.des
+"{LibDir}"grund-1.lev	Ä "{Dat}"grund.des "{ObjDir}"LevComp
+		"{ObjDir}"LevComp "{Dat}"grund.des
 		SetFile -t "{FileType}" -c "{FileCreator}" Å.lev
 		Move -y Å.lev "{LibDir}"
 

@@ -50,7 +50,7 @@ CHAINBRANCH:	"Sokoban" "oracle" + (1, 0) up -1
 #   There's no guarantee that all will be created.
 LEVEL:		"rats" "R" @ (10, 2) 50
 RNDLEVEL:	"kobold" "K" @ (11, 2) 50 2
-BRANCH: 	"The Orc Caverns" @ (12, 2)
+BRANCH: 	"Grund's Stronghold" @ (12, 2)
 
 
 # The quests, on levels 15 to 19.
@@ -203,11 +203,11 @@ RNDLEVEL:		"soko3" "none" @ (3, 0) 7
 RNDLEVEL:		"soko4" "none" @ (4, 0) 5
 
 
-### The Orc Caverns ###
-DUNGEON:        "The Orc Caverns" "Z" (1, 0)
+### Grund's Stronghold ###
+DUNGEON:        "Grund's Stronghold" "Z" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
-LEVEL:          "cavefill" "Z" @ (1, 0)
+RNDLEVEL:       "grund" "Z" @ (1, 0) 3
 
 ### Fort Ludios ###
 # (The Central Vault of Croesus.)

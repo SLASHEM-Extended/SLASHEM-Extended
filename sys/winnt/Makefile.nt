@@ -507,7 +507,7 @@ $(O)sp_lev.tag: $(O)utility.tag $(DAT)\bigroom.des  $(DAT)\castle.des \
 	$(DAT)\caveman.des $(DAT)\healer.des   $(DAT)\knight.des \
 	$(DAT)\monk.des    $(DAT)\priest.des   $(DAT)\ranger.des \
 	$(DAT)\rogue.des   $(DAT)\samurai.des  $(DAT)\sokoban.des \
-	$(DAT)\beholder.des $(DAT)\blkmar.des   $(DAT)\caves.des   \
+	$(DAT)\beholder.des $(DAT)\blkmar.des   $(DAT)\grund.des   \
 	$(DAT)\dragons.des  $(DAT)\flame.des    $(DAT)\frnknstn.des\
 	$(DAT)\giants.des   $(DAT)\guild.des    $(DAT)\ice.des     \
 	$(DAT)\lich.des     $(DAT)\mall-1.des   $(DAT)\mall-2.des  \
@@ -542,7 +542,7 @@ $(O)sp_lev.tag: $(O)utility.tag $(DAT)\bigroom.des  $(DAT)\castle.des \
 	$(U)lev_comp samurai.des
 	$(U)lev_comp beholder.des
 	$(U)lev_comp blkmar.des
-	$(U)lev_comp caves.des
+	$(U)lev_comp grund.des
 	$(U)lev_comp dragons.des
 	$(U)lev_comp flame.des
 	$(U)lev_comp frnknstn.des

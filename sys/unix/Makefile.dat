@@ -249,7 +249,7 @@ options:	../util/makedefs
 
 
 spec_levs: ../util/lev_comp \
-	beholder.des bigroom.des blkmar.des castle.des caves.des dragons.des \
+	beholder.des bigroom.des blkmar.des castle.des grund.des dragons.des \
 	endgame.des frnknstn.des gehennom.des giants.des guild.des knox.des \
 	kobold-1.des kobold-2.des lich.des mall-1.des mall-2.des medusa.des \
 	mines.des mtemple.des newmall.des nightmar.des nymph.des oracle.des \
@@ -259,7 +259,7 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp bigroom.des
 	../util/lev_comp blkmar.des
 	../util/lev_comp castle.des
-	../util/lev_comp caves.des
+	../util/lev_comp grund.des
 	../util/lev_comp dragons.des
 	../util/lev_comp endgame.des
 	../util/lev_comp frnknstn.des

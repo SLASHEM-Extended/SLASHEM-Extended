@@ -91,6 +91,7 @@ ver 0.0.7E1 [?] [Released by ?]
   [WIN32] stored in registry
 -Actioned feature request 492518: resize inventory window.
 -Actioned feature request 421535: shop keepers are too dumb.
+-Applied patch 687552: Grund's stronghold.
 
 See history.txt for changes made in previous versions.
 

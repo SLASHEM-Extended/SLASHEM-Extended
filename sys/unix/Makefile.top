@@ -132,7 +132,7 @@ SPEC_LEVS = asmodeus.lev baalz.lev bigrm-?.lev castle.lev fakewiz?.lev \
 	tower?.lev valley.lev wizard?.lev \
 	astral.lev air.lev earth.lev fire.lev water.lev \
 	beholder.lev blkmar.lev cav2fill.lev \
-	cavefill.lev demogorg.lev dispater.lev dragons.lev geryon.lev \
+	grund-?.lev demogorg.lev dispater.lev dragons.lev geryon.lev \
 	guild.lev kobold-?.lev lich.lev mall-?.lev mall.lev mineking.lev \
 	mtemple.lev nymph.lev rats.lev sea.lev spiders.lev stor-?.lev \
 	tomb.lev yeenoghu.lev frnknstn.lev nightmar.lev

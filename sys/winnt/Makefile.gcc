@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.28 2003-04-17 23:15:51 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.29 2003-04-25 18:00:54 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -1340,7 +1340,7 @@ $(DAT)\oracles:	     utility.tag    $(DAT)\oracles.txt
 	-makedefs -h
 
 sp_lev.tag: utility.tag     $(DAT)\beholder.des $(DAT)\bigroom.des \
-	$(DAT)\blkmar.des   $(DAT)\castle.des   $(DAT)\caves.des \
+	$(DAT)\blkmar.des   $(DAT)\castle.des   $(DAT)\grund.des \
 	$(DAT)\dragons.des  $(DAT)\endgame.des \
 	$(DAT)\gehennom.des $(DAT)\giants.des   $(DAT)\guild.des \
 	$(DAT)\knox.des     $(DAT)\kobold-1.des $(DAT)\kobold-2.des \
@@ -1364,7 +1364,7 @@ sp_lev.tag: utility.tag     $(DAT)\beholder.des $(DAT)\bigroom.des \
 	lev_comp $(DDAT)/bigroom.des
 	lev_comp $(DDAT)/blkmar.des
 	lev_comp $(DDAT)/castle.des
-	lev_comp $(DDAT)/caves.des
+	lev_comp $(DDAT)/grund.des
 #	lev_comp $(DDAT)/darkelf.des
 	lev_comp $(DDAT)/dragons.des
 	lev_comp $(DDAT)/endgame.des

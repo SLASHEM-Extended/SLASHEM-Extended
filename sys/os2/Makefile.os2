@@ -534,8 +534,8 @@ SPEC_LEVS = \
  tower3.lev	valley.lev	wizard1.lev	wizard2.lev	wizard3.lev \
  astral.lev	air.lev 	earth.lev	fire.lev	water.lev   \
  soko1-1.lev	soko1-2.lev	soko2-1.lev	soko2-2.lev	soko3-1.lev \
- soko3-2.lev	soko4-1.lev	soko4-2.lev				    \
- beholder.lev	blkmar.lev	cavefill.lev	cav2fill.lev	demogorg.lev\
+ soko3-2.lev	soko4-1.lev	soko4-2.lev	beholder.lev	blkmar.lev  \
+ grund-1.lev	grund-2.lev	grund-3.lev	cav2fill.lev	demogorg.lev\
  dispater.lev	dragons.lev	geryon.lev	guild.lev	frnknstn.lev\
  kobold-1.lev	kobold-2.lev	lich.lev	mall.lev	mall-1.lev  \
  mall-2.lev	mineking.lev	mtemple.lev	nightmar.lev	nymph.lev   \
@@ -1436,7 +1436,9 @@ spec_lev :	$(TEMP)\astral.lev	\
 		$(TEMP)\bigrm-1.lev	\
 		$(TEMP)\blkmar.lev	\
 		$(TEMP)\castle.lev	\
-		$(TEMP)\cavefill.lev	\
+		$(TEMP)\grund-1.lev	\
+		$(TEMP)\grund-2.lev	\
+		$(TEMP)\grund-3.lev	\
 		$(TEMP)\cav2fill.lev	\
 		$(TEMP)\dragons.lev	\
 		$(TEMP)\frnknstn.lev	\
@@ -1542,10 +1544,10 @@ $(TEMP)\bigrm-1.lev : $(DAT)\bigroom.des $(TEMP)\lev_comp.exe
 	$(CP) bigrm-?.lev $(TEMP)
 	$(RM) bigrm-?.lev
 
-$(TEMP)\cavefill.lev : $(DAT)\caves.des $(TEMP)\lev_comp.exe
-	$(TEMP)\lev_comp $(DAT)\caves.des
-	$(CP) cavefill.lev $(TEMP)
-	$(RM) cavefill.lev
+$(TEMP)\grund-1.lev : $(DAT)\grund.des $(TEMP)\lev_comp.exe
+	$(TEMP)\lev_comp $(DAT)\grund.des
+	$(CP) grund-?.lev $(TEMP)
+	$(RM) grund-?.lev
 
 $(TEMP)\cav2fill.lev : $(DAT)\giants.des $(TEMP)\lev_comp.exe
 	$(TEMP)\lev_comp $(DAT)\giants.des
