@@ -613,7 +613,7 @@ long timeout;
 		switch(bomb->where) {		
 		    case OBJ_MINVENT:
 		    	mtmp = bomb->ocarry;
-		    	mtmp->mhp = d(2,5);
+		    	mtmp->mhp -= d(2,5);
 			if(mtmp->mhp < 1) {
 				if(!bomb->yours) 
 					monkilled(mtmp, 
