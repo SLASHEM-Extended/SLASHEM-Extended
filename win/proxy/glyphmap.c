@@ -1,9 +1,10 @@
-/* $Id: glyphmap.c,v 1.3 2002-11-02 15:47:03 j_ali Exp $ */
+/* $Id: glyphmap.c,v 1.4 2002-11-25 14:23:46 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
 #include "nhxdr.h"
+#include "proxycom.h"
 #include "winproxy.h"
 
 /* #define DEBUG */
