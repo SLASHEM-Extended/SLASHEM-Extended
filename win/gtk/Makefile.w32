@@ -1,4 +1,4 @@
-# $Id: Makefile.w32,v 1.2 2003-05-19 12:14:37 j_ali Exp $
+# $Id: Makefile.w32,v 1.3 2003-05-24 18:55:32 j_ali Exp $
 # Copyright (c) Slash'EM Development Team 2002-2003
 # NetHack may be freely redistributed.  See license for details.
 #
@@ -79,7 +79,7 @@ OBJS01 = gtkhack.o gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o
 OBJS02 = gtkmap.o gtkmessage.o gtkmisc.o gtktile.o xshmmap.o gtkext.o
 OBJS03 = gtkhackrc.o gtkprefs.o panic.o
 
-gtkhack.exe:	cc-gtk.exe $(OBJS01) $(OBJS02) $(NHPROXYLIB)/nhproxy.a
+gtkhack.exe:	cc-gtk.exe $(OBJS01) $(OBJS02) $(OBJS03) $(NHPROXYLIB)/nhproxy.a
 	@echo INPUT( $(OBJS01) )> tmp.lnk
 	@echo INPUT( $(OBJS02) )>> tmp.lnk
 	@echo INPUT( $(OBJS03) )>> tmp.lnk

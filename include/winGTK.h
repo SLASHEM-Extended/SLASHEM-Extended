@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.39 2003-05-20 18:36:10 j_ali Exp $
+  $Id: winGTK.h,v 1.40 2003-05-24 18:55:32 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -25,6 +25,9 @@
 #endif
 
 #define GTK_GRAPHICS	/* Needed when building an external interface */
+#ifdef GTKHACK
+#define GTK_PROXY
+#endif
 
 #ifdef WINGTK_X11
 #include <gdk/gdkx.h>
