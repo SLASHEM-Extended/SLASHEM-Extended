@@ -555,12 +555,12 @@ register struct monst *mtmp;
 				POLE_LIM && couldsee(mtmp->mx, mtmp->my))
 			    verb = "thrusts";
 			else return; /* Out of range, or intervening wall */
-		    } else if(ammo_and_launcher(otmp, MON_WEP(mtmp)) &&
-					is_launcher(MON_WEP(mtmp)) &&
-			   		objects[((MON_WEP(mtmp))->otyp)].oc_range) {
+		    } else if(ammo_and_launcher(otmp, mwep) &&
+					is_launcher(mwep) &&
+			   		objects[(mwep->otyp)].oc_range) {
 			if (dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) > 
-			    (objects[((MON_WEP(mtmp))->otyp)].oc_range * 
-			     objects[((MON_WEP(mtmp))->otyp)].oc_range))
+			    (objects[(mwep->otyp)].oc_range * 
+			     objects[(mwep->otyp)].oc_range))
 				return; /* Out of range */
 		    }
 		    if (canseemon(mtmp)) {
@@ -594,19 +594,19 @@ register struct monst *mtmp;
 			/*  Elven Craftsmanship makes for light,  quick bows */
 			if (otmp->otyp == ELVEN_ARROW && !otmp->cursed)
 			    multishot++;
-			if (MON_WEP(mtmp)->otyp == ELVEN_BOW &&
-				!MON_WEP(mtmp)->cursed) multishot++;
+			if (mwep && mwep->otyp == ELVEN_BOW &&
+				!mwep->cursed) multishot++;
 			/* 1/3 of object enchantment */
-			if (MON_WEP(mtmp)->spe > 1)
-			    multishot += (long) rounddiv(MON_WEP(mtmp)->spe,3);
+			if (mwep && mwep->spe > 1)
+			    multishot += (long) rounddiv(mwep->spe,3);
 			/* Some randomness */
 			if (multishot > 1L)
 			    multishot = (long) rnd((int) multishot);
 
 #ifdef FIREARMS
-			if (objects[(MON_WEP(mtmp)->otyp)].oc_rof && 
-					is_launcher(MON_WEP(mtmp))) 
-				multishot += objects[(MON_WEP(mtmp)->otyp)].oc_rof;
+			if (mwep && objects[(mwep->otyp)].oc_rof && 
+					is_launcher(mwep)) 
+				multishot += objects[(mwep->otyp)].oc_rof;
 #endif
 
 			switch (monsndx(mtmp->data)) {

@@ -310,8 +310,14 @@ Bug - cockatrice lairs no longer have "goodies"?
 -back option for character creation TTY? - pretty tough, I think
 -monsters should use "techniques" against you...pets using techniques
 	-pet unicorns remove ailments, etc...
+-Buy items via a menu - #chat with shopkeeper
+-Limit Break based on HP loss? (see howling code)
 
 ver 0.0.6E3F1 [September XX/2000]
+TODO: 
+	-Do the Role/Race/Align/Gender Menusystem (WAC)
+-fixed dereferencing NULL pointer when monster throwing items
+	(mthrowu.c)
 -did the uppercase for conflicting races - TODO: Reimplement F. Theoderson's 
 	selection system or something similar while maintaining current 
 	capabilities (wintty.c)

@@ -195,7 +195,7 @@
  *	a tar-like file, thus making a neater installation.  See *conf.h
  *	for detailed configuration.
  */
-#define DLB             /* not supported on all platforms */
+/* #define DLB */            /* not supported on all platforms */
 
 /*
  *	Defining INSURANCE slows down level changes, but allows games that
@@ -295,7 +295,7 @@ typedef unsigned char	uchar;
  */
 #define BITFIELDS	/* Good bitfield handling */
 
-#define STRNCMPI	/* compiler/library has the strncmpi function */
+/* #define STRNCMPI */	/* compiler/library has the strncmpi function */
 
 /*
  * There are various choices for the NetHack vision system.  There is a
