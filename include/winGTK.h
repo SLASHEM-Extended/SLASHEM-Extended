@@ -1,9 +1,20 @@
 /*
-  $Id: winGTK.h,v 1.13 2001-02-18 15:55:34 j_ali Exp $
+  $Id: winGTK.h,v 1.14 2001-04-12 06:19:00 j_ali Exp $
  */
 
 #ifndef WINGTK_H
 #define WINGTK_H
+
+#ifdef DEVEL_BRANCH
+/*
+ * GtkText is broken and replaced by the much better GtkTextView in GTK+ 1.3
+ * As a temporary measure, we will continue to use it even though we
+ * would do much better to change to GtkTextView.
+ * FIXME: This define should go away.
+ */
+#endif
+
+#define GTK_ENABLE_BROKEN	/* Enable support for old (broken) widgets */
 
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
@@ -19,8 +30,6 @@
 #endif
 #endif
 
-#define WINGTK_MENU_IMAGES	/* Pretty images (tiles) in first column */
-
 #ifdef WINGTK_X11
 #include <gdk/gdkx.h>
 #include <X11/Xlib.h>
@@ -33,10 +42,14 @@
 #include "hack.h"
 #include "wintty.h"
 
+#define WINGTK_MENU_IMAGES	/* Pretty images (tiles) in first column */
+
 #define NHW_NONE 0		/* Unallocated window type.  Must be	*/
 				/* different from any other NHW_* type. */
 
 #define	NH_PAD			5
+
+extern GtkWidget *nh_gtk_window_dialog(void);
 
 extern GtkWidget *nh_gtk_new(GtkWidget *w, GtkWidget *parent, gchar *lbl);
 
@@ -83,6 +96,15 @@ enum {
 
 #define	NH_BUFSIZ		4096
 #define NH_TEXT_REMEMBER	4096
+
+#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+enum xshm_map_mode {
+    XSHM_MAP_NONE,
+    XSHM_MAP_IMAGE,
+    XSHM_MAP_PIXMAP,
+    XSHM_MAP_PIXBUF
+};
+#endif
 
 extern void	GTK_init_nhwindows(int *, char **);
 extern void	GTK_player_selection(void);
@@ -144,7 +166,11 @@ extern void		nh_map_pos(int *, int *, int *);
 extern void		nh_map_click(int);
 extern void		nh_map_flush(void);
 
+#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+extern int		nh_set_map_visual(int);
+#else
 extern void		nh_set_map_visual(int);
+#endif
 extern int		nh_get_map_visual(void);
 extern int		nh_check_map_visual(int);
 
@@ -256,22 +282,45 @@ typedef struct _TileTab{
 extern TileTab tileTab[];
 extern int no_tileTab;
 
+#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+extern GtkWidget *xshm_map_init(enum xshm_map_mode, int width, int height);
+extern void xshm_map_button_handler(GtkSignalFunc func, gpointer data);
+extern void	xshm_map_flush();
+extern void	xshm_map_cliparound(int x, int y);
+#else
 #ifdef WINGTK_X11
 extern void	xshm_init(Display *dpy);
 #else
 extern void	xshm_init(GdkWindow *w);
 #endif
 extern int	xshm_map_init(int width, int height);
+#endif
 extern void	xshm_map_destroy();
 extern void	xshm_map_clear();
 extern void	xshm_map_tile_draw(int dst_x, int dst_y);
+#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+extern void	xshm_map_draw(GdkRectangle *rect);
+extern void	xshm_map_draw_image(GdkImage *src, int src_x, int src_y, int dest_x, int dest_y, int width, int height);
+extern void	xshm_map_draw_drawable(GdkDrawable *src, int src_x, int src_y, int dest_x, int dest_y, int width, int height);
+extern GtkAdjustment *xshm_map_get_hadjustment(void);
+extern GtkAdjustment *xshm_map_get_vadjustment(void);
+extern enum xshm_map_mode x_tile_init(TileTab *t);
+extern void	x_tile_tmp_clear();
+extern int	x_tile_render_to_drawable(GdkDrawable *drawable, GdkGC *gc,
+int tile, int src_x, int src_y, int dest_x, int dest_y, int width, int height);
+extern void	x_tile_draw_rectangle(int dstx, int dsty, GdkColor *c);
+extern void	x_tile_draw_tile(int tile, int dstx, int dsty);
+extern void	x_tile_draw_tmp(int dstx, int dsty);
+extern void	x_tile_tmp_draw_tile(int tile, int ofsx, int ofsy);
+#else
 extern void	xshm_map_draw(GdkWindow *, int src_x, int src_y, int dst_x, int dst_y, int width, int height);
+extern void	x_tile_init(GdkImage *img, TileTab *t);
 extern void	x_tmp_clear();
-extern void	x_tile_init(GdkImage *, TileTab *t);
-extern void	x_tile_destroy();
 extern void	x_tile_gdkimage_draw(GdkImage *dst, int transparency, int srcx, int srcy, int ofsx, int ofsy);
 extern void	x_tile_tmp_draw(int src_x, int src_y, int ofsx, int ofsy);
+#endif
 extern void	x_tile_tmp_draw_rectangle(int ofsx, int ofsy, int c);
+extern void	x_tile_destroy();
 
 /*
  * These must agree with the table in gtkextcmd.c -ALI
@@ -312,7 +361,14 @@ extern int	map_visual;
 /* Current map cursor position */
 extern int	cursx, cursy;
 
-#if defined(MONITOR_HEAP) && defined(LINUX)
+#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+/* Xshm map rasters. Warning: only one of these will be valid */
+extern GdkImage *xshm_map_image;
+extern GdkPixmap *xshm_map_pixmap;
+extern GdkPixbuf *xshm_map_pixbuf;
+#endif
+
+#if defined(MONITOR_HEAP) && defined(INTERNAL_MALLOC)
 #define XCreatePixmap(dpy, root, width, height, depth) \
 	(monitor_heap_push(__FILE__, __LINE__), \
 	monitor_heap_pop(__FILE__, __LINE__, \

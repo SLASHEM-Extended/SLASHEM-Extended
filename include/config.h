@@ -115,6 +115,7 @@
 #endif
 
 #ifdef GTK_GRAPHICS
+/* # define GTK_V20 */		/* Use GTK 2.0 interface (devel only) */
 # define USE_XPM		/* Use XPM format for images (required) */
 # define GRAPHIC_TOMBSTONE	/* Use graphical tombstone (rip.xpm) */
 # define RADAR			/* Use radar map */

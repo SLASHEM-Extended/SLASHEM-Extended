@@ -174,7 +174,9 @@ CXX=g++
 #LD=g++
 
 # GTK windowing system
-WINGTKCFLAGS=`gtk-config --cflags`
+WINGTKCONFIG=gtk-config
+# WINGTKCONFIG=PKG_CONFIG_PATH=/usr/devel/lib/pkgconfig pkg-config gtk+-2.0
+WINGTKCFLAGS=`$(WINGTKCONFIG) --cflags`
 
 # Set the WINSRC, WINOBJ, and WINLIB lines to correspond to your desired
 # combination of windowing systems.  Also set windowing systems in config.h.
@@ -206,6 +208,13 @@ WINGTKSRC = ../win/gtk/gtk.c ../win/gtk/gtkgetlin.c ../win/gtk/gtkstatus.c \
 	../win/gtk/xshmmap.c ../win/gtk/xshm.c
 WINGTKOBJ = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
 	gtkmap.o gtkmessage.o gtkmisc.o xshmmap.o xshm.o nhwin.a
+# Files for a GTK 2.0 port (not included in stable distribution)
+# WINGTKSRC = ../win/gtk2/gtk.c ../win/gtk2/gtkgetlin.c \
+#	../win/gtk2/gtkstatus.c ../win/gtk2/gtkmenu.c ../win/gtk2/gtkyn.c \
+#	../win/gtk2/gtkextcmd.c ../win/gtk2/gtkmap.c ../win/gtk2/gtkmessage.c \
+#	../win/gtk2/gtkmisc.c ../win/gtk2/gtktile.c ../win/gtk2/xshmmap.c
+# WINGTKOBJ = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
+# 	gtkmap.o gtktile.o gtkmessage.o gtkmisc.o xshmmap.o nhwin.a
 #
 # Files for a Gnome port
 #
@@ -274,7 +283,7 @@ WINQTLIB = -L$(QTLIBDIR) -lqt
 WINKDELIB = -lkdecore -lkdeui -lXext
 #
 # libraries for GTK
-WINGTKLIB = `gtk-config --libs`
+WINGTKLIB = `$(WINGTKCONFIG) --libs`
 #
 # libraries for Gnome
 WINGNOMELIB = -lgnomeui -lgnome -lart_lgpl -lgtk -lgdk -lpopt
@@ -686,6 +695,8 @@ gtkextcmd.o: ../win/gtk/gtkextcmd.c ../include/winGTK.h $(HACK_H) \
 gtkmap.o: ../win/gtk/gtkmap.c ../include/winGTK.h $(HACK_H) ../include/dlb.h \
 		../include/patchlevel.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmap.c
+gtktile.o: ../win/gtk/gtktile.c ../include/winGTK.h $(HACK_H)
+	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtktile.c
 gtkmessage.o: ../win/gtk/gtkmessage.c ../include/winGTK.h $(HACK_H)
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmessage.c
 gtkmisc.o: ../win/gtk/gtkmisc.c ../include/winGTK.h $(HACK_H)

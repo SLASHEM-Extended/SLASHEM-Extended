@@ -113,6 +113,8 @@ function format_dep(target, source,		n, i, list)
       print "\t$(CXX) $(CXXFLAGS) -c " source
     else if (source ~ /^..\/win\/gtk\// )
       print "\t$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c " source
+    else if (source ~ /^..\/win\/gtk2\// )
+      print "\t$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c " source
     else if (source ~ /\/gnome\//)    # "../win/gnome/foo.c"
       print "\t$(CC) $(CFLAGS) $(GNOMEINC) -c " source
     else
