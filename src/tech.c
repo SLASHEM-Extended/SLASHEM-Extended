@@ -623,20 +623,16 @@ int tech_no;
                 t_timeout = rn1(500,1500);
 		break;
             case T_EVISCERATE:
-		/*only when empty handed, in human form!*/
-		if (Upolyd) {
-		        You("can't do this while polymorphed!");
-		        break;
+		/* only when empty handed, in human form */
+		if (Upolyd || uwep || uarmg) {
+		    You_cant("do this while %s!", Upolyd ? "polymorphed" :
+			    uwep ? "holding a weapon" : "wearing gloves");
+		    return 0;
 		}
-		if (!uwep) {
-		        Your("fingernails extend into claws!");
-		        aggravate();
-                        techt_inuse(tech_no) = d(2,4) + (techlev(tech_no)/5) + 2; /* [max] was d(2,8) */
-                        t_timeout = rn1(1000,1000); /* [max] increased delay */
-		} else {
-		    You("can't do this while holding a weapon!");
-		    return(0);
-		}
+		Your("fingernails extend into claws!");
+		aggravate();
+		techt_inuse(tech_no) = d(2,4) + techlev(tech_no)/5 + 2;
+		t_timeout = rn1(1000,1000);
 		break;
             case T_BERSERK:
 		You("fly into a berserk rage!");
