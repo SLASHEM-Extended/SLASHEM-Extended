@@ -600,7 +600,7 @@ playersteal()
 			} else
 				You("don't find anything to steal.");
 
-			exercise(A_DEX, TRUE);
+			if (!mdat->mtame) exercise(A_DEX, TRUE);
 			return(1);
 		} else {
 			You("failed to steal anything.");
