@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmisc.c,v 1.14 2004-02-21 17:05:00 j_ali Exp $
+  $Id: gtkmisc.c,v 1.15 2004-02-21 17:13:43 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -111,6 +111,7 @@ default_clicked(GtkWidget *widget, gpointer data)
 		    keysym = 0;
 		    return FALSE;
 		default:	/* Discard changes */
+		    nh_option_set();
 		    break;
 		case 1:		/* Apply changes first */
 		    nh_option_get();
