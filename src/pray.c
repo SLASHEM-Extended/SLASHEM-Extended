@@ -1678,8 +1678,13 @@ prayer_done()           /* M. Stephenson (1.0.3b) */
 		 "Vile creature, thou durst call upon me?" :
 		 "Walk no more, perversion of nature!");
 	You_feel("like you are falling apart.");
-	/* KMH, balance patch -- Gods have mastery over unchanging */
-	rehumanize();
+	if (Upolyd) {
+	    /* KMH, balance patch -- Gods have mastery over unchanging */
+	    rehumanize();
+	}
+	/* ALI, Racially undead (ie., vampires) get the same penalties */
+	else if (rn2(20) > ACURR(A_CON))
+	    u.uhp = (u.uhp/2) + 1;
 	losehp(rnd(20), "residual undead turning effect", KILLED_BY_AN);
 	exercise(A_CON, FALSE);
 	return(1);
