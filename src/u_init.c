@@ -1842,6 +1842,7 @@ register struct trobj *trop;
 				|| otyp == SPE_BLANK_PAPER
 				|| otyp == RIN_AGGRAVATE_MONSTER
 				|| otyp == RIN_HUNGER
+				|| otyp == RIN_SLEEPING
 				|| otyp == WAN_NOTHING
 				/* Monks don't use weapons */
 				|| (otyp == SCR_ENCHANT_WEAPON &&
