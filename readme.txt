@@ -81,6 +81,7 @@ ver 0.0.7E7 [?] [Released by ?]
 -fixed bug 994993: when polying, you take off T-shirt after scales merge
 -fixed bug 961914: Deep dragons should resist their own breath
 -fixed bug 963344: Stat exercise effects calculated while polymorphed
+-fixed bug 1097792: Duplicate message when hit by sleep gaze
 
 See history.txt for changes made in previous versions.
 

@@ -2414,7 +2414,6 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!Blind) pline("%s gazes around, but misses you!",Monnam(mtmp));
 			break;
 		    }
-			if (!Blind) pline("%s gazes directly at you!",Monnam(mtmp));
 		    if (!Blind) pline("%s gazes directly at you!",Monnam(mtmp));
 		    if(Reflecting && m_canseeu(mtmp) && !mtmp->mcan) {
 			if(!Blind) {
