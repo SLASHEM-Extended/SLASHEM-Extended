@@ -48,7 +48,7 @@ E void NDECL(reset_trapset);
 E void FDECL(fig_transform, (genericptr_t, long));
 E void FDECL(use_unicorn_horn, (struct obj *));
 E boolean FDECL(tinnable, (struct obj *));
-E int FDECL(wand_explode, (struct obj *));
+E int FDECL(wand_explode, (struct obj *,BOOLEAN_P));
 
 /* ### artifact.c ### */
 

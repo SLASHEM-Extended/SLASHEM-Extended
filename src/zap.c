@@ -1789,7 +1789,7 @@ struct obj *otmp;
 		pline("%s suddenly explodes!", The(xname(otmp)));
 /*        losehp(d(otmp->spe+2,6), "exploding wand", KILLED_BY_AN);
         useup(otmp);*/
-	wand_explode (otmp);
+	wand_explode (otmp, FALSE);
 }
 
 static NEARDATA const char zap_syms[] = { WAND_CLASS, 0 };
@@ -4193,7 +4193,7 @@ register int osym, dmgtyp;
 		if(osym == WAND_CLASS && dmgtyp == AD_ELEC) {
 		    /* MAR use a continue since damage and stuff is taken care of
 		     *  in wand_explode */
-                    wand_explode(obj);
+                    wand_explode(obj, FALSE);
                     continue;
 		}
 		/* Use up the object */

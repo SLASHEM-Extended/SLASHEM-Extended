@@ -2557,7 +2557,7 @@ do_break_wand(obj)
     }
     pline("Raising %s high above your %s, you break it in two!",
 	  the_wand, body_part(HEAD));
-    return wand_explode(obj);
+    return wand_explode(obj, TRUE);
 }
 
 /* WAC Split the break wand fcn in two.  This half takes care of the
@@ -2565,8 +2565,9 @@ do_break_wand(obj)
  * in zap.c
  */
 int
-wand_explode(obj)
+wand_explode(obj, hero_broke)
     struct obj *obj;
+    boolean hero_broke;
 {
     static const char nothing_else_happens[] = "But nothing else happens...";
     register int i, x, y;
@@ -2701,11 +2702,16 @@ wand_explode(obj)
 		    if (flags.botl) bot();		/* potion effects */
 		}
 		damage = zapyourself(obj, FALSE);
-		if (damage)
-		    losehp(damage,
-			   self_pronoun("killed %sself by breaking a wand",
-					"him"),
-			   NO_KILLER_PREFIX);
+		if (damage) {
+		    char *knam;
+		    if (hero_broke)
+			knam = self_pronoun("killed %sself by breaking a wand",
+					    "him");
+		    else
+			knam = "exploding wand";
+		    losehp(damage, knam,
+			   hero_broke ? NO_KILLER_PREFIX : KILLED_BY_AN);
+		}
 		if (flags.botl) bot();          /* blindness */
 	    } else if ((mon = m_at(x, y)) != 0) {
 		(void) bhitm(mon, obj);

@@ -379,7 +379,7 @@ int curse_bless;
 	    n = (int)obj->recharged;
 	    if (n > 0 && (obj->otyp == WAN_WISHING ||
 		    (n * n * n > rn2(7*7*7)))) {	/* recharge_limit */
-		wand_explode(obj);
+		wand_explode(obj, FALSE);
 		return;
 	    }
 	    /* didn't explode, so increment the recharge count */
@@ -398,7 +398,7 @@ int curse_bless;
 		if (obj->spe < n) obj->spe = n;
 		else obj->spe++;
 		if (obj->otyp == WAN_WISHING && obj->spe > 3) {
-		    wand_explode(obj);
+		    wand_explode(obj, FALSE);
 		    return;
 		}
 		if (obj->spe >= lim) p_glow2(obj,blue);
@@ -427,18 +427,13 @@ int curse_bless;
 	    if (is_cursed) {
 		stripspe(obj);
   	    } else {
-		int lim = (obj->otyp == WAN_WISHING) ? 3 :
-			(objects[obj->otyp].oc_dir != NODIR) ? 8 : 15;
+		int lim = (objects[obj->otyp].oc_dir != NODIR) ? 8 : 15;
 
-		n = (lim == 3) ? 3 : rn1(5, lim + 1 - 5);
+		n = rn1(5, lim + 1 - 5);
 		if (!is_blessed) n = rnd(n);
 
 		if (obj->spe < n) obj->spe = n;
 		else obj->spe++;
-		if (obj->otyp == WAN_WISHING && obj->spe > 3) {
-		    wand_explode(obj);
-		    return;
-		}
 		if (obj->spe >= lim) p_glow2(obj,blue);
 		else p_glow1(obj);
 	    }
