@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.34 2003-04-21 19:14:26 j_ali Exp $
+  $Id: winGTK.h,v 1.35 2003-04-21 20:44:29 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -59,6 +59,8 @@
 #define NH_SESSION_USER_SIZE	4    /* Window size from user */
 #define NH_SESSION_PLACED	8    /* Initial window placement has occured */
 
+struct gtkhackrc;
+
 extern GtkWidget *nh_gtk_window_dialog(boolean is_modal);
 extern void nh_gtk_focus_set_master(GtkWindow *w, GtkSignalFunc func, gpointer data);
 extern void nh_gtk_focus_set_slave_for(GtkWindow *w, GtkWindow *slave_for);
@@ -66,9 +68,10 @@ extern GtkWidget *nh_session_window_new(const char *name);
 extern unsigned long nh_session_window_flags(const char *name);
 extern int nh_session_set_geometry(const char *name,
 					int x, int y, int width, int height);
-extern int nh_session_save(FILE *fp);
+extern int nh_session_save(struct gtkhackrc *rc);
 extern int nh_read_gtkhackrc(void);
 extern void nh_write_gtkhackrc(void);
+extern void nh_gtkhackrc_store(struct gtkhackrc *rc, const char *fmt, ...);
 #else
 extern void nh_gtk_perm_invent_hack(void);
 #endif

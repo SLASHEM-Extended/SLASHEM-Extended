@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.36 2003-04-21 19:14:27 j_ali Exp $
+  $Id: gtk.c,v 1.37 2003-04-21 20:44:30 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -8,6 +8,7 @@
 */
 
 /* #define DEBUG */			/* Uncomment for debugging */
+/* #define DEBUG_SESSION */		/* For debugging session windows */
 
 #include <sys/types.h>
 #include <signal.h>
@@ -60,14 +61,14 @@ NHWindow gtkWindows[MAXWIN];
 
 /*
  * The Gtk interface maintains information about most top level windows
- * so that it can be saved in the rc file between sessions.
+ * so that it can be saved in the profile between sessions.
  */
 
 struct session_window_info {
     const char *name;		/* The name is only used in the rc file */
     unsigned int flags;
     GdkRectangle bounding;	/* Position and size */
-    int border_width, border_height;
+    int ox, oy;			/* Offset between set_geometry and configure */
     GtkRequisition requisition;	/* Most recent requisition request */
 } session_window_info[] = {
     {"main", NH_SESSION_RESIZABLE, },
@@ -449,7 +450,7 @@ nh_menu_sensitive(char *menu, boolean f)
 /* ALI
  * We need to know the border width and height so that we can correctly
  * clamp dialogs to the screen. Unfortunately, GDK allows us no way to
- * dermine the border sizes before we map the window. We get around this
+ * determine the border sizes before we map the window. We get around this
  * by remembering what they were for the last dialog displayed and
  * checking that they haven't changed after the window is mapped. If
  * we find we're offscreen after mapping we have to re-position the
@@ -571,17 +572,54 @@ nh_position_popup_dialog(GtkWidget *w)
 }
 
 static int
+session_window_dump(FILE *fp, int i, const char *tag)
+{
+    fprintf(fp, "%s(%s): flags:", tag, session_window_info[i].name);
+    if (session_window_info[i].flags & NH_SESSION_RESIZABLE)
+	fprintf(fp, " resizable");
+    if (session_window_info[i].flags & NH_SESSION_USER_POS)
+	fprintf(fp, " user-pos");
+    if (session_window_info[i].flags & NH_SESSION_USER_SIZE)
+	fprintf(fp, " user-size");
+    if (session_window_info[i].flags & NH_SESSION_PLACED)
+	fprintf(fp, " placed");
+    fputc('\n', fp);
+    fprintf(fp, "bounding is %d x %d @ (%d, %d)\n",
+      session_window_info[i].bounding.width,
+      session_window_info[i].bounding.height,
+      session_window_info[i].bounding.x, session_window_info[i].bounding.y);
+    fprintf(fp, "requistion is %d x %d\n", 
+      session_window_info[i].requisition.width,
+      session_window_info[i].requisition.height);
+    fprintf(fp, "Offset is (%d, %d)\n", 
+      session_window_info[i].ox, session_window_info[i].oy);
+}
+
+static int
 session_window_configure_event(GtkWidget *widget, GdkEventConfigure *event,
   gpointer data)
 {
     int i = GPOINTER_TO_INT(data), j;
     GdkRectangle frame;
+#ifdef DEBUG_SESSION
+    session_window_dump(stderr, i, "configure start");
+    fprintf(stderr, "event is %d x %d @ (%d, %d)\n",
+      event->width, event->height, event->x, event->y);
+    fprintf(stderr, "widget state is:");
+    if (GTK_WIDGET_MAPPED(widget))
+	fprintf(stderr, " mapped");
+    if (GTK_WIDGET_REALIZED(widget))
+	fprintf(stderr, " realized");
+    if (GTK_WIDGET_VISIBLE(widget))
+	fprintf(stderr, " visible");
+    fputc('\n', stderr);
+#endif
     if (session_window_info[i].flags & NH_SESSION_PLACED) {
 	/* Check if user has re-positioned and/or re-sized window. */
 	if (session_window_info[i].bounding.x !=
-		event->x - session_window_info[i].border_width ||
+		event->x - session_window_info[i].ox ||
 		session_window_info[i].bounding.y !=
-		event->y - session_window_info[i].border_height)
+		event->y - session_window_info[i].oy)
 	    session_window_info[i].flags |= NH_SESSION_USER_POS;
 	if (session_window_info[i].requisition.width == event->width &&
 		session_window_info[i].requisition.height == event->height)
@@ -593,36 +631,41 @@ session_window_configure_event(GtkWidget *widget, GdkEventConfigure *event,
 	    session_window_info[i].flags |= NH_SESSION_USER_SIZE;
     } else {
 	/* Initial placement */
-	if (session_window_info[i].bounding.x ||
-		session_window_info[i].bounding.y) {
-	    session_window_info[i].border_width =
+#ifdef WIN32
+	session_window_info[i].ox = 0;
+	session_window_info[i].oy = 0;
+#else
+	if (session_window_info[i].flags & NH_SESSION_USER_POS) {
+	    session_window_info[i].ox =
 		    event->x - session_window_info[i].bounding.x;
-	    session_window_info[i].border_height =
+	    session_window_info[i].oy =
 		    event->y - session_window_info[i].bounding.y;
 	} else {
 	    /* Take a good guess */
 	    for(j = SIZE(session_window_info) - 1; j >= 0; j--)
-		if (j != i && session_window_info[j].border_width > 0)
+		if (j != i && session_window_info[j].ox > 0)
 		    break;
 	    if (j >= 0) {
-		session_window_info[i].border_width =
-			session_window_info[j].border_width;
-		session_window_info[i].border_height =
-			session_window_info[j].border_height;
+		session_window_info[i].ox = session_window_info[j].ox;
+		session_window_info[i].oy = session_window_info[j].oy;
 	    } else {
 		gdk_window_get_frame_extents(widget->window, &frame);
-		session_window_info[i].border_width = event->x - frame.x;
-		session_window_info[i].border_height = event->y - frame.y;
+		fprintf(stderr, "frame is %d x %d @ (%d, %d)\n",
+		  frame.width, frame.height, frame.x, frame.y);
+		session_window_info[i].ox = event->x - frame.x;
+		session_window_info[i].oy = event->y - frame.y;
 	    }
 	}
+#endif
 	session_window_info[i].flags |= NH_SESSION_PLACED;
     }
-    session_window_info[i].bounding.x =
-	    event->x - session_window_info[i].border_width;
-    session_window_info[i].bounding.y =
-	    event->y - session_window_info[i].border_height;
+    session_window_info[i].bounding.x = event->x - session_window_info[i].ox;
+    session_window_info[i].bounding.y = event->y - session_window_info[i].oy;
     session_window_info[i].bounding.width = event->width;
     session_window_info[i].bounding.height = event->height;
+#ifdef DEBUG_SESSION
+    session_window_dump(stderr, i, "configure done");
+#endif
     return FALSE;
 }
 
@@ -631,7 +674,13 @@ session_window_size_request(GtkWidget *widget, GtkRequisition *requisition,
   gpointer data)
 {
     int i = GPOINTER_TO_INT(data);
+#ifdef DEBUG_SESSION
+    session_window_dump(stderr, i, "size_request start");
+#endif
     session_window_info[i].requisition = *requisition;
+#ifdef DEBUG_SESSION
+    session_window_dump(stderr, i, "size_request done");
+#endif
 }
 
 unsigned long
@@ -663,13 +712,20 @@ nh_session_window_new(const char *name)
 	if (session_window_info[i].flags & NH_SESSION_USER_POS)
 	    sprintf(eos(buf), "+%d+%d", session_window_info[i].bounding.x,
 		    session_window_info[i].bounding.y);
-	if (*buf)
+	if (*buf) {
+#ifdef DEBUG_SESSION
+	    fprintf(stderr, "parse_geometry(\"%s\")\n", buf);
+#endif
 	    gtk_window_parse_geometry(GTK_WINDOW(w), buf);
+	}
 	gtk_signal_connect(GTK_OBJECT(w), "configure_event",
 	  GTK_SIGNAL_FUNC(session_window_configure_event), GINT_TO_POINTER(i));
 	gtk_signal_connect(GTK_OBJECT(w), "size_request",
 	  GTK_SIGNAL_FUNC(session_window_size_request), GINT_TO_POINTER(i));
     }
+#ifdef DEBUG_SESSION
+    session_window_dump(stderr, i, "new");
+#endif
     return w;
 }
 
@@ -696,17 +752,17 @@ nh_session_set_geometry(const char *name, int x, int y, int width, int height)
 }
 
 int
-nh_session_save(FILE *fp)
+nh_session_save(struct gtkhackrc *rc)
 {
     int i;
     for(i = 0; i < SIZE(session_window_info); i++) {
 	if (session_window_info[i].flags & NH_SESSION_USER_POS)
-	    fprintf(fp, "window.position(\"%s\") = {%d, %d}\n",
+	    nh_gtkhackrc_store(rc, "window.position(\"%s\") = {%d, %d}",
 		    session_window_info[i].name,
 		    session_window_info[i].bounding.x,
 		    session_window_info[i].bounding.y);
 	if (session_window_info[i].flags & NH_SESSION_USER_SIZE)
-	    fprintf(fp, "window.size(\"%s\") = {%d, %d}\n",
+	    nh_gtkhackrc_store(rc, "window.size(\"%s\") = {%d, %d}",
 		    session_window_info[i].name,
 		    session_window_info[i].bounding.width -
 		    session_window_info[i].requisition.width,

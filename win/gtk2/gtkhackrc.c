@@ -1,10 +1,13 @@
-/* $Id: gtkhackrc.c,v 1.1 2003-04-17 23:15:53 j_ali Exp $ */
+/* $Id: gtkhackrc.c,v 1.2 2003-04-21 20:44:30 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#ifdef WIN32
+#include <windows.h>
+#endif
 #include <glib.h>
 #include "winGTK.h"
 
@@ -105,7 +108,15 @@ struct gtkhackrc {
     GtkHackRcValue *value;
     GtkHackRcValue *freelist;
     gchar *variable;			/* Only valid in settings handler */
+#ifdef WIN32				/* Only valid in nh_write_gtkhackrc */
+    HKEY key;
+#else
+    FILE *fp;
+#endif
 };
+
+static int
+action_setting(GScanner *scanner, GtkHackRcValue *lhs, GtkHackRcValue *rhs);
 
 GtkHackRcValue *new_value(GScanner *scanner, int type)
 {
@@ -243,57 +254,8 @@ parse_setting(GScanner *scanner, int failok)
 	return PARSE_ERROR;
     }
     retval = parse_value(scanner, FALSE);
-    if (retval == PARSE_OK) {
-	if (lhs->type == PARSE_VALUE_TYPE_VARIABLE)
-	    var = &lhs->u.var;
-	else
-	    var = &lhs->u.func.var;
-	n = var->n_idents;
-	for(i = 0; i < var->n_idents; i++)
-	    n += strlen(var->idents[i]);
-	name = g_malloc(n);
-	if (!name) {
-	    GTKHACKRC(scanner)->error_type = PARSE_ERROR_RESOURCE;
-	    retval = PARSE_ERROR;
-	} else {
-	    *name = '\0';
-	    for(i = n = 0; i < var->n_idents; i++)
-	    {
-		if (i)
-		    name[n++] = '.';
-		strcpy(name + n, var->idents[i]);
-		n += strlen(var->idents[i]);
-	    }
-	    GTKHACKRC(scanner)->variable = name;
-	    if (lhs->type == PARSE_VALUE_TYPE_VARIABLE) {
-		for(i = 0; i < SIZE(gtkhackrc_settings); i++)
-		    if (gtkhackrc_settings[i].type == GTKHACKRC_VARIABLE &&
-		      !strcmp(gtkhackrc_settings[i].name, name))
-			break;
-		if (i < SIZE(gtkhackrc_settings))
-		    gtkhackrc_settings[i].handler.v(scanner,
-		      GTKHACKRC(scanner)->value);
-#ifdef DEBUG
-		else
-		    fprintf(stderr, "gtkhackrc: variable %s ignored\n", name);
-#endif
-	    } else {
-		for(i = 0; i < SIZE(gtkhackrc_settings); i++)
-		    if (gtkhackrc_settings[i].type == GTKHACKRC_FUNCTION &&
-		      !strcmp(gtkhackrc_settings[i].name, name))
-			break;
-		if (i < SIZE(gtkhackrc_settings))
-		    gtkhackrc_settings[i].handler.f(scanner,
-		      &lhs->u.func.params, GTKHACKRC(scanner)->value);
-#ifdef DEBUG
-		else
-		    fprintf(stderr, "gtkhackrc: function %s ignored\n", name);
-#endif
-	    }
-	    GTKHACKRC(scanner)->variable = NULL;
-	    g_free(name);
-	}
-    }
+    if (retval == PARSE_OK)
+	retval = action_setting(scanner, lhs, GTKHACKRC(scanner)->value);
     free_value(scanner, lhs);
     free_value(scanner, GTKHACKRC(scanner)->value);
     GTKHACKRC(scanner)->value = NULL;
@@ -500,47 +462,174 @@ parse_value_list(GScanner *scanner, int failok)
     return retval;
 }
 
-int
-nh_read_gtkhackrc(void)
+static int
+action_setting(GScanner *scanner, GtkHackRcValue *lhs, GtkHackRcValue *rhs)
+{
+    int i, n, retval;
+    gchar *name;
+    GtkHackRcVariable *var;
+    {
+	if (lhs->type == PARSE_VALUE_TYPE_VARIABLE)
+	    var = &lhs->u.var;
+	else
+	    var = &lhs->u.func.var;
+	n = var->n_idents;
+	for(i = 0; i < var->n_idents; i++)
+	    n += strlen(var->idents[i]);
+	name = g_malloc(n);
+	if (!name) {
+	    GTKHACKRC(scanner)->error_type = PARSE_ERROR_RESOURCE;
+	    retval = PARSE_ERROR;
+	} else {
+	    *name = '\0';
+	    for(i = n = 0; i < var->n_idents; i++)
+	    {
+		if (i)
+		    name[n++] = '.';
+		strcpy(name + n, var->idents[i]);
+		n += strlen(var->idents[i]);
+	    }
+	    GTKHACKRC(scanner)->variable = name;
+	    if (lhs->type == PARSE_VALUE_TYPE_VARIABLE) {
+		for(i = 0; i < SIZE(gtkhackrc_settings); i++)
+		    if (gtkhackrc_settings[i].type == GTKHACKRC_VARIABLE &&
+		      !strcmp(gtkhackrc_settings[i].name, name))
+			break;
+		if (i < SIZE(gtkhackrc_settings))
+		    gtkhackrc_settings[i].handler.v(scanner, rhs);
+#ifdef DEBUG
+		else
+		    fprintf(stderr, "gtkhackrc: variable %s ignored\n", name);
+#endif
+	    } else {
+		for(i = 0; i < SIZE(gtkhackrc_settings); i++)
+		    if (gtkhackrc_settings[i].type == GTKHACKRC_FUNCTION &&
+		      !strcmp(gtkhackrc_settings[i].name, name))
+			break;
+		if (i < SIZE(gtkhackrc_settings))
+		    gtkhackrc_settings[i].handler.f(scanner,
+		      &lhs->u.func.params, rhs);
+#ifdef DEBUG
+		else
+		    fprintf(stderr, "gtkhackrc: function %s ignored\n", name);
+#endif
+	    }
+	    g_free(name);
+	}
+    }
+    return retval;
+}
+
+/*
+ * Return TRUE if okay to write file on exit; FALSE if we failed to read
+ * file due to lack of resources.
+ */
+
+#ifdef WIN32
+static int
+nh_scan_gtkhackrc(GScanner *scanner)
+{
+    int i, retval;
+    struct gtkhackrc *rc = GTKHACKRC(scanner);
+    GtkHackRcValue *v;
+    HKEY key;
+    DWORD type, no_values, value_len, data_len, value_count, data_count;
+    char *value, *data;
+    if (RegOpenKeyEx(HKEY_CURRENT_USER, "Software\\NetHack\\GtkHack\\0.1",
+	    0, KEY_READ, &key) != ERROR_SUCCESS)
+	return TRUE;
+    if (RegQueryInfoKey(key, NULL, NULL, NULL, NULL, NULL, NULL, &no_values,
+	    &value_len, &data_len, NULL, NULL) != ERROR_SUCCESS) {
+	RegCloseKey(key);
+	return TRUE;
+    }
+    value = malloc(value_len + 1);
+    data = malloc(data_len + 1);
+    if (!value || !data) {
+	free(value);
+	free(data);
+	RegCloseKey(key);
+	return FALSE;
+    }
+    for(i = no_values - 1; i >= 0; i--) {
+	value_count = value_len + 1;
+	data_count = data_len + 1;
+	if (RegEnumValue(key, i, value, &value_count, NULL, &type, data,
+		&data_count) == ERROR_SUCCESS && type == REG_SZ) {
+	    scanner->input_name = value;
+	    g_scanner_input_text(scanner, value, strlen(value));
+	    retval = parse_lval(scanner, FALSE);
+	    if (retval == PARSE_OK) {
+		v = GTKHACKRC(scanner)->value;
+		GTKHACKRC(scanner)->value = NULL;
+		g_scanner_input_text(scanner, data, strlen(data));
+		retval = parse_value(scanner, FALSE);
+	    }
+	    if (retval == PARSE_OK)
+		retval = action_setting(scanner, v, GTKHACKRC(scanner)->value);
+	    if (retval == PARSE_ERROR) {
+		switch (rc->error_type)
+		{
+		    case PARSE_ERROR_TOKEN:
+			g_scanner_get_next_token(scanner);
+			g_scanner_unexp_token(scanner, rc->error.token, NULL,
+			  NULL, NULL, NULL, TRUE);
+			break;
+		    case PARSE_ERROR_RULE:
+			g_scanner_get_next_token(scanner);
+			g_scanner_unexp_token(scanner,
+			  scanner->token == G_TOKEN_SYMBOL ?
+			    G_TOKEN_IDENTIFIER : G_TOKEN_SYMBOL,
+			  rc->error.rule, rc->error.rule, NULL, NULL, TRUE);
+			break;
+		    case PARSE_ERROR_RESOURCE:
+			g_scanner_error(scanner, "%s%s%s", "Resource failure",
+			  " - ", "Read of GtkHack profile aborted");
+			i = -1;
+			break;
+		}
+	    }
+	}
+    }
+    free(value);
+    free(data);
+    RegCloseKey(key);
+    return retval != PARSE_ERROR || rc->error_type != PARSE_ERROR_RESOURCE;
+}
+#else	/* WIN32 */
+static int
+nh_scan_gtkhackrc(GScanner *scanner)
 {
     int fd, retval;
+    struct gtkhackrc *rc = GTKHACKRC(scanner);
     char *home, *file;
-    struct gtkhackrc rc;
-    GScanner *scanner;
-    GtkHackRcValue *v, *vn;
     home = getenv("HOME");
-    if (!home)
-	return -1;
+    if (!home) {
+	g_scanner_destroy(scanner);
+	return FALSE;			/* Can't write file */
+    }
     file = malloc(strlen(home) + 12);
-    if (!file)
-	return -1;
+    if (!file) {
+	g_scanner_destroy(scanner);
+	return FALSE;
+    }
     sprintf(file, "%s/.gtkhackrc", home);
     fd = open(file, O_RDONLY);
     if (fd < 0) {
 	free(file);
-	return -1;
+	g_scanner_destroy(scanner);
+	return TRUE;
     }
-    scanner = g_scanner_new(NULL);
-    if (!scanner) {
-	close(fd);
-	free(file);
-	return -1;
-    }
-    rc.error_type = PARSE_ERROR_NONE;
-    rc.value = NULL;
-    rc.freelist = NULL;
-    scanner->user_data = (gpointer)&rc;
-    scanner->config->scan_float = FALSE;	/* Don't treat '.' as special */
     scanner->input_name = file;
     g_scanner_input_file(scanner, fd);
     while((retval = parse_setting(scanner, TRUE)) == PARSE_OK)
 	;
     if (retval == PARSE_ERROR) {
-	switch (rc.error_type)
+	switch (rc->error_type)
 	{
 	    case PARSE_ERROR_TOKEN:
 		g_scanner_get_next_token(scanner);
-		g_scanner_unexp_token(scanner, rc.error.token, NULL, NULL,
+		g_scanner_unexp_token(scanner, rc->error.token, NULL, NULL,
 		  NULL, "Read of GtkHack profile aborted", TRUE);
 		break;
 	    case PARSE_ERROR_RULE:
@@ -548,7 +637,7 @@ nh_read_gtkhackrc(void)
 		g_scanner_unexp_token(scanner,
 		  scanner->token == G_TOKEN_SYMBOL ? G_TOKEN_IDENTIFIER :
 		    G_TOKEN_SYMBOL,
-		  rc.error.rule, rc.error.rule, NULL,
+		  rc->error.rule, rc->error.rule, NULL,
 		  "Read of GtkHack profile aborted", TRUE);
 		break;
 	    case PARSE_ERROR_RESOURCE:
@@ -557,6 +646,33 @@ nh_read_gtkhackrc(void)
 		break;
 	}
     }
+    close(fd);
+    free(file);
+    return retval != PARSE_ERROR || rc->error_type != PARSE_ERROR_RESOURCE;
+}
+#endif	/* WIN32 */
+
+int
+nh_read_gtkhackrc(void)
+{
+    int retval;
+    struct gtkhackrc rc;
+    GScanner *scanner;
+    GtkHackRcValue *v, *vn;
+    scanner = g_scanner_new(NULL);
+    if (!scanner)
+	return -1;
+    rc.error_type = PARSE_ERROR_NONE;
+    rc.value = NULL;
+    rc.freelist = NULL;
+    scanner->user_data = (gpointer)&rc;
+    scanner->config->scan_float = FALSE;	/* Don't treat '.' as special */
+    /*
+     * Don't update the file on exit if we failed to read it correctly
+     * due to a (presumably temporary) resource failure.
+     */
+    if (nh_scan_gtkhackrc(scanner))
+	atexit(nh_write_gtkhackrc);
     free_value(scanner, rc.value);
     for(v = rc.freelist; v; ) {
 	vn = v->u.next;
@@ -564,21 +680,45 @@ nh_read_gtkhackrc(void)
 	v = vn;
     }
     g_scanner_destroy(scanner);
-    close(fd);
-    free(file);
-    /*
-     * Don't update the file on exit if we failed to read it correctly
-     * due to a (presumably temporary) resource failure.
-     */
-    if (retval != PARSE_ERROR || rc.error_type != PARSE_ERROR_RESOURCE)
-	atexit(nh_write_gtkhackrc);
     return 0;
+}
+
+void
+nh_gtkhackrc_store(struct gtkhackrc *rc, const char *fmt, ...)
+{
+#ifdef WIN32
+    gchar *value, *data, *s;
+#endif
+    va_list args;
+    va_start(args, fmt);
+#ifdef WIN32
+    value = g_strdup_vprintf(fmt, args);
+    s = strchr(value, '=');
+    if (s) {
+	for(data = s + 1; *data == ' '; data++)
+	    ;
+	for(s--; *s == ' '; s--)
+	    ;
+	s[1] = '\0';
+	RegSetValueEx(rc->key, value, 0, REG_SZ, data, strlen(data) + 1);
+    }
+    free(value);
+#else
+    vfprintf(rc->fp, fmt, args);
+    putc('\n', rc->fp);
+#endif
+    va_end(args);
 }
 
 void
 nh_write_gtkhackrc(void)
 {
-    FILE *fp;
+    struct gtkhackrc rc;
+#ifdef WIN32
+    RegDeleteKey(HKEY_CURRENT_USER, "Software\\NetHack\\GtkHack\\0.1");
+    RegCreateKeyEx(HKEY_CURRENT_USER, "Software\\NetHack\\GtkHack\\0.1",
+	    0, NULL, REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &rc.key, NULL);
+#else
     char *home, *file;
     home = getenv("HOME");
     if (!home)
@@ -587,20 +727,25 @@ nh_write_gtkhackrc(void)
     if (!file)
 	return;
     sprintf(file, "%s/.gtkhackrc", home);
-    fp = fopen(file, "w");
-    if (!fp) {
+    rc.fp = fopen(file, "w");
+    if (!rc.fp) {
 	perror(file);
 	free(file);
 	return;
     }
-    fprintf(fp,
+    fprintf(rc.fp,
       "# This file is generated by the Gtk interface of NetHack & friends.\n"
       "# Do not edit.\n"
       "\n"
       "version = \"0.1\"\n");
-    nh_session_save(fp);
-    fclose(fp);
+#endif
+    nh_session_save(&rc);
+#ifdef WIN32
+    RegCloseKey(rc.key);
+#else
+    fclose(rc.fp);
     free(file);
+#endif
 }
 
 /* Helper functions for handlers to check the value being set and, for
