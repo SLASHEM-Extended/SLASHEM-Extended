@@ -341,6 +341,7 @@ gotobj:
 		    remove_worn_item(otmp);
 		    break;
 		case ARMOR_CLASS:
+			armordelay = objects[otmp->otyp].oc_delay;
 		    /* Stop putting on armor which has been stolen. */
 		    if (donning(otmp) || is_animal(mtmp->data)) {
 			remove_worn_item(otmp);
