@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.53.2.2 2004-11-03 09:32:01 j_ali Exp $
+  $Id: gtk.c,v 1.53.2.3 2004-11-12 20:44:47 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -701,6 +701,12 @@ session_window_size_request(GtkWidget *widget, GtkRequisition *requisition,
 #ifdef DEBUG_SESSION
     session_window_dump(stderr, i, "size_request start");
 #endif
+    if (session_window_info[i].flags & NH_SESSION_PLACED) {
+	session_window_info[i].bounding.width +=
+		requisition->width - session_window_info[i].requisition.width;
+	session_window_info[i].bounding.height +=
+		requisition->height - session_window_info[i].requisition.height;
+    }
     session_window_info[i].requisition = *requisition;
 #ifdef DEBUG_SESSION
     session_window_dump(stderr, i, "size_request done");
@@ -2108,6 +2114,9 @@ GTK_init_nhwindows(char ***capvp)
      * create main widget
      */
     main_window = nh_session_window_new("main");
+    if (!(nh_session_window_flags("main") & NH_SESSION_USER_SIZE))
+	gtk_window_set_default_size(GTK_WINDOW(main_window),
+		min(1000, root_width - 50), min(700, root_height * 0.75));
     nh_gtk_focus_set_master(GTK_WINDOW(main_window),
       GTK_SIGNAL_FUNC(GTK_default_key_press), 0, FALSE);
 

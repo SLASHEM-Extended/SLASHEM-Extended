@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.36.2.1 2004-08-22 13:12:10 j_ali Exp $
+  $Id: gtkmap.c,v 1.36.2.2 2004-11-12 20:44:47 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -142,9 +142,6 @@ extern short *GTK_glyph2tile;
 extern short glyph2tile[];
 #endif
 #define GLYPH2TILE(g)	((g) == NO_GLYPH ? stone_tile : glyph2tile[g])
-
-extern int root_width;
-extern int root_height;
 
 extern GtkWidget *main_window;
 
@@ -849,20 +846,6 @@ configure_map(GtkWidget *w, gpointer data)
 	gdk_gc_set_foreground(map_color_gc[i], &nh_color[i]);
 	gdk_gc_set_background(map_color_gc[i], &w->style->bg[GTK_STATE_NORMAL]);
     }
-
-    /*
-     * set map scrolling window size
-     */
-    width = c_map_width;
-    height = c_map_height;
-
-    if (width >= root_width)
-	width = root_width - 50;
-
-    if (height >= (root_height / 2))
-	height = (root_height / 2) - 50;
-
-    gtk_widget_set_usize(map, width, height);
 
     return FALSE;
 }
