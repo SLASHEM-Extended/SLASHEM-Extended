@@ -2087,7 +2087,7 @@ void NetHackQtStatusWindow::updateStats()
     }
     name.setLabel(buf,NetHackQtLabelledIcon::NoNum,u.ulevel);
 
-    if (describe_level(buf, FALSE)) {
+    if (describe_level(buf)) {
 	dlevel.setLabel(buf,TRUE);
     } else {
 	Sprintf(buf, "%s, level ", dungeons[u.uz.dnum].dname);

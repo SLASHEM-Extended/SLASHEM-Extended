@@ -3033,7 +3033,7 @@ struct obj *obj;                        /* object tossed/used */
 		}
 	    } else {
 		if (weapon == ZAPPED_WAND && obj->otyp == WAN_PROBING &&
-		   memory_is_invisible(bhitpos.x, bhitpos.y)) {
+		   glyph_is_invisible(levl[bhitpos.x][bhitpos.y].glyph)) {
 		    unmap_object(bhitpos.x, bhitpos.y);
 		    newsym(x, y);
 		}
@@ -3082,7 +3082,7 @@ boolean costly = shop_keeper(*in_rooms(bhitpos.x, bhitpos.y, SHOPBASE)) &&
 	    if(weapon != ZAPPED_WAND && weapon != INVIS_BEAM) {
 		/* 'I' present but no monster: erase */
 		/* do this before the tmp_at() */
-		if (memory_is_invisible(bhitpos.x, bhitpos.y)
+		if (glyph_is_invisible(levl[bhitpos.x][bhitpos.y].glyph)
 			&& cansee(x, y)) {
 		    unmap_object(bhitpos.x, bhitpos.y);
 		    newsym(x, y);
@@ -3680,7 +3680,7 @@ register int dx,dy;
 		/* reveal/unreveal invisible monsters before tmp_at() */
 		if (mon && !canspotmon(mon))
 		    map_invisible(sx, sy);
-		else if (!mon && memory_is_invisible(sx, sy)) {
+		else if (!mon && glyph_is_invisible(levl[sx][sy].glyph)) {
 		    unmap_object(sx, sy);
 		    newsym(sx, sy);
 		}
@@ -3831,7 +3831,7 @@ register int dx,dy;
 	    if (zap_hit((int) u.uac, 0)) {
 		range -= 2;
 		pline("%s hits you!", The(fltxt));
-		if (Reflecting && abs(type) != ZT_SPELL(ZT_FIRE)) {
+		if (Reflecting) {
 		    if (!Blind) {
 		    	(void) ureflects("But %s reflects from your %s!", "it");
 		    } else
@@ -3845,10 +3845,7 @@ register int dx,dy;
 			tmp_at(DISP_BEAM, zapdir_to_glyph(dx, dy, abstype));
 		    }
 		} else {
-		    if (abs(type) != ZT_SPELL(ZT_FIRE))
-			zhitu(type, nd, fltxt, sx, sy);
-		    else
-			range = 0;
+		    zhitu(type, nd, fltxt, sx, sy);
 		}
 	    } else {
 		pline("%s whizzes by you!", The(fltxt));

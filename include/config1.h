@@ -131,6 +131,9 @@
 # undef UNIX
 # undef MSDOS
 # define NHSTDC
+# ifdef __MINGW32__
+#  define strncmpi strnicmp
+# endif
 # define STRNCMPI
 # define USE_STDARG
 # define NEED_VARARGS

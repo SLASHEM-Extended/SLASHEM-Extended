@@ -261,7 +261,7 @@ use_stethoscope(obj)
 			map_invisible(rx,ry);
 		return res;
 	}
-	if (memory_is_invisible(rx, ry)) {
+	if (glyph_is_invisible(levl[rx][ry].glyph)) {
 		unmap_object(rx, ry);
 		newsym(rx, ry);
 		pline_The("invisible monster must have moved.");
@@ -1173,7 +1173,7 @@ light_cocktail(obj)
 	    return;
 	}
 
-	You("light %s %s.%s", shk_your(buf, obj),(obj->otyp == POT_OIL ? "potion" : "stick"),
+	You("light %s potion.%s", shk_your(buf, obj),
 	    Blind ? "" : "  It gives off a dim light.");
 	if (obj->unpaid && costly_spot(u.ux, u.uy)) {
 	    /* Normally, we shouldn't both partially and fully charge
@@ -2120,7 +2120,7 @@ struct obj *obj;
 
     } else if (mtmp) {
 	if (!canspotmon(mtmp) &&
-		!memory_is_invisible(rx, ry)) {
+		!glyph_is_invisible(levl[rx][ry].glyph)) {
 	   pline("A monster is there that you couldn't see.");
 	   map_invisible(rx, ry);
 	}
