@@ -3,110 +3,73 @@
 /* NetHack may be freely redistributed.  See license for details. */
 
 #ifdef MAC_MPW	/* This needs to be resident always */
-# pragma segment Main
-# include "config.h"
+#pragma segment Main
 #endif
 
 #include "hack.h"
 #include "macwin.h"
-
-#include <OSUtils.h>
-#include <files.h>
-#include <Types.h>
-
-#ifdef MAC_MPW
-# include <String.h>
-# include <Strings.h>
-#else
-# ifdef __MWERKS__
-#  include <strings.h>
-# else
-#  include <pascal.h>
-# endif
-#endif
-
 #include <Dialogs.h>
-#include <Packages.h>
-#include <ToolUtils.h>
-
-#ifdef MAC_MPW
-# include <TextUtils.h>
-#endif /* MAC_MPW */
-
+#include <TextUtils.h>
 #include <Resources.h>
 
-#define stackDepth  4
+#define stackDepth  1
 #define errAlertID 129
 #define stdIOErrID 1999
 
-static void VDECL(vprogerror,(const char *line, va_list the_args));
+static Str255 gActivities[stackDepth] = {""};
+static short gTopactivity = 0;
 
-static Str255 gActivities[stackDepth] = {"","","",""};
-static short gTopactivity = 1;
-
-#if 0	/* Apparently unused */
-void  comment( char *s, long n )
+void showerror(char * errdesc, const char * errcomment)
 {
-  Str255 paserr;
-  short itemHit;
-  
-  sprintf((char *)paserr, "%s - %d",s,n);
-  ParamText(c2pstr((char *)paserr),(StringPtr)"",(StringPtr)"",(StringPtr)"");
-  itemHit = Alert(128, (ModalFilterUPP)nil);
-}
-#endif	/* Apparently unused */
-
-void showerror( char * errdesc, const char * errcomment )
-{
-   	short		itemHit;
+	short		itemHit;
 	Str255		paserr,
 				pascomment;
 				
 	SetCursor(&qd.arrow);
-	if (errcomment == nil)  pascomment[0] = '\0';
-	  else strcpy((char *)pascomment,(char *)errcomment);
-	strcpy((char *)paserr,(char *)errdesc);
-	ParamText(c2pstr((char *)paserr),c2pstr((char *)pascomment),gActivities[gTopactivity],(StringPtr)"");
+	if (errcomment == nil) errcomment = "";
+	C2P (errcomment, pascomment);
+	C2P (errdesc, paserr);
+	ParamText(paserr,pascomment,gActivities[gTopactivity],(StringPtr)"");
 	itemHit = Alert(errAlertID, (ModalFilterUPP)nil);
 }
 
 
-Boolean itworked( short errcode )
+Boolean itworked(short errcode)
 /* Return TRUE if it worked, do an error message and return false if it didn't. Error
    strings for native C errors are in STR#1999, Mac errs in STR 2000-errcode, e.g
    2108 for not enough memory */
 
 {
-  if (errcode != 0) {
-    short		 itemHit;
-	Str255 		 errdesc;
-	StringHandle strh;
+	if (errcode != 0) {
+		short		 itemHit;
+		Str255 		 errdesc;
+		StringHandle strh;
 	
-	errdesc[0] = '\0';
-	if (errcode > 0) GetIndString(errdesc,stdIOErrID,errcode);  /* STDIO file rres, etc */
-	else {
-	   strh = GetString(2000-errcode);
-	   if (strh != (StringHandle) nil) {
-	      memcpy(errdesc,*strh,256);
-		  ReleaseResource((Handle)strh);
-	   }
+		errdesc[0] = '\0';
+		if (errcode > 0) GetIndString(errdesc,stdIOErrID,errcode);  /* STDIO file rres, etc */
+		else {
+			strh = GetString(2000-errcode);
+			if (strh != (StringHandle) nil) {
+				memcpy(errdesc,*strh,256);
+				ReleaseResource((Handle)strh);
+			}
+		}
+		if (errdesc[0] == '\0') {  /* No description found, just give the number */
+			sprintf((char *)&errdesc[1],"a %d error occurred",errcode);
+			errdesc[0] = strlen((char*)&errdesc[1]);
+		}
+		SetCursor(&qd.arrow);
+		ParamText(errdesc,(StringPtr)"",gActivities[gTopactivity],(StringPtr)"");
+		itemHit = Alert(errAlertID, (ModalFilterUPP)nil);
 	}
-	if (errdesc[0] == '\0') {  /* No description found, just give the number */
-	   sprintf((char *)errdesc,"a %d error occurred",errcode);
-	   (void)c2pstr((char *)errdesc);
-	}
-	SetCursor(&qd.arrow);
-	ParamText(errdesc,(StringPtr)"",gActivities[gTopactivity],(StringPtr)"");
-	itemHit = Alert(errAlertID, (ModalFilterUPP)nil);
-  }
-  return(errcode==0);
+	return(errcode==0);
 }
 
-void mustwork( short errcode )
+void mustwork(short errcode)
 /* For cases where we can't recover from the error by any means */
 {
-  if (itworked(errcode)) ;
-  	 else ExitToShell();
+	if (itworked(errcode)) ;
+	else ExitToShell();
 }
 
 
@@ -139,41 +102,47 @@ void
 error VA_DECL(const char *, line)
 #endif
 /* Do NOT use VA_START and VA_END in here... see above */
+	char pbuf[BUFSZ];
 
-	if(!index(line, '%'))
-	    showerror("of an internal error",line);
-	else {
-	    char pbuf[BUFSZ];
-	    Vsprintf(pbuf,line,VA_ARGS);
-	    showerror("of an internal error",pbuf);
+	if(index(line, '%')) {
+		Vsprintf(pbuf,line,VA_ARGS);
+		line = pbuf;
 	}
+	showerror("of an internal error",line);
 }
 
-void attemptingto( char * activity )
+void attemptingto(char * activity)
 /* Say what we are trying to do for subsequent error-handling: will appear as x in an
    alert in the form "Could not x because y" */
-{
-   strcpy((char *)gActivities[gTopactivity],activity);
-   activity = (char *)c2pstr((char *)gActivities[gTopactivity]);
+{	C2P(activity,gActivities[gTopactivity]);
 }
 
-#if 0
-void pushattemptingto( char * activity )
+#if 0 /* Apparently unused */
+void comment(char *s, long n)
+{
+	Str255 paserr;
+	short itemHit;
+	
+	sprintf((char *)&paserr[1], "%s - %d",s,n);
+	paserr[0] = strlen ((char*)&paserr[1]);
+	ParamText(paserr,(StringPtr)"",(StringPtr)"",(StringPtr)"");
+	itemHit = Alert(128, (ModalFilterUPP)nil);
+}
+
+void pushattemptingto(char * activity)
 /* Push a new description onto stack so we can pop later to previous state */
 {
-  if (gTopactivity < stackDepth) {
-    gTopactivity++;
-    attemptingto(activity);
-  }
+	if (gTopactivity < stackDepth) {
+		gTopactivity++;
+		attemptingto(activity);
+	}
 	else error("activity stack overflow");
 }
-#endif
 
-#if 0
-void popattempt( void )
+void popattempt(void)
 /* Pop to previous state */
 {
-  if (gTopactivity > 1) --gTopactivity;
+	if (gTopactivity > 1) --gTopactivity;
 	else error("activity stack underflow");
 }
-#endif
+#endif /* Apparently unused */

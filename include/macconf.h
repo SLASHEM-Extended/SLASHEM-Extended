@@ -21,6 +21,14 @@
  # WIDENED_PROTOTYPES (defined if UNWIDENED_PROTOTYPES is undefined and
  # NHSTDC is defined).
  */
+#  ifdef applec
+#   define MAC_MPW32		/* Headers, and for avoiding a bug */
+#  endif
+
+#  ifndef __powerc
+#   define MAC68K		/* 68K mac (non-powerpc) */
+#  endif
+
 #  define RANDOM
 #  define NO_SIGNAL		/* You wouldn't believe our signals ... */
 #  define FILENAMELEN 256
@@ -64,16 +72,15 @@
 #  define getpid() 1
 #  define getuid() 1
 #endif
-
 #  define index strchr
 #  define rindex strrchr
+
 #  define Rand random
 
 #ifdef MAC_MPW
 # define error progerror
 #endif /* MAC_MPW */
 extern void error(const char *,...);
-
 
 # if !defined(O_WRONLY)
 #  ifdef __MWERKS__
