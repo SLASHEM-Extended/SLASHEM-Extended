@@ -1062,7 +1062,7 @@ speaks of you.
     The child of %d will take the Amulet, and travel to the Astral
     Plane, where the Great Temple of %d is to be found.  The Amulet
     will be sacrificed to %d, there on His altar.  Then the child will
-    stand by %d as champion of all %Cp Flaor eternity.
+    stand by %d as champion of all %cP for eternity.
 
 "This is all I know, %p.  I hope it will help you."
 %E
@@ -1583,7 +1583,7 @@ speaks of you.
     The child of %d will take the Amulet, and travel to the Astral
     Plane, where the Great Temple of %d is to be found.  The Amulet
     will be sacrificed to %d, there on His altar.  Then the child will
-    stand by %d as champion of all %Cp Flaor eternity.
+    stand by %d as champion of all %cP for eternity.
 
 "This is all I know, %p.  I hope it will help you."
 %E
