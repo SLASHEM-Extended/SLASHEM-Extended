@@ -137,7 +137,7 @@ dofindgem() /* Find a gem in the sparkling waters. */
 {
 	if (!Blind) You("spot a gem in the sparkling waters!");
 	(void) mksobj_at(rnd_class(DILITHIUM_CRYSTAL, LUCKSTONE-1),
-						u.ux, u.uy, FALSE, TRUE);
+						u.ux, u.uy, FALSE, FALSE);
 	levl[u.ux][u.uy].looted |= F_LOOTED;
 	newsym(u.ux, u.uy);
 	exercise(A_WIS, TRUE);                  /* a discovery! */

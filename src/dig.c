@@ -1059,7 +1059,7 @@ register struct monst *mtmp;
 
 	if (pile && pile < 5)   /* leave behind some rocks? */
 	    (void) mksobj_at((pile == 1) ? BOULDER : ROCK,
-			     mtmp->mx, mtmp->my, TRUE, TRUE);
+			     mtmp->mx, mtmp->my, TRUE, FALSE);
 	newsym(mtmp->mx, mtmp->my);
 	if (!sobj_at(BOULDER, mtmp->mx, mtmp->my))
 	    unblock_point(mtmp->mx, mtmp->my);  /* vision */
@@ -1112,7 +1112,7 @@ zap_dig()
 		    pline("It falls on your %s!", body_part(HEAD));
 		    losehp(rnd((uarmh && is_metallic(uarmh)) ? 2 : 6),
 			   "falling rock", KILLED_BY_AN);
-		    if ((otmp = mksobj_at(ROCK, u.ux, u.uy, FALSE, TRUE)) != 0) {
+		    if ((otmp = mksobj_at(ROCK, u.ux, u.uy, FALSE, FALSE)) != 0) {
 			(void)xname(otmp);      /* set dknown, maybe bknown */
 			stackobj(otmp);
 		    }

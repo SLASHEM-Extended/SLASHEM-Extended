@@ -1348,7 +1348,7 @@ schar ftyp, btyp;
 		if(ftyp != CORR || rn2(100)) {
 			crm->typ = ftyp;
 			if(nxcor && !rn2(50))
-				(void) mksobj_at(BOULDER, xx, yy, TRUE, TRUE);
+				(void) mksobj_at(BOULDER, xx, yy, TRUE, FALSE);
 		} else {
 			crm->typ = SCORR;
 		}
@@ -2643,7 +2643,7 @@ dlb *fd;
 	    }
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
 		    maze1xy(&mm, DRY);
-		    (void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, TRUE);
+		    (void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE);
 	    }
 	    for (x = rn2(2); x; x--) {
 		maze1xy(&mm, DRY);

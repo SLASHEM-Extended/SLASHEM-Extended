@@ -547,7 +547,7 @@ register const char *s;
 	maze0xy(&mm);
 	walkfrom((int) mm.x, (int) mm.y);
 	/* put a boulder at the maze center */
-	(void) mksobj_at(BOULDER, (int) mm.x, (int) mm.y, TRUE, TRUE);
+	(void) mksobj_at(BOULDER, (int) mm.x, (int) mm.y, TRUE, FALSE);
 
 #ifdef WALLIFIED_MAZE
 	wallification(2, 2, x_maze_max, y_maze_max);
@@ -610,7 +610,7 @@ register const char *s;
 	}
 	for(x = rn1(10,2); x; x--) {
 		mazexy(&mm);
-		(void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, TRUE);
+		(void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE);
 	}
 	for (x = rn2(3); x; x--) {
 		mazexy(&mm);

@@ -579,7 +579,7 @@ register struct trap *trap;
 		    int dmg = d(2,6); /* should be std ROCK dmg? */
 
 		    seetrap(trap);
-		    otmp = mksobj_at(ROCK, u.ux, u.uy, TRUE, TRUE);
+		    otmp = mksobj_at(ROCK, u.ux, u.uy, TRUE, FALSE);
 		    otmp->quan = 1L;
 		    otmp->owt = weight(otmp);
 
