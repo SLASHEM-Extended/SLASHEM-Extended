@@ -915,7 +915,7 @@ register struct monst *mtmp;
  *	of monsters will get a bonus chance or different selections.
  */
 	    default:
-	      m_initweap_normal();
+	      m_initweap_normal(mtmp);
 	      break;
 	}
 /*    if ((int) mtmp->m_lev > rn2(120)) */        
