@@ -106,6 +106,7 @@ ver 0.0.7E5 [?] [Released by ?]
 -fixed bug 857492: gtkrc not removed by make spotless (Clive Crous)
 -fixed bug 873593: runtime delta showweight doesn't reconfig status
 		   (Clive Crous)
+-fixed bug 788895: [X11] showweight option not supported (Clive Crous)
 
 See history.txt for changes made in previous versions.
 
