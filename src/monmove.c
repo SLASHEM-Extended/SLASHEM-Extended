@@ -432,7 +432,9 @@ register struct monst *mtmp;
 	if (mdat == &mons[PM_WATCHMAN] || mdat == &mons[PM_WATCH_CAPTAIN])
 		watch_on_duty(mtmp);
 
-	else if (is_mind_flayer(mdat) && !rn2(20)) {
+	/* [DS] Cthulhu also uses psychic blasts */
+	else if ((is_mind_flayer(mdat) || mdat == &mons[PM_CTHULHU]) 
+			&& !rn2(20)) {
 		struct monst *m2, *nmon = (struct monst *)0;
 
 		if (canseemon(mtmp))
@@ -453,7 +455,9 @@ register struct monst *mtmp;
 				pline("It locks on to your %s!",
 					m_sen ? "telepathy" :
 					Blind_telepat ? "latent telepathy" : "mind");
-				dmg = rn1(4,4);
+				dmg = (mdat == &mons[PM_CTHULHU])?
+					rn1(10, 10) :
+					rn1(4, 4);
 				if (Half_spell_damage) dmg = (dmg+1) / 2;
 				losehp(dmg, "psychic blast", KILLED_BY_AN);
 			}

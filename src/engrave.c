@@ -53,6 +53,8 @@ static const char *random_mesg[] = {
 	"As if!", /* Clueless */
 	"How bizarre, how bizarre.", /* OMC */
 	"Silly rabbit, Trix are for kids!", /* Trix */
+ 	"I'll be back!", /* Terminator */
+ 	"That is not dead which can eternal lie.", /* HPL */
 };
 
 char *

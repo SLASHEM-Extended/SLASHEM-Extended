@@ -386,6 +386,7 @@ ver 0.0.6E6 [?] [Released by ?]
 -fixed bug 580276: Stoning polyed monsters leaves statue.
 -fixed bug 576543: Wands of draining should boing!
 -fixed bug 582459: High Lycanthrope
+-Added Lethe monsters (Darshan Shaligram).
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).

@@ -763,6 +763,8 @@ register struct obj *obj;
 		return(TABU);
 		/* KMH -- Taz likes organics, too! */
 	    if ((mon->data == &mons[PM_GELATINOUS_CUBE] ||
+		mon->data == &mons[PM_SHOGGOTH] ||
+		mon->data == &mons[PM_GIANT_SHOGGOTH] ||
 	    	mon->data == &mons[PM_TASMANIAN_DEVIL]) && is_organic(obj))
 		return(ACCFOOD);
 	    if (metallivorous(mon->data) && is_metallic(obj) && (is_rustprone(obj) || mon->data != &mons[PM_RUST_MONSTER])) {
@@ -848,6 +850,8 @@ register struct obj *obj;
 	    mtmp->isgyp ||
 	    is_covetous(mtmp->data) || is_human(mtmp->data) ||
 	    (is_demon(mtmp->data) && !is_demon(youmonst.data)) ||
+	    /* Mik -- New flag to indicate which things cannot be tamed... */
+	    cannot_be_tamed(mtmp->data) ||
 	    (obj && dogfood(mtmp, obj) >= MANFOOD)) return (struct monst *)0;
 
 	if (mtmp->m_id == quest_status.leader_m_id)

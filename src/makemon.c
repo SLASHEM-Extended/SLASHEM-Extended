@@ -162,6 +162,61 @@ int otyp,oquan;
 #ifdef OVL2
 
 STATIC_OVL void
+m_initweap_normal(mtmp)
+register struct monst *mtmp;
+{
+	register struct permonst *ptr = mtmp->data;
+	register int mm = monsndx(ptr);
+	struct obj *otmp;
+
+	int bias;
+
+	bias = is_lord(ptr) + is_prince(ptr) * 2 + extra_nasty(ptr);
+	switch(rnd(14 - (2 * bias))) {
+	    case 1:
+		if(strongmonst(ptr)) (void) mongets(mtmp, BATTLE_AXE);
+		else m_initthrow(mtmp, DART, 12);
+		break;
+	    case 2:
+		if(strongmonst(ptr))
+		    (void) mongets(mtmp, TWO_HANDED_SWORD);
+		else {
+		    (void) mongets(mtmp, CROSSBOW);
+		    m_initthrow(mtmp, CROSSBOW_BOLT, 12);
+		}
+		break;
+	    case 3:
+		(void) mongets(mtmp, BOW);
+		m_initthrow(mtmp, ARROW, 12);
+		break;
+	    case 4:
+		if(strongmonst(ptr)) (void) mongets(mtmp, LONG_SWORD);
+		else m_initthrow(mtmp, DAGGER, 3);
+		break;
+	    case 5:
+		if(strongmonst(ptr))
+		    (void) mongets(mtmp, LUCERN_HAMMER);
+		else (void) mongets(mtmp, AKLYS);
+		break;
+	    /* [Tom] added some more */
+	    case 6:
+		if(strongmonst(ptr))
+		    (void) mongets(mtmp, AXE);
+		else (void) mongets(mtmp, SHORT_SWORD);
+		break;
+	    case 7:
+		if(strongmonst(ptr))
+		    (void) mongets(mtmp, MACE);
+		else (void) mongets(mtmp, CLUB);
+		break;
+	    default:
+		break;
+	}
+
+	return;
+}
+
+STATIC_OVL void
 m_initweap(mtmp)
 register struct monst *mtmp;
 {
@@ -611,7 +666,61 @@ register struct monst *mtmp;
 		    (void) mpickobj(mtmp, otmp);
 		}
 		break;
+	    case S_GNOME:
+		switch (mm) {
+		    case PM_GNOLL:
+			if(!rn2(3)) (void) mongets(mtmp, ORCISH_HELM);
+			if(!rn2(3)) (void) mongets(mtmp, STUDDED_LEATHER_ARMOR);
+			if(!rn2(3)) (void) mongets(mtmp, ORCISH_SHIELD);
+			if(!rn2(4)) (void) mongets(mtmp, SPEAR);
+			break;
 
+		    case PM_GNOLL_WARRIOR:
+			if(!rn2(2)) (void) mongets(mtmp, ORCISH_HELM);
+
+			if (!rn2(20))
+			    (void) mongets(mtmp, ORANGE_DRAGON_SCALE_MAIL);
+			else if (rn2(3))
+			    (void) mongets(mtmp, SCALE_MAIL);
+			else
+			    (void) mongets(mtmp, SPLINT_MAIL);
+
+			if(!rn2(2)) (void) mongets(mtmp, ORCISH_SHIELD);
+			if(!rn2(3)) (void) mongets(mtmp, KATANA);
+			break;
+
+		    case PM_GNOLL_CHIEFTAIN:
+			(void) mongets(mtmp, ORCISH_HELM);
+
+			if (!rn2(10))
+			    (void) mongets(mtmp, BLUE_DRAGON_SCALE_MAIL);
+			else
+			    (void) mongets(mtmp, CRYSTAL_PLATE_MAIL);
+
+			(void) mongets(mtmp, ORCISH_SHIELD);
+			(void) mongets(mtmp, KATANA);
+			(void) mongets(mtmp, rnd_offensive_item(mtmp));
+			break;
+
+		    case PM_GNOLL_SHAMAN:
+			if (!rn2(10))
+			    (void) mongets(mtmp, SILVER_DRAGON_SCALE_MAIL);
+			else if (rn2(5))
+			    (void) mongets(mtmp, CRYSTAL_PLATE_MAIL);
+			else
+			    (void) mongets(mtmp, RED_DRAGON_SCALE_MAIL);
+
+			(void) mongets(mtmp, ATHAME);
+			m_initthrow(mtmp, SHURIKEN, 12);
+			(void) mongets(mtmp, rnd_offensive_item(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item(mtmp));
+			break;
+
+		    default:
+			m_initweap_normal(mtmp);
+			break;
+		}	
+		break;
 	    case S_HUMANOID:
 		if (is_dwarf(ptr)) {
 		    if (rn2(7)) (void)mongets(mtmp, DWARVISH_CLOAK);
@@ -806,51 +915,7 @@ register struct monst *mtmp;
  *	of monsters will get a bonus chance or different selections.
  */
 	    default:
-	      {
-		int bias;
-
-		bias = is_lord(ptr) + is_prince(ptr) * 2 + extra_nasty(ptr);
-		switch(rnd(14 - (2 * bias))) {
-		    case 1:
-			if(strongmonst(ptr)) (void) mongets(mtmp, BATTLE_AXE);
-			else m_initthrow(mtmp, DART, 12);
-			break;
-		    case 2:
-			if(strongmonst(ptr))
-			    (void) mongets(mtmp, TWO_HANDED_SWORD);
-			else {
-			    (void) mongets(mtmp, CROSSBOW);
-			    m_initthrow(mtmp, CROSSBOW_BOLT, 12);
-			}
-			break;
-		    case 3:
-			(void) mongets(mtmp, BOW);
-			m_initthrow(mtmp, ARROW, 12);
-			break;
-		    case 4:
-			if(strongmonst(ptr)) (void) mongets(mtmp, LONG_SWORD);
-			else m_initthrow(mtmp, DAGGER, 3);
-			break;
-		    case 5:
-			if(strongmonst(ptr))
-			    (void) mongets(mtmp, LUCERN_HAMMER);
-			else (void) mongets(mtmp, AKLYS);
-			break;
-/* [Tom] added some more */
-		    case 6:
-			if(strongmonst(ptr))
-			    (void) mongets(mtmp, AXE);
-			else (void) mongets(mtmp, SHORT_SWORD);
-			break;
-		    case 7:
-			if(strongmonst(ptr))
-			    (void) mongets(mtmp, MACE);
-			else (void) mongets(mtmp, CLUB);
-			break;
-		    default:
-			break;
-		}
-	      }
+	      m_initweap_normal();
 	      break;
 	}
 /*    if ((int) mtmp->m_lev > rn2(120)) */        
@@ -1075,6 +1140,10 @@ register struct	monst	*mtmp;
 		}*/
 		break;	
 	    case S_VAMPIRE:
+		/* [Lethe] Star and fire vampires don't get this stuff */
+		if (ptr == &mons[PM_STAR_VAMPIRE] || 
+				ptr == &mons[PM_FIRE_VAMPIRE])
+		    break;
 	    	/* Get opera cloak */
 /*	    	otmp = readobjnam(opera_cloak);
 		if (otmp && otmp != &zeroobj) mpickobj(mtmp, otmp);*/
@@ -1093,6 +1162,15 @@ register struct	monst	*mtmp;
 			(void)mongets(mtmp, POT_BLOOD);
 		}
 		break;
+	    case S_DEMON:
+		/* [DS] Cthulhu isn't fully integrated yet, and he won't be
+		 *      until Moloch's Sanctum is rearranged */
+		if (ptr == &mons[PM_CTHULHU]) {
+		    mongets(mtmp, AMULET_OF_YENDOR);
+		    mongets(mtmp, WAN_DEATH);
+		    mongets(mtmp, POT_FULL_HEALING);
+		}
+		break;	
 	    default:
 		break;
 	}
@@ -1428,6 +1506,13 @@ register int	mmflags;
 		case S_BAT:
 			if (Inhell && is_bat(ptr))
 			    mon_adjust_speed(mtmp, 2, (struct obj *)0);
+			break;
+		case S_VAMPIRE:
+			/* [DS] Star vampires are invisible until they feed */
+			if (mndx == PM_STAR_VAMPIRE) {
+			    mtmp->perminvis = TRUE;
+			    mtmp->minvis = TRUE;
+			}
 			break;
 	}
 	if ((ct = emits_light(mtmp->data)) > 0)
@@ -2091,6 +2176,11 @@ int type;
 		case PM_STONE_GOLEM: return 180;
 		case PM_GLASS_GOLEM: return 140;
 		case PM_IRON_GOLEM: return 240;
+		case PM_RUBY_GOLEM: return 250;
+		case PM_DIAMOND_GOLEM: return 270;
+		case PM_SAPPHIRE_GOLEM: return 280;
+		case PM_STEEL_GOLEM: return 290;
+		case PM_CRYSTAL_GOLEM: return 300;
 		case PM_FRANKENSTEIN_S_MONSTER: return 400;
 		case PM_WAX_GOLEM: return 40;
 		case PM_PLASTIC_GOLEM: return 60;

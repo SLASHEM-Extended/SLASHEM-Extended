@@ -612,23 +612,23 @@ MONSTER:'Z',"ghast",random
 MONSTER:'Z',"ghast",random
 MONSTER:'Z',"ghast",random
 MONSTER:'Z',"ghast",random
-MONSTER:'h',"gnoll",random
-MONSTER:'h',"gnoll",random
-MONSTER:'h',"gnoll",random
-MONSTER:'h',"gnoll",random
-MONSTER:'h',"gnoll",random
-MONSTER:'h',"gnoll",random
-MONSTER:'h',"gnoll",random
-MONSTER:'h',"gnoll",random
-MONSTER:'h',"gnoll",random
-MONSTER:'h',"gnoll",random
-MONSTER:'h',"gnoll",random
-MONSTER:'h',"gnoll",random
-MONSTER:'h',"gnoll",random
-MONSTER:'h',"gnoll",random
-MONSTER:'h',"gnoll",random
-MONSTER:'h',"gnoll",random
-MONSTER:'h',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
 
 # [Tom]
 # The Geryon level

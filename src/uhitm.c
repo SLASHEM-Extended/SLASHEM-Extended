@@ -1958,6 +1958,13 @@ register struct attack *mattk;
 		    mdef->mfrozen = rnd(10);
 		}
 		break;
+	    case AD_TCKL:
+		if (mdef->mcanmove && !rn2(3) && tmp < mdef->mhp) {
+		    if (!Blind) You("mercilessly tickle %s!", mon_nam(mdef));
+		    mdef->mcanmove = 0;
+		    mdef->mfrozen = rnd(10);
+		}
+		break;
 	    case AD_SLEE:
 		if ((mattk->aatyp == AT_GAZE) && (mon_reflects(mdef, (char *)0))) {
 			tmp = 0;

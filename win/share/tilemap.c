@@ -33,7 +33,7 @@ struct conditionals {
 	int sequence, predecessor;
 	const char *name;
 } conditionals[] = {
-#ifndef CHARON /* not supported yet */
+#if 0		/* Added as part of Lethe (was ifndef CHARON) */
 	{ MON_GLYPH, PM_HELL_HOUND, "Cerberus" },
 #endif
 
@@ -106,7 +106,6 @@ struct conditionals {
 	/* commented out in monst.c at present */
 	{ MON_GLYPH, PM_NEANDERTHAL, "shifter" },
 	{ MON_GLYPH, PM_NEANDERTHAL, "dwarf warrior" },
-	{ MON_GLYPH, PM_NEANDERTHAL, "High-elf" },
 	{ MON_GLYPH, PM_FROSTER, "fiend" },
 	{ MON_GLYPH, PM_ATTENDANT, "proudfoot" },
 	{ MON_GLYPH, PM_ATTENDANT, "intern" },

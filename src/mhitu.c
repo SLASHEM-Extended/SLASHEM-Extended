@@ -556,6 +556,13 @@ mattacku(mtmp)
 		newsym(mtmp->mx,mtmp->my);
 	}
 
+	/* Make Star Vampires visible the moment they hit/miss us */
+	if(mtmp->data == &mons[PM_STAR_VAMPIRE] && mtmp->minvis
+	   && cansee(mtmp->mx, mtmp->my)) {
+	    mtmp->minvis = 0;
+	    newsym(mtmp->mx, mtmp->my);
+	}
+
 /*	Special demon handling code */
 	if(!mtmp->cham && is_demon(mdat) && !range2
 	   && mtmp->data != &mons[PM_BALROG]
@@ -1265,6 +1272,21 @@ dopois:
 	    	}
 		}
 		break;
+	    case AD_TCKL:
+		hitmsg(mtmp, mattk);
+		if (uncancelled && multi >= 0 && !rn2(3)) {
+		    if (Free_action)
+			You_feel("horrible tentacles probing your flesh!");
+		    else {
+			if (Blind) You("are mercilessly tickled!");
+			else You("are mercilessly tickled by %s!", mon_nam(mtmp));
+			nomovemsg = 0;	/* default: "you can move again" */
+			nomul(-rnd(10));
+			exercise(A_DEX, FALSE);
+			exercise(A_CON, FALSE);
+		    }
+		}
+		break;
 	    case AD_DRLI:
 		hitmsg(mtmp, mattk);
 		/* if vampire biting (and also a pet) */
@@ -1905,6 +1927,19 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		      else You("are covered in slime!  It burns!");
 		      exercise(A_STR, FALSE);
 		    }
+		    /* Mik: Go corrode a few things... */
+		    if (mtmp->data == &mons[PM_SHOGGOTH]
+                        || mtmp->data == &mons[PM_GIANT_SHOGGOTH]) {
+			for (otmp2 = invent; otmp2; otmp2 = otmp2->nobj)
+			    if (is_corrodeable(otmp2))
+				(void) rust_dmg(otmp2, xname(otmp2), 3, FALSE, 
+					&youmonst);
+		    } else {	
+			for (otmp2 = invent; otmp2; otmp2 = otmp2->nobj)
+			    if (is_corrodeable(otmp2) && !rn2(9))
+		    		(void) rust_dmg(otmp2, xname(otmp2), 3, FALSE, 
+					&youmonst);
+		    }	
 		    break;
 		case AD_BLND:
 		    if (can_blnd(mtmp, &youmonst, mattk->aatyp, (struct obj*)0)) {

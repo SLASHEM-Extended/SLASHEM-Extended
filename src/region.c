@@ -17,7 +17,9 @@ static int max_regions = 0;
 
 #define NO_CALLBACK (-1)
 
-boolean FDECL(inside_gas_cloud, (genericptr,genericptr));
+boolean FDECL(inside_gas_cloud, (genericptr,genericptr,boolean));
+boolean FDECL(inside_player_gas_cloud, (genericptr, genericptr));
+boolean FDECL(inside_mon_gas_cloud, (genericptr, genericptr));
 boolean FDECL(expire_gas_cloud, (genericptr,genericptr));
 boolean FDECL(inside_rect, (NhRect *,int,int));
 boolean FDECL(inside_region, (NhRegion *,int,int));
@@ -45,9 +47,11 @@ NhRegion *FDECL(create_force_field, (XCHAR_P,XCHAR_P,int,int));
 
 
 static callback_proc callbacks[] = {
-#define INSIDE_GAS_CLOUD 0
-    inside_gas_cloud,
-#define EXPIRE_GAS_CLOUD 1
+#define INSIDE_PLAYER_GAS_CLOUD 0
+    inside_player_gas_cloud,
+#define INSIDE_MON_GAS_CLOUD 1
+    inside_mon_gas_cloud,
+#define EXPIRE_GAS_CLOUD 2
     expire_gas_cloud
 };
 
@@ -857,10 +861,29 @@ genericptr_t p2;
     return TRUE;		/* OK, it's gone, you can free it! */
 }
 
-boolean
-inside_gas_cloud(p1, p2)
+/* [DS] Changes to prevent casualties of Cthulhu's death-cloud being attributed
+ *      to player. */
+boolean 
+inside_player_gas_cloud(p1, p2)
 genericptr_t p1;
 genericptr_t p2;
+{
+    inside_gas_cloud(p1, p2, TRUE);
+}
+
+boolean
+inside_mon_gas_cloud(p1, p2)
+genericptr_t p1;
+genericptr_t p2;
+{
+    inside_gas_cloud(p1, p2, FALSE);
+}
+
+boolean
+inside_gas_cloud(p1, p2, yours)
+genericptr_t p1;
+genericptr_t p2;
+boolean yours;	/* Was this player-created? */
 {
     NhRegion *reg;
     struct monst *mtmp;
@@ -889,7 +912,8 @@ genericptr_t p2;
 	if (!nonliving(mtmp->data) && !breathless(mtmp->data)) {
 	    if (cansee(mtmp->mx, mtmp->my))
 		pline("%s coughs!", Monnam(mtmp));
-	    setmangry(mtmp);
+	    if (yours)
+	    	setmangry(mtmp);
 	    if (haseyes(mtmp->data) && mtmp->mcansee) {
 		mtmp->mblinded = 1;
 		mtmp->mcansee = 0;
@@ -898,7 +922,11 @@ genericptr_t p2;
 		return FALSE;
 	    mtmp->mhp -= rnd(dam) + 5;
 	    if (mtmp->mhp <= 0) {
-		killed(mtmp);
+		if (yours)
+		    killed(mtmp);
+		else
+		    monkilled(mtmp, "", AD_DRST);
+
 		if (mtmp->mhp <= 0) {	/* not lifesaved */
 		    return TRUE;
 		}
@@ -909,10 +937,11 @@ genericptr_t p2;
 }
 
 NhRegion *
-create_gas_cloud(x, y, radius, damage)
+create_gas_cloud(x, y, radius, damage, yours)
 xchar x, y;
 int radius;
 int damage;
+boolean yours;			/* TRUE if player is responsible for this */
 {
     NhRegion *cloud;
     int i, nrect;
@@ -932,7 +961,7 @@ int damage;
 	tmprect.hy--;
     }
     cloud->ttl = rn1(3,4);
-    cloud->inside_f = INSIDE_GAS_CLOUD;
+    cloud->inside_f = yours ? INSIDE_PLAYER_GAS_CLOUD : INSIDE_MON_GAS_CLOUD;
     cloud->expire_f = EXPIRE_GAS_CLOUD;
     cloud->arg = (genericptr_t) damage;
     cloud->visible = TRUE;

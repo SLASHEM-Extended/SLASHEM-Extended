@@ -49,6 +49,10 @@
 #define MS_WERE		38	/* lycanthrope in human form */
 #define MS_BOAST	39	/* giants */
 #define MS_GYPSY	40	/* gypsies */
+#define MS_SHEEP	41	/* sheep */
+#define MS_CHICKEN	42	/* chicken */
+#define MS_COW		43	/* cows and bulls */
+#define MS_PARROT	44	/* parrots */
 
 
 #define MR_FIRE         0x01    /* resists fire */
@@ -178,6 +182,11 @@
 /* Infravision is currently implemented for players only */
 #define M3_INFRAVISION	0x0100		/* has infravision */
 #define M3_INFRAVISIBLE 0x0200		/* visible by infravision */
+
+/* [DS] Lethe */
+#define M3_TRAITOR	0x0400L			/* Capable of treachery */
+#define M3_NOTAME	0x0800L			/* Cannot be tamed */
+
 
 #define MZ_TINY		0		/* < 2' */
 #define MZ_SMALL	1		/* 2-4' */

@@ -137,6 +137,8 @@
 #define is_covetous(ptr)	((ptr)->mflags3 & M3_COVETOUS)
 #define infravision(ptr)	((ptr->mflags3 & M3_INFRAVISION))
 #define infravisible(ptr)	((ptr->mflags3 & M3_INFRAVISIBLE))
+#define can_betray(ptr)		((ptr->mflags3 & M3_TRAITOR))
+#define cannot_be_tamed(ptr)	((ptr->mflags3 & M3_NOTAME))
 #define is_mplayer(ptr)		(((ptr) >= &mons[PM_ARCHEOLOGIST]) && \
 				 ((ptr) <= &mons[PM_WIZARD]))
 #define is_rider(ptr)		((ptr) == &mons[PM_DEATH] || \
@@ -155,6 +157,7 @@
 #define emits_light(ptr)	(((ptr)->mlet == S_LIGHT || \
 				  (ptr) == &mons[PM_FIRE_VORTEX]) ? 3 : \
 				 ((ptr) == &mons[PM_FIRE_ELEMENTAL]) ? 2 : \
+				 ((ptr) == &mons[PM_FIRE_VAMPIRE])? 2 : \
 				 ((ptr) == &mons[PM_FLAMING_SPHERE]) ? 1 : \
 				 ((ptr) == &mons[PM_SHOCKING_SPHERE]) ? 1 : 0)
 /*	[note: the light ranges above were reduced to 1 for performance...] */
@@ -162,11 +165,13 @@
 #define likes_lava(ptr)		(ptr == &mons[PM_FIRE_ELEMENTAL] || \
 				 ptr == &mons[PM_SALAMANDER])
 #define pm_invisible(ptr)	((ptr) == &mons[PM_STALKER] || \
-				 (ptr) == &mons[PM_BLACK_LIGHT])
+				 (ptr) == &mons[PM_BLACK_LIGHT] || \
+				 (ptr) == &mons[PM_STAR_VAMPIRE])
 
 /* could probably add more */
 #define likes_fire(ptr)		((ptr) == &mons[PM_FIRE_VORTEX] || \
 				  (ptr) == &mons[PM_FLAMING_SPHERE] || \
+				  (ptr) == &mons[PM_FIRE_VAMPIRE] || \
 				 likes_lava(ptr))
 
 #define nonliving(ptr)		(is_golem(ptr) || is_undead(ptr) || \

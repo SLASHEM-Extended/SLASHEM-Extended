@@ -79,6 +79,7 @@
 #define AD_ENCH		42	/* KMH -- remove enchantment */
 #define AD_POLY		43	/* RJ -- polymorphs (genetic engineer) */
 #define AD_CORR		44	/* corrode armor (black pudding) */
+#define AD_TCKL		45	/* Tickle (Nightgaunts) */
 
 #define AD_CLRC		240	/* random clerical spell */
 #define AD_SPEL		241	/* random magic spell */

@@ -1070,6 +1070,16 @@ label2:			if (mdef->mhp > 0) return 0;
 		    mdef->mfrozen = rnd(10);
 		}
 		break;
+	    case AD_TCKL:
+		if(!magr->mcan && mdef->mcanmove) {
+		    if (vis) {
+			Strcpy(buf, Monnam(magr));
+			pline("%s mercilessly tickles %s.", buf, mon_nam(mdef));
+		    }
+		    mdef->mcanmove = 0;
+		    mdef->mfrozen = rnd(10);
+  		}
+		break;
 	    case AD_SLOW:
 		if (nohit) break;
 		if(!magr->mcan && vis && mdef->mspeed != MSLOW) {

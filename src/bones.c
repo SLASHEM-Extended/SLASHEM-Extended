@@ -240,7 +240,8 @@ struct obj *corpse;
 		    mptr->msound == MS_NEMESIS || mptr->msound == MS_LEADER ||
 		    mptr == &mons[PM_VLAD_THE_IMPALER] ||
 		    mptr == &mons[PM_NIGHTMARE] ||
-		    mptr == &mons[PM_BEHOLDER] || mptr == &mons[PM_VECNA]) {
+		    mptr == &mons[PM_BEHOLDER] || mptr == &mons[PM_VECNA] ||
+		    mptr == &mons[PM_CTHULHU]) {
 		/* Since these monsters may be carrying indestructible 
 		 * artifacts, free inventory specifically here to avoid
 		 * the indestructible sanity check in discard_minvent */

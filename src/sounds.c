@@ -371,6 +371,9 @@ register struct monst *mtmp;
 	case MS_SILENT:
 		ret = "commotion";
 		break;
+	case MS_PARROT:
+	    ret = "squaark";
+	    break;
 	default:
 		ret = "scream";
 	}
@@ -618,6 +621,35 @@ register struct monst *mtmp;
 	case MS_SQEEK:
 	    pline_msg = "squeaks.";
 	    break;
+	case MS_PARROT:
+	    switch (rn2(8)) {
+		default:
+		case 0:
+		    pline_msg = "squaarks louldly!";
+		    break;
+		case 1:
+		    pline_msg = "says 'Polly want a lembas wafer!'";
+		    break;
+		case 2:
+		    pline_msg = "says 'Nobody expects the Spanish Inquisition!'";
+		    break;
+		case 3:
+		    pline_msg = "says 'Who's a good boy, then?'";
+		    break;
+		case 4:
+		    pline_msg = "says 'Show us yer knickers!'";
+		    break;
+		case 5:
+		    pline_msg = "says 'You'll never make it!'";
+		    break;
+		case 6:
+		    pline_msg = "whistles suggestively!";
+		    break;
+		case 7:
+		    pline_msg = "says 'What sort of a sword do you call that!'";
+		    break;
+	    }
+	    break;
 	case MS_SQAWK:
 	    if (mtmp->data == &mons[PM_RAVEN] && !mtmp->mpeaceful)
 	    	verbl_msg = "Nevermore!";
@@ -658,6 +690,15 @@ register struct monst *mtmp;
 	    break;
 	case MS_IMITATE:
 	    pline_msg = "imitates you.";
+	    break;
+	case MS_SHEEP:
+	    pline_msg = "baaaas.";
+	    break;
+	case MS_CHICKEN:
+	    pline_msg = "clucks.";
+	    break;
+	case MS_COW:
+	    pline_msg = "bellows.";
 	    break;
 	case MS_BONES:
 	    pline("%s rattles noisily.", Monnam(mtmp));

@@ -260,6 +260,45 @@ register struct monst *mtmp;
 			obj = mksobj_at((LAST_GEM + rnd(9)), x, y, TRUE, FALSE);
 		mtmp->mnamelth = 0;
 		break;
+	    case PM_RUBY_GOLEM:
+		/* [DS] Mik's original Lethe fobbed off the player with coloured
+		 * glass even for the higher golems. We'll play fair here - if
+		 * you can kill one of these guys, you deserve the gems. */
+		num = d(2,4);
+		while (num--)
+			obj = mksobj_at(RUBY, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_DIAMOND_GOLEM:
+		num = d(2,4);   
+		while (num--)
+			obj = mksobj_at(DIAMOND, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_SAPPHIRE_GOLEM:
+		num = d(2,4);
+		while (num--)
+			obj = mksobj_at(SAPPHIRE, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_STEEL_GOLEM:
+		num = d(2,6);
+		/* [DS] Add steel chains (or handcuffs!) for steel golems? */
+		while (num--)
+			obj = mksobj_at(IRON_CHAIN, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_CRYSTAL_GOLEM:
+		/* [DS] Generate gemstones of various hues */
+		num = d(2,4);
+		{
+		    int gemspan = LAST_GEM - bases[GEM_CLASS] + 1;
+		    while (num--)
+			obj = mksobj_at(bases[GEM_CLASS] + rn2(gemspan), x, y,
+		    			TRUE, FALSE);
+		    mtmp->mnamelth = 0;
+		}
+		break;
 	    case PM_CLAY_GOLEM:
 		obj = mksobj_at(ROCK, x, y, FALSE, FALSE);
 		obj->quan = (long)(rn2(20) + 50);
@@ -1614,6 +1653,18 @@ boolean was_swallowed;			/* digestion */
 	    	return (FALSE);
 	    }
   	}
+
+	/* Cthulhu Deliquesces... */
+	if (mdat == &mons[PM_CTHULHU]) {
+	    if (cansee(mon->mx, mon->my))
+		pline("%s body deliquesces into a cloud of noxious gas!",
+			s_suffix(Monnam(mon)));
+	    else
+		You_hear("hissing and bubbling!");
+	    /* ...into a stinking cloud... */
+	    (void) create_gas_cloud(mon->mx, mon->my, 3, 8, FALSE);
+	    return (FALSE);
+	}
 
 	/* must duplicate this below check in xkilled() since it results in
 	 * creating no objects as well as no corpse
