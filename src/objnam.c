@@ -515,7 +515,7 @@ char *prefix;
 	boolean iscrys = (obj->otyp == CRYSKNIFE);
 
 
-	if (!is_damageable(obj) && !iscrys) return;
+	if (!is_damageable(obj) && !iscrys || Hallucination) return;
 
 	/* The only cases where any of these bits do double duty are for
 	 * rotted food and diluted potions, which are all not is_damageable().
@@ -568,7 +568,7 @@ register struct obj *obj;
 
 	if(obj->quan != 1L)
 		Sprintf(prefix, "%ld ", obj->quan);
-	else if (obj_is_pname(obj) || the_unique_obj(obj)) {
+	else if (!Hallucination && (obj_is_pname(obj) || the_unique_obj(obj))) {
 		if (!strncmpi(bp, "the ", 4))
 		    bp += 4;
 		Strcpy(prefix, "the ");
@@ -578,16 +578,17 @@ register struct obj *obj;
 	if (obj->oinvis) Strcat(prefix,"invisible ");
 #endif
 
-	if (obj->bknown &&
+	if ((!Hallucination || Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER)) &&
+	    obj->bknown &&
 	    obj->oclass != GOLD_CLASS &&
 	    (obj->otyp != POT_WATER || !objects[POT_WATER].oc_name_known
-		|| (!obj->cursed && !obj->blessed))) {
+		|| (!obj->cursed && !obj->blessed) || Hallucination)) {
 	    /* allow 'blessed clear potion' if we don't know it's holy water;
 	     * always allow "uncursed potion of water"
 	     */
-	    if (obj->cursed)
+	    if (Hallucination ? !rn2(10) : obj->cursed)
 		Strcat(prefix, "cursed ");
-	    else if (obj->blessed)
+	    else if (Hallucination ? !rn2(10) : obj->blessed)
 		Strcat(prefix, "blessed ");
 	    else if ((!obj->known || !objects[obj->otyp].oc_charged ||
 		      (obj->oclass == ARMOR_CLASS ||
@@ -611,7 +612,7 @@ register struct obj *obj;
 		Strcat(prefix, "uncursed ");
 	}
 
-	if (obj->greased) Strcat(prefix, "greased ");
+	if (Hallucination ? !rn2(100) : obj->greased) Strcat(prefix, "greased ");
 
 	switch(obj->oclass) {
 	case AMULET_CLASS:
@@ -623,6 +624,8 @@ register struct obj *obj;
 			Strcat(prefix, "poisoned ");
 plus:
 		add_erosion_words(obj, prefix);
+		if (Hallucination)
+			break;
 		if(obj->known) {
 			Strcat(prefix, sitoa(obj->spe));
 			Strcat(prefix, " ");
@@ -645,6 +648,8 @@ plus:
 		/* weptools already get this done when we go to the +n code */
 		if (!is_weptool(obj))
 		    add_erosion_words(obj, prefix);
+		if (Hallucination)
+			break;
 		if(obj->owornmask & (W_TOOL /* blindfold */
 #ifdef STEED
 				| W_SADDLE
@@ -687,10 +692,14 @@ plus:
 	case WAND_CLASS:	
 		add_erosion_words(obj, prefix);
 charges:
+		if (Hallucination)
+			break;
 		if(obj->known)
 		    Sprintf(eos(bp), " (%d:%d)", (int)obj->recharged, obj->spe);
 		break;
 	case POTION_CLASS:
+		if (Hallucination)
+			break;
 		if (obj->otyp == POT_OIL && obj->lamplit)
 		    Strcat(bp, " (lit)");
 		break;
@@ -703,6 +712,8 @@ ring:
 		    Strcat(bp, body_part(HAND));
 		    Strcat(bp, ")");
 		}
+		if (Hallucination)
+			break;
 		if(obj->known && objects[obj->otyp].oc_charged) {
 			Strcat(prefix, sitoa(obj->spe));
 			Strcat(prefix, " ");
@@ -775,7 +786,7 @@ ring:
 			Strcat(bp, " (alternate weapon; not wielded)");
 	}
 	if(obj->owornmask & W_QUIVER) Strcat(bp, " (in quiver)");
-	if(obj->unpaid)
+	if(!Hallucination && obj->unpaid)
 		Strcat(bp, " (unpaid)");
 	if (!strncmp(prefix, "a ", 2) &&
 			index(vowels, *(prefix+2) ? *(prefix+2) : *bp)
@@ -791,7 +802,7 @@ ring:
 	  /* [max] weight inventory */
 	if ((obj->otyp != BOULDER) || !throws_rocks (youmonst.data))
 	  if ((obj->otyp < LUCKSTONE) && (obj->otyp != CHEST) && (obj->otyp != LARGE_BOX) &&
-	      (obj->otyp != ICE_BOX) && (flags.invweight == TRUE))
+	      (obj->otyp != ICE_BOX) && (!Hallucination && flags.invweight))
 		        Sprintf (eos(bp), " {%d}", obj->owt);
 #endif
 

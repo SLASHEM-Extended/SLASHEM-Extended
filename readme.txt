@@ -342,6 +342,7 @@ ver 0.0.6E4F3 [February XX/2001]
 -fixed bug 128018: Frag grenades explode in water.
 -fixed bug 132405: Increasing Intelligence.
 -fixed bug 132521: #version lists the Qt windowing system twice.
+-fixed bug 132163: Special properties of items show up while hallucinating.
 
 ver 0.0.6E4F2 [December 30/2000] [Released by Ali]
 -DOS: Allegro window port adapted to display the ground underneath walls
