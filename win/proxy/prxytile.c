@@ -1,4 +1,4 @@
-/* $Id: prxytile.c,v 1.6 2003-08-31 12:54:24 j_ali Exp $ */
+/* $Id: prxytile.c,v 1.7 2003-09-03 08:36:56 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -75,53 +75,64 @@ proxy_tilemap_add_entry(struct proxy_tilemap *map, int tn, char *entry)
 }
 
 struct proxy_tilemap *
-proxy_load_tilemap(fh, pulse, pulse_data)
-int fh;
-void (*pulse)();
-void *pulse_data;
+proxy_new_tilemap(void)
 {
-    int i, j, k, tn;
-    char buf[1024], buf2[256];
-    char *cmd, *arg, *s, c;
     struct proxy_tilemap *map;
     map = (struct proxy_tilemap *)alloc(sizeof(struct proxy_tilemap));
     map->no_entries = map->max_entries = 0;
     map->no_tiles = 0;
     map->entries = NULL;
+}
+
+int
+proxy_load_tilemap_line(struct proxy_tilemap *map, const char *line)
+{
+    int i, j, k, tn;
+    char buf[256];
+    char *s, c;
+    if (!strncmp(line, "tile ", 5) &&
+	    sscanf(line + 5, "%d \"%255[^\"]", &tn, buf) == 2) {
+	map->no_tiles ++;
+	/* The string consists of alternate descriptions seperated
+	 * by '/' characters. Split these up (honouring the '\'
+	 * escape) and add each description to the tilemap.
+	 * Spaces are removed surrounding '/' characters.
+	 */
+	for(i = j = 0; ; i++)
+	    if (buf[i] == '\\' && buf[i + 1])
+		i++;
+	    else if (buf[i] == '/' || !buf[i]) {
+		for(k = i - 1; buf[k] == ' '; k--)
+		    ;
+		k++;
+		c = buf[k];
+		buf[k] = '\0';
+		proxy_tilemap_add_entry(map, tn, buf + j);
+		buf[k] = c;
+		if (!buf[i])
+		    break;
+		j = i + 1;
+		while(buf[j] == ' ')
+		    j++;
+	    }
+	return 0;
+    } else
+	return -1;		/* unrecognized map commands */
+}
+
+struct proxy_tilemap *
+proxy_load_tilemap(fh, pulse, pulse_data)
+int fh;
+void (*pulse)();
+void *pulse_data;
+{
+    char buf[1024];
+    struct proxy_tilemap *map;
+    map = proxy_new_tilemap();
     while(proxy_cb_dlbh_fgets(buf, 1024, fh)) {
 	if (pulse)
 	    (*pulse)(pulse_data);
-	cmd = buf;
-	arg = strchr(buf, ' ');
-	if (arg)
-	    *arg++ = '\0';
-	if (!strcmp(cmd, "tile") && arg &&
-		sscanf(arg, "%d \"%255[^\"]", &tn, buf2) == 2) {
-	    map->no_tiles ++;
-	    /* The string consists of alternate descriptions seperated
-	     * by '/' characters. Split these up (honouring the '\'
-	     * escape) and add each description to the tilemap.
-	     * Spaces are removed surrounding '/' characters.
-	     */
-	    for(i = j = 0; ; i++)
-		if (buf2[i] == '\\' && buf2[i + 1])
-		    i++;
-		else if (buf2[i] == '/' || !buf2[i]) {
-		    for(k = i - 1; buf2[k] == ' '; k--)
-			;
-		    k++;
-		    c = buf2[k];
-		    buf2[k] = '\0';
-		    proxy_tilemap_add_entry(map, tn, buf2 + j);
-		    buf2[k] = c;
-		    if (!buf2[i])
-			break;
-		    j = i + 1;
-		    while(buf2[j] == ' ')
-			j++;
-		}
-	}
-	/* else ignore unrecognized map commands */
+	proxy_load_tilemap_line(map, buf);
     }
     return map;
 }

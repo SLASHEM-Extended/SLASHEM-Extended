@@ -1,5 +1,5 @@
 /*
-  $Id: gtkprogress.c,v 1.1 2003-08-31 12:54:24 j_ali Exp $
+  $Id: gtkprogress.c,v 1.2 2003-09-03 08:36:56 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Slash'EM Development Team 2003
@@ -149,6 +149,7 @@ struct _NhGtkProgressWindow {
 	NhGtkProgressCheck *check;
 	GtkLabel *text;
     } *stages;
+    unsigned long last_updated;		/* in ms */
 };
 
 struct _NhGtkProgressWindowClass {
@@ -356,12 +357,26 @@ void nh_gtk_progress_window_complete_stage(NhGtkProgressWindow *w)
 	gtk_main_iteration();
 }
 
+static nh_gtk_progress_window_update(NhGtkProgressWindow *w)
+{
+    unsigned long now_ms;
+    GTimeVal now;
+    g_get_current_time(&now);
+    now_ms = (unsigned long)now.tv_sec * 1000 +
+	    (unsigned long)now.tv_usec / 1000;
+    /* Update after 50ms or immediately if now_ms wraps (about 50 days) */
+    if (now_ms < w->last_updated || now_ms - 50 > w->last_updated) {
+	w->last_updated = now_ms;
+	while(gtk_events_pending())
+	    gtk_main_iteration();
+    }
+}
+
 void nh_gtk_progress_window_stage_pulse(NhGtkProgressWindow *w)
 {
     g_return_if_fail(NH_GTK_IS_PROGRESS_WINDOW(w));
     gtk_progress_bar_pulse(w->bar);
-    while(gtk_events_pending())
-	gtk_main_iteration();
+    nh_gtk_progress_window_update(w);
 }
 
 void nh_gtk_progress_window_stage_set_fraction(NhGtkProgressWindow *w,
@@ -369,6 +384,5 @@ void nh_gtk_progress_window_stage_set_fraction(NhGtkProgressWindow *w,
 {
     g_return_if_fail(NH_GTK_IS_PROGRESS_WINDOW(w));
     gtk_progress_bar_set_fraction(w->bar, fraction);
-    while(gtk_events_pending())
-	gtk_main_iteration();
+    nh_gtk_progress_window_update(w);
 }

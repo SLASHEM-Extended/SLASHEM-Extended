@@ -1,4 +1,4 @@
-/* $Id: gtkhackrc.c,v 1.5 2003-05-30 08:48:08 j_ali Exp $ */
+/* $Id: gtkhackrc.c,v 1.6 2003-09-03 08:36:56 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -74,6 +74,9 @@ extern void rc_radar(GScanner *scanner, GtkHackRcValue *value);
 extern void rc_connections(GScanner *scanner, GtkHackRcValue *value);
 extern void rc_default_connection(GScanner *scanner, GtkHackRcValue *value);
 #endif
+#ifdef GTK_PROXY
+extern void rc_proxy_cachedir(GScanner *scanner, GtkHackRcValue *value);
+#endif
 
 #define GTKHACKRC_VARIABLE	0
 #define GTKHACKRC_FUNCTION	1
@@ -99,6 +102,9 @@ struct gtkhackrc_setting {
 #ifdef GTKHACK
     GTKHACKRC_VARIABLE, "connections", rc_connections,
     GTKHACKRC_VARIABLE, "default_connection", rc_default_connection,
+#endif
+#ifdef GTK_PROXY
+    GTKHACKRC_VARIABLE, "proxy.cachedir", rc_proxy_cachedir,
 #endif
 };
 
@@ -853,6 +859,9 @@ nh_write_gtkhackrc(void)
 #ifdef GTKHACK
     GTK_connection_save(&rc);
 #endif
+#ifdef GTK_PROXY
+    nh_proxy_cache_save(&rc);
+#endif
     if (unrecognized_settings)
 	for(list = unrecognized_settings; list; list = list->next)
 	    nh_gtkhackrc_store(&rc, "%s", (gchar *)list->data);
@@ -988,5 +997,14 @@ void rc_default_connection(GScanner *scanner, GtkHackRcValue *value)
     if (!gtkhackrc_check_type(scanner, value, "value", PARSE_VALUE_TYPE_STRING))
 	return;
     GTK_connection_set_default(value->u.string);
+}
+#endif
+
+#ifdef GTK_PROXY
+void rc_proxy_cachedir(GScanner *scanner, GtkHackRcValue *value)
+{
+    if (!gtkhackrc_check_type(scanner, value, "value", PARSE_VALUE_TYPE_STRING))
+	return;
+    nh_proxy_cache_set_dir(value->u.string);
 }
 #endif

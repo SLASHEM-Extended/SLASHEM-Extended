@@ -1,5 +1,5 @@
 /*
-  $Id: gtktile.c,v 1.3 2003-08-31 12:54:24 j_ali Exp $
+  $Id: gtktile.c,v 1.4 2003-09-03 08:36:56 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -211,30 +211,18 @@ x_tile_load(TileTab *t, NhGtkProgressWindow *w)
     GError *err = NULL;
     Tile = t;
     tile_pixbuf = NULL;
-#ifdef GTK_PROXY
-    fh = proxy_cb_dlbh_fopen(t->file, "rb");
-#else
-# ifdef FILE_AREAS
-    fh = dlbh_fopen(FILE_AREA_SHARE, t->file, "rb");
-# else
-    fh = dlbh_fopen(t->file, "rb");
-# endif
-#endif /* GTK_PROXY */
+    fh = nh_dlbh_fopen("tileset", t->file, "rb");
     if (fh < 0) {
 	pline("Cannot open tile file %s!", t->file);
 	return 0;
     }
     loader = gdk_pixbuf_loader_new();
-#ifndef GTK_PROXY
-    dlbh_fseek(fh, 0, SEEK_END);
-    len = dlbh_ftell(fh);
-    dlbh_fseek(fh, 0, SEEK_SET);
-#endif
-#ifdef GTK_PROXY
-    while (nb = proxy_cb_dlbh_fread(buf, 1, sizeof(buf), fh), nb > 0) {
-#else
-    while (nb = dlbh_fread(buf, 1, sizeof(buf), fh), nb > 0) {
-#endif
+    if (!nh_dlbh_fseek(fh, 0, SEEK_END)) {
+	len = nh_dlbh_ftell(fh);
+	nh_dlbh_fseek(fh, 0, SEEK_SET);
+    } else
+	len = -1;
+    while (nb = nh_dlbh_fread(buf, 1, sizeof(buf), fh), nb > 0) {
 	if (!gdk_pixbuf_loader_write(loader, buf, nb, &err)) {
 	    pline("Error loading %s: %s", t->file, err->message);
 	    g_error_free(err);
@@ -242,32 +230,25 @@ x_tile_load(TileTab *t, NhGtkProgressWindow *w)
 	    break;
 	}
 	done += nb;
-#ifdef GTK_PROXY
-	nh_gtk_progress_window_stage_pulse(w);
-#else
-	nh_gtk_progress_window_stage_set_fraction(w, (done * 0.9) / len);
-#endif
+	if (len < 0)
+	    nh_gtk_progress_window_stage_pulse(w);
+	else
+	    nh_gtk_progress_window_stage_set_fraction(w, (done * 0.9) / len);
     }
     if (nb < 0) {
 	pline("Read error from tile file %s!", t->file);
 	(void)gdk_pixbuf_loader_close(loader, NULL);
     } else if (!nb) {
 	if (!gdk_pixbuf_loader_close(loader, &err)) {
-#ifdef GTK_PROXY
-	    nh_gtk_progress_window_stage_pulse(w);
-#else
-	    nh_gtk_progress_window_stage_set_fraction(w, 1.0);
-#endif
 	    pline("Error loading %s: %s", t->file, err->message);
 	    g_error_free(err);
 	    err = NULL;
 	} else {
+	    if (len < 0)
+		nh_gtk_progress_window_stage_pulse(w);
+	    else
+		nh_gtk_progress_window_stage_set_fraction(w, 1.0);
 	    tile_pixbuf = gdk_pixbuf_loader_get_pixbuf(loader);
-#ifdef GTK_PROXY
-	    nh_gtk_progress_window_stage_pulse(w);
-#else
-	    nh_gtk_progress_window_stage_set_fraction(w, 1.0);
-#endif
 	    if (!tile_pixbuf)
 		pline("No image found in tile file %s!", t->file);
 	    else
@@ -275,11 +256,7 @@ x_tile_load(TileTab *t, NhGtkProgressWindow *w)
 	}
     } else
 	(void)gdk_pixbuf_loader_close(loader, NULL);
-#ifdef GTK_PROXY
-    proxy_cb_dlbh_fclose(fh);
-#else
-    dlbh_fclose(fh);
-#endif
+    nh_dlbh_fclose(fh);
     g_object_unref(loader);
     if (!tile_pixbuf)
 	return 0;
@@ -301,15 +278,35 @@ x_tile_load(TileTab *t, NhGtkProgressWindow *w)
 static struct proxy_tilemap *
 x_tile_load_tilemap(TileTab *t, NhGtkProgressWindow *w)
 {
-    int fh;
+    int fh, len, step;
+    char *buf;
     struct proxy_tilemap *map;
-    fh = proxy_cb_dlbh_fopen(t->mapfile, "rb");
+    fh = nh_dlbh_fopen("tilemap", t->mapfile, "rb");
     if (fh < 0) {
 	pline("Cannot open tile map file %s!", t->mapfile);
 	return NULL;
     }
-    map = proxy_load_tilemap(fh, nh_gtk_progress_window_stage_pulse, w);
-    proxy_cb_dlbh_fclose(fh);
+    if (!nh_dlbh_fseek(fh, 0, SEEK_END)) {
+	len = nh_dlbh_ftell(fh);
+	nh_dlbh_fseek(fh, 0, SEEK_SET);
+    } else
+	len = -1;
+    buf = g_malloc(1024);
+    map = proxy_new_tilemap();
+    step = 50;		/* Update progress window every 50 lines */
+    while(nh_dlbh_fgets(buf, 1024, fh)) {
+	if (!--step) {
+	    step = 50;
+	    if (len < 0)
+		nh_gtk_progress_window_stage_pulse(w);
+	    else
+		nh_gtk_progress_window_stage_set_fraction(w,
+			nh_dlbh_ftell(fh) / (double)len);
+	}
+	proxy_load_tilemap_line(map, buf);
+    }
+    g_free(buf);
+    nh_dlbh_fclose(fh);
     return map;
 }
 
@@ -1154,23 +1151,13 @@ tile_scan(void)
 	    continue;	/* Missing or unreadable tile map */
 	}
 	proxy_cb_dlbh_fclose(fh);
-	fh = proxy_cb_dlbh_fopen(tilesets[i].file, "r");
-#else
-# ifdef FILE_AREAS
-	fh = dlbh_fopen(FILE_AREA_SHARE, tilesets[i].file, RDTMODE);
-# else
-	fh = dlbh_fopen(tilesets[i].file, RDTMODE);
-# endif
 #endif	/* GTK_PROXY */
+	fh = nh_dlbh_fopen("tileset", tilesets[i].file, "r");
 	if (fh < 0) {
 	    perror(tilesets[i].file);
 	    continue;	/* Missing or unreadable tile file */
 	}
-#ifdef GTK_PROXY
-	proxy_cb_dlbh_fclose(fh);
-#else
-	dlbh_fclose(fh);
-#endif
+	nh_dlbh_fclose(fh);
 	tileTab[v].ident = strdup(tilesets[i].name);
 	tileTab[v].file = strdup(tilesets[i].file);
 #ifdef GTK_PROXY

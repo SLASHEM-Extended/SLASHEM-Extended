@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.45 2003-08-31 12:54:23 j_ali Exp $
+  $Id: winGTK.h,v 1.46 2003-09-03 08:36:56 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -213,6 +213,20 @@ extern void nh_option_cache_set_addr(char *option, char **addr);
 extern void nh_option_cache_set_bool_addr(char *option, boolean *addr);
 extern char *nh_option_cache_get(char *option);
 extern boolean nh_option_cache_get_bool(char *option);
+
+#ifdef GTK_PROXY
+extern void nh_proxy_cache_set_dir(const char *dir);
+extern int nh_proxy_cache_save(struct gtkhackrc *rc);
+extern char *nh_proxy_cache_file(const char *class, const char *name);
+extern void nh_proxy_cache_mkdir(const char *class, const char *name);
+#endif
+
+extern int nh_dlbh_fopen(const char *class, const char *name, const char *mode);
+extern int nh_dlbh_fclose(int fh);
+extern char *nh_dlbh_fgets(char *buf, int len, int fh);
+extern int nh_dlbh_fread(char *buf, int size, int quan, int fh);
+extern int nh_dlbh_fseek(int fh, long pos, int whence);
+extern int nh_dlbh_ftell(int fh);
 
 extern int nh_tile_height();
 extern int nh_tile_3dheight();

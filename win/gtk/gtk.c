@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.41 2003-08-22 19:40:57 j_ali Exp $
+  $Id: gtk.c,v 1.42 2003-09-03 08:36:56 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -2614,6 +2614,81 @@ GTK_nh_poskey(int *x, int *y, int *mod)
 }
 
 #ifdef GTK_PROXY
+static char *nh_proxy_cache_defaultdir =
+#ifdef WIN32
+    "cache";
+#else
+    "$(HOME)/.gtkhack/cache";
+#endif
+static char *nh_proxy_cache_dir = NULL;
+static int nh_proxy_cache_dir_set = FALSE;
+
+/*
+ * Setting the default cache directory (by passing dir as NULL)
+ * has the side effect of creating the directory. If a non-default
+ * directory is used, then it should already exist (if not, then
+ * the cache will never be utilized).
+ */
+
+void nh_proxy_cache_set_dir(const char *dir)
+{
+    if (nh_proxy_cache_dir)
+	g_free(nh_proxy_cache_dir);
+    nh_proxy_cache_dir_set = !!dir;
+    if (dir)
+	nh_proxy_cache_dir = g_strdup(dir);
+    else {
+#ifdef WIN32
+	nh_proxy_cache_dir = g_strdup("cache");
+	CreateDirectory("cache", NULL);
+#else
+	char *home = getenv("HOME");
+	if (!home)
+	    home = "/tmp";
+	nh_proxy_cache_dir = g_strdup_printf("%s/.gtkhack", home);
+	mkdir(nh_proxy_cache_dir, 0777);
+	g_free(nh_proxy_cache_dir);
+	nh_proxy_cache_dir = g_strdup_printf("%s/.gtkhack/cache", home);
+	mkdir(nh_proxy_cache_dir, 0777);
+#endif
+    }
+}
+
+int
+nh_proxy_cache_save(struct gtkhackrc *rc)
+{   
+    if (nh_proxy_cache_dir_set)
+	nh_gtkhackrc_store(rc, "proxy.cachedir = \"%s\"", nh_proxy_cache_dir);
+}
+
+char *nh_proxy_cache_file(const char *class, const char *name)
+{
+    char *path;
+    if (!nh_proxy_cache_dir)
+	nh_proxy_cache_set_dir(NULL);
+#ifdef WIN32
+    path = g_strdup_printf("%s\\%s\\%s", nh_proxy_cache_dir, class, name);
+#else
+    path = g_strdup_printf("%s/%s/%s", nh_proxy_cache_dir, class, name);
+#endif
+    return path;
+}
+
+void nh_proxy_cache_mkdir(const char *class, const char *name)
+{
+    char *path;
+    if (!nh_proxy_cache_dir)
+	nh_proxy_cache_set_dir(NULL);
+#ifdef WIN32
+    path = g_strdup_printf("%s\\%s", nh_proxy_cache_dir, class);
+    CreateDirectory(path, NULL);
+#else
+    path = g_strdup_printf("%s/%s", nh_proxy_cache_dir, class);
+    mkdir(path, 0777);
+#endif
+    g_free(path);
+}
+
 static int
 GTK_display_file(char *name)
 {
@@ -2626,6 +2701,316 @@ GTK_display_file(char *name)
     return TRUE;
 }
 #endif
+
+#ifdef GTK_PROXY
+#define NH_DLBH_PROXY_FREE		1
+#define NH_DLBH_PROXY_DATACACHED	2
+
+struct nh_dlbh_proxy {
+    int fh;
+    FILE *cache;
+    char *cname;
+    long read_ahead;
+    char *buffer;
+    unsigned long flags;
+};
+
+static struct nh_dlbh_proxy *nh_dlbh_nodes = NULL;
+static int n_nh_dlbh_nodes = 0;
+
+static int nh_dlbh_proxy_new()
+{
+    int i;
+    for(i = 0; i < n_nh_dlbh_nodes; i++)
+	if (nh_dlbh_nodes[i].flags & NH_DLBH_PROXY_FREE) {
+	    memset(nh_dlbh_nodes + i, 0, sizeof(*nh_dlbh_nodes));
+	    return i;
+	}
+    ++n_nh_dlbh_nodes;
+    nh_dlbh_nodes = g_renew(struct nh_dlbh_proxy, nh_dlbh_nodes,
+      n_nh_dlbh_nodes);
+    memset(nh_dlbh_nodes + n_nh_dlbh_nodes - 1, 0, sizeof(*nh_dlbh_nodes));
+    return n_nh_dlbh_nodes - 1;
+}
+
+static void nh_dlbh_proxy_free(int n)
+{
+    int i;
+    for(i = n + 1; i < n_nh_dlbh_nodes; i++)
+	if (!(nh_dlbh_nodes[i].flags & NH_DLBH_PROXY_FREE)) {
+	    nh_dlbh_nodes[n].flags |= NH_DLBH_PROXY_FREE;
+	    return;
+	}
+    for(i = n - 1; i >= 0; i--)
+	if (!(nh_dlbh_nodes[i].flags & NH_DLBH_PROXY_FREE)) {
+	    n_nh_dlbh_nodes = i + 1;
+	    return;
+	}
+    n_nh_dlbh_nodes = 0;
+    g_free(nh_dlbh_nodes);
+    nh_dlbh_nodes = NULL;
+}
+#endif
+
+int nh_dlbh_fopen(const char *class, const char *name, const char *mode)
+{
+#ifdef GTK_PROXY
+    int fh;
+    char *md5sum;
+    md5sum = proxy_cb_dlbh_fmd5sum(name);
+    if (!md5sum)
+	return -1;
+    fh = nh_dlbh_proxy_new();
+    nh_dlbh_nodes[fh].cname = nh_proxy_cache_file(class, md5sum);
+    nh_dlbh_nodes[fh].cache = fopen(nh_dlbh_nodes[fh].cname, mode);
+    if (nh_dlbh_nodes[fh].cache) {
+	g_free(md5sum);
+	nh_dlbh_nodes[fh].fh = -1;
+	return fh;
+    }
+    nh_dlbh_nodes[fh].fh = proxy_cb_dlbh_fopen(name, mode);
+    if (nh_dlbh_nodes[fh].fh >= 0) {
+	nh_dlbh_nodes[fh].cache = fopen(nh_dlbh_nodes[fh].cname, "wb");
+	if (!nh_dlbh_nodes[fh].cache) {
+	    nh_proxy_cache_mkdir(class, md5sum);
+	    nh_dlbh_nodes[fh].cache = fopen(nh_dlbh_nodes[fh].cname, "wb");
+	}
+	if (!nh_dlbh_nodes[fh].cache) {
+	    g_free(nh_dlbh_nodes[fh].cname);
+	    nh_dlbh_nodes[fh].cname = NULL;
+	}
+	g_free(md5sum);
+	return fh;
+    }
+    g_free(nh_dlbh_nodes[fh].cname);
+    g_free(md5sum);
+    nh_dlbh_proxy_free(fh);
+    return -1;
+#else
+# ifdef FILE_AREAS
+    return dlbh_fopen(FILE_AREA_SHARE, name, mode);
+# else
+    return dlbh_fopen(name, mode);
+# endif
+#endif
+}
+
+int nh_dlbh_fclose(int fh)
+{
+#ifdef GTK_PROXY
+    int retval = 0;
+    char *buf;
+    if (nh_dlbh_nodes[fh].fh >= 0) {
+	if (nh_dlbh_nodes[fh].cache) {
+	    if (nh_dlbh_nodes[fh].flags & NH_DLBH_PROXY_DATACACHED) {
+		/* Caller closed file before EOF. To ensure the cached copy
+		 * is valid we must finish reading the file. nh_dlbh_fread()
+		 * will close the cache file on completion or error.
+		 */
+		buf = g_malloc(1024);
+		while(nh_dlbh_nodes[fh].cache)
+		    (void) nh_dlbh_fread(buf, 1, 1024, fh);
+		g_free(buf);
+	    } else {
+		/* No data cached (typically used to check file is available
+		 * for reading). Discard the empty cache file.
+		 */
+		fclose(nh_dlbh_nodes[fh].cache);
+		nh_dlbh_nodes[fh].cache = NULL;
+		remove(nh_dlbh_nodes[fh].cname);
+		g_free(nh_dlbh_nodes[fh].cname);
+		nh_dlbh_nodes[fh].cname = NULL;
+	    }
+	}
+	retval = proxy_cb_dlbh_fclose(nh_dlbh_nodes[fh].fh);
+    }
+    if (nh_dlbh_nodes[fh].cache)
+	fclose(nh_dlbh_nodes[fh].cache);
+    if (nh_dlbh_nodes[fh].cname)
+	g_free(nh_dlbh_nodes[fh].cname);
+    nh_dlbh_proxy_free(fh);
+    return retval;
+#else
+    return dlbh_fclose(fh);
+#endif
+}
+
+char *nh_dlbh_fgets(char *buf, int len, int fh)
+{
+#ifdef GTK_PROXY
+    int nr;		/* Number of bytes read */
+    char *s;
+    if (nh_dlbh_nodes[fh].fh >= 0) {
+	if (!nh_dlbh_nodes[fh].cache)
+	    return proxy_cb_dlbh_fgets(buf, len, nh_dlbh_nodes[fh].fh);
+	if (nh_dlbh_nodes[fh].read_ahead > 0) {
+	    s = memchr(nh_dlbh_nodes[fh].buffer, '\n',
+	      nh_dlbh_nodes[fh].read_ahead);
+	    if (s) {
+		nr = min(len - 1, s - nh_dlbh_nodes[fh].buffer + 1);
+		memcpy(buf, nh_dlbh_nodes[fh].buffer, nr);
+		buf[nr] = '\0';
+		nh_dlbh_nodes[fh].read_ahead -= nr;
+		if (nh_dlbh_nodes[fh].read_ahead)
+		    memmove(nh_dlbh_nodes[fh].buffer,
+			    nh_dlbh_nodes[fh].buffer + nr,
+			    nh_dlbh_nodes[fh].read_ahead);
+		    else {
+			g_free(nh_dlbh_nodes[fh].buffer);
+			nh_dlbh_nodes[fh].buffer = NULL;
+		    }
+		return buf;
+	    }
+	    nr = nh_dlbh_nodes[fh].read_ahead;
+	    memcpy(buf, nh_dlbh_nodes[fh].buffer, nr);
+	    nh_dlbh_nodes[fh].read_ahead = 0;
+	    g_free(nh_dlbh_nodes[fh].buffer);
+	    nh_dlbh_nodes[fh].buffer = NULL;
+	}
+	else
+	    nr = 0;
+	s = proxy_cb_dlbh_fgets(buf + nr, len - nr, nh_dlbh_nodes[fh].fh);
+	if (!s) {
+	    /*
+	     * On EOF/ERROR, finish up the cache file
+	     * (which we assume is now complete).
+	     */
+	    fclose(nh_dlbh_nodes[fh].cache);
+	    nh_dlbh_nodes[fh].cache = NULL;
+	    g_free(nh_dlbh_nodes[fh].cname);
+	    nh_dlbh_nodes[fh].cname = NULL;
+	} else {
+	    if (fputs(buf + nr, nh_dlbh_nodes[fh].cache) < 0) {
+		/* Write error occured - discard cached copy */
+		fclose(nh_dlbh_nodes[fh].cache);
+		nh_dlbh_nodes[fh].cache = NULL;
+		remove(nh_dlbh_nodes[fh].cname);
+		g_free(nh_dlbh_nodes[fh].cname);
+		nh_dlbh_nodes[fh].cname = NULL;
+	    }
+	    nh_dlbh_nodes[fh].flags |= NH_DLBH_PROXY_DATACACHED;
+	}
+	return s ? buf : NULL;
+    } else
+	return fgets(buf, len, nh_dlbh_nodes[fh].cache);
+#else
+    return dlbh_fgets(buf, len, fh);
+#endif
+}
+
+int nh_dlbh_fread(char *buf, int size, int quan, int fh)
+{
+#ifdef GTK_PROXY
+    int retval;
+    int nb;		/* Number of bytes still to read */
+    int nr;		/* Number of bytes read */
+    char *buffer;
+    if (nh_dlbh_nodes[fh].fh >= 0) {
+	if (!nh_dlbh_nodes[fh].cache)
+	    return proxy_cb_dlbh_fread(buf, size, quan, nh_dlbh_nodes[fh].fh);
+	/*
+	 * Note: proxy_cb_dlbh_fread() may discard bytes on EOF if size is
+	 * greater than 1, so we have to take care never to call it with
+	 * size > 1 if we are caching a copy.
+	 */
+	nb = size * quan;
+	nr = 0;
+	if (nh_dlbh_nodes[fh].read_ahead > 0) {
+	    nr = min(nh_dlbh_nodes[fh].read_ahead, nb);
+	    memcpy(buf, nh_dlbh_nodes[fh].buffer, nr);
+	    nb -= nr;
+	    nh_dlbh_nodes[fh].read_ahead -= nr;
+	    if (nh_dlbh_nodes[fh].read_ahead)
+		memmove(nh_dlbh_nodes[fh].buffer, nh_dlbh_nodes[fh].buffer + nr,
+		  nh_dlbh_nodes[fh].read_ahead);
+	    else {
+		g_free(nh_dlbh_nodes[fh].buffer);
+		nh_dlbh_nodes[fh].buffer = NULL;
+	    }
+	}
+	/* At this point, either nb or read_ahead must be zero */
+	while (nb) {
+	    retval = proxy_cb_dlbh_fread(buf + nr, 1, nb, nh_dlbh_nodes[fh].fh);
+	    if (retval < 0) {
+		/*
+		 * If we get a read error, then discard the cache file and
+		 * return an error immediately.
+		 * Note: We could do better than this by returning what
+		 * data we do have now and setting a flag so that an error
+		 * can be returned later, but there seems little point.
+		 */
+		fclose(nh_dlbh_nodes[fh].cache);
+		nh_dlbh_nodes[fh].cache = NULL;
+		remove(nh_dlbh_nodes[fh].cname);
+		g_free(nh_dlbh_nodes[fh].cname);
+		nh_dlbh_nodes[fh].cname = NULL;
+		return -1;
+	    } else if (!retval) {
+		/*
+		 * On EOF, finish up the cache file (which is now complete),
+		 * save any part objects in the read-ahead buffer and return
+		 * the number of complete objects read.
+		 */
+		fclose(nh_dlbh_nodes[fh].cache);
+		nh_dlbh_nodes[fh].cache = NULL;
+		g_free(nh_dlbh_nodes[fh].cname);
+		nh_dlbh_nodes[fh].cname = NULL;
+		nh_dlbh_nodes[fh].read_ahead = nr % size;
+		if (nh_dlbh_nodes[fh].read_ahead) {
+		    nh_dlbh_nodes[fh].buffer =
+		      g_malloc(nh_dlbh_nodes[fh].read_ahead);
+		    memcpy(nh_dlbh_nodes[fh].buffer,
+		      buf + nr - nh_dlbh_nodes[fh].read_ahead,
+		      nh_dlbh_nodes[fh].read_ahead);
+		}
+		return nr / size;
+	    } else {
+		if (fwrite(buf + nr, 1, retval, nh_dlbh_nodes[fh].cache) !=
+		  retval) {
+		    /* Write error occured - discard cached copy */
+		    fclose(nh_dlbh_nodes[fh].cache);
+		    nh_dlbh_nodes[fh].cache = NULL;
+		    remove(nh_dlbh_nodes[fh].cname);
+		    g_free(nh_dlbh_nodes[fh].cname);
+		    nh_dlbh_nodes[fh].cname = NULL;
+		}
+		nr += retval;
+		nb -= retval;
+		nh_dlbh_nodes[fh].flags |= NH_DLBH_PROXY_DATACACHED;
+	    }
+	}
+	/* All requested data read */
+	return quan;
+    } else
+	return fread(buf, size, quan, nh_dlbh_nodes[fh].cache);
+#else
+    return dlbh_fread(buf, size, quan, fh);
+#endif
+}
+
+int nh_dlbh_fseek(int fh, long pos, int whence)
+{
+#ifdef GTK_PROXY
+    if (nh_dlbh_nodes[fh].fh >= 0)
+	return -1;
+    else
+	return fseek(nh_dlbh_nodes[fh].cache, pos, whence);
+#else
+    return dlbh_fseek(fh, pos, whence);
+#endif
+}
+
+int nh_dlbh_ftell(int fh)
+{
+#ifdef GTK_PROXY
+    if (nh_dlbh_nodes[fh].fh >= 0)
+	return -1;
+    else
+	return ftell(nh_dlbh_nodes[fh].cache);
+#else
+    return dlbh_ftell(fh);
+#endif
+}
 
 void
 GTK_ext_display_file(int fh)

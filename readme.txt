@@ -101,6 +101,7 @@ ver 0.0.7E3 [?] [Released by ?]
 -fixed bug 731767: Tsurugi of Muramasa special attack inoperative
 -Actioned feature request 783244: Add some/all of these new 32x32 tiles.
 -GTK: Added visual feedback when selecting tilesets.
+-GTK/proxy: Added caching of tileset data downloaded from remote servers.
 
 See history.txt for changes made in previous versions.
 
