@@ -1084,7 +1084,7 @@ int tech_no;
 			return(0);
 		}
 		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
-		if (!canseemon(mtmp)) {
+		if (!mtmp || !canseemon(mtmp)) {
 			You("don't see anything there!");
 			return (0);
 		}
