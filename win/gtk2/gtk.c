@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.5 2001-09-21 20:24:24 j_ali Exp $
+  $Id: gtk.c,v 1.6 2001-10-01 06:32:49 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1809,8 +1809,7 @@ GTK_init_nhwindows(int *argc, char **argv)
 	    nhelpmenu_items, helpmenu_items,
 	    NULL);
 
-
-	gtk_accel_group_attach(accel_group, GTK_OBJECT(main_window));
+	gtk_accel_group_attach(accel_group, G_OBJECT(main_window));
     }
 
     main_bar = nh_gtk_new_and_pack(
@@ -2432,6 +2431,7 @@ GTK_outrip(winid id, int how)
     GdkWChar	wstr[NH_BUFSIZ];
     extern const char *killed_by_prefix[];
     char	*rip_file;
+    GdkFont	*rip_font;
 
     w = nh_gtk_window_dialog(TRUE);
     gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
@@ -2466,6 +2466,8 @@ GTK_outrip(winid id, int how)
 	gtk_pixmap_new(rip_pixmap, 0), vbox, "",
 	FALSE, FALSE, NH_PAD);
 
+    rip_font = gtk_style_get_font(rip->style);
+
     Sprintf(mstr, "%s", plname);
     rip_line[NAME_LINE].len = gdk_mbstowcs(rip_line[NAME_LINE].str, mstr, NH_BUFSIZ);
 
@@ -2498,7 +2500,7 @@ GTK_outrip(winid id, int how)
     while(total_len > 0 && line < YEAR_LINE){
 	len = total_len;
 	while(1){
-	    width = gdk_text_width_wc(rip->style->font, wc, len);
+	    width = gdk_text_width_wc(rip_font, wc, len);
 	    if(width < 96)
 		break;
 	    --len;
@@ -2520,7 +2522,7 @@ GTK_outrip(winid id, int how)
 
 	for(line = 0 ; line <= YEAR_LINE ; ++line){
 	    gdk_text_extents_wc(
-		rip->style->font,
+		rip_font,
 		rip_line[line].str, rip_line[line].len,
 		&dummy,
 		&dummy,
@@ -2534,7 +2536,7 @@ GTK_outrip(winid id, int how)
 	for(line = 0 ; line <= YEAR_LINE ; ++line){
 	    gdk_draw_text_wc(
 		rip_pixmap,
-		rip->style->font,
+		rip_font,
 		rip->style->black_gc,
 		x - rip_line[line].width / 2, y,
 		rip_line[line].str, rip_line[line].len);

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.3 2001-05-08 06:17:07 j_ali Exp $
+  $Id: gtkmap.c,v 1.4 2001-10-01 06:32:49 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -159,8 +159,8 @@ nh_conf_map_font(void)
     int i, min_width, width;
     if (!map_font) {
 	g_return_val_if_fail(map->style != NULL, 1);
-	g_return_val_if_fail(map->style->font != NULL, 1);
-	map_font = map->style->font;
+	map_font = gtk_style_get_font(map->style);
+	g_return_val_if_fail(map_font != NULL, 1);
 	gdk_font_ref(map_font);
 	map_font_name = pango_font_description_to_string(map->style->font_desc);
     }
@@ -577,7 +577,7 @@ GtkWidget *
 nh_radar_new()
 {
     radar = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_accel_group_attach(accel_group, GTK_OBJECT(radar));
+    gtk_accel_group_attach(accel_group, G_OBJECT(radar));
     gtk_widget_realize(radar);
 
     radar_is_created = 1;
