@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.8 2000-10-19 19:57:26 j_ali Exp $
+  $Id: gtkmenu.c,v 1.9 2000-12-03 15:07:38 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -171,7 +171,7 @@ GTK_init_menu_widgets(NHWindow *w)
      else
 	 w->w = gtk_window_new(GTK_WINDOW_TOPLEVEL);
      gtk_widget_set_name(GTK_WIDGET(w->w), "fixed font");
-     gtk_window_set_position(GTK_WINDOW(w->w), GTK_WIN_POS_MOUSE);
+     nh_position_popup_dialog(GTK_WIDGET(w->w));
      w->hid = gtk_signal_connect(
 	 GTK_OBJECT(w->w), "destroy",
 	 GTK_SIGNAL_FUNC(menu_destroy), w);

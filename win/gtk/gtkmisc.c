@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmisc.c,v 1.3 2000-11-27 07:13:12 j_ali Exp $
+  $Id: gtkmisc.c,v 1.4 2000-12-03 15:07:38 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -166,7 +166,7 @@ nh_option_more_confirm(void)
     hid = gtk_signal_connect(
       GTK_OBJECT(w), "destroy",
       GTK_SIGNAL_FUNC(default_destroy), &hid);
-    gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_MOUSE);
+    nh_position_popup_dialog(GTK_WIDGET(w));
 
     frame = nh_gtk_new_and_add(gtk_frame_new(NULL), w, "");
     gtk_container_border_width(GTK_CONTAINER(frame), NH_PAD);
@@ -887,7 +887,7 @@ nh_option_new()
   hid = gtk_signal_connect(
       GTK_OBJECT(w), "destroy",
       GTK_SIGNAL_FUNC(default_destroy), &hid);
-  gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
+  nh_position_popup_dialog(GTK_WIDGET(w));
 
   vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), w, "");
 

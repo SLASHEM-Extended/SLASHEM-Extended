@@ -1,5 +1,5 @@
 /*
-  $Id: gtkyn.c,v 1.4 2000-09-15 07:25:24 wacko Exp $
+  $Id: gtkyn.c,v 1.5 2000-12-03 15:07:38 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -94,7 +94,7 @@ GTK_yn_function(const char *query, const char *resp, CHAR_P def)
     yn_resp = resp;
 
     window = gtk_window_new(GTK_WINDOW_DIALOG);
-    gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_MOUSE);
+    nh_position_popup_dialog(GTK_WIDGET(window));
     gtk_signal_connect_after(
 	GTK_OBJECT(window), "key_press_event",
 	GTK_SIGNAL_FUNC(yn_key_press), NULL);

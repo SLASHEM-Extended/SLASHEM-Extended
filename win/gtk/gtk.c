@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.16 2000-11-09 16:26:39 j_ali Exp $
+  $Id: gtk.c,v 1.17 2000-12-03 15:07:38 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -419,6 +419,131 @@ nh_menu_sensitive(char *menu, boolean f)
     p = gtk_item_factory_get_widget(
 	main_item_factory, menu);
     gtk_widget_set_sensitive(p, f);
+}
+
+/* ALI
+ * We need to know the border width and height so that we can correctly
+ * clamp dialogs to the screen. Unfortunately, GDK allows us no way to
+ * dermine the border sizes before we map the window. We get around this
+ * by remembering what they were for the last dialog displayed and
+ * checking that they haven't changed after the window is mapped. If
+ * we find we're offscreen after mapping we have to re-position the
+ * window. Clumsy, but effective.
+ *
+ * Note: there's no way that I know of to determine the width of the
+ * right border or the height of the bottom border. For now, we just
+ * assume that these are both equal to the left border. Typically,
+ * only the top border is different and this is a valid assumption.
+ *
+ * This is all further complicated by the fact that, at least under
+ * the Enlightenment window manager, gtk_widget_set_uposition() sets
+ * the position of the top left pixel of the border before the window
+ * is mapped, but the top left pixel of the window after it is mapped.
+ *
+ * Note: If the window manager is set up such that gtk_widget_set_upostion()
+ * always sets the position of the left left pixel of the window, and if
+ * gtk_window_get_origin() returns this same position, then this code
+ * will fail (gracefully) and dialogs may be positioned with their borders
+ * just off-screen.
+ */
+
+static gint popup_dialog_bw = 0, popup_dialog_bh = 0;
+
+volatile int popup_dialog_abandon;
+
+static gint popup_dialog_timeout(gpointer data)
+{
+    if (!popup_dialog_abandon)
+	popup_dialog_abandon++;
+    return FALSE;
+}
+
+static void
+popup_dialog_mapped(GtkWidget *w, gpointer data)
+{
+    gint screen_width, screen_height;
+    GdkWindow *window = GTK_WIDGET(w)->window;
+    gint x, y, nx, ny;
+    data = gtk_object_get_user_data(GTK_OBJECT(w));
+    if (data) {
+	x = GPOINTER_TO_UINT(data) >> 16;
+	y = GPOINTER_TO_UINT(data) & 0xffff;
+	/* Wait for Window Manager to place window and add borders */
+	popup_dialog_abandon = 0;
+	gtk_timeout_add(100L, popup_dialog_timeout, 0);
+	do
+	{
+	    gtk_main_iteration();
+	    if (popup_dialog_abandon) {		/* Don't wait for ever */
+		if (popup_dialog_abandon++ > 1)	/* One final check? */
+		    return;
+	    }
+	    gdk_window_get_origin(window, &nx, &ny);
+	} while (nx == 0 && ny == 0 || nx == x && ny == y);
+	popup_dialog_bw = nx - x;
+	popup_dialog_bh = ny - y;
+	/* Do we need to re-position this window to stay on-screen? */
+	screen_width = gdk_screen_width();
+	screen_height = gdk_screen_height();
+	if (nx + popup_dialog_bw + w->allocation.width > screen_width)
+	    x = screen_width - popup_dialog_bw - w->allocation.width;
+	else x = nx;
+	if (ny + popup_dialog_bw + w->allocation.height > screen_height)
+	    /* popup_dialog_bw because we assume bottom border same as left */
+	    y = screen_height - popup_dialog_bw - w->allocation.height;
+	else y = ny;
+	if (x != nx || y != ny)
+	    gtk_widget_set_uposition(w, x, y);
+    }
+}
+
+static void
+popup_dialog_realizing(GtkWidget *w, gpointer data)
+{
+    GdkWindow *window = GTK_WIDGET(main_window)->window;
+    gint x, y, width, height, ox, oy;
+    gint screen_width = gdk_screen_width(), screen_height = gdk_screen_height();
+
+    if (w->allocation.width > screen_width ||
+      w->allocation.height > screen_height) {
+	/* This is going to look bad anyway, we can't centre it because
+	 * a position less than 0 is not valid, so the best we can do
+	 * is place the pop-up at the top left of the screen and accept
+	 * that the right and/or bottom edge will be off-screen.
+	 */
+	x = y = 0;
+    }
+    else {
+	gdk_window_get_geometry(window, &x, &y, &width, &height, NULL);
+	gdk_window_get_origin(window, &ox, &oy);
+	x += ox + (width - w->allocation.width) / 2;
+	y += oy + (height - w->allocation.height) / 2;
+	if (x + w->allocation.width + popup_dialog_bw > screen_width)
+	    x = screen_width - popup_dialog_bw - w->allocation.width;
+	if (y + w->allocation.height + popup_dialog_bw > screen_height)
+	    y = screen_height - popup_dialog_bw - w->allocation.height;
+	/* (x,y) is the desired position of the window,
+	 * adjust to take into account the expected border. */
+	x -= popup_dialog_bw;
+	y -= popup_dialog_bh;
+	if (x < 0) x = 0;
+	if (y < 0) y = 0;
+    }
+    gtk_widget_set_uposition(w, x, y);
+    gtk_object_set_user_data(GTK_OBJECT(w), GUINT_TO_POINTER(x << 16 | y));
+}
+
+void
+nh_position_popup_dialog(GtkWidget *w)
+{
+    if (GTK_WIDGET_REALIZED(w))
+	popup_dialog_realizing(w, 0);
+    if (GTK_WIDGET_MAPPED(w))
+	popup_dialog_mapped(w, 0);
+    gtk_signal_connect(GTK_OBJECT(w), "realize",
+	GTK_SIGNAL_FUNC(popup_dialog_realizing), 0);
+    gtk_signal_connect_after(GTK_OBJECT(w), "map",
+	GTK_SIGNAL_FUNC(popup_dialog_mapped), 0);
 }
 
 void
@@ -1592,7 +1717,7 @@ GTK_putstr(winid id, int attr, const char *str)
     if(!w->w){
 	w->w = gtk_window_new(GTK_WINDOW_DIALOG);
 	gtk_widget_set_name(GTK_WIDGET(w->w), "fixed font");
-	gtk_window_set_position(GTK_WINDOW(w->w), GTK_WIN_POS_MOUSE);
+	nh_position_popup_dialog(GTK_WIDGET(w->w));
 
 	gtk_signal_connect(
 	    GTK_OBJECT(w->w), "key_press_event",
@@ -1737,7 +1862,7 @@ GTK_display_file(const char *fname, BOOLEAN_P complain)
     w = gtk_window_new(GTK_WINDOW_DIALOG);
     gtk_widget_set_name(GTK_WIDGET(w), "fixed font");
 
-    gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
+    nh_position_popup_dialog(GTK_WIDGET(w));
     gtk_signal_connect(
 	GTK_OBJECT(w), "key_press_event",
 	GTK_SIGNAL_FUNC(GTK_default_key_press), NULL);

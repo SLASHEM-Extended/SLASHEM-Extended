@@ -1,5 +1,5 @@
 /*
-  $Id: gtkgetlin.c,v 1.1 2000-08-15 19:55:10 wacko Exp $
+  $Id: gtkgetlin.c,v 1.2 2000-12-03 15:07:38 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -59,7 +59,7 @@ GTK_getlin(const char *query, char *ret)
     cancelled = 0;
 
     window = gtk_window_new(GTK_WINDOW_DIALOG);
-    gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_MOUSE);
+    nh_position_popup_dialog(GTK_WIDGET(window));
 
     frame = nh_gtk_new_and_add(gtk_frame_new(query), window, "");
     gtk_container_border_width(GTK_CONTAINER(frame), NH_PAD);

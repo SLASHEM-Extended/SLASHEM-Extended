@@ -1,5 +1,5 @@
 /*
-  $Id: gtkextcmd.c,v 1.2 2000-09-20 04:21:18 wacko Exp $
+  $Id: gtkextcmd.c,v 1.3 2000-12-03 15:07:38 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -140,7 +140,7 @@ GTK_get_ext_cmd()
     }
 
     window = gtk_window_new(GTK_WINDOW_DIALOG);
-    gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_MOUSE);
+    nh_position_popup_dialog(GTK_WIDGET(window));
     gtk_signal_connect_after(
 	GTK_OBJECT(window), "key_press_event",
 	GTK_SIGNAL_FUNC(extcmd_key_press), NULL);
