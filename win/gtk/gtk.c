@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.33 2003-05-24 15:15:15 j_ali Exp $
+  $Id: gtk.c,v 1.34 2003-05-27 09:48:45 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1943,8 +1943,17 @@ static char *GTK_capv[] = {
 	proxy_cb_set_option_mod_status(option, status)
 #endif
 
-int
-GTK_ext_init_nhwindows(int *argc, char **argv, char ***capvp)
+void
+GTK_init_gtk(int *argc, char **argv)
+{
+    gtk_set_locale();
+    g_type_init();
+    nh_rc();
+    gtk_init(argc, &argv);
+}
+
+void
+GTK_init_nhwindows(char ***capvp)
 {
     char *credit_file;
     int i;
@@ -1954,8 +1963,6 @@ GTK_ext_init_nhwindows(int *argc, char **argv, char ***capvp)
     GdkPixmap *credit_pixmap;
     GdkBitmap *credit_mask;
     GdkColormap *cmap;
-
-    gtk_set_locale();
 
     *capvp = GTK_capv;
     /* None of these options are supported in the GTK interface
@@ -1969,13 +1976,10 @@ GTK_ext_init_nhwindows(int *argc, char **argv, char ***capvp)
 
     nh_option_cache_set_bool_addr("color", &copts.use_color);
     nh_option_cache_set_bool_addr("hilite_pet", &copts.hilite_pet);
-    nh_rc();
 
     /* Init windows to nothing. */
     for (i = 0; i < MAXWIN; i++)
 	gtkWindows[i].type = NHW_NONE;
-
-    gtk_init(argc, &argv);
 
     /*
      * create credit widget and show
@@ -2105,7 +2109,13 @@ GTK_ext_init_nhwindows(int *argc, char **argv, char ***capvp)
     gtk_widget_hide(credit_window);
     gtk_widget_destroy(credit_window);
     gtk_widget_show_all(main_window);
+}
 
+int
+GTK_ext_init_nhwindows(int *argc, char **argv, char ***capvp)
+{
+    GTK_init_gtk(argc, argv);
+    GTK_init_nhwindows(capvp);
     return TRUE;
 }
 

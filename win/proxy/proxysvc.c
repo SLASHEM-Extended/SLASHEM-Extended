@@ -1,4 +1,4 @@
-/* $Id: proxysvc.c,v 1.20 2003-05-17 10:33:25 j_ali Exp $ */
+/* $Id: proxysvc.c,v 1.21 2003-05-27 09:48:45 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdarg.h>
 #ifdef WIN32
 #include <windows.h>
 #include <commctrl.h>
@@ -865,11 +866,11 @@ void *read_h, *write_h;
     wr = nhext_io_open(write_f, write_h, NHEXT_IO_WRONLY);
 #endif
     if (!rd || !wr) {
-	fprintf(stderr, "proxy_clnt: Failed to open I/O streams.\n");
+	proxy_clnt_error("Failed to open I/O streams");
 	exit(1);
     }
     if (nhext_init(rd, wr, services) < 0) {
-	fprintf(stderr, "proxy_clnt: Failed to initialize NhExt.\n");
+	proxy_clnt_error("Failed to initialize NhExt");
 	nhext_io_close(wr);
 	nhext_io_close(rd);
 	return FALSE;
@@ -877,7 +878,7 @@ void *read_h, *write_h;
     lp = nhext_subprotocol0_read_line();
     if (!lp) {
 failed:
-	fprintf(stderr, "proxy_clnt: Failed to start NhExt.\n");
+	proxy_clnt_error("Failed to start NhExt");
 	/* We leave the NhExtIO streams open and NhExt initialized so
 	 * that win_proxy_clnt_get_failed_packet() will still work.
 	 */
@@ -897,7 +898,7 @@ failed:
       major != EXT_STANDARD_MAJOR || minor != EXT_STANDARD_MINOR) {
 #endif
 	nhext_subprotocol0_free_line(lp);
-	fprintf(stderr, "proxy_clnt: Incompatible NhExt standard (%s).\n",
+	proxy_clnt_error("Incompatible NhExt standard (%s)",
 	  lp->values[j]);
 	s = "Error mesg \"Incompatible NhExt standard\"\n";
 	(void)nhext_io_write(wr, s, strlen(s));
@@ -909,7 +910,7 @@ failed:
     s = strchr(lp->values[i], '1');
     if (!s || s > lp->values[i] && s[-1] != ',' || s[1] && s[1] != ',') {
 	nhext_subprotocol0_free_line(lp);
-	fprintf(stderr, "proxy_clnt: Sub-protocol 1 not supported.\n");
+	proxy_clnt_error("Sub-protocol 1 not supported");
 	s = "Error mesg \"No supported protocols\"\n";
 	(void)nhext_io_write(wr, s, strlen(s));
 	nhext_end();
@@ -930,7 +931,7 @@ failed:
     free(line.tags);
     free(line.values);
     if (!i) {
-	fprintf(stderr, "proxy_clnt: Failed to write NhExt acknowledgement.\n");
+	proxy_clnt_error("Failed to write NhExt acknowledgement");
 	nhext_end();
 	nhext_io_close(wr);
 	nhext_io_close(rd);
@@ -945,7 +946,7 @@ win_proxy_clnt_iteration()
     int i;
     i = nhext_svc(services);
     if (!i)
-	fprintf(stderr, "proxy_clnt: Ignoring packet with zero ID\n");
+	proxy_clnt_error("Ignoring packet with zero ID");
     return i;
 }
 
@@ -1037,4 +1038,29 @@ win_proxy_clnt_get_extension(const char *name, const char *min_ver, const char *
 	proxy_cb_free_extensions(exts);
     }
     return retval;
+}
+
+static void proxy_clnt_default_handler(const char *error)
+{
+    fprintf(stderr, "proxy: %s\n", error);
+}
+
+static proxy_clnt_errhandler proxy_clnt_error_handler =
+  proxy_clnt_default_handler;
+
+proxy_clnt_errhandler proxy_clnt_set_errhandler(proxy_clnt_errhandler new)
+{
+    proxy_clnt_errhandler old = proxy_clnt_error_handler;
+    proxy_clnt_error_handler = new;
+    return old;
+}
+
+void proxy_clnt_error(const char *fmt, ...)
+{
+    va_list ap;
+    char buf[128];
+    va_start(ap, fmt);
+    vsprintf(buf, fmt, ap);
+    proxy_clnt_error_handler(buf);
+    va_end(ap);
 }

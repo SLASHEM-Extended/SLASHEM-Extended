@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.40 2003-05-24 18:55:32 j_ali Exp $
+  $Id: winGTK.h,v 1.41 2003-05-27 09:48:44 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -74,6 +74,8 @@ extern int nh_read_gtkhackrc(void);
 extern void nh_write_gtkhackrc(void);
 extern void nh_gtkhackrc_store(struct gtkhackrc *rc, const char *fmt, ...);
 
+extern void nh_game_preferences(GtkWidget *w, gpointer data);
+
 extern GtkWidget *nh_gtk_new(GtkWidget *w, GtkWidget *parent, gchar *lbl);
 extern GtkWidget *nh_gtk_new_and_add(GtkWidget *w, GtkWidget *parent,
   gchar *lbl);
@@ -110,6 +112,8 @@ enum xshm_map_mode {
 extern struct window_ext_procs GTK_ext_procs;
 
 extern void win_GTK_init(void);
+extern void GTK_init_nhwindows(char ***capvp);
+extern void GTK_init_gtk(int *argc, char **argv);
 extern int GTK_ext_init_nhwindows(int *, char **, char ***);
 extern char *GTK_ext_askname(void);
 extern int GTK_ext_player_selection(int *, int *, int *, int *);
@@ -414,6 +418,23 @@ extern GdkPixbuf *xshm_map_pixbuf;
 
 #ifndef GTKHACK
 #define nh_strncmpi	strncmpi
+#endif
+
+#ifdef GTKHACK
+enum {
+    COLUMN_NAME,
+    COLUMN_SCHEME,
+    COLUMN_ADDRESS,
+    N_COLUMNS
+};
+
+extern GtkTreeRowReference *GTK_default_connection;
+extern GtkListStore *GTK_connections;
+
+extern GtkTreeRowReference *GTK_connection_lookup(const char *name);
+extern void GTK_connection_set_default(const char *name);
+extern void GTK_connection_add(const char *name, const char *scheme,
+  const char *address);
 #endif
 
 #endif	/* WINGTK_H */

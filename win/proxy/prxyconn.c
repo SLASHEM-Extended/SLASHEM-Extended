@@ -1,4 +1,4 @@
-/* $Id: prxyconn.c,v 1.5 2003-01-27 10:11:58 j_ali Exp $ */
+/* $Id: prxyconn.c,v 1.6 2003-05-27 09:48:46 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -124,7 +124,7 @@ connect_pipe_thread(LPVOID lpv_param)
      * standard input, but if we do then report any error and exit.
      */
     if (nb)
-	perror("standard input");
+	proxy_clnt_error("standard input: %s", strerror(errno));
     CloseHandle(h);
 }
 
@@ -138,7 +138,7 @@ connect_pipe(void *rh, void *wh)
     thread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)connect_pipe_thread,
       (LPVOID)wh, 0, &thread_id);
     if (thread == INVALID_HANDLE_VALUE) {
-	fprintf(stderr, "Failed to connect pipe to game and standard I/O\n");
+	proxy_clnt_error("Failed to connect pipe to game and standard I/O");
 	return 0;
     }
     while (ReadFile((HANDLE)rh, buffer, sizeof(buffer), &nbr, NULL) && nbr)
@@ -206,14 +206,14 @@ connect_pipe(void *rfd, void *wfd)
 	FD_SET(0, &readfds);
 	FD_SET((int)rfd, &readfds);
 	if (select((int)rfd + 1, &readfds, NULL, NULL, NULL) < 0) {
-	    perror("select");
+	    proxy_clnt_error("select: %s", strerror(errno));
 	    return 0;
 	}
 	if (FD_ISSET(0, &readfds)) {
 	    nb = read(0, buffer, sizeof(buffer));
 	    if (nb <= 0) {
 		if (nb < 0)
-		    perror("standard in");
+		    proxy_clnt_error("standard in: %s", strerror(errno));
 		return nb == 0;
 	    } else
 		write((int)wfd, buffer, nb);
@@ -222,7 +222,7 @@ connect_pipe(void *rfd, void *wfd)
 	    nb = read((int)rfd, buffer, sizeof(buffer));
 	    if (nb <= 0) {
 		if (nb < 0)
-		    perror("pipe from game");
+		    proxy_clnt_error("pipe from game: %s", strerror(errno));
 		return nb == 0;
 	    } else
 		write(1, buffer, nb);
@@ -257,14 +257,13 @@ proxy_exit_client_services()
 }
 
 int
-proxy_start_client_services(char *prgname, nhext_io_func read_f, void *read_h,
+proxy_init_client_services(nhext_io_func read_f, void *read_h,
   nhext_io_func write_f, void *write_h)
 {
     int nb;
     char *s;
     if (!win_proxy_clnt_init(read_f, read_h, write_f, write_h)) {
-	fprintf(stderr, "%s: Proxy interface failed; switching to text mode\n",
-	  prgname);
+	proxy_clnt_error("Proxy interface failed; switching to text mode");
 	/*
 	 * Most likely cause of failing to start the proxy interface is that
 	 * either the game executable we called doesn't support proxy interfaces
@@ -281,10 +280,15 @@ proxy_start_client_services(char *prgname, nhext_io_func read_f, void *read_h,
 	connect_pipe(read_h, write_h);
 	return 1;
     }
+    return 0;
+}
+
+void
+proxy_start_client_services()
+{
     exit_client_services = 0;
     while(win_proxy_clnt_iteration() >= 0 && !exit_client_services)
 	;
-    return 0;
 }
 
 #ifdef WIN32
@@ -302,43 +306,43 @@ proxy_connect_file(char *address, int *argcp, char **argv)
     for(i = 1; i <= *argcp; i++)
 	nargv[i + 1] = argv[i];
     if (!pipe_create(to_game_h, 1) || !pipe_create(from_game_h, 0)) {
-	fprintf(stderr, "%s: Failed to create pipes\n", argv[0]);
+	proxy_clnt_error("Failed to create pipes");
 	return 1;
     }
     save_stdin = dup_osf(0);
     if (save_stdin == INVALID_HANDLE_VALUE) {
-	fprintf(stderr, "%s: Failed to save stdin\n", argv[0]);
+	proxy_clnt_error("Failed to save stdin");
 	return 1;
     }
     if (!redirect_to_osf(STD_INPUT_HANDLE, to_game_h[0])) {
-	fprintf(stderr, "%s: Failed to redirect stdin\n", argv[0]);
+	proxy_clnt_error("Failed to redirect stdin");
 	return 1;
     }
     save_stdout = dup_osf(1);
     if (save_stdout == INVALID_HANDLE_VALUE) {
-	fprintf(stderr, "%s: Failed to save stdout\n", argv[0]);
+	proxy_clnt_error("Failed to save stdout");
 	return 1;
     }
     if (!redirect_to_osf(STD_OUTPUT_HANDLE, from_game_h[1])) {
-	fprintf(stderr, "%s: Failed to redirect stdout\n", argv[0]);
+	proxy_clnt_error("Failed to redirect stdout");
 	return 1;
     }
     pid = spawnv(P_NOWAIT, nargv[0], nargv);
     if (pid < 0) {
-	perror(nargv[0]);
+	proxy_clnt_error("%s: %s", nargv[0], strerror(errno));
 	return 1;
     }
     free(nargv);
     if (!redirect_to_osf(STD_INPUT_HANDLE, save_stdin)) {
-	fprintf(stderr, "%s: Failed to restore stdin\n", argv[0]);
+	proxy_clnt_error("Failed to restore stdin");
 	return 1;
     }
     if (!redirect_to_osf(STD_OUTPUT_HANDLE, save_stdout)) {
-	fprintf(stderr, "%s: Failed to restore stdout\n", argv[0]);
+	proxy_clnt_error("Failed to restore stdout");
 	return 1;
     }
-    return proxy_start_client_services(argv[0], client_read_file,
-      (void *)from_game_h[0], client_write_file, (void *)to_game_h[1]);
+    return proxy_init_client_services(client_read_file, (void *)from_game_h[0],
+      client_write_file, (void *)to_game_h[1]);
 }
 
 static const char *strerror_WSA(int errnum)
@@ -411,7 +415,7 @@ static const char *strerror_WSA(int errnum)
 }
 
 static int
-proxy_connect_tcp(char *address, char *prgname)
+proxy_connect_tcp(char *address)
 {
     SOCKET skt;
     WSADATA wsa_data;
@@ -421,11 +425,15 @@ proxy_connect_tcp(char *address, char *prgname)
     struct hostent *he;
     struct sockaddr_in sa;
     s = strrchr(address, ':');
-    if (!s)
-	panic("proxy_connect: Missing port number in tcp scheme");
+    if (!s) {
+	proxy_clnt_error("Missing port number in tcp scheme");
+	return 1;
+    }
     port=atoi(s + 1);
-    if (!port)
-	panic("proxy_connect: Illegal port number in tcp scheme");
+    if (!port) {
+	proxy_clnt_error("Illegal port number in tcp scheme");
+	return 1;
+    }
     i = s - address;
     s = (char *)alloc(i + 1);
     strncpy(s, address, i);
@@ -454,28 +462,36 @@ proxy_connect_tcp(char *address, char *prgname)
 	    err = "WinSock API: Unknown error";
 	    break;
     }
-    if (err)
-	panic("proxy_connect: %s", err);
+    if (err) {
+	proxy_clnt_error(err);
+	return 1;
+    }
     skt = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if (skt == INVALID_SOCKET)
-	panic("proxy_connect: Failed to create socket: %s",
+    if (skt == INVALID_SOCKET) {
+	proxy_clnt_error("Failed to create socket: %s",
 	  strerror_WSA(WSAGetLastError()));
+	return 1;
+    }
     sa.sin_family = AF_INET;
     sa.sin_port = htons(port);
     iaddr = inet_addr(s);
     if (iaddr == INADDR_NONE) {
 	he = gethostbyname(s);
-	if (!he)
-	    panic("proxy_connect: Can't resolve hostname: %s",
+	if (!he) {
+	    proxy_clnt_error("Can't resolve hostname: %s",
 	      strerror_WSA(WSAGetLastError()));
+	    return 1;
+	}
 	iaddr = *((long *)he->h_addr);
     }
     sa.sin_addr.S_un.S_addr = iaddr;
-    if (connect(skt, (struct sockaddr *)&sa, sizeof(sa)))
-	panic("proxy_connect: Failed to connect to remote machine: %s",
+    if (connect(skt, (struct sockaddr *)&sa, sizeof(sa))) {
+	proxy_clnt_error("Failed to connect to remote machine: %s",
 	  strerror_WSA(WSAGetLastError()));
+	return 1;
+    }
     free(s);
-    return proxy_start_client_services(prgname, client_read_skt, (void *)skt,
+    return proxy_init_client_services(client_read_skt, (void *)skt,
       client_write_skt, (void *)skt);
 }
 
@@ -487,8 +503,10 @@ proxy_connect_file(char *address, int *argcp, char **argv)
     int i;
     char **nargv = NULL;
     int to_game[2],from_game[2];
-    if (pipe(to_game) || pipe(from_game))
-	panic("%s: Can't create NhExt stream", argv[0]);
+    if (pipe(to_game) || pipe(from_game)) {
+	proxy_clnt_error("Can't create NhExt stream");
+	return 1;
+    }
     nargv = (char **)alloc((*argcp + 2) * sizeof(char *));
     nargv[0] = address;
     nargv[1] = "--proxy";
@@ -506,15 +524,15 @@ proxy_connect_file(char *address, int *argcp, char **argv)
 	free(nargv);
 	close(to_game[0]);
 	close(from_game[1]);
-	return proxy_start_client_services(argv[0], client_read,
-	  (void *)from_game[0], client_write, (void *)to_game[1]);
+	return proxy_init_client_services(client_read, (void *)from_game[0],
+	  client_write, (void *)to_game[1]);
     }
     /*NOTREACHED*/
     return 1;
 }
 
 static int
-proxy_connect_tcp(char *address, char *prgname)
+proxy_connect_tcp(char *address)
 {
     int skt;
     int i, port;
@@ -523,19 +541,24 @@ proxy_connect_tcp(char *address, char *prgname)
     struct hostent *he;
     struct sockaddr_in sa;
     s = strrchr(address, ':');
-    if (!s)
-	panic("proxy_connect: Missing port number in tcp scheme");
+    if (!s) {
+	proxy_clnt_error("Missing port number in tcp scheme");
+	return 1;
+    }
     port=atoi(s + 1);
-    if (!port)
-	panic("proxy_connect: Illegal port number in tcp scheme");
+    if (!port) {
+	proxy_clnt_error("Illegal port number in tcp scheme");
+	return 1;
+    }
     i = s - address;
     s = (char *)alloc(i + 1);
     strncpy(s, address, i);
     s[i] = '\0';
     skt = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if (skt < 0)
-	panic("proxy_connect: Failed to create socket: %s",
-	  strerror(errno));
+    if (skt < 0) {
+	proxy_clnt_error("Failed to create socket: %s", strerror(errno));
+	return 1;
+    }
     sa.sin_family = AF_INET;
     sa.sin_port = htons(port);
     iaddr = inet_addr(s);
@@ -543,17 +566,20 @@ proxy_connect_tcp(char *address, char *prgname)
 	he = gethostbyname(s);
 	if (!he) {
 	    extern int h_errno;
-	    panic("proxy_connect: Can't resolve hostname: %s",
+	    proxy_clnt_error("Can't resolve hostname: %s",
 	      hstrerror(h_errno));
+	    return 1;
 	}
 	iaddr = *((long *)he->h_addr);
     }
     sa.sin_addr.s_addr = iaddr;
-    if (connect(skt, (struct sockaddr *)&sa, sizeof(sa)))
-	panic("proxy_connect: Failed to connect to remote machine: %s",
+    if (connect(skt, (struct sockaddr *)&sa, sizeof(sa))) {
+	proxy_clnt_error("Failed to connect to remote machine: %s",
 	  strerror(errno));
+	return 1;
+    }
     free(s);
-    return proxy_start_client_services(prgname, client_read, (void *)skt,
+    return proxy_init_client_services(client_read, (void *)skt,
       client_write, (void *)skt);
 }
 
@@ -574,9 +600,8 @@ proxy_connect(char *scheme, char *address, int *argcp, char **argv)
     if (!strcmp(scheme, "file"))
 	return proxy_connect_file(address, argcp, argv);
     else if (!strcmp(scheme, "tcp"))
-	return proxy_connect_tcp(address, argv[0]);
+	return proxy_connect_tcp(address);
     else
-	panic("proxy_connect: Unsupported scheme: %s", scheme);
-    /*NOTREACHED*/
+	proxy_clnt_error("Unsupported scheme: %s", scheme);
     return 1;
 }

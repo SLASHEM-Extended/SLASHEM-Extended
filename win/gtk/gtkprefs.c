@@ -1,5 +1,5 @@
 /*
-  $Id: gtkprefs.c,v 1.2 2003-05-20 18:36:10 j_ali Exp $
+  $Id: gtkprefs.c,v 1.3 2003-05-27 09:48:45 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -86,18 +86,6 @@ GTK_pref_general_new()
     return vbox;
 }
 
-#ifdef GTKHACK
-static GtkWidget *
-GTK_pref_connect_new()
-{
-    /*
-     * Eventually this will allow a connection to a remote server
-     * to be specified.
-     */
-    return gtk_vbox_new(FALSE, 0);
-}
-#endif
-
 static GtkWidget *
 GTK_pref_font_new()
 {
@@ -179,20 +167,12 @@ GTK_preferences_new()
 
     nh_gtk_new_and_add(GTK_pref_general_new(), note, "");
     nh_gtk_new_and_add(GTK_pref_map_new(), note, "");
-#ifdef GTKHACK
-    nh_gtk_new_and_add(GTK_pref_connect_new(), note, "");
-#endif
 
     gtk_notebook_set_tab_label_text(GTK_NOTEBOOK(note),
       gtk_notebook_get_nth_page(GTK_NOTEBOOK(note), 0), "General");
 
     gtk_notebook_set_tab_label_text(GTK_NOTEBOOK(note),
       gtk_notebook_get_nth_page(GTK_NOTEBOOK(note), 1), "Map");
-
-#ifdef GTKHACK
-    gtk_notebook_set_tab_label_text(GTK_NOTEBOOK(note),
-      gtk_notebook_get_nth_page(GTK_NOTEBOOK(note), 2), "Connections");
-#endif
 
     hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
       FALSE, FALSE, NH_PAD);

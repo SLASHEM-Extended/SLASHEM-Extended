@@ -125,6 +125,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -Actioned feature request 421203: Mages' draconic polymorph.
 -Updated tilesets to use latest version of Mitsuhiro Itakura's tiles.
 -Applied patch 467847 (updated): Prettier GTK buttons & status highlight.
+-GtkHack: Added connections dialogs.
 
 See history.txt for changes made in previous versions.
 

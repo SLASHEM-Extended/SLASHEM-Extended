@@ -1,4 +1,4 @@
-/* $Id: prxyclnt.h,v 1.4 2003-05-17 10:33:24 j_ali Exp $ */
+/* $Id: prxyclnt.h,v 1.5 2003-05-27 09:48:44 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -97,6 +97,8 @@ struct window_ext_procs {
     		struct proxy_glyph_layer *));
 };
 
+typedef void FDECL((*proxy_clnt_errhandler), (const char *));
+
 /* ### proxysvc.c ### */
 
 extern void proxy_svc_set_ext_procs(void (*)(void), struct window_ext_procs *);
@@ -105,6 +107,9 @@ extern int win_proxy_clnt_init(nhext_io_func, void *, nhext_io_func, void *);
 #endif
 extern char *win_proxy_clnt_get_failed_packet(int *);
 extern char *win_proxy_clnt_get_extension(const char *name, const char *min_ver,	const char *next_ver, unsigned short *idp);
+extern proxy_clnt_errhandler proxy_clnt_set_errhandler(
+	proxy_clnt_errhandler new);
+extern void proxy_clnt_error(const char *fmt, ...);
 
 /* ### prxymap.c ### */
 
@@ -130,9 +135,10 @@ extern long *proxy_map_glyph2char(struct proxycb_get_glyph_mapping_res *);
 
 extern void proxy_exit_client_services(void);
 #ifdef NHXDR_H
-extern int proxy_start_client_services(char *prgname, nhext_io_func read_f,
+extern int proxy_init_client_services(nhext_io_func read_f,
 	void *read_h, nhext_io_func write_f, void *write_h);
 #endif
+extern void proxy_start_client_services(void);
 extern int proxy_connect(
 	char *protocol, char *address, int *argcp, char **argv);
 
