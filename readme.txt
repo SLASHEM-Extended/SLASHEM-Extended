@@ -334,6 +334,7 @@ ver 0.0.6E5 [? ?/2001] [Released by ?]
 -fixed bug 225227: Vampires start with food rations.
 
 ver 0.0.6E4F5 [? ?/2001] [Released by ?]
+-fixed bug 420517: Yellow dragon scale mail.
 
 ver 0.0.6E4F4 [May 2/2001] [Released by Ali]
 -fixed bug 404825: wands of teleportation that explode/zapped at yourself

@@ -505,11 +505,6 @@ ARMOR("robe of weakness", "green robe",
  *	(2) That the order of the dragon scale mail and dragon scales is the
  *	    the same defined in monst.c.
  */
-/* KMH, balance patch --
- * Yellow dragon armor intentionally gives a higher AC without
- * giving intrinsic acid resistance.  This gives the player a
- * critical choice between better AC or getting an intrinsic.
- */
 #define DRGN_ARMR(name,power,cost,ac,color) \
 	ARMOR(name,(char *)0,1,0,1,power,0,5,50,cost,ac,0,ARM_SUIT,DRAGON_HIDE,color)
 DRGN_ARMR("gray dragon scale mail",   ANTIMAGIC,  1200, 1, CLR_GRAY),
