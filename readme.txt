@@ -40,8 +40,8 @@
 
 The development of version 0.0.7 of Slash'EM started with version 0.0.6E5
 (yes, we realise our version numbers are a little odd - it made sense at
-the time!). It is now in beta development so that we can find and fix the
-remaining bugs before releasing the first stable version.
+the time!). We are just about to start integrating the changes made in
+NetHack 3.4.2 before starting beta development.
 
 If you do find any bugs then please submit a report via the offical bug page:
 
@@ -68,7 +68,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E3 [?] [Released by ?]
+ver 0.0.7E3 [September 5/2003] [Released by Ali]
 -fixed bug 781959: GTK: Message window auto-scrolling fails after a short time.
 -fixed bug 781972: Proxified gtk crashes if run without a player's name.
 -fixed bug 781974: GTK crashes when maximum magic power drops to zero.
@@ -143,19 +143,25 @@ o Install the package using rpm -U <package file>
 o Read the RPM specific documentation in README.RPM
 o In case of difficulty, consult Ali's linux page:
 
-  http://avrc.city.ac.uk/nethack/slashem/linux.html
+  http://www.juiblex.co.uk/nethack/slashem/linux.html
 
 2.1.4 MS-Windows
 ----------------
 
 Perform the following steps:
 
-o Decompress the zip archive into its own directory.
-o Use a text editor to review defaults.nh and make any changes needed.
-o If you chose to keep the default graphical environment (the GTK
-  interface) by leaving windowtype set to gtk, then review gtkrc
-  as well (this file is ignored in other modes).
-o Run the slashem executable.
+o Download the core package and install it. This will allow you to play
+  Slash'EM using the console (tty) windowing interface.
+o If you would prefer to use GTK, the provided graphical windowing
+  interface, then you need to download and install the GTK add-on package
+  as well. You will also need a copy of the gtk-win runtime environment
+  version 2.2.1 or above. This is available from http://www.dropline.net/gtk
+o Use a text editor to review either or both copies of defaults.nh and
+  make any changes needed.
+o If you chose to install the GTK add-on interface, then review gtkrc
+  as well.
+o Use the start menu or desktop icons to play Slash'EM under your
+  preferred windowing interface.
 
 2.2 Playing the game
 --------------------
