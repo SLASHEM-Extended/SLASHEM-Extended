@@ -49,8 +49,8 @@
  * No item may be in more than one of these slots.
  */
 
-STATIC_DCL int FDECL(ready_weapon, (struct obj *, boolean));
-STATIC_DCL void FDECL(unwield, (struct obj *, boolean));
+STATIC_DCL int FDECL(ready_weapon, (struct obj *, BOOLEAN_P));
+STATIC_DCL void FDECL(unwield, (struct obj *, BOOLEAN_P));
 
 /* elven weapons vibrate warningly when enchanted beyond a limit */
 #define is_elven_weapon(optr)	((optr)->otyp == ELVEN_ARROW\

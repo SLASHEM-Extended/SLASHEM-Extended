@@ -895,6 +895,7 @@ register struct obj *obj;
 				break;
 			}
 		default:
+			break;
 	}
 }
 

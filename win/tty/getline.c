@@ -102,7 +102,7 @@ getlin_hook_proc hook;
 		}
 		if(c == erase_char || c == '\b') {
 			if(bufp != obufp) {
-				int i;
+				char *i;
 
 				bufp--;
 				putsyms("\b");

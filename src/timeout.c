@@ -13,7 +13,7 @@ STATIC_DCL void NDECL(slime_dialogue);
 STATIC_DCL void NDECL(slip_or_trip);
 STATIC_DCL void FDECL(see_lamp_flicker, (struct obj *, const char *));
 STATIC_DCL void FDECL(lantern_message, (struct obj *));
-STATIC_DCL void FDECL(accelerate_timer, (short, genericptr_t, long));
+STATIC_DCL void FDECL(accelerate_timer, (SHORT_P, genericptr_t, long));
 STATIC_DCL void FDECL(cleanup_burn, (genericptr_t,long));
 
 #ifdef OVLB

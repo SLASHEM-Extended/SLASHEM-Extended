@@ -2348,9 +2348,9 @@ E void FDECL(you_unwere, (BOOLEAN_P));
 
 /* ### wield.c ### */
 
-E void FDECL(setuwep, (struct obj *, boolean));
+E void FDECL(setuwep, (struct obj *, BOOLEAN_P));
 E void FDECL(setuqwep, (struct obj *));
-E void FDECL(setuswapwep, (struct obj *, boolean));
+E void FDECL(setuswapwep, (struct obj *, BOOLEAN_P));
 E int NDECL(dowield);
 E int NDECL(doswapweapon);
 E int NDECL(dowieldquiver);
