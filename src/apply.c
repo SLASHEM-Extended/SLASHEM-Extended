@@ -83,7 +83,7 @@ use_camera(obj)
 	} else if ((mtmp = bhit(u.dx,u.dy,COLNO,FLASHED_LIGHT,
 				(int FDECL((*),(MONST_P,OBJ_P)))0,
 				(int FDECL((*),(OBJ_P,OBJ_P)))0,
-				obj)) != 0) {
+				&obj)) != 0) {
 		obj->ox = u.ux,  obj->oy = u.uy;
 		(void) flash_hits_mon(mtmp, obj);
 	}
@@ -704,7 +704,7 @@ struct obj *obj;
 	mtmp = bhit(u.dx, u.dy, COLNO, INVIS_BEAM,
 		    (int FDECL((*),(MONST_P,OBJ_P)))0,
 		    (int FDECL((*),(OBJ_P,OBJ_P)))0,
-		    obj);
+		    &obj);
 	if (!mtmp || !haseyes(mtmp->data))
 		return 1;
 

@@ -77,6 +77,7 @@ ver 0.0.7E6 [?] [Released by ?]
 -fixed bug 872666: [0.0.7e4f1] Xorns + Sokoban = cake walk
 -fixed bug 878813: GtkHack/win32: #portdebug crashes
 -Mac: Update Install.mpw to require yacc/lex
+-fixed bug 883643: Crash when throwing potions at monsters behind iron bars
 
 See history.txt for changes made in previous versions.
 

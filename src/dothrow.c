@@ -1155,11 +1155,16 @@ int thrown;
 		mon = bhit(u.dx,u.dy,range,THROWN_WEAPON,
 			   (int FDECL((*),(MONST_P,OBJ_P)))0,
 			   (int FDECL((*),(OBJ_P,OBJ_P)))0,
-			   obj);
+			   &obj);
 
 		/* have to do this after bhit() so u.ux & u.uy are correct */
 		if(Is_airlevel(&u.uz) || Levitation)
 		    hurtle(-u.dx, -u.dy, urange, TRUE);
+
+		if (!obj) {
+		    thrownobj = (struct obj *)0;
+		    return;
+		}
 	}
 
 	if(mon) {
@@ -2023,7 +2028,9 @@ struct obj *obj;
 			mon = bhit(u.dx, u.dy, range, THROWN_WEAPON,
 				   (int FDECL((*),(MONST_P,OBJ_P)))0,
 				   (int FDECL((*),(OBJ_P,OBJ_P)))0,
-				   obj);
+				   &obj);
+			if (!obj)
+			    return 1;
 			if(mon) {
 			    if (ghitm(mon, obj))	/* was it caught? */
 				return 1;
