@@ -872,7 +872,7 @@ wiz_map()
 STATIC_PTR int
 wiz_gain_level()
 {
-	if (wizard) pluslvl(TRUE);
+	if (wizard) pluslvl(FALSE);
 	else            pline("Unavailable command '^J'.");
 	return 0;
 }
