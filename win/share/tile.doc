@@ -56,6 +56,14 @@ game executable to use, probably providing only one merged output file.
 See the tilemap.c discussion at the bottom for more hints on adding tiles.
 
 
+The palette.txt file contains the standard Slash'EM palette of 256
+colors.  It is duplicated in scripts/palette.ppm.  Currently all the
+tilesets (16, 32 and 3d), after final merging, only use colors in this
+palette, even though the total number of unique colors mentioned in
+.txt files exceeds 350 (most are unused, and some are merely
+off-by-one versions of an existing color).
+
+
 Transparency is handled using (71, 108, 108) to represent the
 see-through parts of tiles.  It is defined in include/tile.h as
 DEFAULT_BACKGROUND.  This color has been chosen so that window
