@@ -1,3 +1,6 @@
+/* $Id: tile_t.h,v 1.1 2003-01-01 17:29:11 j_ali Exp $ */
+/* NetHack may be freely redistributed.  See license for details. */
+
 typedef unsigned char pixval;
 
 typedef struct {
@@ -56,3 +59,5 @@ extern void NDECL(merge_colormap);
 extern void FDECL(exit, (int));
 # endif
 #endif
+
+/*tile_t.h*/

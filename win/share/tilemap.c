@@ -405,6 +405,7 @@ int set, entry;
 #else	/* TILETEXT */
 
 #define TILE_FILE_H	"tile.h"
+#define TILE_FILE_IN_H	"tile_t.h"
 #define TILE_FILE_C	"tile.c"
 
 #ifdef AMIGA
@@ -763,7 +764,7 @@ int main()
     /*
      * create the include file, "tile.h"
      */
-    Sprintf(filename, SHARE_IN_TEMPLATE, TILE_FILE_H);
+    Sprintf(filename, SHARE_IN_TEMPLATE, TILE_FILE_IN_H);
     if (!(ifp = fopen(filename, "r"))) {
 	    perror(filename);
 	    exit(EXIT_FAILURE);

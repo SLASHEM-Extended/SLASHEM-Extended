@@ -293,7 +293,7 @@ XPMREADERS = xpmread.o $(OALLOC)
 PPMWRITERS = ppmwrite.o $(OALLOC)
 
 tileutils: tilemap gif2txt xpm2txt txt2ppm txtfilt tile2x11 magtile bigtile \
-	txtmerge txtbg mapmerge
+	txtmerge txtbg mapmerge tile2png
 
 magtile: magtile.o $(TEXT_IO)
 	$(CC) $(LFLAGS) -o magtile magtile.o $(TEXT_IO) $(LIBS)
@@ -333,7 +333,7 @@ tilemap: ../win/share/tilemap.c $(HACK_H)
 	$(CC) $(CFLAGS) $(LFLAGS) -o tilemap ../win/share/tilemap.c $(LIBS)
 ../src/tile.c: tilemap
 	./tilemap
-../include/tile.h: ../win/share/tile.h tilemap
+../include/tile.h: ../win/share/tile_t.h tilemap
 	./tilemap
 
 magtile.o: ../win/share/magtile.c $(CONFIG_H) ../include/tile.h
@@ -378,8 +378,8 @@ bitmfile.o: ../win/gem/bitmfile.c ../include/bitmfile.h
 tile2beos.o: ../win/BeOS/tile2beos.cpp $(HACK_H) ../include/tile.h
 	$(CXX) $(CFLAGS) -c ../win/BeOS/tile2beos.cpp
 
-tile2png.o: ../win/gl/tile2png.c $(HACK_H) ../include/tile.h
-	$(CC) $(CFLAGS) -c ../win/gl/tile2png.c
+tile2png.o: ../win/share/tile2png.c $(HACK_H) ../include/tile.h
+	$(CC) $(CFLAGS) -c ../win/share/tile2png.c
 
 # using dependencies like
 #	../src/foo::
@@ -425,4 +425,4 @@ spotless: clean
 	-rm -f ../include/tile.h
 	-rm -f makedefs lev_comp dgn_comp recover dlb
 	-rm -f gif2txt xpm2txt txt2ppm tile2x11 tile2img.ttp xpm2img.ttp tilemap
-	-rm -f magtile bigtile txtmerge txtfilt txtbg mapmerge
+	-rm -f magtile bigtile txtmerge txtfilt txtbg mapmerge tile2png
