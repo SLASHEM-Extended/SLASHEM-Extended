@@ -80,6 +80,7 @@ ver 0.0.7E6F1 [?] [Released by ?]
 -fixed bug 907565: Unidentified tin auto-ided when eaten
 -fixed bug 908189: "The wererat turns into a wererat!"
 -fixed bug 914897: Wrong AC displayed at start of game
+-fixed bug 911335: Monster polymorph permanent?
 
 See history.txt for changes made in previous versions.
 

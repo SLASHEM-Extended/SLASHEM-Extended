@@ -227,8 +227,9 @@ struct obj *otmp;
 			/* flags.bypasses = TRUE; ## for make_corpse() */
 			/* no corpse after system shock */
 			xkilled(mtmp, 3);
-		    } else if (newcham(mtmp, (struct permonst *)0,
-			    (otyp != POT_POLYMORPH), canseemon(mtmp))) {
+		    } else if (mon_spec_poly(mtmp, (struct permonst *)0, 0L,
+			    (otyp != POT_POLYMORPH), canseemon(mtmp), FALSE,
+			    TRUE)) {
 			if (!Hallucination && canspotmon(mtmp))
 			    makeknown(otyp);
 		    }
