@@ -277,7 +277,7 @@ A("Thiefbane",                  LONG_SWORD,
 #endif /* BLACKMARKET */
 
 A("Deathsword",                   TWO_HANDED_SWORD,
-	(SPFX_RESTR|SPFX_DFLAG2), 0, S_HUMAN,
+	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_HUMAN,
 	PHYS(5,14),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, PM_BARBARIAN, NON_PM ),
 
 A("Bat from Hell",                BASEBALL_BAT,

@@ -381,6 +381,7 @@ ver 0.0.6E4F6 [? ?/2001] [Released by ?]
 -fixed bug 459699: Oops. add_to_billobjs: obj is timed.
 -fixed bug 450234: GTK: Taking n items out of a bag.
 -fixed bug 459878: cut_worm: no segment at (45,14).
+-fixed bug 465188: Deathsword's special attack impossible.
 
 ver 0.0.6E4F5 [August 31/2001] [Released by Ali]
 -fixed bug 420517: Yellow dragon scale mail.
