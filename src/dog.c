@@ -554,7 +554,7 @@ boolean pets_only;	/* true for ascension or final escape */
 	int num_segs;
 	boolean stay_behind;
 #ifdef BLACKMARKET
-	struct trap *ttmp;
+	extern d_level new_dlevel;	/* in do.c */
 #endif /* BLACKMARKET */
 
 	for (mtmp = fmon; mtmp; mtmp = mtmp2) {
@@ -584,9 +584,8 @@ boolean pets_only;	/* true for ascension or final escape */
 			    pline("%s is still eating.", Monnam(mtmp));
 			stay_behind = TRUE;
 #ifdef BLACKMARKET                
-		} else if (mtmp->mtame && (ttmp = t_at(u.ux,u.uy)) && 
-		    ttmp->ttyp == MAGIC_PORTAL &&
-		    (Is_blackmarket(&ttmp->dst) || Is_blackmarket(&u.uz))) {
+		} else if (mtmp->mtame && 
+		    (Is_blackmarket(&new_dlevel) || Is_blackmarket(&u.uz))) {
 			pline("%s can't follow you %s.",
 			      Monnam(mtmp), Is_blackmarket(&u.uz) ?
 			      "through the portal" : "into the Black Market");
