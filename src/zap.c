@@ -3728,10 +3728,11 @@ register int dx,dy;
                         dy = -dy;
 			/* WAC clear the beam so you can see it bounce back ;B */
 			if (!is_mega_spell(type)) {
-			    tmp_at(DISP_END,0); break;
+			    tmp_at(DISP_END,0);
 			    tmp_at(DISP_BEAM, zapdir_to_glyph(dx, dy, abstype));
 			}
                         delay_output();
+			break;
                 case 1: dy = -dy;
                         sx = lsx; break;
 		case 2: dx = -dx;
