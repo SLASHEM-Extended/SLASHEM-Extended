@@ -353,7 +353,8 @@ register struct obj *otmp;
 					!objects[otmp->otyp].oc_uname)
 				docall(otmp);
 			if (carried(otmp)) useup(otmp);
-			else useupf(otmp, 1L);
+			else if (otmp->where == OBJ_FLOOR) useupf(otmp, 1L);
+			else dealloc_obj(otmp);		/* Dummy potion */
             return(1);
     }
 #endif /* BLACKMARKET */
@@ -374,7 +375,7 @@ register struct obj *otmp;
 	}
 	if (carried(otmp)) useup(otmp);
 	else if (otmp->where == OBJ_FLOOR) useupf(otmp, 1L);
-	else dealloc_obj(otmp);		/* Dummy potion of gain level */
+	else dealloc_obj(otmp);		/* Dummy potion */
 	return(1);
 }
 

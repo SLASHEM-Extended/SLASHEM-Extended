@@ -387,6 +387,7 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -Merge mac patches into SourceForge sources
 -fixed bug 454954: Stealing iron balls.
 -fixed bug 452244: Command undead causes crash.
+-fixed bug 454800: a hang in sink-drinking.
 
 ver 0.0.6E4F4mac0 [May 13/2001] [Released by Paul]
 -built Mac 68K port
