@@ -69,6 +69,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -Added dumplog patch (Tom Friedetzky and Jukka Lahtinen)
 -fixed bug 923003: Invisible mirrors can be applied
 -fixed bug 916544: Wrong weight of corpses on Nightmare level
+-fixed bug 947369: Crash when multiple wands explode
 
 See history.txt for changes made in previous versions.
 

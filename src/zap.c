@@ -4553,19 +4553,40 @@ void
 destroy_item(osym, dmgtyp)
 register int osym, dmgtyp;
 {
-	register struct obj *obj, *obj2;
+	register struct obj *obj;
 	register int dmg, xresist, skip;
 	register long i, cnt, quan;
 	register int dindx;
 	const char *mult;
+	/*
+	 * [ALI] Because destroy_item() can call wand_explode() which can
+	 * call explode() which can call destroy_item() again, we need to
+	 * be able to deal with the possibility of not only the current
+	 * object we are looking at no longer being in the inventory, but
+	 * also the next object (and the one after that, etc.).
+	 * We do this by taking advantage of the fact that objects in the
+	 * inventory destroyed as a result of calling wand_explode() will
+	 * always be destroyed by this same function. This allows us to
+	 * maintain a list of "next" pointers and to adjust these pointers
+	 * as required when we destroy an object that they might be pointing
+	 * at.
+	 */
+	struct destroy_item_frame {
+	    struct obj *next_obj;
+	    struct destroy_item_frame *next_frame;
+	} frame;
+	static struct destroy_item_frame *destroy_item_stack;
 
 	/* this is to deal with gas spores -- they don't really
 	   destroy objects, but this routine is called a lot in
 	   explode.c for them... hmph... */
 	if (dmgtyp == AD_PHYS) return;
 
-	for(obj = invent; obj; obj = obj2) {
-	    obj2 = obj->nobj;
+	frame.next_frame = destroy_item_stack;
+	destroy_item_stack = &frame;
+
+	for(obj = invent; obj; obj = frame.next_obj) {
+	    frame.next_obj = obj->nobj;
 	    if(obj->oclass != osym) continue; /* test only objs of type osym */
 	    if(obj->oartifact) continue; /* don't destroy artifacts */
 	    if(obj->in_use && obj->quan == 1) continue; /* not available */
@@ -4661,6 +4682,16 @@ register int osym, dmgtyp;
 			setnotworn(obj);
 		}
 		if (obj == current_wand) current_wand = 0;	/* destroyed */
+		if (cnt == obj->quan && frame.next_frame) {
+		    /* Before removing an object from the inventory, adjust
+		     * any "next" pointers that would otherwise become invalid.
+		     */
+		    struct destroy_item_frame *fp;
+		    for(fp = frame.next_frame; fp; fp = fp->next_frame) {
+			if (fp->next_obj == obj)
+			    fp->next_obj = frame.next_obj;
+		    }
+		}
 		if(osym == WAND_CLASS && dmgtyp == AD_ELEC) {
 		    /* MAR use a continue since damage and stuff is taken care of
 		     *  in wand_explode */
@@ -4684,6 +4715,7 @@ register int osym, dmgtyp;
 		}
 	    }
 	}
+	destroy_item_stack = frame.next_frame;
 	return;
 }
 
