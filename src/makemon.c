@@ -1968,6 +1968,11 @@ int	spc;
 
 /* Called by mkclass() - returns the pm of the monster 
  * Returns -1 (PM_PLAYERMON) if can't find monster of the class
+ *
+ * spc may have G_UNIQ and/or G_NOGEN set to allow monsters of
+ * this type (otherwise they will be ignored). It may also have
+ * MKC_ULIMIT set to place an upper limit on the difficulty of
+ * the monster returned.
  */
 int
 pm_mkclass(class,spc)
@@ -1994,6 +1999,7 @@ int     spc;
 	    if (!(mvitals[last].mvflags & G_GONE) && !(mons[last].geno & mask)
 					&& !is_placeholder(&mons[last])) {
 		/* consider it */
+		if(spc & MKC_ULIMIT && toostrong(last, 4 * maxmlev)) break;
 		if(num && toostrong(last, maxmlev) &&
 		   monstr[last] != monstr[last-1] && rn2(2)) break;
 		num += mons[last].geno & G_FREQ;

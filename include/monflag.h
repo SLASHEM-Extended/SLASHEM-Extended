@@ -232,4 +232,7 @@
 #define MV_KNOWS_EGG	0x0008		/* player recognizes egg of this
 					   monster type */
 
+/* Additional flag for mkclass() */
+#define MKC_ULIMIT	0x10000		/* place an upper limit on difficulty
+					   of generated monster */
 #endif /* MONFLAG_H */
