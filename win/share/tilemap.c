@@ -77,6 +77,8 @@ struct conditionals {
 	{ MON_GLYPH, PM_SHAMAN_KARNOV, "Thorin" },
 	{ MON_GLYPH, PM_SHAMAN_KARNOV, "Earendil" },
 	{ MON_GLYPH, PM_SHAMAN_KARNOV, "Elwing" },
+	{ MON_GLYPH, PM_HIPPOCRATES, "Bilbo Baggins" },
+	{ MON_GLYPH, PM_KING_ARTHUR, "High Lycanthrope" },
 
 #ifndef TOURIST
 	{ MON_GLYPH, PM_LORD_SATO, "Twoflower" },
