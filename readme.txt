@@ -350,6 +350,7 @@ ver 0.0.6E4F1 [September XX/2000]
 -saving/restoring now only enables the [...] effect in tty
 -berserk technique now takes time to "recharge" like most other techs
 -archeologists can become skilled at matter spells (was basic)
+-fixed bug 115271: nhwin.a should be deleted by make clean
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()
