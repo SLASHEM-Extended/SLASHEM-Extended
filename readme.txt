@@ -409,6 +409,7 @@ ver 0.0.6E4F1 [October XX/2000]
 -fixed bug 121719: Options in defaults.nh are not supported?
 -fixed bug 115822: Elves are peaceful to drows.
 -fixed bug 119856: GTK port takes a turn to set options.
+-fixed bug 114646: Role-selection broken.
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()
