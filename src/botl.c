@@ -246,10 +246,16 @@ botl_strength()
     return strength;
 }
 
+#ifdef DUMP_LOG
+void bot1str(char *newbot1)
+#else
 STATIC_OVL void
 bot1()
+#endif
 {
+#ifndef DUMP_LOG
 	char newbot1[MAXCO];
+#endif
 	register char *nb;
 	register int i,j;
 
@@ -269,6 +275,15 @@ bot1()
 #ifdef SCORE_ON_BOTL
 	if (flags.showscore)
 	    Sprintf(nb = eos(nb), " S:%ld", botl_score());
+#endif
+#ifdef DUMP_LOG
+}
+STATIC_OVL void
+bot1()
+{
+	char newbot1[MAXCO];
+
+	bot1str(newbot1);
 #endif
 	curs(WIN_STATUS, 1, 0);
 	putstr(WIN_STATUS, 0, newbot1);
@@ -320,7 +335,11 @@ int verbose;
 
 static int bot2_abbrev = 0;	/* Line 2 abbreviation level (max 4) */
 
+#ifdef DUMP_LOG
+void
+#else
 STATIC_OVL void
+#endif
 bot2str(char *newbot2)
 {
 	register char *nb;

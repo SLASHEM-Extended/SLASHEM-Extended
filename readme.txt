@@ -66,6 +66,7 @@ http://www.slashem.org/
 -----------
 
 ver 0.0.8E0 [?] [Released by ?]
+-Added dumplog patch (Tom Friedetzky and Jukka Lahtinen)
 
 See history.txt for changes made in previous versions.
 
