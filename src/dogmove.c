@@ -9,6 +9,15 @@
 #include "emin.h"
 #include "epri.h"
 
+/* #define DEBUG */	/* uncomment to enable debugging */
+
+#ifdef DEBUG
+# ifdef WIZARD
+#define debugpline      if (wizard) pline
+# else
+#define debugpline      pline
+# endif
+#endif
 
 extern boolean notonhead;
 
@@ -66,10 +75,17 @@ int x, y;
 	struct obj *otmp;
 
 	for(otmp = level.objects[x][y]; otmp; otmp = otmp->nexthere)
-		/* [Tom] demons & undead don't care, though */                
-		if ((otmp->cursed && !is_demon(mtmp->data) && !is_undead(mtmp->data)) &&
-		(!otmp->blessed || (!is_demon(mtmp->data) && !is_undead(mtmp->data))))
+		/* [Tom] demons & undead don't care, though */
+		/* [ALI] demons & undead avoid blessed items instead */
+		if ((is_demon(mtmp->data) || is_undead(mtmp->data)) ?
+		    otmp->blessed : otmp->cursed)
+	{
+#ifdef DEBUG
+		debugpline("%s thinks %s at (%d,%d) is `cursed'",
+		  noit_Monnam(mtmp), doname(otmp), x, y);
+#endif
 		return TRUE;
+	}
 	return FALSE;
 }
 
