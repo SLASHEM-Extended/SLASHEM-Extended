@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.20 2002-07-23 19:27:44 j_ali Exp $
+  $Id: gtk.c,v 1.21 2002-09-01 21:58:19 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1179,15 +1179,15 @@ valid_align(int role, int race, int align)
 {
     return proxy_cb_is_valid_selection(role, race, -1, align);
 }
-#define number_roles		(proxy_choices->n_roles)
-#define number_races		(proxy_choices->n_races)
-#define number_genders		(proxy_choices->n_genders)
-#define number_aligns		(proxy_choices->n_aligns)
-#define PLAYER_ROLE_M(i)	(proxy_choices->roles[i].male)
-#define PLAYER_ROLE_F(i)	(proxy_choices->roles[i].female)
-#define PLAYER_RACE(i)		(proxy_choices->races[i])
-#define PLAYER_GENDER(i)	(proxy_choices->genders[i])
-#define PLAYER_ALIGN(i)		(proxy_choices->aligns[i])
+#define number_roles		(player_choices->n_roles)
+#define number_races		(player_choices->n_races)
+#define number_genders		(player_choices->n_genders)
+#define number_aligns		(player_choices->n_aligns)
+#define PLAYER_ROLE_M(i)	(player_choices->roles[i].male)
+#define PLAYER_ROLE_F(i)	(player_choices->roles[i].female)
+#define PLAYER_RACE(i)		(player_choices->races[i])
+#define PLAYER_GENDER(i)	(player_choices->genders[i])
+#define PLAYER_ALIGN(i)		(player_choices->aligns[i])
 #else	/* GTK_PROXY */
 #define valid_race		validrace
 #define valid_gend		validgend
@@ -1921,6 +1921,9 @@ GTK_exit_nhwindows(const char *str)
 	}
     }
 #endif
+#if defined(GTK_PROXY) && !defined(PROXY_INTERNAL)
+    exit(0);
+#endif
 }
 
 winid
@@ -2586,3 +2589,41 @@ GTK_raw_print_bold(const char *str)
 #endif
     }
 }
+
+#if defined(GTK_PROXY) && !defined(PROXY_INTERNAL)
+int
+main(int argc, char **argv)
+{
+    char *s,*opts;
+    int to_game[2],from_game[2];
+    opts = getenv("SLASHEMOPTIONS");
+    if (!opts) opts = getenv("NETHACKOPTIONS");
+    if (!opts) opts = getenv("HACKOPTIONS");
+    if (opts) {
+	s=(char *)alloc(strlen(opts)+18);
+	Sprintf(s,"%s,windowtype:proxy",opts);
+	putenv(s);
+    }
+    else
+	putenv("HACKOPTIONS=windowtype:proxy");
+    if (pipe(to_game) || pipe(from_game))
+	panic("%s: Can't create NhExt stream", argv[0]);
+    if (!fork()) {
+	dup2(to_game[0],0);
+	dup2(from_game[1],1);
+	close(to_game[1]);
+	close(from_game[0]);
+	execvp("slashem",argv);
+	perror("slashem");
+	_exit(127);
+    }
+    else {
+	close(to_game[0]);
+	close(from_game[1]);
+	if (!win_proxy_svr_init(from_game[0],to_game[1]))
+	    panic("%s: Failed to start sub-protocol1", argv[0]);
+	for(;;)
+	    (void)win_proxy_svr_iteration();
+    }
+}
+#endif

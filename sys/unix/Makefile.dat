@@ -39,20 +39,34 @@ all:	$(VARDAT) spec_levs quest_levs dungeon
 ../util/txtbg:
 	(cd ../util ; make txtbg)
 
+../util/mapmerge:
+	(cd ../util ; make mapmerge)
+
 x11tiles: ../util/tile2x11 ../win/share/monsters.txt ../win/share/objects.txt \
 				../win/share/other.txt
 	../util/tile2x11 ../win/share/monsters.txt ../win/share/objects.txt \
 				../win/share/other.txt
+
+x11tiles.map: ../util/mapmerge ../win/share/monsters.map \
+				../win/share/objects.map ../win/share/other.map
+	../util/mapmerge x11tiles.map ../win/share/monsters.map \
+				../win/share/objects.map ../win/share/other.map
 
 x11bigtiles:	../util/tile2x11 ../win/share/mon32.txt \
 		../win/share/obj32.txt ../win/share/oth32.txt
 	../util/tile2x11 -o x11bigtiles ../win/share/mon32.txt \
 		../win/share/obj32.txt ../win/share/oth32.txt
 
+x11bigtiles.map:	x11tiles.map
+	cp x11tiles.map x11bigtiles.map
+
 x11big3dtiles:	../util/tile2x11 ../win/share/mon3d.txt \
 		../win/share/obj3d.txt ../win/share/oth3d.txt
 	../util/tile2x11 -o x11big3dtiles ../win/share/mon3d.txt \
 		../win/share/obj3d.txt ../win/share/oth3d.txt
+
+x11big3dtiles.map:	x11tiles.map
+	cp x11tiles.map x11big3dtiles.map
 
 beostiles: ../util/tile2beos ../win/share/monsters.txt ../win/share/objects.txt \
 			../win/share/other.txt
@@ -288,6 +302,7 @@ dungeon: dungeon.def ../util/makedefs ../util/dgn_comp
 spotless:
 	-rm -f spec_levs quest_levs *.lev $(VARDAT) dungeon dungeon.pdf
 	-rm -f nhshare nhushare x11tiles x11bigtiles x11big3dtiles beostiles
+	-rm -f x11tiles.map x11bigtiles.map x11big3dtiles.map
 	-rm -f gl*.png
 	-rm -f pet_mark.xbm rip.xpm mapbg.xpm
 	-rm -f rip.img GEM_RSC.RSC title.img nh16.img

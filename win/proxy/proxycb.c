@@ -1,4 +1,4 @@
-/* $Id: proxycb.c,v 1.8 2002-07-10 16:31:24 j_ali Exp $ */
+/* $Id: proxycb.c,v 1.9 2002-09-01 21:58:19 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -230,4 +230,23 @@ struct proxycb_get_tilesets_res *tilesets;
 {
     nhext_xdr_free(proxycb_xdr_get_tilesets_res, (char *)tilesets);
     free(tilesets);
+}
+
+struct proxycb_get_glyph_mapping_res *
+proxy_cb_get_glyph_mapping()
+{
+    struct proxycb_get_glyph_mapping_res *retval;
+    retval=(struct proxycb_get_glyph_mapping_res *)alloc(sizeof(*retval));
+    memset(retval, 0, sizeof(*retval));
+    nhext_rpc(EXT_CID_GET_GLYPH_MAPPING, 0, 1,
+      EXT_XDRF(proxycb_xdr_get_glyph_mapping_res, retval));
+    return retval;
+}
+
+void
+proxy_cb_free_glyph_mapping(mapping)
+struct proxycb_get_glyph_mapping_res *mapping;
+{
+    nhext_xdr_free(proxycb_xdr_get_glyph_mapping_res, (char *)mapping);
+    free(mapping);
 }

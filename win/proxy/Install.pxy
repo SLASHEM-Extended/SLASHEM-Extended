@@ -73,6 +73,11 @@ To build:
 		WINLIB = $(WINTTYLIB) $(WINGTKLIB)
 	6. Build by make all, make install as normal
 
+Build no longer supported (packet fragmentation causes deadlock -
+this could be worked around, but since this configuration was only
+ever intended for testing and the client/server configuration now
+works to an acceptable level there seems little point).
+
 SINGLE EXECUTABLE
 
 This configuration uses dual processes (which has the advantage of

@@ -1,9 +1,9 @@
 /*
-  $Id: gtktile.c,v 1.3 2002-07-10 16:31:23 j_ali Exp $
+  $Id: gtktile.c,v 1.4 2002-09-01 21:58:19 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
-               Copyright (c) Slash'EM Development Team 2000-2001
+               Copyright (c) Slash'EM Development Team 2000-2002
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -12,11 +12,22 @@
 #include "winGTK.h"
 #include "dlb.h"
 #include "proxycb.h"
+#include "proxysvr.h"
 
+/* #define DEBUG */
+
+int stone_tile = 0;		/* The current tile for stone */
+
+#ifdef GTK_PROXY
+int total_tiles_used;
+int tiles_per_row;
+int tiles_per_col;
+#else
 /* from tile.c */
 extern int total_tiles_used;
 extern int tiles_per_row;
 extern int tiles_per_col;
+#endif
 
 extern GtkWidget	*main_window;
 
@@ -189,22 +200,14 @@ static void calc_tile_transp(TileTab *t, GdkPixbuf *pixbuf, int i)
     n_bytes += sizeof(*tile_transp) + j;
 }
 
-enum xshm_map_mode
-x_tile_init(TileTab *t)
+static int
+x_tile_load(TileTab *t)
 {
-    int i, fh, nb;
-    enum xshm_map_mode mode;
-    GdkPixbufLoader *loader;
-    GdkPixbuf *copy;
-    guchar *pixels;
-    GdkGC *gc;
-    GError *err = NULL;
+    int fh, nb;
     char buf[1024];
+    GdkPixbufLoader *loader;
+    GError *err = NULL;
     Tile = t;
-    if (!t->spread && !t->transparent)
-	mode = XSHM_MAP_PIXMAP;
-    else
-	mode = getenv("HACKPIXBUF") ? XSHM_MAP_PIXBUF : XSHM_MAP_IMAGE;
     tile_pixbuf = NULL;
 #ifdef GTK_PROXY
     fh = proxy_cb_dlbh_fopen(t->file, "rb");
@@ -217,7 +220,7 @@ x_tile_init(TileTab *t)
 #endif /* GTK_PROXY */
     if (fh < 0) {
 	pline("Cannot open tile file %s!", t->file);
-	return XSHM_MAP_NONE;
+	return 0;
     }
     loader = gdk_pixbuf_loader_new();
 #ifdef GTK_PROXY
@@ -257,7 +260,7 @@ x_tile_init(TileTab *t)
 #endif
     g_object_unref(loader);
     if (!tile_pixbuf)
-	return XSHM_MAP_NONE;
+	return 0;
     t->tilemap_width = gdk_pixbuf_get_width(tile_pixbuf);
     t->tilemap_height = gdk_pixbuf_get_height(tile_pixbuf);
     t->unit_width = t->tilemap_width / tiles_per_row;
@@ -269,6 +272,78 @@ x_tile_init(TileTab *t)
 	t->ofsetx_3d = 0;
 	t->ofsety_3d = 0;
     }
+    return 1;
+}
+
+#ifdef GTK_PROXY
+static struct proxy_tilemap *
+x_tile_load_tilemap(TileTab *t)
+{
+    int fh;
+    struct proxy_tilemap *map;
+    fh = proxy_cb_dlbh_fopen(t->mapfile, "rb");
+    if (fh < 0) {
+	pline("Cannot open tile map file %s!", t->mapfile);
+	return NULL;
+    }
+    map = proxy_load_tilemap(fh);
+    proxy_cb_dlbh_fclose(fh);
+    return map;
+}
+
+/* From tilemap.c */
+static int
+ceil_sqrt(int c)
+{
+    int a=c/36,la;      /* Approximation and last approximation */
+    /* Compute floor(sqrt(c)) */
+    do
+    {
+	la=a;
+	a=(a*a+c)/(2*a);
+    } while (a!=la);
+    /* Adjust for ceil(sqrt(c)) */
+    return a*a==c?a:a+1;
+}
+
+static int
+x_tile_load_map(TileTab *t)
+{
+    int retval;
+    struct proxycb_get_glyph_mapping_res *glyph_map;
+    struct proxy_tilemap *tile_map;
+    glyph_map = proxy_cb_get_glyph_mapping();
+    if (!glyph_map) {
+	pline("Cannot get glyph mapping.");
+	return 0;
+    }
+    tile_map = x_tile_load_tilemap(t);
+    if (!tile_map) {
+	proxy_cb_free_glyph_mapping(glyph_map);
+	return 0;
+    }
+    total_tiles_used = tile_map->no_tiles;
+    tiles_per_row = ceil_sqrt(total_tiles_used);
+    tiles_per_col = (total_tiles_used + tiles_per_row - 1) / tiles_per_row;
+    retval = proxy_map_glyph2tile(glyph_map, tile_map);
+    proxy_cb_free_glyph_mapping(glyph_map);
+    proxy_free_tilemap(tile_map);
+    return retval;
+}
+#endif
+
+static enum xshm_map_mode
+x_tile_set_map_mode(TileTab *t)
+{
+    int i;
+    enum xshm_map_mode mode;
+    GdkPixbuf *copy;
+    guchar *pixels;
+    GdkGC *gc;
+    if (!t->spread && !t->transparent)
+	mode = XSHM_MAP_PIXMAP;
+    else
+	mode = getenv("HACKPIXBUF") ? XSHM_MAP_PIXBUF : XSHM_MAP_IMAGE;
     /*
      * Pixbufs use so much memory that it's not unexpected for us to
      * fail to generate the alpha channel correctly. This is not a
@@ -361,6 +436,24 @@ x_tile_init(TileTab *t)
 	tile_pixbuf = NULL;
     }
     return mode;
+}
+
+enum xshm_map_mode
+x_tile_init(TileTab *t)
+{
+    int glyph = cmap_to_glyph(S_stone);
+#ifdef GTK_PROXY
+    if (!x_tile_load_map(t))
+	return XSHM_MAP_NONE;
+#endif
+    if (!x_tile_load(t))
+	return XSHM_MAP_NONE;
+#ifdef GTK_PROXY
+    stone_tile = proxy_glyph2tile[glyph];
+#else
+    stone_tile = glyph2tile[glyph];
+#endif
+    return x_tile_set_map_mode(t);
 }
 
 void
@@ -962,6 +1055,8 @@ tile_scan(void)
     struct proxycb_get_tilesets_res *tilesets_res = proxy_cb_get_tilesets();
     struct proxycb_get_tilesets_res_tileset *tilesets = tilesets_res->tilesets;
     int no_tilesets = tilesets_res->n_tilesets;
+#else
+    dlb_init();
 #endif
 
     v = 1;	/* Index into tileTab[] array */
@@ -969,6 +1064,17 @@ tile_scan(void)
 	if ((tilesets[i].flags & ~(TILESET_TRANSPARENT | TILESET_PSEUDO3D)) != 0)
 	    continue;	/* Unsupported flag set */
 #ifdef GTK_PROXY
+	if (!tilesets[i].mapfile) {
+	    fprintf(stderr, "No map file specified for tileset %s\n",
+	      tilesets[i].name);
+	    continue;
+	}
+	fh = proxy_cb_dlbh_fopen(tilesets[i].mapfile, "r");
+	if (fh < 0) {
+	    perror(tilesets[i].mapfile);
+	    continue;	/* Missing or unreadable tile map */
+	}
+	proxy_cb_dlbh_fclose(fh);
 	fh = proxy_cb_dlbh_fopen(tilesets[i].file, "r");
 #else
 # ifdef FILE_AREAS
@@ -977,8 +1083,10 @@ tile_scan(void)
 	fh = dlbh_fopen(tilesets[i].file, RDTMODE);
 # endif
 #endif	/* GTK_PROXY */
-	if (fh < 0)
+	if (fh < 0) {
+	    perror(tilesets[i].file);
 	    continue;	/* Missing or unreadable tile file */
+	}
 #ifdef GTK_PROXY
 	proxy_cb_dlbh_fclose(fh);
 #else
@@ -986,6 +1094,9 @@ tile_scan(void)
 #endif
 	tileTab[v].ident = strdup(tilesets[i].name);
 	tileTab[v].file = strdup(tilesets[i].file);
+#ifdef GTK_PROXY
+	tileTab[v].mapfile = strdup(tilesets[i].mapfile);
+#endif
 	tileTab[v].transparent = !!(tilesets[i].flags & TILESET_TRANSPARENT);
 	tileTab[v].spread = !!(tilesets[i].flags & TILESET_PSEUDO3D);
 	v++;

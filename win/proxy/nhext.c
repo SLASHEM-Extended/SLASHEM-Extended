@@ -1,4 +1,4 @@
-/* $Id: nhext.c,v 1.7 2002-07-10 16:31:24 j_ali Exp $ */
+/* $Id: nhext.c,v 1.8 2002-09-01 21:58:19 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -21,8 +21,8 @@ static int no_connections = 0;
  */
 
 static struct nhext_connection {
-    char request[1024];
-    char reply[1024];
+    char request[32768];
+    char reply[32768];
     int reply_len;
     NhExtXdr *in, *out;
     nhext_io_func read_f, write_f;
@@ -83,32 +83,33 @@ int nhext_rpc_vparams(NhExtXdr *xdrs, int no, va_list *app)
 	switch(param) {
 	    case EXT_PARAM_INT:
 		param_i = va_arg(ap, int);
-		nhext_xdr_int(xdrs, &param_i);
+		retval = nhext_xdr_int(xdrs, &param_i);
 		break;
 	    case EXT_PARAM_LONG:
 		param_l = va_arg(ap, long);
-		nhext_xdr_long(xdrs, &param_l);
+		retval = nhext_xdr_long(xdrs, &param_l);
 		break;
 	    case EXT_PARAM_STRING:
 		param_s = va_arg(ap, char *);
-		nhext_xdr_string(xdrs, &param_s, (unsigned int)-1);
+		retval = nhext_xdr_string(xdrs, &param_s, (unsigned int)-1);
 		break;
 	    case EXT_PARAM_BYTES:
 		param_s = va_arg(ap, char *);
 		param_i = va_arg(ap, int);
-		nhext_xdr_bytes(xdrs, &param_s, &param_i, (unsigned int)-1);
+		retval = nhext_xdr_bytes(xdrs, &param_s, &param_i,
+			(unsigned int)-1);
 		break;
 	    case EXT_PARAM_WINID:
 		param_i = va_arg(ap, winid);
-		nhext_xdr_int(xdrs, &param_i);
+		retval = nhext_xdr_int(xdrs, &param_i);
 		break;
 	    case EXT_PARAM_BOOLEAN:
 		param_b = va_arg(ap, int);	/* boolean is promoted to int */
-		nhext_xdr_bool(xdrs, &param_b);
+		retval = nhext_xdr_bool(xdrs, &param_b);
 		break;
 	    case EXT_PARAM_CHAR:
 		param_i = va_arg(ap, int);	/* char is promoted to int */
-		nhext_xdr_int(xdrs, &param_i);
+		retval = nhext_xdr_int(xdrs, &param_i);
 		break;
 	    case EXT_PARAM_PTR | EXT_PARAM_INT:
 		param_pi = va_arg(ap, int *);
@@ -163,6 +164,8 @@ int nhext_rpc_params(NhExtXdr *xdrs, int no, ...)
     va_list ap;
     va_start(ap, no);
     retval = nhext_rpc_vparams(xdrs, no, &ap);
+    if (!retval)
+	impossible("NhExt: Codec failed (packet too large?)");
     va_end(ap);
     return retval;
 }
@@ -280,7 +283,7 @@ nhext_svc_c(int cn, struct nhext_svc *services)
 	    }
 	}
 	if (!services[i].id)
-	    impossible("Unsupported proxy callback ID %d", id);
+	    impossible("Unsupported proxy callback ID %d (%d known)", id, i);
 	len = nhext_xdr_getpos(nc->out) - 4;
 	if (len < 0 || len & 3)
 	    impossible("Handler for proxy callback ID %d error", id);

@@ -263,8 +263,8 @@ endif
 # these files regardless of whether proxy support is enabled or not.
 ifeq ($(GTK_TARGET),2.0)
 PROXYUTLSRC = ../win/proxy/dlbh.c ../win/proxy/mapid.c \
-	../win/proxy/riputil.c
-PROXYUTLOBJ = dlbh.o mapid.o riputil.o
+	../win/proxy/riputil.c ../win/proxy/getopt.c ../win/proxy/glyphmap.c
+PROXYUTLOBJ = dlbh.o mapid.o riputil.o getopt.o glyphmap.o
 endif
 #
 # Files for the proxy window server interface. These are needed to support
@@ -332,7 +332,8 @@ endif
 # Shareable (architecture independent) data files which are not candidates
 # for inclusion in DLB libraries (ND) and which are (D). Port specific files
 # per discussions in Install.X11, Install.Qt and Install.GTK
-CNF_SHARE_GTKND = x11bigtiles x11big3dtiles x11tiles rip.xpm credit.xpm
+CNF_SHARE_GTKND = x11bigtiles x11big3dtiles x11tiles rip.xpm credit.xpm \
+	x11bigtiles.map x11big3dtiles.map x11tiles.map
 
 ifneq ($(USE_GTK),N)
 CNF_SHARE_DATND = $(CNF_SHARE_GTKND)
@@ -546,6 +547,9 @@ ifneq ($(USE_GTK),N)
 	$(COPY) x11tiles             $(GAMEDIR)
 	$(COPY) x11bigtiles          $(GAMEDIR)
 	$(COPY) x11big3dtiles        $(GAMEDIR)
+	$(COPY) x11tiles.map         $(GAMEDIR)
+	$(COPY) x11bigtiles.map      $(GAMEDIR)
+	$(COPY) x11big3dtiles.map    $(GAMEDIR)
 #	$(COPY) $(MW32GTK)\src\glib\glib*.dll $(GAMEDIR)
 #	$(COPY) $(MW32GTK)\src\glib\gmodule\gmodule*.dll $(GAMEDIR)
 #	$(COPY) $(MW32GTK)\src\gtk+\gdk\gdk*.dll $(GAMEDIR)
@@ -659,16 +663,19 @@ spotless: clean
 	$(DEL) magtile.exe
 	$(DEL) bigtile.exe
 	$(DEL) txtbg.exe
+	$(DEL) mapmerge.exe
 	$(DEL) tile2x11.exe
 	$(DEL) x11bigtiles
 	$(DEL) x11big3dtiles
 	$(DEL) x11tiles
+	$(DEL) x11bigtiles.map
+	$(DEL) x11big3dtiles.map
+	$(DEL) x11tiles.map
 	$(DEL) gtkrc
 	$(DEL) *.xpm
 	$(DEL) tiletext.c
 	$(DEL) txtmerge.c
 	$(DEL) magtile.c
-	$(DEL) x11tiles
 	$(DEL) lev_flex.c
 	$(DEL) lev_yacc.c
 	$(DEL) dgn_flex.c
@@ -1010,6 +1017,9 @@ txtbg.exe: txtbg.o $(TEXTIO)
 	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -otxtbg.exe tmp.lnk
 	@$(DEL) tmp.lnk
 
+mapmerge.exe: mapmerge.o
+	$(CCOMPILE) $(LFLAGS) -omapmerge.exe mapmerge.o
+
 tile.c: tilemap.exe
 	tilemap.exe
 	@echo A new $@ has been created
@@ -1033,6 +1043,8 @@ bigtile.o: $(WSHR)\bigtile.c $(INCL)\config.h $(INCL)\tile.h
 txtbg.o: $(WSHR)\txtbg.c $(INCL)\config.h $(INCL)\tile.h
 	$(CCOMPILE) $(CFLAGS) -c $(WSHR)\txtbg.c
 
+mapmerge.o: $(WSHR)\mapmerge.c $(HACK_H)
+	$(CCOMPILE) $(CFLAGS) -c $(WSHR)\mapmerge.c
 
 txtmerge.o: $(WSHR)\txtmerge.c $(INCL)\config.h $(INCL)\tile.h
 	$(CCOMPILE) $(CFLAGS) -c ../win/share/txtmerge.c
@@ -1048,17 +1060,29 @@ x11tiles: tile2x11.exe ../win/share/monsters.txt ../win/share/objects.txt \
 	..\$(SRC)\tile2x11 -o ..\$(SRC)\x11tiles monsters.txt objects.txt other.txt
 	cd ..\$(SRC)
 
+x11tiles.map: mapmerge.exe ../win/share/monsters.map ../win/share/objects.map \
+				../win/share/other.map
+	cd $(WSHR)
+	..\$(SRC)\mapmerge ..\$(SRC)\x11tiles.map monsters.map objects.map other.map
+	cd ..\$(SRC)
+
 x11bigtiles:	tile2x11.exe ../win/share/mon32.txt \
 		../win/share/obj32.txt ../win/share/oth32.txt
 	cd $(WSHR)
 	..\$(SRC)\tile2x11 -o ..\$(SRC)\x11bigtiles mon32.txt obj32.txt oth32.txt
 	cd ..\$(SRC)
 
+x11bigtiles.map:	x11tiles.map
+	$(COPY) x11tiles.map x11bigtiles.map
+
 x11big3dtiles:	tile2x11.exe ../win/share/mon3d.txt \
 		../win/share/obj3d.txt ../win/share/oth3d.txt
 	cd $(WSHR)
 	..\$(SRC)\tile2x11 -o ..\$(SRC)\x11big3dtiles mon3d.txt obj3d.txt oth3d.txt
 	cd ..\$(SRC)
+
+x11big3dtiles.map:	x11tiles.map
+	$(COPY) x11tiles.map x11big3dtiles.map
 
 $(WSHR)\monmag.txt:	magtile.exe ../win/share/monsters.txt
 	magtile
@@ -1461,6 +1485,13 @@ mapid.o: ../win/proxy/mapid.c $(HACK_H) ../include/nhxdr.h \
 riputil.o: ../win/proxy/riputil.c $(HACK_H)
 	$(COPY) ..\win\proxy\riputil.c .
 	$(CCOMPILE) $(CFLAGS) -c riputil.c
+glyphmap.o: ../win/proxy/glyphmap.c $(HACK_H) ../include/nhxdr.h \
+		../include/proxycb.h ../include/winproxy.h
+	$(COPY) ..\win\proxy\glyphmap.c .
+	$(CCOMPILE) $(CFLAGS) -c glyphmap.c
+getopt.o: ../win/proxy/getopt.c $(HACK_H)
+	$(COPY) ..\win\proxy\getopt.c .
+	$(CCOMPILE) $(CFLAGS) -c getopt.c
 callback.o: ../win/proxy/callback.c $(HACK_H) ../include/nhxdr.h \
 		../include/winproxy.h ../include/proxycb.h
 	$(COPY) ..\win\proxy\callback.c .

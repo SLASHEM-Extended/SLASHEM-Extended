@@ -1016,6 +1016,7 @@ Plug-in window ports may assume that the following call backs are supported.
 <tr><td>map_menu_cmd</td><td>0x11</td></tr>
 <tr><td>get_standard_winid</td><td>0x12</td></tr>
 <tr><td>get_tilesets</td><td>0x13</td></tr>
+<tr><td>get_glyph_mapping</td><td>0x14</td></tr>
 </table>
 
 <h3>display_inventory</h3>
@@ -1275,6 +1276,7 @@ The following window names are currently recognized:
 struct get_tilesets_res_tileset {
     string name<>;
     string file<>;
+    string mapfile<>;
     long flags;
 };
 
@@ -1285,5 +1287,75 @@ struct get_tilesets_res {
 
 <p>Return a list of the currently configured tile sets.
 
+<h3>get_glyph_mapping</h3>
+<pre>
+struct get_glyph_mapping_res_symdef {
+    long rgbsym;
+    string description<>;
+};
+
+struct get_glyph_mapping_res_submapping {
+    struct get_glyph_mapping_res_symdef symdef;
+    struct get_glyph_mapping_res_symdef glyphs<>;
+};
+
+struct get_glyph_mapping_res_mapping {
+    string flags;
+    int base_mapping;
+    int alt_glyph;
+    struct get_glyph_mapping_res_symdef symdef;
+    struct get_glyph_mapping_res_submapping submappings<>;
+};
+
+struct get_glyph_mapping_res {
+    int no_glyph;
+    long transparent;
+    struct get_glyph_mapping_res_mapping mappings<>;
+};
+</pre>
+
+<p>Return a set of descriptions for each glyph so that the window port can
+generate a map between glyphs and tiles and/or characters for display.
+
+<p>The descriptions are returned in a tiered structure for efficiency. The
+top level contains the value of no_glyph, which is both the number of glyphs
+in the map and the value used by the game to indicate that no glyph is present.
+
+<p>The transparent field contains an arbitary RGB colour which is used within
+the glyph map to indicate a transparent colour. When combining glyph maps
+(see below) a non-transparent colour should always superceed the transparent
+colour. Similarly, the symbol part of the transparent field contains a value
+which is used to indicate a transparent symbol which is used in an
+equivalent way. The field (and the rgbsym field described later) is
+encoded with an 8-bit red value in the top 8 bits, an 8-bit green value
+in bits 16 to 23, an 8-bit blue value in bits 9 to 15 and an 8-bit symbol
+in the bottom 8 bits.
+
+<p>There then follows a series of mappings which form the second level. Here
+a comma seperated set of flags may be specified which is used to distinguish
+similar glyphs. Window ports should ignore flags that they do not recognize.
+
+<p>Where a set of glyphs is substantially the same as another set, then they
+will be specified as being based on another mapping with the base_mapping field.
+This will be -1 where no base mapping is in use. Where a base mapping is
+specified and the number of sub-mappings is zero then the current mapping
+should be taken as a duplicate of the base mapping, with different flags and
+alternate glyph (see below) possibly with different colour and symbol (if
+these are different to the transparent colour and symbol). Where a base mapping
+is specified with sub-mappings, then each sub-mapping specifes a number of
+glyphs for each of the glyphs in the base mapping. This is used, for example,
+with swallows which are based on the monster mapping.
+
+<p>Also provided for some mappings is an alternate glyph which should be used
+where the windowing port does not support the glyph set. If there is no
+alternate glyph then the alt_glyph field will contain the value of no_glyph.
+
+<p>Finally, each mapping has a symdef field which contains an RGB colour and
+symbol which may be set if all glyphs in the set share the same colour and/or
+symbol.
+
+<p>Each sub-map contains a symdef field which is used in the same way as the
+same field in the containing mapping structure and a set of symdefs, one for
+each glyph in the sub-mapping.
 </body>
 </html>

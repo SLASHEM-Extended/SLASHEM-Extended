@@ -81,6 +81,7 @@ CNF_SHARE_QTND = x11tiles rip.xpm nhsplash.xpm
 CNF_SHARE_X11ND = x11bigtiles x11tiles pet_mark.xbm
 # CNF_SHARE_X11ND = x11bigtiles x11tiles pet_mark.xbm rip.xpm
 CNF_SHARE_GTKND = x11big3dtiles x11bigtiles x11tiles rip.xpm credit.xpm gtkrc
+CNF_SHARE_GTKPROXYND = x11big3dtiles.map x11bigtiles.map x11tiles.map
 # for Atari/Gem
 CNF_SHARE_GEMND = nh16.img title.img GEM_RSC.RSC rip.img
 # for BeOS
@@ -193,6 +194,18 @@ x11bigtiles: $(GAME)
 x11big3dtiles: $(GAME)
 	( cd util ; $(MAKE) tile2x11 bigtile txtmerge )
 	( cd dat ; $(MAKE) x11big3dtiles )
+
+x11tiles.map: x11tiles
+	( cd util ; $(MAKE) mapmerge )
+	( cd dat ; $(MAKE) x11tiles.map )
+
+x11bigtiles.map: x11bigtiles
+	( cd util ; $(MAKE) mapmerge )
+	( cd dat ; $(MAKE) x11bigtiles.map )
+
+x11big3dtiles.map: x11big3dtiles
+	( cd util ; $(MAKE) mapmerge )
+	( cd dat ; $(MAKE) x11big3dtiles.map )
 
 beostiles: $(GAME)
 	( cd util ; $(MAKE) tile2beos )

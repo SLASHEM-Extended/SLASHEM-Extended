@@ -1,5 +1,5 @@
 /*
-  $Id: panic.c,v 1.1 2002-03-02 19:44:06 j_ali Exp $
+  $Id: panic.c,v 1.2 2002-09-01 21:58:19 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -43,6 +43,7 @@ panic VA_DECL(const char *,str)
 
 	(void) fputs(" ERROR:  ", stderr);
 	Vfprintf(stderr, str, VA_ARGS);
+	(void) fputc('\n', stderr);
 	(void) fflush(stderr);
 #if defined(UNIX) || defined(VMS)
 # ifdef SYSV

@@ -1,10 +1,11 @@
-/* $Id: proxysvc.c,v 1.6 2002-07-07 14:38:10 j_ali Exp $ */
+/* $Id: proxysvc.c,v 1.7 2002-09-01 21:58:19 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
 #include "nhxdr.h"
 #include "winproxy.h"
+#include "proxysvr.h"
 #ifdef WIN32
 #include "win32api.h"
 #endif
@@ -675,10 +676,6 @@ static struct nhext_svc services[] = {
     0,					NULL,
 };
 
-static struct nhext_svc callbacks[] = {
-    0,					NULL,
-};
-
 void
 proxy_svc_set_ext_procs(ini_routine, windowprocs)
 void NDECL((*ini_routine));
@@ -768,7 +765,7 @@ win_proxy_svr_init(read_h, write_h)
 int read_h, write_h;
 {
     proxy_svc_connection = nhext_subprotocol1_init(server_read, (void *)read_h,
-      server_write, (void *)write_h, callbacks);
+      server_write, (void *)write_h, services);
     if (proxy_svc_connection < 0) {
 	fprintf(stderr, "proxy_svc: Failed to initialize sub-protocol1.\n");
 	return FALSE;

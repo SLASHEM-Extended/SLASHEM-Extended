@@ -1,0 +1,456 @@
+/* $Id: prxytile.c,v 1.1 2002-09-01 21:58:19 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2002 */
+/* NetHack may be freely redistributed.  See license for details. */
+
+#include <stdlib.h>
+#include <stdio.h>
+#include "hack.h"
+#include "winproxy.h"
+#include "proxysvr.h"
+#include "proxycb.h"
+
+/* #define DEBUG */
+
+short *proxy_glyph2tile = NULL;
+
+struct proxy_glyph_description {
+    unsigned int no_descs, max_descs;	/* No. valid and no. allocated */
+    const char **descs;
+};
+
+/*
+ * entry is a comma seperated list of descriptions.
+ * '\' is treated as an escape character.
+ */
+
+static void
+proxy_tilemap_add_entry(struct proxy_tilemap *map, int tn, char *entry)
+{
+    int i, j, k, idx;
+    char buf[1024];
+    if (map->no_entries >= map->max_entries) {
+	if (map->max_entries) {
+	    map->max_entries *= 2;
+	    map->entries = realloc(map->entries,
+		    map->max_entries * sizeof(struct proxy_tilemap_entry));
+	} else {
+	    map->max_entries = 32;
+	    map->entries =
+		    malloc(map->max_entries * sizeof(struct proxy_tilemap_entry));
+	}
+	if (!map->entries)
+	    panic("Not enough memory to load tile map");
+    }
+    idx = map->no_entries++;
+    map->entries[idx].refs = 0;
+    map->entries[idx].tile = tn;
+    for(i = 0, j = 1; entry[i]; i++)
+	if (entry[i] == '\\' && entry[i + 1])
+	    i++;
+	else if (entry[i] == ',')
+	    j++;
+    map->entries[idx].no_descs = j;
+    map->entries[idx].descs = (char **)alloc(j * sizeof(char *));
+    for(i = j = k = 0; ; i++)
+	if (entry[i] == '\\' && entry[i + 1])
+	    buf[k++] = entry[++i];
+	else if (entry[i] == ',' || !entry[i]) {
+	    map->entries[idx].descs[j] = (char *)alloc(k + 1);
+	    strncpy(map->entries[idx].descs[j], buf, k);
+	    map->entries[idx].descs[j++][k] = '\0';
+	    if (!entry[i])
+		break;
+	    k = 0;
+	}
+	else if (k || entry[i] != ' ')
+	    buf[k++] = entry[i];
+    if (j != map->entries[idx].no_descs)
+	panic("Bad description count in proxy_tilemap_set_entry");
+#ifdef DEBUG
+    fprintf(stderr, "tile %d \"", tn);
+    for(i = j = 0; i < map->entries[idx].no_descs; i++) {
+	if (!map->entries[idx].descs[i] ||
+	  !*map->entries[idx].descs[i])
+	    continue;
+	if (j)
+	    fputs(", ", stderr);
+	fputs(map->entries[idx].descs[i], stderr);
+	j++;
+    }
+    fputs("\"\n", stderr);
+#endif
+}
+
+struct proxy_tilemap *
+proxy_load_tilemap(fh)
+int fh;
+{
+    int i, j, k, tn;
+    char buf[1024], buf2[256];
+    char *cmd, *arg, *s, c;
+    struct proxy_tilemap *map;
+    map = (struct proxy_tilemap *)alloc(sizeof(struct proxy_tilemap));
+    map->no_entries = map->max_entries = 0;
+    map->no_tiles = 0;
+    map->entries = NULL;
+    while(proxy_cb_dlbh_fgets(buf, 1024, fh)) {
+	cmd = buf;
+	arg = strchr(buf, ' ');
+	if (arg)
+	    *arg++ = '\0';
+	if (!strcmp(cmd, "tile") && arg &&
+		sscanf(arg, "%d \"%255[^\"]", &tn, buf2) == 2) {
+	    map->no_tiles ++;
+	    /* The string consists of alternate descriptions seperated
+	     * by '/' characters. Split these up (honouring the '\'
+	     * escape) and add each description to the tilemap.
+	     * Spaces are removed surrounding '/' characters.
+	     */
+	    for(i = j = 0; ; i++)
+		if (buf2[i] == '\\' && buf2[i + 1])
+		    i++;
+		else if (buf2[i] == '/' || !buf2[i]) {
+		    for(k = i - 1; buf2[k] == ' '; k--)
+			;
+		    k++;
+		    c = buf2[k];
+		    buf2[k] = '\0';
+		    proxy_tilemap_add_entry(map, tn, buf2 + j);
+		    buf2[k] = c;
+		    if (!buf2[i])
+			break;
+		    j = i + 1;
+		    while(buf2[j] == ' ')
+			j++;
+		}
+	}
+	/* else ignore unrecognized map commands */
+    }
+    return map;
+}
+
+void
+proxy_free_tilemap(map)
+struct proxy_tilemap *map;
+{
+    int i, j;
+    for(i = 0; i < map->no_entries; i++) {
+	for(j = 0; j < map->entries[i].no_descs; j++)
+	    free(map->entries[i].descs[j]);
+	free(map->entries[i].descs);
+    }
+    free(map);
+}
+
+/*
+ * Return the number of ordered matches between the descriptions.
+ * Encoded as number of matches in top 16 bits and exact matches in lower 16.
+ * This has the effect that a larger number of matches will always win but
+ * where there are an equal number of matches, the number of exact matches
+ * is taken into account.
+ */
+
+static int
+proxy_match_descriptions(struct proxy_tilemap_entry *tile_entry,
+  struct proxy_glyph_description *glyph_desc)
+{
+    int i, j;
+    int no_matches = 0, no_exact_matches = 0;
+    int last_match = -1;
+    for(i = 0; i < tile_entry->no_descs; i++) {
+	if (!tile_entry->descs[i])
+	    continue;
+	for(j = last_match + 1; j < glyph_desc->no_descs; j++) {
+	    if (!glyph_desc->descs[j])
+		continue;
+	    if (!strcmp(tile_entry->descs[i], glyph_desc->descs[j])) {
+		no_matches++;
+		no_exact_matches++;
+		last_match = j;
+		break;
+	    } else if (!strcmp(tile_entry->descs[i], "*")) {
+		no_matches++;
+		last_match = j;
+		break;
+	    }
+	}
+    }
+    return no_matches << 16 | no_exact_matches;
+}
+
+static short
+proxy_map_glyph(struct proxy_tilemap *tile_map, struct proxy_glyph_description *desc)
+{
+    int i, j, k;
+    int best = -1;
+    int best_refs;
+    int best_matches;
+    for(i = 0; i < tile_map->no_entries; i++) {
+	j = proxy_match_descriptions(tile_map->entries + i, desc);
+	if (best < 0 || j > best_matches ||
+	  j == best_matches && tile_map->entries[i].refs < best_refs) {
+	    best = i;
+	    best_refs = tile_map->entries[i].refs;
+	    best_matches = j;
+	}
+    }
+    if (best >= 0) {
+	tile_map->entries[best].refs++;
+	return tile_map->entries[best].tile;
+    }
+    else
+	return -1;
+}
+
+#ifdef DEBUG
+static short
+proxy_log_mapping(int glyph, int tile, struct proxy_tilemap *tile_map, struct proxy_glyph_description *desc)
+{
+    int i, j, k;
+    fprintf(stderr, "glyph %d", glyph);
+    if (desc) {
+	fputs(" \"", stderr);
+	for(i = j = 0; i < desc->no_descs; i++) {
+	    if (!desc->descs[i] || !*desc->descs[i])
+		continue;
+	    if (j)
+		fputs(", ", stderr);
+	    fputs(desc->descs[i], stderr);
+	    j++;
+	}
+	fputc('"', stderr);
+    }
+    if (tile >= 0) {
+	fprintf(stderr, " mapped to tile %d \"", tile);
+	for(k = j = 0; k < tile_map->no_entries; k++) {
+	    if (tile_map->entries[k].tile == tile) {
+		if (j)
+		    fputs(" / ", stderr);
+		for(i = j = 0; i < tile_map->entries[k].no_descs; i++) {
+		    if (!tile_map->entries[k].descs[i] ||
+		      !*tile_map->entries[k].descs[i])
+			continue;
+		    if (j)
+			fputs(", ", stderr);
+		    fputs(tile_map->entries[k].descs[i], stderr);
+		    j++;
+		}
+		fprintf(stderr, " {%d}", tile_map->entries[k].refs);
+	    }
+	}
+	fputs("\"\n", stderr);
+    } else
+	fputs(" not mapped\n", stderr);
+}
+
+#define PROXY_MAP_GLYPH(glyph, tile, tile_map, desc) \
+	if (1) { \
+	    int PROXY_MAP_GLYPH_gn = (glyph); \
+	    proxy_glyph2tile[PROXY_MAP_GLYPH_gn] = (tile); \
+	    proxy_log_mapping(PROXY_MAP_GLYPH_gn, tile, tile_map, desc); \
+	} else
+#else	/* DEBUG */
+#define PROXY_MAP_GLYPH(glyph, tile, tile_map, desc) \
+	(proxy_glyph2tile[(glyph)] = (tile))
+#endif	/* DEBUG */
+
+static void
+proxy_set_description(struct proxy_glyph_description *datum, int level,
+  const char *description)
+{
+    int i;
+    if (level >= datum->max_descs) {
+	if (datum->max_descs) {
+	    datum->max_descs *= 2;
+	    if (datum->max_descs <= level)
+		datum->max_descs = level + 1;
+	    datum->descs = (const char **)realloc(datum->descs,
+	      datum->max_descs * sizeof (char *));
+	} else {
+	    datum->max_descs = max(8, level + 1);
+	    datum->descs =
+	      (const char **)malloc(datum->max_descs * sizeof (char *));
+	}
+	if (!datum->descs)
+	    panic("Not enough memory to load glyph descriptions");
+    }
+    for(; datum->no_descs < level; datum->no_descs++)
+	datum->descs[datum->no_descs] = NULL;
+    datum->descs[level] = !description || !*description ? NULL : description;
+    if (datum->no_descs <= level)
+	datum->no_descs = level + 1;
+}
+
+#define LEVEL_MAPPING		0
+#define LEVEL_FLAGS		1
+#define LEVEL_SUBMAPPING	2
+#define LEVEL_GLYPH		3
+#define LEVEL_BASED_MAPPING	4
+#define LEVEL_BASED_SUBMAPPING	5
+#define LEVEL_BASED_GLYPH	6
+
+int
+proxy_map_glyph2tile(glyph_map, tile_map)
+struct proxycb_get_glyph_mapping_res *glyph_map;
+struct proxy_tilemap *tile_map;
+{
+    int i, j, k, bj, bk, m, glyph;
+    struct proxycb_get_glyph_mapping_res_mapping *mapping, *base;
+    struct proxy_glyph_description description = {0, 0, NULL};
+    struct forward_ref {
+	int first_glyph;
+	int no_glyphs;
+	int ref_glyph;
+    };
+    int no_forward_refs = 0;
+    struct forward_ref *forward_refs = NULL;
+    proxy_glyph2tile = (short *)alloc(glyph_map->no_glyph * sizeof(short));
+    for(i = 0; i < glyph_map->no_glyph; i++)
+	proxy_glyph2tile[i] = -1;
+    glyph = 0;
+    for(i = 0; i < glyph_map->n_mappings; i++) {
+	mapping = glyph_map->mappings + i;
+	description.no_descs = 0;
+	if (mapping->base_mapping >= 0) {
+	    if (mapping->base_mapping < i)
+		base = glyph_map->mappings + mapping->base_mapping;
+	    else
+		/* Forward references to mappings are not supported */
+		panic("Glyph mapping %d based on undefined mapping", i);
+	    proxy_set_description(&description, LEVEL_MAPPING,
+	      base->symdef.description);
+	    proxy_set_description(&description, LEVEL_BASED_MAPPING,
+	      mapping->symdef.description);
+	} else {
+	    base = NULL;
+	    proxy_set_description(&description, LEVEL_MAPPING,
+	      mapping->symdef.description);
+	}
+	/* We ignore flags from our base mapping (if any)
+	 * and always use our own.
+	 */
+	proxy_set_description(&description, LEVEL_FLAGS,
+	  mapping->flags);
+	if (!mapping->n_submappings) {
+	    if (!base)
+		panic("Glyph mapping %d has no base and no sub-mappings", i);
+	    /* Where the tileset does not define tiles for a mapping, the
+	     * specified alternate glyph takes precedence, if set.
+	     * Otherwise, we default to the tiles from the base mapping.
+	     */
+	    if (mapping->alt_glyph != glyph_map->no_glyph) {
+		m = proxy_glyph2tile[mapping->alt_glyph];
+		if (m < 0) {
+		    /* Referenced glyph has not yet been mapped */
+		    if (no_forward_refs++)
+			forward_refs = realloc(forward_refs,
+				no_forward_refs * sizeof (struct forward_ref));
+		    else
+			forward_refs = malloc(sizeof (struct forward_ref));
+		    if (!forward_refs)
+			panic("Not enough memory to map glyphs");
+		    forward_refs[no_forward_refs - 1].first_glyph = glyph;
+		    m = 0;
+		    for(j = 0; j < base->n_submappings; j++)
+			m += base->submappings[j].n_glyphs;
+		    forward_refs[no_forward_refs - 1].no_glyphs = m;
+		    glyph += m;
+		    forward_refs[no_forward_refs - 1].ref_glyph =
+			    mapping->alt_glyph;
+		}
+		else
+		    for(j = 0; j < base->n_submappings; j++)
+			for(k = 0; k < base->submappings[j].n_glyphs; k++)
+			    PROXY_MAP_GLYPH(glyph++, m, tile_map, NULL);
+	    } else
+		for(j = 0; j < base->n_submappings; j++) {
+		    proxy_set_description(&description, LEVEL_SUBMAPPING,
+		      base->submappings[j].symdef.description);
+		    for(k = 0; k < base->submappings[j].n_glyphs; k++) {
+			proxy_set_description(&description, LEVEL_GLYPH,
+			  base->submappings[j].glyphs[k].description);
+			m = proxy_map_glyph(tile_map, &description);
+			PROXY_MAP_GLYPH(glyph++, m, tile_map, &description);
+		    }
+		}
+	} else if (base) {
+	    if (!base->n_submappings)
+		panic("Glyph mapping %d based on mapping with no sub-mappings",
+			i);
+	    for(bj = 0; bj < base->n_submappings; bj++) {
+		proxy_set_description(&description, LEVEL_SUBMAPPING,
+		  base->submappings[bj].symdef.description);
+		for(bk = 0; bk < base->submappings[bj].n_glyphs; bk++) {
+		    proxy_set_description(&description, LEVEL_GLYPH,
+		      base->submappings[bj].glyphs[bk].description);
+		    for(j = 0; j < mapping->n_submappings; j++) {
+			proxy_set_description(&description,
+			  LEVEL_BASED_SUBMAPPING,
+			  mapping->submappings[j].symdef.description);
+			for(k = 0; k < mapping->submappings[j].n_glyphs; k++) {
+			    proxy_set_description(&description,
+			      LEVEL_BASED_GLYPH,
+			      mapping->submappings[j].glyphs[k].description);
+			    m = proxy_map_glyph(tile_map, &description);
+			    PROXY_MAP_GLYPH(glyph++, m, tile_map, &description);
+			}
+		    }
+		}
+	    }
+	} else {
+	    for(j = 0; j < mapping->n_submappings; j++) {
+		proxy_set_description(&description, LEVEL_SUBMAPPING,
+		  mapping->submappings[j].symdef.description);
+		for(k = 0; k < mapping->submappings[j].n_glyphs; k++) {
+		    proxy_set_description(&description, LEVEL_GLYPH,
+		      mapping->submappings[j].glyphs[k].description);
+		    m = proxy_map_glyph(tile_map, &description);
+		    PROXY_MAP_GLYPH(glyph++, m, tile_map, &description);
+		}
+	    }
+	}
+    }
+    free(description.descs);
+    /* Handle any forward references (ignoring any that reference undefined
+     * glyphs - we treat these just like any other undefined glyphs).
+     */
+    do {
+	k = 0;
+	for(i = 0; i < no_forward_refs; i++) {
+	    if (!forward_refs[i].no_glyphs)
+		continue;
+	    m = proxy_glyph2tile[forward_refs[i].ref_glyph];
+	    if (m >= 0) {
+		for(j = 0; j < forward_refs[i].no_glyphs; j++)
+		    PROXY_MAP_GLYPH(forward_refs[i].first_glyph + j,
+		      m, tile_map, NULL);
+		forward_refs[i].no_glyphs = 0;
+		k = 1;	/* We've done some work */
+	    }
+	    else if (!k) {
+		i = forward_refs[i].ref_glyph;
+		for(j = 0; j < no_forward_refs; j++)
+		    if (forward_refs[j].no_glyphs &&
+		      i >= forward_refs[j].first_glyph &&
+		      i < forward_refs[j].first_glyph +
+		      forward_refs[j].no_glyphs)
+			break;
+		if (j < no_forward_refs)
+		    /* There's work still to do (and we haven't done any) */
+		    k = -1;
+	    }
+	}
+	if (k < 0)
+	    panic("Cyclic forward references in glyph mapping");
+    } while(k);
+    free(forward_refs);
+    /* Make certain all glyphs map to _something_ */
+    glyph = cmap_to_glyph(S_stone);
+    j = proxy_glyph2tile[glyph];
+    if (j < 0)
+	j = 0;
+    for(i = 0; i < glyph_map->no_glyph; i++)
+	if (proxy_glyph2tile[i] < 0)
+	    proxy_glyph2tile[i] = j;
+    return 1;
+}

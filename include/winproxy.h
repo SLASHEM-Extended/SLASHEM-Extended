@@ -1,4 +1,4 @@
-/* $Id: winproxy.h,v 1.7 2002-07-10 16:31:23 j_ali Exp $ */
+/* $Id: winproxy.h,v 1.8 2002-09-01 21:58:18 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -13,6 +13,8 @@ extern struct window_procs proxy_procs;
 #define EXT_IM_DISPLAY_LAYERS		0x0002
 
 extern unsigned long proxy_interface_mode;
+
+extern short glyph2proxy[MAX_GLYPH];
 
 /* external declarations */
 E void FDECL(proxy_init_nhwindows, (int *, char **));
@@ -93,7 +95,14 @@ E int FDECL(nhext_svc, (struct nhext_svc *));
 E int FDECL(nhext_svc_c, (int, struct nhext_svc *));
 #endif	/* NHXDR_H */
 
+/* riputil.c */
 E char * FDECL(get_killer_string, (int));
+/* getopt.c */
+E char * FDECL(get_option, (char *));
+/* glyphmap.c */
+E void NDECL(set_glyph_mapping);
+E struct proxycb_get_glyph_mapping_res * NDECL(get_glyph_mapping);
+E void FDECL(free_glyph_mapping, (struct proxycb_get_glyph_mapping_res *));
 
 #define EXT_PARAM_INT		0x4001
 #define EXT_PARAM_LONG		0x4002
@@ -229,14 +238,14 @@ struct window_ext_procs {
     void NDECL((*winext_resume_nhwindows));
     winid FDECL((*winext_create_nhwindow), (int));
     void FDECL((*winext_clear_nhwindow), (winid));
-    void FDECL((*winext_display_nhwindow), (winid, int));
+    void FDECL((*winext_display_nhwindow), (winid, BOOLEAN_P));
     void FDECL((*winext_destroy_nhwindow), (winid));
     void FDECL((*winext_curs), (winid,int,int));
     void FDECL((*winext_putstr), (winid, int, const char *));
     void FDECL((*winext_display_file), (int));
     void FDECL((*winext_start_menu), (winid));
     void FDECL((*winext_add_menu), (winid,int,int,
-		int,int,int,const char *, int));
+		CHAR_P,CHAR_P,int,const char *, BOOLEAN_P));
     void FDECL((*winext_end_menu), (winid, const char *));
     int FDECL((*winext_select_menu), (winid, int, struct proxy_mi **));
     int FDECL((*winext_message_menu), (int,int,const char *));
@@ -252,7 +261,8 @@ struct window_ext_procs {
     int FDECL((*winext_nh_poskey), (int *, int *, int *));
     void NDECL((*winext_nhbell));
     int NDECL((*winext_doprev_message));
-    char FDECL((*winext_yn_function), (const char *, const char *, int, int *));
+    char FDECL((*winext_yn_function), (const char *, const char *,
+		CHAR_P, int *));
     char *FDECL((*winext_getlin), (const char *));
     int NDECL((*winext_get_ext_cmd));
     void FDECL((*winext_number_pad), (int));

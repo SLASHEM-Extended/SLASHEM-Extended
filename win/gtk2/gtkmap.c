@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.10 2002-07-10 16:31:23 j_ali Exp $
+  $Id: gtkmap.c,v 1.11 2002-09-01 21:58:19 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -126,7 +126,12 @@ extern int tiles_per_col;
 #define NH_RADAR_HEIGHT	(ROWNO * NH_RADAR_UNIT)
 #endif
 
+#ifdef GTK_PROXY
+extern short	*proxy_glyph2tile;
+#define	glyph2tile	proxy_glyph2tile
+#else
 extern short	glyph2tile[];
+#endif
 extern int	root_width;
 extern int	root_height;
 
@@ -181,7 +186,6 @@ nh_conf_map_layers(int no)
 {
     int i, j, k;
     int glyph = cmap_to_glyph(S_stone);
-    int stone = fix_tile(glyph2tile[glyph]);
     int retval = 0;
     int new_size = sizeof(struct tilemap) + (no - 1) * sizeof(int);
     struct tilemap *new, *tm;
@@ -202,7 +206,7 @@ nh_conf_map_layers(int no)
 		    for(k = 0; k < min(no, no_layers); k++)
 			tm->tiles[k] = GTKMAP(j, i)->tiles[k];
 		    for(; k < no; k++)
-			tm->tiles[k] = stone;
+			tm->tiles[k] = stone_tile;
 		}
 		free(gtkmap[j]);
 		gtkmap[j] = new;
@@ -213,7 +217,7 @@ nh_conf_map_layers(int no)
 		    tm->glyph = glyph;
 		    tm->flags = TILEMAP_UPDATE;
 		    for(k = 0; k < no; k++)
-			tm->tiles[k] = stone;
+			tm->tiles[k] = stone_tile;
 		}
 		gtkmap[j] = new;
 	    }
@@ -232,6 +236,11 @@ nh_conf_map_layers(int no)
     }
     return retval;
 }
+
+#if !defined(GTK_PROXY) || defined(PROXY_INTERNAL)
+/*
+ * [ALI] The external proxy module does not yet support character mode.
+ */
 
 static int
 nh_conf_map_font(void)
@@ -303,6 +312,7 @@ nh_conf_map_font(void)
 	    map_xoffsets[i] = (map_font_width - map_xoffsets[i]) / 2;
     return 0;
 }
+#endif /* !GTK_PROXY || PROXY_INTERNAL */
 
 /*
   -1:   deallocate
@@ -490,7 +500,6 @@ nh_map_clear()
 {
     int i, j, k;
     int glyph = cmap_to_glyph(S_stone);
-    int stone = fix_tile(glyph2tile[glyph]);
     const char *tileset = nh_option_cache_get("tileset");
     /*
      * Check if tileset has changed and change map_visual if required.
@@ -516,8 +525,8 @@ nh_map_clear()
     for(j = 0; j < ROWNO; j++)
 	for(i = 0; i < COLNO; i++) {
 	    for(k = 0; k < no_layers; k++)
-		if (GTKMAP(j, i)->tiles[k] != stone) {
-		    GTKMAP(j, i)->tiles[k] = stone;
+		if (GTKMAP(j, i)->tiles[k] != stone_tile) {
+		    GTKMAP(j, i)->tiles[k] = stone_tile;
 		    GTKMAP(j, i)->flags = TILEMAP_UPDATE;  /* Reset all flags */
 		    map_update = 1;
 		}
@@ -556,6 +565,7 @@ configure_map(GtkWidget *w, gpointer data)
     guint path_length;
     gchar *path;
 
+#if !defined(GTK_PROXY) || defined(PROXY_INTERNAL)
     /*
      * Configure for new font metrics
      */
@@ -571,6 +581,7 @@ configure_map(GtkWidget *w, gpointer data)
 	c_map_height = ROWNO * c_height;
 	w = map = xshm_map_init(XSHM_MAP_PIXMAP, c_map_width, c_map_height);
     }
+#endif
     /*
      * set gc 
      */
@@ -752,6 +763,7 @@ nh_print_radar(int x, int y, int glyph)
 }
 #endif	/* RADAR */
 
+#if !defined(GTK_PROXY) || defined(PROXY_INTERNAL)
 #ifdef TEXTCOLOR
 #define zap_color(n)	(zapcolors[n])
 #define cmap_color(n)	(defsyms[n].color)
@@ -835,6 +847,7 @@ nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap)
     update_rect.height = c_height;
     xshm_map_draw(&update_rect);
 }
+#endif /* !GTK_PROXY || PROXY_INTERNAL */
 
 /*
  * The assumption that the glyph in the layer furthest from the viewer is
@@ -846,18 +859,18 @@ nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap)
 static void
 nh_map_print_glyph_tmp(struct tilemap *tmap, int ofsx, int ofsy, int dosurface)
 {
-    int k, stone = glyph2tile[cmap_to_glyph(S_stone)];
+    int k;
 
     if (Tile->transparent) {
 	if (dosurface)
 	    x_tile_tmp_draw_tile(tmap->tiles[no_layers - 1], ofsx, ofsy);
 	else
 	    for(k = no_layers - 2; k >= 0; k--)
-		if (tmap->tiles[k] != stone)
+		if (tmap->tiles[k] != stone_tile)
 		    x_tile_tmp_draw_tile(tmap->tiles[k], ofsx, ofsy);
     } else if (!dosurface) {
 	for(k = 0; k < no_layers - 1; k++)
-	    if (tmap->tiles[k] != stone)
+	    if (tmap->tiles[k] != stone_tile)
 		break;
 	x_tile_tmp_draw_tile(tmap->tiles[k], ofsx, ofsy);
     }
@@ -926,9 +939,8 @@ static void
 nh_map_print_glyph_simple_tile(XCHAR_P x, XCHAR_P y, struct tilemap *tmap)
 {
     int k;
-    int stone = glyph2tile[cmap_to_glyph(S_stone)];
     for(k = 0; k < no_layers - 1; k++)
-	if (tmap->tiles[k] != stone)
+	if (tmap->tiles[k] != stone_tile)
 	    break;
     x_tile_draw_tile(tmap->tiles[k], x * c_width, y * c_height);
     if (glyph_is_pet(tmap->glyph) && copts.hilite_pet)
@@ -944,9 +956,12 @@ nh_map_print_glyph(XCHAR_P x, XCHAR_P y, struct tilemap *tmap)
     nh_print_radar(x, y, tmap->glyph);
 #endif
     
+#if !defined(GTK_PROXY) || defined(PROXY_INTERNAL)
     if (map_visual == 0)
 	nh_map_print_glyph_traditional(x, y, tmap);
-    else if (!Tile->transparent && !Tile->spread)
+    else
+#endif
+    if (!Tile->transparent && !Tile->spread)
 	nh_map_print_glyph_simple_tile(x, y, tmap);
     else
 	nh_map_print_glyph_tile(x, y, tmap);
@@ -956,7 +971,6 @@ void
 GTK_ext_print_glyph_layered(winid id, int x, int y, int ng, int *glyphs)
 {
     int k, tile;
-    int stone = glyph2tile[cmap_to_glyph(S_stone)];
 
     if (ng != no_layers)
 	nh_conf_map_layers(ng);
@@ -968,21 +982,21 @@ GTK_ext_print_glyph_layered(winid id, int x, int y, int ng, int *glyphs)
 	GTKMAP(y, x)->flags = TILEMAP_UPDATE;
 	map_update = 1;
     }
-    for (k = 0; k < no_layers; k++) {
-	tile = glyphs[k] == NO_GLYPH ? stone : glyph2tile[glyphs[k]];
-	if (GTKMAP(y, x)->tiles[k] != tile) {
-	    GTKMAP(y, x)->tiles[k] = tile;
-	    GTKMAP(y, x)->flags |= TILEMAP_UPDATE;
-	    map_update = 1;
+    if (map_visual > 0)
+	for (k = 0; k < no_layers; k++) {
+	    tile = glyphs[k] == NO_GLYPH ? stone_tile : glyph2tile[glyphs[k]];
+	    if (GTKMAP(y, x)->tiles[k] != tile) {
+		GTKMAP(y, x)->tiles[k] = tile;
+		GTKMAP(y, x)->flags |= TILEMAP_UPDATE;
+		map_update = 1;
+	    }
 	}
-    }
 }
 
 void
 GTK_ext_print_glyph(winid id, int x, int y, int glyph)
 {
     int k;
-    int stone = glyph2tile[cmap_to_glyph(S_stone)];
 
     if (GTKMAP(y, x)->glyph != glyph || GTKMAP(y, x)->flags != 0) {
 	GTKMAP(y, x)->glyph = glyph;
@@ -995,8 +1009,8 @@ GTK_ext_print_glyph(winid id, int x, int y, int glyph)
 	map_update = 1;
     }
     for (k = 1; k < no_layers; k++)
-	if (GTKMAP(y, x)->tiles[k] != stone) {
-	    GTKMAP(y, x)->tiles[k] = stone;
+	if (GTKMAP(y, x)->tiles[k] != stone_tile) {
+	    GTKMAP(y, x)->tiles[k] = stone_tile;
 	    GTKMAP(y, x)->flags |= TILEMAP_UPDATE;
 	    map_update = 1;
 	}

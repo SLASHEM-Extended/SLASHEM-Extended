@@ -257,14 +257,15 @@ PROXYCOMOBJ = nhext.o nhxdr.o nhextxdr.o compxdr.o
 # ports that support the proxy interface. The GTK2 window interface needs
 # these files regardless of whether proxy support is enabled or not.
 PROXYUTLSRC = ../win/proxy/dlbh.c ../win/proxy/mapid.c \
-	../win/proxy/riputil.c ../win/proxy/getopt.c
-PROXYUTLOBJ = dlbh.o mapid.o riputil.o getopt.o
+	../win/proxy/riputil.c ../win/proxy/getopt.c ../win/proxy/glyphmap.c
+PROXYUTLOBJ = dlbh.o mapid.o riputil.o getopt.o glyphmap.o
 #
 # Files for the proxy window server interface. These are needed to support
 # external window ports and provide the interface to the game executable.
 # Currently, only the GTK2 window interface supports proxy window servers.
-PROXYSVRSRC = ../win/proxy/proxysvc.c ../win/proxy/proxycb.c
-PROXYSVROBJ = proxysvc.o proxycb.o
+PROXYSVRSRC = ../win/proxy/proxysvc.c ../win/proxy/proxycb.c \
+	../win/proxy/prxytile.c
+PROXYSVROBJ = proxysvc.o proxycb.o prxytile.o
 #
 # Files for the SDL/GL window port
 WINGLSRC = ../win/gl/gl_conf.c ../win/gl/gl_emul.c  \
@@ -775,6 +776,10 @@ gtkmessage.o: ../win/gtk/gtkmessage.c ../include/winGTK.h $(HACK_H) \
 gtkmisc.o: ../win/gtk/gtkmisc.c ../include/winGTK.h $(HACK_H) \
 		../include/winproxy.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmisc.c
+gtktile.o: ../win/gtk2/gtktile.c ../include/winGTK.h $(HACK_H) \
+		../include/winproxy.h ../include/dlb.h ../include/proxycb.h \
+		../include/proxysvr.h
+	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk2/gtktile.c
 xshmmap.o: ../win/gtk/xshmmap.c ../include/winGTK.h $(HACK_H) \
 		../include/winproxy.h ../include/xshm.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshmmap.c
@@ -837,7 +842,8 @@ wingem1.o: ../win/gem/wingem1.c ../include/gem_rsc.h ../include/load_img.h \
 load_img.o: ../win/gem/load_img.c ../include/load_img.h
 	$(CC) $(CFLAGS) -c ../win/gem/load_img.c
 winproxy.o: ../win/proxy/winproxy.c $(HACK_H) ../include/nhxdr.h \
-		../include/winproxy.h #../include/win32api.h
+		../include/winproxy.h ../include/proxysvr.h \
+		#../include/win32api.h
 	$(CC) $(CFLAGS) -c ../win/proxy/winproxy.c
 callback.o: ../win/proxy/callback.c $(HACK_H) ../include/nhxdr.h \
 		../include/winproxy.h ../include/proxycb.h
@@ -850,12 +856,18 @@ riputil.o: ../win/proxy/riputil.c $(HACK_H)
 	$(CC) $(CFLAGS) -c ../win/proxy/riputil.c
 getopt.o: ../win/proxy/getopt.c $(HACK_H)
 	$(CC) $(CFLAGS) -c ../win/proxy/getopt.c
+glyphmap.o: ../win/proxy/glyphmap.c $(HACK_H) ../include/nhxdr.h \
+		../include/proxycb.h ../include/winproxy.h
+	$(CC) $(CFLAGS) -c ../win/proxy/glyphmap.c
 proxysvc.o: ../win/proxy/proxysvc.c $(HACK_H) ../include/nhxdr.h \
 		../include/winproxy.h #../include/win32api.h
 	$(CC) $(CFLAGS) -c ../win/proxy/proxysvc.c
 proxycb.o: ../win/proxy/proxycb.c $(HACK_H) ../include/nhxdr.h \
 		../include/winproxy.h ../include/proxycb.h
 	$(CC) $(CFLAGS) -c ../win/proxy/proxycb.c
+prxytile.o: ../win/proxy/prxytile.c $(HACK_H) ../include/winproxy.h \
+		../include/proxysvr.h ../include/proxycb.h
+	$(CC) $(CFLAGS) -c ../win/proxy/prxytile.c
 nhext.o: ../win/proxy/nhext.c $(HACK_H) ../include/nhxdr.h ../include/winproxy.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhext.c
 nhxdr.o: ../win/proxy/nhxdr.c $(HACK_H) ../include/nhxdr.h

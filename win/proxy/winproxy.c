@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.9 2002-07-07 14:38:10 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.10 2002-09-01 21:58:19 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -296,6 +296,8 @@ const char *str;
 BOOLEAN_P preselected;
 {
     int mapping = mapid_map_identifier(window, identifier);
+    if (glyph != NO_GLYPH)
+	glyph = glyph2proxy[glyph];
     nhext_rpc(EXT_FID_ADD_MENU,
       8, EXT_WINID(window), EXT_INT(glyph), EXT_INT(mapping), EXT_INT(ch),
          EXT_INT(gch), EXT_INT(attr), EXT_STRING(str),
@@ -434,7 +436,8 @@ int glyph;
     else
 #endif
     nhext_rpc(EXT_FID_PRINT_GLYPH,
-      4, EXT_WINID(window), EXT_INT(x), EXT_INT(y), EXT_INT(glyph), 0);
+      4, EXT_WINID(window), EXT_INT(x), EXT_INT(y), EXT_INT(glyph2proxy[glyph]),
+      0);
 }
 
 void
@@ -636,14 +639,19 @@ xchar x, y;
 int ng;
 int *glyphs;
 {
+    int i;
     struct proxy_print_glyph_layered_req req;
     req.window = window;
     req.x = x;
     req.y = y;
     req.ng = ng;
-    req.glyphs = glyphs;
+    req.glyphs = (int *)alloc(ng * sizeof(int));
+    for(i = 0; i < ng; i++)
+	req.glyphs[i] =
+	  glyphs[i] == NO_GLYPH ? NO_GLYPH : glyph2proxy[glyphs[i]];
     nhext_rpc(EXT_FID_PRINT_GLYPH_LAYERED,
       1, EXT_XDRF(proxy_xdr_print_glyph_layered_req, &req), 0);
+    free(req.glyphs);
 }
 
 extern struct nhext_svc proxy_callbacks[];
@@ -729,6 +737,7 @@ int len;
     }
 }
 
+#ifdef PROXY_INTERNAL
 static int
 proxy_init()
 {
@@ -752,12 +761,11 @@ proxy_init()
 	pipe_close(to_child);
 	return FALSE;
     }
-#ifdef PROXY_INTERNAL
     if (!win_proxy_svr_init(to_child[0], to_parent[1]))
 	return FALSE;
-#endif
     return TRUE;
 }
+#endif	/* PROXY_INTERNAL */
 #else	/* WIN32 */
 static int to_parent[2], to_child[2];
 
@@ -804,6 +812,7 @@ unsigned int len;
 	return -1;
 }
 
+#ifdef PROXY_INTERNAL
 static int
 proxy_init()
 {
@@ -831,13 +840,30 @@ proxy_init()
 	close(to_parent[1]);
 	return FALSE;
     }
-#ifdef PROXY_INTERNAL
     if (!win_proxy_svr_init(to_child[0], to_parent[1]))
 	return FALSE;
-#endif
     return TRUE;
 }
+#endif	/* PROXY_INTERNAL */
 #endif	/* WIN32 */
+
+#ifndef PROXY_INTERNAL
+static int
+proxy_init()
+{
+    proxy_connection =
+#ifndef DEBUG
+      nhext_subprotocol1_init(proxy_read, (void *)0,
+      proxy_write, (void *)1, proxy_callbacks);
+#else
+      nhext_subprotocol1_init(debug_read, (void *)0,
+      debug_write, (void *)1, proxy_callbacks);
+#endif
+    if (proxy_connection < 0)
+	return FALSE;
+    return TRUE;
+}
+#endif	/* !PROXY_INTERNAL */
 
 #ifdef DEBUG
 static void
@@ -921,6 +947,7 @@ unsigned int len;
 void
 win_proxy_init()
 {
+    set_glyph_mapping();
     if (!proxy_init())
 	panic("Proxy: Failed to initialize");
     nhext_rpc(EXT_FID_INIT, 0, 0);

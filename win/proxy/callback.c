@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.8 2002-07-10 16:31:24 j_ali Exp $ */
+/* $Id: callback.c,v 1.9 2002-09-01 21:58:19 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -48,6 +48,8 @@ static void FDECL(callback_get_standard_winid, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(callback_get_tilesets, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(callback_get_glyph_mapping, \
+			(unsigned short, NhExtXdr *, NhExtXdr *));
 
 static void
 callback_display_inventory(id, request, reply)
@@ -72,6 +74,8 @@ NhExtXdr *request, *reply;
 #ifdef FILE_AREAS
     char *area;
 #endif
+    char *s;
+    char *buf = NULL;
     int i, retval = 0;
     nhext_rpc_params(request, 2, EXT_STRING_P(name), EXT_STRING_P(mode));
     if (name[0] != '$' || name[1] != '(')
@@ -93,7 +97,7 @@ NhExtXdr *request, *reply;
     if (strcmp(mode, "r") && strcmp(mode, "rb"))
 	retval = -1;
     if (!retval && *subname) {
-	if (!strcmp(name + 2, "TILEDIR")) {
+	if (!strcmp(name + 2, "TILEDIR") || !strcmp(name + 2, "TILEMAPDIR")) {
 #ifdef MAXNOTILESETS
 	    for(i = 0; i < no_tilesets; i++)
 		if (!strcmp(tilesets[i].file, subname))
@@ -106,7 +110,20 @@ NhExtXdr *request, *reply;
 		retval = -1;
 	    else
 #endif
+	    if (!strcmp(name + 2, "TILEDIR"))
 		SET_FILE(subname, FILE_AREA_SHARE);
+	    else {
+		s = strrchr(subname, '.');
+		if (s) {
+		    buf = (char *)alloc(s - subname + 5);
+		    (void)strncpy(buf, subname, s - subname);
+		} else {
+		    buf = (char *)alloc(strlen(subname) + 5);
+		    Strcpy(buf, subname);
+		}
+		Strcat(buf, ".map");
+		SET_FILE(buf, FILE_AREA_SHARE);
+	    }
 	} else
 	    retval = -1;
     } else if (!retval) {
@@ -152,6 +169,8 @@ NhExtXdr *request, *reply;
     nhext_rpc_params(reply, 1, EXT_INT(retval));
     free(name);
     free(mode);
+    if (buf)
+	free(buf);
 }
 
 #undef SET_FILE
@@ -435,6 +454,9 @@ NhExtXdr *request, *reply;
 	file = (char *)alloc(strlen(tilesets[i].file) + 12);
 	sprintf(file, "$(TILEDIR)/%s", tilesets[i].file);
 	list.tilesets[i].file = file;
+	file = (char *)alloc(strlen(tilesets[i].file) + 16);
+	sprintf(file, "$(TILEMAPDIR)/%s", tilesets[i].file);
+	list.tilesets[i].mapfile = file;
 	list.tilesets[i].flags = tilesets[i].flags;
     }
 #else
@@ -445,12 +467,27 @@ NhExtXdr *request, *reply;
     file = (char *)alloc(strlen(tile_file) + 12);
     sprintf(file, "$(TILEDIR)/%s", tile_file);
     list.tilesets[0].file = file;
+    file = (char *)alloc(strlen(tile_file) + 16);
+    sprintf(file, "$(TILEMAPDIR)/%s", tile_file);
+    list.tilesets[0].mapfile = file;
     list.tilesets[0].flags = 0;
 #endif
     nhext_rpc_params(reply, 1, EXT_XDRF(proxycb_xdr_get_tilesets_res, &list));
     for(i = 0; i < list.n_tilesets; i++)
 	free((char *)list.tilesets[i].file);
     free(list.tilesets);
+}
+
+static void
+callback_get_glyph_mapping(id, request, reply)
+unsigned short id;
+NhExtXdr *request, *reply;
+{
+    struct proxycb_get_glyph_mapping_res *mapping;
+    mapping = get_glyph_mapping();
+    nhext_rpc_params(reply, 1,
+      EXT_XDRF(proxycb_xdr_get_glyph_mapping_res, mapping));
+    free_glyph_mapping(mapping);
 }
 
 struct nhext_svc proxy_callbacks[] = {
@@ -473,5 +510,6 @@ struct nhext_svc proxy_callbacks[] = {
     EXT_CID_MAP_MENU_CMD,		callback_map_menu_cmd,
     EXT_CID_GET_STANDARD_WINID,		callback_get_standard_winid,
     EXT_CID_GET_TILESETS,		callback_get_tilesets,
+    EXT_CID_GET_GLYPH_MAPPING,		callback_get_glyph_mapping,
     0, NULL,
 };

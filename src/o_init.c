@@ -40,6 +40,29 @@ shuffle_tiles()
 }
 #endif	/* USE_TILES */
 
+#ifdef PROXY_GRAPHICS
+STATIC_DCL void NDECL(shuffle_proxy_glyphs);
+extern short glyph2proxy[];	/* from glyphmap.c */
+
+/* Shuffle proxy glyph assignments for the same reason as tiles
+ * (internal glyphs are based on object numbers, proxy glyphs
+ * are based on object descriptions).
+ */
+STATIC_OVL void
+shuffle_proxy_glyphs()
+{
+	int i;
+	short tmp_glyphmap[NUM_OBJECTS];
+
+	for (i = 0; i < NUM_OBJECTS; i++)
+		tmp_glyphmap[i] =
+			glyph2proxy[objects[i].oc_descr_idx + GLYPH_OBJ_OFF];
+
+	for (i = 0; i < NUM_OBJECTS; i++)
+		glyph2proxy[i + GLYPH_OBJ_OFF] = tmp_glyphmap[i];
+}
+#endif	/* USE_TILES */
+
 STATIC_OVL void
 setgemprobs(dlev)
 d_level *dlev;
@@ -174,6 +197,9 @@ register char oclass;
 #ifdef USE_TILES
 	shuffle_tiles();
 #endif
+#ifdef PROXY_GRAPHICS
+	shuffle_proxy_glyphs();
+#endif
 }
 
 STATIC_OVL void
@@ -298,6 +324,9 @@ register int fd;
 	    }
 #ifdef USE_TILES
 	shuffle_tiles();
+#endif
+#ifdef PROXY_GRAPHICS
+	shuffle_proxy_glyphs();
 #endif
 }
 
