@@ -69,7 +69,7 @@
 /* MAC also means MAC windows */
 #ifdef MAC
 # ifndef	AUX
-#  define DEFAULT_WINDOW_SYS "mac"
+#  define DEFAULT_WINDOW_SYS "Mac"
 # endif
 #endif
 
