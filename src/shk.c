@@ -332,30 +332,17 @@ void
 blkmar_guards(shkp)
 register struct monst *shkp;
 {
-    register struct monst *mt;
-    register struct eshk *eshkp = ESHK(shkp);
-    boolean mesg_given = FALSE;	/* Only give message if assistants peaceful */
-    static boolean lock = FALSE; /* Prevent recursive calls (via wakeup) */
+  register struct monst *mt;
 
-    if (lock)  return;
-    lock = TRUE;
-
-    /* wake up assistants */
-    for (mt = fmon; mt; mt = mt->nmon) {
-	if (DEADMONSTER(mt)) continue;
-	/* non-tame named monsters are presumably
-	 * black marketeer's assistants */
-	if (!mt->mtame && NAME(mt) && *NAME(mt) && mt->mpeaceful &&
-		mt != shkp && inside_shop(mt->mx, mt->my) == eshkp->shoproom) {
-	    if (!mesg_given) {
-		pline("%s calls for %s assistants!",
-			noit_Monnam(shkp), his[gender(shkp)]);
-		mesg_given = TRUE;
-	    }
-	    wakeup(mt);
-	}
+/* wake up assistants */
+  pline("%s calls for his assistants!", Monnam(shkp));
+  for (mt = fmon; mt; mt = mt->nmon) {
+/* non-tame named monsters are presumably black marketeer's assistants */
+    if (!mt->mtame && NAME(mt) && *NAME(mt) &&
+	inside_shop(mt->mx, mt->my)) {
+      wakeup(mt);
     }
-    lock = FALSE;
+  }
 }
 #endif /* BLACKMARKET */
 
@@ -560,8 +547,6 @@ register char *enterstring;
 		    tool = "mattock";
 		    while ((mattock = mattock->nobj) != 0)
 			if (mattock->otyp == DWARVISH_MATTOCK) ++cnt;
-		    /* [ALI] Shopkeeper indicates the mattock(s) */
-		    if (!Blind)  makeknown(DWARVISH_MATTOCK);
 		}
 		verbalize(NOTANGRY(shkp) ?
 			  "Will you please leave your %s%s outside?" :
@@ -738,54 +723,7 @@ register struct obj *obj;
 	register struct obj *curr;
 
 	while ((curr = obj->cobj) != 0) {
-#ifdef DEVEL_BRANCH
-	    if (Has_contents(curr)) delete_contents(curr);
-#endif
 	    obj_extract_self(curr);
-#ifdef DEVEL_BRANCH
-	    if (evades_destruction(curr)) {
-		switch (obj->where) {
-		    case OBJ_FREE:
-		    case OBJ_ONBILL:
-			impossible("indestructible object %s",
-			  obj->where == OBJ_FREE ? "free" : "on bill");
-			obfree(curr, (struct obj *)0);
-			break;
-		    case OBJ_FLOOR:
-			place_object(curr, obj->ox, obj->oy);
-			/* No indestructible objects currently stack */
-			break;
-		    case OBJ_CONTAINED:
-			add_to_container(obj->ocontainer, curr);
-			break;
-		    case OBJ_INVENT:
-			if (!flooreffects(curr, u.ux, u.uy, "fall"))
-			    place_object(curr, u.ux, u.uy);
-			break;
-		    case OBJ_MINVENT:
-			if (!flooreffects(curr,
-				obj->ocarry->mx, obj->ocarry->my, "fall"))
-			    place_object(curr, obj->ocarry->mx, obj->ocarry->my);
-			break;
-		    case OBJ_MIGRATING:
-			add_to_migration(curr);
-			/* Copy migration destination */
-			curr->ox = obj->ox;
-			curr->oy = obj->oy;
-			curr->owornmask = obj->owornmask;
-			break;
-		    case OBJ_BURIED:
-			add_to_buried(curr);
-			curr->ox = obj->ox;
-			curr->oy = obj->oy;
-			break;
-		    default:
-			panic("delete_contents");
-			break;
-		}
-	    }
-	    else
-#endif
 	    obfree(curr, (struct obj *)0);
 	}
 }
@@ -806,14 +744,6 @@ register struct obj *obj, *merge;
 	if (obj->otyp == LEASH && obj->leashmon) o_unleash(obj);
 	if (obj->oclass == SPBOOK_CLASS) book_disappears(obj);
 	if (obj->oclass == FOOD_CLASS) food_disappears(obj);
-#ifdef DEVEL_BRANCH
-	/* [ALI] Enforce new rules: Containers must have their contents
-	 * deleted while still in situ so that we can place any
-	 * indestructible objects they may contain.
-	 */
-	if (Has_contents(obj))
-	    pline("BUG: obfree() called on non-empty container.");
-#endif
 	if (Has_contents(obj)) delete_contents(obj);
 
 	shkp = 0;
@@ -980,13 +910,11 @@ register boolean silentkops;
 {
 	boolean wasmad = ANGRY(shkp);
 	struct eshk *eshkp = ESHK(shkp);
-	boolean guilty = wasmad ||
-		eshkp->surcharge || eshkp->following || eshkp->robbed;
 
 	pacify_shk(shkp);
 	eshkp->following = 0;
 	eshkp->robbed = 0L;
-	if (guilty && !Role_if(PM_ROGUE)) {
+	if (!Role_if(PM_ROGUE)) {
 		adjalign(sgn(u.ualign.type));
 		You("feel your guilt vanish.");        
 	}
@@ -1983,9 +1911,6 @@ register boolean usell;
 	    if (usell) {
 		if (saleable(shkp, otmp) &&
 			!otmp->unpaid && otmp->oclass != BALL_CLASS &&
-#if defined(DEVEL_BRANCH) && defined(UNPOLYPILE)
-			!is_fuzzy(otmp) &&
-#endif
 			!(otmp->oclass == FOOD_CLASS && otmp->oeaten) &&
 			!(Is_candle(otmp) && otmp->age <
 				20L * (long)objects[otmp->otyp].oc_cost))
@@ -2161,10 +2086,15 @@ STATIC_OVL void
 add_to_billobjs(obj)
     struct obj *obj;
 {
+#ifdef UNPOLYPILE
+    /* You're billed for what you used, not what it might become --ALI */
+    if (is_fuzzy(obj))
+	(void) stop_timer(UNPOLY_OBJ, (genericptr_t) obj);
+#endif
     if (obj->where != OBJ_FREE)
 	panic("add_to_billobjs: obj not free");
     if (obj->timed)
-	obj_stop_timers(obj);
+	panic("add_to_billobjs: obj is timed");
 
     obj->nobj = billobjs;
     billobjs = obj;
@@ -2468,8 +2398,11 @@ register boolean ininv;
 			price += get_cost(otmp, shkp);
 		} else {
 		    if(!otmp->no_charge) {
-			if(otmp->oclass != FOOD_CLASS || !otmp->oeaten)
-			    price += get_cost(otmp, shkp);
+			if(!(otmp->oclass == BALL_CLASS ||
+			    (otmp->oclass == FOOD_CLASS && otmp->oeaten) ||
+			    (Is_candle(otmp) && otmp->age <
+				  20L * (long)objects[otmp->otyp].oc_cost))
+			  ) price += get_cost(otmp, shkp);
 		    }
 		    otmp->no_charge = 0;
 		}
@@ -2510,26 +2443,13 @@ register boolean peaceful, silent;
 	value += gvalue;
 
 	if(peaceful) {
-	    boolean credit_use = !!ESHK(shkp)->credit;
 	    value = check_credit(value, shkp);
 	    ESHK(shkp)->debit += value;
 
 	    if(!silent) {
-		char *still = "";
-		if (credit_use) {
-		    if (ESHK(shkp)->credit) {
-			You("have %ld zorkmids credit remaining.",
-				 ESHK(shkp)->credit);
-			return value;
-		    } else if (!value) {
-			You("have no credit remaining.");
-			return 0;
-		    }
-		    still = "still ";
-		}
 		if(obj->oclass == GOLD_CLASS)
-		    You("%sowe %s %ld zorkmids!", still, mon_nam(shkp), value);
-		else You("%sowe %s %ld zorkmids for %s!", still,
+		    You("owe %s %ld zorkmids!", mon_nam(shkp), value);
+		else You("owe %s %ld zorkmids for %s!",
 			mon_nam(shkp),
 			value,
 			obj->quan > 1L ? "them" : "it");
@@ -2697,9 +2617,6 @@ move_on:
 	   || eshkp->billct == BILLSZ
 	   || obj->oclass == BALL_CLASS
 	   || obj->oclass == CHAIN_CLASS || offer == 0L
-#if defined(DEVEL_BRANCH) && defined(UNPOLYPILE)
-	   || is_fuzzy(obj)
-#endif
 	   || (obj->oclass == FOOD_CLASS && obj->oeaten)
 	   || (Is_candle(obj) &&
 		   obj->age < 20L * (long)objects[obj->otyp].oc_cost)) {
@@ -3407,9 +3324,6 @@ coord *mm;
 	int kop_cnt[5];        
 	int kop_pm[5];
 	int ik, cnt;
-#ifdef DEVEL_BRANCH
-	coord *mc;
-#endif
   
 	kop_pm[0] = PM_KEYSTONE_KOP;
 	kop_pm[1] = PM_KOP_SERGEANT;
@@ -3436,25 +3350,34 @@ coord *mm;
 	kop_cnt[2] = (cnt / 6);       /* maybe a lieutenant */
 	kop_cnt[3] = (cnt / 9);       /* and maybe a kaptain */
  
-#ifdef DEVEL_BRANCH
-	mc = (coord *)alloc(cnt * sizeof(coord));
-#endif
 	for (ik=0; kop_pm[ik]; ik++) {
 	  if (!(mvitals[kop_pm[ik]].mvflags & G_GONE)) {
-#ifdef DEVEL_BRANCH
-	    cnt = epathto(mc, kop_cnt[ik], mm->x, mm->y, &mons[kop_pm[ik]]);
-	    while(--cnt >= 0)
-		(void) makemon(&mons[kop_pm[ik]], mc[cnt].x, mc[cnt].y, NO_MM_FLAGS);
-#else
 	    while(kop_cnt[ik]--) {
 	      if (enexto(mm, mm->x, mm->y, &mons[kop_pm[ik]]))
 		(void) makemon(&mons[kop_pm[ik]], mm->x, mm->y, NO_MM_FLAGS);
 	    }
-#endif
 	  }
 	}
-#ifdef DEVEL_BRANCH
-	free((genericptr_t)mc);
+#if 0
+	static const short k_mndx[4] = {
+	    PM_KEYSTONE_KOP, PM_KOP_SERGEANT, PM_KOP_LIEUTENANT, PM_KOP_KAPTAIN
+	};
+	int k_cnt[4], cnt, mndx, k;
+
+	k_cnt[0] = cnt = abs(depth(&u.uz)) + rnd(5);
+	k_cnt[1] = (cnt / 3) + 1;       /* at least one sarge */
+	k_cnt[2] = (cnt / 6);           /* maybe a lieutenant */
+	k_cnt[3] = (cnt / 9);           /* and maybe a kaptain */
+
+	for (k = 0; k < 4; k++) {
+	    if ((cnt = k_cnt[k]) == 0) break;
+	    mndx = k_mndx[k];
+	    if (mvitals[mndx].mvflags & G_GONE) continue;
+
+	    while (cnt--)
+		if (enexto(mm, mm->x, mm->y, &mons[mndx]))
+		    (void) makemon(&mons[mndx], mm->x, mm->y, NO_MM_FLAGS);
+	}
 #endif
 }
 #endif  /* KOPS */
@@ -4442,7 +4365,7 @@ shk_weapon_works(slang, shkp)
 
 	any.a_int = 1;
 	if (ESHK(shkp)->services & (SHK_SPECIAL_A))
-		add_menu(tmpwin, NO_GLYPH, &any , 'w', 0, ATR_NONE, "Ward against damage", MENU_UNSELECTED);
+		add_menu(tmpwin, NO_GLYPH, &any , 'r', 0, ATR_NONE, "Rust/Fireproof", MENU_UNSELECTED);
 	any.a_int = 2;
 	if (ESHK(shkp)->services & (SHK_SPECIAL_B))
 		add_menu(tmpwin, NO_GLYPH, &any , 'e', 0, ATR_NONE, "Enchant", MENU_UNSELECTED);
@@ -4468,14 +4391,14 @@ shk_weapon_works(slang, shkp)
 		case 1:
 		verbalize("This'll leave your %s untouchable!", xname(obj));
 		
-		/* Costs more the more eroded it is (oeroded 0-3 * 2) */
-		charge = 500 * (obj->oeroded + obj->oeroded2 + 1);
-		if (obj->oeroded + obj->oeroded2 > 2)
+		/* Costs more the more rusty it is (oeroded 0-3) */
+		charge = 500 * (obj->oeroded+1);
+		if (obj->oeroded > 2)
 			pline("This thing's in pretty sad condition, %s",
 				slang);
 
 		/*Another warning if object is naturally rustproof*/
-		if (obj->oerodeproof || !is_damageable(obj))
+		if (obj->oerodeproof || !is_rustprone(obj))
 			pline("%s gives you a suspciously happy smile...", mon_nam(shkp));
 
 		/* Artifacts cost more to deal with */
@@ -4493,7 +4416,7 @@ shk_weapon_works(slang, shkp)
 		else if (Hallucination)
 			Your(" - tin roof, un-rusted!");
 
-		obj->oeroded = obj->oeroded2 = 0;
+		obj->oeroded = 0;
 		obj->rknown = TRUE;
 		obj->oerodeproof = TRUE;
 		break;
@@ -4529,10 +4452,10 @@ shk_weapon_works(slang, shkp)
 			Your("%s to evaporate into thin air!", aobjnam(obj, "seem"));
 		/* ...No actual vibrating and no evaporating */
 		
-		if (obj->otyp == WORM_TOOTH) {
-			obj->otyp = CRYSKNIFE;
+		if(uwep->otyp == WORM_TOOTH) {
+			uwep->otyp = CRYSKNIFE;
 			Your("weapon seems sharper now.");
-			obj->cursed = 0;
+			uwep->cursed = 0;
 			break;
 		}
 
@@ -4942,73 +4865,5 @@ check_lower:
 
 #endif /* OVLB */
 
-#ifdef DEBUG
-int
-wiz_debug_cmd()	/* in this case, display your bill(s) */
-{
-    int win, special = 0;
-    struct obj *obj;
-    struct monst *shkp, *ushkp;
-    struct bill_x *bp;
-    int ct;
-    char buf[BUFSIZ];
-    char buf2[BUFSIZ];
-
-    win = create_nhwindow(NHW_MENU);
-    ushkp = shop_keeper(*u.ushops);
-    shkp = next_shkp(fmon, TRUE);
-    if (!shkp) {
-	shkp = ushkp;
-	special++;
-    }
-    if (!shkp)
-	putstr(win, 0, "No shopkeepers with bills");
-    else
-	for (; shkp; ) {
-	    bp = ESHK(shkp)->bill_p;
-	    ct = ESHK(shkp)->billct;
-	    if (ct) {
-		Sprintf(buf, "Your bill with %s", noit_mon_nam(shkp));
-		if (shkp == ushkp) {
-		    Strcat(buf, " (here)");
-		    ushkp = NULL;
-		}
-		Strcat(buf, ":");
-		putstr(win, 0, buf);
-		putstr(win, 0, "Price   Quan    Used?   Object");
-		while (--ct >= 0) {
-		    obj = bp_to_obj(bp);
-		    if (obj) {
-			if (!obj->unpaid)
-			    *buf2='*';		/* Bad entry */
-			Strcpy(obj->unpaid ? buf2 : buf2 + 1, xname(obj));
-		    }
-		    else
-			Sprintf(buf2, "Unknown, with ID %d", bp->bo_id);
-		    Sprintf(buf, "%-7d %-7d %-7s %s", bp->price, bp->bquan,
-		      bp->useup ? "Yes" : "No", buf2);
-		    putstr(win, 0, buf);
-		    bp++;
-		}
-	    }
-	    else {
-		Sprintf(buf, "You do not owe %s anything.", noit_mon_nam(shkp));
-		putstr(win, 0, buf);
-	    }
-	    if (special)
-		break;
-	    shkp = next_shkp(shkp->nmon, TRUE);
-	    if (!shkp) {
-		shkp = ushkp;
-		special++;
-	    }
-	    if (shkp)
-		putstr(win, 0, "");
-	}
-    display_nhwindow(win, FALSE);
-    destroy_nhwindow(win);
-    return 0;
-}
-#endif	/* DEBUG */
 
 /*shk.c*/

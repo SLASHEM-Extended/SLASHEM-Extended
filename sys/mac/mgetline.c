@@ -8,34 +8,33 @@
 #include "macpopup.h"
 #include "func_tab.h"
 
-typedef Boolean FDECL ((* key_func), (unsigned char));
+typedef Boolean FDECL ( ( * key_func ) , ( unsigned char ) ) ;
 
 int
 get_line_from_key_queue (char * bufp) {
-	* bufp = 0;
-	if (try_key_queue (bufp)) {
-		while (* bufp) {
-			if (* bufp == 10 || * bufp == 13) {
-				* bufp = 0;
+	* bufp = 0 ;
+	if ( try_key_queue ( bufp ) ) {
+		while ( * bufp ) {
+			if ( * bufp == 10 || * bufp == 13 ) {
+				* bufp = 0 ;
 			}
-			bufp ++;
+			bufp ++ ;
 		}
-		return true;
+		return true ;
 	}
-	return false;
+	return false ;
 }
 
 
 static void
-topl_getlin(const char *query, char *bufp, Boolean ext) {
+topl_getlin(const char *query, char *bufp, key_func key) {
 	int q_len = strlen(query);
 
-	if (get_line_from_key_queue (bufp))
-		return;
+	if ( get_line_from_key_queue ( bufp ) )
+		return ;
 
 	enter_topl_mode((char *) query);
-	while (topl_key(nhgetch(), ext))
-		;
+	while ((*key)(nhgetch())) ;
 	leave_topl_mode(bufp);
 }
 
@@ -51,10 +50,10 @@ mac_getlin(const char *query, char *bufp) {
 
 #if ENABLE_MAC_POPUP
 	if (iflags.popup_dialog)
-		popup_getlin (query, bufp);
+		popup_getlin(query, bufp);
 	else
 #endif
-		topl_getlin (query, bufp, false);
+		topl_getlin(query, bufp, &topl_key);
 }
 
 

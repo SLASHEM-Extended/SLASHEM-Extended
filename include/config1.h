@@ -32,21 +32,23 @@
 /*
  * Mac Stuff.
  */
-#if defined(macintosh) && !defined(__MWERKS__)	/* MPW PPC pre-defined macro */
+#ifdef macintosh    /*  MPW pre-defined macro */
 # define MAC
 # define MAC_MPW
 # define MAC_MPW_PPC
 # define NEED_VARARGS
 # define USE_STDARG
+# define NEED_PROTOTYPE
 # undef UNIX
 #endif
 
-#if defined(applec) && !defined(__MWERKS__)	/* MPW 68K pre-defined macro */
+#ifdef applec    /*  MPW pre-defined macro */
 # define MAC
 # define MAC_MPW
 # define MAC_MPW_68K
 # define NEED_VARARGS
 # define USE_STDARG
+# define NEED_PROTOTYPE
 # undef UNIX
 #endif
 
@@ -131,6 +133,9 @@
 # undef UNIX
 # undef MSDOS
 # define NHSTDC
+# ifdef __MINGW32__
+#  define strncmpi strnicmp
+# endif
 # define STRNCMPI
 # define USE_STDARG
 # define NEED_VARARGS

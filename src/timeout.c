@@ -314,10 +314,6 @@ nh_timeout()
 			if (!Free_action)
 				You("feel a little stiffer.");
 			break;
-		case PASSES_WALLS:
-			if (!Passes_walls)
-				You("feel a little more solid.");
-			break;
 		case INVULNERABLE:
 			if (!Invulnerable)
 				You("are no longer invulnerable.");
@@ -470,33 +466,7 @@ unpoly_obj(arg, timeout)
 	return;
 }
 #endif /* UNPOLYPILE */
-#endif /* OVL1 */
-#ifdef OVL0
 
-#ifdef UNPOLYPILE
-/*
- * Cleanup a fuzzy object if timer stopped.
- */
-/*ARGSUSED*/
-static void
-cleanup_unpoly(arg, timeout)
-    genericptr_t arg;
-    long timeout;
-{
-#if defined(MAC_MPW) || defined(__MWERKS__)
-# pragma unused(timeout)
-#endif
-    struct obj *obj = (struct obj *)arg;
-    obj->oldtyp = STRANGE_OBJECT;
-#ifdef WIZARD
-    if (wizard && obj->where == OBJ_INVENT)
-	update_inventory();
-#endif
-}
-#endif /* UNPOLYPILE */
-
-#endif /* OVL0 */
-#ifdef OVL1
 
 /* WAC polymorph a monster
  * Assume polymorph is successful if i != 0
@@ -505,14 +475,14 @@ cleanup_unpoly(arg, timeout)
  * (except in unpolymorph code,  which is a special case)
  */
 int
-mon_poly(mtmp, your_fault, change_fmt)
+mon_poly(mtmp, your_fault)
 struct monst *mtmp;
 boolean your_fault;
-const char *change_fmt;
 {
 	int i;
+	char name[BUFSZ];
 
-	if (canseemon(mtmp)) pline(change_fmt, Monnam(mtmp));
+	if (canseemon(mtmp)) pline("%s changes!", Monnam(mtmp));
 	/* Lengthen unpolytime - was 500,500  for player */
 	i = mon_spec_poly(mtmp, (struct permonst *)0, rn1(1000,1000));
 	if (!i || !rn2(25)) {
@@ -646,10 +616,6 @@ long timeout;
 		switch(bomb->where) {		
 		    case OBJ_MINVENT:
 		    	mtmp = bomb->ocarry;
-			if (bomb == MON_WEP(mtmp)) {
-			    bomb->owornmask &= ~W_WEP;
-			    MON_NOWEP(mtmp);
-			}
 			if (!silent) {
 			    if (canseemon(mtmp))
 				You("see %s explode!", mon_nam(mtmp));
@@ -668,16 +634,6 @@ long timeout;
 		    case OBJ_INVENT:
 		    	/* This shouldn't be silent! */
 			pline("Something explodes inside your knapsack!");
-			if (bomb == uwep) {
-			    uwepgone();
-			    stop_occupation();
-			} else if (bomb == uswapwep) {
-			    uswapwepgone();
-			    stop_occupation();
-			} else if (bomb == uquiver) {
-			    uqwepgone();
-			    stop_occupation();
-			}
 		    	losehp(d(2,5), "carrying live explosives", KILLED_BY);
 		    	break;
 		    case OBJ_FLOOR:
@@ -1389,7 +1345,6 @@ long timeout;
 
 #ifdef FIREARMS
 	    case STICK_OF_DYNAMITE:
-		end_burn(obj, FALSE);
 		bomb_blow((genericptr_t) obj, timeout);
 		return;
 #endif
@@ -1472,8 +1427,8 @@ begin_burn(obj, already_lit)
 	long turns = 0;
 	boolean do_timer = TRUE;
 
-	if (obj->age == 0 && obj->otyp != MAGIC_LAMP &&
-	    obj->otyp != MAGIC_CANDLE && !obj->oartifact) return;
+	if (obj->age == 0 && (obj->otyp != MAGIC_LAMP ||
+			      obj->otyp != MAGIC_CANDLE)) return;
 
 	switch (obj->otyp) {
 	    case MAGIC_LAMP:
@@ -1533,16 +1488,8 @@ begin_burn(obj, already_lit)
 		break;
 
 	    default:
-		/* [ALI] Support artifact light sources */
-		if (obj->oartifact && artifact_light(obj)) {
-		    obj->lamplit = 1;
-		    do_timer = FALSE;
-		    radius = 2;
-		}
-		else {
-		    impossible("begin burn: unexpected %s", xname(obj));
-		    turns = obj->age;
-		}
+		impossible("begin burn: unexpected %s", xname(obj));
+		turns = obj->age;
 		break;
 	}
 
@@ -1561,10 +1508,10 @@ begin_burn(obj, already_lit)
 	if (obj->lamplit && !already_lit) {
 	    xchar x, y;
 
-	    /* [ALI] Support floating light sources (eg., wished for artifacts)
-	     */
-	    (void)get_obj_location(obj, &x, &y, CONTAINED_TOO|BURIED_TOO);
-	    new_light_source(x, y, radius, LS_OBJECT, (genericptr_t) obj);
+	    if (get_obj_location(obj, &x, &y, CONTAINED_TOO|BURIED_TOO))
+		new_light_source(x, y, radius, LS_OBJECT, (genericptr_t) obj);
+	    else
+		impossible("begin_burn: can't get obj position");
 	}
 }
 
@@ -1584,50 +1531,23 @@ end_burn(obj, timer_attached)
 	    return;
 	}
 
+	del_light_source(LS_OBJECT, (genericptr_t) obj);
+
 	if (obj->otyp == MAGIC_LAMP ||
 	    obj->otyp == MAGIC_CANDLE ) timer_attached = FALSE;
-
-	if (!timer_attached) {
-	    /* [DS] Cleanup explicitly, since timer cleanup won't happen */
-	    del_light_source(LS_OBJECT, (genericptr_t)obj);
-	    obj->lamplit = 0;
-	    if (obj->where == OBJ_INVENT)
-		update_inventory();
+	if (timer_attached) {
+	    expire_time = stop_timer(BURN_OBJECT, (genericptr_t) obj);
+	    if (expire_time)
+		/* restore unused time */
+		obj->age += expire_time - monstermoves;
+	    else
+		impossible("end_burn: obj %s not timed!", xname(obj));
 	}
-	else if (!stop_timer(BURN_OBJECT, (genericptr_t) obj))
-	    impossible("end_burn: obj %s not timed!", xname(obj));
+	obj->lamplit = 0;
+
+	if (obj->where == OBJ_INVENT)
+	    update_inventory();
 }
-
-#endif /* OVL1 */
-#ifdef OVL0
-
-/*
- * Cleanup a burning object if timer stopped.
- */
-static void
-cleanup_burn(arg, expire_time)
-    genericptr_t arg;
-    long expire_time;
-{
-    struct obj *obj = (struct obj *)arg;
-    if (!obj->lamplit) {
-	impossible("cleanup_burn: obj %s not lit", xname(obj));
-	return;
-    }
-
-    del_light_source(LS_OBJECT, arg);
-
-    /* restore unused time */
-    obj->age += expire_time - monstermoves;
-
-    obj->lamplit = 0;
-
-    if (obj->where == OBJ_INVENT)
-	update_inventory();
-}
-
-#endif /* OVL0 */
-#ifdef OVL1
 
 void
 do_storms()
@@ -1756,30 +1676,30 @@ static unsigned long timer_id = 1;
 #define VERBOSE_TIMER
 
 typedef struct {
-    timeout_proc f, cleanup;
+    timeout_proc f;
 #ifdef VERBOSE_TIMER
     const char *name;
-# define TTAB(a, b, c) {a,b,c}
+# define TTAB(a, b) {a,b}
 #else
-# define TTAB(a, b, c) {a,b}
+# define TTAB(a, b) {a}
 #endif
 } ttable;
 
 /* table of timeout functions */
 static ttable timeout_funcs[NUM_TIME_FUNCS] = {
-	TTAB(rot_organic,   (timeout_proc)0, "rot_organic"),
-	TTAB(rot_corpse,    (timeout_proc)0, "rot_corpse"),
-	TTAB(moldy_corpse,  (timeout_proc)0, "moldy_corpse"),
-	TTAB(revive_mon,    (timeout_proc)0, "revive_mon"),
-	TTAB(burn_object,   cleanup_burn,    "burn_object"),
-	TTAB(hatch_egg,     (timeout_proc)0, "hatch_egg"),
-	TTAB(fig_transform, (timeout_proc)0, "fig_transform"),
-	TTAB(unpoly_mon,    (timeout_proc)0, "unpoly_mon"),
+	TTAB(rot_organic,   "rot_organic"),
+	TTAB(rot_corpse,    "rot_corpse"),
+	TTAB(moldy_corpse,  "moldy_corpse"),
+	TTAB(revive_mon,    "revive_mon"),
+	TTAB(burn_object,   "burn_object"),
+	TTAB(hatch_egg,     "hatch_egg"),
+	TTAB(fig_transform, "fig_transform"),
+	TTAB(unpoly_mon,    "unpoly_mon"),
 #ifdef FIREARMS
-	TTAB(bomb_blow,     (timeout_proc)0, "bomb_blow"),
+	TTAB(bomb_blow,     "bomb_blow"),
 #endif
 #ifdef UNPOLYPILE
-	TTAB(unpoly_obj,    cleanup_unpoly,  "unpoly_obj"),
+	TTAB(unpoly_obj,    "unpoly_obj"),
 #endif
 };
 #undef TTAB
@@ -1947,8 +1867,6 @@ genericptr_t arg;
 	timeout = doomed->timeout;
 	if (doomed->kind == TIMER_OBJECT)
 	    ((struct obj *)arg)->timed--;
-	if (timeout_funcs[doomed->func_index].cleanup)
-	    (*timeout_funcs[doomed->func_index].cleanup)(arg, timeout);
 	free((genericptr_t) doomed);
 	return timeout;
     }
@@ -2014,9 +1932,6 @@ obj_stop_timers(obj)
 		prev->next = curr->next;
 	    else
 		timer_base = curr->next;
-	    if (timeout_funcs[curr->func_index].cleanup)
-		(*timeout_funcs[curr->func_index].cleanup)(curr->arg,
-			curr->timeout);
 	    free((genericptr_t) curr);
 	} else {
 	    prev = curr;
@@ -2315,7 +2230,7 @@ relink_timers(ghostly)
 		} else
 		    nid = (unsigned) curr->arg;
                 curr->arg = (genericptr_t) find_mid(nid, FM_EVERYWHERE);
-		if (!curr->arg) panic("cant find m_id %d", nid);
+		if (!curr->arg) panic("cant find o_id %d", nid);
 		curr->needs_fixup = 0;
 	    } else
 		panic("relink_timers 2");

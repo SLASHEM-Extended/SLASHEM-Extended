@@ -1,5 +1,5 @@
 /*
-  $Id: gtkyn.c,v 1.8 2001-06-16 18:14:40 j_ali Exp $
+  $Id: gtkyn.c,v 1.7 2001-04-12 14:44:31 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -260,7 +260,6 @@ GTK_yn_function(const char *query, const char *resp, CHAR_P def)
 
     gtk_grab_add(window);
     gtk_widget_show_all(window);
-    nh_gtk_perm_invent_hack();
     
     gtk_main();
 

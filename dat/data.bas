@@ -1,8 +1,6 @@
 #	SCCS Id: @(#)data.base	3.3	1999/11/28
-#	    $Id: data.bas,v 1.3 2002-03-11 18:54:48 j_ali Exp $
 #   Copyright (c) 1994, 1995, 1996 by the NetHack Development Team
 #   Copyright (c) 1994 by Boudewijn Wayers
-#   Copyright (c) 2002 by the Slash'EM Development Team
 #   NetHack may be freely redistributed.  See license for details.
 #
 # This is the data.base for SLASH'EM
@@ -293,11 +291,11 @@ arkenstone
 	and Ashikaga's  Muromachi regime lasted for  a long  time. The last
 	Ashikaga daimyo in power was the 14th descendant of Takauji.
 asphynx
-	This small,  inoffensive-looking snake shares the feared power
-	of petrification with its distant relatives the cockatrice and
-	basilisk. Just one touch from its blunt snout  can render  one
-	motionless for all eternity.
-		[ The New Bestiary, Wizard Endlebrook ]
+		This small,  inoffensive-looking snake shares the feared power
+		of petrification with its distant relatives the cockatrice and
+		basilisk. Just one touch from its blunt snout  can render  one
+		motionless for all eternity.
+	[ The New Bestiary, Wizard Endlebrook ]
 athol
 	In 1927, zoologist Ernst Bartels was in his home near the 
 	Tjidjenkol River in Java when he heard a strange cry louder than 
@@ -320,94 +318,90 @@ athol
 		[ "A Belfry of Crypto-bats." by Shuker, Dr. Karl P.N. 
 		Fortean Studies 1, pp. 235-245. ]
 horned devil
-	Horned devils lack any real special abilities,  though  they
-	are quite difficult to kill.
+		Horned devils lack any real special abilities,  though  they
+		are quite difficult to kill.
 incubus
 succubus
-	The incubus and succubus are male and female versions of the
-	same  demon, one who lies with a human for its own purposes,
-	usually to the detriment of the mortals who  are  unwise  in
-	their dealings with them.
+		The incubus and succubus are male and female versions of the
+		same  demon, one who lies with a human for its own purposes,
+		usually to the detriment of the mortals who  are  unwise  in
+		their dealings with them.
 erinyes
-	These female-seeming devils  attack hand to hand  and poison
-	their unwary victims as well.
+		These female-seeming devils  attack hand to hand  and poison
+		their unwary victims as well.
 marilith
-	The marilith, a type V demon, has a torso shaped  like  that
-	of  a human female, and the lower body of a great snake.  It
-	has multiple arms, and can freely attack with all  of  them.
-	Since it is intelligent enough to use weapons, this means it
-	can cause great damage.
+		The marilith, a type V demon, has a torso shaped  like  that
+		of  a human female, and the lower body of a great snake.  It
+		has multiple arms, and can freely attack with all  of  them.
+		Since it is intelligent enough to use weapons, this means it
+		can cause great damage.
 barbed devil
-	Barbed devils lack any real special abilities,  though  they
-	are quite difficult to kill.
+		Barbed devils lack any real special abilities,  though  they
+		are quite difficult to kill.
 vrock
-	The vrock is one of the weaker forms of demon, being only  a
-	type  I.   It  resembles a cross between a human being and a
-	vulture and does physical damage by biting and by using  the
-	claws on both its arms and feet.
+		The vrock is one of the weaker forms of demon, being only  a
+		type  I.   It  resembles a cross between a human being and a
+		vulture and does physical damage by biting and by using  the
+		claws on both its arms and feet.
 hezrou
-	``Hezrou'' is the common name for the type II demon.  It  is
-	among the weaker of demons, but still quite formidable.
+		``Hezrou'' is the common name for the type II demon.  It  is
+		among the weaker of demons, but still quite formidable.
 bone devil
-	Bone devils attack with weapons and with a great hooked tail
-	which causes a loss of strength to those they sting.
+		Bone devils attack with weapons and with a great hooked tail
+		which causes a loss of strength to those they sting.
 nalfeshnee
-	Not only do these demons, which are of type IV, do  physical
-	damage  with  their  claws and bite, but they are capable of
-	using magic as well.
+		Not only do these demons, which are of type IV, do  physical
+		damage  with  their  claws and bite, but they are capable of
+		using magic as well.
 ice devil
-	Ice devils  are  large  semi-insectoid  creatures,  who  are
-	equally  at home in the fires of Hell and the cold of Limbo,
-	and who can cause the traveller to feel the latter with just
-	a touch of their tail.
+		Ice devils  are  large  semi-insectoid  creatures,  who  are
+		equally  at home in the fires of Hell and the cold of Limbo,
+		and who can cause the traveller to feel the latter with just
+		a touch of their tail.
 pit fiend
-	Pit fiends are among the more powerful of devils, capable of
-	attacking  twice with weapons as well as grabbing and crush-
-	ing the life out of  those  unwary  enough  to  enter  their
-	domains.
+		Pit fiends are among the more powerful of devils, capable of
+		attacking  twice with weapons as well as grabbing and crush-
+		ing the life out of  those  unwary  enough  to  enter  their
+		domains.
 juiblex
 jubilex
-	Little is known about the Faceless Lord,  even  the  correct
-	spelling  of  his name.  He does not have a physical form as
-	we know it, and those who have peered into his  realm  claim
-	he  is  a  slime-like  creature who swallows other creatures
-	alive, spits acidic secretions, and causes  disease  in  his
-	victims which can be almost instantly fatal.
+		Little is known about the Faceless Lord,  even  the  correct
+		spelling  of  his name.  He does not have a physical form as
+		we know it, and those who have peered into his  realm  claim
+		he  is  a  slime-like  creature who swallows other creatures
+		alive, spits acidic secretions, and causes  disease  in  his
+		victims which can be almost instantly fatal.
 yeenoghu
-	Yeenoghu, the demon lord of gnolls,  still  exists  although
-	all his followers have been wiped off the face of the earth.
-	He casts magic projectiles at those close to him, and a mere
-	gaze  into  his  piercing  eyes  may  hopelessly confuse the
-	battle-weary adventurer.
+		Yeenoghu, the demon lord of gnolls,  still  exists  although
+		all his followers have been wiped off the face of the earth.
+		He casts magic projectiles at those close to him, and a mere
+		gaze  into  his  piercing  eyes  may  hopelessly confuse the
+		battle-weary adventurer.
 orcus
-	Orcus, Prince of the Undead, has a rams head  and  a  poison
-	stinger.   He is most feared, though, for his powerful magic
-	abilities.  His wand causes death to those he chooses.
+		Orcus, Prince of the Undead, has a rams head  and  a  poison
+		stinger.   He is most feared, though, for his powerful magic
+		abilities.  His wand causes death to those he chooses.
 geryon
-	Geryon is an arch-devil sometimes  called  the  Wild  Beast,
-	attacking  with  his claws and poison sting.  His ranking in
-	Hell is rumored to be quite low.
+		Geryon is an arch-devil sometimes  called  the  Wild  Beast,
+		attacking  with  his claws and poison sting.  His ranking in
+		Hell is rumored to be quite low.
 dispater
-	Dispater is an arch-devil who rules the city of Dis.  He  is
-	a powerful mage.
-b*lzebub
-	The "lord of the flies" is a translation of the Hebrew
-	Ba'alzevuv (Beelzebub in Greek).  It has been suggested that
-	it was a mistranslation of a mistransliterated word which
-	gave us this pungent and suggestive name of the Devil, a
-	devil whose name suggests that he is devoted to decay,
-	destruction, demoralization, hysteria and panic...
-	[ Notes on _Lord of the Flies_, by E. L. Epstein ]
+		Dispater is an arch-devil who rules the city of Dis.  He  is
+		a powerful mage.
+*lzebub
+		Baalzebub has been known as the lord of the flies.  His bite
+		drips  poison,  and a mere glance into his eyes can stun the
+		hapless invader of his realm.
 asmodeus
-	It is said that Asmodeus is the overlord over all  of  hell.
-	His  appearance,  unlike  many  other  demons and devils, is
-	human apart from his horns and tail.  He  can  freeze  flesh
-	with a touch.
+		It is said that Asmodeus is the overlord over all  of  hell.
+		His  appearance,  unlike  many  other  demons and devils, is
+		human apart from his horns and tail.  He  can  freeze  flesh
+		with a touch.
 demogorgon
-	Demogorgon, the prince of demons, wallows in filth  and  can
-	spread  a quickly fatal illness to his victims while rending
-	them.  He is a mighty spellcaster, and he can drain the life
-	of mortals with a touch of his tail.
+		Demogorgon, the prince of demons, wallows in filth  and  can
+		spread  a quickly fatal illness to his victims while rending
+		them.  He is a mighty spellcaster, and he can drain the life
+		of mortals with a touch of his tail.
 athame
 	The consecrated ritual knife of a Wiccan initiate (one of
 	four basic tools, together with the wand, chalice and
@@ -451,6 +445,14 @@ sack
 	is outside it; and whatever is outside it, is inside it.  So
 	you have all the wealth of the world in that leetle Purse!"
 		[ Sylvie and Bruno Concluded, by Lewis Carroll ]
+b*lzebub
+	The "lord of the flies" is a translation of the Hebrew
+	Ba'alzevuv (Beelzebub in Greek).  It has been suggested that
+	it was a mistranslation of a mistransliterated word which
+	gave us this pungent and suggestive name of the Devil, a
+	devil whose name suggests that he is devoted to decay,
+	destruction, demoralization, hysteria and panic...
+		[ Notes on _Lord of the Flies_, by E. L. Epstein ]
 balrog
 	...  It came to the edge of the fire and the light faded as
 	if a cloud had bent over it.  Then with a rush it leaped
@@ -527,6 +529,10 @@ human barbarian
 	"All I said was -"
 	"Shut up!"
 				[ The colour of Magic, by Terry Pratchett ]
+basilisk
+		At first glance an unassuming lizard; at first touch instantaneous
+		petrification. Such is the life of the feared basilisk.
+	[ The New Bestiary, Wizard Endlebrook 
 barbed devil
 	Barbed devils lack any real special abilities, though they
 	are quite difficult to kill.
@@ -534,13 +540,6 @@ barbed devil
 giant bat
 	A bat, flitting in the darkness outside, took the wrong turn
 	as it made its nightly rounds and came in through the window
-	which had been left healthfully open.  It then proceeded to
-	circle the room in the aimless fat-headed fashion habitual
-	with bats, who are notoriously among the less intellectually
-	gifted of God's creatures.  Show me a bat, says the old
-	proverb, and I will show you something that ought to be in
-	some kind of a home.
-		[ A Pelican at Blandings, by P. G. Wodehouse ]
 *boot*
 	In Fantasyland these are remarkable in that they seldom or
 	never wear out and are suitable for riding or walking in
@@ -586,6 +585,13 @@ bow
 	"It would not be amiss," said Hordle John, "if under his
 	girdle he had four farthings'-worth of wine."
 		[ The White Company, by Sir Arthur Conan Doyle ]
+	which had been left healthfully open.  It then proceeded to
+	circle the room in the aimless fat-headed fashion habitual
+	with bats, who are notoriously among the less intellectually
+	gifted of God's creatures.  Show me a bat, says the old
+	proverb, and I will show you something that ought to be in
+	some kind of a home.
+		[ A Pelican at Blandings, by P. G. Wodehouse ]
 bec de corbin
 	A peasant pole-arm, the bec de corbin's crow-beak blade 
 	was designed to puncture the heavy plate armor common to 
@@ -663,6 +669,7 @@ blind io
 gelatinous cube
 ooze
 * ooze
+*pudding
 * slime
 	These giant amoeboid creatures look like nothing more than
 	puddles of slime, but they both live and move, feeding on
@@ -681,30 +688,6 @@ ooze
 	penguins and slithering over the glistening floor that it and its
 	kind had swept so evilly free of all litter.
 		[ At the Mountains of Madness, by H.P. Lovecraft ]
-*pudding
-	   " It's all very fine," said the Puddin' gloomily, " singing about
-	the joys of being penguins and pirates, but how'd you like to be a
-	Puddin' and be eaten all day long? "
-	   And in a very gruff voice he sang as follows :--
-	      " O, who would be a puddin',
-		  A puddin' in a pot,
-		A puddin' which is stood on
-		  A fire which is hot ?
-		O sad indeed the lot
-		Of puddin's in a pot.
-	...
-	      " But as I am a puddin',
-		  A puddin' in a pot,
-		I hope you get the stomachache
-		  For eatin' me a lot.
-		I hope you get it hot,
-		  You puddin'-eatin' lot ! "
-	   " Very well sung, Albert," said Bill encouragingly, " though you're
-	a trifle husky in your undertones, which is no doubt due to the gravy
-	in your innards.  However, as a reward for bein' a bright little
-	feller we shall have a slice of you all round before turnin' in for
-	the night."
-	[ The Magic Pudding: The Adventures of Bunyip Bluegum. Norman Lindsay ]
 bone devil
 	Bone devils attack with weapons and with a great hooked tail
 	which causes a loss of strength to those they sting.
@@ -766,7 +749,16 @@ bugbear
 	larger and more hairy.  They are aggressive carnivores and
 	sometimes kill just for the treasure their victims may be
 	carrying.
-
+bugle
+	'I read you by your bugle horn
+	And by your palfrey good,
+	I read you for a Ranger sworn
+	To keep the King's green-wood.'
+	'A Ranger, Lady, winds his horn,
+	And 'tis at peep of light;
+	His blast is heard at merry morn,
+	And mine at dead of night.'
+		[ Brignall Banks, by Sir Walter Scott ]
 	Bugbears are giant, hairy  cousins of goblins who frequent the same
 	areas  as  their smaller  relatives.  Bugbears are  large and  very
 	muscular, standing 7' tall.  Their hides range from light yellow to
@@ -782,17 +774,7 @@ bugbear
 	adventurer, monster, and animal. Goblins  are always on  their toes
 	when  bugbears are present, for  the weak or  stupid quickly end up
 	in the stewpot.
-		[ Monstrous Manual, by TSR, Inc. ]
-bugle
-	'I read you by your bugle horn
-	And by your palfrey good,
-	I read you for a Ranger sworn
-	To keep the King's green-wood.'
-	'A Ranger, Lady, winds his horn,
-	And 'tis at peep of light;
-	His blast is heard at merry morn,
-	And mine at dead of night.'
-		[ Brignall Banks, by Sir Walter Scott ]
+					 [ Monstrous Manual, by TSR, Inc. ]
 *camaxtli
 	A classical Mesoamerican Aztec god, also known as Mixcoatl-
 	Camaxtli (the Cloud Serpent), Camaxtli is the god of war.  He
@@ -835,7 +817,7 @@ s*d*g*r* cat
 	protected) observer inside the container, the cat's state-vector
 	would have collapsed much earlier, and the outside observer's
 	linear combination has no relevance.
-		[ The Emperor's New Mind, by Roger Penrose ]
+			[ The Emperor's New Mind, by Roger Penrose ]
 *cat
 kitten
 	Well-known quadruped domestic animal from the family of
@@ -866,7 +848,7 @@ kitten
 	These strange creatures were said to live in the caves and
 	clefts of the mountains, myths associating them especially
 	with the hills of Thessaly and the range of Erymanthos.
-		 [ Mythology of all races, Vol. 1, pp. 270-271 ]
+			 [ Mythology of all races, Vol. 1, pp. 270-271 ]
 centipede
 	I observed here, what I had often seen before, that certain
 	districts abound in centipedes.  Here they have light
@@ -948,7 +930,7 @@ tiamat
 	blue-green,  and  purple  over her  back  and  hind-quarters,  then
 	merging into a muddy dark  brown tail. Her underbelly and  legs are
 	greenish white fading into her upper body colours.
-		 [ Monster Mythology, by TSR inc. ]
+					 [ Monster Mythology, by TSR inc. ]
 ~elven cloak
 ~oilskin cloak
 *cloak*
@@ -963,7 +945,7 @@ tiamat
 	with trees_ or _swords_, or needing to be _pulled close
 	around her/his shivering body_.  This seems to suggest they
 	are less than practical for anyone on an arduous Tour.
-		[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
+	[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
 cloud*
 	I wandered lonely as a cloud
 	That floats on high o'er vales and hills,
@@ -989,8 +971,7 @@ cobra
 	hood to keep the sun off Brahm as he slept.  Look, and be
 	afraid!'
 		[ Rikki-tikki-tavi, by Rudyard Kipling ]
-cockatrice
-basilisk
+c*ckatrice
 	Once in a great while, when the positions of the stars are
 	just right, a seven-year-old rooster will lay an egg.  Then,
 	along will come a snake, to coil around the egg, or a toad,
@@ -1012,8 +993,8 @@ basilisk
 	But even a dead basilisk is dangerous, for it is said that
 	merely touching its lifeless body can cause a person to
 	sicken and die.
-		[ Mythical Beasts by Deirdre Headon (The Leprechaun Library)
-			and other sources ]
+	[ Mythical Beasts by Deirdre Headon  (The Leprechaun Library) 
+		and other sources ]
 chickatrice
 	This beastie is the recently-hatched broodling of a cockatrice, a
 	creature feared by adventurers great and small for its petrifying
@@ -1034,7 +1015,7 @@ cornuthaum
 	like the headgear worn by ladies of that time, except that
 	the ladies were accustomed to have a bit of veil floating
 	from the top of it.
-		[ The Once and Future King, by T.H. White ]
+						[ The Once and Future King, by T.H. White ]
 
 		"A wizard!" Dooley exclaimed, astounded.
 		"At your service, sirs," said the wizard.  "How
@@ -1043,7 +1024,7 @@ cornuthaum
 	pretty much that, tall and cone-shaped with stars and crescent
 	moons all over it.  All in all, it couldn't have been more
 	wizardish.
-		[ The Elfin Ship, James P. Blaylock ]
+						[ The Elfin Ship, James P. Blaylock ]
 couatl
 	A mythical feathered serpent.  The couatl are very rare.
 	The couatl  are feathered serpents of myth and lore. It is believed
@@ -1054,7 +1035,7 @@ couatl
 	rainbow. Occasionally  sent as  messengers from  the gods to  their
 	erring servants,  a couatl  will always  seek to  punish those  who
 	deserve it.
-		[ 2nd ed. Monstrous Compendium, by TSR, Inc. ]
+				 [ 2nd ed. Monstrous Compendium, by TSR, Inc. ]
 coyote
 	This carnivore is known for its voracious appetite and
 	inflated view of its own intelligence.
@@ -1171,7 +1152,7 @@ cyclops
 	Proceeding from the heat-oppressed brain?
 	I see thee yet, in form as palpable
 	As this which now I draw.
-		[ Macbeth, by William Shakespeare ]
+                [ Macbeth, by William Shakespeare ]
 dark one
 	... But he ruled rather by force and fear, if they might
 	avail; and those who perceived his shadow spreading over the
@@ -1196,24 +1177,6 @@ demon
 	them difficult to deal with, even on the rare occasions when
 	they are friendly.
 	[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
-*deva
-	Devas are the descendants of plane-touched aasimon.  They have
-	feathery wings that may be vestigial or functional.
-	Movanic devas are the most frequently seen by mortals. Their
-	milky skin and slender build distinguishes them from the
-	dark and muscular monadic devas.  The latter are rarely encountered
-	except in the inner planes. It is said they are able to breathe
-	elements other than air.
-		[ adapted from Aasimar, by David Roberts and Brynn ]
-planetar
-	These Aasimar seldom associate with mortals.  Planetars are
-	hairless and tall, with green-tinted skin and a wild psionic talent.
-		[ adapted from Aasimar, by David Roberts and Brynn ]
-solar
-	Solars are near to powers in status, and their children like
-	demipowers.  Their hair and skin is metallic.  Solars stay aloof
-	from mortals, but may command them with an irresistable voice.
-		[ adapted from Aasimar, by David Roberts and Brynn ]
 dingo
 	A wolflike wild dog, Canis dingo, of Australia, having a
 	reddish- or yellowish-brown coat, believed to have been
@@ -1274,7 +1237,6 @@ doorway
 	All hope abandon ye who enter here.
 		[ The Inferno, from The Divine Comedy of Dante
 			Alighieri, translated by H.F. Cary ]
-~komodo*
 *dragon
 *xoth
 	In the West the dragon was the natural enemy of man.  Although
@@ -1343,7 +1305,7 @@ elwing
 		[ The Silmarillion, by J.R.R. Tolkien ]
 earth
 	Mostly Harmless.
-		[ Hitchhiker's Guide to the Galaxy, by Douglas Adams ]
+		[Hitchhiker's Guide to the Galaxy, by Douglas Adams]
 eel
 giant eel
 	The behaviour of eels in fresh water extends the air of
@@ -1544,7 +1506,7 @@ floating eye
 	its mystic powers, and then nibbled to death by some other
 	creature that lurked around nearby.
 flesh golem
-*frank*n*st*n*
+* frank*n*st*n
 	With an anxiety that almost amounted to agony, I collected
 	the instruments of life around me, that I might infuse a spark
 	of being into the lifeless thing that lay at my feet.  It was
@@ -1598,28 +1560,17 @@ fountain
 	And thank the great god Pan for all!
 		[ For a Fountain, by Bryan Waller Procter ]
 fox
-	One hot summer's day a Fox was strolling through an orchard till he
-	came to a bunch of Grapes just ripening on a vine which had been
-	trained over a lofty branch. "Just the thing to quench my thirst,"
-	quoth he. Drawing back a few paces, he took a run and a jump, and
-	just missed the bunch. Turning round again with a One, Two, Three, he
-	jumped up, but with no greater success. Again and again he tried
-	after the tempting morsel, but at last had to give it up, and walked
-	away with his nose in the air, saying: "I am sure they are sour."
+	One hot summer's day a Fox was strolling through an orchard
+	till he came to a bunch of Grapes just ripening on a vine
+	which had been trained over a lofty branch. "Just the thing
+	to quench my thirst," quoth he. Drawing back a few paces, he
+	took a run and a jump, and just missed the bunch. Turning
+	round again with a One, Two, Three, he jumped up, but with
+	no greater success. Again and again he tried after the
+	tempting morsel, but at last had to give it up, and walked
+	away with his nose in the air, saying: "I am sure they are
+	sour."
 		[ Aesop's Fables ]
-
-	Later on, at the time of wheat harvest, Samson took a young goat
-	and went to visit his wife. He said, "I'm going to my wife's
-	room."  But her father would not let him go in.
-	"I was so sure you thoroughly hated her," he said, "that I gave
-	her to your friend. Isn't her younger sister more attractive? Take
-	her instead."
-	Samson said to them, "This time I have a right to get even with
-	the Philistines; I will really harm them." So he went out and
-	caught three hundred foxes and tied them tail to tail in pairs. He
-	then fastened a torch to every pair of tails, lit the torches and
-	let the foxes loose in the standing grain of the Philistines.
-		[ Judges 15:1-5, NIV ]
 *fung*
 	Fungi, division of simple plants that lack chlorophyll, true
 	stems, roots, and leaves.  Unlike algae, fungi cannot
@@ -1658,7 +1609,7 @@ fox
 	[ Excerpt from the opening narration to the movie
 		_Gargoyles_, written by Stephen and Elinor Karpf ]
 gas spore*
-		Gas spores are a vaguely intelligent fungal growth that has
+		Gas spores are a vaguely intellegent fungal growth that has 
 	evolved to strongly resemble the Beholder.  If they are struck 
 	with  any amount of force they will explode violently.  Gas spores 
 	tend to grow in groups, and legends have been written about the 
@@ -1727,38 +1678,6 @@ giant humanoid
 	boulders as weapons, hurling them over large distances.  All
 	types of giants share a love for men - roasted, boiled, or
 	fried.  Their table manners are legendary.
-gila*
-	[Gila monsters] are stout-bodied lizards with short legs and a short,
-	fat tail. They're covered with bright irregular markings, usually
-	pink, yellow or white, against black or brown scales. They are shy,
-	retiring creatures unless they're provoked. Then they can be
-	dangerous because they secrete a neurotoxin -- a poison that
-	destroys nerve tissue -- from their salivary glands. In humans,
-	their bite can result in severe pain and even death.
-	    [Expedition Guide -- American Museum of Natural History]
-komodo*
-	The people of Komodo call this animal "ora." Elsewhere it is known
-	as the Komodo Island monitor or more popularly, the Komodo dragon.
-	Oras can reach 10 feet in length and weigh 300 pounds or more --
-	particularly after a meal. They are the top predators in their
-	habitat, feeding on wild boar, deer, water buffalo, dogs, goats,
-	rats, snakes, birds, other oras, and -- once in a great while --
-	humans. They hunt by ambush, hiding in the scrub brush along trails
-	and in the tall grass of the savannas. Despite their lumbering
-	appearance, oras can move with alarming speed when they want to,
-	lunging from their hiding places and sprinting toward their
-	startled victims. They can't sustain a long chase, but often all
-	they need to subdue their prey is one bite. Oras carry poisonous
-	bacteria in their mouths so even if they don't immediately catch
-	their prey, the attack is often fatal. Using their long forked
-	tongues (oras and other monitor lizards are closely related to
-	snakes), they track the scent of their prey as the wounded animal
-	slowly weakens from the infected bite -- a process that can take
-	several days. When the victim can no longer flee, the ora moves
-	in for the kill. Oras are voracious eaters. They devour every bit
-	of their prey -- bones, fur, hooves -- ripping off huge chunks with
-	their razor-sharp serrated teeth and swallowing the pieces whole.
-	    [Expedition Guide -- American Museum of Natural History]
 glaive
 	The glaive is a knife-bladed spear. It has the thrusting 
 	function of the spear, and the secondary cutting function of 
@@ -1767,21 +1686,6 @@ glaive
 	well as a cleaving attack. As with a spear or fauchard, however, 
 	it is not overly effective at holding opponents back, nor does 
 	it have the piercing or dismounting capabilities.
-deep gnome
-	Far beneath the surface of the earth dwell the Svirfneblin, or Deep
-	Gnomes. Small parties of these demihumans roam the Underdark's mazes
-	of small passageways searching for gemstones. They are said to dwell
-	in great cities consisting of a closely connected series of tunnels,
-	buildings, and caverns in which up to a thousand of these diminutive
-	creatures live. They keep the location of these hidden cities secret
-	in order to protect them from their deadly foes, the kuo-toa, Drow,
-	and mind flayers.
-	Svirfneblin are slightly smaller than rock gnomes, but their thin,
-	wiry, gnarled frames are just as strong. Their skin is rock-colored,
-	usually medium brown to brownish gray, and their eyes are gray. Male
-	svirfneblin are completely bald; female deep gnomes have stringy gray
-	hair. The average svirfneblin life span is 250 years.
-		[ The Underdark, by Mike Drees and Albert Foster ]
 ~gnome ??m*
 gnome*
 gnomish wizard
@@ -1885,29 +1789,6 @@ grayswandir
 	ANOINT, v.t.  To grease a king or other great functionary
 	already sufficiently slippery.
 		[ The Devil's Dictionary, by Ambrose Bierce ]
-*green glass
-silver ring
-	Nymph, nymph, what are your beads?
-		Green glass, goblin. Why do you stare at them?
-	Give them me.
-		No.
-	Give them me. Give them me.
-		No.
-	Then I will howl all night in the reeds,
-	Lie in the mud and howl for them.
-		Goblin, why do you love them so?
-	They are better than stars or water,
-	Better than voices of winds that sing.
-	Better than any man's fair daughter,
-	Your green glass beads on a silver ring.
-		Hush, I stole them out of the moon.
-	Give me your beads, I desire them.
-		No.
-	I will howl in a deep lagoon
-	For your green glass beads, I love them so.
-	Give them me. Give them.
-		No.
-		[ Overheard On A Saltmarsh, by Harold Monro ]
 gremlin
 	The gremlin is a highly intelligent and completely evil
 	creature.  It lives to torment other creatures and will go
@@ -1936,11 +1817,6 @@ grid bug
 	beam connection -- to which he'd given no thought whatsoever
 	until this moment -- was healthy and sound."
 		[ Tron, novel by Brian Daley, story by Steven Lisberger ]
-lightning bug
-arc bug
-spark bug
-	"What was that?" cried Buck, rubbing his numb and tingling arm.
-	"Nature's revenge for bug zappers," replied his companion.
 guisarme
 	Medieval peasants discovered that their pruning hooks made 
 	reasonably effective pole arms. The result: the guisarme. 
@@ -1953,13 +1829,6 @@ gunyoki
 	up of cooked chestnuts, dried seaweed, and sake.
 hachi
 	Hachi was a dog that went with his master, a professor, to
-	the Shibuya train station every morning.  In the afternoon,
-	when his master was to return from work Hachi would be there
-	waiting.  One day his master died at the office, and did not
-	return.  For over ten years Hachi returned to the station
-	every afternoon to wait for his master.  When Hachi died a
-	statue was erected on the station platform in his honor.  It
-	is said to bring you luck if you touch his statue.
 *harp
 	A triangular stringed instrument, often Magic.  Even when not
 	Magic, a Harp is surprisingly portable and tough and can be
@@ -1968,7 +1837,7 @@ hachi
 	Its strings break only in very rare instances, usually
 	because the Harper is sulking or crossed in love.  This is
 	just as well as no one seems to make or sell spare strings.
-		[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
+	[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
 
 	After breakfast was over, the ogre called out: "Wife, wife,
 	bring me my golden harp."  So she brought it and put it on
@@ -1983,6 +1852,13 @@ hachi
 	time to see Jack running off with his harp.
 		[ Jack and the Beanstalk, from English Fairy Tales,
 		  by Joseph Jacobs ]
+	the Shibuya train station every morning.  In the afternoon,
+	when his master was to return from work Hachi would be there
+	waiting.  One day his master died at the office, and did not
+	return.  For over ten years Hachi returned to the station
+	every afternoon to wait for his master.  When Hachi died a
+	statue was erected on the station platform in his honor.  It
+	is said to bring you luck if you touch his statue.
 halberd
 	This form of a pole axe is seen as a convex-headed broad axe 
 	in early examples, but the head is set at a convenient angle, 
@@ -2214,6 +2090,7 @@ ninja
 nurse
 page
 *priest*
+ronin
 samurai
 shopkeeper
 student
@@ -2370,7 +2247,7 @@ jaguar
 	Large, flesh-eating animal of the cat family, of Central and
 	South America.  This feline predator (_Panthera onca_) is
 	sometimes incorrectly called a panther.
-		[ Van Dale's Groot Woordenboek der Nederlandse Taal ]
+	 [ Van Dale's Groot Woordenboek der Nederlandse Taal ]
 jellyfish
 	I do not care to share the seas
 	With jellyfishes such as these;
@@ -2405,12 +2282,6 @@ kabuto
 	a small plate, the shoshaku tei ita, whose rear edge bent
 	downwards into a flange that rested against the forehead.
 	   [ Arms & Armour of the Samurai, by Bottomley & Hopson ]
-kamadan
-	The kamadan is a greatly feared hunter that resembles a large
-	leopard with six snakes sprouting from its shoulders.
-	Sages believe it is a distant relative of the displacer beast,
-	though how it came to be is still a matter for speculation.
-	    [ Creature Catalog by Scott Greene ]
 katana
 	The katana is a long, single-edged samurai sword with a
 	slightly curved blade.  Its long handle is designed to allow
@@ -2443,8 +2314,8 @@ king arthur
 	Igraine..."
 	And after these words, the lord rose and went to see the arch-
 	bishop to impart to him what had passed.
-		[ Van Gouden Tijden Zingen de Harpen, by Vladimir Hulpach,
-			Emanuel Frynta, and Vackav Cibula ]
+	   [ Van Gouden Tijden Zingen de Harpen, by Vladimir Hulpach,
+		Emanuel Frynta, and Vackav Cibula ]
 knife
 stiletto
 	Possibly perceiving an expression of dubiosity on their
@@ -2473,7 +2344,7 @@ human knight
 	But had the fortune in his age
 	To live a fool and die a sage.
 		[ Don Quixote of La Mancha by Miquel de
-			Cervantes Saavedra ]
+		  Cervantes Saavedra ]
 ~kobold ??m*
 *kobold*
 	The race of kobolds are reputed to be an artificial creation
@@ -2810,15 +2681,6 @@ ma*annan*
 manes
 	The gnats of the dungeon, these swarming monsters are rarely
 	seen alone.
-mangler
-	The Mangler (1995)
-	Starring: Robert Englund, Ted Levine
-	Director: Tobe Hooper
-	Synopsis: An industrial laundry machine develops a taste for blood in
-	 this Stephen King adaptation. Strictly for genre fans who overlook
-	 ludicrous plot, acting, and prefer bloody gore to genuine scares.
-	Runtime: 106 minutes
-		[ www.reel.com ]
 marduk
 	First insisting on recognition as supreme commander, Marduk
 	defeated the Dragon, cut her body in two, and from it created
@@ -2884,13 +2746,13 @@ master of thieves
 		[ The Colour of Magic, by Terry Pratchett ]
 MASTODON
 	Yakwawi, the Mastodon, was placed on the world to be useful 
-	to man; but the great monstrous beast was fierce, powerful and
+	to man; but The great monstrous beast was fierce, powerful and 
 	invincible. Its hide was so strong and so thick that the sharpest 
 	spears and arrows could hardly penetrate it. This terrible 
 	creature made war against all the other animals that lived in 
 	the woods and on the plains; other animals that the Creator put 
 	here to be used as meat for the Lenapé people.)
-		[ From Legends of the Lenape Native Americans ]
+		(--From Legends of the Lenape Native Americans)
 mastodon
 	Any large, elephantlike mammal of the genera Mammut, Mastodon,
 	etc., from the Oligocene and Pleistocene epochs, having
@@ -2968,7 +2830,7 @@ mine*
 	unwanted emeralds, etc., still embedded in the rock of the
 	walls.  Metal will also be present, but only when made up into
 	armor and weapons (_wondrous_).
-		[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
+	[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
 minotaur
 	The Minotaur was a monster, half bull, half human, the
 	offspring of Minos' wife Pasiphae and a wonderfully beautiful
@@ -3056,19 +2918,6 @@ moradin
 	clothing.  In most representations of him, he is at the forge,
 	working on a piece of steel.  As could be expected, his symbol of
 	worship is the anvil and hammer.
-mongbat
-	In appearance, a cross between a small boy and a bat, this nimble
-	creature is capable of quick, aerial strikes. Fortunately, a
-	mongbat's small size renders its attack little more than a painful
-	nuisance.
-	    [ Beyond the Serpent Pillars by Andrew Morris ]
-
-	Though a novice, the warrior had riches.
-	In finery, he assaulted the liches.
-	  An orc got his suit,
-	  A spectre one boot,
-	And a mongbat is wearing his britches.
-	    [ Limericks, by Magus ]
 monkey
 	"Listen, man-cub," said the Bear, and his voice rumbled like
 	thunder on a hot night.  "I have taught thee all the Law of
@@ -3426,25 +3275,6 @@ pelias
 	Pelias cryptically.  "You see my fleshy guise, he saw my naked
 	soul."
 	    [ Conan the Usurper, by Robert E. Howard and L. Sprague de Camp ]
-phase spider
-	Phase potion, which is related to oil of etherealness, is more
-	useful for general combat. When imbibed, this potion allows the
-	user to shift in and out of phase with the Prime Material plane
-	at will, much like a phase spider. When out of phase, the user
-	is impervious to all forms of attack except those that reach
-	into Ethereal plane. ... Phase potions are brewed from phase-spider
-	ichor or from the concentrated juices of rare underground fungi.
-		[ RPG Sheets by Amalor Mymnyx ]
-
-	Phase Spiders are not true Spiders, but an alien race which
-	appear as giant spiders with humanoid shaped heads. Phase Spiders
-	speak a whispery language which is reminiscent of the sound of the
-	wind blowing through the trees. ... Phase Spiders are considered
-	Enlightened creatures as they have the ability to phase in and out
-	of our normal space-time into what most scientists would refer to
-	as Void-Space. Phase Spiders use this ability to their great
-	advantage in combat.
-		[ Alien Update Lexicon by Randy Walker ]
 pick*ax*
 	The mine is full of holes;
 	With the wound of pickaxes.
@@ -3477,14 +3307,6 @@ pit fiend
 	attacking twice with weapons as well as grabbing and crushing
 	the life out of those unwary enough to enter their
 	domains.
-pixie*
-fairy
-fairies
-	Do fairies live in the hedge by the lawn?
-	With pale, violet eyes and wings that shimmer?
-	Not in my garden of thistle and thorn,
-	Well, not since I tidied it up with my strimmer.
-		[ Learning to Live with Orcs by Richard A. Bartle ]
 platinum yendorian express card
 	This is an ancient artifact made of an unknown material.  It
 	is rectangular in shape, very thin, and inscribed with
@@ -4405,7 +4227,7 @@ towel
 	blocks of masonry that make them very hard to climb. [...]
 	You will have to go to a Tower and then break into it at some
 	point towards the end of your Tour.
-		[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
+	[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
 trap*door
 	I knew my Erik too well to feel at all comfortable on jumping
 	into his house.  I knew what he had made of a certain palace at
@@ -4515,7 +4337,7 @@ tyr
 	when the Aesir would not loose him, then he bit off the hand
 	at the place now called 'the wolf's joint;' and Tyr is one-
 	handed, and is not called a reconciler of men.
-		[ The Prose Edda, by Snorri Sturluson ]
+			[ The Prose Edda, by Snorri Sturluson ]
 *hulk
 	Umber hulks are powerful subterranean predators whose
 	iron-like claws allow them to burrow through solid stone in
@@ -4741,9 +4563,7 @@ woodchuck
 	and heard the Oracle slam his finger on a computer key, followed
 	by a loud ZZZZOTTTTT and the smell of ozone.
 		[ Excerpted from Internet Oracularity 576.6 ]
-# avoid false hits for non-long worms
-worm
-long worm
+*worm
 long worm tail
 worm tooth
 crysknife
@@ -4778,7 +4598,7 @@ wumpus
 	try to shoot him and miss, there's also a chance that he'll
 	up and move himself into another cave, though by nature the
 	Wumpus is a sedentary creature.
-		[ wump(6) -- "Hunt the Wumpus" ]
+		[ wump (6) -- "Hunt the Wumpus" ]
 xan
 	They sent their friend the mosquito [xan] ahead of them to
 	find out what lay ahead.  "Since you are the one who sucks

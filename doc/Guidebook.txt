@@ -743,7 +743,9 @@
 
           ^D   Kick something (usually a door).
 
-          e    Eat food.
+          e    Eat food. Vampires cannot eat as  such.  However,  they  can
+               gain  nutrition  by  draining blood from fresh corpses using
+               this command.
 
           E    Engrave a message on the floor.  Engraving  the  word  ``El-
                bereth'' will cause most monsters to not attack you hand-to-
@@ -781,8 +783,6 @@
 
           p    Pay your shopping bill/Shopkeeper services.
 
-          P    Put on a ring or other accessory (amulet, blindfold).
-
 
 
 
@@ -795,6 +795,8 @@
           SLASH'EM Guidebook                                             13
 
 
+
+          P    Put on a ring or other accessory (amulet, blindfold).
 
           ^P   Repeat previous message (subsequent ^P's repeat earlier mes-
                sages).
@@ -847,8 +849,6 @@
 
           ^Y   Polymorph yourself, if you have the ability.
 
-          z    Zap a wand.  To aim at yourself, use `.' for the  direction.
-
 
 
 
@@ -861,6 +861,8 @@
           SLASH'EM Guidebook                                             14
 
 
+
+          z    Zap a wand.  To aim at yourself, use `.' for the  direction.
 
           Z    Zap (cast) a spell.
 
@@ -911,8 +913,6 @@
           #adjust
                Adjust inventory letters (most useful when the fixinv option
                is ``on'').
-
-
 
           __________
           (R)UNIX is a registered trademark of AT&T.

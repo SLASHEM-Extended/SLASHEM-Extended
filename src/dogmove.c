@@ -237,10 +237,9 @@ boolean devour;
 	    delobj(obj);
 	} else if (obj == uchain)
 	    unpunish();
-	else if (obj->quan > 1L && obj->oclass == FOOD_CLASS) {
+	else if (obj->quan > 1L && obj->oclass == FOOD_CLASS)
 	    obj->quan--;
-	    obj->owt = weight(obj);
-	} else
+	else
 	    delobj(obj);
 
 	if (poly) {
@@ -562,47 +561,6 @@ int after, udist, whappr;
 	return appr;
 }
 
-#ifdef DEBUG
-#define CHECK_ALLOW(flag,str)	if ((allowflags & (flag)) == (flag)) { \
-				    allowflags ^= (flag); \
-				    if (bp != buf) { *bp++=','; *bp++=' '; } \
-				    Strcpy(bp, str); \
-				    bp += strlen(bp); \
-				} else
-
-STATIC_OVL char *
-allow_set(allowflags)
-long allowflags;
-{
-    static char buf[500];
-    char *bp = buf;
-    if (allowflags == 0)
-	return "(none)";
-    *bp = '\0';
-    CHECK_ALLOW(ALLOW_TRAPS, "can enter traps");
-    CHECK_ALLOW(ALLOW_U, "can attack you");
-    CHECK_ALLOW(ALLOW_M, "can attack other monsters");
-    CHECK_ALLOW(ALLOW_TM, "can attack tame monsters");
-    CHECK_ALLOW(NOTONL, "avoids direct line to player");
-    CHECK_ALLOW(OPENDOOR, "opens closed doors");
-    CHECK_ALLOW(UNLOCKDOOR, "unlocks locked doors");
-    CHECK_ALLOW(BUSTDOOR, "breaks any doors");
-    CHECK_ALLOW(ALLOW_ROCK, "pushes rocks");
-    CHECK_ALLOW(ALLOW_WALL, "walks thru walls");
-    CHECK_ALLOW(ALLOW_DIG, "digs");
-    CHECK_ALLOW(ALLOW_SANCT, "enters temples");
-    CHECK_ALLOW(ALLOW_SSM, "ignores scare monster");
-    CHECK_ALLOW(NOGARLIC, "hates garlic");
-    if (allowflags) {
-	if (bp != buf) { *bp++=','; *bp++=' '; }
-	sprintf(bp, "0x%lX", allowflags);
-    }
-    return buf;
-}
-
-#undef CHECK_ALLOW
-#endif
-
 /* return 0 (no move), 1 (move) or 2 (dead) */
 int
 dog_move(mtmp, after)
@@ -675,25 +633,6 @@ register int after;     /* this is extra fast monster movement */
 
 	appr = dog_goal(mtmp, (has_edog && !is_spell) ? edog : (struct edog *)0,
 							after, udist, whappr);
-#ifdef DEBUG
-	{
-	    char *goal;
-	    switch(gtyp)
-	    {
-		case DOGFOOD:	goal = "dogfood"; break;
-		case CADAVER:	goal = "cadaver"; break;
-		case ACCFOOD:	goal = "accfood"; break;
-		case MANFOOD:	goal = "manfood"; break;
-		case APPORT:	goal = "apport"; break;
-		case POISON:	goal = "poison"; break;
-		case UNDEF:	goal = "undef"; break;
-		case TABU:	goal = "tabu"; break;
-		default:	goal = "???"; break;
-	    }
-	    debugpline("G(%s): %s @ (%d,%d), appr = %d",
-	      mon_nam(mtmp), goal, gx, gy, appr);
-	}
-#endif
 	if (appr == -2) return(0);
 
 	allowflags = ALLOW_M | ALLOW_TRAPS | ALLOW_SSM | ALLOW_SANCT;
@@ -724,14 +663,6 @@ register int after;     /* this is extra fast monster movement */
 	    }
 	}
 
-	/* ALI -- Mindless pets shouldn't attack monsters when
-	 * scared; they have no sense of allegiance to the hero,
-	 * only self-preservation. This prevents weak pets blocking
-	 * your exit from a shop by constantly missing shopkeeper.
-	 */
-	if (mindless(mtmp->data) && mtmp->mflee)
-	    allowflags &= ~ALLOW_M;
-
 	if (!nohands(mtmp->data) && !verysmall(mtmp->data)) {
 		allowflags |= OPENDOOR;
 		if (m_carrying(mtmp, SKELETON_KEY)) allowflags |= BUSTDOOR;
@@ -742,14 +673,6 @@ register int after;     /* this is extra fast monster movement */
 					m_carrying(mtmp, DWARVISH_MATTOCK)))
 		allowflags |= ALLOW_DIG;
 	cnt = mfndpos(mtmp, poss, info, allowflags);
-#ifdef DEBUG
-	debugpline("%d positions found with allow: %s", cnt,
-	  allow_set(allowflags));
-	for (i = 0; i < cnt; i++) {
-	    debugpline("[%d] %s @ (%d, %d)", i,
-	      allow_set(info[i]), poss[i].x, poss[i].y);
-	}
-#endif
 
 	/* Normally dogs don't step on cursed items, but if they have no
 	 * other choice they will.  This requires checking ahead of time
@@ -813,7 +736,7 @@ register int after;     /* this is extra fast monster movement */
 			  || mtmp2->data->msound == MS_LEADER) &&
 			 mtmp2->mpeaceful && !Conflict) ||
 			   (touch_petrifies(mtmp2->data) &&
-				!resists_ston(mtmp)))
+  				!resists_ston(mtmp)))
 			continue;
 
 		    if (after) return(0); /* hit only once each move */

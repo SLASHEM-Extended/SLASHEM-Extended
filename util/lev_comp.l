@@ -116,7 +116,7 @@ input()		/* Under MPW \n is chr(13)! Compensate for this. */
 		  map_cnt = 0;
 		  return MAP_ID;
 		}
-<MAPC>[-|}{+ABCISHKPLWTFZ\\#. ]*\n	{
+<MAPC>[-|}{+ABCISHKPLWTF\\#. ]*\n	{
 		  line_number++;
 		  (void) strncpy(map + map_cnt, yytext, yyleng);
 		  map_cnt += yyleng;
@@ -214,7 +214,6 @@ dust		{ yylval.i=DUST; return ENGRAVING_TYPE; }
 engrave		{ yylval.i=ENGRAVE; return ENGRAVING_TYPE; }
 burn		{ yylval.i=BURN; return ENGRAVING_TYPE; }
 mark		{ yylval.i=MARK; return ENGRAVING_TYPE; }
-scrawl		{ yylval.i=ENGR_BLOOD; return ENGRAVING_TYPE; }
 blessed		{ yylval.i=1; return CURSE_TYPE; }
 uncursed	{ yylval.i=2; return CURSE_TYPE; }
 cursed		{ yylval.i=3; return CURSE_TYPE; }

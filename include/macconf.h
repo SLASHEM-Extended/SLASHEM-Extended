@@ -21,14 +21,6 @@
  # WIDENED_PROTOTYPES (defined if UNWIDENED_PROTOTYPES is undefined and
  # NHSTDC is defined).
  */
-#  ifdef applec
-#   define MAC_MPW32		/* Headers, and for avoiding a bug */
-#  endif
-
-#  ifndef __powerc
-#   define MAC68K		/* 68K mac (non-powerpc) */
-#  endif
-
 #  define RANDOM
 #  define NO_SIGNAL		/* You wouldn't believe our signals ... */
 #  define FILENAMELEN 256
@@ -37,10 +29,9 @@
 #  define TEXTCOLOR		/* For Mac TTY interface */
 #  define CHANGE_COLOR
 
-/* Use these includes instead of system.h. */
+/* Use these two includes instead of system.h. */
 #include <string.h>
 #include <stdlib.h>
-#include <time.h>
 
 /* Uncomment this line if your headers don't already define off_t */
 /*typedef long off_t;*/
@@ -72,15 +63,16 @@
 #  define getpid() 1
 #  define getuid() 1
 #endif
+
 #  define index strchr
 #  define rindex strrchr
-
 #  define Rand random
 
 #ifdef MAC_MPW
 # define error progerror
 #endif /* MAC_MPW */
 extern void error(const char *,...);
+
 
 # if !defined(O_WRONLY)
 #  ifdef __MWERKS__
@@ -114,7 +106,7 @@ extern void error(const char *,...);
 # define SAVE_TYPE 'SAVE'
 # define PREF_TYPE 'PREF'
 # define DATA_TYPE 'DATA'
-# define MAC_CREATOR 'slEm' /* Registered with DTS */
+# define MAC_CREATOR 'slEm' /* Not yet registered with DTS ! */
 
 /*
  * Define PORT_HELP to be the name of the port-specfic help file.

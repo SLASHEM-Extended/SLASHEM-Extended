@@ -737,7 +737,7 @@ forget_map(howmuch)
 		/* Zonk all memory of this location. */
 		levl[zx][zy].seenv = 0;
 		levl[zx][zy].waslit = 0;
-		clear_memory_glyph(zx, zy, S_stone);
+		levl[zx][zy].glyph = cmap_to_glyph(S_stone);
 	    }
 }
 
@@ -1142,7 +1142,7 @@ register struct obj     *sobj;
 		if(confused || sobj->cursed) cnt += 12;
 		while(cnt--) {
 #ifdef WIZARD
-		    if(!wizard || !(mtmp = create_particular()))
+		    if(!wizard || !create_particular())
 #endif /* WIZARD  */
 /*                (void) makemon (confused ? &mons[PM_ACID_BLOB] :
 					(struct permonst *) 0, u.ux, u.uy);*/
@@ -1160,11 +1160,11 @@ register struct obj     *sobj;
            }
         /*WAC Give N a shot at controlling the beasties (if not cursed <g>)*/
         /*check curse status in case this ever becomes a scroll*/
-           if (mtmp && !sobj->cursed) {
+           if(!(sobj->cursed)) {
                 if (Role_if(PM_NECROMANCER)) {
                     if (!resist(mtmp, sobj->oclass, 0, TELL)) {
-                       mtmp = tamedog(mtmp, (struct obj *) 0);
-		       if (mtmp) You("dominate %s!", mon_nam(mtmp));
+                       (void) tamedog(mtmp, (struct obj *) 0);
+                       You("dominate the %s!", mon_nam(mtmp));
                        }
                 } else setmangry(mtmp);
            }
@@ -1180,7 +1180,7 @@ register struct obj     *sobj;
                      sp_no++);
                 if (sp_no < MAXSPELL &&
                     spl_book[sp_no].sp_id == SPE_COMMAND_UNDEAD) {
-                        You("try to command %s", mon_nam(mtmp));
+                        You("try to command the %s", mon_nam(mtmp));
                         spelleffects(sp_no, TRUE);
                 } else You ("don't seem to have the spell command undead memorized!");
            } else You ("don't know how to command undead...");
@@ -1260,8 +1260,8 @@ register struct obj     *sobj;
             if (is_undead(mtmp->data)) {
                 if(!(sobj->cursed)) {
                     if (!resist(mtmp, sobj->oclass, 0, TELL)) {
-                       mtmp = tamedog(mtmp, (struct obj *) 0);
-                       if (mtmp) You("dominate %s!", mon_nam(mtmp));
+                       (void) tamedog(mtmp, (struct obj *) 0);
+                       You("dominate the %s!", mon_nam(mtmp));
                        }
 /*WAC Cursed scroll will get them mad!*/
                 } else setmangry(mtmp);
@@ -1674,11 +1674,16 @@ do_it:
 	    /* hallways remain dark on the rogue level */
 	} else
 #endif
-	    do_clear_area(u.ux,u.uy,
-		obj->oartifact ? 12 :
+	     
+/* STEPHEN WHITE'S NEW CODE */
+	if (obj->oartifact) {
+	    do_clear_area(u.ux,u.uy, 12,
+		set_lit, (genericptr_t)((on)? 1 : -1));
+	} else {
+	do_clear_area(u.ux,u.uy,
 		(obj && obj->oclass==SCROLL_CLASS && obj->blessed) ? 9 : 5,
 		set_lit, (genericptr_t)(on ? &is_lit : (char *)0));
-
+	}
 	/*
 	 *  If we are not blind, then force a redraw on all positions in sight
 	 *  by temporarily blinding the hero.  The vision recalculation will
@@ -2062,7 +2067,7 @@ boolean revival;
 }
 
 #ifdef WIZARD
-struct monst *
+boolean
 create_particular()
 {
 	char buf[BUFSZ];
@@ -2070,7 +2075,7 @@ create_particular()
 
 	do {
 	    getlin("Create what kind of monster? [type the name]", buf);
-	    if (buf[0] == '\033') return (struct monst *)0;
+	    if (buf[0] == '\033') return FALSE;
 	    which = name_to_mon(buf);
 	    if (which < LOW_PM) pline("I've never heard of such monsters.");
 	    else break;
@@ -2078,9 +2083,10 @@ create_particular()
 	if (tries == 5) pline(thats_enough_tries);
 	else {
 	    (void) cant_create(&which, FALSE);
-	    return makemon(&mons[which], u.ux, u.uy, NO_MM_FLAGS);
+	    return((boolean)(makemon(&mons[which],
+				u.ux, u.uy, NO_MM_FLAGS) != 0));
 	}
-	return (struct monst *)0;
+	return FALSE;
 }
 #endif /* WIZARD */
 

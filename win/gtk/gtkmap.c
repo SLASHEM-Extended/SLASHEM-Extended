@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.23 2001-05-08 06:17:07 j_ali Exp $
+  $Id: gtkmap.c,v 1.22 2001-04-22 17:21:20 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1235,29 +1235,27 @@ GTK_print_glyph(winid id, XCHAR_P x, XCHAR_P y, int glyph)
     struct rm *lev = &levl[x][y];
     int tile;
     int bgtile;
-    int bg = back_to_glyph(x, y);
+    int bg = lev->glyph;
 
     tile = fix_tile(glyph2tile[glyph]);
     if(Blind || (viz_array && !cansee(x, y))){
-	if (glyph_is_object(lev->glyph) && !lev->waslit) {
-	    if (bg == cmap_to_glyph(S_room))
-		bg = cmap_to_glyph(S_stone);
-	    else if (bg == cmap_to_glyph(S_litcorr))
-		bg = cmap_to_glyph(S_corr);
-	}
-	else
-	    bg = lev->glyph;
-    }
-    bgtile = fix_tile(glyph2tile[bg]);
 
-    if (glyph != gtkmap[y][x].glyph || bgtile != gtkmap[y][x].bgtile ||
-      tile != gtkmap[y][x].tile) {
-	gtkmap[y][x].glyph = glyph;
-	gtkmap[y][x].bgtile = bgtile;
-	gtkmap[y][x].tile = tile;
-	gtkmap[y][x].update = 1;
-	map_update++;
+	if(glyph_is_object(bg)){
+	    if(!lev->waslit)
+		bg = cmap_to_glyph(S_stone);
+	    else
+		bg = back_to_glyph(x, y);
+	}
+	bgtile = fix_tile(glyph2tile[bg]);
     }
+    else
+	bgtile = fix_tile(glyph2tile[back_to_glyph(x, y)]);
+
+    gtkmap[y][x].glyph = glyph;
+    gtkmap[y][x].bgtile = bgtile;
+    gtkmap[y][x].tile = tile;
+    gtkmap[y][x].update = 1;
+    map_update++;
 }
 
 void

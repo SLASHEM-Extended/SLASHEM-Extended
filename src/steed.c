@@ -251,7 +251,6 @@ mount_steed(mtmp, force)
 	    return (FALSE);
 	}
 	if (!force && !Role_if(PM_KNIGHT) && !(--mtmp->mtame)) {
-	    newsym(mtmp->mx, mtmp->my);
 	    pline("%s resists!", Monnam(mtmp));
 	    return (FALSE);
 	}
@@ -328,36 +327,8 @@ exercise_steed()
 void
 kick_steed()
 {
-	char He[4];
-	int gend;
 	if (!u.usteed)
 	    return;
-
-	/* [ALI] Various effects of kicking sleeping/paralyzed steeds */
-	if (u.usteed->msleeping || !u.usteed->mcanmove) {
-	    /* We assume a message has just been output of the form
-	     * "You kick <steed>."
-	     */
-	    gend = u.usteed->mnamelth ? pronoun_gender(u.usteed) : 2;
-	    Strcpy(He, he[gend]);
-	    *He = highc(*He);
-	    if ((u.usteed->mcanmove || u.usteed->mfrozen) && !rn2(2)) {
-		if (u.usteed->mcanmove)
-		    u.usteed->msleeping = 0;
-		else if (u.usteed->mfrozen > 2)
-		    u.usteed->mfrozen -= 2;
-		else {
-		    u.usteed->mfrozen = 0;
-		    u.usteed->mcanmove = 1;
-		}
-		if (u.usteed->msleeping || !u.usteed->mcanmove)
-		    pline("%s stirs.", He);
-		else
-		    pline("%s rouses %sself!", He, him[gend]);
-	    } else
-		pline("%s does not respond.", He);
-	    return;
-	}
 
 	/* Make the steed less tame and check if it resists */
 	if (u.usteed->mtame) u.usteed->mtame--;
@@ -475,19 +446,15 @@ dismount_steed(reason)
 	     * able to walk onto a square with a hole, and autopickup before
 	     * falling into the hole).
 	     */
-		/* [ALI] No need to move the player if the steed died. */
-		if (!DEADMONSTER(mtmp)) {
-		    /* Keep steed here, move the player to cc;
-		     * teleds() clears u.utrap
-		     */
-		    in_steed_dismounting = TRUE;
-		    teleds(cc.x, cc.y);
-		    in_steed_dismounting = FALSE;
+		/* Keep steed here, move the player to cc; teleds() clears u.utrap */
+		in_steed_dismounting = TRUE;
+		teleds(cc.x, cc.y);
+		in_steed_dismounting = FALSE;
 
-		    /* Put your steed in your trap */
-		    if (save_utrap)
-			(void) mintrap(mtmp);
-		}
+		/* Put your steed in your trap */
+		if (save_utrap)
+		    (void) mintrap(mtmp);
+
 	    /* Couldn't... try placing the steed */
 	    } else if (enexto(&cc, u.ux, u.uy, mtmp->data)) {
 		/* Keep player here, move the steed to cc */
@@ -501,9 +468,7 @@ dismount_steed(reason)
 	}
 
 	/* Return the player to the floor */
-	in_steed_dismounting = TRUE;
 	(void) float_down(0L, W_SADDLE);
-	in_steed_dismounting = FALSE;
 	flags.botl = 1;
 	if (reason != DISMOUNT_ENGULFED) {
 		(void)encumber_msg();

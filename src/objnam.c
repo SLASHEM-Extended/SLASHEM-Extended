@@ -235,10 +235,6 @@ register struct obj *obj;
 	if (!Blind) obj->dknown = TRUE;
 	if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER)) obj->bknown = TRUE;
 
-	/* We could put a switch(obj->oclass) here but currently only this one case exists */
-	if (obj->oclass == WEAPON_CLASS && is_poisonable(obj) && obj->opoisoned)
-		Strcpy(buf, "poisoned ");
-
 	if (obj_is_pname(obj))
 	    goto nameit;
 	switch (obj->oclass) {
@@ -257,6 +253,8 @@ register struct obj *obj;
 			Sprintf(buf,"%s amulet", dn);
 		break;
 	    case WEAPON_CLASS:
+		if (is_poisonable(obj) && obj->opoisoned)
+			Strcpy(buf, "poisoned ");
 	    case VENOM_CLASS:
 	    case TOOL_CLASS:
 		if (typ == LENSES)
@@ -635,19 +633,13 @@ plus:
 			Strcat(prefix, sitoa(obj->spe));
 			Strcat(prefix, " ");
 		}
-		if (is_lightsaber(obj) 
-#ifdef FIREARMS
-				|| obj->otyp == STICK_OF_DYNAMITE
-#endif
-				) {
+		if (is_lightsaber(obj)) {
 			if(obj->lamplit) Strcat(bp, " (lit)");
 #ifdef DEBUG
 			Sprintf(eos(bp), " (%d)", obj->age);		
 #endif
-#ifdef FIREARMS
 		} else if (is_grenade(obj)) {
-			if(obj->oarmed) Strcat(bp, " (armed)");
-#endif
+			if(obj->lamplit) Strcat(bp, " (armed)");
 		}
 		break;
 	case ARMOR_CLASS:
@@ -809,10 +801,6 @@ ring:
 	if(obj->owornmask & W_QUIVER) Strcat(bp, " (in quiver)");
 	if(!Hallucination && obj->unpaid)
 		Strcat(bp, " (unpaid)");
-#ifdef WIZARD
-	if (wizard && obj->in_use)	/* Can't use "(in use)", see leashes */
-		Strcat(bp, " (finishing)");	/* always a bug */
-#endif
 	if (!strncmp(prefix, "a ", 2) &&
 			index(vowels, *(prefix+2) ? *(prefix+2) : *bp)
 			&& (*(prefix+2) || (strncmp(bp, "uranium", 7)
@@ -899,9 +887,6 @@ register struct obj *otmp;
 char *FDECL((*func), (OBJ_P));
 {
 	long savequan;
-#ifdef SHOW_WEIGHT
-	unsigned saveowt;
-#endif
 	char *nam;
 
 	/* Note: using xname for corpses will not give the monster type */
@@ -910,15 +895,8 @@ char *FDECL((*func), (OBJ_P));
 
 	savequan = otmp->quan;
 	otmp->quan = 1L;
-#ifdef SHOW_WEIGHT
-	saveowt = otmp->owt;
-	otmp->owt = weight(otmp);
-#endif
 	nam = (*func)(otmp);
 	otmp->quan = savequan;
-#ifdef SHOW_WEIGHT
-	otmp->owt = saveowt;
-#endif
 	return nam;
 }
 
@@ -1176,12 +1154,10 @@ const char *oldstr;
 	    (len >= 4 &&
 	     (!strcmp(spot-3, "fish") || !strcmp(spot-3, "tuna") ||
 	      !strcmp(spot-3, "deer") || !strcmp(spot-3, "yaki") ||
-	      !strcmp(spot-3, "nori") || !strcmp(spot-3, "drow"))) ||
+	      !strcmp(spot-3, "nori"))) ||
 	    (len >= 5 && (!strcmp(spot-4, "sheep") ||
 			!strcmp(spot-4, "ninja") ||
-#ifndef DEVEL_BRANCH
 			!strcmp(spot-4, "ronin") ||
-#endif
 			!strcmp(spot-4, "shito") ||
 			!strcmp(spot-4, "tengu") ||
 			!strcmp(spot-4, "manes"))) ||
@@ -1933,7 +1909,6 @@ register char *bp;
 	if (strncmpi(bp, "master key", 10)) /* not the "master" rank */
         if (strncmpi(bp, "Thiefbane", 9)) /* not the "thief" rank */
         if (strncmpi(bp, "Ogresmasher", 11)) /* not the "ogre" monster */
-        if (strncmpi(bp, "Bat from Hell", 13)) /* not the "bat" monster */
 	if (mntmp < LOW_PM && strlen(bp) > 2 &&
 	    (mntmp = name_to_mon(bp)) >= LOW_PM) {
 		int mntmptoo, mntmplen; /* double check for rank title */
@@ -2641,17 +2616,6 @@ typfnd:
 	/* more wishing abuse: don't allow wishing for certain artifacts */
 	/* and make them pay; charge them for the wish anyway! */
 	if ((is_quest_artifact(otmp) ||
-#ifdef DEVEL_BRANCH
-	    /* [ALI] Can't wish for artifacts which have a set location */
-	    (otmp->oartifact &&
-	       (otmp->oartifact == ART_KEY_OF_CHAOS ||
-	        otmp->oartifact == ART_KEY_OF_NEUTRALITY ||
-	        otmp->oartifact == ART_KEY_OF_LAW ||
-	        otmp->oartifact == ART_HAND_OF_VECNA ||
-	        otmp->oartifact == ART_EYE_OF_THE_BEHOLDER ||
-	        otmp->oartifact == ART_NIGHTHORN ||
-	        otmp->oartifact == ART_THIEFBANE)) ||
-#endif
 # ifdef NOARTIFACTWISH
 /* Wishing for a "weak" artifact is easier than for a stronger one */
 	(otmp->oartifact &&

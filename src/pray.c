@@ -1180,12 +1180,7 @@ dosacrifice()
 
 	if (altaralign != A_CHAOTIC && altaralign != A_NONE) {
 		/* curse the lawful/neutral altar */
-		int race = mrace2race(ptr->mflags2);
-		if (race != ROLE_NONE)
-		    pline_The("altar is stained with %s blood.",
-			    races[race].adj);
-		else
-		    impossible("Bad monster race?");
+		pline_The("altar is stained with %s blood.", urace.adj);
 		if(!Is_astralevel(&u.uz))
 		    levl[u.ux][u.uy].altarmask = AM_CHAOTIC;
 		angry_priest();

@@ -518,11 +518,9 @@ boolean pets_only;      /* true for ascension or final escape */
 			stay_behind = TRUE;
 #ifdef BLACKMARKET                
 		} else if (mtmp->mtame && (ttmp = t_at(u.ux,u.uy)) && 
-		    ttmp->ttyp == MAGIC_PORTAL &&
-		    (Is_blackmarket(&ttmp->dst) || Is_blackmarket(&u.uz))) {
-			pline("%s can't follow you %s.",
-			      Monnam(mtmp), Is_blackmarket(&u.uz) ?
-			      "through the portal" : "into the Black Market");
+		    ttmp->ttyp == MAGIC_PORTAL && Is_blackmarket(&(ttmp->dst))) {
+			pline("%s can't follow you into the Black Market.",
+			      Monnam(mtmp));
 			stay_behind = TRUE;
 #endif /* BLACKMARKET */
 		} else if (mon_has_amulet(mtmp)) {
@@ -660,8 +658,9 @@ register struct obj *obj;
 	struct permonst *fptr = &mons[obj->corpsenm];
 
 	/*WAC to catch angels without edog struct*/
-	/* [ALI] and potential pets which are currently still untamed */
-	boolean has_edog = mon->mtame && !mon->isminion;
+	boolean has_edog = FALSE;
+	has_edog = !mon->isminion;
+
 
 	if (is_quest_artifact(obj) || obj_resists(obj, 0, 95))
 	    return (obj->cursed ? TABU : APPORT);
@@ -953,14 +952,7 @@ struct monst *mtmp;
 	if (mtmp->mtame && rn2(mtmp->mtame)) yelp(mtmp);
 	else growl(mtmp);       /* give them a moment's worry */
 
-	if (!mtmp->mtame) {
-	    if (mtmp->mleashed) {
-		pline("%s breaks loose of %s leash!",
-			Monnam(mtmp), his[pronoun_gender(mtmp)]);
-		m_unleash(mtmp);
-	    }
-	    newsym(mtmp->mx, mtmp->my);
-	}
+	if (!mtmp->mtame) newsym(mtmp->mx, mtmp->my);
 }
 
 #endif /* OVLB */

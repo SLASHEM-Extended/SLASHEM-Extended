@@ -20,19 +20,18 @@
  * Incrementing EDITLEVEL can be used to force invalidation of old bones
  * and save files.
  */
-#define EDITLEVEL	4
+#define EDITLEVEL        4
 /*
  * Fix level can be used to distinguish versions between edit levels.
  * Note: Incrementing FIXLEVEL does _not_ invalidate old bones and save files.
  */
-#define FIXLEVEL	8  /* Define to enable a fixlevel version */
+#define FIXLEVEL        4  /* Define to enable a fixlevel version */
 #else
-#define EDITLEVEL	6
-/* #define FIXLEVEL        0 */
+#define EDITLEVEL	5
 #endif
 
 #define COPYRIGHT_BANNER_A \
-"This is SuperLotsoAddedStuffHack-Extended Magic 1997-2002"
+"This is SuperLotsoAddedStuffHack-Extended Magic 1997-2000"
 
 #define COPYRIGHT_BANNER_B \
 "NetHack, Copyright 1985-2000 Stichting Mathematisch Centrum, M. Stephenson."

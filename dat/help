@@ -119,7 +119,7 @@ Commands:
                 and most can be changed by simply selecting their entry.
                 Options are usually set before the game with a NETHACKOPTIONS
                 environment variable, or via a config file (defaults.nh,
-                Slash'EM Defaults, nethack.cnf, .nethackrc, etc.), not with 
+                NetHack Defaults, nethack.cnf, .nethackrc, etc.), not with 
                 the 'O' command.
         p       Pay your shopping bill/Shopkeeper services.
         P       Put on an accessory (ring, amulet, etc).

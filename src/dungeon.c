@@ -6,10 +6,6 @@
 #include "dgn_file.h"
 #include "dlb.h"
 
-#ifdef macintosh
-#define getch() getchar()
-#endif
-
 #ifdef OVL1
 
 #define DUNGEON_AREA    FILE_AREA_UNSHARE
@@ -52,7 +48,7 @@ STATIC_DCL const char *FDECL(br_string, (int));
 STATIC_DCL void FDECL(print_branch, (winid, int, int, int));
 #endif
 
-#if defined(DEBUG) || defined(DEBUG_420942)
+#ifdef DEBUG
 #define DD      dungeons[i]
 STATIC_DCL void NDECL(dumpit);
 
@@ -638,7 +634,7 @@ struct level_map {
 };
 
 void
-init_dungeons()
+init_dungeons()         /* initialize the "dungeon" structs */
 {
 	dlb     *dgn_file;
 	register int i, cl = 0, cb = 0;
@@ -646,11 +642,6 @@ init_dungeons()
 	struct proto_dungeon pd;
 	struct level_map *lev_map;
 	struct version_info vers_info;
-
-	/* [ALI] Cope with being called more than once. The GTK interface
-	 * can currently do this, although it really should use popen().
-	 */
-	free_dungeons();
 
 	pd.n_levs = pd.n_brs = 0;
 
@@ -895,9 +886,8 @@ init_dungeons()
 	    /* TO DO: strip "dummy" out all the way here,
 	       so that it's hidden from <ctrl/O> feedback. */
 	}
-
 #ifdef DEBUG
-	dumpit();
+	/*dumpit();*/
 #endif
 }
 
@@ -1055,7 +1045,9 @@ Is_branchlev(lev)
 d_level *lev;
 {
 	branch *curr;
-
+/*
+	branch *temp;
+ */
 	for (curr = branches; curr; curr = curr->next) {
 	    if (on_level(lev, &curr->end1) || on_level(lev, &curr->end2))
 		return curr;

@@ -236,7 +236,7 @@ moverock()
 	    }
 
 	    /* Move the boulder *after* the message. */
-	    if (memory_is_invisible(rx, ry))
+	    if (glyph_is_invisible(levl[rx][ry].glyph))
 		unmap_object(rx, ry);
 	    movobj(otmp, rx, ry);       /* does newsym(rx,ry) */
 	    if (Blind) {
@@ -490,18 +490,15 @@ register xchar x,y;
 #endif /* OVLB */
 #ifdef OVL1
 
-/* [ALI] Changed to take monst * as argument to support passwall property */
 boolean
-bad_rock(mon,x,y)
-struct monst *mon;
+bad_rock(mdat,x,y)
+struct permonst *mdat;
 register xchar x,y;
 {
-	struct permonst *mdat = mon->data;
-	boolean passwall = mon == &youmonst ? Passes_walls : passes_walls(mdat);
 	return((boolean) ((In_sokoban(&u.uz) && sobj_at(BOULDER,x,y)) ||
 	       (IS_ROCK(levl[x][y].typ)
 		    && (!tunnels(mdat) || needspick(mdat) || !may_dig(x,y))
-		    && !(passwall && may_passwall(x,y)))));
+		    && !(passes_walls(mdat) && may_passwall(x,y)))));
 }
 
 boolean
@@ -619,7 +616,7 @@ domove()
 				confdir();
 				x = u.ux + u.dx;
 				y = u.uy + u.dy;
-			} while(!isok(x, y) || bad_rock(&youmonst, x, y));
+			} while(!isok(x, y) || bad_rock(youmonst.data, x, y));
 		}
 		/* turbulence might alter your actual destination */
 		if (u.uinwater) {
@@ -721,7 +718,7 @@ domove()
 	     * attack_check(), which still wastes a turn, but prints a
 	     * different message and makes the player remember the monster.		     */
 	    if(flags.nopick &&
-		  (canspotmon(mtmp) || memory_is_invisible(x, y))){
+		  (canspotmon(mtmp) || glyph_is_invisible(levl[x][y].glyph))){
 		if(mtmp->m_ap_type && !Protection_from_shape_changers
 						    && !sensemon(mtmp))
 		    stumble_onto_mimic(mtmp);
@@ -769,14 +766,14 @@ domove()
 	/* specifying 'F' with no monster wastes a turn */
 	if (flags.forcefight ||
 	    /* remembered an 'I' && didn't use a move command */
-	    (memory_is_invisible(x, y) && !flags.nopick)) {
+	    (glyph_is_invisible(levl[x][y].glyph) && !flags.nopick)) {
 		You("attack %s.", Underwater ? "empty water" : "thin air");
 		unmap_object(x, y); /* known empty -- remove 'I' if present */
 		newsym(x, y);
 		nomul(0);
 		return;
 	}
-	if (memory_is_invisible(x, y)) {
+	if (glyph_is_invisible(levl[x][y].glyph)) {
 	    unmap_object(x, y);
 	    newsym(x, y);
 	}
@@ -867,24 +864,6 @@ domove()
 	} else if (IS_DOOR(tmpr->typ)) {
 	    if (closed_door(x,y)) {
 		if (Blind) feel_location(x,y);
-#ifdef DEVEL_BRANCH
-		/* ALI - artifact doors */
-		if (artifact_door(x, y)) {
-		    flags.move = 0;
-		    if (amorphous(youmonst.data))
-			You("try to ooze under the door, but the gap is too small.");
-		    else if (tunnels(youmonst.data) && !needspick(youmonst.data))
-			You("hurt your teeth on the re-enforced door.");
-		    else if (x == u.ux || y == u.uy) {
-			if (Blind || Stunned || ACURR(A_DEX) < 10 || Fumbling) {
-			    pline("Ouch!  You bump into a heavy door.");
-			    exercise(A_DEX, FALSE);
-			} else pline("That door is closed.");
-		    }
-		    nomul(0);
-		    return;
-		} else
-#endif
 		if (Passes_walls)
 		    ;   /* do nothing */
 		else if (can_ooze(&youmonst))
@@ -919,7 +898,7 @@ domove()
 	    }
 	}
 	if (u.dx && u.dy
-		&& bad_rock(&youmonst,u.ux,y) && bad_rock(&youmonst,x,u.uy)) {
+		&& bad_rock(youmonst.data,u.ux,y) && bad_rock(youmonst.data,x,u.uy)) {
 	    /* Move at a diagonal. */
 	    if (In_sokoban(&u.uz)) {
 	    	You("cannot pass that way.");
@@ -1170,21 +1149,8 @@ stillinwater:;
 	    /* limit recursive calls through teleds() */
 	    if(is_lava(u.ux,u.uy) && lava_effects())
 		    return;
-	    if (is_pool(u.ux, u.uy)) {
-#ifdef STEED
-		if (u.usteed && !is_flyer(u.usteed->data) &&
-			!is_floater(u.usteed->data) &&
-			!is_clinger(u.usteed->data)) {
-		    dismount_steed(Underwater ?
-			    DISMOUNT_FELL : DISMOUNT_GENERIC);
-		    /* dismount_steed() -> float_down() -> pickup() */
-		    if (!Is_airlevel(&u.uz) && !Is_waterlevel(&u.uz))
-			pick = FALSE;
-		} else
-#endif
-		if (!Wwalking && drown())
+	    if(is_pool(u.ux,u.uy) && !Wwalking && drown())
 		    return;
-	    }
 	}
 	check_special_room(FALSE);
 #ifdef SINKS

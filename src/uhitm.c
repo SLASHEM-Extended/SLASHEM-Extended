@@ -131,7 +131,7 @@ boolean barehanded;
 		 * not stay there, so the player will have suddenly forgotten
 		 * the square's contents for no apparent reason.
 		if (!canspotmon(mtmp) &&
-		    !memory_is_invisible(u.ux+u.dx, u.uy+u.dy))
+		    !glyph_is_invisible(levl[u.ux+u.dx][u.uy+u.dy].glyph))
 			map_invisible(u.ux+u.dx, u.uy+u.dy);
 		 */
 		return retval;
@@ -144,7 +144,7 @@ boolean barehanded;
 	 * happening two turns in a row.
 	 */
 	if (!canspotmon(mtmp) &&
-		    !memory_is_invisible(u.ux+u.dx, u.uy+u.dy) &&
+		    !glyph_is_invisible(levl[u.ux+u.dx][u.uy+u.dy].glyph) &&
 		    !(!Blind && mtmp->mundetected && hides_under(mtmp->data))) {
 		pline("Wait!  There's %s there you can't see!",
 			something);
@@ -166,7 +166,7 @@ boolean barehanded;
 		 * some (probably different) unseen monster, the player is in
 		 * luck--he attacks it even though it's hidden.
 		 */
-		if (memory_is_invisible(mtmp->mx, mtmp->my)) {
+		if (glyph_is_invisible(levl[mtmp->mx][mtmp->my].glyph)) {
 		    seemimic(mtmp);
 		    return retval;
 		}
@@ -178,7 +178,7 @@ boolean barehanded;
 		(hides_under(mtmp->data) || mtmp->data->mlet == S_EEL)) {
 	    mtmp->mundetected = mtmp->msleeping = 0;
 	    newsym(mtmp->mx, mtmp->my);
-	    if (memory_is_invisible(mtmp->mx, mtmp->my)) {
+	    if (glyph_is_invisible(levl[mtmp->mx][mtmp->my].glyph)) {
 		seemimic(mtmp);
 		return retval;
 	    }
@@ -434,7 +434,7 @@ atk_done:
 	 * evade.
 	 */
 	if (flags.forcefight && mtmp->mhp > 0 && !canspotmon(mtmp) &&
-	    !memory_is_invisible(u.ux+u.dx, u.uy+u.dy) &&
+	    !glyph_is_invisible(levl[u.ux+u.dx][u.uy+u.dy].glyph) &&
 	    !(u.uswallow && mtmp == u.ustuck))
 		map_invisible(u.ux+u.dx, u.uy+u.dy);
 
@@ -506,13 +506,10 @@ struct attack *uattk;
 		if (mon->mhp == oldhp)
 			*mhit = 0;
 		if (mon->wormno && *mhit) {
-		    int hit = *mhit;
-		    if (!u.twoweap || (hit & HIT_UWEP)) {
-			if (cutworm(mon, u.ux+u.dx, u.uy+u.dy, uwep))
-			    hit = 0;	/* Don't try and cut a worm twice */
-		    }
-		    if (u.twoweap && (hit & HIT_USWAPWEP))
-			(void) cutworm(mon, u.ux+u.dx, u.uy+u.dy, uswapwep);
+		    if (!u.twoweap || (*mhit & HIT_UWEP)) 
+			cutworm(mon, u.ux+u.dx, u.uy+u.dy, uwep);
+		    if (u.twoweap && (*mhit & HIT_USWAPWEP)) 
+			cutworm(mon, u.ux+u.dx, u.uy+u.dy, uswapwep);
 		}
 	    }
 
@@ -898,8 +895,6 @@ int thrown;
 			}
 # endif /* P_SPOON */
 			if (ammo_and_launcher(obj, launcher)) {
-			    if (launcher->oartifact)
-				tmp += spec_dbon(launcher, mon, tmp);
 			    /* Elves and Samurai do extra damage using
 			     * their bows&arrows; they're highly trained.
 			     */
@@ -1178,6 +1173,12 @@ int thrown;
 	    else if (u.twoweap) use_skill(P_TWO_WEAPON_COMBAT,1);
 	}
 
+	if(mon->mflee && Role_if(PM_ROGUE)) {        
+		You("strike %s from behind!", mon_nam(mon));
+		tmp += u.ulevel;
+		hittxt = TRUE;
+	}
+  
 	if (ispoisoned) {
 	    int nopoison = (10 - (obj->owt/10));            
 	    if(nopoison < 2) nopoison = 2;
@@ -1496,13 +1497,11 @@ STATIC_DCL void NDECL(demonpet);
 STATIC_OVL void
 demonpet()
 {
-	int i;
 	struct permonst *pm;
 	struct monst *dtmp;
 
 	pline("Some hell-p has arrived!");
-	i = !rn2(6) ? ndemon(u.ualign.type) : NON_PM;
-	pm = i != NON_PM ? &mons[i] : youmonst.data;
+	pm = !rn2(6) ? &mons[ndemon(u.ualign.type)] : youmonst.data;
 	if ((dtmp = makemon(pm, u.ux, u.uy, NO_MM_FLAGS)) != 0)
 	    (void)tamedog(dtmp, (struct obj *)0);
 	exercise(A_WIS, TRUE);
@@ -1953,11 +1952,13 @@ register struct attack *mattk;
 				/* no corpse after system shock */
 				tmp = rnd(30);
 #endif
-			} else if (!mon_poly(mdef, TRUE,
-			  "%s undergoes a freakish metamorphosis!"))
-				/* prevent killing the monster again - 
-				 * could be killed in mon_poly */
-				tmp = 0;
+			} else {
+			    if (!mon_poly(mdef, TRUE)) tmp = 0;
+			    	/* prevent killing the monster again - 
+			    	 * could be killed in mon_poly */
+			    else if (!Blind) /* Successful polymorph */
+				pline("%s undergoes a freakish metamorphosis!",Monnam(mdef));
+			}
 		}
 		break;
 		/* WAC -- for death gazes - but all messages should be generic */
@@ -2894,13 +2895,6 @@ struct monst *mtmp;
 	    else if (mtmp->m_ap_type == M_AP_MONSTER)
 		what = a_monnam(mtmp);	/* differs from what was sensed */
 	} else {
-#ifdef DISPLAY_LAYERS
-	    if (levl[u.ux+u.dx][u.uy+u.dy].mem_bg == S_hcdoor ||
-		    levl[u.ux+u.dx][u.uy+u.dy].mem_bg == S_vcdoor)
-		fmt = "The door actually was %s!";
-	    else if (levl[u.ux+u.dx][u.uy+u.dy].mem_obj == GOLD_PIECE)
-		fmt = "That gold was %s!";
-#else
 	    int glyph = levl[u.ux+u.dx][u.uy+u.dy].glyph;
 
 	    if (glyph_is_cmap(glyph) &&
@@ -2910,7 +2904,6 @@ struct monst *mtmp;
 	    else if (glyph_is_object(glyph) &&
 		    glyph_to_obj(glyph) == GOLD_PIECE)
 		fmt = "That gold was %s!";
-#endif
 
 	    /* cloned Wiz starts out mimicking some other monster and
 	       might make himself invisible before being revealed */

@@ -101,10 +101,6 @@ register struct obj *obj;
 {
 	/* protect invocation tools but not Rider corpses (handled elsewhere)*/
      /* if (obj->oclass != FOOD_CLASS && obj_resists(obj, 0, 0)) */
-#ifdef DEVEL_BRANCH
-	if (evades_destruction(obj))
-		return FALSE;
-#endif
 	if (objects[obj->otyp].oc_unique)
 		return FALSE;
 	/* above also prevents the Amulet from being eaten, so we must never
@@ -313,8 +309,9 @@ recalc_wt()     /* modify object wt. depending on time spent consuming it */
 	debugpline("Used time = %d, Req'd time = %d",
 		victual.usedtime, victual.reqtime);
 #endif
+	/* weight(piece) = weight of full item */
 	if(victual.usedtime)
-	    piece->owt = weight(piece);
+	    piece->owt = eaten_stat(weight(piece), piece);
 #ifdef DEBUG
 	debugpline("New weight = %d", piece->owt);
 #endif
@@ -340,12 +337,10 @@ touchfood(otmp)
 register struct obj *otmp;
 {
 	if (otmp->quan > 1L) {
-	    struct obj *obj = otmp;
-	    otmp = splitoneoff(&obj);
-	    if (!otmp) {
-		impossible("unsplitable food");
-		return obj;
-	    }
+	    if(!carried(otmp))
+		(void) splitobj(otmp, 1L);
+	    else
+		otmp = splitobj(otmp, otmp->quan - 1L);
 #ifdef DEBUG
 	    debugpline("split object,");
 #endif
@@ -367,13 +362,10 @@ register struct obj *otmp;
 
 	if (carried(otmp)) {
 	    freeinv(otmp);
-	    if (inv_cnt() >= 52)
+	    if (inv_cnt() >= 52 && !merge_choice(invent, otmp))
 		dropy(otmp);
-	    else {
-		otmp->oxlth++;		/* hack to prevent merge */
-		otmp = addinv(otmp);
-		otmp->oxlth--;
-	    }
+	    else
+		otmp = addinv(otmp); /* unlikely but a merge is possible */
 	}
 	return(otmp);
 }
@@ -1190,9 +1182,6 @@ opentin()               /* called during each move whilst opening a tin */
 	    }
 	    if (which == 0) what = makeplural(what);
 #ifdef EATEN_MEMORY
-	    /* ALI - you already know the type of the tinned meat */
-	    if (tin.tin->known && mvitals[tin.tin->corpsenm].eaten < 255)
-		mvitals[tin.tin->corpsenm].eaten++;
 	    /* WAC - you only recognize if you've eaten this before */
 	    if (!mvitals[tin.tin->corpsenm].eaten && !Hallucination) {
 		if (rn2(2))
@@ -1205,11 +1194,10 @@ opentin()               /* called during each move whilst opening a tin */
 	    pline("It smells like %s%s.", (which == 2) ? "the " : "", what);
 
 	    if (yn("Eat it?") == 'n') {
-#ifdef EATEN_MEMORY
-	    	/* ALI - you know the tin iff you recognized the contents */
-		if (mvitals[tin.tin->corpsenm].eaten)
-#endif
+#ifndef EATEN_MEMORY
+	    	/* if you haven't eaten it,  you won't know it... */
 		if (!Hallucination) tin.tin->dknown = tin.tin->known = TRUE;
+#endif
 		if (flags.verbose) You("discard the open tin.");
 		goto use_me;
 	    }
@@ -1218,6 +1206,9 @@ opentin()               /* called during each move whilst opening a tin */
 	    victual.fullwarn = victual.eating = victual.doreset = FALSE;
 
 #ifdef EATEN_MEMORY
+	    /* ALI - you already know the type of the tinned meat */
+	    if (tin.tin->known && mvitals[tin.tin->corpsenm].eaten < 255)
+		mvitals[tin.tin->corpsenm].eaten++;
 	    /* WAC - you only recognize if you've eaten this before */
 	    You("consume %s %s.", tintxts[r].txt,
 				mvitals[tin.tin->corpsenm].eaten ?
@@ -2205,7 +2196,10 @@ doeat()         /* generic "eat" command funtion (see cmd.c) */
 	 * they shouldn't be able to choke now.
 	 */
 	    if (u.uhs != SATIATED) victual.canchoke = FALSE;
-	    victual.piece = touchfood(otmp);
+	    if(!carried(victual.piece)) {
+		if(victual.piece->quan > 1L)
+			(void) splitobj(victual.piece, 1L);
+	    }
 	    You("resume your meal.");
 	    start_eating(victual.piece);
 	    return(1);

@@ -344,7 +344,7 @@ register struct obj *otmp;
 
 	nothing = unkn = 0;
 
-#if defined(BLACKMARKET) && !defined(DEVEL_BRANCH)
+#ifdef BLACKMARKET
     if (otmp->otyp == POT_POLYMORPH && Is_blackmarket(&u.uz)) {
             /* No ID */
             pline("A mysterious force causes the liquid to evaporate!");
@@ -353,8 +353,7 @@ register struct obj *otmp;
 					!objects[otmp->otyp].oc_uname)
 				docall(otmp);
 			if (carried(otmp)) useup(otmp);
-			else if (otmp->where == OBJ_FLOOR) useupf(otmp, 1L);
-			else dealloc_obj(otmp);		/* Dummy potion */
+			else useupf(otmp, 1L);
             return(1);
     }
 #endif /* BLACKMARKET */
@@ -375,7 +374,7 @@ register struct obj *otmp;
 	}
 	if (carried(otmp)) useup(otmp);
 	else if (otmp->where == OBJ_FLOOR) useupf(otmp, 1L);
-	else dealloc_obj(otmp);		/* Dummy potion */
+	else dealloc_obj(otmp);		/* Dummy potion of gain level */
 	return(1);
 }
 
@@ -639,7 +638,7 @@ peffects(otmp)
 		    incr_itimeout(&HDetect_monsters, 20+rnd(40));
 		    for (x = 1; x < COLNO; x++) {
 			for (y = 0; y < ROWNO; y++) {
-			    if (memory_is_invisible(x, y)) {
+			    if (levl[x][y].glyph == GLYPH_INVISIBLE) {
 				unmap_object(x, y);
 				newsym(x,y);
 			    }
@@ -1193,7 +1192,7 @@ boolean your_fault;
 	     * magic resistance protects from polymorph traps, so make
 	     * it guard against involuntary polymorph attacks too... 
 	     */
-#if defined(BLACKMARKET) && !defined(DEVEL_BRANCH)
+#ifdef BLACKMARKET
 	    if (Is_blackmarket(&u.uz)) {
                 pline("A mysterious force causes the liquid to evaporate!");
                 pline("%s is untouched.", Monnam(mon));
@@ -1203,7 +1202,7 @@ boolean your_fault;
 	    if (resists_magm(mon)) {
                 shieldeff(mon->mx, mon->my);
 	    } else if (!resist (mon, POTION_CLASS, 0, NOTELL)) {
-                mon_poly(mon, your_fault, "%s changes!");
+                mon_poly(mon, your_fault);
                 if (!Hallucination && canspotmon (mon))
                                 makeknown (POT_POLYMORPH);
 	    }
@@ -1704,12 +1703,7 @@ register struct obj *obj;
 /* returns TRUE if something happened (potion should be used up) */
 {
 	int chg;
-#ifdef DEVEL_BRANCH
-	int otyp = obj->otyp, otyp2;
-	xchar ox, oy;
-	long owornmask;
-	struct obj *otmp;
-#endif
+
 
 	/* Check to see if object is valid */
 	if (!obj)
@@ -1718,7 +1712,6 @@ register struct obj *obj;
 	if (obj->oartifact)
 		/* WAC -- Could have some funky fx */
 		return (FALSE);
-#ifndef DEVEL_BRANCH
 	if (carried(obj)) {
 		/* Unwear it */
 		if (obj == uarm) Armor_gone();
@@ -1735,7 +1728,6 @@ register struct obj *obj;
 #endif
 		setnotworn(obj);
 	}
-#endif	/* DEVEL_BRANCH */
 
 	switch (obj->otyp)
 	{
@@ -1994,7 +1986,6 @@ register struct obj *obj;
 		case TOOLED_HORN:
 			obj->otyp = rn1(HORN_OF_PLENTY - TOOLED_HORN, FROST_HORN);
 			obj->spe = rn1(5,10);
-			obj->known = 0;
 			break;
 		case HORN_OF_PLENTY:
 		case FIRE_HORN:
@@ -2004,7 +1995,6 @@ register struct obj *obj;
 		case WOODEN_HARP:
 			obj->otyp = MAGIC_HARP;
 			obj->spe = rn1(5,10);
-			obj->known = 0;
 			break;
 		case MAGIC_HARP:
 			obj->otyp = WOODEN_HARP;
@@ -2020,7 +2010,6 @@ register struct obj *obj;
 		case TIN_OPENER:
 			obj->otyp = TINNING_KIT;
 			obj->spe = rn1(30,70);
-			obj->known = 0;
 			break;
 		case TINNING_KIT:
 			obj->otyp = TIN_OPENER;
@@ -2035,7 +2024,6 @@ register struct obj *obj;
 			chg = rn1(10,3);
 			if (obj->spe > chg)
 				obj->spe = chg;
-			obj->known = 0;
 			break;
 		case K_RATION:
 		case C_RATION:
@@ -2059,91 +2047,8 @@ register struct obj *obj;
 			return (FALSE);
 	}
 
-#ifdef DEVEL_BRANCH
-	if ((!carried(obj) || obj->unpaid) &&
-#ifdef UNPOLYPILE
-		!is_fuzzy(obj) &&
-#endif
-		get_obj_location(obj, &ox, &oy, BURIED_TOO|CONTAINED_TOO) &&
-		costly_spot(ox, oy)) {
-	    char objroom = *in_rooms(ox, oy, SHOPBASE);
-	    register struct monst *shkp = shop_keeper(objroom);
-
-	    if ((!obj->no_charge ||
-		 (Has_contents(obj) &&
-		    (contained_cost(obj, shkp, 0L, FALSE) != 0L)))
-	       && inhishop(shkp)) {
-		if(shkp->mpeaceful) {
-		    if(*u.ushops && *in_rooms(u.ux, u.uy, 0) ==
-			    *in_rooms(shkp->mx, shkp->my, 0) &&
-			    !costly_spot(u.ux, u.uy))
-			make_angry_shk(shkp, ox, oy);
-		    else {
-			pline("%s gets angry!", Monnam(shkp));
-			hot_pursuit(shkp);
-		    }
-		} else Norep("%s is furious!", Monnam(shkp));
-		otyp2 = obj->otyp;
-		obj->otyp = otyp;
-		/*
-		 * [ALI] When unpaid containers are upgraded, the
-		 * old container is billed as a dummy object, but
-		 * it's contents are unaffected and will remain
-		 * either unpaid or not as appropriate.
-		 */
-		otmp = obj->cobj;
-		obj->cobj = NULL;
-		if (costly_spot(u.ux, u.uy) && objroom == *u.ushops)
-		    bill_dummy_object(obj);
-		else
-		    (void) stolen_value(obj, ox, oy, FALSE, FALSE);
-		obj->otyp = otyp2;
-		obj->cobj = otmp;
-	    }
-	}
-#endif
-
 	/* The object was transformed */
 	obj->owt = weight(obj);
-	obj->oclass = objects[obj->otyp].oc_class;
-	if (!objects[obj->otyp].oc_uses_known)
-	    obj->known = 1;
-
-#ifdef DEVEL_BRANCH
-	if (carried(obj)) {
-	    if (obj == uskin) rehumanize();
-	    /* Quietly remove worn item if no longer compatible --ALI */
-	    owornmask = obj->owornmask;
-	    if (owornmask & W_ARM && !is_suit(obj))
-		owornmask &= ~W_ARM;
-	    if (owornmask & W_ARMC && !is_cloak(obj))
-		owornmask &= ~W_ARMC;
-	    if (owornmask & W_ARMH && !is_helmet(obj))
-		owornmask &= ~W_ARMH;
-	    if (owornmask & W_ARMS && !is_shield(obj))
-		owornmask &= ~W_ARMS;
-	    if (owornmask & W_ARMG && !is_gloves(obj))
-		owornmask &= ~W_ARMG;
-	    if (owornmask & W_ARMF && !is_boots(obj))
-		owornmask &= ~W_ARMF;
-#ifdef TOURIST
-	    if (owornmask & W_ARMU && !is_shirt(obj))
-		owornmask &= ~W_ARMU;
-#endif
-	    if (owornmask & W_TOOL && obj->otyp != BLINDFOLD &&
-	      obj->otyp != TOWEL && obj->otyp != LENSES)
-		owornmask &= ~W_TOOL;
-	    otyp2 = obj->otyp;
-	    obj->otyp = otyp;
-	    if (obj->otyp == LEASH && obj->leashmon) o_unleash(obj);
-	    remove_worn_item(obj);
-	    obj->otyp = otyp2;
-	    obj->owornmask = owornmask;
-	    setworn(obj, obj->owornmask);
-	    puton_worn_item(obj);
-	}
-#endif	/* DEVEL_BRANCH */
-
 	return (TRUE);
 }
 
@@ -2265,17 +2170,30 @@ dodip()
 	 * 	 Give out name of new object and allow user to name the potion
 	 */
 	/* KMH, balance patch -- idea by Dylan O'Donnell <dylanw@demon.net> */
-	else if (potion->otyp == POT_GAIN_LEVEL && upgrade_obj(obj)) {
-	    /* The object was upgraded */
-	    pline("Hmm!  You don't recall dipping that into the potion.");
-	    prinv((char *)0, obj, 0L);			
-	    if (!objects[potion->otyp].oc_name_known &&
-		    !objects[potion->otyp].oc_uname)
-		docall(potion);
-	    useup(potion);
-	    update_inventory();
-	    exercise(A_WIS, TRUE);
-	    return(1);	    
+	else if (potion->otyp == POT_GAIN_LEVEL) {
+	    if (upgrade_obj(obj)) {
+		/* The object was upgraded */
+		/* FIXME -- charge for purchased merchandise */
+		/*check_unpaid(obj);
+		check_unpaid(potion);*/
+
+		if (obj->oclass != POTION_CLASS) {
+			pline("Hmm! You don't recall dipping that into the potion.");
+			prinv((char *)0, obj, 0L);			
+			if(!(objects[potion->otyp].oc_name_known) &&
+			   !(objects[potion->otyp].oc_uname))
+		          	docall(potion);
+		} else {
+		    pline_The("potions mix...");
+		    if (!Blind) 
+			pline_The("mixture looks %s.",
+				hcolor(OBJ_DESCR(objects[obj->otyp])));
+		}
+		useup(potion);
+		update_inventory();
+		exercise(A_WIS, TRUE);
+		return (1);	    
+	    }
 	} else if (obj->otyp == POT_POLYMORPH ||
 		potion->otyp == POT_POLYMORPH) {
 	    /* some objects can't be polymorphed */
@@ -2404,7 +2322,8 @@ dodip()
   
 	if (potion->otyp == POT_OIL &&
                 (obj->oclass == WEAPON_CLASS || is_weptool(obj))) {
-	    boolean wisx = FALSE;
+		boolean wisx = FALSE;
+
 	    if (potion->lamplit) {      /* burning */
                 int omat = objects[obj->otyp].oc_material;
                 if (obj->oerodeproof || obj_resists(obj, 5, 95) ||
@@ -2414,19 +2333,19 @@ dodip()
                           Yname2(obj),
                           (obj->quan > 1L) ? "" : "s");
   		} else {
-		    if (omat == PLASTIC) obj->oeroded = MAX_ERODE;
-		    pline_The("burning oil %s %s.",
+			if (omat == PLASTIC) obj->oeroded = MAX_ERODE;
+            pline_The("burning oil %s %s.",
   			    obj->oeroded == MAX_ERODE ? "destroys" : "damages",
                             yname(obj));
   		    if (obj->oeroded == MAX_ERODE) {
-			obj_extract_self(obj);
-			obfree(obj, (struct obj *)0);
-			obj = (struct obj *) 0;
-		    } else {
+	  			obj_extract_self(obj);
+	  			obfree(obj, (struct obj *)0);
+	  			obj = (struct obj *) 0;
+			} else {
                         /* should check for and do something about
                            damaging unpaid shop goods here */
-			obj->oeroded++;
-		    }
+	  			obj->oeroded++;
+			}
   		}
 	    } else if (potion->cursed) {
                 pline_The("potion spills and covers your %s with oil.",
@@ -2441,7 +2360,7 @@ dodip()
                 /* uses up potion, doesn't set obj->greased */
                pline("%s gleam%s with an oily sheen.",
                      Yname2(obj),
-                     (obj->quan > 1L) ? "" : "s");
+                      (obj->quan > 1L) ? "" : "s");
   	    } else {
                 pline("%s %s less %s.",
                       Yname2(obj),
@@ -2452,29 +2371,25 @@ dodip()
 		if (obj->oeroded2 > 0) obj->oeroded2--;
                 wisx = TRUE;
   	    }
-	    exercise(A_WIS, wisx);
+        exercise(A_WIS, wisx);
   	    makeknown(potion->otyp);
   	    useup(potion);
-	    return 1;
+        return 1;
 	}
 
 	/* KMH, balance patch -- acid affects damage(proofing) */
 	if (potion->otyp == POT_ACID && (obj->oclass == ARMOR_CLASS ||
-		obj->oclass == WEAPON_CLASS || is_weptool(obj))) {
-	    if (!potion->blessed && obj->oerodeproof) {
-		pline("%s %s golden shield.",  Yname2(obj),
-			(obj->quan > 1L) ? "lose their" : "loses its");
-		obj->oerodeproof = 0;
-		makeknown(potion->otyp);
-	    } else {
-		pline("%s looks a little dull.", Yname2(obj));
-		if (!objects[potion->otyp].oc_name_known &&
-			!objects[potion->otyp].oc_uname)
-		    docall(potion);
-	    }
-	    exercise(A_WIS, FALSE);
+			obj->oclass == WEAPON_CLASS || is_weptool(obj))) {
+		if (flags.verbose) You("dip %s into the potion.", yname(obj));
+		if (!potion->blessed && obj->oerodeproof) {
+			pline("%s %s golden shield.",  Yname2(obj),
+                  (obj->quan > 1L) ? "lose their" : "loses its");
+			obj->oerodeproof = 0;
+	        exercise(A_WIS, FALSE);
+	  	    makeknown(potion->otyp);
+		}
   	    useup(potion);
-	    return 1;
+        return 1;
 	}
 
 	/* Allow filling of MAGIC_LAMPs to prevent identification by player */

@@ -275,7 +275,6 @@ struct monst *mon;
 		case IRON_CHAIN:
 		case CROSSBOW_BOLT:
 		case MACE:
-		case SILVER_MACE:
 		case WAR_HAMMER:
 		case FLAIL:
 		case SPETUM:

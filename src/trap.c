@@ -579,7 +579,7 @@ register struct trap *trap;
 		    int dmg = d(2,6); /* should be std ROCK dmg? */
 
 		    seetrap(trap);
-		    otmp = mksobj_at(ROCK, u.ux, u.uy, TRUE, FALSE);
+		    otmp = mksobj_at(ROCK, u.ux, u.uy, TRUE);
 		    otmp->quan = 1L;
 		    otmp->owt = weight(otmp);
 
@@ -925,13 +925,6 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 	    case MAGIC_PORTAL:
 		seetrap(trap);
-#if defined(BLACKMARKET) && defined(STEED)
-		if (u.usteed &&
-			(Is_blackmarket(&trap->dst) || Is_blackmarket(&u.uz)))
-		    pline("%s seems to shimmer for a moment.",
-			  Monnam(u.usteed));
-		else
-#endif
 		domagicportal(trap);
 		break;
 
@@ -951,13 +944,7 @@ struct trap *trap;
 		(struct obj *)0);
 	del_engr_at(trap->tx, trap->ty);
 	wake_nearto(trap->tx, trap->ty, 400);
-#ifdef DEVEL_BRANCH
-	/* ALI - artifact doors */
-	if (IS_DOOR(levl[trap->tx][trap->ty].typ) &&
-		!artifact_door(trap->tx, trap->ty))
-#else
 	if (IS_DOOR(levl[trap->tx][trap->ty].typ))
-#endif
 	    levl[trap->tx][trap->ty].doormask = D_BROKEN;
 	/* TODO: destroy drawbridge if present;
 		 sometimes delete trap instead of always leaving a pit */
@@ -1060,7 +1047,7 @@ int style;
 				break;
 			    }
 			}
-			if (ohitmon((struct monst *) 0, mtmp,singleobj,
+			if (ohitmon(mtmp,singleobj,
 					(style==ROLL) ? -1 : dist, FALSE)) {
 				used_up = TRUE;
 				break;
@@ -1674,7 +1661,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
                                 if (mtmp->mhp < 0) mondead(mtmp);
                         } else {
 #endif
-			mon_poly(mtmp, FALSE, "%s changes!");
+			mon_poly(mtmp, FALSE);
                         if (in_sight) seetrap(trap);
 		    }
 		    break;
@@ -3298,8 +3285,8 @@ unconscious()
 {
 	return((boolean)(multi < 0 && (!nomovemsg ||
 		u.usleep ||
-		!strncmp(nomovemsg,"You regain con", 14) ||
-		!strncmp(nomovemsg,"You are consci", 14))));
+		!strncmp(nomovemsg,"You regain con", 15) ||
+		!strncmp(nomovemsg,"You are consci", 15))));
 }
 
 static char lava_killer[] = "molten lava";
