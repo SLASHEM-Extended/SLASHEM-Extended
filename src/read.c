@@ -1142,7 +1142,7 @@ register struct obj     *sobj;
 		if(confused || sobj->cursed) cnt += 12;
 		while(cnt--) {
 #ifdef WIZARD
-		    if(!wizard || !create_particular())
+		    if(!wizard || !(mtmp = create_particular()))
 #endif /* WIZARD  */
 /*                (void) makemon (confused ? &mons[PM_ACID_BLOB] :
 					(struct permonst *) 0, u.ux, u.uy);*/
@@ -1160,11 +1160,11 @@ register struct obj     *sobj;
            }
         /*WAC Give N a shot at controlling the beasties (if not cursed <g>)*/
         /*check curse status in case this ever becomes a scroll*/
-           if(!(sobj->cursed)) {
+           if (mtmp && !sobj->cursed) {
                 if (Role_if(PM_NECROMANCER)) {
                     if (!resist(mtmp, sobj->oclass, 0, TELL)) {
-                       (void) tamedog(mtmp, (struct obj *) 0);
-                       You("dominate the %s!", mon_nam(mtmp));
+                       mtmp = tamedog(mtmp, (struct obj *) 0);
+		       if (mtmp) You("dominate %s!", mon_nam(mtmp));
                        }
                 } else setmangry(mtmp);
            }
@@ -1180,7 +1180,7 @@ register struct obj     *sobj;
                      sp_no++);
                 if (sp_no < MAXSPELL &&
                     spl_book[sp_no].sp_id == SPE_COMMAND_UNDEAD) {
-                        You("try to command the %s", mon_nam(mtmp));
+                        You("try to command %s", mon_nam(mtmp));
                         spelleffects(sp_no, TRUE);
                 } else You ("don't seem to have the spell command undead memorized!");
            } else You ("don't know how to command undead...");
@@ -2067,7 +2067,7 @@ boolean revival;
 }
 
 #ifdef WIZARD
-boolean
+struct monst *
 create_particular()
 {
 	char buf[BUFSZ];
@@ -2075,7 +2075,7 @@ create_particular()
 
 	do {
 	    getlin("Create what kind of monster? [type the name]", buf);
-	    if (buf[0] == '\033') return FALSE;
+	    if (buf[0] == '\033') return (struct monst *)0;
 	    which = name_to_mon(buf);
 	    if (which < LOW_PM) pline("I've never heard of such monsters.");
 	    else break;
@@ -2083,10 +2083,9 @@ create_particular()
 	if (tries == 5) pline(thats_enough_tries);
 	else {
 	    (void) cant_create(&which, FALSE);
-	    return((boolean)(makemon(&mons[which],
-				u.ux, u.uy, NO_MM_FLAGS) != 0));
+	    return makemon(&mons[which], u.ux, u.uy, NO_MM_FLAGS);
 	}
-	return FALSE;
+	return (struct monst *)0;
 }
 #endif /* WIZARD */
 
