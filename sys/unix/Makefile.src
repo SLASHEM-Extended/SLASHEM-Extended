@@ -523,8 +523,8 @@ DUMB.Setup:	../include/extern.h
 all:	$(GAME)
 
 slashem-gtk:	$(WINGTKOBJ) $(PROXYSVROBJ) $(PROXYCOMOBJ) alloc.o hacklib.o
- 	$(CC) $(LFLAGS) -o $@ $(WINGTKOBJ) $(PROXYSVROBJ) $(PROXYCOMOBJ) \
- 		alloc.o hacklib.o $(WINGTKLIB) $(LIBS)
+	$(CC) $(LFLAGS) -o $@ $(WINGTKOBJ) $(PROXYSVROBJ) $(PROXYCOMOBJ) \
+		alloc.o hacklib.o $(WINGTKLIB) $(LIBS)
 
 #	dependencies for makedefs and its outputs, which the util
 #	Makefile is responsible for keeping up to date
