@@ -7,12 +7,17 @@
 
 /* #define SHELL */	/* nt use of pcsys routines caused a hang */
 
-#define HAVE_BERKELY_RANDOM_3	/* have Berkeley random(3) */
+#define RANDOM		/* have Berkeley random(3) */
 	/* JRN: I dont understand the NT port that well, but in general its
          *  defines mean the opposite of what I think they should. For some
 	 *  reason the rest of the sources agree with me, which makes things
 	 *  a bit strange (e.g. in ntconf.h RANDOM means you have berkely
 	 *  random(3), but in unixconf.h it means you dont). */
+	/* ALI: Changed this back to RANDOM; otherwise RNG is not seeded.
+	 * (There are a number of places in the shared code which test the
+	 * value of RANDOM.) This may break the cygwin port, but we'll have
+	 * to wait for JRN to get back to solve this.
+	 */
 
 #define TEXTCOLOR	/* Color text */
 
@@ -59,7 +64,7 @@
 #define rindex	strrchr
 #include <time.h>
 #define USE_STDARG
-#ifdef HAVE_BERKELY_RANDOM_3
+#ifdef RANDOM
 /* Use the high quality random number routines. */
 #define Rand()	random()
 #else
