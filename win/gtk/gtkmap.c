@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.20 2001-02-17 11:11:18 j_ali Exp $
+  $Id: gtkmap.c,v 1.21 2001-02-23 20:10:43 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -784,7 +784,16 @@ nh_map_new(GtkWidget *w)
     if(!map_font)
 	panic("Cannot open map font!");
 
+/*
+  set gc 
+ */
     map_gc = gdk_gc_new(w->window);
+
+    for(i=0 ; i < N_NH_COLORS ; ++i){
+	map_color_gc[i] = gdk_gc_new(w->window);
+	gdk_gc_set_foreground(map_color_gc[i], &nh_color[i]);
+	gdk_gc_set_background(map_color_gc[i], &nh_color[MAP_BACKGROUND]);
+    }
 
     nh_set_map_visual(visual);
 
@@ -809,15 +818,6 @@ nh_map_new(GtkWidget *w)
 	height = (root_height / 2) - 50;
 
     gtk_widget_set_usize(GTK_WIDGET(map_scroll), width, height);
-    
-/*
-  set gc 
- */
-    for(i=0 ; i < N_NH_COLORS ; ++i){
-	map_color_gc[i] = gdk_gc_new(w->window);
-	gdk_gc_set_foreground(map_color_gc[i], &nh_color[i]);
-	gdk_gc_set_background(map_color_gc[i], &nh_color[MAP_BACKGROUND]);
-    }
 
     return map_scroll;
 }
@@ -1289,18 +1289,14 @@ nh_radar_update()
 	    vadj = gtk_scrolled_window_get_vadjustment(
 		GTK_SCROLLED_WINDOW(map_scroll)
 		);
-/*
-  Anyone know the function which copy from pixmap to pixmap in GDK?
-  */
-	    gdk_window_copy_area(
-		radar_pixmap2, map->style->white_gc,
-		0, 0,
-		radar_pixmap,
-		0, 0, 
+
+	    gdk_draw_pixmap(
+		radar_pixmap2, map_gc,
+		radar_pixmap, 0, 0, 0, 0, 
 		NH_RADAR_WIDTH, NH_RADAR_HEIGHT);
 	    
 	    gdk_draw_rectangle(
-		radar_pixmap2, map->style->white_gc,
+		radar_pixmap2, map_color_gc[MAP_WHITE],
 		FALSE,
 		hadj->value / c_3dwidth * NH_RADAR_UNIT,
 		vadj->value / c_3dheight * NH_RADAR_UNIT,
