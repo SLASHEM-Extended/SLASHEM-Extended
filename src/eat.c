@@ -1354,6 +1354,14 @@ struct obj *obj;
 	return(0);
 }
 
+/* [ALI] Return codes:
+ *
+ *	0 - Ready to start eating
+ *	1 - Corpse partly eaten, but don't start occupation
+ *	2 - Corpse completely consumed, victual.piece left dangling
+ *	3 - Corpse was inedible
+ */
+
 STATIC_OVL int
 eatcorpse(otmp)         /* called when a corpse is selected as food */
 	register struct obj *otmp;
@@ -1385,8 +1393,7 @@ eatcorpse(otmp)         /* called when a corpse is selected as food */
 	    if (otmp->odrained ? otmp->oeaten <= drainlevel(otmp) :
 	      otmp->oeaten < mons[otmp->corpsenm].cnutrit) {
 	    	pline("There is no blood left in this corpse!");
-		victual.piece = (struct obj *)0;
-	    	return(1);
+	    	return 3;
 	    } else if (rotted <= 0 &&
 	      (peek_at_iced_corpse_age(otmp) + 5) >= monstermoves) {
 		char buf[BUFSZ];
@@ -1403,8 +1410,7 @@ eatcorpse(otmp)         /* called when a corpse is selected as food */
 		otmp->odrained = 1;
 	    } else {
 	    	pline("The blood in this corpse has coagulated!");
-		victual.piece = (struct obj *)0;
-	    	return(1);
+	    	return 3;
 	    }
 	}
 	else
@@ -1452,7 +1458,7 @@ eatcorpse(otmp)         /* called when a corpse is selected as food */
 	} else if (youmonst.data == &mons[PM_GHOUL] || 
 		   youmonst.data == &mons[PM_GHAST]) {
 		pline ("This corpse is too fresh!");
-		return (1);		
+		return 3;
 	} else if (acidic(&mons[mnum]) && !Acid_resistance) {
 		tp++;
 		You("have a very bad case of stomach acid.");
@@ -2198,7 +2204,13 @@ doeat()         /* generic "eat" command funtion (see cmd.c) */
 	 */
 	if(otmp->otyp == CORPSE) {
 	    int tmp = eatcorpse(otmp);
-	    if (tmp == 2) {
+	    if (tmp == 3) {
+		/* inedible */
+		victual.piece = (struct obj *)0;
+		/* ALI, conduct: didn't eat it after all */
+		u.uconduct.food--;
+		return 0;
+	    } else if (tmp == 2) {
 		/* used up */
 		victual.piece = (struct obj *)0;
 		return(1);
