@@ -481,26 +481,24 @@ diptoilet(obj)
 register struct obj *obj;
 {
 	if (Levitation) {
-		You("are floating high above the toilet.");
-		return;
-	}
-
-	/* KMH, balance patch -- new macro */
-	if(is_poisonable(obj)) {
-	   You("cover your weapon in filth.");
-	   obj->opoisoned = TRUE;
-	   return;
-	}
-	if (obj->oclass == FOOD_CLASS) {
-	    pline("My! It certainly looks tastier now...");
-	    obj->orotten = TRUE;
+	    floating_above("toilet");
 	    return;
 	}
 	(void) get_wet(obj);
-	pline("Yuck!");
-	/* KMH, balance patch -- acid and water don't mix */
-	if (obj->otyp == POT_ACID)
-		useup(obj);
+	/* KMH -- acid and water don't mix */
+	if (obj->otyp == POT_ACID) {
+	    useup(obj);
+	    return;
+	}
+	if(is_poisonable(obj)) {
+	    if (flags.verbose)  You("cover it in filth.");
+	    obj->opoisoned = TRUE;
+	}
+	if (obj->oclass == FOOD_CLASS) {
+	    if (flags.verbose)  pline("My! It certainly looks tastier now...");
+	    obj->orotten = TRUE;
+	}
+	if (flags.verbose)  pline("Yuck!");
 }
 
 
@@ -587,9 +585,10 @@ drinksink()
 			      Blind ? "odd" :
 			      hcolor(OBJ_DESCR(objects[otmp->otyp])));
 			otmp->dknown = !(Blind || Hallucination);
+			otmp->quan++; /* Avoid panic upon useup() */
 			otmp->corpsenm = 1; /* kludge for docall() */
-			/* dopotion() deallocs dummy potions */
 			(void) dopotion(otmp);
+			obfree(otmp, (struct obj *)0);
 			break;
 		case 5: if (!(levl[u.ux][u.uy].looted & S_LRING)) {
 			    You("find a ring in the sink!");
@@ -643,7 +642,7 @@ void
 drinktoilet()
 {
 	if (Levitation) {
-		You("are floating high above the toilet.");
+		floating_above("toilet");
 		return;
 	}
 	if ((youmonst.data->mlet == S_DOG) && (rn2(5))){

@@ -391,6 +391,7 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -fixed bug 450229: Tame solars drop Sunsword.
 -fixed bug 450119: Ice mage quest text mixup.
 -fixed bug 450460: The plural of drow should be drow.
+-fixed bug 452167: Rust from toilet water.
 
 ver 0.0.6E4F4mac0 [May 13/2001] [Released by Paul]
 -built Mac 68K port
