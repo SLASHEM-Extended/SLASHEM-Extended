@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)unixmain.c	3.3	97/01/22	*/
+/*	SCCS Id: @(#)unixmain.c	3.4	1997/01/22	*/
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -112,13 +112,6 @@ char *argv[];
 	}
 
 	/*
-	 * Find the creation date of this game,
-	 * so as to avoid restoring outdated savefiles.
-	 */
-	gethdate(hname);
-
-	/*
-	 * We cannot do chdir earlier, otherwise gethdate will fail.
 	 * Change directories before we initialize the window system so
 	 * we can find the tile file.
 	 */
@@ -397,6 +390,9 @@ char *argv[];
 			    	flags.initalign = i;
 			}
 			break;
+		case '@':
+			flags.randomall = 1;
+			break;
 		default:
 			if ((i = str2role(&argv[0][1])) >= 0) {
 			    flags.initrole = i;
@@ -525,4 +521,25 @@ wd_message()
 	if (discover)
 		You("are in non-scoring discovery mode.");
 }
+
+/*
+ * Add a slash to any name not ending in /. There must
+ * be room for the /
+ */
+void
+append_slash(name)
+char *name;
+{
+	char *ptr;
+
+	if (!*name)
+		return;
+	ptr = name + (strlen(name) - 1);
+	if (*ptr != '/') {
+		*++ptr = '/';
+		*++ptr = '\0';
+	}
+	return;
+}
+
 /*unixmain.c*/

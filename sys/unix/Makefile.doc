@@ -1,5 +1,5 @@
 #	NetHack Makefile.
-#       SCCS Id: @(#)Makefile.doc       3.2     97/DEC/17
+#       SCCS Id: @(#)Makefile.doc       3.4     1996/03/23
 
 # WAC - added support for DOS DJGPP using GNU Groff package
 # Standard distribution documents are built using nroff, tbl and col
@@ -7,11 +7,6 @@
 # tbl is in the Groff package
 # I don't see why this won't work on any other platform with GNU Groff
 # If you have Groff and col or nroff and col, use the standard Unix Makefile.doc
-
-# ALI - As a temporary measure for 5E4, I've removed Guidebook.tex and
-# Guidebook.html from the distribution as they are out of date. I'm hoping
-# to get revised versions back in for 5E5. For now you should use Guidebook.mn.
-# If you have groff you can generate postscript and dvi versions from this.
 
 # for Atari
 # SHELL=E:/GEMINI2/MUPFEL.TTP
@@ -26,6 +21,10 @@ GUIDEBOOK = Guidebook		# regular ASCII file
 COLCMD = col -bx
 #COLCMD = col -b
 
+# The command to use to generate a PostScript file
+# PSCMD = ditroff | psdit
+PSCMD = groff -Wall -Tps
+
 # Use the "cat" GUIDECMD if groff and/or tbl are not installed
 # DOS w/o cat users can use "type"
 # GUIDECMD = cat Guidebook.txt
@@ -39,9 +38,7 @@ Guidebook:	Guidebook.mn
 
 # Fancier output for those with ditroff, psdit and a PostScript printer.
 Guidebook.ps:	Guidebook.mn
-	tbl tmac.n Guidebook.mn | ditroff | psdit > Guidebook.ps
-# Or for those with groff
-#	tbl tmac.n Guidebook.mn | groff -Wall -Tps > Guidebook.ps
+	tbl tmac.n Guidebook.mn | $(PSCMD) > Guidebook.ps
 
 # Guidebook.tex is the same as Guidebook.mn but formatted with LaTeX.
 # - The invocation command for LaTeX may vary in different installations.
