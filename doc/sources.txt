@@ -2,8 +2,10 @@
 	 BEGINNER'S GUIDE TO NETHACK SOURCES
         ---------------------- by German Martin --
                                         german@spain.hp.com
+	
+	With additional material by J. Ali Harlow, ali@juiblex.co.uk
 
-                  		   version 1.0  March '95
+                  		   version 1.1  January '02
 
 Contents
 --------
@@ -19,6 +21,7 @@ Contents
 	   7.1. Adding a new attack type.
 	   7.2. Adding new monster's abilities.
 	   7.3. Adding a 'mextra' struct.
+	   7.4. Adding an entry in the database.
    8. Creating a new object.
 	   8.0. The 'objects' array.
 	   8.1. Adding a tool.
@@ -977,6 +980,118 @@ Contents
    Refer to the eshk.h file for an example of using a mextra part. (the
    code for the shopkeepers).
 
+   7.4. Adding an entry in the database.
+
+   The database source file (dat/data.base) consists of a number of entries
+   interspersed with comments (lines which begin with the `#' character).
+
+   Each entry consists of a number of patterns which must each be listed on
+   a line by themselves. The patterns identify which monster or object is
+   described and are followed by some descriptive text (often a quotation)
+   which will be displayed to the player.
+
+   7.4.1. The pattern list.
+
+   In it's simplest form, the pattern list consists of a number of different
+   objects or monsters for which the same text should be displayed. For
+   example:
+
+	incubus
+	succubus
+		The incubus and succubus are male and female versions of the
+		same demon, one who lies with a human for its own purposes,
+		usually to the detriment of the mortals who are unwise in
+		their dealings with them.
+
+   Note: I have indented this example, as elsewhere in this manual. In
+   data.base the patterns would be in the first character position and there
+   would be _one_ tab at the beginning of each line of the descriptive text.
+
+   Sometimes just listing every possible text isn't sufficient. For these
+   cases, the `?' and `*' special characters can be used. `?' will match
+   any one character, while `*' will match zero or more characters. For
+   example:
+
+	*giant
+	giant humanoid
+	        Giants have always walked the earth, though they are rare in
+		these times.  They range in size from little over nine feet
+		to a towering twenty feet or more.  The larger ones use huge
+		boulders as weapons, hurling them over large distances.  All
+		types of giants share a love for men - roasted, boiled, or
+		fried.  Their table manners are legendary.
+
+   In this case, the "*giant" pattern will match the following monsters:
+   	giant, stone giant, hill giant, fire giant, frost giant, storm giant.
+
+   Care must be taken so that patterns containing special characters do
+   not match other, unrelated, text. Where this is possible, one or more
+   negated patterns can be listed. Negated patterns must come before all
+   other patterns in the pattern list and will cause the entry to be ignored
+   if they match. They are indicated by a `~' prefix (which is not part of
+   the pattern itself). For example:
+
+	~slime mold
+	*mold
+		Mold, multicellular organism of the division Fungi, typified
+		by plant bodies composed of a network of cottony filaments.
+		The colors of molds are due to spores borne on the filaments.
+		Most molds are saprophytes.  Some species (e.g., penicillium)
+		are used in making cheese and antibiotics.
+			[ The Concise Columbia Encyclopedia ]
+
+   If the "~slime mold" pattern was not listed then this entry would be
+   displayed if the player asked for information on slime molds (because
+   slime mold is matched by "* mold").
+
+   Finally, some points that I haven't mentioned above:
+
+     - Patterns cannot start with a space or tab character. This is never
+       a problem since the text to be matched against will never start with
+       white space either.
+
+     - Entries are scanned in order in the data base until one matches (after
+       which scanning stops). This means that where more than one entry has
+       a pattern that matches some text, the first entry will hide the second.
+
+       It is generally preferable to avoid relying on this (use negated
+       patterns instead), but it can occasionally be useful.
+
+     - Text is converted to lower case before comparison with patterns, so
+       all patterns should be listed in lower case also.
+
+     - The game will generally try the singular form of an object or monster
+       if the user enters the plural, so it is not normally necessary to
+       specify both singular and plural forms in the pattern list.
+
+   7.4.2. The descriptive text.
+
+   The descriptive text consists of a number of lines with a tab character
+   as a prefix (this prefix will be stripped before the text is output). 
+
+   ASCII mark-up conventions which should be followed:
+
+     _xxx_                        Emphasize xxx
+     [xxx]                        Enbolden xxx
+     - (in a word)                Hyphen
+     - (between two numbers)      En dash
+     - (surrounded by spaces)     Em dash
+     ...                          Ellipses
+     ... (on a line by itself)    Vertical ellipses
+     "xxx"                        Put xxx in speech marks
+     number'                      Number in feet
+
+   Note: These are not interpreted by the game in any way, but help
+   to give a consistent feel to the text displayed to the player.
+
+   Lines should be ragged-right (ie., left justified) and be no longer
+   than 67 characters. Paragraph breaks should be indicated with a
+   short line in the preceding paragraph (indentation should not be
+   used). Blank lines between paragraphs should be used to indicate
+   the beginning of a quotation or for other unusual purposes (eg.,
+   to break verses in poetry). Full stops (and other punctuation which
+   ends a sentence) should be followed by two space characters.
+
 
 8. Adding a new object
 ----------------------
@@ -1038,7 +1153,7 @@ Contents
 		#define HI_ZAP          BRIGHT_BLUE
 
    oc_prob: probability of the object. The total sum of same class objects 
-     should be 100.
+     should be 1000.
    oc_weight: its weight.
    oc_cost: Base cost in shops. Actual price depends on charisma & hawaiian 
      shirts.
