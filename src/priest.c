@@ -617,6 +617,10 @@ ghod_hitsu(priest)	/* when attacking "priest" in his temple */
 struct monst *priest;
 {
 	int x, y, ax, ay, roomno = (int)temple_occupied(u.urooms);
+	int x1, y1, x2, y2, n;
+	coord poss[4];
+	int stpx = sgn(u.ux - priest->mx), stpy = sgn(u.uy - priest->my);
+		/* gods avoid hitting the temple priest */
 	struct mkroom *troom;
 
 	if (!roomno || !has_shrine(priest))
@@ -626,31 +630,133 @@ struct monst *priest;
 	ay = y = EPRI(priest)->shrpos.y;
 	troom = &rooms[roomno - ROOMOFFSET];
 
-	if((u.ux == x && u.uy == y) || !linedup(u.ux, u.uy, x, y)) {
+	/*
+	 * Determine the source of the lightning bolt according to the
+	 * following rules:
+	 *	1. The source cannot be directly under the player
+	 *	2. Don't zap through the temple priest
+	 *	3. First choice of source is the altar itself
+	 *	4. Otherwise use a wall, prefering orthogonal to diagonal paths
+	 *	5. Choose randomly from equally preferred sources
+	 * Note that if the hero is not standing on either the altar or
+	 * a door then (u.ux, u.uy) may be counted as a possible source which
+	 * is later rejected by linedup() letting the hero off the hook.
+	 */
+	if((u.ux == x && u.uy == y) || !linedup(u.ux, u.uy, x, y) ||
+		stpx == sgn(tbx) && stpy == sgn(tby)) {
 	    if(IS_DOOR(levl[u.ux][u.uy].typ)) {
 
 		if(u.ux == troom->lx - 1) {
-		    x = troom->hx;
-		    y = u.uy;
+		    if (stpx != sgn(u.ux - troom->hx) || stpy != 0) {
+			x = troom->hx;
+			y = u.uy;
+		    } else {
+			/* Diagonal required */
+			x1 = u.ux + u.uy - troom->ly;
+			y1 = troom->ly;
+			x2 = u.ux + troom->hy - u.uy;
+			y2 = troom->hy;
+			if (x1 > troom->hx && x2 > troom->hx)
+			    return;
+			else if (x2 > troom->hx || x1 <= troom->hx && !rn2(2)) {
+			    x = x1;
+			    y = y1;
+			} else {
+			    x = x2;
+			    y = y2;
+			}
+		    }
 		} else if(u.ux == troom->hx + 1) {
-		    x = troom->lx;
-		    y = u.uy;
+		    if (stpx != sgn(u.ux - troom->lx) || stpy != 0) {
+			x = troom->lx;
+			y = u.uy;
+		    } else {
+			/* Diagonal required */
+			x1 = u.ux - (u.uy - troom->ly);
+			y1 = troom->ly;
+			x2 = u.ux - (troom->hy - u.uy);
+			y2 = troom->hy;
+			if (x1 < troom->lx && x2 < troom->lx)
+			    return;
+			else if (x2 < troom->lx || x1 >= troom->lx && !rn2(2)) {
+			    x = x1;
+			    y = y1;
+			} else {
+			    x = x2;
+			    y = y2;
+			}
+		    }
 		} else if(u.uy == troom->ly - 1) {
-		    x = u.ux;
-		    y = troom->hy;
+		    if (stpx != 0 || stpy != sgn(u.uy - troom->hy)) {
+			x = u.ux;
+			y = troom->hy;
+		    } else {
+			/* Diagonal required */
+			x1 = troom->lx;
+			y1 = u.uy + u.ux - troom->lx;
+			x2 = troom->hx;
+			y2 = u.uy + troom->hx - u.ux;
+			if (y1 > troom->hy && y2 > troom->hy)
+			    return;
+			else if (y2 > troom->hy || y1 <= troom->hy && !rn2(2)) {
+			    x = x1;
+			    y = y1;
+			} else {
+			    x = x2;
+			    y = y2;
+			}
+		    }
 		} else if(u.uy == troom->hy + 1) {
-		    x = u.ux;
-		    y = troom->ly;
+		    if (stpx != 0 || stpy != sgn(u.uy - troom->ly)) {
+			x = u.ux;
+			y = troom->ly;
+		    } else {
+			/* Diagonal required */
+			x1 = troom->lx;
+			y1 = u.uy - (u.ux - troom->lx);
+			x2 = troom->hx;
+			y2 = u.uy - (troom->hx - u.ux);
+			if (y1 < troom->ly && y2 < troom->ly)
+			    return;
+			else if (y2 < troom->ly || y1 >= troom->ly && !rn2(2)) {
+			    x = x1;
+			    y = y1;
+			} else {
+			    x = x2;
+			    y = y2;
+			}
+		    }
 		}
 	    } else {
-		switch(rn2(4)) {
-		case 0:  x = u.ux; y = troom->ly; break;
-		case 1:  x = u.ux; y = troom->hy; break;
-		case 2:  x = troom->lx; y = u.uy; break;
-		default: x = troom->hx; y = u.uy; break;
+		/* Calculate the possible orthogonal paths */
+		n = 0;
+		if (stpx != 0 || stpy != sgn(u.uy - troom->ly)) {
+		    poss[n].x = u.ux;
+		    poss[n++].y = troom->ly;
+		}
+		if (stpx != 0 || stpy != sgn(u.uy - troom->hy)) {
+		    poss[n].x = u.ux;
+		    poss[n++].y = troom->hy;
+		}
+		if (stpx != sgn(u.ux - troom->lx) || stpy != 0) {
+		    poss[n].x = troom->lx;
+		    poss[n++].y = u.uy;
+		}
+		if (stpx != sgn(u.ux - troom->hx) || stpy != 0) {
+		    poss[n].x = troom->hx;
+		    poss[n++].y = u.uy;
+		}
+		if (n) {
+		    n = rn2(n);
+		    x = poss[n].x;
+		    y = poss[n].y;
+		} else {
+		    impossible("Omnipresent priest?");
+		    return;
 		}
 	    }
-	    if(!linedup(u.ux, u.uy, x, y)) return;
+	    if(!linedup(u.ux, u.uy, x, y))
+		return;
 	}
 
 	switch(rn2(3)) {

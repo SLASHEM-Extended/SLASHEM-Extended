@@ -12,14 +12,14 @@ STATIC_DCL int FDECL(drop_throw,(struct monst *, struct obj *,BOOLEAN_P,int,int)
 
 #ifndef OVLB
 
-STATIC_DCL const char *breathwep[];
+const char *breathwep[];
 
 #else /* OVLB */
 
 /*
  * Keep consistent with breath weapons in zap.c, and AD_* in monattk.h.
  */
-STATIC_OVL NEARDATA const char *breathwep[] = {
+NEARDATA const char *breathwep[] = {
 				"fragments",
 				"fire",
 				"frost",
@@ -228,6 +228,12 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 	    mtmp->msleeping = 0;
 	    if (vis) otmp->dknown = 1;
 	    potionhit(mtmp, otmp, FALSE);
+	    if (mon && !DEADMONSTER(mon) && !DEADMONSTER(mtmp) &&
+		    mtmp->movement >= NORMAL_SPEED && rn2(4)) {
+		/* retaliate */
+		mtmp->movement -= NORMAL_SPEED;
+		mattackm(mtmp, mon);
+	    }
 	    return 1;
 	} else {
 	    damage = dmgval(otmp, mtmp);
@@ -296,6 +302,13 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 		tmp = (int)mtmp->mblinded + rnd(25) + 20;
 		if (tmp > 127) tmp = 127;
 		mtmp->mblinded = tmp;
+	    }
+
+	    if (mon && !DEADMONSTER(mon) && !DEADMONSTER(mtmp) &&
+		    mtmp->movement >= NORMAL_SPEED && rn2(4)) {
+		/* retaliate */
+		mtmp->movement -= NORMAL_SPEED;
+		mattackm(mtmp, mon);
 	    }
 
 	    objgone = drop_throw(mon, otmp, 1, bhitpos.x, bhitpos.y);

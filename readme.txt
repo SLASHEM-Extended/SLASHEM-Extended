@@ -90,6 +90,7 @@ ver 0.0.7E1 [?] [Released by ?]
   [UNIX] stored in ~/.gethackrc
   [WIN32] stored in registry
 -Actioned feature request 492518: resize inventory window.
+-Actioned feature request 421535: shop keepers are too dumb.
 
 See history.txt for changes made in previous versions.
 

@@ -3820,7 +3820,8 @@ register int dx,dy;
 #endif
 /*for mega crude hack to keep from blowing up in face --WAC*/
     int away=0;
-	int spell_type=0;
+    struct monst *mblamed = m_at(sx, sy);	/* Apparent aggressor */
+    int spell_type = 0;
 
 
       /* LSZ/WWA The Wizard Patch July 96
@@ -4035,6 +4036,12 @@ register int dx,dy;
 			if (!otmp) {
 			    /* normal non-fatal hit */
 			    hit(fltxt, mon, exclam(tmp));
+			    if (mblamed && !DEADMONSTER(mblamed) &&
+				    mon->movement >= NORMAL_SPEED && rn2(4)) {
+				/* retaliate */
+				mon->movement -= NORMAL_SPEED;
+				mattackm(mon, mblamed);
+			    }
 			} else {
 			    /* some armor was destroyed; no damage done */
 			    if (canseemon(mon))

@@ -376,6 +376,31 @@ struct attack *alt_attk_buf;
     return attk;
 }
 
+/* Intelligent monsters try and avoid "blue on blue" incidents.
+ */
+STATIC_OVL int
+blue_on_blue(mtmp)
+struct monst *mtmp;
+{
+    int x, y;
+    struct monst *mon;
+    if (!mtmp->mconf && !Conflict && !mtmp->mflee && !mindless(mtmp->data)) {
+	if (!lined_up(mtmp))
+	    return FALSE;	/* Irrelevant; monster won't attack anyway */
+	x = mtmp->mx + sgn(tbx);
+	y = mtmp->my + sgn(tby);
+	while(x != mtmp->mux || y != mtmp->muy) {
+	    mon = m_at(x, y);
+	    if (mon && m_cansee(mtmp, x, y) && !mon->mundetected &&
+		    (!mon->minvis || perceives(mtmp->data)))
+		return TRUE;
+	    x += sgn(tbx);
+	    y += sgn(tby);
+	}
+    }
+    return FALSE;
+}
+
 /*
  * mattacku: monster attacks you
  *	returns 1 if monster dies (e.g. "yellow light"), 0 otherwise
@@ -606,7 +631,7 @@ mattacku(mtmp)
 	}
 
 	/* Unlike defensive stuff, don't let them use item _and_ attack. */
-	if(find_offensive(mtmp)) {
+	if(!blue_on_blue(mtmp) && find_offensive(mtmp)) {
 		int foo = use_offensive(mtmp);
 
 		if (foo != 0) return(foo==1);
@@ -679,43 +704,51 @@ mattacku(mtmp)
 			}
 			break;
 		case AT_BREA:
-			if(range2) sum[i] = breamu(mtmp, mattk);
+			if (range2 && !blue_on_blue(mtmp))
+			    sum[i] = breamu(mtmp, mattk);
 			/* Note: breamu takes care of displacement */
 			break;
 		case AT_SPIT:
-			if(range2) sum[i] = spitmu(mtmp, mattk);
+			if (range2 && !blue_on_blue(mtmp))
+			    sum[i] = spitmu(mtmp, mattk);
 			/* Note: spitmu takes care of displacement */
 			break;
-		    case AT_MULTIPLY:
-					/*
-					 * Monster multiplying is an AT_ for the following reasons:
-					 *       1. Monsters will only multiply when they're close to you.
-					 *          The whole level will not become clogged up with giant lice
-					 *          from monsters multiplying where you can't see them.
-					 *       2. Tame monsters won't multiply. Too bad! (unless they are
-					 *          conflicted or confused from hunger. A bit of a "tactic" --
-					 *          but then you'll have to let them bite you, and anyway who
-					 *          really wants a dozen pet fleas to feed?)
-					 *       3. Monsters have to be next to you to multiply. This makes the
-					 *          inevitable altar abuse a little harder.
-					 *       4. Elbereth will stop monsters multiplying.
-					 *          Otherwise a ring of conflict would crowd out a whole level
-					 *          in no time.
-					 *       5. It is a hack. (Shrug)
-					 *
-					 * Multiplying monsters must be low-level and low-frequency, so as
-					 * to minimise altar/experience abuse. Any multiplying monsters above
-					 * about level 5 should be G_NOCORPSE.
-					 *
-					 * RJ
-					 */
-					clone_mon(mtmp);
-					break;
+		case AT_MULTIPLY:
+			/*
+			 * Monster multiplying is an AT_ for the following
+			 * reasons:
+			 *   1. Monsters will only multiply when they're close
+			 *      to you.  The whole level will not become clogged
+			 *      up with giant lice from monsters multiplying
+			 *      where you can't see them.
+			 *   2. Tame monsters won't multiply.  Too bad! (unless
+			 *      they are conflicted or confused from hunger.
+			 *      A bit of a "tactic" -- but then you'll have to
+			 *      let them bite you, and anyway who really wants
+			 *      a dozen pet fleas to feed?)
+			 *   3. Monsters have to be next to you to multiply.
+			 *      This makes the inevitable altar abuse a little
+			 *      harder.
+			 *   4. Elbereth will stop monsters multiplying.
+			 *      Otherwise a ring of conflict would crowd out a
+			 *      whole level in no time.
+			 *   5. It is a hack.  (Shrug)
+			 *
+			 * Multiplying monsters must be low-level and
+			 * low-frequency, so as to minimise altar/experience
+			 * abuse.  Any multiplying monsters above about
+			 * level 5 should be G_NOCORPSE.
+			 *
+			 * RJ
+			 */
+			clone_mon(mtmp);
+			break;
 		case AT_WEAP:
 			if(range2) {
 #ifdef REINCARNATION
 				if (!Is_rogue_level(&u.uz))
 #endif
+				    if (!blue_on_blue(mtmp))
 					thrwmu(mtmp);
 			} else {
 			    int hittmp = 0;
@@ -748,9 +781,10 @@ mattacku(mtmp)
 			}
 			break;
 		case AT_MAGC:
-			if (range2)
-			    sum[i] = buzzmu(mtmp, mattk);
-			else {
+			if (range2) {
+			    if (!blue_on_blue(mtmp))
+				sum[i] = buzzmu(mtmp, mattk);
+			} else {
 			    if (foundyou)
 				sum[i] = castmu(mtmp, mattk, TRUE, TRUE);
 			    else
