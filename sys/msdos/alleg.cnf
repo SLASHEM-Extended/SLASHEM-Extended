@@ -100,7 +100,7 @@ status = 12
 #	2	- the SuperEagle engine
 #	3	- the Super2xSaI engine
 
-interpolate = 3
+#interpolate = 3
 
 # draw_3Dtiles - set this to Y or 1 to force 3D tile drawing
 # 		 use this if you rescale the 3D tiles to an odd width:height ratio

@@ -324,9 +324,12 @@ TODO:
 	-it appears to be segfaulting (randomly?)
 
 ver 0.0.6E3F1 [August 21/2000] [Released by Ali]
+-fixed some bugs in the zap/cast code for magic missile, fire, cold, fireball, etc.
+	-tmp_at was being called incorrectly (new tmp_at handles nested tmp_at calls)
+	(zap.c, explode.c, display.c)
 -changed all the file names in global.h to be prefixed with NH_
 	(DATAFILE, HELP, RECORD, ORACLE, RUMOUR, etc.)
--Changed #define FILENAME (macconf.h, pcconf.h) to FILENAMELEN since FILENAME 
+-changed #define FILENAME (macconf.h, pcconf.h) to FILENAMELEN since FILENAME 
 	is #defined by dir.h, used by Allegro WIP
 -fixed dereferencing NULL pointer when monster throwing items
 	(mthrowu.c)
