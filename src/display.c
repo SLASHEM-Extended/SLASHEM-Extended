@@ -1244,6 +1244,8 @@ see_monsters()
 {
     register struct monst *mon;
 
+    if (defer_see_monsters) return;
+
     for (mon = fmon; mon; mon = mon->nmon) {
 	if (DEADMONSTER(mon)) continue;
 	newsym(mon->mx,mon->my);
