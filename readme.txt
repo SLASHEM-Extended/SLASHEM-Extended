@@ -108,6 +108,7 @@ ver 0.0.8E0 [?] [Released by ?]
 		   (Andy Ruse)
 -fixed bug 926202: Gnome thieves don't eat (Andy Ruse)
 -fixed bug 926200: Dwarf thieves have M2_NOPOLY (Andy Ruse)
+-fixed bug 962568: Mjollnir can't be thrown - code comment incorrect (Andy Ruse)
 
 See history.txt for changes made in previous versions.
 
