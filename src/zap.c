@@ -1738,10 +1738,7 @@ register struct obj *obj;
 					(struct permonst *)0);
 			break;
 		case WAN_CREATE_HORDE:
-			{ register int cnt = rn2(7) + 6;
-			while(cnt--)
-			    (void) makemon((struct permonst *) 0, u.ux, u.uy, NO_MM_FLAGS);
-			}
+			known = create_critters(rn1(7,6), (struct permonst *)0);
 			break;
 		case WAN_WISHING:
 			known = TRUE;
