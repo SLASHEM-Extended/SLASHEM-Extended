@@ -338,6 +338,7 @@ ver 0.0.6E9 [?] [Released by ?]
 -Merged Pasi Kallinen's whetstone patch
 -Merged Malcolm Ryan's Torch patch
 -Merged Pasi Kallinen's coloured menus patch
+-Actioned feature request 538738: Random placement regions (Pasi Kallinen)
 
 ver 0.0.6E8 [January 24/2003] [Released by Ali]
 -fixed bug 233901: Gtk-Critical errors from gtk_main_quit.

@@ -213,6 +213,7 @@ GRAMMAR
        init_reg        : RANDOM_OBJECTS_ID ':' object_list
                        | RANDOM_PLACES_ID ':' place_list
                        | RANDOM_MONSTERS_ID ':' monster_list
+                       | rndlevregion
                        ;
 
        object_list     : object
@@ -332,6 +333,9 @@ GRAMMAR
        stair_region    : STAIR_ID ':' lev_region ',' lev_region ',' UP_OR_DOWN
                        ;
 
+       rndlevregion    : RANDOMREGION_ID '[' INTEGER ']' ':' lev_region ',' lev_region
+                       ;
+
        portal_region   : PORTAL_ID ':' lev_region ',' lev_region ',' string
                        ;
 
@@ -409,6 +413,7 @@ GRAMMAR
 
        coordinate      : coord
                        | p_register
+                       | r_register
                        | RANDOM_TYPE
                        ;
 
@@ -430,6 +435,9 @@ GRAMMAR
                        ;
 
        p_register      : P_REGISTER '[' INTEGER ']'
+                       ;
+
+       r_register      : R_REGISTER '[' INTEGER ']'
                        ;
 
        o_register      : O_REGISTER '[' INTEGER ']'

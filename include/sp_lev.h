@@ -158,6 +158,8 @@ typedef struct {
 	region **regions;
 	char nlreg;
 	lev_region **lregions;
+	char nrndlreg;
+	lev_region **rndlregions;
 	char ndoor;
 	door **doors;
 	char ntrap;

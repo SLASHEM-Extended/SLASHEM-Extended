@@ -73,6 +73,7 @@ static char robjects[10], rloc_x[10], rloc_y[10], rmonst[10];
 static aligntyp	ralign[3] = { AM_CHAOTIC, AM_NEUTRAL, AM_LAWFUL };
 static NEARDATA xchar xstart, ystart;
 static NEARDATA char xsize, ysize;
+static lev_region rarea[10];
 
 STATIC_DCL void FDECL(set_wall_property, (XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,int));
 STATIC_DCL int NDECL(rnddoor);
@@ -183,6 +184,59 @@ int humidity;
 	    else {
 		*y = ystart + rloc_y[ - *y - 1];
 		*x = xstart + rloc_x[ - *x - 1];
+	    }
+	} else if (*x > -12) {		/* within random region */
+	    schar t = - *y - 1;
+
+	    do {
+		*x = rn2(rarea[t].inarea.x2 - rarea[t].inarea.x1 + 1) +
+		     rarea[t].inarea.x1;
+		*y = rn2(rarea[t].inarea.y2 - rarea[t].inarea.y1 + 1) +
+		     rarea[t].inarea.y1;
+		if (!rarea[t].in_islev) {
+		    *x += xstart;
+		    *y += ystart;
+		}
+		if (is_ok_location(*x,*y,humidity)) {
+		    int x1 = rarea[t].delarea.x1;
+		    int x2 = rarea[t].delarea.x2;
+		    int y1 = rarea[t].delarea.y1;
+		    int y2 = rarea[t].delarea.y2;
+		    if (!rarea[t].del_islev) {
+			x1 += xstart;
+			x2 += xstart;
+			y1 += ystart;
+			y2 += ystart;
+		    }
+		    if (!within_bounded_area(*x,*y,x1,y1,x2,y2)) break;
+		}
+	    } while (++cpt < 100);
+	    if (cpt >= 100) {
+		register int xx, yy;
+		for (xx = rarea[t].inarea.x1; xx < rarea[t].inarea.x2; xx++)
+		    for (yy = rarea[t].inarea.y1; yy < rarea[t].inarea.y2; yy++) {
+			*x = xx;
+			*y = yy;
+			if (!rarea[t].in_islev) {
+			    *x += xstart;
+			    *y += ystart;
+			}
+			if (is_ok_location(*x,*y,humidity)) {
+			    int x1 = rarea[t].delarea.x1;
+			    int x2 = rarea[t].delarea.x2;
+			    int y1 = rarea[t].delarea.y1;
+			    int y2 = rarea[t].delarea.y2;
+			    if (!rarea[t].del_islev) {
+				x1 += xstart;
+				x2 += xstart;
+				y1 += ystart;
+				y2 += ystart;
+			    }
+			    if (!within_bounded_area(*x,*y,x1,y1,x2,y2))
+				goto found_it;
+			}
+		    }
+		panic("get_location:  can't find a place!");
 	    }
 	} else {			/* random location */
 	    do {
@@ -2315,6 +2369,26 @@ dlb *fd;
 	    if (!found)
 		panic("reading special level with region located nowhere");
 	    lregions[(int)n] = tmplregion;
+	}
+
+	/* random level region registers */
+	Fread((genericptr_t) &n, 1, sizeof(n), fd);	
+	if (n) {
+	    int tmpn = n;
+	    while(n--) {
+		boolean found = TRUE;
+		Fread((genericptr_t) &tmplregion, sizeof(tmplregion), 1, fd);
+		if ((size = tmplregion.rname.len) != 0) {
+		    tmplregion.rname.str = (char *) alloc((unsigned)size + 1);
+		    Fread((genericptr_t) tmplregion.rname.str, size, 1, fd);
+		    tmplregion.rname.str[size] = '\0';
+		} else
+		    tmplregion.rname.str = (char *) 0;
+		if (!found)
+		    panic("reading special level with random region located nowhere");
+		(void) memcpy((genericptr_t)&rarea[(int)tmpn - n - 1],
+			(genericptr_t)&tmplregion, sizeof(lev_region));
+	    }
 	}
 
 	Fread((genericptr_t) &n, 1, sizeof(n), fd);

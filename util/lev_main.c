@@ -216,9 +216,11 @@ extern pool *tmppool[];
 extern engraving *tmpengraving[];
 extern mazepart *tmppart[];
 extern room *tmproom[];
+extern lev_region *tmprndlreg[];
 
 extern int n_olist, n_mlist, n_plist;
 
+extern unsigned int nrndlreg;
 extern unsigned int nlreg, nreg, ndoor, ntrap, nmons, nobj;
 extern unsigned int ndb, nwalk, npart, ndig, npass, nlad, nstair;
 extern unsigned int naltar, ncorridor, nrooms, ngold, nengraving;
@@ -809,6 +811,15 @@ store_part()
 	}
 	nlreg = 0;
 
+	/* the random level regions */
+
+	if ((tmppart[npart]->nrndlreg = nrndlreg) != 0) {
+		tmppart[npart]->rndlregions = NewTab(lev_region, nrndlreg);
+		for(i=0;i<nrndlreg;i++)
+		    tmppart[npart]->rndlregions[i] = tmprndlreg[i];
+	}
+	nrndlreg = 0;
+
 	/* the doors */
 
 	if ((tmppart[npart]->ndoor = ndoor) != 0) {
@@ -1288,6 +1299,23 @@ specialmaze *maze;
 	    }
 	    if (pt->nlreg > 0)
 		Free(pt->lregions);
+
+	    /* random level regions registers */
+	    Write(fd, &pt->nrndlreg, sizeof pt->nrndlreg);
+	    for (j = 0; j < pt->nrndlreg; j++) {
+		lev_region *l = pt->rndlregions[j];
+		char *rname = l->rname.str;
+		l->rname.str = 0;	/* reset in case `len' is narrower */
+		l->rname.len = rname ? strlen(rname) : 0;
+		Write(fd, l, sizeof *l);
+		if (rname) {
+		    Write(fd, rname, l->rname.len);
+		    Free(rname);
+		}
+		Free(l);
+	    }
+	    if (pt->nrndlreg > 0)
+		Free(pt->rndlregions);
 
 	    /* The random registers */
 	    Write(fd, &(pt->nrobjects), sizeof(pt->nrobjects));

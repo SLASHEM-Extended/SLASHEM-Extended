@@ -85,6 +85,7 @@ lev_region *tmplreg[MAX_OF_TYPE];
 door *tmpdoor[MAX_OF_TYPE];
 drawbridge *tmpdb[MAX_OF_TYPE];
 walk *tmpwalk[MAX_OF_TYPE];
+lev_region *tmprndlreg[MAX_REGISTERS];
 
 room_door *tmprdoor[MAX_OF_TYPE];
 trap *tmptrap[MAX_OF_TYPE];
@@ -112,6 +113,7 @@ static struct coord plist[MAX_REGISTERS];
 
 int n_olist = 0, n_mlist = 0, n_plist = 0;
 
+unsigned int nrndlreg = 0;
 unsigned int nlreg = 0, nreg = 0, ndoor = 0, ntrap = 0, nmons = 0, nobj = 0;
 unsigned int ndb = 0, nwalk = 0, npart = 0, ndig = 0, nlad = 0, nstair = 0;
 unsigned int naltar = 0, ncorridor = 0, nrooms = 0, ngold = 0, nengraving = 0;
@@ -155,7 +157,7 @@ extern const char *fname;
 %token	<i> SUBROOM_ID NAME_ID FLAGS_ID FLAG_TYPE MON_ATTITUDE MON_ALERTNESS
 %token	<i> MON_APPEARANCE
 %token	<i> CONTAINED
-%token	<i> OBJFLAG_TYPE OBJFLAGS_ID
+%token	<i> OBJFLAG_TYPE OBJFLAGS_ID RANDOMREGION_ID R_REGISTER
 %token	<i> ',' ':' '(' ')' '[' ']'
 %token	<map> STRING MAP_ID
 %type	<i> h_justif v_justif trap_name room_type door_state light_state
@@ -761,6 +763,10 @@ init_reg	: RANDOM_OBJECTS_ID ':' object_list
 			    tmppart[npart]->nrmonst = n_mlist;
 			}
 		  }
+		| rndlevregion
+		  {
+			/* nothing */
+		  }
 		;
 
 object_list	: object
@@ -956,8 +962,8 @@ object_where	: coordinate
 		  {
 			tmpobj[nobj]->containment = 1;
 			/* random coordinate, will be overridden anyway */
-			tmpobj[nobj]->x = -MAX_REGISTERS-1;
-			tmpobj[nobj]->y = -MAX_REGISTERS-1;
+			tmpobj[nobj]->x = -MAX_REGISTERS-2;
+			tmpobj[nobj]->y = -MAX_REGISTERS-2;
 		  }
 		;
 
@@ -1217,6 +1223,34 @@ stair_region	: STAIR_ID ':' lev_region
 			if (nlreg >= MAX_OF_TYPE) {
 				yyerror("Too many levregions in mazepart!");
 				nlreg--;
+			}
+		  }
+		;
+
+rndlevregion	: RANDOMREGION_ID '[' INTEGER ']' ':' lev_region
+		  {
+		   	if ((unsigned) $3 != nrndlreg)
+			    yyerror("Wrong random region number!");
+			tmprndlreg[nrndlreg] = New(lev_region);
+			tmprndlreg[nrndlreg]->in_islev = $6;
+			tmprndlreg[nrndlreg]->inarea.x1 = current_region.x1;
+			tmprndlreg[nrndlreg]->inarea.y1 = current_region.y1;
+			tmprndlreg[nrndlreg]->inarea.x2 = current_region.x2;
+			tmprndlreg[nrndlreg]->inarea.y2 = current_region.y2;
+		  }
+		 ',' lev_region
+		  {
+		   	tmprndlreg[nrndlreg]->del_islev = $9;
+			tmprndlreg[nrndlreg]->delarea.x1 = current_region.x1;
+			tmprndlreg[nrndlreg]->delarea.y1 = current_region.y1;
+			tmprndlreg[nrndlreg]->delarea.x2 = current_region.x2;
+			tmprndlreg[nrndlreg]->delarea.y2 = current_region.y2;
+			tmprndlreg[nrndlreg]->rtype = 0;
+			tmprndlreg[nrndlreg]->rname.str = (char *)0;
+			nrndlreg++;
+			if (nrndlreg >= MAX_REGISTERS) {
+				yyerror("Too many random regions!");
+				nrndlreg--;
 			}
 		  }
 		;
@@ -1601,9 +1635,10 @@ prefilled	: /* empty */
 
 coordinate	: coord
 		| p_register
+		| r_register
 		| RANDOM_TYPE
 		  {
-			current_coord.x = current_coord.y = -MAX_REGISTERS-1;
+			current_coord.x = current_coord.y = -MAX_REGISTERS-2;
 		  }
 		;
 
@@ -1633,6 +1668,17 @@ p_register	: P_REGISTER '[' INTEGER ']'
 				yyerror("Register Index overflow!");
 			else
 				current_coord.x = current_coord.y = - $3 - 1;
+		  }
+		;
+
+r_register	: R_REGISTER '[' INTEGER ']'
+		  {
+			if ( $3 < 0 || $3 >= nrndlreg )
+				yyerror("Register Index overflow!");
+			else {
+				current_coord.x = -MAX_REGISTERS-1;
+				current_coord.y = - $3 - 1;
+			}
 		  }
 		;
 

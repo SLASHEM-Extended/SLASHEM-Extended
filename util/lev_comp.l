@@ -150,6 +150,7 @@ LADDER		return LADDER_ID;
 STAIR		return STAIR_ID;
 PORTAL		return PORTAL_ID;
 TELEPORT_REGION	return TELEPRT_ID;
+RANDOM_REGION	return RANDOMREGION_ID;
 BRANCH		return BRANCH_ID;
 FOUNTAIN	return FOUNTAIN_ID;
 SINK		return SINK_ID;
@@ -180,6 +181,7 @@ object		return O_REGISTER;
 monster		return M_REGISTER;
 place		return P_REGISTER;
 align		return A_REGISTER;
+region		return R_REGISTER;
 left		{ yylval.i=1; return LEFT_OR_RIGHT; }
 half-left	{ yylval.i=2; return LEFT_OR_RIGHT; }
 center		{ yylval.i=3; return CENTER; }
