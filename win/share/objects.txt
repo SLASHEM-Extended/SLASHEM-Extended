@@ -2921,7 +2921,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 153 (dirty rag / cloak of poisonousness)
+# tile 153 (dirty rag / poisonous cloak)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM

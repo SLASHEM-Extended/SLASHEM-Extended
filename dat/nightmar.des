@@ -1,5 +1,5 @@
 #	SCCS Id: @(#)nightmar.des	0.0.7	2002/03/13
-#	$Id: nightmar.des,v 1.5 2002-08-13 20:13:17 j_ali Exp $
+#	$Id: nightmar.des,v 1.6 2003-05-08 17:42:14 j_ali Exp $
 # NetHack may be freely redistributed.  See license for details.
 #
 # Nightmare's Nightmare World
@@ -136,7 +136,7 @@ OBJECT[80%]:'/',"nothing",place[2],cursed,0
 OBJECT[60%]:'/',"secret door detection",place[2],cursed,0
 OBJECT[40%]:'[',"fumble boots",place[2],cursed,-2
 OBJECT[40%]:'[',"gauntlets of fumbling",place[2],cursed,-4
-OBJECT[40%]:'[',"cloak of poisonousness",place[2],cursed,-1
+OBJECT[40%]:'[',"poisonous cloak",place[2],cursed,-1
 OBJECT[40%]:'[',"robe of weakness",place[2],cursed,0
 OBJECT[40%]:')',"fly swatter",place[2],cursed,-2,"Bugshmasher"
 OBJECT[40%]:')',"worm tooth",place[2],cursed,-4,"Storm Brand"

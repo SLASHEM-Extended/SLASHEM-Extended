@@ -546,7 +546,7 @@ CLOAK("alchemy smock", "apron",
 /* With shuffled appearances... */
 CLOAK("cloak of protection", "tattered cape",
 		0, 1,	PROTECTION, 9, 0, 10, 50,  7, 3, CLOTH, HI_CLOTH),
-CLOAK("cloak of poisonousness", "dirty rag",
+CLOAK("poisonous cloak", "dirty rag",
 		0, 1,   0,          5, 0, 10, 40, 10, 3, CLOTH, CLR_GREEN),
 CLOAK("cloak of invisibility", "opera cloak",
 		0, 1,	INVIS,	   10, 0, 10, 60,  9, 2, CLOTH, CLR_BRIGHT_MAGENTA),
