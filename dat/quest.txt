@@ -2633,7 +2633,7 @@ Go forth, and return when you are ready."
 "About six months ago, I learned that a mysterious sorcerer, known
 as %n, had begun to summon a large group of elementals and monsters.
 
-"%nC and his horde swept down upon %i and stole 
+"%nC and his horde swept down upon %H and stole 
 %o. He seeks to bend it to his will.  After we regrouped, 
 I sent forth a summons for you.
 
