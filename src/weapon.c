@@ -1172,7 +1172,7 @@ enhance_weapon_skill()
 			    practice_needed_to_advance(P_SKILL(i), i));
 		    else
 			Sprintf(buf, " %s%s\t%s\t%5d(%4d)",
-			    prefix, longest, P_NAME(i), sklnambuf,
+			    prefix, P_NAME(i), sklnambuf,
 			    P_ADVANCE(i),
 			    practice_needed_to_advance(P_SKILL(i), i));
 		 } else
@@ -1183,7 +1183,7 @@ enhance_weapon_skill()
 			    prefix, longest, P_NAME(i), sklnambuf);
 		    else
 			Sprintf(buf, " %s%s\t[%s]",
-			    prefix, longest, P_NAME(i), sklnambuf);
+			    prefix, P_NAME(i), sklnambuf);
 		}
 		any.a_int = can_advance(i, speedy) ? i+1 : 0;
 		add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE,
