@@ -66,4 +66,3 @@ read 'File' (1041,"options") ":lib:options";
 read 'File' (1043,"oracles") ":lib:oracles";
 read 'File' (1045,"quest.dat") ":lib:quest.dat";
 read 'File' (1046,"rumors") ":lib:rumors";
-read 'File' (1165,"Guidebook.txt") ":doc:Guidebook.txt";
