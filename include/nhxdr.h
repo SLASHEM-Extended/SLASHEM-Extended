@@ -1,4 +1,4 @@
-/* $Id: nhxdr.h,v 1.5 2002-11-23 22:41:59 j_ali Exp $ */
+/* $Id: nhxdr.h,v 1.6 2002-11-30 19:15:17 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -87,17 +87,19 @@ typedef struct NhExtIO_ NhExtIO;
 #define NHEXT_IO_RDONLY		1
 #define NHEXT_IO_WRONLY		2
 #define NHEXT_IO_NOAUTOFILL	4
+#define NHEXT_IO_SIMPLEBUFFER	8
 
-NhExtIO *nhext_io_open(nhext_io_func func, void *handle, unsigned int flags);
-int nhext_io_close(NhExtIO *io);
-unsigned int nhext_io_getmode(NhExtIO *io);
-void nhext_io_setmode(NhExtIO *io, unsigned int flags);
-void nhext_io_setautofill_limit(NhExtIO *io, unsigned int limit);
-int nhext_io_filbuf(NhExtIO *io);
-int nhext_io_getc(NhExtIO *io);
-int nhext_io_read(NhExtIO *io, char *buf, int nb);
-int nhext_io_flush(NhExtIO *io);
-int nhext_io_fputc(int c, NhExtIO *io);
-int nhext_io_write(NhExtIO *io, char *buf, int nb);
+E NhExtIO *FDECL(nhext_io_open, (nhext_io_func, void *, unsigned int));
+E int FDECL(nhext_io_close, (NhExtIO *));
+E unsigned int FDECL(nhext_io_getmode, (NhExtIO *));
+E void FDECL(nhext_io_setmode, (NhExtIO *, unsigned int));
+E void FDECL(nhext_io_setautofill_limit, (NhExtIO *, unsigned int));
+E int FDECL(nhext_io_filbuf, (NhExtIO *));
+E int FDECL(nhext_io_getc, (NhExtIO *));
+E int FDECL(nhext_io_read, (NhExtIO *, char *, int));
+E char *FDECL(nhext_io_getpacket, (NhExtIO *, int *));
+E int FDECL(nhext_io_flush, (NhExtIO *));
+E int FDECL(nhext_io_fputc, (int, NhExtIO *));
+E int FDECL(nhext_io_write, (NhExtIO *, char *, int));
 
 #endif /* NHXDR_H */

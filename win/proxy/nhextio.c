@@ -1,4 +1,4 @@
-/* $Id: nhextio.c,v 1.3 2002-11-23 22:41:59 j_ali Exp $ */
+/* $Id: nhextio.c,v 1.4 2002-11-30 19:15:18 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -28,6 +28,12 @@ struct NhExtIO_ {
 
 #define NHEXT_IO__USERFLAGS	NHEXT_IO_NOAUTOFILL
 
+/* Flags readable by nhext_io_getmode */
+
+#define NHEXT_IO__READFLAGS	(NHEXT_IO__USERFLAGS | \
+				NHEXT_IO_RDONLY | \
+				NHEXT_IO_WRONLY)
+
 NhExtIO *nhext_io_open(nhext_io_func func, void *handle, unsigned int flags)
 {
     NhExtIO *io;
@@ -52,7 +58,7 @@ int nhext_io_close(NhExtIO *io)
 
 unsigned int nhext_io_getmode(NhExtIO *io)
 {
-    return io->flags;
+    return io->flags & NHEXT_IO__READFLAGS;
 }
 
 void nhext_io_setmode(NhExtIO *io, unsigned int flags)
@@ -141,6 +147,7 @@ int nhext_io_filbuf(NhExtIO *io)
 	    /* Combine free blocks so that we don't make unneccesary
 	     * calls to I/O function (which may be expensive).
 	     */
+	    io->flags &= ~NHEXT_IO_SIMPLEBUFFER;
 	    memmove(io->buffer, io->rp, io->wp - io->rp);
 	    io->wp += io->buffer - io->rp;
 	    io->rp = io->buffer;
@@ -150,6 +157,15 @@ int nhext_io_filbuf(NhExtIO *io)
     }
     if (!nf1)
 	return 1;	/* Buffer is full */
+    /*
+     * A simple buffer is one that has the whole of the latest packet read
+     * stored starting at io->buffer and ending at io->wp - 1. Such buffers
+     * may be used to retrieve said packet by calling nhext_io_getpacket().
+     */
+    if (io->wp == io->buffer)
+	io->flags |= NHEXT_IO_SIMPLEBUFFER;
+    else
+	io->flags &= ~NHEXT_IO_SIMPLEBUFFER;
     retval = (*io->func)(io->handle, io->wp, nf1);
     if (retval > 0) {
 	ADVANCE_PTR(io, io->wp, retval);
@@ -225,6 +241,7 @@ int nhext_io_read(NhExtIO *io, char *buf, int nb)
 	return retval;
     if (nb >= sizeof(io->buffer)) {
 	/* If caller still wants more than we can buffer, read direct */
+	io->flags &= ~NHEXT_IO_SIMPLEBUFFER;
 	i = (*io->func)(io->handle, buf, nb);
 	if (i <= 0) {
 	    /* If we have previously read some data correctly, then return
@@ -305,6 +322,7 @@ int nhext_io_fread(void *buffer, int size, int nmemb, NhExtIO *io)
 		 * The buffer must be empty so we can place the partially
 		 * read member back into it.
 		 */
+		io->flags &= ~NHEXT_IO_SIMPLEBUFFER;
 		memcpy(io->buffer, buffer - nbp, nbp);
 		io->rp = io->buffer;
 		io->wp = io->buffer + nbp;
@@ -319,6 +337,22 @@ int nhext_io_fread(void *buffer, int size, int nmemb, NhExtIO *io)
 	}
     }
     return nmemb;
+}
+
+/* nhext_io_getpacket() gets the last packet read under certain circumstances.
+ * This will always work if the caller sets no-autofill mode and calls
+ * nhext_io_fillbuf() on an empty buffer. Calls to nhext_io_fread() must
+ * also be avoided since this can cause simple buffer mode to be cancelled
+ * (nhext_io_fread() could be re-written to avoid this if it became important).
+ */
+
+char *nhext_io_getpacket(NhExtIO *io, int *nb)
+{
+    if (io->flags & NHEXT_IO_SIMPLEBUFFER) {
+	*nb = io->wp - io->buffer;
+	return io->buffer;
+    } else
+	return NULL;
 }
 
 int nhext_io_flush(NhExtIO *io)

@@ -334,6 +334,7 @@ ver 0.0.6E7 [?] [Released by ?]
 -add support for multiple routes through the dungeon
 -Lethe: Special rooms (Darshan Shaligram).
 -Proxy: Switch to buffered I/O to remove packet length limitations.
+-Proxy: Implement sub-protocol 0.
 
 ver 0.0.6E6 [September 13/2002] [Released by Ali]
 -Implemented "none" as a possible random place in level compiler.

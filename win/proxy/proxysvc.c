@@ -1,4 +1,4 @@
-/* $Id: proxysvc.c,v 1.10 2002-11-23 22:41:59 j_ali Exp $ */
+/* $Id: proxysvc.c,v 1.11 2002-11-30 19:15:18 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -6,6 +6,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #ifdef WIN32
 #include <windows.h>
 #include <commctrl.h>
@@ -874,10 +875,25 @@ unsigned int len;
 }
 #endif	/* DEBUG */
 
+static int
+win_proxy_svr_gettag(lp, tag)
+struct nhext_line *lp;
+const char *tag;
+{
+    int i;
+    for(i = 0; i < lp->n; i++)
+	if (!strcmp(lp->tags[i], tag))
+	    return i;
+    return -1;
+}
+
 int
 win_proxy_svr_init(read_h, write_h)
 void *read_h, *write_h;
 {
+    int i;
+    char *s;
+    struct nhext_line *lp, line;
     NhExtIO *rd, *wr;
 #ifdef DEBUG
     rd = nhext_io_open(debug_read, read_h, NHEXT_IO_RDONLY);
@@ -890,15 +906,64 @@ void *read_h, *write_h;
 	fprintf(stderr, "proxy_svc: Failed to open I/O streams.\n");
 	exit(1);
     }
-    proxy_svc_connection = nhext_subprotocol1_init(rd, wr, services);
+    proxy_svc_connection = nhext_init(rd, wr, services);
     if (proxy_svc_connection < 0) {
-	fprintf(stderr, "proxy_svc: Failed to initialize sub-protocol1.\n");
+	fprintf(stderr, "proxy_svc: Failed to initialize NhExt.\n");
+	nhext_io_close(wr);
+	nhext_io_close(rd);
 	return FALSE;
     }
+    lp = nhext_subprotocol0_read_line_c(proxy_svc_connection);
+    if (!lp) {
+failed:
+	fprintf(stderr, "proxy_svc: Failed to start NhExt.\n");
+	/* We leave the NhExtIO streams open and NhExt initialized so
+	 * that win_proxy_svr_get_failed_packet() will still work.
+	 */
+	return FALSE;
+    }
+    if (strcmp(lp->type, "NhExt") || win_proxy_svr_gettag(lp, "game") < 0 ||
+      win_proxy_svr_gettag(lp, "version") < 0 ||
+      (i = win_proxy_svr_gettag(lp, "protocols")) < 0) {
+	nhext_subprotocol0_free_line(lp);
+	goto failed;
+    }
+    s = strchr(lp->values[i], '1');
+    if (!s || s > lp->values[i] && s[-1] != ',' || s[1] && s[1] != ',') {
+	nhext_subprotocol0_free_line(lp);
+	fprintf(stderr, "proxy_svc: Sub-protocol 1 not supported.\n");
+	s = "Error mesg \"No supported protocols\"\n";
+	(void)nhext_io_write(wr, s, strlen(s));
+	nhext_end_c(proxy_svc_connection);
+	nhext_io_close(wr);
+	nhext_io_close(rd);
+	proxy_svc_connection = -1;
+	return FALSE;
+    }
+    nhext_subprotocol0_free_line(lp);
     /*
      * For now, we hardcode the client side to the GTK interface
      */
     proxy_svc_set_ext_procs(win_GTK_init, &GTK_ext_procs);
+    line.type = "Ack";
+    line.n = 2;
+    line.tags = (char **)alloc(line.n * sizeof(char *));
+    line.values = (char **)alloc(line.n * sizeof(char *));
+    line.tags[0] = "windowtype";
+    line.values[0] = "Gtk";
+    line.tags[1] = "protocol";
+    line.values[1] = "1";
+    i = nhext_subprotocol0_write_line_c(proxy_svc_connection, &line);
+    free(line.tags);
+    free(line.values);
+    if (!i) {
+	fprintf(stderr, "proxy_svc: Failed to write NhExt acknowledgement.\n");
+	nhext_end_c(proxy_svc_connection);
+	nhext_io_close(wr);
+	nhext_io_close(rd);
+	proxy_svc_connection = -1;
+	return FALSE;
+    }
     return TRUE;
 }
 
@@ -915,5 +980,8 @@ win_proxy_svr_iteration()
 char *
 win_proxy_svr_get_failed_packet(int *nb)
 {
-    return nhext_subprotocol1_get_failed_packet(proxy_svc_connection, nb);
+    if (proxy_svc_connection >= 0)
+	return nhext_subprotocol0_get_failed_packet(proxy_svc_connection, nb);
+    else
+	return NULL;
 }

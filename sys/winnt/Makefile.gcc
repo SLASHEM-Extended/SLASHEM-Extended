@@ -1481,8 +1481,9 @@ gtkext.o: $(WGTK)/gtkext.c ../include/winGTK.h ../include/proxysvr.h \
 	$(COPY) $(WGTK)\gtkext.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkext.c
 # win/proxy
-winproxy.o: ../win/proxy/winproxy.c $(HACK_H) ../include/nhxdr.h \
-		../include/proxycom.h ../include/winproxy.h
+winproxy.o: ../win/proxy/winproxy.c $(HACK_H) ../include/patchlevel.h \
+		../include/date.h ../include/nhxdr.h ../include/proxycom.h \
+		../include/winproxy.h
 	$(COPY) ..\win\proxy\winproxy.c .
 	$(CCOMPILE) $(CFLAGS) -c winproxy.c
 nhext.o: ../win/proxy/nhext.c ../include/nhxdr.h ../include/proxycom.h
@@ -1494,7 +1495,7 @@ nhxdr.o: ../win/proxy/nhxdr.c ../include/nhxdr.h
 nhextxdr.o: ../win/proxy/nhextxdr.c ../include/nhxdr.h
 	$(COPY) ..\win\proxy\nhextxdr.c .
 	$(CCOMPILE) $(CFLAGS) -c nhextxdr.c
-nhextio.o: ../win/proxy/nhextio.c ../include/nhxdr.h ../include/proxycom.h
+nhextio.o: ../win/proxy/nhextio.c ../include/nhxdr.h
 	$(COPY) ..\win\proxy\nhextio.c .
 	$(CCOMPILE) $(CFLAGS) -c nhextio.c
 compxdr.o: ../win/proxy/compxdr.c ../include/nhxdr.h ../include/proxycom.h
@@ -1511,7 +1512,7 @@ riputil.o: ../win/proxy/riputil.c $(HACK_H)
 	$(COPY) ..\win\proxy\riputil.c .
 	$(CCOMPILE) $(CFLAGS) -c riputil.c
 glyphmap.o: ../win/proxy/glyphmap.c $(HACK_H) ../include/nhxdr.h \
-		../include/winproxy.h
+		../include/proxycom.h ../include/winproxy.h
 	$(COPY) ..\win\proxy\glyphmap.c .
 	$(CCOMPILE) $(CFLAGS) -c glyphmap.c
 getopt.o: ../win/proxy/getopt.c $(HACK_H)

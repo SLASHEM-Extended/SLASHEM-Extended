@@ -1,4 +1,4 @@
-/* $Id: nhext.c,v 1.12 2002-11-23 22:41:59 j_ali Exp $ */
+/* $Id: nhext.c,v 1.13 2002-11-30 19:15:17 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -8,6 +8,7 @@
 #ifdef DEBUG
 #include <stdio.h>
 #endif
+#include <string.h>
 #include <stdarg.h>
 #include "nhxdr.h"
 #include "proxycom.h"
@@ -32,7 +33,7 @@ static struct nhext_connection {
     struct nhext_svc *callbacks;
 } nhext_connections[2];
 
-int nhext_subprotocol1_init(NhExtIO *rd, NhExtIO *wr, struct nhext_svc *cb)
+int nhext_init(NhExtIO *rd, NhExtIO *wr, struct nhext_svc *cb)
 {
     int cn;
     if (no_connections == 2)
@@ -49,7 +50,7 @@ int nhext_subprotocol1_init(NhExtIO *rd, NhExtIO *wr, struct nhext_svc *cb)
     return cn;
 }
 
-void nhext_subprotocol1_end_c(int cn)
+void nhext_end_c(int cn)
 {
     nhext_xdr_destroy(nhext_connections[cn].in);
     nhext_xdr_destroy(nhext_connections[cn].out);
@@ -59,29 +60,272 @@ void nhext_subprotocol1_end_c(int cn)
     nhext_connections[cn].out = NULL;
 }
 
+static char *nhext_subprotocol0_encode_value(char *buf, char *value)
+{
+    *buf++ = '"';
+    while (*value) {
+	if (*value == '\\' || *value == '"')
+	    *buf++ = '\\';
+	*buf++ = *value++;
+    }
+    *buf++ = '"';
+    return buf;
+}
+
+int nhext_subprotocol0_write_line_c(int cn, struct nhext_line *line)
+{
+    struct nhext_connection *nc = nhext_connections + cn;
+    int i, len, retval;
+    char *buf, *bp;
+    len = strlen(line->type) + 1;
+    for(i = 0; i < line->n; i++) {
+	len += strlen(line->tags[i]) + 1;
+	len += strlen(line->values[i]) * 2 + 2 + 1;
+    }
+    buf = (char *)alloc(len);
+    (void)strcpy(buf, line->type);
+    bp = buf + strlen(buf);
+    for(i = 0; i < line->n; i++) {
+	*bp++ = ' ';
+	(void)strcpy(bp, line->tags[i]);
+	bp += strlen(bp);
+	*bp++ = ' ';
+	bp = nhext_subprotocol0_encode_value(bp, line->values[i]);
+    }
+    *bp++ = '\n';
+    retval = nhext_io_write(nc->wr, buf, bp - buf) == bp - buf &&
+      !nhext_io_flush(nc->wr);
+    free(buf);
+    return retval;
+}
+
+#define NHEXT_SP0_NORMAL_SIZE	64
+#define NHEXT_SP0_SPECIAL_SIZE	200
+
 /*
- * This function is available for callers to use if sub-protocol 1 fails.
+ * Return the next token read or NULL on error. An empty string
+ * will be returned if the line ends before a token is found.
+ */
+
+static char *nhext_subprotocol0_read_token(NhExtIO *io)
+{
+    int i, ch;
+    static char token[NHEXT_SP0_NORMAL_SIZE+1];
+    for(i = 0;; ) {
+	ch = nhext_io_getc(io);
+	if (ch < 0) {
+#ifdef DEBUG
+	    fprintf(stderr,
+	      "[%d] EOF/ERROR while reading sub-protocol 0 token\n", getpid());
+#endif
+	    return NULL;
+	}
+	if (ch == '\r' || ch == '\n')
+	    break;
+	if (ch == ' ')
+	    if (i)
+		break;
+	    else
+		continue;
+	if (ch != '_' && !isalnum(ch)) {
+#ifdef DEBUG
+	    fprintf(stderr,
+	      "[%d] Illegal character (0x%02X) while reading sub-protocol 0 token\n",
+	      getpid(), ch);
+#endif
+	    return NULL;
+	}
+	if (i == NHEXT_SP0_NORMAL_SIZE) {
+#ifdef DEBUG
+	    fprintf(stderr,
+	      "[%d] Too many characters while reading sub-protocol 0 token\n",
+	      getpid());
+#endif
+	    return NULL;
+	}
+	token[i++] = ch;
+    }
+    token[i] = '\0';
+#ifdef DEBUG
+    fprintf(stderr, "nhext_subprotocol0_read_token: %s\n", token);
+#endif
+    return token;
+}
+
+/*
+ * Return the next value read or NULL on error. A NULL
+ * will be returned if the line ends before a value can be found.
+ */
+
+static char *nhext_subprotocol0_read_value(NhExtIO *io, int isspecial)
+{
+    int i, ch, esc = FALSE, invalue = FALSE;
+    const int maxlen =
+      isspecial ? NHEXT_SP0_SPECIAL_SIZE : NHEXT_SP0_NORMAL_SIZE;
+    static char value[NHEXT_SP0_SPECIAL_SIZE+1];
+    for(i = 0;; ) {
+	ch = nhext_io_getc(io);
+	if (ch < 0) {
+#ifdef DEBUG
+	    fprintf(stderr,
+	      "[%d] EOF/ERROR while reading sub-protocol 0 value\n", getpid());
+#endif
+	    return NULL;
+	}
+	if (!invalue) {
+	    if (ch == '"')
+		invalue = TRUE;
+	    else if (ch == ' ')
+		continue;
+	    else {
+#ifdef DEBUG
+		fprintf(stderr,
+		  "[%d] Read 0x%02X while expecting sub-protocol 0 value\n",
+		  getpid(), ch);
+#endif
+		return NULL;
+	    }
+	} else if (ch < ' ' || ch > '~') {
+#ifdef DEBUG
+	    fprintf(stderr,
+	      "[%d] Illegal character (0x%02X) while reading sub-protocol 0 value\n",
+	      getpid(), ch);
+#endif
+	    return NULL;
+	} else if (!esc && ch == '\\')
+	    esc = TRUE;
+	else if (!esc && ch == '"')
+	    break;
+	else if (i == maxlen) {
+#ifdef DEBUG
+	    fprintf(stderr,
+	      "[%d] Too many characters while reading sub-protocol 0 value\n",
+	      getpid());
+#endif
+	    return NULL;
+	} else {
+	    value[i++] = ch;
+	    esc = FALSE;
+	}
+    }
+    value[i] = '\0';
+#ifdef DEBUG
+    fprintf(stderr, "nhext_subprotocol0_read_value: %s\n", value);
+#endif
+    return value;
+}
+
+void nhext_subprotocol0_free_line(struct nhext_line *line)
+{
+    int i;
+    for(i = 0; i < line->n; i++) {
+	free(line->tags[i]);
+	free(line->values[i]);
+    }
+    free(line->type);
+    free(line->tags);
+    free(line->values);
+    free(line);
+}
+
+struct nhext_line *nhext_subprotocol0_read_line_c(int cn)
+{
+    int i, iserror;
+    char *s;
+    struct nhext_connection *nc = nhext_connections + cn;
+    struct nhext_line *line;
+#ifdef DEBUG
+    if (nhext_io_getc(nc->rd) >= 0)
+	fprintf(stderr,
+	  "[%d] NhExt: Non-empty buffer in nhext_subprotocol0_read_line\n",
+	  getpid());
+#endif
+    if (nhext_io_filbuf(nc->rd) <= 0) {
+#ifdef DEBUG
+	fprintf(stderr,
+	  "[%d] EOF/ERROR while trying to read sub-protocol 0 packet\n",
+	  getpid());
+#endif
+	return NULL;
+    }
+    line = (struct nhext_line *) alloc(sizeof(*line));
+    s = nhext_subprotocol0_read_token(nc->rd);
+    if (!s) {
+	free(line);
+	return NULL;
+    }
+    iserror = !strcmp(s, "Error");
+    line->type = strdup(s);
+    line->n = 0;
+    line->tags = (char **)0;
+    line->values = (char **)0;
+    for(i = 0;; i++) {
+	s = nhext_subprotocol0_read_token(nc->rd);
+	if (!s || !*s)
+	    break;
+	if (line->n) {
+	    line->tags =
+	      (char **)realloc(line->tags, (line->n + 1)*sizeof(char **));
+	    line->values =
+	      (char **)realloc(line->values, (line->n + 1)*sizeof(char **));
+	    if (!line->tags || !line->values) {
+#ifdef DEBUG
+		fprintf(stderr,
+		  "[%d] NhExt: Memory allocation failure; cannot get %u tags",
+		  getpid(), line->n + 1);
+#endif
+		s = NULL;
+		break;
+	    }
+	} else {
+	    line->tags = (char **)malloc(sizeof(char **));
+	    line->values = (char **)malloc(sizeof(char **));
+	    if (!line->tags || !line->values) {
+#ifdef DEBUG
+		fprintf(stderr,
+		  "[%d] NhExt: Memory allocation failure; cannot get 1 tag",
+		  getpid());
+#endif
+		s = NULL;
+		break;
+	    }
+	}
+	line->tags[line->n] = strdup(s);
+	s = nhext_subprotocol0_read_value(nc->rd,
+	  iserror && !strcmp(s, "mesg"));
+	if (!s) {
+	    free(line->tags[line->n]);
+	    break;
+	}
+	line->values[line->n] = strdup(s);
+	line->n++;
+    }
+    if (s && nhext_io_getc(nc->rd) >= 0) {
+	for(i = 1; nhext_io_getc(nc->rd) >= 0; i++)
+	    ;
+#ifdef DEBUG
+	fprintf(stderr,
+	  "[%d] %d extra character%s after valid sub-protocol 0 packet\n",
+	  getpid(), i, i == 1 ? "": "s");
+#endif
+	s = NULL;
+    }
+    if (!s) {
+	nhext_subprotocol0_free_line(line);
+	return NULL;
+    } else
+	return line;
+}
+
+/*
+ * This function is available for callers to use if sub-protocol 0 fails.
  * It returns a pointer to the received packet which was being processed
  * at the time.
  */
 
-char *nhext_subprotocol1_get_failed_packet(int cn, int *nb)
+char *nhext_subprotocol0_get_failed_packet(int cn, int *nb)
 {
-/* FIXME: The facility to read a packet from the remote process on the
- * assumption that it is a legal NhExt packet and then back-out if this
- * proves not to be the case is currently broken. While it would be
- * possible to implement this in sub-protocol 1, the use of NhExt IO
- * streams makes this non-trivial. The correct solution is to implement
- * this facility as part of the (as yet unwritten) sub-protocol 0
- * implementation.
- */
-#if 0
-    *nb = nhext_connections[cn].reply_len;
-    return nhext_connections[cn].reply;
-#else
-    *nb = 0;
-    return NULL;
-#endif
+    return nhext_io_getpacket(nhext_connections[cn].rd, nb);
 }
 
 static int nhext_rpc_vparams1(NhExtXdr *xdrs, int no, va_list *app)

@@ -829,9 +829,9 @@ load_img.o: ../win/gem/load_img.c ../include/load_img.h
 	$(CC) $(CFLAGS) -c ../win/gem/load_img.c
 gr_rect.o: ../win/gem/gr_rect.c ../include/gr_rect.h
 	$(CC) $(CFLAGS) -c ../win/gem/gr_rect.c
-winproxy.o: ../win/proxy/winproxy.c $(HACK_H) ../include/nhxdr.h \
-		../include/proxycom.h ../include/winproxy.h \
-		#../include/win32api.h
+winproxy.o: ../win/proxy/winproxy.c $(HACK_H) ../include/patchlevel.h \
+		../include/date.h ../include/nhxdr.h ../include/proxycom.h \
+		../include/winproxy.h #../include/win32api.h
 	$(CC) $(CFLAGS) -c ../win/proxy/winproxy.c
 callback.o: ../win/proxy/callback.c $(HACK_H) ../include/func_tab.h \
 		../include/nhxdr.h ../include/proxycom.h ../include/winproxy.h
@@ -845,7 +845,7 @@ riputil.o: ../win/proxy/riputil.c $(HACK_H)
 getopt.o: ../win/proxy/getopt.c $(HACK_H)
 	$(CC) $(CFLAGS) -c ../win/proxy/getopt.c
 glyphmap.o: ../win/proxy/glyphmap.c $(HACK_H) ../include/nhxdr.h \
-		../include/winproxy.h
+		../include/proxycom.h ../include/winproxy.h
 	$(CC) $(CFLAGS) -c ../win/proxy/glyphmap.c
 proxysvc.o: ../win/proxy/proxysvc.c ../include/nhxdr.h ../include/proxycom.h \
 		../include/proxysvr.h
@@ -868,7 +868,7 @@ nhxdr.o: ../win/proxy/nhxdr.c ../include/nhxdr.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhxdr.c
 nhextxdr.o: ../win/proxy/nhextxdr.c ../include/nhxdr.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhextxdr.c
-nhextio.o: ../win/proxy/nhextio.c ../include/nhxdr.h ../include/proxycom.h
+nhextio.o: ../win/proxy/nhextio.c ../include/nhxdr.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhextio.c
 compxdr.o: ../win/proxy/compxdr.c ../include/nhxdr.h ../include/proxycom.h
 	$(CC) $(CFLAGS) -c ../win/proxy/compxdr.c

@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.13 2002-11-23 22:41:59 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.14 2002-11-30 19:15:18 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -9,6 +9,8 @@
 #include <ctype.h>
 #endif
 #include "hack.h"
+#include "patchlevel.h"
+#include "date.h"
 #include "nhxdr.h"
 #include "proxycom.h"
 #include "winproxy.h"
@@ -924,7 +926,9 @@ proxy_init()
 static int
 proxy_init()
 {
+    int i;
     NhExtIO *rd, *wr;
+    struct nhext_line *lp = (struct nhext_line *)0, line;
     rd = nhext_io_open(READ_F, READ_H, NHEXT_IO_RDONLY);
     if (!rd)
 	return FALSE;
@@ -933,12 +937,44 @@ proxy_init()
 	nhext_io_close(rd);
 	return FALSE;
     }
-    proxy_connection = nhext_subprotocol1_init(rd, wr, proxy_callbacks);
+    proxy_connection = nhext_init(rd, wr, proxy_callbacks);
     if (proxy_connection < 0) {
 	nhext_io_close(rd);
 	nhext_io_close(wr);
 	return FALSE;
     }
+    line.type = "NhExt";
+    line.n = 3;
+    line.tags = (char **)alloc(line.n * sizeof(char *));
+    line.values = (char **)alloc(line.n * sizeof(char *));
+    line.tags[0] = "game";
+    line.values[0] = DEF_GAME_NAME;
+    line.tags[1] = "version";
+    line.values[1] = VERSION_STRING;
+    line.tags[2] = "protocols";
+    line.values[2] = "1";
+    i = nhext_subprotocol0_write_line_c(proxy_connection, &line);
+    free(line.tags);
+    free(line.values);
+    if (!i) {
+failed:
+	if (lp)
+	    nhext_subprotocol0_free_line(lp);
+	nhext_end_c(proxy_connection);
+	nhext_io_close(rd);
+	nhext_io_close(wr);
+	return FALSE;
+    }
+    lp = nhext_subprotocol0_read_line_c(proxy_connection);
+    if (!lp)
+	goto failed;
+    if (strcmp(lp->type,"Ack"))
+	goto failed;
+    for(i = 0; i < lp->n; i++)
+	if (!strcmp(lp->tags[i], "protocol"))
+	    break;
+    if (i == lp->n || strcmp(lp->values[i], "1"))
+	goto failed;
     return TRUE;
 } 
 
