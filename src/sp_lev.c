@@ -943,7 +943,6 @@ struct mkroom	*croom;
     struct obj *otmp;
     schar x, y;
     char c;
-    boolean place = TRUE;
 
     if (rn2(100) < o->chance) {
 
@@ -961,9 +960,9 @@ struct mkroom	*croom;
 	    c = 0;
 
 	if (!c)
-	    otmp = mkobj(RANDOM_CLASS, !o->name.str);
+	    otmp = mkobj_at(RANDOM_CLASS, x, y, !o->name.str);
 	else if (o->id != -1)
-	    otmp = mksobj(o->id, TRUE, !o->name.str);
+	    otmp = mksobj_at(o->id, x, y, TRUE, !o->name.str);
 	else {
 	    /*
 	     * The special levels are compiled with the default "text" object
@@ -979,12 +978,9 @@ struct mkroom	*croom;
 	    if (oclass == GOLD_CLASS && !o->containment) {
 		mkgold(0L, x, y);
 		otmp = g_at(x,y);
-		place = FALSE;
 	    } else
-		otmp = mkobj(oclass, !o->name.str);
+		otmp = mkobj_at(oclass, x, y, !o->name.str);
 	}
-	if (place)
-	    place_object(otmp, x, y);
 
 	if (o->spe != -127)	/* That means NOT RANDOM! */
 	    otmp->spe = (schar)o->spe;
@@ -1352,7 +1348,7 @@ schar ftyp, btyp;
 		if(ftyp != CORR || rn2(100)) {
 			crm->typ = ftyp;
 			if(nxcor && !rn2(50))
-				(void) mksobj_at(BOULDER, xx, yy, TRUE);
+				(void) mksobj_at(BOULDER, xx, yy, TRUE, TRUE);
 		} else {
 			crm->typ = SCORR;
 		}
@@ -2647,7 +2643,7 @@ dlb *fd;
 	    }
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
 		    maze1xy(&mm, DRY);
-		    (void) mksobj_at(BOULDER, mm.x, mm.y, TRUE);
+		    (void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, TRUE);
 	    }
 	    for (x = rn2(2); x; x--) {
 		maze1xy(&mm, DRY);

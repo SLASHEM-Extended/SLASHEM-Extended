@@ -350,18 +350,18 @@ struct mkroom *sroom;
 			    (void) mk_tt_object(CORPSE, sx, sy);
 			if(!rn2(10))    /* lots of treasure buried with dead */
 			    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST,
-					     sx, sy, TRUE);
+					     sx, sy, TRUE, TRUE);
 			if (!rn2(5) && levl[sx][sy].typ == ROOM)
 				levl[sx][sy].typ = GRAVE;
 			break;
 		    case BEEHIVE:
 			if(!rn2(3))
-			    (void) mksobj_at(LUMP_OF_ROYAL_JELLY, sx, sy, TRUE);
+			    (void) mksobj_at(LUMP_OF_ROYAL_JELLY, sx, sy, TRUE, TRUE);
 			break;
 		    case BARRACKS:
 			if(!rn2(20))    /* the payroll and some loot */
 			    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST,
-					     sx, sy, TRUE);
+					     sx, sy, TRUE, TRUE);
 			if (!rn2(5))
 			    make_grave(sx, sy, (char *)0);
 			break;
@@ -388,7 +388,7 @@ struct mkroom *sroom;
 		  levl[tx][ty].typ = THRONE;
 		  (void) somexy(sroom, &mm);
 		  (void) mkgold((long) rn1(50 * level_difficulty(),10), mm.x, mm.y);
-		  chest = mksobj_at(CHEST, mm.x, mm.y, TRUE); /* the royal coffers */
+		  chest = mksobj_at(CHEST, mm.x, mm.y, TRUE, TRUE); /* the royal coffers */
 		  chest->spe = 2; /* so it can be found later */
 		  level.flags.has_court = 1;
 		  break;

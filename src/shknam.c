@@ -320,7 +320,7 @@ int sx, sy;
 			mtmp->mappearance = STRANGE_OBJECT;
 		}
 	} else if ((atype = get_shop_item(shp - shtypes)) < 0)
-		(void) mksobj_at(-atype, sx, sy, TRUE);
+		(void) mksobj_at(-atype, sx, sy, TRUE, TRUE);
 	else (void) mkobj_at(atype, sx, sy, TRUE);
 }
 
@@ -675,7 +675,7 @@ register int sh;
 /* generate multiple copies with decreasing probabilities */
 /*        if (rn2(blkmar_gen[typ]+1) && i<49)  continue; */
 
-/*        otmp = mksobj_at(typ, sx, sy, TRUE);
+/*        otmp = mksobj_at(typ, sx, sy, TRUE, TRUE);
 	  blkmar_gen[typ]++;*/
 
 /* prevent wishing abuse */

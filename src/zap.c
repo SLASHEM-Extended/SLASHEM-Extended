@@ -2597,7 +2597,7 @@ struct obj *obj;        /* wand or spell */
 		      ceiling(x, y), body_part(HEAD));
 		losehp(rnd((uarmh && is_metallic(uarmh)) ? 2 : 6),
 		       "falling rock", KILLED_BY_AN);
-		if ((otmp = mksobj_at(ROCK, x, y, FALSE)) != 0) {
+		if ((otmp = mksobj_at(ROCK, x, y, FALSE, TRUE)) != 0) {
 		    (void)xname(otmp);  /* set dknown, maybe bknown */
 		    stackobj(otmp);
 		}

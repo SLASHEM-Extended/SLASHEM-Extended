@@ -139,7 +139,7 @@ register struct monst *mtmp;
 		/* dragons is the same as the order of the scales.         */
 		if (!rn2(mtmp->mrevived ? 20 : 3)) {
 		    obj = mksobj_at(GRAY_DRAGON_SCALES +
-				    monsndx(mdat)-PM_GRAY_DRAGON, x, y, FALSE);
+				    monsndx(mdat)-PM_GRAY_DRAGON, x, y, FALSE, TRUE);
 		    obj->spe = 0;
 		    obj->cursed = obj->blessed = FALSE;
 		}
@@ -148,17 +148,17 @@ register struct monst *mtmp;
 	    case PM_WHITE_UNICORN:
 	    case PM_GRAY_UNICORN:
 	    case PM_BLACK_UNICORN:
-		(void) mksobj_at(UNICORN_HORN, x, y, TRUE);
+		(void) mksobj_at(UNICORN_HORN, x, y, TRUE, TRUE);
 		goto default_1;
 	    case PM_LONG_WORM:
-		(void) mksobj_at(WORM_TOOTH, x, y, TRUE);
+		(void) mksobj_at(WORM_TOOTH, x, y, TRUE, TRUE);
 		goto default_1;
 	    case PM_KILLER_TRIPE_RATION:            
-		(void) mksobj_at(TRIPE_RATION, x, y, TRUE);
+		(void) mksobj_at(TRIPE_RATION, x, y, TRUE, TRUE);
 		newsym(x, y);
 		return (struct obj *)0;
 	    case PM_KILLER_FOOD_RATION:
-		(void) mksobj_at(FOOD_RATION, x, y, TRUE);
+		(void) mksobj_at(FOOD_RATION, x, y, TRUE, TRUE);
 		newsym(x, y);
 		return (struct obj *)0;
 	    case PM_VAMPIRE:
@@ -237,17 +237,17 @@ register struct monst *mtmp;
 	    case PM_IRON_GOLEM:
 		num = d(2,6);
 		while (num--)
-			obj = mksobj_at(IRON_CHAIN, x, y, TRUE);
+			obj = mksobj_at(IRON_CHAIN, x, y, TRUE, TRUE);
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_GLASS_GOLEM:
 		num = d(2,4);   /* very low chance of creating all glass gems */
 		while (num--)
-			obj = mksobj_at((LAST_GEM + rnd(9)), x, y, TRUE);
+			obj = mksobj_at((LAST_GEM + rnd(9)), x, y, TRUE, TRUE);
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_CLAY_GOLEM:
-		obj = mksobj_at(ROCK, x, y, FALSE);
+		obj = mksobj_at(ROCK, x, y, FALSE, TRUE);
 		obj->quan = (long)(rn2(20) + 50);
 		obj->owt = weight(obj);
 		mtmp->mnamelth = 0;
@@ -259,7 +259,7 @@ register struct monst *mtmp;
 	    case PM_WOOD_GOLEM:
 		num = d(2,4);
 		while(num--) {
-			obj = mksobj_at(QUARTERSTAFF, x, y, TRUE);
+			obj = mksobj_at(QUARTERSTAFF, x, y, TRUE, TRUE);
 			if (obj && obj->oartifact) {    /* don't allow this */
 				artifact_exists(obj, ONAME(obj), FALSE);
 				Strcpy(ONAME(obj), "");  obj->onamelth = 0;
@@ -270,13 +270,13 @@ register struct monst *mtmp;
 	    case PM_LEATHER_GOLEM:
 		num = d(2,4);
 		while(num--)
-			obj = mksobj_at(LEATHER_ARMOR, x, y, TRUE);
+			obj = mksobj_at(LEATHER_ARMOR, x, y, TRUE, TRUE);
 		mtmp->mnamelth = 0;
 		break;
 		case PM_WAX_GOLEM:
 		num = d(2,4);
 		while (num--)
-			obj = mksobj_at(WAX_CANDLE, x, y, TRUE);
+			obj = mksobj_at(WAX_CANDLE, x, y, TRUE, TRUE);
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_PLASTIC_GOLEM:
@@ -289,7 +289,7 @@ register struct monst *mtmp;
 #else
 				FAKE_AMULET_OF_YENDOR,
 #endif
-					x, y, TRUE);
+					x, y, TRUE, TRUE);
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_GOLD_GOLEM:
@@ -300,7 +300,7 @@ register struct monst *mtmp;
 	    case PM_PAPER_GOLEM:
 		num = d(2,3);
 		while (num--)
-			obj = mksobj_at(SCR_BLANK_PAPER, x, y, TRUE);
+			obj = mksobj_at(SCR_BLANK_PAPER, x, y, TRUE, TRUE);
 		mtmp->mnamelth = 0;
 		break;
 	    default_1:
@@ -680,7 +680,7 @@ meatgold(mtmp)
 			if (!ptr) return 2;              /* it died */
 		    }
 		    /* Left behind a pile? */
-		    if(rnd(25) < 3) (void) mksobj_at(ROCK, mtmp->mx, mtmp->my, TRUE);
+		    if(rnd(25) < 3) (void) mksobj_at(ROCK, mtmp->mx, mtmp->my, TRUE, TRUE);
 		    newsym(mtmp->mx, mtmp->my);
 		    return 1;
 		}
@@ -1633,7 +1633,7 @@ register struct monst *mdef;
 			otmp->spe = 1;
 		otmp->owt = weight(otmp);
 	} else
-		otmp = mksobj_at(ROCK, x, y, TRUE);
+		otmp = mksobj_at(ROCK, x, y, TRUE, TRUE);
 
 	stackobj(otmp);
 	/* mondead() already does this, but we must do it before the newsym */
@@ -1807,7 +1807,7 @@ xkilled(mtmp, dest)
 
 #ifdef MAIL
 	if(mdat == &mons[PM_MAIL_DAEMON]) {
-		stackobj(mksobj_at(SCR_MAIL, x, y, FALSE));
+		stackobj(mksobj_at(SCR_MAIL, x, y, FALSE, TRUE));
 		redisp = TRUE;
 	}
 #endif

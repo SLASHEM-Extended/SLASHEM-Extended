@@ -96,13 +96,13 @@ boolean artif;
 }
 
 struct obj *
-mksobj_at(otyp,x,y,init)
+mksobj_at(otyp, x, y, init, artif)
 int otyp,x,y;
-boolean init;
+boolean init, artif;
 {
 	register struct obj *otmp;
 
-	otmp = mksobj(otyp,init,TRUE);
+	otmp = mksobj(otyp, init, artif);
 	place_object(otmp, x, y);
 	return(otmp);
 }
@@ -964,7 +964,7 @@ static int treefruits[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF};
 struct obj *
 rnd_treefruit_at(x,y)
 {
-	return mksobj_at(treefruits[rn2(SIZE(treefruits))],x,y,TRUE);
+	return mksobj_at(treefruits[rn2(SIZE(treefruits))], x, y, TRUE, TRUE);
 }
 #endif /* OVL0 */
 #ifdef OVLB
@@ -980,7 +980,7 @@ int x, y;
     if (gold) {
 	gold->quan += amount;
     } else {
-	gold = mksobj_at(GOLD_PIECE,x,y,TRUE);
+	gold = mksobj_at(GOLD_PIECE, x, y, TRUE, TRUE);
 	gold->quan = amount;
     }
     gold->owt = weight(gold);
@@ -1020,7 +1020,7 @@ boolean init;
 
 	if (objtype != CORPSE && objtype != STATUE)
 	    impossible("making corpstat type %d", objtype);
-	otmp = mksobj_at(objtype, x, y, init);
+	otmp = mksobj_at(objtype, x, y, init, TRUE);
 	if (otmp) {
 	    if (mtmp) {
 		struct obj *otmp2;
@@ -1141,7 +1141,7 @@ register int x, y;
 
 	/* player statues never contain books */
 	initialize_it = (objtype != STATUE);
-	if ((otmp = mksobj_at(objtype, x, y, initialize_it)) != 0) {
+	if ((otmp = mksobj_at(objtype, x, y, initialize_it, TRUE)) != 0) {
 	    /* tt_oname will return null if the scoreboard is empty */
 	    if ((otmp2 = tt_oname(otmp)) != 0) otmp = otmp2;
 	}

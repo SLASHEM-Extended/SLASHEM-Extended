@@ -302,42 +302,42 @@ makerogueghost()
 	ghost = christen_monst(ghost, roguename());
 
 	if (rn2(4)) {
-		ghostobj = mksobj_at(FOOD_RATION,x,y,FALSE);
+		ghostobj = mksobj_at(FOOD_RATION, x, y, FALSE, TRUE);
 		ghostobj->quan = (long) rnd(7);
 		ghostobj->owt = weight(ghostobj);
 	}
 	if (rn2(2)) {
-		ghostobj = mksobj_at(MACE,x,y,FALSE);
+		ghostobj = mksobj_at(MACE, x, y, FALSE, TRUE);
 		ghostobj->spe = rnd(3);
 		if (rn2(4)) curse(ghostobj);
 	} else {
-		ghostobj = mksobj_at(TWO_HANDED_SWORD,x,y,FALSE);
+		ghostobj = mksobj_at(TWO_HANDED_SWORD, x, y, FALSE, TRUE);
 		ghostobj->spe = rnd(5) - 2;
 		if (rn2(4)) curse(ghostobj);
 	}
-	ghostobj = mksobj_at(BOW,x,y,FALSE);
+	ghostobj = mksobj_at(BOW, x, y, FALSE, TRUE);
 	ghostobj->spe = 1;
 	if (rn2(4)) curse(ghostobj);
 
-	ghostobj = mksobj_at(ARROW,x,y,FALSE);
+	ghostobj = mksobj_at(ARROW, x, y, FALSE, TRUE);
 	ghostobj->spe = 0;
 	ghostobj->quan = (long) rn1(10,25);
 	ghostobj->owt = weight(ghostobj);
 	if (rn2(4)) curse(ghostobj);
 
 	if (rn2(2)) {
-		ghostobj = mksobj_at(RING_MAIL,x,y,FALSE);
+		ghostobj = mksobj_at(RING_MAIL, x, y, FALSE, TRUE);
 		ghostobj->spe = rn2(3);
 		if (!rn2(3)) ghostobj->oerodeproof = TRUE;
 		if (rn2(4)) curse(ghostobj);
 	} else {
-		ghostobj = mksobj_at(PLATE_MAIL,x,y,FALSE);
+		ghostobj = mksobj_at(PLATE_MAIL, x, y, FALSE, TRUE);
 		ghostobj->spe = rnd(5) - 2;
 		if (!rn2(3)) ghostobj->oerodeproof = TRUE;
 		if (rn2(4)) curse(ghostobj);
 	}
 	if (rn2(2)) {
-		ghostobj = mksobj_at(FAKE_AMULET_OF_YENDOR,x,y,TRUE);
+		ghostobj = mksobj_at(FAKE_AMULET_OF_YENDOR, x, y, TRUE, TRUE);
 		ghostobj->known = TRUE;
 	}
 }
