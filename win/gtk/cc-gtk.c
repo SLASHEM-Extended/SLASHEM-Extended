@@ -1,4 +1,4 @@
-/* $Id: cc-gtk.c,v 1.1 2003-05-03 11:12:27 j_ali Exp $ */
+/* $Id: cc-gtk.c,v 1.2 2003-12-23 23:28:46 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -31,11 +31,12 @@ extern char **environ;	/* MS-Windows defines this in stdlib.h */
 #endif
 
 int mode = M_COMPILE;
+int verbose = 0;
 
 static void
 usage()
 {
-    fprintf(stderr, "Usage: cc-gtk [-c|-l] cc [cc options] ...\n");
+    fprintf(stderr, "Usage: cc-gtk [-v] [-c|-l] cc [cc options] ...\n");
     exit(1);
 }
 
@@ -203,6 +204,14 @@ char ***pcargv;
     env_put(&enc, &env, path);
     if (!parse_cmdline(cmd, &argc, &argv))
 	return 0;
+    if (verbose) {
+	for(i = 0; i < argc; i++) {
+	    if (i)
+		putc(' ', stderr);
+	    fputs(argv[i], stderr);
+	}
+	putc('\n', stderr);
+    }
     if (pipe(p))
 	return 0;
     i = dup(1);
@@ -284,6 +293,9 @@ char **argv;
 	    break;
 	} else if (!argv[n][2])
 	    switch(argv[n][1]) {
+		case 'v':
+		    verbose = 1;
+		    break;
 		case 'c':
 		    mode = M_COMPILE;
 		    break;
