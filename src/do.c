@@ -1384,7 +1384,7 @@ boolean moldy;
     cname = eos(strcpy(cname_buf, "bite-covered "));
     Strcpy(cname, corpse_xname(corpse, TRUE));
     mcarry = (where == OBJ_MINVENT) ? corpse->ocarry : 0;
-    mtmp = revive(corpse);      /* corpse is gone if successful */
+    mtmp = revive(corpse);      /* corpse is gone if successful && quan == 1 */
 
     if (mtmp) {
 	/*
@@ -1467,11 +1467,12 @@ moldy_corpse(arg, timeout)
 genericptr_t arg;
 long timeout;
 {
-    int pmtype, oldtyp;
+    int pmtype, oldtyp, oldquan;
     struct obj *body = (struct obj *) arg;
 
     /* Turn the corpse into a mold corpse if molds are available */
     oldtyp = body->corpsenm;
+    oldquan = body->quan;
 
     /* Weight towards non-motile fungi.
      */
@@ -1494,16 +1495,18 @@ long timeout;
 	    pmtype = -1; /* cantcreate might have changed it so change it back */
     	else {
 	    	body->corpsenm = pmtype;
-	    	if (!revive_corpse(body, TRUE)) pmtype = -1;
+	    	if (revive_corpse(body, TRUE) && oldquan == 1)
+		    body = (struct obj *)0;	/* Corpse gone */
     	}
     }
     
-    /* If revive_corpse succeeds, it handles the corpse.
-     * Otherwise, set the corpse to rot away normally.
+    /* If revive_corpse succeeds, it handles the reviving corpse.
+     * If there was more than one corpse, or the revive failed,
+     * set the remaining corpse(s) to rot away normally.
      * Revive_corpse handles genocides
      */
-    if (pmtype == -1) {
-    	body->corpsenm = oldtyp; /* Fixup corpse after attempted revival */
+    if (body) {
+    	body->corpsenm = oldtyp; /* Fixup corpse after (attempted) revival */
 	(void) start_timer(250L - (monstermoves-peek_at_iced_corpse_age(body)),
 					TIMER_OBJECT, ROT_CORPSE, arg);
     }

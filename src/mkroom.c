@@ -72,7 +72,7 @@ STATIC_OVL void
 mkshop()
 {
 	register struct mkroom *sroom;
-	int i = -1;
+	int i = -1, j;
 #ifdef WIZARD
 	char *ep = (char *)0;   /* (init == lint suppression) */
 
@@ -121,17 +121,20 @@ mkshop()
 				mkswamp();
 				return;
 			}
+			j = -1;
 			for(i=0; shtypes[i].name; i++)
-				if(*ep == def_oc_syms[(int)shtypes[i].symb])
-				    goto gottype;
+				if(*ep == def_oc_syms[(int)shtypes[i].symb]) {
+					if (j < 0) j = i;
+					if (!strcmp(ep + 1, shtypes[i].name))
+						break;
+				}
 			if(*ep == 'g' || *ep == 'G')
 				i = 0;
 			else
-				i = -1;
+				i = j;
 		}
 #endif
 	}
-gottype:
 #endif
 	for(sroom = &rooms[0]; ; sroom++){
 		if(sroom->hx < 0) return;

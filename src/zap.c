@@ -649,7 +649,10 @@ register struct obj *obj;
 				x = obj->ox,  y = obj->oy;
 				/* not useupf(), which charges */
 				if (obj->quan > 1L)
-				    (void) splitobj(obj, 1L);
+				    /* [ALI] Don't move remaining corpses
+				     * for moldy_corpse's benefit.
+				     */
+				    obj = splitobj(obj, obj->quan - 1);
 				delobj(obj);
 				newsym(x, y);
 				break;

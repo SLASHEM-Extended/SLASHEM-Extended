@@ -350,6 +350,8 @@ ver 0.0.6E4F2 [December XX/2000]
 -fixed bug 124967: Pick axe ceiling.
 -fixed bug 124070: GTK port doesn't support variable width map fonts.
 -fixed bug 124168: Win: Repaint after mode change.
+-extended SHOPTYPE wizard mode control.
+-fixed bug 123490: Drained lichen corpses?
 
 ver 0.0.6E4F1 [November 10/2000] [Released by Ali]
 -GTK: status window stats columns should never be too small
