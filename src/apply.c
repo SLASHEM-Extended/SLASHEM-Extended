@@ -1939,6 +1939,177 @@ reset_trapset()
 	trapinfo.tobj = 0;
 }
 
+static struct whetstoneinfo {
+	struct obj *tobj, *wsobj;
+	int time_needed;
+} whetstoneinfo;
+
+void
+reset_whetstone()
+{
+	whetstoneinfo.tobj = 0;
+	whetstoneinfo.wsobj = 0;
+}
+
+/* occupation callback */
+STATIC_PTR
+int
+set_whetstone()
+{
+	struct obj *otmp = whetstoneinfo.tobj, *ows = whetstoneinfo.wsobj;
+	int chance;
+
+	if (!otmp || !ows) {
+	    reset_whetstone();
+	    return 0;
+	} else
+	if (!carried(otmp) || !carried(ows)) {
+	    You("seem to have mislaid %s.",
+		!carried(otmp) ? yname(otmp) : yname(ows));
+	    reset_whetstone();
+	    return 0;
+	}
+
+	if (--whetstoneinfo.time_needed > 0) {
+	    int adj = 2;
+	    if (Blind) adj--;
+	    if (Fumbling) adj--;
+	    if (Confusion) adj--;
+	    if (Stunned) adj--;
+	    if (Hallucination) adj--;
+	    if (adj > 0)
+		whetstoneinfo.time_needed -= adj;
+	    return 1;
+	}
+
+	chance = 4 - (ows->blessed) + (ows->cursed*2) + (otmp->oartifact ? 3 : 0);
+
+	if (!rn2(chance) && (ows->otyp == WHETSTONE)) {
+	    /* Remove rust first, then sharpen dull edges */
+	    if (otmp->oeroded) {
+		otmp->oeroded--;
+		pline("%s %s%s now.", Yname2(otmp),
+		    (Blind ? "probably " : (otmp->oeroded ? "almost " : "")),
+		    otense(otmp, "shine"));
+	    } else
+	    if (otmp->spe < 0) {
+		otmp->spe++;
+		pline("%s %s %ssharper now.%s", Yname2(otmp),
+		    otense(otmp, Blind ? "feel" : "look"),
+		    (otmp->spe >= 0 ? "much " : ""),
+		    Blind ? "  (Ow!)" : "");
+	    }
+	    makeknown(WHETSTONE);
+	    reset_whetstone();
+	} else {
+	    if (Hallucination)
+		pline("%s %s must be faulty!",
+		    is_plural(ows) ? "These" : "This", xname(ows));
+	    else pline("%s", Blind ? "Pheww!  This is hard work!" :
+		"There are no visible effects despite your efforts.");
+	    reset_whetstone();
+	}
+
+	return 0;
+}
+
+/* use stone on obj. the stone doesn't necessarily need to be a whetstone. */
+STATIC_OVL void
+use_whetstone(stone, obj)
+struct obj *stone, *obj;
+{
+	boolean fail_use = TRUE;
+	const char *occutext = "sharpening";
+	int tmptime = 130 + (rnl(13) * 5);
+
+	if (u.ustuck && sticks(youmonst.data)) {
+	    You("should let go of %s first.", mon_nam(u.ustuck));
+	} else
+	if ((welded(uwep) && (uwep != stone)) ||
+		(uswapwep && u.twoweap && welded(uswapwep) && (uswapwep != obj))) {
+	    You("need both hands free.");
+	} else
+	if (nohands(youmonst.data)) {
+	    You("can't handle %s with your %s.",
+		an(xname(stone)), makeplural(body_part(HAND)));
+	} else
+	if (verysmall(youmonst.data)) {
+	    You("are too small to use %s effectively.", an(xname(stone)));
+	} else
+#ifdef GOLDOBJ
+	if (obj == &goldobj) {
+	    pline("Shopkeepers would spot the lighter coin%s immediately.",
+		obj->quan > 1 ? "s" : "");
+	} else
+#endif
+	if (!is_pool(u.ux, u.uy) && !IS_FOUNTAIN(levl[u.ux][u.uy].typ)
+#ifdef SINKS
+	    && !IS_SINK(levl[u.ux][u.uy].typ) && !IS_TOILET(levl[u.ux][u.uy].typ)
+#endif
+	    ) {
+	    if (carrying(POT_WATER) && objects[POT_WATER].oc_name_known) {
+		pline("Better not waste bottled water for that.");
+	    } else
+		You("need some water when you use that.");
+	} else
+	if (Levitation && !Lev_at_will && !u.uinwater) {
+	    You("can't reach the water.");
+	} else
+	    fail_use = FALSE;
+
+	if (fail_use) {
+	    reset_whetstone();
+	    return;
+	}
+
+	if (stone == whetstoneinfo.wsobj && obj == whetstoneinfo.tobj &&
+	    carried(obj) && carried(stone)) {
+	    You("resume %s %s.", occutext, yname(obj));
+	    set_occupation(set_whetstone, occutext, 0);
+	    return;
+	}
+
+	if (obj) {
+	    int ttyp = obj->otyp;
+	    boolean isweapon = (obj->oclass == WEAPON_CLASS || is_weptool(obj));
+	    boolean isedged = (is_pick(obj) ||
+				(objects[ttyp].oc_dir & (PIERCE|SLASH)));
+	    if (obj == &zeroobj) {
+		You("file your nails.");
+	    } else
+	    if (!isweapon || !isedged) {
+		pline("%s sharp enough already.",
+			is_plural(obj) ? "They are" : "It is");
+	    } else
+	    if (stone->quan > 1) {
+		pline("Using one %s is easier.", singular(stone, xname));
+	    } else
+	    if (obj->quan > 1) {
+		You("can apply %s only on one %s at a time.",
+		    the(xname(stone)),
+		    (obj->oclass == WEAPON_CLASS ? "weapon" : "item"));
+	    } else
+	    if (!is_metallic(obj)) {
+		pline("That would ruin the %s %s.",
+			materialnm[objects[ttyp].oc_material],
+		xname(obj));
+	    } else
+	    if (((obj->spe >= 0) || !obj->known) && !obj->oeroded) {
+		pline("%s %s sharp and pointy enough.",
+			is_plural(obj) ? "They" : "It",
+			otense(obj, Blind ? "feel" : "look"));
+	    } else {
+		if (stone->cursed) tmptime *= 2;
+		whetstoneinfo.time_needed = tmptime;
+		whetstoneinfo.tobj = obj;
+		whetstoneinfo.wsobj = stone;
+		You("start %s %s.", occutext, yname(obj));
+		set_occupation(set_whetstone, occutext, 0);
+	    }
+	} else You("wave %s in the %s.", the(xname(stone)),
+	    (IS_POOL(levl[u.ux][u.uy].typ) && Underwater) ? "water" : "air");
+}
+
 /* touchstones - by Ken Arnold */
 STATIC_OVL void
 use_stone(tstone)
@@ -2000,6 +2171,10 @@ struct obj *tstone;
     streak_color = 0;
 
     switch (obj->oclass) {
+    case WEAPON_CLASS:
+    case TOOL_CLASS:
+	use_whetstone(tstone, obj);
+	return;
     case GEM_CLASS:	/* these have class-specific handling below */
     case RING_CLASS:
 	if (tstone->otyp != TOUCHSTONE) {
@@ -3291,6 +3466,7 @@ doapply()
 	case LOADSTONE:
 	case TOUCHSTONE:
 	case HEALTHSTONE:
+	case WHETSTONE:
 		use_stone(obj);
 		break;
 #ifdef FIREARMS

@@ -275,7 +275,8 @@ struct obj {
 				 (obj)->otyp == LOADSTONE || \
 				 (obj)->otyp == FLINT     || \
 				 (obj)->otyp == TOUCHSTONE || \
-				 (obj)->otyp == HEALTHSTONE)
+				 (obj)->otyp == HEALTHSTONE || \
+				 (obj)->otyp == WHETSTONE)
 
 /* misc */
 #ifdef KOPS
