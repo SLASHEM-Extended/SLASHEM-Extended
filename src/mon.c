@@ -1096,8 +1096,8 @@ nexttry:        /* eels prefer the water, but if there is no water nearby,
 			if(flag & NOTONL) continue;
 			info[cnt] |= NOTONL;
 		}
-		if (nx != x && ny != y && bad_rock(mdat, x, ny)
-			    && bad_rock(mdat, nx, y)
+		if (nx != x && ny != y && bad_rock(mon, x, ny)
+			    && bad_rock(mon, nx, y)
 			    && (bigmonst(mdat) || (curr_mon_load(mon) > 600)))
 			continue;
 		/* The monster avoids a particular type of trap if it's familiar

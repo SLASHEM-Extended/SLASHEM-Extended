@@ -490,15 +490,18 @@ register xchar x,y;
 #endif /* OVLB */
 #ifdef OVL1
 
+/* [ALI] Changed to take monst * as argument to support passwall property */
 boolean
-bad_rock(mdat,x,y)
-struct permonst *mdat;
+bad_rock(mon,x,y)
+struct monst *mon;
 register xchar x,y;
 {
+	struct permonst *mdat = mon->data;
+	boolean passwall = mon == &youmonst ? Passes_walls : passes_walls(mdat);
 	return((boolean) ((In_sokoban(&u.uz) && sobj_at(BOULDER,x,y)) ||
 	       (IS_ROCK(levl[x][y].typ)
 		    && (!tunnels(mdat) || needspick(mdat) || !may_dig(x,y))
-		    && !(passes_walls(mdat) && may_passwall(x,y)))));
+		    && !(passwall && may_passwall(x,y)))));
 }
 
 boolean
@@ -616,7 +619,7 @@ domove()
 				confdir();
 				x = u.ux + u.dx;
 				y = u.uy + u.dy;
-			} while(!isok(x, y) || bad_rock(youmonst.data, x, y));
+			} while(!isok(x, y) || bad_rock(&youmonst, x, y));
 		}
 		/* turbulence might alter your actual destination */
 		if (u.uinwater) {
@@ -898,7 +901,7 @@ domove()
 	    }
 	}
 	if (u.dx && u.dy
-		&& bad_rock(youmonst.data,u.ux,y) && bad_rock(youmonst.data,x,u.uy)) {
+		&& bad_rock(&youmonst,u.ux,y) && bad_rock(&youmonst,x,u.uy)) {
 	    /* Move at a diagonal. */
 	    if (In_sokoban(&u.uz)) {
 	    	You("cannot pass that way.");

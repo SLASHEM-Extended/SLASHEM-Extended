@@ -345,6 +345,7 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -fixed bug 420545: Steed galloping while asleep.
 -fixed bug 424455: Tame ghouls and shopkeepers.
 -fixed bug 422157: twoweapon status not saved?
+-fixed bug 422163: passwall and "carrying too much..."
 
 ver 0.0.6E4F4 [May 2/2001] [Released by Ali]
 -fixed bug 404825: wands of teleportation that explode/zapped at yourself
