@@ -344,6 +344,7 @@ ver 0.0.6E4F4 [? ?/2001] [Released by ?]
 -fixed bug 410582: your foo seems less fuzzy.
 -fixed bug 410402: Unpolymorph only remembers previous form.
 -fixed bug 407857: Some wizard-mode commands don't work.
+-fixed bug 409196: (DOS?) display bug with & command.
 
 ver 0.0.6E4F3 [February 28/2001] [Released by Ali]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined

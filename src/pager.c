@@ -770,8 +770,10 @@ dowhatdoes()
 	    if ((ctrl && *buf=='^' && *(buf+1)==ctrl) ||
 		(meta && *buf=='M' && *(buf+1)=='-' && *(buf+2)==meta) ||
 		*buf==q) {
-		ep = index(buf, '\n');
-		if(ep) *ep = 0;
+		if ((ep = index(buf, '\n')) != 0) *ep = 0;
+#ifdef MSDOS
+		if ((ep = index(buf, '\r')) != 0) *ep = 0;
+#endif
 		if (ctrl && buf[2] == '\t'){
 			buf = bufr + 1;
 			(void) strncpy(buf, "^?      ", 8);
