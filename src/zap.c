@@ -257,20 +257,6 @@ struct obj *otmp;
 		wake = FALSE;
 		reveal_invis = TRUE;
 		break;
-	case WAN_HEALING:
-		mtmp->mhp += (d(5,2) + 5 * !!bcsign(otmp));
-		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = ++mtmp->mhpmax;
-		if (!otmp->cursed) mtmp->mcansee = 1;
-		pline("%s begins to look better.", Monnam(mtmp));
-		makeknown(WAN_HEALING);
-		break;
-	case WAN_EXTRA_HEALING:
-		mtmp->mhp += (d(5,4) + 10 * !!bcsign(otmp));
-		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = ++mtmp->mhpmax;
-		if (!otmp->cursed) mtmp->mcansee = 1;
-		pline("%s begins to look much better.", Monnam(mtmp));
-		makeknown(WAN_EXTRA_HEALING);
-		break;
 	case WAN_FEAR:
 		if (!is_undead(mtmp->data) &&
 		    !resist(mtmp, otmp->oclass, 0, NOTELL)) {
@@ -305,27 +291,52 @@ struct obj *otmp;
 #endif
 		}
 		break;
+	case WAN_HEALING:
+	case WAN_EXTRA_HEALING:
 	case SPE_HEALING:
 	case SPE_EXTRA_HEALING:
-	    reveal_invis = TRUE;
+		reveal_invis = TRUE;
 	    if (mtmp->data != &mons[PM_PESTILENCE]) {
 		wake = FALSE;		/* wakeup() makes the target angry */
-		mtmp->mhp += (otyp == SPE_HEALING ? rnd(10) +4 : d(3,8)+6);
-		if (mtmp->mhp > mtmp->mhpmax)
+		mtmp->mhp +=
+		  /* [ALI] FIXME: Makes no sense that cursed wands are more
+		   * effective than uncursed wands. This behaviour dates
+		   * right back to Slash v3 (and probably to v1).
+		   */
+		  otyp == WAN_HEALING ?  d(5,2) + 5 * !!bcsign(otmp) :
+		  otyp == WAN_EXTRA_HEALING ?  d(5,4) + 10 * !!bcsign(otmp) :
+		  otyp == SPE_HEALING ? rnd(10) +4 : d(3,8)+6;
+		if (mtmp->mhp > mtmp->mhpmax) {
+		    if (otmp->oclass == WAND_CLASS)
+			mtmp->mhpmax++;
 		    mtmp->mhp = mtmp->mhpmax;
-		if (canseemon(mtmp))
-		    pline("%s looks%s better.", Monnam(mtmp),
-			  otyp == SPE_EXTRA_HEALING ? " much" : "" );
+		}
+		if (otmp->oclass == WAND_CLASS && !otmp->cursed)
+		    mtmp->mcansee = 1;
+		if (canseemon(mtmp)) {
+		    pline("%s %s%s better.", Monnam(mtmp),
+			  otmp->oclass == SPBOOK_CLASS ?
+			    "looks" : "begins to look",
+			  (otyp == SPE_EXTRA_HEALING ||
+			   otyp == WAN_EXTRA_HEALING) ? " much" : "" );
+		    makeknown(otyp);
+		}
 		/* Healing pets is a good thing ... */
 		if (mtmp->mtame || mtmp->mpeaceful) {
 			adjalign(Role_if(PM_HEALER) ? 1 : sgn(u.ualign.type));
 		}
-	    } else {	/* Pestilence */
+	    } else if (otmp->oclass == SPBOOK_CLASS) {	/* Pestilence */
+	        /* [ALI] FIXME: Makes no sense that Pestilence is not
+		 * affected by wands of (extra) healing, but that raises
+		 * whole new questions of what damage should be done.
+		 * In vanilla NetHack, 3d{4,8} is half of the normal
+		 * 6d{4,8} healing power of spells of (extra) healing.
+		 */
 		/* Pestilence will always resist; damage is half of 3d{4,8} */
 		(void) resist(mtmp, otmp->oclass,
 			      d(3, otyp == SPE_EXTRA_HEALING ? 8 : 4), TELL);
 	    }
-	    break;
+		break;
 	case WAN_LIGHT: /* (broken wand) */
 		if (flash_hits_mon(mtmp, otmp)) {
 		    makeknown(WAN_LIGHT);
