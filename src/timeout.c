@@ -1585,7 +1585,14 @@ end_burn(obj, timer_attached)
 	if (obj->otyp == MAGIC_LAMP ||
 	    obj->otyp == MAGIC_CANDLE ) timer_attached = FALSE;
 
-	if (timer_attached && !stop_timer(BURN_OBJECT, (genericptr_t) obj))
+	if (!timer_attached) {
+	    /* [DS] Cleanup explicitly, since timer cleanup won't happen */
+	    del_light_source(LS_OBJECT, (genericptr_t)obj);
+	    obj->lamplit = 0;
+	    if (obj->where == OBJ_INVENT)
+		update_inventory();
+	}
+	else if (!stop_timer(BURN_OBJECT, (genericptr_t) obj))
 	    impossible("end_burn: obj %s not timed!", xname(obj));
 }
 
