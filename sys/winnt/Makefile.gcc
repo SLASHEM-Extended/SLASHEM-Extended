@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.47 2003-12-23 23:26:16 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.48 2004-01-20 20:51:19 entro-p Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -991,7 +991,7 @@ winres.o:	tiles.bmp $(WIN32)\winhack.rc $(WIN32)\mnsel.bmp \
 #
 
 makedefs.exe:  $(MAKEOBJS)
-	$(LINK) $(LFLAGS) -omakedefs.exe $(MAKEOBJS)
+	$(LINK) $(LFLAGS) -mconsole -omakedefs.exe $(MAKEOBJS)
 
 makedefs.c: $(UTIL)\makedefs.c
 	$(COPY) $(UTIL)\makedefs.c .
@@ -1005,7 +1005,7 @@ makedefs.o:  $(CONFIG_H)	$(PERMONST_H)	   $(INCL)\objclass.h \
 
 lev_comp.exe:  $(SPLEVOBJS)
 	@echo INPUT( $(SPLEVOBJS) )> tmp.lnk
-	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -olev_comp.exe tmp.lnk
+	$(LINK) $(LFLAGS) -mconsole $(GTKGCCFLAGS) -olev_comp.exe tmp.lnk
 	@$(DEL) tmp.lnk
 
 ifeq ($(YACC_LEX),Y)
@@ -1066,7 +1066,7 @@ endif
 
 dgn_comp.exe:  $(DGNCOMPOBJS)
 	@echo INPUT( $(DGNCOMPOBJS) )> tmp.lnk
-	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -odgn_comp.exe tmp.lnk
+	$(LINK) $(LFLAGS) -mconsole $(GTKGCCFLAGS) -odgn_comp.exe tmp.lnk
 	@$(DEL) tmp.lnk
 
 ifeq ($(YACC_LEX),Y)
@@ -1125,7 +1125,7 @@ endif
 #
 
 recover.exe:   $(RECOVOBJS)
-	$(LINK) $(LFLAGS) -orecover.exe recover.o
+	$(LINK) $(LFLAGS) -mconsole -orecover.exe recover.o
 
 recover.c:  $(UTIL)\recover.c
 	$(COPY) $(UTIL)\recover.c .
@@ -1147,54 +1147,54 @@ $(INCL)\tile.h: $(WSHR)\tile_t.h tilemap.exe
 txtmerge.exe: txtmerge.o $(TEXTIO)
 	@echo INPUT( txtmerge.o )> tmp.lnk
 	@echo INPUT( $(TEXTIO) )>> tmp.lnk
-	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -otxtmerge.exe tmp.lnk
+	$(LINK) $(LFLAGS) -mconsole $(GTKGCCFLAGS) -otxtmerge.exe tmp.lnk
 	@$(DEL) tmp.lnk
 
 tile2x11.exe: tile2x11.o $(TEXTIO)
 	@echo INPUT( tile2x11.o )> tmp.lnk
 	@echo INPUT( $(TEXTIO) )>> tmp.lnk
-	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -otile2x11.exe tmp.lnk
+	$(LINK) $(LFLAGS) -mconsole $(GTKGCCFLAGS) -otile2x11.exe tmp.lnk
 	@$(DEL) tmp.lnk
 
 tile2bmp.exe: tile2bmp.o $(TEXTIO)
 	@echo INPUT( tile2bmp.o )> tmp.lnk
 	@echo INPUT( $(TEXTIO) )>> tmp.lnk
-	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -otile2bmp.exe tmp.lnk
+	$(LINK) $(LFLAGS) -mconsole $(GTKGCCFLAGS) -otile2bmp.exe tmp.lnk
 	@$(DEL) tmp.lnk
 
 tile2png.exe: tile2png.o $(TEXTIO)
 	@echo INPUT( tile2png.o )> tmp.lnk
 	@echo INPUT( $(TEXTIO) )>> tmp.lnk
-	cc-gtk -l $(LINK) $(LFLAGS) $(GTKGCCFLAGS) -otile2png.exe tmp.lnk
+	cc-gtk -l $(LINK) $(LFLAGS) -mconsole $(GTKGCCFLAGS) -otile2png.exe tmp.lnk
 	@$(DEL) tmp.lnk
 
 magtile.exe: magtile.o $(TEXTIO)
 	@echo INPUT( magtile.o )> tmp.lnk
 	@echo INPUT( $(TEXTIO) )>> tmp.lnk
-	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -omagtile.exe tmp.lnk
+	$(LINK) $(LFLAGS) -mconsole $(GTKGCCFLAGS) -omagtile.exe tmp.lnk
 	@$(DEL) tmp.lnk
 
 bigtile.exe: bigtile.o $(TEXTIO)
 	@echo INPUT( bigtile.o )> tmp.lnk
 	@echo INPUT( $(TEXTIO) )>> tmp.lnk
-	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -obigtile.exe tmp.lnk
+	$(LINK) $(LFLAGS) -mconsole $(GTKGCCFLAGS) -obigtile.exe tmp.lnk
 	@$(DEL) tmp.lnk
 
 txtbg.exe: txtbg.o $(TEXTIO)
 	@echo INPUT( txtbg.o )> tmp.lnk
 	@echo INPUT( $(TEXTIO) )>> tmp.lnk
-	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -otxtbg.exe tmp.lnk
+	$(LINK) $(LFLAGS) -mconsole $(GTKGCCFLAGS) -otxtbg.exe tmp.lnk
 	@$(DEL) tmp.lnk
 
 mapmerge.exe: mapmerge.o
-	$(CCOMPILE) $(LFLAGS) -omapmerge.exe mapmerge.o
+	$(CCOMPILE) $(LFLAGS) -mconsole -omapmerge.exe mapmerge.o
 
 tile.c: tilemap.exe
 	tilemap.exe
 	@echo A new $@ has been created
 
 tilemap.exe: tilemap.o
-	$(CCOMPILE) $(LFLAGS) -otilemap.exe tilemap.o
+	$(CCOMPILE) $(LFLAGS) -mconsole -otilemap.exe tilemap.o
 
 tilemap.c: $(WSHR)\tilemap.c
 	copy $(WSHR)\tilemap.c .
@@ -1380,7 +1380,7 @@ uudecode.o: $(SSHR)\uudecode.c
 	$(CCOMPILE) $(CFLAGS) -c $(SSHR)\uudecode.c
 
 $(UTIL)\uudecode.exe:	uudecode.o
-	$(CCOMPILE) $(LFLAGS) -o$@ uudecode.o
+	$(CCOMPILE) $(LFLAGS) -mconsole -o$@ uudecode.o
 
 #
 #  Other Util Dependencies.
@@ -1540,7 +1540,7 @@ $(DAT)\nhushare:	dlb_main.exe $(DAT)\dungeon $(DAT)\quest.dat sp_lev.tag
 
 
 dlb_main.exe: $(DLBOBJS)
-	$(LINK) $(LFLAGS) -odlb_main.exe $(DLBOBJS)
+	$(LINK) $(LFLAGS) -mconsole -odlb_main.exe $(DLBOBJS)
 	$(COPY) $@ $(DAT)\dlb_main.exe
 
 
