@@ -356,7 +356,8 @@ ver 0.0.6E5 [May 3/2001] [Released by Warren]
 -fixed bug 417384: Shopkeeper services.
 -fixed bug 225227: Vampires start with food rations.
 
-ver 0.0.6E4F7 [?] [Released by ?]
+ver 0.0.6E4F7 [February 28/2002] [Released by Ali]
+-Improvements to database (Lars Huttar)
 -fixed bug 488069: Magic lamps/candles can't be turned off.
 -fixed bug 488589: Burned-out lamps cannot be turned off.
 -fixed bug 490478: obj_is_local.
