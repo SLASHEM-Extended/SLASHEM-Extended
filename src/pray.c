@@ -1390,12 +1390,12 @@ dosacrifice()
 			       for(octmp = invent; octmp ; octmp = octmp->nobj)
 				 if (!rn2(6)) curse(octmp);
 			       break;
-			  break;
 			  case 2: 
 			  case 3:
-		    You("are terrified, and unable to move.");
-		    nomul(-3);
-			  break;                
+			       You("are terrified, and unable to move.");
+			       nomul(-3);
+			       nomovemsg = 0;
+			       break;                
 			  case 4:
 			       pline("Amused, he grants you a wish!");
 			       makewish();
@@ -2003,6 +2003,7 @@ turn_undead()
 	    }
 	}
 	nomul(-2);
+	nomovemsg = 0;
 	return(1);
 }
 

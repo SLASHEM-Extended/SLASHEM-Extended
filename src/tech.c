@@ -1028,6 +1028,7 @@ int tech_no;
 			}
 		}
 		nomul(-2); /* You need to recover */
+		nomovemsg = 0;
 		t_timeout = rn1(1000,500);
 		break;
             }

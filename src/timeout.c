@@ -36,8 +36,10 @@ stoned_dialogue()
 		pline(stoned_texts[SIZE(stoned_texts) - i]);
 	if (i == 5L)
 		HFast = 0L;
-	if (i == 3L)
+	if (i == 3L) {
 		nomul(-3);
+		nomovemsg = 0;
+	}
 	exercise(A_DEX, FALSE);
 }
 
@@ -1751,6 +1753,7 @@ do_storms()
 	if(!u.uinvulnerable) {
 	    stop_occupation();
 	    nomul(-3);
+	    nomovemsg = 0;
 	}
     } else
 	You_hear("a rumbling noise.");

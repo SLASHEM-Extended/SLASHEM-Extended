@@ -2463,6 +2463,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	                if (Free_action) You("stiffen momentarily.");
 	                else {
 	                        You("are frozen by %s!", mon_nam(mtmp));
+				nomovemsg = 0;
 	                        nomul(-rnd(4));
 	                        exercise(A_DEX, FALSE);
 	                }
