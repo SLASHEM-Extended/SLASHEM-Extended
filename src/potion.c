@@ -1942,7 +1942,7 @@ boolean amnesia;
 	/* (Rusting shop goods ought to be charged for.) */
 	switch (obj->oclass) {
 	    case POTION_CLASS:
-		if (obj->otyp == POT_WATER && amnesia) {
+		if (obj->otyp == POT_WATER) {
 		    if (amnesia) {
 			Your("%s to sparkle.", aobjnam(obj,"start"));
 			obj->odiluted 	= 0;
