@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.37 2003-08-02 15:46:36 j_ali Exp $
+  $Id: gtk.c,v 1.38 2003-08-02 16:02:44 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -816,9 +816,11 @@ nh_key_get()
  * Do some housekeeping that needs doing on a regular basis
  * and run the Gtk+ main loop until either a key is available
  * or the provided watch is non-zero.
+ *
+ * Returns TRUE if returning only because user initiated exit.
  */
 
-void
+int
 main_hook(int *watch)
 {
     nh_map_check_visibility();
@@ -831,6 +833,7 @@ main_hook(int *watch)
 
     while(!exiting && !nh_key_check() && (!watch || !*watch))
 	gtk_main_iteration();
+    return (!nh_key_check() && (!watch || !*watch));
 }
 
 static void
@@ -995,10 +998,16 @@ ext_command(GtkWidget *widget, gpointer data)
     quit_hook();
 }
 
-static void
-quit()
+static gint
+main_window_delete(GtkWidget *widget, gpointer data)
 {
     exiting++;
+    return TRUE;
+}
+
+static void
+game_quit(GtkWidget *widget, gpointer data)
+{
 #ifdef GTK_PROXY
     proxy_cb_quit_game();
 #else
@@ -1010,20 +1019,6 @@ quit()
 	terminate(0);
     }
 #endif
-}
-
-static gint
-main_window_destroy(GtkWidget *widget, gpointer data)
-{
-    quit();
-
-    return TRUE;
-}
-
-static void
-game_quit(GtkWidget *widget, gpointer data)
-{
-    quit();
 }
 
 static gint
@@ -2032,7 +2027,7 @@ GTK_init_nhwindows(char ***capvp)
       GTK_SIGNAL_FUNC(GTK_default_key_press), 0);
 
     gtk_signal_connect(GTK_OBJECT(main_window), "delete_event",
-      GTK_SIGNAL_FUNC(main_window_destroy), 0);
+      GTK_SIGNAL_FUNC(main_window_delete), 0);
 
     gtk_window_set_title(GTK_WINDOW(main_window), DEF_GAME_NAME);
     gtk_widget_set_name(main_window, DEF_GAME_NAME);
@@ -2482,10 +2477,8 @@ GTK_display_nhwindow(winid id, BOOLEAN_P blocking)
 	    break;
     }
 
-    if (blocking) {
-	main_hook(NULL);
+    if (blocking && !main_hook(NULL))
 	(void) nh_key_get();
-    }
 }
 
 void
@@ -2560,13 +2553,17 @@ GTK_get_nh_event()
 int
 GTK_nhgetch(void)
 {
+    for(;;) {
 #ifdef WINGTK_RADAR
-    nh_radar_update();
+	nh_radar_update();
 #endif
-
-    main_hook(NULL);
-
-    return nh_key_get();
+	if (!main_hook(NULL))
+	    return nh_key_get();
+	else {
+	    exiting = 0;
+	    game_quit(main_window, 0);
+	}
+    }
 }
 
 int
@@ -2574,17 +2571,26 @@ GTK_nh_poskey(int *x, int *y, int *mod)
 {
     extern int cursm;
 
+    if (exiting) {
+	exiting = 0;
+	game_quit(main_window, 0);
+    }
+
+    for(;;) {
 #ifdef WINGTK_RADAR
-    nh_radar_update();
+	nh_radar_update();
 #endif
-
-    nh_map_click(TRUE);
-    cursm = 0;
-    main_hook(&cursm);
-    nh_map_pos(x, y, mod);
-    nh_map_click(FALSE);
-
-    return nh_key_check() ? nh_key_get() : 0;
+	nh_map_click(TRUE);
+	cursm = 0;
+	if (!main_hook(&cursm)) {
+	    nh_map_pos(x, y, mod);
+	    nh_map_click(FALSE);
+	    return nh_key_check() ? nh_key_get() : 0;
+	} else {
+	    exiting = 0;
+	    game_quit(main_window, 0);
+	}
+    }
 }
 
 #ifdef GTK_PROXY
@@ -2659,8 +2665,8 @@ GTK_ext_display_file(int fh)
     }
 
     gtk_widget_show_all(w);
-    main_hook(NULL);
-    (void)nh_key_get();
+    if (!main_hook(NULL))
+	(void)nh_key_get();
 
     if (w) {
 	gtk_signal_disconnect(GTK_OBJECT(w), hid);
@@ -2911,8 +2917,8 @@ GTK_ext_outrip(winid id, char *str)
     }
 
     gtk_widget_show_all(w);
-    main_hook(NULL);
-    (void) nh_key_get();
+    if (!main_hook(NULL))
+	(void) nh_key_get();
     return TRUE;
 }
 

@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.43 2003-08-02 15:32:25 j_ali Exp $
+  $Id: winGTK.h,v 1.44 2003-08-02 16:02:44 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -179,7 +179,7 @@ extern int nh_check_map_visual(int);
 
 extern GtkWidget *GTK_preferences_new(void);
 
-extern void main_hook(int *watch);
+extern int main_hook(int *watch);
 extern void quit_hook(void);
 extern gint GTK_default_key_press(GtkWidget *widget, GdkEventKey *event,
   gpointer data);

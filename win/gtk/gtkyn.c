@@ -1,5 +1,5 @@
 /*
-  $Id: gtkyn.c,v 1.10 2003-05-24 15:15:15 j_ali Exp $
+  $Id: gtkyn.c,v 1.11 2003-08-02 16:02:44 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -225,6 +225,7 @@ yn_show_window(gpointer data)
 char
 GTK_ext_yn_function(const char *query, const char *resp, CHAR_P def, int *count)
 {
+    int exiting;
     guint timeout_id;
 
     if (!nh_key_check()) {
@@ -234,10 +235,10 @@ GTK_ext_yn_function(const char *query, const char *resp, CHAR_P def, int *count)
 	params.count = count;
 	params.watch = 0;
 	timeout_id = g_timeout_add(500, yn_show_window, 0);
-	main_hook(&params.watch);
+	exiting = main_hook(&params.watch);
 	g_source_remove(timeout_id);
-	if (params.watch) {
-	    /* Dialog was created and then closed by user */
+	if (exiting || params.watch) {
+	    /* Either exiting or dialog was created and then closed by user */
 	    nh_key_add(def);
 	}
 	if (params.w) {
