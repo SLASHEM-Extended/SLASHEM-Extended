@@ -138,6 +138,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -Unbundled proxy and gtk modules:
 	http://www.nongnu.org/nhproxy/
 	http://www.gtkhack.org/
+-fixed bug 993420: Crashes when typing symbols on drop menu
 
 See history.txt for changes made in previous versions.
 
