@@ -361,6 +361,7 @@ ver 0.0.6E4F1 [September XX/2000]
 -fixed bug 115301: Discovery list now has a scrollbar and menu images.
 -fixed bug 115348: Dwarf thieves "seduce" players of same gender.
 -fixed bug 115656: Player can start with ring of sleeping.
+-fixed bug 115471: Shopkeepers mistakenly think items are fully identified.
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()

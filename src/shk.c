@@ -4021,7 +4021,7 @@ shk_identify(slang, shkp)
 	char sbuf[BUFSZ];
  */
 	boolean guesswork;              /* Will shkp be guessing?       */
-	boolean ripoff;                 /* Shkp ripping you off?        */
+	boolean ripoff=FALSE;           /* Shkp ripping you off?        */
 	char ident_type;
 
 	/* Pick object */
@@ -4058,10 +4058,6 @@ shk_identify(slang, shkp)
 	{
 		if (ident_type=='b') ripoff=TRUE;
 		if (ident_type=='p' && obj->bknown && obj->rknown && obj->known) ripoff=TRUE;
-	}
-	else
-	{
-		ripoff = FALSE;
 	}
 
 	/* Compute the charge */
