@@ -353,6 +353,7 @@ ver 0.0.6E4F3 [February XX/2001]
 -fixed bug 133666: Gdk-Critical errors.
 -GTK: improved move & fight key handling.
 -fixed bug 124233: Win: messages are drawn on top of each other.
+-Integrated changes to cmdhelp from Mac port.
 
 ver 0.0.6E4F2 [December 30/2000] [Released by Ali]
 -DOS: Allegro window port adapted to display the ground underneath walls
