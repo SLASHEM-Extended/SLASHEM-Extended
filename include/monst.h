@@ -61,7 +61,7 @@ struct monst {
 #define M_AP_MONSTER	3	/* a monster */
 
 	schar mtame;		/* level of tameness, implies peaceful */
-	unsigned short mintrinsics;	/* low 8 correspond to mresists */
+	unsigned long mintrinsics;	/* initialized from mresists */
 	int mspec_used;		/* monster's special ability attack timeout */
 	int     oldmonnm;       /* Old monster number - for polymorph */
 

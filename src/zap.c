@@ -3467,15 +3467,11 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 			break;
 		    }
 		    if (nonliving(mon->data) || is_demon(mon->data) ||
+			    resists_death(mon) ||
 			    resists_magm(mon)) {	/* similar to player */
 			sho_shieldeff = TRUE;
 			break;
 		    }
-		    if(((mon->data)->mresists & MR_DEATH) != 0) {
-			shieldeff(mon->mx, mon->my);
-			break;
-		    }
-
 		    type = -1; /* so they don't get saving throws */
 		} else {
 		    struct obj *otmp2;

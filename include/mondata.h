@@ -18,9 +18,10 @@
 #define resists_poison(mon)	(((mon)->mintrinsics & MR_POISON) != 0)
 #define resists_acid(mon)	(((mon)->mintrinsics & MR_ACID) != 0)
 #define resists_ston(mon)	(((mon)->mintrinsics & MR_STONE) != 0)
-#define resists_drain(mon)      (((mon)->mintrinsics & MR_DRAIN) != 0)
 
-/* STEPHEN WHITE'S NEW CODE */
+#define resists_drain(mon)      (((mon)->mintrinsics & MR_DRAIN) != 0)
+#define resists_death(mon)      (((mon)->mintrinsics & MR_DEATH) != 0)
+
 #define need_one(mon)           (((mon)->mintrinsics & MR_PLUSONE) != 0)
 #define need_two(mon)           (((mon)->mintrinsics & MR_PLUSTWO) != 0)
 #define need_three(mon)         (((mon)->mintrinsics & MR_PLUSTHREE) != 0)

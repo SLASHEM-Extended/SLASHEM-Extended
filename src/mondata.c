@@ -20,9 +20,9 @@ int flag;
     if (flag == -1) return;		/* "don't care" */
 
     if (flag == 1)
-	mon->mintrinsics |= (ptr->mresists & 0x00FF);
+	mon->mintrinsics |= (ptr->mresists & MR_TYPEMASK);
     else
-	mon->mintrinsics = (ptr->mresists & 0x00FF);
+	mon->mintrinsics = (ptr->mresists & MR_TYPEMASK);
     return;
 }
 

@@ -64,21 +64,6 @@
 #define MR_ACID         0x40    /* resists acid */
 #define MR_STONE        0x80    /* resists petrification */
 
-/* STEPHEN WHITE'S NEW CODE */
-#define MR_PLUSONE      0x00000100L    /* need +1 weapon to hit */
-#define MR_PLUSTWO      0x00000200L    /* need +2 weapon to hit */
-#define MR_PLUSTHREE    0x00000400L    /* need +3 weapon to hit */
-#define MR_PLUSFOUR     0x00000800L    /* need +4 weapon to hit */
-
-/* Doesn't really belong under resistances, but ... */
-#define MR_HITASONE     0x00001000L    /* hits ceatures as +1 weapon */
-#define MR_HITASTWO     0x00002000L    /* hits ceatures as +2 weapon */
-#define MR_HITASTHREE   0x00004000L    /* hits ceatures as +3 weapon */
-#define MR_HITASFOUR    0x00008000L    /* hits ceatures as +4 weapon */
-
-#define MR_DEATH        0x00010000L    /* resists death magic :) */
-#define MR_DRAIN        0x00020000L    /* resists level drain */
-
 /* other resistances: magic, sickness */
 /* other conveyances: teleport, teleport control, telepathy */
 
@@ -90,6 +75,23 @@
 #define MR2_DISPLACED	0x1000	/* displaced */
 #define MR2_STRENGTH	0x2000	/* gauntlets of power */
 #define MR2_FUMBLING	0x4000	/* clumsy */
+
+/* more type resistances */
+#define MR_DEATH	0x00400000L	/* resists death magic */
+#define MR_DRAIN	0x00800000L	/* resists level drain */
+
+#define MR_PLUSONE	0x01000000L	/* need +1 weapon to hit */
+#define MR_PLUSTWO	0x02000000L	/* need +2 weapon to hit */
+#define MR_PLUSTHREE	0x04000000L	/* need +3 weapon to hit */
+#define MR_PLUSFOUR	0x08000000L	/* need +4 weapon to hit */
+
+/* Doesn't really belong under resistances, but ... */
+#define MR_HITASONE	0x10000000L	/* hits ceatures as +1 weapon */
+#define MR_HITASTWO	0x20000000L	/* hits ceatures as +2 weapon */
+#define MR_HITASTHREE	0x40000000L	/* hits ceatures as +3 weapon */
+#define MR_HITASFOUR	0x80000000L	/* hits ceatures as +4 weapon */
+
+#define MR_TYPEMASK	0xFFC000FFL	/* bits to take from mresists */
 
 
 #define M1_FLY		0x00000001L	/* can fly or float */
