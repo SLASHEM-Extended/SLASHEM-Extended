@@ -30,6 +30,11 @@
 #define hit_as_three(mon)       (((mon)->mintrinsics & MR_HITASTHREE) != 0)
 #define hit_as_four(mon)        (((mon)->mintrinsics & MR_HITASFOUR) != 0)
 
+#define is_lminion(mon)		(is_minion((mon)->data) && \
+				 (mon)->data->maligntyp >= A_COALIGNED && \
+				 ((mon)->data != &mons[PM_ANGEL] || \
+				  EPRI(mon)->shralign > 0))
+
 #define is_flyer(ptr)		(((ptr)->mflags1 & M1_FLY) != 0L)
 #define is_floater(ptr)		((ptr)->mlet == S_EYE)
 #define is_clinger(ptr)		(((ptr)->mflags1 & M1_CLING) != 0L)
@@ -51,6 +56,7 @@
 #define nolimbs(ptr)		(((ptr)->mflags1 & M1_NOLIMBS) == M1_NOLIMBS)
 #define notake(ptr)		(((ptr)->mflags1 & M1_NOTAKE) != 0L)
 #define has_head(ptr)		(((ptr)->mflags1 & M1_NOHEAD) == 0L)
+#define has_horns(ptr)		(num_horns(ptr) > 0)
 #define is_whirly(ptr)		((ptr)->mlet == S_VORTEX || \
 				 (ptr) == &mons[PM_AIR_ELEMENTAL])
 #define is_silent(ptr)		((ptr)->msound == MS_SILENT)
@@ -117,8 +123,6 @@
 #define is_dlord(ptr)		(is_demon(ptr) && is_lord(ptr))
 #define is_dprince(ptr)		(is_demon(ptr) && is_prince(ptr))
 #define is_minion(ptr)		((ptr)->mflags2 & M2_MINION)
-#define is_lminion(ptr)		(is_minion(ptr) && \
-				 (ptr)->maligntyp >= A_COALIGNED)
 #define likes_gold(ptr)		(((ptr)->mflags2 & M2_GREEDY) != 0L)
 #define likes_gems(ptr)		(((ptr)->mflags2 & M2_JEWELS) != 0L)
 #define likes_objs(ptr)		(((ptr)->mflags2 & M2_COLLECT) != 0L || \

@@ -6,7 +6,7 @@
 
 STATIC_DCL void FDECL(center, (int, char *));
 
-extern const char *killed_by_prefix[];
+extern const char * const killed_by_prefix[];	/* from topten.c */
 
 #if defined(TTY_GRAPHICS) || defined(X11_GRAPHICS) || defined(GEM_GRAPHICS) || defined(MSWIN_GRAPHICS)
 # define TEXT_TOMBSTONE

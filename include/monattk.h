@@ -8,6 +8,7 @@
 /*	Add new attack types below - ordering affects experience (exper.c).
  *	Attacks > AT_BUTT are worth extra experience.
  */
+#define AT_ANY		(-1)	/* fake attack; dmgtype_fromattack wildcard */
 #define AT_NONE		0	/* passive monster (ex. acid blob) */
 #define AT_CLAW		1	/* claw (punch, hit, etc.) */
 #define AT_BITE		2	/* bite */
@@ -33,6 +34,7 @@
  *	Note that 1-10 correspond to the types of attack used in buzz().
  *	Please don't disturb the order unless you rewrite the buzz() code.
  */
+#define AD_ANY		(-1)	/* fake damage; attacktype_fordmg wildcard */
 #define AD_PHYS		0	/* ordinary physical */
 #define AD_MAGM		1	/* magic missiles */
 #define AD_FIRE		2	/* fire damage */

@@ -93,7 +93,7 @@ register struct monst *mon;
 	mon->mhp += (mon->mhpmax - mon->mhp) / 4;
 	newsym(mon->mx,mon->my);
 	mon_break_armor(mon, FALSE);
-	possibly_unwield(mon);
+	possibly_unwield(mon, FALSE);
 	(void) stop_timer(UNPOLY_MON, (genericptr_t) mon);
 	(void) start_timer(rn1(1000,1000), TIMER_MONSTER,
 		UNPOLY_MON, (genericptr_t) mon);

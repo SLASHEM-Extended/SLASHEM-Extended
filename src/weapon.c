@@ -68,31 +68,31 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 };
 
 
-STATIC_OVL NEARDATA const char *odd_skill_names[] = {
+STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "no skill",
     "polearms",
     "saber",
     "hammer",
     "whip",
-	"paddle",
-	"firearms",
+    "paddle",
+    "firearms",
     "attack spells",
     "healing spells",
     "divination spells",
     "enchantment spells",
-	"protection spells",
-	"body spells",
+    "protection spells",
+    "body spells",
     "matter spells",
-	"bare-handed combat",
-	"martial arts",
-	"riding",
-	"two-weapon combat",
-	"lightsaber"
+    "bare-handed combat",
+    "martial arts",
+    "riding",
+    "two-weapon combat",
+    "lightsaber"
 };
 
 
-static
-void give_may_advance_msg(skill)
+STATIC_OVL void
+give_may_advance_msg(skill)
 int skill;
 {
 	You_feel("more %s in your %sskills.",
@@ -337,13 +337,6 @@ struct monst *mon;
 	if (Is_weapon || otmp->oclass == GEM_CLASS ||
 		otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS) {
 	    int bonus = 0;
-
-#ifdef STEED
-		/* KMH -- Lances are especially made for riding */
-		if (otmp == uwep && u.usteed &&
-				objects[otmp->otyp].oc_skill == P_LANCE)
-			bonus += d(2,10);
-#endif
 
 	    if (otmp->blessed && (is_undead(ptr) || is_demon(ptr)))
 		bonus += rnd(4);
@@ -596,7 +589,7 @@ register struct monst *mtmp;
 /* Weapons in order of preference */
 /* WAC -- added dark elven short sword here */
 /* WAC -- removed polearms */
-static NEARDATA short hwep[] = {
+static const NEARDATA short hwep[] = {
 	  CORPSE,  /* cockatrice corpse */
 	  TSURUGI, RUNESWORD, HEAVY_HAMMER, 
 	  DWARVISH_MATTOCK, 
@@ -661,20 +654,19 @@ register struct monst *mtmp;
 }
 
 /* Called after polymorphing a monster, robbing it, etc....  Monsters
- * otherwise never unwield stuff on their own.  Shouldn't print messages.
+ * otherwise never unwield stuff on their own.  Might print message.
  */
 void
-possibly_unwield(mon)
-register struct monst *mon;
+possibly_unwield(mon, polyspot)
+struct monst *mon;
+boolean polyspot;
 {
-	register struct obj *obj;
-	struct obj *mw_tmp;
+	struct obj *obj, *mw_tmp;
 
 	if (!(mw_tmp = MON_WEP(mon)))
 		return;
-	for(obj=mon->minvent; obj; obj=obj->nobj)
-		if (obj == mw_tmp) 
-			break;
+	for (obj = mon->minvent; obj; obj = obj->nobj)
+		if (obj == mw_tmp) break;
 	if (!obj) { /* The weapon was stolen or destroyed */
 		MON_NOWEP(mon);
 		mon->weapon_check = NEED_WEAPON;
@@ -685,13 +677,16 @@ register struct monst *mon;
 		MON_NOWEP(mon);
 		mon->weapon_check = NO_WEAPON_WANTED;
 		obj_extract_self(obj);
-		/* flooreffects unnecessary, can't wield boulders */
-		place_object(obj, mon->mx, mon->my);
-		stackobj(obj);
 		if (cansee(mon->mx, mon->my)) {
-			pline("%s drops %s.", Monnam(mon),
-				distant_name(obj, doname));
-			newsym(mon->mx, mon->my);
+		    pline("%s drops %s.", Monnam(mon),
+			  distant_name(obj, doname));
+		    newsym(mon->mx, mon->my);
+		}
+		/* might be dropping object into water or lava */
+		if (!flooreffects(obj, mon->mx, mon->my, "drop")) {
+		    if (polyspot) bypass_obj(obj);
+		    place_object(obj, mon->mx, mon->my);
+		    stackobj(obj);
 		}
 		return;
 	}
@@ -710,6 +705,7 @@ register struct monst *mon;
 	 */
 	if (!(mw_tmp->cursed && mon->weapon_check == NO_WEAPON_WANTED))
 	    mon->weapon_check = NEED_WEAPON;
+	return;
 }
 
 /* Let a monster try to wield a weapon, based on mon->weapon_check.
@@ -735,7 +731,23 @@ register struct monst *mon;
 		case NEED_PICK_AXE:
 			obj = m_carrying(mon, PICK_AXE);
 			/* KMH -- allow other picks */
-			if (!obj) obj = m_carrying(mon, DWARVISH_MATTOCK);
+			if (!obj && !which_armor(mon, W_ARMS))
+			    obj = m_carrying(mon, DWARVISH_MATTOCK);
+			break;
+		case NEED_AXE:
+			/* currently, only 2 types of axe */
+			obj = m_carrying(mon, BATTLE_AXE);
+			if (!obj || which_armor(mon, W_ARMS))
+			    obj = m_carrying(mon, AXE);
+			break;
+		case NEED_PICK_OR_AXE:
+			/* prefer pick for fewer switches on most levels */
+			obj = m_carrying(mon, DWARVISH_MATTOCK);
+			if (!obj) obj = m_carrying(mon, BATTLE_AXE);
+			if (!obj || which_armor(mon, W_ARMS)) {
+			    obj = m_carrying(mon, PICK_AXE);
+			    if (!obj) obj = m_carrying(mon, AXE);
+			}
 			break;
 		default: impossible("weapon_check %d for %s?",
 				mon->weapon_check, mon_nam(mon));
@@ -1057,7 +1069,7 @@ int skill;
     }
 }
 
-static struct skill_range {
+const static struct skill_range {
 	short first, last;
 	const char *name;
 } skill_ranges[] = {
@@ -1110,7 +1122,7 @@ enhance_weapon_skill()
 	    /* start with a legend if any entries will be annotated
 	       with "*" or "#" below */
 	    if (eventually_advance > 0 || maxxed_cnt > 0) {
-		any.a_int = 0;
+		any.a_void = 0;
 		if (eventually_advance > 0) {
 		    Sprintf(buf,
 			    "(Skill%s flagged by \"*\" may be enhanced %s.)",
@@ -1552,7 +1564,7 @@ struct obj *obj;
  */
 void
 skill_init(class_skill)
-struct def_skill *class_skill;
+const struct def_skill *class_skill;
 {
 	struct obj *obj;
 	int skmax, skill;

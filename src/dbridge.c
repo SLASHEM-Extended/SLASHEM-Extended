@@ -400,7 +400,7 @@ int dest, how;
 			    if (enexto(&xy, etmp->ex, etmp->ey, etmp->edata)) {
 				pline("A %s force teleports you away...",
 				      Hallucination ? "normal" : "strange");
-				teleds(xy.x, xy.y);
+				teleds(xy.x, xy.y, FALSE);
 			    }
 			    /* otherwise on top of the drawbridge is the
 			     * only viable spot in the dungeon, so stay there
@@ -531,6 +531,7 @@ struct entity *etmp;
 			pline_The("%s passes through %s!",
 			      at_portcullis ? "portcullis" : "drawbridge",
 			      e_nam(etmp));
+		if (is_u(etmp)) spoteffects(FALSE);
 		return;
 	}
 	if (e_missed(etmp, FALSE)) {

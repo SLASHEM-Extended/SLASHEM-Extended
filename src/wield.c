@@ -52,14 +52,6 @@
 STATIC_DCL int FDECL(ready_weapon, (struct obj *, BOOLEAN_P));
 STATIC_DCL void FDECL(unwield, (struct obj *, BOOLEAN_P));
 
-/* elven weapons vibrate warningly when enchanted beyond a limit */
-#define is_elven_weapon(optr)	((optr)->otyp == ELVEN_ARROW\
-				|| (optr)->otyp == ELVEN_SPEAR\
-				|| (optr)->otyp == ELVEN_DAGGER\
-				|| (optr)->otyp == ELVEN_SHORT_SWORD\
-				|| (optr)->otyp == ELVEN_BROADSWORD\
-				|| (optr)->otyp == ELVEN_BOW)
-
 /* used by will_weld() */
 /* probably should be renamed */
 #define erodeable_wep(optr)	((optr)->oclass == WEAPON_CLASS \
@@ -285,6 +277,8 @@ dowield()
 		return (0);
 	} else if (welded(uwep)) {
 		weldmsg(uwep);
+		/* previously interrupted armor removal mustn't be resumed */
+		reset_remarm();
 		return (0);
 	}
 
@@ -362,7 +356,9 @@ int
 dowieldquiver()
 {
 	register struct obj *newquiver;
-
+	const char *quivee_types = (uslinging() ||
+		  (uswapwep && objects[uswapwep->otyp].oc_skill == P_SLING)) ?
+				 bullets : ready_objs;
 
 	/* Since the quiver isn't in your hands, don't check cantwield(), */
 	/* will_weld(), touch_petrifies(), etc. */
@@ -370,11 +366,11 @@ dowieldquiver()
 
 	/* Slash'EM has used Q for quiver since it started */
 	/* Because 'Q' used to be quit... */
-	if (!flags.suppress_alert || flags.suppress_alert < FEATURE_NOTICE_VER(0,0,0))
+	if (flags.suppress_alert < FEATURE_NOTICE_VER(0,0,0))
 		pline("Note: Please use #quit if you wish to exit the game.");
 
 	/* Prompt for a new quiver */
-	if (!(newquiver = getobj(uslinging() ? bullets : ready_objs, "ready")))
+	if (!(newquiver = getobj(quivee_types, "ready")))
 		/* Cancelled */
 		return (0);
 
@@ -427,16 +423,90 @@ dowieldquiver()
 	return (0);
 }
 
+/* used for #rub and for applying pick-axe, whip, grappling hook, or polearm */
+/* (moved from apply.c) */
+boolean
+wield_tool(obj, verb)
+struct obj *obj;
+const char *verb;	/* "rub",&c */
+{
+    const char *what;
+    boolean more_than_1;
+
+    if (obj == uwep) return TRUE;   /* nothing to do if already wielding it */
+
+    if (!verb) verb = "wield";
+    what = xname(obj);
+    more_than_1 = (obj->quan > 1L ||
+		   strstri(what, "pair of ") != 0 ||
+		   strstri(what, "s of ") != 0);
+
+    if (obj->owornmask & (W_ARMOR|W_RING|W_AMUL|W_TOOL)) {
+	char yourbuf[BUFSZ];
+
+	You_cant("%s %s %s while wearing %s.",
+		 verb, shk_your(yourbuf, obj), what,
+		 more_than_1 ? "them" : "it");
+	return FALSE;
+    }
+    if (welded(uwep)) {
+	if (flags.verbose) {
+	    const char *hand = body_part(HAND);
+
+	    if (bimanual(uwep)) hand = makeplural(hand);
+	    if (strstri(what, "pair of ") != 0) more_than_1 = FALSE;
+	    pline(
+	     "Since your weapon is welded to your %s, you cannot %s %s %s.",
+		  hand, verb, more_than_1 ? "those" : "that", xname(obj));
+	} else {
+	    You_cant("do that.");
+	}
+	return FALSE;
+    }
+    if (cantwield(youmonst.data)) {
+	You_cant("hold %s strongly enough.", more_than_1 ? "them" : "it");
+	return FALSE;
+    }
+    /* check shield */
+    if (uarms && bimanual(obj)) {
+	You("cannot %s a two-handed %s while wearing a shield.",
+	    verb, (obj->oclass == WEAPON_CLASS) ? "weapon" : "tool");
+	return FALSE;
+    }
+    if (uquiver == obj) setuqwep((struct obj *)0);
+    if (uswapwep == obj) {
+	(void) doswapweapon();
+	/* doswapweapon might fail */
+	if (uswapwep == obj) return FALSE;
+    } else {
+	You("now wield %s.", doname(obj));
+	setuwep(obj, TRUE);
+    }
+    if (uwep != obj) return FALSE;	/* rewielded old object after dying */
+    /* applying weapon or tool that gets wielded ends two-weapon combat */
+    if (u.twoweap)
+	untwoweapon();
+    if (obj->oclass != WEAPON_CLASS && !is_weptool(obj))
+	unweapon = TRUE;
+    return TRUE;
+}
+
 /* WAC
  * For the purposes of SLASH'EM, artifacts should be wieldable in either hand
  * It should be possible to twoweapon in any form that can wield weapons
  */
-int can_twoweapon ()
+int
+can_twoweapon()
 {
 	struct obj *otmp;
 
-	if (cantwield(youmonst.data) && (uwep || uswapwep)) {
-	    You("cannot wield weapons in this form.");
+	if (!could_twoweap(youmonst.data) && (uwep || uswapwep)) {
+	    if (Upolyd)
+		You_cant("use two weapons in your current form.");
+	    else
+		pline("%s aren't able to use two weapons at once.",
+		      makeplural((flags.female && urole.name.f) ?
+				 urole.name.f : urole.name.m));
 	} else if ((uwep && bimanual(uwep)) || (uswapwep && bimanual(uswapwep))) {
 	    otmp = (uwep && bimanual(uwep)) ? uwep : uswapwep;
 	    pline("%s isn't one-handed.", Yname2(otmp));
@@ -458,14 +528,9 @@ int can_twoweapon ()
 	    Sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
 	    instapetrify(kbuf);
         } else if (uswapwep && (Glib || uswapwep->cursed)) {
-	    struct obj *obj = uswapwep;
-
-	    Your("%s from your %s!",  aobjnam(obj, "slip"),
-		    makeplural(body_part(HAND)));
 	    if (!Glib)
-		obj->bknown = TRUE;
-	    setuswapwep((struct obj *) 0, FALSE);
-	    dropx(obj);
+		uswapwep->bknown = TRUE;
+	    drop_uswapwep();
 	} else
 	    return (TRUE); /* Passes all the checks */
 	
@@ -473,16 +538,21 @@ int can_twoweapon ()
 	return (FALSE);
 }
 
-#if 0 /* NH 3.4.0 */
+#if 0 /* NH 3.4.1 */
 int
 can_twoweapon()
 {
 	struct obj *otmp;
 
 #define NOT_WEAPON(obj) (!is_weptool(obj) && obj->oclass != WEAPON_CLASS)
-	if (!could_twoweap(youmonst.data))
-		You_cant("use two weapons in your current form.");
-	else if (!uwep || !uswapwep)
+	if (!could_twoweap(youmonst.data)) {
+		if (Upolyd)
+		    You_cant("use two weapons in your current form.");
+		else
+		    pline("%s aren't able to use two weapons at once.",
+			  makeplural((flags.female && urole.name.f) ?
+				     urole.name.f : urole.name.m));
+	} else if (!uwep || !uswapwep)
 		Your("%s%s%s empty.", uwep ? "left " : uswapwep ? "right " : "",
 			body_part(HAND), (!uwep && !uswapwep) ? "s are" : " is");
 	else if (NOT_WEAPON(uwep) || NOT_WEAPON(uswapwep)) {
@@ -506,20 +576,27 @@ can_twoweapon()
 		Sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
 		instapetrify(kbuf);
 	} else if (Glib || uswapwep->cursed) {
-		char str[BUFSZ];
-		struct obj *obj = uswapwep;
-
-		/* Avoid trashing makeplural's static buffer */
-		Strcpy(str, makeplural(body_part(HAND)));
-		Your("%s from your %s!",  aobjnam(obj, "slip"), str);
 		if (!Glib)
-			obj->bknown = TRUE;
-		dropx(obj);
+			uswapwep->bknown = TRUE;
+		drop_uswapwep();
 	} else
 		return (TRUE);
 	return (FALSE);
 }
-#endif /* NH 3.3.0 */
+#endif /* NH 3.4.1 */
+
+void
+drop_uswapwep()
+{
+	char str[BUFSZ];
+	struct obj *obj = uswapwep;
+
+	/* Avoid trashing makeplural's static buffer */
+	Strcpy(str, makeplural(body_part(HAND)));
+	Your("%s from your %s!",  aobjnam(obj, "slip"), str);
+	setuswapwep((struct obj *) 0, FALSE);
+	dropx(obj);
+}
 
 int
 dotwoweapon()
@@ -689,8 +766,9 @@ chwepon(otmp, amount)
 register struct obj *otmp;
 register int amount;
 {
-	register const char *color = hcolor((amount < 0) ? Black : blue);
-	register const char *xtime;
+	const char *color = hcolor((amount < 0) ? NH_BLACK : NH_BLUE);
+	const char *xtime;
+	int otyp = STRANGE_OBJECT;
 
 	if(!uwep || (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep))) {
 		char buf[BUFSZ];
@@ -702,11 +780,14 @@ register int amount;
 		return(0);
 	}
 
+	if (otmp && otmp->oclass == SCROLL_CLASS) otyp = otmp->otyp;
+
 	if(uwep->otyp == WORM_TOOTH && amount >= 0) {
 		uwep->otyp = CRYSKNIFE;
 		uwep->oerodeproof = 0;
 		Your("weapon seems sharper now.");
 		uwep->cursed = 0;
+		if (otyp != STRANGE_OBJECT) makeknown(otyp);
 		return(1);
 	}
 
@@ -714,6 +795,7 @@ register int amount;
 		uwep->otyp = WORM_TOOTH;
 		uwep->oerodeproof = 0;
 		Your("weapon seems duller now.");
+		if (otyp != STRANGE_OBJECT && otmp->bknown) makeknown(otyp);
 		return(1);
 	}
 
@@ -732,9 +814,7 @@ register int amount;
 	    else
 		Your("%s.", aobjnam(uwep, "evaporate"));
 
-	    while(uwep)		/* let all of them disappear */
-				/* note: uwep->quan = 1 is nogood if unpaid */
-		useup(uwep);
+	    useupall(uwep);	/* let all of them disappear */
 	    return(1);
 	}
 	if (!Blind) {
@@ -742,6 +822,9 @@ register int amount;
 	    Your("%s %s for a %s.",
 		 aobjnam(uwep, amount == 0 ? "violently glow" : "glow"),
 		 color, xtime);
+	    if (otyp != STRANGE_OBJECT && uwep->known &&
+		    (amount > 0 || (amount < 0 && otmp->bknown)))
+		makeknown(otyp);
 	}
 	uwep->spe += amount;
 	if(amount > 0) uwep->cursed = 0;
@@ -758,6 +841,7 @@ register int amount;
 	}
 
 	/* an elven magic clue, cookie@keebler */
+	/* elven weapons vibrate warningly when enchanted beyond a limit */
 	if ((uwep->spe > 5)
 		&& (is_elven_weapon(uwep) || uwep->oartifact || !rn2(7)))
 	    Your("%s unexpectedly.",

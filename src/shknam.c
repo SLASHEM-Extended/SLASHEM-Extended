@@ -13,7 +13,7 @@ extern const struct shclass shtypes[];
 #else
 
 STATIC_DCL void FDECL(mkshobj_at, (const struct shclass *,int,int));
-STATIC_DCL void FDECL(nameshk, (struct monst *,const char **));
+STATIC_DCL void FDECL(nameshk, (struct monst *,const char * const *));
 STATIC_DCL int  FDECL(shkinit, (const struct shclass *,struct mkroom *));
 
 #ifdef BLACKMARKET
@@ -26,7 +26,7 @@ static void FDECL(init_shk_services, (struct monst *));
 #endif
 
 
-static const char *shkliquors[] = {
+static const char * const shkliquors[] = {
     /* Ukraine */
     "Njezjin", "Tsjernigof", "Gomel", "Ossipewsk", "Gorlowka",
     /* N. Russia */
@@ -41,7 +41,7 @@ static const char *shkliquors[] = {
     0
 };
 
-static const char *shkbooks[] = {
+static const char * const shkbooks[] = {
     /* Eire */
     "Skibbereen", "Kanturk", "Rath Luirc", "Ennistymon", "Lahinch",
     "Kinnegad", "Lugnaquillia", "Enniscorthy", "Gweebarra",
@@ -52,7 +52,7 @@ static const char *shkbooks[] = {
     0
 };
 
-static const char *shkarmors[] = {
+static const char * const shkarmors[] = {
     /* Turquie */
     "Demirci", "Kalecik", "Boyabai", "Yildizeli", "Gaziantep",
     "Siirt", "Akhalataki", "Tirebolu", "Aksaray", "Ermenak",
@@ -63,11 +63,11 @@ static const char *shkarmors[] = {
     0
 };
 
-static const char *shkwands[] = {
+static const char * const shkwands[] = {
     /* Wales */
     "Yr Wyddgrug", "Trallwng", "Mallwyd", "Pontarfynach",
     "Rhaeader", "Llandrindod", "Llanfair-ym-muallt",
-    "Y-Fenni", "Measteg", "Rhydaman", "Beddgelert",
+    "Y-Fenni", "Maesteg", "Rhydaman", "Beddgelert",
     "Curig", "Llanrwst", "Llanerchymedd", "Caergybi",
     /* Scotland */
     "Nairn", "Turriff", "Inverurie", "Braemar", "Lochnagar",
@@ -77,7 +77,7 @@ static const char *shkwands[] = {
     0
 };
 
-static const char *shkrings[] = {
+static const char * const shkrings[] = {
     /* Hollandse familienamen */
     "Feyfer", "Flugi", "Gheel", "Havic", "Haynin", "Hoboken",
     "Imbyze", "Juyn", "Kinsky", "Massis", "Matray", "Moy",
@@ -90,7 +90,7 @@ static const char *shkrings[] = {
     0
 };
 
-static const char *shkfoods[] = {
+static const char * const shkfoods[] = {
     /* Indonesia */
     "Djasinga", "Tjibarusa", "Tjiwidej", "Pengalengan",
     "Bandjar", "Parbalingga", "Bojolali", "Sarangan",
@@ -102,7 +102,7 @@ static const char *shkfoods[] = {
     0
 };
 
-static const char *shkweapons[] = {
+static const char * const shkweapons[] = {
     /* Perigord */
     "Voulgezac", "Rouffiac", "Lerignac", "Touverac", "Guizengeard",
     "Melac", "Neuvicq", "Vanzac", "Picq", "Urignac", "Corignac",
@@ -113,7 +113,7 @@ static const char *shkweapons[] = {
     0
 };
 
-static const char *shktools[] = {
+static const char * const shktools[] = {
     /* Spmi */
     "Ymla", "Eed-morra", "Cubask", "Nieb", "Bnowr Falr", "Telloc Cyaj",
     "Sperc", "Noskcirdneh", "Yawolloh", "Hyeghu", "Niskal", "Trahnil",
@@ -144,7 +144,7 @@ static const char *shktools[] = {
     0
 };
 
-static const char *shklight[] = {
+static const char * const shklight[] = {
     /* Romania */
     "Zarnesti", "Slanic", "Nehoiasu", "Ludus", "Sighisoara", "Nisipitu",
     "Razboieni", "Bicaz", "Dorohoi", "Vaslui", "Fetesti", "Tirgu Neamt",
@@ -156,7 +156,7 @@ static const char *shklight[] = {
     0
 };
 
-static const char *shkgeneral[] = {
+static const char * const shkgeneral[] = {
     /* Suriname */
     "Hebiwerie", "Possogroenoe", "Asidonhopo", "Manlobbi",
     "Adjama", "Pakka Pakka", "Kabalebo", "Wonotobo",
@@ -332,7 +332,7 @@ int sx, sy;
 STATIC_OVL void
 nameshk(shk, nlp)
 struct monst *shk;
-const char *nlp[];
+const char * const *nlp;
 {
 	int i, trycnt, names_avail;
 	const char *shname = 0;

@@ -18,6 +18,7 @@ NetHack, except that rounddiv may call panic().
 	char *		upstart		(char *)
 	char *		mungspaces	(char *)
 	char *		eos		(char *)
+	char *		strkitten	(char *,char)
 	char *		s_suffix	(const char *)
 	char *		xcrypt		(const char *, char *)
 	boolean		onlyspace	(const char *)
@@ -127,6 +128,19 @@ eos(s)			/* return the end of a string (pointing at '\0') */
     register char *s;
 {
     while (*s) s++;	/* s += strlen(s); */
+    return s;
+}
+
+/* strcat(s, {c,'\0'}); */
+char *
+strkitten(s, c)		/* append a character to a string (in place) */
+    char *s;
+    char c;
+{
+    char *p = eos(s);
+
+    *p++ = c;
+    *p = '\0';
     return s;
 }
 

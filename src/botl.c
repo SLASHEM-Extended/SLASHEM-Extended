@@ -17,7 +17,7 @@ const char *hu_abbrev_stat[] = {	/* must be kept consistent with eat.c */
 	"Sta"
 };
 
-const char *enc_stat[] = {
+const char * const enc_stat[] = {
 	"",
 	"Burdened",
 	"Stressed",
@@ -80,7 +80,8 @@ int level;
 #endif
 
 /* convert experience level (1..30) to rank index (0..8) */
-int xlev_to_rank(xlev)
+int
+xlev_to_rank(xlev)
 int xlev;
 {
 	return (xlev <= 2) ? 0 : (xlev <= 30) ? ((xlev + 2) / 4) : 8;
@@ -88,7 +89,8 @@ int xlev;
 
 #if 0	/* not currently needed */
 /* convert rank index (0..8) to experience level (1..30) */
-int rank_to_xlev(rank)
+int
+rank_to_xlev(rank)
 int rank;
 {
 	return (rank <= 0) ? 1 : (rank <= 8) ? ((rank * 4) - 2) : 30;
@@ -340,7 +342,7 @@ bot2str(char *newbot2)
 		newbot2[0] = '\0';
 	if (bot2_abbrev < 1)
 		Sprintf(nb = eos(newbot2), "%c:%-2ld ",
-		  oc_syms[GOLD_CLASS],
+		  oc_syms[COIN_CLASS],
 #ifndef GOLDOBJ
 		u.ugold
 #else
@@ -394,7 +396,7 @@ bot2str(char *newbot2)
 /* WAC further Up
 #ifdef SCORE_ON_BOTL
 	if (flags.showscore)
-                Sprintf(nb,"%c:%-2ld  Score:%ld", oc_syms[GOLD_CLASS],
+                Sprintf(nb,"%c:%-2ld  Score:%ld", oc_syms[COIN_CLASS],
                    u.ugold, botl_score());
 #endif
 */

@@ -80,6 +80,7 @@ struct obj {
 #define oarmed olocked
 	Bitfield(obroken,1);	/* lock has been broken */
 	Bitfield(otrapped,1);	/* container is trapped */
+				/* or accidental tripped rolling boulder trap */
 #define opoisoned otrapped	/* object (weapon) is coated with poison */
 
 	Bitfield(recharged,3);	/* number of times it's been recharged */
@@ -94,7 +95,7 @@ struct obj {
 #define OATTACHED_M_ID    2	/* monst id in oextra */
 #define OATTACHED_UNUSED3 3
 	Bitfield(in_use,1);	/* for magic items before useup items */
-	Bitfield(bypass,1);     /* mark this as an object to be skipped by bhito() */
+	Bitfield(bypass,1);	/* mark this as an object to be skipped by bhito() */
 
 	Bitfield(yours,1);	/* obj is yours (eg. thrown by you) */
 	Bitfield(was_thrown,1); /* thrown by the hero since last picked up */
@@ -223,7 +224,24 @@ struct obj {
 			 objects[(otmp)->otyp].oc_armcat == ARM_SHIRT)
 #define is_suit(otmp)	((otmp)->oclass == ARMOR_CLASS && \
 			 objects[(otmp)->otyp].oc_armcat == ARM_SUIT)
+#define is_elven_armor(otmp)	((otmp)->otyp == ELVEN_LEATHER_HELM\
+				|| (otmp)->otyp == ELVEN_MITHRIL_COAT\
+				|| (otmp)->otyp == ELVEN_CLOAK\
+				|| (otmp)->otyp == ELVEN_SHIELD\
+				|| (otmp)->otyp == ELVEN_BOOTS)
+#define is_orcish_armor(otmp)	((otmp)->otyp == ORCISH_HELM\
+				|| (otmp)->otyp == ORCISH_CHAIN_MAIL\
+				|| (otmp)->otyp == ORCISH_RING_MAIL\
+				|| (otmp)->otyp == ORCISH_CLOAK\
+				|| (otmp)->otyp == URUK_HAI_SHIELD\
+				|| (otmp)->otyp == ORCISH_SHIELD)
+#define is_dwarvish_armor(otmp)	((otmp)->otyp == DWARVISH_IRON_HELM\
+				|| (otmp)->otyp == DWARVISH_MITHRIL_COAT\
+				|| (otmp)->otyp == DWARVISH_CLOAK\
+				|| (otmp)->otyp == DWARVISH_ROUNDSHIELD)
+#define is_gnomish_armor(otmp)	(FALSE)
 
+				
 /* Eggs and other food */
 #define MAX_EGG_HATCH_TIME 200	/* longest an egg can remain unhatched */
 #define stale_egg(egg)	((monstermoves - (egg)->age) > (2*MAX_EGG_HATCH_TIME))
@@ -258,10 +276,36 @@ struct obj {
 				 (obj)->otyp <= YELLOW_DRAGON_SCALE_MAIL)
 #define Is_dragon_armor(obj)	(Is_dragon_scales(obj) || Is_dragon_mail(obj))
 #define Dragon_scales_to_pm(obj) &mons[PM_GRAY_DRAGON + (obj)->otyp \
-				      - GRAY_DRAGON_SCALES]
+				       - GRAY_DRAGON_SCALES]
 #define Dragon_mail_to_pm(obj)	&mons[PM_GRAY_DRAGON + (obj)->otyp \
-				     - GRAY_DRAGON_SCALE_MAIL]
+				      - GRAY_DRAGON_SCALE_MAIL]
 #define Dragon_to_scales(pm)	(GRAY_DRAGON_SCALES + (pm - mons))
+
+/* Elven gear */
+#define is_elven_weapon(otmp)	((otmp)->otyp == ELVEN_ARROW\
+				|| (otmp)->otyp == ELVEN_SPEAR\
+				|| (otmp)->otyp == ELVEN_DAGGER\
+				|| (otmp)->otyp == ELVEN_SHORT_SWORD\
+				|| (otmp)->otyp == ELVEN_BROADSWORD\
+				|| (otmp)->otyp == ELVEN_BOW)
+#define is_elven_obj(otmp)	(is_elven_armor(otmp) || is_elven_weapon(otmp))
+
+/* Orcish gear */
+#define is_orcish_obj(otmp)	(is_orcish_armor(otmp)\
+				|| (otmp)->otyp == ORCISH_ARROW\
+				|| (otmp)->otyp == ORCISH_SPEAR\
+				|| (otmp)->otyp == ORCISH_DAGGER\
+				|| (otmp)->otyp == ORCISH_SHORT_SWORD\
+				|| (otmp)->otyp == ORCISH_BOW)
+
+/* Dwarvish gear */
+#define is_dwarvish_obj(otmp)	(is_dwarvish_armor(otmp)\
+				|| (otmp)->otyp == DWARVISH_SPEAR\
+				|| (otmp)->otyp == DWARVISH_SHORT_SWORD\
+				|| (otmp)->otyp == DWARVISH_MATTOCK)
+
+/* Gnomish gear */
+#define is_gnomish_obj(otmp)	(is_gnomish_armor(otmp))
 
 /* Light sources */
 #define Is_candle(otmp)	((otmp)->otyp == TALLOW_CANDLE || \

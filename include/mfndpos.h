@@ -17,6 +17,7 @@
 #define ALLOW_ROCK	0x02000000L	/* pushes rocks */
 #define ALLOW_WALL	0x04000000L	/* walks thru walls */
 #define ALLOW_DIG	0x08000000L	/* digs */
+#define ALLOW_BARS	0x10000000L	/* may pass thru iron bars */
 #define ALLOW_SANCT	0x20000000L	/* enters temples */
 #define ALLOW_SSM	0x40000000L	/* ignores scare monster */
 #ifdef NHSTDC

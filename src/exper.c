@@ -95,10 +95,11 @@ experience(mtmp, nk)	/* return # of exp points for mtmp after nk killed */
 	tmp = 1 + mtmp->m_lev * mtmp->m_lev;
 
 /*	For higher ac values, give extra experience */
-	if((i = find_mac(mtmp)) < 3) tmp += (7 - i) * (i < 0) ? 2 : 1;
+	if ((i = find_mac(mtmp)) < 3) tmp += (7 - i) * ((i < 0) ? 2 : 1);
 
 /*	For very fast monsters, give extra experience */
-	if(ptr->mmove >= 12) tmp += (ptr->mmove >= 18) ? 5 : 3;
+	if (ptr->mmove > NORMAL_SPEED)
+	    tmp += (ptr->mmove > (3*NORMAL_SPEED/2)) ? 5 : 3;
 
 /*	For each "special" attack type give extra experience */
 	for(i = 0; i < NATTK; i++) {
@@ -161,6 +162,12 @@ boolean force;		/* Force the loss of an experience level */
 {
 	register int num;
 
+#ifdef WIZARD
+	/* explicit wizard mode requests to reduce level are never fatal. */
+	if (drainer && !strcmp(drainer, "#levelchange"))
+		drainer = 0;
+#endif
+
 	if (!force && resists_drli(&youmonst)) return;
 
 	if (u.ulevel > 1) {
@@ -186,10 +193,10 @@ boolean force;		/* Force the loss of an experience level */
 
 	if (u.ulevel < urole.xlev)
 	    num = rn1((int)ACURR(A_WIS)/2 + urole.enadv.lornd + urace.enadv.lornd,
-	    		urole.enadv.lofix + urace.enadv.lofix);
+			urole.enadv.lofix + urace.enadv.lofix);
 	else
 	    num = rn1((int)ACURR(A_WIS)/2 + urole.enadv.hirnd + urace.enadv.hirnd,
-	    		urole.enadv.hifix + urace.enadv.hifix);
+			urole.enadv.hifix + urace.enadv.hifix);
 	num = enermod(num);		/* M. Stephenson */
 	u.uenmax -= num;
 	if (u.uenmax < 0) u.uenmax = 0;
@@ -306,17 +313,32 @@ boolean incr;	/* true iff via incremental experience growth */
 	flags.botl = 1;
 }
 
+/* compute a random amount of experience points suitable for the hero's
+   experience level:  base number of points needed to reach the current
+   level plus a random portion of what it takes to get to the next level */
 long
-rndexp()
+rndexp(gaining)
+boolean gaining;	/* gaining XP via potion vs setting XP for polyself */
 {
-	long minexp, maxexp, diff, factor;
+	long minexp, maxexp, diff, factor, result;
 
 	minexp = (u.ulevel == 1) ? 0L : newuexp(u.ulevel - 1);
 	maxexp = newuexp(u.ulevel);
 	diff = maxexp - minexp,  factor = 1L;
+	/* make sure that `diff' is an argument which rn2() can handle */
 	while (diff >= (long)LARGEST_INT)
 	    diff /= 2L,  factor *= 2L;
-	return minexp + factor * (long)rn2((int)diff);
+	result = minexp + factor * (long)rn2((int)diff);
+	/* 3.4.1:  if already at level 30, add to current experience
+	   points rather than to threshold needed to reach the current
+	   level; otherwise blessed potions of gain level can result
+	   in lowering the experience points instead of raising them */
+	if (u.ulevel == MAXULEV && gaining) {
+	    result += (u.uexp - minexp);
+	    /* avoid wrapping (over 400 blessed potions needed for that...) */
+	    if (result < u.uexp) result = u.uexp;
+	}
+	return result;
 }
 
 /*exper.c*/

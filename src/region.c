@@ -17,9 +17,7 @@ static int max_regions = 0;
 
 #define NO_CALLBACK (-1)
 
-boolean FDECL(inside_gas_cloud, (genericptr,genericptr,BOOLEAN_P));
-boolean FDECL(inside_player_gas_cloud, (genericptr, genericptr));
-boolean FDECL(inside_mon_gas_cloud, (genericptr, genericptr));
+boolean FDECL(inside_gas_cloud, (genericptr,genericptr));
 boolean FDECL(expire_gas_cloud, (genericptr,genericptr));
 boolean FDECL(revive_cthulhu, (genericptr, genericptr));
 boolean FDECL(inside_rect, (NhRect *,int,int));
@@ -46,15 +44,14 @@ boolean FDECL(enter_force_field, (genericptr,genericptr));
 NhRegion *FDECL(create_force_field, (XCHAR_P,XCHAR_P,int,int));
 #endif
 
+static void FDECL(reset_region_mids, (NhRegion *));
 
 static callback_proc callbacks[] = {
-#define INSIDE_PLAYER_GAS_CLOUD 0
-    inside_player_gas_cloud,
-#define INSIDE_MON_GAS_CLOUD 1
-    inside_mon_gas_cloud,
-#define EXPIRE_GAS_CLOUD 2
+#define INSIDE_GAS_CLOUD 0
+    inside_gas_cloud,
+#define EXPIRE_GAS_CLOUD 1
     expire_gas_cloud,
-#define REVIVE_CTHULHU 3	/* Cthulhu comes back... */
+#define REVIVE_CTHULHU 2	/* Cthulhu comes back... */
     revive_cthulhu
 };
 
@@ -131,7 +128,8 @@ int nrect;
     reg->leave_f = NO_CALLBACK;
     reg->can_leave_f = NO_CALLBACK;
     reg->inside_f = NO_CALLBACK;
-    reg->player_inside = FALSE;
+    clear_hero_inside(reg);
+    clear_heros_fault(reg);
     reg->n_monst = 0;
     reg->max_monst = 0;
     reg->monsters = NULL;
@@ -252,7 +250,7 @@ NhRegion *reg;
     ret_reg->can_enter_f = reg->can_enter_f;
     ret_reg->leave_f = reg->leave_f;
     ret_reg->can_leave_f = reg->can_leave_f;
-    ret_reg->player_inside = reg->player_inside;
+    ret_reg->player_flags = reg->player_flags;	/* set/clear_hero_inside,&c*/
     ret_reg->n_monst = reg->n_monst;
     if (reg->n_monst > 0) {
 	ret_reg->monsters = (unsigned *)
@@ -317,7 +315,10 @@ NhRegion *reg;
 		newsym(i, j);
 	}
     /* Check for player now... */
-    reg->player_inside = inside_region(reg, u.ux, u.uy);
+    if (inside_region(reg, u.ux, u.uy)) 
+	set_hero_inside(reg);
+    else
+	clear_hero_inside(reg);
 }
 
 /*
@@ -394,7 +395,7 @@ run_regions()
 	    regions[i]->ttl--;
 	/* Check if player is inside region */
 	f_indx = regions[i]->inside_f;
-	if (f_indx != NO_CALLBACK && regions[i]->player_inside)
+	if (f_indx != NO_CALLBACK && hero_inside(regions[i]))
 	    (void) (*callbacks[f_indx])(regions[i], (genericptr_t) 0);
 	/* Check if any monster is inside region */
 	if (f_indx != NO_CALLBACK) {
@@ -427,12 +428,12 @@ xchar
     /* First check if we can do the move */
     for (i = 0; i < n_regions; i++) {
 	if (inside_region(regions[i], x, y)
-	    && !regions[i]->player_inside && !regions[i]->attach_2_u) {
+	    && !hero_inside(regions[i]) && !regions[i]->attach_2_u) {
 	    if ((f_indx = regions[i]->can_enter_f) != NO_CALLBACK)
 		if (!(*callbacks[f_indx])(regions[i], (genericptr_t) 0))
 		    return FALSE;
 	} else
-	    if (regions[i]->player_inside
+	    if (hero_inside(regions[i])
 		&& !inside_region(regions[i], x, y)
 		&& !regions[i]->attach_2_u) {
 	    if ((f_indx = regions[i]->can_leave_f) != NO_CALLBACK)
@@ -443,9 +444,9 @@ xchar
 
     /* Callbacks for the regions we do leave */
     for (i = 0; i < n_regions; i++)
-	if (regions[i]->player_inside &&
+	if (hero_inside(regions[i]) &&
 		!regions[i]->attach_2_u && !inside_region(regions[i], x, y)) {
-	    regions[i]->player_inside = FALSE;
+	    clear_hero_inside(regions[i]);
 	    if (regions[i]->leave_msg != NULL)
 		pline(regions[i]->leave_msg);
 	    if ((f_indx = regions[i]->leave_f) != NO_CALLBACK)
@@ -454,9 +455,9 @@ xchar
 
     /* Callbacks for the regions we do enter */
     for (i = 0; i < n_regions; i++)
-	if (!regions[i]->player_inside &&
+	if (!hero_inside(regions[i]) &&
 		!regions[i]->attach_2_u && inside_region(regions[i], x, y)) {
-	    regions[i]->player_inside = TRUE;
+	    set_hero_inside(regions[i]);
 	    if (regions[i]->enter_msg != NULL)
 		pline(regions[i]->enter_msg);
 	    if ((f_indx = regions[i]->enter_f) != NO_CALLBACK)
@@ -504,7 +505,7 @@ xchar x, y;
 
     /* Callbacks for the regions we do enter */
     for (i = 0; i < n_regions; i++)
-	if (!regions[i]->player_inside &&
+	if (!hero_inside(regions[i]) &&
 		!regions[i]->attach_2_u && inside_region(regions[i], x, y)) {
 	    add_mon_to_reg(regions[i], mon);
 	    if ((f_indx = regions[i]->enter_f) != NO_CALLBACK)
@@ -522,10 +523,10 @@ update_player_regions()
     register int i;
 
     for (i = 0; i < n_regions; i++)
-	if (!regions[i]->attach_2_u)
-	    regions[i]->player_inside = inside_region(regions[i], u.ux, u.uy);
+	if (!regions[i]->attach_2_u && inside_region(regions[i], u.ux, u.uy))
+	    set_hero_inside(regions[i]);
 	else
-	    regions[i]->player_inside = FALSE;
+	    clear_hero_inside(regions[i]);
 }
 
 /*
@@ -648,7 +649,7 @@ int mode;
 	bwrite(fd, (genericptr_t) &regions[i]->can_leave_f, sizeof (short));
 	bwrite(fd, (genericptr_t) &regions[i]->leave_f, sizeof (short));
 	bwrite(fd, (genericptr_t) &regions[i]->inside_f, sizeof (short));
-	bwrite(fd, (genericptr_t) &regions[i]->player_inside, sizeof (boolean));
+	bwrite(fd, (genericptr_t) &regions[i]->player_flags, sizeof (boolean));
 	bwrite(fd, (genericptr_t) &regions[i]->n_monst, sizeof (short));
 	for (j = 0; j < regions[i]->n_monst; j++)
 	    bwrite(fd, (genericptr_t) &regions[i]->monsters[j],
@@ -664,8 +665,9 @@ skip_lots:
 }
 
 void
-rest_regions(fd)
+rest_regions(fd, ghostly)
 int fd;
+boolean ghostly; /* If a bones file restore */
 {
     int i, j;
     unsigned n;
@@ -674,7 +676,8 @@ int fd;
 
     clear_regions();		/* Just for security */
     mread(fd, (genericptr_t) &tmstamp, sizeof (tmstamp));
-    tmstamp = (moves - tmstamp);
+    if (ghostly) tmstamp = 0;
+    else tmstamp = (moves - tmstamp);
     mread(fd, (genericptr_t) &n_regions, sizeof (n_regions));
     max_regions = n_regions;
     if (n_regions > 0)
@@ -721,7 +724,11 @@ int fd;
 	mread(fd, (genericptr_t) &regions[i]->can_leave_f, sizeof (short));
 	mread(fd, (genericptr_t) &regions[i]->leave_f, sizeof (short));
 	mread(fd, (genericptr_t) &regions[i]->inside_f, sizeof (short));
-	mread(fd, (genericptr_t) &regions[i]->player_inside, sizeof (boolean));
+	mread(fd, (genericptr_t) &regions[i]->player_flags, sizeof (boolean));
+	if (ghostly) {	/* settings pertained to old player */
+	    clear_hero_inside(regions[i]);
+	    clear_heros_fault(regions[i]);
+	}
 	mread(fd, (genericptr_t) &regions[i]->n_monst, sizeof (short));
 	if (regions[i]->n_monst > 0)
 	    regions[i]->monsters =
@@ -736,10 +743,33 @@ int fd;
 	mread(fd, (genericptr_t) &regions[i]->glyph, sizeof (int));
 	mread(fd, (genericptr_t) &regions[i]->arg, sizeof (genericptr_t));
     }
-    /* remove expired regions, do not trigger the expire_f callback (yet!) */
+    /* remove expired regions, do not trigger the expire_f callback (yet!);
+       also update monster lists if this data is coming from a bones file */
     for (i = n_regions - 1; i >= 0; i--)
 	if (regions[i]->ttl == 0)
 	    remove_region(regions[i]);
+	else if (ghostly && regions[i]->n_monst > 0)
+	    reset_region_mids(regions[i]);
+}
+
+/* update monster IDs for region being loaded from bones; `ghostly' implied */
+static void
+reset_region_mids(reg)
+NhRegion *reg;
+{
+    int i = 0, n = reg->n_monst;
+    unsigned *mid_list = reg->monsters;
+
+    while (i < n)
+	if (!lookup_id_mapping(mid_list[i], &mid_list[i])) {
+	    /* shrink list to remove missing monster; order doesn't matter */
+	    mid_list[i] = mid_list[--n];
+	} else {
+	    /* move on to next monster */
+	    ++i;
+	}
+    reg->n_monst = n;
+    return;
 }
 
 #if 0
@@ -825,6 +855,8 @@ int radius, ttl;
 	tmprect.hy--;
     }
     ff->ttl = ttl;
+    if (!in_mklev && !flags.mon_moving)
+	set_heros_fault(ff);		/* assume player has created it */
  /* ff->can_enter_f = enter_force_field; */
  /* ff->can_leave_f = enter_force_field; */
     add_region(ff);
@@ -896,29 +928,10 @@ genericptr_t p2;
     return ret;
 }
 
-/* [DS] Changes to prevent casualties of Cthulhu's death-cloud being attributed
- *      to player. */
-boolean 
-inside_player_gas_cloud(p1, p2)
-genericptr_t p1;
-genericptr_t p2;
-{
-    inside_gas_cloud(p1, p2, TRUE);
-}
-
 boolean
-inside_mon_gas_cloud(p1, p2)
+inside_gas_cloud(p1, p2)
 genericptr_t p1;
 genericptr_t p2;
-{
-    inside_gas_cloud(p1, p2, FALSE);
-}
-
-boolean
-inside_gas_cloud(p1, p2, yours)
-genericptr_t p1;
-genericptr_t p2;
-boolean yours;	/* Was this player-created? */
 {
     NhRegion *reg;
     struct monst *mtmp;
@@ -947,7 +960,7 @@ boolean yours;	/* Was this player-created? */
 	if (!nonliving(mtmp->data) && !breathless(mtmp->data)) {
 	    if (cansee(mtmp->mx, mtmp->my))
 		pline("%s coughs!", Monnam(mtmp));
-	    if (yours)
+	    if (heros_fault(reg))
 	    	setmangry(mtmp);
 	    if (haseyes(mtmp->data) && mtmp->mcansee) {
 		mtmp->mblinded = 1;
@@ -957,11 +970,10 @@ boolean yours;	/* Was this player-created? */
 		return FALSE;
 	    mtmp->mhp -= rnd(dam) + 5;
 	    if (mtmp->mhp <= 0) {
-		if (yours)
+		if (heros_fault(reg))
 		    killed(mtmp);
 		else
-		    monkilled(mtmp, "", AD_DRST);
-
+		    monkilled(mtmp, "gas cloud", AD_DRST);
 		if (mtmp->mhp <= 0) {	/* not lifesaved */
 		    return TRUE;
 		}
@@ -979,18 +991,17 @@ int damage;
 {
     NhRegion *cloud;
 
-    cloud = create_gas_cloud(x, y, radius, damage, FALSE);
+    cloud = create_gas_cloud(x, y, radius, damage);
     if (cloud) cloud->expire_f = REVIVE_CTHULHU;
 
     return cloud;
 }
 
 NhRegion *
-create_gas_cloud(x, y, radius, damage, yours)
+create_gas_cloud(x, y, radius, damage)
 xchar x, y;
 int radius;
 int damage;
-boolean yours;			/* TRUE if player is responsible for this */
 {
     NhRegion *cloud;
     int i, nrect;
@@ -1010,7 +1021,9 @@ boolean yours;			/* TRUE if player is responsible for this */
 	tmprect.hy--;
     }
     cloud->ttl = rn1(3,4);
-    cloud->inside_f = yours ? INSIDE_PLAYER_GAS_CLOUD : INSIDE_MON_GAS_CLOUD;
+    if (!in_mklev && !flags.mon_moving)
+	set_heros_fault(cloud);		/* assume player has created it */
+    cloud->inside_f = INSIDE_GAS_CLOUD;
     cloud->expire_f = EXPIRE_GAS_CLOUD;
     cloud->arg = (genericptr_t) damage;
     cloud->visible = TRUE;

@@ -494,38 +494,42 @@ ARMOR("robe of weakness", "green robe",
 /*
  * Dragon suits
  * There is code in polyself.c that assumes (1) and (2).
- * There is code in objnam.c, mon.c, read.c that assumes (2).
+ * There is code in obj.h, objnam.c, mon.c, read.c that assumes (2).
  *
  *	(1) The dragon scale mails and the dragon scales are together.
  *	(2) That the order of the dragon scale mail and dragon scales is the
  *	    the same defined in monst.c.
  */
-#define DRGN_ARMR(name,power,cost,ac,color) \
-	ARMOR(name,(char *)0,1,0,1,power,0,5,50,cost,ac,0,ARM_SUIT,DRAGON_HIDE,color)
-DRGN_ARMR("gray dragon scale mail",   ANTIMAGIC,  1200, 1, CLR_GRAY),
-DRGN_ARMR("silver dragon scale mail", REFLECTING, 1200, 1, SILVER),
-DRGN_ARMR("shimmering dragon scale mail", DISPLACED, 1200, 1, CLR_CYAN),
-DRGN_ARMR("deep dragon scale mail",   DRAIN_RES,  1200, 1, CLR_MAGENTA),
-DRGN_ARMR("red dragon scale mail",    FIRE_RES,    900, 1, CLR_RED),
-DRGN_ARMR("white dragon scale mail",  COLD_RES,    900, 1, CLR_WHITE),
-DRGN_ARMR("orange dragon scale mail", SLEEP_RES,   900, 1, CLR_ORANGE),
-DRGN_ARMR("black dragon scale mail",  DISINT_RES, 1200, 1, CLR_BLACK),
-DRGN_ARMR("blue dragon scale mail",   SHOCK_RES,   900, 1, CLR_BLUE),
-DRGN_ARMR("green dragon scale mail",  POISON_RES,  900, 1, CLR_GREEN),
-DRGN_ARMR("yellow dragon scale mail", ACID_RES,    900, 1, CLR_YELLOW),
+#define DRGN_ARMR(name,mgc,power,cost,ac,color) \
+	ARMOR(name,(char *)0,1,mgc,1,power,0,5,50,cost,ac,0,ARM_SUIT,DRAGON_HIDE,color)
+/* 3.4.1: dragon scale mail reclassified as "magic" since magic is
+   needed to create them */
+DRGN_ARMR("gray dragon scale mail",   1, ANTIMAGIC,  1200, 1, CLR_GRAY),
+DRGN_ARMR("silver dragon scale mail", 1, REFLECTING, 1200, 1, SILVER),
+DRGN_ARMR("shimmering dragon scale mail", 1, DISPLACED, 1200, 1, CLR_CYAN),
+DRGN_ARMR("deep dragon scale mail",   1, DRAIN_RES,  1200, 1, CLR_MAGENTA),
+DRGN_ARMR("red dragon scale mail",    1, FIRE_RES,    900, 1, CLR_RED),
+DRGN_ARMR("white dragon scale mail",  1, COLD_RES,    900, 1, CLR_WHITE),
+DRGN_ARMR("orange dragon scale mail", 1, SLEEP_RES,   900, 1, CLR_ORANGE),
+DRGN_ARMR("black dragon scale mail",  1, DISINT_RES, 1200, 1, CLR_BLACK),
+DRGN_ARMR("blue dragon scale mail",   1, SHOCK_RES,   900, 1, CLR_BLUE),
+DRGN_ARMR("green dragon scale mail",  1, POISON_RES,  900, 1, CLR_GREEN),
+DRGN_ARMR("yellow dragon scale mail", 1, ACID_RES,    900, 1, CLR_YELLOW),
 
 /* For now, only dragons leave these. */
-DRGN_ARMR("gray dragon scales",   ANTIMAGIC,  700, 7, CLR_GRAY),
-DRGN_ARMR("silver dragon scales", REFLECTING, 700, 7, SILVER),
-DRGN_ARMR("shimmering dragon scales", DISPLACED,  700, 7, CLR_CYAN),
-DRGN_ARMR("deep dragon scales",   DRAIN_RES,  500, 7, CLR_MAGENTA),
-DRGN_ARMR("red dragon scales",    FIRE_RES,   500, 7, CLR_RED),
-DRGN_ARMR("white dragon scales",  COLD_RES,   500, 7, CLR_WHITE),
-DRGN_ARMR("orange dragon scales", SLEEP_RES,  500, 7, CLR_ORANGE),
-DRGN_ARMR("black dragon scales",  DISINT_RES, 700, 7, CLR_BLACK),
-DRGN_ARMR("blue dragon scales",   SHOCK_RES,  500, 7, CLR_BLUE),
-DRGN_ARMR("green dragon scales",  POISON_RES, 500, 7, CLR_GREEN),
-DRGN_ARMR("yellow dragon scales", ACID_RES,   500, 7, CLR_YELLOW),
+/* 3.4.1: dragon scales left classified as "non-magic"; they confer
+   magical properties but are produced "naturally" */
+DRGN_ARMR("gray dragon scales",   0, ANTIMAGIC,  700, 7, CLR_GRAY),
+DRGN_ARMR("silver dragon scales", 0, REFLECTING, 700, 7, SILVER),
+DRGN_ARMR("shimmering dragon scales", 0, DISPLACED,  700, 7, CLR_CYAN),
+DRGN_ARMR("deep dragon scales",   0, DRAIN_RES,  500, 7, CLR_MAGENTA),
+DRGN_ARMR("red dragon scales",    0, FIRE_RES,   500, 7, CLR_RED),
+DRGN_ARMR("white dragon scales",  0, COLD_RES,   500, 7, CLR_WHITE),
+DRGN_ARMR("orange dragon scales", 0, SLEEP_RES,  500, 7, CLR_ORANGE),
+DRGN_ARMR("black dragon scales",  0, DISINT_RES, 700, 7, CLR_BLACK),
+DRGN_ARMR("blue dragon scales",   0, SHOCK_RES,  500, 7, CLR_BLUE),
+DRGN_ARMR("green dragon scales",  0, POISON_RES, 500, 7, CLR_GREEN),
+DRGN_ARMR("yellow dragon scales", 0, ACID_RES,   500, 7, CLR_YELLOW),
 #undef DRGN_ARMR
 
 /* Cloaks */
@@ -814,6 +818,7 @@ WEPTOOL("fishing pole", (char *)0,
 	1, 0, 0, 0,  5,  30,  50,  2,  6, 0, WHACK,  P_POLEARMS, METAL, HI_METAL),
 WEPTOOL("grappling hook", "iron hook",
 	0, 0, 0, 0,  5,  30,  50,  2,  6, 0, WHACK,  P_FLAIL, IRON, HI_METAL),
+/* 3.4.1: unicorn horn left classified as "magic" */
 WEPTOOL("unicorn horn", (char *)0,
 	1, 1, 0, 1,  0,  20, 100, 12, 12, 0, PIERCE, P_UNICORN_HORN, BONE, CLR_WHITE),
 /* WEPTOOL("torch", (char *)0,
@@ -1181,7 +1186,7 @@ WAND((char *)0,        "jeweled",   0, 150, 1, 0,         IRON,     HI_MINERAL),
 /* coins ... - so far, gold is all there is */
 #define COIN(name,prob,metal,worth) OBJECT( \
 		OBJ(name,(char *)0), BITS(0,1,0,0,0,0,0,0,0,0,0,P_NONE,metal), 0, \
-		GOLD_CLASS, prob, 0, 1, worth, 0, 0, 0, 0, 0, HI_GOLD )
+		COIN_CLASS, prob, 0, 1, worth, 0, 0, 0, 0, 0, HI_GOLD )
 	COIN("gold piece",      1000, GOLD,1),
 #undef COIN
 
@@ -1227,7 +1232,10 @@ GEM("worthless piece of black glass",  "black",  76, 1, 0, 6, 5, GLASS, CLR_BLAC
 GEM("worthless piece of green glass", "green",   76, 1, 0, 6, 5, GLASS, CLR_GREEN),
 GEM("worthless piece of violet glass", "violet", 76, 1, 0, 6, 5, GLASS, CLR_MAGENTA),
 
-/* KMH, balance patch -- healthstone replaces stones of health and rotting */
+/* Placement note: there is a wishable subrange for   
+ * "gray stones" in the o_ranges[] array in objnam.c  
+ * that is currently everything between luckstones and flint (inclusive).
+ */
 ROCK("luckstone", "gray",	0, 10,  10, 60, 3, 3, 1, 10, 7, MINERAL, CLR_GRAY),
 ROCK("healthstone", "gray",	0,  8,  10, 60, 3, 3, 1, 10, 7, MINERAL, CLR_GRAY),
 ROCK("loadstone", "gray",	0, 10, 500,  1, 3, 3, 1, 10, 6, MINERAL, CLR_GRAY),

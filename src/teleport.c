@@ -19,12 +19,14 @@ STATIC_DCL void FDECL(mvault_tele, (struct monst *));
  * Returns: -1: Inaccessible, 0: Good pos, 1: Temporally inacessible
  */
 static int
-badpos(x, y, mtmp)
+badpos(x, y, mtmp, gpflags)
 int x, y;
 struct monst *mtmp;
+unsigned gpflags;
 {
 	int badpos = 0, pool;
 	struct permonst *mdat = NULL;
+	boolean ignorewater = ((gpflags & MM_IGNOREWATER) != 0);
 	struct monst *mtmp2;
 
 	/* in many cases, we're trying to create a new monster, which
@@ -42,15 +44,26 @@ struct monst *mtmp;
 
 	if (mtmp) {
 	    mtmp2 = m_at(x,y);
-	    if (mtmp2 && mtmp2 != mtmp)
+
+	    /* Be careful with long worms.  A monster may be placed back in
+	     * its own location.  Normally, if m_at() returns the same monster
+	     * that we're trying to place, the monster is being placed in its
+	     * own location.  However, that is not correct for worm segments,
+	     * because all the segments of the worm return the same m_at().
+	     * Actually we overdo the check a little bit--a worm can't be placed
+	     * in its own location, period.  If we just checked for mtmp->mx
+	     * != x || mtmp->my != y, we'd miss the case where we're called
+	     * to place the worm segment and the worm's head is at x,y.
+	     */
+	    if (mtmp2 && (mtmp2 != mtmp || mtmp->wormno))
 		badpos = 1;
 
 	    mdat = mtmp->data;
 	    pool = is_pool(x,y);
-	    if (mdat->mlet == S_EEL && !pool && rn2(13))
+	    if (mdat->mlet == S_EEL && !pool && rn2(13) && !ignorewater)
 		badpos = 1;
 
-	    if (pool) {
+	    if (pool && !ignorewater) {
 		if (mtmp == &youmonst)
 			return (HLevitation || Flying || Wwalking ||
 					Swimming || Amphibious) ? badpos : -1;
@@ -64,7 +77,10 @@ struct monst *mtmp;
 	    }
 	    if (passes_walls(mdat) && may_passwall(x,y)) return badpos;
 	}
-	if (!ACCESSIBLE(levl[x][y].typ)) return -1;
+	if (!ACCESSIBLE(levl[x][y].typ)) {
+		if (!(is_pool(x,y) && ignorewater)) return -1;
+	}
+
 	if (closed_door(x, y) && (!mdat || !amorphous(mdat)))
 	    return mdat && (nohands(mdat) || verysmall(mdat)) ? -1 : 1;
 	if (sobj_at(BOULDER, x, y) && (!mdat || !throws_rocks(mdat)))
@@ -80,13 +96,14 @@ struct monst *mtmp;
  * call it to generate new monster positions with fake monster structures.
  */
 boolean
-goodpos(x, y, mtmp)
+goodpos(x, y, mtmp, gpflags)
 int x,y;
 struct monst *mtmp;
+unsigned gpflags;
 {
     if (!isok(x, y)) return FALSE;
 
-    return !badpos(x, y, mtmp);
+    return !badpos(x, y, mtmp, gpflags);
 }
 
 /*
@@ -102,6 +119,16 @@ enexto(cc, xx, yy, mdat)
 coord *cc;
 register xchar xx, yy;
 struct permonst *mdat;
+{
+	return enexto_core(cc, xx, yy, mdat, 0);
+}
+
+boolean
+enexto_core(cc, xx, yy, mdat, entflags)
+coord *cc;
+register xchar xx, yy;
+struct permonst *mdat;
+unsigned entflags;
 {
 #define MAX_GOOD 15
     coord good[MAX_GOOD], *good_ptr;
@@ -130,28 +157,28 @@ struct permonst *mdat;
 	ymax = min(ROWNO-1, yy+range);
 
 	for (x = xmin; x <= xmax; x++)
-	    if (goodpos(x, ymin, &fakemon)) {
+	    if (goodpos(x, ymin, &fakemon, entflags)) {
 		good_ptr->x = x;
 		good_ptr->y = ymin ;
 		/* beware of accessing beyond segment boundaries.. */
 		if (good_ptr++ == &good[MAX_GOOD-1]) goto full;
 	    }
 	for (x = xmin; x <= xmax; x++)
-	    if (goodpos(x, ymax, &fakemon)) {
+	    if (goodpos(x, ymax, &fakemon, entflags)) {
 		good_ptr->x = x;
 		good_ptr->y = ymax ;
 		/* beware of accessing beyond segment boundaries.. */
 		if (good_ptr++ == &good[MAX_GOOD-1]) goto full;
 	    }
 	for (y = ymin+1; y < ymax; y++)
-	    if (goodpos(xmin, y, &fakemon)) {
+	    if (goodpos(xmin, y, &fakemon, entflags)) {
 		good_ptr->x = xmin;
 		good_ptr-> y = y ;
 		/* beware of accessing beyond segment boundaries.. */
 		if (good_ptr++ == &good[MAX_GOOD-1]) goto full;
 	    }
 	for (y = ymin+1; y < ymax; y++)
-	    if (goodpos(xmax, y, &fakemon)) {
+	    if (goodpos(xmax, y, &fakemon, entflags)) {
 		good_ptr->x = xmax;
 		good_ptr->y = y ;
 		/* beware of accessing beyond segment boundaries.. */
@@ -216,7 +243,7 @@ struct permonst *mdat;
 	for(j = 0; j < ROWNO; j++)
 	    map[EPATHTO_XY(i, j)] = EPATHTO_UNSEEN;
     map[EPATHTO_XY(xx, yy)] = EPATHTO_TAIL(0);
-    if (badpos(xx, yy, &fakemon) == 0) {
+    if (badpos(xx, yy, &fakemon, 0) == 0) {
 	cc[0].x = xx;
 	cc[0].y = yy;
 	nd = n = 1;
@@ -236,7 +263,7 @@ struct permonst *mdat;
 			if (map[xy] == EPATHTO_UNSEEN) {
 			    x = EPATHTO_X(xy);
 			    y = EPATHTO_Y(xy);
-			    postype = badpos(x, y, &fakemon);
+			    postype = badpos(x, y, &fakemon, 0);
 			    map[xy] = postype < 0 ? EPATHTO_INACCESSIBLE :
 				    EPATHTO_TAIL(path_len + 1);
 			    if (postype == 0) {
@@ -392,40 +419,58 @@ register int x, y;
 boolean trapok;
 {
 	if (!trapok && t_at(x, y)) return FALSE;
-	if (!goodpos(x, y, &youmonst)) return FALSE;
+	if (!goodpos(x, y, &youmonst, 0)) return FALSE;
 	if (!tele_jump_ok(u.ux, u.uy, x, y)) return FALSE;
+	if (!in_out_region(x, y)) return FALSE;
 	return TRUE;
 }
 
 void
-teleds(nux, nuy)
+teleds(nux, nuy, allow_drag)
 register int nux,nuy;
+boolean allow_drag;
 {
-	boolean dont_teleport_ball = FALSE;
+	boolean ball_active = (Punished && uball->where != OBJ_FREE),
+		ball_still_in_range = FALSE;
 
-	if (Punished) {
-	    /* If they're teleporting to a position where the ball doesn't need
-	     * to be moved, don't place the ball.  Especially useful when this
-	     * function is being called for crawling out of water instead of
-	     * real teleportation.
-	     */
+	/* If they have to move the ball, then drag if allow_drag is true;
+	 * otherwise they are teleporting, so unplacebc().
+	 * If they don't have to move the ball, then always "drag" whether or
+	 * not allow_drag is true, because we are calling that function, not
+	 * to drag, but to move the chain.  *However* there are some dumb
+	 * special cases:
+	 *    0                          0
+	 *   _X  move east       ----->  X_
+	 *    @                           @
+	 * These are permissible if teleporting, but not if dragging.  As a
+	 * result, drag_ball() needs to know about allow_drag and might end
+	 * up dragging the ball anyway.  Also, drag_ball() might find that
+	 * dragging the ball is completely impossible (ball in range but there's
+	 * rock in the way), in which case it teleports the ball on its own.
+	 */
+	if (ball_active) {
 	    if (!carried(uball) && distmin(nux, nuy, uball->ox, uball->oy) <= 2)
-		dont_teleport_ball = TRUE;
-	    else
-		unplacebc();
+		ball_still_in_range = TRUE; /* don't have to move the ball */
+	    else {
+		/* have to move the ball */
+		if (!allow_drag || distmin(u.ux, u.uy, nux, nuy) > 1) {
+		    /* we should not have dist > 1 and allow_drag at the same
+		     * time, but just in case, we must then revert to teleport.
+		     */
+		    allow_drag = FALSE;
+		    unplacebc();
+		}
+	    }
 	}
 	u.utrap = 0;
 	setustuck(0);
 	u.ux0 = u.ux;
 	u.uy0 = u.uy;
-	u.ux = nux;
-	u.uy = nuy;
-	fill_pit(u.ux0, u.uy0); /* do this now so that cansee() is correct */
 
 	if (hides_under(youmonst.data))
 		u.uundetected = OBJ_AT(nux, nuy);
 	else if (youmonst.data->mlet == S_EEL)
-		u.uundetected = is_pool(u.ux, u.uy);
+		u.uundetected = is_pool(nux, nuy);
 	else {
 		u.uundetected = 0;
 		/* mimics stop being unnoticed */
@@ -435,21 +480,32 @@ register int nux,nuy;
 
 	if (u.uswallow) {
 		u.uswldtim = u.uswallow = 0;
+		if (Punished && !ball_active) {
+		    /* ensure ball placement, like unstuck */
+		    ball_active = TRUE;
+		    allow_drag = FALSE;
+		}
 		docrt();
 	}
-	if (Punished) {
-	    if (dont_teleport_ball) {
+	if (ball_active) {
+	    if (ball_still_in_range || allow_drag) {
 		int bc_control;
 		xchar ballx, bally, chainx, chainy;
 		boolean cause_delay;
 
-		/* this should only drag the chain (and never give a near-
-		   capacity message) since we already checked ball distance */
-		(void) drag_ball(u.ux, u.uy, &bc_control, &ballx, &bally,
-					&chainx, &chainy, &cause_delay);
-		move_bc(0, bc_control, ballx, bally, chainx, chainy);
-	    } else
-		 placebc();
+		if (drag_ball(nux, nuy, &bc_control, &ballx, &bally,
+				    &chainx, &chainy, &cause_delay, allow_drag))
+		    move_bc(0, bc_control, ballx, bally, chainx, chainy);
+	    }
+	}
+	/* must set u.ux, u.uy after drag_ball(), which may need to know
+	   the old position if allow_drag is true... */
+	u.ux = nux;
+	u.uy = nuy;
+	fill_pit(u.ux0, u.uy0);
+	if (ball_active) {
+	    if (!ball_still_in_range && !allow_drag)
+		placebc();
 	}
 	initrack(); /* teleports mess up tracking monsters without this */
 	update_player_regions();
@@ -477,7 +533,8 @@ register int nux,nuy;
 }
 
 boolean
-safe_teleds()
+safe_teleds(allow_drag)
+boolean allow_drag;
 {
 	register int nux, nuy, tcnt = 0;
 
@@ -487,7 +544,7 @@ safe_teleds()
 	} while (!teleok(nux, nuy, (boolean)(tcnt > 200)) && ++tcnt <= 400);
 
 	if (tcnt <= 400) {
-		teleds(nux, nuy);
+		teleds(nux, nuy, allow_drag);
 		return TRUE;
 	} else
 		return FALSE;
@@ -500,7 +557,7 @@ vault_tele()
 	coord c;
 
 	if (croom && somexy(croom, &c) && teleok(c.x,c.y,FALSE)) {
-		teleds(c.x,c.y);
+		teleds(c.x,c.y,FALSE);
 		return;
 	}
 	tele();
@@ -573,7 +630,7 @@ tele()
 	    You_feel("disoriented for a moment.");
 	    return;
 	}
-	if (Teleport_control
+	if ((Teleport_control && !Stunned)
 #ifdef WIZARD
 			    || wizard
 #endif
@@ -597,14 +654,14 @@ tele()
 		    /* possible extensions: introduce a small error if
 		       magic power is low; allow transfer to solid rock */
 		    if (teleok(cc.x, cc.y, FALSE)) {
-			teleds(cc.x, cc.y);
+			teleds(cc.x, cc.y, FALSE);
 			return;
 		    }
 		    pline("Sorry...");
 		}
 	}
 
-	(void) safe_teleds();
+	(void) safe_teleds(FALSE);
 }
 
 int
@@ -734,7 +791,7 @@ level_tele()
 	    You_feel("very disoriented for a moment.");
 	    return;
 	}
-	if (Teleport_control
+	if ((Teleport_control && !Stunned)
 #ifdef WIZARD
 	   || wizard
 #endif
@@ -746,10 +803,18 @@ level_tele()
 	    do {
 		if (++trycnt == 2) Strcat(qbuf, " [type a number]");
 		getlin(qbuf, buf);
-		if (!strcmp(buf,"\033"))	/* cancelled */
+		if (!strcmp(buf,"\033")) {	/* cancelled */
+		    if (Confusion && rnl(5)) {
+			pline("Oops...");
+			goto random_levtport;
+		    }
 		    return;
-		else if (!strcmp(buf,"*"))
+		} else if (!strcmp(buf,"*")) {
 		    goto random_levtport;
+		} else if (Confusion && rnl(5)) {
+		    pline("Oops...");
+		    goto random_levtport;
+		}
 		if ((newlev = lev_by_name(buf)) == 0) {
 #ifdef WIZARD
 		    s_level *slev;
@@ -830,6 +895,14 @@ level_tele()
 	killer = 0;		/* still alive, so far... */
 
 	if (newlev < 0) {
+		if (*u.ushops0) {
+		    /* take unpaid inventory items off of shop bills */
+		    in_mklev = TRUE;	/* suppress map update */
+		    u_left_shop(u.ushops0, TRUE);
+		    /* you're now effectively out of the shop */
+		    *u.ushops0 = *u.ushops = '\0';
+		    in_mklev = FALSE;
+		}
 		if (newlev <= -10) {
 			You("arrive in heaven.");
 			verbalize("Thou art early, but we'll admit thee.");
@@ -852,8 +925,8 @@ level_tele()
 		    pline("Unfortunately, you don't know how to fly.");
 		    You("plummet a few thousand feet to your death.");
 		    Sprintf(buf,
-				"teleported out of the dungeon and fell to %s death",
-				uhis());
+			  "teleported out of the dungeon and fell to %s death",
+			    uhis());
 		    killer = buf;
 		    killer_format = NO_KILLER_PREFIX;
 		}
@@ -1010,7 +1083,7 @@ struct monst *mtmp;
 {
 	register int xx, yy;
 
-	if (!goodpos(x, y, mtmp)) return FALSE;
+	if (!goodpos(x, y, mtmp, 0)) return FALSE;
 	/*
 	 * Check for restricted areas present in some special levels.
 	 *
@@ -1127,7 +1200,7 @@ struct monst *mtmp;	/* mx==0 implies migrating monster arrival */
 	    /* if the wiz teleports away to heal, try the up staircase,
 	       to block the player's escaping before he's healed
 	       (deliberately use `goodpos' rather than `rloc_pos_ok' here) */
-	    if (goodpos(x, y, mtmp))
+	    if (goodpos(x, y, mtmp, 0))
 		goto found_xy;
 	}
 
@@ -1136,14 +1209,14 @@ struct monst *mtmp;	/* mx==0 implies migrating monster arrival */
 	    x = rn1(COLNO-3,2);
 	    y = rn2(ROWNO);
 	    if ((trycount < 500) ? rloc_pos_ok(x, y, mtmp)
-				 : goodpos(x, y, mtmp))
+				 : goodpos(x, y, mtmp, 0))
 		goto found_xy;
 	} while (++trycount < 1000);
 
 	/* last ditch attempt to find a good place */
 	for (x = 2; x < COLNO - 1; x++)
 	    for (y = 0; y < ROWNO; y++)
-		if (goodpos(x, y, mtmp))
+		if (goodpos(x, y, mtmp, 0))
 		    goto found_xy;
 
 	/* level either full of monsters or somehow faulty */
@@ -1162,7 +1235,7 @@ struct monst *mtmp;
 	coord c;
 
 	if (croom && somexy(croom, &c) &&
-				goodpos(c.x, c.y, mtmp)) {
+				goodpos(c.x, c.y, mtmp, 0)) {
 		rloc_to(mtmp, c.x, c.y);
 		return;
 	}
@@ -1315,7 +1388,7 @@ register struct obj *obj;
 	    tx = rn1(COLNO-3,2);
 	    ty = rn2(ROWNO);
 	    if (!--try_limit) break;
-	} while (!goodpos(tx, ty, (struct monst *)0) ||
+	} while (!goodpos(tx, ty, (struct monst *)0, 0) ||
 		/* bug: this lacks provision for handling the Wizard's tower */
 		 (restricted_fall &&
 		  (!within_bounded_area(tx, ty, dndest.lx, dndest.ly,

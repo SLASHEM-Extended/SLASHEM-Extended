@@ -35,6 +35,7 @@ struct	qthdr {
 #define CREC_IN_MSG	"Control record encountered during message - line %d\n"
 #define DUP_MSG		"Duplicate message number at line %d\n"
 #define END_NOT_IN_MSG	"End record encountered before message - line %d\n"
+#define TEXT_NOT_IN_MSG	"Text encountered outside message - line %d\n"
 #define UNREC_CREC	"Unrecognized Control record at line %d\n"
 #define OUT_OF_HEADERS	"Too many message types (line %d)\nAdjust N_HDR in qtext.h and recompile.\n"
 #define OUT_OF_MESSAGES "Too many messages in class (line %d)\nAdjust N_MSG in qtext.h and recompile.\n"
@@ -106,8 +107,9 @@ struct	qtlists {
 #define QT_DEMONIC	30
 #define QTN_DEMONIC	20
 
-#define QT_GYPSY	100	/* KMH -- Gypsy fortunes */
+#define QT_BANISHED	60
 
+#define QT_GYPSY	100	/* KMH -- Gypsy fortunes */
 
 #endif	/* MAKEDEFS_C */
 

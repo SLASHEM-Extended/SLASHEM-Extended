@@ -1404,7 +1404,7 @@ int buflen, rolenum, racenum, gendnum, alignnum;
 {
 	int k, gendercount = 0, aligncount = 0;
 	char buf[BUFSZ];
-	char *err_ret = " character's";
+	static char err_ret[] = " character's";
 	boolean donefirst = FALSE;
 
 	if (!suppliedbuf || buflen < 1) return err_ret;

@@ -1035,7 +1035,7 @@ struct mkroom	*croom;
 
 	    /* KMH -- Create piles of gold properly */
 	    /* Bruce Cox/WAC - some clean ups */
-	    if (oclass == GOLD_CLASS && !o->containment) {
+	    if (oclass == COIN_CLASS && !o->containment) {
 		mkgold(0L, x, y);
 		otmp = g_at(x,y);
 	    } else
@@ -2078,13 +2078,13 @@ dlb *fd;
 		} else
 		    r->monsters = 0;
 
-		/* read the objects */
+		/* read the objects, in same order as mazes */
 		Fread((genericptr_t) &r->nobject, 1, sizeof(r->nobject), fd);
 		if ((n = r->nobject) != 0) {
 		    r->objects = NewTab(object, n);
-		    while (n--) {
-			r->objects[(int)n] = New(object);
-			load_one_object(fd, r->objects[(int)n]);
+		    for (j = 0; j < n; ++j) {
+			r->objects[j] = New(object);
+			load_one_object(fd, r->objects[j]);
 		    }
 		} else
 		    r->objects = 0;

@@ -314,7 +314,7 @@ static struct trobj Wishing[] = {
 };
 #ifdef GOLDOBJ
 static struct trobj Money[] = {
-	{ GOLD_PIECE, 0 , GOLD_CLASS, 1, 0 },
+	{ GOLD_PIECE, 0 , COIN_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 #endif
@@ -376,7 +376,7 @@ static struct inv_sub { short race_pm, item_otyp, subs_otyp; } inv_subs[] = {
  *		categories.
  */
 
-static struct def_skill Skill_A[] = {
+static const struct def_skill Skill_A[] = {
     { P_DAGGER, P_BASIC },		{ P_KNIFE,  P_BASIC },
     { P_PICK_AXE, P_EXPERT },		{ P_SHORT_SWORD, P_BASIC },
     { P_SCIMITAR, P_SKILLED },		{ P_SABER, P_EXPERT },
@@ -399,7 +399,7 @@ static struct def_skill Skill_A[] = {
     { P_NONE, 0 }
 };
 
-static struct def_skill Skill_B[] = {
+static const struct def_skill Skill_B[] = {
     { P_DAGGER, P_BASIC },		{ P_AXE, P_EXPERT },
     { P_PICK_AXE, P_EXPERT },           { P_SHORT_SWORD, P_SKILLED },
     { P_BROAD_SWORD, P_SKILLED },	{ P_LONG_SWORD, P_SKILLED },
@@ -421,7 +421,7 @@ static struct def_skill Skill_B[] = {
     { P_NONE, 0 }
 };
 
-static struct def_skill Skill_C[] = {
+static const struct def_skill Skill_C[] = {
     { P_DAGGER, P_BASIC },		{ P_KNIFE,  P_SKILLED },
     { P_AXE, P_SKILLED },		{ P_PICK_AXE, P_BASIC },
     { P_CLUB, P_EXPERT },               { P_PADDLE, P_EXPERT },
@@ -441,7 +441,7 @@ static struct def_skill Skill_C[] = {
     { P_NONE, 0 }
 };
 
-static struct def_skill Skill_F[] = {
+static const struct def_skill Skill_F[] = {
 /*Style: small-med edged weapons, blunt weapons*/
     { P_DAGGER, P_EXPERT },             { P_KNIFE,  P_SKILLED },
     { P_AXE, P_BASIC },                 /*{ P_PICK_AXE, P_BASIC },*/
@@ -474,7 +474,7 @@ static struct def_skill Skill_F[] = {
     { P_NONE, 0 }
 };
 
-static struct def_skill Skill_H[] = {
+static const struct def_skill Skill_H[] = {
     { P_DAGGER, P_SKILLED },		{ P_KNIFE, P_EXPERT },
     { P_SHORT_SWORD, P_SKILLED },	{ P_SCIMITAR, P_BASIC },
     { P_SABER, P_BASIC },		{ P_CLUB, P_SKILLED },
@@ -496,7 +496,7 @@ static struct def_skill Skill_H[] = {
     { P_NONE, 0 }
 };
 
-static struct def_skill Skill_I[] = {
+static const struct def_skill Skill_I[] = {
 /*Resorts mostly to stabbing weapons*/
     { P_DAGGER, P_EXPERT },             { P_KNIFE,  P_SKILLED },
 /*  { P_AXE, P_BASIC },                 { P_PICK_AXE, P_BASIC },
@@ -525,7 +525,7 @@ static struct def_skill Skill_I[] = {
     { P_NONE, 0 }
 };
 
-static struct def_skill Skill_K[] = {
+static const struct def_skill Skill_K[] = {
     { P_DAGGER, P_BASIC },		{ P_KNIFE, P_BASIC },
     { P_AXE, P_SKILLED },		{ P_PICK_AXE, P_BASIC },
     { P_SHORT_SWORD, P_SKILLED },	{ P_BROAD_SWORD, P_SKILLED },
@@ -550,7 +550,7 @@ static struct def_skill Skill_K[] = {
     { P_NONE, 0 }
 };
 
-static struct def_skill Skill_Mon[] = {
+static const struct def_skill Skill_Mon[] = {
     { P_PADDLE, P_SKILLED },
     { P_QUARTERSTAFF, P_SKILLED },	{ P_SPEAR, P_BASIC },
     { P_JAVELIN, P_BASIC },		{ P_BOW, P_BASIC },
@@ -564,7 +564,7 @@ static struct def_skill Skill_Mon[] = {
     { P_NONE, 0 }
 };
 
-static struct def_skill Skill_N[] = {
+static const struct def_skill Skill_N[] = {
     { P_DAGGER, P_EXPERT },             { P_KNIFE,  P_SKILLED },
     { P_AXE, P_SKILLED },               { P_PICK_AXE, P_SKILLED },
     { P_CLUB, P_SKILLED },              { P_MACE, P_BASIC },
@@ -581,7 +581,7 @@ static struct def_skill Skill_N[] = {
     { P_NONE, 0 }
 };
 
-static struct def_skill Skill_P[] = {
+static const struct def_skill Skill_P[] = {
 	/* KMH -- Long sword for Sunsword */
 	{ P_LONG_SWORD, P_SKILLED },
     { P_CLUB, P_EXPERT },               { P_PADDLE, P_EXPERT },
@@ -607,7 +607,7 @@ static struct def_skill Skill_P[] = {
     { P_NONE, 0 }
 };
 
-static struct def_skill Skill_R[] = {
+static const struct def_skill Skill_R[] = {
     { P_DAGGER, P_EXPERT },		{ P_KNIFE,  P_EXPERT },
     { P_SHORT_SWORD, P_EXPERT },	{ P_BROAD_SWORD, P_SKILLED },
     { P_LONG_SWORD, P_SKILLED },	{ P_TWO_HANDED_SWORD, P_BASIC },
@@ -631,7 +631,7 @@ static struct def_skill Skill_R[] = {
     { P_NONE, 0 }
 };
 
-static struct def_skill Skill_Ran[] = {
+static const struct def_skill Skill_Ran[] = {
     { P_DAGGER, P_EXPERT },		 { P_KNIFE,  P_SKILLED },
     { P_AXE, P_SKILLED },	 { P_PICK_AXE, P_BASIC },
     { P_SHORT_SWORD, P_BASIC },	 { P_MORNING_STAR, P_BASIC },
@@ -652,7 +652,7 @@ static struct def_skill Skill_Ran[] = {
     { P_NONE, 0 }
 };
 
-static struct def_skill Skill_S[] = {
+static const struct def_skill Skill_S[] = {
     { P_DAGGER, P_BASIC },		{ P_KNIFE,  P_SKILLED },
     { P_SHORT_SWORD, P_EXPERT },	{ P_BROAD_SWORD, P_SKILLED },
     { P_LONG_SWORD, P_EXPERT },		{ P_TWO_HANDED_SWORD, P_EXPERT },
@@ -673,7 +673,7 @@ static struct def_skill Skill_S[] = {
 };
 
 #ifdef TOURIST
-static struct def_skill Skill_T[] = {
+static const struct def_skill Skill_T[] = {
     { P_DAGGER, P_EXPERT },		{ P_KNIFE,  P_SKILLED },
     { P_AXE, P_BASIC },			{ P_PICK_AXE, P_BASIC },
     { P_SHORT_SWORD, P_EXPERT },	{ P_BROAD_SWORD, P_BASIC },
@@ -703,7 +703,7 @@ static struct def_skill Skill_T[] = {
 };
 #endif /* TOURIST */
 
-static struct def_skill Skill_U[] = {
+static const struct def_skill Skill_U[] = {
 /*WAC
  * -made dagger skill expert too,  since it's a starting weapon
  * -made spear skill Expert rather than Skilled
@@ -737,7 +737,7 @@ static struct def_skill Skill_U[] = {
     { P_BARE_HANDED_COMBAT, P_GRAND_MASTER },    { P_NONE, 0 }
 };
 
-static struct def_skill Skill_V[] = {
+static const struct def_skill Skill_V[] = {
     { P_DAGGER, P_EXPERT },		{ P_AXE, P_EXPERT },
     { P_PICK_AXE, P_SKILLED },		{ P_SHORT_SWORD, P_SKILLED },
     { P_BROAD_SWORD, P_SKILLED },	{ P_LONG_SWORD, P_EXPERT },
@@ -759,7 +759,7 @@ static struct def_skill Skill_V[] = {
     { P_NONE, 0 }
 };
 
-static struct def_skill Skill_W[] = {
+static const struct def_skill Skill_W[] = {
     { P_DAGGER, P_EXPERT },		{ P_KNIFE,  P_SKILLED },
     { P_AXE, P_SKILLED },		{ P_SHORT_SWORD, P_BASIC },
     { P_CLUB, P_SKILLED },              { P_PADDLE, P_BASIC },
@@ -783,7 +783,7 @@ static struct def_skill Skill_W[] = {
 };
 
 #ifdef YEOMAN
-static struct def_skill Skill_Y[] = {
+static const struct def_skill Skill_Y[] = {
     { P_DAGGER, P_SKILLED },            { P_KNIFE, P_BASIC },
     { P_AXE, P_SKILLED },               { P_SHORT_SWORD, P_EXPERT },
     { P_BROAD_SWORD, P_BASIC },         { P_LONG_SWORD, P_SKILLED },
@@ -1422,7 +1422,7 @@ STATIC_OVL boolean
 restricted_spell_discipline(otyp)
 int otyp;
 {
-    struct def_skill *skills;
+    const struct def_skill *skills;
     int this_skill = spell_skilltype(otyp);
 
     switch (Role_switch) {
@@ -1566,7 +1566,7 @@ register struct trobj *trop;
 		}
 
 #ifdef GOLDOBJ
-		if (trop->trclass == GOLD_CLASS) {
+		if (trop->trclass == COIN_CLASS) {
 			/* no "blessed" or "identified" money */
 			obj->quan = u.umoney0;
 		} else {

@@ -69,8 +69,8 @@ polyman(fmt, arg)
 const char *fmt, *arg;
 {
 	boolean sticky = sticks(youmonst.data) && u.ustuck && !u.uswallow,
-		was_mimicking_gold = (youmonst.m_ap_type == M_AP_OBJECT
-				      && youmonst.mappearance == GOLD_PIECE);
+		was_mimicking = (youmonst.m_ap_type == M_AP_OBJECT);
+
 	boolean was_blind = !!Blind;
 
 	if (Upolyd) {
@@ -90,7 +90,7 @@ const char *fmt, *arg;
 
 	if (sticky) uunstick();
 	find_ac();
-	if (was_mimicking_gold) {
+	if (was_mimicking) {
 	    if (multi < 0) unmul("");
 	} else {
 	    /*
@@ -122,6 +122,10 @@ const char *fmt, *arg;
 	    }
 	    done(GENOCIDED);
 	}
+
+	if (u.twoweap && !could_twoweap(youmonst.data))
+	    untwoweapon();
+
 	if (was_blind && !Blind) {	/* reverting from eyeless */
 	    Blinded = 1L;
 	    make_blinded(0L, TRUE);	/* remove blindness */
@@ -198,7 +202,7 @@ newman()
 	reset_rndmonst(NON_PM);	/* new monster generation criteria */
 
 	/* random experience points for the new experience level */
-	u.uexp = rndexp();
+	u.uexp = rndexp(FALSE);
 
 	/* u.uhpmax * u.ulevel / oldlvl: proportionate hit points to new level
 	 * -10 and +10: don't apply proportionate HP to 10 of a starting
@@ -390,16 +394,15 @@ boolean forcecontrol;
 	/* The below polyok() fails either if everything is genocided, or if
 	 * we deliberately chose something illegal to force newman().
 	 */
-        /* Also catches player gnomes going to gnomes */
         /* WAC Doppelgangers go through a 1/20 check rather than 1/5 */
-        if (!polyok(&mons[mntmp]) || your_race(&mons[mntmp]) ||
+        if (!polyok(&mons[mntmp]) ||
         		(Race_if(PM_DOPPELGANGER) ? (
         			((u.ulevel < mons[mntmp].mlevel)
 #ifdef EATEN_MEMORY
         			 || !mvitals[mntmp].eaten
 #endif
         			 ) && !rn2(20)) : 
-				   !rn2(5)))
+				   !rn2(5)) || your_race(&mons[mntmp]))
 		newman();
 	else if(!polymon(mntmp)) return;
 
@@ -468,10 +471,12 @@ int	mntmp;
 		flags.female = u.mfemale;
 	}
 
-	if (youmonst.m_ap_type == M_AP_OBJECT &&
-		youmonst.mappearance == GOLD_PIECE) {
-	    /* stop mimicking gold immediately */
+	if (youmonst.m_ap_type) {
+	    /* stop mimicking immediately */
 	    if (multi < 0) unmul("");
+	} else if (mons[mntmp].mlet != S_MIMIC) {
+	    /* as in polyman() */
+	    youmonst.m_ap_type = M_AP_NOTHING;
 	}
 	if (is_male(&mons[mntmp])) {
 		if(flags.female) dochange = TRUE;
@@ -733,7 +738,7 @@ break_armor()
 	}
 #endif
     } else if (sliparm(youmonst.data)) {
-	if ((otmp = uarm) != 0) {
+	if (((otmp = uarm) != 0) && (racial_exception(&youmonst, otmp) < 1)) {
 		if (donning(otmp)) cancel_don();
 		Your("armor falls around you!");
 		(void) Armor_gone();
@@ -755,6 +760,23 @@ break_armor()
 		dropx(otmp);
 	}
 #endif
+    }
+    if (has_horns(youmonst.data)) {
+	if ((otmp = uarmh) != 0) {
+	    if (is_flimsy(otmp) && !donning(otmp)) {
+		char hornbuf[BUFSZ], yourbuf[BUFSZ];
+
+		/* Future possiblities: This could damage/destroy helmet */
+		Sprintf(hornbuf, "horn%s", plur(num_horns(youmonst.data)));
+		Your("%s through %s %s.", vtense(hornbuf, "pierce"),
+		     shk_your(yourbuf, otmp), xname(otmp));
+	    } else {
+		if (donning(otmp)) cancel_don();
+		Your("helmet falls to the %s!", surface(u.ux, u.uy));
+		(void) Helmet_off();
+		dropx(otmp);
+	    }
+	}
     }
     if (nohands(youmonst.data) || verysmall(youmonst.data)) {
 	if ((otmp = uarmg) != 0) {
@@ -817,6 +839,8 @@ int alone;
 		if (!otmp2->cursed || otmp2->otyp != LOADSTONE)
 		    dropx(otmp2);
 	    }
+	    untwoweapon();
+	} else if (!could_twoweap(youmonst.data)) {
 	    untwoweapon();
 	}
     }
@@ -941,8 +965,8 @@ dogaze()
 int
 dobreathe()
 {
+	struct attack *mattk;
 	int energy = 0;
-
 
 	if (Strangled) {
 	    You_cant("breathe.  Sorry.");
@@ -951,36 +975,31 @@ dobreathe()
 
 	/* WAC -- no more belching.  Use up energy instead */
 	if (Race_if(PM_DOPPELGANGER)
-			|| (Role_if(PM_FLAME_MAGE) && u.umonnum == PM_RED_DRAGON)
-			|| (Role_if(PM_ICE_MAGE) && u.umonnum == PM_WHITE_DRAGON)) {
-		if (u.uen < 10) {
-			You("don't have enough energy to breathe!");
-			return(0);
-		} 
-		energy = 10;
-	} else {
-	if (u.uen < 15) {
+		|| (Role_if(PM_FLAME_MAGE) && u.umonnum == PM_RED_DRAGON)
+		|| (Role_if(PM_ICE_MAGE) && u.umonnum == PM_WHITE_DRAGON))
+	    energy = 10;
+	else
+	    energy = 15;
+
+	if (u.uen < energy) {
 	    You("don't have enough energy to breathe!");
 	    return(0);
 	}
-		energy = 15;
-	}
+
 	if (!getdir((char *)0)) return(0);
+
+	u.uen -= energy;
+	flags.botl = 1;
+
+	mattk = attacktype_fordmg(youmonst.data, AT_BREA, AD_ANY);
+	if (!mattk)
+	    impossible("bad breath attack?");   /* mouthwash needed... */
 	else {
-	    register struct attack *mattk;
-	    register int i, adtyp;
-
-		u.uen -= energy;
-		flags.botl = 1;
-
-	    for(i = 0; i < NATTK; i++) {
-		mattk = &(youmonst.data->mattk[i]);
-		if(mattk->aatyp == AT_BREA) break;
-	    }
 	    /* Extra handling for AD_RBRE - player might poly into a crystal
 	     * golem. */
-	    adtyp = mattk->adtyp == AD_RBRE? rnd(AD_ACID) : mattk->adtyp;
-	    buzz((int) (20 + adtyp-1), (int)mattk->damn,
+	    uchar adtyp;
+	    adtyp = mattk->adtyp == AD_RBRE ? rnd(AD_ACID) : mattk->adtyp;
+	    buzz((int) (20 + adtyp - 1), (int)mattk->damn,
 		u.ux, u.uy, u.dx, u.dy);
 	}
 	return(1);
@@ -1257,8 +1276,7 @@ dogaze()
 			/* as if gazing at a sleeping anything is fruitful... */
 			You("turn to stone...");
 			killer_format = KILLED_BY;
-			killer =
-			 "deliberately gazing at Medusa's hideous countenance";
+			killer = "deliberately meeting Medusa's gaze";
 			done(STONING);
 		    }
 		}
@@ -1369,6 +1387,10 @@ int part;
 		"rear claw", "foreclaw", "clawed", "head", "rear limb",
 		"light headed", "neck", "spine", "rear claw tip",
 		"fur", "blood", "lung", "nose", "stomach" },
+	*bird_parts[] = { "wing", "eye", "face", "wing", "wing tip",
+		"foot", "wing", "winged", "head", "leg",
+		"light headed", "neck", "spine", "toe",
+		"feathers", "blood", "lung", "bill", "stomach" },
 	*horse_parts[] = { "foreleg", "eye", "face", "forehoof", "hoof tip",
 		"rear hoof", "foreclaw", "hooved", "head", "rear leg",
 		"light headed", "neck", "backbone", "rear hoof tip",
@@ -1429,9 +1451,17 @@ int part;
 		(part == ARM || part == FINGER || part == FINGERTIP ||
 		    part == HAND || part == HANDED))
 	    return humanoid_parts[part];
+	if (mptr == &mons[PM_RAVEN])
+	    return bird_parts[part];
 	if (mptr->mlet == S_CENTAUR || mptr->mlet == S_UNICORN ||
 		(mptr == &mons[PM_ROTHE] && part != HAIR))
 	    return horse_parts[part];
+	if (mptr->mlet == S_LIGHT) {
+		if (part == HANDED) return "rayed";
+		else if (part == ARM || part == FINGER ||
+				part == FINGERTIP || part == HAND) return "ray";
+		else return "beam";
+	}
 	if (mptr->mlet == S_EEL && mptr != &mons[PM_JELLYFISH])
 	    return fish_parts[part];
 	if (slithy(mptr) || (mptr->mlet == S_DRAGON && part == HAIR))
@@ -1485,7 +1515,7 @@ int damtype, dam;
 	if (u.umonnum != PM_FLESH_GOLEM && u.umonnum != PM_IRON_GOLEM)
 		return;
 	switch (damtype) {
-		case AD_ELEC: if (u.umonnum == PM_IRON_GOLEM)
+		case AD_ELEC: if (u.umonnum == PM_FLESH_GOLEM)
 				heal = dam / 6; /* Approx 1 per die */
 			break;
 		case AD_FIRE: if (u.umonnum == PM_IRON_GOLEM)

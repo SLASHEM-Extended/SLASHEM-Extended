@@ -1,9 +1,8 @@
-/*	SCCS Id: @(#)mkobj.c	3.4	2001/12/03	*/
+/*	SCCS Id: @(#)mkobj.c	3.4	2002/10/07	*/
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
-#include "artifact.h"
 #include "prop.h"
 
 
@@ -17,6 +16,8 @@ STATIC_DCL const char *FDECL(where_name, (int));
 STATIC_DCL void FDECL(check_contained, (struct obj *,const char *));
 #endif
 #endif /* OVL1 */
+
+extern struct obj *thrownobj;		/* defined in dothrow.c */
 
 /*#define DEBUG_EFFECTS*/	/* show some messages for debugging */
 
@@ -51,7 +52,7 @@ const struct icp boxiprobs[] = {
 {20, POTION_CLASS},
 {20, SCROLL_CLASS},
 {12, SPBOOK_CLASS},
-{ 7, GOLD_CLASS},
+{ 7, COIN_CLASS},
 { 7, WAND_CLASS},
 { 6, RING_CLASS},
 { 3, AMULET_CLASS}
@@ -181,8 +182,7 @@ struct obj *box;
 		if (!(otmp = mkobj(iprobs->iclass, TRUE))) continue;
 
 		/* handle a couple of special cases */
-/* -----------============STEPHEN WHITE'S NEW CODE============----------- */
-		if (otmp->oclass == GOLD_CLASS) {
+		if (otmp->oclass == COIN_CLASS) {
 		    /* 2.5 x level's usual amount; weight adjusted below */
 		    otmp->quan = (long)(rnd(level_difficulty()+5) * rnd(100));
 		    otmp->owt = weight(otmp);
@@ -706,7 +706,7 @@ boolean artif;
 						    mkobj(SPBOOK_CLASS,FALSE));
 		}
 		break;
-	case GOLD_CLASS:
+	case COIN_CLASS:
 		break;	/* do nothing */
 	default:
 		impossible("impossible mkobj %d, sym '%c'.", otmp->otyp,
@@ -802,19 +802,19 @@ void
 bless(otmp)
 register struct obj *otmp;
 {
+#ifdef GOLDOBJ
+	if (otmp->oclass == COIN_CLASS) return;
+#endif
 	otmp->cursed = 0;
 	otmp->blessed = 1;
-	if (otmp->otyp == LUCKSTONE
-		|| (otmp->otyp == FEDORA && otmp == uarmh)
-		|| (otmp->oartifact && spec_ability(otmp, SPFX_LUCK)))
+	if (carried(otmp) && confers_luck(otmp))
 	    set_moreluck();
-	/* KMH, balance patch -- healthstones affect healing */
 	else if (otmp->otyp == HEALTHSTONE)
-		recalc_health();
+	    recalc_health();
 	else if (otmp->otyp == BAG_OF_HOLDING)
 	    otmp->owt = weight(otmp);
 	else if (otmp->otyp == FIGURINE && otmp->timed)
-		(void) stop_timer(FIG_TRANSFORM, (genericptr_t) otmp);
+	    (void) stop_timer(FIG_TRANSFORM, (genericptr_t) otmp);
 	return;
 }
 
@@ -823,16 +823,14 @@ unbless(otmp)
 register struct obj *otmp;
 {
 	otmp->blessed = 0;
-	if (otmp->otyp == LUCKSTONE
-		|| (otmp->oartifact && spec_ability(otmp, SPFX_LUCK)))
+	if (carried(otmp) && confers_luck(otmp))
 	    set_moreluck();
-	/* KMH, balance patch -- healthstones affect healing */
 	else if (otmp->otyp == HEALTHSTONE)
-		recalc_health();
+	    recalc_health();
 	else if (otmp->otyp == BAG_OF_HOLDING)
 	    otmp->owt = weight(otmp);
 	else if (otmp->otyp == FIGURINE && otmp->timed)
-		(void) stop_timer(FIG_TRANSFORM, (genericptr_t) otmp);
+	    (void) stop_timer(FIG_TRANSFORM, (genericptr_t) otmp);
 	return;
 }
 
@@ -840,24 +838,31 @@ void
 curse(otmp)
 register struct obj *otmp;
 {
+#ifdef GOLDOBJ
+	if (otmp->oclass == COIN_CLASS) return;
+#endif
 	otmp->blessed = 0;
 	otmp->cursed = 1;
-	if (otmp->otyp == LUCKSTONE
-		|| (otmp->otyp == FEDORA && otmp == uarmh)
-		|| (otmp->oartifact && spec_ability(otmp, SPFX_LUCK)))
+	/* welded two-handed weapon interferes with some armor removal */
+	if (otmp == uwep && bimanual(uwep)) reset_remarm();
+	/* rules at top of wield.c state that twoweapon cannot be done
+	   with cursed alternate weapon */
+	if (otmp == uswapwep && u.twoweap)
+	    drop_uswapwep();
+	/* some cursed items need immediate updating */
+	if (carried(otmp) && confers_luck(otmp))
 	    set_moreluck();
-	/* KMH, balance patch -- healthstones affect healing */
 	else if (otmp->otyp == HEALTHSTONE)
-		recalc_health();
+	    recalc_health();
 	else if (otmp->otyp == BAG_OF_HOLDING)
 	    otmp->owt = weight(otmp);
 	else if (otmp->otyp == FIGURINE) {
 		if (otmp->corpsenm != NON_PM
-	    	    && !dead_species(otmp->corpsenm,TRUE)
+		    && !dead_species(otmp->corpsenm,TRUE)
 		    && (carried(otmp) || mcarried(otmp)))
 			attach_fig_transform_timeout(otmp);
 	}
- 	return;
+	return;
 }
 
 void
@@ -865,15 +870,13 @@ uncurse(otmp)
 register struct obj *otmp;
 {
 	otmp->cursed = 0;
-	if (otmp->otyp == LUCKSTONE
-		|| (otmp->otyp == FEDORA && otmp == uarmh)
-		|| (otmp->oartifact && spec_ability(otmp, SPFX_LUCK)))
+	if (carried(otmp) && confers_luck(otmp))
 	    set_moreluck();
 	/* KMH, balance patch -- healthstones affect healing */
 	else if (otmp->otyp == HEALTHSTONE)
-		recalc_health();
+	    recalc_health();
 	else if (otmp->otyp == BAG_OF_HOLDING)
-		otmp->owt = weight(otmp);
+	    otmp->owt = weight(otmp);
 }
 
 #endif /* OVLB */
@@ -970,7 +973,7 @@ register struct obj *obj;
 		return wt;
 	} else if (obj->oclass == FOOD_CLASS && obj->oeaten) {
 		return eaten_stat((int)obj->quan * wt, obj);
-	} else if (obj->oclass == GOLD_CLASS)
+	} else if (obj->oclass == COIN_CLASS)
 		return (int)((obj->quan + 50L) / 100L);
 	else if (obj->otyp == HEAVY_IRON_BALL && obj->owt != 0)
 		return((int)(obj->owt));	/* kludge for "very" heavy iron ball */
@@ -1631,6 +1634,8 @@ dealloc_obj(obj)
      */
     if (obj_sheds_light(obj))
 	del_light_source(LS_OBJECT, (genericptr_t) obj);
+
+    if (obj == thrownobj) thrownobj = (struct obj*)0;
 
     free((genericptr_t) obj);
 }

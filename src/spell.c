@@ -39,7 +39,8 @@ static NEARDATA struct obj *book;	/* last/current book being xscribed */
 		(spell < 62) ? ('0' + spell - 52) : 0 ))
 
 STATIC_DCL int FDECL(spell_let_to_idx, (CHAR_P));
-STATIC_DCL void FDECL(cursed_book, (int));
+STATIC_DCL boolean FDECL(cursed_book, (struct obj *bp));
+STATIC_DCL boolean FDECL(confused_book, (struct obj *));
 STATIC_DCL void FDECL(deadbook, (struct obj *));
 STATIC_PTR int NDECL(learn);
 STATIC_DCL void NDECL(do_reset_learn);
@@ -47,6 +48,7 @@ STATIC_DCL boolean FDECL(getspell, (int *));
 STATIC_DCL boolean FDECL(dospellmenu, (const char *,int,int *));
 STATIC_DCL int FDECL(percent_success, (int));
 STATIC_DCL void NDECL(cast_protection);
+STATIC_DCL void FDECL(spell_backfire, (int));
 STATIC_DCL const char *FDECL(spelltypemnemonic, (int));
 STATIC_DCL int FDECL(isqrt, (int));
 
@@ -123,10 +125,13 @@ char ilet;
     return -1;
 }
 
-STATIC_OVL void
-cursed_book(lev)
-	register int	lev;
+/* TRUE: book should be destroyed by caller */
+STATIC_OVL boolean
+cursed_book(bp)
+	struct obj *bp;
 {
+	int lev = objects[bp->otyp].oc_level;
+
 	switch(rn2(lev)) {
 	case 0:
 		You_feel("a wrenching sensation.");
@@ -167,9 +172,12 @@ cursed_book(lev)
 			     Blind ? "feel" : "look");
 		    break;
 		}
+		/* temp disable in_use; death should not destroy the book */
+		bp->in_use = FALSE;
 		losestr(Poison_resistance ? rn1(2,1) : rn1(4,3));
 		losehp(rnd(Poison_resistance ? 6 : 10),
 		       "contact-poisoned spellbook", KILLED_BY_AN);
+		bp->in_use = TRUE;
 		break;
 	case 6:
 		if(Antimagic) {
@@ -178,14 +186,40 @@ cursed_book(lev)
 		} else {
 		    pline("As you read the book, it %s in your %s!",
 			  explodes, body_part(FACE));
-		    losehp (2*rnd(10)+5, "exploding rune", KILLED_BY_AN);
+		    losehp(2*rnd(10)+5, "exploding rune", KILLED_BY_AN);
 		}
-		break;
+		return TRUE;
 	default:
 		rndcurse();
 		break;
 	}
-	return;
+	return FALSE;
+}
+
+/* study while confused: returns TRUE if the book is destroyed */
+STATIC_OVL boolean
+confused_book(spellbook)
+struct obj *spellbook;
+{
+	boolean gone = FALSE;
+
+	if (!rn2(3) && spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
+	    spellbook->in_use = TRUE;	/* in case called from learn */
+	    pline(
+	"Being confused you have difficulties in controlling your actions.");
+	    display_nhwindow(WIN_MESSAGE, FALSE);
+	    You("accidentally tear the spellbook to pieces.");
+	    if (!objects[spellbook->otyp].oc_name_known &&
+		!objects[spellbook->otyp].oc_uname)
+		docall(spellbook);
+	    if (carried(spellbook)) useup(spellbook);
+	    else useupf(spellbook, 1L);
+	    gone = TRUE;
+	} else {
+	    You("find yourself reading the %s line over and over again.",
+		spellbook == book ? "next" : "first");
+	}
+	return gone;
 }
 
 /* special effects for The Book of the Dead */
@@ -234,8 +268,15 @@ struct obj *book2;
 	    pline_The("invocation fails!");
 	    pline("At least one of your artifacts is cursed...");
 	} else if(arti1_primed && arti2_primed) {
+	    unsigned soon = (unsigned) d(2,6);	/* time til next intervene() */
+
+	    /* successful invocation */
 	    mkinvokearea();
 	    u.uevent.invoked = 1;
+	    /* in case you haven't killed the Wizard yet, behave as if
+	       you just did */
+	    u.uevent.udemigod = 1;	/* wizdead() */
+	    if (!u.udg_cnt || u.udg_cnt > soon) u.udg_cnt = soon;
 	} else {	/* at least one artifact not prepared properly */
 	    You("have a feeling that %s is amiss...", something);
 	    goto raise_dead;
@@ -312,9 +353,16 @@ learn()
 	/* JDS: lenses give 50% faster reading; 33% smaller read time */
 	if (delay < end_delay && ublindf && ublindf->otyp == LENSES && rn2(2))
 	    delay++;
+	if (Confusion) {		/* became confused while learning */
+	    (void) confused_book(book);
+	    book = 0;			/* no longer studying */
+	    nomul(delay - end_delay);	/* remaining delay is uninterrupted */
+	    delay = end_delay;
+	    return(0);
+	}
 	if (delay < end_delay) {    /* not if (delay++), so at end delay == 0 */
-		delay++;
-		return(1); /* still busy */
+	    delay++;
+	    return(1); /* still busy */
 	}
 	exercise(A_WIS, TRUE);		/* you're studying. */
 	booktype = book->otyp;
@@ -367,7 +415,11 @@ learn()
 	if (i == MAXSPELL) impossible("Too many spells memorized!");
 
 	if (book->cursed) {	/* maybe a demon cursed it */
-		cursed_book(objects[booktype].oc_level);
+	    if (cursed_book(book)) {
+		useup(book);
+		book = 0;
+		return 0;
+	    }
 	}
 	if (costly) check_unpaid(book);
 	book = 0;
@@ -382,7 +434,7 @@ register struct obj *spellbook;
 	register boolean confused = (Confusion != 0);
 	boolean too_hard = FALSE;
 
-	if (delay && spellbook == book &&
+	if (delay && !confused && spellbook == book &&
 		    /* handle the sequence: start reading, get interrupted,
 		       have book become erased somehow, resume reading it */
 		    booktype != SPE_BLANK_PAPER) {
@@ -430,7 +482,8 @@ register struct obj *spellbook;
 			    - 2*objects[booktype].oc_level
 			    + ((ublindf && ublindf->otyp == LENSES) ? 2 : 0);
 			/* only wizards know if a spell is too difficult */
-			if (Role_if(PM_WIZARD) && read_ability < 20) {
+			if (Role_if(PM_WIZARD) && read_ability < 20 &&
+			    !confused) {
 			    char qbuf[QBUFSZ];
 			    Sprintf(qbuf,
 		      "This spellbook is %sdifficult to comprehend. Continue?",
@@ -448,11 +501,12 @@ register struct obj *spellbook;
 		}
 
 		if (too_hard) {
-		    cursed_book(objects[booktype].oc_level);
+		    boolean gone = cursed_book(spellbook);
+
 		    nomul(delay);			/* study time */
 		    delay = 0;
-		    if(!rn2(3)) {
-			pline_The("spellbook crumbles to dust!");
+		    if(gone || !rn2(3)) {
+			if (!gone) pline_The("spellbook crumbles to dust!");
 			if (!objects[spellbook->otyp].oc_name_known &&
 				!objects[spellbook->otyp].oc_uname)
 			    docall(spellbook);
@@ -462,25 +516,12 @@ register struct obj *spellbook;
 			spellbook->in_use = FALSE;
 		    return(1);
 		} else if (confused) {
-			if (!rn2(3) &&
-				spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
-			    pline(
-	  "Being confused you have difficulties in controlling your actions.");
-			    display_nhwindow(WIN_MESSAGE, FALSE);
-			    You("accidentally tear the spellbook to pieces.");
-			    if (!objects[spellbook->otyp].oc_name_known &&
-				   !objects[spellbook->otyp].oc_uname)
-				docall(spellbook);
-				if (carried(spellbook)) useup(spellbook);
-				else useupf(spellbook, 1L);
-			} else {
-			    You(
-		  "find yourself reading the first line over and over again.");
-			    spellbook->in_use = FALSE;
-			}
-			nomul(delay);
-			delay = 0;
-			return(1);
+		    if (!confused_book(spellbook)) {
+			spellbook->in_use = FALSE;
+		    }
+		    nomul(delay);
+		    delay = 0;
+		    return(1);
 		}
 		spellbook->in_use = FALSE;
 
@@ -699,7 +740,7 @@ cast_protection()
 
 	if (gain > 0) {
 	    if (!Blind) {
-		const char *hgolden = hcolor(golden);
+		const char *hgolden = hcolor(NH_GOLDEN);
 
 		if (u.uspellprot)
 		    pline_The("%s haze around you becomes more dense.",
@@ -719,6 +760,35 @@ cast_protection()
 	} else {
 	    Your("skin feels warm for a moment.");
 	}
+}
+
+/* attempting to cast a forgotten spell will cause disorientation */
+STATIC_OVL void
+spell_backfire(spell)
+int spell;
+{
+    long duration = (long)((spellev(spell) + 1) * 3);	 /* 6..24 */
+
+    /* prior to 3.4.1, the only effect was confusion; it still predominates */
+    switch (rn2(10)) {
+    case 0:
+    case 1:
+    case 2:
+    case 3: make_confused(duration, FALSE);			/* 40% */
+	    break;
+    case 4:
+    case 5:
+    case 6: make_confused(2L * duration / 3L, FALSE);		/* 30% */
+	    make_stunned(duration / 3L, FALSE);
+	    break;
+    case 7:
+    case 8: make_stunned(2L * duration / 3L, FALSE);		/* 20% */
+	    make_confused(duration / 3L, FALSE);
+	    break;
+    case 9: make_stunned(duration, FALSE);			/* 10% */
+	    break;
+    }
+    return;
 }
 
 int
@@ -746,7 +816,7 @@ boolean atme;
 	if (spellknow(spell) <= 0) {
 	    Your("knowledge of this spell is twisted.");
 	    pline("It invokes nightmarish images in your mind...");
-	    make_confused((long)spellev(spell) * 3, FALSE);
+	    spell_backfire(spell);
 	    return(0);
 	} else if (spellknow(spell) <= 100) {
 	    You("strain to recall the spell.");
@@ -892,7 +962,10 @@ boolean atme;
 	case SPE_STONE_TO_FLESH:
 		if (!(objects[pseudo->otyp].oc_dir == NODIR)) {
 			if (atme) u.dx = u.dy = u.dz = 0;
-			else (void) getdir((char *)0);
+			else if (!getdir((char *)0)) {
+			    /* getdir cancelled, re-use previous direction */
+			    pline_The("magical energy is released!");
+			}
 			if(!u.dx && !u.dy && !u.dz) {
 			    if ((damage = zapyourself(pseudo, TRUE)) != 0) {
 				char buf[BUFSZ];
@@ -1054,7 +1127,7 @@ boolean atme;
 	}
 
 	/* gain skill for successful cast */
-	    use_skill(skill, spellev(spell));
+	use_skill(skill, spellev(spell));
 
 	/* WAC successful casting increases solidity of knowledge */
 	boostknow(spell,CAST_BOOST);
@@ -1140,7 +1213,7 @@ int *spell_no;
 		Sprintf(buf, "Name\tLevel\tCategory\tFail");
 	if (flags.menu_style == MENU_TRADITIONAL)
 		Strcat(buf, iflags.menu_tab_sep ? "\tKey" : "  Key");
-	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, MENU_UNSELECTED);
+	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_BOLD, buf, MENU_UNSELECTED);
 	for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
 		Sprintf(buf, iflags.menu_tab_sep ?
 			"%s\t%-d%s\t%s\t%-d%%" : "%-20s  %2d%s   %-12s %3d%%",

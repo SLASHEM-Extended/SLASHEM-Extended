@@ -756,12 +756,12 @@ int tech_no;
                 	if (!Blind)
                     		pline("%s %s %s.",Your_buf,
 						  aobjnam(obj, "softly glow"),
-						  hcolor(amber));
+						  hcolor(NH_AMBER));
 				uncurse(obj);
 				obj->bknown=1;
 		} else if(!obj->blessed) {
 			if (!Blind) {
-				str = hcolor(light_blue);
+				str = hcolor(NH_LIGHT_BLUE);
 				pline("%s %s with a%s %s aura.",
 					  Your_buf,
 					  aobjnam(obj, "softly glow"),
@@ -907,7 +907,7 @@ int tech_no;
 		    if (In_sokoban(&u.uz))
 			change_luck(-1);
 		    You("reform!");
-		    teleds(cc.x, cc.y);
+		    teleds(cc.x, cc.y, FALSE);
 		    nomul(-1);
 		    nomovemsg = "";
 	    	}
@@ -1152,9 +1152,9 @@ int tech_no;
 		/* WAC can't yank out cursed items */
                 if (num > 0 && (!Fumbling || !rn2(10)) && !obj->cursed) {
 		    int roll;
-		    obj_extract_self(obj);
-		    possibly_unwield(mtmp);
-		    obj->owornmask &= ~W_WEP;
+		    obj_extract_self(otmp);
+		    possibly_unwield(mtmp, FALSE);
+		    setmnotwielded(mtmp,otmp);
 		    roll = rn2(num + 1);
 		    if (roll > 3) roll = 3;
 		    switch (roll) {
