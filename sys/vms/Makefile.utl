@@ -1,13 +1,14 @@
 #	NetHack Makefile (VMS) - for utility programs.
-#	SCCS Id: @(#)Makefile.utl	3.2	96/05/10
+#	SCCS Id: @(#)Makefile.utl	3.4	2002/03/02
 
 #  Copy this file to [.util]Makefile. and then edit it as needed.
+#  The default configuration is for building with DEC C (aka Compaq C).
 #  Settings for CC and CFLAGS ought to match the ones used in [.src]Makefile.
 
 MAKE	= $(MMS)
 CD	= set default
 ECHO	= write sys$output
-MOVE	= rename/New		# within save device only
+MOVE	= rename/New		# within same device only
 MUNG	= search/Exact/Match=NOR	# to strip bogus #module directives
 NOOP	= continue
 RM	= delete/noConfirm
@@ -28,13 +29,15 @@ LEVCOMP = $(UTL)lev_comp.exe;
 DGNCOMP = $(UTL)dgn_comp.exe;
 DLB	= $(UTL)dlb.exe;
 RECOVER = $(UTL)recover.exe;
+# used by $(DAT)Makefile for synchronization
+MARKER	= $(UTL)util.timestamp;
 
 # if you are using gcc as your compiler,
 #	uncomment the CC definition below if it's not in your environment
 # CC = gcc
 
-CFLAGS	= /Include=$(INC)/noList	# VAXC or GNUC
-#CFLAGS	= /Prefix=All/Incl=$(INC)/noList	# DECC in native mode
+CFLAGS	= /Prefix=All/Incl=$(INC)/noList	# DECC in native mode
+#CFLAGS	= /Include=$(INC)/noList	# VAXC or GNUC
 LFLAGS	= /noMap
 LIBS	= $(SRC)crtl.opt/Options		# run-time library(s) needed
 LINK	= link
@@ -75,6 +78,10 @@ LEXOUT	= lexyy		# flex
 
 # linker options file
 LIBOPT	= $(SRC)crtl.opt;
+
+# timestamps for primary header files, matching src/Makefile
+CONFIG_H = $(SRC)config.h-t
+HACK_H   = $(SRC)hack.h-t
 
 # utility .c files
 MAKESRC    = makedefs.c
@@ -149,6 +156,7 @@ $(LIBOPT) : $(SRC)Makefile.;		# linker options file
 #
 $(MAKEDEFS) :	$(MAKEOBJS) $(VMSMAKEOBJS) $(LIBOPT)
 	$(LINK) $(LFLAGS) $(MAKEOBJS),$(VMSMAKEOBJS),$(LIBS)
+      @ $(TOUCH) $(MARKER)
 
 makedefs.obj :	makedefs.c \
 		$(CONFIG_H) $(INC)permonst.h $(INC)objclass.h \
@@ -179,15 +187,15 @@ $(INC)date.h :	$(MAKEDEFS)
 $(LEVCOMP) : $(SPLEVOBJS) $(VMSSPLEVOBJS)	# $(LIBOPT)
 	$(LINK)/Exe=$(LEVCOMP) $(LFLAGS) $(SPLEVOBJS),$(VMSSPLEVOBJS),$(LIBS)
 
-lev_yacc.obj : $(INC)hack.h $(INC)sp_lev.h lev_yacc.c
+lev_yacc.obj : $(HACK_H) $(INC)sp_lev.h lev_yacc.c
 	$(CC) $(CFLAGS) lev_yacc.c
-lev_lex.obj  : $(INC)hack.h $(INC)lev_comp.h $(INC)sp_lev.h lev_lex.c
+lev_lex.obj  : $(HACK_H) $(INC)lev_comp.h $(INC)sp_lev.h lev_lex.c
 	@ if f$search("lev_lex.h").nes."" then	$(MOVE) lev_lex.h stdio.h
 	$(CC) $(CFLAGS) lev_lex.c
 	@ if f$search("stdio.h").nes."" then  $(MOVE) stdio.h lev_lex.h
-lev_main.obj : $(INC)hack.h $(INC)sp_lev.h $(INC)termcap.h $(INC)date.h lev_main.c
+lev_main.obj : $(HACK_H) $(INC)sp_lev.h $(INC)tcap.h $(INC)date.h lev_main.c
 	$(CC) $(CFLAGS) lev_main.c
-panic.obj    : $(INC)config.h
+panic.obj    : $(CONFIG_H)
 	$(CC) $(CFLAGS) panic.c
 
 $(INC)lev_comp.h : lev_yacc.c
@@ -326,9 +334,13 @@ $(SRC)dlb.obj : $(SRC)dlb.c $(HACK_H) $(INC)dlb.h
       @ $(CD) $(UTL)
 
 # make sure hack.h dependencies get transitive information
-$(INC)hack.h : $(INC)config.h
+$(HACK_H) : $(CONFIG_H)
 	$(CD) $(SRC)
-	$(MAKE)$(MAKEFLAGS) $(INC)hack.h
+	$(MAKE)$(MAKEFLAGS) $(HACK_H)
+      @ $(CD) $(UTL)
+$(CONFIG_H) : $(INC)config.h
+	$(CD) $(SRC)
+	$(MAKE)$(MAKEFLAGS) $(CONFIG_H)
       @ $(CD) $(UTL)
 
 # VMS specific dependencies
@@ -357,3 +369,4 @@ spotless :	clean
       - if f$search("*.exe").nes."" then \
  $(RM) $(MAKEDEFS),$(LEVCOMP),$(DGNCOMP),$(RECOVER),$(DLB)
       - if f$search("*.exe").nes."" then  $(RM) $(TILEUTILS)
+      - if f$search("$(MARKER)").nes."" then  $(RM) $(MARKER)
