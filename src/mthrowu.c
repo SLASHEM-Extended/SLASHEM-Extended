@@ -586,7 +586,7 @@ struct monst *mtmp;
 	otmp = select_rwep(mtmp);
 	if (!otmp) return;
 
-	if (is_pole(otmp)) {
+	if ((MON_WEP(mtmp) == otmp) && is_pole(otmp)) {
 	    int dam, hitv;
 
 	    if (dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) > POLE_LIM ||
