@@ -95,6 +95,7 @@ ver 0.0.7E3 [?] [Released by ?]
 -fixed bug 782906: compiling fails when FILE_AREAS is defined
 -fixed bug 793135: some broken text at completing flame mage quest
 -fixed bug 795384: some typos
+-fixed bug 793132: excessive magic by gnoll shamans
 
 See history.txt for changes made in previous versions.
 
