@@ -87,6 +87,41 @@ To build:
 	   window interface for the relevant windowing systems you want to
 	   make available (and which support external interfaces).
 
+	7. If you want to enable users on remote computers to play games
+	   on your computer over the network, then you need to configure
+	   your system for this. The details of this will vary from system
+	   to system, but this is how you do it for systems running xinetd:
+
+	   a. Add a line to /etc/services such as the following:
+
+	      slashem         2700/tcp            # Slash'EM game server
+
+	      (the choice of port 2700 is arbitary.)
+
+	   b. Add a file to /etc/xinetd.d (called eg., slashem) with the
+	      following contents:
+
+	      # default: on
+	      # description: The slashem server serves NhExt connections.
+	      service slashem
+	      {
+	      		disable			= no
+			socket_type		= stream
+			wait			= no
+			user			= games
+			server			= /usr/local/bin/slashem
+			server_args		= --proxy
+			log_on_success		+= DURATION USERID
+			log_on_failure		+= USERID
+			nice			= 10
+	      }
+
+	      (you will need to alter the location of the server if it is
+	      installed in a different directory, or with a different name.)
+	
+	   c. Cause xinetd to re-read its configuration files. See the
+	      xinetd manual page for details.
+
 B. Proxified window interfaces
 
 This configuration uses dual processes (which has the advantage of

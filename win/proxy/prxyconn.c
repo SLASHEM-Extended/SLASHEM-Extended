@@ -1,14 +1,20 @@
-/* $Id: prxyconn.c,v 1.1 2002-12-23 22:59:03 j_ali Exp $ */
+/* $Id: prxyconn.c,v 1.2 2002-12-29 21:31:57 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #ifdef WIN32
 #include <windows.h>
 #include <process.h>
 #include <fcntl.h>
 #include <errno.h>
+#else
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
 #endif
 #include "nhxdr.h"
 #include "proxycom.h"
@@ -198,28 +204,17 @@ proxy_start_server(char *prgname, void *read_h, void *write_h)
     connect_pipe(read_h, write_h);
 }
 
-/*
- * Currently supported protocols:
- *
- *	Protocol	Description			Address
- *	-------------------------------------------------------
- *	file		Run program on this computer	filename
- */
-
 #ifdef WIN32
 
-void
-proxy_connect(char *protocol, char *address, int *argcp, char **argv)
+static void
+proxy_connect_file(char *address, int *argcp, char **argv)
 {
     char *filename;
     char **nargv;
     int i, pid;
     HANDLE to_game_h[2], from_game_h[2], save_stdin, save_stdout;
     nargv = (char **)alloc((*argcp + 2) * sizeof(char *));
-    if (!strcmp(protocol, "file"))
-	nargv[0] = address;
-    else
-	panic("proxy_connect: Unsupported protocol: %s", protocol);
+    nargv[0] = address;
     nargv[1] = "--proxy";
     for(i = 1; i <= *argcp; i++)
 	nargv[i + 1] = argv[i];
@@ -264,23 +259,19 @@ proxy_connect(char *protocol, char *address, int *argcp, char **argv)
 
 #else /* WIN32 */
 
-void
-proxy_connect(char *protocol, char *address, int *argcp, char **argv)
+static void
+proxy_connect_file(char *address, int *argcp, char **argv)
 {
     int i;
     char **nargv = NULL;
     int to_game[2],from_game[2];
     if (pipe(to_game) || pipe(from_game))
 	panic("%s: Can't create NhExt stream", argv[0]);
-    if (!strcmp(protocol, "file")) {
-	nargv = (char **)alloc((*argcp + 2) * sizeof(char *));
-	nargv[0] = address;
-	nargv[1] = "--proxy";
-	for(i = 1; i <= *argcp; i++)
-	    nargv[i + 1] = argv[i];
-    }
-    else
-	panic("proxy_connect: Unsupported protocol: %s", protocol);
+    nargv = (char **)alloc((*argcp + 2) * sizeof(char *));
+    nargv[0] = address;
+    nargv[1] = "--proxy";
+    for(i = 1; i <= *argcp; i++)
+	nargv[i + 1] = argv[i];
     if (!fork()) {
 	dup2(to_game[0],0);
 	dup2(from_game[1],1);
@@ -298,3 +289,77 @@ proxy_connect(char *protocol, char *address, int *argcp, char **argv)
 }
 
 #endif	/* WIN32 */
+
+static void
+proxy_connect_tcp(char *address, char *prgname)
+{
+#ifdef WIN32
+    SOCKET skt;
+#else
+    int skt;
+#endif
+    int i, port;
+    long iaddr;
+    char *s;
+    struct hostent *he;
+    struct sockaddr_in sa;
+    s = strrchr(address, ':');
+    if (!s)
+	panic("proxy_connect: Missing port number in tcp scheme");
+    port=atoi(s + 1);
+    if (!port)
+	panic("proxy_connect: Illegal port number in tcp scheme");
+    i = s - address;
+    s = (char *)alloc(i + 1);
+    strncpy(s, address, i);
+    s[i] = '\0';
+    skt = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+#ifdef WIN32
+    if (skt == INVALID_SOCKET)
+#else
+    if (skt < 0)
+#endif
+	panic("proxy_connect: Failed to create socket");
+    sa.sin_family = AF_INET;
+    sa.sin_port = htons(port);
+    iaddr = inet_addr(s);
+    if (iaddr == INADDR_NONE) {
+	he = gethostbyname(s);
+	if (!he) {
+	    perror(s);
+	    panic("proxy_connect: Can't resolve hostname");
+	}
+	iaddr = *((long *)he->h_addr);
+    }
+#ifdef WIN32
+    sa.sin_addr.S_un.S_addr = iaddr;
+#else
+    sa.sin_addr.s_addr = iaddr;
+#endif
+    if (connect(skt, (struct sockaddr *)&sa, sizeof(sa))) {
+	perror(s);
+	panic("proxy_connect: Failed to connect to remote machine");
+    }
+    free(s);
+    proxy_start_server(prgname, (void *)skt, (void *)skt);
+}
+
+/*
+ * Currently supported schemes:
+ *
+ *	Scheme		Description			Address
+ *	-------------------------------------------------------
+ *	file		Run program on this computer	filename
+ *	tcp		Connect to remote computer	host:port
+ */
+
+void
+proxy_connect(char *scheme, char *address, int *argcp, char **argv)
+{
+    if (!strcmp(scheme, "file"))
+	proxy_connect_file(address, argcp, argv);
+    else if (!strcmp(scheme, "tcp"))
+	proxy_connect_tcp(address, argv[0]);
+    else
+	panic("proxy_connect: Unsupported scheme: %s", scheme);
+}
