@@ -150,6 +150,7 @@ FileResources = ¶
 	"{LibDir}"Quest.dat ¶
 	"{LibDir}"data ¶
 	"{LibDir}"dungeon ¶
+	"{LibDir}"options ¶
 	"{LibDir}"oracles ¶
 	"{LibDir}"rumors ¶
 	Levels
@@ -388,10 +389,10 @@ MakeDefsSrcs= "{Src}"objects.c		¶
 	Move -y "{Include}"filename.h "{Preserve}"filename.h
 	Directory "{Pwd}"
 
-"{Preserve}"date.h 	Ä 	"{ObjDir}"Options "{ObjDir}"MakeDefs
+"{Preserve}"date.h 	Ä 	"{LibDir}"Options "{ObjDir}"MakeDefs
 	Move -y "{Include}"date.h "{Preserve}"date.h
 
-"{ObjDir}"Options	Ä	$OutOfDate "{ObjDir}"MakeDefs
+"{LibDir}"Options	Ä	$OutOfDate "{ObjDir}"MakeDefs
 	Set Pwd `Directory`
 	Directory "{Top}"
 	"{ObjDir}"MakeDefs -v
@@ -519,7 +520,7 @@ Levels Ä "{LibDir}"Levels.list "{MacDir}"Levels.make
 		SetFile -t "{FileType}" -c "{SlashEMCreator}" "{LibDir}"Quest.dat
 		Directory "{Pwd}"
 
-#---------------- The "{ObjDir}"Recover application -------------------
+#---------------- The Recover application -------------------
 
 RecoverSrcs = "{MacDir}"MRecover.c
 
@@ -554,9 +555,6 @@ RecoverRsrcs = "{MacDir}"MRecover.r
 		SetFile -a B "{ObjDir}"Recover
 		Move -y "{ObjDir}"Recover "{Results}"Recover 	
 
-"{ObjDir}"MRecover.rsrc	Ä	"{MacDir}"MRecover.r
-		Rez Types.r SysTypes.r "{MacDir}"MRecover.r -o "{ObjDir}"MRecover.rsrc
-	
 #---------------- The Slash'EM application -------------------
 
 "{ObjDir}"SlashEM.make	Ä 
@@ -587,13 +585,6 @@ RecoverRsrcs = "{MacDir}"MRecover.r
 			-i "{MacDir}" -i "{ObjDir}"  -i "{Include}" -i "{Preserve}" -s "{Top}" -append
 		SetFile -a B "{ObjDir}"SlashEM
 		Move -y "{ObjDir}"SlashEM "{Results}"Slash¶'EM 	
-
-"{ObjDir}"NHrsrc.rsrc Ä "{MacDir}"NHrsrc.r
-		Rez Types.r SysTypes.r "{MacDir}"NHrsrc.r -o "{ObjDir}"NHrsrc.rsrc ¶
-			-i "{Include}" -i "{Preserve}"
-
-"{ObjDir}"NHsound.rsrc Ä "{MacDir}"NHsound.r
-		Rez Types.r SysTypes.r "{MacDir}"NHsound.r -o "{ObjDir}"NHsound.rsrc
 
 #---------------- Dependencies -------------------
 
@@ -659,3 +650,14 @@ Pack	Ä	"{ObjDir}"NHrsrc.rsrc "{ObjDir}"NHsound.rsrc "{ObjDir}"MRecover.rsrc
 #---------------- Unpack -------------------
 
 Unpack	Ä	"{ObjDir}"NHrsrc.rsrc "{ObjDir}"NHsound.rsrc "{ObjDir}"MRecover.rsrc
+
+"{ObjDir}"NHrsrc.rsrc Ä "{MacDir}"NHrsrc.r
+		Rez Types.r SysTypes.r "{MacDir}"NHrsrc.r -o "{ObjDir}"NHrsrc.rsrc ¶
+			-i "{Include}" -i "{Preserve}"
+
+"{ObjDir}"NHsound.rsrc Ä "{MacDir}"NHsound.r
+		Rez Types.r SysTypes.r "{MacDir}"NHsound.r -o "{ObjDir}"NHsound.rsrc
+
+"{ObjDir}"MRecover.rsrc	Ä	"{MacDir}"MRecover.r
+		Rez Types.r SysTypes.r "{MacDir}"MRecover.r -o "{ObjDir}"MRecover.rsrc
+	

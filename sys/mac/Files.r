@@ -62,6 +62,7 @@ read 'File' (1007,"opthelp") ":dat:opthelp";
 read 'File' (1008,"wizhelp") ":dat:wizhelp";
 read 'File' (1019,"data") ":lib:data";
 read 'File' (1020,"dungeon") ":lib:dungeon";
+read 'File' (1041,"options") ":lib:options";
 read 'File' (1043,"oracles") ":lib:oracles";
 read 'File' (1045,"quest.dat") ":lib:quest.dat";
 read 'File' (1046,"rumors") ":lib:rumors";
