@@ -208,11 +208,16 @@ macopen (const char *name, int flags, long fileType)
 	short refNum;
 	short perm;
 	Str255 s;
+	long creator;
 
 	C2P (name, s);
 	if (flags & O_CREAT) {
+		if (fileType == SAVE_TYPE)
+		  creator = MAC_CREATOR;
+		else
+		  creator = TEXT_CREATOR;
 		if (HCreate (theDirs.dataRefNum, theDirs.dataDirID, s ,
-			TEXT_CREATOR, fileType) && (flags & O_EXCL)) {
+			creator, fileType) && (flags & O_EXCL)) {
 			return -1;
 		}
 
