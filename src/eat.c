@@ -368,10 +368,13 @@ register struct obj *otmp;
 
 	if (carried(otmp)) {
 	    freeinv(otmp);
-	    if (inv_cnt() >= 52 && !merge_choice(invent, otmp))
+	    if (inv_cnt() >= 52)
 		dropy(otmp);
-	    else
-		otmp = addinv(otmp); /* unlikely but a merge is possible */
+	    else {
+		otmp->oxlth++;		/* hack to prevent merge */
+		otmp = addinv(otmp);
+		otmp->oxlth--;
+	    }
 	}
 	return(otmp);
 }
