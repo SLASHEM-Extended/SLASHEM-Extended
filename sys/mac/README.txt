@@ -1,5 +1,5 @@
-This is the binary distribution of Slash'EM 0.0.6e4f8.   This is a 68K binary, so it will run (slowly) on any Macintosh.
-This is the binary distribution of Slash'EM 0.0.6e4f8.   This is a Power PC binary, so it will run only on a Macintosh with a Power PC processor.
+This is the binary distribution of Slash'EM 0.0.6e6.   This is a 68K binary, so it will run (slowly) on any Macintosh.
+This is the binary distribution of Slash'EM 0.0.6e6.   This is a Power PC binary, so it will run only on a Macintosh with a Power PC processor.
 
 This package is freely distributable; see the file 'License' for details.
 
