@@ -24,7 +24,7 @@
  * Fix level can be used to distinguish versions between edit levels.
  * Note: Incrementing FIXLEVEL does _not_ invalidate old bones and save files.
  */
-#define FIXLEVEL        0  /* Define to enable a fixlevel version */
+#define FIXLEVEL        1  /* Define to enable a fixlevel version */
 
 #define COPYRIGHT_BANNER_A \
 "This is SuperLotsoAddedStuffHack-Extended Magic 1997-2000"

@@ -325,7 +325,7 @@ TODO:
 	-it appears to be segfaulting (randomly?)
 -tofix: using the nethack config files.
 
-ver 0.0.6E4F1 [October XX/2000]
+ver 0.0.6E4F1 [November 10/2000] [Released by Ali]
 -GTK: status window stats columns should never be too small
 -GTK: deactivated the unimplemented Fight command
 -GTK: made the menus able to "tear-off"
