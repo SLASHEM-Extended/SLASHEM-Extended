@@ -1,9 +1,9 @@
 /*
-  $Id: gtkstatus.c,v 1.6 2002-07-07 14:38:10 j_ali Exp $
+  $Id: gtkstatus.c,v 1.7 2003-01-21 17:09:14 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
-               Copyright (c) Slash'EM Development Team 2001-2002
+               Copyright (c) Slash'EM Development Team 2001-2003
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -156,7 +156,7 @@ char **values;
 	    } else if (stat_tab[i].quan &&
 		    !strcmp(stat_tab[i].quan, values[j])) {
 		stat_tab[i].vi = j;
-		if (!strcmp(stat_tab[i].quan, "HP"))
+		if (!strcmp(stat_tab[i].quan, "hp"))
 		    stat_tab_hp = i;
 		k = stat_tab[i].where - STAT_COLUMN(1);
 		if (k >=0 && k < STAT_COLS) {

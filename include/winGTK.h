@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.31 2002-12-29 21:34:52 j_ali Exp $
+  $Id: winGTK.h,v 1.32 2003-01-21 17:09:12 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -206,6 +206,9 @@ extern GtkWidget	*nh_radar_new(void);
 extern void		nh_radar_update(void);
 
 extern GtkWidget	*nh_message_new(void);
+#if defined(GTK_V20)
+extern void		nh_message_destroy(void);
+#endif
 extern void		nh_message_putstr(const char *);
 
 extern GtkWidget	*nh_status_new(void);

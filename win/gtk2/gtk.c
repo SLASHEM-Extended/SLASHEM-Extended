@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.30 2003-01-05 07:41:09 j_ali Exp $
+  $Id: gtk.c,v 1.31 2003-01-21 17:09:13 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1945,6 +1945,7 @@ GTK_exit_nhwindows(const char *str)
 #ifdef RADAR
     nh_radar_destroy();
 #endif
+    nh_message_destroy();
     gtk_widget_destroy(main_window);
     g_blow_chunks();
 
