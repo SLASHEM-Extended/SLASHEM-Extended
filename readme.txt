@@ -119,6 +119,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 1038151: Power surge becomes permanent if lost
 -fixed bug 1025486: Pets can't follow lvl telep from Blk Mkt
 -fixed bug 1029750: Lycanthropes and eating wolfsbane while polymorphed
+-fixed bug 1030725: Doppelganger liquid leap does not release from chain
 
 See history.txt for changes made in previous versions.
 

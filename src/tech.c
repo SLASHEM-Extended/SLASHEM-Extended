@@ -922,29 +922,34 @@ int tech_no;
 	    	coord cc;
 	    	int dx, dy, sx, sy, range;
 
+		pline("Where do you want to leap to?");
     		cc.x = sx = u.ux;
 		cc.y = sy = u.uy;
 
 		getpos(&cc, TRUE, "the desired position");
-		if(cc.x == -10) return 0; /* user pressed esc */
+		if (cc.x == -10) return 0; /* user pressed esc */
 
 		dx = cc.x - u.ux;
 		dy = cc.y - u.uy;
 		/* allow diagonals */
-	    	if ((dx && dy) && (dx != dy) && (dx != -dy)) {
-	    		You("can only leap in straight lines!");
-			return (0);
-	    	} else if (distu(cc.x, cc.y) > (19 + techlev(tech_no))) {
-	    		pline("Too far!");
-			return (0);
-		} else if (((mtmp = m_at(cc.x, cc.y)) != 0) ||
-		    (!isok(cc.x, cc.y) ||
-		    ((IS_ROCK(levl[cc.x][cc.y].typ) ||
-		     sobj_at(BOULDER, cc.x, cc.y) || closed_door(cc.x, cc.y))))) {
-			You("cannot flow there!"); /* MAR */
-			return (0);
+	    	if (dx && dy && dx != dy && dx != -dy) {
+		    You("can only leap in straight lines!");
+		    return 0;
+	    	} else if (distu(cc.x, cc.y) > 19 + techlev(tech_no)) {
+		    pline("Too far!");
+		    return 0;
+		} else if (m_at(cc.x, cc.y) || !isok(cc.x, cc.y) ||
+			IS_ROCK(levl[cc.x][cc.y].typ) ||
+			sobj_at(BOULDER, cc.x, cc.y) ||
+			closed_door(cc.x, cc.y)) {
+		    You_cant("flow there!"); /* MAR */
+		    return 0;
 		} else {
 		    You("liquify!");
+		    if (Punished) {
+			You("slip out of the iron chain.");
+			unpunish();
+		    }
 		    if(u.utrap) {
 			switch(u.utraptype) {
 			    case TT_BEARTRAP: 
