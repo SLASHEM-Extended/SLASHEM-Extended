@@ -68,6 +68,22 @@ E void NDECL(proxy_start_screen);
 E void NDECL(proxy_end_screen);
 E void FDECL(proxy_outrip, (winid,int));
 
+#ifdef NHXDR_H
+struct nhext_svc {
+    unsigned short id;
+    void (*handler)(unsigned short id, NhExtXdr *request, NhExtXdr *reply);
+};
+
+typedef int (*nhext_io_func)(void *handle, void *buf, unsigned int len);
+
+E int FDECL(nhext_subprotocol1_init,
+    (nhext_io_func, void *, nhext_io_func, void *, struct nhext_svc *));
+E void NDECL(nhext_subprotocol1_end);
+E int VDECL(nhext_rpc_params, (NhExtXdr *xdrs, int, ...));
+E int VDECL(nhext_rpc, (unsigned short, ...));
+E int FDECL(nhext_svc, (struct nhext_svc *));
+#endif	/* NHXDR_H */
+
 #undef E
 
 #define EXT_PARAM_INT		0x4001

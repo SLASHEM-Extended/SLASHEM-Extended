@@ -329,6 +329,7 @@ TODO:
 
 ver 0.0.6E5F2 [? ?/2001] [Released by ?]
 -Implemented NhExt XDR (low level protocol for proxy window).
+-Implemented support routines for NhExt sub-protocol 1.
 
 ver 0.0.6E5F1 [August 31/2001] [Released by Ali]
 -New messages when engraving with wand of draining.
