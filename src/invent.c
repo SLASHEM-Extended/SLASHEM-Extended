@@ -853,6 +853,10 @@ register const char *let,*word;
 		|| (!strcmp(word, "untrap with") &&
 		    (otmp->oclass == TOOL_CLASS && otyp != CAN_OF_GREASE))
 		|| (!strcmp(word, "charge") && !is_chargeable(otmp))
+#ifdef DEVEL_BRANCH
+		|| (!strcmp(word, "draw blood with") &&
+		    (otmp->oclass == TOOL_CLASS && otyp != MEDICAL_KIT))
+#endif /* DEVEL_BRANCH */
 		    )
 			foo--;
 		/* ugly check for unworn armor that can't be worn */

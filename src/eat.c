@@ -894,7 +894,11 @@ register int pm;
 		switch(rnd(10)) {                
 		case 1:
 			You("feel that was a bad idea.");
+#ifndef DEVEL_BRANCH
 			losexp("eating a wraith corpse");
+#else /* DEVEL_BRANCH */
+			losexp("eating a wraith corpse", FALSE);
+#endif /* DEVEL_BRANCH */
 			break;
 		case 2:                        
 			You("don't feel so good ...");

@@ -2185,7 +2185,11 @@ boolean ordinary;
 		case SPE_DRAIN_LIFE:
 		case WAN_DRAINING:	/* KMH */
 		    if (!Drain_resistance) {
+#ifndef DEVEL_BRANCH
 			losexp("life drainage");
+#else /* DEVEL_BRANCH */
+			losexp("life drainage", FALSE);
+#endif /* DEVEL_BRANCH */
 			makeknown(obj->otyp);
 		    }
 		    damage = 0;	/* No additional damage */

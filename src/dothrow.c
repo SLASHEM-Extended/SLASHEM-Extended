@@ -1490,6 +1490,13 @@ xchar x, y;             /* object location (ox, oy may not be right) */
 boolean heros_fault;
 boolean from_invent;
 {
+#ifdef DEVEL_BRANCH
+	int altarmask;
+	if (IS_ALTAR(levl[x][y].typ))
+	    altarmask = levl[x][y].altarmask & AM_MASK;
+	else
+	    altarmask = AM_NONE;
+#endif /* DEVEL_BRANCH */
 	switch (obj->oclass == POTION_CLASS ? POT_WATER : obj->otyp) {
 		case MIRROR:
 			if (heros_fault)
@@ -1498,6 +1505,30 @@ boolean from_invent;
 		case POT_WATER:         /* really, all potions */
 			if (obj->otyp == POT_OIL && obj->lamplit) {
 			    splatter_burning_oil(x,y);
+#ifdef DEVEL_BRANCH
+			} else if (obj->otyp == POT_VAMPIRE_BLOOD &&
+				   altarmask != AM_CHAOTIC &&
+				   altarmask != AM_NONE) {
+			    /* ALI: If vampire blood is spilt on a lawful
+			     * or neutral altar the effect is similar to
+			     * human sacrifice. There's no effect on
+			     * chaotic or unaligned altars since it is
+			     * not sufficient to summon a demon.
+			     */
+			    if (heros_fault) {
+				/* Regardless of your race/alignment etc.
+				 * Lawful and neutral gods really _dont_
+				 * like vampires.
+				 */
+				pline("You'll regret this infamous offense!");
+				exercise(A_WIS, FALSE);
+			    }
+			    /* curse the lawful/neutral altar */
+			    pline_The("altar is stained with vampire blood.");
+			    if (!Is_astralevel(&u.uz))
+				levl[x][y].altarmask = AM_CHAOTIC;
+			    angry_priest();
+#endif /* DEVEL_BRANCH */
 			} else if (distu(x,y) <= 2) {
 			    /* [what about "familiar odor" when known?] */
 			    if (obj->otyp != POT_WATER)

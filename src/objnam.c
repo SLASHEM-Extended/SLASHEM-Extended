@@ -1885,6 +1885,7 @@ register char *bp;
 	 * (avoid "wand/finger of death" confusion).
 	 * (WAC avoid "hand/eye of vecna", "wallet of perseus" 
 	 *  "medallion of shifters", "stake of van helsing" similarly
+	 *  ALI "potion of vampire blood" also).
 	 */
 	if (!strstri(bp, "wand ")
 	 && !strstri(bp, "spellbook ")
@@ -1892,6 +1893,9 @@ register char *bp;
          && !strstri(bp, "eye ")
          && !strstri(bp, "medallion ")
          && !strstri(bp, "stake ")
+#ifdef DEVEL_BRANCH
+         && !strstri(bp, "potion ")
+#endif /* DEVEL_BRANCH */
 	 && !strstri(bp, "finger ")) {
 	    if ((p = strstri(bp, " of ")) != 0
 		&& (mntmp = name_to_mon(p+4)) >= LOW_PM)

@@ -600,7 +600,11 @@ E void FDECL(make_grave, (int,int,const char *));
 E long FDECL(newuexp, (int));
 E int FDECL(experience, (struct monst *,int));
 E void FDECL(more_experienced, (int,int));
+#ifndef DEVEL_BRANCH
 E void FDECL(losexp, (const char *));
+#else /* DEVEL_BRANCH */
+E void FDECL(losexp, (const char *, boolean));
+#endif /* DEVEL_BRANCH */
 E void NDECL(newexplevel);
 E void FDECL(pluslvl, (BOOLEAN_P));
 E long NDECL(rndexp);

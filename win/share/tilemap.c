@@ -173,6 +173,11 @@ struct conditionals {
 	{ OBJ_GLYPH, TOWEL, "saddle" },
 #endif
 
+#ifndef DEVEL_BRANCH
+	{ OBJ_GLYPH, POT_PARALYSIS, "blood-red / blood" },
+	{ OBJ_GLYPH, POT_PARALYSIS, "blood-red / vampire blood" },
+#endif
+
 	/* allow slime mold to look like slice of pizza, since we
 	 * don't know what a slime mold should look like when renamed anyway
 	 */
