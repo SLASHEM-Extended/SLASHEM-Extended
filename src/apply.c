@@ -2609,7 +2609,9 @@ wand_explode(obj, hero_broke)
                 /* No ID */
 		pline("A mysterious force surrounds the broken wand.");
 		pline(nothing_else_happens);
-		if(!objects[obj->otyp].oc_uname) docall(obj);
+		if (obj->dknown && !objects[obj->otyp].oc_name_known &&
+				!objects[obj->otyp].oc_uname)
+			docall(obj);
 		goto discard_broken_wand;
     }
 #endif /* BLACKMARKET */
