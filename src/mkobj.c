@@ -964,7 +964,7 @@ static int treefruits[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF};
 struct obj *
 rnd_treefruit_at(x,y)
 {
-	return mksobj_at(treefruits[rn2(SIZE(treefruits)-1)],x,y,TRUE);
+	return mksobj_at(treefruits[rn2(SIZE(treefruits))],x,y,TRUE);
 }
 #endif /* OVL0 */
 #ifdef OVLB
