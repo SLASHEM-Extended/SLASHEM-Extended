@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.16 2003-01-01 12:13:32 j_ali Exp $
+  $Id: gtkmap.c,v 1.17 2003-01-03 00:27:43 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -35,6 +35,7 @@ static GdkFont		*map_font;
 static gchar		*map_font_name;
 static unsigned char	*map_xoffsets;		/* For character mode only */
 static unsigned int	map_font_width;		/* Maximum width */
+static enum xshm_map_mode map_mode;
 #ifdef GTK_PROXY
 static int		map_n_glyphs;
 static short		*map_glyph2colsym = (short *)0;
@@ -261,17 +262,15 @@ out:
 	no_cols = -1;
 	tilemap_size = 0;
     } else {
-	/* TODO: This is very inefficient. We ought to be able to re-configure
-	 * the map without needing to throw away and re-load the tile data.
-	 */
-	int saved_vis = map_visual;
-	nh_set_map_visual(-1);
 	gtkmap = new;
 	no_layers = layers;
 	no_rows = rows;
 	no_cols = cols;
 	tilemap_size = new_size;
-	nh_set_map_visual(saved_vis);
+	if (map_visual)
+	    map = xshm_map_init(map_mode, c_map_width, c_map_height);
+	if (GTK_WIDGET_REALIZED(map))
+	    configure_map(map, 0);
     }
 #ifdef RADAR
     nh_radar_configure();
@@ -487,7 +486,6 @@ nh_set_map_visual(int mode)
 {
     static int setting_visual = FALSE;		/* Ignore recursive calls */
     int saved_vis = map_visual;
-    enum xshm_map_mode map_mode;
 
     if (setting_visual)
 	return 0;
