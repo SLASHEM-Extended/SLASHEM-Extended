@@ -69,6 +69,8 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
+ver 0.0.7E4F1 [?] [Released by ?]
+
 ver 0.0.7E4 [December 1/2003] [Released by Ali]
 -fixed bug 782005: Menu generated which picking objects up should scroll
 -GTK/proxy: Added caching of mapping between glyphs and tiles.
