@@ -127,15 +127,26 @@ getlin_hook_proc hook;
 			int i;
 
 			*bufp = c;
+
+				for (i = bufp; i < eos(bufp); i++)
+				    putsyms(" ");
+				for (i = eos(bufp); i > bufp; i--)
+				    putsyms("\b");
 			bufp[1] = 0;
 			putsyms(bufp);
 			bufp++;
-			if (hook && (*hook)(obufp)) {
-			    putsyms(bufp);
-			    /* pointer and cursor left where they were */
-			    for (i = eos(bufp); i > bufp; i--)
-				putsyms("\b");
-			}
+			if (hook) {
+			    if ((*hook)(obufp)) {
+				putsyms(bufp);
+				/* pointer and cursor left where they were */
+				for (i = eos(bufp); i > bufp; i--)
+				    putsyms("\b");
+			    } else {
+				putsyms("\b \b");
+				*bufp = 0;
+				bufp--;
+			    }
+                        }
 		} else if(c == kill_char || c == '\177') { /* Robert Viduya */
 				/* this test last - @ might be the kill_char */
 			bufp = eos(bufp);
