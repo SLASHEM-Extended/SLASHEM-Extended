@@ -718,7 +718,7 @@ Contents
    -mx, my: Position of the monster in the level map (x,y coordinates).
 
    -mux,muy: Position in the map where the monster thinks player is. May be
-   different from actual one due to cloack of displacement, invisibility, etc.
+   different from actual one due to cloak of displacement, invisibility, etc.
 
    -mtrack: Monster track???. Used in the movement routines, but I've no clear
     idea of what it is.
