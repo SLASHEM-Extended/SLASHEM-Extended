@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.49 2003-12-28 18:43:40 j_ali Exp $
+  $Id: gtk.c,v 1.50 2004-04-10 14:30:50 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -2038,8 +2038,10 @@ GTK_init_nhwindows(char ***capvp)
     set_option_mod_status("timed_delay", SET_IN_FILE);
 
     nh_option_cache_set_bool_addr("color", &copts.use_color);
+    nh_option_cache_set_bool_callback("color", nh_map_color_changed);
     nh_option_cache_set_bool_addr("hilite_pet", &copts.hilite_pet);
     copts.num_pad = nh_option_cache_get_bool("number_pad");
+    nh_option_cache_set_bool_callback("hilite_pet", nh_map_hilite_pet_changed);
 
     /* Init windows to nothing. */
     for (i = 0; i < MAXWIN; i++)

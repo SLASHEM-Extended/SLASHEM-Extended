@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.34 2004-01-03 18:28:51 j_ali Exp $
+  $Id: gtkmap.c,v 1.35 2004-04-10 14:30:50 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1434,6 +1434,25 @@ nh_map_redraw()
     for(j = 0; j < no_rows; j++)
 	for(i = 0; i < no_cols; i++)
 	    GTKMAP(j, i)->flags |= TILEMAP_UPDATE;
+}
+
+void
+nh_map_color_changed(boolean new_value)
+{
+    if (map_visual == 0)
+	nh_map_redraw();
+}
+
+void
+nh_map_hilite_pet_changed(boolean new_value)
+{
+    int i, j, k;
+    map_update = 1;
+    for(j = 0; j < no_rows; j++)
+	for(i = 0; i < no_cols; i++)
+	    for(k = 0; k < no_layers; k++)
+		if (glyph_is_pet(GTKMAP(j, i)->glyphs[k]))
+		    GTKMAP(j, i)->flags |= TILEMAP_UPDATE;
 }
 
 void
