@@ -750,7 +750,20 @@ level_tele()
 		    return;
 		else if (!strcmp(buf,"*"))
 		    goto random_levtport;
-		if ((newlev = lev_by_name(buf)) == 0) newlev = atoi(buf);
+		if ((newlev = lev_by_name(buf)) == 0) {
+#ifdef WIZARD
+		    s_level *slev;
+
+		    /* if you're using wizard mode, you shouldn't really need
+		     * the game to interpret things like `mine town level' */
+		    if (wizard && (slev = find_level(buf))) {
+			schedule_goto(&slev->dlevel, FALSE, FALSE, 0,
+				      (char *)0, (char *)0);
+			return;
+		    }
+#endif
+		    newlev = atoi(buf);
+                }
 	    } while (!newlev && !digit(buf[0]) &&
 		     (buf[0] != '-' || !digit(buf[1])) &&
 		     trycnt < 10);
