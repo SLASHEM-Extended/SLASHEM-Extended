@@ -15,7 +15,7 @@
 ^V      Teleport between levels (available in wizard mode only)
 ^W      Wish (available in wizard mode only)
 ^X      Show your attributes (intrinsic ones included in debug or explore mode)
-^Y	Polymorph (if you can)
+^Y      Polymorph (if you can)
 ^Z      Suspend game (only if defined)
 a       Apply (use) a tool
 A       Remove all armor
@@ -98,7 +98,6 @@ _       Travel via a shortest-path algorithm to a point on the map
 =       Show the ring(s) currently worn
 "       Show the amulet currently worn
 (       Show the tools currently in use
-*       Display and change items in use
 $       Count your gold
 +       List known spells
 #       Perform an extended command
