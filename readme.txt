@@ -389,6 +389,7 @@ ver 0.0.6E4F6 [? ?/2001] [Released by ?]
 -fixed bug 462046: compile error in qt_win.cpp RH7.1, Qt2.3
 -fixed bug 453628: You are warned of undead.
 -fixed bug 469034: Thiefbane doesn't decapitate.
+-fixed bug 469764: Great Dagger ignores drain resistance.
 
 ver 0.0.6E4F5 [August 31/2001] [Released by Ali]
 -fixed bug 420517: Yellow dragon scale mail.

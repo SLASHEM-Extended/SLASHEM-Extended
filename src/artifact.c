@@ -623,6 +623,7 @@ spec_applies(weap, mtmp)
 register const struct artifact *weap;
 struct monst *mtmp;
 {
+	int retval = TRUE;
 	struct permonst *ptr;
 	boolean yours;
 
@@ -632,46 +633,67 @@ struct monst *mtmp;
 	yours = (mtmp == &youmonst);
 	ptr = mtmp->data;
 
+	/* [ALI] Modified to support multiple DBONUS and ATTK flags set.
+	 * Not all combinations are possible because many DBONUS flags
+	 * use mtype and would conflict. Where combinations are possible,
+	 * both checks must pass in order for the special attack to
+	 * apply against mtmp.
+	 */
 	if (weap->spfx & SPFX_DMONS) {
-	    return (ptr == &mons[(int)weap->mtype]);
+	    retval &= (ptr == &mons[(int)weap->mtype]);
 	} else if (weap->spfx & SPFX_DCLAS) {
-	    return (weap->mtype == (unsigned long)ptr->mlet);
+	    retval &= (weap->mtype == (unsigned long)ptr->mlet);
 	} else if (weap->spfx & SPFX_DFLAG1) {
-	    return ((ptr->mflags1 & weap->mtype) != 0L);
+	    retval &= ((ptr->mflags1 & weap->mtype) != 0L);
 	} else if (weap->spfx & SPFX_DFLAG2) {
-	    return ((ptr->mflags2 & weap->mtype) ||
+	    retval &= ((ptr->mflags2 & weap->mtype) ||
 		(yours && !Upolyd && (urace.selfmask & weap->mtype)));
-	} else if (weap->spfx & SPFX_DALIGN) {
-	    return yours ? (u.ualign.type != weap->alignment) :
-			   (ptr->maligntyp == A_NONE ||
+	}
+	if (weap->spfx & SPFX_DALIGN) {
+	    retval &= yours ? (u.ualign.type != weap->alignment) :
+			      (ptr->maligntyp == A_NONE ||
 				sgn(ptr->maligntyp) != weap->alignment);
-	} else if (weap->spfx & SPFX_ATTK) {
+	}
+	if (weap->spfx & SPFX_ATTK) {
 	    struct obj *defending_weapon = (yours ? uwep : MON_WEP(mtmp));
 
 	    if (defending_weapon && defending_weapon->oartifact &&
 		    defends((int)weap->attk.adtyp, defending_weapon))
-			return FALSE;
+		return FALSE;
 	    switch(weap->attk.adtyp) {
 		case AD_FIRE:
-			return !(yours ? Fire_resistance : resists_fire(mtmp));
+			if (yours ? Fire_resistance : resists_fire(mtmp))
+			    retval = FALSE;
+			break;
 		case AD_COLD:
-			return !(yours ? Cold_resistance : resists_cold(mtmp));
+			if (yours ? Cold_resistance : resists_cold(mtmp))
+			    retval = FALSE;
+			break;
 		case AD_ELEC:
-			return !(yours ? Shock_resistance : resists_elec(mtmp));
+			if (yours ? Shock_resistance : resists_elec(mtmp))
+			    retval = FALSE;
+			break;
 		case AD_MAGM:
 		case AD_STUN:
-			return !(yours ? Antimagic : (rn2(100) < ptr->mr));
+			if (yours ? Antimagic : (rn2(100) < ptr->mr))
+			    retval = FALSE;
+			break;
 		case AD_DRST:
-			return !(yours ? Poison_resistance : resists_poison(mtmp));
+			if (yours ? Poison_resistance : resists_poison(mtmp))
+			    retval = FALSE;
+			break;
 		case AD_DRLI:
-			return !(yours ? Drain_resistance : resists_drli(mtmp));
+			if (yours ? Drain_resistance : resists_drli(mtmp))
+			    retval = FALSE;
+			break;
 		case AD_STON:
-			/* KMH, balance patch -- new intrinsic */
-			return !(yours ? Stone_resistance : resists_ston(mtmp));
+			if (yours ? Stone_resistance : resists_ston(mtmp))
+			    retval = FALSE;
+			break;
 		default:        impossible("Weird weapon special attack.");
 	    }
 	}
-	return(0);
+	return retval;
 }
 
 /* return the M2 flags of monster that an artifact's special attacks apply against */
