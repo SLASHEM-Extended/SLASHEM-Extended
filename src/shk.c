@@ -949,9 +949,85 @@ register struct obj *obj, *merge;
 	/* [ALI] Enforce new rules: Containers must have their contents
 	 * deleted while still in situ so that we can place any
 	 * indestructible objects they may contain.
+	 * Output to buglog produced in an attempt to track down bug 790230.
 	 */
-	if (Has_contents(obj))
-	    pline("BUG: obfree() called on non-empty container.");
+	if (Has_contents(obj)) {
+	    FILE *fp;
+	    int known, x, y;
+	    struct obj *otmp;
+	    pline("BUG: obfree() called on non-empty container.  See buglog for details.");
+	    fp = fopen_datafile("buglog", "a", TROUBLEPREFIX);
+	    if (fp) {
+		(void) fprintf(fp,
+		  "%08ld: BUG: obfree() called on non-empty container.\n",
+		  yyyymmdd((time_t)0L));
+		known = objects[obj->otyp].oc_name_known;
+		objects[obj->otyp].oc_name_known = 1;
+		obj->known = obj->bknown = obj->dknown = obj->rknown = 1;
+		(void) fprintf(fp, "Container: %s\n", doname(obj));
+		objects[obj->otyp].oc_name_known = known;
+		(void) fprintf(fp, "ID: %d\n", obj->o_id);
+		(void) fprintf(fp, "Contents of %s:\n", the(xname(obj)));
+		for(otmp = obj->cobj; otmp; otmp = obj->nobj) {
+		    known = objects[otmp->otyp].oc_name_known;
+		    objects[otmp->otyp].oc_name_known = 1;
+		    otmp->known = otmp->bknown =
+			    otmp->dknown = otmp->rknown = 1;
+		    (void) fprintf(fp, "\t%s", doname(otmp));
+		    objects[otmp->otyp].oc_name_known = known;
+		}
+		switch (obj->where) {
+		    case OBJ_FREE:
+			(void) fprintf(fp, "Container is on free list.\n");
+			break;
+		    case OBJ_FLOOR:
+			(void) fprintf(fp,
+				"Container is on the floor at (%d, %d)\n",
+				obj->ox, obj->oy);
+			break;
+		    case OBJ_CONTAINED:
+			otmp = obj->ocontainer;
+			known = objects[otmp->otyp].oc_name_known;
+			objects[otmp->otyp].oc_name_known = 1;
+			otmp->known = otmp->bknown =
+				otmp->dknown = otmp->rknown = 1;
+			get_obj_location(otmp, &x, &y,
+				BURIED_TOO | CONTAINED_TOO);
+			(void) fprintf(fp,
+				"Container is contained in %s at (%d, %d)\n",
+				doname(otmp), x, y);
+			objects[otmp->otyp].oc_name_known = known;
+			break;
+		    case OBJ_INVENT:
+			(void) fprintf(fp,
+				"Container is in hero's inventory\n");
+			break;
+		    case OBJ_MINVENT:
+			get_obj_location(otmp, &x, &y, 0);
+			(void) fprintf(fp,
+				"Container is in %s's inventory at (%d, %d)\n",
+				s_suffix(noit_mon_nam(obj->ocarry)), x, y);
+			break;
+		    case OBJ_MIGRATING:
+			(void) fprintf(fp,
+				"Container is migrating to level %d of %s\n",
+				otmp->oy, dungeons[otmp->ox].dname);
+			break;
+		    case OBJ_BURIED:
+			(void) fprintf(fp, "Container is buried at (%d, %d)\n",
+				obj->ox, obj->oy);
+			break;
+		    case OBJ_ONBILL:
+			(void) fprintf(fp, "Container is on shopping bill.\n");
+			break;
+		    default:
+			(void) fprintf(fp,
+				"Container is nowhere (%d).\n", obj->where);
+			break;
+		}
+		(void) fprintf(fp, "\n");
+	    }
+	}
 	if (Has_contents(obj)) delete_contents(obj);
 
 	shkp = 0;
