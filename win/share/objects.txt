@@ -8431,7 +8431,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 441 (papyrus / lightning)
+# tile 441 (rainbow / lightning)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
