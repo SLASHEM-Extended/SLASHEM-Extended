@@ -103,7 +103,7 @@ ghack_settings_dialog()
 	    break;
 	case 1:
 	    ghack_free_glyphs();
-	    if (ghack_init_glyphs(HACKDIR "/t32-1024.xpm"))
+	    if (ghack_init_glyphs(HACKDIR "/x11bigtiles"))
 		      g_error ("ERROR:  Could not initialize glyphs.\n");
 	    ghack_reinit_map_window();
 

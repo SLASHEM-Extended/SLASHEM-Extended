@@ -84,7 +84,7 @@ CNF_SHARE_GEMND = nh16.img title.img GEM_RSC.RSC
 # for BeOS
 CNF_SHARE_BEND = beostiles
 # for Gnome
-CNF_SHARE_GNOMEND = x11tiles pet_mark.xbm rip.xpm mapbg.xpm
+CNF_SHARE_GNOMEND = x11bigtiles x11tiles pet_mark.xbm rip.xpm mapbg.xpm
 
 # CNF_SHARE_DATND = $(CNF_SHARE_X11ND)
 # CNF_SHARE_DATND = $(CNF_SHARE_QTND)

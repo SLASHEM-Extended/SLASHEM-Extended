@@ -92,7 +92,7 @@ void gnome_init_nhwindows(int* argc, char** argv)
     ghack_init_signals( );
 
 #ifdef HACKDIR
-    //if (ghack_init_glyphs(HACKDIR "/t32-1024.xpm"))
+    //if (ghack_init_glyphs(HACKDIR "/x11bigtiles"))
     if (ghack_init_glyphs(HACKDIR "/x11tiles"))
       g_error ("ERROR:  Could not initialize glyphs.\n");
 #else

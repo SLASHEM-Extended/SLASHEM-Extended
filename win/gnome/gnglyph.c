@@ -4,6 +4,11 @@
 
 #include "gnglyph.h"
 
+/* from tile.c */
+extern int tiles_per_row;
+extern int tiles_per_col;
+extern int total_tiles_used;
+
 static GHackGlyphs     ghack_glyphs;
 static GdkImlibImage** ghack_tiles = NULL;
 
@@ -27,13 +32,14 @@ static GdkImlibImage** ghack_tiles = NULL;
  *
  * NOTES:
  *     The glyphs (tiles) must be in the image in a certain way: the
- *     glyphs must be stacked such that the resultant image is
- *     TILE_X wide, and TILE_Y * (number of glyphs) high.  In this
- *     sense, TILE_X == TILE_Y, and can be any reasonable integer--
- *     say, 16 <= TILE_X <= 64.  Because the glyph number is tightly
+ *     glyphs must be arranged such that the resultant image is
+ *     TILE_X * tiles_per_row wide, and TILE_Y * tiles_per_col high.
+ *     In this sense, TILE_X and TILE_Y can be any reasonable integers--
+ *     say, 16 <= TILE_X,Y <= 64.  Because the glyph number is tightly
  *     coupled to the Nethack object it represents, the order of the
- *     glyphs in the image is imporant: Glyph 1 is at the top of the
- *     image, while Glyph N (the last glyph) is at the bottom.
+ *     glyphs in the image is imporant: Glyph 1 is at the top left of
+ *     the image, while Glyph N (the last glyph) is the last tile on the
+ *     bottom row.
  *
  *     What's the difference between a glyph and a tile?  Well, a
  *     tile is just an image.  A glyph is a tile that knows its
@@ -55,14 +61,10 @@ ghack_init_glyphs( const char *xpmFile)
   gdk_imlib_render(ghack_glyphs.im, ghack_glyphs.im->rgb_width,
 	  ghack_glyphs.im->rgb_height);
 
-  ghack_glyphs.count = ghack_glyphs.im->rgb_height / ghack_glyphs.im->rgb_width;
-  ghack_glyphs.width  = ghack_glyphs.im->rgb_width;
-  ghack_glyphs.height = ghack_glyphs.im->rgb_height / ghack_glyphs.count;
+  ghack_glyphs.count = total_tiles_used;
+  ghack_glyphs.width  = ghack_glyphs.im->rgb_width / tiles_per_row;
+  ghack_glyphs.height = ghack_glyphs.im->rgb_height / tiles_per_col;
 
-
-  /* Assume the tiles are stacked vertically.
-   * Further, assume that the tiles are SQUARE
-   */
   ghack_tiles = g_new0( GdkImlibImage*, ghack_glyphs.count );
   if (ghack_tiles == NULL)
       return -1;
@@ -197,8 +199,9 @@ ghack_image_from_glyph( int glyph, gboolean force )
 #endif
       if (ghack_glyphs.im->pixmap == NULL)
 	  g_warning( "Aiiee!  ghack_glyphs.im->pixmap==NULL!!!!\n");
-      ghack_tiles[tile] = gdk_imlib_crop_and_clone_image(ghack_glyphs.im, 0,
-	      tile * ghack_glyphs.width,
+      ghack_tiles[tile] = gdk_imlib_crop_and_clone_image(ghack_glyphs.im,
+	      tile % tiles_per_row * ghack_glyphs.width,
+	      tile / tiles_per_row * ghack_glyphs.height,
 	      ghack_glyphs.height,
 	      ghack_glyphs.width);
   }
