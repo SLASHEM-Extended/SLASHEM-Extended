@@ -1,4 +1,4 @@
-/* $Id: proxysvc.c,v 1.13 2002-12-29 21:30:22 j_ali Exp $ */
+/* $Id: proxysvc.c,v 1.14 2002-12-29 21:34:52 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -206,9 +206,10 @@ proxy_svc_clear_nhwindow(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    int window;
-    nhext_rpc_params(request, 1, EXT_INT_P(window));
-    (*proxy_svc->winext_clear_nhwindow)(window);
+    int window, rows, cols, layers;
+    nhext_rpc_params(request, 4, EXT_INT_P(window), EXT_INT_P(rows),
+      EXT_INT_P(cols), EXT_INT_P(layers));
+    (*proxy_svc->winext_clear_nhwindow)(window, rows, cols, layers);
     nhext_rpc_params(reply, 0);
 }
 
@@ -643,12 +644,17 @@ proxy_svc_print_glyph_layered(id, request, reply)
 unsigned short id; 
 NhExtXdr *request, *reply;
 {
-    struct proxy_print_glyph_layered_req req = { 0, 0, 0, 0, (int *)0 };
+    int i, j;
+    struct proxy_print_glyph_layered_req req = { 0, 0, 0 };
     nhext_rpc_params(request,
       1, EXT_XDRF(proxy_xdr_print_glyph_layered_req, &req));
-    (*proxy_svc->winext_print_glyph_layered)(req.window, req.x, req.y,
-      req.ng, req.glyphs);
-    free(req.glyphs);
+    (*proxy_svc->winext_print_glyph_layered)(req.window, req.nl, req.layers);
+    for(i = 0; i < req.nl; i++) {
+	for(j = 0; j < req.layers[i].nr; j++)
+	    free(req.layers[i].rows[j].glyphs);
+	free(req.layers[i].rows);
+    }
+    free(req.layers);
     nhext_rpc_params(reply, 0);
 }
 

@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.30 2002-12-29 21:30:22 j_ali Exp $
+  $Id: winGTK.h,v 1.31 2002-12-29 21:34:52 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -114,8 +114,8 @@ extern void	GTK_ext_add_menu(winid, int, int, CHAR_P, CHAR_P, int,
 			const char *, BOOLEAN_P);
 extern int	GTK_ext_select_menu(winid, int, struct proxy_mi **);
 extern void	GTK_ext_print_glyph(winid id, int x, int y, int glyph);
-extern void	GTK_ext_print_glyph_layered(winid id, int x, int y,
-			int ng, int *glyphs);
+extern void	GTK_ext_print_glyph_layered(winid id, int nl,
+			struct proxy_glyph_layer *layers);
 extern char	GTK_ext_yn_function(const char *, const char *, CHAR_P, int *);
 extern int	GTK_ext_outrip(winid, char *);
 extern char *	GTK_ext_getlin(const char *query);
@@ -143,7 +143,7 @@ extern void	GTK_exit_nhwindows(const char *);
 extern void	GTK_suspend_nhwindows(void);
 extern void	GTK_resume_nhwindows(void);
 extern winid	GTK_create_nhwindow(int);
-extern void	GTK_clear_nhwindow(winid);
+extern void	GTK_ext_clear_nhwindow(winid, int, int, int);
 extern void	GTK_display_nhwindow(winid, BOOLEAN_P);
 extern void	GTK_destroy_nhwindow(winid);
 extern void	GTK_curs(winid, int, int);
@@ -173,7 +173,7 @@ extern GdkPixmap * GTK_glyph_to_gdkpixmap(int);
 
 extern GtkWidget	*nh_map_new(GtkWidget *);
 extern void		nh_map_destroy(void);
-extern void		nh_map_clear(void);
+extern void		nh_map_clear(int, int, int);
 extern void		nh_map_check_visibility(void);
 extern void		nh_map_pos(int *, int *, int *);
 extern void		nh_map_click(int);

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkint.c,v 1.6 2002-12-29 21:30:22 j_ali Exp $
+  $Id: gtkint.c,v 1.7 2002-12-29 21:34:52 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -52,7 +52,7 @@ struct window_procs GTK_procs = {
     hook, /* suspend_nhwindows */
     hook, /* resume_nhwindows */
     GTK_create_nhwindow,
-    GTK_clear_nhwindow,
+    hook, /* clear_nhwindow */
     GTK_display_nhwindow,
     GTK_destroy_nhwindow,
     GTK_curs,
@@ -167,6 +167,7 @@ GTK_proxy_init_nhwindows(int *argcp, char **argv)
 static void FDECL(GTK_int_init_nhwindows, (int *, char **));
 static void NDECL(GTK_int_player_selection);
 static void NDECL(GTK_int_askname);
+static void FDECL(GTK_int_clear_nhwindow, (winid));
 #ifdef FILE_AREAS
 static void FDECL(GTK_int_display_file, (const char *, const char *,
 		BOOLEAN_P));
@@ -193,7 +194,7 @@ struct window_procs GTK_procs = {
     hook, /* suspend_nhwindows */
     hook, /* resume_nhwindows */
     GTK_create_nhwindow,
-    GTK_clear_nhwindow,
+    GTK_int_clear_nhwindow,
     GTK_display_nhwindow,
     GTK_destroy_nhwindow,
     GTK_curs,
@@ -266,6 +267,13 @@ GTK_int_askname() {
     name = GTK_ext_askname();
     strcpy(plname, name);
     free(name);
+}
+
+static void
+GTK_int_clear_nhwindow(window)
+winid window;
+{
+    GTK_ext_clear_nhwindow(window, ROWNO, COLNO, 1);
 }
 
 #ifdef FILE_AREAS

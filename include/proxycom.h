@@ -1,4 +1,4 @@
-/* $Id: proxycom.h,v 1.5 2002-12-01 17:23:37 j_ali Exp $ */
+/* $Id: proxycom.h,v 1.6 2002-12-29 21:34:52 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -132,12 +132,22 @@ struct proxy_status_req {
     const char **values;
 };
 
-struct proxy_print_glyph_layered_req {
-    int window;
-    int x;
-    int y;
+struct proxy_glyph_row {
+    int start;
     int ng;
     int *glyphs;
+};
+
+struct proxy_glyph_layer {
+    int start;
+    int nr;
+    struct proxy_glyph_row *rows;
+};
+
+struct proxy_print_glyph_layered_req {
+    int window;
+    int nl;
+    struct proxy_glyph_layer *layers;
 };
 
 E nhext_xdr_bool_t FDECL(proxy_xdr_init_nhwindow_req,

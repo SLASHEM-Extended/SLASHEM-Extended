@@ -365,11 +365,18 @@ struct create_nhwindow_res {
 <pre>
 struct clear_nhwindow_req {
     int window;
+    int rows, cols, layers;
 };
 </pre>
 clear_nhwindow returns no results.
 
 <p> Clear the given window, when appropriate.
+
+<p> For windows of type NHW_MAP, the <var>rows</var>, <var>cols</var> and
+<var>layers</var> fields specify the number of rows, columns and layers
+to be used for this window from now until the next call to clear the window.
+Windowing interfaces which choose not to use layered glyphs may ignore this
+value.
 
 <h3>display_nhwindow</h3>
 <pre>
@@ -961,25 +968,40 @@ struct proxy_status_req {
 
 <h3>print_glyph_layered</h3>
 <pre>
+struct glyph_row {
+    int start;
+    int glyphs<>;
+};
+
+struct glyph_layer {
+    int start;
+    struct glyph_row rows<>;
+};
+
 struct print_glyph_layered_req {
     int window;
-    int x;
-    int y;
-    int glyphs<>;
+    struct glyph_layer layers<>;
 };
 </pre>
 print_glyph_layered returns no values.
 
-<p> Place <var>glyphs</var> at (<var>x</var>,<var>y</var>) on the given window.
-Window interfaces may display layered glyphs using either opacity (lowest present
-glyph is displayed), transparancy (each glyph is represented by an irregular shaped
-image. Glyphs from layers further away may be seen behind the image), translucency
-(glpyhs are represented by images that only partially obscure the underlying image)
-or some other suitable method.
+<p> Place <var>glyphs</var> at the relevant places on the given window.
+All layers are included in the call, even if there have been no changes to
+the glyphs in that layer. In contrast, only a subset of the rows and the
+glyphs within those rows are included. The <var>start</var> fields specify
+the first row or column in the window which should be written to. Note that
+the start column may vary across different rows and that some rows may contain
+no glyphs.
+
+Window interfaces may display layered glyphs using either opacity (lowest
+present glyph is displayed), transparancy (each glyph is represented by an
+irregular shaped image. Glyphs from layers further away may be seen behind the
+image), translucency (glpyhs are represented by images that only partially
+obscure the underlying image) or some other suitable method.
 
 <p>
-Layers are numbered counting away from the viewer. Layers which have no glyph present
-have a value of NO_GLYPH.
+Layers are numbered counting away from the viewer. Layers which have no glyph
+present have a value of NO_GLYPH.
 
 <p>
 Glyphs are
@@ -988,8 +1010,8 @@ Glyphs are
    a 1-1 map between glyphs and distinct things on the map).
 
 <p>
-Note: This procedure will only be called if the interface flag EXT_IM_DISPLAY_LAYERS
-is set.
+Note: This procedure will only be called if the interface flag
+EXT_IM_DISPLAY_LAYERS is set.
 
 <h2>Standard window port call backs</h2>
 

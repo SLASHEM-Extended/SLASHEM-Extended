@@ -1,4 +1,4 @@
-/* $Id: compxdr.c,v 1.9 2002-11-02 15:47:03 j_ali Exp $ */
+/* $Id: compxdr.c,v 1.10 2002-12-29 21:34:52 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -56,14 +56,32 @@ struct proxy_status_req *datum;
       &datum->nv, (unsigned int)-1, sizeof(char *), nhext_xdr_wrapstring);
 }
 
+nhext_xdr_bool_t proxy_xdr_glyph_row(xdr, datum)
+NhExtXdr *xdr;
+struct proxy_glyph_row *datum;
+{
+    return nhext_xdr_int(xdr, &datum->start) &
+      nhext_xdr_array(xdr, (char **)&datum->glyphs, 
+      &datum->ng, (unsigned int)-1, sizeof(int), nhext_xdr_int);
+}
+
+nhext_xdr_bool_t proxy_xdr_glyph_layer(xdr, datum)
+NhExtXdr *xdr;
+struct proxy_glyph_layer *datum;
+{
+    return nhext_xdr_int(xdr, &datum->start) &
+      nhext_xdr_array(xdr, (char **)&datum->rows, &datum->nr,
+      (unsigned int)-1, sizeof(struct proxy_glyph_row), proxy_xdr_glyph_row);
+}
+
 nhext_xdr_bool_t proxy_xdr_print_glyph_layered_req(xdr, datum)
 NhExtXdr *xdr;
 struct proxy_print_glyph_layered_req *datum;
 {
     return nhext_xdr_int(xdr, &datum->window) &
-      nhext_xdr_int(xdr, &datum->x) & nhext_xdr_int(xdr, &datum->y) &
-      nhext_xdr_array(xdr, (char **)&datum->glyphs, 
-      &datum->ng, (unsigned int)-1, sizeof(int), nhext_xdr_int);
+      nhext_xdr_array(xdr, (char **)&datum->layers, &datum->nl,
+      (unsigned int)-1, sizeof(struct proxy_glyph_layer),
+      proxy_xdr_glyph_layer);
 }
 
 nhext_xdr_bool_t proxycb_xdr_get_player_choices_res_role(xdr, datum)

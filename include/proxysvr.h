@@ -1,4 +1,4 @@
-/* $Id: proxysvr.h,v 1.4 2002-12-23 22:59:02 j_ali Exp $ */
+/* $Id: proxysvr.h,v 1.5 2002-12-29 21:34:52 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -54,7 +54,7 @@ struct window_ext_procs {
     void FDECL((*winext_suspend_nhwindows), (const char *));
     void NDECL((*winext_resume_nhwindows));
     int FDECL((*winext_create_nhwindow), (int));
-    void FDECL((*winext_clear_nhwindow), (int));
+    void FDECL((*winext_clear_nhwindow), (int, int, int, int));
     void FDECL((*winext_display_nhwindow), (int, BOOLEAN_P));
     void FDECL((*winext_destroy_nhwindow), (int));
     void FDECL((*winext_curs), (int,int,int));
@@ -92,7 +92,8 @@ struct window_ext_procs {
     void NDECL((*winext_end_screen));
     int FDECL((*winext_outrip), (int, char *));
     void FDECL((*winext_status), (int, int, const char **));
-    void FDECL((*winext_print_glyph_layered), (int, int, int, int, int *));
+    void FDECL((*winext_print_glyph_layered), (int, int,
+    		struct proxy_glyph_layer *));
 };
 
 /* ### proxysvc.c ### */

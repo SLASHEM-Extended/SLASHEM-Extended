@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.25 2002-12-23 22:59:03 j_ali Exp $
+  $Id: gtk.c,v 1.26 2002-12-29 21:34:52 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -2115,11 +2115,10 @@ GTK_display_nhwindow(winid id, BOOLEAN_P blocking)
 }
 
 void
-GTK_clear_nhwindow(winid id)
+GTK_ext_clear_nhwindow(winid id, int rows, int cols, int layers)
 {
-    if (gtkWindows[id].type == NHW_MAP) {
-	nh_map_clear();
-    }
+    if (gtkWindows[id].type == NHW_MAP)
+	nh_map_clear(rows, cols, layers);
 }
 
 /*

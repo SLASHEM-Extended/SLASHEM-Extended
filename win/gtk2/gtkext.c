@@ -1,5 +1,5 @@
 /*
-  $Id: gtkext.c,v 1.5 2002-11-02 15:47:03 j_ali Exp $
+  $Id: gtkext.c,v 1.6 2002-12-29 21:34:52 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -30,7 +30,7 @@ struct window_ext_procs GTK_ext_procs = {
     v_hook, /* suspend_nhwindows */
     v_hook, /* resume_nhwindows */
     GTK_create_nhwindow,
-    GTK_clear_nhwindow,
+    GTK_ext_clear_nhwindow,
     GTK_display_nhwindow,
     GTK_destroy_nhwindow,
     GTK_curs,

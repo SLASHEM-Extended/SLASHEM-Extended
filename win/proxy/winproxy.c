@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.16 2002-12-23 22:59:03 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.17 2002-12-29 21:34:52 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -17,6 +17,15 @@
 #ifdef WIN32
 #include "win32api.h"
 #endif
+
+#ifdef DISPLAY_LAYERS
+#define NO_LAYERS	5
+#else
+#define NO_LAYERS	1
+#endif
+
+static void proxy_flush_layers();
+static void proxy_print_glyph_layered();
 
 /* Window to redirect raw output to, if not WIN_ERR */
 
@@ -211,7 +220,15 @@ void
 proxy_clear_nhwindow(window)
 winid window;
 {
-    (void)nhext_rpc(EXT_FID_CLEAR_NHWINDOW, 1, EXT_INT(window), 0);
+    if (window == WIN_MAP) {
+#ifdef DISPLAY_LAYERS
+	proxy_flush_layers(window, TRUE);
+#endif
+	(void)nhext_rpc(EXT_FID_CLEAR_NHWINDOW, 4, EXT_INT(window),
+	  EXT_INT(ROWNO), EXT_INT(COLNO), EXT_INT(NO_LAYERS), 0);
+    } else
+	(void)nhext_rpc(EXT_FID_CLEAR_NHWINDOW, 4, EXT_INT(window),
+	  EXT_INT(0), EXT_INT(0), EXT_INT(0), 0);
 }
 
 void
@@ -219,6 +236,10 @@ proxy_display_nhwindow(window, blocking)
 winid window;
 boolean blocking;
 {
+#ifdef DISPLAY_LAYERS
+    if (window == WIN_MAP)
+	proxy_flush_layers(window, FALSE);
+#endif
     (void)nhext_rpc(EXT_FID_DISPLAY_NHWINDOW,
       2, EXT_INT(window), EXT_BOOLEAN((nhext_xdr_bool_t)blocking), 0);
 }
@@ -390,6 +411,60 @@ char *posbar;
 }
 #endif
 
+#ifdef DISPLAY_LAYERS
+struct gbuf_layer {
+    char start, stop;
+    struct {
+	char start, stop;
+	int glyphs[COLNO];
+    } rows[ROWNO];
+} gbuf_layers[NO_LAYERS];
+
+static void
+proxy_print_layer(x, y, z, glyph)
+xchar x, y, z;
+int glyph;
+{
+    int g;
+    struct gbuf_layer *l = gbuf_layers + z;
+    g = glyph == NO_GLYPH ? NO_GLYPH : glyph2proxy[glyph];
+    if (l->rows[y].glyphs[x] != g) {
+	l->rows[y].glyphs[x] = g;
+	if (l->start > y)
+	    l->start = y;
+	if (l->stop < y)
+	    l->stop = y;
+	if (l->rows[y].start > x)
+	    l->rows[y].start = x;
+	if (l->rows[y].stop < x)
+	    l->rows[y].stop = x;
+    }
+}
+
+static void
+proxy_flush_layers(window, clearing)
+winid window;
+int clearing;
+{
+    int x, y, z;
+    struct gbuf_layer *l = gbuf_layers;
+    if (!clearing)
+	proxy_print_glyph_layered(window, SIZE(gbuf_layers), gbuf_layers);
+    for(z = 0; z < SIZE(gbuf_layers); z++) {
+	l->stop = 0;
+	l->start = ROWNO - 1;
+	for(y = 0; y < ROWNO; y++) {
+	    l->rows[y].stop = 0;
+	    l->rows[y].start = COLNO - 1;
+	    if (clearing)
+		for(x = 0; x < COLNO; x++)
+		    l->rows[y].glyphs[x] = NO_GLYPH;
+	}
+	l++;
+    }
+}
+#endif
+
 void
 proxy_print_glyph(window, x, y, glyph)
 winid window;
@@ -399,46 +474,44 @@ int glyph;
 #ifdef DISPLAY_LAYERS
     if (proxy_interface_mode & EXT_IM_DISPLAY_LAYERS) {
 	struct rm *lev = &levl[x][y];
-	int glyphs[5];
-	void proxy_print_glyph_layered();
 
 	if (glyph_is_monster(glyph))
-	    glyphs[0] = glyph;
+	    proxy_print_layer(x, y, 0, glyph);
 	else
-	    glyphs[0] = lev->mem_invis ? GLYPH_INVISIBLE : NO_GLYPH;
+	    proxy_print_layer(x, y, 0,
+	      lev->mem_invis ? GLYPH_INVISIBLE : NO_GLYPH);
 	if (lev->mem_obj)
 	    if (lev->mem_corpse)
-		glyphs[1] = body_to_glyph(lev->mem_obj - 1);
+		proxy_print_layer(x, y, 1, body_to_glyph(lev->mem_obj - 1));
 	    else
-		glyphs[1] = objnum_to_glyph(lev->mem_obj - 1);
+		proxy_print_layer(x, y, 1, objnum_to_glyph(lev->mem_obj - 1));
 	else
-	    glyphs[1] = NO_GLYPH;
-	glyphs[2] = lev->mem_trap ?
-	  cmap_to_glyph(lev->mem_trap - 1 + MAXDCHARS) : NO_GLYPH;
+	    proxy_print_layer(x, y, 1, NO_GLYPH);
+	proxy_print_layer(x, y, 2, lev->mem_trap ?
+	  cmap_to_glyph(lev->mem_trap - 1 + MAXDCHARS) : NO_GLYPH);
 	switch (lev->mem_bg) {
 	    case S_room:
 	    case S_corr:
 	    case S_litcorr:
 	    case S_air:
 	    case S_water:
-		glyphs[3] = NO_GLYPH;
-		glyphs[4] = cmap_to_glyph(lev->mem_bg);
+		proxy_print_layer(x, y, 3, NO_GLYPH);
+		proxy_print_layer(x, y, 4, cmap_to_glyph(lev->mem_bg));
 		break;
 	    default:
-		glyphs[3] = cmap_to_glyph(lev->mem_bg);
+		proxy_print_layer(x, y, 3, cmap_to_glyph(lev->mem_bg));
 		if (Is_airlevel(&u.uz))
-		    glyphs[4] = cmap_to_glyph(S_air);
+		    proxy_print_layer(x, y, 4, cmap_to_glyph(S_air));
 		else if (Is_waterlevel(&u.uz))
-		    glyphs[4] = cmap_to_glyph(S_water);
+		    proxy_print_layer(x, y, 4, cmap_to_glyph(S_water));
 		else if (lev->roomno != NO_ROOM)
-		    glyphs[4] = cmap_to_glyph(S_room);
+		    proxy_print_layer(x, y, 4, cmap_to_glyph(S_room));
 		else if (lev->waslit || flags.lit_corridor)
-		    glyphs[4] = cmap_to_glyph(S_litcorr);
+		    proxy_print_layer(x, y, 4, cmap_to_glyph(S_litcorr));
 		else
-		    glyphs[4] = cmap_to_glyph(S_corr);
+		    proxy_print_layer(x, y, 4, cmap_to_glyph(S_corr));
 		break;
 	}
-	proxy_print_glyph_layered(window, x, y, 5, glyphs);
     }
     else
 #endif
@@ -654,26 +727,48 @@ const char **values;
     (void)nhext_rpc(EXT_FID_STATUS, 1, EXT_XDRF(proxy_xdr_status_req, &req), 0);
 }
 
-void
-proxy_print_glyph_layered(window, x, y, ng, glyphs)
+static void
+proxy_print_glyph_layered(window, nl, layers)
 winid window;
-xchar x, y;
-int ng;
-int *glyphs;
+int nl;
+struct gbuf_layer *layers;
 {
-    int i;
+    int i, j, k, ng = 0;
     struct proxy_print_glyph_layered_req req;
     req.window = window;
-    req.x = x;
-    req.y = y;
-    req.ng = ng;
-    req.glyphs = (int *)alloc(ng * sizeof(int));
-    for(i = 0; i < ng; i++)
-	req.glyphs[i] =
-	  glyphs[i] == NO_GLYPH ? NO_GLYPH : glyph2proxy[glyphs[i]];
+    req.nl = nl;
+    req.layers = (struct proxy_glyph_layer *)alloc(nl *
+      sizeof(struct proxy_glyph_layer));
+    for(i = 0; i < nl; i++) {
+	if (layers[i].stop - layers[i].start >= 0) {
+	    req.layers[i].start = layers[i].start;
+	    req.layers[i].nr = layers[i].stop - layers[i].start + 1;
+	    req.layers[i].rows = (struct proxy_glyph_row *)
+	      alloc(req.layers[i].nr * sizeof(struct proxy_glyph_row));
+	    for(j = 0, k = layers[i].start; j < req.layers[i].nr; j++, k++)
+		if (layers[i].rows[k].stop - layers[i].rows[k].start >= 0) {
+		    req.layers[i].rows[j].start = layers[i].rows[k].start;
+		    req.layers[i].rows[j].ng =
+		      layers[i].rows[k].stop - layers[i].rows[k].start + 1;
+		    req.layers[i].rows[j].glyphs =
+		      layers[i].rows[k].glyphs + layers[i].rows[k].start;
+		} else {
+		    req.layers[i].rows[j].start = 0;
+		    req.layers[i].rows[j].ng = 0;
+		    req.layers[i].rows[j].glyphs = (int *)0;
+		}
+	} else {
+	    req.layers[i].start = 0;
+	    req.layers[i].nr = 0;
+	    req.layers[i].rows = (struct proxy_glyph_row *)0;
+	}
+    }
     (void)nhext_rpc(EXT_FID_PRINT_GLYPH_LAYERED,
       1, EXT_XDRF(proxy_xdr_print_glyph_layered_req, &req), 0);
-    free(req.glyphs);
+    for(i = 0; i < nl; i++)
+	if (req.layers[i].rows)
+	    free(req.layers[i].rows);
+    free(req.layers);
 }
 
 extern struct nhext_svc proxy_callbacks[];
