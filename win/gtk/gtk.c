@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.36 2003-08-02 15:40:04 j_ali Exp $
+  $Id: gtk.c,v 1.37 2003-08-02 15:46:36 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1981,6 +1981,7 @@ GTK_init_nhwindows(char ***capvp)
 
     nh_option_cache_set_bool_addr("color", &copts.use_color);
     nh_option_cache_set_bool_addr("hilite_pet", &copts.hilite_pet);
+    copts.num_pad = nh_option_cache_get_bool("number_pad");
 
     /* Init windows to nothing. */
     for (i = 0; i < MAXWIN; i++)

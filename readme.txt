@@ -75,6 +75,7 @@ ver 0.0.7E3 [?] [Released by ?]
 -fixed bug 781978: GTK: Memory corruption in win32 (RtlFreeHeap).
 -fixed bug 781991: GTK: Duplicate text windows.
 -fixed bug 781994: GTK interface crashes on exit from a restored game.
+-fixed bug 781997: GTK's concept of the initial value of number_pad is wrong.
 
 See history.txt for changes made in previous versions.
 
