@@ -4365,7 +4365,7 @@ shk_weapon_works(slang, shkp)
 
 	any.a_int = 1;
 	if (ESHK(shkp)->services & (SHK_SPECIAL_A))
-		add_menu(tmpwin, NO_GLYPH, &any , 'r', 0, ATR_NONE, "Rust/Fireproof", MENU_UNSELECTED);
+		add_menu(tmpwin, NO_GLYPH, &any , 'w', 0, ATR_NONE, "Ward against damage", MENU_UNSELECTED);
 	any.a_int = 2;
 	if (ESHK(shkp)->services & (SHK_SPECIAL_B))
 		add_menu(tmpwin, NO_GLYPH, &any , 'e', 0, ATR_NONE, "Enchant", MENU_UNSELECTED);
@@ -4391,14 +4391,14 @@ shk_weapon_works(slang, shkp)
 		case 1:
 		verbalize("This'll leave your %s untouchable!", xname(obj));
 		
-		/* Costs more the more rusty it is (oeroded 0-3) */
-		charge = 500 * (obj->oeroded+1);
-		if (obj->oeroded > 2)
+		/* Costs more the more eroded it is (oeroded 0-3 * 2) */
+		charge = 500 * (obj->oeroded + obj->oeroded2 + 1);
+		if (obj->oeroded + obj->oeroded2 > 2)
 			pline("This thing's in pretty sad condition, %s",
 				slang);
 
 		/*Another warning if object is naturally rustproof*/
-		if (obj->oerodeproof || !is_rustprone(obj))
+		if (obj->oerodeproof || !is_damageable(obj))
 			pline("%s gives you a suspciously happy smile...", mon_nam(shkp));
 
 		/* Artifacts cost more to deal with */
@@ -4416,7 +4416,7 @@ shk_weapon_works(slang, shkp)
 		else if (Hallucination)
 			Your(" - tin roof, un-rusted!");
 
-		obj->oeroded = 0;
+		obj->oeroded = obj->oeroded2 = 0;
 		obj->rknown = TRUE;
 		obj->oerodeproof = TRUE;
 		break;

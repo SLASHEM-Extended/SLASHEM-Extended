@@ -359,6 +359,7 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -fixed bug 423686: Steed resisting and hilite_pet.
 -fixed bug 430975: "the the Dark Lord".
 -fixed bug 431283: Sleeping monsters can evade disarm tech.
+-fixed bug 433019: Shopkeeper rustproofing and corrosion.
 
 ver 0.0.6E4F4 [May 2/2001] [Released by Ali]
 -fixed bug 404825: wands of teleportation that explode/zapped at yourself
