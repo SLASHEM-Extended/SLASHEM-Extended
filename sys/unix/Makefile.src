@@ -251,10 +251,14 @@ WINPROXYSRC = ../win/proxy/winproxy.c ../win/proxy/callback.c
 WINPROXYOBJ = winproxy.o callback.o nhwin.a
 #
 # Common files for proxy window interface and plug-in window interfaces.
-PROXYCOMSRC = ../win/proxy/nhext.c ../win/proxy/nhxdr.c ../win/proxy/md5.c \
+PROXYCOMSRC = ../win/proxy/nhext.c ../win/proxy/nhxdr.c \
 	../win/proxy/nhextxdr.c ../win/proxy/nhextio.c ../win/proxy/nhextnb.c \
 	../win/proxy/compxdr.c
-PROXYCOMOBJ = nhext.o nhxdr.o md5.o nhextxdr.o nhextio.o nhextnb.o compxdr.o
+PROXYCOMOBJ = nhext.o nhxdr.o nhextxdr.o nhextio.o nhextnb.o compxdr.o
+#
+# Common files that are also shared with non-proxy window interfaces
+PROXYSHRSRC = ../win/proxy/md5.c
+PROXYSHROBJ = md5.o
 #
 # Files for the proxy utility modules. These are provided for use with window
 # ports that support the proxy interface. The GTK window interface needs
@@ -460,7 +464,7 @@ GENCSRC = monstr.c vis_tab.c  #tile.c
 # all windowing-system-dependent .c (for dependencies and such)
 WINCSRC = $(WINTTYSRC) $(WINX11SRC) $(WINGTKSRC) $(WINGNOMESRC) $(WINGEMSRC) \
 	$(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYCLNTSRC) $(PROXYCOMSRC) \
-	$(WINGLSRC) tile.c
+	$(PROXYSHRSRC) $(WINGLSRC) tile.c
 # all windowing-system-dependent .cpp (for dependencies and such)
 WINCXXSRC = $(WINQTSRC) $(WINBESRC)
 
@@ -596,12 +600,12 @@ qttableview.moc: ../include/qttableview.h
 
 # NetHack windows library for modules needed by more than one windows
 # interface.
-nhwin.a:	tile.o
-	$(AR) cr nhwin.a tile.o
+nhwin.a:	tile.o $(PROXYSHROBJ)
+	$(AR) cr nhwin.a tile.o $(PROXYSHROBJ)
 
 # NetHack proxy library for external window interfaces.
-nhproxy.a:      $(PROXYCLNTOBJ) $(PROXYCOMOBJ)
-	$(AR) cr nhproxy.a $(PROXYCLNTOBJ) $(PROXYCOMOBJ)
+nhproxy.a:      $(PROXYCLNTOBJ) $(PROXYCOMOBJ) $(PROXYSHROBJ)
+	$(AR) cr nhproxy.a $(PROXYCLNTOBJ) $(PROXYCOMOBJ) $(PROXYSHROBJ)
 
 $(MAKEDEFS): ../util/makedefs.c  $(CONFIG_H) ../include/permonst.h \
 		../include/objclass.h ../include/monsym.h \

@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.47 2003-12-13 22:58:28 j_ali Exp $
+  $Id: gtk.c,v 1.48 2003-12-21 20:23:23 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -3237,7 +3237,6 @@ int nh_dlbh_ftell(int fh)
 # define USE_TEXTVIEW
 #endif
 
-#ifdef GTKHACK
 int nh_set_help_font(gchar *name)
 {
     if (help_font_name)
@@ -3252,7 +3251,6 @@ nh_help_save(struct gtkhackrc *rc)
     if (help_font_name)
 	nh_gtkhackrc_store(rc, "help.font = \"%s\"", help_font_name);
 }
-#endif
 
 #ifdef USE_TEXTVIEW
 static void
