@@ -118,7 +118,8 @@
 #define extra_nasty(ptr)	(((ptr)->mflags2 & M2_NASTY) != 0L)
 #define strongmonst(ptr)	(((ptr)->mflags2 & M2_STRONG) != 0L)
 #define can_breathe(ptr)	attacktype(ptr, AT_BREA)
-#define cantwield(ptr)		(nohands(ptr) || verysmall(ptr))
+#define cantwield(ptr)		(nohands(ptr) || verysmall(ptr) || \
+				 (ptr)->mlet == S_ANT)
 #define could_twoweap(ptr)	((ptr)->mattk[1].aatyp == AT_WEAP && \
 			((ptr) != youmonst.data || \
 			P_MAX_SKILL(P_TWO_WEAPON_COMBAT) >= P_SKILLED || \
