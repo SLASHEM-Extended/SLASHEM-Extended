@@ -109,6 +109,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -fixed bug 729024: Sokoban dead end.
 -fixed bug 617219: data.base has many redundant entries.
 -fixed bug 604681: MR_PLUSONE etc unimplemented.
+-fixed bug 734765: level-draining Thiefbane.
 
 See history.txt for changes made in previous versions.
 

@@ -2766,7 +2766,7 @@ register struct monst *mon;
 				flags.botl = 1;
 				break;
 			case 3:
-				if (!resists_drli(&youmonst)) {
+				if (!Drain_resistance) {
 				    You_feel("out of shape.");
 				    losexp("overexertion", FALSE);
 				} else {
