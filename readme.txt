@@ -101,6 +101,8 @@ ver 0.0.7E5 [?] [Released by ?]
 -fixed bug 575178: Fighting with a weapon and a bare fist
 -fixed bug 869951: Random crashes shortly after restore
 -fixed bug 870027: GTK: Closing main window has no effect until after next cmd
+-fixed bug 870762: Lighting a candle from a stack lights the remainder
+		   (Nico Kist)
 
 See history.txt for changes made in previous versions.
 

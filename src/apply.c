@@ -1114,7 +1114,6 @@ struct obj *obj;
 {
 	char buf[BUFSZ];
 	char qbuf[QBUFSZ];
-	boolean do_burn = TRUE;
 
 	if(Underwater) {
 		pline("This is not a diving lamp.");
@@ -1187,31 +1186,27 @@ struct obj *obj;
 #endif
 		} else {	/* candle(s) */
 		    Sprintf(qbuf, "Light all of %s?", the(xname(obj)));
-
 		    if (obj->quan > 1L && (yn(qbuf) == 'n')) {
-		    	/* Check if player wants to light all the candles */
+			/* Check if player wants to light all the candles */
 			struct obj *rest;	     /* the remaining candles */
-			rest = splitobj(obj, 1L);
-			obj_extract_self(rest);      /* free from inv */
-			begin_burn(obj, FALSE);
-			/* shouldn't merge */
+			rest = splitobj(obj, obj->quan - 1L);
+			obj_extract_self(rest);	     /* free from inv */
+			obj->spe++;	/* this prevents merging */
 			(void)hold_another_object(rest, "You drop %s!",
 					  doname(rest), (const char *)0);
-			do_burn = FALSE;
+			obj->spe--;
 		    }
-		    
 		    pline("%s flame%s %s%s",
 			s_suffix(Yname2(obj)),
 			plur(obj->quan), otense(obj, "burn"),
 			Blind ? "." : " brightly!");
 		    if (obj->unpaid && costly_spot(u.ux, u.uy) &&
-			  obj->age == 20L * (long)objects[obj->otyp].oc_cost) {
+			  obj->otyp != MAGIC_CANDLE) {
 			const char *ithem = obj->quan > 1L ? "them" : "it";
 			verbalize("You burn %s, you bought %s!", ithem, ithem);
 			bill_dummy_object(obj);
 		    }
 		}
-		if (do_burn)
 		begin_burn(obj, FALSE);
 	}
 }
