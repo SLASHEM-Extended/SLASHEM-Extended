@@ -1,0 +1,50 @@
+# $Id: Makefile.w32,v 1.1 2002-01-31 22:21:26 j_ali Exp $
+# Copyright (c) Slash'EM Development Team 2001-2002
+# NetHack may be freely redistributed.  See license for details.
+#
+# This makefile is for maintainer use. It is not needed when building the game.
+
+CFLAGS = -g -I../../include
+
+# ----------------------------------------
+#
+# Nothing below this line should have to be changed.
+
+# timestamps for primary header files, matching src/Makefile
+CONFIG_H = ../../src/config.h-t
+HACK_H  = ../../src/hack.h-t
+
+CSRC = nhxdr.c nhextxdr.c
+
+all:	tests
+
+FORCE:
+
+tests:	test_ext FORCE
+	@echo ""
+	@echo Testing NhExt sub-protocol 1 support routines...
+	@echo ============================
+	- ./test_ext
+	@echo ============================
+
+test_ext:	test_ext.c nhext.o nhxdr.o nhextxdr.o
+	$(CC) $(CFLAGS) -o test_ext test_ext.c nhext.o nhxdr.o nhextxdr.o
+
+clean:
+	$(RM) *.o test_ext
+
+spotless:	clean
+
+# DO NOT DELETE THIS LINE OR CHANGE ANYTHING BEYOND IT
+
+# config.h timestamp
+$(CONFIG_H): ../../include/config.h
+	touch $(CONFIG_H)
+# hack.h timestamp
+$(HACK_H): ../../include/hack.h
+	touch $(HACK_H)
+#
+nhxdr.o: nhxdr.c $(HACK_H) ../../include/nhxdr.h
+nhextxdr.o: nhextxdr.c $(HACK_H) ../../include/nhxdr.h
+# DEPENDENCIES MUST END AT END OF FILE
+# IF YOU PUT STUFF HERE IT WILL GO AWAY

@@ -1,0 +1,40 @@
+#
+#
+#
+style "text"
+{
+    font_name = "fixed Medium 12"
+}
+style "map"
+{
+    # Map font:
+    #
+    # FIXME: There is currently no way to use the IBMgraphics option.
+    #
+
+    # Map colours:
+    #
+    # - These are only used in character mode.
+    # - fg is not used when color option is set.
+    # - The five states have no real meaning and should normally take the
+    #   same values.
+    # - In color mode, certain values of bg[NORMAL] are checked for:
+    #   * { 0.0, 0.0, 0.0 } causes normally black symbols to be drawn in white.
+    #   * { 1.0, 1.0, 1.0 } causes normally white symbols to be drawn in black.
+    #   Note: only these exact values are detected (barring rounding errors).
+    #
+    bg[NORMAL] = { 0.15, 0.15, 0.15 }
+    bg[PRELIGHT] = { 0.15, 0.15, 0.15 }
+    bg[ACTIVE] = { 0.15, 0.15, 0.15 }
+    bg[SELECTED] = { 0.15, 0.15, 0.15 }
+    bg[INSENSITIVE] = { 0.15, 0.15, 0.15 }
+    fg[NORMAL] = { 1.0, 1.0, 1.0 }
+    fg[PRELIGHT] = { 1.0, 1.0, 1.0 }
+    fg[ACTIVE] = { 1.0, 1.0, 1.0 }
+    fg[SELECTED] = { 1.0, 1.0, 1.0 }
+    fg[INSENSITIVE] = { 1.0, 1.0, 1.0 }
+}
+
+widget "fixed font*GtkText" style "text"
+widget "fixed font*GtkCList" style "text"
+widget "SlashEM.*.map" style "map"
