@@ -1458,8 +1458,12 @@ long timeout;
      */
     pmtype = pm_mkclass(S_FUNGUS, 0);
     if ((pmtype != -1) && (mons[pmtype].mmove)) pmtype = pm_mkclass(S_FUNGUS, 0);
-    
-    
+
+    /* Molds don't grow in adverse conditions  --ALI */
+    if (is_pool(body->ox, body->oy) || is_lava(body->ox, body->oy) ||
+      is_ice(body->ox, body->oy))
+	pmtype = -1;
+
     if (pmtype != -1) {
 	/* We don't want special case revivals */
 	if (cant_create(&pmtype, TRUE) || (body->oxlth &&

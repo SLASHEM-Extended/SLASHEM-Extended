@@ -371,6 +371,7 @@ ver 0.0.6E4F1 [October XX/2000]
 -Allegro DOS port verified to use the new tilesets
 -Allegro: scroll_lim read properly from config file
 -fixed default tileset declaration in decl.c
+-fixed bug 115821: Molds grow from corpses underwater.
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()
