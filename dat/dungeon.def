@@ -174,7 +174,7 @@ LEVEL:		"mineking" "M" @ (-1, 0)
 
 ### The Quest Dungeon ###
 #   This is a proto-dungeon.  The level file names will be prepended with
-#   the first letter of the character name during initialization.
+#   the role code (eg, Arc, Val) during initialization.
 #   Special "x-fila" and "x-filb" levels must be defined in the levels
 #   description file.  It will be used for all levels not defined explicitly
 #   below.
