@@ -511,7 +511,7 @@ spitmm(magr, mdef, mattk)
 struct monst *magr, *mdef;
 struct attack *mattk;
 {
-    register struct obj *otmp;
+    register struct obj *obj;
     int mhp;
 
     if (magr->mcan) {
@@ -529,13 +529,13 @@ struct attack *mattk;
 	switch (mattk->adtyp) {
 	    case AD_BLND:
 	    case AD_DRST:
-		otmp = mksobj(BLINDING_VENOM, TRUE, FALSE);
+		obj = mksobj(BLINDING_VENOM, TRUE, FALSE);
 		break;
 	    default:
 		impossible("bad attack type in spitmm");
 	    /* fall through */
 	    case AD_ACID:
-		otmp = mksobj(ACID_VENOM, TRUE, FALSE);
+		obj = mksobj(ACID_VENOM, TRUE, FALSE);
 		break;
 	}
 	if (!rn2(BOLT_LIM - distmin(magr->mx, magr->my, mdef->mx, mdef->my))) {
@@ -543,7 +543,7 @@ struct attack *mattk;
 		pline("%s spits venom!", Monnam(magr));
 	    mhp = mdef->mhp;
 	    m_throw(magr, magr->mx, magr->my, sgn(tbx), sgn(tby),
-		    distmin(magr->mx, magr->my, mdef->mx, mdef->my), otmp);
+		    distmin(magr->mx, magr->my, mdef->mx, mdef->my), obj);
 	    nomul(0);
 	    return (mdef->mhp < 1 ? MM_DEF_DIED : 0) |
 		   (mdef->mhp < mhp ? MM_HIT : 0) |
@@ -558,13 +558,10 @@ STATIC_OVL int
 thrwmm(magr, mdef)
 struct monst *magr, *mdef;
 {
-    struct obj *otmp, *mwep;
-    xchar x, y;
+    struct obj *obj, *mwep;
     schar skill;
-    int multishot;
+    int multishot, mhp;
     const char *onm;
-    int chance;
-    int mhp;
 
     /* Rearranged beginning so monsters can use polearms not in a line */
     if (magr->weapon_check == NEED_WEAPON || !MON_WEP(magr)) {
@@ -574,10 +571,10 @@ struct monst *magr, *mdef;
     }
 
     /* Pick a weapon */
-    otmp = select_rwep(magr);
-    if (!otmp) return MM_MISS;
+    obj = select_rwep(magr);
+    if (!obj) return MM_MISS;
 
-    if (is_pole(otmp)) {
+    if (is_pole(obj)) {
 	int dam, hitv, vis = canseemon(magr);
 
 	if (dist2(magr->mx, magr->my, mdef->mx, mdef->my) > POLE_LIM ||
@@ -585,16 +582,16 @@ struct monst *magr, *mdef;
 	    return MM_MISS;	/* Out of range, or intervening wall */
 
 	if (vis) {
-	    onm = xname(otmp);
+	    onm = xname(obj);
 	    pline("%s thrusts %s.", Monnam(magr),
-		  obj_is_pname(otmp) ? the(onm) : an(onm));
+		  obj_is_pname(obj) ? the(onm) : an(onm));
 	}
 
-	dam = dmgval(otmp, mdef);
+	dam = dmgval(obj, mdef);
 	hitv = 3 - distmin(mdef->mx, mdef->my, magr->mx, magr->my);
 	if (hitv < -4) hitv = -4;
 	if (bigmonst(mdef->data)) hitv++;
-	hitv += 8 + otmp->spe;
+	hitv += 8 + obj->spe;
 	if (dam < 1) dam = 1;
 
 	if (find_mac(mdef) + hitv <= rnd(20)) {
@@ -608,7 +605,7 @@ struct monst *magr, *mdef;
 		pline("It hits %s%s", a_monnam(mdef), exclam(dam));
 	    else if (vis)
 		pline("It hits.");
-	    if (objects[otmp->otyp].oc_material == SILVER &&
+	    if (objects[obj->otyp].oc_material == SILVER &&
 		    hates_silver(mdef->data) && canseemon(mdef)) {
 		if (vis)
 		    pline_The("silver sears %s flesh!",
@@ -633,24 +630,24 @@ struct monst *magr, *mdef;
     if (!linedup(mdef->mx, mdef->my, magr->mx, magr->my))
 	return MM_MISS;
 
-    skill = objects[otmp->otyp].oc_skill;
+    skill = objects[obj->otyp].oc_skill;
     mwep = MON_WEP(magr);		/* wielded weapon */
 
-    if (ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range &&
+    if (ammo_and_launcher(obj, mwep) && objects[mwep->otyp].oc_range &&
 	    dist2(magr->mx, magr->my, mdef->mx, mdef->my) >
 	    objects[mwep->otyp].oc_range * objects[mwep->otyp].oc_range)
 	return MM_MISS; /* Out of range */
 
     /* Multishot calculations */
     multishot = 1;
-    if ((ammo_and_launcher(otmp, mwep) || skill == P_DAGGER ||
+    if ((ammo_and_launcher(obj, mwep) || skill == P_DAGGER ||
 	    skill == -P_DART || skill == -P_SHURIKEN) && !magr->mconf) {
 	/* Assumes lords are skilled, princes are expert */
 	if (is_prince(magr->data)) multishot += 2;
 	else if (is_lord(magr->data)) multishot++;
 
 	/*  Elven Craftsmanship makes for light,  quick bows */
-	if (otmp->otyp == ELVEN_ARROW && !otmp->cursed)
+	if (obj->otyp == ELVEN_ARROW && !obj->cursed)
 	    multishot++;
 	if (mwep && mwep->otyp == ELVEN_BOW && !mwep->cursed) multishot++;
 	/* 1/3 of object enchantment */
@@ -673,7 +670,7 @@ struct monst *magr, *mdef;
 		break;
 	case PM_NINJA:
 	case PM_SAMURAI:
-		if (otmp->otyp == YA && mwep &&
+		if (obj->otyp == YA && mwep &&
 		    mwep->otyp == YUMI) multishot++;
 		break;
 	default:
@@ -681,14 +678,14 @@ struct monst *magr, *mdef;
 	}
 	/* racial bonus */
 	if ((is_elf(magr->data) &&
-		otmp->otyp == ELVEN_ARROW &&
+		obj->otyp == ELVEN_ARROW &&
 		mwep && mwep->otyp == ELVEN_BOW) ||
 	    (is_orc(magr->data) &&
-		otmp->otyp == ORCISH_ARROW &&
+		obj->otyp == ORCISH_ARROW &&
 		mwep && mwep->otyp == ORCISH_BOW))
 	    multishot++;
 
-	if ((long)multishot > otmp->quan) multishot = (int)otmp->quan;
+	if ((long)multishot > obj->quan) multishot = (int)obj->quan;
 	if (multishot < 1) multishot = 1;
 	/* else multishot = rnd(multishot); */
     }
@@ -697,24 +694,24 @@ struct monst *magr, *mdef;
 	char onmbuf[BUFSZ];
 
 	if (multishot > 1) {
-	    /* "N arrows"; multishot > 1 implies otmp->quan > 1, so
+	    /* "N arrows"; multishot > 1 implies obj->quan > 1, so
 	       xname()'s result will already be pluralized */
-	    Sprintf(onmbuf, "%d %s", multishot, xname(otmp));
+	    Sprintf(onmbuf, "%d %s", multishot, xname(obj));
 	    onm = onmbuf;
 	} else {
 	    /* "an arrow" */
-	    onm = singular(otmp, xname);
-	    onm = obj_is_pname(otmp) ? the(onm) : an(onm);
+	    onm = singular(obj, xname);
+	    onm = obj_is_pname(obj) ? the(onm) : an(onm);
 	}
-	m_shot.s = ammo_and_launcher(otmp,mwep) ? TRUE : FALSE;
+	m_shot.s = ammo_and_launcher(obj,mwep) ? TRUE : FALSE;
 	pline("%s %s %s!", Monnam(magr),
 #ifdef FIREARMS
-	      m_shot.s ? is_bullet(otmp) ? "fires" : "shoots" : "throws",
+	      m_shot.s ? is_bullet(obj) ? "fires" : "shoots" : "throws",
 	      onm);
 #else
 	      m_shot.s ? "shoots" : "throws", onm);
 #endif
-	m_shot.o = otmp->otyp;
+	m_shot.o = obj->otyp;
     } else {
 	m_shot.o = STRANGE_OBJECT;	/* don't give multishot feedback */
     }
@@ -723,7 +720,7 @@ struct monst *magr, *mdef;
     m_shot.n = multishot;
     for (m_shot.i = 1; m_shot.i <= m_shot.n; m_shot.i++)
 	m_throw(magr, magr->mx, magr->my, sgn(tbx), sgn(tby),
-		distmin(magr->mx, magr->my, mdef->mx, mdef->my), otmp);
+		distmin(magr->mx, magr->my, mdef->mx, mdef->my), obj);
     m_shot.n = m_shot.i = 0;
     m_shot.o = STRANGE_OBJECT;
     m_shot.s = FALSE;

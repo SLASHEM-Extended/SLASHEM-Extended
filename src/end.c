@@ -38,7 +38,6 @@ STATIC_DCL void FDECL(disclose,(int,BOOLEAN_P));
 STATIC_DCL void FDECL(get_valuables, (struct obj *));
 STATIC_DCL void FDECL(sort_valuables, (struct valuable_data *,int));
 STATIC_DCL void FDECL(artifact_score, (struct obj *,BOOLEAN_P,winid));
-STATIC_DCL void FDECL(display_artifact_score, (struct obj *,winid));
 STATIC_DCL void FDECL(savelife, (int));
 STATIC_DCL boolean FDECL(list_vanquished, (CHAR_P, BOOLEAN_P));
 #ifdef DUMP_LOG

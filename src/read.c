@@ -26,9 +26,11 @@ static NEARDATA const char readable[] = {
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
 
-static char *warnings[] = {
+#if 0
+static const char *warnings[] = {
 	"white", "pink", "red", "ruby", "purple", "black"
 };
+#endif
 
 #if 0
 static void FDECL(wand_explode, (struct obj *));
@@ -77,7 +79,7 @@ doread()
 
 	/* KMH -- some rings can be read, even while illiterate */
 	if (scroll->oclass == RING_CLASS) {
-	    char *clr = (char *)0;
+	    const char *clr = (char *)0;
 
 	    if (cant_see) {
 		You("cannot see it!");
@@ -89,16 +91,16 @@ doread()
 	    }
 	    if (scroll->dknown && objects[scroll->otyp].oc_name_known)
 		switch (scroll->otyp) {
-		    case RIN_WARNING:
 #if 0	/* Not yet supported under 3.3.1 style warning system */
+		    case RIN_WARNING:
 			if (warnlevel >= 100)
 			    clr = "light blue";
 			else if (warnlevel >= SIZE(warnings))
 			    clr = warnings[SIZE(warnings)-1];
 			else
 			    clr = warnings[warnlevel];
-#endif
 			break;
+#endif
 		    case RIN_MOOD:
 			if (u.ualign.record >= DEVOUT)
 			    clr = "green";	/* well-pleased */

@@ -1061,11 +1061,10 @@ int tech_no;
             	You("chant the ancient curse...");
 		for(i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
 		    int corpsenm;
-		    struct obj *obj, *obj2;
 
 		    if (!isok(u.ux+i, u.uy+j)) continue;
-		    for (obj = level.objects[u.ux+i][u.uy+j]; obj; obj = obj2) {
-			obj2 = obj->nexthere;
+		    for (obj = level.objects[u.ux+i][u.uy+j]; obj; obj = otmp) {
+			otmp = obj->nexthere;
 
 			if (obj->otyp != CORPSE) continue;
 			/* Only generate undead */

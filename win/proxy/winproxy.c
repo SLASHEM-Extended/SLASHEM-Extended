@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.34 2004-04-19 06:56:42 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.35 2004-10-30 08:27:57 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2004 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -138,7 +138,7 @@ char **argv;
 {
     int i, j, retval;
     struct proxy_init_nhwindow_req req;
-    struct proxy_init_nhwindow_res res = {0};
+    struct proxy_init_nhwindow_res res = {0, 0, 0, 0, 0};
     extern struct wc_Opt wc_options[];
     req.argc = *argcp;
     req.argv = argv;
@@ -173,12 +173,12 @@ char **argv;
 void
 proxy_player_selection()
 {
-    int role, race, gend, align;
+    int role, race, gend, alignm;
     nhext_xdr_bool_t quit;
     if (!nhext_rpc(EXT_FID_PLAYER_SELECTION,
       4, EXT_INT(flags.initrole), EXT_INT(flags.initrace),
          EXT_INT(flags.initgend), EXT_INT(flags.initalign),
-      5, EXT_INT_P(role), EXT_INT_P(race), EXT_INT_P(gend), EXT_INT_P(align),
+      5, EXT_INT_P(role), EXT_INT_P(race), EXT_INT_P(gend), EXT_INT_P(alignm),
          EXT_BOOLEAN_P(quit)))
 	quit = 1;
     if (quit)
@@ -190,7 +190,7 @@ proxy_player_selection()
     flags.initrole = role;
     flags.initrace = race;
     flags.initgend = gend;
-    flags.initalign = align;
+    flags.initalign = alignm;
 }
 
 void
@@ -986,9 +986,9 @@ void *handle;
 void *buf;
 int len;
 {
-    int fd = (int)handle, retval, nb;
+    int fd = (int)handle, retval;
     fd_set readfds;
-    struct timeval tv = {0};
+    struct timeval tv = {0, 0};
     FD_ZERO(&readfds);
     FD_SET(fd, &readfds);
     retval = select(fd + 1, &readfds, NULL, NULL, &tv);
@@ -1033,7 +1033,8 @@ proxy_auth_emit_error(struct proxy_auth_connection *auth)
      * which implies that the remote end probably doesn't support
      * an authentication method which we allow.
      */
-    char *message = *auth->error ? auth->error : "Please upgrade your client.";
+    const char *message = *auth->error ?
+      auth->error : "Please upgrade your client.";
     winid w;
     int argc = 1;
     char *argv[2];
@@ -1071,7 +1072,7 @@ proxy_auth_open()
     } else
 	return NULL;
 #else
-    int sin[2], sout[2], serr[2], r, status;
+    int s_in[2], s_out[2], s_err[2], r, status;
     char buf[BUFSZ + 1];
     if (authopts)
 	parseauthentication(authopts);
@@ -1079,7 +1080,7 @@ proxy_auth_open()
 	pac = (struct proxy_auth_connection *)alloc(sizeof(*pac));
 	pac->sin = pac->sout = pac->serr = pac->pid = -1;
 	pac->error[0] = '\0';
-	if (pipe(sin) || pipe(sout) || pipe(serr)) {
+	if (pipe(s_in) || pipe(s_out) || pipe(s_err)) {
 	    strcpy(pac->error, "Can't create pipes to helper program.");
 	    return pac;
 	}
@@ -1089,15 +1090,15 @@ proxy_auth_open()
 	    char args[BUFSZ];
 	    (void)setgid(getgid());
 	    (void)setuid(getuid());
-	    dup2(sin[0], 0);
-	    dup2(sout[1], 1);
-	    dup2(serr[1], 2);
-	    close(sin[0]);
-	    close(sin[1]);
-	    close(sout[0]);
-	    close(sout[1]);
-	    close(serr[0]);
-	    close(serr[1]);
+	    dup2(s_in[0], 0);
+	    dup2(s_out[1], 1);
+	    dup2(s_err[1], 2);
+	    close(s_in[0]);
+	    close(s_in[1]);
+	    close(s_out[0]);
+	    close(s_out[1]);
+	    close(s_err[0]);
+	    close(s_err[1]);
 	    strcpy(args, authentication.args);
 	    for(i = 0; args[i]; i++)
 		if (args[i] == ' ' && i && args[i - 1] != ' ')
@@ -1123,12 +1124,12 @@ proxy_auth_open()
 	    perror(authentication.prog);
 	    exit(1);
 	}
-	close(sin[0]);
-	close(sout[1]);
-	close(serr[1]);
-	pac->sin = sin[1];
-	pac->sout = sout[0];
-	pac->serr = serr[0];
+	close(s_in[0]);
+	close(s_out[1]);
+	close(s_err[1]);
+	pac->sin = s_in[1];
+	pac->sout = s_out[0];
+	pac->serr = s_err[0];
 	r = read(pac->sout, buf, BUFSZ);
 	if (r < 0) {
 	    strcpy(pac->error, "Error reading from helper program.");

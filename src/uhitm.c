@@ -2684,7 +2684,10 @@ register struct monst *mon;
 register int tmp;
 {
 	struct attack *mattk, alt_attk;
-	int	i, sum[NATTK], hittmp = 0;
+	int	i, sum[NATTK];
+#if 0
+	int	hittmp = 0;
+#endif
 	int	nsum = 0;
 	int	dhit = 0;
 	int 	mhit = 0; /* Used to pass the attacks used */

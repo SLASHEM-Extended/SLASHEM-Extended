@@ -185,6 +185,7 @@ register struct attack *mattk;
 		}
 	    }
 	}
+	stop_occupation();
 }
 
 STATIC_OVL void
@@ -214,7 +215,6 @@ struct attack *mattk;
 		   (mattk->aatyp == AT_GAZE) ? "gaze" :
 		   (mattk->aatyp == AT_BITE) ? "bite" : "sting";
 	}
-	stop_occupation();
 }
 
 /* called when your intrinsic speed is taken away */

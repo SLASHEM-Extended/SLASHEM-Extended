@@ -2599,13 +2599,11 @@ dodip()
 {
 	struct obj *potion, *obj;
 	struct obj *singlepotion;
-	int oldtyp;
 	const char *tmp;
 	uchar here;
 	char allowall[2];
 	short mixture;
 	char qbuf[QBUFSZ], Your_buf[BUFSZ];
-
 
 	allowall[0] = ALL_CLASSES; allowall[1] = '\0';
 	if(!(obj = getobj(allowall, "dip")))

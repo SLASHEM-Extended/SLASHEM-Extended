@@ -963,9 +963,11 @@ dogaze()
 
 	    for(i = 0; i < NATTK; i++) {
 		mattk = &(youmonst.data->mattk[i]);
-		if(mattk->aatyp == AT_GAZE) break;
+		if (mattk->aatyp == AT_GAZE) {
+		    damageum(mtmp, mattk);
+		    break;
+		}
 	    }
-	    damageum(mtmp, mattk);
 	}
 	return(1);
 }

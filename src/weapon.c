@@ -1453,7 +1453,10 @@ int
 weapon_hit_bonus(weapon)
 struct obj *weapon;
 {
-    int type, wep_type, skill, bonus = 0;
+    int type, wep_type, bonus = 0;
+#if 0
+    int skill;
+#endif
     static const char bad_skill[] = "weapon_hit_bonus: bad skill %d";
 
     wep_type = weapon_type(weapon);
@@ -1537,7 +1540,10 @@ int
 weapon_dam_bonus(weapon)
 struct obj *weapon;
 {
-    int type, wep_type, skill, bonus = 0;
+    int type, wep_type, bonus = 0;
+#if 0
+    int skill;
+#endif
 
     wep_type = weapon_type(weapon);
 #if 0
