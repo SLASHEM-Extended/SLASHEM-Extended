@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.9 2000-09-19 02:38:58 wacko Exp $
+  $Id: gtkmap.c,v 1.10 2000-09-20 01:48:58 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -146,7 +146,7 @@ static TileTab *tileTab[] = {
 };
 
 static TileTab *Tile;
-static int	map_visual = -1;
+int	map_visual = -1;
 
 /* from tile.c */
 extern int tiles_per_row;
@@ -1287,6 +1287,23 @@ GTK_cliparound(int x, int y)
     ;
 }
 
+GdkPixmap *
+GTK_glyph_to_gdkpixmap(int glyph)
+{
+    int tile;
+    int src_x, src_y;
+
+    tile = fix_tile(glyph2tile[glyph]);
+    
+    src_x = (tile % tiles_per_row) * c_width;
+    src_y = (tile / tiles_per_row) * c_height;
+
+    x_tmp_clear();
+    x_tile_tmp_draw(src_x, src_y, 0, 0);
+
+    return (GTK_tmp_to_pixmap());
+}
+
 void
 nh_map_click(int f)
 {
@@ -1323,3 +1340,10 @@ nh_map_flush()
     }
     GTK_curs(NHW_MAP, cursx, cursy);
 }
+
+int
+nh_tile_height()
+{
+    return (c_width);
+}
+

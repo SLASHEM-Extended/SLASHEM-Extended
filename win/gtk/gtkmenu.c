@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.4 2000-09-15 01:12:30 wacko Exp $
+  $Id: gtkmenu.c,v 1.5 2000-09-20 01:48:58 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -23,6 +23,7 @@ typedef struct _NHMenuItem{
      int	selected;
      ANY_P	id;
      int	attr;
+     int	glyph;
 } NHMenuItem;
 
 extern NHWindow		gtkWindows[];
@@ -239,6 +240,9 @@ GTK_init_menu_widgets(NHWindow *w)
      gtk_clist_set_column_auto_resize(GTK_CLIST(w->clist), 0, TRUE);
      gtk_clist_set_column_auto_resize(GTK_CLIST(w->clist), 1, TRUE);
      gtk_clist_set_column_auto_resize(GTK_CLIST(w->clist), 2, TRUE);
+     gtk_clist_set_column_auto_resize(GTK_CLIST(w->clist), 3, TRUE);
+     if (GTK_CLIST(w->clist)->row_height < nh_tile_height())
+	gtk_clist_set_row_height(GTK_CLIST(w->clist), nh_tile_height());
 
      w->scrolled = nh_gtk_new_and_pack(
 	 gtk_vscrollbar_new(GTK_CLIST(w->clist)->vadjustment), w->hbox2,
@@ -295,11 +299,12 @@ GTK_load_menu_clist(NHWindow *w)
     GtkStyle *s;
     struct menu *menu;
     gchar *text[3];
+    
     if (w->menu_information->valid_widgets)
 	c = GTK_CLIST(w->clist);
     else
     {
-	c = GTK_CLIST(gtk_clist_new(3));
+	c = GTK_CLIST(gtk_clist_new(4));
 	w->clist = GTK_WIDGET(c);
     }
     s = gtk_rc_get_style(GTK_WIDGET(w->w));
@@ -309,8 +314,11 @@ GTK_load_menu_clist(NHWindow *w)
     gtk_clist_clear(c);
     menu = &w->menu_information->curr_menu;
     for(j = 0; ; j++) {
+    	
+    	text[0] = NULL;
+    	
 	for(i = 0; i < 3; i++)
-	    if (!gtk_clist_get_text(menu->clist, j, i, &text[i]))
+	    if (!gtk_clist_get_text(menu->clist, j, i, &text[i+1]))
 		break;
 	if (i < 3)
 	    break;
@@ -320,6 +328,17 @@ GTK_load_menu_clist(NHWindow *w)
 	    if(menu->nhMenuItem[j].attr != 0)
 		gtk_clist_set_background(c, j, s->dark);
 	}
+	if(menu->nhMenuItem[j].glyph != NO_GLYPH && map_visual){
+/*
+ * TODO: Write a function that converts the tiles to GTKPixmaps under X
+ * 		in xshmmap.c
+ */
+#ifndef WINGTK_X11    
+	    gtk_clist_set_pixmap(c, j, 0, 
+	    		GTK_glyph_to_gdkpixmap(menu->nhMenuItem[j].glyph), NULL);
+#endif
+	    	
+	}
     }
     /* Inventory window doesn't really look good if it's completely empty */
     if (w-gtkWindows == WIN_INVEN && !j) {
@@ -327,7 +346,7 @@ GTK_load_menu_clist(NHWindow *w)
 	    text[0] = "Not carrying anything except gold.";
 	else
 	    text[0] = "Not carrying anything.";
-	text[1] = text[2] = "";
+	text[1] = text[2] = text[3] = "";
 	gtk_clist_append(c, text);
     }
     gtk_clist_thaw(c);
@@ -381,6 +400,7 @@ GTK_add_menu(winid id, int glyph, const ANY_P *identifier,
      menu->nhMenuItem[menu->n_menuitem].selected = FALSE;
      menu->nhMenuItem[menu->n_menuitem].id = *identifier;
      menu->nhMenuItem[menu->n_menuitem].attr = attr;
+     menu->nhMenuItem[menu->n_menuitem].glyph = glyph;
 
      sprintf(buf, "%c", ch);
      text[0] = buf;

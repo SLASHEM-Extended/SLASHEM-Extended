@@ -343,6 +343,8 @@ ver 0.0.6E4F1 [September XX/2000]
 -fixed bug 113053: gnome windowing port now supported
 -fixed gnome multishot bonus (dothrow.c) and show_damage ability (hack.c)
 -removed unnecessary "uncursed" tags for necromancer role (to match priest)
+-GTK:  Added graphical glyphs to the menus (only when #ifndef WINGTK_X11)
+	-TODO: Adapt code for X11
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()

@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.4 2000-09-15 07:25:23 wacko Exp $
+  $Id: winGTK.h,v 1.5 2000-09-20 01:48:57 wacko Exp $
  */
 
 #ifndef WINGTK_H
@@ -127,6 +127,9 @@ extern void	GTK_print_glyph(winid, XCHAR_P, XCHAR_P, int);
 extern void	GTK_raw_print(const char *);
 extern void	GTK_raw_print_bold(const char *);
 
+extern GdkPixmap * GTK_glyph_to_gdkpixmap(int);
+extern GdkPixmap * GTK_tmp_to_pixmap();
+
 extern GtkWidget	*nh_map_new(GtkWidget *);
 extern void		nh_map_destroy(void);
 extern void		nh_map_clear(void);
@@ -158,6 +161,8 @@ extern int		nh_keysym(GdkEventKey *ev);
 
 extern void		nh_option_new(void);
 extern void		nh_option_lock(void);
+
+extern int		nh_tile_height();
 
 /*
   topten.c
@@ -284,5 +289,8 @@ extern void	x_tile_tmp_draw_rectangle(int ofsx, int ofsy, int c);
 #define EXT_CMD_YOUPOLY		25
 
 #define NO_EXT_CMD_MAPS		26
+
+/* Current Map Mode */
+extern int	map_visual;
 
 #endif
