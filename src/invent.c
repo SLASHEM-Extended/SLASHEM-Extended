@@ -123,7 +123,7 @@ int jumble_pack ()
 	for (obj = invent; obj; obj = nobj)
 	{
 		nobj = obj->nobj;
-		if (rnd(10))
+		if (rn2(10))
 			/* Skip it */;
 		else if (flags.invlet_constant)
 			dmg += 2;
