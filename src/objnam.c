@@ -1156,7 +1156,7 @@ const char *oldstr;
 	    (len >= 4 &&
 	     (!strcmp(spot-3, "fish") || !strcmp(spot-3, "tuna") ||
 	      !strcmp(spot-3, "deer") || !strcmp(spot-3, "yaki") ||
-	      !strcmp(spot-3, "nori"))) ||
+	      !strcmp(spot-3, "nori") || !strcmp(spot-3, "drow"))) ||
 	    (len >= 5 && (!strcmp(spot-4, "sheep") ||
 			!strcmp(spot-4, "ninja") ||
 			!strcmp(spot-4, "ronin") ||
