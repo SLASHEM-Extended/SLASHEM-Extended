@@ -268,6 +268,16 @@ static void do_money_hp(struct TextWindow *win, int *len)
     add_val(win, st_LEVEL.cur, st_LEVEL.last, 0, 0);
   }
 
+#ifdef SHOW_WEIGHT
+  if (flags.showweight)
+  {
+    add_str(win, " Wt:");
+    add_val(win, inv_weight()+weight_cap(), STAT_INVALID, 0, 0); 
+    add_str(win, "/");
+    add_val(win, weight_cap(), STAT_INVALID, 0, 0); 
+  }
+#endif
+ 
   if (flags.time)
   {
     add_str(win, " T:");
@@ -310,6 +320,16 @@ static void add_one_affliction(struct TextWindow *win, const char *name)
 static void do_afflictions(struct TextWindow *win)
 {
   int cap = near_capacity();
+
+#ifndef VANILLA_GLHACK
+  if (Invulnerable)
+    add_one_affliction(win, "Invul");
+#endif
+  
+  if (Levitation) 
+    add_one_affliction(win, "Lev");
+  else if (Flying) 
+    add_one_affliction(win, "Fly");
 
   /* add Hungry (etc) */
   if (hu_stat[u.uhs][0] != ' ')
