@@ -1482,8 +1482,9 @@ long timeout;
      * becomes possible for molds to grow in containers we should
      * check for iceboxes here as well.
      */
-    if (body->where == OBJ_FLOOR && (is_pool(body->ox, body->oy) ||
-      is_lava(body->ox, body->oy) || is_ice(body->ox, body->oy)))
+    if ((body->where == OBJ_FLOOR || body->where==OBJ_BURIED) &&
+      (is_pool(body->ox, body->oy) || is_lava(body->ox, body->oy) ||
+      is_ice(body->ox, body->oy)))
 	pmtype = -1;
 
     if (pmtype != -1) {
@@ -1503,7 +1504,7 @@ long timeout;
      */
     if (pmtype == -1) {
     	body->corpsenm = oldtyp; /* Fixup corpse after attempted revival */
-	(void) start_timer(250L - (monstermoves-body->age),
+	(void) start_timer(250L - (monstermoves-peek_at_iced_corpse_age(body)),
 					TIMER_OBJECT, ROT_CORPSE, arg);
     }
 }
