@@ -1916,6 +1916,12 @@ long* out_cnt;
 	static winid local_win = WIN_ERR;	/* window for partial menus */
 	anything any;
 	menu_item *selected;
+#ifdef PROXY_GRAPHICS
+	static int busy = 0;
+	if (busy)
+	    return 0;
+	busy++;
+#endif
 
 	/* overriden by global flag */
 	if (flags.perm_invent) {
@@ -1943,6 +1949,9 @@ long* out_cnt;
 #else
 	    pline("Not carrying anything.");
 #endif
+#ifdef PROXY_GRAPHICS
+	    busy--;
+#endif
 	    return 0;
 	}
 
@@ -1963,6 +1972,9 @@ long* out_cnt;
 		    break;
 		}
 	    }
+#ifdef PROXY_GRAPHICS
+	    busy--;
+#endif
 	    return ret;
 	}
 
@@ -2006,6 +2018,9 @@ nextclass:
 	} else
 	    ret = !n ? '\0' : '\033';	/* cancelled */
 
+#ifdef PROXY_GRAPHICS
+	busy--;
+#endif
 	return ret;
 }
 
