@@ -343,6 +343,7 @@ ver 0.0.6E9 [?] [Released by ?]
 -fixed bug 689957: Security breach in slashem -s
 -fixed bug 603555: DISPLAY_LAYERS when hero_memory reset
 -Merged vanilla 3.4.1 codebase.
+-Actioned feature request 595646: Pasi's alternate Medusa and Sokoban.
 
 ver 0.0.6E8 [January 24/2003] [Released by Ali]
 -fixed bug 233901: Gtk-Critical errors from gtk_main_quit.

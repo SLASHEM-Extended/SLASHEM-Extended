@@ -1,6 +1,8 @@
 #	SCCS Id: @(#)medusa.des	3.4	1996/05/11
+#	$Id: medusa.des,v 1.3 2003-03-12 15:29:25 j_ali Exp $
 #	Copyright (c) 1989 by Jean-Christophe Collet
 #	Copyright (c) 1990, 1991 by M. Stephenson
+#	Copyright (c) 2003 by Pasi Kallinen
 # NetHack may be freely redistributed.  See license for details.
 #
 # These are the Medusa's levels :
@@ -213,3 +215,237 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
+
+MAZE:"medusa-3",' '
+FLAGS: noteleport
+GEOMETRY:center,center
+#
+# Here you disturb ravens nesting in the trees.
+#
+MAP
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}.}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}T..T.}}}}}}}}}}}}}}}}}}}}..}}}}}}}}.}}}...}}}}}}}.}}}}}......}}}}}}}
+}}}}}}.......T.}}}}}}}}}}}..}}}}..T.}}}}}}...T...T..}}...T..}}..-----..}}}}}
+}}}...-----....}}}}}}}}}}.T..}}}}}...}}}}}.....T..}}}}}......T..|...|.T..}}}
+}}}.T.|...|...T.}}}}}}}.T......}}}}..T..}}.}}}.}}...}}}}}.T.....+...|...}}}}
+}}}}..|...|.}}.}}}}}.....}}}T.}}}}.....}}}}}}.T}}}}}}}}}}}}}..T.|...|.}}}}}}
+}}}}}.|...|.}}}}}}..T..}}}}}}}}}}}}}T.}}}}}}}}..}}}}}}}}}}}.....-----.}}}}}}
+}}}}}.--+--..}}}}}}...}}}}}}}}}}}}}}}}}}}T.}}}}}}}}}}}}}}}}.T.}........}}}}}
+}}}}}.......}}}}}}..}}}}}}}}}.}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.}}}.}}.T.}}}}}}
+}}.T...T...}}}}T}}}}}}}}}}}....}}}}}}}}}}T}}}}}.T}}...}}}}}}}}}}}}}}...}}}}}
+}}}...T}}}}}}}..}}}}}}}}}}}.T...}}}}}}}}.T.}.T.....T....}}}}}}}}}}}}}.}}}}}}
+}}}}}}}}}}}}}}}....}}}}}}}...}}.}}}}}}}}}}............T..}}}}}.T.}}}}}}}}}}}
+}}}}}}}}}}}}}}}}..T..}}}}}}}}}}}}}}..}}}}}..------+--...T.}}}....}}}}}}}}}}}
+}}}}.}..}}}}}}}.T.....}}}}}}}}}}}..T.}}}}.T.|...|...|....}}}}}.}}}}}...}}}}}
+}}}.T.}...}..}}}}T.T.}}}}}}.}}}}}}}....}}...|...+...|.}}}}}}}}}}}}}..T...}}}
+}}}}..}}}.....}}...}}}}}}}...}}}}}}}}}}}}}T.|...|...|}}}}}}}}}}}....T..}}}}}
+}}}}}..}}}.T..}}}.}}}}}}}}.T..}}}}}}}}}}}}}}---S-----}}}}}}}}}}}}}....}}}}}}
+}}}}}}}}}}}..}}}}}}}}}}}}}}}.}}}}}}}}}}}}}}}}}T..T}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+ENDMAP
+RANDOM_PLACES:(08,06),(66,05),(46,15)
+REGION:(00,00,74,19),lit,"ordinary"
+REGION:(49,14,51,16),random,"ordinary",unfilled
+REGION:(07,05,09,07),unlit,"ordinary"
+REGION:(65,04,67,06),unlit,"ordinary"
+REGION:(45,14,47,16),unlit,"ordinary"
+# All places are accessible also with jumping, so don't bother
+# restricting the placement when teleporting from levels below this.
+TELEPORT_REGION:(33,02,38,07),(0,0,0,0),down
+STAIR:(32,01,39,07),(0,0,0,0),up
+STAIR:place[0],down
+DOOR:locked,(08,08)
+DOOR:locked,(64,05)
+DOOR:random,(50,13)
+DOOR:locked,(48,15)
+# 
+FOUNTAIN:place[1]
+#
+CONTAINER:'`',"statue",place[2],uncursed,"knight",1,"Perseus"
+OBJECT[75%]:'[',"shield of reflection",contained,cursed,+0
+OBJECT[25%]:'[',"levitation boots",contained,random,+0
+OBJECT[50%]:')',"scimitar",contained,blessed,+2
+OBJECT[50%]:'(',"sack",contained
+#
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:'?',"blank paper",(48,18)
+OBJECT:'?',"blank paper",(48,18)
+#
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP:"board",random
+TRAP:"board",random
+TRAP:random,random
+#
+MONSTER:'@',"Medusa",place[0]
+MONSTER:';',"giant eel",random
+MONSTER:';',"giant eel",random
+MONSTER:';',"jellyfish",random
+MONSTER:';',"jellyfish",random
+MONSTER:'n',"wood nymph",random
+MONSTER:'n',"water nymph",random
+MONSTER:'n',"water nymph",random
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+MONSTER:'B',"raven",random,hostile
+
+MAZE:"medusa-4",' '
+FLAGS: noteleport
+GEOMETRY:center,center
+#
+# Here the Medusa rules some slithery monsters from her 'palace', with
+# a yellow dragon nesting in the backyard.
+#
+MAP
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}........}}}}}}}}}}}}}}}}}}}}}}}..}}}.....}}}}}}}}}}}----|}}}}}
+}}}}}}..----------F-.....}}}}}}}}}}}}}}}}..---...}}}}....T.}}}}}}}....|}}}}}
+}}}.....|...F......S}}}}....}}}}}}}...}}.....|}}.}}}}}}}......}}}}|......}}}
+}}}.....+...|..{...|}}}}}}}}}}}}.....}}}}|...|}}}}}}}}}}}.}}}}}}}}----.}}}}}
+}}......|...|......|}}}}}}}}}......}}}}}}|.......}}}}}}}}}}}}}..}}}}}...}}}}
+}}|-+--F|-+--....|F|-|}}}}}....}}}....}}}-----}}.....}}}}}}}......}}}}.}}}}}
+}}|...}}|...|....|}}}|}}}}}}}..}}}}}}}}}}}}}}}}}}}}....}}}}}}}}....T.}}}}}}}
+}}|...}}F...+....F}}}}}}}..}}}}}}}}}}}}}}...}}}}}}}}}}}}}}}}}}}}}}....}}..}}
+}}|...}}|...|....|}}}|}....}}}}}}....}}}...}}}}}...}}}}}}}}}}}}}}}}}.....}}}
+}}--+--F|-+--....-F|-|....}}}}}}}}}}.T...}}}}....---}}}}}}}}}}}}}}}}}}}}}}}}
+}}......|...|......|}}}}}.}}}}}}}}}....}}}}}}}.....|}}}}}}}}}.}}}}}}}}}}}}}}
+}}}}....+...|..{...|.}}}}}}}}}}}}}}}}}}}}}}}}}}.|..|}}}}}}}......}}}}...}}}}
+}}}}}}..|...F......|...}}}}}}}}}}..---}}}}}}}}}}--.-}}}}}....}}}}}}....}}}}}
+}}}}}}}}-----S----F|....}}}}}}}}}|...|}}}}}}}}}}}}...}}}}}}...}}}}}}..}}}}}}
+}}}}}}}}}..............T...}}}}}.|.......}}}}}}}}}}}}}}..}...}.}}}}....}}}}}
+}}}}}}}}}}....}}}}...}...}}}}}.......|.}}}}}}}}}}}}}}.......}}}}}}}}}...}}}}
+}}}}}}}}}}..}}}}}}}}}}.}}}}}}}}}}-..--.}}}}}}}}..}}}}}}..T...}}}..}}}}}}}}}}
+}}}}}}}}}...}}}}}}}}}}}}}}}}}}}}}}}...}}}}}}}....}}}}}}}.}}}..}}}...}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.}}}}}}....}}}}}}}}}}}}}}}}}}}...}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+ENDMAP
+#
+RANDOM_PLACES:(04,08),(10,04),(10,08),(10,12)
+#
+REGION:(00,00,74,19),lit,"ordinary"
+REGION:(13,03,18,13),lit,"ordinary",unfilled
+#
+TELEPORT_REGION:(64,01,74,17),(0,0,0,0),down
+TELEPORT_REGION:(02,02,18,13),(0,0,0,0),up
+#
+STAIR:(67,01,74,20),(0,0,0,0),up
+STAIR:place[0],down
+# 
+DOOR:locked,(04,06)
+DOOR:locked,(04,10)
+DOOR:locked,(08,04)
+DOOR:locked,(08,12)
+DOOR:locked,(10,06)
+DOOR:locked,(10,10)
+DOOR:locked,(12,08)
+#
+BRANCH:levregion(27,00,79,20),(0,0,0,0)
+#
+NON_DIGGABLE:(01,01,22,14)
+#
+OBJECT:'(',"crystal ball",(07,08)
+#
+CONTAINER:'`',"statue",place[1],uncursed,"knight",1,"Perseus"
+OBJECT[75%]:'[',"shield of reflection",contained,cursed,+0
+OBJECT[25%]:'[',"levitation boots",contained,random,+0
+OBJECT[50%]:')',"scimitar",contained,blessed,+2
+OBJECT[50%]:'(',"sack",contained
+#
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# 
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+#
+MONSTER:'@',"Medusa",place[0]
+MONSTER:';',"kraken",(07,07)
+#
+# the nesting dragon
+MONSTER:'D',"yellow dragon", (05,04), asleep
+MONSTER[50%]:'D',"baby yellow dragon", (04,04), asleep
+MONSTER[25%]:'D',"baby yellow dragon", (04,05), asleep
+OBJECT:'%',"egg", (05,04), random, "yellow dragon", random
+OBJECT[50%]:'%',"egg", (05,04), random, "yellow dragon", random
+OBJECT[25%]:'%',"egg", (05,04), random, "yellow dragon", random
+#
+MONSTER:';',"giant eel",random
+MONSTER:';',"giant eel",random
+MONSTER:';',"jellyfish",random
+MONSTER:';',"jellyfish",random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'N',"black naga hatchling", random
+MONSTER:'N',"black naga hatchling", random
+MONSTER:'N',"black naga hatchling", random
+MONSTER:'N',"black naga", random
+MONSTER:'N',"black naga", random
+MONSTER:'N',"black naga", random

@@ -96,7 +96,7 @@ BRANCH:			"Fort Ludios" @ (23, 4) portal
 
 
 # Medusa and the castle.  There should be nothing in between.
-RNDLEVEL:		"medusa" "none" @ (-5, 4) 2
+RNDLEVEL:		"medusa" "none" @ (-5, 4) 4
 LEVALIGN:		chaotic
 LEVEL:			"castle" "none" @ (-1, 0)
 CHAINBRANCH:	"Gehennom" "castle" + (0, 0) no_down
@@ -206,10 +206,10 @@ LEVEL:			"lich" "none" @ (1, 0)
 DUNGEON:		"Sokoban" "none" (4, 0)
 DESCRIPTION:    mazelike
 ALIGNMENT:      neutral
-RNDLEVEL:		"soko1" "none" @ (1, 0) 2
-RNDLEVEL:		"soko2" "none" @ (2, 0) 2
-RNDLEVEL:		"soko3" "none" @ (3, 0) 2
-RNDLEVEL:		"soko4" "none" @ (4, 0) 2
+RNDLEVEL:		"soko1" "none" @ (1, 0) 4
+RNDLEVEL:		"soko2" "none" @ (2, 0) 7
+RNDLEVEL:		"soko3" "none" @ (3, 0) 7
+RNDLEVEL:		"soko4" "none" @ (4, 0) 5
 
 
 ### The Orc Caverns ###
