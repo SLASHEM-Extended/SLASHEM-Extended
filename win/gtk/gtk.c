@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.18 2000-12-15 15:38:10 j_ali Exp $
+  $Id: gtk.c,v 1.19 2000-12-29 17:54:38 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -460,37 +460,36 @@ nh_menu_sensitive(char *menu, boolean f)
 
 static gint popup_dialog_bw = 0, popup_dialog_bh = 0;
 
-volatile int popup_dialog_abandon;
-
-static gint popup_dialog_timeout(gpointer data)
-{
-    if (!popup_dialog_abandon)
-	popup_dialog_abandon++;
-    return FALSE;
-}
-
 static void
 popup_dialog_mapped(GtkWidget *w, gpointer data)
 {
     gint screen_width, screen_height;
     GdkWindow *window = GTK_WIDGET(w)->window;
+    GTimer *t;
+    gulong ms;
+    int abandon = 0;
     gint x, y, nx, ny;
     data = gtk_object_get_user_data(GTK_OBJECT(w));
     if (data) {
 	x = GPOINTER_TO_UINT(data) >> 16;
 	y = GPOINTER_TO_UINT(data) & 0xffff;
+	t = g_timer_new();
+	if (!t)
+	    return;
 	/* Wait for Window Manager to place window and add borders */
-	popup_dialog_abandon = 0;
-	gtk_timeout_add(100L, popup_dialog_timeout, 0);
+	g_timer_start(t);
 	do
 	{
-	    gtk_main_iteration();
-	    if (popup_dialog_abandon) {		/* Don't wait for ever */
-		if (popup_dialog_abandon++ > 1)	/* One final check? */
-		    return;
+	    if (abandon) {
+		g_timer_destroy(t);
+		return;
 	    }
+	    (void)g_timer_elapsed(t, &ms);
+	    if (ms >= 500)
+		abandon++;	/* But only after one final check */
 	    gdk_window_get_origin(window, &nx, &ny);
 	} while (nx == 0 && ny == 0 || nx == x && ny == y);
+	g_timer_destroy(t);
 	popup_dialog_bw = nx - x;
 	popup_dialog_bh = ny - y;
 	/* Do we need to re-position this window to stay on-screen? */
