@@ -69,6 +69,7 @@ http://www.slashem.org/
 -----------
 
 ver 0.0.7E3 [?] [Released by ?]
+-fixed bug 781959: GTK: Message window auto-scrolling fails after a short time.
 
 See history.txt for changes made in previous versions.
 

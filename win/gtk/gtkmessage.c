@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmessage.c,v 1.9 2003-05-03 11:12:28 j_ali Exp $
+  $Id: gtkmessage.c,v 1.10 2003-08-02 14:27:26 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -34,6 +34,8 @@ nh_message_new()
 {
     GtkWidget *message_h;
     GtkWidget *sw;
+    GtkTextIter iter;
+    GtkTextBuffer *t;
 
     message_h = gtk_handle_box_new();
     GTK_HANDLE_BOX(message_h)->shrink_on_detach = 1;
@@ -42,9 +44,10 @@ nh_message_new()
     gtk_widget_show(message_text);
     GTK_WIDGET_UNSET_FLAGS(message_text, GTK_CAN_FOCUS);
     gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(message_text), GTK_WRAP_WORD);
-    gtk_text_buffer_create_tag(
-      gtk_text_view_get_buffer(GTK_TEXT_VIEW(message_text)),
-      "warning", "foreground", "red", NULL);
+    t = gtk_text_view_get_buffer(GTK_TEXT_VIEW(message_text));
+    gtk_text_buffer_create_tag(t, "warning", "foreground", "red", NULL);
+    gtk_text_buffer_get_end_iter(t, &iter);
+    gtk_text_buffer_create_mark(t, "nh_end", &iter, FALSE);
 
     sw = nh_gtk_new_and_add(gtk_scrolled_window_new(NULL, NULL), message_h, "");
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw),
@@ -90,7 +93,7 @@ nh_message_putstr(const char *str)
     }
 
     gtk_text_view_scroll_mark_onscreen(GTK_TEXT_VIEW(message_text),
-      gtk_text_buffer_get_insert(t));
+      gtk_text_buffer_get_mark(t, "nh_end"));
 }
 
 #else	/* USE_TEXTVIEW */
