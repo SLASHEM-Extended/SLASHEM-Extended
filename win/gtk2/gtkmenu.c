@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.11 2002-06-29 11:37:45 j_ali Exp $
+  $Id: gtkmenu.c,v 1.12 2002-07-04 13:09:10 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -386,7 +386,8 @@ GTK_load_menu_clist(NHWindow *w, winid inven)
     }
     /* Inventory window doesn't really look good if it's completely empty */
     if (w-gtkWindows == inven && !j) {
-	if (u.ugold)
+	char *gold = nh_status_last_displayed("gold");
+	if (gold && strcmp(gold,"0"))
 	    text[0] = "Not carrying anything except gold.";
 	else
 	    text[0] = "Not carrying anything.";

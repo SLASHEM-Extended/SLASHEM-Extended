@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.16 2002-06-29 11:37:45 j_ali Exp $
+  $Id: gtk.c,v 1.17 2002-07-04 13:09:10 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -2438,6 +2438,8 @@ GTK_ext_outrip(winid id, char *str)
     extern const char *killed_by_prefix[];
     char	*rip_file;
     GdkFont	*rip_font;
+    char	*gold;
+    char	*player;
 
     w = nh_gtk_window_dialog(TRUE);
     gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
@@ -2474,10 +2476,12 @@ GTK_ext_outrip(winid id, char *str)
 
     rip_font = gtk_style_get_font(rip->style);
 
-    Sprintf(mstr, "%s", plname);
+    player = nh_status_last_displayed("player");
+    Sprintf(mstr, "%s", player ? player : "Rodney");
     rip_line[NAME_LINE].len = gdk_mbstowcs(rip_line[NAME_LINE].str, mstr, NH_BUFSIZ);
 
-    Sprintf(mstr, "%ld Au", u.ugold);
+    gold = nh_status_last_displayed("gold");
+    Sprintf(mstr, "%s Au", gold ? gold : "0");
     rip_line[GOLD_LINE].len = gdk_mbstowcs(rip_line[GOLD_LINE].str, mstr, NH_BUFSIZ);
 
     Sprintf(mstr, "%4d", getyear());
