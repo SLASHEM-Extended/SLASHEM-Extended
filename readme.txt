@@ -85,6 +85,7 @@ ver 0.0.7E4 [?] [Released by ?]
 -fixed bug 841965: hallucinating vampire eats normal food
 -fixed bug 843535: Disasm technique kills game
 -fixed bug 846684: X11 port crashes on start-up in tile mode
+-fixed bug 805499: Walking dead
 
 See history.txt for changes made in previous versions.
 

@@ -592,7 +592,7 @@ int how;
 	Strcpy(kilbuf, (!killer || how >= PANICKED ? deaths[how] : killer));
 	killer = kilbuf;
 
-	/* KMH -- Amulet versus stone now handled here */
+	if (how < PANICKED) u.umortality++;
 	if (how == STONING && uamul && uamul->otyp == AMULET_VERSUS_STONE) {
 		pline("But wait...");
 		makeknown(AMULET_VERSUS_STONE);
@@ -607,18 +607,14 @@ int how;
 		else
 			curse(uamul);
 
-		/* Reset parameters */
 		uunstone();
-		if(u.uhpmax < 1) u.uhpmax = 1;
-		u.ugrave_arise = NON_PM;
+		(void) adjattrib(A_CON, -1, TRUE);
+		if(u.uhpmax <= 0) u.uhpmax = 1;
+		savelife(how);
 		killer = 0;
 		killer_format = 0;
-		flags.botl = 1;
-		curs_on_u();
 		return;
 	}
-
-	if (how < PANICKED) u.umortality++;
 	if (Lifesaved && (how <= GENOCIDED)) {
 		pline("But wait...");
 		makeknown(AMULET_OF_LIFE_SAVING);
