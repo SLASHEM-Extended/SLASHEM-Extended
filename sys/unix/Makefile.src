@@ -265,6 +265,19 @@ PROXYUTLOBJ = dlbh.o mapid.o riputil.o getopt.o
 # Currently, only the GTK2 window interface supports proxy window servers.
 PROXYSVRSRC = ../win/proxy/proxysvc.c ../win/proxy/proxycb.c
 PROXYSVROBJ = proxysvc.o proxycb.o
+#
+# Files for the SDL/GL window port
+WINGLSRC = ../win/gl/gl_conf.c ../win/gl/gl_emul.c  \
+    ../win/gl/gl_font.c ../win/gl/gl_hardw.c ../win/gl/gl_image.c  \
+    ../win/gl/gl_main.c ../win/gl/gl_map.c ../win/gl/gl_menu.c  \
+    ../win/gl/gl_opt.c ../win/gl/gl_role.c ../win/gl/gl_rendu.c  \
+    ../win/gl/gl_softw.c ../win/gl/gl_stat.c ../win/gl/gl_text.c  \
+    ../win/gl/gl_tile.c  ../win/gl/gl_unit.c ../win/gl/gl_win.c  tile.c
+WINGLOBJ = gl_conf.o gl_emul.o gl_font.o gl_hardw.o \
+    gl_image.o gl_main.o gl_map.o gl_menu.o gl_opt.o \
+    gl_rendu.o gl_role.o gl_softw.o gl_stat.o \
+    gl_text.o gl_tile.o gl_unit.o gl_win.o tile.o
+SDLGL_CFLAGS = `sdl-config --cflags`
 
 # Use these declarations if you only want to support the TTY windowing system
 WINSRC = $(WINTTYSRC)
@@ -278,6 +291,9 @@ WINOBJ = $(WINTTYOBJ)
 # Use these declarations if you want to support the GTK windowing system
 # WINSRC = $(WINTTYSRC) $(WINGTKSRC)
 # WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ)
+# Use these declarations to only support the SDL/GL windowing systems
+# WINSRC = $(WINGLSRC)
+# WINOBJ = $(WINGLOBJ)
 # When the proxy interface is finished, it might need something like these
 # WINSRC = $(WINTTYSRC) $(WINGTKSRC) $(WINPROXYSRC) $(PROXYUTLSRC) \
 #	 $(PROXYSVRSRC) $(PROXYCOMSRC)
@@ -327,6 +343,9 @@ WINGEMLIB = -le_gem -lgem
 # libraries for BeOS
 WINBELIB = -lbe
 #
+# libraries for SDL/GL window port
+WINGLLIB = `sdl-config --libs` -lGL -lz -lpng
+#
 # libraries for proxy
 WINPROXYLIB =
 
@@ -338,6 +357,8 @@ WINLIB = $(WINTTYLIB)
 # WINLIB = $(WINTTYLIB) $(WINQTLIB)
 # Use these declarations if you want to support the GTK windowing system
 # WINLIB = $(WINTTYLIB) $(WINGTKLIB)
+# Use these declarations to only support the SDL/GL windowing system
+# WINLIB = $(WINGLLIB)
 
 # any other strange libraries your system needs (for Sysunix only -- the more
 # specialized targets should already be right)
@@ -422,7 +443,8 @@ GENCSRC = monstr.c vis_tab.c  #tile.c
 
 # all windowing-system-dependent .c (for dependencies and such)
 WINCSRC = $(WINTTYSRC) $(WINX11SRC) $(WINGTKSRC) $(WINGNOMESRC) $(WINGEMSRC) \
-	$(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYSVRSRC) $(PROXYCOMSRC) tile.c
+	$(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYSVRSRC) $(PROXYCOMSRC) \
+	$(WINGLSRC) tile.c
 # all windowing-system-dependent .cpp (for dependencies and such)
 WINCXXSRC = $(WINQTSRC) $(WINBESRC)
 
@@ -845,6 +867,55 @@ compxdr.o: ../win/proxy/compxdr.c $(HACK_H) ../include/nhxdr.h \
 	$(CC) $(CFLAGS) -c ../win/proxy/compxdr.c
 gr_rect.o: ../win/gem/gr_rect.c
 	$(CC) $(CFLAGS) -c ../win/gem/gr_rect.c
+gl_conf.o: ../win/gl/gl_conf.c $(HACK_H) ../include/dlb.h \
+		../include/patchlevel.h ../include/winGL.h
+	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_conf.c
+gl_emul.o: ../win/gl/gl_emul.c $(HACK_H) ../include/winGL.h \
+		../include/func_tab.h
+	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_emul.c
+gl_font.o: ../win/gl/gl_font.c $(HACK_H) ../include/patchlevel.h \
+		../include/winGL.h
+	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_font.c
+gl_hardw.o: ../win/gl/gl_hardw.c $(HACK_H) ../include/patchlevel.h \
+		../include/winGL.h
+	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_hardw.c
+gl_image.o: ../win/gl/gl_image.c $(HACK_H) ../include/patchlevel.h \
+		../include/winGL.h
+	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_image.c
+gl_main.o: ../win/gl/gl_main.c $(HACK_H) ../include/dlb.h \
+		../include/patchlevel.h ../include/winGL.h
+	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_main.c
+gl_map.o: ../win/gl/gl_map.c $(HACK_H) ../include/patchlevel.h \
+		../include/winGL.h
+	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_map.c
+gl_menu.o: ../win/gl/gl_menu.c $(HACK_H) ../include/dlb.h \
+		../include/patchlevel.h ../include/winGL.h
+	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_menu.c
+gl_opt.o: ../win/gl/gl_opt.c $(HACK_H) ../include/dlb.h \
+		../include/patchlevel.h ../include/winGL.h
+	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_opt.c
+gl_role.o: ../win/gl/gl_role.c $(HACK_H) ../include/dlb.h \
+		../include/patchlevel.h ../include/winGL.h
+	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_role.c
+gl_rendu.o: ../win/gl/gl_rendu.c $(HACK_H) ../include/patchlevel.h \
+		../include/winGL.h
+	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_rendu.c
+gl_softw.o: ../win/gl/gl_softw.c $(HACK_H) ../include/patchlevel.h \
+		../include/winGL.h
+	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_softw.c
+gl_stat.o: ../win/gl/gl_stat.c $(HACK_H) ../include/winGL.h
+	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_stat.c
+gl_text.o: ../win/gl/gl_text.c $(HACK_H) ../include/dlb.h \
+		../include/patchlevel.h ../include/winGL.h
+	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_text.c
+gl_tile.o: ../win/gl/gl_tile.c $(HACK_H) ../include/patchlevel.h \
+		../include/winGL.h
+	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_tile.c
+gl_unit.o: ../win/gl/gl_unit.c $(HACK_H) ../include/winGL.h
+	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_unit.c
+gl_win.o: ../win/gl/gl_win.c $(HACK_H) ../include/dlb.h \
+		../include/patchlevel.h ../include/winGL.h
+	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_win.c
 tile.o: tile.c $(HACK_H)
 qt_win.o: ../win/Qt/qt_win.cpp $(HACK_H) ../include/func_tab.h \
 		../include/dlb.h ../include/patchlevel.h ../include/tile2x11.h \
@@ -888,7 +959,8 @@ engrave.o: engrave.c $(HACK_H) ../include/lev.h
 exper.o: exper.c $(HACK_H)
 explode.o: explode.c $(HACK_H)
 extralev.o: extralev.c $(HACK_H)
-files.o: files.c $(HACK_H) ../include/dlb.h ../include/filename.h
+files.o: files.c $(HACK_H) ../include/dlb.h ../include/filename.h \
+		../include/winGL.h
 fountain.o: fountain.c $(HACK_H)
 hack.o: hack.c $(HACK_H)
 hacklib.o: hacklib.c $(HACK_H)
@@ -925,7 +997,8 @@ objects.o: objects.c $(CONFIG_H) ../include/obj.h ../include/objclass.h \
 		../include/prop.h ../include/skills.h ../include/color.h
 objnam.o: objnam.c $(HACK_H)
 options.o: options.c $(CONFIG_H) ../include/objclass.h ../include/flag.h \
-		$(HACK_H) ../include/tcap.h ../include/filename.h
+		$(HACK_H) ../include/tcap.h ../include/filename.h \
+		../include/winGL.h
 pager.o: pager.c $(HACK_H) ../include/dlb.h
 pickup.o: pickup.c $(HACK_H)
 pline.o: pline.c $(HACK_H) ../include/epri.h ../include/edog.h
@@ -967,7 +1040,7 @@ weapon.o: weapon.c $(HACK_H)
 were.o: were.c $(HACK_H)
 wield.o: wield.c $(HACK_H)
 windows.o: windows.c $(HACK_H) ../include/wingem.h ../include/winGnome.h \
-		../include/winproxy.h
+		../include/winGL.h ../include/winproxy.h
 wizard.o: wizard.c $(HACK_H) ../include/qtext.h
 worm.o: worm.c $(HACK_H) ../include/lev.h
 worn.o: worn.c $(HACK_H)
