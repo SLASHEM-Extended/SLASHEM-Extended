@@ -407,6 +407,7 @@ ver 0.0.6E4F1 [October XX/2000]
 -fixed bug 115908: Spurious "the" in messages about invisible mplayers.
 -fixed bug 119480: Error: Tech already known (berserk).
 -fixed bug 121719: Options in defaults.nh are not supported?
+-fixed bug 115822: Elves are peaceful to drows.
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()

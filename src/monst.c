@@ -2601,7 +2601,7 @@ struct permonst _mons2[] = {
 	M2_UNDEAD|M2_HOSTILE|M2_DWARF|M2_GREEDY|M2_JEWELS, M3_INFRAVISION,
 	CLR_RED),
     MON("elf mummy", S_MUMMY,
-	LVL(6, 12, 4, 30, -5), (G_GENO|G_NOCORPSE|1),
+	LVL(6, 12, 4, 30, 5), (G_GENO|G_NOCORPSE|1),
 	A(ATTK(AT_CLAW, AD_PHYS, 2, 4),
 	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
 	SIZ(WT_ELF, 175, 0, MS_SILENT, MZ_HUMAN),
@@ -3156,7 +3156,7 @@ struct permonst _mons2[] = {
 	M1_BREATHLESS|M1_MINDLESS|M1_HUMANOID|M1_POIS,
 	M2_UNDEAD|M2_STALK|M2_HOSTILE|M2_DWARF, M3_INFRAVISION, CLR_RED),
     MON("elf zombie", S_ZOMBIE,
-	LVL(3, 6, 9, 0, -3), (G_GENO|G_SGROUP|G_NOCORPSE|1),
+	LVL(3, 6, 9, 0, 3), (G_GENO|G_SGROUP|G_NOCORPSE|1),
 	A(ATTK(AT_CLAW, AD_PHYS, 1, 7),
 	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
 	SIZ(WT_ELF, 175, 0, MS_SILENT, MZ_HUMAN),
@@ -3400,8 +3400,20 @@ struct permonst _mons2[] = {
 	SIZ(WT_HUMAN, 400, 0, MS_GRUNT, MZ_HUMAN),
 	0, 0, M1_HUMANOID|M1_OMNIVORE|M1_NOEYES,
 	M2_NOPOLY|M2_HUMAN|M2_COLLECT, M3_INFRAVISIBLE, CLR_BLACK),
+    /* [ALI] Elves in the Slash'EM universe are based on Tolkien
+     * and are lawful rather than chaotic. To quote Elrond from the FotR:
+     *   "The Three were not made by Sauron, nor did he ever touch
+     *    them. But of them it is not permitted to speak. So much
+     *    only in this hour of doubt I may now say. They are not
+     *    idle. But they were not made as weapons of war or conquest:
+     *    that is not their power. Those who made them did not
+     *    desire strength or domination or hoarded wealth, but
+     *    understanding, making, and healing, to preserve all things
+     *    unstained. These things the Elves of Middle-earth have in
+     *    some measure gained, though with sorrow."
+     */
     MON("elf", S_HUMAN,
-	LVL(10, 12, 10, 2, -3), G_NOGEN,		/* for corpses */
+	LVL(10, 12, 10, 2, 3), G_NOGEN,		/* for corpses */
 	A(ATTK(AT_WEAP, AD_PHYS, 1, 8),
 	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
 	SIZ(WT_ELF, 350, 0, MS_HUMANOID, MZ_HUMAN), MR_SLEEP, MR_SLEEP,
@@ -3409,28 +3421,28 @@ struct permonst _mons2[] = {
 	M2_NOPOLY|M2_ELF|M2_STRONG|M2_COLLECT, M3_INFRAVISION|M3_INFRAVISIBLE,
 	HI_DOMESTIC),
     MON("Woodland-elf", S_HUMAN,
-	LVL(4, 12, 10, 10, -5), (G_GENO|G_SGROUP|3),
+	LVL(4, 12, 10, 10, 5), (G_GENO|G_SGROUP|3),
 	A(ATTK(AT_WEAP, AD_PHYS, 2, 4),
 	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
 	SIZ(WT_ELF, 350, 0, MS_HUMANOID, MZ_HUMAN), MR_SLEEP, MR_SLEEP,
 	M1_HUMANOID|M1_OMNIVORE|M1_SEE_INVIS,
 	M2_ELF|M2_COLLECT, M3_INFRAVISIBLE|M3_INFRAVISION, CLR_GREEN),
     MON("Green-elf", S_HUMAN,
-	LVL(5, 12, 10, 10, -6), (G_GENO|G_SGROUP|3),
+	LVL(5, 12, 10, 10, 6), (G_GENO|G_SGROUP|3),
 	A(ATTK(AT_WEAP, AD_PHYS, 2, 4),
 	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
 	SIZ(WT_ELF, 350, 0, MS_HUMANOID, MZ_HUMAN), MR_SLEEP, MR_SLEEP,
 	M1_HUMANOID|M1_OMNIVORE|M1_SEE_INVIS,
 	M2_ELF|M2_COLLECT, M3_INFRAVISIBLE|M3_INFRAVISION, CLR_BRIGHT_GREEN),
     MON("Grey-elf", S_HUMAN,
-	LVL(6, 12, 10, 10, -7), (G_GENO|G_SGROUP|3),
+	LVL(6, 12, 10, 10, 7), (G_GENO|G_SGROUP|3),
 	A(ATTK(AT_WEAP, AD_PHYS, 2, 4),
 	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
 	SIZ(WT_ELF, 350, 0, MS_HUMANOID, MZ_HUMAN), MR_SLEEP, MR_SLEEP,
 	M1_HUMANOID|M1_OMNIVORE|M1_SEE_INVIS,
 	M2_ELF|M2_COLLECT, M3_INFRAVISIBLE|M3_INFRAVISION, CLR_GRAY),
     MON("elf-lord", S_HUMAN,
-	LVL(8, 12, 10, 20, -9), (G_GENO|G_SGROUP|2),
+	LVL(8, 12, 10, 20, 9), (G_GENO|G_SGROUP|2),
 	A(ATTK(AT_WEAP, AD_PHYS, 2, 4), ATTK(AT_WEAP, AD_PHYS, 2, 4),
 	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
 	SIZ(WT_ELF, 350, 0, MS_HUMANOID, MZ_HUMAN), MR_SLEEP, MR_SLEEP,
@@ -3446,7 +3458,7 @@ struct permonst _mons2[] = {
 	M2_ELF|M2_STRONG|M2_LORD|M2_MALE|M2_COLLECT|M2_HOSTILE,
 	0, CLR_BLACK),
     MON("Elvenking", S_HUMAN,
-	LVL(9, 12, 10, 25, -10), (G_GENO|1),
+	LVL(9, 12, 10, 25, 10), (G_GENO|1),
 	A(ATTK(AT_WEAP, AD_PHYS, 2, 4), ATTK(AT_WEAP, AD_PHYS, 2, 4),
 	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
 	SIZ(WT_ELF, 350, 0, MS_HUMANOID, MZ_HUMAN), MR_SLEEP, MR_SLEEP,
@@ -4494,7 +4506,7 @@ struct permonst _mons2[] = {
 	/* Two for elves - one of each sex.
 	 */
     MON("Earendil", S_HUMAN,
-	LVL(20, 12, 0, 50, -20), (G_NOGEN|G_UNIQ),
+	LVL(20, 12, 0, 50, 20), (G_NOGEN|G_UNIQ),
 	A(ATTK(AT_WEAP, AD_PHYS, 1, 8),
 	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
 	SIZ(WT_ELF, 350, 0, MS_LEADER, MZ_HUMAN), MR_SLEEP, MR_SLEEP,
@@ -4503,7 +4515,7 @@ struct permonst _mons2[] = {
 	  M2_MALE|M2_COLLECT|M2_MAGIC,
 	M3_CLOSE|M3_INFRAVISION|M3_INFRAVISIBLE, HI_LORD),
     MON("Elwing", S_HUMAN,
-	LVL(20, 12, 0, 50, -20), (G_NOGEN|G_UNIQ),
+	LVL(20, 12, 0, 50, 20), (G_NOGEN|G_UNIQ),
 	A(ATTK(AT_WEAP, AD_PHYS, 1, 8),
 	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
 	SIZ(WT_ELF, 350, 0, MS_LEADER, MZ_HUMAN), MR_SLEEP, MR_SLEEP,
@@ -4972,7 +4984,7 @@ struct permonst _mons2[] = {
 	M3_INFRAVISION|M3_INFRAVISIBLE, HI_DOMESTIC),
 #endif
     MON("High-elf", S_HUMAN,
-	LVL(5, 12, 10, 10, -7), G_NOGEN,
+	LVL(5, 12, 10, 10, 7), G_NOGEN,
 	A(ATTK(AT_WEAP, AD_PHYS, 2, 4), ATTK(AT_MAGC, AD_CLRC, 0, 0),
 	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
 	SIZ(WT_ELF, 350, 0, MS_GUARDIAN, MZ_HUMAN), MR_SLEEP, MR_SLEEP,

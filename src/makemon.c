@@ -1956,12 +1956,19 @@ register struct permonst *ptr;
 
 	if (always_peaceful(ptr)) return TRUE;
 
-	if (Role_if(PM_DROW) && (ptr == &mons[PM_DROW])) return TRUE;
-
 	if (always_hostile(ptr)) return FALSE;
 	if (ptr->msound == MS_LEADER || ptr->msound == MS_GUARDIAN)
 		return TRUE;
 	if (ptr->msound == MS_NEMESIS)  return FALSE;
+
+	if (is_elf(ptr) && is_elf(youmonst.data)) {
+		/* Light and dark elves are always hostile to each other.
+		 * Suggested by Dr. Eva R. Myers.
+		 */
+		 if (ual > A_NEUTRAL && mal < A_NEUTRAL ||
+		   ual < A_NEUTRAL && mal > A_NEUTRAL)
+			return FALSE;
+	}
 
 	if (race_peaceful(ptr)) return TRUE;
 	if (race_hostile(ptr)) return FALSE;
