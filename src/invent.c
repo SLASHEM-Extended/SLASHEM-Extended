@@ -2082,7 +2082,13 @@ mergable(otmp, obj)     /* returns TRUE if obj  & otmp can be merged */
 
 	/* allow candle merging only if their ages are close */
 	/* see begin_burn() for a reference for the magic "25" */
-	if (Is_candle(obj) && obj->age/25 != otmp->age/25)
+	/* [ALI] Slash'EM can't rely on using 25, because we
+	 * have chosen to reduce the cost of candles such that
+	 * the initial age is no longer a multiple of 25. The
+	 * simplest solution is just to use 20 instead, since
+	 * initial candle age is always a multiple of 20.
+	 */
+	if (Is_candle(obj) && obj->age/20 != otmp->age/20)
 	    return(FALSE);
 
 	/* burning potions of oil never merge */
