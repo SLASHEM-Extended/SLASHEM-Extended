@@ -76,7 +76,7 @@ int FDECL(main, (int,char **));
 
 extern void FDECL(pcmain, (int,char **));
 
-#ifdef __BORLANDC__
+#if defined(__BORLANDC__) && !defined(_WIN32)
 void NDECL( startup );
 # ifdef OVLB
 unsigned _stklen = STKSIZ;
@@ -112,7 +112,7 @@ char *argv[];
 	register int fd;
 	register char *dir;
 
-#ifdef __BORLANDC__
+#if defined(__BORLANDC__) && !defined(_WIN32)
 	startup();
 #endif
 
@@ -667,7 +667,15 @@ char *str;
 #ifndef WIN32
 	Strcpy (tmp, str);
 #else
-	*(tmp + GetModuleFileName((HANDLE)0, tmp, bsize)) = '\0';
+	#ifdef UNICODE
+	{
+		TCHAR wbuf[BUFSZ];
+		GetModuleFileName((HANDLE)0, wbuf, BUFSZ);
+		WideCharToMultiByte(CP_ACP, 0, wbuf, -1, tmp, bsize, NULL, NULL);
+	}
+	#else
+		*(tmp + GetModuleFileName((HANDLE)0, tmp, bsize)) = '\0';
+	#endif
 #endif
 	tmp2 = strrchr(tmp, PATH_SEPARATOR);
 	if (tmp2) *tmp2 = '\0';

@@ -57,6 +57,7 @@
 /* #define GTK_GRAPHICS */	/* GTK Interface */
 /* #define GNOME_GRAPHICS */	/* Gnome interface */
 /* #define PROXY_GRAPHICS */	/* Plug-in interfaces (not yet supported) */
+/* #define MSWIN_GRAPHICS */	/* Windows NT, CE, Graphics */
 
 /*
  * Define the default window system.  This should be one that is compiled
@@ -135,6 +136,16 @@
  * This will cause it to always be initialized with undesirable side
  * effects. Instead, use the windowtype option.  --ALI
  */
+#endif
+
+#ifdef MSWIN_GRAPHICS
+# ifdef TTY_GRAPHICS
+# undef TTY_GRAPHICS
+# endif
+# ifndef DEFAULT_WINDOW_SYS
+#  define DEFAULT_WINDOW_SYS "mswin"
+# endif
+# define HACKDIR "\\nethack"
 #endif
 
 #ifndef DEFAULT_WINDOW_SYS

@@ -49,6 +49,9 @@ extern struct window_procs Gnome_procs;
 extern struct window_procs proxy_procs;
 extern void NDECL(win_proxy_init);
 #endif
+#ifdef MSWIN_GRAPHICS
+extern struct window_procs mswin_procs;
+#endif
 
 STATIC_DCL void FDECL(def_raw_print, (const char *s));
 
@@ -92,6 +95,9 @@ struct win_choices {
 #endif
 #ifdef PROXY_GRAPHICS
     { &proxy_procs, win_proxy_init },
+#endif
+#ifdef MSWIN_GRAPHICS
+    { &mswin_procs, 0 },
 #endif
     { 0, 0 }		/* must be last */
 };

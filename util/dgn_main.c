@@ -44,7 +44,7 @@ FILE *FDECL (freopen, (char *,char *,FILE *));
 #endif
 #define Fprintf (void)fprintf
 
-#ifdef __BORLANDC__
+#if defined(__BORLANDC__) && !defined(_WIN32)
 extern unsigned _stklen = STKSIZ;
 #endif
 int

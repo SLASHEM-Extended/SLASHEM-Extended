@@ -123,6 +123,11 @@
  * Windows NT Autodetection
  *
  */
+#ifdef _WIN32_WCE
+# ifndef WIN32
+# define WIN32
+# endif
+#endif
 
 #if defined(__CYGWIN__) && !defined(UNIX)
 # define WIN32

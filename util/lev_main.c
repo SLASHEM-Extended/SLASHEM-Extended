@@ -27,6 +27,10 @@
 # endif
 #endif
 
+#ifdef WIN_CE
+#define PREFIX "\\nethack\\dat\\"
+#endif
+
 #ifndef MPWTOOL
 # define SpinCursor(x)
 #endif
@@ -63,7 +67,7 @@
 #define Free(ptr)		if(ptr) free((genericptr_t) (ptr))
 #define Write(fd, item, size)	if (write(fd, (genericptr_t)(item), size) != size) return FALSE;
 
-#ifdef __BORLANDC__
+#if defined(__BORLANDC__) && !defined(_WIN32)
 extern unsigned _stklen = STKSIZ;
 #endif
 #define MAX_ERRORS	25

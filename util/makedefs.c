@@ -223,7 +223,7 @@ static char *FDECL(ucase, (char *));
 /* input, output, tmp */
 static FILE *ifp, *ofp, *tfp;
 
-#ifdef __BORLANDC__
+#if defined(__BORLANDC__) && !defined(_WIN32)
 extern unsigned _stklen = STKSIZ;
 #endif
 
@@ -736,17 +736,11 @@ static const char *build_opts[] = {
 # ifdef MAC
 		"screen control via mactty",
 # endif
-# ifdef SCREEN_8514
-		"screen control via 8514/A graphics",
-# endif
 # ifdef SCREEN_BIOS
 		"screen control via BIOS",
 # endif
 # ifdef SCREEN_DJGPPFAST
 		"screen control via DJGPP fast",
-# endif
-# ifdef SCREEN_VESA
-		"screen control via VESA graphics",
 # endif
 # ifdef SCREEN_VGA
 		"screen control via VGA graphics",
@@ -754,8 +748,10 @@ static const char *build_opts[] = {
 # ifdef ALLEG_FX
 		"screen control via Allegro library",
 # endif
-# ifdef WIN32CON
+# ifndef MSWIN_GRAPHICS
+#  ifdef WIN32CON
 		"screen control via WIN32 console I/O",
+#  endif
 # endif
 #endif
 #ifdef SEDUCE
@@ -832,8 +828,8 @@ static const char *window_opts[] = {
 #ifdef GEM_GRAPHICS
 		"Gem",
 #endif
-#ifdef WIN32_GRAPHICS
-		"Win32",
+#ifdef MSWIN_GRAPHICS
+		"mswin",
 #endif
 #ifdef BEOS_GRAPHICS
 		"BeOS InterfaceKit",

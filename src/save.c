@@ -46,14 +46,10 @@ static long nulls[10];
 #define nulls nul
 #endif
 
-#if defined(UNIX) || defined(VMS) || defined(__EMX__)
+#if defined(UNIX) || defined(VMS) || defined(__EMX__) || defined(WIN32)
 #define HUP	if (!program_state.done_hup)
 #else
-# ifdef WIN32
-#define HUP	if (!program_state.exiting)
-# else
 #define HUP
-#endif
 #endif
 
 /* need to preserve these during save to avoid accessing freed memory */
@@ -128,7 +124,7 @@ dosave()
 }
 
 
-#if defined(UNIX) || defined(VMS) || defined (__EMX__)
+#if defined(UNIX) || defined(VMS) || defined (__EMX__) || defined(WIN32)
 /*ARGSUSED*/
 void
 hangup(sig_unused)  /* called as signal() handler, so sent at least one arg */
