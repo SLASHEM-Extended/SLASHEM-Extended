@@ -158,6 +158,11 @@ static struct Bool_Opt
 #else
 	{"menu_tab_sep", (boolean *)0, FALSE, SET_IN_FILE},
 #endif
+#ifdef WIZARD
+	{"mon_polycontrol", &iflags.mon_polycontrol, FALSE, SET_IN_GAME},
+#else
+	{"mon_polycontrol", (boolean *)0, FALSE, SET_IN_FILE},
+#endif
 	{"mouse_support", &iflags.wc_mouse_support, TRUE, DISP_IN_GAME},	/*WC*/
 #ifdef NEWS
 	{"news", &iflags.news, TRUE, DISP_IN_GAME},

@@ -1539,6 +1539,7 @@ STATIC_OVL void
 lifesaved_monster(mtmp)
 struct monst *mtmp;
 {
+	int visible;
 	struct obj *lifesave = mlifesaver(mtmp);
 
 	if (lifesave) {
@@ -1546,7 +1547,11 @@ struct monst *mtmp;
 		/* to show this for a long worm with only a tail visible. */
 		/* Nor do you check invisibility, because glowing and disinte- */
 		/* grating amulets are always visible. */
-		if (cansee(mtmp->mx, mtmp->my)) {
+		/* [ALI] Always treat swallower as visible for consistency */
+		/* with unpoly_monster(). */
+		visible = u.uswallow && u.ustuck == mtmp ||
+			cansee(mtmp->mx, mtmp->my);
+		if (visible) {
 			pline("But wait...");
 			pline("%s medallion begins to glow!",
 				s_suffix(Monnam(mtmp)));
@@ -1567,7 +1572,7 @@ struct monst *mtmp;
 		if (mtmp->mhpmax <= 0) mtmp->mhpmax = 10;
 		mtmp->mhp = mtmp->mhpmax;
 		if (mvitals[monsndx(mtmp->data)].mvflags & G_GENOD) {
-			if (cansee(mtmp->mx, mtmp->my))
+			if (visible)
 			    pline("Unfortunately %s is still genocided...",
 				mon_nam(mtmp));
 		} else
@@ -1581,20 +1586,25 @@ static void
 unpoly_monster(mtmp)
 struct monst *mtmp;
 {
+	int visible;
 	char buf[BUFSZ];
 
 	sprintf(buf, Monnam(mtmp));
 
 	/* If there is a timer == monster was poly'ed */
 	if (stop_timer(UNPOLY_MON, (genericptr_t) mtmp)) {
+	    /* [ALI] Always treat swallower as visible so that the message
+	     * indicating that the monster hasn't died comes _before_ any
+	     * message about breaking out of the "new" monster.
+	     */
+	    visible = u.uswallow && u.ustuck == mtmp || cansee(mtmp->mx,mtmp->my);
 	    mtmp->mhp = mtmp->mhpmax;
-	    if (cansee(mtmp->mx,mtmp->my))
+	    if (visible)
 		pline("But wait...");
-	    if (newcham(mtmp, &mons[mtmp->oldmonnm], FALSE,
-		    cansee(mtmp->mx,mtmp->my))) {
+	    if (newcham(mtmp, &mons[mtmp->oldmonnm], FALSE, visible))
 		mtmp->mhp = mtmp->mhpmax/2;
-	    } else {
-		if (cansee(mtmp->mx,mtmp->my))
+	    else {
+		if (visible)
 		    pline("%s shudders!", Monnam(mtmp));
 		mtmp->mhp = 0;
 	    }
@@ -2046,14 +2056,15 @@ xkilled(mtmp, dest)
 	if(stoned) monstone(mtmp);
 	else mondead(mtmp);
 
-	if (mtmp->mhp > 0) { /* monster lifesaved */
+	if (mtmp->mhp > 0) { /* monster cheated death */
 		/* Cannot put the non-visible lifesaving message in
-		 * lifesaved_monster() since the message appears only when you
-		 * kill it (as opposed to visible lifesaving which always
-		 * appears).
+		 * lifesaved_monster()/unpoly_monster() since the message
+		 * appears only when you kill it (as opposed to visible
+		 * lifesaving which always appears).
 		 */
 		stoned = FALSE;
-		if (!cansee(x,y)) pline("Maybe not...");
+		if ((!u.uswallow || u.ustuck != mtmp) && !cansee(x, y))
+		    pline("Maybe not...");
 		return;
 	}
 
@@ -2684,7 +2695,7 @@ boolean msg;
 {
 	int mhp, hpn, hpd;
 	int mndx, tryct;
-	int couldspot = canspotmon(mtmp);
+	int couldspot = u.uswallow && mtmp == u.ustuck || canspotmon(mtmp);
 	struct permonst *olddata = mtmp->data;
 	char oldname[BUFSZ];
 	boolean alt_mesg = FALSE;	/* Avoid "<rank> turns into a <rank>" */
@@ -2829,26 +2840,6 @@ boolean msg;
 	    if (!can_ride(u.usteed)) dismount_steed(DISMOUNT_POLY);
 	}
 #endif
-	if (u.ustuck == mtmp) {
-		if(u.uswallow) {
-			if(!attacktype(mdat,AT_ENGL)) {
-				/* Does mdat care? */
-				if (!noncorporeal(mdat) && !amorphous(mdat) &&
-				    !is_whirly(mdat) &&
-				    (mdat != &mons[PM_YELLOW_LIGHT])) {
-					You("break out of %s%s!", mon_nam(mtmp),
-					    (is_animal(mdat)?
-					    "'s stomach" : ""));
-					mtmp->mhp = 1;  /* almost dead */
-				}
-				expels(mtmp, olddata, FALSE);
-			} else {
-				/* update swallow glyphs for new monster */
-				swallowed(0);
-			}
-		} else if (!sticks(mdat) && !sticks(youmonst.data))
-			unstuck(mtmp);
-	}
 
 #ifndef DCC30_BUG
 	if (mdat == &mons[PM_LONG_WORM] && (mtmp->wormno = get_wormno()) != 0) {
@@ -2879,6 +2870,30 @@ boolean msg;
 		  x_monnam(mtmp, ARTICLE_A, (char*)0, SUPPRESS_SADDLE, FALSE));
 	    mtmp->mnamelth = save_mnamelth;
 	    }
+	}
+
+	/* [ALI] In Slash'EM, this must come _after_ "<mon> turns into <mon>"
+	 * since it's possible to get both messages.
+	 */
+	if (u.ustuck == mtmp) {
+		if(u.uswallow) {
+			if(!attacktype(mdat,AT_ENGL)) {
+				/* Does mdat care? */
+				if (!noncorporeal(mdat) && !amorphous(mdat) &&
+				    !is_whirly(mdat) &&
+				    (mdat != &mons[PM_YELLOW_LIGHT])) {
+					You("break out of %s%s!", mon_nam(mtmp),
+					    (is_animal(mdat)?
+					    "'s stomach" : ""));
+					mtmp->mhp = 1;  /* almost dead */
+				}
+				expels(mtmp, olddata, FALSE);
+			} else {
+				/* update swallow glyphs for new monster */
+				swallowed(0);
+			}
+		} else if (!sticks(mdat) && !sticks(youmonst.data))
+			unstuck(mtmp);
 	}
 
 	possibly_unwield(mtmp, polyspot);	/* might lose use of weapon */
