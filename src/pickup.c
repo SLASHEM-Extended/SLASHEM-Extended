@@ -2031,6 +2031,13 @@ register int held;
 	obj->owt = weight(obj);
 
 	if (!cnt) Sprintf(emptymsg, "%s %s empty.", Yname2(obj), otense(obj, "are"));
+	if (current_container->otyp == MEDICAL_KIT) {
+	    if (!cnt)
+		pline("%s", emptymsg);
+	    else
+		(void) display_cinventory(current_container);
+	    return 0;
+	}
 	if (cnt || flags.menu_style == MENU_FULL) {
 	    Sprintf(qbuf, "Do you want to take %s out of %s?",
 		    something, yname(obj));

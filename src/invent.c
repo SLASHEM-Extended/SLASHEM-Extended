@@ -895,7 +895,8 @@ struct obj *otmp;
 		|| (!strcmp(word, "untrap with") &&
 		    (otmp->oclass == TOOL_CLASS && otyp != CAN_OF_GREASE))
 		|| (!strcmp(word, "charge") && !is_chargeable(otmp))
-		|| (!strcmp(word, "draw blood with") &&
+		|| ((!strcmp(word, "draw blood with") ||
+			!strcmp(word, "bandage your wounds with")) &&
 		    (otmp->oclass == TOOL_CLASS && otyp != MEDICAL_KIT))
 		    )
 			return 2;
@@ -3086,6 +3087,7 @@ char *title;
 /*
  * Display the contents of a container in inventory style.
  * Currently, this is only used for statues, via wand of probing.
+ * [ALI] Also used when looting medical kits.
  */
 struct obj *
 display_cinventory(obj)

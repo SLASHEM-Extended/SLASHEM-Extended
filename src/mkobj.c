@@ -149,6 +149,7 @@ struct obj *box;
 	box->cobj = (struct obj *) 0;
 
 	switch (box->otyp) {
+	case MEDICAL_KIT:	n = 60; break;
 	case ICE_BOX:		n = 20; break;
 	case CHEST:		n = 5; break;
 	case LARGE_BOX:		n = 3; break;
@@ -162,6 +163,13 @@ struct obj *box;
 	}
 
 	for (n = rn2(n+1); n > 0; n--) {
+	    if (box->otyp == MEDICAL_KIT) {
+		int supplies[] = { PHIAL, BANDAGE, PILL };
+		if (!(otmp = mksobj(supplies[rn2(SIZE(supplies))], TRUE, TRUE)))
+		    continue;
+		else
+		    otmp->oinvis = FALSE;
+	    } else
 	    if (box->otyp == ICE_BOX) {
 		if (!(otmp = mksobj(CORPSE, TRUE, TRUE))) continue;
 		/* Note: setting age to 0 is correct.  Age has a different
@@ -547,6 +555,7 @@ boolean artif;
 		case SACK:
 		case OILSKIN_SACK:
 		case BAG_OF_HOLDING:
+		case MEDICAL_KIT:
 			mkbox_cnts(otmp);
 					break;
 #ifdef TOURIST
@@ -572,9 +581,6 @@ boolean artif;
 		case CRYSTAL_BALL:
 			otmp->spe = rn1(10,3);
 					blessorcurse(otmp, 2);
-					break;
-		case MEDICAL_KIT:
-			otmp->spe = rn1(10,10);
 					break;
 		case HORN_OF_PLENTY:
 		case BAG_OF_TRICKS:

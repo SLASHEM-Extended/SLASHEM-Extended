@@ -889,10 +889,10 @@ TOOL("magic marker", (char *)0, 1, 0, 1, 1,  15,  2,  50, PLASTIC, CLR_RED),
 /* Two pseudo tools. These can never exist outside of medical kits. */
 OBJECT(OBJ("bandage", (char *)0),
 		BITS(1,1,0,0,0,0,0,1,0,0,0,P_NONE,CLOTH), 0,
-		TOOL_CLASS, 0, 0, 1, 1, 0, 0, 0, 0, 1, CLR_WHITE),
+		TOOL_CLASS, 0, 0, 1, 1, 0, 0, 0, 0, 0, CLR_WHITE),
 OBJECT(OBJ("phial", (char *)0),
 		BITS(1,1,0,0,0,0,0,1,0,0,0,P_NONE,GLASS), 0,
-		TOOL_CLASS, 0, 0, 2, 1, 0, 0, 0, 0, 2, HI_GLASS),
+		TOOL_CLASS, 0, 0, 2, 1, 0, 0, 0, 0, 1, HI_GLASS),
 
 /* Two special unique artifact "tools" */
 OBJECT(OBJ("Candelabrum of Invocation", "candelabrum"),
@@ -1005,9 +1005,9 @@ POTION("gain ability", "ruby",          1, 0,          38, 300, CLR_RED),
 POTION("gain level", "milky",           1, 0,          20, 300, CLR_WHITE),
 POTION("invulnerability", "icy",        1, 0,           5, 300, CLR_BRIGHT_BLUE),
 POTION("paralysis", "emerald",          1, 0,          38, 300, CLR_BRIGHT_GREEN),
+POTION("water", "clear",                0, 0,          55, 100, CLR_CYAN),
 POTION("blood", "blood-red",            0, 0,           0,  50, CLR_RED),
 POTION("vampire blood", "blood-red",    1, 0,           0, 350, CLR_RED),
-POTION("water", "clear",                0, 0,          55, 100, CLR_CYAN),
 POTION("amnesia", "sparkling",          1, 0,          16, 100, CLR_CYAN),
 #undef POTION
 

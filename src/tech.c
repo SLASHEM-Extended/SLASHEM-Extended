@@ -495,6 +495,38 @@ dotech()
 
 static NEARDATA const char kits[] = { TOOL_CLASS, 0 };
 
+static struct obj *
+use_medical_kit(type, feedback, verb)
+int type;
+boolean feedback;
+char *verb;
+{
+    struct obj *obj, *otmp;
+    makeknown(MEDICAL_KIT);
+    if (!(obj = carrying(MEDICAL_KIT))) {
+	if (feedback) You("need a medical kit to do that.");
+	return (struct obj *)0;
+    }
+    for (otmp = invent; otmp; otmp = otmp->nobj)
+	if (otmp->otyp == MEDICAL_KIT && otmp != obj)
+	    break;
+    if (otmp) {	/* More than one medical kit */
+	obj = getobj(kits, verb);
+	if (!obj)
+	    return (struct obj *)0;
+    }
+    for (otmp = obj->cobj; otmp; otmp = otmp->nobj)
+	if (otmp->otyp == type)
+	    break;
+    if (!otmp) {
+	if (feedback)
+	    You_cant("find any more %s in %s.",
+		    makeplural(simple_typename(type)), yname(obj));
+	return (struct obj *)0;
+    }
+    return otmp;
+}
+
 /* gettech is reworked getspell */
 /* reworked class special effects code */
 /* adapted from specialpower in cmd.c */
@@ -627,11 +659,20 @@ int tech_no;
 		    } else pline("If only you had a scalpel...");
 		}
 		if (u.uhp < u.uhpmax) {
-		    if(carrying(MEDICAL_KIT)) {
-			pline("Using your medical kit, you bandage your wounds.");
+		    obj = use_medical_kit(BANDAGE, FALSE,
+			    "bandage your wounds with");
+		    if (obj) {
+			check_unpaid(obj);
+			if (otmp->quan > 1L)
+			    otmp->quan--;
+			else {
+			    obj_extract_self(otmp);
+			    obfree(otmp, (struct obj *)0);
+			}
+			pline("Using %s, you bandage your wounds.", yname(obj));
 			u.uhp += (techlev(tech_no) * (rnd(2)+1)) + rn1(5,5);
 		    } else {
-			pline("You bandage your wounds as best you can.");
+			pline("You strap your wounds as best you can.");
 			u.uhp += (techlev(tech_no)) + rn1(5,5);
 		    }
                     t_timeout = rn1(1000,500);
@@ -1351,30 +1392,22 @@ int tech_no;
 		    You("must be in your natural form to draw blood.");
 		    return(0);
 		}
-		if (!(obj = carrying(MEDICAL_KIT))) {
-		    You("need a medical kit to do that.");
-		    return(0);
-		}
-		for (otmp = invent; otmp; otmp = otmp->nobj)
-		    if (otmp->otyp == MEDICAL_KIT && otmp != obj)
-			break;
-		if (otmp) {	/* More than one medical kit */
-		    obj = getobj(kits, "draw blood with");
-		    if (!obj || obj->otyp != MEDICAL_KIT) {
-			if (obj) pline(silly_thing_to, "draw blood with");
-			return(0);
-		    }
-		}
-		if (obj->spe <= 0) {
-		    You_cant("find any more bottles in your medical kit.");
-		    return(0);
-		}
+		obj = use_medical_kit(PHIAL, TRUE, "draw blood with");
+		if (!obj)
+		    return 0;
 		if (u.ulevel <= 1) {
 		    You_cant("seem to find a vein.");
-		    return(0);
+		    return 0;
 		}
-		obj->spe--;
-		pline("Using your medical kit, you draw off a bottle of your blood.");
+		check_unpaid(obj);
+		if (otmp->quan > 1L)
+		    otmp->quan--;
+		else {
+		    obj_extract_self(otmp);
+		    obfree(otmp, (struct obj *)0);
+		}
+		pline("Using %s, you draw off a bottle of your blood.",
+			yname(obj));
 		losexp("drawing blood", TRUE);
 		if (u.uexp > 0)
 		    u.uexp = newuexp(u.ulevel - 1);
@@ -1382,7 +1415,8 @@ int tech_no;
 		otmp->cursed = obj->cursed;
 		otmp->blessed = obj->blessed;
 		(void) hold_another_object(otmp,
-		   "You fill, but have to drop, %s!", doname(otmp), (const char *)0);
+			"You fill, but have to drop, %s!", doname(otmp),
+			(const char *)0);
 		t_timeout = rn1(1000, 500);
 		break;
 	    default:

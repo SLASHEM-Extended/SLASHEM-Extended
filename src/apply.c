@@ -3561,32 +3561,52 @@ doapply()
 		if (obj->cursed && rn2(3)) can_use = FALSE;
 		if (obj->blessed && rn2(3)) can_use = TRUE;  
 
-		if (obj->spe > 0) {
-		
-		check_unpaid(obj);
-		You("take a few pills from your bag and swallow them.");
-		obj->spe--;
-		if(can_use) {
-			if (Sick) make_sick(0L, (char *) 0,TRUE ,SICK_ALL);
-			else if (Blinded > (long)(u.ucreamed+1)) make_blinded(u.ucreamed ? (long)(u.ucreamed+1) : 0L, TRUE);
-			else if (HHallucination) make_hallucinated(0L, TRUE, 0L);
-			else if (Vomiting) make_vomiting(0L, TRUE);
-			else if (HConfusion) make_confused(0L, TRUE);
-			else if (HStun) make_stunned(0L, TRUE);
-			else if (u.uhp < u.uhpmax) {
+		makeknown(MEDICAL_KIT);
+		if (obj->cobj) {
+		    struct obj *otmp;
+		    for (otmp = obj->cobj; otmp; otmp = otmp->nobj)
+			if (otmp->otyp == PILL)
+			    break;
+		    if (!otmp)
+			You_cant("find any more pills in %s.", yname(obj));
+		    else {
+			check_unpaid(obj);
+			if (otmp->quan > 1L)
+			    otmp->quan--;
+			else {
+			    obj_extract_self(otmp);
+			    obfree(otmp, (struct obj *)0);
+			}
+			/*
+			 * Note that while white and pink pills share the
+			 * same otyp value, they are quite different.
+			 */
+			You("take a white pill from %s and swallow it.",
+				yname(obj));
+			if (can_use) {
+			    if (Sick) make_sick(0L, (char *) 0,TRUE ,SICK_ALL);
+			    else if (Blinded > (long)(u.ucreamed+1))
+				make_blinded(u.ucreamed ?
+					(long)(u.ucreamed+1) : 0L, TRUE);
+			    else if (HHallucination)
+				make_hallucinated(0L, TRUE, 0L);
+			    else if (Vomiting) make_vomiting(0L, TRUE);
+			    else if (HConfusion) make_confused(0L, TRUE);
+			    else if (HStun) make_stunned(0L, TRUE);
+			    else if (u.uhp < u.uhpmax) {
 				u.uhp += rn1(10,10);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
-				You("feel better.");
+				You_feel("better.");
+			    } else pline(nothing_happens);
+			} else if (!Sick && rn2(3))
+			    make_sick(0L, xname(otmp), TRUE ,SICK_ALL);
+			else if (rn2(3)) {
+			    You("seem to have made your condition worse!");
+			    losehp(rn1(10,10), "a drug overdose", KILLED_BY);
 			} else pline("Nothing seems to happen.");
-		} else if (!Sick && rn2(3)) {
-				make_sick(0L, xname(obj),TRUE ,SICK_ALL);
-				You("have taken some bad pills!");
-			} else if (rn2(3)) {
-				You("seem to have made your condition worse!");
-				losehp(rn1(10,10), "a drug overdose", KILLED_BY);
-			} else pline("Nothing seems to happen.");
-	      } else You("seem to be out of medical supplies");
-	      break;
+		    }
+		} else You("seem to be out of medical supplies");
+		break;
 	case HORN_OF_PLENTY:	/* not a musical instrument */
 		if (obj->spe > 0) {
 		    struct obj *otmp;
