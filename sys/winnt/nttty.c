@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)nttty.c	3.4	$Date: 2003-11-06 00:04:17 $   */
+/*	SCCS Id: @(#)nttty.c	3.4	$Date: 2003-12-01 17:44:03 $   */
 /* Copyright (c) NetHack PC Development Team 1993    */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -290,6 +290,61 @@ DWORD ctrltype;
 	}
 }
 
+/*
+ * Check that we have valid standard I/O and allocate a console if not.
+ * Called by nttty_open below and msmsg in pcsys.c for WIN32CON port.
+ */
+void
+nttty_check_stdio()
+{
+	int fd = fileno(stdin);
+	HWND wnd;
+	HWND (*get_console_window)(VOID);
+	MSG msg;
+	if (fd < 0 || (HANDLE)_get_osfhandle(fd) == INVALID_HANDLE_VALUE) {
+		CloseHandle((HANDLE)_get_osfhandle(fd));
+		close(fd);
+		fd = fileno(stdout);
+		CloseHandle((HANDLE)_get_osfhandle(fd));
+		close(fd);
+		fd = fileno(stderr);
+		CloseHandle((HANDLE)_get_osfhandle(fd));
+		close(fd);
+		AllocConsole();
+		freopen("CONIN$", "r", stdin);
+		freopen("CONOUT$", "w", stdout);
+		freopen("CONOUT$", "w", stderr);
+		setbuf(stderr, NULL);
+		/*
+		 * If we were started by eg., explorer, then the new console
+		 * window will not have the focus and MS-Windows will continue
+		 * to wait for us to open a new window and start processing
+		 * events. We want our new console to become the foreground
+		 * window and for the cursor to return to normal (which we
+		 * achieve by calling PeekMessage so MS-Windows knows we have
+		 * started processing events).
+		 */
+		get_console_window = (HWND (*)(VOID)) GetProcAddress(
+				GetModuleHandle("kernel32"),
+				"GetConsoleWindow");	/* Win2K and above */
+		if (get_console_window)
+			wnd = get_console_window();
+		else {
+			/* This works, but is hardly ideal */
+			char buf[64];
+			sprintf(buf, "Slash'EM TTY - %lX",
+					GetCurrentProcessId());
+			SetConsoleTitle(buf);
+			wnd = FindWindow(NULL, buf);
+		}
+		SetConsoleTitle("Slash'EM TTY");
+		if (wnd) {
+			SetForegroundWindow(wnd);
+			PeekMessage(&msg, wnd, 0, 0, PM_NOREMOVE);
+		}
+	}
+}
+
 /* called by init_tty in wintty.c for WIN32CON port only */
 void
 nttty_open()
@@ -297,6 +352,7 @@ nttty_open()
         HANDLE hStdOut;
         long mask;
         
+	nttty_check_stdio();
         /* The following 6 lines of code were suggested by 
          * Bob Landau of Microsoft WIN32 Developer support,
          * as the only current means of determining whether

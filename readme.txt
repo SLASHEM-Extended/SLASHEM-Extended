@@ -90,6 +90,7 @@ ver 0.0.7E4 [?] [Released by ?]
 -fixed bug 846662: UNIX Makefiles call for NetHack.ad instead of SlashEM.ad
 -fixed bug 799278: "Finally Finished" when Turning Undead
 -Merged vanilla 3.4.2 codebase.
+-fixed bug 795549: IBM / ASCII graphics not working on Win XP
 
 See history.txt for changes made in previous versions.
 

@@ -1,4 +1,4 @@
-/* $Id: prxyconn.c,v 1.8 2003-10-25 18:06:01 j_ali Exp $ */
+/* $Id: prxyconn.c,v 1.9 2003-12-01 17:44:04 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -339,19 +339,25 @@ proxy_connect_file(char *address, int *argcp, char **argv)
 	proxy_clnt_error("Failed to create pipes");
 	return 1;
     }
-    save_stdin = dup_osf(0);
-    if (save_stdin == INVALID_HANDLE_VALUE) {
-	proxy_clnt_error("Failed to save stdin");
-	return 1;
+    save_stdin = (HANDLE)_get_osfhandle(0);
+    if (save_stdin != INVALID_HANDLE_VALUE) {
+	save_stdin = dup_osf(0);
+	if (save_stdin == INVALID_HANDLE_VALUE) {
+	    proxy_clnt_error("Failed to save stdin");
+	    return 1;
+	}
     }
     if (!redirect_to_osf(STD_INPUT_HANDLE, to_game_h[0])) {
 	proxy_clnt_error("Failed to redirect stdin");
 	return 1;
     }
-    save_stdout = dup_osf(1);
-    if (save_stdout == INVALID_HANDLE_VALUE) {
-	proxy_clnt_error("Failed to save stdout");
-	return 1;
+    save_stdout = (HANDLE)_get_osfhandle(1);
+    if (save_stdout != INVALID_HANDLE_VALUE) {
+	save_stdout = dup_osf(1);
+	if (save_stdout == INVALID_HANDLE_VALUE) {
+	    proxy_clnt_error("Failed to save stdout");
+	    return 1;
+	}
     }
     if (!redirect_to_osf(STD_OUTPUT_HANDLE, from_game_h[1])) {
 	proxy_clnt_error("Failed to redirect stdout");
@@ -363,11 +369,17 @@ proxy_connect_file(char *address, int *argcp, char **argv)
 	return 1;
     }
     free(nargv);
-    if (!redirect_to_osf(STD_INPUT_HANDLE, save_stdin)) {
+    if (save_stdin == INVALID_HANDLE_VALUE) {
+	SetStdHandle(STD_INPUT_HANDLE, INVALID_HANDLE_VALUE);
+	close(0);
+    } else if (!redirect_to_osf(STD_INPUT_HANDLE, save_stdin)) {
 	proxy_clnt_error("Failed to restore stdin");
 	return 1;
     }
-    if (!redirect_to_osf(STD_OUTPUT_HANDLE, save_stdout)) {
+    if (save_stdout == INVALID_HANDLE_VALUE) {
+	SetStdHandle(STD_OUTPUT_HANDLE, INVALID_HANDLE_VALUE);
+	close(1);
+    } else if (!redirect_to_osf(STD_OUTPUT_HANDLE, save_stdout)) {
 	proxy_clnt_error("Failed to restore stdout");
 	return 1;
     }

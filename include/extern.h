@@ -1412,6 +1412,7 @@ E void NDECL(lan_mail_terminate);
 #ifdef WIN32CON
 E void NDECL(get_scr_size);
 E int NDECL(nttty_kbhit);
+E void NDECL(nttty_check_stdio);
 E void NDECL(nttty_open);
 E void NDECL(nttty_rubout);
 E int NDECL(tgetch);

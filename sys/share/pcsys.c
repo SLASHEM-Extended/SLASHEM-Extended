@@ -413,6 +413,7 @@ msmsg VA_DECL(const char *, fmt)
 		gr_finish();
 # endif
 #ifdef WIN32CON
+	nttty_check_stdio();
 	if (iflags.rawio) set_output_mode(0);
 #endif
 	Vprintf(fmt, VA_ARGS);

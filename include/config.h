@@ -140,9 +140,6 @@
 #endif
 
 #ifdef MSWIN_GRAPHICS
-# ifdef TTY_GRAPHICS
-# undef TTY_GRAPHICS
-# endif
 # ifndef DEFAULT_WINDOW_SYS
 #  define DEFAULT_WINDOW_SYS "mswin"
 # endif

@@ -7,8 +7,19 @@
 # To change the configuration, comment out the unwanted lines, and
 # uncomment the configuration you want.
 
+# *** Tilesets provided for use by plug-in window interfaces.
+TILESET=name:Small tiles,file:gltile16.png
+TILESET=name:Big tiles,file:gltile32.png,transparent
+TILESET=name:Big 3D tiles,file:gltile64.png,transparent,pseudo3D
+OPTIONS=tiles:Big tiles
+
 # *** OPTIONS ***
 #
+# Use the TTY (console) window interface instead of the default GUI interface.
+# Note: This has no effect if you are using a plug-in window interface, such
+# as gtkhack.
+# OPTIONS=windowtype:tty
+
 # Use the IBM character set rather than just plain ascii characters
 # for tty window-port.
 OPTIONS=IBMGraphics

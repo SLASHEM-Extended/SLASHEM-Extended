@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.40 2003-11-06 00:04:17 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.41 2003-12-01 17:44:03 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -224,9 +224,8 @@ else
 CFLAGS = -c -O -I../include $(DLBFLG)
 LFLAGS =
 
-ifneq ($(USE_MSWIN),Y)
+# Comment out this line if you have also commented out TTY_GRAPHICS in config.h
 CFLAGS += -DWIN32CON
-endif
 endif
 
 # Select Windowing system(s) below
@@ -625,7 +624,7 @@ ifeq ($(USE_GTK),Y)
 	$(RCOPY) $(subst /,\,$(MW32GTK)\lib\gtk-2.0	$(GAMEDIR)\lib\gtk-2.0)
 	$(COPY) $(subst /,\,$(WSYS)\winnt.cnf		$(GAMEDIR)\defaults.nh)
 else
-	$(COPY) $(subst /,\,$(SSHR)\NetHack.cnf		$(GAMEDIR)\defaults.nh)
+	$(COPY) $(subst /,\,$(WSYS)\defaults.nh		$(GAMEDIR)\defaults.nh)
 endif
 ifeq ($(USE_PROXY),Y)
 	$(COPY) $(subst /,\,x11tiles.map		$(GAMEDIR))
