@@ -337,6 +337,7 @@ ver 0.0.6E4F3 (Might become 0.0.6E5) [February XX/2001]
 -added FIXMEs for two bugs relating to wands of (extra) healing.
 -fixed bug 131665: Wrong cause of death when cursed wands explode.
 -added FIXME for bug relating to cause of death from magical explosions.
+-fixed bug 132026: Transparent tiles: not updating when fountains dry up.
 
 ver 0.0.6E4F2 DOS? (or perhaps merge into F3) [XXX XX/2001]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined

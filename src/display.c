@@ -134,6 +134,8 @@ STATIC_DCL void FDECL(set_seenv, (struct rm *, int, int, int, int));
 STATIC_DCL void FDECL(t_warn, (struct rm *));
 STATIC_DCL int FDECL(wall_angle, (struct rm *));
 
+STATIC_VAR boolean transp;    /* cached transparency flag for current tileset */
+
 #ifdef INVISIBLE_OBJECTS
 /*
  * vobj_at()
@@ -185,7 +187,7 @@ magic_map_background(x, y, show)
     }
     if (level.flags.hero_memory)
 	lev->glyph = glyph;
-    if (show) show_glyph(x,y, glyph);
+    if (show || transp) show_glyph(x,y, glyph);
 }
 
 /*
@@ -218,7 +220,7 @@ map_background(x, y, show)
 
     if (level.flags.hero_memory)
 	levl[x][y].glyph = glyph;
-    if (show) show_glyph(x,y, glyph);
+    if (show || transp) show_glyph(x,y, glyph);
 }
 
 /*
@@ -237,7 +239,7 @@ map_trap(trap, show)
 
     if (level.flags.hero_memory)
 	levl[x][y].glyph = glyph;
-    if (show) show_glyph(x, y, glyph);
+    if (show || transp) show_glyph(x, y, glyph);
 }
 
 /*
@@ -1101,6 +1103,14 @@ curs_on_u()
 int
 doredraw()
 {
+    int i;
+    transp = FALSE;
+    if (tileset[0])
+	for(i = 0; i < no_tilesets; ++i)
+	    if (!strcmpi(tileset, tilesets[i].name)) {
+		transp = !!(tilesets[i].flags & TILESET_TRANSPARENT);
+		break;
+	    }
     docrt();
     return 0;
 }
