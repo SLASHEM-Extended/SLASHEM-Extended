@@ -685,6 +685,7 @@ int tech_no;
 		    }
                     t_timeout = rn1(1000,500);
 		    if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		    flags.botl = TRUE;
 		} else pline("You don't need your healing powers!");
 		break;
             case T_HEAL_HANDS:

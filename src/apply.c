@@ -3681,6 +3681,7 @@ doapply()
 				u.uhp += rn1(10,10);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				You_feel("better.");
+				flags.botl = TRUE;
 			    } else pline(nothing_happens);
 			} else if (!Sick && rn2(3))
 			    make_sick(0L, xname(otmp), TRUE ,SICK_ALL);
