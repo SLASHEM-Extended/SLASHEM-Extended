@@ -548,6 +548,7 @@ spotless: clean
 	$(DEL) sp_lev.tag
 	$(DEL) $(PLANAR_TIB)
 	$(DEL) $(OVERVIEW_TIB)
+	$(DEL) $(INCL)/win32api.h
 
 
 #

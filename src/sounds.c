@@ -9,15 +9,33 @@
 #include <regex.h>
 #endif
 
+/* Hmm.... in working on SHOUT I started thinking about things.
+ * I think something like this should be set up:
+ *  You_hear_mon(mon,loud, msg) - You_hear(msg); monnoise(mon,loud);
+ *  monnoise(mon,loud) - wake_nearto(mon->mx,mon->my,mon->data->mlevel*loud)
+ *				and stuff like that
+ *  mon_say(mon,loud,msg) - verbalize(msg); sayeffects(mon,loud,msg);
+ *  sayeffects(mon,loud,msg) - monnoise(mon,loud); + the pet stuff et al
+ * In fact, I think will set this up, but as a diff, not actually modifying the
+ * files.
+ * If I knew something about branches I might do that.
+ * But anyway, I should be working on petcommands now... maybe later...
+ * -- JRN
+ */
+
 #ifdef OVLB
 
 static int FDECL(domonnoise,(struct monst *));
 static int NDECL(dochat);
+static const char *FDECL(growl_sound,(struct monst *));
+static const char *FDECL(yelp_sound,(struct monst *));
+static const char *FDECL(whimper_sound,(struct monst *));
 
 #endif /* OVLB */
 
 #ifdef OVL0
 
+#ifdef DUMB
 static int FDECL(mon_in_room, (struct monst *,int));
 
 /* this easily could be a macro, but it might overtax dumb compilers */
@@ -30,6 +48,11 @@ int rmtyp;
 
     return rooms[rno - ROOMOFFSET].rtype == rmtyp;
 }
+#else
+/* JRN: converted above to macro */
+# define mon_in_room(mon,rmtype) (rooms[ levl[(mon)->mx][(mon)->my].roomno \
+					- ROOMOFFSET].rtype == (rmtype))
+#endif
 
 void
 dosounds()
@@ -278,6 +301,40 @@ static const char *h_sounds[] = {
     "ululate", "pop", "jingle", "sniffle", "tinkle", "eep"
 };
 
+/* make the sounds of a pet in any level of distress */
+/* (1 = "whimper", 2 = "yelp", 3 = "growl") */
+void
+pet_distress(mtmp,lev)
+register struct monst *mtmp;
+int lev;
+{
+	const char *verb;
+	if (mtmp->msleeping || !mtmp->mcanmove || !mtmp->data->msound)
+		return;
+	/* presumably nearness and soundok checks have already been made */
+
+	if (Hallucination)
+		verb = h_sounds[rn2(SIZE(h_sounds))];
+	else if (lev == 3)
+		verb = growl_sound(mtmp);
+	else if (lev == 2)
+		verb = yelp_sound(mtmp);
+	else if (lev == 1)
+		verb = whimper_sound(mtmp);
+	else
+		panic("strange level of distress");
+
+	if (verb) {
+		pline("%s %s%c", Monnam(mtmp), makeplural(verb), lev>1?'!':'.');
+		if (flags.run) nomul(0);
+		wake_nearto(mtmp->mx,mtmp->my,mtmp->data->mlevel*6*lev);
+	}
+}
+
+/* the sounds of a seriously abused pet, including player attacking it */
+/* in extern.h: #define growl(mon) pet_distess((mon),3) */
+
+static
 const char *
 growl_sound(mtmp)
 register struct monst *mtmp;
@@ -320,99 +377,66 @@ register struct monst *mtmp;
 	return ret;
 }
 
-/* the sounds of a seriously abused pet, including player attacking it */
-void
-growl(mtmp)
-register struct monst *mtmp;
-{
-    register const char *growl_verb = 0;
-
-    if (mtmp->msleeping || !mtmp->mcanmove || !mtmp->data->msound)
-	return;
-
-    /* presumably nearness and soundok checks have already been made */
-    if (Hallucination)
-	growl_verb = h_sounds[rn2(SIZE(h_sounds))];
-    else
-	growl_verb = growl_sound(mtmp);
-    if (growl_verb) {
-	pline("%s %s!", Monnam(mtmp), makeplural(growl_verb));
-	if(flags.run) nomul(0);
-	wake_nearto(mtmp->mx, mtmp->my, mtmp->data->mlevel * 18);
-    }
-}
-
 /* the sounds of mistreated pets */
-void
-yelp(mtmp)
+/* in extern.h: #define yelp(mon) pet_distress((mon),2) */
+
+static
+const char *
+yelp_sound(mtmp)
 register struct monst *mtmp;
 {
-    register const char *yelp_verb = 0;
-
-    if (mtmp->msleeping || !mtmp->mcanmove || !mtmp->data->msound)
-	return;
-
-    /* presumably nearness and soundok checks have already been made */
-    if (Hallucination)
-	yelp_verb = h_sounds[rn2(SIZE(h_sounds))];
-    else switch (mtmp->data->msound) {
+	const char *ret;
+	switch(mtmp->data->msound) {
 	case MS_MEW:
-	    yelp_verb = "yowl";
-	    break;
+		ret = "yowl";
+		break;
 	case MS_BARK:
 	case MS_GROWL:
-	    yelp_verb = "yelp";
-	    break;
+		ret = "yelp";
+		break;
 	case MS_ROAR:
-	    yelp_verb = "snarl";
-	    break;
+		ret = "snarl";
+		break;
 	case MS_SQEEK:
-	    yelp_verb = "squeal";
-	    break;
+		ret = "squeal";
+		break;
 	case MS_SQAWK:
-	    yelp_verb = "screak";
-	    break;
+		ret = "screak";
+		break;
 	case MS_WAIL:
-	    yelp_verb = "wail";
-	    break;
-    }
-    if (yelp_verb) {
-	pline("%s %ss!", Monnam(mtmp), yelp_verb);
-	if(flags.run) nomul(0);
-	wake_nearto(mtmp->mx, mtmp->my, mtmp->data->mlevel * 12);
-    }
+		ret = "wail";
+		break;
+	default:
+		ret = (const char*) 0;
+	}
+	return ret;
 }
 
 /* the sounds of distressed pets */
-void
-whimper(mtmp)
+/* in extern.h: #define whimper(mon) pet_distress((mon),1) */
+
+static
+const char *
+whimper_sound(mtmp)
 register struct monst *mtmp;
 {
-    register const char *whimper_verb = 0;
+	const char *ret;
 
-    if (mtmp->msleeping || !mtmp->mcanmove || !mtmp->data->msound)
-	return;
-
-    /* presumably nearness and soundok checks have already been made */
-    if (Hallucination)
-	whimper_verb = h_sounds[rn2(SIZE(h_sounds))];
-    else switch (mtmp->data->msound) {
+	switch (mtmp->data->msound) {
 	case MS_MEW:
 	case MS_GROWL:
-	    whimper_verb = "whimper";
+	    ret = "whimper";
 	    break;
 	case MS_BARK:
-	    whimper_verb = "whine";
+	    ret = "whine";
 	    break;
 	case MS_SQEEK:
-	    whimper_verb = "squeal";
+	    ret = "squeal";
 	    break;
-    }
-    if (whimper_verb) {
-	pline("%s %ss.", Monnam(mtmp), whimper_verb);
-	if(flags.run) nomul(0);
-	wake_nearto(mtmp->mx, mtmp->my, mtmp->data->mlevel * 6);
-    }
+	default:
+	    ret = (const char *)0;
+	}
+	return ret;
 }
 
 /* pet makes "I'm hungry" noises */
@@ -781,7 +805,9 @@ register struct monst *mtmp;
 	    pline_msg = "seems to mutter a cantrip.";
 	    break;
 	case MS_NURSE:
-	    if (uwep && (uwep->oclass == WEAPON_CLASS || is_weptool(uwep)))
+	    if (uwep && (uwep->oclass == WEAPON_CLASS || is_weptool(uwep))
+		|| (u.twoweap && uswapwep && (uswapwep->oclass == WEAPON_CLASS
+		|| is_weptool(uswapwep))))
 		verbl_msg = "Put that weapon away before you hurt someone!";
 	    else if (uarmc || uarm || uarmh || uarms || uarmg || uarmf)
 		verbl_msg = Role_if(PM_HEALER) ?

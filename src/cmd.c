@@ -1970,6 +1970,9 @@ struct ext_func_tab extcmdlist[] = {
 #endif
 	{"rub", "rub a lamp", dorub, FALSE},
 	{"sit", "sit down", dosit, FALSE},
+#ifdef SHOUT
+	{"shout", "say something loud", doyell, TRUE}, /* jrn */
+#endif
 	{"technique", "perform a technique", dotech, TRUE},
 	{"turn", "turn undead", doturn, TRUE},
 	{"twoweapon", "toggle two-weapon combat", dotwoweapon, FALSE},

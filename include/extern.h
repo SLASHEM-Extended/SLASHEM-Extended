@@ -1805,10 +1805,12 @@ E void NDECL(attrcurse);
 /* ### sounds.c ### */
 
 E void NDECL(dosounds);
-E const char *FDECL(growl_sound, (struct monst *));
-E void FDECL(growl, (struct monst *));
-E void FDECL(yelp, (struct monst *));
-E void FDECL(whimper, (struct monst *));
+E void FDECL(pet_distress, (struct monst *, int));
+/* JRN: converted growl,yelp,whimper to macros based on pet_distress.
+  Putting them here since I don't know where else (TOFIX) */
+#define growl(mon) pet_distress((mon),3)
+#define yelp(mon) pet_distress((mon),2)
+#define whimper(mon) pet_distress((mon),1)
 E void FDECL(beg, (struct monst *));
 E int NDECL(dotalk);
 
