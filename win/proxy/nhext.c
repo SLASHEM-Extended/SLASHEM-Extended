@@ -1,4 +1,4 @@
-/* $Id: nhext.c,v 1.15 2002-12-23 22:59:03 j_ali Exp $ */
+/* $Id: nhext.c,v 1.16 2003-01-05 07:41:49 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -316,6 +316,30 @@ char *nhext_subprotocol0_get_failed_packet(int *nb)
 	return (char *)0;
 }
 
+static void nhext_default_handler(int class, const char *error)
+{
+    impossible(error);
+}
+
+static nhext_errhandler nhext_error_handler = nhext_default_handler;
+
+nhext_errhandler nhext_set_errhandler(nhext_errhandler new)
+{
+    nhext_errhandler old = nhext_error_handler;
+    nhext_error_handler = new;
+    return old;
+}
+
+static void nhext_error(int class, const char *fmt, ...)
+{
+    va_list ap;
+    char buf[128];
+    va_start(ap, fmt);
+    vsprintf(buf, fmt, ap);
+    nhext_error_handler(class, buf);
+    va_end(ap);
+}
+
 static int nhext_rpc_vparams1(NhExtXdr *xdrs, int no, va_list *app)
 {
     int retval = TRUE;
@@ -393,7 +417,8 @@ static int nhext_rpc_vparams1(NhExtXdr *xdrs, int no, va_list *app)
 		retval = (*param_codec)(xdrs, param_addr);
 		break;
 	    default:
-		impossible("Bad key in proxy rpc (%d)", param);
+		nhext_error(EXT_ERROR_INTERNAL,
+		  "Bad key in proxy rpc (%d)", param);
 		retval = FALSE;
 		break;
 	}
@@ -422,12 +447,12 @@ int nhext_rpc_params(NhExtXdr *xdrs, int no, ...)
 	retval = nhext_rpc_vparams1(&sink, no, &ap);
 	va_end(ap);
 	if (!retval)
-	    impossible("NhExt: Codec failed in sink");
+	    nhext_error(EXT_ERROR_INTERNAL, "Codec failed in sink");
 	else {
 	    value = sink.x_pos >> 2;
 	    retval = nhext_xdr_u_long(xdrs, &value);
 	    if (!retval)
-		impossible("NhExt: Codec failed");
+		nhext_error(EXT_ERROR_COMMS, "Failed to write header");
 	}
 	if (!retval)
 	    return retval;
@@ -435,7 +460,7 @@ int nhext_rpc_params(NhExtXdr *xdrs, int no, ...)
     va_start(ap, no);
     retval = nhext_rpc_vparams1(xdrs, no, &ap);
     if (!retval)
-	impossible("NhExt: Codec failed");
+	nhext_error(EXT_ERROR_COMMS, "Codec failed");
     va_end(ap);
     return retval;
 }
@@ -471,6 +496,7 @@ nhext_rpc(unsigned short id, ...)
     va_start(ap, id);
     no = va_arg(ap, int);
     if (!nhext_rpc_vparams1(&sink, no, &ap)) {
+	nhext_error(EXT_ERROR_INTERNAL, "Codec failed in sink");
 	va_end(ap);
 	return FALSE;
     }
@@ -482,12 +508,12 @@ nhext_rpc(unsigned short id, ...)
     pos = nhext_xdr_getpos(nhext_connection.out);
     if (!nhext_rpc_vparams1(nhext_connection.out, no, &ap) ||
       nhext_io_flush(nhext_connection.wr)) {
-	impossible("Write to proxy interface failed");
+	nhext_error(EXT_ERROR_COMMS, "Write to proxy interface failed");
 	va_end(ap);
 	return FALSE;
     }
     if (nhext_xdr_getpos(nhext_connection.out) - pos != sink.x_pos) {
-	impossible(
+	nhext_error(EXT_ERROR_INTERNAL,
 	  "Miscounted length in proxy rpc ID %d (counted %lu, wrote %lu)",
 	  id, sink.x_pos, nhext_xdr_getpos(nhext_connection.out) - pos);
 	va_end(ap);
@@ -497,7 +523,6 @@ nhext_rpc(unsigned short id, ...)
     {
 	retval = nhext_svc(nhext_connection.callbacks);
 	if (retval < 0) {
-	    impossible("Proxy server failed");
 	    va_end(ap);
 	    return FALSE;
 	}
@@ -507,11 +532,26 @@ nhext_rpc(unsigned short id, ...)
      * a request. This indicates that the request is not supported.
      */
     if (no && !nhext_connection.length) {
+	nhext_error(EXT_ERROR_NOTSUPPORTED,
+	  "Procedure %d not supported by remote end", id);
 	va_end(ap);
 	return FALSE;
     }
     nhext_io_setautofill_limit(nhext_connection.rd, nhext_connection.length);
     if (!nhext_rpc_vparams1(nhext_connection.in, no, &ap)) {
+	/*
+	 * There are two important causes of nhext_rpc_vparams1() failing.
+	 * Either the packet sent by the remote end is shorter than we
+	 * are expecting or a comms error caused us to fail to read the
+	 * whole packet. We distinguish these by checking if NOAUTOFILL
+	 * is set (in which case we have read the advertised length).
+	 */
+	if (nhext_io_getmode(nhext_connection.rd) & NHEXT_IO_NOAUTOFILL)
+	    nhext_error(EXT_ERROR_PROTOCOL,
+	      "Short reply received for protocol %d (received %d)", id,
+	      nhext_connection.length);
+	else
+	    nhext_error(EXT_ERROR_COMMS, "Read from proxy interface failed");
 	va_end(ap);
 	return FALSE;
     }
@@ -522,8 +562,8 @@ nhext_rpc(unsigned short id, ...)
 	 */
 	for(i = 1; nhext_io_getc(nhext_connection.rd) >= 0; i++)
 	    ;
-	impossible(
-	  "Mismatch in RPC ID %d request length (%d of %d unused)",
+	nhext_error(EXT_ERROR_PROTOCOL,
+	  "Mismatch in RPC ID %d reply length (%d of %d unused)",
 	  id, i, nhext_connection.length);
 	va_end(ap);
 	return FALSE;
@@ -561,12 +601,13 @@ nhext_svc(struct nhext_svc *services)
 	 */
 	for(j = 1; nhext_io_getc(nhext_connection.rd) >= 0; j++)
 	    ;
-	impossible("Mismatch in packet length (%d of %d unused)",
+	nhext_error(EXT_ERROR_PROTOCOL,
+	  "Mismatch in packet length (%d of %d unused)",
 	  j, nhext_connection.length);
     }
     nhext_io_setautofill_limit(nhext_connection.rd, 4);
     if (!nhext_xdr_u_long(nhext_connection.in, &value)) {
-	impossible("Bad NhExt packet (no header)");
+	nhext_error(EXT_ERROR_COMMS, "Read from proxy interface failed");
 	return -1;
     }
     nhext_connection.length = (value & 0xffff) << 2;
@@ -598,7 +639,7 @@ nhext_svc(struct nhext_svc *services)
 		 * unused). The conclusion of all this is that
 		 * nhext_connection.length is always valid. -- ALI
 		 */
-		impossible(
+		nhext_error(EXT_ERROR_PROTOCOL,
 		  "Mismatch in callback ID %d request length (%d of %d unused)",
 		  id, j, nhext_connection.length);
 	}
@@ -607,10 +648,12 @@ nhext_svc(struct nhext_svc *services)
 	    fprintf(stderr,"[%d] Unsupported proxy callback ID %d (%d known)\n",
 	      getpid(), id, i);
 #endif
+	    nhext_error(EXT_ERROR_NOTSUPPORTED, "Procedure %d not supported",
+	      id);
 	    nhext_rpc_params(nhext_connection.out, 0);
 	}
 	if (nhext_io_flush(nhext_connection.wr)) {
-	    impossible("Write to proxy interface failed");
+	    nhext_error(EXT_ERROR_COMMS, "Write to proxy interface failed");
 	    return -1;
 	}
     }

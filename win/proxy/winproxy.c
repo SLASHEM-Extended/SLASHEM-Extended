@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.18 2003-01-01 22:50:59 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.19 2003-01-05 07:41:49 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -531,8 +531,8 @@ const char *str;
     }
     if (active++ || in_proxy_init ||
       !nhext_rpc(EXT_FID_RAW_PRINT, 1, EXT_STRING(str), 0)) {
-	puts(str);
-	(void) fflush(stdout);
+	fputs(str, stderr);
+	(void) fflush(stderr);
     }
     active--;
 }
@@ -548,8 +548,8 @@ const char *str;
     }
     if (active++ || in_proxy_init ||
       !nhext_rpc(EXT_FID_RAW_PRINT_BOLD, 1, EXT_STRING(str), 0)) {
-	puts(str);
-	(void) fflush(stdout);
+	fputs(str, stderr);
+	(void) fflush(stderr);
     }
     active--;
 }
@@ -1038,11 +1038,28 @@ unsigned int len;
 }
 #endif	/* DEBUG */
 
+static void
+win_proxy_errhandler(class, error)
+int class;
+const char *error;
+{
+    if (class == EXT_ERROR_COMMS) {
+	fputs(error, stderr);
+	fputc('\n', stderr);
+	(void) fflush(stderr);
+	hangup(0);
+    } else {
+	pline(error);
+	pline("Program in disorder - perhaps you'd better #quit.");
+    }
+}
+
 void
 win_proxy_init()
 {
     in_proxy_init = TRUE;
     set_glyph_mapping();
+    (void)nhext_set_errhandler(win_proxy_errhandler);
     if (!proxy_init() || !nhext_rpc(EXT_FID_INIT, 0, 0))
 	panic("Proxy: Failed to initialize");
     in_proxy_init = FALSE;

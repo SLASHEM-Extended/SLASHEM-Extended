@@ -152,6 +152,9 @@ char *argv[];
 #ifdef SIGXCPU
 	(void) signal(SIGXCPU, (SIG_RET_TYPE) hangup);
 #endif
+#ifdef SIGPIPE		/* eg., a lost proxy connection */
+	(void) signal(SIGPIPE, (SIG_RET_TYPE) hangup);
+#endif
 
 	process_options(argc, argv);	/* command line options */
 

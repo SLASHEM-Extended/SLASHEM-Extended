@@ -1,4 +1,4 @@
-/* $Id: test_ext.c,v 1.6 2002-12-01 17:23:38 j_ali Exp $ */
+/* $Id: test_ext.c,v 1.7 2003-01-05 07:41:49 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -37,6 +37,22 @@ void impossible(const char *fmt,...)
     putc('\n', stderr);
     fflush(stderr);
     va_end(args);
+    if (!is_child) {
+	for(i=0;i<10 && !child_wait0();i++)
+	    sleep(1);
+    }
+    exit(126);
+}
+
+void nhext_error_handler(int class, const char *error)
+{
+    int i;
+    fputs("NhExt error: ", stderr);
+    if (is_child)
+	fputs("C: ", stderr);
+    fputs(error, stderr);
+    putc('\n', stderr);
+    fflush(stderr);
     if (!is_child) {
 	for(i=0;i<10 && !child_wait0();i++)
 	    sleep(1);
@@ -462,6 +478,7 @@ void server(void)
 	fprintf(stderr, "C Failed to open I/O streams.\n");
 	exit(1);
     }
+    (void)nhext_set_errhandler(nhext_error_handler);
     if (nhext_init(rd, wr, callbacks) < 0) {
 	fprintf(stderr, "C Failed to initialize NhExt.\n");
 	exit(1);
@@ -551,6 +568,7 @@ char **argv;
 	fprintf(stderr, "Failed to open I/O streams.\n");
 	exit(1);
     }
+    (void)nhext_set_errhandler(nhext_error_handler);
     if (nhext_init(rd, wr, callbacks) < 0) {
 	fprintf(stderr, "Failed to initialize NhExt.\n");
 	exit(1);
