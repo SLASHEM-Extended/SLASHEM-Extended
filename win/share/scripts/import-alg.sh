@@ -4,22 +4,19 @@
 #   NetHack may be freely redistributed.  See license for details.
 #
 #   This shell script imports Kelly Youngblood's tilesets from his
-#   AllegroHack package. You must have a copy of both the binary zip
+#   AllegroHack package. You must have a copy of the binary zip
 #   file. anh_15b.zip is available from
 #     http://www.pinn.net/~jry/allegrohack/
 #   Set the variable below set to point at it (there's no need to
 #   unpack the archive first).
 #
-# This script processes an AllegroHack release to produce a set of gif files
-# and three index files for the Tile comparison table build scripts to use.
+#   Warning: This code assumes that the Allegro tile index file lists all
+#   monsters, followed by all objects, followed by all others. If this changes
+#   then id in ppm_package() will be wrong. Solve by having a pass one to
+#   determine how many monsters and objects there are and then using mon_indx,
+#   num_mon + obj_indx, and num_mon + num_obj + oth_indx instead of id.
 #
-# Warning: This code assumes that the Allegro tile index file lists all
-# monsters, followed by all objects, followed by all others. If this changes
-# then the gif_index will be wrong. Solve by having a pass one to determine
-# how many monsters and objects there are and then using mon_indx,
-# num_mon + obj_indx, and num_mon + num_obj + oth_indx instead of gif_indx.
-#
-# Configuration variables
+#   Configuration variables
 #
 input=anh_15b.zip
 xpm2txt=../../../util/xpm2txt

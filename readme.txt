@@ -1,14 +1,14 @@
 +------------------------------------------------------------------------+
 |                              README.TXT                                |
 +------------------------------------------------------------------------+
-|                          SLASH'EM ver 0.0.6E1                          |
+|                          SLASH'EM ver 0.0.6E4                          |
 |               Super Lotsa Added Stuff Hack - Extended Magic            |
 |                           A Nethack Variant                            |
 | Courtesy of Warren Cheung (wac@intergate.bc.ca), Kevin Hugo and        |
 |              the efforts and support of countless others               |
-|                                                            (1997 -1999)|
+|                                                            (1997 -2000)|
 +------------------------------------------------------------------------+
-| Nethack is Copyright (c) Mike Stephenson,(Izchak Miller) 1991 - 1999.  |
+| Nethack is Copyright (c) Mike Stephenson,(Izchak Miller) 1991 - 2000.  |
 | SLASH'EM and NetHack may be freely redistributed.                      |
 | See license for details.                                               |
 +------------------------------------------------------------------------+
@@ -1349,10 +1349,10 @@ DUNGEON=032 186 205 201 187 200 188 206 202 203 185 204 \
         	http://avrc.city.ac.uk/nethack/slashem.html
 
         * Nethack DevTeam: nethack-bugs@linc.cis.upenn.edu
-                -they are in charge of Nethack (currently 3.2.2) and have NO
+                -they are in charge of Nethack (currently 3.3.1) and have NO
                  association with the SLASH'EM technical support process.
-                 Please do not send them mail about SLASH'EM unless it also pertains
-                 to Nethack.
+                 Please do not send them mail about SLASH'EM unless it also
+		 pertains to Nethack.
                  
                  http://www.nethack.org/
 
@@ -1390,7 +1390,8 @@ and Katrin Veiel.
         Kalle Niemitalo, Sabine Fischer, Christian Bressler, Jake Kesinger
         Chris Subich, Paul Sonier, Peter Makholm, Matthew Ryan, J. Ali Harlow,
         George Stephens, Bruce Cox, Edward Walker, Karl Garrisson,
-        Finn Theoderson, Kelly Bailey, Seth Friedman, Jonathan Nieder.
+        Finn Theoderson, Kelly Bailey, Seth Friedman, Jonathan Nieder,
+        Eva R. Myers.
 
 +---------------------------+
 |Section 8.0 Other Resources|
@@ -1408,7 +1409,4 @@ SLASHEM Homepage:
 
         which currently point to 
         
-        http://www.geocities.com/CollegePark/2458/
-
-        Mirror:
-	http://www.mines.edu/students/b/bolmstea/slashem/
+        http://slashem.sourceforge.net/
