@@ -2529,7 +2529,7 @@ tty_print_glyph(window, x, y, glyph)
 {
     uchar   ch;
     register int offset;
-    boolean is_reverse = FALSE;
+    boolean is_reverse = FALSE, is_bold = FALSE;
 #ifdef TEXTCOLOR
     int	    color;
 
@@ -2538,11 +2538,10 @@ tty_print_glyph(window, x, y, glyph)
 #define obj_color(n)  color = iflags.use_color ? objects[n].oc_color : NO_COLOR
 #define mon_color(n)  color = iflags.use_color ? mons[n].mcolor : NO_COLOR
 #define invis_color(n) color = NO_COLOR
-#define pet_color(n)  color = iflags.use_color ? mons[n].mcolor :	      \
-				/* If no color, try to hilite pets; black  */ \
-				/* should be nh_HI			   */ \
-				((iflags.hilite_pet && has_color(CLR_BLACK)) ?     \
-							CLR_BLACK : NO_COLOR)
+#define pet_color(n)  color = iflags.use_color ? mons[n].mcolor : NO_COLOR, \
+			/* ALI: If no color, try to hilite pets using */ \
+			/* bold video (nh_HI)			      */ \
+		      is_bold = (iflags.hilite_pet && !iflags.use_color)
 #define warn_color(n) color = iflags.use_color ? def_warnsyms[n].color : NO_COLOR
 # if defined(REINCARNATION) && defined(ASCIIGRAPH)
 #  define ROGUE_COLOR
@@ -2739,6 +2738,10 @@ tty_print_glyph(window, x, y, glyph)
 	term_start_attr(ATR_INVERSE);
 	g_putch((int)ch);		/* print the character */
 	term_end_attr(ATR_INVERSE);
+    } else if (is_bold) {
+	term_start_attr(ATR_BOLD);
+	g_putch((int)ch);		/* print the character */
+	term_end_attr(ATR_BOLD);
     } else
 	g_putch((int)ch);		/* print the character */
     wins[window]->curx++;	/* one character over */

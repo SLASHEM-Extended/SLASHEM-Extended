@@ -366,6 +366,7 @@ ver 0.0.6E4F2 [December XX/2000]
 -fixed bug 125228: Priest: attack spells should be at least skilled.
 -fixed bug 126037: Manpage is outdated.
 -fixed bug 115064: WINNT: RNG seed problems.
+-fixed bug 113620: hilite_pet uses colour even if colour is off.
 
 ver 0.0.6E4F1 [November 10/2000] [Released by Ali]
 -GTK: status window stats columns should never be too small
