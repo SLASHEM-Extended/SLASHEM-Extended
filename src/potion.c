@@ -1920,7 +1920,9 @@ boolean *used;
 {
     pre_downgrade_obj(obj, used);
     obj->otyp = nomagic;
-    obj->spe  = 0;
+    obj->spe = 0;
+    obj->owt = weight(obj);
+    flags.botl = TRUE;
 }
 
 boolean
