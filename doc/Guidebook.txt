@@ -126,7 +126,7 @@
           mental disciplines have become capable of fighting as effectively
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -192,7 +192,7 @@
           will,   at  a  cost  of some mystic energy (mana),  although what
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -258,7 +258,7 @@
           orientation  was  almost  unique  among  computer  fantasy games.
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -324,7 +324,7 @@
 
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -390,7 +390,7 @@
                Lawful, Neutral, or Chaotic.  Often, Lawful is taken as good
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -456,7 +456,7 @@
 
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -522,7 +522,7 @@
 
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -588,7 +588,7 @@
           want  to use? [a-zA-Z ?*]'', asks you to choose an object you are
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -654,7 +654,7 @@
                tion  to  examine;  `:'  will  show additional info, if any,
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -720,7 +720,7 @@
 
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -782,11 +782,11 @@
                gain nutrition by draining blood from  fresh  corpses  using
                this command.
 
-          E    Engrave  a  message  on the floor.  Engraving the word ``El-
-               bereth'' will cause most monsters to not attack you hand-to-
+          E    Engrave   a  message  on  the  floor.   Engraving  the  word
+               ``Elbereth'' will cause most  monsters  to  not  attack  you
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -796,10 +796,10 @@
 
 
 
-               hand (but if you attack, you will rub it out); this is often
-               useful to give yourself a breather.  (This  feature  may  be
-               compiled  out  of  the  game, so your version might not have
-               it.)
+               hand-to-hand  (but if you attack, you will rub it out); this
+               is often useful to give yourself a breather.  (This  feature
+               may  be  compiled out of the game, so your version might not
+               have it.)
 
                     E- - write in the dust with your fingers.
 
@@ -852,7 +852,7 @@
 
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -918,7 +918,7 @@
           (R)UNIX is a registered trademark of AT&T.
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -984,7 +984,7 @@
 
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -1050,7 +1050,7 @@
                List vanquished monsters (whether by you or not).
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -1116,7 +1116,7 @@
 
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -1182,7 +1182,7 @@
           the lock with the `a' (apply) command, or by kicking it open with
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -1248,7 +1248,7 @@
           stasis.
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -1271,6 +1271,76 @@
                Ladders serve the same purpose as staircases,  and  the  two
           types  of  inter-level  connections  are nearly indistinguishable
           during game play.
+
+          5.5.  Shops and shopping
+
+               Occasionally you will run across a room  with  a  shopkeeper
+          near  the  door  and  many items lying on the floor.  You can buy
+          items by picking them up and then using the `p' command.  You can
+          inquire  about the price of an item prior to picking it up by us-
+          ing the ``#chat'' command while standing on it.   Using  an  item
+          prior  to  paying  for it will incur a charge, and the shopkeeper
+          won't allow you to leave the shop until you have  paid  any  debt
+          you owe.
+
+               You  can  sell items to a shopkeeper by dropping them to the
+          floor while inside a shop.  You will either be offered an  amount
+          of  gold  and  asked whether you're willing to sell, or you'll be
+          told that the shopkeeper isn't interested (generally,  your  item
+          needs  to  be  compatible with the type of merchandise carried by
+          the shop).
+
+               If you drop something in a shop by accident, the  shopkeeper
+          will  usually  claim ownership without offering any compensation.
+          You'll have to buy it back if you want to reclaim it.
+
+               Shopkeepers sometimes run out of money.  When that  happens,
+          you'll  be  offered  credit  instead of gold when you try to sell
+          something.  Credit can be used to pay for purchases,  but  it  is
+          only  good  in  the shop where it was obtained; other shopkeepers
+          won't honor it.  (If you happen to find a "credit  card"  in  the
+          dungeon, don't bother trying to use it in shops; shopkeepers will
+          not accept it.)
+
+               The `$' command, which reports the amount of  gold  you  are
+          carrying (in inventory, not inside bags or boxes), will also show
+          current shop debt or credit, if any.  The `Iu' command lists  un-
+          paid items (those which still belong to the shop) if you are car-
+          rying any.  The `Ix' command shows an inventory-like  display  of
+          any  unpaid  items which have been used up, along with other shop
+          fees, if any.
+
+
+
+
+
+          SLASH'EM 0.0.7                                  December 10, 2003
+
+
+
+
+
+          SLASH'EM Guidebook                                             21
+
+
+
+          5.5.1.  Shop idiosyncracies
+
+               Several aspects of shop behavior might be unexpected.
+
+          * The price of a given item can vary due to a variety of factors.
+
+          * A  shopkeeper treats the spot immediately inside the door as if
+            it were outside the shop.
+
+          * While the shopkeeper watches you like a hawk, he will generally
+            ignore any other customers.
+
+          * If  a  shop  is "closed for inventory", it will not open of its
+            own accord.
+
+          * Shops do not get restocked with new items, regardless of inven-
+            tory depletion.
 
 
           6.  Monsters
@@ -1308,21 +1378,19 @@
           monster  has  moved  and you don't wish to fight, you can use the
           `m' command to move without fighting; likewise, if you don't  re-
           member a monster but want to try fighting anyway, you can use the
+
+
+          SLASH'EM 0.0.7                                  December 10, 2003
+
+
+
+
+
+          SLASH'EM Guidebook                                             22
+
+
+
           `F' command.
-
-
-
-
-
-          SLASH'EM 0.0.7                                  November 21, 2003
-
-
-
-
-
-          SLASH'EM Guidebook                                             21
-
-
 
           6.2.  Your pet
 
@@ -1378,15 +1446,13 @@
 
 
 
-
-
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
 
 
-          SLASH'EM Guidebook                                             22
+          SLASH'EM Guidebook                                             23
 
 
 
@@ -1446,13 +1512,13 @@
 
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
 
 
-          SLASH'EM Guidebook                                             23
+          SLASH'EM Guidebook                                             24
 
 
 
@@ -1512,13 +1578,13 @@
           which  can  be  either  positive  or  negative) that adds to your
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
 
 
-          SLASH'EM Guidebook                                             24
+          SLASH'EM Guidebook                                             25
 
 
 
@@ -1578,13 +1644,13 @@
           more likely to hit when thrown while you are wielding a bow.
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
 
 
-          SLASH'EM Guidebook                                             25
+          SLASH'EM Guidebook                                             26
 
 
 
@@ -1644,13 +1710,13 @@
           combat or martial arts  skill  beyond  expert  to  ``master''  or
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
 
 
-          SLASH'EM Guidebook                                             26
+          SLASH'EM Guidebook                                             27
 
 
 
@@ -1710,13 +1776,13 @@
           will subtract from your armor class.  For  example,  a  +1  chain
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
 
 
-          SLASH'EM Guidebook                                             27
+          SLASH'EM Guidebook                                             28
 
 
 
@@ -1776,13 +1842,13 @@
           feature  on versions where SLASH'EM mail delivery is triggered by
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
 
 
-          SLASH'EM Guidebook                                             28
+          SLASH'EM Guidebook                                             29
 
 
 
@@ -1842,13 +1908,13 @@
           -1 is a special case indicating that the wand has been cancelled.
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
 
 
-          SLASH'EM Guidebook                                             29
+          SLASH'EM Guidebook                                             30
 
 
 
@@ -1908,13 +1974,13 @@
           skills.  (See also the section on ``Weapon proficiency''.)
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
 
 
-          SLASH'EM Guidebook                                             30
+          SLASH'EM Guidebook                                             31
 
 
 
@@ -1974,13 +2040,13 @@
           much   less  valuable.   All  rocks,  however,  can  be  used  as
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
 
 
-          SLASH'EM Guidebook                                             31
+          SLASH'EM Guidebook                                             32
 
 
 
@@ -2040,13 +2106,13 @@
 
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
 
 
-          SLASH'EM Guidebook                                             32
+          SLASH'EM Guidebook                                             33
 
 
 
@@ -2106,13 +2172,13 @@
 
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
 
 
-          SLASH'EM Guidebook                                             33
+          SLASH'EM Guidebook                                             34
 
 
 
@@ -2129,7 +2195,7 @@
                There  are several other challenges tracked by the game.  It
           is possible to eliminate one or more species of monsters by geno-
           cide;  playing  without  this  feature is considered a challenge.
-          When you game offers you an opportunity to genocide monsters, you
+          When the game offers you an opportunity to genocide monsters, you
           may  respond  with  the  monster type ``none'' if you want to de-
           cline.  You can change the form of an item into another  item  of
           the  same type (``polypiling'') or the form of your own body into
@@ -2172,13 +2238,13 @@
 
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
 
 
-          SLASH'EM Guidebook                                             34
+          SLASH'EM Guidebook                                             35
 
 
 
@@ -2199,22 +2265,28 @@
 
           9.3.  Using a configuration file
 
-               Any line in  the  configuration  file  starting  with  ``OP-
-          TIONS=''  may be filled out with options in the same syntax as in
-          SLASHEMOPTIONS.   Any  line  starting  with  ``DUNGEON='',  ``EF-
-          FECTS='',  ``MONSTERS='',  ``OBJECTS='',  ``TRAPS='',  or ``BOUL-
-          DER='' is taken as defining the corresponding  dungeon,  effects,
-          monsters,  objects traps or boulder option in a different syntax,
-          a sequence of decimal numbers giving the  character  position  in
-          the  current font to be used in displaying each entry.  A zero in
-          any entry in such a sequence leaves the display of that entry un-
-          changed;  this  feature is not available using the option syntax.
-          Such a sequence can be continued to multiple lines by  putting  a
-          `\'  at  the end of each line to be continued.  Any line starting
-          with ``TILESET='' defines a tile set in the  same  syntax  as  in
-          SLASHEMOPTIONS (although the options are different). See the sec-
-          tion on tile sets, below, for more information.  Any line  start-
-          ing with `#' is treated as a comment.
+               Any  line  in  the  configuration  file starting with `#' is
+          treated as a comment.  Any line in the configuration file  start-
+          ing  with ``OPTIONS='' may be filled out with options in the same
+          syntax as in  SLASHEMOPTIONS.   Any  line  starting  with  ``DUN-
+          GEON='',  ``EFFECTS='',  ``MONSTERS='', ``OBJECTS='', ``TRAPS='',
+          or ``BOULDER='' is taken as defining the  corresponding  dungeon,
+          effects, monsters, objects traps or boulder option in a different
+          syntax, a sequence of decimal numbers giving the character  posi-
+          tion  in the current font to be used in displaying each entry.  A
+          zero in any entry in such a sequence leaves the display  of  that
+          entry  unchanged;  this feature is not available using the option
+          syntax.  Such a sequence can be continued to  multiple  lines  by
+          putting  a `\' at the end of each line to be continued.  Any line
+          starting with ``TILESET='' defines a tile set in the same  syntax
+          as  in  SLASHEMOPTIONS  (although the options are different). See
+          the section on tile sets, below, for more information.
+
+               If your copy of the game included the compile time AUTOPICK-
+          UP_EXCEPTIONS  option,  then  any  line starting with ``AUTOPICK-
+          UP_EXCEPTION='' is taken as defining an exception  to  the  pick-
+          up_types  option.  There is a section of this Guidebook that dis-
+          cusses that.
 
                The default name of the configuration file varies on differ-
           ent operating systems, but SLASHEMOPTIONS can also be set to  the
@@ -2230,62 +2302,62 @@
           align
                Your starting  alignment  (align:lawful,  align:neutral,  or
                align:chaotic).  You may specify just the first letter.  The
-               default is to randomly pick an appropriate alignment.   Can-
-               not be set with the `O' command.
+
+
+          SLASH'EM 0.0.7                                  December 10, 2003
+
+
+
+
+
+          SLASH'EM Guidebook                                             36
+
+
+
+            default  is  to randomly pick an appropriate alignment.  Cannot
+            be set with the `O' command.
 
           autodig
-               Automatically  dig  if  you  are wielding a digging tool and
-               moving into a place that can be dug (default false).
-
-
-          SLASH'EM 0.0.7                                  November 21, 2003
-
-
-
-
-
-          SLASH'EM Guidebook                                             35
-
-
+            Automatically dig if you are wielding a digging tool and moving
+            into a place that can be dug (default false).
 
           autopickup
-               Automatically pick up things onto which  you  move  (default
-               on).
+            Automatically  pick up things onto which you move (default on).
+            See pickup_types to refine the behavior.
 
           autoquiver
                This  option  controls what happens when you attempt the `f'
-               (fire) command with an empty quiver.  When true, the comput-
-               er  will  fill  your quiver with some suitable weapon.  Note
-               that it will not take into account the  blessed/cursed  sta-
-               tus,  enchantment, damage, or quality of the weapon; you are
-               free to manually fill your quiver with the `Q'  command  in-
-               stead.   If  no  weapon is found or the option is false, the
-               `t' (throw) command is executed instead.  (default false)
+            (fire)  command  with an empty quiver.  When true, the computer
+            will fill your quiver with some suitable weapon.  Note that  it
+            will  not take into account the blessed/cursed status, enchant-
+            ment, damage, or quality of the weapon; you are free to manual-
+            ly fill your quiver with the `Q' command instead.  If no weapon
+            is found or the option is false, the `t' (throw) command is ex-
+            ecuted instead.  (default false)
 
           boulder
                Set the character used to display boulders (default is  rock
                class symbol).
 
           catname
-               Name  your starting cat (ex. ``catname:Morris'').  Cannot be
-               set with the `O' command.
+            Name your starting cat (ex. ``catname:Morris'').  Cannot be set
+            with the `O' command.
 
           character
-               Pick your type of character (ex.  ``character:Monk'');  syn-
-               onym  for ``role''.  See ``name'' for an alternate method of
-               specifying your role.  Normally only the first letter of the
-               value is examined; the string ``random'' is an exception.
+            Pick  your  type of character (ex. ``character:Monk''); synonym
+            for ``role''.  See ``name'' for an alternate method of specify-
+            ing  your role.  Normally only the first letter of the value is
+            examined; the string ``random'' is an exception.
 
           checkpoint
-               Save game state after each level change, for possible recov-
-               ery after program crash (default on).
+            Save game state after each level change, for possible  recovery
+            after program crash (default on).
 
           checkspace
                Check free disk space before writing files to disk  (default
-               on).   You may have to turn this off if you have more than 2
-               GB free space on the partition used for your save and  level
-               files.   Only applies when MFLOPPY was defined during compi-
-               lation.
+            on).  You may have to turn this off if you have more than 2  GB
+            free space on the partition used for your save and level files.
+            Only applies when MFLOPPY was defined during compilation.
 
           cmdassist
                Have the game provide some additional command assistance for
@@ -2296,81 +2368,9 @@
                Have user confirm attacks on pets,  shopkeepers,  and  other
                peaceable creatures (default on).
 
-          DECgraphics
-               Use  a  predefined  selection of characters from the DEC VT-
-               xxx/DEC Rainbow/ANSI line-drawing character set  to  display
-               the dungeon/effects/traps instead of having to define a full
-               graphics set yourself (default off).  This option also  sets
-               up   proper   handling   of  graphics  characters  for  such
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
-
-
-
-
-
-          SLASH'EM Guidebook                                             36
-
-
-
-               terminals, so you should specify it when appropriate even if
-               you  override the selections with your own graphics strings.
-
-          disclose
-               Controls options for disclosing various information when the
-               game  ends  (defaults to all possibilities being disclosed).
-               The possibilities are:
-
-                    i - disclose your inventory.
-                    a - disclose your attributes.
-                    v - summarize monsters that have been vanquished.
-                    g - list monster species that have been genocided.
-                    c - display your conduct.
-
-               Each disclosure possibility can optionally be preceded by  a
-               prefix  which  let  you  refine how it behaves. Here are the
-               valid prefixes:
-
-                    y - prompt you and default to yes on the prompt.
-                    n - prompt you and default to no on the prompt.
-                    - disclose it without prompting.
-                    - - do not disclose it and do not prompt.
-
-               (ex. ``disclose:yi na +v -g -c'') The example sets inventory
-               to  prompt  and default to yes, attributes to prompt and de-
-               fault to no, vanquished to disclose without prompting, geno-
-               cided to not disclose and not to prompt, conduct to not dis-
-               close and not to prompt.  Note that the vanquished  monsters
-               list includes all monsters killed by traps and each other as
-               well as by you.
-
-          dogname
-               Name your starting dog (ex.  ``dogname:Fang'').   Cannot  be
-               set with the `O' command.
-
-          dungeon
-               Set the graphics symbols for displaying the dungeon (default
-               `` |--------||.-|++##.##<><>_|\\##{}.}..## #}'').  The  dun-
-               geon  option  should be followed by a string of 1-42 charac-
-               ters to be used instead of the default  map-drawing  charac-
-               ters.   The  dungeon map will use the characters you specify
-               instead of the default symbols, and default symbols for  any
-               you  do  not  specify.  Remember that you may need to escape
-               some of these characters on a command line if they are  spe-
-               cial to your shell.
-
-               Note  that  SLASH'EM  escape-processes this option string in
-               conventional C fashion.  This means that `\' is a prefix  to
-               take  the  following character literally.  Thus `\' needs to
-               be represented  as  `\\'.   The  special  escape  form  `\m'
-               switches on the meta bit in the following character, and the
-               `^' prefix causes the following character to be treated as a
-               control character.
-
-
-
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -2380,63 +2380,63 @@
 
 
 
-               The  order  of  the  symbols is:  solid rock, vertical wall,
-               horizontal wall, upper left corner, upper right corner, low-
-               er  left  corner,  lower  right corner, cross wall, upward T
-               wall, downward T wall, leftward T wall, rightward T wall, no
-               door,  vertical  open  door,  horizontal open door, vertical
-               closed door, horizontal closed door, iron bars, tree,  floor
-               of  a  room,  dark corridor, lit corridor, stairs up, stairs
-               down, ladder up, ladder down, altar, grave, throne,  kitchen
-               sink,  toilet,  fountain,  pool or moat, ice, lava, vertical
-               lowered drawbridge, horizontal lowered drawbridge,  vertical
-               raised drawbridge, horizontal raised drawbridge, air, cloud,
-               under water.
+          DECgraphics
+            Use  a  predefined  selection  of  characters  from the DEC VT-
+            xxx/DEC Rainbow/ANSI line-drawing character set to display  the
+            dungeon/effects/traps instead of having to define a full graph-
+            ics set yourself (default off).  This option also sets up prop-
+            er  handling  of graphics characters for such terminals, so you
+            should specify it when appropriate even if you override the se-
+            lections with your own graphics strings.
 
-               You might want to use `+' for the corners and T walls for  a
-               more  aesthetic,  boxier display.  Note that in the next re-
-               lease, new symbols may be added, or the present  ones  rear-
-               ranged.
+          disclose
+               Controls options for disclosing various information when the
+            game ends (defaults to all possibilities being disclosed).  The
+            possibilities are:
 
-               Cannot be set with the `O' command.
+                    i - disclose your inventory.
+                    a - disclose your attributes.
+                    v - summarize monsters that have been vanquished.
+                    g - list monster species that have been genocided.
+                    c - display your conduct.
 
-          effects
-               Set the graphics symbols for displaying special effects (de-
-               fault
-               ``|-\\/*!)(0#@*/-\\||\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-/'').
-               The effects option should be followed by a  string  of  1-83
-               characters to be used instead of the default special-effects
-               characters.  This string is subjected to the same processing
-               as the dungeon option.
+               Each disclosure possibility can optionally be preceded by  a
+            prefix which let you refine how it behaves. Here are the  valid
+            prefixes:
 
-               The  order  of  the  symbols  is:  vertical beam, horizontal
-               beam, left slant, right slant, digging  beam,  camera  flash
-               beam,  left  boomerang,  right boomerang, four glyphs giving
-               the sequence for magic resistance displays, the  eight  sur-
-               rounding  glyphs for swallowed display, nine glyphs each for
-               magical, fire, cold, death, lightning, poison and  acid  ex-
-               plosions.  An explosion consists of three rows (top, middle,
-               and bottom) of three characters.  The explosion is  centered
-               in the center of this 3 by 3 array.
+                    y - prompt you and default to yes on the prompt.
+                    n - prompt you and default to no on the prompt.
+                    - disclose it without prompting.
+                    - - do not disclose it and do not prompt.
 
-               Note  that in the next release, new symbols may be added, or
-               the present ones rearranged.
+            (ex. ``disclose:yi na +v -g -c'') The example sets inventory to
+            prompt and default to yes, attributes to prompt and default  to
+            no,  vanquished to disclose without prompting, genocided to not
+            disclose and not to prompt, conduct to not disclose and not  to
+            prompt.   Note  that  the vanquished monsters list includes all
+            monsters killed by traps and each other as well as by you.
 
-               Cannot be set with the `O' command.
+          dogname
+            Name your starting dog (ex. ``dogname:Fang'').  Cannot  be  set
+            with the `O' command.
 
-          extmenu
-               Changes the extended commands interface to pop-up a menu  of
-               available  commands.   It  is  keystroke compatible with the
-               traditional interface except that it does not  require  that
-               you  hit  Enter. It is implemented only by the tty port (de-
-               fault off), when the game has been compiled to  support  tty
-               graphics.
+          dungeon
+               Set the graphics symbols for displaying the dungeon (default
+            `` |--------||.-|++##.##<><>_|\\##{}.}..## #}'').  The  dungeon
+            option  should be followed by a string of 1-42 characters to be
+            used instead of the default map-drawing characters.   The  dun-
+            geon map will use the characters you specify instead of the de-
+            fault symbols, and default symbols for any you do not  specify.
+            Remember  that  you may need to escape some of these characters
+            on a command line if they are special to your shell.
 
-          female
-               An  obsolete  synonym  for ``gender:female''.  Cannot be set
+            Note that SLASH'EM escape-processes this option string in  con-
+            ventional  C  fashion.  This means that `\' is a prefix to take
+            the following character literally.  Thus `\' needs to be repre-
+            sented  as  `\\'.  The special escape form `\m' switches on the
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -2446,7 +2446,73 @@
 
 
 
-               with the `O' command.
+            meta bit in the following character, and the `^' prefix  causes
+            the following character to be treated as a control character.
+
+            The  order of the symbols is:  solid rock, vertical wall, hori-
+            zontal wall, upper left corner, upper right corner, lower  left
+            corner, lower right corner, cross wall, upward T wall, downward
+            T wall, leftward T wall, rightward T wall,  no  door,  vertical
+            open door, horizontal open door, vertical closed door, horizon-
+            tal closed door, iron bars, tree, floor of a room, dark  corri-
+            dor,  lit  corridor,  stairs up, stairs down, ladder up, ladder
+            down, altar, grave, throne,  kitchen  sink,  toilet,  fountain,
+            pool  or moat, ice, lava, vertical lowered drawbridge, horizon-
+            tal lowered drawbridge, vertical raised drawbridge,  horizontal
+            raised drawbridge, air, cloud, under water.
+
+               You might want to use `+' for the corners and T walls for  a
+            more aesthetic, boxier display.  Note that in the next release,
+            new symbols may be added, or the present ones rearranged.
+
+               Cannot be set with the `O' command.
+
+          effects
+               Set the graphics symbols for displaying special effects (de-
+               fault
+               ``|-\\/*!)(0#@*/-\\||\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-/'').
+            The effects option should be followed by a string of 1-83 char-
+            acters  to be used instead of the default special-effects char-
+            acters.  This string is subjected to the same processing as the
+            dungeon option.
+
+            The  order  of the symbols is:  vertical beam, horizontal beam,
+            left slant, right slant, digging beam, camera flash beam,  left
+            boomerang, right boomerang, four glyphs giving the sequence for
+            magic resistance displays, the  eight  surrounding  glyphs  for
+            swallowed  display,  nine  glyphs each for magical, fire, cold,
+            death, lightning, poison and  acid  explosions.   An  explosion
+            consists of three rows (top, middle, and bottom) of three char-
+            acters.  The explosion is centered in the center of this 3 by 3
+            array.
+
+            Note that in the next release, new symbols may be added, or the
+            present ones rearranged.
+
+               Cannot be set with the `O' command.
+
+          extmenu
+               Changes the extended commands interface to pop-up a menu  of
+            available commands.  It is keystroke compatible with the tradi-
+            tional interface except that it does not require that  you  hit
+            Enter.  It  is  implemented only by the tty port (default off),
+            when the game has been compiled to support tty graphics.
+
+          female
+            An obsolete synonym for ``gender:female''.  Cannot be set  with
+
+
+          SLASH'EM 0.0.7                                  December 10, 2003
+
+
+
+
+
+          SLASH'EM Guidebook                                             39
+
+
+
+            the `O' command.
 
           fixinv
                An object's inventory letter sticks to it when it's  dropped
@@ -2454,44 +2520,44 @@
                the remaining inventory letters.
 
           fruit
-               Name  a  fruit  after  something  you  enjoy   eating   (ex.
-               ``fruit:mango'') (default ``slime mold'').  Basically a nos-
-               talgic whimsy that SLASH'EM uses from  time  to  time.   You
-               should  set  this to something you find more appetizing than
-               slime mold.  Apples, oranges, pears, bananas, and melons al-
-               ready exist in SLASH'EM, so don't use those.
+            Name a fruit after something you enjoy eating (ex. ``fruit:man-
+            go'') (default ``slime mold'').  Basically a  nostalgic  whimsy
+            that  SLASH'EM  uses from time to time.  You should set this to
+            something you find more appetizing than  slime  mold.   Apples,
+            oranges,  pears, bananas, and melons already exist in SLASH'EM,
+            so don't use those.
 
           gender
-               Your  starting  gender  (gender:male or gender:female).  You
-               may specify just the first letter.  Although you  can  still
-               denote  your  gender  using  the ``male'' and ``female'' op-
-               tions, the ``gender'' option will take precedence.  The  de-
-               fault  is to randomly pick an appropriate gender.  Cannot be
-               set with the `O' command.
+            Your starting gender (gender:male or gender:female).   You  may
+            specify  just  the first letter.  Although you can still denote
+            your gender using the  ``male''  and  ``female''  options,  the
+            ``gender'' option will take precedence.  The default is to ran-
+            domly pick an appropriate gender.  Cannot be set with  the  `O'
+            command.
 
           ghoulname
-               Name your starting ghoul (ex. ``ghoulname:Casper'').  Cannot
-               be set with the `O' command.
+            Name your starting ghoul (ex. ``ghoulname:Casper'').  Cannot be
+            set with the `O' command.
 
-          help If  more  information  is  available for an object looked at
-               with the `/' command, ask if you want  to  see  it  (default
-               on).  Turning  help off makes just looking at things faster,
-               since you aren't interrupted with the ``More info?'' prompt,
-               but  it  also  means  that  you  might miss some interesting
-               and/or important information.
+          help
+            If more information is available for an object looked  at  with
+            the  `/' command, ask if you want to see it (default on). Turn-
+            ing help off makes just looking at  things  faster,  since  you
+            aren't  interrupted with the ``More info?'' prompt, but it also
+            means that you might miss some interesting and/or important in-
+            formation.
 
           horsename
-               Name your starting horse (ex. ``horsename:Trigger'').   Can-
-               not be set with the `O' command.
+            Name  your  starting horse (ex. ``horsename:Trigger'').  Cannot
+            be set with the `O' command.
 
           IBMgraphics
-               Use  a predefined selection of IBM extended ASCII characters
-               to display the dungeon/effects/traps instead  of  having  to
-               define a full graphics set yourself (default off).  This op-
-               tion also sets up proper handling of graphics characters for
-               such  terminals,  so  you should specify it when appropriate
-               even if you override the selections with your  own  graphics
-               strings.
+            Use a predefined selection of IBM extended ASCII characters  to
+            display the dungeon/effects/traps instead of having to define a
+            full graphics set yourself (default  off).   This  option  also
+            sets  up proper handling of graphics characters for such termi-
+            nals, so you should specify it when  appropriate  even  if  you
+            override the selections with your own graphics strings.
 
           ignintr
                Ignore interrupt signals, including breaks (default off).
@@ -2502,73 +2568,7 @@
 
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
-
-
-
-
-
-          SLASH'EM Guidebook                                             39
-
-
-
-          keep_savefile
-               Keeps the save file after restore.  SLASH'EM usually deletes
-               your  savefile  after  you restore,  making death permanent.
-               This option can allow you to restore  from  the  last  save.
-               (default off).
-
-          legacy
-               Display  an introductory message when starting the game (de-
-               fault on).
-
-          lit_corridor
-               Show corridor squares seen by night vision or a light source
-               held by your character as lit (default off).
-
-          lootabc
-               Use  the old `a', `b', and `c' keyboard shortcuts when loot-
-               ing, rather than the mnemonics `o', `i',  and  `b'  (default
-               off).
-
-          mail
-               Enable mail delivery during the game (default on).
-
-          male
-               An obsolete synonym for ``gender:male''.  Cannot be set with
-               the `O' command.
-
-          menustyle
-               Controls the interface used when you need to choose  various
-               objects  (in  response  to  the Drop command, for instance).
-               The value specified should be the first letter of one of the
-               following:   traditional,  combination,  partial,  or  full.
-               Traditional was the only  interface  available  for  earlier
-               versions;  it  consists of a prompt for object class charac-
-               ters, followed by an object-by-object prompt for  all  items
-               matching  the selected object class(es).  Combination starts
-               with a prompt for object class(es)  of  interest,  but  then
-               displays  a  menu  of matching objects rather than prompting
-               one-by-one.  Partial skips the object  class  filtering  and
-               immediately displays a menu of all objects.  Full displays a
-               menu of object classes rather than a character  prompt,  and
-               then a menu of matching objects for selection.
-
-          menu_deselect_all
-               Menu  character accelerator to deselect all items in a menu.
-               Implemented by the Amiga, Gem, X11, GTK and tty ports.   De-
-               fault '-'.
-
-          menu_deselect_page
-               Menu  character  accelerator deselect all items on this page
-               of a menu.  Implemented by the Amiga,  Gem  and  tty  ports.
-               Default '\'.
-
-          menu_first_page
-               Menu  character  accelerator  to jump to the first page in a
-
-
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -2578,63 +2578,63 @@
 
 
 
-               menu.  Implemented by the Amiga, Gem and tty ports.  Default
-               '^'.
+          keep_savefile
+               Keeps the save file after restore.  SLASH'EM usually deletes
+            your savefile after you restore,  making death permanent.  This
+            option can allow you to restore from the  last  save.  (default
+            off).
 
-          menu_invert_all
-               Menu  character  accelerator  to invert all items in a menu.
-               Implemented by the Amiga, Gem, X11, GTK and tty ports.   De-
-               fault '@'.
+          legacy
+            Display an introductory message when starting the game (default
+            on).
 
-          menu_invert_page
-               Menu  character accelerator to invert all items on this page
-               of a menu.  Implemented by the Amiga,  Gem  and  tty  ports.
-               Default '~'.
+          lit_corridor
+               Show corridor squares seen by night vision or a light source
+               held by your character as lit (default off).
 
-          menu_last_page
-               Menu  character  accelerator  to  jump to the last page in a
-               menu.  Implemented by the Amiga, Gem and tty ports.  Default
-               '|'.
+          lootabc
+            Use  the old `a', `b', and `c' keyboard shortcuts when looting,
+            rather than the mnemonics `o', `i', and `b' (default off).
 
-          menu_next_page
-               Menu  character accelerator to goto the next menu page.  Im-
-               plemented by the Amiga, Gem and tty ports.  Default '>'.
+          mail
+               Enable mail delivery during the game (default on).
 
-          menu_on_esc
-               Make the ESC key a synonym for the ``' (main  menu)  command
-               (default on).
+          male
+               An obsolete synonym for ``gender:male''.  Cannot be set with
+               the `O' command.
 
-          menu_previous_page
-               Menu  character  accelerator to goto the previous menu page.
-               Implemented by the Amiga, Gem and tty ports.  Default '<'.
+          menustyle
+            Controls the interface used when you need to choose various ob-
+            jects (in response to the Drop  command,  for  instance).   The
+            value  specified  should be the first letter of one of the fol-
+            lowing:  traditional, combination, partial,  or  full.   Tradi-
+            tional  was  the only interface available for earlier versions;
+            it consists of a prompt for object class  characters,  followed
+            by  an  object-by-object  prompt for all items matching the se-
+            lected object class(es).  Combination starts with a prompt  for
+            object  class(es)  of  interest,  but  then  displays a menu of
+            matching objects rather  than  prompting  one-by-one.   Partial
+            skips  the  object  class  filtering and immediately displays a
+            menu of all objects.  Full displays a menu  of  object  classes
+            rather than a character prompt, and then a menu of matching ob-
+            jects for selection.
 
-          menu_search
-               Menu character accelerator to search for a menu  item.   Im-
-               plemented by the Amiga, Gem and X11 ports.  Default ':'.
+          menu_deselect_all
+               Menu  character accelerator to deselect all items in a menu.
+            Implemented by the Amiga, Gem, X11, GTK and tty ports.  Default
+            '-'.
 
-          menu_select_all
-               Menu  character  accelerator  to select all items in a menu.
-               Implemented by the Amiga, Gem, X11, GTK and tty ports.   De-
-               fault '.'.
+          menu_deselect_page
+            Menu character accelerator to deselect all items on  this  page
+            of  a  menu.  Implemented by the Amiga, Gem and tty ports.  De-
+            fault '\'.
 
-          menu_select_page
-               Menu  character accelerator to select all items on this page
-               of a menu.  Implemented by the Amiga,  Gem  and  tty  ports.
-               Default ','.
-
-          monsters
-               Set  the characters used to display monster classes (default
-               ``abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTU-
-               VWXYZ@ '&;:~]'').  This string is subjected to the same pro-
-               cessing as the dungeon option.  The order of the symbols  is
-               ant  or other insect, blob, cockatrice, dog or other canine,
-               eye or sphere, feline, gremlin, humanoid, imp or  minor  de-
-               mon,  jelly, kobold, leprechaun, mimic, nymph, orc, piercer,
-               quadruped, rodent, arachnid or centipede, trapper or  lurker
-               above,   horse  or  unicorn,  vortex,  worm,  xan  or  other
+          menu_first_page
+            Menu character accelerator to jump to the first page in a menu.
+            Implemented by the Amiga, Gem and tty ports.  Default '^'.
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -2644,23 +2644,89 @@
 
 
 
-               mythical/fantastic insect, light, Zouthern  aminal,  angelic
-               being,  bat  or  bird, centaur, dragon, elemental, fungus or
-               mold, gnome, giant humanoid, invisible monster,  jabberwock,
-               Keystone  Kop,  lich,  mummy,  naga,  ogre, pudding or ooze,
-               quantum mechanic, rust monster, snake,  troll,  umber  hulk,
-               vampire,  wraith,  xorn,  apelike  creature,  zombie, human,
-               ghost, golem, demon, sea monster, lizard,  long  worm  tail,
-               and mimic.  Cannot be set with the `O' command.
+          menu_headings
+            Controls  how  the  headings in a menu are highlighted.  Values
+            are 'bold', 'inverse', or 'underline'.  Not all ports can actu-
+            ally display all three types.
+
+          menu_invert_all
+            Menu  character accelerator to invert all items in a menu.  Im-
+            plemented by the Amiga, Gem, X11, GTK and tty  ports.   Default
+            '@'.
+
+          menu_invert_page
+            Menu  character accelerator to invert all items on this page of
+            a menu.  Implemented by the Amiga, Gem and tty ports.   Default
+            '~'.
+
+          menu_last_page
+            Menu  character accelerator to jump to the last page in a menu.
+            Implemented by the Amiga, Gem and tty ports.  Default '|'.
+
+          menu_next_page
+            Menu character accelerator to goto the next menu page.   Imple-
+            mented by the Amiga, Gem and tty ports.  Default '>'.
+
+          menu_on_esc
+            Make the ESC key a synonym for the ``' (main menu) command (de-
+            fault on).
+
+          menu_previous_page
+            Menu character accelerator to goto the previous menu page.  Im-
+            plemented by the Amiga, Gem and tty ports.  Default '<'.
+
+          menu_search
+            Menu  character  accelerator to search for a menu item.  Imple-
+            mented by the Amiga, Gem and X11 ports.  Default ':'.
+
+          menu_select_all
+            Menu character accelerator to select all items in a menu.   Im-
+            plemented  by  the Amiga, Gem, X11, GTK and tty ports.  Default
+            '.'.
+
+          menu_select_page
+            Menu character accelerator to select all items on this page  of
+            a  menu.  Implemented by the Amiga, Gem and tty ports.  Default
+            ','.
+
+          monsters
+               Set  the characters used to display monster classes (default
+               ``abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTU-
+               VWXYZ@ '&;:~]'').  This string is subjected to the same pro-
+            cessing as the dungeon option.  The order of the symbols is ant
+            or other insect, blob, cockatrice, dog or other canine, eye  or
+            sphere,  feline,  gremlin, humanoid, imp or minor demon, jelly,
+            kobold, leprechaun, mimic, nymph, orc, piercer, quadruped,  ro-
+            dent,  arachnid or centipede, trapper or lurker above, horse or
+
+
+          SLASH'EM 0.0.7                                  December 10, 2003
+
+
+
+
+
+          SLASH'EM Guidebook                                             42
+
+
+
+            unicorn, vortex, worm, xan or other mythical/fantastic  insect,
+            light,  Zouthern  aminal,  angelic being, bat or bird, centaur,
+            dragon, elemental, fungus or mold, gnome, giant  humanoid,  in-
+            visible  monster,  jabberwock, Keystone Kop, lich, mummy, naga,
+            ogre, pudding or ooze, quantum mechanic, rust  monster,  snake,
+            troll,  umber  hulk,  vampire,  wraith, xorn, apelike creature,
+            zombie, human, ghost, golem, demon, sea monster,  lizard,  long
+            worm tail, and mimic.  Cannot be set with the `O' command.
 
           msghistory
                The number of top line messages to save (and recall with ^P)
                (default 20).  Cannot be set with the `O' command.
 
           msg_window
-               Allows you to change the  way  recalled  messages  are  dis-
-               played.   (It  is  currently implemented for tty only.)  The
-               possible values are:
+            Allows you to change the way recalled messages  are  displayed.
+            (It  is currently implemented for tty only.)  The possible val-
+            ues are:
 
                     s - single message (default, this was the behavior before 3.4.0).
                     c - combination, two messages as `single', then as `full'.
@@ -2673,11 +2739,11 @@
 
           name
                Set your character's name (defaults to your user name).  You
-               can  also  set your character's role by appending a dash and
-               one or more letters of the role (that is, by  suffixing  one
-               of -A -B -C -F -H -I -K -M -N -P -Ra -Ro -S -T -U -V -W -Y).
-               If -@ is used for the role, then a random one will be  auto-
-               matically chosen.  Cannot be set with the `O' command.
+            can  also set your character's role by appending a dash and one
+            or more letters of the role (that is, by suffixing one of -A -B
+            -C  -F  -H -I -K -M -N -P -Ra -Ro -S -T -U -V -W -Y).  If -@ is
+            used for the role, then a random one will be automatically cho-
+            sen.  Cannot be set with the `O' command.
 
           news
                Read the SLASH'EM news file, if present (default on).  Since
@@ -2688,30 +2754,30 @@
                Send padding nulls to the terminal (default off).
 
           number_pad
-               Use the number keys to move instead of [yuhjklbn] (default 0
-               or off).  (number_pad:2 invokes the old DOS behaviour  where
-               `5' means `g', meta-`5' means `G',  and meta-`0' means `I'.)
+            Use the number keys to move instead of [yuhjklbn] (default 0 or
+            off).  (number_pad:2 invokes the old  DOS  behavior  where  `5'
+            means `g', meta-`5' means `G',  and meta-`0' means `I'.)
 
           objects
                Set the characters used to display object  classes  (default
-               ``])[="(%!?+/$*`0_.'').   This  string  is  subjected to the
-               same processing as the dungeon option.   The  order  of  the
-               symbols  is  illegal-object  (should never be seen), weapon,
-               armor, ring, amulet, tool, food, potion, scroll,  spellbook,
+            ``])[="(%!?+/$*`0_.'').  This string is subjected to  the  same
+            processing  as the dungeon option.  The order of the symbols is
+            illegal-object (should never be  seen),  weapon,  armor,  ring,
+            amulet,  tool, food, potion, scroll, spellbook, wand, gold, gem
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
-
-
-
-
-
-          SLASH'EM Guidebook                                             42
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
-               wand,  gold,  gem  or  rock,  boulder  or statue, iron ball,
-               chain, and venom.  Cannot be set with the `O' command.
+
+
+          SLASH'EM Guidebook                                             43
+
+
+
+            or rock, boulder or statue, iron ball, chain, and venom.   Can-
+            not be set with the `O' command.
 
           packorder
                Specify  the  order  to  list  object  types   in   (default
@@ -2722,20 +2788,20 @@
 
           perm_invent
                If true, always display your current inventory in a  window.
-               This  only  makes sense for windowing system interfaces that
-               implement this feature.
+            This only makes sense for windowing system interfaces that  im-
+            plement this feature.
 
           pettype
                Specify the type of your initial pet, if you are  playing  a
-               character  class that uses multiple types of pets; or choose
-               to have no initial pet at all.  Possible values are ``cat'',
+            character class that uses multiple types of pets; or choose  to
+            have  no  initial  pet  at  all.   Possible values are ``cat'',
                ``dog'' and ``none''.  Cannot be set with the `O' command.
 
           pickup_burden
                When  you pick up an item that would exceed this encumbrance
-               level (Unburdened, Burdened, streSsed, straiNed,  overTaxed,
-               or  overLoaded),  you will be asked if you want to continue.
-               (Default `S').
+            level  (Unburdened, Burdened, streSsed, straiNed, overTaxed, or
+            overLoaded), you will be asked if you want to  continue.   (De-
+            fault `S').
 
           pickup_thrown
                If this boolean option is true and autopickup is on, try  to
@@ -2743,96 +2809,30 @@
                up_types.  Default is on.
 
           pickup_types
-               Specify the object types to be picked up when autopickup  is
-               on.  Default is all types.
+            Specify the object types to be picked up when autopickup is on.
+            Default is all types.  If your copy of the game has the experi-
+            mental  compile time option AUTOPICKUP_EXCEPTIONS included, you
+            may be able  to  use  autopickup_exception  configuration  file
+            lines to further refine autopickup behavior.
 
           prayconfirm
                Prompt for confirmation before praying (default on).
 
           pushweapon
-               Using  the  `w'  (wield) command when already wielding some-
-               thing pushes the old item into your  alternate  weapon  slot
-               (default off).
+            Using  the  `w' (wield) command when already wielding something
+            pushes the old item into your alternate  weapon  slot  (default
+            off).
 
-          race Selects your race (for example, ``race:human'').  Default is
+          race
+            Selects  your  race  (for example, ``race:human'').  Default is
                random.  Cannot be set with the `O' command.
 
           rest_on_space
                Make the space bar a synonym for the `.' (rest) command (de-
                fault off).
 
-          role
-               Pick  your type of character (ex. ``role:Samurai''); synonym
-               for ``character''.  See ``name'' for an alternate method  of
 
-
-          SLASH'EM 0.0.7                                  November 21, 2003
-
-
-
-
-
-          SLASH'EM Guidebook                                             43
-
-
-
-               specifying your role.  Normally only the first letter of the
-               value is examined;  `r'  is  an  exception  with  ``Rogue'',
-               ``Ranger'', and ``random'' values.
-
-          runmode
-               Controls  the  amount  of screen updating for the map window
-               when engaged in multi-turn movement (running  via  shift+di-
-               rection or control+direction and so forth, or via the travel
-               command or mouse click).  The possible values are:
-
-                    teleport - update the map after movement has finished;
-                    run - update the map after every seven or so steps;
-                    walk - update the map after each step;
-                    crawl - like walk, but pause briefly after each step.
-
-               This option only affects the game's screen display, not  the
-               actual  results  of  moving.  The default is `run'; versions
-               prior to 3.4.1 used `teleport' only.  Whether or not the ef-
-               fect  is noticeable will depend upon the window port used or
-               on the type of terminal.
-
-          safe_pet
-               Prevent you from (knowingly) attacking  your  pets  (default
-               on).
-
-          scores
-               Control  what  parts  of the score list you are shown at the
-               end  (ex.   ``scores:5  top  scores/4  around  my  score/own
-               scores'').   Only  the  first  letter of each category (`t',
-               `a', or `o') is necessary.
-
-          showexp
-               Show your accumulated experience points on bottom line  (de-
-               fault off).
-
-          showrace
-               Display yourself as the glyph for your race, rather than the
-               glyph for your role (default off).  Note that  this  setting
-               affects  only the appearance of the display, not the way the
-               game treats you.
-
-          showscore
-               Show your approximate accumulated score on bottom line  (de-
-               fault off).
-
-          showdmg
-               Show damage inflicted/damage received (default off).
-
-          showweight
-               Show total weight in inventory on bottom line (default off).
-
-          silent
-               Suppress terminal beeps (default on).
-
-
-
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -2842,63 +2842,63 @@
 
 
 
-          sortpack
-               Sort the pack contents by  type  when  displaying  inventory
-               (default on).
+          role
+            Pick your type of character (ex. ``role:Samurai''); synonym for
+            ``character''.  See ``name'' for an alternate method of  speci-
+            fying  your  role.  Normally only the first letter of the value
+            is examined; `r' is an exception  with  ``Rogue'',  ``Ranger'',
+            and ``random'' values.
 
-          sound
-               Enable  messages  about  what  your character hears (default
-               on).  Note that this has nothing to do with your  computer's
-               audio capabilities.  This option is only partly under player
-               control.  The game toggles it off and on  during  and  after
-               sleep, for example.
+          runmode
+            Controls  the amount of screen updating for the map window when
+            engaged in multi-turn movement (running via shift+direction  or
+            control+direction  and  so  forth, or via the travel command or
+            mouse click).  The possible values are:
 
-          sparkle
-               Display a sparkly effect when a monster (including yourself)
-               is hit by an attack to which it is resistant (default on).
+                    teleport - update the map after movement has finished;
+                    run - update the map after every seven or so steps;
+                    walk - update the map after each step;
+                    crawl - like walk, but pause briefly after each step.
 
-          standout
-               Boldface monsters and ``--More--'' (default off).
+            This option only affects the game's screen display, not the ac-
+            tual  results  of moving.  The default is `run'; versions prior
+            to 3.4.1 used `teleport' only.  Whether or not  the  effect  is
+            noticeable will depend upon the window port used or on the type
+            of terminal.
 
-          suppress_alert
-               This option may be set to a SLASH'EM version level  to  sup-
-               press  alert notification messages about feature changes for
-               that and prior versions (ex. ``suppress_alert:0.0.6'').
+          safe_pet
+            Prevent you from (knowingly) attacking your pets (default  on).
 
-          tiles
-               This option may be set to the name of a tile set to use,  or
-               specified  as  ``notiles''  to disable the use of tiles. Not
-               all windowing interfaces support this option. The  tile  set
-               named must also be defined. See the section on tile sets for
-               more information on that.
+          scores
+            Control  what  parts of the score list you are shown at the end
+            (ex.  ``scores:5 top scores/4 around  my  score/own  scores'').
+            Only  the  first  letter of each category (`t', `a', or `o') is
+            necessary.
 
-          time
-               Show the elapsed game time in turns on bottom line  (default
-               off).
+          showexp
+            Show your accumulated experience points on bottom line (default
+            off).
 
-          timed_delay
-               When  pausing  momentarily  for display effect, such as with
-               explosions and moving objects, use a timer rather than send-
-               ing extra characters to the screen.  (Applies to ``tty'' in-
-               terface only; ``X11'' and ``GTK'' interfaces always  uses  a
-               timer based delay.  The default is on if configured into the
-               program.)
+          showrace
+               Display yourself as the glyph for your race, rather than the
+            glyph for your role (default off).  Note that this setting  af-
+            fects  only the appearance of the display, not the way the game
+            treats you.
 
-          tombstone
-               Draw a tombstone graphic upon your death (default on).
+          showscore
+            Show your approximate accumulated score on bottom line (default
+            off).
 
-          toptenwin
-               Put the ending display in a SLASH'EM window  instead  of  on
-               stdout  (default  off).  Setting this option makes the score
-               list visible when a windowing version of SLASH'EM is started
-               without  a  parent window, but it no longer leaves the score
-               list around after game end on a terminal or  emulating  win-
-               dow.
+          showdmg
+               Show damage inflicted/damage received (default off).
 
-
+          showweight
+               Show total weight in inventory on bottom line (default off).
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+
+
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
@@ -2908,34 +2908,100 @@
 
 
 
+          silent
+            Suppress terminal beeps (default on).
+
+          sortpack
+            Sort  the  pack contents by type when displaying inventory (de-
+            fault on).
+
+          sound
+            Enable messages about what your character hears  (default  on).
+            Note that this has nothing to do with your computer's audio ca-
+            pabilities.  This option is only partly under  player  control.
+            The  game toggles it off and on during and after sleep, for ex-
+            ample.
+
+          sparkle
+            Display a sparkly effect when a monster (including yourself) is
+            hit by an attack to which it is resistant (default on).
+
+          standout
+               Boldface monsters and ``--More--'' (default off).
+
+          suppress_alert
+            This  option may be set to a SLASH'EM version level to suppress
+            alert notification messages about feature changes for that  and
+            prior versions (ex. ``suppress_alert:0.0.6'').
+
+          tiles
+               This option may be set to the name of a tile set to use,  or
+            specified as ``notiles'' to disable the use of tiles.  Not  all
+            windowing  interfaces  support  this option. The tile set named
+            must also be defined. See the section on tile sets for more in-
+            formation on that.
+
+          time
+               Show the elapsed game time in turns on bottom line  (default
+               off).
+
+          timed_delay
+            When pausing momentarily for display effect, such as  with  ex-
+            plosions  and  moving  objects, use a timer rather than sending
+            extra characters to the screen.  (Applies to ``tty''  interface
+            only;  ``X11'' and ``GTK'' interfaces always uses a timer based
+            delay.  The default is on if configured into the program.)
+
+          tombstone
+               Draw a tombstone graphic upon your death (default on).
+
+          toptenwin
+            Put the ending display in a SLASH'EM window instead of on  std-
+            out  (default  off).   Setting this option makes the score list
+            visible when a windowing version of SLASH'EM is started without
+            a  parent window, but it no longer leaves the score list around
+            after game end on a terminal or emulating window.
+
+
+
+          SLASH'EM 0.0.7                                  December 10, 2003
+
+
+
+
+
+          SLASH'EM Guidebook                                             46
+
+
+
           traps
                Set  the  graphics  symbols  for  displaying  traps (default
-               ``^^^^^^^^^^^^^^^^^"^^^^'').  The  traps  option  should  be
-               followed  by  a string of 1-22 characters to be used instead
-               of the default traps characters.  This string  is  subjected
-               to the same processing as the dungeon option.
+            ``^^^^^^^^^^^^^^^^^"^^^^'').   The  traps option should be fol-
+            lowed by a string of 1-22 characters to be used instead of  the
+            default traps characters.  This string is subjected to the same
+            processing as the dungeon option.
 
                The  order of the symbols is: arrow trap, dart trap, falling
-               rock trap, squeaky board,  bear  trap,  land  mine,  rolling
-               boulder  trap, sleeping gas trap, rust trap, fire trap, pit,
-               spiked pit, hole, trap door, teleportation trap, level tele-
-               porter,  magic  portal,  web, statue trap, magic trap, anti-
-               magic field, polymorph trap.
+            rock trap, squeaky board, bear trap, land mine, rolling boulder
+            trap, sleeping gas trap, rust trap, fire trap, pit, spiked pit,
+            hole,  trap  door,  teleportation trap, level teleporter, magic
+            portal, web, statue trap, magic trap, anti-magic  field,  poly-
+            morph trap.
 
                Cannot be set with the `O' command.
 
           travel
-               Allow the travel command (default on).  Turning this  option
-               off  will  prevent the game from attempting unintended moves
-               if you make inadvertent mouse clicks on the map window.
+            Allow the travel command (default on).  Turning this option off
+            will prevent the game from attempting unintended moves  if  you
+            make inadvertent mouse clicks on the map window.
 
           verbose
                Provide more commentary during the game (default on).
 
           windowtype
                Select which windowing system to use,  such  as  ``tty''  or
-               ``X11''  (default  depends  on version).  Cannot be set with
-               the `O' command.
+            ``X11'' (default depends on version).  Cannot be set  with  the
+            `O' command.
 
           wolfname
                Name your starting wolf (ex. ``wolfname:Beast'').  Cannot be
@@ -2955,43 +3021,43 @@
                A ``TILESET'' line has the same syntax as an ``OPTION'' line
           but with the following options available:
 
-          name The  name  of  the tile set (for selection). This can be any
-               string of characters excluding the comma. It must be  speci-
-               fied.
+          name
+            The name of the tile set  (for  selection).  This  can  be  any
+            string of characters excluding the comma. It must be specified.
 
-          file The  name of the file which contains the tile set. This must
-               be specified.
-
-
-
-          SLASH'EM 0.0.7                                  November 21, 2003
+          file
+            The name of the file which contains the tile set. This must  be
+            specified.
 
 
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
-          SLASH'EM Guidebook                                             46
+
+
+          SLASH'EM Guidebook                                             47
 
 
 
           transparent
-               Marks a  tile  set  as  being  transparent  (as  opposed  to
-               opaque).  Transparent  tile  sets  allow eg., monsters to be
-               displayed on top of the background.  Tile sets must  be  de-
-               signed to be used in this way in order to achieve meaningful
-               results. This option is ignored by windowing ports which  do
-               not support transparency.
+            Marks  a  tile set as being transparent (as opposed to opaque).
+            Transparent tile sets allow eg., monsters to  be  displayed  on
+            top  of  the background.  Tile sets must be designed to be used
+            in this way in order to achieve meaningful results. This option
+            is  ignored by windowing ports which do not support transparen-
+            cy.
 
           pseudo3D
                Marks  a  tile  set as being designed for use with Mitsuhiro
-               Itakura's pseudo-3D display algorithm. They are  assumed  to
-               have  an offset-X value equal to one third of the total tile
-               width and an offset-Y value equal to one half of  the  total
-               tile height. Such tile sets are not compatible with standard
-               tile sets and while amusing effects can be created  by  set-
-               ting   this   option  incorrectly,  nothing  useful  can  be
-               achieved. Windowing ports that do not support pseudo-3D dis-
-               play will ignore tile sets with this option set.
+            Itakura's pseudo-3D display algorithm. They are assumed to have
+            an offset-X value equal to one third of the  total  tile  width
+            and  an  offset-Y  value  equal  to  one half of the total tile
+            height. Such tile sets are not compatible  with  standard  tile
+            sets  and  while amusing effects can be created by setting this
+            option incorrectly, nothing useful can be  achieved.  Windowing
+            ports  that  do  not support pseudo-3D display will ignore tile
+            sets with this option set.
 
           9.6.  Window Port Customization options
 
@@ -3009,56 +3075,54 @@
           mand.
 
           align_message
-               Where to align or place the  message  window  (top,  bottom,
-               left, or right)
+            Where  to align or place the message window (top, bottom, left,
+            or right)
 
           align_status
-               Where  to  align  or  place  the status window (top, bottom,
-               left, or right).
+            Where to align or place the status window (top,  bottom,  left,
+            or right).
 
           ascii_map
                SLASH'EM should display an ascii character map if it can.
 
           color
-               SLASH'EM should display color if it can for  different  mon-
-               sters, objects, and dungeon features
+            SLASH'EM should display color if it can for different monsters,
+            objects, and dungeon features
 
           eight_bit_tty
-               SLASH'EM  should  pass eight-bit character values (for exam-
-               ple, specified with the traps option)  straight  through  to
-               your terminal (default off).
+            SLASH'EM should pass eight-bit character values  (for  example,
+            specified  with the traps option) straight through to your ter-
+            minal (default off).
 
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
 
 
-          SLASH'EM Guidebook                                             47
+          SLASH'EM Guidebook                                             48
 
 
 
           font_map
-               SLASH'EM  should  use  a font by the chosen name for the map
-               window.
+            SLASH'EM should use a font by the chosen name for the map  win-
+            dow.
 
           font_menu
-               SLASH'EM should use a font by the chosen name for menu  win-
-               dows.
+            SLASH'EM should use a font by the chosen name for menu windows.
 
           font_message
-               SLASH'EM  should  use a font by the chosen name for the mes-
-               sage window.
+            SLASH'EM should use a font by the chosen name for  the  message
+            window.
 
           font_status
                SLASH'EM should use a font by the chosen name for the status
                window.
 
           font_text
-               SLASH'EM  should use a font by the chosen name for text win-
-               dows.
+            SLASH'EM should use a font by the chosen name for text windows.
 
           font_size_map
                SLASH'EM should use this size font for the map window.
@@ -3080,11 +3144,11 @@
                than in a window.
 
           hilite_pet
-               Visually  distinguish  pets  from  similar  animals (default
-               off).  The behavior of this option depends on  the  type  of
-               windowing  you use.  In text windowing, text highlighting or
-               inverse video is often used; with tiles, generally  displays
-               a heart symbol near pets or a red box around the pet.
+            Visually distinguish pets from similar animals  (default  off).
+            The  behavior  of  this option depends on the type of windowing
+            you use.  In text windowing, text highlighting or inverse video
+            is  often  used;  with tiles, generally displays a heart symbol
+            near pets or a red box around the pet.
 
           large_font
                SLASH'EM should use a large font.
@@ -3096,45 +3160,47 @@
                Allow use of the mouse for input and travel.
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+
+
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
 
 
-          SLASH'EM Guidebook                                             48
+          SLASH'EM Guidebook                                             49
 
 
 
           player_selection
-               SLASH'EM  should  pop  up  dialog  boxes, or use prompts for
-               character selection.
+            SLASH'EM should pop up dialog boxes, or use prompts for charac-
+            ter selection.
 
           popup_dialog
                SLASH'EM should pop up dialog boxes for input.
 
           preload_tiles
-               SLASH'EM should preload tiles into memory.  For example,  in
-               the  protected mode MSDOS version, control whether tiles get
-               pre-loaded into RAM at the start of the game.  Doing so  en-
-               hances performance of the tile graphics, but uses more memo-
-               ry. (default on).  Cannot be set with the `O' command.
+            SLASH'EM should preload tiles into memory.  For example, in the
+            protected mode MSDOS version, control whether  tiles  get  pre-
+            loaded  into  RAM  at the start of the game.  Doing so enhances
+            performance of the tile graphics, but uses  more  memory.  (de-
+            fault on).  Cannot be set with the `O' command.
 
           scroll_amount
-               SLASH'EM should scroll the display by this number  of  cells
-               when the hero reaches the scroll_margin.
+            SLASH'EM should scroll the display by this number of cells when
+            the hero reaches the scroll_margin.
 
           scroll_margin
-               SLASH'EM  should  scroll the display when the hero or cursor
-               is this number of cells away from the edge of the window.
+            SLASH'EM should scroll the display when the hero or  cursor  is
+            this number of cells away from the edge of the window.
 
           softkeyboard
                Display an onscreen keyboard.  Handhelds are most likely  to
                support this option.
 
           splash_screen
-               SLASH'EM  should  display  an  opening splash screen when it
-               starts up (default yes).
+            SLASH'EM should display an opening splash screen when it starts
+            up (default yes).
 
           tiled_map
                SLASH'EM should display a tiled map if it can.
@@ -3148,8 +3214,7 @@
                port.
 
           tile_width
-               Specify the preferred width of each tile in a  tile  capable
-               port
+            Specify the preferred width of each tile in a tile capable port
 
           use_inverse
                SLASH'EM  should display inverse when the game specifies it.
@@ -3159,44 +3224,43 @@
                the message window.
 
           windowcolors
-               SLASH'EM   should   display   windows   with  the  specified
+            SLASH'EM  should  display  windows  with  the  specified  fore-
+            ground/background colors if it can.
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
-
-
-
-
-
-          SLASH'EM Guidebook                                             49
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
-               foreground/background colors if it can.
+
+
+          SLASH'EM Guidebook                                             50
+
+
 
           wraptext
-               SLASH'EM port should wrap long lines of text if  they  don't
-               fit in the visible area of the window.
+            SLASH'EM port should wrap long lines of text if they don't  fit
+            in the visible area of the window.
 
           9.7.  Platform-specific Customization options
 
                Here  are  explanations of options that are used by specific
-          platforms or ports to customize and change the port behaviour.
+          platforms or ports to customize and change the port behavior.
 
           altkeyhandler
                Select an alternate keystroke handler dll to load (Win32 tty
-               SLASH'EM  only).  The name of the handler is specified with-
-               out the .dll extension and  without  any  path  information.
-               Cannot be set with the `O' command.
+            SLASH'EM  only).   The name of the handler is specified without
+            the .dll extension and without any path information.  Cannot be
+            set with the `O' command.
 
           altmeta
                (default on, AMIGA SLASH'EM only).
 
           BIOS
-               Use  BIOS  calls to update the screen display quickly and to
-               read the keyboard (allowing the use of arrow keys  to  move)
-               on machines with an IBM PC compatible BIOS ROM (default off,
-               OS/2, PC, and ST SLASH'EM only).
+            Use BIOS calls to update the screen display quickly and to read
+            the keyboard (allowing the use of arrow keys to  move)  on  ma-
+            chines  with  an IBM PC compatible BIOS ROM (default off, OS/2,
+            PC, and ST SLASH'EM only).
 
           flush
                (default off, AMIGA SLASH'EM only).
@@ -3208,58 +3272,117 @@
                (default on, Mac SLASH'EM only).
 
           rawio
-               Force raw (non-cbreak) mode for faster output and more  bul-
-               letproof  input  (MS-DOS  sometimes treats `^P' as a printer
-               toggle without it) (default off, OS/2, PC, and  ST  SLASH'EM
-               only).  Note:  DEC Rainbows hang if this is turned on.  Can-
-               not be set with the `O' command.
+            Force raw (non-cbreak) mode for faster output and more  bullet-
+            proof  input  (MS-DOS sometimes treats `^P' as a printer toggle
+            without it) (default off, OS/2,  PC,  and  ST  SLASH'EM  only).
+            Note:   DEC  Rainbows hang if this is turned on.  Cannot be set
+            with the `O' command.
 
           soundcard
                (default on, PC SLASH'EM only).  Cannot be set with the  `O'
                command.
 
-          subkeyval
-               (Win32  tty  SLASH'EM only).  May be used to alter the value
-               of keystrokes that the operating system returns to  SLASH'EM
-               to  help  compensate for international keyboard issues.  OP-
-               TIONS=subkeyvalue:171/92 will return 92 to SLASH'EM, if  171
-               was  originally  going to be returned.  You can use multiple
-               subkeyvalue statements in the config file if needed.  Cannot
-               be set with the `O' command.
-
-
-          SLASH'EM 0.0.7                                  November 21, 2003
+          subkeyvalue
+            (Win32  tty  SLASH'EM only).  May be used to alter the value of
+            keystrokes that the operating system  returns  to  SLASH'EM  to
+            help   compensate   for  international  keyboard  issues.   OP-
+            TIONS=subkeyvalue:171/92 will return 92 to SLASH'EM, if 171 was
+            originally  going to be returned.  You can use multiple subkey-
+            value statements in the config file if needed.  Cannot  be  set
+            with the `O' command.
 
 
 
 
+          SLASH'EM 0.0.7                                  December 10, 2003
 
-          SLASH'EM Guidebook                                             50
+
+
+
+
+          SLASH'EM Guidebook                                             51
 
 
 
           video
                Set the video mode used (PC SLASH'EM only).  Values are `au-
-               todetect', `default', or `vga'.  Setting `vga' (or  `autode-
-               tect' with vga hardware present) will cause the game to dis-
-               play tiles.  Cannot be set with the `O' command.
+            todetect', `default', or `vga'.  Setting `vga' (or `autodetect'
+            with  vga  hardware  present)  will  cause  the game to display
+            tiles.  Cannot be set with the `O' command.
 
           videocolors
                Set the color palette for PC systems using NO_TERMS (default
-               4-2-6-1-5-3-15-12-10-14-9-13-11,  (PC  SLASH'EM  only).  The
-               order of colors is red, green, brown, blue,  magenta,  cyan,
+            4-2-6-1-5-3-15-12-10-14-9-13-11, (PC SLASH'EM only).  The order
+            of  colors  is  red,  green,  brown,   blue,   magenta,   cyan,
                bright.white, bright.red, bright.green, yellow, bright.blue,
                bright.magenta, and bright.cyan.  Cannot be set with the `O'
                command.
 
           videoshades
-               Set  the  intensity level of the three gray scales available
-               (default dark normal light, PC SLASH'EM only).  If the  game
-               display is difficult to read, try adjusting these scales; if
-               this does not correct the problem, try  !color.   Cannot  be
-               set with the `O' command.
+            Set the intensity level of the three gray scales available (de-
+            fault dark normal light, PC SLASH'EM only).  If the  game  dis-
+            play  is difficult to read, try adjusting these scales; if this
+            does not correct the problem, try !color.  Cannot be  set  with
+            the `O' command.
 
-          9.8.  Configuring User Sounds
+          9.8.  Configuring autopickup exceptions
+
+               There  is  an  experimental  compile  time option called AU-
+          TOPICKUP_EXCEPTIONS.  If your copy of the  game  was  built  with
+          that  option  defined, you can further refine the behavior of the
+          autopickup option beyond what  is  available  through  the  pick-
+          up_types option.
+
+               By  placing autopickup_exception lines in your configuration
+          file, you can define patterns to be  checked  when  the  game  is
+          about to autopickup something.
+
+          autopickup_exception
+            Sets  an  exception  to the pickup_types option.  The autopick-
+            up_exception option should be followed  by  a  string  of  1-80
+            characters  to be used as a pattern to match against the singu-
+            lar form of the description of an object at your location.
+
+               You may use the following special characters in a pattern:
+
+                 *--- matches 0 or more characters.
+                 ?--- matches any single character.
+
+               In addition, some characters are treated specially  if  they
+          occur as the first character in the string pattern, specifically:
+
+               < - always pickup an object that matches the pattern that follows.
+               > - never pickup an object that matches the pattern that follows.
+
+               Can be set with the `O' command, but the setting is not pre-
+          served across saves and restores.
+
+
+
+
+          SLASH'EM 0.0.7                                  December 10, 2003
+
+
+
+
+
+          SLASH'EM Guidebook                                             52
+
+
+
+               Here's a couple of examples of autopickup_exceptions:
+
+               autopickup_exception="<*arrow"
+               autopickup_exception=">*corpse"
+               autopickup_exception=">* cursed*"
+
+          The  first example above will result in autopickup of any type of
+          arrow.  The second example results in the exclusion of any corpse
+          from  autopickup.   The  last example results in the exclusion of
+          items known to be cursed from autopickup.  A `never pickup'  rule
+          takes precedence over an `always pickup' rule if both match.
+
+          9.9.  Configuring User Sounds
 
                Some  platforms allow you to define sound files to be played
           when a message that matches a user-defined pattern  is  delivered
@@ -3292,18 +3415,6 @@
           which pattern matching is used by your  port  with  the  #version
           command.
 
-
-
-          SLASH'EM 0.0.7                                  November 21, 2003
-
-
-
-
-
-          SLASH'EM Guidebook                                             51
-
-
-
                SLASH'EM's  internal  pattern matching routine uses the fol-
           lowing special characters in its pattern matching:
 
@@ -3313,13 +3424,25 @@
                Here's an example of a sound mapping using SLASH'EM's inter-
           nal pattern matching facility:
 
+
+
+          SLASH'EM 0.0.7                                  December 10, 2003
+
+
+
+
+
+          SLASH'EM Guidebook                                             53
+
+
+
                    SOUND=MESG "*chime of a cash register*" "gong.wav" 50
 
           specifies  that  any message with "chime of a cash register" con-
           tained in it will trigger the playing  of  "gong.wav".   You  can
           have multiple SOUND entries in your config file.
 
-          9.9.  Configuring SLASH'EM for Play by the Blind
+          9.10.  Configuring SLASH'EM for Play by the Blind
 
                SLASH'EM can be set up to use only standard ASCII characters
           for making maps of the dungeons. This makes the  MS-DOS  versions
@@ -3358,28 +3481,26 @@
 
           number_pad
                A lot of speech access programs use the number-pad to review
-
-
-          SLASH'EM 0.0.7                                  November 21, 2003
-
-
-
-
-
-          SLASH'EM Guidebook                                             52
-
-
-
-               the screen.  If this is the case, disable the number_pad op-
-               tion and use the traditional Rogue-like commands.
+            the screen.  If this is the case, disable the number_pad option
+            and use the traditional Rogue-like commands.
 
           Character graphics
-               Comment out all character graphics sets found near the  bot-
-               tom   of  the  defaults.nh  file.   Most  of  these  replace
-               SLASH'EM's default representation of the dungeon using stan-
-               dard  ASCII characters with fancier characters from extended
-               character sets,  and  these  fancier  characters  can  annoy
-               screen-readers.
+            Comment out all character graphics sets found near  the  bottom
+            of  the defaults.nh file.  Most of these replace SLASH'EM's de-
+            fault representation of the dungeon using standard ASCII  char-
+            acters  with  fancier  characters from extended character sets,
+            and these fancier characters can annoy screen-readers.
+
+
+          SLASH'EM 0.0.7                                  December 10, 2003
+
+
+
+
+
+          SLASH'EM Guidebook                                             54
+
+
 
           10.  Scoring
 
@@ -3421,32 +3542,30 @@
           explore mode are left for the trepid reader to discover.
 
 
-
-
-
-
-
-          SLASH'EM 0.0.7                                  November 21, 2003
-
-
-
-
-
-          SLASH'EM Guidebook                                             53
-
-
-
           12.  Credits
 
-               The  original  hack  game  was  modeled on the Berkeley UNIX
-          rogue game.   Large  portions  of  this  paper  were  shamelessly
-          cribbed  from  A Guide to the Dungeons of Doom, by Michael C. Toy
-          and Kenneth C. R. C. Arnold.  Small portions  were  adapted  from
+               The original hack game was  modeled  on  the  Berkeley  UNIX
+          rogue  game.   Large  portions  of  this  paper  were shamelessly
+          cribbed from A Guide to the Dungeons of Doom, by Michael  C.  Toy
+          and  Kenneth  C.  R. C. Arnold.  Small portions were adapted from
           Further Exploration of the Dungeons of Doom, by Ken Arromdee.
 
-               SLASH'EM  is  the  product  of  literally dozens of people's
-          work.  Main events in the course of the game development are  de-
+               SLASH'EM is the product  of  literally  dozens  of  people's
+          work.   Main events in the course of the game development are de-
           scribed below:
+
+
+
+
+
+          SLASH'EM 0.0.7                                  December 10, 2003
+
+
+
+
+
+          SLASH'EM Guidebook                                             55
+
 
 
                Jay  Fenlason  wrote the original Hack, with help from Kenny
@@ -3490,18 +3609,6 @@
           NetHack, two adventurous souls undertook their  own  modification
           to  the  sacred NetHack formula. Tom Proudfoot and Yuval released
           Nethack++,  which was rapidly renamed Nethack--,   contained  new
-
-
-          SLASH'EM 0.0.7                                  November 21, 2003
-
-
-
-
-
-          SLASH'EM Guidebook                                             54
-
-
-
           monsters,  items and other miscellaneous modifications.
 
                Headed  by  Mike Stephenson and coordinated by Izchak Miller
@@ -3513,6 +3620,19 @@
           the  code.   They added multiple dungeons, a new display, special
           individual character quests, a new endgame  and  many  other  new
           features, and produced NetHack 3.1.
+
+
+
+
+          SLASH'EM 0.0.7                                  December 10, 2003
+
+
+
+
+
+          SLASH'EM Guidebook                                             56
+
+
 
                Ken  Lorber,  Gregg  Wonderly and Greg Olson, with help from
           Richard Addison, Mike Passaretti,  and  Olaf  Seibert,  developed
@@ -3556,18 +3676,6 @@
                The 3.2 development team, comprised of Michael Allison,  Ken
           Arromdee,  David  Cohrs, Jessie Collet, Steve Creps, Kevin Darcy,
           Timo Hakulinen, Steve  Linhart,  Dean  Luick,  Pat  Rankin,  Eric
-
-
-          SLASH'EM 0.0.7                                  November 21, 2003
-
-
-
-
-
-          SLASH'EM Guidebook                                             55
-
-
-
           Smith,  Mike  Stephenson,  Janet  Walz, and Paul Winner, released
           version 3.2 in April of 1996.
 
@@ -3579,6 +3687,18 @@
           founding  members of the development team, Dr. Izchak Miller, was
           diagnosed with cancer and passed away.  That release of the  game
           was dedicated to him by the development and porting teams.
+
+
+
+          SLASH'EM 0.0.7                                  December 10, 2003
+
+
+
+
+
+          SLASH'EM Guidebook                                             57
+
+
 
                Larry Stewart-Zerba set along a different track - to enhance
           the spellcasting abilities of the Wizard.   Thus, in April  1996,
@@ -3621,19 +3741,6 @@
                Robin Johnson finished the arduous task of drawing tiles for
           the  SLASH'EM monsters.  He also contributed many more new tiles.
 
-
-
-
-          SLASH'EM 0.0.7                                  November 21, 2003
-
-
-
-
-
-          SLASH'EM Guidebook                                             56
-
-
-
                Kevin later joined the DevTeam and incorporated the best  of
           these ideas in NetHack 3.3.
 
@@ -3647,6 +3754,17 @@
                The final update to 3.2 was the bug fix release 3.2.3, which
           was released simultaneously with 3.3.0 in December 1999  just  in
           time for the Year 2000.
+
+
+          SLASH'EM 0.0.7                                  December 10, 2003
+
+
+
+
+
+          SLASH'EM Guidebook                                             58
+
+
 
                The 3.3 development team, consisting of Michael Allison, Ken
           Arromdee, David Cohrs, Jessie Collet, Steve Creps,  Kevin  Darcy,
@@ -3688,18 +3806,6 @@
 
                Michael  Allison,  David  Cohrs, Alex Kompel, Dion Nicolaas,
           and Yitzhak Sapir maintained and enhanced 3.4 for  the  Microsoft
-
-
-          SLASH'EM 0.0.7                                  November 21, 2003
-
-
-
-
-
-          SLASH'EM Guidebook                                             57
-
-
-
           Windows platform.  Alex Kompel contributed a new graphical inter-
           face for the Windows port.  Alex Kompel also contributed  a  Win-
           dows  CE  port  for  3.4.1.   Ron Van Iwaarden maintained 3.4 for
@@ -3714,6 +3820,17 @@
 
                There  is  a  NetHack  web  site maintained by Ken Lorber at
           http://www.nethack.org/.
+
+
+          SLASH'EM 0.0.7                                  December 10, 2003
+
+
+
+
+
+          SLASH'EM Guidebook                                             59
+
+
 
                Warren Cheung combined SLASH'EM 0.0.5E7F1 and NetHack 3.3 to
           create  SLASH'EM  0.0.6 and continues to maintain the DOS and Mi-
@@ -3756,13 +3873,28 @@
 
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
 
 
 
 
 
-          SLASH'EM Guidebook                                             58
+
+
+
+
+
+
+
+
+
+
+          SLASH'EM 0.0.7                                  December 10, 2003
+
+
+
+
+
+          SLASH'EM Guidebook                                             60
 
 
 
@@ -3822,7 +3954,7 @@
 
 
 
-          SLASH'EM 0.0.7                                  November 21, 2003
+          SLASH'EM 0.0.7                                  December 10, 2003
 
 
 
