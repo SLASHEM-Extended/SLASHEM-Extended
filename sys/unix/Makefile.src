@@ -582,13 +582,13 @@ objects.o:
 
 # Qt windowport meta-object-compiler output
 qt_kde0.moc: ../include/qt_kde0.h
-	$(QTBINDIR)/moc ../include/qt_kde0.h > qt_kde0.moc
+	$(QTBINDIR)/moc -o qt_kde0.moc ../include/qt_kde0.h
 
 qt_win.moc: ../include/qt_win.h
-	$(QTBINDIR)/moc ../include/qt_win.h > qt_win.moc
+	$(QTBINDIR)/moc -o qt_win.moc ../include/qt_win.h
 
 qttableview.moc: ../include/qttableview.h
-	$(QTDIR)/bin/moc ../include/qttableview.h > qttableview.moc
+	$(QTDIR)/bin/moc -o qttableview.moc ../include/qttableview.h
 
 # NetHack windows library for modules needed by more than one windows
 # interface.
