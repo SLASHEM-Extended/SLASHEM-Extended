@@ -1954,13 +1954,13 @@ boolean amnesia;
 		}
 
 		/* Diluting a !ofAmnesia just gives water... */
-		if (obj->otyp == POT_AMNESIA) { 
-			Your("%s flat.", aobjnam(obj,"become"));
+		if (obj->otyp == POT_AMNESIA) {
+			Your("%s flat.", aobjnam(obj, "become"));
 			obj->odiluted = 0;
 			obj->otyp = POT_WATER;
 			used = TRUE;
 			break;
-		} 
+		}
 
 		/* KMH -- Water into acid causes an explosion */
 		if (obj->otyp == POT_ACID) {
@@ -2711,6 +2711,11 @@ dodip()
 			    goto poof;
 		}
 	} else if (potion->otyp == POT_AMNESIA) {
+	    if (potion == obj) {
+		obj->in_use = FALSE;
+		potion = splitobj(obj, 1L);
+		potion->in_use = TRUE;
+	    }
 	    if (get_wet(obj, TRUE)) goto poof;
 	}
 	/* WAC - Finn Theoderson - make polymorph and gain level msgs similar
