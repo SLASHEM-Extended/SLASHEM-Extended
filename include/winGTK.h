@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.50 2003-12-13 18:28:43 j_ali Exp $
+  $Id: winGTK.h,v 1.51 2003-12-13 22:58:28 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -111,6 +111,10 @@ extern void GTK_init_gtk(int *argc, char **argv);
 extern int GTK_ext_init_nhwindows(int *, char **, char ***);
 extern char *GTK_ext_askname(void);
 extern int GTK_ext_player_selection(int *, int *, int *, int *);
+extern int nh_set_help_font(gchar *name);
+#ifdef GTKHACK
+extern int nh_help_save(struct gtkhackrc *rc);
+#endif
 extern void GTK_ext_display_file(int fh);
 extern void GTK_ext_add_menu(winid, int, int, CHAR_P, CHAR_P, int,
   const char *, BOOLEAN_P);

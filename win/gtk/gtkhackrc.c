@@ -1,4 +1,4 @@
-/* $Id: gtkhackrc.c,v 1.8 2003-12-13 12:52:58 j_ali Exp $ */
+/* $Id: gtkhackrc.c,v 1.9 2003-12-13 22:58:28 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -78,6 +78,7 @@ extern void rc_default_connection(GScanner *scanner, GtkHackRcValue *value);
 #ifdef GTK_PROXY
 extern void rc_proxy_cachedir(GScanner *scanner, GtkHackRcValue *value);
 #endif
+extern void rc_help_font(GScanner *scanner, GtkHackRcValue *value);
 
 #define GTKHACKRC_VARIABLE	0
 #define GTKHACKRC_FUNCTION	1
@@ -107,6 +108,7 @@ struct gtkhackrc_setting {
 #ifdef GTK_PROXY
     GTKHACKRC_VARIABLE, "proxy.cachedir", rc_proxy_cachedir,
 #endif
+    GTKHACKRC_VARIABLE, "help.font", rc_help_font,
 };
 
 #define PARSE_ERROR_NONE	0
@@ -865,6 +867,7 @@ nh_write_gtkhackrc(void)
 #ifdef GTK_PROXY
     nh_proxy_cache_save(&rc);
 #endif
+    nh_help_save(&rc);
     if (unrecognized_settings)
 	for(list = unrecognized_settings; list; list = list->next)
 	    nh_gtkhackrc_store(&rc, "%s", (gchar *)list->data);
@@ -1034,3 +1037,10 @@ void rc_proxy_cachedir(GScanner *scanner, GtkHackRcValue *value)
     nh_proxy_cache_set_dir(value->u.string);
 }
 #endif
+
+void rc_help_font(GScanner *scanner, GtkHackRcValue *value)
+{
+    if (!gtkhackrc_check_type(scanner, value, "value", PARSE_VALUE_TYPE_STRING))
+	return;
+    nh_set_help_font(value->u.string);
+}

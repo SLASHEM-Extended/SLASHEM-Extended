@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.46 2003-12-13 18:28:43 j_ali Exp $
+  $Id: gtk.c,v 1.47 2003-12-13 22:58:28 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -87,6 +87,8 @@ struct session_window_info {
     {"radar", 0, },
     {"inventory", NH_SESSION_RESIZABLE, },
 };
+
+static gchar *help_font_name = NULL;
 
 static winid rawprint_win = WIN_ERR;
 
@@ -3235,6 +3237,79 @@ int nh_dlbh_ftell(int fh)
 # define USE_TEXTVIEW
 #endif
 
+#ifdef GTKHACK
+int nh_set_help_font(gchar *name)
+{
+    if (help_font_name)
+	g_free(help_font_name);
+    help_font_name = g_strdup(name);
+    return 0;
+}
+
+int
+nh_help_save(struct gtkhackrc *rc)
+{
+    if (help_font_name)
+	nh_gtkhackrc_store(rc, "help.font = \"%s\"", help_font_name);
+}
+#endif
+
+#ifdef USE_TEXTVIEW
+static void
+GTK_ext_display_file_setfont_apply(GtkButton *button,
+  GtkFontSelectionDialog *fsd)
+{
+    GtkTextBuffer *buffer;
+    GtkTextTagTable *tagtable;
+    GtkTextTag *tag;
+    GtkTextIter start, end;
+    if (help_font_name)
+	g_free(help_font_name);
+    help_font_name = gtk_font_selection_dialog_get_font_name(fsd);
+    if (help_font_name) {
+	buffer = GTK_TEXT_BUFFER(g_object_get_data(G_OBJECT(fsd),
+	  "display-file-buffer"));
+	tagtable = gtk_text_buffer_get_tag_table(buffer);
+	tag = gtk_text_tag_table_lookup(tagtable, "body");
+	g_object_set(tag, "font", help_font_name, NULL);
+	gtk_text_buffer_get_bounds(buffer, &start, &end);
+	gtk_text_buffer_apply_tag(buffer, tag, &start, &end);
+    }
+}
+
+static void
+GTK_ext_display_file_setfont(GtkButton *button, GtkTextBuffer *buffer)
+{
+    static GtkWidget *SetFont = NULL;
+    if (SetFont)
+	gtk_window_present(GTK_WINDOW(SetFont));
+    else {
+	SetFont = gtk_font_selection_dialog_new("Set font for documentation");
+	gtk_font_selection_dialog_set_font_name(
+	  GTK_FONT_SELECTION_DIALOG(SetFont), help_font_name);
+	g_object_ref(G_OBJECT(buffer));
+	g_object_set_data_full(G_OBJECT(SetFont), "display-file-buffer", buffer,
+	  g_object_unref);
+	gtk_widget_show(GTK_FONT_SELECTION_DIALOG(SetFont)->apply_button);
+	g_signal_connect(
+	  GTK_OBJECT(GTK_FONT_SELECTION_DIALOG(SetFont)->apply_button),
+	  "clicked", G_CALLBACK(GTK_ext_display_file_setfont_apply), SetFont);
+	g_signal_connect(
+	  GTK_OBJECT(GTK_FONT_SELECTION_DIALOG(SetFont)->ok_button),
+	  "clicked", G_CALLBACK(GTK_ext_display_file_setfont_apply), SetFont);
+	g_signal_connect_swapped(
+	  GTK_OBJECT(GTK_FONT_SELECTION_DIALOG(SetFont)->ok_button),
+	  "clicked", G_CALLBACK(gtk_widget_destroy), SetFont); 
+	g_signal_connect_swapped(
+	  GTK_OBJECT(GTK_FONT_SELECTION_DIALOG(SetFont)->cancel_button),
+	  "clicked", G_CALLBACK(gtk_widget_destroy), SetFont); 
+	gtk_widget_show(SetFont);
+	gtk_signal_connect(GTK_OBJECT(SetFont), "destroy",
+	  GTK_SIGNAL_FUNC(gtk_widget_destroyed), &SetFont);
+    }
+}
+#endif
+
 void
 GTK_ext_display_file(int fh)
 {
@@ -3242,20 +3317,23 @@ GTK_ext_display_file(int fh)
     GtkWidget *w;
 #ifdef USE_TEXTVIEW
     GtkWidget *scrolledwindow;
+    static GtkTextTagTable *tagtable = NULL;
+    static GtkTextTag *tag = NULL;
     GtkTextBuffer *buffer;
+    GtkTextIter start, end;
 #else
     GtkWidget *scrollbar;
-    GtkWidget *hbox2;
+    GtkWidget *hbox;
 #endif
     GtkWidget *label;
     GtkWidget *vbox;
-    GtkWidget *hbox;
+    GtkWidget *bbox;
     GtkWidget *text;
     GtkWidget *button;
 
     char buf[NH_BUFSIZ];
 
-    w = nh_gtk_window_dialog(TRUE);
+    w = nh_gtk_window_dialog(FALSE);
     gtk_widget_set_name(GTK_WIDGET(w), "fixed font");
 
     nh_position_popup_dialog(GTK_WIDGET(w));
@@ -3274,28 +3352,48 @@ GTK_ext_display_file(int fh)
       vbox, "", TRUE, TRUE, NH_PAD);
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolledwindow),
       GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-    text = nh_gtk_new_and_add(gtk_text_view_new(), scrolledwindow, "");
+    if (!tagtable) {
+	tagtable = gtk_text_tag_table_new();
+	tag = gtk_text_tag_new("body");
+	if (!help_font_name)
+	    help_font_name = g_strdup("Courier 12");
+	g_object_set(G_OBJECT(tag), "font", help_font_name, NULL);
+	gtk_text_tag_table_add(tagtable, tag);
+    }
+    buffer = gtk_text_buffer_new(tagtable);
+    text = nh_gtk_new_and_add(gtk_text_view_new_with_buffer(buffer),
+      scrolledwindow, "");
+    g_object_unref(buffer);
     GTK_WIDGET_UNSET_FLAGS(text, GTK_CAN_FOCUS);
     gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(text), GTK_WRAP_WORD);
     gtk_text_view_set_editable(GTK_TEXT_VIEW(text), FALSE);
-    buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text));
 #else
-    hbox2 = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
+    hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
       FALSE, FALSE, NH_PAD);
 
-    text = nh_gtk_new_and_pack(gtk_text_new(NULL, NULL), hbox2, "",
+    text = nh_gtk_new_and_pack(gtk_text_new(NULL, NULL), hbox, "",
       FALSE, FALSE, NH_PAD);
     gtk_widget_set_usize(GTK_WIDGET(text), 600, (root_height * 2)/3);
 
     scrollbar = nh_gtk_new_and_pack(gtk_vscrollbar_new(GTK_TEXT(text)->vadj),
-      hbox2, "", FALSE, FALSE, NH_PAD);
+      hbox, "", FALSE, FALSE, NH_PAD);
 #endif
 
-    hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
+    bbox = nh_gtk_new_and_pack(gtk_hbutton_box_new(), vbox, "",
       FALSE, FALSE, NH_PAD);
+    gtk_container_set_border_width(GTK_CONTAINER(bbox), 5);
+    gtk_box_set_spacing(GTK_BOX(bbox), 5);
+    gtk_button_box_set_layout(GTK_BUTTON_BOX(bbox), GTK_BUTTONBOX_END);
 
-    button = nh_gtk_new_and_pack(gtk_button_new_from_stock(GTK_STOCK_CLOSE),
-      hbox, "", TRUE, FALSE, NH_PAD);
+#ifdef USE_TEXTVIEW
+    button = nh_gtk_new_and_add(gtk_button_new_with_mnemonic("_Set font..."),
+      bbox, "");
+    gtk_signal_connect(GTK_OBJECT(button), "clicked",
+      GTK_SIGNAL_FUNC(GTK_ext_display_file_setfont), buffer);
+#endif
+
+    button = nh_gtk_new_and_add(gtk_button_new_from_stock(GTK_STOCK_CLOSE),
+      bbox, "");
     gtk_signal_connect(GTK_OBJECT(button), "clicked",
       GTK_SIGNAL_FUNC(default_button_press), (gpointer)'\033');
 
@@ -3314,19 +3412,22 @@ GTK_ext_display_file(int fh)
 #endif
     }
 
+#ifdef USE_TEXTVIEW
+    gtk_text_buffer_get_bounds(buffer, &start, &end);
+    gtk_text_buffer_apply_tag(buffer, tag, &start, &end);
+#endif
     gtk_widget_show_all(w);
     if (!main_hook(NULL))
 	(void)nh_key_get();
 
     if (w) {
 	gtk_signal_disconnect(GTK_OBJECT(w), hid);
-	gtk_widget_destroy(button);
 #ifndef USE_TEXTVIEW
 	gtk_widget_destroy(hbox2);
 	gtk_widget_destroy(scrollbar);
 #endif
 	gtk_widget_destroy(text);
-	gtk_widget_destroy(hbox);
+	gtk_widget_destroy(bbox);
 	gtk_widget_destroy(label);
 	gtk_widget_destroy(vbox);
 	gtk_widget_destroy(w);

@@ -83,6 +83,7 @@ ver 0.0.7E5 [?] [Released by ?]
 -fixed bug 858984: GTK: Dialogs don't open until after the next game command
 -Gtk: Smother scrolling
 -Gtk: Upgrade file display window to use GtkTextView instead of broken GtkText
+-Gtk: Add facility to change font used in help windows
 
 See history.txt for changes made in previous versions.
 
