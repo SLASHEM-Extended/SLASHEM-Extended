@@ -94,6 +94,7 @@ ver 0.0.7E6 [?] [Released by ?]
 -fixed bug 878812: Duplicates in list of game commands
 -Support gentoo configuration system
 -fixed bug 901798: gtkhack 7E5 crashes if it can't write to cache
+-Documented configuration for proxy servers
 
 See history.txt for changes made in previous versions.
 

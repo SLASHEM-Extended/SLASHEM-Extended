@@ -111,6 +111,7 @@ To build:
 			user			= games
 			server			= /usr/local/bin/slashem
 			server_args		= --proxy
+			env			= HOME=/etc/slashem
 			log_on_success		+= DURATION USERID
 			log_on_failure		+= USERID
 			nice			= 10
@@ -119,7 +120,23 @@ To build:
 	      (you will need to alter the location of the server if it is
 	      installed in a different directory, or with a different name.)
 	
-	   c. Cause xinetd to re-read its configuration files. See the
+	   c. Create a configuration file /etc/slashem/.slashemrc which is
+	      readable by user games. It is probably better if the file (and
+	      the /etc/slashem directory) is owned by root.
+
+	   d. In /etc/slashem/.slashemrc you can specify the tilesets that
+	      the proxy server will allow access to (remote clients are not
+	      permitted to override TILESET settings). You can also specify
+	      default options if you are not happy with the ones hardcoded
+	      into slashem.
+
+	      Example contents:
+
+	      TILESET=name:Small tiles, file:gltile16.png
+	      TILESET=name:Big tiles, file:gltile32.png, transparent
+	      TILESET=name:Big 3D tiles, file:gltile64.png, transparent, pseudo3D
+
+	   e. Cause xinetd to re-read its configuration files. See the
 	      xinetd manual page for details.
 
 B. Proxified window interfaces
