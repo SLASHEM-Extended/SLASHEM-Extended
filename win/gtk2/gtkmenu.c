@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.4 2001-10-01 06:32:49 j_ali Exp $
+  $Id: gtkmenu.c,v 1.5 2001-10-15 06:26:32 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -27,6 +27,7 @@ typedef struct _NHMenuItem{
      int	ch;
      int	gch;
      int	selected;
+     long	count;
      ANY_P	id;
      int	attr;
      int	glyph;
@@ -59,14 +60,15 @@ static gint
 menu_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
     NHWindow *w = (NHWindow *)data;
+    struct menu_info_t *menu_info = w->menu_information;
 
-    w->menu_information->keysym = map_menu_cmd(nh_keysym(event));
-    if(event->keyval == GDK_Escape){
-	w->menu_information->keysym = '\033';
-	w->menu_information->cancelled = 1;
+    menu_info->keysym = map_menu_cmd(nh_keysym(event));
+    if (event->keyval == GDK_Escape) {
+	menu_info->keysym = '\033';
+	menu_info->cancelled = 1;
     }
 
-    if(w->menu_information->keysym)
+    if (menu_info->keysym)
 	gtk_main_quit();
     
     return FALSE;
@@ -103,13 +105,21 @@ static gint
 menu_selected(GtkWidget *clist, gint row, gint column,
 	      GdkEventButton *event, gpointer data)
 {
+    gchar buf[4];
     NHWindow *w = (NHWindow *)data;
-    w->menu_information->curr_menu.nhMenuItem[row].selected = 1;
-    ++w->menu_information->n_select;
-/*
-    if(selmode == PICK_ONE)
-	gtk_main_quit();
-*/
+    struct menu_info_t *menu_info = w->menu_information;
+
+    menu_info->curr_menu.nhMenuItem[row].selected = 1;
+    ++menu_info->n_select;
+    buf[0] = menu_info->curr_menu.nhMenuItem[row].count >= 0 ? '#' : '-';
+    if (menu_info->curr_menu.nhMenuItem[row].gch) {
+	buf[1] = ' ';
+	buf[2] = menu_info->curr_menu.nhMenuItem[row].gch;
+	buf[3] = '\0';
+    }
+    else
+	buf[1] = '\0';
+    gtk_clist_set_text(GTK_CLIST(clist), row, MENU_COLS - 2, buf);
     return FALSE;
 }
 
@@ -117,10 +127,17 @@ static gint
 menu_unselected(GtkWidget *clist, gint row, gint column,
 	      GdkEventButton *event, gpointer data)
 {
+    gchar buf[4];
     NHWindow *w = (NHWindow *)data;
-    w->menu_information->curr_menu.nhMenuItem[row].selected = 0;
-    --w->menu_information->n_select;
+    struct menu_info_t *menu_info = w->menu_information;
 
+    menu_info->curr_menu.nhMenuItem[row].selected = 0;
+    --menu_info->n_select;
+    if (menu_info->curr_menu.nhMenuItem[row].gch)
+	sprintf(buf, "- %c", menu_info->curr_menu.nhMenuItem[row].gch);
+    else
+	strcpy(buf, "-");
+    gtk_clist_set_text(GTK_CLIST(clist), row, MENU_COLS - 2, buf);
     return FALSE;
 }
 
@@ -379,7 +396,7 @@ GTK_add_menu(winid id, int glyph, const ANY_P *identifier,
      GtkCList	*c;
      NHWindow	*w;
      struct menu *menu;
-     char 	buf[2], buf2[2];
+     char 	buf[2], buf2[4];
      gchar	*text[MENU_COLS];
 
      if(!str || str[0] == '\0')
@@ -417,6 +434,7 @@ GTK_add_menu(winid id, int glyph, const ANY_P *identifier,
      menu->nhMenuItem[menu->n_menuitem].ch = ch;
      menu->nhMenuItem[menu->n_menuitem].gch = gch;
      menu->nhMenuItem[menu->n_menuitem].selected = FALSE;
+     menu->nhMenuItem[menu->n_menuitem].count = -1;
      menu->nhMenuItem[menu->n_menuitem].id = *identifier;
      menu->nhMenuItem[menu->n_menuitem].attr = attr;
      menu->nhMenuItem[menu->n_menuitem].glyph = glyph;
@@ -427,11 +445,11 @@ GTK_add_menu(winid id, int glyph, const ANY_P *identifier,
      text[MENU_COLS-3] = buf;
 
      if(gch){
-	  sprintf(buf2, "%c", gch);
+	  sprintf(buf2, "- %c", gch);
 	  text[MENU_COLS-2] = buf2;
      }	  
      else
-	  text[MENU_COLS-2] = "";
+	  text[MENU_COLS-2] = identifier->a_void ? "-" : "";
 
      text[MENU_COLS-1] = (gchar *)str;
 
@@ -480,6 +498,7 @@ GTK_select_menu(winid id, int how, MENU_ITEM_P **menu_list)
     menu_info = w->menu_information;
     menu_info->n_select = 0;
     menu_info->selmode = how;
+    menu_info->count = -1;
     *menu_list = 0;
 
     if (id == WIN_INVEN)
@@ -557,8 +576,10 @@ GTK_select_menu(winid id, int how, MENU_ITEM_P **menu_list)
 			if(item->id.a_void){
 			    if(item->selected)
 				gtk_clist_unselect_row(c, i, 0);
-			    else
+			    else {
+				menu_info->curr_menu.nhMenuItem[i].count = -1;
 				gtk_clist_select_row(c, i, 0);
+			    }
 			}
 		    }
 		    if(menu_info->keysym == MENU_UNSELECT_PAGE ||
@@ -568,25 +589,43 @@ GTK_select_menu(winid id, int how, MENU_ITEM_P **menu_list)
 		    }
 		    if(menu_info->keysym == MENU_SELECT_PAGE ||
 		      menu_info->keysym == MENU_SELECT_ALL){
-			if(item->id.a_void)
+			if (item->id.a_void) {
+			    menu_info->curr_menu.nhMenuItem[i].count = -1;
 			    gtk_clist_select_row(c, i, 0);
+			}
 		    }
 		    else if(item->gch == menu_info->keysym){
 			if(item->selected)
 			    gtk_clist_unselect_row(c, i, 0);
-			else
+			else {
+			    menu_info->curr_menu.nhMenuItem[i].count = -1;
 			    gtk_clist_select_row(c, i, 0);
+			}
 		    }
 		}
 		if(item->ch == menu_info->keysym){
-		    if(item->selected)
+		    if (item->selected && menu_info->count < 0)
 			gtk_clist_unselect_row(c, i, 0);
-		    else
+		    else {
+			menu_info->curr_menu.nhMenuItem[i].count =
+			  menu_info->count;
 			gtk_clist_select_row(c, i, 0);
+		    }
 		    if(how == PICK_ONE)
 			goto loopout;
 		}
 	    }
+	    if (menu_info->keysym >= '0' && menu_info->keysym <= '9') {
+		if (menu_info->count > 0)
+		    menu_info->count *= 10;
+		else
+		    menu_info->count = 0;
+		menu_info->count += menu_info->keysym - '0';
+		if (menu_info->count <= 0)
+		    menu_info->count = -1;
+	    }
+	    else
+		menu_info->count = -1;
 	}
     }
  loopout:
@@ -605,13 +644,14 @@ GTK_select_menu(winid id, int how, MENU_ITEM_P **menu_list)
 	*menu_list = (menu_item *) alloc(n * sizeof(menu_item));
 	
 	n = 0;
-	for(i=0 ; i<menu_info->curr_menu.n_menuitem ; ++i)
-	    if(menu_info->curr_menu.nhMenuItem[i].selected &&
-	      menu_info->curr_menu.nhMenuItem[i].id.a_void){
-		(*menu_list)[n].item = menu_info->curr_menu.nhMenuItem[i].id;
-		(*menu_list)[n].count = -1;
+	for(i=0 ; i<menu_info->curr_menu.n_menuitem ; ++i) {
+	    item = &menu_info->curr_menu.nhMenuItem[i];
+	    if (item->selected && item->id.a_void) {
+		(*menu_list)[n].item = item->id;
+		(*menu_list)[n].count = item->count;
 		++n;
 	    }
+	}
     }
     
     return n;

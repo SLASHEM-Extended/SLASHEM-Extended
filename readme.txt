@@ -379,6 +379,7 @@ ver 0.0.6E4F6 [? ?/2001] [Released by ?]
 -fixed bug 465183: black mold has two attk's and speed 0.
 -fixed bug 460122: upgrade code blocks alchemy.
 -fixed bug 459699: Oops. add_to_billobjs: obj is timed.
+-fixed bug 450234: GTK: Taking n items out of a bag.
 
 ver 0.0.6E4F5 [August 31/2001] [Released by Ali]
 -fixed bug 420517: Yellow dragon scale mail.
