@@ -84,52 +84,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E1 [June 2/2003] [Released by Ali]
--Actioned feature request 414274: Lazy yn_function().
--GTK: Added profile for saving eg., session data:
-  [UNIX] stored in ~/.gtkhackrc
-  [WIN32] stored in registry
--Actioned feature request 492518: resize inventory window.
--Actioned feature request 421535: shop keepers are too dumb.
--Applied patch 687552: Grund's stronghold.
--GTK: Ported to Gtk+ 2.2.x
--GTK: Replaced obsolete 1.2 interface with new 2.x version.
--Actioned feature request 487616: Put lightsabers under config control.
--fixed bug 733338: Crash when monster attacks an empty space (Rich Walker).
--Actioned feature request 454805: cloak of "poisonousness"?
--Actioned feature request 513881: Count Dracula/Vlad the Impaler race.
--Actioned feature request 538741: Multiple random place arrays.
--Actioned feature request 457867: <verbose armor name> blocks (Lars Huttar).
--Actioned feature request 459915: displacer beast appearance.
--Actioned feature request 422908: Flame Sphere+ water blast trap.
--Actioned feature request 616101: Cannibalism and Cavemen.
--Actioned feature request 513873: skill in Spell of Enchant <foo>.
--Actioned feature request 459902: YAFM suggestion: good vibes.
--Actioned feature request 709525: ki-rin are humanoid.
--fixed bug 729024: Sokoban dead end.
--fixed bug 617219: data.base has many redundant entries.
--fixed bug 604681: MR_PLUSONE etc unimplemented.
--fixed bug 734765: level-draining Thiefbane.
--fixed bug 737751: Thiefbane referred to as vorpal blade.
--fixed bug 466802: Items which count as magic.
--fixed bug 575210: Invisible mummy wrappings.
--fixed bug 405815: Invisible gold is inconsistent.
--fixed bug 609748: Elfrist should be PM_ORC.
--fixed bug 603179: Holy wafers in und.slayer starting inv.
--Proxy: Added window interface capabilities.
--GTK: Added preferences dialog.
--Actioned feature request 710544: Rename Fuzzy Spellbook.
--Actioned feature request 716698: rothe color is different from 3.4.1
--fixed bug 739987: impossible boolean condition.
--Actioned feature request 464475: recentering view with gtk: optional.
--Actioned feature request 421203: Mages' draconic polymorph.
--Updated tilesets to use latest version of Mitsuhiro Itakura's tiles.
--Applied patch 467847 (updated): Prettier GTK buttons & status highlight.
--GtkHack: Added connections dialogs.
--fixed bug 731418: #twoweaponing?
--fixed bug 742693: Cannot read engravings without spending a turn.
--GtkHack: Connections are now stored in profile.
--GtkHack: Now reads local config file & uploads to proxy server.
+ver 0.0.7E2 [?] [Released by ?]
 
 See history.txt for changes made in previous versions.
 
@@ -282,5 +237,5 @@ Thanks for the support, bug reports and suggestions of
 +----------------------------+
 
 o Slash'EM Homepage: http://www.slashem.org/
-o Ali's Slash'EM page: http://avrc.city.ac.uk/nethack/slashem.html
+o Ali's Slash'EM page: http://www.juiblex.co.uk/nethack/slashem.html
 o Eva's spoiler page: http://www.statslab.cam.ac.uk/~eva/slashem/index.html

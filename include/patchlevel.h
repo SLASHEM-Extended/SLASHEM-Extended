@@ -15,7 +15,7 @@
  * PATCHLEVEL is updated for each release.
  */
 #define PATCHLEVEL      7
-#define EDITLEVEL	1
+#define EDITLEVEL	2
 /* #define FIXLEVEL        0 */
 
 #define COPYRIGHT_BANNER_A \
@@ -27,7 +27,7 @@
 #define COPYRIGHT_BANNER_C \
 "See license for details. Bug reports to slashem-discuss@lists.sourceforge.net"
 
-#if 0
+#if 1
 /*
  * If two successive patchlevels have compatible data files (fat chance),
  * defining this with the value of the older one will allow its bones and
@@ -37,7 +37,7 @@
  * PP = patch level, ee = edit level, L = literal suffix "L",
  * with all four numbers specified as two hexadecimal digits.
  */
-#define VERSION_COMPATIBILITY 0x00000000L
+#define VERSION_COMPATIBILITY 0x00000701L
 #endif
 
 /*patchlevel.h*/
