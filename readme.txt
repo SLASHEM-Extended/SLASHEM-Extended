@@ -11,7 +11,7 @@
 | Nethack is Copyright 1985-2003                                         |
 |            By Stichting Mathematisch Centrum and M. Stephenson.        |
 | SLASH'EM and NetHack may be freely redistributed.                      |
-| See license for details.                                               |
+| See license in the dat directory for details.                          |
 +------------------------------------------------------------------------+
 
 +-------+
@@ -40,10 +40,11 @@
 
 The development of version 0.0.7 of Slash'EM started with version 0.0.6E5
 (yes, we realise our version numbers are a little odd - it made sense at
-the time!). We are just about to start integrating the changes made in
-NetHack 3.4.2 before starting beta development.
+the time!). There are just a few more bugs that need fixing which affect
+gameplay before we can release the first beta version which we hope to do
+in Spring, 2004.
 
-If you do find any bugs then please submit a report via the offical bug page:
+If you find any bugs then please submit a report via the offical bug page:
 
 http://sourceforge.net/bugs/?group_id=9746
 
@@ -88,6 +89,7 @@ ver 0.0.7E4 [?] [Released by ?]
 -fixed bug 805499: Walking dead
 -fixed bug 846662: UNIX Makefiles call for NetHack.ad instead of SlashEM.ad
 -fixed bug 799278: "Finally Finished" when Turning Undead
+-Merged vanilla 3.4.2 codebase.
 
 See history.txt for changes made in previous versions.
 
