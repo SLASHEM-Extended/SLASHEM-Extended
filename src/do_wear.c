@@ -1469,8 +1469,13 @@ boolean noisy;
 		    (uwep->otyp == BATTLE_AXE) ? c_axe : c_weapon);
 	    err++;
 	} else if (u.twoweap) {
-	    if (noisy)
-		You("cannot wear a shield while wielding two weapons.");
+	    if (noisy) {
+		if (uwep && uswapwep)
+		    You("cannot wear a shield while wielding two weapons.");
+		else
+		    You("cannot wear a shield while fighting with two %s.",
+			    makeplural(body_part(HAND)));
+	    }
 	    err++;
 	} else
 	    *mask = W_ARMS;

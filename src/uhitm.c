@@ -41,6 +41,9 @@ static boolean barehanded_hit = 0;
 /* WAC for mhit,  two weapon attacking */
 #define HIT_UWEP 	1
 #define HIT_USWAPWEP 	2
+#define HIT_BODY 	4		/* Hit with other body part */
+#define HIT_OTHER 	8		/* Hit without touching */
+#define HIT_FATAL 	16
 
 #define PROJECTILE(obj)	((obj) && is_ammo(obj))
 
@@ -1275,8 +1278,8 @@ int thrown;
 	    wep = PROJECTILE(obj) ? launcher : obj;
 	    tmp += weapon_dam_bonus(wep);
 	    /* [this assumes that `!thrown' implies wielded...] */
-	    wtype = thrown ? weapon_type(wep) : uwep_skill_type();
-	    if (!u.twoweap || !rn2(2)) use_skill(wtype, 1);
+	    wtype = weapon_type(wep);
+	    if (thrown || !u.twoweap || !rn2(2)) use_skill(wtype, 1);
 	    else if (u.twoweap) use_skill(P_TWO_WEAPON_COMBAT,1);
 	}
 
@@ -2684,10 +2687,11 @@ register int tmp;
 	int 	mhit = 0; /* Used to pass the attacks used */
 	int 	tmp1, tmp2;
 	boolean Old_Upolyd = Upolyd;
+	static const int hit_touch[] = {0, HIT_BODY, HIT_BODY|HIT_FATAL};
+	static const int hit_notouch[] = {0, HIT_OTHER, HIT_OTHER|HIT_FATAL};
 	
 	/* Keeps track of which weapon hands have been used */
-	/* Assume used_uwep is flagged TRUE before used_uswapwep is flagged TRUE */
-	boolean used_uwep = FALSE, used_uswapwep = FALSE;
+	boolean used_uwep = FALSE;
 
 	for(i = 0; i < NATTK; i++) {
 	    mhit = 0; /* Clear all previous attacks */
@@ -2708,25 +2712,25 @@ use_weapon:
 	 * attack.  Is this really desirable?
 	 * [WAC] See Above ...  anyways,  this was changed in 3.3.0 so that
 	 * only attack 0 would give a weapon attack...
+	 * [ALI] Most monsters should get multiple weapon attacks since they
+	 * only have two hands. There are exceptions such as mariliths which
+	 * should get two weapon attacks and four barehanded attacks. Such
+	 * monsters should be special cased in AT_CLAW below.
 	 */
-			if (used_uwep && (!u.twoweap || used_uswapwep)) {
-			    /* Gone through all your weapon attacks already
-			     *  -> Recycle
-			     *
-			     * The way things now work is that you only
-			     * get half of your weapon attacks.
-			     * However, if you #twoweapon, you attack twice
-			     * (so you end up getting them all)
-			     * This does not consider the possibility of
-			     * an odd number of hands.
-			     */
-			    used_uwep = used_uswapwep = 0;
+			mhit = used_uwep ? HIT_USWAPWEP : HIT_UWEP;
+			used_uwep = !used_uwep;
+			if (mhit == HIT_USWAPWEP && !u.twoweap)
+			    break;	/* Skip this attack */
+
+			/* WAC if attacking cockatrice/etc, player is smart
+			   if wielding a weapon.  So don't let him
+			   touch the monster */
+			if ((uwep || u.twoweap && uswapwep) &&
+				(mhit == HIT_UWEP && !uwep ||
+				 mhit == HIT_USWAPWEP && !uswapwep) &&
+				(touch_petrifies(mon->data) ||
+				 mon->data == &mons[PM_MEDUSA]))
 			    break;
-			}
-			if (u.twoweap) {
-			    if (used_uwep) mhit = HIT_USWAPWEP;
-			    else mhit = HIT_UWEP|HIT_USWAPWEP;
-			} else mhit = HIT_UWEP;
 
 			dhit = mhit; /* Clear the miss counter as attacks miss */
 			tmp1 = tmp2 = tmp;
@@ -2746,10 +2750,9 @@ use_weapon:
 #ifdef DEBUG
 			    pline("(%i/20)", tmp1);
 #endif
-			    used_uwep = TRUE;
 			}
 
-			if ((mhit & HIT_USWAPWEP) && u.twoweap) {
+			if (mhit & HIT_USWAPWEP) {
 			    if (uswapwep)
 				tmp2 = tmp + hitval(uswapwep, mon) - 2;
 
@@ -2764,7 +2767,6 @@ use_weapon:
 #ifdef DEBUG
 			    pline("((%i/20))", tmp2);
 #endif
-			    used_uswapwep = TRUE;
 			}
 
 			if (dhit && mattk->adtyp == AD_SLEE)
@@ -2785,7 +2787,7 @@ use_weapon:
 #endif
 			/* Enemy dead, before any special abilities used */
 			if (!known_hitum(mon,mhit,&dhit,mattk)) {
-			    sum[i] = 2;
+			    sum[i] = dhit | HIT_FATAL;
 			    break;
 			} else sum[i] = dhit;
 			/* might be a worm that gets cut in half */
@@ -2795,10 +2797,13 @@ use_weapon:
 			 */
 			if (dhit && mattk->adtyp != AD_SPEL
 				&& mattk->adtyp != AD_PHYS)
-				sum[i] = damageum(mon,mattk);
+			    if (damageum(mon,mattk) == 2)
+				sum[i] |= HIT_FATAL;
 			break;
 		case AT_CLAW:
-			if (!cantwield(youmonst.data)) goto use_weapon;
+			if (!cantwield(youmonst.data) &&
+				u.umonnum != PM_MARILITH)
+			    goto use_weapon;
 #ifdef SEDUCE
 #if 0	/* Shouldn't matter where the first AT_CLAW is anymore
 			/* succubi/incubi are humanoid, but their _second_
@@ -2811,20 +2816,19 @@ use_weapon:
 		case AT_BITE:
 			/* [ALI] Vampires are also smart. They avoid biting
 			   monsters if doing so would be fatal */
-			if (uwep && is_vampire(youmonst.data) &&
-			  (is_rider(mon->data) ||
-			  mon->data == &mons[PM_GREEN_SLIME]))
+			if ((uwep || u.twoweap && uswapwep) &&
+				is_vampire(youmonst.data) &&
+				(is_rider(mon->data) ||
+				 mon->data == &mons[PM_GREEN_SLIME]))
 			    break;
 		case AT_STNG:
 		case AT_TUCH:
 		case AT_BUTT:
 		case AT_TENT:
 			if (i==0 && uwep && (youmonst.data->mlet==S_LICH)) goto use_weapon;
-			/* WAC if attacking cockatrice/etc, player is smart
-			   if wielding a weapon.  So don't let him
-			   touch the monster */
-			if (uwep && (touch_petrifies(mon->data) ||
-			  mon->data == &mons[PM_MEDUSA]))
+			if ((uwep || u.twoweap && uswapwep) &&
+				(touch_petrifies(mon->data) ||
+				 mon->data == &mons[PM_MEDUSA]))
 			    break;
 		case AT_KICK:
 			if ((dhit = (tmp > (dieroll = rnd(20)) || u.uswallow)) != 0) {
@@ -2838,7 +2842,7 @@ use_weapon:
 				    mon_nam(mon),
 				    compat == 2 ? "engagingly":"seductively");
 				/* doesn't anger it; no wakeup() */
-				sum[i] = damageum(mon, mattk);
+				sum[i] = hit_notouch[damageum(mon, mattk)];
 				break;
 			    }
 			    wakeup(mon);
@@ -2863,7 +2867,7 @@ use_weapon:
 			    else if (mattk->aatyp == AT_TENT)
 				    Your("tentacles suck %s.", mon_nam(mon));
 			    else You("hit %s.", mon_nam(mon));
-			    sum[i] = damageum(mon, mattk);
+			    sum[i] = hit_touch[damageum(mon, mattk)];
 			} else
 			    missum(mon, tmp, dieroll, mattk);
 			break;
@@ -2883,11 +2887,11 @@ use_weapon:
 				    u.umonnum==PM_ROPE_GOLEM ?
 				    breathless(mon->data) ? "strangled" :
 				    "choked" : "crushed");
-				sum[i] = damageum(mon, mattk);
+				sum[i] = hit_touch[damageum(mon, mattk)];
 			    } else if(i >= 2 && sum[i-1] && sum[i-2]) {
 				You("grab %s!", mon_nam(mon));
 				setustuck(mon);
-				sum[i] = damageum(mon, mattk);
+				sum[i] = hit_touch[damageum(mon, mattk)];
 			    }
 			}
 			break;
@@ -2895,7 +2899,7 @@ use_weapon:
 		case AT_EXPL:	/* automatic hit if next to */
 			dhit = -1;
 			wakeup(mon);
-			sum[i] = explum(mon, mattk);
+			sum[i] = hit_notouch[explum(mon, mattk)];
 			break;
 
 		case AT_ENGL:
@@ -2905,8 +2909,8 @@ use_weapon:
 				    Your("attempt to surround %s is harmless.",
 					mon_nam(mon));
 				else {
-				    sum[i]= gulpum(mon,mattk);
-				    if (sum[i] == 2 &&
+				    sum[i]= hit_touch[gulpum(mon,mattk)];
+				    if (sum[i] & HIT_FATAL &&
 					    (mon->data->mlet == S_ZOMBIE ||
 						mon->data->mlet == S_MUMMY) &&
 					    rn2(5) &&
@@ -2966,7 +2970,7 @@ use_weapon:
 				pline("%s seems not to notice your gaze.", Monnam(mon));
 				break;
 			}
-			sum[i] = damageum(mon, mattk);
+			sum[i] = hit_notouch[damageum(mon, mattk)];
 			break;
 
 		case AT_MULTIPLY:
@@ -2983,8 +2987,8 @@ use_weapon:
 		u.mh = -1;	/* dead in the current form */
 		rehumanize();
 	    }
-	    if (sum[i] == 2)
-		return((boolean)passive(mon, 1, 0, mattk->aatyp));
+	    if (sum[i] & HIT_FATAL)
+		return((boolean)passive(mon, sum[i], 0, mattk->aatyp));
 							/* defender dead */
 	    else {
 		(void) passive(mon, sum[i], 1, mattk->aatyp);
@@ -3055,13 +3059,16 @@ uchar aatyp;
 	  case AD_STON:
 	    if (mhit) {		/* successful attack */
 		long protector = attk_protection((int)aatyp);
+		boolean barehanded = mhit & HIT_BODY ||
+			mhit & HIT_UWEP && !uwep ||
+			mhit & HIT_USWAPWEP && !uswapwep;
 
 		/* hero using monsters' AT_MAGC attack is hitting hand to
 		   hand rather than casting a spell */
 		if (aatyp == AT_MAGC) protector = W_ARMG;
 
 		if (protector == 0L ||		/* no protection */
-			(protector == W_ARMG && !uarmg && !uwep) ||
+			(protector == W_ARMG && !uarmg && barehanded) ||
 			(protector == W_ARMF && !uarmf) ||
 			(protector == W_ARMH && !uarmh) ||
 			(protector == (W_ARMC|W_ARMG) && (!uarmc || !uarmg))) {

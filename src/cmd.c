@@ -1469,7 +1469,17 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("You ", "will be", "would have been", " depetrified");
 	if (Lifesaved)
 		enl_msg("Your life ", "will be", "would have been", " saved");
-	if (u.twoweap) you_are("wielding two weapons at once");
+	if (u.twoweap) {
+	    if (uwep && uswapwep)
+		Sprintf(buf, "wielding two weapons at once");
+	    else if (uwep || uswapwep)
+		Sprintf(buf, "fighting with a weapon and your %s %s",
+			uwep ? "left" : "right", body_part(HAND));
+	    else
+		Sprintf(buf, "fighting with two %s",
+			makeplural(body_part(HAND)));
+	    you_are(buf);
+	}
 
 	/*** Miscellany ***/
 	if (Luck) {

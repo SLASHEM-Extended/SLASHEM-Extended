@@ -497,13 +497,18 @@ int
 can_twoweapon()
 {
 	char buf[BUFSZ];
+	char *what;
 	boolean disallowed_by_race;
 	boolean disallowed_by_role;
 	struct obj *otmp;
 
+#define NOT_WEAPON(obj) (obj && !is_weptool(obj) && obj->oclass != WEAPON_CLASS)
 	if (!could_twoweap(youmonst.data) && (uwep || uswapwep)) {
-	    if (Upolyd)
-		You_cant("use two weapons in your current form.");
+	    what = uwep && uswapwep ? "two weapons" : "more than one weapon";
+	    if (cantwield(youmonst.data))
+		pline("Don't be ridiculous!");
+	    else if (Upolyd)
+		You_cant("use %s in your current form.", what);
 	    else {
 		disallowed_by_role = P_MAX_SKILL(P_TWO_WEAPON_COMBAT) < P_BASIC;
 		disallowed_by_race = youmonst.data->mattk[1].aatyp != AT_WEAP;
@@ -516,14 +521,36 @@ can_twoweapon()
 		    Strcat(buf, (flags.female && urole.name.f) ?
 			    urole.name.f : urole.name.m);
 		}
-		pline("%s aren't able to use two weapons at once.",
-			makeplural(upstart(buf)));
+		pline("%s aren't able to use %s at once.",
+			makeplural(upstart(buf)), what);
 	    }
+	} else if (cantwield(youmonst.data))
+	    pline("Don't be ridiculous!");
+	else if (youmonst.data->mattk[1].aatyp != AT_WEAP &&
+		youmonst.data->mattk[1].aatyp != AT_CLAW) {
+	    if (Upolyd)
+		You_cant("fight with two %s in your current form.",
+			makeplural(body_part(HAND)));
+	    else
+		pline("%s aren't able to fight two-handed.",
+			upstart(makeplural(urace.noun)));
+	} else if (NOT_WEAPON(uwep) || NOT_WEAPON(uswapwep)) {
+	    otmp = NOT_WEAPON(uwep) ? uwep : uswapwep;
+	    pline("%s %s.", Yname2(otmp),
+		is_plural(otmp) ? "aren't weapons" : "isn't a weapon");
 	} else if ((uwep && bimanual(uwep)) || (uswapwep && bimanual(uswapwep))) {
 	    otmp = (uwep && bimanual(uwep)) ? uwep : uswapwep;
 	    pline("%s isn't one-handed.", Yname2(otmp));
-	} else if (uarms)
-	    You_cant("use two weapons while wearing a shield.");
+	} else if (uarms) {
+	    if (uwep || uswapwep)
+		what = uwep && uswapwep ?  "use two weapons" :
+		    "use more than one weapon";
+	    else {
+		sprintf(buf, "fight with two %s", makeplural(body_part(HAND)));
+		what = buf;
+	    }
+	    You_cant("%s while wearing a shield.", what);
+	}
         /* WAC:  TODO: cannot wield conflicting alignment artifacts*/
 #if 0
   	else if (uswapwep->oartifact && ...)
@@ -550,53 +577,6 @@ can_twoweapon()
 	return (FALSE);
 }
 
-#if 0 /* NH 3.4.1 */
-int
-can_twoweapon()
-{
-	struct obj *otmp;
-
-#define NOT_WEAPON(obj) (!is_weptool(obj) && obj->oclass != WEAPON_CLASS)
-	if (!could_twoweap(youmonst.data)) {
-		if (Upolyd)
-		    You_cant("use two weapons in your current form.");
-		else
-		    pline("%s aren't able to use two weapons at once.",
-			  makeplural((flags.female && urole.name.f) ?
-				     urole.name.f : urole.name.m));
-	} else if (!uwep || !uswapwep)
-		Your("%s%s%s empty.", uwep ? "left " : uswapwep ? "right " : "",
-			body_part(HAND), (!uwep && !uswapwep) ? "s are" : " is");
-	else if (NOT_WEAPON(uwep) || NOT_WEAPON(uswapwep)) {
-		otmp = NOT_WEAPON(uwep) ? uwep : uswapwep;
-		pline("%s %s.", Yname2(otmp),
-		    is_plural(otmp) ? "aren't weapons" : "isn't a weapon");
-	} else if (bimanual(uwep) || bimanual(uswapwep)) {
-		otmp = bimanual(uwep) ? uwep : uswapwep;
-		pline("%s isn't one-handed.", Yname2(otmp));
-	} else if (uarms)
-		You_cant("use two weapons while wearing a shield.");
-	else if (uswapwep->oartifact)
-		pline("%s %s being held second to another weapon!",
-			Yname2(uswapwep), otense(uswapwep, "resist"));
-	else if (!uarmg && !Stone_resistance && (uswapwep->otyp == CORPSE &&
-                  (touch_petrifies(&mons[uswapwep->corpsenm])))) {
-		char kbuf[BUFSZ];
-
-		You("wield the %s corpse with your bare %s.",
-		    mons[uswapwep->corpsenm].mname, body_part(HAND));
-		Sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
-		instapetrify(kbuf);
-	} else if (Glib || uswapwep->cursed) {
-		if (!Glib)
-			uswapwep->bknown = TRUE;
-		drop_uswapwep();
-	} else
-		return (TRUE);
-	return (FALSE);
-}
-#endif /* NH 3.4.1 */
-
 void
 drop_uswapwep()
 {
@@ -615,7 +595,13 @@ dotwoweapon()
 {
 	/* You can always toggle it off */
 	if (u.twoweap) {
-		You("switch to your primary weapon.");
+		if (uwep)
+		    You("switch to your primary weapon.");
+		else if (uswapwep) {
+		    You("are empty %s.", body_part(HANDED));
+		    unweapon = TRUE;
+		} else
+		    You("switch to your right %s.", body_part(HAND));
 		if (uswapwep)
 		    unwield(uswapwep, TRUE);
 		u.twoweap = 0;
@@ -626,7 +612,17 @@ dotwoweapon()
 	/* May we use two weapons? */
 	if (can_twoweapon()) {
 		/* Success! */
-		You("begin two-weapon combat.");
+		if (uwep && uswapwep)
+		    You("begin two-weapon combat.");
+		else if (uwep || uswapwep) {
+		    You("begin fighting with a weapon and your %s %s.",
+			    uwep ? "left" : "right", body_part(HAND));
+		    unweapon = FALSE;
+		} else if (Upolyd)
+		    You("begin fighting with two %s.",
+			    makeplural(body_part(HAND)));
+		else
+		    You("begin two-handed combat.");
 		u.twoweap = 1;
 		update_inventory();
 		return (rnd(20) > ACURR(A_DEX));
@@ -677,7 +673,14 @@ void
 untwoweapon()
 {
 	if (u.twoweap) {
-		You("can no longer use two weapons at once.");
+		if (uwep && uswapwep)
+		    You("can no longer use two weapons at once.");
+		else if (cantwield(youmonst.data))
+		    You("can no longer control which %s to fight with.",
+			    body_part(HAND));
+		else
+		    You("can no longer use two %s to fight.",
+			    makeplural(body_part(HAND)));
 		if (uswapwep)
 		    unwield(uswapwep, TRUE);
 		u.twoweap = FALSE;

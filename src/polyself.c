@@ -852,7 +852,8 @@ int alone;
 	} else if (!could_twoweap(youmonst.data)) {
 	    untwoweapon();
 	}
-    }
+    } else if (cantwield(youmonst.data))
+	untwoweapon();
 }
 
 void

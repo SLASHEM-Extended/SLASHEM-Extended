@@ -98,6 +98,7 @@ ver 0.0.7E5 [?] [Released by ?]
 -fixed bug 603184: Stacking explosives
 -fixed bug 857651: Gnome: tileset refreshing
 -fixed bug 567573: Killed lichen corpses don't merge
+-fixed bug 575178: Fighting with a weapon and a bare fist
 
 See history.txt for changes made in previous versions.
 

@@ -70,7 +70,10 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
 	PN_MATTER_SPELL,
 	PN_BARE_HANDED, 		PN_MARTIAL_ARTS, 
-	PN_RIDING, 			PN_TWO_WEAPONS
+	PN_TWO_WEAPONS,
+#ifdef STEED
+	PN_RIDING,
+#endif
 };
 
 
@@ -92,7 +95,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "bare-handed combat",
     "martial arts",
     "riding",
-    "two-weapon combat",
+    "two-handed combat",
 #ifdef LIGHTSABERS
     "lightsaber"
 #endif
@@ -160,7 +163,7 @@ struct monst *mon;
 /*	Put weapon specific "to hit" bonuses in below:		*/
 	tmp += objects[otmp->otyp].oc_hitbon;
 	tmp += weapon_hit_bonus(otmp);  /* weapon skill */
-	if (u.twoweap)
+	if (u.twoweap && (otmp == uwep || otmp == uswapwep))
 		tmp += (skill_bonus(P_TWO_WEAPON_COMBAT) * 2) - 5;
 
 /*	Put weapon vs. monster type "to hit" bonuses in below:	*/
@@ -1388,9 +1391,12 @@ struct obj *weapon;
     static const char bad_skill[] = "weapon_hit_bonus: bad skill %d";
 
     wep_type = weapon_type(weapon);
+#if 0
     /* use two weapon skill only if attacking with one of the wielded weapons */
     type = (u.twoweap && (weapon == uwep || weapon == uswapwep)) ?
 	    P_TWO_WEAPON_COMBAT : wep_type;
+#endif
+    type = wep_type;
     if (type == P_NONE) {
 	bonus = 0;
     } else if (type <= P_LAST_WEAPON) {
@@ -1552,8 +1558,7 @@ int type;
 		    case P_MASTER:	bonus =  3; break;
 		    case P_GRAND_MASTER:	bonus =  4; break;
 		}
-        /* from == P_bare... to < = P_last_h.... */
-    } else if (type <= P_LAST_H_TO_H && P_SKILL(type)) {
+    } else if (type == P_BARE_HANDED_COMBAT || type == P_MARTIAL_ARTS) {
 		bonus = (P_SKILL(type) * (martial_bonus() ? 2 : 1)) / 2;
     } else {
     		/* Misc. */
