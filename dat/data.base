@@ -1,5 +1,4 @@
-#	SCCS Id: @(#)data.base	3.3	1999/11/28
-#	    $Id: data.base,v 1.3 2002-03-11 18:54:48 j_ali Exp $
+#	SCCS Id: @(#)data.base	3.4	1999/11/28
 #   Copyright (c) 1994, 1995, 1996 by the NetHack Development Team
 #   Copyright (c) 1994 by Boudewijn Wayers
 #   Copyright (c) 2002 by the Slash'EM Development Team
@@ -213,6 +212,12 @@ apple
 	and disciples have advanced so far as to be able to say
 	when.
 		[ The Devil's Dictionary, by Ambrose Bierce ]
+archeologist
+	Archeology is the search for fact, not truth. [...] 
+	So forget any ideas you've got about lost cities, exotic travel, 
+	and digging up the world. We do not follow maps to buried 
+	treasure, and X never, ever, marks the spot.
+		[ Indiana Jones and the Last Crusade ]
 archon
 	Archons are the predominant inhabitants of the heavens.
 	However unusual their appearance, they are not generally
@@ -1261,6 +1266,7 @@ mist wolf
 	being who ever joined in the fierce, mad, intoxicating revel
 	of the Dum-Dum.
 		[ Tarzan of the Apes, by Edgar Rice Burroughs ]
+~trap*door
 *door
 doorway
 	Through me you pass into the city of woe:
@@ -1274,6 +1280,19 @@ doorway
 	All hope abandon ye who enter here.
 		[ The Inferno, from The Divine Comedy of Dante
 			Alighieri, translated by H.F. Cary ]
+doppelganger
+ 	Xander: Let go!  I have to kill the demon bot!
+ 	Xander Double (grabbing the gun): Anya, get out of the way.
+ 	Buffy: Xander!
+ 	Xander Double: That's all right, Buffy.  I have him.
+ 	Xander: No, Buffy, I'm me.  Help me!
+ 	Anya: My gun, he's got my gun.
+ 	Riley: You own a gun?
+ 	Buffy: Xander, gun holding Xander, give it to me.
+ 	Anya: Buffy, which one's real?
+ 	Xander: I am.
+ 	Xander Double: No, _I_ am.
+ 	    [ Buffy the Vampire Slayer, Episode 5.03, "The Replacement" ]
 ~komodo*
 *dragon
 *xoth
@@ -1302,6 +1321,7 @@ dumathoin
 	followers and worshippers through fate and happenstance to the
 	richest veins of ore and the greatest treasures. His symbol is a
 	faceted gem set against a mountainous silhouette.
+~dwarf ??m*
 dwarf*
 	Dwarfs have faces like men (ugly men, with wrinkled, leathery
 	skins), but are generally either flat-footed, duck-footed, or
@@ -1370,7 +1390,7 @@ elbereth
 		A Elbereth Gilthoniel,
 		silivren penna miriel
 		o menel aglar elenath!
-		Na-chaered palen-diriel
+		Na-chaered palan-diriel
 		o galadhremmin ennorath,
 		Fanuilos, le linnathon
 		nef aear, si nef aearon!
@@ -1798,6 +1818,21 @@ gnomish wizard
 	'What is the trouble, Alaraba?'  said Ramon Alonzo.
 	'White magic.  Run!'  said the gnome ..
 		 [ The Charwoman's Shadow, by Lord Dunsany ]
+ 
+ 	"Muggles have garden gnomes, too, you know," Harry told Ron as
+ 	they crossed the lawn.
+ 	"Yeah, I've seen those things they think are gnomes," said Ron,
+ 	bent double with his head in a peony bush, "like fat little
+ 	Santa Clauses with fishing rods..."
+ 	There was a violent scuffling noise, the peony bush shuddered,
+ 	and Ron straightened up.  "This is a gnome," he said grimly.
+ 	"Geroff me! Gerroff me!" squealed the gnome.
+ 	It was certainly nothing like Santa Claus.  It was small and
+ 	leathery looking, with a large, knobby, bald head exactly like
+ 	a potato.  Ron held it at arm's length as it kicked out at him
+ 	with its horny little feet; he grasped it around the ankles
+ 	and turned it upside down.
+ 	  [ Harry Potter and the Chamber of Secrets, by J. K. Rowling ]
 goblin
 	Now goblins are cruel, wicked, and bad-hearted.  They make
 	no beautiful things, but they make many clever ones.  They
@@ -2209,6 +2244,8 @@ cave*man
 chieftain
 guard
 healer
+grand master
+master kaen
 monk
 ninja
 nurse
@@ -2229,6 +2266,16 @@ player
 	resent the intrusion of such beasts.  They are capable of
 	using weapons and magic, and it is even rumored that the
 	Wizard of Yendor is a member of this species.
+hunter
+	What of the hunting, hunter bold?
+	Brother, the watch was long and cold.
+	What of the quarry ye went to kill?
+	Brother, he crops in the jungle still.
+	Where is the power that made your pride?
+	Brother, it ebbs from my flank and side.
+	Where is the haste that ye hurry by?
+	Brother, I go to my lair to die.
+		[ The Jungle Book, by Rudyard Kipling ]
 ice devil
 	Ice devils are large semi-insectoid creatures, who are
 	equally at home in the fires of Hell and the cold of Limbo,
@@ -3165,6 +3212,15 @@ neanderthal*
 	1.  Valley between Duesseldorf and Elberfeld in Germany,
 	where an ancient skull of a prehistoric ancestor to modern
 	man was found.  2.  Human(oid) of the race mentioned above.
+neferet
+neferet the green
+	Neferet the Green holds office in her hidden tower, only
+	reachable by magical means, where she teaches her apprentices
+	the enigmatic skills of occultism.  Despite her many years, she
+	continues to investigate new spells, especially those involving
+	translocation.  It is further rumored that when she was an
+	apprentice herself, she accidentally turned her skin green, and
+	has kept it that way ever since.
 newt
 	(kinds of) small animal, like a lizard, which spends most of
 	its time in the water.
@@ -3460,6 +3516,15 @@ pick*ax*
 	it to kill and devour it, though in any other way they move
 	but exceeding slow.
 		[ the Bestiary of Xygag ]
+piranha
+	They live in "schools." Many times they will wait for prey 
+	to come to the shallow water of the river. Then the large 
+	group of piranhas will attack. These large groups are able 
+	to kill large animals... Their lower teeth fit perfectly 
+	into the spaces of their upper teeth, creating a tremendous 
+	vice-like bite... Piranhas are attracted to any disturbance 
+	in the water. 
+		[ http://www.animalsoftherainforest.com ]
 pit
 spiked pit
 	Amid the thought of the fiery destruction that impended, the
@@ -3489,7 +3554,7 @@ platinum yendorian express card
 	This is an ancient artifact made of an unknown material.  It
 	is rectangular in shape, very thin, and inscribed with
 	unreadable ancient runes.  When carried, it grants the one
-	who carries it ESP, and reduces all physical damage done to
+	who carries it ESP, and reduces all spell induced damage done to
 	the carrier by half.  It also protects from magic missile
 	attacks.  Finally, its power is such that when invoked, it
 	can charge other objects.
@@ -3619,6 +3684,15 @@ quetzalcoatl
 	he had to leave his empire. ...  But all the legends of
 	Quetzalcoatl unanimously agree that he promised to come again.
 		[ Gods, Graves, and Scholars, by C. W. Ceram ]
+quit*
+	Maltar: [...]  I remembered a little saying I learned my first
+	day at the academy.
+	Natalie: Yeah, yeah, I know.  Winners never quit and quitters
+	never win.
+	Maltar: What?  No!  Winners never quit and quitters should be
+	cast into the flaming pit of death.
+		[ Snow Day, directed by Chris Koch,
+		  written by Will McRobb and Chris Viscardi ]
 raijin
 raiden
 	The god of thunder.
@@ -3878,7 +3952,7 @@ scorpius
 	As Scorpius rises in the east, Orion sets in the west.
 		[ 365 Starry Nights, by Chet Raymo ]
 *scroll
-scroll of *
+scroll *
 	And I was gazing on the surges prone,
 	With many a scalding tear and many a groan,
 	When at my feet emerg'd an old man's hand,
@@ -3912,8 +3986,32 @@ shan*lai*ching
 	seas - which deals with the monster Kung Kung trying to
 	seize power from Yao, the fourth emperor.
 		[ Spectrum Atlas van de Mythologie ]
+shark
+ 	As the shark moved, its dark top reflected virtually no
+ 	light.  The denticles on its skin muted the whoosh of its
+ 	movements as the shark rose, driven by the power of the
+ 	great tail sweeping from side to side, like a scythe.  
+ 	The fish exploded upward.
+ 	Charles Bruder felt a slight vacuum tug in the motion of
+ 	the sea, noted it as a passing current, the pull of a wave,
+ 	the tickle of undertow.  He could not have heard the faint
+ 	sucking rush of water not far beneath him.  He couldn't
+ 	have seen or heard what was hurtling from the murk at
+ 	astonishing speed, jaws unhinging, widening, for the
+ 	enormous first bite.  It was the classic attack
+ 	that no other creature in nature could make -- a bomb from
+ 	the depths.
+ 		[ Close to Shore, by Michael Capuzzo ]
 shito
 	A Japanese stabbing knife.
+shrieker
+ 	With a single, savage thrust of her spear, the warrior-woman 
+ 	impaled the fungus, silencing it.  However, it was too late:  
+ 	the alarm had been raised[...]
+ 	Suddenly, a large, dark shape rose from the abyss before them, 
+ 	its fetid bulk looming overhead...The monster was some kind of
+ 	great dark worm, but that was about all they were sure of.  
+ 		[ The Adventurers, Epic IV, by Thomas A. Miller ]
 silver
 	A white, precious, metallic chemical element that is extremely 
 	ductile and malleable, capable of high polish, and an excellent
@@ -4435,6 +4533,7 @@ tree
 	Poems are made by fools like me,
 	But only God can make a tree.
 		[ Trees - Joyce Kilmer ]
+tripe
 tripe ration
 	If you start from scratch, cooking tripe is a long-drawn-out
 	affair.  Fresh whole tripe calls for a minimum of 12 hours of
@@ -4701,12 +4800,6 @@ web
 	flat on his back upon a cold stone with his hands on his
 	breast.
 		[ The Fellowship of the Ring, by J.R.R. Tolkien ]
-wizard of balance
-	The Wizard of Balance holds office in his hidden tower, only
-	reachable by magical means, where he teaches his apprentices
-	the enigmatic skills of occultism.  He considers himself a
-	guardian of the equilibrium of the universe, and goes out of
-	his way to promote stability.
 rodney
 wizard of yendor
 	No one knows how old this mighty wizard is, or from whence he
