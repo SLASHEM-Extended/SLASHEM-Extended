@@ -688,7 +688,11 @@ static void sw_start_fading(int max_w, int min_y)
 
   assert(! darkness);
 
-  if (fmt->BitsPerPixel <= 8)
+  if ((sdlgl_surf->flags & SDL_HWPALETTE) && sdlgl_depth == 8)
+  {
+    return;
+  }
+  else if (fmt->BitsPerPixel <= 8)
   {
     /* SDL doesn't support 8 bpp -> 8 bpp alpha blits.
      */
@@ -715,7 +719,35 @@ static void sw_start_fading(int max_w, int min_y)
 static void sw_draw_fading(float fade_amount)
 {
   SDL_Rect drect;
-  
+ 
+  if ((sdlgl_surf->flags & SDL_HWPALETTE) && sdlgl_depth == 8)
+  {
+    /* use the palette trick for fading (much smoother) */
+
+    SDL_Color colors[256];
+
+    int mul = 256 - (int)(fade_amount * 256);
+    int i;
+
+    for (i=0; i < 256; i++)
+    {
+      /* we apply gamma _after_ linear interpolation (correct in
+       * theory, but in practice ?).
+       */
+      int r = (RGB_RED(sdlgl_palette[i]) * mul) >> 8;
+      int g = (RGB_GRN(sdlgl_palette[i]) * mul) >> 8;
+      int b = (RGB_BLU(sdlgl_palette[i]) * mul) >> 8;
+
+      colors[i].r = GAMMA(r);
+      colors[i].g = GAMMA(g);
+      colors[i].b = GAMMA(b);
+    }
+
+    SDL_SetPalette(sdlgl_surf, SDL_PHYSPAL, colors, 0, 256);
+
+    return;
+  }
+
   assert(darkness);
 
   SDL_SetAlpha(darkness, SDL_SRCALPHA, (int)(fade_amount * 255));
@@ -729,13 +761,22 @@ static void sw_draw_fading(float fade_amount)
 
 static void sw_finish_fading(void)
 {
+  if ((sdlgl_surf->flags & SDL_HWPALETTE) && sdlgl_depth == 8)
+  {
+    /* first cause screen to be cleared (unmapped windows) */
+    sdlgl_flush();
+
+    sdlgl_set_surface_colors(sdlgl_surf);
+    return;
+  }
+  
   SDL_FreeSurface(darkness);
   darkness = NULL;
 }
 
 void sw_make_screenshot(const char *prefix)
 {
-  /* FIXME */
+  /* FIXME: S/W screenshots */
 
   sdlgl_warning("Screenshots not yet supported in software mode.\n");
 }

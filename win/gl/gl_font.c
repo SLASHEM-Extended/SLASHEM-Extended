@@ -81,12 +81,14 @@ void sdlgl_font_startup(void)
 {
   int i;
 
+  static int text_intensities[5] = { 0, 64, 136, 208, 255 };
+
   /* initialise text colors */
   for (i=0; i < 125; i++)
   {
-    int r = TXT_GET_R(i) * 255 / 4;
-    int g = TXT_GET_G(i) * 255 / 4;
-    int b = TXT_GET_B(i) * 255 / 4;
+    int r = text_intensities[TXT_GET_R(i)];
+    int g = text_intensities[TXT_GET_G(i)];
+    int b = text_intensities[TXT_GET_B(i)];
 
     sdlgl_text_colors[i] = RGB_MAKE(r,g,b);
   }

@@ -16,6 +16,8 @@
 #define WINGL_INTERNAL
 #include "winGL.h"
 
+#include <ctype.h>
+
 
 unsigned char pet_mark_bits[8] =
 {
@@ -55,33 +57,15 @@ SDL_Cursor *sdlgl_cursor_cross = NULL;
 /*
  * These tables show which way the monsters face in the 16x16 and
  * 32x32 tilesets: `L' for left, `R' for right, otherwise no
- * particular direction.
- * -AJA- !!! FIXME: use external file.
+ * particular direction.  They are loaded from the glface16.lst and
+ * glface32.lst files.
  */
 
-char tile_16_face_dirs[400] =
-  "LLLLLLLLLLLLLLLLLLLLLLLLLLLL..L...LLLLLLL.....L..L"
-  "LL..L.L...........RRR...........LLLLLLLLLLLL.LLLL."
-  ".LLLLLL......LLLLLL..LLR.L...L.LLLLLLLLLLLLLLLLLLL"
-  "LLLL.........................LL....LLLL....RL..LLL"
-  "LLLLL....LLL...LLLLLL..........LLL............L..L"
-  "L...........................LL..........L...RR..L."
-  "L..L...L.L........L.LLLLLLLLLLLLLL................"
-  ".......................L..........................";
-
-char tile_32_face_dirs[400] =
-  "LLLLLL...LLLLLLLLLLLLLLLLLLL......LLLLLLLLRR..L.LR"
-  "RL....L...RRRR....LLLR.RRRRRR...LLLLLLLLLL.LLLLLL."
-  ".LLLLLL......RR...L..LRRRL.R.RLLLLLLLLLLLLLLLLLLLL"
-  "LLLLL.LLL....................LLL.LL............RRR"
-  "RRRRR........LL.LLLLLLLLLRR...L.L.LRRL.R...R.LL..L"
-  "RL..........L.LL.....LR.....RRRRRR....L.R.L.R...LL"
-  "LRL.RR.RRRRLRRRRRRL.LLLLL.LLLLLLLR........LL.L...R"
-  "L..LRL..L.L.L.L....LL..LL.L.........L.L...........";
+char tile_16_face_dirs[1000] = { 0, };
+char tile_32_face_dirs[1000] = { 0, };
 
 
 /* ---------------------------------------------------------------- */
-
 
 static unsigned char cursor_up_bits[16 * 4] =
 {
@@ -206,7 +190,6 @@ static unsigned char cursor_cross_bits[16 * 4] =
 
 /* ---------------------------------------------------------------- */
 
-
 int sdlgl_quantize_tile_size(int size)
 {
   return (size < 24) ? 16 : 32;
@@ -214,12 +197,11 @@ int sdlgl_quantize_tile_size(int size)
 
 int sdlgl_mon_tile_face_dir(tileidx_t fg)
 {
-#ifdef VANILLA_GLHACK
   char dir = '.';
 
-  if (fg >= 400)
+  if (fg >= SIZE(tile_16_face_dirs))
     return 0;
-  
+ 
   if (iflags.wc_tile_height == 16)
     dir = tile_16_face_dirs[fg];
   else if (iflags.wc_tile_height == 32)
@@ -231,10 +213,50 @@ int sdlgl_mon_tile_face_dir(tileidx_t fg)
     return -1;
   else if (dir == 'R')
     return +1;
-#endif
 
   return 0;
 }
+
+void sdlgl_load_face_dirs(const char *filename, char *face_dirs)
+{
+  FILE *fp;
+
+  int mon = 0;
+  int ch;
+
+  fp = fopen_datafile(filename, "r", FALSE);
+  if (!fp)
+  {
+    sdlgl_error("Failed to open file: %s\n", filename);
+    return;  /* NOT REACHED */
+  }
+
+  while ((ch = fgetc(fp)) != EOF)
+  {
+    ch = highc(ch);
+
+    if (isspace(ch) || !isprint(ch))
+      continue;
+
+    if (ch != '.' && ch != 'L' && ch != 'R')
+    {
+      sdlgl_warning("Ignoring bad character `%c' in face file: %s\n",
+          ch, filename);
+      continue;
+    }
+
+    face_dirs[mon++] = ch;
+
+    if (mon >= SIZE(tile_16_face_dirs))
+    {
+      sdlgl_warning("Too many monsters in face file: %s\n", filename);
+      break;
+    }
+  }
+
+  fclose(fp);
+}
+
 
 /* ---------------------------------------------------------------- */
 
@@ -292,11 +314,17 @@ void sdlgl_generate_gamma_table(void)
   {
     switch (sdlgl_gamma)
     {
-      case -2: result = i - gamma_table_bottom[i] / 2; break;
-      case -1: result = i - gamma_table_bottom[i] / 4; break;
+      case -5: result = i - gamma_table_bottom[i] / 2; break;
+      case -4: result = i - gamma_table_bottom[i] / 3; break;
+      case -3: result = i - gamma_table_bottom[i] / 4; break;
+      case -2: result = i - gamma_table_bottom[i] / 6; break;
+      case -1: result = i - gamma_table_bottom[i] / 8; break;
       case  0: result = i; break;
-      case +1: result = i + gamma_table_top[i] / 4; break;
-      case +2: result = i + gamma_table_top[i] / 2; break;
+      case +1: result = i + gamma_table_top[i] / 8; break;
+      case +2: result = i + gamma_table_top[i] / 6; break;
+      case +3: result = i + gamma_table_top[i] / 4; break;
+      case +4: result = i + gamma_table_top[i] / 3; break;
+      case +5: result = i + gamma_table_top[i] / 2; break;
 
       default:
         impossible("Bad sdlgl_gamma value %d", sdlgl_gamma);

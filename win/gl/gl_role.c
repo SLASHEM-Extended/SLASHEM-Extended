@@ -167,9 +167,9 @@ static int do_player_selection_menu(const char *type,
 
   assert(last >= 0);
 
-  /* AJA: this is disabled -- it's better IMHO to show the user the
-   *      single choice, letting them press ESC and pick some other
-   *      role/race/gender if they're not satisfied.
+  /* -AJA- this is disabled -- it's better IMHO to show the user the
+   *       single choice, letting them press ESC and pick some other
+   *       role/race/gender if they're not satisfied.
    */
 #if 0
   if (valid == 1)
@@ -285,7 +285,7 @@ static int select_auto_pick(int *pick4u)
   pixel_h = sdlgl_font_message->tile_h * win->show_h;
   
   win->base = sdlgl_new_tilewin(sdlgl_font_message, win->show_w,
-      win->show_h, 1);
+      win->show_h, 1,0);
    
   sdlgl_map_tilewin(win->base, 0, sdlgl_height - pixel_h,
       sdlgl_width, pixel_h, DEPTH_PICKER);
@@ -499,19 +499,50 @@ static int select_an_alignment(int pick4u)
   return 0;
 }
 
+#define INIT_IS_RANDOM(val)  \
+    ((val) == ROLE_RANDOM || \
+     (flags.randomall && (val) == ROLE_NONE))
+ 
+static void do_random_role_checks(void)
+{
+  if (INIT_IS_RANDOM(flags.initrole))
+  {
+    flags.initrole = pick_role(flags.initrace, flags.initgend,
+        flags.initalign, PICK_RANDOM);
+  }
+
+  if (INIT_IS_RANDOM(flags.initrace))
+  {
+    flags.initrace = pick_race(flags.initrole, flags.initgend,
+        flags.initalign, PICK_RANDOM);
+  }
+
+  if (INIT_IS_RANDOM(flags.initalign))
+  {
+    flags.initalign = pick_align(flags.initrole, flags.initrace,
+        flags.initgend, PICK_RANDOM);
+  }
+
+  if (INIT_IS_RANDOM(flags.initgend))
+  {
+    flags.initgend = pick_gend(flags.initrole, flags.initrace,
+        flags.initalign, PICK_RANDOM);
+  }
+}
+
 void Sdlgl_player_selection(void)
 {
-  /* AJA: Note that the initrole, initrace, initgend and initalign
-   *      fields of the `flag' global have been set to -1 in the
-   *      initoptions() routine in src/options.c (naughty code, should
-   *      use ROLE_NONE).  Those values may then be updated by the
-   *      system code (e.g. sys/unixmain.c) depending on command line
-   *      options.
+  /* -AJA- Note that the initrole, initrace, initgend and initalign
+   *       fields of the `flag' global have been set to ROLE_NONE in
+   *       the initoptions() routine in src/options.c.  Those values
+   *       may then be updated by the system code (sys/unixmain.c)
+   *       depending on command line options.
    */
  
   int pick4u;
 
   /* avoid unnecessary prompts further down */
+  do_random_role_checks();
   rigid_role_checks();
 
   if (select_auto_pick(&pick4u) < 0)

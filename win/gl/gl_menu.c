@@ -199,7 +199,7 @@ int sdlgl_process_menu_window(int window, struct TextWindow *win, int how)
   sdlgl_top_win = window;
 
   win->base = sdlgl_new_tilewin(sdlgl_font_menu, win->calc_w, 
-      win->calc_h, 1);
+      win->calc_h, 1,0);
   
   /* choose background color */
   win->base->background = (how == PICK_NONE) ? MENU_NONE_COL :
@@ -359,7 +359,7 @@ int sdlgl_process_menu_window(int window, struct TextWindow *win, int how)
         int x, y;
         int w, h;
         
-        kt_win = sdlgl_new_tilewin(sdlgl_font_menu, 16, 1, 1);
+        kt_win = sdlgl_new_tilewin(sdlgl_font_menu, 16, 1, 1,0);
         kt_win->background = win->base->background;
 
         w = 16 * kt_win->scale_w;
@@ -708,7 +708,7 @@ void Sdlgl_end_menu(winid window, const char *prompt)
       continue;
 
     for (; curr_acc < 52 && used_accs[curr_acc]; curr_acc++)
-    { }
+    { /* nothing needed */ }
 
     if (curr_acc >= 52)  /* none left */
       continue;
@@ -780,6 +780,8 @@ char Sdlgl_message_menu(CHAR_P let, int how, const char *mesg)
 
   if (sdlgl_alt_prev)
     sdlgl_remove_scrollback();
+
+  win->more_escaped = 0;
 
   /* "menu" without selection; use ordinary method */
   if (how != PICK_ONE || let == 0)
@@ -873,7 +875,7 @@ char Sdlgl_yn_function(const char *query, const char *resp, CHAR_P def)
     if (!resp)
       break;
 
-    if (ch == 16 /* ^P */)
+    if (ch == C('p'))
     {
       Sdlgl_doprev_message();
       continue;
@@ -917,7 +919,7 @@ char Sdlgl_yn_function(const char *query, const char *resp, CHAR_P def)
         sdlgl_flush();
         nc = sdlgl_get_key(0);
 
-        if (nc == 16 /* ^P */)
+        if (nc == C('p'))
         {
           Sdlgl_doprev_message();
           continue;

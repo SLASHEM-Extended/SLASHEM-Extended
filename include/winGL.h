@@ -21,8 +21,8 @@ extern struct window_procs sdlgl_softw_procs;
 extern void FDECL(Sdlgl_parse_options, (char *, int, int));
 
 #ifdef VANILLA_GLHACK
-#define GLHACK_VER_HEX  0x100
-#define GLHACK_VER_STR  "1.0"
+#define GLHACK_VER_HEX  0x110
+#define GLHACK_VER_STR  "1.1"
 #define SDLGL_PROGRAM  "glHack"
 #define SDLGL_ICON     "glHack"
 #define SDLGL_ENV_VAR  "GLHACKOPTIONS"
@@ -89,6 +89,14 @@ typedef unsigned int GLuint;
 #define GH_INLINE  __inline
 #else
 #define GH_INLINE  /* nothing */
+#endif
+
+/* character munging macros for CTRL and ALT/META */
+#ifndef C
+#define C(c)   (0x1f & (c))
+#endif
+#ifndef M
+#define M(c)   (0x80 | (c))
 #endif
 
 
@@ -176,14 +184,21 @@ E int FDECL(sdlgl_get_key, (int));
 #define DEF_SDLGL_HEIGHT  600
 #define DEF_SDLGL_DEPTH   16
 
+#define MIN_SDLGL_WIDTH   640
+#define MIN_SDLGL_HEIGHT  400
+#define MAX_SDLGL_WIDTH   2048
+#define MAX_SDLGL_HEIGHT  1536
+
 extern int sdlgl_width;
 extern int sdlgl_height;
 extern int sdlgl_depth;
 
 #define DEF_SDLGL_WINDOWED   0
 #define DEF_SDLGL_JAILSIZE   35
-#define DEF_SDLGL_PREVSTEP   1
 #define DEF_SDLGL_KEYREPEAT  2  /* always */
+
+#define DEF_SDLGL_PREVSTEP   1
+#define MAX_SDLGL_PREVSTEP   20
 
 #define DEF_TILE_HEIGHT      32
 #define DEF_FONTSIZ_MAP      14
@@ -309,8 +324,6 @@ struct TilePair
   tileflags_t flags;
 };
 
-#define MAX_EXTRASHAPES  128
-
 struct FontCache;
 
 struct TileSet
@@ -411,9 +424,12 @@ struct TileWindow
 
   /* private field -- index of window in mapped array */
   int mapped_idx;
-  
+ 
   /* text window ? */
   int is_text;
+
+  /* this is the map window ? */
+  int is_map;
 
   /* does the window have see-through parts ?  This is normally false.
    * Only used for text on the tombstone currently.  When true, lower
@@ -443,10 +459,12 @@ struct TileWindow
   /* used for zooming.  The values represent the displayed size of
    * each tile (in screen pixels).  For NHW_MAP windows using the
    * pseudo 3D tileset, scale_w/h *ignore* the overlap portion of the
-   * tiles (i.e. they give the stepping distance).
+   * tiles (i.e. they give the stepping distance), and scale_full_w/h
+   * give the size of the full tile.  For all tilesets except the
+   * pseudo 3D one, the full_* values equal the plain values.
    */
   int scale_w, scale_h;
-  int scale_full_w, scale_full_h;  /* !!!! Document */
+  int scale_full_w, scale_full_h;
   int scale_skew;
 
   /* the position (in terms of tiles) where to draw a cursor.
@@ -474,7 +492,8 @@ struct TileWindow
   struct TilePair *tiles;
 
   /* set of extra shapes to draw */
-  struct ExtraShape extra_shapes[MAX_EXTRASHAPES];
+  struct ExtraShape *extra_shapes;
+  int extra_max;
   int extra_num;
 
   /* used for the map window to draw a border around it */
@@ -492,7 +511,7 @@ E int FDECL(sdlgl_display_RIP, (int));
 E void NDECL(sdlgl_dismiss_RIP);
 
 E struct TileWindow *FDECL(sdlgl_new_tilewin,
-    (struct TileSet *, int, int, int));
+    (struct TileSet *, int, int, int, int));
 E void FDECL(sdlgl_map_tilewin,
     (struct TileWindow *, int, int, int, int, int));
 E void FDECL(sdlgl_unmap_tilewin, (struct TileWindow *));
@@ -532,8 +551,8 @@ E void FDECL(sdlgl_set_cursor, (struct TileWindow *, int, int, int));
 extern unsigned char pet_mark_bits[8];
 extern unsigned char ridden_mark_bits[8];
 
-extern char tile_16_face_dirs[400];
-extern char tile_32_face_dirs[400];
+extern char tile_16_face_dirs[1000];
+extern char tile_32_face_dirs[1000];
 
 extern SDL_Cursor *sdlgl_cursor_main;
 extern SDL_Cursor *sdlgl_cursor_left;
@@ -554,6 +573,7 @@ E void NDECL(sdlgl_generate_gamma_table);
 E void NDECL(sdlgl_init_mouse_cursors);
 E void NDECL(sdlgl_free_mouse_cursors);
 
+E void FDECL(sdlgl_load_face_dirs, (const char *, char *));
 E unsigned char * FDECL(sdlgl_load_png_file, (const char*, int*, int*));
 E int FDECL(sdlgl_save_ppm_file, (const char *, const unsigned char *,
       int, int));
@@ -725,6 +745,8 @@ E GLuint FDECL(sdlgl_send_graphic_RGBA, (unsigned char *, int, int));
 
 #define TRANS_PIX  255  /* 8 bit transparent pixel */
 
+extern rgbcol_t sdlgl_palette[256];
+
 #define DIRTY_SIZE   64
 #define CLEAN_CELL   0x7F
 
@@ -808,13 +830,13 @@ struct GlyphPair
   glyphidx_t bg, fg;
 };
 
-#define MENU_NONE_COL  RGB_MAKE(32, 32, 32)
-#define MENU_ONE_COL   RGB_MAKE(16, 24, 32)
-#define MENU_ANY_COL   RGB_MAKE(0,  0,  32)
-#define TEXT_BACK_COL  RGB_MAKE(0,  0,  32)
-#define PREV_BACK_COL  RGB_MAKE(32, 24,  0)
+#define MENU_NONE_COL  RGB_MAKE(48, 48, 48)
+#define MENU_ONE_COL   RGB_MAKE(16, 32, 48)
+#define MENU_ANY_COL   RGB_MAKE(0,  0,  48)
+#define TEXT_BACK_COL  RGB_MAKE(0,  0,  48)
+#define PREV_BACK_COL  RGB_MAKE(48, 24,  0)
 
-#define BORDER_COL     RGB_MAKE(0,  0,  84)
+#define BORDER_COL     RGB_MAKE(0,  0,  96)
 #define CURSOR_COL     RGB_MAKE(192, 0, 0)
 #define OUTLINE_COL    RGB_MAKE(255, 255, 255)
 
@@ -946,6 +968,7 @@ struct TextWindow
    * player was travelling in.  Used for the tile flipping option.
    */
   int player_dx;
+  int player_dy;
 
   /* the current write position (in terms of tiles).  Must always be
    * inside the tile window area.  Order same as tiles: left->right,
@@ -1012,6 +1035,15 @@ struct TextWindow
    */
   int dismiss_more;
   int more_ch;
+
+  /* for NHW_MESSAGE windows, this will be set when the user pressed
+   * the Escape key to dismiss the more.  It should be cleared before
+   * every turn, and when certain interface functions are called
+   * (message_menu, etc).  It is used to prevent further [MORE]
+   * prompts (the TTY version also stops further output to the message
+   * window, but I'd prefer to see them).
+   */
+  int more_escaped;
 };
 
 extern struct TextWindow *text_wins[MAXWIN];

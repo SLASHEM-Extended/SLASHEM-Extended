@@ -90,7 +90,7 @@ void sdlgl_add_extrashape(struct TileWindow *win,
 {
   struct ExtraShape *shape;
   
-  if (win->extra_num == MAX_EXTRASHAPES)
+  if (win->extra_num >= win->extra_max)
     return;
 
   shape = win->extra_shapes + win->extra_num;
@@ -172,7 +172,7 @@ void sdlgl_start_logo(void)
    * larger than 256x256 (a common texture limitation of 3D cards),
    * and slightly simpler code overall.
    */
-  logo_win = sdlgl_new_tilewin(logo_set, logo_w, logo_h, 0);
+  logo_win = sdlgl_new_tilewin(logo_set, logo_w, logo_h, 0,0);
 
   for (y=0; y < logo_h; y++)
   for (x=0; x < logo_w; x++)
@@ -182,7 +182,7 @@ void sdlgl_start_logo(void)
   }
 
   /* build copyright info window */
-  logo_copyright = sdlgl_new_tilewin(sdlgl_font_message, 60, 10, 1);
+  logo_copyright = sdlgl_new_tilewin(sdlgl_font_message, 60, 10, 1,0);
 
   x = 0; y = logo_copyright->total_h - 1;
 
@@ -313,6 +313,13 @@ void sdlgl_tile_load_rest(void)
   assert(rip_set);
 
   sdlgl_create_extra_graphics();
+
+  /* FIXME: create facing files for Slash'EM.
+   */
+#ifdef VANILLA_GLHACK
+  sdlgl_load_face_dirs("glface16.lst", tile_16_face_dirs);
+  sdlgl_load_face_dirs("glface32.lst", tile_32_face_dirs);
+#endif
 }
 
 /* ---------------------------------------------------------------- */
@@ -418,7 +425,7 @@ int sdlgl_display_RIP(int how)
 
   /* create tombstone window */
 
-  rip_win = sdlgl_new_tilewin(rip_set, rip_w, rip_h, 0);
+  rip_win = sdlgl_new_tilewin(rip_set, rip_w, rip_h, 0,0);
 
   for (y=0; y < rip_h; y++)
   for (x=0; x < rip_w; x++)
@@ -442,9 +449,9 @@ int sdlgl_display_RIP(int how)
   if ('a' <= name_buf[0] && name_buf[0] <= 'z') 
     name_buf[0] += 'A' - 'a';
 
-  rip_name = sdlgl_new_tilewin(sdlgl_font_message, strlen(name_buf), 1, 1);
+  rip_name = sdlgl_new_tilewin(sdlgl_font_message, strlen(name_buf), 1, 1,0);
   rip_info = sdlgl_new_tilewin(sdlgl_font_8, STONE_MAX_INFO, 
-      2 + STONE_INFO_LINES, 1);
+      2 + STONE_INFO_LINES, 1,0);
 
   rip_name->see_through = 1;
   rip_info->see_through = 1;
@@ -543,7 +550,7 @@ void sdlgl_dismiss_RIP(void)
 
 
 struct TileWindow *sdlgl_new_tilewin(struct TileSet *set, 
-    int total_w, int total_h, int is_text)
+    int total_w, int total_h, int is_text, int is_map)
 {
   int total = total_w * total_h;
   struct TileWindow *win;
@@ -557,6 +564,7 @@ struct TileWindow *sdlgl_new_tilewin(struct TileSet *set,
   win->total_w = total_w;
   win->total_h = total_h;
   win->is_text = is_text;
+  win->is_map  = is_map;
   win->see_through = 0;
   win->mapped_idx = -1;
 
@@ -572,13 +580,19 @@ struct TileWindow *sdlgl_new_tilewin(struct TileSet *set,
   win->curs_w = 1;
   win->curs_block = 0;
   win->curs_color = OUTLINE_COL;
-  win->extra_num = 0;
   win->has_border = 0;
    
   /* setup tile arrays */
   win->tiles  = (struct TilePair *) alloc(total * sizeof(struct TilePair));
  
   sdlgl_blank_area(win, 0, 0, total_w, total_h);
+
+  /* setup extra_shape array */
+  win->extra_max = is_map ? 256 : 10;
+  win->extra_num = 0;
+  
+  win->extra_shapes = (struct ExtraShape *) alloc(win->extra_max *
+      sizeof(struct ExtraShape));
 
   return win;
 }
@@ -589,8 +603,16 @@ void sdlgl_free_tilewin(struct TileWindow *win)
     sdlgl_unmap_tilewin(win);
 
   if (win->tiles)
+  {
     free(win->tiles);
-  win->tiles = NULL;
+    win->tiles = NULL;
+  }
+
+  if (win->extra_shapes)
+  {
+    free(win->extra_shapes);
+    win->extra_shapes = NULL;
+  }
 
   free(win);
 }
@@ -738,7 +760,9 @@ void sdlgl_store_char(struct TileWindow *win, int x, int y,
   assert(0 <= y && y < win->total_h);
   
   win->tiles[offset].fg = CHAR_2_TILE(ch);
+  win->tiles[offset].mg = TILE_EMPTY;
   win->tiles[offset].u.col = col;
+  win->tiles[offset].flags = 0;
 
   mark_dirty_tiles(win, x, y, 1, 1);
 }
@@ -759,7 +783,9 @@ int sdlgl_store_str(struct TileWindow *win, int x, int y,
   for (; *str && maxlen > 0; str++, maxlen--, offset++)
   {
     win->tiles[offset].fg = CHAR_2_TILE(*str);
+    win->tiles[offset].mg = TILE_EMPTY;
     win->tiles[offset].u.col = col;
+    win->tiles[offset].flags = 0;
   }
 
   width = offset - (y * win->total_w + x);
@@ -819,6 +845,7 @@ void sdlgl_blank_area(struct TileWindow *win, int x, int y, int w, int h)
       for (len=w; len > 0; len--, offset++)
       {
         win->tiles[offset].fg = TILE_EMPTY;
+        win->tiles[offset].mg = TILE_EMPTY;
         win->tiles[offset].u.col = L_GREY;
         win->tiles[offset].flags = 0;
       }

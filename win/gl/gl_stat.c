@@ -321,7 +321,7 @@ static void do_afflictions(struct TextWindow *win)
 {
   int cap = near_capacity();
 
-#ifndef VANILLA_GLHACK
+#ifndef VANILLA_GLHACK  /* Slash'EM only */
   if (Invulnerable)
     add_one_affliction(win, "Invul");
 #endif
@@ -358,6 +358,10 @@ static void do_afflictions(struct TextWindow *win)
   if (Slimed) 
     add_one_affliction(win, "Slime");
  
+  /* -AJA- this idea by Roderick Schertler */
+  if (u.ustuck && !u.uswallow && !sticks(youmonst.data))
+    add_one_affliction(win, "Held");
+
   /* display Burdened (etc) */
   if (cap > UNENCUMBERED)
     add_one_affliction(win, enc_stat[cap]);

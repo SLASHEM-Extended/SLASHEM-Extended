@@ -18,7 +18,7 @@
 
 #define TILE_PAD  2
 
-#define RIP_ALPHA  0.5
+#define RIP_ALPHA  0.64
 
 static GLuint pet_mark_id = 0;
 static GLuint ridden_mark_id = 0;
@@ -752,7 +752,6 @@ struct rendering_procs sdlgl_hardw_rend_procs =
   hw_set_new_pos,
   hw_mark_dirty
 };
- 
 
 #endif /* GL_GRAPHICS */
 /*gl_hardw.c*/

@@ -135,10 +135,11 @@ void Sdlgl_clear_nhwindow(winid window)
 
   if (win->type == NHW_MESSAGE)
   {
-    sdlgl_putc(win, 12);  /* ^L: clear */
+    sdlgl_putc(win, C('l'));  /* ^L: clear */
     sdlgl_home(win);
 
     win->fresh_lines = 0;
+    win->more_escaped = 0;
     return;
   }
 
@@ -311,6 +312,8 @@ void Sdlgl_display_nhwindow(winid window, BOOLEAN_P blocking)
   assert (0 <= window && window < MAXWIN && text_wins[window]);
   win = text_wins[window];
 
+  SDL_PumpEvents();
+
   /* already displayed ? */
   if (win->base)
   {
@@ -336,7 +339,7 @@ void Sdlgl_display_nhwindow(winid window, BOOLEAN_P blocking)
       win_y = compute_window_base_y(NHW_MESSAGE, &win_h);
 
       win->base = sdlgl_new_tilewin(sdlgl_font_message, win->show_w,
-          win->show_h, 1);
+          win->show_h, 1,0);
       
       sdlgl_map_tilewin(win->base, 0, win_y, sdlgl_width, win_h,
           DEPTH_MESSAGE);
@@ -348,7 +351,7 @@ void Sdlgl_display_nhwindow(winid window, BOOLEAN_P blocking)
       assert(iflags.msg_history >= MIN_HISTORY);
           
       win->scrollback = sdlgl_new_tilewin(sdlgl_font_message,
-          win->show_w, iflags.msg_history, 1);
+          win->show_w, iflags.msg_history, 1,0);
       win->scrollback->background = PREV_BACK_COL;
       win->scrollback_pos  = 0;
       win->scrollback_size = 0;
@@ -362,7 +365,7 @@ void Sdlgl_display_nhwindow(winid window, BOOLEAN_P blocking)
       win_y = compute_window_base_y(NHW_STATUS, &win_h);
 
       win->base = sdlgl_new_tilewin(sdlgl_font_status, win->show_w,
-          win->show_h, 1);
+          win->show_h, 1,0);
       
       sdlgl_map_tilewin(win->base, 0, win_y, sdlgl_width, win_h,
           DEPTH_STATUS);
@@ -373,7 +376,7 @@ void Sdlgl_display_nhwindow(winid window, BOOLEAN_P blocking)
       sdlgl_map_win = window;
       win_y = compute_window_base_y(NHW_MAP, &win_h);
 
-      win->base = sdlgl_new_tilewin(sdlgl_tiles, 80, 22, 0);
+      win->base = sdlgl_new_tilewin(sdlgl_tiles, 80, 22, 0,1);
       sdlgl_map_tilewin(win->base, 0, win_y, sdlgl_width, win_h,
           DEPTH_MAP);
 
@@ -470,6 +473,12 @@ void sdlgl_more(struct TextWindow *win)
   start_x = 0;
   start_y = win->write_y;
 
+  if (win->more_escaped && !win->dismiss_more)
+  {
+    win->fresh_lines = 0;
+    return;
+  }
+
   /* when the [MORE] does not fit, put it at the start of the next
    * line.
    */
@@ -488,7 +497,7 @@ void sdlgl_more(struct TextWindow *win)
     sdlgl_flush();
     ch = sdlgl_get_key(0);
 
-    if (ch == 16 /* ^P */)
+    if (ch == C('p'))
     {
       Sdlgl_doprev_message();
       continue;
@@ -503,6 +512,9 @@ void sdlgl_more(struct TextWindow *win)
       break;
     }
 
+    if (ch == '\033' && !win->dismiss_more)
+      win->more_escaped = 1;
+
     if (ch == ' ' || ch == '\n' || ch == '\r' || ch == '\033' ||
         ch == 'q' || ch == 'n' || ch == 'y')
       break;
@@ -513,19 +525,55 @@ void sdlgl_more(struct TextWindow *win)
   win->fresh_lines = 0;
 }
 
-static void message_inc_fresh(struct TextWindow *win)
+static const char *messages_of_import[] =
 {
-  if (win->fresh_lines >= win->show_h)
+  "You die",
+  "You turn to stone",
+  "You fry to a crisp",
+  "You sink below the surface and die",
+  "You cease to exist",
+  "You drown",
+  "Your last thought fades away",
+  "Your new form doesn't seem healthy enough to survive",
+  "You're still burning",
+  "You're still drowning",
+  "Eating that is instantly fatal",
+  "The death ray hits you",
+  "Unfortunately, digesting any of it is fatal",
+  "Unfortunately your brain is still gone",
+
+  "Restoring",   /* this one is borderline */
+/* "Saving", */
+  "You ascend",
+  "This game is void",
+  "Probably someone removed it",
+  "Cannot read level",
+  "Cannot rewrite level"
+};
+
+/* -AJA- this is a bit of a kludge.  Ideally the main code would mark
+ *       messages as "must see" in some way (a new ATR_ value might be
+ *       the best way).
+ *
+ *       Testing `killer != 0' doesn't help here either, as the main
+ *       code often sets it *after* calling pline/You/Your.
+ */
+static int important_message(const char *str)
+{
+  int i;
+
+  for (i=0; i < SIZE(messages_of_import); i++)
   {
-    sdlgl_more(win);
-    sdlgl_putc(win, '\n');
-    return;
+    const char *cur_msg = messages_of_import[i];
+
+    if (strncmpi(str, cur_msg, strlen(cur_msg)) == 0)
+      return 1;
   }
 
-  if (win->write_x > 0)
-    sdlgl_putc(win, '\n');
+  if (strstri(str, "drowns you.") != 0)
+    return 1;
 
-  win->fresh_lines += 1;
+  return 0;
 }
 
 static void do_message_putstr(struct TextWindow *win,
@@ -533,20 +581,23 @@ static void do_message_putstr(struct TextWindow *win,
 {
   int len = strlen(str);
   int use_len;
+  int is_important;
 
   /* factor in the size of the [More] */
-  int is_bottom = win->fresh_lines == win->show_h;
+  int is_bottom = (win->fresh_lines == win->show_h);
   int width = win->show_w - (is_bottom ? MORE_LEN : 0);
 
   if (sdlgl_alt_prev)
     sdlgl_remove_scrollback();
 
-  /* If there is room on the line, print message on same line */
-  /* But messages like "You die..." deserve their own line */
+  is_important = important_message(str);
 
+  /* If there is room on the line, print message on same line.
+   * But messages like "You die..." deserve their own line.
+   */
   if (win->fresh_lines > 0 && !win->want_new_line &&
       (win->write_x + 2 + len + 1 < width) &&
-      strncmp(str, "You die", 7) != 0)
+      ! is_important)
   {
     /* Note: fresh_lines field stays the same */
     sdlgl_puts_nolf(win, "  ");
@@ -556,20 +607,37 @@ static void do_message_putstr(struct TextWindow *win,
 
   win->want_new_line = 0;
 
+  if (is_important)
+    win->more_escaped = 0;
+
   while (len > 0)
   {
-    message_inc_fresh(win);
+    if (win->fresh_lines >= win->show_h)
+    {
+      sdlgl_more(win);
+      sdlgl_putc(win, '\n');
+    }
+    else
+    {
+      if (win->write_x > 0)
+        sdlgl_putc(win, '\n');
+    }
 
     assert(win->write_x == 0);
 
-    is_bottom = win->fresh_lines == win->show_h;
+    /* increment the fresh line count, since we're about to add text
+     * into a new line.
+     */
+    win->fresh_lines++;
+
+    is_bottom = (win->fresh_lines == win->show_h);
     width = win->show_w - (is_bottom ? MORE_LEN : 0);
-    
+ 
     /* does it fit yet ? */
     if (len < width)
     {
       sdlgl_puts_nolf(win, str);
-      return;
+      break;
     }
 
     /* choose a good place to break the line */
@@ -587,9 +655,12 @@ static void do_message_putstr(struct TextWindow *win,
       if (*str != '\n' && *str != '\r')
         sdlgl_putc(win, *str);
 
-    /* remove leading spaces */
-    for (; *str == ' '; str++, len--) { }
+    for (; *str == ' '; str++, len--)
+    { /* removing leading spaces */ }
   }
+
+  if (is_important && win->fresh_lines > 0)
+    sdlgl_more(win);
 }
 
 void Sdlgl_putstr(winid window, int attr, const char *str)
@@ -643,7 +714,7 @@ tilecol_t sdlgl_attr_to_tilecol(int attr)
   switch (attr)
   {
     case ATR_BOLD:    return WHITE;
-    case ATR_DIM:     return GREY;
+    case ATR_DIM:     return CYAN;
     case ATR_INVERSE: return B_GREEN;
     case ATR_ULINE:   return B_YELLOW;
     case ATR_BLINK:   return B_RED;
@@ -661,7 +732,7 @@ int Sdlgl_doprev_message(void)
   int pixel_h;
   int ch;
 
-  int dy, max_foc;
+  int dy, shown, max_shown;
 
   if (WIN_MESSAGE == WIN_ERR)
     return 0;
@@ -672,6 +743,9 @@ int Sdlgl_doprev_message(void)
   assert(win);
 
   if (win->type != NHW_MESSAGE || !win->scrollback)
+    return 0;
+
+  if (win->scrollback_size <= 0)  /* shouldn't be possible */
     return 0;
 
   if (sdlgl_alt_prev)
@@ -698,18 +772,20 @@ int Sdlgl_doprev_message(void)
   }
       
   /* NOTE: we don't set sdlgl_top_win here, since this does a
-   * different style of panning.
+   *       different style of panning.
    */
   dy = sdlgl_prev_step;
-  win->focus_y = dy - 1;
 
-  pixel_h = win->scrollback->scale_h * (1 + win->focus_y);
+  max_shown = min(win->scrollback->total_h, win->scrollback_size);
+   
+  shown = min(dy, max_shown);
+
+  assert(shown > 0);
+
+  pixel_h = win->scrollback->scale_h * shown;
   sdlgl_map_tilewin(win->scrollback, 0, sdlgl_height - pixel_h,
       sdlgl_width, pixel_h, DEPTH_SC_BACK);
 
-  max_foc = min(win->scrollback->total_h - 1,
-      max(win->scrollback_size - 1, 2));
-   
   for (;;)
   {
     sdlgl_flush();
@@ -719,15 +795,15 @@ int Sdlgl_doprev_message(void)
         ch == 'q' || ch == 'n' || ch == 'y')
       break;
 
-    if (ch == 16 /* ^P */)
+    if (ch == C('p'))
     {
-      win->focus_y = min(max_foc, win->focus_y + dy);
+      shown = min(max_shown, shown + dy);
     }
-    else if (ch == 15 /* ^O */ || ch == 14 /* ^N */)
+    else if (ch == C('o') || ch == C('n'))
     {
-      win->focus_y -= dy;
+      shown -= dy;
 
-      if (win->focus_y < 0)
+      if (shown <= 0)
         break;
     }
     else
@@ -736,7 +812,7 @@ int Sdlgl_doprev_message(void)
     /* we rely on the bottom-up nature of tilewins, otherwise we'd
      * need to update the pan_y field too.
      */
-    pixel_h = win->scrollback->scale_h * (1 + win->focus_y);
+    pixel_h = win->scrollback->scale_h * shown;
     sdlgl_set_new_pos(win->scrollback, 0, sdlgl_height - pixel_h,
         sdlgl_width, pixel_h);
   }

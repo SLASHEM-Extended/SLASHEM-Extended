@@ -24,14 +24,14 @@
 
 int sdlgl_width  = 0;
 int sdlgl_height = 0;
-int sdlgl_depth  = DEF_SDLGL_DEPTH;
+int sdlgl_depth  = 0;
 
 /* other configurable vars: ints... */
 int sdlgl_windowed    = DEF_SDLGL_WINDOWED;
 int sdlgl_key_repeat  = DEF_SDLGL_KEYREPEAT;
 int sdlgl_jail_size   = 0;
 int sdlgl_prev_step   = 0;
-int sdlgl_gamma       = 0;  /* range is -2 to +2 */
+int sdlgl_gamma       = 0;  /* range is -5 to +5 */
 
 static int fontsize_override = 0;
 
@@ -90,7 +90,7 @@ static struct LocalOption local_option_list[] =
   { "windowed", "Runs in a window instead of fullscreen",
     &sdlgl_windowed, VALTYPE_BOOLEAN, 0 },
 
-  { "gamma", "Gamma correction (-2 to +2, where 0 is normal)",
+  { "gamma", "Gamma correction (-5 to +5, where 0 is normal)",
     &sdlgl_gamma, VALTYPE_INTEGER, 0 },
 
   /* ---- command-line only options ---- */
@@ -621,11 +621,35 @@ void sdlgl_validate_gl_options(void)
 {
   if (sdlgl_width <= 0 || sdlgl_height <= 0)
   {
-    sdlgl_width  = DEF_SDLGL_WIDTH;
-    sdlgl_height = DEF_SDLGL_HEIGHT;
+    sdlgl_width = sdlgl_height = 0;  /* autodetect */
+  }
+  else
+  {
+    if (sdlgl_width  < MIN_SDLGL_WIDTH || 
+        sdlgl_height < MIN_SDLGL_HEIGHT)
+    {
+      sdlgl_warning("Video mode %dx%d too small. Using %dx%d.\n",
+          sdlgl_width, sdlgl_height, MIN_SDLGL_WIDTH, MIN_SDLGL_HEIGHT);
+
+      sdlgl_width  = MIN_SDLGL_WIDTH;
+      sdlgl_height = MIN_SDLGL_HEIGHT;
+    }
+    else if (sdlgl_width  > MAX_SDLGL_WIDTH || 
+             sdlgl_height > MAX_SDLGL_HEIGHT)
+    {
+      sdlgl_warning("Video mode %dx%d too large. Using %dx%d.\n",
+          sdlgl_width, sdlgl_height, MAX_SDLGL_WIDTH, MAX_SDLGL_HEIGHT);
+
+      sdlgl_width  = MAX_SDLGL_WIDTH;
+      sdlgl_height = MAX_SDLGL_HEIGHT;
+    }
   }
 
-  switch (sdlgl_depth)
+  if (sdlgl_depth <= 0)
+  {
+    sdlgl_depth = 0;  /* autodetect */
+  }
+  else switch (sdlgl_depth)
   {
     case 8: case 15: case 16: case 24: case 32:
       break;
@@ -635,7 +659,7 @@ void sdlgl_validate_gl_options(void)
       break;
   }
 
-  RANGE_CHK("Gamma", sdlgl_gamma, -2, 2);
+  RANGE_CHK("Gamma", sdlgl_gamma, -5, +5);
 
   if (sdlgl_def_zoom <= 0)
   {
@@ -659,16 +683,16 @@ void sdlgl_validate_gl_options(void)
 
   if (sdlgl_prev_step <= 0)
   {
-    sdlgl_prev_step = DEF_SDLGL_PREVSTEP;
+    sdlgl_prev_step = sdlgl_alt_prev ? iflags.wc_vary_msgcount : 
+        DEF_SDLGL_PREVSTEP;
   }
   else if (sdlgl_alt_prev)
   {
     sdlgl_prev_step = min(sdlgl_prev_step, iflags.wc_vary_msgcount);
   }
-  else
+  else if (sdlgl_prev_step > MAX_SDLGL_PREVSTEP)
   {
-    sdlgl_prev_step = min(sdlgl_prev_step,
-        sdlgl_height/iflags.wc_fontsiz_message - 1);
+    sdlgl_prev_step = MAX_SDLGL_PREVSTEP;
   }
 }
 

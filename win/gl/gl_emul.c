@@ -72,7 +72,10 @@ struct TextWindow *sdlgl_new_textwin(int type)
 void sdlgl_free_textwin(struct TextWindow *win)
 {
   if (win->base)
+  {
     sdlgl_free_tilewin(win->base);
+    win->base = NULL;
+  }
 
   free(win);
 }
@@ -192,19 +195,19 @@ void sdlgl_putc(struct TextWindow *win, int c)
     case 0:    /* NUL: do nothing */
       break;
       
-    case 7:   /* ^G: bel */
+    case C('g'):   /* ^G: bel */
     {
       Sdlgl_nhbell();
       break;
     }
 
-    case 8:   /* ^H: backspace */
+    case C('h'):   /* ^H: backspace */
     {
       sdlgl_backsp(win);
       break;
     }
 
-    case 9:   /* ^I: tab */
+    case C('i'):   /* ^I: tab */
     {
       int num;
       for (num=8 - (win->write_x & 7); num > 0; num--)
@@ -212,7 +215,7 @@ void sdlgl_putc(struct TextWindow *win, int c)
       break;
     }
 
-    case 10:  /* ^J: LF */
+    case C('j'):  /* ^J: LF */
     {
       win->write_x = 0;
       win->write_y -= 1;
@@ -220,7 +223,7 @@ void sdlgl_putc(struct TextWindow *win, int c)
       break;
     }
 
-    case 12:  /* ^L: clear */
+    case C('l'):  /* ^L: clear */
     {
       int y;
 
@@ -231,7 +234,7 @@ void sdlgl_putc(struct TextWindow *win, int c)
       break;
     }
 
-    case 13:  /* ^M: CR */
+    case C('m'):  /* ^M: CR */
     {
       win->write_x = 0; 
       break;
@@ -385,7 +388,7 @@ static void do_getlin(struct TextWindow *win, const char *query,
     sdlgl_flush();
     ch = sdlgl_get_key(POSKEY_ALLOW_REPEAT);
 
-    if (ch == 16 /* ^P */)
+    if (ch == C('p'))
     {
       Sdlgl_doprev_message();
       continue;
@@ -585,7 +588,7 @@ static int do_get_ext_cmd(struct TextWindow *win)
     /* process a key */
     ch = sdlgl_get_key(POSKEY_ALLOW_REPEAT);
 
-    if (ch == 16 /* ^P */)
+    if (ch == C('p'))
     {
       Sdlgl_doprev_message();
       continue;
@@ -724,7 +727,7 @@ void Sdlgl_askname(void)
   pixel_h = sdlgl_font_message->tile_h * win->show_h;
   
   win->base = sdlgl_new_tilewin(sdlgl_font_message, win->show_w, 
-      win->show_h, 1);
+      win->show_h, 1,0);
         
   sdlgl_map_tilewin(win->base, 0, sdlgl_height - pixel_h,
       sdlgl_width, pixel_h, DEPTH_ASKNAME);

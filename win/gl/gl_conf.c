@@ -512,7 +512,7 @@ static void create_opt_titl(int what)
 
   width = strlen(str);
 
-  opt_titl = sdlgl_new_tilewin(sdlgl_font_text, width + 2, 1, 1);
+  opt_titl = sdlgl_new_tilewin(sdlgl_font_text, width + 2, 1, 1,0);
 
   sdlgl_store_str(opt_titl, 1, 0, str, 99, WHITE);
 
@@ -539,7 +539,7 @@ static void create_opt_keys(void)
 
   int i;
   
-  opt_keys = sdlgl_new_tilewin(sdlgl_font_menu, w, h, 1);
+  opt_keys = sdlgl_new_tilewin(sdlgl_font_menu, w, h, 1,0);
   opt_keys->background = MENU_NONE_COL;  /* PREV_BACK_COL */
 
   for (i=0; i < h; i++)
@@ -556,7 +556,7 @@ static void create_opt_main(void)
   int w = 60;
   int h = 15;
   
-  opt_main = sdlgl_new_tilewin(sdlgl_font_menu, w, h, 1);
+  opt_main = sdlgl_new_tilewin(sdlgl_font_menu, w, h, 1,0);
   opt_main->background = TEXT_BACK_COL;
 
   sdlgl_map_tilewin(opt_main, 

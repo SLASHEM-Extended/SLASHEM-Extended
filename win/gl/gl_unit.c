@@ -72,7 +72,8 @@ void sdlgl_unit_startup(void)
   glDisable(GL_SCISSOR_TEST);
   glDisable(GL_STENCIL_TEST);
 
-  glDisable(GL_LINE_SMOOTH);
+  glEnable(GL_LINE_SMOOTH);
+
   glDisable(GL_POLYGON_SMOOTH);
   glDisable(GL_DITHER);
 
@@ -278,7 +279,6 @@ void sdlgl_hw_make_screenshot(const char *prefix)
   }
 
   /* save image as a PPM (Portable PixMap) file.
-   * FIXME: we should use PNG.
    */
   sprintf(filename, "%s%04X%04X.ppm", prefix, crc2, crc1);
 

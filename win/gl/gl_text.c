@@ -563,7 +563,7 @@ void sdlgl_process_text_window(int window, struct TextWindow *win)
   font_set = reformat_text_window(win);
   
   win->base = sdlgl_new_tilewin(font_set, win->calc_w, 
-      win->calc_h, 1);
+      win->calc_h, 1,0);
  
   draw_text_items(win);
 

@@ -28,16 +28,6 @@
 #include <ctype.h>
 
 
-/* character munging macros for CTRL and ALT/META */
-#ifndef C
-#define C(c)   (0x1f & (c))
-#endif
-
-#ifndef M
-#define M(c)   (0x80 | (c))
-#endif
-
-
 int sdlgl_initialized = 0;
 
 /* main sdl surface */
@@ -48,6 +38,8 @@ int sdlgl_software = 0;
 
 /* rendering procedures (either GL or software) */
 struct rendering_procs sdlgl_rend_procs;
+
+char sdlgl_video_driver[128] = { 0, };
 
 
 static struct timeval base_time;
@@ -227,7 +219,7 @@ void sdlgl_hangup(const char *str, ...)
   Sdlgl_exit_nhwindows("");
   terminate(EXIT_SUCCESS);
 
-  /* NOT REACHED  -- AGAIN!*/
+  /* NOT REACHED -- AGAIN! */
 }
 
 void Sdlgl_nhbell(void)
@@ -280,6 +272,179 @@ void Sdlgl_delay_output(void)
 }
 
 
+static int choose_best_video_mode(SDL_Rect **modes)
+{
+  int i;
+
+  int best = -1;
+  int best_dist = 999999999;
+
+  for (i=0; modes[i]; i++)
+  {
+    int w = modes[i]->w;
+    int h = modes[i]->h;
+    int dist, dw, dh;
+
+    if (w < MIN_SDLGL_WIDTH || h < MIN_SDLGL_HEIGHT)
+      continue;
+
+    if (w > MAX_SDLGL_WIDTH || h > MAX_SDLGL_HEIGHT)
+      continue;
+
+    dw = abs(w - DEF_SDLGL_WIDTH);
+    dh = abs(h - DEF_SDLGL_HEIGHT);
+  
+    /* modes smaller than 800x600 are a bit uncomfortable when using
+     * the 32x32 or isometric tilesets.  Hence we add this penalty.
+     */
+    if (iflags.wc_tile_height > 16)
+    {
+      if (w < 800) dw = dw * 3 / 2;
+      if (h < 600) dh = dh * 3 / 2;
+    }
+     
+    dist = dw * dw + dh * dh;
+
+    if (dist < best_dist)
+    {
+      best = i;
+      best_dist = dist;
+    }
+  }
+
+  return best;
+}
+
+static void detect_video_modes(void)
+{
+  const SDL_VideoInfo *info;
+  SDL_Rect **modes;
+  
+  int got_depth  = 0;
+  int got_width  = 0;
+  int got_height = 0;
+
+  int flags = SDL_FULLSCREEN;
+  
+  if (! sdlgl_software)
+    flags |= SDL_OPENGL | SDL_DOUBLEBUF;
+
+  if (sdlgl_depth == 8 && ! sdlgl_windowed)
+    flags |= SDL_HWPALETTE;
+
+  /* get name of video driver */
+
+  if (SDL_VideoDriverName(sdlgl_video_driver, 
+        sizeof(sdlgl_video_driver)) == NULL)
+  {
+    strcpy(sdlgl_video_driver, "unknown");
+  }
+
+  info = SDL_GetVideoInfo();
+  assert(info && info->vfmt);
+
+  /* --- Autodetect the video depth --- */
+
+  if (sdlgl_depth == 0)
+  {
+    got_depth = info->vfmt->BitsPerPixel;
+
+    switch (got_depth)
+    {
+      case 8: case 15: case 16: case 24: case 32:
+        sdlgl_warning("Autodetected video depth: %d bits per pixel.\n",
+            got_depth);
+        break;
+
+      default:
+        sdlgl_warning("Strange autodetected video depth: %d\n", got_depth);
+        got_depth = (got_depth < 12) ? 8 : 
+                    (got_depth < 23) ? 16 : 32;
+        sdlgl_warning("Trying %d instead...\n", got_depth);
+        break;
+    }
+
+    assert(got_depth > 0);
+
+    sdlgl_depth = got_depth;
+  }
+
+  /* --- Autodetect video mode --- */
+
+  if (sdlgl_width == 0)
+  {
+    modes = SDL_ListModes(NULL, flags);
+
+    if (modes == (SDL_Rect **)0 || modes == (SDL_Rect **)-1)
+    {
+      got_width  = DEF_SDLGL_WIDTH;
+      got_height = DEF_SDLGL_HEIGHT;
+
+      sdlgl_warning("Couldn't autodetect video mode.\n");
+      sdlgl_warning("Trying %dx%d...\n", got_width, got_height);
+    }
+    else
+    {
+      int count, best;
+
+      for (count = 0; modes[count]; count++)
+      { /* nothing needed */ }
+
+      if (count == 1)
+      {
+        got_width  = modes[0]->w;
+        got_height = modes[0]->h;
+
+        sdlgl_warning("Autodetected video mode: %dx%d\n",
+            got_width, got_height);
+      }
+      else
+      {
+        /* there is more than one available.  This probably doesn't
+         * happen under X11, but may happen on other video targets.
+         * We need to pick just one.  Algorithm: first eliminate modes
+         * that are too big or too small, then pick the one closest to
+         * the default video mode.
+         */
+        sdlgl_warning("Autodetected %d different video modes.\n", count);
+
+        best = choose_best_video_mode(modes);
+        assert(best < count);
+
+        if (best >= 0)
+        {
+          got_width  = modes[best]->w;
+          got_height = modes[best]->h;
+
+          sdlgl_warning("Selected %dx%d...\n", 
+              got_width, got_height);
+        }
+        else
+        {
+          got_width  = DEF_SDLGL_WIDTH;
+          got_height = DEF_SDLGL_HEIGHT;
+
+          sdlgl_warning("All modes were either too small or too big !\n");
+          sdlgl_warning("Trying %dx%d instead...\n", 
+              got_width, got_height);
+        }
+      }
+    }
+
+    assert(got_width > 0 && got_height > 0);
+
+    sdlgl_width  = got_width;
+    sdlgl_height = got_height;
+
+    if (sdlgl_windowed)
+    {
+      /* make room for titlebar and borders */
+      sdlgl_width  -= 20;
+      sdlgl_height -= 60;
+    }
+  } 
+}
+
 static void sdlgl_do_init_nhwindows(int *argcp, char **argv)
 {
   Uint32 flags;
@@ -297,8 +462,10 @@ static void sdlgl_do_init_nhwindows(int *argcp, char **argv)
 
   /* --------- SDL ----------- */
 
-  if (SDL_Init(SDL_INIT_VIDEO | (0*SDL_INIT_NOPARACHUTE)) < 0)
+  if (SDL_Init(SDL_INIT_VIDEO) < 0)
     sdlgl_error("Failed to initialise the SDL library.\n");
+
+  detect_video_modes();
 
   flags = 0;
 
@@ -312,7 +479,7 @@ static void sdlgl_do_init_nhwindows(int *argcp, char **argv)
   else
   {
     flags |= SDL_OPENGL;
-    flags |= SDL_DOUBLEBUF;  /* not needed ?? */
+    flags |= SDL_DOUBLEBUF;  /* needed ?? */
 
     switch (sdlgl_depth)
     {
@@ -526,9 +693,9 @@ static int convert_keysym(int sym, int unicode, int mod)
     case SDLK_RIGHT:
       return iflags.num_pad ? '6' : shift ? 'L' : 'l';
 
-    /* AJA: no special handling for numeric keypad, always return
-     *      digits, and let the main code handle any conversion to
-     *      movement via the "number_pad" option.
+    /* -AJA- no special handling for numeric keypad, always return
+     *       digits, and let the main code handle any conversion to
+     *       movement via the "number_pad" option.
      */
     case SDLK_KP0: return '0';
     case SDLK_KP1: return '1';
@@ -629,21 +796,21 @@ int sdlgl_get_poskey(int flags, int *x, int *y, int *mod)
           if (WIN_MESSAGE != WIN_ERR)
             win = text_wins[WIN_MESSAGE];
 
-          if (key != 16 /* ^P */ && key != 15 /* ^O */)
+          if (key != C('p') && key != C('o') && key != C('n'))
           {
             sdlgl_remove_scrollback();
           }
           else if (win && win->scrollback_pos > 0)
           {
-            sdlgl_adjust_scrollback(win, (key == 15) ? -1 : +1);
+            sdlgl_adjust_scrollback(win, (key == 16) ? +1 : -1);
             continue;
           }
         }
             
-        /* AJA: filter out ^Z -- causes an apparent lock-up when in
-         *      fullscreen mode (ugh).
+        /* -AJA- filter out ^Z -- causes an apparent lock-up when in
+         *       fullscreen mode (ugh).
          */
-        if (key != 26 /* ^Z */)
+        if (key != C('z'))
           return key;
 
         break;
@@ -751,6 +918,15 @@ int Sdlgl_nhgetch(void)
       sdlgl_write_status(text_wins[WIN_STATUS]);
   }
 
+  /* reset the skipping of [MORE] prompts (a bit paranoid, as
+   * Sdlgl_clear_window() also resets it and that should handle most
+   * cases).
+   */
+  if (text_wins[WIN_MESSAGE] != NULL)
+  {
+    text_wins[WIN_MESSAGE]->more_escaped = 0;
+  }
+
   /* we rely on this flush in many places */
   sdlgl_flush();
 
@@ -772,6 +948,13 @@ int Sdlgl_nh_poskey(int *x, int *y, int *mod)
       sdlgl_write_status(text_wins[WIN_STATUS]);
   }
 
+  /* reset the skipping of [MORE] prompts */
+  if (text_wins[WIN_MESSAGE] != NULL)
+  {
+    text_wins[WIN_MESSAGE]->more_escaped = 0;
+  }
+
+  /* we rely on this flush in many places */
   sdlgl_flush();
 
   return sdlgl_get_poskey(POSKEY_DO_SCROLLBACK, x, y, mod);

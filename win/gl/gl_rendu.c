@@ -94,7 +94,7 @@ rgbcol_t sdlgl_palette[256] =
   0xff6c00, 0xff8000, 0xff8080, 0xff8777, 0xffb691,
   0xffc000, 0xffc0c0, 0xffc0ff, 0xffd3af, 0xffff00,
   0xffff80, 0xffffc0,
-  0x101820, 0x201800, 0x000000,  /* bkg colors (unused by tiles) */
+  0x102030, 0x301800, 0x282828,  /* bkg colors (unused by tiles) */
   0x000000,  /* 255 = transparent color (0x00ffff) */
 
 #else  /* Slash'EM */
@@ -149,7 +149,7 @@ rgbcol_t sdlgl_palette[256] =
   0xff6c00, 0xff8000, 0xff8080, 0xff80ff, 0xffb690,
   0xffc000, 0xffc0c0, 0xffc0ff, 0xffd3b0, 0xffff00,
   0xffff80, 0xffffc0,
-  0x101820, 0x201800, 0x000000,  /* bkg colors (unused by tiles) */
+  0x102030, 0x301800, 0x282828,  /* bkg colors (unused by tiles) */
   0x000000,  /* 255 = transparent color (0x476c6c) */
 #endif
 };
@@ -246,13 +246,16 @@ static GH_INLINE void setpixel(SDL_Surface *s, int x, int y, Uint32 c)
       break;
     
     case 3:
-      if(SDL_BYTEORDER == SDL_BIG_ENDIAN) {
+      if (SDL_BYTEORDER == SDL_BIG_ENDIAN)
+      {
         p[0] = (c >> 16) & 0xff;
-        p[1] = (c >> 8) & 0xff;
+        p[1] = (c >> 8)  & 0xff;
         p[2] = c & 0xff;
-      } else {
+      } 
+      else
+      {
         p[0] = c & 0xff;
-        p[1] = (c >> 8) & 0xff;
+        p[1] = (c >> 8)  & 0xff;
         p[2] = (c >> 16) & 0xff;
       }
       break;
@@ -282,10 +285,10 @@ static GH_INLINE Uint32 getpixel(SDL_Surface *s, int x, int y)
     
     case 3:
       if(SDL_BYTEORDER == SDL_BIG_ENDIAN)
-        return p[0] << 16 | p[1] << 8 | p[2];
+        return (p[0] << 16) | (p[1] << 8) | p[2];
       else
-        return p[2] << 16 | p[1] << 8 | p[0];
-    
+        return (p[2] << 16) | (p[1] << 8) | p[0];
+
     case 4:
       return *(Uint32 *)p;
       
@@ -376,6 +379,8 @@ SDL_Surface *sdlgl_shrink_surface(SDL_Surface *src)
   if (! dest)
     return NULL;
 
+  /* Only works with 8 bit surfaces.
+   */
   assert(src->format->BytesPerPixel == 1);
 
   sdlgl_set_surface_colors(dest);
@@ -420,8 +425,15 @@ SDL_Surface *sdlgl_shrink_surface(SDL_Surface *src)
         }
         else
         {
-          SDL_GetRGB(c, src->format, &r, &g, &b);
-          r_tot += r; g_tot += g; b_tot += b;
+          /* assert(0 <= c && c <= 255); */
+
+          /* -AJA- Previously I used SDL_GetRGB() here, which had the
+           *       unfortunate effect of apply gamma _twice_ to the
+           *       resulting image.
+           */
+          r_tot += RGB_RED(sdlgl_palette[c]);
+          g_tot += RGB_GRN(sdlgl_palette[c]);
+          b_tot += RGB_BLU(sdlgl_palette[c]);
         }
       }
 
@@ -739,7 +751,7 @@ int sdlgl_dirty_matrix_to_updaters(struct DirtyMatrix *mat)
   {
     w = 1;
 
-    /* FIXME: Now 1-to-1, so read matrix directly !
+    /* NOTE: Now 1-to-1, so it could read the matrix directly...
      */
     if (sdlgl_dirty_matrix_test(mat, x, y, 
           DIRTY_SIZE, DIRTY_SIZE, CLEAN_CELL-1) == 0)

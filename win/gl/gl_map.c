@@ -113,6 +113,9 @@ void sdlgl_create_map(struct TextWindow *win, int w, int h)
 
   assert(win->base);
 
+  win->base->is_map = 1;
+  win->base->curs_color = OUTLINE_COL;
+
   win->glyphs = (struct GlyphPair *) alloc(w * h *
       sizeof(struct GlyphPair));
 
@@ -124,8 +127,6 @@ void sdlgl_create_map(struct TextWindow *win, int w, int h)
 
   win->map_px = 0;
   win->map_py = 0;
-
-  win->base->curs_color = OUTLINE_COL;
    
   if (sdlgl_def_zoom == TEXT_ZOOM)
   {
@@ -295,10 +296,7 @@ static void glyph_to_character(struct TextWindow *win,
 
   mapglyph(glyph, &ch, &color, &special, x, y);
 
-  if (iflags.wc_color &&
-      (ch == '<' || ch == '>'))  /* AJA: highlight stairs */
-    rgb = WHITE;
-  else if (color == NO_COLOR)
+  if (color == NO_COLOR)
     rgb = L_GREY;
   else
     rgb = termcolor_to_tilecol[color];
@@ -422,12 +420,16 @@ static void update_map_extras(struct TextWindow *win,
 {
   struct TileWindow *base = win->base;
 
+  int worm_tail;
+
   sdlgl_remove_extrashapes(base, x, y);
 
-  if (iflags.wc_hilite_pet)
+  worm_tail = (glyph->fg == petnum_to_glyph(PM_LONG_WORM_TAIL));
+
+  if (iflags.wc_hilite_pet && ! worm_tail)
   {
     int on_left = 0;
-
+    
     /* determine if heart is placed on left or right side */
     if (sdlgl_flipping && ! base->is_text &&
         (base->tiles[(int)y * base->total_w + x].flags & TILE_F_FLIPX))
