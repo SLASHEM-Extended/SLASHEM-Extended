@@ -335,6 +335,7 @@ ver 0.0.6E5F2 [? ?/2001] [Released by ?]
 -Actioned feature request 469036: Thiefbane should drain levels.
 -fixed bug 457682: Steal from black market - militia gen.
 -Actioned feature request 476860: No wishing for guaranteed artifacts.
+-Actioned feature request 476867: Indestructable aligned keys.
 
 ver 0.0.6E5F1 [August 31/2001] [Released by Ali]
 -New messages when engraving with wand of draining.

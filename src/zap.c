@@ -962,6 +962,13 @@ obj_resists(obj, ochance, achance)
 struct obj *obj;
 int ochance, achance;   /* percent chance for ordinary objects, artifacts */
 {
+#ifdef DEVEL_BRANCH
+	/* [ALI] obj_resists(obj, 0, 0) is used to test for objects resisting
+	 * containment (see bury_an_obj() and monstone() for details).
+	 */
+	if (evades_destruction(obj) && (ochance || achance))
+		return TRUE;
+#endif
 	if (obj->otyp == AMULET_OF_YENDOR ||
 	    obj->otyp == SPE_BOOK_OF_THE_DEAD ||
 	    obj->otyp == CANDELABRUM_OF_INVOCATION ||
@@ -1014,6 +1021,9 @@ polyuse(objhdr, mat, minwt)
 	otmp2 = otmp->nexthere;
 	if (otmp == uball || otmp == uchain) continue;
 	if (obj_resists(otmp, 0, 0)) continue;	/* preserve unique objects */
+#ifdef DEVEL_BRANCH
+	if (evades_destruction(otmp)) continue;
+#endif
 #ifdef MAIL
 	if (otmp->otyp == SCR_MAIL) continue;
 #endif
@@ -3773,6 +3783,9 @@ register int dx,dy;
 			for (otmp = mon->minvent; otmp; otmp = otmp2) {
 			    otmp2 = otmp->nobj;
 			    if (!oresist_disintegration(otmp)) {
+#ifdef DEVEL_BRANCH
+				if (Has_contents(otmp)) delete_contents(otmp);
+#endif
 				obj_extract_self(otmp);
 				obfree(otmp, (struct obj *)0);
 			    }

@@ -184,7 +184,17 @@ forcelock()     /* try to force a locked chest */
 	    /* Put the contents on ground at the hero's feet. */
 	    while ((otmp = xlock.box->cobj) != 0) {
 		obj_extract_self(otmp);
+#ifdef DEVEL_BRANCH
+		/* [ALI] Allowing containers to be destroyed is complicated
+		 * (because they might contain indestructible objects).
+		 * Since this is very unlikely to occur in practice simply
+		 * avoid the possibility.
+		 */
+		if (!evades_destruction(otmp) && !Has_contents(otmp) &&
+		  (!rn2(3) || otmp->oclass == POTION_CLASS)) {
+#else
 		if(!rn2(3) || otmp->oclass == POTION_CLASS) {
+#endif
 		    chest_shatter_msg(otmp);
 		    if (costly)
 			loss += stolen_value(otmp, u.ux, u.uy,

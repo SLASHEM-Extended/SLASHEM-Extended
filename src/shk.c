@@ -738,7 +738,54 @@ register struct obj *obj;
 	register struct obj *curr;
 
 	while ((curr = obj->cobj) != 0) {
+#ifdef DEVEL_BRANCH
+	    if (Has_contents(curr)) delete_contents(curr);
+#endif
 	    obj_extract_self(curr);
+#ifdef DEVEL_BRANCH
+	    if (evades_destruction(curr)) {
+		switch (obj->where) {
+		    case OBJ_FREE:
+		    case OBJ_ONBILL:
+			impossible("indestructible object %s",
+			  obj->where == OBJ_FREE ? "free" : "on bill");
+			obfree(curr, (struct obj *)0);
+			break;
+		    case OBJ_FLOOR:
+			place_object(curr, obj->ox, obj->oy);
+			/* No indestructible objects currently stack */
+			break;
+		    case OBJ_CONTAINED:
+			add_to_container(obj->ocontainer, curr);
+			break;
+		    case OBJ_INVENT:
+			if (!flooreffects(curr, u.ux, u.uy, "fall"))
+			    place_object(curr, u.ux, u.uy);
+			break;
+		    case OBJ_MINVENT:
+			if (!flooreffects(curr,
+				obj->ocarry->mx, obj->ocarry->my, "fall"))
+			    place_object(curr, obj->ocarry->mx, obj->ocarry->my);
+			break;
+		    case OBJ_MIGRATING:
+			add_to_migration(curr);
+			/* Copy migration destination */
+			curr->ox = obj->ox;
+			curr->oy = obj->oy;
+			curr->owornmask = obj->owornmask;
+			break;
+		    case OBJ_BURIED:
+			add_to_buried(curr);
+			curr->ox = obj->ox;
+			curr->oy = obj->oy;
+			break;
+		    default:
+			panic("delete_contents");
+			break;
+		}
+	    }
+	    else
+#endif
 	    obfree(curr, (struct obj *)0);
 	}
 }
@@ -759,6 +806,14 @@ register struct obj *obj, *merge;
 	if (obj->otyp == LEASH && obj->leashmon) o_unleash(obj);
 	if (obj->oclass == SPBOOK_CLASS) book_disappears(obj);
 	if (obj->oclass == FOOD_CLASS) food_disappears(obj);
+#ifdef DEVEL_BRANCH
+	/* [ALI] Enforce new rules: Containers must have their contents
+	 * deleted while still in situ so that we can place any
+	 * indestructible objects they may contain.
+	 */
+	if (Has_contents(obj))
+	    pline("BUG: obfree() called on non-empty container.");
+#endif
 	if (Has_contents(obj)) delete_contents(obj);
 
 	shkp = 0;
