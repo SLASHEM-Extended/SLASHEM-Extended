@@ -90,6 +90,7 @@ ver 0.0.7E6F2 [?] [Released by ?]
 -fixed bug 934073: Spurious "don't seem to harm" messages for Drow
 -fixed bug 926829: Vampires "don't seem to harm" when draining levels
 -fixed bug 939133: dmonsfree error after exploding /WoPoly
+-fixed bug 911485: Monk techniques and vampire lords
 
 See history.txt for changes made in previous versions.
 

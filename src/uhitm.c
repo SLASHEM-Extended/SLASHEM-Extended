@@ -702,7 +702,7 @@ struct monst *mon;
 struct obj *obj;
 int thrown;
 {
-	int tmp, canhitmon = 0, objenchant = 0, mdx, mdy;
+	int tmp, canhitmon = 0, objenchant, mdx, mdy;
 	struct permonst *mdat = mon->data;
 	int barehand_silver_rings = 0;
 	/* The basic reason we need all these booleans is that we don't want
@@ -723,6 +723,7 @@ int thrown;
 	boolean vapekilled = FALSE; /* WAC added boolean for vamps vaporize */
 	boolean burnmsg = FALSE;
 	boolean no_obj = !obj;	/* since !obj can change if weapon breaks, etc. */
+	boolean noeffect;
 	int wtype;
 	struct obj *monwep;
 	struct obj *launcher;
@@ -734,11 +735,39 @@ int thrown;
 	else if (thrown == 2) launcher = uswapwep;
 	else launcher = 0;
 
+	objenchant = !thrown && no_obj || obj->spe < 0 ? 0 : obj->spe;
+
+	if (need_one(mon))    canhitmon = 1;
+	if (need_two(mon))    canhitmon = 2;
+	if (need_three(mon))  canhitmon = 3;
+	if (need_four(mon))   canhitmon = 4;
+
+	/*
+	 * If you are a creature that can hit as a +2 weapon, then YOU can
+	 * hit as a +2 weapon. - SW
+	 */
+
+	if (Upolyd) {       /* Is Upolyd correct? */
+	    /* a monster that needs a +1 weapon to hit it hits as a +1 weapon... */
+	    if (need_one(&youmonst))		objenchant = 1;
+	    if (need_two(&youmonst))		objenchant = 2;
+	    if (need_three(&youmonst))		objenchant = 3;
+	    if (need_four(&youmonst))		objenchant = 4;
+	    /* overridden by specific flags */
+	    if (hit_as_one(&youmonst))		objenchant = 1;
+	    if (hit_as_two(&youmonst))		objenchant = 2;
+	    if (hit_as_three(&youmonst))	objenchant = 3;
+	    if (hit_as_four(&youmonst))		objenchant = 4;
+	}
+
 	unconventional[0] = '\0';
 	saved_oname[0] = '\0';
 
 	wakeup(mon);
 	if(!thrown && no_obj) {      /* attack with bare hands */
+	    if (Role_if(PM_MONK) && !Upolyd && u.ulevel/4 > objenchant)
+		objenchant = u.ulevel/4;
+	    noeffect = objenchant < canhitmon;
 	    if (martial_bonus()) {
 		if (mdat == &mons[PM_SHADE]) {
 		    tmp = rn2(3);
@@ -786,68 +815,88 @@ int thrown;
 	    if (tech_inuse(T_E_FIST)) {
 	    	int dmgbonus = 0;
 		hittxt = TRUE;
-		dmgbonus = d(2,4);
+		dmgbonus = noeffect ? 0 : d(2,4);
 		switch (rn2(4)) {
 		    case 0: /* Fire */
 			if (!Blind) pline("%s is on fire!", Monnam(mon));
 			dmgbonus += destroy_mitem(mon, SCROLL_CLASS, AD_FIRE);
 			dmgbonus += destroy_mitem(mon, SPBOOK_CLASS, AD_FIRE);
-			if (resists_fire(mon)) {
+			if (noeffect || resists_fire(mon)) {
+			    if (!noeffect)
+				shieldeff(mon->mx, mon->my);
 			    if (!Blind) 
 				pline_The("fire doesn't heat %s!", mon_nam(mon));
 			    golemeffects(mon, AD_FIRE, dmgbonus);
-			    shieldeff(mon->mx, mon->my);
-			    dmgbonus = 0;
+			    if (!noeffect)
+				dmgbonus = 0;
+			    else
+				noeffect = 0;
 			}
 			/* only potions damage resistant players in destroy_item */
 			dmgbonus += destroy_mitem(mon, POTION_CLASS, AD_FIRE);
 			break;
 		    case 1: /* Cold */
 		    	if (!Blind) pline("%s is covered in frost!", Monnam(mon));
-			if (resists_cold(mon)) {
+			if (noeffect || resists_cold(mon)) {
+			    if (!noeffect)
 				shieldeff(mon->mx, mon->my);
-				if (!Blind) 
-					pline_The("frost doesn't chill %s!", mon_nam(mon));
-					golemeffects(mon, AD_COLD, dmgbonus);
-					dmgbonus = 0;
+			    if (!Blind) 
+				pline_The("frost doesn't chill %s!", mon_nam(mon));
+			    golemeffects(mon, AD_COLD, dmgbonus);
+			    dmgbonus = 0;
+			    noeffect = 0;
 			}
 			dmgbonus += destroy_mitem(mon, POTION_CLASS, AD_COLD);
 			break;
 		    case 2: /* Elec */
 			if (!Blind) pline("%s is zapped!", Monnam(mon));
 			dmgbonus += destroy_mitem(mon, WAND_CLASS, AD_ELEC);
-			if (resists_elec(mon)) {
+			if (noeffect || resists_elec(mon)) {
+			    if (!noeffect)
+				shieldeff(mon->mx, mon->my);
 			    if (!Blind)
 				pline_The("zap doesn't shock %s!", mon_nam(mon));
 			    golemeffects(mon, AD_ELEC, dmgbonus);
-			    shieldeff(mon->mx, mon->my);
-			    dmgbonus = 0;
+			    if (!noeffect)
+				dmgbonus = 0;
+			    else
+				noeffect = 0;
 			}
 			/* only rings damage resistant players in destroy_item */
 			dmgbonus += destroy_mitem(mon, RING_CLASS, AD_ELEC);
 			break;
 		    case 3: /* Acid */
-			if (!Blind) pline("%s is burned by the acid!", Monnam(mon));
-				if (resists_acid(mon)) dmgbonus = 0;
+			if (!Blind)
+			    pline("%s is covered in acid!", Monnam(mon));
+			if (noeffect || resists_acid(mon)) {
+			    if (!Blind)
+				pline_The("acid doesn't burn %s!", Monnam(mon));
+			    dmgbonus = 0;
+			    noeffect = 0;
+			}
 			break;
 		}
-		if (dmgbonus > 0) {
-			tmp += dmgbonus;
-		}
+		if (dmgbonus > 0)
+		    tmp += dmgbonus;
 	    } /* Techinuse Elemental Fist */		
 
 	} else {
+	    if (obj->oartifact == ART_MAGICBANE) objenchant = 4;
+	    else if (obj->oartifact) objenchant += 2;
+
+#ifdef LIGHTSABERS
+	    if (is_lightsaber(obj)) objenchant = 4;
+#endif
+
+	    if (is_poisonable(obj) && obj->opoisoned)
+		ispoisoned = TRUE;
+
+	    noeffect = objenchant < canhitmon && !ispoisoned;
+
 	    Strcpy(saved_oname, cxname(obj));
 	    if(obj->oclass == WEAPON_CLASS || is_weptool(obj) ||
 	       obj->oclass == GEM_CLASS) {
 
-		if (obj->spe > 0) objenchant = obj->spe;                
-		else objenchant = 0;
-		/* KMH, balance patch -- new macro */
-
-		if (obj && is_poisonable(obj) && obj->opoisoned)
-			ispoisoned = TRUE;
-		
 		/* is it not a melee weapon? */
 		/* KMH, balance patch -- new macros */
 		if (/* if you strike with a bow... */
@@ -1003,8 +1052,6 @@ int thrown;
 				}
 			    }
 			}
-			if(obj->opoisoned && is_poisonable(obj))
-			    ispoisoned = TRUE;
 		    }
 		    /* MRKR: Hitting with a lit torch does extra */
 		    /*       fire damage, but uses up the torch  */
@@ -1305,43 +1352,6 @@ int thrown;
 	    else poiskilled = TRUE;
 	}
 	  
-	if (need_one(mon))    canhitmon = 1;
-	if (need_two(mon))    canhitmon = 2;
-	if (need_three(mon))  canhitmon = 3;
-	if (need_four(mon))   canhitmon = 4;
-  
-	/*
-	 * If you are a creature that can hit as a +2 weapon, then YOU can
-	 * hit as a +2 weapon. - SW
-	 */
-  
-	if(Upolyd) {       /* Is Upolyd correct? */
-		/* a monster that needs a +1 weapon to hit it hits as a +1 weapon... */
-		if (need_one(&youmonst))    objenchant = 1;
-		if (need_two(&youmonst))    objenchant = 2;
-		if (need_three(&youmonst))  objenchant = 3;
-		if (need_four(&youmonst))   objenchant = 4;
-		/* overridden by specific flags */
-		if (hit_as_one(&youmonst))    objenchant = 1;
-		if (hit_as_two(&youmonst))    objenchant = 2;
-		if (hit_as_three(&youmonst))  objenchant = 3;
-		if (hit_as_four(&youmonst))   objenchant = 4;
-	}
-  
-	if(Role_if(PM_MONK) && !Upolyd && !thrown && no_obj) { 
-		/* WAC Bare-handed attack */
-		if(u.ulevel/4 > objenchant)  objenchant = u.ulevel/4;
-		if (objenchant < 0) objenchant = 0;
-	}
- 
-	if (obj && (obj->oartifact)) objenchant += 2;
-  
-	if (obj && obj->oartifact == ART_MAGICBANE) objenchant = 4;
-  
-#ifdef LIGHTSABERS
-	if (obj && is_lightsaber(obj)) objenchant = 4;
-#endif
-  
 	if (tmp < 1) {
 	    /* make sure that negative damage adjustment can't result
 	       in inadvertently boosting the victim's hit points */
@@ -1400,12 +1410,15 @@ int thrown;
 	    }
 	}
 
-	if (objenchant < canhitmon && !silvermsg && !ispoisoned) {
-		Your("attack doesn't seem to harm %s.",
-			mon_nam(mon));
+	if (tmp && noeffect) {
+	    if (silvermsg)
+		tmp = 8;
+	    else {
+		Your("attack doesn't seem to harm %s.", mon_nam(mon));
 		hittxt = TRUE;
 		tmp = 0;
-	} else if (silvermsg && objenchant < canhitmon)  tmp = 8;
+	    }
+	}
 
         /* WAC Added instant kill from wooden stakes vs vampire */
         /* based off Poison Code */
