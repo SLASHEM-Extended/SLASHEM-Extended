@@ -892,7 +892,7 @@ gl_menu.o: ../win/gl/gl_menu.c $(HACK_H) ../include/dlb.h \
 		../include/patchlevel.h ../include/winGL.h
 	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_menu.c
 gl_opt.o: ../win/gl/gl_opt.c $(HACK_H) ../include/dlb.h \
-		../include/patchlevel.h ../include/winGL.h
+		../include/date.h ../include/patchlevel.h ../include/winGL.h
 	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_opt.c
 gl_role.o: ../win/gl/gl_role.c $(HACK_H) ../include/dlb.h \
 		../include/patchlevel.h ../include/winGL.h
