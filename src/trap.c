@@ -2383,6 +2383,14 @@ crawl:;
 	}
 	u.uinwater = 1;
 	You("drown.");
+	/* [ALI] Vampires return to vampiric form on drowning.
+	 */
+	if (Upolyd && !Unchanging && Race_if(PM_VAMPIRE)) {
+		rehumanize();
+		u.uinwater = 0;
+		You("fly up out of the water!");
+		return (TRUE);
+	}
 	killer_format = KILLED_BY_AN;
 	killer = (levl[u.ux][u.uy].typ == POOL || Is_medusa_level(&u.uz)) ?
 	    "pool of water" : "moat";

@@ -353,6 +353,7 @@ ver 0.0.6E4F4 [? ?/2001] [Released by ?]
 -fixed bug 411340: Some racial intrinsics are missing.
 -fixed bug 412250: Shopkeeper uncursing and Necromancers.
 -fixed bug 412251: Shopkeeper charging and spellbooks.
+-fixed bug 409198: underwater vampires.
 
 ver 0.0.6E4F3 [February 28/2001] [Released by Ali]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined
