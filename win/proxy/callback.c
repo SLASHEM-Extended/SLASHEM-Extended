@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.26 2004-04-19 06:56:42 j_ali Exp $ */
+/* $Id: callback.c,v 1.23 2004-02-07 19:02:13 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2004 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -10,8 +10,6 @@
 #include "nhxdr.h"
 #include "proxycom.h"
 #include "winproxy.h"
-
-extern int proxy_authorized;
 
 static void FDECL(callback_display_inventory, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
@@ -67,18 +65,9 @@ callback_display_inventory(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    /*
-     * Ignore recursive calls. They cause the game to
-     * produce illegal output and have no utility.
-     */
-    static int busy = 0;
-    if (!busy && proxy_authorized) {
-	busy++;
-	display_inventory((char *)0, FALSE);
-	if (!nhext_async_mode())
-	    nhext_rpc_params(reply, 0);
-	busy--;
-    }
+    display_inventory((char *)0, FALSE);
+    if (!nhext_async_mode())
+	nhext_rpc_params(reply, 0);
 }
 
 /* 
@@ -210,7 +199,7 @@ NhExtXdr *request, *reply;
     char *name, *mode;
     int retval;
     nhext_rpc_params(request, 2, EXT_STRING_P(name), EXT_STRING_P(mode));
-    retval = proxy_authorized ? cb_dlbh_fopen(name, mode) : -1;
+    retval = cb_dlbh_fopen(name, mode);
     nhext_rpc_params(reply, 1, EXT_INT(retval));
     free(name);
     free(mode);
@@ -233,7 +222,7 @@ NhExtXdr *request, *reply;
 	len = 512;
 	buf = (char *)malloc(len);
     }
-    retval = buf && proxy_authorized ? dlbh_fgets(buf, len, fh) : (char *)0;
+    retval = buf ? dlbh_fgets(buf, len, fh) : (char *)0;
     nhext_rpc_params(reply, 1, EXT_STRING(retval ? retval : ""));
     free(buf);
 }
@@ -253,7 +242,7 @@ NhExtXdr *request, *reply;
 	len = 512;
 	buf = (char *)malloc(len);
     }
-    nb = buf && proxy_authorized ? dlbh_fread(buf, 1, len, fh) : -1;
+    nb = buf ? dlbh_fread(buf, 1, len, fh) : -1;
     nhext_rpc_params(reply, 2,
       EXT_INT(nb < 0), EXT_BYTES(buf, nb >= 0 ? nb : 0));
     free(buf);
@@ -269,7 +258,7 @@ NhExtXdr *request, *reply;
     int fh, nb, retval;
     char *buf = (char *)0;
     nhext_rpc_params(request, 2, EXT_INT_P(fh), EXT_BYTES_P(buf, nb));
-    if (!fh && proxy_config_fp && proxy_authorized)
+    if (!fh && proxy_config_fp)
 	retval = fwrite(buf, nb, 1, proxy_config_fp) != 1;
     else
 	retval = -1;
@@ -284,7 +273,7 @@ NhExtXdr *request, *reply;
 {
     int fh, retval;
     nhext_rpc_params(request, 1, EXT_INT_P(fh));
-    retval = proxy_authorized ? dlbh_fclose(fh) : -1;
+    retval = dlbh_fclose(fh);
     nhext_rpc_params(reply, 1, EXT_INT(retval));
 }
 
@@ -302,7 +291,7 @@ NhExtXdr *request, *reply;
     char md5sum[33];
     nhext_rpc_params(request, 1, EXT_STRING_P(name));
     buf = (char *)alloc(8128);
-    if (!buf || !proxy_authorized) {
+    if (!buf) {
 	fh = -1;
 	retval = -1;
     } else {
@@ -341,9 +330,9 @@ unsigned short id;
 NhExtXdr *request, *reply;
 {
     extern int proxy_curs_on_u;
-    if (proxy_authorized)
-	flush_screen(proxy_curs_on_u);
-    nhext_rpc_params(reply, 0);
+    flush_screen(proxy_curs_on_u);
+    if (!nhext_async_mode())
+	nhext_rpc_params(reply, 0);
 }
 
 static void
@@ -351,8 +340,7 @@ callback_doredraw(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    if (proxy_authorized)
-	(void)doredraw();
+    (void)doredraw();
     if (!nhext_async_mode())
 	nhext_rpc_params(reply, 0);
 }
@@ -363,9 +351,8 @@ unsigned short id;
 NhExtXdr *request, *reply;
 {
     nhext_rpc_params(request, 1, EXT_LONG_P(proxy_interface_mode));
-    if (proxy_authorized)
-	bot_set_handler(proxy_interface_mode & EXT_IM_STATUS ?
-	  proxy_status : (void (*)())0L);
+    bot_set_handler(proxy_interface_mode & EXT_IM_STATUS ?
+      proxy_status : (void (*)())0L);
     if (!nhext_async_mode())
 	nhext_rpc_params(reply, 0);
 }
@@ -377,8 +364,7 @@ NhExtXdr *request, *reply;
 {
     char *opts;
     nhext_rpc_params(request, 1, EXT_STRING_P(opts));
-    if (proxy_authorized)
-	parseoptions(opts, FALSE, FALSE);
+    parseoptions(opts, FALSE, FALSE);
     free(opts);
     nhext_rpc_params(reply, 1, EXT_INT(0));
 }
@@ -390,7 +376,7 @@ NhExtXdr *request, *reply;
 {
     char *opt, *value;
     nhext_rpc_params(request, 1, EXT_STRING_P(opt));
-    value = proxy_authorized ? get_option(opt) : "";
+    value = get_option(opt);
     free(opt);
     nhext_rpc_params(reply, 1, EXT_STRING(value));
 }
@@ -494,7 +480,7 @@ callback_quit_game(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    if (proxy_authorized && program_state.something_worth_saving)
+    if (program_state.something_worth_saving)
 	done2();
     else {
 	clearlocks();
@@ -516,14 +502,12 @@ NhExtXdr *request, *reply;
 	"-sall",
     };
 
-    if (proxy_authorized) {
-	proxy_rawprint_win = create_toptenwin();
-	prscore(2, argv);
-	display_nhwindow(proxy_rawprint_win, TRUE);
-	destroy_toptenwin();
-	dlb_init();                         /* Re-initialise DLB */
-	proxy_rawprint_win = WIN_ERR;
-    }
+    proxy_rawprint_win = create_toptenwin();
+    prscore(2, argv);
+    display_nhwindow(proxy_rawprint_win, TRUE);
+    destroy_toptenwin();
+    dlb_init();                         /* Re-initialise DLB */
+    proxy_rawprint_win = WIN_ERR;
     nhext_rpc_params(reply, 0);
 }
 
@@ -532,8 +516,7 @@ callback_doset(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    if (proxy_authorized)
-	doset();
+    doset();
     nhext_rpc_params(reply, 0);
 }
 
@@ -563,7 +546,7 @@ NhExtXdr *request, *reply;
 {
     int ch, retval;
     nhext_rpc_params(request, 1, EXT_INT_P(ch));
-    retval = proxy_authorized ? map_menu_cmd(ch) : ch;
+    retval = map_menu_cmd(ch);
     nhext_rpc_params(reply, 1, EXT_INT(retval));
 }
 
@@ -575,9 +558,7 @@ NhExtXdr *request, *reply;
     char *window;
     int retval;
     nhext_rpc_params(request, 1, EXT_STRING_P(window));
-    if (!proxy_authorized)
-	retval = -1;
-    else if (!strcmp(window,"MESSAGE"))
+    if (!strcmp(window,"MESSAGE"))
 	retval = WIN_MESSAGE;
     else if (!strcmp(window,"STATUS"))
 	retval = WIN_STATUS;
@@ -672,8 +653,7 @@ NhExtXdr *request, *reply;
     char *optnam;
     int status;
     nhext_rpc_params(request, 2, EXT_STRING_P(optnam), EXT_INT_P(status));
-    if (proxy_authorized)
-	set_option_mod_status(optnam, status);
+    set_option_mod_status(optnam, status);
     free(optnam);
     if (!nhext_async_mode())
 	nhext_rpc_params(reply, 0);

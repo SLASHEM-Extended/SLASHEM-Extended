@@ -1,5 +1,5 @@
-/* $Id: proxysvc.c,v 1.27 2004-04-19 06:56:42 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001-2004 */
+/* $Id: proxysvc.c,v 1.26 2003-12-13 12:52:58 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 /* #define DEBUG */
@@ -1391,7 +1391,6 @@ unsigned int len;
 #endif	/* DEBUG */
 
 static struct nhext_line *win_proxy_clnt_subprotocol0_lp;
-static struct nhext_line *win_proxy_clnt_subprotocol0_resp;
 
 char *
 win_proxy_clnt_gettag(tag)
@@ -1402,44 +1401,6 @@ const char *tag;
 	if (!strcmp(win_proxy_clnt_subprotocol0_lp->tags[i], tag))
 	    return win_proxy_clnt_subprotocol0_lp->values[i];
     return (char *)0;
-}
-
-/*
- * Returns non-zero on error
- */
-
-int
-win_proxy_clnt_settag(tag, value)
-const char *tag, *value;
-{
-    int i;
-    char **new;
-    for(i = 0; i < win_proxy_clnt_subprotocol0_resp->n; i++)
-	if (!strcmp(win_proxy_clnt_subprotocol0_resp->tags[i], tag)) {
-	    free(win_proxy_clnt_subprotocol0_resp->values[i]);
-	    win_proxy_clnt_subprotocol0_resp->values[i] = strdup(value);
-	    return !win_proxy_clnt_subprotocol0_resp->values[i];
-	}
-    new = (char **)realloc(win_proxy_clnt_subprotocol0_resp->tags,
-      (i + 1) * sizeof(char *));
-    if (!new)
-	return 1;
-    win_proxy_clnt_subprotocol0_resp->tags = new;
-    new = (char **)realloc(win_proxy_clnt_subprotocol0_resp->values,
-      (i + 1) * sizeof(char *));
-    if (!new)
-	return 1;
-    win_proxy_clnt_subprotocol0_resp->values = new;
-    win_proxy_clnt_subprotocol0_resp->tags[i] = strdup(tag);
-    if (!win_proxy_clnt_subprotocol0_resp->tags[i])
-	return 1;
-    win_proxy_clnt_subprotocol0_resp->values[i] = strdup(value);
-    if (!win_proxy_clnt_subprotocol0_resp->values[i]) {
-	free(win_proxy_clnt_subprotocol0_resp->tags[i]);
-	return 1;
-    }
-    win_proxy_clnt_subprotocol0_resp->n++;
-    return 0;
 }
 
 void
@@ -1473,15 +1434,6 @@ unsigned int len;
 }
 #endif
 
-static proxy_clnt_authhandler proxy_clnt_auth_handler = NULL;
-
-proxy_clnt_authhandler proxy_clnt_set_authhandler(proxy_clnt_authhandler new)
-{
-    proxy_clnt_authhandler old = proxy_clnt_auth_handler;
-    proxy_clnt_auth_handler = new;
-    return old;
-}
-
 int
 win_proxy_clnt_init(read_f, read_h, write_f, write_h)
 nhext_io_func read_f, write_f;
@@ -1491,7 +1443,7 @@ void *read_h, *write_h;
     char *s;
     NhExtIO *rd, *wr;
     struct nhext_line line;
-    char *standard, *protocols, *authmethods, buf[32];
+    char *standard, *protocols, buf[32];
 #ifdef DEBUG
     static struct debug_handle dhr, dhw;
     dhr.f = read_f;
@@ -1571,65 +1523,8 @@ failed:
 	    return FALSE;
 	}
     }
-    authmethods = win_proxy_clnt_gettag("authmethods");
-    if (!proxy_clnt_auth_handler) {
-	if (authmethods) {
-	    s = strchr(authmethods, '0');
-	    if (!s || s != authmethods && s[-1] != ',' || s[1] && s[1] != ',') {
-		proxy_clnt_error(
-		  "No handler defined for required authorization");
-		s = "Error mesg \"Authorization not supported\"\n";
-		(void)nhext_io_write(wr, s, strlen(s));
-		nhext_end();
-		nhext_io_close(wr);
-		nhext_io_close(rd);
-		return FALSE;
-	    }
-	}
-    } else if (authmethods && strcmp(authmethods,"0")) {
-	int method = 0;
-	unsigned long authmask = 0;
-	win_proxy_clnt_subprotocol0_resp =
-	  (struct nhext_line *) alloc(sizeof(struct nhext_line));
-	win_proxy_clnt_subprotocol0_resp->n = 0;
-	win_proxy_clnt_subprotocol0_resp->values = NULL;
-	win_proxy_clnt_subprotocol0_resp->tags = NULL;
-	i = 0;
-	do {
-	    if (authmethods[i] == ',' || authmethods[i] == '\0') {
-		if (method < sizeof(unsigned long) * 8)
-		    authmask |= 1UL << method;
-		method = 0;
-	    } else if (authmethods[i] >= '0' && authmethods[i] <= '9') {
-		method *= 10;
-		method += authmethods[i] - '0';
-	    }
-	} while (authmethods[i++]);
-	if (proxy_clnt_auth_handler(authmask)) {
-	    if (win_proxy_clnt_subprotocol0_resp->n) {
-		win_proxy_clnt_subprotocol0_resp->type = "Error";
-		(void)nhext_subprotocol0_write_line(
-		  win_proxy_clnt_subprotocol0_resp);
-		for(i = 0; i < win_proxy_clnt_subprotocol0_resp->n; i++) {
-		    free(win_proxy_clnt_subprotocol0_resp->values[i]);
-		    free(win_proxy_clnt_subprotocol0_resp->tags[i]);
-		}
-		free(win_proxy_clnt_subprotocol0_resp->values);
-		free(win_proxy_clnt_subprotocol0_resp->tags);
-	    } else {
-		s = "Error mesg \"Generic authorization failure\"\n";
-		(void)nhext_io_write(wr, s, strlen(s));
-	    }
-	    free(win_proxy_clnt_subprotocol0_resp);
-	    nhext_end();
-	    nhext_io_close(wr);
-	    nhext_io_close(rd);
-	    return FALSE;
-	}
-    }
     line.type = "Ack";
-    line.n = win_proxy_clnt_subprotocol0_resp ?
-      2 + win_proxy_clnt_subprotocol0_resp->n : 2;
+    line.n = 2;
     line.tags = (char **)alloc(line.n * sizeof(char *));
     line.values = (char **)alloc(line.n * sizeof(char *));
     line.tags[0] = "windowtype";
@@ -1637,21 +1532,7 @@ failed:
     line.tags[1] = "protocol";
     sprintf(buf, "%d", proxy_svc_protocol);
     line.values[1] = buf;
-    if (win_proxy_clnt_subprotocol0_resp) {
-	for(i = 0; i < win_proxy_clnt_subprotocol0_resp->n; i++) {
-	    line.values[i + 2] = win_proxy_clnt_subprotocol0_resp->values[i];
-	    line.tags[i + 2] = win_proxy_clnt_subprotocol0_resp->tags[i];
-	}
-    }
     i = nhext_subprotocol0_write_line(&line);
-    if (win_proxy_clnt_subprotocol0_resp) {
-	for(i = 0; i < win_proxy_clnt_subprotocol0_resp->n; i++) {
-	    free(win_proxy_clnt_subprotocol0_resp->values[i]);
-	    free(win_proxy_clnt_subprotocol0_resp->tags[i]);
-	}
-	free(win_proxy_clnt_subprotocol0_resp->values);
-	free(win_proxy_clnt_subprotocol0_resp->tags);
-    }
     free(line.tags);
     free(line.values);
     if (!i) {

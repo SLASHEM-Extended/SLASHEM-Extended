@@ -2695,7 +2695,7 @@ boolean msg;
 {
 	int mhp, hpn, hpd;
 	int mndx, tryct;
-	int couldsee = canseemon(mtmp);
+	int couldspot = u.uswallow && mtmp == u.ustuck || canspotmon(mtmp);
 	struct permonst *olddata = mtmp->data;
 	char oldname[BUFSZ];
 	boolean alt_mesg = FALSE;	/* Avoid "<rank> turns into a <rank>" */
@@ -2752,7 +2752,6 @@ boolean msg;
 
 	/* [ALI] Detect transforming between player monsters with the
 	 * same rank title to avoid badly formed messages.
-	 * Similarly for were creatures transforming to their alt. form.
 	 */
 	if (msg && is_mplayer(olddata) && is_mplayer(mdat)) {
 	    const struct Role *role;
@@ -2774,10 +2773,8 @@ boolean msg;
 			}
 		}
 	    }
-	} else if (msg && is_were(olddata) &&
-		monsndx(mdat) == counter_were(monsndx(olddata)))
-	    alt_mesg = TRUE;
-
+	}
+	
 	/* WAC - At this point,  the transformation is going to happen */
 	/* Reset values, remove worm tails, change levels...etc. */
 
@@ -2861,13 +2858,10 @@ boolean msg;
 
 	newsym(mtmp->mx,mtmp->my);
 
-	if (msg && (u.uswallow && mtmp == u.ustuck || canspotmon(mtmp))) {
-	    if (alt_mesg && is_mplayer(mdat))
+	if (msg && (couldspot || canspotmon(mtmp))) {
+	    if (alt_mesg)
 		pline("%s is suddenly very %s!", oldname,
 			mtmp->female ? "feminine" : "masculine");
-	    else if (alt_mesg)
-		pline("%s changes into a %s!", oldname,
-			is_human(mdat) ? "human" : mdat->mname + 4);
 	    else {
 	    uchar save_mnamelth = mtmp->mnamelth;
 	    mtmp->mnamelth = 0;
@@ -2876,9 +2870,7 @@ boolean msg;
 		  x_monnam(mtmp, ARTICLE_A, (char*)0, SUPPRESS_SADDLE, FALSE));
 	    mtmp->mnamelth = save_mnamelth;
 	    }
-	} else if (msg && couldsee)
-	    /* No message if we only sensed the monster previously */
-	    pline("%s suddenly disappears!", oldname);
+	}
 
 	/* [ALI] In Slash'EM, this must come _after_ "<mon> turns into <mon>"
 	 * since it's possible to get both messages.

@@ -227,9 +227,8 @@ struct obj *otmp;
 			/* flags.bypasses = TRUE; ## for make_corpse() */
 			/* no corpse after system shock */
 			xkilled(mtmp, 3);
-		    } else if (mon_spec_poly(mtmp, (struct permonst *)0, 0L,
-			    (otyp != POT_POLYMORPH), canseemon(mtmp), FALSE,
-			    TRUE)) {
+		    } else if (newcham(mtmp, (struct permonst *)0,
+			    (otyp != POT_POLYMORPH), canseemon(mtmp))) {
 			if (!Hallucination && canspotmon(mtmp))
 			    makeknown(otyp);
 		    }
@@ -4086,8 +4085,7 @@ register int dx,dy;
 			if (!otmp) {
 			    /* normal non-fatal hit */
 			    hit(fltxt, mon, exclam(tmp));
-			    if (mblamed && mblamed != mon &&
-				    !DEADMONSTER(mblamed) &&
+			    if (mblamed && !DEADMONSTER(mblamed) &&
 				    mon->movement >= NORMAL_SPEED && rn2(4)) {
 				/* retaliate */
 				mon->movement -= NORMAL_SPEED;

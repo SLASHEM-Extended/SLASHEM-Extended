@@ -1,9 +1,9 @@
 /*
-  $Id: gtk.c,v 1.53 2004-04-10 15:41:21 j_ali Exp $
+  $Id: gtk.c,v 1.49 2003-12-28 18:43:40 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
-               Copyright (c) Slash'EM Development Team 2001-2004
+               Copyright (c) Slash'EM Development Team 2001-2003
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -141,7 +141,18 @@ static struct proxycb_get_player_choices_res *player_choices = NULL;
 
 char *
 GTK_ext_askname() {
-    return GTK_getline("Who are you? ", FALSE);
+    int tryct = 0;
+    char *buf = (char *)0;
+    static char who_are_you[] = "Who are you? ";
+    
+    do {
+	if (tryct > 10) panic("Giving up after 10 tries.\n");
+	    else tryct++;
+	if (buf)
+	    free(buf);
+	buf = GTK_ext_getlin(who_are_you);
+    } while (*buf == '\0');
+    return buf;
 }
 
 static GtkItemFactoryEntry mainmenu_items[] = {
@@ -629,31 +640,8 @@ session_window_configure_event(GtkWidget *widget, GdkEventConfigure *event,
     } else {
 	/* Initial placement */
 #ifdef WIN32
-	/* Under win32 Gtk+, we appear to get two configure events in
-	 * quick sucession. This is probably a bug in Gtk+ with the
-	 * first configure event representing the default window
-	 * geometry and the second event representing the geometry we
-	 * have requested. We cope with this by ignoring configure
-	 * events if we have requested a geometry and the offset is
-	 * implausible.
-	 */
-	if (session_window_info[i].flags & NH_SESSION_USER_POS) {
-	    int ox, oy;
-	    ox = event->x - session_window_info[i].bounding.x;
-	    oy = event->y - session_window_info[i].bounding.y;
-	    if (ox >= 0 && ox <= 8 && oy >= 0 && oy <= 48) {
-		session_window_info[i].ox = ox;
-		session_window_info[i].oy = oy;
-		session_window_info[i].flags |= NH_SESSION_PLACED;
-	    } else {
-		session_window_info[i].ox = 0;
-		session_window_info[i].oy = 0;
-	    }
-	} else {
-	    session_window_info[i].ox = 0;
-	    session_window_info[i].oy = 0;
-	    session_window_info[i].flags |= NH_SESSION_PLACED;
-	}
+	session_window_info[i].ox = 0;
+	session_window_info[i].oy = 0;
 #else
 	if (session_window_info[i].flags & NH_SESSION_USER_POS) {
 	    session_window_info[i].ox =
@@ -678,15 +666,13 @@ session_window_configure_event(GtkWidget *widget, GdkEventConfigure *event,
 		session_window_info[i].oy = event->y - frame.y;
 	    }
 	}
-	session_window_info[i].flags |= NH_SESSION_PLACED;
 #endif
+	session_window_info[i].flags |= NH_SESSION_PLACED;
     }
-    if (session_window_info[i].flags & NH_SESSION_PLACED) {
-	session_window_info[i].bounding.x = event->x - session_window_info[i].ox;
-	session_window_info[i].bounding.y = event->y - session_window_info[i].oy;
-	session_window_info[i].bounding.width = event->width;
-	session_window_info[i].bounding.height = event->height;
-    }
+    session_window_info[i].bounding.x = event->x - session_window_info[i].ox;
+    session_window_info[i].bounding.y = event->y - session_window_info[i].oy;
+    session_window_info[i].bounding.width = event->width;
+    session_window_info[i].bounding.height = event->height;
 #ifdef DEBUG_SESSION
     session_window_dump(stderr, i, "configure done");
 #endif
@@ -1044,8 +1030,6 @@ static gint
 main_window_delete(GtkWidget *widget, gpointer data)
 {
     exiting++;
-    if (in_player_selection)
-	gtk_main_quit();
     return TRUE;
 }
 
@@ -2054,10 +2038,8 @@ GTK_init_nhwindows(char ***capvp)
     set_option_mod_status("timed_delay", SET_IN_FILE);
 
     nh_option_cache_set_bool_addr("color", &copts.use_color);
-    nh_option_cache_set_bool_callback("color", nh_map_color_changed);
     nh_option_cache_set_bool_addr("hilite_pet", &copts.hilite_pet);
     copts.num_pad = nh_option_cache_get_bool("number_pad");
-    nh_option_cache_set_bool_callback("hilite_pet", nh_map_hilite_pet_changed);
 
     /* Init windows to nothing. */
     for (i = 0; i < MAXWIN; i++)
@@ -3518,7 +3500,7 @@ GTK_ext_player_selection(int *role, int *race, int *gend, int *align)
     *align = select_player_flags.align;
 
     in_player_selection = FALSE;
-    return exiting;
+    return FALSE;		/* User didn't quit */
 }
 
 static void
