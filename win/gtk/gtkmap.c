@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.13 2000-10-14 18:40:38 j_ali Exp $
+  $Id: gtkmap.c,v 1.14 2000-10-31 07:38:28 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -266,11 +266,12 @@ nh_set_map_visual(int mode)
 #ifdef RADAR
 	nh_radar_update();
 #endif
+	map_visual = mode;
+	strcpy(tileset, tileTab[map_visual].ident);
 	doredraw();
 
 	gtk_widget_show(map);
     }
-    map_visual = mode;
 }
 
 int
