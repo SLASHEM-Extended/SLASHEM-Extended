@@ -891,6 +891,7 @@ int tech_no;
 			    chance = rn2(20);
 		    	    if (!chance || (3 - chance) > AC_VALUE(find_mac(mtmp)))
 		    	    	break;
+			    setmangry(mtmp);
 		    	    You("catch %s in your acid trail!", mon_nam(mtmp));
 		    	    if (!resists_acid(mtmp)) {
 				int tmp = 1;

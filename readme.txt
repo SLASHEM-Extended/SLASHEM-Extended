@@ -359,6 +359,7 @@ ver 0.0.6E6 [?] [Released by ?]
 -Macintosh: added support for Meta key
 -fixed bug 562517: Can't wish for vampire blood.
 -fixed bug 561043: "<mon> is suddenly moving faster" mesg.
+-fixed bug 558228: Liquid leap should anger peacefulls.
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).
