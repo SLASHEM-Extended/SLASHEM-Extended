@@ -2207,6 +2207,8 @@ doeat()         /* generic "eat" command funtion (see cmd.c) */
 	    if (tmp == 3) {
 		/* inedible */
 		victual.piece = (struct obj *)0;
+		if (otmp->oeaten == mons[otmp->corpsenm].cnutrit)
+		    otmp->oeaten = 0;
 		/* ALI, conduct: didn't eat it after all */
 		u.uconduct.food--;
 		return 0;
