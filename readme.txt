@@ -94,6 +94,7 @@ ver 0.0.7E0 [?] [Released by ?]
 -fixed bug 230857: Wrong location given for death.
 -Removed test dungeon (A Short but Boring Road).
 -Finished implementation of potions of blood and changes to medical kits.
+-Merged DOS and UNIX source distributions.
 
 See history.txt for changes made in previous versions.
 
