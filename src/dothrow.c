@@ -829,7 +829,34 @@ int thrown;
 		setuwep(obj);
 /*            if (!fire_weapon) setuwep(obj);                
             else setuqwep(obj);*/
-	    } else if (u.dz < 0 && !Is_airlevel(&u.uz) &&
+		return;
+	    }
+#ifdef FIREARMS
+	    /* [ALI]
+	     * Grenades are armed but are then processed by toss_up/hitfloor
+	     * as normal.
+	     *
+	     * Bullets just disappear with no message.
+	     *
+	     * Rockets hit the ceiling/floor and explode.
+	     */
+	    else if (is_grenade(obj))
+		arm_bomb(obj, TRUE);
+	    else if (is_bullet(obj) && ammo_and_launcher(obj, launcher)) {
+		if (!Is_airlevel(&u.uz) && !Is_waterlevel(&u.uz) && !Underwater
+			&& (objects[obj->otyp].oc_dir & EXPLOSION)) {
+		    pline("%s hit%s the %s and explodes in a ball of fire!",
+			    Doname2(obj), (obj->quan == 1L) ? "s" : "",
+			    u.dz < 0 ? ceiling(u.ux, u.uy) : surface(u.ux, u.uy));
+		    explode(u.ux, u.uy, ZT_SPELL(ZT_FIRE), d(3, 8),
+			    WEAPON_CLASS);
+		}
+		check_shop_obj(obj, u.ux, u.uy, TRUE);
+		obfree(obj, (struct obj *)0);
+		return;
+	    }
+#endif
+	    if (u.dz < 0 && !Is_airlevel(&u.uz) &&
 		    !Underwater && !Is_waterlevel(&u.uz)) {
 		(void) toss_up(obj, rn2(5));
 	    } else {
