@@ -24,10 +24,6 @@
 #include <signal.h>
 
 
-/* -AJA- screenshots disabled by default, for security */
-#define ALLOW_SCREENSHOTS  0
-
-
 struct TextWindow *text_wins[MAXWIN] = { NULL, };
 static int textwin_num = 0;
 
@@ -822,9 +818,12 @@ int sdlgl_internal_key_handler(SDL_keysym *key, int repeat)
   
   if (key->sym == SDLK_F5 && !repeat)
   {
-#if (ALLOW_SCREENSHOTS)
-    sdlgl_make_screenshot("/tmp/shot_");
-#endif
+    /* Only allow screenshots by the game's administrator */
+    if (wizard)
+      sdlgl_make_screenshot("/tmp/shot_");
+
+    /* FIXME: do pline() or equiv */
+
     return 1;
   }
 
