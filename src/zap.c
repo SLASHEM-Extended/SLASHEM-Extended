@@ -573,6 +573,9 @@ coord *cc;
 		mtmp2->mfleetim = mtmp->mfleetim;
 		mtmp2->mlstmv = mtmp->mlstmv;
 		mtmp2->m_ap_type = mtmp->m_ap_type;
+#ifdef INVISIBLE_OBJECTS
+		mtmp2->minvis = obj->oinvis;
+#endif
 		/* set these ones explicitly */
 		mtmp2->mavenge = 0;
 		mtmp2->meating = 0;
@@ -597,6 +600,7 @@ coord *cc;
 		mtmp2->mstun = 0;
 		mtmp2->mconf = 0;
 		replmon(mtmp,mtmp2);
+		newsym(mtmp2->mx, mtmp2->my);	/* Might now be invisible */
 	}
 	return mtmp2;
 }
