@@ -106,6 +106,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed some theoretical bugs thrown up by valgrind
 -fixed bug 980258: Guidebook doesn't describe showdmg option accurately
 		   (Andy Ruse)
+-fixed bug 926202: Gnome thieves don't eat (Andy Ruse)
 
 See history.txt for changes made in previous versions.
 
