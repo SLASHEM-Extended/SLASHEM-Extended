@@ -2756,14 +2756,14 @@
           race Selects your race (for example, ``race:human'').  Default is
                random.  Cannot be set with the `O' command.
 
-          radar
-               Display a radar (overview)  map,  useful  when  using  large
-               tiles. Implemented only by the GTK port (default off).
-
           rest_on_space
                Make the space bar a synonym for the `.' (rest) command (de-
                fault off).
 
+          role
+               Pick  your type of character (ex. ``role:Samurai''); synonym
+               for ``character''.  See ``name'' for an alternate method  of
+               specifying your role.  Normally only the first letter of the
 
 
           SLASH'EM 0.0.7                                     March 20, 2003
@@ -2776,10 +2776,6 @@
 
 
 
-          role
-               Pick your type of character (ex. ``role:Samurai'');  synonym
-               for  ``character''.  See ``name'' for an alternate method of
-               specifying your role.  Normally only the first letter of the
                value  is  examined;  `r'  is  an  exception with ``Rogue'',
                ``Ranger'', and ``random'' values.
 
@@ -2830,6 +2826,10 @@
           showweight
                Show total weight in inventory on bottom line (default off).
 
+          silent
+               Suppress terminal beeps (default on).
+
+
 
 
           SLASH'EM 0.0.7                                     March 20, 2003
@@ -2841,9 +2841,6 @@
           SLASH'EM Guidebook                                             44
 
 
-
-          silent
-               Suppress terminal beeps (default on).
 
           sortpack
                Sort  the  pack  contents  by type when displaying inventory
@@ -2895,7 +2892,10 @@
                stdout (default off).  Setting this option makes  the  score
                list visible when a windowing version of SLASH'EM is started
                without a parent window, but it no longer leaves  the  score
-               list  around  after  game  end  on  a  terminal or emulating
+               list around after game end on a terminal or  emulating  win-
+               dow.
+
+
 
 
           SLASH'EM 0.0.7                                     March 20, 2003
@@ -2907,8 +2907,6 @@
           SLASH'EM Guidebook                                             45
 
 
-
-               window.
 
           traps
                Set the  graphics  symbols  for  displaying  traps  (default
@@ -2961,6 +2959,8 @@
                string  of characters excluding the comma. It must be speci-
                fied.
 
+          file The  name of the file which contains the tile set. This must
+               be specified.
 
 
 
@@ -2973,9 +2973,6 @@
           SLASH'EM Guidebook                                             46
 
 
-
-          file The name of the file which contains the tile set. This  must
-               be specified.
 
           transparent
                Marks  a  tile  set  as  being  transparent  (as  opposed to
@@ -3027,7 +3024,10 @@
                sters, objects, and dungeon features
 
           eight_bit_tty
-               SLASH'EM  should  pass  eight-bit  character   values   (for
+               SLASH'EM  should  pass eight-bit character values (for exam-
+               ple, specified with the traps option)  straight  through  to
+               your terminal (default off).
+
 
 
           SLASH'EM 0.0.7                                     March 20, 2003
@@ -3039,9 +3039,6 @@
           SLASH'EM Guidebook                                             47
 
 
-
-               example,  specified  with the traps option) straight through
-               to your terminal (default off).
 
           font_map
                SLASH'EM should use a font by the chosen name  for  the  map
@@ -3094,6 +3091,9 @@
           mouse_support
                Allow use of the mouse for input and travel.
 
+          player_selection
+               SLASH'EM should pop up dialog  boxes,  or  use  prompts  for
+               character selection.
 
 
           SLASH'EM 0.0.7                                     March 20, 2003
@@ -3105,10 +3105,6 @@
           SLASH'EM Guidebook                                             48
 
 
-
-          player_selection
-               SLASH'EM  should  pop  up  dialog  boxes, or use prompts for
-               character selection.
 
           popup_dialog
                SLASH'EM should pop up dialog boxes for input.
@@ -3158,6 +3154,10 @@
                SLASH'EM should display windows  with  the  specified  fore-
                ground/background colors if it can.
 
+          9.7.  Platform-specific Customization options
+
+               Here are explanations of options that are used  by  specific
+          platforms or ports to customize and change the port behaviour.
 
 
 
@@ -3171,11 +3171,6 @@
           SLASH'EM Guidebook                                             49
 
 
-
-          9.7.  Platform-specific Customization options
-
-               Here  are  explanations of options that are used by specific
-          platforms or ports to customize and change the port behaviour.
 
           altmeta
                (default on, AMIGA SLASH'EM only).
@@ -3227,6 +3222,11 @@
                this  does  not  correct the problem, try !color.  Cannot be
                set with the `O' command.
 
+          9.8.  Configuring User Sounds
+
+               Some  platforms allow you to define sound files to be played
+          when a message that matches a user-defined pattern  is  delivered
+
 
           SLASH'EM 0.0.7                                     March 20, 2003
 
@@ -3238,10 +3238,6 @@
 
 
 
-          9.8.  Configuring User Sounds
-
-               Some platforms allow you to define sound files to be  played
-          when  a  message that matches a user-defined pattern is delivered
           to the message window.  At this time the Qt port and the win32tty
           and win32gui ports support the use of user sounds.
 
@@ -3292,6 +3288,10 @@
           for  making  maps of the dungeons. This makes the MS-DOS versions
           of SLASH'EM completely accessible to the  blind  who  use  speech
           and/or  Braille access technologies.  Players will require a good
+          working  knowledge  of their screen-reader's review features, and
+          will have to know how to  navigate  horizontally  and  vertically
+          character  by character. They will also find the search capabili-
+          ties of their screen-readers to be quite valuable. Be certain  to
 
 
           SLASH'EM 0.0.7                                     March 20, 2003
@@ -3304,10 +3304,6 @@
 
 
 
-          working knowledge of their screen-reader's review  features,  and
-          will  have  to  know  how to navigate horizontally and vertically
-          character by character. They will also find the search  capabili-
-          ties  of their screen-readers to be quite valuable. Be certain to
           examine this Guidebook before playing so you have  an  idea  what
           the  screen layout is like. You'll also need to be able to locate
           the PC cursor. It is always  where  your  character  is  located.
@@ -3358,6 +3354,10 @@
           proper  place  under your current name.  How many scores are kept
           can also be set up when SLASH'EM is compiled.
 
+               Your  score  is  chiefly  based upon how much experience you
+          gained, how much loot you accumulated, how deep you explored, and
+          how the game ended.  If you quit the game, you escape with all of
+          your gold intact.  If, however, you get killed in  the  Mazes  of
 
 
           SLASH'EM 0.0.7                                     March 20, 2003
@@ -3370,10 +3370,6 @@
 
 
 
-               Your score is chiefly based upon  how  much  experience  you
-          gained, how much loot you accumulated, how deep you explored, and
-          how the game ended.  If you quit the game, you escape with all of
-          your  gold  intact.   If, however, you get killed in the Mazes of
           Menace, the guild will only hear about 90% of your gold when your
           corpse  is  discovered  (adventurers  have  been known to collect
           finder's fees).  So, consider whether you want to take  one  last
@@ -3425,6 +3421,10 @@
           in  version 1.03g, and went on to produce at least four more ver-
           sions (3.0, 3.2, 3.51, and 3.6).
 
+               R.  Black  ported  PC  HACK  3.51 to Lattice C and the Atari
+          520/1040ST, producing ST Hack 1.03.
+
+
 
           SLASH'EM 0.0.7                                     March 20, 2003
 
@@ -3435,9 +3435,6 @@
           SLASH'EM Guidebook                                             53
 
 
-
-               R. Black ported PC HACK 3.51 to  Lattice  C  and  the  Atari
-          520/1040ST, producing ST Hack 1.03.
 
                Mike Stephenson merged these various versions back together,
           incorporating many of the added features,  and  produced  NetHack
@@ -3491,6 +3488,9 @@
           3.1 for the Macintosh, porting it for MPW.  Building on their de-
           velopment, Barton House added a Think C port.
 
+               Timo Hakulinen ported NetHack 3.1 to OS/2.  Eric Smith port-
+          ed NetHack 3.1 to the Atari.  Pat Rankin, with help  from  Joshua
+
 
           SLASH'EM 0.0.7                                     March 20, 2003
 
@@ -3502,8 +3502,6 @@
 
 
 
-               Timo Hakulinen ported NetHack 3.1 to OS/2.  Eric Smith port-
-          ed  NetHack  3.1 to the Atari.  Pat Rankin, with help from Joshua
           Delahunty, was responsible for the VMS version  of  NetHack  3.1.
           Michael Allison ported NetHack 3.1 to Windows NT.
 
@@ -3555,7 +3553,9 @@
           chronize  it  with  the  3.2 source.  The new SLASH 4.1.2 was re-
           leased as far back as November 1996 went through at least  4  ed-
           itlevels  (E5,  E6,  E7)  with  the latest version being 4.1.2E8,
-          synchronized  with  Nethack  3.2.2  and  the  Blackmarket  option
+          synchronized with Nethack 3.2.2 and the Blackmarket option avail-
+          able,  released in June 1997.
+
 
 
           SLASH'EM 0.0.7                                     March 20, 2003
@@ -3567,8 +3567,6 @@
           SLASH'EM Guidebook                                             55
 
 
-
-          available,  released in June 1997.
 
                Nathan  La  began  the arduous task of drawing tiles for the
           SLASH monsters.
@@ -3622,6 +3620,8 @@
           made their first appearance in the game  alongside  the  familiar
           human  race.  Monk and Ranger roles joined Archeologists, Barbar-
           ians,  Cavemen,  Healers,  Knights,  Priests,  Rogues,   Samurai,
+          Tourists, Valkyries and of course,  Wizards.   It  was  also  the
+          first  version  to  allow  you to ride a steed, and was the first
 
 
           SLASH'EM 0.0.7                                     March 20, 2003
@@ -3634,8 +3634,6 @@
 
 
 
-          Tourists,  Valkyries  and  of  course,  Wizards.  It was also the
-          first version to allow you to ride a steed,  and  was  the  first
           version  to  have  a  publicly available web-site listing all the
           bugs that had been discovered.  Despite that  constantly  growing
           bug  list,  3.3 proved stable enough to last for more than a year
@@ -3688,6 +3686,8 @@
                Paul Hurtley maintains the MAC port of SLASH'EM.
 
                   - - - - - - - - - -
+
+
 
 
           SLASH'EM 0.0.7                                     March 20, 2003

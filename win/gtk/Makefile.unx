@@ -1,4 +1,4 @@
-# $Id: Makefile.unx,v 1.1 2003-05-03 11:12:27 j_ali Exp $
+# $Id: Makefile.unx,v 1.2 2003-05-19 12:14:37 j_ali Exp $
 # Copyright (c) Slash'EM Development Team 2002-2003
 # NetHack may be freely redistributed.  See license for details.
 #
@@ -46,10 +46,10 @@ all:	gtkhack
 
 CSRC = gtkhack.c gtk.c gtkgetlin.c gtkstatus.c gtkmenu.c gtkyn.c gtkextcmd.c \
 	gtkmap.c gtkmessage.c gtkmisc.c gtktile.c xshmmap.c gtkext.c \
-	gtkhackrc.c panic.c
+	gtkhackrc.c gtkprefs.c panic.c
 OBJS = gtkhack.o gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
 	gtkmap.o gtkmessage.o gtkmisc.o gtktile.o xshmmap.o gtkext.o \
-	gtkhackrc.o panic.o
+	gtkhackrc.o gtkprefs.o panic.o
 
 gtkhack:	$(OBJS) $(NHPROXYLIB)/nhproxy.a
 	$(CC) `$(GTKLIBS)` $(LFLAGS) -o $@ $(OBJS) $(NHPROXYLIB)/nhproxy.a $(LIBS)
@@ -108,6 +108,7 @@ gtktile.o: gtktile.c ../../include/winGTK.h ../../include/dlb.h ../../include/pr
 xshmmap.o: xshmmap.c ../../include/winGTK.h
 gtkext.o: gtkext.c ../../include/winGTK.h ../../include/prxyclnt.h
 gtkhackrc.o: gtkhackrc.c ../../include/winGTK.h
+gtkprefs.o: gtkprefs.c ../../include/winGTK.h ../../include/patchlevel.h
 panic.o: panic.c $(CONFIG_H)
 # DEPENDENCIES MUST END AT END OF FILE
 # IF YOU PUT STUFF HERE IT WILL GO AWAY

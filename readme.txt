@@ -117,6 +117,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -fixed bug 609748: Elfrist should be PM_ORC.
 -fixed bug 603179: Holy wafers in und.slayer starting inv.
 -Proxy: Added window interface capabilities.
+-GTK: Added preferences dialog.
 
 See history.txt for changes made in previous versions.
 

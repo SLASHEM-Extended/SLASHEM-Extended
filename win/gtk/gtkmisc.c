@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmisc.c,v 1.8 2003-05-17 10:33:25 j_ali Exp $
+  $Id: gtkmisc.c,v 1.9 2003-05-19 12:14:38 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -16,14 +16,6 @@
 #include "proxycb.h"
 #endif
 
-/*
- * Gtk+ font selector sometimes hangs in 1.2.x
- * (not that 1.3.x is much better; hopefully 2.0 will be stable)
- */
-#if GTK_CHECK_VERSION(1,3,4) && defined(DEBUG)
-#define NH_MAP_FONT_SELECTOR
-#endif
-
 static gboolean	 option_lock;
 static int	 keysym;
 static GtkWidget *entry_url;
@@ -34,9 +26,6 @@ static GtkWidget *entry_fruit;
 static GtkWidget *entry_proxy, *entry_proxy_port;
 static GtkWidget *radio_k, *radio_d, *radio_r;
 static GtkWidget *radio_menu_t, *radio_menu_p, *radio_menu_c, *radio_menu_f;
-#ifdef NH_MAP_FONT_SELECTOR
-static GtkWidget *font_selection_map;
-#endif
 
 static struct GTK_Option {
     char      *opt_name;
@@ -52,9 +41,6 @@ static struct GTK_Option {
     {"ask before hitting peaceful monsters", "Yes", "No", "confirm"},
 #ifdef TEXTCOLOR
     {"display pets in a red square", "Yes", "No", "hilite_pet"},
-#endif
-#ifdef RADAR
-    {"display radar", "Yes", "No", "radar"},
 #endif
     {NULL,},
     {"display experience points", "Yes", "No", "showexp"},
@@ -533,10 +519,6 @@ nh_option_get(void)
 {
     int i;
     struct GTK_Option *p;
-#ifdef NH_MAP_FONT_SELECTOR
-    GdkFont *font;
-    gchar *font_name;
-#endif
 
     if (!option_lock) {
 	nh_option_cache_set("name",
@@ -574,18 +556,6 @@ nh_option_get(void)
 		nh_option_cache_set_bool(p->option, FALSE);
 	}
     }
-#ifdef NH_MAP_FONT_SELECTOR
-    font = gtk_font_selection_get_font(GTK_FONT_SELECTION(font_selection_map));
-    if (font) {
-	font_name = gtk_font_selection_get_font_name(
-	  GTK_FONT_SELECTION(font_selection_map));
-	nh_set_map_font(font, font_name);
-#ifdef DEBUG
-	fprintf(stderr,"Map font set to \"%s\"\n", font_name);
-#endif
-	g_free(font_name);
-    }
-#endif
     for(i = 0; i <= no_tileTab; i++)
 	if (tileTab[i].data &&
 	  gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(tileTab[i].data))){
@@ -972,39 +942,6 @@ nh_option_visual_new()
     return frame;
 }
 
-#ifdef NH_MAP_FONT_SELECTOR
-static GtkWidget *
-nh_option_font_new()
-{
-    GtkWidget *frame;
-    GtkWidget *vbox;
-    gchar *font_name;
-
-    frame = gtk_frame_new("Map font");
-
-    vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), frame, "");
-
-    font_selection_map = nh_gtk_new_and_pack(gtk_font_selection_new(), vbox, "",
-      FALSE, FALSE, NH_PAD);
-
-    font_name = nh_get_map_font();
-    if (font_name) {
-#ifdef DEBUG
-	fprintf(stderr,"Map font currently \"%s\"\n", font_name);
-#endif
-	(void)gtk_font_selection_set_font_name(
-	  GTK_FONT_SELECTION(font_selection_map), font_name);
-	g_free(font_name);
-    }
-#ifdef DEBUG
-    else
-	fprintf(stderr,"Map font currently unset\n");
-#endif
-
-    return frame;
-}
-#endif
-
 static GtkWidget *
 nh_option_display_new()
 {
@@ -1017,14 +954,9 @@ nh_option_display_new()
 
     nh_gtk_new_and_pack(nh_option_visual_new(), vbox, "", FALSE, FALSE, NH_PAD);
 
-#ifdef NH_MAP_FONT_SELECTOR
-    nh_gtk_new_and_pack(nh_option_font_new(), vbox, "", FALSE, FALSE, NH_PAD);
-#endif
-
     return vbox;
 
 }
-
 
 void
 nh_option_new()

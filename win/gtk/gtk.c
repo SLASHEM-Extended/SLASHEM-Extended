@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.31 2003-05-17 10:33:24 j_ali Exp $
+  $Id: gtk.c,v 1.32 2003-05-19 12:14:37 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -34,6 +34,7 @@ static void move_command(GtkWidget *w, gpointer data);
 static void fight_command(GtkWidget *w, gpointer data);
 static void ext_command(GtkWidget *w, gpointer data);
 static void game_option(GtkWidget *w, gpointer data);
+static void game_preferences(GtkWidget *w, gpointer data);
 static void game_quit(GtkWidget *w, gpointer data);
 static void game_topten(GtkWidget *w, gpointer data);
 static void nh_menu_sensitive(char *menu, boolean f);
@@ -81,7 +82,7 @@ static winid rawprint_win = WIN_ERR;
 GtkAccelGroup *accel_group=NULL;
 
 GtkWidget *main_window, *main_vbox;
-#ifdef RADAR
+#ifdef WINGTK_RADAR
 static GtkWidget *main_radar;
 #endif
 
@@ -148,6 +149,7 @@ static GtkItemFactoryEntry mainmenu_items[] = {
     {"/Game/Gsep1",		NULL,		NULL,		0,	"<Separator>"},
     {"/Game/Save",		"<shift>S",	key_command,	'S',	NULL},
     {"/Game/Option",		"<shift>O",	game_option,	'O',    NULL},
+    {"/Game/Preferences",	NULL,		game_preferences, 0,    NULL},
     {"/Game/Score",		NULL,		game_topten,	0,	NULL},
     {"/Game/Gsep2",		NULL,		NULL,		0,	"<Separator>"},
     {"/Game/Quit",		NULL,		game_quit,	0,	NULL},
@@ -818,7 +820,7 @@ main_hook(int *watch)
     nh_map_check_visibility();
     if (display_inventory_needed)
 	GTK_display_inventory();
-#ifdef RADAR
+#ifdef WINGTK_RADAR
     if (!in_topten)
 	nh_radar_update();
 #endif
@@ -833,6 +835,18 @@ game_option(GtkWidget *widget, gpointer data)
     nh_option_new();
     if (display_inventory_needed)
 	GTK_display_inventory();
+}
+
+static void
+game_preferences(GtkWidget *widget, gpointer data)
+{
+    static GtkWidget *GTK_prefs = NULL;
+    if (GTK_prefs)
+	gtk_window_present(GTK_WINDOW(GTK_prefs));
+    else {
+	GTK_prefs = GTK_preferences_new();
+	gtk_widget_destroyed(GTK_prefs, &GTK_prefs);
+    }
 }
 
 static void
@@ -2059,7 +2073,7 @@ GTK_ext_init_nhwindows(int *argc, char **argv, char ***capvp)
     (void) nh_gtk_new_and_pack(nh_message_new(), main_hbox, "", TRUE, TRUE, 0);
     (void) nh_gtk_new_and_pack(nh_status_new(), main_hbox, "", FALSE, FALSE, 0);
 
-#ifdef RADAR
+#ifdef WINGTK_RADAR
     main_radar = nh_radar_new();
     nh_gtk_focus_set_slave_for(GTK_WINDOW(main_radar), GTK_WINDOW(main_window));
 #endif
@@ -2124,7 +2138,7 @@ GTK_exit_nhwindows(const char *str)
     nh_map_destroy();
     nh_status_destroy();
 
-#ifdef RADAR
+#ifdef WINGTK_RADAR
     nh_radar_destroy();
 #endif
     nh_message_destroy();
@@ -2408,7 +2422,7 @@ GTK_get_nh_event()
 int
 GTK_nhgetch(void)
 {
-#ifdef RADAR
+#ifdef WINGTK_RADAR
     nh_radar_update();
 #endif
 
@@ -2422,7 +2436,7 @@ GTK_nh_poskey(int *x, int *y, int *mod)
 {
     extern int cursm;
 
-#ifdef RADAR
+#ifdef WINGTK_RADAR
     nh_radar_update();
 #endif
 

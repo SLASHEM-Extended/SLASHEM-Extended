@@ -206,10 +206,11 @@ WINGTKSRC = ../win/gtk/gtk.c ../win/gtk/gtkgetlin.c \
 	../win/gtk/gtkstatus.c ../win/gtk/gtkmenu.c ../win/gtk/gtkyn.c \
 	../win/gtk/gtkextcmd.c ../win/gtk/gtkmap.c ../win/gtk/gtkmessage.c \
 	../win/gtk/gtkmisc.c ../win/gtk/gtktile.c ../win/gtk/xshmmap.c \
-	../win/gtk/gtkhackrc.c ../win/gtk/gtkext.c ../win/gtk/gtkint.c
+	../win/gtk/gtkhackrc.c ../win/gtk/gtkprefs.c ../win/gtk/gtkext.c \
+	../win/gtk/gtkint.c
 WINGTKOBJ = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
  	gtkmap.o gtktile.o gtkmessage.o gtkmisc.o xshmmap.o gtkhackrc.o \
-	gtkext.o gtkint.o nhwin.a
+	gtkprefs.o gtkext.o gtkint.o nhwin.a
 #
 # Files for a Gnome port
 #
@@ -792,6 +793,9 @@ xshmmap.o: ../win/gtk/xshmmap.c ../include/winGTK.h $(HACK_H) \
 gtkhackrc.o: ../win/gtk/gtkhackrc.c ../include/winGTK.h $(HACK_H) \
 		../include/nhxdr.h ../include/proxycom.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkhackrc.c
+gtkprefs.o: ../win/gtk/gtkprefs.c ../include/winGTK.h $(HACK_H) \
+		../include/nhxdr.h ../include/proxycom.h ../include/patchlevel.h
+	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkprefs.c
 gtkext.o: ../win/gtk/gtkext.c ../include/winGTK.h $(HACK_H) ../include/nhxdr.h \
 		../include/proxycom.h ../include/prxyclnt.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkext.c

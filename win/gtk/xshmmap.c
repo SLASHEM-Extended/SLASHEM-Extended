@@ -1,5 +1,5 @@
 /*
-  $Id: xshmmap.c,v 1.7 2003-05-03 11:12:28 j_ali Exp $
+  $Id: xshmmap.c,v 1.8 2003-05-19 12:14:38 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -350,6 +350,7 @@ scroll_event(GtkAdjustment *adj, gpointer data)
 static int
 xshm_map_size(int mode, int width, int height)
 {
+    GdkGC *gc;
     GdkVisual *visual;
     GdkRectangle rect;
     int i, j;
@@ -409,11 +410,13 @@ xshm_map_size(int mode, int width, int height)
 	 */
 	xshm_map_pixbuf = gdk_pixbuf_new(GDK_COLORSPACE_RGB, TRUE,
 	  8, width, height);
+	memset(gdk_pixbuf_get_pixels(xshm_map_pixbuf), 0,
+	  height * gdk_pixbuf_get_rowstride(xshm_map_pixbuf));
 	xshm.pixmap = gdk_pixmap_new(xshm.area->window, width, height, -1);
 	/* Pixmap needs updating; mark it as such */
 	rect.x = rect.y = 0;
-	rect.width = width;
-	rect.height = height;
+	rect.width = max(width, xshm.map_width);
+	rect.height = max(height, xshm.map_height);
 	xshm.dirty = gdk_region_rectangle(&rect);
     } else if (mode == XSHM_MAP_IMAGE) {
 #ifdef DEBUG
@@ -427,11 +430,12 @@ xshm_map_size(int mode, int width, int height)
 	    xshm.pixmap = gdk_pixmap_new(xshm.area->window, width, height, -1);
 	} else
 	    xshm.pixmap = NULL;
+	memset(xshm_map_image->mem, 0, height * xshm_map_image->bpl);
 	if (xshm.pixmap) {
 	    /* Pixmap also needs updating; mark it as such */
 	    rect.x = rect.y = 0;
-	    rect.width = width;
-	    rect.height = height;
+	    rect.width = max(width, xshm.map_width);
+	    rect.height = max(height, xshm.map_height);
 	    xshm.dirty = gdk_region_rectangle(&rect);
 	} else
 	    xshm.dirty = NULL;
@@ -441,7 +445,30 @@ xshm_map_size(int mode, int width, int height)
 #endif
 	xshm.pixmap = gdk_pixmap_new(xshm.area->window, width, height, -1);
 	xshm.gc = gdk_gc_new(xshm.pixmap);
+	gdk_draw_rectangle(xshm.pixmap, xshm.gc, TRUE, 0, 0, width, height);
 	xshm_map_pixmap = xshm.pixmap;
+	/* Area outside new map needs updating; mark it as such */
+	if (width < xshm.map_width)
+	{
+	    rect.x = width;
+	    rect.y = 0;
+	    rect.width = xshm.map_width - width;
+	    rect.height = xshm.map_height;
+	    xshm.dirty = gdk_region_rectangle(&rect);
+	} else
+	    xshm.dirty = NULL;
+	if (height < xshm.map_height)
+	{
+	    rect.x = 0;
+	    rect.y = height;
+	    rect.width = xshm.map_width;
+	    rect.height = xshm.map_height - height;
+	    xshm.dirty = gdk_region_rectangle(&rect);
+	    if (xshm.dirty)
+		gdk_region_union_with_rect(xshm.dirty, &rect);
+	    else
+		xshm.dirty = gdk_region_rectangle(&rect);
+	}
     }
     xshm.map_width = width;
     xshm.map_height = height;

@@ -176,11 +176,7 @@ static struct Bool_Opt
 	{"prayconfirm", &flags.prayconfirm, TRUE, SET_IN_GAME},
 	{"preload_tiles", &iflags.wc_preload_tiles, TRUE, DISP_IN_GAME},	/*WC*/
 	{"pushweapon", &flags.pushweapon, FALSE, SET_IN_GAME},
-#ifdef RADAR
-	{"radar", &flags.radar, FALSE, SET_IN_GAME},
-#else
-	{"radar", (boolean *)0, FALSE, SET_IN_FILE},
-#endif
+	{"radar", (boolean *)0, FALSE, SET_IN_FILE},	/* OBSOLETE */
 #if defined(MICRO) && !defined(AMIGA)
 	{"rawio", &iflags.rawio, FALSE, DISP_IN_GAME},
 #else

@@ -1,4 +1,4 @@
-.\" $Revision: 1.12 $ $Date: 2003-03-22 09:04:50 $
+.\" $Revision: 1.13 $ $Date: 2003-05-19 12:14:35 $
 .ds h0 "SLASH'EM Guidebook
 .ds h1
 .ds h2 %
@@ -2101,9 +2101,6 @@ something pushes the old item into your alternate weapon slot (default off).
 .lp race
 Selects your race (for example, ``race:human'').  Default is random.
 Cannot be set with the `O' command.
-.lp radar
-Display a radar (overview) map, useful when using large tiles. Implemented
-only by the GTK port (default off).
 .lp rest_on_space
 Make the space bar a synonym for the `.' (rest) command (default off).
 .lp "role    "

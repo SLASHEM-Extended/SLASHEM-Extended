@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.37 2003-05-17 10:33:24 j_ali Exp $
+  $Id: winGTK.h,v 1.38 2003-05-19 12:14:36 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -41,6 +41,7 @@
 #include "proxycom.h"
 
 #define WINGTK_MENU_IMAGES	/* Pretty images (tiles) in first column */
+#define WINGTK_RADAR		/* Radar map window */
 
 #define NHW_NONE 0		/* Unallocated window type.  Must be	*/
 				/* different from any other NHW_* type. */
@@ -161,10 +162,12 @@ extern void nh_map_pos(int *, int *, int *);
 extern void nh_map_click(int);
 extern void nh_map_flush(void);
 extern int nh_set_map_visual(int);
-extern int nh_set_map_font(GdkFont *font, gchar *name);
+extern int nh_set_map_font(gchar *name);
 extern gchar *nh_get_map_font(void);
 extern int nh_get_map_visual(void);
 extern int nh_check_map_visual(int);
+
+extern GtkWidget *GTK_preferences_new(void);
 
 extern void main_hook(int *watch);
 extern void quit_hook(void);
@@ -174,6 +177,8 @@ extern gint GTK_default_focus_in(GtkWidget *widget, GdkEventFocus *event,
   gpointer data);
 
 extern GtkWidget *nh_radar_new(void);
+extern boolean nh_radar_get_use(void);
+extern void nh_radar_set_use(boolean use);
 extern void nh_radar_update(void);
 
 extern GtkWidget *nh_message_new(void);

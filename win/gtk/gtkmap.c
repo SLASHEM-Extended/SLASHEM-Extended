@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.25 2003-05-03 11:12:27 j_ali Exp $
+  $Id: gtkmap.c,v 1.26 2003-05-19 12:14:38 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -48,8 +48,8 @@ static void nh_map_cliparound(int x, int y, gboolean exact);
 static void nh_map_redraw();
 static int configure_map(GtkWidget *w, gpointer data);
 
-#ifdef	RADAR
-static int radar_is_popuped;
+#ifdef	WINGTK_RADAR
+static int use_radar = TRUE;
 static int radar_is_created;
 
 static GtkWidget *radar;
@@ -84,7 +84,7 @@ extern GtkAccelGroup *accel_group;
 #define RADAR_BEAM	CLR_YELLOW
 
 static void		nh_radar_configure();
-#endif	/* RADAR */
+#endif	/* WINGTK_RADAR */
 
 static GdkGC *map_gc;
 
@@ -127,7 +127,7 @@ int map_visual = -1;
 extern int tiles_per_row;
 extern int tiles_per_col;
 
-#ifdef RADAR
+#ifdef WINGTK_RADAR
 #define NH_RADAR_UNIT	4
 #define NH_RADAR_WIDTH	(no_cols * NH_RADAR_UNIT)
 #define NH_RADAR_HEIGHT	(no_rows * NH_RADAR_UNIT)
@@ -271,7 +271,7 @@ out:
 	if (GTK_WIDGET_REALIZED(map))
 	    configure_map(map, 0);
     }
-#ifdef RADAR
+#ifdef WINGTK_RADAR
     nh_radar_configure();
 #endif
     return retval;
@@ -293,11 +293,19 @@ nh_conf_map_font(void)
     struct proxycb_get_glyph_mapping_res *glyph_map;
 #endif
     if (!map_font) {
-	g_return_val_if_fail(map->style != NULL, 1);
-	map_font = gtk_style_get_font(map->style);
-	g_return_val_if_fail(map_font != NULL, 1);
-	gdk_font_ref(map_font);
-	map_font_name = pango_font_description_to_string(map->style->font_desc);
+	if (map_font_name) {
+	    PangoFontDescription *desc;
+	    desc = pango_font_description_from_string(map_font_name);
+	    map_font = gdk_font_from_description(desc);
+	    pango_font_description_free(desc);
+	} else {
+	    g_return_val_if_fail(map->style != NULL, 1);
+	    map_font = gtk_style_get_font(map->style);
+	    g_return_val_if_fail(map_font != NULL, 1);
+	    gdk_font_ref(map_font);
+	    map_font_name =
+	      pango_font_description_to_string(map->style->font_desc);
+	}
     }
 
     /*
@@ -542,7 +550,7 @@ switch_mode:
 	if (GTK_WIDGET_REALIZED(map))
 	    configure_map(map, 0);
 	nh_map_check_visibility();
-#ifdef RADAR
+#ifdef WINGTK_RADAR
 	nh_radar_update();
 #endif
 	nh_option_cache_set("tileset", tileTab[map_visual].ident);
@@ -571,19 +579,27 @@ nh_check_map_visual(int mode)
 }
 
 int
-nh_set_map_font(GdkFont *font, gchar *name)
+nh_set_map_font(gchar *name)
 {
-    g_return_if_fail(font != NULL);
-    if (font == map_font)
-	return 0;
-    if (map_font)
-	gdk_font_unref(map_font);
-    if (map_font_name)
-	g_free(map_font_name);
-    map_font = font;
+    PangoFontDescription *desc;
+    g_return_if_fail(name != NULL);
+    if (map_font_name) {
+	if (!strcmp(name, map_font_name))
+	    return 0;
+	else
+	    g_free(map_font_name);
+    }
     map_font_name = g_strdup(name);
-    gdk_font_ref(map_font);
-    configure_map(map, 0);
+    if (map_font) {
+	gdk_font_unref(map_font);
+	desc = pango_font_description_from_string(name);
+	map_font = gdk_font_from_description(desc);
+	pango_font_description_free(desc);
+	if (map_visual >= 0) {
+	    configure_map(map, 0);
+	    nh_map_redraw();
+	}
+    }
     return 0;
 }
 
@@ -598,7 +614,7 @@ nh_get_map_font(void)
 	return NULL;
 }
 
-#ifdef RADAR
+#ifdef WINGTK_RADAR
 static gint
 radar_expose_event(GtkWidget *widget, GdkEventExpose *event)
 {
@@ -629,6 +645,11 @@ radar_configure_event(GtkWidget *widget, GdkEventConfigure *event,
 
     radar_pixmap2 = gdk_pixmap_new(widget->window,
       event->width, event->height, -1);
+    gc = gdk_gc_new(radar_pixmap2);
+    gdk_gc_set_foreground(gc, &nh_color[CLR_BLACK]);
+    gdk_draw_rectangle(radar_pixmap2, gc, TRUE, 0, 0, event->width,
+      event->height);
+    gdk_gc_unref(gc);
     pixmap = gdk_pixmap_new(widget->window, event->width, event->height, -1);
     gc = gdk_gc_new(pixmap);
     gdk_gc_set_foreground(gc, &nh_color[CLR_BLACK]);
@@ -651,15 +672,11 @@ radar_configure_event(GtkWidget *widget, GdkEventConfigure *event,
 static gint
 radar_destroy_event(GtkWidget *widget, gpointer data)
 {
-
-    radar_is_popuped = 0;
-    gtk_widget_hide_all(radar);
-    nh_option_cache_set_bool("radar", FALSE);
-    nh_option_cache_sync();
+    nh_radar_set_use(FALSE);
 
     return TRUE;
 }
-#endif	/* RADAR */
+#endif	/* WINGTK_RADAR */
 
 static gint
 map_button_event(void *map, GdkEventButton *event, gpointer data)
@@ -845,7 +862,7 @@ nh_map_new(GtkWidget *w)
     return map;
 }
 
-#ifdef RADAR
+#ifdef WINGTK_RADAR
 
 /*
  * create radar
@@ -888,6 +905,8 @@ nh_radar_new()
     gtk_signal_connect(GTK_OBJECT(radar), "delete_event",
       GTK_SIGNAL_FUNC(radar_destroy_event), 0);
 
+    nh_radar_set_use(use_radar);
+
     return radar;
 }
 
@@ -909,11 +928,21 @@ nh_radar_configure()
 }
 
 void
-nh_print_radar(int x, int y, int glyph)
+nh_print_radar(int x, int y, struct tilemap *tmap)
 {
+    int k, glyph;
     int c;
-    c = CLR_BLACK;
+    if (!radar_pixmap)
+	return;
 
+    glyph = cmap_to_glyph(S_stone);
+    for(k = 0; k < no_layers; k++)
+	if (tmap->glyphs[k] != NO_GLYPH) {
+	    glyph = tmap->glyphs[k];
+	    break;
+	}
+
+    c = CLR_BLACK;
     if (glyph < PM_ARCHEOLOGIST)
 	c = RADAR_MONSTER;
     else if (glyph_is_monster(glyph))
@@ -960,7 +989,7 @@ nh_print_radar(int x, int y, int glyph)
     gdk_draw_rectangle(radar_pixmap, map_color_gc[c], TRUE, 
       x * NH_RADAR_UNIT, y * NH_RADAR_UNIT, NH_RADAR_UNIT, NH_RADAR_UNIT);
 }
-#endif	/* RADAR */
+#endif	/* WINGTK_RADAR */
 
 #ifndef GTK_PROXY
 #ifdef TEXTCOLOR
@@ -1169,15 +1198,8 @@ nh_map_print_glyph_simple_tile(XCHAR_P x, XCHAR_P y, struct tilemap *tmap)
 static void
 nh_map_print_glyph(XCHAR_P x, XCHAR_P y, struct tilemap *tmap)
 {
-#ifdef RADAR
-    int k, glyph;
-    glyph = cmap_to_glyph(S_stone);
-    for(k = 0; k < no_layers; k++)
-	if (tmap->glyphs[k] != NO_GLYPH) {
-	    glyph = tmap->glyphs[k];
-	    break;
-	}
-    nh_print_radar(x, y, glyph);
+#ifdef WINGTK_RADAR
+    nh_print_radar(x, y, tmap);
 #endif
     
     if (map_visual == 0)
@@ -1238,26 +1260,44 @@ GTK_curs(winid id, int x, int y)
     }
 }
 
-#ifdef RADAR
+#ifdef WINGTK_RADAR
+static void
+nh_radar_redraw()
+{
+    int i, j;
+    for(j = 0; j < no_rows; j++)
+	for(i = 0; i < no_cols; i++)
+	    nh_print_radar(i, j, GTKMAP(j, i));
+    nh_radar_update();
+}
+
+boolean nh_radar_get_use(void)
+{
+    return use_radar;
+}
+
+void nh_radar_set_use(boolean use)
+{
+    int old = use_radar;
+    use_radar = use;
+    if (radar_is_created) {
+	if (!use)
+	    gtk_widget_hide(radar);
+	else {
+	    gtk_window_present(GTK_WINDOW(radar));
+	    if (!old)
+		nh_radar_redraw();
+	}
+    }
+}
+
 void
 nh_radar_update()
 {
     GdkRectangle update_rect;
     GtkAdjustment *hadj, *vadj;
-    boolean use_radar = nh_option_cache_get_bool("radar");
 
-    if (use_radar && !radar_is_popuped) {
-	if (radar_is_created == 0)
-	    nh_radar_new();
-
-	gtk_widget_show_all(radar);
-	radar_is_popuped= 1;
-    } else if (!use_radar && radar_is_popuped) {
-	gtk_widget_hide_all(radar);
-	radar_is_popuped= 0;
-    }
-
-    if (radar_is_popuped && map && map_gc) {
+    if (use_radar && radar_pixmap2 && map && map_gc) {
 	hadj = xshm_map_get_hadjustment();
 	vadj = xshm_map_get_vadjustment();
 
@@ -1279,7 +1319,7 @@ nh_radar_update()
 	gdk_window_raise(radar->window);
     }
 }
-#endif	/* RADAR */
+#endif	/* WINGTK_RADAR */
 
 #define DIFF(a, b)	((a) >= (b) ? (a) - (b) : (b) - (a))
 
@@ -1383,7 +1423,7 @@ nh_map_flush()
 		}
 	nh_map_check_visibility();
 	xshm_map_flush();
-#ifdef RADAR
+#ifdef WINGTK_RADAR
 	nh_radar_update();
 #endif
     }

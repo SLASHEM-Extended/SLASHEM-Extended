@@ -76,9 +76,6 @@ struct flag {
 	boolean  pickup_thrown;		/* auto-pickup items you threw */
 
 	boolean  pushweapon;	/* When wielding, push old weapon into second slot */
-#ifdef RADAR
-	boolean  radar;		/* radar map */
-#endif
 	boolean  rest_on_space; /* space means rest */
 	boolean  safe_dog;	/* give complete protection to the dog */
 #ifdef EXP_ON_BOTL
