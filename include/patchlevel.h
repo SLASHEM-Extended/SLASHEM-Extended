@@ -15,7 +15,6 @@
  * PATCHLEVEL is updated for each release.
  */
 #define PATCHLEVEL      6
-#ifndef DEVEL_BRANCH
 /*
  * Incrementing EDITLEVEL can be used to force invalidation of old bones
  * and save files.
@@ -26,10 +25,6 @@
  * Note: Incrementing FIXLEVEL does _not_ invalidate old bones and save files.
  */
 #define FIXLEVEL	8  /* Define to enable a fixlevel version */
-#else
-#define EDITLEVEL	6
-/* #define FIXLEVEL        0 */
-#endif
 
 #define COPYRIGHT_BANNER_A \
 "This is SuperLotsoAddedStuffHack-Extended Magic 1997-2002"

@@ -421,13 +421,6 @@
 #define glyph_is_warning(glyph)	\
     ((glyph) >= GLYPH_WARNING_OFF && (glyph) < (GLYPH_WARNING_OFF + WARNCOUNT))
 
-#ifdef DISPLAY_LAYERS
-#define memory_is_invisible(x,y) (levl[x][y].mem_invis)
-#define remembered_object(x,y)						\
-    (levl[x][y].mem_corpse ? CORPSE : 					\
-     levl[x][y].mem_obj ? levl[x][y].mem_obj - 1 : NO_GLYPH)
-#else
 #define memory_is_invisible(x,y) glyph_is_invisible(levl[x][y].glyph)
 #define remembered_object(x,y) glyph_to_obj(levl[x][y].glyph)
-#endif
 #endif /* DISPLAY_H */

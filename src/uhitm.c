@@ -2894,13 +2894,6 @@ struct monst *mtmp;
 	    else if (mtmp->m_ap_type == M_AP_MONSTER)
 		what = a_monnam(mtmp);	/* differs from what was sensed */
 	} else {
-#ifdef DISPLAY_LAYERS
-	    if (levl[u.ux+u.dx][u.uy+u.dy].mem_bg == S_hcdoor ||
-		    levl[u.ux+u.dx][u.uy+u.dy].mem_bg == S_vcdoor)
-		fmt = "The door actually was %s!";
-	    else if (levl[u.ux+u.dx][u.uy+u.dy].mem_obj == GOLD_PIECE)
-		fmt = "That gold was %s!";
-#else
 	    int glyph = levl[u.ux+u.dx][u.uy+u.dy].glyph;
 
 	    if (glyph_is_cmap(glyph) &&
@@ -2910,7 +2903,6 @@ struct monst *mtmp;
 	    else if (glyph_is_object(glyph) &&
 		    glyph_to_obj(glyph) == GOLD_PIECE)
 		fmt = "That gold was %s!";
-#endif
 
 	    /* cloned Wiz starts out mimicking some other monster and
 	       might make himself invisible before being revealed */

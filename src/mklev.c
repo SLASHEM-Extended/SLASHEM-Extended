@@ -347,13 +347,7 @@ makecorridors()
 	    }
 }
 
-#ifdef DEVEL_BRANCH
-/* ALI - Artifact doors: Track doors in maze levels as well */
-
-int
-#else
 void
-#endif
 add_door(x,y,aroom)
 register int x, y;
 register struct mkroom *aroom;
@@ -361,20 +355,8 @@ register struct mkroom *aroom;
 	register struct mkroom *broom;
 	register int tmp;
 
-#ifndef DEVEL_BRANCH
 	aroom->doorct++;
 	broom = aroom+1;
-#else
-	if (aroom) {
-		aroom->doorct++;
-		broom = aroom+1;
-	}
-	else
-		/* ALI
-		 * Roomless doors must go right at the beginning of the list
-		 */
-		broom = &rooms[0];
-#endif
 	if(broom->hx < 0)
 		tmp = doorindex;
 	else
@@ -384,10 +366,6 @@ register struct mkroom *aroom;
 	doors[tmp].x = x;
 	doors[tmp].y = y;
 	for( ; broom->hx >= 0; broom++) broom->fdoor++;
-#ifdef DEVEL_BRANCH
-	doors[tmp].arti_key = 0;
-	return tmp;
-#endif
 }
 
 STATIC_OVL void
@@ -563,11 +541,7 @@ makevtele()
 STATIC_OVL void
 clear_level_structures()
 {
-#ifdef DISPLAY_LAYERS
-	static struct rm zerorm = { S_stone, 0, 0, 0, 0, 0,
-#else
 	static struct rm zerorm = { cmap_to_glyph(S_stone),
-#endif
 						0, 0, 0, 0, 0, 0, 0, 0 };
 	register int x,y;
 	register struct rm *lev;

@@ -44,11 +44,6 @@ extern struct window_procs win32_procs;
 #include "winGnome.h"
 extern struct window_procs Gnome_procs;
 #endif
-#ifdef PROXY_GRAPHICS
-#include "winproxy.h"
-extern struct window_procs proxy_procs;
-extern void NDECL(win_proxy_init);
-#endif
 
 STATIC_DCL void FDECL(def_raw_print, (const char *s));
 

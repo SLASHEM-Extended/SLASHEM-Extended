@@ -9,11 +9,7 @@
 STATIC_DCL int NDECL(bc_order);
 STATIC_DCL void NDECL(litter);
 
-#ifdef DISPLAY_LAYERS
-#define memory_object(x, y)	(levl[x][y].mem_obj)
-#else
 #define memory_object(x, y)	(levl[x][y].glyph)
-#endif
 
 void
 ballfall()

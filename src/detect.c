@@ -776,14 +776,10 @@ register int x, y;
     }
 
     /* if we don't remember an object or trap there, map it */
-#ifdef DISPLAY_LAYERS
-    if (!lev->mem_obj && !lev->mem_trap) {
-#else
     if (lev->typ == ROOM ?
 	    (glyph_is_cmap(lev->glyph) && !glyph_is_trap(lev->glyph) &&
 		glyph_to_cmap(lev->glyph) != ROOM) :
 	    (!glyph_is_object(lev->glyph) && !glyph_is_trap(lev->glyph))) {
-#endif
 	if (level.flags.hero_memory) {
 	    magic_map_background(x,y,0);
 	    newsym(x,y);			/* show it, if not blocked */

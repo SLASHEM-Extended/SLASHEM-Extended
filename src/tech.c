@@ -78,9 +78,6 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"air dash",
 	"power surge",
 	"spirit bomb",
-#ifdef DEVEL_BRANCH
-	"draw blood",
-#endif /* DEVEL_BRANCH */
 	""
 };
 
@@ -176,9 +173,6 @@ static const struct innate_tech
 		       {  10, T_BERSERK, 1},
 		       {   0, 0, 0} },
 	vam_tech[] = { {   1, T_DAZZLE, 1},
-#ifdef DEVEL_BRANCH
-		       {   1, T_DRAW_BLOOD, 1},
-#endif /* DEVEL_BRANCH */
 		       {   0, 0, 0} };
 	/* Orc */
 
@@ -451,9 +445,6 @@ dotech()
 	return 0;
 }
 
-#ifdef DEVEL_BRANCH
-static NEARDATA const char kits[] = { TOOL_CLASS, 0 };
-#endif /* DEVEL_BRANCH */
 
 /* gettech is reworked getspell */
 /* reworked class special effects code */
@@ -463,11 +454,7 @@ techeffects(tech_no)
 int tech_no;
 {
 	/* These variables are used in various techs */
-#ifndef DEVEL_BRANCH
 	struct obj *obj;
-#else /* DEVEL_BRANCH */
-	struct obj *obj, *otmp;
-#endif /* DEVEL_BRANCH */
 	const char *str;
 	struct monst *mtmp;
 	int num;
@@ -1297,53 +1284,6 @@ int tech_no;
             	if (!blitz_spirit_bomb()) return(0);
 		t_timeout = rn1(1000,500);
 		break;            	
-#ifdef DEVEL_BRANCH
-	    case T_DRAW_BLOOD:
-		if (!maybe_polyd(is_vampire(youmonst.data),
-		  Race_if(PM_VAMPIRE))) {
-		    /* ALI
-		     * Otherwise we get problems with what we create:
-		     * potions of vampire blood would no longer be
-		     * appropriate.
-		     */
-		    You("must be in your natural form to draw blood.");
-		    return(0);
-		}
-		if (!(obj = carrying(MEDICAL_KIT))) {
-		    You("need a medical kit to do that.");
-		    return(0);
-		}
-		for (otmp = invent; otmp; otmp = otmp->nobj)
-		    if (otmp->otyp == MEDICAL_KIT && otmp != obj)
-			break;
-		if (otmp) {	/* More than one medical kit */
-		    obj = getobj(kits, "draw blood with");
-		    if (!obj || obj->otyp != MEDICAL_KIT) {
-			if (obj) pline(silly_thing_to, "draw blood with");
-			return(0);
-		    }
-		}
-		if (obj->spe <= 0) {
-		    You_cant("find any more bottles in your medical kit.");
-		    return(0);
-		}
-		if (u.ulevel <= 1) {
-		    You_cant("seem to find a vein.");
-		    return(0);
-		}
-		obj->spe--;
-		pline("Using your medical kit, you draw off a bottle of your blood.");
-		losexp("drawing blood", TRUE);
-		if (u.uexp > 0)
-		    u.uexp = newuexp(u.ulevel - 1);
-		otmp = mksobj(POT_VAMPIRE_BLOOD, FALSE, FALSE);
-		otmp->cursed = obj->cursed;
-		otmp->blessed = obj->blessed;
-		(void) hold_another_object(otmp,
-		   "You fill, but have to drop, %s!", doname(otmp), (const char *)0);
-		t_timeout = rn1(1000, 500);
-		break;
-#endif /* DEVEL_BRANCH */
 	    default:
 	    	pline ("Error!  No such effect (%i)", tech_no);
 		break;

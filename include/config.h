@@ -56,7 +56,6 @@
 /* #define KDE */		/* KDE Interface */
 /* #define GTK_GRAPHICS */	/* GTK Interface */
 /* #define GNOME_GRAPHICS */	/* Gnome interface */
-/* #define PROXY_GRAPHICS */	/* Plug-in interfaces (not yet supported) */
 
 /*
  * Define the default window system.  This should be one that is compiled
@@ -116,24 +115,13 @@
 #endif
 
 #ifdef GTK_GRAPHICS
-/* # define GTK_V20 */		/* Use GTK 2.0 interface (devel only) */
 # define USE_XPM		/* Use XPM format for images (required) */
 # define GRAPHIC_TOMBSTONE	/* Use graphical tombstone (rip.xpm) */
 # define RADAR			/* Use radar map */
 /* #define GTK_ASKNAME */	/* Prompt for playername */
-/* # define GTK_PROXY */	/* Build for proxy interface */
 # ifndef DEFAULT_WINDOW_SYS
 #  define DEFAULT_WINDOW_SYS "gtk"
 # endif
-#endif
-
-#ifdef PROXY_GRAPHICS
-# define PROXY_INTERNAL		/* Build for internal proxy interface */
-/*
- * The proxy interface shouldn't be used as the default window system.
- * This will cause it to always be initialized with undesirable side
- * effects. Instead, use the windowtype option.  --ALI
- */
 #endif
 
 #ifndef DEFAULT_WINDOW_SYS
@@ -415,12 +403,6 @@ typedef unsigned char	uchar;
 #define OTHER_SERVICES  /* shopkeeper services */
 
 /* #define SHOUT */ /* JRN -- shouting and petcommands - not implemented */
-
-#define DEVEL_BRANCH	/* Include development code */
-
-#ifdef DEVEL_BRANCH
-#define DISPLAY_LAYERS	/* Improved support for transparent tile sets - ALI */
-#endif
 
 #include "global.h"	/* Define everything else according to choices above */
 
