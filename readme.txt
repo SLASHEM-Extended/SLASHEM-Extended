@@ -90,6 +90,7 @@ ver 0.0.7E3 [?] [Released by ?]
 -fixed bug 789073: pickup_thrown and bones
 -fixed bug 790230: BUG: obfree() called on non-empty container
 -fixed bug 782892: gtk startup problem when no tiles defined
+-fixed bug 782881: NumPad doesn't work with gtk
 
 See history.txt for changes made in previous versions.
 

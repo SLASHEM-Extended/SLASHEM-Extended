@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.39 2003-08-02 16:09:21 j_ali Exp $
+  $Id: gtk.c,v 1.40 2003-08-22 12:23:46 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1220,7 +1220,12 @@ focus_key_press_early(GtkWidget *widget, GdkEventKey *event, gpointer data)
      * handler doesn't deal with the key (eg., an accelerator) then
      * Gtk+ will call focus_key_press() in due course.
      */
-    if (event->keyval == GDK_Escape)
+    if (event->keyval == GDK_Escape || event->keyval == GDK_KP_0 ||
+      event->keyval == GDK_KP_1 || event->keyval == GDK_KP_2 ||
+      event->keyval == GDK_KP_3 || event->keyval == GDK_KP_4 ||
+      event->keyval == GDK_KP_5 || event->keyval == GDK_KP_6 ||
+      event->keyval == GDK_KP_7 || event->keyval == GDK_KP_8 ||
+      event->keyval == GDK_KP_9)
 	return focus_key_press(widget, event, data);
     else
 	return FALSE;
