@@ -67,31 +67,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E7 [February 19/2005] [Released by Ali]
--Fixed build of proxy tests
--fixed bug 1071688: cannot compile on FreeBSD (termcap)
--fixed bug 1071623: Cannot compile on FreeBSD due to menucolor inclusion
--fixed bug 993420: Crashes when typing symbols on drop menu
--fixed bug 1087609: Some platforms fails to compile win/proxy/nhext.c
--fixed bug 1084366: ghoul queen don't has M2_FEMALE
--fixed bug 1066530: Fired/thrown items get new inventory letter when retrieved
--fixed bug 992244: Alt Gr key doesn't work
--fixed bug 1076125: Unsuccessful use of medical kits
--fixed bug 1076123: Vampires can eat white pills
--fixed bug 994993: when polying, you take off T-shirt after scales merge
--fixed bug 961914: Deep dragons should resist their own breath
--fixed bug 963344: Stat exercise effects calculated while polymorphed
--fixed bug 1097792: Duplicate message when hit by sleep gaze
--fixed bug 1065927: Should bars stop bullets?
--fixed bug 947009: Scroll of taming exercises skill in healing spells
--fixed bug 1077355: game crashes with: "panic monsndx - could not index monster"
--fixed bug 1098686: Restoring a mounted character wielding Sting can fail
--fixed bug 1105100: Escaping from pits by polymorphing into a mind flayer
--fixed bug 1107123: GTK Accepts any keypress as the default response to
-		    question
--fixed bug 1110081: in_container() uses obj->quan after deallocatin obj
--fixed bug 1116877: Dereferencing freed memory when applying bags which explode
--fixed bug 951483: Wands of cancellation can be held in a bag of holding
+ver 0.0.7E7F1 [?] [Released by ?]
 
 See history.txt for changes made in previous versions.
 
