@@ -2544,6 +2544,12 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		    otmp->orotten = TRUE;
 		    dont_start = TRUE;
 		}
+		if (otmp->oeaten < 2) {
+		    victual.piece = (struct obj *)0;
+		    if (carried(otmp)) useup(otmp);
+		    else useupf(otmp, 1L);
+		    return 1;
+		} else
 		consume_oeaten(otmp, 1);	/* oeaten >>= 1 */
 	    } else fprefx(otmp);
 	}

@@ -81,6 +81,7 @@ ver 0.0.7E6F1 [?] [Released by ?]
 -fixed bug 908189: "The wererat turns into a wererat!"
 -fixed bug 914897: Wrong AC displayed at start of game
 -fixed bug 911335: Monster polymorph permanent?
+-fixed bug 874318: Partly eaten food more nutrious than untouched food
 
 See history.txt for changes made in previous versions.
 
