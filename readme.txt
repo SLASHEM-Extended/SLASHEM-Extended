@@ -344,6 +344,7 @@ ver 0.0.6E4F3 [February XX/2001]
 -fixed bug 132521: #version lists the Qt windowing system twice.
 -fixed bug 132163: Special properties of items show up while hallucinating.
 -fixed bug 132033: GTK/win32: Esc not working.
+-fixed bug 132029: Pseudo 3D tiles not suitable for menu images.
 
 ver 0.0.6E4F2 [December 30/2000] [Released by Ali]
 -DOS: Allegro window port adapted to display the ground underneath walls

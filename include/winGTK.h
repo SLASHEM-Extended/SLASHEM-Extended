@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.11 2000-12-15 15:38:10 j_ali Exp $
+  $Id: winGTK.h,v 1.12 2001-02-17 11:11:18 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -169,6 +169,7 @@ extern void		nh_option_new(void);
 extern void		nh_option_lock(void);
 
 extern int		nh_tile_height();
+extern int		nh_tile_3dheight();
 
 extern void		nh_position_popup_dialog(GtkWidget *w);
 /*

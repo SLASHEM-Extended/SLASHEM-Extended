@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.19 2000-12-15 15:38:10 j_ali Exp $
+  $Id: gtkmap.c,v 1.20 2001-02-17 11:11:18 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1326,6 +1326,17 @@ GTK_cliparound(int x, int y)
     ;
 }
 
+/*
+ * [ALI]
+ * This function returns a pixmap of size 3dwidth x 3dheight pixels.
+ * In non-3D mode, this is the full tile size, but in 3D mode this
+ * strips out the 3D part. A complete algorithm for extracting the
+ * non-3D part of the tile is quite complex (see bigtile.c for a
+ * starting point), but since this routine is currently only used
+ * for objects, we can safely assume that all tiles are padded,
+ * ie., that the non-3D part is centered in the tile.
+ */
+
 GdkPixmap *
 GTK_glyph_to_gdkpixmap(int glyph)
 {
@@ -1338,8 +1349,8 @@ GTK_glyph_to_gdkpixmap(int glyph)
       Tile->unit_width, Tile->unit_height);
     if (!img)
 	return NULL;
-    pix = gdk_pixmap_new(NULL, Tile->unit_width, Tile->unit_height, 
-    	gdk_visual_get_system()->depth);
+    pix = gdk_pixmap_new(NULL, Tile->unit_width - Tile->ofsetx_3d,
+        Tile->unit_height - Tile->ofsety_3d, gdk_visual_get_system()->depth);
     if (!pix)
     {
 	gdk_image_destroy(img);
@@ -1352,7 +1363,8 @@ GTK_glyph_to_gdkpixmap(int glyph)
     src_y = (tile / tiles_per_row) * c_height;
 
     x_tile_gdkimage_draw(img, FALSE, src_x, src_y, 0, 0);
-    gdk_draw_image(pix, map_gc, img, 0, 0, 0, 0, img->width, img->height);
+    gdk_draw_image(pix, map_gc, img, Tile->ofsetx_3d/2, Tile->ofsety_3d/2, 0, 0,
+      Tile->unit_width - Tile->ofsetx_3d, Tile->unit_height - Tile->ofsety_3d);
     gdk_image_destroy(img);
 
     return pix;
@@ -1398,6 +1410,11 @@ nh_map_flush()
 int
 nh_tile_height()
 {
-    return (c_width);
+    return c_height;
 }
 
+int
+nh_tile_3dheight()
+{
+    return c_3dheight;
+}
