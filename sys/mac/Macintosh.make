@@ -6,8 +6,8 @@
 #
 # by Michaelª Hamel and Ross Brown 1991 : michael@otago.ac.nz
 #
-# Updated for Slash'EM 0.0.5-2 to .6-4F8
-# Paul Hurtley, August 1999 to March 2002
+# Updated for Slash'EM 0.0.5-2 to .6-6
+# Paul Hurtley, August 1999 to April 2002
 
 #--------------------------------------------------------------------------
 #
@@ -22,20 +22,21 @@ Processor  = PowerPC
 #--------------------------------------------------------------------------
 
 # Set up symbols for folders from the distribution
-Src   	   = {Top}Src:
-Util 	   = {Top}Util:
-Dat		   = {Top}Dat:
-Doc		   = {Top}Doc:
-Grammar	   = {Top}Grammar:
-Include    = {Top}Include:
-MacDir	   = {Top}Sys:Mac:
-TtyDir     = {Top}Win:Tty:
-MacTty     = {Top}Sys:Mac:
-Share	   = {Top}Sys:Share:
+Src			= {Top}Src:
+Util		= {Top}Util:
+Dat			= {Top}Dat:
+Doc			= {Top}Doc:
+Include		= {Top}Include:
+MacDir		= {Top}Sys:Mac:
+TtyDir		= {Top}Win:Tty:
+MacTty		= {Top}Sys:Mac:
+Share		= {Top}Sys:Share:
 
 # These folders are new
-ObjDir     = {Top}Obj{Processor}:				# "Temporary" stuff
-Results	   = {Top}Dungeon{Processor}:			# Where the game goes
+ObjDir     = {Top}Obj{Processor}:		# "Temporary" stuff
+LibDir     = {Top}Lib:					# "Temporary" stuff
+Preserve   = {Top}Preserve:				# Generated items for source distribution
+Results	   = {Top}Dungeon{Processor}:	# Where the game goes
 
 # Override the settings in "{Include}"config.h
 # NHConfig = -d PORT_LEVEL='¶".0¶"' 
@@ -74,21 +75,18 @@ DataFiles 	=	"{Results}"Record   		¶
 				"{Results}"README
 
 # The following files are generated, but included in the source distribution anyway				
-Preserved	=	"{ObjDir}"date.h 		¶
-				"{ObjDir}"pm.h 			¶
-				"{ObjDir}"onames.h 		¶
-				"{ObjDir}"monstr.c  	¶
-				"{ObjDir}"vis_tab.h 	¶
-				"{ObjDir}"vis_tab.c 	¶
-				"{ObjDir}"filename.h 	¶
-				"{Grammar}"lev_yacc.c 	¶
-				"{Grammar}"lev_comp.h 	¶
-				"{Grammar}"dgn_yacc.c 	¶
-				"{Grammar}"dgn_comp.h	¶
-				"{ObjDir}"MRecover.rsrc	¶
-				"{ObjDir}"NHrsrc.rsrc	¶
-				"{ObjDir}"NHsound.rsrc				
-				
+Preserved	=	"{Preserve}"date.h 		¶
+				"{Preserve}"pm.h 		¶
+				"{Preserve}"onames.h 	¶
+				"{Preserve}"monstr.c  	¶
+				"{Preserve}"vis_tab.h 	¶
+				"{Preserve}"vis_tab.c 	¶
+				"{Preserve}"filename.h 	¶
+				"{Preserve}"lev_yacc.c 	¶
+				"{Preserve}"lev_comp.h 	¶
+				"{Preserve}"dgn_yacc.c 	¶
+				"{Preserve}"dgn_comp.h
+
 Macintosh Ä   	Setup				¶
 				MakeDefs.lnk 		¶
 				{Preserved} 		¶
@@ -105,8 +103,11 @@ Setup	Ä
 	If Not "`Exists -d "{ObjDir}"`"
 		NewFolder "{ObjDir}"
 	End
-	If Not "`Exists -d "{Grammar}"`"
-		NewFolder "{Grammar}"
+	If Not "`Exists -d "{Preserve}"`"
+		NewFolder "{Preserve}"
+	End
+	If Not "`Exists -d "{LibDir}"`"
+		NewFolder "{LibDir}"
 	End
 	
 # Compiler options. We set up to look in the Mac dir first for include files
@@ -115,8 +116,6 @@ Setup	Ä
 
 COptions = {NHConfig}					¶
 		   -w 2 -w 3 -ansi relaxed -typecheck relaxed -align power
-
-NHIncludes = "{Include}"
 
 #------------------- Use a dump file for hack.h to speed compiles -----------------
 # We do this by having our own hack.h in :sys:mac which just grabs the dump file
@@ -148,11 +147,11 @@ FileResources = ¶
 	"{MacDir}"News ¶
 	"{Dat}"opthelp ¶
 	"{Dat}"wizhelp ¶
-	"{ObjDir}"Quest.dat ¶
-	"{ObjDir}"data ¶
-	"{ObjDir}"dungeon ¶
-	"{ObjDir}"oracles ¶
-	"{ObjDir}"rumors ¶
+	"{LibDir}"Quest.dat ¶
+	"{LibDir}"data ¶
+	"{LibDir}"dungeon ¶
+	"{LibDir}"oracles ¶
+	"{LibDir}"rumors ¶
 	Levels
 	
 #------------------- Slash'EM Sources -----------------
@@ -199,6 +198,7 @@ SlashEMSrcs = ¶
 	"{Src}"lock.c ¶
 	"{Src}"mail.c ¶
 	"{Src}"makemon.c ¶
+	"{Src}"mapglyph.c ¶
 	"{Src}"mcastu.c ¶
 	"{Src}"mhitm.c ¶
 	"{Src}"mhitu.c ¶
@@ -212,7 +212,7 @@ SlashEMSrcs = ¶
 	"{Src}"mondata.c ¶
 	"{Src}"monmove.c ¶
 	"{Src}"monst.c ¶
-	"{ObjDir}"monstr.c ¶
+	"{Preserve}"monstr.c ¶
 	"{Src}"mplayer.c ¶
 	"{Src}"mthrowu.c ¶
 	"{Src}"muse.c ¶
@@ -257,7 +257,7 @@ SlashEMSrcs = ¶
 	"{Src}"uhitm.c ¶
 	"{Src}"vault.c ¶
 	"{Src}"version.c ¶
-	"{ObjDir}"vis_tab.c ¶
+	"{Preserve}"vis_tab.c ¶
 	"{Src}"vision.c ¶
 	"{Src}"weapon.c ¶
 	"{Src}"were.c ¶
@@ -289,33 +289,37 @@ SlashEMSrcs = ¶
 	"{TtyDir}"getline.c ¶
 	"{TtyDir}"topl.c ¶
 	"{TtyDir}"wintty.c
-	
-SlashEMRsrcs = 				¶
-	"{MacDir}"MPW.r
+
+SlashEMRsrcs = 	¶
+	"{MacDir}"NetHack.r ¶
+	"{MacDir}"Sounds.r ¶
+	"{MacDir}"Files.r ¶
+	"{LibDir}"Levels.r
 
 # -------- Build the dungeon compiler, as an MPW tool ---------------
 
 DgnCompSrcs = 				¶
-	"{Grammar}"dgn_lex.c	¶
+	"{Preserve}"dgn_lex.c	¶
 	"{Util}"dgn_main.c		¶
-	"{Grammar}"dgn_yacc.c	¶
+	"{Preserve}"dgn_yacc.c	¶
 	"{Src}"alloc.c			¶
 	"{Util}"panic.c
 
-"{ObjDir}"DgnComp.make	Ä	 "{Grammar}"dgn_lex.c "{Grammar}"dgn_yacc.c
-	CreateMake "{ObjDir}"DgnComp {DgnCompSrcs} -tool -powerpc -objdir "{ObjDir}" -i "{Grammar}" -i "{ObjDir}" -i {NHIncludes} -ppccoptions "{COptions}" -sym -depends
+"{ObjDir}"DgnComp.make	Ä	 "{Preserve}"dgn_lex.c "{Preserve}"dgn_yacc.c
+	CreateMake "{ObjDir}"DgnComp {DgnCompSrcs} -tool -powerpc -objdir "{ObjDir}" ¶
+		-i "{Preserve}" -i "{ObjDir}" -i {Include} -ppccoptions "{COptions}" -sym -depends
 	
 "{ObjDir}"DgnComp DgnComp.lnk Ä "{ObjDir}"DgnComp.make
 	BuildProgram "{ObjDir}"DgnComp
 
-"{Grammar}"dgn_comp.h "{Grammar}"dgn_yacc.c	Ä  "{Util}"dgn_comp.y
+"{Preserve}"dgn_comp.h "{Preserve}"dgn_yacc.c	Ä  "{Util}"dgn_comp.y
 	{YACC} -d "{Util}"dgn_comp.y
-	Move -y "{YTabC}" "{Grammar}"dgn_yacc.c
-	Move -y "{YTabH}" "{Grammar}"dgn_comp.h
+	Move -y "{YTabC}" "{Preserve}"dgn_yacc.c
+	Move -y "{YTabH}" "{Preserve}"dgn_comp.h
 	
-{Grammar}dgn_lex.c	Ä  {Util}dgn_comp.l
+{Preserve}dgn_lex.c	Ä  {Util}dgn_comp.l
 	{LEX} {Util}dgn_comp.l
-	Move -y {LexYYC} {Grammar}dgn_lex.c
+	Move -y {LexYYC} {Preserve}dgn_lex.c
 	
 # -------- Build the special-level compiler, as an MPW tool ---------------
 
@@ -324,29 +328,44 @@ LevCompSrcs= "{Src}"monst.c		¶
 		 "{Src}"drawing.c		¶
 		 "{Src}"alloc.c			¶
 		 "{Util}"panic.c		¶
-		 "{Grammar}"lev_lex.c	¶
-		 "{Grammar}"lev_yacc.c	¶
+		 "{Preserve}"lev_lex.c	¶
+		 "{Preserve}"lev_yacc.c	¶
 		 "{MacDir}"macfile.c	¶
 		 "{MacDir}"macerrs.c	¶
 		 "{Src}"files.c			¶
 		 "{Src}"decl.c			¶
 		 "{Util}"lev_main.c
 
-"{ObjDir}"LevComp.make	Ä	 "{Grammar}"lev_lex.c "{Grammar}"lev_yacc.c
-	CreateMake "{ObjDir}"LevComp {LevCompSrcs} -tool -powerpc -objdir "{ObjDir}" -i "{Grammar}" -i "{ObjDir}" -i {NHIncludes} -ppccoptions "{COptions}" -sym -depends
+"{ObjDir}"LevComp.make	Ä	 "{Preserve}"lev_lex.c "{Preserve}"lev_yacc.c
+	CreateMake "{ObjDir}"LevComp {LevCompSrcs} -tool -powerpc -objdir "{ObjDir}" ¶
+		-i "{Preserve}" -i "{ObjDir}" -i {Include} -ppccoptions "{COptions}" -sym -depends
 	
 "{ObjDir}"LevComp LevComp.lnk Ä "{ObjDir}"LevComp.make
 	BuildProgram "{ObjDir}"LevComp
 
-"{Grammar}"lev_comp.h "{Grammar}"lev_yacc.c	Ä  "{Util}"lev_comp.y
+"{Preserve}"lev_comp.h "{Preserve}"lev_yacc.c	Ä  "{Util}"lev_comp.y
 	{YACC} -d "{Util}"lev_comp.y
-	Move -y "{YTabH}" "{Grammar}"lev_comp.h
-	Move -y "{YTabC}" "{Grammar}"lev_yacc.c
+	Move -y "{YTabH}" "{Preserve}"lev_comp.h
+	Move -y "{YTabC}" "{Preserve}"lev_yacc.c
 	
-"{Grammar}"lev_lex.c	Ä  {Util}lev_comp.l
+"{Preserve}"lev_lex.c	Ä  {Util}lev_comp.l
 	{LEX} {Util}lev_comp.l
-	Move -y {LexYYC} {Grammar}lev_lex.c
+	Move -y {LexYYC} {Preserve}lev_lex.c
 	
+# -------- Create list of actual levels ---------------
+
+"{LibDir}"Levels.r Ä Levels
+	Set Pwd `Directory`
+	Directory "{LibDir}"
+	Echo "" > "{LibDir}"Levels.r
+	Set index 1200
+	For file in Å.lev
+		Echo "read 'File' ({index},¶"{file}¶") ¶":lib:{file}¶";" >> "{LibDir}"Levels.r 
+		Set index `Evaluate {index} + 1`
+	End
+	Echo "" >> "{LibDir}"Levels.list
+	Directory "{Pwd}"
+
 # -------- Build "{ObjDir}"MakeDefs, as an MPW tool ---------------
 
 MakeDefsSrcs= "{Src}"objects.c		¶
@@ -354,86 +373,94 @@ MakeDefsSrcs= "{Src}"objects.c		¶
 			  "{Util}"MakeDefs.c
 
 "{ObjDir}"MakeDefs.make Ä
-	CreateMake "{ObjDir}"MakeDefs {MakeDefsSrcs} -tool -powerpc -objdir "{ObjDir}" -i "{Grammar}" -i "{ObjDir}" -i {NHIncludes} -ppccoptions "{COptions}" -sym -depends
+	CreateMake "{ObjDir}"MakeDefs {MakeDefsSrcs} -tool -powerpc -objdir "{ObjDir}" ¶
+		-i "{Preserve}" -i "{ObjDir}" -i {Include} -ppccoptions "{COptions}" -sym -depends
 
 "{ObjDir}"MakeDefs MakeDefs.lnk Ä "{ObjDir}"MakeDefs.make
 	BuildProgram "{ObjDir}"MakeDefs
 
 # ------------ If "{ObjDir}"MakeDefs changes we need to rebuild some include files -----------
 
-"{ObjDir}"filename.h 	Ä 	"{ObjDir}"MakeDefs
+"{Preserve}"filename.h 	Ä 	"{ObjDir}"MakeDefs
+	Set Pwd `Directory`
 	Directory "{Top}"
 	"{ObjDir}"MakeDefs -f
-	Move -y "{Include}"filename.h "{ObjDir}"filename.h
-	Directory "{MacDir}"
+	Move -y "{Include}"filename.h "{Preserve}"filename.h
+	Directory "{Pwd}"
 
-"{ObjDir}"date.h 	Ä 	"{ObjDir}"Options "{ObjDir}"MakeDefs
-	Move -y "{Include}"date.h "{ObjDir}"date.h
+"{Preserve}"date.h 	Ä 	"{ObjDir}"Options "{ObjDir}"MakeDefs
+	Move -y "{Include}"date.h "{Preserve}"date.h
 
 "{ObjDir}"Options	Ä	$OutOfDate "{ObjDir}"MakeDefs
-	Set -e ObjDir "{ObjDir}"
+	Set Pwd `Directory`
 	Directory "{Top}"
 	"{ObjDir}"MakeDefs -v
-	Directory "{MacDir}"
+	Directory "{Pwd}"
 	
-"{ObjDir}"onames.h Ä	"{ObjDir}"MakeDefs
+"{Preserve}"onames.h Ä	"{ObjDir}"MakeDefs
+	Set Pwd `Directory`
 	Directory "{Top}"
 	"{ObjDir}"MakeDefs -o
-	Move -y "{Include}"onames.h "{ObjDir}"onames.h
-	Directory "{MacDir}"
+	Move -y "{Include}"onames.h "{Preserve}"onames.h
+	Directory "{Pwd}"
 
-"{ObjDir}"pm.h 	Ä	"{ObjDir}"MakeDefs
+"{Preserve}"pm.h 	Ä	"{ObjDir}"MakeDefs
+	Set Pwd `Directory`
 	Directory "{Top}"
 	"{ObjDir}"MakeDefs -p
-	Move -y "{Include}"pm.h "{ObjDir}"pm.h
-	Directory "{MacDir}"
+	Move -y "{Include}"pm.h "{Preserve}"pm.h
+	Directory "{Pwd}"
 
-"{ObjDir}"vis_tab.c	Ä	"{ObjDir}"vis_tab.h
-	Move -y "{Src}"vis_tab.c "{ObjDir}"vis_tab.c
+"{Preserve}"vis_tab.c	Ä	"{Preserve}"vis_tab.h
+	Move -y "{Src}"vis_tab.c "{Preserve}"vis_tab.c
 
-"{ObjDir}"vis_tab.h Ä	"{ObjDir}"MakeDefs
+"{Preserve}"vis_tab.h Ä	"{ObjDir}"MakeDefs
+	Set Pwd `Directory`
 	Directory "{Top}"
 	"{ObjDir}"MakeDefs -z
-	Move -y "{Include}"vis_tab.h "{ObjDir}"vis_tab.h
-	Directory "{MacDir}"
+	Move -y "{Include}"vis_tab.h "{Preserve}"vis_tab.h
+	Directory "{Pwd}"
 
 "{ObjDir}"Dungeon.pdf  Ä "{Dat}"Dungeon.def "{ObjDir}"MakeDefs
+	Set Pwd `Directory`
 	Directory "{Top}"
 	"{ObjDir}"MakeDefs -e
 	Move -y "{Dat}"Dungeon.pdf "{ObjDir}"Dungeon.pdf
-	Directory "{MacDir}"
+	Directory "{Pwd}"
 
-"{ObjDir}"monstr.c Ä "{ObjDir}"MakeDefs
+"{Preserve}"monstr.c Ä "{ObjDir}"MakeDefs
+	Set Pwd `Directory`
 	Directory "{Top}"
 	"{ObjDir}"MakeDefs -m
-	Move -y "{Src}"monstr.c "{ObjDir}"monstr.c
-	Directory "{MacDir}"
+	Move -y "{Src}"monstr.c "{Preserve}"monstr.c
+	Directory "{Pwd}"
 
 #---------------- Data files -------------------
 
-Levels Ä "{ObjDir}"Levels.list "{MacDir}"Levels.make
-		Set -e Dat "{Dat}"
-		Set -e ObjDir "{ObjDir}"
-		Make -f "{MacDir}"Levels.make Levels > "{ObjDir}"Levels.makeout
+Levels Ä "{LibDir}"Levels.list "{MacDir}"Levels.make
+		Make -f "{MacDir}"Levels.make Levels -d Dat="{Dat}" -d ObjDir="{ObjDir}" -d LibDir="{LibDir}" > "{ObjDir}"Levels.makeout
 		"{ObjDir}"Levels.makeout
 		
-"{ObjDir}"Data  Ä "{Dat}"Data.base "{ObjDir}"MakeDefs
+"{LibDir}"Data data Ä "{Dat}"Data.base "{ObjDir}"MakeDefs
+		Set Pwd `Directory`
 		Directory "{Top}"
 	    "{ObjDir}"MakeDefs -d
-		SetFile -t "{FileType}" -c "{SlashEMCreator}" "{ObjDir}"Data
-		Directory "{MacDir}"
+		SetFile -t "{FileType}" -c "{SlashEMCreator}" "{LibDir}"Data
+		Directory "{Pwd}"
 
-"{ObjDir}"Rumors  Ä "{Dat}"Rumors.tru "{Dat}"Rumors.fal "{ObjDir}"MakeDefs
+"{LibDir}"Rumors Ä "{Dat}"Rumors.tru "{Dat}"Rumors.fal "{ObjDir}"MakeDefs
+		Set Pwd `Directory`
 		Directory "{Top}"
 	    "{ObjDir}"MakeDefs -r
-		SetFile -t "{FileType}" -c "{SlashEMCreator}" "{ObjDir}"Rumors
-		Directory "{MacDir}"
+		SetFile -t "{FileType}" -c "{SlashEMCreator}" "{LibDir}"Rumors
+		Directory "{Pwd}"
 
-"{ObjDir}"Oracles Ä "{Dat}"Oracles.txt "{ObjDir}"MakeDefs
+"{LibDir}"Oracles Ä "{Dat}"Oracles.txt "{ObjDir}"MakeDefs
+		Set Pwd `Directory`
 		Directory "{Top}"
 	    "{ObjDir}"MakeDefs -h
-		SetFile -t "{FileType}" -c "{SlashEMCreator}" "{ObjDir}"Oracles
-		Directory "{MacDir}"
+		SetFile -t "{FileType}" -c "{SlashEMCreator}" "{LibDir}"Oracles
+		Directory "{Pwd}"
 
 "{Results}"Record  Ä 
 		Echo "This is the record file" > "{Results}"Record
@@ -477,26 +504,31 @@ Levels Ä "{ObjDir}"Levels.list "{MacDir}"Levels.make
 "{ObjDir}"Machelp  Ä	"{MacDir}"Machelp
 		Duplicate -y "{MacDir}"Machelp "{ObjDir}"Machelp
 
-"{ObjDir}"News  Ä	"{MacDir}"News
+"{ObjDir}"News	Ä	"{MacDir}"News
 		Duplicate -y "{MacDir}"News "{ObjDir}"News
 
-"{ObjDir}"Dungeon  Ä "{ObjDir}"Dungeon.pdf "{ObjDir}"DgnComp
+"{LibDir}"Dungeon	Ä "{ObjDir}"Dungeon.pdf "{ObjDir}"DgnComp
 		"{ObjDir}"DgnComp "{ObjDir}"dungeon.pdf
-		SetFile -t "{FileType}" -c "{SlashEMCreator}" "{ObjDir}"Dungeon
+		Move -y "{ObjDir}"Dungeon "{LibDir}"
+		SetFile -t "{FileType}" -c "{SlashEMCreator}" "{LibDir}"Dungeon
 
-"{ObjDir}"Quest.Dat	Ä "{Dat}"Quest.txt "{ObjDir}"MakeDefs
+"{LibDir}"Quest.dat	Ä "{Dat}"Quest.txt "{ObjDir}"MakeDefs
+		Set Pwd `Directory`
 		Directory "{Top}"
 	    "{ObjDir}"MakeDefs -q
-		SetFile -t "{FileType}" -c "{SlashEMCreator}" "{ObjDir}"Quest.dat
-		Directory "{MacDir}"
+		SetFile -t "{FileType}" -c "{SlashEMCreator}" "{LibDir}"Quest.dat
+		Directory "{Pwd}"
 
 #---------------- The "{ObjDir}"Recover application -------------------
+
 RecoverSrcs = "{MacDir}"MRecover.c
 
 RecoverRsrcs = "{ObjDir}"MRecover.rsrc
 	
 "{ObjDir}"Recover.make	Ä
-		CreateMake "{ObjDir}"Recover {RecoverSrcs} {RecoverRsrcs} -{Processor} -i "{Grammar}" -i "{ObjDir}" -i {NHIncludes} -objdir "{ObjDir}" -sym -depends -c {RecoverCreator} ¶
+		CreateMake "{ObjDir}"Recover {RecoverSrcs} {RecoverRsrcs} -{Processor} ¶
+			-i "{Preserve}" -i "{ObjDir}" -i {Include} ¶
+			-objdir "{ObjDir}" -sym -depends -c {RecoverCreator} ¶
 			-ppccoptions "{COptions}" ¶
 			-coptions "{COptions}" -model far ¶
 				"{SharedLibraries}"AppearanceLib ¶
@@ -526,10 +558,9 @@ RecoverRsrcs = "{ObjDir}"MRecover.rsrc
 #---------------- The application -------------------
 
 "{ObjDir}"SlashEM.make	Ä 
-		Set -e Dat "{Dat}"			# Make the internal Make variable a Shell variable
-		Set -e MacDir "{MacDir}"
-		Set -e Results "{Results}"
-		CreateMake "{ObjDir}"SlashEM {SlashEMSrcs} {SlashEMRsrcs} -{Processor} -i "{Grammar}" -i "{ObjDir}" -i {NHIncludes} -objdir "{ObjDir}" -sym -depends -c {SlashEMCreator} ¶
+		CreateMake "{ObjDir}"SlashEM {SlashEMSrcs} -{Processor} ¶
+			-i "{Preserve}" -i "{ObjDir}" -i {Include} ¶
+			-objdir "{ObjDir}" -sym -depends -c {SlashEMCreator} ¶
 			-ppccoptions "{COptions}" ¶
 			-coptions "{COptions}" -model far ¶
 				"{SharedLibraries}"AppearanceLib ¶
@@ -548,25 +579,24 @@ RecoverRsrcs = "{ObjDir}"MRecover.rsrc
 				"{SharedLibraries}"TextEncodingConverter ¶
 				"{SharedLibraries}"UnicodeConverter
 
-"{Results}"Slash¶'EM SlashEM.lnk Ä "{ObjDir}"SlashEM.make {FileResources}
-		Set -e Dat "{Dat}"
-		Set -e MacDir "{MacDir}"
-		Set -e Results "{Results}"
-		Set -e RIncludes "{RIncludes}","{MacDir}"
+"{Results}"Slash¶'EM SlashEM.lnk Ä "{ObjDir}"SlashEM.make {SlashEMRsrcs} {FileResources}
 		BuildProgram "{ObjDir}"SlashEM
+		Rez Types.r SysTypes.r {SlashEMRsrcs} -o "{ObjDir}"SlashEM -c {SlashEMCreator} ¶
+			-i "{MacDir}" -i "{ObjDir}"  -i "{Include}" -i "{Preserve}" -s "{Top}" -append
 		SetFile -a B "{ObjDir}"SlashEM
 		Move -y "{ObjDir}"SlashEM "{Results}"Slash¶'EM 	
 
-"{ObjDir}"NHrsrc.rsrc Ä "{MacDir}"NHrsrc.r
-		Rez Types.r SysTypes.r "{MacDir}"NHrsrc.r -o "{ObjDir}"NHrsrc.rsrc
+"{ObjDir}"NetHack.rsrc Ä "{MacDir}"Nethack.r
+		Rez Types.r SysTypes.r "{MacDir}"NetHack.r -o "{ObjDir}"NetHack.rsrc ¶
+			-i "{Include}" -i "{Preserve}"
 
-"{ObjDir}"NHsound.rsrc Ä "{MacDir}"NHsound.r
-		Rez Types.r SysTypes.r "{MacDir}"NHsound.r -o "{ObjDir}"NHsound.rsrc
+"{ObjDir}"Sounds.rsrc Ä "{MacDir}"Sounds.r
+		Rez Types.r SysTypes.r "{MacDir}"Sounds.r -o "{ObjDir}"Sounds.rsrc
 
 #---------------- Dependencies -------------------
 
 Dependencies Ä	Setup					¶
-				"{ObjDir}"Levels.list	¶
+				"{LibDir}"Levels.list	¶
 				"{ObjDir}"MakeDefs.make ¶
 				{Preserved}				¶
 				"{ObjDir}"LevComp.make 	¶
@@ -584,32 +614,21 @@ Dependencies Ä	Setup					¶
 		Make -f "{ObjDir}"SlashEM.make Dependencies > "{ObjDir}"SlashEM.makeout
 		"{ObjDir}"SlashEM.makeout
 
-"{ObjDir}"Levels.list Ä
-		Echo 'LevelList Ä ¶' > "{ObjDir}"Levels.list
+"{LibDir}"Levels.list Ä
+		Echo 'LevelList Ä ¶' > "{LibDir}"Levels.list
 		For file in "{Top}"dat:Å.des
-			StreamEdit "{file}" -d -e '/MAZE:[ ]*¶"(Å)¨1¶"/||/LEVEL:[ ]*¶"(Å)¨1¶"/ Change "    ¶"{ObjDir}¶""¨1".lev ¶¶";Print;Exit' >> "{ObjDir}"Levels.list
+			StreamEdit "{file}" -d -e '/MAZE:[ ]*¶"(Å)¨1¶"/||/LEVEL:[ ]*¶"(Å)¨1¶"/ Change "    ¶"{LibDir}¶""¨1".lev ¶¶";Print;Exit' >> "{LibDir}"Levels.list
 		End
-		Echo "" >> "{ObjDir}"Levels.list
-
+		Echo "" >> "{LibDir}"Levels.list
+		
 #---------------- Clean -------------------
 
 Clean	Ä
 		set exit 0
 		Delete -i -y "{Results}"
-		Delete -i -y "{ObjDir}"MakeDefs.make "{ObjDir}"MakeDefs.makeout "{ObjDir}"MakeDefs.xcoff "{ObjDir}"MakeDefs
-		Delete -i -y "{ObjDir}"LevComp.make "{ObjDir}"LevComp.makeout "{ObjDir}"LevComp.xcoff "{ObjDir}"LevComp
-		Delete -i -y "{ObjDir}"DgnComp.make "{ObjDir}"DgnComp.makeout "{ObjDir}"DgnComp.xcoff "{ObjDir}"DgnComp
-		Delete -i -y "{ObjDir}"Recover.make "{ObjDir}"Recover.makeout "{ObjDir}"Recover.xcoff
-		Delete -i -y "{ObjDir}"SlashEM.make "{ObjDir}"SlashEM.makeout "{ObjDir}"SlashEM.xcoff
-		Delete -i -y Macintosh.makeout "{ObjDir}"Levels.list "{ObjDir}"Levels.makeout
-		Delete -i -y "{ObjDir}"Å.SYM "{ObjDir}"Å.NJ
-		Delete -i -y "{ObjDir}"Å.c.Å
-		Delete -i -y "{ObjDir}"date.h "{ObjDir}"dungeon.pdf "{ObjDir}"filename.h  
-		Delete -i -y "{ObjDir}"monstr.c "{ObjDir}"onames.h
-		Delete -i -y "{ObjDir}"pm.h "{ObjDir}"vis_tab.c "{ObjDir}"vis_tab.h
-		Delete -i -y "{ObjDir}"Å.lev
-		Delete -i -y "{ObjDir}"data "{ObjDir}"dungeon "{ObjDir}"options "{ObjDir}"oracles
-		Delete -i -y "{ObjDir}"rumors "{ObjDir}"quest.dat
+		Delete -i -y "{ObjDir}
+		Delete -i -y "{LibDir}
+		Delete -i -y Macintosh.makeout
 		Delete -i -y "{Top}"Å.rej
 		Delete -i -y "{Top}"Å.orig
 		Delete -i -y "{Top}"Å:Å.rej
@@ -625,17 +644,16 @@ Clean	Ä
 
 Spotless	Ä	Clean
 		set exit 0
-		Delete -i -y "{Top}"ObjPowerPC "{Top}"Obj68K "{Top}"ObjFat "{Top}"DungeonPowerPC "{Top}"Dungeon68K "{Top}"DungeonFat
-		Delete -i -y "{ObjDir}"NHrsrc.rsrc "{ObjDir}"NHsound.rsrc "{ObjDir}"MRecover.rsrc
+		Delete -i -y "{Preserve}"
 		set exit 1
 
 #---------------- Pack -------------------
 
-Pack	Ä	"{ObjDir}"NHrsrc.rsrc "{ObjDir}"NHsound.rsrc "{ObjDir}"MRecover.rsrc
-		DeRez "{ObjDir}"NHrsrc.rsrc Types.r SysTypes.r > "{MacDir}"NHrsrc.r
-		DeRez "{ObjDir}"NHsound.rsrc Types.r SysTypes.r > "{MacDir}"NHsound.r
+Pack	Ä	"{ObjDir}"NetHack.rsrc "{ObjDir}"Sounds.rsrc "{ObjDir}"MRecover.rsrc
+		DeRez "{ObjDir}"NetHack.rsrc Types.r SysTypes.r > "{MacDir}"NetHack.r
+		DeRez "{ObjDir}"Sounds.rsrc Types.r SysTypes.r > "{MacDir}"Sounds.r
 		DeRez "{ObjDir}"MRecover.rsrc Types.r SysTypes.r > "{MacDir}"MRecover.r
 
 #---------------- Unpack -------------------
 
-Unpack	Ä	"{ObjDir}"NHrsrc.rsrc "{ObjDir}"NHsound.rsrc "{ObjDir}"MRecover.rsrc
+Unpack	Ä	"{ObjDir}"NetHack.rsrc "{ObjDir}"Sounds.rsrc "{ObjDir}"MRecover.rsrc
