@@ -256,7 +256,7 @@ register struct obj *food;
 {
 	/* only happens if you were satiated */
 	if (u.uhs != SATIATED) {
-		if (food->otyp != AMULET_OF_STRANGULATION)
+		if (!food || food->otyp != AMULET_OF_STRANGULATION)
 			return;
 	} else if (Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL) {
 		adjalign(-1);           /* gluttony is unchivalrous */
@@ -267,8 +267,11 @@ register struct obj *food;
 
 	if (Breathless || (!Strangled && !rn2(20))) {
 		/* choking by eating AoS doesn't involve stuffing yourself */
-		if (food->otyp == AMULET_OF_STRANGULATION) {
-			You("choke, but recover your composure.");
+		/* ALI - nor does other non-food nutrition (eg., life-blood) */
+		if (!food || food->otyp == AMULET_OF_STRANGULATION) {
+			nomovemsg = "You recover your composure.";
+			You("choke over it.");
+			nomul(-2);
 			return;
 		}
 		You("stuff yourself and then vomit voluminously.");
@@ -2359,20 +2362,21 @@ void
 lesshungry(num) /* called after eating (and after drinking fruit juice) */
 register int num;
 {
+	/* See comments in newuhs() for discussion on force_save_hs */
+	boolean iseating = occupation == eatfood || force_save_hs;
 #ifdef DEBUG
 	debugpline("lesshungry(%d)", num);
 #endif
 	u.uhunger += num;
 	if(u.uhunger >= 2000) {
-	    if (!victual.eating || victual.canchoke) {
-		if (victual.eating) {
-			choke(victual.piece);
-			reset_eat();
-		} else {
-			choke(tin.tin);	/* may be null */
-		}
-		 }
-		/* no reset_eat() */
+	    if (!iseating || victual.canchoke) {
+		if (iseating) {
+		    choke(victual.piece);
+		    reset_eat();
+		} else
+		    choke(occupation == opentin ? tin.tin : (struct obj *)0);
+	    }
+	    /* no reset_eat() */
 	} else {
 	    /* Have lesshungry() report when you're nearly full so all eating
 	     * warns when you're about to choke.

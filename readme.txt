@@ -339,6 +339,7 @@ ver 0.0.6E4F2 [December XX/2000]
 -fixed bug 124048: Antimagic traps not displayed when monster triggers them.
 -fixed bug 124049: Missing "a" in magical explosion message.
 -fixed bug 121723: Dialog boxes appear at the mouse pointer.
+-fixed bug 123175: Vampire over-indulgement crashed game.
 
 ver 0.0.6E4F1 [November 10/2000] [Released by Ali]
 -GTK: status window stats columns should never be too small
