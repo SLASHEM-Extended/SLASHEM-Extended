@@ -2079,7 +2079,7 @@ register struct obj *otmp;
 int
 doeat()         /* generic "eat" command funtion (see cmd.c) */
 {
-	struct obj *otmp;
+	register struct obj *otmp;
 	int basenutrit;                 /* nutrition of full item */
 	int nutrit;			/* nutrition available */
 	char qbuf[QBUFSZ];
@@ -2205,15 +2205,10 @@ doeat()         /* generic "eat" command funtion (see cmd.c) */
 	 * they shouldn't be able to choke now.
 	 */
 	    if (u.uhs != SATIATED) victual.canchoke = FALSE;
-	    if (victual.piece->quan > 1L)
-		victual.piece = splitoneoff(&otmp);
-	    if (!victual.piece)
-		impossible("unsplitable food");
-	    else {
-		You("resume your meal.");
-		start_eating(victual.piece);
-		return(1);
-	    }
+	    victual.piece = touchfood(otmp);
+	    You("resume your meal.");
+	    start_eating(victual.piece);
+	    return(1);
 	}
 
 	/* nothing in progress - so try to find something. */
