@@ -327,7 +327,7 @@ TODO:
 -tofix: using the nethack config files.
 -vampires shouldn't be allowed to become Flame Mages
 
-ver 0.0.6E7 [?] [Released by ?]
+ver 0.0.6E7 [December 6/2002] [Released by Ali]
 -Lethe: Treacherous pets; Cthulhu revivification; monsters use of potions of
 	amnesia & wands of cancellation; reflecting golems (Darshan Shaligram).
 -Implemented gtkhack, a Gtk 2.0 external window interface for UNIX and win32.
