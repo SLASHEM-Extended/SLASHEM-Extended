@@ -387,6 +387,8 @@ ver 0.0.6E6 [?] [Released by ?]
 -fixed bug 576543: Wands of draining should boing!
 -fixed bug 582459: High Lycanthrope
 -Added Lethe monsters (Darshan Shaligram).
+-fixed bug 583448: No apply with healtstone.
+
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).

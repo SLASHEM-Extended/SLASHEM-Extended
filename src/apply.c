@@ -3290,6 +3290,7 @@ doapply()
 	case LUCKSTONE:
 	case LOADSTONE:
 	case TOUCHSTONE:
+	case HEALTHSTONE:
 		use_stone(obj);
 		break;
 #ifdef FIREARMS

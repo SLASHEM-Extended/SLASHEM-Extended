@@ -273,7 +273,8 @@ struct obj {
 #define is_graystone(obj)	((obj)->otyp == LUCKSTONE || \
 				 (obj)->otyp == LOADSTONE || \
 				 (obj)->otyp == FLINT     || \
-				 (obj)->otyp == TOUCHSTONE)
+				 (obj)->otyp == TOUCHSTONE || \
+				 (obj)->otyp == HEALTHSTONE)
 
 /* misc */
 #ifdef KOPS
