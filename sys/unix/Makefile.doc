@@ -26,9 +26,12 @@ COLCMD = col -bx
 PSCMD = groff -Wall -Tps
 
 # Use the "cat" GUIDECMD if groff and/or tbl are not installed
+# Not appropriate for creating Guidebook.txt.
 # DOS w/o cat users can use "type"
 # GUIDECMD = cat Guidebook.txt
 # GUIDECMD = type Guidebook.txt
+# The following work better with groff-1.18, eg on Linux
+# GUIDECMD = tbl tmac.n Guidebook.mn | nroff -c -Tascii | $(COLCMD)
 # GUIDECMD = tbl tmac.n Guidebook.mn | groff -Wall -mtty-char -Tascii -P-u -P-b 
 GUIDECMD = tbl tmac.n Guidebook.mn | nroff | $(COLCMD)
 
@@ -82,7 +85,7 @@ distrib: $(DISTRIB)
 	@echo "Plain text documentation is up to date."
 
 Guidebook.txt	: Guidebook.mn tmac.n
-	tbl tmac.n Guidebook.mn | groff -Wall -mtty-char -Tascii -P-u -P-b > Guidebook.txt
+	$(GUIDECMD) > Guidebook.txt
 $(GAME).txt	: $(GAME).6
 	nroff -man $(GAME).6 | $(COLCMD) > $(GAME).txt
 lev_comp.txt	: lev_comp.6
