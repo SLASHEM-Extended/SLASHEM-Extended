@@ -1,11 +1,12 @@
-/* $Id: callback.c,v 1.16 2003-05-31 08:12:44 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001-2002 */
+/* $Id: callback.c,v 1.17 2003-07-05 15:02:54 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 /* #define DEBUG */
 
 #include "hack.h"
 #include "func_tab.h"
+#include "md5.h"
 #include "nhxdr.h"
 #include "proxycom.h"
 #include "winproxy.h"
@@ -21,6 +22,8 @@ static void FDECL(callback_dlbh_fread, \
 static void FDECL(callback_dlbh_fwrite, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(callback_dlbh_fclose, \
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(callback_dlbh_fmd5sum, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(callback_flush_screen, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
@@ -66,25 +69,28 @@ NhExtXdr *request, *reply;
     nhext_rpc_params(reply, 0);
 }
 
+/* 
+ * Common function used by callback_dlbh_fopen() and callback_dlbh_fmd5sum()
+ * to open files on behalf of the window interface.
+ */
+
 #ifndef FILE_AREAS
 #define SET_FILE(f, a) if (1) { file = f; } else
 #else
 #define SET_FILE(f, a) if (1) { file = f; area = a; } else
 #endif
 
-static void
-callback_dlbh_fopen(id, request, reply)
-unsigned short id;
-NhExtXdr *request, *reply;
+/*
+ * Warning: overwrites memory pointed to by name
+ */
+
+static int
+cb_dlbh_fopen(char *name, char *mode)
 {
-    char *name, *mode, *file, *subname;
-#ifdef FILE_AREAS
-    char *area;
-#endif
+    char *file, *subname;
     char *s;
     char *buf = NULL;
     int i, retval = 0;
-    nhext_rpc_params(request, 2, EXT_STRING_P(name), EXT_STRING_P(mode));
     if (name[0] != '$' || name[1] != '(')
 	retval = -1;
     else {
@@ -174,14 +180,26 @@ NhExtXdr *request, *reply;
 	retval = dlbh_fopen_area(area, file, mode);
 #endif
     }
-    nhext_rpc_params(reply, 1, EXT_INT(retval));
-    free(name);
-    free(mode);
     if (buf)
 	free(buf);
+    return retval;
 }
 
 #undef SET_FILE
+
+static void
+callback_dlbh_fopen(id, request, reply)
+unsigned short id;
+NhExtXdr *request, *reply;
+{
+    char *name, *mode;
+    int retval;
+    nhext_rpc_params(request, 2, EXT_STRING_P(name), EXT_STRING_P(mode));
+    retval = cb_dlbh_fopen(name, mode);
+    nhext_rpc_params(reply, 1, EXT_INT(retval));
+    free(name);
+    free(mode);
+}
 
 static void
 callback_dlbh_fgets(id, request, reply)
@@ -239,6 +257,53 @@ NhExtXdr *request, *reply;
     nhext_rpc_params(request, 1, EXT_INT_P(fh));
     retval = dlbh_fclose(fh);
     nhext_rpc_params(reply, 1, EXT_INT(retval));
+}
+
+static void
+callback_dlbh_fmd5sum(id, request, reply)
+unsigned short id;
+NhExtXdr *request, *reply;
+{
+    int retval = 0;
+    int fh, nb, i;
+    char *name;
+    char *buf;
+    md5_state_t md5;
+    md5_byte_t digest[16];
+    char md5sum[33];
+    nhext_rpc_params(request, 1, EXT_STRING_P(name));
+    buf = (char *)alloc(8128);
+    if (!buf) {
+	fh = -1;
+	retval = -1;
+    } else {
+	fh = cb_dlbh_fopen(name, "rb");
+	if (fh < 0)
+	    retval = -1;
+    }
+    free(name);
+    if (!retval) {
+	md5_init(&md5);
+	do {
+	    nb = dlbh_fread(buf, 1, 8128, fh);
+	    if (nb > 0)
+		md5_append(&md5, buf, nb);
+	} while (nb > 0);
+	if (nb < 0)
+	    retval = -1;
+	md5_finish(&md5, digest);
+    }
+    if (fh >= 0)
+	(void)dlbh_fclose(fh);
+    free(buf);
+    if (retval)
+	md5sum[0]='\0';
+    else {
+	for(i = 0; i < 16; i++)
+	    sprintf(md5sum + 2 * i, "%02x", digest[i]);
+	md5sum[2 * i] = '\0';
+    }
+    nhext_rpc_params(reply, 2, EXT_INT(retval), EXT_STRING(md5sum));
 }
 
 static void
@@ -579,6 +644,7 @@ struct nhext_svc proxy_callbacks[] = {
     EXT_CID_DLBH_FREAD,			callback_dlbh_fread,
     EXT_CID_DLBH_FWRITE,		callback_dlbh_fwrite,
     EXT_CID_DLBH_FCLOSE,		callback_dlbh_fclose,
+    EXT_CID_DLBH_FMD5SUM,		callback_dlbh_fmd5sum,
     EXT_CID_FLUSH_SCREEN,		callback_flush_screen,
     EXT_CID_DOREDRAW,			callback_doredraw,
     EXT_CID_INTERFACE_MODE,		callback_interface_mode,

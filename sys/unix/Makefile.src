@@ -237,8 +237,8 @@ WINBEOBJ =
 #WINBEOBJ = winbe.o NHWindow.o NHMenuWindow.o NHMapWindow.o nhwin.a
 #
 # Files for a proxy interface
-WINPROXYSRC = ../win/proxy/winproxy.c ../win/proxy/callback.c
-WINPROXYOBJ = winproxy.o callback.o nhwin.a
+WINPROXYSRC = ../win/proxy/winproxy.c ../win/proxy/callback.c ../win/proxy/md5.c
+WINPROXYOBJ = winproxy.o callback.o md5.o nhwin.a
 #
 # Common files for proxy window interface and plug-in window interfaces.
 PROXYCOMSRC = ../win/proxy/nhext.c ../win/proxy/nhxdr.c \
@@ -859,8 +859,11 @@ winproxy.o: ../win/proxy/winproxy.c $(HACK_H) ../include/patchlevel.h \
 		../include/winproxy.h #../include/win32api.h
 	$(CC) $(CFLAGS) -c ../win/proxy/winproxy.c
 callback.o: ../win/proxy/callback.c $(HACK_H) ../include/func_tab.h \
-		../include/nhxdr.h ../include/proxycom.h ../include/winproxy.h
+		../include/md5.h ../include/nhxdr.h ../include/proxycom.h \
+		../include/winproxy.h
 	$(CC) $(CFLAGS) -c ../win/proxy/callback.c
+md5.o: ../win/proxy/md5.c ../include/md5.h
+	$(CC) $(CFLAGS) -c ../win/proxy/md5.c
 dlbh.o: ../win/proxy/dlbh.c $(HACK_H) ../include/dlb.h
 	$(CC) $(CFLAGS) -c ../win/proxy/dlbh.c
 mapid.o: ../win/proxy/mapid.c $(HACK_H) ../include/nhxdr.h ../include/winproxy.h

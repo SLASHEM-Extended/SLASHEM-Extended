@@ -7,7 +7,7 @@
 <body>
 <h1>NhExt: A protocol for NetHack plug-in window ports</h1>
 
-<p>This document describes NhExt 0.2, a protocol to be used when NetHack
+<p>This document describes NhExt 0.3, a protocol to be used when NetHack
 calls a function located inside a plug-in window port and for when that window
 port function in turn calls a function located inside NetHack (a call back).
 The protocol specifies no limit to the depth of recursion which may occur.
@@ -1099,23 +1099,24 @@ Plug-in window ports may assume that the following call backs are supported.
 <tr><td>dlbh_fread</td><td>0x04</td></tr>
 <tr><td>dlbh_fwrite</td><td>0x05</td></tr>
 <tr><td>dlbh_fclose</td><td>0x06</td></tr>
-<tr><td>flush_screen</td><td>0x07</td></tr>
-<tr><td>doredraw</td><td>0x08</td></tr>
-<tr><td>interface_mode</td><td>0x09</td></tr>
-<tr><td>parse_options</td><td>0x0A</td></tr>
-<tr><td>get_option</td><td>0x0B</td></tr>
-<tr><td>get_player_choices</td><td>0x0C</td></tr>
-<tr><td>get_valid_selections</td><td>0x0D</td></tr>
-<tr><td>quit_game</td><td>0x0E</td></tr>
-<tr><td>display_score</td><td>0x0F</td></tr>
-<tr><td>doset</td><td>0x10</td></tr>
-<tr><td>get_extended_commands</td><td>0x11</td></tr>
-<tr><td>map_menu_cmd</td><td>0x12</td></tr>
-<tr><td>get_standard_winid</td><td>0x13</td></tr>
-<tr><td>get_tilesets</td><td>0x14</td></tr>
-<tr><td>get_glyph_mapping</td><td>0x15</td></tr>
-<tr><td>get_extensions</td><td>0x16</td></tr>
-<tr><td>set_option_mod_status</td><td>0x17</td></tr>
+<tr><td>dlbh_fmd5sum</td><td>0x07</td></tr>
+<tr><td>flush_screen</td><td>0x08</td></tr>
+<tr><td>doredraw</td><td>0x09</td></tr>
+<tr><td>interface_mode</td><td>0x0A</td></tr>
+<tr><td>parse_options</td><td>0x0B</td></tr>
+<tr><td>get_option</td><td>0x0C</td></tr>
+<tr><td>get_player_choices</td><td>0x0D</td></tr>
+<tr><td>get_valid_selections</td><td>0x0E</td></tr>
+<tr><td>quit_game</td><td>0x0F</td></tr>
+<tr><td>display_score</td><td>0x10</td></tr>
+<tr><td>doset</td><td>0x11</td></tr>
+<tr><td>get_extended_commands</td><td>0x12</td></tr>
+<tr><td>map_menu_cmd</td><td>0x13</td></tr>
+<tr><td>get_standard_winid</td><td>0x14</td></tr>
+<tr><td>get_tilesets</td><td>0x15</td></tr>
+<tr><td>get_glyph_mapping</td><td>0x16</td></tr>
+<tr><td>get_extensions</td><td>0x17</td></tr>
+<tr><td>set_option_mod_status</td><td>0x18</td></tr>
 </table>
 
 <h3>display_inventory</h3>
@@ -1219,6 +1220,22 @@ struct dlbh_fclose_res {
 </pre>
 
 <p>Close a file previously opened with dlbh_fclose. Return non-zero on error.
+
+<h3>dlbh_fmd5sum</h3>
+<pre>
+struct dlbh_fmd5sum_req {
+    string name<>;
+};
+
+struct dlbh_fmd5sum_res {
+    int retval;
+    string digest<>;
+};
+</pre>
+
+<p>Compute a message digest for a file according to RFC 1321 (MD5).  See
+dlbh_fopen for information on file names. Retval will be zero if the
+file was opened successfully and -1 if an error was encountered.
 
 <h3>flush_screen</h3>
 flush_screen takes no arguments and returns no values.

@@ -1,4 +1,4 @@
-/* $Id: proxycb.c,v 1.16 2003-05-31 08:12:44 j_ali Exp $ */
+/* $Id: proxycb.c,v 1.17 2003-07-05 15:02:54 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -102,6 +102,23 @@ int fh;
     if (!nhext_rpc(EXT_CID_DLBH_FCLOSE, 1, EXT_INT(fh), 1, EXT_INT_P(retval)))
 	retval = -1;
     return retval;
+}
+
+char *
+proxy_cb_dlbh_fmd5sum(name)
+const char *name;
+{
+    int retval;
+    char *digest = (char *)0;
+    if (!nhext_rpc(EXT_CID_DLBH_FMD5SUM, 1, EXT_STRING(name),
+      2, EXT_INT_P(retval), EXT_STRING_P(digest)))
+	retval = -1;
+    if (!retval)
+	return digest;
+    else {
+	free(digest);
+	return (char *)0;
+    }
 }
 
 void
