@@ -620,6 +620,10 @@ long timeout;
 		switch(bomb->where) {		
 		    case OBJ_MINVENT:
 		    	mtmp = bomb->ocarry;
+			if (bomb == MON_WEP(mtmp)) {
+			    bomb->owornmask &= ~W_WEP;
+			    MON_NOWEP(mtmp);
+			}
 			if (!silent) {
 			    if (canseemon(mtmp))
 				You("see %s explode!", mon_nam(mtmp));
@@ -638,6 +642,16 @@ long timeout;
 		    case OBJ_INVENT:
 		    	/* This shouldn't be silent! */
 			pline("Something explodes inside your knapsack!");
+			if (bomb == uwep) {
+			    uwepgone();
+			    stop_occupation();
+			} else if (bomb == uswapwep) {
+			    uswapwepgone();
+			    stop_occupation();
+			} else if (bomb == uquiver) {
+			    uqwepgone();
+			    stop_occupation();
+			}
 		    	losehp(d(2,5), "carrying live explosives", KILLED_BY);
 		    	break;
 		    case OBJ_FLOOR:
