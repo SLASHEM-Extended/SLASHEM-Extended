@@ -29,6 +29,24 @@
 | Section 1: Yesterday's News |
 +-----------------------------+
 
+ver 0.0.7E6F1 [March 20/2004] [Released by Ali]
+-fixed bug 909623: Surgery technique causes crash
+-fixed bug 909397: Windows help|about twice crashes
+-New branding for MS-Windows native GUI port
+-fixed bug 907789: "The poisoned runed dagger was poisoned!" (Nico Kist)
+-fixed bug 908187: Excessive prompts when reading graffiti (Nico Kist)
+-fixed bug 910891: Overly terse description of bones/save file compatibility
+-fixed bug 908983: "The large kobold turns into it!" (Nico Kist)
+-fixed bug 911457: Macintosh dungeon creation not random
+-fixed bug 912586: Crashes in Grund's Stronghold
+-fixed bug 907565: Unidentified tin auto-ided when eaten
+-fixed bug 908189: "The wererat turns into a wererat!"
+-fixed bug 914897: Wrong AC displayed at start of game
+-fixed bug 911335: Monster polymorph permanent?
+-fixed bug 874318: Partly eaten food more nutrious than untouched food
+-fixed bug 911845: "The poison was poisoned!" (Nico Kist)
+-fixed bug 915683: Shopkeeper doesn't handle timed objects correctly
+
 ver 0.0.7E6 [February 28/2004] [Released by Ali]
 -fixed bug 876092: Wrong filename in message during build process (Clive Crous)
 -fixed bug 876094: Tiles are miscoloured in allegro port (Clive Crous)
