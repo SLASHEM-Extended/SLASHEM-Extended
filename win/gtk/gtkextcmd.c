@@ -1,5 +1,5 @@
 /*
-  $Id: gtkextcmd.c,v 1.5 2003-05-03 11:12:27 j_ali Exp $
+  $Id: gtkextcmd.c,v 1.6 2003-05-24 15:15:15 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -162,7 +162,7 @@ GTK_get_ext_cmd()
     GtkWidget *hbox;
     GtkWidget *table = NULL;
     GtkWidget *d;
-    int i, data;
+    int i, col, data;
     const char *label;
 
     if (!extcmds)
@@ -189,19 +189,22 @@ GTK_get_ext_cmd()
       FALSE, FALSE, NH_PAD);
     table = nh_gtk_new_and_pack(gtk_table_new((n_extcmds+2)/3, 3, TRUE), hbox,
       "", FALSE, FALSE, NH_PAD);
+    gtk_table_set_row_spacings(GTK_TABLE(table), NH_PAD);
+    gtk_table_set_col_spacings(GTK_TABLE(table), NH_PAD);
     for(i = 0; i < n_extcmds; i++) {
 	if (!strcmp(extcmds[i], "?")) {
 	    /*
 	     * Rather more useful than '?' in these circumstances -ALI
 	     */
-	    label = "Cancel";
+	    d = gtk_button_new_from_stock(GTK_STOCK_CANCEL);
+	    col = (i == n_extcmds - 1 && i%3 == 0) ? 1 : i%3;
 	    data = -1;
 	} else {
-	    label = extcmds[i];
+	    d = gtk_button_new_with_label(extcmds[i]);
+	    col = i%3;
 	    data = i;
 	}
-	d = nh_gtk_new_and_attach(gtk_button_new_with_label(label), table, "",
-	  i%3, i%3+1, i/3, i/3+1);
+	d = nh_gtk_new_and_attach(d, table, "", col, col+1, i/3, i/3+1);
 	gtk_signal_connect(GTK_OBJECT(d), "clicked",
 	  GTK_SIGNAL_FUNC(extcmd_clicked), (gpointer)data);
     }

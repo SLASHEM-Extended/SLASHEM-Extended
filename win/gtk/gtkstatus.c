@@ -1,5 +1,5 @@
 /*
-  $Id: gtkstatus.c,v 1.10 2003-05-03 11:12:28 j_ali Exp $
+  $Id: gtkstatus.c,v 1.11 2003-05-24 15:15:15 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -7,9 +7,158 @@
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
+#include <math.h>
 #include <sys/types.h>
 #include <signal.h>
 #include "winGTK.h"
+
+/******************************************************************************
+  The NhLight widget is a trivial widget that is used to indicate stat changed
+ ******************************************************************************/
+
+#define NH_TYPE_LIGHT			nh_light_get_type()
+#define NH_LIGHT(obj)			G_TYPE_CHECK_INSTANCE_CAST(obj, \
+						NH_TYPE_LIGHT, NhLight)
+#define NH_LIGHT_CLASS(klass)		G_TYPE_CHECK_CLASS_CAST(klass, \
+						NH_TYPE_LIGHT, NhLightClass)
+#define NH_IS_LIGHT(obj)		G_TYPE_CHECK_INSTANCE_TYPE(obj, \
+						NH_TYPE_LIGHT)
+#define NH_IS_LIGHT_CLASS(klass)	G_TYPE_CHECK_CLASS_TYPE(klass, \
+						NH_TYPE_LIGHT)
+#define NH_LIGHT_GET_CLASS(obj)		G_TYPE_INSTANCE_GET_CLASS(obj, \
+						NH_TYPE_LIGHT, NhLightClass)
+
+#define NH_LIGHT_MAX_CONTRAST	10
+#define NH_LIGHT_WIDTH		4
+#define NH_LIGHT_HEIGHT		16
+
+typedef struct _NhLight {
+    GtkMisc misc;
+    int contrast;		/* From 0 (none) to 10 (max), or -1 (transp) */
+} NhLight;
+
+typedef struct _NhLightClass {
+    GtkMiscClass parent_class;
+} NhLightClass;
+
+static gpointer parent_class;
+
+GType nh_light_get_type(void);
+
+GtkWidget *nh_light_new(void);
+void nh_light_set_contrast(NhLight *light, int contrast);
+
+static void nh_light_class_init(NhLightClass *klass);
+static void nh_light_init(NhLight *light);
+static gint nh_light_expose(GtkWidget *widget, GdkEventExpose *expose);
+static void nh_light_size_request(GtkWidget *widget,
+  GtkRequisition *requisition);
+
+GType nh_light_get_type(void)
+{
+    static GType type = 0;
+    if (!type) {
+	static const GTypeInfo info = {
+	    sizeof(NhLightClass),
+	    NULL,			/* base_init */
+	    NULL,			/* base_finalize */
+	    (GClassInitFunc)nh_light_class_init,
+	    NULL,			/* class_finalize */
+	    NULL,			/* class_data */
+	    sizeof(NhLight),
+	    0,				/* n_preallocs */
+	    (GInstanceInitFunc)nh_light_init
+	};
+	type = g_type_register_static(GTK_TYPE_MISC, "NhLight", &info, 0);
+    }
+    return type;
+}
+
+GtkWidget *nh_light_new(void)
+{
+    return g_object_new(NH_TYPE_LIGHT, NULL);
+}
+
+void nh_light_set_contrast(NhLight *light, int contrast)
+{
+    if (contrast < 0)
+	contrast = 0;
+    else if (contrast > NH_LIGHT_MAX_CONTRAST)
+	contrast = NH_LIGHT_MAX_CONTRAST;
+    if (light->contrast != contrast) {
+	light->contrast = contrast;
+	gtk_widget_queue_draw(GTK_WIDGET(light));
+    }
+}
+
+static void nh_light_class_init(NhLightClass *klass)
+{
+    GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
+
+    parent_class = g_type_class_peek_parent(klass);
+    widget_class->expose_event = nh_light_expose;
+    widget_class->size_request = nh_light_size_request;
+}
+
+static void nh_light_init(NhLight *light)
+{
+    GTK_WIDGET_SET_FLAGS(light, GTK_NO_WINDOW);
+    light->contrast = 0;
+}
+
+static gint nh_light_expose(GtkWidget *widget, GdkEventExpose *expose)
+{
+    GtkMisc *misc = GTK_MISC(widget);
+    NhLight *light = NH_LIGHT(widget);
+    GdkGC *gc;
+    GdkColormap *cmap;
+    GdkColor color = {0};
+    GdkRectangle area;
+    gfloat xalign;
+    gint x, y;
+    guint16 bg;
+
+    if (GTK_WIDGET_MAPPED(widget)) {
+	area = expose->area;
+	if (!gdk_rectangle_intersect(&area, &widget->allocation, &area))
+	    return FALSE;
+	if (gtk_widget_get_direction(widget) == GTK_TEXT_DIR_LTR)
+	    xalign = misc->xalign;
+	else
+	    xalign = 1.0 - misc->xalign;
+	x = floor(0.5 + widget->allocation.x + misc->xpad + xalign *
+	  (widget->allocation.width - widget->requisition.width));
+	y = floor(0.5 + widget->allocation.y + misc->ypad + misc->yalign *
+	  (widget->allocation.height - widget->requisition.height));
+	gc = gdk_gc_new(widget->window);
+	cmap = gdk_drawable_get_colormap(widget->window);
+	if (!cmap)
+	    fprintf(stderr, "nh_light_expose: No colormap!\n");
+	color.red = bg = widget->style->bg[GTK_STATE_NORMAL].red;
+	color.red += (65535L - bg) * light->contrast / NH_LIGHT_MAX_CONTRAST;
+	color.green = bg = widget->style->bg[GTK_STATE_NORMAL].green;
+	color.green += (65535L - bg) * light->contrast / NH_LIGHT_MAX_CONTRAST;
+	color.blue = bg = widget->style->bg[GTK_STATE_NORMAL].blue;
+	color.blue += (65535L - bg) * light->contrast / NH_LIGHT_MAX_CONTRAST;
+	if (gdk_colormap_alloc_color(cmap, &color, FALSE, TRUE))
+	    gdk_gc_set_foreground(gc, &color);
+	else
+	    gdk_gc_set_foreground(gc, &widget->style->bg[GTK_STATE_NORMAL]);
+	gdk_draw_rectangle(widget->window, gc, TRUE,
+	  x, y, NH_LIGHT_WIDTH, NH_LIGHT_HEIGHT);
+	g_object_unref(gc);
+    }
+}
+
+static void nh_light_size_request(GtkWidget *widget,
+  GtkRequisition *requisition)
+{
+    widget->requisition.width = NH_LIGHT_WIDTH + GTK_MISC(widget)->xpad * 2;
+    widget->requisition.height = NH_LIGHT_HEIGHT + GTK_MISC(widget)->ypad * 2;
+    GTK_WIDGET_CLASS(parent_class)->size_request(widget, requisition);
+}
+
+/******************************************************************************/
 
 #define	NH_BAR_WIDTH	150
 #define NH_BAR_HEIGHT	8
@@ -21,10 +170,9 @@
 static GtkWidget *handle;
 static GtkWidget *frame;
 static GtkWidget *dlvl;
-static GtkWidget *hbox;
+static GtkWidget *stat_table;
 static GtkWidget *hbox2;
 static GtkWidget *vbox;
-static GtkWidget *clist[STAT_COLS+1];
 
 static GtkWidget *levi;
 static GtkWidget *conf;
@@ -42,6 +190,11 @@ static struct {
     GdkPixmap *pixmap;
     GdkGC *gc;
 } bar[STAT_BARS];
+
+static struct {
+    GtkLabel *label, *value;
+    NhLight *light;
+} stat_widgets[STAT_COLS][STAT_ROWS];
 
 static gint
 bar_expose_event(GtkWidget *widget, GdkEventExpose *event)
@@ -140,7 +293,6 @@ char **values;
     int rowno[STAT_COLS];
     for(i = 0; i < STAT_COLS; i++) {
 	rowno[i] = 0;
-    	gtk_clist_freeze(GTK_CLIST(clist[i]));
     }
     for(i = 0; i < SIZE(stat_tab); i++) {
 	stat_tab[i].vi = stat_tab[i].dvi = -1;
@@ -162,8 +314,8 @@ char **values;
 			g_free(stat_tab[i].oldvalue);
 			stat_tab[i].oldvalue = (gchar *)0;
 		    }
-		    gtk_clist_set_text(GTK_CLIST(clist[k]), rowno[k]++,
-		      0, stat_tab[i].label);
+		    gtk_label_set_text(stat_widgets[k][rowno[k]++].label,
+		      stat_tab[i].label);
 		}
 		if (!stat_tab[i].divisor || stat_tab[i].dvi >= 0)
 		    break;
@@ -176,13 +328,28 @@ char **values;
     }
     for(i = 0; i < STAT_COLS; i++) {
 	for(j = rowno[i]; j < STAT_ROWS; j++) {
-	    gtk_clist_set_text(GTK_CLIST(clist[i]), j, 0, "");
-	    gtk_clist_set_text(GTK_CLIST(clist[i]), j, 1, "");
+	    gtk_label_set_text(stat_widgets[i][j].label, "");
+	    gtk_label_set_text(stat_widgets[i][j].value, "");
 	}
-	gtk_clist_set_column_min_width(GTK_CLIST(clist[i]), 0, 
-	  gtk_clist_optimal_column_width(GTK_CLIST(clist[i]), 0));
-    	gtk_clist_thaw(GTK_CLIST(clist[i]));
     }
+}
+
+static light_timer(gpointer data)
+{
+    int i, j;
+    int retval = FALSE;
+    NhLight *light;
+    for(j = 0; j < STAT_ROWS; j++)
+	for(i = 0; i < STAT_COLS; i++) {
+	    light = stat_widgets[i][j].light;
+	    if (light && light->contrast > 0) {
+		nh_light_set_contrast(light, light->contrast - 1);
+		if (light->contrast > 0)
+		    retval = TRUE;
+	    }
+	}
+    *(int *)data = retval;
+    return retval;
 }
 
 void
@@ -197,14 +364,14 @@ const char **values;
     const char *value;
     gchar *str = NULL, *s;
     GdkRectangle update_rect;
+    static int light_timer_active = 0;
+    int start_light_timer = 0;
 
     if (reconfig) {
 	nh_status_reconfig(nv, values);
 	return;
     }
     in_trouble = FALSE;
-    for(i = 0; i < STAT_COLS; i++)
-    	gtk_clist_freeze(GTK_CLIST(clist[i]));
     for(i = 0; i < SIZE(stat_tab); i++) {
 	if (stat_tab[i].vi < 0)
 	    continue;
@@ -229,8 +396,12 @@ const char **values;
 		case STAT_COLUMN(1):
 		case STAT_COLUMN(2):
 		    j = stat_tab[i].where - STAT_COLUMN(1);
-		    gtk_clist_set_text(GTK_CLIST(clist[j]), stat_tab[i].row,
-		      1, str);
+		    gtk_label_set_text(stat_widgets[j][stat_tab[i].row].value,
+		      str);
+		    nh_light_set_contrast(
+		      stat_widgets[j][stat_tab[i].row].light,
+		      NH_LIGHT_MAX_CONTRAST);
+		    start_light_timer++;
 		    break;
 		case STAT_BAR(1):
 		case STAT_BAR(2):
@@ -292,11 +463,8 @@ const char **values;
 	}
 	g_free(str);
     }
-    for(i = 0; i < STAT_COLS; i++) {
-	gtk_clist_set_column_min_width(GTK_CLIST(clist[i]), 1, 
-	  gtk_clist_optimal_column_width(GTK_CLIST(clist[i]), 1));
-    	gtk_clist_thaw(GTK_CLIST(clist[i]));
-    }
+    if (!light_timer_active && start_light_timer)
+	g_timeout_add(200, light_timer, &light_timer_active);
 }
 
 void
@@ -315,7 +483,8 @@ GtkWidget *
 nh_status_new()
 {
     extern GtkWidget *main_window;
-    GtkWidget *w;
+    GtkWidget *hbox, *w;
+    GdkPixbuf *light;
     int	i, j;
     gchar *text[3] = { "", "", NULL};
 
@@ -323,8 +492,10 @@ nh_status_new()
     GTK_HANDLE_BOX(handle)->shrink_on_detach = 1;
 
     frame = nh_gtk_new_and_add(gtk_frame_new(NULL), handle, "");
+    gtk_container_set_border_width(GTK_CONTAINER(frame), NH_PAD);
 
     vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), frame, "");
+    gtk_container_set_border_width(GTK_CONTAINER(vbox), NH_PAD);
 
     dlvl = nh_gtk_new_and_pack(gtk_label_new(""), vbox, "", FALSE, FALSE, 0);
 
@@ -357,27 +528,69 @@ nh_status_new()
 	  NH_BAR_WIDTH, NH_BAR_HEIGHT, -1);
     }
 
+    /*
+     * [ALI] Spacing in the stat table is a little unconventional. What we
+     * want to achive is:
+     *
+     * P< label>PP<  value>PP<light>PP< label>PP<  value>PP<light>P
+     *
+     * (where P is a padding of width NH_PAD). But we want to achive this
+     * without using a column for the light (so that the table can be
+     * homogeneous which looks better and keeps the resizing simple).
+     *
+     * We achieve this with a combination of table spacing and putting
+     * the value and its light into an hbox.
+     *
+     * |P< label>P|P |<  value>PP<light>|P |P< label>P|P |<  value>PP<light>|P
+     *
+     * Column 0: Contents: P< label>P, Spacing: P
+     * Column 1: Contents: <  value>PP<light>, Spacing: P
+     * Column 2: Contents: P< label>P, Spacing: P
+     * Column 3: Contents: <  value>PP<light>, Spacing: N/A
+     *
+     * The final spacing of P on the right is achieved by placing the
+     * table in a horizontal box with an empty box.
+     *
+     * Note: It would be easier to move the padding out of the label
+     * columns and then the now symetric padding could be added by
+     * setting the padding of the table itself:
+     *
+     * P|< label>|PP |<  value>PP<light>|PP |< label>|PP |<  value>PP<light>|P
+     *
+     * However, this means that the width of the labels will be expanded
+     * to be at least <  value>PP<light> rather than <  value><light>
+     * which the current scheme achieves. Ideally, we'd like it to be
+     * simply <  value>, but that doesn't seem possible.
+     */
     hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
       TRUE, FALSE, 0);
+    gtk_box_set_spacing(GTK_BOX(hbox), NH_PAD);
+    stat_table = nh_gtk_new_and_pack(
+      gtk_table_new(STAT_ROWS, STAT_COLS * 2, TRUE), hbox, "",
+      TRUE, FALSE, 0);
+    nh_gtk_new_and_pack(gtk_vbox_new(FALSE, 0), hbox, "",
+      FALSE, FALSE, 0);
+    gtk_table_set_col_spacings(GTK_TABLE(stat_table), NH_PAD);
 
-    for(j = 0; j < STAT_COLS; j++) {
-	w = clist[j] = nh_gtk_new_and_pack(gtk_clist_new(2), hbox, "",
-	  FALSE, FALSE, 0);
-	GTK_WIDGET_UNSET_FLAGS(w, GTK_CAN_FOCUS);
-
-	gtk_clist_set_shadow_type(GTK_CLIST(w), GTK_SHADOW_ETCHED_IN);
-
-	gtk_clist_set_column_min_width(GTK_CLIST(w), 0, 50);
-	gtk_clist_set_column_min_width(GTK_CLIST(w), 1, 50);
-
-	gtk_clist_set_column_justification(GTK_CLIST(w), 0, GTK_JUSTIFY_RIGHT);
-	gtk_clist_set_column_justification(GTK_CLIST(w), 1, GTK_JUSTIFY_RIGHT);
-
+    for(j = 0; j < STAT_COLS; j++)
 	for(i = 0; i < STAT_ROWS; i++) {
-	    gtk_clist_append(GTK_CLIST(w), text);
-	    /* gtk_clist_set_selectable(GTK_CLIST(w), i, FALSE); */
+	    w = nh_gtk_new_and_attach(gtk_label_new(""), stat_table, "",
+	      j * 2, j * 2 + 1, i, i + 1);
+	    gtk_misc_set_alignment(GTK_MISC(w), 1, 1);
+	    gtk_misc_set_padding(GTK_MISC(w), NH_PAD, 0);
+	    stat_widgets[j][i].label = GTK_LABEL(w);
+	    hbox = nh_gtk_new_and_attach(gtk_hbox_new(FALSE, 0), stat_table, "",
+	      j * 2 + 1, j * 2 + 2, i, i + 1);
+	    gtk_box_set_spacing(GTK_BOX(hbox), 2 * NH_PAD);
+	    w = nh_gtk_new_and_pack(gtk_label_new(""), hbox, "",
+	      TRUE, TRUE, 0);
+	    gtk_misc_set_alignment(GTK_MISC(w), 1, 1);
+	    stat_widgets[j][i].value = GTK_LABEL(w);
+	    w = nh_gtk_new_and_pack(nh_light_new(), hbox, "",
+	      FALSE, FALSE, 0);
+	    stat_widgets[j][i].light = NH_LIGHT(w);
 	}
-    }
+
     hbox2 = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
       FALSE, FALSE, 0);
 

@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.32 2003-05-19 12:14:37 j_ali Exp $
+  $Id: gtk.c,v 1.33 2003-05-24 15:15:15 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -2393,7 +2393,7 @@ GTK_putstr(winid id, int attr, const char *str)
 		  "", FALSE, FALSE, NH_PAD);
 
 		w->button[0] = nh_gtk_new_and_pack(
-		  gtk_button_new_with_label("Close"), w->hbox3, "",
+		  gtk_button_new_from_stock(GTK_STOCK_CLOSE), w->hbox3, "",
 		  TRUE, FALSE, 0);
 		GTK_WIDGET_SET_FLAGS(w->button[0], GTK_CAN_DEFAULT);
 		gtk_widget_grab_default(w->button[0]);
@@ -2504,8 +2504,8 @@ GTK_ext_display_file(int fh)
     hbox2 = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
       FALSE, FALSE, NH_PAD);
 
-    button = nh_gtk_new_and_pack(gtk_button_new_with_label("Close"), hbox2, "",
-      TRUE, FALSE, NH_PAD);
+    button = nh_gtk_new_and_pack(gtk_button_new_from_stock(GTK_STOCK_CLOSE),
+      hbox2, "", TRUE, FALSE, NH_PAD);
     gtk_signal_connect(GTK_OBJECT(button), "clicked",
       GTK_SIGNAL_FUNC(default_button_press), (gpointer)'\033');
 

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkyn.c,v 1.9 2003-05-03 11:12:28 j_ali Exp $
+  $Id: gtkyn.c,v 1.10 2003-05-24 15:15:15 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -113,15 +113,15 @@ yn_show_window(gpointer data)
 	hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
 	  FALSE, FALSE, NH_PAD);
 	if (!strcmp(params.resp, "yn") || !strcmp(params.resp, "ynq")) {
-	    y = nh_gtk_new_and_pack(gtk_button_new_with_label("Yes"), hbox, "",
-	      FALSE, FALSE, NH_PAD);
+	    y = nh_gtk_new_and_pack(gtk_button_new_from_stock(GTK_STOCK_YES),
+	      hbox, "", FALSE, FALSE, NH_PAD);
 	    gtk_signal_connect(GTK_OBJECT(y), "clicked",
 	      GTK_SIGNAL_FUNC(yn_clicked), (gpointer)'y');
 	}
 	if (!strcmp(params.resp, "yn") || !strcmp(params.resp, "ynq") ||
 	 !strcmp(params.resp, "ynaq") || !strcmp(params.resp, "yn#aq")) {
-	    n = nh_gtk_new_and_pack(gtk_button_new_with_label("No"), hbox, "",
-	      FALSE, FALSE, NH_PAD);
+	    n = nh_gtk_new_and_pack(gtk_button_new_from_stock(GTK_STOCK_NO),
+	      hbox, "", FALSE, FALSE, NH_PAD);
 	    gtk_signal_connect(GTK_OBJECT(n), "clicked",
 	      GTK_SIGNAL_FUNC(yn_clicked), (gpointer)'n');
 	}
@@ -133,8 +133,8 @@ yn_show_window(gpointer data)
 	}
 	if (!strcmp(params.resp, "ynq") || !strcmp(params.resp, "ynaq") ||
 	  !strcmp(params.resp, "yn#aq")) {
-	    q = nh_gtk_new_and_pack(gtk_button_new_with_label("Cancel"), hbox,
-	      "", FALSE, FALSE, NH_PAD);
+	    q = nh_gtk_new_and_pack(gtk_button_new_from_stock(GTK_STOCK_CANCEL),
+	      hbox, "", FALSE, FALSE, NH_PAD);
 	    gtk_signal_connect(GTK_OBJECT(q), "clicked",
 	      GTK_SIGNAL_FUNC(yn_clicked), (gpointer)'q');
 	}

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.18 2003-05-03 11:12:28 j_ali Exp $
+  $Id: gtkmenu.c,v 1.19 2003-05-24 15:15:15 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -208,31 +208,32 @@ GTK_init_menu_widgets(NHWindow *w, winid inven)
       FALSE, FALSE, NH_PAD);
 
     if (w->menu_information->cancelled >= 0) {
-	b = w->button[0] = nh_gtk_new_and_pack(gtk_button_new_with_label("ok"),
-	  w->hbox, "", FALSE, FALSE, NH_PAD);
+	b = w->button[0] = nh_gtk_new_and_pack
+	  (gtk_button_new_from_stock(GTK_STOCK_OK), w->hbox, "",
+	  FALSE, FALSE, NH_PAD);
 	gtk_signal_connect(GTK_OBJECT(b), "clicked",
 	  GTK_SIGNAL_FUNC(menu_button_clicked), (gpointer)'\n');
 
 	b = w->button[1] = nh_gtk_new_and_pack(
-	  gtk_button_new_with_label("cancel"), w->hbox, "",
+	  gtk_button_new_from_stock(GTK_STOCK_CANCEL), w->hbox, "",
 	  FALSE, FALSE, NH_PAD);
 	gtk_signal_connect(GTK_OBJECT(b), "clicked",
 	  GTK_SIGNAL_FUNC(menu_button_clicked), (gpointer)'\033');
 
 	b = w->button[2] = nh_gtk_new_and_pack(
-	  gtk_button_new_with_label("all"), w->hbox, "",
+	  gtk_button_new_with_label("All"), w->hbox, "",
 	  FALSE, FALSE, NH_PAD);
 	gtk_signal_connect(GTK_OBJECT(b), "clicked",
 	  GTK_SIGNAL_FUNC(menu_button_clicked), (gpointer)MENU_SELECT_ALL);
 
 	b = w->button[3] = nh_gtk_new_and_pack(
-	  gtk_button_new_with_label("none"), w->hbox, "",
+	  gtk_button_new_with_label("None"), w->hbox, "",
 	  FALSE, FALSE, NH_PAD);
 	gtk_signal_connect(GTK_OBJECT(b), "clicked",
 	  GTK_SIGNAL_FUNC(menu_button_clicked), (gpointer)MENU_UNSELECT_ALL);
 
 	b = w->button[4] = nh_gtk_new_and_pack(
-	  gtk_button_new_with_label("invert"), w->hbox, "",
+	  gtk_button_new_with_label("Invert"), w->hbox, "",
 	  FALSE, FALSE, NH_PAD);
 	gtk_signal_connect(GTK_OBJECT(b), "clicked",
 	  GTK_SIGNAL_FUNC(menu_button_clicked), (gpointer)MENU_INVERT_ALL);
@@ -282,7 +283,8 @@ GTK_init_menu_widgets(NHWindow *w, winid inven)
 	  FALSE, FALSE, NH_PAD);
 
 	b = w->button[5] = nh_gtk_new_and_pack(
-	  gtk_button_new_with_label("Close"), w->hbox3, "", TRUE, FALSE, 0);
+	  gtk_button_new_from_stock(GTK_STOCK_CLOSE), w->hbox3, "",
+	  TRUE, FALSE, 0);
 	GTK_WIDGET_SET_FLAGS(b, GTK_CAN_DEFAULT);
 	gtk_widget_grab_default(b);
 	gtk_signal_connect(GTK_OBJECT(b), "clicked",

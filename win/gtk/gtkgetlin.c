@@ -1,5 +1,5 @@
 /*
-  $Id: gtkgetlin.c,v 1.4 2003-05-03 11:12:27 j_ali Exp $
+  $Id: gtkgetlin.c,v 1.5 2003-05-24 15:15:15 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -91,7 +91,7 @@ GTK_ext_getlin(const char *query)
     hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
       FALSE, FALSE, NH_PAD);
 
-    ok = nh_gtk_new_and_pack(gtk_button_new_with_label("OK"), hbox, "",
+    ok = nh_gtk_new_and_pack(gtk_button_new_from_stock(GTK_STOCK_OK), hbox, "",
       FALSE, FALSE, NH_PAD);
 
     GTK_WIDGET_SET_FLAGS(ok, GTK_CAN_DEFAULT);
@@ -100,8 +100,8 @@ GTK_ext_getlin(const char *query)
     gtk_signal_connect(GTK_OBJECT(ok), "clicked",
       GTK_SIGNAL_FUNC(entry_ok), NULL);
 
-    cancel = nh_gtk_new_and_pack(gtk_button_new_with_label("CANCEL"), hbox, "",
-      FALSE, FALSE, NH_PAD);
+    cancel = nh_gtk_new_and_pack(gtk_button_new_from_stock(GTK_STOCK_CANCEL),
+      hbox, "", FALSE, FALSE, NH_PAD);
 
     gtk_signal_connect(GTK_OBJECT(cancel), "clicked",
       GTK_SIGNAL_FUNC(entry_cancel), NULL);
