@@ -1126,6 +1126,10 @@ static const struct {
 
 /* parse '"regex_string"=color' and add it to menucoloring */
 boolean
+#ifdef POSIX_REGEX
+   int errnum;
+   char errbuf[80];
+#endif
 add_menu_coloring(str)
 char *str;
 {
@@ -1170,12 +1174,22 @@ char *str;
       while (isspace(*cs)) cs--;
       if (*cs == *tmps) {
 	 *cs = '\0';
+# ifdef GNU_REGEX
 	 tmps++;
       }
    }
    
    tmp = (struct menucoloring *)alloc(sizeof(struct menucoloring));
 #ifdef USE_REGEX_MATCH
+# else
+#  ifdef POSIX_REGEX
+   errnum = regcomp(&tmp->match, tmps, REG_EXTENDED | REG_NOSUB);
+   if (errnum != 0) {                                                                                                                                                                                                               
+      regerror(errnum, &tmp->match, errbuf, sizeof(errbuf));
+      err = errbuf;
+   }
+#  endif  
+# endif  
    tmp->match.translate = 0;
    tmp->match.fastmap = 0;
    tmp->match.buffer = 0;

@@ -419,5 +419,13 @@
 #endif	/* LINUX */
 #endif	/* GNOME_GRAPHICS */
 
+#if defined(USE_REGEX_MATCH)
+# if defined(__FreeBSD__) || defined(__OpenBSD__)
+#  define POSIX_REGEX
+# else
+#  define GNU_REGEX
+# endif
+#endif
+
 #endif /* UNIXCONF_H */
 #endif /* UNIX */
