@@ -1099,42 +1099,26 @@ DoMenuEvt(long menuEntry)
 	HiliteMenu(0);
 }
 
-/* convenient define to allow easier (for me) parsing of 'vers' resource */
-typedef struct versXRec
-{
-	NumVersion		numVers;
-	short			placeCode;
-	unsigned char	versStr[];	/* (small string)(large string) */
-} versXRec, *versXPtr, **versXHandle;
-
-#define aboutBufSize	80				/* i.e. 2 lines of 320 pixels */
 
 static void
 aboutNetHack() {
 	if (theMenubar >= mbarRegular) {
 		(void) doversion();				/* is this necessary? */
 	} else {
-		/* get the 'vers' 1 long (Get Info) string - About Slash'EM... */
-		versXHandle		vHnd;
-		int i;
-		unsigned char	aboutBuf[aboutBufSize];	/* vers 1 "Get Info" string */
+		unsigned char aboutStr[32] = "\pSlash'EM 0.0.";
 
-		if (! (vHnd = (versXHandle) GetResource('vers', 1)))
-			return;
+		if (PATCHLEVEL > 10) {
+			aboutStr[++aboutStr[0]] = '0'+PATCHLEVEL/10;
+		}
 
-		i = (**vHnd).versStr[0] + 1;		/* offset to Get Info pascal string */
+		aboutStr[++aboutStr[0]] = '0' + (PATCHLEVEL % 10);
+		if (EDITLEVEL) {
+			aboutStr[++aboutStr[0]] = 'e';
+			aboutStr[++aboutStr[0]] = '0' + EDITLEVEL;
+		}
+		aboutStr[++aboutStr[0]] = CHAR_CR;
 
-		if ((aboutBuf[0] = (**vHnd).versStr[i]) > (aboutBufSize - 1))
-			aboutBuf[0] = aboutBufSize - 1;
-
-		i++;
-
-		MoveHHi((Handle) vHnd);			/* DEE - Fense ... */
-		HLock((Handle) vHnd);
-		BlockMove(&((**vHnd).versStr[i]), &(aboutBuf[1]), aboutBuf[0]);
-		ReleaseResource((Handle) vHnd);
-
-		ParamText(aboutBuf, "\p", "\p", "\p");
+		ParamText(aboutStr, "\pslashem.cjb.net", "\p", "\p");
 		(void) Alert(alrtMenuNote, (ModalFilterUPP) 0L);
 		ResetAlertStage();
 	}
