@@ -368,8 +368,10 @@ m_throw(mon, x, y, dx, dy, range, obj)
 	    dx = rn2(3)-1;
 	    dy = rn2(3)-1;
 	    /* check validity of new direction */
-	    if (!dx && !dy)
+	    if (!dx && !dy) {
+		(void) drop_throw(mon, singleobj, 0, bhitpos.x, bhitpos.y);
 		return;
+	    }
 	}
 
 	/* Note: drop_throw may destroy singleobj.  Since obj must be destroyed
