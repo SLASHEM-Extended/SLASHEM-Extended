@@ -2972,8 +2972,6 @@ STATIC_OVL boolean
 emergency_disrobe(lostsome)
 boolean *lostsome;
 {
-	/* WAC Can drop your purse */
-	struct obj *u_gold = 0;
 	int invc = inv_cnt();
 
 	while (near_capacity() > (Punished ? UNENCUMBERED : SLT_ENCUMBER)) {
@@ -3046,7 +3044,7 @@ drown()
 {
 	boolean inpool_ok = FALSE, crawl_ok;
 	int i, x, y;
-	char *sparkle = level.flags.lethe? "sparkling " : "";
+	const char *sparkle = level.flags.lethe? "sparkling " : "";
 
 	/* happily wading in the same contiguous pool */
 	if (u.uinwater && is_pool(u.ux-u.dx,u.uy-u.dy) &&

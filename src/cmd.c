@@ -1329,7 +1329,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    /* [ALI] Add support for undead */
 	    int i, nth = 0;
 	    unsigned long warntype = flags.warntype;
-	    struct { unsigned long mask; char *str; } warntypes[] = {
+	    struct { unsigned long mask; const char *str; } warntypes[] = {
 		M2_ORC,		"orcs",
 		M2_DEMON,	"demons",
 		M2_UNDEAD,	"undead",
@@ -3368,7 +3368,7 @@ const char *msg;
 	char ctrl;
 	winid win;
 	static const char wiz_only_list[] = "EFGIOVW";
-	char buf[BUFSZ], buf2[BUFSZ], *expl;
+	char buf[BUFSZ], buf2[BUFSZ], *expln;
 
 	win = create_nhwindow(NHW_TEXT);
 	if (!win) return FALSE;
@@ -3380,7 +3380,7 @@ const char *msg;
 	if (letter(sym)) { 
 	    sym = highc(sym);
 	    ctrl = (sym - 'A') + 1;
-	    if ((expl = dowhatdoes_core(ctrl, buf2))
+	    if ((expln = dowhatdoes_core(ctrl, buf2))
 		&& (!index(wiz_only_list, sym)
 #ifdef WIZARD
 		    || wizard
@@ -3391,7 +3391,7 @@ const char *msg;
 			" as specified in the Guidebook");
 		putstr(win, 0, buf);
 		putstr(win, 0, "");
-		putstr(win, 0, expl);
+		putstr(win, 0, expln);
 		putstr(win, 0, "");
 		putstr(win, 0, "To use that command, you press");
 		Sprintf(buf,

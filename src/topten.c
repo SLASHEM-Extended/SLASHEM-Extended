@@ -714,7 +714,7 @@ boolean so;
 		/* Add a notation for conducts kept */
 		if(t1->conduct != 4095) {
 			int i, m;
-			char d = 0, skip;
+			char dash = 0, skip;
 			const char *conduct_names[] = {
 				"Food", "Vgn", "Vgt", "Ath", "Weap", "Pac",
 				"Ill", "Poly", "Form", "Wish", "Art", "Geno",
@@ -734,9 +734,9 @@ boolean so;
 				if(i == 9) skip = 1;
 
 				/* Add a hyphen for multiple conducts */
-				if(d) Strcat(eos(linebuf), "-");
+				if(dash) Strcat(eos(linebuf), "-");
 				Strcat(eos(linebuf), conduct_names[i]);
-				d = 1;
+				dash = 1;
 			}
 			Strcat(eos(linebuf), ") ");
 		}

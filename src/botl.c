@@ -343,8 +343,6 @@ STATIC_OVL void
 bot2str(char *newbot2)
 {
 	register char *nb;
-	register int con = ACURR(A_CON), wis = ACURR(A_WIS),
-		     intl = ACURR(A_INT);
 	int hp, hpmax;
 	int cap = near_capacity();
 #ifdef ALLEG_FX
@@ -502,7 +500,7 @@ int len;
 const char*
 shorten_bot2(str, len)
 const char *str;
-int len;
+unsigned int len;
 {
     static char cbuf[MAXCO];
     for(bot2_abbrev = 1; bot2_abbrev <= 4; bot2_abbrev++) {
@@ -519,14 +517,15 @@ int len;
 
 static void (*raw_handler)();
 
-static bot_raw(reconfig)
+static void bot_raw(reconfig)
+boolean reconfig;
 {
     const char *botl_raw_values[24], **rv = botl_raw_values;
     char dex[3], con[3], itl[3], wis[3], cha[3], score[21];
     int uhp;
     char dlevel[BUFSZ];
     char hp[21], hpmax[21], pw[21], pwmax[21], gold[21], ac[21], elevel[21];
-    char expr[21], weight[21], capacity[21], flgs[21], tim[21];
+    char expr[21], iweight[21], capacity[21], flgs[21], tim[21];
     *rv++ = reconfig ? "player" : botl_player();
     *rv++ = reconfig ? "strength" : botl_strength();
     *rv++ = reconfig ? "dexterity" : (Sprintf(dex, "%d", ACURR(A_DEX)), dex);
@@ -568,8 +567,8 @@ static bot_raw(reconfig)
 #endif
 #ifdef SHOW_WEIGHT
     if (flags.showweight) {
-	*rv++ = reconfig ? "weight" : (Sprintf(weight,
-		"%ld", (long)(inv_weight() + weight_cap())), weight);
+	*rv++ = reconfig ? "weight" : (Sprintf(iweight,
+		"%ld", (long)(inv_weight() + weight_cap())), iweight);
 	*rv++ = reconfig ? "capacity" : (Sprintf(capacity,
 		"%ld", (long)weight_cap()), capacity);
     }

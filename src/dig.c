@@ -928,7 +928,7 @@ struct obj *obj;
 {
 	register int rx, ry;
 	register struct rm *lev;
-	int dig_target, res = 0, digtyp;
+	int dig_target, digtyp;
 	boolean ispick = is_pick(obj);
 	const char *verbing = ispick ? "digging" :
 #ifdef LIGHTSABERS

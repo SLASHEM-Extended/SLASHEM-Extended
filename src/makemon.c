@@ -531,7 +531,6 @@ register struct monst *mtmp;
 		     (void)mongets(mtmp, SMALL_SHIELD);
 		     if (!rn2(4)) {
 			int v,vials;
-			register struct obj *otmp;
 			vials = rn2(4)+1;
 			for (v=0;v<vials;v++) {
 			  otmp = mksobj(POT_WATER, FALSE, FALSE);

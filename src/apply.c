@@ -1259,7 +1259,7 @@ light_cocktail(obj)
 	struct obj *obj;        /* obj is a potion of oil or a stick of dynamite */
 {
 	char buf[BUFSZ];
-	char *objnam =
+	const char *objnam =
 #ifdef FIREARMS
 	    obj->otyp == POT_OIL ? "potion" : "stick";
 #else

@@ -564,7 +564,6 @@ dorecover(fd)
 register int fd;
 {
 	unsigned int stuckid = 0, steedid = 0;	/* not a register */
-	struct monst *stucktmp, *steedtmp;
 	xchar ltmp;
 	int rtmp;
 	struct obj *otmp;

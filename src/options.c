@@ -2584,7 +2584,6 @@ register char *opts;
 {
 	register char *op;
 	boolean negated;
-	int i;
 	const char *fullname;
 
 	if (strlen(opts) > BUFSZ/2) {
@@ -2652,7 +2651,6 @@ parsetilesetopt(opts)
 register char *opts;
 {
 	register char *op;
-	unsigned num;
 	boolean negated;
 	int i;
 	const char *fullname;

@@ -642,7 +642,7 @@ bomb_blow(arg, timeout)
 genericptr_t arg;
 long timeout;
 {
-	struct obj *bomb, *otmp;
+	struct obj *bomb;
 	xchar x,y;
 	boolean silent, underwater;
 	struct monst *mtmp = (struct monst *)0;

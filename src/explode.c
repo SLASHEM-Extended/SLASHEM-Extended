@@ -6,13 +6,6 @@
 
 #ifdef OVL0
 
-/* Note: Arrays are column first, while the screen is row first */
-static int expl[3][3] = {
-	{ S_explode1, S_explode4, S_explode7 },
-	{ S_explode2, S_explode5, S_explode8 },
-	{ S_explode3, S_explode6, S_explode9 }
-};
-
 /* ExplodeRegions share some commonalities with NhRegions, but not enough to
  * make it worth trying to create a common implementation.
  */
@@ -168,7 +161,7 @@ int expltype;
 int dest; /* 0 = normal, 1 = silent, 2 = silent/remote */	
 boolean yours; /* is it your fault (for killing monsters) */
 {
-	int i, j, k, damu = dam;
+	int i, k, damu = dam;
 	boolean starting = 1;
 	boolean visible, any_shield;
 	int uhurt = 0; /* 0=unhurt, 1=items damaged, 2=you and items damaged */
@@ -818,14 +811,14 @@ grenade_fiery_callback(data, x, y)
 genericptr_t data;
 int x, y;
 {
-    int accessible = ZAP_POS(levl[x][y].typ);
+    int is_accessible = ZAP_POS(levl[x][y].typ);
     struct grenade_callback *gc = (struct grenade_callback *)data;
-    if (accessible) {
+    if (is_accessible) {
 	add_location_to_explode_region(gc->fiery_area, x, y);
 	grenade_effects((struct obj *)0, x, y,
 		gc->fiery_area, gc->gas_area, gc->dig_area, gc->isyou);
     }
-    return !accessible;
+    return !is_accessible;
 }
 
 STATIC_DCL int
@@ -833,11 +826,11 @@ grenade_gas_callback(data, x, y)
 genericptr_t data;
 int x, y;
 {
-    int accessible = ZAP_POS(levl[x][y].typ);
+    int is_accessible = ZAP_POS(levl[x][y].typ);
     struct grenade_callback *gc = (struct grenade_callback *)data;
-    if (accessible)
+    if (is_accessible)
 	add_location_to_explode_region(gc->gas_area, x, y);
-    return !accessible;
+    return !is_accessible;
 }
 
 STATIC_DCL int
@@ -858,7 +851,7 @@ xchar x, y;
 ExplodeRegion *fiery_area, *gas_area, *dig_area;
 boolean isyou;
 {
-    int i, r, ox, oy;
+    int i, r;
     struct obj *obj, *obj2;
     struct monst *mon;
     /*
@@ -966,12 +959,11 @@ int x, y;
 boolean isyou;
 int dest;
 {
-    int i, n, ztype;
+    int i, ztype;
     boolean shop_damage = FALSE;
     int ox, oy;
     ExplodeRegion *fiery_area, *gas_area, *dig_area;
     struct trap *trap;
-    struct obj *otmp, *otmp2;
     
     fiery_area = create_explode_region();
     gas_area = create_explode_region();

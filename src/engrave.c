@@ -359,9 +359,8 @@ boolean read_it; /* Read any sensed engraving */
 			    flags.suppress_alert < FEATURE_NOTICE_VER(0,0,7)) {
 		pline("Use \"r.\" to read it.");
 	    } else if (sensed && read_it) {
-		int len;
 	    	char *et;
-	    	unsigned maxelen = BUFSZ - sizeof("You feel the words: \"\". ");
+	    	unsigned len, maxelen = BUFSZ - sizeof("You feel the words: \"\". ");
 	    	len = strlen(ep->engr_txt);
 	    	if (len > maxelen) {
 	    		(void)strncpy(buf,  ep->engr_txt, (int)maxelen);

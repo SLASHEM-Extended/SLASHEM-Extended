@@ -267,16 +267,16 @@ aborttech(tech)
 
 /* Called to teach a new tech.  Level is starting tech level */
 void
-learntech(tech, mask, level)
+learntech(tech, mask, tlevel)
 	short tech;
 	long mask;
-	int level;
+	int tlevel;
 {
 	int i;
 	const struct innate_tech *tp;
 
 	i = get_tech_no(tech);
-	if (level > 0) {
+	if (tlevel > 0) {
 	    if (i < 0) {
 		i = get_tech_no(NO_TECH);
 		if (i < 0) {
@@ -284,10 +284,10 @@ learntech(tech, mask, level)
 		    return;
 		}
 	    }
-	    level = u.ulevel ? u.ulevel - level : 0;
+	    tlevel = u.ulevel ? u.ulevel - tlevel : 0;
 	    if (tech_list[i].t_id == NO_TECH) {
 		tech_list[i].t_id = tech;
-		tech_list[i].t_lev = level;
+		tech_list[i].t_lev = tlevel;
 		tech_list[i].t_inuse = 0; /* not in use */
 		tech_list[i].t_intrinsic = 0;
 	    }
@@ -297,14 +297,14 @@ learntech(tech, mask, level)
 	    }
 	    if (mask == FROMOUTSIDE) {
 		tech_list[i].t_intrinsic &= ~OUTSIDE_LEVEL;
-		tech_list[i].t_intrinsic |= level & OUTSIDE_LEVEL;
+		tech_list[i].t_intrinsic |= tlevel & OUTSIDE_LEVEL;
 	    }
-	    if (level < tech_list[i].t_lev)
-		tech_list[i].t_lev = level;
+	    if (tlevel < tech_list[i].t_lev)
+		tech_list[i].t_lev = tlevel;
 	    tech_list[i].t_intrinsic |= mask;
 	    tech_list[i].t_tout = 0; /* Can use immediately*/
 	}
-	else if (level < 0) {
+	else if (tlevel < 0) {
 	    if (i < 0 || !(tech_list[i].t_intrinsic & mask)) {
 		impossible("Tech not known.");
 		return;
@@ -318,15 +318,15 @@ learntech(tech, mask, level)
 	    }
 	    /* Re-calculate lowest t_lev */
 	    if (tech_list[i].t_intrinsic & FROMOUTSIDE)
-		level = tech_list[i].t_intrinsic & OUTSIDE_LEVEL;
+		tlevel = tech_list[i].t_intrinsic & OUTSIDE_LEVEL;
 	    if (tech_list[i].t_intrinsic & FROMEXPER) {
 		for(tp = role_tech(); tp->tech_id; tp++)
 		    if (tp->tech_id == tech)
 			break;
 		if (!tp->tech_id)
 		    impossible("No inate technique for role?");
-		else if (level < 0 || tp->ulevel - tp->tech_lev < level)
-		    level = tp->ulevel - tp->tech_lev;
+		else if (tlevel < 0 || tp->ulevel - tp->tech_lev < tlevel)
+		    tlevel = tp->ulevel - tp->tech_lev;
 	    }
 	    if (tech_list[i].t_intrinsic & FROMRACE) {
 		for(tp = race_tech(); tp->tech_id; tp++)
@@ -334,10 +334,10 @@ learntech(tech, mask, level)
 			break;
 		if (!tp->tech_id)
 		    impossible("No inate technique for race?");
-		else if (level < 0 || tp->ulevel - tp->tech_lev < level)
-		    level = tp->ulevel - tp->tech_lev;
+		else if (tlevel < 0 || tp->ulevel - tp->tech_lev < tlevel)
+		    tlevel = tp->ulevel - tp->tech_lev;
 	    }
-	    tech_list[i].t_lev = level;
+	    tech_list[i].t_lev = tlevel;
 	}
 	else
 	    impossible("Invalid Tech Level!");
@@ -402,15 +402,11 @@ dotechmenu(how, tech_no)
         int *tech_no;
 {
 	winid tmpwin;
-	int i, n;
-	int len, longest;
-	char buf[BUFSZ];
+	int i, n, len, longest, techs_useable, tlevel;
+	char buf[BUFSZ], let = 'a';
+	const char *prefix;
 	menu_item *selected;
 	anything any;
-	char let = 'a';
-	char *prefix;
-	int techs_useable;
-	int level;
 
 	tmpwin = create_nhwindow(NHW_MENU);
 	start_menu(tmpwin);
@@ -434,8 +430,8 @@ dotechmenu(how, tech_no)
 	for (i = 0; i < MAXTECH; i++) {
 	    if (techid(i) == NO_TECH)
 		continue;
-	    level = techlev(i);
-	    if (!techtout(i) && level > 0) {
+	    tlevel = techlev(i);
+	    if (!techtout(i) && tlevel > 0) {
 		/* Ready to use */
 		techs_useable++;
 		prefix = "";
@@ -448,24 +444,24 @@ dotechmenu(how, tech_no)
 	    if (wizard) 
 		if (!iflags.menu_tab_sep)			
 		    Sprintf(buf, "%s%-*s %2d%c%c%c   %s(%i)",
-			    prefix, longest, techname(i), level,
+			    prefix, longest, techname(i), tlevel,
 			    tech_list[i].t_intrinsic & FROMEXPER ? 'X' : ' ',
 			    tech_list[i].t_intrinsic & FROMRACE ? 'R' : ' ',
 			    tech_list[i].t_intrinsic & FROMOUTSIDE ? 'O' : ' ',
 			    tech_inuse(techid(i)) ? "Active" :
-			    level <= 0 ? "Beyond recall" :
+			    tlevel <= 0 ? "Beyond recall" :
 			    can_limitbreak() ? "LIMIT" :
 			    !techtout(i) ? "Prepared" : 
 			    techtout(i) > 100 ? "Not Ready" : "Soon",
 			    techtout(i));
 		else
 		    Sprintf(buf, "%s%s\t%2d%c%c%c\t%s(%i)",
-			    prefix, techname(i), level,
+			    prefix, techname(i), tlevel,
 			    tech_list[i].t_intrinsic & FROMEXPER ? 'X' : ' ',
 			    tech_list[i].t_intrinsic & FROMRACE ? 'R' : ' ',
 			    tech_list[i].t_intrinsic & FROMOUTSIDE ? 'O' : ' ',
 			    tech_inuse(techid(i)) ? "Active" :
-			    level <= 0 ? "Beyond recall" :
+			    tlevel <= 0 ? "Beyond recall" :
 			    can_limitbreak() ? "LIMIT" :
 			    !techtout(i) ? "Prepared" : 
 			    techtout(i) > 100 ? "Not Ready" : "Soon",
@@ -474,17 +470,17 @@ dotechmenu(how, tech_no)
 #endif
 	    if (!iflags.menu_tab_sep)			
 		Sprintf(buf, "%s%-*s %5d   %s",
-			prefix, longest, techname(i), level,
+			prefix, longest, techname(i), tlevel,
 			tech_inuse(techid(i)) ? "Active" :
-			level <= 0 ? "Beyond recall" :
+			tlevel <= 0 ? "Beyond recall" :
 			can_limitbreak() ? "LIMIT" :
 			!techtout(i) ? "Prepared" : 
 			techtout(i) > 100 ? "Not Ready" : "Soon");
 	    else
 		Sprintf(buf, "%s%s\t%5d\t%s",
-			prefix, techname(i), level,
+			prefix, techname(i), tlevel,
 			tech_inuse(techid(i)) ? "Active" :
-			level <= 0 ? "Beyond recall" :
+			tlevel <= 0 ? "Beyond recall" :
 			can_limitbreak() ? "LIMIT" :
 			!techtout(i) ? "Prepared" : 
 			techtout(i) > 100 ? "Not Ready" : "Soon");
@@ -898,7 +894,7 @@ int tech_no;
 		    	if (mtmp->mtame != 0 && !mtmp->isspell) {
 		    	    struct permonst *ptr = mtmp->data;
 			    struct monst *mtmp2;
-		    	    int time = techt_inuse(tech_no);
+		    	    int ttime = techt_inuse(tech_no);
 		    	    int type = little_to_big(monsndx(ptr));
 		    	    
 		    	    mtmp2 = tamedog(mtmp, (struct obj *) 0);
@@ -907,7 +903,7 @@ int tech_no;
 
 		    	    if (type && type != monsndx(ptr)) {
 				ptr = &mons[type];
-		    	    	mon_spec_poly(mtmp, ptr, time, FALSE,
+		    	    	mon_spec_poly(mtmp, ptr, ttime, FALSE,
 					canseemon(mtmp), FALSE, TRUE);
 		    	    }
 		    	}
@@ -1675,7 +1671,6 @@ int oldlevel, newlevel;
 {
 	const struct   innate_tech  
 		*tech = role_tech(), *rtech = race_tech();
-	short i;
 	long mask = FROMEXPER;
 
 	while (tech || rtech) {
@@ -1852,7 +1847,7 @@ static const struct blitz_tab blitzes[] = {
 static int
 doblitz()
 {
-	int i, j, dx, dy, done = 0, tech_no;
+	int i, j, dx, dy, bdone = 0, tech_no;
 	char buf[BUFSZ];
 	char *bp;
 	int blitz_chain[MAX_CHAIN], blitz_num;
@@ -1917,7 +1912,7 @@ doblitz()
     	/* You can't put two of the same blitz in a row */
     	blitz_num = 0;
     	while(strncmp(bp, ".", 1)) {
-	    done = 0;
+	    bdone = 0;
 	    for (j = 0; blitzes[j].blitz_len; j++) {
 	    	if (blitz_num >= MAX_CHAIN || 
 	    	    blitz_num >= (MIN_CHAIN + (techlev(tech_no) / 10)))
@@ -1949,11 +1944,11 @@ doblitz()
 			bp += blitzes[j].blitz_len;
 			blitz_chain[blitz_num] = j;
 			blitz_num++;
-			done = 1;
+			bdone = 1;
 			break;
 		}
 	    }
-	    if (!done) {
+	    if (!bdone) {
 		You("stumble!");
 		return(1);
 	    }
@@ -2090,10 +2085,9 @@ blitz_pummel()
 static int
 blitz_g_slam()
 {
-	int i = 0, tech_no, tmp;
+	int tech_no, tmp, canhitmon, objenchant;
 	struct monst *mtmp;
 	struct trap *chasm;
-	int canhitmon, objenchant;
 
 	tech_no = (get_tech_no(T_G_SLAM));
 

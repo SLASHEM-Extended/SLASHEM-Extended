@@ -31,11 +31,8 @@ moveloop()
     char ch;
     int abort_lev;
 #endif
-    char    c;
     int moveamt = 0, wtcap = 0, change = 0;
     boolean didmove = FALSE, monscanmove = FALSE;
-    int i; /*LSZ/WWA Wizard Patch 7/96 for spell knowledge decrement */
- 
 
     flags.moonphase = phase_of_the_moon();
     if(flags.moonphase == FULL_MOON) {

@@ -177,7 +177,9 @@ STATIC_DCL void FDECL(redirect, (const char *,const char *,const char *,
 	FILE *,BOOLEAN_P));
 STATIC_DCL void FDECL(docompress_file, (const char *,const char *,BOOLEAN_P));
 #endif
+#ifndef FILE_AREAS
 STATIC_DCL char *FDECL(make_lockname, (const char *,char *));
+#endif
 STATIC_DCL FILE *FDECL(fopen_config_file, (const char *));
 STATIC_DCL int FDECL(get_uchars, (FILE *,char *,char *,uchar *,BOOLEAN_P,int,const char *));
 int FDECL(parse_config_line, (FILE *,char *,char *,char *));
@@ -2322,7 +2324,7 @@ post_process:
 		no_tilesets = i;
 	}
 	if (tileset[0] != '\0') {
-		int len = strlen(tileset);
+		unsigned int len = strlen(tileset);
 		for(i = 0; i < no_tilesets; i++)
 			if (len == strlen(tilesets[i].name) &&
 			    !strncmpi(tilesets[i].name, tileset, len))
