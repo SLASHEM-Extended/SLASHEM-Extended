@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.46 2003-12-21 20:23:23 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.47 2003-12-23 23:26:16 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -13,14 +13,7 @@
 #				- MinGW 2.0.0-3
 #
 #	Win32 libraries tested:
-#				- glib 2.2.1
-#				- gtk+ 2.2.1
-#				- atk 1.0.3-20020821
-#				- pango 1.2.1
-#				- libintl 0.10.40-20020310
-#				- libiconv 1.7
-#				- pkgconfig 0.14
-#				- freetype 2.0.5-20020112
+#				- Gtk+ Development Environment 2.2.4.1
 #
 #       In addition to your C compiler,
 #
@@ -53,8 +46,7 @@ DUTIL = ../util
 DSRC  = ../src
 DINCL = ../include
 NTSYS = ../sys/winnt
-MW32GTK = /mingw32/gtk2
-MW32PNG = /win-gtk
+MW32GTK = /win-gtk
 
 # Normal dos commands get confused by \\
 DAT  = ..\dat
@@ -68,8 +60,6 @@ WTTY = ..\win\tty
 WIN32 = ..\win\win32
 WGTK = ..\win\gtk
 WSHR = ..\win\share
-#
-GNUDLL = $(MW32GTK)/lib
 
 #
 #  Executables.
@@ -229,10 +219,21 @@ LFLAGS =
 CFLAGS += -DWIN32CON
 endif
 
+# The pkg-config executable
+PKG_CONFIG = $(MW32GTK)/bin/pkg-config
+# A semi-colon seperated list of directories to add to the path when
+# calling pkg-config so that MS-Windows can find the DLLs needed.
+PKG_CONFIG_DLL = $(MW32GTK)/lib
+# A semi-colon seperated list of directories to add to PKG_CONFIG_PATH
+# so that pkg-config can find the package config files (eg., gtk+-2.0.pc).
+PKG_CONFIG_PATH = $(MW32GTK)/lib/pkgconfig
+# The pkg-config commands
+GTKCFLAGS = $(PKG_CONFIG) --cflags gtk+-2.0 libpng
+GTKLIBS = $(PKG_CONFIG) --libs gtk+-2.0 libpng
+
 # Select Windowing system(s) below
 # GTK windowing system
-#WINGTKCFLAGS=`pkg-config gtk+-2.0 --cflags`
-WINGTKCFLAGS=-I$(MW32GTK)/include
+WINGTKCFLAGS=
 
 # Set the WINSRC, WINOBJ, and WINLIB lines to correspond to your desired
 # combination of windowing systems.  Also set windowing systems in config.h.
@@ -316,9 +317,11 @@ LFLAGS += -mwindows -Wl,-Map,slashem.map -v
 else	# USE_MSWIN
 ifeq ($(USE_GTK),Y)
 USE_GUI = Y
+USE_PNG = Y
 WINSRC += $(WINGTKSRC)
 WOBJ02 += $(WINGTKOBJ1)
 WOBJ03 += $(WINGTKOBJ2)
+LFLAGS += -mwindows
 ifneq ($(USE_PROXY),Y)
 WINSRC += $(PROXYUTLSRC) $(PROXYSHRSRC)
 WOBJ04 += tile.o
@@ -328,6 +331,7 @@ endif	# USE_GTK
 endif	# USE_MSWIN
 
 ifeq ($(USE_PROXY),Y)
+USE_PNG = Y
 WINSRC += $(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYCOMSRC) $(PROXYSHRSRC)
 WOBJ02 += $(WINPROXYOBJ)
 WOBJ03 += $(PROXYCOMOBJ) $(PROXYSHROBJ)
@@ -357,14 +361,9 @@ WINMSLIB = libcomctl32.a libgdi32.a
 endif
 
 # libraries for GTK
-# WINGTKLIB = `pkg-config gtk+-2.0 --libs`
+# Note: cc-gtk handles Gtk+ and its dependencies.
 ifeq ($(USE_GTK),Y)
-WINGTKLIB1 = $(MW32GTK)/lib/libgtk-win32-2.0.dll.a \
-		$(MW32GTK)/lib/libgdk-win32-2.0.dll.a 
-WINGTKLIB2 = $(MW32GTK)/lib/libglib-2.0.dll.a \
-		$(MW32GTK)/lib/libgdk_pixbuf-2.0.dll.a
-WINGTKLIB3 = $(MW32GTK)/lib/libgobject-2.0.dll.a \
-		$(MW32GTK)/lib/libpango-1.0.dll.a
+WINGTKLIB =
 endif
 
 ifeq ($(USE_PROXY),Y)
@@ -378,7 +377,7 @@ WINLIB += $(WINMSLIB)
 endif
 
 ifeq ($(USE_GTK),Y)
-WINLIB += $(WINGTKLIB1) $(WINGTKLIB2) $(WINGTKLIB3)
+WINLIB +=$(WINGTKLIB)
 endif
 
 ifeq ($(USE_PROXY),Y)
@@ -398,6 +397,10 @@ endif
 
 ifeq ($(USE_PROXY),Y)
 CNF_SHARE_DATND += $(CNF_SHARE_PROXYND)
+endif
+
+ifeq ($(USE_PNG),Y)
+CCGTK = cc-gtk -v -c $(CCOMPILE)
 endif
 
 #
@@ -590,7 +593,7 @@ utility.tag: $(INCL)\date.h $(INCL)\trap.h    $(INCL)\onames.h	       \
 	lev_comp.exe	 dgn_comp.exe	 recover.exe $(TILEUTIL)
 	$(ECHO) utilities made > utility.tag
 
-install.tag: dat.tag $(GAMEFILE)
+install.tag: $(GAMEFILE) dat.tag
 ifeq ($(USE_DLB),Y)
 	$(COPY) $(DAT)\nhshare				$(GAMEDIR)
 	$(COPY) $(DAT)\nhushare				$(GAMEDIR)
@@ -606,40 +609,19 @@ ifeq ($(USE_GTK),Y)
 	$(COPY) $(subst /,\,$(WGTK)\GTKRC.w32		$(GAMEDIR)\gtkrc)
 	$(COPY) $(subst /,\,rip.xpm			$(GAMEDIR))
 	$(COPY) $(subst /,\,credit.xpm			$(GAMEDIR))
-	$(COPY) $(subst /,\,gltile16.png		$(GAMEDIR))
-	$(COPY) $(subst /,\,gltile32.png		$(GAMEDIR))
-	$(COPY) $(subst /,\,gltile64.png		$(GAMEDIR))
-	$(COPY) $(subst /,\,$(GNUDLL)\\libglib*.dll	$(GAMEDIR))
-	$(COPY) $(subst /,\,$(GNUDLL)\\iconv*.dll	$(GAMEDIR))
-	$(COPY) $(subst /,\,$(GNUDLL)\\libgdk*.dll	$(GAMEDIR))
-	$(COPY) $(subst /,\,$(GNUDLL)\\libgtk*.dll	$(GAMEDIR))
-	$(COPY) $(subst /,\,$(GNUDLL)\\libgmodule*.dll	$(GAMEDIR))
-	$(COPY) $(subst /,\,$(GNUDLL)\\libintl*.dll	$(GAMEDIR))
-	$(COPY) $(subst /,\,$(GNUDLL)\\libpango*.dll	$(GAMEDIR))
-	$(COPY) $(subst /,\,$(GNUDLL)\\libatk*.dll	$(GAMEDIR))
-	$(COPY) $(subst /,\,$(GNUDLL)\\libgobject*.dll	$(GAMEDIR))
-	-$(RDEL) $(subst /,\,$(GAMEDIR)\etc)
-	mkdir $(subst /,\,$(GAMEDIR)\etc)
-	$(RCOPY) $(subst /,\,$(MW32GTK)\etc		$(GAMEDIR)\etc)
-	-$(RDEL) $(subst /,\,$(GAMEDIR)\lib)
-	mkdir $(subst /,\,$(GAMEDIR)\lib)
-	mkdir $(subst /,\,$(GAMEDIR)\lib\pango)
-	$(RCOPY) $(subst /,\,$(MW32GTK)\lib\pango	$(GAMEDIR)\lib\pango)
-	mkdir $(subst /,\,$(GAMEDIR)\lib\glib-2.0)
-	$(RCOPY) $(subst /,\,$(MW32GTK)\lib\glib-2.0	$(GAMEDIR)\lib\glib-2.0)
-	mkdir $(subst /,\,$(GAMEDIR)\lib\gtk-2.0)
-	$(RCOPY) $(subst /,\,$(MW32GTK)\lib\gtk-2.0	$(GAMEDIR)\lib\gtk-2.0)
 	$(COPY) $(subst /,\,$(WSYS)\winnt.cnf		$(GAMEDIR)\defaults.nh)
 else
 	$(COPY) $(subst /,\,$(WSYS)\defaults.nh		$(GAMEDIR)\defaults.nh)
 endif
 ifeq ($(USE_PROXY),Y)
-	$(COPY) $(subst /,\,gltile16.png		$(GAMEDIR))
-	$(COPY) $(subst /,\,gltile32.png		$(GAMEDIR))
-	$(COPY) $(subst /,\,gltile64.png		$(GAMEDIR))
 	$(COPY) $(subst /,\,gltile16.map		$(GAMEDIR))
 	$(COPY) $(subst /,\,gltile32.map		$(GAMEDIR))
 	$(COPY) $(subst /,\,gltile64.map		$(GAMEDIR))
+endif
+ifeq ($(USE_PNG),Y)
+	$(COPY) $(subst /,\,gltile16.png		$(GAMEDIR))
+	$(COPY) $(subst /,\,gltile32.png		$(GAMEDIR))
+	$(COPY) $(subst /,\,gltile64.png		$(GAMEDIR))
 endif
 ifeq ($(USE_NHALLOC),Y)
 	$(COPY) $(subst /,\,nhalloc.dll			$(GAMEDIR))
@@ -657,12 +639,35 @@ gamedir.tag:
 	$(subst /,\,@if not exist $(GAMEDIR)/*.* mkdir $(GAMEDIR))
 	$(subst /,\,@echo directory created > $@)
 
-$(GAMEFILE): gamedir.tag utility.tag $(NHALLOCDLL) $(NHALLOCA) $(ALLOBJ) \
-		$(GAME).lnk $(GAMEDIR)/nhdefkey.dll $(GAMEDIR)/nh340key.dll \
-		$(GAMEDIR)/nhraykey.dll
+FORCE:
+
+ifeq ($(USE_PNG),Y)
+cc-gtk.h:	FORCE
+	@echo #define PKG_CONFIG_DLL "$(PKG_CONFIG_DLL)" > cc-gtk.h
+	@echo #define PKG_CONFIG_PATH "$(PKG_CONFIG_PATH)" >> cc-gtk.h
+	@echo #define GTKCFLAGS "$(GTKCFLAGS)" >> cc-gtk.h
+	@echo #define GTKLIBS "$(GTKLIBS)" >> cc-gtk.h
+
+cc-gtk.exe:	$(WGTK)\cc-gtk.c cc-gtk.h
+	$(COPY) $(WGTK)\cc-gtk.c .
+	$(CC) -o$@ cc-gtk.c
+endif
+
+ifeq ($(USE_GTK),Y)
+$(GAMEFILE): cc-gtk.exe gamedir.tag utility.tag $(NHALLOCDLL) $(NHALLOCA) \
+		$(ALLOBJ) $(GAME).lnk $(GAMEDIR)/nhdefkey.dll \
+		$(GAMEDIR)/nh340key.dll $(GAMEDIR)/nhraykey.dll
+	cc-gtk -l $(LINK) $(LFLAGS) $(GTKGCCFLAGS) -o$(GAME).exe $(GAME).lnk
+	$(COPY) $(GAME).exe $(GAMEFILE)
+	$(DEL) $(GAME).exe
+else
+$(GAMEFILE): gamedir.tag utility.tag $(NHALLOCDLL) $(NHALLOCA) \
+		$(ALLOBJ) $(GAME).lnk $(GAMEDIR)/nhdefkey.dll \
+		$(GAMEDIR)/nh340key.dll $(GAMEDIR)/nhraykey.dll
 	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -o$(GAME).exe $(GAME).lnk
 	$(COPY) $(GAME).exe $(GAMEFILE)
 	$(DEL) $(GAME).exe
+endif
 
 nhdefkey.o:
 	$(CCOMPILE) $(CFLAGS) -DBUILD_DLL -o$@ $(NTSYS)/nhdefkey.c
@@ -752,6 +757,9 @@ spotless: clean
 	-$(DEL) utility.tag
 	-$(DEL) install.tag
 	-$(DEL) dat.tag
+	-$(DEL) cc-gtk.h
+	-$(DEL) cc-gtk.c
+	-$(DEL) cc-gtk.exe
 	-$(DEL) $(GAME).lnk
 	-$(DEL) makedefs.exe
 	-$(DEL) lev_comp.exe
@@ -1157,9 +1165,7 @@ tile2bmp.exe: tile2bmp.o $(TEXTIO)
 tile2png.exe: tile2png.o $(TEXTIO)
 	@echo INPUT( tile2png.o )> tmp.lnk
 	@echo INPUT( $(TEXTIO) )>> tmp.lnk
-	@echo INPUT( $(MW32PNG)/lib/libpng.dll.a )>> tmp.lnk
-	@echo INPUT( $(MW32PNG)/lib/libz.dll.a )>> tmp.lnk
-	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -otile2png.exe tmp.lnk
+	cc-gtk -l $(LINK) $(LFLAGS) $(GTKGCCFLAGS) -otile2png.exe tmp.lnk
 	@$(DEL) tmp.lnk
 
 magtile.exe: magtile.o $(TEXTIO)
@@ -1220,8 +1226,9 @@ tile2bmp.o: ../win/share/tile2bmp.c $(INCL)\hack.h $(INCL)\tile.h \
 						$(INCL)\win32api.h
 	$(CCOMPILE) $(CFLAGS) -c ../win/share/tile2bmp.c
 
-tile2png.o: ../win/share/tile2png.c $(INCL)\hack.h $(INCL)\tile.h
-	$(CCOMPILE) $(CFLAGS) -I$(MW32PNG)/include -c ../win/share/tile2png.c
+tile2png.o: cc-gtk.exe ../win/share/tile2png.c $(INCL)\hack.h $(INCL)\tile.h
+	$(CCGTK) $(CFLAGS) -I$(MW32GTK)/include -c ../win/share/tile2png.c
+
 
 x11tiles: tile2x11.exe ../win/share/monsters.txt ../win/share/objects.txt \
 				../win/share/other.txt
@@ -1661,59 +1668,59 @@ gtk.o: ../win/gtk/gtk.c $(INCL)/md5.h $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/func_tab.h \
 		$(INCL)/dlb.h $(INCL)/patchlevel.h $(INCL)/proxycb.h \
 		$(INCL)/prxyclnt.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtk.c
+	$(CCGTK) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtk.c
 gtkgetlin.o: ../win/gtk/gtkgetlin.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkgetlin.c
+	$(CCGTK) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkgetlin.c
 gtkstatus.o: ../win/gtk/gtkstatus.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkstatus.c
+	$(CCGTK) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkstatus.c
 gtkmenu.o: ../win/gtk/gtkmenu.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/patchlevel.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkmenu.c
+	$(CCGTK) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkmenu.c
 gtkyn.o: ../win/gtk/gtkyn.c $(INCL)/winGTK.h $(HACK_H) $(INCL)/nhxdr.h \
 		$(INCL)/proxycom.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkyn.c
+	$(CCGTK) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkyn.c
 gtkextcmd.o: ../win/gtk/gtkextcmd.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/proxycb.h \
 		$(INCL)/func_tab.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkextcmd.c
+	$(CCGTK) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkextcmd.c
 gtkmap.o: ../win/gtk/gtkmap.c $(INCL)/winGTK.h $(HACK_H) $(INCL)/nhxdr.h \
 		$(INCL)/proxycom.h $(INCL)/dlb.h $(INCL)/patchlevel.h \
 		$(INCL)/proxycb.h $(INCL)/prxyclnt.h \
 		../win/gtk/gtkprogress.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkmap.c
+	$(CCGTK) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkmap.c
 gtkmessage.o: ../win/gtk/gtkmessage.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkmessage.c
+	$(CCGTK) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkmessage.c
 gtkmisc.o: ../win/gtk/gtkmisc.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/proxycb.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkmisc.c
+	$(CCGTK) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkmisc.c
 gtktile.o: ../win/gtk/gtktile.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/dlb.h \
 		$(INCL)/proxycb.h $(INCL)/prxyclnt.h \
 		../win/gtk/gtkprogress.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtktile.c
+	$(CCGTK) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtktile.c
 xshmmap.o: ../win/gtk/xshmmap.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/xshmmap.c
+	$(CCGTK) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/xshmmap.c
 gtkhackrc.o: ../win/gtk/gtkhackrc.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/prxyclnt.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkhackrc.c
+	$(CCGTK) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkhackrc.c
 gtkprefs.o: ../win/gtk/gtkprefs.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkprefs.c
+	$(CCGTK) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkprefs.c
 gtkprogress.o: ../win/gtk/gtkprogress.c $(INCL)/winGTK.h $(HACK_H) \
                 $(INCL)/nhxdr.h $(INCL)/proxycom.h \
 		../win/gtk/gtkprogress.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkprogress.c
+	$(CCGTK) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkprogress.c
 gtkext.o: ../win/gtk/gtkext.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/prxyclnt.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkext.c
+	$(CCGTK) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkext.c
 gtkint.o: ../win/gtk/gtkint.c $(INCL)/nhxdr.h $(INCL)/proxycom.h \
 		$(INCL)/prxyclnt.h $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/func_tab.h $(INCL)/dlb.h $(INCL)/patchlevel.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkint.c
+	$(CCGTK) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkint.c
 gnaskstr.o: ../win/gnome/gnaskstr.c ../win/gnome/gnaskstr.h \
 		../win/gnome/gnmain.h
 	$(CCOMPILE) $(CFLAGS) $(GNOMEINC) -o$@ ../win/gnome/gnaskstr.c

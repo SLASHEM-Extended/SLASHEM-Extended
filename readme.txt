@@ -90,6 +90,7 @@ ver 0.0.7E5 [?] [Released by ?]
 -fixed bug 662821: magic candles burn in the candelabrum of invocation
 -fixed bug 863646: Fails to compile under Gtk 2.0
 -fixed bug 863679: GTK interface fails to build as an internal port
+-Winnt: Use pkg-config in build (for Gtk+ and libpng) based on cc-gtk
 
 See history.txt for changes made in previous versions.
 
