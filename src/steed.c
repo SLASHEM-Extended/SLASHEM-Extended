@@ -327,7 +327,8 @@ exercise_steed()
 void
 kick_steed()
 {
-	char *He, *him;
+	char He[4];
+	int gend;
 	if (!u.usteed)
 	    return;
 
@@ -336,25 +337,22 @@ kick_steed()
 	    /* We assume a message has just been output of the form
 	     * "You kick <steed>."
 	     */
-	    switch (u.usteed->mnamelth ? pronoun_gender(u.usteed) : 2) {
-		case 0:     He = "He"; him = "him";  break;
-		case 1:     He = "Her"; him = "her";  break;
-		default:    He = "It"; him = "it"; break;
-	    }
+	    gend = u.usteed->mnamelth ? pronoun_gender(u.usteed) : 2;
+	    Strcpy(He, he[gend]);
+	    *He = highc(*He);
 	    if ((u.usteed->mcanmove || u.usteed->mfrozen) && !rn2(2)) {
 		if (u.usteed->mcanmove)
 		    u.usteed->msleeping = 0;
-		else if (u.usteed->mfrozen) {
+		else if (u.usteed->mfrozen > 2)
 		    u.usteed->mfrozen -= 2;
-		    if (u.usteed->mfrozen <= 0) {
-			u.usteed->mcanmove = 1;
-			u.usteed->mfrozen = 0;
-		    }
+		else {
+		    u.usteed->mfrozen = 0;
+		    u.usteed->mcanmove = 1;
 		}
 		if (u.usteed->msleeping || !u.usteed->mcanmove)
 		    pline("%s stirs.", He);
 		else
-		    pline("%s rouses %sself!", He, him);
+		    pline("%s rouses %sself!", He, him[gend]);
 	    } else
 		pline("%s does not respond.", He);
 	    return;
