@@ -664,22 +664,29 @@ build_savebones_compat_string()
 {
 #ifdef VERSION_COMPATIBILITY
 	unsigned long uver = VERSION_COMPATIBILITY;
+	char ueditsuffix[20];
 #endif
-	char editsuffix[20], ueditsuffix[20];
+	char editsuffix[20];
 	/* Add edit level suffices if either EDITLEVEL is defined, or
 	 * the first level we are compatible with was not edit level 0.
 	 */
 #ifdef EDITLEVEL
 	sprintf(editsuffix, "E%d", EDITLEVEL);
+# ifdef VERSION_COMPATIBILITY
 	sprintf(ueditsuffix, "E%lu", uver & 0x000000FFL);
+# endif
 #else
+# ifdef VERSION_COMPATIBILITY
 	if (uver & 0x000000FFL) {
 	    strcpy(editsuffix, "E0");
 	    sprintf(ueditsuffix, "E%lu", uver & 0x000000FFL);
 	} else {
+# endif
 	    editsuffix[0] = 0;
 	    ueditsuffix[0] = 0;
+# ifdef VERSION_COMPATIBILITY
 	}
+# endif
 #endif
 	Strcpy(save_bones_compat_buf,
 		"save and bones files accepted from version");
