@@ -7,7 +7,7 @@
 # by Michaelª Hamel and Ross Brown 1991 : michael@otago.ac.nz
 #
 # Updated for Slash'EM 0.0.5-2 to .6-4F7
-# Paul Hurtley, August 1999 to December 2001
+# Paul Hurtley, August 1999 to January 2002
 
 #--------------------------------------------------------------------------
 #
@@ -291,9 +291,7 @@ SlashEMSrcs = ¶
 	"{TtyDir}"wintty.c
 	
 SlashEMRsrcs = 				¶
-	"{MacDir}"MPW.r			¶
-	"{ObjDir}"NHrsrc.rsrc	¶
-	"{ObjDir}"NHSound.rsrc
+	"{MacDir}"MPW.r
 
 # -------- Build the dungeon compiler, as an MPW tool ---------------
 

@@ -3,6 +3,9 @@
 #include "BalloonTypes.r"	    /* Mac resource type definitions */
 #include "Files.r"				/* File resources */
 
+#include "NHsound.r"
+#include "NHrsrc.r"
+
 resource 'SIZE' (-1) {
 	reserved,
 	acceptSuspendResumeEvents,
