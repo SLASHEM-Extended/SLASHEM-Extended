@@ -344,7 +344,7 @@ register struct obj *otmp;
 
 	nothing = unkn = 0;
 
-#ifdef BLACKMARKET
+#if defined(BLACKMARKET) && !defined(DEVEL_BRANCH)
     if (otmp->otyp == POT_POLYMORPH && Is_blackmarket(&u.uz)) {
             /* No ID */
             pline("A mysterious force causes the liquid to evaporate!");
@@ -1192,7 +1192,7 @@ boolean your_fault;
 	     * magic resistance protects from polymorph traps, so make
 	     * it guard against involuntary polymorph attacks too... 
 	     */
-#ifdef BLACKMARKET
+#if defined(BLACKMARKET) && !defined(DEVEL_BRANCH)
 	    if (Is_blackmarket(&u.uz)) {
                 pline("A mysterious force causes the liquid to evaporate!");
                 pline("%s is untouched.", Monnam(mon));

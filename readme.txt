@@ -331,6 +331,7 @@ ver 0.0.6E5F1 [? ?/2001] [Released by ?]
 -Partially implemented first cut of proxy window interface support
 -fixed bug 424479: Dipping into potions of gain level.
 -Full support for Kevin Hugo's aligned keys.
+-fixed bug 436639: Polyself in the Black Market.
 
 ver 0.0.6E5 [May 3/2001] [Released by Warren]
 -Basic support for Kevin Hugo's aligned keys

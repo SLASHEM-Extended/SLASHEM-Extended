@@ -2669,7 +2669,7 @@ register struct obj     *obj;
 	if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_ACID_STREAM)
 		skilldmg = spell_damage_bonus(obj->otyp);
 
-#ifdef BLACKMARKET
+#if defined(BLACKMARKET) && !defined(DEVEL_BRANCH)
 	if (Is_blackmarket(&u.uz) && 
 	    (obj->otyp == WAN_POLYMORPH || obj->otyp == SPE_POLYMORPH)) {
 		pline("A mysterious force blocks your %s!",
