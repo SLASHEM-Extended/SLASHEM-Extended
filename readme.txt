@@ -329,6 +329,7 @@ TODO:
 ver 0.0.6E4F3 (Might become 0.0.6E5) [January XX/2001]
 -fixed bug 127211: Pet vampires leave corpses partly eaten.
 -fixed bug 127798: Eating a wraith corpse while polymorphed is buggy.
+-fixed bug 128019: Player can eat corpses which are underwater.
 
 ver 0.0.6E4F2 DOS? (or perhaps merge into F3) [XXX XX/2001]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined

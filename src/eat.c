@@ -2601,6 +2601,16 @@ floorfood(verb,corpsecheck)     /* get food from floor or pack */
 	char c;
 	boolean feeding = (!strcmp(verb, "eat"));
 
+	/* if we can't touch floor objects then use invent food only */
+	if (!can_reach_floor() ||
+#ifdef STEED
+		u.usteed ||		/* can't eat off floor while riding */
+#endif
+		((is_pool(u.ux, u.uy) || is_lava(u.ux, u.uy)) &&
+		    (Wwalking || is_clinger(youmonst.data) ||
+			(Flying && !Breathless))))
+	    goto skipfloor;
+
 	if (feeding && metallivorous(youmonst.data)) {
 	    struct obj *gold;
 	    struct trap *ttmp = t_at(u.ux, u.uy);
@@ -2621,11 +2631,7 @@ floorfood(verb,corpsecheck)     /* get food from floor or pack */
 		}
 	    }
 
-	    if (
-#ifdef STEED
-	    	!u.usteed && 
-#endif
-		(gold = g_at(u.ux, u.uy)) != 0) {
+	    if ((gold = g_at(u.ux, u.uy)) != 0) {
 		if (gold->quan == 1L)
 		    Sprintf(qbuf, "There is 1 gold piece here; eat it?");
 		else
@@ -2641,13 +2647,7 @@ floorfood(verb,corpsecheck)     /* get food from floor or pack */
 	}
 
 	/* Is there some food (probably a heavy corpse) here on the ground? */
-	if (
-#ifdef STEED
-	    !u.usteed && 
-#endif
-	    !(Levitation && !Is_airlevel(&u.uz)  && !Is_waterlevel(&u.uz))
-	    && !u.uswallow) {
-	    for(otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere) {
+	for (otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere) {
 		if(corpsecheck ?
 				((otmp->otyp == CORPSE || otmp->otyp == SEVERED_HAND ||
 				otmp->otyp == EYEBALL) && (corpsecheck == 1 || tinnable(otmp))) :
@@ -2662,8 +2662,9 @@ floorfood(verb,corpsecheck)     /* get food from floor or pack */
 			else if(c == 'q')
 				return((struct obj *) 0);
 		}
-	    }
 	}
+
+ skipfloor:
 	/* We cannot use ALL_CLASSES since that causes getobj() to skip its
 	 * "ugly checks" and we need to check for inedible items.
 	 */
