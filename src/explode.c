@@ -676,6 +676,7 @@ int dest;
 	    case STICK_OF_DYNAMITE:
 		numdice = 6;
 		dig_expl = TRUE;
+		/* fall through */
 	    case FRAG_GRENADE:
 	    default:
 		ztype = ZT_SPELL(ZT_FIRE);
