@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)mrecover.c	3.3		96/07/24	  */
+/*	SCCS Id: @(#)mrecover.c	3.4		1996/07/24	  */
 /*      Copyright (c) David Hairston, 1993.                       */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -45,6 +45,9 @@
 #include <OSUtils.h>
 #include <Resources.h>
 #include <Files.h>
+#ifdef applec
+#include <SysEqu.h>
+#endif
 #include <Menus.h>
 #include <Devices.h>
 #include <Events.h>
