@@ -592,6 +592,9 @@ clear_level_structures()
 	level.flags.has_morgue = level.flags.graveyard = 0;
 	level.flags.has_beehive = 0;
 	level.flags.has_barracks = 0;
+	level.flags.has_lemurepit = 0;
+	level.flags.has_migohive = 0;
+	level.flags.has_fungusfarm = 0;
 	level.flags.has_temple = 0;
 	level.flags.has_swamp = 0;
 	level.flags.noteleport = 0;
@@ -770,6 +773,8 @@ makelevel()
 
 	    /* zoos */
 	    if(depth(&u.uz) > 6 && !rn2(12)) mkroom(ZOO);
+	    /* fungus farms are rare... */
+	    else if (u_depth > 7 && !rn2(25)) mkroom(FUNGUSFARM);
 	    else if(depth(&u.uz) > 9 && !rn2(15)) mkroom(REALZOO);
 
 	    /* neat rooms */
@@ -782,6 +787,13 @@ makelevel()
 	    if (u_depth > 16 && !rn2(8) &&
 	   !(mvitals[PM_COCKATRICE].mvflags & G_GONE)) mkroom(COCKNEST);
 	    else if(depth(&u.uz) > 20 && !rn2(20)) mkroom(DRAGONLAIR);
+	    else if (u_depth > 25 && !rn2(20) && 
+		!(mvitals[PM_MIGO_DRONE].mvflags & G_GONE)) mkroom(MIGOHIVE);
+	    /* [DS] the restriction of lemure pits to Gehennom means they're
+	     *      never going to show up randomly (no random room+corridor
+	     *      levels in Gehennom). Perhaps this should be removed? */
+	    else if (In_hell(&u.uz) && !rn2(12) &&
+		!(mvitals[PM_LEMURE].mvflags & G_GONE)) mkroom(LEMUREPIT);
     }
 
 #ifdef REINCARNATION

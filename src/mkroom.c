@@ -23,6 +23,7 @@ STATIC_DCL void NDECL(mktemple);
 STATIC_DCL coord * FDECL(shrine_pos, (int));
 STATIC_DCL struct permonst * NDECL(morguemon);
 STATIC_DCL struct permonst * NDECL(squadmon);
+STATIC_DCL struct permonst * NDECL(fungus);
 STATIC_DCL void FDECL(save_room, (int,struct mkroom *));
 STATIC_DCL void FDECL(rest_room, (int,struct mkroom *));
 #endif /* OVLB */
@@ -64,6 +65,9 @@ int	roomtype;
 	case LEPREHALL:	mkzoo(LEPREHALL); break;
 	case COCKNEST:	mkzoo(COCKNEST); break;
 	case ANTHOLE:	mkzoo(ANTHOLE); break;
+	case LEMUREPIT: mkzoo(LEMUREPIT); break;
+	case MIGOHIVE:  mkzoo(MIGOHIVE); break;
+	case FUNGUSFARM: mkzoo(FUNGUSFARM); break;
 	default:	impossible("Tried to make a room of type %d.", roomtype);
     }
 }
@@ -91,6 +95,18 @@ mkshop()
 			}
 			if(*ep == 'b' || *ep == 'B'){
 				mkzoo(BEEHIVE);
+				return;
+			}
+			if (*ep == 'p' || *ep == 'P') {
+				mkzoo(LEMUREPIT);
+				return;
+			}
+			if (*ep == 'i' || *ep == 'I') {
+				mkzoo(MIGOHIVE);
+				return;
+			}
+			if (*ep == 'f' || *ep == 'F') {
+				mkzoo(FUNGUSFARM);
 				return;
 			}
 			if(*ep == 't' || *ep == 'T' || *ep == '\\'){
@@ -267,6 +283,7 @@ struct mkroom *sroom;
 		/* TODO: try to ensure the enthroned monster is an M2_PRINCE */
 		break;
 	    case BEEHIVE:
+	    case MIGOHIVE:
 		tx = sroom->lx + (sroom->hx - sroom->lx + 1)/2;
 		ty = sroom->ly + (sroom->hy - sroom->ly + 1)/2;
 		if(sroom->irregular) {
@@ -308,6 +325,7 @@ struct mkroom *sroom;
 		    (type == COURT) ? courtmon() :
 		    (type == BARRACKS) ? squadmon() :
 		    (type == MORGUE) ? morguemon() :
+		    (type == FUNGUSFARM) ? fungus() :
 		    (type == BEEHIVE) ?
 			(sx == tx && sy == ty ? &mons[PM_QUEEN_BEE] :
 			 &mons[PM_KILLER_BEE]) :
@@ -317,6 +335,12 @@ struct mkroom *sroom;
 		    	 &mons[PM_CHICKATRICE]) :
 		    (type == ANTHOLE) ? antholemon() :
 		    (type == DRAGONLAIR) ? mkclass(S_DRAGON,0) :
+		    (type == LEMUREPIT)? 
+		    	(!rn2(10)? &mons[PM_HORNED_DEVIL] : 
+			           &mons[PM_LEMURE]) :
+		    (type == MIGOHIVE)?
+		      (sx == tx && sy == ty? &mons[PM_MIGO_QUEEN] :
+	              (rn2(2)? &mons[PM_MIGO_DRONE] : &mons[PM_MIGO_WARRIOR])) :
 		    (type == BADFOODSHOP) ? mkclass(S_BAD_FOOD,0) :
 		    (type == REALZOO) ? realzoomon() :
 		    (type == GIANTCOURT) ? mkclass(S_GIANT,0) :
@@ -358,6 +382,30 @@ struct mkroom *sroom;
 			if(!rn2(3))
 			    (void) mksobj_at(LUMP_OF_ROYAL_JELLY,
 					     sx, sy, TRUE, FALSE);
+			break;
+		    case FUNGUSFARM:
+			if (!rn2(3))
+			    (void) mksobj_at(SLIME_MOLD, sx, sy, TRUE, FALSE);
+			break;
+		    case MIGOHIVE:
+			switch (rn2(10)) {
+			    case 9:
+				mksobj_at(DIAMOND, sx, sy, TRUE, FALSE);
+				break;
+			    case 8:
+				mksobj_at(RUBY, sx, sy, TRUE, FALSE);
+				break;
+			    case 7:
+			    case 6:
+				mksobj_at(AGATE, sx, sy, TRUE, FALSE);
+				break;
+			    case 5:
+			    case 4:
+				mksobj_at(FLUORITE, sx, sy, TRUE, FALSE);
+				break;
+			    default:
+				break;
+			}
 			break;
 		    case BARRACKS:
 			if(!rn2(20))	/* the payroll and some loot */
@@ -414,6 +462,15 @@ struct mkroom *sroom;
 	      case BEEHIVE:
 		  level.flags.has_beehive = 1;
 		  break;
+	      case LEMUREPIT:
+		  level.flags.has_lemurepit = 1;
+		  break;
+	      case MIGOHIVE:
+		  level.flags.has_migohive = 1;
+		  break;
+	      case FUNGUSFARM:
+		  level.flags.has_fungusfarm = 1;
+		  break;
 	}
 }
 
@@ -467,6 +524,40 @@ antholemon()
 	case 1:		mtyp = PM_FIRE_ANT; break;
 	case 2:		mtyp = PM_SNOW_ANT; break;
 	}
+	return ((mvitals[mtyp].mvflags & G_GONE) ?
+			(struct permonst *)0 : &mons[mtyp]);
+}
+
+
+STATIC_OVL struct permonst *
+fungus()
+{
+	register int i, hd = level_difficulty(), mtyp = 0;
+
+	i = rn2(hd > 20 ? 17 : hd > 12 ? 14 : 12);
+
+	switch (i) {
+	case 0:
+	case 1: mtyp = PM_LICHEN; 		break;	
+	case 2: mtyp = PM_BROWN_MOLD;		break;
+	case 3: mtyp = PM_YELLOW_MOLD;		break;
+	case 4: mtyp = PM_GREEN_MOLD;		break;
+	case 5: mtyp = PM_RED_MOLD;		break;
+	case 6: mtyp = PM_SHRIEKER;		break;
+	case 7: mtyp = PM_VIOLET_FUNGUS;	break;
+	case 8: mtyp = PM_BLUE_JELLY;		break;
+	case 9: mtyp = PM_DISGUSTING_MOLD;	break;
+	case 10: mtyp = PM_BLACK_MOLD;		break;
+	case 11: mtyp = PM_GRAY_OOZE;		break;
+	/* Following only after level 12... */
+	case 12: mtyp = PM_SPOTTED_JELLY;	break;
+	case 13: mtyp = PM_BROWN_PUDDING;	break;
+	/* Following only after level 20... */
+	case 14: mtyp = PM_GREEN_SLIME;		break;
+	case 15: mtyp = PM_BLACK_PUDDING;	break;
+	case 16: mtyp = PM_OCHRE_JELLY;		break;
+	}
+
 	return ((mvitals[mtyp].mvflags & G_GONE) ?
 			(struct permonst *)0 : &mons[mtyp]);
 }

@@ -71,8 +71,11 @@ extern NEARDATA struct door doors[DOORMAX];
 #define BADFOODSHOP     15      /* bad food! */
 #define COCKNEST        16      /* cockatrice nest! */
 #define ANTHOLE         17      /* ants! */
+#define LEMUREPIT       18      /* lemures */
+#define MIGOHIVE        19      /* Mi-Go */
+#define FUNGUSFARM      20      /* molds, puddings, and slime */
 
-#define SHOPBASE        18      	/* everything above this is a shop */
+#define SHOPBASE        21      	/* everything above this is a shop */
 #define ARMORSHOP       (SHOPBASE+ 1)   /* specific shop defines for level compiler */
 #define SCROLLSHOP      (SHOPBASE+ 2)
 #define POTIONSHOP      (SHOPBASE+ 3)

@@ -158,7 +158,8 @@ struct monst *mtmp;
 	if (mtmp->isshk || mtmp->isgd || mtmp->iswiz || !mtmp->mcansee ||
 			mtmp->mpeaceful || mtmp->data->mlet == S_HUMAN ||
 			is_lminion(mtmp->data) || is_rider(mtmp->data) ||
-			mtmp->data == &mons[PM_MINOTAUR])
+			mtmp->data == &mons[PM_MINOTAUR] ||
+			mtmp->data == &mons[PM_CTHULHU])
 		return(FALSE);
 
 	return (boolean)(sobj_at(SCR_SCARE_MONSTER, x, y)

@@ -1641,6 +1641,15 @@ register boolean newlev;
 		case BEEHIVE:
 		    You("enter a giant beehive!");
 		    break;
+		case LEMUREPIT:
+		    You("enter a pit of screaming lemures!");
+		    break;
+		case MIGOHIVE:
+		    You("enter a strange hive!");
+		    break;
+		case FUNGUSFARM:
+		    You("enter a room full of fungi!");
+		    break;
 		case COCKNEST:
 		    You("enter a disgusting nest!");
 		    break;
@@ -1695,6 +1704,15 @@ register boolean newlev;
 				break;
 			    case BEEHIVE:
 				level.flags.has_beehive = 0;
+				break;
+			    case LEMUREPIT:
+				level.flags.has_lemurepit = 0;
+				break;
+			    case MIGOHIVE:
+				level.flags.has_migohive = 0;
+				break;
+			    case FUNGUSFARM:
+				level.flags.has_fungusfarm = 0;
 				break;
 			}
 		}

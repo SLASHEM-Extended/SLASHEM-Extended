@@ -459,6 +459,9 @@ struct levelflags {
 	Bitfield(has_beehive, 1);
 	Bitfield(has_barracks, 1);
 	Bitfield(has_temple, 1);
+	Bitfield(has_lemurepit, 1);
+	Bitfield(has_migohive, 1);
+	Bitfield(has_fungusfarm, 1);
 
 	Bitfield(has_swamp, 1);
 	Bitfield(noteleport,1);
