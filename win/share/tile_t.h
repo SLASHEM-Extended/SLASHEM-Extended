@@ -1,4 +1,4 @@
-/* $Id: tile_t.h,v 1.1 2003-01-01 17:29:11 j_ali Exp $ */
+/* $Id: tile_t.h,v 1.2 2003-02-25 15:24:48 j_ali Exp $ */
 /* NetHack may be freely redistributed.  See license for details. */
 
 typedef unsigned char pixval;
@@ -53,7 +53,7 @@ extern boolean NDECL(fclose_text_file);
 extern void NDECL(init_colormap);
 extern void NDECL(merge_colormap);
 
-#if defined(MICRO)
+#if defined(MICRO) || defined(WIN32)
 #undef exit
 # if !defined(MSDOS) && !defined(WIN32)
 extern void FDECL(exit, (int));
