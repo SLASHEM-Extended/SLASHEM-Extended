@@ -85,12 +85,16 @@ CNF_SHARE_GTKND = x11big3dtiles x11bigtiles x11tiles rip.xpm credit.xpm gtkrc
 CNF_SHARE_GEMND = nh16.img title.img GEM_RSC.RSC rip.img
 # for BeOS
 CNF_SHARE_BEND = beostiles
+# for SDL/GL window port
+CNF_SHARE_GLND = gltile16.png gltile32.png gltile64.png gllogo.png glrip.png \
+                 glfont8.png glfont14.png glfont20.png glfont22.png
 # for Gnome
 CNF_SHARE_GNOMEND = x11bigtiles x11tiles pet_mark.xbm rip.xpm mapbg.xpm
 
 # CNF_SHARE_DATND = $(CNF_SHARE_X11ND)
 # CNF_SHARE_DATND = $(CNF_SHARE_QTND)
 # CNF_SHARE_DATND = $(CNF_SHARE_GTKND)
+# CNF_SHARE_DATND = $(CNF_SHARE_GLND)
 CNF_SHARE_DATND =
 
 CNF_SHARE_DATD = data oracles options quest.dat rumors
@@ -193,6 +197,10 @@ x11big3dtiles: $(GAME)
 beostiles: $(GAME)
 	( cd util ; $(MAKE) tile2beos )
 	( cd dat ; $(MAKE) beostiles )
+
+gl%.png: $(GAME)
+	( cd util ; $(MAKE) tile2png )
+	( cd dat ; $(MAKE) $@ )
 
 util/txt2ppm:
 	( cd util ; $(MAKE) txt2ppm )

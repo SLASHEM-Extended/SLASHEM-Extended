@@ -324,6 +324,9 @@ xpm2img.ttp: xpm2img.o bitmfile.o
 tile2beos: tile2beos.o $(TEXT_IO)
 	$(CC) $(LFLAGS) -o tile2beos tile2beos.o $(TEXT_IO) -lbe
 
+tile2png: tile2png.o $(TEXT_IO)
+	$(CC) $(LFLAGS) -o tile2png tile2png.o $(TEXT_IO) -lz -lpng
+
 tilemap: ../win/share/tilemap.c $(HACK_H)
 	$(CC) $(CFLAGS) $(LFLAGS) -o tilemap ../win/share/tilemap.c $(LIBS)
 ../src/tile.c: tilemap
@@ -370,6 +373,9 @@ bitmfile.o: ../win/gem/bitmfile.c ../include/bitmfile.h
 
 tile2beos.o: ../win/BeOS/tile2beos.cpp $(HACK_H) ../include/tile.h
 	$(CXX) $(CFLAGS) -c ../win/BeOS/tile2beos.cpp
+
+tile2png.o: ../win/gl/tile2png.c $(HACK_H) ../include/tile.h
+	$(CC) $(CFLAGS) -c ../win/gl/tile2png.c
 
 # using dependencies like
 #	../src/foo::
