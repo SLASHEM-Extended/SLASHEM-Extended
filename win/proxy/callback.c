@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.18 2003-07-05 16:13:27 j_ali Exp $ */
+/* $Id: callback.c,v 1.19 2003-08-22 19:40:57 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -88,6 +88,9 @@ static int
 cb_dlbh_fopen(char *name, char *mode)
 {
     char *file, *subname;
+#ifdef FILE_AREAS
+    char *area;
+#endif
     char *s;
     char *buf = NULL;
     int i, retval = 0;

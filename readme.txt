@@ -92,6 +92,7 @@ ver 0.0.7E3 [?] [Released by ?]
 -fixed bug 782892: gtk startup problem when no tiles defined
 -fixed bug 782881: NumPad doesn't work with gtk
 -fixed bug 787697: GUI works, no tile graphics, just text
+-fixed bug 782906: compiling fails when FILE_AREAS is defined
 
 See history.txt for changes made in previous versions.
 

@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.26 2003-05-31 08:12:44 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.27 2003-08-22 19:40:57 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -368,7 +368,7 @@ BOOLEAN_P complain;
 {
     int fh;
 #ifdef FILE_AREAS
-    fh = dlbh_fopen(farea, fname, "r");
+    fh = dlbh_fopen_area(farea, fname, "r");
 #else
     fh = dlbh_fopen(fname, "r");
 #endif

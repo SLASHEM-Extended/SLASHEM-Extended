@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.40 2003-08-22 12:23:46 j_ali Exp $
+  $Id: gtk.c,v 1.41 2003-08-22 19:40:57 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1348,8 +1348,12 @@ nh_rc(void)
     int i;
     char *rc_file;
     gchar **files, **new_files;
-#ifndef FILE_AREAS
+#if defined(GTK_PROXY) || !defined(FILE_AREAS)
+# ifdef UNIX
+    rc_file = strdup("/etc/gtkhack/gtkrc");
+# else
     rc_file = strdup("gtkrc");
+# endif
 #else
     rc_file = make_file_name(FILE_AREA_SHARE, "gtkrc");
 #endif
@@ -2012,14 +2016,18 @@ GTK_init_nhwindows(char ***capvp)
     credit_vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), credit_window, "");
      
     credit_style = gtk_widget_get_style(credit_window);
-#ifndef FILE_AREAS
+#if defined(GTK_PROXY) || !defined(FILE_AREAS)
+# ifdef UNIX
+    credit_file = "/usr/share/games/gtkhack/credit.xpm";
+# else
     credit_file = "credit.xpm";
+# endif
 #else
     credit_file = make_file_name(FILE_AREA_SHARE, "credit.xpm");
 #endif
     credit_pixmap = gdk_pixmap_create_from_xpm(credit_window->window,
       &credit_mask, &credit_style->bg[GTK_STATE_NORMAL], credit_file);
-#ifdef FILE_AREAS
+#if !defined(GTK_PROXY) && defined(FILE_AREAS)
     free(credit_file);
 #endif
     if (credit_pixmap) {
@@ -2856,13 +2864,17 @@ GTK_ext_outrip(winid id, char *str)
 
     vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), w, "");
 
-#ifndef FILE_AREAS
+#if defined(GTK_PROXY) || !defined(FILE_AREAS)
+# ifdef UNIX
+    rip_file = "/usr/share/games/gtkhack/rip.xpm";
+# else
     rip_file = "rip.xpm";
+# endif
 #else
     rip_file = make_file_name(FILE_AREA_SHARE, "rip.xpm");
 #endif
     rip_pixmap = gdk_pixmap_create_from_xpm(w->window, 0, 0, rip_file);
-#ifdef FILE_AREAS
+#if !defined(GTK_PROXY) && defined(FILE_AREAS)
     free(rip_file);
 #endif
 
