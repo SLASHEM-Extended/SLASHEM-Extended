@@ -809,7 +809,8 @@ int spellnum;
     if (adtyp == AD_SPEL) {
 	/* aggravate monsters, etc. won't be cast by peaceful monsters */
 	if (mtmp->mpeaceful && (spellnum == MGC_AGGRAVATION ||
-		spellnum == MGC_SUMMON_MONS || spellnum == MGC_CLONE_WIZ))
+               spellnum == MGC_SUMMON_MONS || spellnum == MGC_CLONE_WIZ ||
+               spellnum == MGC_CALL_UNDEAD))
 	    return TRUE;
 	/* haste self when already fast */
 	if (mtmp->permspeed == MFAST && spellnum == MGC_HASTE_SELF)
