@@ -9,7 +9,8 @@
  * any of the tiles found in the first file will be ignored.
  */
 
-#include "config.h"
+/*#include "config.h"*/
+#include "hack.h"
 #include "tile.h"
 
 extern char *FDECL((strdup), (const char *));
