@@ -752,7 +752,6 @@ CONTAINER("sack", "bag",                0, 0, 0, 0,  40, 15,   2, CLOTH, HI_CLOT
 CONTAINER("oilskin sack", "bag",        0, 0, 0, 0,  10, 15, 100, CLOTH, HI_CLOTH),
 CONTAINER("bag of holding", "bag",      0, 1, 0, 0,  20, 15, 100, CLOTH, HI_CLOTH),
 CONTAINER("bag of tricks", "bag",       0, 1, 1, 0,  20, 15, 100, CLOTH, HI_CLOTH),
-#undef CONTAINER
 
 /* Unlocking tools */
 TOOL("skeleton key", "key",     0, 0, 0, 0,  80,  3,  10, IRON, HI_METAL),
@@ -868,12 +867,20 @@ TOOL("leash", (char *)0,        1, 0, 0, 0,  70, 12,  20, LEATHER, HI_LEATHER),
 #endif
 TOOL("stethoscope", (char *)0,  1, 0, 0, 0,  25,  4,  75, IRON, HI_METAL),
 TOOL("tinning kit", (char *)0,  1, 0, 0, 1,  15, 75,  30, IRON, HI_METAL),
-TOOL("medical kit", "leather bag",
-								0, 0, 0, 1,  10, 25, 500, LEATHER, HI_LEATHER),
+CONTAINER("medical kit", "leather bag",
+				0, 0, 0, 0,  10, 25, 500, LEATHER, HI_LEATHER),
 TOOL("tin opener", (char *)0,   1, 0, 0, 0,  25,  4,  30, IRON, HI_METAL),
 TOOL("can of grease", (char *)0,1, 0, 0, 1,  15, 15,  20, IRON, HI_METAL),
 TOOL("figurine", (char *)0,     1, 0, 1, 0,  25, 50,  80, MINERAL, HI_MINERAL),
 TOOL("magic marker", (char *)0, 1, 0, 1, 1,  15,  2,  50, PLASTIC, CLR_RED),
+
+/* Two pseudo tools. These can never exist outside of medical kits. */
+OBJECT(OBJ("bandage", (char *)0),
+		BITS(1,1,0,0,0,0,0,1,0,0,0,P_NONE,CLOTH), 0,
+		TOOL_CLASS, 0, 0, 1, 1, 0, 0, 0, 0, 1, CLR_WHITE),
+OBJECT(OBJ("phial", (char *)0),
+		BITS(1,1,0,0,0,0,0,1,0,0,0,P_NONE,GLASS), 0,
+		TOOL_CLASS, 0, 0, 2, 1, 0, 0, 0, 0, 2, HI_GLASS),
 
 /* Two special unique artifact "tools" */
 OBJECT(OBJ("Candelabrum of Invocation", "candelabrum"),
@@ -883,6 +890,7 @@ OBJECT(OBJ("Bell of Opening", "silver bell"),
 		BITS(0,0,1,0,1,1,1,1,0,0,0,0,SILVER), 0,
 		TOOL_CLASS, 0, 0,10, 5000, 0, 0, 0, 0, 50, HI_SILVER),
 #undef TOOL
+#undef CONTAINER
 #undef WEPTOOL
 
 
