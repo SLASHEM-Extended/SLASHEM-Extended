@@ -2464,6 +2464,9 @@ int cnt;
 struct trap *ttmp;
 {
 	struct obj *otmp = mksobj(otyp, TRUE, FALSE);
+	/* [ALI] Only dart traps are capable of being poisonous */
+	if (otyp != DART)
+		otmp->opoisoned = 0;
 	otmp->quan=cnt;
 	otmp->owt = weight(otmp);
 	place_object(otmp, ttmp->tx, ttmp->ty);
