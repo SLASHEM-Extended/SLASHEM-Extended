@@ -451,7 +451,11 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 {
 	char buf[BUFSZ];
 
+#ifndef INVISIBLE_OBJECTS
 	if (!Blind) obj->dknown = 1;	/* maximize mergibility */
+#else
+	if (!Blind && (!obj->oinvis || See_invisible)) obj->dknown = 1;
+#endif
 	if (obj->oartifact) {
 	    /* place_object may change these */
 	    boolean crysknife = (obj->otyp == CRYSKNIFE);
