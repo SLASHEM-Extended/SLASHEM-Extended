@@ -26,11 +26,7 @@ static int zoom_sets[] =
   128
 };
 
-/* Note well the (int) here !  Without it, the value ends up as
- * unsigned, causing comparisons with negative numbers (especially
- * the min() macro) to fail.  Unsigned types really suck.
- */
-#define NUM_ZOOM  ((int)(sizeof(zoom_sets) / sizeof(zoom_sets[0])))
+#define NUM_ZOOM  (SIZE(zoom_sets))
 
 
 int sdlgl_quantize_zoom(int zoom_h)
@@ -364,12 +360,13 @@ static void glyph_to_tilepair(struct TextWindow *win,
          In_hell(&u.uz) ? Fl_Hell :
          In_quest(&u.uz) ? Fl_Quest :
          In_endgame(&u.uz) ? Fl_Astral :
+         Is_medusa_level(&u.uz) ? Fl_Beach :
 # ifndef VANILLA_GLHACK
          /* FIXME !!! In_caves(&u.uz) ? Fl_Caves : */
 # endif
-#endif
-#ifdef REINCARNATION
+# ifdef REINCARNATION
          Is_rogue_level(&u.uz) ? Fl_Rogue :
+# endif
 #endif
     /* otherwise */
          glyph2tile[cmap_to_glyph(S_room)];

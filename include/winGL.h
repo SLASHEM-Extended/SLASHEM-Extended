@@ -1041,6 +1041,7 @@ E void FDECL(sdlgl_process_text_window, (int, struct TextWindow *));
 #define Fl_Astral   (FLOOR_TILES + 5)
 #define Fl_Rogue    (FLOOR_TILES + 6)
 #define Fl_Caves    Fl_Rogue
+#define Fl_Beach    (FLOOR_TILES + 7)
 
 E void FDECL(Sdlgl_cliparound, (int, int));
 E void FDECL(Sdlgl_update_positionbar, (char *));
