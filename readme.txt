@@ -146,6 +146,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 1076123: Vampires can eat white pills
 -fixed bug 994993: when polying, you take off T-shirt after scales merge
 -fixed bug 961914: Deep dragons should resist their own breath
+-fixed bug 963344: Stat exercise effects calculated while polymorphed
 
 See history.txt for changes made in previous versions.
 

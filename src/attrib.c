@@ -466,9 +466,15 @@ exerchk()
 	     *	off over time.  Even if you *don't* get an
 	     *	increase/decrease, you lose some of the
 	     *	accumulated effects.
+	     *
+	     *  Note that if you are polymorphed then the
+	     *  effects of any physical exercise done in your
+	     *  own body will just wear off with no checking
+	     *  until you return to your natural form.
 	     */
 	    for(i = 0; i < A_MAX; AEXE(i++) /= 2) {
 
+		if(Upolyd && i != A_WIS) continue;
 		if(ABASE(i) >= 18 || !AEXE(i)) continue;
 		if(i == A_INT || i == A_CHA) continue;/* can't exercise these */
 
