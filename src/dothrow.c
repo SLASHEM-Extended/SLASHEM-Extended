@@ -47,15 +47,15 @@ struct obj **pobj;
 	    setuqwep((struct obj *)0);
     } else if (obj == uswapwep) {
 	if (obj->quan > 1L)
-	    setuswapwep(otmp = splitobj(obj, 1L));
+	    setuswapwep(otmp = splitobj(obj, 1L), FALSE);
 	else
-	    setuswapwep((struct obj *)0);
+	    setuswapwep((struct obj *)0, FALSE);
     } else if (obj == uwep) {
 	if (obj->quan > 1L)
 	    setworn(otmp = splitobj(obj, 1L), W_WEP);
 	    /* not setuwep; do not change unweapon */
 	else {
-	    setuwep((struct obj *)0);
+	    setuwep((struct obj *)0, FALSE);
 	    if (uwep) return (struct obj *)0; /* unwielded, died, rewielded */
 	}
     } else if (obj->quan > 1L)
@@ -1012,7 +1012,7 @@ int thrown;
 		      Tobjnam(obj, "hit"), ceiling(u.ux,u.uy));
 		obj = addinv(obj);
 		(void) encumber_msg();
-		setuwep(obj);
+		setuwep(obj, TRUE);
 		u.twoweap = twoweap;
 /*            if (!fire_weapon) setuwep(obj);                
             else setuqwep(obj);*/
@@ -1195,7 +1195,7 @@ int thrown;
 			pline("%s to your hand!", Tobjnam(obj, "return"));
 			obj = addinv(obj);
 			(void) encumber_msg();
-			setuwep(obj);
+			setuwep(obj, TRUE);
 			u.twoweap = twoweap;
 			if(cansee(bhitpos.x, bhitpos.y))
 			    newsym(bhitpos.x,bhitpos.y);

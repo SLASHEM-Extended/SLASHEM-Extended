@@ -282,6 +282,10 @@ static struct trobj Lamp[] = {
 	{ OIL_LAMP, 1, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
+static struct trobj Torch[] = {
+	{ TORCH, 0, TOOL_CLASS, 2, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
 static struct trobj Blindfold[] = {
 	{ BLINDFOLD, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -1013,7 +1017,8 @@ u_init()
 		else if(!rn2(4)) ini_inv(Towel);
 		if(!rn2(4)) ini_inv(Leash);
 		if(!rn2(4)) ini_inv(Tinopener);
-		if(!rn2(4)) ini_inv(Lamp);
+		else if(!rn2(4))
+		  (rn2(100) > 50 ? ini_inv(Lamp) : ini_inv(Torch));
 		if(!rn2(8)) ini_inv(Magicmarker);
 		knows_object(TOUCHSTONE);
 		knows_object(SACK);
@@ -1025,7 +1030,7 @@ u_init()
 		    Barbarian[B_MINOR].trotyp = SHORT_SWORD;
 		}
 		ini_inv(Barbarian);
-		if(!rn2(6)) ini_inv(Lamp);
+		if(!rn2(6)) ini_inv(Torch);
 		knows_class(WEAPON_CLASS);
 		knows_class(ARMOR_CLASS);
 		skill_init(Skill_B);
@@ -1130,7 +1135,8 @@ u_init()
 		}
 		ini_inv(Priest);
 		if(!rn2(10)) ini_inv(Magicmarker);
-		else if(!rn2(10)) ini_inv(Lamp);
+		else if(!rn2(10)) 
+		  (rn2(100) > 50 ? ini_inv(Lamp) : ini_inv(Torch));
 		knows_object(POT_WATER);
 		spellbook_skill_raise(Skill_P, Priest[P_BOOK].trotyp);
 		skill_init(Skill_P);
@@ -1225,7 +1231,8 @@ u_init()
 		break;
 	case PM_VALKYRIE:
 		ini_inv(Valkyrie);
-		if(!rn2(6)) ini_inv(Lamp);
+		if(!rn2(6)) 
+		  (rn2(100) > 50 ? ini_inv(Lamp) : ini_inv(Torch));
 		knows_class(WEAPON_CLASS);
 		knows_class(ARMOR_CLASS);
 		skill_init(Skill_V);
@@ -1598,7 +1605,8 @@ register struct trobj *trop;
 		if(obj->oclass == ARMOR_CLASS){
 			if (is_shield(obj) && !uarms) {
 				setworn(obj, W_ARMS);
-				if (uswapwep) setuswapwep((struct obj *) 0);
+				if (uswapwep) 
+				  setuswapwep((struct obj *) 0, TRUE);
 			} else if (is_helmet(obj) && !uarmh)
 				setworn(obj, W_ARMH);
 			else if (is_gloves(obj) && !uarmg)
@@ -1619,8 +1627,8 @@ register struct trobj *trop;
 			otyp == TIN_OPENER || otyp == FLINT || otyp == ROCK) {
 		    if (is_ammo(obj) || is_missile(obj)) {
 			if (!uquiver) setuqwep(obj);
-		    } else if (!uwep) setuwep(obj);
-		    else if (!uswapwep) setuswapwep(obj);
+		    } else if (!uwep) setuwep(obj, FALSE);
+		    else if (!uswapwep) setuswapwep(obj, FALSE);
 		}
 		if (obj->oclass == SPBOOK_CLASS &&
 				obj->otyp != SPE_BLANK_PAPER)

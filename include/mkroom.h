@@ -30,7 +30,7 @@ struct shclass {
 	struct itp {
 	    int iprob;		/* probability of an item type */
 	    int itype;		/* item type: if >=0 a class, if < 0 a specific item */
-	} iprobs[7];		/* WAC -- changed this from 6 to 7 */
+	} iprobs[8];
 	const char **shknms;	/* list of shopkeeper names for this type */
 };
 

@@ -763,6 +763,40 @@ mdamagem(magr, mdef, mattk)
 #endif			
 			} else tmp += dmgval(otmp, mdef);
 
+			/* MRKR: Handling damage when hitting with */
+			/*       a burning torch */
+
+			if(otmp->otyp == TORCH && otmp->lamplit
+			   && !resists_fire(mdef)) {
+
+			  if (!Blind) {
+			    static char outbuf[BUFSZ];
+			    char *s = Shk_Your(outbuf, otmp);
+
+			    boolean water = (mdef->data ==
+					     &mons[PM_WATER_ELEMENTAL]);
+
+			    pline("%s %s %s%s %s%s.", s, xname(otmp),
+				  (water ? "vaporize" : "burn"),
+				  (otmp->quan > 1L ? "" : "s"),
+				  (water ? "part of " : ""), mon_nam(mdef));
+			  }
+
+			  burn_faster(otmp, 1);
+
+			  tmp++;
+			  if (resists_cold(mdef)) tmp += rnd(3);
+
+			  if (!rn2(2) && burnarmor(mdef)) {
+			    if (!rn2(3))
+			      (void)destroy_mitem(mdef, POTION_CLASS, AD_FIRE);
+			    if (!rn2(3))
+			      (void)destroy_mitem(mdef, SCROLL_CLASS, AD_FIRE);
+			    if (!rn2(5))
+			      (void)destroy_mitem(mdef, SPBOOK_CLASS, AD_FIRE);
+			  }
+			}
+
                         /* WAC Weres get seared */
                         if(otmp && objects[otmp->otyp].oc_material == SILVER &&
                           (hates_silver(pd))) {

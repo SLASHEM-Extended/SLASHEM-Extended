@@ -391,7 +391,7 @@ struct obj *obj;
 
 added:
 	addinv_core2(obj);
-	carry_obj_effects(obj);		/* carrying affects the obj */
+	carry_obj_effects(&youmonst, obj); /* carrying affects the obj */
 	update_inventory();
 	return(obj);
 }
@@ -402,7 +402,8 @@ added:
  * and after hero's intrinsics have been updated.
  */
 void
-carry_obj_effects(obj)
+carry_obj_effects(mon, obj)
+struct monst *mon;
 struct obj *obj;
 {
 	/* Cursed figurines can spontaneously transform
@@ -414,6 +415,16 @@ struct obj *obj;
 			attach_fig_transform_timeout(obj);
 		    }
 	}
+	else if (obj->otyp == TORCH && obj->lamplit) {
+	  /* MRKR: extinguish torches before putting them */
+	  /*       away. Should monsters do the same?  */
+
+	  if (mon == &youmonst) {
+	    You("extinguish %s before putting it away.", 
+		yname(obj));
+	    end_burn(obj, TRUE);
+	  }
+	}	
 }
 
 #endif /* OVL1 */
@@ -2330,11 +2341,12 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	 * simplest solution is just to use 20 instead, since
 	 * initial candle age is always a multiple of 20.
 	 */
-	if (Is_candle(obj) && obj->age/20 != otmp->age/20)
+	if ((obj->otyp == TORCH || Is_candle(obj)) && obj->age/20 != otmp->age/20)
 	    return(FALSE);
 
 	/* burning potions of oil never merge */
-	if (obj->otyp == POT_OIL && obj->lamplit)
+	/* MRKR: nor do burning torches */
+	if ((obj->otyp == POT_OIL || obj->otyp == TORCH) && obj->lamplit)
 	    return FALSE;
 
 	/* don't merge surcharged item with base-cost item */

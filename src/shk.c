@@ -3218,6 +3218,17 @@ boolean shk_buying;
 		if (Is_candle(obj) &&
 			obj->age < 20L * (long)objects[obj->otyp].oc_cost)
 		    tmp /= 2L;
+		else if (obj->otyp == TORCH) {
+		  if (obj->age == 0) {
+		    tmp = 0L;
+		  }
+		  else if (obj->age < 25) {
+		    tmp /= 4L;
+		  }
+		  else if (obj->age < 50) {
+		    tmp /= 2L;
+		  }
+		}
 		break;
 	}
 	return tmp;
@@ -4225,6 +4236,8 @@ boolean altusage; /* some items have an "alternate" use with different cost */
 		  otmp->otyp <= DRUM_OF_EARTHQUAKE) ||	 /* 5 - 9 */
 		  otmp->oclass == WAND_CLASS) {		 /* 3 - 11 */
 		if (otmp->spe > 1) tmp /= 4L;
+	} else if (otmp->otyp == TORCH) {
+	            tmp /= 2L;	
 	} else if (otmp->oclass == SPBOOK_CLASS) {
 		tmp -= tmp / 5L;
 	} else if (otmp->otyp == CAN_OF_GREASE
@@ -4255,10 +4268,14 @@ boolean altusage;
 	const char *fmt, *arg1, *arg2;
 	long tmp;
 
+	/* MRKR: Torches are a special case. As weapons they can have */
+	/*       a 'charge' == plus value, which is independent of their */
+	/*       use as a light source. */
 
 	/* WAC - now checks for items that aren't carried */
 	if ((!otmp->unpaid || !*u.ushops ||
-		(otmp->spe <= 0 && objects[otmp->otyp].oc_charged))
+		(otmp->spe <= 0 && objects[otmp->otyp].oc_charged &&
+		 otmp->otyp != TORCH))
 		&& (carried(otmp) || !costly_spot(otmp->ox, otmp->oy) ||
 		otmp->no_charge))
 	    return;

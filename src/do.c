@@ -482,19 +482,13 @@ register struct obj *obj;
 			weldmsg(obj);
 			return(0);
 		}
-		setuwep((struct obj *)0);
+		setuwep((struct obj *)0, FALSE);
+	}
+	if (obj == uswapwep) {
+		setuswapwep((struct obj *)0, FALSE);
 	}
 	if(obj == uquiver) {
 		setuqwep((struct obj *)0);
-	}
-	if (obj == uswapwep) {
-		setuswapwep((struct obj *)0);
-	}
-	if(obj == uquiver) {
-		setuqwep((struct obj *)0);
-	}
-	if (obj == uswapwep) {
-		setuswapwep((struct obj *)0);
 	}
 
 	if (u.uswallow) {
@@ -556,9 +550,9 @@ void
 dropy(obj)
 register struct obj *obj;
 {
-	if (obj == uwep) setuwep((struct obj *)0);
+	if (obj == uwep) setuwep((struct obj *)0, FALSE);
 	if (obj == uquiver) setuqwep((struct obj *)0);
-	if (obj == uswapwep) setuswapwep((struct obj *)0);
+	if (obj == uswapwep) setuswapwep((struct obj *)0, FALSE);
 
 	if (!u.uswallow && flooreffects(obj,u.ux,u.uy,"drop")) return;
 	/* uswallow check done by GAN 01/29/87 */
@@ -1159,15 +1153,11 @@ boolean at_stairs, falling, portal;
 			drag_down();
 			if (carried(uball)) {
 			    if (uswapwep == uball)
-				setuswapwep((struct obj *)0);
+				setuswapwep((struct obj *)0, FALSE);
 			    if (uquiver == uball)
 				setuqwep((struct obj *)0);
 			    if (uwep == uball)
-				setuwep((struct obj *)0);
-			    if (uswapwep == uball)
-				setuswapwep((struct obj *)0);
-			    if (uquiver == uball)
-				setuqwep((struct obj *)0);
+				setuwep((struct obj *)0, FALSE);
 			    freeinv(uball);
 			}
 		    }

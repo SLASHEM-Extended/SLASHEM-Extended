@@ -271,7 +271,7 @@ const struct shclass shtypes[] = {
 	 * loader.
 	 */
 	{"lighting store", TOOL_CLASS, 0, D_SHOP,
-	    {{25, -WAX_CANDLE}, {40, -TALLOW_CANDLE},{11, -BRASS_LANTERN},             
+	    {{25, -WAX_CANDLE}, {35, -TALLOW_CANDLE}, {5, -TORCH}, {11, -BRASS_LANTERN},
 	    {16, -OIL_LAMP}, {3, -MAGIC_LAMP}, {5, -MAGIC_CANDLE}}, shktools},
 #ifdef BLACKMARKET
 	{"black market", RANDOM_CLASS, 0, D_SHOP,

@@ -410,8 +410,8 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	   applied or wielded it, so be conservative and assume the former */
 	otmp = uwep;	/* `uwep' usually init'd by setworn() in loop above */
 	uwep = 0;	/* clear it and have setuwep() reinit */
-	setuwep(otmp);	/* (don't need any null check here) */
-        /* KMH, balance patch -- added fishing pole */
+	setuwep(otmp,FALSE);	/* (don't need any null check here) */
+	/* KMH, balance patch -- added fishing pole */
 	if (!uwep || uwep->otyp == PICK_AXE || uwep->otyp == GRAPPLING_HOOK ||
 		     uwep->otyp == FISHING_POLE)
 	    unweapon = TRUE;

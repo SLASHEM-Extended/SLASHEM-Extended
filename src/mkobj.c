@@ -509,6 +509,12 @@ boolean artif;
 					      (long)(rn2(2) ? rn2(7) : 0);
 					blessorcurse(otmp, 5);
 					break;
+	        case TORCH:	        otmp->spe = 0;
+					otmp->age = (long) rn1(300,600);
+					otmp->lamplit = 0;
+					otmp->quan = rnd(3);
+					blessorcurse(otmp, 5);
+					break;
 		case BRASS_LANTERN:
 		case OIL_LAMP:
 			otmp->spe = 1;

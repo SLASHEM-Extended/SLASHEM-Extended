@@ -49,8 +49,8 @@
  * No item may be in more than one of these slots.
  */
 
-
-STATIC_DCL int FDECL(ready_weapon, (struct obj *));
+STATIC_DCL int FDECL(ready_weapon, (struct obj *, boolean));
+STATIC_DCL void FDECL(unwield, (struct obj *, boolean));
 
 /* elven weapons vibrate warningly when enchanted beyond a limit */
 #define is_elven_weapon(optr)	((optr)->otyp == ELVEN_ARROW\
@@ -87,10 +87,15 @@ STATIC_DCL int FDECL(ready_weapon, (struct obj *));
  * If the item is being moved from another slot, it is the caller's
  * responsibility to handle that.  It's also the caller's responsibility
  * to print the appropriate messages.
+ *
+ * MRKR: It now takes an extra flag put_away which is true if the 
+ *       unwielded weapon is being put back into the inventory 
+ *       (rather than dropped, destroyed, etc)
  */
 void
-setuwep(obj)
+setuwep(obj, put_away)
 register struct obj *obj;
+boolean put_away;
 {
 	struct obj *olduwep = uwep;
 
@@ -117,12 +122,21 @@ register struct obj *obj;
 				) : !is_weptool(obj);
 	} else
 		unweapon = TRUE;	/* for "bare hands" message */
+
+	
+	/* MRKR: Handle any special effects of unwielding a weapon */
+
+	if (olduwep && olduwep != uwep) {
+	  unwield(olduwep, put_away);
+	}
+
 	update_inventory();
 }
 
 STATIC_OVL int
-ready_weapon(wep)
+ready_weapon(wep, put_away)
 struct obj *wep;
+boolean put_away;
 {
 	/* Separated function so swapping works easily */
 	int res = 0;
@@ -131,7 +145,7 @@ struct obj *wep;
 	    /* No weapon */
 	    if (uwep) {
 		You("are empty %s.", body_part(HANDED));
-		setuwep((struct obj *) 0);
+		setuwep((struct obj *) 0, put_away);
 		res++;
 	    } else
 		You("are already empty %s.", body_part(HANDED));
@@ -181,7 +195,7 @@ struct obj *wep;
 		prinv((char *)0, wep, 0L);
 		wep->owornmask = dummy;
 	    }
-	    setuwep(wep);
+	    setuwep(wep, put_away);
 
 	    /* KMH -- Talking artifacts are finally implemented */
 	    arti_speak(wep);
@@ -225,10 +239,16 @@ register struct obj *obj;
 }
 
 void
-setuswapwep(obj)
+setuswapwep(obj, put_away)
 register struct obj *obj;
+boolean put_away;
 {
+	struct obj *oldswapwep = uswapwep;
 	setworn(obj, W_SWAPWEP);
+
+	if (oldswapwep && oldswapwep != uswapwep) {
+	  unwield(oldswapwep, put_away);
+	}
 	update_inventory();
 }
 
@@ -286,9 +306,9 @@ dowield()
 
 	/* Set your new primary weapon */
 	oldwep = uwep;
-	result = ready_weapon(wep);
+	result = ready_weapon(wep, !flags.pushweapon);
 	if (flags.pushweapon && oldwep && uwep != oldwep)
-		setuswapwep(oldwep);
+		setuswapwep(oldwep, TRUE);
 	untwoweapon();
 
 	return (result);
@@ -315,17 +335,17 @@ doswapweapon()
 	/* Unwield your current secondary weapon */
 	oldwep = uwep;
 	oldswap = uswapwep;
-	setuswapwep((struct obj *) 0);
+	setuswapwep((struct obj *) 0, FALSE);
 
 	/* Set your new primary weapon */
-	result = ready_weapon(oldswap);
+	result = ready_weapon(oldswap, FALSE);
 
 	/* Set your new secondary weapon */
 	if (uwep == oldwep)
 		/* Wield failed for some reason */
-		setuswapwep(oldswap);
+		setuswapwep(oldswap, FALSE);
 	else {
-		setuswapwep(oldwep);
+		setuswapwep(oldwep, FALSE);
 		if (uswapwep)
 			prinv((char *)0, uswapwep, 0L);
 		else
@@ -390,7 +410,7 @@ dowieldquiver()
 
 		/* Check if it's the secondary weapon */
 		if (newquiver == uswapwep) {
-			setuswapwep((struct obj *) 0);
+			setuswapwep((struct obj *) 0, TRUE);
 			untwoweapon();
 		}
 
@@ -444,7 +464,7 @@ int can_twoweapon ()
 		    makeplural(body_part(HAND)));
 	    if (!Glib)
 		obj->bknown = TRUE;
-	    setuswapwep((struct obj *) 0);
+	    setuswapwep((struct obj *) 0, FALSE);
 	    dropx(obj);
 	} else
 	    return (TRUE); /* Passes all the checks */
@@ -533,12 +553,14 @@ void
 uwepgone()
 {
 	if (uwep) {
+	        struct obj *otmp;
 		if (artifact_light(uwep) && uwep->lamplit) {
 		    end_burn(uwep, FALSE);
 		    if (!Blind) pline("%s glowing.", Tobjnam(uwep, "stop"));
 		}
 		setworn((struct obj *)0, W_WEP);
 		unweapon = TRUE;
+		unwield(otmp, FALSE);
 		update_inventory();
 	}
 }
@@ -767,6 +789,23 @@ register struct obj *obj;
 		bimanual(obj) ? (const char *)makeplural(body_part(HAND))
 				: body_part(HAND));
 	obj->owornmask = savewornmask;
+}
+
+STATIC_DCL void
+unwield(obj, put_away)
+register struct obj *obj;
+boolean put_away;
+{
+
+  /* MRKR: Extinguish torches when they are put away */
+  
+  if (put_away && 
+      obj->otyp == TORCH && 
+      obj->lamplit) {
+    You("extinguish %s before putting it away.", yname(obj));
+    end_burn(obj, TRUE);
+  }
+  
 }
 
 /*wield.c*/

@@ -13,6 +13,7 @@ STATIC_DCL void NDECL(slime_dialogue);
 STATIC_DCL void NDECL(slip_or_trip);
 STATIC_DCL void FDECL(see_lamp_flicker, (struct obj *, const char *));
 STATIC_DCL void FDECL(lantern_message, (struct obj *));
+STATIC_DCL void FDECL(accelerate_timer, (short, genericptr_t, long));
 STATIC_DCL void FDECL(cleanup_burn, (genericptr_t,long));
 
 #ifdef OVLB
@@ -1179,7 +1180,8 @@ long timeout;
 		    obfree(obj, (struct obj *)0);
 		    obj = (struct obj *) 0;
 		    break;
-
+		    
+	    case TORCH:
 	    case BRASS_LANTERN:
 	    case OIL_LAMP:
 		switch((int)obj->age) {
@@ -1236,6 +1238,16 @@ long timeout;
 					    an(xname(obj)));
 				    break;
 			    }
+			}
+			
+			/* MRKR: Burnt out torches are considered worthless */
+			
+			if (obj->otyp == TORCH) {
+			  if (obj->unpaid && costly_spot(u.ux, u.uy)) {
+			    const char *ithem = obj->quan > 1L ? "them" : "it";
+			    verbalize("You burn %s, you bought %s!", ithem, ithem);
+			    bill_dummy_object(obj);
+			  }
 			}
 			end_burn(obj, FALSE);
 			break;
@@ -1480,6 +1492,10 @@ lightsaber_deactivate (obj, timer_attached)
  * a timer.
  *
  * Burn rules:
+ *      torches
+ *		age = # of turns of fuel left
+ *		spe = <weapon plus of torch, not used here>
+ *
  *	potions of oil, lamps & candles:
  *		age = # of turns of fuel left
  *		spe = <unused>
@@ -1546,6 +1562,7 @@ begin_burn(obj, already_lit)
 
 	    case BRASS_LANTERN:
 	    case OIL_LAMP:
+	    case TORCH:
 		/* magic times are 150, 100, 50, 25, and 0 */
 		if (obj->age > 150L)
 		    turns = obj->age - 150L;
@@ -1669,6 +1686,25 @@ cleanup_burn(arg, expire_time)
 
 #endif /* OVL0 */
 #ifdef OVL1
+
+/* 
+ * MRKR: Use up some fuel quickly, eg: when hitting a monster with 
+ *       a torch.
+ */
+
+void 
+burn_faster(obj, time) 
+struct obj *obj;
+long time;
+{
+
+  if (!obj->lamplit) {
+    impossible("burn_faster: obj %s not lit", xname(obj));
+    return;
+  }
+
+  accelerate_timer(BURN_OBJECT, obj, time);
+}
 
 void
 do_storms()
@@ -2144,6 +2180,39 @@ write_timer(fd, timer)
     }
 }
 
+/*
+ * MRKR: Run one particular timer faster for a number of steps
+ *       Needed for burn_faster above.
+ */
+
+STATIC_OVL void
+accelerate_timer(func_index, arg, time) 
+short func_index;
+genericptr_t arg;
+long time;
+{ 
+    timer_element *timer;
+
+    /* This will effect the ordering, so we remove it from the list */
+    /* and add it back in afterwards (if warranted) */
+
+    timer = remove_timer(&timer_base, func_index, arg);    
+
+    for (; time > 0; time--) {
+      timer->timeout--;
+
+      if (timer->timeout <= monstermoves) {
+	if (timer->kind == TIMER_OBJECT) ((struct obj *)arg)->timed--;
+	(*timeout_funcs[func_index].f)(arg, timer->timeout);
+	free((genericptr_t) timer);
+	break;
+      }
+    }
+
+    if (time == 0) {
+      insert_timer(timer);
+    }    
+}
 
 /*
  * Return TRUE if the object will stay on the level when the level is

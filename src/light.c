@@ -529,6 +529,7 @@ obj_is_burning(obj)
 		|| obj->otyp == MAGIC_CANDLE
 		|| obj->otyp == BRASS_LANTERN
 		|| obj->otyp == OIL_LAMP
+		|| obj->otyp == TORCH
 		|| obj->otyp == CANDELABRUM_OF_INVOCATION
 		|| obj->otyp == TALLOW_CANDLE
 		|| obj->otyp == WAX_CANDLE

@@ -635,6 +635,22 @@ register struct monst *mtmp;
 			if(!rn2(2)) curse(otmp);
 			(void) mpickobj(mtmp, otmp);
 		    }
+
+		    /* MRKR: Dwarves in the Mines sometimes carry torches */
+
+		    if (In_mines(&u.uz)) {
+		      if (!rn2(4)) {	
+			otmp = mksobj(TORCH, TRUE, FALSE);
+			otmp->quan = 1;
+			(void) mpickobj(mtmp, otmp);
+
+			/* If this spot is unlit, light the torch */
+
+			if (!levl[mtmp->mx][mtmp->my].lit) {
+			  begin_burn(otmp, FALSE);
+			}		      
+		      }
+		    }
 		}
 		break;
 

@@ -1708,10 +1708,10 @@ register struct obj *obj;
 			weldmsg(obj);
 			return 0;
 		}
-		setuwep((struct obj *) 0);
+		setuwep((struct obj *) 0, FALSE);
 		if (uwep) return 0;	/* unwielded, died, rewielded */
 	} else if (obj == uswapwep) {
-		setuswapwep((struct obj *) 0);
+		setuswapwep((struct obj *) 0, FALSE);
 		if (uswapwep) return 0;     /* unwielded, died, rewielded */
 	} else if (obj == uquiver) {
 		setuqwep((struct obj *) 0);

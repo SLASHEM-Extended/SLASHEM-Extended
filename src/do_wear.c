@@ -736,8 +736,8 @@ register struct obj *obj;
     long oldprop = u.uprops[objects[obj->otyp].oc_oprop].extrinsic;
     int old_attrib;
 
-    if (obj == uwep) setuwep((struct obj *) 0);
-    if (obj == uswapwep) setuswapwep((struct obj *) 0);
+    if (obj == uwep) setuwep((struct obj *) 0, TRUE);
+    if (obj == uswapwep) setuswapwep((struct obj *) 0, TRUE);
     if (obj == uquiver) setuqwep((struct obj *) 0);
 
     /* only mask out W_RING when we don't have both
@@ -1028,9 +1028,9 @@ register struct obj *otmp;
 	long already_blind = Blind, changed = FALSE;
 
 	if (otmp == uwep)
-	    setuwep((struct obj *) 0);
+	    setuwep((struct obj *) 0, TRUE);
 	if (otmp == uswapwep)
-	    setuswapwep((struct obj *) 0);
+	    setuswapwep((struct obj *) 0, TRUE);
 	if (otmp == uquiver)
 	    setuqwep((struct obj *) 0);
 	setworn(otmp, W_TOOL);
@@ -1535,9 +1535,9 @@ dowear()
 
 	otmp->known = TRUE;
 	if(otmp == uwep)
-		setuwep((struct obj *)0);
+		setuwep((struct obj *)0, TRUE);
 	if (otmp == uswapwep)
-		setuswapwep((struct obj *) 0);
+		setuswapwep((struct obj *) 0, TRUE);
 	if (otmp == uquiver)
 		setuqwep((struct obj *) 0);
 	setworn(otmp, mask);
@@ -1583,9 +1583,9 @@ doputon()
 		return(0);
 	}
 	if(otmp == uwep)
-		setuwep((struct obj *)0);
+		setuwep((struct obj *)0, TRUE);
 	if(otmp == uswapwep)
-		setuswapwep((struct obj *) 0);
+		setuswapwep((struct obj *) 0, TRUE);
 	if(otmp == uquiver)
 		setuqwep((struct obj *) 0);
 	if(otmp->oclass == RING_CLASS || otmp->otyp == MEAT_RING) {
@@ -1778,7 +1778,7 @@ glibr()
 				makesingular(oclass_names[(int)otmp->oclass]),
 			xfl ? "also " : "",
 			makeplural(body_part(HAND)));
-		setuswapwep((struct obj *)0);
+		setuswapwep((struct obj *)0, FALSE);
 		xfl++;
 		if (otmp->otyp != LOADSTONE || !otmp->cursed)
 			dropx(otmp);
@@ -1791,7 +1791,7 @@ glibr()
 				makesingular(oclass_names[(int)otmp->oclass]),
 			xfl ? "also " : "",
 			makeplural(body_part(HAND)));
-		setuwep((struct obj *)0);
+		setuwep((struct obj *)0, FALSE);
 		if (otmp->otyp != LOADSTONE || !otmp->cursed)
 			dropx(otmp);
 	}
@@ -1910,12 +1910,12 @@ do_takeoff()
 
 	if (taking_off == W_WEP) {
 	  if(!cursed(uwep)) {
-	    setuwep((struct obj *) 0);
+	    setuwep((struct obj *) 0, TRUE);
 	    You("are empty %s.", body_part(HANDED));
 	    u.twoweap = FALSE;
 	  }
 	} else if (taking_off == W_SWAPWEP) {
-	  setuswapwep((struct obj *) 0);
+	  setuswapwep((struct obj *) 0, TRUE);
 	  You("no longer have a second weapon readied.");
 	  u.twoweap = FALSE;
 	} else if (taking_off == W_QUIVER) {

@@ -2748,8 +2748,8 @@ dodip()
 
 		obj = poly_obj(obj, STRANGE_OBJECT);
 
-		if (was_wep) setuwep(obj);
-		else if (was_swapwep) setuswapwep(obj);
+		if (was_wep) setuwep(obj, TRUE);
+		else if (was_swapwep) setuswapwep(obj, TRUE);
 		else if (was_quiver) setuqwep(obj);
 
 		if (obj->otyp != save_otyp) {

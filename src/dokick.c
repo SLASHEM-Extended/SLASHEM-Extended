@@ -1326,9 +1326,9 @@ boolean shop_floor_obj;
 		otmp->no_charge = 0;
 	}
 
-	if (otmp == uwep) setuwep((struct obj *)0);
+	if (otmp == uwep) setuwep((struct obj *)0, FALSE);
+	if (otmp == uswapwep) setuswapwep((struct obj *)0, FALSE);
 	if (otmp == uquiver) setuqwep((struct obj *)0);
-	if (otmp == uswapwep) setuswapwep((struct obj *)0);
 
 	/* some things break rather than ship */
 	if (breaktest(otmp)) {

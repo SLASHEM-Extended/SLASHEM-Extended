@@ -703,8 +703,6 @@ plus:
 			Strcat(bp, " (in use)");
 			break;
 		}
-		if (is_weptool(obj))
-			goto plus;
 		if (obj->otyp == CANDELABRUM_OF_INVOCATION) {
 			if (!obj->spe)
 			    Strcpy(tmpbuf, "no");
@@ -715,7 +713,8 @@ plus:
 				!obj->lamplit ? " attached" : ", lit");
 			break;
 		} else if (obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP ||
-			obj->otyp == BRASS_LANTERN || Is_candle(obj)) {
+			obj->otyp == BRASS_LANTERN || obj->otyp == TORCH ||
+			   Is_candle(obj)) {
 			if (Is_candle(obj) &&
 			    /* WAC - magic candles are never "partly used" */
 			    obj->otyp != MAGIC_CANDLE &&
@@ -723,8 +722,9 @@ plus:
 				Strcat(prefix, "partly used ");
 			if(obj->lamplit)
 				Strcat(bp, " (lit)");
-			break;
 		}
+		if (is_weptool(obj))
+			goto plus;
 		if(objects[obj->otyp].oc_charged)
 		    goto charges;
 		break;
@@ -1587,8 +1587,9 @@ const char *oldstr;
 				return bp;
 			}
 
-			/* note: nurses, axes but boxes */
-            if(!BSTRCMPI(bp, p-5, "boxes")) {
+			/* note: nurses, axes but boxes, torches */
+			if(!BSTRCMP(bp, p-5, "boxes")
+			   || !BSTRCMP(bp, p-7, "torches") ) {
 				p[-2] = 0;
 				return bp;
 			}
@@ -2555,7 +2556,8 @@ typfnd:
 	}
 
 	if (islit &&
-		(typ == OIL_LAMP || typ == MAGIC_LAMP || typ == BRASS_LANTERN ||
+		(typ == OIL_LAMP || typ == MAGIC_LAMP || 
+		 typ == BRASS_LANTERN || typ == TORCH || 
 		 Is_candle(otmp) || typ == POT_OIL)) {
 	    place_object(otmp, u.ux, u.uy);  /* make it viable light source */
 	    begin_burn(otmp, FALSE);

@@ -865,7 +865,7 @@ E void NDECL(reassign);
 E int NDECL(doorganize);
 E int FDECL(count_unpaid, (struct obj *));
 E int FDECL(count_buc, (struct obj *,int));
-E void FDECL(carry_obj_effects, (struct obj *));
+E void FDECL(carry_obj_effects, (struct monst *, struct obj *));
 E const char *FDECL(currency, (long));
 E int NDECL(doinvinuse);
 /* KMH, balance patch -- new function */
@@ -2036,6 +2036,7 @@ E void FDECL(learn_egg_type, (int));
 E void FDECL(burn_object, (genericptr_t, long));
 E void FDECL(begin_burn, (struct obj *, BOOLEAN_P));
 E void FDECL(end_burn, (struct obj *, BOOLEAN_P));
+E void FDECL(burn_faster, (struct obj *, long));
 E void FDECL(lightsaber_deactivate, (struct obj *, BOOLEAN_P));
 E void NDECL(do_storms);
 E boolean FDECL(start_timer, (long, SHORT_P, SHORT_P, genericptr_t));
@@ -2344,9 +2345,9 @@ E void FDECL(you_unwere, (BOOLEAN_P));
 
 /* ### wield.c ### */
 
-E void FDECL(setuwep, (struct obj *));
+E void FDECL(setuwep, (struct obj *, boolean));
 E void FDECL(setuqwep, (struct obj *));
-E void FDECL(setuswapwep, (struct obj *));
+E void FDECL(setuswapwep, (struct obj *, boolean));
 E int NDECL(dowield);
 E int NDECL(doswapweapon);
 E int NDECL(dowieldquiver);

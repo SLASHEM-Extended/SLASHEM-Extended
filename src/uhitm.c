@@ -696,6 +696,7 @@ int thrown;
 #endif
 	boolean vapekilled = FALSE; /* WAC added boolean for vamps vaporize */
 	boolean valid_weapon_attack = FALSE;
+	boolean burnmsg = FALSE;
 	boolean no_obj = !obj;	/* since !obj can change if weapon breaks, etc. */
 	int wtype;
 	struct obj *monwep;
@@ -963,18 +964,34 @@ int thrown;
 			if(obj->opoisoned && is_poisonable(obj))
 			    ispoisoned = TRUE;
 		    }
+		    /* MRKR: Hitting with a lit torch does extra */
+		    /*       fire damage, but uses up the torch  */
+		    /*       more quickly.                       */
+
+		    if(obj->otyp == TORCH && obj->lamplit
+		       && !resists_fire(mon)) {
+
+		      burnmsg = TRUE;
+
+		      tmp++;
+		      if (resists_cold(mon)) tmp += rnd(3);
+
+		      /* Additional damage due to burning armor */
+		      /* & equipment is delayed to below, after */
+		      /* the hit messages are printed. */
+		    }
 		}
 	    } else if(obj->oclass == POTION_CLASS) {
 		if (!u.twoweap || obj == uwep) {
 		if (obj->quan > 1L)
 		    obj = splitobj(obj, 1L);
 		else
-		    setuwep((struct obj *)0);
+		    setuwep((struct obj *)0, FALSE);
 		} else if (u.twoweap && obj == uswapwep) {
 		    if (obj->quan > 1L)
 			setworn(splitobj(obj, 1L), W_SWAPWEP);
 		    else
-			setuswapwep((struct obj *)0);
+			setuswapwep((struct obj *)0, FALSE);
 		}
 		freeinv(obj);
 		potionhit(mon, obj, TRUE);
@@ -1409,6 +1426,38 @@ int thrown;
 			 mon_nam(mon), canseemon(mon) ? exclam(tmp) : ".");
 	}
 
+	if (burnmsg) {
+	  /* A chance of setting the monster's */
+	  /* armour + equipment on fire */
+	  /* (this does not do any extra damage) */
+
+	  if (!Blind) {
+	    Your("%s %s %s.", xname(obj),
+		 (mon->data == &mons[PM_WATER_ELEMENTAL]) ?
+		 "vaporizes part of" : "burns", mon_nam(mon));
+	  }
+
+	  if (!rn2(2) && burnarmor(mon)) {
+	    if (!rn2(3)) 
+	      (void)destroy_mitem(mon, POTION_CLASS, AD_FIRE);
+	    if (!rn2(3)) 
+	      (void)destroy_mitem(mon, SCROLL_CLASS, AD_FIRE);
+	    if (!rn2(5)) 
+	      (void)destroy_mitem(mon, SPBOOK_CLASS, AD_FIRE);
+	  }
+
+	  if (mon->data == &mons[PM_WATER_ELEMENTAL]) {
+	    if (!Blind) {
+	      Your("%s goes out.", xname(obj));
+	    }
+	    end_burn(obj, TRUE);
+	  }
+	  else {
+	    /* use up the torch more quickly */	    
+	    burn_faster(obj, 1);
+	  }
+	}
+	
 	if (silvermsg) {
 		const char *fmt;
 		char *whom = mon_nam(mon);

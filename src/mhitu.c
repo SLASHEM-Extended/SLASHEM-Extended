@@ -922,6 +922,7 @@ hitmu(mtmp, mattk)
 	char	 buf[BUFSZ];
 	struct permonst *olduasmon = youmonst.data;
 	int res;
+	boolean burnmsg = FALSE;
 
 	if (!canspotmon(mtmp))
 	    map_invisible(mtmp->mx, mtmp->my);
@@ -987,13 +988,25 @@ hitmu(mtmp, mattk)
 		    }
 		} else {			  /* hand to hand weapon */
 		    if(mattk->aatyp == AT_WEAP && otmp) {
-                                int nopoison = (10 - (otmp->owt/10));                
-                                if (otmp->otyp == CORPSE && touch_petrifies(&mons[otmp->corpsenm])) {
+			int nopoison = (10 - (otmp->owt/10));
+			if (otmp->otyp == CORPSE && touch_petrifies(&mons[otmp->corpsenm])) {
 			    dmg = 1;
 			    pline("%s hits you with the %s corpse.",
 				Monnam(mtmp), mons[otmp->corpsenm].mname);
-                                        if (!Stoned) goto do_stone;
-                                }
+			    if (!Stoned) goto do_stone;
+			}
+
+			/* MRKR: If hit with a burning torch,     */
+			/*       then do an extra point of damage */
+			/*       but save the message till after  */
+			/*       the hitmsg()                     */
+
+			if (otmp->otyp == TORCH && otmp->lamplit &&
+			    !Fire_resistance) {
+			  burnmsg = TRUE;
+			  dmg++;
+			}
+
 				/* WAC -- Real weapon?
 				 * Could be stuck with a cursed bow/polearm it wielded
 				 */
@@ -1065,6 +1078,35 @@ hitmu(mtmp, mattk)
                                 if (!(otmp && otmp->oartifact &&
 				artifact_hit(mtmp, &youmonst, otmp, &dmg,dieroll)))
 			     hitmsg(mtmp, mattk);
+
+			if (burnmsg) {
+			  boolean plural = (Blind ? FALSE : otmp->quan > 1L);
+			  boolean water = (youmonst.data ==
+					   &mons[PM_WATER_ELEMENTAL]);
+
+			  pline("%s %s%s %syou!",
+				(Blind ? "It" : Yname2(otmp)),
+				(water ? "vaporize" : "burn"),
+				(plural ? "" : "s"),
+				(water ? "part of " : ""));
+
+			  if (!rn2(2) && burnarmor(&youmonst)) {
+			    dmg++;
+
+			    /* Torch flame is not hot enough to guarantee */
+			    /* burning away slime */
+
+			    if (!rn2(4)) burn_away_slime();
+			    if (!rn2(3))
+			      (void)destroy_item(POTION_CLASS, AD_FIRE);
+			    if (!rn2(3))
+			      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
+			    if (!rn2(5))
+			      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
+			  }
+			  burn_faster(otmp, 1);
+			}
+
 			if (!dmg) break;
 			if (u.mh > 1 && u.mh > ((u.uac>0) ? dmg : dmg+u.uac) &&
 				   objects[otmp->otyp].oc_material == IRON &&
@@ -2532,8 +2574,8 @@ register struct monst *mon;
 			Blind ? "She" : Monnam(mon), xname(ring));
 		makeknown(RIN_ADORNMENT);
 		if (ring==uleft || ring==uright) Ring_gone(ring);
-		if (ring==uwep) setuwep((struct obj *)0);
-		if (ring==uswapwep) setuswapwep((struct obj *)0);
+		if (ring==uwep) setuwep((struct obj *)0, FALSE);
+		if (ring==uswapwep) setuswapwep((struct obj *)0, FALSE);
 		if (ring==uquiver) setuqwep((struct obj *)0);
 		freeinv(ring);
 		(void) mpickobj(mon,ring);

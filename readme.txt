@@ -336,6 +336,7 @@ ver 0.0.6E9 [?] [Released by ?]
 -Actioned feature request 520961: Specifying lamplit flag in level files
 	(Pasi Kallinen)
 -Merged Pasi Kallinen's whetstone patch
+-Merged Malcolm Ryan's Torch patch
 
 ver 0.0.6E8 [January 24/2003] [Released by Ali]
 -fixed bug 233901: Gtk-Critical errors from gtk_main_quit.

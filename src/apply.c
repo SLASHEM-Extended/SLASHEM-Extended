@@ -27,6 +27,7 @@ STATIC_DCL void FDECL(use_bell, (struct obj *));
 STATIC_DCL void FDECL(use_candelabrum, (struct obj *));
 STATIC_DCL void FDECL(use_candle, (struct obj *));
 STATIC_DCL void FDECL(use_lamp, (struct obj *));
+STATIC_DCL int FDECL(use_torch, (struct obj *));
 STATIC_DCL void FDECL(light_cocktail, (struct obj *));
 STATIC_DCL void FDECL(use_tinning_kit, (struct obj *));
 STATIC_DCL void FDECL(use_figurine, (struct obj *));
@@ -634,7 +635,7 @@ struct obj *obj;
 	    if(uswapwep == obj) return (FALSE);
 	} else {
 	    You("now wield %s.", doname(obj));
-	    setuwep(obj);
+	    setuwep(obj, TRUE);
 	}
 	
 	if (uwep != obj) return(FALSE); /* rewielded old object after dying */
@@ -1056,7 +1057,8 @@ struct obj *obj;
 	if (obj->lamplit) {
 	    if (artifact_light(obj)) return FALSE; /* Artifact lights are never snuffed */
 	    if (obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP ||
-		    obj->otyp == BRASS_LANTERN || obj->otyp == POT_OIL) {
+		obj->otyp == BRASS_LANTERN || obj->otyp == POT_OIL ||
+		obj->otyp == TORCH) {
 		(void) get_obj_location(obj, &x, &y, 0);
 		if (obj->where == OBJ_MINVENT ? cansee(x,y) : !Blind)
 		    pline("%s %s out!", Yname2(obj), otense(obj, "go"));
@@ -1142,6 +1144,9 @@ struct obj *obj;
 			|| (obj->otyp == MAGIC_LAMP && obj->spe == 0)) {
 		if ((obj->otyp == BRASS_LANTERN) || (is_lightsaber(obj)))
 			Your("%s has run out of power.", xname(obj));
+		else if (obj->otyp == TORCH) {
+		        Your("torch has burnt out and cannot be relit.");
+		}
 		else pline("This %s has no oil.", xname(obj));
 		return;
 	}
@@ -1153,6 +1158,13 @@ struct obj *obj;
 				obj->otyp == BRASS_LANTERN) {
 		    check_unpaid(obj);
 		    pline("%s lamp is now on.", Shk_Your(buf, obj));
+		} else if (obj->otyp == TORCH) {
+		    check_unpaid(obj);
+		    pline("%s flame%s burn%s%s",
+			s_suffix(Yname2(obj)),
+			plur(obj->quan),
+			obj->quan > 1L ? "" : "s",
+			Blind ? "." : " brightly!");
 		} else if (is_lightsaber(obj)) {
 		    /* WAC -- lightsabers */
 		    /* you can see the color of the blade */
@@ -1189,6 +1201,48 @@ struct obj *obj;
 		if (do_burn)
 		begin_burn(obj, FALSE);
 	}
+}
+
+/* MRKR: Torches */
+
+STATIC_OVL int
+use_torch(obj)
+struct obj *obj;
+{
+        struct obj *otmp = NULL;
+
+	if(u.uswallow) {
+		You(no_elbow_room);
+		return 0;
+	}
+
+	if(Underwater) {
+		pline("Sorry, fire and water don't mix.");
+		return 0;
+	}
+
+	if (obj->quan > 1L) {
+	  otmp = obj;
+	  obj = splitobj(otmp, 1L);
+
+	  obj_extract_self(otmp);	/* free from inv */
+	}
+
+	/* You can use a torch in either weapon slot */
+
+	if (obj != uwep && obj != uswapwep) {
+	    if (!wield_tool(obj)) return 0;
+	}
+
+	use_lamp(obj);
+
+	/* shouldn't merge */
+	if (otmp) {
+	  otmp = hold_another_object(otmp, "You drop %s!",
+				      doname(otmp), (const char *)0);
+	}
+
+	return 1;
 }
 
 STATIC_OVL void
@@ -3286,6 +3340,9 @@ doapply()
 	case MAGIC_LAMP:
 	case BRASS_LANTERN:
 		use_lamp(obj);
+		break;
+	case TORCH:
+	        res = use_torch(obj);
 		break;
 	case POT_OIL:
 		light_cocktail(obj);

@@ -459,7 +459,7 @@ register struct obj *otmp;
 	snuff_otmp = TRUE;
     }
     /* Must do carrying effects on object prior to add_to_minv() */
-    carry_obj_effects(otmp);
+    carry_obj_effects(mtmp, otmp);
     /* add_to_minv() might free otmp [if merged with something else],
        so we have to call it after doing the object checks */
     freed_otmp = add_to_minv(mtmp, otmp);
