@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.23 2003-01-01 12:13:32 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.24 2003-01-02 19:27:25 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2001
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -565,6 +565,7 @@ ifeq ($(USE_GTK),Y)
 	$(COPY) $(subst /,\,$(GNUDLL)\\libpango*.dll	$(GAMEDIR))
 	$(COPY) $(subst /,\,$(GNUDLL)\\libatk*.dll	$(GAMEDIR))
 	$(COPY) $(subst /,\,$(GNUDLL)\\libgobject*.dll	$(GAMEDIR))
+	-$(RDEL) $(subst /,\,$(GAMEDIR)\etc)
 	mkdir $(subst /,\,$(GAMEDIR)\etc)
 	$(RCOPY) $(subst /,\,$(MW32GTK)\etc		$(GAMEDIR)\etc)
 	-$(RDEL) $(subst /,\,$(GAMEDIR)\lib)
