@@ -248,8 +248,7 @@ char *argv[];
 	u.ux = 0;	/* prevent flush_screen() */
 
 	/* chdir shouldn't be called before this point to keep the
-	 * code parallel to other ports which call gethdate just
-	 * before here.
+	 * code parallel to other ports.
 	 */
 #ifdef CHDIR
 	chdirx(hackdir,1);
@@ -450,6 +449,17 @@ char *argv[];
 		argv++;
 		argc--;
 		switch(argv[0][1]){
+		case 'a':
+			if (argv[0][2]) {
+			    if ((i = str2align(&argv[0][2])) >= 0)
+			    	flags.initalign = i;
+			} else if (argc > 1) {
+				argc--;
+				argv++;
+			    if ((i = str2align(argv[0])) >= 0)
+			    	flags.initalign = i;
+			}
+			break;
 		case 'D':
 		case 'Z':
 # ifdef WIZARD
@@ -489,6 +499,17 @@ char *argv[];
 				switch_graphics(DEC_GRAPHICS);
 			break;
 #endif
+		case 'g':
+			if (argv[0][2]) {
+			    if ((i = str2gend(&argv[0][2])) >= 0)
+			    	flags.initgend = i;
+			} else if (argc > 1) {
+				argc--;
+				argv++;
+			    if ((i = str2gend(argv[0])) >= 0)
+			    	flags.initgend = i;
+			}
+			break;
 		case 'p': /* profession (role) */
 			if (argv[0][2]) {
 			    if ((i = str2role(&argv[0][2])) >= 0)
@@ -551,6 +572,9 @@ char *argv[];
 			bigscreen = -1;
 			break;
 #endif
+		case '@':
+			flags.randomall = 1;
+			break;
 		default:
 			if ((i = str2role(&argv[0][1])) >= 0) {
 			    flags.initrole = i;
