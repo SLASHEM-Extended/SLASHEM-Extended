@@ -327,8 +327,38 @@ exercise_steed()
 void
 kick_steed()
 {
+	char *He, *him;
 	if (!u.usteed)
 	    return;
+
+	/* [ALI] Various effects of kicking sleeping/paralyzed steeds */
+	if (u.usteed->msleeping || !u.usteed->mcanmove) {
+	    /* We assume a message has just been output of the form
+	     * "You kick <steed>."
+	     */
+	    switch (u.usteed->mnamelth ? pronoun_gender(u.usteed) : 2) {
+		case 0:     He = "He"; him = "him";  break;
+		case 1:     He = "Her"; him = "her";  break;
+		default:    He = "It"; him = "it"; break;
+	    }
+	    if ((u.usteed->mcanmove || u.usteed->mfrozen) && !rn2(2)) {
+		if (u.usteed->mcanmove)
+		    u.usteed->msleeping = 0;
+		else if (u.usteed->mfrozen) {
+		    u.usteed->mfrozen -= 2;
+		    if (u.usteed->mfrozen <= 0) {
+			u.usteed->mcanmove = 1;
+			u.usteed->mfrozen = 0;
+		    }
+		}
+		if (u.usteed->msleeping || !u.usteed->mcanmove)
+		    pline("%s stirs.", He);
+		else
+		    pline("%s rouses %sself!", He, him);
+	    } else
+		pline("%s does not respond.", He);
+	    return;
+	}
 
 	/* Make the steed less tame and check if it resists */
 	if (u.usteed->mtame) u.usteed->mtame--;
