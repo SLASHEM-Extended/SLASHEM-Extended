@@ -86,6 +86,7 @@ ver 0.0.7E6F2 [?] [Released by ?]
 -fixed bug 932905: [GTK] Apparently random crashes
 -NhExt: Added support for authentication (eg., for dgamelaunch)
 -fixed bug 938859: Rate of fire affected by non-launcher weapon
+-fixed bug 929876: Monsters can pass between Sokoban bars
 
 See history.txt for changes made in previous versions.
 

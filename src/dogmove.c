@@ -754,7 +754,8 @@ register int after;	/* this is extra fast monster movement */
 
 	allowflags = ALLOW_M | ALLOW_TRAPS | ALLOW_SSM | ALLOW_SANCT;
 	if (passes_walls(mtmp->data)) allowflags |= (ALLOW_ROCK | ALLOW_WALL);
-	if (passes_bars(mtmp->data)) allowflags |= ALLOW_BARS;
+	if (passes_bars(mtmp->data) && !In_sokoban(&u.uz))
+	    allowflags |= ALLOW_BARS;
 	if (throws_rocks(mtmp->data)) allowflags |= ALLOW_ROCK;
 	if (Conflict && !resist(mtmp, RING_CLASS, 0, 0) && In_endgame(&u.uz)) {
 	    allowflags |= ALLOW_U;
