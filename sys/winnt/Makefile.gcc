@@ -426,7 +426,7 @@ else
 #	$(DEL) $(GAMEDIR)\makefile.
 endif
 ifeq ($(USE_GTK),Y)
-	$(COPY) $(WGTK)\gtkrc        $(GAMEDIR)\gtkrc
+	$(COPY) $(WGTK)\GTKRC.w32    $(GAMEDIR)\gtkrc
 	$(COPY) rip.xpm              $(GAMEDIR)
 	$(COPY) credit.xpm           $(GAMEDIR)
 	$(COPY) x11tiles             $(GAMEDIR)
@@ -437,8 +437,10 @@ ifeq ($(USE_GTK),Y)
 #	$(COPY) $(MW32GTK)\gtk+\gdk\gdk*.dll $(GAMEDIR)
 #	$(COPY) $(MW32GTK)\gtk+\gtk\gtk*.dll $(GAMEDIR)
 	$(COPY) $(GNUDLL)\*.* $(GAMEDIR)
-endif
+	$(COPY) $(WSYS)\winnt.cnf    $(GAMEDIR)\defaults.nh
+else
 	$(COPY) $(SSHR)\NetHack.cnf  $(GAMEDIR)\defaults.nh
+endif
 	$(COPY) recover.exe          $(GAMEDIR)
 	$(COPY) $(DOC)\guidebook.txt $(GAMEDIR)
 	$(COPY) $(DOC)\recover.txt   $(GAMEDIR)

@@ -7,8 +7,27 @@
 # To change the configuration, comment out the unwanted lines, and
 # uncomment the configuration you want.
 
+# *** WIN32/GTK ***
+# The default, graphical interface
+TILESET=name:Small tiles,file:x11tiles
+TILESET=name:Big tiles,file:x11bigtiles,transparent
+TILESET=name:Big 3D tiles,file:x11big3dtiles,transparent,pseudo3D
+OPTIONS=windowtype:gtk
+# Choose one of the three tileset names to use
+OPTIONS=tiles:Big tiles
+# Win32/GTK has no mechanism for requesting CP437 fonts, so this isn't useful
+OPTIONS=!IBMGraphics
+# Enable the radar window
+OPTIONS=radar
+# Enable the permenant inventory window
+OPTIONS=perm_invent
+
+# *** CONSOLE ***
+# Text interface
+# To enable console mode, comment out the Win32/GTK lines and uncomment these.
+#OPTIONS=windowtype:tty
 # Use the IBM character set rather than just plain ascii characters.
-OPTIONS=IBMGraphics
+#OPTIONS=IBMGraphics
 
 # *** OPTIONS ***
 # Some options to set personal preferences.  Uncomment and change these to
