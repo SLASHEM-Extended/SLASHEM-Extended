@@ -943,6 +943,7 @@ struct mkroom	*croom;
     struct obj *otmp;
     schar x, y;
     char c;
+    boolean place = TRUE;
 
     if (rn2(100) < o->chance) {
 
@@ -960,9 +961,9 @@ struct mkroom	*croom;
 	    c = 0;
 
 	if (!c)
-	    otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+	    otmp = mkobj(RANDOM_CLASS, !o->name.str);
 	else if (o->id != -1)
-	    otmp = mksobj_at(o->id, x, y, TRUE);
+	    otmp = mksobj(o->id, TRUE, !o->name.str);
 	else {
 	    /*
 	     * The special levels are compiled with the default "text" object
@@ -978,9 +979,12 @@ struct mkroom	*croom;
 	    if (oclass == GOLD_CLASS && !o->containment) {
 		mkgold(0L, x, y);
 		otmp = g_at(x,y);
+		place = FALSE;
 	    } else
-		otmp = mkobj_at(oclass, x, y, TRUE);
+		otmp = mkobj(oclass, !o->name.str);
 	}
+	if (place)
+	    place_object(otmp, x, y);
 
 	if (o->spe != -127)	/* That means NOT RANDOM! */
 	    otmp->spe = (schar)o->spe;
