@@ -45,6 +45,9 @@ OPTIONS=time,noshowexp,number_pad,lit_corridor,rest_on_space
 #                                    ascii10x18|fit_to_screen
 OPTIONS=map_mode:tiles,scroll_margin:5
 
+# The 32x32 tiles
+#OPTIONS=tile_file:tiles32.bmp,tile_width:32,tile_height:32
+
 # Message window settings
 OPTIONS=font_message:Arial,font_size_message:9,align_message:top
 
