@@ -1830,7 +1830,6 @@ finish: $(GAMEDIR)\$(GUIDEBOO).txt
 .IF $(with_x11) == yes
 	$(CP) x11tiles $(GAMEDIR)
 	$(CP) x11bigtiles $(GAMEDIR)
-	$(CP) x11big3dtiles $(GAMEDIR)
 	$(CP) $(WINX11)\$(GAME).ad $(GAMEDIR)
 	$(CP) $(WINX11)\$(GAME).rc $(GAMEDIR)
 .END
@@ -2135,7 +2134,7 @@ x11big3dtiles: $(TEMP)\tile2x11.exe $(WINSHARE)\mon3d.txt $(WINSHARE)\obj3d.txt 
 	$(TEMP)\tile2x11.exe -o x11big3dtiles $(WINSHARE)\mon3d.txt $(WINSHARE)\obj3d.txt $(WINSHARE)\oth3d.txt
 
 
-$(OBJ)\tiletext.o: $(WINSHARE)\tiletext.c $(CONFIG_H) $(WINSHARE)\tile.h
+$(OBJ)\tiletext.o: $(WINSHARE)\tiletext.c $(CONFIG_H) $(INCL)\tile.h
 	$(CC) $(CFLAGS) -c $(WINSHARE)\tiletext.c -o$(OBJ)\tiletext.o
 $(OBJ)\tiletxt.o: $(WINSHARE)\tilemap.c $(HACK_H)
 	$(CC) $(CFLAGS) -c -DTILETEXT $(WINSHARE)\tilemap.c -o$(OBJ)\tiletxt.o
