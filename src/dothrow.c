@@ -1118,6 +1118,7 @@ int thrown;
 
 	if (thrown == 1) launcher = uwep;
 	else if (thrown == 2) launcher = uswapwep;
+	else launcher = (struct obj *)0;
 
 	tmp = -1 + Luck + find_mac(mon) + u.uhitinc +
 			maybe_polyd(youmonst.data->mlevel, u.ulevel);

@@ -401,6 +401,7 @@ ver 0.0.6E4F1 [October XX/2000]
 -fixed bug 117483: Lycanthrope's berserk behaviour doesn't work.
 -fixed bug 115779: Bottom line doesn't show all information.
 -fixed bug 114768: GTK character mode doesn't support IBMgraphics.
+-fixed bug 121216: Crashes when kicking a stack of objects.
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()
