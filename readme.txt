@@ -129,6 +129,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 936167: Started with empty medical kit (Pasi Kallinen)
 -fixed bug 934077: Wrote an invisible scroll (Pasi Kallinen)
 -fixed bug 1015079: Spurious "it snatches the boulder" message (Pasi Kallinen)
+-fixed bug 957731: Shop purchases free after 200 objects
 
 See history.txt for changes made in previous versions.
 

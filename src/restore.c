@@ -278,6 +278,7 @@ boolean ghostly;
 				mtmp->mhpmax = DEFUNCT_MONSTER;	
 			}
 		}
+		if (mtmp->isshk) restore_shk_bill(fd, mtmp);
 		if(mtmp->minvent) {
 			struct obj *obj;
 			mtmp->minvent = restobjchn(fd, ghostly, FALSE);

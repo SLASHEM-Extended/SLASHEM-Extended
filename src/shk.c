@@ -60,6 +60,7 @@ STATIC_DCL void FDECL(rile_shk, (struct monst *));
 STATIC_DCL void FDECL(rouse_shk, (struct monst *,BOOLEAN_P));
 STATIC_DCL void FDECL(remove_damage, (struct monst *, BOOLEAN_P));
 STATIC_DCL void FDECL(sub_one_frombill, (struct obj *, struct monst *));
+STATIC_DCL int FDECL(extend_bill, (struct eshk *, int));
 STATIC_DCL void FDECL(add_one_tobill, (struct obj *, BOOLEAN_P));
 STATIC_DCL void FDECL(dropped_container, (struct obj *, struct monst *,
 				      BOOLEAN_P));
@@ -224,6 +225,8 @@ struct monst *mtmp;
 	       dead shk is the resident shk. */
 	    if ((p = index(u.ushops, eshk->shoproom)) != 0) {
 		setpaid(mtmp);
+		free(eshk->bill_p);
+		eshk->billsz = 0;
 		eshk->bill_p = (struct bill_x *)0;
 		/* remove eshk->shoproom from u.ushops */
 		do { *p = *(p + 1); } while (*++p);
@@ -246,8 +249,37 @@ replshk(mtmp,mtmp2)
 register struct monst *mtmp, *mtmp2;
 {
 	rooms[ESHK(mtmp2)->shoproom - ROOMOFFSET].resident = mtmp2;
-	if (inhishop(mtmp) && *u.ushops == ESHK(mtmp)->shoproom) {
-		ESHK(mtmp2)->bill_p = &(ESHK(mtmp2)->bill[0]);
+}
+
+void
+save_shk_bill(fd, shkp)
+int fd;
+struct monst *shkp;
+{
+	struct eshk *eshkp = ESHK(shkp);
+
+	if (eshkp->bill_p && eshkp->bill_p != (struct bill_x *) -1000 &&
+		eshkp->billct)
+	    bwrite(fd, (genericptr_t)eshkp->bill_p,
+		    eshkp->billct * sizeof(struct bill_x));
+}
+
+void
+restore_shk_bill(fd, shkp)
+int fd;
+struct monst *shkp;
+{
+	struct eshk *eshkp = ESHK(shkp);
+
+	if (eshkp->bill_p && eshkp->bill_p != (struct bill_x *) -1000) {
+	    eshkp->billsz = eshkp->billct;
+	    if (eshkp->billsz) {
+		eshkp->bill_p = (struct bill_x *)
+			alloc(eshkp->billsz * sizeof(struct bill_x));
+		mread(fd, (genericptr_t)eshkp->bill_p,
+			eshkp->billct * sizeof(struct bill_x));
+	    } else
+		eshkp->bill_p = (struct bill_x *)0;
 	}
 }
 
@@ -260,8 +292,6 @@ boolean ghostly;
     if (u.uz.dlevel) {
 	struct eshk *eshkp = ESHK(shkp);
 
-	if (eshkp->bill_p != (struct bill_x *) -1000)
-	    eshkp->bill_p = &eshkp->bill[0];
 	/* shoplevel can change as dungeons move around */
 	/* savebones guarantees that non-homed shk's will be gone */
 	if (ghostly) {
@@ -632,7 +662,8 @@ register char *enterstring;
 	    return;
 	}
 
-	eshkp->bill_p = &(eshkp->bill[0]);
+	eshkp->billsz = 0;
+	eshkp->bill_p = (struct bill_x *)0;
 
 	if ((!eshkp->visitct || *eshkp->customer) &&
 	    strncmpi(eshkp->customer, plname, PL_NSIZ)) {
@@ -1077,6 +1108,15 @@ register struct obj *obj, *merge;
 		}
 	}
 	dealloc_obj(obj);
+}
+
+void
+shk_free(shkp)
+struct monst *shkp;
+{
+	if (ESHK(shkp)->bill_p && ESHK(shkp)->bill_p != (struct bill_x *) -1000)
+	    free((genericptr_t)ESHK(shkp)->bill_p);
+	free((genericptr_t)shkp);
 }
 #endif /* OVLB */
 #ifdef OVL3
@@ -2528,6 +2568,28 @@ register struct obj *unp_obj;	/* known to be unpaid */
 	return bp ? unp_obj->quan * bp->price : 0L;
 }
 
+STATIC_OVL int
+extend_bill(eshkp, to_add)
+struct eshk *eshkp;
+int to_add;
+{
+	struct bill_x *new;
+	int bct = eshkp->billct + to_add;
+
+	if (bct > eshkp->billsz) {
+	    if (eshkp->bill_p)
+		new = (struct bill_x *)realloc((genericptr_t)eshkp->bill_p,
+			bct * sizeof(struct bill_x));
+	    else
+		new = (struct bill_x *)malloc(bct * sizeof(struct bill_x));
+	    if (!new)
+		return 0;
+	    eshkp->billsz = bct;
+	    eshkp->bill_p = new;
+	}
+	return 1;
+}
+
 STATIC_OVL void
 add_one_tobill(obj, dummy)
 register struct obj *obj;
@@ -2546,7 +2608,7 @@ register boolean dummy;
 		    (obj->oclass == FOOD_CLASS && obj->oeaten))
 		return;
 
-	if (ESHK(shkp)->billct == BILLSZ) {
+	if (!extend_bill(ESHK(shkp), 1)) {
 		You("got that for free!");
 		return;
 	}
@@ -2663,7 +2725,7 @@ register boolean ininv, dummy, silent;
 		 (obj->oclass == FOOD_CLASS && obj->oeaten)
 	      ) return;
 
-	if(ESHK(shkp)->billct == BILLSZ) {
+	if (!extend_bill(ESHK(shkp), 1)) {
 		You("got that for free!");
 		return;
 	}
@@ -2776,7 +2838,7 @@ register struct obj *obj, *otmp;
 	}
 	bp->bquan -= otmp->quan;
 
-	if(ESHK(shkp)->billct == BILLSZ) otmp->unpaid = 0;
+	if (!extend_bill(ESHK(shkp), 1)) otmp->unpaid = 0;
 	else {
 		tmp = bp->price;
 		bp = &(ESHK(shkp)->bill_p[ESHK(shkp)->billct]);
@@ -3111,7 +3173,6 @@ xchar x, y;
 	}
 move_on:
 	if((!saleitem && !(container && cltmp > 0L))
-	   || eshkp->billct == BILLSZ
 	   || obj->oclass == BALL_CLASS
 	   || obj->oclass == CHAIN_CLASS || offer == 0L
 #if defined(UNPOLYPILE)
@@ -3801,7 +3862,8 @@ struct monst *shkp;
 
 	if (eshkp->bill_p == (struct bill_x *) -1000 && inhishop(shkp)) {
 	    /* reset bill_p, need to re-calc player's occupancy too */
-	    eshkp->bill_p = &eshkp->bill[0];
+	    eshkp->billsz = 0;
+	    eshkp->bill_p = (struct bill_x *)0;
 	    check_special_room(FALSE);
 	}
 }

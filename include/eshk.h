@@ -7,8 +7,6 @@
 
 #define REPAIR_DELAY	5	/* minimum delay between shop damage & repair */
 
-#define BILLSZ	200
-
 struct bill_x {
 	unsigned bo_id;
 	boolean useup;
@@ -29,8 +27,8 @@ struct eshk {
 	coord shk;		/* usual position shopkeeper */
 	coord shd;		/* position shop door */
 	d_level shoplevel;	/* level (& dungeon) of his shop */
-	int billct;		/* no. of entries of bill[] in use */
-	struct bill_x bill[BILLSZ];
+	int billct;		/* no. of entries of bill_p[] in use */
+	int billsz;		/* no. of entries of bill_p[] allocated */
 	struct bill_x *bill_p;
 	int visitct;		/* nr of visits by most recent customer */
 	char customer[PL_NSIZ];	/* most recent customer */

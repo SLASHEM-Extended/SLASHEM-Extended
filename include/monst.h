@@ -176,7 +176,8 @@ struct monst {
  */
 
 #define newmonst(xl) (struct monst *)alloc((unsigned)(xl) + sizeof(struct monst))
-#define dealloc_monst(mon) free((genericptr_t)(mon))
+#define dealloc_monst(mon) if ((mon)->isshk) shk_free(mon); else \
+				free((genericptr_t)(mon))
 
 /* these are in mspeed */
 #define MSLOW 1		/* slow monster */
