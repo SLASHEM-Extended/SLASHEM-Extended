@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.6 2002-01-31 22:21:26 j_ali Exp $
+  $Id: gtkmap.c,v 1.7 2002-03-11 00:09:21 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -380,7 +380,8 @@ radar_destroy_event(GtkWidget *widget, gpointer data)
 
     radar_is_popuped = 0;
     gtk_widget_hide_all(radar);
-    flags.radar = 0;
+    nh_option_cache_set_bool("radar", FALSE);
+    nh_option_cache_sync();
 
     return TRUE;
 }
@@ -734,23 +735,12 @@ nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap)
     
     gdk_draw_text_wc(
 	xshm_map_pixmap, map_font,
-#ifdef TEXTCOLOR
-	iflags.use_color ? map_color_gc[color] :
-#endif
-	map->style->fg_gc[GTK_WIDGET_STATE(map)],
+	copts.use_color ? map_color_gc[color] : map->style->fg_gc[GTK_WIDGET_STATE(map)],
 	x * c_width + map_xoffsets[ch[0]], y * c_height, ch, 1);
     
-    if(glyph_is_pet(glyph)
-#ifdef TEXTCOLOR
-      && iflags.hilite_pet
-#endif
-      ){
+    if (glyph_is_pet(glyph) && copts.hilite_pet) {
 	gdk_draw_rectangle(xshm_map_pixmap,
-#ifdef TEXTCOLOR
-	    map_color_gc[iflags.use_color?CLR_RED:CLR_WHITE],
-#else
-	    map_color_gc[CLR_WHITE],
-#endif
+	    map_color_gc[copts.use_color ? CLR_RED : CLR_WHITE],
 	    FALSE, x * c_width, y * c_height - map_font->ascent,
 	    c_width - 1, c_height - 1);
     }
@@ -787,18 +777,8 @@ nh_map_print_glyph_tmp(struct tilemap *tmap, int ofsx, int ofsy, int do_bgtile)
 	x_tile_tmp_draw_tile(bgtile, ofsx, ofsy);
     }
 
-    if(glyph_is_pet(glyph)
-#ifdef TEXTCOLOR
-	&& iflags.hilite_pet
-#endif
-	){
-	x_tile_tmp_draw_rectangle(ofsx, ofsy,
-#ifdef TEXTCOLOR
-	  CLR_RED);
-#else
-	  MAP_WHITE);
-#endif
-    }
+    if (glyph_is_pet(glyph) && copts.hilite_pet)
+	x_tile_tmp_draw_rectangle(ofsx, ofsy, CLR_RED);
     else if (tmap == &gtkmap[cursy][cursx])
 	x_tile_tmp_draw_rectangle(ofsx, ofsy, MAP_WHITE);
 }
@@ -906,18 +886,8 @@ static void
 nh_map_print_glyph_simple_tile(XCHAR_P x, XCHAR_P y, struct tilemap *tmap)
 {
     x_tile_draw_tile(tmap->tile, x * c_width, y * c_height);
-    if(glyph_is_pet(tmap->glyph)
-#ifdef TEXTCOLOR
-	&& iflags.hilite_pet
-#endif
-	){
-	x_tile_draw_rectangle(x * c_width, y * c_height,
-#ifdef TEXTCOLOR
-	  &nh_color[CLR_RED]);
-#else
-	  &nh_color[MAP_WHITE]);
-#endif
-    }
+    if (glyph_is_pet(tmap->glyph) && copts.hilite_pet)
+	x_tile_draw_rectangle(x * c_width, y * c_height, &nh_color[CLR_RED]);
     else if (x == cursx && y == cursy)
 	x_tile_draw_rectangle(x * c_width, y * c_height, &nh_color[MAP_WHITE]);
 }
@@ -990,15 +960,15 @@ nh_radar_update()
 {
     GdkRectangle update_rect;
     GtkAdjustment *hadj, *vadj;
+    boolean use_radar = nh_option_cache_get_bool("radar");
 
-    if(flags.radar && !radar_is_popuped){
+    if (use_radar && !radar_is_popuped) {
 	if(radar_is_created == 0)
 	    nh_radar_new();
 
 	gtk_widget_show_all(radar);
 	radar_is_popuped= 1;
-    }
-    if(!flags.radar && radar_is_popuped){
+    } else if (!use_radar && radar_is_popuped) {
 	gtk_widget_hide_all(radar);
 	radar_is_popuped= 0;
     }

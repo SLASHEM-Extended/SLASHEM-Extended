@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.21 2002-03-02 19:44:06 j_ali Exp $
+  $Id: winGTK.h,v 1.22 2002-03-11 00:09:20 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -158,7 +158,7 @@ extern void	GTK_nhbell(void);
 extern int	GTK_doprev_message(void);
 extern void	GTK_extcmd_set(int cmd);
 extern int	GTK_get_ext_cmd(void);
-extern void	GTK_number_pad(void);
+extern void	GTK_number_pad(int);
 extern void	GTK_delay_output(void);
 extern void	GTK_start_screen(void);
 extern void	GTK_end_screen(void);
@@ -215,6 +215,13 @@ extern int		nh_dir_keysym(GdkEventKey *ev);
 extern void		nh_option_new(void);
 #if defined(DEVEL_BRANCH) && defined(GTK_V20)
 extern void		nh_option_lock(boolean);
+extern int		nh_option_cache_sync(void);
+extern void		nh_option_cache_set(char *option, const char *value);
+extern void		nh_option_cache_set_bool(char *option, boolean value);
+extern void		nh_option_cache_set_addr(char *option, char **addr);
+extern void		nh_option_cache_set_bool_addr(char *option, boolean *addr);
+extern char		*nh_option_cache_get(char *option);
+extern boolean		nh_option_cache_get_bool(char *option);
 #else
 extern void		nh_option_lock(void);
 #endif
@@ -228,6 +235,14 @@ extern void		nh_position_popup_dialog(GtkWidget *w);
  */
 extern int		create_toptenwin();
 
+#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+struct cached_options {
+    boolean	num_pad;
+    boolean	use_color;
+    boolean	hilite_pet;
+    boolean	perm_invent;
+} copts;
+#endif
 
 struct menu {
     GtkCList	*clist;

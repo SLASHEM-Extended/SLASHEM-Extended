@@ -1,5 +1,5 @@
 /*
-  $Id: gtkint.c,v 1.1 2001-12-11 20:43:49 j_ali Exp $
+  $Id: gtkint.c,v 1.2 2002-03-11 00:09:21 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -83,7 +83,7 @@ struct window_procs GTK_procs = {
     GTK_int_yn_function,
     GTK_int_getlin,
     GTK_get_ext_cmd,
-    hook, /* number_pad */
+    GTK_number_pad,
     GTK_delay_output,
 #ifdef CHANGE_COLOR
     hook, /* change_color */

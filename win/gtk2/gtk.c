@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.10 2002-03-02 19:44:06 j_ali Exp $
+  $Id: gtk.c,v 1.11 2002-03-11 00:09:21 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -682,7 +682,7 @@ move_command(GtkWidget *widget, gpointer data)
 {
 
     keysym = 'm';
-    keysym1 = (int) (iflags.num_pad ? 
+    keysym1 = (int) (copts.num_pad ? 
     				dir_keys[(int)data][1] : 
     				dir_keys[(int)data][0]);
 
@@ -693,7 +693,7 @@ static void
 fight_command(GtkWidget *widget, gpointer data)
 {
     keysym = 'F';
-    keysym1 = (int) (iflags.num_pad ? 
+    keysym1 = (int) (copts.num_pad ? 
     				dir_keys[(int)data][1] : 
     				dir_keys[(int)data][0]);
 
@@ -755,19 +755,19 @@ nh_dir_keysym(GdkEventKey *ev)
     {
 	case GDK_End:
 	case GDK_KP_End:
-	    ret = dir_keys[GTK_SOUTHWEST][!!iflags.num_pad];
+	    ret = dir_keys[GTK_SOUTHWEST][!!copts.num_pad];
 	    break;
 	case GDK_Down:
 	case GDK_KP_Down:
-	    ret = dir_keys[GTK_SOUTH][!!iflags.num_pad];
+	    ret = dir_keys[GTK_SOUTH][!!copts.num_pad];
 	    break;
 	case GDK_Page_Down:
 	case GDK_KP_Page_Down:
-	    ret = dir_keys[GTK_SOUTHEAST][!!iflags.num_pad];
+	    ret = dir_keys[GTK_SOUTHEAST][!!copts.num_pad];
 	    break;
 	case GDK_Left:
 	case GDK_KP_Left:
-	    ret = dir_keys[GTK_WEST][!!iflags.num_pad];
+	    ret = dir_keys[GTK_WEST][!!copts.num_pad];
 	    break;
 	case GDK_Begin:
 	case GDK_KP_Begin:
@@ -775,19 +775,19 @@ nh_dir_keysym(GdkEventKey *ev)
 	    break;
 	case GDK_Right:
 	case GDK_KP_Right:
-	    ret = dir_keys[GTK_EAST][!!iflags.num_pad];
+	    ret = dir_keys[GTK_EAST][!!copts.num_pad];
 	    break;
 	case GDK_Home:
 	case GDK_KP_Home:
-	    ret = dir_keys[GTK_NORTHWEST][!!iflags.num_pad];
+	    ret = dir_keys[GTK_NORTHWEST][!!copts.num_pad];
 	    break;
 	case GDK_Up:
 	case GDK_KP_Up:
-	    ret = dir_keys[GTK_NORTH][!!iflags.num_pad];
+	    ret = dir_keys[GTK_NORTH][!!copts.num_pad];
 	    break;
 	case GDK_Page_Up:
 	case GDK_KP_Page_Up:
-	    ret = dir_keys[GTK_NORTHEAST][!!iflags.num_pad];
+	    ret = dir_keys[GTK_NORTHEAST][!!copts.num_pad];
 	    break;
 	default:
 	    ret = 0;
@@ -1614,6 +1614,11 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
 #endif
 
     gtk_set_locale();
+#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+    nh_option_cache_set_bool_addr("color", &copts.use_color);
+    nh_option_cache_set_bool_addr("hilite_pet", &copts.hilite_pet);
+    nh_option_cache_set_bool_addr("perm_invent", &copts.perm_invent);
+#endif
     nh_rc();
 
     /* Init windows to nothing. */
@@ -2320,7 +2325,7 @@ GTK_display_inventory(void)
 void
 GTK_update_inventory(void)
 {
-    if (flags.perm_invent) {
+    if (copts.perm_invent) {
 	if (WIN_INVEN == WIN_ERR ||
 		!(gtkWindows[WIN_INVEN].flags & NHWF_DISPLAYED))
 	    display_inventory_needed = TRUE;
@@ -2348,6 +2353,12 @@ static gint delay_timeout(gpointer data)
 {
     delay_finished++;
     return FALSE;
+}
+
+void
+GTK_number_pad(int state)
+{
+    copts.num_pad = (boolean)state;
 }
 
 void

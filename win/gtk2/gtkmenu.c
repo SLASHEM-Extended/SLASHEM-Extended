@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.8 2002-01-31 22:21:26 j_ali Exp $
+  $Id: gtkmenu.c,v 1.9 2002-03-11 00:09:21 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -508,10 +508,10 @@ GTK_ext_select_menu(winid id, int how, struct proxy_mi **menu_list)
 
     if (id == WIN_INVEN)
     {
-	if (menu_info->cancelled < 0 && !flags.perm_invent ||
-	    menu_info->cancelled == 0 && flags.perm_invent)
+	if (menu_info->cancelled < 0 && !copts.perm_invent ||
+	    menu_info->cancelled == 0 && copts.perm_invent)
 	    GTK_destroy_menu_widgets(w);	/* perm_invent changed */
-	menu_info->cancelled = flags.perm_invent ? -1 : 0;
+	menu_info->cancelled = copts.perm_invent ? -1 : 0;
     }
     else
 	menu_info->cancelled = 0;
@@ -525,7 +525,7 @@ GTK_ext_select_menu(winid id, int how, struct proxy_mi **menu_list)
     else
 	GTK_load_menu_clist(w);
 
-    if (id == WIN_INVEN && flags.perm_invent)
+    if (id == WIN_INVEN && copts.perm_invent)
 	gtk_window_set_title(GTK_WINDOW(w->w), DEF_GAME_NAME " Inventory");
     else
 	gtk_window_set_title(GTK_WINDOW(w->w), DEF_GAME_NAME " Menu");

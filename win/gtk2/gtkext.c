@@ -1,5 +1,5 @@
 /*
-  $Id: gtkext.c,v 1.2 2002-01-31 22:21:26 j_ali Exp $
+  $Id: gtkext.c,v 1.3 2002-03-11 00:09:21 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -56,7 +56,7 @@ struct window_ext_procs GTK_ext_procs = {
     GTK_ext_yn_function,
     GTK_ext_getlin,
     GTK_get_ext_cmd,
-    v_hook, /* number_pad */
+    GTK_number_pad,
     GTK_delay_output,
     v_hook, /* change_color */
     v_hook, /* change_background */

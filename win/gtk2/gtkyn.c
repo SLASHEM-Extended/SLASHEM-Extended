@@ -1,5 +1,5 @@
 /*
-  $Id: gtkyn.c,v 1.4 2001-12-11 20:43:49 j_ali Exp $
+  $Id: gtkyn.c,v 1.5 2002-03-11 00:09:21 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -243,14 +243,14 @@ GTK_ext_yn_function(const char *query, const char *resp, CHAR_P def, int *count)
 		for(j=0 ; j<3 ; ++j){
 		    d = nh_gtk_new_and_attach(
 			gtk_button_new_with_label(
-			    (iflags.num_pad ? np_dirstr[i][j].str : dirstr[i][j].str)),
+			    (copts.num_pad ? np_dirstr[i][j].str : dirstr[i][j].str)),
 			table, "",
 			j, j+1,
 			i, i+1);
 		    gtk_signal_connect(
 			GTK_OBJECT(d), "clicked",
 			GTK_SIGNAL_FUNC(yn_clicked), 
-			(iflags.num_pad ? (gpointer)np_dirstr[i][j].key : 
+			(copts.num_pad ? (gpointer)np_dirstr[i][j].key : 
 			    (gpointer)dirstr[i][j].key));
 		}
 	    yn_isdir = TRUE;

@@ -38,13 +38,15 @@ To build:
 		Define GTK_V20 and GTK_PROXY inside
 		  #ifdef GTK_GRAPHICS ... #endif
 	3. Add panic and remove gtkint modules from the WINGTK system
-	4. Define WINSRC and WINOBJ as follows:
+	4. Run "make depend" in src
+	5. Define WINSRC, WINOBJ and WINLIB as follows:
 		WINSRC = $(WINTTYSRC) $(WINPROXYSRC) \
 			$(PROXYUTLSRC) $(PROXYCOMSRC)
 		WINOBJ = $(WINTTYOBJ) $(WINPROXYOBJ) \
 			$(PROXYUTLOBJ) $(PROXYCOMOBJ)
-	5. Build client by make all, make install as normal
-	6. Build server by make slashem-gtk
+		WINLIB = $(WINTTYLIB)
+	6. Build client by make all, make install as normal
+	7. Build server by make slashem-gtk
 
 INTERNAL
 
@@ -62,12 +64,14 @@ To build:
 		Define PROXY_GRAPHICS and PROXY_INTERNAL
 		Define GTK_V20 and GTK_PROXY
 	3. Add gtkint and remove panic modules from the WINGTK system
-	4. Define WINSRC and WINOBJ as follows:
-		WINSRC = $(WINTTYSRC) $(WINPROXYSRC) \
+	4. Run "make depend" in src
+	5. Define WINSRC, WINOBJ and WINLIB as follows:
+		WINSRC = $(WINTTYSRC) $(WINGTKSRC) $(WINPROXYSRC) \
 			$(PROXYUTLSRC) $(PROXYCOMSRC) $(PROXYSVRSRC)
-		WINOBJ = $(WINTTYOBJ) $(WINPROXYOBJ) \
+		WINOBJ = $(WINTTYOBJ) $(WINGTKSRC) $(WINPROXYOBJ) \
 			$(PROXYUTLOBJ) $(PROXYCOMOBJ) $(PROXYSVROBJ)
-	5. Build by make all, make install as normal
+		WINLIB = $(WINTTYLIB) $(WINGTKLIB)
+	6. Build by make all, make install as normal
 
 SINGLE EXECUTABLE
 

@@ -214,7 +214,7 @@ WINGTKOBJ = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
 #	../win/gtk2/gtkextcmd.c ../win/gtk2/gtkmap.c ../win/gtk2/gtkmessage.c \
 #	../win/gtk2/gtkmisc.c ../win/gtk2/gtktile.c ../win/gtk2/xshmmap.c \
 #	../win/gtk2/gtkext.c ../win/gtk2/gtkint.c
-#	#../win/gtk2/panic.o
+#	#../win/gtk2/panic.c
 # WINGTKOBJ = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
 # 	gtkmap.o gtktile.o gtkmessage.o gtkmisc.o xshmmap.o gtkext.o \
 #	nhwin.a gtkint.o
@@ -416,7 +416,7 @@ SYSCSRC = ../sys/atari/tos.c ../sys/share/pcmain.c ../sys/share/pcsys.c \
 
 # all windowing-system-dependent .c (for dependencies and such)
 WINCSRC = $(WINTTYSRC) $(WINX11SRC) $(WINGTKSRC) $(WINGNOMESRC) $(WINGEMSRC) \
-	$(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYSVRSRC) tile.c
+	$(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYSVRSRC) $(PROXYCOMSRC) tile.c
 # all windowing-system-dependent .cpp (for dependencies and such)
 WINCXXSRC = $(WINQTSRC) $(WINBESRC)
 
