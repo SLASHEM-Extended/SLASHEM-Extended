@@ -1130,12 +1130,12 @@ aboutNetHack() {
 			aboutStr[++aboutStr[0]] = 'e';
 			aboutStr[++aboutStr[0]] = '0' + EDITLEVEL;
 		}
-		
+#ifdef FIXLEVEL		
 		if (FIXLEVEL) {
 			aboutStr[++aboutStr[0]] = 'f';
 			aboutStr[++aboutStr[0]] = '0' + FIXLEVEL;
 		}
-		
+#endif		
 		aboutStr[++aboutStr[0]] = CHAR_CR;
 
 		ParamText(aboutStr, "\pwww.slashem.org", "\p", "\p");
