@@ -81,6 +81,7 @@ ver 0.0.7E4 [?] [Released by ?]
 -fixed bug 822120: Star Vampires not vampires?
 -fixed bug 808070: uhitm AD_DREN also produces AD_CALM effect
 -fixed bug 806071: panic("obj_extract_self") when drawing blood
+-refixed bug 790230: BUG: obfree() called on non-empty container
 
 See history.txt for changes made in previous versions.
 

@@ -949,11 +949,11 @@ register struct obj *obj, *merge;
 	/* [ALI] Enforce new rules: Containers must have their contents
 	 * deleted while still in situ so that we can place any
 	 * indestructible objects they may contain.
-	 * Output to buglog produced in an attempt to track down bug 790230.
 	 */
 	if (Has_contents(obj)) {
 	    FILE *fp;
-	    int known, x, y;
+	    int known;
+	    xchar x, y;
 	    struct obj *otmp;
 	    pline("BUG: obfree() called on non-empty container.  See buglog for details.");
 	    fp = fopen_datafile("buglog", "a", TROUBLEPREFIX);
@@ -973,7 +973,7 @@ register struct obj *obj, *merge;
 		    objects[otmp->otyp].oc_name_known = 1;
 		    otmp->known = otmp->bknown =
 			    otmp->dknown = otmp->rknown = 1;
-		    (void) fprintf(fp, "\t%s", doname(otmp));
+		    (void) fprintf(fp, "\t%s\n", doname(otmp));
 		    objects[otmp->otyp].oc_name_known = known;
 		}
 		switch (obj->where) {
@@ -1026,6 +1026,7 @@ register struct obj *obj, *merge;
 			break;
 		}
 		(void) fprintf(fp, "\n");
+		fclose(fp);
 	    }
 	}
 	if (Has_contents(obj)) delete_contents(obj);

@@ -2440,6 +2440,8 @@ assign_sym:
 				otmp = mkobj( (char) s_sym, FALSE );
 				appear = otmp->otyp;
 				/* make sure container contents are free'ed */
+				if (Has_contents(otmp))
+					delete_contents(otmp);
 				obfree(otmp, (struct obj *) 0);
 			}
 		}
