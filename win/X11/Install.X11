@@ -110,12 +110,15 @@ prepend an appropriate -I<idirectory> parameter to CFLAGS and a
 find the include and library files for X11.
 
 
-Finally, you should also install the SlashEM.ad file as SlashEM in the
-normal X11 applications defaults directory.  Alternatively, each person
-may append the contents of this file to their .Xdefaults file.  A second
-alternative is copy SlashEM.ad to SlashEM in GAMEDIR (or FILE_AREA_SHARE)
-(from the top Makefile) and add a line to nethack.sh specifying this
-additional applications defaults directory:
+Finally, to ensure SlashEM's windows look the way they were intended to
+look, make sure the top Makefile CNF_SHARE_X11ND also contains
+SlashEM.ad. If it does, running slashem will automatically take the
+appropriate steps to cause this file to be used to initialize SlashEM's
+X11 resources. Alternatively, each person may append the contents of
+this file to their .Xdefaults file. A second alternative is copy
+SlashEM.ad to SlashEM in GAMEDIR (or FILE_AREA_SHARE) (from the top
+Makefile) and add a line to nethack.sh specifying this additional
+applications defaults directory:
 	XAPPLRESDIR=$HACKDIR; export XAPPLRESDIR
 (Replace $HACKDIR with the value of FILE_AREA_SHARE if appropriate.)
 
