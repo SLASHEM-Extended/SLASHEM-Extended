@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.48 2004-01-20 20:51:19 entro-p Exp $
+#       $Id: Makefile.gcc,v 1.49 2004-01-20 20:58:47 entro-p Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -1260,6 +1260,11 @@ tiles.bmp:	tile2bmp.exe ../win/share/monsters.txt \
 		../win/share/objects.txt ../win/share/other.txt
 	tile2bmp $@ $(WSHR)\monsters.txt $(WSHR)\objects.txt \
 		$(WSHR)\other.txt
+
+tiles32.bmp:	tile2bmp.exe ../win/share/mon32.txt \
+		../win/share/obj32.txt ../win/share/oth32.txt
+	tile2bmp $@ $(WSHR)\mon32.txt $(WSHR)\obj32.txt \
+		$(WSHR)\oth32.txt
 
 gltile16.png: tile2png.exe ../win/share/monsters.txt ../win/share/objects.txt \
 				../win/share/other.txt
