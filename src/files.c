@@ -1723,6 +1723,16 @@ const char *filename;
 					tmp_config, errno);
 		wait_synch();
 	}
+	else if (!strncmp(windowprocs.name, "proxy/", 6)) {
+	    fp = fopenp("/etc/slashem/proxy.slashemrc", "r");
+	    if (fp != (FILE *)0)
+		return(fp);
+	    else if (errno != ENOENT) {
+		raw_printf("Couldn't open /etc/slashem/proxy.slashemrc (%d).",
+					errno);
+		wait_synch();
+	    }
+	}
 # endif
 #endif
 	return (FILE *)0;

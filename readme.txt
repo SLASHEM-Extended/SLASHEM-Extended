@@ -91,6 +91,7 @@ ver 0.0.7E3 [?] [Released by ?]
 -fixed bug 790230: BUG: obfree() called on non-empty container
 -fixed bug 782892: gtk startup problem when no tiles defined
 -fixed bug 782881: NumPad doesn't work with gtk
+-fixed bug 787697: GUI works, no tile graphics, just text
 
 See history.txt for changes made in previous versions.
 
