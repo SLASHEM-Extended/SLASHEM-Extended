@@ -395,6 +395,7 @@ ver 0.0.6E4F6 [? ?/2001] [Released by ?]
 -fixed bug 458625: Potion effects from sinks crash.
 -fixed bug 453100: Papyrus spellbooks.
 -fixed bug 475774: Dipping into potion of acid message.
+-fixed bug 469282: vampire race to vampire chat problem.
 
 ver 0.0.6E4F5 [August 31/2001] [Released by Ali]
 -fixed bug 420517: Yellow dragon scale mail.
