@@ -1021,8 +1021,10 @@ u_init()
 		}
 		ini_inv(Archeologist);
 		if(!rn2(4)) ini_inv(Blindfold);
+#ifdef TOURIST
 		else if(!rn2(4)) ini_inv(Towel);
 		if(!rn2(4)) ini_inv(Leash);
+#endif
 		if(!rn2(4)) ini_inv(Tinopener);
 		else if(!rn2(4))
 		  (rn2(100) > 50 ? ini_inv(Lamp) : ini_inv(Torch));
