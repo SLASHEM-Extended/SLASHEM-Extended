@@ -7,7 +7,7 @@
 #
 #	Modified for Slash'EM by Pekka Rousu (prousu@cs.helsinki.fi).
 #
-#	Supported compilers: GCC emx 0.9d, GCC 3.0.3 and later
+#	Supported compilers: GCC emx 0.9d
 #	Supported make utilities: dmake 4.0
 #
 #	Copy this file into $(SRC) directory, rename it to "makefile"
@@ -29,43 +29,26 @@
 #	which you will have to adapt to your configuration.
 #
 
+#format = omf
+format = a.out
+
+.IF $(format) == a.out
+#with_x11 = yes
+#debug = yes
+.END
+
 #
 #	Compiler and linker selection.
 #
 
 CC	= gcc		# GCC
 
-#LINK    = gcc
+.IF $(format) == a.out
+LINK	= gcc
+.ELSE
 LINK	= link386	# GCC OMF
+.END
 
-#
-#	Uncomment the following and lines 885-895 to compile for X11 and
-#	set X11ROOT apropriately
-#
-
-#WINX11OBJ01 =  $(OBJ)/Window.o
-#WINX11OBJ02 = $(OBJ)/dialogs.o
-#WINX11OBJ03 = $(OBJ)/winX.o
-#WINX11OBJ04 = $(OBJ)/winmap.o
-#WINX11OBJ05 = $(OBJ)/winmenu.o
-#WINX11OBJ06 = $(OBJ)/winmesg.o
-#WINX11OBJ07 = $(OBJ)/winmisc.o
-#WINX11OBJ08 = $(OBJ)/winstat.o
-#WINX11OBJ09 = $(OBJ)/wintext.o
-#WINX11OBJ10 = $(OBJ)/winval.o
-#WINX11OBJ11 = $(OBJ)/tile.o
-#X11ROOT = c:/xfree86
-#WINX11CFLAGS = -DUSE_XPM -DX11_GRAPHICS \
-#            -I$(X11ROOT)/include -Zmtd
-#WINX11LIB = -lXaw -lXmu -lXext -lXt -lX11 -lXpm -L$(X11ROOT)/lib -lc_app
-#WINX11SRC = ../win/X11/Window.c ../win/X11/dialogs.c ../win/X11/winX.c \
-#	../win/X11/winmap.c  ../win/X11/winmenu.c ../win/X11/winmesg.c \
-#	../win/X11/winmisc.c ../win/X11/winstat.c ../win/X11/wintext.c \
-#	../win/X11/winval.c tile.c
-#WINX11OBJ = $(WINX11OBJ01) $(WINX11OBJ02) $(WINX11OBJ03) $(WINX11OBJ04) \
-#	$(WINX11OBJ05) $(WINX11OBJ06) $(WINX11OBJ07) $(WINX11OBJ08) \
-#	$(WINX11OBJ09) $(WINX11OBJ10) $(WINX11OBJ11)
-#WINX11VARDAT=x11tiles pet_mark.xbm rip.xpm
 
 #
 #	Make syntax peculiarities.
@@ -170,6 +153,7 @@ DLBFILE2 = nhushare		# Platform specific data files
 MAN6DIR	 = $(GAMEDIR)		# Manual page section 6 directory (\man\man6)
 PLIBP	 = c:\emx\lib		# Protected mode C libraries
 RLIBP	 = c:\emx\lib		# Possible real mode C libraries
+X11ROOT = c:\xfree86
 
 #
 #	The game name and description.
@@ -183,8 +167,15 @@ GAMEDES = "SlashEM 0.0.6E6"
 #	include file path, debug flags, ANSI conformance.
 #
 
-CFLAGS	= -c $(GCCO) $(WARN) -I$(INCL) $(CDFLAGS) $(STDC) $(WINX11CFLAGS)
-O	!= -s -O -o
+CFLAGS	=-c $(GCCO) $(WARN) -I$(INCL) $(CDFLAGS) $(STDC) $(WINX11CFLAGS)
+O	!=-s -O -o
+
+.IF $(with_x11) == yes
+WINX11CFLAGS = -I$(X11ROOT)\include -Zmtd
+WINX11LIB = -lXaw -lXmu -lXext -lXt -lX11 -lXpm -L$(X11ROOT)\lib -lc_app
+WINX11SRC = ..\win\X11\Window.c ..\win\X11\dialogs.c ..\win\X11\winX.c ..\win\X11\winmap.c  ..\win\X11\winmenu.c ..\win\X11\winmesg.c ..\win\X11\winmisc.c ..\win\X11\winstat.c ..\win\X11\wintext.c ..\win\X11\winval.c tile.c
+WINX11VARDAT= x11tiles x11bigtiles x11big3dtiles pet_mark.xbm rip.xpm
+.END
 
 #
 #	Compiler warning levels.  These are really for development, so
@@ -198,57 +189,70 @@ O	!= -s -O -o
 #	all be benign.
 #
 
-WARN	= #-W -Wimplicit -Wreturn-type -Wunused -Wformat -Wswitch -Wshadow -Wcast-qual -Wwrite-strings -DGCC_WARN # GCC
+WARN	=#-W -Wimplicit -Wreturn-type -Wunused -Wformat -Wswitch -Wshadow -Wcast-qual -Wwrite-strings -DGCC_WARN # GCC
 
 #
 #	GCC object format selection.  The upper line for standard OS/2 OMF
 #	object format, the lower for Unix style a.out format.
 #
 
-GCCO	= -Zomf -Zsys	# GCC OMF
-#GCCO	=		# GCC a.out
+.IF $(format) == omf
+GCCO	=-Zomf -Zsys
+.ELSE
+GCCO	=
+.END
 
 #
-#	GCC: likes a big stack.
+#	Linker flags. GCC likes a big stack.
 #
 
-LFLAGS	= /noig /stack:40000	# GCC OMF
+.IF $(format) == omf
+LFLAGS = /noig /stack:40000	# GCC OMF
+.END
 
 #
 #	Prepare for a debugger.
 #
 
+.IF $(debug) == yes
+CDFLAGS = -g		# GDB (GCC a.out)
+LDFLAGS = -g		# - " -
+.ELSE
 CDFLAGS =
 LDFLAGS =
-#CDFLAGS = -g		# GDB (GCC a.out)
-#LDFLAGS = -g		# - " -
+.END
 
 #
 #	How to produce the most ANSI-like environment.
 #
 
-STDC	= -ansi		# GCC
+STDC	=-ansi
 
 #
 #	Possible system object files required during linking.
 #
 
-#SYSOBJ	=			# GCC a.out
-SYSOBJ	= $(PLIBP)\crt0.obj	$(PLIBP)\end.lib# GCC OMF
+.IF $(format) == omf
+SYSOBJ = $(PLIBP)\crt0.obj	$(PLIBP)\end.lib# GCC OMF
+.ELSE
+SYSOBJ	=# GCC a.out
+.END
 
 #
 #	Compiler library selection.  Change if necessary.
 #
 #	GCC emx 0.9 OMF: C single-threaded libs, Unix system call alias lib,
 #	extra GCC lib, single threaded system lib, OS/2 API entry points.
-#	Note that emx changed library naming convention between 0.8 and 0.9.
 #
 #	GCC a.out: extra GCC lib, C standard lib, extra GCC lib (again),
 #	OS/2 API entry points.
 #
 
-PLIBS	= $(PLIBP)\st\c $(PLIBP)\st\c_app $(PLIBP)\c_alias $(PLIBP)\gcc $(PLIBP)\st\sys $(PLIBP)\os2	# GCC emx 0.9 OMF
-#PLIBS	= -lgcc -lc -lgcc -los2 $(X11LIBS)	# GCC a.out
+.IF $(format) == omf
+PLIBS	=$(PLIBP)\st\c $(PLIBP)\st\c_app $(PLIBP)\c_alias $(PLIBP)\gcc $(PLIBP)\st\sys $(PLIBP)\os2	# GCC emx 0.9 OMF
+.ELSE
+PLIBS	=-lgcc -lc -lgcc -los2 $(X11LIBS)	# GCC a.out
+.END
 
 #
 #	C libraries used by makedefs, lev_comp and dgn_comp (change if
@@ -272,18 +276,21 @@ WINCC	= $(B) cd $(WIN) $(S) $(CC) $(CFLAGS) $(O) $@ $(AB) $(E)
 #	the lower six for GCC a.out format.
 #
 
-GAMELN	= $(LINK) @$(TEMP)\$(GAME).rsp
-MKDFLN	= $(LINK) @$(TEMP)\makedefs.rsp
-LEVCLN	= $(LINK) @$(TEMP)\lev_comp.rsp
-DGNCLN	= $(LINK) @$(TEMP)\dgn_comp.rsp
-RCVRLN	= $(LINK) @$(TEMP)\recover.rsp
-DLBRLN	= $(LINK) @$(TEMP)\dlb.rsp
-#GAMELN	= $(CC) $(LDFLAGS) -o $(GAMEDIR)\$(GAME).exe @$(TEMP)\$(GAME).r $(PLIBS) $(WINX11CFLAGS) $(WINX11LIB)
-#MKDFLN	= $(CC) $(LDFLAGS) -o $(TEMP)\makedefs.exe $(TEMP)\$(MKDFDEF) $(SYSOBJ) $(MAKEOBJS) $(PLIBS)
-#LEVCLN	= $(CC) $(LDFLAGS) -o $(TEMP)\lev_comp.exe $(TEMP)\$(LEVCDEF) $(SYSOBJ) $(SPLEVOBJS) $(PLIBS)
-#DGNCLN	= $(CC) $(LDFLAGS) -o $(TEMP)\dgn_comp.exe $(TEMP)\$(DGNCDEF) $(SYSOBJ) $(DGNCOMPOBJS) $(PLIBS)
-#RCVRLN	= $(CC) $(LDFLAGS) -o $(GAMEDIR)\recover.exe $(TEMP)\$(RCVRDEF) $(SYSOBJ) $(RECOVOBJS) $(PLIBS)
-#DLBRLN	= $(CC) $(LDFLAGS) -o $(TEMP)\dlb.exe $(TEMP)\$(DLBDEF) $(SYSOBJ) $(DLBOBJS) $(PLIBS)
+.IF $(format) == omf
+GAMELN = $(LINK) @$(TEMP)\$(GAME).rsp
+MKDFLN = $(LINK) @$(TEMP)\makedefs.rsp
+LEVCLN = $(LINK) @$(TEMP)\lev_comp.rsp
+DGNCLN = $(LINK) @$(TEMP)\dgn_comp.rsp
+RCVRLN = $(LINK) @$(TEMP)\recover.rsp
+DLBRLN = $(LINK) @$(TEMP)\dlb.rsp
+.ELSE
+GAMELN	= $(CC) $(LDFLAGS) -o $(GAMEDIR)\$(GAME).exe @$(TEMP)\$(GAME).r $(PLIBS) $(WINX11CFLAGS) $(WINX11LIB)
+MKDFLN	= $(CC) $(LDFLAGS) -o $(TEMP)\makedefs.exe $(TEMP)\$(MKDFDEF) $(SYSOBJ) $(MAKEOBJS) $(PLIBS)
+LEVCLN	= $(CC) $(LDFLAGS) -o $(TEMP)\lev_comp.exe $(TEMP)\$(LEVCDEF) $(SYSOBJ) $(SPLEVOBJS) $(PLIBS)
+DGNCLN	= $(CC) $(LDFLAGS) -o $(TEMP)\dgn_comp.exe $(TEMP)\$(DGNCDEF) $(SYSOBJ) $(DGNCOMPOBJS) $(PLIBS)
+RCVRLN	= $(CC) $(LDFLAGS) -o $(GAMEDIR)\recover.exe $(TEMP)\$(RCVRDEF) $(SYSOBJ) $(RECOVOBJS) $(PLIBS)
+DLBRLN	= $(CC) $(LDFLAGS) -o $(TEMP)\dlb.exe $(TEMP)\$(DLBDEF) $(SYSOBJ) $(DLBOBJS) $(PLIBS)
+.END
 
 #
 #	OS/2 module definition files for NetHack,
@@ -348,18 +355,35 @@ DATABASE = data.base	# - " -
 GUIDE	=
 #GUIDE	= $(TEMP)\$(GUIDEBOO).dvi
 
+
+
+
 #
 #	Set WINOBJ lines corresponding to your desired combination
 #	of windowing systems.  Also set windowing systems in config.h.
-#
-#	A straight tty port using no native windowing system is the
-#	only choice for now.
 #
 
 WINOBJ1 = $(OBJ)\getline.o
 WINOBJ2 = $(OBJ)\termcap.o
 WINOBJ3 = $(OBJ)\topl.o
 WINOBJ4 = $(OBJ)\wintty.o
+
+.IF $(with_x11) == yes
+WINX11OBJ01 = $(OBJ)\Window.o
+WINX11OBJ02 = $(OBJ)\dialogs.o
+WINX11OBJ03 = $(OBJ)\winX.o
+WINX11OBJ04 = $(OBJ)\winmap.o
+WINX11OBJ05 = $(OBJ)\winmenu.o
+WINX11OBJ06 = $(OBJ)\winmesg.o
+WINX11OBJ07 = $(OBJ)\winmisc.o
+WINX11OBJ08 = $(OBJ)\winstat.o
+WINX11OBJ09 = $(OBJ)\wintext.o
+WINX11OBJ10 = $(OBJ)\winval.o
+WINX11OBJ11 = $(OBJ)\tile.o
+WINX11OBJ = $(WINX11OBJ01) $(WINX11OBJ02) $(WINX11OBJ03) $(WINX11OBJ04) $(WINX11OBJ05)\
+ $(WINX11OBJ06) $(WINX11OBJ07) $(WINX11OBJ08) $(WINX11OBJ09) $(WINX11OBJ10) $(WINX11OBJ11)
+.END
+
 WINOBJ = $(WINOBJ1) $(WINOBJ2) $(WINOBJ3) $(WINOBJ4) $(WINX11OBJ)
 
 #
@@ -503,21 +527,22 @@ DATHELP = \
  help hh cmdhelp history opthelp wizhelp license gypsy.txt $(GUIDEBOO).txt
 
 SPEC_LEVS = \
- asmodeus.lev baalz.lev    bigrm-1.lev  bigrm-2.lev  bigrm-3.lev \
- bigrm-4.lev  castle.lev   fakewiz1.lev fakewiz2.lev juiblex.lev \
- knox.lev     medusa-1.lev medusa-2.lev minend-1.lev minend-2.lev\
- minefill.lev minetn-1.lev minetn-2.lev oracle.lev   orcus.lev   \
- sanctum.lev  tower1.lev   tower2.lev   tower3.lev   valley.lev  \
- wizard1.lev  wizard2.lev  wizard3.lev  astral.lev   air.lev     \
- earth.lev    fire.lev     water.lev    soko1-1.lev  soko1-2.lev \
- soko2-1.lev  soko2-2.lev  soko3-1.lev  soko3-2.lev  soko4-1.lev \
- soko4-2.lev \
+ asmodeus.lev baalz.lev    bigrm-1.lev	bigrm-2.lev  bigrm-3.lev \
+ bigrm-4.lev  bigrm-5.lev  castle.lev   fakewiz1.lev fakewiz2.lev \
+ juiblex.lev  knox.lev     medusa-1.lev medusa-2.lev minend-1.lev \
+ minend-2.lev minend-3.lev minefill.lev minetn-1.lev minetn-2.lev\
+ minetn-3.lev minetn-4.lev minetn-5.lev minetn-6.lev minetn-7.lev \
+ oracle.lev   orcus.lev    sanctum.lev  tower1.lev   tower2.lev  \
+ tower3.lev   valley.lev   wizard1.lev  wizard2.lev  wizard3.lev \
+ astral.lev   air.lev      earth.lev    fire.lev     water.lev   \
+ soko1-1.lev  soko1-2.lev  soko2-1.lev  soko2-2.lev  soko3-1.lev \
+ soko3-2.lev  soko4-1.lev  soko4-2.lev  \
  beholder.lev blkmar.lev   cavefill.lev cav2fill.lev demogorg.lev\
  dispater.lev dragons.lev  geryon.lev   guild.lev    frnknstn.lev\
  kobold-1.lev kobold-2.lev lich.lev     mall.lev     mall-1.lev  \
- mall-2.lev   mineking.lev mtemple.lev  nightmar.lev nymph.lev   \
- rats.lev     sea.lev      spiders.lev  stor-1.lev   stor-2.lev  \
- stor-3.lev   tomb.lev     yeenoghu.lev
+ mall-2.lev   mineking.lev mtemple.lev	nightmar.lev nymph.lev	 \
+ rats.lev     sea.lev	   spiders.lev	stor-1.lev   stor-2.lev  \
+ stor-3.lev   tomb.lev	   yeenoghu.lev
 
 QUEST_LEVS = \
  Arc-goal.lev Arc-fila.lev Arc-filb.lev Arc-loca.lev Arc-strt.lev \
@@ -593,6 +618,7 @@ VOBJ101 = $(OBJ)\lock.o
 VOBJ102 = $(OBJ)\mail.o
 VOBJ103 = $(OBJ)\main.o
 VOBJ104 = $(OBJ)\makemon.o
+VOBJ111 = $(OBJ)\mapglyph.o
 VOBJ112 = $(OBJ)\mcastu.o
 VOBJ113 = $(OBJ)\mhitm.o
 VOBJ114 = $(OBJ)\mhitu.o
@@ -679,7 +705,7 @@ VOBJ07 = $(VOBJ071) $(VOBJ072) $(VOBJ073) $(VOBJ074)
 VOBJ08 = $(VOBJ081) $(VOBJ082) $(VOBJ083) $(VOBJ084)
 VOBJ09 = $(VOBJ091) $(VOBJ092) $(VOBJ093) $(VOBJ094)
 VOBJ10 = $(VOBJ101) $(VOBJ102) $(VOBJ103) $(VOBJ104)
-VOBJ11 = $(VOBJ112) $(VOBJ113) $(VOBJ114) $(VOBJ115)
+VOBJ11 = $(VOBJ111) $(VOBJ112) $(VOBJ113) $(VOBJ114) $(VOBJ115)
 VOBJ12 = $(VOBJ121) $(VOBJ122) $(VOBJ123) $(VOBJ124)
 VOBJ13 = $(VOBJ131) $(VOBJ132) $(VOBJ133) $(VOBJ134)
 VOBJ14 = $(VOBJ141) $(VOBJ142) $(VOBJ143) $(VOBJ144)
@@ -728,7 +754,8 @@ HACK_H		 = $(CONFIG_H) $(DECL_H) $(INCL)\monsym.h $(INCL)\mkroom.h \
 #	The default target.
 #
 
-all :   makedefs dgn_comp lev_comp recover $(GAME) $(GUIDE) $(WINX11VARDAT) dat do_dlb do_man do_utils finish
+all :	makedefs dgn_comp lev_comp recover $(GAMEFILE) $(GUIDE) $(WINX11VARDAT) \
+     	dat do_dlb do_man do_utils finish
 	$(ECHO) Done building all targets.
 
 #
@@ -758,9 +785,9 @@ do_def :
 #	The main target.
 #
 
-$(GAME) : $(GAMEDIR)\$(GAME).exe
-$(GAME).exe : $(GAMEDIR)\$(GAME).exe
-$(GAMEDIR)\$(GAME).exe : $(TEMP)\$(GAME).rsp $(TEMP)\$(GAME).r
+$(GAME) : $(GAMEFILE)
+$(GAME).exe : $(GAMEFILE)
+$(GAMEFILE) : $(TEMP)\$(GAME).rsp $(TEMP)\$(GAME).r
 	$(GAMELN)
 
 $(TEMP)\$(GAME).r : $(HOBJ) $(TEMP)\$(GAMEDEF)
@@ -804,6 +831,7 @@ $(TEMP)\$(GAME).r : $(HOBJ) $(TEMP)\$(GAMEDEF)
 	$(ECHO) $(VOBJ102) >> $@
 	$(ECHO) $(VOBJ103) >> $@
 	$(ECHO) $(VOBJ104) >> $@
+	$(ECHO) $(VOBJ111) >> $@
 	$(ECHO) $(VOBJ112) >> $@
 	$(ECHO) $(VOBJ113) >> $@
 	$(ECHO) $(VOBJ114) >> $@
@@ -884,17 +912,20 @@ $(TEMP)\$(GAME).r : $(HOBJ) $(TEMP)\$(GAMEDEF)
 	$(ECHO) $(WINOBJ4) >> $@
 	$(ECHO) $(HHOBJ) >> $@
 	$(ECHO) $(RANDOM) >> $@
-#	$(X11ECHO) $(WINX11OBJ01) >> $@
-#	$(X11ECHO) $(WINX11OBJ02) >> $@
-#	$(X11ECHO) $(WINX11OBJ03) >> $@
-#	$(X11ECHO) $(WINX11OBJ04) >> $@
-#	$(X11ECHO) $(WINX11OBJ05) >> $@
-#	$(X11ECHO) $(WINX11OBJ06) >> $@
-#	$(X11ECHO) $(WINX11OBJ07) >> $@
-#	$(X11ECHO) $(WINX11OBJ08) >> $@
-#	$(X11ECHO) $(WINX11OBJ09) >> $@
-#	$(X11ECHO) $(WINX11OBJ10) >> $@
-#	$(X11ECHO) $(WINX11OBJ11) >> $@
+
+.IF $(with_x11) == yes
+	$(X11ECHO) $(WINX11OBJ01) >> $@
+	$(X11ECHO) $(WINX11OBJ02) >> $@
+	$(X11ECHO) $(WINX11OBJ03) >> $@
+	$(X11ECHO) $(WINX11OBJ04) >> $@
+	$(X11ECHO) $(WINX11OBJ05) >> $@
+	$(X11ECHO) $(WINX11OBJ06) >> $@
+	$(X11ECHO) $(WINX11OBJ07) >> $@
+	$(X11ECHO) $(WINX11OBJ08) >> $@
+	$(X11ECHO) $(WINX11OBJ09) >> $@
+	$(X11ECHO) $(WINX11OBJ10) >> $@
+	$(X11ECHO) $(WINX11OBJ11) >> $@
+.END
 
 $(TEMP)\$(GAME).rsp : $(HOBJ) $(TEMP)\$(GAMEDEF)
 	$(ECHO) $(SYSOBJ) $(VOBJ01) +> $@
@@ -1704,7 +1735,7 @@ copy_man:
 	$(CP) $(DOC)\dlb.6 $(MAN6DIR)
 
 man_msg:
-	$(ECHO) Manual pages not copied. Copy manually if needed.
+	$(ECHO) Manual pages not copied. Copy manually if required.
 
 #
 #	Utilities.
@@ -1713,7 +1744,7 @@ man_msg:
 copy_utils: $(GAMEDIR)\lev_comp.exe $(GAMEDIR)\dgn_comp.exe $(GAMEDIR)\dlb.exe  
 
 util_msg:
-	$(ECHO) Utils not copied. Copy manually if needed.
+	$(ECHO) Utils not copied. Copy manually if required.
 
 #
 #	Housekeeping.
@@ -1730,12 +1761,17 @@ spotless : clean
 	$(RM) $(INCL)\filename.h
 	$(RM) vis_tab.c
 	$(RM) monstr.c
+	$(RM) tile.c
 	$(RM) *.lev
 	$(RM) nethack.ico
 	$(RM) $(TEMP)\makedefs.exe
 	$(RM) $(TEMP)\lev_comp.exe
 	$(RM) $(TEMP)\dgn_comp.exe
 	$(RM) $(TEMP)\dlb.exe
+	$(RM) $(TEMP)\bigtile.exe
+	$(RM) $(TEMP)\magtile.exe
+	$(RM) $(TEMP)\txtbg.exe
+	$(RM) $(TEMP)\txtmerge.exe
 	$(RM) $(TEMP)\*.rsp
 	$(RM) $(TEMP)\*.def
 	$(RM) $(TEMP)\*.map
@@ -1748,9 +1784,10 @@ spotless : clean
 	$(RM) $(TEMP)\$(GUIDEBOO).txt
 	$(RM) $(TEMP)\license
 	$(MAKEB) DATDIR=$(TEMP) removedat
+	$(RM) x11*tiles*
 
 uninstall:
-	$(RM) $(GAMEDIR)\$(GAME).exe
+	$(RM) $(GAMEFILE)
 	$(RM) $(GAMEDIR)\$(GAME).ico
 	$(RM) $(GAMEDIR)\$(GAME).cmd
 	$(RM) $(GAMEDIR)\$(DLBFILE)
@@ -1776,7 +1813,7 @@ uninstall:
 	$(RM) $(GAMEDIR)\readme.txt
 	$(RM) $(GAMEDIR)\slamfaq.txt
 	$(RM) $(GAMEDIR)\history.txt
-	$(RM) $(GAMEDIR)\x11tiles
+	$(RM) $(GAMEDIR)\x11*tiles*
 	$(RM) $(GAMEDIR)\pet_mark.xbm
 	$(RM) $(GAMEDIR)\rip.xpm
 
@@ -1785,6 +1822,13 @@ finish: $(GAMEDIR)\$(GUIDEBOO).txt
 	$(CP) $(NHSRC)\readme.txt $(GAMEDIR)
 	$(CP) $(NHSRC)\slamfaq.txt $(GAMEDIR)
 	$(CP) $(NHSRC)\history.txt $(GAMEDIR)
+.IF $(with_x11) == yes
+	$(CP) x11tiles $(GAMEDIR)
+	$(CP) x11bigtiles $(GAMEDIR)
+	$(CP) x11big3dtiles $(GAMEDIR)
+	$(CP) $(WINX11)\$(GAME).ad $(GAMEDIR)
+	$(CP) $(WINX11)\$(GAME).rc $(GAMEDIR)
+.END
 
 $(GAMEDIR)\$(GUIDEBOO).txt : $(TEMP)\$(GUIDEBOO).txt
 	$(CP) $(TEMP)\$(GUIDEBOO).txt $(GAMEDIR)
@@ -1879,6 +1923,8 @@ $(OBJ)\lock.o     : $(SRC)\$(CB) $(HACK_H)
 $(OBJ)\mail.o     : $(SRC)\$(CB) $(HACK_H) $(INCL)\mail.h
 	$(SRCCC)
 $(OBJ)\makemon.o  : $(SRC)\$(CB) $(HACK_H) $(INCL)\epri.h $(INCL)\emin.h
+	$(SRCCC)
+$(OBJ)\mapglyph.o : $(SRC)\$(CB) $(HACK_H)
 	$(SRCCC)
 $(OBJ)\mcastu.o   : $(SRC)\$(CB) $(HACK_H)
 	$(SRCCC)
@@ -2020,55 +2066,69 @@ $(OBJ)\gypsy.o     : $(SRC)\$(CB) $(HACK_H) $(INCL)\egyp.h $(INCL)\qtext.h
 $(OBJ)\tech.o    : $(SRC)\$(CB) $(HACK_H) $(INCL)\tech.h
 	$(SRCCC)
 
-$(OBJ)/Window.o: $(WINX11)\Window.c $(INCL)\xwindowp.h $(INCL)\xwindow.h \
-		$(CONFIG_H)
+
+$(OBJ)\Window.o: $(WINX11)\Window.c $(INCL)\xwindowp.h $(INCL)\xwindow.h $(CONFIG_H)
 	$(CC) -o$(OBJ)\Window.o $(CFLAGS) -c $(WINX11)\Window.c
-$(OBJ)/dialogs.o: $(WINX11)\dialogs.c $(CONFIG_H)
+$(OBJ)\dialogs.o: $(WINX11)\dialogs.c $(CONFIG_H)
 	$(CC) -o$(OBJ)\dialogs.o $(CFLAGS) -c $(WINX11)\dialogs.c
-$(OBJ)/winX.o: $(WINX11)\winX.c $(HACK_H) $(INCL)\winX.h $(INCL)\dlb.h \
-		$(INCL)\patchlevel.h $(WINX11)\nh72icon \
-		$(WINX11)\nh56icon $(WINX11)\nh32icon
+$(OBJ)\winX.o: $(WINX11)\winX.c $(HACK_H) $(INCL)\winX.h $(INCL)\dlb.h \
+		$(INCL)\patchlevel.h $(WINX11)\nh72icon $(WINX11)\nh56icon $(WINX11)\nh32icon
 	$(CC) $(CFLAGS) -c $(WINX11)\winX.c -o$(OBJ)\winX.o
-$(OBJ)/winmap.o: $(WINX11)\winmap.c $(INCL)\xwindow.h $(HACK_H) $(INCL)\dlb.h \
-		$(INCL)\winX.h $(INCL)\tile2x11.h
+$(OBJ)\winmap.o: $(WINX11)\winmap.c $(INCL)\xwindow.h $(HACK_H) \
+		$(INCL)\dlb.h $(INCL)\winX.h $(INCL)\tile2x11.h
 	$(CC) $(CFLAGS) -c $(WINX11)\winmap.c -o $(OBJ)\winmap.o
-$(OBJ)/winmenu.o: $(WINX11)\winmenu.c $(HACK_H) $(INCL)\winX.h
+$(OBJ)\winmenu.o: $(WINX11)\winmenu.c $(HACK_H) $(INCL)\winX.h
 	$(CC) $(CFLAGS) -c $(WINX11)\winmenu.c -o $(OBJ)\winmenu.o
-$(OBJ)/winmesg.o: $(WINX11)\winmesg.c $(INCL)\xwindow.h $(HACK_H) $(INCL)\winX.h
+$(OBJ)\winmesg.o: $(WINX11)\winmesg.c $(INCL)\xwindow.h $(HACK_H) $(INCL)\winX.h
 	$(CC) $(CFLAGS) -c $(WINX11)\winmesg.c -o$(OBJ)\winmesg.o
-$(OBJ)/winmisc.o: $(WINX11)\winmisc.c $(HACK_H) $(INCL)\func_tab.h \
+$(OBJ)\winmisc.o: $(WINX11)\winmisc.c $(HACK_H) $(INCL)\func_tab.h \
 		$(INCL)\winX.h
 	$(CC) $(CFLAGS) -c $(WINX11)\winmisc.c -o$(OBJ)\winmisc.o
-$(OBJ)/winstat.o: $(WINX11)\winstat.c $(HACK_H) $(INCL)\winX.h
+$(OBJ)\winstat.o: $(WINX11)\winstat.c $(HACK_H) $(INCL)\winX.h
 	$(CC) $(CFLAGS) -c $(WINX11)\winstat.c -o$(OBJ)\winstat.o
-$(OBJ)/wintext.o: $(WINX11)\wintext.c $(HACK_H) $(INCL)\winX.h $(INCL)\xwindow.h
+$(OBJ)\wintext.o: $(WINX11)\wintext.c $(HACK_H) $(INCL)\winX.h $(INCL)\xwindow.h
 	$(CC) $(CFLAGS) -c $(WINX11)\wintext.c -o$(OBJ)\wintext.o
-$(OBJ)/winval.o: $(WINX11)\winval.c $(HACK_H) $(INCL)\winX.h
+$(OBJ)\winval.o: $(WINX11)\winval.c $(HACK_H) $(INCL)\winX.h
 	$(CC) $(CFLAGS) -c $(WINX11)\winval.c -o$(OBJ)\winval.o
 
-$(OBJ)/tile.o: $(NHSRC)\src\tile.c $(HACK_H)
+$(OBJ)\tile.o: $(NHSRC)\src\tile.c $(HACK_H)
 	$(CC) $(CFLAGS) -c $(NHSRC)\src\tile.c -o$(OBJ)\tile.o
 
 $(TEMP)\tilemap.exe: ..\win\share\tilemap.c $(HACK_H)
-	$(CC) $(GCCO) $(WARN) -I$(INCL) $(CDFLAGS) $(STDC) $(WINX11CFLAGS) $(LFLAGS) -o $(TEMP)\tilemap.exe ..\win\share\tilemap.c $(LIBS)
+	$(CC) $(GCCO) $(WARN) -I$(INCL) $(CDFLAGS) $(STDC) $(WINX11CFLAGS) $(LFLAGS) \
+ -o $(TEMP)\tilemap.exe ..\win\share\tilemap.c $(LIBS)
 $(NHSRC)\src\tile.c: $(TEMP)\tilemap.exe
 	$(TEMP)\tilemap
 
-x11tiles: $(TEMP)\tile2x11.exe $(WINSHARE)\monsters.txt \
-				$(WINSHARE)\objects.txt \
-				$(WINSHARE)\other.txt
-	$(TEMP)\tile2x11.exe $(WINSHARE)\monsters.txt $(WINSHARE)\objects.txt \
-				$(WINSHARE)\other.txt
-	$(CP) x11tiles $(GAMEDIR)\x11tiles
+TEXT_IO = $(OBJ)\tiletext.o $(OBJ)\tiletxt.o $(OBJ)\drawing.o $(OBJ)\decl.o $(OBJ)\monst.o $(OBJ)\objects.o
 
-TEXT_IO = $(OBJ)\tiletext.o \
-	  $(OBJ)\tiletxt.o \
-	  $(OBJ)\drawing.o \
-	  $(OBJ)\decl.o \
-	  $(OBJ)\monst.o \
-	  $(OBJ)\objects.o
+$(TEMP)\txtbg.exe: $(WINSHARE)\txtbg.c $(HACK_H) ..\include\tile.h $(TEXT_IO)
+	$(CC) $(GCCO) $(WARN) -I$(INCL) $(CDFLAGS) $(STDC) $(WINX11CFLAGS) $(LFLAGS) \
+ -o $(TEMP)\txtbg.exe $(WINSHARE)\txtbg.c $(TEXT_IO) $(LIBS)
 
-$(OBJ)\tiletext.o: ../win/share/tiletext.c $(CONFIG_H) $(WINSHARE)\tile.h
+$(TEMP)\txtmerge.exe: $(WINSHARE)\txtmerge.c $(CONFIG_H) ..\include\tile.h $(TEXT_IO)
+	$(CC) $(GCCO) $(WARN) -I$(INCL) $(CDFLAGS) $(STDC) $(WINX11CFLAGS) $(LFLAGS) \
+ -o $(TEMP)\txtmerge.exe $(WINSHARE)\txtmerge.c $(TEXT_IO) $(LIBS)
+
+$(TEMP)\magtile.exe: $(WINSHARE)\magtile.c $(CONFIG_H) ../include/tile.h $(TEXT_IO)
+	$(CC) $(GCCO) $(WARN) -I$(INCL) $(CDFLAGS) $(STDC) $(WINX11CFLAGS) $(LFLAGS) \
+ -o $(TEMP)\magtile.exe $(WINSHARE)\magtile.c $(TEXT_IO) $(LIBS)
+
+$(TEMP)\bigtile.exe: $(WINSHARE)\bigtile.c $(CONFIG_H) ../include/tile.h $(TEXT_IO)
+	$(CC) $(GCCO) $(WARN) -I$(INCL) $(CDFLAGS) $(STDC) $(WINX11CFLAGS) $(LFLAGS) \
+ -o $(TEMP)\bigtile.exe $(WINSHARE)\bigtile.c $(TEXT_IO) $(LIBS)
+
+x11tiles: $(TEMP)\tile2x11.exe $(WINSHARE)\monsters.txt $(WINSHARE)\objects.txt $(WINSHARE)\other.txt
+	$(TEMP)\tile2x11.exe $(WINSHARE)\monsters.txt $(WINSHARE)\objects.txt $(WINSHARE)\other.txt
+
+x11bigtiles: $(TEMP)\tile2x11.exe $(WINSHARE)\mon32.txt $(WINSHARE)\obj32.txt $(WINSHARE)\oth32.txt
+	$(TEMP)\tile2x11.exe -o x11bigtiles $(WINSHARE)\mon32.txt $(WINSHARE)\obj32.txt $(WINSHARE)\oth32.txt
+
+x11big3dtiles: $(TEMP)\tile2x11.exe $(WINSHARE)\mon3d.txt $(WINSHARE)\obj3d.txt $(WINSHARE)\oth3d.txt
+	$(TEMP)\tile2x11.exe -o x11big3dtiles $(WINSHARE)\mon3d.txt $(WINSHARE)\obj3d.txt $(WINSHARE)\oth3d.txt
+
+
+$(OBJ)\tiletext.o: $(WINSHARE)\tiletext.c $(CONFIG_H) $(WINSHARE)\tile.h
 	$(CC) $(CFLAGS) -c $(WINSHARE)\tiletext.c -o$(OBJ)\tiletext.o
 $(OBJ)\tiletxt.o: $(WINSHARE)\tilemap.c $(HACK_H)
 	$(CC) $(CFLAGS) -c -DTILETEXT $(WINSHARE)\tilemap.c -o$(OBJ)\tiletxt.o
@@ -2083,6 +2143,61 @@ rip.xpm: $(WINX11)\rip.xpm
 	$(CP) $(WINX11)\rip.xpm $(GAMEDIR)\rip.xpm
 
 $(OBJ)\tile2x11.o : $(WINX11)\tile2x11.c $(INCL)\tile2x11.h
-	$(CC) $(CFLAGS) -o$(OBJ)\tile2x11.o -c $(WINX11)\tile2x11.c \
-		-I$(WINSHARE)
+	$(CC) $(CFLAGS) -o$(OBJ)\tile2x11.o -c $(WINX11)\tile2x11.c -I$(WINSHARE)
+
+$(WINSHARE)\mon32.txt:	$(TEMP)\txtbg.exe $(WINSHARE)\mon32-t.txt
+	$(TEMP)\txtbg $(WINSHARE)\mon32-t.txt $(WINSHARE)\mon32.txt
+
+$(WINSHARE)\obj32.txt:	$(TEMP)\txtbg.exe $(WINSHARE)\obj32-t.txt
+	$(TEMP)\txtbg.exe $(WINSHARE)\obj32-t.txt $(WINSHARE)\obj32.txt
+
+$(WINSHARE)\oth32.txt:	$(TEMP)\txtbg.exe $(WINSHARE)\oth32-t.txt
+	$(TEMP)\txtbg.exe $(WINSHARE)\oth32-t.txt $(WINSHARE)\oth32.txt
+
+$(WINSHARE)\mon32-t.txt:	$(TEMP)\txtmerge.exe $(WINSHARE)\monmag.txt \
+ $(WINSHARE)\mon32mi.txt $(WINSHARE)\mon32alg.txt $(WINSHARE)\mon32aw.txt
+	$(TEMP)\txtmerge.exe $(WINSHARE)\mon32-t.txt $(WINSHARE)\monmag.txt \
+ -b204040 $(WINSHARE)\mon32mi.txt -bff00ff $(WINSHARE)\mon32alg.txt -bff00ff $(WINSHARE)\mon32aw.txt
+
+$(WINSHARE)\obj32-t.txt:	$(TEMP)\txtmerge.exe $(WINSHARE)\objmag.txt \
+ $(WINSHARE)\obj32mi.txt $(WINSHARE)\obj32se.txt $(WINSHARE)\obj32alg.txt
+	$(TEMP)\txtmerge.exe $(WINSHARE)\obj32-t.txt $(WINSHARE)\objmag.txt \
+ -b204040 $(WINSHARE)\obj32mi.txt -b $(WINSHARE)\obj32se.txt -bff00ff $(WINSHARE)\obj32alg.txt
+
+$(WINSHARE)\oth32-t.txt:	$(TEMP)\txtmerge.exe $(WINSHARE)\othmag.txt \
+ $(WINSHARE)\oth32mi.txt $(WINSHARE)\oth32se.txt $(WINSHARE)\oth32alg.txt
+	$(TEMP)\txtmerge.exe $(WINSHARE)\oth32-t.txt $(WINSHARE)\othmag.txt \
+ -b204040 $(WINSHARE)\oth32mi.txt -b $(WINSHARE)\oth32se.txt -bff00ff $(WINSHARE)\oth32alg.txt
+
+$(WINSHARE)\monmag.txt: $(TEMP)\magtile.exe $(WINSHARE)\monsters.txt
+	$(TEMP)\magtile.exe
+
+$(WINSHARE)\objmag.txt: $(TEMP)\magtile.exe $(WINSHARE)\objects.txt
+	$(TEMP)\magtile.exe
+
+$(WINSHARE)\othmag.txt: $(TEMP)\magtile.exe $(WINSHARE)\other.txt
+	$(TEMP)\magtile.exe
+
+$(WINSHARE)\mon3d.txt:	$(TEMP)\txtmerge.exe $(WINSHARE)\monbig.txt $(WINSHARE)\mon3dmi.txt
+	$(TEMP)\txtmerge.exe $(WINSHARE)\mon3d.txt $(WINSHARE)\monbig.txt -b204040 $(WINSHARE)\mon3dmi.txt
+
+$(WINSHARE)\obj3d.txt:	$(TEMP)\txtmerge.exe $(WINSHARE)\objbig.txt
+	cp $(WINSHARE)\objbig.txt $(WINSHARE)\obj3d.txt
+
+$(WINSHARE)\oth3d.txt:	$(TEMP)\txtmerge.exe $(WINSHARE)\othbig.txt \
+ $(WINSHARE)\oth3dmi.txt $(WINSHARE)\oth-2kmi.txt $(WINSHARE)\oth3dse.txt
+	$(TEMP)\txtmerge.exe $(WINSHARE)\oth3d.txt $(WINSHARE)\othbig.txt \
+ -b204040 $(WINSHARE)\oth3dmi.txt -b204040 $(WINSHARE)\oth-2kmi.txt -b $(WINSHARE)\oth3dse.txt
+
+$(WINSHARE)\monbig.txt: $(TEMP)\bigtile.exe $(WINSHARE)\mon32-t.txt \
+ $(WINSHARE)\obj32-t.txt $(WINSHARE)\oth32-t.txt
+	$(TEMP)\bigtile.exe
+
+$(WINSHARE)\objbig.txt: $(TEMP)\bigtile.exe $(WINSHARE)\mon32-t.txt \
+ $(WINSHARE)\obj32-t.txt $(WINSHARE)\oth32-t.txt
+	$(TEMP)\bigtile.exe
+
+$(WINSHARE)\othbig.txt: $(TEMP)\bigtile.exe $(WINSHARE)\mon32-t.txt \
+$(WINSHARE)\obj32-t.txt $(WINSHARE)\oth32-t.txt
+	$(TEMP)\bigtile.exe
 
