@@ -1385,14 +1385,14 @@ boolean moldy;
     Strcpy(cname, corpse_xname(corpse, TRUE));
     mcarry = (where == OBJ_MINVENT) ? corpse->ocarry : 0;
     mtmp = revive(corpse);      /* corpse is gone if successful */
-    /*
-     * [ALI] Override revive's HP calculation. The HP that a mold starts
-     * with do not depend on the HP of the monster who's corpse it grew on.
-     */
-    if (moldy)
-	mtmp->mhp = mtmp->mhpmax;
 
     if (mtmp) {
+	/*
+	 * [ALI] Override revive's HP calculation. The HP that a mold starts
+	 * with do not depend on the HP of the monster whose corpse it grew on.
+	 */
+	if (moldy)
+	    mtmp->mhp = mtmp->mhpmax;
 	chewed = !moldy && (mtmp->mhp < mtmp->mhpmax);
 	if (chewed) cname = cname_buf;  /* include "bite-covered" prefix */
 	switch (where) {
@@ -1478,9 +1478,12 @@ long timeout;
     pmtype = pm_mkclass(S_FUNGUS, 0);
     if ((pmtype != -1) && (mons[pmtype].mmove)) pmtype = pm_mkclass(S_FUNGUS, 0);
 
-    /* Molds don't grow in adverse conditions  --ALI */
-    if (is_pool(body->ox, body->oy) || is_lava(body->ox, body->oy) ||
-      is_ice(body->ox, body->oy))
+    /* [ALI] Molds don't grow in adverse conditions.  If it ever
+     * becomes possible for molds to grow in containers we should
+     * check for iceboxes here as well.
+     */
+    if (body->where == OBJ_FLOOR && (is_pool(body->ox, body->oy) ||
+      is_lava(body->ox, body->oy) || is_ice(body->ox, body->oy)))
 	pmtype = -1;
 
     if (pmtype != -1) {
