@@ -3520,8 +3520,10 @@ struct trap *ttmp;
 	bad_tool = (obj->cursed ||
 				(obj->otyp != POT_WATER));
 	fails = try_disarm(ttmp, bad_tool);
-
 	if (fails < 2) return fails;
+
+	useup(obj);
+	makeknown(POT_WATER);
 	You("manage to extinguish the pilot light!");
 	cnv_trap_obj(POT_OIL, 4 - rnl(4), ttmp);
 	more_experienced(1, 5);
