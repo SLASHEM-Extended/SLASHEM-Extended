@@ -103,6 +103,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -Actioned feature request 459915: displacer beast appearance.
 -Actioned feature request 422908: Flame Sphere+ water blast trap.
 -Actioned feature request 616101: Cannibalism and Cavemen.
+-Actioned feature request 513873: skill in Spell of Enchant <foo>.
 
 See history.txt for changes made in previous versions.
 

@@ -939,9 +939,9 @@ boolean atme;
 	case SPE_ACID_STREAM:
 	case SPE_POISON_BLAST:
 		if (tech_inuse(T_SIGIL_TEMPEST)) {
-			weffects(pseudo);
-		break;
-		}
+		    weffects(pseudo);
+		    break;
+		} /* else fall through... */
 	/* these spells are all duplicates of wand effects */
 	case SPE_FORCE_BOLT:
 	case SPE_SLEEP:
@@ -976,13 +976,15 @@ boolean atme;
 		} else weffects(pseudo);
 		update_inventory();	/* spell may modify inventory */
 		break;
-/* These are all duplicates of scroll effects */
+	/* these are all duplicates of scroll effects */
 	case SPE_REMOVE_CURSE:
 	case SPE_CONFUSE_MONSTER:
 	case SPE_DETECT_FOOD:
 	case SPE_CAUSE_FEAR:
+#if 0
 		/* high skill yields effect equivalent to blessed scroll */
 		if (role_skill >= P_SKILLED) pseudo->blessed = 1;
+#endif
 		/* fall through */
 	case SPE_CHARM_MONSTER:
 	case SPE_MAGIC_MAPPING:
@@ -995,9 +997,15 @@ boolean atme;
 
 	case SPE_ENCHANT_WEAPON:                
 	case SPE_ENCHANT_ARMOR:
-		if (!rn2(10)) 
-		(void) seffects(pseudo);
-		else Your("enchantment failed!");                                                               
+		if (role_skill >= P_EXPERT) n = 8;
+		else if (role_skill >= P_SKILLED) n = 10;
+		else if (role_skill >= P_BASIC) n = 12;
+		else n = 14;	/* Unskilled or restricted */
+		if (!rn2(n)) {
+		    pseudo->blessed = 0;
+		    (void) seffects(pseudo);
+		} else
+		    Your("enchantment failed!");
 		break;
 
 	/* these are all duplicates of potion effects */
@@ -1006,8 +1014,10 @@ boolean atme;
 	case SPE_DETECT_MONSTERS:
 	case SPE_LEVITATION:
 	case SPE_RESTORE_ABILITY:
+#if 0
 		/* high skill yields effect equivalent to blessed potion */
 		if (role_skill >= P_SKILLED) pseudo->blessed = 1;
+#endif
 		/* fall through */
 	case SPE_INVISIBILITY:
 		(void) peffects(pseudo);
