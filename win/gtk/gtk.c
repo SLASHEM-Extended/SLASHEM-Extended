@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.14 2000-09-29 15:56:52 j_ali Exp $
+  $Id: gtk.c,v 1.15 2000-11-08 07:16:58 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -17,6 +17,8 @@
 #else
 #include "patchlevel.h"
 #endif
+
+/* #define DEBUG */			/* Uncomment for debugging */
 
 static int	initialized;
 static int	initialized2;
@@ -878,13 +880,15 @@ select_node_fill(struct select_node *node, int level)
     if (no_opts > 1)
     {
 	node->no_sons = no_opts + 1;
-	count = no_opts + 3;
+	count = no_opts + 2;
     }
     else
     {
 	node->no_sons = no_opts;
-	count = no_opts + 1;
+	count = no_opts;
     }
+    if (!level)
+	count++;
     node->sons = (struct select_node *)alloc(node->no_sons *
       sizeof(struct select_node));
     for (i = 0; i < node->no_sons; i++)
@@ -1067,6 +1071,83 @@ select_node_free(struct select_node *node)
     free(node->sons);
 }
 
+#ifdef DEBUG
+static void
+select_node_dump(struct select_node *node, int level)
+{
+    int i;
+    static int count;
+    char buf[BUFSZ];
+    char *titles[] = { "Role", "Race", "Gender", "Alignment" };
+
+    if (level) {
+	for(i = 0; i < level; i++)
+	    fputs("    ", stderr);
+	sprintf(buf, "[%d] 0x%lX: ", count++, node->key);
+	switch (level)
+	{
+	case 1:
+	    if (SELECT_KEY_ROLENUM(node->key) >= 0)
+		fprintf(stderr, "%s%s", buf,
+		  roles[SELECT_KEY_ROLENUM(node->key)].name.m);
+	    else {
+		fprintf(stderr, "[%d] ---\n", count - 1);
+		for(i = 0; i < level; i++)
+		    fputs("    ", stderr);
+		fprintf(stderr, "[%d] 0x%lX: random", count++, node->key);
+	    }
+	    break;
+	case 2:
+	    if (SELECT_KEY_RACENUM(node->key) >= 0)
+		fprintf(stderr, "%s%s", buf,
+		  races[SELECT_KEY_RACENUM(node->key)].noun);
+	    else {
+		fprintf(stderr, "[%d] ---\n", count - 1);
+		for(i = 0; i < level; i++)
+		    fputs("    ", stderr);
+		fprintf(stderr, "[%d] 0x%lX: random", count++, node->key);
+	    }
+	    break;
+	case 3:
+	    if (SELECT_KEY_GENDNUM(node->key) >= 0)
+		fprintf(stderr, "%s%s", buf,
+		  genders[SELECT_KEY_GENDNUM(node->key)].adj);
+	    else {
+		fprintf(stderr, "[%d] ---\n", count - 1);
+		for(i = 0; i < level; i++)
+		    fputs("    ", stderr);
+		fprintf(stderr, "[%d] 0x%lX: random", count++, node->key);
+	    }
+	    break;
+	case 4:
+	    if (SELECT_KEY_ALIGNNUM(node->key) >= 0)
+		fprintf(stderr, "%s%s", buf,
+		  aligns[SELECT_KEY_ALIGNNUM(node->key)].adj);
+	    else {
+		fprintf(stderr, "[%d] ---\n", count - 1);
+		for(i = 0; i < level; i++)
+		    fputs("    ", stderr);
+		fprintf(stderr, "[%d] 0x%lX: random", count++, node->key);
+	    }
+	    break;
+	}
+	fputc('\n', stderr);
+    }
+    else
+	count = 0;
+    if (node->no_sons) {
+	for(i = 0; i < level; i++)
+	    fputs("    ", stderr);
+	if (level)
+	    fprintf(stderr, "%s\n", titles[level]);
+	else
+	    fprintf(stderr, "[%d] %s\n", count++, titles[0]);
+	for(i = 0; i < node->no_sons; i++)
+	    select_node_dump(node->sons + i, level + 1);
+    }
+}
+#endif
+
 /*
  * Initialise the player selection code by creating a temporary tree
  * of all the possible options, using it to generate a set of menu
@@ -1082,19 +1163,30 @@ init_select_player(void)
     root = (struct select_node *)alloc(sizeof(struct select_node));
     root->key = 0;
     num_opts = select_node_fill(root, 0);
+#ifdef DEBUG
+    select_node_dump(root, 0);
+#endif
     menu_items = (GtkItemFactoryEntry *)alloc(sizeof(GtkItemFactoryEntry) *
       (num_opts + SIZE(menu_template) - 1));
     nmenu_items = 0;
-    for (i = 0; i < SIZE(menu_template); i++)
-    {
+    for (i = 0; i < SIZE(menu_template); i++) {
 	if (menu_template[i].path)
 	    menu_items[nmenu_items++] = menu_template[i];
 	else
 	    nmenu_items = select_node_traverse(root, nmenu_items, 0);
     }
-    if (nmenu_items > num_opts)
+    if (nmenu_items > num_opts + SIZE(menu_template) - 1)
 	panic("GTK: init_select_player: Too many options (%d instead of %d)",
-	  nmenu_items, num_opts);
+	  nmenu_items, num_opts + SIZE(menu_template) - 1);
+#ifdef DEBUG
+    else if (nmenu_items < num_opts + SIZE(menu_template) - 1) {
+	impossible("GTK: init_select_player: Too few options (%d instead of %d)",
+	  nmenu_items, num_opts + SIZE(menu_template) - 1);
+	for(i = 0; i < nmenu_items; i++) {
+	    fprintf(stderr, "[%d] %s\n", i, menu_items[i].path);
+	}
+    }
+#endif
     select_node_free(root);
     free(root);
 }
