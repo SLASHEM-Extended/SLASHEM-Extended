@@ -1,11 +1,11 @@
          Copyright (c) NetHack Development Team 1990-2002
-         Copyright (c) Slash'EM Development Team 2002-2003
+         Copyright (c) Slash'EM Development Team 2002-2004
          NetHack may be freely redistributed.  See license for details.
          ==============================================================
                     Instructions for compiling and installing
          Slash'EM 0.0.7 on a Windows NT, 95, 98, Me, 2000, or XP system
          ==============================================================
-                        Last revision: March 6, 2003
+                        Last revision: January 17, 2004
 
 This file deals with compiling Slash'EM with gcc (the GNU Compiler Collection)
 and other free utility programs and libraries.
@@ -33,16 +33,10 @@ You will need
 
 To build the GTK interface, you will also need:
 
-  o glib runtime and development packages version 2.0 or later
-  o gtk+ runtime and development packages version 2.0 or later
-  o atk runtime and development packages version 1.0 or later
-  o pango runtime and development packages version 1.0 or later
-  o libiconv runtime and development packages version 1.7 or later
-  o libintl version 0.10.40 or later
-  o pkgconfig version 0.14 or later
-  o If using Gtk+ version 2.2 or later, freetype version 2.0.5 or later
+  o GTK Development Environment version 2.2.1 or later
+  o GTK Runtime Environment version 2.2.1 or later
 
-All these packages can be downloaded from http://www.gtk.org/win32/
+Both these packages can be downloaded from http://www.dropline.net/gtk/
 
 Setting up the MinGW build environment
 --------------------------------------
@@ -58,14 +52,11 @@ to the end of your autoexec.bat file and re-booting:
 Setting up the GTK build environment
 ------------------------------------
 
-1.  Extract all packages (both runtime and development) to c:\gtk2
-2.  Simplify the include paths by copying:
-	o c:\gtk2\include\glib-2.0\* to c:\gtk2\include
-	o c:\gtk2\include\gtk-2.0\* to c:\gtk2\include
-	o c:\gtk2\include\atk-1.0\* to c:\gtk2\include
-	o c:\gtk2\include\pango-1.0\* to c:\gtk2\include
-	o c:\gtk2\lib\glib-2.0\include\* to c:\gtk2\include
-	o c:\gtk2\lib\gtk-2.0\include\* to c:\gtk2\include
+1.  Run the GTK Development Environment installer and install in c:\win-gtk
+2.  Run the GTK Runtime Environment installer and install in
+	c:\Program Files\Common Files\GTK\2.0
+3.  Add c:\Program Files\Common Files\GTK\2.0\lib and c:\win-gtk\bin
+	to your path.
 
 Setting up the Slash'EM build environment
 -----------------------------------------
@@ -86,7 +77,7 @@ Setting up the Slash'EM build environment
 	GAMEDIR		The directory where the game will be installed.
 			Default: \games\slam32d
 	MW32GTK		The directory where the MinGW version of the Gtk+ 2.0
-			tree is installed.  Default: \mingw32\gtk2
+			tree is installed.  Default: /win-gtk
 	MS_BITFIELDS	Switch between gcc 2.x and 3.x command line flags.
 			Default: gcc 3.x (MinGW 2.x)
 	RDEL		Switch between Win 95 and Win 2000 derived systems.
