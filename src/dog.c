@@ -660,9 +660,8 @@ register struct obj *obj;
 	struct permonst *fptr = &mons[obj->corpsenm];
 
 	/*WAC to catch angels without edog struct*/
-	boolean has_edog = FALSE;
-	has_edog = !mon->isminion;
-
+	/* [ALI] and potential pets which are currently still untamed */
+	boolean has_edog = mon->mtame && !mon->isminion;
 
 	if (is_quest_artifact(obj) || obj_resists(obj, 0, 95))
 	    return (obj->cursed ? TABU : APPORT);
