@@ -3831,7 +3831,7 @@ register int dx,dy;
 	    if (zap_hit((int) u.uac, 0)) {
 		range -= 2;
 		pline("%s hits you!", The(fltxt));
-		if (Reflecting) {
+		if (Reflecting && abs(type) != ZT_SPELL(ZT_FIRE)) {
 		    if (!Blind) {
 		    	(void) ureflects("But %s reflects from your %s!", "it");
 		    } else
