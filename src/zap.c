@@ -431,7 +431,11 @@ struct monst *mtmp;
 	mstatusline(mtmp);
 	if (notonhead) return;	/* don't show minvent for long worm tail */
 
+#ifndef GOLDOBJ
 	if (mtmp->minvent || mtmp->mgold) {
+#else
+	if (mtmp->minvent) {
+#endif
 	    for (otmp = mtmp->minvent; otmp; otmp = otmp->nobj)
 		otmp->dknown = 1;	/* treat as "seen" */
 	    (void) display_minventory(mtmp, MINV_ALL, (char *)0);
@@ -3954,7 +3958,9 @@ register int dx,dy;
 			    else
 				hit(fltxt, mon, "!");
 			}
+#ifndef GOLDOBJ
 			mon->mgold = 0L;
+#endif
 
 /* note: worn amulet of life saving must be preserved in order to operate */
 #define oresist_disintegration(obj) \

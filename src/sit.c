@@ -8,6 +8,7 @@
 void
 take_gold()
 {
+#ifndef GOLDOBJ
 	if (u.ugold <= 0)  {
 		You_feel("a strange sensation.");
 	} else {
@@ -15,6 +16,22 @@ take_gold()
 		u.ugold = 0;
 		flags.botl = 1;
 	}
+#else
+        struct obj *otmp;
+	int lost_money = 0;
+	for (otmp = invent; otmp; otmp = otmp->nobj) {
+		if (otmp->oclass == GOLD_CLASS) {
+			lost_money = 1;
+			delobj(otmp);
+		}
+	}
+	if (!lost_money)  {
+		You_feel("a strange sensation.");
+	} else {
+		You("notice you have no money!");
+		flags.botl = 1;
+	}
+#endif
 }
 
 int

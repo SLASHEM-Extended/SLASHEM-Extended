@@ -419,6 +419,18 @@ typedef unsigned char	uchar;
 
 #define DISPLAY_LAYERS	/* Improved support for transparent tile sets - ALI */
 
+/*
+ * Section 5:  EXPERIMENTAL STUFF
+ *
+ * Conditional compilation of new or experimental options are controlled here.
+ * Enable any of these at your own risk -- there are almost certainly
+ * bugs left here.
+ */
+
+/*#define GOLDOBJ */	/* Gold is kept on obj chains - Helge Hafting */
+
+/* End of Section 5 */
+
 #include "global.h"	/* Define everything else according to choices above */
 
 #endif /* CONFIG_H */

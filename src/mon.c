@@ -861,11 +861,19 @@ mpickgold(mtmp)
     register struct obj *gold;
 
     if ((gold = g_at(mtmp->mx, mtmp->my)) != 0) {
+#ifndef GOLDOBJ
 	mtmp->mgold += gold->quan;
 	delobj(gold);
 	if (cansee(mtmp->mx, mtmp->my) ) {
 	    if (flags.verbose && !mtmp->isgd)
 		pline("%s picks up some gold.", Monnam(mtmp));
+#else
+        obj_extract_self(gold);
+        add_to_minv(mtmp, gold);
+	if (cansee(mtmp->mx, mtmp->my) ) {
+	    if (flags.verbose && !mtmp->isgd)
+		pline("%s picks up some money.", Monnam(mtmp));
+#endif
 	    newsym(mtmp->mx, mtmp->my);
 	}
     }
@@ -1643,7 +1651,9 @@ register struct monst *mdef;
 #endif
 
 	discard_minvent(mdef);	/* release monster's inventory */
+#ifndef GOLDOBJ
 	mdef->mgold = 0L;
+#endif
 	m_detach(mdef, mdef->data);
 }
 
@@ -1689,6 +1699,7 @@ register struct monst *mdef;
 			(void) add_to_container(otmp, obj);
 		    }
 		}
+#ifndef GOLDOBJ
 		if (mdef->mgold) {
 			struct obj *au;
 			au = mksobj(GOLD_PIECE, FALSE, FALSE);
@@ -1697,6 +1708,7 @@ register struct monst *mdef;
 			(void) add_to_container(otmp, au);
 			mdef->mgold = 0;
 		}
+#endif
 		/* Archeologists should not break unique statues */
 		if (mdef->data->geno & G_UNIQ)
 			otmp->spe = 1;

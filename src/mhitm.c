@@ -1154,12 +1154,25 @@ label2:			if (mdef->mhp > 0) return 0;
 		break;
 	    case AD_SGLD:
 		tmp = 0;
+#ifndef GOLDOBJ
 		if (magr->mcan || !mdef->mgold) break;
 		/* technically incorrect; no check for stealing gold from
 		 * between mdef's feet...
 		 */
 		magr->mgold += mdef->mgold;
 		mdef->mgold = 0;
+#else
+                if (magr->mcan) break;
+		/* technically incorrect; no check for stealing gold from
+		 * between mdef's feet...
+		 */
+                {
+		    struct obj *gold = findgold(mdef->minvent);
+		    if (!gold) break;
+                    obj_extract_self(gold);
+		    add_to_minv(magr, gold);
+                }
+#endif
 		if (vis) {
 		    Strcpy(buf, Monnam(magr));
 		    pline("%s steals some gold from %s.", buf, mon_nam(mdef));

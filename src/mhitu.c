@@ -2672,6 +2672,7 @@ register struct monst *mon;
 		pline("%s tries to take your money, but fails...",
 				noit_Monnam(mon));
 	else {
+#ifndef GOLDOBJ
 		long cost;
 
 		if (u.ugold > (long)LARGEST_INT - 10L)
@@ -2691,6 +2692,27 @@ register struct monst *mon;
 		    mon->mgold += cost;
 		    flags.botl = 1;
 		}
+#else
+		long cost;
+                long umoney = money_cnt(invent);
+
+		if (umoney > (long)LARGEST_INT - 10L)
+			cost = (long) rnd(LARGEST_INT) + 500L;
+		else
+			cost = (long) rnd((int)umoney + 10) + 500L;
+		if (mon->mpeaceful) {
+			cost /= 5L;
+			if (!cost) cost = 1L;
+		}
+		if (cost > umoney) cost = umoney;
+		if (!cost) verbalize("It's on the house!");
+		else { 
+		    pline("%s takes %ld %s for services rendered!",
+			    noit_Monnam(mon), cost, currency(cost));
+                    money2mon(mon, cost);
+		    flags.botl = 1;
+		}
+#endif
 	}
 	if (!rn2(25)) mon->mcan = 1; /* monster is worn out */
 	if (!tele_restrict(mon)) rloc(mon);

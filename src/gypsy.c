@@ -19,11 +19,12 @@ gypsy_charge (mtmp, amount)
 	struct monst *mtmp;
 	long amount;
 {
+	long tmpamount; /* temp variable for big credit calculations */
 	/* Take from credit first */
 	if (amount > EGYP(mtmp)->credit) {
 		/* Do in several steps, for broken compilers */
-		u.ugold += EGYP(mtmp)->credit;
-		u.ugold -= amount;
+		tmpamount += EGYP(mtmp)->credit; /* [CWC] No point adding to Au, use a temp variable instead */
+		tmpamount -= amount;
 		EGYP(mtmp)->credit = 0;
 		flags.botl = 1;
 	} else
@@ -39,14 +40,23 @@ gypsy_offer (mtmp, cost, txt)
 	long cost;
 	char *txt;
 {
+#ifdef GOLDOBJ
+	long umoney;
+	umoney = money_cnt(invent);
+#endif
 	verbalize("For %ld credit I will %s!", cost, txt);
 	if (EGYP(mtmp)->credit >= cost) {
 		if (yn("Accept this offer?") == 'y') {
 			EGYP(mtmp)->credit -= cost;
 			return (TRUE);
 		}
+#ifndef GOLDOBJ
 	} else if (EGYP(mtmp)->credit + u.ugold >= cost)
 		verbalize("What a pity that I can't accept gold!");
+#else
+	} else if (EGYP(mtmp)->credit + umoney >= cost)
+		verbalize("What a pity that I can't accept money!");
+#endif
 		/* Maybe you could try gambling some of it for credit... */
 	else
 		verbalize("What a pity that you don't have enough!");
@@ -60,16 +70,29 @@ gypsy_bet (mtmp, minimum)
 {
 	char prompt[BUFSZ], buf[BUFSZ];
 	long bet = 0L;
+#ifdef GOLDOBJ
+	long umoney;
+	umoney = money_cnt(invent);
+#endif
 
-
-	if (minimum > EGYP(mtmp)->credit + u.ugold) {
+	if (minimum > EGYP(mtmp)->credit + 
+#ifndef GOLDOBJ
+													u.ugold) {
+#else
+ 													umoney) {		
+#endif
 		You("don't have enough money for the minimum bet.");
 		return (0L);
 	}
 
 	/* Prompt for an amount */
 	Sprintf(prompt, "Bet how much (%ld to %ld)?", minimum,
-			EGYP(mtmp)->credit + u.ugold);
+			EGYP(mtmp)->credit + 
+#ifndef GOLDOBJ
+													u.ugold);
+#else
+													umoney);													
+#endif
 	getlin(prompt, buf);
 	(void) sscanf(buf, "%ld", &bet);
 
@@ -82,7 +105,12 @@ gypsy_bet (mtmp, minimum)
 		You("must bet at least %ld.", minimum);
 		return (0L);
 	}
-	if (bet > EGYP(mtmp)->credit + u.ugold) {
+	if (bet > EGYP(mtmp)->credit +
+#ifndef GOLDOBJ
+								u.ugold) {
+#else
+								umoney) {												
+#endif
 		You("don't have that much money to bet!");
 		return (0L);
 	}
@@ -761,8 +789,14 @@ gypsy_chat (mtmp)
 	winid win;
 	anything any;
 	menu_item *selected;
+#ifdef GOLDOBJ
+	long umoney;
+#endif
 	int n;
 
+#ifdef GOLDOBJ
+	umoney = money_cnt(invent);
+#endif
 
 	/* Sanity checks */
 	if (!mtmp || !mtmp->mpeaceful || !mtmp->isgyp ||
@@ -772,8 +806,17 @@ gypsy_chat (mtmp)
 	/* Add up your available money */
 	You("have %ld zorkmid%s credit and are carrying %ld zorkmid%s.",
 			EGYP(mtmp)->credit, plur(EGYP(mtmp)->credit),
+#ifndef GOLDOBJ
 			u.ugold, plur(u.ugold));
-	money = EGYP(mtmp)->credit + u.ugold;
+#else
+			umoney, plur(umoney));			
+#endif
+	money = EGYP(mtmp)->credit +
+#ifndef GOLDOBJ
+											u.ugold;
+#else
+											umoney;
+#endif
 
 	/* Create the menu */
 	any.a_void = 0;	/* zero out all bits */

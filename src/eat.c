@@ -1949,6 +1949,11 @@ eatspecial() /* called after eating non-food */
 	victual.piece = (struct obj *)0;
 	victual.eating = 0;
 	if (otmp->oclass == GOLD_CLASS) {
+#ifdef GOLDOBJ
+		if (carried(otmp))
+		    useupall(otmp);
+		else
+#endif
 		dealloc_obj(otmp);
 		return;
 	}

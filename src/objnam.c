@@ -2164,11 +2164,19 @@ boolean from_user;
 #endif
 						) cnt=5000;
 		if (cnt < 1) cnt=1;
+#ifndef GOLDOBJ
 		if (from_user)
 		    pline("%d gold piece%s.", cnt, plur(cnt));
 		u.ugold += cnt;
 		flags.botl=1;
 		return (&zeroobj);
+#else
+                otmp = mksobj(GOLD_PIECE, FALSE, FALSE);
+		otmp->quan = cnt;
+                otmp->owt = weight(otmp);
+		flags.botl=1;
+		return (otmp);
+#endif
 	}
 	if (strlen(bp) == 1 &&
 	   (i = def_char_to_objclass(*bp)) < MAXOCLASSES && i > ILLOBJ_CLASS

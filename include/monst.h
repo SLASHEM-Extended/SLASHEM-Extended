@@ -134,7 +134,9 @@ struct monst {
 
 	long mtrapseen;		/* bitmap of traps we've been trapped in */
 	long mlstmv;		/* for catching up with lost time */
+#ifndef GOLDOBJ
 	long mgold;
+#endif
 	struct obj *minvent;
 
 	struct obj *mw;

@@ -48,7 +48,11 @@ static NEARDATA const char drop_types[] =
 int
 dodrop()
 {
+#ifndef GOLDOBJ
 	int result, i = (invent || u.ugold) ? 0 : (SIZE(drop_types) - 1);
+#else
+	int result, i = (invent) ? 0 : (SIZE(drop_types) - 1);
+#endif
 
 	if (*u.ushops) sellobj_state(SELL_DELIBERATE);
 	result = drop(getobj(&drop_types[i], "drop"));
@@ -533,7 +537,17 @@ void
 dropx(obj)
 register struct obj *obj;
 {
+#ifndef GOLDOBJ
 	if (obj->oclass != GOLD_CLASS || obj == invent) freeinv(obj);
+#else
+        /* Ensure update when we drop gold objects */
+        if (obj->oclass == GOLD_CLASS) flags.botl = 1;
+	/* Money is usually not in our inventory */
+	/*if (obj->oclass != GOLD_CLASS || obj == invent)*/ 
+        /* !!!! make sure we don't drop "created" gold not in inventory any more,*/
+        /* or this will crash !!!! */
+        freeinv(obj);
+#endif
 	if (!u.uswallow && ship_object(obj, u.ux, u.uy, FALSE)) return;
 	dropy(obj);
 }
@@ -623,11 +637,14 @@ int retry;
     int n, i, n_dropped = 0;
     long cnt;
     struct obj *otmp, *otmp2;
+#ifndef GOLDOBJ
     struct obj *u_gold = 0;
+#endif
     menu_item *pick_list;
     boolean all_categories = TRUE;
     boolean drop_everything = FALSE;
 
+#ifndef GOLDOBJ
     if (u.ugold) {
 	/* Hack: gold is not in the inventory, so make a gold object
 	   and put it at the head of the inventory list. */
@@ -637,6 +654,7 @@ int retry;
 	u_gold->nobj = invent;
 	invent = u_gold;
     }
+#endif
     if (retry) {
 	all_categories = (retry == -2);
     } else if (flags.menu_style == MENU_FULL) {
@@ -684,9 +702,11 @@ int retry;
 		cnt = pick_list[i].count;
 		if (cnt < otmp->quan && !welded(otmp) &&
 			(!otmp->cursed || otmp->otyp != LOADSTONE)) {
+#ifndef GOLDOBJ
 		    if (otmp->oclass == GOLD_CLASS)
 			(void) splitobj(otmp, otmp->quan - cnt);
 		    else
+#endif
 		    otmp = splitobj(otmp, cnt);
 		}
 		n_dropped += drop(otmp);
@@ -696,6 +716,7 @@ int retry;
     }
 
  drop_done:
+#ifndef GOLDOBJ
     if (u_gold && invent && invent->oclass == GOLD_CLASS) {
 	/* didn't drop [all of] it */
 	u_gold = invent;
@@ -703,6 +724,7 @@ int retry;
 	dealloc_obj(u_gold);
 	update_inventory();
     }
+#endif
     return n_dropped;
 }
 

@@ -397,6 +397,7 @@ struct mkroom	*sroom;
 {
 	register int sh, sx, sy;
 	struct monst *shk;
+	long shkmoney; /* Temporary placeholder for Shopkeeper's initial capital */
 
 	/* place the shopkeeper in the given room */
 	sh = sroom->fdoor;
@@ -486,15 +487,29 @@ struct mkroom	*sroom;
 	init_shk_services(shk);
 #endif
 
-	shk->mgold = 1000L + 30L*(long)rnd(100);	/* initial capital */
+  shkmoney = 1000L + 30L*(long)rnd(100);	/* initial capital */
+  						/* [CWC] Lets not create the money yet until we see if the
+  							 shk is a black marketeer, else we'll have to create
+  						   another money object, if GOLDOBJ is defined */
+
 	if (shp->shknms == shkrings)
 	    (void) mongets(shk, TOUCHSTONE);
 	nameshk(shk, shp->shknms);
 
 #ifdef BLACKMARKET
+	if (Is_blackmarket(&u.uz))
+    shkmoney = 7*shkmoney + rn2(3*shkmoney);
+#endif
+
+#ifndef GOLDOBJ
+	shk->mgold = shkmoney;	
+#else
+  mkmonmoney(shk, shkmoney);
+#endif
+
+#ifdef BLACKMARKET
 	if (Is_blackmarket(&u.uz)) {
 	  register struct obj *otmp;
-	  shk->mgold = 7*shk->mgold + rn2(3*shk->mgold);
 /* make sure black marketeer can wield Thiefbane */
 	  shk->data->maligntyp = -1;
 /* black marketeer's equipment */

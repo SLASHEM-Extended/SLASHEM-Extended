@@ -184,10 +184,17 @@ long
 botl_score()
 {
     int deepest = deepest_lev_reached(FALSE);
+#ifndef GOLDOBJ
     long ugold = u.ugold + hidden_gold();
 
     if ((ugold -= u.ugold0) < 0L) ugold = 0L;
     return ugold + u.urexp + (long)(50 * (deepest - 1))
+#else
+    long umoney = money_cnt(invent) + hidden_gold();
+
+    if ((umoney -= u.umoney0) < 0L) umoney = 0L;
+    return umoney + u.urexp + (long)(50 * (deepest - 1))
+#endif
 			  + (long)(deepest > 30 ? 10000 :
 				   deepest > 20 ? 1000*(deepest - 20) : 0);
 }
@@ -333,7 +340,13 @@ bot2str(char *newbot2)
 		newbot2[0] = '\0';
 	if (bot2_abbrev < 1)
 		Sprintf(nb = eos(newbot2), "%c:%-2ld ",
-		  oc_syms[GOLD_CLASS], u.ugold);
+		  oc_syms[GOLD_CLASS],
+#ifndef GOLDOBJ
+		u.ugold
+#else
+		money_cnt(invent)
+#endif
+		  );
 	else
 		nb = newbot2;
 	Sprintf(nb = eos(nb), "HP:%d(%d) Pw:%d(%d) AC:%-2d",
@@ -510,7 +523,13 @@ static bot_raw(reconfig)
     (void) describe_level(dlevel, TRUE);
     eos(dlevel)[-1] = 0;
     *rv++ = reconfig ? "dlevel" : dlevel;
-    *rv++ = reconfig ? "gold" : (Sprintf(gold, "%ld", u.ugold), gold);
+    *rv++ = reconfig ? "gold" : (Sprintf(gold, "%ld",
+#ifndef GOLDOBJ
+    u.ugold
+#else
+	money_cnt(invent)
+#endif
+    ), gold);
     *rv++ = reconfig ? "hp" : (Sprintf(hp, "%d", uhp), hp);
     *rv++ = reconfig ? "hpmax" :
 	    (Sprintf(hpmax, "%d", Upolyd ? u.mhmax : u.uhpmax), hpmax);

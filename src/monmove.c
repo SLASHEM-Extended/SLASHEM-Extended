@@ -327,6 +327,9 @@ register struct monst *mtmp;
 	register struct permonst *mdat;
 	register int tmp=0;
 	int inrange, nearby, scared;
+#ifdef GOLDOBJ
+        struct obj *ygold = 0, *lepgold = 0;
+#endif
 
 /*	Pre-movement adjustments	*/
 
@@ -500,9 +503,21 @@ toofar:
 
 /*	Now the actual movement phase	*/
 
+#ifndef GOLDOBJ
 	if(!nearby || mtmp->mflee || scared ||
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !u.ugold && (mtmp->mgold || rn2(2))) ||
+
+#else
+        if (mdat->mlet == S_LEPRECHAUN) {
+	    ygold = findgold(invent);
+	    lepgold = findgold(mtmp->minvent);
+	}
+
+	if(!nearby || mtmp->mflee || scared ||
+	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
+	   (mdat->mlet == S_LEPRECHAUN && !ygold && (lepgold || rn2(2))) ||
+#endif
 	   (is_wanderer(mdat) && !rn2(4)) || (Conflict && !mtmp->iswiz
 #ifdef BLACKMARKET
 	   && !Is_blackmarket(&u.uz)
@@ -748,6 +763,9 @@ not_special:
 	if (mtmp->mconf || (u.uswallow && mtmp == u.ustuck))
 		appr = 0;
 	else {
+#ifdef GOLDOBJ
+		struct obj *lepgold, *ygold;
+#endif
 		boolean should_see = (couldsee(omx, omy) &&
 				      (levl[gx][gy].lit ||
 				       !levl[omx][omy].lit) &&
@@ -763,7 +781,12 @@ not_special:
 			appr = 0;
 
 		if(monsndx(ptr) == PM_LEPRECHAUN && (appr == 1) &&
+#ifndef GOLDOBJ
 		   (mtmp->mgold > u.ugold))
+#else
+		   ( (lepgold = findgold(mtmp->minvent)) &&
+                   (lepgold->quan > ((ygold = findgold(invent)) ? ygold->quan : 0L)) ))
+#endif
 			appr = -1;
 
 		if (!should_see && can_track(ptr)) {
@@ -1256,6 +1279,9 @@ register struct monst *mtmp;
 {
 	boolean notseen, gotu;
 	register int disp, mx = mtmp->mux, my = mtmp->muy;
+#ifdef GOLDOBJ
+	long umoney = money_cnt(invent);
+#endif
 
 	/*
 	 * do cheapest and/or most likely tests first
@@ -1273,7 +1299,11 @@ register struct monst *mtmp;
 	if (notseen || Underwater) {
 	    /* Xorns can smell valuable metal like gold, treat as seen */
 	    if ((mtmp->data == &mons[PM_XORN]) &&
+#ifndef GOLDOBJ
 			u.ugold
+#else
+			umoney
+#endif
 			&& !Underwater)
 		disp = 0;
 	    else
@@ -1323,15 +1353,22 @@ struct monst *mtmp;
 
 	if (!amorphous(mtmp->data)) return FALSE;
 	if (mtmp == &youmonst) {
+#ifndef GOLDOBJ
 		if (u.ugold > 100L) return FALSE;
+#endif
 		chain = invent;
 	} else {
+#ifndef GOLDOBJ
 		if (mtmp->mgold > 100L) return FALSE;
+#endif
 		chain = mtmp->minvent;
 	}
 	for (obj = chain; obj; obj = obj->nobj) {
 		int typ = obj->otyp;
 
+#ifdef GOLDOBJ
+                if (typ == GOLD_CLASS && obj->quan > 100L) return FALSE;
+#endif
 		if (obj->oclass != GEM_CLASS &&
 		    !(typ >= ARROW && typ <= BOOMERANG) &&
 		    !(typ >= DAGGER && typ <= CRYSKNIFE) &&

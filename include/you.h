@@ -357,7 +357,11 @@ struct you {
 	boolean uelf_drow;		/* are you a drow? */
 	int ustrucklast;		/* Seems unused */
 #endif
+#ifndef GOLDOBJ
     long    ugold, ugold0;
+#else
+	long	umoney0;
+#endif
 	long	uexp, urexp;
 	long	ucleansed;	/* to record moves when player was cleansed */
 	long	usleep;		/* sleeping; monstermove you last started */

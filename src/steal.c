@@ -24,6 +24,7 @@ register struct obj *otmp;
 		(otmp == uarmh) ? "helmet" : "armor");
 }
 
+#ifndef GOLDOBJ
 long		/* actually returns something that fits in an int */
 somegold()
 {
@@ -62,6 +63,77 @@ register struct monst *mtmp;
 	}
 }
 
+#else /* !GOLDOBJ */
+
+long		/* actually returns something that fits in an int */
+somegold(umoney)
+long umoney;
+{
+#ifdef LINT	/* long conv. ok */
+	return(0L);
+#else
+	return (long)( (umoney < 100) ? umoney :
+		(umoney > 10000) ? rnd(10000) : rnd((int) umoney) );
+#endif
+}
+
+/*
+Find the first (and hopefully only) gold object in a chain.
+Used when leprechaun (or you as leprechaun) looks for
+someone else's gold.  Returns a pointer so the gold may
+be seized without further searching.
+May search containers too.
+Deals in gold only, as leprechauns don't care for lesser coins.
+*/
+struct obj *
+findgold(chain)
+register struct obj *chain;
+{
+        while (chain && chain->otyp != GOLD_PIECE) chain = chain->nobj;
+        return chain;
+}
+
+/* 
+Steal gold coins only.  Leprechauns don't care for lesser coins.
+*/
+void
+stealgold(mtmp)
+register struct monst *mtmp;
+{
+	register struct obj *fgold = g_at(u.ux, u.uy);
+	register struct obj *ygold;
+	register long tmp;
+
+        /* skip lesser coins on the floor */        
+        while (fgold && fgold->otyp != GOLD_PIECE) fgold = fgold->nexthere; 
+
+        /* Do you have real gold? */
+        ygold = findgold(invent);
+
+	if (fgold && ( !ygold || fgold->quan > ygold->quan || !rn2(5))) {
+            obj_extract_self(fgold);
+	    add_to_minv(mtmp, fgold);
+	    newsym(u.ux, u.uy);
+	    pline("%s quickly snatches some gold from between your %s!",
+		    Monnam(mtmp), makeplural(body_part(FOOT)));
+	    if(!ygold || !rn2(5)) {
+		if (!tele_restrict(mtmp)) rloc(mtmp);
+		monflee(mtmp, 0, FALSE, FALSE);
+	    }
+	} else if(ygold) {
+            const int gold_price = objects[GOLD_PIECE].oc_cost;
+	    tmp = (somegold(money_cnt(invent)) + gold_price - 1) / gold_price;
+	    tmp = min(tmp, ygold->quan);
+            if (tmp < ygold->quan) ygold = splitobj(ygold, tmp);
+            freeinv(ygold);
+            add_to_minv(mtmp, ygold);
+	    Your("purse feels lighter.");
+	    if (!tele_restrict(mtmp)) rloc(mtmp);
+	    monflee(mtmp, 0, FALSE, FALSE);
+	    flags.botl = 1;
+	}
+}
+#endif /* GOLDOBJ */
 
 /* steal armor after you finish taking it off */
 unsigned int stealoid;		/* object to be stolen */
@@ -366,11 +438,13 @@ register struct obj *otmp;
 {
     int freed_otmp;
 
+#ifndef GOLDOBJ
     if (otmp->oclass == GOLD_CLASS) {
 	mtmp->mgold += otmp->quan;
 	obfree(otmp, (struct obj *)0);
 	freed_otmp = 1;
     } else {
+#endif
     boolean snuff_otmp = FALSE;
     /* don't want hidden light source inside the monster; assumes that
        engulfers won't have external inventories; whirly monsters cause
@@ -390,7 +464,9 @@ register struct obj *otmp;
     freed_otmp = add_to_minv(mtmp, otmp);
     /* and we had to defer this until object is in mtmp's inventory */
     if (snuff_otmp) snuff_light_source(mtmp->mx, mtmp->my);
+#ifndef GOLDOBJ
     }
+#endif
     return freed_otmp;
 }
 
@@ -501,6 +577,7 @@ boolean is_pet;		/* If true, pet should keep wielded/worn items */
 	    keepobj = otmp->nobj;
 	    (void) add_to_minv(mtmp, otmp);
 	}
+#ifndef GOLDOBJ
 	if (mtmp->mgold) {
 		register long g = mtmp->mgold;
 		(void) mkgold(g, omx, omy);
@@ -509,6 +586,7 @@ boolean is_pet;		/* If true, pet should keep wielded/worn items */
 				g, plur(g));
 		mtmp->mgold = 0L;
 	}
+#endif
 	
 	if (show & cansee(omx, omy))
 		newsym(omx, omy);

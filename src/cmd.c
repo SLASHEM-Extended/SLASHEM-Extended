@@ -596,12 +596,42 @@ playersteal()
 		if (chanch > 95) chanch = 95;
 		if (rnd(100) < chanch || mdat->mtame) {
 
+#ifdef GOLDOBJ
+			/* [CWC] This will steal money from the monster from the
+			 * first found goldobj - we could be really clever here and
+			 * then move onwards to the next goldobj in invent if we
+			 * still have coins left to steal, but lets leave that until
+			 * we actually have other coin types to test it on.
+			 */
+			struct obj *gold = findgold(mdat->minvent);
+			if (gold) {
+				int mongold;
+				int coinstolen;
+				coinstolen = (u.ulevel * rn1(25,25));
+				mongold = (int)gold->quan;
+				if (coinstolen > mongold) coinstolen = mongold;
+				if (coinstolen > 0)	{
+					if (coinstolen != mongold) 
+						gold = splitobj(gold, coinstolen);
+					obj_extract_self(gold);
+		      if (merge_choice(invent, gold) || inv_cnt() < 52) {
+				    addinv(gold);
+						You("steal %s.", doname(gold));
+					} else {
+            You("grab %s, but find no room in your knapsack.", doname(gold));
+			    	dropy(gold);
+					}
+				}
+				else
+				impossible("cmd.c:playersteal() stealing negative money");
+#else
 			if (mdat->mgold) {
 				temp = (u.ulevel * rn1(25,25));
 				if (temp > mdat->mgold) temp = mdat->mgold;
 				u.ugold += temp;
 				mdat->mgold -= temp;
 				You("steal %d gold.",temp);
+#endif
 			} else
 				You("don't find anything to steal.");
 

@@ -199,7 +199,12 @@ int how;
     tomb_text(buf);
 
     /* Put $ on stone */
-    Sprintf(buf, "%ld Au", u.ugold);
+    Sprintf(buf, "%ld Au",
+#ifndef GOLDOBJ
+  		u.ugold);
+#else
+		done_money);
+#endif
     buf[STONE_LINE_LEN] = 0; /* It could be a *lot* of gold :-) */
     tomb_text(buf);
 

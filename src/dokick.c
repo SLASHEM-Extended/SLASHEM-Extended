@@ -277,6 +277,9 @@ register struct obj *gold;
 		if (canseemon(mtmp))
 		    pline_The("gold hits %s.", mon_nam(mtmp));
 	} else {
+#ifdef GOLDOBJ
+                long value = gold->quan * objects[gold->otyp].oc_cost;
+#endif
 		mtmp->msleeping = 0;
 		mtmp->meating = 0;
 		if(!rn2(4)) setmangry(mtmp); /* not always pleasing */
@@ -284,12 +287,18 @@ register struct obj *gold;
 		/* greedy monsters catch gold */
 		if (cansee(mtmp->mx, mtmp->my))
 		    pline("%s catches the gold.", Monnam(mtmp));
+#ifndef GOLDOBJ
 		mtmp->mgold += gold->quan;
+#endif
 		if (mtmp->isshk) {
 			long robbed = ESHK(mtmp)->robbed;
 
 			if (robbed) {
+#ifndef GOLDOBJ
 				robbed -= gold->quan;
+#else
+				robbed -= value;
+#endif
 				if (robbed < 0) robbed = 0;
 				pline_The("amount %scovers %s recent losses.",
 				      !robbed ? "" : "partially ",
@@ -299,7 +308,11 @@ register struct obj *gold;
 					make_happy_shk(mtmp, FALSE);
 			} else {
 				if(mtmp->mpeaceful) {
+#ifndef GOLDOBJ
 				    ESHK(mtmp)->credit += gold->quan;
+#else
+				    ESHK(mtmp)->credit += value;
+#endif
 				    You("have %ld %s in credit.",
 					ESHK(mtmp)->credit,
 					currency(ESHK(mtmp)->credit));
@@ -323,8 +336,13 @@ register struct obj *gold;
 			   goldreqd = 750L;
 
 			if (goldreqd) {
+#ifndef GOLDOBJ
 			   if (gold->quan > goldreqd +
 				(u.ugold + u.ulevel*rn2(5))/ACURR(A_CHA))
+#else
+			   if (value > goldreqd +
+				(money_cnt(invent) + u.ulevel*rn2(5))/ACURR(A_CHA))
+#endif
 			    mtmp->mpeaceful = TRUE;
 			}
 		     }
@@ -333,7 +351,11 @@ register struct obj *gold;
 		     else verbalize("That's not enough, coward!");
 		 }
 
+#ifndef GOLDOBJ
 		dealloc_obj(gold);
+#else
+                add_to_minv(mtmp, gold);
+#endif
 		return(1);
 	}
 	return(0);

@@ -745,6 +745,9 @@ E int FDECL(calc_capacity, (int));
 E int NDECL(max_capacity);
 E boolean FDECL(check_capacity, (const char *));
 E int NDECL(inv_cnt);
+#ifdef GOLDOBJ
+E long FDECL(money_cnt, (struct obj *));
+#endif
 
 /* ### hacklib.c ### */
 
@@ -973,6 +976,9 @@ E boolean FDECL(peace_minded, (struct permonst *));
 E void FDECL(set_malign, (struct monst *));
 E void FDECL(set_mimic_sym, (struct monst *));
 E int FDECL(mbirth_limit, (int));
+#ifdef GOLDOBJ
+E void FDECL(mkmonmoney, (struct monst *, long));
+#endif
 
 /* ### mapglyph.c ### */
 
@@ -1489,8 +1495,13 @@ E void NDECL(getlock);
 
 /* ### pickup.c ### */
 
+#ifdef GOLDOBJ
+E int FDECL(collect_obj_classes,
+	(char *,struct obj *,BOOLEAN_P,boolean FDECL((*),(OBJ_P))));
+#else
 E int FDECL(collect_obj_classes,
 	(char *,struct obj *,BOOLEAN_P,BOOLEAN_P,boolean FDECL((*),(OBJ_P))));
+#endif
 E void FDECL(add_valid_menu_class, (int));
 E boolean FDECL(allow_all, (struct obj *));
 E boolean FDECL(allow_category, (struct obj *));
@@ -1792,6 +1803,10 @@ E void NDECL(freedynamicdata);
 
 /* ### shk.c ### */
 
+#ifdef GOLDOBJ
+E long FDECL(money2mon, (struct monst *, long));
+E void FDECL(money2u, (struct monst *, long));
+#endif
 E char *FDECL(shkname, (struct monst *));
 E void FDECL(shkgone, (struct monst *));
 E void FDECL(set_residency, (struct monst *,BOOLEAN_P));
@@ -1917,13 +1932,20 @@ E void FDECL(initialspell, (struct obj *));
 #ifdef USE_TRAMPOLI
 E int NDECL(stealarm);
 #endif
+#ifdef GOLDOBJ
+E long FDECL(somegold, (long));
+#else
 E long NDECL(somegold);
+#endif
 E void FDECL(stealgold, (struct monst *));
 E void FDECL(remove_worn_item, (struct obj *));
 E int FDECL(steal, (struct monst *, char *));
 E int FDECL(mpickobj, (struct monst *,struct obj *));
 E void FDECL(stealamulet, (struct monst *));
 E void FDECL(relobj, (struct monst *,int,BOOLEAN_P));
+#ifdef GOLDOBJ
+E struct obj *FDECL(findgold, (struct obj *));
+#endif
 
 /* ### steed.c ### */
 

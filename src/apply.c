@@ -1950,17 +1950,21 @@ struct obj *tstone;
     char stonebuf[QBUFSZ];
     static const char scritch[] = "\"scritch, scritch\"";
     static char allowall[3] = { GOLD_CLASS, ALL_CLASSES, 0 };
+#ifndef GOLDOBJ
     struct obj goldobj;
+#endif
 
     Sprintf(stonebuf, "rub on the stone%s", plur(tstone->quan));
     if ((obj = getobj(allowall, stonebuf)) == 0)
 	return;
+#ifndef GOLDOBJ
     if (obj->oclass == GOLD_CLASS) {
 	u.ugold += obj->quan;	/* keep botl up to date */
 	goldobj = *obj;
 	dealloc_obj(obj);
 	obj = &goldobj;
     }
+#endif
 
     if (obj == tstone && obj->quan == 1) {
 	You_cant("rub %s on itself.", the(xname(obj)));
@@ -1977,7 +1981,9 @@ struct obj *tstone;
 	else
 	    pline("A sharp crack shatters %s%s.",
 		  (obj->quan > 1) ? "one of " : "", the(xname(obj)));
+#ifndef GOLDOBJ
      /* assert(obj != &goldobj); */
+#endif
 	useup(obj);
 	return;
     }

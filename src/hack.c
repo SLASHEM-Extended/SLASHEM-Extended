@@ -2104,14 +2104,22 @@ inv_weight()
 	register struct obj *otmp = invent;
 	register int wt = 0;
 
+#ifndef GOLDOBJ
 	/* when putting stuff into containers, gold is inserted at the head
 	   of invent for easier manipulation by askchain & co, but it's also
 	   retained in u.ugold in order to keep the status line accurate; we
 	   mustn't add its weight in twice under that circumstance */
 	wt = (otmp && otmp->oclass == GOLD_CLASS) ? 0 :
 		(int)((u.ugold + 50L) / 100L);
+#endif
 	while (otmp) {
+#ifndef GOLDOBJ
 		if (otmp->otyp != BOULDER || !throws_rocks(youmonst.data))
+#else
+		if (otmp->oclass == GOLD_CLASS)
+			wt += (int)(((long)otmp->quan + 50L) / 100L);
+		else if (otmp->otyp != BOULDER || !throws_rocks(youmonst.data))
+#endif
 			wt += otmp->owt;
 		otmp = otmp->nobj;
 	}
@@ -2179,6 +2187,22 @@ inv_cnt()
 	return(ct);
 }
 
+#ifdef GOLDOBJ
+/* Counts the money in an object chain. */
+/* Intended use is for your or some monsters inventory, */
+/* now that u.gold/m.gold is gone.*/
+/* Counting money in a container might be possible too. */
+long money_cnt(otmp)
+struct obj *otmp;
+{
+        while(otmp) {
+	        /* Must change when silver & copper is implemented: */
+ 	        if (otmp->oclass == GOLD_CLASS) return otmp->quan;
+  	        otmp = otmp->nobj;
+	}
+	return 0;
+}
+#endif
 #endif /* OVLB */
 
 /*hack.c*/

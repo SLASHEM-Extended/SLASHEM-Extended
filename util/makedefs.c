@@ -476,6 +476,9 @@ make_version()
 #ifdef STEED
 			| (1L << 11)
 #endif
+#ifdef GOLDOBJ
+			| (1L << 12)
+#endif
 		/* flag bits and/or other global variables (15..26) */
 #ifdef DISPLAY_LAYERS
 			| (1L << 15)
@@ -664,6 +667,9 @@ static const char *build_opts[] = {
 #endif
 #ifdef MFLOPPY
 		"floppy drive support",
+#endif
+#ifdef GOLDOBJ
+		"gold object in inventories",
 #endif
 #ifdef INSURANCE
 		"insurance files for recovering from crashes",
