@@ -1908,7 +1908,7 @@ register struct obj *obj;
 		if (!floor_container)
 			useup(current_container);
 		else if (obj_here(current_container, u.ux, u.uy))
-			useupf(current_container, obj->quan);
+			useupf(current_container, current_container->quan);
 		else
 			panic("in_container:  bag not found.");
 
