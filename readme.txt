@@ -78,6 +78,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 914894: "Beautiful" gnome thief seduced female character
 -fixed bug 918178: Double message "You are suddenly very hot/cold!"
 -fixed bug 921810: Invisible books can be read (?!)
+-fixed bug 934076: Dipping amnesia into amnesia gives water
 
 See history.txt for changes made in previous versions.
 
