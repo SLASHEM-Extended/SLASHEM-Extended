@@ -413,7 +413,9 @@ struct create_nhwindow_res {
 <pre>
 struct clear_nhwindow_req {
     int window;
-    int rows, cols, layers;
+    int rows;
+    int cols;
+    int layers;
 };
 </pre>
 clear_nhwindow returns no results.
@@ -1440,7 +1442,7 @@ struct get_glyph_mapping_res_submapping {
 };
 
 struct get_glyph_mapping_res_mapping {
-    string flags;
+    string flags<>;
     int base_mapping;
     int alt_glyph;
     struct get_glyph_mapping_res_symdef symdef;
@@ -1502,7 +1504,7 @@ each glyph in the sub-mapping.
 <pre>
 struct get_extensions_res_extension {
     string name<>;
-    string version<>;
+    string vers<>;
     int no_procedures;
 };
 
