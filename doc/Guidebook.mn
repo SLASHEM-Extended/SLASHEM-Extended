@@ -4,7 +4,7 @@
 .ds vr "SLASH'EM 0.0.6
 .ds f0 "\*(vr
 .ds f1
-.ds f2 "Mar 15, 2000
+.ds f2 "August 22, 2000
 .mt
 A Guide to the Mazes of Menace
 (Guidebook for SLASH'EM 0.0.6)
@@ -63,7 +63,7 @@ dungeon...
 .hn 1
 What is going on here?
 .pg
-You have just begun a game of NetHack.  Your goal is to grab as much
+You have just begun a game of SLASH'EM.  Your goal is to grab as much
 treasure as you can, retrieve the Amulet of Yendor, and escape the
 Mazes of Menace alive.
 .pg
@@ -180,23 +180,19 @@ of the moon,  and can transform into wolves when they channel their magical
 energies.  Even unarmed,  a Lycanthrope is a savage fighter,  as many
 scarred by their deadly claws can attest.
 .pg
-\fIOrcs\fP are a cruel and barbaric race, that hate every living thing
+\fIOrcs\fP are a cruel and barbaric race that hate every living thing
 (including other orcs).  Above all others, Orcs hate Elves with a passion
 unequalled, and will go out of their way to kill one at any opportunity.
 The armor and weapons fashioned by the Orcs are typically of inferior quality.
 .pg
-You set out for the dungeon and after several days of uneventful
-travel you see the ancient ruins that mark the entrance to the Mazes
-of Menace.  It is late at night, so you make camp at the entrance and
-spend the night sleeping under the open skies.  In the morning, you
-gather your gear, eat what may be your last meal outside, and enter
-the dungeon.
+\fIVampires\fP strike fear into the heart of many. Their super-human strength,
+notorious dexterity and resiliance make them difficult to defeat while their
+almost hypnotic charm makes them dangerous opponents. Even their own Gods
+treat vampires with some distaste.
 .hn 1
-What is going on here?
+What do all those things on the screen mean?
 .pg
-You have just begun a game of SLASH'EM.  Your goal is to grab as much
-treasure as you can, retrieve the Amulet of Yendor, and escape the
-Mazes of Menace alive.  On the screen is kept a map of where you have
+On the screen is kept a map of where you have
 been and what you have seen on the current dungeon level; as you
 explore more of the level, it appears on the screen in front of you.
 .pg
@@ -654,6 +650,9 @@ two-weapon combat.  Note that if one of these slots is empty,
 the exchange still takes place.
 .lp X
 Enter explore (discovery) mode, explained in its own section later.
+.lp ^X
+Display your name, role, race, gender, and alignment as well as
+the various deities in your game.
 .lp ^Y
 Polymorph yourself, if you have the ability.
 .lp z
@@ -1016,7 +1015,7 @@ will get slower and you'll burn calories faster, requiring food more frequently
 to cope with it.  Eventually, you'll be so overloaded that you'll either have
 to discard some of what you're carrying or collapse under its weight.
 .pg
-SLASH'EM will tell you how badly have loaded yourself.  The symbols
+SLASH'EM will tell you how badly you have loaded yourself.  The symbols
 `Burdened', `Stressed', `Strained', `Overtaxed' and `Overloaded' are
 displayed on the bottom line display to indicate your condition.
 .pg
@@ -1473,7 +1472,7 @@ you are carrying (shopkeepers aside).
 .hn 1
 Conduct
 .pg
-As if winning NetHack were not difficult enough, certain players
+As if winning SLASH'EM were not difficult enough, certain players
 seek to challenge themselves by imposing restrictions on the
 way they play the game.  The game automatically tracks some of
 these challenges, which can be checked at any time with the #conduct
@@ -1548,7 +1547,7 @@ using such a wielded weapon.  You are still permitted to throw,
 fire, and kick weapons; use a wand, spell, or other type of item;
 or fight with your hands and feet.
 .pg
-In NetHack, a pacifist refuses to cause the death of any other monster
+In SLASH'EM, a pacifist refuses to cause the death of any other monster
 (i.e. if you would get experience for the death).  This is a particularly
 difficult challenge, although it is still possible to gain experience
 by other means.
@@ -1599,15 +1598,15 @@ character string as a value.  You can set string options by typing
 the option name, a colon or equals sign, and then the value of the string.
 The value is terminated by the next comma or the end of string.
 .pg
-For example, to set up an environment variable so that ``female'' is on,
+For example, to set up an environment variable so that ``autoquiver'' is on,
 ``autopickup'' is off, the name is set to ``Blue Meanie'', and the fruit
 is set to ``papaya'', you would enter the command
 .sd
-% \fBsetenv SLASHEMOPTIONS "female,\e!autopickup,name:Blue Meanie,fruit:papaya"\fP
+% \fBsetenv SLASHEMOPTIONS "autoquiver,\e!autopickup,name:Blue Meanie,fruit:papaya"\fP
 .ed
 in \fIcsh\fP (note the need to escape the ! since it's special to the shell), or
 .sd
-$ \fBSLASHEMOPTIONS="female,!autopickup,name:Blue Meanie,fruit:papaya"\fP
+$ \fBSLASHEMOPTIONS="autoquiver,!autopickup,name:Blue Meanie,fruit:papaya"\fP
 $ \fBexport SLASHEMOPTIONS\fP
 .ed
 in \fIsh\fP or \fIksh\fP.
@@ -1665,13 +1664,18 @@ OS/2, PC, and ST SLASH'EM only).
 Name your starting cat (ex. ``catname:Morris'').
 Cannot be set with the `O' command.
 .lp character
-Pick your type of character (ex. ``character:Rogue'');
+Pick your type of character (ex. ``character:Monk'');
 synonym for ``role''.  See ``name'' for an alternate method
 of specifying your role.  Normally only the first letter of
 the value is examined; the string ``random'' is an exception.
 .lp checkpoint
 Save game state after each level change, for possible recovery after
 program crash (default on).
+.lp checkspace
+Check free disk space before writing files to disk (default on).
+You may have to turn this off if you have more than 2 GB free space
+on the partition used for your save and level files.
+Only applies when MFLOPPY was defined during compilation.
 .lp "color   "
 Use color for different monsters, objects, and dungeon features
 (default on for microcomputers).
@@ -1685,16 +1689,12 @@ instead of having to define a full graphics set yourself (default off).
 This option also sets up proper handling of graphics
 characters for such terminals, so you should specify it when appropriate
 even if you override the selections with your own graphics strings.
-.lp extmenu
-Changes the extended commands interface to pop-up a menu of available commands.
-It is keystroke compatible with the traditional interface except that it does
-not require that you hit Enter. It is implemented only by the tty port 
-(default off), when the game has been compiled to support tty graphics.
 .lp disclose
 Offer to disclose various information when the game ends (default all).
 The possibilities are identifying your inventory ('i'),
 disclosing your attributes ('a'), summarizing monsters that have been
-vanquished ('v'), and listing monster species that have been genocided ('g').
+vanquished ('v'), and listing monster species that have been genocided ('g'),
+and displaying your conduct ('c').
 Note that the vanquished monsters list includes all monsters killed by
 traps and each other as well as by you.
 .lp dogname
@@ -2350,17 +2350,18 @@ well as supporting ports on the different platforms that NetHack runs on:
 \fBMichael Allison\fP maintained NetHack 3.3 for the MS-DOS platform.  \fBPaul Winner\fP
 and \fBYitzhak Sapir\fP provided encouragement.
 .pg
-\fBElvis\fP was seen playing NetHack on an Amiga.  That is to say, like Elvis, it
-it might come back, but don't hold your breath.
-.pg
 \fBDean Luick\fP, \fBMark Modrall\fP, and \fBKevin Hugo\fP maintained and enhanced the
 Macintosh port of 3.3.
-.pg
-The Atari port of NetHack was discontinued.
 .pg
 \fBMichael Allison\fP maintained and enhanced 3.3 for the Microsoft Windows NT platform.
 .pg
 \fBRon Van Iwaarden\fP took over responsibility for the OS/2 port.
+.pg
+The Amiga port of NetHack was resurrected for 3.3.1 by \fBJanne Salmijarvi\fP.
+.pg
+The Atari port of NetHack was resurrected for 3.3.1 by \fBChristian ``Marvin''
+Bressler\fP.
+.pg
 .pg
 \fBWarren Cheung\fP combined SLASH'EM 0.0.5E7F1 and NetHack 3.3 to create
 SLASH'EM 0.0.6 and continues to maintain the DOS and Microsoft Windows ports.
