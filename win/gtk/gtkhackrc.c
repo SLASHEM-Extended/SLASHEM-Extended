@@ -1,4 +1,4 @@
-/* $Id: gtkhackrc.c,v 1.3 2003-05-19 19:48:17 j_ali Exp $ */
+/* $Id: gtkhackrc.c,v 1.4 2003-05-20 18:36:10 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -67,6 +67,7 @@ extern void rc_window_position(GScanner *scanner, GtkHackRcVList *params,
 extern void rc_window_size(GScanner *scanner, GtkHackRcVList *params,
   GtkHackRcValue *value);
 extern void rc_map_font(GScanner *scanner, GtkHackRcValue *value);
+extern void rc_map_clip_dist2(GScanner *scanner, GtkHackRcValue *value);
 extern void rc_radar(GScanner *scanner, GtkHackRcValue *value);
 extern void rc_connections(GScanner *scanner, GtkHackRcValue *value);
 extern void rc_default_connection(GScanner *scanner, GtkHackRcValue *value);
@@ -89,6 +90,7 @@ struct gtkhackrc_setting {
     GTKHACKRC_FUNCTION, "window.position", rc_window_position,
     GTKHACKRC_FUNCTION, "window.size", rc_window_size,
     GTKHACKRC_VARIABLE, "map.font", rc_map_font,
+    GTKHACKRC_VARIABLE, "map.clip_dist2", rc_map_clip_dist2,
     GTKHACKRC_VARIABLE, "radar", rc_radar,
 #if 0
     GTKHACKRC_VARIABLE, "connections", rc_connections,
@@ -467,7 +469,7 @@ parse_value_list(GScanner *scanner, int failok)
 static int
 action_setting(GScanner *scanner, GtkHackRcValue *lhs, GtkHackRcValue *rhs)
 {
-    int i, n, retval;
+    int i, n, retval = 0;
     gchar *name;
     GtkHackRcVariable *var;
     {
@@ -639,6 +641,10 @@ nh_scan_gtkhackrc(GScanner *scanner)
 		break;
 	    case PARSE_ERROR_RESOURCE:
 		g_scanner_error(scanner, "%s%s%s", "Resource failure", " - ",
+		  "Read of GtkHack profile aborted");
+		break;
+	    default:
+		g_scanner_error(scanner, "%s%s%s", "Unknown error", " - ",
 		  "Read of GtkHack profile aborted");
 		break;
 	}
@@ -816,6 +822,14 @@ void rc_map_font(GScanner *scanner, GtkHackRcValue *value)
     if (!gtkhackrc_check_type(scanner, value, "value", PARSE_VALUE_TYPE_STRING))
 	return;
     nh_set_map_font(value->u.string);
+}
+
+void rc_map_clip_dist2(GScanner *scanner, GtkHackRcValue *value)
+{
+    if (!gtkhackrc_check_type(scanner, value, "value", PARSE_VALUE_TYPE_NUMBER))
+	return;
+    map_clip_dist2 = value->u.number;
+    nh_map_check_visibility();
 }
 
 void rc_radar(GScanner *scanner, GtkHackRcValue *value)

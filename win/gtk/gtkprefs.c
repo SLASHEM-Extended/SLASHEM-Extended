@@ -1,5 +1,5 @@
 /*
-  $Id: gtkprefs.c,v 1.1 2003-05-19 12:14:38 j_ali Exp $
+  $Id: gtkprefs.c,v 1.2 2003-05-20 18:36:10 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -7,6 +7,7 @@
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
+#include <math.h>
 #include <gtk/gtk.h>
 #include "winGTK.h"
 #ifdef SHORT_FILENAMES
@@ -19,6 +20,7 @@
 static GtkWidget *radar_button;
 #endif
 static GtkWidget *font_selection_map;
+static GtkWidget *map_clip_spinbutton;
 
 static void GTK_pref_cancel(GtkWidget *w, gpointer data)
 {
@@ -27,6 +29,7 @@ static void GTK_pref_cancel(GtkWidget *w, gpointer data)
 
 static void GTK_pref_apply(GtkWidget *w, gpointer data)
 {
+    int clip_dist;
     gchar *font_name;
     font_name = gtk_font_selection_get_font_name(
       GTK_FONT_SELECTION(font_selection_map));
@@ -36,6 +39,10 @@ static void GTK_pref_apply(GtkWidget *w, gpointer data)
     nh_radar_set_use(
       gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radar_button)));
 #endif
+    clip_dist = gtk_spin_button_get_value_as_int(
+      GTK_SPIN_BUTTON(map_clip_spinbutton));
+    map_clip_dist2 = clip_dist * clip_dist;
+    nh_map_check_visibility();
 }
 
 int
@@ -43,6 +50,7 @@ GTK_preferences_save(struct gtkhackrc *rc)
 {
     nh_gtkhackrc_store(rc, "map.font = \"%s\"", nh_get_map_font());
     nh_gtkhackrc_store(rc, "radar = %d", nh_radar_get_use());
+    nh_gtkhackrc_store(rc, "map.clip_dist2 = %d", map_clip_dist2);
 }
 
 static void GTK_pref_ok(GtkWidget *w, gpointer data)
@@ -101,8 +109,7 @@ GTK_pref_font_new()
 
     vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), frame, "");
 
-    font_selection_map = nh_gtk_new_and_pack(gtk_font_selection_new(), vbox, "",
-      FALSE, FALSE, NH_PAD);
+    font_selection_map = nh_gtk_new_and_pack(gtk_font_selection_new(), vbox, "",      FALSE, FALSE, NH_PAD);
 
     font_name = nh_get_map_font();
     if (font_name) {
@@ -117,15 +124,31 @@ GTK_pref_font_new()
 static GtkWidget *
 GTK_pref_map_new()
 {
-    GtkWidget *vbox;
+    GtkWidget *frame;
+    GtkWidget *vbox,*hbox;
+    gchar *font_name;
 
     vbox = gtk_vbox_new(FALSE, 0);
     gtk_container_border_width(GTK_CONTAINER(vbox), NH_PAD);
 
+    frame = nh_gtk_new_and_pack(gtk_frame_new("Automatic scrolling"), vbox, "",
+      FALSE, FALSE, NH_PAD);
+
+    hbox = nh_gtk_new_and_add(gtk_hbox_new(FALSE, 0), frame, "");
+
+    nh_gtk_new_and_pack(gtk_label_new("Maximum allowable deviation:"), hbox, "",
+      FALSE, FALSE, NH_PAD);
+
+    map_clip_spinbutton = nh_gtk_new_and_pack(
+      gtk_spin_button_new_with_range(0.0, 255.0, 1.0), hbox, "",
+      FALSE, FALSE, NH_PAD);
+
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(map_clip_spinbutton),
+      (gdouble)(int)(sqrt(map_clip_dist2) + 0.5));
+
     nh_gtk_new_and_pack(GTK_pref_font_new(), vbox, "", FALSE, FALSE, NH_PAD);
 
     return vbox;
-
 }
 
 GtkWidget *

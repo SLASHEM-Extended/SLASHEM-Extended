@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.38 2003-05-19 12:14:36 j_ali Exp $
+  $Id: winGTK.h,v 1.39 2003-05-20 18:36:10 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -366,6 +366,9 @@ extern void x_tile_destroy();
 
 /* Current Map Mode */
 extern int map_visual;
+
+/* Current Map Clipping Squared distance */
+extern int map_clip_dist2;
 
 /* Current map cursor position */
 extern int cursx, cursy;
