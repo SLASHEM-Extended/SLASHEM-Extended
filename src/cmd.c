@@ -1964,9 +1964,12 @@ int final;
 	putstr(en_win, 0, "Voluntary challenges:");
 	putstr(en_win, 0, "");
 
-	if (!u.uconduct.food)
+	if (!u.uconduct.food && !u.uconduct.unvegan)
 	    enl_msg(You_, "have gone", "went", " without food");
 	    /* But beverages are okay */
+	else if (!u.uconduct.food)
+	    enl_msg(You_, "have gone", "went", " without eating");
+	    /* But quaffing animal products (eg., blood) is okay */
 	else if (!u.uconduct.unvegan)
 	    you_have_X("followed a strict vegan diet");
 	else if (!u.uconduct.unvegetarian)

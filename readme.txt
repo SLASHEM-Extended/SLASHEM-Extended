@@ -68,6 +68,7 @@ http://www.slashem.org/
 -----------
 
 ver 0.0.7E6F2 [?] [Released by ?]
+-fixed bug 910334: Vampire blood and foodless conduct
 
 See history.txt for changes made in previous versions.
 

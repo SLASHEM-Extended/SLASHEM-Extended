@@ -1034,6 +1034,7 @@ peffects(otmp)
 	case POT_BLOOD:
 	case POT_VAMPIRE_BLOOD:
 		unkn++;
+		u.uconduct.unvegan++;
 		if (maybe_polyd(is_vampire(youmonst.data), Race_if(PM_VAMPIRE))) {
 		    violated_vegetarian();
 		    if (otmp->cursed)
@@ -1057,8 +1058,11 @@ peffects(otmp)
 			    u.uhp += num;
 			}
 		    }
-		}
-		else if (otmp->otyp == POT_VAMPIRE_BLOOD) {
+		} else if (otmp->otyp == POT_VAMPIRE_BLOOD) {
+		    /* [CWC] fix conducts for potions of (vampire) blood -
+		       doesn't use violated_vegetarian() to prevent
+		       duplicated "you feel guilty" messages */
+		    u.uconduct.unvegetarian++;
 		    if (u.ualign.type == A_LAWFUL || Role_if(PM_MONK)) {
 			You_feel("%sguilty about drinking such a vile liquid.",
 				Role_if(PM_MONK) ? "especially " : "");
@@ -1069,12 +1073,7 @@ peffects(otmp)
 		    exercise(A_CON, FALSE);
 		    if (!Unchanging && polymon(PM_VAMPIRE))
 			u.mtimedone = 0;	/* "Permament" change */
-			/* [CWC] fix conducts for potions of (vampire) blood -
-			   doesn't use violated_vegetarian() to prevent
-			   duplicated "you feel guilty" messages */
-			u.uconduct.unvegetarian++;
-		}
-		else {
+		} else {
 		    violated_vegetarian();
 		    pline("Ugh.  That was vile.");
 		    make_vomiting(Vomiting+d(10,8), TRUE);
