@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.6 2000-09-11 16:37:20 j_ali Exp $
+  $Id: gtk.c,v 1.7 2000-09-14 15:59:57 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1318,6 +1318,7 @@ GTK_init_nhwindows2()
 #endif
 
     initialized2 = 1;
+    GTK_update_inventory();
 }
 
 winid
@@ -1657,6 +1658,8 @@ GTK_player_selection(void)
 void
 GTK_update_inventory(void)
 {
+    if (!initialized2)
+	return;
     if (flags.perm_invent)
 	(void) display_inventory((char *)0, FALSE);
     else if (WIN_INVEN != WIN_ERR)
