@@ -961,7 +961,17 @@ int tech_no;
             	obj = floorfood("revive", 1);
             	if (!obj) return (0);
             	mtmp = revive(obj);
-            	if (mtmp) (void) tamedog(mtmp, (struct obj *) 0);
+            	if (mtmp) {
+#ifdef BLACKMARKET
+		    if (Is_blackmarket(&u.uz))
+			setmangry(mtmp);
+		    else
+#endif
+		    if (mtmp->isshk)
+			make_happy_shk(mtmp, FALSE);
+		    else if (!resist(mtmp, SPBOOK_CLASS, 0, NOTELL))
+			(void) tamedog(mtmp, (struct obj *) 0);
+		}
             	if (Upolyd) u.mh -= num;
             	else u.uhp -= num;
 		t_timeout = rn1(1000,500);
