@@ -128,10 +128,6 @@ int thrown;
 	    case PM_SAMURAI:
 		if (obj->otyp == YA && launcher && launcher->otyp == YUMI) multishot++;
 		break;
-	    case PM_ORC:
-		if (obj->otyp == ORCISH_ARROW && uwep &&
-				uwep->otyp == ORCISH_BOW) multishot++;
-		break;
 	    default:
 		break;	/* No bonus */
 	    }
@@ -140,6 +136,10 @@ int thrown;
 	    case PM_ELF:
 		if (obj->otyp == ELVEN_ARROW && launcher &&
 				launcher->otyp == ELVEN_BOW) multishot++;
+		break;
+	    case PM_ORC:
+		if (obj->otyp == ORCISH_ARROW && uwep &&
+				uwep->otyp == ORCISH_BOW) multishot++;
 		break;
 	    default:
 		break;	/* No bonus */

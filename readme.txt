@@ -341,6 +341,8 @@ ver 0.0.6E4F1 [September XX/2000]
 -GTK: Added two more common monospaced Windows Fonts for the map
 -GTK: Replaced NH_WIDTH and NH_HEIGHT in gtkmap.c with ROWNO, COLNO
 -fixed bug 113053: gnome windowing port now supported
+-fixed gnome multishot bonus (dothrow.c) and show_damage ability (hack.c)
+-removed unnecessary "uncursed" tags for necromancer role (to match priest)
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()

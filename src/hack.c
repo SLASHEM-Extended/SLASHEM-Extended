@@ -1739,10 +1739,15 @@ showdmg(n)
 		switch (Role_switch) {
 			case PM_BARBARIAN: case PM_MONK: lev = 10; break;
 			case PM_CAVEMAN: case PM_VALKYRIE: lev = 12; break;
-			case PM_SAMURAI: case PM_KNIGHT: case PM_GNOME: lev = 14; break;
+			case PM_SAMURAI: case PM_KNIGHT: lev = 14; break;
 			default: lev = 17; break;
 		}
+		switch (Race_switch) {
+			case PM_GNOME: if (lev > 14) lev = 14; break;
+		}
+#ifdef WIZARD
 		if (wizard) lev = 1;
+#endif
 		if(u.ulevel >= lev)
 			pline("(%d pts.)", n);
 	}

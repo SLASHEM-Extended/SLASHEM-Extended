@@ -607,7 +607,7 @@ register struct obj *obj;
 #endif
 			&& obj->otyp != FAKE_AMULET_OF_YENDOR
 			&& obj->otyp != AMULET_OF_YENDOR
-			&& !Role_if(PM_PRIEST))
+			&& !Role_if(PM_PRIEST) && !Role_if(PM_NECROMANCER))
 		Strcat(prefix, "uncursed ");
 	}
 
