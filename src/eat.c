@@ -2079,7 +2079,7 @@ register struct obj *otmp;
 int
 doeat()         /* generic "eat" command funtion (see cmd.c) */
 {
-	register struct obj *otmp;
+	struct obj *otmp;
 	int basenutrit;                 /* nutrition of full item */
 	int nutrit;			/* nutrition available */
 	char qbuf[QBUFSZ];
