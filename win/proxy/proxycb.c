@@ -1,4 +1,4 @@
-/* $Id: proxycb.c,v 1.14 2003-01-18 17:52:10 j_ali Exp $ */
+/* $Id: proxycb.c,v 1.15 2003-05-17 10:33:25 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -359,4 +359,12 @@ struct proxycb_get_extensions_res *extensions;
 {
     nhext_xdr_free(proxycb_xdr_get_extensions_res, (char *)extensions);
     free(extensions);
+}
+
+void
+proxy_cb_set_option_mod_status(optnam, status)
+const char *optnam;
+{
+    (void)nhext_rpc(EXT_CID_SET_OPTION_MOD_STATUS, 2, EXT_STRING(optnam),
+      EXT_INT(status), 0);
 }

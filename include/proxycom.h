@@ -1,4 +1,4 @@
-/* $Id: proxycom.h,v 1.11 2003-04-21 19:14:26 j_ali Exp $ */
+/* $Id: proxycom.h,v 1.12 2003-05-17 10:33:24 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -8,7 +8,7 @@
 /* The NhExt standard to which we conform */
 
 #define EXT_STANDARD_MAJOR	0
-#define EXT_STANDARD_MINOR	1
+#define EXT_STANDARD_MINOR	2
 
 #define EXT_IM_STATUS		0x0001
 #define EXT_IM_DISPLAY_LAYERS	0x0002
@@ -113,8 +113,9 @@ E int FDECL(nhext_svc, (struct nhext_svc *));
 #define EXT_FID_START_SCREEN		0x2A
 #define EXT_FID_END_SCREEN		0x2B
 #define EXT_FID_OUTRIP			0x2C
-#define EXT_FID_STATUS			0x2D
-#define EXT_FID_PRINT_GLYPH_LAYERED	0x2E
+#define EXT_FID_PREFERENCE_UPDATE	0x2D
+#define EXT_FID_STATUS			0x2E
+#define EXT_FID_PRINT_GLYPH_LAYERED	0x2F
 
 #ifdef NHXDR_H
 struct proxy_init_nhwindow_req {
@@ -126,6 +127,8 @@ struct proxy_init_nhwindow_res {
     nhext_xdr_bool_t inited;
     int argc;
     char **argv;
+    int capc;
+    char **capv;
 };
 
 struct proxy_mi {
@@ -197,6 +200,7 @@ E nhext_xdr_bool_t FDECL(proxy_xdr_print_glyph_layered_req,
 #define EXT_CID_GET_TILESETS		0x13
 #define EXT_CID_GET_GLYPH_MAPPING	0x14
 #define EXT_CID_GET_EXTENSIONS		0x15
+#define EXT_CID_SET_OPTION_MOD_STATUS	0x16
 
 #ifdef NHXDR_H
 struct proxycb_get_player_choices_res_role {
@@ -310,7 +314,7 @@ extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_extensions_res,
 /* riputil.c */
 extern char * FDECL(get_killer_string, (int));
 /* getopt.c */
-extern char * FDECL(get_option, (char *));
+extern char * FDECL(get_option, (const char *));
 /* glyphmap.c */
 extern void NDECL(set_glyph_mapping);
 extern struct proxycb_get_glyph_mapping_res * NDECL(get_glyph_mapping);

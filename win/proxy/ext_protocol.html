@@ -7,7 +7,7 @@
 <body>
 <h1>NhExt: A protocol for NetHack plug-in window ports</h1>
 
-<p>This document describes NhExt 0.1, a protocol to be used when NetHack
+<p>This document describes NhExt 0.2, a protocol to be used when NetHack
 calls a function located inside a plug-in window port and for when that window
 port function in turn calls a function located inside NetHack (a call back).
 The protocol specifies no limit to the depth of recursion which may occur.
@@ -220,8 +220,9 @@ the IDs.
 <tr><td>start_screen</td><td>0x2A</td></tr>
 <tr><td>end_screen</td><td>0x2B</td></tr>
 <tr><td>outrip</td><td>0x2C</td></tr>
-<tr><td>status</td><td>0x2D</td></tr>
-<tr><td>print_glyph_layered</td><td>0x2E</td></tr>
+<tr><td>preference_update</td><td>0x2D</td></tr>
+<tr><td>status</td><td>0x2E</td></tr>
+<tr><td>print_glyph_layered</td><td>0x2F</td></tr>
 </table>
 
 <p>Plug-in window ports may define non-standard procedures with IDs of 0x8000 and
@@ -261,6 +262,7 @@ init takes no arguments and returns no results.
 <h3>init_nhwindows</h3>
 <pre>
 typedef string argument<>;
+typedef string wincap<>;
 
 struct init_nhwindows_req {
 	argument argv<>;
@@ -269,6 +271,7 @@ struct init_nhwindows_req {
 struct init_nhwindows_res {
 	bool inited;
 	argument argv<>;
+	wincap capabilities<>;
 };
 </pre>
 
@@ -281,9 +284,46 @@ struct init_nhwindows_res {
    <var>argv</var> should be changed to remove those arguments and returned.
 <li> When the message window is created, 
    <var>inited</var> needs to be returned as <code>TRUE</code>.  Otherwise
-   all <clode>plines()</code> will be done via raw_print.
+   all <code>plines()</code> will be done via raw_print.
 <li>ALI: Would a window-port ever want to leave
    <code>iflags.window_inited FALSE</code>?
+<li>The capabilities list should be filled in with the relevant values.
+The proxy module will ignore capabilities that it does not recognize.
+The following capabilities are currently understood:
+<ul>
+<li>align_message
+<li>align_status
+<li>ascii_map
+<li>color
+<li>eight_bit_tty
+<li>font_map
+<li>font_menu
+<li>font_message
+<li>font_size_map
+<li>font_size_menu
+<li>font_size_message
+<li>font_size_status
+<li>font_size_text
+<li>font_status
+<li>font_text
+<li>hilite_pet
+<li>map_mode
+<li>mouse_support
+<li>perm_invent
+<li>player_selection
+<li>popup_dialog
+<li>preload_tiles
+<li>scroll_amount
+<li>scroll_margin
+<li>splash_screen
+<li>tiled_map
+<li>tile_file
+<li>tile_height
+<li>tile_width
+<li>use_inverse
+<li>var_msgcount
+<li>windowcolors
+</ul>
 </ul>
 
 <h3>player_selection</h3>
@@ -963,6 +1003,19 @@ struct outrip_res {
 <p>ALI: I suspect we should pass rather more information to this procedure;
 <code>genl_outrip()</code> uses a <em>lot</em> of global variables.
 
+<h3>preference_update</h3>
+<pre>
+struct preference_update_req {
+    string pref<>;
+    string value<>;
+};
+</pre>
+
+<p> Notify the window client that the value of option <var>pref</var> has
+changed to <var>value</var>. The set of options of which the window client
+will be notified is determined by the window capabilities, set in the
+init_nhwindows procedure.
+
 <h3>status</h3>
 <pre>
 typedef string value<>;
@@ -1047,6 +1100,7 @@ Plug-in window ports may assume that the following call backs are supported.
 <tr><td>get_tilesets</td><td>0x13</td></tr>
 <tr><td>get_glyph_mapping</td><td>0x14</td></tr>
 <tr><td>get_extensions</td><td>0x15</td></tr>
+<tr><td>set_option_mod_status</td><td>0x16</td></tr>
 </table>
 
 <h3>display_inventory</h3>
@@ -1406,6 +1460,30 @@ struct get_extensions_res_extension {
 
 struct get_extensions_res {
     struct get_extensions_res_extension extensions<>;
+};
+</pre>
+
+<p>Return a list of the supported extensions. The first extension listed will
+use no_procedures IDs starting at 0x8000. Subsequent extensions will use IDs
+starting just after the previous extension.
+
+<h3>set_option_mod_status</h3>
+<pre>
+/*
+ * Option flags
+ * Each higher number includes the characteristics of the numbers
+ * below it.
+ */
+enum option_mod_flag {
+    SET_IN_FILE = 0,	/* config file option only */
+    SET_VIA_PROG = 1,	/* may be set via extern program, not seen in game */
+    DISP_IN_GAME = 2,	/* may be set via extern program, displayed in game */
+    SET_IN_GAME = 3	/* may be set via extern program or set in the game */
+};
+
+struct set_option_mod_status_req {
+    string optnam<>;
+    enum option_mod_flag status;
 };
 </pre>
 

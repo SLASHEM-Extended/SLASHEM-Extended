@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.36 2003-05-03 11:12:27 j_ali Exp $
+  $Id: winGTK.h,v 1.37 2003-05-17 10:33:24 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -106,7 +106,7 @@ enum xshm_map_mode {
 extern struct window_ext_procs GTK_ext_procs;
 
 extern void win_GTK_init(void);
-extern int GTK_ext_init_nhwindows(int *, char **);
+extern int GTK_ext_init_nhwindows(int *, char **, char ***);
 extern char *GTK_ext_askname(void);
 extern int GTK_ext_player_selection(int *, int *, int *, int *);
 extern void GTK_ext_display_file(int fh);
@@ -149,6 +149,7 @@ extern void GTK_start_screen(void);
 extern void GTK_end_screen(void);
 extern void GTK_raw_print(const char *);
 extern void GTK_raw_print_bold(const char *);
+extern void GTK_ext_preference_update(const char *, const char *);
 
 extern GdkPixmap *GTK_glyph_to_gdkpixmap(int);
 

@@ -1,4 +1,4 @@
-/* $Id: getopt.c,v 1.2 2002-06-22 15:36:52 j_ali Exp $ */
+/* $Id: getopt.c,v 1.3 2003-05-17 10:33:25 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -24,7 +24,7 @@ static struct Bool_Opt
 } *boolopt = (struct Bool_Opt *)0;
 
 static int
-get_option_bool(char *option)
+get_option_bool(const char *option)
 {
     int i;
     if (!boolopt)
@@ -92,7 +92,7 @@ oc_to_str(src,dest)
     *dest = '\0';
 }
 
-char *get_option(char *option)
+char *get_option(const char *option)
 {
     int b;
     static char buf[BUFSIZ];

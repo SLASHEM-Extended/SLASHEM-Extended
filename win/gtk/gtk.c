@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.30 2003-05-03 11:12:27 j_ali Exp $
+  $Id: gtk.c,v 1.31 2003-05-17 10:33:24 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1911,8 +1911,26 @@ init_select_player(boolean init)
     free(root);
 }
 
+/* If you want to change these you probably also want to change the
+ * equivalent values in the non-proxified version of GTK_procs.
+ */
+
+static char *GTK_capv[] = {
+    "color", "hilite_pet",
+#if 0
+    "ascii_map", "tiled_map", "splash_screen", "popup_dialog", "eight_bit_tty",
+#endif
+    "perm_invent",
+    (char *)0
+};
+
+#ifdef GTK_PROXY
+#define set_option_mod_status(option, status) \
+	proxy_cb_set_option_mod_status(option, status)
+#endif
+
 int
-GTK_ext_init_nhwindows(int *argc, char **argv)
+GTK_ext_init_nhwindows(int *argc, char **argv, char ***capvp)
 {
     char *credit_file;
     int i;
@@ -1924,6 +1942,17 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
     GdkColormap *cmap;
 
     gtk_set_locale();
+
+    *capvp = GTK_capv;
+    /* None of these options are supported in the GTK interface
+     * and their display may be confusing.
+     */
+    set_option_mod_status("extmenu", SET_IN_FILE);
+    set_option_mod_status("msg_window", SET_IN_FILE);
+    set_option_mod_status("menucolors", SET_IN_FILE);
+    set_option_mod_status("standout", SET_IN_FILE);
+    set_option_mod_status("timed_delay", SET_IN_FILE);
+
     nh_option_cache_set_bool_addr("color", &copts.use_color);
     nh_option_cache_set_bool_addr("hilite_pet", &copts.hilite_pet);
     nh_rc();

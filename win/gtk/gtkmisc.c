@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmisc.c,v 1.7 2003-05-03 11:12:28 j_ali Exp $
+  $Id: gtkmisc.c,v 1.8 2003-05-17 10:33:25 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -298,7 +298,7 @@ static struct nh_option {
 } *nh_option_cache;
 
 static struct nh_option *
-nh_option_cache_getent(char *option)
+nh_option_cache_getent(const char *option)
 {
     int i;
     struct nh_option *new;
@@ -503,6 +503,29 @@ nh_option_cache_get_bool(char *option)
 	no->value = strcmp(value, "yes") ? boolean_reset : boolean_set;
     }
     return no->value == boolean_set;
+}
+
+void
+GTK_ext_preference_update(const char *option, const char *value)
+{
+    boolean bv;
+    struct nh_option *no = nh_option_cache_getent(option);
+    if (no && no->flags & NHOF_BOOLEAN) {
+	bv = !strcmp(value, "yes");
+	if (no->value != (bv ? boolean_set : boolean_reset))
+	    no->value = bv ? boolean_set : boolean_reset;
+	if (no->addr)
+	    *(boolean *)no->addr = bv;
+    } else if (no) {
+	if (!no->value || strcmp(value, no->value)) {
+	    free(no->value);
+	    no->value = strdup(value);
+	}
+	if (no->addr) {
+	    free(*(char **)no->addr);
+	    *(char **)no->addr = strdup(value);
+	}
+    }
 }
 
 static void

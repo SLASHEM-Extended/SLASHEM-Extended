@@ -1,4 +1,4 @@
-/* $Id: prxyclnt.h,v 1.3 2003-01-27 10:11:57 j_ali Exp $ */
+/* $Id: prxyclnt.h,v 1.4 2003-05-17 10:33:24 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -46,7 +46,7 @@ struct proxy_glyph_map_info {
 
 struct window_ext_procs {
     const char *name;
-    int FDECL((*winext_init_nhwindows), (int *, char **));
+    int FDECL((*winext_init_nhwindows), (int *, char **, char ***));
     int FDECL((*winext_player_selection), (int *, int *, int *, int *));
     char *NDECL((*winext_askname));
     void NDECL((*winext_get_nh_event)) ;
@@ -91,6 +91,7 @@ struct window_ext_procs {
     void NDECL((*winext_start_screen));
     void NDECL((*winext_end_screen));
     int FDECL((*winext_outrip), (int, char *));
+    void FDECL((*winext_preference_update), (const char *, const char *));
     void FDECL((*winext_status), (int, int, const char **));
     void FDECL((*winext_print_glyph_layered), (int, int,
     		struct proxy_glyph_layer *));

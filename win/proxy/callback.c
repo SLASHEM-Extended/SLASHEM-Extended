@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.14 2003-01-18 17:52:09 j_ali Exp $ */
+/* $Id: callback.c,v 1.15 2003-05-17 10:33:25 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -51,6 +51,8 @@ static void FDECL(callback_get_tilesets, \
 static void FDECL(callback_get_glyph_mapping, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(callback_get_extensions, \
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(callback_set_option_mod_status, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 
 static void
@@ -537,6 +539,19 @@ NhExtXdr *request, *reply;
     free(list.extensions);
 }
 
+static void
+callback_set_option_mod_status(id, request, reply)
+unsigned short id;
+NhExtXdr *request, *reply;
+{
+    char *optnam;
+    int status;
+    nhext_rpc_params(request, 2, EXT_STRING_P(optnam), EXT_INT_P(status));
+    set_option_mod_status(optnam, status);
+    free(optnam);
+    nhext_rpc_params(reply, 0);
+}
+
 struct nhext_svc proxy_callbacks[] = {
     EXT_CID_DISPLAY_INVENTORY,		callback_display_inventory,
     EXT_CID_DLBH_FOPEN,			callback_dlbh_fopen,
@@ -559,5 +574,6 @@ struct nhext_svc proxy_callbacks[] = {
     EXT_CID_GET_TILESETS,		callback_get_tilesets,
     EXT_CID_GET_GLYPH_MAPPING,		callback_get_glyph_mapping,
     EXT_CID_GET_EXTENSIONS,		callback_get_extensions,
+    EXT_CID_SET_OPTION_MOD_STATUS,	callback_set_option_mod_status,
     0, NULL,
 };

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkint.c,v 1.1 2003-05-03 11:12:27 j_ali Exp $
+  $Id: gtkint.c,v 1.2 2003-05-17 10:33:25 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -97,6 +97,7 @@ struct window_procs GTK_procs = {
     hook, /* start_screen,*/
     hook, /* end_screen,*/
     genl_outrip,
+    hook, /* preference_update,*/
 };
 
 static void
@@ -202,11 +203,19 @@ static void FDECL(GTK_int_print_glyph, (winid, XCHAR_P, XCHAR_P, int));
 static char FDECL(GTK_int_yn_function, (const char *, const char *, CHAR_P));
 static void FDECL(GTK_int_outrip, (winid, int));
 static void FDECL(GTK_int_getlin, (const char *, char *));
+static void FDECL(GTK_int_preference_update, (const char *));
 
 struct window_procs GTK_procs = {
     "gtk",
-    WC_COLOR | WC_HILITE_PET | WC_ASCII_MAP | WC_TILED_MAP | WC_SPLASH_SCREEN |
-    WC_POPUP_DIALOG | WC_EIGHT_BIT_IN | WC_PERM_INVENT,
+    /* If you want to change these you probably also want to change the
+     * equivalent values in GTK_capv[].
+     */
+    WC_COLOR | WC_HILITE_PET |
+#if 0
+    WC_ASCII_MAP | WC_TILED_MAP | WC_SPLASH_SCREEN | WC_POPUP_DIALOG |
+    WC_EIGHT_BIT_IN |
+#endif
+    WC_PERM_INVENT,
     GTK_int_init_nhwindows,
     GTK_int_player_selection,
     GTK_int_askname,
@@ -262,12 +271,14 @@ struct window_procs GTK_procs = {
 #else
     genl_outrip,
 #endif
+    GTK_int_preference_update,
 };
 
 static void
 GTK_int_init_nhwindows(int *argcp, char **argv)
 {
-    if (GTK_ext_init_nhwindows(argcp, argv))
+    char **capv;
+    if (GTK_ext_init_nhwindows(argcp, argv, &capv))
 	iflags.window_inited = 1;
 }
 
@@ -393,5 +404,11 @@ GTK_int_getlin(const char *query, char *ret)
     line = GTK_ext_getlin(query);
     strcpy(ret, line);
     free(line);
+}
+
+static void
+GTK_int_preference_update(const char *optnam)
+{
+    GTK_ext_preference_update(optnam, get_option(optnam));
 }
 #endif	/* GTK_PROXY */

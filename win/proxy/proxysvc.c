@@ -1,4 +1,4 @@
-/* $Id: proxysvc.c,v 1.19 2003-01-27 10:11:57 j_ali Exp $ */
+/* $Id: proxysvc.c,v 1.20 2003-05-17 10:33:25 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -109,6 +109,8 @@ static void FDECL(proxy_svc_start_screen,
 static void FDECL(proxy_svc_end_screen,
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_outrip, (unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_update_preferences,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_status, (unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_print_glyph_layered,
 			(unsigned short, NhExtXdr *, NhExtXdr *));
@@ -128,15 +130,18 @@ proxy_svc_init_nhwindows(id, request, reply)
 unsigned short id; 
 NhExtXdr *request, *reply;
 {
-    int i, j, retval;
-    int argc;
-    char **argv;
     struct proxy_init_nhwindow_req req = { 0, (char **)0 };
     struct proxy_init_nhwindow_res res;
     nhext_rpc_params(request, 1, EXT_XDRF(proxy_xdr_init_nhwindow_req, &req));
     res.argc = req.argc;
     res.argv = req.argv;
-    res.inited = (*proxy_svc->winext_init_nhwindows)(&res.argc, res.argv);
+    res.capc = 0;
+    res.capv = (char **)0;
+    res.inited =
+	    (*proxy_svc->winext_init_nhwindows)(&res.argc, res.argv, &res.capv);
+    if (res.capv)
+	for(res.capc = 0; res.capv[res.capc]; res.capc++)
+	    ;
     nhext_rpc_params(reply, 1, EXT_XDRF(proxy_xdr_init_nhwindow_res, &res));
 }
 
@@ -649,6 +654,20 @@ NhExtXdr *request, *reply;
 }
 
 static void
+proxy_svc_preference_update(id, request, reply)
+unsigned short id;
+NhExtXdr *request, *reply;
+{
+    char *optnam = (char *)0;
+    char *value = (char *)0;
+    nhext_rpc_params(request, 2, EXT_STRING_P(optnam), EXT_STRING_P(value));
+    (*proxy_svc->winext_preference_update)(optnam, value);
+    nhext_rpc_params(reply, 0);
+    free(optnam);
+    free(value);
+}
+
+static void
 proxy_svc_status(id, request, reply)
 unsigned short id; 
 NhExtXdr *request, *reply;
@@ -723,6 +742,7 @@ static struct nhext_svc services[] = {
     EXT_FID_START_SCREEN,		proxy_svc_start_screen,
     EXT_FID_END_SCREEN,			proxy_svc_end_screen,
     EXT_FID_OUTRIP,			proxy_svc_outrip,
+    EXT_FID_PREFERENCE_UPDATE,		proxy_svc_preference_update,
     EXT_FID_STATUS,			proxy_svc_status,
     EXT_FID_PRINT_GLYPH_LAYERED,	proxy_svc_print_glyph_layered,
     0,					NULL,

@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.24 2003-02-22 19:44:54 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.25 2003-05-17 10:33:25 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -60,7 +60,7 @@ static int in_proxy_init = 0;
 /* Interface definition for plug-in windowing ports */
 struct window_procs proxy_procs = {
     "proxy",
-    0xFFFFFFFF,
+    0x0,
     proxy_init_nhwindows,
     proxy_player_selection,
     proxy_askname,
@@ -111,7 +111,8 @@ struct window_procs proxy_procs = {
 #endif
     proxy_start_screen,
     proxy_end_screen,
-    proxy_outrip
+    proxy_outrip,
+    proxy_preference_update,
 };
 
 /* Extensions to the NhExt protocol */
@@ -123,18 +124,6 @@ struct proxy_extension proxy_extents[] = {
  * The glue functions.
  */
 
-/*
- * Call packet:
- *	ushort ID
- *	int argc
- *	string argv[argc]
- * Reply packet:
- *	ushort ID
- *	boolean inited
- *	int argc
- *	string argv[argc]
- */
-
 void
 proxy_init_nhwindows(argcp, argv)
 int *argcp;
@@ -142,7 +131,8 @@ char **argv;
 {
     int i, j, retval;
     struct proxy_init_nhwindow_req req;
-    struct proxy_init_nhwindow_res res = {0, 0, (char **)0 };
+    struct proxy_init_nhwindow_res res = {0};
+    extern struct wc_Opt wc_options[];
     req.argc = *argcp;
     req.argv = argv;
     retval = nhext_rpc(EXT_FID_INIT_NHWINDOWS,
@@ -166,6 +156,10 @@ char **argv;
 	*argcp = res.argc;
 	if (res.inited)
 	    iflags.window_inited = TRUE;
+	for(i = 0; i < res.capc; i++)
+	    for(j = 0; wc_options[j].wc_name; j++)
+		if (!strcmp(wc_options[j].wc_name, res.capv[i]))
+		    windowprocs.wincap |= wc_options[j].wc_bit;
     }
 }
 
@@ -811,6 +805,15 @@ int how;
 	handled = 0;
     if (!handled)
 	genl_outrip(window, how);
+}
+
+void
+proxy_preference_update(pref)
+const char *pref;
+{
+    const char *value = get_option(pref);
+    (void)nhext_rpc(EXT_FID_PREFERENCE_UPDATE, 2, EXT_STRING(pref),
+      EXT_STRING(value), 0);
 }
 
 void

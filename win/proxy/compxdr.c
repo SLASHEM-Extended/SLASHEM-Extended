@@ -1,4 +1,4 @@
-/* $Id: compxdr.c,v 1.12 2003-01-18 17:52:09 j_ali Exp $ */
+/* $Id: compxdr.c,v 1.13 2003-05-17 10:33:25 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -26,6 +26,8 @@ struct proxy_init_nhwindow_res *datum;
     int retval = nhext_xdr_bool(xdr, &datum->inited);
     retval &= nhext_xdr_array(xdr, (char **)&datum->argv, 
       &datum->argc, (unsigned int)-1, sizeof(char *), nhext_xdr_wrapstring);
+    retval &= nhext_xdr_array(xdr, (char **)&datum->capv, 
+      &datum->capc, (unsigned int)-1, sizeof(char *), nhext_xdr_wrapstring);
     return retval;
 }
 
