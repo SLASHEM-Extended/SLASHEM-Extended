@@ -1359,6 +1359,11 @@ poly_obj(obj, id)
 		otmp->quan /= 2L;       /* some material has been lost */
 	    }
 	    break;
+
+	case FOOD_CLASS:
+	    if (otmp->otyp == SLIME_MOLD)
+		otmp->spe = current_fruit;
+	    break;
 	}
 
 	/* update the weight */
