@@ -356,7 +356,7 @@ update_val(attr_rec, new_value)
 		Strcat(buf, rank_of(u.ulevel, pl_character[0], flags.female));
 
 	} else if (attr_rec == &shown_stats[F_DLEVEL]) {
-	    if (!describe_level(buf)) {
+	    if (!describe_level(buf, FALSE)) {
 		Strcpy(buf, dungeons[u.uz.dnum].dname);
 		Sprintf(eos(buf), ", level %d", depth(&u.uz));
 	    }
