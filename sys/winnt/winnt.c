@@ -11,8 +11,10 @@
 
 #define NEED_VARARGS
 #include "hack.h"
+#ifndef __CYGWIN__
 #include <dos.h>
 #include <direct.h>
+#endif
 #include <ctype.h>
 #include "win32api.h"
 
@@ -117,6 +119,7 @@ char *file;
 /*
  * Chdrive() changes the default drive.
  */
+#ifndef __CYGWIN__
 void
 chdrive(str)
 char *str;
@@ -129,6 +132,7 @@ char *str;
 		_chdrive((drive - 'A') + 1);
 	}
 }
+#endif 
 
 static int
 max_filename()

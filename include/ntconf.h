@@ -7,7 +7,12 @@
 
 /* #define SHELL */	/* nt use of pcsys routines caused a hang */
 
-#define RANDOM		/* have Berkeley random(3) */
+#define HAVE_BERKELY_RANDOM_3	/* have Berkeley random(3) */
+	/* JRN: I dont understand the NT port that well, but in general its
+         *  defines mean the opposite of what I think they should. For some
+	 *  reason the rest of the sources agree with me, which makes things
+	 *  a bit strange (e.g. in ntconf.h RANDOM means you have berkely
+	 *  random(3), but in unixconf.h it means you dont). */
 
 #define TEXTCOLOR	/* Color text */
 
@@ -15,8 +20,8 @@
 #define FILENAME	80	/* maximum filename length (conservative) */
 #define EXEPATH			/* Allow .exe location to be used as HACKDIR */
 #define TRADITIONAL_GLYPHMAP	/* Store glyph mappings at level change time */
-#ifdef WIN32CON
-#define LAN_FEATURES		/* Include code for lan-aware features. */
+#if defined(WIN32CON) && !defined(__CYGWIN__)
+# define LAN_FEATURES		*//* Include code for lan-aware features. */
 #endif
 
 #define PC_LOCKING		/* Prevent overwrites of aborted or in-progress games */
@@ -42,7 +47,7 @@
 #endif
 
 #include <string.h>     /* Provides prototypes of strncmpi(), etc.     */
-#ifdef STRNCMPI
+#ifndef STRNCMPI /* JRN: was ifdef */
 #define strncmpi(a,b,c) strnicmp(a,b,c)
 #endif
 
@@ -54,7 +59,7 @@
 #define rindex	strrchr
 #include <time.h>
 #define USE_STDARG
-#ifdef RANDOM
+#ifdef HAVE_BERKELY_RANDOM_3
 /* Use the high quality random number routines. */
 #define Rand()	random()
 #else
@@ -86,8 +91,8 @@
 
 #include <fcntl.h>
 #include <io.h>
-#include <direct.h>
 #ifndef __CYGWIN__
+# include <direct.h>
 # include <conio.h>
 #endif
 #undef kbhit	        /* Use our special NT kbhit */

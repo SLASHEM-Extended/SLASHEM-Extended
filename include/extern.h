@@ -1223,7 +1223,9 @@ E long FDECL(filesize, (char *));
 #  endif /* MSDOS */
 E char *NDECL(foundfile_buffer);
 # endif /* __GO32__ */
+# ifndef __CYGWIN__
 E void FDECL(chdrive, (char *));
+# endif
 # ifndef TOS
 E void NDECL(disable_ctrlP);
 E void NDECL(enable_ctrlP);

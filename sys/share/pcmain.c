@@ -594,7 +594,7 @@ boolean wr;
 		error("Cannot chdir to %s.", dir);
 	}
 
-# ifndef AMIGA
+# if !defined(AMIGA) && !defined(__CYGWIN__)
 	/* Change the default drive as well.
 	 */
 	chdrive(dir);

@@ -501,7 +501,9 @@ static void msexit()
 #endif
 #ifdef CHDIR
 	chdir(orgdir);		/* chdir, not chdirx */
+# ifndef __CYGWIN__
 	chdrive(orgdir);
+# endif
 #endif
 #ifdef TOS
 	if (run_from_desktop)

@@ -107,8 +107,12 @@
 
 /*
  * Windows NT Autodetection
+ *
  */
 
+#if defined(__CYGWIN__) && !defined(UNIX)
+# define WIN32
+#endif
 #ifdef WIN32
 # undef UNIX
 # undef MSDOS
