@@ -60,8 +60,8 @@ N       name    name or classify an item
 o       open    open a door
 p       pay     pay your bill (in a shop)/shopkeeper services
 P       puton   put on an accessory (ring, amulet, etc)
-q       quaff   drink a potion
-Q       quiver  ready ammunition (quiver)
+q       quaff   drink something (potion, water, etc)
+Q       quiver  select ammunition for quiver
 r       read    read a scroll or spell book
 R       remove  remove an accessory (ring, amulet, etc)
 s       search  search for secret doors, hidden traps and monsters
