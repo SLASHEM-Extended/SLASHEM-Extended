@@ -414,7 +414,8 @@ learn()
 
 	if (book->cursed) {	/* maybe a demon cursed it */
 	    if (cursed_book(book)) {
-		useup(book);
+		if (carried(book)) useup(book);
+		else useupf(book, 1L);
 		book = 0;
 		return 0;
 	    }
@@ -506,7 +507,7 @@ register struct obj *spellbook;
 		    }
 		}
 
-		if (too_hard && !spellbook->spe) {
+		if (too_hard && (spellbook->cursed || spellbook->spe)) {
 		    boolean gone = cursed_book(spellbook);
 
 		    nomul(delay);			/* study time */

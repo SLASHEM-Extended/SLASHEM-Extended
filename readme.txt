@@ -74,6 +74,7 @@ ver 0.0.7E6F2 [?] [Released by ?]
 -fixed bug 924277: Monsters can retaliate against themselves
 -fixed bug 925892: Vampire corpse on early bones level
 -fixed bug 922320: Grenade thrown by soldier angered monster
+-fixed bug 929873: Crash while reading spellbook off floor
 
 See history.txt for changes made in previous versions.
 
