@@ -81,6 +81,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 934076: Dipping amnesia into amnesia gives water
 -fixed bug 946306: do_look: bad glyph 3726 at (7, 16)
 -fixed bug 929220: Prayer and chi healing
+-fixed bug 946157: Water elementals created over lava on Flame mage quest
 
 See history.txt for changes made in previous versions.
 
