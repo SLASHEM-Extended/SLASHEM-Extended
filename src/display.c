@@ -953,6 +953,7 @@ static struct tmp_glyph {
     int sidx;		/* index of next unused slot in saved[] */
     int style;		/* either DISP_BEAM or DISP_FLASH or DISP_ALWAYS */
     int glyph;		/* glyph to use when printing */
+    struct tmp_glyph *cont;	/* Used if saved[] is full */
     struct tmp_glyph *prev;
 } tgfirst;
 static struct tmp_glyph *tglyph = (struct tmp_glyph *)0;
@@ -961,7 +962,7 @@ void
 tmp_at(x, y)
     int x, y;
 {
-    struct tmp_glyph *tmp;
+    struct tmp_glyph *tmp, *cont;
 
     switch (x) {
 	case DISP_BEAM:
@@ -977,10 +978,17 @@ tmp_at(x, y)
 	    tglyph->sidx = 0;
 	    tglyph->style = x;
 	    tglyph->glyph = y;
+	    tglyph->cont = (struct tmp_glyph *)0;
 	    flush_screen(0);	/* flush buffered glyphs */
 	    return;
 	case DISP_FREEMEM:  /* in case game ends with tmp_at() in progress */
 	    while (tglyph) {
+		cont = tglyph->cont;
+		while (cont) {
+		    tmp = cont->cont;
+		    if (cont != &tgfirst) free((genericptr_t)cont);
+		    cont = tmp;
+		}
 		tmp = tglyph->prev;
 		if (tglyph != &tgfirst) free((genericptr_t)tglyph);
 		tglyph = tmp;
@@ -1005,6 +1013,15 @@ tmp_at(x, y)
 		/* Erase (reset) from source to end */
 		for (i = 0; i < tglyph->sidx; i++)
 		    newsym(tglyph->saved[i].x, tglyph->saved[i].y);
+		cont = tglyph->cont;
+		while (cont) {
+		    for (i = 0; i < cont->sidx; i++)
+			newsym(cont->saved[i].x, cont->saved[i].y);
+		    tmp = cont->cont;
+		    if (cont != &tgfirst) free((genericptr_t)cont);
+		    cont = tmp;
+		}
+	     /* tglyph->cont = (struct tmp_glyph *)0; */
 	    } else {		/* DISP_FLASH or DISP_ALWAYS */
 		if (tglyph->sidx)	/* been called at least once */
 		    newsym(tglyph->saved[0].x, tglyph->saved[0].y);
@@ -1019,6 +1036,14 @@ tmp_at(x, y)
 	    if (tglyph->style == DISP_BEAM || tglyph->style == DISP_BEAM_ALWAYS) {
 		if (!cansee(x,y) && tglyph->style == DISP_BEAM) break;
 		/* save pos for later erasing */
+		if (tglyph->sidx >= SIZE(tglyph->saved)) {
+		    tmp = (struct tmp_glyph *)alloc(sizeof (struct tmp_glyph));
+		    *tmp = *tglyph;
+		    tglyph->prev = (struct tmp_glyph *)0;
+		    tmp->cont = tglyph;
+		    tglyph = tmp;
+		    tglyph->sidx = 0;
+		}
 		tglyph->saved[tglyph->sidx].x = x;
 		tglyph->saved[tglyph->sidx].y = y;
 		tglyph->sidx += 1;
