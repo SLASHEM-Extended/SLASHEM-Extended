@@ -81,7 +81,7 @@ char **argv;
 	    infile = outfile = (char *)0;
 	    for(i=1; i<argc; i++) {
 		if (infile) free(infile);
-		infile = alloc(strlen(argv[i]) + 1);
+		infile = (char*)alloc(strlen(argv[i]) + 1);
 		fname = strcpy(infile, argv[i]);
 		/* the input file had better be a .pdf file */
 		len = strlen(fname) - 4;	/* length excluding suffix */
@@ -109,7 +109,7 @@ char **argv;
 #ifdef VMS	/* avoid possible interaction with logical name */
 		len++;	/* retain "." as trailing punctuation */
 #endif
-		basename = alloc(len + 1);
+		basename = (char*)alloc(len + 1);
 		(void) strncpy(basename, infile, len);
 		basename[len] = '\0';
 #endif
@@ -119,7 +119,7 @@ char **argv;
 		outfile = alloc(strlen(PREFIX) + strlen(basename) + 1);
 		Strcpy(outfile, PREFIX);
 #else
-		outfile = alloc(strlen(basename) + 1);
+		outfile = (char*)alloc(strlen(basename) + 1);
 		outfile[0] = '\0';
 #endif
 		(void) strcat(outfile, basename);
