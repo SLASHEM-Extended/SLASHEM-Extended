@@ -217,7 +217,8 @@ BUGS
 
 
 
-       Dungeons & Dragons is a Trademark of TSR Inc.
+       Dungeons & Dragons is a Trademark of Wizards of the Coast,
+       Inc.
 
 
 
