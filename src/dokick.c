@@ -464,7 +464,7 @@ xchar x, y;
 		killer_format = KILLED_BY;
 		/* KMH -- otmp should be kickobj */
 		Sprintf(kbuf, "kicking %s without boots",
-			an(corpse_xname(kickobj, TRUE)));
+			an(killer_cxname(kickobj, TRUE)));
 		killer = kbuf;
 		done(STONING);
 	    }

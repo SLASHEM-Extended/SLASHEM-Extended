@@ -1272,6 +1272,7 @@ boolean telekinesis;	/* not picking it up directly by hand */
 
 			Strcpy(kbuf, an(corpse_xname(obj, TRUE)));
 			pline("Touching %s is a fatal mistake.", kbuf);
+			Strcpy(kbuf, an(killer_cxname(obj, TRUE)));
 			instapetrify(kbuf);
 		    return -1;
 		}
@@ -1787,6 +1788,7 @@ register struct obj *obj;
 
 		    Strcpy(kbuf, an(corpse_xname(obj, TRUE)));
 		    pline("Touching %s is a fatal mistake.", kbuf);
+		    Strcpy(kbuf, an(killer_cxname(obj, TRUE)));
 		    instapetrify(kbuf);
 		    return -1;
 		}
@@ -1918,6 +1920,7 @@ register struct obj *obj;
 
 		    Strcpy(kbuf, an(corpse_xname(obj, TRUE)));
 		    pline("Touching %s is a fatal mistake.", kbuf);
+		    Strcpy(kbuf, an(killer_cxname(obj, TRUE)));
 		    instapetrify(kbuf);
 		    return -1;
 		}

@@ -1496,7 +1496,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 		char buf[BUFSZ];
 
 		/* Generate the name for the corpse */
-		if (!uniq)
+		if (!uniq || Hallucination)
 		    Sprintf(buf, "%s", the(corpse_xname(otmp,TRUE)));
 		else
 		    Sprintf(buf, "%s%s corpse",
@@ -1533,7 +1533,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 			/* make sure new ill doesn't result in improvement */
 			if (Sick && (sick_time > Sick))
 			    sick_time = (Sick > 1L) ? Sick - 1L : 1L;
-			if (!uniq)
+			if (!uniq || Hallucination)
 			    Sprintf(buf, "rotted %s", corpse_xname(otmp,TRUE));
 			else
 			    Sprintf(buf, "%s%s rotted corpse",

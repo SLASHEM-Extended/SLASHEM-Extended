@@ -948,7 +948,8 @@ boolean ignore_oquan;	/* to force singular */
 {
 	char *nambuf = nextobuf();
 
-	Sprintf(nambuf, "%s corpse", mons[otmp->corpsenm].mname);
+	Sprintf(nambuf, "%s corpse",
+		mons[Hallucination ? rndmonnum() : otmp->corpsenm].mname);
 
 	if (ignore_oquan || otmp->quan < 2)
 	    return nambuf;
@@ -997,13 +998,33 @@ struct obj *obj;
     save_ocuname = objects[obj->otyp].oc_uname;
     objects[obj->otyp].oc_uname = 0;	/* avoid "foo called bar" */
 
-    buf = xname(obj);
+    buf = xname2(obj);
     if (obj->quan == 1L) buf = obj_is_pname(obj) ? the(buf) : an(buf);
 
     objects[obj->otyp].oc_name_known = save_ocknown;
     objects[obj->otyp].oc_uname = save_ocuname;
     *obj = save_obj;	/* restore object's core settings */
 
+    return buf;
+}
+
+char *
+killer_cxname(obj, ignore_oquan)
+struct obj *obj;
+boolean ignore_oquan;	/* to force singular */
+{
+    char *buf;
+    if (obj->otyp == CORPSE) {
+	buf = nextobuf();
+
+	Sprintf(buf, "%s%s corpse",
+		Hallucination ? "hallucinogen-distorted " : "",
+		mons[obj->corpsenm].mname);
+
+	if (!ignore_oquan && obj->quan >= 2)
+	    buf = makeplural(buf);
+    } else
+	buf = killer_xname(obj);
     return buf;
 }
 
