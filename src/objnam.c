@@ -1179,9 +1179,6 @@ const char *oldstr;
 	      !strcmp(spot-3, "nori") || !strcmp(spot-3, "drow"))) ||
 	    (len >= 5 && (!strcmp(spot-4, "sheep") ||
 			!strcmp(spot-4, "ninja") ||
-#ifndef DEVEL_BRANCH
-			!strcmp(spot-4, "ronin") ||
-#endif
 			!strcmp(spot-4, "shito") ||
 			!strcmp(spot-4, "tengu") ||
 			!strcmp(spot-4, "manes"))) ||
@@ -1917,9 +1914,7 @@ register char *bp;
          && !strstri(bp, "eye ")
          && !strstri(bp, "medallion ")
          && !strstri(bp, "stake ")
-#ifdef DEVEL_BRANCH
          && !strstri(bp, "potion ")
-#endif /* DEVEL_BRANCH */
 	 && !strstri(bp, "finger ")) {
 	    if ((p = strstri(bp, " of ")) != 0
 		&& (mntmp = name_to_mon(p+4)) >= LOW_PM)
@@ -2641,7 +2636,6 @@ typfnd:
 	/* more wishing abuse: don't allow wishing for certain artifacts */
 	/* and make them pay; charge them for the wish anyway! */
 	if ((is_quest_artifact(otmp) ||
-#ifdef DEVEL_BRANCH
 	    /* [ALI] Can't wish for artifacts which have a set location */
 	    (otmp->oartifact &&
 	       (otmp->oartifact == ART_KEY_OF_CHAOS ||
@@ -2651,7 +2645,6 @@ typfnd:
 	        otmp->oartifact == ART_EYE_OF_THE_BEHOLDER ||
 	        otmp->oartifact == ART_NIGHTHORN ||
 	        otmp->oartifact == ART_THIEFBANE)) ||
-#endif
 # ifdef NOARTIFACTWISH
 /* Wishing for a "weak" artifact is easier than for a stronger one */
 	(otmp->oartifact &&

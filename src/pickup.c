@@ -1752,7 +1752,6 @@ register int held;
 	    }
 	    used = 1;
 	}
-#ifdef DEVEL_BRANCH
 	/* [ALI] If a container vanishes which contains indestructible
 	 * objects then these will be added to the magic bag. This makes
 	 * it very hard to combine the count and vanish loops so we do
@@ -1790,38 +1789,6 @@ register int held;
 	/* Count the number of contained objects. */
 	for (curr = obj->cobj; curr; curr = curr->nobj)
 	    cnt++;
-#else		/* DEVEL_BRANCH */
-	/* Count the number of contained objects. Sometimes toss objects if */
-	/* a cursed magic bag.						    */
-	for (curr = obj->cobj; curr; curr = otmp) {
-	    otmp = curr->nobj;
-	    if (Is_mbag(obj) && obj->cursed && !rn2(13)) {
-		if (curr->dknown)
-		    pline("%s to have vanished!", The(aobjnam(curr,"seem")));
-		else
-		    You("%s %s disappear.", Blind ? "notice" : "see",
-							doname(curr));
-		obj_extract_self(curr);
-		if (*u.ushops && (shkp = shop_keeper(*u.ushops)) != 0) {
-		    if(held) {
-			if(curr->unpaid)
-			    loss += stolen_value(curr, u.ux, u.uy,
-					     (boolean)shkp->mpeaceful, TRUE);
-			lcnt++;
-		    } else if(costly_spot(u.ux, u.uy)) {
-			loss += stolen_value(curr, u.ux, u.uy,
-					     (boolean)shkp->mpeaceful, TRUE);
-			lcnt++;
-		    }
-		}
-		/* obfree() will free all contained objects */
-		obfree(curr, (struct obj *) 0);
-		used = 1;
-	    } else {
-		cnt++;
-	    }
-	}
-#endif		/* DEVEL_BRANCH */
 
 	if (cnt && loss)
 	    You("owe %ld zorkmids for lost item%s.",

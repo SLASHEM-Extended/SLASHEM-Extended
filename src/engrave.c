@@ -692,13 +692,6 @@ doengrave()
 			break;
 		    case WAN_DRAINING:	/* KMH */
 			if (oep) {
-#ifndef DEVEL_BRANCH
-			    if (!Blind)
-				pline("Some of the engraving on the %s vanishes!",
-					surface(u.ux,u.uy));
-			    u_wipe_engr(5);
-			    oep = engr_at(u.ux,u.uy);
-#else
 			    /*
 			     * [ALI] Wand of draining give messages like
 			     * either polymorph or cancellation/make
@@ -718,7 +711,6 @@ doengrave()
 				    dengr = TRUE;
 				}
 			    }
-#endif
 			}
 			break;
 		    case WAN_NOTHING:

@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.11 2002-03-11 00:09:21 j_ali Exp $
+  $Id: gtk.c,v 1.12 2002-03-24 07:39:03 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1614,7 +1614,7 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
 #endif
 
     gtk_set_locale();
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+#ifdef GTK_V20
     nh_option_cache_set_bool_addr("color", &copts.use_color);
     nh_option_cache_set_bool_addr("hilite_pet", &copts.hilite_pet);
     nh_option_cache_set_bool_addr("perm_invent", &copts.perm_invent);

@@ -48,16 +48,12 @@ typedef struct {
 
 typedef struct {
 	xchar x, y, mask;
-#ifdef DEVEL_BRANCH
 	short arti_key;		/* Index (ART_) of key for this door */
-#endif
 } door;
 
 typedef struct {
 	xchar wall, pos, secret, mask;
-#ifdef DEVEL_BRANCH
 	short arti_key;		/* Index (ART_) of key for this door */
-#endif
 } room_door;
 
 typedef struct {

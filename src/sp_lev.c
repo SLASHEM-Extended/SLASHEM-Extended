@@ -590,9 +590,7 @@ struct mkroom *broom;
 {
 	int	x, y;
 	int	trycnt = 0;
-#ifdef DEVEL_BRANCH
 	int	i;
-#endif
 
 	if (dd->secret == -1)
 	    dd->secret = rn2(2);
@@ -662,12 +660,8 @@ struct mkroom *broom;
 		impossible("create_door: Can't find a proper place!");
 		return;
 	}
-#ifndef DEVEL_BRANCH
-	add_door(x,y,broom);
-#else
 	i = add_door(x,y,broom);
 	doors[i].arti_key = dd->arti_key;
-#endif
 	levl[x][y].typ = (dd->secret ? SDOOR : DOOR);
 	levl[x][y].doormask = dd->mask;
 }
@@ -2404,23 +2398,16 @@ dlb *fd;
 
 		/* Now the complicated part, list it with each subroom */
 		/* The dog move and mail daemon routines use this */
-#ifdef DEVEL_BRANCH
 		xi = -1;
-#endif
 		while(croom->hx >= 0 && doorindex < DOORMAX) {
 		    if(croom->hx >= x-1 && croom->lx <= x+1 &&
 		       croom->hy >= y-1 && croom->ly <= y+1) {
 			/* Found it */
-#ifndef DEVEL_BRANCH
-			add_door(x, y, croom);
-#else
 			xi = add_door(x, y, croom);
 			doors[xi].arti_key = tmpdoor.arti_key;
-#endif
 		    }
 		    croom++;
 		}
-#ifdef DEVEL_BRANCH
 		if (xi < 0) {	/* Not in any room */
 		    if (doorindex >= DOORMAX)
 			impossible("Too many doors?");
@@ -2429,7 +2416,6 @@ dlb *fd;
 			doors[xi].arti_key = tmpdoor.arti_key;
 		    }
 		}
-#endif
 	}
 
 	/* now that we have rooms _and_ associated doors, fill the rooms */

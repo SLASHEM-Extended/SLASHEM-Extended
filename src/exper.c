@@ -155,23 +155,13 @@ more_experienced(exp, rexp)
 }
 
 void
-#ifndef DEVEL_BRANCH
-losexp(drainer)		/* e.g., hit by drain life attack */
-#else /* DEVEL_BRANCH */
 losexp(drainer,force)	/* e.g., hit by drain life attack */
-#endif /* DEVEL_BRANCH */
 const char *drainer;	/* cause of death, if drain should be fatal */
-#ifdef DEVEL_BRANCH
 boolean force;		/* Force the loss of an experience level */
-#endif /* DEVEL_BRANCH */
 {
 	register int num;
 
-#ifndef DEVEL_BRANCH
-	if (resists_drli(&youmonst)) return;
-#else /* DEVEL_BRANCH */
 	if (!force && resists_drli(&youmonst)) return;
-#endif /* DEVEL_BRANCH */
 
 	if (u.ulevel > 1) {
 		pline("%s level %d.", Goodbye(), u.ulevel--);

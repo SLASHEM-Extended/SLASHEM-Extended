@@ -13,10 +13,8 @@ STATIC_VAR NEARDATA struct xlock_s {
 	struct rm  *door;
 	struct obj *box;
 	int picktyp, chance, usedtime;
-#ifdef DEVEL_BRANCH
 	/* ALI - Artifact doors */
 	int key;			/* Key being used (doors only) */
-#endif
 } xlock;
 
 #ifdef OVLB
@@ -184,7 +182,6 @@ forcelock()     /* try to force a locked chest */
 	    /* Put the contents on ground at the hero's feet. */
 	    while ((otmp = xlock.box->cobj) != 0) {
 		obj_extract_self(otmp);
-#ifdef DEVEL_BRANCH
 		/* [ALI] Allowing containers to be destroyed is complicated
 		 * (because they might contain indestructible objects).
 		 * Since this is very unlikely to occur in practice simply
@@ -192,9 +189,6 @@ forcelock()     /* try to force a locked chest */
 		 */
 		if (!evades_destruction(otmp) && !Has_contents(otmp) &&
 		  (!rn2(3) || otmp->oclass == POTION_CLASS)) {
-#else
-		if(!rn2(3) || otmp->oclass == POTION_CLASS) {
-#endif
 		    chest_shatter_msg(otmp);
 		    if (costly)
 			loss += stolen_value(otmp, u.ux, u.uy,
@@ -291,9 +285,7 @@ pick_lock(pick) /* pick a lock with a given object */
 	register struct obj     *pick;
 {
 	int picktyp, c, ch;
-#ifdef DEVEL_BRANCH
 	int key;
-#endif
 	xchar x,y;
 	struct rm       *door;
 	struct obj      *otmp;
@@ -317,11 +309,7 @@ pick_lock(pick) /* pick a lock with a given object */
 		pline(no_longer, "reach the", "lock");
 		reset_pick();
 		return 0;
-#ifdef DEVEL_BRANCH
 	    } else if (!xlock.door || xlock.key == pick->oartifact) {
-#else
-	    } else {
-#endif
 		const char *action = lock_action();
 		You("resume your attempt at %s.", action);
 		set_occupation(picklock, action, 0);
@@ -484,10 +472,8 @@ pick_lock(pick) /* pick a lock with a given object */
 			return(0);
 		    }
 #endif
-#ifdef DEVEL_BRANCH
 		    /* ALI - Artifact doors */
 		    key = artifact_door(x, y);
-#endif
 
 		    Sprintf(qbuf,"%sock it?",
 			(door->doormask & D_LOCKED) ? "Unl" : "L" );
@@ -530,7 +516,6 @@ pick_lock(pick) /* pick a lock with a given object */
 		    xlock.door = door;
 		    xlock.box = 0;
 
-#ifdef DEVEL_BRANCH
 		    /* ALI - Artifact doors */
 		    xlock.key = pick->oartifact;
 		    if (key && xlock.key != key) {
@@ -540,7 +525,6 @@ pick_lock(pick) /* pick a lock with a given object */
 			}
 			else ch = -1;		/* -1 == 0% chance */
 		    }
-#endif
 	    }
 	}
 	flags.move = 0;
@@ -672,13 +656,11 @@ doforce()               /* try to force a chest with your weapon */
 				Blind ? "feel" : "see");
 		return(0);
 	    }
-#ifdef DEVEL_BRANCH
 	    /* ALI - artifact doors */
 	    if (artifact_door(x, y)) {
 		pline("This door is too solid to force open.");
 		return 0;
 	    }
-#endif
 	    switch (door->doormask) {
 		case D_NODOOR:
 		    pline("This doorway has no door.");
@@ -962,11 +944,7 @@ int x, y;
 	const char *msg = (const char *)0;
 	const char *dustcloud = "A cloud of dust";
 	const char *quickly_dissipates = "quickly dissipates";
-#ifdef DEVEL_BRANCH
 	int key = artifact_door(x, y);		/* ALI - Artifact doors */
-#else
-	int key = 0;		/* Artifact doors aren't supported yet */
-#endif
 	
 	if (door->typ == SDOOR) {
 	    switch (otmp->otyp) {
@@ -1152,7 +1130,6 @@ struct obj *otmp;
 	pline("%s %s %s!", article, thing, disposition);
 }
 
-#ifdef DEVEL_BRANCH
 /* ALI - Kevin Hugo's artifact doors.
  * Return the artifact which unlocks the door at (x, y), or
  * zero if it is an ordinary door.
@@ -1174,7 +1151,6 @@ int x, y;
     }
     return 0;
 }
-#endif	/* DEVEL_BRANCH */
 
 #endif /* OVLB */
 

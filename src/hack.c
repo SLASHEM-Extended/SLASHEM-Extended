@@ -867,7 +867,6 @@ domove()
 	} else if (IS_DOOR(tmpr->typ)) {
 	    if (closed_door(x,y)) {
 		if (Blind) feel_location(x,y);
-#ifdef DEVEL_BRANCH
 		/* ALI - artifact doors */
 		if (artifact_door(x, y)) {
 		    flags.move = 0;
@@ -884,7 +883,6 @@ domove()
 		    nomul(0);
 		    return;
 		} else
-#endif
 		if (Passes_walls)
 		    ;   /* do nothing */
 		else if (can_ooze(&youmonst))

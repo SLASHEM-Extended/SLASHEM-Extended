@@ -10,7 +10,6 @@ STATIC_DCL void NDECL(vault_tele);
 STATIC_DCL boolean FDECL(rloc_pos_ok, (int,int,struct monst *));
 STATIC_DCL void FDECL(mvault_tele, (struct monst *));
 
-#ifdef DEVEL_BRANCH
 /*
  * Is (x, y) a bad position of mtmp?  If mtmp is NULL, then is (x, y) bad
  * for an object?
@@ -89,67 +88,6 @@ struct monst *mtmp;
 
     return !badpos(x, y, mtmp);
 }
-#else	/* DEVEL_BRANCH */
-/*
- * Is (x,y) a good position of mtmp?  If mtmp is NULL, then is (x,y) good
- * for an object?
- *
- * This function will only look at mtmp->mdat, so makemon, mplayer, etc can
- * call it to generate new monster positions with fake monster structures.
- */
-boolean
-goodpos(x, y, mtmp)
-int x,y;
-struct monst *mtmp;
-{
-	struct permonst *mdat = NULL;
-
-	if (!isok(x, y)) return FALSE;
-
-	/* in many cases, we're trying to create a new monster, which
-	 * can't go on top of the player or any existing monster.
-	 * however, occasionally we are relocating engravings or objects,
-	 * which could be co-located and thus get restricted a bit too much.
-	 * oh well.
-	 */
-	if (mtmp != &youmonst && x == u.ux && y == u.uy
-#ifdef STEED
-			&& (!u.usteed || mtmp != u.usteed)
-#endif
-			)
-		return FALSE;
-
-	if (mtmp) {
-	    struct monst *mtmp2 = m_at(x,y);
-
-	    if (mtmp2 && mtmp2 != mtmp)
-		return FALSE;
-
-	    mdat = mtmp->data;
-	    if (is_pool(x,y)) {
-		if (mtmp == &youmonst)
-			return !!(HLevitation || Flying || Wwalking ||
-					Swimming || Amphibious);
-		else    return (is_flyer(mdat) || is_swimmer(mdat) ||
-							is_clinger(mdat));
-	    } else if (mdat->mlet == S_EEL && rn2(13)) {
-		return FALSE;
-	    } else if (is_lava(x,y)) {
-		if (mtmp == &youmonst)
-		    return !!HLevitation;
-		else
-		    return (is_flyer(mdat) || likes_lava(mdat));
-	    }
-	    if (passes_walls(mdat) && may_passwall(x,y)) return TRUE;
-	}
-	if (!ACCESSIBLE(levl[x][y].typ)) return FALSE;
-	if (closed_door(x, y) && (!mdat || !amorphous(mdat)))
-		return FALSE;
-	if (sobj_at(BOULDER, x, y) && (!mdat || !throws_rocks(mdat)))
-		return FALSE;
-	return TRUE;
-}
-#endif
 
 /*
  * "entity next to"
@@ -232,7 +170,6 @@ full:
     return TRUE;
 }
 
-#ifdef DEVEL_BRANCH
 /*
  * "entity path to"
  *
@@ -398,7 +335,6 @@ wiz_debug_cmd() /* in this case, run epathto on arbitary monster & goal */
     }
 }
 #endif	/* DEBUG */
-#endif	/* DEVEL_BRANCH */
 
 /*
  * Check for restricted areas present in some special levels.  (This might

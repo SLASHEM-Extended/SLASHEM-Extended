@@ -951,13 +951,9 @@ struct trap *trap;
 		(struct obj *)0);
 	del_engr_at(trap->tx, trap->ty);
 	wake_nearto(trap->tx, trap->ty, 400);
-#ifdef DEVEL_BRANCH
 	/* ALI - artifact doors */
 	if (IS_DOOR(levl[trap->tx][trap->ty].typ) &&
 		!artifact_door(trap->tx, trap->ty))
-#else
-	if (IS_DOOR(levl[trap->tx][trap->ty].typ))
-#endif
 	    levl[trap->tx][trap->ty].doormask = D_BROKEN;
 	/* TODO: destroy drawbridge if present;
 		 sometimes delete trap instead of always leaving a pit */

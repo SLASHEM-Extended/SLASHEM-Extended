@@ -42,9 +42,7 @@ extern void FDECL(yywarning, (const char *));
 extern int NDECL(yylex);
 int NDECL(yyparse);
 
-#ifdef DEVEL_BRANCH
 extern int FDECL(get_artifact_id, (char *));
-#endif
 extern int FDECL(get_floor_type, (CHAR_P));
 extern int FDECL(get_room_type, (char *));
 extern int FDECL(get_trap_type, (char *));
@@ -598,9 +596,7 @@ room_door	: DOOR_ID ':' secret ',' door_state ',' door_wall ',' door_pos
 			    tmprdoor[ndoor]->mask = $5;
 			    tmprdoor[ndoor]->wall = $7;
 			    tmprdoor[ndoor]->pos = $9;
-#ifdef DEVEL_BRANCH
 			    tmprdoor[ndoor]->arti_key = 0;
-#endif
 			}
 		  }
 		  room_door_infos
@@ -621,7 +617,6 @@ room_door_infos	: /* nothing */
 
 room_door_info	: ',' string
 		  {
-#ifdef DEVEL_BRANCH
 			int token = get_artifact_id($2);
 			if (token == ERR) {
 			    char ebuf[100];
@@ -630,7 +625,6 @@ room_door_info	: ',' string
 			}
 			else if (tmprdoor[ndoor])
 			    tmprdoor[ndoor]->arti_key = token;
-#endif
 		  }
 		;
 
@@ -1030,9 +1024,7 @@ door_detail	: DOOR_ID ':' door_state ',' coordinate
 			tmpdoor[ndoor]->x = current_coord.x;
 			tmpdoor[ndoor]->y = current_coord.y;
 			tmpdoor[ndoor]->mask = $<i>3;
-#ifdef DEVEL_BRANCH
 			tmpdoor[ndoor]->arti_key = 0;
-#endif
 			if(current_coord.x >= 0 && current_coord.y >= 0 &&
 			   tmpmap[current_coord.y][current_coord.x] != DOOR &&
 			   tmpmap[current_coord.y][current_coord.x] != SDOOR)
@@ -1053,7 +1045,6 @@ door_infos	: /* nothing */
 
 door_info	: ',' string
 		  {
-#ifdef DEVEL_BRANCH
 			int token = get_artifact_id($2);
 			if (token == ERR) {
 			    char ebuf[100];
@@ -1062,7 +1053,6 @@ door_info	: ',' string
 			}
 			else
 			    tmpdoor[ndoor]->arti_key = token;
-#endif
 		  }
 		;
 

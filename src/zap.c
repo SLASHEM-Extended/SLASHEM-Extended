@@ -962,13 +962,11 @@ obj_resists(obj, ochance, achance)
 struct obj *obj;
 int ochance, achance;   /* percent chance for ordinary objects, artifacts */
 {
-#ifdef DEVEL_BRANCH
 	/* [ALI] obj_resists(obj, 0, 0) is used to test for objects resisting
 	 * containment (see bury_an_obj() and monstone() for details).
 	 */
 	if (evades_destruction(obj) && (ochance || achance))
 		return TRUE;
-#endif
 	if (obj->otyp == AMULET_OF_YENDOR ||
 	    obj->otyp == SPE_BOOK_OF_THE_DEAD ||
 	    obj->otyp == CANDELABRUM_OF_INVOCATION ||
@@ -1021,9 +1019,7 @@ polyuse(objhdr, mat, minwt)
 	otmp2 = otmp->nexthere;
 	if (otmp == uball || otmp == uchain) continue;
 	if (obj_resists(otmp, 0, 0)) continue;	/* preserve unique objects */
-#ifdef DEVEL_BRANCH
 	if (evades_destruction(otmp)) continue;
-#endif
 #ifdef MAIL
 	if (otmp->otyp == SCR_MAIL) continue;
 #endif
@@ -1555,18 +1551,13 @@ poly_obj(obj, id)
 	}
 
 	if ((!carried(otmp) || obj->unpaid) &&
-#if defined(DEVEL_BRANCH) && defined(UNPOLYPILE)
+#if defined(UNPOLYPILE)
 		!is_fuzzy(obj) &&
 #endif
 		get_obj_location(otmp, &ox, &oy, BURIED_TOO|CONTAINED_TOO) &&
 		costly_spot(ox, oy)) {
-#ifdef DEVEL_BRANCH
 	    char objroom = *in_rooms(ox, oy, SHOPBASE);
 	    register struct monst *shkp = shop_keeper(objroom);
-#else
-	    register struct monst *shkp =
-		shop_keeper(*in_rooms(ox, oy, SHOPBASE));
-#endif
 
 	    if ((!obj->no_charge ||
 		 (Has_contents(obj) &&
@@ -1582,14 +1573,12 @@ poly_obj(obj, id)
 			hot_pursuit(shkp);
 		    }
 		} else Norep("%s is furious!", Monnam(shkp));
-#ifdef DEVEL_BRANCH
 		if (!carried(otmp)) {
 		    if (costly_spot(u.ux, u.uy) && objroom == *u.ushops)
 			bill_dummy_object(obj);
 		    else
 			(void) stolen_value(obj, ox, oy, FALSE, FALSE);
 		}
-#endif
 	    }
 	}
 	delobj(obj);
@@ -2210,11 +2199,7 @@ boolean ordinary;
 		case SPE_DRAIN_LIFE:
 		case WAN_DRAINING:	/* KMH */
 		    if (!Drain_resistance) {
-#ifndef DEVEL_BRANCH
-			losexp("life drainage");
-#else /* DEVEL_BRANCH */
 			losexp("life drainage", FALSE);
-#endif /* DEVEL_BRANCH */
 			makeknown(obj->otyp);
 		    }
 		    damage = 0;	/* No additional damage */
@@ -2697,14 +2682,6 @@ register struct obj     *obj;
 	if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_ACID_STREAM)
 		skilldmg = spell_damage_bonus(obj->otyp);
 
-#if defined(BLACKMARKET) && !defined(DEVEL_BRANCH)
-	if (Is_blackmarket(&u.uz) && 
-	    (obj->otyp == WAN_POLYMORPH || obj->otyp == SPE_POLYMORPH)) {
-		pline("A mysterious force blocks your %s!",
-			(obj->otyp == WAN_POLYMORPH) ? "wand" : "spell");
-		return;
-	}
-#endif /* BLACKMARKET */
 
 	exercise(A_WIS, TRUE);
 #ifdef STEED
@@ -3783,9 +3760,7 @@ register int dx,dy;
 			for (otmp = mon->minvent; otmp; otmp = otmp2) {
 			    otmp2 = otmp->nobj;
 			    if (!oresist_disintegration(otmp)) {
-#ifdef DEVEL_BRANCH
 				if (Has_contents(otmp)) delete_contents(otmp);
-#endif
 				obj_extract_self(otmp);
 				obfree(otmp, (struct obj *)0);
 			    }
@@ -4095,11 +4070,9 @@ boolean *shopdamage;
 		int new_doormask = -1;
 		const char *see_txt = 0, *sense_txt = 0, *hear_txt = 0;
 		rangemod = -1000;
-#ifdef DEVEL_BRANCH
 		/* ALI - Artifact doors */
 		if (artifact_door(x, y))
 		    goto def_case;
-#endif
 		switch(abstype) {
 		case ZT_FIRE:
 		    new_doormask = D_NODOOR;

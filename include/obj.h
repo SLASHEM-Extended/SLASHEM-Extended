@@ -119,7 +119,6 @@ struct obj {
 #ifdef UNPOLYPILE
 #define is_fuzzy(otmp)	((otmp)->oldtyp != STRANGE_OBJECT)
 #endif
-#ifdef DEVEL_BRANCH
 /* [ALI] None of the objects listed here can be picked up by normal monsters.
  * If any such objects need to be marked as indestructible then consideration
  * will need to be given to what happens when such a monster disappears
@@ -133,7 +132,6 @@ struct obj {
 			(otmp)->oartifact == ART_KEY_OF_LAW || \
 			(otmp)->oartifact == ART_KEY_OF_NEUTRALITY || \
 			(otmp)->oartifact == ART_KEY_OF_CHAOS)
-#endif
 
 /* Weapons and weapon-tools */
 /* KMH -- now based on skill categories.  Formerly:

@@ -115,16 +115,8 @@ register struct monst *mtmp;
 	register struct obj *otmp;
 
 	for(otmp = mtmp->minvent; otmp; otmp = otmp->nobj)
-#ifdef DEVEL_BRANCH
 		if (evades_destruction(otmp) || is_quest_artifact(otmp))
 			return 1;
-#else
-		if(otmp->otyp == AMULET_OF_YENDOR ||
-			is_quest_artifact(otmp) ||
-			otmp->otyp == BELL_OF_OPENING ||
-			otmp->otyp == CANDELABRUM_OF_INVOCATION ||
-			otmp->otyp == SPE_BOOK_OF_THE_DEAD) return(1);
-#endif
 	return(0);
 }
 

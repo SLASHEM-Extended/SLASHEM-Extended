@@ -1,5 +1,5 @@
 /*
-  $Id: gtktile.c,v 1.1 2001-04-12 06:19:00 j_ali Exp $
+  $Id: gtktile.c,v 1.2 2002-03-24 07:39:03 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -11,8 +11,6 @@
 #include <stdio.h>
 #include "winGTK.h"
 #include "dlb.h"
-
-#ifdef DEVEL_BRANCH	/* This file is unused in stable */
 
 /* from tile.c */
 extern int total_tiles_used;
@@ -963,5 +961,3 @@ tile_scan(void)
     }
     return visual;
 }
-
-#endif	/* DEVEL_BRANCH */

@@ -1,18 +1,16 @@
 /*
-  $Id: winGTK.h,v 1.22 2002-03-11 00:09:20 j_ali Exp $
+  $Id: winGTK.h,v 1.23 2002-03-24 07:39:03 j_ali Exp $
  */
 
 #ifndef WINGTK_H
 #define WINGTK_H
 
-#ifdef DEVEL_BRANCH
 /*
  * GtkText is broken and replaced by the much better GtkTextView in GTK+ 1.3
  * As a temporary measure, we will continue to use it even though we
  * would do much better to change to GtkTextView.
  * FIXME: This define should go away.
  */
-#endif
 
 #define GTK_ENABLE_BROKEN	/* Enable support for old (broken) widgets */
 
@@ -43,7 +41,7 @@
 
 #include "hack.h"
 #include "wintty.h"
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+#if defined(GTK_V20)
 #include "winproxy.h"
 #endif
 
@@ -54,7 +52,7 @@
 
 #define	NH_PAD			5
 
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+#if defined(GTK_V20)
 extern GtkWidget *nh_gtk_window_dialog(boolean is_modal);
 extern void nh_gtk_focus_set_master(GtkWindow *w, GtkSignalFunc func, gpointer data);
 extern void nh_gtk_focus_set_slave_for(GtkWindow *w, GtkWindow *slave_for);
@@ -94,7 +92,7 @@ extern GtkWidget *main_window;
 #define	NH_BUFSIZ		4096
 #define NH_TEXT_REMEMBER	4096
 
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+#if defined(GTK_V20)
 enum xshm_map_mode {
     XSHM_MAP_NONE,
     XSHM_MAP_IMAGE,
@@ -103,7 +101,7 @@ enum xshm_map_mode {
 };
 #endif
 
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+#if defined(GTK_V20)
 extern int	GTK_ext_init_nhwindows(int *, char **);
 extern char	*GTK_ext_askname(void);
 extern int	GTK_ext_player_selection(int *, int *, int *, int *);
@@ -115,7 +113,7 @@ extern void	GTK_ext_print_glyph(winid id, int x, int y, int glyph);
 extern char	GTK_ext_yn_function(const char *, const char *, CHAR_P, int *);
 extern int	GTK_ext_outrip(winid, char *);
 extern char *	GTK_ext_getlin(const char *query);
-#else	/* DEVEL_BRANCH && GTK_V20 */
+#else	/* GTK_V20 */
 extern void	GTK_init_nhwindows(int *, char **);
 extern void	GTK_askname(void);
 extern void	GTK_player_selection(void);
@@ -133,7 +131,7 @@ extern char	GTK_yn_function(const char *, const char *, CHAR_P);
 extern void	GTK_outrip(winid, int);
 #endif
 extern void	GTK_getlin(const char *, char *);
-#endif	/* DEVEL_BRANCH && GTK_V20 */
+#endif	/* GTK_V20 */
 extern void	GTK_get_nh_event(void);
 extern void	GTK_exit_nhwindows(const char *);
 extern void	GTK_suspend_nhwindows(void);
@@ -175,7 +173,7 @@ extern void		nh_map_pos(int *, int *, int *);
 extern void		nh_map_click(int);
 extern void		nh_map_flush(void);
 
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+#if defined(GTK_V20)
 extern int		nh_set_map_visual(int);
 extern int		nh_set_map_font(GdkFont *font, gchar *name);
 extern gchar		*nh_get_map_font(void);
@@ -189,7 +187,7 @@ extern void		main_hook(void);
 extern void		quit_hook(void);
 extern gint		GTK_default_key_press(GtkWidget *widget,
 			  GdkEventKey *event, gpointer data);
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+#if defined(GTK_V20)
 extern gint		GTK_default_focus_in(GtkWidget *widget,
 			  GdkEventFocus *event, gpointer data);
 #endif
@@ -201,7 +199,7 @@ extern GtkWidget	*nh_message_new(void);
 extern void		nh_message_putstr(const char *);
 
 extern GtkWidget	*nh_status_new(void);
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+#if defined(GTK_V20)
 extern boolean		nh_status_in_trouble(void);
 extern void		GTK_ext_status(int, int, const char **);
 #else
@@ -213,7 +211,7 @@ extern int		nh_keysym(GdkEventKey *ev);
 extern int		nh_dir_keysym(GdkEventKey *ev);
 
 extern void		nh_option_new(void);
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+#if defined(GTK_V20)
 extern void		nh_option_lock(boolean);
 extern int		nh_option_cache_sync(void);
 extern void		nh_option_cache_set(char *option, const char *value);
@@ -235,7 +233,7 @@ extern void		nh_position_popup_dialog(GtkWidget *w);
  */
 extern int		create_toptenwin();
 
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+#if defined(GTK_V20)
 struct cached_options {
     boolean	num_pad;
     boolean	use_color;
@@ -271,18 +269,18 @@ struct menu_info_t {
 #ifdef WINGTK_MENU_IMAGES
     int		pixmaps;		/* Set if any pixmaps set in clist */
 #endif
-#if !defined(DEVEL_BRANCH) || !defined(GTK_V20)
+#if !defined(GTK_V20)
     GtkWidget	**ancestor;		/* Hack - see gtkmenu.c */
 #endif
 };
 
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+#if defined(GTK_V20)
 #define NHWF_DISPLAYED		1
 #endif
 
 typedef struct _NHWindow{
     int		type;
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+#if defined(GTK_V20)
     unsigned	flags;
 #endif
 
@@ -333,7 +331,7 @@ typedef struct _TileTab{
 extern TileTab tileTab[];
 extern int no_tileTab;
 
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+#if defined(GTK_V20)
 extern GtkWidget *xshm_map_init(enum xshm_map_mode, int width, int height);
 extern void xshm_map_button_handler(GtkSignalFunc func, gpointer data);
 extern void	xshm_map_flush();
@@ -349,7 +347,7 @@ extern int	xshm_map_init(int width, int height);
 extern void	xshm_map_destroy();
 extern void	xshm_map_clear();
 extern void	xshm_map_tile_draw(int dst_x, int dst_y);
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+#if defined(GTK_V20)
 extern void	xshm_map_draw(GdkRectangle *rect);
 extern void	xshm_map_draw_image(GdkImage *src, int src_x, int src_y, int dest_x, int dest_y, int width, int height);
 extern void	xshm_map_draw_drawable(GdkDrawable *src, int src_x, int src_y, int dest_x, int dest_y, int width, int height);
@@ -412,7 +410,7 @@ extern int	map_visual;
 /* Current map cursor position */
 extern int	cursx, cursy;
 
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+#if defined(GTK_V20)
 /* Xshm map rasters. Warning: only one of these will be valid */
 extern GdkImage *xshm_map_image;
 extern GdkPixmap *xshm_map_pixmap;

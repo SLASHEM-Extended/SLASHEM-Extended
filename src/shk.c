@@ -738,11 +738,8 @@ register struct obj *obj;
 	register struct obj *curr;
 
 	while ((curr = obj->cobj) != 0) {
-#ifdef DEVEL_BRANCH
 	    if (Has_contents(curr)) delete_contents(curr);
-#endif
 	    obj_extract_self(curr);
-#ifdef DEVEL_BRANCH
 	    if (evades_destruction(curr)) {
 		switch (obj->where) {
 		    case OBJ_FREE:
@@ -785,7 +782,6 @@ register struct obj *obj;
 		}
 	    }
 	    else
-#endif
 	    obfree(curr, (struct obj *)0);
 	}
 }
@@ -806,14 +802,12 @@ register struct obj *obj, *merge;
 	if (obj->otyp == LEASH && obj->leashmon) o_unleash(obj);
 	if (obj->oclass == SPBOOK_CLASS) book_disappears(obj);
 	if (obj->oclass == FOOD_CLASS) food_disappears(obj);
-#ifdef DEVEL_BRANCH
 	/* [ALI] Enforce new rules: Containers must have their contents
 	 * deleted while still in situ so that we can place any
 	 * indestructible objects they may contain.
 	 */
 	if (Has_contents(obj))
 	    pline("BUG: obfree() called on non-empty container.");
-#endif
 	if (Has_contents(obj)) delete_contents(obj);
 
 	shkp = 0;
@@ -1983,7 +1977,7 @@ register boolean usell;
 	    if (usell) {
 		if (saleable(shkp, otmp) &&
 			!otmp->unpaid && otmp->oclass != BALL_CLASS &&
-#if defined(DEVEL_BRANCH) && defined(UNPOLYPILE)
+#if defined(UNPOLYPILE)
 			!is_fuzzy(otmp) &&
 #endif
 			!(otmp->oclass == FOOD_CLASS && otmp->oeaten) &&
@@ -2697,7 +2691,7 @@ move_on:
 	   || eshkp->billct == BILLSZ
 	   || obj->oclass == BALL_CLASS
 	   || obj->oclass == CHAIN_CLASS || offer == 0L
-#if defined(DEVEL_BRANCH) && defined(UNPOLYPILE)
+#if defined(UNPOLYPILE)
 	   || is_fuzzy(obj)
 #endif
 	   || (obj->oclass == FOOD_CLASS && obj->oeaten)
@@ -3407,9 +3401,7 @@ coord *mm;
 	int kop_cnt[5];        
 	int kop_pm[5];
 	int ik, cnt;
-#ifdef DEVEL_BRANCH
 	coord *mc;
-#endif
   
 	kop_pm[0] = PM_KEYSTONE_KOP;
 	kop_pm[1] = PM_KOP_SERGEANT;
@@ -3436,26 +3428,15 @@ coord *mm;
 	kop_cnt[2] = (cnt / 6);       /* maybe a lieutenant */
 	kop_cnt[3] = (cnt / 9);       /* and maybe a kaptain */
  
-#ifdef DEVEL_BRANCH
 	mc = (coord *)alloc(cnt * sizeof(coord));
-#endif
 	for (ik=0; kop_pm[ik]; ik++) {
 	  if (!(mvitals[kop_pm[ik]].mvflags & G_GONE)) {
-#ifdef DEVEL_BRANCH
 	    cnt = epathto(mc, kop_cnt[ik], mm->x, mm->y, &mons[kop_pm[ik]]);
 	    while(--cnt >= 0)
 		(void) makemon(&mons[kop_pm[ik]], mc[cnt].x, mc[cnt].y, NO_MM_FLAGS);
-#else
-	    while(kop_cnt[ik]--) {
-	      if (enexto(mm, mm->x, mm->y, &mons[kop_pm[ik]]))
-		(void) makemon(&mons[kop_pm[ik]], mm->x, mm->y, NO_MM_FLAGS);
-	    }
-#endif
 	  }
 	}
-#ifdef DEVEL_BRANCH
 	free((genericptr_t)mc);
-#endif
 }
 #endif  /* KOPS */
 
@@ -4639,11 +4620,7 @@ shk_armor_works(slang, shkp)
 		shk_smooth_charge(&charge, 50, NOBOUND);
 
 		if (shk_offer_price(slang, charge, shkp) == FALSE) return;
-#ifdef DEVEL_BRANCH
 		if (obj->spe+1 > 3) { 
-#else
-		if (obj->spe+1 > 5) { 
-#endif
 			verbalize("I can't enchant this any higher!");
 			charge = 0;
 			break;
@@ -4795,9 +4772,7 @@ shk_charge(slang, shkp)
 			verbalize("...How about loaning me some money?");
 			shkp->mgold += u.ugold;
 			u.ugold = 0;
-#ifdef DEVEL_BRANCH
 			makeknown(obj->otyp);
-#endif
 			bot();
 		}
 		else
@@ -4807,13 +4782,8 @@ shk_charge(slang, shkp)
 			** Premier: recharge() will have given 5-10, say.
 			** Add a few more still.
 			*/
-#ifdef DEVEL_BRANCH
 			if (obj->spe < 16) obj->spe += rn1(5,5);
 			else if (obj->spe < 20) obj->spe += 1;
-#else
-			if (obj->spe < 20) obj->spe += 1;
-		 else   if (obj->spe < 16) obj->spe += rn1(5,5);
-#endif
 		}
 	}
 }

@@ -1001,11 +1001,9 @@ dumb:
 	/* not enough leverage to kick open doors while levitating */
 	if(Levitation) goto ouch;
 
-#ifdef DEVEL_BRANCH
 	/* Ali - artifact doors */
 	if (artifact_door(x, y)) goto ouch;
 
-#endif
 	exercise(A_DEX, TRUE);
 	/* door is known to be CLOSED or LOCKED */
 	if(rnl(35) < avrg_attrib + (!martial() ? 0 : ACURR(A_DEX))) {

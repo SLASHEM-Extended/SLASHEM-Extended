@@ -45,16 +45,12 @@ extern NEARDATA struct mkroom* subrooms;
 
 extern struct mkroom *dnstairs_room, *upstairs_room, *sstairs_room;
 
-#ifndef DEVEL_BRANCH
-extern NEARDATA coord doors[DOORMAX];
-#else
 struct door {
 	xchar x,y;
 	short arti_key;		/* Index (ART_) of key for this door */
 };
 
 extern NEARDATA struct door doors[DOORMAX];
-#endif
 
 /* values for rtype in the room definition structure */
 #define OROOM		 0	/* ordinary room */

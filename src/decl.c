@@ -119,11 +119,7 @@ NEARDATA struct obj *current_wand = 0;	/* wand currently zapped/applied */
 NEARDATA boolean in_steed_dismounting = FALSE;
 
 NEARDATA coord bhitpos = DUMMY;
-#ifndef DEVEL_BRANCH
-NEARDATA coord doors[DOORMAX] = {DUMMY};
-#else
 NEARDATA struct door doors[DOORMAX] = {DUMMY};
-#endif
 
 NEARDATA struct mkroom rooms[(MAXNROFROOMS+1)*2] = {DUMMY};
 NEARDATA struct mkroom* subrooms = &rooms[MAXNROFROOMS+1];

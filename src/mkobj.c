@@ -1379,14 +1379,12 @@ struct monst *mtmp;
 
     while ((otmp = mtmp->minvent) != 0) {
 	obj_extract_self(otmp);
-#ifdef DEVEL_BRANCH
 	if (evades_destruction(otmp)) {
 	    impossible("%s discarded from %s inventory",
 	      obj_typename(otmp->otyp), s_suffix(mon_nam(mtmp)));
 	    place_object(otmp, mtmp->mx, mtmp->my);
 	    continue;
 	}
-#endif
 	obfree(otmp, (struct obj *)0);  /* dealloc_obj() isn't sufficient */
     }
 }

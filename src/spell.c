@@ -722,9 +722,7 @@ int spell;
 boolean atme;
 {
 	int energy, damage, chance, n, intell;
-#ifdef DEVEL_BRANCH
 	int hungr;
-#endif
 	int skill, role_skill;
 	boolean confused = (Confusion != 0);
 	struct obj *pseudo;
@@ -770,55 +768,6 @@ boolean atme;
 		You_feel("the amulet draining your energy away.");
 		energy += rnd(2*energy);
 	}
-#ifndef DEVEL_BRANCH
-	if(energy > u.uen)  {
-		You("don't have enough energy to cast that spell.");
-                /* WAC Experts can override with HP loss */
-                if ((role_skill >= P_SKILLED) && (yn("Continue?") == 'y')) {
-                        energy -= u.uen;
-                        losehp(energy,"spellcasting exhaustion", KILLED_BY);                        
-                        if (role_skill < P_EXPERT) exercise(A_WIS, FALSE);
-                        energy = u.uen;
-                } else
-                return(0);
-	} else {
-		if (spellid(spell) != SPE_DETECT_FOOD) {
-			int hungr = energy * 2;
-
-			/* If hero is a wizard, their current intelligence
-			 * (bonuses + temporary + current)
-			 * affects hunger reduction in casting a spell.
-			 * 1. int = 17-18 no reduction
-			 * 2. int = 16    1/4 hungr
-			 * 3. int = 15    1/2 hungr
-			 * 4. int = 1-14  normal reduction
-			 * The reason for this is:
-			 * a) Intelligence affects the amount of exertion
-			 * in thinking.
-			 * b) Wizards have spent their life at magic and
-			 * understand quite well how to cast spells.
-			 */
-			intell = acurr(A_INT);
-			if (!Role_if(PM_WIZARD)) intell = 10;
-			switch (intell) {
-				case 25: case 24: case 23: case 22:
-				case 21: case 20: case 19: case 18:
-				case 17: hungr = 0; break;
-				case 16: hungr /= 4; break;
-				case 15: hungr /= 2; break;
-			}
-			/* don't put player (quite) into fainting from
-			 * casting a spell, particularly since they might
-			 * not even be hungry at the beginning; however,
-			 * this is low enough that they must eat before
-			 * casting anything else except detect food
-			 */
-			if (hungr > u.uhunger-3)
-				hungr = u.uhunger-3;
-			morehungry(hungr);
-		}
-	}
-#else	/* DEVEL_BRANCH */
 	if (spellid(spell) != SPE_DETECT_FOOD) {
 		hungr = energy * 2;
 
@@ -870,7 +819,6 @@ boolean atme;
 			return 0;
 	}
 	morehungry(hungr);
-#endif	/* DEVEL_BRANCH */
 
 	chance = percent_success(spell);
 	if (confused || (rnd(100) > chance)) {

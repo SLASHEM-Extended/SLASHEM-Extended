@@ -78,9 +78,7 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"air dash",
 	"power surge",
 	"spirit bomb",
-#ifdef DEVEL_BRANCH
 	"draw blood",
-#endif /* DEVEL_BRANCH */
 	""
 };
 
@@ -176,9 +174,7 @@ static const struct innate_tech
 		       {  10, T_BERSERK, 1},
 		       {   0, 0, 0} },
 	vam_tech[] = { {   1, T_DAZZLE, 1},
-#ifdef DEVEL_BRANCH
 		       {   1, T_DRAW_BLOOD, 1},
-#endif /* DEVEL_BRANCH */
 		       {   0, 0, 0} };
 	/* Orc */
 
@@ -451,9 +447,7 @@ dotech()
 	return 0;
 }
 
-#ifdef DEVEL_BRANCH
 static NEARDATA const char kits[] = { TOOL_CLASS, 0 };
-#endif /* DEVEL_BRANCH */
 
 /* gettech is reworked getspell */
 /* reworked class special effects code */
@@ -463,11 +457,7 @@ techeffects(tech_no)
 int tech_no;
 {
 	/* These variables are used in various techs */
-#ifndef DEVEL_BRANCH
-	struct obj *obj;
-#else /* DEVEL_BRANCH */
 	struct obj *obj, *otmp;
-#endif /* DEVEL_BRANCH */
 	const char *str;
 	struct monst *mtmp;
 	int num;
@@ -1297,7 +1287,6 @@ int tech_no;
             	if (!blitz_spirit_bomb()) return(0);
 		t_timeout = rn1(1000,500);
 		break;            	
-#ifdef DEVEL_BRANCH
 	    case T_DRAW_BLOOD:
 		if (!maybe_polyd(is_vampire(youmonst.data),
 		  Race_if(PM_VAMPIRE))) {
@@ -1343,7 +1332,6 @@ int tech_no;
 		   "You fill, but have to drop, %s!", doname(otmp), (const char *)0);
 		t_timeout = rn1(1000, 500);
 		break;
-#endif /* DEVEL_BRANCH */
 	    default:
 	    	pline ("Error!  No such effect (%i)", tech_no);
 		break;

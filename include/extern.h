@@ -605,11 +605,7 @@ E void FDECL(make_grave, (int,int,const char *));
 E long FDECL(newuexp, (int));
 E int FDECL(experience, (struct monst *,int));
 E void FDECL(more_experienced, (int,int));
-#ifndef DEVEL_BRANCH
-E void FDECL(losexp, (const char *));
-#else /* DEVEL_BRANCH */
 E void FDECL(losexp, (const char *, BOOLEAN_P));
-#endif /* DEVEL_BRANCH */
 E void NDECL(newexplevel);
 E void FDECL(pluslvl, (BOOLEAN_P));
 E long NDECL(rndexp);
@@ -1007,11 +1003,7 @@ E void FDECL(add_room, (int,int,int,int,BOOLEAN_P,SCHAR_P,BOOLEAN_P));
 E void FDECL(add_subroom, (struct mkroom *,int,int,int,int,
 			   BOOLEAN_P,SCHAR_P,BOOLEAN_P));
 E void NDECL(makecorridors);
-#ifndef DEVEL_BRANCH
-E void FDECL(add_door, (int,int,struct mkroom *));
-#else
 E int FDECL(add_door, (int,int,struct mkroom *));
-#endif
 E void NDECL(mklev);
 #ifdef SPECIALIZATION
 E void FDECL(topologize, (struct mkroom *,BOOLEAN_P));
@@ -1913,9 +1905,7 @@ E void FDECL(learntech, (SHORT_P,long,int));
 
 E boolean FDECL(goodpos, (int,int,struct monst *));
 E boolean FDECL(enexto, (coord *,XCHAR_P,XCHAR_P,struct permonst *));
-#ifdef DEVEL_BRANCH
 E int FDECL(epathto, (coord *,int,XCHAR_P,XCHAR_P,struct permonst *));
-#endif
 E void FDECL(teleds, (int,int));
 E boolean NDECL(safe_teleds);
 E boolean FDECL(teleport_pet, (struct monst *,BOOLEAN_P));

@@ -516,11 +516,7 @@ aligntyp resp_god;
 			      youmonst.data->mlet == S_HUMAN ? "mortal" : "creature");
 			verbalize("Thou must relearn thy lessons!");
 			(void) adjattrib(A_WIS, -3, FALSE);
-#ifndef DEVEL_BRANCH
-			losexp((char *)0);
-#else /* DEVEL_BRANCH */
 			losexp((char *)0, FALSE);
-#endif /* DEVEL_BRANCH */
 			break;
 	    case 6:     if (!Punished) {
 			    gods_angry(resp_god);

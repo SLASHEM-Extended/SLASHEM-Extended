@@ -974,14 +974,12 @@ register struct monst   *mtmp;
 			}
 		}
 		if (i != NUM_OBJECTS) (void)mongets(mtmp, i);
-#ifdef DEVEL_BRANCH
 		if (rn2(2)) {
 		    if ((int) mtmp->m_lev > rn2(30))
 			(void)mongets(mtmp, POT_VAMPIRE_BLOOD);
 		    else
 			(void)mongets(mtmp, POT_BLOOD);
 		}
-#endif /* DEVEL_BRANCH */
 		break;
 	    default:
 		break;

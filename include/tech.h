@@ -87,15 +87,9 @@ struct blitz_tab {
 #define T_DASH	 	38
 #define T_POWER_SURGE 	39
 #define T_SPIRIT_BOMB 	40
-#ifdef DEVEL_BRANCH
 #define T_DRAW_BLOOD	41
-#endif /* DEVEL_BRANCH */
 
-#ifndef DEVEL_BRANCH
-#define MAXTECH 40
-#else /* DEVEL_BRANCH */
 #define MAXTECH 41
-#endif /* DEVEL_BRANCH */
 
 
 #endif /* TECH_H */

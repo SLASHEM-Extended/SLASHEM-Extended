@@ -1521,13 +1521,11 @@ xchar x, y;             /* object location (ox, oy may not be right) */
 boolean heros_fault;
 boolean from_invent;
 {
-#ifdef DEVEL_BRANCH
 	int altarmask;
 	if (IS_ALTAR(levl[x][y].typ))
 	    altarmask = levl[x][y].altarmask & AM_MASK;
 	else
 	    altarmask = AM_NONE;
-#endif /* DEVEL_BRANCH */
 	switch (obj->oclass == POTION_CLASS ? POT_WATER : obj->otyp) {
 		case MIRROR:
 			if (heros_fault)
@@ -1536,7 +1534,6 @@ boolean from_invent;
 		case POT_WATER:         /* really, all potions */
 			if (obj->otyp == POT_OIL && obj->lamplit) {
 			    splatter_burning_oil(x,y);
-#ifdef DEVEL_BRANCH
 			} else if (obj->otyp == POT_VAMPIRE_BLOOD &&
 				   altarmask != AM_CHAOTIC &&
 				   altarmask != AM_NONE) {
@@ -1559,7 +1556,6 @@ boolean from_invent;
 			    if (!Is_astralevel(&u.uz))
 				levl[x][y].altarmask = AM_CHAOTIC;
 			    angry_priest();
-#endif /* DEVEL_BRANCH */
 			} else if (distu(x,y) <= 2) {
 			    /* [what about "familiar odor" when known?] */
 			    if (obj->otyp != POT_WATER)

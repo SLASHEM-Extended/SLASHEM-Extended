@@ -344,20 +344,6 @@ register struct obj *otmp;
 
 	nothing = unkn = 0;
 
-#if defined(BLACKMARKET) && !defined(DEVEL_BRANCH)
-    if (otmp->otyp == POT_POLYMORPH && Is_blackmarket(&u.uz)) {
-            /* No ID */
-            pline("A mysterious force causes the liquid to evaporate!");
-            You("are untouched.");
-			if(otmp->dknown && !objects[otmp->otyp].oc_name_known &&
-					!objects[otmp->otyp].oc_uname)
-				docall(otmp);
-			if (carried(otmp)) useup(otmp);
-			else if (otmp->where == OBJ_FLOOR) useupf(otmp, 1L);
-			else dealloc_obj(otmp);		/* Dummy potion */
-            return(1);
-    }
-#endif /* BLACKMARKET */
 
 	if((retval = peffects(otmp)) >= 0) return(retval);
 
@@ -955,7 +941,6 @@ peffects(otmp)
 		You_feel("a little %s.", Hallucination ? "normal" : "strange");
 		if (!Unchanging) polyself();
 		break;
-#ifdef DEVEL_BRANCH
 	case POT_BLOOD:
 	case POT_VAMPIRE_BLOOD:
 		unkn++;
@@ -998,7 +983,6 @@ peffects(otmp)
 		    make_vomiting(Vomiting+d(10,8), TRUE);
 		}
 		break;
-#endif /* DEVEL_BRANCH */
 	default:
 		impossible("What a funny potion! (%u)", otmp->otyp);
 		return(0);
@@ -1193,13 +1177,6 @@ boolean your_fault;
 	     * magic resistance protects from polymorph traps, so make
 	     * it guard against involuntary polymorph attacks too... 
 	     */
-#if defined(BLACKMARKET) && !defined(DEVEL_BRANCH)
-	    if (Is_blackmarket(&u.uz)) {
-                pline("A mysterious force causes the liquid to evaporate!");
-                pline("%s is untouched.", Monnam(mon));
-                break;
-	    }
-#endif /* BLACKMARKET */
 	    if (resists_magm(mon)) {
                 shieldeff(mon->mx, mon->my);
 	    } else if (!resist (mon, POTION_CLASS, 0, NOTELL)) {
@@ -1444,7 +1421,6 @@ register struct obj *obj;
 	case POT_POLYMORPH:
 		exercise(A_CON, FALSE);
 		break;
-#ifdef DEVEL_BRANCH
 	case POT_BLOOD:
 	case POT_VAMPIRE_BLOOD:
 		if (maybe_polyd(is_vampire(youmonst.data), Race_if(PM_VAMPIRE))) {
@@ -1454,7 +1430,6 @@ register struct obj *obj;
 		} else
 		    exercise(A_CON, FALSE);
 		break;
-#endif /* DEVEL_BRANCH */
 /*
 	case POT_GAIN_LEVEL:
 	case POT_LEVITATION:
@@ -1524,10 +1499,8 @@ register struct obj *o1, *o2;
 			    case POT_HALLUCINATION:
 			    case POT_BLINDNESS:
 			    case POT_CONFUSION:
-#ifdef DEVEL_BRANCH
 			    case POT_BLOOD:
 			    case POT_VAMPIRE_BLOOD:
-#endif /* DEVEL_BRANCH */
 				return POT_WATER;
 			}
 			break;
@@ -1556,12 +1529,10 @@ register struct obj *o1, *o2;
 			switch (o2->otyp) {
 			    case POT_SICKNESS:
 				return POT_SICKNESS;
-#ifdef DEVEL_BRANCH
 			    case POT_BLOOD:
 				return POT_BLOOD;
 			    case POT_VAMPIRE_BLOOD:
 				return POT_VAMPIRE_BLOOD;
-#endif /* DEVEL_BRANCH */
 			    case POT_SPEED:
 				return POT_BOOZE;
 			    case POT_GAIN_LEVEL:
@@ -1704,12 +1675,10 @@ register struct obj *obj;
 /* returns TRUE if something happened (potion should be used up) */
 {
 	int chg;
-#ifdef DEVEL_BRANCH
 	int otyp = obj->otyp, otyp2;
 	xchar ox, oy;
 	long owornmask;
 	struct obj *otmp;
-#endif
 
 	/* Check to see if object is valid */
 	if (!obj)
@@ -1718,24 +1687,6 @@ register struct obj *obj;
 	if (obj->oartifact)
 		/* WAC -- Could have some funky fx */
 		return (FALSE);
-#ifndef DEVEL_BRANCH
-	if (carried(obj)) {
-		/* Unwear it */
-		if (obj == uarm) Armor_gone();
-		if (obj == uarmc) Cloak_off();
-		if (obj == uarmh) Helmet_off();
-		if (obj == uarms) Shield_off();
-		if (obj == uarmg) Gloves_off();
-		if (obj == uarmf) Boots_off();
-		if (obj == uleft || obj == uright) Ring_gone(obj);
-		if (obj == ublindf) Blindf_off(obj);
-		if (obj == uball || obj == uchain) unpunish();
-#ifdef STEED
-		if (obj == usaddle) dismount_steed(DISMOUNT_FELL);
-#endif
-		setnotworn(obj);
-	}
-#endif	/* DEVEL_BRANCH */
 
 	switch (obj->otyp)
 	{
@@ -2059,7 +2010,6 @@ register struct obj *obj;
 			return (FALSE);
 	}
 
-#ifdef DEVEL_BRANCH
 	if ((!carried(obj) || obj->unpaid) &&
 #ifdef UNPOLYPILE
 		!is_fuzzy(obj) &&
@@ -2101,7 +2051,6 @@ register struct obj *obj;
 		obj->cobj = otmp;
 	    }
 	}
-#endif
 
 	/* The object was transformed */
 	obj->owt = weight(obj);
@@ -2109,7 +2058,6 @@ register struct obj *obj;
 	if (!objects[obj->otyp].oc_uses_known)
 	    obj->known = 1;
 
-#ifdef DEVEL_BRANCH
 	if (carried(obj)) {
 	    if (obj == uskin) rehumanize();
 	    /* Quietly remove worn item if no longer compatible --ALI */
@@ -2142,7 +2090,6 @@ register struct obj *obj;
 	    setworn(obj, obj->owornmask);
 	    puton_worn_item(obj);
 	}
-#endif	/* DEVEL_BRANCH */
 
 	return (TRUE);
 }

@@ -988,10 +988,8 @@ POTION("gain ability", "ruby",          1, 0,          40, 300, CLR_RED),
 POTION("gain level", "milky",           1, 0,          20, 300, CLR_WHITE),
 POTION("invulnerability", "icy",        1, 0,           5, 300, CLR_BRIGHT_BLUE),
 POTION("paralysis", "emerald",          1, 0,          40, 300, CLR_BRIGHT_GREEN),
-#ifdef DEVEL_BRANCH
 POTION("blood", "blood-red",            0, 0,           0,  50, CLR_RED),
 POTION("vampire blood", "blood-red",    1, 0,           0, 350, CLR_RED),
-#endif /* DEVEL_BRANCH */
 POTION("water", "clear",                0, 0,          55, 100, CLR_CYAN),
 #undef POTION
 

@@ -238,9 +238,7 @@ struct obj *otmp;
 #define MUSE_WAN_HEALING 19
 #define MUSE_WAN_EXTRA_HEALING 20
 #define MUSE_WAN_CREATE_HORDE 21
-#ifdef DEVEL_BRANCH
 #define MUSE_POT_VAMPIRE_BLOOD 22
-#endif /* DEVEL_BRANCH */
 /*
 #define MUSE_INNATE_TPT 9999
  * We cannot use this.  Since monsters get unlimited teleportation, if they
@@ -342,18 +340,10 @@ struct monst *mtmp;
 		    m.has_defense = MUSE_POT_HEALING;
 		    return TRUE;
 		}
-#ifndef DEVEL_BRANCH
-		if ((obj = m_carrying(mtmp, POT_FULL_HEALING)) !=0) {
-#else /* DEVEL_BRANCH */
 		if (is_vampire(mtmp->data) &&
 		  (obj = m_carrying(mtmp, POT_VAMPIRE_BLOOD)) !=0) {
-#endif /* DEVEL_BRANCH */
 		    m.defensive = obj;
-#ifndef DEVEL_BRANCH
-		    m.has_defense = MUSE_POT_FULL_HEALING;
-#else /* DEVEL_BRANCH */
 		    m.has_defense = MUSE_POT_VAMPIRE_BLOOD;
-#endif /* DEVEL_BRANCH */
 		    return TRUE;
 		}
 	    }
@@ -481,13 +471,6 @@ struct monst *mtmp;
 			m.defensive = obj;
 			m.has_defense = MUSE_POT_EXTRA_HEALING;
 		}
-#ifndef DEVEL_BRANCH
-		nomore(MUSE_POT_FULL_HEALING);
-		if(obj->otyp == POT_FULL_HEALING) {
-			m.defensive = obj;
-			m.has_defense = MUSE_POT_FULL_HEALING;
-		}
-#endif /* not DEVEL_BRANCH */
 		nomore(MUSE_WAN_CREATE_MONSTER);
 		if(obj->otyp == WAN_CREATE_MONSTER && obj->spe > 0) {
 			m.defensive = obj;
@@ -513,13 +496,11 @@ struct monst *mtmp;
 			m.defensive = obj;
 			m.has_defense = MUSE_WAN_EXTRA_HEALING;
 		}
-#ifdef DEVEL_BRANCH
 		nomore(MUSE_POT_VAMPIRE_BLOOD);
 		if(is_vampire(mtmp->data) && obj->otyp == POT_VAMPIRE_BLOOD) {
 			m.defensive = obj;
 			m.has_defense = MUSE_POT_VAMPIRE_BLOOD;
 		}
-#endif /* DEVEL_BRANCH */
 	    } else {	/* Pestilence */
 		nomore(MUSE_POT_FULL_HEALING);
 		if (obj->otyp == POT_SICKNESS) {
@@ -932,7 +913,6 @@ mon_tele:
 		if (oseen) makeknown(otmp->otyp);
 		m_useup(mtmp, otmp);
 		return 2;
-#ifdef DEVEL_BRANCH
 	case MUSE_POT_VAMPIRE_BLOOD:
 		mquaffmsg(mtmp, otmp);
 		if (!otmp->cursed) {
@@ -946,7 +926,6 @@ mon_tele:
 		if (oseen) makeknown(POT_VAMPIRE_BLOOD);
 		m_useup(mtmp, otmp);
 		return 2;
-#endif /* DEVEL_BRANCH */
 	case 0: return 0; /* i.e. an exploded wand */
 	default: impossible("%s wanted to perform action %d?", Monnam(mtmp),
 			m.has_defense);
@@ -1245,11 +1224,7 @@ register struct obj *otmp;
 			if (Drain_resistance)
 				shieldeff(u.ux, u.uy);
 			else
-#ifndef DEVEL_BRANCH
-				losexp("life drainage");
-#else /* DEVEL_BRANCH */
 				losexp("life drainage", FALSE);
-#endif /* DEVEL_BRANCH */
 			if (zap_oseen)
 				makeknown(WAN_DRAINING);
 		} else if (resists_drli(mtmp)) {
@@ -2102,10 +2077,8 @@ struct obj *obj;
 		return TRUE;
 	    break;
 	case POTION_CLASS:
-#ifdef DEVEL_BRANCH
 	    if (typ == POT_VAMPIRE_BLOOD)
 		return is_vampire(mon->data);
-#endif /* DEVEL_BRANCH */
 	    if (typ == POT_HEALING ||
 		    typ == POT_EXTRA_HEALING ||
 		    typ == POT_FULL_HEALING ||

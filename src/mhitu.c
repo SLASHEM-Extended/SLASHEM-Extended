@@ -1254,11 +1254,7 @@ dopois:
 		}
 		
 		if (uncancelled && !rn2(3) && !Drain_resistance) {
-#ifndef DEVEL_BRANCH
-		    losexp("life drainage");
-#else /* DEVEL_BRANCH */
 		    losexp("life drainage", FALSE);
-#endif /* DEVEL_BRANCH */
 		}
 		break;
 	    case AD_LEGS:
@@ -2522,11 +2518,7 @@ register struct monst *mon;
 			case 3:
 				if (!resists_drli(&youmonst)) {
 				    You_feel("out of shape.");
-#ifndef DEVEL_BRANCH
-				    losexp("overexertion");
-#else /* DEVEL_BRANCH */
 				    losexp("overexertion", FALSE);
-#endif /* DEVEL_BRANCH */
 				} else {
 				    You("have a curious feeling...");
 				}

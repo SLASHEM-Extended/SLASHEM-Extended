@@ -235,7 +235,6 @@ struct obj *corpse;
 		    mptr == &mons[PM_VLAD_THE_IMPALER] ||
 		    mptr == &mons[PM_NIGHTMARE] ||
 		    mptr == &mons[PM_BEHOLDER] || mptr == &mons[PM_VECNA]) {
-#ifdef DEVEL_BRANCH
 		/* Since these monsters may be carrying indestructible 
 		 * artifacts, free inventory specifically here to avoid
 		 * the indestructible sanity check in discard_minvent */
@@ -244,7 +243,6 @@ struct obj *corpse;
 		    obj_extract_self(otmp);
 		    obfree(otmp, (struct obj *)0);
 		}
-#endif
 		mongone(mtmp);
 	    }
 	}

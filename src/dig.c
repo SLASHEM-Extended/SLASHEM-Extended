@@ -151,13 +151,11 @@ dig_check(madeby, verbose, x, y)
 	    } else if(verbose) pline_The("stairs are too hard to %s into.",
 	    			    (is_lightsaber(uwep) ? "cut": "dig"));
 	    return(FALSE);
-#ifdef DEVEL_BRANCH
 	/* ALI - Artifact doors */
 	} else if (IS_DOOR(levl[x][y].typ) && artifact_door(x, y)) {
 	    if(verbose) pline_The("%s here is too hard to dig in.",
 				  surface(x,y));
 	    return(FALSE);
-#endif
 	} else if (IS_THRONE(levl[x][y].typ) && madeby != BY_OBJECT) {
 	    if(verbose) pline_The("throne is too hard to break apart.");
 	    return(FALSE);
@@ -214,16 +212,11 @@ dig()
 	if (digging.down) {
 	    if(!dig_check(BY_YOU, TRUE, u.ux, u.uy)) return(0);
 	} else { /* !digging.down */
-#ifdef DEVEL_BRANCH
 	    /* ALI - Artifact doors */
 	    if (IS_ROCK(lev->typ) && !may_dig(dpx,dpy) && !dig_typ(dpx, dpy) ||
 		    IS_DOOR(lev->typ) && artifact_door(dpx, dpy)) {
 		pline("This %s is too hard to %s.",
 			IS_DOOR(lev->typ) ? "door" : "wall",
-#else
-	    if (IS_ROCK(lev->typ) && !may_dig(dpx,dpy) && !dig_typ(dpx, dpy)) {
-		pline("This wall is too hard to %s.", 
-#endif
 			(is_lightsaber(uwep) ? "cut through" : "dig into"));
 		return(0);
 	    }
@@ -633,10 +626,8 @@ boolean pit_only;
 	boolean nohole = !Can_dig_down(&u.uz);
 
 	if ((ttmp && (ttmp->ttyp == MAGIC_PORTAL || nohole)) ||
-#ifdef DEVEL_BRANCH
 	   /* ALI - artifact doors */
 	   IS_DOOR(levl[u.ux][u.uy].typ) && artifact_door(u.ux, u.uy) ||
-#endif
 	   (IS_WALL(lev->typ) && (lev->wall_info & W_NONDIGGABLE) != 0)) {
 		pline_The("%s here is too hard to dig in.", surface(u.ux,u.uy));
 
@@ -1161,14 +1152,12 @@ zap_dig()
             }
 
             if (closed_door(zx, zy) || room->typ == SDOOR) {
-#ifdef DEVEL_BRANCH
 		/* ALI - Artifact doors */
 		if (artifact_door(zx, zy)) {
 		    if (cansee(zx, zy))
 			pline_The("door glows then fades.");
 		    break;
 		}
-#endif
 		if (*in_rooms(zx,zy,SHOPBASE)) {
 		    add_damage(zx, zy, 400L);
 		    shopdoor = TRUE;

@@ -101,10 +101,8 @@ register struct obj *obj;
 {
 	/* protect invocation tools but not Rider corpses (handled elsewhere)*/
      /* if (obj->oclass != FOOD_CLASS && obj_resists(obj, 0, 0)) */
-#ifdef DEVEL_BRANCH
 	if (evades_destruction(obj))
 		return FALSE;
-#endif
 	if (objects[obj->otyp].oc_unique)
 		return FALSE;
 	/* above also prevents the Amulet from being eaten, so we must never
@@ -902,11 +900,7 @@ register int pm;
 		switch(rnd(10)) {                
 		case 1:
 			You("feel that was a bad idea.");
-#ifndef DEVEL_BRANCH
-			losexp("eating a wraith corpse");
-#else /* DEVEL_BRANCH */
 			losexp("eating a wraith corpse", FALSE);
-#endif /* DEVEL_BRANCH */
 			break;
 		case 2:                        
 			You("don't feel so good ...");
