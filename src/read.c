@@ -889,7 +889,8 @@ register struct obj     *sobj;
 			break;
 		}
 		special_armor = is_elven_armor(otmp) ||
-				(Role_if(PM_WIZARD) && otmp->otyp == CORNUTHAUM);
+		  (Role_if(PM_WIZARD) && otmp->otyp == CORNUTHAUM) ||
+		  (Role_if(PM_VALKYRIE) && otmp->otyp == GAUNTLETS_OF_POWER);
 
 		if (sobj->cursed)
 		    same_color =

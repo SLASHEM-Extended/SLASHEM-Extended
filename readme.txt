@@ -360,6 +360,7 @@ ver 0.0.6E4F2 [December XX/2000]
 -fixed bug 123491: Extra messages when lycanthropes eat wolfsbane.
 -fixed bug 124968: Vampires, helms of opposite alignment, and prayer.
 -fixed bug 124233: gtk/win32: messages are drawn on top of each other.
+-fixed bug 117420: Gauntlets of Power not functioning properly.
 
 ver 0.0.6E4F1 [November 10/2000] [Released by Ali]
 -GTK: status window stats columns should never be too small
