@@ -1130,8 +1130,13 @@ zap_dig()
                 next_obj = otmp->nexthere;
 		/* vaporize boulders */
                 if (otmp->otyp == BOULDER) {
-                        delobj(otmp);
-                        pline_The("boulder is vaporized!");
+		    delobj(otmp);
+		    /* A little Sokoban guilt... */
+		    if (In_sokoban(&u.uz))
+			change_luck(-1);
+		    unblock_point(zx, zy);
+		    newsym(zx, zy);
+		    pline_The("boulder is vaporized!");
 		}
 		break;
             }
