@@ -1658,7 +1658,11 @@ nextclass:
 		case 'y':
 			tmp = (*fn)(otmp);
 			if(tmp < 0) {
-			    if (otmp != otmpo) {
+			    if (container_gone(fn)) {
+				/* otmp caused magic bag to explode;
+				   both are now gone */
+				otmp = 0;		/* and return */
+			    } else if (otmp && otmp != otmpo) {
 				/* split occurred, merge again */
 				(void) merged(&otmpo, &otmp);
 			    }
