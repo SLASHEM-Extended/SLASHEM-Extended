@@ -1,4 +1,4 @@
-/* $Id: gtkhack.c,v 1.7 2003-12-13 12:52:58 j_ali Exp $ */
+/* $Id: gtkhack.c,v 1.8 2003-12-21 20:30:23 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -378,8 +378,12 @@ main(int argc, char **argv)
 	    if (flags & PROXY_CLNT_LOGGED)
 		gtkhack_enable_logging(TRUE);
 	    gtk_widget_realize(progress);
+#if GTK_CHECK_VERSION(2,2,0)
 	    cursor = gdk_cursor_new_for_display(
 	      gdk_drawable_get_display(progress->window), GDK_WATCH);
+#else
+	    cursor = gdk_cursor_new(GDK_WATCH);
+#endif
 	    gdk_window_set_cursor(progress->window, cursor);
 	    gdk_cursor_unref(cursor);
 	    gtk_widget_show_now(progress);
