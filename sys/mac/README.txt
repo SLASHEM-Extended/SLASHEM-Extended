@@ -1,4 +1,4 @@
-This is the binary distribution of Slash'EM 0.0.7E6F1 for Mac OS Classic. This is a Power PC binary, so it will run only on a Macintosh with a Power PC processor.
+This is the binary distribution of Slash'EM 0.0.7E6F2 for Mac OS Classic. This is a Power PC binary, so it will run only on a Macintosh with a Power PC processor.
 
 This package is freely distributable; see the file 'License' for details.
 
