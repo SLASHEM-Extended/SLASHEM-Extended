@@ -77,6 +77,7 @@ ver 0.0.7E6F2 [?] [Released by ?]
 -fixed bug 929873: Crash while reading spellbook off floor
 -fixed bug 932788: Permanent inventory window not updated immediately
 -fixed bug 932791: Permanent inventory window not closed immediately
+-fixed bug 932800: [GTK] Changing hilite_pet from "more options" not immed.
 
 See history.txt for changes made in previous versions.
 
