@@ -1009,9 +1009,9 @@ int skill;
     You("are now %s skilled in %s.", 
 	P_SKILL(skill) >= P_MAX_SKILL(skill) ? "most" : "more",
 	P_NAME(skill));
-    if (!have_tech(T_DISARM) && (P_SKILL(skill) == P_SKILLED) && 
+    if (!tech_known(T_DISARM) && (P_SKILL(skill) == P_SKILLED) && 
     		skill <= P_LAST_WEAPON && skill != P_WHIP) {
-    	learntech(T_DISARM,1);
+    	learntech(T_DISARM, FROMOUTSIDE, 1);
     	You("learn how to perform disarm!");
     }
 }

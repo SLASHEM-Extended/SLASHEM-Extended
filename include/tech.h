@@ -22,6 +22,8 @@ struct tech {
 					    */
 	int         t_inuse;               /* time till effect stops 
 					    */
+	long        t_intrinsic;           /* Source(s) */
+#define OUTSIDE_LEVEL	TIMEOUT            /* Level "from outside" started at */
 };
 
 struct innate_tech {

@@ -1888,10 +1888,9 @@ E void FDECL(adjtech, (int,int));
 E int NDECL(dotech);
 E void NDECL(docalm);
 E int FDECL(tech_inuse, (int));
-E boolean FDECL(have_tech, (int));
 E void NDECL(tech_timeout);
 E boolean FDECL(tech_known, (SHORT_P));
-E void FDECL(learntech, (SHORT_P,int));
+E void FDECL(learntech, (SHORT_P,long,int));
 
 /* ### teleport.c ### */
 

@@ -7,6 +7,8 @@
 
 #include "hack.h"
 
+/* #define DEBUG */		/* turn on for diagnostics */
+
 static boolean FDECL(gettech, (int *));
 static boolean FDECL(dotechmenu, (int, int *));
 static void NDECL(doblitzlist);
@@ -232,36 +234,78 @@ tech_known(tech)
 }
 /* Called to teach a new tech.  Level is starting tech level */
 void
-learntech(tech, level)
+learntech(tech, mask, level)
 	short tech;
+	long mask;
 	int level;
 {
 	int i;
+	const struct innate_tech *tp;
 
-	for (i = 0; i < MAXTECH; i++) {
-	    if (level > 0) {
-		if (techid(i) == tech) {
-		     pline ("Error:  Tech already known.");
-		     return;
-		} else if (techid(i) == NO_TECH)  {
-		    tech_list[i].t_id = tech;
-		    tech_list[i].t_lev = (u.ulevel ? u.ulevel - level : 0);
-		    tech_list[i].t_tout = 0; /* Can use immediately*/
-                    tech_list[i].t_inuse = 0; /* not in use */
-		    break;
-		}
-	    } else if (level < 0) {
-		if (techid(i) == tech) {
-		    tech_list[i].t_id = NO_TECH;
+	i = get_tech_no(tech);
+	if (level > 0) {
+	    if (i < 0) {
+		i = get_tech_no(NO_TECH);
+		if (i < 0) {
+		    impossible("No room for new technique?");
 		    return;
-		} else if (i == MAXTECH) break;
-	    } else {
-	   	impossible ("Invalid Tech Level!");
-	   	return;
+		}
 	    }
+	    level = u.ulevel ? u.ulevel - level : 0;
+	    if (tech_list[i].t_id == NO_TECH) {
+		tech_list[i].t_id = tech;
+		tech_list[i].t_lev = level;
+		tech_list[i].t_inuse = 0; /* not in use */
+		tech_list[i].t_intrinsic = 0;
+	    }
+	    else if (tech_list[i].t_intrinsic & mask) {
+		impossible("Tech already known.");
+		return;
+	    }
+	    if (mask == FROMOUTSIDE) {
+		tech_list[i].t_intrinsic &= ~OUTSIDE_LEVEL;
+		tech_list[i].t_intrinsic |= level & OUTSIDE_LEVEL;
+	    }
+	    if (level < tech_list[i].t_lev)
+		tech_list[i].t_lev = level;
+	    tech_list[i].t_intrinsic |= mask;
+	    tech_list[i].t_tout = 0; /* Can use immediately*/
 	}
-	if (i == MAXTECH) impossible("Reached end of Tech list!");
-	return;
+	else if (level < 0) {
+	    if (i < 0 || !(tech_list[i].t_intrinsic & mask)) {
+		impossible("Tech not known.");
+		return;
+	    }
+	    tech_list[i].t_intrinsic &= ~mask;
+	    if (!(tech_list[i].t_intrinsic & INTRINSIC)) {
+		tech_list[i].t_id = NO_TECH;
+		return;
+	    }
+	    /* Re-calculate lowest t_lev */
+	    if (tech_list[i].t_intrinsic & FROMOUTSIDE)
+		level = tech_list[i].t_intrinsic & OUTSIDE_LEVEL;
+	    if (tech_list[i].t_intrinsic & FROMEXPER) {
+		for(tp = role_tech(); tp->tech_id; tp++)
+		    if (tp->tech_id == tech)
+			break;
+		if (!tp->tech_id)
+		    impossible("No inate technique for role?");
+		else if (level < 0 || tp->ulevel - tp->tech_lev < level)
+		    level = tp->ulevel - tp->tech_lev;
+	    }
+	    if (tech_list[i].t_intrinsic & FROMRACE) {
+		for(tp = race_tech(); tp->tech_id; tp++)
+		    if (tp->tech_id == tech)
+			break;
+		if (!tp->tech_id)
+		    impossible("No inate technique for race?");
+		else if (level < 0 || tp->ulevel - tp->tech_lev < level)
+		    level = tp->ulevel - tp->tech_lev;
+	    }
+	    tech_list[i].t_lev = level;
+	}
+	else
+	    impossible("Invalid Tech Level!");
 }
 
 /*
@@ -272,19 +316,16 @@ static boolean
 gettech(tech_no)
         int *tech_no;
 {
-        int ntechs, idx;
+        int i, ntechs, idx;
 	char ilet, lets[BUFSZ], qbuf[QBUFSZ];
 
-        if (techid(0) == NO_TECH)  {
+	for (ntechs = i = 0; i < MAXTECH; i++)
+	    if (techid(i) != NO_TECH) ntechs++;
+	if (ntechs == 0)  {
             You("don't know any techniques right now.");
 	    return FALSE;
 	}
 	if (flags.menu_style == MENU_TRADITIONAL) {
-            /* we know there is at least 1 known tech */
-            for (ntechs = 1; ntechs < MAXTECH
-                            && techid(ntechs) != NO_TECH; ntechs++)
-		continue;
-
             if (ntechs == 1)  Strcpy(lets, "a");
             else if (ntechs < 27)  Sprintf(lets, "a-%c", 'a' + ntechs - 1);
             else if (ntechs == 27)  Sprintf(lets, "a-z A");
@@ -305,10 +346,14 @@ gettech(tech_no)
 		    else
 			idx = ilet - 'A' + 26;
 
-                    if (idx < ntechs) {
-                        *tech_no = idx;
-			return TRUE;
-		    }
+                    if (idx < ntechs)
+			for(i = 0; i < MAXTECH; i++)
+			    if (techid(i) != NO_TECH) {
+				if (idx-- == 0) {
+				    *tech_no = i;
+				    return TRUE;
+				}
+			    }
 		}
                 You("don't know that technique.");
 	    }
@@ -326,6 +371,7 @@ dotechmenu(how, tech_no)
 	char buf[BUFSZ];
 	menu_item *selected;
 	anything any;
+	char let = 'a';
 
 	tmpwin = create_nhwindow(NHW_MENU);
 	start_menu(tmpwin);
@@ -334,10 +380,15 @@ dotechmenu(how, tech_no)
         Sprintf(buf, "%-30s Level   Status", "Name");
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, MENU_UNSELECTED);
 
-        for (i = 0; i < MAXTECH && techid(i) != NO_TECH; i++) {
+        for (i = 0; i < MAXTECH; i++) {
+		if (techid(i) == NO_TECH)
+			continue;
 #ifdef WIZARD
-		if (wizard) Sprintf(buf, "%-26s %5d   %s(%i)",
+		if (wizard) Sprintf(buf, "%-26s %2d%c%c%c   %s(%i)",
                     techname(i), techlev(i),
+		      tech_list[i].t_intrinsic & FROMEXPER ? 'X' : ' ',
+		      tech_list[i].t_intrinsic & FROMRACE ? 'R' : ' ',
+		      tech_list[i].t_intrinsic & FROMOUTSIDE ? 'O' : ' ',
                       tech_inuse(techid(i)) ? "Active" :
                       can_limitbreak() ? "LIMIT" :
                       !techtout(i) ? "Prepared" : 
@@ -355,7 +406,8 @@ dotechmenu(how, tech_no)
 		      "Soon");
 		any.a_int = i+1;        /* must be non-zero */
 		add_menu(tmpwin, NO_GLYPH, &any,
-                         techlet(i), 0, ATR_NONE, buf, MENU_UNSELECTED);
+                         let, 0, ATR_NONE, buf, MENU_UNSELECTED);
+		if (let++ == 'z') let = 'A';
 	}
         end_menu(tmpwin, how == PICK_ONE ? "Choose a technique" :
                                            "Currently known techniques");
@@ -1206,7 +1258,7 @@ int tech_id;
                 impossible ("invalid tech: %d", tech_id);
                 return(0);
         }
-        for (i = 0; i < MAXTECH && techid(i) != NO_TECH; i++) {
+        for (i = 0; i < MAXTECH; i++) {
                 if (techid(i) == tech_id) {
                         return (techt_inuse(i));
                 }
@@ -1214,30 +1266,14 @@ int tech_id;
 	return (0);
 }
 
-/* Whether or not you have a technique.
- * 
- */
-boolean
-have_tech(tech_id)
-int tech_id;
-{
-        int i;
-
-        if (tech_id < 1 || tech_id > MAXTECH) {
-                impossible ("invalid tech: %d", tech_id);
-                return(FALSE);
-        }
-        for (i = 0; i < MAXTECH && techid(i) != NO_TECH; i++) 
-            return TRUE;
-	return (FALSE);
-}
-
 void
 tech_timeout()
 {
 	int i;
 	
-        for (i = 0; i < MAXTECH && techid(i) != NO_TECH; i++) {
+        for (i = 0; i < MAXTECH; i++) {
+	    if (techid(i) == NO_TECH)
+		continue;
 	    if (techt_inuse(i)) {
 	    	/* Check if technique is done */
 	        if (!(--techt_inuse(i)))
@@ -1313,8 +1349,8 @@ docalm()
 {
 	int i, n = 0;
 
-	for (i = 0; i < MAXTECH && techid(i) != NO_TECH; i++)
-		if (techt_inuse(i)) {
+	for (i = 0; i < MAXTECH; i++)
+		if (techid(i) != NO_TECH && techt_inuse(i)) {
 			techt_inuse(i) = 0;
 			n++;
 		}
@@ -1390,6 +1426,7 @@ int oldlevel, newlevel;
 	const struct   innate_tech  
 		*tech = role_tech(), *rtech = race_tech();
 	short i;
+	long mask = FROMEXPER;
 
 	while (tech || rtech) {
 	    /* Have we finished with the tech lists? */
@@ -1398,18 +1435,21 @@ int oldlevel, newlevel;
 	    	if (!rtech || !rtech->tech_id) break;
 	    	tech = rtech;
 	    	rtech = (struct innate_tech *) 0;
+		mask = FROMRACE;
 	    }
 		
 	    for(; tech->tech_id; tech++)
 		if(oldlevel < tech->ulevel && newlevel >= tech->ulevel) {
-			learntech(tech->tech_id, tech->tech_lev);
-			if (tech->ulevel != 1)
-				You("learn how to perform %s!", tech_names[tech->tech_id]);
+		    if (tech->ulevel != 1 && !tech_known(tech->tech_id))
+			You("learn how to perform %s!",
+			  tech_names[tech->tech_id]);
+		    learntech(tech->tech_id, mask, tech->tech_lev);
 		} else if (oldlevel >= tech->ulevel && newlevel < tech->ulevel
 		    && tech->ulevel != 1) {
-			i = tech->tech_id;
-			learntech(tech->tech_id, -1);
-			You("lose the ability to perform %s!", tech_names[tech->tech_id]);
+		    learntech(tech->tech_id, mask, -1);
+		    if (!tech_known(tech->tech_id))
+			You("lose the ability to perform %s!",
+			  tech_names[tech->tech_id]);
 		}
 	}
 }
@@ -2012,4 +2052,33 @@ dash(dx, dy, range, verbos)
     }
 }
 
-
+#ifdef DEBUG
+void
+wiz_debug_cmd() /* in this case, allow controlled loss of techniques */
+{
+	int tech_no, id, n = 0;
+	long mask;
+	if (gettech(&tech_no)) {
+		id = techid(tech_no);
+		if (id == NO_TECH) {
+		    impossible("Unknown technique ([%d])?", tech_no);
+		    return;
+		}
+		mask = tech_list[tech_no].t_intrinsic;
+		if (mask & FROMOUTSIDE) n++;
+		if (mask & FROMRACE) n++;
+		if (mask & FROMEXPER) n++;
+		if (!n) {
+		    impossible("No intrinsic masks set (0x%lX).", mask);
+		    return;
+		}
+		n = rn2(n);
+		if (mask & FROMOUTSIDE && !n--) mask = FROMOUTSIDE;
+		if (mask & FROMRACE && !n--) mask = FROMRACE;
+		if (mask & FROMEXPER && !n--) mask = FROMEXPER;
+		learntech(id, mask, -1);
+		if (!tech_known(id))
+		    You("lose the ability to perform %s.", tech_names[id]);
+	}
+}
+#endif /* DEBUG */
