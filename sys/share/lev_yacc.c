@@ -1811,7 +1811,7 @@ case 138:
 break;
 case 139:
 {
-			/* 1: is contents of next object with 2 */
+			/* 1: is contents of preceeding object with 2 */
 			/* 2: is a container */
 			/* 0: neither */
 			tmpobj[nobj-1]->containment = 2;
