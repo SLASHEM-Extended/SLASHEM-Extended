@@ -384,6 +384,7 @@ ver 0.0.6E4F6 [? ?/2001] [Released by ?]
 -fixed bug 465188: Deathsword's special attack impossible.
 -fixed bug 469519: Cannibal checks for potential pets.
 -fixed bug 469533: Luck bonuses of fedoras.
+-fixed bug 462046: compile error in qt_win.cpp RH7.1, Qt2.3
 
 ver 0.0.6E4F5 [August 31/2001] [Released by Ali]
 -fixed bug 420517: Yellow dragon scale mail.

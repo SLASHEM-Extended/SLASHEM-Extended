@@ -1712,11 +1712,10 @@ void NetHackQtLabelledIcon::setAlignments()
 static void
 tryload(QPixmap& pm, const char* fn)
 {
-    const char *filename;
 #ifndef FILE_AREAS
-    filename = fn;
+    const char *filename = fn;
 #else
-    filename = make_file_name(FILE_AREA_SHARE, fn);
+    char *filename = make_file_name(FILE_AREA_SHARE, fn);
 #endif
     if (!pm.load(filename)) {
 	QString msg;
@@ -3506,18 +3505,17 @@ void NetHackQtYnDialog::done(int i)
 int NetHackQtGlyphs::loadTiles(const char *file)
 {
     int tw, th;
-    const char *tile_file;
 #ifndef FILE_AREAS
-    tile_file = file;
+    const char *tile_file = file;
 #else
-    tile_file = make_file_name(FILE_AREA_SHARE, file);
+    char *tile_file = make_file_name(FILE_AREA_SHARE, file);
 #endif
     if (!img.load(tile_file))
 	return 0;
     tw = img.width() / tiles_per_row;
     th = img.height() / tiles_per_col;
 #ifdef FILE_AREAS
-    free((void *)tile_file);
+    free(tile_file);
 #endif
 
     resize(tw, th);
