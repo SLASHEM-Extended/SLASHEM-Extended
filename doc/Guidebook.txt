@@ -2890,12 +2890,12 @@
             off).
 
           showdmg
-               Show damage inflicted/damage received (default off).
+            Show damage inflicted/damage received (default off).  Inflicted
+            damage is only shown to characters who have become  experienced
+            enough to quantify their damage.
 
           showweight
                Show total weight in inventory on bottom line (default off).
-
-
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
