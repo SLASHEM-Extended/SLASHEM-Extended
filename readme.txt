@@ -97,6 +97,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 1011313: SEGV using technique "raise zombies"
 -fixed bug 1018229: impossible splitbill: no resident shopkeeper??
 -fixed bug 1018447: Game crash when Hero with ball displace displacer beast
+-fixed bug 1020983: Typo in doc/sources.txt (cloack)
 
 See history.txt for changes made in previous versions.
 
