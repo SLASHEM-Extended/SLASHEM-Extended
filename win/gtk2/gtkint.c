@@ -1,5 +1,5 @@
 /*
-  $Id: gtkint.c,v 1.9 2003-02-08 11:03:27 j_ali Exp $
+  $Id: gtkint.c,v 1.10 2003-03-12 00:28:11 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -14,10 +14,10 @@
 
 #include <sys/types.h>
 #include <signal.h>
+#include "winGTK.h"
 #include "nhxdr.h"
 #include "proxycom.h"
 #include "prxyclnt.h"
-#include "winGTK.h"
 #include "wintype.h"
 #include "func_tab.h"
 #include "dlb.h"
