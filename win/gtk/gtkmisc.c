@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmisc.c,v 1.4 2000-12-03 15:07:38 j_ali Exp $
+  $Id: gtkmisc.c,v 1.5 2000-12-08 17:29:23 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -336,6 +336,7 @@ nh_option_get(void)
 	    nh_set_map_visual(i);
 	    break;
 	}
+    flush_screen(cursx == u.ux && cursy == u.uy ? 1 : 0);
 }
 
 static int

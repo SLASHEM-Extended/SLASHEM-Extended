@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.9 2000-12-03 15:07:38 j_ali Exp $
+  $Id: winGTK.h,v 1.10 2000-12-08 17:29:23 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -298,5 +298,8 @@ extern void	x_tile_tmp_draw_rectangle(int ofsx, int ofsy, int c);
 
 /* Current Map Mode */
 extern int	map_visual;
+
+/* Current map cursor position */
+extern int	cursx, cursy;
 
 #endif
