@@ -69,7 +69,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E4 [?] [Released by ?]
+ver 0.0.7E4 [December 1/2003] [Released by Ali]
 -fixed bug 782005: Menu generated which picking objects up should scroll
 -GTK/proxy: Added caching of mapping between glyphs and tiles.
 -Proxy: Add asynchronous support.
@@ -140,8 +140,11 @@ o In case of difficulty, consult Ali's linux page:
 Perform the following steps:
 
 o Download the core package and install it. This will allow you to play
-  Slash'EM using the console (tty) windowing interface.
-o If you would prefer to use GTK, the provided graphical windowing
+  Slash'EM using the native gui (common controls) windowing interface.
+o If you would prefer to use the console (tty) windowing interface, then
+  you need to edit the defaults.nh file and set the windowype option to
+  tty by uncommenting the relevant line.
+o If you would prefer to use GTK, an alternative graphical windowing
   interface, then you need to download and install the GTK add-on package
   as well. You will also need a copy of the gtk-win runtime environment
   version 2.2.1 or above. This is available from http://www.dropline.net/gtk
