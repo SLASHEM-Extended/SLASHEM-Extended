@@ -1,8 +1,9 @@
 /*
-  $Id: gtkmessage.c,v 1.6 2000-12-29 17:12:53 j_ali Exp $
+  $Id: gtkmessage.c,v 1.7 2001-02-24 17:46:47 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
+  GTK+ NetHack Copyright (c) Slash'EM Development Team 2000-2001
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -21,11 +22,9 @@ extern int		root_width;
 extern int		root_height;
 
 #ifdef WIN32
-/* ALI: Switching this on avoids strange scrolling effects (see bug 124233),
- * but causes an assertion failure in gimpwin the first time we trim the
- * old text.
+/* ALI: Switching this on avoids strange scrolling effects (see bug 124233).
  */
-/* #define ALWAYS_FREEZE */
+#define FROZEN_INSERT
 #endif
 
 GtkWidget *
@@ -57,6 +56,9 @@ nh_message_putstr(const char *str)
   int		len;
   char		*buf;
   GtkText	*t;
+#ifdef FROZEN_INSERT
+  static int	freeze_count=0;
+#endif
 
   t = GTK_TEXT(message_text);
 
@@ -65,13 +67,17 @@ nh_message_putstr(const char *str)
 
   sprintf(buf, "\n%s", str);
 
-#ifdef ALWAYS_FREEZE
+#ifdef FROZEN_INSERT
   /* ALI: gimpwin 20001226 looks very bad if you update a text widget without
    * freezing it (the text is displayed half-scrolled, with lines overlapping
    * each other). This is not ideal (the text is redrawn each thaw), but it
-   * is an improvement.
+   * is an improvement. Due to a bug in gimpwin we can't trim text if we've
+   * frozen the widget, thus every so often we don't freeze but trim instead.
    */
-  gtk_text_freeze(t);
+  if (++freeze_count>=50)	/* Trim text every 50 inserts */
+    freeze_count=0;
+  else
+    gtk_text_freeze(t);
 #endif
 
   if(u.uhpmax > 0 && (((double)u.uhp) / u.uhpmax < 0.1 || u.uhp < 5))
@@ -81,26 +87,28 @@ nh_message_putstr(const char *str)
   gtk_text_insert(t, NULL, &nh_color[i], &nh_color[MAP_WHITE], buf, len + 1);
   
   len = gtk_text_get_length(t);
+#ifdef FROZEN_INSERT
+  if(!freeze_count && len > NH_TEXT_REMEMBER){
+#else
   if(len > NH_TEXT_REMEMBER){
-    for(i=0 ; i<len ; ++i)
+#endif
+    gtk_text_freeze(t);
+    for(i=0 ; i<len && len > NH_TEXT_REMEMBER; ++i)
       if(GTK_TEXT_INDEX(t, i) == '\n'){
 	++i;
-#ifndef ALWAYS_FREEZE
-	gtk_text_freeze(t);
-#endif
 	gtk_text_set_point(t, i);
 	gtk_text_backward_delete(t, i);
-	gtk_text_set_point(t, len - i);
-#ifndef ALWAYS_FREEZE
-	gtk_text_thaw(t);
-#endif
-	break;
+	len -= i;
       }
+    gtk_text_set_point(t, len);
+    gtk_text_thaw(t);
   }
-#ifdef ALWAYS_FREEZE
+#ifdef FROZEN_INSERT
   /* ALI: t->vadj->upper would be more correct, but causes gimpwin to crash */
-  gtk_adjustment_set_value(t->vadj, t->vadj->upper - 1);
-  gtk_text_thaw(t);
+  if (freeze_count) {
+    gtk_adjustment_set_value(t->vadj, t->vadj->upper - 1);
+    gtk_text_thaw(t);
+  }
 #endif
 
   free(buf);
