@@ -2108,7 +2108,7 @@ boolean amnesia;
 		/* !ofAmnesia acts as a disenchanter... */
 		if (amnesia && obj->spe > 0) {
 		    pre_downgrade_obj(obj, &used);
-		    if (obj->spe > 0) drain_item(obj);
+		    drain_item(obj);
 		}
 		if (!obj->oerodeproof && is_rustprone(obj) &&
 		    (obj->oeroded < MAX_ERODE) && !rn2(2)) {
@@ -2122,8 +2122,6 @@ boolean amnesia;
 			}
 			used = TRUE;
 		} 
-		if (obj->oerodeproof && amnesia && !rn2(5))
-		    obj->oerodeproof = FALSE;
 		break;
 	}
 	/* !ofAmnesia might strip away fooproofing... */
@@ -2135,12 +2133,17 @@ boolean amnesia;
 	/* !ofAmnesia also strips blessed/cursed status... */
 
 	if (amnesia && (obj->cursed || obj->blessed)) {
-	    	/* Blessed objects are valuable/cursed objects aren't, unless
-		 * they're water */
-		if (obj->blessed || obj->otyp == POT_WATER)
-		    pre_downgrade_obj(obj, &used);
-		uncurse(obj);
-		unbless(obj);
+	    /* Blessed objects are valuable, cursed objects aren't, unless
+	     * they're water.
+	     */
+	    if (obj->blessed || obj->otyp == POT_WATER)
+		pre_downgrade_obj(obj, &used);
+	    else if (!used) {
+		Your("%s for a moment.", aobjnam(obj, "sparkle"));
+		used = TRUE;
+	    }
+	    uncurse(obj);
+	    unbless(obj);
 	}
 
 	if (used) 
