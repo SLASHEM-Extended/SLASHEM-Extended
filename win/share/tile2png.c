@@ -1,14 +1,16 @@
-/* Copyright (C) 2002 Andrew Apted <ajapted@users.sourceforge.net> */
-/* NetHack may be freely redistributed.  See license for details.  */
+/*
+ * Copyright (C) Andrew Apted <ajapted@users.sourceforge.net> 2002
+ *		 Slash'EM Development Team 2003
+ * NetHack may be freely redistributed.  See license for details.
+ */
 
 /*
- * Convert the given input tile files into the PNG file that the
- * SDL/GL windowing port can use.
+ * Convert the given input tile files into the PNG file for use by
+ * various windowing ports.
  * 
  * Based on win/X11/tile2x11.c
  * 
  * TODO HERE:
- *   + Check if < 256 colors are used, then use palette mode.
  *   + Would be nice if it didn't use so much memory...
  */
 #include "hack.h"
@@ -42,7 +44,10 @@ int max_rows = -1;
 int saved_tile_x = -1;
 int saved_tile_y = -1;
 
-unsigned char *tile_bytes = NULL;
+unsigned char *tile_bytes_rgba = NULL;
+unsigned char *tile_bytes_i = NULL;
+png_colorp tile_palette = NULL;
+int tile_palette_n = 0;
 
 int has_trans = 0;
 int num_across = TILES_PER_ROW;
@@ -107,10 +112,23 @@ void save_png(const char *filename, int width, int height)
 
   png_init_io(png_ptr, fp);
 
+  png_set_compression_level(png_ptr, Z_BEST_COMPRESSION);
+
   png_set_IHDR(png_ptr, info_ptr, width, height, 8, 
+      tile_palette ? PNG_COLOR_TYPE_PALETTE :
       has_trans ? PNG_COLOR_TYPE_RGB_ALPHA : PNG_COLOR_TYPE_RGB, 
       PNG_INTERLACE_NONE, 
       PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+
+  if (tile_palette)
+  {
+    png_set_PLTE(png_ptr, info_ptr, tile_palette, tile_palette_n);
+    if (has_trans)
+    {
+      png_byte trans = (png_byte)0;		/* Colour zero is transparent */
+      png_set_tRNS(png_ptr, info_ptr, &trans, 1, NULL);
+    }
+  }
 
   png_write_info(png_ptr, info_ptr);
 
@@ -121,10 +139,12 @@ void save_png(const char *filename, int width, int height)
     goto failed;
   }
    
-  for (row=0; row < height; row++)
-  {
-     row_pointers[row] = tile_bytes + row * width * (has_trans ? 4 : 3);
-  }
+  if (tile_palette)
+    for (row = 0; row < height; row++)
+       row_pointers[row] = tile_bytes_i + row * width;
+  else
+    for (row = 0; row < height; row++)
+       row_pointers[row] = tile_bytes_rgba + row * width * (has_trans ? 4 : 3);
 
   png_write_image(png_ptr, row_pointers);
   png_write_end(png_ptr, info_ptr);
@@ -170,7 +190,7 @@ static int convert_tiles(void)
 
   pixel tile[MAX_TILE_Y][MAX_TILE_X];
 
-  int x, y;
+  int x, y, i;
   int bx, by;
   int count = 0;
 
@@ -184,20 +204,48 @@ static int convert_tiles(void)
     bx = ntiles % num_across;
     by = ntiles / num_across;
     
-    tb = tile_bytes + (by * tile_y * stride + bx * tile_x * pix_w);
+    tb = tile_bytes_rgba + (by * tile_y * stride + bx * tile_x * pix_w);
    
     for (y = 0; y < tile_y; y++, tb += stride)
-    for (x = 0; x < tile_x; x++)
-    {
-      tb[x*pix_w + 0] = tile[y][x].r;
-      tb[x*pix_w + 1] = tile[y][x].g;
-      tb[x*pix_w + 2] = tile[y][x].b;
-
-      if (has_trans)
+      for (x = 0; x < tile_x; x++)
       {
-        tb[x*pix_w + 3] = pixel_equal(tile[y][x], trans_p) ? 0 : 255;
+	tb[x*pix_w + 0] = tile[y][x].r;
+	tb[x*pix_w + 1] = tile[y][x].g;
+	tb[x*pix_w + 2] = tile[y][x].b;
+
+	if (has_trans)
+	  tb[x*pix_w + 3] = pixel_equal(tile[y][x], trans_p) ? 0 : 255;
+
+	if (tile_palette)
+	{
+	  for (i = tile_palette_n - 1; i >= 0; i--)
+	  {
+	    if (tile_palette[i].red == tile[y][x].r &&
+		tile_palette[i].green == tile[y][x].g &&
+		tile_palette[i].blue == tile[y][x].b)
+	      break;
+	  }
+	  if (i < 0)
+	  {
+	    if (tile_palette_n < 256)
+	    {
+	      i = tile_palette_n++;
+	      tile_palette[i].red = tile[y][x].r;
+	      tile_palette[i].green = tile[y][x].g;
+	      tile_palette[i].blue = tile[y][x].b;
+	    }
+	    else
+	    {
+	      free(tile_palette);
+	      tile_palette = NULL;
+	      free(tile_bytes_i);
+	      tile_bytes_i = NULL;
+	    }
+	  }
+	}
+	if (tile_bytes_i)
+	  tile_bytes_i[((by * tile_y + y) * num_across + bx) * tile_x + x] = i;
       }
-    }
 
     ntiles++;
 
@@ -224,10 +272,10 @@ static void process_file(const char *fname)
     exit(1);
   }
 
-  if (!tile_bytes) 
+  if (!tile_bytes_rgba) 
   {
     int size;
-    
+
     /*
      * Delayed until we open the first input file so that
      * we know the size of the tiles we are processing.
@@ -236,17 +284,56 @@ static void process_file(const char *fname)
 
     size = max_rows * num_across * tile_x * tile_y * (has_trans ? 4 : 3);
 
-    tile_bytes = malloc(size);
-    if (!tile_bytes) 
+    tile_bytes_rgba = calloc(size, 1);
+    if (!tile_bytes_rgba) 
     {
       Fprintf(stderr, "tile2png: Not enough memory (%d KB).\n", size/1024);
       exit(1);
     }
-    
-    memset(tile_bytes, 0, size);
 
     saved_tile_x = tile_x;
     saved_tile_y = tile_y;
+  }
+  if (!tile_bytes_i) 
+  {
+    int size;
+
+    max_rows = (MAX_TILE_NUM + num_across - 1) / num_across;
+
+    size = max_rows * num_across * tile_x * tile_y;
+
+    tile_bytes_i = calloc(size, 1);
+    if (!tile_bytes_i) 
+    {
+      Fprintf(stderr, "tile2png: Not enough memory (%d KB).\n", size/1024);
+      exit(1);
+    }
+
+    saved_tile_x = tile_x;
+    saved_tile_y = tile_y;
+  }
+  if (!tile_palette) 
+  {
+    tile_palette = malloc(256 * sizeof(*tile_palette));
+    if (!tile_palette)
+    {
+      Fprintf(stderr, "tile2png: Not enough memory (%d bytes).\n",
+	  sizeof(*tile_palette));
+      exit(1);
+    }
+    /* [ALI} PNG encoding is more efficient if the transparent
+     * colour is first in the palette, so add it here. This will
+     * cause a slight inefficiency if the image data proves not
+     * to contain any transparent pixels, but still seems the
+     * best option.
+     */
+    if (has_trans)
+    {
+      tile_palette_n = 1;
+      tile_palette[0].red = trans_p.r;
+      tile_palette[0].green = trans_p.g;
+      tile_palette[0].blue = trans_p.b;
+    }
   }
   count = convert_tiles();
   Fprintf(stderr, "%s: %d tiles (%dx%d)\n", fname, count, tile_x, tile_y);
@@ -381,10 +468,22 @@ int main(int argc, const char **argv)
   
   save_png(outname, num_across * saved_tile_x, num_down * saved_tile_y);
 
-  if (tile_bytes)
+  if (tile_bytes_rgba)
   {
-    free(tile_bytes);
-    tile_bytes = NULL;
+    free(tile_bytes_rgba);
+    tile_bytes_rgba = NULL;
+  }
+
+  if (tile_bytes_i)
+  {
+    free(tile_bytes_i);
+    tile_bytes_i = NULL;
+  }
+
+  if (tile_palette)
+  {
+    free(tile_palette);
+    tile_palette = NULL;
   }
 
   return 0;
