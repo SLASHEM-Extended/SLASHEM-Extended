@@ -103,6 +103,7 @@ ver 0.0.7E5 [?] [Released by ?]
 -fixed bug 870027: GTK: Closing main window has no effect until after next cmd
 -fixed bug 870762: Lighting a candle from a stack lights the remainder
 		   (Nico Kist)
+-fixed bug 857492: gtkrc not removed by make spotless (Clive Crous)
 
 See history.txt for changes made in previous versions.
 
