@@ -113,10 +113,16 @@ moverock()
 		    (!mtmp->mtrapped ||
 			 !(ttmp && ((ttmp->ttyp == PIT) ||
 				    (ttmp->ttyp == SPIKED_PIT))))) {
-		if (canspotmon(mtmp))
-		    pline("There's %s on the other side.", mon_nam(mtmp));
-		else {
-                    if (Blind) feel_location(sx,sy);
+
+		if (canspotmon(mtmp)) {
+		    boolean by_name = (mtmp->data->geno & G_UNIQ ||
+				       mtmp->isshk || mtmp->mnamelth);
+		    if (by_name && !Hallucination)
+			pline("%s is on the other side.", Monnam(mtmp));
+		    else
+			pline("There's %s on the other side.", a_monnam(mtmp));
+		} else {
+		    if (Blind) feel_location(sx,sy);
 		    You_hear("a monster behind %s.", the(xname(otmp)));
 		    map_invisible(rx, ry);
 		}

@@ -332,6 +332,7 @@ ver 0.0.6E8 [?] [Released by ?]
 -Proxy: Implement proxified GTK interface.
 -Proxy: Add formal versioning of NhExt standards.
 -Proxy: Add support for callback extensions.
+-Merged Scott Bigham's blocked boulder patch
 
 ver 0.0.6E7 [December 6/2002] [Released by Ali]
 -Lethe: Treacherous pets; Cthulhu revivification; monsters use of potions of
