@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.11 2000-09-19 02:38:58 wacko Exp $
+  $Id: gtk.c,v 1.12 2000-09-20 04:21:18 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -293,7 +293,7 @@ static int pl_selection;
 void
 win_GTK_init()
 {
-    GTK_extcmd_init();
+    ;
 }
 
 GtkWidget *
@@ -1192,8 +1192,6 @@ GTK_init_nhwindows(int *argc, char **argv)
   create main widget
 */
     main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-
-    gtk_window_set_position(GTK_WINDOW(main_window), GTK_WIN_POS_CENTER);
 
     gtk_window_set_policy(GTK_WINDOW(main_window), TRUE, TRUE, TRUE);
 

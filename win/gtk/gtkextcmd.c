@@ -1,5 +1,5 @@
 /*
-  $Id: gtkextcmd.c,v 1.1 2000-08-15 19:55:17 wacko Exp $
+  $Id: gtkextcmd.c,v 1.2 2000-09-20 04:21:18 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -22,7 +22,6 @@ extern struct ext_func_tab extcmdlist[];
 
 struct ext_cmd_map {
     char *txt;
-    int index;
 } extcmdmap[NO_EXT_CMD_MAPS] = {
     { "adjust" },
     { "borrow" },
@@ -54,29 +53,22 @@ struct ext_cmd_map {
 
 static int extcmd = 0;
 
-void GTK_extcmd_init(void)
-{
-    int i, j;
-
-    for(i = 0; i < NO_EXT_CMD_MAPS; i++)
-    {
-	for(j = 0; extcmdlist[j].ef_txt; j++)
-	    if (!strcmp(extcmdmap[i].txt, extcmdlist[j].ef_txt))
-	    {
-		extcmdmap[i].index = j;
-		break;
-	    }
-	if (!extcmdlist[j].ef_txt)
-	    extcmdmap[i].index = -1;
-    }
-}
-
 void GTK_extcmd_set(int cmd)
 {
+    int j;
+    
+    extcmd = -1;
+    
     if (cmd < 0 || cmd >= NO_EXT_CMD_MAPS)
-	extcmd = -1;
-    else
-	extcmd = extcmdmap[cmd].index;
+	return;
+    else {
+	for(j = 0; extcmdlist[j].ef_txt; j++)
+	    if (!strcmpi(extcmdmap[cmd].txt, extcmdlist[j].ef_txt))
+	    {
+		extcmd = j;
+		return;
+	    }
+    }
 }
 
 static void

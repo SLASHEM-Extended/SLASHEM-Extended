@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.5 2000-09-20 01:48:57 wacko Exp $
+  $Id: winGTK.h,v 1.6 2000-09-20 04:21:18 wacko Exp $
  */
 
 #ifndef WINGTK_H
@@ -113,7 +113,6 @@ extern void	GTK_nhbell(void);
 extern int	GTK_doprev_message(void);
 extern char	GTK_yn_function(const char *, const char *, CHAR_P);
 extern void	GTK_getlin(const char *, char *);
-extern void	GTK_extcmd_init(void);
 extern void	GTK_extcmd_set(int cmd);
 extern int	GTK_get_ext_cmd(void);
 extern void	GTK_number_pad(void);
