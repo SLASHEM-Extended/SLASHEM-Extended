@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.31 2003-01-21 17:09:13 j_ali Exp $
+  $Id: gtk.c,v 1.32 2003-01-23 10:27:11 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -2208,6 +2208,8 @@ GTK_putstr(winid id, int attr, const char *str)
 		w->button[0] = nh_gtk_new_and_pack(
 		  gtk_button_new_with_label("Close"), w->hbox3, "",
 		  TRUE, FALSE, 0);
+		GTK_WIDGET_SET_FLAGS(w->button[0], GTK_CAN_DEFAULT);
+		gtk_widget_grab_default(w->button[0]);
 	    }
 
 	    text[0] = str;
