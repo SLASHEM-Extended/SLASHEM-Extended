@@ -334,9 +334,11 @@ dowieldquiver()
 	/* will_weld(), touch_petrifies(), etc. */
 	multi = 0;
 
+#if 0	/* Slash'EM has used Q for quiver since it started */
 	/* Because 'Q' used to be quit... */
 	if (!flags.suppress_alert || flags.suppress_alert < FEATURE_NOTICE_VER(3,3,0))
 		pline("Note: Please use #quit if you wish to exit the game.");
+#endif
 
 	/* Prompt for a new quiver */
 	if (!(newquiver = getobj(uslinging() ? bullets : ready_objs, "ready")))
