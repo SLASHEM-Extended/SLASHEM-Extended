@@ -1522,6 +1522,12 @@ domove()
 			display_nhwindow(WIN_MESSAGE, FALSE);
 			clear_nhwindow(WIN_MESSAGE);
 			You("free your %s.", body_part(LEG));
+		    } else if (Flying && !In_sokoban(&u.uz)) {
+			/* eg fell in pit, poly'd to a flying monster */
+			You("fly from the pit.");
+			u.utrap = 0;
+			fill_pit(u.ux, u.uy);
+			vision_full_recalc = 1;	/* vision limits change */
 		    } else if (!(--u.utrap)) {
 			You("%s to the edge of the pit.",
 				(In_sokoban(&u.uz) && Levitation) ?
