@@ -346,6 +346,7 @@ ver 0.0.6E4F3 [February XX/2001]
 -fixed bug 132033: GTK/win32: Esc not working.
 -fixed bug 132029: Pseudo 3D tiles not suitable for menu images.
 -fixed bug 132027: PgUp and PgDown not supported in scrolled menus.
+-fixed bug 132818: Monster detection and hilite_pet.
 
 ver 0.0.6E4F2 [December 30/2000] [Released by Ali]
 -DOS: Allegro window port adapted to display the ground underneath walls

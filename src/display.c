@@ -118,7 +118,7 @@
 #include "hack.h"
 #include "region.h"
 
-/*STATIC_DCL*/ void FDECL(display_monster,(XCHAR_P,XCHAR_P,struct monst *,int,XCHAR_P));
+STATIC_DCL void FDECL(display_monster,(XCHAR_P,XCHAR_P,struct monst *,int,XCHAR_P));
 STATIC_DCL int FDECL(swallow_to_glyph, (int, int));
 STATIC_DCL void FDECL(display_warning,(struct monst *));
 
@@ -351,11 +351,12 @@ void map_location(x,y,show)
  * a worm tail.
  *
  */
-/*static*/ void
+STATIC_OVL void
 display_monster(x, y, mon, in_sight, worm_tail)
     register xchar x, y;        /* display position */
     register struct monst *mon; /* monster to display */
-    int in_sight;               /* TRUE if the monster is physically seen */
+    int in_sight;               /* 1 if the monster is physically seen */
+    				/* 2 if detected using Detect_monsters */
     register xchar worm_tail;   /* mon is actually a worm tail */
 {
     register boolean mon_mimic = (mon->m_ap_type != M_AP_NOTHING);
@@ -415,9 +416,13 @@ display_monster(x, y, mon, in_sight, worm_tail)
     if (!mon_mimic || sensed) {
 	int num;
 
-	if (Detect_monsters) {
+	/* [ALI] Only use detected glyphs when monster wouldn't be
+	 * visible by any other means.
+	 */
+	if (in_sight == 2) {
 	    if (worm_tail)
 		num = detected_monnum_to_glyph(what_mon(PM_LONG_WORM_TAIL));
+	    else
 		num = detected_mon_to_glyph(mon);
 	} else if (mon->mtame && !Hallucination) {
 	    if (worm_tail)
@@ -586,7 +591,8 @@ feel_location(x, y)
     }
     /* draw monster on top if we can sense it */
     if ((x != u.ux || y != u.uy) && (mon = m_at(x,y)) && sensemon(mon))
-	display_monster(x,y,mon,1,((x != mon->mx)  || (y != mon->my)));
+	display_monster(x,y,mon,(tp_sensemon(mon) || MATCH_WARN_OF_MON(mon))?1:2,
+	                ((x != mon->mx) || (y != mon->my)));
 }
 
 /*
@@ -651,13 +657,13 @@ newsym(x,y)
 	else {
 	    mon = m_at(x,y);
 	    worm_tail = mon && ((x != mon->mx)  || (y != mon->my));
-	    if (mon &&
-		 ((see_it = (worm_tail
-			? (!mon->minvis || See_invisible)
-			: (mon_visible(mon)) || sensemon(mon))))) {
+	    see_it = mon && (worm_tail
+		? (!mon->minvis || See_invisible)
+		: (mon_visible(mon)) || tp_sensemon(mon) || MATCH_WARN_OF_MON(mon));
+	    if (mon && (see_it || (!worm_tail && Detect_monsters))) {
 		_map_location(x,y,0);   /* map under the monster */
 		/* also gets rid of any invisibility glyph */
-		display_monster(x,y,mon,see_it,worm_tail);
+		display_monster(x,y,mon,see_it?1:2,worm_tail);
 	    }
 	    else if (glyph_is_invisible(levl[x][y].glyph))
 		map_invisible(x, y);
@@ -674,12 +680,13 @@ newsym(x,y)
 	    if (canseeself()) display_self();
 	}
 	else if ((mon = m_at(x,y))
-		&& (sensemon(mon)
-		    || (see_with_infrared(mon) && mon_visible(mon)))
+		&& ((see_it = (tp_sensemon(mon) || MATCH_WARN_OF_MON(mon)
+		               || (see_with_infrared(mon) && mon_visible(mon))))
+		     || Detect_monsters)
 		&& !((x != mon->mx) || (y != mon->my))) {
 	    /* Monsters are printed every time. */
 	    /* This also gets rid of any invisibility glyph */
-	    display_monster(x,y,mon,0,0);
+	    display_monster(x,y,mon,see_it?0:2,0);
 	}
 	else if ((mon = m_at(x,y)) && mon_warning(mon) &&
 		 !((x != mon->mx) || (y != mon->my))) {
