@@ -73,6 +73,7 @@ ver 0.0.7E4 [?] [Released by ?]
 -GTK/proxy: Added caching of mapping between glyphs and tiles.
 -Proxy: Add asynchronous support.
 -fixed bug 821865: Invisible boulders in Sokoban
+-fixed bug 821098: Eating Gargoyles "evil and fiendish" for Vamps?
 
 See history.txt for changes made in previous versions.
 
