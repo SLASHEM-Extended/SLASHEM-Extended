@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.16 2000-11-10 17:59:36 j_ali Exp $
+  $Id: gtkmap.c,v 1.17 2000-12-05 19:23:25 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -909,7 +909,7 @@ nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap, GdkRe
     int color;
     int glyph = tmap->glyph;
     int offset;
-    gchar ch[2];
+    GdkWChar ch[2];
 
     color = 0;
 
@@ -954,7 +954,7 @@ nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap, GdkRe
 	map_pixmap, map_color_gc[iflags.use_color?MAP_BACKGROUND:MAP_BLACK],
 	TRUE, x * c_width, y * c_height -  map_font->ascent, c_width, c_height);
     
-    gdk_draw_text(
+    gdk_draw_text_wc(
 	map_pixmap, map_font,
 	map_color_gc[iflags.use_color?color:MAP_WHITE],
 	x * c_width, y * c_height, ch, 1);
@@ -973,7 +973,7 @@ nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap, GdkRe
 	map_pixmap, map->style->bg_gc,
 	TRUE, x * c_width, y * c_height - map_font->ascent, c_width, c_height);
     
-    gdk_draw_text(
+    gdk_draw_text_wc(
 	map_pixmap, map_font,
 	map->style->black_gc,
 	x*c_width, y*c_height, ch, 1);

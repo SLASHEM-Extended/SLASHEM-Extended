@@ -344,6 +344,7 @@ ver 0.0.6E4F2 [December XX/2000]
 -vampires no longer allowed to be flame magi.
 -fixed bug 123468: Inconsistent messages engraved on headstones
 -fixed bug 123387: slashem-0.0.6E4F1-1 can't locate tiles for X.
+-fixed bug 124064: gtk/win32 port can't display non-ASCII chars.
 
 ver 0.0.6E4F1 [November 10/2000] [Released by Ali]
 -GTK: status window stats columns should never be too small
