@@ -1553,6 +1553,7 @@ register struct obj *obj;
 
 	if (gold) {
 		gold->quan += obj->quan;
+		gold->owt = weight(gold);
 	} else {
 		add_to_container(current_container, obj);
 	}
