@@ -214,10 +214,10 @@ WINGTKOBJ = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
 #	../win/gtk2/gtkstatus.c ../win/gtk2/gtkmenu.c ../win/gtk2/gtkyn.c \
 #	../win/gtk2/gtkextcmd.c ../win/gtk2/gtkmap.c ../win/gtk2/gtkmessage.c \
 #	../win/gtk2/gtkmisc.c ../win/gtk2/gtktile.c ../win/gtk2/xshmmap.c \
-#	../win/gtk2/gtkext.c ../win/gtk2/gtkint.c
+#	../win/gtk2/gtkhackrc.c ../win/gtk2/gtkext.c ../win/gtk2/gtkint.c
 # WINGTKOBJ = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
-# 	gtkmap.o gtktile.o gtkmessage.o gtkmisc.o xshmmap.o gtkext.o \
-#	nhwin.a gtkint.o
+# 	gtkmap.o gtktile.o gtkmessage.o gtkmisc.o xshmmap.o gtkhackrc.o \
+#	gtkext.o gtkint.o nhwin.a
 #
 # Files for a Gnome port
 #

@@ -1,5 +1,5 @@
 /*
-  $Id: xshmmap.c,v 1.2 2001-04-22 17:21:20 j_ali Exp $
+  $Id: xshmmap.c,v 1.3 2003-04-17 23:15:53 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -291,11 +291,23 @@ expose_event(GtkWidget *widget, GdkEventExpose *event)
     if (xshm.pixmap)
 	gdk_draw_pixmap(widget->window, gc, xshm.pixmap,
 	  x + event->area.x, y + event->area.y, event->area.x, event->area.y,
-	  event->area.width, event->area.height);
+	  min(event->area.width, xshm.map_width),
+	  min(event->area.height, xshm.map_height));
     else
 	gdk_draw_image(widget->window, gc, xshm_map_image,
 	  x + event->area.x, y + event->area.y, event->area.x, event->area.y,
-	  event->area.width, event->area.height);
+	  min(event->area.width, xshm.map_width),
+	  min(event->area.height, xshm.map_height));
+    if (event->area.width > xshm.map_width ||
+		event->area.height > xshm.map_height) {
+	gdk_gc_set_foreground(gc, &widget->style->bg[GTK_STATE_NORMAL]);
+	if (event->area.width > xshm.map_width)
+	    gdk_draw_rectangle(widget->window, gc, TRUE, xshm.map_width, 0,
+	      event->area.width - xshm.map_width, xshm.map_height);
+	if (event->area.height > xshm.map_height)
+	    gdk_draw_rectangle(widget->window, gc, TRUE, 0, xshm.map_height,
+	      event->area.width, event->area.height - xshm.map_height);
+    }
     xshm.areax = x;
     xshm.areay = y;
 #ifdef DEBUG

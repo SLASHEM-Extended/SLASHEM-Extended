@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.17 2003-01-03 00:27:43 j_ali Exp $
+  $Id: gtkmap.c,v 1.18 2003-04-17 23:15:53 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -617,6 +617,41 @@ radar_expose_event(GtkWidget *widget, GdkEventExpose *event)
 }
 
 static gint
+radar_configure_event(GtkWidget *widget, GdkEventConfigure *event,
+  gpointer data)
+{
+    /*
+     * The drawing area has changed size (or is receiving its initial
+     * size). This always happens under program control.
+     * We need to (re-)create the pixmaps to match.
+     */
+
+    GdkPixmap *pixmap;
+
+    if (radar_pixmap2)
+	gdk_pixmap_unref(radar_pixmap2);
+
+    radar_pixmap2 = gdk_pixmap_new(widget->window,
+      event->width, event->height, -1);
+    pixmap = gdk_pixmap_new(widget->window, event->width, event->height, -1);
+    if (radar_pixmap) {
+	if (map_gc) {
+	    gint w, h;
+	    gdk_drawable_get_size(GDK_DRAWABLE(radar_pixmap), &w, &h);
+	    if (w > event->width)
+		w = event->width;
+	    if (h > event->height)
+		h = event->height;
+	    gdk_draw_pixmap(pixmap, map_gc, radar_pixmap, 0, 0, 0, 0, w, h);
+	}
+	gdk_pixmap_unref(radar_pixmap);
+    }
+    radar_pixmap = pixmap;
+
+    return FALSE;
+}
+
+static gint
 radar_destroy_event(GtkWidget *widget, gpointer data)
 {
 
@@ -832,13 +867,12 @@ nh_radar_destroy()
 GtkWidget *
 nh_radar_new()
 {
-    radar = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    radar = nh_session_window_new("radar");
 #if GTK_CHECK_VERSION(1,3,12)
     gtk_window_add_accel_group(GTK_WINDOW(radar), accel_group);
 #else
     gtk_accel_group_attach(accel_group, G_OBJECT(radar));
 #endif
-    gtk_widget_realize(radar);
 
     radar_is_created = 1;
 
@@ -854,6 +888,10 @@ nh_radar_new()
 	GTK_SIGNAL_FUNC(radar_expose_event), NULL);
 
     gtk_signal_connect(
+	GTK_OBJECT(radar_darea), "configure_event",
+	GTK_SIGNAL_FUNC(radar_configure_event), NULL);
+
+    gtk_signal_connect(
 	GTK_OBJECT(radar), "delete_event",
 	GTK_SIGNAL_FUNC(radar_destroy_event), 0);
 
@@ -863,33 +901,15 @@ nh_radar_new()
 static void
 nh_radar_configure()
 {
-    GdkPixmap *pixmap;
-
-    if (radar_pixmap2)
-	gdk_pixmap_unref(radar_pixmap2);
-
     if (NH_RADAR_WIDTH > 0 && NH_RADAR_HEIGHT > 0) {
-	radar_pixmap2 = gdk_pixmap_new(radar->window,
-	  NH_RADAR_WIDTH, NH_RADAR_HEIGHT, -1);
-	pixmap = gdk_pixmap_new(radar->window,
-	  NH_RADAR_WIDTH, NH_RADAR_HEIGHT, -1);
-	if (radar_pixmap) {
-	    if (map_gc) {
-		gint w, h;
-		gdk_drawable_get_size(GDK_DRAWABLE(radar_pixmap), &w, &h);
-		if (w > NH_RADAR_WIDTH)
-		    w = NH_RADAR_WIDTH;
-		if (h > NH_RADAR_HEIGHT)
-		    h = NH_RADAR_HEIGHT;
-		gdk_draw_pixmap(pixmap, map_gc, radar_pixmap, 0, 0, 0, 0, w, h);
-	    }
-	    gdk_pixmap_unref(radar_pixmap);
-	}
-	radar_pixmap = pixmap;
+	gtk_drawing_area_size(GTK_DRAWING_AREA(radar_darea),
+		NH_RADAR_WIDTH, NH_RADAR_HEIGHT);
 	nh_radar_update();
     } else {
 	if (radar_pixmap)
 	    gdk_pixmap_unref(radar_pixmap);
+	if (radar_pixmap2)
+	    gdk_pixmap_unref(radar_pixmap2);
 	radar_pixmap = NULL;
 	radar_pixmap2 = NULL;
     }
@@ -1256,7 +1276,7 @@ nh_radar_update()
 	radar_is_popuped= 0;
     }
     
-    if (radar_is_popuped && map) {
+    if (radar_is_popuped && map && map_gc) {
 	hadj = xshm_map_get_hadjustment();
 	vadj = xshm_map_get_vadjustment();
 

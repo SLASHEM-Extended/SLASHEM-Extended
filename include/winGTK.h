@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.32 2003-01-21 17:09:12 j_ali Exp $
+  $Id: winGTK.h,v 1.33 2003-04-17 23:15:48 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -57,6 +57,12 @@
 extern GtkWidget *nh_gtk_window_dialog(boolean is_modal);
 extern void nh_gtk_focus_set_master(GtkWindow *w, GtkSignalFunc func, gpointer data);
 extern void nh_gtk_focus_set_slave_for(GtkWindow *w, GtkWindow *slave_for);
+extern GtkWidget *nh_session_window_new(const char *name);
+extern int nh_session_set_geometry(const char *name,
+					int x, int y, int width, int height);
+extern int nh_session_save(FILE *fp);
+extern int nh_read_gtkhackrc(void);
+extern void nh_write_gtkhackrc(void);
 #else
 extern void nh_gtk_perm_invent_hack(void);
 #endif

@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.34 2003-01-24 15:16:38 j_ali Exp $
+  $Id: gtk.c,v 1.35 2003-04-17 23:15:53 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -57,6 +57,28 @@ static void	help_license(GtkWidget *w, gpointer data);
 #define GTK_SOUTHWEST	7
 
 NHWindow gtkWindows[MAXWIN];
+
+/*
+ * The Gtk interface maintains information about most top level windows
+ * so that it can be saved in the rc file between sessions.
+ */
+
+#define NH_SESSION_RESIZABLE 1	/* Allow the user to resize window */
+#define NH_SESSION_USER_POS  2	/* Window position from user */
+#define NH_SESSION_USER_SIZE 4	/* Window size from user */
+#define NH_SESSION_PLACED    8	/* Initial window placement has occured */
+
+struct session_window_info {
+    const char *name;		/* The name is only used in the rc file */
+    unsigned int flags;
+    GdkRectangle bounding;	/* Position and size */
+    int border_width, border_height;
+    GtkRequisition requisition;	/* Most recent requisition request */
+} session_window_info[] = {
+    {"main", NH_SESSION_RESIZABLE, },
+    {"radar", 0, },
+    {"inventory", NH_SESSION_RESIZABLE, },
+};
 
 static winid		rawprint_win = WIN_ERR;
 
@@ -551,6 +573,141 @@ nh_position_popup_dialog(GtkWidget *w)
 	GTK_SIGNAL_FUNC(popup_dialog_realizing), 0);
     gtk_signal_connect_after(GTK_OBJECT(w), "map",
 	GTK_SIGNAL_FUNC(popup_dialog_mapped), 0);
+}
+
+static int
+session_window_configure_event(GtkWidget *widget, GdkEventConfigure *event,
+  gpointer data)
+{
+    int i = GPOINTER_TO_INT(data), j;
+    GdkRectangle frame;
+    if (session_window_info[i].flags & NH_SESSION_PLACED) {
+	/* Check if user has re-positioned and/or re-sized window. */
+	if (session_window_info[i].bounding.x !=
+		event->x - session_window_info[i].border_width ||
+		session_window_info[i].bounding.y !=
+		event->y - session_window_info[i].border_height)
+	    session_window_info[i].flags |= NH_SESSION_USER_POS;
+	if (session_window_info[i].requisition.width == event->width &&
+		session_window_info[i].requisition.height == event->height)
+	    /* Resized under program control */
+	    session_window_info[i].flags &= ~NH_SESSION_USER_SIZE;
+	else if (session_window_info[i].bounding.width != event->width ||
+		session_window_info[i].bounding.height != event->height)
+	    /* Resized under user control */
+	    session_window_info[i].flags |= NH_SESSION_USER_SIZE;
+    } else {
+	/* Initial placement */
+	if (session_window_info[i].bounding.x ||
+		session_window_info[i].bounding.y) {
+	    session_window_info[i].border_width =
+		    event->x - session_window_info[i].bounding.x;
+	    session_window_info[i].border_height =
+		    event->y - session_window_info[i].bounding.y;
+	} else {
+	    /* Take a good guess */
+	    for(j = SIZE(session_window_info) - 1; j >= 0; j--)
+		if (j != i && session_window_info[j].border_width > 0)
+		    break;
+	    if (j >= 0) {
+		session_window_info[i].border_width =
+			session_window_info[j].border_width;
+		session_window_info[i].border_height =
+			session_window_info[j].border_height;
+	    } else {
+		gdk_window_get_frame_extents(widget->window, &frame);
+		session_window_info[i].border_width = event->x - frame.x;
+		session_window_info[i].border_height = event->y - frame.y;
+	    }
+	}
+	session_window_info[i].flags |= NH_SESSION_PLACED;
+    }
+    session_window_info[i].bounding.x =
+	    event->x - session_window_info[i].border_width;
+    session_window_info[i].bounding.y =
+	    event->y - session_window_info[i].border_height;
+    session_window_info[i].bounding.width = event->width;
+    session_window_info[i].bounding.height = event->height;
+    return FALSE;
+}
+
+static int
+session_window_size_request(GtkWidget *widget, GtkRequisition *requisition,
+  gpointer data)
+{
+    int i = GPOINTER_TO_INT(data);
+    session_window_info[i].requisition = *requisition;
+}
+
+GtkWidget *
+nh_session_window_new(const char *name)
+{
+    int i;
+    GtkWidget *w;
+    char buf[64] = "";
+    for(i = SIZE(session_window_info) - 1; i >= 0; i--)
+	if (!strcmp(name, session_window_info[i].name))
+	    break;
+    w = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    if (i >= 0) {
+	if (!(session_window_info[i].flags & NH_SESSION_RESIZABLE))
+	    gtk_window_set_resizable(GTK_WINDOW(w), FALSE);
+	if (session_window_info[i].flags & NH_SESSION_USER_SIZE)
+	    sprintf(buf, "%ux%u", session_window_info[i].bounding.width,
+		    session_window_info[i].bounding.height);
+	if (session_window_info[i].flags & NH_SESSION_USER_POS)
+	    sprintf(eos(buf), "+%d+%d", session_window_info[i].bounding.x,
+		    session_window_info[i].bounding.y);
+	if (*buf)
+	    gtk_window_parse_geometry(GTK_WINDOW(w), buf);
+	gtk_signal_connect(GTK_OBJECT(w), "configure_event",
+	  GTK_SIGNAL_FUNC(session_window_configure_event), GINT_TO_POINTER(i));
+	gtk_signal_connect(GTK_OBJECT(w), "size_request",
+	  GTK_SIGNAL_FUNC(session_window_size_request), GINT_TO_POINTER(i));
+    }
+    return w;
+}
+
+int
+nh_session_set_geometry(const char *name, int x, int y, int width, int height)
+{
+    int i;
+    for(i = 0; i < SIZE(session_window_info); i++)
+	if (!strcmp(name, session_window_info[i].name)) {
+	    if (x >= 0 && y >= 0) {
+		session_window_info[i].bounding.x = x;
+		session_window_info[i].bounding.y = y;
+		session_window_info[i].flags |= NH_SESSION_USER_POS;
+	    }
+	    if (session_window_info[i].flags & NH_SESSION_RESIZABLE &&
+		    width >= 0 && height >= 0) {
+		session_window_info[i].bounding.width = width;
+		session_window_info[i].bounding.height = height;
+		session_window_info[i].flags |= NH_SESSION_USER_SIZE;
+	    }
+	    return 0;
+	}
+    return -1;
+}
+
+int
+nh_session_save(FILE *fp)
+{
+    int i;
+    for(i = 0; i < SIZE(session_window_info); i++) {
+	if (session_window_info[i].flags & NH_SESSION_USER_POS)
+	    fprintf(fp, "window.position(\"%s\") = {%d, %d}\n",
+		    session_window_info[i].name,
+		    session_window_info[i].bounding.x,
+		    session_window_info[i].bounding.y);
+	if (session_window_info[i].flags & NH_SESSION_USER_SIZE)
+	    fprintf(fp, "window.size(\"%s\") = {%d, %d}\n",
+		    session_window_info[i].name,
+		    session_window_info[i].bounding.width -
+		    session_window_info[i].requisition.width,
+		    session_window_info[i].bounding.height -
+		    session_window_info[i].requisition.height);
+    }
 }
 
 void
@@ -1139,6 +1296,7 @@ nh_rc(void)
 	g_free(new_files[i]);
     g_free(new_files);
     free(rc_file);
+    nh_read_gtkhackrc();
 }
 
 /*
@@ -1809,11 +1967,9 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
 /*
   create main widget
 */
-    main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    main_window = nh_session_window_new("main");
     nh_gtk_focus_set_master(GTK_WINDOW(main_window),
       GTK_SIGNAL_FUNC(GTK_default_key_press), 0);
-
-    gtk_window_set_policy(GTK_WINDOW(main_window), TRUE, TRUE, TRUE);
 
     gtk_signal_connect(
 	GTK_OBJECT(main_window), "delete_event",

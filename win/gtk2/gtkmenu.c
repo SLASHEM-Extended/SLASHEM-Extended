@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.14 2003-01-23 10:27:11 j_ali Exp $
+  $Id: gtkmenu.c,v 1.15 2003-04-17 23:15:53 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -193,7 +193,7 @@ GTK_init_menu_widgets(NHWindow *w, winid inven)
 	 nh_gtk_focus_set_master(GTK_WINDOW(w->w),
 	   GTK_SIGNAL_FUNC(menu_key_press), w);
      } else {
-	 w->w = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	 w->w = nh_session_window_new("inventory");
 	 nh_gtk_focus_set_slave_for(GTK_WINDOW(w->w), GTK_WINDOW(main_window));
      }
      gtk_widget_set_name(GTK_WIDGET(w->w), "fixed font");

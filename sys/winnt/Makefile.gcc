@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.27 2003-03-12 00:43:54 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.28 2003-04-17 23:15:51 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -260,11 +260,11 @@ ifeq ($(USE_GTK),Y)
 WINGTKSRC = ../win/gtk2/gtk.c ../win/gtk2/gtkgetlin.c ../win/gtk2/gtkstatus.c \
 	../win/gtk2/gtkmenu.c ../win/gtk2/gtkyn.c ../win/gtk2/gtkextcmd.c \
 	../win/gtk2/gtkmap.c ../win/gtk2/gtkmessage.c ../win/gtk2/gtkmisc.c \
-	../win/gtk2/xshmmap.c ../win/gtk2/gtktile.c ../win/gtk2/gtkint.c \
-	../win/gtk2/gtkext.c
+	../win/gtk2/xshmmap.c ../win/gtk2/gtktile.c ../win/gtkhackrc.c \
+	../win/gtk2/gtkint.c ../win/gtk2/gtkext.c
 WINGTKOBJ1 = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
 	gtkmap.o gtkmessage.o gtkmisc.o xshmmap.o
-WINGTKOBJ2 = gtktile.o gtkint.o gtkext.o
+WINGTKOBJ2 = gtktile.o gtkhackrc.o gtkint.o gtkext.o
 endif
 #
 # Files for a proxy interface.
@@ -1618,6 +1618,9 @@ gtktile.o: ../win/gtk2/gtktile.c $(INCL)/winGTK.h $(HACK_H) \
 xshmmap.o: ../win/gtk2/xshmmap.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/xshmmap.c
+gtkhackrc.o: ../win/gtk2/gtkhackrc.c $(INCL)/winGTK.h $(HACK_H) \
+		$(INCL)/nhxdr.h $(INCL)/proxycom.h
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkhackrc.c
 gtkext.o: ../win/gtk2/gtkext.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/prxyclnt.h
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkext.c
