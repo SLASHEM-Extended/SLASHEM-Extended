@@ -29,6 +29,41 @@
 | Section 1: Yesterday's News |
 +-----------------------------+
 
+ver 0.0.7E3 [September 5/2003] [Released by Ali]
+-fixed bug 781959: GTK: Message window auto-scrolling fails after a short time.
+-fixed bug 781972: Proxified gtk crashes if run without a player's name.
+-fixed bug 781974: GTK crashes when maximum magic power drops to zero.
+-fixed bug 781978: GTK: Memory corruption in win32 (RtlFreeHeap).
+-fixed bug 781991: GTK: Duplicate text windows.
+-fixed bug 781994: GTK interface crashes on exit from a restored game.
+-fixed bug 781997: GTK's concept of the initial value of number_pad is wrong.
+-fixed bug 781998: No confirmation of exit when main window closed.
+-fixed bug 782002: Gdk errors: window unexpectedly destroyed.
+-fixed bug 454798: Program in Disorder - No door at (50,12).
+-Macintosh: revise binary package
+-Macintosh: add missing version resources
+-Macintosh: make record and logfile read-only
+-Macintosh: allow logfile to be deleted
+-Macintosh: open Slash'EM when save files are double-clicked
+-Macintosh: windows no longer disappear when Reposition is selected
+-fixed bug 782004: Poor transparency in tiles imported from Mitsuhiro Itakura.
+-fixed bug 603181: Problems with dynamite
+-fixed bug 789073: pickup_thrown and bones
+-fixed bug 790230: BUG: obfree() called on non-empty container
+-fixed bug 782892: gtk startup problem when no tiles defined
+-fixed bug 782881: NumPad doesn't work with gtk
+-fixed bug 787697: GUI works, no tile graphics, just text
+-fixed bug 782906: compiling fails when FILE_AREAS is defined
+-fixed bug 793135: some broken text at completing flame mage quest
+-fixed bug 795384: some typos
+-fixed bug 793132: excessive magic by gnoll shamans
+-fixed bug 793144: putting corpses in ice box
+-fixed bug 789310: Lyc Rogues can't two-weapon
+-fixed bug 731767: Tsurugi of Muramasa special attack inoperative
+-Actioned feature request 783244: Add some/all of these new 32x32 tiles.
+-GTK: Added visual feedback when selecting tilesets.
+-GTK/proxy: Added caching of tileset data downloaded from remote servers.
+
 ver 0.0.7E2 [July 5/2003] [Released by Ali]
 -fixed bug 759709: Some orcs get unwarranted food.
 -fixed bug 754921: won't compile pure gtk.
