@@ -404,12 +404,23 @@
      (glyph) <	(GLYPH_CMAP_OFF+trap_to_defsym(1)+TRAPNUM))
 #define glyph_is_cmap(glyph)						\
     ((glyph) >= GLYPH_CMAP_OFF && (glyph) < (GLYPH_CMAP_OFF+MAXPCHARS))
+#define glyph_is_explosion(glyph)					\
+    ((glyph) >= GLYPH_EXPLODE_OFF &&					\
+     (glyph) < (GLYPH_EXPLODE_OFF + MAXEXPCHARS * EXPL_MAX))
+#define glyph_is_zap_beam(glyph)					\
+    ((glyph) >= GLYPH_ZAP_OFF && (glyph) < (GLYPH_ZAP_OFF + (NUM_ZAP << 2)))
 #define glyph_is_swallow(glyph) \
     ((glyph) >= GLYPH_SWALLOW_OFF && (glyph) < (GLYPH_SWALLOW_OFF+(NUMMONS << 3)))
 #define glyph_is_warning(glyph)	\
     ((glyph) >= GLYPH_WARNING_OFF && (glyph) < (GLYPH_WARNING_OFF + WARNCOUNT))
 
 #ifdef DISPLAY_LAYERS
+#define glyph_is_floating(glyph)					\
+		(glyph_is_monster(glyph)				\
+		|| glyph_is_explosion(glyph)				\
+		|| glyph_is_zap_beam(glyph)				\
+		|| glyph_is_swallow(glyph)				\
+		|| glyph_is_warning(glyph))
 #define memory_is_invisible(x,y) (levl[x][y].mem_invis)
 #define remembered_object(x,y)						\
     (levl[x][y].mem_corpse ? CORPSE : 					\

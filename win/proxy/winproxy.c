@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.22 2003-02-08 11:03:27 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.23 2003-02-09 22:54:16 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -566,7 +566,7 @@ int glyph;
     if (w >= 0 && proxy_interface_mode & EXT_IM_DISPLAY_LAYERS) {
 	struct rm *lev = &levl[x][y];
 
-	if (glyph_is_monster(glyph))
+	if (glyph_is_floating(glyph))
 	    proxy_print_layer(w, x, y, 0, glyph);
 	else
 	    proxy_print_layer(w, x, y, 0,
@@ -819,6 +819,7 @@ const char **values;
     (void)nhext_rpc(EXT_FID_STATUS, 1, EXT_XDRF(proxy_xdr_status_req, &req), 0);
 }
 
+#ifdef DISPLAY_LAYERS
 static void
 proxy_print_glyph_layered(window, nl, layers)
 winid window;
@@ -862,6 +863,7 @@ struct gbuf_layer *layers;
 	    free(req.layers[i].rows);
     free(req.layers);
 }
+#endif	/* DISPLAY_LAYERS */
 
 extern struct nhext_svc proxy_callbacks[];
 
