@@ -59,6 +59,7 @@ getlin_hook_proc hook;
 		Sprintf(toplines, "%s ", query);
 		Strcat(toplines, obufp);
 		if((c = Getchar()) == EOF) {
+			bufp = eos(bufp);
 			*bufp = 0;
 			break;
 		}
@@ -101,30 +102,43 @@ getlin_hook_proc hook;
 		}
 		if(c == erase_char || c == '\b') {
 			if(bufp != obufp) {
+				int i;
+
 				bufp--;
-				putsyms("\b \b");/* putsym converts \b */
+				putsyms("\b");
+				for (i = bufp; i < eos(bufp); i++)
+				    putsyms(" ");
+				for (i = eos(bufp); i > bufp; i--)
+				    putsyms("\b");
+				*bufp = 0;
 			} else	tty_nhbell();
 #if defined(apollo)
 		} else if(c == '\n' || c == '\r') {
 #else
 		} else if(c == '\n') {
 #endif
+			bufp = eos(bufp);
 			*bufp = 0;
 			break;
 		} else if(' ' <= (unsigned char) c && c != '\177' &&
 			    (bufp-obufp < BUFSZ-1 && bufp-obufp < COLNO)) {
 				/* avoid isprint() - some people don't have it
 				   ' ' is not always a printing char */
+			int i;
+
 			*bufp = c;
 			bufp[1] = 0;
 			putsyms(bufp);
 			bufp++;
 			if (hook && (*hook)(obufp)) {
 			    putsyms(bufp);
-			    bufp = eos(bufp);
+			    /* pointer and cursor left where they were */
+			    for (i = eos(bufp); i > bufp; i--)
+				putsyms("\b");
 			}
 		} else if(c == kill_char || c == '\177') { /* Robert Viduya */
 				/* this test last - @ might be the kill_char */
+			bufp = eos(bufp);
 			while(bufp != obufp) {
 				bufp--;
 				putsyms("\b \b");
@@ -162,7 +176,7 @@ register const char *s;	/* chars allowed besides return */
 
 /*
  * Implement extended command completion by using this hook into
- * tty_getlin.  Check the characters already typed, if they uniquely
+ * tty_getlin.  Check the characters already typed, if they
  * identify an extended command, expand the string to the whole
  * command.
  *
@@ -176,20 +190,13 @@ STATIC_OVL boolean
 ext_cmd_getlin_hook(base)
 	char *base;
 {
-	int oindex, com_index;
+	int oindex;
 
-	com_index = -1;
 	for (oindex = 0; extcmdlist[oindex].ef_txt != (char *)0; oindex++) {
 		if (!strncmpi(base, extcmdlist[oindex].ef_txt, strlen(base))) {
-			if (com_index == -1)	/* no matches yet */
-			    com_index = oindex;
-			else			/* more than 1 match */
-			    return FALSE;
+			Strcpy(base, extcmdlist[oindex].ef_txt);
+			return TRUE;
 		}
-	}
-	if (com_index >= 0) {
-		Strcpy(base, extcmdlist[com_index].ef_txt);
-		return TRUE;
 	}
 
 	return FALSE;	/* didn't match anything */

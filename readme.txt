@@ -330,6 +330,7 @@ TODO:
 ver 0.0.6E9 [?] [Released by ?]
 -Actioned feature request 575146: Improvements to gypsy fortune messages.
 -All situations where a monster flees now generate a message.
+-Merged Sam Dennis's more intelligent autocomplete patch
 
 ver 0.0.6E8 [January 24/2003] [Released by Ali]
 -fixed bug 233901: Gtk-Critical errors from gtk_main_quit.
