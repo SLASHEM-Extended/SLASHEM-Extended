@@ -72,6 +72,7 @@ ver 0.0.7E3 [?] [Released by ?]
 -fixed bug 781959: GTK: Message window auto-scrolling fails after a short time.
 -fixed bug 781972: Proxified gtk crashes if run without a player's name.
 -fixed bug 781974: GTK crashes when maximum magic power drops to zero.
+-fixed bug 781978: GTK: Memory corruption in win32 (RtlFreeHeap).
 
 See history.txt for changes made in previous versions.
 
