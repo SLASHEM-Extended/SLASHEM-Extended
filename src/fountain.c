@@ -501,6 +501,7 @@ register struct obj *obj;
 	dryup(u.ux, u.uy, TRUE);
 }
 
+#ifdef SINKS
 void
 diptoilet(obj)
 register struct obj *obj;
@@ -527,7 +528,6 @@ register struct obj *obj;
 }
 
 
-#ifdef SINKS
 void
 breaksink(x,y)
 int x, y;
@@ -716,6 +716,188 @@ drinktoilet()
 			vomit();
 	}
 }
+#endif /* SINKS */
+
+
+void
+whetstone_fountain_effects(obj)
+register struct obj *obj;
+{
+	if (Levitation) {
+		floating_above("fountain");
+		return;
+	}
+
+	switch (rnd(30)) {
+		case 10: /* Curse the item */
+			curse(obj);
+			break;
+		case 11:
+		case 12:
+		case 13:
+		case 14: /* Uncurse the item */
+			if(obj->cursed) {
+			    if (!Blind)
+				pline_The("water glows for a moment.");
+			    uncurse(obj);
+			} else {
+			    pline("A feeling of loss comes over you.");
+			}
+			break;
+		case 15:
+		case 16: /* Water Demon */
+			dowaterdemon();
+			break;
+		case 17:
+		case 18: /* Water Nymph */
+			dowaternymph();
+			break;
+		case 19:
+		case 20: /* an Endless Stream of Snakes */
+			dowatersnakes();
+			break;
+		case 21:
+		case 22:
+		case 23: /* Find a gem */
+			if (!levl[u.ux][u.uy].looted) {
+				dofindgem();
+				break;
+			}
+		case 24:
+		case 25: /* Water gushes forth */
+			dogushforth(FALSE);
+			break;
+		case 26: /* Strange feeling */
+			pline("A strange tingling runs up your %s.",
+							body_part(ARM));
+			break;
+		case 27: /* Strange feeling */
+			You_feel("a sudden chill.");
+			break;
+		case 28: /* Strange feeling */
+			pline("An urge to take a bath overwhelms you.");
+#ifndef GOLDOBJ
+			if (u.ugold > 10) {
+			    u.ugold -= somegold() / 10;
+			    You("lost some of your gold in the fountain!");
+			    levl[u.ux][u.uy].looted &= ~F_LOOTED;
+			    exercise(A_WIS, FALSE);
+			}
+#else
+			{
+			    long money = money_cnt(invent);
+			    struct obj *otmp;
+                            if (money > 10) {
+				/* Amount to loose.  Might get rounded up as fountains don't pay change... */
+			        money = somegold(money) / 10; 
+			        for (otmp = invent; otmp && money > 0; otmp = otmp->nobj) if (otmp->oclass == GOLD_CLASS) {
+				    int denomination = objects[otmp->otyp].oc_cost;
+				    long coin_loss = (money + denomination - 1) / denomination;
+                                    coin_loss = min(coin_loss, otmp->quan);
+				    otmp->quan -= coin_loss;
+				    money -= coin_loss * denomination;				  
+				    if (!otmp->quan) delobj(otmp);
+				}
+			        You("lost some of your money in the fountain!");
+			        levl[u.ux][u.uy].looted &= ~F_LOOTED;
+			        exercise(A_WIS, FALSE);
+                            }
+			}
+#endif
+			break;
+		case 29: /* You see coins */
+
+		/* We make fountains have more coins the closer you are to the
+		 * surface.  After all, there will have been more people going
+		 * by.	Just like a shopping mall!  Chris Woodbury  */
+
+		    if (levl[u.ux][u.uy].looted) break;
+		    levl[u.ux][u.uy].looted |= F_LOOTED;
+		    (void) mkgold((long)
+			(rnd((dunlevs_in_dungeon(&u.uz)-dunlev(&u.uz)+1)*2)+5),
+			u.ux, u.uy);
+		    if (!Blind)
+		pline("Far below you, you see coins glistening in the water.");
+		    exercise(A_WIS, TRUE);
+		    newsym(u.ux,u.uy);
+		    break;
+	}
+	update_inventory();
+	dryup(u.ux, u.uy, TRUE);
+}
+
+#ifdef SINKS
+
+void
+whetstone_toilet_effects(obj)
+register struct obj *obj;
+{
+	if (Levitation) {
+	    floating_above("toilet");
+	    return;
+	}
+	if(is_poisonable(obj)) {
+	    if (flags.verbose)  You("cover it in filth.");
+	    obj->opoisoned = TRUE;
+	}
+	if (flags.verbose)  pline("Yuck!");
+}
+
+void
+whetstone_sink_effects(obj)
+register struct obj *obj;
+{
+	struct obj *otmp;
+	struct monst *mtmp;
+
+	if (Levitation) {
+		floating_above("sink");
+		return;
+	}
+	switch(rn2(20)) {
+		case 0: if (mvitals[PM_SEWER_RAT].mvflags & G_GONE)
+				pline_The("sink seems quite dirty.");
+			else {
+				mtmp = makemon(&mons[PM_SEWER_RAT],
+						u.ux, u.uy, NO_MM_FLAGS);
+				pline("Eek!  There's %s in the sink!",
+					Blind ? "something squirmy" :
+					a_monnam(mtmp));
+			}
+			break;
+		case 1: if (!(levl[u.ux][u.uy].looted & S_LRING)) {
+			    You("find a ring in the sink!");
+			    (void) mkobj_at(RING_CLASS, u.ux, u.uy, TRUE);
+			    levl[u.ux][u.uy].looted |= S_LRING;
+			    exercise(A_WIS, TRUE);
+			    newsym(u.ux,u.uy);
+			} else pline("Some dirty water backs up in the drain.");
+			break;
+		case 2: breaksink(u.ux,u.uy);
+			break;
+		case 3: pline_The("water moves as though of its own will!");
+			if ((mvitals[PM_WATER_ELEMENTAL].mvflags & G_GONE)
+			    || !makemon(&mons[PM_WATER_ELEMENTAL],
+					u.ux, u.uy, NO_MM_FLAGS))
+				pline("But it quiets down.");
+			break;
+		case 4:
+			pline("This water contains toxic wastes!");
+			obj = poly_obj(obj, STRANGE_OBJECT);
+			u.uconduct.polypiles++;
+			break;
+		case 5: You_hear("clanking from the pipes...");
+			break;
+		case 6: You_hear("snatches of song from among the sewers...");
+			break;
+		case 19: if (Hallucination) {
+		   pline("From the murky drain, a hand reaches up... --oops--");
+				break;
+			}
+		default:
+	}
+}
+
 #endif /* SINKS */
 
 /*fountain.c*/

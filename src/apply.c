@@ -2105,6 +2105,11 @@ struct obj *stone, *obj;
 		whetstoneinfo.wsobj = stone;
 		You("start %s %s.", occutext, yname(obj));
 		set_occupation(set_whetstone, occutext, 0);
+		if (IS_FOUNTAIN(levl[u.ux][u.uy].typ)) whetstone_fountain_effects(obj);
+#ifdef SINKS
+		else if (IS_SINK(levl[u.ux][u.uy].typ)) whetstone_sink_effects(obj);
+		else if (IS_TOILET(levl[u.ux][u.uy].typ)) whetstone_toilet_effects(obj);
+#endif
 	    }
 	} else You("wave %s in the %s.", the(xname(stone)),
 	    (IS_POOL(levl[u.ux][u.uy].typ) && Underwater) ? "water" : "air");
