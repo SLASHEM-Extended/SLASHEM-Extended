@@ -2347,6 +2347,8 @@ struct monst *mon;
  * is used when you want to print this message but also want to avoid having it come
  * after the monster's already broken out of armor, etc.
  * This does NOT check for visibility - calling code should determine that.
+ * [ALI] Special case: Don't print a message if hero can neither spot the
+ * original _or_ the new monster (avoids "It turns into it!").
  */
 int
 newcham(mtmp, mdat, transform_msg)
@@ -2356,6 +2358,7 @@ boolean transform_msg;
 {
 	int mhp, hpn, hpd;
 	int mndx, tryct;
+	int couldspot = canspotmon(mtmp);
 	struct permonst *olddata = mtmp->data;
 	char oldpet[BUFSZ];
 
@@ -2440,16 +2443,7 @@ boolean transform_msg;
 
 	/* take on the new form... */
 	set_mon_data(mtmp, mdat, 0);
-	
-	/* print message if wanted */
-	if (transform_msg) {
-		uchar save_mnamelth = mtmp->mnamelth;
-		
-		mtmp->mnamelth = 0;
-		pline("%s turns into %s!", oldpet, a_monnam(mtmp));
-		mtmp->mnamelth = save_mnamelth;
-	}
-	
+
 	if (emits_light(olddata) != emits_light(mtmp->data)) {
 	    /* used to give light, now doesn't, or vice versa,
 	       or light's range has changed */
@@ -2511,6 +2505,15 @@ boolean transform_msg;
 	}
 
 	newsym(mtmp->mx,mtmp->my);
+
+	/* print message if wanted */
+	if (transform_msg && (couldspot || canspotmon(mtmp))) {
+		uchar save_mnamelth = mtmp->mnamelth;
+		
+		mtmp->mnamelth = 0;
+		pline("%s turns into %s!", oldpet, a_monnam(mtmp));
+		mtmp->mnamelth = save_mnamelth;
+	}
 
 	mon_break_armor(mtmp);
 	if (!(mtmp->misc_worn_check & W_ARMG))

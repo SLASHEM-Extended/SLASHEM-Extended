@@ -346,6 +346,7 @@ ver 0.0.6E4F4 [? ?/2001] [Released by ?]
 -fixed bug 407857: Some wizard-mode commands don't work.
 -fixed bug 409196: (DOS?) display bug with & command.
 -fixed bug 409905: Drow don't recognize droven objects.
+-fixed bug 405649: Messages about unseen pet's activities.
 
 ver 0.0.6E4F3 [February 28/2001] [Released by Ali]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined

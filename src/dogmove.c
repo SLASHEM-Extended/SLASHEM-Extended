@@ -243,7 +243,7 @@ boolean devour;
 	    delobj(obj);
 
 	if (poly) {
-	    newcham(mtmp, (struct permonst *)0, vis);
+	    newcham(mtmp, (struct permonst *)0, cansee(mtmp->mx, mtmp->my));
 #if 0
 	    char oldpet[BUFSZ];
 #ifdef STEED
