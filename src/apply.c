@@ -3336,7 +3336,7 @@ wand_explode(obj, hero_broke)
 			losehp(damage, "exploding wand", KILLED_BY_AN);
 		}
 		if (flags.botl) bot();		/* blindness */
-	    } else if ((mon = m_at(x, y)) != 0) {
+	    } else if ((mon = m_at(x, y)) != 0 && !DEADMONSTER(mon)) {
 		(void) bhitm(mon, obj);
 	     /* if (flags.botl) bot(); */
 	    }
