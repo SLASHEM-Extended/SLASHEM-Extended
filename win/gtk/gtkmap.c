@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.14 2000-10-31 07:38:28 j_ali Exp $
+  $Id: gtkmap.c,v 1.15 2000-11-04 11:36:15 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -149,6 +149,8 @@ extern short	glyph2tile[];
 extern int	root_width;
 extern int	root_height;
 
+extern GtkWidget	*main_window;
+
 int		cursx;
 int		cursy;
 int		cursm;
@@ -192,7 +194,12 @@ static void	nh_map_init();
 void
 nh_set_map_visual(int mode)
 {
+    static int setting_visual = FALSE;		/* Ignore recursive calls */
     int saved_vis = map_visual;
+
+    if (setting_visual)
+	return;
+    setting_visual++;
 
     if(mode < 0 || mode > no_tileTab)
 	panic("Bad visual!\n");
@@ -202,18 +209,49 @@ nh_set_map_visual(int mode)
 
 	nh_map_clear();
 
-	if(saved_vis != 0)
+	if(saved_vis > 0)
 	    gdk_image_destroy(tile_image);
 	if(mode == 0){
-#ifndef WINGTK_X11
-/*	    if (gdk_char_width(map_font, 'm') != gdk_char_width(map_font, 'l'))
-	    	panic("Proportional font!");*/
-	    c_width = gdk_char_width(map_font, 'm');
-#else
-	    if(map_font->type != GDK_FONT_FONT)
-		panic("Bad font");
-	    c_width = ((XFontStruct *)GDK_FONT_XFONT(map_font))->max_bounds.width;
-#endif
+	    int i, width, min_width;
+	    c_width = min_width = gdk_char_width(map_font, oc_syms[0]);
+	    for(i = 1; i < SIZE(oc_syms); i++) {
+		width = gdk_char_width(map_font, oc_syms[i]);
+		if (width < min_width)
+		    min_width = width;
+		if (width > c_width)
+		    c_width = width;
+	    }
+	    for(i = 0; i < SIZE(showsyms); i++) {
+		width = gdk_char_width(map_font, showsyms[i]);
+		if (width < min_width)
+		    min_width = width;
+		if (width > c_width)
+		    c_width = width;
+	    }
+	    for(i = 0; i < SIZE(monsyms); i++) {
+		width = gdk_char_width(map_font, monsyms[i]);
+		if (width < min_width)
+		    min_width = width;
+		if (width > c_width)
+		    c_width = width;
+	    }
+	    for(i = 0; i < SIZE(warnsyms); i++) {
+		width = gdk_char_width(map_font, warnsyms[i]);
+		if (width < min_width)
+		    min_width = width;
+		if (width > c_width)
+		    c_width = width;
+	    }
+	    if (min_width <= 0)
+		pline("Warning: Not all expected glyphs present in map font.");
+	    else if (min_width < c_width)
+		/* Variable width fonts work after a fashion, but since each
+		 * character is not centered in its cell, they look somewhat
+		 * odd. If we want to add proper support for these fonts then
+		 * nh_map_print_glyph_traditional() should center the glyphs.
+		 */
+		pline("Warning: Map font is not fixed width.");
+
 	    c_height = map_font->ascent + map_font->descent;
 	    c_3dwidth = c_width;
 	    c_3dheight = c_height;
@@ -229,7 +267,7 @@ nh_set_map_visual(int mode)
 	    nh_map_init();
 
 	    tile_pixmap = gdk_pixmap_create_from_xpm(
-		map->window,
+		main_window->window,
 		&tile_mask,
 		&nh_color[MAP_MAGENTA],
 		NH_TILE_FILE
@@ -272,6 +310,8 @@ nh_set_map_visual(int mode)
 
 	gtk_widget_show(map);
     }
+
+    setting_visual--;
 }
 
 int
@@ -412,24 +452,15 @@ nh_map_clear()
     GdkRectangle update_rect;
 #endif
     /*
-     * This flag will be set if we called nh_set_map_visual() which
-     * called us back again.  In this case, ignore the fact that
-     * map_visual needs changing; this is being done.  --ALI
-     */
-    static int setting_visual = FALSE;
-
-    /*
      * Check if tileset has changed and change map_visual if required.
      * This can happen if tileset changed via doset() and doredraw() was
      * called.  --ALI
      */
-    if (!setting_visual && strcmp(tileset, tileTab[map_visual].ident)){
+    if (strcmp(tileset, tileTab[map_visual].ident)){
 	int i;
 	for(i = 0; i <= no_tileTab; i++)
 	    if (!strcmp(tileset, tileTab[i].ident)){
-		setting_visual = TRUE;
 		nh_set_map_visual(i);
-		setting_visual = FALSE;
 		return;		/* done (setting visual clears map) */
 	    }
 	pline("Tileset %s not valid.", tileset);
@@ -676,6 +707,9 @@ nh_map_new(GtkWidget *w)
 	GTK_POLICY_AUTOMATIC);
 
     map = gtk_drawing_area_new();
+    gtk_widget_set_name(map, DEF_GAME_NAME " map");
+    gtk_widget_set_rc_style(map);
+
     gtk_signal_connect(GTK_OBJECT(map), "expose_event",
 		       GTK_SIGNAL_FUNC(map_expose_event), NULL);
 
@@ -694,7 +728,10 @@ nh_map_new(GtkWidget *w)
     (void) xshm_map_init(NH_MAP_MAX_WIDTH, NH_MAP_MAX_HEIGHT);
 
 
-    map_font = gdk_font_load(NH_FONT);
+    if (map->style && map->style->font)
+	map_font = map->style->font;
+    else
+	map_font = gdk_font_load(NH_FONT);
     if(!map_font){
 /*	fprintf(stderr, "warning: cannot load %s. try to load %s", NH_FONT, NH_FONT2);*/
 	map_font = gdk_font_load(NH_FONT2);
@@ -706,56 +743,13 @@ nh_map_new(GtkWidget *w)
     }
 
     if(!map_font)
-	panic("Cannot open fixed font!");
-
-/*
-  load tile
-
-  It seems there are no way to create XImage from xpm
-  directory in GTK+. So, we create Pixmap first and 
-  get whole image from Pixmap.
- */
-
-    tile_pixmap = gdk_pixmap_create_from_xpm(
-	w->window,
-	&tile_mask,
-	&nh_color[MAP_MAGENTA],
-	NH_TILE_FILE
-	);
-
-    if (!tile_pixmap)
-	panic("Cannot open tile file %s!",NH_TILE_FILE);
-
-    tile_image = gdk_image_get(
-	(GdkWindow *)tile_pixmap,
-	0, 0,
-	NH_TILEMAP_WIDTH, NH_TILEMAP_HEIGHT);
-    
-    x_tile_init(tile_image, Tile);
-
-    gdk_pixmap_unref(tile_pixmap);
-    gdk_bitmap_unref(tile_mask);
+	panic("Cannot open map font!");
 
     map_gc = gdk_gc_new(w->window);
 
-    if(map_visual == 0){
- 	c_height = map_font->ascent + map_font->descent;
-	c_width = gdk_string_width(map_font, "W");
-    }
-    else{
-	c_width = NH_TILE_WIDTH;
- 	c_height = NH_TILE_HEIGHT;
-	c_3dwidth = NH_TILE_3D_WIDTH;
-	c_3dheight = NH_TILE_3D_HEIGHT;
-	c_3dofset = NH_TILE_3D_OFSET;
-
-    }
-    c_map_width = NH_MAP_WIDTH;
-    c_map_height = NH_MAP_HEIGHT;
-
-    gtk_drawing_area_size(
-	GTK_DRAWING_AREA(map),
-	c_map_width, c_map_height);
+    i = map_visual;
+    map_visual = -1;			/* Force initialisation */
+    nh_set_map_visual(i);
 
     map_pixmap = gdk_pixmap_new(
 	w->window,

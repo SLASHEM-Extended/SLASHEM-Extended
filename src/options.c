@@ -1813,7 +1813,11 @@ goodfruit:
 # endif
 				) {
 # ifdef REINCARNATION
-			    if (!initial && Is_rogue_level(&u.uz))
+			    /* [ALI] GTK port may call doset() after initial
+			     * but before we start a game. Prevent false match.
+			     */
+			    if (!initial && u.uz.dlevel &&
+			      Is_rogue_level(&u.uz))
 				assign_rogue_graphics(FALSE);
 # endif
 			    need_redraw = TRUE;
@@ -1833,7 +1837,8 @@ goodfruit:
 						MAC_GRAPHICS : ASCII_GRAPHICS);
 # endif
 # ifdef REINCARNATION
-			    if (!initial && Is_rogue_level(&u.uz))
+			    if (!initial && u.uz.dlevel &&
+			      Is_rogue_level(&u.uz))
 				assign_rogue_graphics(TRUE);
 # endif
 			}
