@@ -351,6 +351,7 @@ ver 0.0.6E6 [?] [Released by ?]
 -fixed bug 468049: Ronin should be removed.
 -Implemented first cut at display layers.
 -Merged vanilla 3.4.0 codebase.
+-New lawful quest (nightmare) level (Tina Hall).
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).
