@@ -990,7 +990,7 @@ int thrown;
 {
 	register struct monst *mon;
 	register int range, urange;
-	register struct obj *launcher = (struct obj*) 0;
+	struct obj *launcher = (struct obj*) 0;
 	boolean impaired = (Confusion || Stunned || Blind ||
 			   Hallucination || Fumbling);
 
@@ -1187,22 +1187,7 @@ int thrown;
 			 !index(in_rooms(mon->mx, mon->my, SHOPBASE), *u.ushops)))
 		    hot_pursuit(mon);
 
-		if (obj_gone) {
-#ifdef FIREARMS
-		    /* Detonate rockets */
-		    if (is_grenade(obj)) {
-			grenade_explode(obj, bhitpos.x, bhitpos.y, TRUE, 0);
-		    } else if (ammo_and_launcher(obj, launcher) &&
-			    (objects[obj->otyp].oc_dir & EXPLOSION)) {
-			if (cansee(bhitpos.x,bhitpos.y)) 
-			    pline("%s explodes in a ball of fire!", Doname2(obj));
-			else You_hear("an explosion");
-			explode(bhitpos.x, bhitpos.y, ZT_SPELL(ZT_FIRE),
-				d(3,8), WEAPON_CLASS, EXPL_FIERY);
-		    }
-#endif
-		    return;
-		}
+		if (obj_gone) return;
 	}
 
 #ifdef FIREARMS
@@ -1587,6 +1572,25 @@ int thrown;
 		    if (broken) {
 			if (*u.ushops)
 			    check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
+#ifdef FIREARMS
+			/*
+			 * Thrown grenades and explosive ammo used with the
+			 * relevant launcher explode rather than simply
+			 * breaking.
+			 */
+			if ((thrown == 1 || thrown == 2) && is_grenade(obj)) {
+			    grenade_explode(obj, bhitpos.x, bhitpos.y, TRUE, 0);
+			} else if (ammo_and_launcher(obj, launcher) &&
+				(objects[obj->otyp].oc_dir & EXPLOSION)) {
+			    if (cansee(bhitpos.x,bhitpos.y)) 
+				pline("%s explodes in a ball of fire!",
+					Doname2(obj));
+			    else You_hear("an explosion");
+			    explode(bhitpos.x, bhitpos.y, ZT_SPELL(ZT_FIRE),
+				    d(3,8), WEAPON_CLASS, EXPL_FIERY);
+			    obfree(obj, (struct obj *)0);
+			} else
+#endif
 			obfree(obj, (struct obj *)0);
 			return 1;
 		    }
