@@ -635,7 +635,7 @@ plus:
 			Strcat(prefix, sitoa(obj->spe));
 			Strcat(prefix, " ");
 		}
-		if (is_lightsaber(obj)) {
+		if (is_lightsaber(obj) || obj->otyp == STICK_OF_DYNAMITE) {
 			if(obj->lamplit) Strcat(bp, " (lit)");
 #ifdef DEBUG
 			Sprintf(eos(bp), " (%d)", obj->age);		

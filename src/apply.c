@@ -1173,7 +1173,7 @@ light_cocktail(obj)
 	    return;
 	}
 
-	You("light %s potion.%s", shk_your(buf, obj),
+	You("light %s %s.%s", shk_your(buf, obj),(obj->otyp == POT_OIL ? "potion" : "stick"),
 	    Blind ? "" : "  It gives off a dim light.");
 	if (obj->unpaid && costly_spot(u.ux, u.uy)) {
 	    /* Normally, we shouldn't both partially and fully charge

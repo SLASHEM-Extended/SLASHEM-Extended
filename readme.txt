@@ -329,6 +329,9 @@ TODO:
 
 ver 0.0.6E5F3 [?] [Released by ?]
 -Implemented NhExt sub-protocol 1.
+-fixed bug 486268: holy spear of light doesn't burn player
+-fixed bug 480578: Hellfire/Plague don't work for monsters
+-fixed bug 493892: messages for lighting dynamite, inventory (lit) indicator
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).
