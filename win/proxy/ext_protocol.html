@@ -8,8 +8,9 @@
 <h1>NhExt: A protocol for NetHack plug-in window ports</h1>
 
 <p>This document describes my proposal of a protocol to be used when NetHack
-calls a function located inside a plug-in window port. The complementary
-protocol (to be used for callbacks) has not been written yet.
+calls a function located inside a plug-in window port and for when that window
+port function in turn calls a function located inside NetHack (a call back).
+The protocol specifies no limit to the depth of recursion which may occur.
 
 <p>NhExt requires a two-way, single duplex, connection between the
 game and the window-port. How that connection is set up is outside the
@@ -158,7 +159,7 @@ TOS, etc.)  "window-port" refers to the windowing platform.  This is
 orthogonal (e.g.  UNIX might use either a tty window-port or an X11
 window-port).
 
-<h2>Standard window port procedure</h2>
+<h2>Standard window port procedures</h2>
 
 These procedures must be supported by all plug-in window ports (although for
 many procedures they need not actually do anything). Depending on the
@@ -945,6 +946,156 @@ struct outrip_res {
 
 <p>ALI: I suspect we should pass rather more information to this procedure;
 <code>genl_outrip()</code> uses a <em>lot</em> of global variables.
+
+<h2>Standard window port call backs</h2>
+
+<h3>display_inventory</h3>
+display_inventory takes no arguments and returns no values.
+
+<p>Display the hero's inventory.
+
+<h3>dlbh_fopen</h3>
+<pre>
+struct dlbh_fopen_req {
+    string name<>;
+    string mode<>;
+};
+
+struct dlbh_fopen_res {
+    int fh;
+};
+</pre>
+
+<p>Open a file and return a handle or -1 on error. The following names have
+special meanings as follows:
+<table>
+<tr><th>Name</th><th>File</th></tr>
+<tr><td>$(RECORD)</td><td>NetHack record</td></tr>
+<tr><td>$(HELP)</td><td>NetHack help</td></tr>
+<tr><td>$(SHELP)</td><td>NetHack short help</td></tr>
+<tr><td>$(DEBUGHELP)</td><td>NetHack wizard mode help</td></tr>
+<tr><td>$(DATAFILE)</td><td>NetHack data</td></tr>
+<tr><td>$(CMDHELPFILE)</td><td>NetHack command help</td></tr>
+<tr><td>$(HISTORY)</td><td>NetHack history</td></tr>
+<tr><td>$(LICENSE)</td><td>NetHack license</td></tr>
+<tr><td>$(OPTIONFILE)</td><td>NetHack option</td></tr>
+<tr><td>$(OPTIONS_USED)</td><td>NetHack options used</td></tr>
+<tr><td>$(GUIDEBOOK)</td><td>NetHack guidebook</td></tr>
+</table>
+
+<p>The following modes are supported: <pre>r</pre> and <pre>rb</pre>.
+
+<h3>dlbh_fgets</h3>
+<pre>
+struct dlbh_fgets_req {
+    int len;
+    int fh;
+};
+
+struct dlbh_fgets_res {
+    string line<>;
+};
+</pre>
+
+<p>Read one line of a file previously opened with dlbh_fopen. At most len
+characters will be returned including the newline at the end of the line.
+If len is too short to return a whole line the first len characters will
+be returned (with no terminating newline) and the rest of the line will
+be available for reading with the next call the dlbh_fgets. An empty
+string will be returned on end of file or other error.
+
+<h3>dlbh_fclose</h3>
+<pre>
+struct dlbh_fclose_req {
+    int fh;
+};
+
+struct dlbh_fclose_res {
+    int retval;
+};
+</pre>
+
+<p>Close a file previously opened with dlbh_fclose. Return non-zero on error.
+
+<h3>flush_screen</h3>
+flush_screen takes no arguments and returns no values.
+
+<p>Flush the screen.
+
+<h3>doredraw</h3>
+doredraw takes no arguments and returns no values.
+
+<p>Redraw the screen.
+
+<h3>status_mode</h3>
+<pre>
+struct status_mode_fclose_req {
+    int mode;
+};
+</pre>
+
+<p>Change the behaviour of status reporting as follows:
+<table>
+<tr><th>Mode</th><th>Behaviour</th></tr>
+<tr><td>0</td><td>Report status via calls to putstr(WIN_STATUS,...)</td></tr>
+<tr><td>1</td><td>Report status via calls to status(...)</td></tr>
+</table>
+
+<h3>parse_options</h3>
+<pre>
+struct parse_options_req {
+    string opts<>;
+};
+
+struct parse_options_res {
+    int retval;
+};
+</pre>
+
+<p>Parse the options passed. Multiple options may be given, seperated with
+commas. The format for options is the save as when included with the OPTIONS
+keyword in NetHack defaults files. See the guidebook for details.
+
+<p>parse_options returns non-zero on error.
+
+<h3>get_option</h3>
+<pre>
+struct get_option_req {
+    string opt<>;
+};
+
+struct get_option_res {
+    string value<>;
+};
+</pre>
+
+<p>Get the value of an option, or the empty string if the option is not
+recognized. Boolean options are returned as values of &quot;yes&quot;
+or &quot;no&quot;.
+
+<h3>get_player_choices</h3>
+<pre>
+typedef string choices<>;
+
+struct get_player_choices_res_role {
+    string male<>;
+    string female<>;
+};
+
+struct get_player_choices_res {
+    choices aligns<>;
+    choices genders<>;
+    choices races<>;
+    struct get_player_choices_res_role roles<>;
+};
+</pre>
+
+<p>Returns an array of the possible values for each of player alignment,
+gender, race and role. Note that this includes all possible values, not
+just the ones that are compatible with the currently set options.
+
+<p>The (integer) values of align, gend, race and role used by the
+player_selection procedure can be used as indices into these arrays.
 
 </body>
 </html>

@@ -371,6 +371,7 @@ ver 0.0.6E6 [?] [Released by ?]
 -fixed bug 570738: Tame arch-lich summons hostiles.
 -fixed bug 571086: C340-29: couldn't place lregion.
 -fixed bug 570756: Firing assault rifles takes no time.
+-Proxy: Add get player choices callback.
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).

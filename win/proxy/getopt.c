@@ -1,4 +1,4 @@
-/* $Id: getopt.c,v 1.1 2002-03-02 19:44:06 j_ali Exp $ */
+/* $Id: getopt.c,v 1.2 2002-06-22 15:36:52 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -20,6 +20,7 @@ static struct Bool_Opt
 {
     const char *name;
     boolean *addr, initvalue;
+    int optflags;
 } *boolopt = (struct Bool_Opt *)0;
 
 static int

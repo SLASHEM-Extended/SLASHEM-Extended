@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.12 2002-03-24 07:39:03 j_ali Exp $
+  $Id: gtk.c,v 1.13 2002-06-22 15:36:52 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -99,6 +99,8 @@ GdkColor	  nh_color[N_NH_COLORS] = {
     {0, 0*257, 0*257, 0*257,},		/* fixed black */
     {0, 255*257, 255*257, 255*257,},	/* fixed white */
 };
+
+static struct proxycb_get_player_choices_res *player_choices = NULL;
 
 char *
 GTK_ext_askname() {
@@ -245,7 +247,6 @@ static GtkItemFactoryEntry playmenu_items[] = {
 };
 
 static int keysym, keysym1;
-static int pl_selection;
 
 void
 win_GTK_init()
@@ -1173,7 +1174,7 @@ select_node_option(unsigned long key, int level, int indx)
 	    /* Role */
 	    if (select_player_flags.role >= 0)
 		return indx ? -1 : select_player_flags.role;
-	    for (i = 0; roles[i].name.m; i++)
+	    for (i = 0; i < player_choices->n_roles; i++)
 		if (!indx--)
 		    return i;
 	    return -1;
@@ -1184,7 +1185,7 @@ select_node_option(unsigned long key, int level, int indx)
 	    if (select_player_flags.race >= 0 &&
 	      (rolenum < 0 || validrace(rolenum, select_player_flags.race)))
 		return indx ? -1 : select_player_flags.race;
-	    for (i = 0; races[i].noun; i++)
+	    for (i = 0; i < player_choices->n_races; i++)
 		if (rolenum < 0 || validrace(rolenum, i))
 		    if (!indx--)
 			return i;
@@ -1197,13 +1198,13 @@ select_node_option(unsigned long key, int level, int indx)
 	    /* Gender */
 	    if (level == 2)
 	    {
-		n = ROLE_GENDERS;
+		n = player_choices->n_genders;
 		valid = validgend;
 		i = select_player_flags.gend;
 	    }
 	    else
 	    {
-		n = ROLE_ALIGNS;
+		n = player_choices->n_aligns;
 		valid = validalign;
 		i = select_player_flags.align;
 	    }
@@ -1216,13 +1217,13 @@ select_node_option(unsigned long key, int level, int indx)
 			return indx ? -1 : i;
 		    else
 		    {
-			for (j = 0; roles[j].name.m; j++)
+			for (j = 0; j < player_choices->n_roles; j++)
 			    if (valid(j, racenum, i))
 				return indx ? -1 : i;
 		    }
 		else if (racenum < 0)
 		{
-		    for (j = 0; races[j].noun; j++)
+		    for (j = 0; j < player_choices->n_races; j++)
 			if (valid(rolenum, j, i))
 			    return indx ? -1 : i;
 		}
@@ -1238,7 +1239,7 @@ select_node_option(unsigned long key, int level, int indx)
 		else
 		{
 		    for (i = 0; i < n; i++)
-			for (j = 0; roles[j].name.m; j++)
+			for (j = 0; j < player_choices->n_roles; j++)
 			    if (valid(j, racenum, i))
 			    {
 				if (!indx--)
@@ -1249,7 +1250,7 @@ select_node_option(unsigned long key, int level, int indx)
 	    else if (racenum < 0)
 	    {
 		for (i = 0; i < n; i++)
-		    for (j = 0; races[j].noun; j++)
+		    for (j = 0; j < player_choices->n_races; j++)
 			if (valid(rolenum, j, i))
 			{
 			    if (!indx--)
@@ -1336,22 +1337,22 @@ select_node_path(unsigned long key, int level, char *leaf)
     len = 11 + level;
     if (level > 0)
 	if (rolenum >= 0)
-	    len += strlen(roles[rolenum].name.m);
+	    len += strlen(player_choices->roles[rolenum].male);
 	else
 	    len += 6;
     if (level > 1)
 	if (racenum >= 0)
-	    len += strlen(races[racenum].noun);
+	    len += strlen(player_choices->races[racenum]);
 	else
 	    len += 6;
     if (level > 2)
 	if (gendnum >= 0)
-	    len += strlen(genders[gendnum].adj);
+	    len += strlen(player_choices->genders[gendnum]);
 	else
 	    len += 6;
     if (level > 3)
 	if (alignnum >= 0)
-	    len += strlen(aligns[alignnum].adj);
+	    len += strlen(player_choices->aligns[alignnum]);
 	else
 	    len += 6;
     if (leaf)
@@ -1362,22 +1363,22 @@ select_node_path(unsigned long key, int level, char *leaf)
     if (level > 0)
     {
 	strcat(path, "/");
-	strcat(path, SELECT_STR(rolenum, roles[rolenum].name.m));
+	strcat(path, SELECT_STR(rolenum, player_choices->roles[rolenum].male));
     }
     if (level > 1)
     {
 	strcat(path, "/");
-	strcat(path, SELECT_STR(racenum, races[racenum].noun));
+	strcat(path, SELECT_STR(racenum, player_choices->races[racenum]));
     }
     if (level > 2)
     {
 	strcat(path, "/");
-	strcat(path, SELECT_STR(gendnum, genders[gendnum].adj));
+	strcat(path, SELECT_STR(gendnum, player_choices->genders[gendnum]));
     }
     if (level > 3)
     {
 	strcat(path, "/");
-	strcat(path, SELECT_STR(alignnum, aligns[alignnum].adj));
+	strcat(path, SELECT_STR(alignnum, player_choices->aligns[alignnum]));
     }
     if (leaf)
     {
@@ -1500,7 +1501,7 @@ select_node_dump(struct select_node *node, int level)
 	case 1:
 	    if (SELECT_KEY_ROLENUM(node->key) >= 0)
 		fprintf(stderr, "%s%s", buf,
-		  roles[SELECT_KEY_ROLENUM(node->key)].name.m);
+		  player_choices->roles[SELECT_KEY_ROLENUM(node->key)].m);
 	    else {
 		fprintf(stderr, "[%d] ---\n", count - 1);
 		for(i = 0; i < level; i++)
@@ -1511,7 +1512,7 @@ select_node_dump(struct select_node *node, int level)
 	case 2:
 	    if (SELECT_KEY_RACENUM(node->key) >= 0)
 		fprintf(stderr, "%s%s", buf,
-		  races[SELECT_KEY_RACENUM(node->key)].noun);
+		  player_choices->races[SELECT_KEY_RACENUM(node->key)]);
 	    else {
 		fprintf(stderr, "[%d] ---\n", count - 1);
 		for(i = 0; i < level; i++)
@@ -1522,7 +1523,7 @@ select_node_dump(struct select_node *node, int level)
 	case 3:
 	    if (SELECT_KEY_GENDNUM(node->key) >= 0)
 		fprintf(stderr, "%s%s", buf,
-		  genders[SELECT_KEY_GENDNUM(node->key)].adj);
+		  player_choices->genders[SELECT_KEY_GENDNUM(node->key)]);
 	    else {
 		fprintf(stderr, "[%d] ---\n", count - 1);
 		for(i = 0; i < level; i++)
@@ -1533,7 +1534,7 @@ select_node_dump(struct select_node *node, int level)
 	case 4:
 	    if (SELECT_KEY_ALIGNNUM(node->key) >= 0)
 		fprintf(stderr, "%s%s", buf,
-		  aligns[SELECT_KEY_ALIGNNUM(node->key)].adj);
+		  player_choices->aligns[SELECT_KEY_ALIGNNUM(node->key)]);
 	    else {
 		fprintf(stderr, "[%d] ---\n", count - 1);
 		for(i = 0; i < level; i++)
@@ -1579,8 +1580,11 @@ init_select_player(boolean init)
 	nmenu_items = 0;
 	free(menu_items);
 	menu_items = NULL;
+	proxy_cb_free_player_choices(player_choices);
+	player_choices = NULL;
 	return;
     }
+    player_choices = proxy_cb_get_player_choices();
     root = (struct select_node *)alloc(sizeof(struct select_node));
     root->key = 0;
     num_opts = select_node_fill(root, 0);

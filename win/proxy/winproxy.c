@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.6 2002-03-02 19:44:06 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.7 2002-06-22 15:36:52 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -18,6 +18,7 @@
 /* Interface definition for plug-in windowing ports */
 struct window_procs proxy_procs = {
     "proxy",
+    0xFFFFFFFF,
     proxy_init_nhwindows,
     proxy_player_selection,
     proxy_askname,
