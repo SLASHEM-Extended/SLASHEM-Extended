@@ -392,6 +392,7 @@ ver 0.0.6E4F6 [? ?/2001] [Released by ?]
 -fixed bug 469764: Great Dagger ignores drain resistance.
 -fixed bug 450138: compilation errors in Winnt.
 -fixed bug 465181: silver mace sdam should be d6+1.
+-fixed bug 458625: Potion effects from sinks crash.
 
 ver 0.0.6E4F5 [August 31/2001] [Released by Ali]
 -fixed bug 420517: Yellow dragon scale mail.

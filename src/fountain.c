@@ -585,10 +585,9 @@ drinksink()
 			      Blind ? "odd" :
 			      hcolor(OBJ_DESCR(objects[otmp->otyp])));
 			otmp->dknown = !(Blind || Hallucination);
-			otmp->quan++; /* Avoid panic upon useup() */
 			otmp->corpsenm = 1; /* kludge for docall() */
+			/* dopotion() deallocs dummy potions */
 			(void) dopotion(otmp);
-			obfree(otmp, (struct obj *)0);
 			break;
 		case 5: if (!(levl[u.ux][u.uy].looted & S_LRING)) {
 			    You("find a ring in the sink!");
