@@ -180,8 +180,6 @@ struct obj *otmp;
 				You("disrupt %s!", mon_nam(mtmp));
 				pline("A huge hole opens up...");
 				expels(mtmp, mtmp->data, TRUE);
-			} else if (canseemon(mtmp)) {                        
-			    pline("%s slows down!", Monnam(mtmp));
 			}
 		}
 		break;
