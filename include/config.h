@@ -27,7 +27,7 @@
 
 /* #define MSDOS */	/* in case it's not auto-detected */
   
-/* #define OS2 */	/* define for OS/2 */
+/* #define OS2 */	/* in case it's not auto-detected */
   
 /* #define TOS */	/* define for Atari ST/TT */
   
@@ -44,7 +44,7 @@
   			/* Hint: if you're not developing code, don't define
   			   ULTRIX_PROTO. */
   
-#include "config1.h"	/* should auto-detect MSDOS, MAC, AMIGA, and WIN32 */
+#include "config1.h"	/* should auto-detect MSDOS, MAC, AMIGA, WIN32 and OS2 */
   
 /* Windowing systems...
  * Define all of those you want supported in your binary.

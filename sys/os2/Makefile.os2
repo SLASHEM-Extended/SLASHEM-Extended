@@ -177,7 +177,7 @@ CFLAGS	=-c $(GCCO) $(WARN) -I$(INCL) $(CDFLAGS) $(STDC) $(WINX11CFLAGS)
 OPT	=-o
 
 .IF $(with_x11) == yes
-WINX11CFLAGS = -I$(X11ROOT)\include -Zmtd
+WINX11CFLAGS = -DX11_GRAPHICS -DUSE_XPM -I$(X11ROOT)\include -Zmtd
 WINX11LIB = -lXaw -lXmu -lXext -lXt -lX11 -lXpm -L$(X11ROOT)\lib -lc_app
 WINX11SRC = ..\win\X11\Window.c ..\win\X11\dialogs.c ..\win\X11\winX.c ..\win\X11\winmap.c  ..\win\X11\winmenu.c ..\win\X11\winmesg.c ..\win\X11\winmisc.c ..\win\X11\winstat.c ..\win\X11\wintext.c ..\win\X11\winval.c tile.c
 WINX11VARDAT= x11tiles x11bigtiles pet_mark.xbm rip.xpm

@@ -204,4 +204,11 @@
  */
 #endif
 
+#if defined(__OS2__) || defined(__EMX__)
+# ifndef OS2
+#  define OS2
+# endif
+# undef UNIX
+#endif
+
 #endif	/* CONFIG1_H */

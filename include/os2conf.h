@@ -40,12 +40,15 @@
 /* #define TERMLIB */		/* use termcap file */
 #define ANSI_DEFAULT		/* allows NetHack to run without termcap file */
 #define TEXTCOLOR		/* allow color */
-#define MAIL		/* Allows for fake mail daemon to deliver mail */
+#define MAIL			/* Allows for fake mail daemon to deliver mail */
 #define TIMED_DELAY		/* enable the `timed_delay' run-time option */
 
 /*
  * The remaining code shouldn't need modification.
  */
+#ifndef DLB
+# define DLB	/* Untested without dlb, comment out on your own risk! */
+#endif
 
 #ifdef MSDOS
 # undef MSDOS			/* MSC autodefines this but we don't want it */
