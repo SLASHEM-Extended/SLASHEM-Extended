@@ -362,6 +362,13 @@ static struct inv_sub { short race_pm, item_otyp, subs_otyp; } inv_subs[] = {
     { NON_PM,	STRANGE_OBJECT,		STRANGE_OBJECT	      }
 };
 
+/* align-based substitutions for initial inventory */
+struct inv_asub { aligntyp align; short item_otyp, subs_otyp; };
+static struct inv_asub inv_asubs[] = {
+    { A_CHAOTIC,	HOLY_WAFER,		LEMBAS_WAFER	      },
+    { A_NONE,		STRANGE_OBJECT,		STRANGE_OBJECT	      }
+};
+
 /* KMH -- Expectations for skills.
  *	1.	Starting equipment will start as basic, and should have a maximum
  *		of at least skilled.  If you enter the dungeon with it, you should
@@ -1470,6 +1477,12 @@ register struct trobj *trop;
 				    break;
 				}
 			}
+			for (i = 0; inv_asubs[i].align != A_NONE; ++i)
+			    if (inv_asubs[i].align == u.ualign.type &&
+				    otyp == inv_asubs[i].item_otyp) {
+				otyp = inv_asubs[i].subs_otyp;
+				break;
+			    }
 			obj = mksobj(otyp, TRUE, FALSE);
 		} else {	/* UNDEF_TYP */
 			static NEARDATA short nocreate = STRANGE_OBJECT;

@@ -115,6 +115,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -fixed bug 575210: Invisible mummy wrappings.
 -fixed bug 405815: Invisible gold is inconsistent.
 -fixed bug 609748: Elfrist should be PM_ORC.
+-fixed bug 603179: Holy wafers in und.slayer starting inv.
 
 See history.txt for changes made in previous versions.
 
