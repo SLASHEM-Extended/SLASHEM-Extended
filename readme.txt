@@ -341,6 +341,7 @@ ver 0.0.6E4F8 [?] [Released by ?]
 -fixed bug 525461: Can't compile without UNPOLYPILE.
 -fixed bug 479068: Bones can contain guaranteed artifacts.
 -fixed bug 479067: Bones can contain aligned nemeses.
+-added support for X11 on OS/2 (backport from NetHack 3.4.0).
 
 ver 0.0.6E4F7 [February 28/2002] [Released by Ali]
 -Improvements to database (Lars Huttar)
