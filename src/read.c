@@ -1290,21 +1290,22 @@ register struct obj	*sobj;
 			    maybe_tame(mtmp, sobj);
 		    }
 		}
+		break;
 	case SPE_COMMAND_UNDEAD:
-	    if (u.uswallow) {
-		if (is_undead(u.ustuck->data)) maybe_tame(u.ustuck, sobj);
-	    } else {
-		int i, j, bd = confused ? 5 : 1;
-		struct monst *mtmp;
+		if (u.uswallow) {
+		    if (is_undead(u.ustuck->data)) maybe_tame(u.ustuck, sobj);
+		} else {
+		    int i, j, bd = confused ? 5 : 1;
+		    struct monst *mtmp;
 
-		for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
-		    if (!isok(u.ux + i, u.uy + j)) continue;
-		    if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0 &&
-			    is_undead(mtmp->data))
-			maybe_tame(mtmp, sobj);
+		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0 &&
+				is_undead(mtmp->data))
+			    maybe_tame(mtmp, sobj);
+		    }
 		}
 		break;
-	    }
 	case SCR_GENOCIDE:
 		You("have found a scroll of genocide!");
 		known = TRUE;
