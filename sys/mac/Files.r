@@ -7,13 +7,13 @@
 resource 'vers' (1, purgeable) {
 	VERSION_MAJOR, (VERSION_MINOR<<4) | PATCHLEVEL, beta, EDITLEVEL, verUS,
 	VERSION_STRING,
-	VERSION_STRING
+	"Slash'EM " VERSION_STRING
 };
 
 resource 'vers' (2, purgeable) {
 	VERSION_MAJOR, (VERSION_MINOR<<4) | PATCHLEVEL, beta, EDITLEVEL, verUS,
 	VERSION_STRING,
-	"www.slashem.org"
+	"for Slash'EM " VERSION_STRING " (www.slashem.org)"
 };
 
 resource 'SIZE' (-1) {
@@ -33,7 +33,7 @@ resource 'SIZE' (-1) {
 	reserved,
 	reserved,
 	reserved,
-	3000 * 1024,		/* recommended */
+	3000 * 1024,	/* recommended */
 	2000 * 1024		/* absolute minimum, to be determined */
 };
 
