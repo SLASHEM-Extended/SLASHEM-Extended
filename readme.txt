@@ -97,6 +97,7 @@ ver 0.0.7E6F3 [?] [Released by ?]
 -fixed bug 962574: Display bug when setting OPTIONS=tiles:Small tiles
 -fixed bug 1011313: SEGV using technique "raise zombies"
 -fixed bug 1018229: impossible splitbill: no resident shopkeeper??
+-fixed bug 1018447: Game crash when Hero with ball displace displacer beast
 
 See history.txt for changes made in previous versions.
 
