@@ -1,9 +1,9 @@
 /*
-  $Id: gtkmap.c,v 1.33 2003-12-20 19:07:28 j_ali Exp $
+  $Id: gtkmap.c,v 1.34 2004-01-03 18:28:51 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
-               Copyright (c) Slash'EM Development Team 2000-2003
+               Copyright (c) Slash'EM Development Team 2000-2004
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -589,6 +589,7 @@ switch_mode:
 #endif
 	nh_option_cache_set("tileset", tileTab[map_visual].ident);
 	nh_map_redraw();
+	nh_map_flush();
 
 	gtk_widget_show(map);
     }
