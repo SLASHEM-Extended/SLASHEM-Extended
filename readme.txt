@@ -95,6 +95,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 912588: Molds stagger from your powerful strike
 -fixed bug 962574: Display bug when setting OPTIONS=tiles:Small tiles
 -fixed bug 1011313: SEGV using technique "raise zombies"
+-fixed bug 1018229: impossible splitbill: no resident shopkeeper??
 
 See history.txt for changes made in previous versions.
 
