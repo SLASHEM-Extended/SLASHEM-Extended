@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.28 2002-12-14 16:22:44 j_ali Exp $
+  $Id: winGTK.h,v 1.29 2002-12-23 22:59:02 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -462,4 +462,8 @@ extern GdkPixbuf *xshm_map_pixbuf;
 	  (unsigned long)(gtk_clist_new)(columns)))
 #endif
 
+#endif
+
+#ifndef GTKHACK
+#define nh_strncmpi	strncmpi
 #endif

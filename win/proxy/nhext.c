@@ -1,4 +1,4 @@
-/* $Id: nhext.c,v 1.14 2002-12-01 17:23:37 j_ali Exp $ */
+/* $Id: nhext.c,v 1.15 2002-12-23 22:59:03 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -566,13 +566,12 @@ nhext_svc(struct nhext_svc *services)
     }
     nhext_io_setautofill_limit(nhext_connection.rd, 4);
     if (!nhext_xdr_u_long(nhext_connection.in, &value)) {
-	impossible("Bad reply packet (no header)");
+	impossible("Bad NhExt packet (no header)");
 	return -1;
     }
     nhext_connection.length = (value & 0xffff) << 2;
     id = value >> 16;
-    if (id)
-    {
+    if (id) {
 	nhext_io_setautofill_limit(nhext_connection.rd,
 	  nhext_connection.length);
 	for(i = 0; services[i].id; i++) {

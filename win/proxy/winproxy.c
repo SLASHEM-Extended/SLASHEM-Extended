@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.15 2002-12-01 17:23:38 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.16 2002-12-23 22:59:03 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -792,6 +792,7 @@ static int
 proxy_init()
 {
     int i;
+    static char *name = (char *)0;
     NhExtIO *rd, *wr;
     struct nhext_line *lp = (struct nhext_line *)0, line;
     rd = nhext_io_open(READ_F, READ_H, NHEXT_IO_RDONLY);
@@ -839,6 +840,18 @@ failed:
 	    break;
     if (i == lp->n || strcmp(lp->values[i], "1"))
 	goto failed;
+    for(i = 0; i < lp->n; i++)
+	if (!strcmp(lp->tags[i], "windowtype"))
+	    break;
+    if (name)
+	free(name);
+    if (i == lp->n)
+	windowprocs.name = proxy_procs.name;
+    else {
+	name = (char *)alloc(strlen(lp->values[i]) + 7);
+	Sprintf(name, "proxy/%s", lp->values[i]);
+	windowprocs.name = name;
+    }
     return TRUE;
 } 
 

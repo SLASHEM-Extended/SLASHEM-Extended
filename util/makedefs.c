@@ -812,7 +812,11 @@ static const char *window_opts[] = {
 		"Qt",
 #endif
 #ifdef GTK_GRAPHICS
+#ifdef GTK_PROXY
+		"proxified GTK",
+#else
 		"GTK",
+#endif
 #endif
 #ifdef GNOME_GRAPHICS
 		"Gnome",

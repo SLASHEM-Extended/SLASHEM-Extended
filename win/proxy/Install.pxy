@@ -13,50 +13,86 @@ takes time to do, especially during startup.
 
 The following configurations currently exist:
 
-CLIENT/SERVER
+A. Plug-in window interfaces
 
-In this configuration the game itself is configured as a proxy
-client. Typically just two windowing systems will be installed in the
-main executable - tty and proxy. The tty interface should be the
-default windowing system.
+In this configuration the game itself is built with the proxy interface
+as a window interface. Typically just two windowing systems will be
+installed in the main executable - tty and proxy. The tty interface
+should be the default windowing system.
 
 Each windowing system which needs to be supported is then supplied
-as a server.
+as a plug-in window interface.
 
-The client and server consist of the following systems:
+The game and plug-in interface consist of the following systems:
 
-Client:
-	WINPROXY	Client side proxy support
+Game:
+	WINPROXY	Game side proxy support
 	PROXYCOM	Common proxy support
 	PROXYUTL	Interfaces between proxy and the game
 	NHWIN		Tile support
 	WINTTY		TTY window interface
 	HACK		The game core
 
-Server:
+Plug-in interface:
 	WINDOW		The window interface (eg., GTK 2.0)
-	NHPROXY		Server side proxy support
+	NHPROXY		Plug-in side proxy support
 
 To build:
-	1. Configure toplevel Makefile for proxy use (CNF_SHARE_DATND)
-	2. Configure config.h as follows:
-		Comment out GTK_GRAPHICS
-		Define PROXY_GRAPHICS
-		Define GTK_V20 and GTK_PROXY inside
-		  #ifdef GTK_GRAPHICS ... #endif
-	3. Configure src/Makefile for proxy use
-	   (WINSRC, WINOBJ, WINLIB)
-	4. Build game by "make all", "make install" as normal
-	5. Build proxy library by "make nhproxy.a" in src
-	6. Build gtkhack by "make -f Makefile.unx all" in win/gtk2
-	   (Replace Makefile.unx with the appropriate makefile
-	    for your platform.)
 
-SINGLE EXECUTABLE
+	1. Configure config.h as follows:
+		Define PROXY_GRAPHICS and TTY_GRAPHICS
+	   You may also define other _GRAPHICS symbols for multiple
+	   windowing ports in the same executable if you so desire.
+
+	2. [UNIX] Configure toplevel Makefile for proxy use:
+	
+	   Add $(CNF_SHARE_PROXYND) to the definition of CNF_SHARE_DATND.
+
+	3. Configure src/Makefile for proxy use:
+
+	   [UNIX]
+
+	   Add the following to WINSRC, WINOBJ, and WINLIB and compile:
+
+	    [WINSRC]   $(WINTTYSRC) $(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYCOMSRC)
+	    [WINOBJ]   $(WINTTYOBJ) $(WINPROXYOBJ) $(PROXYUTLOBJ) $(PROXYCOMOBJ)
+	    [WINLIB]   $(WINTTYLIB) $(WINPROXYLIB)
+
+	   This will give you an executable supporting both tty and plug-in
+	   windowing ports.
+
+	   To support multiple windowing ports, change the definitions
+	   of WINSRC, WINOBJ and WINLIB to include all the relevant
+	   variables.
+
+	   [MS-Windows]
+
+	   Change the definition of USE_GTK and USE_PROXY as follows and
+	   compile:
+
+	    USE_GTK = N
+	    USE_PROXY = Y
+
+	   This will give you an executable supporting both tty and plug-in
+	   windowing ports. Multiple windowing ports are not supported under
+	   MS-Windows.
+
+	4. Follow all the instructions in ../../sys/unix/Install.unx or the
+	   appropriate documentation in ../../sys/winnt for the remainder of
+	   the installation process.
+
+	5. Build proxy library by "make nhproxy.a" in src
+
+	6. Follow the instructions in ../../win/<port> to build an external
+	   window interface for the relevant windowing systems you want to
+	   make available (and which support external interfaces).
+
+B. Proxified window interfaces
 
 This configuration uses dual processes (which has the advantage of
 allowing the windowing interface to run without elevated privileges -
-necessary for GTK).  It is somewhat simpler than the client/server
-configuration but is much less flexible.
+necessary for GTK).  It is somewhat simpler than plug-in window
+interfaces but is much less flexible.
 
-Build not yet supported.
+To build these interfaces follow the instructions in the directory
+containing the relevant window interface (currently only GTK).

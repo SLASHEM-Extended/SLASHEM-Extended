@@ -262,8 +262,9 @@ PROXYUTLOBJ = dlbh.o mapid.o riputil.o getopt.o glyphmap.o
 # external window ports and provide the interface to the game executable.
 # Currently, only the GTK2 window interface supports proxy window servers.
 PROXYSVRSRC = ../win/proxy/proxysvc.c ../win/proxy/proxycb.c \
-	../win/proxy/prxymap.c ../win/proxy/prxychar.c ../win/proxy/prxytile.c
-PROXYSVROBJ = proxysvc.o proxycb.o prxymap.o prxychar.o prxytile.o
+	../win/proxy/prxymap.c ../win/proxy/prxychar.c ../win/proxy/prxytile.c \
+	../win/proxy/prxyconn.c
+PROXYSVROBJ = proxysvc.o proxycb.o prxymap.o prxychar.o prxytile.o prxyconn.o
 #
 # Files for the SDL/GL window port
 WINGLSRC = ../win/gl/gl_conf.c ../win/gl/gl_emul.c  \
@@ -287,9 +288,16 @@ WINOBJ = $(WINTTYOBJ)
 # Use these declarations if you want to support the Qt windowing system
 # WINSRC = $(WINTTYSRC) $(WINQTSRC)
 # WINOBJ = $(WINTTYOBJ) $(WINQTOBJ)
-# Use these declarations if you want to support the GTK windowing system
-# WINSRC = $(WINTTYSRC) $(WINGTKSRC)
-# WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ)
+# Use these declarations if you want to support a conventional
+# GTK windowing system (only useful if not installing setuid or setgid)
+# WINSRC = $(WINTTYSRC) $(WINGTKSRC) $(PROXYUTLSRC)
+# WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ) $(PROXYUTLOBJ)
+# Use these declarations if you want to support external windowing systems
+# and a proxified GTK windowing system (see Install.GTK)
+# WINSRC = $(WINTTYSRC) $(WINGTKSRC) \
+#	$(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYCOMSRC) $(PROXYSVRSRC)
+# WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ) \
+#	$(WINPROXYOBJ) $(PROXYUTLOBJ) $(PROXYCOMOBJ) $(PROXYSVROBJ)
 # Use these declarations to only support the SDL/GL windowing systems
 # WINSRC = $(WINGLSRC)
 # WINOBJ = $(WINGLOBJ)
@@ -352,8 +360,12 @@ WINLIB = $(WINTTYLIB)
 # WINLIB = $(WINTTYLIB) $(WINX11LIB)
 # Use this declaration if you want to support the Qt windowing system
 # WINLIB = $(WINTTYLIB) $(WINQTLIB)
-# Use this declaration if you want to support the GTK windowing system
+# Use this declaration if you want to support a conventional
+# GTK windowing system (only useful if not installing setuid or setgid)
 # WINLIB = $(WINTTYLIB) $(WINGTKLIB)
+# Use this declaration if you want to support external windowing systems
+# and a proxified GTK windowing system (see Install.GTK)
+# WINLIB = $(WINTTYLIB) $(WINGTKLIB) $(WINPROXYLIB)
 # Use this declaration to only support the SDL/GL windowing system
 # WINLIB = $(WINGLLIB)
 # Use this declaration if you want to support external windowing systems
@@ -862,6 +874,9 @@ prxychar.o: ../win/proxy/prxychar.c ../include/nhxdr.h ../include/proxycom.h \
 prxytile.o: ../win/proxy/prxytile.c ../include/nhxdr.h ../include/proxycom.h \
 		../include/proxysvr.h
 	$(CC) $(CFLAGS) -c ../win/proxy/prxytile.c
+prxyconn.o: ../win/proxy/prxyconn.c ../include/nhxdr.h ../include/proxycom.h \
+		../include/proxysvr.h
+	$(CC) $(CFLAGS) -c ../win/proxy/prxyconn.c
 nhext.o: ../win/proxy/nhext.c ../include/nhxdr.h ../include/proxycom.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhext.c
 nhxdr.o: ../win/proxy/nhxdr.c ../include/nhxdr.h

@@ -56,7 +56,7 @@
 /* #define KDE */		/* KDE Interface */
 /* #define GTK_GRAPHICS */	/* GTK Interface */
 /* #define GNOME_GRAPHICS */	/* Gnome interface */
-/* #define PROXY_GRAPHICS */	/* Plug-in interfaces (not yet supported) */
+/* #define PROXY_GRAPHICS */	/* Plug-in interfaces */
 /* #define MSWIN_GRAPHICS */	/* Windows NT, CE, Graphics */
 /* #define GL_GRAPHICS */	/* OpenGL graphics */
 /* #define SDL_GRAPHICS */	/* Software SDL graphics */

@@ -1,4 +1,4 @@
-/* $Id: proxysvr.h,v 1.3 2002-11-02 15:47:02 j_ali Exp $ */
+/* $Id: proxysvr.h,v 1.4 2002-12-23 22:59:02 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -120,5 +120,11 @@ extern short * proxy_map_glyph2tile(
 /* ### prxychar.c ### */
 
 extern long *proxy_map_glyph2char(struct proxycb_get_glyph_mapping_res *);
+
+/* ### prxyconn.c ### */
+
+extern void proxy_start_server(char *prgname, void *read_h, void *write_h);
+extern void proxy_connect(
+	char *protocol, char *address, int *argcp, char **argv);
 
 #endif /* PROXYSVR_H */

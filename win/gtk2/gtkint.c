@@ -1,5 +1,5 @@
 /*
-  $Id: gtkint.c,v 1.4 2002-11-02 15:47:03 j_ali Exp $
+  $Id: gtkint.c,v 1.5 2002-12-23 22:59:03 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -24,7 +24,144 @@
 #include "patchlevel.h"
 #endif
 
-static void hook();
+static void
+hook()
+{
+    ;
+}
+
+#ifdef GTK_PROXY
+
+static void FDECL(GTK_proxy_init_nhwindows, (int *, char **));
+static void FDECL(GTK_proxy_raw_print, (const char *));
+static void FDECL(GTK_proxy_raw_print_bold, (const char *));
+
+/* Only the GTK_proxy_... functions are expected to be called.
+ * Calling any other of these before GTK_proxy_init_nhwindows()
+ * returns is likely to result in undefined behaviour.
+ */
+
+struct window_procs GTK_procs = {
+    "gtk",
+    0,
+    GTK_proxy_init_nhwindows,
+    hook, /* player_selection */
+    hook, /* askname */
+    GTK_get_nh_event,
+    GTK_exit_nhwindows,
+    hook, /* suspend_nhwindows */
+    hook, /* resume_nhwindows */
+    GTK_create_nhwindow,
+    GTK_clear_nhwindow,
+    GTK_display_nhwindow,
+    GTK_destroy_nhwindow,
+    GTK_curs,
+    GTK_putstr,
+    hook, /* display_file */
+    GTK_start_menu,
+    hook, /* add_menu */
+    GTK_end_menu,
+    (int (*)())hook, /* select_menu */
+    genl_message_menu,
+    GTK_update_inventory,
+    GTK_mark_synch,
+    GTK_wait_synch,
+#ifdef CLIPPING
+    GTK_cliparound,
+#endif
+#ifdef POSITIONBAR
+    hook, /* update_positionbar */
+#endif
+    hook, /* print_glyph */
+    GTK_proxy_raw_print,
+    GTK_proxy_raw_print_bold,
+    GTK_nhgetch,
+    GTK_nh_poskey,
+    hook, /* nhbell */
+    GTK_doprev_message,
+    (char (*)())hook, /* yn_function */
+    hook, /* getlin */
+    GTK_get_ext_cmd,
+    GTK_number_pad,
+    GTK_delay_output,
+#ifdef CHANGE_COLOR
+    hook, /* change_color */
+#ifdef MAC
+    hook, /* change_background */
+    hook, /* set_font_name */
+#endif
+    hook, /* get_color_string */
+#endif
+    hook, /* start_screen,*/
+    hook, /* end_screen,*/
+    genl_outrip,
+};
+
+static void
+GTK_proxy_raw_print(const char *str)
+{
+    fputs(str, stderr); fputc('\n', stderr); (void) fflush(stderr);
+}
+
+static void
+GTK_proxy_raw_print_bold(const char *str)
+{
+    fputs(str, stderr); fputc('\n', stderr); (void) fflush(stderr);
+}
+
+static void
+GTK_proxy_init_nhwindows(int *argcp, char **argv)
+{
+#ifdef WIN32
+    /* Win32 has no concept of fork, so we simply execute ourselves */
+    char *s;
+    s = g_find_program_in_path(argv[0]);
+    proxy_connect("file", s ? s : argv[0], argcp, argv);
+#else
+    int to_game[2],from_game[2];
+#ifdef UNIX
+    uid_t uid;
+    gid_t gid;
+#endif
+    if (pipe(to_game) || pipe(from_game))
+	panic("%s: Can't create NhExt stream", argv[0]);
+    if (fork()) {
+	dup2(to_game[0],0);
+	dup2(from_game[1],1);
+	close(to_game[1]);
+	close(from_game[0]);
+	choose_windows("proxy");
+	if (strncmp(windowprocs.name, "proxy/", 6))
+	    terminate(EXIT_SUCCESS);
+	init_nhwindows(argcp, argv);
+    } else {
+	close(to_game[0]);
+	close(from_game[1]);
+#ifdef UNIX
+	/*
+	 * Drop all privileges. For non-Linux systems we just assume that
+	 * seteuid()/setuid() suffices. Add more cases as needed.
+	 */
+	gid = getgid();
+	uid = getuid();
+#ifdef LINUX
+	setresgid(gid, gid, gid);
+	setresuid(uid, uid, uid);
+#else
+	setegid(gid);
+	setgid(gid);
+	seteuid(uid);
+	setuid(uid);
+#endif
+#endif
+	proxy_start_server(argv[0], (void *)from_game[0], (void *)to_game[1]);
+	exit(1);
+    }
+#endif	/* WIN32 */
+}
+
+#else	/* GTK_PROXY */
+
 static void FDECL(GTK_int_init_nhwindows, (int *, char **));
 static void NDECL(GTK_int_player_selection);
 static void NDECL(GTK_int_askname);
@@ -102,12 +239,6 @@ struct window_procs GTK_procs = {
     genl_outrip,
 #endif
 };
-
-static void
-hook()
-{
-    ;
-}
 
 static void
 GTK_int_init_nhwindows(int *argcp, char **argv)
@@ -233,3 +364,4 @@ GTK_int_getlin(const char *query, char *ret)
     strcpy(ret, line);
     free(line);
 }
+#endif	/* GTK_PROXY */
