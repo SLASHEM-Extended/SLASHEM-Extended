@@ -378,6 +378,8 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -fixed bug 440159: Doppelgangers and save/restore.
 -fixed bug 443827: New monsters and eating.
 -Added debugging for bug 420942: Two entrances to mines.
+-fixed bug 450316: Sting isn't listed as poisoned.
+-fixed bug 436375: X11 Text windows too small.
 
 ver 0.0.6E4F4 [May 2/2001] [Released by Ali]
 -fixed bug 404825: wands of teleportation that explode/zapped at yourself

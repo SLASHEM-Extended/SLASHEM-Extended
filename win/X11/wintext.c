@@ -156,13 +156,14 @@ display_text_window(wp, blocking)
     struct text_info_t *text_info;
     Arg args[8];
     Cardinal num_args;
-    Dimension width, height;
+    Dimension width, height, font_height;
     int nlines;
 
     text_info = wp->text_information;
     width  = text_info->max_width + text_info->extra_width;
     text_info->blocked = blocking;
     text_info->destroy_on_ack = FALSE;
+    font_height = nhFontHeight(wp->w);
 
     /*
      * Calculate the number of lines to use.  First, find the number of
@@ -172,17 +173,14 @@ display_text_window(wp, blocking)
      * _some_ lines.  Finally, use the number of lines in the text if
      * there are fewer than the max.
      */
-    nlines = (XtScreen(wp->w)->height - text_info->extra_height) /
-			(text_info->fs->ascent + text_info->fs->descent);
+    nlines = (XtScreen(wp->w)->height - text_info->extra_height) / font_height;
     nlines -= 4;
 
     if (nlines > text_info->text.num_lines)
 	nlines = text_info->text.num_lines;
     if (nlines <= 0) nlines = 1;
 
-    /* Font height is ascent + descent. */
-    height = (nlines * (text_info->fs->ascent + text_info->fs->descent))
-						    + text_info->extra_height;
+    height = nlines * font_height + text_info->extra_height;
 
     num_args = 0;
 

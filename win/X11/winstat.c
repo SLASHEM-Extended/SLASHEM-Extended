@@ -111,9 +111,7 @@ create_status_window(wp, create_popup, parent)
     XtSetArg(args[num_args], XtNrightMargin,  &right_margin);  num_args++;
     XtGetValues(wp->w, args, num_args);
 
-    /* font height is ascent + descent */
-    wp->pixel_height = 2 * (fs->ascent + fs->descent) +
-						top_margin + bottom_margin;
+    wp->pixel_height = 2 * nhFontHeight(wp->w) + top_margin + bottom_margin;
     wp->pixel_width  = COLNO * fs->max_bounds.width +
 						left_margin + right_margin;
 

@@ -450,6 +450,38 @@ Cardinal	*num_args;
     }
 }
 
+/* [ALI] Utility function to ask Xaw for font height, since the previous
+ * assumption of ascent + descent is not always valid.
+ */
+Dimension
+nhFontHeight(w)
+Widget w;
+#ifdef _XawTextSink_h
+{
+    Widget sink;
+    XawTextPosition pos = 0;
+    int resWidth, resHeight;
+    Arg args[1];
+
+    XtSetArg(args[0], XtNtextSink, &sink);
+    XtGetValues(w, args, 1);
+
+    XawTextSinkFindPosition(sink, pos, 0, 0, 0, &pos, &resWidth, &resHeight);
+    return resHeight;
+}
+#else
+{
+    XFontStruct *fs;
+    Arg args[1];
+
+    XtSetArg(args[0], XtNfont, &fs);
+    XtGetValues(w, args, 1);
+
+    /* Assume font height is ascent + descent. */
+    return = fs->ascent + fs->descent;
+}
+#endif
+
 /* Global Functions ======================================================== */
 void
 X11_raw_print(str)
@@ -1402,12 +1434,10 @@ X11_display_file(str, complain)
     XtGetValues(dispfile, args, num_args);
 
     /*
-     * Font height is ascent + descent.
-     *
      * The data files are currently set up assuming an 80 char wide window
      * and a fixed width font.  Soo..
      */
-    new_height = num_lines * (fs->ascent + fs->descent) +
+    new_height = num_lines * nhFontHeight(dispfile) +
 						top_margin + bottom_margin;
     new_width  = 80 * fs->max_bounds.width + left_margin + right_margin;
 
