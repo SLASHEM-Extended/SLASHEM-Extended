@@ -981,7 +981,7 @@ E int NDECL(SanePositions);
 
 /* ### mttymain.c ### */
 
-E void FDECL(getreturn, (char *));
+E void FDECL(getreturn, (const char *));
 E void VDECL(msmsg, (const char *,...));
 E void NDECL(gettty);
 E void NDECL(setftty);
