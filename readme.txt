@@ -327,7 +327,7 @@ TODO:
 -tofix: using the nethack config files.
 -vampires shouldn't be allowed to become Flame Mages
 
-ver 0.0.6E5F2 [? ?/2001] [Released by ?]
+ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).
 -Implemented support routines for NhExt sub-protocol 1.
 -Upgraded GTK 2.0 interface to support Gtk+ version 1.3.9
@@ -336,6 +336,7 @@ ver 0.0.6E5F2 [? ?/2001] [Released by ?]
 -fixed bug 457682: Steal from black market - militia gen.
 -Actioned feature request 476860: No wishing for guaranteed artifacts.
 -Actioned feature request 476867: Indestructable aligned keys.
+-fixed bug 470314: Sting and Orcrist should be lawful.
 
 ver 0.0.6E5F1 [August 31/2001] [Released by Ali]
 -New messages when engraving with wand of draining.
@@ -352,7 +353,7 @@ ver 0.0.6E5 [May 3/2001] [Released by Warren]
 -fixed bug 417384: Shopkeeper services.
 -fixed bug 225227: Vampires start with food rations.
 
-ver 0.0.6E4F6 [? ?/2001] [Released by ?]
+ver 0.0.6E4F6 [November 30/2001] [Released by Ali]
 -fixed bug 453246: Genetic engineers attacking monsters.
 -fixed bug 458121: Vanishing corpses in ice boxes.
 -fixed bug 458085: Zap wands of healing at steed.
@@ -408,7 +409,6 @@ ver 0.0.6E4F6 [? ?/2001] [Released by ?]
 -fixed bug 482201: Eating merged partly eaten food.
 -fixed bug 470817: Problem learning foodtype form tin.
 -fixed bug 482196: weight() for partly eaten objects wrong.
--fixed bug 470314: Sting and Orcrist should be lawful.
 -fixed bug 480547: Storm Whistle isn't intelligent.
 
 ver 0.0.6E4F5 [August 31/2001] [Released by Ali]
