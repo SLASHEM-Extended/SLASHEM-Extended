@@ -414,7 +414,7 @@ not_recovered:
 		flags.move = 0;
 		set_wear();
 		(void) pickup(1);
-		read_engr_at(u.ux,u.uy);
+		read_engr_at(u.ux,u.uy,FALSE);
 	}
 #ifdef __DJGPP__
         /* WAC try to set title bar for Win95 DOS Boxes */
