@@ -341,6 +341,7 @@ ver 0.0.6E4F4 [? ?/2001] [Released by ?]
 -fixed bug 409984: Off-by-one error in coyote naming.
 -fixed bug 410588: Caveman quest artifact non-existant.
 -fixed bug 410583: Polymorphing spellbooks loose charges.
+-fixed bug 410582: your foo seems less fuzzy.
 
 ver 0.0.6E4F3 [February 28/2001] [Released by Ali]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined

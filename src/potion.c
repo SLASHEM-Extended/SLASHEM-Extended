@@ -2139,7 +2139,7 @@ dodip()
 		   stop_timer(UNPOLY_OBJ, (genericptr_t) obj)) {
 		/* KMH -- Restore ability will stop unpolymorphing */
 		if (!Blind)
-			pline("%s seems less fuzzy.", yname(obj));
+			pline("%s seems less fuzzy.", Yname2(obj));
 		useup(potion);
 		return (1);
 #endif
