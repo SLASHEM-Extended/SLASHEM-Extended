@@ -331,6 +331,7 @@ ver 0.0.6E8 [?] [Released by ?]
 -fixed bug 233901: Gtk-Critical errors from gtk_main_quit.
 -Proxy: Implement proxified GTK interface.
 -Proxy: Add formal versioning of NhExt standards.
+-Proxy: Add support for callback extensions.
 
 ver 0.0.6E7 [December 6/2002] [Released by Ali]
 -Lethe: Treacherous pets; Cthulhu revivification; monsters use of potions of

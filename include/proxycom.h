@@ -1,5 +1,5 @@
-/* $Id: proxycom.h,v 1.9 2003-01-05 07:41:49 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2002 */
+/* $Id: proxycom.h,v 1.10 2003-01-18 17:52:09 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #ifndef PROXYCOM_H
@@ -196,6 +196,7 @@ E nhext_xdr_bool_t FDECL(proxy_xdr_print_glyph_layered_req,
 #define EXT_CID_GET_STANDARD_WINID	0x12
 #define EXT_CID_GET_TILESETS		0x13
 #define EXT_CID_GET_GLYPH_MAPPING	0x14
+#define EXT_CID_GET_EXTENSIONS		0x15
 
 #ifdef NHXDR_H
 struct proxycb_get_player_choices_res_role {
@@ -271,6 +272,17 @@ struct proxycb_get_glyph_mapping_res {
 	struct proxycb_get_glyph_mapping_res_mapping *mappings;
 };
 
+struct proxycb_get_extensions_res_extension {
+	const char *name;
+	const char *version;
+	int no_procedures;
+};
+
+struct proxycb_get_extensions_res {
+	int n_extensions;
+	struct proxycb_get_extensions_res_extension *extensions;
+};
+
 extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_player_choices_res_role,
 		(NhExtXdr *, struct proxycb_get_player_choices_res_role *));
 extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_player_choices_res,
@@ -291,6 +303,8 @@ extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_glyph_mapping_res_mapping,
 		(NhExtXdr *, struct proxycb_get_glyph_mapping_res_mapping *));
 extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_glyph_mapping_res,
 		(NhExtXdr *, struct proxycb_get_glyph_mapping_res *));
+extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_extensions_res,
+		(NhExtXdr *, struct proxycb_get_extensions_res *));
 #endif  /* NHXDR_H */
 
 #endif /* PROXYCOM_H */

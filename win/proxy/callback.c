@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.13 2002-12-31 21:30:44 j_ali Exp $ */
+/* $Id: callback.c,v 1.14 2003-01-18 17:52:09 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -49,6 +49,8 @@ static void FDECL(callback_get_standard_winid, \
 static void FDECL(callback_get_tilesets, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(callback_get_glyph_mapping, \
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(callback_get_extensions, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 
 static void
@@ -514,6 +516,27 @@ NhExtXdr *request, *reply;
     free_glyph_mapping(mapping);
 }
 
+static void
+callback_get_extensions(id, request, reply)
+unsigned short id;
+NhExtXdr *request, *reply;
+{
+    int i;
+    struct proxycb_get_extensions_res list;
+    for(i = 0; proxy_extents[i].name; i++)
+	;
+    list.n_extensions = i;
+    list.extensions = (struct proxycb_get_extensions_res_extension *)
+      alloc(i * sizeof(*list.extensions));
+    for(i = 0; proxy_extents[i].name; i++) {
+	list.extensions[i].name = proxy_extents[i].name;
+	list.extensions[i].version = proxy_extents[i].version;
+	list.extensions[i].no_procedures = proxy_extents[i].no_procedures;
+    }
+    nhext_rpc_params(reply, 1, EXT_XDRF(proxycb_xdr_get_extensions_res, &list));
+    free(list.extensions);
+}
+
 struct nhext_svc proxy_callbacks[] = {
     EXT_CID_DISPLAY_INVENTORY,		callback_display_inventory,
     EXT_CID_DLBH_FOPEN,			callback_dlbh_fopen,
@@ -535,5 +558,6 @@ struct nhext_svc proxy_callbacks[] = {
     EXT_CID_GET_STANDARD_WINID,		callback_get_standard_winid,
     EXT_CID_GET_TILESETS,		callback_get_tilesets,
     EXT_CID_GET_GLYPH_MAPPING,		callback_get_glyph_mapping,
+    EXT_CID_GET_EXTENSIONS,		callback_get_extensions,
     0, NULL,
 };

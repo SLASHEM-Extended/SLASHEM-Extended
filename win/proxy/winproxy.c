@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.19 2003-01-05 07:41:49 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.20 2003-01-18 17:52:10 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -94,6 +94,11 @@ struct window_procs proxy_procs = {
     proxy_start_screen,
     proxy_end_screen,
     proxy_outrip
+};
+
+/* Extensions to the NhExt protocol */
+struct proxy_extension proxy_extents[] = {
+    { 0, 0, 0, 0, 0 }		/* must be last */
 };
 
 /*
@@ -886,9 +891,10 @@ unsigned int len;
 static int
 proxy_init()
 {
-    int i;
+    int i, j, k;
     static char *name = (char *)0;
     NhExtIO *rd, *wr;
+    struct nhext_svc *services;
     struct nhext_line *lp = (struct nhext_line *)0, line;
     char standard[8];
     rd = nhext_io_open(READ_F, READ_H, NHEXT_IO_RDONLY);
@@ -899,7 +905,25 @@ proxy_init()
 	nhext_io_close(rd);
 	return FALSE;
     }
-    if (nhext_init(rd, wr, proxy_callbacks) < 0) {
+    if (proxy_extents[0].name) {
+	for(i = j = 0; proxy_extents[i].name; i++)
+	    j += proxy_extents[i].no_procedures;
+	for(i = 0; proxy_callbacks[i].id; i++)
+	    ;
+	j += i;
+	services = (struct nhext_svc *) alloc(j * sizeof(struct nhext_svc));
+	for(i = j = 0; proxy_extents[i].name; i++) {
+	    (*proxy_extents[i].init)(0x8000 + j);
+	    for(k = 0; k < proxy_extents[i].no_procedures; k++, j++) {
+		services[j].id = 0x8000 + j;
+		services[j].handler = proxy_extents[i].handler;
+	    }
+	}
+	for(i = 0; proxy_callbacks[i].id; i++)
+	    services[j + i] = proxy_callbacks[i];
+    } else
+	services = proxy_callbacks;
+    if (nhext_init(rd, wr, services) < 0) {
 	nhext_io_close(rd);
 	nhext_io_close(wr);
 	return FALSE;

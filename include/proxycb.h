@@ -1,4 +1,4 @@
-/* $Id: proxycb.h,v 1.12 2002-12-31 21:30:43 j_ali Exp $ */
+/* $Id: proxycb.h,v 1.13 2003-01-18 17:52:08 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -41,5 +41,8 @@ extern void FDECL(proxy_cb_free_tilesets,
 extern struct proxycb_get_glyph_mapping_res *NDECL(proxy_cb_get_glyph_mapping);
 extern void FDECL(proxy_cb_free_glyph_mapping,
 		(struct proxycb_get_glyph_mapping_res *mapping));
+extern struct proxycb_get_extensions_res *NDECL(proxy_cb_get_extensions);
+extern void FDECL(proxy_cb_free_extensions,
+		(struct proxycb_get_extensions_res *extensions));
 
 #endif /* PROXYCB_H */

@@ -1,4 +1,4 @@
-/* $Id: prxyclnt.h,v 1.1 2003-01-01 12:13:30 j_ali Exp $ */
+/* $Id: prxyclnt.h,v 1.2 2003-01-18 17:52:09 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -101,6 +101,7 @@ struct window_ext_procs {
 extern void proxy_svc_set_ext_procs(void (*)(void), struct window_ext_procs *);
 extern int win_proxy_clnt_init(void *, void *);
 extern char *win_proxy_clnt_get_failed_packet(int *);
+extern char *win_proxy_clnt_get_extension(const char *name, const char *min_ver,	const char *next_ver, unsigned short *idp);
 
 /* ### prxymap.c ### */
 

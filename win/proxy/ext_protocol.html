@@ -1046,6 +1046,7 @@ Plug-in window ports may assume that the following call backs are supported.
 <tr><td>get_standard_winid</td><td>0x12</td></tr>
 <tr><td>get_tilesets</td><td>0x13</td></tr>
 <tr><td>get_glyph_mapping</td><td>0x14</td></tr>
+<tr><td>get_extensions</td><td>0x15</td></tr>
 </table>
 
 <h3>display_inventory</h3>
@@ -1394,5 +1395,23 @@ symbol.
 <p>Each sub-map contains a symdef field which is used in the same way as the
 same field in the containing mapping structure and a set of symdefs, one for
 each glyph in the sub-mapping.
+
+<h3>get_extensions</h3>
+<pre>
+struct get_extensions_res_extension {
+    string name<>;
+    string version<>;
+    int no_procedures;
+};
+
+struct get_extensions_res {
+    struct get_extensions_res_extension extensions<>;
+};
+</pre>
+
+<p>Return a list of the supported extensions. The first extension listed will
+use no_procedures IDs starting at 0x8000. Subsequent extensions will use IDs
+starting just after the previous extension.
+
 </body>
 </html>

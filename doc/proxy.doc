@@ -6,6 +6,7 @@ Contents:
 	I.    An overview of the components
 	II.   Adding a standard procedure
 	III.  Adding a standard callback
+	IV.   Adding an extension
 
 I.   An overview of the components
 
@@ -18,11 +19,11 @@ The modules can be broken down into the following types:
 A.  Common modules used in both processes (proxycom)
 B.  The proxy window interface (winproxy)
 C.  Utility modules used in the game executable (proxyutl)
-D.  Server modules used only by the external process (proxysvr)
+D.  Client modules used only by the external process (proxyclnt)
 
 The main game executable is built with the winproxy, proxyutl and proxycom
 modules; external interfaces are built with the nhproxy library which
-consists of the proxysvr and proxycom modules.
+consists of the proxyclnt and proxycom modules.
 
 When building a window interface as an external port, the proxyutl modules
 are just a special case of the winproxy modules. However, if a window
@@ -44,7 +45,7 @@ winproxy.h
 
 C.  External process include files:
 
-proxysvr.h
+proxyclnt.h
 proxycb.h
 
 II.  Adding a standard procedure
@@ -67,7 +68,7 @@ A.  win/proxy/ext_protocol.html
  o If you have access to rpcgen then you can use the relevant makefile
    to build rpcgen-nhext_xdr.c and so check your syntax.
 
-B.  include/proxysvr.h
+B.  include/proxyclnt.h
 
  o Add a new field to the end of struct window_ext_procs to hold a pointer
    to a function which takes the relevant parameters and returns the
@@ -122,7 +123,8 @@ procedure. You should:
    - Encode the result of that action ready to be sent back to the game
      by calling nhext_rpc_params() and passing it the reply XDR handler
      and parameters which describe the format of the results of your
-     procedure.
+     procedure.  Note: If this procedure has no result then you must
+     still return an empty result to the game.
  o Add an entry to the services array as follows:
 	EXT_FID_${NAME},		proxy_svc_${name},
 
@@ -213,7 +215,8 @@ call back. You should:
    - Encode the result of that action ready to be sent back to the
      windowing port by calling nhext_rpc_params() and passing it the
      reply XDR handler and parameters which describe the format of the
-     results of your call back.
+     results of your call back. Note: If this call back has no result
+     then you must still return an empty result to the windowing port.
  o Add an entry to the proxy_callbacks array as follows:
 	EXT_CID_${NAME},		callback_${name},
 
@@ -221,3 +224,74 @@ G.  external window interface(s)
 
 Add code to call proxy_cb_${name} to the external window interfaces which
 need the new callback.
+
+IV.  Adding an extension
+
+Extensions are used to allow callbacks not detailed in the NhExt standard
+to be provided by a game server and queried for by the client. Extensions
+have names, version numbers and a set of callbacks. It is assumed that
+by one means or another the name and version number is sufficient for the
+client and server to agree on the meaning of each callback along with the
+details of the various request and reply packets (the extension system
+provides no means of querying these details).
+
+First choose a name for the new extension. We will use ${name} to refer to
+the chosen name in this document.
+
+Modify the source as follows:
+
+A.  server
+
+Add code in some appropriate module (or create a new module) to handle the
+extension. This code should include an initialization routine and a handler.
+The initialization routine is called by proxy_init() during the initialization
+of the proxy interface. It is passed one parameter - the base ID chosen for the
+extension (this may vary as extensions are added or removed). The handler will
+be called to handle a callback. It is passed the ID of the callback and pointers
+to the request and reply packets. The following is an example of a trivial
+extension with just one callback which takes one integer value and returns 
+value + 1:
+
+	static unsigned short xyzzy_base_id;
+
+	void
+	xyzzy_init(base_id)
+	unsigned short base_id;
+	{
+	    xyzzy_base_id = base_id;
+	}
+
+	void
+	xyzzy_handler(id, request, reply)
+	unsigned short id;
+	NhExtXdr *request, *reply;
+	{
+	    int i;
+	    switch (id - xyzzy_base_id)
+	    {
+		case 0:
+		    nhext_rpc_params(request, 1, EXT_INT_P(i));
+		    i++;
+		    nhext_rpc_params(reply, 1, EXT_INT(i));
+		    break;
+		default:
+		    impossible("xyzzy_handler: Bad ID %u (base %u)",
+		      id, xyzzy_base_id);
+		    nhext_rpc_params(reply, 0);
+	    }
+	}
+
+B.  win/proxy/winproxy.c
+
+ o Declare the initialization and handler functions you defined above before
+   the definition of proxy_extents[], as follows:
+	extern void FDECL(${name}_init, (unsigned short));
+	extern void FDECL(${name}_handler,
+		(unsigned short, NhExtXdr *, NhExtXdr *));
+ o Add an entry to proxy_extents[] as follows:
+	{ "${name}", "1.0", ${name}_init, 2, ${name}_handler },
+    - Replace 1.0 with the version number. If you need to support more than
+      one version of an extension then you must supply seperate initialization
+      functions although they can share the same handler function if desired.
+      The prefered interface should be listed first.
+    - Replace 2 with the number of callbacks included in this extension.

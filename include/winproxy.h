@@ -1,11 +1,23 @@
-/* $Id: winproxy.h,v 1.11 2002-11-02 15:47:02 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001-2002 */
+/* $Id: winproxy.h,v 1.12 2003-01-18 17:52:09 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #ifndef WINEXT_H
 #define WINEXT_H
 
 #define E extern
+
+#ifdef NHXDR_H
+struct proxy_extension {
+    const char *name;
+    const char *version;
+    void FDECL((*init), (unsigned short));
+    int no_procedures;
+    void FDECL((*handler), (unsigned short, NhExtXdr *, NhExtXdr *));
+};
+
+extern struct proxy_extension proxy_extents[];
+#endif
 
 extern struct window_procs proxy_procs;
 

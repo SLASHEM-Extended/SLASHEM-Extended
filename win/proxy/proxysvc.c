@@ -1,4 +1,4 @@
-/* $Id: proxysvc.c,v 1.17 2003-01-03 00:28:37 j_ali Exp $ */
+/* $Id: proxysvc.c,v 1.18 2003-01-18 17:52:10 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -13,6 +13,7 @@
 #endif
 #include "nhxdr.h"
 #include "proxycom.h"
+#include "proxycb.h"
 #include "prxyclnt.h"
 
 static void NDECL((*proxy_ini));		/* optional (can be 0) */
@@ -970,4 +971,88 @@ char *
 win_proxy_clnt_get_failed_packet(int *nb)
 {
     return nhext_subprotocol0_get_failed_packet(nb);
+}
+
+/*
+ * This uses the following rules:
+ *
+ *	<version>.0	==	<version>
+ *	<version>.n+1	>	<version>.n
+ *	<version>a	>	<version>
+ *	<version>a+1	>	<version>.a
+ *
+ * where n is any decimal number and a is any single non-digit (with a+1
+ * meaning the next ASCII character after a). Note: the use of atoi()
+ * means that whitespace and +/- signs will cause odd effects. The
+ * assumption is that only alphanumeric characters plus '.' will be used.
+ */
+
+static int
+cmp_versions(const char *ver1, const char *ver2)
+{
+    const char *s1, *s2;
+    int n1, n2;
+    int retval = 0;
+    for(;*ver1 || *ver2;) {
+	s1 = strchr(ver1, '.');
+	if (!s1)
+	    s1 = ver1 + strlen(ver1);
+	s2 = strchr(ver2, '.');
+	if (!s2)
+	    s2 = ver2 + strlen(ver2);
+	n1 = atoi(ver1);
+	n2 = atoi(ver2);
+	retval = n1 - n2;
+	if (retval)
+	    break;
+	while(*ver1 >= '0' && *ver1 <= '9')
+	    ver1++;
+	while(*ver2 >= '0' && *ver2 <= '9')
+	    ver2++;
+	while(ver1 < s1 && ver2 < s2 && *ver1 == *ver2)
+	    ver1++, ver2++;
+	if (ver1 >= s1)
+	    retval = ver2 < s2 ? -1 : 0;
+	else
+	    retval = ver2 < s2 ? *ver1 - *ver2 : 1;
+	if (retval)
+	    break;
+	ver1 = *s1 ? s1 + 1 : s1;
+	ver2 = *s2 ? s2 + 1 : s2;
+    }
+    return retval;
+}
+
+/*
+ * min_ver is inclusive, next_ver is exclusive, so that a typical requirement of
+ * ver 1.x can be expressed as 1.0 <= ver < 2.0 (min_ver = 1.0, next_ver = 2.0).
+ * We return the first listed entry that matches so extensions should be
+ * listed with the latest version first to select this in preference where
+ * there is a choice.
+ */
+
+char *
+win_proxy_clnt_get_extension(const char *name, const char *min_ver, const char *next_ver, unsigned short *idp)
+{
+    int i;
+    char *retval = NULL;
+    unsigned short id = 0x8000;
+    struct proxycb_get_extensions_res *exts;
+    struct proxycb_get_extensions_res_extension *ext;
+    exts = proxy_cb_get_extensions();
+    if (exts) {
+	ext = exts->extensions;
+	for(i = 0; i < exts->n_extensions; i++, ext++) {
+	    if (!strcmp(name, ext->name) &&
+	      min_ver && cmp_versions(min_ver, ext->version) <= 0 &&
+	      next_ver && cmp_versions(next_ver, ext->version) > 0) {
+		*idp = id;
+		retval = strdup(ext->version);
+		break;
+	    }
+	    id += ext->no_procedures;
+	}
+	proxy_cb_free_extensions(exts);
+    }
+    return retval;
 }

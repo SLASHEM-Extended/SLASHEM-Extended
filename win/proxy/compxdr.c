@@ -1,4 +1,4 @@
-/* $Id: compxdr.c,v 1.11 2002-12-31 21:30:44 j_ali Exp $ */
+/* $Id: compxdr.c,v 1.12 2003-01-18 17:52:09 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -190,4 +190,23 @@ struct proxycb_get_glyph_mapping_res *datum;
       nhext_xdr_array(xdr, (char **)&datum->mappings, &datum->n_mappings,
         (unsigned int)-1, sizeof(struct proxycb_get_glyph_mapping_res_mapping),
 	proxycb_xdr_get_glyph_mapping_res_mapping);
+}
+
+nhext_xdr_bool_t proxycb_xdr_get_extensions_res_extension(xdr, datum)
+NhExtXdr *xdr;
+struct proxycb_get_extensions_res_extension *datum;
+{
+    return nhext_xdr_wrapstring(xdr, (char **)&datum->name) &
+      nhext_xdr_wrapstring(xdr, (char **)&datum->version) &
+      nhext_xdr_int(xdr, &datum->no_procedures);
+}
+
+nhext_xdr_bool_t proxycb_xdr_get_extensions_res(xdr, datum)
+NhExtXdr *xdr;
+struct proxycb_get_extensions_res *datum;
+{
+    return nhext_xdr_array(xdr, (char **)&datum->extensions,
+	&datum->n_extensions, (unsigned int)-1,
+	sizeof(struct proxycb_get_extensions_res_extension),
+	proxycb_xdr_get_extensions_res_extension);
 }
