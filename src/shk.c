@@ -1727,7 +1727,8 @@ shk_other_services()
 	** i = identify
 	** a = appraise weapon's worth
 	** u = uncurse
-	** w = weapon-works
+	** w = weapon-works (including poison)
+	** p = poison weapon
 	** r = armor-works
 	** c = charge wands
 	*/
@@ -1760,8 +1761,12 @@ shk_other_services()
 	if ((ESHK(shkp)->services & (SHK_SPECIAL_A|SHK_SPECIAL_B|SHK_SPECIAL_C))
 			&& (shk_class_match(WEAPON_CLASS, shkp) == SHK_MATCH)) {
 		any.a_int = 4;
-		add_menu(tmpwin, NO_GLYPH, &any , 'w', 0, ATR_NONE,
+		if (ESHK(shkp)->services & (SHK_SPECIAL_A|SHK_SPECIAL_B))
+			add_menu(tmpwin, NO_GLYPH, &any , 'w', 0, ATR_NONE,
 				"Weapon-works", MENU_UNSELECTED);
+		else
+			add_menu(tmpwin, NO_GLYPH, &any , 'p', 0, ATR_NONE,
+				"Poison", MENU_UNSELECTED);
 	}
   
   	/* Armor-works */
@@ -4871,143 +4876,157 @@ shk_appraisal(slang, shkp)
 static const char we_offer[] = "We offer the finest service available!";
 static void
 shk_weapon_works(slang, shkp)
-	char *slang;
-	struct monst *shkp;
+char *slang;
+struct monst *shkp;
 {
-	struct obj *obj;
-	int charge;
-/*WAC - Windowstuff*/
-	winid tmpwin;
-	anything any;
-	menu_item *selected;
-	int n;
+    struct obj *obj;
+    int charge;
+    winid tmpwin;
+    anything any;
+    menu_item *selected;
+    int service;
+    int n;
 
+    /* Pick weapon */
+    if (ESHK(shkp)->services & (SHK_SPECIAL_A | SHK_SPECIAL_B))
+	obj = getobj(weapon_types, "improve");
+    else
+	obj = getobj(weapon_types, "poison");
+    if (!obj) return;
 
-	/* Pick weapon */
-	if ( !(obj = getobj(weapon_types, "improve"))) return;
+    /* Check if you asked for a non weapon tool to be improved */
+    if (obj->oclass == TOOL_CLASS && !is_weptool(obj))
+	pline("%s grins greedily...", mon_nam(shkp));
 
-	/*Check if you asked for a non weapon tool to be improved*/
-	if (obj->oclass == TOOL_CLASS && !is_weptool(obj))
-	        pline("%s grins greedily...", mon_nam(shkp));
-
-	/* WAC - did this using the windowing system... */
+    if (ESHK(shkp)->services & (SHK_SPECIAL_A | SHK_SPECIAL_B)) {
 	any.a_void = 0;         /* zero out all bits */
 	tmpwin = create_nhwindow(NHW_MENU);
 	start_menu(tmpwin);
 
-	any.a_int = 1;
-	if (ESHK(shkp)->services & (SHK_SPECIAL_A))
-		add_menu(tmpwin, NO_GLYPH, &any , 'w', 0, ATR_NONE, "Ward against damage", MENU_UNSELECTED);
-	any.a_int = 2;
-	if (ESHK(shkp)->services & (SHK_SPECIAL_B))
-		add_menu(tmpwin, NO_GLYPH, &any , 'e', 0, ATR_NONE, "Enchant", MENU_UNSELECTED);
+	if (ESHK(shkp)->services & SHK_SPECIAL_A) {
+	    any.a_int = 1;
+	    add_menu(tmpwin, NO_GLYPH, &any , 'w', 0, ATR_NONE,
+		    "Ward against damage", MENU_UNSELECTED);
+	}
+	if (ESHK(shkp)->services & SHK_SPECIAL_B) {
+	    any.a_int = 2;
+	    add_menu(tmpwin, NO_GLYPH, &any , 'e', 0, ATR_NONE,
+		    "Enchant", MENU_UNSELECTED);
+	}
 
 	/* Can object be poisoned? */
-	/* KMH, balance patch -- new macro */
-	if (is_poisonable(obj) &&
-			(ESHK(shkp)->services & (SHK_SPECIAL_C)))
-	{
-	            any.a_int = 3;
-	            add_menu(tmpwin, NO_GLYPH, &any , 'p', 0, ATR_NONE, "Poison", MENU_UNSELECTED);
+	if (is_poisonable(obj) && (ESHK(shkp)->services & SHK_SPECIAL_C)) {
+	    any.a_int = 3;
+	    add_menu(tmpwin, NO_GLYPH, &any , 'p', 0, ATR_NONE,
+		    "Poison", MENU_UNSELECTED);
 	}
 
 	end_menu(tmpwin, "Weapon-works:");
 	n = select_menu(tmpwin, PICK_ONE, &selected);
 	destroy_nhwindow(tmpwin);
-
-	/* Here we go */
-	verbalize(we_offer);
-
 	if (n > 0)
-		switch(selected[0].item.a_int) {
-		case 1:
-		verbalize("This'll leave your %s untouchable!", xname(obj));
-		
-		/* Costs more the more eroded it is (oeroded 0-3 * 2) */
-		charge = 500 * (obj->oeroded + obj->oeroded2 + 1);
-		if (obj->oeroded + obj->oeroded2 > 2)
-			pline("This thing's in pretty sad condition, %s",
-				slang);
+	    service = selected[0].item.a_int;
+	else
+	    service = 0;
+    } else
+	service = 3;
 
-		/*Another warning if object is naturally rustproof*/
-		if (obj->oerodeproof || !is_damageable(obj))
-			pline("%s gives you a suspciously happy smile...", mon_nam(shkp));
+    /* Here we go */
+    if (service > 0)
+	verbalize(we_offer);
+    else
+	pline(Never_mind);
 
-		/* Artifacts cost more to deal with */
-		/* KMH -- Avoid floating-point */
-		if (obj->oartifact) charge = charge * 3 / 2;
+    switch(service) {
+	case 0:
+	    break;
 
-		/* Smooth out the charge a bit */
-		shk_smooth_charge(&charge, 200, 1500);
+	case 1:
+	    verbalize("This'll leave your %s untouchable!", xname(obj));
+	    
+	    /* Costs more the more eroded it is (oeroded 0-3 * 2) */
+	    charge = 500 * (obj->oeroded + obj->oeroded2 + 1);
+	    if (obj->oeroded + obj->oeroded2 > 2)
+		verbalize("This thing's in pretty sad condition, %s", slang);
 
-		if (shk_offer_price(slang, charge, shkp) == FALSE) return;
+	    /* Another warning if object is naturally rustproof */
+	    if (obj->oerodeproof || !is_damageable(obj))
+		pline("%s gives you a suspciously happy smile...",
+			mon_nam(shkp));
 
-		/* Have some fun, but for this $$$ it better work. */
-		if (Confusion)
-			You("fall over in appreciation");
-		else if (Hallucination)
-			Your(" - tin roof, un-rusted!");
+	    /* Artifacts cost more to deal with */
+	    if (obj->oartifact) charge = charge * 3 / 2;
 
-		obj->oeroded = obj->oeroded2 = 0;
-		obj->rknown = TRUE;
-		obj->oerodeproof = TRUE;
+	    /* Smooth out the charge a bit */
+	    shk_smooth_charge(&charge, 200, 1500);
+
+	    if (shk_offer_price(slang, charge, shkp) == FALSE) return;
+
+	    /* Have some fun, but for this $$$ it better work. */
+	    if (Confusion)
+		You("fall over in appreciation");
+	    else if (Hallucination)
+		Your(" - tin roof, un-rusted!");
+
+	    obj->oeroded = obj->oeroded2 = 0;
+	    obj->rknown = TRUE;
+	    obj->oerodeproof = TRUE;
+	    break;
+
+	case 2:
+	    verbalize("Guaranteed not to harm your weapon, or your money back!");
+	    /*
+	    ** The higher the enchantment, the more costly!
+	    ** Gets to the point where you need to rob fort ludios
+	    ** in order to get it to +5!!
+	    */
+	    charge = (obj->spe+1) * (obj->spe+1) * 625;
+
+	    if (obj->spe < 0) charge = 100;
+
+	    /* Artifacts cost more to deal with */
+	    if (obj->oartifact) charge *= 2;
+
+	    /* Smooth out the charge a bit (lower bound only) */
+	    shk_smooth_charge(&charge, 50, NOBOUND);
+
+	    if (shk_offer_price(slang, charge, shkp) == FALSE) return;
+	    if (obj->spe+1 > 5) { 
+		verbalize("I can't enchant this any higher!");
+		charge = 0;
 		break;
+	    }
+	    /* Have some fun! */
+	    if (Confusion)
+		Your("%s unexpectedly!", aobjnam(obj, "vibrate"));
+	    else if (Hallucination)
+		Your("%s to evaporate into thin air!", aobjnam(obj, "seem"));
+	    /* ...No actual vibrating and no evaporating */
 
-		case 2:
-		verbalize("Guaranteed not to harm your weapon, or your money back!");
-
-		/*
-		** The higher the enchantment, the more costly!
-		** Gets to the point where you need to rob fort ludios
-		** in order to get it to +5!!
-		*/
-		charge = (obj->spe+1) * (obj->spe+1) * 625;
-
-		if (obj->spe < 0) charge = 100;
-
-		/* Artifacts cost more to deal with */
-		if (obj->oartifact) charge *= 2;
-
-		/* Smooth out the charge a bit (lower bound only) */
-		shk_smooth_charge(&charge, 50, NOBOUND);
-
-		if (shk_offer_price(slang, charge, shkp) == FALSE) return;
-		if (obj->spe+1 > 5) { 
-			pline("I can't enchant this any higher!");
-			charge = 0;
-			break;
-		}
-		/* Have some fun! */
-		if (Confusion)
-			Your("%s unexpectedly!", aobjnam(obj, "vibrate"));
-		else if (Hallucination)
-			Your("%s to evaporate into thin air!", aobjnam(obj, "seem"));
-		/* ...No actual vibrating and no evaporating */
-		
-		if (obj->otyp == WORM_TOOTH) {
-			obj->otyp = CRYSKNIFE;
-			Your("weapon seems sharper now.");
-			obj->cursed = 0;
-			break;
-		}
-
-		obj->spe++;
+	    if (obj->otyp == WORM_TOOTH) {
+		obj->otyp = CRYSKNIFE;
+		Your("weapon seems sharper now.");
+		obj->cursed = 0;
 		break;
+	    }
 
-		case 3:
-		verbalize("Just imagine what poisoned %s can do!",
-			xname(obj));
+	    obj->spe++;
+	    break;
 
-		charge = 10 * obj->quan;
+	case 3:
+	    verbalize("Just imagine what poisoned %s can do!", xname(obj));
 
-		if (shk_offer_price(slang, charge, shkp) == FALSE) return;
+	    charge = 10 * obj->quan;
 
-		obj->opoisoned = TRUE;
-		break;
-	    default:
-                pline ("Unknown Weapon Enhancement");
-                break;
-	}
+	    if (shk_offer_price(slang, charge, shkp) == FALSE) return;
+
+	    obj->opoisoned = TRUE;
+	    break;
+
+	default:
+	    impossible("Unknown Weapon Enhancement");
+	    break;
+    }
 }
 
 
