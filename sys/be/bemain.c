@@ -168,6 +168,7 @@ static void process_options(int argc, char **argv)
 		argc--;
 		switch (argv[0][1]) {
 		case 'D':
+		case 'Z':
 #ifdef WIZARD
 			wizard = TRUE;
 			break;
@@ -211,6 +212,28 @@ static void process_options(int argc, char **argv)
 				argv++;
 			    if ((i = str2race(argv[0])) >= 0)
 			    	flags.initrace = i;
+			}
+			break;
+		case 'g': /* gender */
+			if (argv[0][2]) {
+			    if ((i = str2gend(&argv[0][2])) >= 0)
+			    	flags.initgend = i;
+			} else if (argc > 1) {
+				argc--;
+				argv++;
+			    if ((i = str2gend(argv[0])) >= 0)
+			    	flags.initgend = i;
+			}
+			break;
+		case 'a': /* align */
+			if (argv[0][2]) {
+			    if ((i = str2align(&argv[0][2])) >= 0)
+			    	flags.initalign = i;
+			} else if (argc > 1) {
+				argc--;
+				argv++;
+			    if ((i = str2align(argv[0])) >= 0)
+			    	flags.initalign = i;
 			}
 			break;
 		default:

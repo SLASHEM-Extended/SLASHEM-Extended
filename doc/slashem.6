@@ -1,4 +1,4 @@
-.TH SLASHEM 6 "01 January 1998"
+.TH SLASHEM 6 "23 December 2000"
 .UC 4
 .SH NAME
 slashem \- Exploring The Mazes of Menace
@@ -12,7 +12,20 @@ slashem \- Exploring The Mazes of Menace
 .B \-n
 ]
 [
-.B \-[ABCEHKPRSTVW@]
+.B \-p
+.I profession (role)
+]
+[
+.B \-r
+.I race
+]
+[
+.B \-g
+.I gender
+]
+[
+.B \-a
+.I alignment
 ]
 [
 .B \-[DX]
@@ -38,7 +51,23 @@ slashem \- Exploring The Mazes of Menace
 .B \-v
 ]
 [
-.B \-[ABCEHKPRSTVW]
+.B \-p
+.I profession (role)
+]
+[
+.B \-r
+.I race
+]
+[
+.B \-g
+.I gender
+]
+[
+.B \-a
+.I alignment
+]
+[
+.I maxrank
 ]
 [
 .I playernames
@@ -91,12 +120,22 @@ run-time options described there,
 and are provided purely for convenience on systems
 supporting multiple types of terminals.)
 .PP
+Because the option list can be very long (particularly when specifying
+graphics characters), options may also be included in a configuration
+file.
+The default is located in your home directory and
+named .slashemrc on Unix systems.  On other systems, the default may be
+different, usually SLASHEM.cnf.  In DOS and MS-Windows the name is defaults.nh,
+while on the Macintosh or BeOS, it is SlashEM Defaults.
+The configuration file's location may be specified by setting SLASHEMOPTIONS
+to a string consisting of an @ character followed by the filename.
+.PP
 The
 .B \-u
 .I playername
 option supplies the answer to the question "Who are you?".
-It overrides any name from SLASHEMOPTIONS, NETHACKOPTIONS, HACKOPTIONS, USER,
-LOGNAME, or getlogin(), which will otherwise be tried in order.
+It overrides any name from the options or configuration file, USER, LOGNAME,
+or getlogin(), which will otherwise be tried in order.
 If none of these provides a useful name, the player will be asked for one.
 Player names (in conjunction with uids) are used to identify save files,
 so you can have several saved games under different names.
@@ -104,15 +143,36 @@ Conversely, you must use the appropriate player name to restore a saved game.
 .PP
 A
 .I playername
-suffix or a separate option consisting of one of
-.B "\-A \-B \-C \-D \-E \-F \-G \-H \-I \-K \-L \-M \-N \-P \-R \-S \-T \-U \-V \-W"
-can be used to determine the character role.
-Likewise,
-.B "\-@"
-can be used to explicitly request that a random role be chosen.
-It may need to be quoted with a backslash (-\\@) if @
+suffix or a separate option,
+.B \-p
+.I profession
+can be used to determine the character role.  You can specify either the
+male or female name for the character role, or the first three characters
+of the role as an abbreviation.
+.B "\-p \@"
+has been retained to explicitly request that a random role be chosen.
+It may need to be quoted with a backslash (\\@) if @
 is the "kill" character (see "stty") for the terminal, in order
 to prevent the current input line from being cleared.
+.PP
+Likewise,
+.B \-r
+.I race
+can be used to explicitly request that a race be chosen, 
+.B \-g
+.I gender
+the gender of the chareacter and finally
+.B \-a
+.I alignment
+to chose the alignment of the character.
+.PP
+Leaving out any of these will result in you being prompted during
+the game startup for the information.
+.PP
+Instead of chosing the above seperately you can add them as suffixes to
+the playername:
+.B \-u
+.I playername\-race\-gender\-alignment
 .PP
 The
 .B \-s
@@ -122,13 +182,16 @@ An immediately following
 reports on all versions present in the score file.
 The
 .B \-s
-may also be followed by arguments
-.B "\-A \-B \-C \-D \-E \-F \-G \-H \-I \-K \-L \-M \-N \-P \-R \-S \-T \-U \-V \-W"
-to print the
-scores of Archeologists, Barbarians, Cave(wo)men, Doppelgangers, Elves,
-Flame Mages, Gnomes, Healers, Ice Mages, Knights, Lycanthropes, Monks,
-Necromancers, Priest(esse)s, Rogues, Samurai, Tourists, Undead Slayers,
-Valkyries, or Wizards.
+may be also be followed by player type arguments (
+.B \-p
+,
+.B \-r
+,
+.B \-g
+and
+.B \-a
+) to print
+the scores of particular types of players only.
 It may also be followed by one or more player names to print the scores of the
 players mentioned, by 'all' to print out all scores, or by a number to print
 that many top scores.
@@ -138,11 +201,11 @@ The
 option suppresses printing of any news from the game administrator.
 .PP
 The
-.B \-Z
+.B \-D
 or
 .B \-X
 option will start the game in a special non-scoring discovery mode.
-.B \-Z
+.B \-D
 will, if the player is the game administrator, start in debugging (wizard)
 mode instead.
 .PP
@@ -204,15 +267,11 @@ cmdhelp, opthelp, wizhelp	More help data files.
 .br
 *.lev	Predefined special levels.
 .br
-dungeon	Control file for special
-.br
-	levels.
+dungeon	Control file for special levels.
 .br
 history	A short history of SLASH'EM.
 .br
-license	Rules governing
-.br
-	redistribution.
+license	Rules governing redistribution.
 .br
 record	The list of top scorers.
 .br
@@ -220,9 +279,7 @@ logfile	An extended list of games
 .br
 	played.
 .br
-xlock.nnn	Description of a dungeon
-.br
-	level.
+xlock.nnn	Description of a dungeon level.
 .br
 perm	Lock file for xlock.dd.
 .br
@@ -252,9 +309,7 @@ MAIL	Mailbox file.
 .br
 MAILREADER	Replacement for default reader
 .br
-	(probably /bin/mail or 
-.br
-	/usr/ucb/mail).
+	(probably /bin/mail or /usr/ucb/mail).
 .br
 NETHACKDIR	Playground.
 .br

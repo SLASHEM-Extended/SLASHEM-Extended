@@ -714,7 +714,21 @@ int uid;
 #endif
 
 	for (i = 0; i < playerct; i++) {
-		if (strcmp(players[i], "all") == 0 ||
+		if (players[i][0] == '-' && index("prga", players[i][1]) &&
+		  players[i][2] == 0 && i + 1 < playerct) {
+			char *arg = (char *)players[i + 1];
+			if ((players[i][1] == 'p' &&
+			     str2role(arg) == str2role(t1->plrole)) ||
+			    (players[i][1] == 'r' &&
+			     str2race(arg) == str2race(t1->plrace)) ||
+			    (players[i][1] == 'g' &&
+			     str2gend(arg) == str2gend(t1->plgend)) ||
+			    (players[i][1] == 'a' &&
+			     str2align(arg) == str2align(t1->plalign)))
+				return 1;
+			i++;
+		}
+		else if (strcmp(players[i], "all") == 0 ||
 		    strncmp(t1->name, players[i], NAMSZ) == 0 ||
 		    (players[i][0] == '-' &&
 		     players[i][1] == t1->plrole[0] &&
@@ -848,12 +862,18 @@ char **argv;
 		if (playerct > 1) Strcat(pbuf, "any of ");
 		for (i = 0; i < playerct; i++) {
 		    Strcat(pbuf, players[i]);
-		    if (i < playerct-1) Strcat(pbuf, ":");
+		    if (i < playerct-1) {
+			if (players[i][0] == '-' &&
+			  index("prga", players[i][1]) && players[i][2] == 0)
+			    Strcat(pbuf, " ");
+			else Strcat(pbuf, ":");
+		    }
 		}
 	    }
 	    raw_print(pbuf);
-	    raw_printf("Call is: %s -s [-v] [-role] [maxrank] [playernames]",
+	    raw_printf("Call is: %s -s [-v] <playertypes> [maxrank] [playernames]",
 			 hname);
+	    raw_printf("Player types are: [-p role] [-r race] [-g gender] [-a align]");
 	}
 	free_ttlist(tt_head);
 #ifdef	AMIGA
