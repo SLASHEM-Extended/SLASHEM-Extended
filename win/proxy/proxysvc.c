@@ -1,4 +1,4 @@
-/* $Id: proxysvc.c,v 1.16 2003-01-01 22:50:59 j_ali Exp $ */
+/* $Id: proxysvc.c,v 1.17 2003-01-03 00:28:37 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -908,7 +908,11 @@ failed:
 	goto failed;
     }
     if (sscanf(lp->values[j], "%d.%d", &major, &minor) != 2 ||
-      major != EXT_STANDARD_MAJOR || !major && minor != EXT_STANDARD_MINOR) {
+#if (EXT_STANDARD_MAJOR != 0)
+      major != EXT_STANDARD_MAJOR || minor < EXT_STANDARD_MINOR) {
+#else
+      major != EXT_STANDARD_MAJOR || minor != EXT_STANDARD_MINOR) {
+#endif
 	nhext_subprotocol0_free_line(lp);
 	fprintf(stderr, "proxy_clnt: Incompatible NhExt standard (%s).\n",
 	  lp->values[j]);
