@@ -1481,7 +1481,8 @@ struct monst *mtmp;
 	/* If there is a timer == monster was poly'ed */
 	if (stop_timer(UNPOLY_MON, (genericptr_t) mtmp)) {
 	    mtmp->mhp = mtmp->mhpmax;
-	    pline("But wait...");
+	    if (cansee(mtmp->mx,mtmp->my))
+		pline("But wait...");
 	    if (newcham(mtmp, &mons[mtmp->oldmonnm], FALSE,
 		    cansee(mtmp->mx,mtmp->my))) {
 #if 0
