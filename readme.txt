@@ -362,6 +362,8 @@ ver 0.0.6E4F4 [? ?/2001] [Released by ?]
 -fixed bug 414101: Crash when asking for Help at prompt.
 -Preliminary work on bug 405663: Port internal malloc to win32 platform.
 -fixed bug 414291: GTK/win32 hide_privileges.
+-fixed bug 227942: Crash when picking up a stack of objects.
+-fixed bug 414674: Crash when walking over items.
 
 ver 0.0.6E4F3 [February 28/2001] [Released by Ali]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined

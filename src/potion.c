@@ -373,7 +373,8 @@ register struct obj *otmp;
 			docall(otmp);
 	}
 	if (carried(otmp)) useup(otmp);
-	else useupf(otmp, 1L);
+	else if (otmp->where == OBJ_FLOOR) useupf(otmp, 1L);
+	else dealloc_obj(otmp);		/* Dummy potion of gain level */
 	return(1);
 }
 
@@ -805,6 +806,18 @@ peffects(otmp)
 			if((ledger_no(&u.uz) == 1 && u.uhave.amulet) ||
 				Can_rise_up(u.ux, u.uy, &u.uz)) {
 			    const char *riseup ="rise up, through the %s!";
+			    /* [ALI] Special handling for quaffing potions
+			     * off the floor (otmp won't be valid after
+			     * we change levels otherwise).
+			     */
+			    if (otmp->where == OBJ_FLOOR) {
+				if (otmp->quan > 1)
+					(void) splitobj(otmp, 1);
+				/* Make sure you're charged if in shop */
+				otmp->quan++;
+				useupf(otmp, 1);
+				obj_extract_self(otmp);
+			    }
 			    if(ledger_no(&u.uz) == 1) {
 				You(riseup, ceiling(u.ux,u.uy));
 				goto_level(&earth_level, FALSE, FALSE, FALSE);
