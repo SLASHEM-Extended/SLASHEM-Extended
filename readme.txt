@@ -312,7 +312,7 @@ Bug - cockatrice lairs no longer have "goodies"?
 	-pet unicorns remove ailments, etc...
 -Buy items via a menu - #chat with shopkeeper
 -Limit Break based on HP loss? (see howling code)
--redo sound system using allegro
+-redo/add sound system using allegro
 -split allegro into separate windowsystem after implementing use of GUI
 -merge allegro to TTY / separate from DOS code
 TODO: 
@@ -321,8 +321,12 @@ TODO:
 *[In Progress] (Trying to) compile with Allegro WIP 3.9.32
 	-anticipating using allegro on other systems
 	-currently need to redo the font loading code (at least)
+	-it appears to be segfaulting (randomly?)
 
 ver 0.0.6E3F1 [September XX/2000]
+
+-changed all the file names in global.h to be prefixed with NH_
+	(DATAFILE, HELP, RECORD, ORACLE, RUMOUR, etc.)
 -Changed #define FILENAME (macconf.h, pcconf.h) to FILENAMELEN since FILENAME 
 	is #defined by dir.h, used by Allegro WIP
 -fixed dereferencing NULL pointer when monster throwing items

@@ -85,7 +85,7 @@ int factor;
 
         smallimg = create_bitmap(small_w, small_h);
 
-        nh_stretch_blit(bitmap, smallimg, 0, 0,
+        stretch_blit(bitmap, smallimg, 0, 0,
                      width, height, 0, 0, small_w, small_h);
                        
         stretch_blit(smallimg, final, 0, 0, small_w, small_h,

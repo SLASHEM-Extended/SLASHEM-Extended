@@ -155,6 +155,8 @@ STATIC_DCL const char * FDECL(compress_str, (const char *));
 STATIC_DCL void FDECL(tty_putsym, (winid, int, int, CHAR_P));
 static char *FDECL(copy_of, (const char *));
 STATIC_DCL void FDECL(bail, (const char *));	/* __attribute__((noreturn)) */
+STATIC_DCL int NDECL(tty_role_select);
+STATIC_DCL int NDECL(tty_race_select);
 
 /*
  * A string containing all the default commands -- to add to a list
@@ -361,40 +363,7 @@ give_up:	/* Quit */
 		    flags.initrole = randrole();
 		}
 	    } else {
-		/* Prompt for a role */
-		win = create_nhwindow(NHW_MENU);
-		start_menu(win);
-		any.a_void = 0;         /* zero out all bits */
-		for (i = 0; roles[i].name.m; i++) {
-		    if (ok_role(i, flags.initrace, flags.initgend,
-							flags.initalign)) {
-			any.a_int = i+1;	/* must be non-zero */
-			thisch = lowc(roles[i].name.m[0]);
-			if (thisch == lastch) thisch = highc(thisch);
-			add_menu(win, NO_GLYPH, &any, thisch,
-			    0, ATR_NONE, an(roles[i].name.m), MENU_UNSELECTED);
-			lastch = thisch;
-		    }
-		}
-		any.a_int = pick_role(flags.initrace, flags.initgend,
-				    flags.initalign)+1;
-		if (any.a_int == 0)	/* must be non-zero */
-		    any.a_int = randrole()+1;
-		add_menu(win, NO_GLYPH, &any , '*', 0, ATR_NONE,
-				"Random", MENU_UNSELECTED);
-		any.a_int = i+1;	/* must be non-zero */
-		add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
-				"Quit", MENU_UNSELECTED);
-		end_menu(win, "Pick a role");
-		n = select_menu(win, PICK_ONE, &selected);
-		destroy_nhwindow(win);
-
-		/* Process the choice */
-		if (n != 1 || selected[0].item.a_int == any.a_int)
-		    goto give_up;		/* Selected quit */
-
-		flags.initrole = selected[0].item.a_int - 1;
-		free((genericptr_t) selected),	selected = 0;
+	    	if (tty_role_select() < 0) goto give_up;
 	    }
 	}
 
@@ -411,61 +380,7 @@ give_up:	/* Quit */
 		    flags.initrace = randrace(flags.initrole);
 		}
 	    } else {	/* pick4u == 'n' */
-		/* Count the number of valid races */
-		n = 0;	/* number valid */
-		k = 0;	/* valid race */
-		for (i = 0; races[i].noun; i++) {
-		    if (ok_race(flags.initrole, i, flags.initgend,
-							flags.initalign)) {
-			n++;
-			k = i;
-		    }
-		}
-		if (n == 0) {
-		    for (i = 0; races[i].noun; i++) {
-			if (validrace(flags.initrole, i)) {
-			    n++;
-			    k = i;
-			}
-		    }
-		}
-
-		/* Permit the user to pick, if there is more than one */
-		if (n > 1) {
-		    win = create_nhwindow(NHW_MENU);
-		    start_menu(win);
-		    any.a_void = 0;         /* zero out all bits */
-		    for (i = 0; races[i].noun; i++)
-			if (ok_race(flags.initrole, i, flags.initgend,
-							flags.initalign)) {
-			    thisch = lowc(races[i].noun[0]);
-			    if (thisch == lastch) thisch = highc(thisch);
-			    any.a_int = i+1;	/* must be non-zero */
-			    add_menu(win, NO_GLYPH, &any, thisch,
-				0, ATR_NONE, races[i].noun, MENU_UNSELECTED);
-			    lastch = thisch;
-			}
-		    any.a_int = pick_race(flags.initrole, flags.initgend,
-					flags.initalign)+1;
-		    if (any.a_int == 0)	/* must be non-zero */
-			any.a_int = randrace(flags.initrole)+1;
-		    add_menu(win, NO_GLYPH, &any , '*', 0, ATR_NONE,
-				    "Random", MENU_UNSELECTED);
-		    any.a_int = i+1;	/* must be non-zero */
-		    add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
-				    "Quit", MENU_UNSELECTED);
-		    Sprintf(pbuf, "Pick the race of your %s",
-				    roles[flags.initrole].name.m);
-		    end_menu(win, pbuf);
-		    n = select_menu(win, PICK_ONE, &selected);
-		    destroy_nhwindow(win);
-		    if (n != 1 || selected[0].item.a_int == any.a_int)
-			goto give_up;		/* Selected quit */
-
-		    k = selected[0].item.a_int - 1;
-		    free((genericptr_t) selected),	selected = 0;
-		}
-		flags.initrace = k;
+	    	if (tty_race_select() < 0) goto give_up;
 	    }
 	}
 
@@ -612,6 +527,213 @@ give_up:	/* Quit */
 	}
 	/* Success! */
 	tty_display_nhwindow(BASE_WINDOW, FALSE);
+}
+
+STATIC_OVL int
+tty_role_select()
+{
+	int i, n;
+	char thisch, lastch = 0;
+	winid win;
+	anything any;
+	menu_item *selected = 0;
+
+	/* Prompt for a role */
+	win = create_nhwindow(NHW_MENU);
+	start_menu(win);
+	any.a_void = 0;         /* zero out all bits */
+	for (i = 0; roles[i].name.m; i++) {
+	    if (ok_role(i, flags.initrace, flags.initgend,
+						flags.initalign)) {
+		any.a_int = i+1;	/* must be non-zero */
+		thisch = lowc(roles[i].name.m[0]);
+		if (thisch == lastch) thisch = highc(thisch);
+		add_menu(win, NO_GLYPH, &any, thisch,
+		    0, ATR_NONE, an(roles[i].name.m), MENU_UNSELECTED);
+		lastch = thisch;
+	    }
+	}
+	any.a_int = pick_role(flags.initrace, flags.initgend,
+			    flags.initalign)+1;
+	if (any.a_int == 0)	/* must be non-zero */
+	    any.a_int = randrole()+1;
+	add_menu(win, NO_GLYPH, &any , '*', 0, ATR_NONE,
+			"Random", MENU_UNSELECTED);
+	any.a_int = i+1;	/* must be non-zero */
+	add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
+			"Quit", MENU_UNSELECTED);
+	end_menu(win, "Pick a role");
+	n = select_menu(win, PICK_ONE, &selected);
+	destroy_nhwindow(win);
+
+	/* Process the choice */
+	if (n != 1 || selected[0].item.a_int == any.a_int) {
+	    free((genericptr_t) selected),	selected = 0;	
+	    return (-1);		/* Selected quit */
+	}
+
+	flags.initrole = selected[0].item.a_int - 1;
+	free((genericptr_t) selected),	selected = 0;
+	return (flags.initrole);
+}
+
+STATIC_OVL int
+tty_race_select()
+{
+	int i, k, n;
+	char thisch, lastch;
+	winid win;
+	anything any;
+	menu_item *selected = 0;
+	char pbuf[QBUFSZ];
+
+	/* Count the number of valid races */
+	n = 0;	/* number valid */
+	k = 0;	/* valid race */
+	for (i = 0; races[i].noun; i++) {
+	    if (ok_race(flags.initrole, i, flags.initgend,
+						flags.initalign)) {
+		n++;
+		k = i;
+	    }
+	}
+	if (n == 0) {
+	    for (i = 0; races[i].noun; i++) {
+		if (validrace(flags.initrole, i)) {
+		    n++;
+		    k = i;
+		}
+	    }
+	}
+
+	/* Permit the user to pick, if there is more than one */
+	if (n > 1) {
+	    win = create_nhwindow(NHW_MENU);
+	    start_menu(win);
+	    any.a_void = 0;         /* zero out all bits */
+	    for (i = 0; races[i].noun; i++)
+		if (ok_race(flags.initrole, i, flags.initgend,
+						flags.initalign)) {
+		    any.a_int = i+1;	/* must be non-zero */
+		    thisch = lowc(races[i].noun[0]);
+		    if (thisch == lastch) thisch = highc(thisch);
+		    add_menu(win, NO_GLYPH, &any, thisch,
+			0, ATR_NONE, races[i].noun, MENU_UNSELECTED);
+		    lastch = thisch;
+		}
+	    any.a_int = pick_race(flags.initrole, flags.initgend,
+				flags.initalign)+1;
+	    if (any.a_int == 0)	/* must be non-zero */
+		any.a_int = randrace(flags.initrole)+1;
+	    add_menu(win, NO_GLYPH, &any , '*', 0, ATR_NONE,
+			    "Random", MENU_UNSELECTED);
+	    any.a_int = i+1;	/* must be non-zero */
+	    add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
+			    "Quit", MENU_UNSELECTED);
+	    Sprintf(pbuf, "Pick the race of your %s",
+			    roles[flags.initrole].name.m);
+	    end_menu(win, pbuf);
+	    n = select_menu(win, PICK_ONE, &selected);
+	    destroy_nhwindow(win);
+	    if (n != 1 || selected[0].item.a_int == any.a_int)
+		return(-1);		/* Selected quit */
+
+	    k = selected[0].item.a_int - 1;
+	    free((genericptr_t) selected),	selected = 0;
+	}
+	
+	flags.initrace = k;
+	return (k);
+	
+#if 0 /* This version deals with more than 2 races per letter */
+	int i, k, n, choicelet = 0;
+	char thisch;
+	char choicestr[3];
+	winid win;
+	anything any;
+	menu_item *selected = 0;
+	char pbuf[QBUFSZ];
+
+	/* Count the number of valid races */
+	n = 0;	/* number valid */
+	k = 0;	/* valid race */
+	for (i = 0; races[i].noun; i++) {
+	    if (ok_race(flags.initrole, i, flags.initgend,
+						flags.initalign)) {
+		n++;
+		k = i;
+	    }
+	}
+	if (n == 0) {
+	    for (i = 0; races[i].noun; i++) {
+		if (validrace(flags.initrole, i)) {
+		    n++;
+		    k = i;
+		}
+	    }
+	}
+
+	/* Permit the user to pick, if there is more than one */
+	if (n > 1) do {
+	    win = create_nhwindow(NHW_MENU);
+	    start_menu(win);
+	    any.a_void = 0;         /* zero out all bits */
+	    for (i = 0; races[i].noun; i++)
+		if (ok_race(flags.initrole, i, flags.initgend,
+						flags.initalign)
+			&& (!choicelet || !strncmpi(races[i].noun, 
+					choicestr, choicelet))) {
+		    
+		    thisch = lowc(races[i].noun[choicelet]);
+		    any.a_int = i+1;	/* must be non-zero */
+		    add_menu(win, NO_GLYPH, &any, thisch,
+			0, ATR_NONE, races[i].noun, MENU_UNSELECTED);
+		}
+	    any.a_int = pick_race(flags.initrole, flags.initgend,
+				flags.initalign)+1;
+	    if (any.a_int == 0)	/* must be non-zero */
+		any.a_int = randrace(flags.initrole)+1;
+	    add_menu(win, NO_GLYPH, &any , '*', 0, ATR_NONE,
+			    "Random", MENU_UNSELECTED);
+	    any.a_int = i+1;	/* must be non-zero */
+	    add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
+			    "Quit", MENU_UNSELECTED);
+	    Sprintf(pbuf, "Pick the race of your %s",
+			    roles[flags.initrole].name.m);
+	    end_menu(win, pbuf);
+	    n = select_menu(win, PICK_ONE, &selected);
+	    destroy_nhwindow(win);
+
+
+	    if (n != 1 || selected[0].item.a_int == any.a_int) {
+	    	free((genericptr_t) selected),	selected = 0;
+	    	if (!choicelet) {
+		    return (-1);		/* Selected quit */
+	    	} else {
+	    	    choicelet--;
+	    	    n = 2; /* there are at least 2 */
+	    	    continue;
+	    	}
+	    } else {
+		k = selected[0].item.a_int - 1;
+	    	free((genericptr_t) selected),	selected = 0;
+		choicestr[choicelet] = races[k].noun[choicelet];
+		choicelet++;
+	    }
+	    
+	    /* Check whether there are at least 2 choices left */
+	    n = 0;
+	    for (i = 0; (races[i].noun && (n <= 1)); i++)
+		if (ok_race(flags.initrole, i, flags.initgend,
+						flags.initalign)
+			&& (!choicelet || !strncmpi(races[i].noun, 
+					choicestr, choicelet))) 
+		    n++;
+	} while (n > 1);
+	
+	flags.initrace = k;
+	return (k);
+#endif
 }
 
 /*

@@ -21,14 +21,6 @@
  *
  */
 
-#define alleg_mouse_unused
-#define alleg_timer_unused
-#define alleg_keyboard_unused
-#define alleg_joystick_unused
-#define alleg_sound_unused
-#define alleg_gui_unused
-#define alleg_datafile_unused
-
 #include <allegro.h>
 
 #include "hack.h"
@@ -42,10 +34,6 @@
 #include <stdlib.h>
 #endif
 #include <time.h>
-
-/* the datafile section of allegro.h conflicts with Nethack, but we do need 
-   this one datafile function */
-BITMAP *load_bitmap(char *filename, RGB *pal);
 
 extern char *FDECL(tilename, (int, int));
 
@@ -90,7 +78,7 @@ static const char
     *index_file = "../src/index",
     *allegfx_file = "../include/allegfx.h";
 
-#define FINAL_COLORDEPTH_8_BPP
+/* #define FINAL_COLORDEPTH_8_BPP */
 
 /* Currently interpolation is OFF */
 /* Should handle all sizes tile files now */
@@ -195,7 +183,7 @@ char *argv[];
         char util_mode;
         FILE *ofp; /* Output for -i, -h */
         const char **tilefiles;
-        const char *bigtile_file;
+        char bigtile_file[BUFSZ];
         boolean trans_background = FALSE;
 
 	/* All operations assume 24 bit internal files */
@@ -231,12 +219,12 @@ char *argv[];
                 exit(EXIT_FAILURE);
             } else {
 #ifdef FINAL_COLORDEPTH_8_BPP
-            	BITMAP* tmp_bmp;
             	PALETTE tmp_pal;
+            	BITMAP* tmp_bmp;
         	char rsvd[256];
         	int i;
             	
-        	bigtile_file = argv[2];
+        	Strcpy(bigtile_file, argv[2]);
             	bigtile_bmp = load_bitmap(bigtile_file,tmp_pal);
             	
             	if (!bigtile_bmp) {
@@ -279,23 +267,23 @@ char *argv[];
     		Fprintf(stderr, "Using 16x16 text tile files\n");
     		(void) fflush(stderr);
 		tilefiles = tilefiles16;
-		bigtile_file = bigtile_file16;
+		Strcpy(bigtile_file, bigtile_file16);
 	    } else if (argv[1][2] == '3' && 
 		    	(argv[1][3] == 'D' || argv[1][3] == 'd')) {
     		Fprintf(stderr, "Using 48x64 text tile files\n");
     		(void) fflush(stderr);
 		tilefiles = tilefiles3d;
-		bigtile_file = bigtile_file3d;
+		Strcpy(bigtile_file, bigtile_file3d);
 		trans_background = TRUE;
 	    } else {
 	       	/* Default mode is 32 */
     		Fprintf(stderr, "Using 32x32 text tile files\n");
     		(void) fflush(stderr);
 		tilefiles = tilefiles32;
-		bigtile_file = bigtile_file32;
+		Strcpy(bigtile_file, bigtile_file32);
 	    }
         } else {
-        	bigtile_file = argv[3];
+        	Strcpy(bigtile_file, argv[3]);
         }
 
         time(&aclock);
@@ -415,9 +403,9 @@ char *argv[];
         else if (util_mode == 'f')
 		Fprintf(stderr, "Total of %d bmp tiles written.\n", tilecount);
         else if (util_mode == 'b' || util_mode == 'c') {
+        	PALETTE tmp_pal;
 #ifdef FINAL_COLORDEPTH_8_BPP
         	BITMAP *tmp_bmp;
-        	PALETTE tmp_pal;
         	char rsvd[256];
         	int i;
 

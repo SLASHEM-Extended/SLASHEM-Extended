@@ -10,14 +10,6 @@
 
 #define COPYRIGHT_BANNER_D "Based on AllegroHack v1.4 By Kelly Youngblood."
 
-#define alleg_mouse_unused
-#define alleg_timer_unused
-#define alleg_keyboard_unused
-#define alleg_joystick_unused
-#define alleg_sound_unused
-#define alleg_gui_unused
-#define alleg_datafile_unused
-
 #include "hack.h"
 #include "epri.h"
 
@@ -38,10 +30,6 @@
 #include "wintty.h"
 #include "pcvideo.h"
 #include "tile.h"
-
-/* the datafile section of allegro.h conflicts with Nethack, but we do need 
-   this one datafile function */
-BITMAP *load_bitmap(char *filename, RGB *pal);
 
 void nh_stretch_blit(BITMAP *, BITMAP *, int, int, int, int, int, int, int, int);
 

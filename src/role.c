@@ -1020,14 +1020,16 @@ int rolenum, racenum, gendnum, alignnum;
 
     if (rolenum >= 0 && rolenum < SIZE(roles)-1) {
 	allow = roles[rolenum].allow;
-	if (racenum >= 0 && racenum < SIZE(races)-1 &&
-		!(allow & races[racenum].allow & ROLE_RACEMASK))
-	    return FALSE;
-	if (gendnum >= 0 && gendnum < ROLE_GENDERS &&
-		!(allow & genders[gendnum].allow & ROLE_GENDMASK))
-	    return FALSE;
-	if (alignnum >= 0 && alignnum < ROLE_ALIGNS &&
-		!(allow & aligns[alignnum].allow & ROLE_ALIGNMASK))
+
+	if (racenum >= 0 && racenum < SIZE(races)-1)
+	    allow &= races[racenum].allow;
+	if (gendnum >= 0 && gendnum < ROLE_GENDERS)
+	    allow &= genders[gendnum].allow;
+	if (alignnum >= 0 && alignnum < ROLE_ALIGNS)
+	    allow &= aligns[alignnum].allow;
+		    
+	if (!(allow & ROLE_RACEMASK) || !(allow & ROLE_GENDMASK) || 
+		!(allow & ROLE_ALIGNMASK))
 	    return FALSE;
 	return TRUE;
     } else {
@@ -1084,29 +1086,32 @@ int rolenum, racenum, gendnum, alignnum;
 
     if (racenum >= 0 && racenum < SIZE(races)-1) {
 	allow = races[racenum].allow;
-	if (rolenum >= 0 && rolenum < SIZE(roles)-1 &&
-		!(allow & roles[rolenum].allow & ROLE_RACEMASK))
-	    return FALSE;
-	if (gendnum >= 0 && gendnum < ROLE_GENDERS &&
-		!(allow & genders[gendnum].allow & ROLE_GENDMASK))
-	    return FALSE;
-	if (alignnum >= 0 && alignnum < ROLE_ALIGNS &&
-		!(allow & aligns[alignnum].allow & ROLE_ALIGNMASK))
+
+	if (rolenum >= 0 && rolenum < SIZE(roles)-1)
+	    allow &= roles[rolenum].allow;
+	if (gendnum >= 0 && gendnum < ROLE_GENDERS)
+	    allow &= genders[gendnum].allow;
+	if (alignnum >= 0 && alignnum < ROLE_ALIGNS)
+	    allow &= aligns[alignnum].allow;
+		    
+	if (!(allow & ROLE_RACEMASK) || !(allow & ROLE_GENDMASK) || 
+		!(allow & ROLE_ALIGNMASK))
 	    return FALSE;
 	return TRUE;
     } else {
 	for (i = 0; i < SIZE(races)-1; i++) {
 	    allow = races[i].allow;
-	    if (rolenum >= 0 && rolenum < SIZE(roles)-1 &&
-		    !(allow & roles[rolenum].allow & ROLE_RACEMASK))
+
+	    if (rolenum >= 0 && rolenum < SIZE(roles)-1)
+		allow &= roles[rolenum].allow;
+	    if (gendnum >= 0 && gendnum < ROLE_GENDERS)
+		allow &= genders[gendnum].allow;
+	    if (alignnum >= 0 && alignnum < ROLE_ALIGNS)
+		allow &= aligns[alignnum].allow;
+
+	    if (!(allow & ROLE_RACEMASK) || !(allow & ROLE_GENDMASK) || 
+		    !(allow & ROLE_ALIGNMASK))
 		continue;
-	    if (gendnum >= 0 && gendnum < ROLE_GENDERS &&
-		    !(allow & genders[gendnum].allow & ROLE_GENDMASK))
-		continue;
-	    if (alignnum >= 0 && alignnum < ROLE_ALIGNS &&
-		    !(allow & aligns[alignnum].allow & ROLE_ALIGNMASK))
-		continue;
-	    return TRUE;
 	}
 	return FALSE;
     }
@@ -1149,11 +1154,13 @@ int rolenum, racenum, gendnum, alignnum;
 
     if (gendnum >= 0 && gendnum < ROLE_GENDERS) {
 	allow = genders[gendnum].allow;
-	if (rolenum >= 0 && rolenum < SIZE(roles)-1 &&
-		!(allow & roles[rolenum].allow & ROLE_GENDMASK))
-	    return FALSE;
-	if (racenum >= 0 && racenum < SIZE(races)-1 &&
-		!(allow & races[racenum].allow & ROLE_GENDMASK))
+
+	if (rolenum >= 0 && rolenum < SIZE(roles)-1)
+	    allow &= roles[rolenum].allow;
+	if (racenum >= 0 && racenum < SIZE(races)-1)
+	    allow &= races[racenum].allow;
+		    
+	if (!(allow & ROLE_GENDMASK))
 	    return FALSE;
 	return TRUE;
     } else {
@@ -1209,11 +1216,13 @@ int rolenum, racenum, gendnum, alignnum;
 
     if (alignnum >= 0 && alignnum < ROLE_ALIGNS) {
 	allow = aligns[alignnum].allow;
-	if (rolenum >= 0 && rolenum < SIZE(roles)-1 &&
-		!(allow & roles[rolenum].allow & ROLE_ALIGNMASK))
-	    return FALSE;
-	if (racenum >= 0 && racenum < SIZE(races)-1 &&
-		!(allow & races[racenum].allow & ROLE_ALIGNMASK))
+
+	if (rolenum >= 0 && rolenum < SIZE(roles)-1)
+	    allow &= roles[rolenum].allow;
+	if (racenum >= 0 && racenum < SIZE(races)-1)
+	    allow &= races[racenum].allow;
+		    
+	if (!(allow & ROLE_ALIGNMASK))
 	    return FALSE;
 	return TRUE;
     } else {
