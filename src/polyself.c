@@ -968,7 +968,7 @@ dobreathe()
 	if (!getdir((char *)0)) return(0);
 	else {
 	    register struct attack *mattk;
-	    register int i;
+	    register int i, adtyp;
 
 		u.uen -= energy;
 		flags.botl = 1;
@@ -977,7 +977,10 @@ dobreathe()
 		mattk = &(youmonst.data->mattk[i]);
 		if(mattk->aatyp == AT_BREA) break;
 	    }
-	    buzz((int) (20 + mattk->adtyp-1), (int)mattk->damn,
+	    /* Extra handling for AD_RBRE - player might poly into a crystal
+	     * golem. */
+	    adtyp = mattk->adtyp == AD_RBRE? rnd(AD_ACID) : mattk->adtyp;
+	    buzz((int) (20 + adtyp-1), (int)mattk->damn,
 		u.ux, u.uy, u.dx, u.dy);
 	}
 	return(1);

@@ -1663,7 +1663,7 @@ boolean was_swallowed;			/* digestion */
 	    else
 		You_hear("hissing and bubbling!");
 	    /* ...into a stinking cloud... */
-	    (void) create_gas_cloud(mon->mx, mon->my, 3, 8, FALSE);
+	    (void) create_cthulhu_death_cloud(mon->mx, mon->my, 3, 8);
 	    return (FALSE);
 	}
 

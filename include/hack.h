@@ -65,21 +65,22 @@
  * code assume that PANIC separates the deaths from the non-deaths.
  */
 #define DIED		 0
-#define CHOKING		 1
-#define POISONING	 2
-#define STARVING	 3
-#define DROWNING	 4
-#define BURNING		 5
-#define DISSOLVED	 6
-#define CRUSHING	 7
-#define STONING		 8
-#define TURNED_SLIME	 9
-#define GENOCIDED	10
-#define PANICKED	11
-#define TRICKED		12
-#define QUIT		13
-#define ESCAPED		14
-#define ASCENDED	15
+#define BETRAYED	 1
+#define CHOKING		 2
+#define POISONING	 3
+#define STARVING	 4
+#define DROWNING	 5
+#define BURNING		 6
+#define DISSOLVED	 7
+#define CRUSHING	 8
+#define STONING		 9
+#define TURNED_SLIME 10
+#define GENOCIDED	11
+#define PANICKED	12
+#define TRICKED		13
+#define QUIT		14
+#define ESCAPED		15
+#define ASCENDED	16
 
 #include "align.h"
 #include "dungeon.h"

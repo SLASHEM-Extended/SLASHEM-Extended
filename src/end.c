@@ -66,7 +66,7 @@ extern void FDECL(nethack_exit,(int));
  * The order of these needs to match the macros in hack.h.
  */
 static NEARDATA const char *deaths[] = {		/* the array of death */
-	"died", "choked", "poisoned", "starvation", "drowning",
+	"died", "betrayed", "choked", "poisoned", "starvation", "drowning",
 	"burning", "dissolving under the heat and pressure",
 	"crushed", "turned to stone", "turned into slime",
 	"genocided", "panic", "trickery",
@@ -74,8 +74,8 @@ static NEARDATA const char *deaths[] = {		/* the array of death */
 };
 
 static NEARDATA const char *ends[] = {		/* "when you..." */
-	"died", "choked", "were poisoned", "starved", "drowned",
-	"burned", "dissolved in the lava",
+	"died", "were betrayed", "choked", "were poisoned", "starved", 
+	"drowned", "burned", "dissolved in the lava",
 	"were crushed", "turned to stone", "turned into slime",
 	"were genocided", "panicked", "were tricked",
 	"quit", "escaped", "ascended"
@@ -252,6 +252,8 @@ register struct monst *mtmp;
 		u.ugrave_arise = NON_PM;
 	if (touch_petrifies(mtmp->data))
 		done(STONING);
+	else if (mtmp->mtraitor)
+		done(BETRAYED);
 	else
 		done(DIED);
 	return;

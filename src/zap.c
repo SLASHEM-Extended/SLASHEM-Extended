@@ -954,6 +954,9 @@ register struct obj *obj;
 		}
 		break;
 	      case POTION_CLASS:
+		/* Potions of amnesia are uncancelable. */
+		if (obj->otyp == POT_AMNESIA) break;
+
 		costly_cancel(obj);
 		if (obj->otyp == POT_SICKNESS ||
 		    obj->otyp == POT_SEE_INVISIBLE) {
@@ -2638,20 +2641,37 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 				"Some writing vanishes from %s head!";
 	static const char your[] = "your";	/* should be extern */
 
+	if (youdefend) 
+	    You(!Hallucination? "are covered in sparkling lights!"
+			      : "are enveloped by psychedelic fireworks!");
+
 	if (youdefend ? (!youattack && Antimagic)
 		      : resist(mdef, obj->oclass, 0, NOTELL))
 		return;		/* resisted cancellation */
 
-	if (self_cancel) {	/* 1st cancel inventory */
+	/* 1st cancel inventory */
+	/* Lethe allows monsters to zap you with /oCanc, which has a small
+	 * chance of affecting hero's inventory; for parity, /oCanc zapped by
+	 * the hero also have a small chance of affecting the monster's
+	 * inventory
+	 */
+	if (!(youdefend? Antimagic : resists_magm(mdef)) || !rn2(6)) {
 	    struct obj *otmp;
+	    boolean did_cancel = FALSE;
 
 	    for (otmp = (youdefend ? invent : mdef->minvent);
 			    otmp; otmp = otmp->nobj)
-		cancel_item(otmp);
-	    if (youdefend) {
+		if (self_cancel || !rn2(24)) {
+		    cancel_item(otmp);
+		    did_cancel = TRUE;
+		}
+	    if (youdefend && did_cancel) {
 		flags.botl = 1;	/* potential AC change */
 		find_ac();
 	    }
+	    /* Indicate to the hero that something happened */
+	    if (did_cancel && !self_cancel && youdefend)
+		You_feel("a strange sense of loss.");
 	}
 
 	/* now handle special cases */

@@ -1231,14 +1231,8 @@ boolean your_fault;
 	case POT_AMNESIA:
 		/* Uh-oh! */
 		if (uarmh && is_helmet(uarmh) && 
-			rn2(10 - (uarmh->cursed? 8 : 0) + 
-				 (uarmh->greased? 4 : 0))) {
-		    pline("Fortunately, your helmet protects you.");
+			rn2(10 - (uarmh->cursed? 8 : 0)))
 		    get_wet(uarmh, TRUE);
-		} else {
-		    You_feel("carefree!");
-		    forget(5 + rn2(10));
-		}
 		break;
 	}
     } else {

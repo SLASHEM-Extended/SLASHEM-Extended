@@ -295,6 +295,7 @@ register struct monst *mtmp;
 #endif
 	}
 	else if (mtmp->mpeaceful) Strcat(info, ", peaceful");
+	else if (mtmp->mtraitor)  Strcat(info, ", traitor");
 	if (mtmp->meating)	  Strcat(info, ", eating");
 	if (mtmp->mcan)		  Strcat(info, ", cancelled");
 	if (mtmp->mconf)	  Strcat(info, ", confused");

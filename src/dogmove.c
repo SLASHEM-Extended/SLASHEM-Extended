@@ -624,6 +624,36 @@ long allowflags;
 #undef CHECK_ALLOW
 #endif
 
+boolean
+betrayed(mtmp)
+register struct monst *mtmp;
+{
+    boolean has_edog = !mtmp->isminion;
+    struct edog *edog = EDOG(mtmp);
+    int udist = distu(mtmp->mx, mtmp->my);
+
+    if (udist < 4 && has_edog && !mtmp->isspell && !rn2(3)
+		    && can_betray(mtmp->data)
+		    && !mindless(mtmp->data)
+		    && mtmp->mhp >= u.uhp	/* Pet is buff enough */
+		    && rn2(22) > mtmp->mtame	/* Roll against tameness */
+		    && rn2(edog->abuse + 2)) {
+	/* Treason */
+	if (canseemon(mtmp))
+	    pline("%s turns on you!", Monnam(mtmp));
+	else
+	    pline("You feel uneasy about %s.", y_monnam(mtmp));
+	mtmp->mpeaceful = 0;
+	mtmp->mtame = 0;
+	mtmp->mtraitor = TRUE;
+
+	/* Do we need to call newsym() here? */
+	newsym(mtmp->mx, mtmp->my);
+	return TRUE;
+    }
+    return FALSE;
+}
+
 /* return 0 (no move), 1 (move) or 2 (dead) */
 int
 dog_move(mtmp, after)
@@ -679,6 +709,9 @@ register int after;	/* this is extra fast monster movement */
 #endif
 	/* maybe we tamed him while being swallowed --jgm */
 	if (!udist) return(0);
+
+	/* Intelligent pets may rebel (apart from minions, spell beings) */
+	if (!rn2(850) && betrayed(mtmp)) return 1;
 
 	nix = omx;	/* set before newdogpos */
 	niy = omy;

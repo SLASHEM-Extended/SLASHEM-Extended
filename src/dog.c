@@ -798,6 +798,7 @@ register struct obj *obj;
 
 	/* worst case, at least it'll be peaceful. */
 	mtmp->mpeaceful = 1;
+	mtmp->mtraitor  = 0;	/* No longer a traitor */
 	set_malign(mtmp);
 	if(flags.moonphase == FULL_MOON && night() && rn2(6) && obj
 						&& mtmp->data->mlet == S_DOG)
@@ -988,6 +989,9 @@ struct monst *mtmp;
 	if (mtmp->mx != 0) {
 	    if (mtmp->mtame && rn2(mtmp->mtame)) yelp(mtmp);
 	    else growl(mtmp);	/* give them a moment's worry */
+
+	    /* Give monster a chance to betray you now */
+	    if (mtmp->mtame) betrayed(mtmp);
 	
 	    if (!mtmp->mtame) newsym(mtmp->mx, mtmp->my);
 	}

@@ -27,6 +27,7 @@ STATIC_DCL boolean FDECL(wrong_elem_type, (struct permonst *));
 STATIC_DCL void FDECL(m_initgrp,(struct monst *,int,int,int));
 STATIC_DCL void FDECL(m_initthrow,(struct monst *,int,int));
 STATIC_DCL void FDECL(m_initweap,(struct monst *));
+STATIC_DCL void FDECL(m_initweap_normal,(struct monst *));
 #ifdef OVL1
 STATIC_DCL void FDECL(m_initinv,(struct monst *));
 #endif /* OVL1 */
@@ -166,9 +167,6 @@ m_initweap_normal(mtmp)
 register struct monst *mtmp;
 {
 	register struct permonst *ptr = mtmp->data;
-	register int mm = monsndx(ptr);
-	struct obj *otmp;
-
 	int bias;
 
 	bias = is_lord(ptr) + is_prince(ptr) * 2 + extra_nasty(ptr);
@@ -1460,6 +1458,7 @@ register int	mmflags;
 	place_monster(mtmp, x, y);
 	mtmp->mcansee = mtmp->mcanmove = TRUE;
 	mtmp->mpeaceful = (mmflags & MM_ANGRY) ? FALSE : peace_minded(ptr);
+	mtmp->mtraitor  = FALSE;
 
 	switch(ptr->mlet) {
 		case S_MIMIC:

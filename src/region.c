@@ -21,6 +21,7 @@ boolean FDECL(inside_gas_cloud, (genericptr,genericptr,BOOLEAN_P));
 boolean FDECL(inside_player_gas_cloud, (genericptr, genericptr));
 boolean FDECL(inside_mon_gas_cloud, (genericptr, genericptr));
 boolean FDECL(expire_gas_cloud, (genericptr,genericptr));
+boolean FDECL(revive_cthulhu, (genericptr, genericptr));
 boolean FDECL(inside_rect, (NhRect *,int,int));
 boolean FDECL(inside_region, (NhRegion *,int,int));
 NhRegion *FDECL(create_region, (NhRect *,int));
@@ -52,7 +53,9 @@ static callback_proc callbacks[] = {
 #define INSIDE_MON_GAS_CLOUD 1
     inside_mon_gas_cloud,
 #define EXPIRE_GAS_CLOUD 2
-    expire_gas_cloud
+    expire_gas_cloud,
+#define REVIVE_CTHULHU 3	/* Cthulhu comes back... */
+    revive_cthulhu
 };
 
 /* Should be inlined. */
@@ -861,6 +864,38 @@ genericptr_t p2;
     return TRUE;		/* OK, it's gone, you can free it! */
 }
 
+boolean
+revive_cthulhu(p1, p2)
+genericptr_t p1;
+genericptr_t p2;
+{
+    boolean ret = expire_gas_cloud(p1, p2);
+    if (ret) {
+	/* Bring back Cthulhu! */
+	int cx, cy;
+	NhRegion *reg = (NhRegion *) p1;
+	struct monst *cthulhu = NULL;
+	coord cc;
+	
+	cx = (reg->bounding_box.lx + reg->bounding_box.hx) / 2;
+	cy = (reg->bounding_box.ly + reg->bounding_box.hy) / 2;
+
+	if (enexto(&cc, cx, cy, &mons[PM_CTHULHU])) {
+	    cx = cc.x;
+	    cy = cc.y;
+	} else {
+	    cx = cy = 0;	/* Place Cthulhu randomly */
+	}
+
+	/* Make sure Cthulhu doesn't get the Amulet again! :-) */
+	cthulhu = makemon(&mons[PM_CTHULHU], cx, cy, 
+				MM_NOCOUNTBIRTH | NO_MINVENT);
+	if (cthulhu && canseemon(cthulhu))
+	    pline("%s reforms!", Monnam(cthulhu));
+    }
+    return ret;
+}
+
 /* [DS] Changes to prevent casualties of Cthulhu's death-cloud being attributed
  *      to player. */
 boolean 
@@ -934,6 +969,20 @@ boolean yours;	/* Was this player-created? */
 	}
     }
     return FALSE;		/* Monster is still alive */
+}
+
+NhRegion *
+create_cthulhu_death_cloud(x, y, radius, damage)
+xchar x, y;
+int radius;
+int damage;
+{
+    NhRegion *cloud;
+
+    cloud = create_gas_cloud(x, y, radius, damage, FALSE);
+    if (cloud) cloud->expire_f = REVIVE_CTHULHU;
+
+    return cloud;
 }
 
 NhRegion *

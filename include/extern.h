@@ -443,6 +443,7 @@ E void FDECL(wary_dog, (struct monst *, BOOLEAN_P));
 E int FDECL(dog_nutrition, (struct monst *,struct obj *));
 E int FDECL(dog_eat, (struct monst *,struct obj *,int,int,BOOLEAN_P));
 E int FDECL(dog_move, (struct monst *,int));
+E boolean FDECL(betrayed, (struct monst *));
 #ifdef USE_TRAMPOLI
 E void FDECL(wantdoor, (int,int,genericptr_t));
 #endif
@@ -1709,6 +1710,7 @@ E void FDECL(show_region, (NhRegion*, XCHAR_P, XCHAR_P));
 E void FDECL(save_regions, (int,int));
 E void FDECL(rest_regions, (int));
 E NhRegion* FDECL(create_gas_cloud, (XCHAR_P, XCHAR_P, int, int, BOOLEAN_P));
+E NhRegion* FDECL(create_cthulhu_death_cloud, (XCHAR_P, XCHAR_P, int, int));
 
 /* ### restore.c ### */
 

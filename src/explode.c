@@ -278,7 +278,9 @@ boolean yours; /* is it your fault (for killing monsters) */
 		if (i+x-1 == u.ux && j+y-1 == u.uy)
 			uhurt = (explmask[i][j] == 1) ? 1 : 2;
 		idamres = idamnonres = 0;
-		if (type >= 0)
+
+		/* DS: Allow monster induced explosions also */
+		if (type >= 0 || type <= -10)
 		    (void)zap_over_floor((xchar)(i+x-1), (xchar)(j+y-1),
 		    		type, &shopdamage);
 

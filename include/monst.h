@@ -105,7 +105,7 @@ struct monst {
 	Bitfield(isspell,1);	/* is a temporary spell being */
 	Bitfield(uexp,1);		/* you get experience for its kills */
 
-
+	Bitfield(mtraitor,1);	/* Former pet that turned traitor */
 	Bitfield(isshk,1);	/* is shopkeeper */
 	Bitfield(isminion,1);	/* is a minion */
 	Bitfield(isgd,1);	/* is guard */

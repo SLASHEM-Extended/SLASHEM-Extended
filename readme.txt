@@ -328,6 +328,8 @@ TODO:
 -vampires shouldn't be allowed to become Flame Mages
 
 ver 0.0.6E7 [?] [Released by ?]
+-Lethe: Treacherous pets; Cthulhu revivification; monsters use of potions of
+	amnesia & wands of cancellation; reflecting golems (Darshan Shaligram).
 
 ver 0.0.6E6 [September 13/2002] [Released by Ali]
 -Implemented "none" as a possible random place in level compiler.

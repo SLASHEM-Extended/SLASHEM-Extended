@@ -1021,7 +1021,8 @@ struct monst *mtmp;
 #define MUSE_WAN_DRAINING 17	/* KMH */
 /*#define MUSE_WAN_TELEPORTATION 18*/
 #define MUSE_SCR_EARTH 19
-
+#define MUSE_POT_AMNESIA 20
+#define MUSE_WAN_CANCELLATION 21	/* Lethe */
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -1132,17 +1133,18 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_POT_SLEEPING;
 		}
-		/* KMH, balance patch -- monsters use potion of acid */
-		nomore(MUSE_POT_ACID);
-		if(obj->otyp == POT_ACID) {
-			m.offensive = obj;
-			m.has_offense = MUSE_POT_ACID;
+		/* Mik's Lethe patch - monsters use !oAmnesia */
+		nomore(MUSE_POT_AMNESIA);
+		if (obj->otyp == POT_AMNESIA) {
+			m.offensive   = obj;
+			m.has_offense = MUSE_POT_AMNESIA;
 		}
 		nomore(MUSE_POT_SLEEPING);
 		if(obj->otyp == POT_SLEEPING) {
 			m.offensive = obj;
 			m.has_offense = MUSE_POT_SLEEPING;
 		}
+		/* KMH, balance patch -- monsters use potion of acid */
 		nomore(MUSE_POT_ACID);
 		if(obj->otyp == POT_ACID) {
 			m.offensive = obj;
@@ -1167,6 +1169,11 @@ struct monst *mtmp;
 		       && (!In_endgame(&u.uz) || Is_earthlevel(&u.uz))) {
 		    m.offensive = obj;
 		    m.has_offense = MUSE_SCR_EARTH;
+		}
+		nomore(MUSE_WAN_CANCELLATION);
+		if (obj->otyp == WAN_CANCELLATION && obj->spe > 0) {
+			m.offensive   = obj;
+			m.has_offense = MUSE_WAN_CANCELLATION;
 		}
 #if 0
 		nomore(MUSE_SCR_FIRE);
@@ -1438,6 +1445,7 @@ struct monst *mtmp;
 /*      case MUSE_WAN_TELEPORTATION:*/
 	case MUSE_WAN_STRIKING:
 	case MUSE_WAN_DRAINING:	/* KMH */
+	case MUSE_WAN_CANCELLATION:  /* Lethe */
 		zap_oseen = oseen;
 		mzapmsg(mtmp, otmp, FALSE);
 		otmp->spe--;
@@ -1626,6 +1634,7 @@ struct monst *mtmp;
 	case MUSE_POT_CONFUSION:
 	case MUSE_POT_SLEEPING:
 	case MUSE_POT_ACID:
+	case MUSE_POT_AMNESIA:
 		/* Note: this setting of dknown doesn't suffice.  A monster
 		 * which is out of sight might throw and it hits something _in_
 		 * sight, a problem not existing with wands because wand rays
@@ -2127,7 +2136,8 @@ struct obj *obj;
 		    typ == WAN_CREATE_HORDE ||
 		    typ == WAN_DRAINING	||
 		    typ == WAN_HEALING ||
-		    typ == WAN_EXTRA_HEALING)
+		    typ == WAN_EXTRA_HEALING ||
+		    typ == WAN_CANCELLATION)
 		return TRUE;
 	    break;
 	case POTION_CLASS:
@@ -2141,7 +2151,8 @@ struct obj *obj;
 		    typ == POT_PARALYSIS ||
 		    typ == POT_SLEEPING ||
 		    typ == POT_ACID ||
-		    typ == POT_CONFUSION)
+		    typ == POT_CONFUSION ||
+		    typ == POT_AMNESIA)
 		return TRUE;
 	    if (typ == POT_BLINDNESS && !attacktype(mon->data, AT_GAZE))
 		return TRUE;
@@ -2208,9 +2219,6 @@ const char *str;
 	} else if (mon->data == &mons[PM_NIGHTMARE]) {
 	    pline(str,s_suffix(mon_nam(mon)),"horn");
 	    return TRUE;
-	} else if (mon->data == &mons[PM_SILVER_DRAGON]) {
-	    pline(str,s_suffix(mon_nam(mon)),"scales");
-	    return TRUE;
 	} else if ((orefl = which_armor(mon, W_ARM)) &&
 		(orefl->otyp == SILVER_DRAGON_SCALES || orefl->otyp == SILVER_DRAGON_SCALE_MAIL)) {
 	    if (str)
@@ -2221,6 +2229,13 @@ const char *str;
 	    /* Silver dragons only reflect when mature; babies do not */
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "scales");
+	    return TRUE;
+	} else if (mon->data == &mons[PM_DIAMOND_GOLEM]
+	         || mon->data == &mons[PM_SAPPHIRE_GOLEM]
+	         || mon->data == &mons[PM_CRYSTAL_GOLEM]) {
+	    /* Some of the higher golems have intrinsic reflection */
+	    if (str)
+		pline(str, s_suffix(mon_nam(mon)), "body");
 	    return TRUE;
 	}
 	return FALSE;
@@ -2255,6 +2270,12 @@ const char *fmt, *str;
 	} else if (youmonst.data == &mons[PM_SILVER_DRAGON]) {
 	    if (fmt && str)
 	    	pline(fmt, str, "scales");
+	    return TRUE;
+	} else if (youmonst.data == &mons[PM_DIAMOND_GOLEM]
+	         || youmonst.data == &mons[PM_SAPPHIRE_GOLEM]
+	         || youmonst.data == &mons[PM_CRYSTAL_GOLEM]) {
+	    if (fmt && str)
+	    	pline(fmt, str, "body");
 	    return TRUE;
 	}
 	return FALSE;
