@@ -50,14 +50,16 @@
 #endif
 
 #if defined(UNIX) && !defined(LINT) && !defined(GCC_WARN)
-static	const char	SCCS_Id[] = "@(#)makedefs.c\t3.3\t1999/08/16";
+static	const char	SCCS_Id[] = "@(#)makedefs.c\t3.4\t2002/02/03";
 #endif
 
 	/* names of files to be generated */
 #define DATE_FILE       "date.h"
 #define MONST_FILE      "pm.h"
 #define ONAME_FILE      "onames.h"
+#ifndef OPTIONS_FILE
 #define OPTIONS_FILE    "options"
+#endif
 #define ORACLE_FILE     "oracles"
 #define DATA_FILE       "data"
 #define RUMOR_FILE      "rumors"
@@ -579,7 +581,7 @@ do_date()
 		perror(filename);
 		exit(EXIT_FAILURE);
 	}
-	Fprintf(ofp,"/*\tSCCS Id: @(#)date.h\t3.3\t1996/05/17 */\n\n");
+	Fprintf(ofp,"/*\tSCCS Id: @(#)date.h\t3.4\t2002/02/03 */\n\n");
 	Fprintf(ofp,Dont_Edit_Code);
 
 #ifdef KR1ED
@@ -617,7 +619,7 @@ do_date()
 	Fprintf(ofp,"#define AMIGA_VERSION_STRING ");
 	Fprintf(ofp,"\"\\0$VER: NetHack %d.%d.%d (%d.%d.%d)\"\n",
 		VERSION_MAJOR, VERSION_MINOR, PATCHLEVEL,
-		tm->tm_mday, tm->tm_mon+1, tm->tm_year);
+		tm->tm_mday, tm->tm_mon+1, tm->tm_year+1900);
 	}
 #endif
 	Fclose(ofp);
@@ -1436,7 +1438,7 @@ do_permonst()
 		perror(filename);
 		exit(EXIT_FAILURE);
 	}
-	Fprintf(ofp,"/*\tSCCS Id: @(#)pm.h\t3.3\t1994/09/10 */\n\n");
+	Fprintf(ofp,"/*\tSCCS Id: @(#)pm.h\t3.4\t2002/02/03 */\n\n");
 	Fprintf(ofp,Dont_Edit_Code);
 	Fprintf(ofp,"#ifndef PM_H\n#define PM_H\n");
 
@@ -1748,7 +1750,7 @@ do_objs()
 		perror(filename);
 		exit(EXIT_FAILURE);
 	}
-	Fprintf(ofp,"/*\tSCCS Id: @(#)onames.h\t3.3\t1994/09/10 */\n\n");
+	Fprintf(ofp,"/*\tSCCS Id: @(#)onames.h\t3.4\t2002/02/03 */\n\n");
 	Fprintf(ofp,Dont_Edit_Code);
 	Fprintf(ofp,"#ifndef ONAMES_H\n#define ONAMES_H\n\n");
 

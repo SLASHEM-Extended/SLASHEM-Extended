@@ -151,6 +151,13 @@ static struct {
 	{ "zoo",	 ZOO },
 	{ "delphi",	 DELPHI },
 	{ "temple",	 TEMPLE },
+	{ "realzoo",	 REALZOO },
+	{ "giantcourt",	 GIANTCOURT },
+	{ "dragonlair",  DRAGONLAIR },
+	{ "badfoodshop", BADFOODSHOP },
+	{ "anthole",	 ANTHOLE },
+	{ "cocknest",	 COCKNEST },
+	{ "leprehall",	 LEPREHALL },
 	{ "shop",	 SHOPBASE },
 	{ "armor shop",	 ARMORSHOP },
 	{ "scroll shop", SCROLLSHOP },
@@ -593,8 +600,13 @@ char *map;
 	int max_hig = 0;
 	char msg[256];
 
-	/* First : find the max width of the map */
-
+	/* First, strip out digits 0-9 (line numbering) */
+	for (s1 = s2 = map; *s1; s1++)
+	    if (*s1 < '0' || *s1 > '9')
+		*s2++ = *s1;
+	*s2 = '\0';
+ 
+	/* Second, find the max width of the map */
 	s1 = map;
 	while (s1 && *s1) {
 		s2 = index(s1, NEWLINE);
@@ -1236,8 +1248,19 @@ specialmaze *maze;
 	    Write(fd, &(pt->ysize), sizeof(pt->ysize));
 	    for(j=0;j<pt->ysize;j++) {
 		if(!maze->init_lev.init_present ||
-		   pt->xsize > 1 || pt->ysize > 1)
-		    Write(fd, pt->map[j], pt->xsize * sizeof *pt->map[j]);
+		   pt->xsize > 1 || pt->ysize > 1) {
+#if !defined(_MSC_VER) && !defined(__BORLANDC__)
+			Write(fd, pt->map[j], pt->xsize * sizeof *pt->map[j]);
+#else
+			/*
+			 * On MSVC and Borland C compilers the Write macro above caused:
+			 * warning '!=' : signed/unsigned mismatch
+			 */
+			unsigned reslt, sz = pt->xsize * sizeof *pt->map[j];
+			reslt = write(fd, (genericptr_t)(pt->map[j]), sz);
+			if (reslt != sz) return FALSE;
+#endif
+		}
 		Free(pt->map[j]);
 	    }
 	    Free(pt->map);
@@ -1386,7 +1409,7 @@ specialmaze *maze;
 		    return FALSE;
 
 	    /* The gold piles */
-	    Write(fd, &(pt->ngold), sizeof(pt->naltar));
+	    Write(fd, &(pt->ngold), sizeof(pt->ngold));
 	    for(j=0;j<pt->ngold;j++) {
 		    Write(fd, pt->golds[j], sizeof(gold));
 		    Free(pt->golds[j]);

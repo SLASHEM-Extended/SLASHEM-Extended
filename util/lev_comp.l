@@ -116,7 +116,7 @@ input()		/* Under MPW \n is chr(13)! Compensate for this. */
 		  map_cnt = 0;
 		  return MAP_ID;
 		}
-<MAPC>[-|}{+ABCISHKPLWTFZ\\#. ]*\n	{
+<MAPC>[-|}{+ABCISHKPLWTFZ\\#. 0123456789]*\n	{
 		  line_number++;
 		  (void) strncpy(map + map_cnt, yytext, yyleng);
 		  map_cnt += yyleng;
@@ -233,6 +233,7 @@ shortsighted	{ yylval.i=SHORTSIGHTED; return FLAG_TYPE; }
 		  return STRING; }
 \n		{ line_number++; }
 [ \t]+		;
+'\\.'		{ yylval.i = yytext[2]; return CHAR; }
 '.'		{ yylval.i = yytext[1]; return CHAR; }
 .		{ return yytext[0]; }
 %%
