@@ -3464,7 +3464,7 @@ doapply()
 #endif
 	case LOCK_PICK:
 	case SKELETON_KEY:
-		(void) pick_lock(obj);
+		(void) pick_lock(&obj);
 		break;
 	case PICK_AXE:
 	case DWARVISH_MATTOCK: /* KMH, balance patch -- the mattock is a pick, too */
