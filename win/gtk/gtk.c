@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.42 2003-09-03 08:36:56 j_ali Exp $
+  $Id: gtk.c,v 1.43 2003-09-04 19:12:42 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -12,6 +12,9 @@
 
 #include <sys/types.h>
 #include <signal.h>
+#ifdef WIN32
+#include <windows.h>
+#endif
 #include "md5.h"
 #include "winGTK.h"
 #include "wintype.h"
