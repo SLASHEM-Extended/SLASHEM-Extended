@@ -237,10 +237,10 @@ char *argv[];
 		for (i = xoffset; i < maxbmp_x; i+=2) {
 		  int y = (maxbmp_y - 1) - (j + yoffset);
 #if BITCOUNT==4
-		  packtile[y][i] = 	(uchar)(1) | (uchar)(0<<4);
+		  packtile[y][i] = 	(uchar)((1+y)&1) | (uchar)(((0+y)&1)<<4);
 #else
-		  packtile[y][i] = (uchar)0;
-		  packtile[y][i+1] = (uchar)1;
+		  packtile[y][i] = (uchar)((0+y)&1);
+		  packtile[y][i+1] = (uchar)((1+y)&1);
 #endif
 		}
 	}
