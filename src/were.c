@@ -173,7 +173,6 @@ you_were()
 {
 	char qbuf[QBUFSZ];
 
-	/* KMH, balance patch -- new intrinsic */
 	if (Unchanging || (u.umonnum == u.ulycn)) return;
 	if (Polymorph_control) {
 	    /* `+4' => skip "were" prefix to get name of beast */
@@ -193,18 +192,26 @@ boolean purify;
 	if (purify) {
 	    if (Race_if(PM_HUMAN_WEREWOLF)) {
 		/* An attempt to purify you has been made! */
-		You_feel("very bad!");
-		(void) adjattrib(A_STR, -rn1(3,3), 2);
-		(void) adjattrib(A_CON, -rn1(3,3), 1);
-		if (u.uhp > 10) u.uhp = rnd(5);
-		else u.uhp = 1;
+		if (in_wereform && Unchanging) {
+		    killer_format = NO_KILLER_PREFIX;
+		    killer = "purified while stuck in creature form";
+		    pline_The("purification was deadly...");
+		    done(DIED);
+		} else {
+		    You_feel("very bad!");
+		    if (in_wereform)
+			rehumanize();
+		    (void) adjattrib(A_STR, -rn1(3,3), 2);
+		    (void) adjattrib(A_CON, -rn1(3,3), 1);
+		    losehp(u.uhp - (u.uhp > 10 ? rnd(5) : 1), "purification",
+			    KILLED_BY);
+		}
 		return;
 	    }
 	    You_feel("purified.");
 	    u.ulycn = NON_PM;	/* cure lycanthropy */
-	    upermonst.mflags2 &= ~(M2_WERE);
+	    upermonst.mflags2 &= ~M2_WERE;
 	}
-	/* KMH, balance patch -- new intrinsic */
 	if (!Unchanging && in_wereform &&
 		(!Polymorph_control || yn("Remain in beast form?") == 'n'))
 	    rehumanize();
