@@ -123,6 +123,7 @@ ver 0.0.7E6F3 [?] [Released by ?]
 -fixed bug 1030725: Doppelganger liquid leap does not release from chain
 -fixed bug 1032419: Eviscerate tech should not work while wearing gloves
 -fixed bug 1055724: Raise Zombies gives tame troll
+-fixed bug 1020980: Objects are forgotten when you search blind
 
 See history.txt for changes made in previous versions.
 

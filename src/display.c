@@ -713,10 +713,14 @@ feel_location(x, y)
 
 	/* Floor spaces are dark if unlit.  Corridors are dark if unlit. */
 #ifdef DISPLAY_LAYERS
-	if (lev->typ == ROOM && lev->mem_bg == S_room && !lev->waslit)
-	    show_glyph(x,y, cmap_to_glyph(lev->mem_bg = S_stone));
-	else if (lev->typ == CORR && lev->mem_bg == S_litcorr && !lev->waslit)
-	    show_glyph(x,y, cmap_to_glyph(lev->mem_bg = S_corr));
+	if (lev->typ == ROOM && lev->mem_bg == S_room && !lev->waslit) {
+	    lev->mem_bg = S_stone;
+	    show_glyph(x,y, memory_glyph(x, y));
+	} else if (lev->typ == CORR &&
+		    lev->mem_bg == S_litcorr && !lev->waslit) {
+	    lev->mem_bg = S_corr;
+	    show_glyph(x,y, memory_glyph(x, y));
+	}
 #else
 	if (lev->typ == ROOM &&
 		    lev->glyph == cmap_to_glyph(S_room) && !lev->waslit)
