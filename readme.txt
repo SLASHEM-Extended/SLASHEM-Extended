@@ -77,6 +77,7 @@ ver 0.0.7E4 [?] [Released by ?]
 -fixed bug 822137: Tin of Hand of Vecna meat
 -fixed bug 831267: Weapon works offering no services
 -fixed bug 817700: Vampires choked by rope golems
+-fixed bug 811177: Fire Vamps not real vamps?
 
 See history.txt for changes made in previous versions.
 
