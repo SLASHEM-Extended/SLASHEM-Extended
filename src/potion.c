@@ -1731,7 +1731,7 @@ register struct obj *obj;
 		case DARK_ELVEN_ARROW:
 		case YA:
 		case ORCISH_ARROW:
-			obj->otyp = BOW;
+			obj->otyp = ARROW;
 			break;
 		case ARROW:
 			switch (rn2(3)) {

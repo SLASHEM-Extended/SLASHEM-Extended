@@ -345,6 +345,9 @@ ver 0.0.6E4F1 [September XX/2000]
 -removed unnecessary "uncursed" tags for necromancer role (to match priest)
 -GTK: Added graphical glyphs to the menus, switched in winGTK.h
 -GTK: extended commands via menus work again.
+-upgrading enhanced arrow types (elven, ya, dark elven) arrows results in 
+	an arrow, not a bow (potion.c)
+-saving/restoring now only enables the [...] effect in tty
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()

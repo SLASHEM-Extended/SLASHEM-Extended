@@ -577,7 +577,8 @@ register int fd;
 	/* moved lower */
 	curs(WIN_MAP, 1, 1);
 	dotcnt = 0;
-	if (strncmpi("X11", windowprocs.name, 3)) {
+# ifdef TTY_GRAPHICS
+	if (!strncmpi("tty", windowprocs.name, 3)) {
 	    putstr(WIN_MAP, 0, "Restoring:");
 	    /* WAC - Cutesy gfx  - and to keep from overflowing */
 	    curs(WIN_MAP, 1, 2);
@@ -591,6 +592,7 @@ register int fd;
 	    putstr(WIN_MAP, 0, "]");
 	    dotcnt = 0;
 	}
+# endif
 #endif
 	while(1) {
 #ifdef ZEROCOMP

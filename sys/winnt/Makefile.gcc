@@ -426,7 +426,7 @@ else
 #	$(DEL) $(GAMEDIR)\makefile.
 endif
 ifeq ($(USE_GTK),Y)
-	$(COPY) $(WSYS)\gtkrc.w32     $(GAMEDIR)
+	$(COPY) $(WGTK)\gtkrc        $(GAMEDIR)\gtkrc
 	$(COPY) rip.xpm              $(GAMEDIR)
 	$(COPY) credit.xpm           $(GAMEDIR)
 	$(COPY) x11tiles             $(GAMEDIR)

@@ -215,10 +215,10 @@ dosave0()
 	if(iflags.window_inited)
 	    HUP clear_nhwindow(WIN_MESSAGE);
 
-#ifdef MICRO
-	dotcnt = 0;
-	curs(WIN_MAP, 1, 1);
-	if (strncmpi("X11", windowprocs.name, 3)) {
+#if defined(MICRO) && defined(TTY_GRAPHICS)
+	if (!strncmpi("tty", windowprocs.name, 3)) {
+	    dotcnt = 0;
+	    curs(WIN_MAP, 1, 1);
 	    putstr(WIN_MAP, 0, "Saving:");
 	    
 	    /* WAC - Cutesy gfx  - and to keep from overflowing */
@@ -233,8 +233,8 @@ dosave0()
 	    
 	    curs(WIN_MAP, 2 + COLNO/4, 2);
 	    putstr(WIN_MAP, 0, "]");
+	    dotcnt = 0;
 	}
-	dotcnt = 0;
 #endif
 #ifdef MFLOPPY
 	/* make sure there is enough disk space */
@@ -296,7 +296,8 @@ dosave0()
 		if (!(level_info[ltmp].flags & LFILE_EXISTS)) continue;
 #ifdef MICRO
 		/* WAC -- Keep from spilling off the screen */
-		if (strncmpi("X11", windowprocs.name, 3)) {
+# ifdef TTY_GRAPHICS
+		if (!strncmpi("tty", windowprocs.name, 3)) {
 		    if (dotcnt == COLNO/2) dotcnt = 0;
 		    if (dotcnt < COLNO/4) {
 			curs(WIN_MAP, 2 + dotcnt++, 2);
@@ -306,6 +307,7 @@ dosave0()
 			putstr(WIN_MAP, 0, "-");
 		    }
 		}
+# endif
 		mark_synch();
 #endif
 		ofd = open_levelfile(ltmp);
