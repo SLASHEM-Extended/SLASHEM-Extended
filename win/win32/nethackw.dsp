@@ -4,7 +4,7 @@
 
 # TARGTYPE "Win32 (x86) Application" 0x0101
 
-CFG=NetHackW - Win32 Debug
+CFG=NetHackW - Win32 GTK Debug
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
@@ -13,12 +13,14 @@ CFG=NetHackW - Win32 Debug
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "NetHackW.mak" CFG="NetHackW - Win32 Debug"
+!MESSAGE NMAKE /f "NetHackW.mak" CFG="NetHackW - Win32 GTK Debug"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
 !MESSAGE "NetHackW - Win32 Release" (based on "Win32 (x86) Application")
 !MESSAGE "NetHackW - Win32 Debug" (based on "Win32 (x86) Application")
+!MESSAGE "NetHackW - Win32 GTK Debug" (based on "Win32 (x86) Application")
+!MESSAGE "NetHackW - Win32 GTK Release " (based on "Win32 (x86) Application")
 !MESSAGE 
 
 # Begin Project
@@ -54,19 +56,13 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib comctl32.lib advapi32.lib winmm.lib /nologo /subsystem:windows /map /debug /machine:I386 /MAPINFO:EXPORTS /MAPINFO:LINES /out:"Release/slashemw.exe"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib comctl32.lib advapi32.lib winmm.lib /nologo /subsystem:windows /map /debug /machine:I386 /out:"Release/slashemw.exe" /MAPINFO:EXPORTS /MAPINFO:LINES
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
 OutDir=.\Release
 SOURCE="$(InputPath)"
 PostBuild_Desc=Install exe
-PostBuild_Cmds=copy $(OutDir)\slashemw.exe ..\binary	\
-copy ..\dat\nhdat ..\binary	 \
-copy ..\dat\license ..\binary	 \
-if exist ..\src\tiles32.bmp copy ..\src\tiles32.bmp ..\binary	 \
-if exist ..\doc\Guidebook.txt copy ..\doc\Guidebook.txt ..\binary\Guidebook.txt	\
-if exist ..\doc\slashem.txt copy ..\doc\slashem.txt ..\binary\SlashEM.txt	\
-copy ..\sys\winnt\defaults.nh ..\binary\defaults.nh
+PostBuild_Cmds=copy $(OutDir)\slashemw.exe ..\binary	 copy ..\dat\nhshare ..\binary	copy ..\dat\nhushare ..\binary	  copy ..\dat\license ..\binary	  if exist ..\src\tiles32.bmp copy ..\src\tiles32.bmp ..\binary	  if exist ..\doc\Guidebook.txt copy ..\doc\Guidebook.txt ..\binary\Guidebook.txt	 if exist ..\doc\slashem.txt copy ..\doc\slashem.txt ..\binary\SlashEM.txt	 copy ..\sys\winnt\defaults.nh ..\binary\defaults.nh
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
@@ -83,7 +79,7 @@ copy ..\sys\winnt\defaults.nh ..\binary\defaults.nh
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Yu"stdafx.h" /FD /GZ /c
-# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /I "..\win\win32" /I "..\include" /I "..\sys\winnt" /I "..\sys\share" /I "..\win\share" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "DLB" /D "MSWIN_GRAPHICS" /FD /GZ /c
+# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /I "..\win\win32" /I "..\include" /I "..\sys\winnt" /I "..\sys\share" /I "..\win\share" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "DLB" /D "MSWIN_GRAPHICS" /FR /FD /GZ /c
 # SUBTRACT CPP /YX /Yc /Yu
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
@@ -99,16 +95,79 @@ LINK32=link.exe
 OutDir=.\Debug
 SOURCE="$(InputPath)"
 PostBuild_Desc=Install exe
-PostBuild_Cmds=if NOT exist ..\binary\*.* mkdir ..\binary	 \
-copy $(OutDir)\slashemw.exe ..\binary	 \
-copy ..\dat\nhshare ..\binary	 \
-copy ..\dat\nhushare ..\binary	 \
-copy ..\dat\license ..\binary	\
-rem  if exist ..\src\tiles.bmp copy ..\src\tiles.bmp ..\binary	 \
-if exist ..\src\tiles32.bmp copy ..\src\tiles32.bmp ..\binary	 \
-if exist ..\doc\Guidebook.txt copy ..\doc\Guidebook.txt ..\binary\Guidebook.txt	 \
-if exist ..\doc\slashem.txt copy ..\doc\slashem.txt ..\binary\SlashEM.txt	 \
-copy ..\sys\winnt\defaults.nh ..\binary\defaults.nh
+PostBuild_Cmds=if NOT exist ..\binary\*.* mkdir ..\binary	  copy $(OutDir)\slashemw.exe ..\binary	  copy ..\dat\nhshare ..\binary	  copy ..\dat\nhushare ..\binary	  copy ..\dat\license ..\binary	 rem  if exist ..\src\tiles.bmp copy ..\src\tiles.bmp ..\binary	  if exist ..\src\tiles32.bmp copy ..\src\tiles32.bmp ..\binary	  if exist ..\doc\Guidebook.txt copy ..\doc\Guidebook.txt ..\binary\Guidebook.txt	  if exist ..\doc\slashem.txt copy ..\doc\slashem.txt ..\binary\SlashEM.txt	  copy ..\sys\winnt\defaults.nh ..\binary\defaults.nh
+# End Special Build Tool
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 1
+# PROP BASE Output_Dir "NetHackW___Win32_GTK_Debug"
+# PROP BASE Intermediate_Dir "NetHackW___Win32_GTK_Debug"
+# PROP BASE Ignore_Export_Lib 0
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 1
+# PROP Output_Dir "NetHackW___Win32_GTK_Debug"
+# PROP Intermediate_Dir "NetHackW___Win32_GTK_Debug"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /I "..\win\win32" /I "..\include" /I "..\sys\winnt" /I "..\sys\share" /I "..\win\share" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "DLB" /D "MSWIN_GRAPHICS" /FR /FD /GZ /c
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /I "..\win\win32" /I "..\include" /I "..\sys\winnt" /I "..\sys\share" /I "..\win\share" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "DLB" /D "MSWIN_GRAPHICS" /D "GTK_GRAPHICS" /FR /FD /GZ /c
+# SUBTRACT CPP /YX /Yc /Yu
+# ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
+# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
+# ADD BASE RSC /l 0x409 /d "_DEBUG"
+# ADD RSC /l 0x409 /d "_DEBUG"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib comctl32.lib advapi32.lib winmm.lib /nologo /subsystem:windows /debug /machine:I386 /out:"Debug/slashemw.exe" /pdbtype:sept
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib comctl32.lib advapi32.lib winmm.lib libgtk-win32-2.0.dll.a libgdk-win32-2.0.dll.a libglib-2.0.dll.a libgdk_pixbuf-2.0.dll.a libgobject-2.0.dll.a libpango-1.0.dll.a /nologo /subsystem:windows /debug /machine:I386 /out:"Debug/slashemw.exe" /pdbtype:sept
+# Begin Special Build Tool
+OutDir=.\NetHackW___Win32_GTK_Debug
+SOURCE="$(InputPath)"
+PostBuild_Desc=Install exe
+PostBuild_Cmds=if NOT exist ..\binary\*.* mkdir ..\binary	  copy $(OutDir)\Debug\slashemw.exe ..\binary	  copy ..\dat\nhshare ..\binary	  copy ..\dat\nhushare ..\binary	  copy ..\dat\license ..\binary	 rem  if exist ..\src\tiles.bmp copy ..\src\tiles.bmp ..\binary	  if exist ..\src\tiles32.bmp copy ..\src\tiles32.bmp ..\binary	  if exist ..\doc\Guidebook.txt copy ..\doc\Guidebook.txt ..\binary\Guidebook.txt	  if exist ..\doc\slashem.txt copy ..\doc\slashem.txt ..\binary\SlashEM.txt	  copy ..\sys\winnt\defaults.nh ..\binary\defaults.nh
+# End Special Build Tool
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "NetHackW___Win32_GTK_Release_"
+# PROP BASE Intermediate_Dir "NetHackW___Win32_GTK_Release_"
+# PROP BASE Ignore_Export_Lib 0
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "NetHackW___Win32_GTK_Release_"
+# PROP Intermediate_Dir "NetHackW___Win32_GTK_Release_"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /W3 /GX /Ot /Og /Oy /Ob1 /Gf /Gy /I "..\win\win32" /I "..\include" /I "..\sys\winnt" /I "..\sys\share" /I "..\win\share" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "DLB" /D "MSWIN_GRAPHICS" /FD /Gs /Oi- /c
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /nologo /W3 /GX /Ot /Og /Oy /Ob1 /Gf /Gy /I "..\win\win32" /I "..\include" /I "..\sys\winnt" /I "..\sys\share" /I "..\win\share" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "DLB" /D "MSWIN_GRAPHICS" /D "GTK_GRAPHICS" /FD /Gs /Oi- /c
+# SUBTRACT CPP /YX /Yc /Yu
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
+# ADD BASE RSC /l 0x409 /d "NDEBUG"
+# ADD RSC /l 0x409 /d "NDEBUG"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib comctl32.lib advapi32.lib winmm.lib /nologo /subsystem:windows /map /debug /machine:I386 /out:"Release/slashemw.exe" /MAPINFO:EXPORTS /MAPINFO:LINES
+# SUBTRACT BASE LINK32 /pdb:none
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib comctl32.lib advapi32.lib winmm.lib libgtk-win32-2.0.dll.a libgdk-win32-2.0.dll.a libglib-2.0.dll.a libgdk_pixbuf-2.0.dll.a libgobject-2.0.dll.a libpango-1.0.dll.a /nologo /subsystem:windows /map /debug /machine:I386 /out:"Release/slashemw.exe" /MAPINFO:EXPORTS /MAPINFO:LINES
+# SUBTRACT LINK32 /pdb:none
+# Begin Special Build Tool
+OutDir=.\NetHackW___Win32_GTK_Release_
+SOURCE="$(InputPath)"
+PostBuild_Desc=Install exe
+PostBuild_Cmds=copy $(OutDir)\slashemw.exe ..\binary	 copy ..\dat\nhdat ..\binary	  copy ..\dat\license ..\binary	  if exist ..\src\tiles32.bmp copy ..\src\tiles32.bmp ..\binary	  if exist ..\doc\Guidebook.txt copy ..\doc\Guidebook.txt ..\binary\Guidebook.txt	 if exist ..\doc\slashem.txt copy ..\doc\slashem.txt ..\binary\SlashEM.txt	 copy ..\sys\winnt\defaults.nh ..\binary\defaults.nh
 # End Special Build Tool
 
 !ENDIF 
@@ -117,6 +176,8 @@ copy ..\sys\winnt\defaults.nh ..\binary\defaults.nh
 
 # Name "NetHackW - Win32 Release"
 # Name "NetHackW - Win32 Debug"
+# Name "NetHackW - Win32 GTK Debug"
+# Name "NetHackW - Win32 GTK Release "
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
@@ -365,7 +426,7 @@ SOURCE=..\src\music.c
 SOURCE=..\sys\winnt\ntsound.c
 # End Source File
 # Begin Source File
- 
+
 SOURCE=..\src\o_init.c
 # End Source File
 # Begin Source File
@@ -966,6 +1027,10 @@ SOURCE=..\win\win32\mnsel.bmp
 # End Source File
 # Begin Source File
 
+SOURCE=..\win\win32\mnselcnt.bmp
+# End Source File
+# Begin Source File
+
 SOURCE=..\win\win32\mnunsel.bmp
 # End Source File
 # Begin Source File
@@ -974,7 +1039,23 @@ SOURCE=..\win\win32\NETHACK.ICO
 # End Source File
 # Begin Source File
 
+SOURCE=..\win\win32\petmark.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\win32\rip.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\win32\slashem.ico
+# End Source File
+# Begin Source File
+
 SOURCE=..\win\win32\small.ico
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\win32\splash.bmp
 # End Source File
 # Begin Source File
 
@@ -1107,6 +1188,447 @@ SOURCE=..\win\win32\winhack.rc
 # Begin Source File
 
 SOURCE=..\win\win32\winMS.h
+# End Source File
+# End Group
+# Begin Group "wnd-gtk"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\win\proxy\dlbh.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\proxy\getopt.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\proxy\glyphmap.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\gtk\gtk.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\gtk\gtkext.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\gtk\gtkextcmd.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\gtk\gtkgetlin.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\gtk\gtkhackrc.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\gtk\gtkint.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\gtk\gtkmap.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\gtk\gtkmenu.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\gtk\gtkmessage.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\gtk\gtkmisc.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\gtk\gtkprefs.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\gtk\gtkstatus.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\gtk\gtktile.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\gtk\gtkyn.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\proxy\mapid.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\proxy\riputil.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\include\winGTK.h
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\win\gtk\xshmmap.c
+
+!IF  "$(CFG)" == "NetHackW - Win32 Release"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Debug"
+
+!ELSEIF  "$(CFG)" == "NetHackW - Win32 GTK Release "
+
+# PROP BASE Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # End Group
 # Begin Source File
