@@ -2359,6 +2359,7 @@ boolean transform_msg;
 	int couldspot = canspotmon(mtmp);
 	struct permonst *olddata = mtmp->data;
 	char oldpet[BUFSZ];
+	boolean alt_mesg = FALSE;	/* Avoid "<rank> turns into a <rank>" */
 
 	Strcpy(oldpet, Monnam(mtmp));  /* Save the old name */
 
@@ -2404,6 +2405,31 @@ boolean transform_msg;
 	}
 
 	if(mdat == mtmp->data) return(0);       /* still the same monster */
+
+	/* [ALI] Detect transforming between player monsters with the
+	 * same rank title to avoid badly formed messages.
+	 */
+	if (transform_msg && is_mplayer(olddata) && is_mplayer(mdat)) {
+	    const struct Role *role;
+	    int i, oldmndx;
+
+	    mndx = monsndx(mdat);
+	    oldmndx = monsndx(olddata);
+	    for (role = roles; role->name.m; role++) {
+		if (role->femalenum == NON_PM)
+		    continue;
+		if ((mndx == role->femalenum && oldmndx == role->malenum) ||
+			(mndx == role->malenum && oldmndx == role->femalenum)) {
+		    /* Find the rank */
+		    for (i = xlev_to_rank(mtmp->m_lev); i >= 0; i--)
+			if (role->rank[i].m) {
+			    /* Only need alternate message if no female form */
+			    alt_mesg = !role->rank[i].f;
+			    break;
+			}
+		}
+	    }
+	}
 	
 	/* WAC - At this point,  the transformation is going to happen */
 	/* Reset values, remove worm tails, change levels...etc. */
@@ -2506,11 +2532,16 @@ boolean transform_msg;
 
 	/* print message if wanted */
 	if (transform_msg && (couldspot || canspotmon(mtmp))) {
+	    if (alt_mesg)
+		pline("%s is suddenly very %s!", Monnam(mtmp),
+			mtmp->female ? "feminine" : "masculine");
+	    else {
 		uchar save_mnamelth = mtmp->mnamelth;
-		
+
 		mtmp->mnamelth = 0;
 		pline("%s turns into %s!", oldpet, a_monnam(mtmp));
 		mtmp->mnamelth = save_mnamelth;
+	    }
 	}
 
 	mon_break_armor(mtmp);

@@ -367,6 +367,7 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -fixed bug 436055: Altar stained with doppelgangen blood.
 -fixed bug 436056: Cavewomen and amulets of change.
 -fixed bug 437609: No Caveman quest artifact?
+-fixed bug 437840: "The curate turns into a curate!"
 
 ver 0.0.6E4F4 [May 2/2001] [Released by Ali]
 -fixed bug 404825: wands of teleportation that explode/zapped at yourself
