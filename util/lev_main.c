@@ -574,6 +574,13 @@ char c;
 		  case 'W'  : return(WATER);
 		  case 'T'	: return (TREE);
 		  case 'F'	: return (IRONBARS);	/* Fe = iron */
+		  case 'Z'  :	/* Kazi */
+#ifdef SINKS
+		      return(TOILET);
+#else
+		      yywarning("Toilets are not allowed in this version!  Ignoring...");
+		      return(ROOM);
+#endif
 	    }
 	return(INVALID_TYPE);
 }

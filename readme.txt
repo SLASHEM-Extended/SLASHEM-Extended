@@ -370,6 +370,7 @@ ver 0.0.6E4F7 [?] [Released by ?]
 -fixed bug 491808: leashed hostile creatures.
 -fixed bug 493896: Bullets not used up when fired upwards.
 -fixed bug 520950: Level generator doesn't support scrawls.
+-fixed bug 520412: Level generator doesn't support toilets.
 
 ver 0.0.6E4F6 [November 30/2001] [Released by Ali]
 -fixed bug 453246: Genetic engineers attacking monsters.

@@ -1,7 +1,5 @@
-
-
-
 LEV_COMP(6)                                           LEV_COMP(6)
+
 
 
 NAME
@@ -18,13 +16,13 @@ DESCRIPTION
        and  produces level files that can be loaded by NetHack at
        runtime.
 
-       The purpose of this tool is to provide NetHack administra-
+       The purpose of this tool is to provide NetHack administra­
        tors  and  implementors  with  a convenient way for adding
        special levels to the game, or  modifying  existing  ones,
        without having to recompile the entire world.
 
        The  -w  option causes lev_comp to perform extra checks on
-       the level and display extra warnings, however these  warn-
+       the level and display extra warnings, however these  warn­
        ings  are  sometimes superfluous, so they are not normally
        displayed.
 
@@ -58,17 +56,6 @@ GRAMMAR
        walled          : BOOLEAN
                        | RANDOM_TYPE
                        ;
-
-
-
-                           16 May 1996                          1
-
-
-
-
-
-LEV_COMP(6)                                           LEV_COMP(6)
-
 
        flags           : /* nothing */
                        | FLAGS_ID ':' flag_list
@@ -124,18 +111,6 @@ LEV_COMP(6)                                           LEV_COMP(6)
                        ;
 
        subroom_def     : SUBROOM_ID ':' room_type ',' light_state ',' subroom_pos ',' room_size ',' string roomfill
-
-
-
-                           16 May 1996                          2
-
-
-
-
-
-LEV_COMP(6)                                           LEV_COMP(6)
-
-
                        ;
 
        room_def        : ROOM_ID ':' room_type ',' light_state ',' room_pos ',' room_align ',' room_size roomfill
@@ -190,18 +165,6 @@ LEV_COMP(6)                                           LEV_COMP(6)
                        ;
 
        secret          : BOOLEAN
-
-
-
-                           16 May 1996                          3
-
-
-
-
-
-LEV_COMP(6)                                           LEV_COMP(6)
-
-
                        | RANDOM_TYPE
                        ;
 
@@ -256,18 +219,6 @@ LEV_COMP(6)                                           LEV_COMP(6)
                        ;
 
        monster_list    : monster
-
-
-
-                           16 May 1996                          4
-
-
-
-
-
-LEV_COMP(6)                                           LEV_COMP(6)
-
-
                        | monster ',' monster_list
                        ;
 
@@ -323,17 +274,6 @@ LEV_COMP(6)                                           LEV_COMP(6)
        object_desc     : chance ':' object_c ',' o_name ',' object_where object_infos
                        ;
 
-
-
-                           16 May 1996                          5
-
-
-
-
-
-LEV_COMP(6)                                           LEV_COMP(6)
-
-
        object_where    : coordinate
                        | CONTAINED
                        ;
@@ -388,18 +328,6 @@ LEV_COMP(6)                                           LEV_COMP(6)
                        ;
 
        teleprt_region  : TELEPRT_ID ':' lev_region ',' lev_region teleprt_detail
-
-
-
-                           16 May 1996                          6
-
-
-
-
-
-LEV_COMP(6)                                           LEV_COMP(6)
-
-
                        ;
 
        branch_region   : BRANCH_ID ':' lev_region ',' lev_region
@@ -453,18 +381,6 @@ LEV_COMP(6)                                           LEV_COMP(6)
        m_name          : string
                        | RANDOM_TYPE
                        ;
-
-
-
-
-                           16 May 1996                          7
-
-
-
-
-
-LEV_COMP(6)                                           LEV_COMP(6)
-
 
        o_name          : string
                        | RANDOM_TYPE
@@ -520,18 +436,6 @@ LEV_COMP(6)                                           LEV_COMP(6)
        place           : coord
                        ;
 
-
-
-
-                           16 May 1996                          8
-
-
-
-
-
-LEV_COMP(6)                                           LEV_COMP(6)
-
-
        monster         : CHAR
                        ;
 
@@ -562,9 +466,9 @@ LEV_COMP(6)                                           LEV_COMP(6)
        NOTE:
        Lines beginning with '#' are considered comments.
 
-       The contents of a "MAP" description of a maze is a rectan-
+       The contents of a "MAP" description of a maze is a rectan­
        gle  showing  the  exact level map that should be used for
-       the given part of a maze.  Each character in the map  cor-
+       the given part of a maze.  Each character in the map  cor­
        responds  to a location on the screen.  Different location
        types are denoted using different ASCII  characters.   The
        following  characters  are recognized.  To give an idea of
@@ -583,21 +487,10 @@ LEV_COMP(6)                                           LEV_COMP(6)
        '{'     a fountain
        '\'     a throne
        'K'     a sink (if SINKS is defined, else a room location)
+       'Z'     a toilet (if SINKS is defined, else a room location)
        '}'     a part of a moat or other deep water
        'P'     a pool
        'L'     lava
-
-
-
-                           16 May 1996                          9
-
-
-
-
-
-LEV_COMP(6)                                           LEV_COMP(6)
-
-
        'W'     water (yes, different from a pool)
        'T'     a tree
        'F'     iron bars
@@ -650,20 +543,8 @@ EXAMPLE
        This  says  that  level  teleports  or  other non-stairway
        arrivals on this level can  land  anywhere  on  the  level
        except  the  area  of  the map.  This shows the use of the
-       ``levregion'' prefix allowed in certain region  specifica-
+       ``levregion'' prefix allowed in certain region  specifica­
        tions.   Normally,  regions  apply only to the most recent
-
-
-
-                           16 May 1996                         10
-
-
-
-
-
-LEV_COMP(6)                                           LEV_COMP(6)
-
-
        MAP specification, but when prefixed  with  ``levregion'',
        one  can refer to any area of the level, regardless of the
        placement of the current MAP in the level.
@@ -675,52 +556,9 @@ SEE ALSO
        dgn_comp(6), nethack(6)
 
 BUGS
-       Probably infinite.  Most importantly,  still  needs  addi-
+       Probably infinite.  Most importantly,  still  needs  addi­
        tional bounds checking.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                           16 May 1996                         11
-
-
+                           16 May 1996                LEV_COMP(6)
