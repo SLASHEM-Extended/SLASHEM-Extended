@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.42 2003-05-31 08:12:43 j_ali Exp $
+  $Id: winGTK.h,v 1.43 2003-08-02 15:32:25 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -258,6 +258,13 @@ struct menu_info_t {
 #endif
 };
 
+#ifdef md5_INCLUDED
+struct text_info_t {
+    md5_state_t md5_state;
+    GtkTextBuffer *buffer;
+};
+#endif
+
 #define NHWF_DISPLAYED		1
 
 typedef struct _NHWindow{
@@ -267,32 +274,38 @@ typedef struct _NHWindow{
     guint hid;
     GtkWidget *w;
     GtkWidget *hbox, *hbox2, *hbox3;
-    GtkWidget *vbox, *vbox2;
+    GtkWidget *vbox;
     GtkWidget *clist;
     GtkWidget *scrolled, *scrolled2;
 
     GtkWidget *frame;
-    GtkWidget *query;
 
     GtkAdjustment *adj, *adj2;
-
-    int	n_subclist;
-    GtkWidget *subclist[20];
-
-    int	n_subframe;
-    GtkWidget *subframe[20];
 
     int	n_button;
     GtkWidget *button[20];
 
     union {
 	struct menu_info_t *Menu_info;	/* menu window info */
+	struct text_info_t *Text_info;	/* text window info */
     } Win_info;
 
 } NHWindow;
 
 /* Defines to use for the window information union. */
 #define menu_information   Win_info.Menu_info
+#define text_information   Win_info.Text_info
+
+#ifdef md5_INCLUDED
+/* This linked list describes non-blocking text windows which may have no
+ * corresponding NetHack window (ie., the game has called destroy_nhwindow).
+ */
+extern struct nbtw {
+    GtkWidget *w;
+    md5_byte_t digest[16];		/* MD5 checksum of window contents */
+    struct nbtw *next;
+} *non_blocking_text_windows;
+#endif
 
 typedef struct _TileTab{
     char *ident;

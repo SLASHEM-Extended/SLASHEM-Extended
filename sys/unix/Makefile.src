@@ -237,8 +237,8 @@ WINBEOBJ =
 #WINBEOBJ = winbe.o NHWindow.o NHMenuWindow.o NHMapWindow.o nhwin.a
 #
 # Files for a proxy interface
-WINPROXYSRC = ../win/proxy/winproxy.c ../win/proxy/callback.c ../win/proxy/md5.c
-WINPROXYOBJ = winproxy.o callback.o md5.o nhwin.a
+WINPROXYSRC = ../win/proxy/winproxy.c ../win/proxy/callback.c
+WINPROXYOBJ = winproxy.o callback.o nhwin.a
 #
 # Common files for proxy window interface and plug-in window interfaces.
 PROXYCOMSRC = ../win/proxy/nhext.c ../win/proxy/nhxdr.c \
@@ -246,15 +246,15 @@ PROXYCOMSRC = ../win/proxy/nhext.c ../win/proxy/nhxdr.c \
 PROXYCOMOBJ = nhext.o nhxdr.o nhextxdr.o nhextio.o compxdr.o
 #
 # Files for the proxy utility modules. These are provided for use with window
-# ports that support the proxy interface. The GTK2 window interface needs
+# ports that support the proxy interface. The GTK window interface needs
 # these files regardless of whether proxy support is enabled or not.
-PROXYUTLSRC = ../win/proxy/dlbh.c ../win/proxy/mapid.c \
+PROXYUTLSRC = ../win/proxy/dlbh.c ../win/proxy/mapid.c ../win/proxy/md5.c \
 	../win/proxy/riputil.c ../win/proxy/getopt.c ../win/proxy/glyphmap.c
-PROXYUTLOBJ = dlbh.o mapid.o riputil.o getopt.o glyphmap.o
+PROXYUTLOBJ = dlbh.o mapid.o md5.o riputil.o getopt.o glyphmap.o
 #
 # Files for plug-in window interfaces. These are needed to support external
 # window ports and provide the interface to the game executable.  Currently,
-# only the GTK2 window interface supports plug-in window interfaces.
+# only the GTK window interface supports plug-in window interfaces.
 PROXYCLNTSRC = ../win/proxy/proxysvc.c ../win/proxy/proxycb.c \
 	../win/proxy/prxymap.c ../win/proxy/prxychar.c ../win/proxy/prxytile.c \
 	../win/proxy/prxyconn.c
@@ -753,9 +753,9 @@ wintext.o: ../win/X11/wintext.c $(HACK_H) ../include/winX.h ../include/xwindow.h
 	$(CC) $(CFLAGS) -c ../win/X11/wintext.c
 winval.o: ../win/X11/winval.c $(HACK_H) ../include/winX.h
 	$(CC) $(CFLAGS) -c ../win/X11/winval.c
-gtk.o: ../win/gtk/gtk.c ../include/winGTK.h $(HACK_H) ../include/nhxdr.h \
-		../include/proxycom.h ../include/func_tab.h ../include/dlb.h \
-		../include/patchlevel.h ../include/proxycb.h
+gtk.o: ../win/gtk/gtk.c ../include/md5.h ../include/winGTK.h $(HACK_H) \
+		../include/nhxdr.h ../include/proxycom.h ../include/func_tab.h \
+		../include/dlb.h ../include/patchlevel.h ../include/proxycb.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtk.c
 gtkgetlin.o: ../win/gtk/gtkgetlin.c ../include/winGTK.h $(HACK_H) \
 		../include/nhxdr.h ../include/proxycom.h

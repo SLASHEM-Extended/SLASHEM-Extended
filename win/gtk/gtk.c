@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.34 2003-05-27 09:48:45 j_ali Exp $
+  $Id: gtk.c,v 1.35 2003-08-02 15:32:25 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -12,6 +12,7 @@
 
 #include <sys/types.h>
 #include <signal.h>
+#include "md5.h"
 #include "winGTK.h"
 #include "wintype.h"
 #include "func_tab.h"
@@ -49,6 +50,8 @@ static void help_je(GtkWidget *w, gpointer data);
 static void help_history(GtkWidget *w, gpointer data);
 static void help_license(GtkWidget *w, gpointer data);
 
+static void text_destroy_all(void);
+
 #define GTK_NORTH	0
 #define GTK_EAST	1
 #define GTK_SOUTH	2
@@ -59,6 +62,7 @@ static void help_license(GtkWidget *w, gpointer data);
 #define GTK_SOUTHWEST	7
 
 NHWindow gtkWindows[MAXWIN];
+struct nbtw *non_blocking_text_windows;
 
 /*
  * The Gtk interface maintains information about most top level windows
@@ -2141,6 +2145,8 @@ GTK_exit_nhwindows(const char *str)
 
     init_select_player(FALSE);
 
+    text_destroy_all();
+
     for(id = 0; id < MAXWIN; id++)
 	if (gtkWindows[id].type != NHW_NONE)
 	    GTK_destroy_nhwindow(id);
@@ -2191,6 +2197,37 @@ GTK_exit_nhwindows(const char *str)
 #endif
 }
 
+static GtkTextTagTable *text_tag_table;
+
+static void
+init_text_nhwindow(NHWindow *w)
+{
+    GtkTextTag *tag;
+    w->text_information =
+      (struct text_info_t *)alloc(sizeof(*w->text_information));
+    md5_init(&w->text_information->md5_state);
+    if (!text_tag_table) {
+	text_tag_table = gtk_text_tag_table_new();
+	tag = gtk_text_tag_new("uline");
+	g_object_set(G_OBJECT(tag), "underline", PANGO_UNDERLINE_SINGLE, NULL);
+	gtk_text_tag_table_add(text_tag_table, tag);
+	g_object_unref(G_OBJECT(tag));
+	tag = gtk_text_tag_new("bold");
+	g_object_set(G_OBJECT(tag), "weight", PANGO_WEIGHT_BOLD, NULL);
+	gtk_text_tag_table_add(text_tag_table, tag);
+	g_object_unref(G_OBJECT(tag));
+	tag = gtk_text_tag_new("blink");
+	gtk_text_tag_table_add(text_tag_table, tag);
+	g_object_unref(G_OBJECT(tag));
+	tag = gtk_text_tag_new("inverse");
+	g_object_set(G_OBJECT(tag), "foreground", "white",
+	  "background", "black", NULL);
+	gtk_text_tag_table_add(text_tag_table, tag);
+	g_object_unref(G_OBJECT(tag));
+    }
+    w->text_information->buffer = gtk_text_buffer_new(text_tag_table);
+}
+
 winid
 GTK_create_nhwindow(int type)
 {
@@ -2227,6 +2264,8 @@ GTK_create_nhwindow(int type)
 	}
 	if (retval < 0)
 	    panic("GTK_create_nhwindow: no free windows!");
+	if (type == NHW_TEXT)
+	    init_text_nhwindow(w);
 	break;
     default:
 	panic("GTK_create_nhwindow: Unknown type (%d)!", type);
@@ -2254,6 +2293,7 @@ GTK_destroy_nhwindow(winid id)
 		    gtk_signal_disconnect(GTK_OBJECT(w->w), w->hid);
 		gtk_widget_destroy(w->w);
 	    }
+	    free(w->text_information);
 	    break;
     }
 
@@ -2288,12 +2328,53 @@ text_clicked(GtkWidget *widget, gpointer data)
     return FALSE;
 }
 
+/*
+ * Used for destroy signal on non-blocking text windows. All we need to do
+ * is remove the window from the linked list of such windows.
+ */
+
+static gint
+text_destroy(GtkWidget *widget, gpointer data)
+{
+    struct nbtw *n = (struct nbtw *)data, *nn;
+    if (n == non_blocking_text_windows)
+	non_blocking_text_windows = n->next;
+    else {
+	for(nn = non_blocking_text_windows; nn; nn = nn->next)
+	    if (nn->next == n) {
+		nn->next = n->next;
+		break;
+	    }
+	if (!nn)
+	    g_warning("Non-blocking text window not in linked list");
+    }
+    free(n);
+}
+
+/*
+ * Used to destroy all non-blocking text windows when main window is destroyed.
+ */
+
+static void
+text_destroy_all(void)
+{
+    struct nbtw *n, *next;
+    for(n = non_blocking_text_windows; n; n = next) {
+	gtk_widget_destroy(n->w);
+	next = n->next;
+	free(n);
+    }
+    non_blocking_text_windows = NULL;
+}
+
 void
 GTK_display_nhwindow(winid id, BOOLEAN_P blocking)
 {
     NHWindow *w = &gtkWindows[id];
+    struct nbtw *n, *nbtw;
     int type = w->type;
     extern int root_height;
+    GtkWidget *tv;
 
     switch(type) {
 	case NHW_STATUS:
@@ -2309,29 +2390,93 @@ GTK_display_nhwindow(winid id, BOOLEAN_P blocking)
 	     * are postponed until now. This allows us to treat blocking
 	     * and non-blocking windows differently.
 	     */
-	    if (blocking) {
+	    if (!blocking) {
+		nbtw = (struct nbtw *) alloc(sizeof(struct nbtw));
+		md5_finish(&w->text_information->md5_state, nbtw->digest);
+		/* See if there already exists a non-blocking text window
+		 * with the same contents and if so present it rather than
+		 * creating a duplicate window.
+		 */
+		for (n = non_blocking_text_windows; n; n = n->next)
+		    if (!memcmp(nbtw->digest, n->digest, sizeof(n->digest))) {
+			gtk_window_present(GTK_WINDOW(n->w));
+			g_object_unref(w->text_information->buffer);
+			w->text_information->buffer = NULL;
+			free(nbtw);
+			return;
+		    }
+		nbtw->next = non_blocking_text_windows;
+		non_blocking_text_windows = nbtw;
+		nbtw->w = w->w = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+		gtk_window_set_transient_for(GTK_WINDOW(w->w),
+		  GTK_WINDOW(main_window));
+	    } else {
+		w->w = nh_gtk_window_dialog(TRUE);
+#if GTK_CHECK_VERSION(1,3,2)
+		gtk_window_set_destroy_with_parent(GTK_WINDOW(w->w), TRUE);
+#endif
+	    }
+	    gtk_widget_set_name(GTK_WIDGET(w->w), "fixed font");
+	    nh_gtk_focus_set_slave_for(GTK_WINDOW(w->w),
+	      GTK_WINDOW(main_window));
+	    w->frame = nh_gtk_new_and_add(gtk_frame_new(NULL), w->w, "");
+	    w->vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), w->frame, "");
+	    w->scrolled =
+	      nh_gtk_new_and_add(gtk_scrolled_window_new(NULL, NULL),
+	      w->vbox, "");
+	    /* We switch to automatic after the window is first displayed.
+	     * This has the effect of sizing the window based on the contents.
+	     */
+	    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(w->scrolled),
+	      GTK_POLICY_NEVER, GTK_POLICY_NEVER);
+	    tv = gtk_text_view_new_with_buffer(w->text_information->buffer);
+	    g_object_unref(w->text_information->buffer);
+	    w->text_information->buffer = NULL;
+	    GTK_WIDGET_UNSET_FLAGS(tv, GTK_CAN_FOCUS);
+	    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(tv), GTK_WRAP_NONE);
+	    gtk_text_view_set_editable(GTK_TEXT_VIEW(tv), FALSE);
+	    gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(tv), FALSE);
+	    gtk_container_add(GTK_CONTAINER(w->scrolled), tv);
+	    w->hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), w->vbox,
+	      "", FALSE, FALSE, NH_PAD);
+	    w->button[0] = nh_gtk_new_and_pack(
+	      gtk_button_new_from_stock(GTK_STOCK_CLOSE), w->hbox, "",
+	      TRUE, FALSE, 0);
+	    GTK_WIDGET_SET_FLAGS(w->button[0], GTK_CAN_DEFAULT);
+	    gtk_widget_grab_default(w->button[0]);
+	    if (!blocking) {
+		gtk_signal_connect(GTK_OBJECT(w->w), "destroy",
+		  GTK_SIGNAL_FUNC(text_destroy), nbtw);
+		gtk_signal_connect(GTK_OBJECT(w->button[0]), "clicked",
+		  GTK_SIGNAL_FUNC(text_clicked), (gpointer)w->w);
+	    } else {
 		w->hid = gtk_signal_connect(GTK_OBJECT(w->w), "destroy",
 		  GTK_SIGNAL_FUNC(default_destroy), &w->w);
 		gtk_signal_connect(GTK_OBJECT(w->button[0]), "clicked",
 		  GTK_SIGNAL_FUNC(blocking_text_clicked), (gpointer)w->w);
-	    } else
-		w->hid = gtk_signal_connect(GTK_OBJECT(w->button[0]),
-		  "clicked", GTK_SIGNAL_FUNC(text_clicked), (gpointer)w->w);
-	    /* Fall through */
+	    }
+	    w->flags |= NHWF_DISPLAYED;
+	    nh_position_popup_dialog(GTK_WIDGET(w->w));
+	    gtk_widget_show_all(w->w);
+	    while(gtk_events_pending())
+		gtk_main_iteration();
+	    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(w->scrolled),
+	      GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+	    nh_position_popup_dialog(GTK_WIDGET(w->w));
+	    if (!blocking)
+		w->w = NULL;		/* Gtk window now independant */
+	    break;
 	case NHW_MENU:
 	    if (w->clist &&
 	      w->clist->requisition.height >= (2 * root_height) / 3)
 		gtk_widget_set_usize(w->clist, -1, (2 * root_height) / 3);
-	    if (type == NHW_MENU)
-		blocking = TRUE;	/* Menus always block */
+	    blocking = TRUE;	/* Menus always block */
 #if 0
 	    if (blocking)
 		gtk_grab_add(w->w);
 #endif
 	    w->flags |= NHWF_DISPLAYED;
 	    gtk_widget_show_all(w->w);
-	    if (!blocking)
-		w->w = NULL;		/* Gtk window now independant */
 	    break;
     }
 
@@ -2353,6 +2498,10 @@ GTK_putstr(winid id, int attr, const char *str)
 {
     const gchar	*text[1];
     NHWindow *w = &gtkWindows[id]; 
+    int len;
+    char *buf, *tag;
+    GtkTextIter iter;
+    GtkTextBuffer *t;
 
     switch (w->type) {
 	case NHW_MESSAGE:
@@ -2369,57 +2518,34 @@ GTK_putstr(winid id, int attr, const char *str)
 	     */
 	    GTK_destroy_menu_window(w);
 	    w->type = NHW_TEXT;
+	    init_text_nhwindow(w);
 	    /* Fall through */
 	case NHW_TEXT:
-	    if (!w->w) {
-		w->w = nh_gtk_window_dialog(TRUE);
-		gtk_widget_set_name(GTK_WIDGET(w->w), "fixed font");
-		nh_position_popup_dialog(GTK_WIDGET(w->w));
-
-		nh_gtk_focus_set_slave_for(GTK_WINDOW(w->w),
-		  GTK_WINDOW(main_window));
-
-		w->frame = nh_gtk_new_and_add(gtk_frame_new(NULL), w->w, "");
-
-		w->vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0),
-		  w->frame, "");
-
-		w->hbox2 = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), w->vbox,
-		  "", FALSE, FALSE, NH_PAD);
-
-		w->clist = nh_gtk_new_and_pack(gtk_clist_new(1), w->hbox2, "",
-		  FALSE, FALSE, NH_PAD);
-		gtk_clist_set_column_auto_resize(GTK_CLIST(w->clist), 0, TRUE);
-
-		w->adj = (GtkAdjustment *)gtk_adjustment_new(
-		  0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-		gtk_clist_set_vadjustment(GTK_CLIST(w->clist), w->adj);
-
-		w->scrolled = nh_gtk_new_and_pack(
-		  gtk_vscrollbar_new(GTK_CLIST(w->clist)->vadjustment),
-		  w->hbox2, "", FALSE, FALSE, NH_PAD);
-
-		w->hbox3 = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), w->vbox,
-		  "", FALSE, FALSE, NH_PAD);
-
-		w->button[0] = nh_gtk_new_and_pack(
-		  gtk_button_new_from_stock(GTK_STOCK_CLOSE), w->hbox3, "",
-		  TRUE, FALSE, 0);
-		GTK_WIDGET_SET_FLAGS(w->button[0], GTK_CAN_DEFAULT);
-		gtk_widget_grab_default(w->button[0]);
+	    len = strlen(str);
+	    md5_append(&w->text_information->md5_state, str, len);
+	    t = w->text_information->buffer;
+	    gtk_text_buffer_get_end_iter(t, &iter);
+	    if (gtk_text_buffer_get_char_count(t) > 0) {
+		buf = (char *)alloc(++len + 1);
+		sprintf(buf, "\n%s", str);
+	    } else
+		buf = (char *)str;
+	    if (attr == ATR_NONE)
+		gtk_text_buffer_insert(t, &iter, buf, len);
+	    else {
+		if (attr == ATR_ULINE)
+		    tag = "uline";
+		else if (attr == ATR_BOLD)
+		    tag = "bold";
+		else if (attr == ATR_BLINK)
+		    tag = "blink";
+		else
+		    tag = "inverse";
+		gtk_text_buffer_insert_with_tags_by_name(t, &iter, buf, len,
+		  tag, NULL);
 	    }
-
-	    text[0] = str;
-	    gtk_clist_append(GTK_CLIST(w->clist), (gchar **)text);
-
-	    if (attr) {
-		gtk_clist_set_foreground(GTK_CLIST(w->clist), 
-		  GTK_CLIST(w->clist)->rows - 1,
-		  GTK_WIDGET(w->clist)->style->bg); 
-		gtk_clist_set_background(GTK_CLIST(w->clist), 
-		  GTK_CLIST(w->clist)->rows - 1,
-		  GTK_WIDGET(w->clist)->style->fg); 
-	    }
+	    if (buf != str)
+		free(buf);
     }
 }
 
