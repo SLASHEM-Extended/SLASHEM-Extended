@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmessage.c,v 1.3 2000-12-15 15:38:10 j_ali Exp $
+  $Id: gtkmessage.c,v 1.4 2000-12-22 14:54:56 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -52,28 +52,32 @@ nh_message_putstr(const char *str)
 
   t = GTK_TEXT(message_text);
 
-  buf = (char *)alloc(strlen(str) + 2);
+  len = strlen(str);
+  buf = (char *)alloc(len + 2);
 
   sprintf(buf, "\n%s", str);
 
+  gtk_text_freeze(t);
+
   if(u.uhpmax > 0 && (((double)u.uhp) / u.uhpmax < 0.1 || u.uhp < 5))
-      gtk_text_insert(t, NULL, &nh_color[MAP_RED], &nh_color[MAP_WHITE], buf, strlen(buf));
+    i = MAP_RED;
   else
-      gtk_text_insert(t, NULL, &nh_color[MAP_BLACK], &nh_color[MAP_WHITE], buf, strlen(buf));
+    i = MAP_BLACK;
+  gtk_text_insert(t, NULL, &nh_color[i], &nh_color[MAP_WHITE], buf, len + 1);
   
   len = gtk_text_get_length(t);
   if(len > NH_TEXT_REMEMBER){
     for(i=0 ; i<len ; ++i)
       if(GTK_TEXT_INDEX(t, i) == '\n'){
+	++i;
+	gtk_text_set_point(t, i);
+	gtk_text_backward_delete(t, i);
+	gtk_text_set_point(t, len - i);
 	break;
       }
-    ++i;
-    gtk_text_freeze(t);
-    gtk_text_set_point(t, i);
-    gtk_text_backward_delete(t, i);
-    gtk_text_set_point(t, len - i);
-    gtk_text_thaw(t);
   }
+  gtk_text_thaw(t);
+  gtk_adjustment_set_value(t->vadj, t->vadj->upper);
 
   free(buf);
 }
