@@ -86,6 +86,7 @@ ver 0.0.7E6F3 [?] [Released by ?]
 -fixed bug 946161: Bad message when two-weaponing against a rust monster
 -fixed bug 946566: Partly eaten more nutritious while raising drained corpses
 -fixed bug 946984: arch-liches are not MR_HITAS*
+-fixed bug 949016: Draining a rotten corpse
 
 See history.txt for changes made in previous versions.
 
