@@ -1,5 +1,5 @@
 /*
-  $Id: gtkextcmd.c,v 1.4 2002-07-23 19:27:44 j_ali Exp $
+  $Id: gtkextcmd.c,v 1.5 2002-10-05 19:22:54 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -101,7 +101,7 @@ void GTK_extcmd_set(int cmd)
 	return;
     else {
 	for(j = 0; j < n_extcmds; j++)
-	    if (!strcmpi(extcmdmap[cmd].txt, extcmds[j])) {
+	    if (!nh_strncmpi(extcmdmap[cmd].txt, extcmds[j], -1)) {
 		extcmd = j;
 		return;
 	    }

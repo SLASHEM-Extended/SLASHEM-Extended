@@ -1,4 +1,4 @@
-/* $Id: prxymap.c,v 1.1 2002-09-12 18:21:48 j_ali Exp $ */
+/* $Id: prxymap.c,v 1.2 2002-10-05 19:22:55 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -8,16 +8,6 @@
 #include "winproxy.h"
 #include "proxysvr.h"
 #include "proxycb.h"
-
-/* #define DEBUG */
-
-#define LEVEL_MAPPING		0
-#define LEVEL_FLAGS		1
-#define LEVEL_SUBMAPPING	2
-#define LEVEL_GLYPH		3
-#define LEVEL_BASED_MAPPING	4
-#define LEVEL_BASED_SUBMAPPING	5
-#define LEVEL_BASED_GLYPH	6
 
 static void
 proxy_set_description(struct proxy_glyph_mapping *datum, int level,
@@ -46,7 +36,7 @@ proxy_set_symdef(struct proxy_glyph_map_info *info, int level,
      * the symbol of the monster mappings (colours could also be
      * overridden if so desired).
      */
-    if (level < LEVEL_BASED_MAPPING) {
+    if (level < PROXY_LEVEL_BASED_MAPPING) {
 	rgb = RGBSYM_RGB(info->current.rgbsym);
 	if (rgb == RGBSYM_RGB(info->glyph_map->transparent))
 	    rgb = RGBSYM_RGB(symdef->rgbsym);
@@ -79,40 +69,40 @@ struct proxy_glyph_map_info *info;
 	else
 	    /* Forward references to mappings are not supported */
 	    panic("Glyph mapping %d based on undefined mapping", info->mi);
-	proxy_set_symdef(info, LEVEL_MAPPING, &base->symdef);
-	proxy_set_symdef(info, LEVEL_BASED_MAPPING, &mapping->symdef);
+	proxy_set_symdef(info, PROXY_LEVEL_MAPPING, &base->symdef);
+	proxy_set_symdef(info, PROXY_LEVEL_BASED_MAPPING, &mapping->symdef);
     } else {
 	base = NULL;
-	proxy_set_symdef(info, LEVEL_MAPPING, &mapping->symdef);
+	proxy_set_symdef(info, PROXY_LEVEL_MAPPING, &mapping->symdef);
     }
     /* We ignore flags from our base mapping (if any)
      * and always use our own.
      */
-    proxy_set_description(&info->current, LEVEL_FLAGS, mapping->flags);
+    proxy_set_description(&info->current, PROXY_LEVEL_FLAGS, mapping->flags);
     info->current.alt_glyph = mapping->alt_glyph;
     if (!mapping->n_submappings) {
 	if (!base)
 	    panic("Glyph mapping %d has no base and no sub-mappings", info->mi);
-	proxy_set_symdef(info, LEVEL_SUBMAPPING,
+	proxy_set_symdef(info, PROXY_LEVEL_SUBMAPPING,
 	  &base->submappings[info->bsmi].symdef);
-	proxy_set_symdef(info, LEVEL_GLYPH,
+	proxy_set_symdef(info, PROXY_LEVEL_GLYPH,
 	  &base->submappings[info->bsmi].glyphs[info->bgi]);
     } else if (base) {
 	if (!base->n_submappings)
 	    panic("Glyph mapping %d based on mapping with no sub-mappings", 
 	      info->mi);
-	proxy_set_symdef(info, LEVEL_SUBMAPPING,
+	proxy_set_symdef(info, PROXY_LEVEL_SUBMAPPING,
 	  &base->submappings[info->bsmi].symdef);
-	proxy_set_symdef(info, LEVEL_GLYPH,
+	proxy_set_symdef(info, PROXY_LEVEL_GLYPH,
 	  &base->submappings[info->bsmi].glyphs[info->bgi]);
-	proxy_set_symdef(info, LEVEL_BASED_SUBMAPPING,
+	proxy_set_symdef(info, PROXY_LEVEL_BASED_SUBMAPPING,
 	  &mapping->submappings[info->smi].symdef);
-	proxy_set_symdef(info, LEVEL_BASED_GLYPH,
+	proxy_set_symdef(info, PROXY_LEVEL_BASED_GLYPH,
 	  &mapping->submappings[info->smi].glyphs[info->gi]);
     } else {
-	proxy_set_symdef(info, LEVEL_SUBMAPPING,
+	proxy_set_symdef(info, PROXY_LEVEL_SUBMAPPING,
 	  &mapping->submappings[info->smi].symdef);
-	proxy_set_symdef(info, LEVEL_GLYPH,
+	proxy_set_symdef(info, PROXY_LEVEL_GLYPH,
 	  &mapping->submappings[info->smi].glyphs[info->gi]);
     }
     return &info->current;

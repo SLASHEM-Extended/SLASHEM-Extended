@@ -62,6 +62,9 @@ INPUT_RECORD ir;
  */
 static int TTYInitialized = FALSE;
 
+/* [ALI] Flag for whether hConIn is actually a console */
+static DWORD cmode;
+
 /* Flag for whether NetHack was launched via the GUI, not the command line.
  * The reason we care at all, is so that we can get
  * a final RETURN at the end of the game when launched from the GUI
@@ -209,14 +212,7 @@ void
 nttty_open()
 {
         HANDLE hStdOut;
-        DWORD cmode;
         long mask;
-        
-	/* Initialize the function pointer that points to
-         * the kbhit() equivalent, in this TTY case nttty_kbhit()
-         */
-
-	nt_kbhit = nttty_kbhit;
 
         /* The following 6 lines of code were suggested by 
          * Bob Landau of Microsoft WIN32 Developer support,
@@ -225,9 +221,16 @@ nttty_open()
          * the NT program manager. M. Allison
          */
         hStdOut = GetStdHandle( STD_OUTPUT_HANDLE );
-        GetConsoleScreenBufferInfo( hStdOut, &origcsbi);
-        GUILaunched = ((origcsbi.dwCursorPosition.X == 0) &&
+        if (GetConsoleScreenBufferInfo( hStdOut, &origcsbi))
+	    GUILaunched = ((origcsbi.dwCursorPosition.X == 0) &&
                            (origcsbi.dwCursorPosition.Y == 0));
+	else {
+	    GUILaunched = 0;
+	    origcsbi.srWindow.Left = 0;
+	    origcsbi.srWindow.Right = 80;
+	    origcsbi.srWindow.Top = 0;
+	    origcsbi.srWindow.Bottom = 25;
+	}
         if ((origcsbi.dwSize.X <= 0) || (origcsbi.dwSize.Y <= 0))
             GUILaunched = 0;
 	hConIn = GetStdHandle(STD_INPUT_HANDLE);
@@ -243,7 +246,8 @@ nttty_open()
 			FILE_SHARE_READ |FILE_SHARE_WRITE,
 			0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,0);
 #endif       
-	GetConsoleMode(hConIn,&cmode);
+	if (!GetConsoleMode(hConIn,&cmode))
+		cmode = 0;
 #ifndef NO_MOUSE_ALLOWED
 	mask = ENABLE_PROCESSED_INPUT | ENABLE_LINE_INPUT |
 	       ENABLE_ECHO_INPUT | ENABLE_WINDOW_INPUT;   
@@ -254,10 +258,17 @@ nttty_open()
 	/* Turn OFF the settings specified in the mask */
 	cmode &= ~mask;
 	cmode |= ENABLE_MOUSE_INPUT;
-	SetConsoleMode(hConIn,cmode);
-	if (!SetConsoleCtrlHandler((PHANDLER_ROUTINE)CtrlHandler, TRUE)) {
+	if (!SetConsoleMode(hConIn,cmode))
+		/* Unable to set control mode */
+		cmode = 0;
+	if (!SetConsoleCtrlHandler((PHANDLER_ROUTINE)CtrlHandler, TRUE))
 		/* Unable to set control handler */
-		cmode = 0; 	/* just to have a statement to break on for debugger */
+		cmode = 0;
+	if (cmode) {
+		/* Initialize the function pointer that points to
+		 * the kbhit() equivalent, in this TTY case nttty_kbhit()
+		 */
+		nt_kbhit = nttty_kbhit;
 	}
 	get_scr_size();
 	TTYInitialized = TRUE;
@@ -266,10 +277,13 @@ nttty_open()
 void
 get_scr_size()
 {
-	GetConsoleScreenBufferInfo(hConOut, &csbi);
-  
-	LI = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
-	CO = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+	if (GetConsoleScreenBufferInfo(hConOut, &csbi)) {
+	    LI = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+	    CO = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+	} else {
+	    LI = 25;
+	    CO = 80;
+	}
 
 	if ( (LI < 25) || (CO < 80) ) {
 		COORD newcoord;
@@ -416,6 +430,10 @@ tgetch()
 	boolean valid = 0;
 	int ch;
 	valid = 0;
+	if (!cmode) {
+	    char c;
+	    ch = ReadFile(hConIn,&c,1,&count,NULL) && count ? c : EOF;
+	} else
 	while (!valid)
 	{
 	   ReadConsoleInput(hConIn,&ir,1,&count);
@@ -436,6 +454,11 @@ int *x, *y, *mod;
 	int altseq;
 	int done = 0;
 	boolean valid = 0;
+	if (!cmode) {
+	    *mod = 0;
+	    return ReadFile(hConIn,&ch,1,&count,NULL) && count ? ch : '\032';
+	}
+	else
 	while (!done)
 	{
 	    count = 0;
@@ -691,7 +714,7 @@ cl_eos()
 		cl_end();
 #else
 	if (GetConsoleScreenBufferInfo(hConOut,&csbi)) {
-	    int ccnt;
+	    DWORD ccnt;
 	    COORD newcoord;
 	    
 	    newcoord.X = 0;

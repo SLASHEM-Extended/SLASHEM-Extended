@@ -1302,6 +1302,7 @@ E int NDECL(dosuspend);
 # endif /* TOS */
 # ifdef WIN32
 E char *FDECL(get_username, (int *));
+E int FDECL(set_binary_mode, (int, int));
 E void FDECL(nt_regularize, (char *));
 E int NDECL((*nt_kbhit));
 E void FDECL(Delay, (int));

@@ -1,4 +1,4 @@
-/* $Id: proxysvc.c,v 1.7 2002-09-01 21:58:19 j_ali Exp $ */
+/* $Id: proxysvc.c,v 1.8 2002-10-05 19:22:55 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -762,10 +762,10 @@ extern struct window_ext_procs GTK_ext_procs;
 
 int
 win_proxy_svr_init(read_h, write_h)
-int read_h, write_h;
+void *read_h, *write_h;
 {
-    proxy_svc_connection = nhext_subprotocol1_init(server_read, (void *)read_h,
-      server_write, (void *)write_h, services);
+    proxy_svc_connection = nhext_subprotocol1_init(server_read, read_h,
+      server_write, write_h, services);
     if (proxy_svc_connection < 0) {
 	fprintf(stderr, "proxy_svc: Failed to initialize sub-protocol1.\n");
 	return FALSE;
@@ -785,4 +785,10 @@ win_proxy_svr_iteration()
     if (!i)
 	fprintf(stderr, "proxy_svc: Ignoring packet with zero ID\n");
     return i;
+}
+
+char *
+win_proxy_svr_get_failed_packet(int *nb)
+{
+    return nhext_subprotocol1_get_failed_packet(proxy_svc_connection, nb);
 }

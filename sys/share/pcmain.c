@@ -179,6 +179,18 @@ char *argv[];
 # endif
 	ami_wininit_data();
 #endif
+#if defined(WIN32) && defined(PROXY_GRAPHICS)
+	/* Handle --proxy before options, if supported */
+	if (argc > 1 && !strcmp(argv[1], "--proxy")) {
+	    argv[1] = argv[0];
+	    argc--;
+	    argv++;
+	    set_binary_mode(0, O_RDONLY | O_BINARY);
+	    set_binary_mode(1, O_WRONLY | O_BINARY);
+	    choose_windows("proxy");
+	    lock_windows(TRUE);		/* Can't be overridden from options */
+	}
+#endif
 	initoptions();
 
 #if defined(TOS) && defined(TEXTCOLOR)

@@ -1,5 +1,5 @@
 /*
-  $Id: gtktile.c,v 1.6 2002-09-13 19:22:47 j_ali Exp $
+  $Id: gtktile.c,v 1.7 2002-10-05 19:22:54 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -311,7 +311,6 @@ ceil_sqrt(int c)
 static int
 x_tile_load_map(TileTab *t)
 {
-    int retval;
     struct proxycb_get_glyph_mapping_res *glyph_map;
     struct proxy_tilemap *tile_map;
     glyph_map = proxy_cb_get_glyph_mapping();
@@ -330,7 +329,7 @@ x_tile_load_map(TileTab *t)
     GTK_glyph2tile = proxy_map_glyph2tile(glyph_map, tile_map);
     proxy_cb_free_glyph_mapping(glyph_map);
     proxy_free_tilemap(tile_map);
-    return retval;
+    return 1;
 }
 #endif
 

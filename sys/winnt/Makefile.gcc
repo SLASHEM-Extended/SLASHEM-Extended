@@ -40,7 +40,7 @@ DDAT  = ../dat
 DUTIL = ../util
 DSRC  = ../src
 DINCL = ../include
-MW32GTK = /mingw32/gtk
+MW32GTK = /mingw32/gtk2
 
 # Normal dos commands get confused by \\
 DAT  = ..\dat
@@ -51,7 +51,7 @@ SRC  = ..\src
 SSHR = ..\sys\share
 UTIL = ..\util
 WTTY = ..\win\tty
-WGTK = ..\win\gtk
+WGTK = ..\win\gtk2
 WSHR = ..\win\share
 # From GIMP
 GNUDLL = f:\progra~1\common~1\gnu
@@ -140,12 +140,10 @@ SUPPRESS_GRAPHICS =
 #	USE_GTK = 1.2		Define GTK_GRAPHICS
 #	USE_GTK = 2.0		Define GTK_GRAPHICS and GTK_V20
 #	USE_GTK = proxy		Define GTK_GRAPHICS, GTK_V20 and PROXY_GRAPHICS
-#
-# Note: Only N or 1.2 is supported in the stable distribution.
 
 #USE_GTK = N
-USE_GTK = 1.2
-#USE_GTK = 2.0
+#USE_GTK = 1.2
+USE_GTK = 2.0
 #USE_GTK = proxy
 
 #
@@ -205,7 +203,7 @@ endif
 
 # Select Windowing system(s) below
 # GTK windowing system
-#WINGTKCFLAGS=`gtk-config --cflags`
+#WINGTKCFLAGS=`pkg-config gtk+-2.0 --cflags`
 #WINGTKCFLAGS=-Ic:/mingw32/src/gtk+ -Ic:/mingw32/src/glib -Ic:/mingw32/src/gtk+/gdk
 #WINGTKCFLAGS=-I$(MW32GTK)/include
 WINGTKCFLAGS=-I$(MW32GTK)
@@ -227,9 +225,9 @@ WINTTYSRC = ../win/tty/getline.c ../win/tty/termcap.c ../win/tty/topl.c \
 	../win/tty/wintty.c 
 WINTTYOBJ = getline.o termcap.o topl.o wintty.o 
 #
-# files for a GTK port
+# files for a GTK 1.2 port
 # (tile.c is included in the defn. for WINCSRC, below)
-ifeq ($(GTK_TARGET),1.2)
+ifeq ($(USE_GTK),1.2)
 WINGTKSRC = ../win/gtk/gtk.c ../win/gtk/gtkgetlin.c ../win/gtk/gtkstatus.c \
 	../win/gtk/gtkmenu.c ../win/gtk/gtkyn.c ../win/gtk/gtkextcmd.c \
 	../win/gtk/gtkmap.c ../win/gtk/gtkmessage.c ../win/gtk/gtkmisc.c \
@@ -238,9 +236,9 @@ WINGTKOBJ1 = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
 	gtkmap.o gtkmessage.o gtkmisc.o xshmmap.o
 WINGTKOBJ2 = xshm.o
 endif
-# files for a GTK 2.0 port (not included in stable distribution)
+# files for a GTK 2.0 port
 # (tile.c is included in the defn. for WINCSRC, below)
-ifeq ($(GTK_TARGET),2.0)
+ifeq ($(USE_GTK),2.0)
 WINGTKSRC = ../win/gtk2/gtk.c ../win/gtk2/gtkgetlin.c ../win/gtk2/gtkstatus.c \
 	../win/gtk2/gtkmenu.c ../win/gtk2/gtkyn.c ../win/gtk2/gtkextcmd.c \
 	../win/gtk2/gtkmap.c ../win/gtk2/gtkmessage.c ../win/gtk2/gtkmisc.c \
@@ -250,14 +248,29 @@ WINGTKOBJ1 = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
 	gtkmap.o gtkmessage.o gtkmisc.o xshmmap.o
 WINGTKOBJ2 = gtktile.o gtkint.o gtkext.o
 endif
-#
-# Files for a proxy interface -- not ready for prime time
+# files for a GTK 2.0 proxy port
+# (tile.c is included in the defn. for WINCSRC, below)
 ifeq ($(USE_GTK),proxy)
-WINPROXYSRC = ../win/proxy/winproxy.c ../win/proxy/nhext.c \
-	../win/proxy/nhxdr.c ../win/proxy/nhextxdr.c ../win/proxy/compxdr.c
-WINPROXYOBJ = winproxy.o nhext.o nhxdr.o nhextxdr.o compxdr.o
+WINGTKSRC = ../win/gtk2/gtk.c ../win/gtk2/gtkgetlin.c ../win/gtk2/gtkstatus.c \
+	../win/gtk2/gtkmenu.c ../win/gtk2/gtkyn.c ../win/gtk2/gtkextcmd.c \
+	../win/gtk2/gtkmap.c ../win/gtk2/gtkmessage.c ../win/gtk2/gtkmisc.c \
+	../win/gtk2/xshmmap.c ../win/gtk2/gtktile.c ../win/gtk2/panic.c \
+	../win/gtk2/gtkext.c
+WINGTKOBJ1 = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
+	gtkmap.o gtkmessage.o gtkmisc.o xshmmap.o
+WINGTKOBJ2 = gtktile.o panic.o gtkext.o
 endif
 #
+# Files for a proxy interface.
+ifeq ($(USE_GTK),proxy)
+WINPROXYSRC = ../win/proxy/winproxy.c ../win/proxy/callback.c
+WINPROXYOBJ = winproxy.o callback.o
+endif
+#
+# Common files for proxy window interface and window servers.
+PROXYCOMSRC = ../win/proxy/nhext.c ../win/proxy/nhxdr.c \
+	../win/proxy/nhextxdr.c ../win/proxy/compxdr.c
+PROXYCOMOBJ = nhext.o nhxdr.o nhextxdr.o compxdr.o
 # Files for the proxy utility modules. These are provided for use with window
 # ports that support the proxy interface. The GTK2 window interface needs
 # these files regardless of whether proxy support is enabled or not.
@@ -272,32 +285,42 @@ endif
 # Currently, only the GTK2 window interface supports proxy window servers.
 ifeq ($(USE_GTK),proxy)
 PROXYSVRSRC = ../win/proxy/proxysvc.c ../win/proxy/proxycb.c \
-	../win/proxy/callback.c
-PROXYSVROBJ = proxysvc.o proxycb.o callback.o
+	../win/proxy/prxymap.c ../win/proxy/prxychar.c ../win/proxy/prxytile.c
+PROXYSVROBJ = proxysvc.o proxycb.o prxymap.o prxychar.o prxytile.o
 endif
 
 ifneq ($(USE_GTK),N)
 ifeq ($(USE_GTK),1.2)
 WINSRC = $(WINTTYSRC) $(WINGTKSRC)
-WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ1) $(WINGTKOBJ2) tile.o
+WOBJ01 = $(WINTTYOBJ)
+WOBJ02 = $(WINGTKOBJ1)
+WOBJ03 = $(WINGTKOBJ2)
+WOBJ04 = tile.o
 endif
 ifeq ($(USE_GTK),2.0)
 WINSRC = $(WINTTYSRC) $(WINGTKSRC) $(PROXYUTLSRC)
-WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ1) $(WINGTKOBJ2) $(PROXYUTLOBJ) tile.o
+WOBJ01 = $(WINTTYOBJ)
+WOBJ02 = $(WINGTKOBJ1)
+WOBJ03 = $(WINGTKOBJ2)
+WOBJ04 = $(PROXYUTLOBJ)
+WOBJ05 = tile.o
 endif
 ifeq ($(USE_GTK),proxy)
-WINSRC = $(WINTTYSRC) $(WINGTKSRC) $(PROXYUTLSRC) $(WINPROXYSRC) \
-	$(PROXYSVRSRC)
-WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ1) $(WINGTKOBJ2) $(PROXYUTLOBJ) \
-	$(WINPROXYOBJ) $(PROXYSVROBJ) tile.o
+WINSRC = $(WINTTYSRC) $(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYCOMSRC)
+WOBJ01 = $(WINTTYOBJ)
+WOBJ02 = $(WINPROXYOBJ)
+WOBJ03 = $(PROXYUTLOBJ)
+WOBJ04 = $(PROXYCOMOBJ)
+WOBJ05 = tile.o
 endif
 CCOMPILE = $(CC) -fnative-struct
 else
 WINSRC = $(WINTTYSRC)
-WINOBJ = $(WINTTYOBJ)
+WOBJ01 = $(WINTTYOBJ)
 GTKGCCFLAGS = 
 CCOMPILE = $(CC)
 endif
+WINOBJ = $(WOBJ01) $(WOBJ02) $(WOBJ03) $(WOBJ04) $(WOBJ05)
 
 #
 # You must also change the definition of WINLIB (below) to match these
@@ -306,9 +329,9 @@ WINTTYLIB =
 # libraries for GTK
 # WINGTKLIB = `gtk-config --libs`
 ifeq ($(GTK_TARGET),2.0)
-WINGTKLIB1 = $(MW32GTK)/lib/libgtk-win32-1.3.dll.a $(MW32GTK)/lib/libgdk-win32-1.3.dll.a 
-WINGTKLIB2 = $(MW32GTK)/lib/libglib-1.3.dll.a $(MW32GTK)/lib/libgdk_pixbuf-1.3.dll.a
-WINGTKLIB3 = $(MW32GTK)/lib/libgobject-1.3.dll.a $(MW32GTK)/lib/libpango.dll.a
+WINGTKLIB1 = $(MW32GTK)/lib/libgtk-win32-2.0.dll.a $(MW32GTK)/lib/libgdk-win32-2.0.dll.a 
+WINGTKLIB2 = $(MW32GTK)/lib/libglib-2.0.dll.a $(MW32GTK)/lib/libgdk_pixbuf-2.0.dll.a
+WINGTKLIB3 = $(MW32GTK)/lib/libgobject-2.0.dll.a $(MW32GTK)/lib/libpango-1.0.dll.a
 endif
 ifeq ($(GTK_TARGET),1.2)
 WINGTKLIB1 = $(MW32GTK)/src/gtk+/gtk/libgtk-1.3.a
@@ -324,7 +347,11 @@ WINPROXYLIB = libwsock32.a
 endif
 
 ifneq ($(USE_GTK),N)
-WINLIB = $(WINTTYLIB) $(WINGTKLIB1) $(WINGTKLIB2) $(WINGTKLIB3) $(WINPROXYLIB)
+ifeq ($(USE_GTK),proxy)
+WINLIB = $(WINTTYLIB) $(WINPROXYLIB)
+else
+WINLIB = $(WINTTYLIB) $(WINGTKLIB1) $(WINGTKLIB2) $(WINGTKLIB3)
+endif
 else
 WINLIB = $(WINTTYLIB)
 endif
@@ -557,12 +584,15 @@ ifneq ($(USE_GTK),N)
 #	$(COPY) $(MW32GTK)\src\gtk+\gtk\gtk*.dll $(GAMEDIR)
 #	$(COPY) $(MW32GTK)\src\libiconv-1.3\src\iconv*.dll $(GAMEDIR)
 #	$(COPY) $(MW32GTK)\src\intl\gnu*.dll $(GAMEDIR)
-	$(COPY) $(GNUDLL)\\glib*.dll $(GAMEDIR)
+	$(COPY) $(GNUDLL)\\libglib*.dll $(GAMEDIR)
 	$(COPY) $(GNUDLL)\\iconv*.dll $(GAMEDIR)
-	$(COPY) $(GNUDLL)\\gdk*.dll $(GAMEDIR)
-	$(COPY) $(GNUDLL)\\gtk*.dll $(GAMEDIR)
-	$(COPY) $(GNUDLL)\\gmodule*.dll $(GAMEDIR)
-	$(COPY) $(GNUDLL)\\gnu*.dll $(GAMEDIR)
+	$(COPY) $(GNUDLL)\\libgdk*.dll $(GAMEDIR)
+	$(COPY) $(GNUDLL)\\libgtk*.dll $(GAMEDIR)
+	$(COPY) $(GNUDLL)\\libgmodule*.dll $(GAMEDIR)
+	$(COPY) $(GNUDLL)\\libintl*.dll $(GAMEDIR)
+	$(COPY) $(GNUDLL)\\libpango*.dll $(GAMEDIR)
+	$(COPY) $(GNUDLL)\\libatk*.dll $(GAMEDIR)
+	$(COPY) $(GNUDLL)\\libgobject*.dll $(GAMEDIR)
 ifeq ($(GTK_TARGET),2.0)
 	$(RCOPY) $(MW32GTK)\etc $(GAMEDIR)
 	-$(RDEL) $(GAMEDIR)\lib
@@ -618,25 +648,12 @@ $(GAME).lnk: $(ALLOBJ)
 	@echo INPUT( $(VOBJ23) )>> $@
 	@echo INPUT( $(SOBJ)   )>> $@
 	@echo INPUT( $(VVOBJ)  )>> $@
-	@echo INPUT( $(WINTTYOBJ)  )>> $@
-ifneq ($(USE_GTK),N)
-	@echo INPUT( $(WINGTKOBJ1)  )>> $@
-	@echo INPUT( $(WINGTKOBJ2)  )>> $@
-ifeq ($(GTK_TARGET),2.0)
-	@echo INPUT( $(PROXYUTLOBJ)  )>> $@
-endif
-ifeq ($(USE_GTK),proxy)
-	@echo INPUT( $(WINPROXYOBJ)  )>> $@
-	@echo INPUT( $(PROXYSVROBJ)  )>> $@
-endif
-	@echo INPUT( $(WINGTKLIB1)  )>> $@
-	@echo INPUT( $(WINGTKLIB2)  )>> $@
-	@echo INPUT( $(WINGTKLIB3)  )>> $@
-ifeq ($(USE_GTK),proxy)
-	@echo INPUT( $(WINPROXYLIB)  )>> $@
-endif
-	@echo INPUT( tile.o  )>> $@
-endif
+	@echo INPUT( $(WOBJ01) )>> $@
+	@echo INPUT( $(WOBJ02) )>> $@
+	@echo INPUT( $(WOBJ03) )>> $@
+	@echo INPUT( $(WOBJ04) )>> $@
+	@echo INPUT( $(WOBJ05) )>> $@
+	@echo INPUT( $(WINLIB) )>> $@
 ifeq ($(USE_NHALLOC),Y)
 	@echo INPUT( nhalloc.a )>> $@
 endif
@@ -828,6 +845,12 @@ nhalloc.dll:	nhalloc.def nhalloc.o panic.o
 
 nhalloc.a:	nhalloc.def
 	dlltool --dllname nhalloc.dll --def nhalloc.def --output-lib nhalloc.a -k
+
+nhproxy.a:	$(PROXYSVROBJ) $(PROXYCOMOBJ)
+	$(DEL) nhproxy.a
+	ar rc nhproxy.a $(PROXYSVROBJ)
+	ar r nhproxy.a $(PROXYCOMOBJ)
+	ranlib nhproxy.a
 
 #
 #  Makedefs Stuff
@@ -1504,6 +1527,18 @@ proxycb.o: ../win/proxy/proxycb.c $(HACK_H) ../include/nhxdr.h \
 		../include/winproxy.h ../include/proxycb.h
 	$(COPY) ..\win\proxy\proxycb.c .
 	$(CCOMPILE) $(CFLAGS) -c proxycb.c
+prxymap.o: ../win/proxy/prxymap.c $(HACK_H) ../include/winproxy.h \
+		../include/proxysvr.h ../include/proxycb.h
+	$(COPY) ..\win\proxy\prxymap.c .
+	$(CCOMPILE) $(CFLAGS) -c prxymap.c
+prxychar.o: ../win/proxy/prxychar.c $(HACK_H) ../include/winproxy.h \
+		../include/proxysvr.h ../include/proxycb.h
+	$(COPY) ..\win\proxy\prxychar.c .
+	$(CCOMPILE) $(CFLAGS) -c prxychar.c
+prxytile.o: ../win/proxy/prxytile.c $(HACK_H) ../include/winproxy.h \
+		../include/proxysvr.h ../include/proxycb.h
+	$(COPY) ..\win\proxy\prxytile.c .
+	$(CCOMPILE) $(CFLAGS) -c prxytile.c
 
 # src dependencies
 allmain.o:  $(HACK_H)

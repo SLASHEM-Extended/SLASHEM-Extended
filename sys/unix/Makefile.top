@@ -91,11 +91,15 @@ CNF_SHARE_GLND = gltile16.png gltile32.png gltile64.png gllogo.png glrip.png \
                  glfont8.png glfont14.png glfont20.png glfont22.png
 # for Gnome
 CNF_SHARE_GNOMEND = x11bigtiles x11tiles pet_mark.xbm rip.xpm mapbg.xpm
+# for Proxy
+CNF_SHARE_PROXYND = x11big3dtiles x11bigtiles x11tiles \
+	x11big3dtiles.map x11bigtiles.map x11tiles.map
 
 # CNF_SHARE_DATND = $(CNF_SHARE_X11ND)
 # CNF_SHARE_DATND = $(CNF_SHARE_QTND)
 # CNF_SHARE_DATND = $(CNF_SHARE_GTKND)
 # CNF_SHARE_DATND = $(CNF_SHARE_GLND)
+# CNF_SHARE_DATND = $(CNF_SHARE_PROXYND)
 CNF_SHARE_DATND =
 
 CNF_SHARE_DATD = data oracles options quest.dat rumors

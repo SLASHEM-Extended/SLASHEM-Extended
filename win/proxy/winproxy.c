@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.10 2002-09-01 21:58:19 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.11 2002-10-05 19:22:55 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -22,6 +22,10 @@ int proxy_rawprint_win = WIN_ERR;
 /* Current interface mode */
 
 unsigned long proxy_interface_mode = 0;
+
+/* Flag to advise raw print functions not to attempt to use proxy */
+
+static int in_proxy_init = 0;
 
 /* Interface definition for plug-in windowing ports */
 struct window_procs proxy_procs = {
@@ -449,7 +453,8 @@ const char *str;
 	proxy_putstr(proxy_rawprint_win, 0, str);
 	return;
     }
-    if (active++ || !nhext_rpc(EXT_FID_RAW_PRINT, 1, EXT_STRING(str), 0)) {
+    if (active++ || in_proxy_init ||
+      !nhext_rpc(EXT_FID_RAW_PRINT, 1, EXT_STRING(str), 0)) {
 	puts(str);
 	(void) fflush(stdout);
     }
@@ -465,7 +470,8 @@ const char *str;
 	proxy_putstr(proxy_rawprint_win, ATR_BOLD, str);
 	return;
     }
-    if (active++ || !nhext_rpc(EXT_FID_RAW_PRINT_BOLD, 1, EXT_STRING(str), 0)) {
+    if (active++ || in_proxy_init ||
+      !nhext_rpc(EXT_FID_RAW_PRINT_BOLD, 1, EXT_STRING(str), 0)) {
 	puts(str);
 	(void) fflush(stdout);
     }
@@ -848,21 +854,38 @@ proxy_init()
 #endif	/* WIN32 */
 
 #ifndef PROXY_INTERNAL
+
+#ifdef DEBUG
+#define READ_F	debug_read
+#define WRITE_F	debug_write
+#else
+#define READ_F	proxy_read
+#define WRITE_F	proxy_write
+#endif
+
+#ifdef WIN32
+#define READ_H	((void *)_get_osfhandle(0))
+#define WRITE_H	((void *)_get_osfhandle(1))
+#else
+#define READ_H	((void *)0)
+#define WRITE_H	((void *)1)
+#endif
+
 static int
 proxy_init()
 {
-    proxy_connection =
-#ifndef DEBUG
-      nhext_subprotocol1_init(proxy_read, (void *)0,
-      proxy_write, (void *)1, proxy_callbacks);
-#else
-      nhext_subprotocol1_init(debug_read, (void *)0,
-      debug_write, (void *)1, proxy_callbacks);
-#endif
+    proxy_connection = nhext_subprotocol1_init(READ_F, READ_H,
+      WRITE_F, WRITE_H, proxy_callbacks);
     if (proxy_connection < 0)
 	return FALSE;
     return TRUE;
-}
+} 
+
+#undef READ_F
+#undef WRITE_F
+#undef READ_H
+#undef WRITE_H
+
 #endif	/* !PROXY_INTERNAL */
 
 #ifdef DEBUG
@@ -947,10 +970,11 @@ unsigned int len;
 void
 win_proxy_init()
 {
+    in_proxy_init = TRUE;
     set_glyph_mapping();
-    if (!proxy_init())
+    if (!proxy_init() || !nhext_rpc(EXT_FID_INIT, 0, 0))
 	panic("Proxy: Failed to initialize");
-    nhext_rpc(EXT_FID_INIT, 0, 0);
+    in_proxy_init = FALSE;
 }
 
 int

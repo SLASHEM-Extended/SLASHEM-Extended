@@ -1,4 +1,4 @@
-/* $Id: nhext.c,v 1.8 2002-09-01 21:58:19 j_ali Exp $ */
+/* $Id: nhext.c,v 1.9 2002-10-05 19:22:54 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -60,6 +60,18 @@ void nhext_subprotocol1_end_c(int cn)
     free(nhext_connections[cn].out);
     nhext_connections[cn].in = NULL;
     nhext_connections[cn].out = NULL;
+}
+
+/*
+ * This function is available for callers to use if sub-protocol 1 fails.
+ * It returns a pointer to the received packet which was being processed
+ * at the time.
+ */
+
+char *nhext_subprotocol1_get_failed_packet(int cn, int *nb)
+{
+    *nb = nhext_connections[cn].reply_len;
+    return nhext_connections[cn].reply;
 }
 
 int nhext_rpc_vparams(NhExtXdr *xdrs, int no, va_list *app)

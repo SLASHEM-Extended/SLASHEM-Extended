@@ -1,0 +1,124 @@
+# $Id: Makefile.w32,v 1.1 2002-10-05 19:22:54 j_ali Exp $
+# Copyright (c) Slash'EM Development Team 2002
+# NetHack may be freely redistributed.  See license for details.
+#
+# This makefile is for making gtkhack; a seperate program which talks
+# to a game executable using the NhExt protocol.
+#
+# You need version 2.11 or later of GNU binutils for the linker to find
+# the Gtk+ dll import files from the output of pkg-config. This is included
+# in MinGW version 1.1 and later. The makefile was tested against version
+# 2.0.0 of MinGW, available from http://www.mingw.org/.
+
+CPP = cpp
+CC = gcc
+LINK = gcc
+
+# Where the MinGW version of Gtk+ 2.0 is installed.
+MW32GTK = /mingw32/gtk2
+
+# The MinGW switch needed to specify Microsoft packing & alignment rules
+# (use gcc --target-help if you're not sure)
+MS_BITFIELDS = -mms-bitfields
+# MS_BITFIELDS = -fnative-struct
+
+# Where the NhProxy library is installed.
+NHPROXYLIB = ..\..\src
+# and it's associated header files.
+NHPROXYINC = ..\..\include
+
+# The pkg-config executable
+PKG_CONFIG = $(MW32GTK)/bin/pkg-config
+# A semi-colon seperated list of directories to add to the path when
+# calling pkg-config so that MS-Windows can find the DLLs needed.
+PKG_CONFIG_DLL = $(MW32GTK)/lib
+# A semi-colon seperated list of directories to add to PKG_CONFIG_PATH
+# so that pkg-config can find the package config files (eg., gtk+-2.0.pc).
+PKG_CONFIG_PATH = $(MW32GTK)/lib/pkgconfig
+# The pkg-config commands
+GTKCFLAGS = $(PKG_CONFIG) --cflags gtk+-2.0
+GTKLIBS = $(PKG_CONFIG) --libs gtk+-2.0
+
+# Debugging
+CFLAGS = -g -I$(NHPROXYINC) $(MS_BITFIELDS)
+LFLAGS = -g
+
+#CFLAGS = -O -I$(NHPROXYINC) $(MS_BITFIELDS)
+#LFLAGS =
+
+LIBS =
+
+# ----------------------------------------
+#
+# Nothing below this line should have to be changed.
+
+# timestamps for primary header files, matching src/Makefile
+CONFIG_H = ../../src/config.h-t
+HACK_H  = ../../src/hack.h-t
+
+all:	gtkhack.exe
+
+FORCE:
+
+cc-gtk.h:	FORCE
+	@echo #define PKG_CONFIG_DLL "$(PKG_CONFIG_DLL)" > cc-gtk.h
+	@echo #define PKG_CONFIG_PATH "$(PKG_CONFIG_PATH)" >> cc-gtk.h
+	@echo #define GTKCFLAGS "$(GTKCFLAGS)" >> cc-gtk.h
+	@echo #define GTKLIBS "$(GTKLIBS)" >> cc-gtk.h
+
+cc-gtk.exe:	cc-gtk.c cc-gtk.h
+	$(CC) $(CFLAGS) cc-gtk.c -o cc-gtk.exe
+
+.c.o:
+	cc-gtk -c $(CC) $(CFLAGS) -c $<
+
+CSRC = gtkhack.c gtk.c gtkgetlin.c gtkstatus.c gtkmenu.c gtkyn.c gtkextcmd.c \
+	gtkmap.c gtkmessage.c gtkmisc.c gtktile.c xshmmap.c gtkext.c panic.c
+OBJS01 = gtkhack.o gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o
+OBJS02 = gtkmap.o gtkmessage.o gtkmisc.o gtktile.o xshmmap.o gtkext.o panic.o
+
+gtkhack.exe:	cc-gtk.exe $(OBJS01) $(OBJS02) $(NHPROXYLIB)/nhproxy.a
+	@echo INPUT( $(OBJS01) )> tmp.lnk
+	@echo INPUT( $(OBJS02) )>> tmp.lnk
+	@echo INPUT( $(NHPROXYLIB)/nhproxy.a )>> tmp.lnk
+	cc-gtk -l $(LINK) $(LFLAGS) -o $@ tmp.lnk $(LIBS)
+	@$(RM) tmp.lnk
+
+clean:
+	$(RM) *.o gtkhack.exe
+
+spotless:	clean
+
+# DO NOT DELETE THIS LINE OR CHANGE ANYTHING BEYOND IT
+
+# config.h timestamp
+$(CONFIG_H): ../../include/config.h
+	touch $(CONFIG_H)
+# hack.h timestamp
+$(HACK_H): ../../include/hack.h
+	touch $(HACK_H)
+#
+gtkhack.o: gtkhack.c ../../include/winGTK.h ../../include/proxysvr.h \
+		../../include/proxycb.h
+gtk.o: gtk.c ../../include/winGTK.h ../../include/wintype.h ../../include/func_tab.h \
+		../../include/dlb.h ../../include/patchlevel.h ../../include/proxycb.h
+gtkgetlin.o: gtkgetlin.c ../../include/winGTK.h
+gtkstatus.o: gtkstatus.c ../../include/winGTK.h
+gtkmenu.o: gtkmenu.c ../../include/winGTK.h ../../include/winproxy.h \
+		../../include/patchlevel.h
+gtkyn.o: gtkyn.c ../../include/winGTK.h
+gtkextcmd.o: gtkextcmd.c ../../include/winGTK.h ../../include/proxycb.h \
+		../../include/func_tab.h
+gtkmap.o: gtkmap.c ../../include/winGTK.h ../../include/dlb.h \
+		../../include/patchlevel.h ../../include/decl.h ../../include/proxycb.h \
+		../../include/proxysvr.h
+gtkmessage.o: gtkmessage.c ../../include/winGTK.h
+gtkmisc.o: gtkmisc.c ../../include/winGTK.h ../../include/proxycb.h
+gtktile.o: gtktile.c ../../include/winGTK.h ../../include/dlb.h ../../include/proxycb.h \
+		../../include/proxysvr.h
+xshmmap.o: xshmmap.c ../../include/winGTK.h
+gtkext.o: gtkext.c ../../include/winGTK.h ../../include/winproxy.h
+panic.o: panic.c $(CONFIG_H)
+# DEPENDENCIES MUST END AT END OF FILE
+# IF YOU PUT STUFF HERE IT WILL GO AWAY
+# see Makefile.unx

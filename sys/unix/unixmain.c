@@ -125,6 +125,16 @@ char *argv[];
 #ifdef LINUX
 	check_linux_console();
 #endif
+#ifdef PROXY_GRAPHICS
+	/* Handle --proxy before options, if supported */
+	if (argc > 1 && !strcmp(argv[1], "--proxy")) {
+	    argv[1] = argv[0];
+	    argc--;
+	    argv++;
+	    choose_windows("proxy");
+	    lock_windows(TRUE);         /* Can't be overridden from options */
+	}
+#endif
 	initoptions();
 	init_nhwindows(&argc,argv);
 	exact_username = whoami();

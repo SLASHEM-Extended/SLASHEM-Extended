@@ -1,7 +1,17 @@
-The proxy window interface is far from finished. None of the
-configurations described below are supported. Some of them may work -
-others do not. Not all of the configurations listed will make it into
-the final version.
+The proxy window interface allows the game to be built with support
+for external window interfaces. These have many advantages over
+internal interfaces: they can be added later by groups other than
+the dev-team with no need for changes to the game source; they can
+run in seperate processes and even on seperate machines; they can
+run as different users (which avoids security problems when the
+game is run as setuid or setgid).
+
+External window interfaces are not without their disadvantages.
+There is an overhead associated with the NhExt protocol and more
+information needs to be shared (since less can be assumed). This
+takes time to do, especially during startup.
+
+The following configurations currently exist:
 
 CLIENT/SERVER
 
@@ -25,58 +35,22 @@ Client:
 
 Server:
 	WINDOW		The window interface (eg., GTK 2.0)
-	PROXYSVR	Server side proxy support
-	PROXYCOM	Common proxy support
-	HACKLIB		Common hack library
+	NHPROXY		Server side proxy support
 
 To build:
-	1. Configure src/Makefile for GTK 2.0 use
-	   (WINGTKCONFIG, WINGTKSRC, WINGTKOBJ, WINLIB)
+	1. Configure toplevel Makefile for proxy use (CNF_SHARE_DATND)
 	2. Configure config.h as follows:
 		Comment out GTK_GRAPHICS
 		Define PROXY_GRAPHICS, but not PROXY_INTERNAL
 		Define GTK_V20 and GTK_PROXY inside
 		  #ifdef GTK_GRAPHICS ... #endif
-	3. Add panic and remove gtkint modules from the WINGTK system
-	4. Run "make depend" in src
-	5. Define WINSRC, WINOBJ and WINLIB as follows:
-		WINSRC = $(WINTTYSRC) $(WINPROXYSRC) \
-			$(PROXYUTLSRC) $(PROXYCOMSRC)
-		WINOBJ = $(WINTTYOBJ) $(WINPROXYOBJ) \
-			$(PROXYUTLOBJ) $(PROXYCOMOBJ)
-		WINLIB = $(WINTTYLIB)
-	6. Build client by make all, make install as normal
-	7. Build server by make slashem-gtk
-
-INTERNAL
-
-This configuration is intended for testing the proxy interface. It
-uses one executable and one process (which removes most if not all
-advantages of the proxy interface).  It's advantage is that it will
-compile and run even before all the linker issues have been resolved
-with the client/server configuration.
-
-To build:
-	1. Configure src/Makefile for GTK 2.0 use
-	   (WINGTKCONFIG, WINGTKSRC, WINGTKOBJ, WINLIB)
-	2. Configure config.h as follows:
-		Define GTK_GRAPHICS
-		Define PROXY_GRAPHICS and PROXY_INTERNAL
-		Define GTK_V20 and GTK_PROXY
-	3. Add gtkint and remove panic modules from the WINGTK system
-	4. Run "make depend" in src
-	5. Define WINSRC, WINOBJ and WINLIB as follows:
-		WINSRC = $(WINTTYSRC) $(WINGTKSRC) $(WINPROXYSRC) \
-			$(PROXYUTLSRC) $(PROXYCOMSRC) $(PROXYSVRSRC)
-		WINOBJ = $(WINTTYOBJ) $(WINGTKSRC) $(WINPROXYOBJ) \
-			$(PROXYUTLOBJ) $(PROXYCOMOBJ) $(PROXYSVROBJ)
-		WINLIB = $(WINTTYLIB) $(WINGTKLIB)
-	6. Build by make all, make install as normal
-
-Build no longer supported (packet fragmentation causes deadlock -
-this could be worked around, but since this configuration was only
-ever intended for testing and the client/server configuration now
-works to an acceptable level there seems little point).
+	3. Configure src/Makefile for proxy use
+	   (WINSRC, WINOBJ, WINLIB)
+	4. Build game by "make all", "make install" as normal
+	5. Build proxy library by "make nhproxy.a" in src
+	6. Build gtkhack by "make -f Makefile.unx all" in win/gtk2
+	   (Replace Makefile.unx with the appropriate makefile
+	    for your platform.)
 
 SINGLE EXECUTABLE
 

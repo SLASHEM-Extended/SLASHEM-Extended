@@ -1,4 +1,4 @@
-/* $Id: prxytile.c,v 1.2 2002-09-12 18:21:48 j_ali Exp $ */
+/* $Id: prxytile.c,v 1.3 2002-10-05 19:22:55 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -198,18 +198,18 @@ proxy_map_glyph(struct proxy_tilemap *tile_map,
 
 #ifdef DEBUG
 static short
-proxy_log_mapping(int glyph, int tile, struct proxy_tilemap *tile_map, struct proxy_glyph_description *desc)
+proxy_log_mapping(int glyph, int tile, struct proxy_tilemap *tile_map, struct proxy_glyph_mapping *mapping)
 {
     int i, j, k;
     fprintf(stderr, "glyph %d", glyph);
     if (desc) {
 	fputs(" \"", stderr);
-	for(i = j = 0; i < desc->no_descs; i++) {
-	    if (!desc->descs[i] || !*desc->descs[i])
+	for(i = j = 0; i < mapping->no_descs; i++) {
+	    if (!mapping->descs[i] || !*mapping->descs[i])
 		continue;
 	    if (j)
 		fputs(", ", stderr);
-	    fputs(desc->descs[i], stderr);
+	    fputs(mapping->descs[i], stderr);
 	    j++;
 	}
 	fputc('"', stderr);
@@ -237,14 +237,14 @@ proxy_log_mapping(int glyph, int tile, struct proxy_tilemap *tile_map, struct pr
 	fputs(" not mapped\n", stderr);
 }
 
-#define PROXY_MAP_GLYPH(glyph, tile, tile_map, desc) \
+#define PROXY_MAP_GLYPH(glyph, tile, tile_map, mapping) \
 	if (1) { \
 	    int PROXY_MAP_GLYPH_gn = (glyph); \
 	    glyph2tile[PROXY_MAP_GLYPH_gn] = (tile); \
-	    proxy_log_mapping(PROXY_MAP_GLYPH_gn, tile, tile_map, desc); \
+	    proxy_log_mapping(PROXY_MAP_GLYPH_gn, tile, tile_map, mapping); \
 	} else
 #else	/* DEBUG */
-#define PROXY_MAP_GLYPH(glyph, tile, tile_map, desc) \
+#define PROXY_MAP_GLYPH(glyph, tile, tile_map, mapping) \
 	(glyph2tile[(glyph)] = (tile))
 #endif	/* DEBUG */
 

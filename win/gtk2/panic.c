@@ -1,5 +1,5 @@
 /*
-  $Id: panic.c,v 1.2 2002-09-01 21:58:19 j_ali Exp $
+  $Id: panic.c,v 1.3 2002-10-05 19:22:54 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -89,6 +89,7 @@ pline VA_DECL(const char *, line)
 #endif	/* USE_STDARG | USE_VARARG */
 
 	char pbuf[BUFSZ];
+	extern int GTK_initialized;
 /* Do NOT use VA_START and VA_END in here... see above */
 
 	if (!line || !*line) return;
@@ -96,19 +97,13 @@ pline VA_DECL(const char *, line)
 	    Vsprintf(pbuf,line,VA_ARGS);
 	    line = pbuf;
 	}
-#if 0	/* FIXME */
-	if (!iflags.window_inited) {
-	    raw_print(line);
-	    return;
+	if (!GTK_initialized) {
+	    puts(line);
+	    (void) fflush(stdout);
+	} else {
+	    nh_map_flush();
+	    nh_message_putstr(line);
 	}
-#ifndef MAC
-	if (no_repeat && !strcmp(line, toplines))
-	    return;
-#endif /* MAC */
-	if (vision_full_recalc) vision_recalc(0);
-	if (u.ux) flush_screen(1);		/* %% */
-#endif
-	nh_message_putstr(line);
 }
 
 /*VARARGS1*/
@@ -117,7 +112,7 @@ impossible VA_DECL(const char *, s)
 	VA_START(s);
 	VA_INIT(s, const char *);
 	vpline(s,VA_ARGS);
-	pline("Program in disorder - perhaps you'd better #quit.");
+	pline("External interface in disorder - perhaps you'd better #quit.");
 	VA_END();
 }
 

@@ -1,4 +1,4 @@
-/* $Id: winproxy.h,v 1.8 2002-09-01 21:58:18 j_ali Exp $ */
+/* $Id: winproxy.h,v 1.9 2002-10-05 19:22:54 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -88,6 +88,7 @@ E int FDECL(nhext_subprotocol1_init,
     (nhext_io_func, void *, nhext_io_func, void *, struct nhext_svc *));
 E void NDECL(nhext_subprotocol1_end);
 E void FDECL(nhext_subprotocol1_end_c, (int));
+E char *FDECL(nhext_subprotocol1_get_failed_packet, (int, int *));
 E int VDECL(nhext_rpc_params, (NhExtXdr *xdrs, int, ...));
 E int VDECL(nhext_rpc, (unsigned short, ...));
 E int VDECL(nhext_rpc_c, (int, unsigned short, ...));

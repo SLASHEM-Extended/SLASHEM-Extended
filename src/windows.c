@@ -124,11 +124,25 @@ const char *s;
     puts(s);
 }
 
+static int windows_lock = FALSE;
+
+int
+lock_windows(flag)
+int flag;
+{
+    int retval = windows_lock;
+    windows_lock = flag;
+    return retval;
+}
+
 void
 choose_windows(s)
 const char *s;
 {
     register int i;
+
+    if (windows_lock)
+	return;
 
     for(i=0; winchoices[i].procs; i++)
 	if (!strcmpi(s, winchoices[i].procs->name)) {

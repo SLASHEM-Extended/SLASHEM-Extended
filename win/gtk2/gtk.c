@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.21 2002-09-01 21:58:19 j_ali Exp $
+  $Id: gtk.c,v 1.22 2002-10-05 19:22:54 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -22,7 +22,7 @@
 #endif
 #include "proxycb.h"
 
-static int	initialized;
+int	GTK_initialized;
 static int	display_inventory_needed;
 static int	in_topten;
 
@@ -1847,7 +1847,7 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
     bot_set_handler(GTK_ext_status);
 #endif
 
-    initialized = 1;
+    GTK_initialized = 1;
 
     gtk_widget_hide(credit_window);
     gtk_widget_destroy(credit_window);
@@ -2421,7 +2421,7 @@ GTK_number_pad(int state)
 void
 GTK_delay_output()
 {
-    if (initialized)
+    if (GTK_initialized)
     {
 	delay_finished = 0;
 	gtk_timeout_add(50L, delay_timeout, 0);
@@ -2591,39 +2591,67 @@ GTK_raw_print_bold(const char *str)
 }
 
 #if defined(GTK_PROXY) && !defined(PROXY_INTERNAL)
-int
-main(int argc, char **argv)
+/*
+ * Some utility functions that are normally provided by NetHack.
+ */
+
+char *
+eos(char *s)
 {
-    char *s,*opts;
-    int to_game[2],from_game[2];
-    opts = getenv("SLASHEMOPTIONS");
-    if (!opts) opts = getenv("NETHACKOPTIONS");
-    if (!opts) opts = getenv("HACKOPTIONS");
-    if (opts) {
-	s=(char *)alloc(strlen(opts)+18);
-	Sprintf(s,"%s,windowtype:proxy",opts);
-	putenv(s);
-    }
-    else
-	putenv("HACKOPTIONS=windowtype:proxy");
-    if (pipe(to_game) || pipe(from_game))
-	panic("%s: Can't create NhExt stream", argv[0]);
-    if (!fork()) {
-	dup2(to_game[0],0);
-	dup2(from_game[1],1);
-	close(to_game[1]);
-	close(from_game[0]);
-	execvp("slashem",argv);
-	perror("slashem");
-	_exit(127);
-    }
-    else {
-	close(to_game[0]);
-	close(from_game[1]);
-	if (!win_proxy_svr_init(from_game[0],to_game[1]))
-	    panic("%s: Failed to start sub-protocol1", argv[0]);
-	for(;;)
-	    (void)win_proxy_svr_iteration();
-    }
+    while(*s)
+	s++;
+    return s;
 }
-#endif
+
+int
+getyear()
+{
+    time_t t;
+    struct tm *tm;
+    (void)time(&t);
+    tm = localtime(&t);
+    return tm->tm_year + 1900;
+}
+
+long *
+alloc(bytes)
+unsigned int bytes;
+{
+    void *p;
+    p = malloc(bytes);
+    if (!p)
+	panic("GtkHack: Memory allocation failure; cannot get %u bytes", bytes);
+    return (long *)p;
+}
+
+char
+highc(c)		/* force 'c' into uppercase */
+char c;
+{
+    return((char)(('a' <= c && c <= 'z') ? (c & ~040) : c));
+}
+
+char
+lowc(c)			/* force 'c' into lowercase */
+char c;
+{
+    return((char)(('A' <= c && c <= 'Z') ? (c | 040) : c));
+}
+
+int
+nh_strncmpi(s1, s2, n)	/* case insensitive counted string comparison */
+const char *s1, *s2;
+int n;
+{
+    register char t1, t2;
+
+    while (n--) {
+	if (!*s2) return (*s1 != 0);    /* s1 >= s2 */
+	else if (!*s1) return -1;       /* s1  < s2 */
+	t1 = lowc(*s1++);
+	t2 = lowc(*s2++);
+	if (t1 != t2) return (t1 > t2) ? 1 : -1;
+    }
+    return 0;                           /* s1 == s2 */
+}
+#endif	/* GTK_PROXY && !PROXY_INTERNAL */

@@ -2,10 +2,14 @@
 /* Copyright (c) NetHack PC Development Team 1993, 1994 */
 /* NetHack may be freely redistributed.  See license for details. */
 
+/* $Id: winnt.c,v 1.4 2002-10-05 19:22:54 j_ali Exp $ */
+/* Modifications copyright (c) Slash'EM Development Team 2002 */
+
 /*
  *  WIN32 system functions.
  *
  *  Initial Creation: Michael Allison - January 31/93
+ *  Add set_binary_mode: J. Ali Harlow - October 5/02
  *
  */
 
@@ -26,12 +30,16 @@
 /*
  * The following WIN32 API routines are used in this file.
  *
+ * CloseHandle
+ * DuplicateHandle
+ * GetCurrentProcess
  * GetDiskFreeSpace
  * GetVolumeInformation
  * GetUserName
  * FindFirstFile
  * FindNextFile
  * FindClose
+ * SetStdHandle
  *
  */
 
@@ -192,6 +200,45 @@ int *lan_username_size;
 	return username_buffer;
 }
 
+/*
+ * This is used in pcmain.c to switch standard I/O to binary mode.
+ */
+int
+set_binary_mode(fd, mode)
+int fd, mode;
+{
+    int dfd, retval;
+    HANDLE h, dh;
+    /*
+     * Force the setting of binary mode by re-opening the file descriptor
+     * (Microsoft's supplied setmode() doesn't work).
+     */
+    h = (HANDLE)_get_osfhandle(fd);
+    if (h == INVALID_HANDLE_VALUE)
+	return FALSE;
+    if (!DuplicateHandle(GetCurrentProcess(), h, GetCurrentProcess(), &dh,
+      0, FALSE, DUPLICATE_SAME_ACCESS))
+	return FALSE;
+    switch(fd) {
+	case 0:
+	    SetStdHandle(STD_INPUT_HANDLE, dh);
+	    break;
+	case 1:
+	    SetStdHandle(STD_OUTPUT_HANDLE, dh);
+	    break;
+	case 2:
+	    SetStdHandle(STD_ERROR_HANDLE, dh);
+	    break;
+    }
+    dfd = _open_osfhandle((long)dh, mode);
+    if (dfd < 0) {
+	CloseHandle(dh);
+	return FALSE;
+    }
+    retval = (dup2(dfd, fd) >= 0);
+    close(dfd);
+    return retval;
+}
 
 # if 0
 char *getxxx()
