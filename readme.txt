@@ -126,6 +126,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -Updated tilesets to use latest version of Mitsuhiro Itakura's tiles.
 -Applied patch 467847 (updated): Prettier GTK buttons & status highlight.
 -GtkHack: Added connections dialogs.
+-fixed bug 731418: #twoweaponing?
 
 See history.txt for changes made in previous versions.
 

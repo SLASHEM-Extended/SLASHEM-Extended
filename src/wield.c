@@ -493,20 +493,33 @@ const char *verb;	/* "rub",&c */
 
 /* WAC
  * For the purposes of SLASH'EM, artifacts should be wieldable in either hand
- * It should be possible to twoweapon in any form that can wield weapons
  */
 int
 can_twoweapon()
 {
+	char buf[BUFSZ];
+	boolean disallowed_by_race;
+	boolean disallowed_by_role;
 	struct obj *otmp;
 
 	if (!could_twoweap(youmonst.data) && (uwep || uswapwep)) {
 	    if (Upolyd)
 		You_cant("use two weapons in your current form.");
-	    else
+	    else {
+		disallowed_by_role = P_MAX_SKILL(P_TWO_WEAPON_COMBAT) < P_BASIC;
+		disallowed_by_race = youmonst.data->mattk[1].aatyp != AT_WEAP;
+		*buf = '\0';
+		if (!disallowed_by_role)
+		    Strcpy(buf, disallowed_by_race ? urace.noun : urace.adj);
+		if (disallowed_by_role || !disallowed_by_race) {
+		    if (!disallowed_by_role)
+			Strcat(buf, " ");
+		    Strcat(buf, (flags.female && urole.name.f) ?
+			    urole.name.f : urole.name.m);
+		}
 		pline("%s aren't able to use two weapons at once.",
-		      makeplural((flags.female && urole.name.f) ?
-				 urole.name.f : urole.name.m));
+			makeplural(upstart(buf)));
+	    }
 	} else if ((uwep && bimanual(uwep)) || (uswapwep && bimanual(uswapwep))) {
 	    otmp = (uwep && bimanual(uwep)) ? uwep : uswapwep;
 	    pline("%s isn't one-handed.", Yname2(otmp));

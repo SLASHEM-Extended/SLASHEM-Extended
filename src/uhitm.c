@@ -35,6 +35,9 @@ static int rolls[2][2];
 /* Used to flag attacks caused by Stormbringer's maliciousness. */
 static boolean override_confirmation = 0;
 
+/* Used to control whether Drow's sleep attack should succeed. */
+static boolean barehanded_hit = 0;
+
 /* WAC for mhit,  two weapon attacking */
 #define HIT_UWEP 	1
 #define HIT_USWAPWEP 	2
@@ -2156,8 +2159,10 @@ register struct attack *mattk;
 			break;
 		    }
 		}
+
 		if (!negated && !mdef->msleeping &&
-			    sleep_monst(mdef, rnd(10), -1)) {
+			(mattk->aatyp != AT_WEAP || barehanded_hit) &&
+			sleep_monst(mdef, rnd(10), -1)) {
 		    if (!Blind)
 			pline("%s is put to sleep by you!", Monnam(mdef));
 		    slept_monst(mdef);
@@ -2650,6 +2655,7 @@ register int tmp;
 	    
 	    switch(mattk->aatyp) {
 		case AT_WEAP:
+use_weapon:	
 	/* Certain monsters don't use weapons when encountered as enemies,
 	 * but players who polymorph into them have hands or claws and thus
 	 * should be able to use weapons.  This shouldn't prohibit the use
@@ -2658,30 +2664,27 @@ register int tmp;
 	/* Potential problem: if the monster gets multiple weapon attacks,
 	 * we currently allow the player to get each of these as a weapon
 	 * attack.  Is this really desirable?
-	     * [WAC] See Above ...  anyways,  this was changed in 3.3.0 so that
-	     * only attack 0 would give a weapon attack...
+	 * [WAC] See Above ...  anyways,  this was changed in 3.3.0 so that
+	 * only attack 0 would give a weapon attack...
 	 */
-use_weapon:	
 			if (used_uwep && (!u.twoweap || used_uswapwep)) {
-				/* Gone through all your weapon attacks already
-				 *  -> Recycle
-				 *
-				 * The way things now work is that you only
-				 * get half of your weapon attacks.
-				 * However,  if you #twoweapon, you attack twice
-				 * (so you end up getting them all)
-				 * This does not consider the possibility of
-				 * an odd number of hands.
-	 */
-				used_uwep = used_uswapwep = 0;
-				break;
+			    /* Gone through all your weapon attacks already
+			     *  -> Recycle
+			     *
+			     * The way things now work is that you only
+			     * get half of your weapon attacks.
+			     * However, if you #twoweapon, you attack twice
+			     * (so you end up getting them all)
+			     * This does not consider the possibility of
+			     * an odd number of hands.
+			     */
+			    used_uwep = used_uswapwep = 0;
+			    break;
 			}
-			
 			if (u.twoweap) {
-				if (used_uwep) mhit = HIT_USWAPWEP;
-				else mhit = HIT_UWEP|HIT_USWAPWEP;
+			    if (used_uwep) mhit = HIT_USWAPWEP;
+			    else mhit = HIT_UWEP|HIT_USWAPWEP;
 			} else mhit = HIT_UWEP;
-			
 
 			dhit = mhit; /* Clear the miss counter as attacks miss */
 			tmp1 = tmp2 = tmp;
@@ -2690,11 +2693,11 @@ use_weapon:
 			pline("%i/20", tmp);
 #endif
 
-			if (mhit & HIT_UWEP)
-			{
+			if (mhit & HIT_UWEP) {
 			    if (uwep) tmp1 = tmp + hitval(uwep, mon);
 			    tohit(UWEP_ROLL) = tmp1;
-			    if (tmp1 <= (dice(UWEP_ROLL) = rnd(20)) && !u.uswallow)
+			    if (tmp1 <= (dice(UWEP_ROLL) = rnd(20)) &&
+				    !u.uswallow)
 				dhit &= ~HIT_UWEP; /* missed */
 				
 			    if (tmp1 > dice(UWEP_ROLL)) exercise(A_DEX, TRUE);
@@ -2703,22 +2706,28 @@ use_weapon:
 #endif
 			    used_uwep = TRUE;
 			}
-	
+
 			if ((mhit & HIT_USWAPWEP) && u.twoweap) {
-				if (uswapwep) tmp2 = tmp + hitval(uswapwep, mon) - 2;
+			    if (uswapwep)
+				tmp2 = tmp + hitval(uswapwep, mon) - 2;
 
-				tohit(USWAPWEP_ROLL) = tmp2;
+			    tohit(USWAPWEP_ROLL) = tmp2;
 
-				if (tmp2 <= (dice(USWAPWEP_ROLL) = rnd(20)) && !u.uswallow)
-					dhit &= ~HIT_USWAPWEP;
+			    if (tmp2 <= (dice(USWAPWEP_ROLL) = rnd(20)) &&
+				    !u.uswallow)
+				dhit &= ~HIT_USWAPWEP;
 
-				if (tmp2 > dice(USWAPWEP_ROLL)) exercise(A_DEX, TRUE);
+			    if (tmp2 > dice(USWAPWEP_ROLL))
+				exercise(A_DEX, TRUE);
 #ifdef DEBUG
-				pline("((%i/20))", tmp2);
+			    pline("((%i/20))", tmp2);
 #endif
-				used_uswapwep = TRUE;
+			    used_uswapwep = TRUE;
 			}
 
+			if (dhit && mattk->adtyp == AD_SLEE)
+			    barehanded_hit = (dhit & HIT_UWEP) && !uwep ||
+			      (dhit & HIT_USWAPWEP) && !uswapwep;
 
 #if 0 /* Old code */
 			if (uwep) {
@@ -2726,20 +2735,17 @@ use_weapon:
 			    hittmp += weapon_hit_bonus(uwep);
 			    tmp += hittmp;
 			}
-			
 			if (tmp > (dice(UWEP_ROLL) = rnd(20)) || u.uswallow)
-				dhit = HIT_UWEP;
+			    dhit = HIT_UWEP;
 			else dhit = 0;
 			/* KMH -- Don't accumulate to-hit bonuses */
 			if (uwep) tmp -= hittmp;
 #endif
-			
 			/* Enemy dead, before any special abilities used */
 			if (!known_hitum(mon,mhit,&dhit,mattk)) {
 			    sum[i] = 2;
 			    break;
 			} else sum[i] = dhit;
-			
 			/* might be a worm that gets cut in half */
 			if (m_at(u.ux+u.dx, u.uy+u.dy) != mon) return((boolean)(nsum != 0));
 			/* Do not print "You hit" message, since known_hitum
