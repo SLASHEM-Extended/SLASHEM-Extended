@@ -40,26 +40,10 @@
 
 The development of version 0.0.7 of Slash'EM started with version 0.0.6E5
 (yes, we realise our version numbers are a little odd - it made sense at
-the time!). This is intended to be one of the last alpha versions. We are
-asking for comments on the new features over the months of June and July
-2003 with a view to making any last changes which are needed before
-releasing the first beta version.
+the time!). It is now in beta development so that we can find and fix the
+remaining bugs before releasing the first stable version.
 
-If you do have comments to make then please either submit a feature
-request (if you know exactly what it is you think the game should do
-differently) via the offical RFE page:
-
-http://sourceforge.net/tracker/?group_id=9746&atid=359746
-
-If, on the other hand, you know you don't like something but aren't quite
-sure how to improve it then please discuss it on the development forum:
-
-http://sourceforge.net/forum/forum.php?forum_id=30378
-
-(If you don't have web access, then use the slashem-discuss mailing list,
-instead; see below.)
-
-Please log bugs via the offical bug page:
+If you do find any bugs then please submit a report via the offical bug page:
 
 http://sourceforge.net/bugs/?group_id=9746
 
@@ -84,15 +68,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E2 [July 5/2003] [Released by Ali]
--fixed bug 759709: Some orcs get unwarranted food.
--fixed bug 754921: won't compile pure gtk.
--fixed bug 653195: Level teleport out of Black Market.
--fixed bug 707053: Poly in shop causes crash.
--fixed bug 620074: Spitting #monster collapses dungeon.
--Proxy: Add md5sum callback to support file caching by external interfaces.
--Proxy: Fix minor syntax errors in ext_protocol.html.
--Proxy: Relax limits on buffer sizes to improve download speed.
+ver 0.0.7E3 [?] [Released by ?]
 
 See history.txt for changes made in previous versions.
 

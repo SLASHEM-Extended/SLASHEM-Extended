@@ -1,4 +1,4 @@
-/* $Id: proxycom.h,v 1.14 2003-07-05 15:02:54 j_ali Exp $ */
+/* $Id: proxycom.h,v 1.15 2003-08-02 14:22:26 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -7,8 +7,8 @@
 
 /* The NhExt standard to which we conform */
 
-#define EXT_STANDARD_MAJOR	0
-#define EXT_STANDARD_MINOR	3
+#define EXT_STANDARD_MAJOR	1
+#define EXT_STANDARD_MINOR	0
 
 #define EXT_IM_STATUS		0x0001
 #define EXT_IM_DISPLAY_LAYERS	0x0002
