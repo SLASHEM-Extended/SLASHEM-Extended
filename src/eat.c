@@ -2205,7 +2205,10 @@ doeat()         /* generic "eat" command funtion (see cmd.c) */
 	 * they shouldn't be able to choke now.
 	 */
 	    if (u.uhs != SATIATED) victual.canchoke = FALSE;
-	    victual.piece = touchfood(otmp);
+	    if(!carried(victual.piece)) {
+		if(victual.piece->quan > 1L)
+			(void) splitobj(victual.piece, 1L);
+	    }
 	    You("resume your meal.");
 	    start_eating(victual.piece);
 	    return(1);

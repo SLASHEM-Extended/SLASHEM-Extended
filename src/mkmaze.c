@@ -1144,6 +1144,7 @@ setup_waterlevel()
 {
 	register int x, y;
 	register int xskip, yskip;
+	register int water_glyph = cmap_to_glyph(S_water);
 
 	/* ouch, hardcoded... */
 
@@ -1156,7 +1157,7 @@ setup_waterlevel()
 
 	for (x = xmin; x <= xmax; x++)
 		for (y = ymin; y <= ymax; y++)
-			clear_memory_glyph(x, y, S_water);
+			levl[x][y].glyph = water_glyph;
 
 	/* make bubbles */
 

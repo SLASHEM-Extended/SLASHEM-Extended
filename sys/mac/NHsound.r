@@ -1,3 +1,5 @@
+#include "Sound.r"
+
 resource 'snd ' (21727, "Tooled Horn", purgeable) {
 	FormatOne {
 		{	/* array Synthesizers: 1 elements */

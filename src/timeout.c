@@ -469,11 +469,10 @@ unpoly_obj(arg, timeout)
 
 	return;
 }
-#endif /* UNPOLYPILE */
+
 #endif /* OVL1 */
 #ifdef OVL0
 
-#ifdef UNPOLYPILE
 /*
  * Cleanup a fuzzy object if timer stopped.
  */
@@ -1389,7 +1388,6 @@ long timeout;
 
 #ifdef FIREARMS
 	    case STICK_OF_DYNAMITE:
-		end_burn(obj, FALSE);
 		bomb_blow((genericptr_t) obj, timeout);
 		return;
 #endif
@@ -1587,14 +1585,7 @@ end_burn(obj, timer_attached)
 	if (obj->otyp == MAGIC_LAMP ||
 	    obj->otyp == MAGIC_CANDLE ) timer_attached = FALSE;
 
-	if (!timer_attached) {
-	    /* [DS] Cleanup explicitly, since timer cleanup won't happen */
-	    del_light_source(LS_OBJECT, (genericptr_t)obj);
-	    obj->lamplit = 0;
-	    if (obj->where == OBJ_INVENT)
-		update_inventory();
-	}
-	else if (!stop_timer(BURN_OBJECT, (genericptr_t) obj))
+	if (timer_attached && !stop_timer(BURN_OBJECT, (genericptr_t) obj))
 	    impossible("end_burn: obj %s not timed!", xname(obj));
 }
 
