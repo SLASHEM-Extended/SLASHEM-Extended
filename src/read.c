@@ -379,6 +379,7 @@ int curse_bless;
 	    n = (int)obj->recharged;
 	    if (n > 0 && (obj->otyp == WAN_WISHING ||
 		    (n * n * n > rn2(7*7*7)))) {	/* recharge_limit */
+		Your("%s vibrates violently, and explodes!",xname(obj));
 		wand_explode(obj, FALSE);
 		return;
 	    }
@@ -398,6 +399,7 @@ int curse_bless;
 		if (obj->spe < n) obj->spe = n;
 		else obj->spe++;
 		if (obj->otyp == WAN_WISHING && obj->spe > 3) {
+		    Your("%s vibrates violently, and explodes!",xname(obj));
 		    wand_explode(obj, FALSE);
 		    return;
 		}
@@ -409,6 +411,7 @@ int curse_bless;
 
 	    if (obj->otyp == SPE_BOOK_OF_THE_DEAD) {
 	    	pline(nothing_happens);
+		return;
 	    }
    
 	    /*
