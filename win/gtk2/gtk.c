@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.7 2001-12-11 20:43:49 j_ali Exp $
+  $Id: gtk.c,v 1.8 2001-12-22 12:40:52 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1388,7 +1388,7 @@ select_node_accel(unsigned long key)
     }
     else if (rolenum < 12)
     {
-	accel = (gchar *) alloc(rolenum > 9 ? 4 : 3);
+	accel = (gchar *) alloc(rolenum > 8 ? 4 : 3);
 	sprintf(accel, "F%d", rolenum + 1);
     }
     else
