@@ -1,5 +1,5 @@
 /*
-  $Id: gtkint.c,v 1.3 2003-05-27 09:48:45 j_ali Exp $
+  $Id: gtkint.c,v 1.4 2003-08-02 14:39:11 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -35,6 +35,8 @@ hook()
 #ifdef GTK_PROXY
 
 static void FDECL(GTK_proxy_init_nhwindows, (int *, char **));
+static void NDECL(GTK_proxy_askname);
+static int NDECL(GTK_proxy_nhgetch);
 static void FDECL(GTK_proxy_raw_print, (const char *));
 static void FDECL(GTK_proxy_raw_print_bold, (const char *));
 
@@ -48,7 +50,7 @@ struct window_procs GTK_procs = {
     0,
     GTK_proxy_init_nhwindows,
     hook, /* player_selection */
-    hook, /* askname */
+    GTK_proxy_askname,
     GTK_get_nh_event,
     GTK_exit_nhwindows,
     hook, /* suspend_nhwindows */
@@ -59,9 +61,14 @@ struct window_procs GTK_procs = {
     GTK_destroy_nhwindow,
     GTK_curs,
     GTK_putstr,
-    hook, /* display_file */
+#ifdef FILE_AREAS
+    (void (*)(const char *, const char *, BOOLEAN_P))hook, /* display_file */
+#else
+    (void (*)(const char *, BOOLEAN_P))hook, /* display_file */
+#endif
     GTK_start_menu,
-    hook, /* add_menu */
+    (void (*)(winid, int, const anything *, CHAR_P, CHAR_P, int, const char *,
+      BOOLEAN_P))hook, /* add_menu */
     GTK_end_menu,
     (int (*)())hook, /* select_menu */
     genl_message_menu,
@@ -74,14 +81,14 @@ struct window_procs GTK_procs = {
 #ifdef POSITIONBAR
     hook, /* update_positionbar */
 #endif
-    hook, /* print_glyph */
+    (void (*)(winid, XCHAR_P, XCHAR_P, int))hook, /* print_glyph */
     GTK_proxy_raw_print,
     GTK_proxy_raw_print_bold,
-    GTK_nhgetch,
+    GTK_proxy_nhgetch,
     GTK_nh_poskey,
     hook, /* nhbell */
     GTK_doprev_message,
-    (char (*)())hook, /* yn_function */
+    (char (*)(const char *, const char *, CHAR_P))hook, /* yn_function */
     hook, /* getlin */
     GTK_get_ext_cmd,
     GTK_number_pad,
@@ -99,6 +106,22 @@ struct window_procs GTK_procs = {
     genl_outrip,
     hook, /* preference_update,*/
 };
+
+static void
+GTK_proxy_askname(void)
+{
+    strcpy(plname, "games");
+}
+
+static int
+GTK_proxy_nhgetch(void)
+{
+    int c;
+    do {
+	c = getchar();
+    } while(c == '\r');
+    return c;
+}
 
 static void
 GTK_proxy_raw_print(const char *str)
@@ -133,14 +156,17 @@ GTK_client_write(void *handle, void *buf, unsigned int len)
 static void
 GTK_proxy_init_nhwindows(int *argcp, char **argv)
 {
+    int retval;
 #ifdef WIN32
     /* Win32 has no concept of fork, so we simply execute ourselves */
     char *s;
     proxy_svc_set_ext_procs(win_GTK_init, &GTK_ext_procs);
     s = g_find_program_in_path(argv[0]);
-    proxy_connect("file", s ? s : argv[0], argcp, argv);
+    retval = proxy_connect("file", s ? s : argv[0], argcp, argv);
+    if (!retval)
+	proxy_start_client_services();
+    exit(1);
 #else
-    int retval;
     int to_game[2],from_game[2];
 #ifdef UNIX
     uid_t uid;
