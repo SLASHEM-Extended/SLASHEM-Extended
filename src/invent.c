@@ -29,6 +29,10 @@ STATIC_DCL boolean FDECL(tool_in_use, (struct obj *));
 #endif /* OVLB */
 STATIC_DCL char FDECL(obj_to_let,(struct obj *));
 
+/* define for getobj() */
+#define FOLLOW(curr, flags) \
+    (((flags) & BY_NEXTHERE) ? (curr)->nexthere : (curr)->nobj)
+
 #ifdef OVLB
 
 static int lastinvnr = 51;	/* 0 ... 51 (never saved&restored) */
@@ -797,95 +801,12 @@ const char *action;
     return !strcmp(action, "wear") || !strcmp(action, "put on");
 }
 
-/*
- * getobj returns:
- *	struct obj *xxx:	object to do something with.
- *	(struct obj *) 0	error return: no object.
- *	&zeroobj		explicitly no object (as in w-).
-#ifdef GOLDOBJ
-!!!! test if gold can be used in unusual ways (eaten etc.)
-!!!! may be able to remove "usegold"
-#endif
- */
-struct obj *
-getobj(let,word)
-register const char *let,*word;
+STATIC_OVL int
+ugly_checks(let, word, otmp)
+const char *let, *word;
+struct obj *otmp;
 {
-	register struct obj *otmp;
-	register char ilet;
-	char buf[BUFSZ], qbuf[QBUFSZ];
-	char lets[BUFSZ], altlets[BUFSZ], *ap;
-	register int foo = 0;
-	register char *bp = buf;
-	xchar allowcnt = 0;	/* 0, 1 or 2 */
-#ifndef GOLDOBJ
-	boolean allowgold = FALSE;	/* can't use gold because they don't have any */
-#endif
-	boolean usegold = FALSE;	/* can't use gold because its illegal */
-	boolean allowall = FALSE;
-	boolean allownone = FALSE;
-	boolean useboulder = FALSE;
-	xchar foox = 0;
-	long cnt;
-	boolean prezero = FALSE;
-	long dummymask;
-
-	if(*let == ALLOW_COUNT) let++, allowcnt = 1;
-#ifndef GOLDOBJ
-	if(*let == COIN_CLASS) let++,
-		usegold = TRUE, allowgold = (u.ugold ? TRUE : FALSE);
-#else
-	if(*let == COIN_CLASS) let++, usegold = TRUE;
-#endif
-
-	/* Equivalent of an "ugly check" for gold */
-	if (usegold && !strcmp(word, "eat") &&
-	    (!metallivorous(youmonst.data)
-	     || youmonst.data == &mons[PM_RUST_MONSTER]))
-#ifndef GOLDOBJ
-		usegold = allowgold = FALSE;
-#else
-		usegold = FALSE;
-#endif
-
-	if(*let == ALL_CLASSES) let++, allowall = TRUE;
-	if(*let == ALLOW_NONE) let++, allownone = TRUE;
-	/* "ugly check" for reading fortune cookies, part 1 */
-	/* The normal 'ugly check' keeps the object on the inventory list.
-	 * We don't want to do that for shirts/cookies, so the check for
-	 * them is handled a bit differently (and also requires that we set
-	 * allowall in the caller)
-	 */
-	if(allowall && !strcmp(word, "read")) allowall = FALSE;
-
-	/* another ugly check: show boulders (not statues) */
-	if(*let == WEAPON_CLASS &&
-	   !strcmp(word, "throw") && throws_rocks(youmonst.data))
-	    useboulder = TRUE;
-
-	if(allownone) *bp++ = '-';
-#ifndef GOLDOBJ
-	if(allowgold) *bp++ = def_oc_syms[COIN_CLASS];
-#endif
-	if(bp > buf && bp[-1] == '-') *bp++ = ' ';
-	ap = altlets;
-
-	ilet = 'a';
-	for (otmp = invent; otmp; otmp = otmp->nobj) {
-	    if (!flags.invlet_constant)
-#ifdef GOLDOBJ
-		if (otmp->invlet != GOLD_SYM) /* don't reassign this */
-#endif
-		otmp->invlet = ilet;	/* reassign() */
-	    if (!*let || index(let, otmp->oclass)
-#ifdef GOLDOBJ
-		|| (usegold && otmp->invlet == GOLD_SYM)
-#endif
-		|| (useboulder && otmp->otyp == BOULDER)
-		) {
 		register int otyp = otmp->otyp;
-		bp[foo++] = otmp->invlet;
-
 		/* ugly check: remove inappropriate things */
 		if((taking_off(word) &&
 		    (!(otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL))
@@ -904,8 +825,7 @@ register const char *let,*word;
 		|| (!strcmp(word, "ready") &&
 		    (otmp == uwep || (otmp == uswapwep && u.twoweap)))
 		    ) {
-			foo--;
-			foox++;
+			return 1;
 		}
 
 		/* Second ugly check; unlike the first it won't trigger an
@@ -978,7 +898,141 @@ register const char *let,*word;
 		|| (!strcmp(word, "draw blood with") &&
 		    (otmp->oclass == TOOL_CLASS && otyp != MEDICAL_KIT))
 		    )
-			foo--;
+			return 2;
+		else
+		    return 0;
+}
+
+/* List of valid classes for allow_ugly callback */
+static char valid_ugly_classes[MAXOCLASSES + 1];
+
+/* Action word for allow_ugly callback */
+static const char *ugly_word;
+
+STATIC_OVL boolean
+allow_ugly(obj)
+struct obj *obj;
+{
+    return index(valid_ugly_classes, obj->oclass) &&
+	   !ugly_checks(valid_ugly_classes, ugly_word, obj);
+}
+
+/*
+ * getobj returns:
+ *	struct obj *xxx:	object to do something with.
+ *	(struct obj *) 0	error return: no object.
+ *	&zeroobj		explicitly no object (as in w-).
+ *	&thisplace		this place (as in r.).
+#ifdef GOLDOBJ
+!!!! test if gold can be used in unusual ways (eaten etc.)
+!!!! may be able to remove "usegold"
+#endif
+ */
+struct obj *
+getobj(let,word)
+register const char *let,*word;
+{
+	register struct obj *otmp;
+	register char ilet;
+	char buf[BUFSZ], qbuf[QBUFSZ];
+	char lets[BUFSZ], altlets[BUFSZ], *ap;
+	register int foo = 0;
+	register char *bp = buf;
+	xchar allowcnt = 0;	/* 0, 1 or 2 */
+#ifndef GOLDOBJ
+	boolean allowgold = FALSE;	/* can't use gold because they don't have any */
+#endif
+	boolean usegold = FALSE;	/* can't use gold because its illegal */
+	boolean allowall = FALSE;
+	boolean allownone = FALSE;
+	boolean allowfloor = FALSE;
+	boolean usefloor = FALSE;
+	boolean allowthisplace = FALSE;
+	boolean useboulder = FALSE;
+	xchar foox = 0;
+	long cnt;
+	boolean prezero = FALSE;
+	long dummymask;
+	int ugly;
+	struct obj *floorchain;
+	int floorfollow;
+
+	if(*let == ALLOW_COUNT) let++, allowcnt = 1;
+#ifndef GOLDOBJ
+	if(*let == COIN_CLASS) let++,
+		usegold = TRUE, allowgold = (u.ugold ? TRUE : FALSE);
+#else
+	if(*let == COIN_CLASS) let++, usegold = TRUE;
+#endif
+
+	/* Equivalent of an "ugly check" for gold */
+	if (usegold && !strcmp(word, "eat") &&
+	    (!metallivorous(youmonst.data)
+	     || youmonst.data == &mons[PM_RUST_MONSTER]))
+#ifndef GOLDOBJ
+		usegold = allowgold = FALSE;
+#else
+		usegold = FALSE;
+#endif
+
+	if(*let == ALL_CLASSES) let++, allowall = TRUE;
+	if(*let == ALLOW_NONE) let++, allownone = TRUE;
+	if(*let == ALLOW_FLOOROBJ) {
+	    let++;
+	    if (!u.uswallow) {
+		floorchain = can_reach_floorobj() ? level.objects[u.ux][u.uy] :
+			     (struct obj *)0;
+		floorfollow = BY_NEXTHERE;
+	    } else {
+		floorchain = u.ustuck->minvent;
+		floorfollow = 0;		/* nobj */
+	    }
+	    usefloor = TRUE;
+	    allowfloor = !!floorchain;
+	}
+	if(*let == ALLOW_THISPLACE) let++, allowthisplace = TRUE;
+	/* "ugly check" for reading fortune cookies, part 1 */
+	/* The normal 'ugly check' keeps the object on the inventory list.
+	 * We don't want to do that for shirts/cookies, so the check for
+	 * them is handled a bit differently (and also requires that we set
+	 * allowall in the caller)
+	 */
+	if(allowall && !strcmp(word, "read")) allowall = FALSE;
+
+	/* another ugly check: show boulders (not statues) */
+	if(*let == WEAPON_CLASS &&
+	   !strcmp(word, "throw") && throws_rocks(youmonst.data))
+	    useboulder = TRUE;
+
+	if(allownone) *bp++ = '-';
+#ifndef GOLDOBJ
+	if(allowgold) *bp++ = def_oc_syms[COIN_CLASS];
+#endif
+	if(bp > buf && bp[-1] == '-') *bp++ = ' ';
+	ap = altlets;
+
+	ilet = 'a';
+	for (otmp = invent; otmp; otmp = otmp->nobj) {
+	    if (!flags.invlet_constant)
+#ifdef GOLDOBJ
+		if (otmp->invlet != GOLD_SYM) /* don't reassign this */
+#endif
+		otmp->invlet = ilet;	/* reassign() */
+	    if (!*let || index(let, otmp->oclass)
+#ifdef GOLDOBJ
+		|| (usegold && otmp->invlet == GOLD_SYM)
+#endif
+		|| (useboulder && otmp->otyp == BOULDER)
+		) {
+		bp[foo++] = otmp->invlet;
+
+		/* ugly checks */
+		ugly = ugly_checks(let, word, otmp);
+		if (ugly == 1) {
+		    foo--;
+		    foox++;
+		} else if (ugly == 2)
+		    foo--;
 		/* ugly check for unworn armor that can't be worn */
 		else if (putting_on(word) && *let == ARMOR_CLASS &&
 			 !canwearobj(otmp, &dummymask, FALSE)) {
@@ -1007,11 +1061,25 @@ register const char *let,*word;
 		compactify(bp);
 	*ap = '\0';
 
+	if (allowfloor && !allowall) {
+	    if (usegold) {
+		valid_ugly_classes[0] = COIN_CLASS;
+		Strcpy(valid_ugly_classes + 1, let);
+	    } else
+		Strcpy(valid_ugly_classes, let);
+	    ugly_word = word;
+	    for (otmp = floorchain; otmp; otmp = FOLLOW(otmp, floorfollow))
+		if (allow_ugly(otmp))
+		    break;
+	    if (!otmp)
+		allowfloor = FALSE;
+	}
+
+	if(!foo && !allowall && !allownone &&
 #ifndef GOLDOBJ
-	if(!foo && !allowall && !allowgold && !allownone) {
-#else
-	if(!foo && !allowall && !allownone) {
+	   !allowgold &&
 #endif
+	   !allowfloor && !allowthisplace) {
 		You("don't have anything %sto %s.",
 			foox ? "else " : "", word);
 		return((struct obj *)0);
@@ -1020,12 +1088,25 @@ register const char *let,*word;
 	for(;;) {
 		cnt = 0;
 		if (allowcnt == 2) allowcnt = 1;  /* abort previous count */
-		if(!buf[0]) {
-			Sprintf(qbuf, "What do you want to %s? [*]", word);
-		} else {
-			Sprintf(qbuf, "What do you want to %s? [%s or ?*]",
-				word, buf);
+		Sprintf(qbuf, "What do you want to %s? [", word);
+		bp = eos(qbuf);
+		if (buf[0]) {
+		    Sprintf(bp, "%s or ?", buf);
+		    bp = eos(bp);
 		}
+		*bp++ = '*';
+		if (allowfloor)
+		    *bp++ = ',';
+		if (allowthisplace)
+		    *bp++ = '.';
+		if (!buf[0] && bp[-2] != '[') {
+		    /* "*," -> "* or ,"; "*." -> "* or ."; "*,." -> "*, or ." */
+		    --bp;
+		    Sprintf(bp, " or %c", *bp);
+		    bp += 5;
+		}
+		*bp++ = ']';
+		*bp = '\0';
 #ifdef REDO
 		if (in_doagain)
 		    ilet = readchar();
@@ -1080,6 +1161,41 @@ register const char *let,*word;
 				cnt = u.ugold;
 			return(mkgoldobj(cnt));
 #endif
+		}
+		if(ilet == '.') {
+		    if (allowthisplace)
+			return &thisplace;
+		    else {
+			pline(silly_thing_to, word);
+			return(struct obj *)0;
+		    }
+		}
+		if(ilet == ',') {
+		    int n;
+		    menu_item *pick_list;
+
+		    if (!usefloor) {
+			pline(silly_thing_to, word);
+			return(struct obj *)0;
+		    } else if (!allowfloor) {
+			pline("There's nothing here to %s.", word);
+			return(struct obj *)0;
+		    }
+		    Sprintf(qbuf, "%s what?", word);
+		    n = query_objlist(qbuf, floorchain,
+			    floorfollow|INVORDER_SORT|SIGNAL_CANCEL, &pick_list,
+			    PICK_ONE, allowall ? allow_all : allow_ugly);
+		    if (n<0) {
+			if (flags.verbose)
+			    pline(Never_mind);
+			return (struct obj *)0;
+		    } else if (!n)
+			continue;
+		    otmp = pick_list->item.a_obj;
+		    if (allowcnt && pick_list->count < otmp->quan)
+			otmp = splitobj(otmp, pick_list->count);
+		    free((genericptr_t)pick_list);
+		    return otmp;
 		}
 		if(ilet == '?' || ilet == '*') {
 		    char *allowed_choices = (ilet == '?') ? lets : (char *)0;
@@ -2291,12 +2407,21 @@ boolean picked_some;
 		}
 	}
 
-	if (dfeature)
+	if (dfeature) {
 		Sprintf(fbuf, "There is %s here.", an(dfeature));
+		if (flags.suppress_alert < FEATURE_NOTICE_VER(0,0,7) &&
+			(IS_FOUNTAIN(levl[u.ux][u.uy].typ) ||
+#ifdef SINKS
+			 IS_SINK(levl[u.ux][u.uy].typ) ||
+			 IS_TOILET(levl[u.ux][u.uy].typ)
+#endif
+			))
+		    Strcat(fbuf, "  Use \"q.\" to drink from it.");
+	}
 
 	if (!otmp || is_lava(u.ux,u.uy) || (is_pool(u.ux,u.uy) && !Underwater)) {
 		if (dfeature) pline(fbuf);
-		read_engr_at(u.ux, u.uy, FALSE); /* Eric Backus */
+		sense_engr_at(u.ux, u.uy, FALSE); /* Eric Backus */
 		if (!skip_objects && (Blind || !dfeature))
 		    You("%s no objects here.", verb);
 		return(!!Blind);
@@ -2305,14 +2430,14 @@ boolean picked_some;
 
 	if (skip_objects) {
 	    if (dfeature) pline(fbuf);
-	    read_engr_at(u.ux, u.uy, FALSE); /* Eric Backus */
+	    sense_engr_at(u.ux, u.uy, FALSE); /* Eric Backus */
 	    There("are %s%s objects here.",
 		  (obj_cnt <= 10) ? "several" : "many",
 		  picked_some ? " more" : "");
 	} else if (!otmp->nexthere) {
 	    /* only one object */
 	    if (dfeature) pline(fbuf);
-	    read_engr_at(u.ux, u.uy, FALSE); /* Eric Backus */
+	    sense_engr_at(u.ux, u.uy, FALSE); /* Eric Backus */
 #ifdef INVISIBLE_OBJECTS
 	    if (otmp->oinvis && !See_invisible) verb = "feel";
 #endif
@@ -2332,7 +2457,7 @@ boolean picked_some;
 	    }
 	    display_nhwindow(tmpwin, TRUE);
 	    destroy_nhwindow(tmpwin);
-	    read_engr_at(u.ux, u.uy, FALSE); /* Eric Backus */
+	    sense_engr_at(u.ux, u.uy, FALSE); /* Eric Backus */
 	}
 	return(!!Blind);
 }

@@ -270,7 +270,7 @@ boolean picked_some;
 	    flush_screen(1);
 	    (void) look_here(ct, picked_some);
 	} else {
-	    read_engr_at(u.ux, u.uy, FALSE);
+	    sense_engr_at(u.ux, u.uy, FALSE);
 	}
 }
 
@@ -399,14 +399,14 @@ int what;		/* should be a long */
 		/* no auto-pick if no-pick move, nothing there, or in a pool */
 		if (autopickup && (flags.nopick || !OBJ_AT(u.ux, u.uy) ||
 			(is_pool(u.ux, u.uy) && !Underwater) || is_lava(u.ux, u.uy))) {
-			read_engr_at(u.ux, u.uy, FALSE);
+			sense_engr_at(u.ux, u.uy, FALSE);
 			return (0);
 		}
 
 		/* no pickup if levitating & not on air or water level */
 		if (!can_reach_floor()) {
 		    if ((multi && !flags.run) || (autopickup && !flags.pickup))
-			read_engr_at(u.ux, u.uy, FALSE);
+			sense_engr_at(u.ux, u.uy, FALSE);
 		    return (0);
 		}
 
@@ -632,6 +632,7 @@ menu_item **pick_list;	/* list of objects and counts to pick up */
  *	USE_INVLET	  - Use object's invlet.
  *	INVORDER_SORT	  - Use hero's pack order.
  *	SIGNAL_NOMENU	  - Return -1 rather than 0 if nothing passes "allow".
+ *	SIGNAL_CANCEL	  - Return -2 rather than 0 if player cancels.
  */
 int
 query_objlist(qstr, olist, qflags, pick_list, how, allow)
@@ -716,7 +717,8 @@ boolean FDECL((*allow), (OBJ_P));/* allow function */
 		if (mi->count == -1L || mi->count > mi->item.a_obj->quan)
 		    mi->count = mi->item.a_obj->quan;
 	} else if (n < 0) {
-	    n = 0;	/* caller's don't expect -1 */
+	    /* caller's don't expect -1 */
+	    n = (qflags & SIGNAL_CANCEL) ? -2 : 0;
 	}
 	return n;
 }

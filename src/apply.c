@@ -8,10 +8,10 @@
 #ifdef OVLB
 
 static const char tools[] = { TOOL_CLASS, WEAPON_CLASS, WAND_CLASS, 0 };
-/* STEPHEN WHITE'S NEW CODE */
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 static const char tools_too[] = { ALL_CLASSES, TOOL_CLASS, POTION_CLASS,
 				  WEAPON_CLASS, WAND_CLASS, GEM_CLASS, 0 };
+static const char tinnables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
 
 #ifdef TOURIST
 STATIC_DCL int FDECL(use_camera, (struct obj *));
@@ -49,7 +49,7 @@ STATIC_DCL void FDECL(add_class, (char *, CHAR_P));
 void FDECL( amii_speaker, ( struct obj *, char *, int ) );
 #endif
 
-static const char no_elbow_room[] = "don't have enough elbow-room to maneuver.";
+const char no_elbow_room[] = "don't have enough elbow-room to maneuver.";
 
 #ifdef TOURIST
 STATIC_OVL int
@@ -1508,7 +1508,7 @@ register struct obj *obj;
 		You("seem to be out of tins.");
 		return;
 	}
-	if (!(corpse = floorfood("tin", 2))) return;
+	if (!(corpse = getobj((const char *)tinnables, "tin"))) return;
 	if (corpse->oeaten || corpse->odrained) {
 		You("cannot tin %s which is partly eaten.",something);
 		return;
@@ -1556,6 +1556,8 @@ register struct obj *obj;
 		if (corpse->unpaid)
 		    verbalize(you_buy_it);
 		useup(corpse);
+	    } else if (mcarried(corpse)) {
+		m_useup(corpse->ocarry, corpse);
 	    } else {
 		if (costly_spot(corpse->ox, corpse->oy) && !corpse->no_charge)
 		    verbalize(you_buy_it);

@@ -265,6 +265,7 @@ E NEARDATA struct obj *uball;
 E NEARDATA struct obj *migrating_objs;
 E NEARDATA struct obj *billobjs;
 E NEARDATA struct obj zeroobj;		/* init'd and defined in decl.c */
+E NEARDATA struct obj thisplace;	/* init'd and defined in decl.c */
 
 #include "spell.h"
 E NEARDATA struct spell spl_book[];	/* sized in decl.c */
@@ -333,6 +334,8 @@ E struct c_common_strings {
 #define You_can_move_again c_common_strings.c_You_can_move_again
 #define Never_mind	   c_common_strings.c_Never_mind
 #define vision_clears	   c_common_strings.c_vision_clears
+
+E const char no_elbow_room[];
 
 /* material strings */
 E const char *materialnm[];

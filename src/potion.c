@@ -23,7 +23,6 @@ STATIC_DCL long FDECL(itimeout_incr, (long,int));
 STATIC_DCL void NDECL(ghost_from_bottle);
 STATIC_DCL short FDECL(mixtype, (struct obj *,struct obj *));
 
-STATIC_DCL struct obj *NDECL(floordrink); /* WAC for drinking off the ground */
 STATIC_DCL void FDECL(healup_mon, (struct monst *, int,int,BOOLEAN_P,BOOLEAN_P));
 	/* For healing monsters - analogous to healup for players */
 
@@ -339,45 +338,43 @@ dodrink()
 {
 	register struct obj *otmp;
 	const char *potion_descr;
+	char quaffables[SIZE(beverages) + 2];
+	char *qp = quaffables;
 
 	if (Strangled) {
 		pline("If you can't breathe air, how can you drink liquid?");
 		return 0;
 	}
-	/* Is there a fountain to drink from here? */
-	if (IS_FOUNTAIN(levl[u.ux][u.uy].typ) && !Levitation) {
-		if(yn("Drink from the fountain?") == 'y') {
-			drinkfountain();
-			return 1;
-		}
-	}
+
+	*qp++ = ALLOW_FLOOROBJ;
+	if (!u.uswallow && (IS_FOUNTAIN(levl[u.ux][u.uy].typ) ||
 #ifdef SINKS
-	/* Or a kitchen sink? */
-	if (IS_SINK(levl[u.ux][u.uy].typ)) {
-		if (yn("Drink from the sink?") == 'y') {
-			drinksink();
-			return 1;
-		}
-	}
-	if (IS_TOILET(levl[u.ux][u.uy].typ)) {
-		if (yn("Drink from the toilet?") == 'y') {
-			drinktoilet();
-			return 1;
-		}
-	}
+			    IS_SINK(levl[u.ux][u.uy].typ) ||
+			    IS_TOILET(levl[u.ux][u.uy].typ) ||
 #endif
+			    Underwater || IS_POOL(levl[u.ux][u.uy].typ)))
+	    *qp++ = ALLOW_THISPLACE;
+	Strcpy(qp, beverages);
 
-	/* Or are you surrounded by water? */
-	if (Underwater) {
-		if (yn("Drink the water around you?") == 'y') {
-		    pline("Do you know what lives in this water!");
-			return 1;
-		}
+	otmp = getobj(quaffables, "drink");
+	if (otmp == &thisplace) {
+	    if (IS_FOUNTAIN(levl[u.ux][u.uy].typ)) {
+		drinkfountain();
+		return 1;
+	    }
+#ifdef SINKS
+	    else if (IS_SINK(levl[u.ux][u.uy].typ)) {
+		drinksink();
+		return 1;
+	    }
+	    else if (IS_TOILET(levl[u.ux][u.uy].typ)) {
+		drinktoilet();
+		return 1;
+	    }
+#endif
+	    pline("Do you know what lives in this water!");
+	    return 1;
 	}
-
-/*	otmp = getobj(beverages, "drink");*/
-	otmp = floordrink();
-
 	if(!otmp) return(0);
 	otmp->in_use = TRUE;		/* you've opened the stopper */
 
@@ -429,42 +426,11 @@ register struct obj *otmp;
 			docall(otmp);
 	}
 	if (carried(otmp)) useup(otmp);
+	else if (mcarried(otmp)) m_useup(otmp->ocarry, otmp);
 	else if (otmp->where == OBJ_FLOOR) useupf(otmp, 1L);
 	else dealloc_obj(otmp);		/* Dummy potion */
 	return(1);
 }
-
-
-/* Return object from floor or inventory to drink */
-/* based from similar function floorread */
-static struct obj *
-floordrink()
-{
-	register struct obj *otmp;
-	char qbuf[QBUFSZ];
-	char c;
-
-
-	/* KMH -- use can_reach_floor() */
-	if (can_reach_floor()) {
-		for(otmp = level.objects[u.ux][u.uy]; otmp;
-				otmp = otmp->nexthere) {
-			if(otmp->oclass == POTION_CLASS) {
-				Sprintf(qbuf, "There %s %s here; drink %s?",
-						(otmp->quan == 1L) ? "is" : "are",
-				        doname(otmp),
-						(otmp->quan == 1L) ? "it" : "one");
-				if((c = yn_function(qbuf,ynqchars,'n')) == 'y')
-					return(otmp);
-				else if(c == 'q')
-					return((struct obj *) 0);
-			}
-		}
-	}
-	/* KMH -- return the value! */
-	return (getobj(beverages, "drink"));
-}
-
 
 /* return -1 if potion is used up,  0 if error,  1 not used */
 int

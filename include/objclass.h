@@ -153,9 +153,10 @@ extern NEARDATA struct objdescr obj_descr[];
 #define ALLOW_COUNT	(MAXOCLASSES+1) /* Can be used in the object class */
 #define ALL_CLASSES	(MAXOCLASSES+2) /* input to getobj().		   */
 #define ALLOW_NONE	(MAXOCLASSES+3) /*				   */
+#define ALLOW_FLOOROBJ	(MAXOCLASSES+4) /*				   */
+#define ALLOW_THISPLACE	(MAXOCLASSES+5) /*				   */
 
 #define BURNING_OIL	(MAXOCLASSES+1) /* Can be used as input to explode. */
-#define MON_EXPLODE     (MAXOCLASSES+2) /* WAC for the spores */
 #define MON_EXPLODE	(MAXOCLASSES+2) /* Exploding monster (e.g. gas spore) */
 
 #if 0	/* moved to decl.h so that makedefs.c won't see them */

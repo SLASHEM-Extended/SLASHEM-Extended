@@ -1100,6 +1100,8 @@ gods_upset(g_align)
 }
 
 static NEARDATA const char sacrifice_types[] = { FOOD_CLASS, AMULET_CLASS, 0 };
+static NEARDATA const char ext_sacrifice_types[] = { ALLOW_FLOOROBJ,
+	FOOD_CLASS, AMULET_CLASS, 0 };
 
 STATIC_OVL void
 consume_offering(otmp)
@@ -1256,7 +1258,7 @@ dosacrifice()
     if (In_endgame(&u.uz)) {
 	if (!(otmp = getobj(sacrifice_types, "sacrifice"))) return 0;
     } else {
-	if (!(otmp = floorfood("sacrifice", 1))) return 0;
+	if (!(otmp = getobj(ext_sacrifice_types, "sacrifice"))) return 0;
     }
 
     /* KMH -- offerings to Oracle */

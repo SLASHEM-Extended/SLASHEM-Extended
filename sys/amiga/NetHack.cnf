@@ -25,8 +25,8 @@ PATH=NetHack:
 #OPTIONS=nolegacy,fruit:lemon,time,autopickup,checkpoint,showexp,showscore,standout,nonews
 #OPTIONS=nomail,flush,eight_bit_tty,scores:10t/2a,pickup_types:$,autoquiver
 
-# If you want to get "use #quit to quit..." comment:
-OPTIONS=suppress_alert:0.0.6
+# If you want to get rid of 'use "r." to read...' use:
+#OPTIONS=suppress_alert:0.0.7
 
 # The windowtype option must be set before any options regarding colors and palette
 # are set otherwise previously set values will be overridden by the defaults

@@ -42,6 +42,7 @@ STATIC_DCL int FDECL(rottenfood, (struct obj *));
 STATIC_DCL void NDECL(eatspecial);
 STATIC_DCL void FDECL(eataccessory, (struct obj *));
 STATIC_DCL const char *FDECL(foodword, (struct obj *));
+STATIC_DCL struct obj *FDECL(floorfood, (const char *));
 
 char msgbuf[BUFSZ];
 
@@ -73,8 +74,8 @@ STATIC_DCL boolean force_save_hs;
 STATIC_OVL NEARDATA const char comestibles[] = { FOOD_CLASS, 0 };
 
 /* Gold must come first for getobj(). */
-STATIC_OVL NEARDATA const char allobj[] = {
-	COIN_CLASS, WEAPON_CLASS, ARMOR_CLASS, POTION_CLASS, SCROLL_CLASS,
+STATIC_OVL NEARDATA const char allobj[] = { COIN_CLASS, ALLOW_FLOOROBJ,
+	WEAPON_CLASS, ARMOR_CLASS, POTION_CLASS, SCROLL_CLASS,
 	WAND_CLASS, RING_CLASS, AMULET_CLASS, FOOD_CLASS, TOOL_CLASS,
 	GEM_CLASS, ROCK_CLASS, BALL_CLASS, CHAIN_CLASS, SPBOOK_CLASS, 0 };
 
@@ -2288,7 +2289,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		pline("If you can't breathe air, how can you consume solids?");
 		return 0;
 	}
-	if (!(otmp = floorfood("eat", 0))) return 0;
+	if (!(otmp = floorfood("eat"))) return 0;
 	if (check_capacity((char *)0)) return 0;
 
 	if (u.uedibility) {
@@ -2838,41 +2839,34 @@ boolean incr;
 #endif /* OVL0 */
 #ifdef OVLB
 
+boolean can_reach_floorobj()
+{
+    return can_reach_floor() &&
+	  !((is_pool(u.ux, u.uy) || is_lava(u.ux, u.uy)) &&
+	    (Wwalking || is_clinger(youmonst.data) || (Flying && !Breathless)));
+}
+
 /* Returns an object representing food.  Object may be either on floor or
  * in inventory.
  */
-struct obj *
-floorfood(verb,corpsecheck)	/* get food from floor or pack */
+STATIC_OVL struct obj *
+floorfood(verb)		/* get food from floor or pack */
 	const char *verb;
-	int corpsecheck; /* 0, no check, 1, corpses, 2, tinnable corpses */
 {
 	register struct obj *otmp;
+	/* We cannot use ALL_CLASSES since that causes getobj() to skip its
+	 * "ugly checks" and we need to check for inedible items.
+	 */
+	const char *edibles = (const char *)allobj;
 	char qbuf[QBUFSZ];
 	char c;
-	boolean feeding = (!strcmp(verb, "eat"));
 
-	/* if we can't touch floor objects then use invent food only */
-	if (!can_reach_floor() ||
 #ifdef STEED
-		u.usteed ||		/* can't eat off floor while riding */
+	if (u.usteed)	/* can't eat off floor while riding */
+	    edibles++;
+	else
 #endif
-		((is_pool(u.ux, u.uy) || is_lava(u.ux, u.uy)) &&
-		    (Wwalking || is_clinger(youmonst.data) ||
-			(Flying && !Breathless))))
-	    goto skipfloor;
-
-	/* if we can't touch floor objects then use invent food only */
-	if (!can_reach_floor() ||
-#ifdef STEED
-		(feeding && u.usteed) || /* can't eat off floor while riding */
-#endif
-		((is_pool(u.ux, u.uy) || is_lava(u.ux, u.uy)) &&
-		    (Wwalking || is_clinger(youmonst.data) ||
-			(Flying && !Breathless))))
-	    goto skipfloor;
-
-	if (feeding && metallivorous(youmonst.data)) {
-	    struct obj *gold;
+	if (metallivorous(youmonst.data)) {
 	    struct trap *ttmp = t_at(u.ux, u.uy);
 
 	    if (ttmp && ttmp->tseen && ttmp->ttyp == BEAR_TRAP) {
@@ -2890,53 +2884,11 @@ floorfood(verb,corpsecheck)	/* get food from floor or pack */
 		    return (struct obj *)0;
 		}
 	    }
-
-	    if (youmonst.data != &mons[PM_RUST_MONSTER] &&
-		(gold = g_at(u.ux, u.uy)) != 0) {
-		if (gold->quan == 1L)
-		    Sprintf(qbuf, "There is 1 gold piece here; eat it?");
-		else
-		    Sprintf(qbuf, "There are %ld gold pieces here; eat them?",
-			    gold->quan);
-		if ((c = yn_function(qbuf, ynqchars, 'n')) == 'y') {
-		    obj_extract_self(gold);
-		    return gold;
-		} else if (c == 'q') {
-		    return (struct obj *)0;
-		}
-	    }
 	}
 
-	/* Is there some food (probably a heavy corpse) here on the ground? */
-	for (otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere) {
-		if(corpsecheck ?
-		((otmp->otyp == CORPSE || otmp->otyp == SEVERED_HAND ||
-		otmp->otyp == EYEBALL) && (corpsecheck == 1 || tinnable(otmp))) :
-		    feeding ? (otmp->oclass != COIN_CLASS && is_edible(otmp)) :
-						otmp->oclass==FOOD_CLASS) {
-			Sprintf(qbuf, "There %s %s here; %s %s?",
-				otense(otmp, "are"),
-				doname(otmp), verb,
-				(otmp->quan == 1L) ? "it" : "one");
-			if((c = yn_function(qbuf,ynqchars,'n')) == 'y')
-				return(otmp);
-			else if(c == 'q')
-				return((struct obj *) 0);
-		}
-	}
-
- skipfloor:
-	/* We cannot use ALL_CLASSES since that causes getobj() to skip its
-	 * "ugly checks" and we need to check for inedible items.
-	 */
-	otmp = getobj(feeding ? (const char *)allobj :
-				(const char *)comestibles, verb);
-	if (corpsecheck && otmp)
-	    if ((otmp->otyp != CORPSE && otmp->otyp != SEVERED_HAND &&
-	    		otmp->otyp != EYEBALL) || (corpsecheck == 2 && !tinnable(otmp))) {
-		You_cant("%s that!", verb);
-		return (struct obj *)0;
-	    }
+	otmp = getobj(edibles, verb);
+	if (otmp && otmp->oclass == COIN_CLASS)
+	    obj_extract_self(otmp);
 	return otmp;
 }
 

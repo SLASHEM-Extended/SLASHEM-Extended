@@ -30,6 +30,7 @@ static int NDECL(blitz_power_surge);
 static int NDECL(blitz_spirit_bomb);
 
 static NEARDATA schar delay;            /* moves left for tinker/energy draw */
+static NEARDATA const char revivables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
 
 /* 
  * Do try to keep the names <= 25 chars long, or else the
@@ -990,15 +991,17 @@ int tech_no;
 		break;
             }
             case T_REVIVE: 
-            	
+		if (u.uswallow) {
+		    You(no_elbow_room);
+		    return 0;
+		}
             	num = 100 - techlev(tech_no); /* WAC make this depend on mon? */
-            	
             	if ((Upolyd && u.mh <= num) || (!Upolyd && u.uhp <= num)){
-            		You("don't have the strength to perform revivification!");
-            		return(0);
+		    You("don't have the strength to perform revivification!");
+		    return 0;
             	}
 
-            	obj = floorfood("revive", 1);
+            	obj = getobj((const char *)revivables, "revive");
             	if (!obj) return (0);
             	mtmp = revive(obj);
             	if (mtmp) {

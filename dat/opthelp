@@ -137,8 +137,8 @@ scores        the parts of the score list you wish to see when the game ends
               scores, and all of your own scores.  [!own/3 top/2 around]
 suppress_alert disable various version-specific warnings about changes
               in game play or the user interface, such as notification given
-              for the 'Q' command that quitting is now done via #quit
-              (e.g., use suppress_alert:0.0.6 to stop that and any other
+              for engravings that reading is now done via 'r.'
+              (e.g., use suppress_alert:0.0.7 to stop that and any other
               notifications added in that version or earlier) default: [(none)]
 tileset       the name of a predefined (with TILESET=) tileset to use.  This
               option may be negated (eg., !tileset) or set to an emty value

@@ -566,7 +566,7 @@ E void NDECL(violated_vegetarian);
 E void NDECL(sync_hunger);
 #endif
 E void FDECL(newuhs, (BOOLEAN_P));
-E struct obj *FDECL(floorfood, (const char *,int));
+E boolean NDECL(can_reach_floorobj);
 E void NDECL(vomit);
 E int FDECL(eaten_stat, (int,struct obj *));
 E void FDECL(food_disappears, (struct obj *));
@@ -609,7 +609,7 @@ E int FDECL(sengr_at, (const char *,XCHAR_P,XCHAR_P));
 #endif
 E void FDECL(u_wipe_engr, (int));
 E void FDECL(wipe_engr_at, (XCHAR_P,XCHAR_P,XCHAR_P));
-E boolean FDECL(read_engr_at, (int,int,BOOLEAN_P));
+E boolean FDECL(sense_engr_at, (int,int,BOOLEAN_P));
 E void FDECL(make_engr_at, (int,int,const char *,long,XCHAR_P));
 E void FDECL(del_engr_at, (int,int));
 E int NDECL(freehand);

@@ -33,8 +33,8 @@ OPTIONS=IBMGraphics
 #
 OPTIONS=time,noshowexp,number_pad,lit_corridor
 #
-# If you want to get rid of "use #quit to quit..." use:
-OPTIONS=suppress_alert:0.0.5
+# If you want to get rid of 'use "r." to read...' use:
+#OPTIONS=suppress_alert:0.0.7
 #
 # Note: the rest_on_space in the next line may not be
 #       appropriate for a beginning NetHack player, since

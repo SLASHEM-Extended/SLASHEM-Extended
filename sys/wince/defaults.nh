@@ -33,8 +33,8 @@
 #
 OPTIONS=time,noshowexp,number_pad,lit_corridor,rest_on_space
 #
-# If you want to get rid of "use #quit to quit..." use:
-#OPTIONS=suppress_alert:3.3.1
+# If you want to get rid of 'use "r." to read...' use:
+#OPTIONS=suppress_alert:0.0.7
 #
 # Set some options to control graphical window-port (these will
 # be safely and silently ignored by the tty port)

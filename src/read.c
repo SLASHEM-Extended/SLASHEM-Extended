@@ -21,8 +21,8 @@
 
 boolean	known;
 
-static NEARDATA const char readable[] =
-		   { ALL_CLASSES, SCROLL_CLASS, SPBOOK_CLASS, RING_CLASS, 0 };
+static NEARDATA const char readable[] = {
+		   SCROLL_CLASS, SPBOOK_CLASS, RING_CLASS, 0 };
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
 
@@ -40,8 +40,6 @@ static void FDECL(p_glow2,(struct obj *,const char *));
 static void FDECL(randomize,(int *, int));
 static void FDECL(forget_single_object, (int));
 static void FDECL(maybe_tame, (struct monst *,struct obj *));
-/* WAC for reading off the ground */
-static struct obj *NDECL(floorread);
 
 STATIC_PTR void FDECL(set_lit, (int,int,genericptr_t));
 
@@ -50,17 +48,23 @@ doread()
 {
 	register struct obj *scroll;
 	register boolean confused;
-	int grave_num;
+	char class_list[SIZE(readable) + 3];
+	char *cp = class_list;
+	struct engr *ep = engr_at(u.ux, u.uy);
 
-	/* Try to read the engraving, if there is one */
-	if (read_engr_at(u.ux, u.uy, TRUE))
-	    return 1;
+	*cp++ = ALL_CLASSES;
+	*cp++ = ALLOW_FLOOROBJ;
+	if (!u.uswallow && ep && ep->engr_txt[0])
+	    *cp++ = ALLOW_THISPLACE;
+	Strcpy(cp, readable);
 
 	known = FALSE;
 	if(check_capacity((char *)0)) return (0);
-	/*scroll = getobj(readable, "read");*/
-	scroll = floorread();
+	scroll = getobj(class_list, "read");
 	if(!scroll) return(0);
+
+	if (scroll == &thisplace)
+	    return sense_engr_at(u.ux, u.uy, TRUE);
 
 	/* KMH -- some rings can be read, even while illiterate */
 	if (scroll->oclass == RING_CLASS) {
@@ -70,7 +74,7 @@ doread()
 		You("cannot see it!");
 		return 0;
 	    }
-	    if (!(scroll->owornmask & W_RING)) {
+	    if (scroll->where != OBJ_INVENT || !(scroll->owornmask & W_RING)) {
 		pline("Perhaps you should put it on first.");
 		return 0;
 	    }
@@ -216,46 +220,13 @@ doread()
 				(scroll->blessed ? 2 : 1));
 		}
 		if(scroll->otyp != SCR_BLANK_PAPER) {
-			if (carried(scroll)) useup(scroll);
-			else useupf(scroll, 1L);
+		    if (carried(scroll)) useup(scroll);
+		    else if (mcarried(scroll)) m_useup(scroll->ocarry, scroll);
+		    else useupf(scroll, 1L);
 		}
 		else scroll->in_use = FALSE;
 	}
 	return(1);
-}
-
-
-/* Return object from floor or inventory to read */
-/* based from similar function floorfood */
-static struct obj *
-floorread()
-{
-	register struct obj *otmp;
-	char qbuf[QBUFSZ];
-	char c;
-
-	if (!(Levitation && !Is_airlevel(&u.uz)  && !Is_waterlevel(&u.uz))
-			&& !u.uswallow) {
-	/* Don't read rings off the floor; they must be worn */
-		for(otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere) {
-		     if(otmp->otyp == FORTUNE_COOKIE
-#ifdef TOURIST
-		     	 || otmp->otyp == T_SHIRT 
-#endif
-		         || otmp->oclass == SCROLL_CLASS
-		         || otmp->oclass == SPBOOK_CLASS) {
-				 Sprintf(qbuf, "There %s %s here; read %s?",
-						(otmp->quan == 1L) ? "is" : "are",
-				         doname(otmp),
-						(otmp->quan == 1L) ? "it" : "one");
-				if((c = yn_function(qbuf,ynqchars,'n')) == 'y')
-					return(otmp);
-				else if(c == 'q')
-					return((struct obj *) 0);
-			}
-		}
-	}
-	return(getobj(readable, "read"));
 }
 
 static void

@@ -1,4 +1,4 @@
-.\" $Revision: 1.10 $ $Date: 2003-02-25 11:06:58 $
+.\" $Revision: 1.11 $ $Date: 2003-03-15 16:46:19 $
 .ds h0 "SLASH'EM Guidebook
 .ds h1
 .ds h2 %
@@ -449,6 +449,14 @@ inventory, so you can see the inventory letters of every object you're
 carrying.  Finally, if you change your mind and decide you don't want
 to do this command after all, you can press the ESC key to abort the
 command.
+.pg
+Some commands allow you to choose an object that you are not currently
+carrying. Such commands have an extra option available as in ``What do
+you want to drink?\ [fgh or ?*,.]''. Typing `,' gives you a list of the
+applicable objects on the floor, from which you may make your choice.
+For commands where it is possible to choose your current location rather
+than an object, the `.' option will be displayed. This can be used to
+read an engraving or drink from a dungeon feature.
 .pg
 You can put a number before some commands to repeat them that many
 times; for example, ``10s'' will search ten times.  If you have the

@@ -296,9 +296,9 @@ register xchar x,y,cnt;
 #ifdef OVL2
 
 boolean
-read_engr_at(x,y,always_prompt)
+sense_engr_at(x,y,read_it)
 register int x,y;
-boolean always_prompt; /* Always ask the yn question */
+boolean read_it; /* Read any sensed engraving */
 {
 	register struct engr *ep = engr_at(x,y);
 	register int	sensed = 0;
@@ -355,8 +355,11 @@ boolean always_prompt; /* Always ask the yn question */
 				Something);
 		sensed = 1;
 	    }
-	    if (sensed && ((u.uconduct.literate && !always_prompt) ||
-	    		   yn("Read the message?") == 'y')) {
+	    if (sensed && !read_it &&
+			    flags.suppress_alert < FEATURE_NOTICE_VER(0,0,7)) {
+		pline("Use \"r.\" to read it.");
+	    } else if (sensed && read_it && (u.uconduct.literate ||
+			    yn("Read the message?") == 'y')) {
 	    	/* MAR Don't prompt if you're already literate */
 	    	/* WAC -- Hey,  there's a prompt here now so no excuses :) */
 		int len;

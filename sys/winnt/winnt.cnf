@@ -49,8 +49,8 @@ OPTIONS=perm_invent
 #
 OPTIONS=time,noshowexp,number_pad,lit_corridor,rest_on_space
 #
-# If you want to get the "use #quit to quit..." comment:
-OPTIONS=suppress_alert:0.0.6
+# If you want to get rid of 'use "r." to read...' use:
+#OPTIONS=suppress_alert:0.0.7
 #
 
 #
