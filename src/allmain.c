@@ -234,14 +234,13 @@ moveloop()
 			}
 		    }
 
-
-		    if (tech_inuse(T_CHI_HEALING) && (u.uen > 0) 
-		    		&& (u.uhp < u.uhpmax)) {
+		    if (!u.uinvulnerable && u.uen > 0 && u.uhp < u.uhpmax &&
+			    tech_inuse(T_CHI_HEALING)) {
 			u.uen--;
 			u.uhp++;
 			flags.botl = 1;
 		    }
-		    
+
 		    /* moving around while encumbered is hard work */
 		    if (wtcap > MOD_ENCUMBER && u.umoved) {
 			if(!(wtcap < EXT_ENCUMBER ? moves%30 : moves%10)) {
