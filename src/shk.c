@@ -2456,13 +2456,26 @@ register boolean peaceful, silent;
 	value += gvalue;
 
 	if(peaceful) {
+	    boolean credit_use = !!ESHK(shkp)->credit;
 	    value = check_credit(value, shkp);
 	    ESHK(shkp)->debit += value;
 
 	    if(!silent) {
+		char *still = "";
+		if (credit_use) {
+		    if (ESHK(shkp)->credit) {
+			You("have %ld zorkmids credit remaining.",
+				 ESHK(shkp)->credit);
+			return value;
+		    } else if (!value) {
+			You("have no credit remaining.");
+			return 0;
+		    }
+		    still = "still ";
+		}
 		if(obj->oclass == GOLD_CLASS)
-		    You("owe %s %ld zorkmids!", mon_nam(shkp), value);
-		else You("owe %s %ld zorkmids for %s!",
+		    You("%sowe %s %ld zorkmids!", still, mon_nam(shkp), value);
+		else You("%sowe %s %ld zorkmids for %s!", still,
 			mon_nam(shkp),
 			value,
 			obj->quan > 1L ? "them" : "it");
