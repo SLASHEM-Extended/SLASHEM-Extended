@@ -69,6 +69,8 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
+ver 0.0.7E4F2 [?] [Released by ?]
+
 ver 0.0.7E4F1 [December 2/2003] [Released by Ali]
 -fixed bug 852547: UNIX: make install can't find license
 
