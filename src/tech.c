@@ -1062,6 +1062,11 @@ int tech_no;
 	    		You("aren't capable of doing this!");
 	    		return(0);
 	    	}
+		if (u.uswallow) {
+	    		pline("What do you think %s is?  A sword swallower?",
+				mon_nam(u.ustuck));
+	    		return(0);
+		}
 
 	    	if (!getdir((char *)0)) return(0);
 		if (!u.dx && !u.dy) {
@@ -1070,77 +1075,114 @@ int tech_no;
 			return(0);
 		}
 		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
-		if (!mtmp || mtmp->minvis) {
-			You("don't see anything there!");
+		if (!mtmp || !canspotmon(mtmp)) {
+			if (glyph_is_invisible(
+				levl[u.ux + u.dx][u.uy + u.dy].glyph))
+			    You("don't know where to aim for!");
+			else
+			    You("don't see anything there!");
 			return (0);
 		}
 	    	obj = MON_WEP(mtmp);   /* can be null */
-
 	    	if (!obj) {
-	    		You("can't disarm an unarmed foe!");
+	    		You_cant("disarm an unarmed foe!");
 	    		return(0);
 	    	}
+		/* Blindness dealt with above */
+		if (!mon_visible(mtmp)
+#ifdef INVISIBLE_OBJECTS
+				|| obj->oinvis && !See_invisible
+#endif
+				) {
+	    		You_cant("see %s weapon!", s_suffix(mon_nam(mtmp)));
+	    		return(0);
+		}
 		num = ((rn2(techlev(tech_no) + 15)) 
 			* (P_SKILL(weapon_type(uwep)) - P_SKILLED + 1)) / 10;
 
 		You("attempt to disarm %s...",mon_nam(mtmp));
 		/* WAC can't yank out cursed items */
-                if ((num && (!Fumbling || !rn2(10))) && !obj->cursed) {
+                if (num > 0 && (!Fumbling || !rn2(10)) && !obj->cursed) {
+		    int roll;
 		    obj_extract_self(obj);
 		    possibly_unwield(mtmp);
 		    obj->owornmask &= ~W_WEP;
-		    switch(rn2(num + 1)) {
+		    roll = rn2(num + 1);
+		    if (roll > 3) roll = 3;
+		    switch (roll) {
 			case 2:
 			    /* to floor near you */
 			    You("knock %s %s to the %s!",
 				s_suffix(mon_nam(mtmp)),
 				xname(obj),
 				surface(u.ux, u.uy));
-			    if(obj->otyp == CRYSKNIFE)
+			    if (obj->otyp == CRYSKNIFE &&
+				    (!obj->oerodeproof || !rn2(10))) {
 				obj->otyp = WORM_TOOTH;
-			    place_object(obj,u.ux, u.uy);
+				obj->oerodeproof = 0;
+			    }
+			    place_object(obj, u.ux, u.uy);
+			    stackobj(obj);
 			    break;
 			case 3:
-			    /* right into your inventory */
-			    if (rn2(25)) {
-				You("snatch %s %s!",
-					s_suffix(mon_nam(mtmp)),
-					xname(obj));
-					obj = hold_another_object(obj,
-					   "You drop %s!", doname(obj),
-					   (const char *)0);
-			    /* proficient at disarming, but maybe not
-			       so proficient at catching weapons */
-			    }
 #if 0
-			    else {
+			    if (!rn2(25)) {
+				/* proficient at disarming, but maybe not
+				   so proficient at catching weapons */
 				int hitu, hitvalu;
 
 				hitvalu = 8 + obj->spe;
 				hitu = thitu(hitvalu,
 					dmgval(obj, &youmonst),
 					obj, xname(obj));
-				if (hitu) {
-					You("The %s hits you as you try to snatch it!",
-							the(xname(obj)));
-				}
+				if (hitu)
+				    pline("%s hits you as you try to snatch it!",
+					    The(xname(obj)));
 				place_object(obj, u.ux, u.uy);
+				stackobj(obj);
+				break;
 			    }
 #endif /* 0 */
+			    /* right into your inventory */
+			    You("snatch %s %s!", s_suffix(mon_nam(mtmp)),
+				    xname(obj));
+			    if (obj->otyp == CORPSE &&
+				    touch_petrifies(&mons[obj->corpsenm]) &&
+				    !uarmg && !Stone_resistance &&
+				    !(poly_when_stoned(youmonst.data) &&
+					polymon(PM_STONE_GOLEM))) {
+				char kbuf[BUFSZ];
+
+				Sprintf(kbuf, "%s corpse",
+					an(mons[obj->corpsenm].mname));
+				pline("Snatching %s is a fatal mistake.", kbuf);
+				instapetrify(kbuf);
+			    }
+			    obj = hold_another_object(obj, "You drop %s!",
+				    doname(obj), (const char *)0);
 			    break;
 			default:
-			{
 			    /* to floor beneath mon */
-			    You("knock %s from %s grasp!",
-				the(xname(obj)),
-				s_suffix(mon_nam(mtmp)));
-			    if(obj->otyp == CRYSKNIFE)
+			    You("knock %s from %s grasp!", the(xname(obj)),
+				    s_suffix(mon_nam(mtmp)));
+			    if (obj->otyp == CRYSKNIFE &&
+				    (!obj->oerodeproof || !rn2(10))) {
 				obj->otyp = WORM_TOOTH;
+				obj->oerodeproof = 0;
+			    }
 			    place_object(obj, mtmp->mx, mtmp->my);
-			}
+			    stackobj(obj);
+			    break;
 		    }
-		} else {
-			pline("%s evades your attack.",Monnam(mtmp));
+		} else if (mtmp->mcanmove && !mtmp->msleeping)
+		    pline("%s evades your attack.", Monnam(mtmp));
+		else
+		    You("fail to dislodge %s %s.", s_suffix(mon_nam(mtmp)),
+			    xname(obj));
+		wakeup(mtmp);
+		if (!mtmp->mcanmove && !rn2(10)) {
+		    mtmp->mcanmove = 1;
+		    mtmp->mfrozen = 0;
 		}
 		break;
 	    case T_DAZZLE:

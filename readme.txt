@@ -358,6 +358,7 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -fixed bug 424394: Summon Undead causes crash.
 -fixed bug 423686: Steed resisting and hilite_pet.
 -fixed bug 430975: "the the Dark Lord".
+-fixed bug 431283: Sleeping monsters can evade disarm tech.
 
 ver 0.0.6E4F4 [May 2/2001] [Released by Ali]
 -fixed bug 404825: wands of teleportation that explode/zapped at yourself
