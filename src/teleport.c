@@ -231,14 +231,14 @@ struct permonst *mdat;
     int path_len, postype;
     int first_col, last_col;
     int nd, n;
-    static unsigned char *map;
+    unsigned char *map;
     static const int dirs[8] =
       /* N, S, E, W, NW, NE, SE, SW */
       { -COLNO, COLNO, 1, -1, -COLNO-1, -COLNO+1, COLNO+1, COLNO-1};
     struct monst fakemon;	/* dummy monster */
     fakemon.data = mdat;	/* set up for badpos */
     map = (unsigned char *)alloc(COLNO * (ROWNO + 2));
-    (void) memset((genericptr_t)map, EPATHTO_INACCESSIBLE, sizeof(map));
+    (void) memset((genericptr_t)map, EPATHTO_INACCESSIBLE, COLNO * (ROWNO + 2));
     for(i = 1; i < COLNO; i++)
 	for(j = 0; j < ROWNO; j++)
 	    map[EPATHTO_XY(i, j)] = EPATHTO_UNSEEN;
@@ -347,12 +347,12 @@ genericptr_t data;
     int path_len, postype;
     int first_col, last_col;
     int nd, n;
-    static unsigned char *map;
+    unsigned char *map;
     static const int dirs[8] =
       /* N, S, E, W, NW, NE, SE, SW */
       { -COLNO, COLNO, 1, -1, -COLNO-1, -COLNO+1, COLNO+1, COLNO-1};
     map = (unsigned char *)alloc(COLNO * (ROWNO + 2));
-    (void) memset((genericptr_t)map, EPATHTO_INACCESSIBLE, sizeof(map));
+    (void) memset((genericptr_t)map, EPATHTO_INACCESSIBLE, COLNO * (ROWNO + 2));
     for(i = 1; i < COLNO; i++)
 	for(j = 0; j < ROWNO; j++)
 	    map[EPATHTO_XY(i, j)] = EPATHTO_UNSEEN;
