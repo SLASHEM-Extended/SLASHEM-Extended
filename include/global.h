@@ -298,7 +298,7 @@ typedef xchar	boolean;		/* 0 or 1 */
 #  define USE_TILES		/* glyph2tile[] will be available */
 # endif
 #endif
-#if defined(AMII_GRAPHICS) || defined(GEM_GRAPHICS)
+#if defined(AMII_GRAPHICS) || defined(GEM_GRAPHICS) || defined(GTK_GRAPHICS)
 # ifndef USE_TILES
 #  define USE_TILES
 # endif
