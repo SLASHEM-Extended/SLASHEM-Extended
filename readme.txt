@@ -67,6 +67,7 @@ http://www.slashem.org/
 
 ver 0.0.8E0 [?] [Released by ?]
 -Added dumplog patch (Tom Friedetzky and Jukka Lahtinen)
+-fixed bug 923003: Invisible mirrors can be applied
 
 See history.txt for changes made in previous versions.
 

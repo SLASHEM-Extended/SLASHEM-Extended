@@ -642,16 +642,20 @@ struct obj *obj;
 {
 	register struct monst *mtmp;
 	register char mlet;
-	boolean vis;
+#ifdef INVISIBLE_OBJECTS
+	boolean vis = !Blind && (!obj->oinvis || See_invisible);
+#else
+	boolean vis = !Blind;
+#endif
 
 	if(!getdir((char *)0)) return 0;
 	if(obj->cursed && !rn2(2)) {
-		if (!Blind)
+		if (vis)
 			pline_The("mirror fogs up and doesn't reflect!");
 		return 1;
 	}
 	if(!u.dx && !u.dy && !u.dz) {
-		if(!Blind && !Invisible) {
+		if(vis && !Invisible) {
 		    if (u.umonnum == PM_FLOATING_EYE) {
 			if (!Free_action) {
 			pline(Hallucination ?
@@ -685,18 +689,21 @@ struct obj *obj;
 		return 1;
 	}
 	if(u.uswallow) {
-		if (!Blind) You("reflect %s %s.", s_suffix(mon_nam(u.ustuck)),
+		if (vis) You("reflect %s %s.", s_suffix(mon_nam(u.ustuck)),
 		    mbodypart(u.ustuck, STOMACH));
 		return 1;
 	}
 	if(Underwater) {
+#ifdef INVISIBLE_OBJECTS
+		if (!obj->oinvis)
+#endif
 		You(Hallucination ?
 		    "give the fish a chance to fix their makeup." :
 		    "reflect the murky water.");
 		return 1;
 	}
 	if(u.dz) {
-		if (!Blind)
+		if (vis)
 		    You("reflect the %s.",
 			(u.dz > 0) ? surface(u.ux,u.uy) : ceiling(u.ux,u.uy));
 		return 1;
@@ -717,6 +724,11 @@ struct obj *obj;
 	} else if (!mtmp->mcansee) {
 	    if (vis)
 		pline("%s can't see anything right now.", Monnam(mtmp));
+#ifdef INVISIBLE_OBJECTS
+	} else if (obj->oinvis && !perceives(mtmp->data)) {
+	    if (vis)
+		pline("%s can't see your mirror.", Monnam(mtmp));
+#endif
 	/* some monsters do special things */
 	} else if (is_vampire(mtmp->data) || mlet == S_GHOST) {
 	    if (vis)
