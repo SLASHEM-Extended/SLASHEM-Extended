@@ -1,214 +1,89 @@
 +------------------------------------------------------------------------+
 |                             SLAMFAQ.TXT                                |
 +------------------------------------------------------------------------+
-|                              SLASH'EM                                  |
+|                          SLASH'EM ver 0.0.7                            |
 |               Super Lotsa Added Stuff Hack - Extended Magic            |
 |                           A Nethack Variant                            |
-| Courtesy of Warren Cheung (wac@intergate.bc.ca) (1997-2000)            |
-| Last Time the Date was Updated:  August 13, 2000                       |
+| Courtesy of the Slash'EM development team with the efforts and support |
+| of countless others, especially the slashem-devel mailing list.        |
+|                                                             (1997-2003)|
 +------------------------------------------------------------------------+
-| Nethack is Copyright (c) Mike Stephenson, Izchak Miller  1991.         |
+| Nethack is Copyright 1985-2003                                         |
+|            By Stichting Mathematisch Centrum and M. Stephenson.        |
 | SLASH'EM and NetHack may be freely redistributed.                      |
 | See license for details.                                               |
 +------------------------------------------------------------------------+
 
-Section 0.0 Contents
---------------------
+Contents
+--------
 
+Q.      What is SLASH'EM
+Q.      What is SLASH?
+Q.      What is the Wizard Patch?
+Q.      What are the new commands?
+Q.      Where did feature xxx come from?
 
 Q.      What is SLASH'EM
 ------------------------
-                At it's very heart and core,  it's still good ol' Nethack
-        3.3.1, by the illustrious DevTeam (http://www.nethack.org/).
 
-                The code base from which this was started is
-        SuperLotsaAddedStuffHack (SLASH) 4.1.2E8, ported by Enrico Horn
-        (enhorn@Wirtschaft.TU-Ilmenau.De).  He took the old SLASH V6 (a
-        variant for Nethack 3.1.3) code by Tom Proudfoot ,  and
-        ported it to use the Nethack 3.2.2 code.  SLASH is probably the
-        most popular variant of Nethack.
+At its very heart and core, it's still good ol' vanilla Nethack,
+by the illustrious DevTeam (http://www.nethack.org/).
 
-                On top of this is added the Wizard Patch 0.7 by Larry
-        Stewart-Zerba (larry@cs.uq.edu.au) and Warwick Allison
-        (warwick@cs.uq.edu.au) (also known for the Qt Nethack port).
+The code base from which this was started is SuperLotsaAddedStuffHack
+(SLASH) 4.1.2E8, ported by Enrico Horn.  He took the old SLASH V6 (a
+variant for Nethack 3.1.3) code by Tom Proudfoot, and ported it to use
+the Nethack 3.2.2 code.  SLASH was probably the most popular variant
+of Nethack.
 
-                Enriched with additional tiles by Dirk Schönberger
-        (shoenberger@signsoft.com)
+On top of this is added the Wizard Patch 0.7 by Larry Stewart-Zerba
+and Warwick Allison (also known for the Qt Nethack port).
 
-                Knead in Kevin Hugo (hugo@cae.wisc.edu)'s Balance Patch
+Enriched with additional tiles by Dirk Schönberger.
 
-                Add half a pound of bugfixes,  new spells,  tweaked/new
-        special abilities and features as they come to yours truly.
+Knead in Kevin Hugo's Balance Patch.
 
-                Toss in some hefty submissions from other Nethack denizens
+Add half a pound of bugfixes, new spells, tweaked/new special abilities
+and features as they came to Warren Cheung.
 
-                Recently,  it's been migrated to use the recently released 
-	Nethack 3.3.0 and Nethack 3.3.1 codebase.
-
-Q.      How do you Patch the source code
-----------------------------------------
--To use the slamXXX.pat file, you need the patch.exe program (or equivalent).
-        Go into the top directory of the unpacked SLASH sources.  
-        (eg.  C:\GAMES\SLASH) and type:
-
-        patch -p 1 < slamXXX.pat
+Finally, factor in several years worth of development by the Slash'EM
+dev-team.
 
 Q.      What is SLASH?
 ----------------------
-        SLASH originally by Tom Proudfoot -- proudft@ccnet.com
-        SLASH 4.1.2E8 by Enrico Horn -- enhorn@Wirtschaft.TU-Ilmenau.De
 
-                SLASH is Super-Lotso-Added-Stuff-Hack.  Pretty much, it's
-        Nethack with more spells, monsters,  artifacts, character classes
-        and other added features.  Originally by Tom Proudfoot.
-        (http://www.proudft.com/)
+SLASH originally by Tom Proudfoot
+SLASH 4.1.2E8 by Enrico Horn
+
+SLASH is Super-Lotso-Added-Stuff-Hack.  Pretty much, it's Nethack with
+more spells, monsters, artifacts, character classes and other added
+features.  Originally by Tom Proudfoot.
+
+See Ali's source archive for more details:
+
+http://avrc.city.ac.uk/nethack/source.html
 
 Q.      What is the Wizard Patch?
 ---------------------------------
-        Wizard Patch 1.0 by Larry Stewart-Zerba -- larry@cs.uq.edu.au
-        and Warwick Allison -- warwick@cs.uq.edu.au
 
-                The Wizard Patch takes the skills system in Nethack 3.2.2
-        and extends it to include spellcasting abilities.  It also added
-        some spells. As a note, I chose not to include (left commented out)
-        the decreased power regeneration code.
+Wizard Patch 1.0 by Larry Stewart-Zerba and Warwick Allison.
+
+The Wizard Patch took the skills system in Nethack 3.2.2 and extended it
+to include spellcasting abilities.  It also added some spells. As a note,
+Warren chose not to include the decreased power regeneration code.
 
 Q.      What are the new commands?
 ----------------------------------
 
-                Here's a list of the most useful ones.  As well,  I've been
-        going through and The Guidebook should be now up to date as well.
+Please consult the guidebook, a copy of which should be included
+with all distributions.
 
-'?'
-        Standard Help files should be up-to-date.
-#enhance
-meta-k  (Alt-k)
-        New in nethack 3.2.2 and extended in the Wizard Patch are the
-        skills.  As you practice with various weapons and spells,  you
-        will eventuallybecome more proficient with that weapon class or
-        spell class.  Eventually,  you'll get a message telling you that
-        you can improve that weapon/spell skill.  If you're in DOS,  hit
-        Alt-k and you'll bring up the weapons skills (same as typing
-        #enhance).  Select the skill to improve,  and put the improved
-        skill to use.  Becoming more skilled at a weapon/spell skill
-        improves chances to hit/casting success, as well as other special
-        abilities (enhanced spells,  etc.)
-meta-y (Alt-y for MSDOS users)
-        This is for controlled polymorphing.  Only Lycanthropes and 
-        Dopplegangers can use this,  initially.
-meta-b  (Alt-b)
-        Allows you to steal gold from monsters,  if you are able.  Helps
-        if you're good at it...like Rogues...
-meta-t  (Alt-t)
-        Allows you to use the class/role-specific techniques.  Many of the roles
-        and races start off with techniques, and gain more as they gain experience
-        levels.
-
-Q.      What are the new user interface keys?
----------------------------------------------
-        As of Nethack 3.2.2,  users can now use a new (and dare I say it)
-        much more user-friendly interface.  Actual key assignments are done in
-        include/wintype.h,  but by default,  the accelerator keys are:
-        MENU_FIRST_PAGE         '^'
-        MENU_LAST_PAGE          '|'
-        MENU_NEXT_PAGE          '>'
-        MENU_PREVIOUS_PAGE      '<'
-        MENU_SELECT_ALL         '.'
-        MENU_UNSELECT_ALL       '-'
-        MENU_INVERT_ALL         '@'
-        MENU_SELECT_PAGE        ','
-        MENU_UNSELECT_PAGE      '\'
-        MENU_INVERT_PAGE        '~'
-        MENU_SEARCH             ':'
-
-Q.      What about a Linux version/source?
-------------------------------------------
-        The SLASH'EM source should now compile under Linux.  Linux binaries
-        are also now available.  Special thanks to J. Ali Harlow.
-
-Q.      What is the include/filename.h file for?
-------------------------------------------------
-        That handles the names of the various config files and the like.
-        It should be automatically generated from file.h by running
-
-                makedefs -f
-
-        Stick this in your makefile next to makedefs -v and the others.
-        Take a look at the current DOS makefile (makefile.gcc) for more.
-        As to why I implemented that,  it allowed me to redefine the name
-        of the config file to slashem.cnf, but more importantly, it allows
-        anyone to change the name of the config files by simply fiddling
-        with the DEF_GAME_NAME define in patchlev.h
-
-Q.      How do I invoke the wizard mode?
+Q.      Where did feature xxx come from?
 ----------------------------------------
-        Invoke SLASH'EM with
 
-        slashem -uwizard -Z
-
-Q.      What's this "bad monster weapon restore bug"?  Should I be worried?
----------------------------------------------------------------------------
-        There's nothing to be actually worried about.  This means the code
-        was reloading a monster from disk,  and for some reason it's main
-        weapon disappeared.  However, this won't disrupt gameplay, since
-        the code automatically selects a new weapon for the monster.  The
-        only thing is that it *shouldn't* happen. Anyone know why? :(
-
-Q.      What is SLASH'EM Currently Developed On?
-------------------------------------------------
-        This is being compiled on a Win95 120 MHz Pentium (Hewlett Packard
-Pavilion) with an S3 Trio video card,  Meschede's VESA 2.0 extensions,
-Crystal Soundblaster compatible sound card, 1 GB Hard drive w/ approx. 30Megs
-free.  Nethack is edited with MSDOS Edit 2.0.026 in one DOS box,  and
-another DOS box for compiling/testing/playing.  I compile using DJGPP
-V2.01 (only partially installed) and gnu make. As of 0.0.2E9,  I have used
-the Pentium Group's version of EGCS,  PGCC (current version 1.0.1) to
-compile Pentium optimized binaries at optimization -O6. Programming
-experience includes Apple IIGS,  GW- and Q- BASIC, and QuakeC. DOS
-binaries are compressed using DJP.  Archives zipped with DOS PKZIP
-2.04g.
-
-        As of sometime August 1998,  I've been compiling this on a Win95
-266MHz Pentium2 (NEC Ready 9765) with a Trident 3DImagge video card,  Sound4
-Winmodem, 7 GB Hard drive (now with 4 GB free!  The space!!!).  Compile speed
-is no longer an issue <G>.   Currently back the distrib GNU gcc 2.8.1.
-
-Q.      Who is this WACko fellow anyways?
------------------------------------------
-Warren Alexander Cheung is based in good old rainy Vancouver, British
-Columbia in Canada and wouldn't trade his shoes for anyone else's.  (Not
-that anyone would want my shoes,  but still ;B).  He is currently entering
-his second undergraduate year at the University of British Columbia
-(as of Winter 1998),  proving that even bears of little brain can do some
-programming.
-
-
-Q.      What is that ;B mean
-----------------------------
-                A take off on the tongue out of the mouth smiley ;b , mine
-        represents a double-tongued smiley.  Then again,  some things
-        are best kept to oneself ;B
-               
-**********************************************************************
-****DANGER********DANGER********DANGER********DANGER********DANGER****
-**********************************************************************
-***SPOILERS******SPOILERS******SPOILERS******SPOILERS******SPOILERS***
-****AHEAD*********AHEAD*********AHEAD*********AHEAD*********AHEAD*****
-**********************************************************************
-****DANGER********DANGER********DANGER********DANGER********DANGER****
-**********************************************************************
-
-Q.      What's new/different in SLASH'EM from
-        Nethack 3.2.2/SLASH/Wizard Patch
-
-A.      Please refer to the history.txt
-
-Q.      What the...?  The xxx in Nethack weren't like this?!!
-        If you didn't change it, who did?
-
-A.      Here's a list of what SLASH and Wizard Patch have contributed
-If it's not listed above,  you have SLASH or Wizard patch to thank
-for it.
+Many of the changes from vanilla NetHack are the result of continuing
+development and improvement of Slash'EM but many others date back to
+earlier variants and patches.  Here is the original documentation of
+the various bits that went into the original creation of Slash'EM.
 
 From SLASHV6 
 ------------
