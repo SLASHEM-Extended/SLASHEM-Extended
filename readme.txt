@@ -328,6 +328,7 @@ TODO:
 ver 0.0.6E4F2 [December XX/2000]
 -fixed bug 122396: Bottom line slow to refresh.
 -fixed bug 122397: "Eating" an inedible corple leaves it partly eaten.
+-fixed bug 122966: Dwarf's rage technique should not heal as well.
 
 ver 0.0.6E4F1 [November 10/2000] [Released by Ali]
 -GTK: status window stats columns should never be too small

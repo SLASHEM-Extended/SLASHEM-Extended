@@ -1008,7 +1008,7 @@ int tech_no;
 		num = 50 + (4 * techlev(tech_no));
 	    	techt_inuse(tech_no) = num + 1;
 		u.uhpmax += num;
-		u.uhp = u.uhpmax;
+		u.uhp += num;
 		t_timeout = rn1(1000,500);
 		break;	    
 	    case T_BLINK:
