@@ -212,11 +212,12 @@ LL........................
 .........LLL.........L....
 ENDMAP
 # Dungeon Description
+RANDOM_PLACES:(14,04),(13,07)
 REGION:(00,00,25,10),unlit,"ordinary"
 # Stairs
 STAIR:(20,05),up
 # Objects
-OBJECT:'(',"lenses",(13,05),blessed,0,"The Eyes of the Overworld"
+OBJECT:'(',"lenses",place[0],blessed,0,"The Eyes of the Overworld"
 OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
@@ -239,8 +240,8 @@ TRAP:"fire",random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:'@',"Master Kaen",(13,05)
-ALTAR:(13,05),noalign,altar
+MONSTER:'@',"Master Kaen",place[0]
+ALTAR:place[0],noalign,altar
 MONSTER: 'E',"earth elemental",random
 MONSTER: 'E',"earth elemental",random
 MONSTER: 'E',"earth elemental",random
