@@ -114,6 +114,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 1039689: malloc_consolidate hang after using cursed bag of holding
 -fixed bug 1028955: Surgery technique doesn't work with polymorph
 -fixed bug 1035356: God gave Deathsword to "human" character
+-fixed bug 1024200: Problems about Thiefbane
 
 See history.txt for changes made in previous versions.
 
