@@ -369,6 +369,7 @@ ver 0.0.6E4F6 [? ?/2001] [Released by ?]
 -fixed bug 420942: two entrances to mines.
 -fixed bug 452172: Penalty for drowning pets.
 -fixed bug 452130: Odd message when charming shopkeeper.
+-fixed bug 461443: Frankenstein is vegan.
 
 ver 0.0.6E4F5 [August 31/2001] [Released by Ali]
 -fixed bug 420517: Yellow dragon scale mail.

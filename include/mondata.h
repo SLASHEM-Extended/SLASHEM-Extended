@@ -186,6 +186,7 @@
 				 (ptr) != &mons[PM_STALKER]) ||       \
 				((ptr)->mlet == S_GOLEM &&            \
 				 (ptr) != &mons[PM_FLESH_GOLEM] &&    \
+				 (ptr) != &mons[PM_FRANKENSTEIN_S_MONSTER] && \
 				 (ptr) != &mons[PM_LEATHER_GOLEM]) || \
 				 noncorporeal(ptr))
 #define vegetarian(ptr)		(vegan(ptr) || \
@@ -193,5 +194,6 @@
 				 (ptr) != &mons[PM_BLACK_PUDDING]))
 /* For vampires */
 #define has_blood(ptr)		(!vegetarian(ptr) && \
+				   (ptr)->mlet != S_GOLEM && \
 				   (!is_undead(ptr) || is_vampire(ptr)))
 #endif /* MONDATA_H */
