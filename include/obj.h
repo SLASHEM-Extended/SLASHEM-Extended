@@ -97,6 +97,7 @@ struct obj {
 	Bitfield(bypass,1);     /* mark this as an object to be skipped by bhito() */
 
 	Bitfield(yours,1);	/* obj is yours (eg. thrown by you) */
+	Bitfield(was_thrown,1); /* thrown by the hero since last picked up */
 	/* ? free bits */
 
 	int	corpsenm;	/* type of corpse is mons[corpsenm] */

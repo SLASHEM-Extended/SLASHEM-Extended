@@ -334,6 +334,7 @@ ver 0.0.6E8 [?] [Released by ?]
 -Proxy: Add support for callback extensions.
 -Merged Scott Bigham's blocked boulder patch
 -Merged Sam Dennis's extended wizard-mode ^V command
+-Merged Roderick Schertler's pickup thrown patch
 
 ver 0.0.6E7 [December 6/2002] [Released by Ali]
 -Lethe: Treacherous pets; Cthulhu revivification; monsters use of potions of

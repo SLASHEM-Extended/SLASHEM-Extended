@@ -73,6 +73,7 @@ struct flag {
 #endif
 	boolean  perm_invent;	/* keep full inventories up until dismissed */
 	boolean  pickup;	/* whether you pickup or move and look */
+	boolean  pickup_thrown;		/* auto-pickup items you threw */
 
 	boolean  pushweapon;	/* When wielding, push old weapon into second slot */
 #ifdef RADAR
@@ -274,6 +275,7 @@ struct instance_flags {
 	boolean wc_large_font;		/* draw in larger fonts (say, 12pt instead
 				   		of 9pt) */
 	boolean wc_eight_bit_input;	/* allow eight bit input               */
+
 };
 
 /*
