@@ -1167,9 +1167,8 @@ hitmu(mtmp, mattk)
 			}
 
 			if (otmp->opoisoned) {
-			    /* it's safe to call xname twice because it's the
-			       same object both times... */
-			    poisoned(xname(otmp), A_STR, xname(otmp), 10);
+			    poisoned(obj_typename(otmp), A_STR,
+				    killer_xname(otmp), 10);
 			    if (nopoison < 2) nopoison = 2;
 			    if (!rn2(nopoison)) {
 				otmp->opoisoned = FALSE;
