@@ -1203,7 +1203,7 @@ boolean your_fault;
 	    if (resists_magm(mon)) {
                 shieldeff(mon->mx, mon->my);
 	    } else if (!resist (mon, POTION_CLASS, 0, NOTELL)) {
-                mon_poly(mon, your_fault);
+                mon_poly(mon, your_fault, "%s changes!");
                 if (!Hallucination && canspotmon (mon))
                                 makeknown (POT_POLYMORPH);
 	    }

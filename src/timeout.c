@@ -479,14 +479,14 @@ unpoly_obj(arg, timeout)
  * (except in unpolymorph code,  which is a special case)
  */
 int
-mon_poly(mtmp, your_fault)
+mon_poly(mtmp, your_fault, change_fmt)
 struct monst *mtmp;
 boolean your_fault;
+const char *change_fmt;
 {
 	int i;
-	char name[BUFSZ];
 
-	if (canseemon(mtmp)) pline("%s changes!", Monnam(mtmp));
+	if (canseemon(mtmp)) pline(change_fmt, Monnam(mtmp));
 	/* Lengthen unpolytime - was 500,500  for player */
 	i = mon_spec_poly(mtmp, (struct permonst *)0, rn1(1000,1000));
 	if (!i || !rn2(25)) {

@@ -1948,13 +1948,11 @@ register struct attack *mattk;
 				/* no corpse after system shock */
 				tmp = rnd(30);
 #endif
-			} else {
-			    if (!mon_poly(mdef, TRUE)) tmp = 0;
-			    	/* prevent killing the monster again - 
-			    	 * could be killed in mon_poly */
-			    else if (!Blind) /* Successful polymorph */
-				pline("%s undergoes a freakish metamorphosis!",Monnam(mdef));
-			}
+			} else if (!mon_poly(mdef, TRUE,
+			  "%s undergoes a freakish metamorphosis!"))
+				/* prevent killing the monster again - 
+				 * could be killed in mon_poly */
+				tmp = 0;
 		}
 		break;
 		/* WAC -- for death gazes - but all messages should be generic */

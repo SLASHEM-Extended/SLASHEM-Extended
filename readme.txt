@@ -345,6 +345,7 @@ ver 0.0.6E5 [May 3/2001] [Released by Warren]
 -fixed bug 225227: Vampires start with food rations.
 
 ver 0.0.6E4F6 [? ?/2001] [Released by ?]
+-fixed bug 453246: Genetic engineers attacking monsters.
 
 ver 0.0.6E4F5 [August 31/2001] [Released by Ali]
 -fixed bug 420517: Yellow dragon scale mail.

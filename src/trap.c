@@ -1667,7 +1667,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
                                 if (mtmp->mhp < 0) mondead(mtmp);
                         } else {
 #endif
-			mon_poly(mtmp, FALSE);
+			mon_poly(mtmp, FALSE, "%s changes!");
                         if (in_sight) seetrap(trap);
 		    }
 		    break;

@@ -1243,8 +1243,8 @@ label2:                 if (mdef->mhp > 0) return 0;
 				tmp = rnd(30);
 			} else 
 #endif
-			if (mon_poly(mdef, FALSE) && vis)
-				pline("%s undergoes a freakish metamorphosis!",Monnam(mdef));
+			(void) mon_poly(mdef, FALSE,
+			  "%s undergoes a freakish metamorphosis!");
 		}
 		break;
 
