@@ -365,6 +365,7 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -fixed bug 436049: Rogues striking twice from behind.
 -fixed bug 436047: Can't polymorph into dwarf or gnome.
 -fixed bug 436055: Altar stained with doppelgangen blood.
+-fixed bug 436056: Cavewomen and amulets of change.
 
 ver 0.0.6E4F4 [May 2/2001] [Released by Ali]
 -fixed bug 404825: wands of teleportation that explode/zapped at yourself

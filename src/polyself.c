@@ -143,7 +143,10 @@ change_sex()
 
 	/* Some monsters are always of one sex and their sex can't be changed */
 	/* succubi/incubi are handled below */
-	if (u.umonnum != PM_SUCCUBUS && u.umonnum != PM_INCUBUS && !is_male(youmonst.data) && !is_female(youmonst.data) && !is_neuter(youmonst.data))
+	if (u.umonnum != PM_SUCCUBUS && u.umonnum != PM_INCUBUS &&
+	    !is_male(youmonst.data) && !is_female(youmonst.data) &&
+	    !is_neuter(youmonst.data) ||
+		!already_polyd && urole.femalenum != NON_PM)
 	    flags.female = !flags.female;
 	if (already_polyd)	/* poly'd: also change saved sex */
 	    u.mfemale = !u.mfemale;

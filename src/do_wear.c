@@ -583,6 +583,10 @@ Amulet_on()
 		       changed the character's base sex */
 		    You("don't feel like yourself.");
 		pline_The("amulet disintegrates!");
+		if (orig_sex == poly_gender() && uamul->dknown &&
+			!objects[AMULET_OF_CHANGE].oc_name_known &&
+			!objects[AMULET_OF_CHANGE].oc_uname)
+		    docall(uamul);
 		useup(uamul);
 		break;
 	    }
