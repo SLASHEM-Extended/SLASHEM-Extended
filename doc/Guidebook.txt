@@ -126,7 +126,7 @@
           mental disciplines have become capable of fighting as effectively
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -192,7 +192,7 @@
           will,   at  a  cost  of some mystic energy (mana),  although what
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -258,7 +258,7 @@
           orientation  was  almost  unique  among  computer  fantasy games.
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -324,7 +324,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -390,7 +390,7 @@
                toward you.  Monsters of a like alignment are more likely to
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -456,7 +456,7 @@
                played.
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -522,7 +522,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -588,7 +588,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -654,7 +654,7 @@
                instead.  Only these one-step movement commands cause you to
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -720,7 +720,7 @@
                ject a.
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -786,7 +786,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -852,7 +852,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -918,7 +918,7 @@
           (R)UNIX is a registered trademark of AT&T.
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -984,7 +984,7 @@
                the  techniques  available  to  your   character   will   be
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -1050,7 +1050,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -1116,7 +1116,7 @@
           the  `o'  (open)  command; to close it again, use the `c' (close)
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -1182,7 +1182,7 @@
           levels,  from  a  template for some ``special'' levels, or loaded
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -1248,7 +1248,7 @@
           survive.   It  usually  feeds  itself  on fresh carrion and other
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -1314,7 +1314,7 @@
           and you won't be able to pick up anything  more.   Otherwise,  it
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -1380,7 +1380,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -1446,7 +1446,7 @@
           class  - a general defense rating, not necessarily due to wearing
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -1512,7 +1512,7 @@
           tion.  Rangers, for instance, or anyone who achieves a high level
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -1578,7 +1578,7 @@
           use  `#enhance'  to increase one or more skills.  Such skills are
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -1644,7 +1644,7 @@
           other worn items.
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -1710,7 +1710,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -1776,7 +1776,7 @@
           two rings, one on each ring finger.
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -1842,7 +1842,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -1908,7 +1908,7 @@
           aside).
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -1974,7 +1974,7 @@
           swallow-and-digest  attack  against  a  monster  is equivalent to
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -2018,10 +2018,10 @@
 
                An illiterate character cannot read or write.  This includes
           reading  a scroll, spellbook, fortune cookie message, or t-shirt;
-          writing a scroll; or reading (or making) an engraving of anything
-          other than a single ``x'' (the traditional signature of an illit-
-          erate person).  Reading any item that is absolutely necessary  to
-          win  the  game is not counted against this conduct.  The identity
+          writing a scroll; or making an engraving of anything other than a
+          single ``x'' (the traditional signature of an illiterate person).
+          Reading an engraving, or any item that is absolutely necessary to
+          win  the game, is not counted against this conduct.  The identity
           of scrolls and spellbooks  (and  knowledge  of  spells)  in  your
           starting  inventory  is  assumed to be learned from your teachers
           prior to the start of the game and isn't counted.
@@ -2040,7 +2040,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -2106,7 +2106,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -2172,7 +2172,7 @@
                on).   You may have to turn this off if you have more than 2
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -2238,7 +2238,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -2304,7 +2304,7 @@
                you hit Enter. It  is  implemented  only  by  the  tty  port
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -2370,7 +2370,7 @@
                define a full graphics set  yourself  (default  off).   This
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -2436,7 +2436,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -2502,7 +2502,7 @@
                vortex, worm, xan or other mythical/fantastic insect, light,
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -2568,7 +2568,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -2634,7 +2634,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -2700,7 +2700,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -2766,7 +2766,7 @@
           for making maps of the dungeons. This makes the  MS-DOS  versions
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -2832,7 +2832,7 @@
           proper place under your current name.  How many scores  are  kept
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -2898,7 +2898,7 @@
           producing  PC  HACK 1.01e, added support for DEC Rainbow graphics
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -2964,7 +2964,7 @@
           Engber, David Hairston, Michael Hamel, Jonathan  Handler,  Johnny
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -3030,7 +3030,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -3096,7 +3096,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -3162,7 +3162,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 
@@ -3228,7 +3228,7 @@
 
 
 
-          SLASH'EM 0.0.6                                 September 26, 2000
+          SLASH'EM 0.0.6                                    August 22, 2000
 
 
 

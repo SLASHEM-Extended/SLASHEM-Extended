@@ -230,7 +230,7 @@ endif
 # Shareable (architecture independent) data files which are not candidates
 # for inclusion in DLB libraries (ND) and which are (D). Port specific files
 # per discussions in Install.X11, Install.Qt and Install.GTK
-CNF_SHARE_GTKND = x11bigtiles x11tiles rip.xpm credit.xpm
+CNF_SHARE_GTKND = x11bigtiles x11big3dtiles x11tiles rip.xpm credit.xpm
 
 ifeq ($(USE_GTK),Y)
 CNF_SHARE_DATND = $(CNF_SHARE_GTKND)
@@ -431,6 +431,7 @@ ifeq ($(USE_GTK),Y)
 	$(COPY) credit.xpm           $(GAMEDIR)
 	$(COPY) x11tiles             $(GAMEDIR)
 	$(COPY) x11bigtiles          $(GAMEDIR)
+	$(COPY) x11big3dtiles        $(GAMEDIR)
 #	$(COPY) $(MW32GTK)\glib\glib*.dll $(GAMEDIR)
 #	$(COPY) $(MW32GTK)\glib\gmodule\gmodule*.dll $(GAMEDIR)
 #	$(COPY) $(MW32GTK)\gtk+\gdk\gdk*.dll $(GAMEDIR)
@@ -505,8 +506,11 @@ spotless: clean
 	$(DEL) dgn_comp.exe
 	$(DEL) txtmerge.exe
 	$(DEL) magtile.exe
+	$(DEL) bigtile.exe
+	$(DEL) txtbg.exe
 	$(DEL) tile2x11.exe
 	$(DEL) x11bigtiles
+	$(DEL) x11big3dtiles
 	$(DEL) x11tiles
 	$(DEL) gtkrc
 	$(DEL) *.xpm
@@ -590,7 +594,24 @@ spotless: clean
 	$(DEL) sp_lev.tag
 	$(DEL) $(PLANAR_TIB)
 	$(DEL) $(OVERVIEW_TIB)
-
+	$(DEL) pet_mark.xbm
+	$(DEL) rip.xpm
+	$(DEL) mapbg.xpm
+	$(DEL) $(WSHR)\monmag.txt
+	$(DEL) $(WSHR)\mon32.txt
+	$(DEL) $(WSHR)\objmag.txt 
+	$(DEL) $(WSHR)\obj32.txt
+	$(DEL) $(WSHR)\othmag.txt
+	$(DEL) $(WSHR)\oth32.txt
+	$(DEL) $(WSHR)\monbig.txt
+	$(DEL) $(WSHR)\mon3d.txt
+	$(DEL) $(WSHR)\objbig.txt
+	$(DEL) $(WSHR)\obj3d.txt
+	$(DEL) $(WSHR)\othbig.txt
+	$(DEL) $(WSHR)\oth3d.txt
+	$(DEL) $(WSHR)\mon32-t.txt
+	$(DEL) $(WSHR)\obj32-t.txt
+	$(DEL) $(WSHR)\oth32-t.txt
 
 #
 #  Secondary Targets.
@@ -776,14 +797,20 @@ $(INCL)\tile.h: $(WSHR)\tile.h tilemap.exe
 
 #  Utilities
 
-txtmerge.exe: txtmerge.o $(TEXTIO)
-	$(CCOMPILE) $(LFLAGS) -otxtmerge.exe txtmerge.o $(TEXTIO)
+$(WSHR)\txtmerge.exe: txtmerge.o $(TEXTIO)
+	$(CCOMPILE) $(LFLAGS) -o$(WSHR)\txtmerge.exe txtmerge.o $(TEXTIO)
 
 tile2x11.exe: tile2x11.o $(TEXTIO)
 	$(CCOMPILE) $(LFLAGS) -otile2x11.exe tile2x11.o $(TEXTIO)
 
 magtile.exe: magtile.o $(TEXTIO)
 	$(CCOMPILE) $(LFLAGS) -omagtile.exe magtile.o $(TEXTIO)
+
+bigtile.exe: bigtile.o $(TEXTIO)
+	$(CCOMPILE) $(LFLAGS) -obigtile.exe bigtile.o $(TEXTIO)
+
+txtbg.exe: txtbg.o $(TEXTIO)
+	$(CCOMPILE) $(LFLAGS) -otxtbg.exe txtbg.o $(TEXTIO)
 
 tile.c: tilemap.exe
 	tilemap.exe
@@ -800,8 +827,14 @@ tilemap.o: $(WSHR)\tilemap.c $(HACK_H)
 
 
 magtile.o: $(WSHR)\magtile.c $(INCL)\config.h $(INCL)\tile.h
-	$(COPY) $(WSHR)\magtile.c .
-	$(CCOMPILE) $(CFLAGS) -c magtile.c
+	$(CCOMPILE) $(CFLAGS) -c $(WSHR)\magtile.c
+
+bigtile.o: $(WSHR)\bigtile.c $(INCL)\config.h $(INCL)\tile.h
+	$(CCOMPILE) $(CFLAGS) -c $(WSHR)\bigtile.c
+
+txtbg.o: $(WSHR)\txtbg.c $(INCL)\config.h $(INCL)\tile.h
+	$(CCOMPILE) $(CFLAGS) -c $(WSHR)\txtbg.c
+
 
 txtmerge.o: $(WSHR)\txtmerge.c $(INCL)\config.h $(INCL)\tile.h
 	$(CCOMPILE) $(CFLAGS) -c ../win/share/txtmerge.c
@@ -811,36 +844,101 @@ tile2x11.o: ../win/X11/tile2x11.c $(INCL)\hack.h $(INCL)\tile.h \
 	$(CCOMPILE) $(CFLAGS) -c ../win/X11/tile2x11.c
 
 
-x11tiles: tile2x11.exe $(WSHR)\monsters.txt $(WSHR)\objects.txt \
-				$(WSHR)\other.txt
+x11tiles: tile2x11.exe ../win/share/monsters.txt ../win/share/objects.txt \
+				../win/share/other.txt
 	tile2x11 ../win/share/monsters.txt ../win/share/objects.txt \
 				../win/share/other.txt
 
-x11bigtiles:	tile2x11.exe $(WSHR)\mon32.txt $(WSHR)\obj32.txt $(WSHR)\oth32.txt
+x11bigtiles:	tile2x11.exe ../win/share/mon32.txt \
+		../win/share/obj32.txt ../win/share/oth32.txt
 	tile2x11 -o x11bigtiles ../win/share/mon32.txt \
 		../win/share/obj32.txt ../win/share/oth32.txt
 
-$(WSHR)\monmag.txt:	magtile.exe $(WSHR)\monsters.txt
+x11big3dtiles:	tile2x11.exe ../win/share/mon3d.txt \
+		../win/share/obj3d.txt ../win/share/oth3d.txt
+	tile2x11 -o x11big3dtiles ../win/share/mon3d.txt \
+		../win/share/obj3d.txt ../win/share/oth3d.txt
+
+../win/share/monmag.txt:	magtile.exe ../win/share/monsters.txt
 	magtile
 
-$(WSHR)\objmag.txt:	magtile.exe $(WSHR)\objects.txt
+../win/share/objmag.txt:	magtile.exe ../win/share/objects.txt
 	magtile
 
-$(WSHR)\othmag.txt:	magtile.exe $(WSHR)\other.txt
+../win/share/othmag.txt:	magtile.exe ../win/share/other.txt
 	magtile
 
-$(WSHR)\mon32.txt:	txtmerge.exe $(WSHR)\monmag.txt $(WSHR)\mon32mi.txt
-	txtmerge ../win/share/mon32.txt ..\\win\\share\\monmag.txt -b204040 ..\\win\\share\\mon32mi.txt 
+$(WSHR)\monbig.txt:	bigtile.exe ../win/share/mon32-t.txt \
+				../win/share/obj32-t.txt \
+				../win/share/oth32-t.txt
+	bigtile
 
-$(WSHR)\obj32.txt:	txtmerge.exe $(WSHR)\objmag.txt \
-		../win/share/obj32mi.txt ../win/share/obj32se.txt
-	txtmerge ../win/share/obj32.txt ../win/share/objmag.txt \
-		-b204040 ../win/share/obj32mi.txt -b ../win/share/obj32se.txt
+$(WSHR)\objbig.txt:	bigtile.exe ../win/share/mon32-t.txt \
+				../win/share/obj32-t.txt \
+				../win/share/oth32-t.txt
+	bigtile
 
-$(WSHR)\oth32.txt:	txtmerge.exe $(WSHR)\othmag.txt \
-		../win/share/oth32mi.txt ../win/share/oth32se.txt
-	txtmerge ../win/share/oth32.txt ../win/share/othmag.txt \
-		-b204040 ../win/share/oth32mi.txt -b ../win/share/oth32se.txt
+$(WSHR)\othbig.txt:	bigtile.exe ../win/share/mon32-t.txt \
+				../win/share/obj32-t.txt \
+				../win/share/oth32-t.txt
+	bigtile
+
+../win/share/mon32.txt:	txtbg.exe ../win/share/mon32-t.txt
+	txtbg ../win/share/mon32-t.txt ../win/share/mon32.txt
+
+../win/share/obj32.txt:	txtbg.exe ../win/share/obj32-t.txt
+	txtbg ../win/share/obj32-t.txt ../win/share/obj32.txt
+
+../win/share/oth32.txt:	txtbg.exe ../win/share/oth32-t.txt
+	txtbg ../win/share/oth32-t.txt ../win/share/oth32.txt
+
+../win/share/mon32-t.txt:	$(WSHR)\txtmerge.exe $(WSHR)\monmag.txt \
+		$(WSHR)\mon32mi.txt $(WSHR)\mon32alg.txt \
+		$(WSHR)\mon32aw.txt 
+	cd $(WSHR)
+	txtmerge mon32-t.txt monmag.txt \
+		-b204040 mon32mi.txt \
+		-bff00ff mon32alg.txt \
+		-bff00ff mon32aw.txt 
+	cd ..\$(SRC)
+
+../win/share/obj32-t.txt:	$(WSHR)\txtmerge.exe $(WSHR)\objmag.txt \
+		$(WSHR)\obj32mi.txt $(WSHR)\obj32se.txt \
+		$(WSHR)\obj32alg.txt
+	cd $(WSHR)
+	txtmerge obj32-t.txt objmag.txt \
+		-b204040 obj32mi.txt \
+		-b obj32se.txt \
+		-bff00ff obj32alg.txt
+	cd ..\$(SRC)
+
+../win/share/oth32-t.txt:	$(WSHR)\txtmerge.exe $(WSHR)\othmag.txt \
+		$(WSHR)\oth32mi.txt $(WSHR)\oth32se.txt \
+		$(WSHR)\oth32alg.txt
+	cd $(WSHR)
+	txtmerge oth32-t.txt othmag.txt \
+		-b204040 oth32mi.txt -b oth32se.txt \
+		-bff00ff oth32alg.txt
+	cd ..\$(SRC)
+
+../win/share/mon3d.txt:	$(WSHR)\txtmerge.exe $(WSHR)\monbig.txt \
+		$(WSHR)\mon3dmi.txt
+	cd $(WSHR)
+	txtmerge mon3d.txt monbig.txt \
+		-b204040 mon3dmi.txt
+	cd ..\$(SRC)
+
+../win/share/obj3d.txt:	$(WSHR)\txtmerge.exe $(WSHR)\objbig.txt
+	$(COPY) $(WSHR)\objbig.txt $(WSHR)\obj3d.txt
+
+../win/share/oth3d.txt:	$(WSHR)\txtmerge.exe $(WSHR)\othbig.txt \
+		$(WSHR)\oth3dmi.txt $(WSHR)\oth-2kmi.txt \
+		$(WSHR)\oth3dse.txt
+	cd $(WSHR)
+	txtmerge oth3d.txt othbig.txt \
+		-b204040 oth3dmi.txt \
+		-b204040 oth-2kmi.txt -b oth3dse.txt
+	cd ..\$(SRC)
 
 pet_mark.xbm: ../win/X11/pet_mark.xbm
 	$(COPY) ..\win\X11\pet_mark.xbm pet_mark.xbm
