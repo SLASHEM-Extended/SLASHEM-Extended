@@ -351,6 +351,7 @@ ver 0.0.6E4F6 [? ?/2001] [Released by ?]
 -fixed bug 457238: Flame mage quest text mixup.
 -fixed bug 458093: Free action bonus against grabs too high.
 -fixed bug 456794: "doppelgangen".
+-fixed bug 458336: Rings of sleeping and sinks.
 
 ver 0.0.6E4F5 [August 31/2001] [Released by Ali]
 -fixed bug 420517: Yellow dragon scale mail.
