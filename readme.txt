@@ -148,6 +148,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 961914: Deep dragons should resist their own breath
 -fixed bug 963344: Stat exercise effects calculated while polymorphed
 -fixed bug 1097792: Duplicate message when hit by sleep gaze
+-fixed bug 1065927: Should bars stop bullets?
 
 See history.txt for changes made in previous versions.
 
