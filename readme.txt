@@ -367,6 +367,7 @@ ver 0.0.6E4F7 [?] [Released by ?]
 -fixed bug 493892: messages for lighting dynamite, inventory (lit) indicator.
 -fixed bug 499368: Dynamite causes crash after detonation.
 -fixed bug 504740: Serpent's Tongue gives bad message.
+-fixed bug 491808: leashed hostile creatures.
 
 ver 0.0.6E4F6 [November 30/2001] [Released by Ali]
 -fixed bug 453246: Genetic engineers attacking monsters.

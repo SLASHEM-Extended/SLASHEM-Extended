@@ -953,7 +953,14 @@ struct monst *mtmp;
 	if (mtmp->mtame && rn2(mtmp->mtame)) yelp(mtmp);
 	else growl(mtmp);       /* give them a moment's worry */
 
-	if (!mtmp->mtame) newsym(mtmp->mx, mtmp->my);
+	if (!mtmp->mtame) {
+	    if (mtmp->mleashed) {
+		pline("%s breaks loose of %s leash!",
+			Monnam(mtmp), his[pronoun_gender(mtmp)]);
+		m_unleash(mtmp);
+	    }
+	    newsym(mtmp->mx, mtmp->my);
+	}
 }
 
 #endif /* OVLB */
