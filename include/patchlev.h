@@ -27,8 +27,8 @@
  */
 #define FIXLEVEL	8  /* Define to enable a fixlevel version */
 #else
-#define EDITLEVEL	5
-#define FIXLEVEL        3
+#define EDITLEVEL	6
+/* #define FIXLEVEL        0 */
 #endif
 
 #define COPYRIGHT_BANNER_A \

@@ -1173,7 +1173,9 @@ const char *oldstr;
 	      !strcmp(spot-3, "nori") || !strcmp(spot-3, "drow"))) ||
 	    (len >= 5 && (!strcmp(spot-4, "sheep") ||
 			!strcmp(spot-4, "ninja") ||
+#ifndef DEVEL_BRANCH
 			!strcmp(spot-4, "ronin") ||
+#endif
 			!strcmp(spot-4, "shito") ||
 			!strcmp(spot-4, "tengu") ||
 			!strcmp(spot-4, "manes"))) ||

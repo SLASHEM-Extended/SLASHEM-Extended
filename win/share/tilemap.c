@@ -109,6 +109,10 @@ struct conditionals {
 	{ MON_GLYPH, PM_ATTENDANT, "proudfoot" },
 	{ MON_GLYPH, PM_ATTENDANT, "intern" },
 
+#ifdef DEVEL_BRANCH
+	{ MON_GLYPH, PM_NINJA, "ronin" },
+#endif
+
 #ifndef TOURIST
 	{ MON_GLYPH, PM_ROSHI, "guide" },
 #endif

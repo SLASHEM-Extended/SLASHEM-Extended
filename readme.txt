@@ -327,7 +327,7 @@ TODO:
 -tofix: using the nethack config files.
 -vampires shouldn't be allowed to become Flame Mages
 
-ver 0.0.6E5F3 [?] [Released by ?]
+ver 0.0.6E6 [?] [Released by ?]
 -Implemented NhExt sub-protocol 1.
 -Proxy: Added support for callbacks.
 -Proxy: Add display inventory callback.
@@ -335,6 +335,7 @@ ver 0.0.6E5F3 [?] [Released by ?]
 -Proxy: Add redraw callbacks.
 -Proxy: Add status mode callback.
 -Proxy: Add option callbacks.
+-fixed bug 468049: Ronin should be removed.
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).
