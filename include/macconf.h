@@ -30,7 +30,7 @@
 
 #  define RANDOM
 #  define NO_SIGNAL		/* You wouldn't believe our signals ... */
-#  define FILENAME 256
+#  define FILENAMELEN 256
 #  define NO_TERMS		/* For tty port (see wintty.h) */
 
 #  define TEXTCOLOR		/* For Mac TTY interface */

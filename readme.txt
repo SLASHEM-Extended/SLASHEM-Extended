@@ -316,6 +316,12 @@ Bug - cockatrice lairs no longer have "goodies"?
 ver 0.0.6E3F1 [September XX/2000]
 TODO: 
 	-Do the Role/Race/Align/Gender Menusystem (WAC)
+	-alleg_xputs should use const char (Strcpy then put up?)
+*compiling with Allegro WIP 3.9.32
+	-anticipating using allegro on other systems
+	-currently need to redo the font loading code (at least)
+-Changed #define FILENAME (macconf.h, pcconf.h) to FILENAMELEN since FILENAME 
+	is #defined by dir.h, used by Allegro WIP
 -fixed dereferencing NULL pointer when monster throwing items
 	(mthrowu.c)
 -did the uppercase for conflicting races - TODO: Reimplement F. Theoderson's 

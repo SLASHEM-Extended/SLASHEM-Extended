@@ -51,8 +51,8 @@ char bones[] = "bonesnn.xxx";
 char lock[PL_NSIZ+14] = "1lock"; /* long enough for uid+name+.99 */
 #else
 # if defined(MFLOPPY)
-char bones[FILENAME];           /* pathname of bones files */
-char lock[FILENAME];            /* pathname of level files */
+char bones[FILENAMELEN];           /* pathname of bones files */
+char lock[FILENAMELEN];            /* pathname of level files */
 # endif
 # if defined(VMS)
 char bones[] = "bonesnn.xxx;1";
@@ -73,7 +73,7 @@ char lock[PL_NSIZ+25];		/* long enough for username+-+name+.99 */
 #  if defined(WIN32)
 #define SAVESIZE	(PL_NSIZ + 40)	/* username-player.NetHack-saved-game */
 #  else
-#define SAVESIZE        FILENAME        /* from macconf.h or pcconf.h */
+#define SAVESIZE        FILENAMELEN        /* from macconf.h or pcconf.h */
 #  endif
 # endif
 #endif

@@ -149,7 +149,7 @@
 #endif /* MSDOS configuration stuff */
 
 #define PATHLEN		64	/* maximum pathlength */
-#define FILENAME	80	/* maximum filename length (conservative) */
+#define FILENAMELEN	80	/* maximum filename length (conservative) */
 #ifndef MICRO_H
 #include "micro.h"		/* contains necessary externs for [os_name].c */
 #endif

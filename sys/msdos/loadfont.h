@@ -1,6 +1,8 @@
 /* font-loading routines, modified from 
    Shawn Hargreaves' code for the Allegro grabber */
 
+/* TODO:  Detect/Make compatible with Allegro WIP */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
