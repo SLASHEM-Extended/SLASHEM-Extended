@@ -1138,6 +1138,8 @@ BOOL onListChar(HWND hWnd, HWND hwndList, WORD ch)
 	break;
 
 	default:
+		if ((int)ch < 0 || ch > 255)
+			break;
 		if( strchr(data->menu.gacc, ch) &&
 			!(ch=='0' && data->menu.counting) ) {
 			/* matched a group accelerator */
