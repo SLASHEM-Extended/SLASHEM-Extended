@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.52 2004-04-10 15:15:43 j_ali Exp $
+  $Id: gtk.c,v 1.53 2004-04-10 15:41:21 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -141,18 +141,7 @@ static struct proxycb_get_player_choices_res *player_choices = NULL;
 
 char *
 GTK_ext_askname() {
-    int tryct = 0;
-    char *buf = (char *)0;
-    static char who_are_you[] = "Who are you? ";
-    
-    do {
-	if (tryct > 10) panic("Giving up after 10 tries.\n");
-	    else tryct++;
-	if (buf)
-	    free(buf);
-	buf = GTK_ext_getlin(who_are_you);
-    } while (*buf == '\0');
-    return buf;
+    return GTK_getline("Who are you? ", FALSE);
 }
 
 static GtkItemFactoryEntry mainmenu_items[] = {
