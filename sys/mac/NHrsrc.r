@@ -695,7 +695,7 @@ resource 'STR#' (133, "Information") {
 };
 
 resource 'STR#' (134, "Equipment") {
-	{	/* array StringArray: 15 elements */
+	{	/* array StringArray: 17 elements */
 		/* [1] */
 		"¥209 Current",
 		/* [2] */
@@ -703,34 +703,38 @@ resource 'STR#' (134, "Equipment") {
 		/* [3] */
 		"w",
 		/* [4] */
-		"t",
+		"x",
 		/* [5] */
-		"a",
+		"Q",
 		/* [6] */
-		"¥-",
-		/* [7] */
-		"W",
-		/* [8] */
-		"T",
-		/* [9] */
-		"A",
-		/* [10] */
-		"¥-",
-		/* [11] */
-		"P",
-		/* [12] */
-		"R",
-		/* [13] */
-		"¥-",
-		/* [14] */
 		"f",
+		/* [7] */
+		"t",
+		/* [8] */
+		"a",
+		/* [9] */
+		"#en¥hance",
+		/* [10] */
+		"#tw¥oweapon",
+		/* [11] */
+		"¥-",
+		/* [12] */
+		"W",
+		/* [13] */
+		"T",
+		/* [14] */
+		"A",
 		/* [15] */
-		"Q"
+		"¥-",
+		/* [16] */
+		"P",
+		/* [17] */
+		"R"
 	}
 };
 
 resource 'STR#' (135, "Action") {
-	{	/* array StringArray: 20 elements */
+	{	/* array StringArray: 21 elements */
 		/* [1] */
 		".",
 		/* [2] */
@@ -758,18 +762,20 @@ resource 'STR#' (135, "Action") {
 		/* [13] */
 		"#p¥ray",
 		/* [14] */
-		"#tu¥rn",
+		"#ri¥de",
 		/* [15] */
-		"¥-",
+		"#tu¥rn",
 		/* [16] */
-		"#b¥orrow",
+		"¥-",
 		/* [17] */
-		"#te¥chnique",
+		"#b¥orrow",
 		/* [18] */
-		"x",
+		"#te¥chnique",
 		/* [19] */
-		"#2¥weapon",
+		"x",
 		/* [20] */
+		"#2¥weapon",
+		/* [21] */
 		"#en¥hance"
 	}
 };
@@ -8870,7 +8876,7 @@ resource 'MENU' (134) {
 	0x7FFFEDDD,
 	enabled,
 	"Equipment",
-	{	/* array: 15 elements */
+	{	/* array: 17 elements */
 		/* [1] */
 		"Current", noIcon, hierarchicalMenu, "Ñ", plain,
 		/* [2] */
@@ -8943,18 +8949,19 @@ resource 'MENU' (135) {
 		"Pray", noIcon, noKey, "#", plain,
 		/* [14] */
 		"Ride", noIcon, noKey, "#", plain,
-		"Turn", noIcon, noKey, "#", plain,
 		/* [15] */
-		"-", noIcon, noKey, noMark, plain,
+		"Turn", noIcon, noKey, "#", plain,
 		/* [16] */
-		"Borrow", noIcon, noKey, "#", plain,
+		"-", noIcon, noKey, noMark, plain,
 		/* [17] */
-		"Perform Technique", noIcon, noKey, "#", plain,
+		"Borrow", noIcon, noKey, "#", plain,
 		/* [18] */
-		"Swap Weapons", noIcon, noKey, "x", plain,
+		"Perform Technique", noIcon, noKey, "#", plain,
 		/* [19] */
-		"Use Two Weapons", noIcon, noKey, "#", plain,
+		"Swap Weapons", noIcon, noKey, "x", plain,
 		/* [20] */
+		"Use Two Weapons", noIcon, noKey, "#", plain,
+		/* [21] */
 		"Enhance Ability", noIcon, noKey, "#", plain
 	}
 };
