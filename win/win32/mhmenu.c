@@ -13,6 +13,7 @@
 #define MENU_MARGIN			0
 #define NHMENU_STR_SIZE     BUFSZ
 #define MIN_TABSTOP_SIZE	8
+#define MIN_TAB_BUFFER		4 /* smallest amount of space between tabbed items */
 
 typedef struct mswin_menu_item {
 	int				glyph;
@@ -509,7 +510,7 @@ void onMSNHCommand(HWND hWnd, WPARAM wParam, LPARAM lParam)
 		p = strchr(data->menu.items[new_item].str, '\t');
 		while( p ) {
 			data->menu.tab_stop_size = 
-				max( data->menu.tab_stop_size, p - p1 + 1 );
+				max( data->menu.tab_stop_size, p - p1 + 1 + MIN_TAB_BUFFER );
 			p1 = p;
 			p = strchr(p+1, '\t');
 		}
