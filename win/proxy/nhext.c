@@ -1,5 +1,5 @@
-/* $Id: nhext.c,v 1.17 2003-10-25 18:06:01 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001-2003 */
+/* $Id: nhext.c,v 1.18 2004-01-03 17:16:09 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2004 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 /* #define DEBUG */
@@ -952,7 +952,7 @@ nhext_svc(struct nhext_svc *services)
     else if (is_special) {
 	nhext_io_setautofill_limit(nhext_connection.rd,
 	  nhext_connection.length);
-	if (type == EXT_SPECIAL_ERROR && nhext_connection.length >= 2) {
+	if (type == EXT_SPECIAL_ERROR && nhext_connection.length >= 8) {
 	    unsigned short serial;
 	    unsigned char code;
 	    if (!nhext_xdr_u_long(nhext_connection.in, &value) |
@@ -964,6 +964,12 @@ nhext_svc(struct nhext_svc *services)
 	    serial = value >> 16;
 	    id = value & 0xffff;
 	    code = word2 & 0xff;
+	    /* Discard any unprocessed remainder of known types before
+	     * calling nhext_error() so that we maintain our state.
+	     */
+	    for(j = 8; j < nhext_connection.length; j++)
+		if (nhext_io_getc(nhext_connection.rd) < 0)
+		    break;
 	    switch(code) {
 		case EXT_ERROR_UNSUPPORTED:
 #ifdef DEBUG
@@ -994,12 +1000,13 @@ nhext_svc(struct nhext_svc *services)
 		    nhext_error(EXT_ERROR_GENERIC,
 		      "Error %X in RPC serial %X (ID %X)", code, serial, id);
 	    }
+	} else {
+	    /* Discard special packets of unknown types.
+	     */
+	    for(j = 0; j < nhext_connection.length; j++)
+		if (nhext_io_getc(nhext_connection.rd) < 0)
+		    break;
 	}
-	/* Discard special packets of unknown types and any unprocessed
-	 * remainder of known types.
-	 */
-	while(nhext_io_getc(nhext_connection.rd) >= 0)
-	    ;
 	return 0xffff;
     } else {
 	frame.prev_fp = nhext_svc_fp;
