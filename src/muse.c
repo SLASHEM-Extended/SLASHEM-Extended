@@ -1288,6 +1288,8 @@ register struct obj *otmp;
 				losexp("life drainage", FALSE);
 			if (zap_oseen)
 				makeknown(WAN_DRAINING);
+			stop_occupation();
+			nomul(0);
 			break;
 		} else if (resists_drli(mtmp)) {
 			shieldeff(mtmp->mx, mtmp->my);
