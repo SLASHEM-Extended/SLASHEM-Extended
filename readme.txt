@@ -355,6 +355,7 @@ ver 0.0.6E6 [?] [Released by ?]
 -OS/2: Added support for big tiles to X11 port (Pekka Rousu).
 -OS/2: Enabled use of lex and yacc by default (Pekka Rousu).
 -fixed bug 552677: "ask before hidding peaceful monsters".
+-fixed bug 537214: /oDig at earth Es should anger them.
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).

@@ -1233,6 +1233,7 @@ zap_dig()
                     You("gouge a hole in %s!", mon_nam(mtmp));
                     mtmp->mhp /= 2;
                     if (mtmp->mhp < 1) mtmp->mhp = 1;
+		    setmangry(mtmp);
                 } else pline("%s is unaffected!", Monnam(mtmp));
             }
             for(otmp = level.objects[zx][zy]; otmp; otmp = next_obj) {
