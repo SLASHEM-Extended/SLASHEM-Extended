@@ -3049,7 +3049,7 @@ doapply()
 			obj->altmode = WP_MODE_AUTO;
 		}
 		
-		You("switch your %s to %s mode.", yname(obj), 
+		You("switch %s to %s mode.", yname(obj), 
 			((obj->altmode == WP_MODE_SINGLE) ? "single shot" : 
 			 ((obj->altmode == WP_MODE_BURST) ? "burst" :
 			  "full automatic")));
@@ -3058,13 +3058,13 @@ doapply()
 	case SUBMACHINE_GUN:		
 		if (obj->altmode == WP_MODE_AUTO) obj-> altmode = WP_MODE_SINGLE;
 		else obj->altmode = WP_MODE_AUTO;
-		You("switch your %s to %s mode.", yname(obj), 
+		You("switch %s to %s mode.", yname(obj), 
 			(obj->altmode ? "semi-automatic" : "full automatic"));
 		break;
 	case FRAG_GRENADE:
 	case GAS_GRENADE:
 		if (!obj->oarmed) {
-			You("arm your %s.", yname(obj));
+			You("arm %s.", yname(obj));
 			arm_bomb(obj, TRUE);
 		} else pline("It's already armed!");
 		break;
