@@ -4457,6 +4457,7 @@ int damage, tell;
 	    case WAND_CLASS:    alev = 12;       break;
 	    case SCROLL_CLASS:  alev =  9;       break;
 	    case POTION_CLASS:  alev =  6;       break;
+	    case REVIVE_TECH:
 	    default:            alev = u.ulevel; break;         /* spell */
 	}
 	/* defense level */
@@ -4464,7 +4465,11 @@ int damage, tell;
 	if (dlev > 50) dlev = 50;
 	else if (dlev < 1) dlev = is_mplayer(mtmp->data) ? u.ulevel : 1;
 
-	resisted = rn2(100 + alev - dlev) < mtmp->data->mr;
+	if (oclass == REVIVE_TECH)
+		resisted = (100 + alev - dlev <= mtmp->data->mr);
+	else
+		resisted = rn2(100 + alev - dlev) < mtmp->data->mr;
+
 	if(resisted) {
 		if(tell) {
 		    shieldeff(mtmp->mx, mtmp->my);

@@ -156,8 +156,9 @@ extern NEARDATA struct objdescr obj_descr[];
 #define ALLOW_NONE	(MAXOCLASSES+3)	/*				   */
 
 #define BURNING_OIL	(MAXOCLASSES+1)	/* Can be used as input to explode. */
-#define MON_EXPLODE     (MAXOCLASSES+2) /* WAC for the spores */
 #define MON_EXPLODE	(MAXOCLASSES+2) /* Exploding monster (e.g. gas spore) */
+
+#define REVIVE_TECH	(MAXOCLASSES+1)	/* Can be used as input to resist. */
 
 #if 0	/* moved to decl.h so that makedefs.c won't see them */
 extern const char def_oc_syms[MAXOCLASSES];	/* default class symbols */

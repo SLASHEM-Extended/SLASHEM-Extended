@@ -956,7 +956,7 @@ int tech_no;
 #endif
 		    if (mtmp->isshk)
 			make_happy_shk(mtmp, FALSE);
-		    else if (!resist(mtmp, SPBOOK_CLASS, 0, NOTELL))
+		    else if (!resist(mtmp, REVIVE_TECH, 0, NOTELL))
 			(void) tamedog(mtmp, (struct obj *) 0);
 		}
             	if (Upolyd) u.mh -= num;
