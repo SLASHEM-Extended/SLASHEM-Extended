@@ -1,5 +1,5 @@
 /*
-  $Id: xshmmap.c,v 1.1 2001-04-12 06:19:00 j_ali Exp $
+  $Id: xshmmap.c,v 1.2 2001-04-22 17:21:20 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -561,6 +561,9 @@ xshm_map_button_handler(GtkSignalFunc func, gpointer data)
 void
 xshm_map_destroy()
 {
+#ifdef DEBUG
+    fprintf(stderr, "Map: Destroy\n");
+#endif
     if (xshm.pixmap) {
 	gdk_pixmap_unref(xshm.pixmap);
 	xshm.pixmap = NULL;

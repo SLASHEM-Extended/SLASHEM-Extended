@@ -1,5 +1,5 @@
 /*
-  $Id: gtkstatus.c,v 1.1 2001-04-12 06:19:00 j_ali Exp $
+  $Id: gtkstatus.c,v 1.2 2001-04-22 17:21:20 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -637,8 +637,8 @@ nh_status_new()
 	gtk_widget_draw(mp_bar, &update_rect);
 
     }
-    gdk_gc_set_foreground(hp_gc, &nh_color[MAP_BLUE]);
-    gdk_gc_set_foreground(mp_gc, &nh_color[MAP_GREEN]);
+    gdk_gc_set_foreground(hp_gc, &nh_color[CLR_BLUE]);
+    gdk_gc_set_foreground(mp_gc, &nh_color[CLR_GREEN]);
 
     return handle;
 }

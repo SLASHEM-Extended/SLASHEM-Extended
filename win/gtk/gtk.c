@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.25 2001-04-12 14:44:31 j_ali Exp $
+  $Id: gtk.c,v 1.26 2001-04-22 17:21:20 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -66,6 +66,10 @@ int			root_width;
 int			root_height;
 
 GdkColor	  nh_color[N_NH_COLORS] = {
+    /*
+     * Standard NetHack colours (CLR_...)
+     * Note: black & white may be remapped depending on map background
+     */
     {0, 0*257, 0*257, 0*257,},		/* black */
     {0, 255*257, 0*257, 0*257,},	/* red */
     {0, 152*257, 251*257, 152*257,},	/* pale green */
@@ -82,8 +86,12 @@ GdkColor	  nh_color[N_NH_COLORS] = {
     {0, 238*257, 130*257, 238*257,},	/* violet */
     {0, 0*257, 255*257, 255*257,},	/* cyan */
     {0, 255*257, 255*257, 255*257,},	/* white */
+    /*
+     * Local additions (MAP_...)
+     */
     {0, 0*257, 100*257, 0*257,},	/* dark green */
-    {0, 20*257, 60*257, 20*257,},	/* map background */
+    {0, 0*257, 0*257, 0*257,},		/* fixed black */
+    {0, 255*257, 255*257, 255*257,},	/* fixed white */
 };
 
 void

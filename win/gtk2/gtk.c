@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.2 2001-04-12 14:44:32 j_ali Exp $
+  $Id: gtk.c,v 1.3 2001-04-22 17:21:20 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -66,6 +66,10 @@ int			root_width;
 int			root_height;
 
 GdkColor	  nh_color[N_NH_COLORS] = {
+    /*
+     * Standard NetHack colours (CLR_...)
+     * Note: black & white may be remapped depending on map background
+     */
     {0, 0*257, 0*257, 0*257,},		/* black */
     {0, 255*257, 0*257, 0*257,},	/* red */
     {0, 152*257, 251*257, 152*257,},	/* pale green */
@@ -82,8 +86,12 @@ GdkColor	  nh_color[N_NH_COLORS] = {
     {0, 238*257, 130*257, 238*257,},	/* violet */
     {0, 0*257, 255*257, 255*257,},	/* cyan */
     {0, 255*257, 255*257, 255*257,},	/* white */
+    /*
+     * Local additions (MAP_...)
+     */
     {0, 0*257, 100*257, 0*257,},	/* dark green */
-    {0, 20*257, 60*257, 20*257,},	/* map background */
+    {0, 0*257, 0*257, 0*257,},		/* fixed black */
+    {0, 255*257, 255*257, 255*257,},	/* fixed white */
 };
 
 void
@@ -1538,6 +1546,7 @@ GTK_init_nhwindows(int *argc, char **argv)
 	GTK_SIGNAL_FUNC(main_window_destroy), 0);
 
     gtk_window_set_title(GTK_WINDOW(main_window), DEF_GAME_NAME);
+    gtk_widget_set_name(main_window, DEF_GAME_NAME);
     
     gtk_widget_set_events(main_window, GDK_KEY_PRESS_MASK);
     gtk_widget_realize(main_window);

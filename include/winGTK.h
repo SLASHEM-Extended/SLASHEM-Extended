@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.15 2001-04-12 14:44:31 j_ali Exp $
+  $Id: winGTK.h,v 1.16 2001-04-22 17:21:20 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -69,28 +69,13 @@ extern GtkWidget *nh_gtk_new_and_attach2(GtkWidget *w, GtkWidget *parent, gchar 
 					 guint ypadding);
 
 
-#define		N_NH_COLORS	20
+#define		N_NH_COLORS	(CLR_MAX + 3)
 extern GdkColor  nh_color[N_NH_COLORS];
 
 enum {
+    MAP_DARK_GREEN = CLR_MAX,
     MAP_BLACK,
-    MAP_RED,
-    MAP_GREEN,
-    MAP_BROWN,
-    MAP_BLUE,
-    MAP_MAGENTA,
-    MAP_CYAN,
-    MAP_GRAY,
-    MAP_FOREGROUND,
-    MAP_ORANGE,
-    MAP_BRIGHT_GREEN,
-    MAP_YELLOW,
-    MAP_BRIGHT_BLUE,
-    MAP_BRIGHT_MAGENTA,
-    MAP_BRIGHT_CYAN,
-    MAP_WHITE,
-    MAP_DARK_GREEN,
-    MAP_BACKGROUND
+    MAP_WHITE
 };
 
 
@@ -168,6 +153,8 @@ extern void		nh_map_flush(void);
 
 #if defined(DEVEL_BRANCH) && defined(GTK_V20)
 extern int		nh_set_map_visual(int);
+extern int		nh_set_map_font(GdkFont *font, gchar *name);
+extern gchar		*nh_get_map_font(void);
 #else
 extern void		nh_set_map_visual(int);
 #endif

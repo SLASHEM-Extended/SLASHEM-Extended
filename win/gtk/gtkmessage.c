@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmessage.c,v 1.7 2001-02-24 17:46:47 j_ali Exp $
+  $Id: gtkmessage.c,v 1.8 2001-04-22 17:21:20 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -81,7 +81,7 @@ nh_message_putstr(const char *str)
 #endif
 
   if(u.uhpmax > 0 && (((double)u.uhp) / u.uhpmax < 0.1 || u.uhp < 5))
-    i = MAP_RED;
+    i = CLR_RED;
   else
     i = MAP_BLACK;
   gtk_text_insert(t, NULL, &nh_color[i], &nh_color[MAP_WHITE], buf, len + 1);

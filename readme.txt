@@ -371,6 +371,7 @@ ver 0.0.6E4F4 [? ?/2001] [Released by ?]
 -fixed bug 411280: Dragon Caves full of babies.
 -fixed bug 415213: Yeenoghu touch of death.. bug?
 -fixed bug 412289: Spellbook charging abuse.
+-fixed bug 413966: Colours in map style ignored.
 
 ver 0.0.6E4F3 [February 28/2001] [Released by Ali]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined

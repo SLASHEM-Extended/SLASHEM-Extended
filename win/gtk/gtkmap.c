@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.21 2001-02-23 20:10:43 j_ali Exp $
+  $Id: gtkmap.c,v 1.22 2001-04-22 17:21:20 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -16,6 +16,10 @@
 #include "patchlevel.h"
 #endif
 #include "decl.h"
+
+#undef red
+#undef green
+#undef blue
 
 /*
   if map_click is true, we do gtk_main_quit() when clicking map
@@ -53,24 +57,24 @@ static GdkPixmap *radar_pixmap;
 static GdkPixmap *radar_pixmap2;
 extern GtkAccelGroup *accel_group;
 
-#define RADAR_MONSTER	MAP_YELLOW
+#define RADAR_MONSTER	CLR_YELLOW
 #define RADAR_HUMAN	MAP_WHITE
-#define RADAR_PET	MAP_GREEN
-#define RADAR_OBJECT	MAP_BLUE
+#define RADAR_PET	CLR_GREEN
+#define RADAR_OBJECT	CLR_BLUE
 
-#define RADAR_WALL	MAP_GRAY
+#define RADAR_WALL	CLR_GRAY
 #define RADAR_FLOOR	MAP_DARK_GREEN
-#define RADAR_DOOR	MAP_ORANGE
-#define RADAR_LADDER	MAP_MAGENTA
-#define RADAR_WATER	MAP_BLUE
-#define RADAR_TRAP	MAP_RED
-#define RADAR_SWALLOW	MAP_RED
-#define RADAR_ICE	MAP_GRAY
-#define RADAR_LAVA	MAP_ORANGE
-#define RADAR_BRIDGE	MAP_GRAY
-#define RADAR_AIR	MAP_CYAN
-#define RADAR_CLOUD	MAP_GRAY
-#define RADAR_BEAM	MAP_YELLOW
+#define RADAR_DOOR	CLR_ORANGE
+#define RADAR_LADDER	CLR_MAGENTA
+#define RADAR_WATER	CLR_BLUE
+#define RADAR_TRAP	CLR_RED
+#define RADAR_SWALLOW	CLR_RED
+#define RADAR_ICE	CLR_GRAY
+#define RADAR_LAVA	CLR_ORANGE
+#define RADAR_BRIDGE	CLR_GRAY
+#define RADAR_AIR	CLR_CYAN
+#define RADAR_CLOUD	CLR_GRAY
+#define RADAR_BEAM	CLR_YELLOW
 
 #endif
 
@@ -296,7 +300,7 @@ nh_set_map_visual(int mode)
 	    tile_pixmap = gdk_pixmap_create_from_xpm(
 		main_window->window,
 		&tile_mask,
-		&nh_color[MAP_MAGENTA],
+		&nh_color[CLR_MAGENTA],
 		NH_TILE_FILE
 		);
 	    
@@ -496,7 +500,7 @@ nh_map_clear()
 
     if(map_visual == 0){
 	gdk_draw_rectangle(
-	    map_pixmap, map->style->black_gc,
+	    map_pixmap, map->style->bg_gc[GTK_WIDGET_STATE(map)],
 	    TRUE, 0, 0, c_map_width, c_map_height);
 	 
 	gdk_draw_pixmap(
@@ -765,7 +769,26 @@ nh_map_new(GtkWidget *w)
 #endif
     (void) xshm_map_init(NH_MAP_MAX_WIDTH, NH_MAP_MAX_HEIGHT);
 
-
+    /* [ALI] The "documented" method of setting the map style in the
+     * stable branch is to use the widget pattern "SlashEM map*".
+     * This will only match at this point (just after the call to
+     * set the widget name above). The call to gtk_widget_set_rc_style()
+     * above thus loads the style which the user wants us to use.
+     * However, as soon as we call gtk_scrolled_window_add_with_viewport()
+     * the widget pattern will no longer match (the new widget path
+     * will be something like "GtkScrolledWindow.SlashEM map" and will
+     * change again when this widget is added to the higher level widgets).
+     *
+     * We could solve this for colours in the same way that the map font
+     * works (by caching the value at this point), but it's easier just
+     * to set a "user" style at this point (which will override Gtk+'s
+     * rc style handling).
+     *
+     * A much better solution is present in the new GTK interface, but
+     * requires too many changes for the stable branch.
+     */
+    if (map->style)
+	gtk_widget_set_style(map, gtk_style_copy(map->style));
     if (map->style && map->style->font) {
 	map_font = map->style->font;
 	gdk_font_ref(map_font);
@@ -789,10 +812,21 @@ nh_map_new(GtkWidget *w)
  */
     map_gc = gdk_gc_new(w->window);
 
+#define COLOUR_IS_RGB(colour,r,g,b)	\
+	((colour).red==(r) && (colour).green==(g) && (colour).blue==(b))
+
+    if (COLOUR_IS_RGB(map->style->bg[GTK_STATE_NORMAL],0,0,0))
+	nh_color[CLR_BLACK] = nh_color[MAP_WHITE];
+    else if (COLOUR_IS_RGB(map->style->bg[GTK_STATE_NORMAL],65535,65535,65535))
+	nh_color[CLR_WHITE] = nh_color[MAP_BLACK];
+
+#undef COLOUR_IS_RGB
+
     for(i=0 ; i < N_NH_COLORS ; ++i){
 	map_color_gc[i] = gdk_gc_new(w->window);
 	gdk_gc_set_foreground(map_color_gc[i], &nh_color[i]);
-	gdk_gc_set_background(map_color_gc[i], &nh_color[MAP_BACKGROUND]);
+	gdk_gc_set_background(map_color_gc[i],
+	  &map->style->bg[GTK_STATE_NORMAL]);
     }
 
     nh_set_map_visual(visual);
@@ -879,7 +913,7 @@ nh_print_radar(int x, int y, int glyph)
     /*
       int tile = glyph2tile[glyph];
       */
-    c = MAP_BLACK;
+    c = CLR_BLACK;
 
     if(glyph < PM_ARCHEOLOGIST)
 	c = RADAR_MONSTER;
@@ -994,33 +1028,28 @@ nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap, GdkRe
     update_rect.width = c_width;
     update_rect.height = c_height;
 
-#ifdef TEXTCOLOR
     gdk_draw_rectangle(
-	map_pixmap, map_color_gc[iflags.use_color?MAP_BACKGROUND:MAP_BLACK],
+	map_pixmap, map->style->bg_gc[GTK_WIDGET_STATE(map)],
 	TRUE, x * c_width, y * c_height -  map_font->ascent, c_width, c_height);
     
+#ifdef TEXTCOLOR
     gdk_draw_text_wc(
-	map_pixmap, map_font,
-	map_color_gc[iflags.use_color?color:MAP_WHITE],
+	map_pixmap, map_font, iflags.use_color ?
+	map_color_gc[color] : map->style->fg_gc[GTK_WIDGET_STATE(map)],
 	x * c_width + map_xoffsets[ch[0]], y * c_height, ch, 1);
     
     if(glyph_is_pet(glyph) && iflags.hilite_pet){
 	gdk_draw_rectangle(
 	    map_pixmap,
-	    map_color_gc[iflags.use_color?MAP_RED:MAP_WHITE],
+	    map_color_gc[iflags.use_color?CLR_RED:CLR_WHITE],
 	    FALSE,
 	    x * c_width, y * c_height - map_font->ascent,
 	    c_width - 1, c_height - 1
 	    );
     }
 #else
-    gdk_draw_rectangle(
-	map_pixmap, map->style->bg_gc,
-	TRUE, x * c_width, y * c_height - map_font->ascent, c_width, c_height);
-    
     gdk_draw_text_wc(
-	map_pixmap, map_font,
-	map->style->black_gc,
+	map_pixmap, map_font, map->style->fg_gc[GTK_WIDGET_STATE(map)],
 	x * c_width + map_xoffsets[ch[0]], y * c_height, ch, 1);
 #endif
     if(rect)
@@ -1064,7 +1093,7 @@ nh_map_print_glyph_tmp(struct tilemap *tmap, int ofsx, int ofsy, int flag)
 	&& iflags.hilite_pet
 #endif
 	){
-	x_tile_tmp_draw_rectangle(ofsx, ofsy, nh_color[MAP_RED].pixel);
+	x_tile_tmp_draw_rectangle(ofsx, ofsy, nh_color[CLR_RED].pixel);
     }
 }
 
@@ -1256,7 +1285,7 @@ GTK_curs(winid id, int x, int y)
     update_rect.height = c_height;
 
     gdk_draw_rectangle(
-	map->window, map->style->white_gc, FALSE,
+	map->window, map_color_gc[CLR_WHITE], FALSE,
 	update_rect.x, update_rect.y,
 	c_width - 1, c_height - 1);
 }
@@ -1296,7 +1325,7 @@ nh_radar_update()
 		NH_RADAR_WIDTH, NH_RADAR_HEIGHT);
 	    
 	    gdk_draw_rectangle(
-		radar_pixmap2, map_color_gc[MAP_WHITE],
+		radar_pixmap2, map_color_gc[CLR_WHITE],
 		FALSE,
 		hadj->value / c_3dwidth * NH_RADAR_UNIT,
 		vadj->value / c_3dheight * NH_RADAR_UNIT,
