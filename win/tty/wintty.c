@@ -39,8 +39,6 @@ extern void msmsg(const char *,...);
 # endif
 #endif
 
-#define DEBUG
-
 extern char mapped_menu_cmds[]; /* from options.c */
 
 /* Interface definition, for windows.c */
@@ -1311,7 +1309,10 @@ struct WinDesc *cw;
 
 	for (i = 0; i < SIZE(gcnt); i++) gcnt[i] = 0;
 	for (n = 0, curr = cw->mlist; curr; curr = curr->next)
-	    if (curr->gselector) ++n,  ++gcnt[GSELIDX(curr->gselector)];
+	    if (curr->gselector && curr->gselector != curr->selector) {
+		++n;
+		++gcnt[GSELIDX(curr->gselector)];
+	    }
 
 	if (n > 0)	/* at least one group accelerator found */
 	    for (rp = gacc, curr = cw->mlist; curr; curr = curr->next)
@@ -1921,8 +1922,7 @@ tty_putstr(window, attr, str)
     }
 
     if(str == (const char*)0 ||
-	( (cw->flags & WIN_CANCELLED) && 
-	  (cw->type != NHW_MESSAGE || !iflags.prevmsg_window) ))
+	((cw->flags & WIN_CANCELLED) && (cw->type != NHW_MESSAGE)))
 		return;
     if(cw->type != NHW_MESSAGE)
 		str = compress_str(str);
@@ -2681,8 +2681,16 @@ tty_print_glyph(window, x, y, glyph)
 #endif
 		g_putch(ch);		/* print the character */
 
-	if (reverse_on)
-   		term_end_attr(ATR_INVERSE);
+    if (reverse_on) {
+	term_end_attr(ATR_INVERSE);
+#ifdef TEXTCOLOR
+	/* turn off color as well, ATR_INVERSE may have done this already */
+	if(ttyDisplay->color != NO_COLOR) {
+	    term_end_color();
+	    ttyDisplay->color = NO_COLOR;
+	}
+#endif
+    }
 
     wins[window]->curx++;	/* one character over */
     ttyDisplay->curx++;		/* the real cursor moved too */

@@ -6,6 +6,10 @@
 
 #ifdef TTY_GRAPHICS
 
+#if !defined(MAC)
+#define NEWAUTOCOMP
+#endif
+
 #include "wintty.h"
 #include "func_tab.h"
 
@@ -59,8 +63,9 @@ getlin_hook_proc hook;
 		Sprintf(toplines, "%s ", query);
 		Strcat(toplines, obufp);
 		if((c = Getchar()) == EOF) {
-			bufp = eos(bufp);
+#ifndef NEWAUTOCOMP
 			*bufp = 0;
+#endif /* not NEWAUTOCOMP */
 			break;
 		}
 		if(c == '\033') {
@@ -73,7 +78,7 @@ getlin_hook_proc hook;
 		    *bufp = 0;
 		}
 		if(c == '\020') { /* ctrl-P */
-		    if (iflags.prevmsg_window) {
+		    if (iflags.prevmsg_window != 's') {
 				int sav = ttyDisplay->inread;
 				ttyDisplay->inread = 0;
 				(void) tty_doprev_message();
@@ -91,7 +96,7 @@ getlin_hook_proc hook;
 				doprev = 1;
 				continue;
 		    }
-		} else if (doprev && !iflags.prevmsg_window) {
+		} else if (doprev && iflags.prevmsg_window == 's') {
 		    tty_clear_nhwindow(WIN_MESSAGE);
 		    cw->maxcol = cw->maxrow;
 		    doprev = 0;
@@ -102,58 +107,68 @@ getlin_hook_proc hook;
 		}
 		if(c == erase_char || c == '\b') {
 			if(bufp != obufp) {
+#ifdef NEWAUTOCOMP
 				char *i;
 
+#endif /* NEWAUTOCOMP */
 				bufp--;
+#ifndef NEWAUTOCOMP
+				putsyms("\b \b");/* putsym converts \b */
+#else /* NEWAUTOCOMP */
 				putsyms("\b");
-				for (i = bufp; i < eos(bufp); i++)
-				    putsyms(" ");
-				for (i = eos(bufp); i > bufp; i--)
-				    putsyms("\b");
+				for (i = bufp; *i; ++i) putsyms(" ");
+				for (; i > bufp; --i) putsyms("\b");
 				*bufp = 0;
+#endif /* NEWAUTOCOMP */
 			} else	tty_nhbell();
 #if defined(apollo)
 		} else if(c == '\n' || c == '\r') {
 #else
 		} else if(c == '\n') {
 #endif
-			bufp = eos(bufp);
+#ifndef NEWAUTOCOMP
 			*bufp = 0;
+#endif /* not NEWAUTOCOMP */
 			break;
 		} else if(' ' <= (unsigned char) c && c != '\177' &&
 			    (bufp-obufp < BUFSZ-1 && bufp-obufp < COLNO)) {
 				/* avoid isprint() - some people don't have it
 				   ' ' is not always a printing char */
-			char *i;
+#ifdef NEWAUTOCOMP
+			char *i = eos(bufp);
 
+#endif /* NEWAUTOCOMP */
 			*bufp = c;
-
-				for (i = bufp; i < eos(bufp); i++)
-				    putsyms(" ");
-				for (i = eos(bufp); i > bufp; i--)
-				    putsyms("\b");
 			bufp[1] = 0;
 			putsyms(bufp);
 			bufp++;
-			if (hook) {
-			    if ((*hook)(obufp)) {
-				putsyms(bufp);
-				/* pointer and cursor left where they were */
-				for (i = eos(bufp); i > bufp; i--)
-				    putsyms("\b");
-			    } else {
-				putsyms("\b \b");
-				*bufp = 0;
-				bufp--;
-			    }
-                        }
+			if (hook && (*hook)(obufp)) {
+			    putsyms(bufp);
+#ifndef NEWAUTOCOMP
+			    bufp = eos(bufp);
+#else /* NEWAUTOCOMP */
+			    /* pointer and cursor left where they were */
+			    for (i = bufp; *i; ++i) putsyms("\b");
+			} else if (i > bufp) {
+			    char *s = i;
+
+			    /* erase rest of prior guess */
+			    for (; i > bufp; --i) putsyms(" ");
+			    for (; s > bufp; --s) putsyms("\b");
+#endif /* NEWAUTOCOMP */
+			}
 		} else if(c == kill_char || c == '\177') { /* Robert Viduya */
 				/* this test last - @ might be the kill_char */
-			bufp = eos(bufp);
+#ifndef NEWAUTOCOMP
 			while(bufp != obufp) {
 				bufp--;
 				putsyms("\b \b");
 			}
+#else /* NEWAUTOCOMP */
+			for (; *bufp; ++bufp) putsyms(" ");
+			for (; bufp != obufp; --bufp) putsyms("\b \b");
+			*bufp = 0;
+#endif /* NEWAUTOCOMP */
 		} else
 			tty_nhbell();
 	}
@@ -187,7 +202,7 @@ register const char *s;	/* chars allowed besides return */
 
 /*
  * Implement extended command completion by using this hook into
- * tty_getlin.  Check the characters already typed, if they
+ * tty_getlin.  Check the characters already typed, if they uniquely
  * identify an extended command, expand the string to the whole
  * command.
  *
@@ -201,13 +216,20 @@ STATIC_OVL boolean
 ext_cmd_getlin_hook(base)
 	char *base;
 {
-	int oindex;
+	int oindex, com_index;
 
+	com_index = -1;
 	for (oindex = 0; extcmdlist[oindex].ef_txt != (char *)0; oindex++) {
 		if (!strncmpi(base, extcmdlist[oindex].ef_txt, strlen(base))) {
-			Strcpy(base, extcmdlist[oindex].ef_txt);
-			return TRUE;
+			if (com_index == -1)	/* no matches yet */
+			    com_index = oindex;
+			else			/* more than 1 match */
+			    return FALSE;
 		}
+	}
+	if (com_index >= 0) {
+		Strcpy(base, extcmdlist[com_index].ef_txt);
+		return TRUE;
 	}
 
 	return FALSE;	/* didn't match anything */
@@ -232,6 +254,7 @@ tty_get_ext_cmd()
 #else
 	hooked_tty_getlin("#", buf, ext_cmd_getlin_hook);
 #endif
+	(void) mungspaces(buf);
 	if (buf[0] == 0 || buf[0] == '\033') return -1;
 
 	for (i = 0; extcmdlist[i].ef_txt != (char *)0; i++)
