@@ -261,9 +261,11 @@ struct obj *otmp;
 		break;
 	case WAN_FEAR:
 		if (!is_undead(mtmp->data) &&
-		    !resist(mtmp, otmp->oclass, 0, NOTELL)) {
-		     pline("%s suddenly panics!",Monnam(mtmp));
-		     mtmp->mflee = 1;
+		    !resist(mtmp, otmp->oclass, 0, NOTELL) &&
+		    (!mtmp->mflee || mtmp->mfleetim)) {
+		     if (canseemon(mtmp))
+			 pline("%s suddenly panics!", Monnam(mtmp));
+		     monflee(mtmp, 0, FALSE, TRUE);
 		}
 		break;
 	case WAN_PROBING:

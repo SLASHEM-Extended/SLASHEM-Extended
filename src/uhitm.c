@@ -513,7 +513,6 @@ struct attack *uattk;
 		if(!rn2(25) && mon->mhp < mon->mhpmax/2
 			    && !(u.uswallow && mon == u.ustuck)) {
 		    /* maybe should regurgitate if swallowed? */
-			mon->mflee = 1;
 		    if(!rn2(3)) {
 			monflee(mon, rnd(100), FALSE, TRUE);
 		    } else monflee(mon, 0, FALSE, TRUE);
