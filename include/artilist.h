@@ -140,7 +140,7 @@ A("Reaper",                     HALBERD,
 
 A("Holy Spear of Light",        SILVER_SPEAR,
        (SPFX_RESTR|SPFX_INTEL|SPFX_DFLAG2), 0, M2_UNDEAD,
-       PHYS(5,10),      NO_DFNS,  NO_CARY,     LIGHT_AREA, A_LAWFUL, PM_UNDEAD_SLAYER, NON_PM ),
+       PHYS(5,10),      NO_DFNS,  NO_CARY,     LIGHT_AREA, A_LAWFUL, NON_PM, NON_PM ),
 
 
 /*** Neutral artifacts ***/
