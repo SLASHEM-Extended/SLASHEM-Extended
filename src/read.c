@@ -52,6 +52,7 @@ doread()
 	char *cp = class_list;
 	struct engr *ep = engr_at(u.ux, u.uy);
 	boolean cant_see = Blind;
+	struct obj otemp;
 
 	*cp++ = ALL_CLASSES;
 	*cp++ = ALLOW_FLOOROBJ;
@@ -213,9 +214,6 @@ doread()
 	}
 	scroll->in_use = TRUE;	/* scroll, not spellbook, now being read */
 	if(scroll->otyp != SCR_BLANK_PAPER) {
-		/* KMH, ethics -- why be cruel to beginner classes?
-		 * These are now part of the illiterate challenge.
-		 */
 	  if(Blind)
 	    pline("As you %s the formula on it, the scroll disappears.",
 			is_silent(youmonst.data) ? "cogitate" : "pronounce");
@@ -229,6 +227,20 @@ doread()
 			is_silent(youmonst.data) ? "understand" : "pronounce");
 	  }
 	}
+	/*
+	 * When reading scrolls of teleportation off the floor special
+	 * care needs to be taken so that the scroll is used up before
+	 * a potential level teleport occurs.
+	 */
+	if (scroll->otyp == SCR_TELEPORTATION) {
+	    otemp = *scroll;
+	    otemp.where = OBJ_FREE;
+	    otemp.nobj = (struct obj *)0;
+	    if (carried(scroll)) useup(scroll);
+	    else if (mcarried(scroll)) m_useup(scroll->ocarry, scroll);
+	    else useupf(scroll, 1L);
+	    scroll = &otemp;
+	}
 	if(!seffects(scroll))  {
 		if(!objects[scroll->otyp].oc_name_known) {
 		    if(known) {
@@ -241,7 +253,8 @@ doread()
 			use_skill(spell_skilltype(scroll->otyp), 
 				(scroll->blessed ? 2 : 1));
 		}
-		if(scroll->otyp != SCR_BLANK_PAPER) {
+		if(scroll->otyp != SCR_BLANK_PAPER &&
+		  scroll->otyp != SCR_TELEPORTATION) {
 		    if (carried(scroll)) useup(scroll);
 		    else if (mcarried(scroll)) m_useup(scroll->ocarry, scroll);
 		    else useupf(scroll, 1L);
