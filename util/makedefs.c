@@ -815,6 +815,12 @@ static const char *window_opts[] = {
 #ifdef GNOME_GRAPHICS
 		"Gnome",
 #endif
+#ifdef GL_GRAPHICS
+		"GL",
+#endif
+#ifdef SDL_GRAPHICS
+		"SDL",
+#endif
 #ifdef MAC
 		"Mac",
 #endif
