@@ -698,8 +698,18 @@ plus:
 		if(objects[obj->otyp].oc_charged)
 		    goto charges;
 		break;
-		/* if special tool, fall through to show charges */
 	case SPBOOK_CLASS: /* WAC spellbooks have charges now */
+#ifdef WIZARD
+		if (wizard) {
+		    if (Hallucination)
+			break;
+		    if (obj->known)
+			Sprintf(eos(bp), " (%d:%d,%d)",
+			  (int)obj->recharged, obj->spe, obj->spestudied);
+		    break;
+		} else
+#endif
+		goto charges;
 	case WAND_CLASS:	
 		add_erosion_words(obj, prefix);
 charges:

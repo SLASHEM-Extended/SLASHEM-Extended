@@ -729,7 +729,8 @@ struct monst *mon;
 #endif /*OVL1*/
 
 #ifdef OVLB
-static const char charged_objs[] = { WAND_CLASS, WEAPON_CLASS, ARMOR_CLASS, 0 };
+static const char charged_objs[] = { WAND_CLASS, WEAPON_CLASS, ARMOR_CLASS,
+				     SPBOOK_CLASS, 0 };
 
 STATIC_OVL void
 costly_cancel(obj)
@@ -1403,7 +1404,9 @@ poly_obj(obj, id)
 	    while (otmp->otyp == SPE_POLYMORPH)
 		otmp->otyp = rnd_class(SPE_DIG, SPE_BLANK_PAPER);
 	    /* reduce spellbook abuse */
-	    otmp->spestudied += 1;
+	    if ((int)otmp->recharged < rn2(7))	/* recharge_limit */
+		otmp->recharged++;
+	    otmp->spestudied = obj->spestudied + 1;
 	    break;
 
 	case GEM_CLASS:
