@@ -73,6 +73,7 @@ ver 0.0.7E6F1 [?] [Released by ?]
 -New branding for MS-Windows native GUI port
 -fixed bug 907789: "The poisoned runed dagger was poisoned!" (Nico Kist)
 -fixed bug 908187: Excessive prompts when reading graffiti (Nico Kist)
+-fixed bug 910891: Overly terse description of bones/save file compatibility
 
 See history.txt for changes made in previous versions.
 

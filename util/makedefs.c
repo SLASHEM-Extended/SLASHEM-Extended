@@ -665,16 +665,33 @@ build_savebones_compat_string()
 #ifdef VERSION_COMPATIBILITY
 	unsigned long uver = VERSION_COMPATIBILITY;
 #endif
+	char editsuffix[20], ueditsuffix[20];
+	/* Add edit level suffices if either EDITLEVEL is defined, or
+	 * the first level we are compatible with was not edit level 0.
+	 */
+#ifdef EDITLEVEL
+	sprintf(editsuffix, "E%d", EDITLEVEL);
+	sprintf(ueditsuffix, "E%lu", uver & 0x000000FFL);
+#else
+	if (uver & 0x000000FFL) {
+	    strcpy(editsuffix, "E0");
+	    sprintf(ueditsuffix, "E%lu", uver & 0x000000FFL);
+	} else {
+	    editsuffix[0] = 0;
+	    ueditsuffix[0] = 0;
+	}
+#endif
 	Strcpy(save_bones_compat_buf,
 		"save and bones files accepted from version");
 #ifdef VERSION_COMPATIBILITY
-	Sprintf(eos(save_bones_compat_buf), "s %lu.%lu.%lu through %d.%d.%d",
+	Sprintf(eos(save_bones_compat_buf),
+		"s %lu.%lu.%lu%s through %d.%d.%d%s",
 		((uver & 0xFF000000L) >> 24), ((uver & 0x00FF0000L) >> 16),
-		((uver & 0x0000FF00L) >> 8),
-		VERSION_MAJOR, VERSION_MINOR, PATCHLEVEL);
+		((uver & 0x0000FF00L) >> 8), ueditsuffix,
+		VERSION_MAJOR, VERSION_MINOR, PATCHLEVEL, editsuffix);
 #else
-	Sprintf(eos(save_bones_compat_buf), " %d.%d.%d only",
-		VERSION_MAJOR, VERSION_MINOR, PATCHLEVEL);
+	Sprintf(eos(save_bones_compat_buf), " %d.%d.%d%s only",
+		VERSION_MAJOR, VERSION_MINOR, PATCHLEVEL, editsuffix);
 #endif
 }
 
