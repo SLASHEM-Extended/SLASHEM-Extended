@@ -26,6 +26,8 @@ GAMEPERM = 04755
 FILEPERM = 0644
 EXEPERM  = 0755
 DIRPERM  = 0755
+VARFILEPERM = 0644
+VARDIRPERM  = 0755
 
 # GAMEDIR also appears in config.h as "HACKDIR".
 # VARDIR may also appear in unixconf.h as "VAR_PLAYGROUND" else GAMEDIR
@@ -318,19 +320,19 @@ install: $(GAME) $(CNF_SHARE_DAT) dungeon spec_levs Guidebook.txt
 	-mkdir -p $(FILE_AREA_LEVL) $(FILE_AREA_SHARE) $(FILE_AREA_UNSHARE)
 	-mkdir -p $(FILE_AREA_DOC)
 	-rmdir ./-p
-	-$(CHOWN) $(GAMEUID) $(FILE_AREA_VAR) $(FILE_AREA_BONES) $(FILE_AREA_SAVE)
-	$(CHGRP) $(GAMEGRP) $(FILE_AREA_VAR) $(FILE_AREA_BONES) $(FILE_AREA_SAVE)
-	chmod $(DIRPERM) $(FILE_AREA_VAR) $(FILE_AREA_BONES) $(FILE_AREA_SAVE)
-	-$(CHOWN) $(GAMEUID) $(FILE_AREA_LEVL) $(FILE_AREA_SHARE) $(FILE_AREA_UNSHARE)
-	$(CHGRP) $(GAMEGRP) $(FILE_AREA_LEVL) $(FILE_AREA_SHARE) $(FILE_AREA_UNSHARE)
-	chmod $(DIRPERM) $(FILE_AREA_LEVL) $(FILE_AREA_SHARE) $(FILE_AREA_UNSHARE)
+	-$(CHOWN) $(GAMEUID) $(FILE_AREA_VAR) $(FILE_AREA_BONES) $(FILE_AREA_SAVE) $(FILE_AREA_LEVL)
+	$(CHGRP) $(GAMEGRP) $(FILE_AREA_VAR) $(FILE_AREA_BONES) $(FILE_AREA_SAVE) $(FILE_AREA_LEVL)
+	chmod $(VARDIRPERM) $(FILE_AREA_VAR) $(FILE_AREA_BONES) $(FILE_AREA_SAVE) $(FILE_AREA_LEVL)
+	-$(CHOWN) $(GAMEUID) $(FILE_AREA_SHARE) $(FILE_AREA_UNSHARE)
+	$(CHGRP) $(GAMEGRP) $(FILE_AREA_SHARE) $(FILE_AREA_UNSHARE)
+	chmod $(DIRPERM) $(FILE_AREA_SHARE) $(FILE_AREA_UNSHARE)
 # set up the game files
 	( $(MAKE) dofiles )
 # set up some additional files
 	touch $(FILE_AREA_VAR)/perm $(FILE_AREA_VAR)/record $(FILE_AREA_VAR)/logfile
 	-( cd $(FILE_AREA_VAR) ; $(CHOWN) $(GAMEUID) perm record logfile ; \
 			$(CHGRP) $(GAMEGRP) perm record logfile ; \
-			chmod $(FILEPERM) perm record logfile )
+			chmod $(VARFILEPERM) perm record logfile )
 # and a reminder
 	@echo You may also want to reinstall the man pages via the doc Makefile.
 
