@@ -1,5 +1,5 @@
-#	SCCS Id: @(#)data.base	3.4	2002/12/28
-#	    $Id: data.base,v 1.12 2003-08-26 18:21:09 j_ali Exp $
+#	SCCS Id: @(#)data.base	3.4	2003/07/23
+#	    $Id: data.base,v 1.13 2003-09-06 07:44:21 prousu Exp $
 #   Copyright (c) 1994, 1995, 1996 by the NetHack Development Team
 #   Copyright (c) 1994 by Boudewijn Wayers
 #   Copyright (c) 2002 by the Slash'EM Development Team
@@ -2628,17 +2628,17 @@ offler
 	"Fetch me something to eat!"
 		[ Aladdin, from The Arabian Nights, by Andrew Lang ]
 lance
-	With this the wind increased, and the mill sails began to turn
+	With this the wind increased, and the mill sails began to turn 
 	about; which Don Quixote espying, said, 'Although thou movest
 	more arms than the giant Briareus thou shalt stoop to me.'
-	And, after saying this, and commending himself most devoutly to
-	his Lady Dulcinea, desiring her to succor him in that trance,
+	And, after saying this, and commending himself most devoutly
+	to his Lady Dulcinea, desiring her to succor him in that trance,
 	covering himself well with his buckler, and setting his lance
 	on his rest, he spurred on Rozinante, and encountered with the
 	first mill that was before him, and, striking his lance into
-	the sail, the wind sung it about with such fury, that is broke
+	the sail, the wind swung it about with such fury, that it broke
 	his lance into shivers, carrying him and his horse after it,
-	and finally tumbled him a good way off from it on the field in
+	and finally tumbled him a good way off from it on the field in 
 	evil plight.
 		[ Don Quixote of La Mancha by Miquel de
 		  Cervantes Saavedra ]
