@@ -25,7 +25,7 @@
  * Fix level can be used to distinguish versions between edit levels.
  * Note: Incrementing FIXLEVEL does _not_ invalidate old bones and save files.
  */
-#define FIXLEVEL	7  /* Define to enable a fixlevel version */
+#define FIXLEVEL	8  /* Define to enable a fixlevel version */
 #else
 #define EDITLEVEL	5
 #define FIXLEVEL        3
