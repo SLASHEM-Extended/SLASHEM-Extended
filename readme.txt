@@ -80,6 +80,7 @@ ver 0.0.7E5 [?] [Released by ?]
 -fixed bug 857644: Gnome: tty_raw_print should be removed
 -fixed bug 857488: gtkprogress not handled in proxified build
 -GtkHack: Added user-level logging
+-fixed bug 858984: GTK: Dialogs don't open until after the next game command
 
 See history.txt for changes made in previous versions.
 

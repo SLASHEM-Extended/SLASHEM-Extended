@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.29 2003-10-25 18:06:02 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.30 2003-12-13 14:37:57 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -1252,7 +1252,6 @@ static unsigned long async_callbacks[] = {
       1 << EXT_CID_INTERFACE_MODE - EXT_CID_DISPLAY_INVENTORY |
       1 << EXT_CID_QUIT_GAME - EXT_CID_DISPLAY_INVENTORY |
       1 << EXT_CID_DISPLAY_SCORE - EXT_CID_DISPLAY_INVENTORY |
-      1 << EXT_CID_DOSET - EXT_CID_DISPLAY_INVENTORY |
       1 << EXT_CID_SET_OPTION_MOD_STATUS - EXT_CID_DISPLAY_INVENTORY,
 };
 

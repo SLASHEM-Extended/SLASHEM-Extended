@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.20 2003-10-25 18:06:01 j_ali Exp $ */
+/* $Id: callback.c,v 1.21 2003-12-13 14:37:57 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -519,8 +519,7 @@ unsigned short id;
 NhExtXdr *request, *reply;
 {
     doset();
-    if (!nhext_async_mode())
-	nhext_rpc_params(reply, 0);
+    nhext_rpc_params(reply, 0);
 }
 
 static void
