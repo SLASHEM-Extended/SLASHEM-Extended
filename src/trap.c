@@ -546,6 +546,7 @@ register struct trap *trap;
 		otmp = mksobj(ARROW, TRUE, FALSE);
 		otmp->quan = 1L;
 		otmp->owt = weight(otmp);
+		otmp->opoisoned = 0;
 		if (thitu(8, dmgval(otmp, &youmonst), otmp, "arrow")) {
 		    obfree(otmp, (struct obj *)0);
 		} else {
@@ -1270,6 +1271,7 @@ register struct monst *mtmp;
 			otmp = mksobj(ARROW, TRUE, FALSE);
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
+			otmp->opoisoned = 0;
 			if (in_sight) seetrap(trap);
 			if(thitm(8, mtmp, otmp, 0)) trapkilled = TRUE;
 			break;
