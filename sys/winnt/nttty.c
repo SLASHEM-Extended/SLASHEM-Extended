@@ -95,6 +95,7 @@ static char nullstr[] = "";
 char erase_char,kill_char;
 
 static char currentcolor = FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_BLUE;
+static char noninvertedcurrentcolor = FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_BLUE;
 static char currenthilite = 0;
 static char currentbackground = 0;
 static boolean colorchange = TRUE;
@@ -145,11 +146,12 @@ tty_startup(wid, hgt)
 int *wid, *hgt;
 {
 /*	int twid = origcsbi.dwSize.X; */
-	int twid = origcsbi.srWindow.Right - origcsbi.srWindow.Left;
+	int twid = origcsbi.srWindow.Right - origcsbi.srWindow.Left + 1;
 
 	if (twid > 80) twid = 80;
 	*wid = twid;
-	*hgt = origcsbi.srWindow.Bottom - origcsbi.srWindow.Top;
+	*hgt = origcsbi.srWindow.Bottom - origcsbi.srWindow.Top + 1;
+	set_option_mod_status("mouse_support", SET_IN_GAME);
 }
 
 void
@@ -185,6 +187,8 @@ tty_end_screen()
 	}
 }
 
+extern boolean getreturn_disable;	/* from sys/share/pcsys.c */
+
 static BOOL CtrlHandler(ctrltype)
 DWORD ctrltype;
 {
@@ -195,6 +199,7 @@ DWORD ctrltype;
 		case CTRL_CLOSE_EVENT:
 		case CTRL_LOGOFF_EVENT:
 		case CTRL_SHUTDOWN_EVENT:
+			getreturn_disable = TRUE;
 #ifndef NOSAVEONHANGUP
 			hangup(0);
 #endif
@@ -213,7 +218,7 @@ nttty_open()
 {
         HANDLE hStdOut;
         long mask;
-
+        
         /* The following 6 lines of code were suggested by 
          * Bob Landau of Microsoft WIN32 Developer support,
          * as the only current means of determining whether
@@ -222,7 +227,7 @@ nttty_open()
          */
         hStdOut = GetStdHandle( STD_OUTPUT_HANDLE );
         if (GetConsoleScreenBufferInfo( hStdOut, &origcsbi))
-	    GUILaunched = ((origcsbi.dwCursorPosition.X == 0) &&
+        GUILaunched = ((origcsbi.dwCursorPosition.X == 0) &&
                            (origcsbi.dwCursorPosition.Y == 0));
 	else {
 	    GUILaunched = 0;
@@ -248,16 +253,18 @@ nttty_open()
 #endif       
 	if (!GetConsoleMode(hConIn,&cmode))
 		cmode = 0;
-#ifndef NO_MOUSE_ALLOWED
-	mask = ENABLE_PROCESSED_INPUT | ENABLE_LINE_INPUT |
-	       ENABLE_ECHO_INPUT | ENABLE_WINDOW_INPUT;   
-#else
+#ifdef NO_MOUSE_ALLOWED
 	mask = ENABLE_PROCESSED_INPUT | ENABLE_LINE_INPUT |
 	       ENABLE_MOUSE_INPUT | ENABLE_ECHO_INPUT | ENABLE_WINDOW_INPUT;   
+#else
+	mask = ENABLE_PROCESSED_INPUT | ENABLE_LINE_INPUT |
+	       ENABLE_ECHO_INPUT | ENABLE_WINDOW_INPUT;   
 #endif
 	/* Turn OFF the settings specified in the mask */
 	cmode &= ~mask;
+#ifndef NO_MOUSE_ALLOWED
 	cmode |= ENABLE_MOUSE_INPUT;
+#endif
 	if (!SetConsoleMode(hConIn,cmode))
 		/* Unable to set control mode */
 		cmode = 0;
@@ -278,8 +285,8 @@ void
 get_scr_size()
 {
 	if (GetConsoleScreenBufferInfo(hConOut, &csbi)) {
-	    LI = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
-	    CO = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+	LI = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+	CO = csbi.srWindow.Right - csbi.srWindow.Left + 1;
 	} else {
 	    LI = 25;
 	    CO = 80;
@@ -347,81 +354,105 @@ static const struct pad {
 			{'i', 'I', C('i')},		/* Ins */
 			{'.', ':', ':'}			/* Del */
 };
-/*
- * Unlike Ctrl-letter, the Alt-letter keystrokes have no specific ASCII
- * meaning unless assigned one by a keyboard conversion table
- * To interpret Alt-letters, we use a
- * scan code table to translate the scan code into a letter, then set the
- * "meta" bit for it.  -3.
- */
-#define SCANLO		0x02
 
-static const char scanmap[] = { 	/* ... */
-	'1','2','3','4','5','6','7','8','9','0',0,0,0,0,
-	'q','w','e','r','t','y','u','i','o','p','[',']', '\n',
-	0, 'a','s','d','f','g','h','j','k','l',';','\'', '`',
-	0, '\\', 'z','x','c','v','b','n','m',',','.','?'	/* ... */
-};
+#define inmap(x,vk)	(((x) > 'A' && (x) < 'Z') || (vk) == 0xBF || (x) == '2')
 
-static const char *extendedlist = "acdefijlmnopqrstuvw?2";
+static BYTE KeyState[256];
+ 
+int FDECL(process_keystroke, (INPUT_RECORD *ir, boolean *valid, int portdebug));
 
-#define inmap(x)	(SCANLO <= (x) && (x) < SCANLO + SIZE(scanmap))
-
-int FDECL(process_keystroke, (INPUT_RECORD *ir, boolean *valid));
-
-int process_keystroke(ir, valid)
+int process_keystroke(ir, valid, portdebug)
 INPUT_RECORD *ir;
 boolean *valid;
+int portdebug;
 {
-	int metaflags = 0;
-	unsigned char ch;
+	int metaflags = 0, k;
+	int keycode, vk;
+	unsigned char ch, pre_ch;
 	unsigned short int scan;
 	unsigned long shiftstate;
-	int altseq;
+	int altseq = 0;
 	const struct pad *kpad;
 
 	shiftstate = 0L;
-	ch    = ir->Event.KeyEvent.uChar.AsciiChar;
+	ch = pre_ch = ir->Event.KeyEvent.uChar.AsciiChar;
 	scan  = ir->Event.KeyEvent.wVirtualScanCode;
+	vk    = ir->Event.KeyEvent.wVirtualKeyCode;
+	keycode = MapVirtualKey(vk, 2);
 	shiftstate = ir->Event.KeyEvent.dwControlKeyState;
-	altseq=(shiftstate & (LEFT_ALT_PRESSED|RIGHT_ALT_PRESSED) && (ch || inmap(scan)));
-		if (ch || (iskeypad(scan)) || altseq)
-			*valid = 1;
-	/* if (!valid) return 0; */
-    	    /*
-	    * shiftstate can be checked to see if various special
-            * keys were pressed at the same time as the key.
-            * Currently we are using the ALT & SHIFT & CONTROLS.
-            *
-            *           RIGHT_ALT_PRESSED, LEFT_ALT_PRESSED,
-            *           RIGHT_CTRL_PRESSED, LEFT_CTRL_PRESSED,
-            *           SHIFT_PRESSED,NUMLOCK_ON, SCROLLLOCK_ON,
-            *           CAPSLOCK_ON, ENHANCED_KEY
-            *
-            * are all valid bit masks to use on shiftstate.
-            * eg. (shiftstate & LEFT_CTRL_PRESSED) is true if the
-            *      left control key was pressed with the keystroke.
-            */
-            if (iskeypad(scan)) {
-                kpad = iflags.num_pad ? numpad : keypad;
-                if (shiftstate & SHIFT_PRESSED) {
-                    ch = kpad[scan - KEYPADLO].shift;
-                }
-                else if (shiftstate & (LEFT_CTRL_PRESSED | RIGHT_CTRL_PRESSED)) {
-                    ch = kpad[scan - KEYPADLO].cntrl;
-                }
-                else {
-                    ch = kpad[scan - KEYPADLO].normal;
-                }
-            }
-        else if (altseq) { /* ALT sequence */
-            altseq = 0;
-            if (!ch && inmap(scan)) ch = scanmap[scan - SCANLO];
-            if (index(extendedlist, tolower(ch)) != 0) ch = M(tolower(ch));
-                else if (scan == (SCANLO + SIZE(scanmap)) - 1) ch = M('?');
-            }
-            return (ch == '\r') ? '\n' : ch;
+	KeyState[VK_SHIFT]   = (shiftstate & SHIFT_PRESSED) ? 0x81 : 0;
+	KeyState[VK_CONTROL] = (shiftstate & (LEFT_CTRL_PRESSED|RIGHT_CTRL_PRESSED)) ?
+				0x81 : 0;
+	KeyState[VK_CAPITAL] = (shiftstate & CAPSLOCK_ON) ? 0x81 : 0;
+
+	if (shiftstate & (LEFT_ALT_PRESSED|RIGHT_ALT_PRESSED)) {
+		if (ch || inmap(keycode,vk)) altseq = 1;
+		else altseq = -1;	/* invalid altseq */
 	}
+	if (ch || (iskeypad(scan)) || (altseq > 0))
+		*valid = TRUE;
+	/* if (!valid) return 0; */
+    	/*
+	 * shiftstate can be checked to see if various special
+         * keys were pressed at the same time as the key.
+         * Currently we are using the ALT & SHIFT & CONTROLS.
+         *
+         *           RIGHT_ALT_PRESSED, LEFT_ALT_PRESSED,
+         *           RIGHT_CTRL_PRESSED, LEFT_CTRL_PRESSED,
+         *           SHIFT_PRESSED,NUMLOCK_ON, SCROLLLOCK_ON,
+         *           CAPSLOCK_ON, ENHANCED_KEY
+         *
+         * are all valid bit masks to use on shiftstate.
+         * eg. (shiftstate & LEFT_CTRL_PRESSED) is true if the
+         *      left control key was pressed with the keystroke.
+         */
+        if (iskeypad(scan)) {
+            kpad = iflags.num_pad ? numpad : keypad;
+            if (shiftstate & SHIFT_PRESSED) {
+                ch = kpad[scan - KEYPADLO].shift;
+            }
+            else if (shiftstate & (LEFT_CTRL_PRESSED | RIGHT_CTRL_PRESSED)) {
+                ch = kpad[scan - KEYPADLO].cntrl;
+            }
+            else {
+                ch = kpad[scan - KEYPADLO].normal;
+            }
+        }
+        else if (altseq > 0) { /* ALT sequence */
+		if (vk == 0xBF) ch = M('?');
+		else ch = M(tolower(keycode));
+        }
+	/* Attempt to work better with international keyboards. */
+	else {
+		WORD chr[2];
+		k = ToAscii(vk, scan, KeyState, chr, 0);
+		if (k <= 2)
+		    switch(k) {
+			case 2:  /* two characters */
+				ch = (unsigned char)chr[1];
+				*valid = TRUE;
+				break;
+			case 1:  /* one character */
+				ch = (unsigned char)chr[0];
+				*valid = TRUE;
+				break;
+			case 0:  /* no translation */
+			default: /* negative */
+				*valid = FALSE;
+		    }
+	}
+	if (ch == '\r') ch = '\n';
+#ifdef PORT_DEBUG
+	if (portdebug) {
+		char buf[BUFSZ];
+		Sprintf(buf,
+	"PORTDEBUG: ch=%u, scan=%u, vk=%d, pre=%d, shiftstate=0x%X (ESC to end)\n",
+			ch, scan, vk, pre_ch, shiftstate);
+		xputs(buf);
+	}
+#endif
+	return ch;
+}
 
 int
 tgetch()
@@ -434,11 +465,10 @@ tgetch()
 	    char c;
 	    ch = ReadFile(hConIn,&c,1,&count,NULL) && count ? c : EOF;
 	} else
-	while (!valid)
-	{
+	while (!valid) {
 	   ReadConsoleInput(hConIn,&ir,1,&count);
 	   if ((ir.EventType == KEY_EVENT) && ir.Event.KeyEvent.bKeyDown)
-		ch = process_keystroke(&ir, &valid);
+		ch = process_keystroke(&ir, &valid, 0);
 	}
 	return ch;
 }
@@ -448,10 +478,7 @@ ntposkey(x, y, mod)
 int *x, *y, *mod;
 {
 	DWORD count;
-	unsigned short int scan;
-	unsigned char ch;
-	unsigned long shiftstate;
-	int altseq;
+	int keystroke = 0;
 	int done = 0;
 	boolean valid = 0;
 	if (!cmode) {
@@ -464,16 +491,12 @@ int *x, *y, *mod;
 	    count = 0;
 	    ReadConsoleInput(hConIn,&ir,1,&count);
 	    if (count > 0) {
-		ch    = ir.Event.KeyEvent.uChar.AsciiChar;
-		scan  = ir.Event.KeyEvent.wVirtualScanCode;
-		shiftstate = ir.Event.KeyEvent.dwControlKeyState;
-		altseq=(shiftstate & (LEFT_ALT_PRESSED|RIGHT_ALT_PRESSED) && (ch || inmap(scan)));
-		if (((ir.EventType == KEY_EVENT) && ir.Event.KeyEvent.bKeyDown) &&
-		     (ch || (iskeypad(scan)) || altseq)) {
-		     	*mod = 0;
-			return process_keystroke(&ir, &valid);
-		} else if ((ir.EventType == MOUSE_EVENT &&
-		  (ir.Event.MouseEvent.dwButtonState & MOUSEMASK))) {
+		if (ir.EventType == KEY_EVENT && ir.Event.KeyEvent.bKeyDown) {
+			keystroke = process_keystroke(&ir, &valid, 0);
+			if (valid) return keystroke;
+		} else if (ir.EventType == MOUSE_EVENT) {
+			if ((ir.Event.MouseEvent.dwEventFlags == 0) &&
+		   	    (ir.Event.MouseEvent.dwButtonState & MOUSEMASK)) {
 		  	*x = ir.Event.MouseEvent.dwMousePosition.X + 1;
 		  	*y = ir.Event.MouseEvent.dwMousePosition.Y - 1;
 
@@ -486,12 +509,21 @@ int *x, *y, *mod;
 			      		*mod = CLICK_3;
 #endif 
 			       return 0;
-		  
 		}
 	    }
+#if 0
+		/* We ignore these types of console events */
+	        else if (ir.EventType == FOCUS_EVENT) {
+	        }
+	        else if (ir.EventType == MENU_EVENT) {
+	        }
+#endif
+		} else 
+			done = 1;
 	}
-	/* Not Reached */
-	return '\032';
+	/* NOTREACHED */
+	*mod = 0;
+	return 0;
 }
 
 int
@@ -503,7 +535,7 @@ nttty_kbhit()
 	unsigned short int scan;
 	unsigned char ch;
 	unsigned long shiftstate;
-	int altseq;
+	int altseq = 0, keycode, vk;
 	done = 0;
 	retval = 0;
 	while (!done)
@@ -511,23 +543,28 @@ nttty_kbhit()
 	    count = 0;
 	    PeekConsoleInput(hConIn,&ir,1,&count);
 	    if (count > 0) {
+		if (ir.EventType == KEY_EVENT && ir.Event.KeyEvent.bKeyDown) {
 		ch    = ir.Event.KeyEvent.uChar.AsciiChar;
 		scan  = ir.Event.KeyEvent.wVirtualScanCode;
 		shiftstate = ir.Event.KeyEvent.dwControlKeyState;
-		altseq=(shiftstate & (LEFT_ALT_PRESSED|RIGHT_ALT_PRESSED) && (ch || inmap(scan)));
-		if (((ir.EventType == KEY_EVENT) && ir.Event.KeyEvent.bKeyDown) &&
-		     (ch || (iskeypad(scan)) || altseq)) {
+			vk = ir.Event.KeyEvent.wVirtualKeyCode;
+			keycode = MapVirtualKey(vk, 2);
+			if (shiftstate & (LEFT_ALT_PRESSED|RIGHT_ALT_PRESSED)) {
+				if  (ch || inmap(keycode,vk)) altseq = 1;
+				else altseq = -1;	/* invalid altseq */
+			}
+			if (ch || iskeypad(scan) || altseq) {
 			done = 1;	    /* Stop looking         */
 			retval = 1;         /* Found what we sought */
 		}
-		
+		}
 		 else if ((ir.EventType == MOUSE_EVENT &&
 		  (ir.Event.MouseEvent.dwButtonState & MOUSEMASK))) {
 			done = 1;
 			retval = 1;
 		}
 
-		else /* Discard it, its an insignificant event */
+		else /* Discard it, it's an insignificant event */
 			ReadConsoleInput(hConIn,&ir,1,&count);
 		} else  /* There are no events in console event queue */ {
 		done = 1;	  /* Stop looking               */
@@ -653,8 +690,8 @@ void
 home()
 {
 	if (TTYInitialized) {
-	    tty_curs(BASE_WINDOW, 1, 0);
-	    ttyDisplay->curx = ttyDisplay->cury = 0;
+	tty_curs(BASE_WINDOW, 1, 0);
+	ttyDisplay->curx = ttyDisplay->cury = 0;
 	}
 }
 
@@ -662,8 +699,6 @@ home()
 void
 backsp()
 {
-	DWORD count;
-
 	GetConsoleScreenBufferInfo(hConOut,&csbi);
 	if (csbi.dwCursorPosition.X > 0)
 		ntcoord.X = csbi.dwCursorPosition.X-1;
@@ -675,8 +710,6 @@ backsp()
 				(currentcolor|currenthilite|currentbackground));
 		colorchange = FALSE;
 	}
-	WriteConsole(hConOut," ",1,&count,0);
-	SetConsoleCursorPosition(hConOut,ntcoord);	
 }
 
 void
@@ -800,51 +833,61 @@ has_color(int color)
 }
 
 void
-term_end_attr(int attr)
+term_start_attr(int attr)
 {
     switch(attr){
-
+        case ATR_INVERSE:
+		if (iflags.wc_inverse) {
+ 		   noninvertedcurrentcolor = currentcolor;
+		   /* Suggestion by Lee Berger */
+		   if ((currentcolor & (FOREGROUND_GREEN|FOREGROUND_BLUE|FOREGROUND_RED)) ==
+			(FOREGROUND_GREEN|FOREGROUND_BLUE|FOREGROUND_RED))
+			currentcolor = 0;
+		   currentbackground = (BACKGROUND_RED|BACKGROUND_BLUE|BACKGROUND_GREEN);
+		   colorchange = TRUE;
+		   break;
+		} /* else */
+		/*FALLTHRU*/
         case ATR_ULINE:
         case ATR_BOLD:
         case ATR_BLINK:
-		standoutend();
-                break;
-        case ATR_INVERSE:
-		if (currentcolor == 0)
-			currentcolor = FOREGROUND_GREEN|FOREGROUND_BLUE|FOREGROUND_RED;
-		currentbackground = 0; 
-		colorchange = TRUE;
+		standoutbeg();
 		break;
         default:
+#ifdef DEBUG
+		impossible("term_start_attr: strange attribute %d", attr);
+#endif
 		standoutend();
 		if (currentcolor == 0)
 			currentcolor = FOREGROUND_GREEN|FOREGROUND_BLUE|FOREGROUND_RED;
 		currentbackground = 0;
-		currenthilite = 0;
                 break;
     }                
 }
 
 void
-term_start_attr(int attr)
+term_end_attr(int attr)
 {
     switch(attr){
 
+        case ATR_INVERSE:
+       	  if (iflags.wc_inverse) {
+			if (currentcolor == 0 && noninvertedcurrentcolor != 0)
+				currentcolor = noninvertedcurrentcolor;
+			noninvertedcurrentcolor = 0;
+		    currentbackground = 0;
+		colorchange = TRUE;
+		break;
+		  } /* else */
+		/*FALLTHRU*/
         case ATR_ULINE:
         case ATR_BOLD:
         case ATR_BLINK:
-		standoutbeg();
-                break;
-        case ATR_INVERSE:
-		/* Suggestion by Lee Berger */
-		if ((currentcolor & (FOREGROUND_GREEN|FOREGROUND_BLUE|FOREGROUND_RED)) ==
-			(FOREGROUND_GREEN|FOREGROUND_BLUE|FOREGROUND_RED))
-			currentcolor = 0;
-		currentbackground = (BACKGROUND_RED|BACKGROUND_BLUE|BACKGROUND_GREEN);
-		colorchange = TRUE;
-		break;
         default:
 		standoutend();
+		if (currentcolor == 0)
+			currentcolor = FOREGROUND_GREEN|FOREGROUND_BLUE|FOREGROUND_RED;
+		currentbackground = 0;
                 break;
     }                
 }
@@ -897,4 +940,46 @@ standoutend()
 	colorchange = TRUE;
 }
 
+#ifndef NO_MOUSE_ALLOWED
+void
+toggle_mouse_support()
+{
+        DWORD cmode;
+	GetConsoleMode(hConIn,&cmode);
+	if (iflags.wc_mouse_support)
+		cmode |= ENABLE_MOUSE_INPUT;
+	else
+		cmode &= ~ENABLE_MOUSE_INPUT;
+	SetConsoleMode(hConIn,cmode);
+}
+#endif
+
+/* handle tty options updates here */
+void nttty_preference_update(pref)
+const char *pref;
+{
+	if( stricmp( pref, "mouse_support")==0) {
+#ifndef NO_MOUSE_ALLOWED
+		toggle_mouse_support();
+#endif
+	}
+	return;
+}
+
+#ifdef PORT_DEBUG
+void
+win32con_debug_keystrokes()
+{
+	DWORD count;
+	boolean valid = 0;
+	int ch;
+	xputs("\n");
+	while (!valid || ch != 27) {
+	   ReadConsoleInput(hConIn,&ir,1,&count);
+	   if ((ir.EventType == KEY_EVENT) && ir.Event.KeyEvent.bKeyDown)
+		ch = process_keystroke(&ir, &valid, 1);
+	}
+	(void)doredraw();
+}
+#endif
 #endif /* WIN32CON */

@@ -27,6 +27,12 @@ You will need
     or byacc).  While not strictly necessary to compile Slash'EM, they are 
     required should you desire to make any changes to the level and dungeon 
     compilers.
+  o If you are running an early version of Windows 95 then you may need to
+    get a copy of msvcrt.dll (which normally lives in c:\windows\system).
+    To do this go to Microsoft's Windows 95 downloads page at:
+	http://www.microsoft.com/windows95/downloads/
+    scroll down to the "Windows Library Update" and follow the instructions
+    to install it.
 
 To build the GTK interface, you will also need:
 
