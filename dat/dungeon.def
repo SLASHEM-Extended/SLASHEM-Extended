@@ -31,9 +31,6 @@ ALIGNMENT:      unaligned
 #   the entrance to levels 2 to 4.
 BRANCH:		"The Gnomish Mines" @ (2, 3)
 
-# Test alternate route through the maze
-BRANCH:		"A Short but Boring Road" @ (3, 5)
-
 #
 #   New mall is on levels 5 to 6, 75% chance.
 #   There shouldn't be any other special levels down to the Oracle.
@@ -105,12 +102,6 @@ CHAINBRANCH:	"Gehennom" "castle" + (0, 0) no_down
 # Branch to the endgame...
 BRANCH:			"The Elemental Planes" @ (1, 0) no_down up -2
 
-
-### A Short but Boring Road ###
-# Alternate, boring, route to the castle
-
-DUNGEON:	"A Short but Boring Road" "C" (10, 5)
-BRANCH:		"The Dungeons of Doom" @ (-1, 0) -2
 
 ### Gehennom ###
 #

@@ -351,6 +351,7 @@ ver 0.0.7E0 [?] [Released by ?]
 -Actioned feature request 563965: Reduce gypsy wishes.
 -Actioned feature request 594639: Monsters which should be bloodless.
 -fixed bug 230857: Wrong location given for death.
+-Removed test dungeon (A Short but Boring Road).
 
 ver 0.0.6E8 [January 24/2003] [Released by Ali]
 -fixed bug 233901: Gtk-Critical errors from gtk_main_quit.
