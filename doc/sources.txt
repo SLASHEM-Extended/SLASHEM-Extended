@@ -80,7 +80,7 @@ Contents
   this game! All I have to do is follow this cookbook!". Forget it. Unless you
   are a reincarnation of Leonardo da Vinci you'll get nothing but a headache.
 
-   In other words, to use this info you need at last:
+   In other words, to use this info you need at least:
 
      - Few knowledge about the OS you are running in. That is, how to edit,
       move, create and remove files basically.
