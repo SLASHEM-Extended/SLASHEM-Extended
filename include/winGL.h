@@ -21,8 +21,8 @@ extern struct window_procs sdlgl_softw_procs;
 extern void FDECL(Sdlgl_parse_options, (char *, int, int));
 
 #ifdef VANILLA_GLHACK
-#define GLHACK_VER_HEX  0x095
-#define GLHACK_VER_STR  "0.9.5"
+#define GLHACK_VER_HEX  0x098
+#define GLHACK_VER_STR  "0.9.8"
 #define SDLGL_PROGRAM  "glHack"
 #define SDLGL_ICON     "glHack"
 #define SDLGL_ENV_VAR  "GLHACKOPTIONS"
@@ -1035,10 +1035,12 @@ E void FDECL(sdlgl_process_text_window, (int, struct TextWindow *));
 
 #define Fl_Mine     (FLOOR_TILES + 0)
 #define Fl_Sokoban  (FLOOR_TILES + 1)
-#define Fl_Knox     (FLOOR_TILES + 2)
+#define Fl_Knox     Fl_Sokoban
 #define Fl_Hell     (FLOOR_TILES + 3)
 #define Fl_Quest    (FLOOR_TILES + 4)
 #define Fl_Astral   (FLOOR_TILES + 5)
+#define Fl_Rogue    (FLOOR_TILES + 6)
+#define Fl_Caves    Fl_Rogue
 
 E void FDECL(Sdlgl_cliparound, (int, int));
 E void FDECL(Sdlgl_update_positionbar, (char *));

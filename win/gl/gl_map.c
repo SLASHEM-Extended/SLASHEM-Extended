@@ -364,9 +364,12 @@ static void glyph_to_tilepair(struct TextWindow *win,
          In_hell(&u.uz) ? Fl_Hell :
          In_quest(&u.uz) ? Fl_Quest :
          In_endgame(&u.uz) ? Fl_Astral :
+# ifndef VANILLA_GLHACK
+         /* FIXME !!! In_caves(&u.uz) ? Fl_Caves : */
+# endif
 #endif
 #ifdef REINCARNATION
-         Is_rogue_level(&u.uz) ? glyph2tile[cmap_to_glyph(S_corr)] :
+         Is_rogue_level(&u.uz) ? Fl_Rogue :
 #endif
     /* otherwise */
          glyph2tile[cmap_to_glyph(S_room)];

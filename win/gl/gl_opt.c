@@ -94,12 +94,7 @@ static struct LocalOption local_option_list[] =
 
   /* ---- command-line only options ---- */
 
-  { "tileheight",
-#ifdef VANILLA_GLHACK
-    "Which tileset to use (16 or 32)",
-#else
-    "Which tileset to use (16, 32 or 64)",
-#endif
+  { "tileheight", "Which tileset to use (16, 32 or 64)",
     &iflags.wc_tile_height, VALTYPE_INTEGER, LOPT_CMDLINE_ONLY },
 
   { "fontsize", "Size of text font (8, 14, 20 or 22)",
@@ -566,9 +561,7 @@ void sdlgl_validate_wincap_options(void)
     iflags.wc_tile_height = DEF_TILE_HEIGHT;
   }
   else if (iflags.wc_tile_height != 16 && iflags.wc_tile_height != 32 
-#ifndef VANILLA_GLHACK
            && iflags.wc_tile_height != 64
-#endif
            )
   {
     SET_WARN("Tile height", iflags.wc_tile_height, DEF_TILE_HEIGHT);
