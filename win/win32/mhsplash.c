@@ -15,10 +15,15 @@ PNHWinApp GetNHApp(void);
 
 BOOL CALLBACK NHSplashWndProc(HWND, UINT, WPARAM, LPARAM);
 
-#define SPLASH_WIDTH		440
-#define SPLASH_HEIGHT  322
-#define SPLASH_VERSION_X		290
-#define SPLASH_VERSION_Y		10
+#define SPLASH_WIDTH		350
+#define SPLASH_HEIGHT  		482
+#if 0
+#define SPLASH_VERSION_X	290
+#define SPLASH_VERSION_Y	10
+#else
+#define SPLASH_VERSION_X	225
+#define SPLASH_VERSION_Y	145
+#endif
 #define SPLASH_OFFSET_X		10
 #define SPLASH_OFFSET_Y		10
 
@@ -219,8 +224,20 @@ BOOL CALLBACK NHSplashWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 		SetTextColor (hdc, RGB(0, 0, 0));
 		rt.right = rt.left = SPLASH_VERSION_X;
 		rt.bottom = rt.top = SPLASH_VERSION_Y;
+#if 0
 		Sprintf (VersionString, "%d.%d.%d", VERSION_MAJOR, VERSION_MINOR,
 		    PATCHLEVEL);
+#else
+		/* Slash'EM splash screen already has "vampire", so all
+		 * we need is the sub-version. The full version number is
+		 * available elsewhere.
+		 */
+#ifdef FIXLEVEL
+		Sprintf (VersionString, "%d.%d", EDITLEVEL - 5, FIXLEVEL);
+#else
+		Sprintf (VersionString, "%d.0", EDITLEVEL - 5);
+#endif
+#endif
 		OldFont = SelectObject(hdc, version_splash_font);
 		DrawText (hdc, VersionString, strlen(VersionString), &rt,
 		    DT_LEFT | DT_NOPREFIX | DT_CALCRECT);

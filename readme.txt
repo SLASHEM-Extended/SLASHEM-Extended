@@ -70,6 +70,7 @@ http://www.slashem.org/
 ver 0.0.7E6F1 [?] [Released by ?]
 -fixed bug 909623: Surgery technique causes crash
 -fixed bug 909397: Windows help|about twice crashes
+-New branding for MS-Windows native GUI port
 
 See history.txt for changes made in previous versions.
 

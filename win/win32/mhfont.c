@@ -25,7 +25,11 @@ void mswin_init_splashfonts(HWND hWnd)
 	HFONT fnt = NULL;
 	LOGFONT lgfnt;
 	ZeroMemory( &lgfnt, sizeof(lgfnt) );
+#if 0
 	lgfnt.lfHeight		= -80;	 // height of font
+#else
+	lgfnt.lfHeight		= -40;	 // height of font
+#endif
 	lgfnt.lfWidth		=	0;				     // average character width
 	lgfnt.lfEscapement	=	0;					 // angle of escapement
 	lgfnt.lfOrientation		=	0;					 // base-line orientation angle
