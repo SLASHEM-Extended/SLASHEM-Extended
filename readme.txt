@@ -360,6 +360,7 @@ ver 0.0.6E6 [?] [Released by ?]
 -fixed bug 562517: Can't wish for vampire blood.
 -fixed bug 561043: "<mon> is suddenly moving faster" mesg.
 -fixed bug 558228: Liquid leap should anger peacefulls.
+-fixed bug 558229: Bad input in techinque menu.
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).
