@@ -87,6 +87,7 @@ ver 0.0.7E6F2 [?] [Released by ?]
 -NhExt: Added support for authentication (eg., for dgamelaunch)
 -fixed bug 938859: Rate of fire affected by non-launcher weapon
 -fixed bug 929876: Monsters can pass between Sokoban bars
+-fixed bug 934073: Spurious "don't seem to harm" messages for Drow
 
 See history.txt for changes made in previous versions.
 

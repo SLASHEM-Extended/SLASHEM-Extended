@@ -2203,6 +2203,8 @@ register struct attack *mattk;
 			pline("%s is put to sleep by you!", Monnam(mdef));
 		    slept_monst(mdef);
 		}
+		else
+		    tmp = 0;
 		break;
 	    case AD_SLIM:
 		if (negated) break;	/* physical damage only */
@@ -2323,7 +2325,7 @@ register struct attack *mattk;
 	}
 
 	mdef->mstrategy &= ~STRAT_WAITFORU; /* in case player is very fast */
-	if (noeffect) {
+	if (tmp && noeffect) {
 	     You("don't seem to harm %s.", mon_nam(mdef));
 	     tmp = 0;
 	     return 1;
