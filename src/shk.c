@@ -2414,11 +2414,8 @@ register boolean ininv;
 			price += get_cost(otmp, shkp);
 		} else {
 		    if(!otmp->no_charge) {
-			if(!(otmp->oclass == BALL_CLASS ||
-			    (otmp->oclass == FOOD_CLASS && otmp->oeaten) ||
-			    (Is_candle(otmp) && otmp->age <
-				  20L * (long)objects[otmp->otyp].oc_cost))
-			  ) price += get_cost(otmp, shkp);
+			if(otmp->oclass != FOOD_CLASS || !otmp->oeaten)
+			    price += get_cost(otmp, shkp);
 		    }
 		    otmp->no_charge = 0;
 		}
