@@ -291,6 +291,9 @@ E void FDECL(feel_location, (XCHAR_P,XCHAR_P));
 E void FDECL(newsym, (int,int));
 E void FDECL(shieldeff, (XCHAR_P,XCHAR_P));
 E void FDECL(tmp_at, (int,int));
+#ifdef DISPLAY_LAYERS
+E int FDECL(glyph_is_floating, (int));
+#endif
 E void FDECL(swallowed, (int));
 E void FDECL(under_ground, (int));
 E void FDECL(under_water, (int));

@@ -931,12 +931,12 @@ static struct tmp_glyph {
     int glyph;		/* glyph to use when printing */
     struct tmp_glyph *prev;
 } tgfirst;
+static struct tmp_glyph *tglyph = (struct tmp_glyph *)0;
 
 void
 tmp_at(x, y)
     int x, y;
 {
-    static struct tmp_glyph *tglyph = (struct tmp_glyph *)0;
     struct tmp_glyph *tmp;
 
     switch (x) {
@@ -1015,6 +1015,16 @@ tmp_at(x, y)
     } /* end case */
 }
 
+#ifdef DISPLAY_LAYERS
+int
+glyph_is_floating(glyph)
+int glyph;
+{
+    return glyph_is_monster(glyph) || glyph_is_explosion(glyph) ||
+	    glyph_is_zap_beam(glyph) || glyph_is_swallow(glyph) ||
+	    glyph_is_warning(glyph) || tglyph && glyph == tglyph->glyph;
+}
+#endif
 
 /*
  * swallowed()

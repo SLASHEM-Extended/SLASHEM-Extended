@@ -415,12 +415,6 @@
     ((glyph) >= GLYPH_WARNING_OFF && (glyph) < (GLYPH_WARNING_OFF + WARNCOUNT))
 
 #ifdef DISPLAY_LAYERS
-#define glyph_is_floating(glyph)					\
-		(glyph_is_monster(glyph)				\
-		|| glyph_is_explosion(glyph)				\
-		|| glyph_is_zap_beam(glyph)				\
-		|| glyph_is_swallow(glyph)				\
-		|| glyph_is_warning(glyph))
 #define memory_is_invisible(x,y) (levl[x][y].mem_invis)
 #define remembered_object(x,y)						\
     (levl[x][y].mem_corpse ? CORPSE : 					\
