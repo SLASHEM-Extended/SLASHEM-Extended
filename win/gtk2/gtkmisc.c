@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmisc.c,v 1.10 2003-01-02 19:00:52 j_ali Exp $
+  $Id: gtkmisc.c,v 1.11 2003-01-21 14:26:38 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -347,6 +347,8 @@ nh_option_cache_sync(void)
 	    else
 		nb += strlen(nh_option_cache[i].value) + 2;
 	}
+    if (!nb)
+	return TRUE;
     bp = buf = malloc(nb);
     if (!buf)
 	return FALSE;
@@ -466,6 +468,7 @@ nh_option_cache_get_bool(char *option)
 #else
 	value = get_option(option);
 #endif
+	no->flags |= NHOF_BOOLEAN;
 	no->value = strcmp(value, "yes") ? boolean_reset : boolean_set;
     }
     return no->value == boolean_set;
@@ -524,19 +527,9 @@ nh_option_get(void)
 	p = &gtk_option[i];
 	if (p->opt_name) {
 	    if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(p->radio1)))
-#ifdef GTK_PROXY
-		proxy_cb_parse_options(p->option);
-#else
-		parseoptions(p->option, FALSE, FALSE);
-#endif
-	    else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(p->radio2))) {
-		sprintf(buf, "!%s", p->option);
-#ifdef GTK_PROXY
-		proxy_cb_parse_options(buf);
-#else
-		parseoptions(buf, FALSE, FALSE);
-#endif
-	    }
+		nh_option_cache_set_bool(p->option, TRUE);
+	    else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(p->radio2)))
+		nh_option_cache_set_bool(p->option, FALSE);
 	}
     }
 #ifdef NH_MAP_FONT_SELECTOR
