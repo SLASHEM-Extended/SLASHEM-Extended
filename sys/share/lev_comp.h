@@ -68,8 +68,12 @@
 #define MON_ALERTNESS 320
 #define MON_APPEARANCE 321
 #define CONTAINED 322
-#define STRING 323
-#define MAP_ID 324
+#define OBJFLAG_TYPE 323
+#define OBJFLAGS_ID 324
+#define RANDOMREGION_ID 325
+#define R_REGISTER 326
+#define STRING 327
+#define MAP_ID 328
 typedef union
 {
 	int	i;

@@ -113,7 +113,7 @@ const short yylen[] = {                                         2,
     0,    1,    1,    2,    1,    1,    1,    1,    6,    0,
     1,    1,    1,    1,    3,    1,    3,    3,    3,    1,
     1,    1,    1,    1,    6,    7,    7,    8,    3,    3,
-    7,    8,    8,    9,    1,    1,    7,    8,    0,    1,
+    7,    8,    8,    9,    1,    1,    8,    9,    0,    1,
     1,    1,    1,    0,    1,    1,    5,    5,
 };
 const short yydefred[] = {                                      0,
@@ -126,57 +126,57 @@ const short yydefred[] = {                                      0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,   11,    9,    0,   40,
    41,   42,   43,    0,    0,    0,    0,    0,    0,    0,
-    0,   45,   37,    0,   27,    0,    0,    0,    0,    0,
-   38,   28,   33,    0,   48,   47,   34,
+    0,   45,    0,    0,   27,    0,    0,    0,    0,    0,
+   37,    0,   28,   33,    0,   48,   47,   38,   34,
 };
 const short yydgoto[] = {                                      14,
    78,   93,   84,   60,   15,   16,   17,   18,   19,   20,
    68,   21,   22,   23,   24,   25,   26,   27,   28,   29,
    70,   30,   31,
 };
-const short yysindex[] = {                                   -237,
-  -46,  -45,  -44,  -39,  -38,  -30,  -22,  -21,  -20,  -19,
-  -18,  -17,  -16,    0, -237,    0,    0,    0,    0,    0,
+const short yysindex[] = {                                   -236,
+  -44,  -43,  -42,  -40,  -37,  -29,  -21,  -20,  -19,  -18,
+  -17,  -16,  -15,    0, -236,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0, -262, -234, -233, -232, -230, -229, -228, -227, -217,
- -216, -215, -214, -202,    0, -221,   -7, -219, -221, -221,
- -221, -221,    0,    0,    0,    0,    0,    0,    0,   19,
-   20,   21,   -2,   -1, -212, -211, -190, -189, -188, -271,
-   19,   20,   20,   27,   28,   29,    0,    0,   30,    0,
-    0,    0,    0, -193, -271, -182, -180,   19,   19, -179,
- -178,    0,    0, -193,    0, -177, -176, -175,   42,   43,
-    0,    0,    0, -172,    0,    0,    0,
+    0, -233, -232, -231, -229, -228, -227, -226, -225, -215,
+ -214, -213, -212, -200,    0, -219,   -5, -217, -219, -219,
+ -219, -219,    0,    0,    0,    0,    0,    0,    0,   21,
+   23,   22,    2,    3, -209, -208, -193, -187, -186, -270,
+   21,   23,   23,   29,   30,   31,    0,    0,   34,    0,
+    0,    0,    0, -191, -270, -181, -178,   21,   21, -177,
+ -176,    0, -187, -191,    0, -175, -174, -173,   44,   45,
+    0, -187,    0,    0, -170,    0,    0,    0,    0,
 };
-const short yyrindex[] = {                                     86,
+const short yyrindex[] = {                                     88,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,   87,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,   89,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,   16,    0,    1,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,   31,    1,   46,    0,    0,    0,    0,
-    0,    0,    0,   31,    0,   61,   76,    0,    0,    0,
-    0,    0,    0,   91,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,   32,    0,    1,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,   17,    1,   47,    0,    0,    0,    0,
+    0,    0,   32,   17,    0,   62,   77,    0,    0,    0,
+    0,   32,    0,    0,   92,    0,    0,    0,    0,
 };
 const short yygindex[] = {                                      0,
-    0,   -6,    4,  -43,    0,   75,    0,    0,    0,    0,
-  -71,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-  -62,    0,    0,
+  -93,   -4,    6,  -39,    0,   78,    0,    0,    0,    0,
+  -69,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+  -65,    0,    0,
 };
-#define YYTABLESIZE 363
-const short yytable[] = {                                      85,
-   39,   80,   81,   82,   83,   63,   64,   65,   66,   86,
-   87,   32,   33,   34,   46,   10,   97,   98,   35,   36,
-    1,    2,    3,    4,    5,    6,    7,   37,    8,    9,
-   44,   10,   11,   12,   13,   38,   39,   40,   41,   42,
-   43,   44,   47,   48,   49,   25,   50,   51,   52,   53,
-   54,   55,   56,   57,   58,   59,   61,   62,   67,   69,
-   26,   72,   73,   71,   74,   75,   76,   77,   79,   88,
-   89,   92,   90,   91,   95,   31,   96,   99,  100,  102,
-  103,  104,  105,  106,  107,    1,    2,  101,   94,   45,
-   32,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+#define YYTABLESIZE 364
+const short yytable[] = {                                     101,
+   39,   85,   80,   81,   82,   83,   86,   87,  108,   63,
+   64,   65,   66,   32,   33,   34,   44,   35,   97,   98,
+   36,    1,    2,    3,    4,    5,    6,    7,   37,    8,
+    9,   10,   10,   11,   12,   13,   38,   39,   40,   41,
+   42,   43,   44,   46,   47,   48,   25,   49,   50,   51,
+   52,   53,   54,   55,   56,   57,   58,   59,   61,   62,
+   67,   26,   69,   76,   71,   72,   73,   74,   75,   77,
+   79,   88,   89,   92,   90,   95,   31,   91,   96,   99,
+  100,  103,  104,  105,  106,  107,  109,    1,    2,  102,
+   94,   32,   45,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
@@ -192,30 +192,30 @@ const short yytable[] = {                                      85,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,   39,   39,
+    0,    0,    0,    0,    0,    0,    0,   39,   39,   39,
    39,   39,   39,   39,   39,   39,   39,   39,    0,   39,
-   39,   39,   39,   10,   10,   10,   10,   10,   10,   10,
-    0,   10,   10,    0,   10,   10,   10,   10,   44,   44,
-   44,   44,   44,   44,   44,    0,   44,   44,    0,   44,
-   44,   44,   44,   25,   25,   25,   25,   25,   25,   25,
-    0,   25,   25,    0,   25,   25,   25,   25,   26,   26,
-   26,   26,   26,   26,   26,    0,   26,   26,    0,   26,
-   26,   26,   26,   31,   31,   31,   31,   31,   31,   31,
-    0,   31,   31,    0,   31,   31,   31,   31,   32,   32,
-   32,   32,   32,   32,   32,    0,   32,   32,    0,   32,
-   32,   32,   32,
+   39,   39,   39,   44,   44,   44,   44,   44,   44,   44,
+   44,    0,   44,   44,    0,   44,   44,   44,   44,   10,
+   10,   10,   10,   10,   10,   10,    0,   10,   10,    0,
+   10,   10,   10,   10,   25,   25,   25,   25,   25,   25,
+   25,    0,   25,   25,    0,   25,   25,   25,   25,   26,
+   26,   26,   26,   26,   26,   26,    0,   26,   26,    0,
+   26,   26,   26,   26,   31,   31,   31,   31,   31,   31,
+   31,    0,   31,   31,    0,   31,   31,   31,   31,   32,
+   32,   32,   32,   32,   32,   32,    0,   32,   32,    0,
+   32,   32,   32,   32,
 };
-const short yycheck[] = {                                      71,
-    0,  273,  274,  275,  276,   49,   50,   51,   52,   72,
-   73,   58,   58,   58,  277,    0,   88,   89,   58,   58,
-  258,  259,  260,  261,  262,  263,  264,   58,  266,  267,
-    0,  269,  270,  271,  272,   58,   58,   58,   58,   58,
-   58,   58,  277,  277,  277,    0,  277,  277,  277,  277,
-  268,  268,  268,  268,  257,  277,   64,  277,   40,   40,
-    0,   64,   64,   43,  277,  277,  257,  257,  257,   43,
-   43,  265,   44,   44,  257,    0,  257,  257,  257,  257,
-  257,  257,   41,   41,  257,    0,    0,   94,   85,   15,
-    0,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
+const short yycheck[] = {                                      93,
+    0,   71,  273,  274,  275,  276,   72,   73,  102,   49,
+   50,   51,   52,   58,   58,   58,    0,   58,   88,   89,
+   58,  258,  259,  260,  261,  262,  263,  264,   58,  266,
+  267,    0,  269,  270,  271,  272,   58,   58,   58,   58,
+   58,   58,   58,  277,  277,  277,    0,  277,  277,  277,
+  277,  277,  268,  268,  268,  268,  257,  277,   64,  277,
+   40,    0,   40,  257,   43,   64,   64,  277,  277,  257,
+  257,   43,   43,  265,   44,  257,    0,   44,  257,  257,
+  257,  257,  257,  257,   41,   41,  257,    0,    0,   94,
+   85,    0,   15,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
@@ -231,18 +231,18 @@ const short yycheck[] = {                                      71,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,  258,  259,
+   -1,   -1,   -1,   -1,   -1,   -1,   -1,  257,  258,  259,
   260,  261,  262,  263,  264,  265,  266,  267,   -1,  269,
-  270,  271,  272,  258,  259,  260,  261,  262,  263,  264,
-   -1,  266,  267,   -1,  269,  270,  271,  272,  258,  259,
-  260,  261,  262,  263,  264,   -1,  266,  267,   -1,  269,
-  270,  271,  272,  258,  259,  260,  261,  262,  263,  264,
-   -1,  266,  267,   -1,  269,  270,  271,  272,  258,  259,
-  260,  261,  262,  263,  264,   -1,  266,  267,   -1,  269,
-  270,  271,  272,  258,  259,  260,  261,  262,  263,  264,
-   -1,  266,  267,   -1,  269,  270,  271,  272,  258,  259,
-  260,  261,  262,  263,  264,   -1,  266,  267,   -1,  269,
-  270,  271,  272,
+  270,  271,  272,  257,  258,  259,  260,  261,  262,  263,
+  264,   -1,  266,  267,   -1,  269,  270,  271,  272,  258,
+  259,  260,  261,  262,  263,  264,   -1,  266,  267,   -1,
+  269,  270,  271,  272,  258,  259,  260,  261,  262,  263,
+  264,   -1,  266,  267,   -1,  269,  270,  271,  272,  258,
+  259,  260,  261,  262,  263,  264,   -1,  266,  267,   -1,
+  269,  270,  271,  272,  258,  259,  260,  261,  262,  263,
+  264,   -1,  266,  267,   -1,  269,  270,  271,  272,  258,
+  259,  260,  261,  262,  263,  264,   -1,  266,  267,   -1,
+  269,  270,  271,  272,
 };
 #define YYFINAL 14
 #ifndef YYDEBUG
@@ -300,8 +300,8 @@ const char * const yyrule[] = {
 "chlevel2 : RNDCHLEVEL ':' STRING bones_tag STRING '+' rcouple INTEGER INTEGER",
 "branches : branch",
 "branches : chbranch",
-"branch : BRANCH ':' STRING '@' acouple branch_type direction",
-"chbranch : CHBRANCH ':' STRING STRING '+' rcouple branch_type direction",
+"branch : BRANCH ':' STRING '@' acouple branch_type direction optional_int",
+"chbranch : CHBRANCH ':' STRING STRING '+' rcouple branch_type direction optional_int",
 "branch_type :",
 "branch_type : STAIR",
 "branch_type : NO_UP",
@@ -475,12 +475,12 @@ check_level()
 	    }
 
 	if(tmplevel[i].chain == -2) {
-		yyerror("Invaild level chain reference.");
+		yyerror("Invalid level chain reference.");
 		return(0);
 	} else if(tmplevel[i].chain != -1) {	/* there is a chain */
 		/* KMH -- tmplevel[tmpbranch[i].chain].chance was in error */
 	    if(tmplevel[tmplevel[i].chain].chance != 100) {
-		yyerror("Level cannot chain from a probabalistic level.");
+		yyerror("Level cannot chain from a probabilistic level.");
 		return(0);
 	    } else if(tmplevel[i].chain == n_levs) {
 		yyerror("A level cannot chain to itself!");
@@ -492,8 +492,8 @@ check_level()
 
 /*
  *	- A branch may not branch backwards - to avoid branch loops.
- *	- A branch name must be unique.
- *	  (ie. You can only have one entry point to each dungeon).
+ *	- A branch name need not be unique.
+ *	  (ie. You can have many entry points to each dungeon).
  *	- If chained, the level used as reference for the chain
  *	  must be in this dungeon, must be previously defined, and
  *	  the level chained from must be "non-probabilistic" (ie.
@@ -509,21 +509,21 @@ check_branch()
 		yyerror("Branch defined outside of dungeon.");
 		return(0);
 	}
-
+#if 0
 	for(i = 0; i < n_dgns; i++)
 	    if(!strcmp(tmpdungeon[i].name, tmpbranch[n_brs].name)) {
 
 		yyerror("Reverse branching not allowed.");
 		return(0);
 	    }
+#endif
+	if(tmpbranch[n_dgns].chain == -2) {
 
-	if(tmpbranch[i].chain == -2) {
-
-		yyerror("Invaild branch chain reference.");
+		yyerror("Invalid branch chain reference.");
 		return(0);
-	} else if(tmpbranch[i].chain != -1) {	/* it is chained */
+	} else if(tmpbranch[n_dgns].chain != -1) {	/* it is chained */
 
-	    if(tmplevel[tmpbranch[i].chain].chance != 100) {
+	    if(tmplevel[tmpbranch[n_dgns].chain].chance != 100) {
 		yyerror("Branch cannot chain from a probabilistic level.");
 		return(0);
 	    }
@@ -789,6 +789,8 @@ break;
 case 9:
 {
 			init_dungeon();
+			if (strlen(yyvsp[-3].str)+1 > sizeof(tmpdungeon[n_dgns].name))
+			    yyerror("Dungeon name is too long");
 			Strcpy(tmpdungeon[n_dgns].name, yyvsp[-3].str);
 			tmpdungeon[n_dgns].boneschar = (char)yyvsp[-2].i;
 			tmpdungeon[n_dgns].lev.base = couple.base;
@@ -809,7 +811,8 @@ case 11:
 break;
 case 15:
 {
-			tmpdungeon[n_dgns].entry_lev = yyvsp[0].i;
+			/* tmpdungeon[n_dgns].entry_lev = $3; */
+                        yyerror("ENTRY is obsolete!");
 		  }
 break;
 case 17:
@@ -830,6 +833,8 @@ case 18:
 break;
 case 19:
 {
+			if (strlen(yyvsp[0].str)+1 > sizeof(tmpdungeon[n_dgns].protoname))
+			    yyerror("Proto name is too long");
 			Strcpy(tmpdungeon[n_dgns].protoname, yyvsp[0].str);
 			Free(yyvsp[0].str);
 		  }
@@ -837,6 +842,8 @@ break;
 case 25:
 {
 			init_level();
+			if (strlen(yyvsp[-3].str)+1 > sizeof(tmplevel[n_levs].name))
+			    yyerror("Level name is too long");
 			Strcpy(tmplevel[n_levs].name, yyvsp[-3].str);
 			tmplevel[n_levs].boneschar = (char)yyvsp[-2].i;
 			tmplevel[n_levs].lev.base = couple.base;
@@ -848,6 +855,8 @@ break;
 case 26:
 {
 			init_level();
+			if (strlen(yyvsp[-4].str)+1 > sizeof(tmplevel[n_levs].name))
+			    yyerror("Level name is too long");
 			Strcpy(tmplevel[n_levs].name, yyvsp[-4].str);
 			tmplevel[n_levs].boneschar = (char)yyvsp[-3].i;
 			tmplevel[n_levs].lev.base = couple.base;
@@ -860,6 +869,8 @@ break;
 case 27:
 {
 			init_level();
+			if (strlen(yyvsp[-4].str)+1 > sizeof(tmplevel[n_levs].name))
+			    yyerror("Level name is too long");
 			Strcpy(tmplevel[n_levs].name, yyvsp[-4].str);
 			tmplevel[n_levs].boneschar = (char)yyvsp[-3].i;
 			tmplevel[n_levs].lev.base = couple.base;
@@ -872,6 +883,8 @@ break;
 case 28:
 {
 			init_level();
+			if (strlen(yyvsp[-5].str)+1 > sizeof(tmplevel[n_levs].name))
+			    yyerror("Level name is too long");
 			Strcpy(tmplevel[n_levs].name, yyvsp[-5].str);
 			tmplevel[n_levs].boneschar = (char)yyvsp[-4].i;
 			tmplevel[n_levs].lev.base = couple.base;
@@ -901,6 +914,8 @@ break;
 case 31:
 {
 			init_level();
+			if (strlen(yyvsp[-4].str)+1 > sizeof(tmplevel[n_levs].name))
+			    yyerror("Level name is too long");
 			Strcpy(tmplevel[n_levs].name, yyvsp[-4].str);
 			tmplevel[n_levs].boneschar = (char)yyvsp[-3].i;
 			tmplevel[n_levs].chain = getchain(yyvsp[-2].str);
@@ -915,6 +930,8 @@ break;
 case 32:
 {
 			init_level();
+			if (strlen(yyvsp[-5].str)+1 > sizeof(tmplevel[n_levs].name))
+			    yyerror("Level name is too long");
 			Strcpy(tmplevel[n_levs].name, yyvsp[-5].str);
 			tmplevel[n_levs].boneschar = (char)yyvsp[-4].i;
 			tmplevel[n_levs].chain = getchain(yyvsp[-3].str);
@@ -930,6 +947,8 @@ break;
 case 33:
 {
 			init_level();
+			if (strlen(yyvsp[-5].str)+1 > sizeof(tmplevel[n_levs].name))
+			    yyerror("Level name is too long");
 			Strcpy(tmplevel[n_levs].name, yyvsp[-5].str);
 			tmplevel[n_levs].boneschar = (char)yyvsp[-4].i;
 			tmplevel[n_levs].chain = getchain(yyvsp[-3].str);
@@ -945,6 +964,8 @@ break;
 case 34:
 {
 			init_level();
+			if (strlen(yyvsp[-6].str)+1 > sizeof(tmplevel[n_levs].name))
+			    yyerror("Level name is too long");
 			Strcpy(tmplevel[n_levs].name, yyvsp[-6].str);
 			tmplevel[n_levs].boneschar = (char)yyvsp[-5].i;
 			tmplevel[n_levs].chain = getchain(yyvsp[-4].str);
@@ -961,29 +982,35 @@ break;
 case 37:
 {
 			init_branch();
-			Strcpy(tmpbranch[n_brs].name, yyvsp[-4].str);
+			if (strlen(yyvsp[-5].str)+1 > sizeof(tmpbranch[n_brs].name))
+			    yyerror("Dungeon name is too long");
+			Strcpy(tmpbranch[n_brs].name, yyvsp[-5].str);
 			tmpbranch[n_brs].lev.base = couple.base;
 			tmpbranch[n_brs].lev.rand = couple.rand;
-			tmpbranch[n_brs].type = yyvsp[-1].i;
-			tmpbranch[n_brs].up = yyvsp[0].i;
+			tmpbranch[n_brs].type = yyvsp[-2].i;
+			tmpbranch[n_brs].up = yyvsp[-1].i;
+                        tmpbranch[n_brs].entry_lev = yyvsp[0].i;
 			if(!check_branch()) n_brs--;
 			else tmpdungeon[n_dgns].branches++;
-			Free(yyvsp[-4].str);
+			Free(yyvsp[-5].str);
 		  }
 break;
 case 38:
 {
 			init_branch();
-			Strcpy(tmpbranch[n_brs].name, yyvsp[-5].str);
-			tmpbranch[n_brs].chain = getchain(yyvsp[-4].str);
+			if (strlen(yyvsp[-6].str)+1 > sizeof(tmpbranch[n_brs].name))
+			    yyerror("Dungeon name is too long");
+			Strcpy(tmpbranch[n_brs].name, yyvsp[-6].str);
+			tmpbranch[n_brs].chain = getchain(yyvsp[-5].str);
 			tmpbranch[n_brs].lev.base = couple.base;
 			tmpbranch[n_brs].lev.rand = couple.rand;
-			tmpbranch[n_brs].type = yyvsp[-1].i;
-			tmpbranch[n_brs].up = yyvsp[0].i;
+			tmpbranch[n_brs].type = yyvsp[-2].i;
+			tmpbranch[n_brs].up = yyvsp[-1].i;
+			tmpbranch[n_brs].entry_lev = yyvsp[0].i;
 			if(!check_branch()) n_brs--;
 			else tmpdungeon[n_dgns].branches++;
+			Free(yyvsp[-6].str);
 			Free(yyvsp[-5].str);
-			Free(yyvsp[-4].str);
 		  }
 break;
 case 39:
