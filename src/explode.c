@@ -481,7 +481,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 			/* KMH -- Don't blame the player for pets killing gas spores */
 			if (yours) xkilled(mtmp, (silent ? 0 : 1));
 			else monkilled(mtmp, "", (int)adtyp);
-		} else if (!flags.mon_moving) setmangry(mtmp);
+		} else if (!flags.mon_moving && yours) setmangry(mtmp);
 	}
 
 #ifdef LIGHT_SRC_SPELL

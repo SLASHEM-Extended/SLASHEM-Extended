@@ -73,6 +73,7 @@ ver 0.0.7E6F2 [?] [Released by ?]
 -Macintosh: Include fix-level in about-box version
 -fixed bug 924277: Monsters can retaliate against themselves
 -fixed bug 925892: Vampire corpse on early bones level
+-fixed bug 922320: Grenade thrown by soldier angered monster
 
 See history.txt for changes made in previous versions.
 
