@@ -47,25 +47,25 @@ static struct TileSet *load_font(int size)
   {
     case 8:
       if (! sdlgl_font_8)
-        sdlgl_font_8 = sdlgl_load_tileset("glfont8.png", 8,8, 1,
+        sdlgl_font_8 = sdlgl_load_tileset("glfont8.png", 8,8, 1,0,
             NULL,NULL);
       return sdlgl_font_8;
 
     case 14:
       if (! sdlgl_font_14)
-        sdlgl_font_14 = sdlgl_load_tileset("glfont14.png", 8,14, 1,
+        sdlgl_font_14 = sdlgl_load_tileset("glfont14.png", 8,14, 1,0,
             NULL,NULL);
       return sdlgl_font_14;
 
     case 20:
       if (! sdlgl_font_20)
-        sdlgl_font_20 = sdlgl_load_tileset("glfont20.png", 10,20, 1,
+        sdlgl_font_20 = sdlgl_load_tileset("glfont20.png", 10,20, 1,0,
             NULL,NULL);
       return sdlgl_font_20;
 
     case 22:
       if (! sdlgl_font_22)
-        sdlgl_font_22 = sdlgl_load_tileset("glfont22.png", 12,22, 1, 
+        sdlgl_font_22 = sdlgl_load_tileset("glfont22.png", 12,22, 1,0,
             NULL,NULL);
       return sdlgl_font_22;
 

@@ -295,6 +295,43 @@ static GH_INLINE Uint32 getpixel(SDL_Surface *s, int x, int y)
   }
 }
 
+SDL_Surface *sdlgl_RGBA_to_truecolor(unsigned char *data,
+    int width, int height)
+{
+  SDL_Surface *surf;
+
+  Uint32 r, g, b, a;
+ 
+  if (SDL_BYTEORDER == SDL_BIG_ENDIAN)
+  {
+    r = 0xFF000000;
+    g = 0x00FF0000;
+    b = 0x0000FF00;
+    a = 0x000000FF;
+  }
+  else
+  {
+    r = 0x000000FF;
+    g = 0x0000FF00;
+    b = 0x00FF0000;
+    a = 0xFF000000;
+  }
+  
+  surf = SDL_CreateRGBSurfaceFrom(data, width, height, 32, 4 * width,
+      r, g, b, a);
+
+  if (! surf)
+    return NULL;
+
+  /* Since SDL_CreateRGBSurfaceFrom merely copies the data pointer, we
+   * must not free it.  Instead, we'll tell SDL to free it.
+   * NOTE: this is *not* a public API.
+   */
+  surf->flags &= ~SDL_PREALLOC;
+
+  return surf;
+}
+
 SDL_Surface *sdlgl_RGBA_to_palettised(unsigned char *data,
     int width, int height)
 {
@@ -338,6 +375,8 @@ SDL_Surface *sdlgl_shrink_surface(SDL_Surface *src)
 
   if (! dest)
     return NULL;
+
+  assert(src->format->BytesPerPixel == 1);
 
   sdlgl_set_surface_colors(dest);
   SDL_SetColorKey(dest, SDL_SRCCOLORKEY, TRANS_PIX);
@@ -416,7 +455,7 @@ void sdlgl_sw_create_has_alpha(struct TileSet *set)
   int tile;
 
   SDL_Surface *surf = set->surf;
-  
+
   if (surf->format->BytesPerPixel != 1)
     return;
   

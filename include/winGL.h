@@ -21,8 +21,8 @@ extern struct window_procs sdlgl_softw_procs;
 extern void FDECL(Sdlgl_parse_options, (char *, int, int));
 
 #ifdef VANILLA_GLHACK
-#define GLHACK_VER_HEX  0x099
-#define GLHACK_VER_STR  "0.9.9"
+#define GLHACK_VER_HEX  0x100
+#define GLHACK_VER_STR  "1.0"
 #define SDLGL_PROGRAM  "glHack"
 #define SDLGL_ICON     "glHack"
 #define SDLGL_ENV_VAR  "GLHACKOPTIONS"
@@ -309,7 +309,7 @@ struct TilePair
   tileflags_t flags;
 };
 
-#define MAX_EXTRASHAPES  32
+#define MAX_EXTRASHAPES  128
 
 struct FontCache;
 
@@ -650,7 +650,7 @@ struct rendering_procs
   void NDECL((*rend_startup));
   void NDECL((*rend_shutdown));
   struct TileSet *FDECL((*load_tileset),
-      (const char *, int, int, int, int *, int *));
+      (const char *, int, int, int, int, int *, int *));
   void FDECL((*free_tileset), (struct TileSet *));
   void NDECL((*create_extra_graphics));
   void NDECL((*free_extra_shapes));
@@ -661,11 +661,11 @@ struct rendering_procs
 
   void FDECL((*draw_background), (int, int, int, int, rgbcol_t,
       int, int));
-  void FDECL((*draw_one_extra), (struct TileWindow *,
+  void FDECL((*draw_extra_shape), (struct TileWindow *,
       struct ExtraShape *));
   void FDECL((*draw_cursor), (struct TileWindow *));
   void FDECL((*begin_tile_draw), (int, int));
-  void FDECL((*draw_one_tile), (struct TileWindow *, int, int,
+  void FDECL((*draw_tile), (struct TileWindow *, int, int,
       int, int, tileidx_t, tilecol_t, tileflags_t, short));
   void NDECL((*finish_tile_draw));
   void FDECL((*draw_border), (struct TileWindow *, rgbcol_t));
@@ -700,10 +700,10 @@ extern struct rendering_procs sdlgl_softw_rend_procs;
 #define sdlgl_disable_clipper  (*sdlgl_rend_procs.disable_clipper)
 #define sdlgl_blit_frame  (*sdlgl_rend_procs.blit_frame)
 #define sdlgl_draw_background  (*sdlgl_rend_procs.draw_background)
-#define sdlgl_draw_one_extra   (*sdlgl_rend_procs.draw_one_extra)
+#define sdlgl_draw_extra_shape (*sdlgl_rend_procs.draw_extra_shape)
 #define sdlgl_draw_cursor      (*sdlgl_rend_procs.draw_cursor)
 #define sdlgl_begin_tile_draw  (*sdlgl_rend_procs.begin_tile_draw)
-#define sdlgl_draw_one_tile    (*sdlgl_rend_procs.draw_one_tile)
+#define sdlgl_draw_tile        (*sdlgl_rend_procs.draw_tile)
 #define sdlgl_finish_tile_draw (*sdlgl_rend_procs.finish_tile_draw)
 #define sdlgl_draw_border   (*sdlgl_rend_procs.draw_border)
 #define sdlgl_start_fading  (*sdlgl_rend_procs.start_fading)
@@ -713,7 +713,11 @@ extern struct rendering_procs sdlgl_softw_rend_procs;
 #define sdlgl_set_pan       (*sdlgl_rend_procs.set_pan)
 #define sdlgl_set_new_pos   (*sdlgl_rend_procs.set_new_pos)
 #define sdlgl_mark_dirty    (*sdlgl_rend_procs.mark_dirty)
- 
+
+#ifdef GL_GRAPHICS
+E GLuint FDECL(sdlgl_send_graphic_RGBA, (unsigned char *, int, int));
+#endif
+
 
 /*
  * GL_RENDU
@@ -751,6 +755,8 @@ struct DirtyMatrix
 };
 
 E void FDECL(sdlgl_set_surface_colors, (SDL_Surface *));
+E SDL_Surface *FDECL(sdlgl_RGBA_to_truecolor, (unsigned char *,
+        int, int));
 E SDL_Surface *FDECL(sdlgl_RGBA_to_palettised, (unsigned char *,
         int, int));
 E SDL_Surface *FDECL(sdlgl_shrink_surface, (SDL_Surface *));

@@ -113,7 +113,7 @@ static void copy_one_tile(struct TileSet *set, int is_text,
   (*has_alpha) = (unsigned char) alpha_flag;
 }
 
-static GLuint send_one_graphic(unsigned char *data,
+GLuint sdlgl_send_graphic_RGBA(unsigned char *data,
     int width, int height)
 {
   GLuint id;
@@ -167,7 +167,7 @@ static void create_tile_texture(struct TileSet *set, int is_text,
     }
   }
 
-  id = send_one_graphic(tex_dat, set->tex_size_w, set->tex_size_h);
+  id = sdlgl_send_graphic_RGBA(tex_dat, set->tex_size_w, set->tex_size_h);
 
 #if 0  /* Test the new image */
   glColor3f(1.0, 1.0, 1.0);
@@ -185,7 +185,8 @@ static void create_tile_texture(struct TileSet *set, int is_text,
 }
  
 static struct TileSet *hw_load_tileset(const char *filename, 
-    int tile_w, int tile_h, int is_text, int *across, int *down)
+    int tile_w, int tile_h, int is_text, int keep_rgba,
+    int *across, int *down)
 {
   struct TileSet *set;
 
@@ -334,7 +335,7 @@ static void hw_create_extra_graphics(void)
     pet_dat[(y*8 + x) * 4 + 3] = pix ? 255 : 0;
   }
 
-  pet_mark_id = send_one_graphic(pet_dat, 8, 8);
+  pet_mark_id = sdlgl_send_graphic_RGBA(pet_dat, 8, 8);
 
   /* create the ridden monster mark (8x8) */
 
@@ -349,7 +350,7 @@ static void hw_create_extra_graphics(void)
     pet_dat[(y*8 + x) * 4 + 3] = pix ? 255 : 0;
   }
 
-  ridden_mark_id = send_one_graphic(pet_dat, 8, 8);
+  ridden_mark_id = sdlgl_send_graphic_RGBA(pet_dat, 8, 8);
 
   glDisable(GL_TEXTURE_2D);
 }
@@ -467,7 +468,7 @@ static void hw_draw_background(int sx, int sy, int sw, int sh,
   glEnd();
 }
 
-static void hw_draw_one_extra(struct TileWindow *win, 
+static void hw_draw_extra_shape(struct TileWindow *win, 
     struct ExtraShape *shape)
 {
   int sx, sy, sw, sh;
@@ -615,7 +616,7 @@ static void hw_finish_tile_draw(void)
   sdlgl_finish_units();
 }
 
-static void hw_draw_one_tile(struct TileWindow *win, int sx, int sy,
+static void hw_draw_tile(struct TileWindow *win, int sx, int sy,
     int sw, int sh, tileidx_t tile, tilecol_t tilecol, 
     tileflags_t flags, short layer)
 {
@@ -737,10 +738,10 @@ struct rendering_procs sdlgl_hardw_rend_procs =
   hw_disable_clipper,
   hw_blit_frame,
   hw_draw_background,
-  hw_draw_one_extra,
+  hw_draw_extra_shape,
   hw_draw_cursor,
   hw_begin_tile_draw,
-  hw_draw_one_tile,
+  hw_draw_tile,
   hw_finish_tile_draw,
   hw_draw_border,
   hw_start_fading,

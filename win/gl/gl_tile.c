@@ -134,11 +134,11 @@ static void do_load_tileset(void)
    * removed and freed.
    */
   if (iflags.wc_tile_height == 16)
-    sdlgl_tiles = sdlgl_load_tileset("gltile16.png", 16,16, 0, NULL,NULL);
+    sdlgl_tiles = sdlgl_load_tileset("gltile16.png", 16,16, 0,0, NULL,NULL);
   else if (iflags.wc_tile_height == 64)
-    sdlgl_tiles = sdlgl_load_tileset("gltile64.png", 48,64, 0, NULL,NULL);
+    sdlgl_tiles = sdlgl_load_tileset("gltile64.png", 48,64, 0,0, NULL,NULL);
   else
-    sdlgl_tiles = sdlgl_load_tileset("gltile32.png", 32,32, 0, NULL,NULL);
+    sdlgl_tiles = sdlgl_load_tileset("gltile32.png", 32,32, 0,0, NULL,NULL);
 
   assert(sdlgl_tiles);
 }
@@ -152,7 +152,7 @@ void sdlgl_start_logo(void)
   int x, y;
   int w1, h1, w2, h2;
     
-  logo_set = sdlgl_load_tileset("gllogo.png", 16,16, 0, &logo_w, &logo_h);
+  logo_set = sdlgl_load_tileset("gllogo.png", 16,16, 0,0, &logo_w, &logo_h);
 
   assert(logo_set);
 
@@ -308,7 +308,7 @@ void sdlgl_tile_load_rest(void)
     do_load_tileset();
   }
 
-  rip_set = sdlgl_load_tileset("glrip.png", 30,30, 0, &rip_w, &rip_h);
+  rip_set = sdlgl_load_tileset("glrip.png", 30,30, 0,1, &rip_w, &rip_h);
 
   assert(rip_set);
 
@@ -436,7 +436,7 @@ int sdlgl_display_RIP(int how)
 
   /* now create name & role windows */
 
-  strncpy(name_buf, plname, 10);
+  strcpy(name_buf, plname);
   name_buf[STONE_MAX_NAME] = 0;
 
   if ('a' <= name_buf[0] && name_buf[0] <= 'z') 
@@ -449,22 +449,24 @@ int sdlgl_display_RIP(int how)
   rip_name->see_through = 1;
   rip_info->see_through = 1;
 
-  /* scale name to fit nicely on tombstone (TIDY UP !) */
-  for (;;)
+  /* scale name to fit nicely on tombstone */
+  if (! sdlgl_software)
   {
-    if (sdlgl_software)
-      break;
+    rip_name->scale_w = STONE_NAME_W / rip_name->total_w;
+    rip_name->scale_h = STONE_NAME_H / rip_name->total_h;
 
-    w = rip_name->total_w * (rip_name->scale_w + 1);
-    h = rip_name->total_h * (rip_name->scale_w + 1) *
-        rip_name->set->tile_h / rip_name->set->tile_w;
+    if (rip_name->scale_w > sdlgl_font_message->tile_w * 4 / 2)
+      rip_name->scale_w = sdlgl_font_message->tile_w * 4 / 2;
+    if (rip_name->scale_h > sdlgl_font_message->tile_h * 4 / 2)
+      rip_name->scale_h = sdlgl_font_message->tile_h * 4 / 2;
+     
+    if (rip_name->scale_w > rip_name->scale_h * 2)
+      rip_name->scale_w = rip_name->scale_h * 2;
+    else if (rip_name->scale_h > rip_name->scale_w * 4)
+      rip_name->scale_h = rip_name->scale_w * 4;
 
-    if (w > STONE_NAME_W || h > STONE_NAME_H)
-      break;
-
-    rip_name->scale_w += 1;
-    rip_name->scale_h = rip_name->scale_w *
-          rip_name->set->tile_h / rip_name->set->tile_w;
+    rip_name->scale_full_w = rip_name->scale_w;
+    rip_name->scale_full_h = rip_name->scale_h;
   }
 
   sdlgl_store_str(rip_name, 0, 0, name_buf, rip_name->total_w, BLACK);
@@ -1077,7 +1079,7 @@ static void draw_tilewindow(struct TileWindow *win)
         cur = win->tiles + (y * win->total_w + x);
 
         if (cur->u.bg != TILE_EMPTY)
-            sdlgl_draw_one_tile(win, sx, sy, sfw, sfh, cur->u.bg, 0, 
+            sdlgl_draw_tile(win, sx, sy, sfw, sfh, cur->u.bg, 0, 
                 /* flags */ 0, /* layer */ 0);
       }
     }
@@ -1113,12 +1115,12 @@ static void draw_tilewindow(struct TileWindow *win)
       if (! win->is_text)
       {
         if (cur->mg != TILE_EMPTY)
-          sdlgl_draw_one_tile(win, sx, sy, sfw, sfh, cur->mg, 0,
+          sdlgl_draw_tile(win, sx, sy, sfw, sfh, cur->mg, 0,
               /* flags */ 0, /* layer */ 1);
       }
 
       if (cur->fg != TILE_EMPTY)
-        sdlgl_draw_one_tile(win, sx, sy, sfw, sfh, cur->fg, tilecol,
+        sdlgl_draw_tile(win, sx, sy, sfw, sfh, cur->fg, tilecol,
             cur->flags, /* layer */ 2);
     }
   }
@@ -1127,7 +1129,7 @@ static void draw_tilewindow(struct TileWindow *win)
 
   /* draw the extra shapes, like the love heart */
   for (n=0; n < win->extra_num; n++)
-    sdlgl_draw_one_extra(win, win->extra_shapes + n);
+    sdlgl_draw_extra_shape(win, win->extra_shapes + n);
 
   if (win->curs_x >= 0 && ! win->curs_block)
     sdlgl_draw_cursor(win);

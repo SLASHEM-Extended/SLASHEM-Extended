@@ -78,13 +78,14 @@ void sdlgl_unit_startup(void)
 
   glEnable(GL_NORMALIZE);
 
+  glFrontFace(GL_CW);
   glShadeModel(GL_SMOOTH);
   glDepthFunc(GL_LEQUAL);
   glAlphaFunc(GL_GREATER, 1.0 / 32.0);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
   glHint(GL_FOG_HINT, GL_FASTEST);
-  glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
+  glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
   /* turn off lighting stuff */
   glDisable(GL_LIGHTING);

@@ -103,7 +103,8 @@ static void create_iso_borders(struct TileSet *set)
 }
 
 static struct TileSet *sw_load_tileset(const char *filename,
-    int tile_w, int tile_h, int is_text, int *across, int *down)
+    int tile_w, int tile_h, int is_text, int keep_rgba,
+    int *across, int *down)
 {
   struct TileSet *set;
 
@@ -115,17 +116,30 @@ static struct TileSet *sw_load_tileset(const char *filename,
   data_ptr = sdlgl_load_png_file(filename, &width, &height);
   if (! data_ptr)
   {
-    sdlgl_error("Could not load tileset %s\n", filename);
+    sdlgl_error("Could not load tileset image: %s\n", filename);
     return NULL; /* NOT REACHED */
   }
 
   set = (struct TileSet *) alloc(sizeof(struct TileSet));
   memset(set, 0, sizeof(struct TileSet));
 
-  set->surf = sdlgl_RGBA_to_palettised(data_ptr, width, height);
-  assert(set->surf);
+  assert(sdlgl_surf);
 
-  free(data_ptr);
+  if (keep_rgba && sdlgl_surf->format->BytesPerPixel > 1)
+  {
+    set->surf = sdlgl_RGBA_to_truecolor(data_ptr, width, height);
+  }
+  else
+  {
+    set->surf = sdlgl_RGBA_to_palettised(data_ptr, width, height);
+    free(data_ptr);
+  }
+
+  if (! set->surf)
+  {
+    sdlgl_error("Could not create SDL surface for tileset.\n");
+    return NULL; /* NOT REACHED */
+  }
 
   set->surf_small = NULL;
   if (tile_h >= 32)
@@ -134,7 +148,7 @@ static struct TileSet *sw_load_tileset(const char *filename,
 
     if (! set->surf_small)
     {
-      sdlgl_error("Could not create surface for shrunken tileset.\n");
+      sdlgl_error("Could not create SDL surface for shrunken tileset.\n");
       return NULL; /* NOT REACHED */
     }
   }
@@ -153,7 +167,7 @@ static struct TileSet *sw_load_tileset(const char *filename,
   set->pack_h = num_h;
  
   set->has_alpha = NULL;
-  if (! is_text)
+  if (! is_text && ! keep_rgba)
   {
     sdlgl_sw_create_has_alpha(set);
   }
@@ -350,7 +364,7 @@ static void sw_draw_background(int sx, int sy, int sw, int sh,
   }
 }
 
-static void sw_draw_one_extra(struct TileWindow *win, struct ExtraShape *shape)
+static void sw_draw_extra_shape(struct TileWindow *win, struct ExtraShape *shape)
 {
   SDL_Rect drect;
   SDL_Surface *surf;
@@ -469,7 +483,7 @@ static void sw_finish_tile_draw(void)
   /* nothing needed */
 }
 
-static void sw_draw_one_tile(struct TileWindow *win, int sx, int sy,
+static void sw_draw_tile(struct TileWindow *win, int sx, int sy,
     int sw, int sh, tileidx_t tile, tilecol_t tilecol,
     tileflags_t flags, short layer)
 {
@@ -802,10 +816,10 @@ struct rendering_procs sdlgl_softw_rend_procs =
   sw_disable_clipper,
   sw_blit_frame,
   sw_draw_background,
-  sw_draw_one_extra,
+  sw_draw_extra_shape,
   sw_draw_cursor,
   sw_begin_tile_draw,
-  sw_draw_one_tile,
+  sw_draw_tile,
   sw_finish_tile_draw,
   sw_draw_border,
   sw_start_fading,

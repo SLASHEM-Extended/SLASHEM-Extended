@@ -56,6 +56,8 @@ void sdlgl_win_shutdown(void)
 {
   winid i;
 
+  iflags.window_inited = 0;
+
   /* Just forget any windows existed, since we're about to exit anyway.
    * Disable windows to avoid calls to window routines.
    */
@@ -64,8 +66,6 @@ void sdlgl_win_shutdown(void)
     if (text_wins[i])
       Sdlgl_destroy_nhwindow(i);
   }
-
-  iflags.window_inited = 0;
 }
 
 winid Sdlgl_create_nhwindow(int type)
@@ -115,7 +115,8 @@ void Sdlgl_destroy_nhwindow(winid window)
   text_wins[window] = NULL;
   textwin_num--;
 
-  sdlgl_update_mouse_location(0);
+  if (iflags.window_inited)
+    sdlgl_update_mouse_location(0);
 }
 
 void Sdlgl_clear_nhwindow(winid window)
@@ -441,7 +442,11 @@ void Sdlgl_dismiss_nhwindow(winid window)
       break;
   }
 
-  sdlgl_flush();
+  /* special check, to prevent screen redrawing to happen when
+   * shutting down.
+   */
+  if (iflags.window_inited)
+    sdlgl_flush();
 }
 
 void Sdlgl_curs(winid window, int x, int y)

@@ -329,7 +329,7 @@ static void show_help_message(void)
   );
 
   sdlgl_error("");
-  /*NOTREACHED*/
+  /* NOT REACHED */
 }
 
 static void show_version_message(void)
@@ -342,7 +342,7 @@ static void show_version_message(void)
 #endif
 
   sdlgl_error("");
-  /*NOTREACHED*/
+  /* NOT REACHED */
 }
 
 /* this is called from src/files.c when parsing the config file.

@@ -198,7 +198,7 @@ void sdlgl_error(const char *str, ...)
   Sdlgl_exit_nhwindows("");
   terminate(EXIT_SUCCESS);
 
-  /*NOTREACHED*/
+  /* NOT REACHED */
 }
 
 void sdlgl_hangup(const char *str, ...)
@@ -221,13 +221,13 @@ void sdlgl_hangup(const char *str, ...)
 
   hangup(1);
 
-  /*NOTREACHED*/
+  /* NOT REACHED */
   
   clearlocks();
   Sdlgl_exit_nhwindows("");
   terminate(EXIT_SUCCESS);
 
-  /*NOTREACHED -- AGAIN!*/
+  /* NOT REACHED  -- AGAIN!*/
 }
 
 void Sdlgl_nhbell(void)
