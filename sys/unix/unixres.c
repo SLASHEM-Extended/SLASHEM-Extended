@@ -1,4 +1,4 @@
-/* $Id: unixres.c,v 1.1 2001-03-09 16:02:02 j_ali Exp $ */
+/* $Id: unixres.c,v 1.2 2003-02-27 20:14:16 j_ali Exp $ */
 /* Copyright (c) Slash'EM development team, 2001. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -13,51 +13,47 @@
  * so temporarily dropping privileges on these systems is sufficient to
  * hide them.
  */
+#ifdef __GNUC__
+#define _GNU_SOURCE
+#endif
 
 #include "config.h"
 
 #ifdef GETRES_SUPPORT
 
-#if defined(LINUX)
+# if defined(LINUX)
 
-static _syscall3(int, getresuid, unsigned short *, ruid, \
-  unsigned short *, euid, unsigned short *, suid)
-static _syscall3(int, getresgid, unsigned short *, rgid, \
-  unsigned short *, egid, unsigned short *, sgid)
+/* requires dynamic linking with libc */
+#include <dlfcn.h>
 
 static int
 real_getresuid(ruid, euid, suid)
 uid_t *ruid, *euid, *suid;
 {
-    int retval;
-    unsigned short r, e, s;
-    retval = getresuid(&r, &e, &s);
-    if (!retval) {
-	*ruid = r;
-	*euid = e;
-	*suid = s;
-    }
-    return retval;
+    int (*f)(uid_t *, uid_t *, uid_t *); /* getresuid signature */
+
+    f = dlsym(RTLD_NEXT, "getresuid");
+    if (!f) return -1;
+
+    return f(ruid, euid, suid);
 }
 
 static int
 real_getresgid(rgid, egid, sgid)
 gid_t *rgid, *egid, *sgid;
 {
-    int retval;
-    unsigned short r, e, s;
-    retval = getresgid(&r, &e, &s);
-    if (!retval) {
-	*rgid = r;
-	*egid = e;
-	*sgid = s;
-    }
-    return retval;
+    int (*f)(gid_t *, gid_t *, gid_t *); /* getresgid signature */
+
+    f = dlsym(RTLD_NEXT, "getresgid");
+    if (!f) return -1;
+
+    return f(rgid, egid, sgid);
 }
 
-#elif defined(BSD) || defined(SVR4)
+# else
+#  if defined(BSD) || defined(SVR4)
 
-#ifdef SYS_getresuid
+#   ifdef SYS_getresuid
 
 static int
 real_getresuid(ruid, euid, suid)
@@ -66,7 +62,7 @@ uid_t *ruid, *euid, *suid;
     return syscall(SYS_getresuid, ruid, euid, suid);
 }
 
-#else	/* SYS_getresuid */
+#   else	/* SYS_getresuid */
 
 static int
 real_getresuid(ruid, euid, suid)
@@ -88,9 +84,9 @@ uid_t *ruid, *euid, *suid;
     return retval;
 }
 
-#endif	/* SYS_getresuid */
+#   endif	/* SYS_getresuid */
 
-#ifdef SYS_getresgid
+#   ifdef SYS_getresgid
 
 static int
 real_getresgid(rgid, egid, sgid)
@@ -99,7 +95,7 @@ gid_t *rgid, *egid, *sgid;
     return syscall(SYS_getresgid, rgid, egid, sgid);
 }
 
-#else	/* SYS_getresgid */
+#   else	/* SYS_getresgid */
 
 static int
 real_getresgid(rgid, egid, sgid)
@@ -121,8 +117,9 @@ gid_t *rgid, *egid, *sgid;
     return retval;
 }
 
-#endif	/* SYS_getresgid */
-#endif	/* LINUX || BSD || SVR4 */
+#   endif	/* SYS_getresgid */
+#  endif	/* BSD || SVR4 */
+# endif		/* LINUX */
 
 static unsigned int hiding_privileges = 0;
 
@@ -199,11 +196,13 @@ nh_getegid()
 
 #else	/* GETRES_SUPPORT */
 
+# ifdef GNOME_GRAPHICS 
 int
 hide_privileges(flag)
 boolean flag;
 {
     return 0;
 }
+# endif
 
 #endif	/* GETRES_SUPPORT */

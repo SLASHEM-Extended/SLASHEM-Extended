@@ -484,9 +484,9 @@ HSOURCES = $(HACKINCL) date.h onames.h pm.h vis_tab.h\
 		lev_comp.h dgn_comp.h dgn_file.h
 
 # the following .o's _must_ be made before any others (for makedefs)
-FIRSTOBJ = monst.o objects.o
+FIRSTOBJ = monst.o objects.o alloc.o
 
-HOBJ = $(FIRSTOBJ) allmain.o alloc.o apply.o artifact.o attrib.o ball.o \
+HOBJ = $(FIRSTOBJ) allmain.o apply.o artifact.o attrib.o ball.o \
 	bones.o botl.o cmd.o dbridge.o decl.o detect.o dig.o display.o dlb.o \
 	do.o do_name.o do_wear.o dog.o dogmove.o dokick.o dothrow.o \
 	drawing.o dungeon.o eat.o end.o engrave.o exper.o explode.o \
@@ -860,7 +860,7 @@ glyphmap.o: ../win/proxy/glyphmap.c $(HACK_H) ../include/nhxdr.h \
 		../include/proxycom.h ../include/winproxy.h
 	$(CC) $(CFLAGS) -c ../win/proxy/glyphmap.c
 proxysvc.o: ../win/proxy/proxysvc.c ../include/nhxdr.h ../include/proxycom.h \
-		../include/prxyclnt.h
+		../include/proxycb.h ../include/prxyclnt.h
 	$(CC) $(CFLAGS) -c ../win/proxy/proxysvc.c
 proxycb.o: ../win/proxy/proxycb.c ../include/nhxdr.h ../include/proxycom.h \
 		../include/proxycb.h
@@ -953,7 +953,7 @@ allmain.o: allmain.c $(HACK_H) ../include/patchlevel.h
 alloc.o: alloc.c $(CONFIG_H)
 apply.o: apply.c $(HACK_H) ../include/edog.h
 artifact.o: artifact.c $(HACK_H) ../include/artifact.h ../include/artilist.h
-attrib.o: attrib.c $(HACK_H) ../include/artifact.h
+attrib.o: attrib.c $(HACK_H)
 ball.o: ball.c $(HACK_H)
 bones.o: bones.c $(HACK_H) ../include/lev.h
 botl.o: botl.c $(HACK_H)
@@ -985,7 +985,7 @@ files.o: files.c $(HACK_H) ../include/dlb.h ../include/filename.h \
 fountain.o: fountain.c $(HACK_H)
 hack.o: hack.c $(HACK_H)
 hacklib.o: hacklib.c $(HACK_H)
-invent.o: invent.c $(HACK_H) ../include/artifact.h
+invent.o: invent.c $(HACK_H)
 light.o: light.c $(HACK_H) ../include/lev.h
 lock.o: lock.c $(HACK_H)
 mail.o: mail.c $(HACK_H) ../include/mail.h
@@ -999,12 +999,13 @@ minion.o: minion.c $(HACK_H) ../include/emin.h ../include/epri.h
 mklev.o: mklev.c $(HACK_H)
 mkmap.o: mkmap.c $(HACK_H) ../include/sp_lev.h
 mkmaze.o: mkmaze.c $(HACK_H) ../include/sp_lev.h ../include/lev.h
-mkobj.o: mkobj.c $(HACK_H) ../include/artifact.h
+mkobj.o: mkobj.c $(HACK_H)
 mkroom.o: mkroom.c $(HACK_H)
 mon.o: mon.c $(HACK_H) ../include/mfndpos.h ../include/edog.h \
 		../include/artifact.h
 mondata.o: mondata.c $(HACK_H) ../include/eshk.h ../include/epri.h
-monmove.o: monmove.c $(HACK_H) ../include/mfndpos.h ../include/artifact.h
+monmove.o: monmove.c $(HACK_H) ../include/mfndpos.h ../include/artifact.h \
+		../include/epri.h
 monst.o: monst.c $(CONFIG_H) ../include/permonst.h ../include/align.h \
 		../include/monattk.h ../include/monflag.h ../include/monsym.h \
 		../include/dungeon.h ../include/eshk.h ../include/vault.h \
@@ -1062,7 +1063,7 @@ were.o: were.c $(HACK_H)
 wield.o: wield.c $(HACK_H)
 windows.o: windows.c $(HACK_H) ../include/wingem.h ../include/winGnome.h \
 		../include/winGL.h ../include/winproxy.h
-wizard.o: wizard.c $(HACK_H) ../include/qtext.h
+wizard.o: wizard.c $(HACK_H) ../include/qtext.h ../include/epri.h
 worm.o: worm.c $(HACK_H) ../include/lev.h
 worn.o: worn.c $(HACK_H)
 write.o: write.c $(HACK_H)

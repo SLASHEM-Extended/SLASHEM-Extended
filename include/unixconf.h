@@ -392,7 +392,7 @@
 # undef hc
 #endif
 
-#if defined(GTK_GRAPHICS) || defined(GNOME_GRAPHICS)
+#if defined(GNOME_GRAPHICS)
 #if defined(LINUX)
 # include <linux/unistd.h>
 # if defined(__NR_getresuid) && defined(__NR_getresgid)	/* ie., >= v2.1.44 */
@@ -413,7 +413,7 @@
 # endif
 # endif	/* BSD || SVR4 */
 #endif	/* LINUX */
-#endif	/* GTK_GRAPHICS || GNOME_GRAPHICS */
+#endif	/* GNOME_GRAPHICS */
 
 #endif /* UNIXCONF_H */
 #endif /* UNIX */

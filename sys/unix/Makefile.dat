@@ -42,6 +42,9 @@ all:	$(VARDAT) spec_levs quest_levs dungeon
 ../util/mapmerge:
 	(cd ../util ; make mapmerge)
 
+../util/tile2bmp:
+	(cd ../util ; make tile2bmp)
+
 x11tiles: ../util/tile2x11 ../win/share/monsters.txt ../win/share/objects.txt \
 				../win/share/other.txt
 	../util/tile2x11 ../win/share/monsters.txt ../win/share/objects.txt \
@@ -187,6 +190,10 @@ glrip.png:	../util/tile2png ../win/gl/rip.txt
 		-b ../win/share/oth3dmi.txt \
 		-b ../win/share/oth-2kmi.txt -b ../win/share/oth3dse.txt
 
+nhtiles.bmp: ../util/tile2bmp ../win/share/monsters.txt ../win/share/objects.txt \
+				../win/share/other.txt
+	../util/tile2bmp $@
+
 pet_mark.xbm: ../win/X11/pet_mark.xbm
 	cp ../win/X11/pet_mark.xbm pet_mark.xbm
 
@@ -198,6 +205,12 @@ mapbg.xpm: ../win/gnome/mapbg.xpm
 
 nhsplash.xpm: ../win/Qt/nhsplash.xpm
 	cp ../win/Qt/nhsplash.xpm nhsplash.xpm
+
+nethack.icns: ../win/Qt/nhicns.uu
+	$(UUDECODE) ../win/Qt/nhicns.uu
+
+Info.plist: ../win/Qt/Info.pli
+	cp ../win/Qt/Info.pli Info.plist
 
 ../util/tile2img.ttp:
 	(cd ../util ; make tile2img.ttp)
