@@ -1,4 +1,4 @@
-@REM  SCCS Id: @(#)nhsetup.bat	$Date: 2003-02-28 12:13:30 $
+@REM  SCCS Id: @(#)nhsetup.bat	$Date: 2003-05-20 06:35:58 $
 @REM  Copyright (c) Alex Kompel, 2002
 @REM  NetHack may be freely redistributed.  See license for details. 
 @REM  Win32 nhsetup batch file, see Install.ce for details
@@ -70,6 +70,16 @@ copy winhcksp.rc  ..\..\wince\winhack_sp.rc
 copy winmain.c    ..\..\wince\winmain.c
 copy winMS.h      ..\..\wince\winMS.h
 copy cesound.c    ..\..\wince\cesound.c
+copy mksetup.bat  ..\..\wince\mksetup.bat
+copy slashem.inf  ..\..\wince\slashem.inf
+copy slashem.ini  ..\..\wince\slashem.ini
+echo.
+echo Attempting to copy existing data files 
+echo This will only succeed if you have successfully
+echo built the sys/winnt SLASHEM
+copy ..\..\binary\nhshare      ..\..\wince\nhshare
+copy ..\..\binary\nhushare     ..\..\wince\nhushare
+copy ..\..\binary\defaults.nh  ..\..\wince\defaults.nh
 echo.
 echo Proceed with the following steps:
 echo.

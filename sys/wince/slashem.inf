@@ -1,0 +1,80 @@
+[Version]
+Signature = "$Windows NT$"
+Provider = "CE"
+CESignature = "$Windows CE$"
+
+[CEStrings]
+AppName="SLASHEM"
+InstallDir=%CE8%\%AppName%	; \Program Files\Games\slashem
+
+[Strings]
+sh3_cpu	= 10003
+sh4_cpu = 10005
+mips_cpu = 4000
+strongarm_cpu = 2577
+armcpu = 1824
+reg_path = Software\%AppName%
+val_version = "Version"
+data_version = "0.0.7E1 Prerelease"
+
+[CEDevice]
+UnsupportedPlatforms = "Jupiter","HPC"  ; Does not support pltfrm1
+VersionMin = 3.0
+VersionMax = 3.01
+
+[CEDevice.ARM]
+ProcessorType = %arm_cpu%
+
+[CEDevice.MIPS] 
+ProcessorType = %mips_cpu%
+
+[CEDevice.SH3]
+ProcessorType = %sh3_cpu%
+
+[CEDevice.SA]
+ProcessorType = %strongarm_cpu%
+
+[DefaultInstall]
+CopyFiles = Files.Application, Files.Shared
+AddReg = RegSettings
+CEShortcuts = Shortcuts
+
+[SourceDisksNames]
+1 = ,"Common files",,.
+
+[SourceDisksNames.ARM]
+2 = ,"ARM files",,ARMPocketPCRelease
+
+[SourceDisksNames.MIPS]
+2 = ,"MIPS files",,MIPSPocketPCRelease
+
+[SourceDisksNames.SA]
+2 = ,"ARM files",,ARMPocketPCRelease
+
+[SourceDisksNames.SH3]
+2 = ,"SH3 files",,SH3PocketPCRelease
+
+[SourceDisksFiles]
+slashem.exe = 2
+nhshare = 1
+nhushare = 1
+defaults.nh = 1
+
+[DestinationDirs]
+Files.Application = 0,%InstallDir%	;\Target\AppName
+Files.Shared      = 0,%InstallDir%	;\Target\AppName
+Shortcuts         = 0,%CE2%\Help        ;\Windows\Help
+
+[Files.Application]
+"slashem.exe",,,0x00000001   	; rename, and warn if skipped
+
+[Files.Shared]
+"nhshare",,,0x00000001   	; rename, and warn if skipped
+"nhushare",,,0x00000001   	; rename, and warn if skipped
+"defaults.nh",,,0x00000001   	; rename, and warn if skipped
+
+[Shortcuts]
+%AppName%,0,slashem.exe,%CE14%	; Shortcut in \Windows\Start Menu\Games
+
+[RegSettings]
+;HKLM,Software\WAC\%AppName%,,0,%data_version%
