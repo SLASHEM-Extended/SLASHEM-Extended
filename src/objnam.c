@@ -1413,6 +1413,7 @@ const char *oldstr;
                            !BSTRCMPI(bp, p-15, "detect monsters") ||
                            !BSTRCMPI(bp, p-21, "Medallion of Shifters") ||
                                 /* WAC added */
+                           !BSTRCMPI(bp, p-12, "Key of Chaos") ||
 #ifdef WALLET_O_P
                            !BSTRCMPI(bp, p-7, "Perseus") || /* WAC added */
 #endif
