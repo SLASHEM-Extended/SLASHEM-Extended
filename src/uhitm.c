@@ -1173,12 +1173,6 @@ int thrown;
 	    else if (u.twoweap) use_skill(P_TWO_WEAPON_COMBAT,1);
 	}
 
-	if(mon->mflee && Role_if(PM_ROGUE)) {        
-		You("strike %s from behind!", mon_nam(mon));
-		tmp += u.ulevel;
-		hittxt = TRUE;
-	}
-  
 	if (ispoisoned) {
 	    int nopoison = (10 - (obj->owt/10));            
 	    if(nopoison < 2) nopoison = 2;

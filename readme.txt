@@ -362,6 +362,7 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -fixed bug 433019: Shopkeeper rustproofing and corrosion.
 -fixed bug 433694: Holy Spear of Light blasts Yeoman.
 -fixed bug 433695: Wrong weight of old corpses?
+-fixed bug 436049: Rogues striking twice from behind.
 
 ver 0.0.6E4F4 [May 2/2001] [Released by Ali]
 -fixed bug 404825: wands of teleportation that explode/zapped at yourself
