@@ -350,7 +350,7 @@ typedef unsigned char	uchar;
  */
 #define BITFIELDS	/* Good bitfield handling */
 
-#define STRNCMPI  /* compiler/library has the strncmpi function */
+/* #define STRNCMPI */ /* compiler/library has the strncmpi function */
 
 /*
  * There are various choices for the NetHack vision system.  There is a
@@ -420,7 +420,7 @@ typedef unsigned char	uchar;
 #endif
 
 #if defined(UNIX)
-/*#define USE_REGEX_MATCH*/
+#define USE_REGEX_MATCH
 /* if USE_REGEX_MATCH is defined, use regular expressions (GNU regex.h)
  * otherwise use pmatch() to match menu color lines.
  * pmatch() provides basic globbing: '*' and '?' wildcards.
