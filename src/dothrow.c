@@ -1781,8 +1781,8 @@ boolean from_invent;
 		case POT_WATER:		/* really, all potions */
 			if (obj->otyp == POT_OIL && obj->lamplit) {
 			    splatter_burning_oil(x,y);
-			} else if (obj->otyp == POT_VAMPIRE_BLOOD &&
-				   obj->otyp == POT_BLOOD &&
+			} else if ((obj->otyp == POT_VAMPIRE_BLOOD ||
+				   obj->otyp == POT_BLOOD) &&
 				   altarmask != AM_CHAOTIC &&
 				   altarmask != AM_NONE) {
 			    /* ALI: If blood is spilt on a lawful or
