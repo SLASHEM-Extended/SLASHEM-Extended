@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.22 2004-01-03 19:11:18 j_ali Exp $ */
+/* $Id: callback.c,v 1.23 2004-02-07 19:02:13 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2004 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -508,8 +508,7 @@ NhExtXdr *request, *reply;
     destroy_toptenwin();
     dlb_init();                         /* Re-initialise DLB */
     proxy_rawprint_win = WIN_ERR;
-    if (!nhext_async_mode())
-	nhext_rpc_params(reply, 0);
+    nhext_rpc_params(reply, 0);
 }
 
 static void
