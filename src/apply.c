@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)apply.c	3.4	2003/05/25	*/
+/*	SCCS Id: @(#)apply.c	3.4	2003/11/18	*/
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -168,6 +168,8 @@ int rx, ry, *resp;
 	struct obj *otmp;
 	struct trap *ttmp;
 
+	if (!can_reach_floor()) return FALSE;
+
 	/* additional stethoscope messages from jyoung@apanix.apana.org.au */
 	if (Hallucination && sobj_at(CORPSE, rx, ry)) {
 	    /* (a corpse doesn't retain the monster's sex,
@@ -275,7 +277,7 @@ use_stethoscope(obj)
 		mstatusline(mtmp);
 		if (mtmp->mundetected) {
 			mtmp->mundetected = 0;
-			if (cansee(rx,ry)) newsym(mtmp->my,mtmp->my);
+			if (cansee(rx,ry)) newsym(mtmp->mx,mtmp->my);
 		}
 		if (!canspotmon(mtmp))
 			map_invisible(rx,ry);
@@ -752,7 +754,7 @@ struct obj *obj;
 		setnotworn(obj); /* in case mirror was wielded */
 		freeinv(obj);
 		(void) mpickobj(mtmp,obj);
-		if (!tele_restrict(mtmp)) rloc(mtmp);
+		if (!tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
 	} else if (!is_unicorn(mtmp->data) && !humanoid(mtmp->data) &&
 			(!mtmp->minvis || perceives(mtmp->data)) && rn2(5)) {
 		if (vis)
@@ -1637,7 +1639,7 @@ struct obj *obj;
 		    break;
 	    case 4: (void) adjattrib(rn2(A_MAX), -1, FALSE);
 		    break;
-	    case 5: make_hallucinated(HHallucination + lcount, TRUE, 0L);
+	    case 5: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
 		    break;
 	    }
 	    return;
@@ -1729,7 +1731,7 @@ struct obj *obj;
 		did_prop++;
 		break;
 	    case prop2trbl(HALLUC):
-		make_hallucinated(0L, TRUE, 0L);
+		(void) make_hallucinated(0L, TRUE, 0L);
 		did_prop++;
 		break;
 	    case prop2trbl(VOMITING):
@@ -1808,7 +1810,7 @@ long timeout;
 	cansee_spot = cansee(cc.x, cc.y);
 	mtmp = make_familiar(figurine, cc.x, cc.y, TRUE);
 	if (mtmp) {
-	    Sprintf(monnambuf, "%s",a_monnam(mtmp));
+	    Sprintf(monnambuf, "%s",an(m_monnam(mtmp)));
 	    switch (figurine->where) {
 		case OBJ_INVENT:
 		    if (Blind)
@@ -2878,7 +2880,8 @@ use_pole(obj)
 static const char
 	not_enough_room[] = "There's not enough room here to use that.",
 	where_to_hit[] = "Where do you want to hit?",
-	cant_see_spot[] = "won't hit anything if you can't see that spot.";
+	cant_see_spot[] = "won't hit anything if you can't see that spot.",
+	cant_reach[] = "can't reach that spot from here.";
 
 #if 0
 /* Distance attacks by pole-weapons */
@@ -2925,6 +2928,12 @@ use_pole (obj)
 		    !canseemon(mtmp))) {
 	    You(cant_see_spot);
 	    return (res);
+	} else if (!couldsee(cc.x, cc.y)) { /* Eyes of the Overworld */
+	    You(cant_reach);
+	    return res;
+	} else if (!couldsee(cc.x, cc.y)) { /* Eyes of the Overworld */
+	    You(cant_reach);
+	    return res;
 	}
 
 	/* Attack the monster there */

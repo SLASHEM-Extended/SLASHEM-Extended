@@ -1901,6 +1901,11 @@ struct obj *obj, *otmp;
 
 			    (void) get_obj_location(obj, &oox, &ooy, 0);
 			    refresh_x = oox; refresh_y = ooy;
+			    if (vegetarian(&mons[obj->corpsenm])) {
+				/* Don't animate monsters that aren't flesh */
+				obj = poly_obj(obj, MEATBALL);
+			    	goto smell;
+			    }
 			    if (!animate_statue(obj, oox, ooy,
 						ANIMATE_SPELL, (int *)0)) {
 				struct obj *item;
@@ -1934,6 +1939,11 @@ makecorpse:			if (mons[obj->corpsenm].geno &
 			    res = 0;
 			    break;
 			}
+			if (vegetarian(&mons[obj->corpsenm])) {
+			    /* Don't animate monsters that aren't flesh */
+			    obj = poly_obj(obj, MEATBALL);
+			    goto smell;
+			}
 			(void) get_obj_location(obj, &oox, &ooy, 0);
 			refresh_x = oox; refresh_y = ooy;
 			mon = makemon(&mons[obj->corpsenm],
@@ -1957,7 +1967,8 @@ makecorpse:			if (mons[obj->corpsenm].geno &
 			obj = poly_obj(obj, MEATBALL);
 smell:
 			if (herbivorous(youmonst.data) &&
-				!carnivorous(youmonst.data))
+			    (!carnivorous(youmonst.data) ||
+			     Role_if(PM_MONK) || !u.uconduct.unvegetarian))
 			    Norep("You smell the odor of meat.");
 			else
 			    Norep("You smell a delicious smell.");

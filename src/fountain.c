@@ -392,12 +392,8 @@ register struct obj *obj;
 		if(in_town(u.ux, u.uy))
 		    (void) angry_guards(FALSE);
 		return;
-	} else (void) get_wet(obj, FALSE);
-	/* KMH, balance patch -- acid and water don't mix */
-	if (obj->otyp == POT_ACID) {
-		useup(obj);
+	} else if (get_wet(obj, FALSE) && !rn2(2))
 		return;
-	}
 
 	/* Acid and water don't mix */
 	if (obj->otyp == POT_ACID) {
@@ -613,7 +609,7 @@ drinksink()
 			      Blind ? "odd" :
 			      hcolor(OBJ_DESCR(objects[otmp->otyp])));
 			otmp->dknown = !(Blind || Hallucination);
-			otmp->corpsenm = 1; /* kludge for docall() */
+			otmp->fromsink = 1; /* kludge for docall() */
 			/* dopotion() deallocs dummy potions */
 			(void) dopotion(otmp);
 			break;

@@ -144,6 +144,9 @@ STATIC_PTR int NDECL(wiz_show_wmodes);
 #if defined(__BORLANDC__) && !defined(_WIN32)
 extern void FDECL(show_borlandc_stats, (winid));
 #endif
+#ifdef DEBUG_MIGRATING_MONS
+STATIC_PTR int NDECL(wiz_migrate_mons);
+#endif
 STATIC_DCL void FDECL(count_obj, (struct obj *, long *, long *, BOOLEAN_P, BOOLEAN_P));
 STATIC_DCL void FDECL(obj_chain, (winid, const char *, struct obj *, long *, long *));
 STATIC_DCL void FDECL(mon_invent_chain, (winid, const char *, struct monst *, long *, long *));
@@ -983,7 +986,7 @@ wiz_genesis()
 STATIC_PTR int
 wiz_where()
 {
-	if (wizard) (void) print_dungeon(FALSE);
+	if (wizard) (void) print_dungeon(FALSE, (schar *)0, (xchar *)0);
 	else	    pline("Unavailable command '^O'.");
 	return 0;
 }
@@ -1587,14 +1590,21 @@ minimal_enlightenment()
 	anything any;
 	int genidx, n;
 	char buf[BUFSZ], buf2[BUFSZ];
-	static const char fmtstr[] = "%-15s: %-12s";
-	static const char deity_fmtstr[] = "%-17s%s";
+	static const char untabbed_fmtstr[] = "%-15s: %-12s";
+	static const char untabbed_deity_fmtstr[] = "%-17s%s";
+	static const char tabbed_fmtstr[] = "%s:\t%-12s";
+	static const char tabbed_deity_fmtstr[] = "%s\t%s";
+	static const char *fmtstr;
+	static const char *deity_fmtstr;
 
+	fmtstr = iflags.menu_tab_sep ? tabbed_fmtstr : untabbed_fmtstr;
+	deity_fmtstr = iflags.menu_tab_sep ?
+			tabbed_deity_fmtstr : untabbed_deity_fmtstr; 
 	any.a_void = 0;
 	buf[0] = buf2[0] = '\0';
 	tmpwin = create_nhwindow(NHW_MENU);
 	start_menu(tmpwin);
-	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_BOLD, "Starting", FALSE);
+	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings, "Starting", FALSE);
 
 	/* Starting name, race, role, gender */
 	Sprintf(buf, fmtstr, "name", plname);
@@ -1613,7 +1623,7 @@ minimal_enlightenment()
 
 	/* Current name, race, role, gender */
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, "", FALSE);
-	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_BOLD, "Current", FALSE);
+	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings, "Current", FALSE);
 	Sprintf(buf, fmtstr, "race", Upolyd ? youmonst.data->mname : urace.noun);
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, FALSE);
 	if (Upolyd) {
@@ -1640,7 +1650,7 @@ minimal_enlightenment()
 
 	/* Deity list */
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, "", FALSE);
-	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_BOLD, "Deities", FALSE);
+	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings, "Deities", FALSE);
 	Sprintf(buf2, deity_fmtstr, align_gname(A_CHAOTIC),
 	    (u.ualignbase[A_ORIGINAL] == u.ualign.type
 		&& u.ualign.type == A_CHAOTIC) ? " (s,c)" :
@@ -2248,6 +2258,9 @@ struct ext_func_tab extcmdlist[] = {
 #endif
 	{(char *)0, (char *)0, donull, TRUE},
 	{(char *)0, (char *)0, donull, TRUE},
+#ifdef DEBUG_MIGRATING_MONS
+	{(char *)0, (char *)0, donull, TRUE},
+#endif
 	{(char *)0, (char *)0, donull, TRUE},
 	{(char *)0, (char *)0, donull, TRUE},
 #ifdef PORT_DEBUG
@@ -2273,6 +2286,9 @@ static const struct ext_func_tab debug_extcmdlist[] = {
 #endif
 	{"levelchange", "change experience level", wiz_level_change, TRUE},
 	{"lightsources", "show mobile light sources", wiz_light_sources, TRUE},
+#ifdef DEBUG_MIGRATING_MONS
+	{"migratemons", "migrate n random monsters", wiz_migrate_mons, TRUE},
+#endif
 	{"monpolycontrol", "control monster polymorphs", wiz_mon_polycontrol, TRUE},
 	{"panic", "test panic routine (fatal to game)", wiz_panic, TRUE},
 	{"polyself", "polymorph self", wiz_polyself, TRUE},
@@ -2579,6 +2595,35 @@ wiz_show_display()
 }
 #endif
 
+#ifdef DEBUG_MIGRATING_MONS
+static int
+wiz_migrate_mons()
+{
+	int mcount = 0;
+	char inbuf[BUFSZ];
+	struct permonst *ptr;
+	struct monst *mtmp;
+	d_level tolevel;
+	getlin("How many random monsters to migrate? [0]", inbuf);
+	if (*inbuf == '\033') return 0;
+	mcount = atoi(inbuf);
+	if (mcount < 0 || mcount > (COLNO * ROWNO) || Is_botlevel(&u.uz))
+		return 0;
+	while (mcount > 0) {
+		if (Is_stronghold(&u.uz))
+		    assign_level(&tolevel, &valley_level);
+		else
+		    get_level(&tolevel, depth(&u.uz) + 1);
+		ptr = rndmonst();
+		mtmp = makemon(ptr, 0, 0, NO_MM_FLAGS);
+		if (mtmp) migrate_to_level(mtmp, ledger_no(&tolevel),
+				MIGR_RANDOM, (coord *)0);
+		mcount--;
+	}
+	return 0;
+}
+#endif
+
 #endif /* WIZARD */
 
 #define unctrl(c)	((c) <= C('z') ? (0x60 | (c)) : (c))
@@ -2641,7 +2686,7 @@ register char *cmd;
         }
 	/* handle most movement commands */
 	do_walk = do_rush = prefix_seen = FALSE;
-	flags.travel = 0;
+	flags.travel = iflags.travel1 = 0;
 	switch (*cmd) {
 	 case 'g':  if (movecmd(cmd[1])) {
 			flags.run = 2;
@@ -2690,11 +2735,12 @@ register char *cmd;
 		    return;
 	 case CMD_TRAVEL:
 		    if (iflags.travelcmd) {
-		    flags.travel = 1;
-		    flags.run = 8;
-		    flags.nopick = 1;
-		    do_rush = TRUE;
-		    break;
+			    flags.travel = 1;
+			    iflags.travel1 = 1;
+			    flags.run = 8;
+			    flags.nopick = 1;
+			    do_rush = TRUE;
+			    break;
 		    }
 		    /*FALLTHRU*/
 	 default:   if (movecmd(*cmd)) {	/* ordinary movement */
@@ -3226,11 +3272,11 @@ static
 void
 end_of_input()
 {
-	exit_nhwindows("End of input?");
 #ifndef NOSAVEONHANGUP
 	if (!program_state.done_hup++ && program_state.something_worth_saving)
 	    (void) dosave0();
 #endif
+	exit_nhwindows((char *)0);
 	clearlocks();
 	terminate(EXIT_SUCCESS);
 }

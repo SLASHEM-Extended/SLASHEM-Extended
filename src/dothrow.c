@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)dothrow.c	3.4	2003/01/24	*/
+/*	SCCS Id: @(#)dothrow.c	3.4	2003/12/04	*/
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -302,6 +302,11 @@ dothrow()
 	 * and took 3 turns.  Now it means ``t(shoot at most 3 missiles)''.
 	 */
 
+	if (notake(youmonst.data)) {
+	    You("are physically incapable of throwing anything.");
+	    return 0;
+	}
+
 	if(check_capacity((char *)0)) return(0);
 	obj = getobj(uslinging() ? bullets : toss_objs, "throw");
 	/* it is also possible to throw food */
@@ -394,6 +399,11 @@ int
 dofire()
 {
 	int result, shotlimit;
+
+	if (notake(youmonst.data)) {
+	    You("are physically incapable of doing that.");
+	    return 0;
+	}
 
 	if(check_capacity((char *)0)) return(0);
 	if (!uquiver) {
@@ -1358,7 +1368,7 @@ struct monst *mon;
        an arrow just landing short of any target (no message in that case),
        so will realize that there is a valid target here anyway. */
     if (!canseemon(mon) || (mon->m_ap_type && mon->m_ap_type != M_AP_MONSTER))
-	pline("%s misses.", The(missile));
+	pline("%s %s.", The(missile), otense(obj, "miss"));
     else
 	miss(missile, mon);
     if (!rn2(3)) wakeup(mon);
@@ -1715,7 +1725,7 @@ register struct obj *obj;
 
 nopick:
 	if(!Blind) pline("%s", buf);
-	if (!tele_restrict(mon)) rloc(mon);
+	if (!tele_restrict(mon)) (void) rloc(mon, FALSE);
 	return(ret);
 }
 
@@ -1953,9 +1963,6 @@ boolean in_view;
 	}
 }
 
-/*
- *  Note that the gold object is *not* attached to the fobj chain.
- */
 STATIC_OVL int
 throw_gold(obj)
 struct obj *obj;

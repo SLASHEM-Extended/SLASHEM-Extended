@@ -232,7 +232,7 @@ char *argv[];
 		boolean remember_wiz_mode = wizard;
 #endif
 #ifndef FILE_AREAS
-		const char *fq_save = fqname(SAVEF, SAVEPREFIX, 0);
+		const char *fq_save = fqname(SAVEF, SAVEPREFIX, 1);
 
 		(void) chmod(fq_save,0);	/* disallow parallel restores */
 #else

@@ -513,7 +513,7 @@ long wp_mask;
 	     * that can print a message--need to guard against being printed
 	     * when restoring a game
 	     */
-	    make_hallucinated((long)!on, restoring ? FALSE : TRUE, wp_mask);
+	    (void) make_hallucinated((long)!on, restoring ? FALSE : TRUE, wp_mask);
 	}
 	if (spfx & SPFX_ESP) {
 	    if(on) ETelepat |= wp_mask;
@@ -835,7 +835,7 @@ winid tmpwin;		/* supplied by dodiscover() */
     for (i = 0; i < NROFARTIFACTS; i++) {
 	if (artidisco[i] == 0) break;	/* empty slot implies end of list */
 	if (i == 0)
-	    add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_INVERSE,
+	    add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
 	      "Artifacts", MENU_UNSELECTED);
 	m = artidisco[i];
 	otyp = artilist[m].otyp;
@@ -1372,7 +1372,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				      The(distant_name(otmp, xname)));
 			losexp("life drainage", FALSE);
 			if (magr && magr->mhp < magr->mhpmax) {
-			    magr->mhp += (u.uhpmax - oldhpmax)/2;
+			    magr->mhp += (oldhpmax - u.uhpmax)/2;
 			    if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
 			}
 			return TRUE;

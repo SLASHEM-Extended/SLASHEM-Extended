@@ -371,6 +371,9 @@ mapmerge.o: ../win/share/mapmerge.c $(HACK_H)
 txtmerge.o: ../win/share/txtmerge.c $(CONFIG_H) ../include/tile.h
 	$(CC) $(CFLAGS) -c ../win/share/txtmerge.c
 
+tile2bmp.o: ../win/share/tile2bmp.c $(HACK_H) ../include/tile.h
+	$(CC) $(CFLAGS) -c ../win/share/tile2bmp.c
+
 tile2x11.o: ../win/X11/tile2x11.c $(HACK_H) ../include/tile.h \
 						../include/tile2x11.h
 	$(CC) $(CFLAGS) -c ../win/X11/tile2x11.c

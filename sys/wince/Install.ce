@@ -2,9 +2,9 @@ Copyright (c) Alex Kompel, 2002
 NetHack may be freely redistributed.  See license for details.
 ========================================================================
                  Instructions for compiling and installing
-             NetHack 3.4.2 on a Windows CE or PocketPC system
+             NetHack 3.4.3 on a Windows CE or PocketPC system
 ========================================================================
-		      Last revision: $Date: 2003-11-06 00:04:12 $
+		      Last revision: $Date: 2003-12-11 09:49:08 $
 
 Credit for the porting of NetHack to Windows CE goes to Alex Kompel who 
 initially developed and contributed the port.

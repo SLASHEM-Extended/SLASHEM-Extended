@@ -447,7 +447,7 @@ struct mkroom	*sroom;
 	    return(-1);
 	}
 
-	if(MON_AT(sx, sy)) rloc(m_at(sx, sy)); /* insurance */
+	if(MON_AT(sx, sy)) (void) rloc(m_at(sx, sy), FALSE); /* insurance */
 
 	/* now initialize the shopkeeper monster structure */
 	  

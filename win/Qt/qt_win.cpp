@@ -58,6 +58,7 @@ extern "C" {
 #include "date.h"
 #include "patchlevel.h"
 #include "tile2x11.h"
+#undef Invisible
 #undef Warning
 #undef red
 #undef green
@@ -70,11 +71,9 @@ extern "C" {
 #undef max
 #undef alloc
 #undef lock
+#undef yn
 
 }
-#ifdef yn
-#undef yn
-#endif
 
 #include "qt_win.h"
 #include <qregexp.h>
@@ -991,7 +990,7 @@ public:
 };
 
 NetHackQtPlayerSelector::NetHackQtPlayerSelector(NetHackQtKeyBuffer& ks) :
-    QDialog(0,"plsel",TRUE),
+    QDialog(qApp->mainWidget(),"plsel",TRUE),
     keysource(ks),
     fully_specified_role(TRUE)
 {
@@ -1160,7 +1159,7 @@ NetHackQtPlayerSelector::NetHackQtPlayerSelector(NetHackQtKeyBuffer& ks) :
 	a = rn2(ROLE_ALIGNS);
     }
     alignment[a]->setChecked(TRUE);
-    selectAlignment(g);
+    selectAlignment(a);
 
     QListViewItem* li;
 
@@ -1171,6 +1170,9 @@ NetHackQtPlayerSelector::NetHackQtPlayerSelector(NetHackQtKeyBuffer& ks) :
     li = race->firstChild();
     while (ra--) li=li->nextSibling();
     race->setSelected(li,TRUE);
+
+    flags.initrace = race->selectedItemNumber();
+    flags.initrole = role->selectedItemNumber();
 }
 
 
@@ -1341,7 +1343,7 @@ bool NetHackQtPlayerSelector::Choose()
 
 
 NetHackQtStringRequestor::NetHackQtStringRequestor(NetHackQtKeyBuffer& ks, const char* p, const char* cancelstr) :
-    QDialog(0,"string",FALSE),
+    QDialog(qApp->mainWidget(),"string",FALSE),
     prompt(p,this,"prompt"),
     input(this,"input"),
     keysource(ks)
@@ -1657,8 +1659,6 @@ void NetHackQtMapWindow::paintEvent(QPaintEvent* event)
 	painter.setClipRect( event->rect() ); // (normally we don't clip)
 	painter.fillRect( event->rect(), black );
 
-	int offset;
-
 	if ( !rogue_font ) {
 	    // Find font...
 	    int pts = 5;
@@ -1846,10 +1846,10 @@ public:
     int uncleared;
 
     NetHackQtScrollText(int maxlength) :
+	uncleared(0),
 	maxitems(maxlength),
 	first(0),
 	count(0),
-	uncleared(0),
 	item_cycle(maxlength)
     {
 	setNumCols(1);
@@ -2047,21 +2047,21 @@ void NetHackQtMessageWindow::PutStr(int attr, const char* text)
 
 NetHackQtLabelledIcon::NetHackQtLabelledIcon(QWidget* parent, const char* l) :
     QWidget(parent),
+    low_is_good(FALSE),
+    prev_value(-123),
     turn_count(-1),
     label(new QLabel(l,this)),
-    icon(0),
-    low_is_good(FALSE),
-    prev_value(-123)
+    icon(0)
 {
     initHighlight();
 }
 NetHackQtLabelledIcon::NetHackQtLabelledIcon(QWidget* parent, const char* l, const QPixmap& i) :
     QWidget(parent),
     low_is_good(FALSE),
+    prev_value(-123),
     turn_count(-1),
     label(new QLabel(l,this)),
-    icon(new QLabel(this)),
-    prev_value(-123)
+    icon(new QLabel(this))
 {
     setIcon(i);
     initHighlight();
@@ -2199,7 +2199,7 @@ tryload(QPixmap& pm, const char* fn)
     if (!pm.load(filename)) {
 	QString msg;
 	msg.sprintf("Cannot load \"%s\"", fn);
-	QMessageBox::warning(0, "IO Error", msg);
+	QMessageBox::warning(qApp->mainWidget(), "IO Error", msg);
     }
 #ifdef FILE_AREAS
     free(filename);
@@ -2211,14 +2211,14 @@ NetHackQtStatusWindow::NetHackQtStatusWindow() :
     //  Alignment needs -2 init value, because -1 is an alignment.
     //  Armor Class is an schar, so 256 is out of range.
     //  Blank value is 0 and should never change.
+    name(this,"(name)"),
+    dlevel(this,"(dlevel)"),
     str(this,"STR"),
     dex(this,"DEX"),
     con(this,"CON"),
     intel(this,"INT"),
     wis(this,"WIS"),
     cha(this,"CHA"),
-    name(this,"(name)"),
-    dlevel(this,"(dlevel)"),
     gold(this,"Gold"),
     hp(this,"Hit Points"),
     power(this,"Power"),
@@ -2367,7 +2367,6 @@ void NetHackQtStatusWindow::resizeEvent(QResizeEvent*)
 
     int h=height();
     int x=0,y=0;
-    double space=1.0;
 
     int iw; // Width of an item across line
     int lh; // Height of a line of values
@@ -2567,7 +2566,7 @@ void NetHackQtStatusWindow::updateStats()
     name.setLabel(buf,NetHackQtLabelledIcon::NoNum,u.ulevel);
 
     if (describe_level(buf, FALSE)) {
-	dlevel.setLabel(buf,TRUE);
+	dlevel.setLabel(buf,(bool)TRUE);
     } else {
 	Sprintf(buf, "%s, level ", dungeons[u.uz.dnum].dname);
 	dlevel.setLabel(buf,(long)depth(&u.uz));
@@ -2680,7 +2679,7 @@ void NetHackQtStatusWindow::checkTurnEvents()
 
 
 NetHackQtMenuDialog::NetHackQtMenuDialog() :
-    QDialog(0,0,FALSE)
+    QDialog(qApp->mainWidget(),0,FALSE)
 {
 }
 
@@ -2723,16 +2722,14 @@ NetHackQtMenuWindow::NetHackQtMenuWindow(NetHackQtKeyBuffer& ks) :
     QTableView(),
     keysource(ks),
     dialog(new NetHackQtMenuDialog()),
-    pressed(-1),
-    prompt(0)
+    prompt(0),
+    pressed(-1)
 {
     setNumCols(4);
     setCellHeight(QMAX(qt_settings->glyphs().height()+1,fontMetrics().height()));
     setBackgroundColor(lightGray);
     setFrameStyle(Panel|Sunken);
     setLineWidth(2);
-
-    int x=0;
 
     ok=new QPushButton("Ok",dialog);
     connect(ok,SIGNAL(clicked()),dialog,SLOT(accept()));
@@ -2831,7 +2828,7 @@ void NetHackQtMenuWindow::AddMenu(int glyph, const ANY_P* identifier,
 	}
     }
 
-    if (item.size()<itemcount+1) {
+    if ((int)item.size() < itemcount+1) {
 	item.resize(itemcount*4+10);
     }
     item[itemcount].glyph=glyph;
@@ -3133,7 +3130,7 @@ void NetHackQtMenuWindow::mousePressEvent(QMouseEvent* event)
 	    if (item[row].count>0)
 		Sprintf(buf,"%d", item[row].count);
 	    else
-		Sprintf(buf,"");
+		Strcpy(buf, "");
 
 	    requestor.SetDefault(buf);
 	    if (requestor.Get(buf)) {
@@ -3257,7 +3254,7 @@ void NetHackQtRIP::paintEvent(QPaintEvent* event)
 }
 
 NetHackQtTextWindow::NetHackQtTextWindow(NetHackQtKeyBuffer& ks) :
-    QDialog(0,0,FALSE),
+    QDialog(qApp->mainWidget(),0,FALSE),
     keysource(ks),
     use_rip(FALSE),
     str_fixed(FALSE),
@@ -3459,7 +3456,7 @@ void NetHackQtTextWindow::Search()
     requestor.SetDefault(line);
     if (requestor.Get(line)) {
 	int current=lines->currentItem();
-	for (int i=1; i<lines->count(); i++) {
+	for (uint i=1; i<lines->count(); i++) {
 	    int lnum=(i+current)%lines->count();
 	    QString str=lines->text(lnum);
 	    if (str.contains(line)) {
@@ -3668,6 +3665,7 @@ NetHackQtMainWindow::NetHackQtMainWindow(NetHackQtKeyBuffer& ks) :
 	{ act2,	"Sit\tAlt+S",             "\363", 3},
 	{ act2,	"Steal\tAlt+B",             "\342", 3},
 	{ act2,	"Throw\tt",             "t", 2},
+	{ act2,	"Untrap\t#u",             "#u", 3},
 	{ act2,	"Up\t<",                "<", 3},
 	{ act2,	"Wipe face\tAlt+W",       "\367", 3},
 
@@ -4120,9 +4118,9 @@ void NetHackQtMainWindow::ShowIfReady()
 
 
 NetHackQtYnDialog::NetHackQtYnDialog(NetHackQtKeyBuffer& keysrc,const char* q,const char* ch,char df) :
-    QDialog(0,0,FALSE),
-    keysource(keysrc),
-    question(q), choices(ch), def(df)
+    QDialog(qApp->mainWidget(),0,FALSE),
+    question(q), choices(ch), def(df),
+    keysource(keysrc)
 {
     setCaption(DEF_GAME_NAME ": Question");
 }
@@ -4209,7 +4207,6 @@ char NetHackQtYnDialog::Exec()
 	const int margin=8;
 	const int gutter=8;
 	const int extra=fontMetrics().height(); // Extra for group
-	int row=0;
 	int x=margin, y=extra+margin;
 	int butsize=fontMetrics().height()*2+5;
 
@@ -4247,7 +4244,7 @@ char NetHackQtYnDialog::Exec()
 	show();
 	char choice=0;
 	char ch_esc=0;
-	for (int i=0; i<ch.length(); i++) {
+	for (uint i=0; i<ch.length(); i++) {
 	    if (ch[i].latin1()=='q') ch_esc='q';
 	    else if (!ch_esc && ch[i].latin1()=='n') ch_esc='n';
 	}
@@ -4256,7 +4253,7 @@ char NetHackQtYnDialog::Exec()
 	    if (!keysource.Empty()) {
 		char k=keysource.GetAscii();
 		char ch_esc=0;
-		for (int i=0; i<ch.length(); i++)
+		for (uint i=0; i<ch.length(); i++)
 		    if (ch[i].latin1()==k)
 			choice=k;
 		if (!choice) {
@@ -4335,6 +4332,7 @@ int NetHackQtGlyphs::loadTiles(const char *file)
 #endif
     if (!retval)
 	return 0;
+
     if ( iflags.wc_tile_width )
 	tilefile_tile_W = iflags.wc_tile_width;
     else
@@ -4455,8 +4453,8 @@ void NetHackQtGlyphs::setSize(int w, int h)
 
 
 NetHackQtMenuOrTextWindow::NetHackQtMenuOrTextWindow(NetHackQtKeyBuffer& ks) :
-    keysource(ks),
-    actual(0)
+    actual(0),
+    keysource(ks)
 {
 }
 
@@ -4630,7 +4628,7 @@ void NetHackQtBind::qt_player_selection()
 }
 
 NetHackQtSavedGameSelector::NetHackQtSavedGameSelector(const char** saved) :
-    QDialog(0,"sgsel",TRUE)
+    QDialog(qApp->mainWidget(),"sgsel",TRUE)
 {
     QVBoxLayout *vbl = new QVBoxLayout(this,6);
     QHBox* hb;
@@ -4748,11 +4746,11 @@ static QArray<NetHackQtWindow*> id_to_window;
 winid NetHackQtBind::qt_create_nhwindow(int type)
 {
     winid id;
-    for (id = 0; id < id_to_window.size(); id++) {
+    for (id = 0; id < (winid) id_to_window.size(); id++) {
 	if ( !id_to_window[id] )
 	    break;
     }
-    if ( id == id_to_window.size() )
+    if ( id == (winid) id_to_window.size() )
 	id_to_window.resize(id+1);
 
     NetHackQtWindow* window=0;
@@ -5101,7 +5099,7 @@ void NetHackQtBind::qt_getlin(const char *prompt, char *line)
 }
 
 NetHackQtExtCmdRequestor::NetHackQtExtCmdRequestor(NetHackQtKeyBuffer& ks) :
-    QDialog(0, "ext-cmd", FALSE),
+    QDialog(qApp->mainWidget(), "ext-cmd", FALSE),
     keysource(ks)
 {
     int marg=4;
@@ -5255,8 +5253,12 @@ bool NetHackQtBind::notify(QObject *receiver, QEvent *event)
 		}
 	    }
 	    char ch=key_event->ascii();
+	    if ( !ch && (key_event->state() & Qt::ControlButton) ) {
+		// On Mac, ascii control codes are not sent, force them.
+		if ( k>=Qt::Key_A && k<=Qt::Key_Z )
+		    ch = k - Qt::Key_A + 1;
+	    }
 	    if (!macro && ch) {
-		int k = key_event->key();
 		bool alt = (key_event->state()&AltButton) ||
 		   (k >= Key_0 && k <= Key_9 && (key_event->state()&ControlButton));
 		keybuffer.Put(key_event->key(),ch + (alt ? 128 : 0),

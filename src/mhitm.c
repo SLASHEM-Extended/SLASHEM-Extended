@@ -190,6 +190,16 @@ fightm(mtmp)		/* have monsters fight each other */
 		     */
 		    if (has_u_swallowed) return 0;
 
+		    /* Allow attacked monsters a chance to hit back. Primarily
+		     * to allow monsters that resist conflict to respond.
+		     */
+		    if ((result & MM_HIT) && !(result & MM_DEF_DIED) &&
+			rn2(4) && mon->movement >= NORMAL_SPEED) {
+			mon->movement -= NORMAL_SPEED;
+			notonhead = 0;
+			(void) mattackm(mon, mtmp);	/* return attack */
+		    }
+
 		    return ((result & MM_HIT) ? 1 : 0);
 		}
 	    }
@@ -236,7 +246,7 @@ mattackm(magr, mdef)
     boolean range;
 
     if (!magr || !mdef) return(MM_MISS);		/* mike@genat */
-    if (!magr->mcanmove) return(MM_MISS);		/* riv05!a3 */
+    if (!magr->mcanmove || magr->msleeping) return(MM_MISS);
     pa = magr->data;  pd = mdef->data;
 
     /* Grid bugs cannot attack at an angle. */
@@ -257,8 +267,12 @@ mattackm(magr, mdef)
     if (mdef->mundetected) {
 	mdef->mundetected = 0;
 	newsym(mdef->mx, mdef->my);
-	if(canseemon(mdef) && !sensemon(mdef))
-	    pline("Suddenly, you notice %s.", a_monnam(mdef));
+	if(canseemon(mdef) && !sensemon(mdef)) {
+	    if (u.usleep) You("dream of %s.",
+				(mdef->data->geno & G_UNIQ) ?
+				a_monnam(mdef) : makeplural(m_monnam(mdef)));
+	    else pline("Suddenly, you notice %s.", a_monnam(mdef));
+	}
     }
 
     /* Elves hate orcs. */
@@ -369,7 +383,7 @@ mattackm(magr, mdef)
 		       && otmp && objects[otmp->otyp].oc_material == IRON
 		       && mdef->mhp > 1 && !mdef->mcan)
 		    {
-			if (clone_mon(mdef)) {
+			if (clone_mon(mdef, 0, 0)) {
 			    if (vis) {
 				char buf[BUFSZ];
 
@@ -1373,7 +1387,7 @@ physical:
 		       we'll get "it" in the suddenly disappears message */
 		    if (vis) Strcpy(mdef_Monnam, Monnam(mdef));
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
-		    rloc(mdef);
+		    (void) rloc(mdef, FALSE);
 		    if (vis && !canspotmon(mdef)
 #ifdef STEED
 		    	&& mdef != u.usteed
@@ -1578,7 +1592,7 @@ physical:
 		    pline("%s steals some gold from %s.", buf, mon_nam(mdef));
 		}
 		if (!tele_restrict(magr)) {
-		    rloc(magr);
+		    (void) rloc(magr, FALSE);
 		    if (vis && !canspotmon(magr))
 			pline("%s suddenly disappears!", buf);
 		}
@@ -1652,7 +1666,7 @@ physical:
 							0 : MM_AGR_DIED));
 			if (magr->data->mlet == S_NYMPH &&
 			    !tele_restrict(magr)) {
-			    rloc(magr);
+			    (void) rloc(magr, FALSE);
 			    if (vis && !canspotmon(magr))
 				pline("%s suddenly disappears!", buf);
 			}
@@ -1713,8 +1727,7 @@ physical:
 		break;
 	    case AD_SLIM:
 		if (cancelled) break;   /* physical damage only */
-		if (!rn2(4) && !is_fire(mdef->data) &&
-				mdef->data != &mons[PM_SALAMANDER] &&
+		if (!rn2(4) && !flaming(mdef->data) &&
 				mdef->data != &mons[PM_GREEN_SLIME]) {
 		    if (newcham(mdef, &mons[PM_GREEN_SLIME], FALSE, vis)) {
 			mdef->oldmonnm = PM_GREEN_SLIME;

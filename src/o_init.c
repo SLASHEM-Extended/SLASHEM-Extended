@@ -429,7 +429,7 @@ dodiscovered()				/* free after Robert Viduya */
     for (i = dis = 0; i < SIZE(uniq_objs); i++)
 	if (objects[uniq_objs[i]].oc_name_known) {
 	    if (!dis++)
-		add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_INVERSE,
+		add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
 		  "Unique Items", MENU_UNSELECTED);
 		Sprintf(buf, "  %s", OBJ_NAME(objects[uniq_objs[i]]));
 	    add_menu(tmpwin, objnum_to_glyph(uniq_objs[i]), &any,
@@ -455,12 +455,11 @@ dodiscovered()				/* free after Robert Viduya */
 	    if ((dis = disco[i]) && interesting_to_discover(dis)) {
 		ct++;
 		if (oclass != prev_class) {
-			add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_INVERSE,
-			  let_to_name(oclass, FALSE), MENU_UNSELECTED);
+		    add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+		      let_to_name(oclass, FALSE), MENU_UNSELECTED);
 		    prev_class = oclass;
 		}
-		Sprintf(buf, "%s %s",
-		  (objects[dis].oc_pre_discovered ? "*" : " "),
+		Sprintf(buf, "%s %s",(objects[dis].oc_pre_discovered ? "*" : " "),
 				obj_typename(dis));
 		add_menu(tmpwin, objnum_to_glyph(dis), &any, 0, 0,
 		  ATR_NONE, buf, MENU_UNSELECTED);

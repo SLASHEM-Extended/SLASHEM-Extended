@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.41 2003-12-01 17:44:03 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.42 2003-12-11 09:49:08 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -589,6 +589,7 @@ ifeq ($(USE_DLB),Y)
 	$(COPY) $(DAT)\nhshare				$(GAMEDIR)
 	$(COPY) $(DAT)\nhushare				$(GAMEDIR)
 	$(COPY) $(DAT)\license				$(GAMEDIR)
+	$(COPY) $(DAT)\opthelp				$(GAMEDIR)
 else
 	$(COPY) $(DAT)\*.				$(GAMEDIR)
 	$(COPY) $(DAT)\*.dat				$(GAMEDIR)
@@ -1844,7 +1845,7 @@ dog.o: dog.c $(HACK_H) $(INCL)/edog.h $(INCL)/emin.h $(INCL)/epri.h
 dogmove.o: dogmove.c $(HACK_H) $(INCL)/mfndpos.h $(INCL)/edog.h \
 		$(INCL)/emin.h $(INCL)/epri.h
 dokick.o: dokick.c $(HACK_H) $(INCL)/eshk.h
-dothrow.o: dothrow.c $(HACK_H)
+dothrow.o: dothrow.c $(HACK_H) $(INCL)/eshk.h
 drawing.o: drawing.c $(HACK_H) $(INCL)/tcap.h
 dungeon.o: dungeon.c $(HACK_H) $(INCL)/dgn_file.h $(INCL)/dlb.h
 eat.o: eat.c $(HACK_H)

@@ -28,7 +28,6 @@
 
 static int FDECL(domonnoise,(struct monst *));
 static int NDECL(dochat);
-static const char *FDECL(growl_sound,(struct monst *));
 static const char *FDECL(yelp_sound,(struct monst *));
 static const char *FDECL(whimper_sound,(struct monst *));
 
@@ -366,7 +365,6 @@ int lev;
 /* the sounds of a seriously abused pet, including player attacking it */
 /* in extern.h: #define growl(mon) pet_distess((mon),3) */
 
-static
 const char *
 growl_sound(mtmp)
 register struct monst *mtmp;

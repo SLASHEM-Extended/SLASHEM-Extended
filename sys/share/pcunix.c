@@ -5,6 +5,7 @@
 /* This file collects some Unix dependencies; pager.c contains some more */
 
 #include "hack.h"
+#include "wintty.h"
 
 #include	<sys/stat.h>
 #if defined(WIN32) || defined(MSDOS)
@@ -102,7 +103,6 @@ getlock()
 # if defined(MSDOS) && defined(NO_TERMS)
 	int grmode = iflags.grmode;
 # endif
-	
 	/* we ignore QUIT and INT at this point */
 	if (!lock_file(HLOCK, LOCKPREFIX, 10)) {
 		wait_synch();
@@ -141,11 +141,7 @@ getlock()
 		msmsg("\nDo you want to destroy the old game? [yn] ");
 		while ((ci=nhgetch()) != '\n') {
 		    if (ct > 0) {
-# if defined(WIN32CON)
-			backsp();       /* \b is visible on NT */
-# else
 			msmsg("\b \b");
-# endif
 			ct = 0;
 			c = 'n';
 		    }
@@ -193,9 +189,6 @@ gotlock:
 # if defined(MSDOS) && defined(NO_TERMS)
 	if (grmode) gr_init();
 # endif
-#ifdef WIN32CON
-	if (!iflags.rawio) set_output_mode(1);
-#endif
 }	
 # endif /* PC_LOCKING */
 

@@ -14,7 +14,7 @@ static gint gn_tileset;
 static GtkWidget* clist;
 
 static void
-player_sel_key_hit (GtkWidget *widget, GdkEventKey *event, gpointer data)
+opt_sel_key_hit(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
       int i;
       for (i = 0; i < no_tilesets; ++i) {
@@ -26,7 +26,7 @@ player_sel_key_hit (GtkWidget *widget, GdkEventKey *event, gpointer data)
 }
 
 static void
-player_sel_row_selected (GtkCList *cList, int row, int col, GdkEvent *event)
+opt_sel_row_selected(GtkCList *cList, int row, int col, GdkEvent *event)
 {
     gn_tileset = row;
 }
@@ -45,7 +45,7 @@ ghack_settings_dialog()
 			    NULL);
     gnome_dialog_close_hides (GNOME_DIALOG (dialog), FALSE);
     gtk_signal_connect (GTK_OBJECT (dialog), "key_press_event",
-		      GTK_SIGNAL_FUNC (player_sel_key_hit), tilesets );
+		      GTK_SIGNAL_FUNC (opt_sel_key_hit), tilesets );
 
     frame1 = gtk_frame_new (_("Choose one of the following tilesets:"));
     gtk_object_set_data (GTK_OBJECT (dialog), "frame1", frame1);
@@ -61,7 +61,7 @@ ghack_settings_dialog()
 	    GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
     gtk_signal_connect (GTK_OBJECT (clist), "select_row",
-			GTK_SIGNAL_FUNC (player_sel_row_selected), NULL );
+			GTK_SIGNAL_FUNC (opt_sel_row_selected), NULL );
 
     gtk_container_add (GTK_CONTAINER (frame1), swin);
     gtk_box_pack_start_defaults (GTK_BOX (GNOME_DIALOG (dialog)->vbox), frame1);

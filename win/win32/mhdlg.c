@@ -447,6 +447,20 @@ BOOL CALLBACK PlayerSelectorDlgProc(HWND hWnd, UINT message, WPARAM wParam, LPAR
 	return FALSE;
 }
 
+void setComboBoxValue(HWND hWnd, int combo_box, int value)
+{
+	int index_max = SendDlgItemMessage(hWnd, combo_box, CB_GETCOUNT, 0, 0);
+	int index;
+	int value_to_set = LB_ERR;
+	for (index = 0; index < index_max; index++) {
+	    if (SendDlgItemMessage(hWnd, combo_box, CB_GETITEMDATA, (WPARAM)index, 0) == value) {
+		value_to_set = index;
+		break;
+	    }
+	}
+	SendDlgItemMessage(hWnd, combo_box, CB_SETCURSEL, (WPARAM)value_to_set, 0);
+}
+
 /* initialize player selector dialog */
 void plselInitDialog(HWND hWnd)
 {
@@ -480,7 +494,7 @@ void plselInitDialog(HWND hWnd)
 	} else {
 		CheckDlgButton(hWnd, IDC_PLSEL_ROLE_RANDOM, BST_UNCHECKED);
 		EnableWindow(GetDlgItem(hWnd, IDC_PLSEL_ROLE_LIST), TRUE);
-		SendDlgItemMessage(hWnd, IDC_PLSEL_ROLE_LIST, CB_SETCURSEL, (WPARAM)flags.initrole, 0);
+		setComboBoxValue(hWnd, IDC_PLSEL_ROLE_LIST, flags.initrole);
 	}
 
 	/* intialize races list */
@@ -490,7 +504,7 @@ void plselInitDialog(HWND hWnd)
 	} else {
 		CheckDlgButton(hWnd, IDC_PLSEL_RACE_RANDOM, BST_UNCHECKED);
 		EnableWindow(GetDlgItem(hWnd, IDC_PLSEL_RACE_LIST), TRUE);
-		SendDlgItemMessage(hWnd, IDC_PLSEL_RACE_LIST, CB_SETCURSEL, (WPARAM)flags.initrace, 0);
+		setComboBoxValue(hWnd, IDC_PLSEL_RACE_LIST, flags.initrace);
 	}
 
 	/* intialize genders list */
@@ -500,7 +514,7 @@ void plselInitDialog(HWND hWnd)
 	} else {
 		CheckDlgButton(hWnd, IDC_PLSEL_GENDER_RANDOM, BST_UNCHECKED);
 		EnableWindow(GetDlgItem(hWnd, IDC_PLSEL_GENDER_LIST), TRUE);
-		SendDlgItemMessage(hWnd, IDC_PLSEL_GENDER_LIST, CB_SETCURSEL, (WPARAM)flags.initgend, 0);
+		setComboBoxValue(hWnd, IDC_PLSEL_GENDER_LIST, flags.initgend);
 	}
 
 	/* intialize alignments list */
@@ -510,7 +524,7 @@ void plselInitDialog(HWND hWnd)
 	} else {
 		CheckDlgButton(hWnd, IDC_PLSEL_ALIGN_RANDOM, BST_UNCHECKED);
 		EnableWindow(GetDlgItem(hWnd, IDC_PLSEL_ALIGN_LIST), TRUE);
-		SendDlgItemMessage(hWnd, IDC_PLSEL_ALIGN_LIST, CB_SETCURSEL, (WPARAM)flags.initalign, 0);
+		setComboBoxValue(hWnd, IDC_PLSEL_ALIGN_LIST, flags.initalign);
 	}
 }
 
@@ -578,16 +592,14 @@ void  plselAdjustLists(HWND hWnd, int changed_sel)
 	/* reset content and populate the list */
 	SendMessage(control_role, CB_RESETCONTENT, 0, 0); 
 	for (i = 0; roles[i].name.m; i++) {
-		if (ok_role(i, initrace, initgend, initalign)) {
-			if (initgend>=0 && flags.female && roles[i].name.f)
-				ind = SendMessage(control_role, CB_ADDSTRING, (WPARAM)0, (LPARAM)NH_A2W(roles[i].name.f, wbuf, sizeof(wbuf)) );
-			else 
-				ind = SendMessage(control_role, CB_ADDSTRING, (WPARAM)0, (LPARAM)NH_A2W(roles[i].name.m, wbuf, sizeof(wbuf)) );
+		if (initgend>=0 && flags.female && roles[i].name.f)
+			ind = SendMessage(control_role, CB_ADDSTRING, (WPARAM)0, (LPARAM)NH_A2W(roles[i].name.f, wbuf, sizeof(wbuf)) );
+		else 
+			ind = SendMessage(control_role, CB_ADDSTRING, (WPARAM)0, (LPARAM)NH_A2W(roles[i].name.m, wbuf, sizeof(wbuf)) );
 
-			SendMessage(control_role, CB_SETITEMDATA, (WPARAM)ind, (LPARAM)i );
-			if( i==selrole ) { 
-				SendMessage(control_role, CB_SETCURSEL, (WPARAM)ind, (LPARAM)0 );
-			}
+		SendMessage(control_role, CB_SETITEMDATA, (WPARAM)ind, (LPARAM)i );
+		if( i==selrole ) { 
+			SendMessage(control_role, CB_SETCURSEL, (WPARAM)ind, (LPARAM)0 );
 		}
 	}
 	

@@ -778,6 +778,7 @@ level_tele()
 	d_level newlevel;
 	const char *escape_by_flying = 0;	/* when surviving dest of -N */
 	char buf[BUFSZ];
+	boolean force_dest = FALSE;
 
 	if ((u.uhave.amulet || In_endgame(&u.uz) || In_sokoban(&u.uz)
 #ifdef STEED
@@ -823,7 +824,29 @@ level_tele()
 		}
 #ifdef WIZARD
 		if (wizard && !strcmp(buf,"?")) {
-		    newlev = print_dungeon(TRUE);
+		    schar destlev = 0;
+		    xchar destdnum = 0;
+
+		    if ((newlev = (int)print_dungeon(TRUE, &destlev, &destdnum))) {
+			newlevel.dnum = destdnum;
+			newlevel.dlevel = destlev;
+			if (In_endgame(&newlevel) && !In_endgame(&u.uz)) {
+				Sprintf(buf,
+				    "Destination is earth level");
+				if (!u.uhave.amulet) {
+					struct obj *obj;
+					obj = mksobj(AMULET_OF_YENDOR,
+							TRUE, FALSE);
+					if (obj) {
+						obj = addinv(obj);
+						Strcat(buf, " with the amulet");
+					}
+				}
+				assign_level(&newlevel, &earth_level);
+				pline("%s.", buf);
+			}
+			force_dest = TRUE;
+		    } else return;
 		} else
 #endif
 		if ((newlev = lev_by_name(buf)) == 0) {
@@ -853,9 +876,14 @@ level_tele()
 		    is_silent(youmonst.data) ? "writhe" : "scream");
 		display_nhwindow(WIN_MESSAGE, FALSE);
 		You("cease to exist.");
+		if (invent) Your("possessions land on the %s with a thud.",
+				surface(u.ux, u.uy));
 		killer_format = NO_KILLER_PREFIX;
 		killer = "committed suicide";
 		done(DIED);
+		pline("An energized cloud of dust begins to coalesce.");
+		Your("body rematerializes%s.", invent ?
+			", and you gather up all your possessions" : "");
 		return;
 	    }
 
@@ -910,7 +938,7 @@ level_tele()
 #endif
 	killer = 0;		/* still alive, so far... */
 
-	if (newlev < 0) {
+	if (newlev < 0 && !force_dest) {
 		if (*u.ushops0) {
 		    /* take unpaid inventory items off of shop bills */
 		    in_mklev = TRUE;	/* suppress map update */
@@ -973,6 +1001,9 @@ level_tele()
 	} else if (u.uz.dnum == medusa_level.dnum &&
 	    newlev >= dungeons[u.uz.dnum].depth_start +
 						dunlevs_in_dungeon(&u.uz)) {
+#ifdef WIZARD
+	    if (!(wizard && force_dest))
+#endif
 	    find_hell(&newlevel);
 	} else {
 	    /* if invocation did not yet occur, teleporting into
@@ -1010,6 +1041,9 @@ level_tele()
 	     * we must translate newlev to a number relative to the
 	     * current dungeon.
 	     */
+#ifdef WIZARD
+	    if (!(wizard && force_dest))
+#endif
 	    get_level(&newlevel, newlev);
 	}
 	schedule_goto(&newlevel, FALSE, FALSE, 0, (char *)0, (char *)0);
@@ -1188,21 +1222,18 @@ register int x, y;
 }
 
 /* place a monster at a random location, typically due to teleport */
-void
-rloc(mtmp)
+/* return TRUE if successful, FALSE if not */
+boolean
+rloc(mtmp, suppress_impossible)
 struct monst *mtmp;	/* mx==0 implies migrating monster arrival */
+boolean suppress_impossible;
 {
 	register int x, y, trycount;
 
 #ifdef STEED
-	/* WAC It's disappearing... */
-	if (mtmp == u.usteed) dismount_steed(DISMOUNT_FELL);
-#endif
-
-#ifdef STEED
 	if (mtmp == u.usteed) {
 	    tele();
-	    return;
+	    return TRUE;
 	}
 #endif
 
@@ -1236,11 +1267,13 @@ struct monst *mtmp;	/* mx==0 implies migrating monster arrival */
 		    goto found_xy;
 
 	/* level either full of monsters or somehow faulty */
-	impossible("rloc(): couldn't relocate monster");
-	return;
+	if (!suppress_impossible)
+		impossible("rloc(): couldn't relocate monster");
+	return FALSE;
 
  found_xy:
 	rloc_to(mtmp, x, y);
+	return TRUE;
 }
 
 STATIC_OVL void
@@ -1255,7 +1288,7 @@ struct monst *mtmp;
 		rloc_to(mtmp, c.x, c.y);
 		return;
 	}
-	rloc(mtmp);
+	(void) rloc(mtmp, FALSE);
 }
 
 boolean
@@ -1289,7 +1322,7 @@ int in_sight;
 	     * the guard isn't going to come for it...
 	     */
 	    if (trap->once) mvault_tele(mtmp);
-	    else rloc(mtmp);
+	    else (void) rloc(mtmp, FALSE);
 
 	    if (in_sight) {
 		if (canseemon(mtmp))
@@ -1511,7 +1544,7 @@ boolean give_feedback;
 	    if (give_feedback)
 		You("are no longer inside %s!", mon_nam(mtmp));
 	    unstuck(mtmp);
-	    rloc(mtmp);
+	    rloc(mtmp, FALSE);
 	} else if (is_rider(mtmp->data) && rn2(13) &&
 		   enexto(&cc, u.ux, u.uy, mtmp->data))
 	    rloc_to(mtmp, cc.x, cc.y);
@@ -1531,7 +1564,7 @@ boolean give_feedback;
 		cc.x = omx = mtmp->mx;
 		cc.y = omy = mtmp->my;
 		if (getpos(&cc, TRUE, "the desired position") < 0)
-		    rloc(mtmp);	/* abort */
+		    rloc(mtmp, FALSE);	/* abort */
 		else if (rloc_pos_ok(cc.x, cc.y, mtmp)) {
 		    rloc_to(mtmp, cc.x, cc.y);
 		    /* As rloc() ... */
@@ -1539,11 +1572,11 @@ boolean give_feedback;
 			make_angry_shk(mtmp, omx, omy);
 		} else {
 		    pline("Sorry...");
-		    rloc(mtmp);
+		    rloc(mtmp, FALSE);
 		}
 	    } else
 #endif /* WIZARD */
-	    rloc(mtmp);
+	    rloc(mtmp, FALSE);
 	}
 	return TRUE;
 }

@@ -821,7 +821,8 @@ gnaskstr.o: ../win/gnome/gnaskstr.c ../win/gnome/gnaskstr.h \
 		../win/gnome/gnmain.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c ../win/gnome/gnaskstr.c
 gnbind.o: ../win/gnome/gnbind.c ../win/gnome/gnbind.h ../win/gnome/gnmain.h \
-		../win/gnome/gnaskstr.h ../win/gnome/gnyesno.h
+		../win/gnome/gnmenu.h ../win/gnome/gnaskstr.h \
+		../win/gnome/gnyesno.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c ../win/gnome/gnbind.c
 gnglyph.o: ../win/gnome/gnglyph.c ../win/gnome/gnglyph.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c ../win/gnome/gnglyph.c
@@ -833,7 +834,7 @@ gnmap.o: ../win/gnome/gnmap.c ../win/gnome/gnmap.h ../win/gnome/gnglyph.h \
 		../win/gnome/gnsignal.h $(HACK_H)
 	$(CC) $(CFLAGS) $(GNOMEINC) -c ../win/gnome/gnmap.c
 gnmenu.o: ../win/gnome/gnmenu.c ../win/gnome/gnmenu.h ../win/gnome/gnmain.h \
-		../win/gnome/gnbind.h
+		../win/gnome/gnbind.h ../include/func_tab.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c ../win/gnome/gnmenu.c
 gnmesg.o: ../win/gnome/gnmesg.c ../win/gnome/gnmesg.h ../win/gnome/gnsignal.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c ../win/gnome/gnmesg.c

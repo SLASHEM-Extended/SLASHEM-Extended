@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)u_init.c	3.4	2002/03/02	*/
+/*	SCCS Id: @(#)u_init.c	3.4	2002/10/22	*/
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -408,7 +408,7 @@ static const struct def_skill Skill_A[] = {
 
 static const struct def_skill Skill_B[] = {
     { P_DAGGER, P_BASIC },		{ P_AXE, P_EXPERT },
-    { P_PICK_AXE, P_EXPERT },           { P_SHORT_SWORD, P_SKILLED },
+    { P_PICK_AXE, P_SKILLED },	{ P_SHORT_SWORD, P_EXPERT },
     { P_BROAD_SWORD, P_SKILLED },	{ P_LONG_SWORD, P_SKILLED },
     { P_TWO_HANDED_SWORD, P_EXPERT },	{ P_SCIMITAR, P_SKILLED },
     { P_SABER, P_BASIC },		{ P_CLUB, P_SKILLED },
@@ -417,14 +417,14 @@ static const struct def_skill Skill_B[] = {
     { P_FLAIL, P_BASIC },		{ P_HAMMER, P_EXPERT },
     { P_QUARTERSTAFF, P_BASIC },	{ P_SPEAR, P_SKILLED },
     { P_TRIDENT, P_SKILLED },		{ P_BOW, P_BASIC },
-    { P_ATTACK_SPELL, P_SKILLED },      { P_BODY_SPELL, P_SKILLED },
+    { P_ATTACK_SPELL, P_SKILLED },	{ P_BODY_SPELL, P_SKILLED },
 /*WAC - 'B' is good at attack spells and body manipulation spells
         -both combat oriented */
 #ifdef STEED
     { P_RIDING, P_BASIC },
 #endif
     { P_TWO_WEAPON_COMBAT, P_BASIC },
-    { P_BARE_HANDED_COMBAT, P_GRAND_MASTER },
+    { P_BARE_HANDED_COMBAT, P_MASTER },
     { P_NONE, 0 }
 };
 
@@ -444,7 +444,7 @@ static const struct def_skill Skill_C[] = {
 /*WAC - 'C' is at one with the elements - matter spells, as well as
         basic enchantments - removed attack spell basic skill as
         it is now "dark" spells*/
-    { P_BARE_HANDED_COMBAT, P_GRAND_MASTER },
+    { P_BARE_HANDED_COMBAT, P_MASTER },
     { P_NONE, 0 }
 };
 
@@ -675,7 +675,8 @@ static const struct def_skill Skill_S[] = {
 #ifdef STEED
     { P_RIDING, P_SKILLED },
 #endif
-    { P_TWO_WEAPON_COMBAT, P_EXPERT },  { P_MARTIAL_ARTS, P_GRAND_MASTER },
+    { P_TWO_WEAPON_COMBAT, P_EXPERT },
+    { P_MARTIAL_ARTS, P_MASTER },
     { P_NONE, 0 }
 };
 

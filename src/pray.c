@@ -444,7 +444,7 @@ decurse:
 		    break;
 	    case TROUBLE_HALLUCINATION:
 		    pline ("Looks like you are back in Kansas.");
-		    make_hallucinated(0L,FALSE,0L);
+		    (void) make_hallucinated(0L,FALSE,0L);
 		    break;
 	    case TROUBLE_LOW_ENERGY:
 		    You_feel("revitalised.");
