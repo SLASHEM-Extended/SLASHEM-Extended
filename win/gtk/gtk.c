@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.23 2001-04-06 15:14:18 j_ali Exp $
+  $Id: gtk.c,v 1.24 2001-04-11 13:52:12 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1409,13 +1409,13 @@ GTK_init_nhwindows(int *argc, char **argv)
 #ifdef UNIX
     savuid = geteuid();
     (void) seteuid(getuid());
+    hide_privileges(TRUE);
 #endif
     
-    hide_privileges(TRUE);
     gtk_init(argc, &argv);
-    hide_privileges(FALSE);
 
 #ifdef UNIX
+    hide_privileges(FALSE);
     (void) seteuid(savuid);
 #endif
     
