@@ -1411,9 +1411,9 @@ u_init()
 	u.umoney0 += hidden_gold();	/* in case sack has gold in it */
 #endif
 
-	find_ac();			/* get initial ac value */
 	temp = rn1(10,70);
-	init_attr(temp);                 /* init attribute values */
+	init_attr(temp);		/* init attribute values */
+	find_ac();			/* get initial ac value */
 	max_rank_sz();			/* set max str size for class ranks */
 /*
  *	Do we really need this?
