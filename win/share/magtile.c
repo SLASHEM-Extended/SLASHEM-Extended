@@ -10,6 +10,8 @@
 #include <unistd.h>
 #endif
 
+#define SCALE2X
+
 static char *tilefiles[] = {	"../win/share/monsters.txt",
 				"../win/share/objects.txt",
 				"../win/share/other.txt"};
@@ -35,10 +37,49 @@ const char *name;
 	for(j = 0; j < tile_y; j++)
 		for(i = 0; i < tile_x; i++)
 		{
+#ifdef SCALE2X
+			/* Scale2X algorithm from AdvanceMAME
+			 * http://advancemame.sourceforge.net/scale2x.html
+			 *
+			 * Pixel E from a source image
+			 *
+			 *       B 
+			 *     D E F
+			 *       H 
+			 *
+			 * is magnified to a set of 4 destination pixels
+			 *
+			 *     E0 E1
+			 *     E2 E3
+			 *
+			 * by the following rules
+			 *
+			 * E0 = D == B && B != F && D != H ? D : E;
+			 * E1 = B == F && B != D && F != H ? F : E;
+			 * E2 = D == H && D != B && H != F ? D : E;
+			 * E3 = H == F && D != H && B != F ? F : E;
+			 *
+			 */
+			pixel       pixB;
+			pixel pixD, pixE, pixF;
+			pixel       pixH;
+
+			pixE = pixels[j][i];
+			pixB = ( (j == 0) ? pixE : pixels[j-1][i]);
+			pixD = ( (i == 0) ? pixE : pixels[j][i-1]);
+			pixF = ( (i == (tile_x - 1)) ? pixE : pixels[j][i+1]);
+			pixH = ( (j == (tile_y - 1)) ? pixE : pixels[j+1][i]);
+			
+			bigpixels[2 * j][2 * i] = ((pixel_equal(pixD,pixB) && !pixel_equal(pixB,pixF) && !pixel_equal(pixD,pixH)) ? pixD : pixE);
+			bigpixels[2 * j][2 * i + 1] = ((pixel_equal(pixB,pixF) && !pixel_equal(pixB,pixD) && !pixel_equal(pixF,pixH)) ? pixF : pixE);
+			bigpixels[2 * j + 1][2 * i] = ((pixel_equal(pixD,pixH) && !pixel_equal(pixD,pixB) && !pixel_equal(pixH,pixF)) ? pixD : pixE);
+			bigpixels[2 * j + 1][2 * i + 1] = ((pixel_equal(pixH,pixF) && !pixel_equal(pixD,pixH) && !pixel_equal(pixB,pixF)) ? pixF : pixE);
+#else
 			bigpixels[2 * j][2 * i] = pixels[j][i];
 			bigpixels[2 * j + 1][2 * i] = pixels[j][i];
 			bigpixels[2 * j][2 * i + 1] = pixels[j][i];
 			bigpixels[2 * j + 1][2 * i + 1] = pixels[j][i];
+#endif
 		}
 	tile_x *= 2;
 	tile_y *= 2;
