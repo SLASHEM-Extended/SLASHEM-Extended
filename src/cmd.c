@@ -1262,6 +1262,8 @@ int final;      /* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if (Reflecting) you_have("reflection");
 	if (Free_action) you_have("free action");
 	if (Fixed_abil) you_have("fixed abilities");
+	if (uamul && uamul->otyp == AMULET_VERSUS_STONE)
+		enl_msg("You ", "will be", "would have been", " depetrified");
 	if (Lifesaved)
 		enl_msg("Your life ", "will be", "would have been", " saved");
 	if (u.twoweap) you_are("wielding two weapons at once");
