@@ -359,6 +359,7 @@ ver 0.0.6E4F4 [? ?/2001] [Released by ?]
 -fixed bug 413243: eating amulets of flying.
 -Tweaked winnt makefile to make Win2K build easier for Ali.
 -fixed bug 413537: Expensive camera malfunction.
+-fixed bug 414101: Crash when asking for Help at prompt.
 
 ver 0.0.6E4F3 [February 28/2001] [Released by Ali]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined

@@ -1123,6 +1123,7 @@ $(DAT)\nhshare:	dlb_main.exe $(DAT)\data $(DAT)\rumors $(DAT)\dungeon \
 	$(ECHO) history >>$(DAT)\dlb.lst
 	$(ECHO) opthelp >>$(DAT)\dlb.lst
 	$(ECHO) wizhelp >>$(DAT)\dlb.lst
+	$(ECHO) gypsy.txt >>$(DAT)\dlb.lst
 	$(ECHO) license >>$(DAT)\dlb.lst
 # The line above works, but the line below doesn't.  I can't figure-out why.
 # WAC - for some reason, this is OK under the DJGPP make...

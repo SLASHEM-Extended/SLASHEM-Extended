@@ -1714,9 +1714,10 @@ do_class_genocide()
                         any.a_void = 0;         /* zero out all bits */
                         for (i = 1; i < (MAXMCLASSES - MISCMCLASSES); i++) {
                            any.a_int = i;        /* must be non-zero */
-                           add_menu(tmpwin, NO_GLYPH, &any,
-                               def_monsyms[i], 0, ATR_NONE,
-                               an(monexplain[i]), MENU_UNSELECTED);
+			   if (monexplain[i])
+			       add_menu(tmpwin, NO_GLYPH, &any,
+				   def_monsyms[i], 0, ATR_NONE,
+				   an(monexplain[i]), MENU_UNSELECTED);
                         }
                         end_menu(tmpwin, "Monster Types");
                         n = 0;

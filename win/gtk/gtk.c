@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.22 2001-03-09 16:02:02 j_ali Exp $
+  $Id: gtk.c,v 1.23 2001-04-06 15:14:18 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -2013,6 +2013,9 @@ GTK_display_file(const char *fname, BOOLEAN_P complain)
 	GTK_SIGNAL_FUNC(default_button_press), (gpointer)'\033');
 
     while(dlb_fgets(buf, NH_BUFSIZ, fp)){
+	char *s;
+	if ((s = index(buf, '\r')) != 0)
+	    memmove(s, s + 1, strlen(s));
 	gtk_text_insert(GTK_TEXT(text), NULL, NULL, NULL, buf, strlen(buf));
     }
 
