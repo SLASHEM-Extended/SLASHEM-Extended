@@ -84,6 +84,7 @@ ver 0.0.7E6F3 [?] [Released by ?]
 -fixed bug 929220: Prayer and chi healing
 -fixed bug 946157: Water elementals created over lava on Flame mage quest
 -fixed bug 946161: Bad message when two-weaponing against a rust monster
+-fixed bug 946566: Partly eaten more nutritious while raising drained corpses
 
 See history.txt for changes made in previous versions.
 
