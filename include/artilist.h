@@ -52,11 +52,13 @@ A("Firewall",                  ATHAME,
  *	M2_something flags.  In Sting's case it will trigger EWarn_of_mon
  *	for M2_ORC monsters.
  */
+#ifndef DEVEL_BRANCH
 A("Sting",                      ELVEN_DAGGER,
 	(SPFX_WARN|SPFX_DCLAS), 0, M2_ORC,
-#ifndef DEVEL_BRANCH
 	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_CHAOTIC, NON_PM, PM_ELF ),
 #else
+A("Sting",                      ELVEN_DAGGER,
+	(SPFX_WARN|SPFX_DCLAS), 0, M2_ORC,
 	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_LAWFUL, NON_PM, PM_ELF ),
 #endif
 
@@ -74,11 +76,13 @@ A("Quick Blade",                ELVEN_SHORT_SWORD,
 	SPFX_RESTR, 0, 0,
 	PHYS(9,2),      NO_DFNS,        NO_CARY,        0, A_LAWFUL, NON_PM, NON_PM ),
 
+#ifndef DEVEL_BRANCH
 A("Orcrist",                    ELVEN_BROADSWORD,
 	SPFX_DFLAG2, 0, M2_ORC,
-#ifndef DEVEL_BRANCH
 	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_CHAOTIC, NON_PM, PM_ELF ),
 #else
+A("Orcrist",                    ELVEN_BROADSWORD,
+	SPFX_DFLAG2, 0, M2_ORC,
 	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_LAWFUL, NON_PM, PM_ELF ),
 #endif
 
