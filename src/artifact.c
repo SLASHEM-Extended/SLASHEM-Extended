@@ -214,9 +214,36 @@ aligntyp alignment;	/* target alignment, or A_NONE */
 		    (a->alignment == alignment ||
 			(a->alignment == A_NONE && u.ugifts > 0))) &&
 		(!(a->spfx & SPFX_NOGEN) || unique) && !artiexist[m]) {
-		if (by_align && a->race != NON_PM && race_hostile(&mons[a->race]))
-		    continue;	/* skip enemies' equipment */
-		else if (by_align && Role_if(a->role))
+		/*
+		 * [ALI] The determination of whether an artifact is
+		 * hostile to the player is a little more complex in
+		 * Slash'EM than Vanilla since there are artifacts
+		 * which are hostile to humans (eg., Deathsword) which
+		 * aren't aligned to any race.
+		 * Nevertheless, the rule remains the same: Gods don't
+		 * grant artifacts which would be hostile to the player
+		 * _in their normal form_.
+		 */
+		boolean hostile = FALSE;
+		if (by_align) {
+		    if (a->race != NON_PM && race_hostile(&mons[a->race]))
+			hostile = TRUE;		/* enemies' equipment */
+		    else if (a->spfx & SPFX_DBONUS) {
+			struct artifact tmp;
+
+			tmp = *a;
+			tmp.spfx &= SPFX_DBONUS;
+			if (Upolyd)
+			    set_mon_data(&youmonst, &upermonst, 0);
+			if (spec_applies(&tmp, &youmonst))
+			    hostile = TRUE;	/* can blast unpolyd player */
+			if (Upolyd)
+			    set_mon_data(&youmonst, &mons[u.umonnum], 0);
+		    }
+		}
+		if (hostile)
+		    continue;
+		if (by_align && Role_if(a->role))
 		    goto make_artif;	/* 'a' points to the desired one */
 		else
 		    eligible[n++] = m;
