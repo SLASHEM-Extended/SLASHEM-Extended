@@ -272,7 +272,7 @@ const struct Role roles[] = {
 	"Nharlotep", "Zugguthobal", "Gothuulbe", /* Assorted slimy things */
 	"Nec", "the Tower of the Dark Lord", "the Lair of Maugneshaagar",
 	PM_NECROMANCER, NON_PM, PM_GHOUL,
-	PM_THE_DARK_LORD, PM_EMBALMER, PM_MAUGNESHAAGAR,
+	PM_DARK_LORD, PM_EMBALMER, PM_MAUGNESHAAGAR,
 	PM_NUPPERIBO, PM_MONGBAT, S_BAT, S_IMP,
 #if 0
 	ART_SERPENT_S_TONGUE, ART_GRIMTOOTH,

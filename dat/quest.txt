@@ -3542,7 +3542,7 @@ to %n.
 "You must travel to %i, and within its dungeons,
 find and overcome %n, and return %o to me.
 
-"Go now, with %d, and return order to our tower."
+"Go now, with %d, and return freedom to our tower."
 %Cp Nec 00020
 "Beware, for %n is immune to most magical attacks."
 %E
@@ -3642,8 +3642,7 @@ for dessert!"
 %E
 %Cc Nec 00070
 As you touch %o, its comforting power infuses you
-with new energy.  You feel as if you can detect others' thoughts flowing
-through it.  Although you yearn to use %o
+with new energy.  Although you yearn to use %o
 to attack the Wizard of Yendor, you know you must return it to its
 rightful owner, %l.
 %E

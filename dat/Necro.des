@@ -42,17 +42,13 @@ ENDMAP
 RANDOM_MONSTERS: 'B', 'i'
 # Dungeon Description
 REGION:(00,00,75,19),unlit,"ordinary"
-#REGION:(35,00,49,03),unlit,"ordinary"
-#REGION:(43,12,49,16),unlit,"ordinary"
-#REGION:(19,11,33,15),unlit,"ordinary",unfilled,true
-#REGION:(30,10,31,10),unlit,"ordinary"
 # Stairs
 STAIR:(16,07),down
 # Portal arrival point
 BRANCH:(63,06,63,06),(0,0,0,0)
-# Doors
-MONSTER:'@',"the Dark Lord",(25,08)
-# The treasure of Wizard of Balance
+# Dark Lord
+MONSTER:'@',"Dark Lord",(25,08)
+# The treasure of the Dark Lord
 OBJECT:'(',"chest",(25,09)
 # apprentice guards for the audience chamber
 MONSTER:'@',"embalmer",(24,07)
@@ -85,7 +81,7 @@ MONSTER: 'B',random,(10,19),hostile
 #
 #	The "locate" level for the quest.
 #
-#	Here you have to find the Entrance to the Tower of Darkness to go
+#	Here you have to find the Entrance to the Lair of Maugneshaagar to go
 #	further towards your assigned quest.
 #
 
@@ -261,7 +257,7 @@ DOOR:locked,(49,09)
 STAIR:(55,05),up
 # Non diggable walls
 NON_DIGGABLE:(00,00,75,19)
-# The altar of Anhur.  This is not a shrine.
+# The altar of Moloch.  This is not a shrine.
 ALTAR:(16,11),noalign,altar
 # Objects
 OBJECT:')',"great dagger",(16,11),blessed,0,"The Great Dagger of Glaurgnaa"
