@@ -6,8 +6,8 @@
 #
 # by Michaelª Hamel and Ross Brown 1991 : michael@otago.ac.nz
 #
-# Updated for Slash'EM 0.0.5-2 to .6-8
-# Paul Hurtley, August 1999 to January 2003
+# Updated for Slash'EM 0.0.5-2 and later
+# Paul Hurtley, August 1999 and later
 
 #--------------------------------------------------------------------------
 #
