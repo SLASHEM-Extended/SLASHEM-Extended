@@ -1,5 +1,5 @@
 /*
-  $Id: gtkstatus.c,v 1.11 2003-05-24 15:15:15 j_ali Exp $
+  $Id: gtkstatus.c,v 1.12 2003-08-02 14:44:52 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -415,7 +415,7 @@ const char **values;
 			sscanf(values[stat_tab[i].dvi], "%d", &dval);
 			if (i == stat_tab_hp && (val <= 5 || val * 7 <= dval))
 			    in_trouble = TRUE;
-			val = val * NH_BAR_WIDTH / dval;
+			val = dval ? val * NH_BAR_WIDTH / dval : 0;
 		    }
 		    gdk_draw_rectangle(bar[j].pixmap, bar[j].gc, TRUE,
 			0, 0, val, NH_BAR_HEIGHT);
