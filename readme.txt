@@ -107,6 +107,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 980258: Guidebook doesn't describe showdmg option accurately
 		   (Andy Ruse)
 -fixed bug 926202: Gnome thieves don't eat (Andy Ruse)
+-fixed bug 926200: Dwarf thieves have M2_NOPOLY (Andy Ruse)
 
 See history.txt for changes made in previous versions.
 
