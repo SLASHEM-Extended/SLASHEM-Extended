@@ -337,6 +337,7 @@ ver 0.0.6E4F4 [? ?/2001] [Released by ?]
 -fixed bug 409695: Bad fruit after polymorph.
 -fixed bug 409699: Falling polymorphed objects cause crash.
 -fixed bug 409906: No eucalyptus leaves from trees.
+-fixed bug 409694: Polypiling instability.
 
 ver 0.0.6E4F3 [February 28/2001] [Released by Ali]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined

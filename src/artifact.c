@@ -303,7 +303,12 @@ register boolean mod;
 			/* WAC light source deletion handled in obfree */
 		    }
 		    otmp->oartifact = (char)(mod ? m : 0);
-		    if (mod) otmp->quan = 1; /* guarantee only one of this artifact */
+		    if (mod) {
+			otmp->quan = 1; /* guarantee only one of this artifact */
+#ifdef UNPOLYPILE	/* Artifacts are immune to unpolypile --ALI */
+			(void) stop_timer(UNPOLY_OBJ, (genericptr_t) otmp);
+#endif
+		    }
 		    otmp->age = 0;
 		    if(otmp->otyp == RIN_INCREASE_DAMAGE)
 			otmp->spe = 0;

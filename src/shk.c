@@ -742,6 +742,7 @@ register struct obj *obj, *merge;
 #endif
 
 	if (obj->otyp == LEASH && obj->leashmon) o_unleash(obj);
+	if (obj->oclass == SPBOOK_CLASS) book_disappears(obj);
 	if (obj->oclass == FOOD_CLASS) food_disappears(obj);
 	if (Has_contents(obj)) delete_contents(obj);
 

@@ -363,11 +363,13 @@ E char *FDECL(coyotename, (char *));
 
 /* ### do_wear.c ### */
 
-#ifdef USE_TRAMPOLI
+E int NDECL(Cloak_on);
+E void NDECL(Amulet_on);
 E int NDECL(Armor_on);
 E int NDECL(Boots_on);
 E int NDECL(Gloves_on);
 E int NDECL(Helmet_on);
+#ifdef USE_TRAMPOLI
 E int FDECL(select_off, (struct obj *));
 E int NDECL(take_off);
 #endif
@@ -1848,6 +1850,7 @@ E boolean FDECL(load_special, (const char *));
 E int NDECL(learn);
 #endif
 E int FDECL(study_book, (struct obj *));
+E void FDECL(book_disappears, (struct obj *));
 E void FDECL(book_substitution, (struct obj *,struct obj *));
 E void NDECL(age_spells);
 E int NDECL(docast);
@@ -2327,6 +2330,7 @@ E boolean FDECL(drain_item, (struct obj *));	/* KMH */
 E boolean FDECL(obj_resists, (struct obj *,int,int));
 E boolean FDECL(obj_shudders, (struct obj *));
 E void FDECL(do_osshock, (struct obj *));
+E void FDECL(puton_worn_item, (struct obj *));
 E struct obj *FDECL(poly_obj, (struct obj *,int));
 E int FDECL(bhito, (struct obj *,struct obj *));
 E int FDECL(bhitpile, (struct obj *,int (*)(OBJ_P,OBJ_P),int,int));

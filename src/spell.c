@@ -39,6 +39,7 @@ static NEARDATA struct obj *book;       /* last/current book being xscribed */
 static void FDECL(cursed_book, (int));
 static void FDECL(deadbook, (struct obj *));
 STATIC_PTR int NDECL(learn);
+static void NDECL(do_reset_learn);
 static boolean FDECL(getspell, (int *));
 static boolean FDECL(dospellmenu, (const char *,int,int *));
 static int FDECL(percent_success, (int));
@@ -295,6 +296,11 @@ learn()
 	char splname[BUFSZ];
 	boolean costly = TRUE;
 
+	if (!book || !carried(book)) {
+	    /* maybe it was stolen or polymorphed? */
+	    do_reset_learn();
+	    return(0);
+	}
 	if (delay < end_delay) {    /* not if (delay++), so at end delay == 0 */
 		delay++;
 		return(1); /* still busy */
@@ -506,6 +512,17 @@ register struct obj *spellbook;
 	return(1);
 }
 
+/* When spellbook unpolymorphs, while you're studying it, we don't want to
+ * dereference any dangling pointers, so set it to null (which should
+ * trigger do_reset_learn() at the beginning of learn()).
+ */
+void
+book_disappears(obj)
+register struct obj *obj;
+{
+	if (obj == book) book = (struct obj *)0;
+}
+
 /* renaming an object usually results in it having a different address;
    so the sequence start reading, get interrupted, name the book, resume
    reading would read the "new" book from scratch */
@@ -514,6 +531,12 @@ book_substitution(old_obj, new_obj)
 struct obj *old_obj, *new_obj;
 {
 	if (old_obj == book) book = new_obj;
+}
+
+static void
+do_reset_learn()
+{
+	stop_occupation();
 }
 
 /* called from moveloop() */

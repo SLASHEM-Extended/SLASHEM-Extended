@@ -40,12 +40,6 @@ static NEARDATA const long takeoff_order[] = { WORN_BLINDF, W_WEP,
 	WORN_BOOTS, W_SWAPWEP, W_QUIVER, 0L };
 
 STATIC_DCL void FDECL(on_msg, (struct obj *));
-STATIC_PTR int NDECL(Armor_on);
-STATIC_PTR int NDECL(Boots_on);
-STATIC_DCL int NDECL(Cloak_on);
-STATIC_PTR int NDECL(Helmet_on);
-STATIC_PTR int NDECL(Gloves_on);
-STATIC_DCL void NDECL(Amulet_on);
 STATIC_DCL void FDECL(Ring_off_or_gone, (struct obj *, BOOLEAN_P));
 STATIC_PTR int FDECL(select_off, (struct obj *));
 STATIC_DCL struct obj *NDECL(do_takeoff);
@@ -77,7 +71,6 @@ register struct obj *otmp;
  * The Type_off() functions call setworn() themselves.
  */
 
-STATIC_PTR
 int
 Boots_on()
 {
@@ -176,7 +169,7 @@ Boots_off()
     return 0;
 }
 
-STATIC_OVL int
+int
 Cloak_on()
 {
     long oldprop = u.uprops[objects[uarmc->otyp].oc_oprop].extrinsic & ~WORN_CLOAK;
@@ -293,7 +286,6 @@ Cloak_off()
     return 0;
 }
 
-STATIC_PTR
 int
 Helmet_on()
 {
@@ -390,7 +382,6 @@ Helmet_off()
     return 0;
 }
 
-STATIC_PTR
 int
 Gloves_on()
 {
@@ -521,7 +512,6 @@ Shield_off()
  * is fire resistance, and we have to immediately set HFire_resistance in worn.c
  * since worn.c will check it before returning.
  */
-STATIC_PTR
 int
 Armor_on()
 {
@@ -552,7 +542,7 @@ Armor_gone()
     return 0;
 }
 
-STATIC_OVL void
+void
 Amulet_on()
 {
     switch(uamul->otyp) {

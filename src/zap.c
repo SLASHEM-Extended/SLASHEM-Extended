@@ -1173,6 +1173,35 @@ struct obj *obj;
 	delobj(obj);
 }
 
+/* [ALI] Deal with any special effects after "wearing" an object. */
+void
+puton_worn_item(obj)
+struct obj *obj;
+{
+    if (!obj->owornmask)
+	return;
+    switch (obj->oclass) {
+	case TOOL_CLASS:
+	    if (obj == ublindf) Blindf_on(obj);
+	    break;
+	case AMULET_CLASS:
+	    Amulet_on();
+	    break;
+	case RING_CLASS:
+	case FOOD_CLASS: /* meat ring */
+	    Ring_on(obj);
+	    break;
+	case ARMOR_CLASS:
+	    if (obj == uarm) (void) Armor_on();
+	    else if (obj == uarmc) (void) Cloak_on();
+	    else if (obj == uarmf) (void) Boots_on();
+	    else if (obj == uarmg) (void) Gloves_on();
+	    else if (obj == uarmh) (void) Helmet_on();
+/*	    else if (obj == uarms) (void) Shield_on(); */
+	    break;
+    }
+}
+
 /*
  * Polymorph the object to the given object ID.  If the ID is STRANGE_OBJECT
  * then pick random object from the source's class (this is the standard
@@ -1192,6 +1221,7 @@ poly_obj(obj, id)
 	xchar ox, oy;
 	boolean can_merge = (id == STRANGE_OBJECT);
 	int obj_location = obj->where;
+	int old_nutrit, new_nutrit;
 
 #ifdef UNPOLYPILE
 	boolean unpoly = (id == STRANGE_OBJECT);
@@ -1201,6 +1231,25 @@ poly_obj(obj, id)
 	if (obj->otyp == AMULET_OF_UNCHANGING)
 	    return (obj);
 
+#ifdef WIZARD
+	otmp = (struct obj *)0;
+	if (id == STRANGE_OBJECT && wizard && Polymorph_control) {
+	    int typ;
+	    char buf[BUFSZ];
+	    getlin("Polymorph into what? [type the name]", buf);
+	    otmp = readobjnam(buf);
+	    if (otmp && otmp->oclass != obj->oclass) {
+		delobj(otmp);
+		otmp = (struct obj *)0;
+	    }
+	    else if (otmp) {
+		typ = otmp->otyp;
+		delobj(otmp);
+		otmp = mksobj(typ, TRUE, FALSE);
+	    }
+	}
+	if (!otmp)
+#endif
 	if (id == STRANGE_OBJECT) { /* preserve symbol */
 	    int try_limit = 3;
 	    /* Try up to 3 times to make the magic-or-not status of
@@ -1327,6 +1376,12 @@ poly_obj(obj, id)
 	    } else if (otmp->otyp == MAGIC_MARKER) {
 		otmp->recharged = 1;	/* degraded quality */
 	    }
+#ifdef UNPOLYPILE
+	    else if (otmp->otyp == LAND_MINE || otmp->otyp == BEARTRAP) {
+		/* Avoid awkward questions about traps set using fuzzy objs */
+		unpoly = FALSE;
+	    }
+#endif
 	    /* don't care about the recharge count of other tools */
 	    break;
 
@@ -1363,6 +1418,16 @@ poly_obj(obj, id)
 	case FOOD_CLASS:
 	    if (otmp->otyp == SLIME_MOLD)
 		otmp->spe = current_fruit;
+	    /* Preserve percentage eaten (except for tins) */
+	    old_nutrit = objects[obj->otyp].oc_nutrition;
+	    if (obj->oeaten && otmp->otyp != TIN && old_nutrit) {
+		new_nutrit = objects[otmp->otyp].oc_nutrition;
+		otmp->oeaten = obj->oeaten * new_nutrit / old_nutrit;
+		if (otmp->oeaten == 0)
+		    otmp->oeaten++;
+		if (otmp->oeaten >= new_nutrit)
+		    otmp->oeaten = new_nutrit - 1;
+	    }
 	    break;
 	}
 
@@ -1370,18 +1435,44 @@ poly_obj(obj, id)
 	otmp->owt = weight(otmp);
 
 	/* for now, take off worn items being polymorphed */
-	if (obj_location == OBJ_INVENT) {
-	    if (id == STRANGE_OBJECT)
-		remove_worn_item(obj);
-	    else {
-		/* This is called only for stone to flesh.  It's a lot simpler
-		 * than it otherwise might be.  We don't need to check for
-		 * special effects when putting them on (no meat objects have
-		 * any) and only three worn masks are possible.
-		 */
-		otmp->owornmask = obj->owornmask;
+	/* [ALI] In Slash'EM only take off worn items if no longer compatible */
+	if (obj_location == OBJ_INVENT || obj_location == OBJ_MINVENT) {
+	    /* This is called only for stone to flesh.  It's a lot simpler
+	     * than it otherwise might be.  We don't need to check for
+	     * special effects when putting them on (no meat objects have
+	     * any) and only three worn masks are possible.
+	     */
+	    /* [ALI] Unfortunately, fuzzy polymorphs means that this
+	     * is not true for Slash'EM, and we need to be a little more
+	     * careful.
+	     */
+	    if (obj == uskin) rehumanize();
+	    otmp->owornmask = obj->owornmask;
+	    /* Quietly remove worn item if no longer compatible --ALI */
+	    if (otmp->owornmask & W_ARM && !is_suit(otmp))
+		otmp->owornmask &= ~W_ARM;
+	    if (otmp->owornmask & W_ARMC && !is_cloak(otmp))
+		otmp->owornmask &= ~W_ARMC;
+	    if (otmp->owornmask & W_ARMH && !is_helmet(otmp))
+		otmp->owornmask &= ~W_ARMH;
+	    if (otmp->owornmask & W_ARMS && !is_shield(otmp))
+		otmp->owornmask &= ~W_ARMS;
+	    if (otmp->owornmask & W_ARMG && !is_gloves(otmp))
+		otmp->owornmask &= ~W_ARMG;
+	    if (otmp->owornmask & W_ARMF && !is_boots(otmp))
+		otmp->owornmask &= ~W_ARMF;
+#ifdef TOURIST
+	    if (otmp->owornmask & W_ARMU && !is_shirt(otmp))
+		otmp->owornmask &= ~W_ARMU;
+#endif
+	    if (otmp->owornmask & W_TOOL && otmp->otyp != BLINDFOLD &&
+	      otmp->otyp != TOWEL && otmp->otyp != LENSES)
+		otmp->owornmask &= ~W_TOOL;
+	    if (obj->otyp == LEASH && obj->leashmon) o_unleash(obj);
+	    if (obj_location == OBJ_INVENT) {
 		remove_worn_item(obj);
 		setworn(otmp, otmp->owornmask);
+		puton_worn_item(otmp);
 		if (otmp->owornmask & LEFT_RING)
 		    uleft = otmp;
 		if (otmp->owornmask & RIGHT_RING)
@@ -1392,13 +1483,29 @@ poly_obj(obj, id)
 		    uswapwep = otmp;
 		if (otmp->owornmask & W_QUIVER)
 		    uquiver = otmp;
-		goto no_unwear;
 	    }
+	    /* (We have to pend updating monster intrinsics until later) */
 	}
-
-	/* preserve the mask in case being used by something else */
-	otmp->owornmask = obj->owornmask;
-no_unwear:
+	else {
+	    /* preserve the mask in case being used by something else */
+	    otmp->owornmask = obj->owornmask;
+#ifdef STEED
+	    if (otmp->owornmask & W_SADDLE && otmp->otyp != SADDLE) {
+		struct monst *mtmp = obj->ocarry;
+		dismount_steed(DISMOUNT_THROWN);
+		otmp->owornmask &= ~W_SADDLE;
+		/* The ex-saddle slips to the floor */
+		mtmp->misc_worn_check &= ~obj->owornmask;
+		otmp->owornmask = obj->owornmask = 0;
+		update_mon_intrinsics(mtmp, obj, FALSE);
+		obj_extract_self(obj);
+		place_object(obj, mtmp->mx, mtmp->my);
+		stackobj(obj);
+		newsym(mtmp->mx, mtmp->my);
+		obj_location = OBJ_FLOOR;
+	    }
+#endif
+	}
 
 	if (obj_location == OBJ_FLOOR && obj->otyp == BOULDER &&
 		otmp->otyp != BOULDER)
@@ -1427,6 +1534,12 @@ no_unwear:
 	    freeinv_core(obj);
 	    addinv_core1(otmp);
 	    addinv_core2(otmp);
+	}
+	else if (obj_location == OBJ_MINVENT) {
+	    /* Pended update of monster intrinsics */
+	    update_mon_intrinsics(obj->ocarry, obj, FALSE);
+	    if (otmp->owornmask)
+		update_mon_intrinsics(otmp->ocarry, otmp, TRUE);
 	}
 
 	if ((!carried(otmp) || obj->unpaid) &&
