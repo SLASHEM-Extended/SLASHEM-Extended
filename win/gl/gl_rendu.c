@@ -107,9 +107,9 @@ void sdlgl_set_surface_colors(SDL_Surface *surf)
 
   for (i=0; i < 256; i++)
   {
-    colors[i].r = RGB_RED(sdlgl_palette[i]);
-    colors[i].g = RGB_GRN(sdlgl_palette[i]);
-    colors[i].b = RGB_BLU(sdlgl_palette[i]);
+    colors[i].r = GAMMA(RGB_RED(sdlgl_palette[i]));
+    colors[i].g = GAMMA(RGB_GRN(sdlgl_palette[i]));
+    colors[i].b = GAMMA(RGB_BLU(sdlgl_palette[i]));
   }
 
   SDL_SetColors(surf, colors, 0, 256);
@@ -476,8 +476,8 @@ void sdlgl_font_cache_lookup(struct TileSet *set, tileidx_t ch,
     rgbcol_t rgb = sdlgl_text_colors[color];
 
     Uint32 c = SDL_MapRGB(cache->char_surf->format,
-        RGB_RED(rgb), RGB_GRN(rgb), RGB_BLU(rgb));
-     
+        GAMMA(RGB_RED(rgb)), GAMMA(RGB_GRN(rgb)), GAMMA(RGB_BLU(rgb)));
+    
     assert(src_y/th < set->pack_h);
     
     if (SDL_MUSTLOCK(set->surf))

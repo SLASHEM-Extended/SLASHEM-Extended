@@ -165,8 +165,10 @@ static void flush_units(void)
     }
 
     /* we don't bother minimising color changes */
-    glColor4f(RGB_RED_F(unit->color), RGB_GRN_F(unit->color),
-        RGB_BLU_F(unit->color), unit->trans);
+    glColor4f(
+        GAMMA_F(RGB_RED(unit->color)),
+        GAMMA_F(RGB_GRN(unit->color)),
+        GAMMA_F(RGB_BLU(unit->color)), unit->trans);
 
     glTexCoord2f(unit->tx1, unit->ty1);
     glVertex2i(unit->x, unit->y);

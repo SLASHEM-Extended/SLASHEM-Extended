@@ -31,6 +31,7 @@ int sdlgl_windowed    = DEF_SDLGL_WINDOWED;
 int sdlgl_key_repeat  = DEF_SDLGL_KEYREPEAT;
 int sdlgl_jail_size   = 0;
 int sdlgl_prev_step   = 0;
+int sdlgl_gamma       = 0;  /* range is -2 to +2 */
 
 static int fontsize_override = 0;
 
@@ -44,11 +45,11 @@ int sdlgl_flipping    = 0;
 int sdlgl_jump_scroll = 0;
 
 
-
 enum OptionValueType
 {
   VALTYPE_INTEGER,
   VALTYPE_BOOLEAN,   /* true or false, 1 or 0.  Can be absent */
+  VALTYPE_DOUBLE,
   VALTYPE_STRING,
   VALTYPE_VID_MODE,  /* video mode like "800x600" */
   VALTYPE_KEY_REPEAT,
@@ -88,9 +89,12 @@ static struct LocalOption local_option_list[] =
   { "windowed", "Runs in a window instead of fullscreen",
     &sdlgl_windowed, VALTYPE_BOOLEAN, 0 },
 
+  { "gamma", "Gamma correction (-2 to 2, 0 is normal)",
+    &sdlgl_gamma, VALTYPE_INTEGER, 0 },
+
   /* ---- command-line only options ---- */
 
-  { "tileheight", "Which tileset to use (16 or 32)",
+  { "tileheight", "Which tileset to use (16, 32 or 64)",
     &iflags.wc_tile_height, VALTYPE_INTEGER, LOPT_CMDLINE_ONLY },
 
   { "fontsize", "Size of text font (8, 14, 20 or 22)",
@@ -185,6 +189,7 @@ static void parse_single_option(int optidx, const char *par,
 {
   struct LocalOption *opt = local_option_list + optidx;
   int *intp;
+  double *doubp;
   char tmp;
 
   assert(opt->name);
@@ -267,6 +272,14 @@ static void parse_single_option(int optidx, const char *par,
       sscanf(par, "%d", intp);
       break;
     
+    case VALTYPE_DOUBLE:
+      doubp = (double *) opt->val_ptr;
+      assert(doubp);
+
+      assert(par);
+      sscanf(par, "%lf", doubp);
+      break;
+    
     default:
       sdlgl_error("parse_single_option INTERNAL error on --%s.", 
           opt->name);
@@ -307,7 +320,7 @@ static void show_help_message(void)
       "    --tileheight 16 : select tile height (16 or 32).\n"
       "    --fontsize 22   : choose text font (8, 14, 20 or 22).\n"
       "\n"
-      "Please view the man pages for more information, including\n"
+      "Please view the docs for more information, including\n"
       "the complete list of available options.\n"
   );
 
@@ -547,7 +560,11 @@ void sdlgl_validate_wincap_options(void)
   {
     iflags.wc_tile_height = DEF_TILE_HEIGHT;
   }
-  else if (iflags.wc_tile_height != 16 && iflags.wc_tile_height != 32)
+  else if (iflags.wc_tile_height != 16 && iflags.wc_tile_height != 32 
+#ifndef VANILLA_GLHACK
+           && iflags.wc_tile_height != 64
+#endif
+           )
   {
     SET_WARN("Tile height", iflags.wc_tile_height, DEF_TILE_HEIGHT);
   }
@@ -615,6 +632,8 @@ void sdlgl_validate_gl_options(void)
       SET_WARN("Video depth", sdlgl_depth, DEF_SDLGL_DEPTH);
       break;
   }
+
+  RANGE_CHK("Gamma", sdlgl_gamma, -2, 2);
 
   if (sdlgl_def_zoom <= 0)
   {

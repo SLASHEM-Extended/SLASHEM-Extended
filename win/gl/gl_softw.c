@@ -46,9 +46,9 @@ void sw_rend_shutdown(void)
 
 static GH_INLINE Uint32 rgb2sdl(SDL_PixelFormat *fmt, rgbcol_t color)
 {
-  Uint8 r = RGB_RED(color);
-  Uint8 g = RGB_GRN(color);
-  Uint8 b = RGB_BLU(color);
+  Uint8 r = GAMMA(RGB_RED(color));
+  Uint8 g = GAMMA(RGB_GRN(color));
+  Uint8 b = GAMMA(RGB_BLU(color));
 
   return SDL_MapRGB(fmt, r, g, b);
 }

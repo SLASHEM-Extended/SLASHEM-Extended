@@ -41,27 +41,14 @@ extern void FDECL(Sdlgl_parse_options, (char *, int, int));
 #ifndef USE_TILES
 #error USE_TILES not defined
 #endif
-#ifndef TEXTCOLOR
-#error TEXTCOLOR not defined
-#endif
 #ifndef CLIPPING
 #error CLIPPING not defined
 #endif
-
 #ifdef CHANGE_COLOR
 #error CHANGE_COLOR defined
 #endif
-#ifdef NO_TERMS
-#error NO_TERMS defined
-#endif
 #ifdef OVERLAY
 #error OVERLAY defined
-#endif
-#ifdef TERMLIB
-#error TERMLIB defined
-#endif
-#ifdef DEF_PAGER
-#error DEF_PAGER defined
 #endif
 #ifdef MICRO
 #error MICRO defined
@@ -218,6 +205,7 @@ extern int sdlgl_reformat;
 extern int sdlgl_shrink_wrap;
 extern int sdlgl_flipping;
 extern int sdlgl_jump_scroll;
+extern int sdlgl_gamma;
 
 E void FDECL(sdlgl_parse_cmdline_options, (int *, char **));
 E void NDECL(sdlgl_validate_wincap_options);
@@ -252,10 +240,6 @@ typedef unsigned int rgbcol_t;
 #define RGB_RED(rgb)  ((rgb >> 16) & 0xFF)
 #define RGB_GRN(rgb)  ((rgb >>  8) & 0xFF)
 #define RGB_BLU(rgb)  ((rgb      ) & 0xFF)
-
-#define RGB_RED_F(rgb)  ((float)RGB_RED(rgb) / 255.0)
-#define RGB_GRN_F(rgb)  ((float)RGB_GRN(rgb) / 255.0)
-#define RGB_BLU_F(rgb)  ((float)RGB_BLU(rgb) / 255.0)
 
 struct GraphicUnit
 {
@@ -335,6 +319,9 @@ struct TileSet
 
   /* size of each tile */
   int tile_w, tile_h;
+
+  /* overlap size.  Only non-zero for the pseudo 3D tileset */
+  int lap_w, lap_h;
 
   /* number of tiles horizontal/vertical that fit in each 256x256
    * image (or whatever size the 3D card supports).  Tiles are packed
@@ -533,8 +520,15 @@ extern unsigned char ridden_mark_bits[8];
 extern char tile_16_face_dirs[400];
 extern char tile_32_face_dirs[400];
 
+extern unsigned char sdlgl_gamma_table[256];
+
+#define GAMMA(n)    (sdlgl_gamma_table[n])
+#define GAMMA_F(n)  ((float)GAMMA(n) / 255.0)
+
 E int FDECL(sdlgl_quantize_tile_size, (int));
 E int FDECL(sdlgl_mon_tile_face_dir, (tileidx_t));
+E void NDECL(sdlgl_generate_gamma_table);
+
 E unsigned char * FDECL(sdlgl_load_png_file, (const char*, int*, int*));
 E int FDECL(sdlgl_save_ppm_file, (const char *, const unsigned char *,
       int, int));

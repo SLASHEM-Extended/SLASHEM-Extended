@@ -135,6 +135,8 @@ static void do_load_tileset(void)
    */
   if (iflags.wc_tile_height == 16)
     sdlgl_tiles = sdlgl_load_tileset("gltile16.png", 16,16, 0, NULL,NULL);
+  else if (iflags.wc_tile_height == 64)
+    sdlgl_tiles = sdlgl_load_tileset("gltile3d.png", 48,64, 0, NULL,NULL);
   else
     sdlgl_tiles = sdlgl_load_tileset("gltile32.png", 32,32, 0, NULL,NULL);
 

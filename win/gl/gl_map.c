@@ -51,8 +51,9 @@ int sdlgl_quantize_zoom(int zoom_h)
       /* with 16x16 tileset in SW mode, no zooming possible */
       return 16;
     }
-    else
-      return (zoom_h < 24) ? 16 : 32;
+
+    return (zoom_h < iflags.wc_tile_height * 3 / 4) ?
+        (iflags.wc_tile_height / 2) : iflags.wc_tile_height;
   }
 
   for (i=MAX_ZOOM; i > 0; i--)
@@ -828,7 +829,8 @@ void sdlgl_zoom_map(int adjust)
       if (iflags.wc_tile_height <= 16)
         return;
 
-      zoom_h = (adjust < 0) ? 16 : 32;
+      zoom_h = (adjust < 0) ? (iflags.wc_tile_height / 2) :
+          iflags.wc_tile_height;
     }
     else  /* OpenGL, all zooms are available */
     {

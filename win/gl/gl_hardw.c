@@ -85,9 +85,9 @@ static void copy_one_tile(struct TileSet *set, int is_text,
     }
     else
     {
-      dst[0] = src[0];
-      dst[1] = src[1];
-      dst[2] = src[2];
+      dst[0] = GAMMA(src[0]);
+      dst[1] = GAMMA(src[1]);
+      dst[2] = GAMMA(src[2]);
       dst[3] = 255;
     }
   }
@@ -417,6 +417,12 @@ static void hw_blit_frame(void)
   
 #define BG_STEP  32
 
+static void hw_set_rgb_color(rgbcol_t color, float trans)
+{
+  glColor4f(GAMMA_F(RGB_RED(color)), GAMMA_F(RGB_GRN(color)),
+      GAMMA_F(RGB_BLU(color)), trans);
+}
+
 static void hw_draw_background(int sx, int sy, int sw, int sh,
     rgbcol_t color, int start_idx, int depth)
 {
@@ -424,7 +430,7 @@ static void hw_draw_background(int sx, int sy, int sw, int sh,
   int bx, by, bw, bh;
   
   /* fill background color */
-  glColor3f(RGB_RED_F(color), RGB_GRN_F(color), RGB_BLU_F(color));
+  hw_set_rgb_color(color, 1);
 
   glBegin(GL_QUADS);
   
@@ -546,7 +552,7 @@ static void hw_draw_cursor(struct TileWindow *win)
   if (sy + sh <= win->scr_y || sy >= win->scr_y + win->scr_h)
     return;
 
-  glColor3f(RGB_RED_F(col), RGB_GRN_F(col), RGB_BLU_F(col));
+  hw_set_rgb_color(col, 1);
 
   if (win->curs_block)
   {
@@ -578,7 +584,7 @@ static void hw_draw_border(struct TileWindow *win, rgbcol_t col)
   sx = win->scr_x - win->pan_x;
   sy = win->scr_y - win->pan_y;
    
-  glColor3f(RGB_RED_F(col), RGB_GRN_F(col), RGB_BLU_F(col));
+  hw_set_rgb_color(col, 1);
 
   glBegin(GL_LINE_LOOP);
   glVertex2i(sx, sy);
@@ -664,8 +670,8 @@ static void hw_finish_fading(void)
 static void hw_draw_fading(float fade_amount)
 {
   glEnable(GL_BLEND);
-  glColor4f(RGB_RED_F(fade_color), RGB_GRN_F(fade_color), 
-      RGB_BLU_F(fade_color), fade_amount);
+
+  hw_set_rgb_color(fade_color, fade_amount);
 
   glBegin(GL_QUADS);
 

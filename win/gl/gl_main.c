@@ -366,6 +366,8 @@ static void sdlgl_do_init_nhwindows(int *argcp, char **argv)
 
   sdlgl_init_time();
 
+  sdlgl_generate_gamma_table();
+
   sdlgl_rend_startup();
   sdlgl_tile_startup();
   sdlgl_font_startup();
