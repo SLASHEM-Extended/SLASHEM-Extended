@@ -1536,6 +1536,8 @@ struct obj *obj;
 	if (Stoned) unfixable_trbl++;
 	if (Strangled) unfixable_trbl++;
 	if (Wounded_legs) unfixable_trbl++;
+	if (Slimed) unfixable_trbl++;
+	if (u.ulycn >= LOW_PM && !Race_if(PM_HUMAN_WEREWOLF)) unfixable_trbl++;
 
 	/* collect attribute troubles */
 	for (idx = 0; idx < A_MAX; idx++) {
