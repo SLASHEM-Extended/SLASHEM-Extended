@@ -691,7 +691,7 @@ int oldlevel, newlevel;
 int
 newhp()
 {
-	int     hp, bonushp, conplus;
+	int     hp, conplus;
 
 	if(u.ulevel == 0) {
 	    /* Initialize hit points */

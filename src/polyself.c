@@ -167,132 +167,23 @@ change_sex()
 STATIC_OVL void
 newman()
 {
-	int     basehp, hp, bonushp, energy, energybase, tmp;        
-	/* STEPHEN WHITE'S NEW CODE */
+	int tmp, tmp2;
+
 	if (!rn2(10)) change_sex();
 
-	switch  (Role_switch) {        
-		case PM_ARCHEOLOGIST:
-			energybase = 6;
-			basehp = 13;  
-			bonushp = 1;  
-			break;
-		case PM_BARBARIAN:
-			energybase = 2;
-			basehp = 16;  
-			bonushp = 3;            
-			break;
-		case PM_CAVEMAN:
-			energybase = 2;
-			basehp = 16;  
-			bonushp = 3;            
-			break;
-		case PM_DOPPELGANGER:
-			energybase = 7;
-			basehp = 12;
-			bonushp = 1;  
-			break;
-		case PM_ELF: case PM_DROW:
-			energybase = 7;
-			basehp = 15;
-			bonushp = 2;
-			break;
-		case PM_FLAME_MAGE:
-			energybase = 10;
-			basehp = 12;
-			bonushp = 1;
-			break;
-		case PM_GNOME:
-			energybase = 7;
-			basehp = 15;
-			bonushp = 2;
-			break;
-		case PM_HEALER:
-			energybase = 10;
-			basehp = 13;
-			bonushp = 1;
-			break;
-		case PM_ICE_MAGE:
-			energybase = 10;
-			basehp = 12;
-			bonushp = 1;
-			break;
-#ifdef YEOMAN
-		case PM_YEOMAN:
-#endif
-		case PM_KNIGHT:
-			energybase = 3;
-			basehp = 16;
-			bonushp = 3;
-			break;
-		case PM_MONK:
-			energybase = 7;
-			basehp = 14;
-			bonushp = 2;
-			break;
-		case PM_NECROMANCER:
-			energybase = 10;
-			basehp = 12;  
-			bonushp = 1;  
-			break;
-		case PM_PRIEST:
-			energybase = 10;
-			basehp = 14;
-			bonushp = 2;            
-			break;
-		case PM_ROGUE:
-			energybase = 6;
-			basehp = 12;  
-			bonushp = 2;            
-			break;
-		case PM_SAMURAI:
-			energybase = 2;
-			basehp = 15;  
-			bonushp = 3;            
-			break;
-#ifdef TOURIST        
-		case PM_TOURIST:
-			energybase = 6;
-			basehp = 10;  
-			bonushp = 1;
-			break;
-#endif        
-		case PM_UNDEAD_SLAYER:
-			energybase = 3;
-			basehp = 16;
-			bonushp = 3;
-			break;
-		case PM_VALKYRIE:
-			energybase = 2;
-			basehp = 16;  
-			bonushp = 3;            
-			break;
-		case PM_WIZARD:
-			energybase = 10;
-			basehp = 12;  
-			bonushp = 1;  
-			break;
-		case PM_HUMAN_WEREWOLF:
-		default:
-			energybase = 2;
-			basehp = 12;
-			bonushp = 1;            
-			break;
-	}
-
 	if (!Race_if(PM_DOPPELGANGER)) {
-		tmp = u.ulevel;
-		u.ulevel = u.ulevel + rn1(5, -2);
-		if (u.ulevel > 127 || u.ulevel < 1) u.ulevel = 1;
-		if (u.ulevel > MAXULEV) u.ulevel = MAXULEV;
+	tmp = u.uhpmax;
+	tmp2 = u.ulevel;
+	u.ulevel = u.ulevel + rn1(5, -2);
+	if (u.ulevel > 127 || u.ulevel < 1) u.ulevel = 1;
+	if (u.ulevel > MAXULEV) u.ulevel = MAXULEV;
 	if (u.ulevelmax < u.ulevel) u.ulevelmax = u.ulevel;
 
-		adjabil(tmp, (int)u.ulevel);
-		reset_rndmonst(NON_PM); /* new monster generation criteria */
+	adjabil(tmp2, (int)u.ulevel);
+	reset_rndmonst(NON_PM); /* new monster generation criteria */
 
-		/* random experience points for the new experience level */
-		u.uexp = rndexp();
-	}
+	/* random experience points for the new experience level */
+	u.uexp = rndexp();
 
 	/* u.uhpmax * u.ulevel / tmp2: proportionate hit points to new level
 	 * -10 and +10: don't apply proportionate HP to 10 of a starting
@@ -301,20 +192,27 @@ newman()
 	 *   gain)
 	 * 9 - rn2(19): random change of -9 to +9 hit points
 	 */
-	if (!Race_if(PM_DOPPELGANGER) && rn2(4)) {
-		if (u.ulevel > 1)
-		  	hp = basehp + d((u.ulevel-1),8) + bonushp * u.ulevel;
-		else  hp = basehp + bonushp;
+#ifndef LINT
+	u.uhpmax = ((u.uhpmax - 10) * (long)u.ulevel / tmp2 + 10) +
+		(9 - rn2(19));
+#endif
 
-		u.uhpmax = hp + 7 * u.ulevel;
-		u.uhp = u.uhpmax;
+#ifdef LINT
+	u.uhp = u.uhp + tmp;
+#else
+	u.uhp = u.uhp * (long)u.uhpmax/tmp;
+#endif
 
-		if (u.ulevel > 1) 
-			energy = d(u.ulevel, energybase) + 2 * rnd(5);
-		else  energy = 2 * rnd(6);                
-		u.uenmax = energy + 10 * u.ulevel;
-		u.uen = energy;
+	tmp = u.uenmax;
+#ifndef LINT
+	u.uenmax = u.uenmax * (long)u.ulevel / tmp2 + 9 - rn2(19);
+#endif
+	if (u.uenmax < 0) u.uenmax = 0;
+#ifndef LINT
+	u.uen = (tmp ? u.uen * (long)u.uenmax / tmp : u.uenmax);
+#endif
 	}
+
 	redist_attr();
 	u.uhunger = rn1(500,500);
 	newuhs(FALSE);
