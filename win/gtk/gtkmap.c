@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.4 2000-09-10 02:19:24 wacko Exp $
+  $Id: gtkmap.c,v 1.5 2000-09-11 16:37:20 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -8,14 +8,6 @@
 
 #include <sys/types.h>
 #include <signal.h>
-#include <gtk/gtk.h>
-#include <gdk/gdkkeysyms.h>
-#ifndef WIN32
-#include <gdk/gdkx.h>
-#else
-#define True -1
-#define False 0
-#endif
 #include "winGTK.h"
 #include "dlb.h"
 #ifdef SHORT_FILENAMES
@@ -122,8 +114,8 @@ static TileTab	Big3DTile = {
     -1, -1,		/* tile map width height */
     -1, -1,		/* unit_width, unit_height */
     -1, -1,		/* 3d_ofset, 3d_ofsety */
-    True,
-    True,
+    TRUE,
+    TRUE,
 };
 #endif
 
@@ -133,8 +125,8 @@ static TileTab BigTile = {
     -1, -1,		/* tile map width height */
     -1, -1,		/* width, height */
     -1, -1,
-    True,
-    False,
+    TRUE,
+    FALSE,
 };
 
 static TileTab SmallTile = {
@@ -143,8 +135,8 @@ static TileTab SmallTile = {
     -1, -1,		/* tile map width height */
     -1, -1,		/* width, height */
     -1, -1,
-    False,
-    False,
+    FALSE,
+    FALSE,
 };
 
 static TileTab *tileTab[] = {
@@ -244,7 +236,7 @@ nh_set_map_visual(int mode)
 	if(mode == 0){
 	    if(map_font->type != GDK_FONT_FONT)
 		panic("Bad font");
-#ifdef WIN32
+#ifndef WINGTK_X11
 	    c_width = gdk_char_width(map_font, 'm');
 #else
 	    c_width = ((XFontStruct *)GDK_FONT_XFONT(map_font))->max_bounds.width;
@@ -979,8 +971,8 @@ nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap, GdkRe
 }
 
 /*
-  flag	False:	draw tile
-  	True:	draw bgtile
+  flag	FALSE:	draw tile
+  	TRUE:	draw bgtile
  */
 static void
 nh_map_print_glyph_tmp(struct tilemap *tmap, int ofsx, int ofsy, int flag)
@@ -998,10 +990,10 @@ nh_map_print_glyph_tmp(struct tilemap *tmap, int ofsx, int ofsy, int flag)
     bgsrc_y = (bgtile / tiles_per_row) * c_height;
 
     if(!Tile->transparent){
-	if(flag == False)
+	if(flag == FALSE)
 	    x_tile_tmp_draw(src_x, src_y, ofsx, ofsy);
     }
-    else if(flag == False){
+    else if(flag == FALSE){
 	if(bgtile != tile)
 	    x_tile_tmp_draw(src_x, src_y, ofsx, ofsy);
     }

@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.5 2000-09-10 02:19:24 wacko Exp $
+  $Id: gtk.c,v 1.6 2000-09-11 16:37:20 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1071,7 +1071,7 @@ GTK_init_nhwindows(int *argc, char **argv)
 {
     char *credit_file;
     int i;
-#ifndef WIN32
+#ifdef UNIX
     uid_t savuid;
 #endif
     if(initialized2)
@@ -1091,14 +1091,14 @@ GTK_init_nhwindows(int *argc, char **argv)
      * a window on the user's display.  This code is harmless if the binary
      * is not installed setuid.  See include/system.h on compilation failures.
      */
-#ifndef WIN32
+#ifdef UNIX
     savuid = geteuid();
     (void) seteuid(getuid());
 #endif
     
     gtk_init(argc, &argv);
 
-#ifndef WIN32
+#ifdef UNIX
     (void) seteuid(savuid);
 #endif
     

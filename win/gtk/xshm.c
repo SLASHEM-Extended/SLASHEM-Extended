@@ -1,5 +1,5 @@
 /*
-  $Id: xshm.c,v 1.3 2000-09-10 02:19:24 wacko Exp $
+  $Id: xshm.c,v 1.4 2000-09-11 16:37:20 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -19,13 +19,12 @@
 #include <machine/param.h>
 #endif
 #include <sys/types.h>
-#ifndef WIN32
+#include "winGTK.h"
+#include "xshm.h"
+#ifdef WINGTK_X11
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #endif
-
-#include "winGTK.h"
-#include "xshm.h"
 
 #ifdef WINGTK_X11
 static volatile int	errflg;
@@ -81,14 +80,14 @@ XShmCreateXShmImage(Display *dpy, int width, int height)
     
     xshm = (XShmImage *)alloc(sizeof(XShmImage));
 
-    if(XShmQueryExtension(dpy) != True)
+    if(XShmQueryExtension(dpy) != TRUE)
 	goto no_xshm;
 
     xshm->image = NULL;
     XShmQueryVersion(dpy, &major, &minor, &pixmaps);
     xshm->shmflg = pixmaps;
 
-    if(xshm->shmflg != True)
+    if(xshm->shmflg != TRUE)
 	goto no_xshm;
 /*
   caliculate image size
@@ -113,19 +112,19 @@ XShmCreateXShmImage(Display *dpy, int width, int height)
 	shmctl(xshm->shminfo.shmid, IPC_RMID, 0);
 	goto no_xshm;
     }
-    xshm->shminfo.readOnly = False;
+    xshm->shminfo.readOnly = FALSE;
 
     errflg = 0;
     saved_handler = XSetErrorHandler(ErrorHandler);
 
     ret = XShmAttach(dpy, &xshm->shminfo);
-    if(ret != True){
+    if(ret != TRUE){
 	shmdt(xshm->shminfo.shmaddr);
 	shmctl(xshm->shminfo.shmid, IPC_RMID, 0);
 	goto no_xshm;
     }
 
-    XSync(dpy, False);
+    XSync(dpy, FALSE);
     XSetErrorHandler(saved_handler);
     if(errflg){
 	shmdt(xshm->shminfo.shmaddr);
@@ -183,7 +182,7 @@ XShmClearXShmImage(Display *dpy, XShmImage *xshm)
 {
     memset(xshm->image->data, 0, xshm->image->bytes_per_line * xshm->image->height);
 
-    if(xshm->shmflg == False){
+    if(xshm->shmflg == FALSE){
 	GC		gc;
 	XGCValues	gcval;
 
@@ -233,7 +232,7 @@ XShmClearXShmImage(XShmImage *xshm)
 void
 XShmSyncXShmImage(Display *dpy, XShmImage *xshm)
 {
-    if(xshm->shmflg == False){
+    if(xshm->shmflg == FALSE){
 	XPutImage(
 	    dpy, xshm->pixmap, DefaultGC(dpy, DefaultScreen(dpy)), xshm->image,
 	    0, 0, 0, 0,
@@ -258,7 +257,7 @@ XShmSyncXShmImage(XShmImage *xshm)
 void
 XShmSyncXShmImageRegion(Display *dpy, XShmImage *xshm, int x, int y, int width, int height)
 {
-    if(xshm->shmflg == False){
+    if(xshm->shmflg == FALSE){
 	XPutImage(
 	    dpy, xshm->pixmap, DefaultGC(dpy, DefaultScreen(dpy)), xshm->image,
 	    x, y, x, y,
