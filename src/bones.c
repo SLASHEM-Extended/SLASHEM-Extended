@@ -173,6 +173,10 @@ can_make_bones()
 {
 	register struct trap *ttmp;
 
+#ifdef NO_BONES
+	return FALSE;
+#endif
+
 	if (ledger_no(&u.uz) <= 0 || ledger_no(&u.uz) > maxledgerno())
 	    return FALSE;
 	if (no_bones_level(&u.uz))
@@ -394,6 +398,10 @@ getbones()
 	register int fd;
 	register int ok;
 	char c, *bonesid, oldbonesid[10];
+
+#ifdef NO_BONES
+	return(0);
+#endif
 
 	if(discover)		/* save bones files for real games */
 		return(0);

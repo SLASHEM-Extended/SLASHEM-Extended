@@ -338,6 +338,7 @@ ver 0.0.6E8 [?] [Released by ?]
 -Merged Dylan O'Donnell's rumors of mail patch
 -Merged Eric Wright's and Dylan O'Donnell's #vanquished patch
 -Merged Aardvark Joe's record kept conducts patch
+-Added compile time option to disable bones files
 
 ver 0.0.6E7 [December 6/2002] [Released by Ali]
 -Lethe: Treacherous pets; Cthulhu revivification; monsters use of potions of
