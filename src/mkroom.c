@@ -4,13 +4,13 @@
 
 /*
  * Entry points:
- *      mkroom() -- make and stock a room of a given type
- *      nexttodoor() -- return TRUE if adjacent to a door
- *      has_dnstairs() -- return TRUE if given room has a down staircase
- *      has_upstairs() -- return TRUE if given room has an up staircase
- *      courtmon() -- generate a court monster
- *      save_rooms() -- save rooms into file fd
- *      rest_rooms() -- restore rooms from file fd
+ *	mkroom() -- make and stock a room of a given type
+ *	nexttodoor() -- return TRUE if adjacent to a door
+ *	has_dnstairs() -- return TRUE if given room has a down staircase
+ *	has_upstairs() -- return TRUE if given room has an up staircase
+ *	courtmon() -- generate a court monster
+ *	save_rooms() -- save rooms into file fd
+ *	rest_rooms() -- restore rooms from file fd
  */
 
 #include "hack.h"
@@ -29,7 +29,7 @@ STATIC_DCL void FDECL(rest_room, (int,struct mkroom *));
 
 #define sq(x) ((x)*(x))
 
-extern const struct shclass shtypes[];  /* defined in shknam.c */
+extern const struct shclass shtypes[];	/* defined in shknam.c */
 
 #ifdef OVLB
 
@@ -45,26 +45,26 @@ register struct mkroom *sroom;
 void
 mkroom(roomtype)
 /* make and stock a room of a given type */
-int     roomtype;
+int	roomtype;
 {
     if (roomtype >= SHOPBASE)
-	mkshop();       /* someday, we should be able to specify shop type */
+	mkshop();	/* someday, we should be able to specify shop type */
     else switch(roomtype) {
-	case COURT:     mkzoo(COURT); break;
-	case ZOO:       mkzoo(ZOO); break;
-	case BEEHIVE:   mkzoo(BEEHIVE); break;
-	case MORGUE:    mkzoo(MORGUE); break;
-	case BARRACKS:  mkzoo(BARRACKS); break;
+	case COURT:	mkzoo(COURT); break;
+	case ZOO:	mkzoo(ZOO); break;
+	case BEEHIVE:	mkzoo(BEEHIVE); break;
+	case MORGUE:	mkzoo(MORGUE); break;
+	case BARRACKS:	mkzoo(BARRACKS); break;
 	case REALZOO:   mkzoo(REALZOO); break;
 	case BADFOODSHOP: mkzoo(BADFOODSHOP); break;
 	case DRAGONLAIR: mkzoo(DRAGONLAIR); break;
 	case GIANTCOURT: mkzoo(GIANTCOURT); break;
-	case SWAMP:     mkswamp(); break;
-	case TEMPLE:    mktemple(); break;
+	case SWAMP:	mkswamp(); break;
+	case TEMPLE:	mktemple(); break;
 	case LEPREHALL:	mkzoo(LEPREHALL); break;
 	case COCKNEST:	mkzoo(COCKNEST); break;
 	case ANTHOLE:	mkzoo(ANTHOLE); break;
-	default:        impossible("Tried to make a room of type %d.", roomtype);
+	default:	impossible("Tried to make a room of type %d.", roomtype);
     }
 }
 
@@ -74,7 +74,7 @@ mkshop()
 	register struct mkroom *sroom;
 	int i = -1, j;
 #ifdef WIZARD
-	char *ep = (char *)0;   /* (init == lint suppression) */
+	char *ep = (char *)0;	/* (init == lint suppression) */
 
 	/* first determine shoptype */
 	if(wizard){
@@ -160,7 +160,7 @@ mkshop()
 		sroom->rlit = 1;
 	}
 
-	if(i < 0) {                     /* shoptype not yet determined */
+	if(i < 0) {			/* shoptype not yet determined */
 	    register int j;
 
 	    /* pick a shop type at random */
@@ -199,7 +199,7 @@ register boolean strict;
 			sroom = &rooms[0];
 		if(sroom->hx < 0)
 			return (struct mkroom *)0;
-		if(sroom->rtype != OROOM)       continue;
+		if(sroom->rtype != OROOM)	continue;
 		if(!strict) {
 		    if(has_upstairs(sroom) || (has_dnstairs(sroom) && rn2(3)))
 			continue;
@@ -259,7 +259,7 @@ struct mkroom *sroom;
 		}
 
 		i = 100;
-		do {    /* don't place throne on top of stairs */
+		do {	/* don't place throne on top of stairs */
 			(void) somexy(sroom, &mm);
 			tx = mm.x; ty = mm.y;
 		} while (occupied((xchar)tx, (xchar)ty) && --i > 0);
@@ -348,7 +348,7 @@ struct mkroom *sroom;
 		    case MORGUE:
 			if(!rn2(5))
 			    (void) mk_tt_object(CORPSE, sx, sy);
-			if(!rn2(10))    /* lots of treasure buried with dead */
+			if(!rn2(10))	/* lots of treasure buried with dead */
 			    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST,
 					     sx, sy, TRUE, FALSE);
 			if (!rn2(5) && levl[sx][sy].typ == ROOM)
@@ -356,10 +356,11 @@ struct mkroom *sroom;
 			break;
 		    case BEEHIVE:
 			if(!rn2(3))
-			    (void) mksobj_at(LUMP_OF_ROYAL_JELLY, sx, sy, TRUE, FALSE);
+			    (void) mksobj_at(LUMP_OF_ROYAL_JELLY,
+					     sx, sy, TRUE, FALSE);
 			break;
 		    case BARRACKS:
-			if(!rn2(20))    /* the payroll and some loot */
+			if(!rn2(20))	/* the payroll and some loot */
 			    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST,
 					     sx, sy, TRUE, FALSE);
 			if (!rn2(5))
@@ -369,14 +370,17 @@ struct mkroom *sroom;
 			if(!rn2(3)) {
 			    struct obj *sobj = mk_tt_object(STATUE, sx, sy);
 
-			    if (sobj)
-			    	for (i = rn2(5); i; i--)
-			    	    add_to_container(sobj, mkobj(RANDOM_CLASS, FALSE));
+			    if (sobj) {
+				for (i = rn2(5); i; i--)
+				    (void) add_to_container(sobj,
+						mkobj(RANDOM_CLASS, FALSE));
+				sobj->owt = weight(sobj);
+			    }
 			}
 			break;
 		    case ANTHOLE:
 			if(!rn2(3))
-			    (void) mkobj_at(FOOD_CLASS, sx, sy, TRUE);
+			    (void) mkobj_at(FOOD_CLASS, sx, sy, FALSE);
 			break;
 		}
 	    }
@@ -388,7 +392,8 @@ struct mkroom *sroom;
 		  levl[tx][ty].typ = THRONE;
 		  (void) somexy(sroom, &mm);
 		  (void) mkgold((long) rn1(50 * level_difficulty(),10), mm.x, mm.y);
-		  chest = mksobj_at(CHEST, mm.x, mm.y, TRUE, FALSE); /* the royal coffers */
+		  /* the royal coffers */
+		  chest = mksobj_at(CHEST, mm.x, mm.y, TRUE, FALSE);
 		  chest->spe = 2; /* so it can be found later */
 		  level.flags.has_court = 1;
 		  break;
@@ -432,7 +437,7 @@ int mm_flags;
 		     !revive(otmp)))
 		(void) makemon(mdat, cc.x, cc.y, mm_flags);
 	}
-	level.flags.graveyard = TRUE;   /* reduced chance for undead corpse */
+	level.flags.graveyard = TRUE;	/* reduced chance for undead corpse */
 }
 
 STATIC_OVL struct permonst *
@@ -467,12 +472,12 @@ antholemon()
 }
 
 STATIC_OVL void
-mkswamp()       /* Michiel Huisjes & Fred de Wilde */
+mkswamp()	/* Michiel Huisjes & Fred de Wilde */
 {
 	register struct mkroom *sroom;
 	register int sx,sy,i,eelct = 0;
 
-	for(i=0; i<5; i++) {            /* turn up to 5 rooms swampy */
+	for(i=0; i<5; i++) {		/* turn up to 5 rooms swampy */
 		sroom = &rooms[rn2(nroom)];
 		if(sroom->hx < 0 || sroom->rtype != OROOM ||
 		   has_upstairs(sroom) || has_dnstairs(sroom))
@@ -495,7 +500,7 @@ mkswamp()       /* Michiel Huisjes & Fred de Wilde */
 			    eelct++;
 			}
 		    } else
-			if(!rn2(4))     /* swamps tend to be moldy */
+			if(!rn2(4))	/* swamps tend to be moldy */
 			    (void) makemon(mkclass(S_FUNGUS,0),
 						sx, sy, NO_MM_FLAGS);
 		}
@@ -646,7 +651,7 @@ coord *c;
 		    if(inside_room(croom->sbrooms[i], c->x, c->y))
 			goto you_lose;
 		break;
-you_lose:       ;
+you_lose:	;
 	}
 	if (try_cnt >= 100)
 	    return FALSE;
@@ -655,9 +660,9 @@ you_lose:       ;
 
 /*
  * Search for a special room given its type (zoo, court, etc...)
- *      Special values :
- *              - ANY_SHOP
- *              - ANY_TYPE
+ *	Special values :
+ *		- ANY_SHOP
+ *		- ANY_TYPE
  */
 
 struct mkroom *
@@ -688,13 +693,13 @@ courtmon()
 	int     i = rn2(60) + rn2(3*level_difficulty());
 	if (i > 200)            return(mkclass(S_DRAGON,0));
 	else if (i > 130)       return(mkclass(S_GIANT,0));
-	else if (i > 85)        return(mkclass(S_TROLL,0));
-	else if (i > 75)        return(mkclass(S_CENTAUR,0));
-	else if (i > 60)        return(mkclass(S_ORC,0));
-	else if (i > 45)        return(&mons[PM_BUGBEAR]);
-	else if (i > 30)        return(&mons[PM_HOBGOBLIN]);
-	else if (i > 15)        return(mkclass(S_GNOME,0));
-	else                    return(mkclass(S_KOBOLD,0));
+	else if (i > 85)	return(mkclass(S_TROLL,0));
+	else if (i > 75)	return(mkclass(S_CENTAUR,0));
+	else if (i > 60)	return(mkclass(S_ORC,0));
+	else if (i > 45)	return(&mons[PM_BUGBEAR]);
+	else if (i > 30)	return(&mons[PM_HOBGOBLIN]);
+	else if (i > 15)	return(mkclass(S_GNOME,0));
+	else			return(mkclass(S_KOBOLD,0));
 }
 
 struct permonst *
@@ -715,14 +720,14 @@ realzoomon()
 #define NSTYPES (PM_CAPTAIN - PM_SOLDIER + 1)
 
 static struct {
-    unsigned    pm;
-    unsigned    prob;
+    unsigned	pm;
+    unsigned	prob;
 } squadprob[NSTYPES] = {
     {PM_SOLDIER, 80}, {PM_SERGEANT, 15}, {PM_LIEUTENANT, 4}, {PM_CAPTAIN, 1}
 };
 
 STATIC_OVL struct permonst *
-squadmon()              /* return soldier types. */
+squadmon()		/* return soldier types. */
 {
 	int sel_prob, i, cpro, mndx;
 
@@ -739,7 +744,7 @@ squadmon()              /* return soldier types. */
 	mndx = squadprob[rn2(NSTYPES)].pm;
 gotone:
 	if (!(mvitals[mndx].mvflags & G_GONE)) return(&mons[mndx]);
-	else                        return((struct permonst *) 0);
+	else			    return((struct permonst *) 0);
 }
 
 /*
@@ -749,7 +754,7 @@ gotone:
 
 STATIC_OVL void
 save_room(fd, r)
-int     fd;
+int	fd;
 struct mkroom *r;
 {
 	short i;
@@ -801,7 +806,7 @@ struct mkroom *r;
 
 void
 rest_rooms(fd)
-int     fd;
+int	fd;
 {
 	short i;
 
@@ -811,7 +816,7 @@ int     fd;
 	    rest_room(fd, &rooms[i]);
 	    rooms[i].resident = (struct monst *)0;
 	}
-	rooms[nroom].hx = -1;           /* restore ending flags */
+	rooms[nroom].hx = -1;		/* restore ending flags */
 	subrooms[nsubroom].hx = -1;
 }
 #endif /* OVLB */

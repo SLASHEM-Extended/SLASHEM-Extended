@@ -1,5 +1,5 @@
 /*	SCCS Id: @(#)explode.c	3.3	2000/07/07	*/
-/*      Copyright (C) 1990 by Ken Arromdee */
+/*	Copyright (C) 1990 by Ken Arromdee */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
@@ -7,51 +7,14 @@
 #ifdef OVL0
 
 /* Note: Arrays are column first, while the screen is row first */
-/*WAC - For the magical explosion*/
-static int mexpl[3][3] = {
-	{ S_mexplode1, S_mexplode4, S_mexplode7 },
-	{ S_mexplode2, S_mexplode5, S_mexplode8 },
-	{ S_mexplode3, S_mexplode6, S_mexplode9 }
-};
-/*Normal fire explosion*/
 static int expl[3][3] = {
 	{ S_explode1, S_explode4, S_explode7 },
 	{ S_explode2, S_explode5, S_explode8 },
 	{ S_explode3, S_explode6, S_explode9 }
 };
-/*WAC - For the cold explosion*/
-static int cexpl[3][3] = {
-	{ S_cexplode1, S_cexplode4, S_cexplode7 },
-	{ S_cexplode2, S_cexplode5, S_cexplode8 },
-	{ S_cexplode3, S_cexplode6, S_cexplode9 }
-};
-/*WAC - For the death explosion*/
-static int dexpl[3][3] = {
-	{ S_dexplode1, S_dexplode4, S_dexplode7 },
-	{ S_dexplode2, S_dexplode5, S_dexplode8 },
-	{ S_dexplode3, S_dexplode6, S_dexplode9 }
-};
-/*WAC - For the lightning explosion*/
-static int lexpl[3][3] = {
-	{ S_lexplode1, S_lexplode4, S_lexplode7 },
-	{ S_lexplode2, S_lexplode5, S_lexplode8 },
-	{ S_lexplode3, S_lexplode6, S_lexplode9 }
-};
-/*WAC - For the poison explosion*/
-static int pexpl[3][3] = {
-	{ S_pexplode1, S_pexplode4, S_pexplode7 },
-	{ S_pexplode2, S_pexplode5, S_pexplode8 },
-	{ S_pexplode3, S_pexplode6, S_pexplode9 }
-};
-/*WAC - For the acid explosion*/
-static int aexpl[3][3] = {
-	{ S_aexplode1, S_aexplode4, S_aexplode7 },
-	{ S_aexplode2, S_aexplode5, S_aexplode8 },
-	{ S_aexplode3, S_aexplode6, S_aexplode9 }
-};
 
 /* This is the "do-it-all" explosion command */
-static void FDECL(do_explode, (int,int,int,int,CHAR_P,int, BOOLEAN_P));
+static void FDECL(do_explode, (int,int,int,int,CHAR_P,int,int,BOOLEAN_P));
 
 /* Note: I had to choose one of three possible kinds of "type" when writing
  * this function: a wand type (like in zap.c), an adtyp, or an object type.
@@ -61,25 +24,26 @@ static void FDECL(do_explode, (int,int,int,int,CHAR_P,int, BOOLEAN_P));
  * did it, and with a wand, spell, or breath weapon?  Object types share both
  * these disadvantages....
  */
-
 void
-explode(x, y, type, dam, olet)
-	xchar x, y; /* WAC was int...i think it's supposed to be xchar */
-	int type; /* the same as in zap.c */
-	int dam;
-	char olet;
+explode(x, y, type, dam, olet, expltype)
+xchar x, y; /* WAC was int...i think it's supposed to be xchar */
+int type; /* the same as in zap.c */
+int dam;
+char olet;
+int expltype;
 {
-	do_explode(x,y,type,dam,olet,0, !flags.mon_moving);
+    do_explode(x, y, type, dam, olet, expltype, 0, !flags.mon_moving);
 }
 
 void
-do_explode(x, y, type, dam, olet, dest, yours)
-	xchar x, y; /* WAC was int...i think it's supposed to be xchar */
-	int type; /* the same as in zap.c */
-	int dam;
-	char olet;
-	int dest; /* 0 = normal, 1 = silent, 2 = silent/remote */	
-	boolean yours; /* is it your fault (for killing monsters) */
+do_explode(x, y, type, dam, olet, expltype, dest, yours)
+xchar x, y; /* WAC was int...i think it's supposed to be xchar */
+int type; /* the same as in zap.c */
+int dam;
+char olet;
+int expltype;
+int dest; /* 0 = normal, 1 = silent, 2 = silent/remote */	
+boolean yours; /* is it your fault (for killing monsters) */
 {
 	int i, j, k, damu = dam;
 	boolean starting = 1;
@@ -92,12 +56,13 @@ do_explode(x, y, type, dam, olet, dest, yours)
 	int explmask[3][3];
 		/* 0=normal explosion, 1=do shieldeff, 2=do nothing */
 	boolean shopdamage = FALSE;
+	boolean generic = FALSE;
 	boolean silent = FALSE, remote = FALSE;
 
 	if (dest > 0) silent = TRUE;	
 	if (dest == 2) remote = TRUE;
 
-	if (olet == WAND_CLASS)         /* retributive strike */
+	if (olet == WAND_CLASS)		/* retributive strike */
 		switch (Role_switch) {
 			case PM_PRIEST:
 			/*WAC add Flame,  Ice mages,  Necromancer */
@@ -112,16 +77,17 @@ do_explode(x, y, type, dam, olet, dest, yours)
 			default:  break;
 		}
 
-        if (olet == MON_EXPLODE) {
+	if (olet == MON_EXPLODE) {
 	    str = killer;
 	    killer = 0;		/* set again later as needed */
 	    adtyp = AD_PHYS;
-        } else switch (abs(type) % 10) {
+	} else
+	switch (abs(type) % 10) {
 		case 0: str = "magical blast";
 			adtyp = AD_MAGM;
 			break;
-		case 1: str =   olet == BURNING_OIL ?   "burning oil" :
-				olet == SCROLL_CLASS ?  "tower of flame" :
+		case 1: str =   olet == BURNING_OIL ?	"burning oil" :
+				olet == SCROLL_CLASS ?	"tower of flame" :
 							"fireball";
 			adtyp = AD_FIRE;
 			break;
@@ -131,7 +97,7 @@ do_explode(x, y, type, dam, olet, dest, yours)
 /* Assume that wands are death, others are disintegration */
 		case 4: str =  (olet == WAND_CLASS) ? "death field" :
 							"disintegration field";
-                	adtyp = AD_DISN;
+			adtyp = AD_DISN;
 			break;
 		case 5: str = "ball of lightning";
 			adtyp = AD_ELEC;
@@ -176,7 +142,7 @@ do_explode(x, y, type, dam, olet, dest, yours)
 			case AD_COLD:
 				explmask[i][j] = !!Cold_resistance;
 				break;
-			case AD_DISN:                                
+			case AD_DISN:
 				explmask[i][j] = (olet == WAND_CLASS) ?
 						!!(nonliving(youmonst.data) || is_demon(youmonst.data)) :
 						!!Disint_resistance;
@@ -243,7 +209,7 @@ do_explode(x, y, type, dam, olet, dest, yours)
 		if (cansee(i+x-1, j+y-1)) visible = TRUE;
 		if (explmask[i][j] == 1) any_shield = TRUE;
 	}
-	
+
 	/* Not visible if remote */
 	if (remote) visible = FALSE;
 	
@@ -261,34 +227,14 @@ do_explode(x, y, type, dam, olet, dest, yours)
 		/* Start the explosion */
 		for (i=0; i<3; i++) for (j=0; j<3; j++) {
 			if (explmask[i][j] == 2) continue;
-			{
-				if (adtyp == AD_MAGM) {
-				    tmp_at(starting ? DISP_BEAM : DISP_CHANGE,
-				                cmap_to_glyph(mexpl[i][j])); }
-				else if (adtyp == AD_COLD) {
-				    tmp_at(starting ? DISP_BEAM : DISP_CHANGE,
-				                cmap_to_glyph(cexpl[i][j])); }
-				else if (adtyp == AD_DISN) {
-				    tmp_at(starting ? DISP_BEAM : DISP_CHANGE,
-				                cmap_to_glyph(dexpl[i][j])); }
-				else if (adtyp == AD_ELEC) {
-				    tmp_at(starting ? DISP_BEAM : DISP_CHANGE,
-				                cmap_to_glyph(lexpl[i][j])); }
-				else if (adtyp == AD_DRST) {
-				    tmp_at(starting ? DISP_BEAM : DISP_CHANGE,
-				                cmap_to_glyph(pexpl[i][j])); }
-				else if (adtyp == AD_ACID) {
-				    tmp_at(starting ? DISP_BEAM : DISP_CHANGE,
-				                cmap_to_glyph(aexpl[i][j])); }
-				else tmp_at(starting ? DISP_BEAM : DISP_CHANGE,
-								cmap_to_glyph(expl[i][j]));
-			}
+			tmp_at(starting ? DISP_BEAM : DISP_CHANGE,
+				explosion_to_glyph(expltype,expl[i][j]));
 			tmp_at(i+x-1, j+y-1);
 			starting = 0;
 		}
-		curs_on_u();    /* will flush screen and output */
+		curs_on_u();	/* will flush screen and output */
 
-		if (any_shield) {       /* simulate a shield effect */
+		if (any_shield) {	/* simulate a shield effect */
 		    for (k = 0; k < SHIELD_COUNT; k++) {
 			for (i=0; i<3; i++) for (j=0; j<3; j++) {
 			    if (explmask[i][j] == 1)
@@ -300,31 +246,18 @@ do_explode(x, y, type, dam, olet, dest, yours)
 				show_glyph(i+x-1, j+y-1,
 					cmap_to_glyph(shield_static[k]));
 			}
-			curs_on_u();    /* will flush screen and output */
+			curs_on_u();	/* will flush screen and output */
 			delay_output();
 		    }
 
 		    /* Cover last shield glyph with blast symbol. */
 		    for (i=0; i<3; i++) for (j=0; j<3; j++) {
-				if (explmask[i][j] == 1) {
-					/*Clean up using right glyph type*/
-					if (adtyp == AD_MAGM) 
-					     show_glyph(i+x-1,j+y-1,cmap_to_glyph(mexpl[i][j]));
-					else if (adtyp == AD_COLD) 
-					     show_glyph(i+x-1,j+y-1,cmap_to_glyph(cexpl[i][j]));
-					else if (adtyp == AD_DISN) 
-					     show_glyph(i+x-1,j+y-1,cmap_to_glyph(dexpl[i][j]));
-					else if (adtyp == AD_ELEC) 
-					     show_glyph(i+x-1,j+y-1,cmap_to_glyph(lexpl[i][j]));
-					else if (adtyp == AD_DRST) 
-					     show_glyph(i+x-1,j+y-1,cmap_to_glyph(pexpl[i][j]));
-					else if (adtyp == AD_ACID) 
-					     show_glyph(i+x-1,j+y-1,cmap_to_glyph(aexpl[i][j]));
-					else show_glyph(i+x-1,j+y-1,cmap_to_glyph(expl[i][j]));
-			    }
+			if (explmask[i][j] == 1)
+			    show_glyph(i+x-1,j+y-1,
+					explosion_to_glyph(expltype, expl[i][j]));
 		    }
 
-		} else {                /* delay a little bit. */
+		} else {		/* delay a little bit. */
 		    delay_output();
 		    delay_output();
 		}
@@ -333,7 +266,11 @@ do_explode(x, y, type, dam, olet, dest, yours)
 	    }
 #endif
 	} else if (!remote) {
-		if (flags.soundok) You_hear("a blast.");
+	    if (olet == MON_EXPLODE) {
+		str = "explosion";
+		generic = TRUE;
+	    }
+	    if (flags.soundok) You_hear("a blast.");
 	}
 
     	if (dam) for (i=0; i<3; i++) for (j=0; j<3; j++) {
@@ -342,8 +279,8 @@ do_explode(x, y, type, dam, olet, dest, yours)
 			uhurt = (explmask[i][j] == 1) ? 1 : 2;
 		idamres = idamnonres = 0;
 		if (type >= 0)
-		(void)zap_over_floor((xchar)(i+x-1), (xchar)(j+y-1),
-				     type, &shopdamage);
+		    (void)zap_over_floor((xchar)(i+x-1), (xchar)(j+y-1),
+		    		type, &shopdamage);
 
 		mtmp = m_at(i+x-1, j+y-1);
 #ifdef STEED
@@ -375,8 +312,8 @@ do_explode(x, y, type, dam, olet, dest, yours)
 				      (adtyp == AD_ACID) ? "burned" :
 				       "fried");
 		} else if (!silent && cansee(i+x-1, j+y-1))
-		pline("%s is caught in the %s!", Monnam(mtmp), str);
-		
+		    pline("%s is caught in the %s!", Monnam(mtmp), str);
+
 		idamres += destroy_mitem(mtmp, SCROLL_CLASS, (int) adtyp);
 		idamres += destroy_mitem(mtmp, SPBOOK_CLASS, (int) adtyp);
 		idamnonres += destroy_mitem(mtmp, POTION_CLASS, (int) adtyp);
@@ -394,9 +331,9 @@ do_explode(x, y, type, dam, olet, dest, yours)
 			int mdam = dam;
 
 			if (resist(mtmp, olet, 0, FALSE)) {
-				if (!silent && cansee(i+x-1,j+y-1))
-				    pline("%s resists the %s!", Monnam(mtmp), str);
-				mdam = dam/2;
+			    if (!silent && cansee(i+x-1,j+y-1))
+				pline("%s resists the %s!", Monnam(mtmp), str);
+			    mdam = dam/2;
 			}
 			if (mtmp == u.ustuck)
 				mdam *= 2;
@@ -412,19 +349,17 @@ do_explode(x, y, type, dam, olet, dest, yours)
 #endif
 		}
 		if (mtmp->mhp <= 0) {
-			/* KMH -- Don't blame the player for pets killed by gas spores */
 			/* KMH -- Don't blame the player for pets killing gas spores */
 			if (yours) xkilled(mtmp, (silent ? 0 : 1));
 			else monkilled(mtmp, "", (int)adtyp);
-/*			else mondied(mtmp);*/
-		}
+		} else if (!flags.mon_moving) setmangry(mtmp);
 	}
 
 #ifdef LIGHT_SRC_SPELL
         /*WAC kill the light source*/
         if ((!remote) && ((adtyp == AD_FIRE) || (adtyp == AD_ELEC))) {
             del_light_source(LS_TEMP, (genericptr_t) 1);
-        }
+	}
 #endif
 
 	/* Do your injury last */
@@ -454,35 +389,34 @@ do_explode(x, y, type, dam, olet, dest, yours)
 		ugolemeffects((int) adtyp, damu);
 
 		if (uhurt == 2) {
-		/* [Tom] apparently, explosions were always damaging
-		   polymorphed players' original hit points. This
-		   seems like a bug... */
-		   if (Upolyd) {
-				u.mh -= damu;
-		  	 flags.botl = 1;
-		  	 if (u.mh < 1) {
-		  	   if (Polymorph_control || !rn2(3)) {
-				    u.uhp -= mons[u.umonnum].mlevel;
-			   	    u.uhpmax -= mons[u.umonnum].mlevel;
-			   	    if (u.uhpmax < 1) u.uhpmax = 1;
-		      	   }
-		   	   rehumanize();
-		   	 }
-                   } else u.uhp -= damu, flags.botl = 1;
+		    if (Upolyd)
+		    	u.mh  -= damu;
+		    else
+			u.uhp -= damu;
+		    flags.botl = 1;
 #ifdef SHOW_DMG                
-                   if (flags.showdmg) pline("[%d pts.]", damu);
+		    if (flags.showdmg) pline("[%d pts.]", damu);
 #endif
 		}
-		if (u.uhp <= 0) {
+
+		if (u.uhp <= 0 || (Upolyd && u.mh <= 0)) {
+		    if (Upolyd) {
+			if (Polymorph_control || !rn2(3)) {
+			    u.uhp -= mons[u.umonnum].mlevel;
+			    u.uhpmax -= mons[u.umonnum].mlevel;
+			    if (u.uhpmax < 1) u.uhpmax = 1;
+			}
+			rehumanize();
+		    } else {
 			if (olet == MON_EXPLODE) {
 			    /* killer handled by caller */
-			    if (str != killer_buf)
+			    if (str != killer_buf && !generic)
 				Strcpy(killer_buf, str);
 			    killer_format = KILLED_BY_AN;
 			} else if (type >= 0 && olet != SCROLL_CLASS) {
 			    killer_format = NO_KILLER_PREFIX;
 			    Sprintf(killer_buf, "caught %sself in %s own %s",
-				    him[flags.female], his[flags.female], str);
+				    uhim(), uhis(), str);
 			} else {
 			    killer_format = KILLED_BY;
 			    Strcpy(killer_buf, str);
@@ -491,7 +425,7 @@ do_explode(x, y, type, dam, olet, dest, yours)
 			/* Known BUG: BURNING suppresses corpse in bones data,
 			   but done does not handle killer reason correctly */
 			done((adtyp == AD_FIRE) ? BURNING : DIED);
-                        /* done(BURNING); */
+		    }
 		}
 		exercise(A_STR, FALSE);
 	}
@@ -499,10 +433,15 @@ do_explode(x, y, type, dam, olet, dest, yours)
 	if (shopdamage) {
 		if (adtyp == AD_FIRE) pay_for_damage("burn away");                
 		if (adtyp == AD_PHYS) pay_for_damage("damage");
-			pay_for_damage(adtyp == AD_FIRE ? "burn away" :
+		pay_for_damage(adtyp == AD_FIRE ? "burn away" :
 			       adtyp == AD_COLD ? "shatter" :
 			       adtyp == AD_DISN ? "disintegrate" : "destroy");
 	}
+
+	/* explosions are noisy */
+	i = dam * dam;
+	if (i < 50) i = 50;	/* in case random damage is very small */
+	wake_nearto(x, y, i);
 #ifdef ALLEG_FX
         if (iflags.usealleg) cleanup_explosions();
 #endif
@@ -511,30 +450,30 @@ do_explode(x, y, type, dam, olet, dest, yours)
 #ifdef OVL1
 
 struct scatter_chain {
-	struct scatter_chain *next;     /* pointer to next scatter item */
-	struct obj *obj;                /* pointer to the object        */
-	xchar ox;                       /* location of                  */
-	xchar oy;                       /*      item                    */
-	schar dx;                       /* direction of                 */
-	schar dy;                       /*      travel                  */
-	int range;                      /* range of object              */
-	boolean stopped;                /* flag for in-motion/stopped   */
+	struct scatter_chain *next;	/* pointer to next scatter item	*/
+	struct obj *obj;		/* pointer to the object	*/
+	xchar ox;			/* location of			*/
+	xchar oy;			/*	item			*/
+	schar dx;			/* direction of			*/
+	schar dy;			/*	travel			*/
+	int range;			/* range of object		*/
+	boolean stopped;		/* flag for in-motion/stopped	*/
 };
 
 /*
  * scflags:
- *      VIS_EFFECTS     Add visual effects to display
- *      MAY_HITMON      Objects may hit monsters
- *      MAY_HITYOU      Objects may hit hero
- *      MAY_HIT         Objects may hit you or monsters
- *      MAY_DESTROY     Objects may be destroyed at random
- *      MAY_FRACTURE    Stone objects can be fractured (statues, boulders)
+ *	VIS_EFFECTS	Add visual effects to display
+ *	MAY_HITMON	Objects may hit monsters
+ *	MAY_HITYOU	Objects may hit hero
+ *	MAY_HIT		Objects may hit you or monsters
+ *	MAY_DESTROY	Objects may be destroyed at random
+ *	MAY_FRACTURE	Stone objects can be fractured (statues, boulders)
  */
 
 void
 scatter(sx,sy,blastforce,scflags, obj)
-int sx,sy;                              /* location of objects to scatter */
-int blastforce;                         /* force behind the scattering  */
+int sx,sy;				/* location of objects to scatter */
+int blastforce;				/* force behind the scattering	*/
 unsigned int scflags;
 struct obj *obj;			/* only scatter this obj        */
 {
@@ -555,20 +494,18 @@ struct obj *obj;			/* only scatter this obj        */
 		qtmp = otmp->quan - 1;
 		if (qtmp > LARGEST_INT) qtmp = LARGEST_INT;
 		qtmp = (long)rnd((int)qtmp);
-		(void) splitobj(otmp, qtmp);
-		if (qtmp < otmp->quan)
-			split_up = TRUE;
+		otmp = splitobj(otmp, qtmp);
+		if (rn2(qtmp))
+		    split_up = TRUE;
 		else
-			split_up = FALSE;
-	    }
+		    split_up = FALSE;
+	    } else
+		split_up = FALSE;
 	    if (individual_object) {
-		if (split_up) {
-			if (otmp->where == OBJ_FLOOR)
-				obj = otmp->nexthere;
-			else
-				obj = otmp->nobj;
+ 		if (split_up) {
+		    obj = otmp;
 		} else
-			obj = (struct obj *)0;
+		    obj = (struct obj *)0;
 	    }
 	    obj_extract_self(otmp);
 	    used_up = FALSE;
@@ -578,17 +515,22 @@ struct obj *obj;			/* only scatter this obj        */
 			&& ((otmp->otyp == BOULDER) || (otmp->otyp == STATUE))
 			&& rn2(10)) {
 		if (otmp->otyp == BOULDER) {
-		    pline("%s breaks apart.",The(xname(otmp)));
+		    pline("%s apart.", Tobjnam(otmp, "break"));
 		    fracture_rock(otmp);
-		    place_object(otmp, sx, sy); /* put fragments on floor */
+		    place_object(otmp, sx, sy);	/* put fragments on floor */
+		    if ((otmp = sobj_at(BOULDER, sx, sy)) != 0) {
+			/* another boulder here, restack it to the top */
+			obj_extract_self(otmp);
+			place_object(otmp, sx, sy);
+		    }
 		} else {
 		    struct trap *trap;
 
 		    if ((trap = t_at(sx,sy)) && trap->ttyp == STATUE_TRAP)
 			    deltrap(trap);
-		    pline("%s crumbles.",The(xname(otmp)));
+		    pline("%s.", Tobjnam(otmp, "crumble"));
 		    (void) break_statue(otmp);
-		    place_object(otmp, sx, sy); /* put fragments on floor */
+		    place_object(otmp, sx, sy);	/* put fragments on floor */
 		}
 		used_up = TRUE;
 
@@ -606,7 +548,7 @@ struct obj *obj;			/* only scatter this obj        */
 		stmp->obj = otmp;
 		stmp->ox = sx;
 		stmp->oy = sy;
-		tmp = rn2(8);           /* get the direction */
+		tmp = rn2(8);		/* get the direction */
 		stmp->dx = xdir[tmp];
 		stmp->dy = ydir[tmp];
 		tmp = blastforce - (otmp->owt/40);
@@ -702,7 +644,7 @@ void
 splatter_burning_oil(x, y)
     int x, y;
 {
-    explode(x, y, ZT_SPELL(ZT_FIRE), d(4,4), BURNING_OIL);
+    explode(x, y, ZT_SPELL(ZT_FIRE), d(4,4), BURNING_OIL, EXPL_FIERY);
 }
 
 #ifdef FIREARMS
@@ -715,7 +657,7 @@ int otyp, x, y;
 boolean isyou;
 int dest;
 {
-	int ztype;
+	int ztype, expltype;
 	int numdice = 3, dicetype = 6;
 	int ox, oy;
 	boolean expl = TRUE, dig_expl = FALSE;
@@ -723,22 +665,25 @@ int dest;
 	switch (otyp) {
 	    case GAS_GRENADE:
 	    	ztype = ZT_SPELL(ZT_POISON_GAS);
+		expltype = EXPL_NOXIOUS;
 	    	break;
 	    case STICK_OF_DYNAMITE:
 	    	ztype = ZT_SPELL(ZT_FIRE);
+		expltype = EXPL_FIERY;
 	    	numdice = 6;
 	    	dig_expl = TRUE;
 	    	break;
 	    case FRAG_GRENADE:
 	    default:
 	    	ztype = ZT_SPELL(ZT_FIRE);
+		expltype = EXPL_FIERY;
 	    	break;
 	}
 	if (expl) {
 		if (!isyou) ztype = -ztype;
 		
 		do_explode(x, y, ztype, d(numdice,dicetype), WEAPON_CLASS,
-		  dest, isyou);
+		  expltype, dest, isyou);
 		wake_nearto(x, y, 400);
 	}
 	if (dig_expl) {

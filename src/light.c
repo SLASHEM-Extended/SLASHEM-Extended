@@ -40,15 +40,6 @@
 
 #ifdef OVL3
 
-typedef struct ls_t {
-    struct ls_t *next;
-    xchar x, y;		/* source's position */
-    short range;	/* source's current range */
-    short flags;
-    short type;		/* type of light source */
-    genericptr_t id;	/* source's identifier */
-} light_source;
-
 /* flags */
 #define LSF_SHOW	0x1		/* display the light source */
 #define LSF_NEEDS_FIXUP	0x2		/* need oid fixup */
@@ -91,7 +82,7 @@ new_light_source(x, y, range, type, id)
     if (ls->type != LS_TEMP && x == 0)
 	ls->flags = LSF_FLOATING;
     else
-	ls->flags = 0;
+    ls->flags = 0;
     light_base = ls;
 
     vision_full_recalc = 1;	/* make the source show up */
@@ -394,19 +385,19 @@ maybe_write_ls(fd, range, write_it)
 	    continue;
 	}
 	switch (ls->type) {
-		case LS_OBJECT:
-		    is_global = !obj_is_local((struct obj *)ls->id);
-		    break;
-		case LS_MONSTER:
-		    is_global = !mon_is_local((struct monst *)ls->id);
-		    break;
+	case LS_OBJECT:
+	    is_global = !obj_is_local((struct obj *)ls->id);
+	    break;
+	case LS_MONSTER:
+	    is_global = !mon_is_local((struct monst *)ls->id);
+	    break;
 		case LS_TEMP:
 		    continue;
-		default:
-		    is_global = 0;
-		    impossible("maybe_write_ls: bad type (%d) [range=%d]",
-			       ls->type, range);
-		    break;
+	default:
+	    is_global = 0;
+	    impossible("maybe_write_ls: bad type (%d) [range=%d]",
+		       ls->type, range);
+	    break;
 	}
 	/* if global and not doing local, or vice versa, count it */
 	if (is_global ^ (range == RANGE_LEVEL)) {
@@ -500,6 +491,12 @@ snuff_light_source(x, y)
 	if (ls->type == LS_OBJECT && ls->x == x && ls->y == y) {
 	    obj = (struct obj *) ls->id;
 	    if (obj_is_burning(obj)) {
+		/* The only way to snuff Sunsword is to unwield it.  Darkness
+		 * scrolls won't affect it.  (If we got here because it was
+		 * dropped or thrown inside a monster, this won't matter anyway
+		 * because it will go out when dropped.)
+		 */
+		if (artifact_light(obj)) continue;
 		end_burn(obj, obj->otyp != MAGIC_LAMP);
 		/*
 		 * The current ls element has just been removed (and
@@ -536,6 +533,7 @@ obj_is_burning(obj)
 		|| obj->otyp == TALLOW_CANDLE
 		|| obj->otyp == WAX_CANDLE
 		|| obj->otyp == POT_OIL
+		|| artifact_light(obj)
 		|| is_lightsaber(obj)));
 }
 

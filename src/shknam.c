@@ -125,7 +125,7 @@ static const char *shktools[] = {
     "Erreip", "Nehpets", "Mron", "Snivek", "Lapu", "Kahztiy",
 #endif
 #ifdef WIN32
-    "Lechaim",
+    "Lechaim", "Lexa", "Niod",
 #endif
 #ifdef MAC
     "Nhoj-lee", "Evad\'kh", "Ettaw-noj", "Tsew-mot", "Ydna-s",
@@ -307,21 +307,25 @@ mkshobj_at(shp, sx, sy)
 const struct shclass *shp;
 int sx, sy;
 {
-	register struct monst *mtmp;
+	struct monst *mtmp;
 	int atype;
 	struct permonst *ptr;
 
 	if (rn2(100) < depth(&u.uz) &&
-	    !MON_AT(sx, sy) && (ptr = mkclass(S_MIMIC,0)) &&
-	    (mtmp=makemon(ptr,sx,sy,NO_MM_FLAGS))) {
-		/* note: makemon will set the mimic symbol to a shop item */
-		if (rn2(10) >= depth(&u.uz)) {
-			mtmp->m_ap_type = M_AP_OBJECT;
-			mtmp->mappearance = STRANGE_OBJECT;
-		}
-	} else if ((atype = get_shop_item(shp - shtypes)) < 0)
+		!MON_AT(sx, sy) && (ptr = mkclass(S_MIMIC,0)) &&
+		(mtmp = makemon(ptr,sx,sy,NO_MM_FLAGS)) != 0) {
+	    /* note: makemon will set the mimic symbol to a shop item */
+	    if (rn2(10) >= depth(&u.uz)) {
+		mtmp->m_ap_type = M_AP_OBJECT;
+		mtmp->mappearance = STRANGE_OBJECT;
+	    }
+	} else {
+	    atype = get_shop_item(shp - shtypes);
+	    if (atype < 0)
 		(void) mksobj_at(-atype, sx, sy, TRUE, TRUE);
-	else (void) mkobj_at(atype, sx, sy, TRUE);
+	    else
+		(void) mkobj_at(atype, sx, sy, TRUE);
+	}
 }
 
 /* extract a shopkeeper name for the given shop type */
@@ -365,10 +369,10 @@ const char *nlp[];
 		} else if ((i = rn2(names_avail)) != 0) {
 		    shname = nlp[i - 1];
 		} else if (nlp != shkgeneral) {
-		    nlp = shkgeneral;   /* try general names */
+		    nlp = shkgeneral;	/* try general names */
 		    for (names_avail = 0; nlp[names_avail]; names_avail++)
 			continue;
-		    continue;           /* next `trycnt' iteration */
+		    continue;		/* next `trycnt' iteration */
 		} else {
 		    shname = shk->female ? "Lucrezia" : "Dirk";
 		}
@@ -379,7 +383,7 @@ const char *nlp[];
 		    if (strcmp(ESHK(mtmp)->shknam, shname)) continue;
 		    break;
 		}
-		if (!mtmp) break;       /* new name */
+		if (!mtmp) break;	/* new name */
 	    }
 	}
 	(void) strncpy(ESHK(shk)->shknam, shname, PL_NSIZ);
@@ -387,9 +391,9 @@ const char *nlp[];
 }
 
 STATIC_OVL int
-shkinit(shp, sroom)     /* create a new shopkeeper in the given room */
-const struct shclass    *shp;
-struct mkroom   *sroom;
+shkinit(shp, sroom)	/* create a new shopkeeper in the given room */
+const struct shclass	*shp;
+struct mkroom	*sroom;
 {
 	register int sh, sx, sy;
 	struct monst *shk;
@@ -454,14 +458,14 @@ struct mkroom   *sroom;
 		return(-1);
 	}        
 #else  /* BLACKMARKET */
-	if(!(shk = makemon(&mons[PM_SHOPKEEPER], sx, sy, NO_MM_FLAGS))) 
+	if(!(shk = makemon(&mons[PM_SHOPKEEPER], sx, sy, NO_MM_FLAGS)))
 		return(-1);
 #endif /* BLACKMARKET */
   
 	shk->isshk = shk->mpeaceful = 1;
 	set_malign(shk);
 	shk->msleeping = 0;
-	shk->mtrapseen = ~0;    /* we know all the traps already */
+	shk->mtrapseen = ~0;	/* we know all the traps already */
 	ESHK(shk)->shoproom = (sroom - rooms) + ROOMOFFSET;
 	sroom->resident = shk;
 	ESHK(shk)->shoptype = sroom->rtype;
@@ -482,7 +486,9 @@ struct mkroom   *sroom;
 	init_shk_services(shk);
 #endif
 
-	shk->mgold = 1000L + 30L*(long)rnd(100);        /* initial capital */
+	shk->mgold = 1000L + 30L*(long)rnd(100);	/* initial capital */
+	if (shp->shknms == shkrings)
+	    (void) mongets(shk, TOUCHSTONE);
 	nameshk(shk, shp->shknms);
 
 #ifdef BLACKMARKET
@@ -539,7 +545,7 @@ register struct mkroom *sroom;
 	return;
 
     /* make sure no doorways without doors, and no */
-    /* trapped doors, in shops.                    */
+    /* trapped doors, in shops.			   */
     sx = doors[sroom->fdoor].x;
     sy = doors[sroom->fdoor].y;
 
@@ -548,7 +554,7 @@ register struct mkroom *sroom;
 	    newsym(sx,sy);
     }
     if(levl[sx][sy].typ == SDOOR) {
-            cvt_sdoor_to_door(&levl[sx][sy]);   /* .typ = DOOR */
+	    cvt_sdoor_to_door(&levl[sx][sy]);	/* .typ = DOOR */
 	    newsym(sx,sy);
     }
     if(levl[sx][sy].doormask & D_TRAPPED)

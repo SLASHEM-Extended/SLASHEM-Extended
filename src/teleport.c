@@ -35,9 +35,9 @@ struct monst *mtmp;
 	 */
 	if (mtmp != &youmonst && x == u.ux && y == u.uy
 #ifdef STEED
-		    && (!u.usteed || mtmp != u.usteed)
+			&& (!u.usteed || mtmp != u.usteed)
 #endif
-		    )
+			)
 	    badpos = 1;
 
 	if (mtmp) {
@@ -54,7 +54,7 @@ struct monst *mtmp;
 		if (mtmp == &youmonst)
 			return (HLevitation || Flying || Wwalking ||
 					Swimming || Amphibious) ? badpos : -1;
-		else    return (is_flyer(mdat) || is_swimmer(mdat) ||
+		else	return (is_flyer(mdat) || is_swimmer(mdat) ||
 					is_clinger(mdat)) ? badpos : -1;
 	    } else if (is_lava(x,y)) {
 		if (mtmp == &youmonst)
@@ -365,7 +365,7 @@ int x1, y1, x2, y2;
 # endif /* WIZARD */
 		return FALSE;
 	}
-	if (updest.nlx > 0) {           /* ditto */
+	if (updest.nlx > 0) {		/* ditto */
 	    if (within_bounded_area(x1, y1, updest.nlx, updest.nly,
 						updest.nhx, updest.nhy) &&
 		!within_bounded_area(x2, y2, updest.nlx, updest.nly,
@@ -401,7 +401,19 @@ void
 teleds(nux, nuy)
 register int nux,nuy;
 {
-	if (Punished) unplacebc();
+	boolean dont_teleport_ball = FALSE;
+
+	if (Punished) {
+	    /* If they're teleporting to a position where the ball doesn't need
+	     * to be moved, don't place the ball.  Especially useful when this
+	     * function is being called for crawling out of water instead of
+	     * real teleportation.
+	     */
+	    if (!carried(uball) && distmin(nux, nuy, uball->ox, uball->oy) <= 2)
+		dont_teleport_ball = TRUE;
+	    else
+		unplacebc();
+	}
 	u.utrap = 0;
 	u.ustuck = 0;
 	u.ux0 = u.ux;
@@ -425,7 +437,20 @@ register int nux,nuy;
 		u.uswldtim = u.uswallow = 0;
 		docrt();
 	}
-	if (Punished) placebc();
+	if (Punished) {
+	    if (dont_teleport_ball) {
+		int bc_control;
+		xchar ballx, bally, chainx, chainy;
+		boolean cause_delay;
+
+		/* this should only drag the chain (and never give a near-
+		   capacity message) since we already checked ball distance */
+		(void) drag_ball(u.ux, u.uy, &bc_control, &ballx, &bally,
+					&chainx, &chainy, &cause_delay);
+		move_bc(0, bc_control, ballx, bally, chainx, chainy);
+	    } else
+		 placebc();
+	}
 	initrack(); /* teleports mess up tracking monsters without this */
 	update_player_regions();
 #ifdef STEED
@@ -446,6 +471,7 @@ register int nux,nuy;
 	see_monsters();
 	vision_full_recalc = 1;
 	nomul(0);
+	vision_recalc(0);	/* vision before effects */
 	spoteffects(TRUE);
 	invocation_message();
 }
@@ -504,7 +530,7 @@ boolean force_it;
 	    } else {
 		Your("leash goes slack.");
  release_it:
-		m_unleash(mtmp);
+		m_unleash(mtmp, FALSE);
 		return TRUE;
 	    }
 	}
@@ -694,6 +720,7 @@ level_tele()
 	register int newlev;
 	d_level newlevel;
 	const char *escape_by_flying = 0;	/* when surviving dest of -N */
+	char buf[BUFSZ];
 
 	if ((u.uhave.amulet || In_endgame(&u.uz) || In_sokoban(&u.uz)
 #ifdef STEED
@@ -712,14 +739,14 @@ level_tele()
 	   || wizard
 #endif
 		) {
-	    char buf[BUFSZ], qbuf[BUFSZ];
+	    char qbuf[BUFSZ];
 	    int trycnt = 0;
 
 	    Strcpy(qbuf, "To what level do you want to teleport?");
 	    do {
 		if (++trycnt == 2) Strcat(qbuf, " [type a number]");
 		getlin(qbuf, buf);
-		if (!strcmp(buf,"\033"))        /* cancelled */
+		if (!strcmp(buf,"\033"))	/* cancelled */
 		    return;
 		else if (!strcmp(buf,"*"))
 		    goto random_levtport;
@@ -733,7 +760,8 @@ level_tele()
 		if (trycnt >= 10)
 		    goto random_levtport;
 		if (ynq("Go to Nowhere.  Are you sure?") != 'y') return;
-		You("scream in agony as your body begins to warp...");
+		You("%s in agony as your body begins to warp...",
+		    is_silent(youmonst.data) ? "writhe" : "scream");
 		display_nhwindow(WIN_MESSAGE, FALSE);
 		You("cease to exist.");
 		killer_format = NO_KILLER_PREFIX;
@@ -773,7 +801,7 @@ level_tele()
 		return;
 	}
 #ifdef WIZARD
-	if (In_endgame(&u.uz)) {        /* must already be wizard */
+	if (In_endgame(&u.uz)) {	/* must already be wizard */
 	    int llimit = dunlevs_in_dungeon(&u.uz);
 
 	    if (newlev >= 0 || newlev <= -llimit) {
@@ -810,9 +838,11 @@ level_tele()
 		} else {
 		    pline("Unfortunately, you don't know how to fly.");
 		    You("plummet a few thousand feet to your death.");
+		    Sprintf(buf,
+				"teleported out of the dungeon and fell to %s death",
+				uhis());
+		    killer = buf;
 		    killer_format = NO_KILLER_PREFIX;
-		    killer =
-    self_pronoun("teleported out of the dungeon and fell to %s death","his");
 		}
 	}
 
@@ -930,7 +960,7 @@ struct trap *trap;
 		You(shudder_for_moment);
 	} else if (trap->once) {
 		deltrap(trap);
-		newsym(u.ux,u.uy);      /* get rid of trap symbol */
+		newsym(u.ux,u.uy);	/* get rid of trap symbol */
 		vault_tele();
 	} else
 		tele();
@@ -955,14 +985,14 @@ struct trap *trap;
 	else
 	    You("are momentarily disoriented.");
 	deltrap(trap);
-	newsym(u.ux,u.uy);      /* get rid of trap symbol */
+	newsym(u.ux,u.uy);	/* get rid of trap symbol */
 	level_tele();
 }
 
 /* check whether monster can arrive at location <x,y> via Tport (or fall) */
 STATIC_OVL boolean
 rloc_pos_ok(x, y, mtmp)
-register int x, y;              /* coordinates of candidate location */
+register int x, y;		/* coordinates of candidate location */
 struct monst *mtmp;
 {
 	register int xx, yy;
@@ -980,16 +1010,16 @@ struct monst *mtmp;
 	if (!xx) {
 	    /* no current location (migrating monster arrival) */
 	    if (dndest.nlx && On_W_tower_level(&u.uz))
-		return ((yy & 2) != 0) ^        /* inside xor not within */
+		return ((yy & 2) != 0) ^	/* inside xor not within */
 		       !within_bounded_area(x, y, dndest.nlx, dndest.nly,
 						  dndest.nhx, dndest.nhy);
-	    if (updest.lx && (yy & 1) != 0)     /* moving up */
+	    if (updest.lx && (yy & 1) != 0)	/* moving up */
 		return (within_bounded_area(x, y, updest.lx, updest.ly,
 						  updest.hx, updest.hy) &&
 		       (!updest.nlx ||
 			!within_bounded_area(x, y, updest.nlx, updest.nly,
 						   updest.nhx, updest.nhy)));
-	    if (dndest.lx && (yy & 1) == 0)     /* moving down */
+	    if (dndest.lx && (yy & 1) == 0)	/* moving down */
 		return (within_bounded_area(x, y, dndest.lx, dndest.ly,
 						  dndest.hx, dndest.hy) &&
 		       (!dndest.nlx ||
@@ -1018,23 +1048,24 @@ struct monst *mtmp;
 register int x, y;
 {
 	register int oldx = mtmp->mx, oldy = mtmp->my;
+	boolean resident_shk = mtmp->isshk && inhishop(mtmp);
 
-	if (x == mtmp->mx && y == mtmp->my)     /* that was easy */
+	if (x == mtmp->mx && y == mtmp->my)	/* that was easy */
 		return;
 
-	if (oldx) {                             /* "pick up" monster */
+	if (oldx) {				/* "pick up" monster */
 	    if (mtmp->wormno)
 		remove_worm(mtmp);
 	    else {
 		remove_monster(oldx, oldy);
-		newsym(oldx, oldy);             /* update old location */
+		newsym(oldx, oldy);		/* update old location */
 	    }
 	}
 
-	place_monster(mtmp, x, y);              /* put monster down */
+	place_monster(mtmp, x, y);		/* put monster down */
 	update_monster_region(mtmp);
 
-	if (mtmp->wormno)                       /* now put down tail */
+	if (mtmp->wormno)			/* now put down tail */
 		place_worm_tail_randomly(mtmp, x, y);
 
 	if (u.ustuck == mtmp) {
@@ -1042,26 +1073,30 @@ register int x, y;
 			u.ux = x;
 			u.uy = y;
 			docrt();
-		} else  u.ustuck = 0;
+		} else	u.ustuck = 0;
 	}
 
-	newsym(x, y);                           /* update new location */
-	set_apparxy(mtmp);                      /* orient monster */
+	newsym(x, y);				/* update new location */
+	set_apparxy(mtmp);			/* orient monster */
+
+	/* shopkeepers will only teleport if you zap them with a wand of
+	   teleportation or if they've been transformed into a jumpy monster;
+	   the latter only happens if you've attacked them with polymorph */
+	if (resident_shk && !inhishop(mtmp)) make_angry_shk(mtmp, oldx, oldy);
 }
 
 /* place a monster at a random location, typically due to teleport */
 void
 rloc(mtmp)
-struct monst *mtmp;     /* mx==0 implies migrating monster arrival */
+struct monst *mtmp;	/* mx==0 implies migrating monster arrival */
 {
 	register int x, y, trycount;
-	xchar omx = mtmp->mx, omy = mtmp->my;
 
 #ifdef STEED
 	/* WAC It's disappearing... */
 	if (mtmp == u.usteed) dismount_steed(DISMOUNT_FELL);
 #endif
-	
+
 #ifdef STEED
 	if (mtmp == u.usteed) {
 	    tele();
@@ -1069,10 +1104,10 @@ struct monst *mtmp;     /* mx==0 implies migrating monster arrival */
 	}
 #endif
 
-	if (mtmp->iswiz && omx) {       /* Wizard, not just arriving */
+	if (mtmp->iswiz && mtmp->mx) {	/* Wizard, not just arriving */
 	    if (!In_W_tower(u.ux, u.uy, &u.uz))
 		x = xupstair,  y = yupstair;
-	    else if (!xdnladder)        /* bottom level of tower */
+	    else if (!xdnladder)	/* bottom level of tower */
 		x = xupladder,  y = yupladder;
 	    else
 		x = xdnladder,  y = ydnladder;
@@ -1104,10 +1139,6 @@ struct monst *mtmp;     /* mx==0 implies migrating monster arrival */
 
  found_xy:
 	rloc_to(mtmp, x, y);
-	/* shopkeepers will only teleport if you zap them with a wand of
-	   teleportation or if they've been transformed into a jumpy monster;
-	   the latter only happens if you've attacked them with polymorph */
-	if (mtmp->isshk && !inhishop(mtmp)) make_angry_shk(mtmp, omx, omy);
 }
 
 STATIC_OVL void
@@ -1179,8 +1210,8 @@ int in_sight;
 	int tt = trap->ttyp;
 	struct permonst *mptr = mtmp->data;
 
-	if (mtmp == u.ustuck)   /* probably a vortex */
-	    return 0;           /* temporary? kludge */
+	if (mtmp == u.ustuck)	/* probably a vortex */
+	    return 0;		/* temporary? kludge */
 	if (teleport_pet(mtmp, force_it)) {
 	    d_level tolevel;
 	    int migrate_typ = MIGR_RANDOM;
@@ -1245,7 +1276,7 @@ int in_sight;
 	    }
 	    migrate_to_level(mtmp, ledger_no(&tolevel),
 			     migrate_typ, (coord *)0);
-	    return 3;   /* no longer on this level */
+	    return 3;	/* no longer on this level */
 	}
 	return 0;
 }
@@ -1293,7 +1324,7 @@ register struct obj *obj;
 		    addtobill(obj, FALSE, FALSE, FALSE);
 		else (void)stolen_value(obj, otx, oty, FALSE, FALSE);
 	    }
-	    newsym(otx, oty);   /* update old location */
+	    newsym(otx, oty);	/* update old location */
 	}
 	place_object(obj, tx, ty);
 	newsym(tx, ty);
@@ -1362,41 +1393,44 @@ boolean give_feedback;
 	    if (give_feedback)
 		pline("%s resists your magic!", Monnam(mtmp));
 	    return FALSE;
-	} else {
-	    if (is_rider(mtmp->data) && rn2(13) &&
-		    enexto(&cc, u.ux, u.uy, mtmp->data))
-		rloc_to(mtmp, cc.x, cc.y);
-	    else {
+	} else if (level.flags.noteleport && u.uswallow && mtmp == u.ustuck) {
+	    if (give_feedback)
+		You("are no longer inside %s!", mon_nam(mtmp));
+	    unstuck(mtmp);
+	    rloc(mtmp);
+	} else if (is_rider(mtmp->data) && rn2(13) &&
+		   enexto(&cc, u.ux, u.uy, mtmp->data))
+	    rloc_to(mtmp, cc.x, cc.y);
+	else {
 #ifdef WIZARD
-                if (wizard && Teleport_control)
-		{
-		    /*
-		     * [ALI] This code will only allow monsters to be
-		     * teleported to positions acceptable to rloc_pos_ok().
-		     * We could use goodpos() which would allow more
-		     * locations but, in my view, is less informative.
-		     */
-		    xchar omx, omy;
-		    pline("To what position do you want %s to be teleported?",
-			   mon_nam(mtmp));
-		    cc.x = omx = mtmp->mx;
-		    cc.y = omy = mtmp->my;
-		    if (getpos(&cc, TRUE, "the desired position") < 0)
-			rloc(mtmp);	/* abort */
-		    else if (rloc_pos_ok(cc.x, cc.y, mtmp)) {
-			rloc_to(mtmp, cc.x, cc.y);
-			/* As rloc() ... */
-			if (mtmp->isshk && !inhishop(mtmp))
-			  make_angry_shk(mtmp, omx, omy);
-		    } else {
-			pline("Sorry...");
-			rloc(mtmp);
-		    }
-		} else
+	    if (wizard && Teleport_control)
+	    {
+		/*
+		 * [ALI] This code will only allow monsters to be
+		 * teleported to positions acceptable to rloc_pos_ok().
+		 * We could use goodpos() which would allow more
+		 * locations but, in my view, is less informative.
+		 */
+		xchar omx, omy;
+		pline("To what position do you want %s to be teleported?",
+		       mon_nam(mtmp));
+		cc.x = omx = mtmp->mx;
+		cc.y = omy = mtmp->my;
+		if (getpos(&cc, TRUE, "the desired position") < 0)
+		    rloc(mtmp);	/* abort */
+		else if (rloc_pos_ok(cc.x, cc.y, mtmp)) {
+		    rloc_to(mtmp, cc.x, cc.y);
+		    /* As rloc() ... */
+		    if (mtmp->isshk && !inhishop(mtmp))
+			make_angry_shk(mtmp, omx, omy);
+		} else {
+		    pline("Sorry...");
+		    rloc(mtmp);
+		}
+	    } else
 #endif /* WIZARD */
-		rloc(mtmp);
-	    }
-	    return TRUE;
+	    rloc(mtmp);
 	}
+	return TRUE;
 }
 /*teleport.c*/

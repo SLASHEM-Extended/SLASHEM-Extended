@@ -17,23 +17,23 @@ register struct monst *mon;
 	    if (!Protection_from_shape_changers &&
 		    !rn2(night() ? (flags.moonphase == FULL_MOON ?  3 : 30)
 				 : (flags.moonphase == FULL_MOON ? 10 : 50))) {
-		new_were(mon);          /* change into animal form */
+		new_were(mon);		/* change into animal form */
 		if (flags.soundok) {
 		    const char *howler;
 
 		    switch (monsndx(mon->data)) {
-		    case PM_HUMAN_WEREWOLF:       howler = "wolf";    break;
-		    case PM_HUMAN_WEREJACKAL:     howler = "jackal";  break;
+		    case PM_HUMAN_WEREWOLF:	  howler = "wolf";    break;
+		    case PM_HUMAN_WEREJACKAL: howler = "jackal";  break;
 		    case PM_HUMAN_WEREPANTHER:    howler = "panther"; break;
 		    case PM_HUMAN_WERETIGER:      howler = "tiger";   break;
-		    default:              howler = (char *)0; break;
+		    default:		  howler = (char *)0; break;
 		    }
 		    if (howler)
 			You_hear("a %s howling at the moon.", howler);
 		}
 	    }
 	} else if (!rn2(30) || Protection_from_shape_changers) {
-	    new_were(mon);              /* change back into human form */
+	    new_were(mon);		/* change back into human form */
 	}
 }
 
@@ -47,11 +47,11 @@ counter_were(pm)
 int pm;
 {
 	switch(pm) {
-	    case PM_WEREWOLF:         return(PM_HUMAN_WEREWOLF);
+	    case PM_WEREWOLF:	      return(PM_HUMAN_WEREWOLF);
 	    case PM_HUMAN_WEREWOLF:   return(PM_WEREWOLF);
-	    case PM_WEREJACKAL:       return(PM_HUMAN_WEREJACKAL);
+	    case PM_WEREJACKAL:	      return(PM_HUMAN_WEREJACKAL);
 	    case PM_HUMAN_WEREJACKAL: return(PM_WEREJACKAL);
-	    case PM_WERERAT:          return(PM_HUMAN_WERERAT);
+	    case PM_WERERAT:	      return(PM_HUMAN_WERERAT);
 	    case PM_HUMAN_WERERAT:    return(PM_WERERAT);
 	    case PM_WEREPANTHER:      return(PM_HUMAN_WEREPANTHER);            
 	    case PM_HUMAN_WEREPANTHER:return(PM_WEREPANTHER);
@@ -61,7 +61,7 @@ int pm;
 	    case PM_HUMAN_WERESNAKE:  return(PM_WERESNAKE);
 	    case PM_WERESPIDER:       return(PM_HUMAN_WERESPIDER);
 	    case PM_HUMAN_WERESPIDER: return(PM_WERESPIDER);
-	    default:                  return(0);
+	    default:		      return(0);
 	}
 }
 
@@ -86,18 +86,18 @@ register struct monst *mon;
 	if (mon->msleeping || !mon->mcanmove) {
 	    /* transformation wakens and/or revitalizes */
 	    mon->msleeping = 0;
-	    mon->mfrozen = 0;   /* not asleep or paralyzed */
+	    mon->mfrozen = 0;	/* not asleep or paralyzed */
 	    mon->mcanmove = 1;
 	}
 	/* regenerate by 1/4 of the lost hit points */
 	mon->mhp += (mon->mhpmax - mon->mhp) / 4;
 	newsym(mon->mx,mon->my);
-	mon_break_armor(mon);
+	mon_break_armor(mon, FALSE);
 	possibly_unwield(mon);
 }
 
 boolean
-were_summon(ptr,yours)  /* were-creature (even you) summons a horde */
+were_summon(ptr,yours)	/* were-creature (even you) summons a horde */
 register struct permonst *ptr;
 register boolean yours;
 {
@@ -163,9 +163,9 @@ you_were()
 	/* KMH, balance patch -- new intrinsic */
 	if (Unchanging || (u.umonnum == u.ulycn)) return;
 	if (Polymorph_control) {
-		/* `+4' => skip "were" prefix to get name of beast */
-		Sprintf(qbuf, "Do you want to change into %s? ",
-		        an(mons[u.ulycn].mname+4));
+	    /* `+4' => skip "were" prefix to get name of beast */
+	    Sprintf(qbuf, "Do you want to change into %s? ",
+		    an(mons[u.ulycn].mname+4));
 	    if(yn(qbuf) == 'n') return;
 	}
 	(void) polymon(u.ulycn);
@@ -188,12 +188,12 @@ boolean purify;
 		return;
 	    }
 	    You_feel("purified.");
-	    u.ulycn = NON_PM;   /* cure lycanthropy */
+	    u.ulycn = NON_PM;	/* cure lycanthropy */
 	    upermonst.mflags2 &= ~(M2_WERE);
 	}
 	/* KMH, balance patch -- new intrinsic */
 	if (!Unchanging && in_wereform &&
-	        (!Polymorph_control || yn("Remain in beast form?") == 'n'))
+		(!Polymorph_control || yn("Remain in beast form?") == 'n'))
 	    rehumanize();
 }
 

@@ -240,7 +240,7 @@ e_at(x, y)
 int x, y;
 {
 	int entitycnt;
-	
+
 	for (entitycnt = 0; entitycnt < ENTITIES; entitycnt++)
 		if ((occupants[entitycnt].edata) &&
 		    (occupants[entitycnt].ex == x) &&
@@ -336,39 +336,14 @@ struct entity *etmp;
 const char *verb;
 {
 	static char wholebuf[80];
-	char verbbuf[30];
 
 	Strcpy(wholebuf, is_u(etmp) ? "You" : Monnam(etmp->emon));
-	if (!*verb)
-		return(wholebuf);
+	if (!*verb) return(wholebuf);
 	Strcat(wholebuf, " ");
-	verbbuf[0] = '\0';
 	if (is_u(etmp))
-		Strcpy(verbbuf, verb);
-	else {
-		if (!strcmp(verb, "are"))
-			Strcpy(verbbuf, "is");
-		if (!strcmp(verb, "have"))
-			Strcpy(verbbuf, "has");
-		if (!verbbuf[0]) {
-			Strcpy(verbbuf, verb);
-			switch (verbbuf[strlen(verbbuf) - 1]) {
-				case 'y':
-					verbbuf[strlen(verbbuf) - 1] = '\0';
-					Strcat(verbbuf, "ies");
-					break;
-				case 'h':
-				case 'o':
-				case 's':
-					Strcat(verbbuf, "es");
-					break;
-				default:
-					Strcat(verbbuf, "s");
-					break;
-			}
-		}
-	}
-	Strcat(wholebuf, verbbuf);
+	    Strcat(wholebuf, verb);
+	else
+	    Strcat(wholebuf, vtense((char *)0, verb));
 	return(wholebuf);
 }
 
@@ -527,7 +502,7 @@ struct entity *etmp;
 
 	if (is_db_wall(etmp->ex, etmp->ey))
 		tmp -= 2;			    /* less room to maneuver */
-	
+
 #ifdef D_DEBUG
 	pline("%s to jump (%d chances in 10)", E_phrase(etmp, "try"), tmp);
 #endif

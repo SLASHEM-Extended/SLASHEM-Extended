@@ -5,7 +5,7 @@
 #include "hack.h"
 #include "lev.h"
 
-extern char bones[];    /* from files.c */
+extern char bones[];	/* from files.c */
 #ifdef MFLOPPY
 extern long bytes_counted;
 #endif
@@ -19,7 +19,7 @@ STATIC_OVL boolean
 no_bones_level(lev)
 d_level *lev;
 {
-	extern d_level save_dlevel;             /* in do.c */
+	extern d_level save_dlevel;		/* in do.c */
 	s_level *sptr;
 
 	if (ledger_no(&save_dlevel)) assign_level(lev, &save_dlevel);
@@ -138,11 +138,12 @@ struct obj *cont;
 
 	while ((otmp = invent) != 0) {
 		obj_extract_self(otmp);
+		obj_no_longer_held(otmp);
 
 		otmp->owornmask = 0;
 		/* lamps don't go out when dropped */
-		if (cont && obj_is_burning(otmp))       /* smother in statue */
-			end_burn(otmp, otmp->otyp != MAGIC_LAMP);
+		if ((cont || artifact_light(otmp)) && obj_is_burning(otmp))
+		    end_burn(otmp, TRUE);	/* smother in statue */
 
 		if(otmp->otyp == SLIME_MOLD) goodfruit(otmp->spe);
 
@@ -150,17 +151,18 @@ struct obj *cont;
 		if (mtmp)
 			(void) add_to_minv(mtmp, otmp);
 		else if (cont)
-			add_to_container(cont, otmp);
+			(void) add_to_container(cont, otmp);
 		else
 			place_object(otmp, u.ux, u.uy);
 	}
 	if(u.ugold) {
 		long ugold = u.ugold;
 		if (mtmp) mtmp->mgold = ugold;
-		else if (cont) add_to_container(cont, mkgoldobj(ugold));
+		else if (cont) (void) add_to_container(cont, mkgoldobj(ugold));
 		else (void)mkgold(ugold, u.ux, u.uy);
-		u.ugold = ugold;        /* undo mkgoldobj()'s removal */
+		u.ugold = ugold;	/* undo mkgoldobj()'s removal */
 	}
+	if (cont) cont->owt = weight(cont);
 }
 
 /* check whether bones are feasible */
@@ -172,7 +174,7 @@ can_make_bones()
 	if (ledger_no(&u.uz) <= 0 || ledger_no(&u.uz) > maxledgerno())
 	    return FALSE;
 	if (no_bones_level(&u.uz))
-	    return FALSE;               /* no bones for specific levels */
+	    return FALSE;		/* no bones for specific levels */
 	if (!Is_branchlev(&u.uz)) {
 	    /* no bones on non-branches with portals */
 	    for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap)
@@ -224,7 +226,9 @@ struct obj *corpse;
 		return;
 	}
 
+#ifdef WIZARD
  make_bones:
+#endif
 	unleash_all();
 	/* in case these characters are not in their home bases */
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
@@ -244,17 +248,10 @@ struct obj *corpse;
 		    obfree(otmp, (struct obj *)0);
 		}
 		mongone(mtmp);
-	    }
+	}
 	}
 #ifdef STEED
-	if (u.usteed) {
-	    coord cc;
-
-	    /* Move the steed to an adjacent square */
-	    if (enexto(&cc, u.ux, u.uy, u.usteed->data))
-		rloc_to(u.usteed, cc.x, cc.y);
-	    u.usteed = 0;
-	}
+	if (u.usteed) dismount_steed(DISMOUNT_BONES);
 #endif
 	dmonsfree();		/* discard dead or gone monsters */
 
@@ -320,8 +317,8 @@ struct obj *corpse;
 		if(mtmp->mtame) mtmp->mtame = mtmp->mpeaceful = 0;
 	}
 	for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) {
- 		ttmp->madeby_u = 0;
- 		ttmp->tseen = (ttmp->ttyp == HOLE);
+		ttmp->madeby_u = 0;
+		ttmp->tseen = (ttmp->ttyp == HOLE);
 	}
 	resetobjs(fobj,FALSE);
 	resetobjs(level.buriedobjlist, FALSE);
@@ -379,7 +376,7 @@ struct obj *corpse;
 
 	store_version(fd);
 	bwrite(fd, (genericptr_t) &c, sizeof c);
-	bwrite(fd, (genericptr_t) bonesid, (unsigned) c);       /* DD.nnn */
+	bwrite(fd, (genericptr_t) bonesid, (unsigned) c);	/* DD.nnn */
 	savefruitchn(fd, WRITE_SAVE | FREE_SAVE);
 	update_mlstmv();	/* update monsters for eventual restoration */
 	savelev(fd, ledger_no(&u.uz), WRITE_SAVE | FREE_SAVE);
@@ -395,11 +392,11 @@ getbones()
 	register int ok;
 	char c, *bonesid, oldbonesid[10];
 
-	if(discover)            /* save bones files for real games */
+	if(discover)		/* save bones files for real games */
 		return(0);
 
 	/* wizard check added by GAN 02/05/87 */
-	if(rn2(3)       /* only once in three times do we find bones */
+	if(rn2(3)	/* only once in three times do we find bones */
 
 #ifdef WIZARD
 		&& !wizard
@@ -424,14 +421,14 @@ getbones()
 			}
 		}
 #endif
-		mread(fd, (genericptr_t) &c, sizeof c); /* length incl. '\0' */
+		mread(fd, (genericptr_t) &c, sizeof c);	/* length incl. '\0' */
 		mread(fd, (genericptr_t) oldbonesid, (unsigned) c); /* DD.nnn */
 		if (strcmp(bonesid, oldbonesid)) {
 #ifdef WIZARD
 			if (wizard) {
 				pline("This is bones level '%s', not '%s'!",
 					oldbonesid, bonesid);
-				ok = FALSE;     /* won't die of trickery */
+				ok = FALSE;	/* won't die of trickery */
 			}
 #endif
 			trickery();

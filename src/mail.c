@@ -55,13 +55,13 @@ int mustgetmail = -1;
 #   if !defined(SUNOS4) && !(defined(ULTRIX) && defined(__GNUC__))
 #    if !defined(LINUX)
 /* DO trust all SVR4 to typedef uid_t in <sys/types.h> (probably to a long) */
-#     if defined(POSIX_TYPES) || defined(SVR4) || defined(HPUX)
+#    if defined(POSIX_TYPES) || defined(SVR4) || defined(HPUX)
 extern struct passwd *FDECL(getpwuid,(uid_t));
-#     else
+#    else
 extern struct passwd *FDECL(getpwuid,(int));
-#     endif
 #    endif
 #   endif
+#  endif
 #  endif
 static struct stat omstat,nmstat;
 static char *mailbox = (char *)0;
@@ -140,7 +140,7 @@ md_start(startp)
      * If blind and not telepathic, then it doesn't matter what we pick ---
      * the hero is not going to see it anyway.  So pick a nearby position.
      */
-	if (Blind && !Blind_telepat) {
+    if (Blind && !Blind_telepat) {
 	if (!enexto(startp, u.ux, u.uy, (struct permonst *) 0))
 	    return FALSE;	/* no good posiitons */
 	return TRUE;
@@ -442,24 +442,21 @@ readmail(otmp)
 struct obj *otmp;
 {
     static char *junk[] = {
-	"Please disregard previous letter.",
+    "Please disregard previous letter.",
 /* WAC updated with SLASHEM info
     "Welcome to NetHack.",
 */
         "Welcome to SLASH'EM!",
 #ifdef AMIGA
-	"Only Amiga makes it possible.",
-	"CATS have all the answers.",
+    "Only Amiga makes it possible.",
+    "CATS have all the answers.",
 #endif
 /* WAC updated with SLASHEM info
-	"Report bugs to nethack-bugs@linc.cis.upenn.edu"
+	"Report bugs to <devteam@nethack.org>."
 */
-#ifndef MAC_MPW
-        "Send bug reports and suggestions to wac@intergate.bc.ca"
-#else
-        "To submit bug reports and suggestions go to our web page, http://slashem.cjb.net"
-#endif /* MAC_MPW */
-	};
+        "To submit bug reports and suggestions go to our web page, http://slashem.cjb.net",
+        "Talk about Slash'EM on <slashem-discuss@lists.sourceforge.net>"
+    };
 
     if (Blind) {
 	pline("Unfortunately you cannot see what it says.");

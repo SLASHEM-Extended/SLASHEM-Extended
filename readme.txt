@@ -328,6 +328,19 @@ TODO:
 -vampires shouldn't be allowed to become Flame Mages
 
 ver 0.0.6E6 [?] [Released by ?]
+-Implemented "none" as a possible random place in level compiler.
+-fixed bug 500833: Spellbook learn.
+-fixed bug 456805: Baby dragons don't grow up.
+-fixed bug 531179: Beheading when invulnerable.
+-fixed bug 499439: Fireballs don't explode on hitting you.
+-fixed bug 528174: having shopkeepers enchant daggers crash.
+-fixed bug 499055: Bug in power-draining trap.
+-refixed bug 459699: Oops. add_to_billobjs: obj is timed.
+-applied patches 457587, 457592, 457593 & 457601: Building with Makefile.nt
+-fixed bug 524758: #borrow on pets exercises dexterity.
+-fixed bug 525461: Can't compile without UNPOLYPILE.
+-fixed bug 479068: Bones can contain guaranteed artifacts.
+-fixed bug 479067: Bones can contain aligned nemeses.
 -Implemented NhExt sub-protocol 1.
 -Proxy: Added support for callbacks.
 -Proxy: Add display inventory callback.
@@ -337,6 +350,7 @@ ver 0.0.6E6 [?] [Released by ?]
 -Proxy: Add option callbacks.
 -fixed bug 468049: Ronin should be removed.
 -Implemented first cut at display layers.
+-Merged vanilla 3.4.0 codebase.
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).
@@ -363,21 +377,6 @@ ver 0.0.6E5 [May 3/2001] [Released by Warren]
 -fixed bug 232030: GTK: Can't start in character mode.
 -fixed bug 417384: Shopkeeper services.
 -fixed bug 225227: Vampires start with food rations.
-
-ver 0.0.6E4F8 [?] [Released by ?]
--Implemented "none" as a possible random place in level compiler.
--fixed bug 500833: Spellbook learn.
--fixed bug 456805: Baby dragons don't grow up.
--fixed bug 531179: Beheading when invulnerable.
--fixed bug 499439: Fireballs don't explode on hitting you.
--fixed bug 528174: having shopkeepers enchant daggers crash.
--fixed bug 499055: Bug in power-draining trap.
--refixed bug 459699: Oops. add_to_billobjs: obj is timed.
--applied patches 457587, 457592, 457593 & 457601: Building with Makefile.nt
--fixed bug 524758: #borrow on pets exercises dexterity.
--fixed bug 525461: Can't compile without UNPOLYPILE.
--fixed bug 479068: Bones can contain guaranteed artifacts.
--fixed bug 479067: Bones can contain aligned nemeses.
 
 ver 0.0.6E4F7 [February 28/2002] [Released by Ali]
 -Improvements to database (Lars Huttar)

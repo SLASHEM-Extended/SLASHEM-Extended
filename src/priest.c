@@ -8,6 +8,9 @@
 #include "epri.h"
 #include "emin.h"
 
+/* this matches the categorizations shown by enlightenment */
+#define ALGN_SINNED	(-4)	/* worse than strayed */
+
 #ifdef OVLB
 
 STATIC_DCL boolean FDECL(histemple_at,(struct monst *,XCHAR_P,XCHAR_P));
@@ -191,9 +194,9 @@ struct mkroom *sroom;
 int sx, sy;
 boolean sanctum;   /* is it the seat of the high priest? */
 {
-	register struct monst *priest;
-	register struct obj *otmp;
-	register int cnt;
+	struct monst *priest;
+	struct obj *otmp;
+	int cnt;
 
 	if(MON_AT(sx+1, sy))
 		rloc(m_at(sx+1, sy)); /* insurance */
@@ -217,28 +220,29 @@ boolean sanctum;   /* is it the seat of the high priest? */
 		     on_level(&sanctum_level, &u.uz)) {
 			(void) mongets(priest, AMULET_OF_YENDOR);
 		}
-		/* Do NOT put the rest in m_initinv.    */
-		/* Priests created elsewhere than in a  */
-		/* temple should not carry these items, */
-		cnt = rn1(2,3);
-		while(cnt) {
-		    otmp = mkobj(SPBOOK_CLASS, FALSE);
-		    if(otmp) (void) mpickobj(priest, otmp);
-		    cnt--;
+		/* 2 to 4 spellbooks */
+		for (cnt = rn1(3,2); cnt > 0; --cnt) {
+		    (void) mpickobj(priest, mkobj(SPBOOK_CLASS, FALSE));
 		}
-		/* KMH, balance patch -- The clergy now wear robes instead of cloaks */
-		if(p_coaligned(priest))
-		    (void) mongets(priest, rn2(2) ? ROBE_OF_PROTECTION : ROBE_OF_POWER);
-		else {
-		    if(!rn2(5))
-			otmp = mksobj(ROBE_OF_POWER, TRUE, FALSE);
-		    else otmp = mksobj(ROBE_OF_PROTECTION, TRUE, FALSE);
-		    if(otmp) {
-			if(!rn2(2)) curse(otmp);
-			(void) mpickobj(priest, otmp);
+		/* [ALI] Upgrade existing robe or aquire new */
+		if (rn2(2) || (otmp = which_armor(priest, W_ARM)) == 0) {
+		    struct obj *obj;
+		    obj = mksobj(rn2(p_coaligned(priest) ? 2 : 5) ?
+			    ROBE_OF_PROTECTION : ROBE_OF_POWER, TRUE, FALSE);
+		    if (p_coaligned(priest))
+			unsurse(obj);
+		    else
+			curse(obj);
+		    (void) mpickobj(priest, obj);
+		    m_dowear(priest, TRUE);
+		    if (!(obj->owornmask & W_ARM)) {
+			obj_extract_self(obj);
+			obfree(obj, (struct obj *)0);
+		    } else if (otmp) {
+			obj_extract_self(otmp);
+			obfree(otmp, (struct obj *)0);
 		    }
 		}
-		m_dowear(priest, TRUE);
 	}
 }
 
@@ -257,7 +261,7 @@ boolean sanctum;   /* is it the seat of the high priest? */
 char *
 priestname(mon, pname)
 register struct monst *mon;
-char *pname;          /* caller-supplied output buffer */
+char *pname;		/* caller-supplied output buffer */
 {
 	const char *what = Hallucination ? rndmonnam() : mon->data->mname;
 
@@ -372,8 +376,8 @@ register int roomno;
 		}
 		if(!sanctum) {
 		    /* !tended -> !shrined */
-		    if(!shrined || !p_coaligned(priest) ||
-						   u.ualign.record < -5)
+		    if (!shrined || !p_coaligned(priest) ||
+			    u.ualign.record <= ALGN_SINNED)
 			You("have a%s forbidding feeling...",
 				(!shrined) ? "" : " strange");
 		    else You("experience a strange sense of peace.");
@@ -430,7 +434,7 @@ register struct monst *priest;
 
 	    if(!priest->mcanmove || priest->msleeping) {
 		pline("%s breaks out of %s reverie!",
-		      Monnam(priest), his[pronoun_gender(priest)]);
+		      Monnam(priest), mhis(priest));
 		priest->mfrozen = priest->msleeping = 0;
 		priest->mcanmove = 1;
 	    }
@@ -446,7 +450,6 @@ register struct monst *priest;
 	    priest->mpeaceful = 0;
 	    return;
 	}
-
 	if(!u.ugold) {
 	    if(coaligned && !strayed) {
 		if (priest->mgold > 0L) {
@@ -483,7 +486,8 @@ register struct monst *priest;
 	    } else if(offer < (u.ulevel * 400)) {
 		verbalize("Thou art indeed a pious individual.");
 		if(u.ugold < (offer * 2L)) {
-		    if(coaligned && u.ualign.record < -5) adjalign(1);
+		    if (coaligned && u.ualign.record <= ALGN_SINNED)
+			adjalign(1);
 		    verbalize("I bestow upon thee a blessing.");
 		    /* KMH, intrinsic patch */
 		    incr_itimeout(&HClairvoyant, rn1(500,500));
@@ -569,7 +573,7 @@ xchar x, y;
 	    if (is_minion(mon->data) || is_rider(mon->data)) return FALSE;
 	    x = mon->mx, y = mon->my;
 	}
-	if (u.ualign.record < -3)		/* sinned or worse */
+	if (u.ualign.record <= ALGN_SINNED)	/* sinned or worse */
 	    return FALSE;
 	if ((roomno = temple_occupied(u.urooms)) == 0 ||
 		roomno != *in_rooms(x, y, TEMPLE))

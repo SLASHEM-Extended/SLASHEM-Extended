@@ -11,30 +11,32 @@ STATIC_DCL struct artifact artilist[];
 #endif
 /*
  * Note:  both artilist[] and artiexist[] have a dummy element #0,
- *        so loops over them should normally start at #1.  The primary
- *        exception is the save & restore code, which doesn't care about
- *        the contents, just the total size.
+ *	  so loops over them should normally start at #1.  The primary
+ *	  exception is the save & restore code, which doesn't care about
+ *	  the contents, just the total size.
  */
 
-extern boolean notonhead;       /* for long worms */
+extern boolean notonhead;	/* for long worms */
 
 #define get_artifact(o) \
 		(((o)&&(o)->oartifact) ? &artilist[(int) (o)->oartifact] : 0)
 STATIC_DCL int FDECL(spec_applies, (const struct artifact *,struct monst *));
 STATIC_DCL int FDECL(arti_invoke, (struct obj*));
 
-/* The amount added to normal damage which should guarantee that the
+/* The amount added to the victim's total hit points to insure that the
    victim will be killed even after damage bonus/penalty adjustments.
-   It needs to be big enough so that halving will still kill, but not
-   so big that doubling ends up overflowing 15 bits.  This value used
-   to be 1234, but it was possible for players to accumulate enough
-   hit points so that taking (uhp + 1234)/2 damage was survivable. */
-#define FATAL_DAMAGE 9999
+   Most such penalties are small, and 200 is plenty; the exception is
+   half physical damage.  3.3.1 and previous versions tried to use a very
+   large number to account for this case; now, we just compute the fatal
+   damage by adding it to 2 times the total hit points instead of 1 time.
+   Note: this will still break if they have more than about half the number
+   of hit points that will fit in a 15 bit integer. */
+#define FATAL_DAMAGE_MODIFIER 200
 
 #ifndef OVLB
 STATIC_DCL int spec_dbon_applies;
 STATIC_DCL xchar artidisco[NROFARTIFACTS];
-#else   /* OVLB */
+#else	/* OVLB */
 /* coordinate effects from spec_dbon() with messages in artifact_hit() */
 STATIC_OVL int spec_dbon_applies = 0;
 
@@ -62,7 +64,7 @@ hack_artifacts()
 
 	/* Excalibur can be used by any lawful character, not just knights */
 	if (!Role_if(PM_KNIGHT))
-	    artilist[ART_EXCALIBUR].role = 0;
+	    artilist[ART_EXCALIBUR].role = NON_PM;
 
 #if 0
 	/* Fix up the gifts */
@@ -151,7 +153,7 @@ int fd;
 {
 	mread(fd, (genericptr_t) artiexist, sizeof artiexist);
 	mread(fd, (genericptr_t) artidisco, sizeof artidisco);
-	hack_artifacts();       /* redo non-saved special cases */
+	hack_artifacts();	/* redo non-saved special cases */
 }
 
 const char *
@@ -174,8 +176,8 @@ int artinum;
  */
 struct obj *
 mk_artifact(otmp, alignment)
-struct obj *otmp;       /* existing object; ignored if alignment specified */
-aligntyp alignment;     /* target alignment, or A_NONE */
+struct obj *otmp;	/* existing object; ignored if alignment specified */
+aligntyp alignment;	/* target alignment, or A_NONE */
 {
 	const struct artifact *a;
 	int n, m;
@@ -213,7 +215,7 @@ aligntyp alignment;     /* target alignment, or A_NONE */
 		    eligible[n++] = m;
 	    }
 
-	if (n) {                /* found at least one candidate */
+	if (n) {		/* found at least one candidate */
 	    m = eligible[rn2(n)];	/* [0..n-1] */
 	    a = &artilist[m];
 
@@ -224,7 +226,7 @@ make_artif: if (by_align) otmp = mksobj((int)a->otyp, TRUE, FALSE);
 	    artiexist[m] = TRUE;
 	} else {
 	    /* nothing appropriate could be found; return the original object */
-	    if (by_align) otmp = 0;     /* (there was no original object) */
+	    if (by_align) otmp = 0;	/* (there was no original object) */
 	}
 	return otmp;
 }
@@ -320,7 +322,7 @@ nartifact_exist()
     int n = SIZE(artiexist);
 
     while(n > 1)
-		if(artiexist[--n]) a++;
+	if(artiexist[--n]) a++;
 
     return a;
 }
@@ -568,16 +570,18 @@ touch_artifact(obj,mon)
     /* all quest artifacts are self-willed; it this ever changes, `badclass'
        will have to be extended to explicitly include quest artifacts */
     self_willed = ((oart->spfx & SPFX_INTEL) != 0);
-      if (yours || !(mon->data->mflags3 & M3_WANTSALL)) {
-	badclass = (self_willed && (!yours ||
-			(oart->role != NON_PM && !Role_if(oart->role)) ||
-			(oart->race != NON_PM && !Race_if(oart->race))));
-	badalign = (oart->spfx & SPFX_RESTR) &&
-		   oart->alignment != A_NONE &&
-	    ((oart->alignment !=
-	      (yours ? u.ualign.type : sgn(mon->data->maligntyp))) ||
-	     (yours && u.ualign.record < 0));
-    } else {    /* an M3_WANTSxxx monster */
+    if (yours) {
+	badclass = self_willed &&
+		   ((oart->role != NON_PM && !Role_if(oart->role)) ||
+		    (oart->race != NON_PM && !Race_if(oart->race)));
+	badalign = (oart->spfx & SPFX_RESTR) && oart->alignment != A_NONE &&
+		   (oart->alignment != u.ualign.type || u.ualign.record < 0);
+    } else if (!is_covetous(mon->data) && !is_mplayer(mon->data)) {
+	badclass = self_willed &&
+		   oart->role != NON_PM && oart != &artilist[ART_EXCALIBUR];
+	badalign = (oart->spfx & SPFX_RESTR) && oart->alignment != A_NONE &&
+		   (oart->alignment != sgn(mon->data->maligntyp));
+    } else {    /* an M3_WANTSxxx monster or a fake player */
 	/* special monsters trying to take the Amulet, invocation tools or
 	   quest item can touch anything except for `spec_applies' artifacts */
 	badclass = badalign = FALSE;
@@ -607,8 +611,8 @@ touch_artifact(obj,mon)
 
     /* can pick it up unless you're totally non-synch'd with the artifact */
     if (badclass && badalign && self_willed) {
-	if (yours) pline("%s evades your grasp!", The(xname(obj)));
-        return 0;
+	if (yours) pline("%s your grasp!", Tobjnam(obj, "evade"));
+	return 0;
     }
 
     return 1;
@@ -651,7 +655,7 @@ struct monst *mtmp;
 	}
 	if (weap->spfx & SPFX_DALIGN) {
 	    retval &= yours ? (u.ualign.type != weap->alignment) :
-			      (ptr->maligntyp == A_NONE ||
+			   (ptr->maligntyp == A_NONE ||
 				sgn(ptr->maligntyp) != weap->alignment);
 	}
 	if (weap->spfx & SPFX_ATTK) {
@@ -690,7 +694,7 @@ struct monst *mtmp;
 			if (yours ? Stone_resistance : resists_ston(mtmp))
 			    retval = FALSE;
 			break;
-		default:        impossible("Weird weapon special attack.");
+		default:	impossible("Weird weapon special attack.");
 	    }
 	}
 	return retval;
@@ -715,8 +719,11 @@ struct monst *mon;
 {
 	register const struct artifact *weap = get_artifact(otmp);
 
-	if (weap && spec_applies(weap, mon))
-	    return weap->attk.damn ? (int)weap->attk.damn : 0;
+	/* no need for an extra check for `NO_ATTK' because this will
+	   always return 0 for any artifact which has that attribute */
+
+	if (weap && weap->attk.damn && spec_applies(weap, mon))
+	    return (int)weap->attk.damn;
 	return 0;
 }
 
@@ -729,7 +736,13 @@ int tmp;
 {
 	register const struct artifact *weap = get_artifact(otmp);
 
-	if ((spec_dbon_applies = (weap && spec_applies(weap, mon))) != 0)
+	if (!weap || (weap->attk.adtyp == AD_PHYS && /* check for `NO_ATTK' */
+			weap->attk.damn == 0 && weap->attk.damd == 0))
+	    spec_dbon_applies = FALSE;
+	else
+	    spec_dbon_applies = spec_applies(weap, mon);
+
+	if (spec_dbon_applies)
 	    return weap->attk.damd ? (int)weap->attk.damd :
 		    /* [ALI] Unlike melee weapons, damd == 0 means no
 		     * bonus for launchers.
@@ -823,7 +836,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	boolean vis = (!youattack && magr && cansee(magr->mx, magr->my))
 		|| (!youdefend && cansee(mdef->mx, mdef->my));
 	boolean realizes_damage;
-
+	const char *wepdesc;
 	static const char you[] = "you";
 	char hittee[BUFSIZ];
 
@@ -836,58 +849,65 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	*dmgptr += spec_dbon(otmp, mdef, *dmgptr);
 
 	if (youattack && youdefend) {
-		impossible("attacking yourself with weapon?");
-		return FALSE;
-	} else if (!spec_dbon_applies) {
-		/* since damage bonus didn't apply, nothing more to do */
-		return FALSE;
+	    impossible("attacking yourself with weapon?");
+	    return FALSE;
 	}
 
 	realizes_damage = (youdefend || vis);
 
 	/* the four basic attacks: fire, cold, shock and missiles */
 	if (attacks(AD_FIRE, otmp)) {
-		if (realizes_damage) {
-#if 0	/* OBSOLETE */
-		    if (otmp->oartifact == ART_PICK_OF_FLANDAL_STEELSKIN)
-			pline_The("fiery pick burns %s!", hittee);
-		    else
-#endif
-		pline_The("fiery blade %s %s!",
+	    if (realizes_damage)
+		pline_The("fiery blade %s %s%c",
+			!spec_dbon_applies ? "hits" :
 			(mdef->data == &mons[PM_WATER_ELEMENTAL]) ?
-			"vaporizes part of" : "burns", hittee);
-		if (!rn2(4)) (void) destroy_mitem(mdef, POTION_CLASS, AD_FIRE);
-		if (!rn2(4)) (void) destroy_mitem(mdef, SCROLL_CLASS, AD_FIRE);
-		if (!rn2(7)) (void) destroy_mitem(mdef, SPBOOK_CLASS, AD_FIRE);
-			return TRUE;
-		}
+			"vaporizes part of" : "burns",
+			hittee, !spec_dbon_applies ? '.' : '!');
+	    if (!rn2(4)) (void) destroy_mitem(mdef, POTION_CLASS, AD_FIRE);
+	    if (!rn2(4)) (void) destroy_mitem(mdef, SCROLL_CLASS, AD_FIRE);
+	    if (!rn2(7)) (void) destroy_mitem(mdef, SPBOOK_CLASS, AD_FIRE);
+	    if (youdefend && Slimed) burn_away_slime();
+	    return realizes_damage;
 	}
 	if (attacks(AD_COLD, otmp)) {
-		if (realizes_damage) {
-			pline_The("ice-cold blade freezes %s!", hittee);
-		if (!rn2(4)) (void) destroy_mitem(mdef, POTION_CLASS, AD_COLD);
-			return TRUE;
-		}
+	    if (realizes_damage)
+		pline_The("ice-cold blade %s %s%c",
+			!spec_dbon_applies ? "hits" : "freezes",
+			hittee, !spec_dbon_applies ? '.' : '!');
+	    if (!rn2(4)) (void) destroy_mitem(mdef, POTION_CLASS, AD_COLD);
+	    return realizes_damage;
 	}
 	if (attacks(AD_ELEC, otmp)) {
-		if (realizes_damage) {
-			if(youattack && otmp != uwep 
-			    && (!u.twoweap || otmp != uswapwep))
-			    pline("%s hits %s!", The(xname(otmp)), hittee);
-			pline("Lightning strikes %s!", hittee);
-		if (!rn2(5)) (void) destroy_mitem(mdef, RING_CLASS, AD_ELEC);
-		if (!rn2(5)) (void) destroy_mitem(mdef, WAND_CLASS, AD_ELEC);
-			return TRUE;
-		}
+	    if (realizes_damage) {
+		if (youattack ?
+			otmp != uwep && (!u.twoweap || otmp != uswapwep) :
+			!spec_dbon_applies)
+		    pline("%s %s%c", Tobjnam(otmp, "hit"),
+			  hittee, !spec_dbon_applies ? '.' : '!');
+		if (spec_dbon_applies)
+		    pline("Lightning strikes %s!", hittee);
+	    }
+	    if (!rn2(5)) (void) destroy_mitem(mdef, RING_CLASS, AD_ELEC);
+	    if (!rn2(5)) (void) destroy_mitem(mdef, WAND_CLASS, AD_ELEC);
+	    return realizes_damage;
 	}
 	if (attacks(AD_MAGM, otmp)) {
-		if (realizes_damage) {
-			if(youattack && otmp != uwep 
-			   && (!u.twoweap || otmp != uswapwep))
-			    	pline("%s hits %s!", The(xname(otmp)), hittee);
-				pline("A hail of magic missiles strikes %s!", hittee);
-				return TRUE;
-		}
+	    if (realizes_damage) {
+		if (youattack ?
+			otmp != uwep && (!u.twoweap || otmp != uswapwep) :
+			!spec_dbon_applies)
+		    pline("%s %s%c", Tobjnam(otmp, "hit"),
+			  hittee, !spec_dbon_applies ? '.' : '!');
+		if (spec_dbon_applies)
+		    pline("A hail of magic missiles strikes %s!", hittee);
+	    }
+	    return realizes_damage;
+	}
+
+	if (!spec_dbon_applies) {
+	    /* since damage bonus didn't apply, nothing more to do;  
+	       no further attacks have side-effects on inventory */
+	    return FALSE;
 	}
 
 	/*
@@ -899,14 +919,14 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	 * 4d4 damage (2.5d4 against high mr victims), for spe = 0.
 	 */
 
-#define MB_MAX_DIEROLL          8    /* rolls above this aren't magical */
-#define MB_INDEX_INIT           (-1)
-#define MB_INDEX_PROBE          0
-#define MB_INDEX_STUN           1
-#define MB_INDEX_SCARE          2
-#define MB_INDEX_PURGE          3
-#define MB_RESIST_ATTACK        (resist_index = attack_index)
-#define MB_RESISTED_ATTACK      (resist_index == attack_index)
+#define MB_MAX_DIEROLL		8    /* rolls above this aren't magical */
+#define MB_INDEX_INIT		(-1)
+#define MB_INDEX_PROBE		0
+#define MB_INDEX_STUN		1
+#define MB_INDEX_SCARE		2
+#define MB_INDEX_PURGE		3
+#define MB_RESIST_ATTACK	(resist_index = attack_index)
+#define MB_RESISTED_ATTACK	(resist_index == attack_index)
 #define MB_UWEP_ATTACK          (youattack && ((otmp == uwep) \
 	 			    || (u.twoweap && otmp == uswapwep)))
 
@@ -918,22 +938,22 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 		if (otmp->spe >= 3)
 			scare_dieroll /= (1 << (otmp->spe / 3));
 
-		*dmgptr += rnd(4);                      /* 3d4 */
+		*dmgptr += rnd(4);			/* 3d4 */
 
-		if (otmp->spe > rn2(10))                /* probe */
+		if (otmp->spe > rn2(10))		/* probe */
 			attack_index = MB_INDEX_PROBE;
-		else {                                  /* stun */
+		else {					/* stun */
 			attack_index = MB_INDEX_STUN;
-			*dmgptr += rnd(4);              /* 4d4 */
+			*dmgptr += rnd(4);		/* 4d4 */
 
 			if (youdefend)
 				make_stunned((HStun + 3), FALSE);
 			else
 				mdef->mstun = 1;
 		}
-		if (dieroll <= scare_dieroll) {         /* scare */
+		if (dieroll <= scare_dieroll) {		/* scare */
 			attack_index = MB_INDEX_SCARE;
-			*dmgptr += rnd(4);              /* 5d4 */
+			*dmgptr += rnd(4);		/* 5d4 */
 
 			if (youdefend) {
 				if (Antimagic)
@@ -941,7 +961,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				else {
 					nomul(-3);
 					nomovemsg = "";
-					if ((magr == u.ustuck)
+					if (magr && magr == u.ustuck
 						&& sticks(youmonst.data)) {
 					    u.ustuck = (struct monst *)0;
 					    You("release %s!", mon_nam(magr));
@@ -951,27 +971,16 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				if (rn2(2) && resist(mdef,SPBOOK_CLASS,0,0)) {
 				    MB_RESIST_ATTACK;
 				} else {
-				    if (mdef == u.ustuck) {
-					if (u.uswallow)
-					    expels(mdef,mdef->data,TRUE);
-					else {
-					    if (!sticks(youmonst.data)) {
-						u.ustuck = (struct monst *)0;
-						You("get released!");
-					    }
-					}
-				    }
-				    mdef->mflee = 1;
-				    mdef->mfleetim += 3;
+				    monflee(mdef, 3, FALSE, TRUE);
 				}
 			}
 		}
-		if (dieroll <= (scare_dieroll / 2)) {   /* purge */
+		if (dieroll <= (scare_dieroll / 2)) {	/* purge */
 			struct obj *ospell;
 			struct permonst *old_uasmon = youmonst.data;
 
 			attack_index = MB_INDEX_PURGE;
-			*dmgptr += rnd(4);              /* 6d4 */
+			*dmgptr += rnd(4);		/* 6d4 */
 
 			/* Create a fake spell object, ala spell.c */
 			ospell = mksobj(SPE_CANCELLATION, FALSE, FALSE);
@@ -1090,24 +1099,25 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 		    break;
 		case 10:
 		    pline_The("poison was deadly...");
-		    *dmgptr = FATAL_DAMAGE +
-			    (youdefend ? (Upolyd ? u.mh : u.uhp) : mdef->mhp);
+		    *dmgptr = 2 *
+			    (youdefend ? Upolyd ? u.mh : u.uhp : mdef->mhp) +
+			    FATAL_DAMAGE_MODIFIER;
 		    break;
 	    }
 	    return TRUE;
 	}
 
-	   if (otmp->oartifact == ART_DOOMBLADE && dieroll < 6) {
-		if (youattack)
-		    You("plunge the Doomblade deeply into %s!",
-			    mon_nam(mdef));
-		else
-		    pline("%s plunges the Doomblade deeply into %s!",
-			    Monnam(magr), hittee);
-		*dmgptr += rnd(4) * 5;
-		return TRUE;
-	   }
-  /* END OF STEPHEN WHITE'S NEW CODE */
+       if (otmp->oartifact == ART_DOOMBLADE && dieroll < 6) {
+	    if (youattack)
+		You("plunge the Doomblade deeply into %s!",
+			mon_nam(mdef));
+	    else
+		pline("%s plunges the Doomblade deeply into %s!",
+			Monnam(magr), hittee);
+	    *dmgptr += rnd(4) * 5;
+	    return TRUE;
+       }
+      /* END OF STEPHEN WHITE'S NEW CODE */
 
 #if 0
 	   if (otmp->oartifact == ART_SCALPEL && dieroll < 5) {
@@ -1135,10 +1145,11 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	/* reverse from AD&D. */
 	if (spec_ability(otmp, SPFX_BEHEAD)) {
 	    if (otmp->oartifact == ART_TSURUGI_OF_MURAMASA && dieroll < 3) {
+		wepdesc = "The razor-sharp blade";
 		/* not really beheading, but so close, why add another SPFX */
 		if (youattack && u.uswallow && mdef == u.ustuck) {
 		    You("slice %s wide open!", mon_nam(mdef));
-		    *dmgptr = mdef->mhp + FATAL_DAMAGE;
+		    *dmgptr = 2 * mdef->mhp + FATAL_DAMAGE_MODIFIER;
 		    return TRUE;
 		}
 		if (!youdefend) {
@@ -1156,16 +1167,15 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				*dmgptr *= 2;
 				return TRUE;
 			}
-			*dmgptr = (Upolyd ? u.mh : u.uhp) + FATAL_DAMAGE;
-			pline_The("razor-sharp blade cuts %s in half!",
-			      mon_nam(mdef));
+			*dmgptr = 2 * mdef->mhp + FATAL_DAMAGE_MODIFIER;
+			pline("%s cuts %s in half!", wepdesc, mon_nam(mdef));
 			otmp->dknown = TRUE;
 			return TRUE;
 		} else {
 			/* Invulnerable player won't be bisected */
 			if (bigmonst(youmonst.data) || Invulnerable) {
 				pline("%s cuts deeply into you!",
-					Monnam(magr));
+				      magr ? Monnam(magr) : wepdesc);
 				*dmgptr *= 2;
 				return TRUE;
 			}
@@ -1175,8 +1185,8 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			 * value to the damage so that this reduction in
 			 * damage does not prevent death.
 			 */
-			*dmgptr = u.uhp + FATAL_DAMAGE;
-			pline_The("razor-sharp blade cuts you in half!");
+			*dmgptr = 2 * (Upolyd ? u.mh : u.uhp) + FATAL_DAMAGE_MODIFIER;
+			pline("%s cuts you in half!", wepdesc);
 			otmp->dknown = TRUE;
 			return TRUE;
 		}
@@ -1190,6 +1200,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 
 		if (youattack && u.uswallow && mdef == u.ustuck)
 			return FALSE;
+		wepdesc = artilist[ART_VORPAL_BLADE].name;
 		if (!youdefend) {
 			if (!has_head(mdef->data) || notonhead || u.uswallow) {
 				if (youattack)
@@ -1202,38 +1213,37 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				return ((boolean)(youattack || vis));
 			}
 			if (noncorporeal(mdef->data) || amorphous(mdef->data)) {
-				pline("%s slices through %s %s.",
-				      artiname,
-				      s_suffix(mon_nam(mdef)), mbodypart(mdef,NECK));
+				pline("%s slices through %s %s.", wepdesc,
+				      s_suffix(mon_nam(mdef)),
+				      mbodypart(mdef,NECK));
 				return TRUE;
 			}
-			*dmgptr = mdef->mhp + FATAL_DAMAGE;
+			*dmgptr = 2 * mdef->mhp + FATAL_DAMAGE_MODIFIER;
 			pline(behead_msg[rn2(SIZE(behead_msg))],
-			      artiname,
-			      mon_nam(mdef));
+			      wepdesc, mon_nam(mdef));
 			otmp->dknown = TRUE;
 			return TRUE;
 		} else {
 			if (!has_head(youmonst.data)) {
 				pline("Somehow, %s misses you wildly.",
-					mon_nam(magr));
+				      magr ? mon_nam(magr) : wepdesc);
 				*dmgptr = 0;
 				return TRUE;
 			}
 			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) {
 				pline("%s slices through your %s.",
-				      artiname, body_part(NECK));
+				      wepdesc, body_part(NECK));
 				return TRUE;
 			}
-			*dmgptr = (Upolyd ? u.mh : u.uhp) + FATAL_DAMAGE;
-
+			*dmgptr = 2 * (Upolyd ? u.mh : u.uhp)
+				  + FATAL_DAMAGE_MODIFIER;
 			if (Invulnerable) {
 				pline("%s slices into your %s.",
 				      artiname, body_part(NECK));
 				return TRUE;
 			}
 			pline(behead_msg[rn2(SIZE(behead_msg))],
-			      artiname, "you");
+			      wepdesc, "you");
 			otmp->dknown = TRUE;
 			/* Should amulets fall off? */
 			return TRUE;
@@ -1258,7 +1268,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				      mon_nam(mdef));
 			}
 			if (mdef->m_lev == 0) {
-			    *dmgptr = mdef->mhp + FATAL_DAMAGE;
+			    *dmgptr = 2 * mdef->mhp + FATAL_DAMAGE_MODIFIER;
 			} else {
 			    int drain = rnd(8);
 			    *dmgptr += drain;
@@ -1282,7 +1292,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				pline("%s drains your life!",
 				      The(distant_name(otmp, xname)));
 			losexp("life drainage", FALSE);
-			if (magr->mhp < magr->mhpmax) {
+			if (magr && magr->mhp < magr->mhpmax) {
 			    magr->mhp += (u.uhpmax - oldhpmax)/2;
 			    if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
 			}
@@ -1368,33 +1378,35 @@ arti_invoke(obj)
 
 	switch(oart->inv_prop) {
 	case TAMING: {
-	    struct obj *pseudo = mksobj(SPE_CHARM_MONSTER, FALSE, FALSE);
-	    pseudo->blessed = pseudo->cursed = 0;
-	    pseudo->quan = 20L;                 /* do not let useup get it */
-	    (void) seffects(pseudo);
-	    obfree(pseudo, (struct obj *)0);    /* now, get rid of it */
+	    struct obj pseudo;
+
+	    pseudo = zeroobj;	/* neither cursed nor blessed */
+	    pseudo.otyp = SCR_TAMING;
+	    (void) seffects(&pseudo);
 	    break;
 	  }
 	case HEALING: {
 	    int healamt = (u.uhpmax + 1 - u.uhp) / 2;
- 	    if (Upolyd) healamt = (u.mhmax + 1 - u.mh) / 2;
-	    if(healamt || Sick || (Blinded > 1))
+	    long creamed = (long)u.ucreamed;
+
+	    if (Upolyd) healamt = (u.mhmax + 1 - u.mh) / 2;
+	    if (healamt || Sick || Blinded > creamed)
 		You_feel("better.");
 	    else
 		goto nothing_special;
- 	    if (healamt > 0) {
- 		if (Upolyd) u.mh += healamt;
- 		else u.uhp += healamt;
- 	    }
+	    if (healamt > 0) {
+		if (Upolyd) u.mh += healamt;
+		else u.uhp += healamt;
+	    }
 	    if(Sick) make_sick(0L,(char *)0,FALSE,SICK_ALL);
 	    if(Slimed) Slimed = 0L;
-	    if(Blinded > 1) make_blinded(0L,FALSE);
+	    if (Blinded > creamed) make_blinded(creamed, FALSE);
 	    flags.botl = 1;
 	    break;
 	  }
 	case ENERGY_BOOST: {
 	    int epboost = (u.uenmax + 1 - u.uen) / 2;
-	    if (epboost > 120) epboost = 120;           /* arbitrary */
+	    if (epboost > 120) epboost = 120;		/* arbitrary */
 	    else if (epboost < 12) epboost = u.uenmax - u.uen;
 	    if(epboost) {
 		You_feel("re-energized.");
@@ -1415,17 +1427,19 @@ arti_invoke(obj)
 	    struct obj *otmp = getobj(recharge_type, "charge");
 	    boolean b_effect;
             if (!rn2(4)) {
-	       	if (!otmp) {
-	        	obj->age = 0;
-		        return 0;
-	    	}
-	    b_effect = obj->blessed && (Role_switch == oart->role || !oart->role);
-	    recharge(otmp, b_effect ? 1 : obj->cursed ? -1 : 0);
-	    break;
+	    if (!otmp) {
+		obj->age = 0;
+		return 0;
 	    }
+	    b_effect = obj->blessed &&
+		(Role_switch == oart->role || !oart->role);
+	    recharge(otmp, b_effect ? 1 : obj->cursed ? -1 : 0);
+	    update_inventory();
+	    break;
+	  }
 	    else pline("Nothing happens.");
-            break;
-	}
+	    break;
+	  }
 	case LEV_TELE:
 	    level_tele();
 	    break;
@@ -1569,7 +1583,7 @@ arti_invoke(obj)
 	    winid tmpwin = create_nhwindow(NHW_MENU);
 	    anything any;
 
-	    any.a_void = 0;     /* set all bits to zero */
+	    any.a_void = 0;	/* set all bits to zero */
  #ifdef BLACKMARKET           
 	    if (Is_blackmarket(&u.uz) && *u.ushops) {
 		You("feel very disoriented for a moment.");
@@ -1600,7 +1614,7 @@ arti_invoke(obj)
 		i = selected[0].item.a_int - 1;
 		free((genericptr_t)selected);
 	    } else
-		i = last_ok_dungeon;    /* also first & only OK dungeon */
+		i = last_ok_dungeon;	/* also first & only OK dungeon */
 	    destroy_nhwindow(tmpwin);
 
 	    /*
@@ -1675,8 +1689,10 @@ nothing_special:
 	    else You_feel("the tension decrease around you.");
 	    break;
 	case LEVITATION:
-	    if(on) float_up();
-	    else (void) float_down(I_SPECIAL|TIMEOUT, W_ARTI);
+	    if(on) {
+		float_up();
+		spoteffects(FALSE);
+	    } else (void) float_down(I_SPECIAL|TIMEOUT, W_ARTI);
 	    break;
 	case INVIS:
 	    if (!See_invisible && !Blind) {
@@ -1694,17 +1710,6 @@ nothing_special:
 
     return 1;
 }
-
-/* WAC return TRUE if artifact is always lit */
-boolean
-artifact_light(obj)
-    struct obj *obj;
-{
-    return (get_artifact(obj) && (
-        (get_artifact(obj)->inv_prop == LIGHT_AREA)
-        || (obj->oartifact == ART_CANDLE_OF_ETERNAL_FLAME)));
-}
-
 
 /*
  * Artifact is dipped into water
@@ -1752,6 +1757,15 @@ boolean silent;
 	return (-1);
 }
 
+/* WAC return TRUE if artifact is always lit */
+boolean
+artifact_light(obj)
+    struct obj *obj;
+{
+    return get_artifact(obj) && (get_artifact(obj)->inv_prop == LIGHT_AREA
+        || obj->oartifact == ART_CANDLE_OF_ETERNAL_FLAME);
+}
+
 /* KMH -- Talking artifacts are finally implemented */
 void arti_speak(obj)
     struct obj *obj;
@@ -1768,12 +1782,34 @@ void arti_speak(obj)
 	line = getrumor(bcsign(obj), buf, TRUE);
 	if (!*line)
 		line = "Slash'EM rumors file closed for renovation.";
-	pline("%s whispers:", The(xname(obj)));
+	pline("%s:", Tobjnam(obj, "whisper"));
 	verbalize("%s", line);
 	return;
 }
 
-  
+boolean
+artifact_has_invprop(otmp, inv_prop)
+struct obj *otmp;
+uchar inv_prop;
+{
+	const struct artifact *arti = get_artifact(otmp);
+
+	return((boolean)(arti && (arti->inv_prop == inv_prop)));
+}
+
+/* Return the price sold to the hero of a given artifact or unique item */
+long
+arti_cost(otmp)
+struct obj *otmp;
+{
+	if (!otmp->oartifact)
+	    return ((long)objects[otmp->otyp].oc_cost);
+	else if (artilist[(int) otmp->oartifact].cost)
+	    return (artilist[(int) otmp->oartifact].cost);
+	else
+	    return (100L * (long)objects[otmp->otyp].oc_cost);
+}
+
 #endif /* OVLB */
 
 /*artifact.c*/

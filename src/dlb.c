@@ -360,6 +360,13 @@ lib_dlb_fgets(buf, len, dp)
     }
     *bp = '\0';
 
+#if defined(MSDOS) || defined(WIN32)
+    if ((bp = index(buf, '\r')) != 0) {
+	*bp++ = '\n';
+	*bp = '\0';
+    }
+#endif
+
     return buf;
 }
 

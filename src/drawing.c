@@ -174,7 +174,7 @@ const char *monexplain[MAXMCLASSES] = {
     "mimic",			"nymph",		"orc",
     "piercer",			"quadruped",		"rodent",
     "spider",			"trapper or lurker above", "unicorn or horse",
-    "vortex",			"worm", "xan or other mythical/fantastic insect",
+    "vortex",		"worm", "xan or other mythical/fantastic insect",
     "light",			"Zouthern animal",
 #if 0
     "light",			"zruty",
@@ -239,7 +239,7 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'<', "ladder up",	C(CLR_BROWN)},	/* upladder */
 	{'>', "ladder down",	C(CLR_BROWN)},	/* dnladder */
 	{'_', "altar",		C(CLR_GRAY)},	/* altar */
-	{'|', "grave",	      	C(CLR_GRAY)},   /* grave */
+	{'|', "grave",      C(CLR_GRAY)},   /* grave */
 	{'\\', "opulent throne",C(HI_GOLD)},	/* throne */
 #ifdef SINKS
 	{'#', "sink",		C(CLR_GRAY)},	/* sink */
@@ -279,7 +279,7 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'"', "web",		C(CLR_GRAY)},	/* web */
 /*60*/	{'^', "statue trap",	C(CLR_GRAY)},	/* trap */
 	{'^', "magic trap",	C(HI_ZAP)},	/* trap */
-	{'^', "anti-magic trap field", C(HI_ZAP)},	/* trap */
+	{'^', "anti-magic field", C(HI_ZAP)},	/* trap */
 	{'^', "polymorph trap",	C(CLR_BRIGHT_GREEN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -301,76 +301,15 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'\\', "",		C(CLR_GREEN)},	/* swallow bottom left	*/
 	{'-', "",		C(CLR_GREEN)},	/* swallow bottom center*/
 	{'/', "",		C(CLR_GREEN)},	/* swallow bottom right	*/
-/*WAC added stuff for magical explosion here and further down... */
-	{'/', "",               C(CLR_MAGENTA)}, /* explosion top left     */
-	{'-', "",               C(CLR_MAGENTA)}, /* explosion top center   */
-	{'\\', "",              C(CLR_MAGENTA)}, /* explosion top right    */
-	{'|', "",               C(CLR_MAGENTA)}, /* explosion middle left  */
-	{' ', "",               C(CLR_MAGENTA)}, /* explosion middle center*/
-	{'|', "",               C(CLR_MAGENTA)}, /* explosion middle right */
-/*90*/	{'\\', "",              C(CLR_MAGENTA)}, /* explosion bottom left  */
-	{'-', "",               C(CLR_MAGENTA)}, /* explosion bottom center*/
-	{'/', "",               C(CLR_MAGENTA)}, /* explosion bottom right */
-/*Regular fire explode*/
-	{'/', "",               C(CLR_ORANGE)}, /* explosion top left     */
+	{'/', "",		C(CLR_ORANGE)},	/* explosion top left     */
 	{'-', "",		C(CLR_ORANGE)},	/* explosion top center   */
 	{'\\', "",		C(CLR_ORANGE)},	/* explosion top right    */
 	{'|', "",		C(CLR_ORANGE)},	/* explosion middle left  */
 	{' ', "",		C(CLR_ORANGE)},	/* explosion middle center*/
 	{'|', "",		C(CLR_ORANGE)},	/* explosion middle right */
-	{'\\', "",		C(CLR_ORANGE)},	/* explosion bottom left  */
-/*100*/	{'-', "",		C(CLR_ORANGE)},	/* explosion bottom center*/
+/*90*/	{'\\', "",		C(CLR_ORANGE)},	/* explosion bottom left  */
+	{'-', "",		C(CLR_ORANGE)},	/* explosion bottom center*/
 	{'/', "",		C(CLR_ORANGE)},	/* explosion bottom right */
-/*WAC added stuff for cold explosion here and further down... */
-	{'/', "",               C(CLR_BLUE)}, /* explosion top left     */
-	{'-', "",               C(CLR_BLUE)}, /* explosion top center   */
-	{'\\', "",              C(CLR_BLUE)}, /* explosion top right    */
-	{'|', "",               C(CLR_BLUE)}, /* explosion middle left  */
-	{' ', "",               C(CLR_BLUE)}, /* explosion middle center*/
-	{'|', "",               C(CLR_BLUE)}, /* explosion middle right */
-	{'\\', "",              C(CLR_BLUE)}, /* explosion bottom left  */
-	{'-', "",               C(CLR_BLUE)}, /* explosion bottom center*/
-/*110*/	{'/', "",               C(CLR_BLUE)}, /* explosion bottom right */
-/*WAC death*/
-	{'/', "",               C(CLR_GRAY)}, /* explosion top left     */
-	{'-', "",               C(CLR_GRAY)}, /* explosion top center   */
-	{'\\', "",              C(CLR_GRAY)}, /* explosion top right    */
-	{'|', "",               C(CLR_GRAY)}, /* explosion middle left  */
-	{' ', "",               C(CLR_GRAY)}, /* explosion middle center*/
-	{'|', "",               C(CLR_GRAY)}, /* explosion middle right */
-	{'\\', "",              C(CLR_GRAY)}, /* explosion bottom left  */
-	{'-', "",               C(CLR_GRAY)}, /* explosion bottom center*/
- 	{'/', "",               C(CLR_GRAY)}, /* explosion bottom right */
-/*WAC lightning*/
-/*120*/	{'/', "",               C(CLR_WHITE)}, /* explosion top left     */
- 	{'-', "",               C(CLR_WHITE)}, /* explosion top center   */
-	{'\\', "",              C(CLR_WHITE)}, /* explosion top right    */
-	{'|', "",               C(CLR_WHITE)}, /* explosion middle left  */
-	{' ', "",               C(CLR_WHITE)}, /* explosion middle center*/
-	{'|', "",               C(CLR_WHITE)}, /* explosion middle right */
-	{'\\', "",              C(CLR_WHITE)}, /* explosion bottom left  */
-	{'-', "",               C(CLR_WHITE)}, /* explosion bottom center*/
-	{'/', "",               C(CLR_WHITE)}, /* explosion bottom right */
-/*WAC poison */
-	{'/', "",               C(CLR_YELLOW)}, /* explosion top left     */
-/*130*/	{'-', "",               C(CLR_YELLOW)}, /* explosion top center   */
-	{'\\', "",              C(CLR_YELLOW)}, /* explosion top right    */
-	{'|', "",               C(CLR_YELLOW)}, /* explosion middle left  */
-	{' ', "",               C(CLR_YELLOW)}, /* explosion middle center*/
-	{'|', "",               C(CLR_YELLOW)}, /* explosion middle right */
-	{'\\', "",              C(CLR_YELLOW)}, /* explosion bottom left  */
-	{'-', "",               C(CLR_YELLOW)}, /* explosion bottom center*/
-	{'/', "",               C(CLR_YELLOW)}, /* explosion bottom right */
-/*WAC acid */
-	{'/', "",               C(CLR_GREEN)}, /* explosion top left     */
-	{'-', "",               C(CLR_GREEN)}, /* explosion top center   */
-/*140*/	{'\\', "",              C(CLR_GREEN)}, /* explosion top right    */
-	{'|', "",               C(CLR_GREEN)}, /* explosion middle left  */
-	{' ', "",               C(CLR_GREEN)}, /* explosion middle center*/
-	{'|', "",               C(CLR_GREEN)}, /* explosion middle right */
-	{'\\', "",              C(CLR_GREEN)}, /* explosion bottom left  */
-	{'-', "",               C(CLR_GREEN)}, /* explosion bottom center*/
-	{'/', "",               C(CLR_GREEN)}, /* explosion bottom right */
 
 /*
  *  Note: Additions to this array should be reflected in the
@@ -471,70 +410,15 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_sw_bl),
 	g_FILLER(S_sw_bc),
 	g_FILLER(S_sw_br),
-	g_FILLER(S_mexplode1), /*Magical explo graphics WAC*/
-	g_FILLER(S_mexplode2),
-	g_FILLER(S_mexplode3),
-	0xb3,   /* S_mexplode4:  meta-3, vertical rule */
-	g_FILLER(S_mexplode5),
-	0xb3,   /* S_mexplode6:  meta-3, vertical rule */
-/*90*/	g_FILLER(S_mexplode7),
-	g_FILLER(S_mexplode8),
-	g_FILLER(S_mexplode9),
 	g_FILLER(S_explode1),
 	g_FILLER(S_explode2),
 	g_FILLER(S_explode3),
 	0xb3,	/* S_explode4:	meta-3, vertical rule */
 	g_FILLER(S_explode5),
 	0xb3,	/* S_explode6:	meta-3, vertical rule */
-	g_FILLER(S_explode7),
-/*100*/	g_FILLER(S_explode8),
+/*90*/	g_FILLER(S_explode7),
+	g_FILLER(S_explode8),
 	g_FILLER(S_explode9),
-	g_FILLER(S_cexplode1), /*Cold explo graphics  --WAC*/
-	g_FILLER(S_cexplode2),
-	g_FILLER(S_cexplode3),
-	0xb3,   /* S_cexplode4:  meta-3, vertical rule */
-	g_FILLER(S_cexplode5),
-	0xb3,   /* S_cexplode6:  meta-3, vertical rule */
-	g_FILLER(S_cexplode7),
-	g_FILLER(S_cexplode8),
-/*110*/	g_FILLER(S_cexplode9),
-	g_FILLER(S_dexplode1), /*death explo graphics  --WAC*/
-	g_FILLER(S_dexplode2),
-	g_FILLER(S_dexplode3),
-	0xb3,   /* S_dexplode4:  meta-3, vertical rule */
-	g_FILLER(S_dexplode5),
-	0xb3,   /* S_dexplode6:  meta-3, vertical rule */
-	g_FILLER(S_dexplode7),
-	g_FILLER(S_dexplode8),
-	g_FILLER(S_dexplode9),
-/*120*/	g_FILLER(S_lexplode1), /*lightning explo graphics  --WAC*/
-	g_FILLER(S_lexplode2),
-	g_FILLER(S_lexplode3),
-	0xb3,   /* S_lexplode4:  meta-3, vertical rule */
-	g_FILLER(S_lexplode5),
-	0xb3,   /* S_lexplode6:  meta-3, vertical rule */
-	g_FILLER(S_lexplode7),
-	g_FILLER(S_lexplode8),
-	g_FILLER(S_lexplode9),
-	g_FILLER(S_pexplode1), /*poison explo graphics  --WAC*/
-/*130*/	g_FILLER(S_pexplode2),
-	g_FILLER(S_pexplode3),
-	0xb3,   /* S_pexplode4:  meta-3, vertical rule */
-	g_FILLER(S_pexplode5),
-	0xb3,   /* S_pexplode6:  meta-3, vertical rule */
-	g_FILLER(S_pexplode7),
-	g_FILLER(S_pexplode8),
-	g_FILLER(S_pexplode9),
-	g_FILLER(S_aexplode1), /*acid explo graphics  --WAC*/
-	g_FILLER(S_aexplode2),
-/*140*/	g_FILLER(S_aexplode3),
-	0xb3,   /* S_aexplode4:  meta-3, vertical rule */
-	g_FILLER(S_aexplode5),
-	0xb3,   /* S_aexplode6:  meta-3, vertical rule */
-	g_FILLER(S_aexplode7),
-	g_FILLER(S_aexplode8),
-	g_FILLER(S_aexplode9)
-
 };
 #endif  /* ASCIIGRAPH */
 
@@ -626,72 +510,15 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_sw_bl),
 	0xf3,	/* S_sw_bc:	meta-s, low horizontal line */
 	g_FILLER(S_sw_br),
-/*wAC  same here*/
-	g_FILLER(S_explode1),
-	0xef,   /* S_mexplode2:  meta-o, high horizontal line */
-	g_FILLER(S_explode3),
-	0xf8,   /* S_mexplode4:  meta-x, vertical rule */
-	g_FILLER(S_mexplode5),
-	0xf8,   /* S_mexplode6:  meta-x, vertical rule */
-/*90*/	g_FILLER(S_mexplode7),
-	0xf3,   /* S_mexplode8:  meta-s, low horizontal line */
-	g_FILLER(S_mexplode9),
 	g_FILLER(S_explode1),
 	0xef,	/* S_explode2:	meta-o, high horizontal line */
 	g_FILLER(S_explode3),
 	0xf8,	/* S_explode4:	meta-x, vertical rule */
 	g_FILLER(S_explode5),
 	0xf8,	/* S_explode6:	meta-x, vertical rule */
-	g_FILLER(S_explode7),
-/*100*/	0xf3,	/* S_explode8:	meta-s, low horizontal line */
+/*90*/	g_FILLER(S_explode7),
+	0xf3,	/* S_explode8:	meta-s, low horizontal line */
 	g_FILLER(S_explode9),
-/*wAC  same here*/
-	g_FILLER(S_cexplode1),
-	0xef,   /* S_cexplode2:  meta-o, high horizontal line */
-	g_FILLER(S_cexplode3),
-	0xf8,   /* S_cexplode4:  meta-x, vertical rule */
-	g_FILLER(S_cexplode5),
-	0xf8,   /* S_cexplode6:  meta-x, vertical rule */
-	g_FILLER(S_cexplode7),
-	0xf3,   /* S_cexplode8:  meta-s, low horizontal line */
-/*110*/	g_FILLER(S_cexplode9),
-	g_FILLER(S_dexplode1),
-	0xef,   /* S_dexplode2:  meta-o, high horizontal line */
-	g_FILLER(S_dexplode3),
-	0xf8,   /* S_dexplode4:  meta-x, vertical rule */
-	g_FILLER(S_dexplode5),
-	0xf8,   /* S_dexplode6:  meta-x, vertical rule */
-	g_FILLER(S_dexplode7),
-	0xf3,   /* S_dexplode8:  meta-s, low horizontal line */
-	g_FILLER(S_dexplode9),
-/*120*/	g_FILLER(S_lexplode1),
-	0xef,   /* S_lexplode2:  meta-o, high horizontal line */
-	g_FILLER(S_lexplode3),
-	0xf8,   /* S_lexplode4:  meta-x, vertical rule */
-	g_FILLER(S_lexplode5),
-	0xf8,   /* S_lexplode6:  meta-x, vertical rule */
-	g_FILLER(S_lexplode7),
-	0xf3,   /* S_lexplode8:  meta-s, low horizontal line */
-	g_FILLER(S_lexplode9),
-	g_FILLER(S_pexplode1),
-/*130*/	0xef,   /* S_pexplode2:  meta-o, high horizontal line */
-	g_FILLER(S_pexplode3),
-	0xf8,   /* S_pexplode4:  meta-x, vertical rule */
-	g_FILLER(S_pexplode5),
-	0xf8,   /* S_pexplode6:  meta-x, vertical rule */
-	g_FILLER(S_pexplode7),
-	0xf3,   /* S_pexplode8:  meta-s, low horizontal line */
-	g_FILLER(S_pexplode9),
-	g_FILLER(S_aexplode1),
-	0xef,   /* S_aexplode2:  meta-o, high horizontal line */
-/*140*/	g_FILLER(S_aexplode3),
-	0xf8,   /* S_aexplode4:  meta-x, vertical rule */
-	g_FILLER(S_aexplode5),
-	0xf8,   /* S_aexplode6:  meta-x, vertical rule */
-	g_FILLER(S_aexplode7),
-	0xf3,   /* S_aexplode8:  meta-s, low horizontal line */
-	g_FILLER(S_aexplode9)
-
 };
 #endif  /* TERMLIB */
 
@@ -781,73 +608,15 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_sw_bl),
 	g_FILLER(S_sw_bc),
 	g_FILLER(S_sw_br),
-/*wAC see above*/
-	g_FILLER(S_mexplode1),
-	g_FILLER(S_mexplode2),
-	g_FILLER(S_mexplode3),
-	g_FILLER(S_mexplode4),
-	g_FILLER(S_mexplode5),
-	g_FILLER(S_mexplode6),
-/*90*/	g_FILLER(S_mexplode7),
-	g_FILLER(S_mexplode8),
-	g_FILLER(S_mexplode9),
 	g_FILLER(S_explode1),
 	g_FILLER(S_explode2),
 	g_FILLER(S_explode3),
 	g_FILLER(S_explode4),
 	g_FILLER(S_explode5),
 	g_FILLER(S_explode6),
-	g_FILLER(S_explode7),
-/*100*/	g_FILLER(S_explode8),
-	/* KMH -- missing comma */
+/*90*/	g_FILLER(S_explode7),
+	g_FILLER(S_explode8),
 	g_FILLER(S_explode9),
-/*WAC see above*/
-	g_FILLER(S_cexplode1),
-	g_FILLER(S_cexplode2),
-	g_FILLER(S_cexplode3),
-	g_FILLER(S_cexplode4),
-	g_FILLER(S_cexplode5),
-	g_FILLER(S_cexplode6),
-	g_FILLER(S_cexplode7),
-	g_FILLER(S_cexplode8),
-/*110*/	g_FILLER(S_cexplode9),
-	g_FILLER(S_dexplode1),
-	g_FILLER(S_dexplode2),
-	g_FILLER(S_dexplode3),
-	g_FILLER(S_dexplode4),
-	g_FILLER(S_dexplode5),
-	g_FILLER(S_dexplode6),
-	g_FILLER(S_dexplode7),
-	g_FILLER(S_dexplode8),
-	g_FILLER(S_dexplode9),
-/*120*/	g_FILLER(S_lexplode1),
-	g_FILLER(S_lexplode2),
-	g_FILLER(S_lexplode3),
-	g_FILLER(S_lexplode4),
-	g_FILLER(S_lexplode5),
-	g_FILLER(S_lexplode6),
-	g_FILLER(S_lexplode7),
-	g_FILLER(S_lexplode8),
-	g_FILLER(S_lexplode9),
-	g_FILLER(S_pexplode1),
-/*130*/	g_FILLER(S_pexplode2),
-	g_FILLER(S_pexplode3),
-	g_FILLER(S_pexplode4),
-	g_FILLER(S_pexplode5),
-	g_FILLER(S_pexplode6),
-	g_FILLER(S_pexplode7),
-	g_FILLER(S_pexplode8),
-	g_FILLER(S_pexplode9),
-	g_FILLER(S_aexplode1),
-	g_FILLER(S_aexplode2),
-/*140*/	g_FILLER(S_aexplode3),
-	g_FILLER(S_aexplode4),
-	g_FILLER(S_aexplode5),
-	g_FILLER(S_aexplode6),
-	g_FILLER(S_aexplode7),
-	g_FILLER(S_aexplode8),
-	g_FILLER(S_aexplode9)
-
 };
 #endif	/* MAC_GRAPHICS_ENV */
 
@@ -866,7 +635,7 @@ def_char_to_objclass(ch)
 {
     int i;
     for (i = 1; i < MAXOCLASSES; i++)
-		if (ch == def_oc_syms[i]) break;
+	if (ch == def_oc_syms[i]) break;
     return i;
 }
 
@@ -880,7 +649,7 @@ def_char_to_monclass(ch)
 {
     int i;
     for (i = 1; i < MAXMCLASSES; i++)
-		if (def_monsyms[i] == ch) break;
+	if (def_monsyms[i] == ch) break;
     return i;
 }
 
@@ -961,7 +730,7 @@ static const uchar r_oc_syms[MAXOCLASSES] = {
 	WEAPON_SYM,
 	']',			/* armor */
 	RING_SYM,
-/* 5*/	',',		/* amulet */
+/* 5*/	',',			/* amulet */
 	TOOL_SYM,
 	':',			/* food */
 	POTION_SYM,
@@ -1044,7 +813,7 @@ boolean is_rlevel;
 #  if defined(USE_TILES) && defined(MSDOS)
 		&& !iflags.grmode
 #  endif
-				)
+		)
 	    monsyms[S_HUMAN] = 0x01; /* smiley face */
 # endif
 	for (i = 0; i < MAXPCHARS; i++)

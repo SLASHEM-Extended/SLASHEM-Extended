@@ -147,4 +147,15 @@ const char *mesg;
     return 0;
 }
 
+/*ARGSUSED*/
+void
+genl_preference_update(pref)
+const char *pref;
+{
+	/* window ports are expected to provide
+	   their own preference update routine
+	   for the preference capabilities that
+	   they support.
+	   Just return in this genl one. */
+}
 /*windows.c*/

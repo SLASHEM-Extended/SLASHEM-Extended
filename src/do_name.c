@@ -41,18 +41,18 @@ const char *goal;
 
 int
 getpos(cc,force,goal)
-coord   *cc;
+coord *cc;
 boolean force;
 const char *goal;
 {
     int result = 0;
     int cx, cy, i, c;
     int sidx, tx, ty;
-    boolean msg_given = TRUE;   /* clear message window by default */
+    boolean msg_given = TRUE;	/* clear message window by default */
     static const char *pick_chars = ".,;:";
     const char *cp;
     const char *sdp;
-    if(iflags.num_pad) sdp = ndir; else sdp = sdir;      /* DICE workaround */
+    if(iflags.num_pad) sdp = ndir; else sdp = sdir;	/* DICE workaround */
 
     if (flags.verbose) {
 	pline("(For instructions type a ?)");
@@ -72,7 +72,7 @@ const char *goal;
 	c = nh_poskey(&tx, &ty, &sidx);
 	if (c == '\033') {
 	    cx = cy = -10;
-	    msg_given = TRUE;   /* force clear */
+	    msg_given = TRUE;	/* force clear */
 	    result = -1;
 	    break;
 	}
@@ -119,8 +119,8 @@ const char *goal;
 	    }
 	    cx += dx;
 	    cy += dy;
-		goto nxtc;
-	    }
+	    goto nxtc;
+	}
 
 	if(c == '?'){
 	    getpos_help(force, goal);
@@ -152,10 +152,10 @@ const char *goal;
 				    }
 				    goto nxtc;
 				}
-			    }   /* column */
-			}       /* row */
-		    }           /* pass */
-		    pline("Can't find dungeon feature '%c'", c);
+			    }	/* column */
+			}	/* row */
+		    }		/* pass */
+		    pline("Can't find dungeon feature '%c'.", c);
 		    msg_given = TRUE;
 		    goto nxtc;
 		} else {
@@ -168,13 +168,13 @@ const char *goal;
 	    } /* !quitchars */
 	    if (force) goto nxtc;
 	    pline("Done.");
-	    msg_given = FALSE;  /* suppress clear */
+	    msg_given = FALSE;	/* suppress clear */
 	    cx = -1;
 	    cy = 0;
 	    result = 0;	/* not -1 */
 	    break;
 	}
-    nxtc:       ;
+    nxtc:	;
 #ifdef CLIPPING
 	cliparound(cx, cy);
 #endif
@@ -254,10 +254,10 @@ do_mname()
 		plname);
 		return(0);
 #ifdef STEED
-	}
+	    }
 #endif
 	} else
-	mtmp = m_at(cx, cy);
+	    mtmp = m_at(cx, cy);
 
 	if (!mtmp || (!sensemon(mtmp) &&
 			(!(cansee(cx,cy) || see_with_infrared(mtmp)) || mtmp->mundetected
@@ -267,12 +267,9 @@ do_mname()
 		pline("I see no monster there.");
 		return(0);
 	}
- 	/* special case similar to the one in lookat() */
- 	if (mtmp->data != &mons[PM_HIGH_PRIEST])
-	    Strcpy(buf, x_monnam(mtmp, ARTICLE_THE, (char *)0, 0, TRUE));
- 	else
- 	    Sprintf(buf, "the high priest%s", mtmp->female ? "ess" : "");
- 	Sprintf(qbuf, "What do you want to call %s?", buf);
+	/* special case similar to the one in lookat() */
+	(void) distant_monnam(mtmp, ARTICLE_THE, buf);
+	Sprintf(qbuf, "What do you want to call %s?", buf);
 	getlin(qbuf,buf);
 	if(!*buf || *buf == '\033') return(0);
 	/* strip leading and trailing spaces; unnames monster if all spaces */
@@ -299,9 +296,9 @@ register struct obj *obj;
 	short objtyp;
 
 	Sprintf(qbuf, "What do you want to name %s %s?",
-		(obj->quan > 1L) ? "these" : "this", xname(obj));
+		is_plural(obj) ? "these" : "this", xname(obj));
 	getlin(qbuf, buf);
-	if(!*buf || *buf == '\033')     return;
+	if(!*buf || *buf == '\033')	return;
 	/* strip leading and trailing spaces; unnames item if all spaces */
 	(void)mungspaces(buf);
 
@@ -332,27 +329,27 @@ register struct obj *obj;
 struct obj *
 realloc_obj(obj, oextra_size, oextra_src, oname_size, name)
 struct obj *obj;
-int oextra_size;                /* storage to allocate for oextra            */
+int oextra_size;		/* storage to allocate for oextra            */
 genericptr_t oextra_src;
-int oname_size;                 /* size of name string + 1 (null terminator) */
+int oname_size;			/* size of name string + 1 (null terminator) */
 const char *name;
 {
 	struct obj *otmp;
 
 	otmp = newobj(oextra_size + oname_size);
-	*otmp = *obj;   /* the cobj pointer is copied to otmp */
+	*otmp = *obj;	/* the cobj pointer is copied to otmp */
 	if (oextra_size) {
 	    if (oextra_src)
 		(void) memcpy((genericptr_t)otmp->oextra, oextra_src,
-								oextra_size);
+							oextra_size);
 	} else {
 	    otmp->oattached = OATTACHED_NOTHING;
 	}
 	otmp->oxlth = oextra_size;
-	
+
 	otmp->onamelth = oname_size;
-	otmp->timed = 0;        /* not timed, yet */
-	otmp->lamplit = 0;      /* ditto */
+	otmp->timed = 0;	/* not timed, yet */
+	otmp->lamplit = 0;	/* ditto */
 	/* __GNUC__ note:  if the assignment of otmp->onamelth immediately
 	   precedes this `if' statement, a gcc bug will miscompile the
 	   test on vax (`insv' instruction used to store bitfield does
@@ -391,7 +388,7 @@ const char *name;
 	    book_substitution(obj, otmp);	/* read spellbook */
 
 	/* obfree(obj, otmp);	now unnecessary: no pointers on bill */
-	dealloc_obj(obj);       /* let us hope nobody else saved a pointer */
+	dealloc_obj(obj);	/* let us hope nobody else saved a pointer */
 	return otmp;
 }
 
@@ -438,7 +435,7 @@ ddocall()
 {
 	register struct obj *obj;
 #ifdef REDO
-	char    ch;
+	char	ch;
 #endif
 	char allowall[2];
 
@@ -487,12 +484,12 @@ register struct obj *obj;
 	otemp.quan = 1L;
 	otemp.onamelth = 0;
 	otemp.oxlth = 0;
- 	if (objects[otemp.otyp].oc_class == POTION_CLASS && otemp.corpsenm)
- 	    /* kludge, meaning it's sink water */
- 	    Sprintf(qbuf,"Call a stream of %s fluid:",
- 		    OBJ_DESCR(objects[otemp.otyp]));
- 	else
- 	    Sprintf(qbuf, "Call %s:", an(xname(&otemp)));
+	if (objects[otemp.otyp].oc_class == POTION_CLASS && otemp.corpsenm)
+	    /* kludge, meaning it's sink water */
+	    Sprintf(qbuf,"Call a stream of %s fluid:",
+		    OBJ_DESCR(objects[otemp.otyp]));
+	else
+	    Sprintf(qbuf, "Call %s:", an(xname(&otemp)));
 	getlin(qbuf, buf);
 	if(!*buf || *buf == '\033')
 		return;
@@ -504,14 +501,14 @@ register struct obj *obj;
 	/* strip leading and trailing spaces; uncalls item if all spaces */
 	(void)mungspaces(buf);
 	if (!*buf) {
- 	    if (*str1) {	/* had name, so possibly remove from disco[] */
- 		/* strip name first, for the update_inventory() call
- 		   from undiscover_object() */
- 		*str1 = (char *)0;
- 		undiscover_object(obj->otyp);
- 	    }
+	    if (*str1) {	/* had name, so possibly remove from disco[] */
+		/* strip name first, for the update_inventory() call
+		   from undiscover_object() */
+		*str1 = (char *)0;
+		undiscover_object(obj->otyp);
+	    }
 	} else {
- 	    *str1 = strcpy((char *) alloc((unsigned)strlen(buf)+1), buf);
+	    *str1 = strcpy((char *) alloc((unsigned)strlen(buf)+1), buf);
 	    discover_object(obj->otyp, FALSE, TRUE); /* possibly add to disco[] */
 	}
 }
@@ -538,16 +535,16 @@ rndghostname()
 
 /* Monster naming functions:
  * x_monnam is the generic monster-naming function.
- *                seen        unseen       detected               named
- * mon_nam:     the newt        it      the invisible orc       Fido
+ *		  seen	      unseen	   detected		  named
+ * mon_nam:	the newt	it	the invisible orc	Fido
  * noit_mon_nam:the newt (as if detected) the invisible orc	Fido
- * l_monnam:    newt            it      invisible orc           dog called fido
- * Monnam:      The newt        It      The invisible orc       Fido
+ * l_monnam:	newt		it	invisible orc		dog called fido
+ * Monnam:	The newt	It	The invisible orc	Fido
  * noit_Monnam: The newt (as if detected) The invisible orc	Fido
- * Adjmonnam:   The poor newt   It      The poor invisible orc  The poor Fido
- * Amonnam:     A newt          It      An invisible orc        Fido
- * a_monnam:    a newt          it      an invisible orc        Fido
- * m_monnam:    newt            xan     orc                     Fido
+ * Adjmonnam:	The poor newt	It	The poor invisible orc	The poor Fido
+ * Amonnam:	A newt		It	An invisible orc	Fido
+ * a_monnam:	a newt		it	an invisible orc	Fido
+ * m_monnam:	newt		xan	orc			Fido
  * y_monnam:	your newt     your xan	your invisible orc	Fido
  */
 
@@ -572,7 +569,7 @@ int suppress;
  */
 boolean called;
 {
-#ifdef LINT     /* static char buf[BUFSZ]; */
+#ifdef LINT	/* static char buf[BUFSZ]; */
 	char buf[BUFSZ];
 #else
 	static char buf[BUFSZ];
@@ -601,6 +598,12 @@ boolean called;
 
 	buf[0] = 0;
 
+	/* unseen monsters, etc.  Use "it" */
+	if (do_it) {
+	    Strcpy(buf, "it");
+	    return buf;
+	}
+
 	/* priests and minions: don't even use this function */
 	if (mtmp->ispriest || mtmp->isminion) {
 	    char priestnambuf[BUFSZ];
@@ -617,12 +620,6 @@ boolean called;
 	    if (article == ARTICLE_NONE && !strncmp(name, "the ", 4))
 		name += 4;
 	    return strcpy(buf, name);
-	}
-
-	/* unseen monsters, etc.  Use "it" */
-	if (do_it) {
-	    Strcpy(buf, "it");
-	    return buf;
 	}
 
 	/* Shopkeepers: use shopkeeper name.  For normal shopkeepers, just
@@ -655,7 +652,8 @@ boolean called;
 	if (do_invis)
 	    Strcat(buf, "invisible ");
 #ifdef STEED
-	if (do_saddle && (mtmp->misc_worn_check & W_SADDLE) && !Blind)
+	if (do_saddle && (mtmp->misc_worn_check & W_SADDLE) &&
+	    !Blind && !Hallucination)
 	    Strcat(buf, "saddled ");
 #endif
 	if (buf[0] != 0)
@@ -670,7 +668,7 @@ boolean called;
 	    name_at_start = FALSE;
 	} else if (mtmp->mnamelth) {
 	    char *name = NAME(mtmp);
-	    
+
 	    if (mdat == &mons[PM_GHOST]) {
 		Sprintf(eos(buf), "%s ghost", s_suffix(name));
 		name_at_start = TRUE;
@@ -680,11 +678,12 @@ boolean called;
 	    } else if (is_mplayer(mdat) && (bp = strstri(name, " the ")) != 0) {
 		/* <name> the <adjective> <invisible> <saddled> <rank> */
 		char pbuf[BUFSZ];
+
 		Strcpy(pbuf, name);
-		pbuf[bp - name + 5] = '\0';
+		pbuf[bp - name + 5] = '\0'; /* adjectives right after " the " */
 		if (has_adjectives)
 		    Strcat(pbuf, buf);
-		Strcat(pbuf, bp + 5);
+		Strcat(pbuf, bp + 5);	/* append the rest of the name */
 		Strcpy(buf, pbuf);
 		article = ARTICLE_NONE;
 		name_at_start = TRUE;
@@ -709,6 +708,9 @@ boolean called;
 		article = ARTICLE_THE;
 	    else
 		article = ARTICLE_NONE;
+	} else if (mons[monsndx(mdat)].geno & G_UNIQ &&
+		   article == ARTICLE_A) {
+	    article = ARTICLE_THE;
 	}
 
 	{
@@ -838,6 +840,28 @@ register struct monst *mtmp;
 	*bp = highc(*bp);
 	return(bp);
 }
+
+/* used for monster ID by the '/', ';', and 'C' commands to block remote
+   identification of the endgame altars via their attending priests */
+char *
+distant_monnam(mon, article, outbuf)
+struct monst *mon;
+int article;	/* only ARTICLE_NONE and ARTICLE_THE are handled here */
+char *outbuf;
+{
+    /* high priest(ess)'s identity is concealed on the Astral Plane,
+       unless you're adjacent (overridden for hallucination which does
+       its own obfuscation) */
+    if (mon->data == &mons[PM_HIGH_PRIEST] && !Hallucination &&
+	    Is_astralevel(&u.uz) && distu(mon->mx, mon->my) > 2) {
+	Strcpy(outbuf, article == ARTICLE_THE ? "the " : "");
+	Strcat(outbuf, mon->female ? "high priestess" : "high priest");
+    } else {
+	Strcpy(outbuf, x_monnam(mon, article, (char *)0, 0, TRUE));
+    }
+    return outbuf;
+}
+
 /* [Tom] removed all the monsters that I actually added */
 static const char *bogusmons[] = {
 	"jumbo shrimp", "giant pigmy", "gnu", "killer penguin",
@@ -853,38 +877,38 @@ static const char *bogusmons[] = {
 						/* Moria */
 	"emu", "kestrel", "xeroc", "venus flytrap",
 						/* Rogue */
-	"creeping coins",                       /* Wizardry */
+	"creeping coins",			/* Wizardry */
 	"siren",                                /* Greek legend */
-	"killer bunny",                         /* Monty Python */
-	"rodent of unusual size",               /* The Princess Bride */
-	"Smokey the bear",      /* "Only you can prevent forest fires!" */
-	"Luggage",                              /* Discworld */
-	"Ent",                                  /* Lord of the Rings */
+	"killer bunny",				/* Monty Python */
+	"rodent of unusual size",		/* The Princess Bride */
+	"Smokey the bear",	/* "Only you can prevent forest fires!" */
+	"Luggage",				/* Discworld */
+	"Ent",					/* Lord of the Rings */
 	"tangle tree", "wiggle",                /* Xanth */
-	"white rabbit", "snark",                /* Lewis Carroll */
-	"pushmi-pullyu",                        /* Dr. Doolittle */
-	"smurf",                                /* The Smurfs */
-	"tribble", "Klingon", "Borg",           /* Star Trek */
-	"Ewok",                                 /* Star Wars */
-	"Totoro",                               /* Tonari no Totoro */
-	"ohmu",                                 /* Nausicaa */
-	"youma",                                /* Sailor Moon */
+	"white rabbit", "snark",		/* Lewis Carroll */
+	"pushmi-pullyu",			/* Dr. Doolittle */
+	"smurf",				/* The Smurfs */
+	"tribble", "Klingon", "Borg",		/* Star Trek */
+	"Ewok",					/* Star Wars */
+	"Totoro",				/* Tonari no Totoro */
+	"ohmu",					/* Nausicaa */
+	"youma",				/* Sailor Moon */
 	"nyaasu",				/* Pokemon (Meowth) */
-	"Godzilla", "King Kong",                /* monster movies */
-	"earthquake beast",                     /* old L of SH */
-	"Invid",                                /* Robotech */
-	"Terminator",                           /* The Terminator */
-	"boomer",                               /* Bubblegum Crisis */
-	"Dalek",                                /* Dr. Who ("Exterminate!") */
+	"Godzilla", "King Kong",		/* monster movies */
+	"earthquake beast",			/* old L of SH */
+	"Invid",				/* Robotech */
+	"Terminator",				/* The Terminator */
+	"boomer",				/* Bubblegum Crisis */
+	"Dalek",				/* Dr. Who ("Exterminate!") */
 	"microscopic space fleet", "Ravenous Bugblatter Beast of Traal",
 						/* HGttG */
-	"teenage mutant ninja turtle",          /* TMNT */
-	"samurai rabbit",                       /* Usagi Yojimbo */
-	"aardvark",                             /* Cerebus */
-	"Audrey II",                            /* Little Shop of Horrors */
+	"teenage mutant ninja turtle",		/* TMNT */
+	"samurai rabbit",			/* Usagi Yojimbo */
+	"aardvark",				/* Cerebus */
+	"Audrey II",				/* Little Shop of Horrors */
 	"witch doctor", "one-eyed one-horned flying purple people eater",
 						/* 50's rock 'n' roll */
-	"Barney the dinosaur",                  /* saccharine kiddy TV */
+	"Barney the dinosaur",			/* saccharine kiddy TV */
 	"Azog the Orc King", "Morgoth",		/* Angband */
 
 	/*[Tom] new wacky names */
@@ -922,31 +946,6 @@ rndmonnam()
 
 	if (name >= SPECIAL_PM) return bogusmons[name - SPECIAL_PM];
 	return mons[name].mname;
-}
-
-const char *pronoun_pairs[][2] = {
-	{"him", "her"}, {"Him", "Her"}, {"his", "her"}, {"His", "Her"},
-	{"he", "she"}, {"He", "She"},
-	{0, 0}
-};
-
-char *
-self_pronoun(str, pronoun)
-const char *str;
-const char *pronoun;
-{
-	static NEARDATA char buf[BUFSZ];
-	register int i;
-
-	for(i=0; pronoun_pairs[i][0]; i++) {
-		if(!strncmp(pronoun, pronoun_pairs[i][0], 3)) {
-			Sprintf(buf, str, pronoun_pairs[i][flags.female]);
-			return buf;
-		}
-	}
-	impossible("never heard of pronoun %s?", pronoun);
-	Sprintf(buf, str, pronoun_pairs[i][0]);
-	return buf;
 }
 
 #ifdef REINCARNATION
@@ -1009,14 +1008,16 @@ static const char *coynames[] = {
 	"Nemesis Riduclii","Canis latrans"
 };
 	
-char *coyotename(buf)
+char *coyotename(mtmp, buf)
+struct monst *mtmp;
 char *buf;
 {
-	if (buf)
-		Sprintf(buf,
-			"coyote - %s",
-			coynames[rn2(SIZE(coynames))]);
-	return buf;
+    if (mtmp && buf) {
+	Sprintf(buf, "%s - %s",
+	    x_monnam(mtmp, ARTICLE_NONE, (char *)0, 0, TRUE),
+	    mtmp->mcan ? coynames[SIZE(coynames)-1] : coynames[rn2(SIZE(coynames)-1)]);
+    }
+    return buf;
 }
 #endif /* OVL2 */
 

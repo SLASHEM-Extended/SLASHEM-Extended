@@ -2063,7 +2063,7 @@ blitz_spirit_bomb()
 	    	break;
 
 	    /* Display the center of the explosion */
-	    tmp_at(DISP_FLASH, cmap_to_glyph(S_mexplode5));
+	    tmp_at(DISP_FLASH, explosion_to_glyph(EXPL_MAGICAL, S_explode5));
 	    tmp_at(sx, sy);
 	    delay_output();
 	    tmp_at(DISP_END, 0);
@@ -2072,7 +2072,7 @@ blitz_spirit_bomb()
 	    sy += u.dy;
 	}
 	/* Magical Explosion */
-	explode(sx, sy, 10, (d(3,6) + num), WAND_CLASS);
+	explode(sx, sy, 10, (d(3,6) + num), WAND_CLASS, EXPL_MAGICAL);
 	return 1;
 }
 

@@ -3,7 +3,7 @@
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
-#include "lev.h"        /* for checking save modes */
+#include "lev.h"	/* for checking save modes */
 
 STATIC_DCL void NDECL(stoned_dialogue);
 STATIC_DCL void NDECL(vomiting_dialogue);
@@ -13,16 +13,17 @@ STATIC_DCL void NDECL(slime_dialogue);
 STATIC_DCL void NDECL(slip_or_trip);
 STATIC_DCL void FDECL(see_lamp_flicker, (struct obj *, const char *));
 STATIC_DCL void FDECL(lantern_message, (struct obj *));
+STATIC_DCL void FDECL(cleanup_burn, (genericptr_t,long));
 
 #ifdef OVLB
 
 /* He is being petrified - dialogue by inmet!tower */
 static NEARDATA const char *stoned_texts[] = {
-	"You are slowing down.",                /* 5 */
-	"Your limbs are stiffening.",           /* 4 */
-	"Your limbs have turned to stone.",     /* 3 */
-	"You have turned to stone.",            /* 2 */
-	"You are a statue."                     /* 1 */
+	"You are slowing down.",		/* 5 */
+	"Your limbs are stiffening.",		/* 4 */
+	"Your limbs have turned to stone.",	/* 3 */
+	"You have turned to stone.",		/* 2 */
+	"You are a statue."			/* 1 */
 };
 
 STATIC_OVL void
@@ -30,11 +31,11 @@ stoned_dialogue()
 {
 	register long i = (Stoned & TIMEOUT);
 
-	if(i > 0 && i <= SIZE(stoned_texts))
+	if (i > 0L && i <= SIZE(stoned_texts))
 		pline(stoned_texts[SIZE(stoned_texts) - i]);
-	if(i == 5)
+	if (i == 5L)
 		HFast = 0L;
-	if(i == 3)
+	if (i == 3L)
 		nomul(-3);
 	exercise(A_DEX, FALSE);
 }
@@ -122,21 +123,24 @@ slime_dialogue()
 {
 	register long i = (Slimed & TIMEOUT) / 2L;
 
-	if (((Slimed & TIMEOUT) % 2L) && i >= 0
+	if (((Slimed & TIMEOUT) % 2L) && i >= 0L
 		&& i < SIZE(slime_texts)) {
-	    const char *str = slime_texts[SIZE(slime_texts)-i-1];
+	    const char *str = slime_texts[SIZE(slime_texts) - i - 1L];
 
 	    if (index(str, '%')) {
-		if (i == 4) {
-		    if (!Blind)
+		if (i == 4L) {	/* "you are turning green" */
+		    if (!Blind)	/* [what if you're already green?] */
 			pline(str, hcolor(green));
 		} else
 		    pline(str, an(Hallucination ? rndmonnam() : "green slime"));
 	    } else
 		pline(str);
 	}
-	if(i == 4)
-	    HFast = 0;
+	if (i == 3L) {	/* limbs becoming oozy */
+	    HFast = 0L;	/* lose intrinsic speed */
+	    stop_occupation();
+	    if (multi > 0) nomul(0);
+	}
 	exercise(A_DEX, FALSE);
 }
 
@@ -146,6 +150,7 @@ burn_away_slime()
 	if (Slimed) {
 	    pline_The("slime that covers you is burned away!");
 	    Slimed = 0L;
+	    flags.botl = 1;
 	}
 	return;
 }
@@ -256,7 +261,7 @@ nh_timeout()
 			    if (type_is_pname(&mons[m_idx])) {
 				killer_format = KILLED_BY;
 			    }
-#if 0                           /* at present, there aren't any monster
+#if 0				/* at present, there aren't any monster
 				   poisoners with titles rather than names */
 			    else if (mons[m_idx].geno & G_UNIQ) {
 				char buf[BUFSZ];
@@ -272,7 +277,7 @@ nh_timeout()
 		case FAST:
 			if (!Very_fast)
 				You_feel("yourself slowing down%s.",
-				               Fast ? " a bit" : "");
+							Fast ? " a bit" : "");
 			break;
 		case FIRE_RES:
 			if (!Fire_resistance)
@@ -347,8 +352,8 @@ nh_timeout()
 			break;
 		case SEE_INVIS:
 			set_mimic_blocking(); /* do special mimic handling */
-			see_monsters();         /* make invis mons appear */
-			newsym(u.ux,u.uy);      /* make self appear */
+			see_monsters();		/* make invis mons appear */
+			newsym(u.ux,u.uy);	/* make self appear */
 			stop_occupation();
 			break;
 		case WOUNDED_LEGS:
@@ -516,16 +521,16 @@ const char *change_fmt;
 	/* Lengthen unpolytime - was 500,500  for player */
 	i = mon_spec_poly(mtmp, (struct permonst *)0, rn1(1000,1000));
 	if (!i || !rn2(25)) {
-		/* Uhoh.  !i == newcham wasn't able to make the polymorph...*/
-		if (canseemon(mtmp)) pline("%s shudders.", Monnam(mtmp));
-		if (i) mtmp->mhp -= rnd(30);
-		if (!i || (mtmp->mhp <= 0)) {
-			if (your_fault) xkilled(mtmp, 3);
-			else mondead(mtmp);
-		}
-		return(0);
+	    /* Uhoh.  !i == newcham wasn't able to make the polymorph...*/
+	    if (canseemon(mtmp)) pline("%s shudders.", Monnam(mtmp));
+	    if (i) mtmp->mhp -= rnd(30);
+	    if (!i || (mtmp->mhp <= 0)) {
+		if (your_fault) xkilled(mtmp, 3);
+		else mondead(mtmp);
+	    }
+	    return 0;
 	}
-	return(i);
+	return i;
 }
 
 
@@ -543,14 +548,14 @@ long time;
 {
 	int i;
 
-	i = newcham(mtmp, type, canseemon(mtmp));
+	i = newcham(mtmp, type, FALSE, canseemon(mtmp));
 	if (i) {
-		/* Stop any old timers.   */
-		(void) stop_timer(UNPOLY_MON, (genericptr_t) mtmp);
-		(void) start_timer(time, TIMER_MONSTER,
-				UNPOLY_MON, (genericptr_t) mtmp);
+	    /* Stop any old timers.   */
+	    (void) stop_timer(UNPOLY_MON, (genericptr_t) mtmp);
+	    (void) start_timer(time, TIMER_MONSTER,
+		    UNPOLY_MON, (genericptr_t) mtmp);
 	}
-	return(i);
+	return i;
 }
 
 
@@ -572,25 +577,25 @@ unpoly_mon(arg, timeout)
 
 	(void) stop_timer(UNPOLY_MON, (genericptr_t) mtmp);
 
-	if (!newcham(mtmp, &mons[oldmon], (canseemon(mtmp) && !silent))) {
-		/* Wasn't able to unpolymorph */
-		if (canseemon(mtmp) && !silent) pline("%s shudders.", oldname);
-		mondead(mtmp);
-		return;
+	if (!newcham(mtmp, &mons[oldmon], FALSE, (canseemon(mtmp) && !silent))) {
+	    /* Wasn't able to unpolymorph */
+	    if (canseemon(mtmp) && !silent) pline("%s shudders.", oldname);
+	    mondead(mtmp);
+	    return;
 	}
 
 	/* Check if current form is genocided */
 	if (mvitals[oldmon].mvflags & G_GENOD) {
-		mtmp->mhp = 0;
-		if (canseemon(mtmp) && !silent) pline("%s shudders.", oldname);
-		/*  Since only player can read scrolls of genocide... */
-		xkilled(mtmp, 3);
-		return;
+	    mtmp->mhp = 0;
+	    if (canseemon(mtmp) && !silent) pline("%s shudders.", oldname);
+	    /*  Since only player can read scrolls of genocide... */
+	    xkilled(mtmp, 3);
+	    return;
 	}
 
 #if 0
 	if (canseemon(mtmp)) pline ("%s changes into %s!", 
-			oldname, an(mtmp->data->mname));
+		oldname, an(mtmp->data->mname));
 #endif
 	return;
 }
@@ -712,7 +717,7 @@ long timeout;
 				trap.madeby_u = 0;
 				trap.dst.dnum = -1;
 				trap.dst.dlevel = -1;
-				dotrap(&trap);
+				dotrap(&trap, 0);
 			    }
 			    goto free_bomb;
 			}
@@ -790,7 +795,7 @@ long timeout;
 	mnum = big_to_little(egg->corpsenm);
 	/* The identity of one's father is learned, not innate */
 	yours = (egg->spe || (!flags.female && carried(egg) && !rn2(2)));
-	silent = (timeout != monstermoves);     /* hatched while away */
+	silent = (timeout != monstermoves);	/* hatched while away */
 
 	/* only can hatch when in INVENT, FLOOR, MINVENT */
 	if (get_obj_location(egg, &x, &y, 0)) {
@@ -814,8 +819,8 @@ long timeout;
 			}
 		    }
 		    if (mvitals[mnum].mvflags & G_EXTINCT)
-			break;  /* just made last one */
-		    mon2 = mon; /* in case makemon() fails on 2nd egg */
+			break;	/* just made last one */
+		    mon2 = mon;	/* in case makemon() fails on 2nd egg */
 		}
 		if (!mon) mon = mon2;
 		hatchcount -= i;
@@ -856,7 +861,8 @@ long timeout;
 	    if (cansee_hatchspot) {
 		Sprintf(monnambuf, "%s%s",
 			siblings ? "some " : "",
-			siblings ? makeplural(m_monnam(mon)) : a_monnam(mon));
+			siblings ?
+			makeplural(m_monnam(mon)) : an(m_monnam(mon)));
 		/* we don't learn the egg type here because learning
 		   an egg type requires either seeing the egg hatch
 		   or being familiar with the egg already,
@@ -879,7 +885,7 @@ long timeout;
 			    flags.female ? "mommy" : "daddy",
 			    egg->spe ? "." : "?");
 		    } else if (mon->data->mlet == S_DRAGON) {
-			verbalize("Gleep!");            /* Mything eggs :-) */
+			verbalize("Gleep!");		/* Mything eggs :-) */
 		    }
 		    break;
 
@@ -887,7 +893,7 @@ long timeout;
 		    if (cansee_hatchspot) {
 			knows_egg = TRUE;
 			You("see %s hatch.", monnambuf);
-			redraw = TRUE;  /* update egg's map location */
+			redraw = TRUE;	/* update egg's map location */
 		    }
 		    break;
 
@@ -977,8 +983,12 @@ slip_or_trip()
 	struct obj *otmp = vobj_at(u.ux, u.uy);
 	const char *what, *pronoun;
 	char buf[BUFSZ];
+	boolean on_foot = TRUE;
+#ifdef STEED
+	if (u.usteed) on_foot = FALSE;
+#endif
 
-	if (otmp) {             /* trip over something in particular */
+	if (otmp && on_foot) {		/* trip over something in particular */
 	    /*
 		If there is only one item, it will have just been named
 		during the move, so refer to by via pronoun; otherwise,
@@ -1001,26 +1011,52 @@ slip_or_trip()
 		You("trip over %s.", what);
 	    }
 	} else if (rn2(3) && is_ice(u.ux, u.uy)) {
-	    You("%s on the ice.", rn2(2) ? "slip" : "slide");
-	} else switch (rn2(4)) {
-	    case 1:
-		You("trip over your own %s.", Hallucination ?
-			"elbow" : makeplural(body_part(FOOT)));
-		break;
-	    case 2:
-		You("slip %s.", Hallucination ?
-			"on a banana peel" : "and nearly fall");
-		break;
-	    case 3:
-		You("flounder.");
-		break;
-	    default:
-		You("stumble.");
-		break;
-	}
+	    pline("%s %s%s on the ice.",
 #ifdef STEED
-	if (u.usteed) dismount_steed(DISMOUNT_FELL);
+		u.usteed ? upstart(x_monnam(u.usteed,
+				u.usteed->mnamelth ? ARTICLE_NONE : ARTICLE_THE,
+				(char *)0, SUPPRESS_SADDLE, FALSE)) :
 #endif
+		"You", rn2(2) ? "slip" : "slide", on_foot ? "" : "s");
+	} else {
+	    if (on_foot) {
+		switch (rn2(4)) {
+		  case 1:
+			You("trip over your own %s.", Hallucination ?
+				"elbow" : makeplural(body_part(FOOT)));
+			break;
+		  case 2:
+			You("slip %s.", Hallucination ?
+				"on a banana peel" : "and nearly fall");
+			break;
+		  case 3:
+			You("flounder.");
+			break;
+		  default:
+			You("stumble.");
+			break;
+		}
+	    }
+#ifdef STEED
+	    else {
+		switch (rn2(4)) {
+		  case 1:
+			Your("%s slip out of the stirrups.", makeplural(body_part(FOOT)));
+			break;
+		  case 2:
+			You("let go of the reins.");
+			break;
+		  case 3:
+			You("bang into the saddle-horn.");
+			break;
+		  default:
+			You("slide to one side of the saddle.");
+			break;
+		}
+		dismount_steed(DISMOUNT_FELL);
+	    }
+#endif
+	}
 }
 
 /* Print a lamp flicker message with tailer. */
@@ -1032,10 +1068,10 @@ const char *tailer;
 	switch (obj->where) {
 	    case OBJ_INVENT:
 	    case OBJ_MINVENT:
-                pline("%s flickers%s.", Yname2(obj), tailer);
+		pline("%s flickers%s.", Yname2(obj), tailer);
 		break;
 	    case OBJ_FLOOR:
-                You("see %s flicker%s.", an(xname(obj)), tailer);
+		You("see %s flicker%s.", an(xname(obj)), tailer);
 		break;
 	}
 }
@@ -1088,7 +1124,7 @@ long timeout;
 		end_burn(obj, FALSE);
 
 		if (menorah) {
-		    obj->spe = 0;       /* no more candles */
+		    obj->spe = 0;	/* no more candles */
 		} else if (Is_candle(obj) || obj->otyp == POT_OIL) {
 		    /* get rid of candles and burning oil potions */
 		    obj_extract_self(obj);
@@ -1135,7 +1171,7 @@ long timeout;
 				break;
 			}
 		    }
-		    end_burn(obj, FALSE);       /* turn off light source */
+		    end_burn(obj, FALSE);	/* turn off light source */
 		    obj_extract_self(obj);
 		    obfree(obj, (struct obj *)0);
 		    obj = (struct obj *) 0;
@@ -1331,7 +1367,7 @@ long timeout;
 		    begin_burn(obj, TRUE);
 
 		break;
-		
+
 	/* lightsabers*/
 	    case RED_DOUBLE_LIGHTSABER:
 	    	if (obj->altmode && obj->cursed && !rn2(25)) {
@@ -1441,17 +1477,17 @@ lightsaber_deactivate (obj, timer_attached)
  * a timer.
  *
  * Burn rules:
- *      potions of oil, lamps & candles:
- *              age = # of turns of fuel left
- *              spe = <unused>
+ *	potions of oil, lamps & candles:
+ *		age = # of turns of fuel left
+ *		spe = <unused>
  *
- *      magic lamps:
- *              age = <unused>
- *              spe = 0 not lightable, 1 lightable forever
+ *	magic lamps:
+ *		age = <unused>
+ *		spe = 0 not lightable, 1 lightable forever
  *
- *      candelabrum:
- *              age = # of turns of fuel left
- *              spe = # of candles
+ *	candelabrum:
+ *		age = # of turns of fuel left
+ *		spe = # of candles
  *
  * Once the burn begins, the age will be set to the amount of fuel
  * remaining _once_the_burn_finishes_.  If the burn is terminated
@@ -1473,7 +1509,8 @@ begin_burn(obj, already_lit)
 	boolean do_timer = TRUE;
 
 	if (obj->age == 0 && obj->otyp != MAGIC_LAMP &&
-	    obj->otyp != MAGIC_CANDLE && !obj->oartifact) return;
+		obj->otyp != MAGIC_CANDLE && !artifact_light(obj))
+	    return;
 
 	switch (obj->otyp) {
 	    case MAGIC_LAMP:
@@ -1492,10 +1529,10 @@ begin_burn(obj, already_lit)
 	    case GREEN_LIGHTSABER:
 	    	turns = 1;
     	    	radius = 1;
-	    	break;
+		break;
 	    case POT_OIL:
 		turns = obj->age;
-		radius = 1;     /* very dim light */
+		radius = 1;	/* very dim light */
 		break;
 #ifdef FIREARMS
 	    case STICK_OF_DYNAMITE:
@@ -1533,7 +1570,7 @@ begin_burn(obj, already_lit)
 		break;
 
 	    default:
-		/* [ALI] Support artifact light sources */
+                /* [ALI] Support artifact light sources */
 		if (obj->oartifact && artifact_light(obj)) {
 		    obj->lamplit = 1;
 		    do_timer = FALSE;
@@ -1551,11 +1588,14 @@ begin_burn(obj, already_lit)
 					BURN_OBJECT, (genericptr_t)obj)) {
 		obj->lamplit = 1;
 		obj->age -= turns;
-		if (obj->where == OBJ_INVENT && !already_lit)
+		if (carried(obj) && !already_lit)
 		    update_inventory();
 	    } else {
 		obj->lamplit = 0;
 	    }
+	} else {
+	    if (carried(obj) && !already_lit)
+		update_inventory();
 	}
 
 	if (obj->lamplit && !already_lit) {
@@ -1564,7 +1604,7 @@ begin_burn(obj, already_lit)
 	    /* [ALI] Support floating light sources (eg., wished for artifacts)
 	     */
 	    (void)get_obj_location(obj, &x, &y, CONTAINED_TOO|BURIED_TOO);
-	    new_light_source(x, y, radius, LS_OBJECT, (genericptr_t) obj);
+		new_light_source(x, y, radius, LS_OBJECT, (genericptr_t) obj);
 	}
 }
 
@@ -1577,15 +1617,14 @@ end_burn(obj, timer_attached)
 	struct obj *obj;
 	boolean timer_attached;
 {
-	long expire_time;
-
 	if (!obj->lamplit) {
 	    impossible("end_burn: obj %s not lit", xname(obj));
 	    return;
 	}
 
-	if (obj->otyp == MAGIC_LAMP ||
-	    obj->otyp == MAGIC_CANDLE ) timer_attached = FALSE;
+	if (obj->otyp == MAGIC_LAMP || obj->otyp == MAGIC_CANDLE ||
+		artifact_list(obj))
+	    timer_attached = FALSE;
 
 	if (!timer_attached) {
 	    /* [DS] Cleanup explicitly, since timer cleanup won't happen */
@@ -1593,8 +1632,7 @@ end_burn(obj, timer_attached)
 	    obj->lamplit = 0;
 	    if (obj->where == OBJ_INVENT)
 		update_inventory();
-	}
-	else if (!stop_timer(BURN_OBJECT, (genericptr_t) obj))
+	} else if (!stop_timer(BURN_OBJECT, (genericptr_t) obj))
 	    impossible("end_burn: obj %s not timed!", xname(obj));
 }
 
@@ -1679,62 +1717,51 @@ do_storms()
  * Interface:
  *
  * General:
- *      boolean start_timer(long timeout,short kind,short func_index,
- *                                                      genericptr_t arg)
- *              Start a timer of kind 'kind' that will expire at time
- *              monstermoves+'timeout'.  Call the function at 'func_index'
- *              in the timeout table using argument 'arg'.  Return TRUE if
- *              a timer was started.  This places the timer on a list ordered
- *              "sooner" to "later".  If an object, increment the object's
- *              timer count.
+ *	boolean start_timer(long timeout,short kind,short func_index,
+ *							genericptr_t arg)
+ *		Start a timer of kind 'kind' that will expire at time
+ *		monstermoves+'timeout'.  Call the function at 'func_index'
+ *		in the timeout table using argument 'arg'.  Return TRUE if
+ *		a timer was started.  This places the timer on a list ordered
+ *		"sooner" to "later".  If an object, increment the object's
+ *		timer count.
  *
- *      long stop_timer(short func_index, genericptr_t arg)
- *              Stop a timer specified by the (func_index, arg) pair.  This
- *              assumes that such a pair is unique.  Return the time the
- *              timer would have gone off.  If no timer is found, return 0.
- *              If an object, decrement the object's timer count.
+ *	long stop_timer(short func_index, genericptr_t arg)
+ *		Stop a timer specified by the (func_index, arg) pair.  This
+ *		assumes that such a pair is unique.  Return the time the
+ *		timer would have gone off.  If no timer is found, return 0.
+ *		If an object, decrement the object's timer count.
  *
- *      void run_timers(void)
- *              Call timers that have timed out.
+ *	void run_timers(void)
+ *		Call timers that have timed out.
  *
  *
  * Save/Restore:
- *      void save_timers(int fd, int mode, int range)
- *              Save all timers of range 'range'.  Range is either global
- *              or local.  Global timers follow game play, local timers
- *              are saved with a level.  Object and monster timers are
- *              saved using their respective id's instead of pointers.
+ *	void save_timers(int fd, int mode, int range)
+ *		Save all timers of range 'range'.  Range is either global
+ *		or local.  Global timers follow game play, local timers
+ *		are saved with a level.  Object and monster timers are
+ *		saved using their respective id's instead of pointers.
  *
- *      void restore_timers(int fd, int range, boolean ghostly, long adjust)
- *              Restore timers of range 'range'.  If from a ghost pile,
- *              adjust the timeout by 'adjust'.  The object and monster
- *              ids are not restored until later.
+ *	void restore_timers(int fd, int range, boolean ghostly, long adjust)
+ *		Restore timers of range 'range'.  If from a ghost pile,
+ *		adjust the timeout by 'adjust'.  The object and monster
+ *		ids are not restored until later.
  *
- *      void relink_timers(boolean ghostly)
- *              Relink all object and monster timers that had been saved
- *              using their object's or monster's id number.
+ *	void relink_timers(boolean ghostly)
+ *		Relink all object and monster timers that had been saved
+ *		using their object's or monster's id number.
  *
  * Object Specific:
- *      void obj_move_timers(struct obj *src, struct obj *dest)
- *              Reassign all timers from src to dest.
+ *	void obj_move_timers(struct obj *src, struct obj *dest)
+ *		Reassign all timers from src to dest.
  *
- *      void obj_split_timers(struct obj *src, struct obj *dest)
- *              Duplicate all timers assigned to src and attach them to dest.
+ *	void obj_split_timers(struct obj *src, struct obj *dest)
+ *		Duplicate all timers assigned to src and attach them to dest.
  *
- *      void obj_stop_timers(struct obj *obj)
- *              Stop all timers attached to obj.
+ *	void obj_stop_timers(struct obj *obj)
+ *		Stop all timers attached to obj.
  */
-
-
-typedef struct fe {
-    struct fe *next;            /* next item in chain */
-    long timeout;               /* when we time out */
-    unsigned long tid;          /* timer ID */
-    short kind;                 /* kind of use */
-    short func_index;           /* what to call when we time out */
-    genericptr_t arg;           /* pointer to timeout argument */
-    Bitfield (needs_fixup,1);   /* does arg need to be patched? */
-} timer_element;
 
 #ifdef WIZARD
 STATIC_DCL const char *FDECL(kind_name, (SHORT_P));
@@ -1743,13 +1770,14 @@ STATIC_DCL void FDECL(print_queue, (winid, timer_element *));
 STATIC_DCL void FDECL(insert_timer, (timer_element *));
 STATIC_DCL timer_element *FDECL(remove_timer, (timer_element **, SHORT_P,
 								genericptr_t));
+STATIC_DCL void FDECL(write_timer, (int, timer_element *));
 STATIC_DCL boolean FDECL(mon_is_local, (struct monst *));
 STATIC_DCL boolean FDECL(timer_is_local, (timer_element *));
 STATIC_DCL int FDECL(maybe_write_timer, (int, int, BOOLEAN_P));
 static void FDECL(write_timer, (int, timer_element *)); /* Damn typedef write_timer is in the middle */
 
 /* ordered timer list */
-static timer_element *timer_base;               /* "active" */
+static timer_element *timer_base;		/* "active" */
 static unsigned long timer_id = 1;
 
 /* If defined, then include names when printing out the timer queue */
@@ -1767,19 +1795,19 @@ typedef struct {
 
 /* table of timeout functions */
 static ttable timeout_funcs[NUM_TIME_FUNCS] = {
-	TTAB(rot_organic,   (timeout_proc)0, "rot_organic"),
-	TTAB(rot_corpse,    (timeout_proc)0, "rot_corpse"),
-	TTAB(moldy_corpse,  (timeout_proc)0, "moldy_corpse"),
-	TTAB(revive_mon,    (timeout_proc)0, "revive_mon"),
-	TTAB(burn_object,   cleanup_burn,    "burn_object"),
-	TTAB(hatch_egg,     (timeout_proc)0, "hatch_egg"),
-	TTAB(fig_transform, (timeout_proc)0, "fig_transform"),
-	TTAB(unpoly_mon,    (timeout_proc)0, "unpoly_mon"),
+    TTAB(rot_organic,	(timeout_proc)0,	"rot_organic"),
+    TTAB(rot_corpse,	(timeout_proc)0,	"rot_corpse"),
+    TTAB(moldy_corpse,  (timeout_proc)0,	"moldy_corpse"),
+    TTAB(revive_mon,	(timeout_proc)0,	"revive_mon"),
+    TTAB(burn_object,	cleanup_burn,		"burn_object"),
+    TTAB(hatch_egg,	(timeout_proc)0,	"hatch_egg"),
+    TTAB(fig_transform, (timeout_proc)0,	"fig_transform"),
+    TTAB(unpoly_mon,    (timeout_proc)0,	"unpoly_mon"),
 #ifdef FIREARMS
-	TTAB(bomb_blow,     (timeout_proc)0, "bomb_blow"),
+    TTAB(bomb_blow,     (timeout_proc)0,	"bomb_blow"),
 #endif
 #ifdef UNPOLYPILE
-	TTAB(unpoly_obj,    cleanup_unpoly,  "unpoly_obj"),
+    TTAB(unpoly_obj,    cleanup_unpoly,		"unpoly_obj"),
 #endif
 };
 #undef TTAB
@@ -1835,7 +1863,7 @@ wiz_timeout_queue()
     winid win;
     char buf[BUFSZ];
 
-    win = create_nhwindow(NHW_MENU);    /* corner text window */
+    win = create_nhwindow(NHW_MENU);	/* corner text window */
     if (win == WIN_ERR) return 0;
 
     Sprintf(buf, "Current time = %ld.", monstermoves);
@@ -1921,7 +1949,7 @@ genericptr_t arg;
     gnu->arg = arg;
     insert_timer(gnu);
 
-    if (kind == TIMER_OBJECT)   /* increment object's timed count */
+    if (kind == TIMER_OBJECT)	/* increment object's timed count */
 	((struct obj *)arg)->timed++;
 
     /* should check for duplicates and fail if any */
@@ -1988,7 +2016,7 @@ obj_split_timers(src, dest)
     timer_element *curr, *next_timer=0;
 
     for (curr = timer_base; curr; curr = next_timer) {
-	next_timer = curr->next;        /* things may be inserted */
+	next_timer = curr->next;	/* things may be inserted */
 	if (curr->kind == TIMER_OBJECT && curr->arg == (genericptr_t)src) {
 	    (void) start_timer(curr->timeout-monstermoves, TIMER_OBJECT,
 					curr->func_index, (genericptr_t)dest);
@@ -2124,11 +2152,11 @@ obj_is_local(obj)
 {
     switch (obj->where) {
 	case OBJ_INVENT:
-	case OBJ_MIGRATING:     return FALSE;
+	case OBJ_MIGRATING:	return FALSE;
 	case OBJ_FLOOR:
-	case OBJ_BURIED:        return TRUE;
-	case OBJ_CONTAINED:     return obj_is_local(obj->ocontainer);
-	case OBJ_MINVENT:       return mon_is_local(obj->ocarry);
+	case OBJ_BURIED:	return TRUE;
+	case OBJ_CONTAINED:	return obj_is_local(obj->ocontainer);
+	case OBJ_MINVENT:	return mon_is_local(obj->ocarry);
     }
     panic("obj_is_local");
     return FALSE;
@@ -2163,10 +2191,10 @@ timer_is_local(timer)
     timer_element *timer;
 {
     switch (timer->kind) {
-	case TIMER_LEVEL:       return TRUE;
-	case TIMER_GLOBAL:      return FALSE;
-	case TIMER_OBJECT:      return obj_is_local((struct obj *)timer->arg);
-	case TIMER_MONSTER:     return mon_is_local((struct monst *)timer->arg);
+	case TIMER_LEVEL:	return TRUE;
+	case TIMER_GLOBAL:	return FALSE;
+	case TIMER_OBJECT:	return obj_is_local((struct obj *)timer->arg);
+	case TIMER_MONSTER:	return mon_is_local((struct monst *)timer->arg);
     }
     panic("timer_is_local");
     return FALSE;
@@ -2215,12 +2243,12 @@ maybe_write_timer(fd, range, write_it)
  * timers.
  *
  * Global range:
- *              + timeouts that follow the hero (global)
- *              + timeouts that follow obj & monst that are migrating
+ *		+ timeouts that follow the hero (global)
+ *		+ timeouts that follow obj & monst that are migrating
  *
  * Level range:
- *              + timeouts that are level specific (e.g. storms)
- *              + timeouts that stay with the level (obj & monst)
+ *		+ timeouts that are level specific (e.g. storms)
+ *		+ timeouts that stay with the level (obj & monst)
  */
 void
 save_timers(fd, mode, range)
@@ -2240,7 +2268,7 @@ save_timers(fd, mode, range)
 
     if (release_data(mode)) {
 	for (prev = 0, curr = timer_base; curr; curr = next_timer) {
-	    next_timer = curr->next;    /* in case curr is removed */
+	    next_timer = curr->next;	/* in case curr is removed */
 
 	    if ( !(!!(range == RANGE_LEVEL) ^ !!timer_is_local(curr)) ) {
 		if (prev)
@@ -2264,8 +2292,8 @@ save_timers(fd, mode, range)
 void
 restore_timers(fd, range, ghostly, adjust)
     int fd, range;
-    boolean ghostly;    /* restoring from a ghost level */
-    long adjust;        /* how much to adjust timeout */
+    boolean ghostly;	/* restoring from a ghost level */
+    long adjust;	/* how much to adjust timeout */
 {
     int count;
     timer_element *curr;

@@ -5,7 +5,7 @@
 #include "hack.h"
 
 #ifdef OVL0
-extern const char *hu_stat[];   /* defined in eat.c */
+extern const char *hu_stat[];	/* defined in eat.c */
 
 const char *hu_abbrev_stat[] = {	/* must be kept consistent with eat.c */
 	"Sat",
@@ -46,7 +46,7 @@ STATIC_DCL void FDECL(set_botl_warn, (int));
  * than COLNO
  *
  * longest practical second status line at the moment is
- *      Astral Plane $:12345 HP:700(700) Pw:111(111) AC:-127 Xp:30/123456789
+ *	Astral Plane $:12345 HP:700(700) Pw:111(111) AC:-127 Xp:30/123456789
  *      Wt:5000/1000 T:123456 Satiated Lev Conf FoodPois Ill Blind Stun Hallu
  *      Slime Overloaded
  * -- or somewhat over 150 characters
@@ -86,7 +86,7 @@ int xlev;
 	return (xlev <= 2) ? 0 : (xlev <= 30) ? ((xlev + 2) / 4) : 8;
 }
 
-#if 0   /* not currently needed */
+#if 0	/* not currently needed */
 /* convert rank index (0..8) to experience level (1..30) */
 int rank_to_xlev(rank)
 int rank;
@@ -144,17 +144,17 @@ int *rank_indx, *title_length;
 	    for (j = 0; j < 9; j++) {
 	    	if (roles[i].rank[j].m && !strncmpi(str,
 	    			roles[i].rank[j].m, strlen(roles[i].rank[j].m))) {
-		    if (rank_indx) *rank_indx = j;
+	    	    if (rank_indx) *rank_indx = j;
 	    	    if (title_length) *title_length = strlen(roles[i].rank[j].m);
 	    	    return roles[i].malenum;
 	    	}
 	    	if (roles[i].rank[j].f && !strncmpi(str,
 	    			roles[i].rank[j].f, strlen(roles[i].rank[j].f))) {
-		    if (rank_indx) *rank_indx = j;
+	    	    if (rank_indx) *rank_indx = j;
 	    	    if (title_length) *title_length = strlen(roles[i].rank[j].f);
 	    	    return ((roles[i].femalenum != NON_PM) ?
 	    	    		roles[i].femalenum : roles[i].malenum);
-		}
+	    	}
 	    }
 	return NON_PM;
 }
@@ -197,7 +197,7 @@ static char *
 botl_player()
 {
     static char player[MAXCO];
-    register char *nb;
+	register char *nb;
     char mbot[MAXCO - 15];
     int k = 0;
 
@@ -206,17 +206,17 @@ botl_player()
     player[10] = 0;
     Sprintf(nb = eos(player)," the ");
 
-    if (Upolyd) {
+	if (Upolyd) {
 	(void) strncpy(mbot, mons[u.umonnum].mname, SIZE(mbot) - 1);
 	mbot[SIZE(mbot) - 1] = 0;
-	while(mbot[k] != 0) {
-	    if ((k == 0 || (k > 0 && mbot[k-1] == ' ')) &&
-				'a' <= mbot[k] && mbot[k] <= 'z')
-		mbot[k] += 'A' - 'a';
-	    k++;
-	}
+		while(mbot[k] != 0) {
+		    if ((k == 0 || (k > 0 && mbot[k-1] == ' ')) &&
+					'a' <= mbot[k] && mbot[k] <= 'z')
+			mbot[k] += 'A' - 'a';
+		    k++;
+		}
 	Sprintf(eos(nb), mbot);
-    } else
+	} else
 	Sprintf(eos(nb), rank());
     return player;
 }
@@ -225,14 +225,14 @@ static char *
 botl_strength()
 {
     static char strength[6];
-    if (ACURR(A_STR) > 18) {
-	if (ACURR(A_STR) > STR18(100))
+	if (ACURR(A_STR) > 18) {
+		if (ACURR(A_STR) > STR18(100))
 	    Sprintf(strength, "%2d", ACURR(A_STR)-100);
-	else if (ACURR(A_STR) < STR18(100))
+		else if (ACURR(A_STR) < STR18(100))
 	    Sprintf(strength, "18/%02d", ACURR(A_STR)-18);
-	else
+		else
 	    Sprintf(strength, "18/**");
-    } else
+	} else
 	Sprintf(strength, "%-1d", ACURR(A_STR));
     return strength;
 }
@@ -286,7 +286,7 @@ int verbose;
 			Sprintf(buf, "%s, level %d ",
 				dungeons[u.uz.dnum].dname, depth(&u.uz));
 		else
-			Sprintf(buf, "Dlvl:%-2d ", depth(&u.uz));
+		Sprintf(buf, "Dlvl:%-2d ", depth(&u.uz));
 		ret = 0;
 	}
 	return ret;
@@ -322,7 +322,7 @@ bot2str(char *newbot2)
 #ifdef ALLEG_FX
 	int w;
 #endif
-	
+
 	hp = Upolyd ? u.mh : u.uhp;
 	hpmax = Upolyd ? u.mhmax : u.uhpmax;
 
@@ -337,7 +337,7 @@ bot2str(char *newbot2)
 	else
 		nb = newbot2;
 	Sprintf(nb = eos(nb), "HP:%d(%d) Pw:%d(%d) AC:%-2d",
-	       hp, hpmax, u.uen, u.uenmax, u.uac);
+		hp, hpmax, u.uen, u.uenmax, u.uac);
 
 	if (Upolyd)
 		Sprintf(nb = eos(nb), " HD:%d", ((u.ulycn == u.umonnum) ? 
@@ -579,8 +579,8 @@ bot()
 	if (raw_handler)
 		bot_raw(FALSE);
 	else {
-		bot1();
-		bot2();
+	bot1();
+	bot2();
 	}
 	flags.botl = flags.botlx = 0;
 }

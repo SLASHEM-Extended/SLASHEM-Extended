@@ -243,6 +243,7 @@ vision_reset()
 	}
     }
 
+    iflags.vision_inited = 1;	/* vision is ready */
     vision_full_recalc = 1;	/* we want to run vision_recalc() */
 }
 
@@ -513,7 +514,7 @@ vision_recalc(control)
     int oldseenv;				/* previous seenv value */
 
     vision_full_recalc = 0;			/* reset flag */
-    if (in_mklev) return;
+    if (in_mklev || !iflags.vision_inited) return;
 
 #ifdef GCC_WARN
     row = 0;
@@ -728,12 +729,13 @@ vision_recalc(control)
 		/*
 		 * We see this position because it is lit.
 		 */
-		if (IS_DOOR(lev->typ) && !viz_clear[row][col]) {
+		if ((IS_DOOR(lev->typ) || lev->typ == SDOOR ||
+		     IS_WALL(lev->typ)) && !viz_clear[row][col]) {
 		    /*
-		     * Make sure doors, boulders or mimics don't show up
+		     * Make sure doors, walls, boulders or mimics don't show up
 		     * at the end of dark hallways.  We do this by checking
 		     * the adjacent position.  If it is lit, then we can see
-		     * the door, otherwise we can't.
+		     * the door or wall, otherwise we can't.
 		     */
 		    dx = u.ux - col;	dx = sign(dx);
 		    flev = &(levl[col+dx][row+dy]);
@@ -796,7 +798,13 @@ not_in_sight:
     colbump[u.ux] = colbump[u.ux+1] = 0;
 
 skip:
-    newsym(u.ux,u.uy);		/* Make sure the hero shows up! */
+    /* This newsym() caused a crash delivering msg about failure to open
+     * dungeon file init_dungeons() -> panic() -> done(11) ->
+     * vision_recalc(2) -> newsym() -> crash!  u.ux and u.uy are 0 and
+     * program_state.panicking == 1 under those circumstances
+     */
+    if (!program_state.panicking)
+	newsym(u.ux, u.uy);		/* Make sure the hero shows up! */
 
     /* Set the new min and max pointers. */
     viz_rmin  = next_rmin;

@@ -36,7 +36,7 @@ moveloop()
     boolean didmove = FALSE, monscanmove = FALSE;
     int i; /*LSZ/WWA Wizard Patch 7/96 for spell knowledge decrement */
  
- 
+
     flags.moonphase = phase_of_the_moon();
     if(flags.moonphase == FULL_MOON) {
 	You("are lucky!  Full moon tonight.");
@@ -154,7 +154,7 @@ moveloop()
 			case EXT_ENCUMBER: moveamt -= ((moveamt * 7) / 8); break;
 			default: break;
 		    }
-		    
+
 		    youmonst.movement += moveamt;
 		    if (youmonst.movement < 0) youmonst.movement = 0;
 		    settrack();
@@ -166,6 +166,7 @@ moveloop()
 		    /* once-per-turn things go here */
 		    /********************************/
 
+		    if (flags.bypasses) clear_bypasses();
 		    if(Glib) glibr();
 		    nh_timeout();
 		    run_regions();
@@ -186,16 +187,22 @@ moveloop()
 		    if (u.uinvulnerable) {
 			/* for the moment at least, you're in tiptop shape */
 			wtcap = UNENCUMBERED;
+		    } else if (Upolyd && youmonst.data->mlet == S_EEL && !is_pool(u.ux,u.uy) && !Is_waterlevel(&u.uz)) {
+			if (u.mh > 1) {
+			    u.mh--;
+			    flags.botl = 1;
+			} else if (u.mh < 1)
+			    rehumanize();
 		    } else if (Upolyd && u.mh < u.mhmax) {
-			if (u.mh < 1) 
-				rehumanize();
+			if (u.mh < 1)
+			    rehumanize();
 			else if (Regeneration ||
-				(wtcap < MOD_ENCUMBER && !(moves%20))) {
-				flags.botl = 1;
-				u.mh++;
+				    (wtcap < MOD_ENCUMBER && !(moves%20))) {
+			    flags.botl = 1;
+			    u.mh++;
 			}
 		    } else if (u.uhp < u.uhpmax &&
-		    	 (wtcap < MOD_ENCUMBER || !flags.mv || Regeneration)) {
+			 (wtcap < MOD_ENCUMBER || !u.umoved || Regeneration)) {
 /*
  * KMH, balance patch -- New regeneration code
  * Healthstones have been added, which alter your effective
@@ -216,15 +223,15 @@ moveloop()
   				if (heal > efflev-9) heal = efflev-9;
 			    }
 			    flags.botl = 1;
-  			    u.uhp += heal;
-  			    if(u.uhp > u.uhpmax)
-  				u.uhp = u.uhpmax;
+			    u.uhp += heal;
+			    if(u.uhp > u.uhpmax)
+				u.uhp = u.uhpmax;
 			} else if (Regeneration ||
 			     (efflev <= 9 &&
 			      !(moves % ((MAXULEV+12) / (u.ulevel+2) + 1)))) {
-  			    flags.botl = 1;
-  			    u.uhp++;
-  			}
+			    flags.botl = 1;
+			    u.uhp++;
+			}
 		    }
 
 
@@ -235,20 +242,21 @@ moveloop()
 			flags.botl = 1;
 		    }
 		    
-		    if (wtcap > MOD_ENCUMBER && flags.mv) {
+		    /* moving around while encumbered is hard work */
+		    if (wtcap > MOD_ENCUMBER && u.umoved) {
 			if(!(wtcap < EXT_ENCUMBER ? moves%30 : moves%10)) {
- 				if (Upolyd && u.mh > 1) {
- 					u.mh--;
- 				} else if (!Upolyd && u.uhp > 1) {
-					u.uhp--;
-				} else {
-					You("pass out from exertion!");
-					exercise(A_CON, FALSE);
-					fall_asleep(-10, FALSE);
-				}
+			    if (Upolyd && u.mh > 1) {
+				u.mh--;
+			    } else if (!Upolyd && u.uhp > 1) {
+				u.uhp--;
+			    } else {
+				You("pass out from exertion!");
+				exercise(A_CON, FALSE);
+				fall_asleep(-10, FALSE);
+			    }
 			}
 		    }
-		    
+
 		    
 		    /* KMH -- OK to regenerate if you don't move */
 		    if ((u.uen < u.uenmax) && (Energy_regeneration ||
@@ -260,22 +268,22 @@ moveloop()
                 pline("mana was = %d now = %d",temp,u.uen);
 #endif
 
-				if (u.uen > u.uenmax)  u.uen = u.uenmax;
-				flags.botl = 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
 		    }
-		    
+
 		    if(!u.uinvulnerable) {
-				if(Teleportation && !rn2(85)) {
+			if(Teleportation && !rn2(85)) {
 #ifdef REDO
-				xchar old_ux = u.ux, old_uy = u.uy;
+			    xchar old_ux = u.ux, old_uy = u.uy;
 #endif
-				tele();
+			    tele();
 #ifdef REDO
-				if (u.ux != old_ux || u.uy != old_uy) {
+			    if (u.ux != old_ux || u.uy != old_uy) {
 				/* clear doagain keystrokes */
-					pushch(0);
-					savech(0);
-				}
+				pushch(0);
+				savech(0);
+			    }
 #endif
 			}
 			/* KMH, balance patch -- new intrinsic */
@@ -284,43 +292,43 @@ moveloop()
 			else if (u.ulycn >= LOW_PM && !rn2(80 - (20 * night())))
 			    change = 2;
 			if (change && !Unchanging) {
-  			    if (multi >= 0) {
-  				if (occupation)
-  				    stop_occupation();
-  				else
-  				    nomul(0);
-				if (change == 1) polyself();
+			    if (multi >= 0) {
+				if (occupation)
+				    stop_occupation();
+				else
+				    nomul(0);
+				if (change == 1) polyself(FALSE);
 				else you_were();
 				change = 0;
-  			    }
-  			}
+			    }
+			}
 		}	/* !u.uinvulnerable */
 
-		if(Searching && multi >= 0) (void) dosearch0(1);
-		dosounds();
-		do_storms();
-		gethungry();
-		age_spells();
-		exerchk();
-		invault();
-		if (u.uhave.amulet) amulet();
+		    if(Searching && multi >= 0) (void) dosearch0(1);
+		    dosounds();
+		    do_storms();
+		    gethungry();
+		    age_spells();
+		    exerchk();
+		    invault();
+		    if (u.uhave.amulet) amulet();
 		if (!rn2(40+(int)(ACURR(A_DEX)*3))) u_wipe_engr(rnd(3));
-		if (u.uevent.udemigod && !u.uinvulnerable) {
+		    if (u.uevent.udemigod && !u.uinvulnerable) {
 			if (u.udg_cnt) u.udg_cnt--;
 			if (!u.udg_cnt) {
-				intervene();
-				u.udg_cnt = rn1(200, 50);
+			    intervene();
+			    u.udg_cnt = rn1(200, 50);
 			}
-		}
-		restore_attrib();
+		    }
+		    restore_attrib();
 
-		/* underwater and waterlevel vision are done here */
+		    /* underwater and waterlevel vision are done here */
 		    if (Is_waterlevel(&u.uz))
 			movebubbles();
 		    else if (Underwater)
 			under_water(0);
 		    /* vision while buried done here */
-  		    else if (u.uburied) under_ground(0);
+		    else if (u.uburied) under_ground(0);
 
 		    /* when immobile, count is in turns */
 		    if(multi < 0) {
@@ -425,11 +433,12 @@ moveloop()
 	    if (!multi) {
 		/* lookaround may clear multi */
 		flags.move = 0;
+		if (flags.time) flags.botl = 1;
 		continue;
 	    }
 	    if (flags.mv) {
 		if(multi < COLNO && !--multi)
-		    flags.mv = flags.run = 0;
+		    flags.travel = flags.mv = flags.run = 0;
 		domove();
 	    } else {
 		--multi;
@@ -461,8 +470,10 @@ void
 stop_occupation()
 {
 	if(occupation) {
-		You("stop %s.", occtxt);
+		if (!maybe_finished_meal(TRUE))
+		    You("stop %s.", occtxt);
 		occupation = 0;
+		flags.botl = 1; /* in case u.uhs changed */
 /* fainting stops your occupation, there's no reason to sync.
 		sync_hunger();
 */
@@ -479,10 +490,10 @@ stop_occupation()
 void
 display_gamewindows()
 {
-	WIN_MESSAGE = create_nhwindow(NHW_MESSAGE);
-	WIN_STATUS = create_nhwindow(NHW_STATUS);
-	WIN_MAP = create_nhwindow(NHW_MAP);
-	WIN_INVEN = create_nhwindow(NHW_MENU);
+    WIN_MESSAGE = create_nhwindow(NHW_MESSAGE);
+    WIN_STATUS = create_nhwindow(NHW_STATUS);
+    WIN_MAP = create_nhwindow(NHW_MAP);
+    WIN_INVEN = create_nhwindow(NHW_MENU);
 
 #ifdef MAC
     /*
@@ -491,7 +502,7 @@ display_gamewindows()
      * and show_gamewindows to get rid of this ifdef...
      */
 	if ( ! strcmp ( windowprocs . name , "mac" ) ) {
-		SanePositions ( ) ;
+	    SanePositions ( ) ;
 	}
 #endif
 
@@ -499,10 +510,10 @@ display_gamewindows()
      * The mac port is not DEPENDENT on the order of these
      * displays, but it looks a lot better this way...
      */
-	display_nhwindow(WIN_STATUS, FALSE);
-	display_nhwindow(WIN_MESSAGE, FALSE);
-	clear_glyph_buffer();
-	display_nhwindow(WIN_MAP, FALSE);
+    display_nhwindow(WIN_STATUS, FALSE);
+    display_nhwindow(WIN_MESSAGE, FALSE);
+    clear_glyph_buffer();
+    display_nhwindow(WIN_MAP, FALSE);
 }
 
 void
@@ -519,7 +530,7 @@ newgame()
 	for (i = 0; i < NUMMONS; i++)
 		mvitals[i].mvflags = mons[i].geno & G_NOCORPSE;
 
-	init_objects();         /* must be before u_init() */
+	init_objects();		/* must be before u_init() */
 
 	flags.pantheon = -1;	/* role_init() will reset this */
 	role_init();		/* must be before init_dungeons(), u_init(),
@@ -538,19 +549,19 @@ newgame()
 	if(iflags.news) display_file_area(NEWS_AREA, NEWS, FALSE);
 #endif
 
-	load_qtlist();  /* load up the quest text info */
+	load_qtlist();	/* load up the quest text info */
 /*	quest_init();*/	/* Now part of role_init() */
 
 	mklev();
 	u_on_upstairs();
-	vision_reset();         /* set up internals for level (after mklev) */
+	vision_reset();		/* set up internals for level (after mklev) */
 	check_special_room(FALSE);
 
 	flags.botlx = 1;
 
 	/* Move the monster from under you or else
 	 * makedog() will fail when it calls makemon().
-	 *                      - ucsfcgl!kneller
+	 *			- ucsfcgl!kneller
 	 */
 
 	if(MON_AT(u.ux, u.uy)) mnexto(m_at(u.ux, u.uy));
@@ -565,7 +576,7 @@ newgame()
 #ifdef INSURANCE
 	save_currentstate();
 #endif
-	program_state.something_worth_saving++; /* useful data now exists */
+	program_state.something_worth_saving++;	/* useful data now exists */
 
 	/* Success! */
 	welcome(TRUE);
@@ -628,36 +639,56 @@ do_positionbar()
 	p = pbar;
 	/* up stairway */
 	if (upstair.sx &&
-		(glyph_to_cmap(level.locations[upstair.sx][upstair.sy].glyph) ==
-		S_upstair ||
-		glyph_to_cmap(level.locations[upstair.sx][upstair.sy].glyph) == 
-		S_upladder)) {
+#ifdef DISPLAY_LAYERS
+	   (level.locations[upstair.sx][upstair.sy].mem_bg == S_upstair ||
+	    level.locations[upstair.sx][upstair.sy].mem_bg == S_upladder)) {
+#else
+	   (glyph_to_cmap(level.locations[upstair.sx][upstair.sy].glyph) ==
+	    S_upstair ||
+ 	    glyph_to_cmap(level.locations[upstair.sx][upstair.sy].glyph) ==
+	    S_upladder)) {
+#endif
 		*p++ = '<';
 		*p++ = upstair.sx;
 	}
 	if (sstairs.sx &&
-		(glyph_to_cmap(level.locations[sstairs.sx][sstairs.sy].glyph) ==
-		S_upstair ||
-		glyph_to_cmap(level.locations[sstairs.sx][sstairs.sy].glyph) == 
-		S_upladder)) {
+#ifdef DISPLAY_LAYERS
+	   (level.locations[sstairs.sx][sstairs.sy].mem_bg == S_upstair ||
+	    level.locations[sstairs.sx][sstairs.sy].mem_bg == S_upladder)) {
+#else
+	   (glyph_to_cmap(level.locations[sstairs.sx][sstairs.sy].glyph) ==
+	    S_upstair ||
+ 	    glyph_to_cmap(level.locations[sstairs.sx][sstairs.sy].glyph) ==
+	    S_upladder)) {
+#endif
 		*p++ = '<';
 		*p++ = sstairs.sx;
 	}
 
 	/* down stairway */
 	if (dnstair.sx &&
-		(glyph_to_cmap(level.locations[dnstair.sx][dnstair.sy].glyph) ==
-		S_dnstair ||
-		glyph_to_cmap(level.locations[dnstair.sx][dnstair.sy].glyph) ==
-		S_dnladder)) {
+#ifdef DISPLAY_LAYERS
+	   (level.locations[dnstair.sx][dnstair.sy].mem_bg == S_dnstair ||
+	    level.locations[dnstair.sx][dnstair.sy].mem_bg == S_dnladder)) {
+#else
+	   (glyph_to_cmap(level.locations[dnstair.sx][dnstair.sy].glyph) ==
+	    S_dnstair ||
+ 	    glyph_to_cmap(level.locations[dnstair.sx][dnstair.sy].glyph) ==
+	    S_dnladder)) {
+#endif
 		*p++ = '>';
 		*p++ = dnstair.sx;
 	}
 	if (sstairs.sx &&
-		(glyph_to_cmap(level.locations[sstairs.sx][sstairs.sy].glyph) ==
-		S_dnstair ||
-		glyph_to_cmap(level.locations[sstairs.sx][sstairs.sy].glyph) == 
-		S_dnladder)) {
+#ifdef DISPLAY_LAYERS
+	   (level.locations[sstairs.sx][sstairs.sy].mem_bg == S_dnstair ||
+	    level.locations[sstairs.sx][sstairs.sy].mem_bg == S_dnladder)) {
+#else
+	   (glyph_to_cmap(level.locations[sstairs.sx][sstairs.sy].glyph) ==
+	    S_dnstair ||
+ 	    glyph_to_cmap(level.locations[sstairs.sx][sstairs.sy].glyph) ==
+	    S_dnladder)) {
+#endif
 		*p++ = '>';
 		*p++ = sstairs.sx;
 	}

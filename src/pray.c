@@ -9,6 +9,10 @@ STATIC_PTR int NDECL(prayer_done);
 STATIC_DCL int NDECL(in_trouble);
 STATIC_DCL void FDECL(fix_worst_trouble,(int));
 STATIC_DCL void FDECL(angrygods,(ALIGNTYP_P));
+STATIC_DCL void FDECL(at_your_feet, (const char *));
+#ifdef ELBERETH
+STATIC_DCL void NDECL(gcrownu);
+#endif	/*ELBERETH*/
 STATIC_DCL void FDECL(pleased,(ALIGNTYP_P));
 STATIC_DCL void FDECL(godvoice,(ALIGNTYP_P,const char*));
 STATIC_DCL void FDECL(god_zaps_you,(ALIGNTYP_P));
@@ -36,11 +40,11 @@ static void FDECL(god_gives_benefit,(ALIGNTYP_P));
  */
 
 /*
- *      Moloch, who dwells in Gehennom, is the "renegade" cruel god
- *      responsible for the theft of the Amulet from Marduk, the Creator.
- *      Moloch is unaligned.
+ *	Moloch, who dwells in Gehennom, is the "renegade" cruel god
+ *	responsible for the theft of the Amulet from Marduk, the Creator.
+ *	Moloch is unaligned.
  */
-static const char       *Moloch = "Moloch";
+static const char	*Moloch = "Moloch";
 
 static const char *godvoices[] = {
     "booms out",
@@ -96,9 +100,9 @@ but that's really hard.
  */
 
 #define ugod_is_angry() (u.ualign.record < 0)
-#define on_altar()      IS_ALTAR(levl[u.ux][u.uy].typ)
-#define on_shrine()     ((levl[u.ux][u.uy].altarmask & AM_SHRINE) != 0)
-#define a_align(x,y)    ((aligntyp)Amask2align(levl[x][y].altarmask & AM_MASK))
+#define on_altar()	IS_ALTAR(levl[u.ux][u.uy].typ)
+#define on_shrine()	((levl[u.ux][u.uy].altarmask & AM_SHRINE) != 0)
+#define a_align(x,y)	((aligntyp)Amask2align(levl[x][y].altarmask & AM_MASK))
 
 STATIC_OVL int
 in_trouble()
@@ -108,16 +112,16 @@ in_trouble()
 
 /* Borrowed from eat.c */
 
-#define SATIATED        0
-#define NOT_HUNGRY      1
-#define HUNGRY          2
-#define WEAK            3
-#define FAINTING        4
-#define FAINTED         5
-#define STARVED         6
+#define SATIATED	0
+#define NOT_HUNGRY	1
+#define HUNGRY		2
+#define WEAK		3
+#define FAINTING	4
+#define FAINTED		5
+#define STARVED		6
 
 	if(Stoned) return(TROUBLE_STONED);
-	if(Slimed) return(TROUBLE_SLIMED);        
+	if(Slimed) return(TROUBLE_SLIMED);
 	if(Strangled) return(TROUBLE_STRANGLED);
 	if(u.utrap && u.utraptype == TT_LAVA) return(TROUBLE_LAVA);
 	if(Sick) return(TROUBLE_SICK);
@@ -149,12 +153,12 @@ in_trouble()
 	/* KMH, balance patch -- healthstone replaces rotting/health */
 	if((otmp->otyp==LOADSTONE || otmp->otyp==LUCKSTONE ||
 			otmp->otyp==HEALTHSTONE) && otmp->cursed)
-	    return(TROUBLE_CURSED_ITEMS);
-	if((uarmh && uarmh->cursed) ||  /* helmet */
-	   (uarms && uarms->cursed) ||  /* shield */
-	   (uarmg && uarmg->cursed) ||  /* gloves */
-	   (uarm && uarm->cursed) ||    /* armor */
-	   (uarmc && uarmc->cursed) ||  /* cloak */
+		    return(TROUBLE_CURSED_ITEMS);
+	if((uarmh && uarmh->cursed) ||	/* helmet */
+	   (uarms && uarms->cursed) ||	/* shield */
+	   (uarmg && uarmg->cursed) ||	/* gloves */
+	   (uarm && uarm->cursed) ||	/* armor */
+	   (uarmc && uarmc->cursed) ||	/* cloak */
 	   (uarmf && uarmf->cursed && uarmf->otyp != LEVITATION_BOOTS) ||
 					/* boots */
 	   (ublindf && ublindf->otyp == LENSES && ublindf->cursed) ||
@@ -171,7 +175,11 @@ in_trouble()
 	if(Blinded > 1) return(TROUBLE_BLIND);
 	for(i=0; i<A_MAX; i++)
 	    if(ABASE(i) < AMAX(i)) return(TROUBLE_POISONED);
-	if(Wounded_legs) return (TROUBLE_WOUNDED_LEGS);
+	if(Wounded_legs
+#ifdef STEED
+		    && !u.usteed
+#endif
+				) return (TROUBLE_WOUNDED_LEGS);
 	if(u.uhs >= HUNGRY) return(TROUBLE_HUNGRY);
 	if(HStun) return (TROUBLE_STUNNED);
 	if(HConfusion) return (TROUBLE_CONFUSED);
@@ -197,11 +205,13 @@ register int trouble;
 	    case TROUBLE_STONED:
 		    You_feel("more limber.");
 		    Stoned = 0;
+		    flags.botl = 1;
 		    delayed_killer = 0;
 		    break;
 	    case TROUBLE_SLIMED:
 		    pline_The("slime disappears.");
 		    Slimed = 0;
+		    flags.botl = 1;
 		    delayed_killer = 0;
 		    break;
 	    case TROUBLE_STRANGLED:
@@ -211,6 +221,7 @@ register int trouble;
 		    }
 		    You("can breathe again.");
 		    Strangled = 0;
+		    flags.botl = 1;
 		    break;
 	    case TROUBLE_LAVA:
 		    You("are back on solid ground.");
@@ -224,7 +235,7 @@ register int trouble;
 		    losestr(-1);
 		    /* fall into... */
 	    case TROUBLE_HUNGRY:
-		    Your("stomach feels content.");
+		    Your("%s feels content.", body_part(STOMACH));
 		    init_uhunger ();
 		    flags.botl = 1;
 		    break;
@@ -273,7 +284,7 @@ register int trouble;
 		    otmp = ublindf;
 		    goto decurse;
 	    case TROUBLE_LYCANTHROPE:
-                    you_unwere(TRUE);    
+		    you_unwere(TRUE);
 		    break;
 	    case TROUBLE_PUNISHED:
 		    Your("chain disappears.");
@@ -282,26 +293,26 @@ register int trouble;
 	    case TROUBLE_CURSED_ITEMS:
 		    /* weapon takes precedence if it interferes
 		       with taking off a ring or shield */
-		    if (welded(uwep) &&                 /* weapon */
+		    if (welded(uwep) &&			/* weapon */
 			(uright || (bimanual(uwep) && (uleft || uarms))))
 			    otmp = uwep;
 		    /* gloves come next, due to rings */
-		    else if (uarmg && uarmg->cursed)    /* gloves */
+		    else if (uarmg && uarmg->cursed)	/* gloves */
 			    otmp = uarmg;
 		    /* then shield due to two handed weapons and spells */
-		    else if (uarms && uarms->cursed)    /* shield */
+		    else if (uarms && uarms->cursed)	/* shield */
 			    otmp = uarms;
 		    /* then cloak due to body armor */
-		    else if (uarmc && uarmc->cursed)    /* cloak */
+		    else if (uarmc && uarmc->cursed)	/* cloak */
 			    otmp = uarmc;
-		    else if (uarm && uarm->cursed)      /* armor */
+		    else if (uarm && uarm->cursed)	/* armor */
 			    otmp = uarm;
-		    else if (uarmh && uarmh->cursed)    /* helmet */
+		    else if (uarmh && uarmh->cursed)	/* helmet */
 			    otmp = uarmh;
-		    else if (uarmf && uarmf->cursed)    /* boots */
+		    else if (uarmf && uarmf->cursed)	/* boots */
 			    otmp = uarmf;
 #ifdef TOURIST
-		    else if (uarmu && uarmu->cursed)    /* shirt */
+		    else if (uarmu && uarmu->cursed)	/* shirt */
 			    otmp = uarmu;
 #endif
 		    /* (perhaps amulet should take precedence over rings?) */
@@ -316,7 +327,7 @@ register int trouble;
 		    else if (ublindf && ublindf->cursed) /* eyewear */
 			    otmp = ublindf;  /* must be non-blinding lenses */
 		    /* if weapon wasn't handled above, do it now */
-		    else if (welded(uwep))              /* weapon */
+		    else if (welded(uwep))		/* weapon */
 			    otmp = uwep;
 		    else {
 			    for(otmp=invent; otmp; otmp=otmp->nobj)
@@ -337,8 +348,9 @@ decurse:
 		    if (!Blind)
 			    Your("%s %s.",
 				 what ? what :
-				 (const char *)aobjnam (otmp, "softly glow"),
+				 (const char *)aobjnam(otmp, "softly glow"),
 				 hcolor(amber));
+		    update_inventory();
 		    break;
 	    case TROUBLE_POISONED:
 		    if (Hallucination)
@@ -354,9 +366,14 @@ decurse:
 		    (void) encumber_msg();
 		    break;
 	    case TROUBLE_BLIND:
-		    Your("%s feel better.", makeplural(body_part(EYE)));
-		    make_blinded(0L,FALSE);
-		    break;
+	    	    {
+	    	    	int num_eyes = eyecount(youmonst.data);
+			Your("%s feel%s better.",
+			     (num_eyes == 1) ? body_part(EYE) : makeplural(body_part(EYE)),
+			     (num_eyes == 1) ? "s" : "");
+			make_blinded(0L,FALSE);
+			break;
+		    }
 	    case TROUBLE_WOUNDED_LEGS:
 		    heal_legs();
 		    break;
@@ -429,13 +446,13 @@ aligntyp resp_god;
 	     */
 	    if (uarms && !(EReflecting & W_ARMS) &&
 	    		!(EDisint_resistance & W_ARMS))
-			(void) destroy_arm(uarms);
+		(void) destroy_arm(uarms);
 	    if (uarmc && !(EReflecting & W_ARMC) &&
 	    		!(EDisint_resistance & W_ARMC))
-			(void) destroy_arm(uarmc);
+		(void) destroy_arm(uarmc);
 	    if (uarm && !(EReflecting & W_ARM) &&
 	    		!(EDisint_resistance & W_ARM) && !uarmc)
-			(void) destroy_arm(uarm);
+		(void) destroy_arm(uarm);
 #ifdef TOURIST
 	    if (uarmu && !uarm && !uarmc) (void) destroy_arm(uarmu);
 #endif
@@ -457,14 +474,14 @@ aligntyp resp_god;
 		summon_minion(resp_god, FALSE);
 		summon_minion(resp_god, FALSE);
 		summon_minion(resp_god, FALSE);
-		verbalize("Annihilate %s, my servants!", him[flags.female]);
+		verbalize("Annihilate %s, my servants!", uhim());
 	    } else {
 		verbalize("Thou cannot escape my wrath, mortal!");
 		summon_minion(resp_god, FALSE);
 		summon_minion(resp_god, FALSE);
 		summon_minion(resp_god, FALSE);
 		summon_minion(resp_god, FALSE);
-		verbalize("Destroy %s, my servants!", him[flags.female]);
+		verbalize("Destroy %s, my servants!", uhim());
 	    }
 	}
 }
@@ -486,7 +503,7 @@ STATIC_OVL void
 angrygods(resp_god)
 aligntyp resp_god;
 {
-	register int    maxanger;
+	register int	maxanger;
 
 	if(Inhell) resp_god = A_NONE;
 	u.ublessed = 0;
@@ -499,11 +516,11 @@ aligntyp resp_god;
 	    maxanger =  3*u.ugangr +
 		((Luck > 0 || u.ualign.record >= STRIDENT) ? -Luck/3 : -Luck);
 	if (maxanger < 1) maxanger = 1; /* possible if bad align & good luck */
-	else if (maxanger > 15) maxanger = 15;  /* be reasonable */
+	else if (maxanger > 15) maxanger = 15;	/* be reasonable */
 
 	switch (rn2(maxanger)) {
 	    case 0:
-	    case 1:     You_feel("that %s is %s.", align_gname(resp_god),
+	    case 1:	You_feel("that %s is %s.", align_gname(resp_god),
 			    Hallucination ? "bummed" : "displeased");
 			break;
 	    case 2:
@@ -518,20 +535,20 @@ aligntyp resp_god;
 			(void) adjattrib(A_WIS, -3, FALSE);
 			losexp((char *)0, FALSE);
 			break;
-	    case 6:     if (!Punished) {
+	    case 6:	if (!Punished) {
 			    gods_angry(resp_god);
 			    punish((struct obj *)0);
 			    break;
 			} /* else fall thru */
 	    case 4:
-	    case 5:     gods_angry(resp_god);
+	    case 5:	gods_angry(resp_god);
 			if (!Blind && !Antimagic)
 			    pline("%s glow surrounds you.",
 				  An(hcolor(Black)));
 			rndcurse();
 			break;
 	    case 7:
-	    case 8:     godvoice(resp_god,(char *)0);
+	    case 8:	godvoice(resp_god,(char *)0);
 			verbalize("Thou durst %s me?",
 				  (on_altar() &&
 				   (a_align(u.ux,u.uy) != resp_god)) ?
@@ -541,7 +558,7 @@ aligntyp resp_god;
 			summon_minion(resp_god, FALSE);
 			break;
 
-	    default:    gods_angry(resp_god);
+	    default:	gods_angry(resp_god);
 			god_zaps_you(resp_god);
 			break;
 	}
@@ -552,11 +569,184 @@ aligntyp resp_god;
 	return;
 }
 
+/* helper to print "str appears at your feet", or appropriate */
+static void
+at_your_feet(str)
+	const char *str;
+{
+	if (Blind) str = Something;
+	if (u.uswallow) {
+	    /* barrier between you and the floor */
+	    pline("%s %s into %s %s.", str, vtense(str, "drop"),
+		  s_suffix(mon_nam(u.ustuck)), mbodypart(u.ustuck, STOMACH));
+	} else {
+	    pline("%s %s %s your %s!", str,
+		  Blind ? "lands" : vtense(str, "appear"),
+		  Levitation ? "beneath" : "at",
+		  makeplural(body_part(FOOT)));
+	}
+}
+
+#ifdef ELBERETH
+STATIC_OVL void
+gcrownu()
+{
+    struct obj *obj;
+    boolean already_exists, in_hand;
+    short class_gift;
+    int sp_no;
+#define ok_wep(o) ((o) && ((o)->oclass == WEAPON_CLASS || is_weptool(o)))
+
+    HSee_invisible |= FROMOUTSIDE;
+    HFire_resistance |= FROMOUTSIDE;
+    HCold_resistance |= FROMOUTSIDE;
+    HShock_resistance |= FROMOUTSIDE;
+    HSleep_resistance |= FROMOUTSIDE;
+    HPoison_resistance |= FROMOUTSIDE;
+    godvoice(u.ualign.type, (char *)0);
+
+    obj = ok_wep(uwep) ? uwep : 0;
+    already_exists = in_hand = FALSE;	/* lint suppression */
+    switch (u.ualign.type) {
+    case A_LAWFUL:
+	u.uevent.uhand_of_elbereth = 1;
+	verbalize("I crown thee...  The Hand of Elbereth!");
+	break;
+    case A_NEUTRAL:
+	u.uevent.uhand_of_elbereth = 2;
+	in_hand = (uwep && uwep->oartifact == ART_VORPAL_BLADE);
+	already_exists = exist_artifact(LONG_SWORD, artiname(ART_VORPAL_BLADE));
+	verbalize("Thou shalt be my Envoy of Balance!");
+	break;
+    case A_CHAOTIC:
+	u.uevent.uhand_of_elbereth = 3;
+	in_hand = (uwep && uwep->oartifact == ART_STORMBRINGER);
+	already_exists = exist_artifact(RUNESWORD, artiname(ART_STORMBRINGER));
+	verbalize("Thou art chosen to %s for My Glory!",
+		  already_exists && !in_hand ? "take lives" : "steal souls");
+	break;
+    }
+
+    class_gift = STRANGE_OBJECT;
+    /* 3.3.[01] had this in the A_NEUTRAL case below,
+       preventing chaotic wizards from receiving a spellbook */
+    if (Role_if(PM_WIZARD) &&
+	    (!uwep || (uwep->oartifact != ART_VORPAL_BLADE &&
+		       uwep->oartifact != ART_STORMBRINGER)) &&
+	    !carrying(SPE_FINGER_OF_DEATH)) {
+	class_gift = SPE_FINGER_OF_DEATH;
+ make_splbk:
+	obj = mksobj(class_gift, TRUE, FALSE);
+	bless(obj);
+	obj->bknown = TRUE;
+	at_your_feet("A spellbook");
+	dropy(obj);
+	u.ugifts++;
+	/* when getting a new book for known spell, enhance
+	   currently wielded weapon rather than the book */
+	for (sp_no = 0; sp_no < MAXSPELL; sp_no++)
+	    if (spl_book[sp_no].sp_id == class_gift) {
+		if (ok_wep(uwep)) obj = uwep;	/* to be blessed,&c */
+		break;
+	    }
+    } else if (Role_if(PM_MONK) &&
+	    (!uwep || !uwep->oartifact) &&
+	    !carrying(SPE_RESTORE_ABILITY)) {
+	/* monks rarely wield a weapon */
+	class_gift = SPE_RESTORE_ABILITY;
+	goto make_splbk;
+    }
+
+    switch (u.ualign.type) {
+    case A_LAWFUL:
+	if (class_gift != STRANGE_OBJECT) {
+	    ;		/* already got bonus above */
+	} else if (obj && obj->otyp == LONG_SWORD && !obj->oartifact) {
+	    if (!Blind) Your("sword shines brightly for a moment.");
+	    obj = oname(obj, artiname(ART_EXCALIBUR));
+	    if (obj && obj->oartifact == ART_EXCALIBUR) u.ugifts++;
+	}
+	/* acquire Excalibur's skill regardless of weapon or gift */
+	unrestrict_weapon_skill(P_LONG_SWORD);
+	if (obj && obj->oartifact == ART_EXCALIBUR)
+	    discover_artifact(ART_EXCALIBUR);
+	break;
+    case A_NEUTRAL:
+	if (class_gift != STRANGE_OBJECT) {
+	    ;		/* already got bonus above */
+	} else if (in_hand) {
+	    Your("%s goes snicker-snack!", xname(obj));
+	    obj->dknown = TRUE;
+	} else if (!already_exists) {
+	    obj = mksobj(LONG_SWORD, FALSE, FALSE);
+	    obj = oname(obj, artiname(ART_VORPAL_BLADE));
+	    obj->spe = 1;
+	    at_your_feet("A sword");
+	    dropy(obj);
+	    u.ugifts++;
+	}
+	/* acquire Vorpal Blade's skill regardless of weapon or gift */
+	unrestrict_weapon_skill(P_LONG_SWORD);
+	if (obj && obj->oartifact == ART_VORPAL_BLADE)
+	    discover_artifact(ART_VORPAL_BLADE);
+	break;
+    case A_CHAOTIC:
+      {
+	char swordbuf[BUFSZ];
+
+	Sprintf(swordbuf, "%s sword", hcolor(Black));
+	if (class_gift != STRANGE_OBJECT) {
+	    ;		/* already got bonus above */
+	} else if (in_hand) {
+	    Your("%s hums ominously!", swordbuf);
+	    obj->dknown = TRUE;
+	} else if (!already_exists) {
+	    obj = mksobj(RUNESWORD, FALSE, FALSE);
+	    obj = oname(obj, artiname(ART_STORMBRINGER));
+	    at_your_feet(An(swordbuf));
+	    obj->spe = 1;
+	    dropy(obj);
+	    u.ugifts++;
+	}
+	/* acquire Stormbringer's skill regardless of weapon or gift */
+	unrestrict_weapon_skill(P_BROAD_SWORD);
+	if (obj && obj->oartifact == ART_STORMBRINGER)
+	    discover_artifact(ART_STORMBRINGER);
+	break;
+      }
+    default:
+	obj = 0;	/* lint */
+	break;
+    }
+
+    /* enhance weapon regardless of alignment or artifact status */
+    if (ok_wep(obj)) {
+	bless(obj);
+	obj->oeroded = obj->oeroded2 = 0;
+	obj->oerodeproof = TRUE;
+	obj->bknown = obj->rknown = TRUE;
+	/* STEPHEN WHITE'S NEW CODE */
+	if (u.ualign.type == A_LAWFUL) {
+	    if (obj->spe < 3) obj->spe = 3;
+	    else if (obj->spe > 2) obj->spe += 1;
+	} else if (obj->spe < 1) obj->spe = 1;
+	/* acquire skill in this weapon */
+	unrestrict_weapon_skill(weapon_type(obj));
+    } else if (class_gift == STRANGE_OBJECT) {
+	/* opportunity knocked, but there was nobody home... */
+	You_feel("unworthy.");
+    }
+    update_inventory();
+    return;
+}
+#endif	/*ELBERETH*/
+
 STATIC_OVL void
 pleased(g_align)
 	aligntyp g_align;
 {
-	int trouble = p_trouble;        /* what's your worst difficulty? */
+	/* don't use p_trouble, worst trouble may get fixed while praying */
+	int trouble = in_trouble();	/* what's your worst difficulty? */
 	int pat_on_head = 0, kick_on_butt;
 	boolean wiz_spe=FALSE;
 /*
@@ -589,8 +779,10 @@ pleased(g_align)
 	   If your luck is at least 0, then you are guaranteed rescued
 	   from your worst major problem. */
 
-	if (!trouble && u.ualign.record >= DEVOUT) pat_on_head = 1;
-	else {
+	if (!trouble && u.ualign.record >= DEVOUT) {
+	    /* if hero was in trouble, but got better, no special favor */
+	    if (p_trouble == 0) pat_on_head = 1;
+	} else {
 	    int action = rn1(on_altar() ? 3 + on_shrine() : 2, Luck+1);
 
 	    if (!on_altar()) action = max(action,2);
@@ -619,7 +811,7 @@ pleased(g_align)
 
     if(pat_on_head)
 	switch(rn2((Luck + 6)>>1)) {
-	case 0: break;
+	case 0:	break;
 	case 1:
 	    if (uwep && (welded(uwep) || uwep->oclass == WEAPON_CLASS ||
 			 is_weptool(uwep))) {
@@ -628,7 +820,7 @@ pleased(g_align)
 		*repair_buf = '\0';
 		if (uwep->oeroded || uwep->oeroded2)
 		    Sprintf(repair_buf, " and %s now as good as new",
-			    uwep->quan == 1L ? "is" : "are");
+			    otense(uwep, "are"));
 
 		if (uwep->cursed) {
 		    uncurse(uwep);
@@ -661,6 +853,7 @@ pleased(g_align)
 			Your("%s as good as new!",
 			     aobjnam(uwep, Blind ? "feel" : "look"));
 		}
+		update_inventory();
 	    }
 	    break;
 	case 3:
@@ -684,18 +877,27 @@ pleased(g_align)
 	    /* Otherwise, falls into next case */
 	case 2:
 	    if (!Blind)
-		You("are surrounded by %s glow.",
-		    an(hcolor(golden)));
-            if (Upolyd) u.mh = u.mhmax += 5;
-	    u.uhp = u.uhpmax += 2;
+		You("are surrounded by %s glow.", an(hcolor(golden)));
+	    /* if any levels have been lost (and not yet regained),
+	       treat this effect like blessed full healing */
+	    if (u.ulevel < u.ulevelmax) {
+		u.ulevelmax -= 1;	/* see potion.c */
+		pluslvl(FALSE);
+	    } else {
+		u.uhpmax += 5;
+		if (Upolyd) u.mhmax += 5;
+	    }
+	    u.uhp = u.uhpmax;
+	    if (Upolyd) u.mh = u.mhmax;
 	    ABASE(A_STR) = AMAX(A_STR);
-            if (u.uhunger < 900) init_uhunger();
-            if (u.uluck < 0) u.uluck = 0;
+	    if (u.uhunger < 900) init_uhunger();
+	    if (u.uluck < 0) u.uluck = 0;
 	    make_blinded(0L,TRUE);
 	    flags.botl = 1;
 	    break;
 	case 4: {
 	    register struct obj *otmp;
+	    int any = 0;
 
 	    if (Blind)
 		You_feel("the power of %s.", u_gname());
@@ -708,9 +910,11 @@ pleased(g_align)
 			Your("%s %s.", aobjnam(otmp, "softly glow"),
 			     hcolor(amber));
 			otmp->bknown = TRUE;
+			++any;
 		    }
 		}
 	    }
+	    if (any) update_inventory();
 	    break;
 	}
 	case 7:
@@ -718,140 +922,25 @@ pleased(g_align)
 	case 9:		/* KMH -- can occur during full moons */
 #ifdef ELBERETH
 	    if (u.ualign.record >= PIOUS && !u.uevent.uhand_of_elbereth) {
-		register struct obj *obj = uwep;        /* to be blessed */
-		boolean already_exists, in_hand;
-		const char *dropped_item;
-		int sp_no;
-
-/* STEPHEN WHITE'S NEW CODE */                
-		HSee_invisible |= FROMOUTSIDE;
-		HFire_resistance |= FROMOUTSIDE;
-		HCold_resistance |= FROMOUTSIDE;
-		HShock_resistance |= FROMOUTSIDE;
-		HSleep_resistance |= FROMOUTSIDE;
-		HPoison_resistance |= FROMOUTSIDE;
-		godvoice(u.ualign.type,(char *)0);
-
-		switch(u.ualign.type) {
-		case A_LAWFUL:
-		    u.uevent.uhand_of_elbereth = 1;
-		    verbalize("I crown thee...      The Hand of Elbereth!");
-		    if (obj && (obj->otyp == LONG_SWORD) && !obj->oartifact) {
-			obj = oname(obj, artiname(ART_EXCALIBUR));
-			if (obj && obj->oartifact == ART_EXCALIBUR) u.ugifts++;
-		    }
-		    /* acquire this skill regardless of weapon */
-		    unrestrict_weapon_skill(P_LONG_SWORD);
-		    if (obj && obj->oartifact == ART_EXCALIBUR)
-			discover_artifact(ART_EXCALIBUR);
-		    break;
-		case A_NEUTRAL:
-		    u.uevent.uhand_of_elbereth = 2;
-		    verbalize("Thou shalt be my Envoy of Balance!");
-		    dropped_item = 0;
-		    if (uwep && uwep->oartifact == ART_VORPAL_BLADE) {
-				obj = uwep;     /* to be blessed and rustproofed */
-				Your("%s goes snicker-snack!", xname(obj));
-				obj->dknown = TRUE;
-		    } else if (Role_if(PM_WIZARD) &&
-			    !carrying(SPE_FINGER_OF_DEATH)) {
-			obj = mksobj(SPE_FINGER_OF_DEATH, TRUE, FALSE);
-			bless(obj);
-			dropped_item = "A spellbook appears";
-		    } else if (!exist_artifact(LONG_SWORD,
-					       artiname(ART_VORPAL_BLADE))) {
-			obj = mksobj(LONG_SWORD, FALSE, FALSE);
-			obj = oname(obj, artiname(ART_VORPAL_BLADE));
-			obj->spe = 1;
-			dropped_item = "A sword appears";
-		    }
-		    if (dropped_item) {
-			if (Blind) dropped_item = "Something lands";
-			pline("%s %s your %s!", dropped_item,
-			      Levitation ? "beneath" : "at",
- 			      makeplural(body_part(FOOT)));
-			dropy(obj);
-			u.ugifts++;
-		    }
-		    /* acquire this skill regardless of weapon (or book) */
-		    unrestrict_weapon_skill(P_LONG_SWORD);
-		    if (obj && obj->oartifact == ART_VORPAL_BLADE)
-			discover_artifact(ART_VORPAL_BLADE);
-		    /* when getting a new book for known spell, enhance
-		       currently wielded weapon rather than the book */
-		    if (obj && obj->otyp == SPE_FINGER_OF_DEATH) {
-			for (sp_no = 0; sp_no < MAXSPELL; sp_no++)
-			    if (spl_book[sp_no].sp_id == SPE_FINGER_OF_DEATH) {
-				if (uwep) obj = uwep;	/* to be blessed,&c */
-				break;
-			    }
-		    }
-		    break;
-		case A_CHAOTIC:
-		    u.uevent.uhand_of_elbereth = 3;
-		    in_hand = (uwep && uwep->oartifact == ART_STORMBRINGER);
-		    already_exists = exist_artifact(RUNESWORD,
-						artiname(ART_STORMBRINGER));
-		    verbalize("Thou art chosen to %s for My Glory!",
-			      already_exists && !in_hand ?
-			      "take lives" : "steal souls");
-		    if (in_hand) {
-			obj = uwep;     /* to be blessed and rustproofed */
-		    } else if (!already_exists) {
-			obj = mksobj(RUNESWORD, FALSE, FALSE);
-			obj = oname(obj, artiname(ART_STORMBRINGER));
-			pline("%s %s %s your %s!", Blind ? Something :
-			      An(hcolor(Black)),
-			      Blind ? "lands" : "sword appears",
-			      Levitation ? "beneath" : "at",
-			      makeplural(body_part(FOOT)));
-			obj->spe = 1;
-			dropy(obj);
-			u.ugifts++;
-		    }
-		    /* acquire this skill regardless of weapon */
-		    unrestrict_weapon_skill(P_BROAD_SWORD);
-		    if (obj && obj->oartifact == ART_STORMBRINGER)
-			discover_artifact(ART_STORMBRINGER);
-		    break;
-		default:
-		    obj = 0;    /* lint */
-		    break;
-		}
-		/* enhance weapon regardless of alignment or artifact status */
-		if (obj && (obj->oclass == WEAPON_CLASS || is_weptool(obj))) {
-		    bless(obj);
-		    obj->oeroded = obj->oeroded2 = 0;
-		    obj->oerodeproof = TRUE;
-		    obj->bknown = obj->rknown = TRUE;
-/* STEPHEN WHITE'S NEW CODE */                
-		    if (u.ualign.type == A_LAWFUL) {
-			if (obj->spe < 3) obj->spe = 3;
-			else if (obj->spe > 2) obj->spe += 1;
-		    } else if (obj->spe < 1) obj->spe = 1;
-/*hope this works...*/
-		    /* acquire skill in this weapon */
-		    unrestrict_weapon_skill(weapon_type(obj));
-		} else if (obj && (obj->oclass == SPBOOK_CLASS)) {
-		    obj->bknown = TRUE;
-		} else  /* opportunity knocked, but there was nobody home... */
-		    You_feel("unworthy.");
+		gcrownu();
 		break;
-	    }
-#endif
-        case 6: /*if (!Role_if(PM_BARBARIAN))*/ {
+	    } /* else FALLTHRU */
+#endif	/*ELBERETH*/
+	case 6:	{
 	    struct obj *otmp;
 	    int sp_no, trycnt = u.ulevel + 1;
 
-	    pline("An object appears at your %s!",
-		  makeplural(body_part(FOOT)));
+	    at_your_feet("An object");
 	    /* not yet known spells given preference over already known ones */
+	    /* Also, try to grant a spell for which there is a skill slot */
 	    otmp = mkobj(SPBOOK_CLASS, TRUE);
 	    while (--trycnt > 0) {
 		if (otmp->otyp != SPE_BLANK_PAPER) {
 		    for (sp_no = 0; sp_no < MAXSPELL; sp_no++)
 			if (spl_book[sp_no].sp_id == otmp->otyp) break;
-		    if (sp_no == MAXSPELL) break;       /* not yet known */
+		    if (sp_no == MAXSPELL &&
+			!P_RESTRICTED(spell_skilltype(otmp->otyp)))
+			break;	/* usable, but not yet known */
 		} else {
 		    if (!objects[SPE_BLANK_PAPER].oc_name_known ||
 			    carrying(MAGIC_MARKER)) break;
@@ -862,7 +951,6 @@ pleased(g_align)
 	    place_object(otmp, u.ux, u.uy);
 	    break;
 	}
-        /* Barbarians fall through */
 	case 5: {
 	    const char *msg="\"and thus I grant thee the gift of %s!\"";
 	    godvoice(u.ualign.type, "Thou hast pleased me with thy progress,");
@@ -886,7 +974,7 @@ pleased(g_align)
 	    verbalize("Use it wisely in my name!");
 	    break;
 	}
-	default:        impossible("Confused deity!");
+	default:	impossible("Confused deity!");
 	    break;
 	}
 
@@ -913,7 +1001,8 @@ water_prayer(bless_water)
 
     for(otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere) {
 	/* turn water into (un)holy water */
-	if (otmp->otyp == POT_WATER && (boolean)otmp->blessed != bless_water) {
+	if (otmp->otyp == POT_WATER &&
+		(bless_water ? !otmp->blessed : !otmp->cursed)) {
 	    otmp->blessed = bless_water;
 	    otmp->cursed = !bless_water;
 	    otmp->bknown = bc_known;
@@ -1114,14 +1203,14 @@ dosacrifice()
 		}
 	}
     if (!orac && !on_altar()) {
-		You("are not standing on an altar.");
-		return 0;
+	You("are not standing on an altar.");
+	return 0;
     }
 
     if (In_endgame(&u.uz)) {
-		if (!(otmp = getobj(sacrifice_types, "sacrifice"))) return 0;
+	if (!(otmp = getobj(sacrifice_types, "sacrifice"))) return 0;
     } else {
-		if (!(otmp = floorfood("sacrifice", 1))) return 0;
+	if (!(otmp = floorfood("sacrifice", 1))) return 0;
     }
 
 	/* KMH -- offerings to Oracle */
@@ -1162,8 +1251,8 @@ dosacrifice()
 		|| (monstermoves <= peek_at_iced_corpse_age(otmp) + 50)) {
 	    value = monstr[otmp->corpsenm] + 1;
 	}
-	if (otmp->oeaten)
-	    value = eaten_stat(value, otmp);
+	    if (otmp->oeaten)
+		value = eaten_stat(value, otmp);
 
 	if (your_race(ptr)) {
 	    if (is_demon(youmonst.data) || Race_if(PM_HUMAN_WEREWOLF)) {
@@ -1174,7 +1263,7 @@ dosacrifice()
 		    exercise(A_WIS, FALSE);
 	    }
 
-	if (altaralign != A_CHAOTIC && altaralign != A_NONE) {
+	    if (altaralign != A_CHAOTIC && altaralign != A_NONE) {
 		/* curse the lawful/neutral altar */
 		int race = mrace2race(ptr->mflags2);
 		if (race != ROLE_NONE)
@@ -1213,7 +1302,7 @@ dosacrifice()
 		    dmon->minvis = FALSE;
 		    You("have summoned %s!", a_monnam(dmon));
 		    if (sgn(u.ualign.type) == sgn(dmon->data->maligntyp)) {
-				dmon->mpeaceful = TRUE;
+			dmon->mpeaceful = TRUE;
 			} else if (is_dprince(dmon->data)) {
 			switch (rn2(5)) {
 			  case 0:
@@ -1229,8 +1318,8 @@ dosacrifice()
 			  break;
 			  case 2: 
 			  case 3:
-			       You("are terrified, and unable to move.");
-			       nomul(-3);
+		    You("are terrified, and unable to move.");
+		    nomul(-3);
 			  break;                
 			  case 4:
 			       pline("Amused, he grants you a wish!");
@@ -1295,14 +1384,14 @@ dosacrifice()
     } /* corpse */
 
     if (otmp->otyp == AMULET_OF_YENDOR) {
-	if (!In_endgame(&u.uz)) {
+	if (!Is_astralevel(&u.uz)) {
 	    if (Hallucination)
 		    You_feel("homesick.");
 	    else
 		    You_feel("an urge to return to the surface.");
 	    return 1;
 	} else {
-	    /* The final Test.  Did you win? */
+	    /* The final Test.	Did you win? */
 	    if(uamul == otmp) Amulet_off();
 	    u.uevent.ascended = 1;
 	    if(carried(otmp)) useup(otmp); /* well, it's gone now */
@@ -1519,14 +1608,15 @@ verbalize("In return for thy service, I grant thee the gift of Immortality!");
 	    /* you were already in pretty good standing */
 	    /* The player can gain an artifact */
 	    /* The chance goes down as the number of artifacts goes up */
-	    if (u.ulevel > 2 && !rn2(10 + (2 * u.ugifts * nartifacts))) {
+	    if (u.ulevel > 2 && u.uluck >= 0 &&
+		!rn2(10 + (2 * u.ugifts * nartifacts))) {
 		otmp = mk_artifact((struct obj *)0, a_align(u.ux,u.uy));
 		if (otmp) {
 		    if (otmp->spe < 0) otmp->spe = 0;
 		    if (otmp->cursed) uncurse(otmp);
+		    otmp->oerodeproof = TRUE;
 		    dropy(otmp);
-		    pline("An object appears at your %s!",
-			  makeplural(body_part(FOOT)));
+		    at_your_feet("An object");
 		    godvoice(u.ualign.type, "Use my gift wisely!");
 		    u.ugifts++;
 		    u.ublesscnt = rnz(300 + (50 * nartifacts));
@@ -1544,7 +1634,7 @@ verbalize("In return for thy service, I grant thee the gift of Immortality!");
 				u.usacrifice = 0;
 #endif
 				return(1);
-			}
+		}
 	    } else if (!rnl(30 + u.ulevel)) {
 			/* no artifact, but maybe a helpful pet? */
 			/* WAC is now some generic benefit (includes pets) */
@@ -1556,6 +1646,7 @@ verbalize("In return for thy service, I grant thee the gift of Immortality!");
 	    }
 
 	    change_luck((value * LUCKMAX) / (MAXVALUE * 2));
+	    if ((int)u.uluck < 0) u.uluck = 0;
 	    if (u.uluck != saved_luck) {
 		if (Blind)
 		    You("think %s brushed your %s.",something, body_part(FOOT));
@@ -1574,7 +1665,7 @@ verbalize("In return for thy service, I grant thee the gift of Immortality!");
 /* determine prayer results in advance; also used for enlightenment */
 boolean
 can_pray(praying)
-boolean praying;        /* false means no messages should be given */
+boolean praying;	/* false means no messages should be given */
 {
     int alignment;
 
@@ -1584,7 +1675,7 @@ boolean praying;        /* false means no messages should be given */
     if (is_demon(youmonst.data) && (p_aligntyp != A_CHAOTIC)) {
 	if (praying)
 	    pline_The("very idea of praying to a %s god is repugnant to you.",
-		p_aligntyp ? "lawful" : "neutral");
+		  p_aligntyp ? "lawful" : "neutral");
 	return FALSE;
     }
 
@@ -1592,30 +1683,30 @@ boolean praying;        /* false means no messages should be given */
 	You("begin praying to %s.", align_gname(p_aligntyp));
 
     if (u.ualign.type && u.ualign.type == -p_aligntyp)
-	alignment = -u.ualign.record;           /* Opposite alignment altar */
+	alignment = -u.ualign.record;		/* Opposite alignment altar */
     else if (u.ualign.type != p_aligntyp)
-	alignment = u.ualign.record / 2;        /* Different alignment altar */
+	alignment = u.ualign.record / 2;	/* Different alignment altar */
     else alignment = u.ualign.record;
 
     if ((p_trouble > 0) ? (u.ublesscnt > 200) : /* big trouble */
 	(p_trouble < 0) ? (u.ublesscnt > 100) : /* minor difficulties */
-	(u.ublesscnt > 0))                      /* not in trouble */
-			p_type = 0;             /* too soon... */
+	(u.ublesscnt > 0))			/* not in trouble */
+	p_type = 0;		/* too soon... */
     else if ((int)Luck < 0 || u.ugangr || alignment < 0)
-			p_type = 1;             /* too naughty... */
+	p_type = 1;		/* too naughty... */
     else /* alignment >= 0 */ {
 	if(on_altar() && u.ualign.type != p_aligntyp)
-			p_type = 2;
-    else
-			p_type = 3;
+	    p_type = 2;
+	else
+	    p_type = 3;
     }
 
     if (is_undead(youmonst.data) && !Inhell &&
-       (p_aligntyp == A_LAWFUL || (p_aligntyp == A_NEUTRAL && !rn2(10))))
-			p_type = -1;
-    /* Note: when !praying, the random factor for neutrals makes the
-    return value a non-deterministic approximation for enlightenment.
-    This case should be uncommon enough to live with... */
+	(p_aligntyp == A_LAWFUL || (p_aligntyp == A_NEUTRAL && !rn2(10))))
+	p_type = -1;
+    /* Note:  when !praying, the random factor for neutrals makes the
+       return value a non-deterministic approximation for enlightenment.
+       This case should be uncommon enough to live with... */
 
     return !praying ? (boolean)(p_type == 3 && !Inhell) : TRUE;
 }
@@ -1629,8 +1720,14 @@ dopray()
     /* Confirm accidental slips of Alt-P */
     if (flags.prayconfirm)
 	if (yn("Are you sure you want to pray?") == 'n')
-		return (0);
+	    return 0;
+
     u.uconduct.gnostic++;
+    /* Praying implies that the hero is conscious and since we have
+       no deafness attribute this implies that all verbalized messages
+       can be heard.  So, in case the player has used the 'O' command
+       to toggle this accessible flag off, force it to be on. */
+    flags.soundok = 1;
 
     if (IS_TOILET(levl[u.ux][u.uy].typ)) {
 	pline("You pray to the Porcelain God.");
@@ -1644,7 +1741,7 @@ dopray()
 	if (HStun) make_stunned(0L, TRUE);
 	return(1);
     }
-    
+
     /* set up p_type and p_alignment */
     if (!can_pray(TRUE)) return 0;
 
@@ -1653,7 +1750,7 @@ dopray()
 	if (yn("Force the gods to be pleased?") == 'y') {
 	    u.ublesscnt = 0;
 	    if (u.uluck < 0) u.uluck = 0;
-	 if (u.ualign.record <= 0) u.ualign.record = 1;
+	    if (u.ualign.record <= 0) u.ualign.record = 1;
 	    u.ugangr = 0;
 	    if(p_type < 2) p_type = 3;
 	}
@@ -1663,16 +1760,16 @@ dopray()
     nomovemsg = "You finish your prayer.";
     afternmv = prayer_done;
 
-    /* if you've been true to your god you can't die while you pray */
+	/* if you've been true to your god you can't die while you pray */
     if(p_type == 3 && !Inhell) {
 	if (!Blind) You("are surrounded by a shimmering light.");
 	u.uinvulnerable = TRUE;
-    }	
+    }
     return(1);
 }
 
 STATIC_PTR int
-prayer_done()           /* M. Stephenson (1.0.3b) */
+prayer_done()		/* M. Stephenson (1.0.3b) */
 {
     aligntyp alignment = p_aligntyp;
 
@@ -1685,7 +1782,7 @@ prayer_done()           /* M. Stephenson (1.0.3b) */
 	You_feel("like you are falling apart.");
 	if (Upolyd) {
 	    /* KMH, balance patch -- Gods have mastery over unchanging */
-	    rehumanize();
+	rehumanize();
 	}
 	/* ALI, Racially undead (ie., vampires) get the same penalties */
 	else if (rn2(20) > ACURR(A_CON))
@@ -1710,21 +1807,21 @@ prayer_done()           /* M. Stephenson (1.0.3b) */
 	change_luck(-3);
 	gods_upset(u.ualign.type);
     } else if(p_type == 1) {
-		if(on_altar() && u.ualign.type != alignment)
-		    (void) water_prayer(FALSE);
-		angrygods(u.ualign.type);       /* naughty */
+	if(on_altar() && u.ualign.type != alignment)
+	    (void) water_prayer(FALSE);
+	angrygods(u.ualign.type);	/* naughty */
     } else if(p_type == 2) {
-		if(water_prayer(FALSE)) {
-		    /* attempted water prayer on a non-coaligned altar */
-		    u.ublesscnt += rnz(250);
-		    change_luck(-3);
-		    gods_upset(u.ualign.type);
-		} else pleased(alignment);
+	if(water_prayer(FALSE)) {
+	    /* attempted water prayer on a non-coaligned altar */
+	    u.ublesscnt += rnz(250);
+	    change_luck(-3);
+	    gods_upset(u.ualign.type);
+	} else pleased(alignment);
     } else {
-		/* coaligned */
-		if(on_altar())
-		    (void) water_prayer(TRUE);
-		pleased(alignment); /* nice */
+	/* coaligned */
+	if(on_altar())
+	    (void) water_prayer(TRUE);
+	pleased(alignment); /* nice */
     }
     return(1);
 }
@@ -1759,6 +1856,8 @@ turn_undead()
 	struct monst *mtmp, *mtmp2;
 	int once, range, xlev;
 
+	u.uconduct.gnostic++;
+
 	if ((u.ualign.type != A_CHAOTIC &&
 		    (is_demon(youmonst.data) || is_undead(youmonst.data))) ||
 				u.ugangr > 6 /* "Die, mortal!" */) {
@@ -1776,10 +1875,9 @@ turn_undead()
 	}
 	pline("Calling upon %s, you chant an arcane formula.", u_gname());
 	exercise(A_WIS, TRUE);
-	u.uconduct.gnostic++;
 
 	/* note: does not perform unturn_dead() on victims' inventories */
-	range = BOLT_LIM + (u.ulevel / 5);      /* 5 to 11 */
+	range = BOLT_LIM + (u.ulevel / 5);	/* 5 to 11 */
 	range *= range;
 	once = 0;
 	for(mtmp = fmon; mtmp; mtmp = mtmp2) {
@@ -1805,23 +1903,25 @@ turn_undead()
 			    /* this is intentional, lichs are tougher
 			       than zombies. */
 			    /* ToDo - catch vampire bats */
-			case S_LICH:    xlev += 2;
-			case S_GHOST:   xlev += 2;
-			case S_VAMPIRE: xlev += 2;
-			case S_WRAITH:  xlev += 2;
-			case S_MUMMY:   xlev += 2;
+			case S_LICH:    xlev += 2;  /*FALLTHRU*/
+			case S_GHOST:   xlev += 2;  /*FALLTHRU*/
+			case S_VAMPIRE: xlev += 2;  /*FALLTHRU*/
+			case S_WRAITH:  xlev += 2;  /*FALLTHRU*/
+			case S_MUMMY:   xlev += 2;  /*FALLTHRU*/
 			case S_ZOMBIE:
-			    mtmp->mflee = 1;	/* at least */
-			    if(u.ulevel >= xlev &&
-			       !resist(mtmp, '\0', 0, NOTELL)) {
-				if(u.ualign.type == A_CHAOTIC) {
+			    if (u.ulevel >= xlev &&
+				    !resist(mtmp, '\0', 0, NOTELL)) {
+				if (u.ualign.type == A_CHAOTIC) {
 				    mtmp->mpeaceful = 1;
+				    set_malign(mtmp);
 				} else { /* damn them */
 				    killed(mtmp);
 				}
-			    }
-			    break;
-			default:    mtmp->mflee = 1;
+				break;
+			    } /* else flee */
+			    /*FALLTHRU*/
+			default:
+			    monflee(mtmp, 0, FALSE, TRUE);
 			    break;
 			}
 		    }

@@ -7,9 +7,9 @@
 
 #ifdef DEBUG
 # ifdef WIZARD
-#define debugpline      if (wizard) pline
+#define debugpline	if (wizard) pline
 # else
-#define debugpline      pline
+#define debugpline	pline
 # endif
 #endif
 
@@ -35,7 +35,9 @@ STATIC_DCL struct mkroom *FDECL(pos_to_room, (XCHAR_P, XCHAR_P));
 STATIC_DCL boolean FDECL(place_niche,(struct mkroom *,int*,int*,int*));
 STATIC_DCL void FDECL(makeniche,(int));
 STATIC_DCL void NDECL(make_niches);
+
 STATIC_PTR int FDECL(do_comp,(const genericptr,const genericptr));
+
 STATIC_DCL void FDECL(dosdoor,(XCHAR_P,XCHAR_P,struct mkroom *,int));
 STATIC_DCL void FDECL(join,(int,int,BOOLEAN_P));
 STATIC_DCL void FDECL(do_room_or_subroom, (struct mkroom *,int,int,int,int,
@@ -45,12 +47,12 @@ STATIC_DCL void FDECL(finddpos,(coord *,XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P));
 STATIC_DCL void FDECL(mkinvpos, (XCHAR_P,XCHAR_P,int));
 STATIC_DCL void FDECL(mk_knox_portal, (XCHAR_P,XCHAR_P));
 
-#define create_vault()  create_room(-1, -1, 2, 2, -1, -1, VAULT, TRUE)
-#define init_vault()    vault_x = -1
-#define do_vault()      (vault_x != -1)
-static xchar            vault_x, vault_y;
+#define create_vault()	create_room(-1, -1, 2, 2, -1, -1, VAULT, TRUE)
+#define init_vault()	vault_x = -1
+#define do_vault()	(vault_x != -1)
+static xchar		vault_x, vault_y;
 boolean goldseen;
-static boolean made_branch;     /* used only during level creation */
+static boolean made_branch;	/* used only during level creation */
 
 /* Args must be (const genericptr) so that qsort will always be happy. */
 
@@ -162,12 +164,12 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room)
 	    for(x = lowx-1; x <= hix+1; x++)
 		for(y = lowy-1; y <= hiy+1; y += (hiy-lowy+2)) {
 		    levl[x][y].typ = HWALL;
-		    levl[x][y].horizontal = 1;  /* For open/secret doors. */
+		    levl[x][y].horizontal = 1;	/* For open/secret doors. */
 		}
 	    for(x = lowx-1; x <= hix+1; x += (hix-lowx+2))
 		for(y = lowy; y <= hiy; y++) {
 		    levl[x][y].typ = VWALL;
-		    levl[x][y].horizontal = 0;  /* For open/secret doors. */
+		    levl[x][y].horizontal = 0;	/* For open/secret doors. */
 		}
 	    for(x = lowx; x <= hix; x++) {
 		lev = &levl[x][lowy];
@@ -179,7 +181,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room)
 		levl[hix+1][lowy-1].typ = TRCORNER;
 		levl[lowx-1][hiy+1].typ = BLCORNER;
 		levl[hix+1][hiy+1].typ = BRCORNER;
-	    } else {    /* a subroom */
+	    } else {	/* a subroom */
 		wallification(lowx-1, lowy-1, hix+1, hiy+1);
 	    }
 	}
@@ -358,8 +360,8 @@ register struct mkroom *aroom;
 	register int tmp;
 
 	if (aroom) {
-		aroom->doorct++;
-		broom = aroom+1;
+	aroom->doorct++;
+	broom = aroom+1;
 	}
 	else
 		/* ALI
@@ -427,8 +429,8 @@ register int type;
 	    }
 	    /* newsym(x,y); */
 	} else { /* SDOOR */
-		if(shdoor || !rn2(5))   levl[x][y].doormask = D_LOCKED;
-		else                    levl[x][y].doormask = D_CLOSED;
+		if(shdoor || !rn2(5))	levl[x][y].doormask = D_LOCKED;
+		else			levl[x][y].doormask = D_CLOSED;
 
 		if(!shdoor && level_difficulty() >= 4 && !rn2(20))
 		    levl[x][y].doormask |= D_TRAPPED;
@@ -482,7 +484,7 @@ int trap_type;
 	if(doorindex < DOORMAX)
 	  while(vct--) {
 	    aroom = &rooms[rn2(nroom)];
-	    if(aroom->rtype != OROOM) continue; /* not an ordinary room */
+	    if(aroom->rtype != OROOM) continue;	/* not an ordinary room */
 	    if(aroom->doorct == 1 && rn2(5)) continue;
 	    if(!place_niche(aroom,&dy,&xx,&yy)) continue;
 
@@ -511,8 +513,9 @@ int trap_type;
 		    dosdoor(xx, yy, aroom, rn2(5) ? SDOOR : DOOR);
 		else {
 		    if (!level.flags.noteleport)
-			(void) mksobj_at(SCR_TELEPORTATION, xx, yy+dy, TRUE, FALSE);
-		    if(!rn2(3)) (void) mkobj_at(0, xx, yy+dy, TRUE);
+			(void) mksobj_at(SCR_TELEPORTATION,
+					 xx, yy+dy, TRUE, FALSE);
+		    if (!rn2(3)) (void) mkobj_at(0, xx, yy+dy, TRUE);
 		}
 	    }
 	    return;
@@ -524,7 +527,7 @@ make_niches()
 {
 	register int ct = rnd((nroom>>1) + 1), dep = depth(&u.uz);
 
-	boolean ltptr = (!level.flags.noteleport && dep > 15),
+	boolean	ltptr = (!level.flags.noteleport && dep > 15),
 		vamp = (dep > 5 && dep < 25);
 
 	while(ct--) {
@@ -534,7 +537,7 @@ make_niches()
 		} else if (vamp && !rn2(6)) {
 			vamp = FALSE;
 			makeniche(TRAPDOOR);
-		} else  makeniche(NO_TRAP);
+		} else	makeniche(NO_TRAP);
 	}
 }
 
@@ -622,12 +625,12 @@ makelevel()
 	register struct mkroom *croom, *troom;
 	register int tryct;
 	register int x, y;
-	struct monst *tmonst;   /* always put a web with a spider */
+	struct monst *tmonst;	/* always put a web with a spider */
 	branch *branchp;
 	int room_threshold;
 
 	if(wiz1_level.dlevel == 0) init_dungeons();
-	oinit();        /* assign level dependent obj probabilities */
+	oinit();	/* assign level dependent obj probabilities */
 	clear_level_structures();
 
 	{
@@ -650,7 +653,7 @@ makelevel()
 		    return;
 	    } else if (In_quest(&u.uz)) {
 		    char        fillname[16];
-		    s_level     *loc_lev;
+		    s_level	*loc_lev;
 
 		    Sprintf(fillname, "%s-loca", urole.filecode);
 		    loc_lev = find_level(fillname);
@@ -676,13 +679,13 @@ makelevel()
 		makerogueghost();
 	} else
 #endif
-	makerooms();
+		makerooms();
 	sort_rooms();
 
 	/* construct stairs (up and down in different rooms if possible) */
 	croom = &rooms[rn2(nroom)];
 	if (!Is_botlevel(&u.uz))
-	     mkstairs(somex(croom), somey(croom), 0, croom);    /* down */
+	     mkstairs(somex(croom), somey(croom), 0, croom);	/* down */
 	if (nroom > 1) {
 	    troom = croom;
 	    croom = &rooms[rn2(nroom-1)];
@@ -695,10 +698,10 @@ makelevel()
 		sx = somex(croom);
 		sy = somey(croom);
 	    } while(occupied(sx, sy));
-	    mkstairs(sx, sy, 1, croom); /* up */
+	    mkstairs(sx, sy, 1, croom);	/* up */
 	}
 
-	branchp = Is_branchlev(&u.uz);  /* possible dungeon branch */
+	branchp = Is_branchlev(&u.uz);	/* possible dungeon branch */
 	room_threshold = branchp ? 4 : 3; /* minimum number of rooms needed
 					     to allow a random special room */
 #ifdef REINCARNATION
@@ -751,8 +754,8 @@ makelevel()
 	else {
 	    /* courtrooms & barracks */
 	    if(depth(&u.uz) > 4 && !rn2(12)) mkroom(COURT);
-	    else if (u_depth > 5 && !rn2(8) &&
-		!(mvitals[PM_LEPRECHAUN].mvflags & G_GONE)) mkroom(LEPREHALL);
+	else if (u_depth > 5 && !rn2(8) &&
+	   !(mvitals[PM_LEPRECHAUN].mvflags & G_GONE)) mkroom(LEPREHALL);
 	    else if(depth(&u.uz) > 14 && !rn2(12)) mkroom(GIANTCOURT);
 	    else if(depth(&u.uz) > 14 && !rn2(7) &&
 		(mons[PM_SOLDIER].geno & (G_GENOD | G_EXTINCT))) mkroom(BARRACKS);
@@ -760,7 +763,7 @@ makelevel()
 	    /* hives */
 	    if(depth(&u.uz) > 9 && !rn2(12) &&
 		(mons[PM_KILLER_BEE].geno & (G_GENOD | G_EXTINCT))) mkroom(BEEHIVE);
-	    else if (u_depth > 12 && !rn2(8)) mkroom(ANTHOLE);
+	else if (u_depth > 12 && !rn2(8)) mkroom(ANTHOLE);
 
 	    /* zoos */
 	    if(depth(&u.uz) > 6 && !rn2(12)) mkroom(ZOO);
@@ -774,9 +777,9 @@ makelevel()
 
 	    /* dangerous ones */
 	    if (u_depth > 16 && !rn2(8) &&
-		!(mvitals[PM_COCKATRICE].mvflags & G_GONE)) mkroom(COCKNEST);
+	   !(mvitals[PM_COCKATRICE].mvflags & G_GONE)) mkroom(COCKNEST);
 	    else if(depth(&u.uz) > 20 && !rn2(20)) mkroom(DRAGONLAIR);
-	}
+    }
 
 #ifdef REINCARNATION
 skip0:
@@ -797,8 +800,8 @@ skip0:
 		    x = somex(croom); y = somey(croom);
 		    tmonst = makemon((struct permonst *) 0, x,y,NO_MM_FLAGS);
 		    if (tmonst && tmonst->data == &mons[PM_GIANT_SPIDER] &&
-			!is_pool(x,y))
-			(void) maketrap (x,y,WEB);
+			    !occupied(x, y))
+			(void) maketrap(x, y, WEB);
 		}
 		/* put traps and mimics inside */
 		goldseen = FALSE;
@@ -876,8 +879,8 @@ skip0:
 }
 
 /*
- *      Place deposits of minerals (gold and misc gems) in the stone
- *      surrounding the rooms on the map.
+ *	Place deposits of minerals (gold and misc gems) in the stone
+ *	surrounding the rooms on the map.
  *	Also place kelp in water.
  */
 
@@ -928,10 +931,10 @@ mineralize()
 	 */
 	for (x = 2; x < (COLNO - 2); x++)
 	  for (y = 1; y < (ROWNO - 1); y++)
-	    if (levl[x][y+1].typ != STONE) {     /* <x,y> spot not eligible */
-		y += 2;         /* next two spots aren't eligible either */
+	    if (levl[x][y+1].typ != STONE) {	 /* <x,y> spot not eligible */
+		y += 2;		/* next two spots aren't eligible either */
 	    } else if (levl[x][y].typ != STONE) { /* this spot not eligible */
-		y += 1;         /* next spot isn't eligible either */
+		y += 1;		/* next spot isn't eligible either */
 	    } else if (!(levl[x][y].wall_info & W_NONDIGGABLE) &&
 		  levl[x][y-1].typ   == STONE &&
 		  levl[x+1][y-1].typ == STONE && levl[x-1][y-1].typ == STONE &&
@@ -950,7 +953,7 @@ mineralize()
 		    for (cnt = rnd(2 + dunlev(&u.uz) / 3); cnt > 0; cnt--)
 			if ((otmp = mkobj(GEM_CLASS, FALSE)) != 0) {
 			    if (otmp->otyp == ROCK) {
-				dealloc_obj(otmp);      /* discard it */
+				dealloc_obj(otmp);	/* discard it */
 			    } else {
 				otmp->ox = x,  otmp->oy = y;
 				if (!rn2(3)) add_to_buried(otmp);
@@ -1013,7 +1016,7 @@ register struct mkroom *croom;
 #ifdef SPECIALIZATION
 # ifdef REINCARNATION
 	if (Is_rogue_level(&u.uz))
-	    do_ordinary = TRUE;         /* vision routine helper */
+	    do_ordinary = TRUE;		/* vision routine helper */
 # endif
 	if ((rtype != OROOM) || do_ordinary)
 #endif
@@ -1063,7 +1066,7 @@ find_branch_room(mp)
     struct mkroom *croom = 0;
 
     if (nroom == 0) {
-	mazexy(mp);             /* already verifies location */
+	mazexy(mp);		/* already verifies location */
     } else {
 	/* not perfect - there may be only one stairway */
 	if(nroom > 2) {
@@ -1102,12 +1105,12 @@ pos_to_room(x, y)
 /* If given a branch, randomly place a special stair or portal. */
 void
 place_branch(br, x, y)
-branch *br;     /* branch to place */
-xchar x, y;     /* location */
+branch *br;	/* branch to place */
+xchar x, y;	/* location */
 {
-	coord         m;
-	d_level       *dest;
-	boolean       make_stairs;
+	coord	      m;
+	d_level	      *dest;
+	boolean	      make_stairs;
 	struct mkroom *br_room;
 
 	/*
@@ -1118,7 +1121,7 @@ xchar x, y;     /* location */
 	 */
 	if (!br || made_branch) return;
 
-	if (!x) {       /* find random coordinates for branch */
+	if (!x) {	/* find random coordinates for branch */
 	    br_room = find_branch_room(&m);
 	    x = m.x;
 	    y = m.y;
@@ -1495,7 +1498,7 @@ mkinvokearea()
     pline_The("walls around you begin to bend and crumble!");
     display_nhwindow(WIN_MESSAGE, TRUE);
 
-    mkinvpos(xmin, ymin, 0);            /* middle, before placing stairs */
+    mkinvpos(xmin, ymin, 0);		/* middle, before placing stairs */
 
     for(dist = 1; dist < 7; dist++) {
 	xmin--; xmax++;
@@ -1515,14 +1518,14 @@ mkinvokearea()
 	    mkinvpos(xmax, i, dist);
 	}
 
-	flush_screen(1);        /* make sure the new glyphs shows up */
+	flush_screen(1);	/* make sure the new glyphs shows up */
 	delay_output();
     }
 
     You("are standing at the top of a stairwell leading down!");
     mkstairs(u.ux, u.uy, 0, (struct mkroom *)0); /* down */
     newsym(u.ux, u.uy);
-    vision_full_recalc = 1;     /* everything changed */
+    vision_full_recalc = 1;	/* everything changed */
 }
 
 /* Change level topology.  Boulders in the vicinity are eliminated.
@@ -1555,13 +1558,13 @@ int dist;
     while ((otmp = sobj_at(BOULDER, x, y)) != 0) {
 	if (make_rocks) {
 	    fracture_rock(otmp);
-	    make_rocks = FALSE;         /* don't bother with more rocks */
+	    make_rocks = FALSE;		/* don't bother with more rocks */
 	} else {
 	    obj_extract_self(otmp);
 	    obfree(otmp, (struct obj *)0);
 	}
     }
-    unblock_point(x,y); /* make sure vision knows this location is open */
+    unblock_point(x,y);	/* make sure vision knows this location is open */
 
     /* fake out saved state */
     lev->seenv = 0;
@@ -1612,7 +1615,7 @@ STATIC_OVL void
 mk_knox_portal(x, y)
 xchar x, y;
 {
-	extern int n_dgns;              /* from dungeon.c */
+	extern int n_dgns;		/* from dungeon.c */
 	d_level *source;
 	branch *br;
 	schar u_depth;
@@ -1634,7 +1637,7 @@ xchar x, y;
 #endif
 				      )) return;
 
-	if (! (u.uz.dnum == oracle_level.dnum       /* in main dungeon */
+	if (! (u.uz.dnum == oracle_level.dnum	    /* in main dungeon */
 		&& !at_dgn_entrance("The Quest")    /* but not Quest's entry */
 		&& (u_depth = depth(&u.uz)) > 10    /* beneath 10 */
 		&& u_depth < depth(&medusa_level))) /* and above Medusa */

@@ -14,12 +14,8 @@ struct monst { struct monst *dummy; };	/* lint: struct obj's union */
 
 #else	/* !OBJECTS_PASS_2_ */
 /* second pass */
-# ifdef TEXTCOLOR
 #include "color.h"
 #  define COLOR_FIELD(X) X,
-# else
-#  define COLOR_FIELD(X) /*empty*/
-# endif
 #endif	/* !OBJECTS_PASS_2_ */
 
 
@@ -129,7 +125,7 @@ WEAPON("knife", (char *)0,
 WEAPON("stiletto", (char *)0,
 	1, 1, 0,  5,  5,  4,  3,  2, 0, P|S, P_KNIFE, IRON, HI_METAL),
 WEAPON("scalpel", (char *)0,
-	1, 1, 0,  0,  5,  4,  3,  3, 2, S,   P_KNIFE, IRON, HI_METAL),
+	1, 1, 0,  0,  5,  4,  3,  3, 2, S,   P_KNIFE, METAL, HI_METAL),
 WEAPON("crysknife", (char *)0,
 	1, 0, 0,  0, 20,100, 20, 30, 3, P,   P_KNIFE, MINERAL, CLR_WHITE),
 	/* [Tom] increased crysknife damage from d10/d10 */
@@ -164,14 +160,14 @@ WEAPON("dark elven short sword", "black runed short sword",
 /* Broadswords */
 WEAPON("broadsword", (char *)0,
 	1, 0, 0, 20, 70, 10,  4,  6, 0, S,   P_BROAD_SWORD, IRON, HI_METAL),
-	/* +d4 small, +1 large */
+						/* +d4 small, +1 large */
 WEAPON("runesword", "runed broadsword",
 	0, 0, 0,  0, 40,300,  4,  6, 0, S,   P_BROAD_SWORD, IRON, CLR_BLACK),
 	/* +d4 small, +1 large; base for artifact (Stormbringer) */
 	/* +5d2 +d8 from level drain */
 WEAPON("elven broadsword", "runed broadsword",
 	0, 0, 0,  4, 70, 10,  6,  6, 0, S,   P_BROAD_SWORD, WOOD, HI_METAL),
-	/* +d4 small, +1 large */
+						/* +d4 small, +1 large */
 
 /* Long swords */
 WEAPON("long sword", (char *)0,
@@ -239,7 +235,7 @@ WEAPON("mace", (char *)0,
 /* Morning stars */
 WEAPON("morning star", (char *)0,
 	1, 0, 0, 12,120, 10,  4,  6, 0, B,   P_MORNING_STAR, IRON, HI_METAL),
-	/* +d4 small, +1 large */
+						/* +d4 small, +1 large */
 
 /* Flails */
 WEAPON("flail", (char *)0,
@@ -264,22 +260,22 @@ WEAPON("quarterstaff", "staff",
 /* spear-type */
 WEAPON("partisan", "vulgar polearm",
 	0, 0, 1,  3, 80, 10,  6,  6, 0, P,   P_POLEARMS, IRON, HI_METAL),
-	/* +1 large */
+						/* +1 large */
 WEAPON("glaive", "single-edged polearm",
 	0, 0, 1,  4, 75,  6,  6, 10, 0, S,   P_POLEARMS, IRON, HI_METAL),
 WEAPON("spetum", "forked polearm",
 	0, 0, 1,  3, 50,  5,  6,  6, 0, P,   P_POLEARMS, IRON, HI_METAL),
-	/* +1 small, +d6 large */
+						/* +1 small, +d6 large */
 WEAPON("ranseur", "hilted polearm",
 	0, 0, 1,  3, 50,  6,  4,  4, 0, P,   P_POLEARMS, IRON, HI_METAL),
 	/* +d4 both */
 /* axe-type */
 WEAPON("bardiche", "long poleaxe",
 	0, 0, 1,  2,120,  7,  4,  4, 0, S,   P_POLEARMS, IRON, HI_METAL),
-	/* +1d4 small, +2d4 large */
+						/* +1d4 small, +2d4 large */
 WEAPON("voulge", "pole cleaver",
 	0, 0, 1,  2,125,  5,  4,  4, 0, S,   P_POLEARMS, IRON, HI_METAL),
-	/* +d4 both */
+						/* +d4 both */
 WEAPON("halberd", "angled poleaxe",
 	0, 0, 1,  4,150, 10, 10,  6, 0, P|S, P_POLEARMS, IRON, HI_METAL),
 	/* +1d6 large */
@@ -288,14 +284,14 @@ WEAPON("fauchard", "pole sickle",
 	0, 0, 1,  3, 60,  5,  6,  8, 0, P|S, P_POLEARMS, IRON, HI_METAL),
 WEAPON("guisarme", "pruning hook",
 	0, 0, 1,  3, 80,  5,  4,  8, 0, S,   P_POLEARMS, IRON, HI_METAL),
-	/* +1d4 small */
+						/* +1d4 small */
 WEAPON("bill-guisarme", "hooked polearm",
 	0, 0, 1,  2,120,  7,  4, 10, 0, P|S, P_POLEARMS, IRON, HI_METAL),
-	/* +1d4 small */
+						/* +1d4 small */
 /* other */
 WEAPON("lucern hammer", "pronged polearm",
 	0, 0, 1,  3,150,  7,  4,  6, 0, B|P, P_POLEARMS, IRON, HI_METAL),
-	/* +1d4 small */
+						/* +1d4 small */
 WEAPON("bec de corbin", "beaked polearm",
 	0, 0, 1,  2,100,  8,  8,  6, 0, B|P, P_POLEARMS, IRON, HI_METAL),
 
@@ -346,7 +342,7 @@ PROJECTILE("ya", "bamboo arrow",
 	0, 10, 1, 4, 7, 7, 1, METAL, -P_BOW, HI_METAL),
 
 /* Slings */
-BOW("sling", (char *)0,		1, 0, 40,  3, 20, 0, WOOD, P_SLING, HI_WOOD),
+BOW("sling", (char *)0,		1, 0, 40,  3, 20, 0, WOOD, P_SLING, HI_LEATHER),
 
 /* Firearms */
 #ifdef FIREARMS
@@ -486,15 +482,14 @@ ARMOR("leather jacket", (char *)0,
 
 /* Robes */
 /* STEPHEN WHITE'S NEW CODE */
-/* KMH -- now only randomly generated for the clergy */
 ARMOR("robe", "red robe",
-	0, 0, 0, 0,				0, 1,  40,  25,  9, 0, ARM_SUIT, LEATHER, CLR_RED),
+	0, 0, 0, 0,		1, 1,  40,  25,  9, 0, ARM_SUIT, LEATHER, CLR_RED),
 ARMOR("robe of protection", "blue robe",
-	0, 1, 0, PROTECTION,	0, 1,  40,  50,  5, 0, ARM_SUIT, LEATHER, CLR_BLUE),
+	0, 1, 0, PROTECTION,	1, 1,  40,  50,  5, 0, ARM_SUIT, LEATHER, CLR_BLUE),
 ARMOR("robe of power", "orange robe",
-	0, 1, 0, 0,				0, 1,  40,  50,  9, 0, ARM_SUIT, LEATHER, CLR_ORANGE),
+	0, 1, 0, 0,		0, 1,  40,  50,  9, 0, ARM_SUIT, LEATHER, CLR_ORANGE),
 ARMOR("robe of weakness", "green robe",
-	0, 1, 0, 0,				0, 1,  40,  50,  9, 0, ARM_SUIT, LEATHER, CLR_GREEN),
+	0, 1, 0, 0,		1, 1,  40,  50,  9, 0, ARM_SUIT, LEATHER, CLR_GREEN),
 
 /*
  * Dragon suits
@@ -536,34 +531,36 @@ DRGN_ARMR("yellow dragon scales", ACID_RES,   500, 7, CLR_YELLOW),
 /* Cloaks */
 /*  'cope' is not a spelling mistake... leave it be */
 CLOAK("mummy wrapping", (char *)0,
-		1, 0,	0,			0, 0,  3,  2, 10, 1, CLOTH, CLR_GRAY),
+		1, 0,	0,	    0, 0,  3,  2, 10, 1, CLOTH, CLR_GRAY),
 CLOAK("orcish cloak", "coarse mantelet",
-		0, 0,	0,			10, 0, 10, 40, 10, 2, CLOTH, CLR_BLACK),
+		0, 0,	0,	    8, 0, 10, 40, 10, 2, CLOTH, CLR_BLACK),
 CLOAK("dwarvish cloak", "hooded cloak",
-		0, 0,	0,			10, 0, 10, 50, 10, 2, CLOTH, HI_CLOTH),
+		0, 0,	0,	    8, 0, 10, 50, 10, 2, CLOTH, HI_CLOTH),
 CLOAK("oilskin cloak", "slippery cloak",
-		0, 0,	0,			10, 0, 10, 50,  9, 3, CLOTH, HI_CLOTH),
+		0, 0,	0,	    8, 0, 10, 50,  9, 3, CLOTH, HI_CLOTH),
 CLOAK("elven cloak", "faded pall",
-		0, 1,	STEALTH,	10, 0, 10, 60,  9, 3, CLOTH, CLR_BLACK),
+		0, 1,	STEALTH,    8, 0, 10, 60,  9, 3, CLOTH, CLR_BLACK),
 CLOAK("lab coat", "white coat",
-		0, 1,   POISON_RES,	10, 0, 10, 60,  9, 3, CLOTH, CLR_WHITE),
-/* With shuffled appearances... */
-CLOAK("cloak of protection", "tattered cape",
-		0, 1,	PROTECTION,10, 0, 10, 50,  7, 3, CLOTH, HI_CLOTH),
-CLOAK("cloak of poisonousness", "dirty rag",
-		0, 1,   0,          5, 0, 10, 40, 10, 3, CLOTH, CLR_GREEN),
-CLOAK("cloak of invisibility", "opera cloak",
-		0, 1,	INVIS,	   11, 0, 10, 60,  9, 2, CLOTH, CLR_BRIGHT_MAGENTA),
-CLOAK("cloak of magic resistance", "ornamental cope",
-		0, 1,	ANTIMAGIC,  2, 0, 10, 60,  9, 3, CLOTH, CLR_WHITE),
-CLOAK("cloak of displacement", "piece of cloth",
-		0, 1,	DISPLACED, 11, 0, 10, 50,  9, 2, CLOTH, HI_CLOTH),
+		0, 1,   POISON_RES,10, 0, 10, 60,  9, 3, CLOTH, CLR_WHITE),
+CLOAK("leather cloak", (char *)0,
+		1, 0,	0,	    8, 0, 15, 40,  9, 1, LEATHER, CLR_BROWN),
 #if 0
 CLOAK("robe", (char *)0,
-		1, 1,	0,	    0, 0, 15, 50,  8, 3, CLOTH, CLR_RED),
+		1, 1,	0,	    3, 0, 15, 50,  8, 3, CLOTH, CLR_RED),
 CLOAK("alchemy smock", "apron",
 		0, 1,	POISON_RES, 9, 0, 10, 50,  9, 1, CLOTH, CLR_WHITE),
 #endif
+/* With shuffled appearances... */
+CLOAK("cloak of protection", "tattered cape",
+		0, 1,	PROTECTION, 9, 0, 10, 50,  7, 3, CLOTH, HI_CLOTH),
+CLOAK("cloak of poisonousness", "dirty rag",
+		0, 1,   0,          5, 0, 10, 40, 10, 3, CLOTH, CLR_GREEN),
+CLOAK("cloak of invisibility", "opera cloak",
+		0, 1,	INVIS,	   10, 0, 10, 60,  9, 2, CLOTH, CLR_BRIGHT_MAGENTA),
+CLOAK("cloak of magic resistance", "ornamental cope",
+		0, 1,	ANTIMAGIC,  2, 0, 10, 60,  9, 3, CLOTH, CLR_WHITE),
+CLOAK("cloak of displacement", "piece of cloth",
+		0, 1,	DISPLACED, 10, 0, 10, 50,  9, 2, CLOTH, HI_CLOTH),
 /* Helmets */
 HELM("elven leather helm", "leather hat",
 		0, 0, 0,			6, 1,  3,   8, 9, 0, LEATHER, HI_LEATHER),
@@ -609,7 +606,7 @@ SHIELD("small shield", (char *)0,
 		1, 0, 0, 0,	     6, 0, 30,	3,  9, 0, WOOD, HI_WOOD),
 /* Elven ... orcish shields can't be differentiated by feel */
 SHIELD("elven shield", "blue and green shield",
-		0, 0, 0, 0,	     2, 0, 50,	7,  8, 0, IRON, CLR_GREEN),
+		0, 0, 0, 0,	     2, 0, 50,	7,  8, 0, WOOD, CLR_GREEN),
 SHIELD("Uruk-hai shield", "white-handed shield",
 		0, 0, 0, 0,	     2, 0, 50,	7,  9, 0, IRON, HI_METAL),
 SHIELD("orcish shield", "red-eyed shield",
@@ -658,19 +655,19 @@ BOOTS("levitation boots", "snow boots",
 		OBJ(name,stone), \
 		BITS(0,0,spec,0,mgc,spec,0,0,0,HARDGEM(mohs),0,0,metal), \
 		power, RING_CLASS, 0, 0, 3, cost, 0, 0, 0, 0, 15, color )
-RING("adornment",  ADORNED,    "wooden",    100, 1, 1, 2, WOOD, HI_WOOD),
+RING("adornment", ADORNED, "wooden",        100, 1, 1, 2, WOOD, HI_WOOD),
 RING("hunger",     HUNGER,     "topaz",     100, 1, 0, 8, GEMSTONE, CLR_CYAN),
 RING("mood",       0,          "ridged",    100, 1, 0, 8, IRON, HI_METAL),
 RING("protection", PROTECTION, "black onyx",100, 1, 1, 7, MINERAL, CLR_BLACK),
 RING("protection from shape changers", PROT_FROM_SHAPE_CHANGERS, "shiny",
 					    					100, 1, 0, 5, IRON, CLR_BRIGHT_CYAN),
 RING("sleeping",   SLEEPING,   "wedding",   100, 1, 0, 7, GEMSTONE, CLR_WHITE),
-RING("stealth",    STEALTH,    "jade",      100, 1, 0, 6, GEMSTONE, CLR_GREEN),
+RING("stealth", STEALTH, "jade",            100, 1, 0, 6, GEMSTONE, CLR_GREEN),
 RING("sustain ability", FIXED_ABIL, "bronze",
-											100, 1, 0, 4, COPPER, HI_COPPER),
+					    100, 1, 0, 4, COPPER, HI_COPPER),
 RING("warning",    WARNING,    "diamond",   100, 1, 0,10, GEMSTONE, CLR_WHITE),
 RING("aggravate monster", AGGRAVATE_MONSTER, "sapphire",
-											150, 1, 0, 9, GEMSTONE, CLR_BLUE),
+					    150, 1, 0, 9, GEMSTONE, CLR_BLUE),
 RING("cold resistance", COLD_RES, "brass",  150, 1, 0, 4, COPPER, HI_COPPER),
 RING("gain constitution", 0,   "opal",      150, 1, 1, 7, MINERAL,  HI_MINERAL),
 RING("gain dexterity",  0,     "obsidian",  150, 1, 1, 7, GEMSTONE, CLR_BLACK),
@@ -683,14 +680,14 @@ RING("slow digestion",  SLOW_DIGESTION, "steel",
 					    200, 1, 0, 8, IRON, HI_METAL),
 RING("invisibility", INVIS,    "wire",      150, 1, 0, 5, IRON, HI_METAL),
 RING("poison resistance", POISON_RES, "pearl",
-											150, 1, 0, 4, IRON, CLR_WHITE),
+					    150, 1, 0, 4, IRON, CLR_WHITE),
 RING("see invisible", SEE_INVIS, "engagement",
 											150, 1, 0, 5, IRON, HI_METAL),
 RING("shock resistance", SHOCK_RES, "copper",
-											150, 1, 0, 3, COPPER, HI_COPPER),
+					    150, 1, 0, 3, COPPER, HI_COPPER),
 RING("fire resistance", FIRE_RES, "iron",   200, 1, 0, 5, IRON, HI_METAL),
 RING("free action",     FREE_ACTION, "twisted",
-                                            200, 1, 0, 6, IRON, HI_METAL),
+					    200, 1, 0, 6, IRON, HI_METAL),
 /*RING("infravision", 0, "zinc",              200, 1, 0, 5, MITHRIL, HI_METAL),*/
 RING("levitation", LEVITATION, "agate",     200, 1, 0, 7, GEMSTONE, CLR_RED),
 RING("regeneration", REGENERATION, "moonstone",
@@ -700,7 +697,7 @@ RING("teleportation", TELEPORT, "silver",   200, 1, 0, 3, SILVER, HI_SILVER),
 RING("conflict",   CONFLICT, "ruby",        300, 1, 0, 9, GEMSTONE, CLR_RED),
 RING("polymorph", POLYMORPH, "ivory",       300, 1, 0, 4, BONE, CLR_WHITE),
 RING("polymorph control", POLYMORPH_CONTROL, "emerald",
-											300, 1, 0, 8, GEMSTONE, CLR_BRIGHT_GREEN),
+					    300, 1, 0, 8, GEMSTONE, CLR_BRIGHT_GREEN),
 RING("teleport control", TELEPORT_CONTROL, "gold",
 											300, 1, 0, 3, GOLD, HI_GOLD),
 /* More descriptions: cameo, intaglio */
@@ -727,7 +724,7 @@ OBJECT(OBJ("cheap plastic imitation of the Amulet of Yendor",
 	AMULET_CLASS, 0, 0, 20,    0, 0, 0, 0, 0,  1, HI_METAL),
 OBJECT(OBJ("Amulet of Yendor",	/* note: description == name */
 	"Amulet of Yendor"), BITS(0,0,1,0,1,0,1,1,0,0,0,0,MITHRIL), 0,
-	AMULET_CLASS, 0, 0, 20, 3500, 0, 0, 0, 0, 20, HI_METAL),
+	AMULET_CLASS, 0, 0, 20, 30000, 0, 0, 0, 0, 20, HI_METAL),
 #undef AMULET
 
 /* tools ... */
@@ -881,10 +878,10 @@ TOOL("magic marker", (char *)0, 1, 0, 1, 1,  15,  2,  50, PLASTIC, CLR_RED),
 /* Two special unique artifact "tools" */
 OBJECT(OBJ("Candelabrum of Invocation", "candelabrum"),
 		BITS(0,0,1,0,1,0,1,1,0,0,0,0,GOLD), 0,
-		TOOL_CLASS, 0, 0,10, 3000, 0, 0, 0, 0, 200, HI_GOLD),
+		TOOL_CLASS, 0, 0,10, 5000, 0, 0, 0, 0, 200, HI_GOLD),
 OBJECT(OBJ("Bell of Opening", "silver bell"),
 		BITS(0,0,1,0,1,1,1,1,0,0,0,0,SILVER), 0,
-		TOOL_CLASS, 0, 0,10, 1000, 0, 0, 0, 0, 50, HI_SILVER),
+		TOOL_CLASS, 0, 0,10, 5000, 0, 0, 0, 0, 50, HI_SILVER),
 #undef TOOL
 #undef WEPTOOL
 
@@ -1118,7 +1115,7 @@ SPELL("blank paper",	 "plain",		P_NONE, 20,  0, 0, 0, 0,         HI_PAPER),
 	/* ...Blank spellbook must come last because it retains its description */
 OBJECT(OBJ("Book of the Dead", "papyrus"),
 	BITS(0,0,1,0,1,0,1,1,0,0,0,0,PAPER), 0,
-	SPBOOK_CLASS, 0, 0,20, 3500, 0, 0, 0, 7, 20, HI_PAPER),
+	SPBOOK_CLASS, 0, 0,20, 10000, 0, 0, 0, 7, 20, HI_PAPER),
 	/* ...A special, one of a kind, spellbook */
 #undef SPELL
 
@@ -1166,10 +1163,10 @@ WAND((char *)0,        "jeweled",   0, 150, 1, 0,         IRON,     HI_MINERAL),
 #undef WAND
 
 /* coins ... - so far, gold is all there is */
-#define COIN(name,prob,metal) OBJECT( \
+#define COIN(name,prob,metal,worth) OBJECT( \
 		OBJ(name,(char *)0), BITS(0,1,0,0,0,0,0,0,0,0,0,P_NONE,metal), 0, \
-		GOLD_CLASS, prob, 0, 1, 0, 0, 0, 0, 0, 0, HI_GOLD )
-COIN("gold piece",      1000, GOLD),
+		GOLD_CLASS, prob, 0, 1, worth, 0, 0, 0, 0, 0, HI_GOLD )
+	COIN("gold piece",      1000, GOLD,1),
 #undef COIN
 
 /* gems ... - includes stones and rocks but not boulders */
@@ -1216,9 +1213,10 @@ GEM("worthless piece of violet glass", "violet", 76, 1, 0, 6, 5, GLASS, CLR_MAGE
 
 /* KMH, balance patch -- healthstone replaces stones of health and rotting */
 ROCK("luckstone", "gray",	0, 10,  10, 60, 3, 3, 1, 10, 7, MINERAL, CLR_GRAY),
-ROCK("healthstone", "gray",	0, 10,  10, 60, 3, 3, 1, 10, 7, MINERAL, CLR_GRAY),
+ROCK("healthstone", "gray",	0,  8,  10, 60, 3, 3, 1, 10, 7, MINERAL, CLR_GRAY),
 ROCK("loadstone", "gray",	0, 10, 500,  1, 3, 3, 1, 10, 6, MINERAL, CLR_GRAY),
-ROCK("flint", "gray",		0, 15,  10,  1, 6, 6, 0, 10, 7, MINERAL, CLR_GRAY),
+ROCK("touchstone", "gray",	0,  7,  10, 45, 3, 3, 1, 10, 6, MINERAL, CLR_GRAY),
+ROCK("flint", "gray",		0, 10,  10,  1, 6, 6, 0, 10, 7, MINERAL, CLR_GRAY),
 ROCK("rock", (char *)0,		1,100,  10,  0, 3, 3, 0, 10, 7, MINERAL, CLR_GRAY),
 #undef GEM
 #undef ROCK

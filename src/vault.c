@@ -7,6 +7,9 @@
 
 STATIC_DCL struct monst *NDECL(findgd);
 
+#define g_monnam(mtmp) \
+	x_monnam(mtmp, ARTICLE_NONE, (char *)0, SUPPRESS_IT, FALSE)
+
 #ifdef OVLB
 
 STATIC_DCL boolean FDECL(clear_fcorr, (struct monst *,BOOLEAN_P));
@@ -22,6 +25,8 @@ register boolean forceshow;
 {
 	register int fcx, fcy, fcbeg;
 	register struct monst *mtmp;
+
+	if (!on_level(&(EGD(grd)->gdlevel), &u.uz)) return TRUE;
 
 	while((fcbeg = EGD(grd)->fcbeg) < EGD(grd)->fcend) {
 		fcx = EGD(grd)->fakecorr[fcbeg].fx;
@@ -142,7 +147,6 @@ invault()
 	char buf[BUFSZ];
 	register int x, y, dd, gx, gy;
 	int lx = 0, ly = 0;
-
 	/* first find the goal for the guard */
 	for(dd = 2; (dd < ROWNO || dd < COLNO); dd++) {
 	  for(y = u.uy-dd; y <= u.uy+dd; ly = y, y++) {
@@ -233,9 +237,17 @@ fnd:
 	}
 
 	reset_faint();			/* if fainted - wake up */
-	pline("Suddenly one of the Vault's guards enters!");
+	pline("Suddenly one of the Vault's %s enters!",
+	      makeplural(g_monnam(guard)));
 	newsym(guard->mx,guard->my);
-	if (Strangled || youmonst.data->msound == MS_SILENT) {
+	if ((youmonst.m_ap_type == M_AP_OBJECT &&
+		youmonst.mappearance == GOLD_PIECE) || u.uundetected) {
+	    /* You're mimicking a pile of gold or you're hidden. */
+	    pline("Puzzled, %s turns around and leaves.", mhe(guard));
+	    mongone(guard);
+	    return;
+	}
+	if (Strangled || is_silent(youmonst.data)) {
 	    verbalize("I'll be back when you're ready to speak to me!");
 	    mongone(guard);
 	    return;
@@ -404,7 +416,7 @@ struct monst *grd;
 
 	if(movedgold || fixed) {
 	    if(in_fcorridor(grd, grd->mx, grd->my) || cansee(grd->mx, grd->my))
-		pline_The("guard whispers an incantation.");
+		pline_The("%s whispers an incantation.", g_monnam(grd));
 	    else You_hear("a distant chant.");
 	    if(movedgold)
 		pline("A mysterious force moves the gold into the vault.");
@@ -432,7 +444,6 @@ register struct monst *grd;
 					TRUE : FALSE;
 	boolean disappear_msg_seen = FALSE, semi_dead = (grd->mhp <= 0);
 	register boolean u_carry_gold = ((u.ugold + hidden_gold()) > 0L);
-
 	if(!on_level(&(egrd->gdlevel), &u.uz)) return(-1);
 	nx = ny = m = n = 0;
 	if(!u_in_vault && !grd_in_vault)
@@ -463,7 +474,8 @@ register struct monst *grd;
 			(u_carry_gold || um_dist(grd->mx, grd->my, 1))) {
 		if(egrd->warncnt == 3)
 			verbalize("I repeat, %sfollow me!",
-				u_carry_gold ? (!u.ugold ?
+				u_carry_gold ? (
+					  !u.ugold ?
 					  "drop that hidden gold and " :
 					  "drop that gold and ") : "");
 		if(egrd->warncnt == 7) {
@@ -490,13 +502,13 @@ register struct monst *grd;
 		    newsym(m,n);
 		    grd->mpeaceful = 0;
 letknow:
-		    if(!cansee(grd->mx, grd->my))
+		    if (!cansee(grd->mx, grd->my) || !mon_visible(grd))
 			You_hear("the shrill sound of a guard's whistle.");
 		    else
 			You(um_dist(grd->mx, grd->my, 2) ?
 			    "see an angry %s approaching." :
 			    "are confronted by an angry %s.",
-			    l_monnam(grd));
+			    g_monnam(grd));
 		    return(-1);
 		} else {
 		    verbalize("Well, begone.");
@@ -512,7 +524,7 @@ letknow:
 		  !egrd->gddone && !in_fcorridor(grd, u.ux, u.uy) &&
 		  levl[egrd->fakecorr[0].fx][egrd->fakecorr[0].fy].typ
 				 == egrd->fakecorr[0].ftyp) {
-		pline_The("guard, confused, disappears.");
+		pline_The("%s, confused, disappears.", g_monnam(grd));
 		disappear_msg_seen = TRUE;
 		goto cleanup;
 	    }
@@ -559,7 +571,7 @@ letknow:
 			rloc(m_at(m, n));
 		    }
 		    remove_monster(grd->mx, grd->my);
-                    newsym(grd->mx, grd->my);
+		    newsym(grd->mx, grd->my);
 		    place_monster(grd, m, n);
 		    mpickgold(grd);	/* does a newsym */
 		}
@@ -568,9 +580,9 @@ letknow:
 				grd->mpeaceful ? " calms down and" : "");
 		if(x != grd->mx || y != grd->my) {
 		    remove_monster(grd->mx, grd->my);
-                    newsym(grd->mx, grd->my);
+		    newsym(grd->mx, grd->my);
 		    place_monster(grd, x, y);
-                    newsym(x, y);
+		    newsym(x, y);
 		}
 		if(!grd->mpeaceful) return(-1);
 		else {
@@ -687,7 +699,7 @@ cleanup:
 		if(!semi_dead && (in_fcorridor(grd, u.ux, u.uy) ||
 				     cansee(x, y))) {
 		    if (!disappear_msg_seen)
-			pline("Suddenly, the guard disappears.");
+			pline("Suddenly, the %s disappears.", g_monnam(grd));
 		    return(1);
 		}
 		return(-2);
@@ -713,8 +725,9 @@ paygd()
 	if (!u.ugold || !grd) return;
 
 	if (u.uinvault) {
-	    Your("%ld zorkmid%s goes into the Magic Memory Vault.",
-		u.ugold, plur(u.ugold));
+	    Your("%ld %s goes into the Magic Memory Vault.",
+		u.ugold,
+		currency(u.ugold));
 	    gx = u.ux;
 	    gy = u.uy;
 	} else {

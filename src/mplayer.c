@@ -9,7 +9,7 @@ STATIC_DCL void FDECL(get_mplname, (struct monst *, char *));
 STATIC_DCL void FDECL(mk_mplayer_armor, (struct monst *, SHORT_P));
 
 /* These are the names of those who
- * contributed to the development of NetHack 3.2/3.3.
+ * contributed to the development of NetHack 3.2/3.3/3.4.
  *
  * Keep in alphabetical order within teams.
  * Same first name is entered once within each team.
@@ -18,17 +18,18 @@ static const char *developers[] = {
 	/* devteam */
 	"Dave", "Dean", "Eric", "Izchak", "Janet", "Jessie",
 	"Ken", "Kevin", "Michael", "Mike", "Pat", "Paul", "Steve", "Timo",
+	"Warwick",
 	/* PC team */
 	"Bill", "Eric", "Keizo", "Ken", "Kevin", "Michael", "Mike", "Paul",
 	"Stephen", "Steve", "Timo", "Yitzhak",
 	/* Amiga team */
-	"Andy", "Gregg", "Keni", "Mike", "Olaf", "Richard",
+	"Andy", "Gregg", "Janne", "Keni", "Mike", "Olaf", "Richard",
 	/* Mac team */
 	"Andy", "Chris", "Dean", "Jon", "Jonathan", "Kevin", "Wang",
 	/* Atari team */
-	"Eric", "Warwick",
+	"Eric", "Marvin", "Warwick",
 	/* NT team */
-	"Michael",
+	"Alex", "Dion", "Michael",
 	/* OS/2 team */
 	"Helge", "Ron", "Timo",
 	/* VMS team */
@@ -184,7 +185,7 @@ register boolean special;
 		    armor = STRANGE_OBJECT;
 		    cloak = ROBE;
 		    if (rn2(2)) shield = STRANGE_OBJECT;
-  		    break;
+		    break;
 		case PM_PRIEST:
 		case PM_PRIESTESS:
 		    if (rn2(2)) weapon = MACE;

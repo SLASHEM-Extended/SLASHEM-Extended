@@ -6,7 +6,11 @@
 #include "eshk.h"
 #include "epri.h"
 
-/*      These routines provide basic data for any type of monster. */
+/* fake attack and damage types */
+#define AT_ANY (-1)
+#define AD_ANY (-1)
+
+/*	These routines provide basic data for any type of monster. */
 
 #ifdef OVLB
 
@@ -17,7 +21,7 @@ struct permonst *ptr;
 int flag;
 {
     mon->data = ptr;
-    if (flag == -1) return;             /* "don't care" */
+    if (flag == -1) return;		/* "don't care" */
 
     if (flag == 1)
 	mon->mintrinsics |= (ptr->mresists & 0x00FF);
@@ -29,17 +33,26 @@ int flag;
 #endif /* OVLB */
 #ifdef OVL0
 
+struct attack *
+attacktype_fordmg(ptr, atyp, dtyp)
+struct permonst *ptr;
+int atyp, dtyp;
+{
+    struct attack *a;
+
+    for (a = &ptr->mattk[0]; a < &ptr->mattk[NATTK]; a++)
+	if (a->aatyp == atyp && (dtyp == AD_ANY || a->adtyp == dtyp))
+	    return a;
+
+    return (struct attack *)0;
+}
+
 boolean
 attacktype(ptr, atyp)
-	register struct permonst        *ptr;
-	register int atyp;
+struct permonst *ptr;
+int atyp;
 {
-	int     i;
-
-	for(i = 0; i < NATTK; i++)
-	    if(ptr->mattk[i].aatyp == atyp) return(TRUE);
-
-	return(FALSE);
+    return attacktype_fordmg(ptr, atyp, AD_ANY) ? TRUE : FALSE;
 }
 
 #endif /* OVL0 */
@@ -55,7 +68,7 @@ poly_when_stoned(ptr)
 }
 
 boolean
-resists_drli(mon)       /* returns TRUE if monster is drain-life resistant */
+resists_drli(mon)	/* returns TRUE if monster is drain-life resistant */
 struct monst *mon;
 {
 	struct permonst *ptr = mon->data;
@@ -68,7 +81,7 @@ struct monst *mon;
 }
 
 boolean
-resists_magm(mon)       /* TRUE if monster is magic-missile resistant */
+resists_magm(mon)	/* TRUE if monster is magic-missile resistant */
 struct monst *mon;
 {
 	struct permonst *ptr = mon->data;
@@ -76,7 +89,7 @@ struct monst *mon;
 
 	/* as of 3.2.0:  gray dragons, Angels, Oracle, Yeenoghu */
 	if (dmgtype(ptr, AD_MAGM) || ptr == &mons[PM_BABY_GRAY_DRAGON] ||
-		dmgtype(ptr, AD_RBRE))  /* Chromatic Dragon */
+		dmgtype(ptr, AD_RBRE))	/* Chromatic Dragon */
 	    return TRUE;
 	/* check for magic resistance granted by wielded weapon */
 	o = (mon == &youmonst) ? uwep : MON_WEP(mon);
@@ -106,9 +119,9 @@ struct monst *mon;
 			    paralysis does too, we can't check it */
 		    mon->msleeping))
 	    return TRUE;
-	/* AD_BLND => yellow light, Archon, !cobra, !raven */
-	if (dmgtype(ptr, AD_BLND) &&
-	    !attacktype(ptr, AT_SPIT) && !attacktype(ptr, AT_CLAW))
+	/* yellow light, Archon; !dust vortex, !cobra, !raven */
+	if (dmgtype_fromattack(ptr, AD_BLND, AT_EXPL) ||
+		dmgtype_fromattack(ptr, AD_BLND, AT_GAZE))
 	    return TRUE;
 	o = is_you ? uwep : MON_WEP(mon);
 	if (o && o->oartifact && defends(AD_BLND, o))
@@ -208,7 +221,7 @@ struct obj *obj;		/* aatyp == AT_WEAP, AT_SPIT */
 #ifdef OVL0
 
 boolean
-ranged_attk(ptr)        /* returns TRUE if monster can attack at range */
+ranged_attk(ptr)	/* returns TRUE if monster can attack at range */
 struct permonst *ptr;
 {
 	register int i, atyp;
@@ -233,7 +246,7 @@ struct permonst *ptr;
 #ifdef OVL1
 
 boolean
-can_track(ptr)          /* returns TRUE if monster can track well */
+can_track(ptr)		/* returns TRUE if monster can track well */
 	register struct permonst *ptr;
 {
 	if (uwep && uwep->oartifact == ART_EXCALIBUR)
@@ -246,7 +259,7 @@ can_track(ptr)          /* returns TRUE if monster can track well */
 #ifdef OVLB
 
 boolean
-sliparm(ptr)    /* creature will slide out of armor */
+sliparm(ptr)	/* creature will slide out of armor */
 	register struct permonst *ptr;
 {
 	return((boolean)(is_whirly(ptr) || ptr->msize <= MZ_SMALL ||
@@ -254,7 +267,7 @@ sliparm(ptr)    /* creature will slide out of armor */
 }
 
 boolean
-breakarm(ptr)   /* creature will break out of armor */
+breakarm(ptr)	/* creature will break out of armor */
 	register struct permonst *ptr;
 {
 	return ((bigmonst(ptr) || (ptr->msize > MZ_SMALL && !humanoid(ptr)) ||
@@ -266,24 +279,33 @@ breakarm(ptr)   /* creature will break out of armor */
 #ifdef OVL1
 
 boolean
-sticks(ptr)     /* creature sticks other creatures it hits */
+sticks(ptr)	/* creature sticks other creatures it hits */
 	register struct permonst *ptr;
 {
 	return((boolean)(dmgtype(ptr,AD_STCK) || dmgtype(ptr,AD_WRAP) ||
 		attacktype(ptr,AT_HUGS)));
 }
 
+struct attack *
+dmgtype_fromattack(ptr, dtyp, atyp)
+struct permonst *ptr;
+int dtyp, atyp;
+{
+    struct attack *a;
+
+    for (a = &ptr->mattk[0]; a < &ptr->mattk[NATTK]; a++)
+	if (a->adtyp == dtyp && (atyp == AT_ANY || a->aatyp == atyp))
+	    return a;
+
+    return (struct attack *)0;
+}
+
 boolean
 dmgtype(ptr, dtyp)
-	register struct permonst        *ptr;
-	register int dtyp;
+struct permonst *ptr;
+int dtyp;
 {
-	int     i;
-
-	for(i = 0; i < NATTK; i++)
-	    if(ptr->mattk[i].adtyp == dtyp) return TRUE;
-
-	return FALSE;
+    return dmgtype_fromattack(ptr, dtyp, AT_ANY) ? TRUE : FALSE;
 }
 
 /* returns the maximum damage a defender can do to the attacker via
@@ -292,7 +314,7 @@ int
 max_passive_dmg(mdef, magr)
     register struct monst *mdef, *magr;
 {
-    int i, dmg = 0;
+    int	i, dmg = 0;
     uchar adtyp;
 
     for(i = 0; i < NATTK; i++)
@@ -318,10 +340,10 @@ max_passive_dmg(mdef, magr)
 #ifdef OVL0
 
 int
-monsndx(ptr)            /* return an index into the mons array */
-	struct  permonst        *ptr;
+monsndx(ptr)		/* return an index into the mons array */
+	struct	permonst	*ptr;
 {
-	register int    i;
+	register int	i;
 
 	if (ptr == &upermonst) return PM_PLAYERMON;
 
@@ -330,7 +352,7 @@ monsndx(ptr)            /* return an index into the mons array */
 		/* ought to switch this to use `fmt_ptr' */
 	    panic("monsndx - could not index monster (%d)",
 		  i);
-	    return FALSE;               /* will not get here */
+	    return FALSE;		/* will not get here */
 	}
 
 	return(i);
@@ -386,42 +408,42 @@ const char *in_str;
 	static const struct alt_spl { const char* name; short pm_val; }
 	    names[] = {
 	    /* Alternate spellings */
-		{ "grey dragon",        PM_GRAY_DRAGON },
-		{ "baby grey dragon",   PM_BABY_GRAY_DRAGON },
-		{ "grey unicorn",       PM_GRAY_UNICORN },
-		{ "grey ooze",          PM_GRAY_OOZE },
-		{ "gray-elf",           PM_GREY_ELF },
+		{ "grey dragon",	PM_GRAY_DRAGON },
+		{ "baby grey dragon",	PM_BABY_GRAY_DRAGON },
+		{ "grey unicorn",	PM_GRAY_UNICORN },
+		{ "grey ooze",		PM_GRAY_OOZE },
+		{ "gray-elf",		PM_GREY_ELF },
 		{ "mindflayer",         PM_MIND_FLAYER },
 		{ "master mindflayer",  PM_MASTER_MIND_FLAYER },
 	    /* Hyphenated names */
-		{ "ki rin",             PM_KI_RIN },
-		{ "uruk hai",           PM_URUK_HAI },
-		{ "orc captain",        PM_ORC_CAPTAIN },
-		{ "woodland elf",       PM_WOODLAND_ELF },
-		{ "green elf",          PM_GREEN_ELF },
-		{ "grey elf",           PM_GREY_ELF },
-		{ "gray elf",           PM_GREY_ELF },
-		{ "elf lord",           PM_ELF_LORD },
+		{ "ki rin",		PM_KI_RIN },
+		{ "uruk hai",		PM_URUK_HAI },
+		{ "orc captain",	PM_ORC_CAPTAIN },
+		{ "woodland elf",	PM_WOODLAND_ELF },
+		{ "green elf",		PM_GREEN_ELF },
+		{ "grey elf",		PM_GREY_ELF },
+		{ "gray elf",		PM_GREY_ELF },
+		{ "elf lord",		PM_ELF_LORD },
 #if 0	/* OBSOLETE */
-		{ "high elf",           PM_HIGH_ELF },
+		{ "high elf",		PM_HIGH_ELF },
 #endif
-		{ "olog hai",           PM_OLOG_HAI },
+		{ "olog hai",		PM_OLOG_HAI },
 		{ "arch lich",		PM_ARCH_LICH },
 	    /* Some irregular plurals */
-		{ "incubi",             PM_INCUBUS },
-		{ "succubi",            PM_SUCCUBUS },
-		{ "violet fungi",       PM_VIOLET_FUNGUS },
-		{ "homunculi",          PM_HOMUNCULUS },
-		{ "baluchitheria",      PM_BALUCHITHERIUM },
-		{ "lurkers above",      PM_LURKER_ABOVE },
-		{ "cavemen",            PM_CAVEMAN },
-		{ "cavewomen",          PM_CAVEWOMAN },
+		{ "incubi",		PM_INCUBUS },
+		{ "succubi",		PM_SUCCUBUS },
+		{ "violet fungi",	PM_VIOLET_FUNGUS },
+		{ "homunculi",		PM_HOMUNCULUS },
+		{ "baluchitheria",	PM_BALUCHITHERIUM },
+		{ "lurkers above",	PM_LURKER_ABOVE },
+		{ "cavemen",		PM_CAVEMAN },
+		{ "cavewomen",		PM_CAVEWOMAN },
 #ifndef ZOUTHERN
 /*		{ "zruties",            PM_ZRUTY },*/
 #endif
-		{ "djinn",              PM_DJINNI },
-		{ "mumakil",            PM_MUMAK },
-		{ "erinyes",            PM_ERINYS },
+		{ "djinn",		PM_DJINNI },
+		{ "mumakil",		PM_MUMAK },
+		{ "erinyes",		PM_ERINYS },
 		{ "giant lice",         PM_GIANT_LOUSE },	/* RJ */
 	    /* falsely caught by -ves check above */
 		{ "master of thief",	PM_MASTER_OF_THIEVES },
@@ -438,7 +460,7 @@ const char *in_str;
 	for (len = 0, i = LOW_PM; i < NUMMONS; i++) {
 	    register int m_i_len = strlen(mons[i].mname);
 	    if (m_i_len > len && !strncmpi(mons[i].mname, str, m_i_len)) {
-		if (m_i_len == slen) return i;  /* exact match */
+		if (m_i_len == slen) return i;	/* exact match */
 		else if (slen > m_i_len &&
 			(str[m_i_len] == ' ' ||
 			 !strcmpi(&str[m_i_len], "s") ||
@@ -500,7 +522,7 @@ static const short grownups[][2] = {
 	{PM_GREEN_ELF, PM_ELF_LORD}, {PM_GREY_ELF, PM_ELF_LORD},
 	{PM_ELF_LORD, PM_ELVENKING},
 	{PM_LICH, PM_DEMILICH}, {PM_DEMILICH, PM_MASTER_LICH},
-	{PM_MASTER_LICH, PM_ARCH_LICH},        
+	{PM_MASTER_LICH, PM_ARCH_LICH},
 	{PM_VAMPIRE, PM_VAMPIRE_LORD}, {PM_VAMPIRE_LORD, PM_VAMPIRE_MAGE}, 
 	{PM_BAT, PM_GIANT_BAT},
 	{PM_CHICKATRICE, PM_COCKATRICE},
@@ -589,11 +611,13 @@ int montype;
 	return montype;
 }
 
-static const char *levitate[2]  = { "float", "Float" };
-static const char *fly[2]       = { "fly", "Fly" };
-static const char *slither[2]   = { "slither", "Slither" };
-static const char *ooze[2]      = { "ooze", "Ooze" };
-static const char *crawl[2]     = { "crawl", "Crawl" };
+static const char *levitate[4]	= { "float", "Float", "wobble", "Wobble" };
+static const char *flys[4]	= { "fly", "Fly", "flutter", "Flutter" };
+static const char *flyl[4]	= { "fly", "Fly", "stagger", "Stagger" };
+static const char *slither[4]	= { "slither", "Slither", "falter", "Falter" };
+static const char *ooze[4]	= { "ooze", "Ooze", "tremble", "Tremble" };
+static const char *immobile[4]	= { "wiggle", "Wiggle", "pulsate", "Pulsate" };
+static const char *crawl[4]	= { "crawl", "Crawl", "falter", "Falter" };
 
 const char *
 locomotion(ptr, def)
@@ -604,9 +628,31 @@ const char *def;
 
 	return (
 		is_floater(ptr) ? levitate[capitalize] :
-		is_flyer(ptr)   ? fly[capitalize] :
+		(is_flyer(ptr) && ptr->msize <= MZ_SMALL) ? flys[capitalize] :
+		(is_flyer(ptr) && ptr->msize > MZ_SMALL)  ? flyl[capitalize] :
 		slithy(ptr)     ? slither[capitalize] :
 		amorphous(ptr)  ? ooze[capitalize] :
+		!ptr->mmove	? immobile[capitalize] :
+		nolimbs(ptr)    ? crawl[capitalize] :
+		def
+	       );
+
+}
+
+const char *
+stagger(ptr, def)
+const struct permonst *ptr;
+const char *def;
+{
+	int capitalize = 2 + (*def == highc(*def));
+
+	return (
+		is_floater(ptr) ? levitate[capitalize] :
+		(is_flyer(ptr) && ptr->msize <= MZ_SMALL) ? flys[capitalize] :
+		(is_flyer(ptr) && ptr->msize > MZ_SMALL)  ? flyl[capitalize] :
+		slithy(ptr)     ? slither[capitalize] :
+		amorphous(ptr)  ? ooze[capitalize] :
+		!ptr->mmove	? immobile[capitalize] :
 		nolimbs(ptr)    ? crawl[capitalize] :
 		def
 	       );

@@ -42,20 +42,20 @@ mon_nam_too(outbuf, mon, other_mon)
 char *outbuf;
 struct monst *mon, *other_mon;
 {
-       Strcpy(outbuf, mon_nam(mon));
-       if (mon == other_mon)
-           switch (pronoun_gender(mon)) {
-           case 0:     Strcpy(outbuf, "himself");  break;
-           case 1:     Strcpy(outbuf, "herself");  break;
-           default:    Strcpy(outbuf, "itself"); break;
-           }
-       return outbuf;
+	Strcpy(outbuf, mon_nam(mon));
+	if (mon == other_mon)
+	    switch (pronoun_gender(mon)) {
+	    case 0:	Strcpy(outbuf, "himself");  break;
+	    case 1:	Strcpy(outbuf, "herself");  break;
+	    default:	Strcpy(outbuf, "itself"); break;
+	    }
+	return outbuf;
 }
- 
+
 STATIC_OVL void
 noises(magr, mattk)
 	register struct monst *magr;
-	register struct attack *mattk;
+	register struct	attack *mattk;
 {
 	boolean farq = (distu(magr->mx, magr->my) > 15);
 
@@ -110,11 +110,11 @@ missmm(magr, mdef, target, roll, mattk)
 				aobjnam(blocker, (char *)0));
 	                pline("%s %s.", buf, mon_nam_too(mon_name, magr, mdef));
 		} else {
-			fmt = (could_seduce(magr,mdef,mattk) && !magr->mcan) ?
+		fmt = (could_seduce(magr,mdef,mattk) && !magr->mcan) ?
 				"%s pretends to be friendly to" : 
 				((flags.verbose && nearmiss) ? "%s just misses" : 
 				  "%s misses");
-			Sprintf(buf, fmt, Monnam(magr));
+		Sprintf(buf, fmt, Monnam(magr));
 	                pline("%s %s.", buf, mon_nam_too(mon_name, mdef, magr));
 		}
 	} else  noises(magr, mattk);
@@ -124,15 +124,15 @@ missmm(magr, mdef, target, roll, mattk)
  *  fightm()  -- fight some other monster
  *
  *  Returns:
- *      0 - Monster did nothing.
- *      1 - If the monster made an attack.  The monster might have died.
+ *	0 - Monster did nothing.
+ *	1 - If the monster made an attack.  The monster might have died.
  *
  *  There is an exception to the above.  If mtmp has the hero swallowed,
  *  then we report that the monster did nothing so it will continue to
  *  digest the hero.
  */
 int
-fightm(mtmp)            /* have monsters fight each other */
+fightm(mtmp)		/* have monsters fight each other */
 	register struct monst *mtmp;
 {
 	register struct monst *mon, *nmon;
@@ -175,7 +175,7 @@ fightm(mtmp)            /* have monsters fight each other */
 		    notonhead = 0;
 		    result = mattackm(mtmp,mon);
 
-		    if (result & MM_AGR_DIED) return 1; /* mtmp died */
+		    if (result & MM_AGR_DIED) return 1;	/* mtmp died */
 		    /*
 		     *  If mtmp has the hero swallowed, lie and say there
 		     *  was no attack (this allows mtmp to digest the hero).
@@ -193,17 +193,17 @@ fightm(mtmp)            /* have monsters fight each other */
  * mattackm() -- a monster attacks another monster.
  *
  * This function returns a result bitfield:
- *      
- *	    --------- aggressor died
- *         /  ------- defender died
- *        /  /  ----- defender was hit
- *       /  /  /
- *      x  x  x
  *
- *      0x4     MM_AGR_DIED
- *      0x2     MM_DEF_DIED
- *      0x1     MM_HIT
- *      0x0     MM_MISS
+ *	    --------- aggressor died
+ *	   /  ------- defender died
+ *	  /  /  ----- defender was hit
+ *	 /  /  /
+ *	x  x  x
+ *
+ *	0x4	MM_AGR_DIED
+ *	0x2	MM_DEF_DIED
+ *	0x1	MM_HIT
+ *	0x0	MM_MISS
  *
  * Each successive attack has a lower probability of hitting.  Some rely on the
  * success of previous attacks.  ** this doen't seem to be implemented -dl **
@@ -214,17 +214,17 @@ int
 mattackm(magr, mdef)
     register struct monst *magr,*mdef;
 {
-    int             i,          /* loop counter */
-		    tmp,        /* amour class difference */
-		    strike,     /* hit this attack */
-		    attk,       /* attack attempted this time */
-		    struck = 0, /* hit at least once */
-		    res[NATTK]; /* results of all attacks */
-    struct attack   *mattk;
+    int		    i,		/* loop counter */
+		    tmp,	/* amour class difference */
+		    strike,	/* hit this attack */
+		    attk,	/* attack attempted this time */
+		    struck = 0,	/* hit at least once */
+		    res[NATTK];	/* results of all attacks */
+    struct attack   *mattk, alt_attk;
     struct permonst *pa, *pd;
 
-    if (!magr || !mdef) return(MM_MISS);                /* mike@genat */
-    if (!magr->mcanmove) return(MM_MISS);               /* riv05!a3 */
+    if (!magr || !mdef) return(MM_MISS);		/* mike@genat */
+    if (!magr->mcanmove) return(MM_MISS);		/* riv05!a3 */
     pa = magr->data;  pd = mdef->data;
 
     /* Grid bugs cannot attack at an angle. */
@@ -254,24 +254,24 @@ mattackm(magr, mdef)
     /* Set up the visibility of action */
     vis = (cansee(magr->mx,magr->my) && cansee(mdef->mx,mdef->my));
 
-    /*  Set flag indicating monster has moved this turn.  Necessary since a
-     *  monster might get an attack out of sequence (i.e. before its move) in
-     *  some cases, in which case this still counts as its move for the round
-     *  and it shouldn't move again.
+    /*	Set flag indicating monster has moved this turn.  Necessary since a
+     *	monster might get an attack out of sequence (i.e. before its move) in
+     *	some cases, in which case this still counts as its move for the round
+     *	and it shouldn't move again.
      */
     magr->mlstmv = monstermoves;
 
     /* Now perform all attacks for the monster. */
     for (i = 0; i < NATTK; i++) {
 	res[i] = MM_MISS;
-	mattk = &(pa->mattk[i]);
+	mattk = getmattk(pa, i, res, &alt_attk);
 	otmp = (struct obj *)0;
 	attk = 1;
 	switch (mattk->aatyp) {
-	    case AT_WEAP:               /* "hand to hand" attacks */
+	    case AT_WEAP:		/* "hand to hand" attacks */
 		if (magr->weapon_check == NEED_WEAPON || !MON_WEP(magr)) {
-			magr->weapon_check = NEED_HTH_WEAPON;
-			if (mon_wield_item(magr) != 0) return 0;
+		    magr->weapon_check = NEED_HTH_WEAPON;
+		    if (mon_wield_item(magr) != 0) return 0;
 		}
 		possibly_unwield(magr);
 		otmp = MON_WEP(magr);
@@ -302,16 +302,29 @@ mattackm(magr, mdef)
 		}
 		dieroll = rnd(20 + i);
 		strike = (tmp > dieroll);
-		if (strike)
+		if (strike) {
 		    res[i] = hitmm(magr, mdef, mattk);
-		else
+		    if((mdef->data == &mons[PM_BLACK_PUDDING] || mdef->data == &mons[PM_BROWN_PUDDING])
+		       && otmp && objects[otmp->otyp].oc_material == IRON
+		       && mdef->mhp > 1 && !mdef->mcan)
+		    {
+			if (clone_mon(mdef)) {
+			    if (vis) {
+				char buf[BUFSZ];
+
+				Strcpy(buf, Monnam(mdef));
+				pline("%s divides as %s hits it!", buf, mon_nam(magr));
+			    }
+			}
+		    }
+		} else
 		    missmm(magr, mdef, tmp, dieroll, mattk);
 		/* KMH -- don't accumulate to-hit bonuses */
 		if (otmp)
 		    tmp -= hitval(otmp, mdef);
 		break;
 
-	    case AT_HUGS:       /* automatic if prev two attacks succeed */
+	    case AT_HUGS:	/* automatic if prev two attacks succeed */
 		strike = (i >= 2 && res[i-1] == MM_HIT && res[i-2] == MM_HIT);
 		if (strike)
 		    res[i] = hitmm(magr, mdef, mattk);
@@ -319,12 +332,12 @@ mattackm(magr, mdef)
 		break;
 
 	    case AT_GAZE:
-		strike = 0;     /* will not wake up a sleeper */
+		strike = 0;	/* will not wake up a sleeper */
 		res[i] = gazemm(magr, mdef, mattk);
 		break;
 
 	    case AT_EXPL:
-		strike = 1;     /* automatic hit */
+		strike = 1;	/* automatic hit */
 		res[i] = explmm(magr, mdef, mattk);
 		break;
 
@@ -348,7 +361,7 @@ mattackm(magr, mdef)
 		}
 		break;
 
-	    default:            /* no attack */
+	    default:		/* no attack */
 		strike = 0;
 		attk = 0;
 		break;
@@ -369,7 +382,7 @@ mattackm(magr, mdef)
 	if (res[i] & MM_AGR_DIED)  return res[i];
 	/* return if aggressor can no longer attack */
 	if (!magr->mcanmove || magr->msleeping) return res[i];
-	if (res[i] & MM_HIT) struck = 1;        /* at least one hit */
+	if (res[i] & MM_HIT) struck = 1;	/* at least one hit */
     }
 
     return(struck ? MM_HIT : MM_MISS);
@@ -379,11 +392,11 @@ mattackm(magr, mdef)
 STATIC_OVL int
 hitmm(magr, mdef, mattk)
 	register struct monst *magr,*mdef;
-	struct  attack *mattk;
+	struct	attack *mattk;
 {
 	if(vis){
 		int compat;
-                char buf[BUFSZ], mdef_name[BUFSZ];
+		char buf[BUFSZ], mdef_name[BUFSZ];
 
 		if (!canspotmon(mdef))
 		    map_invisible(mdef->mx, mdef->my);
@@ -392,7 +405,7 @@ hitmm(magr, mdef, mattk)
 		if((compat = could_seduce(magr,mdef,mattk)) && !magr->mcan) {
 			Sprintf(buf, "%s %s", Monnam(magr),
 				mdef->mcansee ? "smiles at" : "talks to");
-                        pline("%s %s %s.", buf, mon_nam_too(mdef_name, mdef, magr),
+			pline("%s %s %s.", buf, mon_nam(mdef),
 				compat == 2 ?
 					"engagingly" : "seductively");
 		} else {
@@ -427,8 +440,8 @@ hitmm(magr, mdef, mattk)
 			default:
 				Sprintf(buf,"%s hits", magr_name);
 		    }
+		    pline("%s %s.", buf, mon_nam_too(mdef_name, mdef, magr));
 		}
-                pline("%s %s.", buf, mon_nam(mdef));
 	} else  noises(magr, mattk);
 	return(mdamagem(magr, mdef, mattk));
 }
@@ -446,9 +459,37 @@ gazemm(magr, mdef, mattk)
 		pline("%s %s...", buf, mon_nam(mdef));
 	}
 
-	if (!mdef->mcansee || mdef->msleeping) {
+	if (magr->mcan || !magr->mcansee ||
+	    (magr->minvis && !perceives(mdef->data)) ||
+	    !mdef->mcansee || mdef->msleeping) {
 	    if(vis) pline("but nothing happens.");
 	    return(MM_MISS);
+	}
+	/* call mon_reflects 2x, first test, then, if visible, print message */
+	if (magr->data == &mons[PM_MEDUSA] && mon_reflects(mdef, (char *)0)) {
+	    if (canseemon(mdef))
+		(void) mon_reflects(mdef,
+				    "The gaze is reflected away by %s %s.");
+	    if (mdef->mcansee) {
+		if (mon_reflects(magr, (char *)0)) {
+		    if (canseemon(magr))
+			(void) mon_reflects(magr,
+					"The gaze is reflected away by %s %s.");
+		    return (MM_MISS);
+		}
+		if (mdef->minvis && !perceives(magr->data)) {
+		    if (canseemon(magr)) {
+			pline("%s doesn't seem to notice that %s gaze was reflected.",
+			      Monnam(magr), mhis(magr));
+		    }
+		    return (MM_MISS);
+		}
+		if (canseemon(magr))
+		    pline("%s is turned to stone!", Monnam(magr));
+		monstone(magr);
+		if (magr->mhp > 0) return (MM_MISS);
+		return (MM_AGR_DIED);
+	    }
 	}
 
 	return(mdamagem(magr, mdef, mattk));
@@ -458,10 +499,10 @@ gazemm(magr, mdef, mattk)
 STATIC_OVL int
 gulpmm(magr, mdef, mattk)
 	register struct monst *magr, *mdef;
-	register struct attack *mattk;
+	register struct	attack *mattk;
 {
-	xchar   ax, ay, dx, dy;
-	int     status;
+	xchar	ax, ay, dx, dy;
+	int	status;
 	char buf[BUFSZ];
 	struct obj *obj;
 
@@ -489,28 +530,28 @@ gulpmm(magr, mdef, mattk)
 	 */
 	remove_monster(ax, ay);
 	place_monster(magr, dx, dy);
-	newsym(ax,ay);                  /* erase old position */
-	newsym(dx,dy);                  /* update new position */
+	newsym(ax,ay);			/* erase old position */
+	newsym(dx,dy);			/* update new position */
 
 	status = mdamagem(magr, mdef, mattk);
 
 	if ((status & MM_AGR_DIED) && (status & MM_DEF_DIED)) {
-	    ;                                   /* both died -- do nothing  */
+	    ;					/* both died -- do nothing  */
 	}
-	else if (status & MM_DEF_DIED) {        /* defender died */
+	else if (status & MM_DEF_DIED) {	/* defender died */
 	    /*
 	     *  Note:  remove_monster() was called in relmon(), wiping out
 	     *  magr from level.monsters[mdef->mx][mdef->my].  We need to
-	     *  put it back and display it.     -kd
+	     *  put it back and display it.	-kd
 	     */
 	    place_monster(magr, dx, dy);
 	    newsym(dx, dy);
 	}
-	else if (status & MM_AGR_DIED) {        /* agressor died */
+	else if (status & MM_AGR_DIED) {	/* agressor died */
 	    place_monster(mdef, dx, dy);
 	    newsym(dx, dy);
 	}
-	else {                                  /* both alive, put them back */
+	else {					/* both alive, put them back */
 	    if (cansee(dx, dy))
 		pline("%s is regurgitated!", Monnam(mdef));
 
@@ -526,13 +567,13 @@ gulpmm(magr, mdef, mattk)
 STATIC_OVL int
 explmm(magr, mdef, mattk)
 	register struct monst *magr, *mdef;
-	register struct attack *mattk;
+	register struct	attack *mattk;
 {
 	int result;
 
 	if(cansee(magr->mx, magr->my))
 		pline("%s explodes!", Monnam(magr));
-	else    noises(magr, mattk);
+	else	noises(magr, mattk);
 
 	remove_monster(magr->mx, magr->my);     /* MAR */
 	result = mdamagem(magr, mdef, mattk);
@@ -541,7 +582,7 @@ explmm(magr, mdef, mattk)
 	/* Kill off agressor if it didn't die. */
 	if (!(result & MM_AGR_DIED)) {
 	    mondead(magr);
-	    if (magr->mhp > 0) return result;   /* life saved */
+	    if (magr->mhp > 0) return result;	/* life saved */
 	    result |= MM_AGR_DIED;
 	}
 	/* KMH -- Player gets blame for flame/freezing sphere */
@@ -559,20 +600,24 @@ explmm(magr, mdef, mattk)
  */
 STATIC_OVL int
 mdamagem(magr, mdef, mattk)
-	register struct monst   *magr, *mdef;
-	register struct attack  *mattk;
+	register struct monst	*magr, *mdef;
+	register struct attack	*mattk;
 {
-	struct  permonst *pa = magr->data, *pd = mdef->data;
-	int     tmp = d((int)mattk->damn,(int)mattk->damd);
+	struct	permonst *pa = magr->data, *pd = mdef->data;
+	int	tmp = d((int)mattk->damn,(int)mattk->damd);
 	int     canhitmon, objenchant;        
 	struct obj *obj;
         boolean nohit = FALSE;
 	char buf[BUFSZ];
+	int protector =
+	    mattk->aatyp == AT_TENT ? 0 :
+	    mattk->aatyp == AT_KICK ? W_ARMF : W_ARMG;
+	int num;
 
 	if (touch_petrifies(pd) && !resists_ston(magr) &&
 	   (mattk->aatyp != AT_WEAP || !otmp) &&
 	   (mattk->aatyp != AT_GAZE && mattk->aatyp != AT_EXPL) &&
-	   !(magr->misc_worn_check & W_ARMG)) {
+	   !(magr->misc_worn_check & protector)) {
 		if (poly_when_stoned(pa)) {
 		    mon_to_stone(magr);
 		    return MM_HIT; /* no damage during the polymorph */
@@ -629,7 +674,7 @@ mdamagem(magr, mdef, mattk)
 				"coughs spasmodically and collapses" :
 				"vomits violently and drops dead");
 		    mondied(magr);
-		    if (magr->mhp > 0) return 0;        /* lifesaved */
+		    if (magr->mhp > 0) return 0;	/* lifesaved */
 		    else if (magr->mtame && !vis)
 			You(brief_feeling, "queasy");
 		    return MM_AGR_DIED;
@@ -638,10 +683,37 @@ mdamagem(magr, mdef, mattk)
 		tmp = mdef->mhp;
 		/* Use up amulet of life saving */
 		if (!!(obj = mlifesaver(mdef))) m_useup(mdef, obj);
+
+		/* Is a corpse for nutrition possible?  It may kill magr */
+		if (!corpse_chance(mdef, magr, TRUE) || magr->mhp < 1)
+		    break;
+
+		/* Pets get nutrition from swallowing monster whole.
+		 * No nutrition from G_NOCORPSE monster, eg, undead.
+		 * DGST monsters don't die from undead corpses
+		 */
+		num = monsndx(mdef->data);
+		if (magr->mtame && !magr->isminion &&
+		    !(mvitals[num].mvflags & G_NOCORPSE)) {
+		    struct obj *virtualcorpse = mksobj(CORPSE, FALSE, FALSE);
+		    int nutrit;
+
+		    virtualcorpse->corpsenm = num;
+		    virtualcorpse->owt = weight(virtualcorpse);
+		    nutrit = dog_nutrition(magr, virtualcorpse);
+		    dealloc_obj(virtualcorpse);
+
+		    /* only 50% nutrition, 25% of normal eating time */
+		    if (magr->meating > 1) magr->meating = (magr->meating+3)/4;
+		    if (nutrit > 1) nutrit /= 2;
+		    EDOG(magr)->hungrytime += nutrit;
+		}
 		break;
 	    case AD_STUN:
 		if (magr->mcan) break;
-		if(vis) pline("%s staggers for a moment.", Monnam(mdef));
+		if (canseemon(mdef))
+		    pline("%s %s for a moment.", Monnam(mdef),
+			  makeplural(stagger(mdef->data, "stagger")));
 		mdef->mstun = 1;
 		/* fall through */
 	    case AD_WERE:
@@ -658,7 +730,7 @@ mdamagem(magr, mdef, mattk)
 		else if(mattk->aatyp == AT_WEAP) {
 		    if(otmp) {
 			if (otmp->otyp == CORPSE &&
-                                touch_petrifies(&mons[otmp->corpsenm]))
+				touch_petrifies(&mons[otmp->corpsenm]))
 			    goto do_stone_goto_label;
 
 			/* WAC -- Real weapon?
@@ -766,6 +838,7 @@ mdamagem(magr, mdef, mattk)
 		}
 		if (vis)
 		    pline("%s is %s!", Monnam(mdef),
+			  mdef->data == &mons[PM_WATER_ELEMENTAL] ? "boiling" :
 			  mattk->aatyp == AT_HUGS ?
 				"being roasted" : "on fire");
 		if (pd == &mons[PM_STRAW_GOLEM] ||
@@ -844,7 +917,7 @@ mdamagem(magr, mdef, mattk)
 		    pline("It burns %s!", mon_nam(mdef));
 		}
 		if (!rn2(30)) erode_armor(mdef, TRUE);
-		if (!rn2(6)) erode_weapon(MON_WEP(mdef), TRUE);
+		if (!rn2(6)) erode_obj(MON_WEP(mdef), TRUE, TRUE);
 		break;
 	    case AD_RUST:
 		if (!magr->mcan && pd == &mons[PM_IRON_GOLEM]) {
@@ -859,8 +932,8 @@ mdamagem(magr, mdef, mattk)
 		hurtmarmor(mdef, AD_RUST);
 		tmp = 0;
 		break;
-	    case AD_CORRODE:
-		hurtmarmor(mdef, AD_CORRODE);
+	    case AD_CORR:
+		hurtmarmor(mdef, AD_CORR);
 		tmp = 0;
 		break;
 	    case AD_DCAY:
@@ -905,7 +978,7 @@ do_stone_goto_label:
 		if (!resists_ston(mdef)) {
 			if (vis) pline("%s turns to stone!", Monnam(mdef));
 			monstone(mdef);
-label2:                 if (mdef->mhp > 0) return 0;
+label2:			if (mdef->mhp > 0) return 0;
 			else if (mdef->mtame && !vis)
 			    You(brief_feeling, "peculiarly sad");
 			return (MM_DEF_DIED | (grow_up(magr,mdef) ?
@@ -1002,7 +1075,7 @@ label2:                 if (mdef->mhp > 0) return 0;
 		if(!magr->mcan && vis && mdef->mspeed != MSLOW) {
 		    unsigned int oldspeed = mdef->mspeed;
 
-		    mon_adjust_speed(mdef, -1);
+		    mon_adjust_speed(mdef, -1, (struct obj *)0);
 		    if (mdef->mspeed != oldspeed && vis)
 			pline("%s slows down.", Monnam(mdef));
 		}
@@ -1057,7 +1130,7 @@ label2:                 if (mdef->mhp > 0) return 0;
 		
 		if (!night() && (pa == &mons[PM_GREMLIN])) break;
 		if (!magr->mcan && !rn2(10)) {
-		    mdef->mcan = 1;     /* cancelled regardless of lifesave */
+		    mdef->mcan = 1;	/* cancelled regardless of lifesave */
 		    if (is_were(pd) && pd->mlet != S_HUMAN)
 			were_change(mdef);
 		    if (pd == &mons[PM_CLAY_GOLEM]) {
@@ -1119,16 +1192,22 @@ label2:                 if (mdef->mhp > 0) return 0;
 #ifdef SEDUCE
 	    case AD_SSEX:
 #endif
-	    case AD_SITM:       /* for now these are the same */
+	    case AD_SITM:	/* for now these are the same */
 	    case AD_SEDU:
-		if (!magr->mcan && mdef->minvent) {
+		/* find an object to steal, non-cursed if magr is tame */
+		for (obj = mdef->minvent; obj; obj = obj->nobj) {
+		    if (!magr->mtame || !obj->cursed)
+			break;
+		}
+
+		if (!magr->mcan && obj) {
 			char onambuf[BUFSZ], mdefnambuf[BUFSZ];
 
 			/* make a special x_monnam() call that never omits
 			   the saddle, and save it for later messages */
 			Strcpy(mdefnambuf, x_monnam(mdef, ARTICLE_THE, (char *)0, 0, FALSE));
 
-			otmp = mdef->minvent;
+			otmp = obj;
 #ifdef STEED
 			if (u.usteed == mdef &&
 					otmp == which_armor(mdef, W_SADDLE))
@@ -1137,7 +1216,9 @@ label2:                 if (mdef->mhp > 0) return 0;
 #endif
 			obj_extract_self(otmp);
 			if (otmp->owornmask) {
-				mdef->misc_worn_check &= ~(otmp->owornmask);
+				mdef->misc_worn_check &= ~otmp->owornmask;
+				if (otmp->owornmask & W_WEP)
+				    setmnotwielded(mdef,otmp);
 				otmp->owornmask = 0L;
 				update_mon_intrinsics(mdef, otmp, FALSE);
 			}
@@ -1189,6 +1270,7 @@ label2:                 if (mdef->mhp > 0) return 0;
 	    case AD_DRIN:
 		if (notonhead || !has_head(pd)) {
 		    if (vis) pline("%s doesn't seem harmed.", Monnam(mdef));
+		    /* Not clear what to do for green slimes */
 		    tmp = 0;
 		    break;
 		}
@@ -1197,7 +1279,7 @@ label2:                 if (mdef->mhp > 0) return 0;
 			Strcpy(buf, s_suffix(Monnam(mdef)));
 			pline("%s helmet blocks %s attack to %s head.",
 				buf, s_suffix(mon_nam(magr)),
-				his[pronoun_gender(mdef)]);
+				mhis(mdef));
 		    }
 		    break;
 		}
@@ -1213,13 +1295,14 @@ label2:                 if (mdef->mhp > 0) return 0;
 		}
 		if (tmp >= mdef->mhp && vis)
 		    pline("%s last thought fades away...",
-				  s_suffix(Monnam(mdef)));
+			          s_suffix(Monnam(mdef)));
 		break;
 	    case AD_SLIM:
 	    	if (!rn2(4) && !is_fire(mdef->data) &&
+	    			mdef->data != &mons[PM_SALAMANDER] &&
 	    			mdef->data != &mons[PM_GREEN_SLIME]) {
 	    	    if (vis) pline("%s turns into slime.", Monnam(mdef));
-	    	    (void) newcham(mdef, &mons[PM_GREEN_SLIME], vis);
+	    	    (void) newcham(mdef, &mons[PM_GREEN_SLIME], FALSE, vis);
 	    	    tmp = 0;
 	    	}
 	    	break;
@@ -1259,7 +1342,7 @@ label2:                 if (mdef->mhp > 0) return 0;
 				tmp = 0;
 			}
 			break;
-	    default:    tmp = 0;
+	    default:	tmp = 0;
 			break;
 	}
 	if(!tmp) return(MM_MISS);
@@ -1299,8 +1382,8 @@ label2:                 if (mdef->mhp > 0) return 0;
 #ifdef OVL0
 
 int
-noattacks(ptr)                  /* returns 1 if monster doesn't attack */
-	struct  permonst *ptr;
+noattacks(ptr)			/* returns 1 if monster doesn't attack */
+	struct	permonst *ptr;
 {
 	int i;
 
@@ -1321,10 +1404,10 @@ int amt, how;
 	    shieldeff(mon->mx, mon->my);
 	} else if (mon->mcanmove) {
 	    amt += (int) mon->mfrozen;
-	    if (amt > 0) {      /* sleep for N turns */
+	    if (amt > 0) {	/* sleep for N turns */
 		mon->mcanmove = 0;
 		mon->mfrozen = min(amt, 127);
-	    } else {            /* sleep until awakened */
+	    } else {		/* sleep until awakened */
 		mon->msleeping = 1;
 	    }
 	    return 1;
@@ -1356,7 +1439,7 @@ register struct obj *obj;
 
 	if (!magr || !mdef || !obj) return; /* just in case */
 
-	if (dmgtype(mdef->data, AD_CORRODE))
+	if (dmgtype(mdef->data, AD_CORR))
 	    is_acid = TRUE;
 	else if (dmgtype(mdef->data, AD_RUST))
 	    is_acid = FALSE;
@@ -1369,7 +1452,7 @@ register struct obj *obj;
 		if (obj->greased || obj->oerodeproof || (obj->blessed && rn2(3))) {
 		    if (cansee(mdef->mx, mdef->my) && flags.verbose)
 			pline("%s weapon is not affected.",
-					 s_suffix(Monnam(magr)));
+			                 s_suffix(Monnam(magr)));
 		    if (obj->greased && !rn2(2)) obj->greased = 0;
 		} else {
 		    if (cansee(mdef->mx, mdef->my)) {
@@ -1390,11 +1473,11 @@ register struct monst *magr, *mdef;
 register struct obj *otemp;
 {
 	char buf[BUFSZ];
+	if (!flags.verbose || Blind || !mon_visible(magr)) return;
 	Strcpy(buf, mon_nam(mdef));
-	if (!flags.verbose || Blind) return;
 	pline("%s %s %s %s at %s.", Monnam(magr),
 	      (objects[otemp->otyp].oc_dir & PIERCE) ? "thrusts" : "swings",
-	      his[pronoun_gender(magr)], xname(otemp), buf);
+	      mhis(magr), singular(otemp, xname), buf);
 }
 
 /*
@@ -1441,11 +1524,11 @@ int mdead;
 		} else tmp = 0;
 		goto assess_dmg;
 	    case AD_ENCH:	/* KMH -- remove enchantment (disenchanter) */
-			if (mhit && !mdef->mcan && otmp) {
+		if (mhit && !mdef->mcan && otmp) {
 				drain_item(otmp);
-				/* No message */
-			}
-			break;
+		    /* No message */
+		}
+		break;
 	    default:
 		break;
 	}
@@ -1501,7 +1584,8 @@ int mdead;
 		if (!magr->mstun) {
 		    magr->mstun = 1;
 		    if (canseemon(magr))
-			pline("%s staggers...", Monnam(magr));
+			pline("%s %s...", Monnam(magr),
+			      makeplural(stagger(magr->data, "stagger")));
 		}
 		tmp = 0;
 		break;

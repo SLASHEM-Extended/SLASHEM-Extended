@@ -67,40 +67,40 @@ int en;
 		/* WAC 'F' and 'I' get bonus similar to 'W' */
 		case PM_FLAME_MAGE:
 		case PM_ICE_MAGE:
-		case PM_PRIEST:
-		case PM_WIZARD:
-			return(2 * en);
-		case PM_HEALER:
-		case PM_KNIGHT:
-			return((3 * en) / 2);
-		case PM_BARBARIAN:
-		case PM_VALKYRIE:
-			return((3 * en) / 4);
-		default:
-			return (en);
+	case PM_PRIEST:
+	case PM_WIZARD:
+	    return(2 * en);
+	case PM_HEALER:
+	case PM_KNIGHT:
+	    return((3 * en) / 2);
+	case PM_BARBARIAN:
+	case PM_VALKYRIE:
+	    return((3 * en) / 4);
+	default:
+	    return (en);
 	}
 }
 
 int
-experience(mtmp, nk)    /* return # of exp points for mtmp after nk killed */
-	register struct monst *mtmp;
-	register int    nk;
+experience(mtmp, nk)	/* return # of exp points for mtmp after nk killed */
+	register struct	monst *mtmp;
+	register int	nk;
 #if defined(MAC_MPW)
 # pragma unused(nk)
 #endif
 {
 	register struct permonst *ptr = mtmp->data;
-	int     i, tmp, tmp2;
+	int	i, tmp, tmp2;
 
 	tmp = 1 + mtmp->m_lev * mtmp->m_lev;
 
-/*      For higher ac values, give extra experience */
+/*	For higher ac values, give extra experience */
 	if((i = find_mac(mtmp)) < 3) tmp += (7 - i) * (i < 0) ? 2 : 1;
 
-/*      For very fast monsters, give extra experience */
+/*	For very fast monsters, give extra experience */
 	if(ptr->mmove >= 12) tmp += (ptr->mmove >= 18) ? 5 : 3;
 
-/*      For each "special" attack type give extra experience */
+/*	For each "special" attack type give extra experience */
 	for(i = 0; i < NATTK; i++) {
 	    tmp2 = ptr->mattk[i].aatyp;
 	    if(tmp2 > AT_BUTT) {
@@ -111,7 +111,7 @@ experience(mtmp, nk)    /* return # of exp points for mtmp after nk killed */
 	    }
 	}
 
-/*      For each "special" damage type give extra experience */
+/*	For each "special" damage type give extra experience */
 	for(i = 0; i < NATTK; i++) {
 	    tmp2 = ptr->mattk[i].adtyp;
 	    if(tmp2 > AD_PHYS && tmp2 < AD_BLND) tmp += 2*mtmp->m_lev;
@@ -125,10 +125,10 @@ experience(mtmp, nk)    /* return # of exp points for mtmp after nk killed */
 		tmp += 1000;
 	}
 
-/*      For certain "extra nasty" monsters, give even more */
+/*	For certain "extra nasty" monsters, give even more */
 	if (extra_nasty(ptr)) tmp += (7 * mtmp->m_lev);
 
-/*      For higher level monsters, an additional bonus is given */
+/*	For higher level monsters, an additional bonus is given */
 	if(mtmp->m_lev > 8) tmp += 50;
 
 #ifdef MAIL
@@ -185,11 +185,11 @@ boolean force;		/* Force the loss of an experience level */
 	else if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 
 	if (u.ulevel < urole.xlev)
-	    num = rn1(u.ulevel/2 + urole.enadv.lornd + urace.enadv.lornd,
-			urole.enadv.lofix + urace.enadv.lofix);
+	    num = rn1((int)ACURR(A_WIS)/2 + urole.enadv.lornd + urace.enadv.lornd,
+	    		urole.enadv.lofix + urace.enadv.lofix);
 	else
-	    num = rn1(u.ulevel/2 + urole.enadv.hirnd + urace.enadv.hirnd,
-			urole.enadv.hifix + urace.enadv.hifix);
+	    num = rn1((int)ACURR(A_WIS)/2 + urole.enadv.hirnd + urace.enadv.hirnd,
+	    		urole.enadv.hifix + urace.enadv.hifix);
 	num = enermod(num);		/* M. Stephenson */
 	u.uenmax -= num;
 	if (u.uenmax < 0) u.uenmax = 0;
@@ -275,13 +275,17 @@ boolean incr;	/* true iff via incremental experience growth */
 	num = newhp();
 	u.uhpmax += num;
 	u.uhp += num;
-
+	if (Upolyd) {
+	    num = rnd(8);
+	    u.mhmax += num;
+	    u.mh += num;
+	}
 	if (u.ulevel < urole.xlev)
 	    num = rn1((int)ACURR(A_WIS)/2 + urole.enadv.lornd + urace.enadv.lornd,
-	    		urole.enadv.lofix + urace.enadv.lofix);
+			urole.enadv.lofix + urace.enadv.lofix);
 	else
 	    num = rn1((int)ACURR(A_WIS)/2 + urole.enadv.hirnd + urace.enadv.hirnd,
-	    		urole.enadv.hifix + urace.enadv.hifix);
+			urole.enadv.hifix + urace.enadv.hifix);
 	num = enermod(num);	/* M. Stephenson */
 	u.uenmax += num;
 	u.uen += num;
@@ -308,7 +312,7 @@ rndexp()
 	long minexp, maxexp, diff, factor;
 
 	minexp = (u.ulevel == 1) ? 0L : newuexp(u.ulevel - 1);
-		maxexp = newuexp(u.ulevel);
+	maxexp = newuexp(u.ulevel);
 	diff = maxexp - minexp,  factor = 1L;
 	while (diff >= (long)LARGEST_INT)
 	    diff /= 2L,  factor *= 2L;

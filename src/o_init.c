@@ -75,9 +75,7 @@ shuffle(o_low, o_high, domaterial)
 {
 	int i, j, num_to_shuffle;
 	short sw;
-#ifdef TEXTCOLOR
 	int color;
-#endif /* TEXTCOLOR */
 
 	for (num_to_shuffle = 0, j=o_low; j <= o_high; j++)
 		if (!objects[j].oc_name_known) num_to_shuffle++;
@@ -94,11 +92,10 @@ shuffle(o_low, o_high, domaterial)
 		sw = objects[j].oc_tough;
 		objects[j].oc_tough = objects[i].oc_tough;
 		objects[i].oc_tough = sw;
-#ifdef TEXTCOLOR
 		color = objects[j].oc_color;
 		objects[j].oc_color = objects[i].oc_color;
 		objects[i].oc_color = color;
-#endif /* TEXTCOLOR */
+
 		/* shuffle material */
 		if (domaterial) {
 			sw = objects[j].oc_material;
@@ -313,21 +310,21 @@ boolean credit_hero;
 	if (Hallucination) return;
 
     if (!objects[oindx].oc_name_known) {
-		register int dindx, acls = objects[oindx].oc_class;
+	register int dindx, acls = objects[oindx].oc_class;
 
-		/* Loop thru disco[] 'til we find the target (which may have been
-		   uname'd) or the next open slot; one or the other will be found
-		   before we reach the next class...
-		 */
-		for (dindx = bases[acls]; disco[dindx] != 0; dindx++)
-		    if (disco[dindx] == oindx) break;
-		disco[dindx] = oindx;
+	/* Loop thru disco[] 'til we find the target (which may have been
+	   uname'd) or the next open slot; one or the other will be found
+	   before we reach the next class...
+	 */
+	for (dindx = bases[acls]; disco[dindx] != 0; dindx++)
+	    if (disco[dindx] == oindx) break;
+	disco[dindx] = oindx;
 
-		if (mark_as_known) {
-		    objects[oindx].oc_name_known = 1;
+	if (mark_as_known) {
+	    objects[oindx].oc_name_known = 1;
 	    if (credit_hero) exercise(A_WIS, TRUE);
-		}
-		if (moves > 1L) update_inventory();
+	}
+	if (moves > 1L) update_inventory();
     }
 }
 
@@ -352,7 +349,7 @@ register int oindx;
 	/* clear last slot */
 	if (found) disco[dindx-1] = 0;
 	else impossible("named object not in disco");
-        update_inventory();
+	update_inventory();
     }
 }
 
@@ -361,8 +358,8 @@ interesting_to_discover(i)
 register int i;
 {
 	/* Pre-discovered objects are now printed with a '*' */
-      return((boolean)(objects[i].oc_uname != (char *)0 ||
-  	    (objects[i].oc_name_known && OBJ_DESCR(objects[i]) != (char *)0)));
+    return((boolean)(objects[i].oc_uname != (char *)0 ||
+	    (objects[i].oc_name_known && OBJ_DESCR(objects[i]) != (char *)0)));
 }
 
 /* items that should stand out once they're known */
@@ -404,7 +401,7 @@ dodiscovered()				/* free after Robert Viduya */
 	    if (!dis++)
 		add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_INVERSE,
 		  "Unique Items", MENU_UNSELECTED);
-	    Sprintf(buf, "  %s", OBJ_NAME(objects[uniq_objs[i]]));
+		Sprintf(buf, "  %s", OBJ_NAME(objects[uniq_objs[i]]));
 	    add_menu(tmpwin, objnum_to_glyph(uniq_objs[i]), &any,
 	      0, 0, ATR_NONE, buf, MENU_UNSELECTED);
 	    ++ct;
@@ -415,9 +412,9 @@ dodiscovered()				/* free after Robert Viduya */
     /* several classes are omitted from packorder; one is of interest here */
     Strcpy(classes, flags.inv_order);
     if (!index(classes, VENOM_CLASS)) {
-		s = eos(classes);
-		*s++ = VENOM_CLASS;
-		*s = '\0';
+	s = eos(classes);
+	*s++ = VENOM_CLASS;
+	*s = '\0';
     }
 
     for (s = classes; *s; s++) {
@@ -430,11 +427,11 @@ dodiscovered()				/* free after Robert Viduya */
 		if (oclass != prev_class) {
 			add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_INVERSE,
 			  let_to_name(oclass, FALSE), MENU_UNSELECTED);
-			prev_class = oclass;
+		    prev_class = oclass;
 		}
 		Sprintf(buf, "%s %s",
 		  (objects[dis].oc_pre_discovered ? "*" : " "),
-		  obj_typename(dis));
+				obj_typename(dis));
 		add_menu(tmpwin, objnum_to_glyph(dis), &any, 0, 0,
 		  ATR_NONE, buf, MENU_UNSELECTED);
 	    }

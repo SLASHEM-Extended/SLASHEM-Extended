@@ -72,8 +72,8 @@ char *outbuf;
 
 /* Partial rubouts for engraving characters. -3. */
 static const struct {
-	char            wipefrom;
-	const char *    wipeto;
+	char		wipefrom;
+	const char *	wipeto;
 } rubouts[] = {
 	{'A', "^"},     {'B', "Pb["},   {'C', "("},     {'D', "|)["},
 	{'E', "|FL[_"}, {'F', "|-"},    {'G', "C("},    {'H', "|-"},
@@ -94,7 +94,7 @@ void
 wipeout_text(engr, cnt, seed)
 char *engr;
 int cnt;
-unsigned seed;          /* for semi-controlled randomization */
+unsigned seed;		/* for semi-controlled randomization */
 {
 	char *s;
 	int i, j, nxt, use_rubout, lth = (int)strlen(engr);
@@ -132,7 +132,7 @@ unsigned seed;          /* for semi-controlled randomization */
 			     * Pick one of the substitutes at random.
 			     */
 			    if (!seed)
-			    j = rn2(strlen(rubouts[i].wipeto));
+				j = rn2(strlen(rubouts[i].wipeto));
 			    else {
 				seed *= 31,  seed %= (BUFSZ-1);
 				j = seed % (strlen(rubouts[i].wipeto));
@@ -173,7 +173,7 @@ register int x, y;
 	if ((x == u.ux) && (y == u.uy) && u.uswallow &&
 		is_animal(u.ustuck->data))
 	    return "maw";
-	else if (IS_AIR(lev->typ))
+	else if (IS_AIR(lev->typ) && Is_airlevel(&u.uz))
 	    return "air";
 	else if (is_pool(x,y))
 	    return "water";
@@ -299,7 +299,7 @@ register int x,y;
 boolean always_prompt; /* Always ask the yn question */
 {
 	register struct engr *ep = engr_at(x,y);
-	register int    sensed = 0;
+	register int	sensed = 0;
 	char buf[BUFSZ];
 	
 	/* Sensing an engraving does not require sight,
@@ -360,9 +360,9 @@ boolean always_prompt; /* Always ask the yn question */
 		int len;
 	    	char *et;
 	    	unsigned maxelen = BUFSZ - sizeof("You feel the words: \"\". ");
-	    	len=strlen(ep->engr_txt);
+	    	len = strlen(ep->engr_txt);
 	    	if (len > maxelen) {
-	    		strncpy(buf,  ep->engr_txt, maxelen);
+	    		(void)strncpy(buf,  ep->engr_txt, (int)maxelen);
 			buf[maxelen] = '\0';
 			et = buf;
 		} else
@@ -402,7 +402,8 @@ register xchar e_type;
 	ep->engr_y = y;
 	ep->engr_txt = (char *)(ep + 1);
 	Strcpy(ep->engr_txt, s);
-	if(strcmp(s, "Elbereth")) exercise(A_WIS, TRUE);
+	/* engraving Elbereth shows wisdom */
+	if(!strcmp(s, "Elbereth")) exercise(A_WIS, TRUE);
 	ep->engr_time = e_time;
 	ep->engr_type = e_type > 0 ? e_type : rnd(N_ENGRAVE-1);
 	ep->engr_lth = strlen(s) + 1;
@@ -419,14 +420,14 @@ int x, y;
 }
 
 /*
- *      freehand - returns true if player has a free hand
+ *	freehand - returns true if player has a free hand
  */
 int
 freehand()
 {
 	return(!uwep || !welded(uwep) ||
 	   (!bimanual(uwep) && (!uarms || !uarms->cursed)));
-/*      if ((uwep && bimanual(uwep)) ||
+/*	if ((uwep && bimanual(uwep)) ||
 	    (uwep && uarms))
 		return(0);
 	else
@@ -438,63 +439,61 @@ static NEARDATA const char styluses[] =
 	  GEM_CLASS, RING_CLASS, 0 };
 
 /* Mohs' Hardness Scale:
- *  1 - Talc             6 - Orthoclase
- *  2 - Gypsum           7 - Quartz
- *  3 - Calcite          8 - Topaz
- *  4 - Fluorite         9 - Corundum
- *  5 - Apatite         10 - Diamond
+ *  1 - Talc		 6 - Orthoclase
+ *  2 - Gypsum		 7 - Quartz
+ *  3 - Calcite		 8 - Topaz
+ *  4 - Fluorite	 9 - Corundum
+ *  5 - Apatite		10 - Diamond
  *
  * Since granite is a igneous rock hardness ~ 7, anything >= 8 should
  * probably be able to scratch the rock.
  * Devaluation of less hard gems is not easily possible because obj struct
  * does not contain individual oc_cost currently. 7/91
  *
- * steel     -  5-8.5   (usu. weapon)
- * diamond    - 10                      * jade       -  5-6      (nephrite)
- * ruby       -  9      (corundum)      * turquoise  -  5-6
- * sapphire   -  9      (corundum)      * opal       -  5-6
- * topaz      -  8                      * glass      - ~5.5
- * emerald    -  7.5-8  (beryl)         * dilithium  -  4-5??
- * aquamarine -  7.5-8  (beryl)         * iron       -  4-5
- * garnet     -  7.25   (var. 6.5-8)    * fluorite   -  4
- * agate      -  7      (quartz)        * brass      -  3-4
- * amethyst   -  7      (quartz)        * gold       -  2.5-3
- * jasper     -  7      (quartz)        * silver     -  2.5-3
- * onyx       -  7      (quartz)        * copper     -  2.5-3
- * moonstone  -  6      (orthoclase)    * amber      -  2-2.5
+ * steel     -	5-8.5	(usu. weapon)
+ * diamond    - 10			* jade	     -	5-6	 (nephrite)
+ * ruby       -  9	(corundum)	* turquoise  -	5-6
+ * sapphire   -  9	(corundum)	* opal	     -	5-6
+ * topaz      -  8			* glass      - ~5.5
+ * emerald    -  7.5-8	(beryl)		* dilithium  -	4-5??
+ * aquamarine -  7.5-8	(beryl)		* iron	     -	4-5
+ * garnet     -  7.25	(var. 6.5-8)	* fluorite   -	4
+ * agate      -  7	(quartz)	* brass      -	3-4
+ * amethyst   -  7	(quartz)	* gold	     -	2.5-3
+ * jasper     -  7	(quartz)	* silver     -	2.5-3
+ * onyx       -  7	(quartz)	* copper     -	2.5-3
+ * moonstone  -  6	(orthoclase)	* amber      -	2-2.5
  */
 
 /* return 1 if action took 1 (or more) moves, 0 if error or aborted */
 int
 doengrave()
 {
-	boolean dengr = FALSE;  /* TRUE if we wipe out the current engraving */
+	boolean dengr = FALSE;	/* TRUE if we wipe out the current engraving */
 	boolean doblind = FALSE;/* TRUE if engraving blinds the player */
 	boolean doknown = FALSE;/* TRUE if we identify the stylus */
-	boolean eow = FALSE;    /* TRUE if we are overwriting oep */
-	boolean jello = FALSE;  /* TRUE if we are engraving in slime */
-	boolean ptext = TRUE;   /* TRUE if we must prompt for engrave text */
+	boolean eow = FALSE;	/* TRUE if we are overwriting oep */
+	boolean jello = FALSE;	/* TRUE if we are engraving in slime */
+	boolean ptext = TRUE;	/* TRUE if we must prompt for engrave text */
 	boolean teleengr =FALSE;/* TRUE if we move the old engraving */
 	boolean zapwand = FALSE;/* TRUE if we remove a wand charge */
-	xchar type = DUST;      /* Type of engraving made */
-	char buf[BUFSZ];        /* Buffer for final/poly engraving text */
-	char ebuf[BUFSZ];       /* Buffer for initial engraving text */
-	char qbuf[QBUFSZ];      /* Buffer for query text */
+	xchar type = DUST;	/* Type of engraving made */
+	char buf[BUFSZ];	/* Buffer for final/poly engraving text */
+	char ebuf[BUFSZ];	/* Buffer for initial engraving text */
+	char qbuf[QBUFSZ];	/* Buffer for query text */
 	char post_engr_text[BUFSZ]; /* Text displayed after engraving prompt */
-	const char *everb;      /* Present tense of engraving type */
-	const char *eloc;       /* Where the engraving is (ie dust/floor/...) */
-	register char *sp;      /* Place holder for space count of engr text */
-	register int len;       /* # of nonspace chars of new engraving text */
-	register int maxelen;   /* Max allowable length of new engraving text */
-	register int spct;      /* # of spaces in new engraving text */
-	register struct engr *oep = engr_at(u.ux,u.uy);
+	const char *everb;	/* Present tense of engraving type */
+	const char *eloc;	/* Where the engraving is (ie dust/floor/...) */
+	char *sp;		/* Place holder for space count of engr text */
+	int len;		/* # of nonspace chars of new engraving text */
+	int maxelen;		/* Max allowable length of engraving text */
+	struct engr *oep = engr_at(u.ux,u.uy);
 				/* The current engraving */
-	register struct obj *otmp; /* Object selected with which to engrave */
+	struct obj *otmp;	/* Object selected with which to engrave */
 	char *writer;
 
-
-	multi = 0;              /* moves consumed */
-	nomovemsg = (char *)0;  /* occupation end message */
+	multi = 0;		/* moves consumed */
+	nomovemsg = (char *)0;	/* occupation end message */
 
 	buf[0] = (char)0;
 	ebuf[0] = (char)0;
@@ -536,7 +535,7 @@ doengrave()
 	 */
 
 	otmp = getobj(styluses, "write with");
-	if(!otmp) return(0);            /* otmp == zeroobj if fingers */
+	if(!otmp) return(0);		/* otmp == zeroobj if fingers */
 
 	if (otmp == &zeroobj) writer = makeplural(body_part(FINGER));
 	else writer = xname(otmp);
@@ -564,10 +563,13 @@ doengrave()
 		return(0);
 	}
 	if (IS_GRAVE(levl[u.ux][u.uy].typ)) {
+	    if (!levl[u.ux][u.uy].disturbed) {
 		You("disturb the undead!");
+		levl[u.ux][u.uy].disturbed = 1;
 		(void) makemon(&mons[PM_GHOUL], u.ux, u.uy, NO_MM_FLAGS);
 		exercise(A_WIS, FALSE);
-		return(0);
+		return(1);
+	    }
 	}
 
 	/* SPFX for items */
@@ -612,7 +614,7 @@ doengrave()
 		ptext = FALSE;
 		break;
 
-	    case RANDOM_CLASS:  /* This should mean fingers */
+	    case RANDOM_CLASS:	/* This should mean fingers */
 		break;
 
 	    /* The charge is removed from the wand before prompting for
@@ -684,7 +686,7 @@ doengrave()
 		    case WAN_POLYMORPH:
 			if(oep)  {
 			    if (!Blind) {
-				type = (xchar)0;        /* random */
+				type = (xchar)0;	/* random */
 				(void) random_engraving(buf);
 			    }
 			    dengr = TRUE;
@@ -748,7 +750,7 @@ doengrave()
 			    break;
 		    case WAN_CANCELLATION:
 		    case WAN_MAKE_INVISIBLE:
-			if(oep) {
+			if (oep && oep->engr_type != HEADSTONE) {
 			    if (!Blind)
 				pline_The("engraving on the %s vanishes!",
 					surface(u.ux,u.uy));
@@ -756,7 +758,7 @@ doengrave()
 			}
 			break;
 		    case WAN_TELEPORTATION:
-			if (oep) {
+			if (oep && oep->engr_type != HEADSTONE) {
 			    if (!Blind)
 				pline_The("engraving on the %s vanishes!",
 					surface(u.ux,u.uy));
@@ -863,22 +865,23 @@ doengrave()
 		    case TOWEL:
 			/* Can't really engrave with a towel */
 			ptext = FALSE;
-			if (oep) {
+			if (oep)
 			    if ((oep->engr_type == DUST ) ||
 				(oep->engr_type == ENGR_BLOOD) ||
 				(oep->engr_type == MARK )) {
 				if (!Blind)
 				    You("wipe out the message here.");
 				else
-				    Your("%s gets %s.", xname(otmp),
-					  is_ice(u.ux,u.uy) ?
-					  "frosty" : "dusty");
+				    Your("%s %s %s.", xname(otmp),
+					 otense(otmp, "get"),
+					 is_ice(u.ux,u.uy) ?
+					 "frosty" : "dusty");
 				dengr = TRUE;
 			    } else
 				Your("%s can't wipe out this engraving.",
 				     xname(otmp));
-			} else
-			    Your("%s gets %s.", xname(otmp),
+			else
+			    Your("%s %s %s.", xname(otmp), otense(otmp, "get"),
 				  is_ice(u.ux,u.uy) ? "frosty" : "dusty");
 			break;
 		    default:
@@ -896,6 +899,18 @@ doengrave()
 	    case ILLOBJ_CLASS:
 		impossible("You're engraving with an illegal object!");
 		break;
+	}
+
+	if (IS_GRAVE(levl[u.ux][u.uy].typ)) {
+	    if (type == ENGRAVE || type == 0)
+		type = HEADSTONE;
+	    else {
+		/* ensures the "cannot wipe out" case */
+		type = DUST;
+		dengr = FALSE;
+		teleengr = FALSE;
+		buf[0] = (char)0;
+	    }
 	}
 
 	/* End of implement setup */
@@ -926,13 +941,14 @@ doengrave()
 	if (zapwand && (otmp->spe < 0)) {
 	    pline("%s %sturns to dust.",
 		  The(xname(otmp)), Blind ? "" : "glows violently, then ");
- You("are not going to get anywhere trying to write in the %s with your dust.",
-		is_ice(u.ux,u.uy) ? "frost" : "dust");
+	    if (!IS_GRAVE(levl[u.ux][u.uy].typ))
+		You("are not going to get anywhere trying to write in the %s with your dust.",
+		    is_ice(u.ux,u.uy) ? "frost" : "dust");
 	    useup(otmp);
 	    ptext = FALSE;
 	}
 
-	if (!ptext) {           /* Early exit for some implements. */
+	if (!ptext) {		/* Early exit for some implements. */
 	    if (otmp->oclass == WAND_CLASS && !can_reach_floor())
 		You_cant("reach the %s!", surface(u.ux,u.uy));
 	    return(1);
@@ -947,7 +963,10 @@ doengrave()
 
 	    /* Give player the choice to add to engraving. */
 
-	    if ( (type == oep->engr_type) && (!Blind ||
+	    if (type == HEADSTONE) {
+		/* no choice, only append */
+		c = 'y';
+	    } else if ( (type == oep->engr_type) && (!Blind ||
 		 (oep->engr_type == BURN) || (oep->engr_type == ENGRAVE)) ) {
 		c = yn_function("Do you want to add to the current engraving?",
 				ynqchars, 'y');
@@ -956,7 +975,7 @@ doengrave()
 		    return(0);
 		}
 	    }
-	    
+
 	    if (c == 'n' || Blind) {
 
 		if( (oep->engr_type == DUST) || (oep->engr_type == ENGR_BLOOD) ||
@@ -1030,23 +1049,15 @@ doengrave()
 	Sprintf(qbuf,"What do you want to %s the %s here?", everb, eloc);
 	getlin(qbuf, ebuf);
 
-	/* Mix up engraving if surface or state of mind is unsound.  */
-	/* Original kludge by stewr 870708.  modified by njm 910722. */
-	for (sp = ebuf; *sp; sp++)
-	    if ( ((type == DUST || type == ENGR_BLOOD) && !rn2(25)) ||
-		 (Blind   && !rn2(9)) || (Confusion     && !rn2(12)) ||
-		 (Stunned && !rn2(4)) || (Hallucination && !rn2(1)) )
-		 *sp = '!' + rn2(93); /* ASCII-code only */
-
 	/* Count the actual # of chars engraved not including spaces */
 	len = strlen(ebuf);
+	for (sp = ebuf; *sp; sp++) if (isspace(*sp)) len -= 1;
 
-	for (sp = ebuf, spct = 0; *sp; sp++) if (isspace((int)*sp)) spct++;
-
-	if ( (len == spct) || index(ebuf, '\033') ) {
+	if (len == 0 || index(ebuf, '\033')) {
 	    if (zapwand) {
 		if (!Blind)
-		    pline("%s glows, then fades.", The(xname(otmp)));
+		    pline("%s, then %s.",
+			  Tobjnam(otmp, "glow"), otense(otmp, "fade"));
 		return(1);
 	    } else {
 		pline(Never_mind);
@@ -1054,11 +1065,20 @@ doengrave()
 	    }
 	}
 
-	len -= spct;
-
 	/* A single `x' is the traditional signature of an illiterate person */
 	if (len != 1 || (!index(ebuf, 'x') && !index(ebuf, 'X')))
 	    u.uconduct.literate++;
+
+	/* Mix up engraving if surface or state of mind is unsound.
+	   Note: this won't add or remove any spaces. */
+	for (sp = ebuf; *sp; sp++) {
+	    if (isspace(*sp)) continue;
+	    if (((type == DUST || type == ENGR_BLOOD) && !rn2(25)) ||
+		    (Blind && !rn2(11)) || (Confusion && !rn2(7)) ||
+		    (Stunned && !rn2(4)) || (Hallucination && !rn2(2)))
+		*sp = ' ' + rnd(96 - 2);	/* ASCII '!' thru '~'
+						   (excludes ' ' and DEL) */
+	}
 
 	/* Previous engraving is overwritten */
 	if (eow) {
@@ -1086,17 +1106,24 @@ doengrave()
 		    maxelen = ((otmp->spe + 3) * 2) + 1;
 			/* -2 = 3, -1 = 5, 0 = 7, +1 = 9, +2 = 11
 			 * Note: this does not allow a +0 anything (except
-			 *       an athame) to engrave "Elbereth" all at once.
-			 *       However, you could now engrave "Elb", then
-			 *       "ere", then "th".
+			 *	 an athame) to engrave "Elbereth" all at once.
+			 *	 However, you could now engrave "Elb", then
+			 *	 "ere", then "th".
 			 */
 		    Your("%s dull.", aobjnam(otmp, "get"));
+		    if (otmp->unpaid) {
+			struct monst *shkp = shop_keeper(*u.ushops);
+			if (shkp) {
+			    You("damage it, you pay for it!");
+			    bill_dummy_object(otmp);
+			}
+		    }
 		    if (len > maxelen) {
 			multi = -maxelen;
 			otmp->spe = -3;
-		    } else
-			if (len > 1) otmp->spe -= len >> 1;
-			else otmp->spe -= 1; /* Prevent infinite engraving */
+		    } else if (len > 1)
+			otmp->spe -= len >> 1;
+		    else otmp->spe -= 1; /* Prevent infinite engraving */
 		} else
 		    if ( (otmp->oclass == RING_CLASS) ||
 			 (otmp->oclass == GEM_CLASS) )
@@ -1154,6 +1181,7 @@ doengrave()
 	if (doblind && !resists_blnd(&youmonst)) {
 	    You("are blinded by the flash!");
 	    make_blinded((long)rnd(50),FALSE);
+	    if (!Blind) Your(vision_clears);
 	}
 
 	return(1);
@@ -1198,7 +1226,7 @@ int fd;
 		mread(fd, (genericptr_t) ep, sizeof(struct engr) + lth);
 		ep->nxt_engr = head_engr;
 		head_engr = ep;
-		ep->engr_txt = (char *) (ep + 1);       /* Andreas Bormann */
+		ep->engr_txt = (char *) (ep + 1);	/* Andreas Bormann */
 		/* mark as finished for bones levels -- no problem for
 		 * normal levels as the player must have finished engraving
 		 * to be able to move again */

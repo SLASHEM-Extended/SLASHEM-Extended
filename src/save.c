@@ -23,7 +23,7 @@ static int count_only;
 boolean saverestore;
 
 #ifdef MICRO
-int dotcnt;	/* also used in restore */
+int dotcnt, dotrow;	/* also used in restore */
 #endif
 
 #ifdef ZEROCOMP
@@ -83,14 +83,14 @@ dosave()
                         if(yn("Really quit?") == 'n') saverestore = TRUE;
                 if(dosave0() && !saverestore) {
 #else
-                if(dosave0()) {               
+		if(dosave0()) {
 #endif
 			u.uhp = -1;		/* universal game's over indicator */
 			/* make sure they see the Saving message */
 			display_nhwindow(WIN_MESSAGE, TRUE);
 			exit_nhwindows("Be seeing you...");
 			terminate(EXIT_SUCCESS);
-		}
+	}
 /*WAC redraw later
 		else (void)doredraw();*/
 	}
@@ -141,14 +141,18 @@ int sig_unused;
 	terminate(EXIT_FAILURE);
 #  endif
 # else	/* SAVEONHANGUP */
-	if (!program_state.done_hup++ && program_state.something_worth_saving) {
+	if (!program_state.done_hup++) {
+	    if (program_state.something_worth_saving)
 		(void) dosave0();
 #  ifdef VMS
-		/* don't call exit when already within an exit handler;
-		   that would cancel any other pending user-mode handlers */
-		if (!program_state.exiting)
+	    /* don't call exit when already within an exit handler;
+	       that would cancel any other pending user-mode handlers */
+	    if (!program_state.exiting)
 #  endif
-			terminate(EXIT_FAILURE);
+	    {
+		clearlocks();
+		terminate(EXIT_FAILURE);
+	    }
 	}
 # endif
 	return;
@@ -207,6 +211,9 @@ dosave0()
 		return(0);
 	}
 
+	vision_recalc(2);	/* shut down vision to prevent problems
+				   in the event of an impossible() call */
+	
 	/* undo date-dependent luck adjustments made at startup time */
 	if(flags.moonphase == FULL_MOON)	/* ut-sally!fletcher */
 		change_luck(-1);		/* and unido!ab */
@@ -217,23 +224,10 @@ dosave0()
 
 #if defined(MICRO) && defined(TTY_GRAPHICS)
 	if (!strncmpi("tty", windowprocs.name, 3)) {
-	    dotcnt = 0;
-	    curs(WIN_MAP, 1, 1);
-	    putstr(WIN_MAP, 0, "Saving:");
-	    
-	    /* WAC - Cutesy gfx  - and to keep from overflowing */
-	    curs(WIN_MAP, 1, 2);
-	    putstr(WIN_MAP, 0, "[");
-	    
-	    while (dotcnt < COLNO/4) {
-		curs(WIN_MAP, ++dotcnt + 1,2);
-		putstr(WIN_MAP, 0, ".");
-		
-	    }
-	    
-	    curs(WIN_MAP, 2 + COLNO/4, 2);
-	    putstr(WIN_MAP, 0, "]");
-	    dotcnt = 0;
+	dotcnt = 0;
+	dotrow = 2;
+	curs(WIN_MAP, 1, 1);
+	  putstr(WIN_MAP, 0, "Saving:");
 	}
 #endif
 #ifdef MFLOPPY
@@ -281,7 +275,7 @@ dosave0()
 	else
 #endif
 */
-        savegamestate(fd, WRITE_SAVE | FREE_SAVE);
+	savegamestate(fd, WRITE_SAVE | FREE_SAVE);
 
 	/* While copying level files around, zero out u.uz to keep
 	 * parts of the restore code from completely initializing all
@@ -290,24 +284,24 @@ dosave0()
 	 */
 	uz_save = u.uz;
 	u.uz.dnum = u.uz.dlevel = 0;
+	/* these pointers are no longer valid, and at least u.usteed
+	 * may mislead place_monster() on other levels
+	 */
+	u.ustuck = (struct monst *)0;
+#ifdef STEED
+	u.usteed = (struct monst *)0;
+#endif
 
 	for(ltmp = (xchar)1; ltmp <= maxledgerno(); ltmp++) {
 		if (ltmp == ledger_no(&uz_save)) continue;
 		if (!(level_info[ltmp].flags & LFILE_EXISTS)) continue;
-#ifdef MICRO
-		/* WAC -- Keep from spilling off the screen */
-# ifdef TTY_GRAPHICS
-		if (!strncmpi("tty", windowprocs.name, 3)) {
-		    if (dotcnt == COLNO/2) dotcnt = 0;
-		    if (dotcnt < COLNO/4) {
-			curs(WIN_MAP, 2 + dotcnt++, 2);
-			putstr(WIN_MAP, 0, "+");
-		    } else {
-			curs(WIN_MAP, 2 - COLNO/4 + dotcnt++, 2);
-			putstr(WIN_MAP, 0, "-");
-		    }
+#if defined(MICRO) && defined(TTY_GRAPHICS)
+		curs(WIN_MAP, 1 + dotcnt++, dotrow);
+		if (dotcnt >= (COLNO - 1)) {
+			dotrow++;
+			dotcnt = 0;
 		}
-# endif
+		  putstr(WIN_MAP, 0, ".");
 		mark_synch();
 #endif
 		ofd = open_levelfile(ltmp);
@@ -331,8 +325,8 @@ dosave0()
 
 	/* get rid of current level --jgm */
 
-        delete_levelfile(ledger_no(&u.uz));
-        delete_levelfile(0);
+	delete_levelfile(ledger_no(&u.uz));
+	delete_levelfile(0);
 	compress_area(FILE_AREA_SAVE, fq_save);
 #ifdef AMIGA
 	ami_wbench_iconwrite(fq_save);
@@ -375,7 +369,7 @@ register int fd, mode;
 	bwrite(fd, (genericptr_t) &monstermoves, sizeof monstermoves);
 	bwrite(fd, (genericptr_t) &quest_status, sizeof(struct q_score));
 	bwrite(fd, (genericptr_t) spl_book,
-			sizeof(struct spell) * (MAXSPELL + 1));
+				sizeof(struct spell) * (MAXSPELL + 1));
 	bwrite(fd, (genericptr_t) tech_list,
 			sizeof(struct tech) * (MAXTECH + 1));
 	save_artifacts(fd);
@@ -484,9 +478,9 @@ int mode;
 		savelev0(fd, lev, mode);
 	}
 	if (mode != FREE_SAVE) {
-	level_info[lev].where = ACTIVE;
-	level_info[lev].time = moves;
-	level_info[lev].size = bytes_counted;
+		level_info[lev].where = ACTIVE;
+		level_info[lev].time = moves;
+		level_info[lev].size = bytes_counted;
 	}
 	return TRUE;
 }
@@ -543,7 +537,15 @@ int mode;
 	    for (y = 0; y < ROWNO; y++) {
 		for (x = 0; x < COLNO; x++) {
 		    prm = &levl[x][y];
+#ifdef DISPLAY_LAYERS
+		    if (prm->mem_bg == rgrm->mem_bg
+			&& prm->mem_trap == rgrm->mem_trap
+			&& prm->mem_obj == rgrm->mem_obj
+			&& prm->mem_corpse == rgrm->mem_corpse
+			&& prm->mem_invis == rgrm->mem_invis
+#else
 		    if (prm->glyph == rgrm->glyph
+#endif
 			&& prm->typ == rgrm->typ
 			&& prm->seenv == rgrm->seenv
 			&& prm->horizontal == rgrm->horizontal
@@ -917,7 +919,8 @@ register struct obj *otmp;
 	    if (Has_contents(otmp))
 		saveobjchn(fd,otmp->cobj,mode);
 	    if (release_data(mode)) {
-		if(otmp->oclass == FOOD_CLASS) food_disappears(otmp);
+		if (otmp->oclass == FOOD_CLASS) food_disappears(otmp);
+		if (otmp->oclass == SPBOOK_CLASS) book_disappears(otmp);
 		otmp->where = OBJ_FREE;	/* set to free so dealloc will work */
 		otmp->timed = 0;	/* not timed any more */
 		otmp->lamplit = 0;	/* caller handled lights */
@@ -1071,6 +1074,14 @@ freedynamicdata()
 	freenames();
 	free_waterlevel();
 	free_dungeons();
+
+	/* some pointers in iflags */
+	if (iflags.wc_font_map) free(iflags.wc_font_map);
+	if (iflags.wc_font_message) free(iflags.wc_font_message);
+	if (iflags.wc_font_text) free(iflags.wc_font_text);
+	if (iflags.wc_font_menu) free(iflags.wc_font_menu);
+	if (iflags.wc_font_status) free(iflags.wc_font_status);
+	if (iflags.wc_tile_file) free(iflags.wc_tile_file);
 
 #endif	/* FREE_ALL_MEMORY */
 	return;

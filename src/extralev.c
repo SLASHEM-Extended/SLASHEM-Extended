@@ -142,7 +142,7 @@ int x,y,dir;
 		return;
 	} else impossible("corridor in direction %d?",dir);
 }
-			
+
 /* Modified walkfrom() from mkmaze.c */
 STATIC_OVL
 void

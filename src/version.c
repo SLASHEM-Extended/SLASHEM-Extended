@@ -21,12 +21,12 @@ char *buf;
 {
 	return strcpy(buf, VERSION_ID);
 }
- 
+
 int
 doversion()
 {
-	char buf[BUFSZ];        
-  
+	char buf[BUFSZ];
+
 	pline(getversionstring(buf));
 	return 0;
 }
@@ -55,20 +55,20 @@ boolean complain;
 {
 	if (
 #ifdef VERSION_COMPATIBILITY
-            version_data->incarnation < VERSION_COMPATIBILITY ||
-            version_data->incarnation > VERSION_NUMBER
+	    version_data->incarnation < VERSION_COMPATIBILITY ||
+	    version_data->incarnation > VERSION_NUMBER
 #else
-            version_data->incarnation != VERSION_NUMBER
+	    version_data->incarnation != VERSION_NUMBER
 #endif
 	  ) {
 	    if (complain)
 		pline("Version mismatch for file \"%s\".", filename);
 	    return FALSE;
-        } else if (version_data->feature_set != VERSION_FEATURES ||
-                   version_data->entity_count != VERSION_SANITY1 ||
-                   version_data->struct_sizes != VERSION_SANITY2) {
+	} else if (version_data->feature_set != VERSION_FEATURES ||
+		   version_data->entity_count != VERSION_SANITY1 ||
+		   version_data->struct_sizes != VERSION_SANITY2) {
 	    if (complain)
-		pline("Configuration incompatability for file \"%s\".",
+		pline("Configuration incompatibility for file \"%s\".",
 		      filename);
 	    return FALSE;
 	}
@@ -83,11 +83,11 @@ int fd;
 const char *name;
 {
     int rlen;
-        struct version_info vers_info;
-	boolean verbose = name ? TRUE : FALSE;
+    struct version_info vers_info;
+    boolean verbose = name ? TRUE : FALSE;
 
     rlen = read(fd, (genericptr_t) &vers_info, sizeof vers_info);
-	minit();        /* ZEROCOMP */
+    minit();		/* ZEROCOMP */
     if (rlen == 0) {
 	if (verbose) {
 	    pline("File \"%s\" is empty?", name);
@@ -95,25 +95,25 @@ const char *name;
 	}
 	return FALSE;
     }
-        if (!check_version(&vers_info, name, verbose)) {
-		if (verbose) wait_synch();
-		return FALSE;
-	}
-	return TRUE;
+    if (!check_version(&vers_info, name, verbose)) {
+	if (verbose) wait_synch();
+	return FALSE;
+    }
+    return TRUE;
 }
 
 void
 store_version(fd)
 int fd;
 {
-        static struct version_info version_data = {
+	static struct version_info version_data = {
 			VERSION_NUMBER, VERSION_FEATURES,
 			VERSION_SANITY1, VERSION_SANITY2
 	};
 
 	bufoff(fd);
 	/* bwrite() before bufon() uses plain write() */
-        bwrite(fd,(genericptr_t)&version_data,(unsigned)(sizeof version_data));
+	bwrite(fd,(genericptr_t)&version_data,(unsigned)(sizeof version_data));
 	bufon(fd);
 	return;
 }

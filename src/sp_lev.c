@@ -884,8 +884,8 @@ struct mkroom	*croom;
 
 		    case M_AP_OBJECT:
 			for (i = 0; i < NUM_OBJECTS; i++)
-			    if (!strcmp(OBJ_NAME(objects[i]),
-					m->appear_as.str))
+			    if (OBJ_NAME(objects[i]) &&
+				!strcmp(OBJ_NAME(objects[i]),m->appear_as.str))
 				break;
 			if (i == NUM_OBJECTS) {
 			    impossible(
@@ -946,8 +946,10 @@ struct mkroom	*croom;
     struct obj *otmp;
     schar x, y;
     char c;
+    boolean named;	/* has a name been supplied in level description? */
 
     if (rn2(100) < o->chance) {
+	named = o->name.str ? TRUE : FALSE;
 
 	x = o->x; y = o->y;
 	if (croom)
@@ -964,9 +966,9 @@ struct mkroom	*croom;
 	    c = 0;
 
 	if (!c)
-	    otmp = mkobj_at(RANDOM_CLASS, x, y, !o->name.str);
+	    otmp = mkobj_at(RANDOM_CLASS, x, y, !named);
 	else if (o->id != -1)
-	    otmp = mksobj_at(o->id, x, y, TRUE, !o->name.str);
+	    otmp = mksobj_at(o->id, x, y, TRUE, !named);
 	else {
 	    /*
 	     * The special levels are compiled with the default "text" object
@@ -983,7 +985,7 @@ struct mkroom	*croom;
 		mkgold(0L, x, y);
 		otmp = g_at(x,y);
 	    } else
-		otmp = mkobj_at(oclass, x, y, !o->name.str);
+		otmp = mkobj_at(oclass, x, y, !named);
 	}
 
 	if (o->spe != -127)	/* That means NOT RANDOM! */
@@ -1014,9 +1016,8 @@ struct mkroom	*croom;
 		attach_egg_hatch_timeout(otmp);	/* attach new hatch timeout */
 	}
 
-	if (o->name.str) {	/* Give a name to that object */
+	if (named)
 	    otmp = oname(otmp, o->name.str);
-	}
 
 	switch(o->containment) {
 	    static struct obj *container = 0;
@@ -1028,7 +1029,7 @@ struct mkroom	*croom;
 		    break;
 		}
 		remove_object(otmp);
-		add_to_container(container, otmp);
+		(void) add_to_container(container, otmp);
 		goto o_done;		/* don't stack, but do other cleanup */
 	    /* container */
 	    case 2:
@@ -1066,8 +1067,9 @@ struct mkroom	*croom;
 		obj = was->minvent;
 		obj->owornmask = 0;
 		obj_extract_self(obj);
-		add_to_container(otmp, obj);
+		(void) add_to_container(otmp, obj);
 	    }
+	    otmp->owt = weight(otmp);
 	    mongone(was);
 	}
 
@@ -1096,7 +1098,7 @@ struct mkroom *croom;
 	    found = get_location(&x, &y, DRY);
 
 	if (found)
-	    make_engr_at(x, y, e->engr.str, 0L, e->etype);
+	make_engr_at(x, y, e->engr.str, 0L, e->etype);
 	free((genericptr_t) e->engr.str);
 }
 
@@ -1172,7 +1174,7 @@ create_altar(a, croom)
 	levl[x][y].typ = ALTAR;
 	levl[x][y].altarmask = amask;
 
-	if (a->shrine == -11) a->shrine = rn2(1);  /* handle random case */
+	if (a->shrine < 0) a->shrine = rn2(2);	/* handle random case */
 
 	if (oldtyp == FOUNTAIN)
 	    level.flags.nfountains--;
@@ -2237,7 +2239,8 @@ dlb *fd;
 			if (x != xstart && (IS_WALL(levl[x-1][y].typ) ||
 					    levl[x-1][y].horizontal))
 			    levl[x][y].horizontal = 1;
-		    } else if(levl[x][y].typ == HWALL)
+		    } else if(levl[x][y].typ == HWALL ||
+				levl[x][y].typ == IRONBARS)
 			levl[x][y].horizontal = 1;
 		    else if(levl[x][y].typ == LAVAPOOL)
 			levl[x][y].lit = 1;
@@ -2387,13 +2390,13 @@ dlb *fd;
 		typ = tmpdoor.mask == -1 ? rnddoor() : tmpdoor.mask;
 
 		if (get_location(&x, &y, DRY)) {
-		    if(levl[x][y].typ != SDOOR)
+		if(levl[x][y].typ != SDOOR)
 			levl[x][y].typ = DOOR;
-		    else {
+		else {
 			if(typ < D_CLOSED)
 			    typ = D_CLOSED; /* force it to be closed */
-		    }
-		    levl[x][y].doormask = typ;
+		}
+		levl[x][y].doormask = typ;
 		}
 
 		/* Now the complicated part, list it with each subroom */
@@ -2438,9 +2441,9 @@ dlb *fd;
 
 		x = tmpdb.x;  y = tmpdb.y;
 		if (get_location(&x, &y, DRY|WET)) {
-		    if (!create_drawbridge(x, y, tmpdb.dir, tmpdb.db_open))
-			impossible("Cannot create drawbridge.");
-		}
+		if (!create_drawbridge(x, y, tmpdb.dir, tmpdb.db_open))
+		    impossible("Cannot create drawbridge.");
+	}
 	}
 
 	Fread((genericptr_t) &n, 1, sizeof(n), fd);
@@ -2449,7 +2452,7 @@ dlb *fd;
 		Fread((genericptr_t)&tmpwalk, 1, sizeof(tmpwalk), fd);
 
 		if (get_location(&tmpwalk.x, &tmpwalk.y, DRY|WET))
-		    walklist[nwalk++] = tmpwalk;
+		walklist[nwalk++] = tmpwalk;
 	}
 
 	Fread((genericptr_t) &n, 1, sizeof(n), fd);
@@ -2483,15 +2486,15 @@ dlb *fd;
 
 		x = tmplad.x;  y = tmplad.y;
 		if (get_location(&x, &y, DRY)) {
-		    levl[x][y].typ = LADDER;
-		    if (tmplad.up == 1) {
+		levl[x][y].typ = LADDER;
+		if (tmplad.up == 1) {
 			xupladder = x;	yupladder = y;
 			levl[x][y].ladder = LA_UP;
-		    } else {
+		} else {
 			xdnladder = x;	ydnladder = y;
 			levl[x][y].ladder = LA_DOWN;
-		    }
 		}
+	}
 	}
 
 	prevstair.x = prevstair.y = 0;

@@ -217,7 +217,7 @@ flood_fill_rm(sx, sy, rmno, lit, anyroom)
 			flood_fill_rm(i+1,sy-1,rmno,lit,anyroom);
 		}
 	    }
-	}
+    }
     }
     if(isok(sx,sy+1)) {
 	for(i=sx; i<nx; i++) {
@@ -236,7 +236,7 @@ flood_fill_rm(sx, sy, rmno, lit, anyroom)
 			flood_fill_rm(i+1,sy+1,rmno,lit,anyroom);
 		}
 	    }
-	}
+    }
     }
     if(nx > max_rx) max_rx = nx - 1; /* nx is just past valid region */
     if(sy > max_ry) max_ry = sy;
@@ -349,6 +349,7 @@ finish_map(fg_typ, bg_typ, lit, walled)
 		for(j=0; j<ROWNO; j++)
 		    if((!IS_ROCK(fg_typ) && levl[i][j].typ == fg_typ) ||
 		       (!IS_ROCK(bg_typ) && levl[i][j].typ == bg_typ) ||
+		       (bg_typ == TREE && levl[i][j].typ == bg_typ) ||
 			(walled && IS_WALL(levl[i][j].typ)))
 			levl[i][j].lit = TRUE;
 	    for(i = 0; i < nroom; i++)

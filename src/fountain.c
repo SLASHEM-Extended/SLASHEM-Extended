@@ -1,5 +1,5 @@
 /*	SCCS Id: @(#)fountain.c	3.3	1999/08/16	*/
-/*      Copyright Scott R. Turner, srt@ucla, 10/27/86 */
+/*	Copyright Scott R. Turner, srt@ucla, 10/27/86 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 /* Code for drinking from fountains. */
@@ -56,7 +56,7 @@ dowaterdemon() /* Water demon */
 	/* 35% at level 1, 30% at level 2, 25% at level 3, etc... */            
 	if (rnd(100) > (60 + 5*level_difficulty())) {
 		pline("Grateful for %s release, %s grants you a wish!",
-		      his[pronoun_gender(mtmp)], he[pronoun_gender(mtmp)]);
+		      mhis(mtmp), mhe(mtmp));
 		makewish();
 		mongone(mtmp);
 	    } else if (t_at(mtmp->mx, mtmp->my))
@@ -127,7 +127,7 @@ genericptr_t poolcnt;
 	water_damage(level.objects[x][y], FALSE, TRUE);
 
 	if ((mtmp = m_at(x, y)) != 0)
-		(void) minwater(mtmp);
+		(void) minliquid(mtmp);
 	else
 		newsym(x,y);
 }
@@ -136,11 +136,12 @@ STATIC_OVL void
 dofindgem() /* Find a gem in the sparkling waters. */
 {
 	if (!Blind) You("spot a gem in the sparkling waters!");
+	else You_feel("a gem here!");
 	(void) mksobj_at(rnd_class(DILITHIUM_CRYSTAL, LUCKSTONE-1),
-						u.ux, u.uy, FALSE, FALSE);
+			 u.ux, u.uy, FALSE, FALSE);
 	levl[u.ux][u.uy].looted |= F_LOOTED;
 	newsym(u.ux, u.uy);
-	exercise(A_WIS, TRUE);                  /* a discovery! */
+	exercise(A_WIS, TRUE);			/* a discovery! */
 }
 
 void
@@ -182,7 +183,7 @@ boolean isyou;
 		levl[x][y].looted = 0;
 		levl[x][y].blessedftn = 0;
 		/* The location is seen if the hero/monster is invisible */
-		/* or felt if the hero is blind.                         */
+		/* or felt if the hero is blind.			 */
 		newsym(x, y);
 		level.flags.nfountains--;
 		if(isyou && slev && slev->flags.town)
@@ -213,7 +214,7 @@ drinkfountain()
 			flags.botl = 1;
 		    }
 		/* gain ability, blessed if "natural" luck is high */
-		i = rn2(A_MAX);         /* start at a random attribute */
+		i = rn2(A_MAX);		/* start at a random attribute */
 		for (ii = 0; ii < A_MAX; ii++) {
 		    if (adjattrib(i, 1, littleluck ? -1 : 0) && littleluck)
 			break;
@@ -280,7 +281,7 @@ drinkfountain()
 			morehungry(rn1(20, 11));
 			exercise(A_CON, FALSE);
 			for(obj = invent; obj ; obj = obj->nobj)
-				if (!rn2(5))    curse(obj);
+				if (!rn2(5))	curse(obj);
 			break;
 			}
 
@@ -326,7 +327,7 @@ drinkfountain()
 			pline("This water gives you bad breath!");
 			for(mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 			    if(!DEADMONSTER(mtmp))
-				mtmp->mflee = 1;
+				monflee(mtmp, 0, FALSE, FALSE);
 			}
 			break;
 
@@ -381,6 +382,7 @@ register struct obj *obj;
 			obj->oerodeproof = TRUE;
 			exercise(A_WIS, TRUE);
 		}
+		update_inventory();
 		levl[u.ux][u.uy].typ = ROOM;
 		levl[u.ux][u.uy].looted = 0;
 		if(Invisible) newsym(u.ux, u.uy);
@@ -460,7 +462,7 @@ register struct obj *obj;
 
 		/* We make fountains have more coins the closer you are to the
 		 * surface.  After all, there will have been more people going
-		 * by.  Just like a shopping mall!  Chris Woodbury  */
+		 * by.	Just like a shopping mall!  Chris Woodbury  */
 
 		    if (levl[u.ux][u.uy].looted) break;
 		    levl[u.ux][u.uy].looted |= F_LOOTED;
@@ -473,6 +475,7 @@ register struct obj *obj;
 		    newsym(u.ux,u.uy);
 		    break;
 	}
+	update_inventory();
 	dryup(u.ux, u.uy, TRUE);
 }
 
@@ -619,7 +622,7 @@ drinksink()
 			if (!Unchanging) {
 			if (!Unchanging) {
 				You("undergo a freakish metamorphosis!");
-				polyself();
+				polyself(FALSE);
 			}
 			}
 			break;

@@ -146,11 +146,16 @@ int mechanism;
 	boolean reading = (mechanism == BY_COOKIE ||
 			   mechanism == BY_PAPER);
 
-	if (reading && Blind) {
+	if (reading) {
+	    /* deal with various things that prevent reading */
+	    if (is_fainted() && mechanism == BY_COOKIE)
+	    	return;
+	    else if (Blind) {
 		if (mechanism == BY_COOKIE)
-		pline(fortune_msg);
+			pline(fortune_msg);
 		pline("What a pity that you cannot read it!");
-		return;
+	    	return;
+	    }
 	}
 	line = getrumor(truth, buf, reading ? FALSE : TRUE);
 	if (!*line)
@@ -159,8 +164,8 @@ int mechanism;
 	    case BY_ORACLE:
 	 	/* Oracle delivers the rumor */
 		pline("True to her word, the Oracle %ssays: ",
-		(!rn2(4) ? "offhandedly " : (!rn2(3) ? "casually " :
-		(rn2(2) ? "nonchalantly " : ""))));
+		  (!rn2(4) ? "offhandedly " : (!rn2(3) ? "casually " :
+		  (rn2(2) ? "nonchalantly " : ""))));
 		verbalize("%s", line);
 		exercise(A_WIS, TRUE);
 		return;
@@ -258,9 +263,9 @@ boolean delphi;
 
 		tmpwin = create_nhwindow(NHW_TEXT);
 		if (delphi)
-		putstr(tmpwin, 0, special ?
-		      "The Oracle scornfully takes all your money and says:" :
-		      "The Oracle meditates for a moment and then intones:");
+		    putstr(tmpwin, 0, special ?
+		          "The Oracle scornfully takes all your money and says:" :
+		          "The Oracle meditates for a moment and then intones:");
 		else
 		    putstr(tmpwin, 0, "The message reads:");
 		putstr(tmpwin, 0, "");
@@ -300,8 +305,8 @@ register struct monst *oracl;
 	}
 
 	Sprintf(qbuf,
-		"\"Wilt thou settle for a minor consultation?\" (%d zorkmids)",
-		minor_cost);
+		"\"Wilt thou settle for a minor consultation?\" (%d %s)",
+		minor_cost, currency((long)minor_cost));
 	switch (ynq(qbuf)) {
 	    default:
 	    case 'q':
@@ -317,8 +322,8 @@ register struct monst *oracl;
 		if (u.ugold <= (long)minor_cost ||	/* don't even ask */
 		    (oracle_cnt == 1 || oracle_flg < 0)) return 0;
 		Sprintf(qbuf,
-			"\"Then dost thou desire a major one?\" (%d zorkmids)",
-			major_cost);
+			"\"Then dost thou desire a major one?\" (%d %s)",
+			major_cost, currency((long)major_cost));
 		if (yn(qbuf) != 'y') return 0;
 		u_pay = (u.ugold < (long)major_cost ? (int)u.ugold
 						    : major_cost);

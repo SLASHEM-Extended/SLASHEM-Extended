@@ -28,14 +28,14 @@ static NEARDATA const int nasties[] = {
         PM_VAMPIRE_MAGE,
 	PM_XORN, /*PM_ZRUTY,*/ PM_ELF_LORD, PM_ELVENKING, PM_YELLOW_DRAGON,
 	PM_LEOCROTTA, PM_BALUCHITHERIUM, PM_CARNIVOROUS_APE, PM_FIRE_GIANT,
-        PM_COUATL, PM_CAPTAIN, PM_WINGED_GARGOYLE, PM_MASTER_MIND_FLAYER,
+	PM_COUATL, PM_CAPTAIN, PM_WINGED_GARGOYLE, PM_MASTER_MIND_FLAYER,
 	PM_FIRE_ELEMENTAL, PM_JABBERWOCK, PM_MASTER_LICH, PM_OGRE_KING,
 	PM_OLOG_HAI, PM_IRON_GOLEM, PM_OCHRE_JELLY,
         /* [Tom] added my "worst" monsters... heh heh */
         PM_RHAUMBUSUN, PM_BASILISK, PM_PYROLISK, PM_GREEN_SLIME, PM_DEMON_ORC,
         PM_MASTODON, PM_ROT_WORM, PM_SNOW_ORC, PM_SILVER_DRAGON, 
-        PM_DISENCHANTER
-        };
+	PM_DISENCHANTER
+	};
 
 static NEARDATA const unsigned wizapp[] = {
 	PM_HUMAN, PM_WATER_DEMON, PM_VAMPIRE,
@@ -69,11 +69,11 @@ amulet()
 		if(ttmp->ttyp == MAGIC_PORTAL) {
 		    int du = distu(ttmp->tx, ttmp->ty);
 		    if (du <= 9)
-			pline("%s feels hot!", The(xname(amu)));
+			pline("%s hot!", Tobjnam(amu, "feel"));
 		    else if (du <= 64)
-			pline("%s feels very warm.", The(xname(amu)));
+			pline("%s very warm.", Tobjnam(amu, "feel"));
 		    else if (du <= 144)
-			pline("%s feels warm.", The(xname(amu)));
+			pline("%s warm.", Tobjnam(amu, "feel"));
 		    /* else, the amulet feels normal */
 		    break;
 		}
@@ -242,7 +242,12 @@ strategy(mtmp)
 {
 	long strat, dstrat;
 
-	if(!is_covetous(mtmp->data)) return(STRAT_NONE);
+	if (!is_covetous(mtmp->data) ||
+		/* perhaps a shopkeeper has been polymorphed into a master
+		   lich; we don't want it teleporting to the stairs to heal
+		   because that will leave its shop untended */
+		(mtmp->isshk && inhishop(mtmp)))
+	    return STRAT_NONE;
 
 	switch((mtmp->mhp*3)/mtmp->mhpmax) {	/* 0-3 */
 
@@ -338,28 +343,32 @@ tactics(mtmp)
 		    return(0);
 		}
 		if(where == STRAT_GROUND) {
-		  if(!MON_AT(tx, ty) || (mtmp->mx == tx && mtmp->my == ty)) {
-		    /* teleport to it and pick it up */
-		    rloc_to(mtmp, tx, ty);	/* clean old pos */
+		    if(!MON_AT(tx, ty) || (mtmp->mx == tx && mtmp->my == ty)) {
+			/* teleport to it and pick it up */
+			rloc_to(mtmp, tx, ty);	/* clean old pos */
 
-		    if ((otmp = on_ground(which_arti(targ))) != 0) {
-			if (cansee(mtmp->mx, mtmp->my))
-			    pline("%s picks up %s.",
-				  Monnam(mtmp),
-				  (distu(mtmp->my, mtmp->my) <= 5) ?
-				    doname(otmp) : distant_name(otmp, doname));
-			obj_extract_self(otmp);
-			(void) mpickobj(mtmp, otmp);
-			return(1);
-		    } else return(0);
-		  }
+			if ((otmp = on_ground(which_arti(targ))) != 0) {
+			    if (cansee(mtmp->mx, mtmp->my))
+				pline("%s picks up %s.",
+				    Monnam(mtmp),
+				    (distu(mtmp->my, mtmp->my) <= 5) ?
+				     doname(otmp) : distant_name(otmp, doname));
+			    obj_extract_self(otmp);
+			    (void) mpickobj(mtmp, otmp);
+			    return(1);
+			} else return(0);
+		    } else {
+			/* a monster is standing on it - cause some trouble */
+			if (!rn2(5)) mnexto(mtmp);
+			return(0);
+		    }
 	        } else { /* a monster has it - 'port beside it. */
 		    (void) mnearto(mtmp, tx, ty, TRUE);
 		    return(0);
 		}
 	    }
 	}
-	/* NOTREACHED */
+	/*NOTREACHED*/
 	return(0);
 }
 
@@ -407,33 +416,44 @@ pick_nasty()
 
 /* create some nasty monsters, aligned or neutral with the caster */
 /* a null caster defaults to a chaotic caster (e.g. the wizard) */
-void
+int
 nasty(mcast)
 	struct monst *mcast;
 {
     register struct monst	*mtmp;
     register int	i, j, tmp;
     int castalign = (mcast ? mcast->data->maligntyp : -1);
+    coord bypos;
+    int count=0;
 
-    if(!rn2(10) && Inhell) msummon(&mons[PM_WIZARD_OF_YENDOR]);
-    else {
+    if(!rn2(10) && Inhell) {
+	msummon(&mons[PM_WIZARD_OF_YENDOR]);
+	count++;
+    } else {
 	tmp = (u.ulevel > 3) ? u.ulevel/3 : 1; /* just in case -- rph */
-
+	/* if we don't have a casting monster, the nasties appear around you */
+	bypos.x = u.ux;
+	bypos.y = u.uy;
 	for(i = rnd(tmp); i > 0; --i)
 	    for(j=0; j<20; j++) {
+		if (mcast &&
+			!enexto(&bypos, mcast->mux, mcast->muy, mcast->data))
+		    continue;
 		if ((mtmp = makemon(&mons[pick_nasty()],
-				    u.ux, u.uy, NO_MM_FLAGS)) != 0) {
+				    bypos.x, bypos.y, NO_MM_FLAGS)) != 0) {
 		    mtmp->msleeping = mtmp->mpeaceful = mtmp->mtame = 0;
 		    set_malign(mtmp);
 		} else /* GENOD? */
 		    mtmp = makemon((struct permonst *)0,
-					u.ux, u.uy, NO_MM_FLAGS);
+					bypos.x, bypos.y, NO_MM_FLAGS);
 		if(mtmp && (mtmp->data->maligntyp == 0 ||
-		            sgn(mtmp->data->maligntyp) == sgn(castalign)) )
+		            sgn(mtmp->data->maligntyp) == sgn(castalign)) ) {
+		    count++;
 		    break;
+		}
 	    }
     }
-    return;
+    return count;
 }
 
 /*	Let's resurrect the wizard, for some unexpected fun.	*/
@@ -454,8 +474,8 @@ resurrect()
 	    mmtmp = &migrating_mons;
 	    while ((mtmp = *mmtmp) != 0) {
 		if (mtmp->iswiz &&
-                        /* if he has the Amulet, he won't bring it to you */
-                        !mon_has_amulet(mtmp) &&
+			/* if he has the Amulet, he won't bring it to you */
+			!mon_has_amulet(mtmp) &&
 			(elapsed = monstermoves - mtmp->mlstmv) > 0L) {
 		    mon_catchup_elapsed_time(mtmp, elapsed);
 		    if (elapsed >= LARGEST_INT) elapsed = LARGEST_INT - 1;
@@ -503,7 +523,7 @@ intervene()
 			break;
 	    case 3:	aggravate();
 			break;
-	    case 4:	nasty((struct monst *)0);
+	    case 4:	(void)nasty((struct monst *)0);
 			break;
 	    case 5:	resurrect();
 			break;

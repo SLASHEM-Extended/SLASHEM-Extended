@@ -21,7 +21,9 @@ NEARDATA int bases[MAXOCLASSES] = DUMMY;
 
 NEARDATA int multi = 0;
 NEARDATA boolean multi_one = FALSE;	/* used by dofire() and throw_the_obj() */
+#if 0
 NEARDATA int warnlevel = 0;		/* used by movemon and dochugw */
+#endif
 NEARDATA int nroom = 0;
 NEARDATA int nsubroom = 0;
 NEARDATA int occtime = 0;
@@ -71,6 +73,8 @@ const char ynaqchars[] = "ynaq";
 const char ynNaqchars[] = "yn#aq";
 NEARDATA long yn_number = 0L;
 
+const char disclosure_options[] = "iavgc";
+
 #ifdef MICRO
 char hackdir[PATHLEN];		/* where rumors, help, record are */
 char levels[PATHLEN];		/* where levels are */
@@ -97,6 +101,10 @@ const schar ydir[10] = {  0,-1,-1,-1, 0, 1, 1, 1, 0, 0 };
 const schar zdir[10] = {  0, 0, 0, 0, 0, 0, 0, 0, 1,-1 };
 
 NEARDATA schar tbx = 0, tby = 0;	/* mthrowu: target */
+
+/* for xname handling of multiple shot missile volleys:
+   number of shots, index of current one, validity check, shoot vs throw */
+NEARDATA struct multishot m_shot = { 0, 0, STRANGE_OBJECT, FALSE };
 
 NEARDATA struct dig_info digging;
 
@@ -191,11 +199,6 @@ NEARDATA struct obj *billobjs = (struct obj *)0;
 /* used to zero all elements of a struct obj */
 NEARDATA struct obj zeroobj = DUMMY;
 
-/* monster pronouns, index is return value of gender(mtmp) */
-const char *he[3]  = { "he",  "she", "it" };
-const char *him[3] = { "him", "her", "it" };
-const char *his[3] = { "his", "her", "its" };
-
 /* originally from dog.c */
 NEARDATA char dogname[PL_PSIZ] = DUMMY;
 NEARDATA char catname[PL_PSIZ] = DUMMY;
@@ -210,7 +213,7 @@ NEARDATA char badgername[PL_PSIZ] = DUMMY;
 NEARDATA char reddragonname[PL_PSIZ] = DUMMY;
 NEARDATA char whitedragonname[PL_PSIZ] = DUMMY;
 #endif
-char preferred_pet;	/* '\0', 'c', 'd' */
+char preferred_pet;	/* '\0', 'c', 'd', 'n' (none) */
 /* monsters that went down/up together with @ */
 NEARDATA struct monst *mydogs = (struct monst *)0;
 /* monsters that are moving to another dungeon level */
@@ -225,10 +228,30 @@ NEARDATA struct c_color_names c_color_names = {
 	"white"
 };
 
+const char *c_obj_colors[] = {
+	"black",		/* CLR_BLACK */
+	"red",			/* CLR_RED */
+	"green",		/* CLR_GREEN */
+	"brown",		/* CLR_BROWN */
+	"blue",			/* CLR_BLUE */
+	"magenta",		/* CLR_MAGENTA */
+	"cyan",			/* CLR_CYAN */
+	"gray",			/* CLR_GRAY */
+	"transparent",		/* no_color */
+	"orange",		/* CLR_ORANGE */
+	"bright green",		/* CLR_BRIGHT_GREEN */
+	"yellow",		/* CLR_YELLOW */
+	"bright blue",		/* CLR_BRIGHT_BLUE */
+	"bright magenta",	/* CLR_BRIGHT_MAGENTA */
+	"bright cyan",		/* CLR_BRIGHT_CYAN */
+	"white",		/* CLR_WHITE */
+};
+
 struct c_common_strings c_common_strings = {
 	"Nothing happens.",		"That's enough tries!",
 	"That is a silly thing to %s.",	"shudder for a moment.",
-	"something", "Something", "You can move again.", "Never mind."
+	"something", "Something", "You can move again.", "Never mind.",
+	"vision quickly clears."
 };
 
 /* NOTE: the order of these words exactly corresponds to the

@@ -1,9 +1,12 @@
-/*	SCCS Id: @(#)sounds.c	3.3	2000/07/24	*/
+/*	SCCS Id: @(#)sounds.c	3.4	2001/02/14	*/
 /*	Copyright (c) 1989 Janet Walz, Mike Threepoint */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
 #include "edog.h"
+#ifdef USER_SOUNDS
+#include <regex.h>
+#endif
 
 #ifdef USER_SOUNDS
 #include <regex.h>
@@ -104,7 +107,7 @@ dosounds()
 		int which = rn2(3)+hallu;
 
 		if (which != 2) You_hear(throne_msg[which]);
-		else		pline(throne_msg[2], his[flags.female]);
+		else		pline(throne_msg[2], uhis());
 		return;
 	    }
 	}
@@ -237,7 +240,7 @@ dosounds()
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 	    if (DEADMONSTER(mtmp)) continue;
 	    if ((mtmp->msleeping || is_animal(mtmp->data)) &&
-		mon_in_room(mtmp, ZOO)) {
+		    mon_in_room(mtmp, ZOO)) {
 		You_hear(zoo_msg[rn2(2)+hallu]);
 		return;
 	    }
@@ -304,31 +307,32 @@ static const char *h_sounds[] = {
 /* make the sounds of a pet in any level of distress */
 /* (1 = "whimper", 2 = "yelp", 3 = "growl") */
 void
-pet_distress(mtmp,lev)
+pet_distress(mtmp, lev)
 register struct monst *mtmp;
 int lev;
 {
-	const char *verb;
-	if (mtmp->msleeping || !mtmp->mcanmove || !mtmp->data->msound)
-		return;
-	/* presumably nearness and soundok checks have already been made */
+    const char *verb;
+    if (mtmp->msleeping || !mtmp->mcanmove || !mtmp->data->msound)
+	return;
+    /* presumably nearness and soundok checks have already been made */
 
-	if (Hallucination)
-		verb = h_sounds[rn2(SIZE(h_sounds))];
-	else if (lev == 3)
-		verb = growl_sound(mtmp);
-	else if (lev == 2)
-		verb = yelp_sound(mtmp);
-	else if (lev == 1)
-		verb = whimper_sound(mtmp);
-	else
-		panic("strange level of distress");
+    if (Hallucination)
+	verb = h_sounds[rn2(SIZE(h_sounds))];
+    else if (lev == 3)
+	verb = growl_sound(mtmp);
+    else if (lev == 2)
+	verb = yelp_sound(mtmp);
+    else if (lev == 1)
+	verb = whimper_sound(mtmp);
+    else
+	panic("strange level of distress");
 
-	if (verb) {
-		pline("%s %s%c", Monnam(mtmp), makeplural(verb), lev>1?'!':'.');
-		if (flags.run) nomul(0);
-		wake_nearto(mtmp->mx,mtmp->my,mtmp->data->mlevel*6*lev);
-	}
+    if (verb) {
+	pline("%s %s%c", Monnam(mtmp), vtense((char *)0, verb),
+		lev>1?'!':'.');
+	if (flags.run) nomul(0);
+	wake_nearto(mtmp->mx,mtmp->my,mtmp->data->mlevel*6*lev);
+    }
 }
 
 /* the sounds of a seriously abused pet, including player attacking it */
@@ -385,31 +389,32 @@ const char *
 yelp_sound(mtmp)
 register struct monst *mtmp;
 {
-	const char *ret;
-	switch(mtmp->data->msound) {
+    const char *ret;
+
+    switch(mtmp->data->msound) {
 	case MS_MEW:
-		ret = "yowl";
-		break;
+	ret = "yowl";
+	    break;
 	case MS_BARK:
 	case MS_GROWL:
-		ret = "yelp";
-		break;
+	ret = "yelp";
+	    break;
 	case MS_ROAR:
-		ret = "snarl";
-		break;
+	ret = "snarl";
+	    break;
 	case MS_SQEEK:
-		ret = "squeal";
-		break;
+	ret = "squeal";
+	    break;
 	case MS_SQAWK:
-		ret = "screak";
-		break;
+	ret = "screak";
+	    break;
 	case MS_WAIL:
-		ret = "wail";
-		break;
-	default:
-		ret = (const char*) 0;
-	}
-	return ret;
+	ret = "wail";
+	    break;
+    default:
+	ret = (const char*) 0;
+    }
+    return ret;
 }
 
 /* the sounds of distressed pets */
@@ -420,23 +425,23 @@ const char *
 whimper_sound(mtmp)
 register struct monst *mtmp;
 {
-	const char *ret;
+    const char *ret;
 
-	switch (mtmp->data->msound) {
+    switch (mtmp->data->msound) {
 	case MS_MEW:
 	case MS_GROWL:
-	    ret = "whimper";
+	ret = "whimper";
 	    break;
 	case MS_BARK:
-	    ret = "whine";
+	ret = "whine";
 	    break;
 	case MS_SQEEK:
-	    ret = "squeal";
+	ret = "squeal";
 	    break;
-	default:
-	    ret = (const char *)0;
-	}
-	return ret;
+    default:
+	ret = (const char *)0;
+    }
+    return ret;
 }
 
 /* pet makes "I'm hungry" noises */
@@ -449,7 +454,7 @@ register struct monst *mtmp;
 	return;
 
     /* presumably nearness and soundok checks have already been made */
-    if (mtmp->data->msound != MS_SILENT && mtmp->data->msound <= MS_ANIMAL)
+    if (!is_silent(mtmp->data) && mtmp->data->msound <= MS_ANIMAL)
 	(void) domonnoise(mtmp);
     else if (mtmp->data->msound >= MS_HUMANOID) {
 	if (!canspotmon(mtmp))
@@ -469,7 +474,7 @@ register struct monst *mtmp;
 
     /* presumably nearness and sleep checks have already been made */
     if (!flags.soundok) return(0);
-    if (ptr->msound == MS_SILENT) return(0);
+    if (is_silent(ptr)) return(0);
 
     /* be sure to do this before talking; the monster might teleport away, in
      * which case we want to check its pre-teleport position
@@ -545,7 +550,14 @@ register struct monst *mtmp;
 	    		};
 			if (kindred)
 			    verbl_msg = "This is my hunting ground that you dare to prowl!";
-			else {
+			else if (youmonst.data == &mons[PM_SILVER_DRAGON] ||
+				 youmonst.data == &mons[PM_BABY_SILVER_DRAGON]) {
+			    /* Silver dragons are silver in color, not made of silver */
+			    Sprintf(verbuf, "%s! Your silver sheen does not frighten me!",
+					youmonst.data == &mons[PM_SILVER_DRAGON] ?
+					"Fool" : "Young Fool");
+			    verbl_msg = verbuf; 
+			} else {
 			    vampindex = rn2(SIZE(vampmsg));
 			    if (vampindex == 0) {
 				Sprintf(verbuf, vampmsg[vampindex], body_part(BLOOD));
@@ -563,7 +575,7 @@ register struct monst *mtmp;
 	case MS_WERE:
 	    if (flags.moonphase == FULL_MOON && (night() ^ !rn2(13))) {
 		pline("%s throws back %s head and lets out a blood curdling %s!",
-		      Monnam(mtmp), his[pronoun_gender(mtmp)],
+		      Monnam(mtmp), mhis(mtmp),
 		      ptr == &mons[PM_HUMAN_WERERAT] ? "shriek" : "howl");
 		wake_nearto(mtmp->mx, mtmp->my, 11*11);
 	    } else
@@ -614,7 +626,7 @@ register struct monst *mtmp;
 	    if (mtmp->data == &mons[PM_RAVEN] && !mtmp->mpeaceful)
 	    	verbl_msg = "Nevermore!";
 	    else
-	    pline_msg = "squawks.";
+	    	pline_msg = "squawks.";
 	    break;
 	case MS_HISS:
 	    if (!mtmp->mpeaceful)
@@ -681,7 +693,7 @@ register struct monst *mtmp;
 	    if (!mtmp->mpeaceful) {
 		switch (rn2(4)) {
 		case 0: pline("%s boasts about %s gem collection.",
-			      Monnam(mtmp), his[pronoun_gender(mtmp)]);
+			      Monnam(mtmp), mhis(mtmp));
 			break;
 		case 1: pline_msg = "complains about a diet of mutton.";
 			break;
@@ -875,7 +887,7 @@ dochat()
     register int tx,ty;
     struct obj *otmp;
 
-    if (youmonst.data->msound == MS_SILENT) {
+    if (is_silent(youmonst.data)) {
 	pline("As %s, you cannot speak.", an(youmonst.data->mname));
 	return(0);
     }
@@ -904,7 +916,7 @@ dochat()
 	return(1);
     }
 
-    (void) getdir("Talk to whom? [in what direction]");
+    (void) getdir("Talk to whom? (in what direction)");
 
 #ifdef STEED
     if (u.usteed && u.dz > 0)
@@ -936,7 +948,7 @@ dochat()
 		mtmp->m_ap_type == M_AP_FURNITURE ||
 		mtmp->m_ap_type == M_AP_OBJECT)
 	return(0);
-    
+
     /* sleeping monsters won't talk, except priests (who wake up) */
     if ((!mtmp->mcanmove || mtmp->msleeping) && !mtmp->ispriest) {
 	/* If it is unseen, the player can't tell the difference between
@@ -960,9 +972,9 @@ dochat()
 #ifdef USER_SOUNDS
 
 typedef struct audio_mapping_rec {
-      struct re_pattern_buffer regex;
+	struct re_pattern_buffer regex;
       char* filename;
-      int volume;
+	int volume;
       struct audio_mapping_rec* next;
 } audio_mapping;
 
@@ -974,10 +986,10 @@ int
 add_sound_mapping(mapping)
 const char* mapping;
 {
-      char text[256];
-      char filename[256];
-      char filespec[256];
-      int volume;
+	char text[256];
+	char filename[256];
+	char filespec[256];
+	int volume;
 
       if (sscanf(mapping, "MESG \"%[^\"]\"%*[\t ]\"%[^\"]\" %d",
               text, filename, &volume)==3)
@@ -1000,27 +1012,27 @@ const char* mapping;
 
                       err=re_compile_pattern(text, strlen(text), &new_map->regex);
 
-                      if (err) {
+		if (err) {
                               sprintf(text, "%s\n", err);
                               raw_print(text);
-                              free(new_map->filename);
-                              free(new_map);
-                              return 0;
-                      } else {
+		    free(new_map->filename);
+		    free(new_map);
+		    return 0;
+		} else {
                               soundmap=new_map;
-                      }
-              } else {
+		}
+	    } else {
                       sprintf(text, "%s not readable.\n", filespec);
-                      raw_print(text);
-                      return 0;
-              }
-      } else {
+		raw_print(text);
+		return 0;
+	    }
+	} else {
               sprintf(text, "syntax error in SOUND\n");
               raw_print(text);
-              return 0;
-      }
+	    return 0;
+	}
 
-      return 1;
+	return 1;
 }
 
 void
@@ -1029,16 +1041,102 @@ const char* msg;
 {
       audio_mapping* cursor=soundmap;
 
-      while (cursor) {
+	while (cursor) {
               if (re_search(&cursor->regex, msg, strlen(msg), 0, 9999, 0)>=0) {
-                      play_usersound(cursor->filename, cursor->volume);
-              }
+		play_usersound(cursor->filename, cursor->volume);
+	    }
               cursor=cursor->next;
-      }
+	}
 }
 
 #endif
 
+
+#ifdef USER_SOUNDS
+
+extern void FDECL(play_usersound, (const char*, int));
+
+typedef struct audio_mapping_rec {
+	struct re_pattern_buffer regex;
+	char *filename;
+	int volume;
+	struct audio_mapping_rec *next;
+} audio_mapping;
+
+static audio_mapping *soundmap = 0;
+
+char* sounddir = ".";
+
+/* adds a sound file mapping, returns 0 on failure, 1 on success */
+int
+add_sound_mapping(mapping)
+const char *mapping;
+{
+	char text[256];
+	char filename[256];
+	char filespec[256];
+	int volume;
+
+	if (sscanf(mapping, "MESG \"%255[^\"]\"%*[\t ]\"%255[^\"]\" %d",
+		   text, filename, &volume) == 3) {
+	    const char *err;
+	    audio_mapping *new_map;
+
+	    if (strlen(sounddir) + strlen(filename) > 254) {
+		raw_print("sound file name too long");
+		return 0;
+	    }
+	    Sprintf(filespec, "%s/%s", sounddir, filename);
+
+	    if (can_read_file(filespec)) {
+		new_map = (audio_mapping *)alloc(sizeof(audio_mapping));
+		new_map->regex.translate = 0;
+		new_map->regex.fastmap = 0;
+		new_map->regex.buffer = 0;
+		new_map->regex.allocated = 0;
+		new_map->regex.regs_allocated = REGS_FIXED;
+		new_map->filename = strdup(filespec);
+		new_map->volume = volume;
+		new_map->next = soundmap;
+
+		err = re_compile_pattern(text, strlen(text), &new_map->regex);
+
+		if (err) {
+		    raw_print(err);
+		    free(new_map->filename);
+		    free(new_map);
+		    return 0;
+		} else {
+		    soundmap = new_map;
+		}
+	    } else {
+		Sprintf(text, "cannot read %.243s", filespec);
+		raw_print(text);
+		return 0;
+	    }
+	} else {
+	    raw_print("syntax error in SOUND");
+	    return 0;
+	}
+
+	return 1;
+}
+
+void
+play_sound_for_message(msg)
+const char* msg;
+{
+	audio_mapping* cursor = soundmap;
+
+	while (cursor) {
+	    if (re_search(&cursor->regex, msg, strlen(msg), 0, 9999, 0) >= 0) {
+		play_usersound(cursor->filename, cursor->volume);
+	    }
+	    cursor = cursor->next;
+	}
+}
+
+#endif /* USER_SOUNDS */
 
 #endif /* OVLB */
 

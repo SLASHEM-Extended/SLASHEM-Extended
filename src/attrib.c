@@ -1,5 +1,5 @@
 /*	SCCS Id: @(#)attrib.c	3.3	2000/05/17	*/
-/*      Copyright 1988, 1989, 1990, 1992, M. Stephenson           */
+/*	Copyright 1988, 1989, 1990, 1992, M. Stephenson		  */
 /* NetHack may be freely redistributed.  See license for details. */
 
 /*  attribute modification routines. */
@@ -13,7 +13,7 @@
 
 	/* part of the output on gain or loss of attribute */
 static
-const char      *plusattr[] = {
+const char	*plusattr[] = {
 	"strong", "smart", "wise", "agile", "tough", "charismatic"
 },
 		*minusattr[] = {
@@ -24,22 +24,22 @@ const char      *plusattr[] = {
 /* KMH, intrinsics patch -- many of these are updated */
 static
 const struct innate {
-	schar   ulevel;
-	long    *ability;
+	schar	ulevel;
+	long	*ability;
 	const char *gainstr, *losestr;
 }	arc_abil[] = { {	 1, &(HStealth), "", "" },
 		     {   1, &(HFast), "", "" },
 		     {  10, &(HSearching), "perceptive", "" },
-  		     {	 0, 0, 0, 0 } },
+		     {	 0, 0, 0, 0 } },
 
 	bar_abil[] = { {	 1, &(HPoison_resistance), "", "" },
 		     {   7, &(HFast), "quick", "slow" },
 		     {  15, &(HStealth), "stealthy", "" },
-		     {   0, 0, 0, 0 } },
+		     {	 0, 0, 0, 0 } },
 
 	cav_abil[] = { {	 7, &(HFast), "quick", "slow" },
 		     {	15, &(HWarning), "sensitive", "" },
-		     {   0, 0, 0, 0 } },
+		     {	 0, 0, 0, 0 } },
 
 	fla_abil[] = { {   1, &(HFire_resistance), "", "" },
 		     {  13, &(HCold_resistance), "warm", "cooler" },
@@ -47,14 +47,14 @@ const struct innate {
 
 	hea_abil[] = { {	 1, &(HPoison_resistance), "", "" },
 		     {	15, &(HWarning), "sensitive", "" },
-		     {   0, 0, 0, 0 } },
+		     {	 0, 0, 0, 0 } },
 
 	ice_abil[] = { {   1, &(HCold_resistance), "", "" },
 		     {  13, &(HFire_resistance), "cool", "warmer" },
 		     {   0, 0, 0, 0 } },
 
 	kni_abil[] = { {	 7, &(HFast), "quick", "slow" },
-		     {   0, 0, 0, 0 } },
+		     {	 0, 0, 0, 0 } },
 
 	mon_abil[] = { {   1, &(HFast), "", "" },
 		     {   1, &(HSleep_resistance), "", "" },
@@ -79,24 +79,24 @@ const struct innate {
 
 	pri_abil[] = { {	15, &(HWarning), "sensitive", "" },
 		     {  20, &(HFire_resistance), "cool", "warmer" },
-		     {   0, 0, 0, 0 } },
+		     {	 0, 0, 0, 0 } },
 
 	ran_abil[] = { {   1, &(HSearching), "", "" },
 		     {	 7, &(HStealth), "stealthy", "" },
 		     {	15, &(HSee_invisible), "", "" },
-  		     {	 0, 0, 0, 0 } },
-  
+		     {	 0, 0, 0, 0 } },
+
 	rog_abil[] = { {	 1, &(HStealth), "", ""  },
 		     {  10, &(HSearching), "perceptive", "" },
-		     {   0, 0, 0, 0 } },
+		     {	 0, 0, 0, 0 } },
 
 	sam_abil[] = { {	 1, &(HFast), "", "" },
 		     {  15, &(HStealth), "stealthy", "" },
 		     {	 0, 0, 0, 0 } },
 
 	tou_abil[] = { {	10, &(HSearching), "perceptive", "" },
-		     {  20, &(HPoison_resistance), "hardy", "" },
-		     {   0, 0, 0, 0 } },
+		     {	20, &(HPoison_resistance), "hardy", "" },
+		     {	 0, 0, 0, 0 } },
 
 	und_abil[] = { {   1, &(HStealth), "", "" },
 		     {   1, &(HDrain_resistance), "", "" },
@@ -109,7 +109,7 @@ const struct innate {
 	val_abil[] = { {	 1, &(HCold_resistance), "", "" },
 		     {	 1, &(HStealth), "", "" },
 		     {   7, &(HFast), "quick", "slow" },
-		     {   0, 0, 0, 0 } },
+		     {	 0, 0, 0, 0 } },
 
 #ifdef YEOMAN
 	yeo_abil[] = {
@@ -118,9 +118,9 @@ const struct innate {
 		     {   0, 0, 0, 0 } },
 #endif
 
-	wiz_abil[] = { {  15, &(HWarning), "sensitive", "" },
+	wiz_abil[] = { {	15, &(HWarning), "sensitive", "" },
 		     {  17, &(HTeleport_control), "controlled","uncontrolled" },
-		     {   0, 0, 0, 0 } },
+		     {	 0, 0, 0, 0 } },
 
 	/* Intrinsics conferred by race */
 	dop_abil[] = {/* {   1, &(HPolymorph), "", "" },*/
@@ -134,7 +134,7 @@ const struct innate {
 #endif
 
 	elf_abil[] = { {	4, &(HSleep_resistance), "awake", "tired" },
-		     {   0, 0, 0, 0 } },
+		     {	 0, 0, 0, 0 } },
 
 	gno_abil[] = { {   5, &(HStealth), "stealthy", "" },
 /*		     {   9, &(HFast), "quick", "slow" },
@@ -154,7 +154,7 @@ const struct innate {
 	orc_abil[] = { {	1, &(HPoison_resistance), "", "" },
 		     {	 0, 0, 0, 0 } };
 
-static long next_check = 600L;  /* arbitrary first setting */
+static long next_check = 600L;	/* arbitrary first setting */
 STATIC_DCL void NDECL(exerper);
 
 /* adjust an attribute; return TRUE if change is made, FALSE otherwise */
@@ -258,8 +258,8 @@ change_luck(n)
 	register schar n;
 {
 	u.uluck += n;
-	if (u.uluck < 0 && u.uluck < LUCKMIN)   u.uluck = LUCKMIN;
-	if (u.uluck > 0 && u.uluck > LUCKMAX)   u.uluck = LUCKMAX;
+	if (u.uluck < 0 && u.uluck < LUCKMIN)	u.uluck = LUCKMIN;
+	if (u.uluck > 0 && u.uluck > LUCKMAX)	u.uluck = LUCKMAX;
 }
 
 int
@@ -317,9 +317,9 @@ recalc_health()
 void
 restore_attrib()
 {
-	int     i;
+	int	i;
 
-	for(i = 0; i < A_MAX; i++) {    /* all temporary losses/gains */
+	for(i = 0; i < A_MAX; i++) {	/* all temporary losses/gains */
 
 	   if(ATEMP(i) && ATIME(i)) {
 		if(!(--(ATIME(i)))) { /* countdown for change */
@@ -336,30 +336,30 @@ restore_attrib()
 #endif /* OVL1 */
 #ifdef OVLB
 
-#define AVAL    50              /* tune value for exercise gains */
+#define AVAL	50		/* tune value for exercise gains */
 
 void
 exercise(i, inc_or_dec)
-int     i;
-boolean inc_or_dec;
+int	i;
+boolean	inc_or_dec;
 {
 #ifdef DEBUG
 	pline("Exercise:");
 #endif
-	if (i == A_INT || i == A_CHA) return;   /* can't exercise these */
+	if (i == A_INT || i == A_CHA) return;	/* can't exercise these */
 
 	/* no physical exercise while polymorphed; the body's temporary */
 	if (Upolyd && i != A_WIS) return;
 
 	if(abs(AEXE(i)) < AVAL) {
 		/*
-		 *      Law of diminishing returns (Part I):
+		 *	Law of diminishing returns (Part I):
 		 *
-		 *      Gain is harder at higher attribute values.
-		 *      79% at "3" --> 0% at "18"
-		 *      Loss is even at all levels (50%).
+		 *	Gain is harder at higher attribute values.
+		 *	79% at "3" --> 0% at "18"
+		 *	Loss is even at all levels (50%).
 		 *
-		 *      Note: *YES* ACURR is the right one to use.
+		 *	Note: *YES* ACURR is the right one to use.
 		 */
 		AEXE(i) += (inc_or_dec) ? (rn2(19) > ACURR(i)) : -rn2(2);
 #ifdef DEBUG
@@ -373,13 +373,13 @@ boolean inc_or_dec;
 }
 
 /* hunger values - from eat.c */
-#define SATIATED        0
-#define NOT_HUNGRY      1
-#define HUNGRY          2
-#define WEAK            3
-#define FAINTING        4
-#define FAINTED         5
-#define STARVED         6
+#define SATIATED	0
+#define NOT_HUNGRY	1
+#define HUNGRY		2
+#define WEAK		3
+#define FAINTING	4
+#define FAINTED		5
+#define STARVED		6
 
 STATIC_OVL void
 exerper()
@@ -396,11 +396,11 @@ exerper()
 		pline("exerper: Hunger checks");
 #endif
 		switch (hs) {
-		    case SATIATED:      exercise(A_DEX, FALSE); break;
-		    case NOT_HUNGRY:    exercise(A_CON, TRUE); break;
-		    case WEAK:          exercise(A_STR, FALSE); break;
+		    case SATIATED:	exercise(A_DEX, FALSE); break;
+		    case NOT_HUNGRY:	exercise(A_CON, TRUE); break;
+		    case WEAK:		exercise(A_STR, FALSE); break;
 		    case FAINTING:
-		    case FAINTED:       exercise(A_CON, FALSE); break;
+		    case FAINTED:	exercise(A_CON, FALSE); break;
 		}
 
 		/* Encumberance Checks */
@@ -408,10 +408,10 @@ exerper()
 		pline("exerper: Encumber checks");
 #endif
 		switch (near_capacity()) {
-		    case MOD_ENCUMBER:  exercise(A_STR, TRUE); break;
-		    case HVY_ENCUMBER:  exercise(A_STR, TRUE);
+		    case MOD_ENCUMBER:	exercise(A_STR, TRUE); break;
+		    case HVY_ENCUMBER:	exercise(A_STR, TRUE);
 					exercise(A_DEX, FALSE); break;
-		    case EXT_ENCUMBER:  exercise(A_DEX, FALSE);
+		    case EXT_ENCUMBER:	exercise(A_DEX, FALSE);
 					exercise(A_CON, FALSE); break;
 		}
 
@@ -425,38 +425,42 @@ exerper()
 		/* KMH, intrinsic patch */
 		if ((HClairvoyant & (INTRINSIC|TIMEOUT)) &&
 			!BClairvoyant)                      exercise(A_WIS, TRUE);
-		if (HRegeneration)                      exercise(A_STR, TRUE);
+		if (HRegeneration)			exercise(A_STR, TRUE);
 
-		if(Sick || Vomiting)			exercise(A_CON, FALSE);
-		if(Confusion || Hallucination)          exercise(A_WIS, FALSE);
-		if(Wounded_legs || Fumbling || HStun)   exercise(A_DEX, FALSE);
+		if(Sick || Vomiting)     exercise(A_CON, FALSE);
+		if(Confusion || Hallucination)		exercise(A_WIS, FALSE);
+		if((Wounded_legs 
+#ifdef STEED
+		    && !u.usteed
+#endif
+			    ) || Fumbling || HStun)	exercise(A_DEX, FALSE);
 	}
 }
 
 void
 exerchk()
 {
-	int     i, mod_val;
+	int	i, mod_val;
 
-	/*      Check out the periodic accumulations */
+	/*	Check out the periodic accumulations */
 	exerper();
 
 #ifdef DEBUG
 	if(moves >= next_check)
 		pline("exerchk: ready to test. multi = %d.", multi);
 #endif
-	/*      Are we ready for a test?        */
+	/*	Are we ready for a test?	*/
 	if(moves >= next_check && !multi) {
 #ifdef DEBUG
 	    pline("exerchk: testing.");
 #endif
 	    /*
-	     *  Law of diminishing returns (Part II):
+	     *	Law of diminishing returns (Part II):
 	     *
-	     *  The effects of "exercise" and "abuse" wear
-	     *  off over time.  Even if you *don't* get an
-	     *  increase/decrease, you lose some of the
-	     *  accumulated effects.
+	     *	The effects of "exercise" and "abuse" wear
+	     *	off over time.  Even if you *don't* get an
+	     *	increase/decrease, you lose some of the
+	     *	accumulated effects.
 	     */
 	    for(i = 0; i < A_MAX; AEXE(i++) /= 2) {
 
@@ -469,10 +473,10 @@ exerchk()
 			(i == A_DEX) ? "Dex" : "Con", AEXE(i));
 #endif
 		/*
-		 *      Law of diminishing returns (Part III):
+		 *	Law of diminishing returns (Part III):
 		 *
-		 *      You don't *always* gain by exercising.
-		 *      [MRS 92/10/28 - Treat Wisdom specially for balance.]
+		 *	You don't *always* gain by exercising.
+		 *	[MRS 92/10/28 - Treat Wisdom specially for balance.]
 		 */
 		if(rn2(AVAL) > ((i != A_WIS) ? abs(AEXE(i)*2/3) : abs(AEXE(i))))
 		    continue;
@@ -606,19 +610,19 @@ int oldlevel, newlevel;
 	case PM_FLAME_MAGE:	abil = fla_abil;	break;
 	case PM_HEALER:         abil = hea_abil;	break;
 	case PM_ICE_MAGE:	abil = ice_abil;	break;
-	case PM_KNIGHT:		abil = kni_abil;	break;
-	case PM_MONK:		abil = mon_abil;	break;
+	case PM_KNIGHT:         abil = kni_abil;	break;
+	case PM_MONK:           abil = mon_abil;	break;
 	case PM_NECROMANCER:	abil = nec_abil;	break;
-	case PM_PRIEST:		abil = pri_abil;	break;
+	case PM_PRIEST:         abil = pri_abil;	break;
 	case PM_RANGER:         abil = ran_abil;	break;
-	case PM_ROGUE:		abil = rog_abil;	break;
-	case PM_SAMURAI:	abil = sam_abil;	break;
+	case PM_ROGUE:          abil = rog_abil;	break;
+	case PM_SAMURAI:        abil = sam_abil;	break;
 #ifdef TOURIST
-	case PM_TOURIST:	abil = tou_abil;	break;
+	case PM_TOURIST:        abil = tou_abil;	break;
 #endif
 	case PM_UNDEAD_SLAYER:	abil = und_abil;	break;
-	case PM_VALKYRIE:	abil = val_abil;	break;
-	case PM_WIZARD:		abil = wiz_abil;	break;
+	case PM_VALKYRIE:       abil = val_abil;	break;
+	case PM_WIZARD:         abil = wiz_abil;	break;
 #ifdef YEOMAN
 	case PM_YEOMAN:		abil = yeo_abil;	break;
 #endif
@@ -631,14 +635,14 @@ int oldlevel, newlevel;
 	case PM_DWARF:		rabil = dwa_abil;	break;
 #endif
 	case PM_DROW:
-	case PM_ELF:		rabil = elf_abil;	break;
+	case PM_ELF:            rabil = elf_abil;	break;
 	case PM_GNOME:		rabil = gno_abil;	break;
 	case PM_HOBBIT:		rabil = hob_abil;	break;
-	case PM_ORC:		rabil = orc_abil;	break;
+	case PM_ORC:            rabil = orc_abil;	break;
 	case PM_HUMAN_WEREWOLF:	rabil = lyc_abil;	break;
 	case PM_HUMAN:
 	case PM_VAMPIRE:
-	default:		rabil = 0;		break;
+	default:                rabil = 0;		break;
 	}
 
 	while (abil || rabil) {
@@ -701,7 +705,7 @@ int oldlevel, newlevel;
 int
 newhp()
 {
-	int     hp, conplus;
+	int	hp, conplus;
 
 	if(u.ulevel == 0) {
 	    /* Initialize hit points */
@@ -712,7 +716,7 @@ newhp()
 	    /* Initialize alignment stuff */
 	    u.ualign.type = aligns[flags.initalign].value;
 	    u.ualign.record = urole.initrecord;
-	    return hp;
+		return hp;
 	} else {
 	    if (u.ulevel < urole.xlev) {
 	    	hp = urole.hpadv.lofix + urace.hpadv.lofix;
@@ -724,7 +728,7 @@ newhp()
 	    	if (urace.hpadv.hirnd > 0) hp += rnd(urace.hpadv.hirnd);
 	    }
 	}
-	
+
 	if (ACURR(A_CON) <= 3) conplus = -2;
 	else if (ACURR(A_CON) <= 6) conplus = -1;
 	else if (ACURR(A_CON) <= 14) conplus = 0;
