@@ -759,11 +759,9 @@ TOOL("lock pick", (char *)0,    1, 0, 0, 0,  75,  4,  20, IRON, HI_METAL),
 /* [Tom] made candles cheaper & more common */
 TOOL("tallow candle", "candle", 0, 1, 0, 0,  50,  2,   1, WAX, CLR_WHITE),
 TOOL("wax candle", "candle",    0, 1, 0, 0,  40,  2,   2, WAX, CLR_WHITE),
-/* STEPHEN WHITE'S NEW CODE */
-TOOL("magic candle",  "candle", 0, 1, 0, 0,   5,  2, 500, WAX, CLR_WHITE),
+TOOL("magic candle",  "candle", 0, 1, 1, 0,   5,  2, 500, WAX, CLR_WHITE),
 TOOL("oil lamp", "lamp",        0, 0, 0, 0,  25, 20,  10, COPPER, CLR_YELLOW),
 TOOL("brass lantern", (char *)0,1, 0, 0, 0,  15, 30,  12, COPPER, CLR_YELLOW),
-/* STEPHEN WHITE'S NEW CODE */
 TOOL("magic lamp", "lamp",      0, 0, 1, 0,  10, 20,1000, COPPER, CLR_YELLOW),
 
 /* Instruments */
