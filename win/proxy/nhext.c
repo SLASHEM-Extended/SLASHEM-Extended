@@ -1,4 +1,4 @@
-/* $Id: nhext.c,v 1.13 2002-11-30 19:15:17 j_ali Exp $ */
+/* $Id: nhext.c,v 1.14 2002-12-01 17:23:37 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -17,47 +17,34 @@
  * This module implements the low-level NhExt protocols.
  */
 
-static int no_connections = 0;
-
-/*
- * During development (when we have both the server and the client in one
- * executable) we need to be able to maintain two seperate connections.
- * This will become unnecessary in the final application and the facility
- * should probably be removed for efficiency.
- */
-
 static struct nhext_connection {
     int length;
     NhExtXdr *in, *out;
     NhExtIO *rd, *wr;
     struct nhext_svc *callbacks;
-} nhext_connections[2];
+} nhext_connection;
 
 int nhext_init(NhExtIO *rd, NhExtIO *wr, struct nhext_svc *cb)
 {
-    int cn;
-    if (no_connections == 2)
-	return -1;
-    cn = no_connections++;
     nhext_io_setmode(rd, NHEXT_IO_NOAUTOFILL);
-    nhext_connections[cn].rd = rd;
-    nhext_connections[cn].wr = wr;
-    nhext_connections[cn].in = (NhExtXdr *)alloc(sizeof(NhExtXdr));
-    nhext_connections[cn].out = (NhExtXdr *)alloc(sizeof(NhExtXdr));
-    nhext_xdrio_create(nhext_connections[cn].in, rd, NHEXT_XDR_DECODE);
-    nhext_xdrio_create(nhext_connections[cn].out, wr, NHEXT_XDR_ENCODE);
-    nhext_connections[cn].callbacks = cb;
-    return cn;
+    nhext_connection.rd = rd;
+    nhext_connection.wr = wr;
+    nhext_connection.in = (NhExtXdr *)alloc(sizeof(NhExtXdr));
+    nhext_connection.out = (NhExtXdr *)alloc(sizeof(NhExtXdr));
+    nhext_xdrio_create(nhext_connection.in, rd, NHEXT_XDR_DECODE);
+    nhext_xdrio_create(nhext_connection.out, wr, NHEXT_XDR_ENCODE);
+    nhext_connection.callbacks = cb;
+    return 0;
 }
 
-void nhext_end_c(int cn)
+void nhext_end()
 {
-    nhext_xdr_destroy(nhext_connections[cn].in);
-    nhext_xdr_destroy(nhext_connections[cn].out);
-    free(nhext_connections[cn].in);
-    free(nhext_connections[cn].out);
-    nhext_connections[cn].in = NULL;
-    nhext_connections[cn].out = NULL;
+    nhext_xdr_destroy(nhext_connection.in);
+    nhext_xdr_destroy(nhext_connection.out);
+    free(nhext_connection.in);
+    free(nhext_connection.out);
+    nhext_connection.in = NULL;
+    nhext_connection.out = NULL;
 }
 
 static char *nhext_subprotocol0_encode_value(char *buf, char *value)
@@ -72,9 +59,8 @@ static char *nhext_subprotocol0_encode_value(char *buf, char *value)
     return buf;
 }
 
-int nhext_subprotocol0_write_line_c(int cn, struct nhext_line *line)
+int nhext_subprotocol0_write_line(struct nhext_line *line)
 {
-    struct nhext_connection *nc = nhext_connections + cn;
     int i, len, retval;
     char *buf, *bp;
     len = strlen(line->type) + 1;
@@ -93,8 +79,8 @@ int nhext_subprotocol0_write_line_c(int cn, struct nhext_line *line)
 	bp = nhext_subprotocol0_encode_value(bp, line->values[i]);
     }
     *bp++ = '\n';
-    retval = nhext_io_write(nc->wr, buf, bp - buf) == bp - buf &&
-      !nhext_io_flush(nc->wr);
+    retval = nhext_io_write(nhext_connection.wr, buf, bp - buf) == bp - buf &&
+      !nhext_io_flush(nhext_connection.wr);
     free(buf);
     return retval;
 }
@@ -228,19 +214,18 @@ void nhext_subprotocol0_free_line(struct nhext_line *line)
     free(line);
 }
 
-struct nhext_line *nhext_subprotocol0_read_line_c(int cn)
+struct nhext_line *nhext_subprotocol0_read_line()
 {
     int i, iserror;
     char *s;
-    struct nhext_connection *nc = nhext_connections + cn;
     struct nhext_line *line;
 #ifdef DEBUG
-    if (nhext_io_getc(nc->rd) >= 0)
+    if (nhext_io_getc(nhext_connection.rd) >= 0)
 	fprintf(stderr,
 	  "[%d] NhExt: Non-empty buffer in nhext_subprotocol0_read_line\n",
 	  getpid());
 #endif
-    if (nhext_io_filbuf(nc->rd) <= 0) {
+    if (nhext_io_filbuf(nhext_connection.rd) <= 0) {
 #ifdef DEBUG
 	fprintf(stderr,
 	  "[%d] EOF/ERROR while trying to read sub-protocol 0 packet\n",
@@ -249,7 +234,7 @@ struct nhext_line *nhext_subprotocol0_read_line_c(int cn)
 	return NULL;
     }
     line = (struct nhext_line *) alloc(sizeof(*line));
-    s = nhext_subprotocol0_read_token(nc->rd);
+    s = nhext_subprotocol0_read_token(nhext_connection.rd);
     if (!s) {
 	free(line);
 	return NULL;
@@ -260,7 +245,7 @@ struct nhext_line *nhext_subprotocol0_read_line_c(int cn)
     line->tags = (char **)0;
     line->values = (char **)0;
     for(i = 0;; i++) {
-	s = nhext_subprotocol0_read_token(nc->rd);
+	s = nhext_subprotocol0_read_token(nhext_connection.rd);
 	if (!s || !*s)
 	    break;
 	if (line->n) {
@@ -291,7 +276,7 @@ struct nhext_line *nhext_subprotocol0_read_line_c(int cn)
 	    }
 	}
 	line->tags[line->n] = strdup(s);
-	s = nhext_subprotocol0_read_value(nc->rd,
+	s = nhext_subprotocol0_read_value(nhext_connection.rd,
 	  iserror && !strcmp(s, "mesg"));
 	if (!s) {
 	    free(line->tags[line->n]);
@@ -300,8 +285,8 @@ struct nhext_line *nhext_subprotocol0_read_line_c(int cn)
 	line->values[line->n] = strdup(s);
 	line->n++;
     }
-    if (s && nhext_io_getc(nc->rd) >= 0) {
-	for(i = 1; nhext_io_getc(nc->rd) >= 0; i++)
+    if (s && nhext_io_getc(nhext_connection.rd) >= 0) {
+	for(i = 1; nhext_io_getc(nhext_connection.rd) >= 0; i++)
 	    ;
 #ifdef DEBUG
 	fprintf(stderr,
@@ -323,9 +308,12 @@ struct nhext_line *nhext_subprotocol0_read_line_c(int cn)
  * at the time.
  */
 
-char *nhext_subprotocol0_get_failed_packet(int cn, int *nb)
+char *nhext_subprotocol0_get_failed_packet(int *nb)
 {
-    return nhext_io_getpacket(nhext_connections[cn].rd, nb);
+    if (nhext_connection.in)
+	return nhext_io_getpacket(nhext_connection.rd, nb);
+    else
+	return (char *)0;
 }
 
 static int nhext_rpc_vparams1(NhExtXdr *xdrs, int no, va_list *app)
@@ -470,9 +458,8 @@ int nhext_rpc_params(NhExtXdr *xdrs, int no, ...)
  */
 
 int
-nhext_rpc_c(int cn, unsigned short id, ...)
+nhext_rpc(unsigned short id, ...)
 {
-    struct nhext_connection *nc = nhext_connections + cn;
     NhExtXdr sink;
     va_list ap;
     unsigned long value, pos;
@@ -491,23 +478,24 @@ nhext_rpc_c(int cn, unsigned short id, ...)
     va_start(ap, id);
     (void) va_arg(ap, int);
     value = (id << 16) | (sink.x_pos >> 2);
-    nhext_xdr_u_long(nc->out, &value);
-    pos = nhext_xdr_getpos(nc->out);
-    if (!nhext_rpc_vparams1(nc->out, no, &ap) || nhext_io_flush(nc->wr)) {
+    nhext_xdr_u_long(nhext_connection.out, &value);
+    pos = nhext_xdr_getpos(nhext_connection.out);
+    if (!nhext_rpc_vparams1(nhext_connection.out, no, &ap) ||
+      nhext_io_flush(nhext_connection.wr)) {
 	impossible("Write to proxy interface failed");
 	va_end(ap);
 	return FALSE;
     }
-    if (nhext_xdr_getpos(nc->out) - pos != sink.x_pos) {
+    if (nhext_xdr_getpos(nhext_connection.out) - pos != sink.x_pos) {
 	impossible(
 	  "Miscounted length in proxy rpc ID %d (counted %lu, wrote %lu)",
-	  id, sink.x_pos, nhext_xdr_getpos(nc->out) - pos);
+	  id, sink.x_pos, nhext_xdr_getpos(nhext_connection.out) - pos);
 	va_end(ap);
 	return FALSE;
     }
     do
     {
-	retval = nhext_svc_c(cn, nc->callbacks);
+	retval = nhext_svc(nhext_connection.callbacks);
 	if (retval < 0) {
 	    impossible("Proxy server failed");
 	    va_end(ap);
@@ -518,25 +506,25 @@ nhext_rpc_c(int cn, unsigned short id, ...)
     /* External window ports are always allowed to return an empty reply to
      * a request. This indicates that the request is not supported.
      */
-    if (no && !nc->length) {
+    if (no && !nhext_connection.length) {
 	va_end(ap);
 	return FALSE;
     }
-    nhext_io_setautofill_limit(nc->rd, nc->length);
-    if (!nhext_rpc_vparams1(nc->in, no, &ap)) {
+    nhext_io_setautofill_limit(nhext_connection.rd, nhext_connection.length);
+    if (!nhext_rpc_vparams1(nhext_connection.in, no, &ap)) {
 	va_end(ap);
 	return FALSE;
     }
-    if (nhext_io_getc(nc->rd) >= 0) {
+    if (nhext_io_getc(nhext_connection.rd) >= 0) {
 	/* One or more bytes are still available. This means that the
 	 * whole packet was not used. We output an error and read and
 	 * throw away the excess data.
 	 */
-	for(i = 1; nhext_io_getc(nc->rd) >= 0; i++)
+	for(i = 1; nhext_io_getc(nhext_connection.rd) >= 0; i++)
 	    ;
 	impossible(
 	  "Mismatch in RPC ID %d request length (%d of %d unused)",
-	  id, i, nc->length);
+	  id, i, nhext_connection.length);
 	va_end(ap);
 	return FALSE;
     }
@@ -561,45 +549,46 @@ nhext_rpc_c(int cn, unsigned short id, ...)
  */
 
 int
-nhext_svc_c(int cn, struct nhext_svc *services)
+nhext_svc(struct nhext_svc *services)
 {
-    struct nhext_connection *nc = nhext_connections + cn;
     int i, j;
     unsigned short id;
     unsigned long value;
-    if (nhext_io_getc(nc->rd) >= 0) {
+    if (nhext_io_getc(nhext_connection.rd) >= 0) {
 	/* One or more bytes are already available. This means that a
 	 * previous packet was not wholly used. We output an error and
 	 * read and throw away the excess data.
 	 */
-	for(j = 1; nhext_io_getc(nc->rd) >= 0; j++)
+	for(j = 1; nhext_io_getc(nhext_connection.rd) >= 0; j++)
 	    ;
 	impossible("Mismatch in packet length (%d of %d unused)",
-	  j, nc->length);
+	  j, nhext_connection.length);
     }
-    nhext_io_setautofill_limit(nc->rd, 4);
-    if (!nhext_xdr_u_long(nc->in, &value)) {
+    nhext_io_setautofill_limit(nhext_connection.rd, 4);
+    if (!nhext_xdr_u_long(nhext_connection.in, &value)) {
 	impossible("Bad reply packet (no header)");
 	return -1;
     }
-    nc->length = (value & 0xffff) << 2;
+    nhext_connection.length = (value & 0xffff) << 2;
     id = value >> 16;
     if (id)
     {
-	nhext_io_setautofill_limit(nc->rd, nc->length);
+	nhext_io_setautofill_limit(nhext_connection.rd,
+	  nhext_connection.length);
 	for(i = 0; services[i].id; i++) {
 	    if (id == services[i].id) {
-		(*services[i].handler)(id, nc->in, nc->out);
+		(*services[i].handler)(id, nhext_connection.in,
+		  nhext_connection.out);
 		break;
 	    }
 	}
-	if (nhext_io_getc(nc->rd) >= 0) {
+	if (nhext_io_getc(nhext_connection.rd) >= 0) {
 	    /* One or more bytes are still available. This means that the
 	     * whole packet was not used. We output an error if we called
 	     * a handler (otherwise the error is not helpful) and, in any
 	     * case, read and throw away the excess data.
 	     */
-	    for(j = 1; nhext_io_getc(nc->rd) >= 0; j++)
+	    for(j = 1; nhext_io_getc(nhext_connection.rd) >= 0; j++)
 		;
 	    if (services[i].id)
 		/* Note: This can only occur if there was not a recursive
@@ -607,21 +596,21 @@ nhext_svc_c(int cn, struct nhext_svc *services)
 		 * either just before the next packet was read if this
 		 * callback request was partially unused or just after
 		 * the packet was processed if a reply packet was partially
-		 * unused). The conclusion of all this is that nc->length
-		 * is always valid. -- ALI
+		 * unused). The conclusion of all this is that
+		 * nhext_connection.length is always valid. -- ALI
 		 */
 		impossible(
 		  "Mismatch in callback ID %d request length (%d of %d unused)",
-		  id, j, nc->length);
+		  id, j, nhext_connection.length);
 	}
 	if (!services[i].id) {
 #ifdef DEBUG
 	    fprintf(stderr,"[%d] Unsupported proxy callback ID %d (%d known)\n",
 	      getpid(), id, i);
 #endif
-	    nhext_rpc_params(nc->out, 0);
+	    nhext_rpc_params(nhext_connection.out, 0);
 	}
-	if (nhext_io_flush(nc->wr)) {
+	if (nhext_io_flush(nhext_connection.wr)) {
 	    impossible("Write to proxy interface failed");
 	    return -1;
 	}

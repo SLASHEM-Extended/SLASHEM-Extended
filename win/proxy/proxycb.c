@@ -1,4 +1,4 @@
-/* $Id: proxycb.c,v 1.11 2002-11-23 22:41:59 j_ali Exp $ */
+/* $Id: proxycb.c,v 1.12 2002-12-01 17:23:38 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -7,16 +7,6 @@
 #include "nhxdr.h"
 #include "proxycom.h"
 #include "proxycb.h"
-
-extern int proxy_svc_connection;
-
-/*
- * Warning: This uses a gcc extension. The assumption is that we're going to
- * remove the connection number before release anyway, so it's easier not to
- * add a new parameter to every call to next_rpc().
- */
-
-#define nhext_rpc(id, args...) nhext_rpc_c(proxy_svc_connection, id, args)
 
 void
 proxy_cb_display_inventory()

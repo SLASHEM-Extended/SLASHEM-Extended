@@ -1,4 +1,4 @@
-/* $Id: proxysvc.c,v 1.11 2002-11-30 19:15:18 j_ali Exp $ */
+/* $Id: proxysvc.c,v 1.12 2002-12-01 17:23:38 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -29,16 +29,6 @@ static struct window_ext_procs *proxy_svc;
  *	proxy_svc_main(struct window_ext_procs *windowprocs)
  *	proxy_svc_main_quit(void)
  */
-
-int proxy_svc_connection;
-
-/*
- * Warning: This uses a gcc extension. The assumption is that we're going to
- * remove the connection number before release anyway, so it's easier not to
- * add a new parameter to every call to next_rpc().
- */
-
-#define nhext_rpc(id, args...) nhext_rpc_c(proxy_svc_connection, id, args)
 
 static void FDECL(proxy_svc_init, (unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_init_nhwindows,
@@ -721,29 +711,15 @@ struct window_ext_procs *windowprocs;
     proxy_svc = windowprocs;
 }
 
-extern unsigned long proxy_unread, proxy_svc_unread;
-
 #ifdef WIN32
 static int
 server_read(void *handle, void *buf, unsigned int len)
 {
     DWORD nb;
-#ifdef PROXY_INTERNAL
-    /*
-     * Hack for single process operation - let the game handle the pending
-     * callback.
-     */
-    if (!proxy_svc_unread)
-	win_proxy_iteration();
-#endif
     if (!ReadFile((HANDLE)handle, buf, len, &nb, NULL))
 	return -1;
-    else {
-#ifdef PROXY_INTERNAL
-	proxy_svc_unread -= nb;
-#endif
+    else
 	return nb;
-    }
 }
 
 static int
@@ -752,31 +728,15 @@ server_write(void *handle, void *buf, unsigned int len)
     DWORD nb;
     if (!WriteFile((HANDLE)handle, buf, len, &nb, NULL))
 	return -1;
-    else {
-#ifdef PROXY_INTERNAL
-	proxy_unread += nb;
-#endif
+    else
 	return nb;
-    }
 }
 #else	/* WIN32 */
 static int
 server_read(void *handle, void *buf, unsigned int len)
 {
     int nb;
-#ifdef PROXY_INTERNAL
-    /*
-     * Hack for single process operation - let the game handle the pending
-     * callback.
-     */
-    if (!proxy_svc_unread)
-	win_proxy_iteration();
-#endif
     nb = read((int)handle, buf, len);
-#ifdef PROXY_INTERNAL
-    if (nb > 0)
-	proxy_svc_unread -= nb;
-#endif
     return nb;
 }
 
@@ -785,10 +745,6 @@ server_write(void *handle, void *buf, unsigned int len)
 {
     int nb;
     nb = write((int)handle, buf, len);
-#ifdef PROXY_INTERNAL
-    if (nb > 0)
-	proxy_unread += nb;
-#endif
     return nb;
 }
 #endif	/* WIN32 */
@@ -893,8 +849,8 @@ void *read_h, *write_h;
 {
     int i;
     char *s;
-    struct nhext_line *lp, line;
     NhExtIO *rd, *wr;
+    struct nhext_line *lp, line;
 #ifdef DEBUG
     rd = nhext_io_open(debug_read, read_h, NHEXT_IO_RDONLY);
     wr = nhext_io_open(debug_write, write_h, NHEXT_IO_WRONLY);
@@ -906,14 +862,13 @@ void *read_h, *write_h;
 	fprintf(stderr, "proxy_svc: Failed to open I/O streams.\n");
 	exit(1);
     }
-    proxy_svc_connection = nhext_init(rd, wr, services);
-    if (proxy_svc_connection < 0) {
+    if (nhext_init(rd, wr, services) < 0) {
 	fprintf(stderr, "proxy_svc: Failed to initialize NhExt.\n");
 	nhext_io_close(wr);
 	nhext_io_close(rd);
 	return FALSE;
     }
-    lp = nhext_subprotocol0_read_line_c(proxy_svc_connection);
+    lp = nhext_subprotocol0_read_line();
     if (!lp) {
 failed:
 	fprintf(stderr, "proxy_svc: Failed to start NhExt.\n");
@@ -934,10 +889,9 @@ failed:
 	fprintf(stderr, "proxy_svc: Sub-protocol 1 not supported.\n");
 	s = "Error mesg \"No supported protocols\"\n";
 	(void)nhext_io_write(wr, s, strlen(s));
-	nhext_end_c(proxy_svc_connection);
+	nhext_end();
 	nhext_io_close(wr);
 	nhext_io_close(rd);
-	proxy_svc_connection = -1;
 	return FALSE;
     }
     nhext_subprotocol0_free_line(lp);
@@ -953,15 +907,14 @@ failed:
     line.values[0] = "Gtk";
     line.tags[1] = "protocol";
     line.values[1] = "1";
-    i = nhext_subprotocol0_write_line_c(proxy_svc_connection, &line);
+    i = nhext_subprotocol0_write_line(&line);
     free(line.tags);
     free(line.values);
     if (!i) {
 	fprintf(stderr, "proxy_svc: Failed to write NhExt acknowledgement.\n");
-	nhext_end_c(proxy_svc_connection);
+	nhext_end();
 	nhext_io_close(wr);
 	nhext_io_close(rd);
-	proxy_svc_connection = -1;
 	return FALSE;
     }
     return TRUE;
@@ -971,7 +924,7 @@ int
 win_proxy_svr_iteration()
 {
     int i;
-    i = nhext_svc_c(proxy_svc_connection, services);
+    i = nhext_svc(services);
     if (!i)
 	fprintf(stderr, "proxy_svc: Ignoring packet with zero ID\n");
     return i;
@@ -980,8 +933,5 @@ win_proxy_svr_iteration()
 char *
 win_proxy_svr_get_failed_packet(int *nb)
 {
-    if (proxy_svc_connection >= 0)
-	return nhext_subprotocol0_get_failed_packet(proxy_svc_connection, nb);
-    else
-	return NULL;
+    return nhext_subprotocol0_get_failed_packet(nb);
 }

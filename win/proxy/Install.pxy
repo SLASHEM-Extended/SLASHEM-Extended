@@ -41,7 +41,7 @@ To build:
 	1. Configure toplevel Makefile for proxy use (CNF_SHARE_DATND)
 	2. Configure config.h as follows:
 		Comment out GTK_GRAPHICS
-		Define PROXY_GRAPHICS, but not PROXY_INTERNAL
+		Define PROXY_GRAPHICS
 		Define GTK_V20 and GTK_PROXY inside
 		  #ifdef GTK_GRAPHICS ... #endif
 	3. Configure src/Makefile for proxy use

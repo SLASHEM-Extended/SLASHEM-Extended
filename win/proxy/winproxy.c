@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.14 2002-11-30 19:15:18 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.15 2002-12-01 17:23:38 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -86,16 +86,6 @@ struct window_procs proxy_procs = {
     proxy_end_screen,
     proxy_outrip
 };
-
-static int proxy_connection;
-
-/*
- * Warning: This uses a gcc extension. The assumption is that we're going to
- * remove the connection number before release anyway, so it's easier not to
- * add a new parameter to every call to next_rpc().
- */
-
-#define nhext_rpc(id, args...) nhext_rpc_c(proxy_connection, id, args)
 
 /*
  * The glue functions.
@@ -693,15 +683,6 @@ static int FDECL(debug_read, (void *, void *, unsigned int));
 static int FDECL(debug_write, (void *, void *, unsigned int));
 #endif
 
-/*
- * These counters (which contain the number of unread bytes in each pipe)
- * allow the proxy interface and the server to detect when they need to
- * pass control between each other. This mechanism will not be necessary
- * when they are in seperate processes (and nor would it work).
- */
-
-unsigned long proxy_unread, proxy_svc_unread;
-
 #ifdef WIN32
 static HANDLE to_parent[2], to_child[2];
 
@@ -739,20 +720,10 @@ void *buf;
 int len;
 {
     DWORD nb;
-#ifdef PROXY_INTERNAL
-    /*
-     * Hack for single process operation - let the server handle the pending
-     * call; issue any call backs and write a reply.
-     */
-    if (!proxy_unread)
-	win_proxy_svr_iteration();
-#endif
     if (!ReadFile((HANDLE)handle, buf, len, &nb, NULL))
 	return -1;
-    else {
-	proxy_unread -= nb;
+    else
 	return nb;
-    }
 }
 
 int proxy_write(handle, buf, len)
@@ -763,53 +734,9 @@ int len;
     DWORD nb;
     if (!WriteFile((HANDLE)handle, buf, len, &nb, NULL))
 	return -1;
-    else {
-	proxy_svc_unread += nb;
+    else
 	return nb;
-    }
 }
-
-#ifdef PROXY_INTERNAL
-static int
-proxy_init()
-{
-    NhExtIO *rd, *wr;
-    if (!pipe_create(to_parent, 0))
-	return FALSE;
-    if (!pipe_create(to_child, 1)) {
-	pipe_close(to_parent);
-	return FALSE;
-    }
-#ifndef DEBUG
-    rd = nhext_io_open(proxy_read, (void *)to_parent[0], NHEXT_IO_RDONLY);
-    wr = nhext_io_open(proxy_write, (void *)to_child[1], NHEXT_IO_WRONLY);
-#else
-    rd = nhext_io_open(debug_read, (void *)to_parent[0], NHEXT_IO_RDONLY);
-    wr = nhext_io_open(debug_write, (void *)to_child[1], NHEXT_IO_WRONLY);
-#endif
-    if (!rd || !wr) {
-	if (rd)
-	    nhext_io_close(rd);
-	if (wr)
-	    nhext_io_close(wr);
-	pipe_close(to_parent);
-	pipe_close(to_child);
-	return FALSE;
-    }
-    proxy_connection = nhext_subprotocol1_init(rd, wr, proxy_callbacks);
-    if (proxy_connection < 0)
-    {
-	nhext_io_close(rd);
-	nhext_io_close(wr);
-	pipe_close(to_parent);
-	pipe_close(to_child);
-	return FALSE;
-    }
-    if (!win_proxy_svr_init(to_child[0], to_parent[1]))
-	return FALSE;
-    return TRUE;
-}
-#endif	/* PROXY_INTERNAL */
 #else	/* WIN32 */
 static int to_parent[2], to_child[2];
 
@@ -820,17 +747,7 @@ void *buf;
 unsigned int len;
 {
     int fd = (int)handle, nb;
-#ifdef PROXY_INTERNAL
-    /*
-     * Hack for single process operation - let the server handle the pending
-     * call; issue any call backs and write a reply.
-     */
-    if (!proxy_unread)
-	win_proxy_svr_iteration();
-#endif
     nb = read(fd, buf, len);
-    if (nb > 0)
-	proxy_unread -= nb;
     return nb;
 }
 
@@ -849,63 +766,11 @@ unsigned int len;
     tv.tv_usec = 0;
     if (select(fd+1, NULL, &fds, NULL, &tv)) {
 	nb = write(fd, buf, len);
-	if (nb > 0)
-	    proxy_svc_unread += nb;
 	return nb;
     } else
 	return -1;
 }
-
-#ifdef PROXY_INTERNAL
-static int
-proxy_init()
-{
-    NhExtIO *rd, *wr;
-    if (pipe(to_child))
-	return FALSE;
-    if (pipe(to_parent))
-    {
-	close(to_child[0]);
-	close(to_child[1]);
-	return FALSE;
-    }
-#ifndef DEBUG
-    rd = nhext_io_open(proxy_read, (void *)to_parent[0], NHEXT_IO_RDONLY);
-    wr = nhext_io_open(proxy_write, (void *)to_child[1], NHEXT_IO_WRONLY);
-#else
-    rd = nhext_io_open(debug_read, (void *)to_parent[0], NHEXT_IO_RDONLY);
-    wr = nhext_io_open(debug_write, (void *)to_child[1], NHEXT_IO_WRONLY);
-#endif
-    if (!rd || !wr) {
-	if (rd)
-	    nhext_io_close(rd);
-	if (wr)
-	    nhext_io_close(wr);
-	close(to_child[0]);
-	close(to_child[1]);
-	close(to_parent[0]);
-	close(to_parent[1]);
-	return FALSE;
-    }
-    proxy_connection = nhext_subprotocol1_init(rd, wr, proxy_callbacks);
-    if (proxy_connection < 0)
-    {
-	nhext_io_close(rd);
-	nhext_io_close(wr);
-	close(to_child[0]);
-	close(to_child[1]);
-	close(to_parent[0]);
-	close(to_parent[1]);
-	return FALSE;
-    }
-    if (!win_proxy_svr_init(to_child[0], to_parent[1]))
-	return FALSE;
-    return TRUE;
-}
-#endif	/* PROXY_INTERNAL */
 #endif	/* WIN32 */
-
-#ifndef PROXY_INTERNAL
 
 #ifdef DEBUG
 #define READ_F	debug_read
@@ -937,8 +802,7 @@ proxy_init()
 	nhext_io_close(rd);
 	return FALSE;
     }
-    proxy_connection = nhext_init(rd, wr, proxy_callbacks);
-    if (proxy_connection < 0) {
+    if (nhext_init(rd, wr, proxy_callbacks) < 0) {
 	nhext_io_close(rd);
 	nhext_io_close(wr);
 	return FALSE;
@@ -953,19 +817,19 @@ proxy_init()
     line.values[1] = VERSION_STRING;
     line.tags[2] = "protocols";
     line.values[2] = "1";
-    i = nhext_subprotocol0_write_line_c(proxy_connection, &line);
+    i = nhext_subprotocol0_write_line(&line);
     free(line.tags);
     free(line.values);
     if (!i) {
 failed:
 	if (lp)
 	    nhext_subprotocol0_free_line(lp);
-	nhext_end_c(proxy_connection);
+	nhext_end();
 	nhext_io_close(rd);
 	nhext_io_close(wr);
 	return FALSE;
     }
-    lp = nhext_subprotocol0_read_line_c(proxy_connection);
+    lp = nhext_subprotocol0_read_line();
     if (!lp)
 	goto failed;
     if (strcmp(lp->type,"Ack"))
@@ -982,8 +846,6 @@ failed:
 #undef WRITE_F
 #undef READ_H
 #undef WRITE_H
-
-#endif	/* !PROXY_INTERNAL */
 
 #ifdef DEBUG
 static void
@@ -1078,7 +940,7 @@ int
 win_proxy_iteration()
 {
     int i;
-    i = nhext_svc_c(proxy_connection, proxy_callbacks);
+    i = nhext_svc(proxy_callbacks);
     if (!i)
 	fprintf(stderr, "proxy: Ignoring packet with zero ID\n");
     return i;

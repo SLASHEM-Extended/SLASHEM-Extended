@@ -1,4 +1,4 @@
-/* $Id: test_ext.c,v 1.5 2002-11-30 19:15:18 j_ali Exp $ */
+/* $Id: test_ext.c,v 1.6 2002-12-01 17:23:38 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -19,7 +19,6 @@
 #include "proxycom.h"
 
 static int is_child=0;
-static int connection, server_connection;
 
 long *alloc(unsigned int nb)
 {
@@ -427,8 +426,7 @@ void svc_test7(unsigned short id, NhExtXdr *request, NhExtXdr *reply)
 {
     int i;
     nhext_rpc_params(request, 1, EXT_INT_P(i));
-    nhext_rpc_c(server_connection,
-      EXT_CID_TEST7, 1, EXT_INT(i), 1, EXT_INT_P(i));
+    nhext_rpc(EXT_CID_TEST7, 1, EXT_INT(i), 1, EXT_INT_P(i));
     nhext_rpc_params(reply, 1, EXT_INT(i));
 }
 
@@ -464,17 +462,16 @@ void server(void)
 	fprintf(stderr, "C Failed to open I/O streams.\n");
 	exit(1);
     }
-    server_connection = nhext_init(rd, wr, callbacks);
-    if (server_connection < 0) {
-	fprintf(stderr, "C Failed to initialize sub-protocol1.\n");
+    if (nhext_init(rd, wr, callbacks) < 0) {
+	fprintf(stderr, "C Failed to initialize NhExt.\n");
 	exit(1);
     }
     do {
-	i = nhext_svc_c(server_connection, services);
+	i = nhext_svc(services);
 	if (!i)
 	    impossible("Ignoring packet with zero ID");
     } while (!server_exit);
-    nhext_end_c(server_connection);
+    nhext_end();
     nhext_io_close(rd);
     nhext_io_close(wr);
 }
@@ -488,18 +485,18 @@ void run_tests(void)
     int total;
     struct test5_request req;
     fprintf(stderr, "Test 1...\n");
-    retval = nhext_rpc_c(connection, EXT_FID_TEST1, 0, 0);
+    retval = nhext_rpc(EXT_FID_TEST1, 0, 0);
     fprintf(stderr, "Test 1 %s.\n", retval ? "passed" : "failed");
     fprintf(stderr, "Test 2...\n");
-    retval = nhext_rpc_c(connection, EXT_FID_TEST2, 1, EXT_INT(0), 0);
+    retval = nhext_rpc(EXT_FID_TEST2, 1, EXT_INT(0), 0);
     fprintf(stderr, "Test 2 %s.\n", retval ? "passed" : "failed");
     fprintf(stderr, "Test 3...\n");
-    retval = nhext_rpc_c(connection, EXT_FID_TEST3, 1, EXT_INT(67), 1, EXT_INT_P(i));
+    retval = nhext_rpc(EXT_FID_TEST3, 1, EXT_INT(67), 1, EXT_INT_P(i));
     if (i != 68)
 	retval = FALSE;
     fprintf(stderr, "Test 3 %s.\n", retval ? "passed" : "failed");
     fprintf(stderr, "Test 4...\n");
-    retval = nhext_rpc_c(connection, EXT_FID_TEST4, 1, EXT_STRING("Hello"),
+    retval = nhext_rpc(EXT_FID_TEST4, 1, EXT_STRING("Hello"),
       1, EXT_STRING_P(s));
     if (strcmp(s, "<Hello>"))
 	retval = FALSE;
@@ -509,7 +506,7 @@ void run_tests(void)
     req.array = (long *)alloc(req.n * sizeof(long));
     for(i = 0; i < 5; i++)
 	req.array[i] = 7 * i + 3;
-    retval = nhext_rpc_c(connection, EXT_FID_TEST5,
+    retval = nhext_rpc(EXT_FID_TEST5,
       1, EXT_XDRF(svc_xdr_test5_request, &req), 1, EXT_INT_P(total));
     for(i = 0; i < 5; i++)
 	total -= req.array[i];
@@ -518,7 +515,7 @@ void run_tests(void)
     free(req.array);
     fprintf(stderr, "Test 5 %s.\n", retval ? "passed" : "failed");
     fprintf(stderr, "Test 6...\n");
-    retval = nhext_rpc_c(connection, EXT_FID_TEST6,
+    retval = nhext_rpc(EXT_FID_TEST6,
       5, EXT_INT(37), EXT_INT(2), EXT_CHAR('l'), EXT_STRING("Shalom"),
          EXT_BOOLEAN(TRUE),
       5, EXT_INT_P(w), EXT_STRING_P(s), EXT_CHAR_P(c), EXT_INT_P(i),
@@ -528,7 +525,7 @@ void run_tests(void)
     free(s);
     fprintf(stderr, "Test 6 %s.\n", retval ? "passed" : "failed");
     fprintf(stderr, "Test 7...\n");
-    retval = nhext_rpc_c(connection, EXT_FID_TEST7, 1, EXT_INT(11), 1, EXT_INT_P(i));
+    retval = nhext_rpc(EXT_FID_TEST7, 1, EXT_INT(11), 1, EXT_INT_P(i));
     if (i != 58)
 	retval = FALSE;
     fprintf(stderr, "Test 7 %s.\n", retval ? "passed" : "failed");
@@ -554,14 +551,13 @@ char **argv;
 	fprintf(stderr, "Failed to open I/O streams.\n");
 	exit(1);
     }
-    connection = nhext_init(rd, wr, callbacks);
-    if (connection < 0) {
-	fprintf(stderr, "Failed to initialize sub-protocol1.\n");
+    if (nhext_init(rd, wr, callbacks) < 0) {
+	fprintf(stderr, "Failed to initialize NhExt.\n");
 	exit(1);
     }
     run_tests();
-    nhext_rpc_c(connection, EXT_FID_EXIT, 0, 0);
-    nhext_end_c(connection);
+    nhext_rpc(EXT_FID_EXIT, 0, 0);
+    nhext_end();
     nhext_io_close(rd);
     nhext_io_close(wr);
     if (!child_wait()) {

@@ -133,7 +133,6 @@
 
 #ifdef PROXY_GRAPHICS
 # define USE_XPM		/* Use XPM format for images */
-# define PROXY_INTERNAL		/* Build for internal proxy interface */
 /*
  * The proxy interface shouldn't be used as the default window system.
  * This will cause it to always be initialized with undesirable side

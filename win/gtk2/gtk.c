@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.22 2002-10-05 19:22:54 j_ali Exp $
+  $Id: gtk.c,v 1.23 2002-12-01 17:23:37 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1921,7 +1921,7 @@ GTK_exit_nhwindows(const char *str)
 	}
     }
 #endif
-#if defined(GTK_PROXY) && !defined(PROXY_INTERNAL)
+#if defined(GTK_PROXY)
     exit(0);
 #endif
 }
@@ -2590,7 +2590,7 @@ GTK_raw_print_bold(const char *str)
     }
 }
 
-#if defined(GTK_PROXY) && !defined(PROXY_INTERNAL)
+#if defined(GTK_PROXY)
 /*
  * Some utility functions that are normally provided by NetHack.
  */
@@ -2654,4 +2654,4 @@ int n;
     }
     return 0;                           /* s1 == s2 */
 }
-#endif	/* GTK_PROXY && !PROXY_INTERNAL */
+#endif	/* GTK_PROXY */
