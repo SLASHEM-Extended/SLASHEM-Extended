@@ -72,6 +72,7 @@ ver 0.0.7E6F2 [?] [Released by ?]
 -fixed bug 924384: Inconsistency with shoggoth corroding items
 -Macintosh: Include fix-level in about-box version
 -fixed bug 924277: Monsters can retaliate against themselves
+-fixed bug 925892: Vampire corpse on early bones level
 
 See history.txt for changes made in previous versions.
 
