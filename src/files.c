@@ -1280,29 +1280,33 @@ const char *filename;
 #else
 	/* constructed full path names don't need fqname() */
 # ifdef VMS
-	if ((fp = fopenp(fqname("nethackini", CONFIGPREFIX, 0), "r"))
+	if ((fp = fopenp(fqname(NH_CONFIG_FILE, CONFIGPREFIX, 0), "r"))
 								!= (FILE *)0) {
-		configfile = "nethackini";
+		configfile = NH_CONFIG_FILE;
 		return(fp);
 	}
-	if ((fp = fopenp("sys$login:nethack.ini", "r")) != (FILE *)0) {
-		configfile = "nethack.ini";
+	if ((fp = fopenp(NH_CONFIG_FILE2, "r")) != (FILE *)0) {
+		configfile = index(NH_CONFIG_FILE2, ':');
+		if (configfile)
+			configfile++;
+		else
+			configfile = NH_CONFIG_FILE2;
 		return(fp);
 	}
 
 	envp = nh_getenv("HOME");
 	if (!envp)
-		Strcpy(tmp_config, "NetHack.cnf");
+		Strcpy(tmp_config, NH_CONFIG_FILE3);
 	else
-		Sprintf(tmp_config, "%s%s", envp, "NetHack.cnf");
+		Sprintf(tmp_config, "%s%s", envp, NH_CONFIG_FILE3);
 	if ((fp = fopenp(tmp_config, "r")) != (FILE *)0)
 		return(fp);
 # else	/* should be only UNIX left */
 	envp = nh_getenv("HOME");
 	if (!envp)
-		Strcpy(tmp_config, ".nethackrc");
+		Strcpy(tmp_config, configfile);
 	else
-		Sprintf(tmp_config, "%s/%s", envp, ".nethackrc");
+		Sprintf(tmp_config, "%s/%s", envp, configfile);
 	if ((fp = fopenp(tmp_config, "r")) != (FILE *)0)
 		return(fp);
 	else if (errno != ENOENT) {

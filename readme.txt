@@ -341,6 +341,7 @@ ver 0.0.6E3F2 [September XX/2000]
  all your known techniques are useable (even the ones usually Not Prepared) 
  (tech.c)
 -fixed bug 112553: GTK interface failed to compile
+-fixed bug 112554: UNIX/VMS default config file was wrong
 
 ver 0.0.6E3F1 [August 21/2000] [Released by Ali]
 -fixed some bugs in the zap/cast code for magic missile, fire, cold, fireball, etc.
