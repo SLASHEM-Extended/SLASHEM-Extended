@@ -323,6 +323,10 @@ TODO:
 	-currently need to redo the font loading code (at least)
 	-it appears to be segfaulting (randomly?)
 
+ver 0.0.6E3F2 [September XX/2000]
+
+-changed some checks in tech.c to use DEADMONSTER()
+
 ver 0.0.6E3F1 [August 21/2000] [Released by Ali]
 -fixed some bugs in the zap/cast code for magic missile, fire, cold, fireball, etc.
 	-tmp_at was being called incorrectly (new tmp_at handles nested tmp_at calls)

@@ -558,20 +558,17 @@ int tech_no;
 			int tmp = 0;
 			
 			if (!attack(mtmp)) return(0);
-			if (mtmp && mtmp->mhp < oldhp && mtmp->mhp > 0) {
+			if (!DEADMONSTER(mtmp) && mtmp->mhp < oldhp) {
 			    tmp = oldhp - mtmp->mhp;
-			    if (tmp > 0) {
-
-				You("strike %s vital organs!", s_suffix(mon_nam(mtmp)));
-				if (humanoid(mtmp->data)) tmp = mtmp->mhp / 2;
-				else {
-					You("are hampered by the differences in anatomy.");
-					tmp = mtmp->mhp/4;
-				}
-				tmp += techlev(tech_no);
-				techtout(tech_no) = rn1(1000,500);
-				hurtmon(mtmp, tmp);
+			    You("strike %s vital organs!", s_suffix(mon_nam(mtmp)));
+			    if (humanoid(mtmp->data)) tmp = mtmp->mhp / 2;
+			    else {
+				You("are hampered by the differences in anatomy.");
+				tmp = mtmp->mhp/4;
 			    }
+			    tmp += techlev(tech_no);
+			    techtout(tech_no) = rn1(1000,500);
+			    hurtmon(mtmp, tmp);
 			}
 		}
 		break;
@@ -594,7 +591,7 @@ int tech_no;
 			int oldhp = mtmp->mhp;
 			
 			if (!attack(mtmp)) return(0);
-			if (mtmp && mtmp->mhp < oldhp && mtmp->mhp > 0) {
+			if (!DEADMONSTER(mtmp) && mtmp->mhp < oldhp) {
 				int tmp = 0;
 				if (!has_head(mtmp->data) || u.uswallow) {
 					You("can't perform cutthroat on %s!",mon_nam(mtmp));
@@ -1789,7 +1786,7 @@ blitz_g_slam()
 	}
 
 	mselftouch(mtmp, "Falling, ", TRUE);
-	if (mtmp->mhp > 0)
+	if (!DEADMONSTER(mtmp))
 	    if ((mtmp->mhp -= tmp) <= 0) {
 		if(!cansee(u.ux + u.dx, u.uy + u.dy))
 		    pline("It is destroyed!");
