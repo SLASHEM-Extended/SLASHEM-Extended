@@ -357,6 +357,7 @@ ver 0.0.6E4F6 [? ?/2001] [Released by ?]
 -fixed bug 454129: Wrong weight of piles of meatballs.
 -fixed bug 455393: Confusing shk credit messages.
 -fixed bug 456137: Pets and Sam's portal.
+-fixed bug 456803: Riding through Sam's portal.
 
 ver 0.0.6E4F5 [August 31/2001] [Released by Ali]
 -fixed bug 420517: Yellow dragon scale mail.
