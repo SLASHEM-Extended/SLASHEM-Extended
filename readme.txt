@@ -375,6 +375,7 @@ ver 0.0.6E4F8 [?] [Released by ?]
 -refixed bug 459699: Oops. add_to_billobjs: obj is timed.
 -applied patches 457587, 457592, 457593 & 457601: Building with Makefile.nt
 -fixed bug 524758: #borrow on pets exercises dexterity.
+-fixed bug 525461: Can't compile without UNPOLYPILE.
 
 ver 0.0.6E4F7 [February 28/2002] [Released by Ali]
 -Improvements to database (Lars Huttar)

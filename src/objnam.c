@@ -635,13 +635,19 @@ plus:
 			Strcat(prefix, sitoa(obj->spe));
 			Strcat(prefix, " ");
 		}
-		if (is_lightsaber(obj) || obj->otyp == STICK_OF_DYNAMITE) {
+		if (is_lightsaber(obj) 
+#ifdef FIREARMS
+				|| obj->otyp == STICK_OF_DYNAMITE
+#endif
+				) {
 			if(obj->lamplit) Strcat(bp, " (lit)");
 #ifdef DEBUG
 			Sprintf(eos(bp), " (%d)", obj->age);		
 #endif
+#ifdef FIREARMS
 		} else if (is_grenade(obj)) {
 			if(obj->oarmed) Strcat(bp, " (armed)");
+#endif
 		}
 		break;
 	case ARMOR_CLASS:
