@@ -74,23 +74,16 @@
 /* Other types of combat */
 #define P_BARE_HANDED_COMBAT 	(P_LAST_SPELL + 1)
 #define P_MARTIAL_ARTS		(P_LAST_SPELL + 2) /* WAC used to be role distinguishes */
-/* #define P_WRESTLING ??? */ /* Hey -- maybe someone might add it in for me =) */
-#define P_FIRST_H_TO_H		P_BARE_HANDED_COMBAT
-#define P_LAST_H_TO_H		P_MARTIAL_ARTS
-
+#define P_TWO_WEAPON_COMBAT	(P_LAST_SPELL + 3) /* Finally implemented */
 #ifdef STEED
-#define P_RIDING		(P_LAST_H_TO_H + 1)/* KMH -- How well you control your steed */
-#endif
-#define P_TWO_WEAPON_COMBAT	(P_LAST_H_TO_H + 2)/* KMH -- now used */
-
-#ifdef STEED
-#define P_FIRST_MISC		P_RIDING
+#define P_RIDING		(P_LAST_SPELL + 4) /* How well you control your steed */
+#define P_LAST_H_TO_H		P_RIDING
 #else
-#define P_FIRST_MISC		P_TWO_WEAPON_COMBAT
+#define P_LAST_H_TO_H		P_TWO_WEAPON_COMBAT
 #endif
-#define P_LAST_MISC 		P_TWO_WEAPON_COMBAT
+#define P_FIRST_H_TO_H		P_BARE_HANDED_COMBAT
 
-#define P_NUM_SKILLS		(P_LAST_MISC+1)
+#define P_NUM_SKILLS		(P_LAST_H_TO_H+1)
 
 
 /*

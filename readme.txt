@@ -74,6 +74,7 @@ ver 0.0.7E5 [?] [Released by ?]
 -fixed bug 846444: [0.0.7e3] Negative disarm skill
 -fixed bug 583464: Uncharged use of spellbooks
 -fixed bug 436054: Striking unusual monsters' vital organs
+-fixed bug 731772: Two-weapon skill categorization
 
 See history.txt for changes made in previous versions.
 

@@ -1098,7 +1098,6 @@ const static struct skill_range {
     { P_FIRST_H_TO_H, P_LAST_H_TO_H, "Fighting Skills" },
     { P_FIRST_WEAPON, P_LAST_WEAPON, "Weapon Skills" },
     { P_FIRST_SPELL,  P_LAST_SPELL,  "Spellcasting Skills" },
-    { P_FIRST_MISC,   P_LAST_MISC,   "Miscellaneous Skills" }
 };
 
 /*
