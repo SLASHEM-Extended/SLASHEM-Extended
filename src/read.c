@@ -737,7 +737,7 @@ forget_map(howmuch)
 		/* Zonk all memory of this location. */
 		levl[zx][zy].seenv = 0;
 		levl[zx][zy].waslit = 0;
-		levl[zx][zy].glyph = cmap_to_glyph(S_stone);
+		clear_memory_glyph(zx, zy, S_stone);
 	    }
 }
 

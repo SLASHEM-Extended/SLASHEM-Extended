@@ -776,10 +776,14 @@ register int x, y;
     }
 
     /* if we don't remember an object or trap there, map it */
+#ifdef DISPLAY_LAYERS
+    if (!lev->mem_obj && !lev->mem_trap) {
+#else
     if (lev->typ == ROOM ?
 	    (glyph_is_cmap(lev->glyph) && !glyph_is_trap(lev->glyph) &&
 		glyph_to_cmap(lev->glyph) != ROOM) :
 	    (!glyph_is_object(lev->glyph) && !glyph_is_trap(lev->glyph))) {
+#endif
 	if (level.flags.hero_memory) {
 	    magic_map_background(x,y,0);
 	    newsym(x,y);			/* show it, if not blocked */
@@ -882,9 +886,9 @@ genericptr_t num;
 			(*(int*)num)++;
 		}
 		if (!canspotmon(mtmp) &&
-				    !glyph_is_invisible(levl[zx][zy].glyph))
+				    !memory_is_invisible(zx, zy))
 			map_invisible(zx, zy);
-	} else if (glyph_is_invisible(levl[zx][zy].glyph)) {
+	} else if (memory_is_invisible(zx, zy)) {
 		unmap_object(zx, zy);
 		newsym(zx, zy);
 		(*(int*)num)++;
@@ -1037,7 +1041,7 @@ register int aflag;
 				seemimic(mtmp);
 		find:		exercise(A_WIS, TRUE);
 				if (!canspotmon(mtmp)) {
-				    if (glyph_is_invisible(levl[x][y].glyph)) {
+				    if (memory_is_invisible(x, y)) {
 					/* found invisible monster in a square
 					 * which already has an 'I' in it.
 					 * Logically, this should still take
@@ -1068,7 +1072,7 @@ register int aflag;
 			 * feel_location() already did it
 			 */
 			if (!aflag && !mtmp && !Blind &&
-				    glyph_is_invisible(levl[x][y].glyph)) {
+				    memory_is_invisible(x, y)) {
 			    unmap_object(x,y);
 			    newsym(x,y);
 			}

@@ -393,7 +393,16 @@ extern const struct symdef def_warnsyms[WARNCOUNT];
  * the size of temporary files and save files.
  */
 struct rm {
+#ifdef DISPLAY_LAYERS
+	Bitfield(mem_bg,6);	/* Remembered background */
+	Bitfield(mem_trap,5);	/* Remembered trap */
+	Bitfield(mem_obj,10);	/* Remembered object/corpse */
+	Bitfield(mem_corpse,1);	/* Set if mem_obj refers to a corpse */
+	Bitfield(mem_invis,1);	/* Set if invisible monster remembered */
+	Bitfield(mem_spare,9);
+#else
 	int glyph;		/* what the hero thinks is there */
+#endif
 	schar typ;		/* what is really there */
 	uchar seenv;		/* seen vector */
 	Bitfield(flags,5);	/* extra information for typ */

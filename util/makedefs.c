@@ -475,6 +475,9 @@ make_version()
 			| (1L << 11)
 #endif
 		/* flag bits and/or other global variables (15..26) */
+#ifdef DISPLAY_LAYERS
+			| (1L << 15)
+#endif
 #ifdef BLACKMARKET
 			| (1L << 16)
 #endif
@@ -714,6 +717,9 @@ static const char *build_opts[] = {
 #endif
 #ifdef SCORE_ON_BOTL
 		"score on status line",
+#endif
+#ifdef DISPLAY_LAYERS
+		"display layers",
 #endif
 #ifdef CLIPPING
 		"screen clipping",

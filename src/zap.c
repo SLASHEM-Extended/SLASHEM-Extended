@@ -3033,7 +3033,7 @@ struct obj *obj;                        /* object tossed/used */
 		}
 	    } else {
 		if (weapon == ZAPPED_WAND && obj->otyp == WAN_PROBING &&
-		   glyph_is_invisible(levl[bhitpos.x][bhitpos.y].glyph)) {
+		   memory_is_invisible(bhitpos.x, bhitpos.y)) {
 		    unmap_object(bhitpos.x, bhitpos.y);
 		    newsym(x, y);
 		}
@@ -3082,7 +3082,7 @@ boolean costly = shop_keeper(*in_rooms(bhitpos.x, bhitpos.y, SHOPBASE)) &&
 	    if(weapon != ZAPPED_WAND && weapon != INVIS_BEAM) {
 		/* 'I' present but no monster: erase */
 		/* do this before the tmp_at() */
-		if (glyph_is_invisible(levl[bhitpos.x][bhitpos.y].glyph)
+		if (memory_is_invisible(bhitpos.x, bhitpos.y)
 			&& cansee(x, y)) {
 		    unmap_object(bhitpos.x, bhitpos.y);
 		    newsym(x, y);
@@ -3680,7 +3680,7 @@ register int dx,dy;
 		/* reveal/unreveal invisible monsters before tmp_at() */
 		if (mon && !canspotmon(mon))
 		    map_invisible(sx, sy);
-		else if (!mon && glyph_is_invisible(levl[sx][sy].glyph)) {
+		else if (!mon && memory_is_invisible(sx, sy)) {
 		    unmap_object(sx, sy);
 		    newsym(sx, sy);
 		}

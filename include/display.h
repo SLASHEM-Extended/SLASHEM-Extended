@@ -330,8 +330,8 @@
 	    (int) (obj)->otyp + GLYPH_OBJ_OFF))
 
 #define cmap_to_glyph(cmap_idx)	((int) (cmap_idx)   + GLYPH_CMAP_OFF)
-#define trap_to_glyph(trap)	\
-			cmap_to_glyph(trap_to_defsym(what_trap((trap)->ttyp)))
+#define trap_to_cmap(trap)	trap_to_defsym(what_trap((trap)->ttyp))
+#define trap_to_glyph(trap)	cmap_to_glyph(trap_to_cmap(trap))
 
 /* Not affected by hallucination.  Gives a generic body for CORPSE */
 #define objnum_to_glyph(onum)	((int) (onum) + GLYPH_OBJ_OFF)
@@ -339,6 +339,7 @@
 #define detected_monnum_to_glyph(mnum)	((int) (mnum) + GLYPH_DETECT_OFF)
 #define ridden_monnum_to_glyph(mnum)	((int) (mnum) + GLYPH_RIDDEN_OFF)
 #define petnum_to_glyph(mnum)	((int) (mnum) + GLYPH_PET_OFF)
+#define body_to_glyph(mnum)	((int) (mnum) + GLYPH_BODY_OFF)
 
 /* The hero's glyph when seen as a monster.  Could also be...
  * mon_to_glyph(Upolyd || Race_if(PM_HUMAN) ? u.umonnum : urace.malenum)
@@ -363,6 +364,9 @@
 	glyph_is_pet(glyph) ? ((glyph)-GLYPH_PET_OFF) :			\
 	glyph_is_detected_monster(glyph) ? ((glyph)-GLYPH_DETECT_OFF) :	\
 	glyph_is_ridden_monster(glyph) ? ((glyph)-GLYPH_RIDDEN_OFF) :	\
+	NO_GLYPH)
+#define glyph_to_body(glyph)						\
+	(glyph_is_body(glyph) ? ((glyph) - GLYPH_BODY_OFF) :		\
 	NO_GLYPH)
 #define glyph_to_obj(glyph)						\
 	(glyph_is_body(glyph) ? CORPSE :				\
@@ -416,4 +420,14 @@
     ((glyph) >= GLYPH_SWALLOW_OFF && (glyph) < (GLYPH_SWALLOW_OFF+(NUMMONS << 3)))
 #define glyph_is_warning(glyph)	\
     ((glyph) >= GLYPH_WARNING_OFF && (glyph) < (GLYPH_WARNING_OFF + WARNCOUNT))
+
+#ifdef DISPLAY_LAYERS
+#define memory_is_invisible(x,y) (levl[x][y].mem_invis)
+#define remembered_object(x,y)						\
+    (levl[x][y].mem_corpse ? CORPSE : 					\
+     levl[x][y].mem_obj ? levl[x][y].mem_obj - 1 : NO_GLYPH)
+#else
+#define memory_is_invisible(x,y) glyph_is_invisible(levl[x][y].glyph)
+#define remembered_object(x,y) glyph_to_obj(levl[x][y].glyph)
+#endif
 #endif /* DISPLAY_H */

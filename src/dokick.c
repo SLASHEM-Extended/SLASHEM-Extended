@@ -723,7 +723,7 @@ dokick()
 		    /* check x and y; a monster that evades your kick by
 		       jumping to an unseen square doesn't leave an I behind */
 		    mtmp->mx == x && mtmp->my == y &&
-		    !glyph_is_invisible(levl[x][y].glyph) &&
+		    !memory_is_invisible(x, y) &&
 		    !(u.uswallow && mtmp == u.ustuck))
 			map_invisible(x, y);
 		if((Is_airlevel(&u.uz) || Levitation) && flags.move) {
@@ -738,7 +738,7 @@ dokick()
 		}
 		return(1);
 	}
-	if (glyph_is_invisible(levl[x][y].glyph)) {
+	if (memory_is_invisible(x, y)) {
 		unmap_object(x, y);
 		newsym(x, y);
 	}

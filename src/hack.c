@@ -236,7 +236,7 @@ moverock()
 	    }
 
 	    /* Move the boulder *after* the message. */
-	    if (glyph_is_invisible(levl[rx][ry].glyph))
+	    if (memory_is_invisible(rx, ry))
 		unmap_object(rx, ry);
 	    movobj(otmp, rx, ry);       /* does newsym(rx,ry) */
 	    if (Blind) {
@@ -721,7 +721,7 @@ domove()
 	     * attack_check(), which still wastes a turn, but prints a
 	     * different message and makes the player remember the monster.		     */
 	    if(flags.nopick &&
-		  (canspotmon(mtmp) || glyph_is_invisible(levl[x][y].glyph))){
+		  (canspotmon(mtmp) || memory_is_invisible(x, y))){
 		if(mtmp->m_ap_type && !Protection_from_shape_changers
 						    && !sensemon(mtmp))
 		    stumble_onto_mimic(mtmp);
@@ -769,14 +769,14 @@ domove()
 	/* specifying 'F' with no monster wastes a turn */
 	if (flags.forcefight ||
 	    /* remembered an 'I' && didn't use a move command */
-	    (glyph_is_invisible(levl[x][y].glyph) && !flags.nopick)) {
+	    (memory_is_invisible(x, y) && !flags.nopick)) {
 		You("attack %s.", Underwater ? "empty water" : "thin air");
 		unmap_object(x, y); /* known empty -- remove 'I' if present */
 		newsym(x, y);
 		nomul(0);
 		return;
 	}
-	if (glyph_is_invisible(levl[x][y].glyph)) {
+	if (memory_is_invisible(x, y)) {
 	    unmap_object(x, y);
 	    newsym(x, y);
 	}

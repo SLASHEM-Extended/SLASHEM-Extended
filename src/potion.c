@@ -639,7 +639,7 @@ peffects(otmp)
 		    incr_itimeout(&HDetect_monsters, 20+rnd(40));
 		    for (x = 1; x < COLNO; x++) {
 			for (y = 0; y < ROWNO; y++) {
-			    if (levl[x][y].glyph == GLYPH_INVISIBLE) {
+			    if (memory_is_invisible(x, y)) {
 				unmap_object(x, y);
 				newsym(x,y);
 			    }

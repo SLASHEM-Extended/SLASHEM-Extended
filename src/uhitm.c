@@ -131,7 +131,7 @@ boolean barehanded;
 		 * not stay there, so the player will have suddenly forgotten
 		 * the square's contents for no apparent reason.
 		if (!canspotmon(mtmp) &&
-		    !glyph_is_invisible(levl[u.ux+u.dx][u.uy+u.dy].glyph))
+		    !memory_is_invisible(u.ux+u.dx, u.uy+u.dy))
 			map_invisible(u.ux+u.dx, u.uy+u.dy);
 		 */
 		return retval;
@@ -144,7 +144,7 @@ boolean barehanded;
 	 * happening two turns in a row.
 	 */
 	if (!canspotmon(mtmp) &&
-		    !glyph_is_invisible(levl[u.ux+u.dx][u.uy+u.dy].glyph) &&
+		    !memory_is_invisible(u.ux+u.dx, u.uy+u.dy) &&
 		    !(!Blind && mtmp->mundetected && hides_under(mtmp->data))) {
 		pline("Wait!  There's %s there you can't see!",
 			something);
@@ -166,7 +166,7 @@ boolean barehanded;
 		 * some (probably different) unseen monster, the player is in
 		 * luck--he attacks it even though it's hidden.
 		 */
-		if (glyph_is_invisible(levl[mtmp->mx][mtmp->my].glyph)) {
+		if (memory_is_invisible(mtmp->mx, mtmp->my)) {
 		    seemimic(mtmp);
 		    return retval;
 		}
@@ -178,7 +178,7 @@ boolean barehanded;
 		(hides_under(mtmp->data) || mtmp->data->mlet == S_EEL)) {
 	    mtmp->mundetected = mtmp->msleeping = 0;
 	    newsym(mtmp->mx, mtmp->my);
-	    if (glyph_is_invisible(levl[mtmp->mx][mtmp->my].glyph)) {
+	    if (memory_is_invisible(mtmp->mx, mtmp->my)) {
 		seemimic(mtmp);
 		return retval;
 	    }
@@ -434,7 +434,7 @@ atk_done:
 	 * evade.
 	 */
 	if (flags.forcefight && mtmp->mhp > 0 && !canspotmon(mtmp) &&
-	    !glyph_is_invisible(levl[u.ux+u.dx][u.uy+u.dy].glyph) &&
+	    !memory_is_invisible(u.ux+u.dx, u.uy+u.dy) &&
 	    !(u.uswallow && mtmp == u.ustuck))
 		map_invisible(u.ux+u.dx, u.uy+u.dy);
 
@@ -2894,6 +2894,13 @@ struct monst *mtmp;
 	    else if (mtmp->m_ap_type == M_AP_MONSTER)
 		what = a_monnam(mtmp);	/* differs from what was sensed */
 	} else {
+#ifdef DISPLAY_LAYERS
+	    if (levl[u.ux+u.dx][u.uy+u.dy].mem_bg == S_hcdoor ||
+		    levl[u.ux+u.dx][u.uy+u.dy].mem_bg == S_vcdoor)
+		fmt = "The door actually was %s!";
+	    else if (levl[u.ux+u.dx][u.uy+u.dy].mem_obj == GOLD_PIECE)
+		fmt = "That gold was %s!";
+#else
 	    int glyph = levl[u.ux+u.dx][u.uy+u.dy].glyph;
 
 	    if (glyph_is_cmap(glyph) &&
@@ -2903,6 +2910,7 @@ struct monst *mtmp;
 	    else if (glyph_is_object(glyph) &&
 		    glyph_to_obj(glyph) == GOLD_PIECE)
 		fmt = "That gold was %s!";
+#endif
 
 	    /* cloned Wiz starts out mimicking some other monster and
 	       might make himself invisible before being revealed */

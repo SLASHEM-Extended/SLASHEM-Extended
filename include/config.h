@@ -418,6 +418,10 @@ typedef unsigned char	uchar;
 
 #define DEVEL_BRANCH	/* Include development code */
 
+#ifdef DEVEL_BRANCH
+#define DISPLAY_LAYERS	/* Improved support for transparent tile sets - ALI */
+#endif
+
 #include "global.h"	/* Define everything else according to choices above */
 
 #endif /* CONFIG_H */

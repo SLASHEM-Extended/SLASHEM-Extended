@@ -563,7 +563,11 @@ makevtele()
 STATIC_OVL void
 clear_level_structures()
 {
+#ifdef DISPLAY_LAYERS
+	static struct rm zerorm = { S_stone, 0, 0, 0, 0, 0,
+#else
 	static struct rm zerorm = { cmap_to_glyph(S_stone),
+#endif
 						0, 0, 0, 0, 0, 0, 0, 0 };
 	register int x,y;
 	register struct rm *lev;

@@ -261,7 +261,7 @@ use_stethoscope(obj)
 			map_invisible(rx,ry);
 		return res;
 	}
-	if (glyph_is_invisible(levl[rx][ry].glyph)) {
+	if (memory_is_invisible(rx, ry)) {
 		unmap_object(rx, ry);
 		newsym(rx, ry);
 		pline_The("invisible monster must have moved.");
@@ -2120,7 +2120,7 @@ struct obj *obj;
 
     } else if (mtmp) {
 	if (!canspotmon(mtmp) &&
-		!glyph_is_invisible(levl[rx][ry].glyph)) {
+		!memory_is_invisible(rx, ry)) {
 	   pline("A monster is there that you couldn't see.");
 	   map_invisible(rx, ry);
 	}

@@ -236,7 +236,7 @@ do_explode(x, y, type, dam, olet, dest, yours)
 		}
 		if (mtmp && cansee(i+x-1,j+y-1) && !canspotmon(mtmp))
 		    map_invisible(i+x-1, j+y-1);
-		else if (!mtmp && glyph_is_invisible(levl[i+x-1][j+y-1].glyph)) {
+		else if (!mtmp && memory_is_invisible(i+x-1, j+y-1)) {
 		    unmap_object(i+x-1, j+y-1);
 		    newsym(i+x-1, j+y-1);
 		}
