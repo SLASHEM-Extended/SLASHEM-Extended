@@ -521,9 +521,10 @@ SPEC_LEVS = \
  beholder.lev	blkmar.lev	cav2fill.lev	demogorg.lev	dispater.lev\
  dragons.lev	geryon.lev	grund-1.lev	grund-2.lev	grund-3.lev \
  guild.lev	frnknstn.lev	kobold-1.lev	kobold-2.lev	lich.lev    \
- mall.lev	mall-1.lev	mall-2.lev	mineking.lev	mtemple.lev \
- nightmar.lev	nymph.lev	rats.lev	sea.lev 	spiders.lev \
- stor-1.lev	stor-2.lev	stor-3.lev	tomb.lev	yeenoghu.lev
+ mall.lev	mall-1.lev	mall-2.lev	medusa-3.lev	medusa-4.lev\
+ mineking.lev	mtemple.lev	nightmar.lev	nymph.lev	rats.lev    \
+ sea.lev 	spiders.lev	stor-1.lev	stor-2.lev	stor-3.lev  \
+ tomb.lev	yeenoghu.lev
 
 QUEST_LEVS = \
  Arc-goal.lev Arc-fila.lev Arc-filb.lev Arc-loca.lev Arc-strt.lev \
