@@ -314,6 +314,10 @@ nh_timeout()
 			if (!Free_action)
 				You("feel a little stiffer.");
 			break;
+		case PASSES_WALLS:
+			if (!Passes_walls)
+				You("feel a little more solid.");
+			break;
 		case INVULNERABLE:
 			if (!Invulnerable)
 				You("are no longer invulnerable.");

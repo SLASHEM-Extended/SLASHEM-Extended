@@ -1020,7 +1020,7 @@ boolean atme;
 	/* KMH -- new spells */
 	case SPE_PASSWALL:
 		if (!Passes_walls)
-			You_feel("etheral.");
+			You_feel("ethereal.");
 		incr_itimeout(&HPasses_walls, rn1(100, 50));
 		break;
 
