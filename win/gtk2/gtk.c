@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.29 2003-01-02 19:00:46 j_ali Exp $
+  $Id: gtk.c,v 1.30 2003-01-05 07:41:09 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -2535,6 +2535,12 @@ GTK_ext_outrip(winid id, char *str)
 #ifdef FILE_AREAS
     free(rip_file);
 #endif
+
+    if (!rip_pixmap) {
+	rip_pixmap = gdk_pixmap_new(w->window, 310, 200, -1);
+	gdk_draw_rectangle(rip_pixmap, w->style->white_gc, TRUE, 0, 0,
+	  310, 200);
+    }
 
     rip = nh_gtk_new_and_pack(
 	gtk_pixmap_new(rip_pixmap, 0), vbox, "",
