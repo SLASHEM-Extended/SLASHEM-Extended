@@ -215,10 +215,12 @@ int thrown;
 	       
 	    /* Tech: Flurry */
 	    if (objects[obj->otyp].oc_skill == -P_BOW && tech_inuse(T_FLURRY)) {
-		/* more than usual == volley */
-		if (obj->quan >= (multishot + 1))
-		    You("let fly a volley of %s!", xname(obj));
 		multishot += 1; /* Let'em rip! */
+
+		/* more than usual == volley */
+		if (((shotlimit <= 0) || (shotlimit >= multishot)) && 
+			(obj->quan >= multishot))
+		    You("let fly a volley of %s!", xname(obj));
 	    }
 
 	    /* Shotlimit controls your rate of fire */

@@ -93,6 +93,7 @@ ver 0.0.7E6F2 [?] [Released by ?]
 -fixed bug 911485: Monk techniques and vampire lords
 -fixed bug 935175: monsters cheating to use polearm
 -fixed bug 938871: Izchak does not appear
+-fixed bug 938864: Bad message when using flurry and limiting shots
 
 See history.txt for changes made in previous versions.
 
