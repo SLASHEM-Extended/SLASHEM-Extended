@@ -438,9 +438,12 @@ give_up:	/* Quit */
 		    for (i = 0; races[i].noun; i++)
 			if (ok_race(flags.initrole, i, flags.initgend,
 							flags.initalign)) {
+			    thisch = lowc(races[i].noun[0]);
+			    if (thisch == lastch) thisch = highc(thisch);
 			    any.a_int = i+1;	/* must be non-zero */
-			    add_menu(win, NO_GLYPH, &any, races[i].noun[0],
+			    add_menu(win, NO_GLYPH, &any, thisch,
 				0, ATR_NONE, races[i].noun, MENU_UNSELECTED);
+			    lastch = thisch;
 			}
 		    any.a_int = pick_race(flags.initrole, flags.initgend,
 					flags.initalign)+1;
@@ -1718,9 +1721,11 @@ tty_putstr(window, attr, str)
 
     case NHW_STATUS:
 #ifdef ALLEG_FX
-        if (iflags.usealleg) alleg_stats(str, cw->cury);
+        if (iflags.usealleg) {
+            alleg_stats(str, cw->cury);
+            break;
+        }
 #endif
-
 	ob = &cw->data[cw->cury][j = cw->curx];
 	if(flags.botlx) *ob = 0;
 	if(!cw->cury && (int)strlen(str) >= CO) {

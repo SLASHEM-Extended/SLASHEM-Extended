@@ -312,7 +312,14 @@ Bug - cockatrice lairs no longer have "goodies"?
 	-pet unicorns remove ailments, etc...
 
 ver 0.0.6E3F1 [September XX/2000]
+-did the uppercase for conflicting races - TODO: Reimplement F. Theoderson's 
+	selection system or something similar while maintaining current 
+	capabilities (wintty.c)
+-fixed status bar in Allegro modes when screen Height was not 480.  Initial 
+ status bar was drawn correctly, but updates were incorrectly printed.
+	(wintty.c)
 -cleaned up the DOS makefile to allow easy building of TTY+VGA+Allegro binary
+	(makefile.gcc)
 
 ver 0.0.6E3F0 [August 12/2000]
 -Nethack 3.3.1 Integration Preliminary done
