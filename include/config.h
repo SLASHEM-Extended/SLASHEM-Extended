@@ -397,7 +397,7 @@ typedef unsigned char	uchar;
 /* #define SCORE_ON_BOTL */	/* added by Gary Erickson (erickson@ucivax) */
 /* #define BORG */            /* Works only under DOS */
 /* #define KEEP_SAVE */       /* Keep savefiles after Restore (wac@intergate.bc.ca)*/
-/*#define CHARON */          /* Charon's boat, enables Cerebus */
+/* #define CHARON */	/* Charon's boat, enables Cerebus - not implemented */
 #define SHOW_DMG        /* WAC made dmg reports optional (wac@intergate.bc.ca)*/
 #define SHOW_WEIGHT     /* [max] added display of object weight when picking up */
                         /* and in inventory (madmax@fly.cc.fer.hr). */

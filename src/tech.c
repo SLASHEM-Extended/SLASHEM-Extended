@@ -1902,6 +1902,7 @@ blitz_e_fist()
 	str = makeplural(body_part(HAND));
 	You("focus the powers of the elements into your %s.", str);
 	techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/3 + 1)) + d(1,4) + 2;
+	return 1;
 }
 
 /* Assumes u.dx, u.dy already set up */
@@ -1998,8 +1999,7 @@ blitz_g_slam()
 static int
 blitz_dash()
 {
-	int i = 0, tech_no;
-	struct monst *mtmp;
+	int tech_no;
 	tech_no = (get_tech_no(T_DASH));
 
 	if (tech_no == -1) {
@@ -2008,6 +2008,7 @@ blitz_dash()
 	
 	You("dash forwards!");
 	dash(u.dx, u.dy, 2, FALSE);
+	return 1;
 }
 
 static int
@@ -2030,6 +2031,7 @@ blitz_power_surge()
     	techt_inuse(tech_no) = num + 1;
 	u.uenmax += num;
 	u.uen = u.uenmax;
+	return 1;
 }
 
 /* Assumes u.dx, u.dy already set up */
@@ -2073,6 +2075,7 @@ blitz_spirit_bomb()
 	}
 	/* Magical Explosion */
 	explode(sx, sy, 10, (d(3,6) + num), WAND_CLASS);
+	return 1;
 }
 
 /*
