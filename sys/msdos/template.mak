@@ -1,12 +1,28 @@
-#	SCCS Id: @(#)Makefile.MSC	3.2	96/10/25
-# Copyright (c) NetHack PC Development Team, 1996.
-# NetHack may be freely distributed.  See license for details.
+# SCCS Id: @(#)template.mak	3.4	1996/10/25
+# Copyright (c) NetHack PC Development Team 1996
 #
-
-# PC NetHack 3.2 Makefile for Microsoft(tm) "C" >= 7.0 and MSVC >= 1.0
+?BEGIN?
+?SCCS?
+?MSC?
+# PC NetHack 3.4 Makefile for Microsoft(tm) "C" >= 7.0 and MSVC >= 1.0
+?ENDMSC?
+?BC?
+# PC NetHack 3.4 Makefile for Borland C++ 3.1.
+?ENDBC?
 #
 # Nota Bene:	Before you get to here you should have already read
 # 		the Install.dos file located in the sys/msdos directory.
+?BC?
+#		Additionally, you should run this makefile with the -N
+#		Microsoft Compatibility option.
+#
+# This Makefile is for use with Borland C++ version 3.1.
+#
+# This Makefile is specific to Borland's MAKE which is supplied with the
+# compiler.  It supports only one overlay management facility - VROOMM.
+# (This Makefile won't work with make45l or NDMAKE)
+?ENDBC?
+?MSC?
 #
 # This Makefile is for use with Microsoft C version 7 and Microsoft Visual C++
 # Professional Edition (MSVC) version 1.0 or greater.
@@ -22,6 +38,7 @@
 #	files with suffix		workalike for
 #	       .y			    yacc   (such as bison or byacc)
 #	       .l			    lex    (such as flex)
+?ENDMSC?
 
 #
 # Game Installation Variables.
@@ -53,11 +70,23 @@ WSHR	= ..\win\share
 # ($(MAKE) macro is often predefined, so we use $(MAKEBIN) instead.)
 #
 
+?MSC?
 CC	 = cl		# Compiler
 LINK	 = link		# Linker
 ASM	 = masm		# Assembler (not currently needed for MSC 7 and > )
 MAKEBIN  = nmake
 UUDECODE = uudecode	# Unix style uudecoder
+?ENDMSC?
+?BC?
+CC	 = bcc		# Compiler
+LINK	 = tlink	# Linker
+ASM	 = tasm		# Assembler (not currently needed for BC)
+MAKEBIN  = make
+UUDECODE = uudecode	# Unix style uudecoder
+
+#BCTOP	 = c:\borlandc	# main Borland C++ directory
+BCTOP	 = c:\bc31
+?ENDBC?
 
 #
 # Yacc/Lex ... if you got 'em.
@@ -65,6 +94,11 @@ UUDECODE = uudecode	# Unix style uudecoder
 # If you have yacc and lex programs (or work-alike such as bison
 # and flex), comment out the upper two lines below, and uncomment
 # the lower two.
+?BC?
+#
+# On Borland C++, the newest versions of flex and bison provide
+# problems when run from MAKE.
+?ENDBC?
 #
 
 DO_YACC = YACC_MSG
@@ -126,11 +160,20 @@ TERMLIB =
 #
 #   - Minimal extended memory available, lots of 640K base RAM free
 #     Minimize overlay turns. Requires that a minimum of
+?MSC?
 #     560K RAM be free as follows:
 #     430K  Executable load requirement
 #      60K  Overlay buffer
 #      70K  for malloc() calls
 #     560K  Total memory requirement
+?ENDMSC?
+?BC?
+#     607K RAM be free as follows:
+#     462K  Executable load requirement
+#     115K  for malloc() calls
+#      30K  Overlay buffer
+#     607K  Total memory requirement
+?ENDBC?
 #
 # Overlay Schema 2
 #
@@ -139,6 +182,13 @@ TERMLIB =
 #     memory for caching overlays, you might try this. (eg. A machine with
 #     lots of TSR's or network drivers).  Do not try to set SCHEMA = 2
 #     without a disk cache and extended memory.
+?BC?
+#     381K  Executable load requirement
+#     115K  for malloc() calls
+#      30K  Overlay buffer
+#     526K  Total memory requirement
+?ENDBC?
+?MSC?
 #     360K  Executable load requirement
 #      60K  Overlay buffer
 #      70K  for malloc() calls
@@ -158,7 +208,13 @@ TERMLIB =
 #      95K  Overlay buffer
 #      70K  for malloc() calls
 #     525K  Total memory requirement
+?ENDMSC?
 #
+?BC?
+# On Borland C++, you have to make a full rebuild of all object modules each
+# time you change schemas.
+#
+?ENDBC?
 
 SCHEMA	= 1
 
@@ -172,7 +228,7 @@ SCHEMA	= 1
 #	VGA.
 #
 #	Note:  You can build NetHack with tile support and then choose
-#	whether to use it or not at runtime via the NetHack.cnf file option
+#	whether to use it or not at runtime via the defaults.nh file option
 #	"video".
 #
 
@@ -186,23 +242,52 @@ TILESUPPORT = Y
 #   uncomment only either LDFLAGSU or LDFLAGSN if you
 #   want to include debug information only in the utilities
 #   or only in the game file.
+?BC?
+
+#   On Borland C++, you cannot include debug information for
+#   all the object modules because the linker cannot handle
+#   it.
+?ENDBC?
 
 #CDFLAGS  =
+?MSC?
 #LDFLAGSN =
+?ENDMSC?
+?BC?
+LDFLAGSN  =
+?ENDBC?
 #LDFLAGSU =
 
+?MSC?
 CDFLAGS   = /Zi			# use debug info (compiler)
 LDFLAGSN  = /CO			# use debug info (linker - game)
 LDFLAGSU  = /CO			# use debug info (linker - utilities)
+?ENDMSC?
+?BC?
+CDFLAGS	  = -v -vi		# use debug info (compiler)
+#LDFLAGSN = /v			# use debug info (linker - game)
+LDFLAGSU  = /v			# use debug info (linker - utilities)
+?ENDBC?
 
 #
+?MSC?
 # - Force a change in the C warning level for all builds.
 #   (Its W0 setting in the CL environment variable will take
 #   precedence if left blank here).
+?ENDMSC?
+?BC?
+# - Don't warn about unreachable code because flex generates a whole bunch
+#   of unreachable code warnings, which stops the compile process.
+?ENDBC?
 #
 
+?MSC?
 CW =
 #CW =/W3
+?ENDMSC?
+?BC?
+CW = -w-rch
+?ENDBC?
 
 #
 #   Select whether to use pre-compiled headers or not.
@@ -218,13 +303,20 @@ PRECOMPHEAD = N
 #
 #   C Compiler Flags
 #
+?MSC?
 # Note:
 #
 #    CL environment variable should already be set to:
 #    CL= /AL /G2 /Oo /Gs /Gt16 /Zp1 /W0 /I..\include /nologo /DMOVERLAY
 #
+?ENDMSC?
 
+?MSC?
 CFLAGS = /c
+?ENDMSC?
+?BC?
+CFLAGS = -c
+?ENDBC?
 
 #  Uncomment the line below if you want to store all the level files,
 #  help files, etc. in a single library file (recommended).
@@ -290,8 +382,15 @@ DLB =
 # General Overlay Schema Settings
 #
 
+?MSC?
 LNKOPT  = schema$(SCHEMA).def
+?ENDMSC?
+?BC?
+!include schema$(SCHEMA).bc
+OVLINIT =$(OBJ)\ovlinit.o
+?ENDBC?
 
+?MSC?
 #
 # - Specific Overlay Schema Settings
 #
@@ -310,6 +409,7 @@ OVLINIT =
 INTOVL = /DYNAMIC:1170
 OVLINIT = $(OBJ)\moveinit.o $(OBJ)\ovlinit.o
 ! ENDIF
+?ENDMSC?
 
 #
 #############################################################################
@@ -318,12 +418,22 @@ OVLINIT = $(OBJ)\moveinit.o $(OBJ)\ovlinit.o
 # (To Maintainer; modify only if absolutely necessary)
 #
 
+?BC?
+BCINCL	 = $(BCTOP)\include	# include directory for main BC headers
+BCLIB	 = $(BCTOP)\lib		# library directory for main BC libraries
+BCCFG	 = nethack.cfg		# name of the nethack configuration file
+?ENDBC?
 
 #
 # Model
 #
 
+?MSC?
 MODEL	 = L
+?ENDMSC?
+?BC?
+MODEL	 = h
+?ENDBC?
 
 #
 # - Optional C library specifier for those with non-standard
@@ -331,12 +441,24 @@ MODEL	 = L
 #
 
 CLIB    =
+?MSC?
 #CLIB    = llibcer /nod
+?ENDMSC?
 
+?BC?
+#
+# Borland C++ libraries
+#
+
+BCOVL	= $(BCLIB)\OVERLAY
+BCMDL	= $(BCLIB)\C$(MODEL)
+
+?ENDBC?
 #
 # Compiler Options
 #
 
+?MSC?
 CNOLNK	= /c			# just generate .OBJ
 CPCHUSE	= /YuHACK.H		# use precompiled headers
 CPCHGEN	= /YcHACK.H		# generate precompiled headers
@@ -347,17 +469,51 @@ CCSNAM	= /NT			# set the code segment name
 COBJNAM	= /Fo			# name the .OBJ file
 CNOOPT  = /f- /Od		# disable optimizations (must be first in line)
 				# /f- = don't use the "fast" compiler,its buggy
+?ENDMSC?
+?MSCMACRO:CSNAMOA= ?
+?MSCMACRO:CSNAMOB=$(CCSNAM)$(@F) ?
+?MSCMACRO:CSNAM0=$(CCSNAM)$(@F) ?
+?MSCMACRO:CSNAM1=$(CCSNAM)$(@F) ?
+?MSCMACRO:CSNAM2=$(CCSNAM)$(@F) ?
+?MSCMACRO:CSNAM3=$(CCSNAM)$(@F) ?
+?MSCMACRO:CSNAMB=$(CCSNAM)$(@F) ?
+?BC?
+CNOLNK	= -c			# just generate .OBJ
+CPCHUSE	= -Hu			# use precompiled headers
+CPCHGEN	= -H			# generate precompiled headers
+CPCHNAM	= -H=			# set the name of the precompiled header file
+CPCHEXT = .PCH			# precompiled header extension
+CDEFINE	= -D			# define a macro
+CSTKSZ	= -DSTKSIZ=		# set stack size
+CCSNAM	= -zC			# set the code segment name
+COBJNAM	= -o			# name the .OBJ file
+?ENDBC?
+?BCMACRO:CSNAMOA=$$($(@B)_o) ?
+?BCMACRO:CSNAMOB=$$($(@B)_o) ?
+?BCMACRO:CSNAM0=$$($(@B)_0) ?
+?BCMACRO:CSNAM1=$$($(@B)_1) ?
+?BCMACRO:CSNAM2=$$($(@B)_2) ?
+?BCMACRO:CSNAM3=$$($(@B)_3) ?
+?BCMACRO:CSNAMB=$$($(@B)_b) ?
 
 #
 # Linker Options
 #
 
+?MSC?
 LWCASE	= /NOI			# treat case as significant
 LMAP	= /MAP			# create map file
 LSTKSZ	= /ST:			# set stack size
 LMAXSEG	= /SE:400		# maximum number of segments allowed
 LMAXALL	= /CPARM:1		# maximum program memory allocation (?)
 LINFO	= /INFO			# display link information while processing
+?ENDMSC?
+?BC?
+LWCASE	= /c			# treat case as significant
+LMAP	= /m			# create map file
+LINIT	= $(BCLIB)\C0$(MODEL)	# initialization object file
+LOVL	= /oOVLY		# overlay all needed segments
+?ENDBC?
 
 #
 # Stack Sizes
@@ -366,8 +522,14 @@ LINFO	= /INFO			# display link information while processing
 STKSUTL	= 4096			# Utilities Stack Size
 STKSNRM = 5120			# Normal Stack Size
 
+?MSC?
 LUSTACK	= $(LSTKSZ)$(STKSUTL)	# Utilities Stack Set for Linker
 LNSTACK	= $(LSTKSZ)$(STKSNRM)	# Normal Stack Set for Linker
+?ENDMSC?
+?BC?
+CUSTACK	= $(CSTKSZ)$(STKSUTL)	# Utilities Stack Set for Compiler
+CNSTACK	= $(CSTKSZ)$(STKSNRM)	# Normal Stack Set for Compiler
+?ENDBC?
 
 
 #
@@ -413,10 +575,20 @@ FLAGOPT = $(DLBFLG) $(TILFLG)
 # Precompiled Header Section
 #
 
+?BC?
+#common options (placed in $(BCCFG))
+CFLGTOT = $(CDFLAGS) $(CFLAGS) $(FLAGOPT) $(CW)
+#util builds
+CFLAGSU	= +$(BCCFG) $(CUSTACK)
+#normal build, no PCH
+CFLAGSN = +$(BCCFG) $(CNSTACK)
+?ENDBC?
+?MSC?
 #util builds
 CFLAGSU	= $(CDFLAGS) $(CFLAGS) $(CW) $(FLAGOPT) $(CUSTACK)
 #normal build, no PCH
 CFLAGSN = $(CDFLAGS) $(CFLAGS) $(CW) $(FLAGOPT) $(CNSTACK)
+?ENDMSC?
 #no optimizations
 CFLAGNO = $(CNOOPT) $(CFLAGSN)
 
@@ -477,6 +649,21 @@ precomp.msg:
 ! ENDIF
 
 
+?BC?
+FLAGCO  = $(CNSTACK) +CFLAGCO.CFG
+FLAGUO  = $(CNSTACK) +CFLAGUO.CFG
+FLAGC0  = $(CNSTACK) +CFLAGC0.CFG
+FLAGU0  = $(CNSTACK) +CFLAGU0.CFG
+FLAGC1  = $(CNSTACK) +CFLAGC1.CFG
+FLAGU1  = $(CNSTACK) +CFLAGU1.CFG
+FLAGC2  = $(CNSTACK) +CFLAGC2.CFG
+FLAGU2  = $(CNSTACK) +CFLAGU2.CFG
+FLAGC3  = $(CNSTACK) +CFLAGC3.CFG
+FLAGU3  = $(CNSTACK) +CFLAGU3.CFG
+FLAGCB  = $(CNSTACK) +CFLAGCB.CFG
+FLAGUB  = $(CNSTACK) +CFLAGUB.CFG
+?ENDBC?
+?MSC?
 FLAGCO  = $(CFLAGSN) $(CFLAGCO)
 FLAGUO  = $(CFLAGSN) $(CFLAGUO)
 FLAGC0  = $(CFLAGSN) $(CFLAGC0)
@@ -489,10 +676,12 @@ FLAGC3  = $(CFLAGSN) $(CFLAGC3)
 FLAGU3  = $(CFLAGSN) $(CFLAGU3)
 FLAGCB  = $(CFLAGSN) $(CFLAGCB)
 FLAGUB  = $(CFLAGSN) $(CFLAGUB)
+?ENDMSC?
 
 # End of Pre-compiled header section
 #===========================================================================
 
+?MSC?
 #
 # Controls whether MOVE tracing is enabled in the executable
 # This should be left commented unless you are tinkering with the
@@ -509,6 +698,7 @@ MVTRCL = $(CDEFINE)MOVE_PROF
 MVTRCL =
 ! ENDIF
 
+?ENDMSC?
 #
 # Linker options for building various things.
 #
@@ -532,69 +722,69 @@ LFLAGSN	= $(LDFLAGSN) $(LNSTACK) $(LWCASE) $(LMAXSEG) $(INTOVL) $(LMAXALL) \
 
 
 .c{$(OBJ)}.o:
-	@$(CC) $(FLAGUO) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	@$(CC) $(FLAGUO) ?[CSNAMOB]$(COBJNAM)$@ $<
 
 {$(SRC)}.c{$(OBJ)}.o:
-	$(CC) $(FLAGUO) $(CCSNAM)$(@F) $(COBJNAM)$@  $<
+	$(CC) $(FLAGUO) ?[CSNAMOB]$(COBJNAM)$@  $<
 
 {$(SRC)}.c{$(OBJ)}.0:
-	$(CC) $(FLAGU0) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGU0) ?[CSNAM0]$(COBJNAM)$@ $<
 
 {$(SRC)}.c{$(OBJ)}.1:
-	$(CC) $(FLAGU1) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGU1) ?[CSNAM1]$(COBJNAM)$@ $<
 
 {$(SRC)}.c{$(OBJ)}.2:
-	$(CC) $(FLAGU2) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGU2) ?[CSNAM2]$(COBJNAM)$@ $<
 
 {$(SRC)}.c{$(OBJ)}.3:
-	$(CC) $(FLAGU3) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGU3) ?[CSNAM3]$(COBJNAM)$@ $<
 
 {$(SRC)}.c{$(OBJ)}.B:
-	$(CC) $(FLAGUB) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGUB) ?[CSNAMB]$(COBJNAM)$@ $<
 
 #
 # Rules for files in sys\share
 #
 
 {$(SYS)}.c{$(OBJ)}.o:
-	$(CC) $(FLAGUO)  $(COBJNAM)$@  $<
+	$(CC) $(FLAGUO) ?[CSNAMOA]$(COBJNAM)$@  $<
 
 {$(SYS)}.c{$(OBJ)}.0:
-	$(CC) $(FLAGU0) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGU0) ?[CSNAM0]$(COBJNAM)$@ $<
 
 {$(SYS)}.c{$(OBJ)}.1:
-	$(CC) $(FLAGU1) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGU1) ?[CSNAM1]$(COBJNAM)$@ $<
 
 {$(SYS)}.c{$(OBJ)}.2:
-	$(CC) $(FLAGU2) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGU2) ?[CSNAM2]$(COBJNAM)$@ $<
 
 {$(SYS)}.c{$(OBJ)}.3:
-	$(CC) $(FLAGU3) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGU3) ?[CSNAM3]$(COBJNAM)$@ $<
 
 {$(SYS)}.c{$(OBJ)}.B:
-	$(CC) $(FLAGUB) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGUB) ?[CSNAMB]$(COBJNAM)$@ $<
 
 #
 # Rules for files in sys\msdos
 #
 
 {$(MSYS)}.c{$(OBJ)}.o:
-	$(CC) $(FLAGUO)  $(COBJNAM)$@  $<
+	$(CC) $(FLAGUO) ?[CSNAMOA]$(COBJNAM)$@  $<
 
 {$(MSYS)}.c{$(OBJ)}.0:
-	$(CC) $(FLAGU0) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGU0) ?[CSNAM0]$(COBJNAM)$@ $<
 
 {$(MSYS)}.c{$(OBJ)}.1:
-	$(CC) $(FLAGU1) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGU1) ?[CSNAM1]$(COBJNAM)$@ $<
 
 {$(MSYS)}.c{$(OBJ)}.2:
-	$(CC) $(FLAGU2) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGU2) ?[CSNAM2]$(COBJNAM)$@ $<
 
 {$(MSYS)}.c{$(OBJ)}.3:
-	$(CC) $(FLAGU3) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGU3) ?[CSNAM3]$(COBJNAM)$@ $<
 
 {$(MSYS)}.c{$(OBJ)}.B:
-	$(CC) $(FLAGUB) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGUB) ?[CSNAMB]$(COBJNAM)$@ $<
 
 {$(MSYS)}.h{$(INCL)}.h:
 	@copy $< $@
@@ -604,17 +794,17 @@ LFLAGSN	= $(LDFLAGSN) $(LNSTACK) $(LWCASE) $(LMAXSEG) $(INTOVL) $(LMAXALL) \
 #
 
 {$(UTIL)}.c{$(OBJ)}.o:
-	$(CC) $(CFLAGSU) $(CCSNAM)$(@F) $(COBJNAM)$@  $<
+	$(CC) $(CFLAGSU) ?[CSNAMOB]$(COBJNAM)$@  $<
 
 #
 # Rules for files in win\share
 #
 
 {$(WSHR)}.c.o:
-	@$(CC) $(FLAGUO)  $(COBJNAM)$@ $<
+	@$(CC) $(FLAGUO) ?[CSNAMOA]$(COBJNAM)$@ $<
 
 {$(WSHR)}.c{$(OBJ)}.o:
-	@$(CC) $(FLAGUO)  $(COBJNAM)$@ $<
+	@$(CC) $(FLAGUO) ?[CSNAMOA]$(COBJNAM)$@ $<
 
 {$(WSHR)}.h{$(INCL)}.h:
 	@copy $< $@
@@ -627,22 +817,22 @@ LFLAGSN	= $(LDFLAGSN) $(LNSTACK) $(LWCASE) $(LMAXSEG) $(INTOVL) $(LMAXALL) \
 #
 
 {$(WTTY)}.c{$(OBJ)}.o:
-	$(CC) $(FLAGUO)  $(COBJNAM)$@  $<
+	$(CC) $(FLAGUO) ?[CSNAMOA]$(COBJNAM)$@  $<
 
 {$(WTTY)}.c{$(OBJ)}.0:
-	$(CC) $(FLAGU0) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGU0) ?[CSNAM0]$(COBJNAM)$@ $<
 
 {$(WTTY)}.c{$(OBJ)}.1:
-	$(CC) $(FLAGU1) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGU1) ?[CSNAM1]$(COBJNAM)$@ $<
 
 {$(WTTY)}.c{$(OBJ)}.2:
-	$(CC) $(FLAGU2) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGU2) ?[CSNAM2]$(COBJNAM)$@ $<
 
 {$(WTTY)}.c{$(OBJ)}.3:
-	$(CC) $(FLAGU3) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGU3) ?[CSNAM3]$(COBJNAM)$@ $<
 
 {$(WTTY)}.c{$(OBJ)}.B:
-	$(CC) $(FLAGUB) $(CCSNAM)$(@F) $(COBJNAM)$@ $<
+	$(CC) $(FLAGUB) ?[CSNAMB]$(COBJNAM)$@ $<
 
 #
 # NETHACK OBJECTS
@@ -671,26 +861,40 @@ DGNCOMPSRC     = $(U)dgn_yacc.c	$(U)dgn_$(LEX).c $(U)dgn_main.c
 
 MAKEOBJS       = $(O)makedefs.o	$(O)monst.o	$(O)objects.o
 
-SPLEVOBJS	=$(O)lev_yacc.o $(O)lev_$(LEX).o $(O)lev_main.o \
-		$(O)alloc.o $(O)decl.o $(O)drawing.o $(O)monst.o \
-		$(O)objects.o $(O)panic.o $(O)stubvid.o 
+?LIST:SPLEVOBJS?
+		 $(O)lev_yacc.o	$(O)lev_$(LEX).o $(O)lev_main.o
+		 $(O)alloc.o	$(O)decl.o	$(O)drawing.o
+		 $(O)monst.o	$(O)objects.o	$(O)panic.o	$(O)stubvid.o
+?ENDLIST?
 
-DGNCOMPOBJS	=$(O)dgn_yacc.o $(O)dgn_$(LEX).o $(O)dgn_main.o \
-		$(O)alloc.o $(O)panic.o 
+?LIST:DGNCOMPOBJS?
+		 $(O)dgn_yacc.o	$(O)dgn_$(LEX).o $(O)dgn_main.o
+		 $(O)alloc.o	$(O)panic.o
+?ENDLIST?
 
 RECOVOBJS      = $(O)recover.o
 
-GIFREADERS	=$(O)gifread.o $(O)alloc.o $(O)panic.o 
+?LIST:GIFREADERS?
+		 $(O)gifread.o	$(O)alloc.o	$(O)panic.o
+?ENDLIST?
 
-TEXT_IO	=$(O)tiletext.o $(O)tiletxt.o $(O)drawing.o \
-		$(O)decl.o $(O)monst.o $(O)objects.o $(O)stubvid.o 
+?LIST:TEXT_IO?
+		 $(O)tiletext.o $(O)tiletxt.o	$(O)drawing.o
+		 $(O)decl.o	$(O)monst.o	$(O)objects.o
+		 $(O)stubvid.o
+?ENDLIST?
 
 PPMWRITERS     = $(O)ppmwrite.o	$(O)alloc.o	$(O)panic.o
 
-GIFREAD2	=$(O)gifread2.o $(O)alloc.o $(O)panic.o 
+?LIST:GIFREAD2?
+		 $(O)gifread2.o	$(O)alloc.o	$(O)panic.o
+?ENDLIST?
 
-TEXT_IO2	=$(O)tiletex2.o $(O)tiletxt2.o $(O)drawing.o \
-		$(O)decl.o $(O)monst.o $(O)objects.o $(O)stubvid.o 
+?LIST:TEXT_IO2?
+		 $(O)tiletex2.o $(O)tiletxt2.o	$(O)drawing.o
+		 $(O)decl.o	$(O)monst.o	$(O)objects.o
+		 $(O)stubvid.o
+?ENDLIST?
 
 PPMWRIT2       = $(O)ppmwrit2.o $(O)alloc.o	$(O)panic.o
 
@@ -718,7 +922,8 @@ OBJ01 =	$(O)alloc.o	$(RANDOM)	$(O)decl.o     	$(O)objects.o	\
 	$(O)mkmaze.o	$(O)mkmap.o	$(O)end.o	$(O)o_init.o	\
 	$(O)options.o	$(O)rip.o       $(O)sound.o	$(O)teleport.o	\
 	$(O)topten.o	$(O)tty.o	$(O)u_init.o	$(O)extralev.o 	\
-	$(O)sp_lev.o	$(O)dig.o	$(O)pckeys.o
+	$(O)sp_lev.o	$(O)dig.o	$(O)pckeys.o	$(O)role.o	\
+	$(O)steed.o	$(O)region.o
 
 OVL0 =	$(O)allmain.0	$(O)apply.0	$(O)artifact.0	$(O)attrib.0  \
 	$(O)botl.0	$(O)cmd.0	$(O)dbridge.0	$(O)do.0      \
@@ -831,7 +1036,7 @@ PROP_H      = $(INCL)\prop.h
 QTEXT_H     = $(INCL)\qtext.h
 QUEST_H     = $(INCL)\quest.h
 SP_LEV_H    = $(INCL)\sp_lev.h
-TERMCAP_H   = $(INCL)\termcap.h
+TERMCAP_H   = $(INCL)\tcap.h
 VAULT_H     = $(INCL)\vault.h
 VIS_TAB_H   = $(INCL)\vis_tab.h
 WINTTY_H    = $(INCL)\wintty.h
@@ -893,7 +1098,7 @@ install.tag: 	$(DAT)\data	$(DAT)\rumors	$(DAT)\dungeon \
 	if exist $(DOC)\guideb*.txt copy $(DOC)\guideb*.txt  $(GAMEDIR)
 	if exist $(DOC)\nethack.txt copy $(DOC)\nethack.txt  $(GAMEDIR)\NetHack.txt
 	if exist $(DOC)\recover.txt copy $(DOC)\recover.txt  $(GAMEDIR)
-	copy $(SYS)\NetHack.cnf   $(GAMEDIR)
+	copy $(SYS)\nethack.cnf   $(GAMEDIR)\defaults.nh
 	copy $(U)recover.exe  $(GAMEDIR)
 	if exist *.tib copy *.tib $(GAMEDIR)
 	echo install done > $@
@@ -942,6 +1147,7 @@ $(U)utility.tag: envchk			$(INCL)\date.h	$(INCL)\onames.h \
 tileutil: $(U)gif2txt.exe $(U)txt2ppm.exe
 	@echo Optional tile development utilities are up to date.
 
+?MSC?
 #  The section for linking the NetHack image looks a little strange at
 #  first, especially if you are used to UNIX makes, or NDMAKE.  It is
 #  Microsoft nmake specific, and it gets around the problem of the link
@@ -949,12 +1155,14 @@ tileutil: $(U)gif2txt.exe $(U)txt2ppm.exe
 #  response file is generated temporarily.
 #
 #  It takes advantage of the following features of nmake:
+?ENDMSC?
 #
 #  Inline files :
 #			Specifying the "<<" means to start an inline file.
 #                 	Another "<<" at the start of a line closes the
 #                 	inline file.
 #
+?MSC?
 #  Substitution within Macros:
 #                       $(mymacro:string1=string2) replaces every
 #                       occurrence of string1 with string2 in the
@@ -964,18 +1172,31 @@ tileutil: $(U)gif2txt.exe $(U)txt2ppm.exe
 #                       of a <tab> in $(ALLOBJ) is replaced by
 #                       <+><return><tab>.
 #
+?ENDMSC?
 #  DO NOT INDENT THE << below!
 #
 
+?MSC?
 $(GAMEFILE) :  $(LNKOPT) $(ALLOBJ)
+?ENDMSC?
+?BC?
+$(GAMEFILE) :  $(ALLOBJ)
+?ENDBC?
 	@echo Linking....
 	$(LINK) $(LFLAGSN) @<<$(GAME).lnk
+?BC?
+		$(ALLOBJ)
+?ENDBC?
+?MSC?
 		$(ALLOBJ:^	=+^
 		)
+?ENDMSC?
 		$(GAMEFILE)
 		$(GAME)
 		$(TERMLIB) $(MOVETR) $(CLIB) $(BCOVL) $(BCMDL)
+?MSC?
 		$(LNKOPT);
+?ENDMSC?
 <<
 	@if exist $(GAMEDIR)\$(GAME).bak del $(GAMEDIR)\$(GAME).bak
 
@@ -1024,13 +1245,22 @@ $(SRC)\vis_tab.c: $(U)makedefs.exe
 
 $(U)lev_comp.exe:  $(SPLEVOBJS)
 	@echo Linking $@...
+?MSC?
 	$(LINK) $(LFLAGSU) @<<$(@B).lnk
-		$(SPLEVOBJS:^	=+^
-		)
+?ENDMSC?
+?BC?
+	$(LINK) $(LFLAGSU) @&&!
+?ENDBC?
+?LINKLIST:SPLEVOBJS?
 		$@
 		$(@B)
 		$(BCMDL);
+?MSC?
 <<
+?ENDMSC?
+?BC?
+!
+?ENDBC?
 
 $(O)lev_yacc.o:  $(HACK_H)   $(SP_LEV_H) $(INCL)\lev_comp.h $(U)lev_yacc.c
 	@$(CC) $(CFLAGSU) $(COBJNAM)$@ $(U)lev_yacc.c
@@ -1087,13 +1317,22 @@ $(U)lev_$(LEX).c:  $(U)lev_comp.l
 
 $(U)dgn_comp.exe: $(DGNCOMPOBJS)
     @echo Linking $@...
+?MSC?
 	$(LINK) $(LFLAGSU) @<<$(@B).lnk
-		$(DGNCOMPOBJS:^	=+^
-		)
+?ENDMSC?
+?BC?
+	$(LINK) $(LFLAGSU) @&&!
+?ENDBC?
+?LINKLIST:DGNCOMPOBJS?
 		$@
 		$(@B)
 		$(BCMDL);
+?MSC?
 <<
+?ENDMSC?
+?BC?
+!
+?ENDBC?
 
 $(O)dgn_yacc.o:	$(HACK_H)   $(DGN_FILE_H) $(INCL)\dgn_comp.h \
 	$(U)dgn_yacc.c
@@ -1151,6 +1390,7 @@ obj.tag:
 	@echo directory $(OBJ) created
 	@echo directory $(OBJ) created >$@
 
+?MSC?
 #
 #  The correct switches for the C compiler depend on the CL environment
 #  variable being set correctly.  This will check that it is.
@@ -1158,7 +1398,9 @@ obj.tag:
 #    CL= /AL /G2 /Oo /Gs /Gt16 /Zp1 /W0 /I..\include /nologo /DMOVERLAY
 #
 
+?ENDMSC?
 envchk: precomp.msg
+?MSC?
 !	IF ("$(CL)"=="")
 !	   MESSAGE The CL environment variable is not defined!
 !	   MESSAGE You must CD $(MSYS) and execute the SETUP.BAT procedure
@@ -1169,6 +1411,42 @@ envchk: precomp.msg
 	   @echo CL Environment variable is defined:
 	   @echo CL=$(CL)
 !	ENDIF
+?ENDMSC?
+?COMMENT?
+#    CL= /AL /G2 /Oo /Gs /Gt16 /Zp1 /W0 /I..\include /nologo /DMOVERLAY
+?ENDCOMMENT?
+?BC?
+#
+# Borland Configuration File Section
+#
+	@echo Making Borland configuration files...
+	@echo -Y -O -Z -Oe -Ob -Os -Ff -I$(BCINCL);$(INCL) > $(BCCFG)
+	@echo -m$(MODEL) -D__IO_H $(CFLGTOT) -DSTRNCMPI >> $(BCCFG)
+	@type $(BCCFG) > CFLAGCO.CFG
+	@type $(BCCFG) > CFLAGUO.CFG
+	@type $(BCCFG) > CFLAGC0.CFG
+	@type $(BCCFG) > CFLAGU0.CFG
+	@type $(BCCFG) > CFLAGC1.CFG
+	@type $(BCCFG) > CFLAGU1.CFG
+	@type $(BCCFG) > CFLAGC2.CFG
+	@type $(BCCFG) > CFLAGU2.CFG
+	@type $(BCCFG) > CFLAGC3.CFG
+	@type $(BCCFG) > CFLAGU3.CFG
+	@type $(BCCFG) > CFLAGCB.CFG
+	@type $(BCCFG) > CFLAGUB.CFG
+    	@echo -Y $(CFLAGCO) >> CFLAGCO.CFG
+	@echo -Y $(CFLAGUO) >> CFLAGUO.CFG
+	@echo -Y $(CFLAGC0) >> CFLAGC0.CFG
+	@echo -Y $(CFLAGU0) >> CFLAGU0.CFG
+	@echo -Y $(CFLAGC1) >> CFLAGC1.CFG
+	@echo -Y $(CFLAGU1) >> CFLAGU1.CFG
+	@echo -Y $(CFLAGC2) >> CFLAGC2.CFG
+	@echo -Y $(CFLAGU2) >> CFLAGU2.CFG
+	@echo -Y $(CFLAGC3) >> CFLAGC3.CFG
+	@echo -Y $(CFLAGU3) >> CFLAGU3.CFG
+	@echo -Y $(CFLAGCB) >> CFLAGCB.CFG
+	@echo -Y $(CFLAGUB) >> CFLAGUB.CFG
+?ENDBC?
 !	IF "$(TILEGAME)"==""
 	   @echo.
 	   @echo NOTE: This build will NOT include tile support.
@@ -1267,25 +1545,43 @@ thintile.tag: $(U)thintile.exe $(TILEFILES)
 
 $(U)tile2bin.exe: $(O)tile2bin.o $(TEXT_IO)
     @echo Linking $@...
+?MSC?
 	$(LINK) $(LFLAGSU) @<<$(@B).lnk
+?ENDMSC?
+?BC?
+	$(LINK) $(LFLAGSU) @&&!
+?ENDBC?
 		$(O)tile2bin.o+
-		$(TEXT_IO:^	=+^
-		)
+?LINKLIST:TEXT_IO?
 		$@
 		$(@B)
 		$(BCMDL);
+?MSC?
 <<
+?ENDMSC?
+?BC?
+!
+?ENDBC?
 
 $(U)til2bin2.exe: $(O)til2bin2.o $(TEXT_IO2)
     @echo Linking $@...
+?MSC?
 	$(LINK) $(LFLAGSU) @<<$(@B).lnk
+?ENDMSC?
+?BC?
+	$(LINK) $(LFLAGSU) @&&!
+?ENDBC?
 		$(O)til2bin2.o+
-		$(TEXT_IO2:^	=+^
-		)
+?LINKLIST:TEXT_IO2?
 		$@
 		$(@B)
 		$(BCMDL);
+?MSC?
 <<
+?ENDMSC?
+?BC?
+!
+?ENDBC?
 
 
 $(U)thintile.exe: $(O)thintile.o
@@ -1301,6 +1597,20 @@ $(O)til2bin2.o:  $(HACK_H) $(TILE_H) $(PCVIDEO_H)
 	$(CC) $(CFLAGSU) $(CDEFINE)TILE_X=8 $(CDEFINE)OVERVIEW_FILE \
 		$(COBJNAM)$@ $(MSYS)\tile2bin.c
 
+?COMMENT?
+$(U)tile2btb.exe: $(O)tile2btb.o $(GIFREADERS)
+    @echo Linking $@...
+	$(LINK) $(LFLAGSU) @&&!
+		$(O)tile2btb.o+
+?LINKLIST:GIFREADERS?
+		$@
+		$(@B)
+		$(BCMDL) $(BGI_LIB);
+!
+
+$(O)tile2btb.o:  $(HACK_H) $(TILE_H) $(PCVIDEO_H) $(MSYS)\tile2btb.c
+	$(CC) -DBGI_FILE $(CFLAGSU) $(COBJNAM)$@ $(MSYS)\tile2btb.c
+?ENDCOMMENT?
   
 #
 # DLB stuff
@@ -1376,6 +1686,9 @@ clean:
 	if exist $(SRC)\*.lnk      del $(SRC)\*.lnk
 	if exist $(SRC)\*.map      del $(SRC)\*.map
 	if exist $(SRC)\*$(CPCHEXT) del $(SRC)\*$(CPCHEXT)
+?BC?
+	if exist $(SRC)\*.cfg      del $(SRC)\*.cfg
+?ENDBC?
 	if exist $(DAT)\dlb.lst    del $(DAT)\dlb.lst
 
 pch.c:	$(HACK_H)
@@ -1413,6 +1726,7 @@ PHB$(CPCHEXT): $(HACK_H) pch.c
 	@echo Generating new precompiled header for .B files
 	@$(CC) $(FLAGCB) pch.c
 
+?MSC?
 #
 # Compiler supplied, manually moved file - MOVEINIT.C.
 # - This is only compiled if you selected the alternate overlay
@@ -1432,8 +1746,20 @@ $(SRC)\moveinit.c:
 	@echo source/move directory and apply the sys/msdos/moveinit.pat
 	@echo patch to moveinit.c after doing so.
 	@echo.
+?ENDMSC?
 
+?BC?
+# Overlay initialization routines used by pcmain() at startup to
+# determine EMS/XMS memory usage.
+
+# Comment out the following line if you don't want Borland C++ to check for
+# extended memory.
+RECOGNIZE_XMS = $(CDEFINE)RECOGNIZE_XMS
+
+?ENDBC?
+?MSC?
 # Overlay initialization routines used by MOVEINIT.C
+?ENDMSC?
 
 $(O)ovlinit.o: $(MSYS)\ovlinit.c $(HACK_H)
 	$(CC) $(CFLAGSN) $(RECOGNIZE_XMS) $(COBJNAM)$@ $(MSYS)\ovlinit.c
@@ -1504,122 +1830,154 @@ $(O)tiletex2.o:   $(WSHR)\tiletext.c  $(CONFIG_H) $(INCL)\tile.h
 #
 
 $(O)getline.1:  $(PCH1) $(WTTY)\getline.c  $(HACK_H) $(WINTTY_H) $(FUNC_TAB_H)
-	$(CC) $(FLAGU1) $(CCSNAM)$(@F) $(COBJNAM)$@ $(WTTY)\getline.c
+	$(CC) $(FLAGU1) ?[CSNAM1]$(COBJNAM)$@ $(WTTY)\getline.c
 
 $(O)getline.2:  $(PCH2) $(WTTY)\getline.c  $(HACK_H) $(WINTTY_H) $(FUNC_TAB_H)
-	$(CC) $(FLAGU2) $(CCSNAM)$(@F) $(COBJNAM)$@ $(WTTY)\getline.c
+	$(CC) $(FLAGU2) ?[CSNAM2]$(COBJNAM)$@ $(WTTY)\getline.c
 
 $(O)termcap.0:  $(PCH0) $(WTTY)\termcap.c  $(HACK_H) $(WINTTY_H) $(TERMCAP_H)
-	$(CC) $(FLAGU0) $(CCSNAM)$(@F) $(COBJNAM)$@ $(WTTY)\termcap.c
+	$(CC) $(FLAGU0) ?[CSNAM0]$(COBJNAM)$@ $(WTTY)\termcap.c
 
 $(O)termcap.1:  $(PCH1) $(WTTY)\termcap.c  $(HACK_H) $(WINTTY_H) $(TERMCAP_H)
-	$(CC) $(FLAGU1) $(CCSNAM)$(@F) $(COBJNAM)$@ $(WTTY)\termcap.c
+	$(CC) $(FLAGU1) ?[CSNAM1]$(COBJNAM)$@ $(WTTY)\termcap.c
 
 $(O)termcap.B:  $(PCHB) $(WTTY)\termcap.c  $(HACK_H) $(WINTTY_H) $(TERMCAP_H)
-	$(CC) $(FLAGUB) $(CCSNAM)$(@F) $(COBJNAM)$@ $(WTTY)\termcap.c
+	$(CC) $(FLAGUB) ?[CSNAMB]$(COBJNAM)$@ $(WTTY)\termcap.c
 
 $(O)topl.1:     $(PCH1) $(WTTY)\topl.c     $(HACK_H) $(TERMCAP_H) $(WINTTY_H)
-	$(CC) $(FLAGU1) $(CCSNAM)$(@F) $(COBJNAM)$@ $(WTTY)\topl.c
+	$(CC) $(FLAGU1) ?[CSNAM1]$(COBJNAM)$@ $(WTTY)\topl.c
 
 $(O)topl.2:     $(PCH2) $(WTTY)\topl.c     $(HACK_H) $(TERMCAP_H) $(WINTTY_H)
-	$(CC) $(FLAGU2) $(CCSNAM)$(@F) $(COBJNAM)$@ $(WTTY)\topl.c
+	$(CC) $(FLAGU2) ?[CSNAM2]$(COBJNAM)$@ $(WTTY)\topl.c
 
 $(O)topl.B:     $(PCHB) $(WTTY)\topl.c     $(HACK_H) $(TERMCAP_H) $(WINTTY_H)
-	$(CC) $(FLAGUB) $(CCSNAM)$(@F) $(COBJNAM)$@ $(WTTY)\topl.c
+	$(CC) $(FLAGUB) ?[CSNAMB]$(COBJNAM)$@ $(WTTY)\topl.c
 
 $(O)wintty.o: $(PCHO) $(CONFIG_H) $(WTTY)\wintty.c $(PATCHLEVEL_H)
-	$(CC) $(FLAGUO) $(CCSNAM)$(@F) $(COBJNAM)$@ $(WTTY)\wintty.c
+	$(CC) $(FLAGUO) ?[CSNAMOB]$(COBJNAM)$@ $(WTTY)\wintty.c
 
 #
 # from sys\share
 #
 
 $(O)pcmain.0:   $(PCH0) $(HACK_H) $(SYS)\pcmain.c
-	$(CC)  $(FLAGU0) $(CCSNAM)$(@F) $(COBJNAM)$@ $(SYS)\pcmain.c
+	$(CC)  $(FLAGU0) ?[CSNAM0]$(COBJNAM)$@ $(SYS)\pcmain.c
 
 $(O)pcmain.1:   $(PCH1) $(HACK_H) $(SYS)\pcmain.c
-	$(CC)  $(FLAGU1) $(CCSNAM)$(@F) $(COBJNAM)$@ $(SYS)\pcmain.c
+	$(CC)  $(FLAGU1) ?[CSNAM1]$(COBJNAM)$@ $(SYS)\pcmain.c
 
 $(O)pcmain.B:   $(PCHB) $(HACK_H) $(SYS)\pcmain.c
-	$(CC)  $(FLAGUB) $(CCSNAM)$(@F) $(COBJNAM)$@ $(SYS)\pcmain.c
+	$(CC)  $(FLAGUB) ?[CSNAMB]$(COBJNAM)$@ $(SYS)\pcmain.c
 
 $(O)pcunix.B:   $(PCHB) $(SYS)\pcunix.c   $(HACK_H)
-	$(CC) $(FLAGUB) $(CCSNAM)$(@F) $(COBJNAM)$@ $(SYS)\pcunix.c
+	$(CC) $(FLAGUB) ?[CSNAMB]$(COBJNAM)$@ $(SYS)\pcunix.c
 
 $(O)tty.o:     $(HACK_H) $(WINTTY_H) $(SYS)\pctty.c
-	$(CC)  $(CFLAGSN) $(CCSNAM)$(@F) $(COBJNAM)$@  $(SYS)\pctty.c
+	$(CC)  $(CFLAGSN) ?[CSNAMOB]$(COBJNAM)$@  $(SYS)\pctty.c
 
 $(O)sys.o:    $(HACK_H) $(SYS)\pcsys.c
-	$(CC)  $(CFLAGSN) $(CCSNAM)$(@F) $(COBJNAM)$@ $(SYS)\pcsys.c
+	$(CC)  $(CFLAGSN) ?[CSNAMOB]$(COBJNAM)$@ $(SYS)\pcsys.c
 
 $(O)random.o: $(PCHO) $(HACK_H) $(SYS)\random.c
-	$(CC) $(FLAGUO) $(CCSNAM)$(@F) $(COBJNAM)$@ $(SYS)\random.c
+	$(CC) $(FLAGUO) ?[CSNAMOB]$(COBJNAM)$@ $(SYS)\random.c
 
 #
 # from sys\msdos
 #
 
 $(O)msdos.0: $(MSYS)\msdos.c   $(HACK_H) $(PCVIDEO_H)
+?BC?
+	$(CC) $(CFLAGSN) $(COVL0) $$($(@B)_0) $(COBJNAM)$@ $(MSYS)\msdos.c
+?ENDBC?
+?MSC?
 	$(CC) $(FLAGU0) $(CCSNAM)$(@F) $(COBJNAM)$@ $(MSYS)\msdos.c
+?ENDMSC?
+?COMMENT?
+	$(CC) $(CFLAGSN) $(COVL0) ?[CSNAM0]$(COBJNAM)$@ $(MSYS)\vidtxt.c
+?ENDCOMMENT?
 
 $(O)msdos.B: $(MSYS)\msdos.c   $(HACK_H) $(PCVIDEO_H)
+?BC?
+	$(CC) $(CFLAGSN) $(COVLB) $$($(@B)_b) $(COBJNAM)$@ $(MSYS)\msdos.c
+?ENDBC?
+?MSC?
 	$(CC) $(FLAGUB) $(CCSNAM)$(@F) $(COBJNAM)$@ $(MSYS)\msdos.c
+?ENDMSC?
+?COMMENT?
+	$(CC) $(CFLAGSN) $(COVLB) ?[CSNAMB]$(COBJNAM)$@ $(MSYS)\vidtxt.c
+?ENDCOMMENT?
 
 $(O)pctiles.0: $(PCH0) $(MSYS)\pctiles.c $(HACK_H) $(TILE_H) $(PCVIDEO_H)
-	$(CC) $(FLAGU0) $(CCSNAM)$(@F) $(COBJNAM)$@ $(MSYS)\pctiles.c
+	$(CC) $(FLAGU0) ?[CSNAM0]$(COBJNAM)$@ $(MSYS)\pctiles.c
 
 $(O)pctiles.B: $(PCHB) $(MSYS)\pctiles.c $(HACK_H) $(TILE_H) $(PCVIDEO_H)
-	$(CC) $(FLAGUB) $(CCSNAM)$(@F) $(COBJNAM)$@ $(MSYS)\pctiles.c
+	$(CC) $(FLAGUB) ?[CSNAMB]$(COBJNAM)$@ $(MSYS)\pctiles.c
 
 $(O)sound.o: $(PCH0) $(MSYS)\sound.c   $(HACK_H) $(INCL)\portio.h
-	$(CC) $(FLAGUO) $(CCSNAM)$(@F) $(COBJNAM)$@ $(MSYS)\sound.c
+	$(CC) $(FLAGUO) ?[CSNAMOB]$(COBJNAM)$@ $(MSYS)\sound.c
 
 $(O)pckeys.o: $(PCHO) $(MSYS)\pckeys.c   $(HACK_H) $(PCVIDEO_H)
-	$(CC) $(FLAGUO) $(CCSNAM)$(@F) $(COBJNAM)$@ $(MSYS)\pckeys.c
+	$(CC) $(FLAGUO) ?[CSNAMOB]$(COBJNAM)$@ $(MSYS)\pckeys.c
 
 $(O)stubvid.o : $(MSYS)\video.c $(HACK_H)
-	$(CC) $(FLAGUO) $(CDEFINE)STUBVIDEO $(CCSNAM)$(@F) $(COBJNAM)$@ $(MSYS)\video.c
+	$(CC) $(FLAGUO) $(CDEFINE)STUBVIDEO ?[CSNAMOB]$(COBJNAM)$@ $(MSYS)\video.c
 
 $(O)video.0: $(PCH0) $(MSYS)\video.c   $(HACK_H) $(WINTTY_H) $(PCVIDEO_H) \
                 $(TILE_H)
-	$(CC) $(FLAGU0) $(CCSNAM)$(@F) $(COBJNAM)$@ $(MSYS)\video.c
+	$(CC) $(FLAGU0) ?[CSNAM0]$(COBJNAM)$@ $(MSYS)\video.c
 
 $(O)video.1: $(PCH1) $(MSYS)\video.c   $(HACK_H) $(WINTTY_H) $(PCVIDEO_H) \
                 $(TILE_H)
-	$(CC) $(FLAGU1) $(CCSNAM)$(@F) $(COBJNAM)$@ $(MSYS)\video.c
+	$(CC) $(FLAGU1) ?[CSNAM1]$(COBJNAM)$@ $(MSYS)\video.c
 
 $(O)video.B: $(PCHB) $(MSYS)\video.c   $(HACK_H) $(WINTTY_H) $(PCVIDEO_H) \
                 $(TILE_H)
-	$(CC) $(FLAGUB) $(CCSNAM)$(@F) $(COBJNAM)$@ $(MSYS)\video.c
+	$(CC) $(FLAGUB) ?[CSNAMB]$(COBJNAM)$@ $(MSYS)\video.c
 
 $(O)vidtxt.0: $(MSYS)\vidtxt.c  $(HACK_H) $(WINTTY_H) $(PCVIDEO_H)
+?BC?
+	$(CC) $(CFLAGSN) $(COVL0) $$($(@B)_0) $(COBJNAM)$@ $(MSYS)\vidtxt.c
+?ENDBC?
+?MSC?
 	$(CC) $(FLAGU0) $(CCSNAM)$(@F) $(COBJNAM)$@ $(MSYS)\vidtxt.c
+?ENDMSC?
+?COMMENT?
+	$(CC) $(CFLAGSN) $(COVL0) ?[CSNAM0]$(COBJNAM)$@ $(MSYS)\vidtxt.c
+?ENDCOMMENT?
 
 $(O)vidtxt.B: $(MSYS)\vidtxt.c  $(HACK_H) $(WINTTY_H) $(PCVIDEO_H)
+?BC?
+	$(CC) $(CFLAGSN) $(COVLB) $$($(@B)_b) $(COBJNAM)$@ $(MSYS)\vidtxt.c
+?ENDBC?
+?MSC?
 	$(CC) $(FLAGUB) $(CCSNAM)$(@F) $(COBJNAM)$@ $(MSYS)\vidtxt.c
+?ENDMSC?
+?COMMENT?
+	$(CC) $(CFLAGSN) $(COVLB) ?[CSNAMB]$(COBJNAM)$@ $(MSYS)\vidtxt.c
+?ENDCOMMENT?
 
 $(O)vidvga.0: $(PCH0) $(MSYS)\vidvga.c  $(HACK_H) $(WINTTY_H) $(PCVIDEO_H) \
 		$(TILE_H)
-	$(CC) $(FLAGU0) $(CCSNAM)$(@F) $(COBJNAM)$@ $(MSYS)\vidvga.c
+	$(CC) $(FLAGU0) ?[CSNAM0]$(COBJNAM)$@ $(MSYS)\vidvga.c
 
 $(O)vidvga.1: $(PCH1) $(MSYS)\vidvga.c  $(HACK_H) $(WINTTY_H) $(PCVIDEO_H) \
 		$(TILE_H)
-	$(CC) $(FLAGU1) $(CCSNAM)$(@F) $(COBJNAM)$@ $(MSYS)\vidvga.c
+	$(CC) $(FLAGU1) ?[CSNAM0]$(COBJNAM)$@ $(MSYS)\vidvga.c
 
 $(O)vidvga.2: $(PCH2) $(MSYS)\vidvga.c  $(HACK_H) $(WINTTY_H) $(PCVIDEO_H) \
 		$(TILE_H)
-	$(CC) $(FLAGU2) $(CCSNAM)$(@F) $(COBJNAM)$@ $(MSYS)\vidvga.c
+	$(CC) $(FLAGU2) ?[CSNAM0]$(COBJNAM)$@ $(MSYS)\vidvga.c
 
 $(O)vidvga.B: $(PCHB) $(MSYS)\vidvga.c  $(HACK_H) $(WINTTY_H) $(PCVIDEO_H) \
 		$(TILE_H)
-	$(CC) $(FLAGUB) $(CCSNAM)$(@F) $(COBJNAM)$@ $(MSYS)\vidvga.c
+	$(CC) $(FLAGUB) ?[CSNAMB]$(COBJNAM)$@ $(MSYS)\vidvga.c
 
 #
 # from src
 #
 
 $(O)alloc.o:     $(SRC)\alloc.c    $(CONFIG_H)
-	$(CC) $(CFLAGSN) $(CCSNAM)$(@F) $(COBJNAM)$@ $(SRC)\alloc.c
+	$(CC) $(CFLAGSN) ?[CSNAMOB]$(COBJNAM)$@ $(SRC)\alloc.c
 $(O)ball.o:      $(PCHO) $(SRC)\ball.c     $(HACK_H)
 $(O)bones.o:     $(PCHO) $(SRC)\bones.c    $(HACK_H) $(LEV_H)
 $(O)decl.o:      $(PCHO) $(SRC)\decl.c     $(HACK_H) $(QUEST_H)
@@ -1627,13 +1985,13 @@ $(O)detect.o:    $(PCHO) $(SRC)\detect.c   $(HACK_H) $(ARTIFACT_H)
 $(O)dig.o:	 $(PCHO) $(SRC)\dig.c	   $(HACK_H) $(EDOG_H) # check dep
 $(O)display.o:	 $(PCHO) $(SRC)\display.c  $(HACK_H)
 $(O)dlb.o:	 $(SRC)\dlb.c	   $(DLB_H) $(HACK_H)
-	$(CC) $(CFLAGSN) $(CCSNAM)$(@F) $(COBJNAM)$@ $(SRC)\dlb.c
+	$(CC) $(CFLAGSN) ?[CSNAMOB]$(COBJNAM)$@ $(SRC)\dlb.c
 $(O)dokick.o:    $(PCHO) $(SRC)\dokick.c   $(HACK_H) $(ESHK_H)
 $(O)dothrow.o:   $(PCHO) $(SRC)\dothrow.c  $(HACK_H)
 $(O)drawing.o:   $(SRC)\drawing.c  $(HACK_H) $(TERMCAP_H)
-	$(CC) $(CFLAGSN) $(CCSNAM)$(@F) $(COBJNAM)$@ $(SRC)\drawing.c
+	$(CC) $(CFLAGSN) ?[CSNAMOB]$(COBJNAM)$@ $(SRC)\drawing.c
 $(O)end.o:       $(SRC)\end.c      $(HACK_H) $(ESHK_H) $(DLB_H)
-	$(CC) $(CFLAGSN) $(CCSNAM)$(@F) $(COBJNAM)$@ $(SRC)\end.c
+	$(CC) $(CFLAGSN) ?[CSNAMOB]$(COBJNAM)$@ $(SRC)\end.c
 $(O)exper.o:     $(PCHO) $(SRC)\exper.c    $(HACK_H)
 $(O)extralev.o:  $(PCHO) $(SRC)\extralev.c $(HACK_H)
 $(O)files.o:	 $(PCHO) $(SRC)\files.c    $(HACK_H) $(DLB_H)
@@ -1644,31 +2002,34 @@ $(O)mkmap.o:     $(PCHO) $(SRC)\mkmap.c    $(HACK_H) $(SP_LEV_H)
 $(O)mkmaze.o:	 $(PCHO) $(SRC)\mkmaze.c   $(HACK_H) $(SP_LEV_H) $(LEV_H)
 $(O)monst.o:     $(SRC)\monst.c    $(CONFIG_H) $(PERMONST_H) $(MONSYM_H) \
 		 $(ESHK_H) $(EPRI_H) $(COLOR_H) $(ALIGN_H)
-	$(CC) $(CFLAGSN) $(CCSNAM)$(@F) $(COBJNAM)$@ $(SRC)\monst.c
+	$(CC) $(CFLAGSN) ?[CSNAMOB]$(COBJNAM)$@ $(SRC)\monst.c
 $(O)monstr.o:    $(SRC)\monstr.c   $(CONFIG_H)
-	$(CC) $(CFLAGSN) $(CCSNAM)$(@F) $(COBJNAM)$@ $(SRC)\monstr.c
+	$(CC) $(CFLAGSN) ?[CSNAMOB]$(COBJNAM)$@ $(SRC)\monstr.c
 $(O)mplayer.o:   $(PCHO) $(SRC)\mplayer.c  $(HACK_H)
 $(O)muse.o:      $(PCHO) $(SRC)\muse.c     $(HACK_H)
 $(O)music.o:     $(PCHO) $(SRC)\music.c    $(HACK_H)
 $(O)o_init.o:	 $(PCHO) $(SRC)\o_init.c   $(HACK_H) $(LEV_H)
 $(O)objects.o:   $(SRC)\objects.c  $(CONFIG_H) $(OBJ_H) $(OBJCLASS_H) \
                  $(PROP_H) $(COLOR_H)
-	$(CC) $(CFLAGSN) $(CCSNAM)$(@F) $(COBJNAM)$@ $(SRC)\objects.c
+	$(CC) $(CFLAGSN) ?[CSNAMOB]$(COBJNAM)$@ $(SRC)\objects.c
 $(O)options.o:	 $(SRC)\options.c  $(HACK_H) $(TERMCAP_H) $(OBJCLASS_H)
-	$(CC) $(CFLAGSN) $(CCSNAM)$(@F) $(COBJNAM)$@ $(SRC)\options.c
+	$(CC) $(CFLAGSN) ?[CSNAMOB]$(COBJNAM)$@ $(SRC)\options.c
 $(O)pager.o:	 $(SRC)\pager.c    $(HACK_H) $(DLB_H)
-	$(CC) $(CFLAGNO) $(COBJNAM)$@  $(SRC)\pager.c
+	$(CC) $(CFLAGNO) $(COBJNAM)$@ ?[CSNAMOA]$(SRC)\pager.c
 $(O)pickup.o:    $(PCHO) $(SRC)\pickup.c   $(HACK_H)
 $(O)pray.o:      $(PCHO) $(SRC)\pray.c     $(HACK_H) $(EPRI_H)
 $(O)quest.o:     $(PCHO) $(SRC)\quest.c    $(HACK_H) $(QUEST_H) $(QTEXT_H)
 $(O)questpgr.o:  $(PCHO) $(SRC)\questpgr.c $(HACK_H) $(QTEXT_H) $(DLB_H)
 $(O)rect.o:      $(PCHO) $(SRC)\rect.c     $(HACK_H)
+$(O)region.o:    $(PCHO) $(SRC)\region.c   $(HACK_H)
 $(O)restore.o:   $(PCHO) $(SRC)\restore.c  $(HACK_H) $(LEV_H) $(TERMCAP_H) \
 		 $(QUEST_H)
 $(O)rip.o:       $(PCHO) $(SRC)\rip.c      $(HACK_H)
+$(O)role.o:	   $(PCHO) $(SRC)\role.c     $(HACK_H)
 $(O)rumors.o:	 $(PCHO) $(SRC)\rumors.c   $(HACK_H) $(DLB_H)
 $(O)save.o:      $(PCHO) $(SRC)\save.c     $(HACK_H) $(LEV_H) $(QUEST_H)
 $(O)sit.o:       $(PCHO) $(SRC)\sit.c      $(HACK_H) $(ARTIFACT_H)
+$(O)steed.o:	   $(PCHO) $(SRC)\steed.c    $(HACK_H)
 $(O)sp_lev.o:	 $(PCHO) $(SRC)\sp_lev.c   $(HACK_H) $(SP_LEV_H) $(DLB_H)
 $(O)spell.o:     $(PCHO) $(SRC)\spell.c    $(HACK_H)
 $(O)teleport.o:  $(PCHO) $(SRC)\teleport.c $(HACK_H)	# check dep
@@ -1679,7 +2040,7 @@ $(O)uhitm.o:     $(PCHO) $(SRC)\uhitm.c    $(HACK_H)
 $(O)version.o:   $(PCHO) $(SRC)\version.c  $(HACK_H) $(PATCHLEVEL_H)
 $(O)vision.o:    $(PCHO) $(SRC)\vision.c   $(HACK_H) $(VIS_TAB_H)
 $(O)vis_tab.o:   $(SRC)\vis_tab.c  $(HACK_H) $(VIS_TAB_H)
-	$(CC) $(CFLAGSN) $(CCSNAM)$(@F) $(COBJNAM)$@ $(SRC)\vis_tab.c
+	$(CC) $(CFLAGSN) ?[CSNAMOB]$(COBJNAM)$@ $(SRC)\vis_tab.c
 $(O)wield.o:     $(PCHO) $(SRC)\wield.c    $(HACK_H)
 $(O)windows.o:   $(PCHO) $(SRC)\windows.c  $(HACK_H) $(WINTTY_H)
 $(O)worm.o:      $(PCHO) $(SRC)\worm.c     $(HACK_H) $(LEV_H)
@@ -1712,7 +2073,7 @@ $(O)explode.0:  $(PCH0) $(SRC)\explode.c  $(HACK_H)
 $(O)hacklib.0:  $(PCH0) $(SRC)\hacklib.c  $(HACK_H)
 $(O)invent.0:   $(PCH0) $(SRC)\invent.c   $(HACK_H) $(ARTIFACT_H)
 $(O)lock.0:     $(PCH0) $(SRC)\lock.c     $(HACK_H)
-$(O)mail.0:     $(PCH0) $(SRC)\mail.c     $(HACK_H) $(MAIL_H)
+$(O)mail.0:     $(PCH0) $(SRC)\mail.c     $(HACK_H) $(MAIL_H) $(PATCHLEVEL_H)
 $(O)makemon.0:  $(PCH0) $(SRC)\makemon.c  $(HACK_H) $(EPRI_H) $(EMIN_H)
 $(O)mcastu.0:   $(PCH0) $(SRC)\mcastu.c   $(HACK_H)
 $(O)mhitm.0:    $(PCH0) $(SRC)\mhitm.c    $(HACK_H) $(ARTIFACT_H) $(EDOG_H)
@@ -1835,7 +2196,7 @@ $(O)hack.B:     $(PCHB) $(SRC)\hack.c     $(HACK_H)
 $(O)hacklib.B:  $(PCHB) $(SRC)\hacklib.c  $(HACK_H)
 $(O)invent.B:   $(PCHB) $(SRC)\invent.c   $(HACK_H) $(ARTIFACT_H)
 $(O)lock.B:     $(PCHB) $(SRC)\lock.c     $(HACK_H)
-$(O)mail.B:     $(PCHB) $(SRC)\mail.c     $(HACK_H) $(MAIL_H)
+$(O)mail.B:     $(PCHB) $(SRC)\mail.c     $(HACK_H) $(MAIL_H) $(PATCHLEVEL_H)
 $(O)makemon.B:  $(PCHB) $(SRC)\makemon.c  $(HACK_H) $(EPRI_H) $(EMIN_H)
 $(O)mcastu.B:   $(PCHB) $(SRC)\mcastu.c   $(HACK_H)
 $(O)mhitm.B:    $(PCHB) $(SRC)\mhitm.c    $(HACK_H) $(ARTIFACT_H) $(EDOG_H)
@@ -1848,7 +2209,7 @@ $(O)monmove.B:  $(PCHB) $(SRC)\monmove.c  $(HACK_H) $(MFNDPOS_H) $(ARTIFACT_H)
 $(O)mthrowu.B:  $(PCHB) $(SRC)\mthrowu.c  $(HACK_H)
 $(O)objnam.B:   $(PCHB) $(SRC)\objnam.c   $(HACK_H)
 $(O)pline.B:    $(SRC)\pline.c    $(HACK_H) $(EPRI_H)
-	$(CC) $(CFLAGSN) $(CCSNAM)$(@F) $(COBJNAM)$@ $(SRC)\pline.c
+	$(CC) $(CFLAGSN) ?[CSNAMB]$(COBJNAM)$@ $(SRC)\pline.c
 $(O)polyself.B: $(PCHB) $(SRC)\polyself.c $(HACK_H)
 $(O)potion.B:   $(PCHB) $(SRC)\potion.c   $(HACK_H)
 $(O)priest.B:   $(PCHB) $(SRC)\priest.c   $(HACK_H) $(MFNDPOS_H) $(ESHK_H) \

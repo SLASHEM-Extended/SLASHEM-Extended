@@ -1,6 +1,6 @@
-#	SCCS Id: @(#)Makefile.GCC	      3.3     1999/11/06
-#	Copyright (c) NetHack PC Development Team 1996.
-#	PC NetHack 3.3 Makefile for djgpp V2
+#	SCCS Id: @(#)Makefile.GCC	      3.4     2002/03/17
+#	Copyright (c) NetHack PC Development Team 1996-2002.
+#	PC NetHack 3.4 Makefile for djgpp V2
 #
 #	Gnu gcc compiler for msdos (djgpp)
 #	Requires Gnu Make utility (V3.79 or greater) supplied with djgpp V2.03
@@ -26,9 +26,10 @@
 
 GAME = slashem
 #GAME = nethack
+
 # The GNU Make has a problem if you include a drive spec below (unfortunately).
-GAMEDIR = \games\slashemd
-#GAMEDIR = \games\nethackd
+#GAMEDIR = \games\slashemd
+GAMEDIR =..\binary
 
 #
 # Directories, gcc likes unix style directory specs
@@ -59,7 +60,6 @@ WSHR = ..\win\share
 
 CC    = gcc
 #CC    = redir -ea cerrors.out gcc
-#LINK  = gcc
 LINK  = gcc
 MAKEBIN  = make
 
@@ -91,7 +91,7 @@ TERMLIB =
 #
 # If you have yacc/lex or a work-alike set YACC_LEX to Y
 #
-YACC_LEX = Y
+YACC_LEX = N
 
 # If YACC_LEX is Y above, set the following to values appropriate for
 # your tools.
@@ -141,8 +141,8 @@ USE_VGA = Y
 #USE_ALLEGRO =
 USE_ALLEGRO = Y
 
-#USE_AALIB = 
-USE_AALIB = Y
+USE_AALIB = 
+#USE_AALIB = Y
 
 #
 # set USE_BIG_BMP to Y to have one big BMP rather than many small ones
@@ -315,7 +315,7 @@ VOBJ04 = do_wear.o  dog.o      dogmove.o  dokick.o   dothrow.o
 VOBJ05 = drawing.o  dungeon.o  eat.o	  end.o	     engrave.o
 VOBJ06 = exper.o    explode.o  extralev.o files.o    fountain.o
 VOBJ07 = getline.o  hack.o     hacklib.o  invent.o   lock.o
-VOBJ08 = mail.o	    main.o     makemon.o  mcastu.o   mhitm.o
+VOBJ08 = mail.o	    main.o     makemon.o  mapglyph.o mcastu.o   mhitm.o
 VOBJ09 = mhitu.o    minion.o   mkmap.o	  mklev.o    mkmaze.o
 VOBJ10 = mkobj.o    mkroom.o   mon.o	  mondata.o  monmove.o
 VOBJ11 = monst.o    monstr.o   mplayer.o  mthrowu.o  muse.o
@@ -1287,6 +1287,7 @@ lock.o:	     $(HACK_H)
 mail.o:	     $(HACK_H) $(INCL)\mail.h
 makemon.o:   $(HACK_H) $(EPRI_H) $(EMIN_H) $(INCL)\edog.h
 mcastu.o:    $(HACK_H)
+mapglyph.o:  $(HACK_H)
 mhitm.o:     $(HACK_H) $(INCL)\artifact.h $(INCL)\edog.h
 mhitu.o:     $(HACK_H) $(INCL)\artifact.h $(INCL)\edog.h
 minion.o:    $(HACK_H) $(EMIN_H) $(EPRI_H)
