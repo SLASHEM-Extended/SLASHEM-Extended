@@ -356,8 +356,11 @@ ver 0.0.6E4F0 [September XX/2000]
 -fixed bug 112616: dazzle no longer causes segfault, has limited range
 -integrated changes from Allegrohack 1.5
 -fixed bug 113366: GTK: Checking your scores before starting a game panics
--alpha compile of win32 with gtk windowsystem.
 -fixed bug 113947: can't compile without #define FIREARMS
+-alpha compile of win32 with gtk windowsystem.
+	-win32 GTK port prompts for name (gtk.c)
+	-barebones error checking before destroying window widgets (gtkmenu.c)
+	-directional dialog works with number_pad on
 
 ver 0.0.6E3F1 [August 21/2000] [Released by Ali]
 -fixed some bugs in the zap/cast code for magic missile, fire, cold, fireball, etc.

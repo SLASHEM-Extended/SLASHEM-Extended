@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.3 2000-09-14 12:49:21 j_ali Exp $
+  $Id: gtkmenu.c,v 1.4 2000-09-15 01:12:30 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -621,5 +621,6 @@ GTK_destroy_menu_window(NHWindow *w)
 void
 GTK_unmap_menu_window(NHWindow *w)
 {
-    gtk_widget_unmap(w->w);
+    if (w && w->w) /* FIXME:  This shouldn't be necessary, but is */
+    	gtk_widget_unmap(w->w);
 }

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkyn.c,v 1.1 2000-08-15 19:55:16 wacko Exp $
+  $Id: gtkyn.c,v 1.2 2000-09-15 01:12:30 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -208,19 +208,46 @@ GTK_yn_function(const char *query, const char *resp, CHAR_P def)
 		    {"", 0},
 		    {"Down", '>'},
 		}
+	    }, 
+	    np_dirstr[4][3] = {
+		{
+		    {"7", '7'},
+		    {"8", '8'},
+		    {"9", '9'},
+		},
+		{
+		    {"4", '4'},
+		    {".", '.'},
+		    {"6", '6'},
+		},
+		{
+		    {"1", '1'},
+		    {"2", '2'},
+		    {"3", '3'},
+		},
+		{
+		    {"Up", '<'},
+		    {"", 0},
+		    {"Down", '>'},
+		}
 	    };
+	    
 	    table = nh_gtk_new_and_pack(
 		gtk_table_new(4, 3, TRUE), hbox, "",
 		FALSE, FALSE, NH_PAD);
 	    for(i=0 ; i<4 ; ++i)
 		for(j=0 ; j<3 ; ++j){
 		    d = nh_gtk_new_and_attach(
-			gtk_button_new_with_label(dirstr[i][j].str), table, "",
+			gtk_button_new_with_label(
+			    (iflags.num_pad ? np_dirstr[i][j].str : dirstr[i][j].str)),
+			table, "",
 			j, j+1,
 			i, i+1);
 		    gtk_signal_connect(
 			GTK_OBJECT(d), "clicked",
-			GTK_SIGNAL_FUNC(yn_clicked), (gpointer)dirstr[i][j].key);
+			GTK_SIGNAL_FUNC(yn_clicked), 
+			(iflags.num_pad ? (gpointer)np_dirstr[i][j].key : 
+			    (gpointer)dirstr[i][j].key));
 		}
 	}
     }

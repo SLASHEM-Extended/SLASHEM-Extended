@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.5 2000-09-11 16:37:20 j_ali Exp $
+  $Id: gtkmap.c,v 1.6 2000-09-15 01:12:30 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -237,6 +237,8 @@ nh_set_map_visual(int mode)
 	    if(map_font->type != GDK_FONT_FONT)
 		panic("Bad font");
 #ifndef WINGTK_X11
+	    if (gdk_char_width(map_font, 'm') != gdk_char_width(map_font, 'l'))
+	    	panic("Proportional font!");
 	    c_width = gdk_char_width(map_font, 'm');
 #else
 	    c_width = ((XFontStruct *)GDK_FONT_XFONT(map_font))->max_bounds.width;

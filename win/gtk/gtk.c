@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.7 2000-09-14 15:59:57 j_ali Exp $
+  $Id: gtk.c,v 1.8 2000-09-15 01:12:30 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -96,11 +96,30 @@ hook()
     ;
 }
 
+#ifdef WIN32
+void
+gtk_askname() {
+    int tryct = 0;
+    static char who_are_you[] = "Who are you? ";
+    
+    do {
+	if (tryct > 10) panic("Giving up after 10 tries.\n");
+	else tryct++;
+    	
+	GTK_getlin(who_are_you, plname);
+    } while (*plname == '\0');
+}
+#endif
+
 struct window_procs GTK_procs = {
     "gtk",
     GTK_init_nhwindows,
     GTK_player_selection,
+#ifdef WIN32
+    gtk_askname, /* tty_askname,*/
+#else
     hook, /* tty_askname,*/
+#endif
     GTK_get_nh_event,
     GTK_exit_nhwindows,
     hook, /*tty_suspend_nhwindows,*/
@@ -386,8 +405,8 @@ nh_keysym(GdkEventKey *ev)
     else if(key == GDK_KP_Insert)
 	ret = 'i';
 
-    if(!ret)
-	ret = *ev->string;
+    if(!ret && ev->length)
+	ret = ev->string[0];
 
     return ret;
 }
