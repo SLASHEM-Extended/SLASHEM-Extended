@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.31 2003-12-05 12:23:50 j_ali Exp $
+  $Id: gtkmap.c,v 1.32 2003-12-13 16:35:16 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -773,8 +773,6 @@ nh_map_clear(int rows, int cols, int layers)
 		    GTKMAP(j, i)->flags = TILEMAP_UPDATE;  /* Reset all flags */
 		    map_update = 1;
 		}
-
-    nh_map_flush();
 }
 
 void
@@ -1289,7 +1287,6 @@ GTK_curs(winid id, int x, int y)
 	GTKMAP(cursy, cursx)->flags |= TILEMAP_UPDATE;
 	cursx = x;
 	cursy = y;
-	nh_map_flush();
     }
 }
 
@@ -1432,7 +1429,6 @@ nh_map_redraw()
     for(j = 0; j < no_rows; j++)
 	for(i = 0; i < no_cols; i++)
 	    GTKMAP(j, i)->flags |= TILEMAP_UPDATE;
-    nh_map_flush();
 }
 
 void

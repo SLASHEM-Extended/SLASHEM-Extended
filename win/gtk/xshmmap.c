@@ -1,9 +1,9 @@
 /*
-  $Id: xshmmap.c,v 1.9 2003-05-31 11:59:56 j_ali Exp $
+  $Id: xshmmap.c,v 1.10 2003-12-13 16:35:16 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
-               Copyright (c) Slash'EM Development Team 2000-2001
+               Copyright (c) Slash'EM Development Team 2000-2003
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -35,7 +35,8 @@
  * xshm_map_get_hadjustment() and xshm_map_get_vadjustment()
  *	Get the current scrolling adjustment controls.
  * xshm_map_cliparound(x, y)
- *	Scroll the map so that it is centered on pixel (x, y).
+ *	Arrange for xshm_map_flush() to scroll the map so that it is centered
+ *	on pixel (x, y).
  * xshm_map_set_button_handler(func, data)
  *	Register a function to be called when a button press event is
  *	received on the map.
@@ -45,7 +46,7 @@
  * xshm_map_draw(area)
  *	Mark the given area in map as needing to be propagated to the screen.
  * xshm_map_flush()
- *	Action the draw queue.
+ *	Action the draw queue and cliparound requested.
  *
  * It is perfectly permissible to draw directly to xshm_map_pixbuf,
  * xshm_map_image or xshm_map_pixmap as appropriate and then call
@@ -186,7 +187,6 @@ xshm_map_flush(void)
 void
 xshm_map_cliparound(int x, int y)
 {
-    int was_pending;		/* Was an xshm_map flush already pending? */
     int vx, vy;
 #ifdef DEBUG
     time_stamp(stderr);
@@ -202,15 +202,14 @@ xshm_map_cliparound(int x, int y)
 	vy = xshm.vadj->lower;
     else if (vy > xshm.vadj->upper - xshm.vadj->page_size)
 	vy = xshm.vadj->upper - xshm.vadj->page_size;
-    was_pending = xshm.is_pending;
-    if (!was_pending)
-	xshm.is_pending = TRUE;	/* Tell scroll_event() that we will flush */
+    /* Must be done before changing the adjustments so that scroll_event()
+     * knows that a xshm_map_flush() is pending.
+     */
+    xshm.is_pending = TRUE;
     if (vx != xshm.hadj->value)
 	gtk_adjustment_set_value(xshm.hadj, vx);
     if (vy != xshm.vadj->value)
 	gtk_adjustment_set_value(xshm.vadj, vy);
-    if (!was_pending)
-	xshm_map_flush();	/* Flush iff noone else will */
 }
 
 /*
