@@ -1581,6 +1581,7 @@ register struct obj *obj;
 		/* stop any corpse timeouts when frozen */
 		if (obj->otyp == CORPSE && obj->timed) {
 			(void) stop_timer(ROT_CORPSE, (genericptr_t)obj);
+			(void) stop_timer(MOLDY_CORPSE, (genericptr_t)obj);
 			(void) stop_timer(REVIVE_MON, (genericptr_t)obj);
 		}
 	}
