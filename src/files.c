@@ -2207,6 +2207,25 @@ clnt_process:
 	    found = TRUE;
 	    set_duplicate_opt_detection(1);
 	    while (fgets(buf, 4*BUFSZ, fp)) {
+		if (match_varname(buf, "TILESETS", 7) ||
+		   match_varname(buf, "HACKDIR", 4) ||
+		   match_varname(buf, "LEVELDIR", 4) ||
+		   match_varname(buf, "LEVELS", 4) ||
+		   match_varname(buf, "SAVEDIR", 4) ||
+		   match_varname(buf, "BONESDIR", 5) ||
+		   match_varname(buf, "DATADIR", 4) ||
+		   match_varname(buf, "SCOREDIR", 4) ||
+		   match_varname(buf, "LOCKDIR", 4) ||
+		   match_varname(buf, "CONFIGDIR", 4) ||
+		   match_varname(buf, "TROUBLEDIR", 4) ||
+		   match_varname(buf, "SOUNDDIR", 8) ||
+		   match_varname(buf, "SOUND", 5)) {
+		    /* Quietly ignore many commands. There's no sense in
+		     * the client configuring these and some introduce
+		     * potential security breachs.
+		     */
+		    continue;
+		}
 		if (!parse_config_line(fp, buf, tmp_ramdisk, tmp_levels)) {
 		    pline("Bad option line:  \"%.50s\"", buf);
 		    wait_synch();
