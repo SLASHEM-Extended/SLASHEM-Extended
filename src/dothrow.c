@@ -1317,9 +1317,15 @@ int thrown;
 	    potionhit(mon, obj, TRUE);
 	    return 1;
 
-	} else if (obj->oclass == FOOD_CLASS &&
-		   is_domestic(mon->data) && tamedog(mon,obj)) {
-	    return 1;           /* food is gone */
+	} else if (befriend_with_obj(mon->data, obj)) {
+	    if (tamedog(mon, obj))
+		return 1;           	/* obj is gone */
+	    else {
+		/* not tmiss(), which angers non-tame monsters */
+		miss(xname(obj), mon);
+		mon->msleeping = 0;
+		mon->mstrategy &= ~STRAT_WAITMASK;
+	    }
 	} else {
 	    if (guaranteed_hit) {
 		/* this assumes that guaranteed_hit is due to swallowing */
@@ -1330,22 +1336,6 @@ int thrown;
 	    } else {
 		tmiss(obj, mon);
 	    }
-	    
-	    /* [Tom] Dorothy wants more pets... */        
-	    if(obj->otyp == BANANA && mon->data->mlet == S_YETI)
-		if(tamedog(mon,obj)) return(1);
-	    if(obj->otyp == CHEESE && mon->data == &mons[PM_GIANT_RAT])
-		if(tamedog(mon,obj)) return(1);
-	    if(obj->otyp == CHEESE && mon->data == &mons[PM_SEWER_RAT])
-		if(tamedog(mon,obj)) return(1);
-	    if(obj->otyp == CHEESE && mon->data == &mons[PM_BLACK_RAT])
-		if(tamedog(mon,obj)) return(1);
-	    if(obj->otyp == CHEESE && mon->data == &mons[PM_PACK_RAT])
-		if(tamedog(mon,obj)) return(1);
-	    if(obj->otyp == CARROT && mon->data == &mons[PM_RABBIT])
-		if(tamedog(mon,obj)) return(1);
-	    if(obj->otyp == CARROT && mon->data == &mons[PM_RABID_RABBIT])
-		if(tamedog(mon,obj)) return(1);
 	}
 	return 0;
 }

@@ -403,6 +403,7 @@ ver 0.0.6E4F6 [? ?/2001] [Released by ?]
 -fixed bug 482191: m_useup() messes up weight.
 -fixed bug 480638: Doomblade uses bad messages.
 -fixed bug 469033: Artifact missile launcher bonuses.
+-fixed bug 469529: Throwing unacceptable food at monsters.
 
 ver 0.0.6E4F5 [August 31/2001] [Released by Ali]
 -fixed bug 420517: Yellow dragon scale mail.

@@ -200,4 +200,16 @@
 #define has_blood(ptr)		(!vegetarian(ptr) && \
 				   (ptr)->mlet != S_GOLEM && \
 				   (!is_undead(ptr) || is_vampire(ptr)))
+
+#define befriend_with_obj(ptr, obj) ((obj)->oclass == FOOD_CLASS && ( \
+		is_domestic(ptr) || \
+		/* [Tom] Dorothy wants more pets... */ \
+		(obj)->otyp == CHEESE && ((ptr) == &mons[PM_GIANT_RAT] || \
+		    (ptr) == &mons[PM_SEWER_RAT] || \
+		    (ptr) == &mons[PM_BLACK_RAT] || \
+		    (ptr) == &mons[PM_PACK_RAT]) || \
+		(obj)->otyp == CARROT && ((ptr) == &mons[PM_RABBIT] || \
+		    (ptr) == &mons[PM_RABID_RABBIT]) || \
+		(obj)->otyp == BANANA && (ptr)->mlet == S_YETI))
+
 #endif /* MONDATA_H */
