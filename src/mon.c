@@ -1491,7 +1491,7 @@ register struct monst *mtmp;
 #endif
 	if(mtmp->iswiz) wizdead();
 	if(mtmp->data->msound == MS_NEMESIS) nemdead();
-	if(memory_is_invisible(mtmp->mx, mtmp->my))
+	if(glyph_is_invisible(levl[mtmp->mx][mtmp->my].glyph))
 	    unmap_object(mtmp->mx, mtmp->my);
 	m_detach(mtmp, mptr);
 }
@@ -1632,7 +1632,7 @@ register struct monst *mdef;
 
 	stackobj(otmp);
 	/* mondead() already does this, but we must do it before the newsym */
-	if(memory_is_invisible(x, y))
+	if(glyph_is_invisible(levl[x][y].glyph))
 	    unmap_object(x, y);
 	if (cansee(x, y)) newsym(x,y);
 	mondead(mdef);

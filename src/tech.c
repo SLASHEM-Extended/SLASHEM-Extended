@@ -1085,7 +1085,8 @@ int tech_no;
 		}
 		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 		if (!mtmp || !canspotmon(mtmp)) {
-			if (memory_is_invisible(u.ux + u.dx, u.uy + u.dy))
+			if (glyph_is_invisible(
+				levl[u.ux + u.dx][u.uy + u.dy].glyph))
 			    You("don't know where to aim for!");
 			else
 			    You("don't see anything there!");

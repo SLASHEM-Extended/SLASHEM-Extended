@@ -635,19 +635,13 @@ plus:
 			Strcat(prefix, sitoa(obj->spe));
 			Strcat(prefix, " ");
 		}
-		if (is_lightsaber(obj) 
-#ifdef FIREARMS
-				|| obj->otyp == STICK_OF_DYNAMITE
-#endif
-				) {
+		if (is_lightsaber(obj) || obj->otyp == STICK_OF_DYNAMITE) {
 			if(obj->lamplit) Strcat(bp, " (lit)");
 #ifdef DEBUG
 			Sprintf(eos(bp), " (%d)", obj->age);		
 #endif
-#ifdef FIREARMS
 		} else if (is_grenade(obj)) {
 			if(obj->oarmed) Strcat(bp, " (armed)");
-#endif
 		}
 		break;
 	case ARMOR_CLASS:
@@ -1179,9 +1173,7 @@ const char *oldstr;
 	      !strcmp(spot-3, "nori") || !strcmp(spot-3, "drow"))) ||
 	    (len >= 5 && (!strcmp(spot-4, "sheep") ||
 			!strcmp(spot-4, "ninja") ||
-#ifndef DEVEL_BRANCH
 			!strcmp(spot-4, "ronin") ||
-#endif
 			!strcmp(spot-4, "shito") ||
 			!strcmp(spot-4, "tengu") ||
 			!strcmp(spot-4, "manes"))) ||

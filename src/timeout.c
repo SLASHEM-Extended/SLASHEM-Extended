@@ -469,11 +469,10 @@ unpoly_obj(arg, timeout)
 
 	return;
 }
-#endif /* UNPOLYPILE */
+
 #endif /* OVL1 */
 #ifdef OVL0
 
-#ifdef UNPOLYPILE
 /*
  * Cleanup a fuzzy object if timer stopped.
  */

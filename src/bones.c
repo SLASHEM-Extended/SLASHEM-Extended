@@ -113,17 +113,6 @@ boolean restore;
 			} else if (otmp->otyp == SPE_BOOK_OF_THE_DEAD) {
 			    otmp->otyp = SPE_BLANK_PAPER;
 			    curse(otmp);
-			} else if (otmp->oartifact == ART_KEY_OF_LAW ||
-				   otmp->oartifact == ART_KEY_OF_NEUTRALITY ||
-				   otmp->oartifact == ART_KEY_OF_CHAOS ||
-				   otmp->oartifact == ART_NIGHTHORN ||
-				   otmp->oartifact == ART_EYE_OF_THE_BEHOLDER ||
-				   otmp->oartifact == ART_HAND_OF_VECNA ||
-				   otmp->oartifact == ART_THIEFBANE) {
-			    /* Guaranteed artifacts become ordinary objects */
-			    otmp->oartifact = 0;
-			    otmp->onamelth = 0;
-			    *ONAME(otmp) = '\0';
 			}
 		}
 	}
@@ -232,21 +221,8 @@ struct obj *corpse;
 	    mptr = mtmp->data;
 	    if (mtmp->iswiz || mptr == &mons[PM_MEDUSA] ||
 		    mptr->msound == MS_NEMESIS || mptr->msound == MS_LEADER ||
-		    mptr == &mons[PM_VLAD_THE_IMPALER] ||
-		    mptr == &mons[PM_NIGHTMARE] ||
-		    mptr == &mons[PM_BEHOLDER] || mptr == &mons[PM_VECNA]) {
-#ifdef DEVEL_BRANCH
-		/* Since these monsters may be carrying indestructible 
-		 * artifacts, free inventory specifically here to avoid
-		 * the indestructible sanity check in discard_minvent */
-		struct obj* otmp;
-	    	while ((otmp = mtmp->minvent) != 0) {
-		    obj_extract_self(otmp);
-		    obfree(otmp, (struct obj *)0);
-		}
-#endif
+		    mptr == &mons[PM_VLAD_THE_IMPALER])
 		mongone(mtmp);
-	    }
 	}
 #ifdef STEED
 	if (u.usteed) {
@@ -335,7 +311,7 @@ struct obj *corpse;
 	for(x=0; x<COLNO; x++) for(y=0; y<ROWNO; y++) {
 	    levl[x][y].seenv = 0;
 	    levl[x][y].waslit = 0;
-	    clear_memory_glyph(x, y, S_stone);
+	    levl[x][y].glyph = cmap_to_glyph(S_stone);
 	}
 
 	fd = create_bonesfile(&u.uz, &bonesid);

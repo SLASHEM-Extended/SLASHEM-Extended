@@ -7086,8 +7086,9 @@ resource 'vers' (1, purgeable) {
 	beta,
 	0x4,
 	0,
-	"0.0.6e4f8",
-	"Slash'EM 0.0.6e4f8 (2002/02)\nhttp://slashem.cjb.net/"
+	"0.0.6e4f7",
+	"Slash'EM 0.0.6e4f7 (2002/01)\nhttp://slas"
+	"hem.sourceforge.net/"
 };
 
 resource 'vers' (2, purgeable) {
@@ -7096,8 +7097,8 @@ resource 'vers' (2, purgeable) {
 	beta,
 	0x4,
 	0,
-	"0.0.6e4f8",
-	"Slash'EM 0.0.6e4f8 (2002/02)"
+	"0.0.6e4f7",
+	"Slash'EM 0.0.6e4f7 (2002/01)"
 };
 
 resource 'STR ' (128, "Pref File Name") {
