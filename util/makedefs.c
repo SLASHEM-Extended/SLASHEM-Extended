@@ -1,10 +1,10 @@
-/*	SCCS Id: @(#)makedefs.c	3.4	2002/03/03	*/
+/*	SCCS Id: @(#)makedefs.c	3.4	2002/08/14	*/
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
-/* Copyright (c) M. Stephenson, 1990, 1991.                       */
-/* Copyright (c) Dean Luick, 1990.                                */
+/* Copyright (c) M. Stephenson, 1990, 1991.			  */
+/* Copyright (c) Dean Luick, 1990.				  */
 /* NetHack may be freely redistributed.  See license for details. */
 
-#define MAKEDEFS_C      /* use to conditionally include file sections */
+#define MAKEDEFS_C	/* use to conditionally include file sections */
 /* #define DEBUG */	/* uncomment for debugging info */
 
 #include "config.h"
@@ -22,9 +22,9 @@
 
 /* version information */
 #ifdef SHORT_FILENAMES
-# include "patchlev.h"
+#include "patchlev.h"
 #else
-# include "patchlevel.h"
+#include "patchlevel.h"
 #endif
 
 #ifdef MAC
@@ -33,7 +33,7 @@
 #  include <CursorCtl.h>
 #  include <string.h>
 #  include <ctype.h>
-# else          /* MAC without MPWTOOL */
+# else		/* MAC without MPWTOOL */
 #  define MACsansMPWTOOL
 # endif /* MAC_MPW */
 #endif /* MAC */
@@ -42,11 +42,11 @@
 # define SpinCursor(x)
 #endif
 
-#define Fprintf (void) fprintf
-#define Fclose  (void) fclose
-#define Unlink  (void) unlink
+#define Fprintf	(void) fprintf
+#define Fclose	(void) fclose
+#define Unlink	(void) unlink
 #if !defined(AMIGA) || defined(AZTEC_C)
-#define rewind(fp) fseek((fp),0L,SEEK_SET)      /* guarantee a return value */
+#define rewind(fp) fseek((fp),0L,SEEK_SET)	/* guarantee a return value */
 #endif
 
 #if defined(UNIX) && !defined(LINT) && !defined(GCC_WARN)
@@ -54,24 +54,24 @@ static	const char	SCCS_Id[] = "@(#)makedefs.c\t3.4\t2002/02/03";
 #endif
 
 	/* names of files to be generated */
-#define DATE_FILE       "date.h"
-#define MONST_FILE      "pm.h"
-#define ONAME_FILE      "onames.h"
+#define DATE_FILE	"date.h"
+#define MONST_FILE	"pm.h"
+#define ONAME_FILE	"onames.h"
 #ifndef NH_OPTIONS_FILE
-#define OPTIONS_FILE    "options"
+#define OPTIONS_FILE	"options"
 #else
 #define OPTIONS_FILE    NH_OPTIONS_FILE
 #endif
-#define ORACLE_FILE     "oracles"
-#define DATA_FILE       "data"
-#define RUMOR_FILE      "rumors"
-#define DGN_I_FILE      "dungeon.def"
-#define DGN_O_FILE      "dungeon.pdf"
-#define MON_STR_C       "monstr.c"
-#define QTXT_I_FILE     "quest.txt"
-#define QTXT_O_FILE     "quest.dat"
-#define VIS_TAB_H       "vis_tab.h"
-#define VIS_TAB_C       "vis_tab.c"
+#define ORACLE_FILE	"oracles"
+#define DATA_FILE	"data"
+#define RUMOR_FILE	"rumors"
+#define DGN_I_FILE	"dungeon.def"
+#define DGN_O_FILE	"dungeon.pdf"
+#define MON_STR_C	"monstr.c"
+#define QTXT_I_FILE	"quest.txt"
+#define QTXT_O_FILE	"quest.dat"
+#define VIS_TAB_H	"vis_tab.h"
+#define VIS_TAB_C	"vis_tab.c"
 /*WAC filename*/
 /*input*/
 #define FILE_H          "file.h"
@@ -81,31 +81,31 @@ static	const char	SCCS_Id[] = "@(#)makedefs.c\t3.4\t2002/02/03";
 	/* locations for those files */
 #ifdef AMIGA
 # define FILE_PREFIX
-# define INCLUDE_TEMPLATE       "NH:include/t.%s"
-# define SOURCE_TEMPLATE        "NH:src/%s"
-# define DGN_TEMPLATE           "NH:dat/%s"  /* where dungeon.pdf file goes */
-# define DATA_TEMPLATE          "NH:slib/%s"
-# define DATA_IN_TEMPLATE       "NH:dat/%s"
+# define INCLUDE_TEMPLATE	"NH:include/t.%s"
+# define SOURCE_TEMPLATE	"NH:src/%s"
+# define DGN_TEMPLATE		"NH:dat/%s"  /* where dungeon.pdf file goes */
+# define DATA_TEMPLATE		"NH:slib/%s"
+# define DATA_IN_TEMPLATE	"NH:dat/%s"
 #else
 # ifdef MAC
-#   define INCLUDE_TEMPLATE     ":include:%s"
-#   define SOURCE_TEMPLATE      ":src:%s"
-#   define DGN_TEMPLATE         ":dat:%s"  /* where dungeon.pdf file goes */
+#   define INCLUDE_TEMPLATE	":include:%s"
+#   define SOURCE_TEMPLATE	":src:%s"
+#   define DGN_TEMPLATE		":dat:%s"  /* where dungeon.pdf file goes */
 #   define DATA_TEMPLATE        "::lib:%s"
-#   define DATA_IN_TEMPLATE     ":dat:%s"
+#   define DATA_IN_TEMPLATE	":dat:%s"
 # else /* MAC */
 #  ifdef OS2
-#   define INCLUDE_TEMPLATE   "..\\include\\%s"
-#   define SOURCE_TEMPLATE    "..\\src\\%s"
-#   define DGN_TEMPLATE       "..\\dat\\%s"  /* where dungeon.pdf file goes */
-#   define DATA_TEMPLATE      "..\\dat\\%s"
-#   define DATA_IN_TEMPLATE   "..\\dat\\%s"
+#   define INCLUDE_TEMPLATE	"..\\include\\%s"
+#   define SOURCE_TEMPLATE	"..\\src\\%s"
+#   define DGN_TEMPLATE		"..\\dat\\%s"  /* where dungeon.pdf file goes */
+#   define DATA_TEMPLATE	"..\\dat\\%s"
+#   define DATA_IN_TEMPLATE	"..\\dat\\%s"
 #  else /* OS2 */
-#   define INCLUDE_TEMPLATE     "../include/%s"
-#   define SOURCE_TEMPLATE      "../src/%s"
-#   define DGN_TEMPLATE         "../dat/%s"  /* where dungeon.pdf file goes */
-#   define DATA_TEMPLATE        "../dat/%s"
-#   define DATA_IN_TEMPLATE     "../dat/%s"
+#   define INCLUDE_TEMPLATE	"../include/%s"
+#   define SOURCE_TEMPLATE	"../src/%s"
+#   define DGN_TEMPLATE		"../dat/%s"  /* where dungeon.pdf file goes */
+#   define DATA_TEMPLATE	"../dat/%s"
+#   define DATA_IN_TEMPLATE	"../dat/%s"
 #  endif /* OS2 */
 # endif /* MAC */
 #endif  /* AMIGA */
@@ -135,12 +135,12 @@ static const char *data_template()
 #define TEST_WIDTH  COLNO
 #define TEST_HEIGHT ROWNO
 #define BLOCK_WIDTH (TEST_WIDTH + 10)
-#define BLOCK_HEIGHT TEST_HEIGHT        /* don't need extra spaces */
+#define BLOCK_HEIGHT TEST_HEIGHT	/* don't need extra spaces */
 #define MAX_ROW (BLOCK_HEIGHT + TEST_HEIGHT)
 #define MAX_COL (BLOCK_WIDTH + TEST_WIDTH)
 /* Use this as an out-of-bound value in the close table.  */
-#define CLOSE_OFF_TABLE_STRING "99"     /* for the close table */
-#define FAR_OFF_TABLE_STRING "0xff"     /* for the far table */
+#define CLOSE_OFF_TABLE_STRING "99"	/* for the close table */
+#define FAR_OFF_TABLE_STRING "0xff"	/* for the far table */
 
 #define sign(z) ((z) < 0 ? -1 : ((z) ? 1 : 0))
 #ifdef VISION_TABLES
@@ -177,8 +177,8 @@ void NDECL(do_vision);
 /*WAC filenames*/
 void NDECL(do_filenames);
 
-extern void NDECL(monst_init);          /* monst.c */
-extern void NDECL(objects_init);        /* objects.c */
+extern void NDECL(monst_init);		/* monst.c */
+extern void NDECL(objects_init);	/* objects.c */
 
 static void NDECL(make_version);
 static char *FDECL(version_string, (char *));
@@ -241,7 +241,7 @@ main(void)
     if (len <= 1)
 	Strcpy(buf, def_options);
     else
-	buf[len-1] = 0;                 /* remove return */
+	buf[len-1] = 0;			/* remove return */
 
     do_makedefs(buf);
     exit(EXIT_SUCCESS);
@@ -252,8 +252,8 @@ main(void)
 
 int
 main(argc, argv)
-int     argc;
-char    *argv[];
+int	argc;
+char	*argv[];
 {
 	if ( (argc != 2)
 #ifdef FILE_PREFIX
@@ -270,7 +270,7 @@ char    *argv[];
 	    argc--;argv++;
 	}
 #endif
-        do_makedefs(&argv[1][1]);
+	do_makedefs(&argv[1][1]);
 	exit(EXIT_SUCCESS);
 	/*NOTREACHED*/
 	return 0;
@@ -280,7 +280,7 @@ char    *argv[];
 
 void
 do_makedefs(options)
-char    *options;
+char	*options;
 {
 	boolean more_than_one;
 
@@ -293,48 +293,48 @@ char    *options;
 	/* construct the current version number */
 	make_version();
 
-        more_than_one = strlen(options) > 1;
+	more_than_one = strlen(options) > 1;
 	while (*options) {
 	    if (more_than_one)
-                   Fprintf(stderr, "makedefs -%c\n", *options);
+		Fprintf(stderr, "makedefs -%c\n", *options);
 
 	    switch (*options) {
 		case 'o':
-		case 'O':       do_objs();
+		case 'O':	do_objs();
 				break;
 		case 'd':
-		case 'D':       do_data();
+		case 'D':	do_data();
 				break;
 		case 'e':
-		case 'E':       do_dungeon();
+		case 'E':	do_dungeon();
 				break;
 /*WAC do filenames*/
                 case 'f':
                 case 'F':       do_filenames();
                                 break;
 		case 'm':
-		case 'M':       do_monstr();
+		case 'M':	do_monstr();
 				break;
 		case 'v':
-		case 'V':       do_date();
+		case 'V':	do_date();
 				do_options();
 				break;
 		case 'p':
-		case 'P':       do_permonst();
+		case 'P':	do_permonst();
 				break;
 		case 'q':
-		case 'Q':       do_questtxt();
+		case 'Q':	do_questtxt();
 				break;
 		case 'r':
-		case 'R':       do_rumors();
+		case 'R':	do_rumors();
 				break;
 		case 'h':
-		case 'H':       do_oracles();
+		case 'H':	do_oracles();
 				break;
 		case 'z':
-		case 'Z':       do_vision();
+		case 'Z':	do_vision();
 				break;
-		default:        Fprintf(stderr, "Unknown option '%c'.\n",
+		default:	Fprintf(stderr,	"Unknown option '%c'.\n",
 					*options);
 				(void) fflush(stderr);
 				exit(EXIT_FAILURE);
@@ -342,7 +342,7 @@ char    *options;
 	    }
 	    options++;
 	}
-	if (more_than_one) Fprintf(stderr, "Completed.\n");     /* feedback */
+	if (more_than_one) Fprintf(stderr, "Completed.\n");	/* feedback */
 
 }
 
@@ -351,7 +351,7 @@ char    *options;
 static
 char *xcrypt(str)
 const char *str;
-{                               /* duplicated in src/hacklib.c */
+{				/* duplicated in src/hacklib.c */
 	static char buf[BUFSZ];
 	register const char *p;
 	register char *q;
@@ -370,7 +370,7 @@ void
 do_rumors()
 {
 	char    *infile;
-	long    true_rumor_size;
+	long	true_rumor_size;
 
 	infile = malloc(strlen(DATA_IN_TEMPLATE) - 2 + strlen(RUMOR_FILE) + 5);
 	filename[0]='\0';
@@ -389,7 +389,7 @@ do_rumors()
 	if (!(ifp = fopen(infile, RDTMODE))) {
 		perror(infile);
 		Fclose(ofp);
-		Unlink(filename);       /* kill empty output file */
+		Unlink(filename);	/* kill empty output file */
 		exit(EXIT_FAILURE);
 	}
 
@@ -403,7 +403,7 @@ do_rumors()
 	 */
 	true_rumor_size = 0;
 	while (fgets(in_line, sizeof in_line, ifp) != 0)
-		true_rumor_size += strlen(in_line);     /* includes newline */
+		true_rumor_size += strlen(in_line);	/* includes newline */
 #endif /* VMS */
 	Fprintf(ofp,"%06lx\n", true_rumor_size);
 	(void) fseek(ifp, 0L, SEEK_SET);
@@ -419,7 +419,7 @@ do_rumors()
 	if (!(ifp = fopen(infile, RDTMODE))) {
 		perror(infile);
 		Fclose(ofp);
-		Unlink(filename);       /* kill incomplete output file */
+		Unlink(filename);	/* kill incomplete output file */
 		exit(EXIT_FAILURE);
 	}
 
@@ -464,7 +464,7 @@ make_version()
 	 * The actual values have no special meaning, and the category
 	 * groupings are just for convenience.
 	 */
-        version.feature_set = (unsigned long)(0L
+	version.feature_set = (unsigned long)(0L
 		/* levels and/or topology (0..4) */
 #ifdef REINCARNATION
 			| (1L <<  1)
@@ -518,7 +518,7 @@ make_version()
 #ifdef RLECOMP
 			| (1L << 28)
 #endif
-		       );
+			);
 	/*
 	 * Value used for object & monster sanity check.
 	 *    (NROFARTIFACTS<<24) | (NUM_OBJECTS<<12) | (NUMMONS<<0)
@@ -579,10 +579,10 @@ const char *build_date;
 void
 do_date()
 {
-	long    clocktim = 0;
+	long clocktim = 0;
 	char *c,  *cbuf, buf[BUFSZ];
 	const char *ul_sfx;
-	
+
 	cbuf = malloc(600);
 	filename[0]='\0';
 #ifdef FILE_PREFIX
@@ -616,13 +616,13 @@ do_date()
 	Fprintf(ofp,"#define VERSION_NUMBER 0x%08lx%s\n",
 		version.incarnation, ul_sfx);
 	Fprintf(ofp,"#define VERSION_FEATURES 0x%08lx%s\n",
-                version.feature_set, ul_sfx);
+		version.feature_set, ul_sfx);
 #ifdef IGNORED_FEATURES
 	Fprintf(ofp,"#define IGNORED_FEATURES 0x%08lx%s\n",
 		(unsigned long) IGNORED_FEATURES, ul_sfx);
 #endif
 	Fprintf(ofp,"#define VERSION_SANITY1 0x%08lx%s\n",
-                version.entity_count, ul_sfx);
+		version.entity_count, ul_sfx);
 	Fprintf(ofp,"#define VERSION_SANITY2 0x%08lx%s\n",
 		version.struct_sizes, ul_sfx);
 	Fprintf(ofp,"\n");
@@ -909,7 +909,7 @@ do_options()
 
 	Fprintf(ofp,"\nOptions compiled into this edition:\n");
 
-	length = COLNO + 1;     /* force 1st item onto new line */
+	length = COLNO + 1;	/* force 1st item onto new line */
 	for (i = 0; i < SIZE(build_opts); i++) {
 	    str = build_opts[i];
 	    if (length + strlen(str) > COLNO - 5)
@@ -922,7 +922,7 @@ do_options()
 
 	Fprintf(ofp,"\n\nSupported windowing systems:\n");
 
-	length = COLNO + 1;     /* force 1st item onto new line */
+	length = COLNO + 1;	/* force 1st item onto new line */
 	for (i = 0; i < SIZE(window_opts) - 1; i++) {
 	    str = window_opts[i];
 	    if (length + strlen(str) > COLNO - 5)
@@ -944,28 +944,28 @@ static boolean
 d_filter(line)
     char *line;
 {
-    if (*line == '#') return TRUE;      /* ignore comment lines */
+    if (*line == '#') return TRUE;	/* ignore comment lines */
     return FALSE;
 }
 
    /*
     *
 	New format (v3.1) of 'data' file which allows much faster lookups [pr]
-"do not edit"           first record is a comment line
-01234567                hexadecimal formatted offset to text area
-name-a                  first name of interest
-123,4                   offset to name's text, and number of lines for it
-name-b                  next name of interest
-name-c                  multiple names which share same description also
-456,7                   share a single offset,count line
-.                       sentinel to mark end of names
-789,0                   dummy record containing offset, count of EOF
-text-a                  4 lines of descriptive text for name-a
-text-a                  at file position 0x01234567L + 123L
+"do not edit"		first record is a comment line
+01234567		hexadecimal formatted offset to text area
+name-a			first name of interest
+123,4			offset to name's text, and number of lines for it
+name-b			next name of interest
+name-c			multiple names which share same description also
+456,7			share a single offset,count line
+.			sentinel to mark end of names
+789,0			dummy record containing offset, count of EOF
+text-a			4 lines of descriptive text for name-a
+text-a			at file position 0x01234567L + 123L
 text-a
 text-a
-text-b/text-c           7 lines of text for names-b and -c
-text-b/text-c           at fseek(0x01234567L + 456L)
+text-b/text-c		7 lines of text for names-b and -c
+text-b/text-c		at fseek(0x01234567L + 456L)
 ...
     *
     */
@@ -975,8 +975,8 @@ do_data()
 {
 	char    *infile, *tempfile;
 	boolean ok;
-	long    txt_offset;
-	int     entry_cnt, line_cnt;
+	long	txt_offset;
+	int	entry_cnt, line_cnt;
 
 	infile = malloc(strlen(DATA_IN_TEMPLATE) - 2 + strlen(DATA_FILE) + 6);
 	tempfile = malloc(strlen(DATA_TEMPLATE) - 2 + strlen("database.tmp") + 1);
@@ -994,17 +994,17 @@ do_data()
 		".base"
 #endif
 		);
-	if (!(ifp = fopen(infile, RDTMODE))) {          /* data.base */
+	if (!(ifp = fopen(infile, RDTMODE))) {		/* data.base */
 		perror(infile);
 		exit(EXIT_FAILURE);
 	}
-	if (!(ofp = fopen(filename, WRTMODE))) {        /* data */
+	if (!(ofp = fopen(filename, WRTMODE))) {	/* data */
 		perror(filename);
 		Fclose(ifp);
 		exit(EXIT_FAILURE);
 	}
 	free(infile);
-	if (!(tfp = fopen(tempfile, WRTMODE))) {        /* database.tmp */
+	if (!(tfp = fopen(tempfile, WRTMODE))) {	/* database.tmp */
 		perror(tempfile);
 		Fclose(ifp);
 		Fclose(ofp);
@@ -1019,25 +1019,25 @@ do_data()
 	/* read through the input file and split it into two sections */
 	while (fgets(in_line, sizeof in_line, ifp)) {
 	    if (d_filter(in_line)) continue;
-	    if (*in_line > ' ') {       /* got an entry name */
+	    if (*in_line > ' ') {	/* got an entry name */
 		/* first finish previous entry */
 		if (line_cnt)  Fprintf(ofp, "%d\n", line_cnt),  line_cnt = 0;
 		/* output the entry name */
 		(void) fputs(in_line, ofp);
-		entry_cnt++;            /* update number of entries */
-	    } else if (entry_cnt) {     /* got some descriptive text */
+		entry_cnt++;		/* update number of entries */
+	    } else if (entry_cnt) {	/* got some descriptive text */
 		/* update previous entry with current text offset */
 		if (!line_cnt)  Fprintf(ofp, "%ld,", ftell(tfp));
 		/* save the text line in the scratch file */
 		(void) fputs(in_line, tfp);
-		line_cnt++;             /* update line counter */
+		line_cnt++;		/* update line counter */
 	    }
 	}
 	/* output an end marker and then record the current position */
 	if (line_cnt)  Fprintf(ofp, "%d\n", line_cnt);
 	Fprintf(ofp, ".\n%ld,%d\n", ftell(tfp), 0);
 	txt_offset = ftell(ofp);
-	Fclose(ifp);            /* all done with original input file */
+	Fclose(ifp);		/* all done with original input file */
 
 	/* reprocess the scratch file; 1st format an error msg, just in case */
 	Sprintf(in_line, "rewind of \"%s\"", tempfile);
@@ -1048,7 +1048,7 @@ do_data()
 
 	/* finished with scratch file */
 	Fclose(tfp);
-	Unlink(tempfile);       /* remove it */
+	Unlink(tempfile);	/* remove it */
 	free(tempfile);
 
 	/* update the first record of the output file; prepare error msg 1st */
@@ -1059,7 +1059,7 @@ do_data()
 	   ok = (fprintf(ofp, "%s%08lx\n", Dont_Edit_Data, txt_offset) >= 0);
 	}
 	if (!ok) {
-dead_data:  perror(in_line);    /* report the problem */
+dead_data:  perror(in_line);	/* report the problem */
 	    /* close and kill the aborted output file, then give up */
 	    Fclose(ofp);
 	    Unlink(filename);
@@ -1082,7 +1082,7 @@ h_filter(line)
 
     SpinCursor(3);
 
-    if (*line == '#') return TRUE;      /* ignore comment lines */
+    if (*line == '#') return TRUE;	/* ignore comment lines */
     if (sscanf(line, "----- %s", tag) == 1) {
 	skip = FALSE;
 #ifndef SINKS
@@ -1122,8 +1122,8 @@ do_oracles()
 {
 	char    *infile, *tempfile;
 	boolean in_oracle, ok;
-	long    txt_offset, offset, fpos;
-	int     oracle_cnt;
+	long	txt_offset, offset, fpos;
+	int	oracle_cnt;
 	register int i;
 
 	infile = malloc(strlen(DATA_IN_TEMPLATE) - 2 + strlen(ORACLE_FILE) + 5);
@@ -1146,7 +1146,7 @@ do_oracles()
 		Fclose(ifp);
 		exit(EXIT_FAILURE);
 	}
-	if (!(tfp = fopen(tempfile, WRTMODE))) {        /* oracles.tmp */
+	if (!(tfp = fopen(tempfile, WRTMODE))) {	/* oracles.tmp */
 		perror(tempfile);
 		Fclose(ifp);
 		Fclose(ofp);
@@ -1168,7 +1168,7 @@ do_oracles()
 
 	oracle_cnt = 1;
 	(void) fputs("---\n", tfp);
-	Fprintf(ofp, "%05lx\n", ftell(tfp));    /* start pos of first oracle */
+	Fprintf(ofp, "%05lx\n", ftell(tfp));	/* start pos of first oracle */
 	in_oracle = FALSE;
 
 	while (fgets(in_line, sizeof in_line, ifp)) {
@@ -1188,15 +1188,15 @@ do_oracles()
 	    }
 	}
 
-	if (in_oracle) {        /* need to terminate last oracle */
+	if (in_oracle) {	/* need to terminate last oracle */
 	    oracle_cnt++;
 	    (void) fputs("---\n", tfp);
-	    Fprintf(ofp, "%05lx\n", ftell(tfp));        /* eof position */
+	    Fprintf(ofp, "%05lx\n", ftell(tfp));	/* eof position */
 	}
 
 	/* record the current position */
 	txt_offset = ftell(ofp);
-	Fclose(ifp);            /* all done with original input file */
+	Fclose(ifp);		/* all done with original input file */
 
 	/* reprocess the scratch file; 1st format an error msg, just in case */
 	Sprintf(in_line, "rewind of \"%s\"", tempfile);
@@ -1207,7 +1207,7 @@ do_oracles()
 
 	/* finished with scratch file */
 	Fclose(tfp);
-	Unlink(tempfile);       /* remove it */
+	Unlink(tempfile);	/* remove it */
 	free(tempfile);
 
 	/* update the first record of the output file; prepare error msg 1st */
@@ -1220,7 +1220,7 @@ do_oracles()
 	if (ok) {
 	    Sprintf(in_line, "data rewrite of \"%s\"", filename);
 	    for (i = 0; i <= oracle_cnt; i++) {
-#ifndef VMS     /* alpha/vms v1.0; this fflush seems to confuse ftell */
+#ifndef VMS	/* alpha/vms v1.0; this fflush seems to confuse ftell */
 		if (!(ok = (fflush(ofp) == 0))) break;
 #endif
 		if (!(ok = (fpos = ftell(ofp)) >= 0)) break;
@@ -1243,7 +1243,7 @@ do_oracles()
 	    }
 	}
 	if (!ok) {
-dead_data:  perror(in_line);    /* report the problem */
+dead_data:  perror(in_line);	/* report the problem */
 	    /* close and kill the aborted output file, then give up */
 	    /* KMH -- I don't know why it fails */
 #ifndef MAC
@@ -1260,23 +1260,23 @@ dead_data:  perror(in_line);    /* report the problem */
 }
 
 
-static  struct deflist {
+static	struct deflist {
 
-	const char      *defname;
-	boolean true_or_false;
+	const char	*defname;
+	boolean	true_or_false;
 } deflist[] = {
 #ifdef REINCARNATION
-	      { "REINCARNATION", TRUE },
+	      {	"REINCARNATION", TRUE },
 #else
-	      { "REINCARNATION", FALSE },
+	      {	"REINCARNATION", FALSE },
 #endif
 	      { 0, 0 } };
 
 static int
 check_control(s)
-	char    *s;
+	char	*s;
 {
-	int     i;
+	int	i;
 
 	if(s[0] != '%') return(-1);
 
@@ -1319,7 +1319,7 @@ do_dungeon()
 	    SpinCursor(3);
 
 	    rcnt++;
-	    if(in_line[0] == '#') continue;     /* discard comments */
+	    if(in_line[0] == '#') continue;	/* discard comments */
 recheck:
 	    if(in_line[0] == '%') {
 		int i = check_control(in_line);
@@ -1344,10 +1344,10 @@ recheck:
 }
 
 static boolean
-ranged_attk(ptr)        /* returns TRUE if monster can attack at range */
+ranged_attk(ptr)	/* returns TRUE if monster can attack at range */
 	register struct permonst *ptr;
 {
-	register int    i, j;
+	register int	i, j;
 	register int atk_mask = (1<<AT_BREA) | (1<<AT_SPIT) | (1<<AT_GAZE);
 
 	for(i = 0; i < NATTK; i++) {
@@ -1366,27 +1366,27 @@ static int
 mstrength(ptr)
 struct permonst *ptr;
 {
-	int     i, tmp2, n, tmp = ptr->mlevel;
+	int	i, tmp2, n, tmp = ptr->mlevel;
 
-	if(tmp > 49)            /* special fixed hp monster */
+	if(tmp > 49)		/* special fixed hp monster */
 	    tmp = 2*(tmp - 6) / 4;
 
-/*      For creation in groups */
+/*	For creation in groups */
 	n = (!!(ptr->geno & G_SGROUP));
 	n += (!!(ptr->geno & G_LGROUP)) << 1;
 	n += (!!(ptr->geno & G_VLGROUP)) << 2;
 
-/*      For ranged attacks */
+/*	For ranged attacks */
 	if (ranged_attk(ptr)) n++;
 
-/*      For higher ac values */
+/*	For higher ac values */
 	n += (ptr->ac < 4);
 	n += (ptr->ac < 0);
 
-/*      For very fast monsters */
+/*	For very fast monsters */
 	n += (ptr->mmove >= 18);
 
-/*      For each attack and "special" attack */
+/*	For each attack and "special" attack */
 	for(i = 0; i < NATTK; i++) {
 
 	    tmp2 = ptr->mattk[i].aatyp;
@@ -1395,7 +1395,7 @@ struct permonst *ptr;
 	    n += (tmp2 == AT_WEAP && (ptr->mflags2 & M2_STRONG));
 	}
 
-/*      For each "special" damage type */
+/*	For each "special" damage type */
 	for(i = 0; i < NATTK; i++) {
 
 	    tmp2 = ptr->mattk[i].adtyp;
@@ -1408,11 +1408,11 @@ struct permonst *ptr;
 	/* tom's nasties */
 	if (extra_nasty(ptr)) n += 5;
 
-/*      Leprechauns are special cases.  They have many hit dice so they
+/*	Leprechauns are special cases.  They have many hit dice so they
 	can hit and are hard to kill, but they don't really do much damage. */
 	if (!strcmp(ptr->mname, "leprechaun")) n -= 2;
 
-/*      Finally, adjust the monster level  0 <= n <= 24 (approx.) */
+/*	Finally, adjust the monster level  0 <= n <= 24 (approx.) */
 	if(n == 0) tmp--;
 	else if(n >= 6) tmp += ( n / 2 );
 	else tmp += ( n / 3 + 1);
@@ -1466,8 +1466,8 @@ do_monstr()
 void
 do_permonst()
 {
-	int     i;
-	char    *c, *nam;
+	int	i;
+	char	*c, *nam;
 
 	filename[0]='\0';
 #ifdef FILE_PREFIX
@@ -1503,17 +1503,17 @@ do_permonst()
 }
 
 
-/*      Start of Quest text file processing. */
+/*	Start of Quest text file processing. */
 #include "qtext.h"
 
-static struct qthdr     qt_hdr;
+static struct qthdr	qt_hdr;
 static struct msghdr	msg_hdr[N_HDR];
-static struct qtmsg     *curr_msg;
+static struct qtmsg	*curr_msg;
 
-static int      qt_line;
+static int	qt_line;
 
-static boolean  in_msg;
-#define NO_MSG  1       /* strlen of a null line returned by fgets() */
+static boolean	in_msg;
+#define NO_MSG	1	/* strlen of a null line returned by fgets() */
 
 static boolean
 qt_comment(s)
@@ -1575,7 +1575,7 @@ new_msg(s, num, id)
 	char *s;
 	int num, id;
 {
-	struct  qtmsg   *qt_msg;
+	struct	qtmsg	*qt_msg;
 
 	if(msg_hdr[num].n_msg >= N_MSG) {
 		Fprintf(stderr, OUT_OF_MESSAGES, qt_line);
@@ -1598,7 +1598,7 @@ do_qt_control(s)
 
 	switch(s[1]) {
 
-	    case 'C':   if(in_msg) {
+	    case 'C':	if(in_msg) {
 			    Fprintf(stderr, CREC_IN_MSG, qt_line);
 			    break;
 			} else {
@@ -1612,18 +1612,18 @@ do_qt_control(s)
 			    	break;
 			    num = get_hdr(code)-1;
 			    if(known_msg(num, id))
-					Fprintf(stderr, DUP_MSG, qt_line);
+			    	Fprintf(stderr, DUP_MSG, qt_line);
 			    else new_msg(s, num, id);
 			}
 			break;
 
-	    case 'E':   if(!in_msg) {
+	    case 'E':	if(!in_msg) {
 			    Fprintf(stderr, END_NOT_IN_MSG, qt_line);
 			    break;
 			} else in_msg = FALSE;
 			break;
 
-	    default:    Fprintf(stderr, UNREC_CREC, qt_line);
+	    default:	Fprintf(stderr, UNREC_CREC, qt_line);
 			break;
 	}
 }
@@ -1642,7 +1642,7 @@ do_qt_text(s)
 static void
 adjust_qt_hdrs()
 {
-	int     i, j;
+	int	i, j;
 	long count = 0L, hdr_offset = sizeof(int) +
 			(sizeof(char)*LEN_HDR + sizeof(long)) * qt_hdr.n_hdr;
 
@@ -1653,8 +1653,8 @@ adjust_qt_hdrs()
 
 	for(i = 0; i < qt_hdr.n_hdr; i++)
 	    for(j = 0; j < msg_hdr[i].n_msg; j++) {
-			msg_hdr[i].qt_msg[j].offset = hdr_offset + count;
-			count += msg_hdr[i].qt_msg[j].size;
+		msg_hdr[i].qt_msg[j].offset = hdr_offset + count;
+		count += msg_hdr[i].qt_msg[j].size;
 	    }
 	return;
 }
@@ -1662,10 +1662,10 @@ adjust_qt_hdrs()
 static void
 put_qt_hdrs()
 {
-	int     i;
+	int	i;
 
 	/*
-	 *      The main header record.
+	 *	The main header record.
 	 */
 #ifdef DEBUG
 	Fprintf(stderr, "%ld: header info.\n", ftell(ofp));
@@ -1683,7 +1683,7 @@ put_qt_hdrs()
 #endif
 
 	/*
-	 *      The individual class headers.
+	 *	The individual class headers.
 	 */
 	for(i = 0; i < qt_hdr.n_hdr; i++) {
 
@@ -1738,7 +1738,7 @@ do_questtxt()
 	    qt_line++;
 	    if(qt_control(in_line)) do_qt_control(in_line);
 	    else if(qt_comment(in_line)) continue;
-	    else                    do_qt_text(in_line);
+	    else		    do_qt_text(in_line);
 	}
 
 	(void) rewind(ifp);
@@ -1762,12 +1762,12 @@ do_questtxt()
 }
 
 
-static  char    temp[32];
+static	char	temp[32];
 
 static char *
-limit(name,pref)        /* limit a name to 30 characters length */
-char    *name;
-int     pref;
+limit(name,pref)	/* limit a name to 30 characters length */
+char	*name;
+int	pref;
 {
 	(void) strncpy(temp, name, pref ? 26 : 30);
 	temp[pref ? 26 : 30] = 0;
@@ -1782,7 +1782,7 @@ do_objs()
 	int nspell = 0;
 	int prefix = 0;
 	char class = '\0';
-	boolean sumerr = FALSE;
+	boolean	sumerr = FALSE;
 
 	filename[0]='\0';
 #ifdef FILE_PREFIX
@@ -1800,7 +1800,7 @@ do_objs()
 	for(i = 0; !i || objects[i].oc_class != ILLOBJ_CLASS; i++) {
 		SpinCursor(3);
 
-		objects[i].oc_name_idx = objects[i].oc_descr_idx = i;   /* init */
+		objects[i].oc_name_idx = objects[i].oc_descr_idx = i;	/* init */
 		if (!(objnam = tmpdup(OBJ_NAME(objects[i])))) continue;
 
 		/* make sure probabilities add up to 1000 */
@@ -2090,8 +2090,8 @@ static void
 C_close_gen()
 {
     int i,dx,dy;
-    int src_row, src_col;       /* source */
-    int block_row, block_col;   /* block */
+    int src_row, src_col;	/* source */
+    int block_row, block_col;	/* block */
     int this_row;
     int no_more;
     const char *delim;
@@ -2138,7 +2138,7 @@ C_close_gen()
 	Fprintf(ofp,"  }},\n");
     }
 
-    Fprintf(ofp,"}; /* close_table[] */\n");            /* closing brace for table */
+    Fprintf(ofp,"}; /* close_table[] */\n");		/* closing brace for table */
     Fprintf(ofp,"#endif /* !FAR_TABLE_ONLY */\n");
 #ifndef no_vision_progress
     Fprintf(stderr,"\n");
@@ -2150,8 +2150,8 @@ static void
 C_far_gen()
 {
     int i,dx,dy;
-    int src_row, src_col;       /* source */
-    int block_row, block_col;   /* block */
+    int src_row, src_col;	/* source */
+    int block_row, block_col;	/* block */
     int this_row;
     const char *delim;
 
@@ -2194,7 +2194,7 @@ C_far_gen()
 	Fprintf(ofp,"  }},\n");
     }
 
-    Fprintf(ofp,"}; /* far_table[] */\n");      /* closing brace for table */
+    Fprintf(ofp,"}; /* far_table[] */\n");	/* closing brace for table */
     Fprintf(ofp,"#endif /* !CLOSE_TABLE_ONLY */\n");
 #ifndef no_vision_progress
     Fprintf(stderr,"\n");
@@ -2223,15 +2223,15 @@ clear_path(you_row,you_col,y2,x2)
     int dx, dy, s1, s2;
     register int i, error, x, y, dxs, dys;
 
-    x  = you_col;               y  = you_row;
-    dx = abs(x2-you_col);       dy = abs(y2-you_row);
-    s1 = sign(x2-you_col);      s2 = sign(y2-you_row);
+    x  = you_col;		y  = you_row;
+    dx = abs(x2-you_col);	dy = abs(y2-you_row);
+    s1 = sign(x2-you_col);	s2 = sign(y2-you_row);
 
-    if (s1 == 0) {      /* same column */
-	if (s2 == 1) {  /* below (larger y2 value) */
+    if (s1 == 0) {	/* same column */
+	if (s2 == 1) {	/* below (larger y2 value) */
 	    for (i = you_row+1; i < y2; i++)
 		if (!xclear[i][you_col]) return 0;
-	} else {        /* above (smaller y2 value) */
+	} else {	/* above (smaller y2 value) */
 	    for (i = y2+1; i < you_row; i++)
 		if (!xclear[i][you_col]) return 0;
 	}
@@ -2242,13 +2242,13 @@ clear_path(you_row,you_col,y2,x2)
      *  Lines at 0 and 90 degrees have been weeded out.
      */
     if (dy > dx) {
-	error = dx; dx = dy; dy = error;        /* swap the values */
-	dxs = dx << 1;          /* save the shifted values */
+	error = dx; dx = dy; dy = error;	/* swap the values */
+	dxs = dx << 1;		/* save the shifted values */
 	dys = dy << 1;
-	error = dys - dx;       /* NOTE: error is used as a temporary above */
+	error = dys - dx;	/* NOTE: error is used as a temporary above */
 
 	for (i = 0; i < dx; i++) {
-	    if (!xclear[y][x]) return 0;        /* plot point */
+	    if (!xclear[y][x]) return 0;	/* plot point */
 
 	    while (error >= 0) {
 		x += s1;
@@ -2258,12 +2258,12 @@ clear_path(you_row,you_col,y2,x2)
 	    error += dys;
 	}
     } else {
-	dxs = dx << 1;          /* save the shifted values */
+	dxs = dx << 1;		/* save the shifted values */
 	dys = dy << 1;
 	error = dys - dx;
 
 	for (i = 0; i < dx; i++) {
-	    if (!xclear[y][x]) return 0;        /* plot point */
+	    if (!xclear[y][x]) return 0;	/* plot point */
 
 	    while (error >= 0) {
 		y += s2;

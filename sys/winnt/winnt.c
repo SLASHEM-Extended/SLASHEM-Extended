@@ -1,8 +1,8 @@
-/*	SCCS Id: @(#)winnt.c	 3.4	 1997/04/12		  */
+/*	SCCS Id: @(#)winnt.c	 3.4	 $Date: 2003-03-12 11:15:16 $		  */
 /* Copyright (c) NetHack PC Development Team 1993, 1994 */
 /* NetHack may be freely redistributed.  See license for details. */
 
-/* $Id: winnt.c,v 1.6 2003-03-12 00:43:54 j_ali Exp $ */
+/* $Id: winnt.c,v 1.7 2003-03-12 11:15:16 j_ali Exp $ */
 /* Modifications copyright (c) Slash'EM Development Team 2002 */
 
 /*

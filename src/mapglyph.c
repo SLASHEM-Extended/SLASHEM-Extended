@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)mapglyph.c	3.4	2000/08/18	*/
+/*	SCCS Id: @(#)mapglyph.c	3.4	2003/01/08	*/
 /* Copyright (c) David Cohrs, 1991				  */
 /* NetHack may be freely redistributed.  See license for details. */
 

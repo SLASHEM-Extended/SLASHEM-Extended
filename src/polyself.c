@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)polyself.c	3.4	2002/01/15	*/
+/*	SCCS Id: @(#)polyself.c	3.4	2003/01/08	*/
 /*	Copyright (C) 1987, 1988, 1989 by Ken Arromdee */
 /* NetHack may be freely redistributed.  See license for details. */
 

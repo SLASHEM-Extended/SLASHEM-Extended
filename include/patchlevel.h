@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)patchlevel.h	3.4	2002/03/20	*/
+/*	SCCS Id: @(#)patchlevel.h	3.4	2003/02/19	*/
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -22,7 +22,7 @@
 "This is SuperLotsoAddedStuffHack-Extended Magic 1997-2003"
 
 #define COPYRIGHT_BANNER_B \
-"NetHack, Copyright 1985-2002 Stichting Mathematisch Centrum, M. Stephenson."
+"NetHack, Copyright 1985-2003 Stichting Mathematisch Centrum, M. Stephenson."
 
 #define COPYRIGHT_BANNER_C \
 "See license for details. Bug reports to slashem-discuss@lists.sourceforge.net"
