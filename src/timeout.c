@@ -602,7 +602,7 @@ long timeout;
 {
 	struct obj *bomb, *otmp;
 	xchar x,y;
-	boolean redraw = FALSE, silent;
+	boolean redraw = FALSE, silent, underwater;
 	struct monst *mtmp = (struct monst *)0;
 
 	bomb = (struct obj *) arg;
@@ -634,14 +634,40 @@ long timeout;
 		    	losehp(d(2,5), "carrying live explosives", KILLED_BY);
 		    	break;
 		    case OBJ_FLOOR:
+			underwater = is_pool(x, y);
 			if (!silent) {
-			    if (x == u.ux && y == u.uy)
-				pline("A bomb explodes under your %s!",
+			    if (x == u.ux && y == u.uy) {
+				if (underwater && (Flying || Levitation))
+				    pline_The("water boils beneath you.");
+				else if (underwater && Wwalking)
+				    pline_The("water erupts around you.");
+				else pline("A bomb explodes under your %s!",
 				  makeplural(body_part(FOOT)));
-			    else if (cansee(x, y))
-				You("see a bomb explode.");
+			    } else if (cansee(x, y))
+				You(underwater ?
+				    "see a plume of water shoot up." :
+				    "see a bomb explode.");
 			    else if (flags.soundok)
-				You_hear("a blast.");
+				You_hear(underwater ?
+				         "a muffled explosion." : "a blast.");
+			}
+			if (underwater && (Flying || Levitation || Wwalking)) {
+			    if (Wwalking && x == u.ux && y == u.uy) {
+				struct trap trap;
+				trap.ntrap = NULL;
+				trap.tx = x;
+				trap.ty = y;
+				trap.launch.x = -1;
+				trap.launch.y = -1;
+				trap.ttyp = RUST_TRAP;
+				trap.tseen = 0;
+				trap.once = 0;
+				trap.madeby_u = 0;
+				trap.dst.dnum = -1;
+				trap.dst.dlevel = -1;
+				dotrap(&trap);
+			    }
+			    goto free_bomb;
 			}
 		    	redraw = TRUE;
 		    	break;
