@@ -39,7 +39,7 @@ const char *msg;
 	    if((mtmp = m_at(x,y)) && enexto(&cc, x, y, mtmp->data))
 		rloc_to(mtmp, cc.x, cc.y);
 	    if(msg) Norep("%s", msg);
-	    revived = revive_corpse(otmp);
+	    revived = revive_corpse(otmp, FALSE);
 	}
     }
 

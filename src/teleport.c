@@ -1074,7 +1074,7 @@ register struct obj *obj;
 	int try_limit = 4000;
 
 	if (obj->otyp == CORPSE && is_rider(&mons[obj->corpsenm])) {
-	    if (revive_corpse(obj)) return;
+	    if (revive_corpse(obj, FALSE)) return;
 	}
 
 	obj_extract_self(obj);

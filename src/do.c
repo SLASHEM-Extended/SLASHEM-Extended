@@ -1370,8 +1370,9 @@ deferred_goto()
  * corpse is gone.
  */
 boolean
-revive_corpse(corpse)
+revive_corpse(corpse, moldy)
 struct obj *corpse;
+boolean moldy;
 {
     struct monst *mtmp, *mcarry;
     boolean is_uwep, chewed;
@@ -1386,27 +1387,39 @@ struct obj *corpse;
     mtmp = revive(corpse);      /* corpse is gone if successful */
 
     if (mtmp) {
-	chewed = (mtmp->mhp < mtmp->mhpmax);
+	chewed = !moldy && (mtmp->mhp < mtmp->mhpmax);
 	if (chewed) cname = cname_buf;  /* include "bite-covered" prefix */
 	switch (where) {
 	    case OBJ_INVENT:
-		if (is_uwep)
-		    pline_The("%s writhes out of your grasp!", cname);
+		if (is_uwep) {
+		    if (moldy) {
+			Your("weapon goes moldy.");
+			pline("%s writhes out of your grasp!", Monnam(mtmp));
+		    }
+		    else
+			pline_The("%s writhes out of your grasp!", cname);
+		}
 		else
 		    You_feel("squirming in your backpack!");
 		break;
 
 	    case OBJ_FLOOR:
-		if (cansee(mtmp->mx, mtmp->my))
-		    pline("%s rises from the dead!", chewed ?
+		if (cansee(mtmp->mx, mtmp->my)) {
+		    if (moldy)
+			pline("%s grows on a moldy corpse!",
+			  Amonnam(mtmp));
+		    else
+			pline("%s rises from the dead!", chewed ?
 			  Adjmonnam(mtmp, "bite-covered") : Monnam(mtmp));
+		}
 		break;
 
 	    case OBJ_MINVENT:           /* probably a nymph's */
 		if (cansee(mtmp->mx, mtmp->my)) {
 		    if (canseemon(mcarry))
-			pline("Startled, %s drops %s as it revives!",
-			      mon_nam(mcarry), an(cname));
+			pline("Startled, %s drops %s as it %s!",
+			      mon_nam(mcarry), moldy ? "a corpse" : an(cname),
+			      moldy ? "goes moldy" : "revives");
 		    else
 			pline("%s suddenly appears!", chewed ?
 			      Adjmonnam(mtmp, "bite-covered") : Monnam(mtmp));
@@ -1433,7 +1446,7 @@ long timeout;
     struct obj *body = (struct obj *) arg;
 
     /* if we succeed, the corpse is gone, otherwise, rot it away */
-    if (!revive_corpse(body)) {
+    if (!revive_corpse(body, FALSE)) {
 	if (is_rider(&mons[body->corpsenm]))
 	    You_feel("less hassled.");
 	(void) start_timer(250L - (monstermoves-body->age),
@@ -1471,7 +1484,7 @@ long timeout;
 	    pmtype = -1; /* cantcreate might have changed it so change it back */
     	else {
 	    	body->corpsenm = pmtype;
-	    	if (!revive_corpse(body)) pmtype = -1;
+	    	if (!revive_corpse(body, TRUE)) pmtype = -1;
     	}
     }
     

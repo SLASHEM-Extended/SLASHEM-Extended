@@ -1066,7 +1066,7 @@ boolean telekinesis;	/* not picking it up directly by hand */
 	    } else if (is_rider(&mons[obj->corpsenm])) {
 		pline("At your %s, the corpse suddenly moves...",
 			telekinesis ? "attempted acquisition" : "touch");
-		(void) revive_corpse(obj);
+		(void) revive_corpse(obj, FALSE);
 		exercise(A_WIS, FALSE);
 		return -1;
 	    }
