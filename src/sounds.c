@@ -117,6 +117,36 @@ dosounds()
 	You(swamp_msg[rn2(2)+hallu]);
 	return;
     }
+    if (level.flags.spooky && !rn2(200)) {
+	static const char *spooky_msg[24] = {
+		"hear screaming in the distance!",
+		"hear a faint whisper: \"Please leave your measurements for your custom-made coffin.\"",
+		"hear a door creak ominously.",
+		"hear hard breathing just a few steps behind you!",
+		"hear dragging footsteps coming closer!",
+		"hear anguished moaning and groaning coming out of the walls!",
+		"hear mad giggling directly behind you!",
+		"smell rotting corpses.",
+		"smell chloroform!",
+		"feel ice cold fingers stroking your neck.",
+		"feel a ghostly touch caressing your face.",
+		"feel somebody dancing on your grave.",
+		"feel something breathing down your neck.",
+		"feel as if the walls were closing in on you.",
+		"just stepped on something squishy.",
+		"hear a strong voice pronouncing: \"There can only be one!\"",
+		"hear a voice booming all around you: \"Warning: self-destruction sequence activated!\"",
+		"smell your mother-in-law's cooking!",
+		"smell horse dung.",
+		"hear someone shouting: \"Who ordered the burger?\"",
+		"can faintly hear the Twilight Zone theme.",
+		"hear an outraged customer complaining: \"I'll be back!\"",
+		"hear someone praising your valor!",
+		"hear someone singing: \"Jingle bells, jingle bells...\"",
+	};
+	You(spooky_msg[rn2(15)+hallu*9]);
+	return;
+    }
     if (level.flags.has_vault && !rn2(200)) {
 	if (!(sroom = search_special(VAULT))) {
 	    /* strange ... */

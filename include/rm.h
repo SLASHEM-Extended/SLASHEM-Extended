@@ -471,6 +471,7 @@ struct levelflags {
 
 	Bitfield(is_cavernous_lev,1);
 	Bitfield(arboreal, 1);		/* Trees replace rock */
+	Bitfield(spooky,1);		/* Spooky sounds (Tina Hall) */
 };
 
 typedef struct

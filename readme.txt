@@ -389,7 +389,7 @@ ver 0.0.6E6 [?] [Released by ?]
 -Added Lethe monsters (Darshan Shaligram).
 -fixed bug 583448: No apply with healtstone.
 -Added new SDL/GL windowing port.
-
+-Added spooky sounds to nightmare level (Tina Hall).
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).

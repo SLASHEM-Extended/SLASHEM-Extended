@@ -22,6 +22,7 @@
 #define NOMMAP		4
 #define SHORTSIGHTED	8
 #define ARBOREAL	16
+#define SPOOKY		32
 
     /* special level types */
 #define SP_LEV_ROOMS	1

@@ -1,10 +1,10 @@
 #	SCCS Id: @(#)nightmar.des	0.0.7	2002/03/13
-#	$Id: nightmar.des,v 1.4 2002-04-05 12:44:59 j_ali Exp $
+#	$Id: nightmar.des,v 1.5 2002-08-13 20:13:17 j_ali Exp $
 # NetHack may be freely redistributed.  See license for details.
 #
 # Nightmare's Nightmare World
 MAZE:"nightmar",' '
-FLAGS:noteleport,hardfloor,nommap,shortsighted
+FLAGS:noteleport,hardfloor,nommap,shortsighted,spooky
 GEOMETRY:center,center
 MAP
   T.    T.T                    CC     CC    #######H#H                      

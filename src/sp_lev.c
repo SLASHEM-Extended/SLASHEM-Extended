@@ -1789,6 +1789,8 @@ int typ;
 	    level.flags.shortsighted = 1;
 	if (lev_flags & ARBOREAL)
 	    level.flags.arboreal = 1;
+	if (lev_flags & SPOOKY)
+	    level.flags.spooky = 1;
 
 	/* Read message */
 	Fread((genericptr_t) &n, 1, sizeof(n), fd);
