@@ -848,7 +848,7 @@ WEPTOOL("red double lightsaber",  "double lightsaber",
 /* Other tools */
 #ifdef TOURIST
 TOOL("expensive camera", (char *)0,
-								1, 0, 0, 0,  10, 12, 200, PLASTIC, CLR_BLACK),
+				1, 0, 0, 1,  10, 12, 200, PLASTIC, CLR_BLACK),
 TOOL("mirror", "looking glass", 0, 0, 0, 0,  40, 13,  10, GLASS, HI_SILVER),
 #else
 TOOL("mirror", "looking glass", 0, 0, 0, 0,  50, 13,  10, GLASS, HI_SILVER),

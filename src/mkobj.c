@@ -504,9 +504,6 @@ boolean artif;
 	case TOOL_CLASS:
 	    switch(otmp->otyp) {
 		case TALLOW_CANDLE:
-#ifdef TOURIST
-		case EXPENSIVE_CAMERA:
-#endif
 		case WAX_CANDLE:
 			otmp->spe = 1;
 			otmp->age = 20L * /* 400 or 200 */
@@ -550,6 +547,9 @@ boolean artif;
 		case BAG_OF_HOLDING:
 			mkbox_cnts(otmp);
 			break;
+#ifdef TOURIST
+		case EXPENSIVE_CAMERA:
+#endif
 		case TINNING_KIT:
 		case MAGIC_MARKER:
 			otmp->spe = rn1(70,30);
