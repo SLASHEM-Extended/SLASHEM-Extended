@@ -88,6 +88,7 @@ ver 0.0.7E2 [?] [Released by ?]
 -fixed bug 759709: Some orcs get unwarranted food.
 -fixed bug 754921: won't compile pure gtk.
 -fixed bug 653195: Level teleport out of Black Market.
+-fixed bug 707053: Poly in shop causes crash.
 
 See history.txt for changes made in previous versions.
 

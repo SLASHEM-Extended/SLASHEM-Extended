@@ -358,12 +358,17 @@ void
 bill_dummy_object(otmp)
 register struct obj *otmp;
 {
-	register struct obj *dummy;
+	register struct obj *dummy, *obj;
 
 	if (otmp->unpaid)
 	    subfrombill(otmp, shop_keeper(*u.ushops));
 	dummy = newobj(otmp->oxlth + otmp->onamelth);
 	*dummy = *otmp;
+	if (Has_contents(otmp)) {
+	    for(obj = otmp->cobj; obj; obj = obj->nobj)
+		bill_dummy_object(obj);
+	    dummy->cobj = NULL;
+	}
 	dummy->where = OBJ_FREE;
 	dummy->o_id = flags.ident++;
 	if (!dummy->o_id) dummy->o_id = flags.ident++;	/* ident overflowed */
