@@ -1221,7 +1221,9 @@ poly_obj(obj, id)
 	if (obj->otyp == SCR_MAIL) {
 		otmp->otyp = SCR_MAIL;
 		otmp->spe = 1;
+#ifdef UNPOLYPILE
 		unpoly = FALSE;	/* WAC -- no change! */
+#endif
 	}
 #endif
 
@@ -1230,7 +1232,9 @@ poly_obj(obj, id)
 		int mnum, tryct = 100;
 
 
+#ifdef UNPOLYPILE
 		unpoly = FALSE;	/* WAC no unpolying eggs */
+#endif
 		/* first, turn into a generic egg */
 		if (otmp->otyp == EGG)
 		    kill_egg(otmp);
@@ -1274,7 +1278,9 @@ poly_obj(obj, id)
 		otmp->opoisoned = TRUE;
 
 	if (id == STRANGE_OBJECT && obj->otyp == CORPSE) {
+#ifdef UNPOLYPILE
 		unpoly = FALSE;	/* WAC - don't bother */
+#endif
 		/* turn crocodile corpses into shoes */
 	    if (obj->corpsenm == PM_CROCODILE) {
 		otmp->otyp = LOW_BOOTS;

@@ -350,6 +350,7 @@ ver 0.0.6E3F2 [September XX/2000]
 -fixed bug 112789: GTK port now supports perm_invent option
 -fixed bug 113396: X11 port was crashing when displaying rip.xpm
 -fixed unlogged bug: X11 port wouldn't compile if USE_XPM wasn't defined
+-fixed bug 113523: Couldn't compile if UNPOLYPILE not defined
 
 ver 0.0.6E3F1 [August 21/2000] [Released by Ali]
 -fixed some bugs in the zap/cast code for magic missile, fire, cold, fireball, etc.
