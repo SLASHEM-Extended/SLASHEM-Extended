@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.10 2000-09-17 03:10:23 wacko Exp $
+  $Id: gtk.c,v 1.11 2000-09-19 02:38:58 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -44,26 +44,11 @@ static winid		rawprint_win = WIN_ERR;
 
 GtkAccelGroup *accel_group=NULL;
 
-static GtkWidget	*credit_window;
-static GtkWidget 	*credit_vbox;
-static GtkWidget 	*credit_credit;
-
-static GtkStyle		*credit_style;
-static GdkPixmap	*credit_pixmap;
-static GdkBitmap	*credit_mask;
-
 GtkWidget		*main_window;
-static GtkWidget	*main_vbox;
-static GtkWidget	*main_hbox;
-
-static GtkWidget	*main_bar;
-static GtkWidget	*main_message;
 #ifdef RADAR
 static GtkWidget	*main_radar;
 #endif
 
-static GtkWidget	*main_status;
-static GtkWidget	*main_map;
 static GtkItemFactory	*main_item_factory;
 
 int			root_width;
@@ -1119,6 +1104,13 @@ GTK_init_nhwindows(int *argc, char **argv)
 {
     char *credit_file;
     int i;
+    GtkWidget 	*main_bar, 
+		*credit_window, *credit_vbox, *credit_credit,
+		*main_vbox, *main_hbox;
+    GtkStyle	*credit_style;
+    GdkPixmap	*credit_pixmap;
+    GdkBitmap	*credit_mask;
+
 #ifdef UNIX
     uid_t savuid;
 #endif
@@ -1200,6 +1192,9 @@ GTK_init_nhwindows(int *argc, char **argv)
   create main widget
 */
     main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+
+    gtk_window_set_position(GTK_WINDOW(main_window), GTK_WIN_POS_CENTER);
+
     gtk_window_set_policy(GTK_WINDOW(main_window), TRUE, TRUE, TRUE);
 
     gtk_signal_connect(
@@ -1287,17 +1282,16 @@ GTK_init_nhwindows(int *argc, char **argv)
 	gtk_hbox_new(FALSE, 1), main_vbox, "",
 	FALSE, FALSE, 0);
 	
-    main_message = nh_gtk_new_and_pack(
-	nh_message_new(), main_hbox, "",
+    (void) nh_gtk_new_and_pack(nh_message_new(), main_hbox, "",
 	TRUE, TRUE, 0);
-
-    main_status = nh_gtk_new_and_pack(
-	nh_status_new(), main_hbox, "",
+    (void) nh_gtk_new_and_pack(nh_status_new(), main_hbox, "",
 	FALSE, FALSE, 0);
+
 #ifdef RADAR
     main_radar = nh_radar_new();
 #endif
-    main_map = nh_gtk_new_and_pack(
+    
+    (void) nh_gtk_new_and_pack(
 	nh_map_new(main_window), main_vbox, "",
 	TRUE, TRUE, 0);
 

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.8 2000-09-17 03:10:23 wacko Exp $
+  $Id: gtkmap.c,v 1.9 2000-09-19 02:38:58 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -76,9 +76,6 @@ static GdkPixmap *tile_pixmap;
 static GdkBitmap *tile_mask;
 static GdkImage  *tile_image;
 static GdkGC	 *map_gc;
-
-#define	NH_WIDTH	80
-#define	NH_HEIGHT	21
 
 /*
 	BIG3DTILE
@@ -179,8 +176,8 @@ static int	NH_MAP_MAX_HEIGHT;
 
 #ifdef RADAR
 #define NH_RADAR_UNIT	4
-#define NH_RADAR_WIDTH	(NH_WIDTH * NH_RADAR_UNIT)
-#define NH_RADAR_HEIGHT	(NH_HEIGHT * NH_RADAR_UNIT)
+#define NH_RADAR_WIDTH	(COLNO * NH_RADAR_UNIT)
+#define NH_RADAR_HEIGHT	(ROWNO * NH_RADAR_UNIT)
 #endif
 
 extern short	glyph2tile[];
@@ -206,16 +203,15 @@ static struct tilemap{
     int	bgtile;
     int tile;
     int update;
-} gtkmap[NH_HEIGHT][NH_WIDTH];
+} gtkmap[ROWNO][COLNO];
 
 #ifdef WIN32 
-/* Windows systems don't have the expected fonts 
- * [FIXME] Other than Courier New,  are there any other fixed width fonts
- * on all systems?
+/* 
+ * Windows systems don't have the expected fonts 
  */
 #define	NH_FONT		"-*-Courier New-normal-r-normal--20-*-*-*-*-*-*-*"
-#define	NH_FONT2	""
-#define	NH_FONT3	""
+#define	NH_FONT2	"-*-Fixedsys-normal-r-normal--20-*-*-*-*-*-*-*"
+#define	NH_FONT3	"-*-Terminal-normal-r-normal--20-*-*-*-*-*-*-*"
 #else
 #define	NH_FONT		"nh10"
 #define	NH_FONT2	"-misc-fixed-medium-r-normal--20-*-*-*-*-*-iso8859-1"
@@ -239,14 +235,16 @@ nh_set_map_visual(int mode)
 	panic("Bad visual!\n");
 
     if(saved_vis != mode){
+	gtk_widget_hide(map);
+
 	nh_map_clear();
 
 	if(saved_vis != 0)
 	    gdk_image_destroy(tile_image);
 	if(mode == 0){
 #ifndef WINGTK_X11
-	    if (gdk_char_width(map_font, 'm') != gdk_char_width(map_font, 'l'))
-	    	panic("Proportional font!");
+/*	    if (gdk_char_width(map_font, 'm') != gdk_char_width(map_font, 'l'))
+	    	panic("Proportional font!");*/
 	    c_width = gdk_char_width(map_font, 'm');
 #else
 	    if(map_font->type != GDK_FONT_FONT)
@@ -258,8 +256,8 @@ nh_set_map_visual(int mode)
 	    c_3dheight = c_height;
 	    c_3dofset = 0;
 
-	    c_map_width = NH_WIDTH * c_width;
-	    c_map_height = NH_HEIGHT * c_height;
+	    c_map_width = COLNO * c_width;
+	    c_map_height = ROWNO * c_height;
 	}
 	else{
 	    if(!tileTab[mode])
@@ -296,12 +294,18 @@ nh_set_map_visual(int mode)
 	    c_map_width = NH_MAP_WIDTH;
 	    c_map_height = NH_MAP_HEIGHT;
 	}
-
+	
+	gtk_drawing_area_size(
+	    GTK_DRAWING_AREA(map),
+	    c_map_width, c_map_height);
+	
 	nh_map_check_visibility();
 #ifdef RADAR
 	nh_radar_update();
 #endif
-	doredraw();	
+	doredraw();
+
+	gtk_widget_show(map);
     }
     map_visual = mode;
 }
@@ -414,7 +418,7 @@ nh_map_check_visibility()
 	    GTK_SCROLLED_WINDOW(map_scroll)
 	    );
 	if(map_visual == 0)
-	    adjy = (y - 10) * c_3dheight;
+	    adjy = (y - (ROWNO/2)) * c_3dheight;
 	else
 	    adjy = y * c_3dheight - height/2;
 
@@ -422,14 +426,14 @@ nh_map_check_visibility()
 	    adjy = c_map_height - adj->page_size;
 
 	gtk_adjustment_set_value(adj, adjy);
-	 
+	
 	adj = gtk_scrolled_window_get_hadjustment(
 	    GTK_SCROLLED_WINDOW(map_scroll)
 	    );
 	if(map_visual == 0)
-	    adjx = (x - 40) * c_3dwidth;
+	    adjx = (x - (COLNO/2)) * c_3dwidth;
 	else
-	    adjx = x * c_3dwidth - width/2 + (NH_HEIGHT - y) * c_3dofset;
+	    adjx = x * c_3dwidth - width/2 + (ROWNO - y) * c_3dofset;
 
 	if(adjx > c_map_width - adj->page_size)
 	    adjx = c_map_width - adj->page_size;
@@ -491,8 +495,8 @@ nh_map_clear()
 
 	xshm_map_clear();
 
-	for(i=0 ; i<NH_HEIGHT ; ++i)
-	    for(j=0 ; j<NH_WIDTH ; ++j){
+	for(i=0 ; i<ROWNO ; ++i)
+	    for(j=0 ; j<COLNO ; ++j){
 		gtkmap[i][j].tile = fix_tile(glyph2tile[cmap_to_glyph(S_stone)]);
 		gtkmap[i][j].bgtile = fix_tile(glyph2tile[cmap_to_glyph(S_stone)]);
 	    }
@@ -515,8 +519,8 @@ nh_map_init()
     NH_TILE_HEIGHT = 		(Tile->unit_height);
     NH_TILE_CACHE_WIDTH =	(Tile->unit_width);
     NH_TILE_CACHE_HEIGHT =	(Tile->unit_height);
-    NH_MAP_WIDTH =		(Tile->unit_width * NH_WIDTH);
-    NH_MAP_HEIGHT =		(Tile->unit_height * NH_HEIGHT);
+    NH_MAP_WIDTH =		(Tile->unit_width * COLNO);
+    NH_MAP_HEIGHT =		(Tile->unit_height * ROWNO);
     NH_TILEMAP_WIDTH =		(Tile->tilemap_width);
     NH_TILEMAP_HEIGHT =		(Tile->tilemap_height);
 }
@@ -637,7 +641,6 @@ nh_map_new(GtkWidget *w)
 {
     int i/*, n*/;
     int width, height;
-    int shmflg;
 
     tile_scan();
     nh_map_init();
@@ -648,9 +651,9 @@ nh_map_new(GtkWidget *w)
 	if(!tileTab[i])
 	    continue;
 
-	width = (NH_WIDTH + 1) * (tileTab[i]->unit_width - tileTab[i]->ofsetx_3d)
-	    + (NH_HEIGHT + 1) * tileTab[i]->ofsetx_3d;
-	height = (NH_HEIGHT + 1) * (tileTab[i]->unit_height - tileTab[i]->ofsety_3d);
+	width = (COLNO + 1) * (tileTab[i]->unit_width - tileTab[i]->ofsetx_3d)
+	    + (ROWNO + 1) * tileTab[i]->ofsetx_3d;
+	height = (ROWNO + 1) * (tileTab[i]->unit_height - tileTab[i]->ofsety_3d);
 
 	if(NH_MAP_MAX_WIDTH < width)
 	    NH_MAP_MAX_WIDTH = width;
@@ -688,7 +691,7 @@ nh_map_new(GtkWidget *w)
 #else
     xshm_init(w->window);
 #endif
-    shmflg = xshm_map_init(NH_MAP_MAX_WIDTH, NH_MAP_MAX_HEIGHT);
+    (void) xshm_map_init(NH_MAP_MAX_WIDTH, NH_MAP_MAX_HEIGHT);
 
 
     map_font = gdk_font_load(NH_FONT);
@@ -747,12 +750,12 @@ nh_map_new(GtkWidget *w)
 	c_3dofset = NH_TILE_3D_OFSET;
 
     }
-    c_map_width = NH_MAP_MAX_WIDTH;
-    c_map_height = NH_MAP_MAX_HEIGHT;
+    c_map_width = NH_MAP_WIDTH;
+    c_map_height = NH_MAP_HEIGHT;
 
     gtk_drawing_area_size(
 	GTK_DRAWING_AREA(map),
-	NH_MAP_MAX_WIDTH, NH_MAP_MAX_HEIGHT);
+	c_map_width, c_map_height);
 
     map_pixmap = gdk_pixmap_new(
 	w->window,
@@ -771,8 +774,8 @@ nh_map_new(GtkWidget *w)
     if(width >= root_width)
 	width = root_width - 50;
 
-    if(height >= (root_height * 2 / 3))
-	height = (root_height * 2 / 3) - 50;
+    if(height >= (root_height / 2))
+	height = (root_height / 2) - 50;
 
     gtk_widget_set_usize(GTK_WIDGET(map_scroll), width, height);
     
@@ -912,44 +915,46 @@ nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap, GdkRe
     int color;
     int glyph = tmap->glyph;
     int offset;
-    char ch;
+    gchar ch[2];
 
     color = 0;
 
     if ((offset = (glyph - GLYPH_SWALLOW_OFF)) >= 0) {	/* swallow */
-	ch = (uchar) showsyms[S_sw_tl + (offset & 0x7)];
+	ch[0] = (uchar) showsyms[S_sw_tl + (offset & 0x7)];
 	color = mon_color(offset>>3);
     }
     else if ((offset = (glyph - GLYPH_ZAP_OFF)) >= 0) {	/* zap beam */
-	ch = showsyms[S_vbeam + (offset & 0x3)];
+	ch[0] = showsyms[S_vbeam + (offset & 0x3)];
 	color = zap_color(offset>>2);
     }
     else if ((offset = (glyph - GLYPH_CMAP_OFF)) >= 0) {/* cmap */
-	ch = showsyms[offset];
+	ch[0] = showsyms[offset];
 	color = cmap_color(offset);
     }
     else if ((offset = (glyph - GLYPH_OBJ_OFF)) >= 0) {	/* object */
-	ch = oc_syms[(int)objects[offset].oc_class];
+	ch[0] = oc_syms[(int)objects[offset].oc_class];
 	color = obj_color(offset);
     }
     else if ((offset = (glyph - GLYPH_BODY_OFF)) >= 0) {/* a corpse */
-	ch = oc_syms[(int)objects[CORPSE].oc_class];
+	ch[0] = oc_syms[(int)objects[CORPSE].oc_class];
 	color = mon_color(offset);
     }
     else if ((offset = (glyph - GLYPH_PET_OFF)) >= 0) {	/* a pet */
-	ch = monsyms[(int)mons[offset].mlet];
+	ch[0] = monsyms[(int)mons[offset].mlet];
 	color = pet_color(offset);
     }
     else{						/* a monster */
-	ch = monsyms[(int)mons[glyph].mlet];
+	ch[0] = monsyms[(int)mons[glyph].mlet];
 	color = mon_color(glyph);
     }
+    
+    ch[1] = '\0';
     
     update_rect.x = x * c_width;
     update_rect.y = y * c_height - map_font->ascent;
     update_rect.width = c_width;
     update_rect.height = c_height;
-    
+
 #ifdef TEXTCOLOR
     gdk_draw_rectangle(
 	map_pixmap, map_color_gc[iflags.use_color?MAP_BACKGROUND:MAP_BLACK],
@@ -958,7 +963,7 @@ nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap, GdkRe
     gdk_draw_text(
 	map_pixmap, map_font,
 	map_color_gc[iflags.use_color?color:MAP_WHITE],
-	x * c_width, y * c_height, &ch, 1);
+	x * c_width, y * c_height, ch, 1);
     
     if(glyph_is_pet(glyph) && iflags.hilite_pet){
 	gdk_draw_rectangle(
@@ -977,7 +982,7 @@ nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap, GdkRe
     gdk_draw_text(
 	map_pixmap, map_font,
 	map->style->black_gc,
-	x*c_width, y*c_height, &ch, 1);
+	x*c_width, y*c_height, ch, 1);
 #endif
     if(rect)
 	*rect = update_rect;
@@ -1073,7 +1078,7 @@ nh_map_print_glyph_tile(XCHAR_P x, XCHAR_P y, struct tilemap *tmap, GdkRectangle
     nh_map_print_glyph_tmp(&gtkmap[y][x], 0, 0, 1);
     
     if(Tile->spread){
-	if(x < NH_WIDTH - 1){
+	if(x < COLNO - 1){
 	    nh_map_print_glyph_tmp(
 		&gtkmap[y][x+1],
 		c_3dwidth, 0, 1);
@@ -1093,7 +1098,7 @@ nh_map_print_glyph_tile(XCHAR_P x, XCHAR_P y, struct tilemap *tmap, GdkRectangle
     nh_map_print_glyph_tmp(&gtkmap[y][x], 0, 0, 0);
     
     if(Tile->spread){
-	if(x < NH_WIDTH - 1){
+	if(x < COLNO - 1){
 	    nh_map_print_glyph_tmp(
 		&gtkmap[y][x+1],
 		c_3dwidth, 0, 0);
@@ -1103,12 +1108,12 @@ nh_map_print_glyph_tile(XCHAR_P x, XCHAR_P y, struct tilemap *tmap, GdkRectangle
   draw bgtiles
   */
     if(Tile->spread){
-	if(y < NH_HEIGHT - 1){
+	if(y < ROWNO - 1){
 	    nh_map_print_glyph_tmp(
 		&gtkmap[y+1][x],
 		-c_3dofset, c_3dheight, 1);
 	}
-	if(x < NH_WIDTH - 1 && y < NH_HEIGHT - 1){
+	if(x < COLNO - 1 && y < ROWNO - 1){
 	    nh_map_print_glyph_tmp(
 		&gtkmap[y+1][x+1],
 		c_3dwidth - c_3dofset, c_3dheight, 1);
@@ -1116,12 +1121,12 @@ nh_map_print_glyph_tile(XCHAR_P x, XCHAR_P y, struct tilemap *tmap, GdkRectangle
 /*
   draw tiles
   */
-	if(y < NH_HEIGHT - 1){
+	if(y < ROWNO - 1){
 	    nh_map_print_glyph_tmp(
 		&gtkmap[y+1][x],
 		-c_3dofset, c_3dheight, 0);
 	}
-	if(x < NH_WIDTH - 1 && y < NH_HEIGHT - 1){
+	if(x < COLNO - 1 && y < ROWNO - 1){
 	    nh_map_print_glyph_tmp(
 		&gtkmap[y+1][x+1],
 		c_3dwidth - c_3dofset, c_3dheight, 0);
@@ -1129,10 +1134,10 @@ nh_map_print_glyph_tile(XCHAR_P x, XCHAR_P y, struct tilemap *tmap, GdkRectangle
     }
     
     xshm_map_tile_draw(
-	x * c_3dwidth + (NH_HEIGHT - y) * c_3dofset,
+	x * c_3dwidth + (ROWNO - y) * c_3dofset,
 	y * c_3dheight);
 
-    update_rect.x = x * c_3dwidth + (NH_HEIGHT - y) * c_3dofset;
+    update_rect.x = x * c_3dwidth + (ROWNO - y) * c_3dofset;
     update_rect.y = y * c_3dheight;
     update_rect.width = c_width;
     update_rect.height = c_height;
@@ -1196,7 +1201,7 @@ GTK_curs(winid id, int x, int y)
     if(cursx == x && cursy == y)
 	;
     else{
-	update_rect.x = cursx * c_3dwidth + (NH_HEIGHT - cursy) * c_3dofset;
+	update_rect.x = cursx * c_3dwidth + (ROWNO - cursy) * c_3dofset;
 	update_rect.y = cursy * c_3dheight - (map_visual == 0 ? map_font->ascent : 0);
 	update_rect.width = c_width;
 	update_rect.height = c_height;
@@ -1206,7 +1211,7 @@ GTK_curs(winid id, int x, int y)
 	cursy = y;
     }
 
-    update_rect.x = x * c_3dwidth + (NH_HEIGHT - y) * c_3dofset;
+    update_rect.x = x * c_3dwidth + (ROWNO - y) * c_3dofset;
     update_rect.y = y * c_3dheight - (map_visual == 0 ? map_font->ascent : 0);
     update_rect.width = c_width;
     update_rect.height = c_height;
@@ -1305,8 +1310,8 @@ nh_map_flush()
     if(map_update != 0){
 	map_update = 0;
 
-	for(i=0 ; i<NH_HEIGHT ; ++i)
-	    for(j=0 ; j<NH_WIDTH ; ++j)
+	for(i=0 ; i<ROWNO ; ++i)
+	    for(j=0 ; j<COLNO ; ++j)
 		if(gtkmap[i][j].update){
 		    gtkmap[i][j].update = 0;
 		    nh_map_print_glyph(j, i, &gtkmap[i][j], &update_rect);

@@ -335,8 +335,13 @@ ver 0.0.6E4F1 [September XX/2000]
 -GTK: map window takes up all available vertical space minus status bar/message bar
 	space
 -GTK: MP/HP bars are initialized to black at startup
+-GTK: Default map size is now 50% of screen rather than 66%
+-GTK: Screen automatically centers
+-GTK: Scrollbars now disappear when map screen is large enough
+-GTK: Added two more common monospaced Windows Fonts for the map
+-GTK: Replaced NH_WIDTH and NH_HEIGHT in gtkmap.c with ROWNO, COLNO
 
-ver 0.0.6E4F0 [September XX/2000]
+ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()
 -updated Guidebook
 -fixed bug 112478: game crashes whenever the Amulet of Yendor is referred to
