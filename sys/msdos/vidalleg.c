@@ -916,7 +916,11 @@ int ch;
         else
                 putpixel(minimap, mapx, mapy, colorpal[attr]);
 
-        if (Is_rogue_level(&u.uz) || iflags.traditional_view)
+	if (
+#ifdef REINCARNATION
+        	Is_rogue_level(&u.uz) || 
+#endif
+        	iflags.traditional_view)
         {
                 rogue_xputg(col*tile_x, row*tile_y, ch, attr);
                 
@@ -926,7 +930,7 @@ int ch;
 		need_update = 1;
 		return;
         } 
-       
+
         /* Draw in tilemode */
         if (subscreen == txt_subscreen) {
         	alleg_full_redraw();
@@ -1436,7 +1440,11 @@ void alleg_full_redraw()
 	int old_curcol = curcol;
 	
 	/* Check for right subscreen */
-        if (Is_rogue_level(&u.uz) || iflags.traditional_view) {
+        if (
+#ifdef REINCARNATION
+	    Is_rogue_level(&u.uz) || 
+#endif
+	    iflags.traditional_view) {	
         	if (subscreen != txt_subscreen) subscreen = txt_subscreen;
         } else {
         	if (subscreen == txt_subscreen) subscreen = tile_subscreen;
@@ -1739,7 +1747,11 @@ alleg_DrawCursor()
         {
                 masked_blit(ovcursor, screen, 0, 0, (x*X_RES)/80, 
                     (y*Y_HEIGHT)/23+FONTY, X_RES/80, Y_HEIGHT/23);
-        } else if (Is_rogue_level(&u.uz) || iflags.traditional_view) {
+        } else if (
+#ifdef REINCARNATION
+            Is_rogue_level(&u.uz) || 
+#endif
+            iflags.traditional_view) {
 	        line(screen, pixelx, pixely+FONTY, 
 	        	pixelx+FONTX, pixely+FONTY, colorpal[CLR_WHITE]);
 	        return;

@@ -1533,8 +1533,10 @@ boolean singlebyte;
 /*	char on[2] =  {0xFF,0xFF}; */
 /*	char off[2] = {0x00,0x00}; */
 
+#ifdef REINCARNATION
 	if (Is_rogue_level(&u.uz)) return; /* No graphical petmarks on the rogue level */
-	
+#endif
+
 	pixy = row2y(y);		  /* convert to pixels */
 
 	    if (singlebyte)
