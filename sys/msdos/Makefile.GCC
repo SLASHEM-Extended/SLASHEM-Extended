@@ -1,4 +1,4 @@
-#	SCCS Id: @(#)Makefile.GCC	      3.4     $Date: 2003-11-24 20:12:12 $
+#	SCCS Id: @(#)Makefile.GCC	      3.4     $Date: 2004-01-13 14:48:24 $
 #	Copyright (c) NetHack PC Development Team 1996-2003.
 #	PC NetHack 3.4 Makefile for djgpp V2
 #
@@ -784,7 +784,7 @@ else
 $(U)lev_yacc.c: $(SSHR)/lev_yacc.c
 	@echo ---
 	@echo For now, we will copy the prebuilt
-	@echo lev_comp.c from $(SSHR) into $(U) and use that.
+	@echo lev_yacc.c from $(SSHR) into $(U) and use that.
 	@$(subst /,\,$(UPD) $(SSHR)/lev_yacc.c $(U)lev_yacc.c)
 	@$(subst /,\,echo.>>$(U)lev_yacc.c)
 
