@@ -79,6 +79,7 @@ ver 0.0.7E4 [?] [Released by ?]
 -fixed bug 817700: Vampires choked by rope golems
 -fixed bug 811177: Fire Vamps not real vamps?
 -fixed bug 822120: Star Vampires not vampires?
+-fixed bug 808070: uhitm AD_DREN also produces AD_CALM effect
 
 See history.txt for changes made in previous versions.
 

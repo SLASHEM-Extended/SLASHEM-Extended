@@ -2281,7 +2281,8 @@ register struct attack *mattk;
 	    	} else {
 	    	    mon_drain_en(mdef, 
 				((mdef->m_lev > 0) ? (rnd(mdef->m_lev)) : 0) + 1);
-	    	}	    
+	    	}
+		break;
 	    case AD_CALM:	/* KMH -- koala attack */
 		/* Certain monsters aren't even made peaceful. */
 		if (!mdef->iswiz && mdef->data != &mons[PM_MEDUSA] &&
