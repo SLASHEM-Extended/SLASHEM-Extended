@@ -624,6 +624,7 @@ ghack_reinit_map_window ( )
   ghack_map_cursor_to(NULL, u.ux, u.uy, NULL);
   gnome_canvas_update_now ( ghack_map.canvas);
   doredraw();
+  flush_screen(1);
 }
 
 

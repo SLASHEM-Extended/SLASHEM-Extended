@@ -96,6 +96,7 @@ ver 0.0.7E5 [?] [Released by ?]
 -fixed bug 821864: [0.0.7e2] Recharge lightsaber loses enchantment
 -fixed bug 790120: Wolf form can't hold Torch but can if already holding
 -fixed bug 603184: Stacking explosives
+-fixed bug 857651: Gnome: tileset refreshing
 
 See history.txt for changes made in previous versions.
 
