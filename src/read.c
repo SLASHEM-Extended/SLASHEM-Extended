@@ -1260,8 +1260,8 @@ register struct obj     *sobj;
             if (is_undead(mtmp->data)) {
                 if(!(sobj->cursed)) {
                     if (!resist(mtmp, sobj->oclass, 0, TELL)) {
-                       (void) tamedog(mtmp, (struct obj *) 0);
-                       You("dominate the %s!", mon_nam(mtmp));
+                       mtmp = tamedog(mtmp, (struct obj *) 0);
+                       if (mtmp) You("dominate %s!", mon_nam(mtmp));
                        }
 /*WAC Cursed scroll will get them mad!*/
                 } else setmangry(mtmp);

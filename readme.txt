@@ -386,6 +386,7 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -Direct bugs to SourceForge not hurtley in mac build
 -Merge mac patches into SourceForge sources
 -fixed bug 454954: Stealing iron balls.
+-fixed bug 452244: Command undead causes crash.
 
 ver 0.0.6E4F4mac0 [May 13/2001] [Released by Paul]
 -built Mac 68K port
