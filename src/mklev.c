@@ -764,11 +764,11 @@ makelevel()
 	   !(mvitals[PM_LEPRECHAUN].mvflags & G_GONE)) mkroom(LEPREHALL);
 	    else if(depth(&u.uz) > 14 && !rn2(12)) mkroom(GIANTCOURT);
 	    else if(depth(&u.uz) > 14 && !rn2(7) &&
-		(mons[PM_SOLDIER].geno & (G_GENOD | G_EXTINCT))) mkroom(BARRACKS);
+		(mvitals[PM_SOLDIER].mvflags & G_GONE)) mkroom(BARRACKS);
 	
 	    /* hives */
 	    if(depth(&u.uz) > 9 && !rn2(12) &&
-		(mons[PM_KILLER_BEE].geno & (G_GENOD | G_EXTINCT))) mkroom(BEEHIVE);
+		(mvitals[PM_KILLER_BEE].mvflags & G_GONE)) mkroom(BEEHIVE);
 	else if (u_depth > 12 && !rn2(8)) mkroom(ANTHOLE);
 
 	    /* zoos */
