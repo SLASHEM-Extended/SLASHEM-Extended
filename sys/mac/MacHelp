@@ -11,12 +11,13 @@ relevant information (eg, system extensions, monitor, accelerators)
 
 
 === Configuration of a playground
-    Slash'EM is packaged in a Dungeon Folder which includes:
+    Slash'EM is packaged in a Dungeon Folder which contains:
         Slash'EM - the application file itself.
         Slash'EM Defaults - text file for default option settings.
         License - licensing terms for Slash'EM.
+        MacHelp - this help file.
         Guidebook - description of the game in long format.
-        Recover - the application to restore save files from crashed games.
+        Recover - an application to restore save files from crashed games.
     Previous versions had a large number of data files in the Dungeon
     Folder.  These are now packaged as resources inside the application
     file and will no longer appear in the Dungeon Folder.
@@ -25,62 +26,64 @@ relevant information (eg, system extensions, monitor, accelerators)
         Player level files (labelled "iName.n", i is a constant number,
             Name is the player name and n is the dungeon level).
 
-    Two other types of files will appear in the Dungeon Folder
-    as a result of playing Slash'EM:
+    Other types of files appear in the Dungeon Folder as a result of
+    playing Slash'EM:
+        record - top score file.
+        logfile - lists results of all completed games.
         Bones files (of previously deceased players).
         Saved games (labelled "save/iName", i is a number, same as above,
             and Name is the player name).
 
     The following files or file types may be thrown away:
+        record - top score file. A new one will be generated.
         logfile - if it becomes too large.  A new one will be generated.
         Player level files _not_ belonging to a game in progress.
             Alternatively, these files may be processed by Recover,
             which may be able to restore a save file from the level files.
-            Old bones files and saved games.
+        Old bones files and saved games.
 
 
 === Resuming a saved game
     Double-click (or open) the desired saved game file or open Slash'EM
-        and answer the "Who are you?" dialog with the player name of
-        the saved game in the Dungeon Folder.
+    and answer the "Who are you?" dialog with the player name of the 
+    saved game in the Dungeon Folder.
 
 
 === Windows
     The Dungeon Map and Message windows are the essential windows used
-        during window-mode play.  During tty-mode play there is only one
-        window which displays the map, messages, lists and other info.
+    during window-mode play.  During tty-mode play there is only one
+    window which displays the map, messages, lists and other info.
+    
     For window-mode play, lists (eg, the list of objects that may
     be wielded) and special info windows appear as needed.  Windows
-    may be closed in the normal ways (i.e. clicking their close box,
-        choosing 'Close' from the File menu or typing the command
-        equivalent for 'Close', cmd-W) and the list windows may also be
-        dismissed by hitting the space bar (or Return or Enter Keys).
-        Hitting the ESCape key will dismiss special windows without
-        scrolling to the end.
+    may be closed by clicking their close box The list windows may also
+    be dismissed by hitting the space bar (or Return or Enter Keys).
+    
+    Hitting the ESCape key will dismiss special windows without scrolling
+    to the end.
 
-    The command "Reposition" on the File menu may be used to restore the
-        the startup sizes and locations of the various windows.  The
-        window positions are saved in a file labelled "Slash'EM Windows"
-        in the appropriate Preferences Folder.
+    The command "Reposition" on the File menu may be used to restore
+    the startup sizes and locations of the various windows.  The
+    window positions are saved in a file labelled "Slash'EM Preferences"
+    in the Preferences Folder.
 
 
 === Default options
     The following options are specific to the Macintosh port:
-    background:  - black or white
-    MACgraphics  - use enhanced dungeon map symbols [TRUE]
-    page_wait    - display  --MORE--  after messages [TRUE]
+        Macgraphics  - use enhanced dungeon map symbols [TRUE]
+        page_wait    - display  --MORE--  after messages [TRUE]
 
     Default options may be set by editing the Slash'EM Defaults text
     file (using SimpleText or your favorite editor).  The following
     notation is used:
 
-    OPTIONS=name:Arnold,time,!tombstone
+        OPTIONS=name:Arnold,time,!tombstone
 
     It should also be mentioned here that there are two graphic
     interface modes available: 'mac' and 'tty'.  Choosing between
     these interfaces is accomplished by the option:
-    window:mac - the default multi-window Macintosh(tm) interface.
-    window:tty - traditional Unix(tm)-style TTY window interface.
+        window:mac - the default multi-window Macintosh(tm) interface.
+        window:tty - traditional Unix(tm)-style TTY window interface.
 
     See option help (?f or ?g) for more details.
 
@@ -101,11 +104,10 @@ relevant information (eg, system extensions, monitor, accelerators)
 
 
 === Explore and Debug Modes
-    You can enter Explore (aka Discover) mode or
-    Debug (aka Wizard) mode by choosing the appropriate entries on the
-    'Mode' popup-menu section of the "Who are you?" startup dialog.
-    This same dialog allows you to specify your role, race, gender,
-    alignment, and name.
+    You can enter Explore (aka Discover) mode or Debug (aka Wizard) mode
+    by choosing the appropriate entries on the 'Mode' popup-menu section 
+    of the "Who are you?" startup dialog. This same dialog allows you to
+    specify your role, race, gender, alignment, and name.
 
     Starting in Explore mode is essentially the same as playing in
     Regular mode except that if you are killed then you are given an
@@ -117,22 +119,23 @@ relevant information (eg, system extensions, monitor, accelerators)
 
     Starting in Debug mode is only intended for developers and others
     interested in characterizing bugs.  Using this mode for other
-    purposes will have confusing results and eliminate your enjoyment
+    purposes will have confusing results and may eliminate your enjoyment
     of the game!
 
 
 === Menus
     The  menus provide access to all the Slash'EM commands and a special
-	'Keypress' menu is provided to facilitate play using only the mouse.
-	In some cases, a command may appear on more than one menu.  In general,
-	the commands have been grouped to appear on an appropriate menu:
+    'Keypress' menu is provided to facilitate play using only the mouse.
+    In some cases, a command may appear on more than one menu.  In general,
+    the commands have been grouped to appear on an appropriate menu:
+
     File  - commands related to windows, start mode and play control.
     Help  - info commands generally not related to a specific game (eg,
-            key descriptions, version info, internal option editor).
+            key descriptions, version info, option editor).
     Info  - commands that are generally game-specific (eg, inventory
             related, describe features seen on the map or name things).
     Equip - commands related to things you might wield or wear.
-    Act   - commands for actions that you might do alone (eg, wait,
+    Action- commands for actions that you might do alone (eg, wait,
             jump) or do with another dungeon denizen (eg, pay, chat).
     Magic - commands for things that you might do with items (drop,
             eat, read) or spell-related.
@@ -143,7 +146,7 @@ relevant information (eg, system extensions, monitor, accelerators)
     menu entry for that command (eg, w for wield and W for wear). A
     leftmost # denotes an extended command (without a related key) and
     a left cloverleaf or command symbol denotes a command that requires
-    either a control or command key modifier (i.e. holding down the
+    either a control or command key modifier (ie, holding down the
     control or command key while hitting the related key).
 
 
