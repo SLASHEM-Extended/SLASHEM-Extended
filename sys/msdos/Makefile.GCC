@@ -764,7 +764,7 @@ ifeq ($(SUPPRESS_GRAPHICS),Y)
 
 else
 
-$(INCL)\tile.h: $(WSHR)\tile.h
+$(INCL)\tile.h: $(WSHR)\tile_t.h
 	$(UPD) $< $@
 
 $(INCL)\pctiles.h: $(MSYS)\pctiles.h
