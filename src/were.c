@@ -40,7 +40,9 @@ register struct monst *mon;
 #endif /* OVL0 */
 #ifdef OVLB
 
-int
+STATIC_DCL int FDECL(counter_were,(int));
+
+STATIC_OVL int
 counter_were(pm)
 int pm;
 {

@@ -1167,8 +1167,9 @@ hitmu(mtmp, mattk)
 			}
 
 			if (otmp->opoisoned) {
-			    poisoned(obj_typename(otmp->otyp), A_STR,
-				    killer_xname(otmp), 10);
+			    /* it's safe to call xname twice because it's the
+			       same object both times... */
+			    poisoned(xname(otmp), A_STR, xname(otmp), 10);
 			    if (nopoison < 2) nopoison = 2;
 			    if (!rn2(nopoison)) {
 				otmp->opoisoned = FALSE;
@@ -1962,9 +1963,7 @@ dopois:
 	    mdamageu(mtmp, dmg);
 	}
 
-	if (DEADMONSTER(mtmp))
-	    res = 2;
-	else if (dmg)
+	if (dmg)
 	    res = passiveum(olduasmon, mtmp, mattk);
 	else
 	    res = 1;

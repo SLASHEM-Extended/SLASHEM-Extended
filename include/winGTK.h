@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.54 2004-04-10 15:41:21 j_ali Exp $
+  $Id: winGTK.h,v 1.52 2003-12-28 18:43:40 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -124,7 +124,6 @@ extern void GTK_ext_print_glyph_layered(winid id, int nl,
   struct proxy_glyph_layer *layers);
 extern char GTK_ext_yn_function(const char *, const char *, CHAR_P, int *);
 extern int GTK_ext_outrip(winid, char *);
-extern char *GTK_getline(const char *query, boolean cancelable);
 extern char *GTK_ext_getlin(const char *query);
 extern void GTK_get_nh_event(void);
 extern void GTK_exit_nhwindows(const char *);
@@ -170,8 +169,6 @@ extern void nh_map_check_visibility(void);
 extern void nh_map_pos(int *, int *, int *);
 extern void nh_map_click(int);
 extern void nh_map_flush(void);
-extern void nh_map_color_changed(boolean);
-extern void nh_map_hilite_pet_changed(boolean);
 extern int nh_set_map_visual(int);
 extern int nh_set_map_font(gchar *name);
 extern gchar *nh_get_map_font(void);
@@ -211,8 +208,6 @@ extern void nh_option_cache_set(char *option, const char *value);
 extern void nh_option_cache_set_bool(char *option, boolean value);
 extern void nh_option_cache_set_addr(char *option, char **addr);
 extern void nh_option_cache_set_bool_addr(char *option, boolean *addr);
-extern void nh_option_cache_set_callback(char *, void (*)(char *));
-extern void nh_option_cache_set_bool_callback(char *, void (*)(boolean));
 extern char *nh_option_cache_get(char *option);
 extern boolean nh_option_cache_get_bool(char *option);
 

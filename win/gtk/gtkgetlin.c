@@ -1,9 +1,9 @@
 /*
-  $Id: gtkgetlin.c,v 1.7 2004-04-10 15:41:21 j_ali Exp $
+  $Id: gtkgetlin.c,v 1.6 2003-12-28 18:43:40 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
-               Copyright (c) Slash'EM Development Team 2000-2004
+               Copyright (c) Slash'EM Development Team 2000-2003
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -57,7 +57,7 @@ entry_cancel(GtkWidget *widget, GdkEventButton *event, gpointer data)
 }
 
 char *
-GTK_getline(const char *query, boolean cancelable)
+GTK_ext_getlin(const char *query)
 {
     char *s, *ret;
     GtkWidget *frame;
@@ -91,18 +91,8 @@ GTK_getline(const char *query, boolean cancelable)
     hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
       FALSE, FALSE, NH_PAD);
 
-    if (cancelable) {
-	cancel = gtk_button_new_from_stock(GTK_STOCK_CANCEL);
-	gtk_widget_show(cancel);
-	gtk_box_pack_end(GTK_BOX(hbox), cancel, FALSE, FALSE, NH_PAD);
-
-	gtk_signal_connect(GTK_OBJECT(cancel), "clicked",
-	  GTK_SIGNAL_FUNC(entry_cancel), NULL);
-    }
-
-    ok = gtk_button_new_from_stock(GTK_STOCK_OK);
-    gtk_widget_show(ok);
-    gtk_box_pack_end(GTK_BOX(hbox), ok, FALSE, FALSE, NH_PAD);
+    ok = nh_gtk_new_and_pack(gtk_button_new_from_stock(GTK_STOCK_OK), hbox, "",
+      FALSE, FALSE, NH_PAD);
 
     GTK_WIDGET_SET_FLAGS(ok, GTK_CAN_DEFAULT);
     gtk_widget_grab_default(ok);
@@ -110,15 +100,18 @@ GTK_getline(const char *query, boolean cancelable)
     gtk_signal_connect(GTK_OBJECT(ok), "clicked",
       GTK_SIGNAL_FUNC(entry_ok), NULL);
 
+    cancel = nh_gtk_new_and_pack(gtk_button_new_from_stock(GTK_STOCK_CANCEL),
+      hbox, "", FALSE, FALSE, NH_PAD);
+
+    gtk_signal_connect(GTK_OBJECT(cancel), "clicked",
+      GTK_SIGNAL_FUNC(entry_cancel), NULL);
+
     h = gtk_signal_connect(GTK_OBJECT(window), "destroy",
       GTK_SIGNAL_FUNC(getlin_destroy), NULL);
 
     gtk_widget_grab_focus(entry);
     gtk_grab_add(window);
     gtk_widget_show_all(window);
-    gtk_widget_realize(window);
-    gdk_window_set_decorations(window->window,
-      GDK_DECOR_BORDER | GDK_DECOR_TITLE);
 
     gtk_main();
 
@@ -138,10 +131,4 @@ GTK_getline(const char *query, boolean cancelable)
     }
 
     return ret;
-}
-
-char *
-GTK_ext_getlin(const char *query)
-{
-    return GTK_getline(query, TRUE);
 }

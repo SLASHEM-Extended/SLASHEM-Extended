@@ -1286,17 +1286,8 @@ light_cocktail(obj)
 	    /* Normally, we shouldn't both partially and fully charge
 	     * for an item, but (Yendorian Fuel) Taxes are inevitable...
 	     */
-#ifdef FIREARMS
-	    if (obj->otyp != STICK_OF_DYNAMITE) {
-#endif
 	    check_unpaid(obj);
-	    verbalize("That's in addition to the cost of the potion, of course.");
-#ifdef FIREARMS
-	    } else {
-		const char *ithem = obj->quan > 1L ? "them" : "it";
-		verbalize("You burn %s, you bought %s!", ithem, ithem);
-	    }
-#endif
+		verbalize("That's in addition to the cost of the %s, of course.", objnam);
 	    bill_dummy_object(obj);
 	}
 	makeknown(obj->otyp);
@@ -3336,7 +3327,7 @@ wand_explode(obj, hero_broke)
 			losehp(damage, "exploding wand", KILLED_BY_AN);
 		}
 		if (flags.botl) bot();		/* blindness */
-	    } else if ((mon = m_at(x, y)) != 0 && !DEADMONSTER(mon)) {
+	    } else if ((mon = m_at(x, y)) != 0) {
 		(void) bhitm(mon, obj);
 	     /* if (flags.botl) bot(); */
 	    }
@@ -3690,7 +3681,6 @@ doapply()
 				u.uhp += rn1(10,10);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				You_feel("better.");
-				flags.botl = TRUE;
 			    } else pline(nothing_happens);
 			} else if (!Sick && rn2(3))
 			    make_sick(0L, xname(otmp), TRUE ,SICK_ALL);

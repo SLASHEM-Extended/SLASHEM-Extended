@@ -1310,9 +1310,6 @@ opentin()		/* called during each move whilst opening a tin */
 	    if (!vegetarian(&mons[tin.tin->corpsenm]))
 		violated_vegetarian();
 
-#ifdef EATEN_MEMORY
-	    if (mvitals[tin.tin->corpsenm].eaten)
-#endif
 	    tin.tin->dknown = tin.tin->known = TRUE;
 	    cprefx(tin.tin->corpsenm); cpostfx(tin.tin->corpsenm);
 
@@ -2544,12 +2541,6 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		    otmp->orotten = TRUE;
 		    dont_start = TRUE;
 		}
-		if (otmp->oeaten < 2) {
-		    victual.piece = (struct obj *)0;
-		    if (carried(otmp)) useup(otmp);
-		    else useupf(otmp, 1L);
-		    return 1;
-		} else
 		consume_oeaten(otmp, 1);	/* oeaten >>= 1 */
 	    } else fprefx(otmp);
 	}

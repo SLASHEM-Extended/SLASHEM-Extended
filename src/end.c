@@ -711,9 +711,8 @@ die:
 		     * u.umonnum is based on role, and all role monsters
 		     * are human.
 		     */
-		    mnum = undead_to_corpse(
-			(flags.female && urace.femalenum != NON_PM) ?
-			urace.femalenum : urace.malenum);
+		    mnum = (flags.female && urace.femalenum != NON_PM) ?
+			urace.femalenum : urace.malenum;
 		}
 		corpse = mk_named_object(CORPSE, &mons[mnum],
 				       u.ux, u.uy, plname);

@@ -40,7 +40,7 @@
 
 The development of version 0.0.7 of Slash'EM started with version 0.0.6E5
 (yes, we realise our version numbers are a little odd - it made sense at
-the time!). Version 0.0.7E6 was the first beta release.
+the time!). Version 0.0.7E6 is the first beta release.
 
 If you find any bugs then please submit a report via the offical bug page:
 
@@ -67,34 +67,34 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E6F2 [May 3/2004] [Released by Ali]
--fixed bug 910334: Vampire blood and foodless conduct
--fixed bug 924384: Inconsistency with shoggoth corroding items
--Macintosh: Include fix-level in about-box version
--fixed bug 924277: Monsters can retaliate against themselves
--fixed bug 925892: Vampire corpse on early bones level
--fixed bug 922320: Grenade thrown by soldier angered monster
--fixed bug 929873: Crash while reading spellbook off floor
--fixed bug 932788: Permanent inventory window not updated immediately
--fixed bug 932791: Permanent inventory window not closed immediately
--fixed bug 932800: [GTK] Changing hilite_pet from "more options" not immed.
--fixed bug 932801: [GTK] Changing hilite_pet from options not immed. honoured
--fixed bug 932816: Disabled radar window appears (but isn't updated) on startup
--fixed bug 932818: [GTK] Can't close main window before starting game
--fixed bug 932827: [win32] Session windows slowly creep right and down
--fixed bug 932832: [GTK] Can't cancel at "Who are you?" prompt
--fixed bug 932905: [GTK] Apparently random crashes
--NhExt: Added support for authentication (eg., for dgamelaunch)
--fixed bug 938859: Rate of fire affected by non-launcher weapon
--fixed bug 929876: Monsters can pass between Sokoban bars
--fixed bug 934073: Spurious "don't seem to harm" messages for Drow
--fixed bug 926829: Vampires "don't seem to harm" when draining levels
--fixed bug 939133: dmonsfree error after exploding /WoPoly
--fixed bug 911485: Monk techniques and vampire lords
--fixed bug 935175: monsters cheating to use polearm
--fixed bug 938871: Izchak does not appear
--fixed bug 938864: Bad message when using flurry and limiting shots
--fixed bug 931200: Gnolls in Gnomish Mines
+ver 0.0.7E6 [February 28/2004] [Released by Ali]
+-fixed bug 876092: Wrong filename in message during build process (Clive Crous)
+-fixed bug 876094: Tiles are miscoloured in allegro port (Clive Crous)
+-fixed bug 876096: Tiles are misdrawn/cropped in allegro port (Clive Crous)
+-fixed bug 510249: poisoned frag grenade (Nico Kist)
+-fixed bug 873349: <artifact> should be at least expert. Fixing...
+-fixed bug 878808: Build of gtkhack fails under win32
+-fixed bug 872666: [0.0.7e4f1] Xorns + Sokoban = cake walk
+-fixed bug 878813: GtkHack/win32: #portdebug crashes
+-Mac: Update Install.mpw to require yacc/lex
+-fixed bug 883643: Crash when throwing potions at monsters behind iron bars
+-fixed bug 854779: Unknown tin auto-IDed as dog when eaten
+-fixed bug 878951: [winnt] tiles32.bmp not in makefile
+-fixed bug 879237: [winnt] stdout & stderr prints dont show
+-fixed bug 879242: tile2bmp does not abort if no tiles created
+-fixed bug 879243: [unix] nhtiles.bmp build info error in makefile.dat
+-fixed bug 879244: tile2bmp draws stripes instead of checks
+-fixed bug 878815: GtkHack: bad handling of text fields set via "more options"
+-fixed bug 890801: two entrances to mines
+-fixed bug 858838: Stake of Van Helsing mis-listed in score detail
+-fixed bug 846930: [0.0.7E2]Strange msg order when swallowed by a poly'ed mnstr
+-fixed bug 869958: GTK handling of unexpected game exits
+-fixed bug 878816: Bad button label in "more options" confirm dialog
+-fixed bug 878817: More options confirmation: No button does nothing
+-fixed bug 878812: Duplicates in list of game commands
+-Support gentoo configuration system
+-fixed bug 901798: gtkhack 7E5 crashes if it can't write to cache
+-Documented configuration for proxy servers
 
 See history.txt for changes made in previous versions.
 
@@ -228,7 +228,7 @@ o Mac port: Paul Hurtley
 Thanks to Andrew Apted, who contributed the glHack interface.
 
 Thanks to Kevin Hugo (hugo@cae.wisc.edu), the previous Macintosh
-maintainer and the author of many changes, who has had to move on to
+maintainer and the author of many changes, who has had to move on to 
 other projects.
 
 Thanks to Dirk Schönberger (shoenberger@signsoft.com), who worked on
@@ -236,7 +236,7 @@ the Qt and Linux ports.
 
 Thanks to Ben Olmstead for mirroring the homepage.
 
-Thanks for the support, bug reports and suggestions of
+Thanks for the support, bug reports and suggestions of 
 (in no particular order):
 
 	Pat Rankin, Linley Henzell, 0ystein Kerstad, Jim Miller, pi,
