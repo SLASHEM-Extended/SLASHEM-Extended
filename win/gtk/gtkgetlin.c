@@ -1,5 +1,5 @@
 /*
-  $Id: gtkgetlin.c,v 1.2 2000-12-03 15:07:38 j_ali Exp $
+  $Id: gtkgetlin.c,v 1.3 2001-09-18 12:09:18 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -12,7 +12,17 @@
 #include <gdk/gdkkeysyms.h>
 #include "winGTK.h"
 
+static GtkWidget	*window;
 static int		cancelled;
+
+static gint
+getlin_destroy(GtkWidget *widget, gpointer data)
+{
+    window = NULL;
+    cancelled = 1;
+    gtk_main_quit();
+    return FALSE;
+}
 
 static gint
 entry_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
@@ -48,7 +58,6 @@ entry_cancel(GtkWidget *widget, GdkEventButton *event, gpointer data)
 void
 GTK_getlin(const char *query, char *ret)
 {
-    GtkWidget *window;
     GtkWidget *frame;
     GtkWidget *vbox;
     GtkWidget *hbox;
@@ -94,6 +103,10 @@ GTK_getlin(const char *query, char *ret)
 	GTK_OBJECT(cancel), "clicked",
 	GTK_SIGNAL_FUNC(entry_cancel), NULL);
 
+    gtk_signal_connect(
+	GTK_OBJECT(window), "destroy",
+	GTK_SIGNAL_FUNC(getlin_destroy), NULL);
+
     gtk_widget_grab_focus(entry);
     gtk_grab_add(window);
     gtk_widget_show_all(window);
@@ -105,6 +118,8 @@ GTK_getlin(const char *query, char *ret)
     else
 	*ret = '\0';
 
-    gtk_widget_unmap(window);
-    gtk_widget_destroy(window);
+    if (window) {
+	gtk_widget_unmap(window);
+	gtk_widget_destroy(window);
+    }
 }
