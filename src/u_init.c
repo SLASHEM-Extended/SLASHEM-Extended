@@ -581,7 +581,7 @@ static const struct def_skill Skill_N[] = {
     { P_NONE, 0 }
 };
 
-static const struct def_skill Skill_P[] = {
+static struct def_skill Skill_P[] = {
 	/* KMH -- Long sword for Sunsword */
 	{ P_LONG_SWORD, P_SKILLED },
     { P_CLUB, P_EXPERT },               { P_PADDLE, P_EXPERT },
