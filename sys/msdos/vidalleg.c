@@ -1,4 +1,4 @@
-/*   SCCS Id: @(#)vidalleg.c   3.3 - 1.2   96/02/16                 */
+/*   SCCS Id: @(#)vidalleg.c   3.3 - 1.5   96/02/16                 */
 /*   Copyright (c) NetHack PC Development Team 1995                 */
 /*   NetHack may be freely redistributed.  See license for details. */
 /*   AllegroHack (c) Kelly Youngblood 2000 */
@@ -8,7 +8,7 @@
  * vidalleg.c - Video using Allegro library
  */
 
-#define COPYRIGHT_BANNER_D "Based on AllegroHack v1.4 By Kelly Youngblood."
+#define COPYRIGHT_BANNER_D "Based on AllegroHack v1.5 By Kelly Youngblood."
 
 #include "hack.h"
 #include "epri.h"
@@ -81,12 +81,8 @@ static int Y_HEIGHT = 480;             /* viewport sixe, automatically set */
 static int attrib_allegro_normal = CLR_CYAN; /* was ATTRIB_VGA_NORMAL */
 static int attrib_allegro_intense = CLR_BRIGHT_MAGENTA; /* was ATTRIB_VGA_INTENSE */
 static int attrib_allegro_status = CLR_BRIGHT_BLUE; /* was ATTRIB_STATUS */
-#if 0
-	                                /* 5/22/2000 this is harder to 
-                                           implement than i'd thought. */
-        int scroll_lim = 0;             /* how many pixels to wait before a 
+static int scroll_lim = 0;             /* how many pixels to wait before a 
                                            scroll*/
-#endif
 static int need_update  = 0;           /* screen-update code flag */
 static int no_update    = 0;
 static int did_update   = 0;           /* cursor-drawing code flag */
@@ -425,7 +421,8 @@ void
 drawbars()
 {
         int maxx;
-        int hmax = (Upolyd ? u.mhmax : u.uhpmax);
+        int hmax = max((Upolyd ? u.mhmax : u.uhpmax), 1);
+        int emax = max(u.uenmax, 1);
         int hcur = (Upolyd ? u.mh : u.uhp);
         BITMAP *healthbar = create_bitmap(hmax, 1);
         BITMAP *energybar = create_bitmap(u.uenmax, 1);
@@ -456,7 +453,7 @@ drawbars()
                 putpixel(healthbar, i, 0, RYG((i*512L)/(long)hmax));
 
             for(i = 0; i < u.uen; i++)
-                putpixel(energybar, i, 0, MBC((i*512L)/(long)u.uenmax));
+		putpixel(energybar, i, 0, MBC((i*512L)/(long)emax));
         }
 
         rect(screen, 0, Y_RES-48, maxx, Y_RES-41, hcolor);
@@ -464,7 +461,7 @@ drawbars()
 
         nh_stretch_blit(healthbar, screen, 0, 0, hmax, 1,
                                         1, Y_RES-47, maxx-1, 6);
-        nh_stretch_blit(energybar, screen, 0, 0, u.uenmax, 1,
+	nh_stretch_blit(energybar, screen, 0, 0, emax, 1,
                                         1, Y_RES-39, maxx-1, 6);
 
 
@@ -682,8 +679,8 @@ draw_minimap()
     
     draw_sprite(dmap, mapwidgets[MW_U], u.ux-2, u.uy*2-2);
 
-    rect(dmap, mapwinx/tile_x, (mapwiny/tile_y)*2+1, 
-        (mapwinx+X_RES)/tile_x, ((mapwiny+Y_HEIGHT)/tile_y)*2+1, 
+    rect(dmap, mapwinx/tile_x, (mapwiny/tile_y)*2-2, 
+        (mapwinx+X_RES)/tile_x, ((mapwiny+Y_HEIGHT)/tile_y)*2-2,
         colorpal[CLR_GREEN]);
     rect(dmap, 0, 0, 79, 47, colorpal[CLR_WHITE]);
 
@@ -768,7 +765,7 @@ int attr;
         } /* end switch */
         alleg_gotoloc(col,row);
 
-        need_update = 1;
+        need_update = 2;
 }
 
 inline int getmalign(mtmp)
@@ -1200,10 +1197,26 @@ alleg_cliparound(x, y)
 int x, y;
 {
         extern boolean restoring;
+        static int oldtx = 0;
+        static int oldty = 0;
         int oldx = clipwinx;
         int oldy = clipwiny;
+
         int finalx, finaly;
         int minx, miny, maxx, maxy;
+
+	if(scroll_lim)
+	{
+	    if(abs(oldtx-x)<scroll_lim)
+		x = oldtx;
+	    else
+		oldtx = x;
+
+	    if(abs(oldty-y)<scroll_lim)
+		y = oldty;
+	    else
+		oldty = y;
+	}
 
         if(In_sokoban(&u.uz))
         {
@@ -1238,7 +1251,6 @@ int x, y;
                 minx = 0;               miny = tile_y;
                 maxx = 80*tile_x;       maxy = 22*tile_y;
         }
-
 
         finalx = (x*tile_x - X_WIDTH/2) - tile_x/2;
         finaly = ((y+1)*tile_y - Y_HEIGHT/2) + tile_y/2;
@@ -1791,14 +1803,14 @@ int portal;
                              0, 0, X_RES, Y_HEIGHT);   
         while(factor > 1)
         {
-                buffer2 = mosaic(buffer, factor);
+		if(portal)
+		    buffer2 = blur(buffer, factor);
+		else
+		    buffer2 = mosaic(buffer, factor);
                 blit(buffer2, screen, 0, 0, 0, FONTY, X_RES, Y_HEIGHT);   
                 destroy_bitmap(buffer2);
                 delayfx();
-                if(portal)
-                        factor--;
-                else
-                        factor-=2;
+                factor-=3;
         }
         destroy_bitmap(buffer);
         faded_out = 0;
@@ -1816,14 +1828,14 @@ int portal;
 
         while(factor <= 64)
         {
-                buffer2 = mosaic(buffer, factor);
+		if(portal)
+		    buffer2 = blur(buffer, factor);
+		else
+		    buffer2 = mosaic(buffer, factor);
                 blit(buffer2, screen, 0, 0, 0, FONTY, X_RES, Y_HEIGHT);   
                 destroy_bitmap(buffer2);
                 delayfx();
-                if(portal)
-                        factor++;
-                else
-                        factor+=2;
+		factor+=3;
         }
         destroy_bitmap(buffer);
         faded_out = 1;

@@ -338,7 +338,7 @@ ver 0.0.6E4F0 [September XX/2000]
 -time before next use shows up in wizard mode tech menu (tech.c)
 -added the use of technique limit breaks.  When HP drops below 10%,
  there is a random chance each turn that you are in LIMIT mode. In limit mode,
- all your known techniques are useable (even the ones usually Not Prepared) 
+ all your known techniques are useable (even the ones usually Not Prepared)
  (tech.c)
 -fixed bug 112553: GTK interface failed to compile
 -fixed bug 112554: UNIX/VMS default config file was wrong
@@ -354,6 +354,7 @@ ver 0.0.6E4F0 [September XX/2000]
 -fixed bug 112108: can now select between human and hobbit archeologists
 -fixed bug 112614: rage eruption no longer drains energy
 -fixed bug 112616: dazzle no longer causes segfault, has limited range
+-integrated changes from Allegrohack 1.5
 
 ver 0.0.6E3F1 [August 21/2000] [Released by Ali]
 -fixed some bugs in the zap/cast code for magic missile, fire, cold, fireball, etc.

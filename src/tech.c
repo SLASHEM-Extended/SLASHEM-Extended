@@ -189,27 +189,33 @@ static const struct innate_tech
 #define techlet(tech)  \
         ((char)((tech < 26) ? ('a' + tech) : ('A' + tech - 26)))
 
-/* A simple pseudorandom number generator 
- * This must be fairly random mod LP_HPMOD from 2 to 9
+/* A simple pseudorandom number generator
+ *
+ * This should generate fairly random numbers that will be 
+ * mod LP_HPMOD from 2 to 9,  with 0 mod LP_HPMOD 
  * but can't use the normal RNG since can_limitbreak() must
- * return the same state on the same turn
+ * return the same state on the same turn.
+ * This also has to depend on things that do NOT change during 
+ * save and restore,  and also should only change between turns
  */
 #if 0 /* Probably overkill */
 #define LB_CYCLE 259993L	/* number of turns before the pattern repeats */
-#define LB_ADD 300L	/* Add this to guarantee large numbers */
-#define LB_DIV 100	/* Remove the last few bits as they tend to be less random */
+#define LB_BASE1 ((long) (monstermoves + u.uhpmax + 300L))
+#define LB_BASE2 ((long) (moves + u.uenmax + u.ulevel + 300L))
+#define LB_STRIP 6	/* Remove the last few bits as they tend to be less random */
 #endif
  
 #define LB_CYCLE 101L	/* number of turns before the pattern repeats */
-#define LB_ADD 10L	/* Add this to guarantee large numbers */
-#define LB_DIV 10	/* Remove the last few bits as they tend to be less random */
+#define LB_BASE1 ((long) (monstermoves + u.uhpmax + 10L))
+#define LB_BASE2 ((long) (moves + u.uenmax + u.ulevel + 10L))
+#define LB_STRIP 3	/* Remove the last few bits as they tend to be less random */
  
 #define LB_HPMOD ((long) ((u.uhp * 10 / u.uhpmax > 2) ? \
         			(u.uhp * 10 / u.uhpmax) : 2))
 
 #define can_limitbreak() (!Upolyd && (u.uhp*10 < u.uhpmax) && \
-        		  (u.uhp == 1 || (!((((monstermoves + LB_ADD) * \
-        		  (monstermoves + LB_ADD) % LB_CYCLE) / LB_DIV) \
+        		  (u.uhp == 1 || (!((((LB_BASE1 * \
+        		  LB_BASE2) % LB_CYCLE) >> LB_STRIP) \
         		  % LB_HPMOD))))
         
 /* Whether you know the tech */

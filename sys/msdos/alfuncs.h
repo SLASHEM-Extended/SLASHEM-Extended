@@ -118,3 +118,50 @@ int factor;
 
 }
 
+BITMAP* blur(bitmap,factor)
+BITMAP *bitmap;
+int factor;
+{
+        int small_w, small_h;
+        int width = bitmap->w;
+        int height = bitmap->h;
+        BITMAP *smallimg;
+        BITMAP *final = create_bitmap(width, height);
+
+        small_w = width/factor;
+        small_h = height/factor;
+
+        smallimg = create_bitmap(small_w, small_h);
+
+        nh_stretch_blit(bitmap, smallimg, 0, 0,
+                     width, height, 0, 0, small_w, small_h);
+                       
+        nh_stretch_blit(smallimg, final, 0, 0, small_w, small_h,
+                     0, 0, width, height);
+
+        destroy_bitmap(smallimg);
+
+        return(final);
+}
+
+inline void
+blur_blit(source, dest, source_x, source_y, dest_x, dest_y,
+            width, height, factor)
+BITMAP *source;
+BITMAP *dest;
+int source_x,source_y,dest_x,dest_y,width,height;
+int factor;
+{
+	BITMAP *buffer = create_bitmap(width,height);
+	BITMAP *buffer2;
+
+	blit(source, buffer, source_x, source_y, 0, 0, width, height);
+
+	buffer2 = blur(buffer, factor);
+
+	blit(buffer2, dest, 0, 0, dest_x, dest_y, width, height);
+	destroy_bitmap(buffer);
+	destroy_bitmap(buffer2);
+}
+
+
