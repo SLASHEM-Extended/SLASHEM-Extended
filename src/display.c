@@ -133,7 +133,7 @@ STATIC_DCL int FDECL(set_crosswall, (int, int));
 STATIC_DCL void FDECL(set_seenv, (struct rm *, int, int, int, int));
 STATIC_DCL void FDECL(t_warn, (struct rm *));
 STATIC_DCL int FDECL(wall_angle, (struct rm *));
-STATIC_DCL int FDECL(back_to_cmap, (xchar, xchar));
+STATIC_DCL int FDECL(back_to_cmap, (XCHAR_P, XCHAR_P));
 
 STATIC_VAR boolean transp;    /* cached transparency flag for current tileset */
 
