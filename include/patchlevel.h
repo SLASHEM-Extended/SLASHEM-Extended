@@ -28,6 +28,7 @@
 #define FIXLEVEL        4  /* Define to enable a fixlevel version */
 #else
 #define EDITLEVEL	5
+#define FIXLEVEL        1
 #endif
 
 #define COPYRIGHT_BANNER_A \
