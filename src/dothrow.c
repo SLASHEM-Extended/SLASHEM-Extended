@@ -251,7 +251,12 @@ dothrow()
 
         result = throw_obj(obj, shotlimit, THROW_UWEP);
         
-        multi = oldmulti;
+	/*
+	 * [ALI] Bug fix: Temporary paralysis (eg., from hurtle) cancels
+	 * any count for the throw command.
+	 */
+	if (multi >= 0)
+	    multi = oldmulti;
         save_cm = oldsave_cm;
         return (result);
 }
@@ -594,6 +599,7 @@ hurtle(dx, dy, range, verbose)
     cc.x = u.ux + (dx * range);
     cc.y = u.uy + (dy * range);
     (void) walk_path(&uc, &cc, hurtle_step, (genericptr_t)&range);
+    teleds(cc.x, cc.y);
 }
 
 STATIC_OVL void

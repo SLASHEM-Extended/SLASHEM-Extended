@@ -28,7 +28,6 @@ static int NDECL(blitz_g_slam);
 static int NDECL(blitz_dash);
 static int NDECL(blitz_power_surge);
 static int NDECL(blitz_spirit_bomb);
-static void FDECL(dash, (int, int, int, BOOLEAN_P));
 
 static NEARDATA schar delay;            /* moves left for tinker/energy draw */
 
@@ -2006,8 +2005,10 @@ blitz_dash()
 		return(0);
 	}
 	
-	You("dash forwards!");
-	dash(u.dx, u.dy, 2, FALSE);
+	if ((!Punished || carried(uball)) && !u.utrap)
+	    You("dash forwards!");
+	hurtle(u.dx, u.dy, 2, FALSE);
+	multi = 0;		/* No paralysis with dash */
 	return 1;
 }
 
@@ -2076,85 +2077,6 @@ blitz_spirit_bomb()
 	/* Magical Explosion */
 	explode(sx, sy, 10, (d(3,6) + num), WAND_CLASS);
 	return 1;
-}
-
-/*
- * The player moves through the air for a few squares.  This is pretty much
- * a copy of an older version of hurtle from dothrow.c,  without the nomul()
- */
-STATIC_OVL void
-dash(dx, dy, range, verbos)
-	int dx, dy, range;
-	boolean verbos;
-{
-    register struct monst *mon;
-    struct obj *obj;
-    int nx, ny;
-
-    /* The chain is stretched vertically, so you shouldn't be able to move
-     * very far diagonally.  The premise that you should be able to move one
-     * spot leads to calculations that allow you to only move one spot away
-     * from the ball, if you are levitating over the ball, or one spot
-     * towards the ball, if you are at the end of the chain.  Rather than
-     * bother with all of that, assume that there is no slack in the chain
-     * for diagonal movement, give the player a message and return.
-     */
-    if(Punished && !carried(uball)) {
-		if (verbos) You_feel("a tug from the iron ball.");
-		return;
-    } else if (u.utrap) {
-		if (verbos) You("are anchored by the %s.",
-		    u.utraptype == TT_WEB ? "web" : u.utraptype == TT_LAVA ? "lava" :
-			u.utraptype == TT_INFLOOR ? surface(u.ux,u.uy) : "trap");
-		return;
-    }
-
-    if(!range || (!dx && !dy) || u.ustuck) return; /* paranoia */
-
-    if (verbos) You("%s in the opposite direction.", range > 1 ?
-    		"hurtle" : "float");
-    while(range--) {
-	nx = u.ux + dx;
-	ny = u.uy + dy;
-
-	if(!isok(nx,ny)) break;
-	if(IS_ROCK(levl[nx][ny].typ) || closed_door(nx,ny) ||
-	   (IS_DOOR(levl[nx][ny].typ) && (levl[nx][ny].doormask & D_ISOPEN))) {
-	    pline("Ouch!");
-	    losehp(rnd(2+range), IS_ROCK(levl[nx][ny].typ) ?
-		   "bumping into a wall" : "bumping into a door", KILLED_BY);
-	    break;
-	}
-
-	if ((obj = sobj_at(BOULDER,nx,ny)) != 0) {
-	    You("bump into a %s.  Ouch!", xname(obj));
-	    losehp(rnd(2+range), "bumping into a boulder", KILLED_BY);
-	    break;
-	}
-
-	u.ux = nx;
-	u.uy = ny;
-	newsym(u.ux - dx, u.uy - dy);
-	if ((mon = m_at(u.ux, u.uy)) != 0) {
-	    You("bump into %s.", a_monnam(mon));
-	    wakeup(mon);
-	    if(Is_airlevel(&u.uz))
-		mnexto(mon);
-	    else {
-		/* sorry, not ricochets */
-		u.ux -= dx;
-		u.uy -= dy;
-	    }
-	    range = 0;
-	}
-
-	vision_recalc(1);               /* update for new position */
-
-	if(range) {
-	    flush_screen(1);
-	    delay_output();
-	}
-    }
 }
 
 #ifdef DEBUG
