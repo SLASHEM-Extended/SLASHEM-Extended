@@ -75,6 +75,7 @@ ver 0.0.7E6F2 [?] [Released by ?]
 -fixed bug 925892: Vampire corpse on early bones level
 -fixed bug 922320: Grenade thrown by soldier angered monster
 -fixed bug 929873: Crash while reading spellbook off floor
+-fixed bug 932788: Permanent inventory window not updated immediately
 
 See history.txt for changes made in previous versions.
 
