@@ -61,6 +61,12 @@ BRANCH:	"Neutral Quest" @ (15, 5) portal
 BRANCH:	"Chaotic Quest" @ (15, 5) portal
 
 
+# The rogue level (if required), on levels 15 to 19. The portal to one
+#   of the quest levels may also be on this level. The rogue level is not
+#   defined by default in Slash'EM. The dungeon is crowded enough already.
+%REINCARNATION LEVEL: "rogue" "R" @ (15, 5)
+
+
 # Post-quest levels
 #   Now all the branches... stretching all along the dungeon
 #   Put the branches with the least number of choices first
