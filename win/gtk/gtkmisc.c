@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmisc.c,v 1.5 2000-12-08 17:29:23 j_ali Exp $
+  $Id: gtkmisc.c,v 1.6 2002-05-08 09:51:08 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -34,7 +34,7 @@ static struct GTK_Option{
     GtkWidget *radio2;
 } gtk_option[] = {
     {"prevent you from attacking your pet", "Yes", "No", &flags.safe_dog},
-    {"ask before hidding peaceful monsters", "Yes", "No", &flags.confirm},
+    {"ask before hitting peaceful monsters", "Yes", "No", &flags.confirm},
 #ifdef TEXTCOLOR
     {"display pets in a red square", "Yes", "No", &iflags.hilite_pet},
 #endif
