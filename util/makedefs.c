@@ -533,7 +533,7 @@ version_string(outbuf)
 char *outbuf;
 {
     Sprintf(outbuf, "%d.%d.%d", VERSION_MAJOR, VERSION_MINOR, PATCHLEVEL);
-#ifdef BETA
+#ifdef EDITLEVEL
     Sprintf(eos(outbuf), "E%d", EDITLEVEL);
 #ifdef FIXLEVEL
     Sprintf(eos(outbuf), "F%d", FIXLEVEL);
@@ -554,7 +554,9 @@ const char *build_date;
     subbuf[0] = ' ';
     Strcpy(&subbuf[1], PORT_SUB_ID);
 #endif
-#ifdef BETA
+#if defined(ALPHA)
+    Strcat(subbuf, " Alpha");
+#elif defined(BETA)
     Strcat(subbuf, " Beta");
 #endif
 

@@ -148,32 +148,14 @@ aboutMsg()
 #else
     "using the Qt GUI toolkit.\n"
 #endif
-#ifdef BETA
-#ifdef FIXLEVEL
-    "This is version %d.%d.%dE%dF%d\n\n"
-#else
-    "This is version %d.%d.%dE%d\n\n"
-#endif
-#else
-    "This is version %d.%d.%d\n\n"
-#endif
+    "This is version " VERSION_STRING "\n\n"
     "Homepage:\n     http://avrc.city.ac.uk/slashem.html\n\n"
     "Qt NetHack:\n     http://trolls.troll.no/warwick/nethack\n"
 #ifdef KDE
 	  "KDE:\n     http://www.kde.org\n"
 #endif
 	  "Qt:\n     http://www.troll.no\n"
-    "Slash'EM:\n     http://www.slashem.org/",
-	VERSION_MAJOR,
-	VERSION_MINOR,
-	PATCHLEVEL
-#ifdef BETA
-	,EDITLEVEL
-#ifdef FIXLEVEL
-	,FIXLEVEL
-#endif
-#endif
-	);
+    "Slash'EM:\n     http://www.slashem.org/");
     return msg;
 }
 

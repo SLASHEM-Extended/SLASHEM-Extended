@@ -7,8 +7,8 @@
 
 #include <stdio.h>
 
-
-#define BETA		/* if a beta-test copy	[MRS] */
+#define ALPHA		/* if an alpha-test copy */
+#define BETA		/* if an alpha- or beta-test copy */
 
 /*
  * Files expected to exist in the playground directory if file areas are not
