@@ -2256,7 +2256,7 @@ struct monst *mon;
 	    } else if (is_were(mon->data) && !is_human(mon->data)) {
 		new_were(mon);
 	    }
-	} else {
+	} else if (!mon->cham) {
 	    mon->cham = pm_to_cham(monsndx(mon->data));
 	}
 }
