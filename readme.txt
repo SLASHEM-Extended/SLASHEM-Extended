@@ -96,6 +96,7 @@ ver 0.0.7E3 [?] [Released by ?]
 -fixed bug 793135: some broken text at completing flame mage quest
 -fixed bug 795384: some typos
 -fixed bug 793132: excessive magic by gnoll shamans
+-fixed bug 793144: putting corpses in ice box
 
 See history.txt for changes made in previous versions.
 

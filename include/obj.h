@@ -73,11 +73,11 @@ struct obj {
 #define MAX_ERODE 3
 #define orotten oeroded		/* rotten food */
 #define odiluted oeroded	/* diluted potions */
-#define odrained oeroded2	/* drained corpse */
 #define norevive oeroded2
 	Bitfield(oerodeproof,1); /* erodeproof weapon/armor */
 	Bitfield(olocked,1);	/* object is locked */
 #define oarmed olocked
+#define odrained olocked	/* drained corpse */
 	Bitfield(obroken,1);	/* lock has been broken */
 	Bitfield(otrapped,1);	/* container is trapped */
 				/* or accidental tripped rolling boulder trap */
