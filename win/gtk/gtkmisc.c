@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmisc.c,v 1.13 2004-02-07 18:06:02 j_ali Exp $
+  $Id: gtkmisc.c,v 1.14 2004-02-21 17:05:00 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -186,7 +186,7 @@ nh_option_more_confirm(void)
       hbox, "", FALSE, FALSE, NH_PAD);
     button2 = nh_gtk_new_and_pack(gtk_button_new_from_stock(GTK_STOCK_NO),
       hbox, "", FALSE, FALSE, NH_PAD);
-    button3 = nh_gtk_new_and_pack(gtk_button_new_with_label(GTK_STOCK_CANCEL),
+    button3 = nh_gtk_new_and_pack(gtk_button_new_from_stock(GTK_STOCK_CANCEL),
       hbox, "", FALSE, FALSE, NH_PAD);
     gtk_signal_connect(GTK_OBJECT(button1), "clicked",
       GTK_SIGNAL_FUNC(mc_clicked), (gpointer)'y');

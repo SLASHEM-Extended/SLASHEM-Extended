@@ -89,6 +89,7 @@ ver 0.0.7E6 [?] [Released by ?]
 -fixed bug 858838: Stake of Van Helsing mis-listed in score detail
 -fixed bug 846930: [0.0.7E2]Strange msg order when swallowed by a poly'ed mnstr
 -fixed bug 869958: GTK handling of unexpected game exits
+-fixed bug 878816: Bad button label in "more options" confirm dialog
 
 See history.txt for changes made in previous versions.
 
