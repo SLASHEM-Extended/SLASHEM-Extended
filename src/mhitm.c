@@ -1314,8 +1314,10 @@ label2:			if (mdef->mhp > 0) return 0;
 	    	if (!rn2(4) && !is_fire(mdef->data) &&
 	    			mdef->data != &mons[PM_SALAMANDER] &&
 	    			mdef->data != &mons[PM_GREEN_SLIME]) {
-	    	    if (vis) pline("%s turns into slime.", Monnam(mdef));
-	    	    (void) newcham(mdef, &mons[PM_GREEN_SLIME], FALSE, vis);
+	    	    if (newcham(mdef, &mons[PM_GREEN_SLIME], FALSE, vis)) {
+			mdef->oldmonnm = PM_GREEN_SLIME;
+			(void) stop_timer(UNPOLY_MON, (genericptr_t) mdef);
+		    }
 	    	    tmp = 0;
 	    	}
 	    	break;

@@ -525,8 +525,8 @@ mcalcdistress()
 
 	/* possibly polymorph shapechangers and lycanthropes */
 	if (mtmp->cham && !rn2(6))
-	    (void) newcham(mtmp, (struct permonst *)0, FALSE,
-	    		(cansee(mtmp->mx,mtmp->my) && flags.verbose));
+	    (void) mon_spec_poly(mtmp, (struct permonst *)0, 0L, FALSE,
+		    cansee(mtmp->mx,mtmp->my) && flags.verbose, FALSE, FALSE);
 	were_change(mtmp);
 
 	/* gradually time out temporary problems */
@@ -706,8 +706,10 @@ meatmetal(mtmp)
 			delobj(otmp);
 			ptr = mtmp->data;
 			if (poly) {
-			    if (newcham(mtmp, (struct permonst *)0, FALSE,
-			       (cansee(mtmp->mx,mtmp->my) && flags.verbose)))
+			    if (mon_spec_poly(mtmp,
+				    (struct permonst *)0, 0L, FALSE,
+				    cansee(mtmp->mx,mtmp->my) && flags.verbose,
+				    FALSE, FALSE))
 				ptr = mtmp->data;
 			} else if (grow) {
 			    ptr = grow_up(mtmp, (struct monst *)0);
@@ -818,9 +820,10 @@ meatobj(mtmp)		/* for gelatinous cubes */
 		delobj(otmp);		/* munch */
 		ptr = mtmp->data;
 		if (poly) {
-		    if (newcham(mtmp, (struct permonst *)0, FALSE,
-		       (cansee(mtmp->mx,mtmp->my) && flags.verbose)))
-				ptr = mtmp->data;
+		    if (mon_spec_poly(mtmp, (struct permonst *)0, 0L, FALSE,
+			    cansee(mtmp->mx,mtmp->my) && flags.verbose,
+			    FALSE, FALSE))
+			ptr = mtmp->data;
 		} else if (grow) {
 		    ptr = grow_up(mtmp, (struct monst *)0);
 		} else if (heal) {
@@ -1993,11 +1996,15 @@ void
 mon_to_stone(mtmp)
     register struct monst *mtmp;
 {
+    boolean polymorphed = mtmp->oldmonnm != monsndx(mtmp->data);
+
     if(mtmp->data->mlet == S_GOLEM) {
 	/* it's a golem, and not a stone golem */
 	if(canseemon(mtmp))
 	    pline("%s solidifies...", Monnam(mtmp));
 	if (newcham(mtmp, &mons[PM_STONE_GOLEM], FALSE, FALSE)) {
+	    if (!polymorphed)
+		mtmp->oldmonnm = PM_STONE_GOLEM;    /* Change is permanent */
 	    if(canseemon(mtmp))
 		pline("Now it's %s.", an(mtmp->data->mname));
 	} else {
@@ -2828,7 +2835,11 @@ kill_genocided_monsters()
 	    mndx = monsndx(mtmp->data);
 	    if ((mvitals[mndx].mvflags & G_GENOD) || kill_cham[mtmp->cham]) {
 		if (mtmp->cham && !kill_cham[mtmp->cham])
-		    (void) newcham(mtmp, (struct permonst *)0, FALSE, FALSE);
+		    /* [ALI] Chameleons are not normally subject to
+		     * system shock, but genocide is a special case.
+		     */
+		    (void) mon_spec_poly(mtmp, (struct permonst *)0, 0L,
+			    FALSE, FALSE, TRUE, TRUE);
 		else
 		    mondead(mtmp);
 	    }

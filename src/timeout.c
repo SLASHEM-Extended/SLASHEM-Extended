@@ -504,7 +504,7 @@ cleanup_unpoly(arg, timeout)
 #ifdef OVL1
 
 /* WAC polymorph a monster
- * Assume polymorph is successful if i != 0
+ * returns 0 if no change, 1 if polymorphed and -1 if died.
  * This handles system shock for monsters so DON'T do system shock elsewhere
  * when polymorphing.
  * (except in unpolymorph code,  which is a special case)
@@ -515,44 +515,47 @@ struct monst *mtmp;
 boolean your_fault;
 const char *change_fmt;
 {
-	int i;
-
-	if (canseemon(mtmp)) pline(change_fmt, Monnam(mtmp));
-	/* Lengthen unpolytime - was 500,500  for player */
-	i = mon_spec_poly(mtmp, (struct permonst *)0, rn1(1000,1000));
-	if (!i || !rn2(25)) {
-	    /* Uhoh.  !i == newcham wasn't able to make the polymorph...*/
-	    if (canseemon(mtmp)) pline("%s shudders.", Monnam(mtmp));
-	    if (i) mtmp->mhp -= rnd(30);
-	    if (!i || (mtmp->mhp <= 0)) {
-		if (your_fault) xkilled(mtmp, 3);
-		else mondead(mtmp);
-	    }
-	    return 0;
-	}
-	return i;
+	if (change_fmt && canseemon(mtmp)) pline(change_fmt, Monnam(mtmp));
+	return mon_spec_poly(mtmp, (struct permonst *)0, 0L,
+		FALSE, canseemon(mtmp), TRUE, your_fault);
 }
 
 
 /* WAC Muscle function - for more control over polying
- * returns int value from newcham
+ * returns 0 if no change, 1 if polymorphed and -1 if died.
  * cancels/sets up timers if polymorph is successful
  * lets receiver handle failures
  */
 
 int
-mon_spec_poly(mtmp, type, time)
+mon_spec_poly(mtmp, type, time, polyspot, transform_msg, system_shock,
+	your_fault)
 struct monst *mtmp;
 struct permonst *type;
 long time;
+boolean polyspot;
+boolean transform_msg;
+boolean system_shock;
+boolean your_fault;
 {
 	int i;
 
-	i = newcham(mtmp, type, FALSE, canseemon(mtmp));
-	if (i) {
+	i = newcham(mtmp, type, polyspot, transform_msg);
+	if (system_shock && (!i || !rn2(25))) {
+	    /* Uhoh.  !i == newcham wasn't able to make the polymorph...*/
+	    if (transform_msg) pline("%s shudders.", Monnam(mtmp));
+	    if (i) mtmp->mhp -= rnd(30);
+	    if (!i || (mtmp->mhp <= 0)) {
+		if (your_fault) xkilled(mtmp, 3);
+		else mondead(mtmp);
+		i = -1;
+	    }
+	}
+	if (i > 0) {
 	    /* Stop any old timers.   */
 	    (void) stop_timer(UNPOLY_MON, (genericptr_t) mtmp);
-	    (void) start_timer(time, TIMER_MONSTER,
+	    /* Lengthen unpolytime - was 500,500  for player */
+	    (void) start_timer(time ? time : rn1(1000, 1000), TIMER_MONSTER,
 		    UNPOLY_MON, (genericptr_t) mtmp);
 	}
 	return i;

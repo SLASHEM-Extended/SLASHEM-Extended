@@ -1911,6 +1911,9 @@ struct monst *mtmp, *victim;
 	if (mtmp->mhp <= 0)
 	    return ((struct permonst *)0);
 
+	if (mtmp->oldmonnm != monsndx(ptr))
+	    return ptr;		/* No effect if polymorphed */
+
 	/* growth limits differ depending on method of advancement */
 	if (victim) {		/* killed a monster */
 	    /*

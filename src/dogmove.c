@@ -246,8 +246,8 @@ boolean devour;
 	    delobj(obj);
 
 	if (poly) {
-	    newcham(mtmp, (struct permonst *)0, FALSE,
-		    cansee(mtmp->mx, mtmp->my));
+	    (void) mon_spec_poly(mtmp, (struct permonst *)0, 0L, FALSE,
+		    cansee(mtmp->mx, mtmp->my), FALSE, FALSE);
 #if 0
 	    char oldpet[BUFSZ];
 #ifdef STEED

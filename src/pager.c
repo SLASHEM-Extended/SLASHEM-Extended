@@ -690,6 +690,16 @@ do_look(quick)
 		    Sprintf(temp_buf, " [seen: %s]", monbuf);
 		    (void)strncat(out_str, temp_buf, BUFSZ-strlen(out_str)-1);
 		}
+#ifdef WIZARD
+		if (wizard && pm) {
+		    struct monst *mtmp = m_at(cc.x, cc.y);
+		    if (mtmp && mtmp->oldmonnm != monsndx(pm)) {
+			Sprintf(temp_buf, " [polymorphed from a %s]",
+				mons[mtmp->oldmonnm].mname);
+			(void)strncat(out_str, temp_buf, BUFSZ-strlen(out_str)-1);
+		    }
+		}
+#endif
 	    }
 	}
 

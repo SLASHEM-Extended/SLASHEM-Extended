@@ -2010,7 +2010,8 @@ E void FDECL(set_obj_poly, (struct obj *, struct obj *));
 E void FDECL(unpoly_obj, (genericptr_t, long));
 #endif
 E int FDECL(mon_poly, (struct monst *, BOOLEAN_P, const char *));
-E int FDECL(mon_spec_poly, (struct monst *, struct permonst *, long));
+E int FDECL(mon_spec_poly, (struct monst *, struct permonst *, long,
+			    BOOLEAN_P, BOOLEAN_P, BOOLEAN_P, BOOLEAN_P));
 E void FDECL(unpoly_mon, (genericptr_t, long));
 E void FDECL(attach_bomb_blow_timeout, (struct obj *, int, BOOLEAN_P));
 E void FDECL(attach_egg_hatch_timeout, (struct obj *));

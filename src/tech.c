@@ -810,7 +810,8 @@ int tech_no;
 
 		    	    if (type && type != monsndx(ptr)) {
 				ptr = &mons[type];
-		    	    	mon_spec_poly(mtmp, ptr, time);
+		    	    	mon_spec_poly(mtmp, ptr, time, FALSE,
+					canseemon(mtmp), FALSE, TRUE);
 		    	    }
 		    	}
 		    }
