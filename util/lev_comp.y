@@ -155,6 +155,7 @@ extern const char *fname;
 %token	<i> SUBROOM_ID NAME_ID FLAGS_ID FLAG_TYPE MON_ATTITUDE MON_ALERTNESS
 %token	<i> MON_APPEARANCE
 %token	<i> CONTAINED
+%token	<i> OBJFLAG_TYPE OBJFLAGS
 %token	<i> ',' ':' '(' ')' '[' ']'
 %token	<map> STRING MAP_ID
 %type	<i> h_justif v_justif trap_name room_type door_state light_state
@@ -162,6 +163,7 @@ extern const char *fname;
 %type	<i> door_wall walled secret amount chance
 %type	<i> engraving_type flags flag_list prefilled lev_region lev_init
 %type	<i> monster monster_c m_register object object_c o_register
+%type	<i> obj_flag_list
 %type	<map> string maze_def level_def m_name o_name
 %type	<corpos> corr_spec
 %start	file
@@ -966,14 +968,34 @@ object_infos	: /* nothing */
 	 * alone, ",random" requires too much lookahead to parse.
 	 */
 		  }
-		| ',' curse_state ',' monster_id ',' enchantment optional_name
+		| ',' curse_state ',' monster_id ',' enchantment optional_name object_flags
 		  {
 		  }
-		| ',' curse_state ',' enchantment optional_name
+		| ',' curse_state ',' enchantment optional_name object_flags
 		  {
 		  }
-		| ',' monster_id ',' enchantment optional_name
+		| ',' monster_id ',' enchantment optional_name object_flags
 		  {
+		  }
+		;
+
+object_flags	: /* nothing*/
+		  {
+		   	tmpobj[nobj]->oflags = 0;
+		  }
+		| ',' OBJFLAGS '(' obj_flag_list ')'
+		  {
+		   	tmpobj[nobj]->oflags = $4;
+		  }
+		;
+
+obj_flag_list	: obj_flag_list ',' OBJFLAG_TYPE
+		  {
+		     $$ = ($1 | $3);
+		  }
+		| OBJFLAG_TYPE
+		  {
+		     $$ = $1;
 		  }
 		;
 

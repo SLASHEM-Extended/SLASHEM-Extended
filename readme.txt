@@ -333,6 +333,8 @@ ver 0.0.6E9 [?] [Released by ?]
 -Merged Sam Dennis's more intelligent autocomplete patch
 -Merged Roderick Schertler's held status flag patch
 -fixed bug 603350: Display layers: floating glyphs missing
+-Actioned feature request 520961: Specifying lamplit flag in level files
+	(Pasi Kallinen)
 
 ver 0.0.6E8 [January 24/2003] [Released by Ali]
 -fixed bug 233901: Gtk-Critical errors from gtk_main_quit.

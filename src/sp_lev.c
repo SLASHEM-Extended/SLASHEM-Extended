@@ -1075,6 +1075,11 @@ struct mkroom	*croom;
 
 	stackobj(otmp);
 
+	if (o->oflags & OBJF_LIT)
+	    begin_burn(otmp, FALSE);
+	if (o->oflags & OBJF_BURIED)
+	    otmp = bury_an_obj(otmp);
+
     }		/* if (rn2(100) < o->chance) */
  o_done:
     Free(o->name.str);

@@ -29,6 +29,10 @@
 #define SP_LEV_ROOMS	1
 #define SP_LEV_MAZE	2
 
+    /* object flags */
+#define OBJF_LIT	1
+#define OBJF_BURIED	2
+
 /*
  * Structures manipulated by the special levels loader & compiler
  */
@@ -73,6 +77,7 @@ typedef struct {
 	short id, spe;
 	xchar x, y, chance, class, containment;
 	schar curse_state;
+	long  oflags;		/* OBJF_foo flags */
 } object;
 
 typedef struct {
