@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.19 2000-12-29 17:54:38 j_ali Exp $
+  $Id: gtk.c,v 1.20 2001-02-16 19:19:35 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -387,37 +387,61 @@ int
 nh_keysym(GdkEventKey *ev)
 {
     int ret;
-    int key;
 
-    key = ev->keyval;
-
-    ret = 0;
-
-    if(key == GDK_KP_End)
-	ret = 'b';
-    else if(key == GDK_KP_Down)
-	ret = 'j';
-    else if(key == GDK_KP_Page_Down)
-	ret = 'n';
-    else if(key == GDK_KP_Left)
-	ret = 'h';
-    else if(key == GDK_KP_Begin)
-	ret = '.';
-    else if(key == GDK_KP_Right)
-	ret = 'l';
-    else if(key == GDK_KP_Home)
-	ret = 'y';
-    else if(key == GDK_KP_Up)
-	ret = 'k';
-    else if(key == GDK_KP_Page_Up)
-	ret = 'u';
-    else if(key == GDK_KP_Enter || key == GDK_Return)
-	ret = '\n';
-    else if(key == GDK_KP_Insert)
-	ret = 'i';
-
-    if(!ret && ev->length)
-	ret = ev->string[0];
+    switch(ev->keyval)
+    {
+	case GDK_End:
+	case GDK_KP_End:
+	    ret = 'b';
+	    break;
+	case GDK_Down:
+	case GDK_KP_Down:
+	    ret = 'j';
+	    break;
+	case GDK_Page_Down:
+	case GDK_KP_Page_Down:
+	    ret = 'n';
+	    break;
+	case GDK_Left:
+	case GDK_KP_Left:
+	    ret = 'h';
+	    break;
+	case GDK_Begin:
+	case GDK_KP_Begin:
+	    ret = '.';
+	    break;
+	case GDK_Right:
+	case GDK_KP_Right:
+	    ret = 'l';
+	    break;
+	case GDK_Home:
+	case GDK_KP_Home:
+	    ret = 'y';
+	    break;
+	case GDK_Up:
+	case GDK_KP_Up:
+	    ret = 'k';
+	    break;
+	case GDK_Page_Up:
+	case GDK_KP_Page_Up:
+	    ret = 'u';
+	    break;
+	case GDK_Return:
+	case GDK_KP_Enter:
+	    ret = '\n';
+	case GDK_Insert:
+	case GDK_KP_Insert:
+	    ret = 'i';
+	    break;
+	case GDK_Escape:
+	    ret = '\033';
+	    break;
+	default:
+	    if (ev->length)
+		ret = ev->string[0];
+	    else
+		ret = 0;
+    }
 
     return ret;
 }
