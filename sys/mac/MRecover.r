@@ -248,8 +248,8 @@ resource 'vers' (1) {
 	0x6,
 	0,
 	"0.0.6e6",
-	"Recover/Slash'EM 0.0.6e6 (2002/05)\nhtt"
-	"p://slashem.cjb.net/"
+	"Recover (Slash'EM) 0.0.6e6\n"
+	"slashem.cjb.net"
 };
 
 resource 'vers' (2) {
@@ -259,7 +259,7 @@ resource 'vers' (2) {
 	0x6,
 	0,
 	"0.0.6e6",
-	"Recover/Slash'EM 0.0.6e6 (2002/05)"
+	"Recover (Slash'EM) 0.0.6e6"
 };
 
 resource 'icl4' (128) {
