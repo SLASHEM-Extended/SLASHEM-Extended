@@ -1360,7 +1360,6 @@ boolean telekinesis;	/* not picking it up directly by hand */
 	    obj = splitobj(obj, count);
 
 	obj = pick_obj(obj);
-	obj->was_thrown = 0;
 
 	if (uwep && uwep == obj) mrg_to_wielded = TRUE;
 	nearload = near_capacity();
@@ -1402,6 +1401,8 @@ struct obj *otmp;
 	}
 	if (otmp->no_charge)	/* only applies to objects outside invent */
 	    otmp->no_charge = 0;
+	if (otmp->was_thrown)	/* likewise */
+	    otmp->was_thrown = 0;
 	newsym(otmp->ox, otmp->oy);
 	return addinv(otmp);	/* might merge it with other objects */
 }
