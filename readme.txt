@@ -8,7 +8,7 @@
 |              the efforts and support of countless others               |
 |                                                             (1997-2001)|
 +------------------------------------------------------------------------+
-| Nethack is Copyright (c) Mike Stephenson,(Izchak Miller) 1991 - 2001.  |
+| Nethack is Copyright (c) Mike Stephenson,(Izchak Miller) 1991 - 2000.  |
 | SLASH'EM and NetHack may be freely redistributed.                      |
 | See license for details.                                               |
 +------------------------------------------------------------------------+
@@ -394,6 +394,10 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -fixed bug 452167: Rust from toilet water.
 -fixed bug 455511: Finishing off scrolls on restore.
 -fixed bug 455390: rogue quest message.
+-Restore original NetHack copyright date in readme.txt
+-Change strchr back to index in role.c
+-Don't create 600-byte automatic in makedefs.c
+-Support Mac build with Guidebook in doc directory
 
 ver 0.0.6E4F4mac0 [May 13/2001] [Released by Paul]
 -built Mac 68K port
