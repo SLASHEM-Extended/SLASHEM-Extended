@@ -167,7 +167,7 @@ const char *verb;
 		    if (mtmp) {
 			if (!passes_walls(mtmp->data) &&
 				!throws_rocks(mtmp->data)) {
-			    if (hmon(mtmp, obj, TRUE) && !is_whirly(mtmp->data))
+			    if (hmon(mtmp, obj, 3) && !is_whirly(mtmp->data))
 				return FALSE;	/* still alive */
 			}
 			mtmp->mtrapped = 0;

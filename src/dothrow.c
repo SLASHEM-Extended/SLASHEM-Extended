@@ -1517,7 +1517,7 @@ int thrown;
 #endif
 
 	    if (tmp >= rnd(20)) {
-		if (hmon(mon,obj,thrown)) {  /* mon still alive */
+		if (hmon(mon,obj,thrown?thrown:3)) {  /* mon still alive */
 		    (void) cutworm(mon, bhitpos.x, bhitpos.y, obj);
 		}
 		exercise(A_DEX, TRUE);
@@ -1563,7 +1563,7 @@ int thrown;
 		int was_swallowed = guaranteed_hit;
 
 		exercise(A_DEX, TRUE);
-		if (!hmon(mon,obj,thrown)) {         /* mon killed */
+		if (!hmon(mon,obj,thrown?thrown:3)) {         /* mon killed */
 		    if (was_swallowed && !u.uswallow && obj == uball)
 			return 1;	/* already did placebc() */
 		}
@@ -1575,7 +1575,7 @@ int thrown;
 	    exercise(A_STR, TRUE);
 	    if (tmp >= rnd(20)) {
 		exercise(A_DEX, TRUE);
-		(void) hmon(mon,obj,thrown);
+		(void) hmon(mon,obj,thrown?thrown:3);
 	    } else {
 		tmiss(obj, mon);
 	    }
@@ -1583,7 +1583,7 @@ int thrown;
 	} else if ((otyp == EGG || otyp == CREAM_PIE ||
 		    otyp == BLINDING_VENOM || otyp == ACID_VENOM) &&
 		(guaranteed_hit || ACURR(A_DEX) > rnd(25))) {
-	    (void) hmon(mon, obj, thrown);
+	    (void) hmon(mon, obj, thrown?thrown:3);
 	    return 1;	/* hmon used it up */
 
 	} else if (obj->oclass == POTION_CLASS &&

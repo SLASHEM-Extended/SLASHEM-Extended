@@ -591,7 +591,7 @@ drag:
 		    tmp = -2 + Luck + find_mac(victim);
 		    tmp += omon_adj(victim, uball, TRUE);
 		    if (tmp >= rnd(20))
-			(void) hmon(victim,uball,1);
+			(void) hmon(victim,uball,3);
 		    else
 			miss(xname(uball), victim);
 

@@ -89,6 +89,7 @@ ver 0.0.7E2 [?] [Released by ?]
 -fixed bug 754921: won't compile pure gtk.
 -fixed bug 653195: Level teleport out of Black Market.
 -fixed bug 707053: Poly in shop causes crash.
+-fixed bug 620074: Spitting #monster collapses dungeon.
 
 See history.txt for changes made in previous versions.
 

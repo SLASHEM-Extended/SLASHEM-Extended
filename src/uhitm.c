@@ -677,7 +677,8 @@ boolean			/* general "damage monster" routine */
 hmon(mon, obj, thrown)		/* return TRUE if mon still alive */
 struct monst *mon;
 struct obj *obj;
-int thrown;
+int thrown;	/* 0: not thrown, 1: launched with uwep,
+		   2: launched with uswapwep, 3: thrown by some other means */
 {
 	boolean result, anger_guards;
 
