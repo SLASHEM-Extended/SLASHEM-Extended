@@ -349,6 +349,7 @@ ver 0.0.6E4F4 [? ?/2001] [Released by ?]
 -fixed bug 405649: Messages about unseen pet's activities.
 -fixed bug 411278: "Couldn't place lregion...".
 -fixed bug 411282: arrow traps can't poison?
+-fixed bug 411279: New demon lords won't wait.
 
 ver 0.0.6E4F3 [February 28/2001] [Released by Ali]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined
