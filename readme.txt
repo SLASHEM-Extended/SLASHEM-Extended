@@ -71,6 +71,7 @@ ver 0.0.7E6F4 [?] [Released by ?]
 -Fixed build of proxy tests
 -fixed bug 1071688: cannot compile on FreeBSD (termcap)
 -fixed bug 1071623: Cannot compile on FreeBSD due to menucolor inclusion
+-fixed bug 993420: Crashes when typing symbols on drop menu
 
 See history.txt for changes made in previous versions.
 
