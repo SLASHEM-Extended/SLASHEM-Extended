@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.13 2002-09-13 19:22:46 j_ali Exp $
+  $Id: gtkmap.c,v 1.14 2002-12-14 16:22:45 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -611,8 +611,8 @@ map_button_event(void *map, GdkEventButton *event, gpointer data)
     else
 	cursm = CLICK_2;
 
-    if(map_click)
-	gtk_main_quit();
+    if (map_click)
+	quit_hook();
     return FALSE;
 }
 

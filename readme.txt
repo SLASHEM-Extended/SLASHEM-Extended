@@ -328,6 +328,7 @@ TODO:
 -vampires shouldn't be allowed to become Flame Mages
 
 ver 0.0.6E8 [?] [Released by ?]
+-fixed bug 233901: Gtk-Critical errors from gtk_main_quit.
 
 ver 0.0.6E7 [December 6/2002] [Released by Ali]
 -Lethe: Treacherous pets; Cthulhu revivification; monsters use of potions of

@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.23 2002-12-01 17:23:37 j_ali Exp $
+  $Id: gtk.c,v 1.24 2002-12-14 16:22:45 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -25,6 +25,7 @@
 int	GTK_initialized;
 static int	display_inventory_needed;
 static int	in_topten;
+static int	in_player_selection;
 
 static void	select_player(GtkWidget *w, guint data);
 static void	key_command(GtkWidget *w, gpointer data);
@@ -247,8 +248,6 @@ static GtkItemFactoryEntry playmenu_items[] = {
     {"/Special/Untrap",		"<alt>u",	key_command,	'u' | 0x80,	NULL},
     {"/Special/Jump",		"<alt>j",	key_command,	'j' | 0x80,	NULL},
 };
-
-static int keysym, keysym1;
 
 void
 win_GTK_init()
@@ -544,11 +543,54 @@ nh_position_popup_dialog(GtkWidget *w)
 void
 quit_hook()
 {
+#if 0
     gtk_main_quit();
+#endif
 }
 
+static char nh_key_buffer[32];
+static int nh_key_rp = 0;
+static int nh_key_wp = 0;
+
+void nh_key_add(char c)
+{
+    int p;
+    p = nh_key_wp + 1;
+    if (p >= sizeof(nh_key_buffer))
+	p = 0;
+    if (p != nh_key_rp) {
+	nh_key_buffer[nh_key_wp] = c;
+	nh_key_wp = p;
+    }
+    /* else buffer full */
+}
+
+int nh_key_check()
+{
+    return nh_key_rp != nh_key_wp;
+}
+
+int nh_key_get()
+{
+    int c;
+    if (nh_key_rp == nh_key_wp)
+	c = -1;
+    else {
+	c = nh_key_buffer[nh_key_rp++];
+	if (nh_key_rp >= sizeof(nh_key_buffer))
+	    nh_key_rp = 0;
+    }
+    return c;
+}
+
+/*
+ * Do some housekeeping that needs doing on a regular basis
+ * and run the Gtk+ main loop until either a key is available
+ * or the provided watch is non-zero.
+ */
+
 void
-main_hook()
+main_hook(int *watch)
 {
     nh_map_check_visibility();
     if (display_inventory_needed)
@@ -558,14 +600,14 @@ main_hook()
 	nh_radar_update();
 #endif
 
-    gtk_main();
+    while(!nh_key_check() && (!watch || !*watch))
+	gtk_main_iteration();
 }
 
 static void
 game_option(GtkWidget *widget, gpointer data)
 {
     nh_option_new();
-    keysym = '\0';
 }
 
 static void
@@ -589,7 +631,6 @@ game_topten(GtkWidget *widget, gpointer data)
     dlb_init();				/* Re-initialise DLB */
     rawprint_win = WIN_ERR;
 #endif
-    keysym = '\0';
     in_topten--;
 }
 
@@ -606,7 +647,6 @@ help_license(GtkWidget *widget, gpointer data)
     display_file(NH_LICENSE_AREA, NH_LICENSE, TRUE);
 #endif
 #endif
-    keysym = '\0';
 }
 
 static void
@@ -618,7 +658,6 @@ help_history(GtkWidget *widget, gpointer data)
 #else
     dohistory();
 #endif
-    keysym = '\0';
 }
 
 
@@ -635,7 +674,6 @@ help_option(GtkWidget *widget, gpointer data)
     display_file(NH_OPTIONAREA, NH_OPTIONFILE, TRUE);
 #endif
 #endif
-    keysym = '\0';
 }
 
 static void
@@ -651,7 +689,6 @@ help_shelp(GtkWidget *widget, gpointer data)
     display_file(NH_SHELP_AREA, NH_SHELP, TRUE);
 #endif
 #endif
-    keysym = '\0';
 }
 
 static void
@@ -667,13 +704,12 @@ help_help(GtkWidget *widget, gpointer data)
     display_file(NH_HELP_AREA, NH_HELP, TRUE);
 #endif
 #endif
-    keysym = '\0';
 }
 
 static void
 key_command(GtkWidget *widget, gpointer data)
 {
-    keysym = (int)data;
+    nh_key_add((int)data);
 
     quit_hook();
 }
@@ -693,10 +729,8 @@ static void
 move_command(GtkWidget *widget, gpointer data)
 {
 
-    keysym = 'm';
-    keysym1 = (int) (copts.num_pad ? 
-    				dir_keys[(int)data][1] : 
-    				dir_keys[(int)data][0]);
+    nh_key_add('m');
+    nh_key_add(copts.num_pad ? dir_keys[(int)data][1] : dir_keys[(int)data][0]);
 
     quit_hook();
 }
@@ -704,10 +738,8 @@ move_command(GtkWidget *widget, gpointer data)
 static void
 fight_command(GtkWidget *widget, gpointer data)
 {
-    keysym = 'F';
-    keysym1 = (int) (copts.num_pad ? 
-    				dir_keys[(int)data][1] : 
-    				dir_keys[(int)data][0]);
+    nh_key_add('F');
+    nh_key_add(copts.num_pad ? dir_keys[(int)data][1] : dir_keys[(int)data][0]);
 
     quit_hook();
 }
@@ -715,7 +747,7 @@ fight_command(GtkWidget *widget, gpointer data)
 static void
 ext_command(GtkWidget *widget, gpointer data)
 {
-    keysym = '#';
+    nh_key_add('#');
     GTK_extcmd_set((int)data);
 
     quit_hook();
@@ -756,7 +788,7 @@ default_destroy(GtkWidget *widget, gpointer data)
 {
     GtkWindow **w = (GtkWindow **)data;
     *w = NULL;
-    keysym = '\033';
+    nh_key_add('\033');
     
     quit_hook();
     return FALSE;
@@ -996,6 +1028,10 @@ void nh_gtk_focus_set_slave_for(GtkWindow *w,GtkWindow *slave_for)
 gint
 GTK_default_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
+    int keysym;
+    if (in_player_selection)
+	return FALSE;
+
     keysym = nh_dir_keysym(event);
     if (!keysym)
 	switch(event->keyval)
@@ -1008,19 +1044,19 @@ GTK_default_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 		keysym = nh_keysym(event);
 	}
 
-    if(keysym)
+    if (keysym) {
+	nh_key_add(keysym);
 	quit_hook();
-    
-    return FALSE;
+	return TRUE;
+    }
+    else
+	return FALSE;
 }
 
 static gint
 default_button_press(GtkWidget *widget, GdkEventButton *event, gpointer data)
 {
-    if(data)
-	keysym = (int)data;
-    else
-	keysym = '\n';
+    nh_key_add(data ? (int)data : '\n');
 
     quit_hook();
 
@@ -1136,7 +1172,7 @@ select_player(GtkWidget *widget, guint data)
     select_player_flags.gend = SELECT_KEY_GENDNUM(data);
     select_player_flags.align = SELECT_KEY_ALIGNNUM(data);
     
-    quit_hook();
+    gtk_main_quit();
 }
 
 /*
@@ -2005,7 +2041,7 @@ GTK_destroy_nhwindow(winid id)
 static gint
 blocking_text_clicked(GtkWidget *widget, gpointer data)
 {
-    keysym = '\033';
+    nh_key_add('\033');
     quit_hook();
     return FALSE;
 }
@@ -2072,8 +2108,10 @@ GTK_display_nhwindow(winid id, BOOLEAN_P blocking)
 	    break;
     }
 
-    if (blocking)
-	main_hook();
+    if (blocking) {
+	main_hook(NULL);
+	(void) nh_key_get();
+    }
 }
 
 void
@@ -2173,46 +2211,31 @@ GTK_get_nh_event()
 int
 GTK_nhgetch(void)
 {
-    int key;
 #ifdef RADAR
     nh_radar_update();
 #endif
 
-    keysym = keysym1;
-    keysym1 = 0;
-    while(!keysym)
-	main_hook();
+    main_hook(NULL);
 
-    key = keysym;
-    keysym = 0;
-
-    return key;
+    return nh_key_get();
 }
 
 int
 GTK_nh_poskey(int *x, int *y, int *mod)
 {
-    int key;
+    extern int cursm;
 
 #ifdef RADAR
     nh_radar_update();
 #endif
 
-    keysym = keysym1;
-    keysym1 = 0;
+    nh_map_click(TRUE);
+    cursm = 0;
+    main_hook(&cursm);
+    nh_map_pos(x, y, mod);
+    nh_map_click(FALSE);
 
-    while(!keysym)
-    {
-	nh_map_click(TRUE);
-	main_hook();
-	nh_map_pos(x, y, mod);
-	nh_map_click(FALSE);
-    }
-
-    key = keysym;
-    keysym = 0;
-
-    return key;
+    return nh_key_check() ? nh_key_get() : 0;
 }
 
 #ifdef GTK_PROXY
@@ -2296,7 +2319,7 @@ GTK_ext_display_file(int fh)
     }
 
     gtk_widget_show_all(w);
-    main_hook();
+    main_hook(NULL);
 
     if (w) {
 	gtk_signal_disconnect(GTK_OBJECT(w), hid);
@@ -2314,6 +2337,7 @@ GTK_ext_display_file(int fh)
 int
 GTK_ext_player_selection(int *role, int *race, int *gend, int *align)
 {
+    in_player_selection = TRUE;
     select_player_flags.role = *role;
     select_player_flags.race = *race;
     select_player_flags.gend = *gend;
@@ -2360,6 +2384,7 @@ GTK_ext_player_selection(int *role, int *race, int *gend, int *align)
     *gend = select_player_flags.gend;
     *align = select_player_flags.align;
 
+    in_player_selection = FALSE;
     return FALSE;		/* User didn't quit */
 }
 
@@ -2558,7 +2583,8 @@ GTK_ext_outrip(winid id, char *str)
     }
 
     gtk_widget_show_all(w);
-    gtk_main();
+    main_hook(NULL);
+    (void) nh_key_get();
     return TRUE;
 }
 
