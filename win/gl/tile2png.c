@@ -8,10 +8,8 @@
  * Based on win/X11/tile2x11.c
  * 
  * TODO HERE:
- *   + Have a -t option for transparency.
- *   + When not transparent, save as RGB (instead of RGBA).
- *   + Check if < 256 colors are used, and if so, use palette.
- *   + Would be nice if it didn't require so much memory...
+ *   + Check if < 256 colors are used, then use palette mode.
+ *   + Would be nice if it didn't use so much memory...
  */
 #include "hack.h"
 #include "tile.h"
@@ -45,6 +43,10 @@ int saved_tile_x = -1;
 int saved_tile_y = -1;
 
 unsigned char *tile_bytes = NULL;
+
+int has_trans = 0;
+int num_across = TILES_PER_ROW;
+pixel trans_p = DEFAULT_BACKGROUND;
 
 
 /* -------------------------------------------------------------------- */
@@ -106,7 +108,8 @@ void save_png(const char *filename, int width, int height)
   png_init_io(png_ptr, fp);
 
   png_set_IHDR(png_ptr, info_ptr, width, height, 8, 
-      PNG_COLOR_TYPE_RGB_ALPHA, PNG_INTERLACE_NONE, 
+      has_trans ? PNG_COLOR_TYPE_RGB_ALPHA : PNG_COLOR_TYPE_RGB, 
+      PNG_INTERLACE_NONE, 
       PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 
   png_write_info(png_ptr, info_ptr);
@@ -120,7 +123,7 @@ void save_png(const char *filename, int width, int height)
    
   for (row=0; row < height; row++)
   {
-     row_pointers[row] = tile_bytes + row * width * 4;
+     row_pointers[row] = tile_bytes + row * width * (has_trans ? 4 : 3);
   }
 
   png_write_image(png_ptr, row_pointers);
@@ -166,32 +169,34 @@ static int convert_tiles(void)
   unsigned char *tb;
 
   pixel tile[MAX_TILE_Y][MAX_TILE_X];
-  pixel transp = DEFAULT_BACKGROUND;
 
   int x, y;
   int bx, by;
   int count = 0;
 
-  int stride = tile_x * TILES_PER_ROW * 4;
+  int pix_w  = (has_trans ? 4 : 3);
+  int stride = tile_x * num_across * pix_w;
 
   while (read_text_tile(tile)) 
   {
     count++;
 
-    bx = ntiles % TILES_PER_ROW;
-    by = ntiles / TILES_PER_ROW;
+    bx = ntiles % num_across;
+    by = ntiles / num_across;
     
-    tb = tile_bytes + (by * tile_y * stride + bx * tile_x * 4);
+    tb = tile_bytes + (by * tile_y * stride + bx * tile_x * pix_w);
    
     for (y = 0; y < tile_y; y++, tb += stride)
     for (x = 0; x < tile_x; x++)
     {
-      tb[x*4 + 0] = tile[y][x].r;
-      tb[x*4 + 1] = tile[y][x].g;
-      tb[x*4 + 2] = tile[y][x].b;
+      tb[x*pix_w + 0] = tile[y][x].r;
+      tb[x*pix_w + 1] = tile[y][x].g;
+      tb[x*pix_w + 2] = tile[y][x].b;
 
-      tb[x*4 + 3] = tile_x < 32 ? 255 :
-                    pixel_equal(tile[y][x], transp) ? 0 : 255;
+      if (has_trans)
+      {
+        tb[x*pix_w + 3] = pixel_equal(tile[y][x], trans_p) ? 0 : 255;
+      }
     }
 
     ntiles++;
@@ -227,9 +232,9 @@ static void process_file(const char *fname)
      * Delayed until we open the first input file so that
      * we know the size of the tiles we are processing.
      */
-    max_rows = (MAX_TILE_NUM + TILES_PER_ROW - 1) / TILES_PER_ROW;
+    max_rows = (MAX_TILE_NUM + num_across - 1) / num_across;
 
-    size = max_rows * TILES_PER_ROW * tile_x * tile_y * 4;
+    size = max_rows * num_across * tile_x * tile_y * (has_trans ? 4 : 3);
 
     tile_bytes = malloc(size);
     if (!tile_bytes) 
@@ -249,29 +254,119 @@ static void process_file(const char *fname)
 }
 
 
+static void usage(void)
+{
+  Fprintf(stderr, "Usage: tile2png [-o out_file] [-t] [-f] [-a##] [-b######] "
+      "txt_file1 [txt_file2 ...]\n");
+  fprintf(stderr, "Where: -t enables transparency\n");
+  fprintf(stderr, "       -f is used for fonts\n");
+  fprintf(stderr, "       -a gives the number of tiles across\n");
+  fprintf(stderr, "       -b gives the background (transparent) color\n");
+}
+
+
 int main(int argc, const char **argv)
 {
   int i, argn = 1;
-  int num_rows;
+  int num_down;
 
   const char *outname = OUTNAME;
 
   while (argn < argc) 
   {
-    if (argn + 1 < argc && !strcmp(argv[argn], "-o")) 
+    if ((argv[argn][0] == '-' && argv[argn][1] == 'h') ||
+        (argv[argn][0] == '-' && argv[argn][1] == '-' && 
+         argv[argn][2] == 'h'))
     {
-      outname = argv[argn + 1];
-      argn += 2;
+      usage();
+      exit(1);
     }
-    /* put extra argument checks here... */
-    else
-      break;
+
+    if (argv[argn][0] == '-' && argv[argn][1] == 'o') 
+    {
+      if (argv[argn][2])
+        outname = argv[argn] + 2;
+      else if (argn + 1 < argc)
+        outname = argv[++argn];
+      else 
+      {
+        Fprintf(stderr, "tile2png: -o option needs an argument\n");
+        exit(EXIT_FAILURE);
+      }
+      argn++;
+      continue;
+    }
+
+    if (argv[argn][0] == '-' && argv[argn][1] == 'a') 
+    {
+      if (argv[argn][2])
+        num_across = atoi(argv[argn] + 2);
+      else if (argn + 1 < argc)
+        num_across = atoi(argv[++argn]);
+      else 
+      {
+        Fprintf(stderr, "tile2png: -a option needs an argument\n");
+        exit(EXIT_FAILURE);
+      }
+      if (num_across < 1)
+      {
+        Fprintf(stderr, "tile2png: bad value for -a option\n");
+        exit(EXIT_FAILURE);
+      }
+      argn++;
+      continue;
+    }
+    
+    if (argv[argn][0] == '-' && argv[argn][1] == 't') 
+    {
+      has_trans = 1;
+      argn++;
+      continue;
+    }
+    
+    if (argv[argn][0] == '-' && argv[argn][1] == 'f') 
+    {
+      has_trans = 1;
+      trans_p.r = trans_p.g = trans_p.b = 0;
+      num_across = 16;
+      argn++;
+      continue;
+    }
+    
+    if (argv[argn][0] == '-' && argv[argn][1] == 'b') 
+    {
+      const char *val;
+      int r, g, b;
+
+      if (argv[argn][2])
+        val = argv[argn] + 2;
+      else if (argn + 1 < argc)
+        val = argv[++argn];
+      else 
+      {
+        Fprintf(stderr, "tile2png: -b option needs an argument\n");
+        exit(EXIT_FAILURE);
+      }
+
+      if (sscanf(val, "%02X%02X%02X", &r, &g, &b) != 3)
+      {
+        Fprintf(stderr, "tile2png: Background not understood: %s\n", val);
+        exit(EXIT_FAILURE);
+      }
+      trans_p.r = (unsigned char) r;
+      trans_p.g = (unsigned char) g;
+      trans_p.b = (unsigned char) b;
+
+      argn++;
+      continue;
+    }
+    
+    break;
   }
 
   if (argn == argc) 
   {
-    Fprintf(stderr, "Usage: %s [-o out_file] txt_file1 [txt_file2 ...]\n",
-        argv[0]);
+    usage();
     exit(1);
   }
 
@@ -282,9 +377,9 @@ int main(int argc, const char **argv)
 
   Fprintf(stderr, "Total tiles: %d\n", ntiles);
 
-  num_rows = (ntiles + TILES_PER_ROW - 1) / TILES_PER_ROW;
+  num_down = (ntiles + num_across - 1) / num_across;
   
-  save_png(outname, TILES_PER_ROW * saved_tile_x, num_rows * saved_tile_y);
+  save_png(outname, num_across * saved_tile_x, num_down * saved_tile_y);
 
   if (tile_bytes)
   {
