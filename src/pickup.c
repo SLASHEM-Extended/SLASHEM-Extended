@@ -1559,6 +1559,10 @@ register struct obj *obj;
 	}
 
 	current_container->owt = weight(current_container);
+#ifdef SHOW_WEIGHT
+	if (!floor_container && flags.invweight)
+		update_inventory();
+#endif
 
 	Strcpy(buf, the(xname(current_container)));
 	You("put %s into %s.", doname(obj), buf);
