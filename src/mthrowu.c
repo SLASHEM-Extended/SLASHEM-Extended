@@ -4,7 +4,7 @@
 
 #include "hack.h"
 
-STATIC_DCL int FDECL(drop_throw,(struct obj *,BOOLEAN_P,int,int));
+STATIC_DCL int FDECL(drop_throw,(struct monst *, struct obj *,BOOLEAN_P,int,int));
 
 #define URETREATING(x,y) (distmin(u.ux,u.uy,x,y) > distmin(u.ux0,u.uy0,x,y))
 
@@ -102,15 +102,20 @@ const char *name;	/* if null, then format `obj' */
  */
 
 STATIC_OVL int
-drop_throw(obj, ohit, x, y)
+drop_throw(mon, obj, ohit, x, y)
+register struct monst *mon;
 register struct obj *obj;
 boolean ohit;
 int x,y;
 {
+	struct obj *mwep = (struct obj *) 0;
+	
 	int retvalu = 1;
 	int create;
 	struct monst *mtmp;
 	struct trap *t;
+
+	if (mon) mwep = MON_WEP(mon);
 
 	if (obj->otyp == CREAM_PIE || obj->oclass == VENOM_CLASS ||
 /* WAC added Spoon throw code */
@@ -145,6 +150,22 @@ int x,y;
 	}
 #endif
 
+	/* D: Detonate crossbow bolts from Hellfire if they hit */
+	if (ohit && mwep && mwep->oartifact == ART_HELLFIRE
+		  && is_ammo(obj) && ammo_and_launcher(obj, mwep)) {
+	  
+		if (cansee(bhitpos.x,bhitpos.y)) 
+			pline("%s explodes in a ball of fire!", Doname2(obj));
+		else 
+			You("hear an explosion");
+
+		explode(bhitpos.x, bhitpos.y, -ZT_SPELL(ZT_FIRE), d(2,6),
+				WEAPON_CLASS);
+
+		/* D: Exploding bolts will be destroyed */
+		create = 0;
+	}
+
 	if (create && !((mtmp = m_at(x, y)) && (mtmp->mtrapped) &&
 			(t = t_at(x, y)) && ((t->ttyp == PIT) ||
 			(t->ttyp == SPIKED_PIT)))) {
@@ -170,7 +191,8 @@ int x,y;
 /* an object launched by someone/thing other than player attacks a monster;
    return 1 if the object has stopped moving (hit or its range used up) */
 int
-ohitmon(mtmp, otmp, range, verbose)
+ohitmon(mon, mtmp, otmp, range, verbose)
+struct monst *mon;  /* monster thrower (if applicable) */
 struct monst *mtmp;	/* accidental target */
 struct obj *otmp;	/* missile; might be destroyed by drop_throw */
 int range;		/* how much farther will object travel if it misses */
@@ -192,7 +214,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 		else if (verbose) pline("It is missed.");
 	    }
 	    if (!range) { /* Last position; object drops */
-		(void) drop_throw(otmp, 0, mtmp->mx, mtmp->my);
+		(void) drop_throw(mon, otmp, 0, mtmp->mx, mtmp->my);
 		return 1;
 	    }
 	} else if (otmp->oclass == POTION_CLASS) {
@@ -218,17 +240,17 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 	    else if (verbose) pline("It is hit%s", exclam(damage));
 
 	    if (otmp->opoisoned) {
-		if (resists_poison(mtmp)) {
-		    if (vis) pline_The("poison doesn't seem to affect %s.",
-				   mon_nam(mtmp));
-		} else {
-		    if (rn2(30)) {
-			damage += rnd(6);
-		    } else {
-			if (vis) pline_The("poison was deadly...");
-			damage = mtmp->mhp;
-		    }
-		}
+			if (resists_poison(mtmp)) {
+				if (vis) pline_The("poison doesn't seem to affect %s.",
+					   mon_nam(mtmp));
+			} else {
+				if (rn2(30)) {
+				damage += rnd(6);
+				} else {
+				if (vis) pline_The("poison was deadly...");
+				damage = mtmp->mhp;
+				}
+			}
 	    }
 	    if (objects[otmp->otyp].oc_material == SILVER &&
 		    hates_silver(mtmp->data)) {
@@ -245,7 +267,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 		    if (vis) pline_The("acid burns %s!", mon_nam(mtmp));
 		    else if (verbose) pline("It is burned!");
 		}
-	    }
+		}
 	    mtmp->mhp -= damage;
 	    if (mtmp->mhp < 1) {
 		if (vis || verbose)
@@ -266,7 +288,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 		mtmp->mblinded = tmp;
 	    }
 
-	    objgone = drop_throw(otmp, 1, bhitpos.x, bhitpos.y);
+	    objgone = drop_throw(mon, otmp, 1, bhitpos.x, bhitpos.y);
 	    if (!objgone && range == -1) {  /* special case */
 		    obj_extract_self(otmp); /* free it for motion again */
 		    return 0;
@@ -283,13 +305,13 @@ m_throw(mon, x, y, dx, dy, range, obj)
 	register struct obj *obj;
 {
 	register struct monst *mtmp;
-	struct obj *singleobj;
+	struct obj *singleobj, *mwep;
 	char sym = obj->oclass;
 	int hitu, blindinc = 0;
 
 	bhitpos.x = x;
 	bhitpos.y = y;
-
+	
 	if (obj->quan == 1L) {
 	    /*
 	     * Remove object from minvent.  This cannot be done later on;
@@ -317,23 +339,34 @@ m_throw(mon, x, y, dx, dy, range, obj)
 
 	singleobj->owornmask = 0; /* threw one of multiple weapons in hand? */
 
+	if (mon) mwep = MON_WEP(mon);
+	else mwep = (struct obj *) 0;
+	
+	/* D: Special launcher effects */
+	if (mwep && is_ammo(singleobj) && ammo_and_launcher(singleobj, mwep)) {
+	    if (mwep->oartifact == ART_PLAGUE && is_poisonable(singleobj))
+			singleobj->opoisoned = 1;
+
+	    /* D: Hellfire is handled in drop_throw */
+	}
+
 	if (singleobj->cursed && (dx || dy) && !rn2(7)) {
 	    if(canseemon(mon) && flags.verbose) {
-		if(is_ammo(singleobj))
-		    pline("%s misfires!", Monnam(mon));
-		else
-		    pline("%s slips as %s throws it!",
-			  The(xname(singleobj)), mon_nam(mon));
+			if(is_ammo(singleobj))
+				pline("%s misfires!", Monnam(mon));
+			else
+				pline("%s slips as %s throws it!",
+				  The(xname(singleobj)), mon_nam(mon));
 	    }
 	    dx = rn2(3)-1;
 	    dy = rn2(3)-1;
 	    /* pre-check validity of new direction */
-	    if((!dx && !dy)
-	       || !isok(bhitpos.x+dx,bhitpos.y+dy)
-	       /* missile hits the wall */
-	       || IS_ROCK(levl[bhitpos.x+dx][bhitpos.y+dy].typ)) {
-		(void) drop_throw(singleobj, 0, bhitpos.x, bhitpos.y);
-		return;
+	    if((!dx && !dy) 
+				|| !isok(bhitpos.x+dx,bhitpos.y+dy)
+				/* missile hits the wall */
+				|| IS_ROCK(levl[bhitpos.x+dx][bhitpos.y+dy].typ)) {
+			(void) drop_throw(mon, singleobj, 0, bhitpos.x, bhitpos.y);
+			return;
 	    }
 	}
 
@@ -346,7 +379,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 		bhitpos.x += dx;
 		bhitpos.y += dy;
 		if ((mtmp = m_at(bhitpos.x, bhitpos.y)) != 0) {
-		    if (ohitmon(mtmp, singleobj, range, TRUE))
+		    if (ohitmon(mon, mtmp, singleobj, range, TRUE))
 			break;
 		} else if (bhitpos.x == u.ux && bhitpos.y == u.uy) {
 			if (multi) nomul(0);
@@ -446,7 +479,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 		    }
                     stop_occupation();
                     if (hitu || !range) {
-                        (void) drop_throw(singleobj, hitu, u.ux, u.uy);
+                        (void) drop_throw(mon, singleobj, hitu, u.ux, u.uy);
                         break;
                     }
 		} else if (!range	/* reached end of path */
@@ -459,7 +492,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			|| IS_SINK(levl[bhitpos.x][bhitpos.y].typ)
 #endif
 								) {
-		    (void) drop_throw(singleobj, 0, bhitpos.x, bhitpos.y);
+		    (void) drop_throw(mon, singleobj, 0, bhitpos.x, bhitpos.y);
 		    break;
 		}
 		tmp_at(bhitpos.x, bhitpos.y);
@@ -520,7 +553,9 @@ register struct monst *mtmp;
 
 	/* Pick a weapon */
 	otmp = select_rwep(mtmp);
+
 	if (!otmp) return;
+
 	ispole = is_pole(otmp);
 	skill = objects[otmp->otyp].oc_skill;
 	mwep = MON_WEP(mtmp);		/* wielded weapon */
@@ -538,103 +573,104 @@ register struct monst *mtmp;
 		x = mtmp->mx;
 		y = mtmp->my;
 		
-		
 		if(ispole || !URETREATING(x,y) || !rn2(chance)) {
 		    const char *verb = "throws";
 
 		    if (otmp->otyp == ARROW
-			|| otmp->otyp == DARK_ELVEN_ARROW
-			|| otmp->otyp == ELVEN_ARROW
-			|| otmp->otyp == ORCISH_ARROW
-			|| otmp->otyp == YA
-  			|| otmp->otyp == CROSSBOW_BOLT) verb = "shoots";
+				|| otmp->otyp == DARK_ELVEN_ARROW
+				|| otmp->otyp == ELVEN_ARROW
+				|| otmp->otyp == ORCISH_ARROW
+				|| otmp->otyp == YA
+  				|| otmp->otyp == CROSSBOW_BOLT) verb = "shoots";
 #ifdef FIREARMS
 		    else if (is_bullet(otmp)) verb = "fires";
 #endif
 		    if (ispole) {
-			if (dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <=
-				POLE_LIM && couldsee(mtmp->mx, mtmp->my))
-			    verb = "thrusts";
-			else return; /* Out of range, or intervening wall */
+				if (dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <=
+					POLE_LIM && couldsee(mtmp->mx, mtmp->my))
+					verb = "thrusts";
+				else return; /* Out of range, or intervening wall */
 		    } else if(ammo_and_launcher(otmp, mwep) &&
 					is_launcher(mwep) &&
 			   		objects[(mwep->otyp)].oc_range) {
-			if (dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) > 
-			    (objects[(mwep->otyp)].oc_range * 
-			     objects[(mwep->otyp)].oc_range))
-				return; /* Out of range */
+				if (dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) > 
+					(objects[(mwep->otyp)].oc_range * 
+					 objects[(mwep->otyp)].oc_range))
+					return; /* Out of range */
 		    }
 		    if (canseemon(mtmp)) {
-			pline("%s %s %s!", Monnam(mtmp), verb,
-					obj_is_pname(otmp) ?
-					the(singular(otmp, xname)) :
-					an(singular(otmp, xname)));
+				pline("%s %s %s!", Monnam(mtmp), verb,
+						obj_is_pname(otmp) ?
+						the(singular(otmp, xname)) :
+						an(singular(otmp, xname)));
 		    }
 		    /* Use a pole */
 		    if (ispole) {
-			int dam = dmgval(otmp, &youmonst);
-			int hitv = 3 - distmin(u.ux,u.uy, mtmp->mx,mtmp->my);
+				int dam = dmgval(otmp, &youmonst);
+				int hitv = 3 - distmin(u.ux,u.uy, mtmp->mx,mtmp->my);
 
-			if (hitv < -4) hitv = -4;
-			if (bigmonst(youmonst.data)) hitv++;
-			hitv += 8 + otmp->spe;
-			if (dam < 1) dam = 1;
-			(void) thitu(hitv, dam, otmp, (char *)0);
-			return;
+				if (hitv < -4) hitv = -4;
+				if (bigmonst(youmonst.data)) hitv++;
+
+				hitv += 8 + otmp->spe;
+
+				if (dam < 1) dam = 1;
+				
+				(void) thitu(hitv, dam, otmp, (char *)0);
+				return;
 		    }
-
 
 		    /* Multishot calculations */
 		    if ((ammo_and_launcher(otmp, mwep) || skill == P_DAGGER ||
-				skill == -P_DART || skill == -P_SHURIKEN) &&
-			    !mtmp->mconf) {
-  			/* Assumes lords are skilled, princes are expert */
-			if (is_lord(mtmp->data)) multishot++;
-			if (is_prince(mtmp->data)) multishot += 2;
+					skill == -P_DART || skill == -P_SHURIKEN) &&
+				    !mtmp->mconf) {
 
-			/*  Elven Craftsmanship makes for light,  quick bows */
-			if (otmp->otyp == ELVEN_ARROW && !otmp->cursed)
-			    multishot++;
-			if (mwep && mwep->otyp == ELVEN_BOW &&
-				!mwep->cursed) multishot++;
-			/* 1/3 of object enchantment */
-			if (mwep && mwep->spe > 1)
-			    multishot += (long) rounddiv(mwep->spe,3);
-			/* Some randomness */
-			if (multishot > 1L)
-			    multishot = (long) rnd((int) multishot);
+  				/* Assumes lords are skilled, princes are expert */
+				if (is_lord(mtmp->data)) multishot++;
+				if (is_prince(mtmp->data)) multishot += 2;
+
+				/*  Elven Craftsmanship makes for light,  quick bows */
+				if (otmp->otyp == ELVEN_ARROW && !otmp->cursed)
+					multishot++;
+				if (mwep && mwep->otyp == ELVEN_BOW &&
+					!mwep->cursed) multishot++;
+				/* 1/3 of object enchantment */
+				if (mwep && mwep->spe > 1)
+					multishot += (long) rounddiv(mwep->spe,3);
+				/* Some randomness */
+				if (multishot > 1L)
+					multishot = (long) rnd((int) multishot);
 
 #ifdef FIREARMS
-			if (mwep && objects[(mwep->otyp)].oc_rof && 
-					is_launcher(mwep)) 
-				multishot += objects[(mwep->otyp)].oc_rof;
+				if (mwep && objects[(mwep->otyp)].oc_rof && 
+						is_launcher(mwep)) 
+					multishot += objects[(mwep->otyp)].oc_rof;
 #endif
 
-			switch (monsndx(mtmp->data)) {
-			case PM_RANGER:
-			    multishot++;
-			    break;
-			case PM_ROGUE:
-			    if (skill == P_DAGGER) multishot++;
-			    break;
-			case PM_SAMURAI:
-			    if (otmp->otyp == YA && mwep &&
-				    mwep->otyp == YUMI) multishot++;
-			    break;
-			default:
-			    break;
-			}
-			{	/* racial bonus */
-			    if (is_elf(mtmp->data) &&
-				    otmp->otyp == ELVEN_ARROW &&
-				    mwep && mwep->otyp == ELVEN_BOW)
-				multishot++;
-			    else if (is_orc(mtmp->data) &&
-				    otmp->otyp == ORCISH_ARROW &&
-				    mwep && mwep->otyp == ORCISH_BOW)
-				multishot++;
-			}
-
+				switch (monsndx(mtmp->data)) {
+				case PM_RANGER:
+					multishot++;
+					break;
+				case PM_ROGUE:
+					if (skill == P_DAGGER) multishot++;
+					break;
+				case PM_SAMURAI:
+					if (otmp->otyp == YA && mwep &&
+						mwep->otyp == YUMI) multishot++;
+					break;
+				default:
+					break;
+				}
+				{	/* racial bonus */
+					if (is_elf(mtmp->data) &&
+						otmp->otyp == ELVEN_ARROW &&
+						mwep && mwep->otyp == ELVEN_BOW)
+					multishot++;
+					else if (is_orc(mtmp->data) &&
+						otmp->otyp == ORCISH_ARROW &&
+						mwep && mwep->otyp == ORCISH_BOW)
+					multishot++;
+				}
 		    }
  		    if (otmp->quan < multishot) multishot = (int)otmp->quan;
  		    if (multishot < 1) multishot = 1;

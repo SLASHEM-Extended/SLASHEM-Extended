@@ -640,7 +640,7 @@ struct obj *obj;			/* only scatter this obj        */
 			} else if ((mtmp = m_at(bhitpos.x, bhitpos.y)) != 0) {
 				if (scflags & MAY_HITMON) {
 				    stmp->range--;
-				    if (ohitmon(mtmp, stmp->obj, 1, FALSE)) {
+				    if (ohitmon((struct monst *)0, mtmp, stmp->obj, 1, FALSE)) {
 					stmp->obj = (struct obj *)0;
 					stmp->stopped = TRUE;
 				    }

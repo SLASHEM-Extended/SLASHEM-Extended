@@ -1060,7 +1060,7 @@ int style;
 				break;
 			    }
 			}
-			if (ohitmon(mtmp,singleobj,
+			if (ohitmon((struct monst *) 0, mtmp,singleobj,
 					(style==ROLL) ? -1 : dist, FALSE)) {
 				used_up = TRUE;
 				break;

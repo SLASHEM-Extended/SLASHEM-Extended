@@ -1274,7 +1274,7 @@ E void FDECL(Delay, (int));
 /* ### mthrowu.c ### */
 
 E int FDECL(thitu, (int,int,struct obj *,const char *));
-E int FDECL(ohitmon, (struct monst *,struct obj *,int,BOOLEAN_P));
+E int FDECL(ohitmon, (struct monst *,struct monst *,struct obj *,int,BOOLEAN_P));
 E void FDECL(thrwmu, (struct monst *));
 E int FDECL(spitmu, (struct monst *,struct attack *));
 E int FDECL(breamu, (struct monst *,struct attack *));
