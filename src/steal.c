@@ -392,7 +392,8 @@ gotobj:
 			}
 			else
 			    pline("%s seduces you and %s off your %s.",
-				  !seen ? pronoun : Adjmonnam(mtmp, "beautiful"),
+				  !seen ? pronoun : Adjmonnam(mtmp,
+				  mtmp->female ? "beautiful" : "handsome"),
 				  curssv ? "helps you to take" :
 				  slowly ? "you start taking" : "you take",
 				  equipname(otmp));
