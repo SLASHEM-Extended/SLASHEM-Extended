@@ -300,7 +300,9 @@ learn()
 	char splname[BUFSZ];
 	boolean costly = TRUE;
 
-	if (!book || !carried(book)) {
+	if (!book || !(carried(book) || 
+		(book->where == OBJ_FLOOR && 
+			book->ox == u.ux && book->oy == u.uy))) {
 	    /* maybe it was stolen or polymorphed? */
 	    do_reset_learn();
 	    return(0);

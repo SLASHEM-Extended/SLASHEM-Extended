@@ -365,6 +365,7 @@ ver 0.0.6E5 [May 3/2001] [Released by Warren]
 
 ver 0.0.6E4F8 [?] [Released by ?]
 -Implemented "none" as a possible random place in level compiler.
+-fixed bug 500833: Spellbook learn.
 
 ver 0.0.6E4F7 [February 28/2002] [Released by Ali]
 -Improvements to database (Lars Huttar)
