@@ -236,6 +236,8 @@ int thrown;
 		    multishot = ((multishot > 3) ? (multishot / 3) : 1);
 		/* else it is auto == no change */
 	    }
+
+	    if ((long)multishot > obj->quan) multishot = (int)obj->quan;
 #endif
 	}
 
