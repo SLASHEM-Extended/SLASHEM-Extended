@@ -893,6 +893,9 @@ register struct obj *otmp;
 char *FDECL((*func), (OBJ_P));
 {
 	long savequan;
+#ifdef SHOW_WEIGHT
+	unsigned saveowt;
+#endif
 	char *nam;
 
 	/* Note: using xname for corpses will not give the monster type */
@@ -901,8 +904,14 @@ char *FDECL((*func), (OBJ_P));
 
 	savequan = otmp->quan;
 	otmp->quan = 1L;
+#ifdef SHOW_WEIGHT
+	otmp->owt = weight(otmp);
+#endif
 	nam = (*func)(otmp);
 	otmp->quan = savequan;
+#ifdef SHOW_WEIGHT
+	otmp->owt = saveowt;
+#endif
 	return nam;
 }
 
