@@ -375,6 +375,7 @@ ver 0.0.6E4F6 [? ?/2001] [Released by ?]
 -fixed bug 459778: Fuzzy and non-fuzzy object merging.
 -fixed bug 458130: More spiders should be web-spinners.
 -fixed bug 467477: HSoL #invoke message incomplete.
+-fixed bug 468235: Upgrading wooden harps causes oddities.
 
 ver 0.0.6E4F5 [August 31/2001] [Released by Ali]
 -fixed bug 420517: Yellow dragon scale mail.

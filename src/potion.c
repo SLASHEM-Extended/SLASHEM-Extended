@@ -1992,6 +1992,7 @@ register struct obj *obj;
 		case TOOLED_HORN:
 			obj->otyp = rn1(HORN_OF_PLENTY - TOOLED_HORN, FROST_HORN);
 			obj->spe = rn1(5,10);
+			obj->known = 0;
 			break;
 		case HORN_OF_PLENTY:
 		case FIRE_HORN:
@@ -2001,6 +2002,7 @@ register struct obj *obj;
 		case WOODEN_HARP:
 			obj->otyp = MAGIC_HARP;
 			obj->spe = rn1(5,10);
+			obj->known = 0;
 			break;
 		case MAGIC_HARP:
 			obj->otyp = WOODEN_HARP;
@@ -2016,6 +2018,7 @@ register struct obj *obj;
 		case TIN_OPENER:
 			obj->otyp = TINNING_KIT;
 			obj->spe = rn1(30,70);
+			obj->known = 0;
 			break;
 		case TINNING_KIT:
 			obj->otyp = TIN_OPENER;
@@ -2030,6 +2033,7 @@ register struct obj *obj;
 			chg = rn1(10,3);
 			if (obj->spe > chg)
 				obj->spe = chg;
+			obj->known = 0;
 			break;
 		case K_RATION:
 		case C_RATION:
@@ -2056,6 +2060,8 @@ register struct obj *obj;
 	/* The object was transformed */
 	obj->owt = weight(obj);
 	obj->oclass = objects[obj->otyp].oc_class;
+	if (!objects[obj->otyp].oc_uses_known)
+	    obj->known = 1;
 
 #ifdef DEVEL_BRANCH
 	if (carried(obj)) {
