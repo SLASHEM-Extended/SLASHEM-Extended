@@ -4061,6 +4061,11 @@ boolean *shopdamage;
 		int new_doormask = -1;
 		const char *see_txt = 0, *sense_txt = 0, *hear_txt = 0;
 		rangemod = -1000;
+#ifdef DEVEL_BRANCH
+		/* ALI - Artifact doors */
+		if (artifact_door(x, y))
+		    goto def_case;
+#endif
 		switch(abstype) {
 		case ZT_FIRE:
 		    new_doormask = D_NODOOR;

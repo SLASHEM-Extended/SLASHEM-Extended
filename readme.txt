@@ -326,15 +326,18 @@ TODO:
 -tofix: using the nethack config files.
 -vampires shouldn't be allowed to become Flame Mages
 
-ver 0.0.6E5 [? ?/2001] [Released by ?]
+ver 0.0.6E5F1 [? ?/2001] [Released by ?]
+-New messages when engraving with wand of draining.
+-Partially implemented first cut of proxy window interface support
+-fixed bug 424479: Dipping into potions of gain level.
+-Full support for Kevin Hugo's aligned keys.
+
+ver 0.0.6E5 [May 3/2001] [Released by Warren]
 -Basic support for Kevin Hugo's aligned keys
 -Basic support for GTK 2.0 (currently as a seperate window port)
 -fixed bug 232030: GTK: Can't start in character mode.
 -fixed bug 417384: Shopkeeper services.
 -fixed bug 225227: Vampires start with food rations.
--New messages when engraving with wand of draining.
--Partially implemented first cut of proxy window interface support
--fixed bug 424479: Dipping into potions of gain level.
 
 ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -fixed bug 420517: Yellow dragon scale mail.

@@ -1010,10 +1010,22 @@ nexttry:        /* eels prefer the water, but if there is no water nearby,
 	    /* KMH -- Added iron bars */
 	    if (ntyp == IRONBARS &&
 	    	!((flag & ALLOW_WALL) && may_passwall(nx,ny))) continue;
-	    if(IS_DOOR(ntyp) && !amorphous(mdat) &&
-	       ((levl[nx][ny].doormask & D_CLOSED && !(flag & OPENDOOR)) ||
-		(levl[nx][ny].doormask & D_LOCKED && !(flag & UNLOCKDOOR))
-	       ) && !(flag & (ALLOW_WALL|ALLOW_DIG|BUSTDOOR))) continue;
+#ifdef DEVEL_BRANCH
+	    /* ALI -- Artifact doors (no passage unless open/openable) */
+	    if (IS_DOOR(ntyp))
+		if (artifact_door(nx, ny) ?
+		    levl[nx][ny].doormask & D_CLOSED && !(flag & OPENDOOR)
+		      || levl[nx][ny].doormask & D_LOCKED :
+		    !amorphous(mdat) &&
+		    ((levl[nx][ny].doormask & D_CLOSED && !(flag & OPENDOOR)) ||
+		     (levl[nx][ny].doormask & D_LOCKED && !(flag & UNLOCKDOOR))
+		    ) && !(flag & (ALLOW_WALL|ALLOW_DIG|BUSTDOOR))) continue;
+#else
+	    if (IS_DOOR(ntyp) && !amorphous(mdat) &&
+		((levl[nx][ny].doormask & D_CLOSED && !(flag & OPENDOOR)) ||
+		 (levl[nx][ny].doormask & D_LOCKED && !(flag & UNLOCKDOOR))
+		) && !(flag & (ALLOW_WALL|ALLOW_DIG|BUSTDOOR))) continue;
+#endif
 	    if(nx != x && ny != y && (nodiag ||
 #ifdef REINCARNATION
 	       ((IS_DOOR(nowtyp) &&

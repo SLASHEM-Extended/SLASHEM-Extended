@@ -13,6 +13,10 @@ STATIC_VAR NEARDATA struct xlock_s {
 	struct rm  *door;
 	struct obj *box;
 	int picktyp, chance, usedtime;
+#ifdef DEVEL_BRANCH
+	/* ALI - Artifact doors */
+	int key;			/* Key being used (doors only) */
+#endif
 } xlock;
 
 #ifdef OVLB
@@ -303,7 +307,11 @@ pick_lock(pick) /* pick a lock with a given object */
 		pline(no_longer, "reach the", "lock");
 		reset_pick();
 		return 0;
+#ifdef DEVEL_BRANCH
+	    } else if (!xlock.door || xlock.key == pick->oartifact) {
+#else
 	    } else {
+#endif
 		const char *action = lock_action();
 		You("resume your attempt at %s.", action);
 		set_occupation(picklock, action, 0);
@@ -514,7 +522,8 @@ pick_lock(pick) /* pick a lock with a given object */
 
 #ifdef DEVEL_BRANCH
 		    /* ALI - Artifact doors */
-		    if (key && pick->oartifact != key) {
+		    xlock.key = pick->oartifact;
+		    if (key && xlock.key != key) {
 			if (picktyp == SKELETON_KEY) {
 			    Your("key doesn't seem to fit.");
 			    return(0);
@@ -653,6 +662,13 @@ doforce()               /* try to force a chest with your weapon */
 				Blind ? "feel" : "see");
 		return(0);
 	    }
+#ifdef DEVEL_BRANCH
+	    /* ALI - artifact doors */
+	    if (artifact_door(x, y)) {
+		pline("This door is too solid to force open.");
+		return 0;
+	    }
+#endif
 	    switch (door->doormask) {
 		case D_NODOOR:
 		    pline("This doorway has no door.");
@@ -936,6 +952,11 @@ int x, y;
 	const char *msg = (const char *)0;
 	const char *dustcloud = "A cloud of dust";
 	const char *quickly_dissipates = "quickly dissipates";
+#ifdef DEVEL_BRANCH
+	int key = artifact_door(x, y);		/* ALI - Artifact doors */
+#else
+	int key = 0;		/* Artifact doors aren't supported yet */
+#endif
 	
 	if (door->typ == SDOOR) {
 	    switch (otmp->otyp) {
@@ -943,8 +964,12 @@ int x, y;
 	    case SPE_KNOCK:
 	    case WAN_STRIKING:
 	    case SPE_FORCE_BOLT:
-		door->typ = DOOR;
-		door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);
+		if (key)	/* Artifact doors are revealed only */
+		    cvt_sdoor_to_door(door);
+		else {
+		    door->typ = DOOR;
+		    door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);
+		}
 		newsym(x,y);
 		if (cansee(x,y)) pline("A door appears in the wall!");
 		if (otmp->otyp == WAN_OPENING || otmp->otyp == SPE_KNOCK)
@@ -992,13 +1017,22 @@ int x, y;
 
 	    switch (door->doormask & ~D_TRAPPED) {
 	    case D_CLOSED:
-		msg = "The door locks!";
+		if (key)
+		    msg = "The door closes!";
+		else
+		    msg = "The door locks!";
 		break;
 	    case D_ISOPEN:
-		msg = "The door swings shut, and locks!";
+		if (key)
+		    msg = "The door swings shut!";
+		else
+		    msg = "The door swings shut, and locks!";
 		break;
 	    case D_BROKEN:
-		msg = "The broken door reassembles and locks!";
+		if (key)
+		    msg = "The broken door reassembles!";
+		else
+		    msg = "The broken door reassembles and locks!";
 		break;
 	    case D_NODOOR:
 		msg =
@@ -1009,19 +1043,22 @@ int x, y;
 		break;
 	    }
 	    block_point(x, y);
-	    door->doormask = D_LOCKED | (door->doormask & D_TRAPPED);
+	    if (key)
+		door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);
+	    else
+		door->doormask = D_LOCKED | (door->doormask & D_TRAPPED);
 	    newsym(x,y);
 	    break;
 	case WAN_OPENING:
 	case SPE_KNOCK:
-	    if (door->doormask & D_LOCKED) {
+	    if (!key && door->doormask & D_LOCKED) {
 		msg = "The door unlocks!";
 		door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);
 	    } else res = FALSE;
 	    break;
 	case WAN_STRIKING:
 	case SPE_FORCE_BOLT:
-	    if (door->doormask & (D_LOCKED | D_CLOSED)) {
+	    if (!key && door->doormask & (D_LOCKED | D_CLOSED)) {
 		if (door->doormask & D_TRAPPED) {
 		    if (MON_AT(x, y))
 			(void) mb_trapped(m_at(x,y));
@@ -1109,6 +1146,10 @@ struct obj *otmp;
 /* ALI - Kevin Hugo's artifact doors.
  * Return the artifact which unlocks the door at (x, y), or
  * zero if it is an ordinary door.
+ * Note: Not all doors are listed in the doors array (eg., doors
+ * dynamically converted from secret doors). Since only trapped
+ * and artifact doors are needed this isn't a problem. If we ever
+ * implement trapped secret doors we will have to extend this.
  */
 
 int
@@ -1121,7 +1162,6 @@ int x, y;
 	if (x == doors[i].x && y == doors[i].y)
 	    return doors[i].arti_key;
     }
-    impossible("No door at (%d, %d)", x, y);
     return 0;
 }
 #endif	/* DEVEL_BRANCH */
