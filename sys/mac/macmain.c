@@ -59,6 +59,7 @@ main (void)
 	setrandom();
 	initoptions();
 	init_nhwindows(&argc, (char **)&hname);
+	DimMenuBar();
 
 	/*
 	 * It seems you really want to play.
