@@ -327,6 +327,8 @@ TODO:
 -tofix: using the nethack config files.
 -vampires shouldn't be allowed to become Flame Mages
 
+ver 0.0.6E5F3 [?] [Released by ?]
+
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).
 -Implemented support routines for NhExt sub-protocol 1.
@@ -352,6 +354,8 @@ ver 0.0.6E5 [May 3/2001] [Released by Warren]
 -fixed bug 232030: GTK: Can't start in character mode.
 -fixed bug 417384: Shopkeeper services.
 -fixed bug 225227: Vampires start with food rations.
+
+ver 0.0.6E4F7 [?] [Released by ?]
 
 ver 0.0.6E4F6 [November 30/2001] [Released by Ali]
 -fixed bug 453246: Genetic engineers attacking monsters.
