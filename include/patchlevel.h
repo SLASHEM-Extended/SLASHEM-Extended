@@ -15,11 +15,13 @@
  * PATCHLEVEL is updated for each release.
  */
 #define PATCHLEVEL      7
-#define EDITLEVEL	6
-#define FIXLEVEL        4
+#define EDITLEVEL	7
+#if 0
+#define FIXLEVEL        0
+#endif
 
 #define COPYRIGHT_BANNER_A \
-"This is SuperLotsoAddedStuffHack-Extended Magic 1997-2004"
+"This is SuperLotsoAddedStuffHack-Extended Magic 1997-2005"
 
 #define COPYRIGHT_BANNER_B \
 "NetHack, Copyright 1985-2003 Stichting Mathematisch Centrum, M. Stephenson."

@@ -67,7 +67,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E6F4 [?] [Released by ?]
+ver 0.0.7E7 [?] [Released by ?]
 -Fixed build of proxy tests
 -fixed bug 1071688: cannot compile on FreeBSD (termcap)
 -fixed bug 1071623: Cannot compile on FreeBSD due to menucolor inclusion
