@@ -67,7 +67,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E6F2 [?] [Released by ?]
+ver 0.0.7E6F2 [May 3/2004] [Released by Ali]
 -fixed bug 910334: Vampire blood and foodless conduct
 -fixed bug 924384: Inconsistency with shoggoth corroding items
 -Macintosh: Include fix-level in about-box version
