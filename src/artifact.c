@@ -1110,6 +1110,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	const char *wepdesc;
 	static const char you[] = "you";
 	char hittee[BUFSIZ];
+	boolean special_applies;
 
 	strcpy(hittee, youdefend ? you : mon_nam(mdef));
 
@@ -1118,6 +1119,13 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	 * handled.  Messages are done in this function, however.
 	 */
 	*dmgptr += spec_dbon(otmp, mdef, *dmgptr);
+
+	if (spec_dbon_applies)
+	    special_applies = TRUE;
+	else {
+	    const struct artifact *weap = get_artifact(otmp);
+	    special_applies = weap && spec_applies(weap, mdef);
+	}
 
 	if (youattack && youdefend) {
 	    impossible("attacking yourself with weapon?");
@@ -1173,11 +1181,13 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	    return Mb_hit(magr, mdef, otmp, dmgptr, dieroll, vis, hittee);
 	}
 
-	if (!spec_dbon_applies && !spec_ability(otmp, SPFX_BEHEAD)) {
+	if (!spec_dbon_applies && !spec_ability(otmp, SPFX_BEHEAD) ||
+		!special_applies) {
 	    /* since damage bonus didn't apply, nothing more to do;  
 	       no further attacks have side-effects on inventory */
 	    /* [ALI] The Tsurugi of Muramasa has no damage bonus but
-	       is handled below so avoid early exit if SPFX_BEHEAD set */
+	       is handled below so avoid early exit if SPFX_BEHEAD set
+	       and the defender is vulnerable */
 	    return FALSE;
 	}
 
@@ -1424,18 +1434,14 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 #endif
 	    otmp->oartifact == ART_OGRESMASHER ||
 	    otmp->oartifact == ART_ELFRIST) {
-		register const struct artifact *weap = get_artifact(otmp);
-
-		if (weap && spec_applies(weap, mdef) && (dieroll < 4)) {
-			if (realizes_damage) {
-				pline("%s %s!", The(distant_name(otmp, xname)),
-						(Blind ? "roars deafeningly" : 
-							 "shines brilliantly"));
-				pline("It strikes %s!", 
-					(youdefend ? "you" : mon_nam(mdef)));
-			}
-			cancel_monst(mdef, otmp, youattack, TRUE, (magr == mdef));
-			return TRUE;
+		if (dieroll < 4) {
+		    if (realizes_damage) {
+			pline("%s %s!", The(distant_name(otmp, xname)), Blind ?
+				"roars deafeningly" : "shines brilliantly");
+			pline("It strikes %s!", hittee);
+		    }
+		    cancel_monst(mdef, otmp, youattack, TRUE, magr == mdef);
+		    return TRUE;
 		}
 	}
 	return FALSE;
