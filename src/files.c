@@ -969,7 +969,7 @@ create_savefile()
 # endif
 #else	/* FILE_AREAS */
 	fq_save = fqname(SAVEF, SAVEPREFIX, 0);
-# ifdef MICRO || defined(WIN32)
+# if defined(MICRO) || defined(WIN32)
 	fd = open(fq_save, O_WRONLY | O_BINARY | O_CREAT | O_TRUNC, FCMASK);
 # else
 #  ifdef MAC
