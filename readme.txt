@@ -374,6 +374,7 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -fixed bug 440052: Making Sam angry.
 -fixed bug 440159: Doppelgangers and save/restore.
 -fixed bug 443827: New monsters and eating.
+-Added debugging for bug 420942: Two entrances to mines.
 
 ver 0.0.6E4F4 [May 2/2001] [Released by Ali]
 -fixed bug 404825: wands of teleportation that explode/zapped at yourself
