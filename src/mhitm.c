@@ -231,7 +231,7 @@ mattackm(magr, mdef)
     /*
      * Pets don't use "ranged" attacks for fear of hitting their master
      */
-    boolean range = !magr->mtame && !monnear(magr, mdef->mx, mdef->my);
+    boolean range;
 
     if (!magr || !mdef) return(MM_MISS);		/* mike@genat */
     if (!magr->mcanmove) return(MM_MISS);		/* riv05!a3 */
@@ -241,6 +241,8 @@ mattackm(magr, mdef)
     if (pa == &mons[PM_GRID_BUG] && magr->mx != mdef->mx
 						&& magr->my != mdef->my)
 	return(MM_MISS);
+
+    range = !magr->mtame && !monnear(magr, mdef->mx, mdef->my);
 
     /* Calculate the armour class differential. */
     tmp = find_mac(mdef) + magr->m_lev;
