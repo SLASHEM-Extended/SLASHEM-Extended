@@ -19,18 +19,30 @@ gypsy_charge (mtmp, amount)
 	struct monst *mtmp;
 	long amount;
 {
-	long tmpamount; /* temp variable for big credit calculations */
+#ifdef GOLDOBJ
+	struct obj *gypgold;
+#endif
+
 	/* Take from credit first */
 	if (amount > EGYP(mtmp)->credit) {
 		/* Do in several steps, for broken compilers */
-		tmpamount += EGYP(mtmp)->credit; /* [CWC] No point adding to Au, use a temp variable instead */
-		tmpamount -= amount;
+		amount -= EGYP(mtmp)->credit;
 		EGYP(mtmp)->credit = 0;
+#ifdef GOLDOBJ
+		money2mon(mtmp, amount);
+#else
+		u.ugold -= amount;
+#endif
 		flags.botl = 1;
 	} else
 		EGYP(mtmp)->credit -= amount;
 
 	/* The gypsy never carries cash; it might get stolen! */
+#ifdef GOLDOBJ
+	gypgold = findgold(mtmp->minvent);
+	if (gypgold)
+		m_useup(mtmp, gypgold);
+#endif
 	return;
 }
 
@@ -437,8 +449,13 @@ fortune (mtmp)
 			/* fortune_lev(mtmp, &quest_level); */
 			break;
 		case 19: /* Infinity */
-			if (gypsy_offer(mtmp, 10000L, "grant you a wish"))
+			if (mtmp->mcan) {
+				verbalize("I wish I wasn't here!");
+				mongone(mtmp);
+			} else if (gypsy_offer(mtmp, 10000L, "grant you a wish")) {
+				mtmp->mcan = TRUE;
 				makewish();
+			}
 			break;
 		default:
 			impossible("unknown trump %d", card_trump(card));

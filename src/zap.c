@@ -579,7 +579,11 @@ coord *cc;
 		mtmp2->mtrapped = 0;
 		mtmp2->msleeping = 0;
 		mtmp2->mfrozen = 0;
-		mtmp2->mcan = 0;
+		if (mtmp2->mnum != PM_GYPSY)
+		    /* Gypsies use mcan to enforce the rule that they only
+		     * ever grant one wish.
+		     */
+		    mtmp2->mcan = 0;
 		mtmp2->mcansee = 1;	/* set like in makemon */
 		mtmp2->mblinded = 0;
 		mtmp2->mcanmove = 1;	/* set like in makemon */

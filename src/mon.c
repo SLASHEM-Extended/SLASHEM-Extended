@@ -113,7 +113,7 @@ STATIC_VAR short cham_to_pm[] = {
 		PM_SANDESTIN,
 };
 
-#define KEEPTRAITS(mon)	(mon->isshk || mon->mtame || \
+#define KEEPTRAITS(mon)	(mon->isshk || mon->isgyp || mon->mtame || \
 			 (mon->data->geno & G_UNIQ) || is_reviver(mon->data) || \
 			 (mon->m_id == quest_status.leader_m_id))
 
