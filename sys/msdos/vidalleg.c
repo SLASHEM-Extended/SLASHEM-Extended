@@ -1,4 +1,4 @@
-/*   SCCS Id: @(#)vidalleg.c   3.3 - 1.5   96/02/16                 */
+/*   SCCS Id: @(#)vidalleg.c   3.4 - 1.5   96/02/16                 */
 /*   Copyright (c) NetHack PC Development Team 1995                 */
 /*   NetHack may be freely redistributed.  See license for details. */
 /*   AllegroHack (c) Kelly Youngblood 2000 */
@@ -33,7 +33,7 @@
 
 void nh_stretch_blit(BITMAP *, BITMAP *, int, int, int, int, int, int, int, int);
 
-#ifdef ALLEGRO_USE_AA               
+#ifdef ALLEGRO_USE_AA
 #define nh_stretch_sprite        aa_stretch_sprite
 #else
 #define aa_stretch_blit          stretch_blit
@@ -53,7 +53,7 @@ int FDECL(alleg_swallowed,(int,int));
 STATIC_DCL void FDECL(alleg_redrawmap,(BOOLEAN_P));
 STATIC_DCL void NDECL(alleg_full_redraw);
 STATIC_DCL void NDECL(alleg_load_cnf);
-void FDECL(alleg_cliparound,(int,int));  
+void FDECL(alleg_cliparound,(int,int));
 
 STATIC_DCL void FDECL(alleg_scrollmap,(BOOLEAN_P));
 STATIC_DCL void NDECL(positionbar);
@@ -82,13 +82,13 @@ static int Y_HEIGHT	= 480;             /* viewport sixe, automatically set */
 static int attrib_allegro_normal = CLR_CYAN; /* was ATTRIB_VGA_NORMAL */
 static int attrib_allegro_intense = CLR_BRIGHT_MAGENTA; /* was ATTRIB_VGA_INTENSE */
 static int attrib_allegro_status = CLR_BRIGHT_BLUE; /* was ATTRIB_STATUS */
-static int scroll_lim	= 0;             /* how many pixels to wait before a 
+static int scroll_lim	= 0;             /* how many pixels to wait before a
                                            scroll*/
 static int need_update  = 0;           /* screen-update code flag */
 static int no_update    = 0;
 static int did_update   = 0;           /* cursor-drawing code flag */
 static int tiles_loaded = 0;           /* initialization flag */
-static int player_dead  = 0;           /* darken the screen if true */ 
+static int player_dead  = 0;           /* darken the screen if true */
 static int fancy_meters = 1;
 static int faded_out    = 0;
 static int use_2xsai    = 0;		/* use 2xsai interpolation routines */
@@ -104,14 +104,14 @@ static PALETTE tilepal;		/* Save the palette of the tile file
  * in an overlapping manner (top ones furthest back, left on top of right)
  *
  * It kinda looks like this (from the GTK winport)
- 
+
  	BIG3DTILE
 
                   +----------+
-  ^              /          /| 
-  |             /          / | 
-  |            /          /  | 
-  |           /          /   | 
+  ^              /          /|
+  |             /          / |
+  |            /          /  |
+  |           /          /   |
   *6         /          /    |
   |         +----------+     +
   |       ^ |          |    / ^
@@ -119,7 +119,7 @@ static PALETTE tilepal;		/* Save the palette of the tile file
   |      *2 |          |  /   *4
   |       | |          | /    |
   v       v |          |/     v
-            +----------+      
+            +----------+
              <-- *1 --> <-*3->
              <-- *5        -->
 
@@ -138,7 +138,7 @@ static PALETTE tilepal;		/* Save the palette of the tile file
 
 /*
  * Global Variables
- */ 
+ */
 
 extern int clipx, clipxmax;        /* current clipping column from wintty.c */
 extern boolean clipping;        /* clipping on? from wintty.c */
@@ -227,7 +227,7 @@ static COLOR_MAP half_solidity;
 
 static char bigtile_file[BUFSZ] = "";
 
-#define ON32  0 
+#define ON32  0
 #define OFF32 1
 #define ON16  2
 #define OFF16 3
@@ -240,13 +240,13 @@ int
 alleg_detect()
 {
 	boolean retval;
-	
+
 	alleg_load_cnf();
-	
+
         set_color_depth(alleg_colordepth);
         retval = !((alleg_SwitchMode(ALLEG_MODEGFX)) < 0);
 
-        (void) alleg_SwitchMode(ALLEG_MODETEXT); 
+        (void) alleg_SwitchMode(ALLEG_MODETEXT);
 
         return(retval);
 }
@@ -315,7 +315,7 @@ void
 alleg_tty_end_screen()
 {
 /*        vga_clear_screen(BACKGROUND_ALLEGRO_COLOR); */
-          (void) alleg_SwitchMode(ALLEG_MODETEXT); 
+          (void) alleg_SwitchMode(ALLEG_MODETEXT);
 }
 
 void
@@ -447,7 +447,7 @@ drawbars()
         {
                 hline(healthbar, 0, 0, hcur, hcolor);
                 hline(energybar, 0, 0, u.uen, ecolor);
-        } 
+        }
         else
         {
             for(i = 0; i < hcur; i++)
@@ -481,12 +481,12 @@ int row;
 
 	if (row == 0) {
 		char* bp;
-		
+
 		/* Find St: */
     		bp = s2 = index(s1, ':') - 2;
-    		
+
     		for (bp--; *(bp - 1) == ' '; bp--);
-    		
+
     		*bp = '\0';
 	}
 
@@ -508,13 +508,13 @@ int row;
         if(row) drawbars();
 
         rectfill(screen, 0, y, X_RES, y+(FONTY-1), BACKGROUND_ALLEGRO_COLOR);
-        
+
 	alleg_text(s1, 0, y, colorpal[attrib_allegro_status]);
-	
+
         if (s2) {
         	alleg_text(" ", maxx-s2siz - FONTX, y, colorpal[attrib_allegro_status]);
         	alleg_text(s2, maxx-s2siz, y, colorpal[attrib_allegro_status]);
-        }       
+        }
 }
 
 /* This assumes that the ON32 and the ON16 are 32x32 and 16x16 respectively
@@ -530,16 +530,16 @@ draw_HUD()
                 nh_stretch_sprite(screen, tilecache[glyph2tile[obj_to_glyph(uwep)]],
                              X_RES-3*32, Y_RES-48, 32, 32);
 
-        draw_sprite(screen, hudwidgets[ u.twoweap ? ON32 : OFF32], 
+        draw_sprite(screen, hudwidgets[ u.twoweap ? ON32 : OFF32],
                              X_RES-2*32, Y_RES-48);
         if(uswapwep)
                 nh_stretch_sprite(screen, tilecache[glyph2tile[obj_to_glyph(uswapwep)]],
                              X_RES-2*32, Y_RES-48, 32, 32);
         if(uquiver && (is_missile(uquiver) || ammo_and_launcher(uquiver,uwep)))
-                draw_sprite(screen, hudwidgets[ON32], 
+                draw_sprite(screen, hudwidgets[ON32],
                             X_RES-32, Y_RES-48);
         else
-                draw_sprite(screen, hudwidgets[OFF32], 
+                draw_sprite(screen, hudwidgets[OFF32],
                             X_RES-32, Y_RES-48);
         if(uquiver)
                 stretch_sprite(screen, tilecache[glyph2tile[obj_to_glyph(uquiver)]],
@@ -548,7 +548,7 @@ draw_HUD()
         if(uarms)
         {
                 draw_sprite(screen, hudwidgets[ON16], X_RES-i*16, Y_RES-16);
-                nh_stretch_sprite(screen, 
+                nh_stretch_sprite(screen,
                   tilecache[glyph2tile[obj_to_glyph(uarms)]],
                   X_RES-i*16, Y_RES-16, 16, 16);
         }
@@ -562,18 +562,18 @@ draw_HUD()
         ) {
                 draw_sprite(screen, hudwidgets[ON16], X_RES-i*16, Y_RES-16);
                 if(uskin)
-                        nh_stretch_sprite(screen,                       
+                        nh_stretch_sprite(screen,
                           tilecache[glyph2tile[obj_to_glyph(uskin)]],
-                          X_RES-i*16, Y_RES-16, 16, 16);             
+                          X_RES-i*16, Y_RES-16, 16, 16);
                 else if(uarm)
-                        nh_stretch_sprite(screen,                       
+                        nh_stretch_sprite(screen,
                           tilecache[glyph2tile[obj_to_glyph(uarm)]],
-                          X_RES-i*16, Y_RES-16, 16, 16);             
+                          X_RES-i*16, Y_RES-16, 16, 16);
 #ifdef TOURIST
                 else
-                        nh_stretch_sprite(screen,                       
+                        nh_stretch_sprite(screen,
                           tilecache[glyph2tile[obj_to_glyph(uarmu)]],
-                          X_RES-i*16, Y_RES-16, 16, 16);             
+                          X_RES-i*16, Y_RES-16, 16, 16);
 #endif
         }
         else
@@ -583,7 +583,7 @@ draw_HUD()
         if(uarmc)
         {
                 draw_sprite(screen, hudwidgets[ON16], X_RES-i*16, Y_RES-16);
-                nh_stretch_sprite(screen, 
+                nh_stretch_sprite(screen,
                   tilecache[glyph2tile[obj_to_glyph(uarmc)]],
                   X_RES-i*16, Y_RES-16, 16, 16);
         }
@@ -593,7 +593,7 @@ draw_HUD()
         if(uarmh)
         {
                 draw_sprite(screen, hudwidgets[ON16], X_RES-i*16, Y_RES-16);
-                nh_stretch_sprite(screen, 
+                nh_stretch_sprite(screen,
                   tilecache[glyph2tile[obj_to_glyph(uarmh)]],
                   X_RES-i*16, Y_RES-16, 16, 16);
         }
@@ -603,7 +603,7 @@ draw_HUD()
         if(uarmg)
         {
                 draw_sprite(screen, hudwidgets[ON16], X_RES-i*16, Y_RES-16);
-                nh_stretch_sprite(screen, 
+                nh_stretch_sprite(screen,
                   tilecache[glyph2tile[obj_to_glyph(uarmg)]],
                   X_RES-i*16, Y_RES-16, 16, 16);
         }
@@ -613,7 +613,7 @@ draw_HUD()
         if(uarmf)
         {
                 draw_sprite(screen, hudwidgets[ON16], X_RES-i*16, Y_RES-16);
-                nh_stretch_sprite(screen, 
+                nh_stretch_sprite(screen,
                   tilecache[glyph2tile[obj_to_glyph(uarmf)]],
                   X_RES-i*16, Y_RES-16, 16, 16);
         }
@@ -628,25 +628,25 @@ draw_miniHUD()
 {
         draw_sprite(screen, hudwidgets[ON16], X_RES-3*32, Y_RES-48);
         if(uwep)
-                nh_stretch_sprite(screen, 
+                nh_stretch_sprite(screen,
                         tilecache[glyph2tile[obj_to_glyph(uwep)]],
                         X_RES-3*32, Y_RES-48, 16, 16);
 
-        draw_sprite(screen, hudwidgets[u.twoweap ? ON16 : OFF16], 
+        draw_sprite(screen, hudwidgets[u.twoweap ? ON16 : OFF16],
                         X_RES-3*32, Y_RES-32);
         if(uswapwep)
-                nh_stretch_sprite(screen, 
+                nh_stretch_sprite(screen,
                         tilecache[glyph2tile[obj_to_glyph(uswapwep)]],
                         X_RES-3*32, Y_RES-32, 16, 16);
 
         if(uquiver && (is_missile(uquiver) || ammo_and_launcher(uquiver,uwep)))
-                draw_sprite(screen, hudwidgets[ON16], 
+                draw_sprite(screen, hudwidgets[ON16],
                         X_RES-3*32, Y_RES-16);
         else
-                draw_sprite(screen, hudwidgets[OFF16], 
+                draw_sprite(screen, hudwidgets[OFF16],
                         X_RES-3*32, Y_RES-16);
         if(uquiver)
-                nh_stretch_sprite(screen, 
+                nh_stretch_sprite(screen,
                         tilecache[glyph2tile[obj_to_glyph(uquiver)]],
                         X_RES-3*32, Y_RES-16, 16, 16);
 }
@@ -672,15 +672,15 @@ draw_minimap()
 
     /* don't anti-alias */
     stretch_blit(minimap, dmap, 0, 0, 80, 24, 0, 0, 80, 48);
-    
+
     if (draw_3Dtiles && !iflags.traditional_view) {
     	mapwinx = posxy3d_to_posx(clipwinx, clipwiny);
     	mapwiny = posy3d_to_posy(clipwiny);
     }
-    
+
     draw_sprite(dmap, mapwidgets[MW_U], u.ux-2, u.uy*2-2);
 
-    rect(dmap, mapwinx/tile_x, (mapwiny/tile_y)*2-2, 
+    rect(dmap, mapwinx/tile_x, (mapwiny/tile_y)*2-2,
         (mapwinx+X_RES)/tile_x, ((mapwiny+Y_HEIGHT)/tile_y)*2-2,
         colorpal[CLR_GREEN]);
     rect(dmap, 0, 0, 79, 47, colorpal[CLR_WHITE]);
@@ -734,7 +734,7 @@ int col,row;
         int x,y;
 
         x = min(col,(CO-1));   /* min() used protection from callers */
-        y = min(row,(LI-1));         
+        y = min(row,(LI-1));
 
         if (s != (char *)0) {
                 alleg_text(s, x*FONTX, y*FONTY, colorpal[g_attribute]);
@@ -755,7 +755,7 @@ int attr;
         LI = Y_RES/FONTY;
 
         switch(ch) {
-            case '\n':        
+            case '\n':
                         col = 0;
                         ++row;
                         break;
@@ -794,19 +794,19 @@ int pm, fem, lev, a;
         BITMAP *ptr;
 
         switch(pm)
-        {                                             
+        {
                 case PM_ALIGNED_PRIEST:
                 case PM_PRIEST:
                 case PM_PRIESTESS:
                         v = fem ? -PM_PRIESTESS: -PM_PRIEST;
-                        switch(a) {                             
-                                case A_LAWFUL:                  
+                        switch(a) {
+                                case A_LAWFUL:
                                         v = fem ? SUB_PLF : SUB_PLM; break;
-                                case A_NEUTRAL:                 
+                                case A_NEUTRAL:
                                         v = fem ? SUB_PNF : SUB_PNM; break;
-                                case A_CHAOTIC:                 
+                                case A_CHAOTIC:
                                         v = fem ? SUB_PCF : SUB_PCM; break;
-                        }                                       
+                        }
                         break;
                 case PM_ARCHEOLOGIST:   if(fem) v = SUB_ARCF; break;
                 case PM_BARBARIAN:      if(fem) v = SUB_BARF; break;
@@ -824,7 +824,7 @@ int pm, fem, lev, a;
         if((v > 0) && substitutes[v])
                 ptr = substitutes[v];
         else
-        {  
+        {
             if(v < 0)
                 pm = -v;
 
@@ -846,11 +846,11 @@ BITMAP*
 sub_altar(a)
 int a;
 {
-	if (draw_3Dtiles) 
+	if (draw_3Dtiles)
 		return (tilecache[glyph2tile[cmap_to_glyph(S_altar)]]);
         switch(a) {
-                case A_LAWFUL: 
-                        return(substitutes[SUB_ALTARL]);       
+                case A_LAWFUL:
+                        return(substitutes[SUB_ALTARL]);
                 case A_NEUTRAL:
                         return(substitutes[SUB_ALTARN]);
                 case A_CHAOTIC:
@@ -878,7 +878,7 @@ int attr;
        		/* No need to do any more - the whole screen has been painted */
        		return;
        	}
-        	
+
         /* Actually, tile_x and tile_y should be set to FONTX, FONTY ... */
         textout(subscreen, font, buf, x, y, colorpal[attr]);
 }
@@ -896,7 +896,7 @@ int ch;
         row = currow;
         col = curcol;
         if ((col < 0 || col >= COLNO) ||
-            (row < TOP_MAP_ROW || row >= (ROWNO + TOP_MAP_ROW))) 
+            (row < TOP_MAP_ROW || row >= (ROWNO + TOP_MAP_ROW)))
             	return;
 
 	/* Update glyph table */
@@ -907,7 +907,7 @@ int ch;
 
         mapx = col+1;
         mapy = row - TOP_MAP_ROW;
-        
+
 	/* Update the minimap */
         if(ch == ' ')
                 putpixel(minimap, mapx, mapy, 0);
@@ -918,18 +918,18 @@ int ch;
 
 	if (
 #ifdef REINCARNATION
-        	Is_rogue_level(&u.uz) || 
+        	Is_rogue_level(&u.uz) ||
 #endif
         	iflags.traditional_view)
         {
                 rogue_xputg(col*tile_x, row*tile_y, ch, attr);
-                
+
 	        if (col < (CO - 1 )) ++col;
 	        alleg_gotoloc(col,row);
 
 		need_update = 1;
 		return;
-        } 
+        }
 
         /* Draw in tilemode */
         if (subscreen == txt_subscreen) {
@@ -946,14 +946,14 @@ int ch;
 		int posx = colrow_to_posx3d(col, row);
 		int posy = row_to_posy3d(row);
 		int i, j;
-	
+
 		set_clip(subscreen, posx, posy, posx + tile_x - 1, posy + tile_y - 1);
-		
+
 #if 0
-		rect(subscreen, posx, posy, posx + tile_x - 1, posy + tile_y - 1, 
+		rect(subscreen, posx, posy, posx + tile_x - 1, posy + tile_y - 1,
 				colorpal[CLR_BLACK]);
 #endif
-				
+
 		for (j = row - 1; j <= row + 1; j++)
 		    for (i = col - 1; i <= col + 1; i++)
 			alleg_printGlyph_at(i, j, PRINT_BACKGROUND);
@@ -961,18 +961,18 @@ int ch;
 		for (j = row - 1; j <= row + 1; j++)
 		    for (i = col - 1; i <= col + 1; i++)
 			alleg_printGlyph_at(i, j, PRINT_FOREGROUND);
-			
+
 		/* Reset clip */
 		set_clip(subscreen, 0, 0, subscreen->w, subscreen->h);
-		
+
 		/* Put cursor to the right position */
 	        if (col < (CO - 1 )) ++col;
-	        alleg_gotoloc(col,row);       
+	        alleg_gotoloc(col,row);
         }
 }
 
 static void
-alleg_printGlyph_at(col, row, mode) 
+alleg_printGlyph_at(col, row, mode)
 int col, row, mode;
 {
        	int glyphnum = NO_GLYPH;
@@ -992,7 +992,7 @@ int col, row, mode;
             (row < TOP_MAP_ROW || row >= (ROWNO + TOP_MAP_ROW))) return;
 
 	glyphnum = map[row - TOP_MAP_ROW][col].glyph;
-	glyph2num = levl[mapx][mapy].glyph;
+	glyph2num = memory_glyph(mapx, mapy);
 	if(Blind || (viz_array && !cansee(mapx, mapy))){
 	    if(glyph_is_object(glyph2num)){
 		if(!levl[mapx][mapy].waslit)
@@ -1009,13 +1009,13 @@ int col, row, mode;
 		posy = posy_to_posy3d(posy);
 	}
 	need_update = 1;
- 
+
 	if (mode & PRINT_BACKGROUND) {
 		/* Draw floor */
-			
+
 		b_tile = tilecache[glyph2tile[FLOOR_GLYPH]];
 		draw_sprite(subscreen, b_tile, posx, posy);
-              
+
                 /* Use alternate altar tiles if appropriate */
 		if(!draw_3Dtiles && glyph2num == cmap_to_glyph(S_altar) &&
 		          !(Is_astralevel(&u.uz) || Is_sanctum(&u.uz))) {
@@ -1031,16 +1031,16 @@ int col, row, mode;
 	    		(glyph_to_cmap(glyphnum) != NO_GLYPH && \
 	    		glyph_to_cmap(glyphnum) >= S_stone && \
 	    		glyph_to_cmap(glyphnum) <= S_hcdoor)
-	    
+
 	    /* Check above, above right and to the left */
 	    if (draw_3Dtiles && glyph_is_wall(glyph2num) && (
-	 	((row > TOP_MAP_ROW) && 
+	 	((row > TOP_MAP_ROW) &&
 	 	 !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW - 1][col].glyph) ||
-		 	 (col > 0 && 
+		 	 (col > 0 &&
 	 	   !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW - 1][col - 1].glyph)) ||
-	 	 (col < (COLNO - 1) && 
+	 	 (col < (COLNO - 1) &&
 	 	   !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW - 1][col + 1].glyph))) ||
-		 	(col > 0 && 
+		 	(col > 0 &&
 	 	   !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW][col - 1].glyph))))
 	    {
 		/* Make walls see-through */
@@ -1062,7 +1062,7 @@ int col, row, mode;
 	f_tile = tilecache[glyph2tile[glyphnum]];
 
 #if 0
-        if ((trap = t_at(mapx,mapy)) != 0 && trap->tseen && 
+        if ((trap = t_at(mapx,mapy)) != 0 && trap->tseen &&
             !covers_traps(mapx,mapy))
                 glyph2num = trap_to_glyph(trap);
         else
@@ -1077,13 +1077,13 @@ int col, row, mode;
 	    		glyph_to_cmap(glyphnum) <= S_hcdoor)
 	/* Check above, above right and to the left */
 	if (draw_3Dtiles && glyphnum == glyph2num && glyph_is_wall(glyph2num) && (
-	 	((row > TOP_MAP_ROW) && 
+	 	((row > TOP_MAP_ROW) &&
 	 	 !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW - 1][col].glyph) ||
-		 	 (col > 0 && 
+		 	 (col > 0 &&
 	 	   !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW - 1][col - 1].glyph)) ||
-	 	 (col < (COLNO - 1) && 
+	 	 (col < (COLNO - 1) &&
 	 	   !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW - 1][col + 1].glyph))) ||
-		 	(col > 0 && 
+		 	(col > 0 &&
 	 	   !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW][col - 1].glyph))))
 	{
 		/* Make walls see-through */
@@ -1094,7 +1094,7 @@ int col, row, mode;
 	    draw_sprite(subscreen, b_tile, posx, posy);
 	}
 #endif
-	
+
 	/* Only draw foreground if it isn't the same as the background */
         if(glyphnum != glyph2num) {
 		if(glyph_to_mon(glyphnum) == NO_GLYPH) {
@@ -1104,35 +1104,35 @@ int col, row, mode;
 	        {
 	                struct monst* mtmp = level.monsters[mapx][mapy];
 
-	                if(mapx == u.ux && mapy == u.uy && !u.usteed && 
+	                if(mapx == u.ux && mapy == u.uy && !u.usteed &&
 	                   (Blind || !Invisible))
 	                          f_tile = getutile();
 	                else if(mtmp)
-	                        f_tile = subst_mon(glyph_to_mon(glyphnum), 
-	                                           mtmp->female, 
+	                        f_tile = subst_mon(glyph_to_mon(glyphnum),
+	                                           mtmp->female,
 	                                           mtmp->m_lev, getmalign(mtmp));
 
-	                if(mapx == u.ux && mapy == u.uy && Invis && 
+	                if(mapx == u.ux && mapy == u.uy && Invis &&
 	                		!Blind && See_invisible)
 	                        draw_trans = 1;
 	                else if(mtmp && mtmp->minvis && See_invisible)
 	                        draw_trans = 1;
 
-	                if(cansee(mapx,mapy) && !covers_objects(mapx,mapy) &&  
-	                        (otmp = vobj_at(mapx,mapy)))                   
-	                {                                                      
-	                    if(!Hallucination && (otmp->otyp == STATUE))       
-	                        draw_gray_sprite(subscreen,                    
+	                if(cansee(mapx,mapy) && !covers_objects(mapx,mapy) &&
+	                        (otmp = vobj_at(mapx,mapy)))
+	                {
+	                    if(!Hallucination && (otmp->otyp == STATUE))
+	                        draw_gray_sprite(subscreen,
 	                                 tilecache[glyph2tile[otmp->corpsenm]],
 	                                 posx, posy);
-	                    else                                               
-	                    {                                                  
-	                        glyph2num = obj_to_glyph(otmp);                
-	                        draw_sprite(subscreen,                         
-	                                    tilecache[glyph2tile[glyph2num]],  
+	                    else
+	                    {
+	                        glyph2num = obj_to_glyph(otmp);
+	                        draw_sprite(subscreen,
+	                                    tilecache[glyph2tile[glyph2num]],
 	                                    posx, posy);
-	                    }                                                  
-	                }                                                      
+	                    }
+	                }
 	        }
 
 	        if(f_tile == tilecache[glyph2tile[PM_ALIGNED_PRIEST]])
@@ -1154,7 +1154,7 @@ int col, row, mode;
 	        {
 		    if (alleg_colordepth != 8)
 			set_trans_blender(255, 255, 255, 128);
-			
+
 	            draw_trans_sprite(subscreen, f_tile, posx, posy);
 	        }
 	        else
@@ -1162,25 +1162,25 @@ int col, row, mode;
 	            draw_sprite(subscreen, f_tile, posx, posy);
 	        }
 	}
-	
+
 	/* Draw Aura if protection is active */
         if(u.uspellprot && mapx == u.ux && mapy == u.uy)
         {
         	int pixelcolor = ((u.uspellprot*20 < 200) ? (u.uspellprot*20 + 55) : 255);
-        	
+
                 drawing_mode(DRAW_MODE_TRANS, screen, 0, 0);
-                
+
 		if (alleg_colordepth != 8)
                     set_trans_blender(255,255,255,128);
-                
-                circlefill(subscreen, posx+(tile_x/2), posy+(tile_y/2), 
-                           (min((tile_x/2), (tile_y/2)) - 1), 
+
+                circlefill(subscreen, posx+(tile_x/2), posy+(tile_y/2),
+                           (min((tile_x/2), (tile_y/2)) - 1),
                            makecol(pixelcolor, pixelcolor,0));
                 drawing_mode(DRAW_MODE_SOLID, screen, 0, 0);
         }
         if (col < (CO - 1 )) ++col;
-        alleg_gotoloc(col,row);       
-}                      
+        alleg_gotoloc(col,row);
+}
 
 /*
  * Cursor location manipulation, and location information fetching
@@ -1193,7 +1193,7 @@ int col, row, mode;
  *                       will occur next, it does not change the location
  *                       of the player on the NetHack level.
  */
- 
+
 void
 alleg_gotoloc(col,row)
 int col,row;
@@ -1245,13 +1245,13 @@ int x, y;
                 {
                         case 1: minx = 26*tile_x; miny = 4*tile_y;
                                 maxx = 52*tile_x; maxy = 22*tile_y;
-                                break;                                   
+                                break;
                         case 2: minx = 30*tile_x; miny = 6*tile_y;
                                 maxx = 50*tile_x; maxy = 19*tile_y;
-                                break;                                   
+                                break;
                         case 3: minx = 24*tile_x; miny = 6*tile_y;
                                 maxx = 53*tile_x; maxy = 20*tile_y;
-                                break;                                   
+                                break;
                         case 4: minx = 32*tile_x; miny = 6*tile_y;
                                 maxx = 47*tile_x; maxy = 19*tile_y;
                                 break;
@@ -1277,7 +1277,7 @@ int x, y;
         finaly = ((y+1)*tile_y - Y_HEIGHT/2) + tile_y/2;
 
         if((maxx - minx) < X_WIDTH)
-        {                       
+        {
                 finalx = ((minx+maxx) - X_RES)/2;
         }
         else
@@ -1299,46 +1299,46 @@ int x, y;
                 if(finaly > (maxy - Y_HEIGHT))
                         finaly = maxy - Y_HEIGHT;
         }
-        
+
         /* Convert to 3D pixel equivalents if needed */
         if(draw_3Dtiles && !iflags.traditional_view) {
         	finalx = posxy_to_posx3d(finalx, finaly) - X_WIDTH/4;
         	finaly = posy_to_posy3d(finaly) - Y_HEIGHT/4;
-        	
+
         }
 
         if( (finalx != oldx) || (finaly != oldy) ) {
             if (!restoring)
             {
-                if(smoothing == 2) 
+                if(smoothing == 2)
                 {
                         clipwinx = (oldx*3+finalx)/4;
                         clipwiny = (oldy*3+finaly)/4;
-                        need_update = 1;             
-                        alleg_redrawmap(0);            
+                        need_update = 1;
+                        alleg_redrawmap(0);
                 }
 
                 if(smoothing)
                 {
                         clipwinx = (oldx+finalx)/2;
                         clipwiny = (oldy+finaly)/2;
-                        need_update = 1;           
-                        alleg_redrawmap(0);          
+                        need_update = 1;
+                        alleg_redrawmap(0);
                 }
 
-                if(smoothing == 2) 
+                if(smoothing == 2)
                 {
                         clipwinx = (oldx+finalx*3)/4;
                         clipwiny = (oldy+finaly*3)/4;
-                        need_update = 0;             
-                        alleg_redrawmap(0);            
+                        need_update = 0;
+                        alleg_redrawmap(0);
                 }
                 clipwinx = finalx;
                 clipwiny = finaly;
                 need_update = 1;
                 alleg_redrawmap(1);
             }
-        } 
+        }
 }
 
 void alleg_overview(on)
@@ -1385,14 +1385,14 @@ boolean final;
         {
              int maxx = 80*tile_x;
              int maxy = 23*tile_y;
-             
+
 #if 0
              if (draw_3Dtiles && !iflags.traditional_view) {
              	    maxx = posxy_to_posx3d(COLNO*tile_x, 0);
              	    maxy = posy_to_posy3d((ROWNO-1)*tile_y) + tile_y;
              }
 #endif
-        	
+
              if(final)
                 /* don't anti-alias, it's too much of a slowdown */
                 stretch_blit(subscreen, screen, 0, 0, maxx, maxy,
@@ -1414,12 +1414,12 @@ boolean final;
 #if 0
             else if (use_2xsai && subscreen != txt_subscreen) {
             	/* Only when drawing in gfx mode */
-            	nh_stretch_blit(subscreen, screen, 
-            		clipwinx + (X_RES / 4), 
-            		clipwiny + (Y_RES / 4), 
-            		X_RES / 2, Y_HEIGHT / 2, 
+            	nh_stretch_blit(subscreen, screen,
+            		clipwinx + (X_RES / 4),
+            		clipwiny + (Y_RES / 4),
+            		X_RES / 2, Y_HEIGHT / 2,
 			0, FONTY, X_RES, Y_HEIGHT);
-            		
+
             }
 #endif
             else
@@ -1438,20 +1438,20 @@ void alleg_full_redraw()
 	int t;
 	int old_currow = currow;
 	int old_curcol = curcol;
-	
+
 	/* Check for right subscreen */
         if (
 #ifdef REINCARNATION
-	    Is_rogue_level(&u.uz) || 
+	    Is_rogue_level(&u.uz) ||
 #endif
-	    iflags.traditional_view) {	
+	    iflags.traditional_view) {
         	if (subscreen != txt_subscreen) subscreen = txt_subscreen;
         } else {
         	if (subscreen == txt_subscreen) subscreen = tile_subscreen;
         }
-	
+
         clear_to_color(subscreen, BACKGROUND_ALLEGRO_COLOR);
-                    
+
 	for (y = TOP_MAP_ROW; y < (ROWNO + TOP_MAP_ROW); ++y)
 	    for (x = 0; x < COLNO; ++x) {
 	    	t = y - TOP_MAP_ROW;
@@ -1465,7 +1465,7 @@ void alleg_full_redraw()
 
 	currow = old_currow;
 	curcol = old_curcol;
-	
+
 	need_update = 1;
 }
 
@@ -1486,21 +1486,21 @@ int dir;
                         case 3: clipwiny+=delta; break;
                 }
 
-                if(dir < 2) {                                               
-                        if(clipwinx < 0)                                    
-                        { clipwinx = 0; i=1000; }                           
-                        if(clipwinx > ((80*tile_x) - X_RES))                
-                        { clipwinx = 80*tile_x - X_RES; i=1000; }           
-                } else {                                                    
-                        if(Y_HEIGHT >= 21*tile_y)                           
+                if(dir < 2) {
+                        if(clipwinx < 0)
+                        { clipwinx = 0; i=1000; }
+                        if(clipwinx > ((80*tile_x) - X_RES))
+                        { clipwinx = 80*tile_x - X_RES; i=1000; }
+                } else {
+                        if(Y_HEIGHT >= 21*tile_y)
                         { clipwiny = tile_y-(Y_HEIGHT-21*tile_y)/2; return; }
-                        else                                                
-                        {                                                   
-                          if(clipwiny < tile_y)                               
-                          { clipwiny = tile_y; i=1000; }                      
-                          if(clipwiny > ((22*tile_y) - Y_HEIGHT))             
-                          { clipwiny = 22*tile_y - Y_HEIGHT; i=1000; }        
-                        }                       
+                        else
+                        {
+                          if(clipwiny < tile_y)
+                          { clipwiny = tile_y; i=1000; }
+                          if(clipwiny > ((22*tile_y) - Y_HEIGHT))
+                          { clipwiny = 22*tile_y - Y_HEIGHT; i=1000; }
+                        }
                 }
 
                 need_update = 1;
@@ -1525,7 +1525,7 @@ void alleg_traditional(on)
 boolean on;
 {
 	alleg_overview(FALSE);
-	
+
 	if (on) {
 		iflags.traditional_view = TRUE;
 		tile_x = FONTX;
@@ -1537,9 +1537,9 @@ boolean on;
 	}
 
 	alleg_cliparound(u.ux, u.uy);
-	
+
 	need_update = 2;
-	
+
 	alleg_redrawmap(1);
 
         return;
@@ -1596,15 +1596,15 @@ void init_progress_meter()
 {
         BITMAP *progress_meter = create_bitmap(TOTAL_PROGRESS, 30);
 
-	/* Progress display bar box */                     
-	rect(screen, 0, Y_RES-64, X_RES-1, Y_RES-33, 
+	/* Progress display bar box */
+	rect(screen, 0, Y_RES-64, X_RES-1, Y_RES-33,
         	        colorpal[CLR_WHITE]);
 
 	/* Fill with empty color */
         clear_to_color(progress_meter, colorpal[CLR_BLUE]);
 
 	/* No anti-alias */
-        stretch_blit(progress_meter, screen, 0, 0, TOTAL_PROGRESS, 
+        stretch_blit(progress_meter, screen, 0, 0, TOTAL_PROGRESS,
                      30, 1, Y_RES-63, X_RES-2, 30);
 
 }
@@ -1622,7 +1622,7 @@ void inc_progress_meter()
         rectfill(progress_meter, 0, 0, i, 30, colorpal[CLR_GREEN]);
 
 	/* No anti-alias */
-        stretch_blit(progress_meter, screen, 0, 0, TOTAL_PROGRESS, 
+        stretch_blit(progress_meter, screen, 0, 0, TOTAL_PROGRESS,
                      30, 1, Y_RES-63, X_RES-2, 30);
 
         destroy_bitmap(progress_meter);
@@ -1644,11 +1644,11 @@ void alleg_Finish(void)
 #if 0
      windowprocs.win_cliparound = tty_cliparound;
 #endif
-     
+
      g_attribute = attrib_text_normal;
      alleg_SwitchMode(ALLEG_MODETEXT);
-     
-/* 
+
+/*
      iflags.tile_view = FALSE;
 
      destroy_bitmap(txt_subscreen);
@@ -1671,7 +1671,7 @@ void alleg_Finish(void)
  * do it using the colour 'colour'.
  *
  */
-void 
+void
 alleg_WriteChar(chr,col,row,colour)
 int chr,col,row,colour;
 {
@@ -1680,7 +1680,7 @@ int chr,col,row,colour;
         char buf[2];
 
         x = min(col,(CO-1));   /* min() used protection from callers */
-        y = min(row,(LI-1));         
+        y = min(row,(LI-1));
 
         buf[0] = chr;
         buf[1] = 0;
@@ -1688,7 +1688,7 @@ int chr,col,row,colour;
         alleg_text(buf, x*FONTX, y*FONTY, actual_colour);
 }
 
-void 
+void
 alleg_update_positionbar(posbar)
 char *posbar;
 {
@@ -1701,7 +1701,7 @@ char *posbar;
 #endif
 }
 
-STATIC_OVL void 
+STATIC_OVL void
 positionbar()
 {
         return;
@@ -1719,7 +1719,7 @@ alleg_DrawCursor()
         if(!inmap)
                 return;
 
-        x = min(curcol,(CO - 1)); 
+        x = min(curcol,(CO - 1));
         y = min(currow,(LI - 1));
 
         if (draw_3Dtiles && !iflags.traditional_view) {
@@ -1729,7 +1729,7 @@ alleg_DrawCursor()
         	pixelx = x*tile_x - clipwinx;
         	pixely = y*tile_y - clipwiny + FONTY;
         }
-        
+
         if( (oldcursx != x) || (oldcursy != y) )
         {
                 if(!did_update)
@@ -1745,20 +1745,20 @@ alleg_DrawCursor()
 
 	if(iflags.over_view)
         {
-                masked_blit(ovcursor, screen, 0, 0, (x*X_RES)/80, 
+                masked_blit(ovcursor, screen, 0, 0, (x*X_RES)/80,
                     (y*Y_HEIGHT)/23+FONTY, X_RES/80, Y_HEIGHT/23);
         } else if (
 #ifdef REINCARNATION
-            Is_rogue_level(&u.uz) || 
+            Is_rogue_level(&u.uz) ||
 #endif
             iflags.traditional_view) {
-	        line(screen, pixelx, pixely+FONTY, 
+	        line(screen, pixelx, pixely+FONTY,
 	        	pixelx+FONTX, pixely+FONTY, colorpal[CLR_WHITE]);
 	        return;
 	} else {
                 draw_sprite(screen, cursorbmp, pixelx, pixely);
 #if 0
-                masked_blit(cursorbmp, screen, 0, 0, pixelx, pixely, 
+                masked_blit(cursorbmp, screen, 0, 0, pixelx, pixely,
                             tile_x, tile_y);
 #endif
 	}
@@ -1773,7 +1773,7 @@ alleg_HideCursor()
         if(!inmap)
                 return;
 
-        x = min(curcol,(CO - 1)); 
+        x = min(curcol,(CO - 1));
         y = min(currow,(LI - 1));
 
         pixelx = x*tile_x - clipwinx;
@@ -1829,14 +1829,14 @@ int portal;
                              0, 0, X_RES, Y_HEIGHT);
         else
                 blit(subscreen, buffer, clipwinx, clipwiny,
-                             0, 0, X_RES, Y_HEIGHT);   
+                             0, 0, X_RES, Y_HEIGHT);
         while(factor > 1)
         {
 		if(portal)
 		    buffer2 = blur(buffer, factor);
 		else
 		    buffer2 = mosaic(buffer, factor);
-                blit(buffer2, screen, 0, 0, 0, FONTY, X_RES, Y_HEIGHT);   
+                blit(buffer2, screen, 0, 0, 0, FONTY, X_RES, Y_HEIGHT);
                 destroy_bitmap(buffer2);
                 delayfx();
                 factor-=3;
@@ -1861,7 +1861,7 @@ int portal;
 		    buffer2 = blur(buffer, factor);
 		else
 		    buffer2 = mosaic(buffer, factor);
-                blit(buffer2, screen, 0, 0, 0, FONTY, X_RES, Y_HEIGHT);   
+                blit(buffer2, screen, 0, 0, 0, FONTY, X_RES, Y_HEIGHT);
                 destroy_bitmap(buffer2);
                 delayfx();
 		factor+=3;
@@ -1880,16 +1880,16 @@ fade_to_black()
         long start_rad, incr, rt, odd;
 
         no_update = 0;
-        
+
         if (draw_3Dtiles) {
         	pixelx = colrow_to_posx3d(u.ux, u.uy) - clipwinx - (tile_x/2);
         	pixely = row_to_posy3d(u.uy) - clipwiny + (tile_y/2) + FONTY;
         }
 
-        /* use the furthest corner to determine the starting radius of the 
+        /* use the furthest corner to determine the starting radius of the
            circle */
         start_rad = maxof4(abs(dist2(pixelx, pixely, 0, FONTY)),
-                           abs(dist2(pixelx, pixely, X_RES, FONTY)), 
+                           abs(dist2(pixelx, pixely, X_RES, FONTY)),
                            abs(dist2(pixelx, pixely, 0, Y_HEIGHT+FONTY)),
                            abs(dist2(pixelx, pixely, X_RES, Y_HEIGHT+FONTY)));
 
@@ -1909,15 +1909,15 @@ fade_to_black()
                 v = max(i-90,0);
                 w = i;
                 clear_to_color(circlebmp, makecol(255,0,255));
-                circlefill(circlebmp, pixelx, pixely, 
+                circlefill(circlebmp, pixelx, pixely,
                            w, 0);
-                circlefill(circlebmp, pixelx, pixely, 
+                circlefill(circlebmp, pixelx, pixely,
                            v, makecol(255,0,255));
 
 		if (alleg_colordepth != 8)
 		    set_trans_blender(0,0,0,max(incr*2,8));
-		
-                draw_trans_sprite(screen, circlebmp, 0, FONTY); 
+
+                draw_trans_sprite(screen, circlebmp, 0, FONTY);
                 delayfx();
         }
 }
@@ -1926,7 +1926,7 @@ int
 alleg_swallowed(x,y)
 int x,y;
 {
-        int mpixelx = x*tile_x - clipwinx - tile_x*2; 
+        int mpixelx = x*tile_x - clipwinx - tile_x*2;
         int mpixely = y*tile_y - clipwiny + FONTY;
         int upixelx = x*tile_x - clipwinx - tile_x;
         int upixely = y*tile_y - clipwiny + FONTY + tile_y;
@@ -1947,22 +1947,22 @@ int x,y;
 
 	if (alleg_colordepth != 8)
             set_trans_blender(0, 0, 0, 128);
-        
+
         mtile = subst_mon(monsndx(u.ustuck->data), u.ustuck->female, u.ustuck->m_lev);
 
         utile = getutile();
 
         nh_stretch_sprite(screen, mtile, mpixelx, mpixely, tile_x*3, tile_y*3);
-        draw_trans_sprite(screen, utile, upixelx, upixely);       
+        draw_trans_sprite(screen, utile, upixelx, upixely);
 
-        if(player_dead)                                             
-        {                                                           
-            drawing_mode(DRAW_MODE_TRANS, screen, 0, 0);        
+        if(player_dead)
+        {
+            drawing_mode(DRAW_MODE_TRANS, screen, 0, 0);
 	    if (alleg_colordepth != 8)
-        	set_trans_blender(0,0,0,128);                       
+        	set_trans_blender(0,0,0,128);
             rectfill(screen, mpixelx, mpixely, mpixelx+(tile_x*3), mpixely+(tile_y*3), 0);
-            drawing_mode(DRAW_MODE_SOLID, screen, 0, 0);        
-        }                                                           
+            drawing_mode(DRAW_MODE_SOLID, screen, 0, 0);
+        }
 
         return 1;
 }
@@ -1974,19 +1974,19 @@ int x,y,skill;
         int pixelx = x*tile_x - clipwinx - tile_x*3/2;
         int pixely = y*tile_y - clipwiny + FONTY + tile_y/2;
         BITMAP* undersh;
-        BITMAP* buffer2; 
+        BITMAP* buffer2;
         int i;
         int type = skill - P_ATTACK_SPELL + 1;
 
         if(iflags.over_view)
                 return;
-	
+
         if (draw_3Dtiles) {
         	pixelx = colrow_to_posx3d(x, y) - clipwinx - tile_x*3/2;
         	pixely = row_to_posy3d(y) - clipwiny + FONTY;
         }
 
-        if(pixelx < 0 || pixely < 0 || 
+        if(pixelx < 0 || pixely < 0 ||
            pixelx>X_RES || pixely > (Y_RES-3*FONTY))
                 return;
 
@@ -2002,7 +2002,7 @@ int x,y,skill;
 	    if (alleg_colordepth != 8)
         	set_trans_blender(0, 0, 0, 255-5*i);
             draw_sprite(screen, undersh, pixelx, pixely);
-            draw_trans_sprite(screen, auras[type][i], pixelx, pixely);       
+            draw_trans_sprite(screen, auras[type][i], pixelx, pixely);
             delayfx();
         }
         draw_sprite(screen, undersh, pixelx, pixely);
@@ -2016,7 +2016,7 @@ int x,y;
         int pixelx = x*tile_x - clipwinx - tile_x;
         int pixely = y*tile_y - clipwiny + FONTY + tile_y;
         BITMAP* undersh;
-        BITMAP* buffer2; 
+        BITMAP* buffer2;
         int i;
 
         if(iflags.over_view)
@@ -2027,12 +2027,12 @@ int x,y;
         	pixely = row_to_posy3d(y) - clipwiny + FONTY + tile_y/2;
         }
 
-        if(pixelx < 0 || pixely < 0 || 
+        if(pixelx < 0 || pixely < 0 ||
            pixelx>X_RES || pixely > (Y_RES-3*FONTY))
                 return 1;
 
 	undersh=create_bitmap(tile_x,tile_y);
-	
+
         need_update = 1;
         alleg_redrawmap(0);
 
@@ -2042,9 +2042,9 @@ int x,y;
         {
 	    if (alleg_colordepth != 8)
         	set_trans_blender(0, 0, 0, 192-8*i);
-        
+
             draw_sprite(screen, undersh, pixelx, pixely);
-            draw_trans_sprite(screen, shields[i], pixelx, pixely);       
+            draw_trans_sprite(screen, shields[i], pixelx, pixely);
             delayfx();
         }
         draw_sprite(screen, undersh, pixelx, pixely);
@@ -2062,7 +2062,7 @@ int x,y,adtyp;
         int pixely = y*tile_y - clipwiny + FONTY;
         int expl_x = 3*tile_x;
         int expl_y = 3*tile_y;
-        BITMAP *buffer, *underexp, *buffer2; 
+        BITMAP *buffer, *underexp, *buffer2;
         int i;
 
         if (draw_3Dtiles) {
@@ -2071,7 +2071,7 @@ int x,y,adtyp;
         	expl_x = tile_x + 2*TILE_3D_WIDTH;
         	expl_y = tile_y + 2*TILE_3D_HEIGHT;
         }
-        
+
         buffer=create_bitmap(expl_x,expl_y);
 	underexp=create_bitmap(expl_x,expl_y);
 
@@ -2092,13 +2092,13 @@ int x,y,adtyp;
             clear_to_color(buffer, makecol(255, 0, 255));
 
 	    /* explosions are 96x96 */
-            nh_stretch_blit(explosions[adtyp], buffer, 0, 0, 
+            nh_stretch_blit(explosions[adtyp], buffer, 0, 0,
             		explosions[adtyp]->w, explosions[adtyp]->h,
                         i, i, (expl_x-(2*i)), (expl_y-(2*i)));
 
             if(adtyp == AD_ELEC || adtyp == AD_MAGM)
             {
-                buffer2=create_bitmap(expl_x,expl_y);  
+                buffer2=create_bitmap(expl_x,expl_y);
                 clear_to_color(buffer2, makecol(255, 0, 255));
                 rotate_sprite(buffer2, buffer, 0, 0, itofix(rn2(256)));
                 destroy_bitmap(buffer);
@@ -2109,8 +2109,8 @@ int x,y,adtyp;
 		set_trans_blender(0, 0, 0, min(255,100+4*i));
 
             draw_sprite(screen, underexp, pixelx, pixely);
-            draw_trans_sprite(screen, buffer, pixelx, pixely);       
-            draw_trans_sprite(screen, buffer, pixelx, pixely); 
+            draw_trans_sprite(screen, buffer, pixelx, pixely);
+            draw_trans_sprite(screen, buffer, pixelx, pixely);
             delayfx();
         }
 /*        draw_sprite(screen, underexp, pixelx, pixely); */
@@ -2118,7 +2118,7 @@ int x,y,adtyp;
         destroy_bitmap(underexp);
 }
 
-/* Use this to heopfully prevent unnecessary mode switches 
+/* Use this to heopfully prevent unnecessary mode switches
  * Same return values as set_gfx_mode (0 on success, negative otherwise)
  */
 int
@@ -2129,7 +2129,7 @@ int mode;
     int retval = 0;
 
     if (curr_mode == mode) return retval;
-    
+
     if (mode == ALLEG_MODEGFX) {
      	retval = set_gfx_mode(video_mode, X_RES, Y_RES, 0, 0);
       	/* Set palette for 8-bit mode */
@@ -2137,9 +2137,9 @@ int mode;
        		set_palette(tilepal);
        	}
     } else if (mode == ALLEG_MODETEXT) {
-	retval = set_gfx_mode(GFX_TEXT,80,25,0,0); 
+	retval = set_gfx_mode(GFX_TEXT,80,25,0,0);
     }
-    
+
     curr_mode = mode;
     return retval;
 }
@@ -2156,12 +2156,12 @@ int dest_x, dest_y, dest_width, dest_height;
 
 	BITMAP *tmptile, *tmptile2;
 	tmptile = new_bitmap(source_width, source_height + 1);
-        
+
         clear_to_color(tmptile, makecol(0,0,0));
-		    	
-	blit(source, tmptile, source_x, source_y, 0, 0, 
+
+	blit(source, tmptile, source_x, source_y, 0, 0,
 			source_width, source_height + 1);
-	
+
 	tmptile2 = new_bitmap(source_width * 2, (source_height * 2) + 2);
 
         clear_to_color(tmptile2, makecol(0,0,0));
@@ -2178,12 +2178,12 @@ int dest_x, dest_y, dest_width, dest_height;
 		_2xSaiBlit(tmptile, tmptile2);
 		break;
 	}
-	
+
 	stretch_blit(tmptile2, dest, 0, 0, source_width * 2 , source_height * 2,
 		dest_x, dest_y, dest_width, dest_height);
-		    	
+
     	destroy_bitmap(tmptile);
-    	destroy_bitmap(tmptile2);    	
+    	destroy_bitmap(tmptile2);
     } else aa_stretch_blit(source, dest, source_x, source_y, source_width, source_height,
 			dest_x, dest_y, dest_width, dest_height);
 }
