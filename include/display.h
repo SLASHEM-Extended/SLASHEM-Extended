@@ -93,26 +93,6 @@
 	&& mon_visible(mon))
 
 
-/* knowninvisible(mon)
- * This one checks to see if you know a monster is both there and invisible.
- * 1) If you can see the monster and have see invisible, it is assumed the
- * monster is transparent, but visible in some manner.	(Earlier versions of
- * Nethack were really inconsistent on this.)
- * 2) If you can't see the monster, but can see its location and you have
- * telepathy that works when you can see, you can tell that there is a
- * creature in an apparently empty spot.
- * Infravision is not relevant; we assume that invisible monsters are also
- * invisible to infravision.
- */
-#define knowninvisible(mon) \
-	(mtmp->minvis && \
-	    ((cansee(mon->mx, mon->my) && (See_invisible || Detect_monsters)) || \
-		(!Blind && (HTelepat & ~INTRINSIC) && \
-		    distu(mon->mx, mon->my) <= (BOLT_LIM * BOLT_LIM) \
-		) \
-	    ) \
-	)
-
 /*
  * canspotmon(mon)
  *
@@ -135,7 +115,7 @@
  * invisible to infravision.
  */
 #define knowninvisible(mon) \
-	(mtmp->minvis && \
+	(mon->minvis && \
 	    ((cansee(mon->mx, mon->my) && (See_invisible || Detect_monsters)) || \
 		(!Blind && (HTelepat & ~INTRINSIC) && \
 		    distu(mon->mx, mon->my) <= (BOLT_LIM * BOLT_LIM) \
