@@ -370,6 +370,7 @@ ver 0.0.6E4F8 [?] [Released by ?]
 -fixed bug 456805: Baby dragons don't grow up.
 -fixed bug 531179: Beheading when invulnerable.
 -fixed bug 499439: Fireballs don't explode on hitting you.
+-fixed bug 528174: having shopkeepers enchant daggers crash.
 
 ver 0.0.6E4F7 [February 28/2002] [Released by Ali]
 -Improvements to database (Lars Huttar)

@@ -4529,10 +4529,10 @@ shk_weapon_works(slang, shkp)
 			Your("%s to evaporate into thin air!", aobjnam(obj, "seem"));
 		/* ...No actual vibrating and no evaporating */
 		
-		if(uwep->otyp == WORM_TOOTH) {
-			uwep->otyp = CRYSKNIFE;
+		if (obj->otyp == WORM_TOOTH) {
+			obj->otyp = CRYSKNIFE;
 			Your("weapon seems sharper now.");
-			uwep->cursed = 0;
+			obj->cursed = 0;
 			break;
 		}
 
