@@ -77,6 +77,7 @@ ver 0.0.7E5 [?] [Released by ?]
 -fixed bug 731772: Two-weapon skill categorization
 -GtkHack: Added provision for disabling asynchronous NhExt
 -Merged vanilla 3.4.3 codebase.
+-fixed bug 857644: Gnome: tty_raw_print should be removed
 
 See history.txt for changes made in previous versions.
 

@@ -16,8 +16,10 @@
 GNHWinData gnome_windowlist[MAXWINDOWS];
 winid WIN_WORN = WIN_ERR;
 
+#ifdef TTY_GRAPHICS
 extern void tty_raw_print(const char *);
 extern void tty_raw_print_bold(const char *);
+#endif
 
 
 /* Interface definition, for windows.c */
@@ -912,7 +914,11 @@ raw_print(str)  -- Print directly to a screen, or otherwise guarantee that
 */
 void gnome_raw_print(const char *str)
 {
+#ifdef TTY_GRAPHICS
     tty_raw_print(str);
+#else
+    puts(str); (void) fflush(stdout);
+#endif
 }
 
 /*
@@ -922,7 +928,11 @@ possible).
 */
 void gnome_raw_print_bold(const char *str)
 {
+#ifdef TTY_GRAPHICS
     tty_raw_print_bold(str);
+#else
+    puts(str); (void) fflush(stdout);
+#endif
 }
 
 /*
