@@ -2593,7 +2593,16 @@ wand_explode(obj, hero_broke)
     register struct monst *mon;
     int dmg, damage;
     boolean affects_objects;
-    int where = obj->where;
+
+    /* [ALI] Do this first so that wand is removed from bill. Otherwise,
+     * the freeinv() below also hides it from setpaid() which causes problems.
+     */
+    if (carried(obj) ? obj->unpaid :
+	    !obj->no_charge && costly_spot(obj->ox, obj->oy)) {
+	if (hero_broke)
+	    check_unpaid(obj);		/* Extra charge for use */
+	bill_dummy_object(obj);
+    }
 
     current_wand = obj;		/* destroy_item might reset this */
     freeinv(obj);		/* hide it from destroy_item instead... */
@@ -2757,16 +2766,8 @@ wand_explode(obj, hero_broke)
  discard_broken_wand:
     obj = current_wand;		/* [see dozap() and destroy_item()] */
     current_wand = 0;
-    if (obj) {
-	/* extra charge for _use_ prior to destruction */
-	/* [ALI] This is more correct than calling check_unpaid() and avoids
-	 * the problem of check_unpaid() checking that the object is carried
-	 * (which information we discarded above in freeinv(obj)).
-	 */
-	if (obj->unpaid || where != OBJ_INVENT && costly_spot(obj->ox, obj->oy))
-	    bill_dummy_object(obj);
+    if (obj)
 	delobj(obj);
-    }
     nomul(0);
     return 1;
 }

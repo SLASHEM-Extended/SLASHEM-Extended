@@ -400,6 +400,7 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -Don't create 600-byte automatic in makedefs.c
 -Support Mac build with Guidebook in doc directory
 -fixed bug 453083: Vecna doesn't always leave his hand.
+-fixed bug 455346: onbill: unpaid obj not on bill?
 
 ver 0.0.6E4F4mac0 [May 13/2001] [Released by Paul]
 -built Mac 68K port

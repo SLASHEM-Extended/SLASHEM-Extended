@@ -4881,5 +4881,73 @@ check_lower:
 
 #endif /* OVLB */
 
+#ifdef DEBUG
+int
+wiz_debug_cmd()	/* in this case, display your bill(s) */
+{
+    int win, special = 0;
+    struct obj *obj;
+    struct monst *shkp, *ushkp;
+    struct bill_x *bp;
+    int ct;
+    char buf[BUFSIZ];
+    char buf2[BUFSIZ];
+
+    win = create_nhwindow(NHW_MENU);
+    ushkp = shop_keeper(*u.ushops);
+    shkp = next_shkp(fmon, TRUE);
+    if (!shkp) {
+	shkp = ushkp;
+	special++;
+    }
+    if (!shkp)
+	putstr(win, 0, "No shopkeepers with bills");
+    else
+	for (; shkp; ) {
+	    bp = ESHK(shkp)->bill_p;
+	    ct = ESHK(shkp)->billct;
+	    if (ct) {
+		Sprintf(buf, "Your bill with %s", noit_mon_nam(shkp));
+		if (shkp == ushkp) {
+		    Strcat(buf, " (here)");
+		    ushkp = NULL;
+		}
+		Strcat(buf, ":");
+		putstr(win, 0, buf);
+		putstr(win, 0, "Price   Quan    Used?   Object");
+		while (--ct >= 0) {
+		    obj = bp_to_obj(bp);
+		    if (obj) {
+			if (!obj->unpaid)
+			    *buf2='*';		/* Bad entry */
+			Strcpy(obj->unpaid ? buf2 : buf2 + 1, xname(obj));
+		    }
+		    else
+			Sprintf(buf2, "Unknown, with ID %d", bp->bo_id);
+		    Sprintf(buf, "%-7d %-7d %-7s %s", bp->price, bp->bquan,
+		      bp->useup ? "Yes" : "No", buf2);
+		    putstr(win, 0, buf);
+		    bp++;
+		}
+	    }
+	    else {
+		Sprintf(buf, "You do not owe %s anything.", noit_mon_nam(shkp));
+		putstr(win, 0, buf);
+	    }
+	    if (special)
+		break;
+	    shkp = next_shkp(shkp->nmon, TRUE);
+	    if (!shkp) {
+		shkp = ushkp;
+		special++;
+	    }
+	    if (shkp)
+		putstr(win, 0, "");
+	}
+    display_nhwindow(win, FALSE);
+    destroy_nhwindow(win);
+    return 0;
+}
+#endif	/* DEBUG */
 
 /*shk.c*/
