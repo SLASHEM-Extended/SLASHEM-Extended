@@ -28,7 +28,9 @@ static void FDECL(init_shk_services, (struct monst *));
 
 static const char * const shkliquors[] = {
     /* Ukraine */
-    "Njezjin", "Tsjernigof", "Gomel", "Ossipewsk", "Gorlowka",
+    "Njezjin", "Tsjernigof", "Ossipewsk", "Gorlowka",
+    /* Belarus */
+    "Gomel",
     /* N. Russia */
     "Konosja", "Weliki Oestjoeg", "Syktywkar", "Sablja",
     "Narodnaja", "Kyzyl",

@@ -590,7 +590,7 @@ vision_recalc(control)
 
 		    next_rmin[row] = min(next_rmin[row], col);
 		    next_rmax[row] = max(next_rmax[row], col);
-		    next_array[row][col] = IN_SIGHT;
+		    next_array[row][col] = IN_SIGHT | COULD_SEE;
 		}
 	}
 
@@ -604,7 +604,7 @@ vision_recalc(control)
 		next_row = next_array[row];
 
 		for(col=next_rmin[row]; col <= next_rmax[row]; col++)
-		    next_row[col] = IN_SIGHT;
+		    next_row[col] = IN_SIGHT | COULD_SEE;
 	    }
 	} else
 	    view_from(u.uy, u.ux, next_array, next_rmin, next_rmax,
@@ -1522,7 +1522,9 @@ clear_path(col1,row1,col2,row2)
 	    q3_path(row1,col1,row2,col2,cleardone);
 	}
     }
+#ifdef MACRO_CPATH
 cleardone:
+#endif
     return((boolean)result);
 }
 
@@ -1667,6 +1669,9 @@ right_side(row, cb_row, cb_col, fb_row, fb_col, left, right_mark, limits)
     char *row_max;		/* right most */
     int		  lim_max;	/* right most limit of circle */
 
+#ifdef GCC_WARN
+    rowp = 0;
+#endif
     nrow    = row + step;
 #ifdef GCC_WARN
     rowp = row_min = row_max = NULL;

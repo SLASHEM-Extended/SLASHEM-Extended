@@ -997,7 +997,7 @@ u_init()
 	u.ualignbase[A_CURRENT] = u.ualignbase[A_ORIGINAL] = u.ualign.type =
 			aligns[flags.initalign].value;
 	u.ulycn = NON_PM;
-#ifdef BSD
+#if defined(BSD) && !defined(POSIX_TYPES)
 	(void) time((long *)&u.ubirthday);
 #else
 	(void) time(&u.ubirthday);

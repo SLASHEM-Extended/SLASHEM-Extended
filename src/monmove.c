@@ -154,6 +154,7 @@ register struct monst *mtmp;
 	    /* can see it now, or sense it and would normally see it */
 	    (canseemon(mtmp) ||
 		(sensemon(mtmp) && couldsee(mtmp->mx,mtmp->my))) &&
+	    mtmp->mcanmove &&
 	    !noattacks(mtmp->data) && !onscary(u.ux, u.uy, mtmp))
 		stop_occupation();
 	return(rd);

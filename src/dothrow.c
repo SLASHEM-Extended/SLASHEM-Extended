@@ -5,6 +5,7 @@
 /* Contains code for 't' (throw) */
 
 #include "hack.h"
+#include "edog.h"
 
 STATIC_DCL int FDECL(throw_obj, (struct obj *, int, int));
 STATIC_DCL void NDECL(autoquiver);
@@ -462,6 +463,7 @@ register struct obj *obj;
 	if (hero_breaks(obj, u.ux, u.uy, TRUE)) return;
 	if (ship_object(obj, u.ux, u.uy, FALSE)) return;
 	dropy(obj);
+	if (!u.uswallow) container_impact_dmg(obj);
 }
 
 /*
@@ -570,6 +572,8 @@ hurtle_step(arg, x, y)
 	return FALSE;
     } else if (!in_out_region(x, y)) {
 	return FALSE;
+    } else if (*range == 0) {
+	return FALSE;			/* previous step wants to stop now */
     }
 
     if (!Passes_walls || !(may_pass = may_passwall(x, y))) {
@@ -655,7 +659,8 @@ hurtle_step(arg, x, y)
 		   In_sokoban(&u.uz)) {
 		/* Air currents overcome the recoil */
     		dotrap(ttmp,0);
-		return FALSE;
+		*range = 0;
+		return TRUE;
     	} else {
 		if (ttmp->tseen)
 		    You("pass right over %s %s.",
@@ -939,10 +944,11 @@ throwing_weapon(obj)
 struct obj *obj;
 {
 	return (is_missile(obj) || is_spear(obj) ||
-			/* daggers and knife (excludes scalpel) */
-			(is_blade(obj) && (objects[obj->otyp].oc_dir & PIERCE)) ||
-			/* special cases [might want to add AXE] */
-			obj->otyp == WAR_HAMMER || obj->otyp == AKLYS);
+		/* daggers and knife (excludes scalpel) */
+		(is_blade(obj) && !is_sword(obj) &&
+		 (objects[obj->otyp].oc_dir & PIERCE)) ||
+		/* special cases [might want to add AXE] */
+		obj->otyp == WAR_HAMMER || obj->otyp == AKLYS);
 }
 
 /* the currently thrown object is returning to you (not for boomerangs) */
@@ -1291,6 +1297,8 @@ int thrown;
 		    newsym(bhitpos.x,bhitpos.y);
 		if (obj_sheds_light(obj))
 		    vision_full_recalc = 1;
+		if (!IS_SOFT(levl[bhitpos.x][bhitpos.y].typ))
+		    container_impact_dmg(obj);
 	}
 }
 
@@ -1536,21 +1544,36 @@ int thrown;
 		 * sometimes disappear when thrown
 		 * WAC - Spoon always disappears after doing damage
 		 */
-                if ((((objects[otyp].oc_skill < P_NONE &&
-                		objects[otyp].oc_skill > -P_BOOMERANG) ||
-			(obj->oclass == GEM_CLASS && !objects[otyp].oc_magic))
-                    && rn2(3))
+		if (((objects[otyp].oc_skill < P_NONE && 
+			objects[otyp].oc_skill > -P_BOOMERANG) ||
+			(obj->oclass == GEM_CLASS && 
+			!objects[otyp].oc_magic))
 # ifdef P_SPOON
-                    || (obj->oartifact == ART_HOUCHOU)
+			|| (obj->oartifact == ART_HOUCHOU)
 # endif
 			/* WAC catch Hellfire */
 			|| (launcher && launcher->oartifact == ART_HELLFIRE 
 			&& is_ammo(obj) && ammo_and_launcher(obj, launcher))
-                    ) {
-		    if (*u.ushops)
-			check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
-		    obfree(obj, (struct obj *)0);
-		    return 1;
+		   ) {
+		    /* we were breaking 2/3 of everything unconditionally.
+		     * we still don't want anything to survive unconditionally,
+		     * but we need ammo to stay around longer on average.
+		     */
+		    int broken, chance;
+		    chance = 3 + greatest_erosion(obj) - obj->spe;
+		    if (chance > 1)
+			broken = rn2(chance);
+		    else
+			broken = !rn2(4);
+		    if (obj->blessed && !rnl(4))
+			broken = 0;
+
+		    if (broken) {
+			if (*u.ushops)
+			    check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
+			obfree(obj, (struct obj *)0);
+			return 1;
+		    }
 		}
 		passive_obj(mon, obj, (struct attack *)0);
 	    } else {
@@ -1591,7 +1614,8 @@ int thrown;
 	    potionhit(mon, obj, TRUE);
 	    return 1;
 
-	} else if (befriend_with_obj(mon->data, obj)) {
+	} else if (befriend_with_obj(mon->data, obj) ||
+		   (mon->mtame && dogfood(mon, obj) <= ACCFOOD)) {
 	    if (tamedog(mon, obj))
 		return 1;           	/* obj is gone */
 	    else {

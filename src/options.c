@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)options.c	3.4	2003/01/08	*/
+/*	SCCS Id: @(#)options.c	3.4	2003/05/19	*/
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -104,6 +104,7 @@ static struct Bool_Opt
 #else
 	{"flush", (boolean *)0, FALSE, SET_IN_FILE},
 #endif
+	{"fullscreen", &iflags.wc2_fullscreen, FALSE, SET_IN_FILE},
 	{"help", &flags.help, TRUE, SET_IN_GAME},
 	{"hilite_pet",    &iflags.wc_hilite_pet, FALSE, SET_IN_GAME},	/*WC*/
 #ifdef ASCIIGRAPH
@@ -164,7 +165,6 @@ static struct Bool_Opt
 	{"news", (boolean *)0, FALSE, SET_IN_FILE},
 #endif
 	{"null", &flags.null, TRUE, SET_IN_GAME},
-	{"number_pad", &iflags.num_pad, FALSE, SET_IN_GAME},
 #ifdef MAC
 	{"page_wait", &flags.page_wait, TRUE, SET_IN_GAME},
 #else
@@ -212,6 +212,7 @@ static struct Bool_Opt
 	{"showweight", (boolean *)0, FALSE, SET_IN_FILE},
 #endif
 	{"silent", &flags.silent, TRUE, SET_IN_GAME},
+	{"softkeyboard", &iflags.wc2_softkeyboard, FALSE, SET_IN_FILE},
 	{"sortpack", &flags.sortpack, TRUE, SET_IN_GAME},
 	{"sound", &flags.soundok, TRUE, SET_IN_GAME},
 	{"sparkle", &flags.sparkle, TRUE, SET_IN_GAME},
@@ -253,6 +254,7 @@ static struct Comp_Opt
 						8, DISP_IN_GAME },
 	{ "align_message", "message window alignment", 20, DISP_IN_GAME }, 	/*WC*/
 	{ "align_status", "status window alignment", 20, DISP_IN_GAME }, 	/*WC*/
+	{ "altkeyhandler", "alternate key handler", 20, DISP_IN_GAME },
 	{ "boulder",  "the symbol to use for displaying boulders",
 						1, SET_IN_GAME },
 	{ "catname",  "the name of your (first) cat (e.g., catname:Tabby)",
@@ -271,10 +273,10 @@ static struct Comp_Opt
 	{ "font_message", "the font to use in the message window",
 						40, DISP_IN_GAME },		/*WC*/
 	{ "font_size_map", "the size of the map font", 20, DISP_IN_GAME },	/*WC*/
-	{ "font_size_menu", "the size of the map font", 20, DISP_IN_GAME },	/*WC*/
-	{ "font_size_message", "the size of the map font", 20, DISP_IN_GAME },	/*WC*/
-	{ "font_size_status", "the size of the map font", 20, DISP_IN_GAME },	/*WC*/
-	{ "font_size_text", "the size of the map font", 20, DISP_IN_GAME },	/*WC*/
+	{ "font_size_menu", "the size of the menu font", 20, DISP_IN_GAME },	/*WC*/
+	{ "font_size_message", "the size of the message font", 20, DISP_IN_GAME },	/*WC*/
+	{ "font_size_status", "the size of the status font", 20, DISP_IN_GAME },	/*WC*/
+	{ "font_size_text", "the size of the text font", 20, DISP_IN_GAME },	/*WC*/
 	{ "font_status", "the font to use in status window", 40, DISP_IN_GAME }, /*WC*/
 	{ "font_text", "the font to use in text windows", 40, DISP_IN_GAME },	/*WC*/
 	{ "fruit",    "the name of a fruit you enjoy eating",
@@ -315,6 +317,7 @@ static struct Comp_Opt
 # endif
 	{ "name",     "your character's name (e.g., name:Merlin-W)",
 						PL_NSIZ, DISP_IN_GAME },
+	{ "number_pad", "use the number pad", 1, SET_IN_GAME},
 	{ "objects",  "the symbols to use for objects",
 						MAXOCLASSES, SET_IN_FILE },
 	{ "packorder", "the inventory order of the items in your pack",
@@ -338,11 +341,11 @@ static struct Comp_Opt
 						PL_CSIZ, DISP_IN_GAME },
 	{ "role",     "your starting role (e.g., Barbarian, Valkyrie)",
 						PL_CSIZ, DISP_IN_GAME },
-	{ "runmode", "display updating frequency when `running' or `travelling'",
+	{ "runmode", "display frequency when `running' or `travelling'",
 						sizeof "teleport", SET_IN_GAME },
 	{ "scores",   "the parts of the score list you wish to see",
 						32, SET_IN_GAME },
-	{ "scroll_amount", "scroll the map this amount when scroll_margin is reached",
+	{ "scroll_amount", "amount to scroll map when scroll_margin is reached",
 						20, DISP_IN_GAME }, /*WC*/
 	{ "scroll_margin", "scroll map when this far from the edge", 20, DISP_IN_GAME }, /*WC*/
 #ifdef MSDOS
@@ -488,6 +491,8 @@ STATIC_OVL void FDECL(wc_set_font_name, (int, char *));
 STATIC_OVL int FDECL(wc_set_window_colors, (char *));
 STATIC_OVL boolean FDECL(is_wc_option, (const char *));
 STATIC_OVL boolean FDECL(wc_supported, (const char *));
+STATIC_OVL boolean FDECL(is_wc2_option, (const char *));
+STATIC_OVL boolean FDECL(wc2_supported, (const char *));
 
 /* check whether a user-supplied option string is a proper leading
    substring of a particular option name; option string might have
@@ -534,7 +539,9 @@ const char *ev;
 void
 initoptions()
 {
+#ifndef MAC
 	char *opts;
+#endif
 	int i;
 
 	/* initialize the random number generator */
@@ -571,6 +578,7 @@ initoptions()
 	for (i = 0; i < WARNCOUNT; i++)
 		warnsyms[i] = def_warnsyms[i].sym;
 	iflags.bouldersym = 0;
+	iflags.travelcc.x = iflags.travelcc.y = -1;
 	flags.warnlevel = 1;
 	flags.warntype = 0L;
 
@@ -1187,6 +1195,7 @@ boolean tinitial, tfrom_file;
 	if (match_optname(opts, "colour", 5, FALSE))
 		Strcpy(opts, "color");	/* fortunately this isn't longer */
 
+	if (!match_optname(opts, "subkeyvalue", 11, TRUE)) /* allow multiple */
 	duplicate_opt_detection(opts, 1);	/* 1 means compound opts */
 
 	/* special boolean options */
@@ -1295,6 +1304,35 @@ boolean tinitial, tfrom_file;
 #endif
  		return;
  	}
+
+	fullname = "number_pad";
+	if (match_optname(opts, fullname, 10, TRUE)) {
+		boolean compat = (strlen(opts) <= 10);
+		number_pad(iflags.num_pad ? 1 : 0);
+		op = string_for_opt(opts, (compat || !initial));
+		if (!op) {
+		    if (compat || negated || initial) {
+			/* for backwards compatibility, "number_pad" without a
+			   value is a synonym for number_pad:1 */
+			iflags.num_pad = !negated;
+			if (iflags.num_pad) iflags.num_pad_mode = 0;
+		    }
+		    return;
+		}
+		if (negated) {
+		    bad_negation("number_pad", TRUE);
+		    return;
+		}
+		if (*op == '1' || *op == '2') {
+			iflags.num_pad = 1;
+			if (*op == '2') iflags.num_pad_mode = 1;
+			else iflags.num_pad_mode = 0;
+		} else if (*op == '0') {
+			iflags.num_pad = 0;
+			iflags.num_pad_mode = 0;
+		} else badoption(opts);
+		return;
+	}
 
 	fullname = "runmode";
 	if (match_optname(opts, fullname, 4, TRUE)) {
@@ -1897,29 +1935,28 @@ goodfruit:
 		 * string as a prefix to get the desired behaviour.
 		 *
 		 * For backward compatibility, no prefix is required,
-		 * and the presence of a i,a,g,v, or c without a
-		 * prefix sets the corresponding value to DISCLOSE_YES_WITHOUT_PROMPT;
+		 * and the presence of a i,a,g,v, or c without a prefix
+		 * sets the corresponding value to DISCLOSE_YES_WITHOUT_PROMPT.
 		 */
 		boolean badopt = FALSE;
 		int idx, prefix_val;
-		if (!(op = string_for_opt(opts, TRUE))) {
-			/* for backwards compatibility, "disclose" without a
-			 * value means all (was inventory and attributes,
-			 * the only things available then), but negated
-			 * it means "none"
-			 * (note "none" contains none of "iavkgc")
-			 */
-			for (num = 0; num < NUM_DISCLOSURE_OPTIONS; num++) {
-				if (negated)
-				    flags.end_disclose[num] = DISCLOSE_NO_WITHOUT_PROMPT;
-			 	else flags.end_disclose[num] = DISCLOSE_PROMPT_DEFAULT_YES;
-			}
-			return;
-		}
-		if (negated) {
+
+		op = string_for_opt(opts, TRUE);
+		if (op && negated) {
 			bad_negation("disclose", TRUE);
 			return;
 		}
+		/* "disclose" without a value means "all with prompting"
+		   and negated means "none without prompting" */
+		if (!op || !strcmpi(op, "all") || !strcmpi(op, "none")) {
+			if (op && !strcmpi(op, "none")) negated = TRUE;
+			for (num = 0; num < NUM_DISCLOSURE_OPTIONS; num++)
+			    flags.end_disclose[num] = negated ?
+						DISCLOSE_NO_WITHOUT_PROMPT :
+						DISCLOSE_PROMPT_DEFAULT_YES;
+			return;
+		}
+
 		num = 0;
 		prefix_val = -1;
 		while (*op && num < sizeof flags.end_disclose - 1) {
@@ -2194,7 +2231,6 @@ goodfruit:
 		} else if (negated) bad_negation(fullname, TRUE);
 		return;
 	}
-
 	fullname = "windowtype";
 	if (match_optname(opts, fullname, 3, TRUE)) {
 	    if (negated) {
@@ -2373,9 +2409,6 @@ goodfruit:
 			    else lan_mail_finish();
 			}
 #endif
-			else if ((boolopt[i].addr) == &iflags.num_pad)
-			    number_pad(iflags.num_pad ? 1 : 0);
-
 			else if ((boolopt[i].addr) == &flags.lit_corridor) {
 			    /*
 			     * All corridor squares seen via night vision or
@@ -2667,6 +2700,8 @@ doset()
 #endif
 		    if (is_wc_option(boolopt[i].name) &&
 			!wc_supported(boolopt[i].name)) continue;
+		    if (is_wc2_option(boolopt[i].name) &&
+			!wc2_supported(boolopt[i].name)) continue;
 		    any.a_int = (pass == 0) ? 0 : i + 1;
 		    if (!iflags.menu_tab_sep)
 			Sprintf(buf, "%s%-13s [%s]",
@@ -2718,6 +2753,9 @@ doset()
 		    	else if (is_wc_option(compopt[i].name) &&
 					!wc_supported(compopt[i].name))
 		    		continue;
+		    	else if (is_wc2_option(compopt[i].name) &&
+					!wc2_supported(compopt[i].name))
+		    		continue;
 		    	else
 				doset_add_menu(tmpwin, compopt[i].name,
 					(pass == DISP_IN_GAME) ? 0 : indexoffset);
@@ -2745,7 +2783,8 @@ doset()
 		    Sprintf(buf, "%s%s", *boolopt[opt_indx].addr ? "!" : "",
 			    boolopt[opt_indx].name);
 		    parseoptions(buf, setinitial, fromfile);
-		    if (wc_supported(boolopt[opt_indx].name))
+		    if (wc_supported(boolopt[opt_indx].name) ||
+		    	wc2_supported(boolopt[opt_indx].name))
 			preference_update(boolopt[opt_indx].name);
 		} else {
 		    /* compound option */
@@ -2761,7 +2800,8 @@ doset()
 			/* pass the buck */
 			parseoptions(buf, setinitial, fromfile);
 		    }
-		    if (wc_supported(compopt[opt_indx].name))
+		    if (wc_supported(compopt[opt_indx].name) ||
+			wc2_supported(compopt[opt_indx].name))
 			preference_update(compopt[opt_indx].name);
 		}
 	    }
@@ -2786,8 +2826,8 @@ boolean setinitial,setfromfile;
     char buf[BUFSZ];
     boolean retval = FALSE;
     
-    /* Special handling of menustyle, pickup_burden, and pickup_types,
-       disclose, runmode, and msg_window options. */
+    /* Special handling of menustyle, pickup_burden, pickup_types,
+       disclose, runmode, msg_window, and number_pad options. */
     if (!strcmp("menustyle", optname)) {
 	const char *style_name;
 	menu_item *style_pick = (menu_item *)0;
@@ -2971,6 +3011,40 @@ boolean setinitial,setfromfile;
 	destroy_nhwindow(tmpwin);
         retval = TRUE;
     }
+    else if (!strcmp("number_pad", optname)) {
+	static const char *npchoices[3] =
+		{"0 (off)", "1 (on)", "2 (on, DOS compatible)"};
+	char *npletters = "abc";
+	menu_item *mode_pick = (menu_item *)0;
+        tmpwin = create_nhwindow(NHW_MENU);
+	start_menu(tmpwin);
+	for (i = 0; i < SIZE(npchoices); i++) {
+		any.a_int = i + 1;
+		add_menu(tmpwin, NO_GLYPH, &any, npletters[i], 0,
+			 ATR_NONE, npchoices[i], MENU_UNSELECTED);
+        }
+	end_menu(tmpwin, "Select number_pad mode:");
+	if (select_menu(tmpwin, PICK_ONE, &mode_pick) > 0) {
+		int mode = mode_pick->item.a_int - 1;
+		switch(mode) {
+			case 2:
+				iflags.num_pad = 1;
+				iflags.num_pad_mode = 1;
+				break;
+			case 1:
+				iflags.num_pad = 1;
+				iflags.num_pad_mode = 0;
+				break;
+			case 0:
+			default:
+				iflags.num_pad = 0;
+				iflags.num_pad_mode = 0;
+		}
+		free((genericptr_t)mode_pick);
+        }
+	destroy_nhwindow(tmpwin);
+        retval = TRUE;
+    }
     return retval;
 }
 
@@ -3115,6 +3189,10 @@ char *buf;
 #endif
 	else if (!strcmp(optname, "name"))
 		Sprintf(buf, "%s", plname);
+	else if (!strcmp(optname, "number_pad"))
+		Sprintf(buf, "%s",
+			(!iflags.num_pad) ? "0=off" :
+			(iflags.num_pad_mode) ? "2=on, DOS compatible" : "1=on");
 	else if (!strcmp(optname, "objects"))
 		Sprintf(buf, "%s", to_be_done);
 	else if (!strcmp(optname, "packorder")) {
@@ -3577,6 +3655,13 @@ struct wc_Opt wc_options[] = {
 	{(char *)0, 0L}
 };
 
+struct wc_Opt wc2_options[] = {
+	{"fullscreen", WC2_FULLSCREEN},
+	{"softkeyboard", WC2_SOFTKEYBOARD},
+	{"wraptext", WC2_WRAPTEXT},
+	{(char *)0, 0L}
+};
+
 
 /*
  * If a port wants to change or ensure that the
@@ -3625,7 +3710,7 @@ int status;
 {
 	int k = 0;
 	if (status < SET_IN_FILE || status > SET_IN_GAME) {
-		impossible("set_option_mod_status: status out of range %d.",
+		impossible("set_wc_option_mod_status: status out of range %d.",
 			   status);
 		return;
 	}
@@ -3663,6 +3748,63 @@ const char *optnam;
 	}
 	return FALSE;
 }
+
+
+/*
+ * You can set several wc2_options in one call to
+ * set_wc2_option_mod_status() by setting
+ * the appropriate bits for each option that you
+ * are setting in the optmask argument
+ * prior to calling.
+ *    example: set_wc2_option_mod_status(WC2_FULLSCREEN|WC2_SOFTKEYBOARD|WC2_WRAPTEXT, SET_IN_FILE);
+ */
+
+void
+set_wc2_option_mod_status(optmask, status)
+unsigned long optmask;
+int status;
+{
+	int k = 0;
+	if (status < SET_IN_FILE || status > SET_IN_GAME) {
+		impossible("set_wc2_option_mod_status: status out of range %d.",
+			   status);
+		return;
+	}
+	while (wc2_options[k].wc_name) {
+		if (optmask & wc2_options[k].wc_bit) {
+			set_option_mod_status(wc2_options[k].wc_name, status);
+		}
+		k++;
+	}
+}
+
+STATIC_OVL boolean
+is_wc2_option(optnam)
+const char *optnam;
+{
+	int k = 0;
+	while (wc2_options[k].wc_name) {
+		if (strcmp(wc2_options[k].wc_name, optnam) == 0)
+			return TRUE;
+		k++;
+	}
+	return FALSE;
+}
+
+STATIC_OVL boolean
+wc2_supported(optnam)
+const char *optnam;
+{
+	int k = 0;
+	while (wc2_options[k].wc_name) {
+		if (!strcmp(wc2_options[k].wc_name, optnam) &&
+		    (windowprocs.wincap2 & wc2_options[k].wc_bit))
+			return TRUE;
+		k++;
+	}
+	return FALSE;
+}
+
 
 STATIC_OVL void
 wc_set_font_name(wtype, fontname)

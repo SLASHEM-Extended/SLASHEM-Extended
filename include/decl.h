@@ -366,8 +366,8 @@ E NEARDATA char **viz_array;		/* could see/in sight row pointers */
 
 
 /*** Window system stuff ***/
-#ifdef TEXTCOLOR
 #include "color.h"
+#ifdef TEXTCOLOR
 E const int zapcolors[];
 #endif
 

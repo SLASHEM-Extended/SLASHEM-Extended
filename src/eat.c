@@ -295,6 +295,11 @@ register struct obj *food;
 				killer = "a very rich meal";
 			} else {
 				killer = food_xname(food, FALSE);
+				if (food->otyp == CORPSE &&
+				    (mons[food->corpsenm].geno & G_UNIQ)) {
+				    killer = the(killer);
+				    killer_format = KILLED_BY;
+				}
 			}
 		} else {
 			You("choke over it.");
@@ -1008,6 +1013,7 @@ register int pm;
 	    case PM_STALKER:
 		if(!Invis) {
 			set_itimeout(&HInvis, (long)rn1(100, 50));
+			if (!Blind && !BInvis) self_invis_message();
 		} else {
 			if (!(HInvis & INTRINSIC)) You_feel("hidden!");
 			HInvis |= FROMOUTSIDE;
@@ -1041,7 +1047,7 @@ register int pm;
 #endif
 		    nomul(-tmp);
 		    Sprintf(buf, Hallucination ?
-			"You suddenly dread being peeled and mimick %s again!" :
+			"You suddenly dread being peeled and mimic %s again!" :
 			"You now prefer mimicking %s again.",
 			an(Upolyd ? youmonst.data->mname : urace.noun));
 		    eatmbuf = strcpy((char *) alloc(strlen(buf) + 1), buf);
@@ -1282,6 +1288,8 @@ opentin()		/* called during each move whilst opening a tin */
 		 !tin.tin->no_charge)
 		|| tin.tin->unpaid)) {
 		verbalize("You open it, you bought it!");
+		/* charge for one at pre-eating cost */
+		if(tin.tin->quan > 1L) tin.tin = splitobj(tin.tin, 1L);
 		bill_dummy_object(tin.tin);
 	    }
 
@@ -1315,6 +1323,8 @@ opentin()		/* called during each move whilst opening a tin */
 		 !tin.tin->no_charge)
 		|| tin.tin->unpaid)) {
 		verbalize("You open it, you bought it!");
+		/* charge for one at pre-eating cost */
+		if(tin.tin->quan > 1L) tin.tin = splitobj(tin.tin, 1L);
 		bill_dummy_object(tin.tin);
 	    }
 
@@ -1972,16 +1982,22 @@ eatspecial() /* called after eating non-food */
 {
 	register struct obj *otmp = victual.piece;
 
+	/* lesshungry wants an occupation to handle choke messages correctly */
+	set_occupation(eatfood, "eating non-food", 0);
 	lesshungry(victual.nmod);
+	occupation = 0;
 	victual.piece = (struct obj *)0;
 	victual.eating = 0;
 	if (otmp->oclass == COIN_CLASS) {
 #ifdef GOLDOBJ
 		if (carried(otmp))
 		    useupall(otmp);
-		else
+#else
+		if (otmp->where == OBJ_FREE)
+		    dealloc_obj(otmp);
 #endif
-		dealloc_obj(otmp);
+		else
+		    useupf(otmp, otmp->quan);
 		return;
 	}
 	if (otmp->oclass == POTION_CLASS) {
@@ -2349,9 +2365,9 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    if ((c = yn_function(qbuf, ynqchars, 'n')) != 'y') return 0;
 	}
 
-	/* KMH -- Slow digestion is... undigestable */
+	/* KMH -- Slow digestion is... indigestible */
 	if (otmp->otyp == RIN_SLOW_DIGESTION) {
-		pline("This ring is undigestable!");
+		pline("This ring is indigestible!");
 		(void) rottenfood(otmp);
 		if (otmp->dknown && !objects[otmp->otyp].oc_name_known
 				&& !objects[otmp->otyp].oc_uname)
