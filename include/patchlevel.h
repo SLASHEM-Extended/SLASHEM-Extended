@@ -15,8 +15,8 @@
  * PATCHLEVEL is updated for each release.
  */
 #define PATCHLEVEL      7
-#define EDITLEVEL	4
-#define FIXLEVEL        2
+#define EDITLEVEL	5
+/* #define FIXLEVEL        0 */
 
 #define COPYRIGHT_BANNER_A \
 "This is SuperLotsoAddedStuffHack-Extended Magic 1997-2003"

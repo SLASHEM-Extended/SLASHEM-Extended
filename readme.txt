@@ -69,34 +69,8 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E4F2 [?] [Released by ?]
+ver 0.0.7E5 [?] [Released by ?]
 -fixed bug 854683: gtkhack produces many warnings on start-up
-
-ver 0.0.7E4F1 [December 2/2003] [Released by Ali]
--fixed bug 852547: UNIX: make install can't find license
-
-ver 0.0.7E4 [December 1/2003] [Released by Ali]
--fixed bug 782005: Menu generated which picking objects up should scroll
--GTK/proxy: Added caching of mapping between glyphs and tiles.
--Proxy: Add asynchronous support.
--fixed bug 821865: Invisible boulders in Sokoban
--fixed bug 821098: Eating Gargoyles "evil and fiendish" for Vamps?
--fixed bug 822137: Tin of Hand of Vecna meat
--fixed bug 831267: Weapon works offering no services
--fixed bug 817700: Vampires choked by rope golems
--fixed bug 811177: Fire Vamps not real vamps?
--fixed bug 822120: Star Vampires not vampires?
--fixed bug 808070: uhitm AD_DREN also produces AD_CALM effect
--fixed bug 806071: panic("obj_extract_self") when drawing blood
--refixed bug 790230: BUG: obfree() called on non-empty container
--fixed bug 841965: hallucinating vampire eats normal food
--fixed bug 843535: Disasm technique kills game
--fixed bug 846684: X11 port crashes on start-up in tile mode
--fixed bug 805499: Walking dead
--fixed bug 846662: UNIX Makefiles call for NetHack.ad instead of SlashEM.ad
--fixed bug 799278: "Finally Finished" when Turning Undead
--Merged vanilla 3.4.2 codebase.
--fixed bug 795549: IBM / ASCII graphics not working on Win XP
 
 See history.txt for changes made in previous versions.
 
