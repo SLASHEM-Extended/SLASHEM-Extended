@@ -1059,83 +1059,44 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 		return TRUE;
 	}
 	/* end of Magicbane code */
-  /* STEPHEN WHITE'S NEW CODE */
-	   if (otmp->oartifact == ART_SERPENT_S_TONGUE) {
-		if (!youdefend) {
-		      pline("The twisted blade poisons %s!",
-			      mon_nam(mdef));
-		      if(resists_poison(mdef)) {
-			     pline("The %s seems unaffected by the poison.", 
-				     mon_nam(mdef));
-			     otmp->dknown = TRUE;
-			     *dmgptr += 0;
-			     return TRUE;
-		      } else {       
-			     switch (rnd(10)) {
-				case 1:
-				case 2:
-				case 3:
-				case 4:
-					*dmgptr += d(1,6) + 2;
-					otmp->dknown = TRUE;
-					break;
-				case 5:
-				case 6:
-				case 7:
-					*dmgptr += d(2,6) + 4;
-					otmp->dknown = TRUE;
-					break;
-				case 8:
-				case 9:
-					*dmgptr += d(3,6) + 6;
-					otmp->dknown = TRUE;
-					break;
-				case 10:
-					pline("The poison was deadly ...");
-					*dmgptr = mdef->mhp + 1234;
-					otmp->dknown = TRUE;
-					break;
-				}
-				return TRUE;
-		      }
-		} else {
-			 pline("The twisted blade poisons you!");        
-			 if(Poison_resistance) {
-			     pline("You are not affected by the poison.");
-			     otmp->dknown = TRUE;
-			     *dmgptr += 0;
-			     return TRUE;
-		      } else {       
-			     switch (rn2(10)) {
-				case 1:
-				case 2:
-				case 3:
-				case 4:                                        
-					*dmgptr += d(1,6) + 2;
-					otmp->dknown = TRUE;
-					break;
-				case 5:
-				case 6:
-				case 7:
-					*dmgptr += d(2,6) + 4;
-					otmp->dknown = TRUE;
-					break;
-				case 8:
-				case 9:
-					*dmgptr += d(3,6) + 6;
-					otmp->dknown = TRUE;
-					break;
-				case 10:
-					pline("The poison was deadly ...");
-					*dmgptr = u.uhp + 1234;
-					otmp->dknown = TRUE;
-					break;
-				}
-				return TRUE;
-		      }
-		}
-	   }
-    
+
+	/* STEPHEN WHITE'S NEW CODE */
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE) {
+	    otmp->dknown = TRUE;
+	    pline_The("twisted blade poisons %s!",
+		    youdefend ? "you" : mon_nam(mdef));
+	    if (youdefend ? Poison_resistance : resists_poison(mdef)) {
+		if (youdefend)
+		    You("are not affected by the poison.");
+		else
+		    pline("%s seems unaffected by the poison.", Monnam(mdef));
+		return TRUE;
+	    }
+	    switch (rnd(10)) {
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		    *dmgptr += d(1,6) + 2;
+		    break;
+		case 5:
+		case 6:
+		case 7:
+		    *dmgptr += d(2,6) + 4;
+		    break;
+		case 8:
+		case 9:
+		    *dmgptr += d(3,6) + 6;
+		    break;
+		case 10:
+		    pline_The("poison was deadly...");
+		    *dmgptr = FATAL_DAMAGE +
+			    (youdefend ? (Upolyd ? u.mh : u.uhp) : mdef->mhp);
+		    break;
+	    }
+	    return TRUE;
+	}
+
 	   if (otmp->oartifact == ART_DOOMBLADE && dieroll < 6) {
 		if (youattack)
 		    You("plunge the Doomblade deeply into %s!",
