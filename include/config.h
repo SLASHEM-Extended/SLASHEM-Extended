@@ -114,7 +114,6 @@
 # define USE_XPM		/* Use XPM format for images (required) */
 # define GRAPHIC_TOMBSTONE	/* Use graphical tombstone (rip.xpm) */
 # define RADAR			/* Use radar map */
-/* #define BIG3DTILE */		/* Build and use 3D tiles (not supported) */
 /* #define GTK_ASKNAME */	/* Prompt for playername */
 # ifndef DEFAULT_WINDOW_SYS
 #  define DEFAULT_WINDOW_SYS "gtk"

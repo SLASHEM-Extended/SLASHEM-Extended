@@ -603,7 +603,11 @@ spotless: clean
 	if exist $(WSHR)\monthin.txt del $(WSHR)\monthin.txt
 	if exist $(WSHR)\objthin.txt del $(WSHR)\objthin.txt
 	if exist $(WSHR)\oththin.txt del $(WSHR)\oththin.txt
-# txtmerge: merged 32x32 tile files
+# txtmerge: merged (transparent) 32x32 tile files
+	if exist $(WSHR)\mon32-t.txt del $(WSHR)\mon32-t.txt
+	if exist $(WSHR)\obj32-t.txt del $(WSHR)\obj32-t.txt
+	if exist $(WSHR)\oth32-t.txt del $(WSHR)\oth32-t.txt
+# txtbg: 32x32 tile files with backgrounds
 	if exist $(WSHR)\mon32.txt del $(WSHR)\mon32.txt
 	if exist $(WSHR)\obj32.txt del $(WSHR)\obj32.txt
 	if exist $(WSHR)\oth32.txt del $(WSHR)\oth32.txt
@@ -869,6 +873,12 @@ index: txt2bmp.exe
 # 32x32 Tile Support
 #
 
+txtbg.exe: txtbg.o $(TEXTIO)
+	$(LINK) $(LFLAGS) -otxtbg.exe txtbg.o $(TEXTIO)
+
+txtbg.o: $(WSHR)\txtbg.c $(INCL)\hack.h $(INCL)\tile.h
+	$C
+
 txtmerge.exe: txtmerge.o $(TEXTIO)
 	$(LINK) $(LFLAGS) -otxtmerge.exe txtmerge.o $(TEXTIO)
 
@@ -896,52 +906,61 @@ $(WSHR)\objmag.txt:	magtile.exe $(WSHR)\objects.txt
 $(WSHR)\othmag.txt:	magtile.exe $(WSHR)\other.txt
 	magtile
 
-$(WSHR)\mon32.txt:	txtmerge.exe $(WSHR)\monmag.txt $(WSHR)\mon32mi.txt \
+$(WSHR)\mon32-t.txt:	txtmerge.exe $(WSHR)\monmag.txt $(WSHR)\mon32mi.txt \
 			$(WSHR)\mon32alg.txt $(WSHR)\mon32al2.txt \
 			$(WSHR)\mon32aw.txt
-	txtmerge $(WSHR)\mon32.txt $(WSHR)\monmag.txt -b204040 $(WSHR)\mon32mi.txt \
+	txtmerge $(WSHR)\mon32-t.txt $(WSHR)\monmag.txt -b204040 $(WSHR)\mon32mi.txt \
 		-b204040 $(WSHR)\mon32alg.txt \
 		-b204040 $(WSHR)\mon32al2.txt \
 		-b204040 $(WSHR)\mon32aw.txt 
 			
 
-$(WSHR)\obj32.txt:	txtmerge.exe $(WSHR)\objmag.txt $(WSHR)\obj32mi.txt \
+$(WSHR)\obj32-t.txt:	txtmerge.exe $(WSHR)\objmag.txt $(WSHR)\obj32mi.txt \
 			$(WSHR)\obj32se.txt $(WSHR)\obj32alg.txt \
 			$(WSHR)\obj32al2.txt
-	txtmerge $(WSHR)\obj32.txt $(WSHR)\objmag.txt \
+	txtmerge $(WSHR)\obj32-t.txt $(WSHR)\objmag.txt \
 		-b204040 $(WSHR)\obj32mi.txt -b $(WSHR)\obj32se.txt \
 		-b204040 $(WSHR)\obj32alg.txt \
 		-b204040 $(WSHR)\obj32al2.txt
 
-$(WSHR)\oth32.txt:	txtmerge.exe $(WSHR)\othmag.txt \
+$(WSHR)\oth32-t.txt:	txtmerge.exe $(WSHR)\othmag.txt \
 		$(WSHR)\oth32mi.txt $(WSHR)\oth32se.txt \
 		$(WSHR)\oth32fl.txt $(WSHR)\oth32alg.txt \
 		$(WSHR)\oth32al2.txt
-	txtmerge $(WSHR)\oth32.txt $(WSHR)\othmag.txt \
+	txtmerge $(WSHR)\oth32-t.txt $(WSHR)\othmag.txt \
 		-b204040 ../win/share/oth32mi.txt $(WSHR)\oth32se.txt \
 		$(WSHR)\oth32fl.txt $(WSHR)\oth32alg.txt \
 		$(WSHR)\oth32al2.txt
 
-$(WSHR)\monbig.txt:	bigtile.exe $(WSHR)\mon32.txt
+$(WSHR)\mon32.txt:	txtbg.exe $(WSHR)\mon32-t.txt
+	txtbg $(WSHR)\mon32-t.txt $(WSHR)\mon32.txt
+
+$(WSHR)\obj32.txt:	txtbg.exe $(WSHR)\obj32-t.txt
+	txtbg $(WSHR)\obj32-t.txt $(WSHR)\obj32.txt
+
+$(WSHR)\oth32.txt:	txtbg.exe $(WSHR)\oth32-t.txt
+	txtbg $(WSHR)\oth32-t.txt $(WSHR)\oth32.txt
+
+$(WSHR)\monbig.txt:	bigtile.exe $(WSHR)\mon32-t.txt
 	bigtile
 
-$(WSHR)\objbig.txt:	bigtile.exe $(WSHR)\obj32.txt
+$(WSHR)\objbig.txt:	bigtile.exe $(WSHR)\obj32-t.txt
 	bigtile
 
-$(WSHR)\othbig.txt:	bigtile.exe $(WSHR)\oth32.txt
+$(WSHR)\othbig.txt:	bigtile.exe $(WSHR)\oth32-t.txt
 	bigtile
 
-$(WSHR)\mon3d.txt:	txtmerge.exe $(WSHR)\monbig.txt $(WSHR)\mon-2kmi.txt
+$(WSHR)\mon3d.txt:	txtmerge.exe $(WSHR)\monbig.txt $(WSHR)\mon3dmi.txt
 	txtmerge ../win/share/mon3d.txt ../win/share/monbig.txt \
-		../win/share/mon-2kmi.txt 
+		../win/share/mon3dmi.txt 
 
 $(WSHR)\obj3d.txt:	txtmerge.exe $(WSHR)\objbig.txt
 	txtmerge ../win/share/obj3d.txt ../win/share/objbig.txt
 
 $(WSHR)\oth3d.txt:	txtmerge.exe $(WSHR)\othbig.txt \
-				../win/share/oth-2kmi.txt
+			../win/share/oth3dmi.txt ../win/share/oth-2kmi.txt
 	txtmerge ../win/share/oth3d.txt ../win/share/othbig.txt \
-		../win/share/oth-2kmi.txt
+		../win/share/oth3dmi.txt ../win/share/oth-2kmi.txt
 
 # For makefile greppers that want to know what the heck allegfx.h is
 $(INCL)\allegfx.h: txt2bmp.exe

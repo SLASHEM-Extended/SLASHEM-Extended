@@ -3,7 +3,8 @@ symbols) found in this directory.  They are distributed in a text format
 with routines to help in converting them to a system's preferred format
 and using them there.  The original tiles were provided by Warwick Allison.
 
-The 32x32 tileset stored in mon32mi.txt, obj32mi.txt and oth32mi.txt were
+The 32x32 tileset stored in mon32mi.txt, obj32mi.txt and oth32mi.txt and the
+Psuedo-3D tileset stored in mon3dmi.txt, obj3dmi.txt and oth3dmi.txt were
 created by a number of different people under the direction of Mitsuhiro
 Itakura (ita@gold.koma.jaeri.go.jp) who also holds the copyright on these
 tiles.  The artists were:
@@ -15,9 +16,20 @@ tiles.  The artists were:
 	Wan'ichi
 	Tatsuya
 
+The 32x32 tileset stored in mon32alg.txt, obj32alg.txt and oth32alg.txt
+and the additional tiles stored in xxx32al2.txt (not used by all ports)
+were imported from AllegroHack, written by Kelly Youngblood (jry@pinn.net).
+The artists were:
+
+	Kelly Youngblood
+	Paul Pliska
+	John Harris
+
+The 32x32 tileset stored in mon32aw.txt was contributed by Andrew Walker.
+
 Slash'EM specific high resolution tiles are stored in mon32se.txt, obj32se.txt
-and oth32se.txt. These override those found in Mitsuhiro Itakura's tileset.
-Tiles which are not present in either set are created from the 16x16 tiles.
+and oth32se.txt. These override those found in other tilesets.
+Tiles which are not present in any other set are created from the 16x16 tiles.
 
 The tile distribution format for monsters.txt, objects.txt, and other.txt
 starts with a palette header like:

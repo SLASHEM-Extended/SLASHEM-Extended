@@ -27,8 +27,14 @@ all:	$(VARDAT) spec_levs quest_levs dungeon
 ../util/magtile:
 	(cd ../util ; make magtile)
 
+../util/bigtile:
+	(cd ../util ; make bigtile)
+
 ../util/txtmerge:
 	(cd ../util ; make txtmerge)
+
+../util/txtbg:
+	(cd ../util ; make txtbg)
 
 x11tiles: ../util/tile2x11 ../win/share/monsters.txt ../win/share/objects.txt \
 				../win/share/other.txt
@@ -39,6 +45,11 @@ x11bigtiles:	../util/tile2x11 ../win/share/mon32.txt \
 		../win/share/obj32.txt ../win/share/oth32.txt
 	../util/tile2x11 -o x11bigtiles ../win/share/mon32.txt \
 		../win/share/obj32.txt ../win/share/oth32.txt
+
+x11big3dtiles:	../util/tile2x11 ../win/share/mon3d.txt \
+		../win/share/obj3d.txt ../win/share/oth3d.txt
+	../util/tile2x11 -o x11big3dtiles ../win/share/mon3d.txt \
+		../win/share/obj3d.txt ../win/share/oth3d.txt
 
 beostiles: ../util/tile2beos ../win/share/monsters.txt ../win/share/objects.txt \
 			../win/share/other.txt
@@ -54,20 +65,66 @@ beostiles: ../util/tile2beos ../win/share/monsters.txt ../win/share/objects.txt 
 ../win/share/othmag.txt:	../util/magtile ../win/share/other.txt
 	../util/magtile
 
-../win/share/mon32.txt:	../util/txtmerge ../win/share/monmag.txt \
-		../win/share/mon32mi.txt
-	../util/txtmerge ../win/share/mon32.txt ../win/share/monmag.txt \
-		-b204040 ../win/share/mon32mi.txt
+../win/share/monbig.txt:	../util/bigtile ../win/share/mon32-t.txt \
+				../win/share/obj32-t.txt \
+				../win/share/oth32-t.txt
+	../util/bigtile
 
-../win/share/obj32.txt:	../util/txtmerge ../win/share/objmag.txt \
-		../win/share/obj32mi.txt ../win/share/obj32se.txt
-	../util/txtmerge ../win/share/obj32.txt ../win/share/objmag.txt \
-		-b204040 ../win/share/obj32mi.txt -b ../win/share/obj32se.txt
+../win/share/objbig.txt:	../util/bigtile ../win/share/mon32-t.txt \
+				../win/share/obj32-t.txt \
+				../win/share/oth32-t.txt
+	../util/bigtile
 
-../win/share/oth32.txt:	../util/txtmerge ../win/share/othmag.txt \
-		../win/share/oth32mi.txt ../win/share/oth32se.txt
-	../util/txtmerge ../win/share/oth32.txt ../win/share/othmag.txt \
-		-b204040 ../win/share/oth32mi.txt -b ../win/share/oth32se.txt
+../win/share/othbig.txt:	../util/bigtile ../win/share/mon32-t.txt \
+				../win/share/obj32-t.txt \
+				../win/share/oth32-t.txt
+	../util/bigtile
+
+../win/share/mon32.txt:	../util/txtbg ../win/share/mon32-t.txt
+	../util/txtbg ../win/share/mon32-t.txt ../win/share/mon32.txt
+
+../win/share/obj32.txt:	../util/txtbg ../win/share/obj32-t.txt
+	../util/txtbg ../win/share/obj32-t.txt ../win/share/obj32.txt
+
+../win/share/oth32.txt:	../util/txtbg ../win/share/oth32-t.txt
+	../util/txtbg ../win/share/oth32-t.txt ../win/share/oth32.txt
+
+../win/share/mon32-t.txt:	../util/txtmerge ../win/share/monmag.txt \
+		../win/share/mon32mi.txt ../win/share/mon32alg.txt \
+		../win/share/mon32aw.txt 
+	../util/txtmerge ../win/share/mon32-t.txt ../win/share/monmag.txt \
+		-b204040 ../win/share/mon32mi.txt \
+		-bff00ff ../win/share/mon32alg.txt \
+		-bff00ff ../win/share/mon32aw.txt 
+
+../win/share/obj32-t.txt:	../util/txtmerge ../win/share/objmag.txt \
+		../win/share/obj32mi.txt ../win/share/obj32se.txt \
+		../win/share/obj32alg.txt
+	../util/txtmerge ../win/share/obj32-t.txt ../win/share/objmag.txt \
+		-b204040 ../win/share/obj32mi.txt -b ../win/share/obj32se.txt \
+		-bff00ff ../win/share/obj32alg.txt
+
+../win/share/oth32-t.txt:	../util/txtmerge ../win/share/othmag.txt \
+		../win/share/oth32mi.txt ../win/share/oth32se.txt \
+		../win/share/oth32alg.txt
+	../util/txtmerge ../win/share/oth32-t.txt ../win/share/othmag.txt \
+		-b204040 ../win/share/oth32mi.txt -b ../win/share/oth32se.txt \
+		-bff00ff ../win/share/oth32alg.txt
+
+../win/share/mon3d.txt:	../util/txtmerge ../win/share/monbig.txt \
+		../win/share/mon3dmi.txt
+	../util/txtmerge ../win/share/mon3d.txt ../win/share/monbig.txt \
+		-b204040 ../win/share/mon3dmi.txt
+
+../win/share/obj3d.txt:	../util/txtmerge ../win/share/objbig.txt
+	cp ../win/share/objbig.txt ../win/share/obj3d.txt
+
+../win/share/oth3d.txt:	../util/txtmerge ../win/share/othbig.txt \
+		../win/share/oth3dmi.txt ../win/share/oth-2kmi.txt \
+		../win/share/oth3dse.txt
+	../util/txtmerge ../win/share/oth3d.txt ../win/share/othbig.txt \
+		-b204040 ../win/share/oth3dmi.txt \
+		-b204040 ../win/share/oth-2kmi.txt -b ../win/share/oth3dse.txt
 
 pet_mark.xbm: ../win/X11/pet_mark.xbm
 	cp ../win/X11/pet_mark.xbm pet_mark.xbm
@@ -187,8 +244,14 @@ dungeon: dungeon.def ../util/makedefs ../util/dgn_comp
 
 spotless:
 	-rm -f spec_levs quest_levs *.lev $(VARDAT) dungeon dungeon.pdf
-	-rm -f nhshare nhushare x11tiles x11bigtiles beostiles
+	-rm -f nhshare nhushare x11tiles x11bigtiles x11big3dtiles beostiles
 	-rm -f pet_mark.xbm rip.xpm mapbg.xpm
 	-rm -f ../win/share/monmag.txt ../win/share/mon32.txt
 	-rm -f ../win/share/objmag.txt ../win/share/obj32.txt
 	-rm -f ../win/share/othmag.txt ../win/share/oth32.txt
+	-rm -f ../win/share/monbig.txt ../win/share/mon3d.txt
+	-rm -f ../win/share/objbig.txt ../win/share/obj3d.txt
+	-rm -f ../win/share/othbig.txt ../win/share/oth3d.txt
+	-rm -f ../win/share/mon32-t.txt
+	-rm -f ../win/share/obj32-t.txt
+	-rm -f ../win/share/oth32-t.txt

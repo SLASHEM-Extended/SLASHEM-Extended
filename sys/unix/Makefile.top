@@ -78,7 +78,7 @@ SHELLDIR = $(PREFIX)/local/bin
 CNF_SHARE_QTND = x11tiles rip.xpm
 CNF_SHARE_X11ND = x11bigtiles x11tiles pet_mark.xbm
 # CNF_SHARE_X11ND = x11bigtiles x11tiles pet_mark.xbm rip.xpm
-CNF_SHARE_GTKND = x11bigtiles x11tiles rip.xpm credit.xpm gtkrc
+CNF_SHARE_GTKND = x11big3dtiles x11bigtiles x11tiles rip.xpm credit.xpm gtkrc
 # for Atari/Gem
 CNF_SHARE_GEMND = nh16.img title.img GEM_RSC.RSC
 # for BeOS
@@ -178,8 +178,12 @@ x11tiles:
 	( cd dat ; $(MAKE) x11tiles )
 
 x11bigtiles:
-	( cd util ; $(MAKE) tile2x11 magtile txtmerge )
+	( cd util ; $(MAKE) tile2x11 magtile txtmerge txtbg )
 	( cd dat ; $(MAKE) x11bigtiles )
+
+x11big3dtiles:
+	( cd util ; $(MAKE) tile2x11 bigtile txtmerge )
+	( cd dat ; $(MAKE) x11big3dtiles )
 
 beostiles:
 	( cd util ; $(MAKE) tile2beos )

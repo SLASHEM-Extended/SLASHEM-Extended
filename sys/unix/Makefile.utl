@@ -292,10 +292,13 @@ GIFREADERS = gifread.o $(OALLOC)
 XPMREADERS = xpmread.o $(OALLOC)
 PPMWRITERS = ppmwrite.o $(OALLOC)
 
-tileutils: tilemap gif2txt xpm2txt txt2ppm txtfilt tile2x11 magtile txtmerge
+tileutils: tilemap gif2txt xpm2txt txt2ppm txtfilt tile2x11 magtile bigtile \
+	txtmerge txtbg
 
 magtile: magtile.o $(TEXT_IO)
 	$(CC) $(LFLAGS) -o magtile magtile.o $(TEXT_IO) $(LIBS)
+bigtile: bigtile.o $(TEXT_IO)
+	$(CC) $(LFLAGS) -o bigtile bigtile.o $(TEXT_IO) $(LIBS)
 gif2txt: $(GIFREADERS) $(TEXT_IO)
 	$(CC) $(LFLAGS) -o gif2txt $(GIFREADERS) $(TEXT_IO) $(LIBS)
 xpm2txt: $(XPMREADERS) $(TEXT_IO)
@@ -304,6 +307,8 @@ txt2ppm: $(PPMWRITERS) $(TEXT_IO)
 	$(CC) $(LFLAGS) -o txt2ppm $(PPMWRITERS) $(TEXT_IO) $(LIBS)
 txtfilt: txtfilt.o $(TEXT_IO)
 	$(CC) $(LFLAGS) -o txtfilt txtfilt.o $(TEXT_IO) $(LIBS)
+txtbg: txtbg.o $(TEXT_IO)
+	$(CC) $(LFLAGS) -o txtbg txtbg.o $(TEXT_IO) $(LIBS)
 
 txtmerge: txtmerge.o $(TEXT_IO)
 	$(CC) $(LFLAGS) -o txtmerge txtmerge.o $(TEXT_IO) $(LIBS)
@@ -326,6 +331,8 @@ tilemap: ../win/share/tilemap.c $(HACK_H)
 
 magtile.o: ../win/share/magtile.c $(CONFIG_H) ../include/tile.h
 	$(CC) $(CFLAGS) -c ../win/share/magtile.c
+bigtile.o: ../win/share/bigtile.c $(CONFIG_H) ../include/tile.h
+	$(CC) $(CFLAGS) -c ../win/share/bigtile.c
 
 tiletext.o: ../win/share/tiletext.c $(CONFIG_H) ../include/tile.h
 	$(CC) $(CFLAGS) -c ../win/share/tiletext.c
@@ -341,6 +348,8 @@ ppmwrite.o: ../win/share/ppmwrite.c $(CONFIG_H) ../include/tile.h
 	$(CC) $(CFLAGS) -c ../win/share/ppmwrite.c
 txtfilt.o: ../win/share/txtfilt.c $(CONFIG_H) ../include/tile.h
 	$(CC) $(CFLAGS) -c ../win/share/txtfilt.c
+txtbg.o: ../win/share/txtbg.c $(HACK_H) ../include/tile.h
+	$(CC) $(CFLAGS) -c ../win/share/txtbg.c
 
 txtmerge.o: ../win/share/txtmerge.c $(CONFIG_H) ../include/tile.h
 	$(CC) $(CFLAGS) -c ../win/share/txtmerge.c
@@ -402,4 +411,4 @@ spotless: clean
 	-rm -f ../include/tile.h
 	-rm -f makedefs lev_comp dgn_comp recover dlb
 	-rm -f gif2txt xpm2txt txt2ppm tile2x11 tile2img.ttp tilemap
-	-rm -f magtile txtmerge txtfilt
+	-rm -f magtile bigtile txtmerge txtfilt txtbg

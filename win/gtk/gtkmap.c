@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.11 2000-09-23 10:15:09 j_ali Exp $
+  $Id: gtkmap.c,v 1.12 2000-09-27 16:39:23 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -104,17 +104,15 @@ static GdkGC	 *map_gc;
 *6 = HEIGHT	= 64
  */
 
-#ifdef BIG3DTILE
-static TileTab	Big3DTile = {
+static TileTab Big3DTile = {
     "Big 3D tiles",
-    "floor.xpm",
+    "x11big3dtiles",
     -1, -1,		/* tile map width height */
     -1, -1,		/* unit_width, unit_height */
     -1, -1,		/* 3d_ofset, 3d_ofsety */
     TRUE,
     TRUE,
 };
-#endif
 
 static TileTab BigTile = {
     "Big tiles",
@@ -140,9 +138,7 @@ static TileTab *tileTab[] = {
     NULL,	/* dummy */
     &SmallTile,
     &BigTile,
-#ifdef BIG3DTILE
     &Big3DTile
-#endif
 };
 
 static TileTab *Tile;
@@ -608,8 +604,8 @@ tile_scan(void)
 	tileTab[i]->unit_width = tileTab[i]->tilemap_width / tiles_per_row;
 	tileTab[i]->unit_height = tileTab[i]->tilemap_height / tiles_per_col;
 	if(i == 3){
-	    tileTab[i]->ofsetx_3d = tileTab[i]->unit_width / 2;
-	    tileTab[i]->ofsety_3d = tileTab[i]->unit_height / 3;
+	    tileTab[i]->ofsetx_3d = tileTab[i]->unit_width / 3;
+	    tileTab[i]->ofsety_3d = tileTab[i]->unit_height / 2;
 	}
 	else{
 	    tileTab[i]->ofsetx_3d = 0;

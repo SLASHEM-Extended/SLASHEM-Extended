@@ -182,6 +182,28 @@ char *argv[];
     tile_y = 16;
 
     while (argn < argc) {
+	if (argv[argn][0] == '-' && argv[argn][1] == 'w') {
+	    if (argv[argn][2])
+		tile_x = atoi(argv[argn] + 2);
+	    else if (argn + 1 < argc)
+		tile_x = atoi(argv[++argn]);
+	    else {
+		Fprintf(stderr, "xpm2txt: -w option needs an argument\n");
+		exit(EXIT_FAILURE);
+	    }
+	    argn ++;
+	}
+	if (argv[argn][0] == '-' && argv[argn][1] == 'h') {
+	    if (argv[argn][2])
+		tile_y = atoi(argv[argn] + 2);
+	    else if (argn + 1 < argc)
+		tile_y = atoi(argv[++argn]);
+	    else {
+		Fprintf(stderr, "xpm2txt: -h option needs an argument\n");
+		exit(EXIT_FAILURE);
+	    }
+	    argn ++;
+	}
 	if (!strcmp(argv[argn], "-s")) {
 	    split_mode = TRUE;
 	    argn ++;
@@ -191,7 +213,7 @@ char *argv[];
     }
     
     if (argc - argn != (split_mode ? 4 : 2)) {
-	Fprintf(stderr, "usage: xpm2txt xpmfile txtfile\n");
+	Fprintf(stderr, "usage: xpm2txt [-w#] [-h#] xpmfile txtfile\n");
 	Fprintf(stderr, "       xpm2txt -s xpmfile montxt objtxt othtxt\n");
 	exit(EXIT_FAILURE);
     }

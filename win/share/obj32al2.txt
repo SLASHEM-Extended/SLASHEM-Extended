@@ -1,607 +1,308 @@
-__ = (4, 2, 4)
-_A = (5, 135, 4)
-_B = (4, 2, 132)
-_C = (12, 66, 12)
-_D = (10, 136, 137)
-_E = (148, 2, 4)
-_F = (139, 68, 4)
-_G = (6, 195, 4)
-_H = (4, 200, 134)
-_I = (6, 3, 69)
-_J = (44, 74, 76)
-_K = (149, 2, 77)
-_L = (133, 35, 5)
-_M = (139, 89, 77)
-_N = (134, 132, 5)
-_O = (17, 49, 10)
-_P = (149, 110, 4)
-_Q = (160, 139, 82)
-_R = (59, 99, 76)
-_S = (203, 36, 5)
-_T = (140, 138, 139)
-_U = (148, 212, 148)
-_V = (142, 202, 10)
-_W = (10, 72, 134)
-_X = (91, 44, 4)
-_Y = (216, 75, 4)
-_Z = (13, 99, 4)
-_a = (153, 195, 199)
-_b = (180, 199, 69)
-_c = (238, 2, 4)
-_d = (70, 68, 70)
-_e = (165, 163, 4)
-_f = (83, 3, 4)
-_g = (150, 149, 199)
-_h = (164, 43, 40)
-_i = (99, 76, 11)
-_j = (204, 102, 4)
-_k = (226, 49, 46)
-_l = (162, 163, 84)
-_m = (110, 106, 90)
-_n = (134, 5, 140)
-_o = (7, 132, 69)
-_p = (186, 69, 158)
-_q = (148, 72, 48)
-_r = (4, 42, 44)
-_s = (94, 42, 42)
-_t = (84, 90, 102)
-_u = (151, 164, 148)
-_v = (16, 4, 49)
-_w = (172, 226, 228)
-_x = (166, 238, 92)
-_y = (31, 52, 73)
-_z = (143, 57, 11)
-_0 = (216, 137, 4)
-_1 = (36, 151, 196)
-_2 = (199, 52, 5)
-_3 = (85, 84, 85)
-_4 = (145, 249, 146)
-_5 = (140, 253, 4)
-_6 = (233, 112, 43)
-_7 = (160, 14, 47)
-_8 = (231, 83, 40)
-_9 = (77, 72, 50)
-_$ = (164, 118, 92)
-A_ = (51, 74, 219)
-AA = (91, 102, 103)
-AB = (21, 22, 15)
-AC = (151, 21, 10)
-AD = (246, 2, 53)
-AE = (20, 2, 197)
-AF = (78, 57, 50)
-AG = (208, 24, 13)
-AH = (35, 56, 55)
-AI = (224, 91, 6)
-AJ = (229, 146, 72)
-AK = (245, 176, 143)
-AL = (250, 145, 46)
-AM = (167, 167, 37)
-AN = (100, 101, 5)
-AO = (5, 166, 133)
-AP = (17, 107, 146)
-AQ = (81, 43, 73)
-AR = (122, 89, 75)
-AS = (107, 90, 52)
-AT = (252, 247, 146)
-AU = (245, 199, 77)
-AV = (116, 116, 118)
-AW = (4, 164, 4)
-AX = (7, 164, 84)
-AY = (210, 121, 77)
-AZ = (166, 84, 4)
-Aa = (232, 115, 7)
-Ab = (24, 89, 113)
-Ac = (143, 92, 51)
-Ad = (12, 200, 86)
-Ae = (170, 41, 7)
-Af = (88, 3, 47)
-Ag = (242, 245, 208)
-Ah = (144, 57, 47)
-Ai = (199, 164, 70)
-Aj = (234, 230, 173)
-Ak = (21, 197, 197)
-Al = (236, 209, 105)
-Am = (151, 175, 206)
-An = (224, 196, 4)
-Ao = (241, 56, 4)
-Ap = (202, 200, 201)
-Aq = (232, 39, 5)
-Ar = (239, 201, 39)
-As = (97, 132, 133)
-At = (173, 21, 6)
-Au = (52, 82, 84)
-Av = (169, 54, 6)
-Aw = (112, 71, 50)
-Ax = (45, 21, 7)
-Ay = (132, 2, 196)
-Az = (172, 172, 173)
-A0 = (95, 115, 142)
-A1 = (45, 3, 7)
-A2 = (38, 36, 38)
-A3 = (245, 245, 4)
-A4 = (157, 116, 110)
-A5 = (238, 178, 113)
-A6 = (35, 76, 51)
-A7 = (168, 240, 124)
-A8 = (104, 54, 49)
-A9 = (240, 24, 4)
-A$ = (165, 54, 52)
-B_ = (86, 22, 5)
-BA = (145, 89, 202)
-BB = (45, 48, 146)
-BC = (165, 55, 70)
-BD = (48, 167, 219)
-BE = (11, 44, 207)
-BF = (64, 250, 70)
-BG = (44, 254, 196)
-BH = (229, 109, 211)
-BI = (4, 239, 4)
-BJ = (147, 102, 147)
-BK = (4, 98, 196)
-BL = (196, 47, 214)
-BM = (5, 250, 141)
-BN = (167, 43, 149)
-BO = (74, 134, 4)
-BP = (77, 4, 151)
-BQ = (68, 14, 68)
-BR = (241, 8, 74)
-BS = (247, 92, 75)
-BT = (249, 130, 133)
-BU = (202, 196, 148)
-BV = (71, 67, 134)
-BW = (211, 150, 210)
-BX = (98, 148, 69)
-BY = (123, 90, 204)
-BZ = (95, 4, 199)
-Ba = (106, 168, 135)
-Bb = (87, 163, 4)
-Bc = (95, 169, 85)
-Bd = (87, 199, 84)
-Be = (102, 196, 202)
-Bf = (241, 186, 240)
-Bg = (230, 68, 219)
-Bh = (100, 43, 136)
-Bi = (108, 254, 196)
-Bj = (188, 54, 122)
-Bk = (4, 232, 121)
-Bl = (116, 238, 60)
-Bm = (198, 2, 197)
-Bn = (89, 181, 217)
-Bo = (169, 122, 166)
-Bp = (4, 134, 252)
-Bq = (4, 115, 228)
-Br = (250, 3, 134)
-Bs = (121, 215, 135)
-Bt = (100, 194, 4)
-Bu = (170, 51, 178)
-Bv = (44, 150, 47)
-Bw = (4, 3, 165)
-Bx = (30, 145, 176)
-By = (138, 84, 113)
-Bz = (172, 138, 52)
-B0 = (145, 105, 40)
-B1 = (149, 136, 110)
-B2 = (43, 103, 106)
-B3 = (173, 145, 177)
-B4 = (5, 82, 164)
-B5 = (10, 103, 52)
-B6 = (25, 50, 106)
-B7 = (185, 242, 185)
-B8 = (205, 143, 115)
-B9 = (229, 171, 172)
-B$ = (101, 103, 50)
-C_ = (97, 44, 112)
-CA = (212, 106, 108)
-CB = (239, 240, 240)
-CC = (16, 214, 251)
-CD = (180, 181, 233)
-CE = (218, 201, 250)
-CF = (107, 146, 179)
-CG = (123, 122, 167)
-CH = (251, 238, 38)
-CI = (33, 52, 180)
-CJ = (203, 2, 103)
-CK = (228, 74, 123)
-CL = (228, 214, 177)
-CM = (234, 153, 244)
-CN = (74, 69, 252)
-CO = (124, 162, 124)
-CP = (122, 217, 251)
-CQ = (78, 240, 245)
-CR = (5, 2, 103)
-CS = (228, 170, 4)
-CT = (4, 138, 100)
-CU = (6, 92, 250)
-CV = (4, 162, 164)
-CW = (45, 172, 43)
-CX = (7, 197, 103)
-CY = (109, 243, 4)
-CZ = (116, 227, 116)
-Ca = (18, 42, 241)
-Cb = (4, 2, 249)
-Cc = (4, 247, 246)
-Cd = (168, 18, 116)
-Ce = (133, 217, 252)
-Cf = (5, 182, 251)
-Cg = (85, 9, 102)
-Ch = (100, 148, 101)
-Ci = (252, 2, 252)
-Cj = (140, 138, 252)
-Ck = (234, 125, 133)
-Cl = (164, 162, 124)
-Cm = (157, 246, 249)
-Cn = (116, 2, 228)
-Co = (91, 183, 51)
-Cp = (4, 162, 124)
-Cq = (146, 212, 119)
-Cr = (123, 162, 164)
-Cs = (252, 175, 48)
-Ct = (32, 113, 176)
-Cu = (251, 229, 109)
-Cv = (132, 90, 252)
-Cw = (98, 105, 203)
-Cx = (115, 109, 242)
-Cy = (103, 195, 103)
-Cz = (168, 85, 160)
-C0 = (188, 201, 180)
-C1 = (166, 2, 169)
-C2 = (105, 150, 48)
-C3 = (246, 239, 87)
-C4 = (207, 154, 138)
-C5 = (97, 84, 159)
-C6 = (244, 2, 180)
-C7 = (96, 151, 209)
-C8 = (156, 218, 24)
-C9 = (228, 42, 108)
-C$ = (134, 2, 251)
-# tile 394 (strange object)
+__ = (0, 0, 0)
+_A = (128, 96, 0)
+_B = (128, 255, 128)
+_C = (0, 0, 192)
+_D = (168, 224, 224)
+_E = (96, 48, 48)
+_F = (128, 64, 0)
+_G = (32, 64, 64)
+_H = (0, 112, 224)
+_I = (192, 96, 96)
+_J = (48, 96, 0)
+_K = (117, 105, 88)
+_L = (224, 192, 160)
+_M = (168, 168, 224)
+_N = (128, 32, 0)
+_O = (96, 0, 48)
+_P = (64, 128, 128)
+_Q = (255, 128, 128)
+_R = (128, 0, 255)
+_S = (0, 64, 32)
+_T = (128, 0, 0)
+_U = (96, 192, 0)
+_V = (48, 36, 0)
+_W = (96, 192, 192)
+_X = (0, 32, 32)
+_Y = (48, 24, 0)
+_Z = (48, 12, 0)
+_a = (128, 112, 32)
+_b = (64, 64, 128)
+_c = (192, 0, 96)
+_d = (48, 0, 0)
+_e = (0, 0, 224)
+_f = (224, 224, 0)
+_g = (0, 128, 64)
+_h = (0, 255, 255)
+_i = (64, 0, 128)
+_j = (96, 96, 0)
+_k = (0, 255, 0)
+_l = (255, 0, 128)
+_m = (96, 96, 192)
+_n = (96, 72, 0)
+_o = (104, 84, 31)
+_p = (224, 168, 0)
+_q = (0, 64, 64)
+_r = (96, 48, 0)
+_s = (248, 224, 96)
+_t = (224, 224, 112)
+_u = (202, 143, 114)
+_v = (24, 48, 48)
+_w = (144, 192, 192)
+_x = (0, 192, 96)
+_y = (0, 32, 64)
+_z = (96, 24, 0)
+_0 = (128, 128, 64)
+_1 = (24, 24, 48)
+_2 = (224, 112, 0)
+_3 = (240, 240, 240)
+_4 = (128, 255, 255)
+_5 = (96, 0, 0)
+_6 = (128, 255, 0)
+_7 = (0, 0, 64)
+_8 = (96, 0, 192)
+_9 = (0, 145, 0)
+_$ = (108, 255, 0)
+A_ = (144, 144, 192)
+AA = (255, 192, 255)
+AB = (0, 24, 24)
+AC = (255, 192, 0)
+AD = (255, 192, 192)
+AE = (224, 224, 224)
+AF = (16, 16, 0)
+AG = (128, 64, 64)
+AH = (224, 56, 0)
+AI = (170, 136, 52)
+AJ = (16, 0, 0)
+AK = (224, 112, 112)
+AL = (0, 96, 96)
+AM = (208, 208, 208)
+AN = (64, 128, 0)
+AO = (255, 128, 255)
+AP = (255, 128, 0)
+AQ = (224, 168, 224)
+AR = (224, 0, 0)
+AS = (128, 0, 64)
+AT = (255, 108, 0)
+AU = (192, 192, 255)
+AV = (192, 192, 0)
+AW = (0, 48, 96)
+AX = (255, 255, 128)
+AY = (192, 192, 192)
+AZ = (168, 224, 168)
+Aa = (128, 128, 96)
+Ab = (112, 224, 0)
+Ac = (64, 64, 0)
+Ad = (127, 90, 72)
+Ae = (224, 112, 224)
+Af = (48, 48, 24)
+Ag = (255, 64, 0)
+Ah = (64, 48, 0)
+Ai = (192, 144, 0)
+Aj = (176, 176, 176)
+Ak = (0, 0, 96)
+Al = (128, 96, 96)
+Am = (192, 144, 192)
+An = (48, 24, 24)
+Ao = (64, 32, 0)
+Ap = (224, 0, 112)
+Aq = (0, 128, 128)
+Ar = (64, 16, 0)
+As = (144, 192, 144)
+At = (160, 160, 160)
+Au = (64, 0, 0)
+Av = (192, 96, 0)
+Aw = (255, 0, 255)
+Ax = (24, 24, 0)
+Ay = (255, 0, 0)
+Az = (192, 96, 192)
+A0 = (112, 224, 112)
+A1 = (48, 96, 96)
+A2 = (145, 71, 0)
+A3 = (0, 16, 16)
+A4 = (120, 160, 160)
+A5 = (24, 0, 0)
+A6 = (0, 0, 16)
+A7 = (182, 71, 0)
+A8 = (160, 160, 120)
+A9 = (160, 120, 160)
+A$ = (144, 144, 144)
+B_ = (0, 64, 128)
+BA = (192, 48, 0)
+BB = (80, 160, 160)
+BC = (224, 0, 224)
+BD = (48, 48, 96)
+BE = (120, 160, 120)
+BF = (120, 120, 160)
+BG = (96, 192, 96)
+BH = (160, 160, 80)
+BI = (160, 120, 120)
+BJ = (160, 80, 160)
+BK = (128, 128, 128)
+BL = (0, 96, 48)
+BM = (64, 64, 32)
+BN = (112, 224, 224)
+BO = (192, 0, 0)
+BP = (192, 0, 192)
+BQ = (0, 160, 160)
+BR = (0, 0, 128)
+BS = (71, 108, 108)
+BT = (128, 96, 128)
+BU = (112, 112, 112)
+BV = (64, 32, 32)
+BW = (80, 160, 80)
+BX = (80, 80, 160)
+BY = (96, 128, 96)
+BZ = (0, 48, 48)
+Ba = (192, 192, 144)
+Bb = (32, 64, 0)
+Bc = (128, 64, 128)
+Bd = (160, 160, 0)
+Be = (160, 80, 80)
+Bf = (64, 0, 32)
+Bg = (160, 0, 160)
+Bh = (96, 96, 96)
+Bi = (252, 252, 153)
+Bj = (32, 32, 0)
+Bk = (0, 160, 80)
+Bl = (64, 128, 64)
+Bm = (160, 120, 0)
+Bn = (0, 0, 48)
+Bo = (0, 80, 160)
+Bp = (192, 144, 144)
+Bq = (0, 224, 0)
+Br = (80, 160, 0)
+Bs = (112, 112, 224)
+Bt = (80, 80, 80)
+Bu = (32, 0, 0)
+Bv = (128, 0, 128)
+Bw = (80, 0, 160)
+Bx = (255, 255, 255)
+By = (96, 48, 96)
+Bz = (242, 196, 77)
+B0 = (208, 168, 80)
+B1 = (255, 255, 0)
+B2 = (255, 255, 192)
+B3 = (0, 192, 0)
+B4 = (160, 80, 0)
+B5 = (0, 182, 255)
+B6 = (160, 0, 80)
+B7 = (0, 192, 192)
+B8 = (165, 118, 94)
+B9 = (48, 96, 48)
+B$ = (64, 64, 64)
+C_ = (192, 160, 64)
+CA = (218, 218, 182)
+CB = (224, 224, 168)
+CC = (0, 160, 0)
+CD = (96, 0, 96)
+CE = (160, 40, 0)
+CF = (0, 0, 160)
+CG = (0, 224, 112)
+CH = (64, 32, 64)
+CI = (0, 128, 255)
+CJ = (0, 128, 0)
+CK = (96, 128, 128)
+CL = (48, 48, 48)
+CM = (229, 162, 130)
+CN = (32, 64, 32)
+CO = (192, 255, 255)
+CP = (171, 154, 129)
+CQ = (160, 0, 0)
+CR = (224, 168, 168)
+CS = (145, 135, 110)
+CT = (64, 0, 64)
+CU = (192, 255, 192)
+CV = (112, 0, 224)
+CW = (0, 96, 0)
+CX = (96, 96, 128)
+CY = (0, 255, 128)
+CZ = (0, 96, 192)
+Ca = (255, 211, 175)
+Cb = (32, 32, 32)
+Cc = (48, 0, 48)
+Cd = (0, 64, 0)
+Ce = (0, 224, 224)
+Cf = (32, 0, 32)
+Cg = (0, 48, 0)
+Ch = (192, 192, 96)
+Ci = (16, 16, 16)
+Cj = (128, 128, 255)
+Ck = (0, 32, 0)
+Cl = (128, 128, 0)
+Cm = (255, 182, 145)
+Cn = (16, 0, 16)
+Co = (0, 24, 0)
+Cp = (96, 96, 48)
+Cq = (108, 145, 182)
+Cr = (0, 16, 0)
+Cs = (0, 0, 255)
+# tile 730 (velvet / drain life)
 {
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiAUBz_i_F_FAZ_FAZ_F_z_FAUBz_i_FAZAZ_FAZ_zAZAUBzBzBzCiCiCiCi
-  CiCiAUBz_i_FAZ_zAZ_F_F_F_FAUBz_i_FAZ_F_F_F_FAZAUBz_X_X_XBzCiCiCi
-  CiAUBzAS_FAZ_zAZ_F_F_F_FAUBzAS_FAZ_z_F_zAZ_FAUBz_XASAN_iBzASCiCi
-  CiAUBz_i_FAZ_FAZ_FAZ_F_FAUBz_i_FAZ_FAZ_FAZ_FAUBz_i_X_F_XBz_iCiCi
-  CiAUAUAUAUAUAUAUAUAUAUAUBzAUAUAUAUAUAUAUAUAUBz_XAN_F_X_XBzASCiCi
-  AU_X_X_X_X_X_E_X_X_X_X_X_X_X_X_X_X_X_E_X_X_X_XAS_X_X_X_FBz_iCiCi
-  AU_X_____f_E_c_E_f_______________f_E_c_E_f___X_i_X_F_X_XBzASCiCi
-  AUBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzAS_F_F_FBzBz_iCiCi
-  AUBz_i_F_FAZ_F_z_F_F_FAUBzAS_F_F_FAZAZ_z_FAUBz_i_X_FBzBzBzASCiCi
-  AUBzAS_FAZ_F_F_FAZ_F_zAUBz_i_FAZ_F_FAZ_F_FAUBzAS_XBzBzASBz_i____
-  AUBz_i_F_FAZ_F_z_F_F_FAUBz_i_F_F_F_F_F_F_FAUBz_iBzBz_i_XBzAS____
-  AUBz_i_zAZ_F_z_FAUAUAUAUAUAUAUAUAU_F_F_F_zAUBz_iBzAS_X_FBz_i____
-  AUBzAUAUAUAUAUAUAUBzBzBzBzBzBzBzASAUAUAUAUBzBzAwAN_X_X_FBz_i____
-  AUBzBzBzBzBzBzBzAUBzBz____BzBzBz_iBzBzBzBzBzBzAN_X_F_F_XBzAS____
-  AUBzAS_FAZ_F_F_FAUBzBzBzBzBz_QBzAN_zAZAZ_FAUBzAw_X_X_XBzAS_i____
-  AUBz_i_F_F_F_F_FAUAS_iAS_i_i_i_iAS_F_F_FAZAUBzAN_X_XBz_i_i______
-  AUBzAS_F_F_FAZ_F_zAZ_FAUBzAS_F_z_F_FAZ_F_FAUBzAS_XBzANAS________
-  AUBz_i_F_F_F_F_F_F_F_zAUBz_i_F_zAZ_F_F_zAZAUBz_iBzAS_i________Ci
-  AUBzAUAUAUAUAUAUAUAUAUAUBzBzAUAUAUAUAUAUAUAUBzBz_iAS________CiCi
-  AUBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzAS_i________CiCiCi
-  AUBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBzBz_i________CiCiCiCi
-  ______________________________________________________CiCiCiCiCi
-  Ci__________________________________________________CiCiCiCiCiCi
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAw_cBgB6AwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwB6BJ_cB6Bg_cAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAw_cBgB6_cBJ_cBeBg_cAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAw_cBJB6_cBg_cBg_c_cBc_cBvAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAw_cBv_c_cBcB6BJ_cBeBg_cBc_cBg_cAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAw_cBJ_cBc_cBg_c_cBg_c_cBcAp_cBc_cBvAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAw_cBgB6Bg_cBcB6BgBeBg_cBc_cBg_cBvApBeBg_cAwAwAw
+  AwAwAwAwAwAwAwAwB6BJ_c_cBc_c_c_cBcApB6Bc_cBg_I_cBc_cBg_cBc_cAwAw
+  AwAwAwAwAwAwAwB6Bg_c_cBc_c_cBJ_cBg_cBvApBv_c_cBv_c_cBJB6ApBvASAw
+  AwAwAwAwAwAw_cBJB6Bc_cBg_cBv_cBgBe_cBc_cBJ_cBcApBgB6_cBgBe_cBcAw
+  AwAwAwAwAwBc_cBg_c_cBv_cBJ_cBc_c_cBg_cBg_c_cBvB6BJ_cBc_cB6BvAS__
+  AwAwAwAwB6_cBg_IBg_cBJ_cB6Bg_cBc_cBJ_cB6BJ_c_cBc_c_cBv_cByB6ByAJ
+  AwAwAwBg_cBc_cApBc_cB6_cBgBeB6Bg_c_cBgB6_cBcBg_c_cBvBmBcB6CDAS__
+  AwAw_c_cBJ_cBgB6_cBgBc_c_cBg_cBc_cBc_cBc_c_c_cBJB6_cBy_FASBy____
+  Aw_cBJBgB6_cBc_cBJ_c_c_cBJ_cBcB6ApBv_c_cBc_cBv_cBcBvB6_AAS____Aw
+  B6BgB6_cBc_c_cBgB6BvBJ_c_cBv_cBgBe_cBg_cBg_cBc_cB6ASBy_rA6__AwAw
+  Bg_cBeBg_cB6Bg_cBJ_c_c_cBc_cBc_c_cBJ_cBc_cBcB6B6ByBvAS____AwAwAw
+  Aw_cBg_cBJ_cBc_c_cBg_cBc_cBg_cBvApBg_c_cBv_cBvAGB6_OA3__AwAwAwAw
+  AwA$As_c_cBv_c_cBJ_cBc_cBg_c_cBc_cBc_cBc_cAGBvASCD____AwAwAwAwAw
+  AwAtAtA$A$_cBc_c_cBv_c_cBc_cBJ_c_cBg_cBvB6BvASBy____AwAwAwAwAwAw
+  AwAjAjAtAtA$A$_cBc_cBc_cBg_cB6Bg_cBc_cAGB6ByAS____AwAwAwAwAwAwAw
+  B6AjAtAjAjAtAtA$A$_cBg_cBc_cBJ_c_cBgASBvASASCr__AwAwAwAwAwAwAwAw
+  A3_cBvAjAjAtAjA$AtA$A$Bc_c_c_cBc_cByB6AGCDCr__AwAwAwAwAwAwAwAwAw
+  AwCrCrB6BvAjAjAjAjA$AtA$A$Bv_cBvB6B6ByAS____AwAwAwAwAwAwAwAwAwAw
+  AwAwAw__AxBvB6AtAjAjAjA$AtA$BcB6BcASCD____AwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAFA3_cBvAjAjAjAjAt_cASASCDAF__AwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwCrA3B6B6AjAtAtBvASBy____AwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwA3__B6_cA4ASByAJ__AwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwA3A3ASAS____AwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwCrA6__AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
 }
-# tile 654 (candy bar)
+# tile 786 (gold piece)
 {
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi_FCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiA8_zCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi_F_X_i_zCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiAZAc_X_XAw_z__CiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiAc_qAc_FB0_jAZ_X_iCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi_i_qAZ_iAZ_6_jAZB0_X_z__CiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi_iAZ_q_FAZ_q_F_PB0_j_jB0_z_i__Ci
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCi_i_q_F_q_FB0_6_P_6AZ_6_j_i_6Ac_X_F__
-  CiCiCiCiCiCiCiCiCiCiCiCi_q_qAZ_i_q_F_i_j_i_z_6AZ_6B0_F_F_X_XA8__
-  CiCiCiCiCiCiCiCiCiCi_i_qAZ_iAZ_6_0_qAZ_6_j_FB0_j_i_jAw_z_z_i_z__
-  CiCiCiCiCiCiCiCiAZ_qAc_FAZ_qAaB0_FAZB0AZ_6AZ_6_i_F_z_i_X_i_z____
-  CiCiCiCiCiCi_iAZ_q_iAZ_zB0_jB0Aa_z_FAL_F_i_P_q_z_i_X_X_X______Ci
-  CiCiCiCi_iAZ_q_iAZ_6_jB0AZAL_F_6B0AZB0_F_z_z_i_X_X_X_X____CiCiCi
-  CiA8_F_q_F_FB0Aa_6_FBz_P_j_6B0AZ_0_6_F_q_i_X_X_X_X______CiCiCiCi
-  _z_z_i_z_i_q_6B0_F_i_8_6_F_F_0_qAZ_z_i_X_X_X_X______CiCiCiCiCiCi
-  _i_X_i_z_6AZAZ_0_6AZ_iAaB0_FAw_z_i_X_X_X_X______CiCiCiCiCiCiCiCi
-  _zA8AZ_i_iB0_z_6AZAZAZAcAZ_z_i_X_X_X_X______CiCiCiCiCiCiCiCiCiCi
-  ___z_iAZ_6_j_FAc_0_6_i_z_i_X_X_X_X______CiCiCiCiCiCiCiCiCiCiCiCi
-  ___i_X_z_i_6_i_FAZAw_z_X_X_X_X______CiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  ___z_X_i_z_j_q_z_i_X_X_X_X______CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  Ci___zA8_X_i_z_i_X_X_X______CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  Ci___i_X_X_i_X_X_X______CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCi___X_i_z_X______CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCi_____z_X____CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCi________CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwB1B1BiAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwB1B1BiAwACACACAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwACACACB1B1BiB1B1BiAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwB1B1Bi_p_pACACACACACB1____AwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwACACACB1B1B2_pB1B1B2B1Bi____AwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwB1B1Bi__B1B1B2ACAC_pACAC_fACAC_pA6__B1B1BiAwAwAwAw
+  AwAwAwAwAwAwAwACACACA6AC_fACB1B1B2B1B1BiB1B1B2____ACACAC__AwAwAw
+  AwAwAwAwAwAwAwAwCrCrB1B1Bi_pACACACACACB1ACACACCr____AwCr__AwAwAw
+  AwAwAwAwAwAwAwAwAwAwACACACA6B1B1B2B1B1B2____Cr__AwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwCrCr__ACACACACACACCr____B1B1BiAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwCrCrCrCrCr__AwAwAC_fAC__AwAwAwAwAw
+  AwAwAwAwAwAwAwB1B1Bi__AwAwAwAwAwAwAwAwAwAwAwAwAwAJ____AwAwAwAwAw
+  AwAwAwAwAwAwAwACACAC__AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwCrCr__AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
+  AwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAwAw
 }
-# tile 678 (smoky / object detection)
-{
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCi_F_z_FCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCi_u_F_F_zApCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCB_w_X_X_XC0AzCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCBApApC0B3CiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCi_TAp_wAp_uCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCi_uApCBAp_TCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiAzApCBCB_TCiCiCiCiCiCiCiCi______CiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiB9_wCBAp_TCiCiCiCiCiCiCi__________CiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiAzCBCBAp_uCiCiCiCiCiCi____________CiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiAzCBCBAp_TCiCiCiCiCi____________CiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiAzApCBApApCiCiCi______________CiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCi_T_wApAp_wCBApAVAV______________CiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCi_TApCBCBApApCBApApApAV__________CiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCi_TApCBCBCBCBApCB_wApAp_uAV________CiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiAsApApCBCBCBCBAzCBCBApCBApCBA4______CiCiCiCiCiCiCi
-  CiCiCiCiCiCiCi_TApCBApCB_wApApCBApApCBCB_wAA____CiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCi_TCBApCBApApApCBAp_wApApCBCBA4____CiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiA4_wApCB_aC0CBApApCBApCBAp_wAV____CiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCi_TCBApApApCBCBApCB_wCBCBApCB_m____CiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiAV_wCBApB9CBCBApCBCBApApAp_wAV__CiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCi__B1CBApAp_wCBAp_wCBCBApCB_m____CiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCi___TApCBApApApCBApCBApCB_wAV____CiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCi_____TCB_wApCBB9Ap_wCBCBAV____CiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCi_____T_TCB_wC0C0ApAVAV____CiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCi______AVAVAVAVAV______CiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCi______________CiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-}
-# tile 732 (turquoise / create monster)
-{
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCQBeAkCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiBeCQAkAkBeCQCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCQAkAkBeCQCQAkCQCQCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCQCQBeAkCQCQCQAkBeAkCQAkCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiAkAkCQAkBeAkCQCQAkCQBeAkAkBeCQCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiBeCQBeAkBeAkCQCQBeCQAkAkCQCQAkCQBeCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCQCQAkCQAkBeAkBeAkCQAkBeCQCQCQBeBeAkCQCQCiCiCi
-  CiCiCiCiCiCiCiCiAkAkCQCQBeAkCQCQAkCQAkBeAkBeCQAkAkCQAkCQBeAkCiCi
-  CiCiCiCiCiCiCiAkBeCQAkBeAkCQCQCQBeAkBeCQAkAkCQBeCQAkCQAkCPAk_DCi
-  CiCiCiCiCiCiCQCQAkBeAkBeCQAkBeBeAkCQAkCQCQBeAkCQAkBeAkCQAkBeCVCi
-  CiCiCiCiCiAkBeCQCQAkAkCQCQBeAkCQCQCQAkCQBeAkAkBeCQAkBeAkBeAOCV__
-  CiCiCiCiAkAkCQCQCQBeCQAkAkCQAkAkCQAkBeAkCQCQBeAkBeCQAkBeCVCVB2__
-  CiCiCiCQCQBeCQCQAkCQAkBeCQBeAkBeCQCQCQAkBeAkCQAkCQAkAZCVCVB2_J__
-  CiCiBeCQCQAkBeAkCQBeAkCQCQAkCQAkBeAkBeAkCQAkBeCQAkBe_D_iB2_J____
-  CiAkCQCQAkAkBeAkCQAkBeCQCQAkBeAkCQAkBeAkBeCQAkBeAkCVCV_F_J____Ci
-  AkCQBeAkAkBeCQCQAkBeCQCQAkBeAkBeBeAkCQAkCQAkAkBeCVCVB2B_____CiCi
-  CQCQAkBeCQAkCQCQCQAkCQAkAkAkAkCQCQCQCQAkBeAkBeAOCVB2_J____CiCiCi
-  CiCQAkCQCPAkAkBeAkCQBeAkCQCQBeAkCQCQBeCQAkBeCVCVB2_J____CiCiCiCi
-  Ci_T_TCQCQAkCPAkCQCQAkBeCQCQCQAkAkCQAkBeAkCVCVB2_J____CiCiCiCiCi
-  CiB3_u_T_TBeAkCQCQBeAkAkBeAkCQBeCQBeAkBeCVCVB2_J____CiCiCiCiCiCi
-  CiAzAzAz_u_T_TAkBeAkBeCQBeAkBeAkAkCQAkBxAOB2_J____CiCiCiCiCiCiCi
-  BeAzAzAzAz_u_T_TB1AkCQAkCQAkBeCQCQBeCVCVB2_J____CiCiCiCiCiCiCiCi
-  __AkAkAzAzAzC0_uB3_T_TBeAkCQCQAkBeAOCVB2_J____CiCiCiCiCiCiCiCiCi
-  Ci____BeAkAzAzAzAz_u_u_T_TAkAkBeCVCVB2_J____CiCiCiCiCiCiCiCiCiCi
-  CiCiCi____AkBeAzAzAzAz_u_u_TBeCVCVB2_J____CiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCi____AkBeAzAzAzAzB3AkCVB2_J____CiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCi____AkAkAzAz_uCVB2_J____CiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCi____BeAkAsCV_J____CiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCi____B2_J____CiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCi______CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-}
-# tile 729 (velvet / drain life)
-{
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCdCdCdCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCdCdCdCdCdCdCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCdCdCdCdCdCdCdCdCdCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCdCdCdCdCdCdCdCdCdCdCdCdCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCdCJCdCdCdCdCdCdCdCdCdCdCdCdCdCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCiCiCi
-  CiCiCiCiCiCiCiCiCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCiCi
-  CiCiCiCiCiCiCiCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_KCi
-  CiCiCiCiCiCiCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_KCi
-  CiCiCiCiCiCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdAQ__
-  CiCiCiCiCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_KCdCdCdCd_KCg_K__
-  CiCiCiCdCdCdCdCdCdCdCdCdCdCJCd_KCdCdCdCd_KCdCdCdCdCd_P_KC__KBQ__
-  CiCiCdCdCdCdCdCdCJCdCdCdCdCdCdCdCdCJCdCdCdCdCdCdCdCd_K_i_K_K____
-  CiCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdAQCdANBQ____Ci
-  CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_KCd_K_X____CiCi
-  CdCdCdCdBrCdCdCdCdCdCdCdCdCdCJCdCdCdCdCdCdCdCdCgAQ_KBQ____CiCiCi
-  CiCdCdCdCdCdCJCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_KCd_K_K____CiCiCiCi
-  Ci_T_TCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCJ_KAQ_KBQ____CiCiCiCiCi
-  Ci_T_u_T_TCdCdCdCdCdCdCJCdCdCdCdCdCdCdCdAQCdCg_K____CiCiCiCiCiCi
-  CiAzAz_u_u_T_TCdCdCJCdCdCdCdCdCdCdCdCdBQCd_KBQ____CiCiCiCiCiCiCi
-  CdAzAzAzAz_u_u_T_TCdCdCdCdCdCdCdCdCd_KCd_KBQ____CiCiCiCiCiCiCiCi
-  __CdCdAz_uAzAz_u_u_T_TCdCdCdCdCdCd_KC__KBQ____CiCiCiCiCiCiCiCiCi
-  Ci____CdCdAzAzAzAz_u_u_T_TCdCdCdBQCd_K_K____CiCiCiCiCiCiCiCiCiCi
-  CiCiCi____CdCdAz_uAzAz_u_u_TCdBQCdBQBQ____CiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCi____CdCdAzAzAzAz_uCdCd_K_K____CiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCi____CdCdAzAz_uCd_KBQ____CiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCi____CdCd_T_KBQ____CiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCi_____KBQ____CiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCi______CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-}
-# tile 758 (glass / light)
-{
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCQCCCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCQCcCiBGCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCQCcCiCiCCCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCQCcCiCiAk__CiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCQCcCiCiCC__CiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCQCcCiCiCC__CiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCQCcCiCiCC__CiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCQCcCiCiAk__CiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCQCcCiCiCC__CiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCQCcCiCiCc__CiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCQCcCiCiCC__CiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCQCcCiCiAk__CiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCQCcCiCiCC__CiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCQCcCiCiCC__CiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCQCcCiCiCC__CiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCQCcCiCiAk__CiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCQCcCiCiCC__CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCQCcCiCiCc__CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCQCcCiCiCC__CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCQCcCiCiAk__CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCQCcCiCiCC__CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCQCcCiCiCC__CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCQCcCiCcCC__CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCcCcCiAk__CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCcCC__CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCi____CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-}
-# tile 763 (oak / nothing)
-{
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiAxB_ABCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiABAf_fB_ABCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiACB_ACAC_7ABCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiB_B_AfACAfABABCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiB_AfB_B_B_ABABCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiAxAxAxB_AfABABCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiAxAfB_ABABABCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiAxAfB_A1_7ABCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiB_ACACACACABABCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiAfB_AfACAfABABCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiB_B_B_ACAxABABCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiABAxAfB_AfABABCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiB_AfAxABABABCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiAxAfB_A1ACABCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiACB_ACAC_7ABABCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiB_B_AfACAfABABCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiB_AfB_B_B_ABABCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiAfAxAxB_AfABABCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiAxB_AfABABABCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiB_AfB_A1ACABCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiACB_ACAC_7ABABCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiB_B_AfACAfABABCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiB_AfB_B_B_ABABCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiABA1AxB_AfABABCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiABAB_vABABABCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiABABABABABCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-}
-# tile 760 (crystal / enlightenment)
-{
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiAz_TCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiApCBAp_TCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiC0CB_wCi_uCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiAp_uCECi_T__CiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiC0C0CBApCi_u__CiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiApCiB3Ap_u_T_TCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiApCi_T_w_TCi_T__CiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiApCi_T_wC4Ci_u__CiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiApCiCB_w_T_T_T__CiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiApCiApAg_T_T_T__CiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiApCiAp_wB3AsCi_T__CiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiApC0CiApApAz_TCi_u__CiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiAzApCiB9_wCi_uCi_T____CiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiC0ApCiAz_wCi_T_T_T_T__CiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiApAzCiAzApCiAz_uCi_T____CiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiC0CiApCi_wCi_u_TCi_u____CiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiApCiApCiApCi_TCiCi_T____CiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiApCiAzCiApCi_uCiAz_T_T__CiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiAp_wApCBApApAzCi_T_uAV____CiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiApAp_uCi_T_wCi_uCi_T_u____CiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiAzCiCiAzCiB3ApCi_T_u____CiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiApCiAzAzAz_TCi_uAm_uAV____CiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCi_TCiAzCi_uAz_TCi_uAV____CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiAVAzAzCi_TCi_u_T_T______CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCi_TCi_TAzCiAz_TCiAs____CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiAs_uCiB1CiAsB1____CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiAV_TAV_TAV____CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCi__________CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-}
-# tile 764 (ebony / striking)
-{
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi______CiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi____A1Ax__CiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiAxAxB__XB___CiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi____A1AxA1____CiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi____AxAx______CiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi______________CiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi____________CiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi________B___CiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiAxAxB__XB_____CiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi____A1AxA1____CiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi____AxAx______CiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCi______________CiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCi____________CiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCi________B___CiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiAxAxB__XB_____CiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCi____A1AxA1____CiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCi____AxAx______CiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCi______________CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCi____________CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCi________B___CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiAxA1_XB_B_____CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCi____AxA1Ax____CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCi____AxA1______CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCi______________CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCi____________CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCi__________CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-}
-# tile 785 (gold piece)
-{
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiA3A3ATCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiA3A3ATCiAnCHAnCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiAnAnAnA3A3ATA3A3ATCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiA3A3ATALCSAnA3AnAnA3An____CiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiAnAnA3A3A3ATCSA3A3ATA3AT____CiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiA3A3AT__A3A3ATA3AnALAnA3AnA3AnCS____A3A3ATCiCiCiCi
-  CiCiCiCiCiCiCiAnAnA3__AnA3AnA3A3ATA3A3ATA3A3AT____AnAnA3__CiCiCi
-  CiCiCiCiCiCiCiCi____A3A3AjCSCSA3AnAnA3AnAnA3An______Ci____CiCiCi
-  CiCiCiCiCiCiCiCiCiCiAnAnA3__A3A3ATA3A3AT________CiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCi______AnA3AnAnA3An______A3A3ATCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCi____________CiCiAnAnA3__CiCiCiCiCi
-  CiCiCiCiCiCiCiA3A3AT__CiCiCiCiCiCiCiCiCiCiCiCiCi______CiCiCiCiCi
-  CiCiCiCiCiCiCiAnAnA3__CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCi______CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-  CiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCiCi
-}
-
