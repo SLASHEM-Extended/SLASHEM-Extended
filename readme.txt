@@ -361,6 +361,7 @@ ver 0.0.6E4F6 [? ?/2001] [Released by ?]
 -fixed bug 457683: Crash: lost gas grenades.
 -fixed bug 462512: Tight loop in blessed genocide menu.
 -fixed bug 462513: GTK: getline crashes on close.
+-fixed bug 459396: crash when entering Sam's portal.
 
 ver 0.0.6E4F5 [August 31/2001] [Released by Ali]
 -fixed bug 420517: Yellow dragon scale mail.

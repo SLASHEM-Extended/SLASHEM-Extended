@@ -627,7 +627,6 @@ register int sh;
     goodcl[ 9] = WAND_CLASS;
     goodcl[10] = GEM_CLASS;
     goodcl[11] = 0;
-    goodcl[12] = 0;
 
     for (i=0; i < NUM_OBJECTS; i++) {
       blkmar_gen[i] = 0;
