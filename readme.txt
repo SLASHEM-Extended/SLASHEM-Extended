@@ -133,6 +133,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 1062624: GTK Interface is not resizable
 -fixed bug 931684: Inventory window behaving strangely
 -Fixed build of proxy tests
+-fixed bug 1071688: cannot compile on FreeBSD (termcap)
 
 See history.txt for changes made in previous versions.
 
