@@ -351,6 +351,7 @@ ver 0.0.6E4F3 [February XX/2001]
 -fixed bug 132028: Unnecessary vertical spacing in GTK menus.
 -fixed bug 133159: GTK: tile/description mapping is being lost.
 -fixed bug 133666: Gdk-Critical errors.
+-GTK: improved move & fight key handling.
 
 ver 0.0.6E4F2 [December 30/2000] [Released by Ali]
 -DOS: Allegro window port adapted to display the ground underneath walls

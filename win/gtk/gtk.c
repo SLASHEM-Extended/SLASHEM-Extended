@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.20 2001-02-16 19:19:35 j_ali Exp $
+  $Id: gtk.c,v 1.21 2001-02-24 12:47:49 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -39,6 +39,15 @@ static void	help_option(GtkWidget *w, gpointer data);
 static void	help_je(GtkWidget *w, gpointer data);
 static void	help_history(GtkWidget *w, gpointer data);
 static void	help_license(GtkWidget *w, gpointer data);
+
+#define GTK_NORTH	0
+#define GTK_EAST	1
+#define GTK_SOUTH	2
+#define GTK_WEST	3
+#define GTK_NORTHEAST	4
+#define GTK_NORTHWEST	5
+#define GTK_SOUTHEAST	6
+#define GTK_SOUTHWEST	7
 
 NHWindow gtkWindows[MAXWIN];
 
@@ -189,28 +198,26 @@ static GtkItemFactoryEntry helpmenu_items[] = {
 static GtkItemFactoryEntry playmenu_items[] = {
     {"/Move",			NULL,		NULL,		0,	"<Branch>"},
     {"/Move/Mtear1",		NULL,		NULL,		0,	"<Tearoff>"},
-    {"/Move/North",		NULL,		move_command,	0,	NULL},
-    {"/Move/East",		NULL,		move_command,	1,	NULL},
-    {"/Move/South",		NULL,		move_command,	2,	NULL},
-    {"/Move/West",		NULL,		move_command,	3,	NULL},
-    {"/Move/Northeast",		NULL,		move_command,	4,	NULL},
-    {"/Move/Northwest",		NULL,		move_command,	5,	NULL},
-    {"/Move/Southeast",		NULL,		move_command,	6,	NULL},
-    {"/Move/Southwest",		NULL,		move_command,	7,	NULL},
+    {"/Move/North",		NULL,		move_command,	GTK_NORTH,	NULL},
+    {"/Move/East",		NULL,		move_command,	GTK_EAST,	NULL},
+    {"/Move/South",		NULL,		move_command,	GTK_SOUTH,	NULL},
+    {"/Move/West",		NULL,		move_command,	GTK_WEST,	NULL},
+    {"/Move/Northeast",		NULL,		move_command,	GTK_NORTHEAST,	NULL},
+    {"/Move/Northwest",		NULL,		move_command,	GTK_NORTHWEST,	NULL},
+    {"/Move/Southeast",		NULL,		move_command,	GTK_SOUTHEAST,	NULL},
+    {"/Move/Southwest",		NULL,		move_command,	GTK_SOUTHWEST,	NULL},
     {"/Move/Down",		"greater",	key_command,	'>',	NULL},
     {"/Move/Up",		"less",		key_command,	'<',	NULL},
-/* Not Implemented Yet
     {"/Fight",			NULL,		NULL,		0,	"<Branch>"},
     {"/Fight/Ftear1",		NULL,		NULL,		0,	"<Tearoff>"},
-    {"/Fight/North",		NULL,		fight_command,	0,	NULL},
-    {"/Fight/East",		NULL,		fight_command,	1,	NULL},
-    {"/Fight/South",		NULL,		fight_command,	2,	NULL},
-    {"/Fight/West",		NULL,		fight_command,	3,	NULL},
-    {"/Fight/Northeast",	NULL,		fight_command,	4,	NULL},
-    {"/Fight/Northwest",	NULL,		fight_command,	5,	NULL},
-    {"/Fight/Southeast",	NULL,		fight_command,	6,	NULL},
-    {"/Fight/Southwest",	NULL,		fight_command,	7,	NULL},
-*/
+    {"/Fight/North",		NULL,		fight_command,	GTK_NORTH,	NULL},
+    {"/Fight/East",		NULL,		fight_command,	GTK_EAST,	NULL},
+    {"/Fight/South",		NULL,		fight_command,	GTK_SOUTH,	NULL},
+    {"/Fight/West",		NULL,		fight_command,	GTK_WEST,	NULL},
+    {"/Fight/Northeast",	NULL,		fight_command,	GTK_NORTHEAST,	NULL},
+    {"/Fight/Northwest",	NULL,		fight_command,	GTK_NORTHWEST,	NULL},
+    {"/Fight/Southeast",	NULL,		fight_command,	GTK_SOUTHEAST,	NULL},
+    {"/Fight/Southwest",	NULL,		fight_command,	GTK_SOUTHWEST,	NULL},
     {"/Check",			NULL,		NULL,		0,	"<Branch>"},
     {"/Check/Ctear1",		NULL,		NULL,		0,	"<Tearoff>"},
     {"/Check/Here",		"colon",	key_command,	':',	NULL},
@@ -390,48 +397,9 @@ nh_keysym(GdkEventKey *ev)
 
     switch(ev->keyval)
     {
-	case GDK_End:
-	case GDK_KP_End:
-	    ret = 'b';
-	    break;
-	case GDK_Down:
-	case GDK_KP_Down:
-	    ret = 'j';
-	    break;
-	case GDK_Page_Down:
-	case GDK_KP_Page_Down:
-	    ret = 'n';
-	    break;
-	case GDK_Left:
-	case GDK_KP_Left:
-	    ret = 'h';
-	    break;
-	case GDK_Begin:
-	case GDK_KP_Begin:
-	    ret = '.';
-	    break;
-	case GDK_Right:
-	case GDK_KP_Right:
-	    ret = 'l';
-	    break;
-	case GDK_Home:
-	case GDK_KP_Home:
-	    ret = 'y';
-	    break;
-	case GDK_Up:
-	case GDK_KP_Up:
-	    ret = 'k';
-	    break;
-	case GDK_Page_Up:
-	case GDK_KP_Page_Up:
-	    ret = 'u';
-	    break;
 	case GDK_Return:
 	case GDK_KP_Enter:
 	    ret = '\n';
-	case GDK_Insert:
-	case GDK_KP_Insert:
-	    ret = 'i';
 	    break;
 	case GDK_Escape:
 	    ret = '\033';
@@ -768,7 +736,51 @@ default_destroy(GtkWidget *widget, gpointer data)
 gint
 GTK_default_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
-    keysym = nh_keysym(event);
+    switch(event->keyval)
+    {
+	case GDK_End:
+	case GDK_KP_End:
+	    keysym = dir_keys[GTK_SOUTHWEST][!!iflags.num_pad];
+	    break;
+	case GDK_Down:
+	case GDK_KP_Down:
+	    keysym = dir_keys[GTK_SOUTH][!!iflags.num_pad];
+	    break;
+	case GDK_Page_Down:
+	case GDK_KP_Page_Down:
+	    keysym = dir_keys[GTK_SOUTHEAST][!!iflags.num_pad];
+	    break;
+	case GDK_Left:
+	case GDK_KP_Left:
+	    keysym = dir_keys[GTK_WEST][!!iflags.num_pad];
+	    break;
+	case GDK_Begin:
+	case GDK_KP_Begin:
+	    keysym = '.';
+	    break;
+	case GDK_Right:
+	case GDK_KP_Right:
+	    keysym = dir_keys[GTK_EAST][!!iflags.num_pad];
+	    break;
+	case GDK_Home:
+	case GDK_KP_Home:
+	    keysym = dir_keys[GTK_NORTHWEST][!!iflags.num_pad];
+	    break;
+	case GDK_Up:
+	case GDK_KP_Up:
+	    keysym = dir_keys[GTK_NORTH][!!iflags.num_pad];
+	    break;
+	case GDK_Page_Up:
+	case GDK_KP_Page_Up:
+	    keysym = dir_keys[GTK_NORTHEAST][!!iflags.num_pad];
+	    break;
+	case GDK_Insert:
+	case GDK_KP_Insert:
+	    keysym = 'i';
+	    break;
+	default:
+	    keysym = nh_keysym(event);
+    }
 
     if(keysym)
 	quit_hook();
@@ -1530,9 +1542,7 @@ GTK_init_nhwindows(int *argc, char **argv)
   nh_menu_sensitive("/Game/Option", FALSE);
 */
     nh_menu_sensitive("/Move", FALSE);
-/*
     nh_menu_sensitive("/Fight", FALSE);
-*/
     nh_menu_sensitive("/Check", FALSE);
     nh_menu_sensitive("/Equip", FALSE);
     nh_menu_sensitive("/You", FALSE);
@@ -1661,9 +1671,7 @@ GTK_init_nhwindows2()
     nh_menu_sensitive("/Game/Save", TRUE);
     nh_menu_sensitive("/Game/Option", TRUE);
     nh_menu_sensitive("/Move", TRUE);
-/*
     nh_menu_sensitive("/Fight", TRUE);
-*/
     nh_menu_sensitive("/Check", TRUE);
     nh_menu_sensitive("/Equip", TRUE);
     nh_menu_sensitive("/You", TRUE);
