@@ -929,8 +929,6 @@ nhext.o: ../win/proxy/nhext.c ../include/nhxdr.h ../include/proxycom.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhext.c
 nhxdr.o: ../win/proxy/nhxdr.c ../include/nhxdr.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhxdr.c
-md5.o: ../win/proxy/md5.c ../include/md5.h
-	$(CC) $(CFLAGS) -c ../win/proxy/md5.c
 nhextxdr.o: ../win/proxy/nhextxdr.c ../include/nhxdr.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhextxdr.c
 nhextio.o: ../win/proxy/nhextio.c ../include/nhxdr.h
@@ -939,6 +937,8 @@ nhextnb.o: ../win/proxy/nhextnb.c ../include/nhxdr.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhextnb.c
 compxdr.o: ../win/proxy/compxdr.c ../include/nhxdr.h ../include/proxycom.h
 	$(CC) $(CFLAGS) -c ../win/proxy/compxdr.c
+md5.o: ../win/proxy/md5.c ../include/md5.h
+	$(CC) $(CFLAGS) -c ../win/proxy/md5.c
 gl_conf.o: ../win/gl/gl_conf.c $(HACK_H) ../include/dlb.h \
 		../include/patchlevel.h ../include/winGL.h
 	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c ../win/gl/gl_conf.c
