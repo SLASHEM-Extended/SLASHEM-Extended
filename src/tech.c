@@ -1018,14 +1018,15 @@ int tech_no;
 		break;
             case T_RAISE_ZOMBIES:
             	You("chant the ancient curse...");
-		for (i=0; i<3; i++) for (j=0; j<3; j++) {
-		    int x = u.ux + i - 1, y = u.uy + j - 1;
+		for(i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
 		    int corpsenm;
 		    struct obj *obj, *obj2;
 
-		    for (obj = level.objects[x][y]; obj; obj = obj2) {
+		    if (!isok(u.ux+i, u.uy+j)) continue;
+		    for (obj = level.objects[u.ux+i][u.uy+j]; obj; obj = obj2) {
 			obj2 = obj->nexthere;
 
+			if (obj->otyp != CORPSE) continue;
 			/* Only generate undead */
 			corpsenm = mon_to_zombie(obj->corpsenm);
 			if (corpsenm != -1) {

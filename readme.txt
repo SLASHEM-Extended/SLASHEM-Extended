@@ -94,6 +94,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 931679: Space Bar not working as rest
 -fixed bug 912588: Molds stagger from your powerful strike
 -fixed bug 962574: Display bug when setting OPTIONS=tiles:Small tiles
+-fixed bug 1011313: SEGV using technique "raise zombies"
 
 See history.txt for changes made in previous versions.
 
