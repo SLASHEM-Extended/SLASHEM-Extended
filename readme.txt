@@ -68,7 +68,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E0 [?] [Released by ?]
+ver 0.0.7E0 [April 1/2003] [Released by Ali]
 -Actioned feature request 575146: Improvements to gypsy fortune messages.
 -All situations where a monster flees now generate a message.
 -Merged Sam Dennis's more intelligent autocomplete patch
