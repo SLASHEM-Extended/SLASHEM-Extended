@@ -40,10 +40,10 @@
 
 The development of version 0.0.7 of Slash'EM started with version 0.0.6E5
 (yes, we realise our version numbers are a little odd - it made sense at
-the time!). This is intended to be the last alpha version. We are asking
-for comments on the new features over the month of June 2003 with a view
-to making any last changes which are needed before releasing the first
-beta version.
+the time!). This is intended to be one of the last alpha versions. We are
+asking for comments on the new features over the months of June and July
+2003 with a view to making any last changes which are needed before
+releasing the first beta version.
 
 If you do have comments to make then please either submit a feature
 request (if you know exactly what it is you think the game should do
@@ -84,7 +84,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E1 [?] [Released by ?]
+ver 0.0.7E1 [June 2/2003] [Released by Ali]
 -Actioned feature request 414274: Lazy yn_function().
 -GTK: Added profile for saving eg., session data:
   [UNIX] stored in ~/.gtkhackrc
