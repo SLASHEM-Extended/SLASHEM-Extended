@@ -4086,7 +4086,8 @@ register int dx,dy;
 			if (!otmp) {
 			    /* normal non-fatal hit */
 			    hit(fltxt, mon, exclam(tmp));
-			    if (mblamed && !DEADMONSTER(mblamed) &&
+			    if (mblamed && mblamed != mon &&
+				    !DEADMONSTER(mblamed) &&
 				    mon->movement >= NORMAL_SPEED && rn2(4)) {
 				/* retaliate */
 				mon->movement -= NORMAL_SPEED;

@@ -71,6 +71,7 @@ ver 0.0.7E6F2 [?] [Released by ?]
 -fixed bug 910334: Vampire blood and foodless conduct
 -fixed bug 924384: Inconsistency with shoggoth corroding items
 -Macintosh: Include fix-level in about-box version
+-fixed bug 924277: Monsters can retaliate against themselves
 
 See history.txt for changes made in previous versions.
 
