@@ -603,7 +603,7 @@ register int fd;
 			break;
 		getlev(fd, 0, ltmp, FALSE);
 #ifdef MICRO
-		if (strncmpi("X11", windowprocs.name, 3)) {
+		if (!strncmpi("tty", windowprocs.name, 3)) {
 		    /* WAC -- Keep from spilling off the screen */
 		    if (dotcnt == COLNO/2) dotcnt = 0;
 		    if (dotcnt < COLNO/4) {
