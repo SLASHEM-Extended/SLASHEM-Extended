@@ -144,6 +144,7 @@ struct monst *mtmp;
 {
 	struct obj *otmp;
 	int tmp, could_petrify, named = 0;
+	int do_charm = is_neuter(mtmp->data) || flags.female == mtmp->female;
 
 	/* the following is true if successful on first of two attacks. */
 	if(!monnear(mtmp, u.ux, u.uy)) return(0);
@@ -156,7 +157,7 @@ nothing_to_steal:
 	    else
 	      pline("%s tries to rob you, but there is nothing to steal!",
 		Monnam(mtmp));
-	    return(1);  /* let her flee */
+	    return(1);  /* let thief flee */
 	}
 
 	if (Adornment & LEFT_RING) {
@@ -225,12 +226,28 @@ gotobj:
 
 			otmp->cursed = 0;
 			stop_occupation();
-			if(flags.female)
+			/*
+			 * Don't ask me why gender is apparent under charm but
+			 * not under seduce; I'm just following Vanilla. --ALI
+			 */
+			if(do_charm) {
+			    char pronoun[4];
+			    char action[15];
+			    if (Blind) {
+				strcpy(pronoun, he[gender(mtmp)]);
+				pronoun[0] = highc(pronoun[0]);
+			    }
+			    if (curssv)
+				sprintf(action, "let %s take",
+				  his[gender(mtmp)]);
+			    else
+				strcpy(action,
+				  (objects[otmp->otyp].oc_delay > 1) ?
+				  "start removing" : "hand over");
 			    pline("%s charms you.  You gladly %s your %s.",
-				  Blind ? "She" : Monnam(mtmp),
-				  curssv ? "let her take" :
-	(objects[otmp->otyp].oc_delay > 1) ? "start removing" : "hand over",
+				  Blind ? pronoun : Monnam(mtmp), action,
   				  equipname(otmp));
+			}
 			else
 			    pline("%s seduces you and %s off your %s.",
 				  Blind ? "It" : Adjmonnam(mtmp, "beautiful"),

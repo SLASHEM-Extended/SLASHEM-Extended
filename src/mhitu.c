@@ -1400,10 +1400,17 @@ do_stone:
 			return 3;
 		} else if (mtmp->mcan) {
 		    if (!Blind) {
+			/*
+			 * We use flags.female here on the basis that the
+			 * monster chooses whether to charm or to seduce
+			 * based on your visible gender.  --ALI
+			 */
+			int do_charm = is_neuter(mdat) || \
+			  flags.female == mtmp->female;
 			pline("%s tries to %s you, but you seem %s.",
 			    Adjmonnam(mtmp, "plain"),
-			    flags.female ? "charm" : "seduce",
-			    flags.female ? "unaffected" : "uninterested");
+			    do_charm ? "charm" : "seduce",
+			    do_charm ? "unaffected" : "uninterested");
 		    }
 		    if(rn2(3)) {
 			if (!tele_restrict(mtmp)) rloc(mtmp);
