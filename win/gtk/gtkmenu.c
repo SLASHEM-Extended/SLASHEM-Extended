@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.17 2001-10-15 06:26:32 j_ali Exp $
+  $Id: gtkmenu.c,v 1.14 2001-02-18 15:55:34 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -27,7 +27,6 @@ typedef struct _NHMenuItem{
      int	ch;
      int	gch;
      int	selected;
-     long	count;
      ANY_P	id;
      int	attr;
      int	glyph;
@@ -39,8 +38,6 @@ extern GtkAccelGroup	*accel_group;
 static void move_menu(struct menu *src_menu, struct menu *dest_menu);
 static void free_menu(struct menu *m);
 static void GTK_load_menu_clist(NHWindow *w);
-static gint perm_invent_key_press(GtkWidget *widget, GdkEventKey *event,
-  gpointer data);
 
 static gint
 menu_destroy(GtkWidget *widget, gpointer data)
@@ -62,15 +59,14 @@ static gint
 menu_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
     NHWindow *w = (NHWindow *)data;
-    struct menu_info_t *menu_info = w->menu_information;
 
-    menu_info->keysym = map_menu_cmd(nh_keysym(event));
-    if (event->keyval == GDK_Escape) {
-	menu_info->keysym = '\033';
-	menu_info->cancelled = 1;
+    w->menu_information->keysym = map_menu_cmd(nh_keysym(event));
+    if(event->keyval == GDK_Escape){
+	w->menu_information->keysym = '\033';
+	w->menu_information->cancelled = 1;
     }
 
-    if (menu_info->keysym)
+    if(w->menu_information->keysym)
 	gtk_main_quit();
     
     return FALSE;
@@ -107,21 +103,9 @@ static gint
 menu_selected(GtkWidget *clist, gint row, gint column,
 	      GdkEventButton *event, gpointer data)
 {
-    gchar buf[4];
     NHWindow *w = (NHWindow *)data;
-    struct menu_info_t *menu_info = w->menu_information;
-
-    menu_info->curr_menu.nhMenuItem[row].selected = 1;
-    ++menu_info->n_select;
-    buf[0] = menu_info->curr_menu.nhMenuItem[row].count >= 0 ? '#' : '-';
-    if (menu_info->curr_menu.nhMenuItem[row].gch) {
-	buf[1] = ' ';
-	buf[2] = menu_info->curr_menu.nhMenuItem[row].gch;
-	buf[3] = '\0';
-    }
-    else
-	buf[1] = '\0';
-    gtk_clist_set_text(GTK_CLIST(clist), row, MENU_COLS - 2, buf);
+    w->menu_information->curr_menu.nhMenuItem[row].selected = 1;
+    ++w->menu_information->n_select;
 /*
     if(selmode == PICK_ONE)
 	gtk_main_quit();
@@ -133,17 +117,10 @@ static gint
 menu_unselected(GtkWidget *clist, gint row, gint column,
 	      GdkEventButton *event, gpointer data)
 {
-    gchar buf[4];
     NHWindow *w = (NHWindow *)data;
-    struct menu_info_t *menu_info = w->menu_information;
+    w->menu_information->curr_menu.nhMenuItem[row].selected = 0;
+    --w->menu_information->n_select;
 
-    menu_info->curr_menu.nhMenuItem[row].selected = 0;
-    --menu_info->n_select;
-    if (menu_info->curr_menu.nhMenuItem[row].gch)
-	sprintf(buf, "- %c", menu_info->curr_menu.nhMenuItem[row].gch);
-    else
-	strcpy(buf, "-");
-    gtk_clist_set_text(GTK_CLIST(clist), row, MENU_COLS - 2, buf);
     return FALSE;
 }
 
@@ -250,7 +227,7 @@ GTK_init_menu_widgets(NHWindow *w)
      else
      {
 	 gtk_signal_connect(GTK_OBJECT(w->w), "key_press_event",
-			    GTK_SIGNAL_FUNC(perm_invent_key_press), w);
+			    GTK_SIGNAL_FUNC(GTK_default_key_press), NULL);
 	 gtk_accel_group_attach(accel_group, GTK_OBJECT(w->w));
      }
      w->hbox2 = nh_gtk_new_and_pack(
@@ -306,14 +283,6 @@ GTK_init_menu_widgets(NHWindow *w)
 	    w->menu_information->curr_menu.prompt);
     
      w->menu_information->valid_widgets = TRUE;
-
-     /* Find our "ancestor" pointer. This pointer would normally be NULL,
-      * but we set it to point at grab widgets to implement a type of
-      * partial modality. Warning: this is a hack.
-      */
-     for(b = w->w; b->parent; b = b->parent)
-	 ;
-     w->menu_information->ancestor = &b->parent;
 }
 
 static void
@@ -412,7 +381,7 @@ GTK_add_menu(winid id, int glyph, const ANY_P *identifier,
      GtkCList	*c;
      NHWindow	*w;
      struct menu *menu;
-     char 	buf[2], buf2[4];
+     char 	buf[2], buf2[2];
      gchar	*text[MENU_COLS];
 
      if(!str || str[0] == '\0')
@@ -450,7 +419,6 @@ GTK_add_menu(winid id, int glyph, const ANY_P *identifier,
      menu->nhMenuItem[menu->n_menuitem].ch = ch;
      menu->nhMenuItem[menu->n_menuitem].gch = gch;
      menu->nhMenuItem[menu->n_menuitem].selected = FALSE;
-     menu->nhMenuItem[menu->n_menuitem].count = -1;
      menu->nhMenuItem[menu->n_menuitem].id = *identifier;
      menu->nhMenuItem[menu->n_menuitem].attr = attr;
      menu->nhMenuItem[menu->n_menuitem].glyph = glyph;
@@ -461,11 +429,11 @@ GTK_add_menu(winid id, int glyph, const ANY_P *identifier,
      text[MENU_COLS-3] = buf;
 
      if(gch){
-	  sprintf(buf2, "- %c", gch);
+	  sprintf(buf2, "%c", gch);
 	  text[MENU_COLS-2] = buf2;
      }	  
      else
-	  text[MENU_COLS-2] = identifier->a_void ? "-" : "";
+	  text[MENU_COLS-2] = "";
 
      text[MENU_COLS-1] = (gchar *)str;
 
@@ -495,70 +463,6 @@ GTK_end_menu(winid id, const char *prompt)
      menu->prompt = prompt;
 }
 
-static gint
-ancestor_destroy(GtkWidget *widget, gpointer data)
-{
-    NHWindow *w = (NHWindow *)data;
-    struct menu_info_t *menu_info = w->menu_information;
-    *(menu_info->ancestor) = NULL;
-    return 0;
-}
-
-static gint
-perm_invent_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
-{
-    NHWindow *w = (NHWindow *)data;
-
-    /*
-     * If we're faking being a descendant of a window it's because that
-     * window has a grab active. In this case all key press events should
-     * be going to the grab widget.
-     */
-    if (w->menu_information && *(w->menu_information->ancestor)) {
-	/* As Gtk+ internal function gtk_propagate_event() */
-	widget = gtk_widget_get_ancestor(*(w->menu_information->ancestor),
-	  GTK_TYPE_WINDOW);
-	if (widget) {
-	    if (GTK_WIDGET_IS_SENSITIVE(widget))
-		gtk_widget_event(widget, (GdkEvent *)event);
-	    return 1;
-	}
-	else
-	    return 0;
-    }
-    else
-	return GTK_default_key_press(widget, event, data);
-}
-
-/*
- * Call this function after changing the grab to retain the ability to
- * scroll the permanent inventory window.
- */
-
-void
-nh_gtk_perm_invent_hack(void)
-{
-    NHWindow *w = &gtkWindows[WIN_INVEN];
-    GtkWidget *grab;
-    if (!w->w)
-	return;			/* Inventory window not open */
-    grab = gtk_grab_get_current();
-    *(w->menu_information->ancestor) = NULL;
-    if (grab && !gtk_widget_is_ancestor(w->w, grab)) {
-	/* If there is a grab in effect the user will not be able to
-	 * scroll the permanent inventory window. The real solution
-	 * is not to use modal windows (see gtk2 for an implementation
-	 * of this) but this is very hard to do in Gtk+ v1.2.x so
-	 * instead we temporarily hack the inventory window to appear
-	 * to be a descendant of the current grab. We automatically
-	 * undo this if the grab window is destroyed.
-	 */
-	*(w->menu_information->ancestor) = grab;
-	gtk_signal_connect(GTK_OBJECT(grab), "destroy",
-	  GTK_SIGNAL_FUNC(ancestor_destroy), w);
-    }
-}
-
 int 
 GTK_select_menu(winid id, int how, MENU_ITEM_P **menu_list)
 {
@@ -578,7 +482,6 @@ GTK_select_menu(winid id, int how, MENU_ITEM_P **menu_list)
     menu_info = w->menu_information;
     menu_info->n_select = 0;
     menu_info->selmode = how;
-    menu_info->count = -1;
     *menu_list = 0;
 
     if (id == WIN_INVEN)
@@ -592,8 +495,7 @@ GTK_select_menu(winid id, int how, MENU_ITEM_P **menu_list)
 	menu_info->cancelled = 0;
 
     /* make new menu the current menu */
-    if (menu_info->new_menu.n_menuitem)
-	move_menu(&menu_info->new_menu, &menu_info->curr_menu);
+    move_menu(&menu_info->new_menu, &menu_info->curr_menu);
 
     if (!menu_info->valid_widgets)
 	GTK_init_menu_widgets(w);
@@ -626,10 +528,8 @@ GTK_select_menu(winid id, int how, MENU_ITEM_P **menu_list)
     
     gtk_widget_show_all(w->w);
     
-    if (menu_info->cancelled < 0) {
-	gdk_window_raise(w->w->window);
+    if (menu_info->cancelled < 0)
 	return 0;
-    }
     gtk_grab_add(w->w);
     gtk_widget_grab_focus(w->clist);
 
@@ -656,10 +556,8 @@ GTK_select_menu(winid id, int how, MENU_ITEM_P **menu_list)
 			if(item->id.a_void){
 			    if(item->selected)
 				gtk_clist_unselect_row(c, i, 0);
-			    else {
-				menu_info->curr_menu.nhMenuItem[i].count = -1;
+			    else
 				gtk_clist_select_row(c, i, 0);
-			    }
 			}
 		    }
 		    if(menu_info->keysym == MENU_UNSELECT_PAGE ||
@@ -669,43 +567,25 @@ GTK_select_menu(winid id, int how, MENU_ITEM_P **menu_list)
 		    }
 		    if(menu_info->keysym == MENU_SELECT_PAGE ||
 		      menu_info->keysym == MENU_SELECT_ALL){
-			if (item->id.a_void) {
-			    menu_info->curr_menu.nhMenuItem[i].count = -1;
+			if(item->id.a_void)
 			    gtk_clist_select_row(c, i, 0);
-			}
 		    }
 		    else if(item->gch == menu_info->keysym){
 			if(item->selected)
 			    gtk_clist_unselect_row(c, i, 0);
-			else {
-			    menu_info->curr_menu.nhMenuItem[i].count = -1;
+			else
 			    gtk_clist_select_row(c, i, 0);
-			}
 		    }
 		}
 		if(item->ch == menu_info->keysym){
-		    if (item->selected && menu_info->count < 0)
+		    if(item->selected)
 			gtk_clist_unselect_row(c, i, 0);
-		    else {
-			menu_info->curr_menu.nhMenuItem[i].count =
-			  menu_info->count;
+		    else
 			gtk_clist_select_row(c, i, 0);
-		    }
 		    if(how == PICK_ONE)
 			goto loopout;
 		}
 	    }
-	    if (menu_info->keysym >= '0' && menu_info->keysym <= '9') {
-		if (menu_info->count > 0)
-		    menu_info->count *= 10;
-		else
-		    menu_info->count = 0;
-		menu_info->count += menu_info->keysym - '0';
-		if (menu_info->count <= 0)
-		    menu_info->count = -1;
-	    }
-	    else
-		menu_info->count = -1;
 	}
     }
  loopout:
@@ -713,7 +593,7 @@ GTK_select_menu(winid id, int how, MENU_ITEM_P **menu_list)
     GTK_destroy_menu_widgets(w);
     
     if(menu_info->cancelled)
-	return -1;
+	return 0;
     
     for(i=0 ; i<menu_info->curr_menu.n_menuitem ; ++i)
 	if(menu_info->curr_menu.nhMenuItem[i].selected &&
@@ -724,14 +604,13 @@ GTK_select_menu(winid id, int how, MENU_ITEM_P **menu_list)
 	*menu_list = (menu_item *) alloc(n * sizeof(menu_item));
 	
 	n = 0;
-	for(i=0 ; i<menu_info->curr_menu.n_menuitem ; ++i) {
-	    item = &menu_info->curr_menu.nhMenuItem[i];
-	    if (item->selected && item->id.a_void) {
-		(*menu_list)[n].item = item->id;
-		(*menu_list)[n].count = item->count;
+	for(i=0 ; i<menu_info->curr_menu.n_menuitem ; ++i)
+	    if(menu_info->curr_menu.nhMenuItem[i].selected &&
+	      menu_info->curr_menu.nhMenuItem[i].id.a_void){
+		(*menu_list)[n].item = menu_info->curr_menu.nhMenuItem[i].id;
+		(*menu_list)[n].count = -1;
 		++n;
 	    }
-	}
     }
     
     return n;

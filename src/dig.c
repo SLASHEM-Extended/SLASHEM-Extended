@@ -151,13 +151,6 @@ dig_check(madeby, verbose, x, y)
 	    } else if(verbose) pline_The("stairs are too hard to %s into.",
 	    			    (is_lightsaber(uwep) ? "cut": "dig"));
 	    return(FALSE);
-#ifdef DEVEL_BRANCH
-	/* ALI - Artifact doors */
-	} else if (IS_DOOR(levl[x][y].typ) && artifact_door(x, y)) {
-	    if(verbose) pline_The("%s here is too hard to dig in.",
-				  surface(x,y));
-	    return(FALSE);
-#endif
 	} else if (IS_THRONE(levl[x][y].typ) && madeby != BY_OBJECT) {
 	    if(verbose) pline_The("throne is too hard to break apart.");
 	    return(FALSE);
@@ -214,16 +207,8 @@ dig()
 	if (digging.down) {
 	    if(!dig_check(BY_YOU, TRUE, u.ux, u.uy)) return(0);
 	} else { /* !digging.down */
-#ifdef DEVEL_BRANCH
-	    /* ALI - Artifact doors */
-	    if (IS_ROCK(lev->typ) && !may_dig(dpx,dpy) && !dig_typ(dpx, dpy) ||
-		    IS_DOOR(lev->typ) && artifact_door(dpx, dpy)) {
-		pline("This %s is too hard to %s.",
-			IS_DOOR(lev->typ) ? "door" : "wall",
-#else
 	    if (IS_ROCK(lev->typ) && !may_dig(dpx,dpy) && !dig_typ(dpx, dpy)) {
 		pline("This wall is too hard to %s.", 
-#endif
 			(is_lightsaber(uwep) ? "cut through" : "dig into"));
 		return(0);
 	    }
@@ -633,10 +618,6 @@ boolean pit_only;
 	boolean nohole = !Can_dig_down(&u.uz);
 
 	if ((ttmp && (ttmp->ttyp == MAGIC_PORTAL || nohole)) ||
-#ifdef DEVEL_BRANCH
-	   /* ALI - artifact doors */
-	   IS_DOOR(levl[u.ux][u.uy].typ) && artifact_door(u.ux, u.uy) ||
-#endif
 	   (IS_WALL(lev->typ) && (lev->wall_info & W_NONDIGGABLE) != 0)) {
 		pline_The("%s here is too hard to dig in.", surface(u.ux,u.uy));
 
@@ -1059,7 +1040,7 @@ register struct monst *mtmp;
 
 	if (pile && pile < 5)   /* leave behind some rocks? */
 	    (void) mksobj_at((pile == 1) ? BOULDER : ROCK,
-			     mtmp->mx, mtmp->my, TRUE, FALSE);
+			     mtmp->mx, mtmp->my, TRUE);
 	newsym(mtmp->mx, mtmp->my);
 	if (!sobj_at(BOULDER, mtmp->mx, mtmp->my))
 	    unblock_point(mtmp->mx, mtmp->my);  /* vision */
@@ -1112,7 +1093,7 @@ zap_dig()
 		    pline("It falls on your %s!", body_part(HEAD));
 		    losehp(rnd((uarmh && is_metallic(uarmh)) ? 2 : 6),
 			   "falling rock", KILLED_BY_AN);
-		    if ((otmp = mksobj_at(ROCK, u.ux, u.uy, FALSE, FALSE)) != 0) {
+		    if ((otmp = mksobj_at(ROCK, u.ux, u.uy, FALSE)) != 0) {
 			(void)xname(otmp);      /* set dknown, maybe bknown */
 			stackobj(otmp);
 		    }
@@ -1149,26 +1130,13 @@ zap_dig()
                 next_obj = otmp->nexthere;
 		/* vaporize boulders */
                 if (otmp->otyp == BOULDER) {
-		    delobj(otmp);
-		    /* A little Sokoban guilt... */
-		    if (In_sokoban(&u.uz))
-			change_luck(-1);
-		    unblock_point(zx, zy);
-		    newsym(zx, zy);
-		    pline_The("boulder is vaporized!");
+                        delobj(otmp);
+                        pline_The("boulder is vaporized!");
 		}
 		break;
             }
 
             if (closed_door(zx, zy) || room->typ == SDOOR) {
-#ifdef DEVEL_BRANCH
-		/* ALI - Artifact doors */
-		if (artifact_door(zx, zy)) {
-		    if (cansee(zx, zy))
-			pline_The("door glows then fades.");
-		    break;
-		}
-#endif
 		if (*in_rooms(zx,zy,SHOPBASE)) {
 		    add_damage(zx, zy, 400L);
 		    shopdoor = TRUE;

@@ -111,7 +111,9 @@ create_status_window(wp, create_popup, parent)
     XtSetArg(args[num_args], XtNrightMargin,  &right_margin);  num_args++;
     XtGetValues(wp->w, args, num_args);
 
-    wp->pixel_height = 2 * nhFontHeight(wp->w) + top_margin + bottom_margin;
+    /* font height is ascent + descent */
+    wp->pixel_height = 2 * (fs->ascent + fs->descent) +
+						top_margin + bottom_margin;
     wp->pixel_width  = COLNO * fs->max_bounds.width +
 						left_margin + right_margin;
 
@@ -356,7 +358,7 @@ update_val(attr_rec, new_value)
 		Strcat(buf, rank_of(u.ulevel, pl_character[0], flags.female));
 
 	} else if (attr_rec == &shown_stats[F_DLEVEL]) {
-	    if (!describe_level(buf, FALSE)) {
+	    if (!describe_level(buf)) {
 		Strcpy(buf, dungeons[u.uz.dnum].dname);
 		Sprintf(eos(buf), ", level %d", depth(&u.uz));
 	    }

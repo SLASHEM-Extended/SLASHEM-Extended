@@ -291,8 +291,6 @@ Helmet_on()
 {
     switch(uarmh->otyp) {
 	case FEDORA:
-		set_moreluck();
-		break;
 	case HELMET:
 	case DENTED_POT:
 	case ELVEN_LEATHER_HELM:
@@ -350,9 +348,6 @@ Helmet_off()
 {
     switch(uarmh->otyp) {
 	case FEDORA:
-		setworn((struct obj *)0, W_ARMH);
-		set_moreluck();
-		return 0;
 	case HELMET:
 	case DENTED_POT:
 	case ELVEN_LEATHER_HELM:
@@ -588,10 +583,6 @@ Amulet_on()
 		       changed the character's base sex */
 		    You("don't feel like yourself.");
 		pline_The("amulet disintegrates!");
-		if (orig_sex == poly_gender() && uamul->dknown &&
-			!objects[AMULET_OF_CHANGE].oc_name_known &&
-			!objects[AMULET_OF_CHANGE].oc_uname)
-		    docall(uamul);
 		useup(uamul);
 		break;
 	    }
@@ -1289,9 +1280,6 @@ register struct obj *otmp;
 			(void) Cloak_off();
 		else if(is_shield(otmp))
 			(void) Shield_off();
-		else if (is_helmet(otmp))
-			/* [Finn E. Theodorsen] For fedoras */
-			(void) Helmet_off();
 		else setworn((struct obj *)0, otmp->owornmask & W_ARMOR);
 		off_msg(otmp);
 	}
@@ -1492,7 +1480,6 @@ dowear()
 	} else {
 		if(is_cloak(otmp)) (void) Cloak_on();
 /*		if(is_shield(otmp)) (void) Shield_on(); */
-		else if (is_helmet(otmp)) (void) Helmet_on();	/* fedoras */
 		on_msg(otmp);
 	}
 	takeoff_mask = taking_off = 0L;

@@ -505,6 +505,11 @@ ARMOR("robe of weakness", "green robe",
  *	(2) That the order of the dragon scale mail and dragon scales is the
  *	    the same defined in monst.c.
  */
+/* KMH, balance patch --
+ * Yellow dragon armor intentionally gives a higher AC without
+ * giving intrinsic acid resistance.  This gives the player a
+ * critical choice between better AC or getting an intrinsic.
+ */
 #define DRGN_ARMR(name,power,cost,ac,color) \
 	ARMOR(name,(char *)0,1,0,1,power,0,5,50,cost,ac,0,ARM_SUIT,DRAGON_HIDE,color)
 DRGN_ARMR("gray dragon scale mail",   ANTIMAGIC,  1200, 1, CLR_GRAY),
@@ -1106,7 +1111,7 @@ SPELL("fireball",        "ragged",      P_MATTER_SPELL, 15,  6, 4, 1, RAY,      
 SPELL("cone of cold",    "dog eared",   P_MATTER_SPELL, 15,  8, 5, 1, RAY,       HI_PAPER),
 SPELL("sleep",           "mottled",     P_ENCHANTMENT_SPELL, 35,  1, 1, 1, RAY,  HI_PAPER),
 SPELL("finger of death", "stained",     P_ATTACK_SPELL,  5, 10, 7, 1, RAY,       HI_PAPER),
-SPELL("lightning",       "rainbow",     P_MATTER_SPELL, 10,  7, 4, 1, RAY,       HI_PAPER),
+SPELL("lightning",       "papyrus",     P_MATTER_SPELL, 10,  7, 4, 1, RAY,       HI_PAPER),
 SPELL("poison blast",    "tattered",    P_ATTACK_SPELL,  5,  7, 4, 1, RAY,       HI_PAPER),
 SPELL("acid stream",     "colorful",    P_MATTER_SPELL,  5,  7, 4, 1, RAY,       HI_PAPER),
 /* Description placeholders and special spellbooks */

@@ -34,9 +34,7 @@ static NEARDATA struct obj *book;       /* last/current book being xscribed */
 #define spellid(spell)          spl_book[spell].sp_id
 #define spellname(spell)        OBJ_NAME(objects[spellid(spell)])
 #define spellet(spell)  \
-	((char)((spell < 26) ? ('a' + spell) : \
-	        (spell < 52) ? ('A' + spell - 26) : \
-		(spell < 62) ? ('0' + spell - 52) : 0 ))
+	((char)((spell < 26) ? ('a' + spell) : ('A' + spell - 26)))
 
 static void FDECL(cursed_book, (int));
 static void FDECL(deadbook, (struct obj *));
@@ -107,7 +105,7 @@ static int FDECL(spell_let_to_idx, (CHAR_P));
 /* since the spellbook itself doesn't blow up, don't say just "explodes" */
 static const char explodes[] = "radiates explosive energy";
 
-/* convert an alnum into a number in the range 0..61, or -1 if not an alnum */
+/* convert a letter into a number in the range 0..51, or -1 if not a letter */
 static int
 spell_let_to_idx(ilet)
 char ilet;
@@ -118,8 +116,6 @@ char ilet;
     if (indx >= 0 && indx < 26) return indx;
     indx = ilet - 'A';
     if (indx >= 0 && indx < 26) return indx + 26;
-    indx = ilet - '0';
-    if (indx >= 0 && indx < 10) return indx + 52;
     return -1;
 }
 
@@ -300,9 +296,7 @@ learn()
 	char splname[BUFSZ];
 	boolean costly = TRUE;
 
-	if (!book || !(carried(book) || 
-		(book->where == OBJ_FLOOR && 
-			book->ox == u.ux && book->oy == u.uy))) {
+	if (!book || !carried(book)) {
 	    /* maybe it was stolen or polymorphed? */
 	    do_reset_learn();
 	    return(0);
@@ -586,12 +580,7 @@ getspell(spell_no)
 	    if (nspells == 1)  Strcpy(lets, "a");
 	    else if (nspells < 27)  Sprintf(lets, "a-%c", 'a' + nspells - 1);
 	    else if (nspells == 27)  Sprintf(lets, "a-z A");
-	    else if (nspells < 53)
-		Sprintf(lets, "a-z A-%c", 'A' + nspells - 27);
-	    else if (nspells == 53)  Sprintf(lets, "a-z A-Z 0");
-	    else if (nspells < 62)
-		Sprintf(lets, "a-z A-Z 0-%c", '0' + nspells - 53);
-	    else  Sprintf(lets, "a-z A-Z 0-9");
+	    else Sprintf(lets, "a-z A-%c", 'A' + nspells - 27);
 
 	    for(;;)  {
 		Sprintf(qbuf, "Cast which spell? [%s ?]", lets);
@@ -722,9 +711,6 @@ int spell;
 boolean atme;
 {
 	int energy, damage, chance, n, intell;
-#ifdef DEVEL_BRANCH
-	int hungr;
-#endif
 	int skill, role_skill;
 	boolean confused = (Confusion != 0);
 	struct obj *pseudo;
@@ -770,11 +756,10 @@ boolean atme;
 		You_feel("the amulet draining your energy away.");
 		energy += rnd(2*energy);
 	}
-#ifndef DEVEL_BRANCH
 	if(energy > u.uen)  {
 		You("don't have enough energy to cast that spell.");
                 /* WAC Experts can override with HP loss */
-                if ((role_skill >= P_SKILLED) && (yn("Continue?") == 'y')) {
+                if ((role_skill >= P_SKILLED) && (yn("Continue?") == 'y')) {                   
                         energy -= u.uen;
                         losehp(energy,"spellcasting exhaustion", KILLED_BY);                        
                         if (role_skill < P_EXPERT) exercise(A_WIS, FALSE);
@@ -818,59 +803,6 @@ boolean atme;
 			morehungry(hungr);
 		}
 	}
-#else	/* DEVEL_BRANCH */
-	if (spellid(spell) != SPE_DETECT_FOOD) {
-		hungr = energy * 2;
-
-		/* If hero is a wizard, their current intelligence
-		 * (bonuses + temporary + current)
-		 * affects hunger reduction in casting a spell.
-		 * 1. int = 17-18 no reduction
-		 * 2. int = 16    1/4 hungr
-		 * 3. int = 15    1/2 hungr
-		 * 4. int = 1-14  normal reduction
-		 * The reason for this is:
-		 * a) Intelligence affects the amount of exertion
-		 * in thinking.
-		 * b) Wizards have spent their life at magic and
-		 * understand quite well how to cast spells.
-		 */
-		intell = acurr(A_INT);
-		if (!Role_if(PM_WIZARD)) intell = 10;
-		switch (intell) {
-			case 25: case 24: case 23: case 22:
-			case 21: case 20: case 19: case 18:
-			case 17: hungr = 0; break;
-			case 16: hungr /= 4; break;
-			case 15: hungr /= 2; break;
-		}
-	}
-	else
-		hungr = 0;
-	/* don't put player (quite) into fainting from
-	 * casting a spell, particularly since they might
-	 * not even be hungry at the beginning; however,
-	 * this is low enough that they must eat before
-	 * casting anything else except detect food
-	 */
-	if (hungr > u.uhunger-3)
-		hungr = u.uhunger-3;
-	if (energy > u.uen)  {
-		You("don't have enough energy to cast that spell.");
-		/* WAC/ALI Experts can override with HP/hunger loss */
-		if ((role_skill >= P_SKILLED) && (yn("Continue?") == 'y')) {
-			energy -= u.uen;
-			hungr += energy * 2;
-			if (hungr > u.uhunger - 1)
-				hungr = u.uhunger - 1;
-			losehp(energy,"spellcasting exhaustion", KILLED_BY);
-			if (role_skill < P_EXPERT) exercise(A_WIS, FALSE);
-			energy = u.uen;
-		} else
-			return 0;
-	}
-	morehungry(hungr);
-#endif	/* DEVEL_BRANCH */
 
 	chance = percent_success(spell);
 	if (confused || (rnd(100) > chance)) {
@@ -1017,8 +949,8 @@ boolean atme;
 	case SPE_RESIST_POISON:
 		if(!(HPoison_resistance & INTRINSIC)) {
 			You("feel healthy ..... for the moment at least.");
-			incr_itimeout(&HPoison_resistance, rn1(1000, 500) +
-				spell_damage_bonus(spellid(spell))*100);
+			incr_itimeout(&HPoison_resistance,
+					rn1(1000, 500) + spell_damage_bonus(skill)*100);
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_RESIST_SLEEP:
@@ -1027,15 +959,15 @@ boolean atme;
 				pline("Too much coffee!");
 			else
 				You("no longer feel tired.");
-			incr_itimeout(&HSleep_resistance, rn1(1000, 500) +
-				spell_damage_bonus(spellid(spell))*100);
+			incr_itimeout(&HSleep_resistance,
+					rn1(1000, 500) + spell_damage_bonus(skill)*100);
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_ENDURE_COLD:
 		if(!(HCold_resistance & INTRINSIC)) {
 			You("feel warmer.");
-			incr_itimeout(&HCold_resistance, rn1(1000, 500) +
-				spell_damage_bonus(spellid(spell))*100);
+			incr_itimeout(&HCold_resistance,
+					rn1(1000, 500) + spell_damage_bonus(skill)*100);
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_ENDURE_HEAT:
@@ -1044,8 +976,8 @@ boolean atme;
 				pline("Excellent! You feel, like, totally cool!");
 			else
 				You("feel colder.");
-			incr_itimeout(&HFire_resistance, rn1(1000, 500) +
-				spell_damage_bonus(spellid(spell))*100);
+			incr_itimeout(&HFire_resistance,
+					rn1(1000, 500) + spell_damage_bonus(skill)*100);
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_INSULATE:
@@ -1054,8 +986,8 @@ boolean atme;
 				pline("Bummer! You've been grounded!");
 			else
 				You("are not at all shocked by this feeling.");
-			incr_itimeout(&HShock_resistance, rn1(1000, 500) +
-				spell_damage_bonus(spellid(spell))*100);
+			incr_itimeout(&HShock_resistance,
+					rn1(1000, 500) + spell_damage_bonus(skill)*100);
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_ENLIGHTEN: 
@@ -1088,7 +1020,7 @@ boolean atme;
 	/* KMH -- new spells */
 	case SPE_PASSWALL:
 		if (!Passes_walls)
-			You_feel("ethereal.");
+			You_feel("etheral.");
 		incr_itimeout(&HPasses_walls, rn1(100, 50));
 		break;
 
@@ -1142,8 +1074,8 @@ dovspell()
 	else {
 	    while (dospellmenu("Currently known spells",
 			       SPELLMENU_VIEW, &splnum)) {
-		Sprintf(qbuf, "Reordering spells; swap '%s' with",
-			spellname(splnum));
+		Sprintf(qbuf, "Reordering spells; swap '%c' with",
+			spellet(splnum));
 		if (!dospellmenu(qbuf, splnum, &othnum)) break;
 
 		spl_tmp = spl_book[splnum];
@@ -1180,8 +1112,6 @@ int *spell_no;
 	 * in the window-ports (say via a tab character).
 	 */
 	Sprintf(buf, "%-20s     Level  %-12s Fail", "    Name", "Category");
-	if (flags.menu_style == MENU_TRADITIONAL)
-	    Strcat(buf, "  Key");
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, MENU_UNSELECTED);
 	for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
 	        Sprintf(buf, "%-20s  %2d%s   %-12s %3d%%",
@@ -1189,12 +1119,10 @@ int *spell_no;
 			spellknow(i) ? " " : "*",
 			spelltypemnemonic(spell_skilltype(spellid(i))),
 			100 - percent_success(i));
-		if (flags.menu_style == MENU_TRADITIONAL)
-		    Sprintf(eos(buf), "%4c ", spellet(i) ? spellet(i) : ' ');
 
 		any.a_int = i+1;	/* must be non-zero */
 		add_menu(tmpwin, NO_GLYPH, &any,
-			 0, 0, ATR_NONE, buf,
+			 spellet(i), 0, ATR_NONE, buf,
 			 (i == splaction) ? MENU_SELECTED : MENU_UNSELECTED);
 	      }
 	end_menu(tmpwin, prompt);

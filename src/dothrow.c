@@ -30,37 +30,6 @@ extern boolean notonhead;       /* for long worms */
 #define THROW_UWEP 	1
 #define THROW_USWAPWEP 	2
 
-/* Split this object off from its slot */
-
-struct obj *
-splitoneoff(pobj)
-struct obj **pobj;
-{
-    struct obj *obj = *pobj;
-    struct obj *otmp = (struct obj *)0;
-    if (obj == uquiver) {
-	if (obj->quan > 1L)
-	    setuqwep(otmp = splitobj(obj, 1L));
-	else
-	    setuqwep((struct obj *)0);
-    } else if (obj == uswapwep) {
-	if (obj->quan > 1L)
-	    setuswapwep(otmp = splitobj(obj, 1L));
-	else
-	    setuswapwep((struct obj *)0);
-    } else if (obj == uwep) {
-	if (obj->quan > 1L)
-	    setworn(otmp = splitobj(obj, 1L), W_WEP);
-	    /* not setuwep; do not change unweapon */
-	else {
-	    setuwep((struct obj *)0);
-	    if (uwep) return (struct obj *)0; /* unwielded, died, rewielded */
-	}
-    } else if (obj->quan > 1L)
-	otmp = splitobj(obj, 1L);
-    *pobj = otmp;
-    return obj;
-}
 
 /* Throw the selected object, asking for direction */
 STATIC_OVL int
@@ -213,14 +182,38 @@ int thrown;
 
 	if (multishot < 1) multishot = 1;
 
-	otmp = obj;
-	while (otmp && (multishot-- > 0)) {
-		wep_mask = otmp->owornmask;
-		obj = splitoneoff(&otmp);
-		if (!obj)
-			return 1;
+	while (obj && (multishot-- > 0)) {
+		wep_mask = obj->owornmask;
+		/* Split this object off from its slot */
+		otmp = (struct obj *)0;
+		if (obj == uquiver) {
+			if(obj->quan > 1L)
+				setuqwep(otmp = splitobj(obj, 1L));
+			else
+				setuqwep((struct obj *)0);
+		} else if (obj == uswapwep) {
+			if(obj->quan > 1L)
+				setuswapwep(otmp = splitobj(obj, 1L));
+			else
+				setuswapwep((struct obj *)0);
+		} else if (obj == uwep) {
+		    if (welded(obj)) {
+			weldmsg(obj);
+			return(1);
+		    }
+		    if (obj->quan > 1L)
+ 			setworn(otmp = splitobj(obj, 1L), W_WEP);
+			/* not setuwep; do not change unweapon */
+		    else {
+			setuwep((struct obj *)0);
+			if (uwep) return(1); /* unwielded, died, rewielded */
+		    }
+		} else if(obj->quan > 1L)
+			otmp = splitobj(obj, 1L);
+
 		freeinv(obj);
 		throwit(obj, wep_mask, thrown);
+		obj = otmp;
 	}	/* while (multishot) */
 	return (1);
 }
@@ -258,12 +251,7 @@ dothrow()
 
         result = throw_obj(obj, shotlimit, THROW_UWEP);
         
-	/*
-	 * [ALI] Bug fix: Temporary paralysis (eg., from hurtle) cancels
-	 * any count for the throw command.
-	 */
-	if (multi >= 0)
-	    multi = oldmulti;
+        multi = oldmulti;
         save_cm = oldsave_cm;
         return (result);
 }
@@ -606,7 +594,6 @@ hurtle(dx, dy, range, verbose)
     cc.x = u.ux + (dx * range);
     cc.y = u.uy + (dy * range);
     (void) walk_path(&uc, &cc, hurtle_step, (genericptr_t)&range);
-    teleds(cc.x, cc.y);
 }
 
 STATIC_OVL void
@@ -829,34 +816,7 @@ int thrown;
 		setuwep(obj);
 /*            if (!fire_weapon) setuwep(obj);                
             else setuqwep(obj);*/
-		return;
-	    }
-#ifdef FIREARMS
-	    /* [ALI]
-	     * Grenades are armed but are then processed by toss_up/hitfloor
-	     * as normal.
-	     *
-	     * Bullets just disappear with no message.
-	     *
-	     * Rockets hit the ceiling/floor and explode.
-	     */
-	    else if (is_grenade(obj))
-		arm_bomb(obj, TRUE);
-	    else if (is_bullet(obj) && ammo_and_launcher(obj, launcher)) {
-		if (!Is_airlevel(&u.uz) && !Is_waterlevel(&u.uz) && !Underwater
-			&& (objects[obj->otyp].oc_dir & EXPLOSION)) {
-		    pline("%s hit%s the %s and explodes in a ball of fire!",
-			    Doname2(obj), (obj->quan == 1L) ? "s" : "",
-			    u.dz < 0 ? ceiling(u.ux, u.uy) : surface(u.ux, u.uy));
-		    explode(u.ux, u.uy, ZT_SPELL(ZT_FIRE), d(3, 8),
-			    WEAPON_CLASS);
-		}
-		check_shop_obj(obj, u.ux, u.uy, TRUE);
-		obfree(obj, (struct obj *)0);
-		return;
-	    }
-#endif
-	    if (u.dz < 0 && !Is_airlevel(&u.uz) &&
+	    } else if (u.dz < 0 && !Is_airlevel(&u.uz) &&
 		    !Underwater && !Is_waterlevel(&u.uz)) {
 		(void) toss_up(obj, rn2(5));
 	    } else {
@@ -1248,7 +1208,6 @@ int thrown;
 		} else {
 		    tmp += launcher->spe - greatest_erosion(launcher);
 		    tmp += weapon_hit_bonus(launcher);
-		    tmp += launcher->oartifact ? spec_abon(launcher, mon) : 0;
 		    /*
 		     * Elves and Samurais are highly trained w/bows,
 		     * especially their own special types of bow.
@@ -1280,7 +1239,7 @@ int thrown;
 
 	    if (tmp >= rnd(20)) {
 		if (hmon(mon,obj,thrown)) {  /* mon still alive */
-		    (void) cutworm(mon, bhitpos.x, bhitpos.y, obj);
+		    cutworm(mon, bhitpos.x, bhitpos.y, obj);
 		}
 		exercise(A_DEX, TRUE);
 
@@ -1351,15 +1310,9 @@ int thrown;
 	    potionhit(mon, obj, TRUE);
 	    return 1;
 
-	} else if (befriend_with_obj(mon->data, obj)) {
-	    if (tamedog(mon, obj))
-		return 1;           	/* obj is gone */
-	    else {
-		/* not tmiss(), which angers non-tame monsters */
-		miss(xname(obj), mon);
-		mon->msleeping = 0;
-		mon->mstrategy &= ~STRAT_WAITMASK;
-	    }
+	} else if (obj->oclass == FOOD_CLASS &&
+		   is_domestic(mon->data) && tamedog(mon,obj)) {
+	    return 1;           /* food is gone */
 	} else {
 	    if (guaranteed_hit) {
 		/* this assumes that guaranteed_hit is due to swallowing */
@@ -1370,6 +1323,22 @@ int thrown;
 	    } else {
 		tmiss(obj, mon);
 	    }
+	    
+	    /* [Tom] Dorothy wants more pets... */        
+	    if(obj->otyp == BANANA && mon->data->mlet == S_YETI)
+		if(tamedog(mon,obj)) return(1);
+	    if(obj->otyp == CHEESE && mon->data == &mons[PM_GIANT_RAT])
+		if(tamedog(mon,obj)) return(1);
+	    if(obj->otyp == CHEESE && mon->data == &mons[PM_SEWER_RAT])
+		if(tamedog(mon,obj)) return(1);
+	    if(obj->otyp == CHEESE && mon->data == &mons[PM_BLACK_RAT])
+		if(tamedog(mon,obj)) return(1);
+	    if(obj->otyp == CHEESE && mon->data == &mons[PM_PACK_RAT])
+		if(tamedog(mon,obj)) return(1);
+	    if(obj->otyp == CARROT && mon->data == &mons[PM_RABBIT])
+		if(tamedog(mon,obj)) return(1);
+	    if(obj->otyp == CARROT && mon->data == &mons[PM_RABID_RABBIT])
+		if(tamedog(mon,obj)) return(1);
 	}
 	return 0;
 }

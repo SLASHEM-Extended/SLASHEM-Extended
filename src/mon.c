@@ -139,7 +139,7 @@ register struct monst *mtmp;
 		/* dragons is the same as the order of the scales.         */
 		if (!rn2(mtmp->mrevived ? 20 : 3)) {
 		    obj = mksobj_at(GRAY_DRAGON_SCALES +
-				    monsndx(mdat)-PM_GRAY_DRAGON, x, y, FALSE, FALSE);
+				    monsndx(mdat)-PM_GRAY_DRAGON, x, y, FALSE);
 		    obj->spe = 0;
 		    obj->cursed = obj->blessed = FALSE;
 		}
@@ -148,17 +148,17 @@ register struct monst *mtmp;
 	    case PM_WHITE_UNICORN:
 	    case PM_GRAY_UNICORN:
 	    case PM_BLACK_UNICORN:
-		(void) mksobj_at(UNICORN_HORN, x, y, TRUE, FALSE);
+		(void) mksobj_at(UNICORN_HORN, x, y, TRUE);
 		goto default_1;
 	    case PM_LONG_WORM:
-		(void) mksobj_at(WORM_TOOTH, x, y, TRUE, FALSE);
+		(void) mksobj_at(WORM_TOOTH, x, y, TRUE);
 		goto default_1;
 	    case PM_KILLER_TRIPE_RATION:            
-		(void) mksobj_at(TRIPE_RATION, x, y, TRUE, FALSE);
+		(void) mksobj_at(TRIPE_RATION, x, y, TRUE);
 		newsym(x, y);
 		return (struct obj *)0;
 	    case PM_KILLER_FOOD_RATION:
-		(void) mksobj_at(FOOD_RATION, x, y, TRUE, FALSE);
+		(void) mksobj_at(FOOD_RATION, x, y, TRUE);
 		newsym(x, y);
 		return (struct obj *)0;
 	    case PM_VAMPIRE:
@@ -237,17 +237,17 @@ register struct monst *mtmp;
 	    case PM_IRON_GOLEM:
 		num = d(2,6);
 		while (num--)
-			obj = mksobj_at(IRON_CHAIN, x, y, TRUE, FALSE);
+			obj = mksobj_at(IRON_CHAIN, x, y, TRUE);
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_GLASS_GOLEM:
 		num = d(2,4);   /* very low chance of creating all glass gems */
 		while (num--)
-			obj = mksobj_at((LAST_GEM + rnd(9)), x, y, TRUE, FALSE);
+			obj = mksobj_at((LAST_GEM + rnd(9)), x, y, TRUE);
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_CLAY_GOLEM:
-		obj = mksobj_at(ROCK, x, y, FALSE, FALSE);
+		obj = mksobj_at(ROCK, x, y, FALSE);
 		obj->quan = (long)(rn2(20) + 50);
 		obj->owt = weight(obj);
 		mtmp->mnamelth = 0;
@@ -258,20 +258,25 @@ register struct monst *mtmp;
 		break;
 	    case PM_WOOD_GOLEM:
 		num = d(2,4);
-		while(num--)
-			obj = mksobj_at(QUARTERSTAFF, x, y, TRUE, FALSE);
+		while(num--) {
+			obj = mksobj_at(QUARTERSTAFF, x, y, TRUE);
+			if (obj && obj->oartifact) {    /* don't allow this */
+				artifact_exists(obj, ONAME(obj), FALSE);
+				Strcpy(ONAME(obj), "");  obj->onamelth = 0;
+			}
+		}
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_LEATHER_GOLEM:
 		num = d(2,4);
 		while(num--)
-			obj = mksobj_at(LEATHER_ARMOR, x, y, TRUE, FALSE);
+			obj = mksobj_at(LEATHER_ARMOR, x, y, TRUE);
 		mtmp->mnamelth = 0;
 		break;
 		case PM_WAX_GOLEM:
 		num = d(2,4);
 		while (num--)
-			obj = mksobj_at(WAX_CANDLE, x, y, TRUE, FALSE);
+			obj = mksobj_at(WAX_CANDLE, x, y, TRUE);
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_PLASTIC_GOLEM:
@@ -284,7 +289,7 @@ register struct monst *mtmp;
 #else
 				FAKE_AMULET_OF_YENDOR,
 #endif
-					x, y, TRUE, FALSE);
+					x, y, TRUE);
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_GOLD_GOLEM:
@@ -295,7 +300,7 @@ register struct monst *mtmp;
 	    case PM_PAPER_GOLEM:
 		num = d(2,3);
 		while (num--)
-			obj = mksobj_at(SCR_BLANK_PAPER, x, y, TRUE, FALSE);
+			obj = mksobj_at(SCR_BLANK_PAPER, x, y, TRUE);
 		mtmp->mnamelth = 0;
 		break;
 	    default_1:
@@ -675,7 +680,7 @@ meatgold(mtmp)
 			if (!ptr) return 2;              /* it died */
 		    }
 		    /* Left behind a pile? */
-		    if(rnd(25) < 3) (void) mksobj_at(ROCK, mtmp->mx, mtmp->my, TRUE, FALSE);
+		    if(rnd(25) < 3) (void) mksobj_at(ROCK, mtmp->mx, mtmp->my, TRUE);
 		    newsym(mtmp->mx, mtmp->my);
 		    return 1;
 		}
@@ -1005,22 +1010,10 @@ nexttry:        /* eels prefer the water, but if there is no water nearby,
 	    /* KMH -- Added iron bars */
 	    if (ntyp == IRONBARS &&
 	    	!((flag & ALLOW_WALL) && may_passwall(nx,ny))) continue;
-#ifdef DEVEL_BRANCH
-	    /* ALI -- Artifact doors (no passage unless open/openable) */
-	    if (IS_DOOR(ntyp))
-		if (artifact_door(nx, ny) ?
-		    levl[nx][ny].doormask & D_CLOSED && !(flag & OPENDOOR)
-		      || levl[nx][ny].doormask & D_LOCKED :
-		    !amorphous(mdat) &&
-		    ((levl[nx][ny].doormask & D_CLOSED && !(flag & OPENDOOR)) ||
-		     (levl[nx][ny].doormask & D_LOCKED && !(flag & UNLOCKDOOR))
-		    ) && !(flag & (ALLOW_WALL|ALLOW_DIG|BUSTDOOR))) continue;
-#else
-	    if (IS_DOOR(ntyp) && !amorphous(mdat) &&
-		((levl[nx][ny].doormask & D_CLOSED && !(flag & OPENDOOR)) ||
-		 (levl[nx][ny].doormask & D_LOCKED && !(flag & UNLOCKDOOR))
-		) && !(flag & (ALLOW_WALL|ALLOW_DIG|BUSTDOOR))) continue;
-#endif
+	    if(IS_DOOR(ntyp) && !amorphous(mdat) &&
+	       ((levl[nx][ny].doormask & D_CLOSED && !(flag & OPENDOOR)) ||
+		(levl[nx][ny].doormask & D_LOCKED && !(flag & UNLOCKDOOR))
+	       ) && !(flag & (ALLOW_WALL|ALLOW_DIG|BUSTDOOR))) continue;
 	    if(nx != x && ny != y && (nodiag ||
 #ifdef REINCARNATION
 	       ((IS_DOOR(nowtyp) &&
@@ -1103,8 +1096,8 @@ nexttry:        /* eels prefer the water, but if there is no water nearby,
 			if(flag & NOTONL) continue;
 			info[cnt] |= NOTONL;
 		}
-		if (nx != x && ny != y && bad_rock(mon, x, ny)
-			    && bad_rock(mon, nx, y)
+		if (nx != x && ny != y && bad_rock(mdat, x, ny)
+			    && bad_rock(mdat, nx, y)
 			    && (bigmonst(mdat) || (curr_mon_load(mon) > 600)))
 			continue;
 		/* The monster avoids a particular type of trap if it's familiar
@@ -1491,7 +1484,7 @@ register struct monst *mtmp;
 #endif
 	if(mtmp->iswiz) wizdead();
 	if(mtmp->data->msound == MS_NEMESIS) nemdead();
-	if(memory_is_invisible(mtmp->mx, mtmp->my))
+	if(glyph_is_invisible(levl[mtmp->mx][mtmp->my].glyph))
 	    unmap_object(mtmp->mx, mtmp->my);
 	m_detach(mtmp, mptr);
 }
@@ -1628,11 +1621,11 @@ register struct monst *mdef;
 			otmp->spe = 1;
 		otmp->owt = weight(otmp);
 	} else
-		otmp = mksobj_at(ROCK, x, y, TRUE, FALSE);
+		otmp = mksobj_at(ROCK, x, y, TRUE);
 
 	stackobj(otmp);
 	/* mondead() already does this, but we must do it before the newsym */
-	if(memory_is_invisible(x, y))
+	if(glyph_is_invisible(levl[x][y].glyph))
 	    unmap_object(x, y);
 	if (cansee(x, y)) newsym(x,y);
 	mondead(mdef);
@@ -1796,13 +1789,12 @@ xkilled(mtmp, dest)
 #ifdef REINCARNATION
 		 || Is_rogue_level(&u.uz)
 #endif
-	   || (level.flags.graveyard && is_undead(mdat) &&
-	       mdat != &mons[PM_VECNA] && rn2(3)))
+	   || (level.flags.graveyard && is_undead(mdat) && rn2(3)))
 		goto cleanup;
 
 #ifdef MAIL
 	if(mdat == &mons[PM_MAIL_DAEMON]) {
-		stackobj(mksobj_at(SCR_MAIL, x, y, FALSE, FALSE));
+		stackobj(mksobj_at(SCR_MAIL, x, y, FALSE));
 		redisp = TRUE;
 	}
 #endif
@@ -2088,13 +2080,6 @@ setmangry(mtmp)
 register struct monst *mtmp;
 {
 	mtmp->mstrategy &= ~STRAT_WAITMASK;
-#ifdef BLACKMARKET
-	/* Even if the black marketeer is already angry he may not have called
-	 * for his assistants if he or his staff have not been assaulted yet.
-	 */
-	if (Is_blackmarket(&u.uz) && !mtmp->mpeaceful && mtmp->isshk)
-	    blkmar_guards(mtmp);
-#endif /* BLACKMARKET */
 	if(!mtmp->mpeaceful) return;
 	if(mtmp->mtame) return;
 	mtmp->mpeaceful = 0;
@@ -2113,16 +2098,19 @@ register struct monst *mtmp;
 
 #ifdef BLACKMARKET
 	/* Don't misbehave in the Black Market or else... */
-	if (Is_blackmarket(&u.uz)) {
-	    if (mtmp->isshk)
-		blkmar_guards(mtmp);
-	    else if (NAME(mtmp) && *NAME(mtmp)) {
-		/* non-tame named monsters are presumably
-		 * black marketeer's assistants */
+	if (Is_blackmarket(&u.uz) && 
+	   (humanoid(mtmp->data) || mtmp->isshk || mtmp->isgd)) {
 		struct monst *shkp;
-		shkp = shop_keeper(inside_shop(mtmp->mx, mtmp->my));
-		if (shkp)  wakeup(shkp);
-	    }
+		for (shkp = fmon; shkp; shkp = shkp->nmon) {
+			if (shkp->isshk)  break;
+		}
+		if (mtmp->isshk) {
+			blkmar_guards(mtmp);
+		} else if (!mtmp->mtame && NAME(mtmp) && *NAME(mtmp) &&
+		       inside_shop(mtmp->mx, mtmp->my)) {
+		/* non-tame named monsters are presumably black marketeer's assistants */
+			wakeup(shkp);
+		}
 	}
 #endif /* BLACKMARKET */
 
@@ -2264,7 +2252,7 @@ struct monst *mon;
 	    } else if (is_were(mon->data) && !is_human(mon->data)) {
 		new_were(mon);
 	    }
-	} else if (mon->cham == CHAM_ORDINARY) {
+	} else {
 	    mon->cham = pm_to_cham(monsndx(mon->data));
 	}
 }
@@ -2371,7 +2359,6 @@ boolean transform_msg;
 	int couldspot = canspotmon(mtmp);
 	struct permonst *olddata = mtmp->data;
 	char oldpet[BUFSZ];
-	boolean alt_mesg = FALSE;	/* Avoid "<rank> turns into a <rank>" */
 
 	Strcpy(oldpet, Monnam(mtmp));  /* Save the old name */
 
@@ -2417,31 +2404,6 @@ boolean transform_msg;
 	}
 
 	if(mdat == mtmp->data) return(0);       /* still the same monster */
-
-	/* [ALI] Detect transforming between player monsters with the
-	 * same rank title to avoid badly formed messages.
-	 */
-	if (transform_msg && is_mplayer(olddata) && is_mplayer(mdat)) {
-	    const struct Role *role;
-	    int i, oldmndx;
-
-	    mndx = monsndx(mdat);
-	    oldmndx = monsndx(olddata);
-	    for (role = roles; role->name.m; role++) {
-		if (role->femalenum == NON_PM)
-		    continue;
-		if ((mndx == role->femalenum && oldmndx == role->malenum) ||
-			(mndx == role->malenum && oldmndx == role->femalenum)) {
-		    /* Find the rank */
-		    for (i = xlev_to_rank(mtmp->m_lev); i >= 0; i--)
-			if (role->rank[i].m) {
-			    /* Only need alternate message if no female form */
-			    alt_mesg = !role->rank[i].f;
-			    break;
-			}
-		}
-	    }
-	}
 	
 	/* WAC - At this point,  the transformation is going to happen */
 	/* Reset values, remove worm tails, change levels...etc. */
@@ -2544,16 +2506,11 @@ boolean transform_msg;
 
 	/* print message if wanted */
 	if (transform_msg && (couldspot || canspotmon(mtmp))) {
-	    if (alt_mesg)
-		pline("%s is suddenly very %s!", Monnam(mtmp),
-			mtmp->female ? "feminine" : "masculine");
-	    else {
 		uchar save_mnamelth = mtmp->mnamelth;
-
+		
 		mtmp->mnamelth = 0;
 		pline("%s turns into %s!", oldpet, a_monnam(mtmp));
 		mtmp->mnamelth = save_mnamelth;
-	    }
 	}
 
 	mon_break_armor(mtmp);

@@ -1,142 +1,357 @@
-#	SCCS Id: @(#)machelp.bh	3.3	99/03/15
-#	Copyright (c) 1998-1999 by Kevin Hugo
-# NetHack may be freely redistributed.  See license for details.
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.76 (Macintosh; U; PPC) [Netscape]">
+   <title>Slash'EM--Macintosh PPC</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#FF0000" alink="#FF0000">
 
+<center>
+<h1>
+Slash'EM--Macintosh</h1></center>
 
-### Askname dialog ###
-DIALOG 6000 askname
+<p>&nbsp;
+<br>&nbsp;
+<br>
+<br>
+<p>Slash'EM is a variant of Nethack with lots of added stuff. Check out
+the <a href="http://www.geocities.com/CollegePark/2458/index.html">SLASH'EM
+Homepage</a> for more information about the game.
+<p>You need a Macintosh system with a recent version of MacOS to play this
+version of the game. See <a href="http://www.ilium.demon.co.uk/Slash-EM/index.html">Slash'EM--Macintosh</a>
+for the latest news. Versions for other platforms can be found via the
+SLASH'EM Homepage.
+<h2>
+Recent Changes</h2>
 
-# Play button
-1.enabled Click here to play this character.
-1.disabled Click here to play this character.Â
-  Not available because you haven't typed in a name.
+<h3>
+6e4f1, 18 December 2000</h3>
 
-# Quit button
-2.* Click here to quit the program.
+<ul>
+<li>
+Incorporate Warren's latest changes</li>
+</ul>
 
-# Role popup menu
-4.* Select your desired role (Archeologist, Barbarian, etc.)Â
- with this popup menu.
+<h3>
+6e0, 2 February 2000</h3>
 
-# Race popup menu
-5.* Select your desired race (Human, Elf, etc.)Â
- with this popup menu.
+<ul>
+<li>
+Incorporate Warren's latest changes</li>
 
-# Gender popup menu
-6.* Select your gender (male or female) with this popup menu.
+<li>
+Completed NetHack 3.3.0-based Macintosh version</li>
 
-# Alignment popup menu
-7.* Select your alignment (lawful, neutral, or chaotic)Â
- with this popup menu.
+<li>
+Fix file types of distributed files</li>
 
-# Mode popup menu
-8.* Use this popup menu to select regular play mode,Â
- explore mode, or debugging mode.
+<li>
+Change email address to hurtley@acm.org</li>
 
-# Name text item
-9.* Type in your character's name here.
+<li>
+Fixed a few interface glitches</li>
+</ul>
 
-# Icon
-10.* Who is this guy?
+<h3>
+5e9, 14 January 2000</h3>
 
-END-DIALOG
+<ul>
+<li>
+Incorporate Warren's latest changes</li>
 
+<li>
+Build Fat version</li>
 
-MENU 128 Apple
+<li>
+Internal release</li>
+</ul>
 
-1.enabled Displays information about this version.
+<h3>
+5e8, 1 January 2000</h3>
 
-END-MENU
+<ul>
+<li>
+Incorporate Warren's latest changes</li>
 
+<li>
+Register new creator codes for Slash'EM and Recover</li>
 
-MENU 129 File
+<li>
+Program files not intended for direct access are now hidden in the Application</li>
 
-0.enabled File MenuÂÂUse this menu to manipulate windowsÂ
- on the screen, and to save or quit the game.
+<li>
+Internal release</li>
+</ul>
 
-1.* Makes the map appear on the screen, in case you closedÂ
- its window.
+<h3>
+5e7.1, 17 December 1999</h3>
 
-2.* Forces the map to be redrawn.
+<ul>
+<li>
+Built 68K version.</li>
+</ul>
 
-3.* Scrolls the Messages window back one message.
+<h3>
+5e7, 11 December 1999</h3>
 
-4.* Repositions all windows so they are on-screen.
+<ul>
+<li>
+Incorporated Warren's latest changes</li>
+</ul>
 
-5.* Closes the frontmost window.
+<h3>
+5e6, 27 October 1999</h3>
 
-8.* Enters explore mode, which is a good way to learn the game.
+<ul>
+<li>
+Incorporated Warren's latest changes</li>
+</ul>
 
-10.* Saves the game, and then quits the program.
+<h3>
+5e5, 26 October 1999</h3>
 
-12.* Quits the program without saving the game.
+<blockquote>
+<li>
+Incorporated Warren's latest changes</li>
+</blockquote>
 
-END-MENU
+<h3>
+5e4, 31 August 1999</h3>
 
+<ul>
+<li>
+Incorporated Warren's latest changes</li>
 
-MENU 130 Edit
+<li>
+Tidied up the source and started a 'patch' regime</li>
 
-0.enabled Edit MenuÂÂUse this menu to edit text or undoÂ
- an action.
-0.disabled Edit MenuÂÂUse this menu to edit text or undoÂ
- an action.  Available only for desk accessories.
+<li>
+Added pack, unpack, clean, spotless targets to the makefile</li>
 
-END-MENU
+<li>
+Updated some (but not all) text info</li>
 
+<li>
+Added Macintosh history to the distribution</li>
 
-MENU 131 Kbd
+<li>
+Organized the icons in the Dungeon directory</li>
+</ul>
 
-0.enabled Keyboard MenuÂÂUse this menu to simulateÂ
- pressing keys on a keyboard, so you can play entirelyÂ
- by mouse.
+<h3>
+5e2.1, 21 August 1999</h3>
 
-END-MENU
+<ul>
+<li>
+I've built and debugged the Recover program</li>
 
+<li>
+I've renamed 'Nethack Defaults' to 'SlashEM Defaults'</li>
 
-MENU 132 Help
+<li>
+Command-Q now works</li>
 
-0.enabled Help MenuÂÂUse this menu to explain howÂ
- the game works, or to set options.
+<li>
+If you select the Mac-style interface in the defaults file (eg, comment
+out the 'window:tty' line), then you can now select your name and character
+type using the dialog. You can alse set the values in the defaults file</li>
 
-END-MENU
+<li>
+All Slash'EM classes are available from the character pick-list</li>
 
+<li>
+The SlashEM Defaults file is read and processed</li>
 
-MENU 133 Info
+<li>
+The character name can be chosen in the startup dialog</li>
 
-0.enabled Info MenuÂÂUse this menu to look at orÂ
- manipulate your inventory, explain something on theÂ
- screen, or give an object or monster a name.
+<li>
+The character Sex and Alignment can be set in the startup dialog (though
+some character classes have inbuilt limitations; eg, a Valkyrie is female
+by definition)</li>
 
-END-MENU
+<li>
+The default mode is Regular, though Explore and Wizard (aka Debug) mode
+are also available</li>
 
+<li>
+Command-N restores your window positions</li>
 
-MENU 134 Equip
+<li>
+The newer Slash'EM commands are now available from the menus</li>
 
-0.enabled Equipment MenuÂÂUse this menu to manipulateÂ
- weapons, armor, and other worn items.
+<li>
+Many mentions of NetHack have been updated to refer to Slash'EM</li>
+</ul>
 
-END-MENU
+<h3>
+5e2, 10 August 1999</h3>
 
+<blockquote>
+<li>
+Initial release under new management (Paul Hurtley)</li>
 
-MENU 135 Act
+<li>
+Switched to MPW as the build engine</li>
+</blockquote>
 
-0.enabled Action MenuÂÂUse this menu to perform an action.
+<h3>
+4e5, 15 March 1999</h3>
 
-END-MENU
+<ul>
+<li>
+Last release under old management</li>
+</ul>
 
+<h2>
+Known Problems</h2>
+There are problems with the Mac interface:
+<ul>
+<li>
+The del key doesn't work in the startup dialog</li>
 
-MENU 136 Magic
+<li>
+If you resize the screen, the windows don't adjust</li>
 
-0.enabled Magic MenuÂÂUse this menu to manipulate magicÂ
- items.
+<li>
+You can't select the fonts or font sizes</li>
 
-END-MENU
+<li>
+In debug mode the 'enter' key increments your armour class!</li>
 
-MENU 137 Bits
+<li>
+The selection menus accessed using '~' don't work except in tty window
+mode</li>
 
-0.enabled Bits MenuÂÂUse this menu to performÂ
- miscellaneous actions.
+<li>
+The annoying 'See you later' message after you've finished exiting</li>
 
-END-MENU
+<li>
+There are two help menus</li>
 
-END
+<li>
+Menu commands don't work while info windows are visible</li>
+
+<li>
+Pull-down menus in the startup dialog should be capitalized</li>
+
+<li>
+The mouse-driven options setting is unintuitive</li>
+
+<li>
+There is confusion if you type # and then select a menu item</li>
+
+<li>
+Apply, Dip, Kick appear in two menus</li>
+
+<li>
+When using the Macintosh interface (window:mac), if you select Lawful Samurai
+then you will get a Chaotic or Neutral Samurai.</li>
+
+<br>Workaround: Start your game using the tty interface (window:tty) and
+use this mode to select your character type. Then save, and continue the
+game using your preferred mode
+<li>
+The program crashes if you specify the fontmap option in Slash'EM Defaults</li>
+
+<li>
+The welcome text is not completely displayed in TTY mode</li>
+
+<h4>
+Tested in Mac window mode:</h4>
+
+<li>
+If you move the windows and then chooseFile/Reposition the Message window
+gets a silly location</li>
+
+<li>
+If you close the windows and choose File/Open Map the Message window is
+not redisplayed</li>
+
+<li>
+The Keypress menus should be eliminated</li>
+
+<li>
+The File/PreviousMessage options only goes back one message</li>
+
+<li>
+Page up/Page down doesn't work in the Discoveries window</li>
+
+<li>
+I haven't checked that every player type can be chosen from the start dialog</li>
+
+<li>
+I haven't checked that every command is available from a menu</li>
+
+<li>
+In the extended command list help text, the columns aren't aligned</li>
+
+<li>
+The Help texts should have titles matching the data</li>
+
+<li>
+Extended commands should be used in menus--say Conduct not Show Conduct</li>
+
+<li>
+Menu item List Spells gets wrong command</li>
+
+<li>
+I've not checked every build option works</li>
+
+<li>
+File/Reposition seems to have no effect</li>
+
+<h4>
+Tested in TTY window mode:</h4>
+
+<li>
+The MORE prompt seemed to overlay the message at startup</li>
+
+<li>
+If you close the map and then choose File/Save or File/Quit then you have
+to press return a lot of times to exit the program; I'm sure the program
+is prompting you the way it normally does when you exit, but not displaying
+the prompts</li>
+</ul>
+
+<h2>
+Enhancements</h2>
+
+<ul>
+<li>
+Balloon help might be appropriate for showing map info</li>
+
+<li>
+Tiles mode hasn't been implemented</li>
+
+<li>
+Option Edit menu option is not implemented</li>
+
+<li>
+Implement AppleScript support</li>
+
+<li>
+Implement logging</li>
+
+<li>
+Implement hex layout</li>
+
+<li>
+Implement random map direction</li>
+
+<li>
+Implement variable size map</li>
+
+<li>
+Implement auto scrolling</li>
+</ul>
+
+<center>
+<p><br>Please email your comments or suggestions to me, Paul Hurtley: <i><a href="mailto:hurtley@acm.org">hurtley@acm.org</a></i></center>
+
+<p><br>
+<br>
+<br>
+</body>
+</html>

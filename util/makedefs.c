@@ -475,9 +475,6 @@ make_version()
 			| (1L << 11)
 #endif
 		/* flag bits and/or other global variables (15..26) */
-#ifdef DISPLAY_LAYERS
-			| (1L << 15)
-#endif
 #ifdef BLACKMARKET
 			| (1L << 16)
 #endif
@@ -566,10 +563,9 @@ void
 do_date()
 {
 	long    clocktim = 0;
-	char *c,  *cbuf, buf[BUFSZ];
+	char *c,  cbuf[60], buf[BUFSZ];
 	const char *ul_sfx;
 	
-	cbuf = malloc(600);
 	filename[0]='\0';
 #ifdef FILE_PREFIX
 	Strcat(filename,file_prefix);
@@ -621,7 +617,6 @@ do_date()
 	}
 #endif
 	Fclose(ofp);
-	free(cbuf);
 	return;
 }
 
@@ -717,9 +712,6 @@ static const char *build_opts[] = {
 #endif
 #ifdef SCORE_ON_BOTL
 		"score on status line",
-#endif
-#ifdef DISPLAY_LAYERS
-		"display layers",
 #endif
 #ifdef CLIPPING
 		"screen clipping",
@@ -829,9 +821,6 @@ static const char *window_opts[] = {
 #endif
 #ifdef BEOS_GRAPHICS
 		"BeOS InterfaceKit",
-#endif
-#ifdef PROXY_GRAPHICS
-		"Plug-in modules",
 #endif
 		0
 	};

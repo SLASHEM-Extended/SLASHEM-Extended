@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.22 2002-03-11 00:09:20 j_ali Exp $
+  $Id: winGTK.h,v 1.16 2001-04-22 17:21:20 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -30,8 +30,6 @@
 #endif
 #endif
 
-#define GTK_GRAPHICS	/* Needed when building an external interface */
-
 #ifdef WINGTK_X11
 #include <gdk/gdkx.h>
 #include <X11/Xlib.h>
@@ -43,9 +41,6 @@
 
 #include "hack.h"
 #include "wintty.h"
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
-#include "winproxy.h"
-#endif
 
 #define WINGTK_MENU_IMAGES	/* Pretty images (tiles) in first column */
 
@@ -54,13 +49,7 @@
 
 #define	NH_PAD			5
 
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
-extern GtkWidget *nh_gtk_window_dialog(boolean is_modal);
-extern void nh_gtk_focus_set_master(GtkWindow *w, GtkSignalFunc func, gpointer data);
-extern void nh_gtk_focus_set_slave_for(GtkWindow *w, GtkWindow *slave_for);
-#else
-extern void nh_gtk_perm_invent_hack(void);
-#endif
+extern GtkWidget *nh_gtk_window_dialog(void);
 
 extern GtkWidget *nh_gtk_new(GtkWidget *w, GtkWidget *parent, gchar *lbl);
 
@@ -89,7 +78,6 @@ enum {
     MAP_WHITE
 };
 
-extern GtkWidget *main_window;
 
 #define	NH_BUFSIZ		4096
 #define NH_TEXT_REMEMBER	4096
@@ -103,37 +91,9 @@ enum xshm_map_mode {
 };
 #endif
 
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
-extern int	GTK_ext_init_nhwindows(int *, char **);
-extern char	*GTK_ext_askname(void);
-extern int	GTK_ext_player_selection(int *, int *, int *, int *);
-extern void	GTK_ext_display_file(int fh);
-extern void	GTK_ext_add_menu(winid, int, int, CHAR_P, CHAR_P, int,
-			const char *, BOOLEAN_P);
-extern int	GTK_ext_select_menu(winid, int, struct proxy_mi **);
-extern void	GTK_ext_print_glyph(winid id, int x, int y, int glyph);
-extern char	GTK_ext_yn_function(const char *, const char *, CHAR_P, int *);
-extern int	GTK_ext_outrip(winid, char *);
-extern char *	GTK_ext_getlin(const char *query);
-#else	/* DEVEL_BRANCH && GTK_V20 */
 extern void	GTK_init_nhwindows(int *, char **);
-extern void	GTK_askname(void);
 extern void	GTK_player_selection(void);
-#ifdef FILE_AREAS
-extern void	GTK_display_file(const char *, const char *, BOOLEAN_P);
-#else
-extern void	GTK_display_file(const char *, BOOLEAN_P);
-#endif
-extern void	GTK_add_menu(winid, int, const ANY_P *, CHAR_P, CHAR_P, int,
-			const char *, BOOLEAN_P);
-extern int	GTK_select_menu(winid, int, MENU_ITEM_P **);
-extern void	GTK_print_glyph(winid, XCHAR_P, XCHAR_P, int);
-extern char	GTK_yn_function(const char *, const char *, CHAR_P);
-#ifdef GRAPHIC_TOMBSTONE
-extern void	GTK_outrip(winid, int);
-#endif
-extern void	GTK_getlin(const char *, char *);
-#endif	/* DEVEL_BRANCH && GTK_V20 */
+extern void	GTK_askname(void);
 extern void	GTK_get_nh_event(void);
 extern void	GTK_exit_nhwindows(const char *);
 extern void	GTK_suspend_nhwindows(void);
@@ -144,24 +104,40 @@ extern void	GTK_display_nhwindow(winid, BOOLEAN_P);
 extern void	GTK_destroy_nhwindow(winid);
 extern void	GTK_curs(winid, int, int);
 extern void	GTK_putstr(winid, int, const char *);
+#ifdef FILE_AREAS
+extern void	GTK_display_file(const char *, const char *, BOOLEAN_P);
+#else
+extern void	GTK_display_file(const char *, BOOLEAN_P);
+#endif
 extern void	GTK_start_menu(winid);
+extern void	GTK_add_menu(winid, int, const ANY_P *, CHAR_P,CHAR_P,int,const char *, BOOLEAN_P);
 extern void	GTK_end_menu(winid, const char *);
+extern int	GTK_select_menu(winid, int, MENU_ITEM_P **);
 extern void	GTK_update_inventory(void);
 extern void	GTK_mark_synch(void);
 extern void	GTK_wait_synch(void);
 #ifdef CLIPPING
 extern void	GTK_cliparound(int, int);
 #endif
+extern void	GTK_prvoid_glyph(void);
+extern void	GTK_raw_prvoid(void);
+extern void	GTK_raw_prvoid_bold(void);
 extern int	GTK_nhgetch(void);
 extern int	GTK_nh_poskey(int *, int *, int *);
 extern void	GTK_nhbell(void);
 extern int	GTK_doprev_message(void);
+extern char	GTK_yn_function(const char *, const char *, CHAR_P);
+extern void	GTK_getlin(const char *, char *);
 extern void	GTK_extcmd_set(int cmd);
 extern int	GTK_get_ext_cmd(void);
-extern void	GTK_number_pad(int);
+extern void	GTK_number_pad(void);
 extern void	GTK_delay_output(void);
 extern void	GTK_start_screen(void);
 extern void	GTK_end_screen(void);
+#ifdef GRAPHIC_TOMBSTONE
+extern void	GTK_outrip(winid, int);
+#endif
+extern void	GTK_print_glyph(winid, XCHAR_P, XCHAR_P, int);
 extern void	GTK_raw_print(const char *);
 extern void	GTK_raw_print_bold(const char *);
 
@@ -189,10 +165,6 @@ extern void		main_hook(void);
 extern void		quit_hook(void);
 extern gint		GTK_default_key_press(GtkWidget *widget,
 			  GdkEventKey *event, gpointer data);
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
-extern gint		GTK_default_focus_in(GtkWidget *widget,
-			  GdkEventFocus *event, gpointer data);
-#endif
 
 extern GtkWidget	*nh_radar_new(void);
 extern void		nh_radar_update(void);
@@ -201,30 +173,14 @@ extern GtkWidget	*nh_message_new(void);
 extern void		nh_message_putstr(const char *);
 
 extern GtkWidget	*nh_status_new(void);
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
-extern boolean		nh_status_in_trouble(void);
-extern void		GTK_ext_status(int, int, const char **);
-#else
 extern void		nh_status_update(void);
 extern void		nh_status_index_update(void);
-#endif
 
 extern int		nh_keysym(GdkEventKey *ev);
 extern int		nh_dir_keysym(GdkEventKey *ev);
 
 extern void		nh_option_new(void);
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
-extern void		nh_option_lock(boolean);
-extern int		nh_option_cache_sync(void);
-extern void		nh_option_cache_set(char *option, const char *value);
-extern void		nh_option_cache_set_bool(char *option, boolean value);
-extern void		nh_option_cache_set_addr(char *option, char **addr);
-extern void		nh_option_cache_set_bool_addr(char *option, boolean *addr);
-extern char		*nh_option_cache_get(char *option);
-extern boolean		nh_option_cache_get_bool(char *option);
-#else
 extern void		nh_option_lock(void);
-#endif
 
 extern int		nh_tile_height();
 extern int		nh_tile_3dheight();
@@ -235,14 +191,6 @@ extern void		nh_position_popup_dialog(GtkWidget *w);
  */
 extern int		create_toptenwin();
 
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
-struct cached_options {
-    boolean	num_pad;
-    boolean	use_color;
-    boolean	hilite_pet;
-    boolean	perm_invent;
-} copts;
-#endif
 
 struct menu {
     GtkCList	*clist;
@@ -267,24 +215,13 @@ struct menu_info_t {
     int		selmode;
     int 	keysym;
     int		valid_widgets;
-    long	count;			/* Pending count */
 #ifdef WINGTK_MENU_IMAGES
     int		pixmaps;		/* Set if any pixmaps set in clist */
 #endif
-#if !defined(DEVEL_BRANCH) || !defined(GTK_V20)
-    GtkWidget	**ancestor;		/* Hack - see gtkmenu.c */
-#endif
 };
-
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
-#define NHWF_DISPLAYED		1
-#endif
 
 typedef struct _NHWindow{
     int		type;
-#if defined(DEVEL_BRANCH) && defined(GTK_V20)
-    unsigned	flags;
-#endif
 
     guint	hid;
     GtkWidget	*w;

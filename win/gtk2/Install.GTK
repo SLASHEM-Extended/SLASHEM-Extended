@@ -1,0 +1,78 @@
+Installing Slash'EM with a GTK 2.0 interface
+--------------------------------------------
+
+This document describes the installation of Slash'EM with a GTK 2.0 interface
+on X11.  The GTK interface is another alternative to the Athena-widgets
+interface found in ../X11.  You can download GTK+ from http://www.gtk.org/.
+You need GTK+ 1.3.2 or later to use this code.
+
+This interface will be merged with the GTK 1.2 interface found in ../gtk
+before the end of the current development cycle (and this directory will
+disappear), but for now it is being developed separately.
+
+The GTK interface comes from JNetHack version 1.1.5 and was written by
+Issei Numata (issei@guru.gr.jp). JNetHack can be downloaded from
+http://www.jnethack.org/.
+
+To use this code:
+
+   1. follow the directions for the UNIX installation (in ../sys/unix)
+      to create the Makefiles.
+
+   2. ../../include/config.h
+
+        define GTK_GRAPHICS and GTK_V20 (search for them).  You can comment
+	out TTY_GRAPHICS if you want to, or leave it in to support both
+        interfaces (in which case be sure you have the right curses
+        libraries etc. required for that interface).
+
+	You may define X11_GRAPHICS and/or QT_GRAPHICS in addition to
+	support multiple windowing ports (and tty as well, if you want)
+	in the same executable if you so desire.
+
+   3. ../../src/Makefile
+
+	change the definition of WINGTKCONFIG, WINGTKSRC and WINGTKOBJ
+	to the 2.0 versions and run "make depend".
+
+        Add $(WINGTKSRC), $(WINGTKOBJ), and $(WINGTKLIB) to WINSRC, WINOBJ,
+        and WINLIB respectively, and compile.  This will give you an
+        executable supporting both GTK 2.0 and tty windowing.
+
+	To support multiple windowing ports, change the definitions
+	of WINSRC, WINOBJ and WINLIB to include all the relevant
+	variables (note: the GTK 1.2 and 2.0 interfaces are mutually
+	exclusive).
+
+   4. ../../Makefile (the top-level makefile)
+
+        change CNF_SHARE_DATND to include $(CNF_SHARE_GTKND).
+
+	If you want to support the other windowing ports, include
+	their $(CNF_SHARE_XXXND) variables also.
+
+	CNF_SHARE_GTKND should normally include all the various flavours
+	of x11tiles to allow the user to select which tile set he/she
+	would prefer at runtime. If you will always be using the same
+	one however, you can remove the others.
+
+   5. Follow all the instructions in ../../sys/unix/Install.unx for
+      the remainder of the installation process.
+
+   6. Consider adding the lines below to your .slashemrc (or equivalent
+      if you don't run UNIX), as they are likely to give the best interface
+      for this window port:
+
+        TILESET=name:Small tiles, file:x11tiles
+	TILESET=name:Big tiles, file:x11bigtiles, transparent
+	TILESET=name:Big 3D tiles, file:x11big3dtiles, transparent, pseudo3D
+        OPTIONS=tiles:Big 3D tiles
+
+      Set the tiles option to your preferred tile set. If not set, the
+      GTK port will default to the first valid tile set found.
+
+   7. Look at GAMEDIR/gtkrc (or FILE_AREA_SHARE/gtkrc if using file areas)
+      and overide the styles in your local gtkrc (~/.gtkrc by default)
+      if so desired.
+
+J. Ali Harlow, ali@avrc.city.ac.uk

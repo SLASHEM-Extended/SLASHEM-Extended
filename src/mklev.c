@@ -522,7 +522,7 @@ int trap_type;
 		    dosdoor(xx, yy, aroom, rn2(5) ? SDOOR : DOOR);
 		else {
 		    if (!level.flags.noteleport)
-			(void) mksobj_at(SCR_TELEPORTATION, xx, yy+dy, TRUE, FALSE);
+			(void) mksobj_at(SCR_TELEPORTATION, xx, yy+dy, TRUE);
 		    if(!rn2(3)) (void) mkobj_at(0, xx, yy+dy, TRUE);
 		}
 	    }
@@ -563,11 +563,7 @@ makevtele()
 STATIC_OVL void
 clear_level_structures()
 {
-#ifdef DISPLAY_LAYERS
-	static struct rm zerorm = { S_stone, 0, 0, 0, 0, 0,
-#else
 	static struct rm zerorm = { cmap_to_glyph(S_stone),
-#endif
 						0, 0, 0, 0, 0, 0, 0, 0 };
 	register int x,y;
 	register struct rm *lev;
@@ -850,7 +846,7 @@ skip0:
 		 */
 		if(!rn2(nroom * 5 / 2))
 		    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST,
-				     somex(croom), somey(croom), TRUE, FALSE);
+				     somex(croom), somey(croom), TRUE);
 
 		/* maybe make some graffiti */
 		if(!rn2(27 + 3 * abs(depth(&u.uz)))) {
@@ -906,7 +902,7 @@ mineralize()
 	    for (y = 1; y < (ROWNO - 1); y++)
 		if ((levl[x][y].typ == POOL && !rn2(10)) ||
 			(levl[x][y].typ == MOAT && !rn2(30)))
-	    	    (void)mksobj_at(KELP_FROND, x, y, TRUE, FALSE);
+	    	    (void)mksobj_at(KELP_FROND, x, y, TRUE);
 
 	/* determine if it is even allowed;
 	   almost all special levels are excluded */
@@ -1479,7 +1475,7 @@ struct mkroom *croom;
 	}
 
 	/* Leave a bell, in case we accidentally buried someone alive */
-	if (dobell) (void) mksobj_at(BELL, m.x, m.y, TRUE, FALSE);
+	if (dobell) (void) mksobj_at(BELL, m.x, m.y, TRUE);
 	return;
 }
 

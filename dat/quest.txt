@@ -1728,7 +1728,7 @@ Go forth, and return when you feel ready."
 as %n, had begun to summon horrible elementals from the plane of 
 Water.
 
-"%nC and his hordes of elementals swept down upon %H and stole
+"%nC and his hordes of elementals wept down upon %i and stole
 %o, and seeks to bend it to his will.  
 After many brave wizards were slain by his watery servants, I
 sent forth a summons for you!
@@ -2633,7 +2633,7 @@ Go forth, and return when you are ready."
 "About six months ago, I learned that a mysterious sorcerer, known
 as %n, had begun to summon a large group of elementals and monsters.
 
-"%nC and his horde swept down upon %H and stole 
+"%nC and his horde swept down upon %i and stole 
 %o. He seeks to bend it to his will.  After we regrouped, 
 I sent forth a summons for you.
 
@@ -3542,7 +3542,7 @@ to %n.
 "You must travel to %i, and within its dungeons,
 find and overcome %n, and return %o to me.
 
-"Go now, with %d, and return freedom to our tower."
+"Go now, with %d, and return order to our tower."
 %Cp Nec 00020
 "Beware, for %n is immune to most magical attacks."
 %E
@@ -3642,7 +3642,8 @@ for dessert!"
 %E
 %Cc Nec 00070
 As you touch %o, its comforting power infuses you
-with new energy.  Although you yearn to use %o
+with new energy.  You feel as if you can detect others' thoughts flowing
+through it.  Although you yearn to use %o
 to attack the Wizard of Yendor, you know you must return it to its
 rightful owner, %l.
 %E
@@ -4374,7 +4375,7 @@ Even before your senses adjust, you recognize the kami of
 %H.
 
 But why is the standard of your teki, %n, flying
-above the town?  Why are ninja wandering freely, where are the
+above the town?  Why are ronin wandering freely, where are the
 samurai of your daimyo, %l?
 
 You quickly say a prayer to Izanagi and Izanami and walk towards
@@ -4403,7 +4404,7 @@ the kami of %H before you return again.
 "%nC has hired the Ninja -- be careful."
 %E
 %Cp Sam 00009
-"If %o is not returned, we will all be ninja."
+"If %o is not returned, we will all be ronin."
 %E
 %Cc Sam 00010
 "Ah, %p-san, it is good to see you again.  I need someone who can
@@ -5779,9 +5780,6 @@ You couldn't quite make out that last message.
 %E
 %Cp - 00003
 You again sense %l pleading for help.
-%E
-%Cp - 00004
-You again sense %l demanding your attendance.
 %E
 # Completed the quest by returning with artifact, but not carrying
 # the Bell of Opening; quest leader lets you know that it is needed.

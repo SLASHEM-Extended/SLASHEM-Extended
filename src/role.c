@@ -272,7 +272,7 @@ const struct Role roles[] = {
 	"Nharlotep", "Zugguthobal", "Gothuulbe", /* Assorted slimy things */
 	"Nec", "the Tower of the Dark Lord", "the Lair of Maugneshaagar",
 	PM_NECROMANCER, NON_PM, PM_GHOUL,
-	PM_DARK_LORD, PM_EMBALMER, PM_MAUGNESHAAGAR,
+	PM_THE_DARK_LORD, PM_EMBALMER, PM_MAUGNESHAAGAR,
 	PM_NUPPERIBO, PM_MONGBAT, S_BAT, S_IMP,
 #if 0
 	ART_SERPENT_S_TONGUE, ART_GRIMTOOTH,
@@ -393,9 +393,7 @@ const struct Role roles[] = {
 },
 {	{"Samurai", 0}, {
 	{"Hatamoto",    0},  /* Banner Knight */
-#ifndef DEVEL_BRANCH
 	{"Ronin",       0},  /* no allegiance */
-#endif
 	{"Ninja",       0},  /* secret society */
 	{"Joshu",       0},  /* heads a castle */
 	{"Ryoshu",      0},  /* has a territory */
@@ -598,7 +596,7 @@ struct Role urole =
 
 /* Table of all races */
 const struct Race races[] = {
-{	"doppelganger", "doppelganger", "doppelganger-kind", "Dop",
+{	"doppelganger", "doppelgangen", "doppelganger-kind", "Dop",
 	{0, 0},
 	PM_DOPPELGANGER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
 	MH_HUMAN | ROLE_MALE|ROLE_FEMALE | ROLE_NEUTRAL|ROLE_CHAOTIC,
@@ -746,9 +744,6 @@ const struct Gender genders[] = {
 	{"neuter",	"it",	"it",	"its",	"Ntr",	ROLE_NEUTER}
 };
 
-#ifdef MAC_MPW
-const size_t maxGender = sizeof genders/sizeof genders[0];
-#endif /* MAC_MPW */
 
 /* Table of all alignments */
 const struct Align aligns[] = {
@@ -761,9 +756,6 @@ const struct Align aligns[] = {
 /* used by str2XXX() */
 static char NEARDATA randomstr[] = "random";
 
-#ifdef MAC_MPW
-const size_t maxAlign = sizeof aligns/sizeof aligns[0];
-#endif /* MAC_MPW */
 
 boolean
 validrole(rolenum)
@@ -854,30 +846,6 @@ randrace(rolenum)
 	return (rn2(SIZE(races)-1));
 }
 
-/*
- * [ALI] Find the player equivalent race for a monster from its M2 flags.
- */
-
-int
-mrace2race(mflags2)
-	int mflags2;
-{
-	int i;
-
-	/* Look for a race with the correct selfmask */
-	for (i = 0; races[i].noun; i++)
-	    if (mflags2 & races[i].selfmask) {
-		/* Where more than one player race has the same monster race,
-		 * return the base race.
-		 */
-		if (mflags2 & MH_HUMAN && races[i].malenum != PM_HUMAN)
-		    continue;
-		if (mflags2 & MH_ELF && races[i].malenum != PM_ELF)
-		    continue;
-		return i;
-	    }
-	return ROLE_NONE;
-}
 
 int
 str2race(str)

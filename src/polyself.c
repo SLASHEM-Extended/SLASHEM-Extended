@@ -61,7 +61,6 @@ set_uasmon()
 {
 	set_mon_data(&youmonst, ((u.umonnum == u.umonster) ? 
 					&upermonst : &mons[u.umonnum]), 0);
-	bot_reconfig();
 }
 
 /* make a (new) human out of the player */
@@ -144,10 +143,7 @@ change_sex()
 
 	/* Some monsters are always of one sex and their sex can't be changed */
 	/* succubi/incubi are handled below */
-	if (u.umonnum != PM_SUCCUBUS && u.umonnum != PM_INCUBUS &&
-	    !is_male(youmonst.data) && !is_female(youmonst.data) &&
-	    !is_neuter(youmonst.data) ||
-		!already_polyd && urole.femalenum != NON_PM)
+	if (u.umonnum != PM_SUCCUBUS && u.umonnum != PM_INCUBUS && !is_male(youmonst.data) && !is_female(youmonst.data) && !is_neuter(youmonst.data))
 	    flags.female = !flags.female;
 	if (already_polyd)	/* poly'd: also change saved sex */
 	    u.mfemale = !u.mfemale;
@@ -164,8 +160,8 @@ change_sex()
 	} else if (u.umonnum == PM_SUCCUBUS || u.umonnum == PM_INCUBUS) {
 	    /* change monster type to match new sex */
 	    u.umonnum = (u.umonnum == PM_SUCCUBUS) ? PM_INCUBUS : PM_SUCCUBUS;
+	    set_uasmon();
 	}
-	set_uasmon();
 }
 
 STATIC_OVL void

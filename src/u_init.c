@@ -1148,6 +1148,8 @@ u_init()
 	uswapwep = uquiver = 0;
 	/* KMH -- added two-weapon combat */
 	u.twoweap = 0;
+	uswapwep = uquiver = 0;
+	u.twoweap = 0;
 	u.ublessed = 0;                         /* not worthy yet */
 	u.ugangr   = 0;                         /* gods not angry */
 	u.ugifts   = 0;				/* no divine gifts bestowed */

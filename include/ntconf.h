@@ -52,10 +52,8 @@
 #endif
 
 #include <string.h>     /* Provides prototypes of strncmpi(), etc.     */
-#ifdef STRNCMPI
-#ifndef __CYGWIN__
+#ifndef STRNCMPI /* JRN: was ifdef */
 #define strncmpi(a,b,c) strnicmp(a,b,c)
-#endif
 #endif
 
 #include <sys/types.h>

@@ -137,7 +137,7 @@ dofindgem() /* Find a gem in the sparkling waters. */
 {
 	if (!Blind) You("spot a gem in the sparkling waters!");
 	(void) mksobj_at(rnd_class(DILITHIUM_CRYSTAL, LUCKSTONE-1),
-						u.ux, u.uy, FALSE, FALSE);
+						u.ux, u.uy, FALSE);
 	levl[u.ux][u.uy].looted |= F_LOOTED;
 	newsym(u.ux, u.uy);
 	exercise(A_WIS, TRUE);                  /* a discovery! */
@@ -481,24 +481,26 @@ diptoilet(obj)
 register struct obj *obj;
 {
 	if (Levitation) {
-	    floating_above("toilet");
+		You("are floating high above the toilet.");
+		return;
+	}
+
+	/* KMH, balance patch -- new macro */
+	if(is_poisonable(obj)) {
+	   You("cover your weapon in filth.");
+	   obj->opoisoned = TRUE;
+	   return;
+	}
+	if (obj->oclass == FOOD_CLASS) {
+	    pline("My! It certainly looks tastier now...");
+	    obj->orotten = TRUE;
 	    return;
 	}
 	(void) get_wet(obj);
-	/* KMH -- acid and water don't mix */
-	if (obj->otyp == POT_ACID) {
-	    useup(obj);
-	    return;
-	}
-	if(is_poisonable(obj)) {
-	    if (flags.verbose)  You("cover it in filth.");
-	    obj->opoisoned = TRUE;
-	}
-	if (obj->oclass == FOOD_CLASS) {
-	    if (flags.verbose)  pline("My! It certainly looks tastier now...");
-	    obj->orotten = TRUE;
-	}
-	if (flags.verbose)  pline("Yuck!");
+	pline("Yuck!");
+	/* KMH, balance patch -- acid and water don't mix */
+	if (obj->otyp == POT_ACID)
+		useup(obj);
 }
 
 
@@ -585,9 +587,10 @@ drinksink()
 			      Blind ? "odd" :
 			      hcolor(OBJ_DESCR(objects[otmp->otyp])));
 			otmp->dknown = !(Blind || Hallucination);
+			otmp->quan++; /* Avoid panic upon useup() */
 			otmp->corpsenm = 1; /* kludge for docall() */
-			/* dopotion() deallocs dummy potions */
 			(void) dopotion(otmp);
+			obfree(otmp, (struct obj *)0);
 			break;
 		case 5: if (!(levl[u.ux][u.uy].looted & S_LRING)) {
 			    You("find a ring in the sink!");
@@ -641,7 +644,7 @@ void
 drinktoilet()
 {
 	if (Levitation) {
-		floating_above("toilet");
+		You("are floating high above the toilet.");
 		return;
 	}
 	if ((youmonst.data->mlet == S_DOG) && (rn2(5))){

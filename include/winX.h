@@ -277,7 +277,6 @@ E void FDECL(positionpopup,(Widget,BOOLEAN_P));
 /* ### winX.c ### */
 E struct xwindow *FDECL(find_widget,(Widget));
 E Boolean FDECL(nhApproxColor,(Screen*, Colormap, char*, XColor*));
-E Dimension FDECL(nhFontHeight,(Widget));
 E char FDECL(key_event_to_char,(XKeyEvent*));
 E void FDECL(msgkey, (Widget, XtPointer, XEvent*));
 E void FDECL(nh_XtPopup, (Widget, int, Widget));

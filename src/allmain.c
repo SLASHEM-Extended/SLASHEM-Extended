@@ -131,21 +131,7 @@ moveloop()
 			    /* average movement is 1.33 times normal */
 			    if (rn2(3) != 0) moveamt += NORMAL_SPEED / 2;
 			}
-			if (tech_inuse(T_BLINK)) { /* TECH: Blinking! */
-			    /* Case    Average  Variance
-			     * -------------------------
-			     * Normal    12         0
-			     * Fast      16        12
-			     * V fast    20        12
-			     * Blinking  24        12
-			     * F & B     28        18
-			     * V F & B   30        18
-			     */
-			    moveamt += NORMAL_SPEED * 2 / 3;
-			    if (rn2(3) == 0) moveamt += NORMAL_SPEED / 2;
-			}
 		    }
-
 		    switch (wtcap) {
 			case UNENCUMBERED: break;
 			case SLT_ENCUMBER: moveamt -= (moveamt / 4); break;
@@ -155,6 +141,9 @@ moveloop()
 			default: break;
 		    }
 		    
+		    /* TECH: Blinking! */
+		    if (tech_inuse(T_BLINK)) moveamt += tech_inuse(T_BLINK);
+			
 		    youmonst.movement += moveamt;
 		    if (youmonst.movement < 0) youmonst.movement = 0;
 		    settrack();
@@ -610,11 +599,9 @@ boolean new_game;	/* false => restoring an old game */
 	  (currentgend && urole.name.f) ? urole.name.f : urole.name.m, 
 	  DEF_GAME_NAME);
 
-#if !defined(DEVEL_BRANCH) || !defined(GTK_V20)
 #ifdef GTK_GRAPHICS
     if(!strcmp(windowprocs.name, "gtk"))
 	GTK_init_nhwindows2();
-#endif
 #endif
 }
 

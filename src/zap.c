@@ -142,11 +142,12 @@ struct obj *otmp;
 	struct obj *obj;
 #endif
 	
-	int skilldmg = 0;
+	int skill = 0, skilldmg = 0;
 
 	if (objects[otyp].oc_class == SPBOOK_CLASS) {
 	    /* Is a spell */
-	    skilldmg = spell_damage_bonus(otyp);  
+	    skill = P_SKILL(spell_skilltype(otyp));
+	    skilldmg = spell_damage_bonus(skill);  
 	    zap_type_text = "spell";
 	} else zap_type_text = "wand";
 
@@ -962,13 +963,6 @@ obj_resists(obj, ochance, achance)
 struct obj *obj;
 int ochance, achance;   /* percent chance for ordinary objects, artifacts */
 {
-#ifdef DEVEL_BRANCH
-	/* [ALI] obj_resists(obj, 0, 0) is used to test for objects resisting
-	 * containment (see bury_an_obj() and monstone() for details).
-	 */
-	if (evades_destruction(obj) && (ochance || achance))
-		return TRUE;
-#endif
 	if (obj->otyp == AMULET_OF_YENDOR ||
 	    obj->otyp == SPE_BOOK_OF_THE_DEAD ||
 	    obj->otyp == CANDELABRUM_OF_INVOCATION ||
@@ -1021,9 +1015,6 @@ polyuse(objhdr, mat, minwt)
 	otmp2 = otmp->nexthere;
 	if (otmp == uball || otmp == uchain) continue;
 	if (obj_resists(otmp, 0, 0)) continue;	/* preserve unique objects */
-#ifdef DEVEL_BRANCH
-	if (evades_destruction(otmp)) continue;
-#endif
 #ifdef MAIL
 	if (otmp->otyp == SCR_MAIL) continue;
 #endif
@@ -1555,18 +1546,10 @@ poly_obj(obj, id)
 	}
 
 	if ((!carried(otmp) || obj->unpaid) &&
-#if defined(DEVEL_BRANCH) && defined(UNPOLYPILE)
-		!is_fuzzy(obj) &&
-#endif
 		get_obj_location(otmp, &ox, &oy, BURIED_TOO|CONTAINED_TOO) &&
 		costly_spot(ox, oy)) {
-#ifdef DEVEL_BRANCH
-	    char objroom = *in_rooms(ox, oy, SHOPBASE);
-	    register struct monst *shkp = shop_keeper(objroom);
-#else
 	    register struct monst *shkp =
 		shop_keeper(*in_rooms(ox, oy, SHOPBASE));
-#endif
 
 	    if ((!obj->no_charge ||
 		 (Has_contents(obj) &&
@@ -1582,14 +1565,6 @@ poly_obj(obj, id)
 			hot_pursuit(shkp);
 		    }
 		} else Norep("%s is furious!", Monnam(shkp));
-#ifdef DEVEL_BRANCH
-		if (!carried(otmp)) {
-		    if (costly_spot(u.ux, u.uy) && objroom == *u.ushops)
-			bill_dummy_object(obj);
-		    else
-			(void) stolen_value(obj, ox, oy, FALSE, FALSE);
-		}
-#endif
 	    }
 	}
 	delobj(obj);
@@ -2458,8 +2433,6 @@ struct obj *obj;	/* wand or spell */
 		case WAN_SPEED_MONSTER:
 		case SPE_HEALING:
 		case SPE_EXTRA_HEALING:
-		case WAN_HEALING:
-		case WAN_EXTRA_HEALING:
 		case SPE_DRAIN_LIFE:
 		case WAN_OPENING:
 		case SPE_KNOCK:
@@ -2607,7 +2580,7 @@ struct obj *obj;        /* wand or spell */
 		      ceiling(x, y), body_part(HEAD));
 		losehp(rnd((uarmh && is_metallic(uarmh)) ? 2 : 6),
 		       "falling rock", KILLED_BY_AN);
-		if ((otmp = mksobj_at(ROCK, x, y, FALSE, FALSE)) != 0) {
+		if ((otmp = mksobj_at(ROCK, x, y, FALSE)) != 0) {
 		    (void)xname(otmp);  /* set dknown, maybe bknown */
 		    stackobj(otmp);
 		}
@@ -2692,12 +2665,14 @@ register struct obj     *obj;
 {
 	int otyp = obj->otyp;
 	boolean disclose = FALSE, was_unkn = !objects[otyp].oc_name_known;
-	int skilldmg = 0; /*WAC - Skills damage bonus*/
+	int skill = 0, skilldmg = 0; /*WAC - Skills damage bonus*/
 
-	if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_ACID_STREAM)
-		skilldmg = spell_damage_bonus(obj->otyp);
+	if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_ACID_STREAM) {
+		skill = P_SKILL(spell_skilltype(obj->otyp));
+		skilldmg = spell_damage_bonus(skill);
+	}
 
-#if defined(BLACKMARKET) && !defined(DEVEL_BRANCH)
+#ifdef BLACKMARKET
 	if (Is_blackmarket(&u.uz) && 
 	    (obj->otyp == WAN_POLYMORPH || obj->otyp == SPE_POLYMORPH)) {
 		pline("A mysterious force blocks your %s!",
@@ -2787,8 +2762,8 @@ register struct obj     *obj;
  */
 /*  WAC now also depends on skill level.  Returns -2 to 5 */
 int
-spell_damage_bonus(booktype)
-register int booktype;
+spell_damage_bonus(skill)
+register int skill;
 {
 	register int intell = ACURR(A_INT);
 	int tmp;
@@ -2800,7 +2775,7 @@ register int booktype;
 	else if (intell <= 18) tmp = 2;            
 	else tmp = 3;                   /* Hero may have helm of brilliance on */
 
-	switch (P_SKILL(spell_skilltype(booktype))) {
+	switch (P_SKILL(spell_skilltype(skill))) {
 		case P_ISRESTRICTED:
 		case P_UNSKILLED:   tmp -= 1; break;
 		case P_BASIC:       break;
@@ -3033,7 +3008,7 @@ struct obj *obj;                        /* object tossed/used */
 		}
 	    } else {
 		if (weapon == ZAPPED_WAND && obj->otyp == WAN_PROBING &&
-		   memory_is_invisible(bhitpos.x, bhitpos.y)) {
+		   glyph_is_invisible(levl[bhitpos.x][bhitpos.y].glyph)) {
 		    unmap_object(bhitpos.x, bhitpos.y);
 		    newsym(x, y);
 		}
@@ -3082,7 +3057,7 @@ boolean costly = shop_keeper(*in_rooms(bhitpos.x, bhitpos.y, SHOPBASE)) &&
 	    if(weapon != ZAPPED_WAND && weapon != INVIS_BEAM) {
 		/* 'I' present but no monster: erase */
 		/* do this before the tmp_at() */
-		if (memory_is_invisible(bhitpos.x, bhitpos.y)
+		if (glyph_is_invisible(levl[bhitpos.x][bhitpos.y].glyph)
 			&& cansee(x, y)) {
 		    unmap_object(bhitpos.x, bhitpos.y);
 		    newsym(x, y);
@@ -3195,7 +3170,10 @@ struct obj **ootmp;   /* to return worn armor for caller to disintegrate */
 	boolean sho_shieldeff = FALSE;
 	boolean spellcaster = (is_hero_spell(type) || is_mega_spell(type)); 
 				/* maybe get a bonus! */
-    	int skilldmg = 0;
+    	int skilldmg;
+
+	/* if its a Hero Spell then get its spell damage bonus */
+    	skilldmg = spellcaster ? spell_damage_bonus(SPE_MAGIC_MISSILE + abstype) : 0;
 
 	*ootmp = (struct obj *)0;
 	switch(abstype) {
@@ -3205,8 +3183,6 @@ struct obj **ootmp;   /* to return worn armor for caller to disintegrate */
 		    break;
 		}
 		tmp = d(nd,6);
-		if (spellcaster)
-		    skilldmg = spell_damage_bonus(SPE_MAGIC_MISSILE);
 		break;
 	case ZT_FIRE:
 		if (resists_fire(mon)) {
@@ -3215,8 +3191,6 @@ struct obj **ootmp;   /* to return worn armor for caller to disintegrate */
 		}
 		tmp = d(nd,6);
 		if (resists_cold(mon)) tmp += 7;
-		if (spellcaster)
-		    skilldmg = spell_damage_bonus(SPE_FIREBALL);
 		if (burnarmor(mon)) {
 		    if (!rn2(3)) (void)destroy_mitem(mon, POTION_CLASS, AD_FIRE);
 		    if (!rn2(3)) (void)destroy_mitem(mon, SCROLL_CLASS, AD_FIRE);
@@ -3230,8 +3204,6 @@ struct obj **ootmp;   /* to return worn armor for caller to disintegrate */
 		}
 		tmp = d(nd,6);
 		if (resists_fire(mon)) tmp += d(nd, 3);
-		if (spellcaster)
-		    skilldmg = spell_damage_bonus(SPE_CONE_OF_COLD);
 		if (!rn2(3)) (void)destroy_mitem(mon, POTION_CLASS, AD_COLD);
 		break;
 	case ZT_SLEEP:
@@ -3296,8 +3268,6 @@ struct obj **ootmp;   /* to return worn armor for caller to disintegrate */
 		    /* can still blind the monster */
 		} else
 		    tmp = d(nd,6);
-		if (spellcaster)
-		    skilldmg = spell_damage_bonus(SPE_LIGHTNING);
 		if (!resists_blnd(mon) &&
 				!(type > 0 && u.uswallow && mon == u.ustuck)) {
 			register unsigned rnd_tmp = rnd(50);
@@ -3331,11 +3301,12 @@ struct obj **ootmp;   /* to return worn armor for caller to disintegrate */
 	if (spellcaster && (Role_if(PM_KNIGHT) && u.uhave.questart))
 	    tmp *= 2;
 
+	tmp += skilldmg;
 #ifdef WIZ_PATCH_DEBUG
 	if (spellcaster)
-	    pline("Damage = %d + %d", tmp, skilldmg);
+	    pline("Damage = %d + %d", skilldmg,
+		spell_damage_bonus());
 #endif
-	tmp += skilldmg;
 	    
 	if (tmp > 0 && type >= 0 &&
 		resist(mon, type < ZT_SPELL(0) ? WAND_CLASS : '\0', 0, NOTELL))
@@ -3657,6 +3628,7 @@ register int dx,dy;
 /*        if(isok(sx,sy) && (lev = &levl[sx][sy])->typ) {*/
 
         if(isok(sx,sy) && (ZAP_POS(lev->typ))) {
+	    mon = m_at(sx, sy);
 
 #ifdef LIGHT_SRC_SPELL
         /*WAC added light sourcing for the zap...*/
@@ -3669,22 +3641,22 @@ register int dx,dy;
             }
 #endif
 	    /*Actual Megablast:right now only mag missile to cone of cold WAC*/
-	    if (is_mega_spell(type) && away != 1) {
-		/*explode takes care of vision stuff*/
-		explode(sx, sy, type, nd, 0);
-		delay_output(); /* wait a little */
-	    }
-	    mon = m_at(sx, sy);
-	    /* Normal Zap */
-	    if (!is_mega_spell(type) && cansee(sx,sy)) {
+            if (type >= ZT_MEGA(ZT_FIRST) && type <= ZT_MEGA(ZT_LAST)) {
+                if (away != 1) {
+			/*explode takes care of vision stuff*/
+			explode(sx, sy, type, nd, 0);
+			delay_output(); /* wait a little */
+                }
+	    /* Normale Zap */
+            } else if (cansee(sx,sy)) {
 		/* reveal/unreveal invisible monsters before tmp_at() */
 		if (mon && !canspotmon(mon))
 		    map_invisible(sx, sy);
-		else if (!mon && memory_is_invisible(sx, sy)) {
+		else if (!mon && glyph_is_invisible(levl[sx][sy].glyph)) {
 		    unmap_object(sx, sy);
 		    newsym(sx, sy);
 		}
-		if(ZAP_POS(lev->typ) || cansee(lsx,lsy)) {
+		if(!is_mega_spell(type) && (ZAP_POS(lev->typ) || cansee(lsx,lsy))) {
 		    tmp_at(sx,sy);
 		    delay_output(); /* wait a little */
 		}
@@ -3783,9 +3755,6 @@ register int dx,dy;
 			for (otmp = mon->minvent; otmp; otmp = otmp2) {
 			    otmp2 = otmp->nobj;
 			    if (!oresist_disintegration(otmp)) {
-#ifdef DEVEL_BRANCH
-				if (Has_contents(otmp)) delete_contents(otmp);
-#endif
 				obj_extract_self(otmp);
 				obfree(otmp, (struct obj *)0);
 			    }
@@ -3831,7 +3800,7 @@ register int dx,dy;
 	    if (zap_hit((int) u.uac, 0)) {
 		range -= 2;
 		pline("%s hits you!", The(fltxt));
-		if (Reflecting && abs(type) != ZT_SPELL(ZT_FIRE)) {
+		if (Reflecting) {
 		    if (!Blind) {
 		    	(void) ureflects("But %s reflects from your %s!", "it");
 		    } else
@@ -3845,10 +3814,7 @@ register int dx,dy;
 			tmp_at(DISP_BEAM, zapdir_to_glyph(dx, dy, abstype));
 		    }
 		} else {
-		    if (abs(type) != ZT_SPELL(ZT_FIRE))
-			zhitu(type, nd, fltxt, sx, sy);
-		    else
-			range = 0;
+		    zhitu(type, nd, fltxt, sx, sy);
 		}
 	    } else {
 		pline("%s whizzes by you!", The(fltxt));
@@ -4095,11 +4061,6 @@ boolean *shopdamage;
 		int new_doormask = -1;
 		const char *see_txt = 0, *sense_txt = 0, *hear_txt = 0;
 		rangemod = -1000;
-#ifdef DEVEL_BRANCH
-		/* ALI - Artifact doors */
-		if (artifact_door(x, y))
-		    goto def_case;
-#endif
 		switch(abstype) {
 		case ZT_FIRE:
 		    new_doormask = D_NODOOR;

@@ -261,7 +261,7 @@ use_stethoscope(obj)
 			map_invisible(rx,ry);
 		return res;
 	}
-	if (memory_is_invisible(rx, ry)) {
+	if (glyph_is_invisible(levl[rx][ry].glyph)) {
 		unmap_object(rx, ry);
 		newsym(rx, ry);
 		pline_The("invisible monster must have moved.");
@@ -952,10 +952,7 @@ register struct obj *obj;
 	}
 
 	otmp = carrying(CANDELABRUM_OF_INVOCATION);
-	/* [ALI] Artifact candles can't be attached to candelabrum
-	 *       (magic candles still can be).
-	 */
-	if(obj->oartifact || !otmp || otmp->spe == 7) {
+	if(!otmp || otmp->spe == 7) {
 		use_lamp(obj);
 		return;
 	}
@@ -1075,9 +1072,6 @@ struct obj *obj;
 			}
 			lightsaber_deactivate(obj, TRUE);
 			return;
-		} else if (artifact_light(obj)) {
-		    You_cant("snuff out %s.", yname(obj));
-		    return;
 		} else {
 		    You("snuff out %s.", yname(obj));
 		}
@@ -1173,7 +1167,7 @@ light_cocktail(obj)
 	    return;
 	}
 
-	You("light %s %s.%s", shk_your(buf, obj),(obj->otyp == POT_OIL ? "potion" : "stick"),
+	You("light %s potion.%s", shk_your(buf, obj),
 	    Blind ? "" : "  It gives off a dim light.");
 	if (obj->unpaid && costly_spot(u.ux, u.uy)) {
 	    /* Normally, we shouldn't both partially and fully charge
@@ -1542,8 +1536,6 @@ struct obj *obj;
 	if (Stoned) unfixable_trbl++;
 	if (Strangled) unfixable_trbl++;
 	if (Wounded_legs) unfixable_trbl++;
-	if (Slimed) unfixable_trbl++;
-	if (u.ulycn >= LOW_PM && !Race_if(PM_HUMAN_WEREWOLF)) unfixable_trbl++;
 
 	/* collect attribute troubles */
 	for (idx = 0; idx < A_MAX; idx++) {
@@ -2120,7 +2112,7 @@ struct obj *obj;
 
     } else if (mtmp) {
 	if (!canspotmon(mtmp) &&
-		!memory_is_invisible(rx, ry)) {
+		!glyph_is_invisible(levl[rx][ry].glyph)) {
 	   pline("A monster is there that you couldn't see.");
 	   map_invisible(rx, ry);
 	}
@@ -2594,16 +2586,6 @@ wand_explode(obj, hero_broke)
     int dmg, damage;
     boolean affects_objects;
 
-    /* [ALI] Do this first so that wand is removed from bill. Otherwise,
-     * the freeinv() below also hides it from setpaid() which causes problems.
-     */
-    if (carried(obj) ? obj->unpaid :
-	    !obj->no_charge && costly_spot(obj->ox, obj->oy)) {
-	if (hero_broke)
-	    check_unpaid(obj);		/* Extra charge for use */
-	bill_dummy_object(obj);
-    }
-
     current_wand = obj;		/* destroy_item might reset this */
     freeinv(obj);		/* hide it from destroy_item instead... */
     setnotworn(obj);		/* so we need to do this ourselves */
@@ -2613,14 +2595,12 @@ wand_explode(obj, hero_broke)
 		goto discard_broken_wand;
     }
 
-#if defined(BLACKMARKET) && !defined(DEVEL_BRANCH)
+#ifdef BLACKMARKET
     if (obj->otyp == WAN_POLYMORPH && Is_blackmarket(&u.uz)) {
                 /* No ID */
 		pline("A mysterious force surrounds the broken wand.");
 		pline(nothing_else_happens);
-		if (obj->dknown && !objects[obj->otyp].oc_name_known &&
-				!objects[obj->otyp].oc_uname)
-			docall(obj);
+		if(!objects[obj->otyp].oc_uname) docall(obj);
 		goto discard_broken_wand;
     }
 #endif /* BLACKMARKET */
@@ -2696,16 +2676,12 @@ wand_explode(obj, hero_broke)
     case WAN_CREATE_HORDE: /* More damage than Create monster */
 	        dmg *= 2;
 	        break;
-    case WAN_HEALING:
-    case WAN_EXTRA_HEALING:
-		dmg = 0;
-		break;
     default:
 		break;
     }
 
     /* magical explosion and its visual effect occur before specific effects */
-    explode(obj->ox, obj->oy, ZT_MAGIC_MISSILE, dmg ? rnd(dmg) : 0, WAND_CLASS);
+    explode(obj->ox, obj->oy, ZT_MAGIC_MISSILE, rnd(dmg), WAND_CLASS);
 
     /* this makes it hit us last, so that we can see the action first */
     for (i = 0; i <= 8; i++) {
@@ -2766,8 +2742,11 @@ wand_explode(obj, hero_broke)
  discard_broken_wand:
     obj = current_wand;		/* [see dozap() and destroy_item()] */
     current_wand = 0;
-    if (obj)
-	delobj(obj);
+    if (obj) {
+	/* extra charge for _use_ prior to destruction */
+	check_unpaid(obj);
+    delobj(obj);
+    }
     nomul(0);
     return 1;
 }
