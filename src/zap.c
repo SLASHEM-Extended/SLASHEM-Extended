@@ -881,7 +881,8 @@ register struct obj *obj;
 		    Norep("You cancel it, you pay for it!");
 		    bill_dummy_object(obj);
 		} else
-		    (void) stolen_value(obj, obj->ox, obj->oy, FALSE, FALSE);
+		    (void) stolen_value(obj, obj->ox, obj->oy, FALSE, FALSE,
+			    FALSE);
 		break;
 	}
 }
@@ -1159,7 +1160,8 @@ polyuse(objhdr, mat, minwt)
 			addtobill(otmp, FALSE, FALSE, FALSE);
 		else
 			(void)stolen_value(otmp,
-					   otmp->ox, otmp->oy, FALSE, FALSE);
+					   otmp->ox, otmp->oy, FALSE, FALSE,
+					   TRUE);
 	    }
 	    if (otmp->quan < LARGEST_INT)
 		minwt -= (int)otmp->quan;
@@ -1298,8 +1300,8 @@ struct obj *obj;
 		if (*u.ushops)
 			addtobill(obj, FALSE, FALSE, FALSE);
 		else
-			(void)stolen_value(obj,
-					   obj->ox, obj->oy, FALSE, FALSE);
+			(void)stolen_value(obj, obj->ox, obj->oy,
+					   FALSE, FALSE, TRUE);
 	}
 
 	/* zap the object */
@@ -1707,7 +1709,7 @@ poly_obj(obj, id)
 		    if (costly_spot(u.ux, u.uy) && objroom == *u.ushops)
 			bill_dummy_object(obj);
 		    else
-			(void) stolen_value(obj, ox, oy, FALSE, FALSE);
+			(void) stolen_value(obj, ox, oy, FALSE, FALSE, TRUE);
 		}
 	    }
 	}

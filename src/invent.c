@@ -2909,7 +2909,8 @@ long numused;
 	if(costly_spot(otmp->ox, otmp->oy)) {
 	    if(index(u.urooms, *in_rooms(otmp->ox, otmp->oy, 0)))
 	        addtobill(otmp, FALSE, FALSE, FALSE);
-	    else (void)stolen_value(otmp, otmp->ox, otmp->oy, FALSE, FALSE);
+	    else (void)stolen_value(otmp, otmp->ox, otmp->oy, FALSE, FALSE,
+		    TRUE);
 	}
 	delobj(otmp);
 	if (at_u && u.uundetected && hides_under(youmonst.data))

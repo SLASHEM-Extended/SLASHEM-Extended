@@ -1939,7 +1939,8 @@ E long FDECL(unpaid_cost, (struct obj *));
 E void FDECL(addtobill, (struct obj *,BOOLEAN_P,BOOLEAN_P,BOOLEAN_P));
 E void FDECL(splitbill, (struct obj *,struct obj *));
 E void FDECL(subfrombill, (struct obj *,struct monst *));
-E long FDECL(stolen_value, (struct obj *,XCHAR_P,XCHAR_P,BOOLEAN_P,BOOLEAN_P));
+E long FDECL(stolen_value, (struct obj *,XCHAR_P,XCHAR_P,BOOLEAN_P,BOOLEAN_P,
+			    BOOLEAN_P));
 E void FDECL(sellobj_state, (int));
 E void FDECL(sellobj, (struct obj *,XCHAR_P,XCHAR_P));
 E int FDECL(doinvbill, (int));

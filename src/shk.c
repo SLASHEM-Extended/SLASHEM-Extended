@@ -48,7 +48,7 @@ STATIC_DCL long FDECL(cheapest_item, (struct monst *));
 STATIC_DCL int FDECL(dopayobj, (struct monst *, struct bill_x *,
 			    struct obj **, int, BOOLEAN_P));
 STATIC_DCL long FDECL(stolen_container, (struct obj *, struct monst *, long,
-				     BOOLEAN_P));
+				     BOOLEAN_P, BOOLEAN_P));
 STATIC_DCL long FDECL(getprice, (struct obj *,BOOLEAN_P));
 STATIC_DCL void FDECL(shk_names_obj,
 		 (struct monst *,struct obj *,const char *,long,const char *));
@@ -2858,20 +2858,22 @@ register struct monst *shkp;
 #ifdef OVL3
 
 STATIC_OVL long
-stolen_container(obj, shkp, price, ininv)
+stolen_container(obj, shkp, price, ininv, destruction)
 register struct obj *obj;
 register struct monst *shkp;
 long price;
-register boolean ininv;
+register boolean ininv, destruction;
 {
 	register struct obj *otmp;
 
+	if (!(destruction && evades_destruction(obj))) {
 	if(ininv && obj->unpaid)
 	    price += get_cost(obj, shkp);
 	else {
 	    if(!obj->no_charge)
 		price += get_cost(obj, shkp);
 	    obj->no_charge = 0;
+	}
 	}
 
 	/* the price of contained objects, if any */
@@ -2880,6 +2882,7 @@ register boolean ininv;
 	    if(otmp->oclass == COIN_CLASS) continue;
 
 	    if (!Has_contents(otmp)) {
+	      if (!(destruction && evades_destruction(otmp))) {
 		if(ininv) {
 		    if(otmp->unpaid)
 			price += otmp->quan * get_cost(otmp, shkp);
@@ -2890,8 +2893,10 @@ register boolean ininv;
 		    }
 		    otmp->no_charge = 0;
 		}
+	      }
 	    } else
-		price += stolen_container(otmp, shkp, price, ininv);
+		price += stolen_container(otmp, shkp, price, ininv,
+			destruction);
 	}
 
 	return(price);
@@ -2900,10 +2905,10 @@ register boolean ininv;
 #ifdef OVLB
 
 long
-stolen_value(obj, x, y, peaceful, silent)
+stolen_value(obj, x, y, peaceful, silent, destruction)
 register struct obj *obj;
 register xchar x, y;
-register boolean peaceful, silent;
+register boolean peaceful, silent, destruction;
 {
 	register long value = 0L, gvalue = 0L;
 	register struct monst *shkp = shop_keeper(*in_rooms(x, y, SHOPBASE));
@@ -2916,9 +2921,10 @@ register boolean peaceful, silent;
 	} else if (Has_contents(obj)) {
 	    register boolean ininv = !!count_unpaid(obj->cobj);
 
-	    value += stolen_container(obj, shkp, value, ininv);
+	    value += stolen_container(obj, shkp, value, ininv, destruction);
 	    if(!ininv) gvalue += contained_gold(obj);
-	} else if (!obj->no_charge && saleable(shkp, obj)) {
+	} else if (!obj->no_charge && saleable(shkp, obj) &&
+		!(destruction && evades_destruction(obj))) {
 	    value += get_cost(obj, shkp);
 	}
 

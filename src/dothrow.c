@@ -819,7 +819,7 @@ register boolean broken;
 	if(broken) {
 		if (obj->unpaid) {
 		    (void)stolen_value(obj, u.ux, u.uy,
-				       (boolean)shkp->mpeaceful, FALSE);
+				       (boolean)shkp->mpeaceful, FALSE, TRUE);
 		    subfrombill(obj, shkp);
 		}
 		obj->no_charge = 1;
@@ -830,7 +830,7 @@ register boolean broken;
 		/* thrown out of a shop or into a different shop */
 		if (obj->unpaid) {
 		    (void)stolen_value(obj, u.ux, u.uy,
-				       (boolean)shkp->mpeaceful, FALSE);
+				       (boolean)shkp->mpeaceful, FALSE, FALSE);
 		    subfrombill(obj, shkp);
 		}
 	} else {
@@ -1896,7 +1896,7 @@ boolean from_invent;
 			single breakage.  (ought to be done via ESHK)  */
 		    if (moves != lastmovetime)
 			peaceful_shk = shkp->mpeaceful;
-		    if (stolen_value(obj, x, y, peaceful_shk, FALSE) > 0L &&
+		    if (stolen_value(obj, x, y, peaceful_shk, FALSE, TRUE) > 0L &&
 			(*o_shop != u.ushops[0] || !inside_shop(u.ux, u.uy)) &&
 			moves != lastmovetime) make_angry_shk(shkp, x, y);
 		    lastmovetime = moves;

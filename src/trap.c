@@ -3965,7 +3965,7 @@ boolean disarm;
 
 			  if(costly)
 			      loss += stolen_value(obj, ox, oy,
-						(boolean)shkp->mpeaceful, TRUE);
+				      (boolean)shkp->mpeaceful, TRUE, TRUE);
 			  delete_contents(obj);
 			  /* we're about to delete all things at this location,
 			   * which could include the ball & chain.
@@ -3985,7 +3985,7 @@ boolean disarm;
 			      if(costly)
 				  loss += stolen_value(otmp, otmp->ox,
 					  otmp->oy, (boolean)shkp->mpeaceful,
-					  TRUE);
+					  TRUE, TRUE);
 			      delobj(otmp);
 			  }
 			  wake_nearby();
