@@ -378,20 +378,22 @@ struct obj *otmp;
 		if(dbldam) dmg *= 2;
 		dmg += skilldmg;
 		
-		if (resists_drli(mtmp))
-		    shieldeff(mtmp->mx, mtmp->my);
-		else if (!resist(mtmp, otmp->oclass, dmg, NOTELL) &&
+		if (resists_drli(mtmp)) {
+			shieldeff(mtmp->mx, mtmp->my);
+			break;	/* skip makeknown */
+		}else if (!resist(mtmp, otmp->oclass, dmg, NOTELL) &&
 				mtmp->mhp > 0) {
-		    mtmp->mhp -= dmg;
-		    mtmp->mhpmax -= dmg;
-		    if (mtmp->mhp <= 0 || mtmp->mhpmax <= 0 || mtmp->m_lev < 1)
-			xkilled(mtmp, 1);
-		    else {
-			mtmp->m_lev--;
-			if (canseemon(mtmp))
-			    pline("%s suddenly seems weaker!", Monnam(mtmp));
-		    }
+			mtmp->mhp -= dmg;
+			mtmp->mhpmax -= dmg;
+			if (mtmp->mhp <= 0 || mtmp->mhpmax <= 0 || mtmp->m_lev < 1)
+				xkilled(mtmp, 1);
+			else {
+				mtmp->m_lev--;
+				if (canseemon(mtmp))
+					pline("%s suddenly seems weaker!", Monnam(mtmp));
+			}
 		}
+		makeknown(otyp);
 		break;
 	default:
 		impossible("What an interesting effect (%d)", otyp);
@@ -2346,11 +2348,14 @@ boolean ordinary;
 		case SPE_CANCELLATION:
 		    cancel_monst(&youmonst, obj, TRUE, FALSE, TRUE);
 		    break;
-		case SPE_DRAIN_LIFE:
 		case WAN_DRAINING:	/* KMH */
+			makeknown(obj->otyp);
+		case SPE_DRAIN_LIFE:
 			if (!Drain_resistance) {
-			losexp("life drainage", FALSE);
-				makeknown(obj->otyp);
+				losexp("life drainage", FALSE);
+			} else {
+				shieldeff(u.ux, u.uy);
+				pline("Boing!");
 			}
 			damage = 0;	/* No additional damage */
 			break;

@@ -1249,14 +1249,17 @@ register struct obj *otmp;
 	case WAN_DRAINING:	/* KMH */
 		tmp = d(2,6);
 		if (mtmp == &youmonst) {
-			if (Drain_resistance)
+			if (Drain_resistance) {
 				shieldeff(u.ux, u.uy);
-			else
+				pline("Boing!");
+			} else
 				losexp("life drainage", FALSE);
 			if (zap_oseen)
 				makeknown(WAN_DRAINING);
+			break;
 		} else if (resists_drli(mtmp)) {
 			shieldeff(mtmp->mx, mtmp->my);
+			break;	/* skip makeknown */
 		} else if (!resist(mtmp, otmp->oclass, tmp, NOTELL) &&
 				mtmp->mhp > 0) {
 			mtmp->mhpmax -= tmp;
@@ -1266,11 +1269,11 @@ register struct obj *otmp;
 				mtmp->m_lev--;
 				if (canseemon(mtmp)) {
 					pline("%s suddenly seems weaker!", Monnam(mtmp));
-					if (zap_oseen)
-						makeknown(WAN_DRAINING);
 				}
 			}
 		}
+		if (cansee(mtmp->mx, mtmp->my) && zap_oseen)
+			makeknown(WAN_DRAINING);
 		break;
 	}
 	if (reveal_invis) {
