@@ -1696,7 +1696,7 @@ const char *filename;
 	FILE    *fp;
 	int     i;
 
-	if (!(fp = fopen_config_file(filename))) return;
+	if (!(fp = fopen_config_file(filename))) goto post_process;
 
 #ifdef MICRO
 # ifdef MFLOPPY
@@ -1731,6 +1731,7 @@ const char *filename;
 	Strcpy(bones, levels);
 # endif /* MFLOPPY */
 #endif /* MICRO */
+post_process:
 	if (!no_tilesets) {
 		for(i = 0; strlen(def_tilesets[i].name); i++) {
 			strcpy(tilesets[i].name, def_tilesets[i].name);

@@ -343,6 +343,7 @@ ver 0.0.6E4F2 [December XX/2000]
 -fixed bug 124232: windows GTK port unable to load savefiles beyond level 1.
 -vampires no longer allowed to be flame magi.
 -fixed bug 123468: Inconsistent messages engraved on headstones
+-fixed bug 123387: slashem-0.0.6E4F1-1 can't locate tiles for X.
 
 ver 0.0.6E4F1 [November 10/2000] [Released by Ali]
 -GTK: status window stats columns should never be too small
