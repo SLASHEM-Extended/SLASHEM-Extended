@@ -17,6 +17,9 @@
 #       other ports of these tools available for Win32, but these are the only
 #       ones I am aware of.
 #
+#       Note that compiling will fail under WinNT (including Win2k) if
+#       the command line gets too long (eg. your directory names are longer
+#       than mine).
 
 # Directory Seperator
 #
@@ -61,6 +64,7 @@ LINK  = gcc
 #CC    = gccw32
 #LINK  = gccw32
 MAKEBIN  = make
+
 
 # The copy, del and echo commands don't seem to work from a makefile since
 # it's part of the shell rather than an external utility.  We can get around
@@ -168,11 +172,11 @@ LFLAGS =
 else
 
 # Debugging
-#CFLAGS = -pg -c -I..\include -I..\sys\winnt $(DLBFLG) -DWIN32CON
+#CFLAGS = -pg -c -I..\include $(DLBFLG) -DWIN32CON
 #LFLAGS = -pg
 
 #    Normal
-CFLAGS = -c -O -I../include -I../sys/winnt $(DLBFLG) -DWIN32CON
+CFLAGS = -c -O -I../include $(DLBFLG) -DWIN32CON
 LFLAGS =
 endif
 
@@ -800,7 +804,8 @@ $(INCL)\tile.h: $(WSHR)\tile.h tilemap.exe
 #  Utilities
 
 $(WSHR)\txtmerge.exe: txtmerge.o $(TEXTIO)
-	$(CCOMPILE) $(LFLAGS) -o$(WSHR)\txtmerge.exe txtmerge.o $(TEXTIO)
+	$(CCOMPILE) $(LFLAGS) -otxtmerge.exe txtmerge.o $(TEXTIO)
+	move txtmerge.exe $(WSHR)\txtmerge.exe
 
 tile2x11.exe: tile2x11.o $(TEXTIO)
 	$(CCOMPILE) $(LFLAGS) -otile2x11.exe tile2x11.o $(TEXTIO)
@@ -861,13 +866,13 @@ x11big3dtiles:	tile2x11.exe ../win/share/mon3d.txt \
 	tile2x11 -o x11big3dtiles ../win/share/mon3d.txt \
 		../win/share/obj3d.txt ../win/share/oth3d.txt
 
-../win/share/monmag.txt:	magtile.exe ../win/share/monsters.txt
+$(WSHR)\monmag.txt:	magtile.exe ../win/share/monsters.txt
 	magtile
 
-../win/share/objmag.txt:	magtile.exe ../win/share/objects.txt
+$(WSHR)\objmag.txt:	magtile.exe ../win/share/objects.txt
 	magtile
 
-../win/share/othmag.txt:	magtile.exe ../win/share/other.txt
+$(WSHR)\othmag.txt:	magtile.exe ../win/share/other.txt
 	magtile
 
 $(WSHR)\monbig.txt:	bigtile.exe ../win/share/mon32-t.txt \
@@ -900,7 +905,8 @@ $(WSHR)\othbig.txt:	bigtile.exe ../win/share/mon32-t.txt \
 	cd $(WSHR)
 	txtmerge mon32-t.txt monmag.txt \
 		-b204040 mon32mi.txt \
-		-bff00ff mon32alg.txt \
+		-bff00ff mon32alg.txt 
+	txtmerge mon32-t.txt mon32-t.txt \
 		-bff00ff mon32aw.txt 
 	cd ..\$(SRC)
 
