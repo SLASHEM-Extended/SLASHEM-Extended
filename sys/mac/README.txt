@@ -1,4 +1,4 @@
-This is the binary distribution of Slash'EM 0.0.6e4f2mac0.   This is a PowerPC binary, so it will run only on a PowerPC machine.  Please contact me, Paul Hurtley (hurtley@acm.org), if you would like to run Slash'EM on an older Macintosh with a 68K processor.
+This is the binary distribution of Slash'EM 0.0.6e4f5.   This is a Power PC binary, so it will run only on a machine with a Power PC processor.
 
 This package is freely distributable; see the file 'license' for details.
 

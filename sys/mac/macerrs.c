@@ -157,6 +157,7 @@ void attemptingto( char * activity )
    activity = (char *)c2pstr((char *)gActivities[gTopactivity]);
 }
 
+#if 0
 void pushattemptingto( char * activity )
 /* Push a new description onto stack so we can pop later to previous state */
 {
@@ -166,10 +167,13 @@ void pushattemptingto( char * activity )
   }
 	else error("activity stack overflow");
 }
+#endif
 
+#if 0
 void popattempt( void )
 /* Pop to previous state */
 {
   if (gTopactivity > 1) --gTopactivity;
 	else error("activity stack underflow");
 }
+#endif

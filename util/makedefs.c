@@ -563,7 +563,7 @@ void
 do_date()
 {
 	long    clocktim = 0;
-	char *c,  cbuf[60], buf[BUFSZ];
+	char *c,  cbuf[600], buf[BUFSZ];
 	const char *ul_sfx;
 	
 	filename[0]='\0';

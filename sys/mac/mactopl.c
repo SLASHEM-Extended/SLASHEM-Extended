@@ -48,15 +48,9 @@ topl_yn_function(const char *query, const char *resp, char def) {
 
 
 char
-#ifndef NEED_PROTOTYPE
 mac_yn_function(query, resp, def)
 const char *query,*resp;
 char def;
-#else
-mac_yn_function(
-const char *query,const char *resp,
-char def)
-#endif /* NEED_PROTOTYPE */
 /*
  *   Generic yes/no function. 'def' is the default (returned by space or
  *   return; 'esc' returns 'q', or 'n', or the default, depending on

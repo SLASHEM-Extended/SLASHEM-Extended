@@ -66,7 +66,7 @@ mac_get_ext_cmd() {
 	char bufp[BUFSZ];
 	int i;
 
-	topl_getlin("# ", bufp, true);
+	topl_getlin("# ", bufp, true_key);
 	for (i = 0; extcmdlist[i].ef_txt != (char *)0; i++)
 		if (!strcmp(bufp, extcmdlist[i].ef_txt)) break;
 	if (extcmdlist[i].ef_txt == (char *)0) i = -1;    /* not found */

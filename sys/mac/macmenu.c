@@ -37,7 +37,7 @@
 
 /******** Local Defines ********/
 
-#ifdef MAC_MPW
+// #ifdef MAC_MPW
 # define ResetAlrtStage ResetAlertStage
 # define GetItem GetMenuItemText
 # define SetItem SetMenuItemText
@@ -48,7 +48,7 @@
 # define SelIText SelectDialogItemText
 # define GetIText GetDialogItemText
 # define SetIText SetDialogItemText
-#endif
+// #endif
 
 /* 'MNU#' (menu list record) */
 typedef union menuRefUnn
@@ -1073,7 +1073,6 @@ DoMenuEvt(long menuEntry)
 			for (i = 1; ((i <= mstr[0]) && (mstr[i] != mstrEndChar)); i++)
 				AddToKeyQueue(mstr[i], false);
 #ifdef MAC_MPW
-				
 			/* Special processing for extended commands. The command
 			   selection appears before mstrEndChar, the rest appears
 			   after. The rest is used only when in Mac windows mode.
@@ -1095,21 +1094,42 @@ DoMenuEvt(long menuEntry)
 	HiliteMenu(0);
 }
 
+/* convenient define to allow easier (for me) parsing of 'vers' resource */
+typedef struct versXRec
+{
+	NumVersion		numVers;
+	short			placeCode;
+	unsigned char	versStr[];	/* (small string)(large string) */
+} versXRec, *versXPtr, **versXHandle;
+
+#define aboutBufSize	80				/* i.e. 2 lines of 320 pixels */
 
 static void
 aboutNetHack() {
 	if (theMenubar >= mbarRegular) {
 		(void) doversion();				/* is this necessary? */
 	} else {
-		unsigned char aboutStr[32] = "\pSlash'EM 0.0.";
+		/* get the 'vers' 1 long (Get Info) string - About Slash'EM... */
+		versXHandle		vHnd;
+		int i;
+		unsigned char	aboutBuf[aboutBufSize];	/* vers 1 "Get Info" string */
 
-		if (PATCHLEVEL > 10) {
-			aboutStr[++aboutStr[0]] = '0'+PATCHLEVEL/10;
-		}
+		if (! (vHnd = (versXHandle) GetResource('vers', 1)))
+			return;
 
-		aboutStr[++aboutStr[0]] = '0' + (PATCHLEVEL % 10);
+		i = (**vHnd).versStr[0] + 1;		/* offset to Get Info pascal string */
 
-		ParamText(aboutStr, "\p\rhurtley@acm.org", "\p", "\p");
+		if ((aboutBuf[0] = (**vHnd).versStr[i]) > (aboutBufSize - 1))
+			aboutBuf[0] = aboutBufSize - 1;
+
+		i++;
+
+		MoveHHi((Handle) vHnd);			/* DEE - Fense ... */
+		HLock((Handle) vHnd);
+		BlockMove(&((**vHnd).versStr[i]), &(aboutBuf[1]), aboutBuf[0]);
+		ReleaseResource((Handle) vHnd);
+
+		ParamText(aboutBuf, "\p", "\p", "\p");
 		(void) Alert(alrtMenuNote, (ModalFilterUPP) 0L);
 		ResetAlertStage();
 	}

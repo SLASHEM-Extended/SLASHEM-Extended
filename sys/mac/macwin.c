@@ -16,14 +16,16 @@
 #include <Gestalt.h>
 #include <toolutils.h>
 #include <DiskInit.h>
-#include <ControlDefinitions.h>
+
+#ifdef MAC_MPW
+# include <ControlDefinitions.h>
+#endif
 
 static Boolean kApplicInFront = TRUE;
 
 NhWindow * theWindows = (NhWindow *) 0 ;
 
 void mac_synch ();
-void WindowGoAway (EventRecord *theEvent, WindowPtr theWindow);
 
 #ifdef MAC_MPW
 #define USESROUTINEDESCRIPTORS
@@ -43,14 +45,12 @@ void WindowGoAway (EventRecord *theEvent, WindowPtr theWindow);
 # endif
 #endif /* !USEROUTINEDESCRIPTORS (universal headers) */
 
-#ifdef MAC_MPW
-# define inPageUp kControlPageUpPart
-# define DisposHandle DisposeHandle
-# define inPageDown kControlPageDownPart
-# define geneva applFont
-  static short Monaco = -1;
-# define monaco (Monaco==-1 ? (GetFNum("Monaco", &Monaco), Monaco) : Monaco)
-#endif
+#define inPageUp kControlPageUpPart
+#define inPageDown kControlPageDownPart
+#define DisposHandle DisposeHandle
+#define geneva applFont
+static short Monaco = -1;
+#define monaco (Monaco==-1 ? (GetFNum((const unsigned char *)"Monaco", &Monaco), Monaco) : Monaco)
 
 /* Borrowed from the Mac tty port */
 extern WindowPtr _mt_window;
@@ -113,7 +113,7 @@ lock_mouse_cursor(Boolean new_cursor_locked) {
  * Add key to input queue, force means flush left and replace if full
  */
 void
-AddToKeyQueue (int ch, Boolean force) {
+AddToKeyQueue (unsigned char ch, Boolean force) {
 	if (keyQueueCount < QUEUE_LEN) {
 		keyQueue [keyQueueWrite ++] = ch;
 		keyQueueCount++;
@@ -375,12 +375,8 @@ InitMac(void) {
 	InitCursor ( ) ;
 	ObscureCursor ( ) ;
 	
-#ifdef MAC_MPW
 	UpUPP = NewControlActionProc(Up);
 	DownUPP = NewControlActionProc(Down);
-#else
-	MoveScrollUPP = NewControlActionProc(MoveScrollBar);
-#endif
 
 	/* set up base fonts for all window types */
 	GetFNum ("\pHackFont", &i);
@@ -918,7 +914,12 @@ topl_replace(char *new_ans) {
 
 
 Boolean
-topl_key(unsigned char ch, Boolean ext) {
+true_key(unsigned char ch) {
+  return true;
+}
+
+Boolean
+topl_key(unsigned char ch) {
 	switch (ch) {
 		case CHAR_ESC:
 			topl_replace("\x1b");
@@ -1530,6 +1531,7 @@ filter_scroll_key(const int ch, NhWindow *aWin) {
 		}
 		if (part) {
 			SetPort(aWin->its_window);
+			winToScroll = aWin;
 			MoveScrollBar(aWin->scrollBar, part);
 			return 0;
 		}
@@ -2529,15 +2531,9 @@ mac_select_menu (winid win, int how, menu_item **selected_list) {
 
 
 void
-#ifndef NEED_PROTOTYPE
 mac_display_file ( name, complain )
 const char * name;
 boolean	complain;
-#else
-mac_display_file (
-const char * name,
-boolean	complain)
-#endif /* NEED_PROTOTYPE */
 {
 	long l ;
 	Ptr buf ;
@@ -2556,6 +2552,8 @@ boolean	complain)
 		if (buf)
 				l = dlb_fread(buf, 1, l, fp);
 		if (buf && l > 0) {
+			if (l > 10000)
+			  l = 10000;
 			buf[l] = '\0';
 			putstr(win, 0, buf);
 			display_nhwindow(win, FALSE);

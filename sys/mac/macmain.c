@@ -45,7 +45,7 @@ main ( void )
 	theWindows = (NhWindow *) NewPtrClear (NUM_MACWINDOWS * sizeof (NhWindow));
 	mustwork(MemError());
 
-	hname = "Mac Hack" ;
+	hname = "Slash'EM" ;
 	hackpid = getpid();
 
 	/*
@@ -92,7 +92,7 @@ main ( void )
 				/* again if suffix was whole name */
 				/* accepts any suffix */
 
-	Sprintf ( lock , "%d%s" , getuid ( ) , plname ) ;
+	Sprintf ( lock , "%ld%s" , (long)getuid ( ) , plname ) ;
 	getlock ( ) ;
 
 	if ((fd = restore_saved_game()) >= 0) {

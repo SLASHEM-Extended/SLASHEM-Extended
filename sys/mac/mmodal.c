@@ -10,11 +10,12 @@
 #endif
 
 #include "macpopup.h"
-#include <controlDefinitions.h>
 
 #ifdef MAC_MPW
-#define GetDItem GetDialogItem
+# include <controlDefinitions.h>
 #endif
+
+#define GetDItem GetDialogItem
 
 /* Flash a dialog button when its accelerator key is pressed */
 void

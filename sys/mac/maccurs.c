@@ -17,6 +17,8 @@
 #include <Resources.h>
 #include <Files.h>
 
+NhWindow *
+GetNhWin(WindowPtr mac_win);
 
 static Boolean winFileInit = 0 ;
 static unsigned char winFileName [ 32 ] ;
