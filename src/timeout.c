@@ -1388,6 +1388,7 @@ long timeout;
 
 #ifdef FIREARMS
 	    case STICK_OF_DYNAMITE:
+		end_burn(obj, FALSE);
 		bomb_blow((genericptr_t) obj, timeout);
 		return;
 #endif
