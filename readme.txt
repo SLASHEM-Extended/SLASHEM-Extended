@@ -78,6 +78,7 @@ ver 0.0.7E4 [?] [Released by ?]
 -fixed bug 831267: Weapon works offering no services
 -fixed bug 817700: Vampires choked by rope golems
 -fixed bug 811177: Fire Vamps not real vamps?
+-fixed bug 822120: Star Vampires not vampires?
 
 See history.txt for changes made in previous versions.
 
