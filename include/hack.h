@@ -43,8 +43,21 @@
 #define DISMOUNT_THROWN		2
 #define DISMOUNT_POLY		3
 #define DISMOUNT_ENGULFED	4
-#define DISMOUNT_BYCHOICE	5
+#define DISMOUNT_BONES		5
+#define DISMOUNT_BYCHOICE	6
 #endif
+
+/* Special returns from mapglyph() */
+#define MG_CORPSE	0x01
+#define MG_INVIS	0x02
+#define MG_DETECT	0x04
+#define MG_PET		0x08
+#define MG_RIDDEN	0x10
+
+/* sellobj_state() states */
+#define SELL_NORMAL	(0)
+#define SELL_DELIBERATE	(1)
+#define SELL_DONTSELL	(2)
 
 /*
  * This is the way the game ends.  If these are rearranged, the arrays
@@ -69,7 +82,6 @@
 #define ASCENDED	15
 
 #include "align.h"
-#include "dungeon.h"
 #include "dungeon.h"
 #include "monsym.h"
 #include "mkroom.h"
@@ -119,13 +131,17 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define NO_SPELL	0
 
 /* flags to control makemon() */
-#define NO_MM_FLAGS       0x00  /* use this rather than plain 0 */
-#define NO_MINVENT        0x01  /* suppress minvent when creating mon */
+#define NO_MM_FLAGS	  0x00	/* use this rather than plain 0 */
+#define NO_MINVENT	  0x01	/* suppress minvent when creating mon */
 #define MM_NOWAIT	  0x02	/* don't set STRAT_WAITMASK flags */
 #define MM_EDOG		  0x04	/* add edog structure */
 #define MM_EMIN		  0x08	/* add emin structure */
 #define MM_ANGRY	  0x10  /* monster is created angry */
 #define MM_NONAME	  0x20  /* monster is not christened */
+#define MM_NOCOUNTBIRTH	  0x40  /* don't increment born counter (for revival) */
+
+/* flags for special ggetobj status returns */
+#define ALL_FINISHED	  0x01  /* called routine already finished the job */
 
 /* flags to control query_objlist() */
 #define BY_NEXTHERE	  0x1	/* follow objlist by nexthere field */
@@ -142,6 +158,11 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define ALL_TYPES    0x10
 #define BILLED_TYPES 0x20
 #define CHOOSE_ALL   0x40
+#define BUC_BLESSED  0x80
+#define BUC_CURSED   0x100
+#define BUC_UNCURSED 0x200
+#define BUC_UNKNOWN  0x400
+#define BUC_ALLBKNOWN (BUC_BLESSED|BUC_CURSED|BUC_UNCURSED)
 #define ALL_TYPES_SELECTED -2
 
 /* Flags to control find_mid() */
@@ -149,6 +170,13 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define FM_MIGRATE     0x02	/* search the migrating monster chain */
 #define FM_MYDOGS      0x04	/* search mydogs */
 #define FM_EVERYWHERE  (FM_FMON | FM_MIGRATE | FM_MYDOGS)
+
+/* Flags to control pick_[race,role,gend,align] routines in role.c */
+#define PICK_RANDOM	0
+#define PICK_RIGID	1
+
+/* Flags to control dotrap() in trap.c */
+#define NOWEBMSG	0x01	/* suppress stumble into web message */
 
 /*** some utility macros ***/
 #define yn(query) yn_function(query,ynchars, 'n')
@@ -170,6 +198,16 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define ROLL	1
 #define FLING	2
 
+/* Macros for explosion types */
+#define EXPL_DARK	0
+#define EXPL_NOXIOUS	1
+#define EXPL_MUDDY	2
+#define EXPL_WET	3
+#define EXPL_MAGICAL	4
+#define EXPL_FIERY	5
+#define EXPL_FROSTY	6
+#define EXPL_MAX	7
+
 /* Macros for messages referring to hands, eyes, feet, etc... */
 #define ARM 0
 #define EYE 1
@@ -188,6 +226,8 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define HAIR 14
 #define BLOOD 15
 #define LUNG 16
+#define NOSE 17
+#define STOMACH 18
 
 /* Flags to control menus */
 #define MENUTYPELEN sizeof("traditional ")
@@ -197,7 +237,17 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define MENU_FULL	 3
 
 #define MENU_SELECTED	TRUE
-#define MENU_UNSELECTED	FALSE
+#define MENU_UNSELECTED FALSE
+
+/*
+ * Option flags
+ * Each higher number includes the characteristics of the numbers
+ * below it.
+ */
+#define SET_IN_FILE	0 /* config file option only */
+#define SET_VIA_PROG	1 /* may be set via extern program, not seen in game */
+#define DISP_IN_GAME	2 /* may be set via extern program, displayed in game */
+#define SET_IN_GAME	3 /* may be set via extern program or set in the game */
 
 #define FEATURE_NOTICE_VER(major,minor,patch) (((unsigned long)major << 24) | \
 	((unsigned long)minor << 16) | \
@@ -214,7 +264,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #ifndef min
 #define min(x,y) ((x) < (y) ? (x) : (y))
 #endif
-#define plur(x)	(((x) == 1) ? "" : "s")
+#define plur(x) (((x) == 1) ? "" : "s")
 
 #define ARM_BONUS(obj)	(objects[(obj)->otyp].a_ac + (obj)->spe \
 			 - min((int)greatest_erosion(obj),objects[(obj)->otyp].a_ac))

@@ -20,7 +20,6 @@ typedef struct tty_mi {
     boolean selected;		/* TRUE if selected by user */
     char selector;		/* keyboard accelerator */
     char gselector;		/* group accelerator */
-    int glyph;			/* glyph (unused) */
 } tty_menu_item;
 
 /* descriptor for tty-based windows */
@@ -105,14 +104,14 @@ E void NDECL(tty_shutdown);
  * be smart and use the prototype, or some such strangeness.  So we have to
  * define UNWIDENDED_PROTOTYPES (in tradstdc.h), which makes CHAR_P below a
  * char.  But the tputs termcap call was compiled as if xputc's argument
- * actually would be expanded.  So here, we have to make an exception. */
+ * actually would be expanded.	So here, we have to make an exception. */
 E void FDECL(xputc, (int));
 #else
 E void FDECL(xputc, (CHAR_P));
 #endif
 E void FDECL(xputs, (const char *));
 #if defined(SCREEN_VGA) || defined(SCREEN_8514) || defined(ALLEG_FX)
-E void FDECL(xputg, (int, int));
+E void FDECL(xputg, (int, int, unsigned));
 #endif
 E void NDECL(cl_end);
 E void NDECL(clear_screen);
@@ -245,7 +244,7 @@ E int FDECL(term_puts, (const char *str));
 #   undef putchar
 #   undef putc
 #   undef puts
-#   define putchar(x) xputc(x)  /* these are in video.c, nttty.c */
+#   define putchar(x) xputc(x)	/* these are in video.c, nttty.c */
 #   define putc(x) xputc(x)
 #   define puts(x) xputs(x)
 #  endif/*SCREEN_BIOS || SCREEN_DJGPPFAST || WIN32CON */

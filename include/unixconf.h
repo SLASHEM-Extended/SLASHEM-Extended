@@ -74,14 +74,14 @@
 /* #define BSD_43_BUG */	/* for real 4.3BSD cc's without schain botch fix */
 /* #define MICROPORT_BUG */	/* problems with large arrays in structs */
 /* #define MICROPORT_286_BUG */ /* changes needed in termcap.c to get it to
-			   run with Microport Sys V/AT version 2.4.
-			   By Jay Maynard */
+				   run with Microport Sys V/AT version 2.4.
+				   By Jay Maynard */
 /* #define AIXPS_2BUG */	/* avoid a problem with little_to_big() optimization */
 
 /* #define RANDOM */		/* if neither random/srandom nor lrand48/srand48
-			   is available from your system */
+				   is available from your system */
 
-/* see sys/unix/snd86.shr for more information on these */
+/* see sys/unix/snd86unx.shr for more information on these */
 /* #define UNIX386MUSIC */	/* play real music through speaker on systems
 				   with music driver installed */
 /* #define VPIX_MUSIC */	/* play real music through speaker on systems
@@ -224,7 +224,7 @@
  * essentially impossible to securely exec child processes, like mail
  * readers, when the game is running under a special token.
  *
- *             dan
+ *	       dan
  */
 
 /* #define NO_MAILREADER */	/* have mail daemon just tell player of mail */
@@ -237,7 +237,7 @@
 #define DEF_MAILREADER	"/usr/ucb/Mail"
 #  endif
 #else
-# if defined(SYSV) || defined(DGUX) || defined(HPUX)
+# if (defined(SYSV) || defined(DGUX) || defined(HPUX)) && !defined(LINUX)
 #  if defined(M_XENIX) || defined(__FreeBSD__)
 #define DEF_MAILREADER	"/usr/bin/mail"
 #  else
@@ -322,7 +322,7 @@
 #include <time.h>
 #endif
 
-#define HLOCK		"perm"	/* an empty file used for locking purposes */
+#define HLOCK	"perm"	/* an empty file used for locking purposes */
 #define HLOCK_AREA	FILE_AREA_VAR
 
 #ifndef REDO
@@ -390,7 +390,8 @@
 # if defined(__NR_getresuid) && defined(__NR_getresgid)	/* ie., >= v2.1.44 */
 #  define GETRES_SUPPORT
 # endif
-#elif defined(BSD) || defined(SVR4)
+#else
+# if defined(BSD) || defined(SVR4)
 /*
  * [ALI] We assume that SVR4 means we can safely include syscall.h
  * (although it's really a BSDism). This is certainly true for Solaris 2.5,
@@ -402,7 +403,8 @@
   (defined(SYS_getgid) || defined(SYS_getresgid))
 #  define GETRES_SUPPORT
 # endif
-#endif	/* LINUX || BSD || SVR4 */
+# endif	/* BSD || SVR4 */
+#endif	/* LINUX */
 #endif	/* GTK_GRAPHICS || GNOME_GRAPHICS */
 
 #endif /* UNIXCONF_H */

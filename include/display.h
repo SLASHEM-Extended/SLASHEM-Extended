@@ -26,7 +26,7 @@
  */
 #define tp_sensemon(mon) (	/* The hero can always sense a monster IF:  */\
     (!mindless((mon)->data)) &&	/* 1. the monster has a brain to sense AND  */\
-      ((Blind && Blind_telepat) ||	/* 2a. hero is blind and telepathic OR      */\
+      ((Blind && Blind_telepat) ||	/* 2a. hero is blind and telepathic OR	    */\
 				/* 2b. hero is using a telepathy inducing   */\
 				/*	 object and in range		    */\
       (Unblind_telepat &&					      \
@@ -53,7 +53,7 @@
  * vobj_at() returns a pointer to an object that the hero can see there.
  * Infravision is not taken into account.
  */
-#define mon_visible(mon) (		/* The hero can see the monster	    */\
+#define mon_visible(mon) (		/* The hero can see the monster     */\
 					/* IF the monster		    */\
     (!((mon)->minvis) || See_invisible) &&	/* 1. is not invisible AND	    */\
     (!((mon)->mundetected))	&&		/* 2. not an undetected hider	    */\
@@ -89,7 +89,7 @@
  * location instead of assuming it.  (And also considers worms.)
  */
 #define canseemon(mon) (((mon)->wormno ? worm_known(mon) : \
- 	    (cansee(mon->mx, mon->my) || see_with_infrared(mon))) \
+	    (cansee(mon->mx, mon->my) || see_with_infrared(mon))) \
 	&& mon_visible(mon))
 
 
@@ -120,7 +120,7 @@
  * telepathy, and is what you usually call for monsters about which nothing is
  * known.
  */
-#define canspotmon(mon)	\
+#define canspotmon(mon) \
 	(canseemon(mon) || sensemon(mon))
 
 /* knowninvisible(mon)
@@ -147,10 +147,10 @@
 /*
  * is_safepet(mon)
  *
- * A special case check used in attack() and domove().  Placing the
+ * A special case check used in attack() and domove().	Placing the
  * definition here is convenient.
  */
-#define is_safepet(mon)	\
+#define is_safepet(mon) \
 	((mon) && (mon)->mtame && canspotmon(mon) && flags.safe_dog \
 		&& !Confusion && !Hallucination && !Stunned)
 
@@ -280,9 +280,14 @@
  *		is the dungeon features and other miscellaneous things.
  *		Count: MAXPCHARS
  *
+ * explosions	A set of nine for each of the following seven explosion types:
+ *                   dark, noxious, muddy, wet, magical, fiery, frosty.
+ *              The nine positions represent those surrounding the hero.
+ *		Count: MAXEXPCHARS * EXPL_MAX (EXPL_MAX is defined in hack.h)
+ *
  * zap beam	A set of four (there are four directions) for each beam type.
  *		The beam type is shifted over 2 positions and the direction
- *		is stored in the lower 2 bits.  Count: NUM_ZAP << 2
+ *		is stored in the lower 2 bits.	Count: NUM_ZAP << 2
  *
  * swallow	A set of eight for each monster.  The eight positions rep-
  *		resent those surrounding the hero.  The monster number is
@@ -293,17 +298,18 @@
  *
  * The following are offsets used to convert to and from a glyph.
  */
-#define NUM_ZAP	8	/* number of zap beam types */
+#define NUM_ZAP 8	/* number of zap beam types */
 
 #define GLYPH_MON_OFF		0
-#define GLYPH_PET_OFF		(NUMMONS        + GLYPH_MON_OFF)
+#define GLYPH_PET_OFF		(NUMMONS	+ GLYPH_MON_OFF)
 #define GLYPH_INVIS_OFF		(NUMMONS	+ GLYPH_PET_OFF)
 #define GLYPH_DETECT_OFF	(1		+ GLYPH_INVIS_OFF)
 #define GLYPH_BODY_OFF		(NUMMONS	+ GLYPH_DETECT_OFF)
 #define GLYPH_RIDDEN_OFF	(NUMMONS	+ GLYPH_BODY_OFF)
 #define GLYPH_OBJ_OFF		(NUMMONS	+ GLYPH_RIDDEN_OFF)
-#define GLYPH_CMAP_OFF		(NUM_OBJECTS	  + GLYPH_OBJ_OFF)
-#define GLYPH_ZAP_OFF		(MAXPCHARS      + GLYPH_CMAP_OFF)
+#define GLYPH_CMAP_OFF		(NUM_OBJECTS	+ GLYPH_OBJ_OFF)
+#define GLYPH_EXPLODE_OFF	((MAXPCHARS - MAXEXPCHARS) + GLYPH_CMAP_OFF)
+#define GLYPH_ZAP_OFF		((MAXEXPCHARS * EXPL_MAX) + GLYPH_EXPLODE_OFF)
 #define GLYPH_SWALLOW_OFF	((NUM_ZAP << 2) + GLYPH_ZAP_OFF)
 #define GLYPH_WARNING_OFF	((NUMMONS << 3) + GLYPH_SWALLOW_OFF)
 #define MAX_GLYPH		(WARNCOUNT      + GLYPH_WARNING_OFF)
@@ -329,7 +335,9 @@
 	    (int) (obj)->corpsenm + GLYPH_BODY_OFF :			      \
 	    (int) (obj)->otyp + GLYPH_OBJ_OFF))
 
-#define cmap_to_glyph(cmap_idx)	((int) (cmap_idx)   + GLYPH_CMAP_OFF)
+#define cmap_to_glyph(cmap_idx) ((int) (cmap_idx)   + GLYPH_CMAP_OFF)
+#define explosion_to_glyph(expltype,idx)	\
+		((((expltype) * MAXEXPCHARS) + ((idx) - S_explode1)) + GLYPH_EXPLODE_OFF)
 #define trap_to_cmap(trap)	trap_to_defsym(what_trap((trap)->ttyp))
 #define trap_to_glyph(trap)	cmap_to_glyph(trap_to_cmap(trap))
 
@@ -390,14 +398,14 @@
  * Return true if the given glyph is what we want.  Note that bodies are
  * considered objects.
  */
-#define glyph_is_monster(glyph)						      \
+#define glyph_is_monster(glyph)						\
 		(glyph_is_normal_monster(glyph)				\
 		|| glyph_is_pet(glyph)					\
 		|| glyph_is_ridden_monster(glyph)			\
 		|| glyph_is_detected_monster(glyph))
 #define glyph_is_normal_monster(glyph)					\
     ((glyph) >= GLYPH_MON_OFF && (glyph) < (GLYPH_MON_OFF+NUMMONS))
-#define glyph_is_pet(glyph)						      \
+#define glyph_is_pet(glyph)						\
     ((glyph) >= GLYPH_PET_OFF && (glyph) < (GLYPH_PET_OFF+NUMMONS))
 #define glyph_is_body(glyph)						\
     ((glyph) >= GLYPH_BODY_OFF && (glyph) < (GLYPH_BODY_OFF+NUMMONS))
@@ -408,13 +416,13 @@
 #define glyph_is_invisible(glyph) ((glyph) == GLYPH_INVISIBLE)
 #define glyph_is_normal_object(glyph)					\
     ((glyph) >= GLYPH_OBJ_OFF && (glyph) < (GLYPH_OBJ_OFF+NUM_OBJECTS))
-#define glyph_is_object(glyph)						      \
+#define glyph_is_object(glyph)						\
 		(glyph_is_normal_object(glyph)				\
 		|| glyph_is_body(glyph))
-#define glyph_is_trap(glyph)						      \
-    ((glyph) >= (GLYPH_CMAP_OFF+trap_to_defsym(1)) &&			      \
-     (glyph) <  (GLYPH_CMAP_OFF+trap_to_defsym(1)+TRAPNUM))
-#define glyph_is_cmap(glyph)						      \
+#define glyph_is_trap(glyph)						\
+    ((glyph) >= (GLYPH_CMAP_OFF+trap_to_defsym(1)) &&			\
+     (glyph) <	(GLYPH_CMAP_OFF+trap_to_defsym(1)+TRAPNUM))
+#define glyph_is_cmap(glyph)						\
     ((glyph) >= GLYPH_CMAP_OFF && (glyph) < (GLYPH_CMAP_OFF+MAXPCHARS))
 #define glyph_is_swallow(glyph) \
     ((glyph) >= GLYPH_SWALLOW_OFF && (glyph) < (GLYPH_SWALLOW_OFF+(NUMMONS << 3)))

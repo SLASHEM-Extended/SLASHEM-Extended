@@ -51,25 +51,25 @@
  * Screen control options
  *
  * You may uncomment:
- *                     ANSI_DEFAULT
- *                or   TERMLIB
- *                or   ANSI_DEFAULT and TERMLIB
- *                or   NO_TERMS
+ *		       ANSI_DEFAULT
+ *		  or   TERMLIB
+ *		  or   ANSI_DEFAULT and TERMLIB
+ *		  or   NO_TERMS
  */
 
-/* # define TERMLIB */        /* enable use of termcap file /etc/termcap */
+/* # define TERMLIB */	   /* enable use of termcap file /etc/termcap */
 			/* or ./termcap for MSDOS (SAC) */
 			/* compile and link in Fred Fish's termcap library, */
 			/* enclosed in TERMCAP.ARC, to use this */
 
-/* # define ANSI_DEFAULT */    /* allows NetHack to run without a ./termcap */
+/* # define ANSI_DEFAULT */   /* allows NetHack to run without a ./termcap */
 
 # define NO_TERMS	/* Allows Nethack to run without ansi.sys by linking */
 			/* screen routines into the .exe     */
 
 # ifdef NO_TERMS	/* if NO_TERMS select one screen package below */
-#define SCREEN_BIOS          /* Use bios calls for all screen control */
-/* #define SCREEN_DJGPPFAST */        /* Use djgpp fast screen routines       */
+#define SCREEN_BIOS		/* Use bios calls for all screen control */
+/* #define SCREEN_DJGPPFAST */	/* Use djgpp fast screen routines	*/
 # endif
 
 
@@ -84,12 +84,12 @@
  *
  */
 # ifndef SUPPRESS_GRAPHICS
-# if (defined(SCREEN_BIOS) || defined(SCREEN_DJGPPFAST)) && !defined(PC9800)
+#  if (defined(SCREEN_BIOS) || defined(SCREEN_DJGPPFAST)) && !defined(PC9800)
 #   ifdef USE_TILES
-#define SCREEN_VGA	/* Include VGA    graphics routines in the build */
+#define SCREEN_VGA	/* Include VGA	  graphics routines in the build */
 #define ALLEG_FX 	/* Use Allegro libraries */
 #   endif
-# endif
+#  endif
 # else
 # undef NO_TERMS
 # undef SCREEN_BIOS
@@ -143,9 +143,13 @@
 
 #define TIMED_DELAY	/* enable the `timed_delay' run-time option */
 
-#ifdef PCMUSIC
+# ifdef PCMUSIC
 #define TIMED_DELAY	/* need it anyway */
-#endif
+# endif
+#define NOCWD_ASSUMPTIONS	/* Allow paths to be specified for HACKDIR,
+				   LEVELDIR, SAVEDIR, BONESDIR, DATADIR,
+				   SCOREDIR, LOCKDIR, and CONFIGDIR */
+
 #endif /* MSDOS configuration stuff */
 
 #define PATHLEN		64	/* maximum pathlength */
@@ -153,6 +157,7 @@
 #ifndef MICRO_H
 #include "micro.h"		/* contains necessary externs for [os_name].c */
 #endif
+
 
 /* ===================================================
  *  The remaining code shouldn't need modification.
@@ -178,10 +183,10 @@ extern int FDECL(setmode, (int,int));
 
 # if defined(_MSC_VER) && defined(MSDOS)
 #  if (_MSC_VER >= 700) && !defined(FUNCTION_LEVEL_LINKING)
-#  ifndef MOVERLAY
+#   ifndef MOVERLAY
 #define MOVERLAY	/* Microsoft's MOVE overlay system (MSC >= 7.0) */
+#   endif
 #  endif
-# endif
 #define PC_LOCKING
 # endif
 
@@ -193,9 +198,9 @@ extern int FDECL(setmode, (int,int));
 #  endif
 #  if !defined(STKSIZ)
 #define STKSIZ	5*1024	/* Use a default of 5K stack for Borland C	*/
-			/* This macro is used in any file that contains	*/
+			/* This macro is used in any file that contains */
 			/* a main() function.				*/
-# endif
+#  endif
 #define PC_LOCKING
 # endif
 
@@ -207,7 +212,7 @@ extern int FDECL(setmode, (int,int));
 # define index	strchr
 #endif
 #ifndef rindex
-# define rindex	strrchr
+# define rindex strrchr
 #endif
 
 #ifndef AMIGA
@@ -216,19 +221,19 @@ extern int FDECL(setmode, (int,int));
 
 #ifdef RANDOM
 /* Use the high quality random number routines. */
-# define Rand()	random()
+# define Rand() random()
 #else
-# define Rand()	rand()
+# define Rand() rand()
 #endif
 
 #ifndef TOS
-# define FCMASK	0660	/* file creation mask */
+# define FCMASK 0660	/* file creation mask */
 #endif
 
 #include <fcntl.h>
 
 #ifndef REDO
-# undef	Getchar
+# undef Getchar
 # define Getchar nhgetch
 #endif
 
@@ -285,10 +290,10 @@ extern int FDECL(setmode, (int,int));
 #    if defined(_MSC_VER) || defined(__SC__)
 #    pragma message("           Forcing undef of SCREEN_DJGPPFAST")
 #    endif
-#undef SCREEN_DJGPPFAST	  /* Can't use djgpp fast with other compilers anyway */
+#undef SCREEN_DJGPPFAST   /* Can't use djgpp fast with other compilers anyway */
 #   endif
 #  else
-/* djgpp C compiler     */
+/* djgpp C compiler	*/
 #   if defined(SCREEN_BIOS)
 #undef SCREEN_BIOS
 #   endif
@@ -315,7 +320,7 @@ extern int FDECL(setmode, (int,int));
 #endif			/* End of sanity check block */
 
 #if defined(MSDOS) && defined(DLB)
-#define FILENAME_CMP  stricmp                 /* case insensitive */
+#define FILENAME_CMP  stricmp		      /* case insensitive */
 #endif
 
 #ifdef MSC7_WARN	/* define with cl /DMSC7_WARN	*/

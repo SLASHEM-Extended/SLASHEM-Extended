@@ -27,7 +27,9 @@ E char SAVEP[];
 E NEARDATA int bases[MAXOCLASSES];
 
 E NEARDATA int multi;
+#if 0
 E NEARDATA int warnlevel;
+#endif
 E NEARDATA int lastuse;
 E NEARDATA int nextuse;
 E NEARDATA int nroom;
@@ -44,7 +46,7 @@ E int otg_temp;
 E NEARDATA int in_doagain;
 #endif
 
-E struct dgn_topology {	/* special dungeon levels for speed */
+E struct dgn_topology {		/* special dungeon levels for speed */
     d_level	d_oracle_level;
     d_level	d_bigroom_level;	/* unused */
 #ifdef REINCARNATION
@@ -57,8 +59,8 @@ E struct dgn_topology {	/* special dungeon levels for speed */
     d_level	d_wiz1_level;
     d_level	d_wiz2_level;
     d_level	d_wiz3_level;
-    d_level     d_juiblex_level;
-    d_level     d_orcus_level;
+    d_level	d_juiblex_level;
+    d_level	d_orcus_level;
     d_level	d_baalzebub_level;	/* unused */
     d_level     d_demogorgon_level;      /* unused */
     d_level     d_dispater_level;      /* unused */
@@ -123,13 +125,13 @@ E struct dgn_topology {	/* special dungeon levels for speed */
 #define blackmarket_level       (dungeon_topology.d_blackmarket_level)
 #endif /* BLACKMARKET */
 
-E NEARDATA stairway dnstair, upstair; /* stairs up and down */
+E NEARDATA stairway dnstair, upstair;		/* stairs up and down */
 #define xdnstair	(dnstair.sx)
 #define ydnstair	(dnstair.sy)
 #define xupstair	(upstair.sx)
 #define yupstair	(upstair.sy)
 
-E NEARDATA stairway dnladder, upladder; /* ladders up and down */
+E NEARDATA stairway dnladder, upladder;		/* ladders up and down */
 #define xdnladder	(dnladder.sx)
 #define ydnladder	(dnladder.sy)
 #define xupladder	(upladder.sx)
@@ -137,7 +139,7 @@ E NEARDATA stairway dnladder, upladder; /* ladders up and down */
 
 E NEARDATA stairway sstairs;
 
-E NEARDATA dest_area updest, dndest; /* level-change destination areas */
+E NEARDATA dest_area updest, dndest;	/* level-change destination areas */
 
 E NEARDATA coord inv_pos;
 E NEARDATA dungeon dungeons[];
@@ -145,7 +147,7 @@ E NEARDATA s_level *sp_levchn;
 #define dunlev_reached(x)	(dungeons[(x)->dnum].dunlev_ureached)
 
 #include "quest.h"
-E struct q_score		quest_status;
+E struct q_score quest_status;
 
 E NEARDATA char pl_fruit[PL_FSIZ];
 E NEARDATA int current_fruit;
@@ -179,6 +181,9 @@ E const char ynqchars[];
 E const char ynaqchars[];
 E const char ynNaqchars[];
 E NEARDATA long yn_number;
+
+E const char disclosure_options[];
+
 E NEARDATA int smeq[];
 E NEARDATA int doorindex;
 E NEARDATA char *save_cm;
@@ -205,7 +210,7 @@ E NEARDATA char reddragonname[];
 E NEARDATA char whitedragonname[];
 #endif
 E char preferred_pet;
-E const char *occtxt;		/* defined when occupation != NULL */
+E const char *occtxt;			/* defined when occupation != NULL */
 E const char *nomovemsg;
 E const char nul[];
 E char lock[];
@@ -215,11 +220,14 @@ E const schar xdir[], ydir[], zdir[];
 
 E NEARDATA schar tbx, tby;		/* set in mthrowu.c */
 
-E NEARDATA struct dig_info {	/* apply.c, hack.c */
+E NEARDATA struct multishot { int n, i; short o; boolean s; } m_shot;
+
+E NEARDATA struct dig_info {		/* apply.c, hack.c */
 	int	effort;
-	d_level	level;
+	d_level level;
 	coord	pos;
-	boolean	down, chew;
+	long lastdigtime;
+	boolean down, chew, warned, quiet;
 } digging;
 
 E NEARDATA long moves, monstermoves;
@@ -241,7 +249,7 @@ E const int shield_static[];
 
 E NEARDATA struct obj *invent, *uarm, *uarmc, *uarmh, *uarms, *uarmg, *uarmf,
 #ifdef TOURIST
-	*uarmu, /* under-wear, so to speak */
+	*uarmu,				/* under-wear, so to speak */
 #endif
 #ifdef STEED
 	*usaddle,
@@ -249,7 +257,7 @@ E NEARDATA struct obj *invent, *uarm, *uarmc, *uarmh, *uarms, *uarmg, *uarmf,
 	*uskin, *uamul, *uleft, *uright, *ublindf,
 	*uwep, *uswapwep, *uquiver;
 
-E NEARDATA struct obj *uchain;	/* defined only when punished */
+E NEARDATA struct obj *uchain;		/* defined only when punished */
 E NEARDATA struct obj *uball;
 E NEARDATA struct obj *migrating_objs;
 E NEARDATA struct obj *billobjs;
@@ -269,10 +277,6 @@ E NEARDATA char pl_character[PL_CSIZ];
 E NEARDATA char pl_race;		/* character's race */
 /* KMH, role patch -- more maintainable when declared as an array */
 E const char pl_classes[];
-
-E const char *he[3];
-E const char *him[3];
-E const char *his[3];
 
 #include "you.h"
 #include "onames.h"
@@ -307,21 +311,25 @@ E NEARDATA struct mvitals {
 } mvitals[NUMMONS];
 
 
+/* The names of the colors used for gems, etc. */
+E const char *c_obj_colors[];
+
 E struct c_common_strings {
     const char	*const c_nothing_happens, *const c_thats_enough_tries,
 		*const c_silly_thing_to, *const c_shudder_for_moment,
-		*const c_something, *const c_Something, 
+		*const c_something, *const c_Something,
 		*const c_You_can_move_again,
-		*const c_Never_mind;
+		*const c_Never_mind, *c_vision_clears;
 } c_common_strings;
 #define nothing_happens    c_common_strings.c_nothing_happens
 #define thats_enough_tries c_common_strings.c_thats_enough_tries
 #define silly_thing_to	   c_common_strings.c_silly_thing_to
 #define shudder_for_moment c_common_strings.c_shudder_for_moment
-#define something          c_common_strings.c_something
-#define Something          c_common_strings.c_Something
+#define something	   c_common_strings.c_something
+#define Something	   c_common_strings.c_Something
 #define You_can_move_again c_common_strings.c_You_can_move_again
 #define Never_mind	   c_common_strings.c_Never_mind
+#define vision_clears	   c_common_strings.c_vision_clears
 
 /* material strings */
 E const char *materialnm[];
@@ -342,7 +350,7 @@ E const char *materialnm[];
 
 /*** Vision ***/
 E NEARDATA boolean vision_full_recalc;	/* TRUE if need vision recalc */
-E NEARDATA char **viz_array;	/* could see/in sight row pointers */
+E NEARDATA char **viz_array;		/* could see/in sight row pointers */
 
 
 /*** Window system stuff ***/

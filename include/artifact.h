@@ -47,6 +47,7 @@ struct artifact {
 	aligntyp    alignment;	/* alignment of bequeathing gods */
 	short	    role;	/* character role associated with */
 	short	    race;	/* character race associated with */
+	long        cost;	/* price when sold to hero (default 100 x base cost) */
 	
 	Bitfield(questarti,1);	/* is quest artifact */
 };
@@ -58,7 +59,7 @@ struct artifact {
 #define UNTRAP		(LAST_PROP+4)
 #define CHARGE_OBJ	(LAST_PROP+5)
 #define LEV_TELE	(LAST_PROP+6)
-#define CREATE_PORTAL   (LAST_PROP+7)
+#define CREATE_PORTAL	(LAST_PROP+7)
 #define ENLIGHTENING	(LAST_PROP+8)
 #define CREATE_AMMO	(LAST_PROP+9)
 #define SUMMON_UNDEAD   (LAST_PROP+10)

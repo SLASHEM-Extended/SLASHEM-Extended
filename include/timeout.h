@@ -47,4 +47,15 @@ typedef void FDECL((*timeout_proc), (genericptr_t, long));
 #  endif
 # endif /* FIREARMS */
 
+/* used in timeout.c */
+typedef struct fe {
+    struct fe *next;		/* next item in chain */
+    long timeout;		/* when we time out */
+    unsigned long tid;		/* timer ID */
+    short kind;			/* kind of use */
+    short func_index;		/* what to call when we time out */
+    genericptr_t arg;		/* pointer to timeout argument */
+    Bitfield (needs_fixup,1);	/* does arg need to be patched? */
+} timer_element;
+
 #endif /* TIMEOUT_H */

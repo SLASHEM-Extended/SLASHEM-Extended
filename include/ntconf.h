@@ -8,21 +8,8 @@
 /* #define SHELL */	/* nt use of pcsys routines caused a hang */
 
 #define RANDOM		/* have Berkeley random(3) */
-	/* JRN: I dont understand the NT port that well, but in general its
-         *  defines mean the opposite of what I think they should. For some
-	 *  reason the rest of the sources agree with me, which makes things
-	 *  a bit strange (e.g. in ntconf.h RANDOM means you have berkely
-	 *  random(3), but in unixconf.h it means you dont). */
-	/* ALI: Changed this back to RANDOM; otherwise RNG is not seeded.
-	 * (There are a number of places in the shared code which test the
-	 * value of RANDOM.) This may break the cygwin port, but we'll have
-	 * to wait for JRN to get back to solve this.
-	 */
-
 #define TEXTCOLOR	/* Color text */
 
-#define PATHLEN		64	/* maximum pathlength */
-#define FILENAME	80	/* maximum filename length (conservative) */
 #define EXEPATH			/* Allow .exe location to be used as HACKDIR */
 #define TRADITIONAL_GLYPHMAP	/* Store glyph mappings at level change time */
 #if defined(WIN32CON) && !defined(__CYGWIN__)
@@ -46,12 +33,24 @@
 #define NO_TERMS
 #define ASCIIGRAPH
 
+#ifdef OPTIONS_USED
+#undef OPTIONS_USED
+#endif
+#ifdef MSWIN_GRAPHICS
+#define OPTIONS_USED	"guioptions"
+#else
+#define OPTIONS_USED	"ttyoptions"
+#endif
+#define OPTIONS_FILE OPTIONS_USED
+
+#define PORT_HELP	"porthelp"
+
 /* The following is needed for prototypes of certain functions */
 #if defined(_MSC_VER)
 #include <process.h>	/* Provides prototypes of exit(), spawn()      */
 #endif
 
-#include <string.h>     /* Provides prototypes of strncmpi(), etc.     */
+#include <string.h>	/* Provides prototypes of strncmpi(), etc.     */
 #ifdef STRNCMPI
 #ifndef __CYGWIN__
 #define strncmpi(a,b,c) strnicmp(a,b,c)
@@ -60,6 +59,23 @@
 
 #include <sys/types.h>
 #include <stdlib.h>
+#ifdef __BORLANDC__
+#undef randomize
+#undef random
+#endif
+
+#define PATHLEN		BUFSZ /* maximum pathlength */
+#define FILENAME	BUFSZ /* maximum filename length (conservative) */
+
+#if defined(_MAX_PATH) && defined(_MAX_FNAME)
+# if (_MAX_PATH < BUFSZ) && (_MAX_FNAME < BUFSZ)
+#undef PATHLEN
+#undef FILENAME
+#define PATHLEN		_MAX_PATH
+#define FILENAME	_MAX_FNAME
+# endif
+#endif
+
 
 #define NO_SIGNAL
 #define index	strchr
@@ -87,22 +103,35 @@
 #endif
 
 #if defined(DLB)
-#define FILENAME_CMP  stricmp                 /* case insensitive */
+#define FILENAME_CMP  stricmp		      /* case insensitive */
 #endif
 
 #ifdef MICRO
 # ifndef MICRO_H
-#include "micro.h"      /* contains necessary externs for [os_name].c */
+#include "micro.h"	/* contains necessary externs for [os_name].c */
 # endif
 #endif
 
 #include <fcntl.h>
-#include <io.h>
-#ifndef __CYGWIN__
+#if !defined(__BORLANDC__) && !defined(__CYGWIN__)
+# include <io.h>
 # include <direct.h>
 # include <conio.h>
+#elif defined(__CYGWIN__)
+# include <io.h>
+#else
+int  _RTLENTRY _EXPFUNC _chdrive(int __drive);
+int  _RTLENTRYF _EXPFUNC32   chdir( const char _FAR *__path );
+char _FAR * _RTLENTRY  _EXPFUNC     getcwd( char _FAR *__buf, int __buflen );
+int  _RTLENTRY _EXPFUNC write (int __handle, const void _FAR *__buf, unsigned __len);
+int  _RTLENTRY _EXPFUNC creat   (const char _FAR *__path, int __amode);
+int  _RTLENTRY _EXPFUNC close   (int __handle);
+int  _RTLENTRY _EXPFUNC open  (const char _FAR *__path, int __access,... /*unsigned mode*/);
+long _RTLENTRY _EXPFUNC lseek  (int __handle, long __offset, int __fromwhere);
+int  _RTLENTRY _EXPFUNC read  (int __handle, void _FAR *__buf, unsigned __len);
+# include <conio.h>
 #endif
-#undef kbhit	        /* Use our special NT kbhit */
+#undef kbhit		/* Use our special NT kbhit */
 #define kbhit (*nt_kbhit)
 
 #ifdef LAN_FEATURES
@@ -131,5 +160,7 @@
 #pragma warning(disable:4102)	/* unreferenced label */
 #endif
 #endif
+
+extern int FDECL(set_win32_option, (const char *, const char *));
 
 #endif /* NTCONF_H */

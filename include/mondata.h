@@ -44,12 +44,16 @@
 #define hides_under(ptr)	(((ptr)->mflags1 & M1_CONCEAL) != 0L)
 #define is_hider(ptr)		(((ptr)->mflags1 & M1_HIDE) != 0L)
 #define haseyes(ptr)		(((ptr)->mflags1 & M1_NOEYES) == 0L)
+#define eyecount(ptr)		(!haseyes(ptr) ? 0 : \
+				 ((ptr) == &mons[PM_CYCLOPS] || \
+				  (ptr) == &mons[PM_FLOATING_EYE]) ? 1 : 2)
 #define nohands(ptr)		(((ptr)->mflags1 & M1_NOHANDS) != 0L)
 #define nolimbs(ptr)		(((ptr)->mflags1 & M1_NOLIMBS) == M1_NOLIMBS)
 #define notake(ptr)		(((ptr)->mflags1 & M1_NOTAKE) != 0L)
 #define has_head(ptr)		(((ptr)->mflags1 & M1_NOHEAD) == 0L)
 #define is_whirly(ptr)		((ptr)->mlet == S_VORTEX || \
 				 (ptr) == &mons[PM_AIR_ELEMENTAL])
+#define is_silent(ptr)		((ptr)->msound == MS_SILENT)
 #define unsolid(ptr)		(((ptr)->mflags1 & M1_UNSOLID) != 0L)
 #define mindless(ptr)		(((ptr)->mflags1 & M1_MINDLESS) != 0L)
 #define humanoid(ptr)		(((ptr)->mflags1 & M1_HUMANOID) != 0L)
@@ -102,6 +106,7 @@
 #define strongmonst(ptr)	(((ptr)->mflags2 & M2_STRONG) != 0L)
 #define can_breathe(ptr)	attacktype(ptr, AT_BREA)
 #define cantwield(ptr)		(nohands(ptr) || verysmall(ptr))
+#define could_twoweap(ptr)	((ptr)->mattk[1].aatyp == AT_WEAP)
 #define cantweararm(ptr)	(breakarm(ptr) || sliparm(ptr))
 #define throws_rocks(ptr)	(((ptr)->mflags2 & M2_ROCKTHROW) != 0L)
 #define type_is_pname(ptr)	(((ptr)->mflags2 & M2_PNAME) != 0L)
@@ -141,6 +146,9 @@
 				 (ptr) == &mons[PM_GIANT] || \
 				 (ptr) == &mons[PM_ELF] || \
 				 (ptr) == &mons[PM_HUMAN])
+/* return TRUE if the monster tends to revive */
+#define is_reviver(ptr)		(is_rider(ptr) || (ptr)->mlet == S_TROLL)
+
 /* this returns the light's range, or 0 if none; if we add more light emitting
    monsters, we'll likely have to add a new light range field to mons[] */
 #define emits_light(ptr)	(((ptr)->mlet == S_LIGHT || \
@@ -152,15 +160,16 @@
 /*  WAC increased to 3 and 2?*/
 #define likes_lava(ptr)		(ptr == &mons[PM_FIRE_ELEMENTAL] || \
 				 ptr == &mons[PM_SALAMANDER])
-#define pm_invisible(ptr) ((ptr) == &mons[PM_STALKER] || \
+#define pm_invisible(ptr)	((ptr) == &mons[PM_STALKER] || \
 				 (ptr) == &mons[PM_BLACK_LIGHT])
 
 /* could probably add more */
 #define likes_fire(ptr)		((ptr) == &mons[PM_FIRE_VORTEX] || \
-				 (ptr) == &mons[PM_FLAMING_SPHERE] || \
+				  (ptr) == &mons[PM_FLAMING_SPHERE] || \
 				 likes_lava(ptr))
 
-#define nonliving(ptr)		(is_golem(ptr) || is_undead(ptr))
+#define nonliving(ptr)		(is_golem(ptr) || is_undead(ptr) || \
+				 (ptr)->mlet == S_VORTEX)
 
 #define touch_petrifies(ptr)	(ptr == &mons[PM_COCKATRICE] || \
 				 ptr == &mons[PM_BASILISK] || \

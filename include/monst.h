@@ -26,7 +26,7 @@
  *
  * MINV_NOLET  If set, don't display inventory letters on monster's inventory.
  * MINV_ALL    If set, display all items in monster's inventory, otherwise
- *             just display wielded weapons and worn items.
+ *	       just display wielded weapons and worn items.
  */
 #define MINV_NOLET 0x01
 #define MINV_ALL   0x02
@@ -65,7 +65,7 @@ struct monst {
 
 	Bitfield(female,1);	/* is female */
 	Bitfield(minvis,1);	/* currently invisible */
-	Bitfield(invis_blkd,1);	/* invisibility blocked */
+	Bitfield(invis_blkd,1); /* invisibility blocked */
 	Bitfield(perminvis,1);	/* intrinsic minvis value */
 	Bitfield(cham,3);	/* shape-changer */
 /* note: lychanthropes are handled elsewhere */
@@ -85,7 +85,7 @@ struct monst {
 	Bitfield(mspeed,2);	/* current speed */
 	Bitfield(permspeed,2);	/* intrinsic mspeed value */
 	Bitfield(mrevived,1);	/* has been revived from the dead */
-	Bitfield(not_used,1);	/*** available ***/
+	Bitfield(mavenge,1);	/* did something to deserve retaliation */
 
 	Bitfield(mflee,1);	/* fleeing */
 	Bitfield(mfleetim,7);	/* timeout for mflee */
@@ -125,7 +125,7 @@ struct monst {
 #define STRAT_MONSTR	0x02000000L
 #define STRAT_PLAYER	0x01000000L
 #define STRAT_NONE	0x00000000L
-#define STRAT_STRATMASK	0x0f000000L
+#define STRAT_STRATMASK 0x0f000000L
 #define STRAT_XMASK	0x00ff0000L
 #define STRAT_YMASK	0x0000ff00L
 #define STRAT_GOAL	0x000000ffL
@@ -151,7 +151,7 @@ struct monst {
 	/* in order to prevent alignment problems mextra should
 	   be (or follow) a long int */
 	int meating;		/* monster is eating timeout */
-	long mextra[1];	/* monster dependent info */
+	long mextra[1]; /* monster dependent info */
 };
 
 /*

@@ -20,7 +20,7 @@ struct objclass {
 	Bitfield(oc_pre_discovered,1);	/* Already known at start of game; */
 					/* won't be listed as a discovery. */
 	Bitfield(oc_magic,1);	/* inherently magical object */
-	Bitfield(oc_charged,1);	/* may have +n or (n) charges */
+	Bitfield(oc_charged,1); /* may have +n or (n) charges */
 	Bitfield(oc_unique,1);	/* special one-of-a-kind object */
 	Bitfield(oc_nowish,1);	/* cannot wish for this object */
 
@@ -67,14 +67,14 @@ struct objclass {
 				 objects[(otmp)->otyp].oc_material <= MITHRIL)
 
 /* primary damage: fire/rust/--- */
-/* is_flammable() in mkobj.c */
+/* is_flammable(otmp), is_rottable(otmp) in mkobj.c */
 #define is_rustprone(otmp)	(objects[otmp->otyp].oc_material == IRON)
 
 /* secondary damage: rot/acid/acid */
-#define is_rottable(otmp) is_flammable(otmp) /* we might want to change this */
 #define is_corrodeable(otmp)	(objects[otmp->otyp].oc_material == COPPER || objects[otmp->otyp].oc_material == IRON)
 
-#define is_damageable(otmp) (is_rustprone(otmp) || is_flammable(otmp) || is_corrodeable(otmp))
+#define is_damageable(otmp) (is_rustprone(otmp) || is_flammable(otmp) || \
+				is_rottable(otmp) || is_corrodeable(otmp))
 
 	schar	oc_subtyp;
 /*	Bitfield(oc_subtyp,3);*/	/* Now too big for a bitfield */
@@ -91,9 +91,8 @@ struct objclass {
 	uchar	oc_oprop;		/* property (invis, &c.) conveyed */
 	char	oc_class;		/* object class */
 	schar	oc_delay;		/* delay when using such an object */
-#ifdef TEXTCOLOR
-	uchar	oc_color;		/* display color of the object */
-#endif /* TEXTCOLOR */
+	uchar	oc_color;		/* color of the object */
+
 	short	oc_prob;		/* probability, used in mkobj() */
 	unsigned short	oc_weight;	/* encumbrance (1 cn = 0.1 lb.) */
 	short	oc_cost;		/* base cost in shops */
@@ -149,13 +148,13 @@ extern NEARDATA struct objdescr obj_descr[];
 #define BALL_CLASS	15
 #define CHAIN_CLASS	16
 #define VENOM_CLASS	17
-#define MAXOCLASSES     18
+#define MAXOCLASSES	18
 
-#define ALLOW_COUNT	(MAXOCLASSES+1)	/* Can be used in the object class */
-#define ALL_CLASSES	(MAXOCLASSES+2)	/* input to getobj().		   */
-#define ALLOW_NONE	(MAXOCLASSES+3)	/*				   */
+#define ALLOW_COUNT	(MAXOCLASSES+1) /* Can be used in the object class */
+#define ALL_CLASSES	(MAXOCLASSES+2) /* input to getobj().		   */
+#define ALLOW_NONE	(MAXOCLASSES+3) /*				   */
 
-#define BURNING_OIL	(MAXOCLASSES+1)	/* Can be used as input to explode. */
+#define BURNING_OIL	(MAXOCLASSES+1) /* Can be used as input to explode. */
 #define MON_EXPLODE     (MAXOCLASSES+2) /* WAC for the spores */
 #define MON_EXPLODE	(MAXOCLASSES+2) /* Exploding monster (e.g. gas spore) */
 

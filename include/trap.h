@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)trap.h	3.3	92/09/28	*/
+/*	SCCS Id: @(#)trap.h	3.4	2000/08/30	*/
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -6,6 +6,11 @@
 
 #ifndef TRAP_H
 #define TRAP_H
+
+union vlaunchinfo {
+	short v_launch_otyp;	/* type of object to be triggered */
+	coord v_launch2;	/* secondary launch point (for boulders) */
+};
 
 struct trap {
 	struct trap *ntrap;
@@ -16,18 +21,15 @@ struct trap {
 	Bitfield(tseen,1);
 	Bitfield(once,1);
 	Bitfield(madeby_u,1); /* So monsters may take offence when you trap
-				 them.  Recognizing who made the trap isn't
+				 them.	Recognizing who made the trap isn't
 				 completely unreasonable, everybody has
 				 their own style.  This flag is also needed
 				 when you untrap a monster.  It would be too
 				 easy to make a monster peaceful if you could
 				 set a trap for it and then untrap it. */
-	union {
-	    short v_launch_otyp;	/* type of object to be triggered */
-	    coord v_launch2;	/* secondary launch point (for boulders) */
-	} v;
-#define launch_otyp	v.v_launch_otyp
-#define launch2		v.v_launch2
+	union vlaunchinfo vl;
+#define launch_otyp	vl.v_launch_otyp
+#define launch2		vl.v_launch2
 };
 
 extern struct trap *ftrap;
@@ -60,16 +62,16 @@ extern struct trap *ftrap;
 #define FIRE_TRAP	10
 #define PIT		11
 #define SPIKED_PIT	12
-#define HOLE            13
+#define HOLE		13
 #define TRAPDOOR	14
 #define TELEP_TRAP	15
 #define LEVEL_TELEP	16
-#define MAGIC_PORTAL    17
+#define MAGIC_PORTAL	17
 #define WEB		18
 #define STATUE_TRAP	19
 #define MAGIC_TRAP	20
 #define ANTI_MAGIC	21
 #define POLY_TRAP	22
-#define TRAPNUM	23
+#define TRAPNUM 23
 
 #endif /* TRAP_H */

@@ -1,11 +1,11 @@
-/*	SCCS Id: @(#)system.h	3.3	99/07/02	*/
+/*	SCCS Id: @(#)system.h	3.4	2001/12/07	*/
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
-#if !defined(__cplusplus) && !defined(__GO32__)  /* djgpp compiler for msdos */
+#if !defined(__cplusplus) && !defined(__GO32__)
 
 #define E extern
 
@@ -18,7 +18,7 @@
 # ifndef AMIGA
 #  ifndef       __WATCOMC__
 #include <sys/types.h>
-#  endif
+# endif
 # endif
 #endif
 
@@ -27,8 +27,8 @@
 #  define _SIZE_T
 #  if !((defined(MSDOS) || defined(OS2)) && defined(_SIZE_T_DEFINED)) /* MSC 5.1 */
 typedef unsigned int	size_t;
+#   endif
 #  endif
-# endif
 #endif	/* MICRO && !TOS */
 
 #if defined(__TURBOC__) || defined(MAC)
@@ -77,7 +77,7 @@ typedef long	off_t;
 # undef random
 # endif
 # if !defined(__SC__) && !defined(__CYGWIN__) && !defined(LINUX)
-E long NDECL(random);
+E  long NDECL(random);
 # endif
 # if !defined(SUNOS4) || defined(RANDOM)
 E void FDECL(srandom, (unsigned int));
@@ -98,9 +98,9 @@ E void FDECL(exit, (int));
 # endif /* MICRO */
 /* compensate for some CSet/2 bogosities */
 # if defined(OS2_CSET2) && defined(OS2_CSET2_VER_2)
-#  define open    _open
+#  define open	  _open
 #  define close   _close
-#  define read    _read
+#  define read	  _read
 #  define write   _write
 #  define lseek   _lseek
 #  define chdir   _chdir
@@ -174,7 +174,7 @@ E int FDECL(write, (int,genericptr_t,unsigned));
 # ifdef OS2_CSET2	/* IBM CSet/2 */
 #  ifdef OS2_CSET2_VER_1
 E int FDECL(unlink, (char *));
-# else
+#  else
 #  ifndef __SC__
 E int FDECL(unlink, (const char *));
 #  else
@@ -211,7 +211,7 @@ E int FDECL(chdir, (const char *));
 #  else
 #   ifndef __EMX__
 E int FDECL(chdir, (char *));
-#  endif
+#   endif
 #  endif
 #  ifndef __EMX__
 E char *FDECL(getcwd, (char *,int));
@@ -249,7 +249,10 @@ E int FDECL(atexit, (void (*)(void)));
 E int FDECL(atoi, (const char *));
 E int FDECL(chdir, (const char *));
 E int FDECL(chown, (const char *,unsigned,unsigned));
-# ifndef __DECC_VER	/* suppress for recent DEC C */
+# ifdef __DECC_VER
+E int FDECL(chmod, (const char *,mode_t));
+E mode_t FDECL(umask, (mode_t));
+# else
 E int FDECL(chmod, (const char *,int));
 E int FDECL(umask, (int));
 # endif
@@ -267,7 +270,7 @@ E int FDECL(stat, ( /*_ const char *,stat_t * _*/ ));
 E int FDECL(write, (int,const genericptr,unsigned));
 #endif
 
-#endif  /* __SASC_60 */
+#endif	/* __SASC_60 */
 
 /* both old & new versions of Ultrix want these, but real BSD does not */
 #ifdef ultrix
@@ -363,7 +366,10 @@ E long NDECL(getpid);
 E pid_t NDECL(getpid);
 E uid_t NDECL(getuid);
 E gid_t NDECL(getgid);
-# else
+#  ifdef VMS
+E pid_t NDECL(getppid);
+#  endif
+# else	/*!POSIX_TYPES*/
 #  ifndef getpid		/* Borland C defines getpid() as a macro */
 E int NDECL(getpid);
 #  endif
@@ -372,14 +378,14 @@ E int NDECL(getppid);
 E unsigned NDECL(getuid);
 E unsigned NDECL(getgid);
 #  endif
-# endif
-# if defined(ULTRIX) && !defined(_UNISTD_H_)
+#  if defined(ULTRIX) && !defined(_UNISTD_H_)
 E unsigned NDECL(getuid);
 E unsigned NDECL(getgid);
 E int FDECL(setgid, (int));
 E int FDECL(setuid, (int));
-# endif
-#endif
+#  endif
+# endif	/*?POSIX_TYPES*/
+#endif	/*?(HPUX && !_POSIX_SOURCE)*/
 
 /* add more architectures as needed */
 #if defined(HPUX)
@@ -464,12 +470,12 @@ E  char *sprintf();
 # undef SPRINTF_PROTO
 #endif
 
-#ifndef	__SASC_60
+#ifndef __SASC_60
 #ifdef NEED_VARARGS
 # if defined(USE_STDARG) || defined(USE_VARARGS)
 #  if !defined(SVR4) && !defined(apollo)
 #   if !(defined(ULTRIX_PROTO) && defined(__GNUC__))
-#    if !(defined(SUNOS4) && defined(__STDC__))	/* Solaris unbundled cc (acc) */
+#    if !(defined(SUNOS4) && defined(__STDC__)) /* Solaris unbundled cc (acc) */
 E int FDECL(vsprintf, (char *, const char *, va_list));
 E int FDECL(vfprintf, (FILE *, const char *, va_list));
 E int FDECL(vprintf, (const char *, va_list));
@@ -513,8 +519,8 @@ E genericptr_t FDECL(malloc, (size_t));
 #  if !(defined(ULTRIX_PROTO) && defined(__GNUC__))
 #   ifndef      __WATCOMC__
 E struct tm *FDECL(localtime, (const time_t *));
-#   endif
 #  endif
+# endif
 # endif
 
 # if defined(ULTRIX) || defined(SYSV) || defined(MICRO) || defined(VMS) || defined(MAC) || (defined(HPUX) && defined(_POSIX_SOURCE))
@@ -544,6 +550,6 @@ E int FDECL(atoi, (const char *));
 
 #undef E
 
-#endif /* !__cplusplus && !__GO32__ */
+#endif /*  !__cplusplus && !__GO32__ */
 
 #endif /* SYSTEM_H */

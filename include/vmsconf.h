@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)vmsconf.h	3.3	98/07/16	*/
+/*	SCCS Id: @(#)vmsconf.h	3.4	2001/12/07	*/
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -48,7 +48,7 @@
 #undef RECORD
 #define RECORD	"record;1"	/* scoreboard file (retains high scores) */
 #undef LOGFILE
-#define LOGFILE	"logfile;0"	/* optional file (records all games) */
+#define LOGFILE "logfile;0"	/* optional file (records all games) */
 
 #define HLOCK	"perm;1"	/* an empty file used for locking purposes */
 
@@ -160,7 +160,7 @@
 #endif
 
 #ifdef __DECC
-# define STRICT_REF_DEF	/* used in lev_main.c */
+# define STRICT_REF_DEF /* used in lev_main.c */
 #endif
 #ifdef STRICT_REF_DEF
 # define DEFINE_OSPEED
@@ -189,6 +189,10 @@ typedef __uid_t uid_t;
 # ifndef __GID_T
 # define __GID_T
 typedef __gid_t gid_t;
+# endif
+# ifndef __MODE_T
+# define __MODE_T
+typedef __mode_t mode_t;
 # endif
 #endif	/* _DECC_V4_SOURCE */
 
@@ -229,7 +233,7 @@ typedef __gid_t gid_t;
 #ifndef __GNUC__
 # ifndef bcopy
 #define bcopy(s,d,n)	memcpy((d),(s),(n))	/* vaxcrtl */
-#endif
+# endif
 #endif
 #define abort()		vms_abort()		/* vmsmisc.c */
 #define creat(f,m)	vms_creat(f,m)		/* vmsfiles.c */
@@ -237,15 +241,13 @@ typedef __gid_t gid_t;
 #define getuid()	vms_getuid()		/* vmsunix.c */
 #define link(f1,f2)	vms_link(f1,f2)		/* vmsfiles.c */
 #define open(f,k,m)	vms_open(f,k,m)		/* vmsfiles.c */
-#if 0
-#define unlink(f0)	vms_unlink(f0)		/* vmsfiles.c */
-#endif
+/* #define unlink(f0)	vms_unlink(f0)		/* vmsfiles.c */
 #ifdef VERYOLD_VMS
 #define unlink(f0)	delete(f0)		/* vaxcrtl */
 #else
 #define unlink(f0)	remove(f0)		/* vaxcrtl, decc$shr */
 #endif
-#define C$$TRANSLATE(n)	c__translate(n)		/* vmsfiles.c */
+#define C$$TRANSLATE(n) c__translate(n)		/* vmsfiles.c */
 
 /* VMS global names are case insensitive... */
 #define An vms_an

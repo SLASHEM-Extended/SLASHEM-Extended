@@ -8,7 +8,7 @@
 /*
  * The dungeon presentation graphics code and data structures were rewritten
  * and generalized for NetHack's release 2 by Eric S. Raymond (eric@snark)
- * building on Don G. Kneller's MS-DOS implementation.  See drawing.c for
+ * building on Don G. Kneller's MS-DOS implementation.	See drawing.c for
  * the code that permits the user to set the contents of the symbol structure.
  *
  * The door representation was changed by Ari Huttunen(ahuttune@niksula.hut.fi)
@@ -50,16 +50,16 @@
 #define MOAT		17	/* pool that doesn't boil, adjust messages */
 #define WATER		18
 #define DRAWBRIDGE_UP	19
-#define LAVAPOOL		20
+#define LAVAPOOL	20
 #define IRONBARS		21	/* Added by KMH */
-#define DOOR			22
-#define CORR			23
-#define ROOM			24
-#define STAIRS			25
-#define LADDER			26
-#define FOUNTAIN		27
-#define THRONE			28
-#define SINK			29
+#define DOOR		22
+#define CORR		23
+#define ROOM		24
+#define STAIRS		25
+#define LADDER		26
+#define FOUNTAIN	27
+#define THRONE		28
+#define SINK		29
 #define TOILET          30
 #define GRAVE           31
 #define ALTAR           32
@@ -76,14 +76,13 @@
  * these types are subject to change.
  * Instead, use one of the macros below.
  */
-#define IS_TREE(typ)	((typ) == TREE || \
-			(level.flags.arboreal && (typ) == STONE))
 #define IS_WALL(typ)	((typ) && (typ) <= DBWALL)
 #define IS_STWALL(typ)	((typ) <= DBWALL)	/* STONE <= (typ) <= DBWALL */
 #define IS_ROCK(typ)	((typ) < POOL)		/* absolutely nonaccessible */
 #define IS_DOOR(typ)	((typ) == DOOR)
-#define IS_TREE(typ)	((typ) == TREE || (level.flags.arboreal && (typ) == STONE))	/* KMH */
-#define ACCESSIBLE(typ)	((typ) >= DOOR)		/* good position */
+#define IS_TREE(typ)	((typ) == TREE || \
+			(level.flags.arboreal && (typ) == STONE))
+#define ACCESSIBLE(typ) ((typ) >= DOOR)		/* good position */
 #define IS_ROOM(typ)	((typ) >= ROOM)		/* ROOM, STAIRS, furniture.. */
 #define ZAP_POS(typ)	((typ) >= POOL)
 #define IS_GRAVE(typ)	((typ) == GRAVE)
@@ -93,7 +92,7 @@
 #define IS_FOUNTAIN(typ) ((typ) == FOUNTAIN)
 #define IS_SINK(typ)	((typ) == SINK)
 #define IS_TOILET(typ)  ((typ) == TOILET)
-#define IS_GRAVE(typ)   ((typ) == GRAVE)
+#define IS_GRAVE(typ)	((typ) == GRAVE)
 #define IS_ALTAR(typ)	((typ) == ALTAR)
 #define IS_DRAWBRIDGE(typ) ((typ) == DRAWBRIDGE_UP || (typ) == DRAWBRIDGE_DOWN)
 #define IS_FURNITURE(typ) ((typ) >= STAIRS && (typ) <= ALTAR)
@@ -153,25 +152,25 @@
 
 /* end dungeon characters, begin traps */
 
-#define S_arrow_trap        42
-#define S_dart_trap         43
-#define S_falling_rock_trap 44
-#define S_squeaky_board     45
-#define S_bear_trap         46
-#define S_land_mine         47
-#define S_rolling_boulder_trap  48
-#define S_sleeping_gas_trap 49
-#define S_rust_trap         50
-#define S_fire_trap         51
-#define S_pit               52
-#define S_spiked_pit        53
-#define S_hole              54
-#define S_trap_door         55
-#define S_teleportation_trap 56
-#define S_level_teleporter  57
-#define S_magic_portal      58
-#define S_web               59
-#define S_statue_trap       60
+#define S_arrow_trap		42
+#define S_dart_trap		43
+#define S_falling_rock_trap	44
+#define S_squeaky_board		45
+#define S_bear_trap		46
+#define S_land_mine		47
+#define S_rolling_boulder_trap	48
+#define S_sleeping_gas_trap	49
+#define S_rust_trap		50
+#define S_fire_trap		51
+#define S_pit			52
+#define S_spiked_pit		53
+#define S_hole			54
+#define S_trap_door		55
+#define S_teleportation_trap	56
+#define S_level_teleporter	57
+#define S_magic_portal		58
+#define S_web			59
+#define S_statue_trap		60
 #define S_magic_trap		61
 #define S_anti_magic_trap	62
 #define S_polymorph_trap	63
@@ -202,90 +201,27 @@
 #define S_sw_bc		82	/* swallow bottom center [8]		*/
 #define S_sw_br		83	/* swallow bottom right [9]		*/
 
-/*WAC added magical explosion*/
-#define S_mexplode1      84      /* explosion top left   FOR CONE OF COLD*/
-#define S_mexplode2      85      /* explosion top center                 */
-#define S_mexplode3      86      /* explosion top right           Ex.    */
-#define S_mexplode4      87      /* explosion middle left                */
-#define S_mexplode5      88      /* explosion middle center       /-\    */
-#define S_mexplode6      89      /* explosion middle right        |@|    */
-#define S_mexplode7      90      /* explosion bottom left         \-/    */
-#define S_mexplode8      91      /* explosion bottom center              */
-#define S_mexplode9      92      /* explosion bottom right               */
-/*For fire explosion*/
-#define S_explode1       93      /* explosion top left                   */
-#define S_explode2       94      /* explosion top center                 */
-#define S_explode3       95      /* explosion top right           Ex.    */
-#define S_explode4       96      /* explosion middle left                */
-#define S_explode5       97      /* explosion middle center       /-\    */
-#define S_explode6       98      /* explosion middle right        |@|    */
-#define S_explode7       99      /* explosion bottom left         \-/    */
-#define S_explode8       100     /* explosion bottom center              */
-#define S_explode9       101     /* explosion bottom right               */
-/*WAC added cold explosion*/
-#define S_cexplode1     102      /* explosion top left   FOR CONE OF COLD*/
-#define S_cexplode2     103      /* explosion top center                 */
-#define S_cexplode3     104      /* explosion top right           Ex.    */
-#define S_cexplode4     105      /* explosion middle left                */
-#define S_cexplode5     106      /* explosion middle center       /-\    */
-#define S_cexplode6     107      /* explosion middle right        |@|    */
-#define S_cexplode7     108      /* explosion bottom left         \-/    */
-#define S_cexplode8     109      /* explosion bottom center              */
-#define S_cexplode9     110      /* explosion bottom right               */
-/*WAC added death explosion*/
-#define S_dexplode1     111      /* explosion top left   FOR DEATH/DISINT*/
-#define S_dexplode2     112      /* explosion top center                 */
-#define S_dexplode3     113      /* explosion top right           Ex.    */
-#define S_dexplode4     114      /* explosion middle left                */
-#define S_dexplode5     115      /* explosion middle center       /-\    */
-#define S_dexplode6     116      /* explosion middle right        |@|    */
-#define S_dexplode7     117      /* explosion bottom left         \-/    */
-#define S_dexplode8     118      /* explosion bottom center              */
-#define S_dexplode9     119      /* explosion bottom right               */
-/*WAC added lightning*/
-#define S_lexplode1     120      /* explosion top left   FOR LIGHTNING   */
-#define S_lexplode2     121      /* explosion top center                 */
-#define S_lexplode3     122      /* explosion top right           Ex.    */
-#define S_lexplode4     123      /* explosion middle left                */
-#define S_lexplode5     124      /* explosion middle center       /-\    */
-#define S_lexplode6     125      /* explosion middle right        |@|    */
-#define S_lexplode7     126      /* explosion bottom left         \-/    */
-#define S_lexplode8     127      /* explosion bottom center              */
-#define S_lexplode9     128      /* explosion bottom right               */
-/* WAC added poison */
-#define S_pexplode1     129      /* explosion top left   FOR POISON   */
-#define S_pexplode2     130      /* explosion top center                 */
-#define S_pexplode3     131      /* explosion top right           Ex.    */
-#define S_pexplode4     132      /* explosion middle left                */
-#define S_pexplode5     133      /* explosion middle center       /-\    */
-#define S_pexplode6     134      /* explosion middle right        |@|    */
-#define S_pexplode7     135       /* explosion bottom left         \-/    */
-#define S_pexplode8     136      /* explosion bottom center              */
-#define S_pexplode9     137      /* explosion bottom right               */
-/* WAC added acid */
-#define S_aexplode1     138      /* explosion top left   FOR ACID   */
-#define S_aexplode2     139      /* explosion top center                 */
-#define S_aexplode3     140      /* explosion top right           Ex.    */
-#define S_aexplode4     141      /* explosion middle left                */
-#define S_aexplode5     142      /* explosion middle center       /-\    */
-#define S_aexplode6     143      /* explosion middle right        |@|    */
-#define S_aexplode7     144       /* explosion bottom left         \-/    */
-#define S_aexplode8     145      /* explosion bottom center              */
-#define S_aexplode9     146      /* explosion bottom right               */
+#define S_explode1	84	/* explosion top left			*/
+#define S_explode2	85	/* explosion top center			*/
+#define S_explode3	86	/* explosion top right		 Ex.	*/
+#define S_explode4	87	/* explosion middle left		*/
+#define S_explode5	88	/* explosion middle center	 /-\	*/
+#define S_explode6	89	/* explosion middle right	 |@|	*/
+#define S_explode7	90	/* explosion bottom left	 \-/	*/
+#define S_explode8	91	/* explosion bottom center		*/
+#define S_explode9	92	/* explosion bottom right		*/
   
-  /* end effects */
+/* end effects */
   
-/* last tile above + 1 */
-#define MAXPCHARS      147       /* maximum number of mapped characters */
+#define MAXPCHARS	93	/* maximum number of mapped characters */
 #define MAXDCHARS	42	/* maximum of mapped dungeon characters */
 #define MAXTCHARS	22	/* maximum of mapped trap characters */
-/*WAC Added 9 chars for cold explosion*/
-/*WAC Added 9 for magical explode*/
-#define MAXECHARS       83      /* maximum of mapped effects characters */
+#define MAXECHARS       29      /* maximum of mapped effects characters */
+#define MAXEXPCHARS	9	/* number of explosion characters */
 
 struct symdef {
     uchar sym;
-    const char  *explanation;
+    const char	*explanation;
 #ifdef TEXTCOLOR
     uchar color;
 #endif
@@ -406,7 +342,7 @@ struct rm {
 	schar typ;		/* what is really there */
 	uchar seenv;		/* seen vector */
 	Bitfield(flags,5);	/* extra information for typ */
-	Bitfield(horizontal,1);	/* wall/door/etc is horiz. (more typ info) */
+	Bitfield(horizontal,1); /* wall/door/etc is horiz. (more typ info) */
 	Bitfield(lit,1);	/* speed hack for lit rooms */
 	Bitfield(waslit,1);	/* remember if a location was lit */
 	Bitfield(roomno,6);	/* room # for special rooms */
@@ -432,7 +368,7 @@ struct rm {
  *		2 right/bottom (1/2 rock)		---
  *							FFF
  *
- *	CORNER:	0 none				trcorn, mode 2
+ *	CORNER: 0 none				trcorn, mode 2
  *		1 outer (3/4 rock)			FFF
  *		2 inner (1/4 rock)			F+-
  *							F|R
@@ -470,7 +406,7 @@ struct rm {
 #define WM_X_BLTR 6
 
 /*
- * Seen vector values.  The seen vector is an array of 8 bits, one for each
+ * Seen vector values.	The seen vector is an array of 8 bits, one for each
  * octant around a given center x:
  *
  *			0 1 2
@@ -478,7 +414,7 @@ struct rm {
  *			6 5 4
  *
  * In the case of walls, a single wall square can be viewed from 8 possible
- * directions.  If we know the type of wall and the directions from which
+ * directions.	If we know the type of wall and the directions from which
  * it has been seen, then we can determine what it looks like to the hero.
  */
 #define SV0 0x1
@@ -501,7 +437,8 @@ struct rm {
 #define looted		flags
 #define icedpool	flags
 
-#define blessedftn      horizontal  /* a fountain that grants attribs */
+#define blessedftn	horizontal  /* a fountain that grants attribs */
+#define disturbed	horizontal  /* a grave that has been disturbed */
 
 struct damage {
 	struct damage *next;
@@ -511,7 +448,7 @@ struct damage {
 };
 
 struct levelflags {
-	uchar	nfountains;	/* number of fountains on level */
+	uchar	nfountains;		/* number of fountains on level */
 	uchar	nsinks;		/* number of sinks + toilets on the level */
 	/* Several flags that give hints about what's on the level */
 	Bitfield(has_shop, 1);
@@ -556,7 +493,7 @@ typedef struct
 }
 dlevel_t;
 
-extern dlevel_t	level;	/* structure describing the current level */
+extern dlevel_t level;	/* structure describing the current level */
 
 /*
  * Macros for compatibility with old code. Someday these will go away.

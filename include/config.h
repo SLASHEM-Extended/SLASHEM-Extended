@@ -100,6 +100,7 @@
 #endif
 
 #ifdef QT_GRAPHICS
+# define USER_SOUNDS		/* Use sounds */
 # define USE_XPM		/* Use XPM format for images (required) */
 # define GRAPHIC_TOMBSTONE	/* Use graphical tombstone (rip.xpm) */
 # ifndef DEFAULT_WINDOW_SYS

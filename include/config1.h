@@ -134,6 +134,7 @@
 # define STRNCMPI
 # define USE_STDARG
 # define NEED_VARARGS
+
 #endif
 
 

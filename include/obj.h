@@ -6,7 +6,7 @@
 #define OBJ_H
 
 /* #define obj obj_nh */ /* uncomment for SCO UNIX, which has a conflicting
-			 * typedef for "obj" in <sys/types.h> */
+			  * typedef for "obj" in <sys/types.h> */
 
 union vptrs {
 	    struct obj *v_nexthere;	/* floor location lists */
@@ -21,7 +21,7 @@ struct obj {
 #define ocontainer	v.v_ocontainer
 #define ocarry		v.v_ocarry
 
-	struct obj *cobj;       /* contents list for containers */
+	struct obj *cobj;	/* contents list for containers */
 	unsigned o_id;
 	xchar ox,oy;
 	short otyp;		/* object class number */
@@ -52,7 +52,7 @@ struct obj {
 #define OBJ_CONTAINED	2		/* object in a container */
 #define OBJ_INVENT	3		/* object in the hero's inventory */
 #define OBJ_MINVENT	4		/* object in a monster inventory */
-#define OBJ_MIGRATING   5		/* object sent off to another level */
+#define OBJ_MIGRATING	5		/* object sent off to another level */
 #define OBJ_BURIED	6		/* object buried */
 #define OBJ_ONBILL	7		/* object on shk bill */
 #define NOBJ_STATES	8
@@ -74,6 +74,7 @@ struct obj {
 #define orotten oeroded		/* rotten food */
 #define odiluted oeroded	/* diluted potions */
 #define odrained oeroded2	/* drained corpse */
+#define norevive oeroded2
 	Bitfield(oerodeproof,1); /* erodeproof weapon/armor */
 	Bitfield(olocked,1);	/* object is locked */
 #define oarmed olocked
@@ -93,6 +94,7 @@ struct obj {
 #define OATTACHED_M_ID    2	/* monst id in oextra */
 #define OATTACHED_UNUSED3 3
 	Bitfield(in_use,1);	/* for magic items before useup items */
+	Bitfield(bypass,1);     /* mark this as an object to be skipped by bhito() */
 
 	Bitfield(yours,1);	/* obj is yours (eg. thrown by you) */
 	/* ? free bits */
@@ -226,7 +228,7 @@ struct obj {
 #define stale_egg(egg)	((monstermoves - (egg)->age) > (2*MAX_EGG_HATCH_TIME))
 #define ofood(o) ((o)->otyp == CORPSE || (o)->otyp == EGG || (o)->otyp == TIN)
 #define polyfodder(obj)	(ofood(obj) && (obj)->corpsenm == PM_CHAMELEON)
-#define mlevelgain(obj)	(ofood(obj) && (obj)->corpsenm == PM_WRAITH)
+#define mlevelgain(obj) (ofood(obj) && (obj)->corpsenm == PM_WRAITH)
 #define mhealup(obj)	(ofood(obj) && (obj)->corpsenm == PM_NURSE)
 #define drainlevel(corpse) (mons[(corpse)->corpsenm].cnutrit*4/5)
 
@@ -245,8 +247,19 @@ struct obj {
 #else
 #define Is_mbag(otmp)	((otmp)->otyp == BAG_OF_HOLDING || \
   			 (otmp)->otyp == BAG_OF_TRICKS)
-
 #endif
+
+/* dragon gear */
+#define Is_dragon_scales(obj)	((obj)->otyp >= GRAY_DRAGON_SCALES && \
+				 (obj)->otyp <= YELLOW_DRAGON_SCALES)
+#define Is_dragon_mail(obj)	((obj)->otyp >= GRAY_DRAGON_SCALE_MAIL && \
+				 (obj)->otyp <= YELLOW_DRAGON_SCALE_MAIL)
+#define Is_dragon_armor(obj)	(Is_dragon_scales(obj) || Is_dragon_mail(obj))
+#define Dragon_scales_to_pm(obj) &mons[PM_GRAY_DRAGON + (obj)->otyp \
+				      - GRAY_DRAGON_SCALES]
+#define Dragon_mail_to_pm(obj)	&mons[PM_GRAY_DRAGON + (obj)->otyp \
+				     - GRAY_DRAGON_SCALE_MAIL]
+#define Dragon_to_scales(pm)	(GRAY_DRAGON_SCALES + (pm - mons))
 
 /* Light sources */
 #define Is_candle(otmp)	((otmp)->otyp == TALLOW_CANDLE || \
@@ -255,9 +268,26 @@ struct obj {
 /* maximum amount of oil in a potion of oil */
 #define MAX_OIL_IN_FLASK 400
 
+/* special stones */
+#define is_graystone(obj)	((obj)->otyp == LUCKSTONE || \
+				 (obj)->otyp == LOADSTONE || \
+				 (obj)->otyp == FLINT     || \
+				 (obj)->otyp == TOUCHSTONE)
+
+/* misc */
+#ifdef KOPS
+#define is_flimsy(otmp)		(objects[(otmp)->otyp].oc_material <= LEATHER || \
+				 (otmp)->otyp == RUBBER_HOSE)
+#else
+#define is_flimsy(otmp)		(objects[(otmp)->otyp].oc_material <= LEATHER)
+#endif
+
+/* helpers, simple enough to be macros */
+#define is_plural(o)	((o)->quan > 1 || \
+			 (o)->oartifact == ART_EYES_OF_THE_OVERWORLD)
+
 /* Flags for get_obj_location(). */
 #define CONTAINED_TOO	0x1
 #define BURIED_TOO	0x2
-
 
 #endif /* OBJ_H */

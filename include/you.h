@@ -216,6 +216,12 @@ struct Gender {
 				/* increment to 3 if you allow neuter roles */
 
 extern const struct Gender genders[];	/* table of available genders */
+#define uhe()	(genders[flags.female ? 1 : 0].he)
+#define uhim()	(genders[flags.female ? 1 : 0].him)
+#define uhis()	(genders[flags.female ? 1 : 0].his)
+#define mhe(mtmp)	(genders[pronoun_gender(mtmp)].he)
+#define mhim(mtmp)	(genders[pronoun_gender(mtmp)].him)
+#define mhis(mtmp)	(genders[pronoun_gender(mtmp)].his)
 
 
 /*** Unified structure specifying alignment information ***/
@@ -235,15 +241,16 @@ extern const struct Align aligns[];	/* table of available alignments */
 struct you {
 	xchar ux, uy;
 	schar dx, dy, dz;	/* direction of move (or zap or ... ) */
-	schar di;			/* direction of FF */
+	schar di;		/* direction of FF */
+	xchar tx, ty;		/* destination of travel */
 	xchar ux0, uy0;		/* initial position FF */
 	d_level uz, uz0;	/* your level on this and the previous turn */
 	d_level utolev;		/* level monster teleported you to, or uz */
 	uchar utotype;		/* bitmask of goto_level() flags for utolev */
 	boolean umoved;		/* changed map location (post-move) */
 	int last_str_turn;	/* 0: none, 1: half turn, 2: full turn */
-						/* +: turn right, -: turn left */
-	int ulevel;			/* 1 to MAXULEV */
+				/* +: turn right, -: turn left */
+	int ulevel;		/* 1 to MAXULEV */
 	int ulevelmax;		/* Maximmum level achieved */
 	unsigned utrap;		/* trap timeout */
 	unsigned utraptype;	/* defined if utrap nonzero */
@@ -258,7 +265,7 @@ struct you {
 	char	ushops[5];	/* shop rooms (roomno + 3) occupied now */
 	char	ushops0[5];	/* ditto, for previous position */
 	char	ushops_entered[5]; /* ditto, shops entered this turn */
-	char	ushops_left[5];	/* ditto, shops exited this turn */
+	char	ushops_left[5]; /* ditto, shops exited this turn */
 
 	int	 uhunger;	/* refd only in eat.c and shk.c */
 	unsigned uhs;		/* hunger state - see eat.c */
@@ -273,8 +280,8 @@ struct you {
 #define SICK_ALL 0x03
 
 	/* These ranges can never be more than MAX_RANGE (vision.h). */
-	int nv_range;			/* current night vision range */
-	int xray_range;			/* current xray vision range */
+	int nv_range;		/* current night vision range */
+	int xray_range;		/* current xray vision range */
 
 	/*
 	 * These variables are valid globally only when punished and blind.
@@ -289,10 +296,10 @@ struct you {
 	int umonster;			/* hero's "real" monster num */
 	int umonnum;			/* current monster number */
 
-	int mh, mhmax, mtimedone;		/* for polymorph-self */
-	struct attribs	macurr,			/* for monster attribs */
-			mamax;			/* for monster attribs */
-	int ulycn;				/* lycanthrope type */
+	int mh, mhmax, mtimedone;	/* for polymorph-self */
+	struct attribs	macurr,		/* for monster attribs */
+			mamax;		/* for monster attribs */
+	int ulycn;			/* lycanthrope type */
 
 	unsigned ucreamed;
 	unsigned uswldtim;		/* time you have been swallowed */
@@ -304,7 +311,8 @@ struct you {
 	Bitfield(mfemale,1);		/* saved human value of flags.female */
 	Bitfield(uinvulnerable,1);	/* you're invulnerable (praying) */
 	Bitfield(uburied,1);		/* you're buried */
-	/* 2 free bits! */
+	Bitfield(uedibility,1);		/* blessed food detection; sense unsafe food */
+	/* 1 free bit! */
 
 	struct u_conduct uconduct;	/* KMH, conduct */
 	unsigned udg_cnt;		/* how long you have been demigod */
@@ -337,10 +345,10 @@ struct you {
 	uchar	uspmtime;		/* #moves between uspellprot-- */
 
 	int     uhp, uhpmax;
-	int     uen, uenmax;   		/* magical energy - M. Stephenson */
-	int ugangr;                     /* if the gods are angry at you */
+	int	uen, uenmax;		/* magical energy - M. Stephenson */
+	int ugangr;			/* if the gods are angry at you */
 	int ugifts;			/* number of artifacts bestowed */
-	int ublessed, ublesscnt;        /* blessing/duration from #pray */
+	int ublessed, ublesscnt;	/* blessing/duration from #pray */
 #ifdef NOARTIFACTWISH
 	int usacrifice;                 /* number of sacrifices so far */
 #endif

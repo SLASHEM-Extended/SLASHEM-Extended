@@ -25,11 +25,16 @@ struct q_score {			/* Quest "scorecard" */
 	Bitfield(touched_artifact,1);	/* for a special message */
 	Bitfield(offered_artifact,1);	/* offered to leader */
 	Bitfield(got_thanks,1);		/* final message from leader */
+
+	/* keep track of leader presence/absence even if leader is
+	   polymorphed, raised from dead, etc */
+	Bitfield(leader_is_dead,1);
+	unsigned leader_m_id;
 };
 
 /* KMH, balance patch -- These were 7, 20, 14 for NetHack and 1, 20, 6 for Slash */
-#define MAX_QUEST_TRIES	 7	/* exceed this and you "fail" */
-#define MIN_QUEST_ALIGN	20	/* at least this align.record to start */
+#define MAX_QUEST_TRIES  7	/* exceed this and you "fail" */
+#define MIN_QUEST_ALIGN 20	/* at least this align.record to start */
   /* note: align 20 matches "pious" as reported by enlightenment (cmd.c) */
 #define MIN_QUEST_LEVEL	10	/* at least this u.ulevel to start */
   /* note: exp.lev. 14 is threshold level for 5th rank (class title, role.c) */
