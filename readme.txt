@@ -158,6 +158,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 1116877: Dereferencing freed memory when applying bags which explode
 -fixed bug 951483: Wands of cancellation can be held in a bag of holding
 -fixed bug 1155634: charm spell or command undead spell invoke genocide
+-fixed incorrect #ifdef resulting in compilation failure on ANSI only DOS builds
 
 See history.txt for changes made in previous versions.
 
