@@ -367,6 +367,7 @@ ver 0.0.6E4F6 [? ?/2001] [Released by ?]
 -fixed bug 459954: slight missing wall in spiders.des map.
 -fixed bug 455563: Shopkeeper refers to mattock.
 -fixed bug 420942: two entrances to mines.
+-fixed bug 452172: Penalty for drowning pets.
 
 ver 0.0.6E4F5 [August 31/2001] [Released by Ali]
 -fixed bug 420517: Yellow dragon scale mail.
