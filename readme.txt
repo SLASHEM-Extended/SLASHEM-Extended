@@ -326,6 +326,9 @@ TODO:
 -tofix: using the nethack config files.
 -vampires shouldn't be allowed to become Flame Mages
 
+ver 0.0.6E4F4 [? ?/2001] [Released by ?]
+-fixed bug 404825: wands of teleportation that explode/zapped at yourself
+
 ver 0.0.6E4F3 [February 28/2001] [Released by Ali]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined
 -fixed bug 127211: Pet vampires leave corpses partly eaten.

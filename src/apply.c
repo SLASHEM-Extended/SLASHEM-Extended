@@ -2560,9 +2560,20 @@ do_break_wand(obj)
     return wand_explode(obj, TRUE);
 }
 
-/* WAC Split the break wand fcn in two.  This half takes care of the
- * effects of breaking the wand and is also called by backfire()
- * in zap.c
+/* This function takes care of the effects wands exploding, via
+ * user-specified 'applying' as well as wands exploding by accident
+ * during use (called by backfire() in zap.c)
+ *
+ * If the effect is directly recognisable as pertaining to a 
+ * specific wand, the wand should be makeknown()
+ * Otherwise, if there is an ambiguous or indirect but visible effect
+ * the wand should be allowed to be named by the user.
+ *
+ * If there is no obvious effect,  do nothing. (Should this be changed
+ * to letting the user call that type of wand?)
+ *
+ * hero_broke is nonzero if the user initiated the action that caused
+ * the wand to explode (zapping or applying).
  */
 int
 wand_explode(obj, hero_broke)
@@ -2574,7 +2585,6 @@ wand_explode(obj, hero_broke)
     register struct monst *mon;
     int dmg, damage;
     boolean affects_objects;
-
 
     current_wand = obj;		/* destroy_item might reset this */
     freeinv(obj);		/* hide it from destroy_item instead... */
@@ -2644,10 +2654,11 @@ wand_explode(obj, hero_broke)
     case WAN_TELEPORTATION:
 		/* WAC make tele trap if you broke a wand of teleport */
 		/* But make sure the spot is valid! */
-	    	if ((obj->spe > 2) && rn2(obj->spe - 2) && !level.flags.noteleport &&
+	    if ((obj->spe > 2) && rn2(obj->spe - 2) && !level.flags.noteleport &&
 		    !u.uswallow && !On_stairs(u.ux, u.uy) && (!IS_FURNITURE(levl[u.ux][u.uy].typ) &&
 		    !IS_ROCK(levl[u.ux][u.uy].typ) &&
 		    !closed_door(u.ux, u.uy) && !t_at(u.ux, u.uy))) {
+
 			struct trap *ttmp;
 
 			ttmp = maketrap(u.ux, u.uy, TELEP_TRAP);
@@ -2700,6 +2711,7 @@ wand_explode(obj, hero_broke)
 		    affects_objects && level.objects[x][y]) {
 		    (void) bhitpile(obj, bhito, x, y);
 		    if (flags.botl) bot();		/* potion effects */
+			/* makeknown is handled in zapyourself */
 		}
 		damage = zapyourself(obj, FALSE);
 		if (damage) {

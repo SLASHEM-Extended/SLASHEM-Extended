@@ -1938,7 +1938,6 @@ boolean ordinary;
 {
 	int     damage = 0;
 
-
 	switch(obj->otyp) {
 		case WAN_STRIKING:
 		    makeknown(WAN_STRIKING);
@@ -2149,6 +2148,7 @@ boolean ordinary;
 		case WAN_TELEPORTATION:
 		case SPE_TELEPORT_AWAY:
 		    tele();
+			makeknown(obj->otyp);
 		    break;
 		case WAN_DEATH:
 		case SPE_FINGER_OF_DEATH:
