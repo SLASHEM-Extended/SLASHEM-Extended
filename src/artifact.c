@@ -1335,7 +1335,8 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	    }
 	}
 	if (spec_ability(otmp, SPFX_DRLI)) {
-		if (!youdefend && !resists_drli(mdef)) {
+		if (!youdefend) {
+		    if (!resists_drli(mdef)) {
 			if (vis) {
 			    if(otmp->oartifact == ART_STORMBRINGER)
 				pline_The("%s blade draws the life from %s!",
@@ -1362,6 +1363,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			    if (drain) healup(drain, 0, FALSE, FALSE);
 			}
 			return vis;
+		    }
 		} else if (!Drain_resistance) { /* youdefend */
 			int oldhpmax = u.uhpmax;
 
