@@ -4,7 +4,7 @@
 .ds vr "SLASH'EM 0.0.6
 .ds f0 "\*(vr
 .ds f1
-.ds f2 "August 22, 2000
+.ds f2 "September 26, 2000
 .mt
 A Guide to the Mazes of Menace
 (Guidebook for SLASH'EM 0.0.6)
@@ -1554,9 +1554,10 @@ by other means.
 .pg
 An illiterate character cannot read or write.  This includes reading
 a scroll, spellbook, fortune cookie message, or t-shirt; writing a
-scroll; or making an engraving of anything other than a single ``x'' (the
-traditional signature of an illiterate person).  Reading an engraving,
-or any item that is absolutely necessary to win the game, is not counted
+scroll; or reading (or
+making) an engraving of anything other than a single ``x'' (the
+traditional signature of an illiterate person).  Reading
+any item that is absolutely necessary to win the game is not counted
 against this conduct.  The identity of scrolls and spellbooks (and
 knowledge of spells) in your starting inventory is assumed to be
 learned from your teachers prior to the start of the game and isn't

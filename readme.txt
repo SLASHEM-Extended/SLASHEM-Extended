@@ -351,6 +351,7 @@ ver 0.0.6E4F1 [September XX/2000]
 -berserk technique now takes time to "recharge" like most other techs
 -archeologists can become skilled at matter spells (was basic)
 -fixed bug 115271: nhwin.a should be deleted by make clean
+-fixed bug 115347: Guidebook incorrect re. reading engravings and conduct.
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()

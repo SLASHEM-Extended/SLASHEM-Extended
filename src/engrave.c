@@ -355,16 +355,21 @@ register int x,y;
 	    if (sensed && (u.uconduct.literate || yn("Read the message?") == 'y')) {
 	    	/* MAR Don't prompt if you're already literate */
 	    	/* WAC -- Hey,  there's a prompt here now so no excuses :) */
+		int len;
 	    	char *et;
 	    	unsigned maxelen = BUFSZ - sizeof("You feel the words: \"\". ");
-	    	if (strlen(ep->engr_txt) > maxelen) {
+	    	len=strlen(ep->engr_txt);
+	    	if (len > maxelen) {
 	    		strncpy(buf,  ep->engr_txt, maxelen);
 			buf[maxelen] = '\0';
 			et = buf;
 		} else
 			et = ep->engr_txt;
 
-	    	u.uconduct.literate++;
+		/* If you can engrave an 'x', you can "read" it --ALI */
+		if (len != 1 || (!index(et, 'x') && !index(et, 'X')))
+			u.uconduct.literate++;
+
 		You("%s: \"%s\".",
 		      (Blind) ? "feel the words" : "read",  et);
 		if(flags.run > 1) nomul(0);
