@@ -88,6 +88,7 @@ ver 0.0.7E6F3 [?] [Released by ?]
 -fixed bug 946984: arch-liches are not MR_HITAS*
 -fixed bug 949016: Draining a rotten corpse
 -fixed bug 951439: Invisible Corpses and Ressurection
+-fixed bug 941453: Grand slam against monsters needing +n weapons
 
 See history.txt for changes made in previous versions.
 
