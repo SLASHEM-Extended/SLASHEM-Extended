@@ -26,9 +26,11 @@
 # if !defined(_SIZE_T) && !defined(__size_t) /* __size_t for CSet/2 */
 #  define _SIZE_T
 #  if !((defined(MSDOS) || defined(OS2)) && defined(_SIZE_T_DEFINED)) /* MSC 5.1 */
+#   if !(defined(__GNUC__) && defined(AMIGA))
 typedef unsigned int	size_t;
 #   endif
 #  endif
+# endif
 #endif	/* MICRO && !TOS */
 
 #if defined(__TURBOC__) || defined(MAC)
@@ -118,7 +120,7 @@ E void FDECL(free, (genericptr_t));
 #  endif
 # endif
 #if !defined(__SASC_60) && !defined(_DCC) && !defined(__SC__)
-# if defined(AMIGA) && !defined(AZTEC_50)
+# if defined(AMIGA) && !defined(AZTEC_50) && !defined(__GNUC__)
 E int FDECL(perror, (const char *));
 # else
 #  if !(defined(ULTRIX_PROTO) && defined(__GNUC__))
