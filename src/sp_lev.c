@@ -849,20 +849,21 @@ struct mkroom	*croom;
 	    /* in the Gnome Mines, make the gnomes & dwarves into            
 	       orcs, ogres, & zombies (because gnomes & dwarves are friendly...
 	       the mines would be hella easy otherwise) */
-		if ((Role_if(PM_GNOME)
+		if (In_mines(&u.uz) && (
 #ifdef DWARF
-				|| Role_if(PM_DWARF)
+			Race_if(PM_DWARF) ||
 #endif
-				) && In_mines(&u.uz)) {
-		switch (rn2(8)+1) {
-		   case 1: m->id = PM_OGRE; break;
-		   case 2:
-		   case 3: m->id = PM_ORC; break;
-		   case 4:
-		   case 5:
-		   case 6: m->id = PM_GNOME_ZOMBIE; break;
-		   case 7:
-		   case 8: m->id = PM_GNOME_MUMMY; break;
+			Race_if(PM_GNOME))) {
+		switch (m->id) {
+		  case PM_GNOME: m->id = PM_GNOME_ZOMBIE; break;
+		  case PM_GNOMISH_WIZARD: m->id = PM_ORC_SHAMAN; break;
+		  case PM_GNOME_LORD: m->id = PM_GNOME_MUMMY; break;
+		  case PM_GNOME_KING: m->id = PM_OGRE; break;
+#ifdef DWARF
+		  case PM_DWARF: m->id = PM_DWARF_ZOMBIE; break;
+		  case PM_DWARF_LORD: m->id = PM_DWARF_MUMMY; break;
+		  case PM_DWARF_KING: m->id = PM_WAR_ORC; break;
+#endif
 		}
 	    }
 	    pm = &mons[m->id];
@@ -876,10 +877,6 @@ struct mkroom	*croom;
 	    /* if we can't get a specific monster type (pm == 0) then the
 	       class has been genocided, so settle for a random monster */
 	}
-	if (In_mines(&u.uz) && pm && your_race(pm) &&
-			(Race_if(PM_DWARF) || Race_if(PM_GNOME)) && rn2(3))
-	    pm = (struct permonst *) 0;
-
 	x = m->x;
 	y = m->y;
 	if (croom)
