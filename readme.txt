@@ -326,7 +326,7 @@ TODO:
 -tofix: using the nethack config files.
 -vampires shouldn't be allowed to become Flame Mages
 
-ver 0.0.6E4F2 [December XX/2000]
+ver 0.0.6E4F2 [December 30/2000] [Released by Ali]
 -DOS: Allegro window port adapted to display the ground underneath walls
 	(vidalleg.c)
 -Win32: binaries now compiled with the Oct/2000 build of Win GTK libs
