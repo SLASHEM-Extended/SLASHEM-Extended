@@ -1,9 +1,9 @@
-/* $Id: mapid.c,v 1.2 2001-12-24 07:56:33 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001-2002 */
+/* $Id: mapid.c,v 1.3 2004-12-31 19:22:48 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2004 */
 /* NetHack may be freely redistributed.  See license for details. */
 
+#include <nhproxy/nhproxy.h>
 #include "hack.h"
-#include "nhxdr.h"
 #include "winproxy.h"
 
 /*

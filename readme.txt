@@ -135,6 +135,9 @@ ver 0.0.8E0 [?] [Released by ?]
 -Fixed build of proxy tests
 -fixed bug 1071688: cannot compile on FreeBSD (termcap)
 -fixed bug 1071623: Cannot compile on FreeBSD due to menucolor inclusion
+-Unbundled proxy and gtk modules:
+	http://www.nongnu.org/nhproxy/
+	http://www.gtkhack.org/
 
 See history.txt for changes made in previous versions.
 

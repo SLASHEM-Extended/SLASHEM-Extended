@@ -76,12 +76,10 @@ SHELLDIR = $(PREFIX)/local/bin
 
 # Shareable (architecture independent) data files which are not candidates
 # for inclusion in DLB libraries (ND) and which are (D). Port specific files
-# per discussions in Install.X11, Install.Qt and Install.GTK
+# per discussions in Install.X11 and Install.Qt
 CNF_SHARE_QTND = x11tiles rip.xpm nhsplash.xpm
 CNF_SHARE_X11ND = x11bigtiles x11tiles SlashEM.ad pet_mark.xbm
 # CNF_SHARE_X11ND = x11bigtiles x11tiles SlashEM.ad pet_mark.xbm rip.xpm
-CNF_SHARE_GTKND = x11big3dtiles x11bigtiles x11tiles rip.xpm credit.xpm gtkrc
-CNF_SHARE_GTKPROXYND = x11big3dtiles.map x11bigtiles.map x11tiles.map
 # for Atari/Gem
 CNF_SHARE_GEMND = nh16.img title.img GEM_RSC.RSC rip.img
 # for BeOS
@@ -97,8 +95,6 @@ CNF_SHARE_PROXYND = gltile64.png gltile32.png gltile16.png \
 
 # CNF_SHARE_DATND = $(CNF_SHARE_X11ND)
 # CNF_SHARE_DATND = $(CNF_SHARE_QTND)
-# CNF_SHARE_DATND = $(CNF_SHARE_GTKND)
-# CNF_SHARE_DATND = $(CNF_SHARE_GTKND) $(CNF_SHARE_GTKPROXYND)
 # CNF_SHARE_DATND = $(CNF_SHARE_GLND)
 # CNF_SHARE_DATND = $(CNF_SHARE_PROXYND)
 CNF_SHARE_DATND =
@@ -263,9 +259,6 @@ GEM_RSC.RSC:
 
 title.img:
 	( cd dat ; $(MAKE) title.img )
-
-gtkrc:	win/gtk/GTKRC
-	cp win/gtk/GTKRC dat/gtkrc
 
 check-dlb: options
 	@if egrep -s librarian dat/options ; then $(MAKE) dlb ; else true ; fi

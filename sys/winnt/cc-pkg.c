@@ -1,10 +1,10 @@
-/* $Id: cc-gtk.c,v 1.2 2003-12-23 23:28:46 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2002 */
+/* $Id: cc-pkg.c,v 1.1 2004-12-31 19:23:51 j_ali Exp $ */
+/* Copyright (C) 2002, 2004  Slash'EM Development Team */
 /* NetHack may be freely redistributed.  See license for details. */
 
 /*
  * This program provides a means of using pkg-config to determine how to
- * compile and link against Gtk+ 2.0. Using this as a front-end to the
+ * compile and link against dependancies. Using this as a front-end to the
  * compiler avoids the limitations of cmd.exe.
  */
 
@@ -17,7 +17,7 @@
 #include <fcntl.h>
 #include <direct.h>
 #endif
-#include "cc-gtk.h"
+#include "cc-pkg.h"
 
 #define M_COMPILE	'c'
 #define M_LINK		'l'
@@ -32,11 +32,13 @@ extern char **environ;	/* MS-Windows defines this in stdlib.h */
 
 int mode = M_COMPILE;
 int verbose = 0;
+char *packages = NULL;	/* Seperated by commas or whitespace (or both) */
 
 static void
 usage()
 {
-    fprintf(stderr, "Usage: cc-gtk [-v] [-c|-l] cc [cc options] ...\n");
+    fprintf(stderr,
+      "Usage: cc-pkg [-v] [-p <pkgs>] [-c|-l] cc [cc options] ...\n");
     exit(1);
 }
 
@@ -163,7 +165,6 @@ int *pcargc;
 char ***pcargv;
 {
     int i, pid, argc;
-    char *cmd = mode == M_COMPILE ? GTKCFLAGS : GTKLIBS;
     char **argv;
     char buf[128];
     int config_bytes = 0;
@@ -174,6 +175,8 @@ char ***pcargv;
     char **env;
     char *s, *pcp, *path;
     char sep;
+    if (!packages)
+	return 1;
     if (!env_init(&enc, &env))
 	return 0;
     s = env_get(enc, env, "PKG_CONFIG_PATH");
@@ -202,8 +205,11 @@ char ***pcargv;
     path = (char *)malloc(strlen(s) + strlen(PKG_CONFIG_DLL) + 2);
     sprintf(path, "%s%c%s", s, sep, PKG_CONFIG_DLL);
     env_put(&enc, &env, path);
-    if (!parse_cmdline(cmd, &argc, &argv))
-	return 0;
+    argc = 3;
+    argv[0] = PKG_CONFIG;
+    argv[1] = M_COMPILE ? "--cflags" : "--libs";
+    argv[2] = packages;
+    argv[3] = NULL;
     if (verbose) {
 	for(i = 0; i < argc; i++) {
 	    if (i)
@@ -296,6 +302,28 @@ char **argv;
 		case 'v':
 		    verbose = 1;
 		    break;
+		case 'p':
+		    if (n+1 < argc) {
+			if (packages) {
+			    packages = realloc(packages, strlen(packages) +
+			      strlen(argv[n+1]) + 2);
+			    if (packages) {
+				strcat(packages, ",");
+				strcat(packages, argv[n+1]);
+			    }
+			} else {
+			    packages = malloc(strlen(argv[n+1]) + 1);
+			    if (packages)
+				strcpy(packages, argv[n+1]);
+			}
+			if (!packages) {
+			    fprintf(stderr, "cc-pkg: Not enough memory\n");
+			    exit(1);
+			}
+			n++;
+		    } else
+			usage();
+		    break;
 		case 'c':
 		    mode = M_COMPILE;
 		    break;
@@ -315,7 +343,7 @@ char **argv;
     nargc = argc - n + pcargc;
     nargv = (char **)malloc((nargc + 1) * sizeof(char *));
     if (!nargv) {
-	fprintf(stderr, "cc-gtk: Not enough memory\n");
+	fprintf(stderr, "cc-pkg: Not enough memory\n");
 	exit(1);
     }
     if (mode == M_COMPILE) {

@@ -6,8 +6,8 @@ from or not transferred to your system if you wish.
 
 .:
 (files in top directory)
-Files           Porting         README.34       README.gtk      history.txt
-license         make_anh.tx     readme.s6       readme.txt      slamfaq.txt
+Files           Porting         README.34       history.txt     make_anh.txt
+readme.s6       readme.txt      slamfaq.txt
 
 dat:
 (files for all versions)
@@ -30,8 +30,8 @@ doc:
 (files for all versions)
 Guidebook.mn    Guidebook.tex   Guidebook.txt   dgn_comp.6      dgn_comp.txt
 dlb.6           dlb.txt         lev_comp.6      lev_comp.txt    nethack.6
-proxy.doc       recover.6       recover.txt     slashem.6       slashem.txt
-sources.txt     strategy.txt    tmac.n          window.doc
+recover.6       recover.txt     slashem.6       slashem.txt     sources.txt
+strategy.txt    tmac.n          window.doc
 
 include:
 (files for all versions)
@@ -45,13 +45,12 @@ macconf.h       macpopup.h      macwin.h        mail.h          md5.h
 mfndpos.h       micro.h         mkroom.h        monattk.h       mondata.h
 monflag.h       monst.h         monsym.h        nhlan.h         nhxdr.h
 ntconf.h        obj.h           objclass.h      os2conf.h       patchlevel.h
-pcconf.h        permonst.h      prop.h          proxycb.h       proxycom.h
-prxyclnt.h      qtext.h         quest.h         rect.h          region.h
-rm.h            skills.h        sp_lev.h        spell.h         system.h
-tcap.h          tech.h          timeout.h       tosconf.h       tradstdc.h
-trampoli.h      trap.h          unixconf.h      vault.h         vision.h
-vmsconf.h       wceconf.h       winami.h        winprocs.h      winproxy.h
-wintype.h       you.h           youprop.h
+pcconf.h        permonst.h      prop.h          qtext.h         quest.h
+rect.h          region.h        rm.h            skills.h        sp_lev.h
+spell.h         system.h        tcap.h          tech.h          timeout.h
+tosconf.h       tradstdc.h      trampoli.h      trap.h          unixconf.h
+vault.h         vision.h        vmsconf.h       wceconf.h       winami.h
+winprocs.h      wintype.h       you.h           youprop.h
 (file for tty versions)
 wintty.h
 (files for X versions)
@@ -62,12 +61,12 @@ qt_clust.h      qt_kde0.h       qt_win.h        qt_xpms.h       qttableview.h
 bitmfile.h      gem_rsc.h       load_img.h      wingem.h
 (file for GNOME versions)
 winGnome.h
-(files for GTK vesion)
-winGTK.h
 (files for mactty version)
 mactty.h        mttypriv.h
 (files for SDL/GL version)
 winGL.h
+(file for proxy versions)
+winproxy.h
 
 src:
 (files for all versions)
@@ -273,22 +272,9 @@ gntext.c        gntext.h        gnworn.c        gnworn.h        gnyesno.c
 gnyesno.h       mapbg.xpm
 
 win/proxy:
-(files for proxy version)
-Install.pxy     Makefile.unx    Makefile.w32    callback.c      compxdr.c
-dlbh.c          getopt.c        glyphmap.c      mapid.c         md5.c
-nhext.c         nhextio.c       nhextnb.c       nhextxdr.c      nhxdr.c
-proxycb.c       proxysvc.c      prxychar.c      prxyconn.c      prxymap.c
-prxytile.c      riputil.c       test_com.c      test_com.h      test_ext.c
-test_io.c       test_xdr.c      winproxy.c      ext_protocol.html
-
-win/gtk:
-GTKRC           GTKRC.w32       Install.GTK     Makefile.unx    Makefile.w32
-cc-gtk.c        gtk.c           gtkconcb.c      gtkconcb.h      gtkconnect.c
-gtkconnect.h    gtkext.c        gtkextcmd.c     gtkgetlin.c     gtkhack.c
-gtkhackrc.c     gtkint.c        gtkmap.c        gtkmenu.c       gtkmessage.c
-gtkmisc.c       gtkprefs.c      gtkprogress.h   gtkprogress.c   gtkstatus.c
-gtksupport.c    gtksupport.h    gtktile.c       gtkyn.c         panic.c
-xshmmap.c       gtkconnect.glade gtkconnect.gladep
+(files for proxy versions)
+Install.pxy     callback.c      dlbh.c          getopt.c        glyphmap.c
+mapid.c         riputil.c       winproxy.c
 
 win/share:
 (files for versions using optional tiles)

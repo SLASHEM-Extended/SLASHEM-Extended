@@ -1,10 +1,9 @@
-/* $Id: glyphmap.c,v 1.4 2002-11-25 14:23:46 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2002 */
+/* $Id: glyphmap.c,v 1.5 2004-12-31 19:22:48 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2002-2004 */
 /* NetHack may be freely redistributed.  See license for details. */
 
+#include <nhproxy/nhproxy.h>
 #include "hack.h"
-#include "nhxdr.h"
-#include "proxycom.h"
 #include "winproxy.h"
 
 /* #define DEBUG */
@@ -65,14 +64,14 @@ int glyph;
 
 static void
 get_glyph_mapping_monsters(map)
-struct proxycb_get_glyph_mapping_res_mapping *map;
+struct nhproxy_cb_get_glyph_mapping_res_mapping *map;
 {
     int i, j, k, l;
     int n_mons[MAXMCLASSES];
     map->flags = "";
     map->base_mapping = -1;
     map->alt_glyph = NO_GLYPH;
-    map->symdef.rgbsym = RGB_SYM(RGB_TRANSPARENT, 0);
+    map->symdef.rgbsym = NHPROXY_RGB_SYM(RGB_TRANSPARENT, 0);
     map->symdef.description = "monster";
     for(i = 0; i < MAXMCLASSES; i++)
 	n_mons[i] = 0;
@@ -83,22 +82,23 @@ struct proxycb_get_glyph_mapping_res_mapping *map;
     for(i = 0; i < MAXMCLASSES; i++)
 	if (!monexplain[i] || !n_mons[i])
 	    map->n_submappings--;
-    map->submappings = (struct proxycb_get_glyph_mapping_res_submapping *)
+    map->submappings = (struct nhproxy_cb_get_glyph_mapping_res_submapping *)
       alloc(map->n_submappings * sizeof(*map->submappings));
     for(i = j = 0; i < MAXMCLASSES; i++) {
 	if (monexplain[i] && n_mons[i]) {
 	    map->submappings[j].symdef.rgbsym =
-	      RGB_SYM(RGB_TRANSPARENT, monsyms[i]);
+	      NHPROXY_RGB_SYM(RGB_TRANSPARENT, monsyms[i]);
 	    map->submappings[j].symdef.description = monexplain[i];
 	    map->submappings[j].n_glyphs = n_mons[i];
 	    map->submappings[j].glyphs =
-	      (struct proxycb_get_glyph_mapping_res_symdef *)
+	      (struct nhproxy_cb_get_glyph_mapping_res_symdef *)
 	      alloc(map->submappings[j].n_glyphs *
 	      sizeof(*map->submappings[j].glyphs));
 	    for(k = l = 0; k < NUMMONS; k++)
 		if (mons[k].mlet == i) {
 		    map->submappings[j].glyphs[l].rgbsym =
-		      RGB_SYM(rgb_colors[C(mons[k].mcolor)], monsyms[i]);
+		      NHPROXY_RGB_SYM(rgb_colors[C(mons[k].mcolor)],
+		      monsyms[i]);
 		    map->submappings[j].glyphs[l].description = mons[k].mname;
 		    l++;
 		}
@@ -119,24 +119,25 @@ int glyph;
 
 static void
 get_glyph_mapping_invisible_monster(map)
-struct proxycb_get_glyph_mapping_res_mapping *map;
+struct nhproxy_cb_get_glyph_mapping_res_mapping *map;
 {
     map->flags = "";
     map->base_mapping = -1;
     map->alt_glyph = NO_GLYPH;
-    map->symdef.rgbsym = RGB_SYM(RGB_TRANSPARENT, 0);
+    map->symdef.rgbsym = NHPROXY_RGB_SYM(RGB_TRANSPARENT, 0);
     map->symdef.description = "monster";
     map->n_submappings = 1;
-    map->submappings = (struct proxycb_get_glyph_mapping_res_submapping *)
+    map->submappings = (struct nhproxy_cb_get_glyph_mapping_res_submapping *)
       alloc(sizeof(*map->submappings));
-    map->submappings->symdef.rgbsym =
-      RGB_SYM(rgb_colors[NO_COLOR], DEF_INVISIBLE);	/* see mapglyph.c */
+    map->submappings->symdef.rgbsym =			/* see mapglyph.c */
+      NHPROXY_RGB_SYM(rgb_colors[NO_COLOR], DEF_INVISIBLE);
     map->submappings->symdef.description = "";
     map->submappings->n_glyphs = 1;
-    map->submappings->glyphs = (struct proxycb_get_glyph_mapping_res_symdef *)
+    map->submappings->glyphs =
+      (struct nhproxy_cb_get_glyph_mapping_res_symdef *)
       alloc(sizeof(*map->submappings->glyphs));
     map->submappings->glyphs->rgbsym =
-      RGB_SYM(rgb_colors[NO_COLOR], DEF_INVISIBLE);
+      NHPROXY_RGB_SYM(rgb_colors[NO_COLOR], DEF_INVISIBLE);
     map->submappings->glyphs->description = "invisible monster";
 }
 
@@ -170,7 +171,7 @@ int base_glyphs, glyph, type;
 
 static void
 get_glyph_mapping_monsters_based(map, base, type)
-struct proxycb_get_glyph_mapping_res_mapping *map;
+struct nhproxy_cb_get_glyph_mapping_res_mapping *map;
 int base, type;
 {
     int i;
@@ -190,7 +191,7 @@ int base, type;
     }
     map->base_mapping = base;
     map->alt_glyph = NO_GLYPH;
-    map->symdef.rgbsym = RGB_SYM(RGB_TRANSPARENT, 0);
+    map->symdef.rgbsym = NHPROXY_RGB_SYM(RGB_TRANSPARENT, 0);
     map->symdef.description = "";
     map->n_submappings = 0;
     map->submappings = NULL;
@@ -208,14 +209,14 @@ int base_glyphs, glyph;
 
 static void
 get_glyph_mapping_monster_corpses(map, base)
-struct proxycb_get_glyph_mapping_res_mapping *map;
+struct nhproxy_cb_get_glyph_mapping_res_mapping *map;
 int base;
 {
     map->flags = "corpse";
     map->base_mapping = base;
     map->alt_glyph = objnum_to_glyph(CORPSE);
     map->symdef.rgbsym =		/* see mapglyph.c */
-      RGB_SYM(RGB_TRANSPARENT, oc_syms[(int)objects[CORPSE].oc_class]);
+      NHPROXY_RGB_SYM(RGB_TRANSPARENT, oc_syms[(int)objects[CORPSE].oc_class]);
     map->symdef.description = "";
     map->n_submappings = 0;
     map->submappings = NULL;
@@ -238,37 +239,38 @@ int glyph;
 
 static void
 get_glyph_mapping_objects(map)
-struct proxycb_get_glyph_mapping_res_mapping *map;
+struct nhproxy_cb_get_glyph_mapping_res_mapping *map;
 {
     int i, j, k, l;
     map->flags = "";
     map->base_mapping = -1;
     map->alt_glyph = NO_GLYPH;
-    map->symdef.rgbsym = RGB_SYM(RGB_TRANSPARENT, 0);
+    map->symdef.rgbsym = NHPROXY_RGB_SYM(RGB_TRANSPARENT, 0);
     map->symdef.description = "object";
     map->n_submappings = MAXOCLASSES;
     for(i = 0; i < MAXOCLASSES; i++)
 	if (!oclass_names[i])
 	    map->n_submappings--;
-    map->submappings = (struct proxycb_get_glyph_mapping_res_submapping *)
+    map->submappings = (struct nhproxy_cb_get_glyph_mapping_res_submapping *)
       alloc(map->n_submappings * sizeof(*map->submappings));
     for(i = j = 0; i < MAXOCLASSES; i++) {
 	if (oclass_names[i]) {
 	    map->submappings[j].symdef.rgbsym =
-	      RGB_SYM(RGB_TRANSPARENT, oc_syms[i]);
+	      NHPROXY_RGB_SYM(RGB_TRANSPARENT, oc_syms[i]);
 	    map->submappings[j].symdef.description = oclass_names[i];
 	    map->submappings[j].n_glyphs = 0;
 	    for(k = 0; k < NUM_OBJECTS; k++)
 		if (objects[k].oc_class == i)
 		    map->submappings[j].n_glyphs++;
 	    map->submappings[j].glyphs =
-	      (struct proxycb_get_glyph_mapping_res_symdef *)
+	      (struct nhproxy_cb_get_glyph_mapping_res_symdef *)
 	      alloc(map->submappings[j].n_glyphs *
 	      sizeof(*map->submappings[j].glyphs));
 	    for(k = l = 0; k < NUM_OBJECTS; k++)
 		if (objects[k].oc_class == i) {
 		    map->submappings[j].glyphs[l].rgbsym =
-		      RGB_SYM(rgb_colors[C(objects[k].oc_color)], oc_syms[i]);
+		      NHPROXY_RGB_SYM(rgb_colors[C(objects[k].oc_color)],
+		      oc_syms[i]);
 		    map->submappings[j].glyphs[l].description =
 		      obj_descr[k].oc_descr ?
 		      obj_descr[k].oc_descr : obj_descr[k].oc_name;
@@ -319,19 +321,19 @@ int first, next, glyph;
 
 static void
 get_glyph_mapping_cmap_submapping(submap, desc, first, next)
-struct proxycb_get_glyph_mapping_res_submapping *submap;
+struct nhproxy_cb_get_glyph_mapping_res_submapping *submap;
 char *desc;
 int first, next;
 {
     int i;
-    submap->symdef.rgbsym = RGB_SYM(RGB_TRANSPARENT, 0);
+    submap->symdef.rgbsym = NHPROXY_RGB_SYM(RGB_TRANSPARENT, 0);
     submap->symdef.description = desc;
     submap->n_glyphs = next - first;
-    submap->glyphs = (struct proxycb_get_glyph_mapping_res_symdef *)
+    submap->glyphs = (struct nhproxy_cb_get_glyph_mapping_res_symdef *)
       alloc(submap->n_glyphs * sizeof(*submap->glyphs));
     for(i = first; i < next; i++) {
 	submap->glyphs[i - first].rgbsym =
-	  RGB_SYM(rgb_colors[C(defsyms[i].color)], showsyms[i]);
+	  NHPROXY_RGB_SYM(rgb_colors[C(defsyms[i].color)], showsyms[i]);
 	submap->glyphs[i - first].description = defsyms[i].explanation;
     }
 }
@@ -375,13 +377,13 @@ int glyph;
 
 static void
 get_glyph_mapping_cmap(map)
-struct proxycb_get_glyph_mapping_res_mapping *map;
+struct nhproxy_cb_get_glyph_mapping_res_mapping *map;
 {
     int i, j, k, l;
     map->flags = "";
     map->base_mapping = -1;
     map->alt_glyph = NO_GLYPH;
-    map->symdef.rgbsym = RGB_SYM(RGB_TRANSPARENT, 0);
+    map->symdef.rgbsym = NHPROXY_RGB_SYM(RGB_TRANSPARENT, 0);
     map->symdef.description = "cmap";
     map->n_submappings = CMAP_NO_GROUP;
     if (cmap_idx[0].first_cmap)
@@ -391,7 +393,7 @@ struct proxycb_get_glyph_mapping_res_mapping *map;
 	    map->n_submappings++;
     if (cmap_idx[CMAP_NO_GROUP - 1].next_cmap != MAXPCHARS - MAXEXPCHARS)
 	map->n_submappings++;
-    map->submappings = (struct proxycb_get_glyph_mapping_res_submapping *)
+    map->submappings = (struct nhproxy_cb_get_glyph_mapping_res_submapping *)
       alloc(map->n_submappings * sizeof(*map->submappings));
     for(i = j = 0; /* i <= CMAP_NO_GROUP */; i++) {
 	k = i ? cmap_idx[i - 1].next_cmap : 0;
@@ -427,7 +429,7 @@ int glyph;
 
 static void
 get_glyph_mapping_explosions(map, base)
-struct proxycb_get_glyph_mapping_res_mapping *map;
+struct nhproxy_cb_get_glyph_mapping_res_mapping *map;
 int base;
 {
     int i, j;
@@ -435,19 +437,21 @@ int base;
     map->flags = explosion_types[0];
     map->base_mapping = -1;
     map->alt_glyph = NO_GLYPH;
-    map->symdef.rgbsym = RGB_SYM(rgb_colors[C(explcolors[0])], 0);
+    map->symdef.rgbsym = NHPROXY_RGB_SYM(rgb_colors[C(explcolors[0])], 0);
     map->symdef.description = "explosion";
     map->n_submappings = 1;
-    map->submappings = (struct proxycb_get_glyph_mapping_res_submapping *)
+    map->submappings = (struct nhproxy_cb_get_glyph_mapping_res_submapping *)
       alloc(map->n_submappings * sizeof(*map->submappings));
-    map->submappings->symdef.rgbsym = RGB_SYM(rgb_colors[C(explcolors[0])], 0);
+    map->submappings->symdef.rgbsym =
+      NHPROXY_RGB_SYM(rgb_colors[C(explcolors[0])], 0);
     map->submappings->symdef.description = "";
     map->submappings->n_glyphs = MAXEXPCHARS;
-    map->submappings->glyphs = (struct proxycb_get_glyph_mapping_res_symdef *)
+    map->submappings->glyphs = (struct nhproxy_cb_get_glyph_mapping_res_symdef *)
       alloc(map->submappings->n_glyphs * sizeof(*map->submappings->glyphs));
     for(i = 0; i < MAXEXPCHARS; i++) {
 	map->submappings->glyphs[i].rgbsym =
-	  RGB_SYM(rgb_colors[C(explcolors[0])], showsyms[i + S_explode1]);
+	  NHPROXY_RGB_SYM(rgb_colors[C(explcolors[0])],
+	  showsyms[i + S_explode1]);
 	map->submappings->glyphs[i].description =
 	  defsyms[i + S_explode1].explanation;
     }
@@ -456,7 +460,7 @@ int base;
 	map->flags = explosion_types[i];
 	map->base_mapping = base;
 	map->alt_glyph = NO_GLYPH;
-	map->symdef.rgbsym = RGB_SYM(rgb_colors[C(explcolors[i])], 0);
+	map->symdef.rgbsym = NHPROXY_RGB_SYM(rgb_colors[C(explcolors[i])], 0);
 	map->symdef.description = "";
 	map->n_submappings = 0;
 	map->submappings = NULL;
@@ -481,26 +485,27 @@ int glyph;
 
 static void
 get_glyph_mapping_zaps(map, base)
-struct proxycb_get_glyph_mapping_res_mapping *map;
+struct nhproxy_cb_get_glyph_mapping_res_mapping *map;
 int base;
 {
     int i, j;
     map->flags = zap_types[0];
     map->base_mapping = -1;
     map->alt_glyph = NO_GLYPH;
-    map->symdef.rgbsym = RGB_SYM(rgb_colors[C(zapcolors[0])], 0);
+    map->symdef.rgbsym = NHPROXY_RGB_SYM(rgb_colors[C(zapcolors[0])], 0);
     map->symdef.description = "zap";
     map->n_submappings = 1;
-    map->submappings = (struct proxycb_get_glyph_mapping_res_submapping *)
+    map->submappings = (struct nhproxy_cb_get_glyph_mapping_res_submapping *)
       alloc(map->n_submappings * sizeof(*map->submappings));
-    map->submappings->symdef.rgbsym = RGB_SYM(rgb_colors[C(zapcolors[0])], 0);
+    map->submappings->symdef.rgbsym =
+      NHPROXY_RGB_SYM(rgb_colors[C(zapcolors[0])], 0);
     map->submappings->symdef.description = "";
     map->submappings->n_glyphs = 4;
-    map->submappings->glyphs = (struct proxycb_get_glyph_mapping_res_symdef *)
+    map->submappings->glyphs = (struct nhproxy_cb_get_glyph_mapping_res_symdef *)
       alloc(map->submappings->n_glyphs * sizeof(*map->submappings->glyphs));
     for(i = 0; i < 4; i++) {
 	map->submappings->glyphs[i].rgbsym =
-	  RGB_SYM(rgb_colors[C(zapcolors[0])], showsyms[i + S_vbeam]);
+	  NHPROXY_RGB_SYM(rgb_colors[C(zapcolors[0])], showsyms[i + S_vbeam]);
 	map->submappings->glyphs[i].description =
 	  defsyms[i + S_vbeam].explanation;
     }
@@ -509,7 +514,7 @@ int base;
 	map->flags = zap_types[i];
 	map->base_mapping = base;
 	map->alt_glyph = NO_GLYPH;
-	map->symdef.rgbsym = RGB_SYM(rgb_colors[C(zapcolors[i])], 0);
+	map->symdef.rgbsym = NHPROXY_RGB_SYM(rgb_colors[C(zapcolors[i])], 0);
 	map->symdef.description = "";
 	map->n_submappings = 0;
 	map->submappings = NULL;
@@ -544,26 +549,27 @@ int base_glyphs, glyph;
 
 static void
 get_glyph_mapping_swallow(map, base)
-struct proxycb_get_glyph_mapping_res_mapping *map;
+struct nhproxy_cb_get_glyph_mapping_res_mapping *map;
 int base;
 {
     int i;
     map->flags = "";
     map->base_mapping = base;
     map->alt_glyph = NO_GLYPH;
-    map->symdef.rgbsym = RGB_SYM(RGB_TRANSPARENT, 0);
+    map->symdef.rgbsym = NHPROXY_RGB_SYM(RGB_TRANSPARENT, 0);
     map->symdef.description = "swallow";
     map->n_submappings = 1;
-    map->submappings = (struct proxycb_get_glyph_mapping_res_submapping *)
+    map->submappings = (struct nhproxy_cb_get_glyph_mapping_res_submapping *)
       alloc(map->n_submappings * sizeof(*map->submappings));
-    map->submappings->symdef.rgbsym = RGB_SYM(RGB_TRANSPARENT, 0);
+    map->submappings->symdef.rgbsym = NHPROXY_RGB_SYM(RGB_TRANSPARENT, 0);
     map->submappings->symdef.description = "";
     map->submappings->n_glyphs = SIZE(swallow_cmaps);
-    map->submappings->glyphs = (struct proxycb_get_glyph_mapping_res_symdef *)
+    map->submappings->glyphs =
+      (struct nhproxy_cb_get_glyph_mapping_res_symdef *)
       alloc(map->submappings->n_glyphs * sizeof(*map->submappings->glyphs));
     for(i = 0; i < SIZE(swallow_cmaps); i++) {
 	map->submappings->glyphs[i].rgbsym =
-	  RGB_SYM(RGB_TRANSPARENT, showsyms[swallow_cmaps[i].cmap]);
+	  NHPROXY_RGB_SYM(RGB_TRANSPARENT, showsyms[swallow_cmaps[i].cmap]);
 	map->submappings->glyphs[i].description = swallow_cmaps[i].description;
     }
 }
@@ -580,25 +586,26 @@ int glyph;
 
 static void
 get_glyph_mapping_warning(map)
-struct proxycb_get_glyph_mapping_res_mapping *map;
+struct nhproxy_cb_get_glyph_mapping_res_mapping *map;
 {
     int i;
     map->flags = "";
     map->base_mapping = -1;
     map->alt_glyph = NO_GLYPH;
-    map->symdef.rgbsym = RGB_SYM(RGB_TRANSPARENT, 0);
+    map->symdef.rgbsym = NHPROXY_RGB_SYM(RGB_TRANSPARENT, 0);
     map->symdef.description = "warning";
     map->n_submappings = 1;
-    map->submappings = (struct proxycb_get_glyph_mapping_res_submapping *)
+    map->submappings = (struct nhproxy_cb_get_glyph_mapping_res_submapping *)
       alloc(map->n_submappings * sizeof(*map->submappings));
-    map->submappings->symdef.rgbsym = RGB_SYM(RGB_TRANSPARENT, 0);
+    map->submappings->symdef.rgbsym = NHPROXY_RGB_SYM(RGB_TRANSPARENT, 0);
     map->submappings->symdef.description = "";
     map->submappings->n_glyphs = WARNCOUNT;
-    map->submappings->glyphs = (struct proxycb_get_glyph_mapping_res_symdef *)
+    map->submappings->glyphs =
+      (struct nhproxy_cb_get_glyph_mapping_res_symdef *)
       alloc(map->submappings->n_glyphs * sizeof(*map->submappings->glyphs));
     for(i = 0; i < WARNCOUNT; i++) {
 	map->submappings->glyphs[i].rgbsym =
-	  RGB_SYM(rgb_colors[C(def_warnsyms[i].color)], warnsyms[i]);
+	  NHPROXY_RGB_SYM(rgb_colors[C(def_warnsyms[i].color)], warnsyms[i]);
 	map->submappings->glyphs[i].description = def_warnsyms[i].explanation;
     }
 }
@@ -607,12 +614,12 @@ struct proxycb_get_glyph_mapping_res_mapping *map;
 static void
 print_glyph_mapping(fp, mapping)
 FILE *fp;
-struct proxycb_get_glyph_mapping_res *mapping;
+struct nhproxy_cb_get_glyph_mapping_res *mapping;
 {
     int i, j, k;
-    struct proxycb_get_glyph_mapping_res_mapping *m;
-    struct proxycb_get_glyph_mapping_res_submapping *s;
-    struct proxycb_get_glyph_mapping_res_symdef *g;
+    struct nhproxy_cb_get_glyph_mapping_res_mapping *m;
+    struct nhproxy_cb_get_glyph_mapping_res_submapping *s;
+    struct nhproxy_cb_get_glyph_mapping_res_symdef *g;
     fprintf(fp, "Glyph mapping:\n");
     fprintf(fp, "No. glyphs: %d\n", mapping->no_glyph);
     fprintf(fp, "Transparent RGBsym: 0x%lX\n", mapping->transparent);
@@ -683,14 +690,14 @@ set_glyph_mapping()
 #endif
 }
 
-struct proxycb_get_glyph_mapping_res *
+struct nhproxy_cb_get_glyph_mapping_res *
 get_glyph_mapping()
 {
-    static struct proxycb_get_glyph_mapping_res mapping;
+    static struct nhproxy_cb_get_glyph_mapping_res mapping;
     mapping.no_glyph = NO_GLYPH;
-    mapping.transparent = RGB_SYM(RGB_TRANSPARENT, 0);
+    mapping.transparent = NHPROXY_RGB_SYM(RGB_TRANSPARENT, 0);
     mapping.n_mappings = 8 + EXPL_MAX + NUM_ZAP + 2;
-    mapping.mappings = (struct proxycb_get_glyph_mapping_res_mapping *)
+    mapping.mappings = (struct nhproxy_cb_get_glyph_mapping_res_mapping *)
       alloc(mapping.n_mappings * sizeof(*mapping.mappings));
     /* Monsters */
     get_glyph_mapping_monsters(mapping.mappings + 0);
@@ -723,7 +730,7 @@ get_glyph_mapping()
 
 void
 free_glyph_mapping(mapping)
-struct proxycb_get_glyph_mapping_res *mapping;
+struct nhproxy_cb_get_glyph_mapping_res *mapping;
 {
     int i, j;
     for(i = 0; i < mapping->n_mappings; i++) {
