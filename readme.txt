@@ -82,6 +82,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 946306: do_look: bad glyph 3726 at (7, 16)
 -fixed bug 929220: Prayer and chi healing
 -fixed bug 946157: Water elementals created over lava on Flame mage quest
+-fixed bug 946161: Bad message when two-weaponing against a rust monster
 
 See history.txt for changes made in previous versions.
 
