@@ -6,9 +6,9 @@
 SlashEM*font:				variable
 SlashEM*display_file*font:		fixed
 SlashEM*tombstone*font:			fixed
-SlashEM*rip*font:			-*-times-medium-r-*-*-12-*-*-*-*-*-*-*
+SlashEM*text*rip*font:			-*-times-medium-r-*-*-12-*-*-*-*-*-*-*
 SlashEM*menu*font:			fixed
-!SlashEM*text*font:			fixed
+SlashEM*text*font:			fixed
 SlashEM*map*font:			nh10
 
 ! To use full-color tiles for the map, uncomment the tile file name.

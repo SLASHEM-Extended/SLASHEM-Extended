@@ -384,7 +384,9 @@ init_tiles(wp)
     }
 
     if (tile_image->height % tiles_per_col != 0 ||
-	    tile_image->width % tiles_per_row != 0) {
+	tile_image->height <= tiles_per_col ||
+	tile_image->width % tiles_per_row != 0 ||
+	tile_image->width <= tiles_per_row) {
 	char buf[BUFSIZ];
 	Sprintf(buf,
 		"%s appears to have a non-integer tile size.\n"
