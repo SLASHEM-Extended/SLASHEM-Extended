@@ -72,6 +72,7 @@ ver 0.0.7E4 [?] [Released by ?]
 -fixed bug 782005: Menu generated which picking objects up should scroll
 -GTK/proxy: Added caching of mapping between glyphs and tiles.
 -Proxy: Add asynchronous support.
+-fixed bug 821865: Invisible boulders in Sokoban
 
 See history.txt for changes made in previous versions.
 
