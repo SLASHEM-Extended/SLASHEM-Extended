@@ -116,6 +116,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 1035356: God gave Deathsword to "human" character
 -fixed bug 1024200: Problems about Thiefbane
 -fixed bug 1024202: Dipping a loadstone into a potion of amnesia
+-fixed bug 1038151: Power surge becomes permanent if lost
 
 See history.txt for changes made in previous versions.
 

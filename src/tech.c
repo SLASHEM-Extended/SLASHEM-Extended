@@ -234,6 +234,37 @@ tech_known(tech)
 	}
 	return FALSE;
 }
+
+/* Called to prematurely stop a technique */
+void
+aborttech(tech)
+{
+	int i;
+
+	i = get_tech_no(tech);
+	if (tech_list[i].t_inuse) {
+	    switch (tech_list[i].t_id) {
+		case T_RAGE:
+		    u.uhpmax -= tech_list[i].t_inuse - 1;
+		    if (u.uhpmax < 1)
+			u.uhpmax = 0;
+		    u.uhp -= tech_list[i].t_inuse - 1;
+		    if (u.uhp < 1)
+			u.uhp = 1;
+		    break;
+		case T_POWER_SURGE:
+		    u.uenmax -= tech_list[i].t_inuse - 1;
+		    if (u.uenmax < 1)
+			u.uenmax = 0;
+		    u.uen -= tech_list[i].t_inuse - 1;
+		    if (u.uen < 0)
+			u.uen = 0;
+		    break;
+	    }
+	    tech_list[i].t_inuse = 0;
+	}
+}
+
 /* Called to teach a new tech.  Level is starting tech level */
 void
 learntech(tech, mask, level)
@@ -280,6 +311,8 @@ learntech(tech, mask, level)
 	    }
 	    tech_list[i].t_intrinsic &= ~mask;
 	    if (!(tech_list[i].t_intrinsic & INTRINSIC)) {
+		if (tech_list[i].t_inuse)
+		    aborttech(tech);
 		tech_list[i].t_id = NO_TECH;
 		return;
 	    }
@@ -1562,16 +1595,17 @@ tech_timeout()
 void
 docalm()
 {
-	int i, n = 0;
+	int i, tech, n = 0;
 
-	for (i = 0; i < MAXTECH; i++)
-		if (techid(i) != NO_TECH && techt_inuse(i)) {
-			techt_inuse(i) = 0;
-			n++;
-		}
+	for (i = 0; i < MAXTECH; i++) {
+	    tech = techid(i);
+	    if (tech != NO_TECH && techt_inuse(i)) {
+		aborttech(tech);
+		n++;
+	    }
+	}
 	if (n)
-		You("calm down.");
-	return;
+	    You("calm down.");
 }
 
 static void
