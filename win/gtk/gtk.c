@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.53.2.3 2004-11-12 20:44:47 j_ali Exp $
+  $Id: gtk.c,v 1.53.2.4 2005-01-22 19:09:35 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1205,7 +1205,7 @@ focus_in(GtkWidget *widget, GdkEventFocus *event, gpointer data)
     if (!focus_top || w == focus_top->master ||
       g_slist_find(focus_top->slaves, w))
 	return 0;
-    if (focus_top->master)
+    if (focus_top->master && GTK_WIDGET_VISIBLE(focus_top->master))
 	gtk_window_present(focus_top->master);
     return 1;
 }

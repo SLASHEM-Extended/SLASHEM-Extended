@@ -87,6 +87,8 @@ ver 0.0.7E7 [?] [Released by ?]
 -fixed bug 1077355: game crashes with: "panic monsndx - could not index monster"
 -fixed bug 1098686: Restoring a mounted character wielding Sting can fail
 -fixed bug 1105100: Escaping from pits by polymorphing into a mind flayer
+-fixed bug 1107123: GTK Accepts any keypress as the default response to
+		    question
 
 See history.txt for changes made in previous versions.
 

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkyn.c,v 1.12 2003-12-28 18:43:40 j_ali Exp $
+  $Id: gtkyn.c,v 1.12.2.1 2005-01-22 19:09:35 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -96,12 +96,7 @@ yn_show_window(gpointer data)
     } else
 	sprintf(buf, "%s ", params.query);
 
-    params.isdir = FALSE;
-
-    params.w = window = nh_gtk_window_dialog(FALSE);
-    nh_position_popup_dialog(GTK_WIDGET(window));
-    nh_gtk_focus_set_master(GTK_WINDOW(window),
-      GTK_SIGNAL_FUNC(yn_key_press), 0, TRUE);
+    window = params.w;
     gtk_signal_connect(GTK_OBJECT(window), "destroy",
       GTK_SIGNAL_FUNC(yn_destroy), 0);
 
@@ -150,7 +145,7 @@ yn_show_window(gpointer data)
 	      "", FALSE, FALSE, NH_PAD);
 	    gtk_signal_connect(GTK_OBJECT(q), "clicked",
 	      GTK_SIGNAL_FUNC(yn_clicked), (gpointer)'*');
-	} else if (strstr(params.query, "In what direction")) {
+	} else if (params.isdir) {
 	    /* maybe direction */
 	    int i, j;
 	    struct {
@@ -214,7 +209,6 @@ yn_show_window(gpointer data)
 		      copts.num_pad ? (gpointer)np_dirstr[i][j].key : 
 			(gpointer)dirstr[i][j].key);
 		}
-	    params.isdir = TRUE;
 	}
     }
 
@@ -225,15 +219,25 @@ yn_show_window(gpointer data)
 char
 GTK_ext_yn_function(const char *query, const char *resp, CHAR_P def, int *count)
 {
-    int exiting;
+    int keysym = 0, exiting;
     guint timeout_id;
 
-    if (!nh_key_check()) {
+    while (nh_key_check()) {
+	keysym = nh_key_get();
+	keysym = yn_valid_response(keysym);
+    }
+
+    if (!keysym) {
 	params.query = query;
 	params.resp = resp;
 	params.def = def;
 	params.count = count;
 	params.watch = 0;
+	params.isdir = !*resp && strstr(query, "In what direction");
+	params.w = nh_gtk_window_dialog(FALSE);
+	nh_position_popup_dialog(GTK_WIDGET(params.w));
+	nh_gtk_focus_set_master(GTK_WINDOW(params.w),
+	  GTK_SIGNAL_FUNC(yn_key_press), 0, TRUE);
 	timeout_id = g_timeout_add(500, yn_show_window, 0);
 	exiting = main_hook(&params.watch);
 	g_source_remove(timeout_id);
@@ -245,7 +249,8 @@ GTK_ext_yn_function(const char *query, const char *resp, CHAR_P def, int *count)
 	    gtk_widget_destroy(params.w);
 	    params.w = 0;
 	}
+	keysym = nh_key_get();
     }
 
-    return nh_key_get();
+    return keysym;
 }
