@@ -347,6 +347,7 @@ ver 0.0.6E9 [?] [Released by ?]
 -Actioned feature request 536690: return pickaxes to 1handed.
 -Actioned feature request 494753: Restore probability of PYEC invocation.
 -Actioned feature request 422158: so painful to read, etc. from inventory.
+-fixed bug 704203: Finishing off drained corpse.
 
 ver 0.0.6E8 [January 24/2003] [Released by Ali]
 -fixed bug 233901: Gtk-Critical errors from gtk_main_quit.

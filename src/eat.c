@@ -478,7 +478,9 @@ boolean message;
 	} else
 		fpostfx(victual.piece);
 
-	if (!victual.piece->odrained)
+	if (victual.piece->odrained)
+		victual.piece->in_use = FALSE;
+	else
 	if (carried(victual.piece)) useup(victual.piece);
 	else useupf(victual.piece, 1L);
 	victual.piece = (struct obj *) 0;
