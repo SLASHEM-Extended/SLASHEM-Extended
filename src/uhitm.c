@@ -2325,7 +2325,7 @@ register struct attack *mattk;
 	}
 
 	mdef->mstrategy &= ~STRAT_WAITFORU; /* in case player is very fast */
-	if (tmp && noeffect) {
+	if (tmp && noeffect && !DEADMONSTER(mdef)) {
 	     You("don't seem to harm %s.", mon_nam(mdef));
 	     tmp = 0;
 	     return 1;

@@ -88,6 +88,7 @@ ver 0.0.7E6F2 [?] [Released by ?]
 -fixed bug 938859: Rate of fire affected by non-launcher weapon
 -fixed bug 929876: Monsters can pass between Sokoban bars
 -fixed bug 934073: Spurious "don't seem to harm" messages for Drow
+-fixed bug 926829: Vampires "don't seem to harm" when draining levels
 
 See history.txt for changes made in previous versions.
 
