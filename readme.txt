@@ -67,7 +67,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E6F3 [?] [Released by ?]
+ver 0.0.7E6F3 [November 13/2004] [Released by Ali]
 -fixed bug 923003: Invisible mirrors can be applied
 -fixed bug 916544: Wrong weight of corpses on Nightmare level
 -fixed bug 947369: Crash when multiple wands explode
