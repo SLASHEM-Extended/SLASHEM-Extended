@@ -38,6 +38,8 @@
 #endif
 
 
+int sdlgl_initialized = 0;
+
 /* main sdl surface */
 SDL_Surface *sdlgl_surf;
 
@@ -157,7 +159,6 @@ struct window_procs sdlgl_softw_procs =
 
 /* Display a warning/error.  These should have a trailing \n (unlike
  * the raw_print routines, see below).
- * !!!! FIXME: clear_locks
  */
 void sdlgl_warning(const char *str, ...)
 {
@@ -177,19 +178,23 @@ void sdlgl_warning(const char *str, ...)
 
 void sdlgl_error(const char *str, ...)
 {
-  va_list argptr;
-   
-  err_msg_buf[sizeof(err_msg_buf) - 1] = 0;
-  
-  va_start(argptr, str);
-  vsprintf(err_msg_buf, str, argptr);
-  va_end(argptr);
+  if (str[0])
+  {
+    va_list argptr;
+     
+    err_msg_buf[sizeof(err_msg_buf) - 1] = 0;
+    
+    va_start(argptr, str);
+    vsprintf(err_msg_buf, str, argptr);
+    va_end(argptr);
 
-  /* overflow ? */
-  assert(err_msg_buf[sizeof(err_msg_buf) - 1] == 0);
+    /* overflow ? */
+    assert(err_msg_buf[sizeof(err_msg_buf) - 1] == 0);
 
-  fprintf(stderr, "** " SDLGL_PROGRAM ": %s", err_msg_buf);
+    fprintf(stderr, "** " SDLGL_PROGRAM ": %s", err_msg_buf);
+  }
 
+  clearlocks();
   Sdlgl_exit_nhwindows("");
   terminate(EXIT_SUCCESS);
 
@@ -198,23 +203,27 @@ void sdlgl_error(const char *str, ...)
 
 void sdlgl_hangup(const char *str, ...)
 {
-  va_list argptr;
-   
-  err_msg_buf[sizeof(err_msg_buf) - 1] = 0;
-  
-  va_start(argptr, str);
-  vsprintf(err_msg_buf, str, argptr);
-  va_end(argptr);
+  if (str[0])
+  {
+    va_list argptr;
+     
+    err_msg_buf[sizeof(err_msg_buf) - 1] = 0;
+    
+    va_start(argptr, str);
+    vsprintf(err_msg_buf, str, argptr);
+    va_end(argptr);
 
-  /* overflow ? */
-  assert(err_msg_buf[sizeof(err_msg_buf) - 1] == 0);
+    /* overflow ? */
+    assert(err_msg_buf[sizeof(err_msg_buf) - 1] == 0);
 
-  fprintf(stderr, "!! " SDLGL_PROGRAM ": %s", err_msg_buf);
+    fprintf(stderr, "!! " SDLGL_PROGRAM ": %s", err_msg_buf);
+  }
 
   hangup(1);
 
   /*NOTREACHED*/
   
+  clearlocks();
   Sdlgl_exit_nhwindows("");
   terminate(EXIT_SUCCESS);
 
@@ -339,6 +348,8 @@ static void sdlgl_do_init_nhwindows(int *argcp, char **argv)
 
   if (sdlgl_surf == NULL)
   {
+    SDL_Quit();
+
     sdlgl_warning("Failed to set SDL/GL video mode %dx%d (%d bit, %s)\n",
         sdlgl_width, sdlgl_height, sdlgl_depth, 
         sdlgl_windowed ? "windowed" : "fullscreen");
@@ -372,6 +383,8 @@ static void sdlgl_do_init_nhwindows(int *argcp, char **argv)
 
   sdlgl_emul_startup();
   sdlgl_win_startup();
+
+  sdlgl_initialized = 1;
 }
 
 #ifdef GL_GRAPHICS
@@ -398,6 +411,11 @@ void Sdlgl_exit_nhwindows(const char *str)
 {
   if (str && str[0])
     Sdlgl_raw_print_bold(str);
+
+  if (! sdlgl_initialized)
+    return;
+
+  sdlgl_initialized = 0;
 
   sdlgl_win_shutdown();
   sdlgl_emul_shutdown();
@@ -436,9 +454,9 @@ void Sdlgl_mark_synch()
 void Sdlgl_wait_synch()
 {
   /* Unfortately, this routine may be called before we are
-   * initialised...
+   * initialized...
    */
-  if (! sdlgl_surf)
+  if (! sdlgl_initialized)
   {
     sdlgl_sleep(1000);
     return;

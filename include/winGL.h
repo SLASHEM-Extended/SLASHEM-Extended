@@ -109,8 +109,10 @@ typedef unsigned int GLuint;
  *  GL_MAIN
  */
 
-extern SDL_Surface *sdlgl_surf;
+extern int sdlgl_initialized;
 extern int sdlgl_software;
+
+extern SDL_Surface *sdlgl_surf;
 
 struct MenuItem
 {

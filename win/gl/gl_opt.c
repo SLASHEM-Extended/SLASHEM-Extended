@@ -10,6 +10,7 @@
 #include "hack.h"
 #include "dlb.h"
 #include "patchlevel.h"
+#include "date.h"
 
 #if defined(GL_GRAPHICS) || defined(SDL_GRAPHICS)
 
@@ -282,8 +283,7 @@ static void show_help_message(void)
       "\n"
       "Some standard NetHack options:\n"
 #else
-      /* !!! FIXME */
-      "Slash'EM 0.0.6E - SDL/GL window port\n"
+      "Slash'EM " VERSION_STRING " - SDL/GL window port\n"
       "See the homepage at http://slashem.sourceforge.net/\n"
       "\n"
       "Some standard Slash'EM options:\n"
@@ -297,9 +297,9 @@ static void show_help_message(void)
       "\n"
       
 #ifdef VANILLA_GLHACK
-      "Some glHack options:\n"
+      "Some glHack specific options:\n"
 #else
-      "Some SDL/GL options:\n"
+      "Some SDL/GL specific options:\n"
 #endif
       "    --mode 640x480  : specify the video mode.\n"
       "    --depth 24      : the video depth (bits per pixel).\n"
@@ -311,11 +311,7 @@ static void show_help_message(void)
       "the complete list of available options.\n"
   );
 
-  /* !!! FIXME: clear_locks ? */
-
-  Sdlgl_exit_nhwindows("");
-  terminate(EXIT_SUCCESS);
-
+  sdlgl_error("");
   /*NOTREACHED*/
 }
 
@@ -324,15 +320,11 @@ static void show_version_message(void)
 #ifdef VANILLA_GLHACK
   fprintf(stderr, "glHack version " GLHACK_VER_STR "\n");
 #else
-  /* !!! FIXME: use patchlevel.h */
-  fprintf(stderr, "Slash'EM version 0.0.6E (SDL/GL window port)\n");
+  fprintf(stderr, "Slash'EM version " VERSION_STRING
+          " (SDL/GL window port)\n");
 #endif
 
-  /* !!! FIXME: clear_locks ? */
-
-  Sdlgl_exit_nhwindows("");
-  terminate(EXIT_SUCCESS);
-
+  sdlgl_error("");
   /*NOTREACHED*/
 }
 
