@@ -141,6 +141,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 993420: Crashes when typing symbols on drop menu
 -fixed bug 1084366: ghoul queen don't has M2_FEMALE
 -fixed bug 1066530: Fired/thrown items get new inventory letter when retrieved
+-fixed bug 992244: Alt Gr key doesn't work
 
 See history.txt for changes made in previous versions.
 
