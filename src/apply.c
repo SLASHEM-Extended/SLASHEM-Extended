@@ -1051,7 +1051,7 @@ struct obj *obj;
 {
 	char buf[BUFSZ];
 	char qbuf[QBUFSZ];
-	boolean burn_single = FALSE; /* for lighting only a single candle */
+	boolean do_burn = TRUE;
 
 	if(Underwater) {
 		pline("This is not a diving lamp.");
@@ -1108,9 +1108,14 @@ struct obj *obj;
 
 		    if (obj->quan > 1L && (yn(qbuf) == 'n')) {
 		    	/* Check if player wants to light all the candles */
-			    (void) splitobj(obj, 1L);
-			    begin_burn(obj, FALSE);     
-			    burn_single = TRUE; /* splitobj later */
+			struct obj *rest;	     /* the remaining candles */
+			rest = splitobj(obj, 1L);
+			obj_extract_self(rest);      /* free from inv */
+			begin_burn(obj, FALSE);
+			/* shouldn't merge */
+			(void)hold_another_object(rest, "You drop %s!",
+					  doname(rest), (const char *)0);
+			do_burn = FALSE;
 		    }
 		    
 		    pline("%s flame%s burn%s%s",
@@ -1125,14 +1130,8 @@ struct obj *obj;
 			bill_dummy_object(obj);
 		    }
 		}
-		begin_burn(obj, FALSE);
-		if (burn_single) {
-		    obj_extract_self(obj);      /* free from inv */
-
-		    /* shouldn't merge */
-		    obj = hold_another_object(obj, "You drop %s!",
-				      doname(obj), (const char *)0);
-		}
+		if (do_burn)
+		    begin_burn(obj, FALSE);
 	}
 }
 
