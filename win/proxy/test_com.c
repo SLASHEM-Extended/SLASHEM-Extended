@@ -1,5 +1,5 @@
-/* $Id: test_com.c,v 1.1 2003-10-25 18:06:01 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001-2003 */
+/* $Id: test_com.c,v 1.1.2.1 2004-11-18 22:38:10 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2004 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 /*
@@ -273,6 +273,9 @@ void *get_parent_writeh()
     return (void *)_get_osfhandle(1);
 }
 #else	/* WIN32 */
+#include <sys/types.h>
+#include <sys/wait.h>
+
 static int pid;
 static int to_parent[2], to_child[2];
 

@@ -1,10 +1,13 @@
-/* $Id: test_com.h,v 1.1 2003-10-25 18:06:01 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001-2003 */
+/* $Id: test_com.h,v 1.1.2.1 2004-11-18 22:38:10 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2004 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 /*
  * Header file for test_com.c
  */
+
+#define FALSE	0
+#define TRUE	1
 
 extern int is_child;
 
