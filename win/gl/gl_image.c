@@ -19,29 +19,37 @@
 
 unsigned char pet_mark_bits[8] =
 {
-  0x00,  /* oooooooo */
-  0x6c,  /* oMMoMMoo */
-  0xfe,  /* MMMMMMMo */
-  0xfe,  /* MMMMMMMo */
-  0x7c,  /* oMMMMMoo */
-  0x38,  /* ooMMMooo */
-  0x10,  /* oooMoooo */
-  0x00   /* oooooooo */
+  0x00,  /* ........ */
+  0x6c,  /* .MM.MM.. */
+  0xfe,  /* MMMMMMM. */
+  0xfe,  /* MMMMMMM. */
+  0x7c,  /* .MMMMM.. */
+  0x38,  /* ..MMM... */
+  0x10,  /* ...M.... */
+  0x00   /* ........ */
 };
 
 unsigned char ridden_mark_bits[8] =
 {
-  0x00,  /* oooooooo */
-  0x6c,  /* oMMoMMoo */
-  0xfe,  /* MMMMMMMo */
-  0xfe,  /* MMMMMMMo */
-  0x7c,  /* oMMMMMoo */
-  0x38,  /* ooMMMooo */
-  0x10,  /* oooMoooo */
-  0x00   /* oooooooo */
+  0x00,  /* ........ */
+  0x6c,  /* .MM.MM.. */
+  0xfe,  /* MMMMMMM. */
+  0xfe,  /* MMMMMMM. */
+  0x7c,  /* .MMMMM.. */
+  0x38,  /* ..MMM... */
+  0x10,  /* ...M.... */
+  0x00   /* ........ */
 };
 
 unsigned char sdlgl_gamma_table[256];
+
+SDL_Cursor *sdlgl_cursor_main  = NULL;
+SDL_Cursor *sdlgl_cursor_left  = NULL;
+SDL_Cursor *sdlgl_cursor_right = NULL;
+SDL_Cursor *sdlgl_cursor_up    = NULL;
+SDL_Cursor *sdlgl_cursor_down  = NULL;
+SDL_Cursor *sdlgl_cursor_hand  = NULL;
+SDL_Cursor *sdlgl_cursor_cross = NULL;
 
 
 /*
@@ -64,12 +72,136 @@ char tile_16_face_dirs[400] =
 char tile_32_face_dirs[400] =
   "LLLLLL...LLLLLLLLLLLLLLLLLLL......LLLLLLLLRR..L.LR"
   "RL....L...RRRR....LLLR.RRRRRR...LLLLLLLLLL.LLLLLL."
-  ".LLLLLL......RR...L..LRRRL.R.LLLLLLLLLLLLLLLLLLLLL"
+  ".LLLLLL......RR...L..LRRRL.R.RLLLLLLLLLLLLLLLLLLLL"
   "LLLLL.LLL....................LLL.LL............RRR"
   "RRRRR........LL.LLLLLLLLLRR...L.L.LRRL.R...R.LL..L"
   "RL..........L.LL.....LR.....RRRRRR....L.R.L.R...LL"
   "LRL.RR.RRRRLRRRRRRL.LLLLL.LLLLLLLR........LL.L...R"
   "L..LRL..L.L.L.L....LL..LL.L.........L.L...........";
+
+
+/* ---------------------------------------------------------------- */
+
+
+static unsigned char cursor_up_bits[16 * 4] =
+{
+  0x01, 0x00, 0x01, 0x00,  /* .......o........ */
+  0x02, 0x80, 0x03, 0x80,  /* ......oMo....... */
+  0x04, 0x40, 0x07, 0xC0,  /* .....oMMMo...... */
+  0x08, 0x20, 0x0F, 0xE0,  /* ....oMMMMMo..... */
+  0x10, 0x10, 0x1F, 0xF0,  /* ...oMMMMMMMo.... */
+  0x20, 0x08, 0x3F, 0xF8,  /* ..oMMMMMMMMMo... */
+  0x40, 0x04, 0x7F, 0xFC,  /* .oMMMMMMMMMMMo.. */
+  0x80, 0x02, 0xFF, 0xFE,  /* oMMMMMMMMMMMMMo. */
+  0x7C, 0x7C, 0x7F, 0xFC,  /* .oooooMMMooooo.. */
+  0x04, 0x40, 0x07, 0xC0,  /* .....oMMMo...... */
+  0x04, 0x40, 0x07, 0xC0,  /* .....oMMMo...... */
+  0x04, 0x40, 0x07, 0xC0,  /* .....oMMMo...... */
+  0x04, 0x40, 0x07, 0xC0,  /* .....oMMMo...... */
+  0x04, 0x40, 0x07, 0xC0,  /* .....oMMMo...... */
+  0x04, 0x40, 0x07, 0xC0,  /* .....oMMMo...... */
+  0x02, 0x80, 0x03, 0x80   /* ......oMo....... */
+};
+
+static unsigned char cursor_down_bits[16 * 4] =
+{
+  0x02, 0x80, 0x03, 0x80,  /* ......oMo....... */
+  0x04, 0x40, 0x07, 0xC0,  /* .....oMMMo...... */
+  0x04, 0x40, 0x07, 0xC0,  /* .....oMMMo...... */
+  0x04, 0x40, 0x07, 0xC0,  /* .....oMMMo...... */
+  0x04, 0x40, 0x07, 0xC0,  /* .....oMMMo...... */
+  0x04, 0x40, 0x07, 0xC0,  /* .....oMMMo...... */
+  0x04, 0x40, 0x07, 0xC0,  /* .....oMMMo...... */
+  0x7C, 0x7C, 0x7F, 0xFC,  /* .oooooMMMooooo.. */
+  0x80, 0x02, 0xFF, 0xFE,  /* oMMMMMMMMMMMMMo. */
+  0x40, 0x04, 0x7F, 0xFC,  /* .oMMMMMMMMMMMo.. */
+  0x20, 0x08, 0x3F, 0xF8,  /* ..oMMMMMMMMMo... */
+  0x10, 0x10, 0x1F, 0xF0,  /* ...oMMMMMMMo.... */
+  0x08, 0x20, 0x0F, 0xE0,  /* ....oMMMMMo..... */
+  0x04, 0x40, 0x07, 0xC0,  /* .....oMMMo...... */
+  0x02, 0x80, 0x03, 0x80,  /* ......oMo....... */
+  0x01, 0x00, 0x01, 0x00   /* .......o........ */
+};
+
+static unsigned char cursor_left_bits[16 * 4] =
+{
+  0x01, 0x00, 0x01, 0x00,  /* .......o........ */
+  0x02, 0x80, 0x03, 0x80,  /* ......oMo....... */
+  0x04, 0x80, 0x07, 0x80,  /* .....oMMo....... */
+  0x08, 0x80, 0x0F, 0x80,  /* ....oMMMo....... */
+  0x10, 0x80, 0x1F, 0x80,  /* ...oMMMMo....... */
+  0x20, 0xFE, 0x3F, 0xFE,  /* ..oMMMMMooooooo. */
+  0x40, 0x01, 0x7F, 0xFF,  /* .oMMMMMMMMMMMMMo */
+  0x80, 0x00, 0xFF, 0xFF,  /* oMMMMMMMMMMMMMMM */
+  0x40, 0x01, 0x7F, 0xFF,  /* .oMMMMMMMMMMMMMo */
+  0x20, 0xFE, 0x3F, 0xFE,  /* ..oMMMMMooooooo. */
+  0x10, 0x80, 0x1F, 0x80,  /* ...oMMMMo....... */
+  0x08, 0x80, 0x0F, 0x80,  /* ....oMMMo....... */
+  0x04, 0x80, 0x07, 0x80,  /* .....oMMo....... */
+  0x02, 0x80, 0x03, 0x80,  /* ......oMo....... */
+  0x01, 0x00, 0x01, 0x00,  /* .......o........ */
+  0x00, 0x00, 0x00, 0x00   /* ................ */
+};
+
+static unsigned char cursor_right_bits[16 * 4] =
+{
+  0x00, 0x80, 0x00, 0x80,  /* ........o....... */
+  0x01, 0x40, 0x01, 0xC0,  /* .......oMo...... */
+  0x01, 0x20, 0x01, 0xE0,  /* .......oMMo..... */
+  0x01, 0x10, 0x01, 0xF0,  /* .......oMMMo.... */
+  0x01, 0x08, 0x01, 0xF8,  /* .......oMMMMo... */
+  0x7F, 0x04, 0x7F, 0xFC,  /* .oooooooMMMMMo.. */
+  0x80, 0x02, 0xFF, 0xFE,  /* oMMMMMMMMMMMMMo. */
+  0x00, 0x01, 0xFF, 0xFF,  /* MMMMMMMMMMMMMMMo */
+  0x80, 0x02, 0xFF, 0xFE,  /* oMMMMMMMMMMMMMo. */
+  0x7F, 0x04, 0x7F, 0xFC,  /* .oooooooMMMMMo.. */
+  0x01, 0x08, 0x01, 0xF8,  /* .......oMMMMo... */
+  0x01, 0x10, 0x01, 0xF0,  /* .......oMMMo.... */
+  0x01, 0x20, 0x01, 0xE0,  /* .......oMMo..... */
+  0x01, 0x40, 0x01, 0xC0,  /* .......oMo...... */
+  0x00, 0x80, 0x00, 0x80,  /* ........o....... */
+  0x00, 0x00, 0x00, 0x00   /* ................ */
+};
+
+static unsigned char cursor_hand_bits[16 * 4] =
+{
+  0x06, 0x00, 0x06, 0x00,  /* .....oo......... */
+  0x09, 0x00, 0x0F, 0x00,  /* ....oMMo........ */
+  0x09, 0x00, 0x0F, 0x00,  /* ....oMMo........ */
+  0x09, 0x00, 0x0F, 0x00,  /* ....oMMo........ */
+  0x09, 0xC0, 0x0F, 0xC0,  /* ....oMMooo...... */
+  0x09, 0x38, 0x0F, 0xF8,  /* ....oMMoMMooo... */
+  0x69, 0x26, 0x6F, 0xFE,  /* .oo.oMMoMMoMMoo. */
+  0x98, 0x05, 0xFF, 0xFF,  /* oMMooMMMMMMMMoMo */
+  0x88, 0x01, 0xFF, 0xFF,  /* oMMMoMMMMMMMMMMo */
+  0x48, 0x01, 0x7F, 0xFF,  /* .oMMoMMMMMMMMMMo */
+  0x20, 0x02, 0x3F, 0xFE,  /* ..oMMMMMMMMMMMo. */
+  0x20, 0x02, 0x3F, 0xFE,  /* ..oMMMMMMMMMMMo. */
+  0x10, 0x04, 0x1F, 0xFC,  /* ...oMMMMMMMMMo.. */
+  0x08, 0x04, 0x0F, 0xFC,  /* ....oMMMMMMMMo.. */
+  0x04, 0x08, 0x07, 0xF8,  /* .....oMMMMMMo... */
+  0x04, 0x08, 0x07, 0xF8   /* .....oMMMMMMo... */
+};
+
+static unsigned char cursor_cross_bits[16 * 4] =
+{
+  0x00, 0x00, 0x00, 0x00,  /* ................ */
+  0x08, 0x10, 0x08, 0x10,  /* ....o......o.... */
+  0x14, 0x28, 0x1C, 0x38,  /* ...oMo....oMo... */
+  0x22, 0x44, 0x3E, 0x7C,  /* ..oMMMo..oMMMo.. */
+  0x11, 0x88, 0x1F, 0xF8,  /* ...oMMMooMMMo... */
+  0x08, 0x10, 0x0F, 0xF0,  /* ....oMMMMMMo.... */
+  0x04, 0x20, 0x07, 0xE0,  /* .....oMMMMo..... */
+  0x04, 0x20, 0x07, 0xE0,  /* .....oMMMMo..... */
+  0x08, 0x10, 0x0F, 0xF0,  /* ....oMMMMMMo.... */
+  0x11, 0x88, 0x1F, 0xF8,  /* ...oMMMooMMMo... */
+  0x22, 0x44, 0x3E, 0x7C,  /* ..oMMMo..oMMMo.. */
+  0x14, 0x28, 0x1C, 0x38,  /* ...oMo....oMo... */
+  0x08, 0x10, 0x08, 0x10,  /* ....o......o.... */
+  0x00, 0x00, 0x00, 0x00,  /* ................ */
+  0x00, 0x00, 0x00, 0x00,  /* ................ */
+  0x00, 0x00, 0x00, 0x00   /* ................ */
+};
 
 
 /* ---------------------------------------------------------------- */
@@ -175,6 +307,84 @@ void sdlgl_generate_gamma_table(void)
   }
 }
  
+
+/* ---------------------------------------------------------------- */
+
+static SDL_Cursor *make_sdl_cursor(unsigned char *combi)
+{
+  unsigned char data[256];
+  unsigned char mask[256];
+
+  int y;
+
+  /* separate the data & mask from the combined image */
+  for (y = 0; y < 16; y++)
+  {
+    data[y * 2 + 0] = combi[y * 4 + 0];
+    data[y * 2 + 1] = combi[y * 4 + 1];
+    mask[y * 2 + 0] = combi[y * 4 + 2];
+    mask[y * 2 + 1] = combi[y * 4 + 3];
+  }
+
+  return SDL_CreateCursor(data, mask, 16, 16, 8, 8);
+}
+
+void sdlgl_init_mouse_cursors(void)
+{
+  sdlgl_cursor_main = SDL_GetCursor();
+
+  sdlgl_cursor_up    = make_sdl_cursor(cursor_up_bits); 
+  sdlgl_cursor_down  = make_sdl_cursor(cursor_down_bits); 
+  sdlgl_cursor_left  = make_sdl_cursor(cursor_left_bits); 
+  sdlgl_cursor_right = make_sdl_cursor(cursor_right_bits); 
+  sdlgl_cursor_hand  = make_sdl_cursor(cursor_hand_bits); 
+  sdlgl_cursor_cross = make_sdl_cursor(cursor_cross_bits); 
+}
+
+void sdlgl_free_mouse_cursors(void)
+{
+  SDL_SetCursor(sdlgl_cursor_main);
+   
+  /* the main cursor is made by SDL itself */
+  sdlgl_cursor_main = NULL;
+
+  if (sdlgl_cursor_up)
+  {
+    SDL_FreeCursor(sdlgl_cursor_up);
+    sdlgl_cursor_up = NULL;
+  }
+
+  if (sdlgl_cursor_down)
+  {
+    SDL_FreeCursor(sdlgl_cursor_down);
+    sdlgl_cursor_down = NULL;
+  }
+
+  if (sdlgl_cursor_left)
+  {
+    SDL_FreeCursor(sdlgl_cursor_left);
+    sdlgl_cursor_left = NULL;
+  }
+
+  if (sdlgl_cursor_right)
+  {
+    SDL_FreeCursor(sdlgl_cursor_right);
+    sdlgl_cursor_right = NULL;
+  }
+
+  if (sdlgl_cursor_hand)
+  {
+    SDL_FreeCursor(sdlgl_cursor_hand);
+    sdlgl_cursor_hand = NULL;
+  }
+
+  if (sdlgl_cursor_cross)
+  {
+    SDL_FreeCursor(sdlgl_cursor_cross);
+    sdlgl_cursor_cross = NULL;
+  }
+}
+
 
 /* ---------------------------------------------------------------- */
 

@@ -372,6 +372,8 @@ static void sdlgl_do_init_nhwindows(int *argcp, char **argv)
   sdlgl_tile_startup();
   sdlgl_font_startup();
 
+  sdlgl_init_mouse_cursors();
+
   /* show the logo & copyright */
   if (iflags.wc_splash_screen)
   {
@@ -419,6 +421,8 @@ void Sdlgl_exit_nhwindows(const char *str)
 
   sdlgl_initialized = 0;
 
+  sdlgl_free_mouse_cursors();
+
   sdlgl_win_shutdown();
   sdlgl_emul_shutdown();
   sdlgl_font_shutdown();
@@ -455,7 +459,7 @@ void Sdlgl_mark_synch()
 
 void Sdlgl_wait_synch()
 {
-  /* Unfortately, this routine may be called before we are
+  /* Unfortunately, this routine may be called before we are
    * initialized...
    */
   if (! sdlgl_initialized)
@@ -594,6 +598,8 @@ int sdlgl_get_poskey(int flags, int *x, int *y, int *mod)
         if (repeat && sdlgl_key_repeat == 0)
           break;
 
+        sdlgl_update_mouse_location(0);
+
         /* we eat some keys for our own purposes, like zooming the map
          * in/out or scrolling through text or menu windows.
          */
@@ -643,15 +649,26 @@ int sdlgl_get_poskey(int flags, int *x, int *y, int *mod)
         break;
       }
 
+      case SDL_KEYUP:
+        cur_key_sym = SDLK_LAST;
+        sdlgl_update_mouse_location(0);
+        break;
+
       case SDL_QUIT:
         sdlgl_hangup("Received QUIT signal from SDL.\n");
         break;
 
-      case SDL_KEYUP:
-        cur_key_sym = SDLK_LAST;
+      case SDL_MOUSEMOTION:
+        sdlgl_internal_motion_handler(&ev.motion);
         break;
 
       case SDL_MOUSEBUTTONDOWN:
+      {
+        int window;
+
+        if (sdlgl_internal_button_handler(&ev.button))
+          break;
+
         switch (ev.button.button)
         {
           case SDL_BUTTON_LEFT: 
@@ -670,15 +687,28 @@ int sdlgl_get_poskey(int flags, int *x, int *y, int *mod)
         *x = ev.button.x;
         *y = ev.button.y;
 
-        if (! sdlgl_map_find_click(x, y))
+        if (sdlgl_top_win != WIN_ERR)
+          window = sdlgl_top_win;
+        else
+          window = sdlgl_map_win;
+
+        if (! sdlgl_find_click(window, x, y))
           continue;
 
         /* return the mouse click */
         return 0;
+      }
 
       case SDL_ACTIVEEVENT:
         if (ev.active.gain)
+        {
+          sdlgl_update_mouse_location(0);
           sdlgl_flush();
+        }
+        else
+        {
+          sdlgl_update_mouse_location(1);
+        }
         break;
 
 #if (SDL_MAJOR_VERSION * 100 + SDL_MINOR_VERSION) >= 102

@@ -43,6 +43,7 @@ int sdlgl_reformat    = 0;
 int sdlgl_shrink_wrap = 0;
 int sdlgl_flipping    = 0;
 int sdlgl_jump_scroll = 0;
+int sdlgl_invis_fx    = 0;
 
 
 enum OptionValueType
@@ -127,6 +128,9 @@ static struct LocalOption local_option_list[] =
 
   { "flipping",  "Flip monster tiles to match their movement",
     &sdlgl_flipping, VALTYPE_BOOLEAN, LOPT_FILE_ONLY },
+
+  { "invisfx",  "Draw invisible but seen monsters translucent",
+    &sdlgl_invis_fx, VALTYPE_BOOLEAN, LOPT_FILE_ONLY },
 
   { "jumpscroll",  "Scroll the map window in large steps",
     &sdlgl_jump_scroll, VALTYPE_BOOLEAN, LOPT_FILE_ONLY },

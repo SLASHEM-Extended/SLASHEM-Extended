@@ -146,6 +146,40 @@ void sdlgl_create_map(struct TextWindow *win, int w, int h)
   }
 }
 
+static int glyph_is_translucent(int glyph_fg, int lev_x, int lev_y)
+{
+  /* The glyph can be drawn 50% translucent under these conditions:
+   *   (a) it is a monster or the player.
+   *   (b) it is invisible.
+   *   (c) the player can see invisible.
+   *   (d) if it wasn't invisible, the player would be able to see it
+   *       using normal vision.
+   */
+  
+  struct monst *mtmp;
+
+  if (glyph_fg == NO_GLYPH)
+    return 0;
+  
+  assert(glyph_fg <= MAX_GLYPH);
+
+  /* handle the player */
+  if (lev_x == u.ux && lev_y == u.uy)
+  {
+    return canseeself() && Invis;
+  }
+
+  if (! glyph_is_monster(glyph_fg))
+    return 0;
+
+  mtmp = m_at(lev_x, lev_y);
+
+  if (! mtmp)
+    return 0;
+
+  return knowninvisible(mtmp);
+}
+
 static int glyph_is_dungeon(glyphidx_t glyph)
 {
   if (! glyph_is_cmap(glyph))
@@ -171,7 +205,7 @@ static int glyph_is_dungeon(glyphidx_t glyph)
   }
 
   if (glyph >= cmap_to_glyph(S_explode1) &&
-      glyph <= cmap_to_glyph(S_explode8))
+      glyph <= cmap_to_glyph(S_explode9))
   {
     return 0;
   }
@@ -179,9 +213,19 @@ static int glyph_is_dungeon(glyphidx_t glyph)
   return 1;
 }
 
-/*
- * this routine is based on some Slash'EM code.
- */
+static int back_to_trap(XCHAR_P lev_x, XCHAR_P lev_y)
+{
+  struct trap *trap = t_at(lev_x, lev_y);
+
+  if (!trap || !trap->tseen)
+    return NO_GLYPH;
+
+  return trap_to_glyph(trap);
+}
+
+#define cannot_see(x,y)  \
+    (Blind || (viz_array && !cansee((x), (y))))
+
 static void make_double_glyph(struct GlyphPair *gpair,
     XCHAR_P lev_x, XCHAR_P lev_y, glyphidx_t glyph)
 {
@@ -196,43 +240,35 @@ static void make_double_glyph(struct GlyphPair *gpair,
   {
     back = back_to_glyph(lev_x, lev_y);
 
-    /* AJA: This logic would be better of kept in the main NetHack
-     * code IMHO.  Perhaps an alternate back_to_glyph() routine would
-     * be the way to go...
-     */
-    if (Blind || (viz_array && !cansee(lev_x, lev_y)))
+    /* handle traps */
+    if (back == NO_GLYPH ||
+        back == cmap_to_glyph(S_room) ||
+        back == cmap_to_glyph(S_stone) ||
+        back == cmap_to_glyph(S_corr) ||
+        back == cmap_to_glyph(S_litcorr))
     {
-      struct rm *lev = &levl[lev_x][lev_y];
+      int tt = back_to_trap(lev_x, lev_y);
 
-      if (
-#ifdef DISPLAY_LAYERS
-          lev->mem_obj 
-#else
-          glyph_is_object(lev->glyph) 
-#endif
-          && !lev->waslit)
-      {
-        if (back == cmap_to_glyph(S_room))
-          back = cmap_to_glyph(S_stone);
-        else if (back == cmap_to_glyph(S_litcorr))
-          back = cmap_to_glyph(S_corr);
-      }
-      else
-      {
-#ifdef DISPLAY_LAYERS
-        back = cmap_to_glyph(lev->mem_bg);
-#else
-        back = lev->glyph;
-#endif
-      }
+      if (tt != NO_GLYPH && tt != glyph)
+        back = tt;
+    }
+
+    if (!levl[lev_x][lev_y].waslit && cannot_see(lev_x, lev_y))
+    {
+      if (back == cmap_to_glyph(S_room))
+        back = cmap_to_glyph(S_stone);
+      else if (back == cmap_to_glyph(S_litcorr))
+        back = cmap_to_glyph(S_corr);
     }
   }
 
-  /* In the GL renderer, S_stone (which is an all-black tile) never
-   * needs to be drawn.
+  /* S_stone (a fully black tile) never needs to be drawn.
    */
   if (back == cmap_to_glyph(S_stone))
     back = NO_GLYPH;
+  
+  if (back == glyph)
+    glyph = NO_GLYPH;
 
   gpair->fg = glyph;
   gpair->bg = back;
@@ -278,6 +314,7 @@ static void glyph_to_tilepair(struct TextWindow *win,
     struct GlyphPair *glyph, int x, int y)
 {
   tileidx_t fg, mg, bg;
+  tileflags_t flags = 0;
 
   int lev_x = x;
   int lev_y = win->base->total_h - 1 - y;
@@ -329,7 +366,14 @@ static void glyph_to_tilepair(struct TextWindow *win,
       dx = dx * -sdlgl_mon_tile_face_dir(fg);
 
       if (dx > 0)
-        fg |= TILE_FLIPX;
+        flags |= TILE_F_FLIPX;
+    }
+
+    /* support for translucent invisibles */
+    if (sdlgl_invis_fx && iflags.wc_tile_height >= 32)
+    {
+      if (glyph_is_translucent(glyph_fg, lev_x, lev_y))
+        flags |= TILE_F_TRANS50;
     }
   }
 
@@ -349,14 +393,12 @@ static void glyph_to_tilepair(struct TextWindow *win,
     else
       mg = glyph2tile[glyph->bg];
 
-#if 0  /* DEBUGGING */
-    bg = Fl_Mine;
-#else
     bg = 
 #ifdef VANILLA_GLHACK
       In_mines(&u.uz) ? Fl_Mine :
          In_sokoban(&u.uz) ? Fl_Sokoban :
          Is_knox(&u.uz) ? Fl_Knox :
+        (In_V_tower(&u.uz) || In_W_tower(lev_x, lev_y, &u.uz)) ? Fl_Tower :
          In_hell(&u.uz) ? Fl_Hell :
          In_quest(&u.uz) ? Fl_Quest :
          In_endgame(&u.uz) ? Fl_Astral :
@@ -370,10 +412,9 @@ static void glyph_to_tilepair(struct TextWindow *win,
 #endif
     /* otherwise */
          glyph2tile[cmap_to_glyph(S_room)];
-#endif
   }
 
-  sdlgl_store_tile(win->base, x, y, fg, mg, bg);
+  sdlgl_store_tile(win->base, x, y, fg, mg, bg, flags);
 }
 
 static void update_map_extras(struct TextWindow *win,
@@ -389,7 +430,7 @@ static void update_map_extras(struct TextWindow *win,
 
     /* determine if heart is placed on left or right side */
     if (sdlgl_flipping && ! base->is_text &&
-        (base->tiles[(int)y * base->total_w + x].fg & TILE_FLIPX))
+        (base->tiles[(int)y * base->total_w + x].flags & TILE_F_FLIPX))
     {
       on_left = 1;
     }
@@ -574,7 +615,7 @@ static void update_jail(struct TextWindow *win)
  
   if (abs(win->jail_x) > extra_x)
     win->jail_x = sgn(win->jail_x) * extra_x;
-      
+   
   if (abs(win->jail_y) > extra_y)
     win->jail_y = sgn(win->jail_y) * extra_y;
    
@@ -913,17 +954,17 @@ void Sdlgl_update_positionbar(char *posbar)
 
 /* returns 1 if found (updating the x/y coords), otherwise 0.
  */
-int sdlgl_map_find_click(int *x, int *y)
+int sdlgl_find_click(int window, int *x, int *y)
 {
   struct TextWindow *win;
   struct TileWindow *base;
 
   int xx, yy;
   
-  if (sdlgl_map_win == WIN_ERR)
+  if (window == WIN_ERR)
     return 0;
 
-  win = text_wins[sdlgl_map_win];
+  win = text_wins[window];
   if (! win || ! win->base)
     return 0;
 
@@ -947,6 +988,114 @@ int sdlgl_map_find_click(int *x, int *y)
   return 1;
 }
 
+/*
+ * Pan the map by the given offset.  The dx/dy values have the
+ * following meanings (in absolute value) :
+ *
+ *    0  -  no change (but compute anyway).
+ *    1  -  move by a single tile.
+ *    2  -  move by a bunch of tiles (5 or so).
+ *    3  -  move by a "page" (the window size).
+ *    4  -  move as far as possible.
+ */
+void sdlgl_pan_map_window(int dx, int dy)
+{
+  struct TextWindow *win;
+
+  int tw, th;
+  int show_w, show_h;
+  int map_w, map_h;
+
+  if (sdlgl_map_win == WIN_ERR)
+    return;
+
+  win = text_wins[sdlgl_map_win];
+  assert(win);
+  assert(win->base);
+
+  if (win->base->is_text)
+    return;
+
+  tw = win->base->scale_w;
+  th = win->base->scale_h;
+
+  show_w = max(1, win->base->scr_w / tw);
+  show_h = max(1, win->base->scr_h / th);
+
+  map_w = win->base->total_w * win->base->scale_w +
+          win->base->total_h * win->base->scale_skew;
+  map_h = win->base->total_h * win->base->scale_h;
+
+  switch (abs(dx))
+  {
+    case 2:
+      dx = sgn(dx) * min(6, show_w);
+      break;
+
+    case 3:
+      dx = sgn(dx) * (show_w - 1);
+      break;
+
+    case 4:
+      dx = sgn(dx) * 999;
+      break;
+  }
+
+  switch (abs(dy))
+  {
+    case 2:
+      dy = sgn(dy) * min(4, show_h);
+      break;
+
+    case 3:
+      dy = sgn(dy) * (show_h - 1);
+      break;
+        
+    case 4:
+      dy = sgn(dy) * 999;
+      break;
+  }
+
+  dx *= tw;
+  dy *= th;
+
+  /* limit the amount moved so that the map stays on-screen.
+   */
+  map_w = max(0, map_w - win->base->scr_w);
+  map_h = max(0, map_h - win->base->scr_h);
+   
+  if (dx < 0 && win->map_px + dx < -2 * tw)
+    dx = min(0, -2 * tw - win->map_px);
+
+  if (dx > 0 && win->map_px + dx > map_w + 2 * tw)
+    dx = max(0, map_w + 2 * tw - win->map_px);
+
+  if (dy < 0 && win->map_py + dy < -2 * th)
+    dy = min(0, -2 * th - win->map_py);
+
+  if (dy > 0 && win->map_py + dy > map_h + 2 * th)
+    dy = max(0, map_h + 2 * th - win->map_py);
+
+  /* update jail center */
+
+  if (dx < 0)
+    win->jail_x = min(0, win->jail_x + -dx);
+  else if (dx > 0)
+    win->jail_x = max(0, win->jail_x - dx);
+   
+  if (dy < 0)
+    win->jail_y = min(0, win->jail_y + -dy);
+  else if (dy > 0)
+    win->jail_y = max(0, win->jail_y - dy);
+   
+  /* update panning */
+
+  win->map_px += dx;
+  win->map_py += dy;
+
+  sdlgl_set_pan(win->base, win->map_px, win->map_py);
+  sdlgl_flush();
+}
 
 #endif /* GL_GRAPHICS */
 /*gl_map.c*/

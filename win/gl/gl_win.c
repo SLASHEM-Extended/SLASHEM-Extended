@@ -30,6 +30,9 @@ static int textwin_num = 0;
 int sdlgl_map_win = WIN_ERR;
 int sdlgl_top_win = WIN_ERR;
 
+struct MouseLocation sdlgl_mouseloc = { MACT_AWAY, 0, 0, WIN_ERR };
+
+
 #define MORE_STR  "[More]"
 #define MORE_LEN  6
 
@@ -83,6 +86,8 @@ winid Sdlgl_create_nhwindow(int type)
   newwin = text_wins[newid] = sdlgl_new_textwin(type);
   textwin_num++;
 
+  sdlgl_update_mouse_location(0);
+
   return newid;
 }
 
@@ -109,6 +114,8 @@ void Sdlgl_destroy_nhwindow(winid window)
 
   text_wins[window] = NULL;
   textwin_num--;
+
+  sdlgl_update_mouse_location(0);
 }
 
 void Sdlgl_clear_nhwindow(winid window)
@@ -804,29 +811,201 @@ void sdlgl_remove_scrollback(void)
   sdlgl_flush();
 }
 
+void sdlgl_update_mouse_location(int lost_focus)
+{
+  int x, y;
+  int old_action = sdlgl_mouseloc.action;
+  int idx;
+  int alt;
+
+  struct TextWindow *win;
+  struct TileWindow *base;
+ 
+  (void) SDL_GetMouseState(&x, &y);
+
+  y = sdlgl_height - 1 - y;
+
+  sdlgl_mouseloc.x = x;
+  sdlgl_mouseloc.y = y;
+
+  if (lost_focus || x < 0 || y < 0 || 
+      x >= sdlgl_width || y >= sdlgl_height)
+  {
+    sdlgl_mouseloc.action = MACT_AWAY;
+    sdlgl_mouseloc.window = WIN_ERR;
+    
+    if (old_action != sdlgl_mouseloc.action)
+      SDL_SetCursor(sdlgl_cursor_main);
+
+    return;  
+  }
+
+  /* find the containing window (if any) */
+  
+  win = NULL;
+  base = NULL;
+
+  for (idx = MAXWIN-1; idx >= 0; idx--)
+  {
+    if (! text_wins[idx])
+      continue;
+
+    win = text_wins[idx];
+    base = win->base;
+
+    if (! base || base->scr_depth <= 0)
+      continue;
+
+    if (x >= base->scr_x && x < base->scr_x + base->scr_w &&
+        y >= base->scr_y && y < base->scr_y + base->scr_h)
+    {
+      break;  /* found it */
+    }
+  }
+
+  sdlgl_mouseloc.action = MACT_NORMAL;
+  sdlgl_mouseloc.window = WIN_ERR;
+
+  if (idx >= 0)
+  {
+    int use_dirs = 0;
+    
+    sdlgl_mouseloc.window = idx;
+
+    alt = SDL_GetModState() & (KMOD_ALT | KMOD_META);
+
+    assert(win);
+    assert(base);
+
+    switch (win->type)
+    {
+      case NHW_TEXT:
+        use_dirs = 1;
+        break;
+
+      case NHW_MENU:
+        if (win->is_menu == 0)
+        {
+          use_dirs = 1;
+          break;
+        }
+        /* FALL THROUGH */
+
+      case NHW_MAP:
+        use_dirs = alt ? 1 : 0;
+        break;
+
+      default:
+        break;
+    }
+
+    if (use_dirs)
+    {
+      /* figure out what direction to scroll based on where the mouse
+       * position is in the window.
+       */
+      int px = x - base->scr_x;
+      int py = y - base->scr_y;
+
+      int A, B;
+      
+      assert(base->scr_w > 0);
+      assert(base->scr_h > 0);
+
+      px = px * 100 / base->scr_w;
+      py = py * 100 / base->scr_h;
+
+      A = px > py;
+      B = px > (100 - py);
+
+      switch (A*2 + B)
+      {
+        case 0: sdlgl_mouseloc.action = MACT_LEFT; break;
+        case 1: sdlgl_mouseloc.action = MACT_UP; break;
+        case 2: sdlgl_mouseloc.action = MACT_DOWN; break;
+        case 3: sdlgl_mouseloc.action = MACT_RIGHT; break;
+      }
+    }
+  }
+  
+  /* set the mouse cursor */
+
+  if (old_action != sdlgl_mouseloc.action)
+  {
+    switch (sdlgl_mouseloc.action)
+    {
+      case MACT_NORMAL:
+      case MACT_AWAY:  SDL_SetCursor(sdlgl_cursor_main); break;
+
+      case MACT_UP:    SDL_SetCursor(sdlgl_cursor_up); break;
+      case MACT_DOWN:  SDL_SetCursor(sdlgl_cursor_down); break;
+      case MACT_LEFT:  SDL_SetCursor(sdlgl_cursor_left); break;
+      case MACT_RIGHT: SDL_SetCursor(sdlgl_cursor_right); break;
+
+      case MACT_HAND:  SDL_SetCursor(sdlgl_cursor_hand); break;
+      case MACT_CROSS: SDL_SetCursor(sdlgl_cursor_cross); break;
+    }
+  }
+}
+
 /* returns 1 if key was eaten */
 int sdlgl_internal_key_handler(SDL_keysym *key, int repeat)
 {
-  int shift, ctrl, step;
+  int shift, ctrl, alt, step;
 
   assert(key);
 
   shift = (key->mod & KMOD_SHIFT);
   ctrl  = (key->mod & KMOD_CTRL);
+  alt   = (key->mod & (KMOD_ALT | KMOD_META));
 
-  step = ctrl ? 4 : shift ? 2 : 1;
-  
+  if (alt)
+  {
+    step = 2;
+
+    switch (key->sym)
+    {
+      case SDLK_LEFT:
+        sdlgl_pan_map_window(-step, 0);
+        return 1;
+       
+      case SDLK_RIGHT:
+        sdlgl_pan_map_window(+step, 0);
+        return 1;
+          
+      case SDLK_UP:
+        sdlgl_pan_map_window(0, +step);
+        return 1;
+          
+      case SDLK_DOWN:
+        sdlgl_pan_map_window(0, -step);
+        return 1;
+       
+      case SDLK_HOME:
+        Sdlgl_cliparound(u.ux, u.uy);
+        sdlgl_flush();
+        return 1;
+
+      default:
+        return 0;
+    }
+  }
+
   if (key->sym == SDLK_F5 && !repeat)
   {
     /* Only allow screenshots by the game's administrator */
     if (wizard)
       sdlgl_make_screenshot("/tmp/shot_");
 
-    /* FIXME: do pline() or equiv */
-
+    /* Using Sdlgl_putstr() to show a message would be nice here.  The
+     * problem is, we may already be inside it, and it wasn't designed
+     * to be recursive.  Oh well.
+     */
     return 1;
   }
 
+  step = ctrl ? 4 : shift ? 2 : 1;
+  
   if (sdlgl_top_win != WIN_ERR)
   {
     switch (key->sym)
@@ -909,6 +1088,58 @@ int sdlgl_internal_key_handler(SDL_keysym *key, int repeat)
   }
 
   return 0;
+}
+
+/* returns 1 if button was eaten */
+int sdlgl_internal_button_handler(SDL_MouseButtonEvent *but)
+{
+  int winid;
+
+  if (sdlgl_mouseloc.action <= MACT_AWAY)
+    return 0;
+
+  winid = sdlgl_mouseloc.window;
+  if (winid == WIN_ERR)
+    return 0;
+
+  /* handle the map */
+  if (winid == sdlgl_map_win)
+  {
+    int step = 2;
+
+    switch (sdlgl_mouseloc.action)
+    {
+      case MACT_UP:    sdlgl_pan_map_window(0, +step); break;
+      case MACT_DOWN:  sdlgl_pan_map_window(0, -step); break;
+      case MACT_LEFT:  sdlgl_pan_map_window(-step, 0); break;
+      case MACT_RIGHT: sdlgl_pan_map_window(+step, 0); break;
+
+      default:
+        break;
+    }
+  }
+  else  /* text or menu window */
+  {
+    int step = 2;
+
+    switch (sdlgl_mouseloc.action)
+    {
+      case MACT_UP:    sdlgl_pan_window(winid, 0, +step); break;
+      case MACT_DOWN:  sdlgl_pan_window(winid, 0, -step); break;
+      case MACT_LEFT:  sdlgl_pan_window(winid, -step, 0); break;
+      case MACT_RIGHT: sdlgl_pan_window(winid, +step, 0); break;
+
+      default:
+        break;
+    }
+  }
+  
+  return 1;
+}
+
+void sdlgl_internal_motion_handler(SDL_MouseMotionEvent *mot)
+{
+  sdlgl_update_mouse_location(0);
 }
 
 void Sdlgl_outrip(winid window, int how)

@@ -170,11 +170,12 @@ int sdlgl_process_menu_window(int window, struct TextWindow *win, int how)
   struct TileWindow *kt_win = NULL;
   
   int pixel_w, pixel_h;
+  int total_choices;
 
   int finished  = 0;
   int cancelled = 0;
-
   int counting  = 0;
+
   int count = 0;
   int ch;
   
@@ -228,6 +229,14 @@ int sdlgl_process_menu_window(int window, struct TextWindow *win, int how)
   if (how != PICK_NONE)
     collect_group_accelerators(how, gacc, win);
 
+  total_choices = 0;
+  if (how != PICK_NONE)
+  {
+    for (item = win->items; item; item = item->next)
+      if (item->identifier.a_void)
+        total_choices++;
+  }
+   
 #if 0  /* DEBUGGING */
   fprintf(stderr, "GROUPACC: %c `%s'\n",
   (how == PICK_NONE) ? 'N' : (how == PICK_ONE) ? '1' : 'A', gacc);
@@ -235,6 +244,8 @@ int sdlgl_process_menu_window(int window, struct TextWindow *win, int how)
 
   while (!finished && !cancelled)
   {
+    int bx, by, bmod;
+
     /* close count window ? */
     if (kt_win && !counting)
     {
@@ -244,8 +255,46 @@ int sdlgl_process_menu_window(int window, struct TextWindow *win, int how)
     }
     
     sdlgl_flush();
-    ch = sdlgl_get_key(0);
+    ch = sdlgl_get_poskey(0, &bx, &by, &bmod);
 
+    if (ch == 0)  /* mouse button */
+    {
+      int index = win->calc_h - 1 - by;
+      assert(index >= 0);
+
+      if (how == PICK_NONE)
+        continue;
+
+      if (index == 0)  /* bottom padding line */
+        continue;
+
+      item = win->items;
+
+      for (; index > 1 && item; index--)
+        item = item->next;
+
+      if (index <= 1 && item && item->identifier.a_void)
+      {
+        if (counting && count > 0)
+        {
+          item->selected = 1;
+          item->count = count;
+        }
+        else
+          item->selected = item->selected ? 0 : 1;
+          
+        /* redraw menu */
+        draw_menu_items(win, how);
+        sdlgl_flush();
+
+        if (how == PICK_ONE)
+          finished = 1;
+      }
+
+      counting = 0;
+      continue;
+    }
+    
     if (ch == '\033')
     {
       if (counting)
@@ -260,6 +309,30 @@ int sdlgl_process_menu_window(int window, struct TextWindow *win, int how)
     
     if (ch == '\n' || ch == '\r' || ch == ' ')
     {
+      /* handle counting.  Many times I have simply hit enter instead
+       * of an accelerator (especially when taking gold out of a bag).
+       */
+      if (counting && count > 0 && how == PICK_ANY && total_choices > 1)
+        continue;
+
+      if (counting && count > 0 && how == PICK_ANY && total_choices == 1)
+      {
+        for (item = win->items; item; item = item->next)
+          if (item->identifier.a_void)
+            break;
+
+        assert(item);
+
+        item->selected = 1;
+        item->count = count;
+
+        draw_menu_items(win, how);
+        sdlgl_flush();
+
+        counting = 0;
+        continue;
+      }
+
       finished = 1;
       break;
     }

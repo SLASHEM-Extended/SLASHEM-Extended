@@ -616,7 +616,8 @@ static void hw_finish_tile_draw(void)
 }
 
 static void hw_draw_one_tile(struct TileWindow *win, int sx, int sy,
-    int sw, int sh, tileidx_t tile, tilecol_t tilecol, short layer)
+    int sw, int sh, tileidx_t tile, tilecol_t tilecol, 
+    tileflags_t flags, short layer)
 {
   struct TileSet *set = win->set;
   rgbcol_t color;
@@ -631,9 +632,6 @@ static void hw_draw_one_tile(struct TileWindow *win, int sx, int sy,
   float tsize_w = set->tex_size_w;
   float tsize_h = set->tex_size_h;
 
-  int flip_x = (tile & TILE_FLIPX) ? 1 : 0;
-  tile &= ~TILE_FLIPX;
-   
   assert(set);
   assert(tile < set->tile_num);
  
@@ -653,7 +651,7 @@ static void hw_draw_one_tile(struct TileWindow *win, int sx, int sy,
   tx2 = ((bx + 1) * tw - 1 - fudge) / tsize_w;
   ty2 = ((by + 1) * th - 1 - fudge) / tsize_h;
 
-  if (flip_x)
+  if (flags & TILE_F_FLIPX)
   {
     float tmp = tx1; tx1 = tx2; tx2 = tmp;
   }
@@ -665,7 +663,8 @@ static void hw_draw_one_tile(struct TileWindow *win, int sx, int sy,
 
   sdlgl_add_unit(set->tex_ids[til_idx], tx1, ty1, tx2, ty2,
       sx, sy, sw, sh, layer, color, 
-      win->see_through ? RIP_ALPHA : 1.0);
+      win->see_through ? RIP_ALPHA : 
+      (flags & TILE_F_TRANS50) ? 0.5 : 1);
 }
 
 static void hw_start_fading(int max_w, int min_y)

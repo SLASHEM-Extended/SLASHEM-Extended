@@ -615,8 +615,8 @@ void sdlgl_change_tileset(struct TileWindow *win, struct TileSet *set,
   win->is_text = is_text;
 
   /* scale, pan & pad values are updated elsewhere (namely in
-   * sdlgl_zoom_map), also changing the tile values for the new
-   * tile set.
+   * sdlgl_zoom_map), which includes changing the tile values for the
+   * new tile set.
    */
 
   sdlgl_mark_dirty(win->scr_x, win->scr_y, win->scr_w, win->scr_h,
@@ -767,14 +767,34 @@ int sdlgl_store_str(struct TileWindow *win, int x, int y,
   return width;
 }
 
+static GH_INLINE int is_tile_solid(struct TileSet *set, tileidx_t idx)
+{
+  if (! set->has_alpha)
+    return 1;
+
+  if (idx == TILE_EMPTY)
+    return 0;
+
+  return set->has_alpha[idx] ? 0 : 1;
+}
+
 void sdlgl_store_tile(struct TileWindow *win, int x, int y,
-      tileidx_t fg, tileidx_t mg, tileidx_t bg)
+      tileidx_t fg, tileidx_t mg, tileidx_t bg, tileflags_t flags)
 {
   int offset = y * win->total_w + x;
 
-  win->tiles[offset].fg   = fg;
-  win->tiles[offset].mg   = mg;
-  win->tiles[offset].u.bg = bg;
+  /* Optimisation: don't draw anything underneath tiles that are
+   * completely solid.
+   */
+  if (is_tile_solid(win->set, fg))
+    mg = bg = TILE_EMPTY;
+  else if (is_tile_solid(win->set, mg))
+    bg = TILE_EMPTY;
+
+  win->tiles[offset].fg    = fg;
+  win->tiles[offset].mg    = mg;
+  win->tiles[offset].u.bg  = bg;
+  win->tiles[offset].flags = flags;
 
   mark_dirty_tiles(win, x, y, 1, 1);
 }
@@ -798,15 +818,17 @@ void sdlgl_blank_area(struct TileWindow *win, int x, int y, int w, int h)
       {
         win->tiles[offset].fg = TILE_EMPTY;
         win->tiles[offset].u.col = L_GREY;
+        win->tiles[offset].flags = 0;
       }
     }
     else
     {
       for (len=w; len > 0; len--, offset++)
       {
-        win->tiles[offset].fg   = TILE_EMPTY;
-        win->tiles[offset].mg   = TILE_EMPTY;
-        win->tiles[offset].u.bg = TILE_EMPTY;
+        win->tiles[offset].fg    = TILE_EMPTY;
+        win->tiles[offset].mg    = TILE_EMPTY;
+        win->tiles[offset].u.bg  = TILE_EMPTY;
+        win->tiles[offset].flags = 0;
       }
     }
   }
@@ -1018,8 +1040,6 @@ static void draw_tilewindow(struct TileWindow *win)
   if (win->curs_x >= 0 && win->curs_block)
     sdlgl_draw_cursor(win);
 
-  sdlgl_begin_tile_draw(1, (win->set->lap_w || win->set->lap_h));
-
   sw = win->scale_w;
   sh = win->scale_h;
   sfw = win->scale_full_w;
@@ -1030,17 +1050,54 @@ static void draw_tilewindow(struct TileWindow *win)
   left   = win->scr_x;
   right  = win->scr_x + win->scr_w;
   
+  /* TWO PASSES: first draw all floor tiles, which are guaranteed to
+   * never overlap (in Isometric mode).  Secondly, draw the other
+   * stuff on top.  Call this "poor man's Z buffering" :).
+   */
+ 
+  if (! win->is_text)
+  {
+    sdlgl_begin_tile_draw(1, 0);
+
+    for (y=win->total_h - 1; y >= 0; y--)
+    {
+      sy = win->scr_y - win->pan_y + y * sh;
+      if (sy + sfh <= bottom || sy >= top)
+        continue;
+
+      for (x=0; x < win->total_w; x++)
+      {
+        sx = win->scr_x - win->pan_x + x * sw + y * win->scale_skew;
+        if (sx + sfw <= left || sx >= right)
+          continue;
+
+        if (!sdlgl_test_tile_visible(win->mapped_idx + 1, sx, sy, sfw, sfh))
+          continue;
+
+        cur = win->tiles + (y * win->total_w + x);
+
+        if (cur->u.bg != TILE_EMPTY)
+            sdlgl_draw_one_tile(win, sx, sy, sfw, sfh, cur->u.bg, 0, 
+                /* flags */ 0, /* layer */ 0);
+      }
+    }
+
+    sdlgl_finish_tile_draw();
+  }
+
+  /* second pass: */
+
+  sdlgl_begin_tile_draw(1, (win->set->lap_w || win->set->lap_h));
+
   for (y=win->total_h - 1; y >= 0; y--)
   {
     sy = win->scr_y - win->pan_y + y * sh;
-
     if (sy + sfh <= bottom || sy >= top)
       continue;
 
     for (x=0; x < win->total_w; x++)
     {
       sx = win->scr_x - win->pan_x + x * sw + y * win->scale_skew;
-       
       if (sx + sfw <= left || sx >= right)
         continue;
       
@@ -1053,19 +1110,16 @@ static void draw_tilewindow(struct TileWindow *win)
       if (win->is_text)
         tilecol = cur->u.col;
 
-      /* FIXME: Optimise when mg or fg are completely solid.
-       */
       if (! win->is_text)
       {
-        if (cur->u.bg != TILE_EMPTY)
-          sdlgl_draw_one_tile(win, sx, sy, sfw, sfh, cur->u.bg, 0, 0);
-
         if (cur->mg != TILE_EMPTY)
-          sdlgl_draw_one_tile(win, sx, sy, sfw, sfh, cur->mg, 0, 1);
+          sdlgl_draw_one_tile(win, sx, sy, sfw, sfh, cur->mg, 0,
+              /* flags */ 0, /* layer */ 1);
       }
 
       if (cur->fg != TILE_EMPTY)
-        sdlgl_draw_one_tile(win, sx, sy, sfw, sfh, cur->fg, tilecol, 2);
+        sdlgl_draw_one_tile(win, sx, sy, sfw, sfh, cur->fg, tilecol,
+            cur->flags, /* layer */ 2);
     }
   }
 

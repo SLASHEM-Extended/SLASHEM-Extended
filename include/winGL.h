@@ -21,8 +21,8 @@ extern struct window_procs sdlgl_softw_procs;
 extern void FDECL(Sdlgl_parse_options, (char *, int, int));
 
 #ifdef VANILLA_GLHACK
-#define GLHACK_VER_HEX  0x098
-#define GLHACK_VER_STR  "0.9.8"
+#define GLHACK_VER_HEX  0x099
+#define GLHACK_VER_STR  "0.9.9"
 #define SDLGL_PROGRAM  "glHack"
 #define SDLGL_ICON     "glHack"
 #define SDLGL_ENV_VAR  "GLHACKOPTIONS"
@@ -205,6 +205,7 @@ extern int sdlgl_reformat;
 extern int sdlgl_shrink_wrap;
 extern int sdlgl_flipping;
 extern int sdlgl_jump_scroll;
+extern int sdlgl_invis_fx;
 extern int sdlgl_gamma;
 
 E void FDECL(sdlgl_parse_cmdline_options, (int *, char **));
@@ -279,14 +280,12 @@ E void FDECL(sdlgl_hw_make_screenshot, (const char *));
 
 typedef unsigned short tileidx_t;
 typedef unsigned short tilecol_t;
+typedef unsigned short tileflags_t;
 
 #define TILE_EMPTY  0x7FFF
 
-/* special bit to horizontally flip a tile.  This method was
- * preferable to making TilePair bigger with an extra field.  Not
- * guaranteed to be supported (esp. in Software mode).
- */
-#define TILE_FLIPX  0x4000
+#define TILE_F_FLIPX    0x0001  /* horizontally flip the fg */
+#define TILE_F_TRANS50  0x0010  /* draw fg 50% translucent */
 
 struct TilePair
 {
@@ -306,6 +305,8 @@ struct TilePair
     tileidx_t bg;
   }
   u;
+
+  tileflags_t flags;
 };
 
 #define MAX_EXTRASHAPES  32
@@ -512,7 +513,7 @@ E void FDECL(sdlgl_store_char, (struct TileWindow *, int, int,
 E int FDECL(sdlgl_store_str, (struct TileWindow *, int, int,
       const char *, int, rgbcol_t));
 E void FDECL(sdlgl_store_tile, (struct TileWindow *, int, int,
-      tileidx_t, tileidx_t, tileidx_t));
+      tileidx_t, tileidx_t, tileidx_t, tileflags_t));
 E void FDECL(sdlgl_blank_area, (struct TileWindow *, int, int, int, int));
 E void FDECL(sdlgl_copy_area, (struct TileWindow *, int, int,
       int, int, int, int));
@@ -534,6 +535,14 @@ extern unsigned char ridden_mark_bits[8];
 extern char tile_16_face_dirs[400];
 extern char tile_32_face_dirs[400];
 
+extern SDL_Cursor *sdlgl_cursor_main;
+extern SDL_Cursor *sdlgl_cursor_left;
+extern SDL_Cursor *sdlgl_cursor_right;
+extern SDL_Cursor *sdlgl_cursor_up;
+extern SDL_Cursor *sdlgl_cursor_down;
+extern SDL_Cursor *sdlgl_cursor_hand;
+extern SDL_Cursor *sdlgl_cursor_cross;
+
 extern unsigned char sdlgl_gamma_table[256];
 
 #define GAMMA(n)    (sdlgl_gamma_table[n])
@@ -542,6 +551,8 @@ extern unsigned char sdlgl_gamma_table[256];
 E int FDECL(sdlgl_quantize_tile_size, (int));
 E int FDECL(sdlgl_mon_tile_face_dir, (tileidx_t));
 E void NDECL(sdlgl_generate_gamma_table);
+E void NDECL(sdlgl_init_mouse_cursors);
+E void NDECL(sdlgl_free_mouse_cursors);
 
 E unsigned char * FDECL(sdlgl_load_png_file, (const char*, int*, int*));
 E int FDECL(sdlgl_save_ppm_file, (const char *, const unsigned char *,
@@ -655,7 +666,7 @@ struct rendering_procs
   void FDECL((*draw_cursor), (struct TileWindow *));
   void FDECL((*begin_tile_draw), (int, int));
   void FDECL((*draw_one_tile), (struct TileWindow *, int, int,
-      int, int, tileidx_t, tilecol_t, short));
+      int, int, tileidx_t, tilecol_t, tileflags_t, short));
   void NDECL((*finish_tile_draw));
   void FDECL((*draw_border), (struct TileWindow *, rgbcol_t));
 
@@ -800,6 +811,37 @@ struct GlyphPair
 #define BORDER_COL     RGB_MAKE(0,  0,  84)
 #define CURSOR_COL     RGB_MAKE(192, 0, 0)
 #define OUTLINE_COL    RGB_MAKE(255, 255, 255)
+
+
+struct MouseLocation
+{
+  /* what the action should be at the current location.  This also
+   * indicates what the mouse cursor should look like.  When the mouse
+   * is outside the window (or when focus has been lost), then the
+   * MACT_AWAY value is used.
+   */
+  enum MouseLocAction
+  {
+    MACT_NORMAL = 0,
+    MACT_AWAY,
+    MACT_UP, MACT_DOWN, MACT_LEFT, MACT_RIGHT,
+    MACT_HAND, MACT_CROSS
+  }
+  action;
+
+  /* pixel position of mouse cursor.  The coordinates are GL style
+   * (i.e. y goes from the bottom up).
+   */
+  int x, y;
+  
+  /* the window that the mouse pointer is currently over.  Will be
+   * WIN_ERR when not sitting over any window, e.g. a gap, or when the
+   * focus has been lost.
+   */
+  int window;
+};
+
+extern struct MouseLocation sdlgl_mouseloc;
 
 
 struct TextWindow
@@ -985,7 +1027,11 @@ E void FDECL(sdlgl_adjust_scrollback, (struct TextWindow *, int));
 E void NDECL(sdlgl_remove_scrollback);
 E void FDECL(sdlgl_pan_window, (int, int, int));
 E tilecol_t FDECL(sdlgl_attr_to_tilecol, (int attr));
+E void FDECL(sdlgl_update_mouse_location, (int));
+
 E int FDECL(sdlgl_internal_key_handler, (SDL_keysym *, int));
+E int FDECL(sdlgl_internal_button_handler, (SDL_MouseButtonEvent *));
+E void FDECL(sdlgl_internal_motion_handler, (SDL_MouseMotionEvent *));
 
 
 /*
@@ -1036,6 +1082,7 @@ E void FDECL(sdlgl_process_text_window, (int, struct TextWindow *));
 #define Fl_Mine     (FLOOR_TILES + 0)
 #define Fl_Sokoban  (FLOOR_TILES + 1)
 #define Fl_Knox     Fl_Sokoban
+#define Fl_Tower    (FLOOR_TILES + 2)
 #define Fl_Hell     (FLOOR_TILES + 3)
 #define Fl_Quest    (FLOOR_TILES + 4)
 #define Fl_Astral   (FLOOR_TILES + 5)
@@ -1053,7 +1100,8 @@ E int FDECL(sdlgl_quantize_zoom, (int));
 E int NDECL(sdlgl_cursor_visible);
 E void NDECL(sdlgl_center_screen_on_player);
 E void NDECL(sdlgl_toggle_text_view);
-E int FDECL(sdlgl_map_find_click, (int *, int *));
+E int FDECL(sdlgl_find_click, (int, int *, int *));
+E void FDECL(sdlgl_pan_map_window, (int, int));
 
 
 /*

@@ -470,15 +470,14 @@ static void sw_finish_tile_draw(void)
 }
 
 static void sw_draw_one_tile(struct TileWindow *win, int sx, int sy,
-    int sw, int sh, tileidx_t tile, tilecol_t tilecol, short layer)
+    int sw, int sh, tileidx_t tile, tilecol_t tilecol,
+    tileflags_t flags, short layer)
 {
   struct TileSet *set = win->set;
 
   SDL_Rect trect, drect;
   SDL_Surface *surf;
 
-  tile &= ~TILE_FLIPX;
-    
   assert(set);
   assert(tile < set->tile_num);
 
@@ -538,8 +537,19 @@ static void sw_draw_one_tile(struct TileWindow *win, int sx, int sy,
     }
   }
 
+  /* NOTE: using SDL_SetAlpha() like this will be quite inefficient
+   * if there a lots of translucent tiles being drawn, because it
+   * invalidates SDL's blitting tables.  Ideally we should draw all
+   * the translucent tiles together.
+   */
+  if (flags & TILE_F_TRANS50)
+    SDL_SetAlpha(surf, SDL_SRCALPHA, 128);
+
   sdlgl_dirty_matrix_blit(sdlgl_matrix, surf, &trect, &drect, 0,
       win->scr_depth);
+
+  if (flags & TILE_F_TRANS50)
+    SDL_SetAlpha(surf, SDL_SRCALPHA, 255);
 }
 
 static void draw_iso_border_tile(struct TileWindow *win, int x, int y)
