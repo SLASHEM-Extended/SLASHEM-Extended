@@ -184,6 +184,7 @@ endif
 # GTK windowing system
 #WINGTKCFLAGS=`gtk-config --cflags`
 #WINGTKCFLAGS=-Ic:/mingw32/src/gtk+ -Ic:/mingw32/src/glib -Ic:/mingw32/src/gtk+/gdk
+#WINGTKCFLAGS=-I$(MW32GTK)/include
 WINGTKCFLAGS=-I$(MW32GTK)
 
 # Set the WINSRC, WINOBJ, and WINLIB lines to correspond to your desired
@@ -436,10 +437,13 @@ ifeq ($(USE_GTK),Y)
 	$(COPY) x11tiles             $(GAMEDIR)
 	$(COPY) x11bigtiles          $(GAMEDIR)
 	$(COPY) x11big3dtiles        $(GAMEDIR)
-#	$(COPY) $(MW32GTK)\glib\glib*.dll $(GAMEDIR)
-#	$(COPY) $(MW32GTK)\glib\gmodule\gmodule*.dll $(GAMEDIR)
-#	$(COPY) $(MW32GTK)\gtk+\gdk\gdk*.dll $(GAMEDIR)
-#	$(COPY) $(MW32GTK)\gtk+\gtk\gtk*.dll $(GAMEDIR)
+#	$(COPY) $(MW32GTK)\src\glib\glib*.dll $(GAMEDIR)
+#	$(COPY) $(MW32GTK)\src\glib\gmodule\gmodule*.dll $(GAMEDIR)
+#	$(COPY) $(MW32GTK)\src\gtk+\gdk\gdk*.dll $(GAMEDIR)
+#	$(COPY) $(MW32GTK)\src\gtk+\gtk\gtk*.dll $(GAMEDIR)
+#	$(COPY) $(MW32GTK)\src\gtk+\gtk\gtk*.dll $(GAMEDIR)
+#	$(COPY) $(MW32GTK)\src\libiconv-1.3\src\iconv*.dll $(GAMEDIR)
+#	$(COPY) $(MW32GTK)\src\intl\gnu*.dll $(GAMEDIR)
 	$(COPY) $(GNUDLL)\*.* $(GAMEDIR)
 	$(COPY) $(WSYS)\winnt.cnf    $(GAMEDIR)\defaults.nh
 else
@@ -853,18 +857,20 @@ tile2x11.o: ../win/X11/tile2x11.c $(INCL)\hack.h $(INCL)\tile.h \
 
 x11tiles: tile2x11.exe ../win/share/monsters.txt ../win/share/objects.txt \
 				../win/share/other.txt
-	tile2x11 ../win/share/monsters.txt ../win/share/objects.txt \
-				../win/share/other.txt
+	cd $(WSHR)
+	..\$(SRC)\tile2x11 -o ..\$(SRC)\x11tiles monsters.txt objects.txt other.txt
+	cd ..\$(SRC)
 
 x11bigtiles:	tile2x11.exe ../win/share/mon32.txt \
 		../win/share/obj32.txt ../win/share/oth32.txt
-	tile2x11 -o x11bigtiles ../win/share/mon32.txt \
-		../win/share/obj32.txt ../win/share/oth32.txt
+	cd $(WSHR)
+	..\$(SRC)\tile2x11 -o ..\$(SRC)\x11bigtiles mon32.txt obj32.txt oth32.txt
+	cd ..\$(SRC)
 
 x11big3dtiles:	tile2x11.exe ../win/share/mon3d.txt \
 		../win/share/obj3d.txt ../win/share/oth3d.txt
-	tile2x11 -o x11big3dtiles ../win/share/mon3d.txt \
-		../win/share/obj3d.txt ../win/share/oth3d.txt
+	cd $(WSHR)
+	..\$(SRC)\tile2x11 -o ..\$(SRC)\x11big3dtiles mon3d.txt obj3d.txt oth3d.txt
 
 $(WSHR)\monmag.txt:	magtile.exe ../win/share/monsters.txt
 	magtile
@@ -903,37 +909,30 @@ $(WSHR)\othbig.txt:	bigtile.exe ../win/share/mon32-t.txt \
 		$(WSHR)\mon32mi.txt $(WSHR)\mon32alg.txt \
 		$(WSHR)\mon32aw.txt 
 	cd $(WSHR)
-	txtmerge mon32-t.txt monmag.txt \
-		-b204040 mon32mi.txt \
-		-bff00ff mon32alg.txt 
-	txtmerge mon32-t.txt mon32-t.txt \
-		-bff00ff mon32aw.txt 
+	txtmerge mon32-t.txt monmag.txt -b204040 mon32mi.txt -bff00ff mon32alg.txt 
+	txtmerge mon32-t.txt mon32-t.txt -bff00ff mon32aw.txt 
 	cd ..\$(SRC)
 
 ../win/share/obj32-t.txt:	$(WSHR)\txtmerge.exe $(WSHR)\objmag.txt \
 		$(WSHR)\obj32mi.txt $(WSHR)\obj32se.txt \
 		$(WSHR)\obj32alg.txt
 	cd $(WSHR)
-	txtmerge obj32-t.txt objmag.txt \
-		-b204040 obj32mi.txt \
-		-b obj32se.txt \
-		-bff00ff obj32alg.txt
+	txtmerge obj32-t.txt objmag.txt -b204040 obj32mi.txt -b obj32se.txt
+	txtmerge obj32-t.txt obj32-t.txt -bff00ff obj32alg.txt
 	cd ..\$(SRC)
 
 ../win/share/oth32-t.txt:	$(WSHR)\txtmerge.exe $(WSHR)\othmag.txt \
 		$(WSHR)\oth32mi.txt $(WSHR)\oth32se.txt \
 		$(WSHR)\oth32alg.txt
 	cd $(WSHR)
-	txtmerge oth32-t.txt othmag.txt \
-		-b204040 oth32mi.txt -b oth32se.txt \
-		-bff00ff oth32alg.txt
+	txtmerge oth32-t.txt othmag.txt -b204040 oth32mi.txt -b oth32se.txt
+	txtmerge oth32-t.txt oth32-t.txt -bff00ff oth32alg.txt
 	cd ..\$(SRC)
 
 ../win/share/mon3d.txt:	$(WSHR)\txtmerge.exe $(WSHR)\monbig.txt \
 		$(WSHR)\mon3dmi.txt
 	cd $(WSHR)
-	txtmerge mon3d.txt monbig.txt \
-		-b204040 mon3dmi.txt
+	txtmerge mon3d.txt monbig.txt -b204040 mon3dmi.txt
 	cd ..\$(SRC)
 
 ../win/share/obj3d.txt:	$(WSHR)\txtmerge.exe $(WSHR)\objbig.txt
@@ -943,9 +942,8 @@ $(WSHR)\othbig.txt:	bigtile.exe ../win/share/mon32-t.txt \
 		$(WSHR)\oth3dmi.txt $(WSHR)\oth-2kmi.txt \
 		$(WSHR)\oth3dse.txt
 	cd $(WSHR)
-	txtmerge oth3d.txt othbig.txt \
-		-b204040 oth3dmi.txt \
-		-b204040 oth-2kmi.txt -b oth3dse.txt
+	txtmerge oth3d.txt othbig.txt -b204040 oth3dmi.txt -b204040 oth-2kmi.txt
+	txtmerge oth3d.txt oth3d.txt -b oth3dse.txt
 	cd ..\$(SRC)
 
 pet_mark.xbm: ../win/X11/pet_mark.xbm
@@ -1202,39 +1200,39 @@ wintty.o : $(HACK_H) $(WTTY)\wintty.c
 gtk.o: ../win/gtk/gtk.c ../include/winGTK.h $(HACK_H) ../include/func_tab.h \
 		../include/dlb.h ../include/patchlevel.h
 	$(COPY) $(WGTK)\gtk.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtk.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtk.c
 gtkgetlin.o: ../win/gtk/gtkgetlin.c ../include/winGTK.h $(HACK_H)
 	$(COPY) $(WGTK)\gtkgetlin.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkgetlin.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkgetlin.c
 gtkstatus.o: ../win/gtk/gtkstatus.c ../include/winGTK.h $(HACK_H)
 	$(COPY) $(WGTK)\gtkstatus.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkstatus.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkstatus.c
 gtkmenu.o: ../win/gtk/gtkmenu.c ../include/winGTK.h $(HACK_H)
 	$(COPY) $(WGTK)\gtkmenu.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmenu.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkmenu.c
 gtkyn.o: ../win/gtk/gtkyn.c ../include/winGTK.h $(HACK_H)
 	$(COPY) $(WGTK)\gtkyn.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkyn.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkyn.c
 gtkextcmd.o: ../win/gtk/gtkextcmd.c ../include/winGTK.h $(HACK_H) \
 		../include/func_tab.h
 	$(COPY) $(WGTK)\gtkextcmd.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkextcmd.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkextcmd.c
 gtkmap.o: ../win/gtk/gtkmap.c ../include/winGTK.h $(HACK_H) ../include/dlb.h \
 		../include/patchlevel.h
 	$(COPY) $(WGTK)\gtkmap.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmap.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkmap.c
 gtkmessage.o: ../win/gtk/gtkmessage.c ../include/winGTK.h $(HACK_H)
 	$(COPY) $(WGTK)\gtkmessage.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmessage.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkmessage.c
 gtkmisc.o: ../win/gtk/gtkmisc.c ../include/winGTK.h $(HACK_H)
 	$(COPY) $(WGTK)\gtkmisc.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmisc.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkmisc.c
 xshmmap.o: ../win/gtk/xshmmap.c ../include/winGTK.h $(HACK_H) ../include/xshm.h
 	$(COPY) $(WGTK)\xshmmap.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshmmap.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c xshmmap.c
 xshm.o: ../win/gtk/xshm.c ../include/xshm.h
 	$(COPY) $(WGTK)\xshm.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshm.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c xshm.c
 
 # src dependencies
 allmain.o:  $(HACK_H)
