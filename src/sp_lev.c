@@ -69,7 +69,7 @@ static NEARDATA walk walklist[50];
 extern int min_rx, max_rx, min_ry, max_ry; /* from mkmap.c */
 
 static char Map[COLNO][ROWNO];
-static char robjects[10], rloc_x[10], rloc_y[10], rmonst[10];
+static char robjects[10], rloc_x[10][10], rloc_y[10][10], rmonst[10];
 static aligntyp	ralign[3] = { AM_CHAOTIC, AM_NEUTRAL, AM_LAWFUL };
 static NEARDATA xchar xstart, ystart;
 static NEARDATA char xsize, ysize;
@@ -179,11 +179,13 @@ int humidity;
 		*x += xstart;
 		*y += ystart;
 	} else if (*x > -11) {		/* special locations */
-	    if (rloc_y[ - *y - 1] == (char)-1 || rloc_x[ - *x - 1] == (char)-1)
+	    char ry = rloc_y[ - *x - 1][ - *y - 1];
+	    char rx = rloc_x[ - *x - 1][ - *y - 1];
+	    if (ry == (char)-1 || rx == (char)-1)
 		return FALSE;		/* nowhere */
 	    else {
-		*y = ystart + rloc_y[ - *y - 1];
-		*x = xstart + rloc_x[ - *x - 1];
+		*y = ystart + ry;
+		*x = xstart + rx;
 	    }
 	} else if (*x > -12) {		/* within random region */
 	    schar t = - *y - 1;
@@ -2401,9 +2403,15 @@ dlb *fd;
 	Fread((genericptr_t) &n, 1, sizeof(n), fd);
 						/* Random locations */
 	if(n) {
-		Fread((genericptr_t)rloc_x, sizeof(*rloc_x), (int) n, fd);
-		Fread((genericptr_t)rloc_y, sizeof(*rloc_y), (int) n, fd);
-		sp_lev_shuffle(rloc_x, rloc_y, (int)n);
+		char nloc[10];
+		Fread((genericptr_t)nloc, sizeof(*nloc), (int) n, fd);
+		for(xi = 0; xi < n; xi++) {
+		    Fread((genericptr_t)rloc_x[xi], sizeof(*rloc_x[xi]),
+			    (int) nloc[xi], fd);
+		    Fread((genericptr_t)rloc_y[xi], sizeof(*rloc_y[xi]),
+			    (int) nloc[xi], fd);
+		    sp_lev_shuffle(rloc_x[xi], rloc_y[xi], (int)nloc[xi]);
+		}
 	}
 
 	Fread((genericptr_t) &n, 1, sizeof(n), fd);

@@ -149,9 +149,10 @@ typedef struct {
 	char **map;
 	char nrobjects;
 	char *robjects;
-	char nloc;
-	char *rloc_x;
-	char *rloc_y;
+	char nlocset;
+	char *nloc;
+	char **rloc_x;
+	char **rloc_y;
 	char nrmonst;
 	char *rmonst;
 	char nreg;
@@ -240,6 +241,7 @@ typedef struct {
 	} src, dest;
 } corridor;
 
+#ifdef LEVEL_COMPILER
 /* used only by lev_comp */
 typedef struct {
 	long flags;
@@ -253,5 +255,10 @@ typedef struct {
 	xchar ncorr;
 	corridor **corrs;
 } splev;
+
+struct coord {
+	int x, y;
+};
+#endif	/* LEVEL_COMPILER */
 
 #endif /* SP_LEV_H */

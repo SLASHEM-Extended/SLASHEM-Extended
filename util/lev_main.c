@@ -7,6 +7,8 @@
  * and some useful functions needed by yacc
  */
 
+#define LEVEL_COMPILER	1	/* Enable definition of internal structures */
+
 #include "hack.h"
 #include "date.h"
 #include "sp_lev.h"
@@ -55,6 +57,7 @@
 # define OMASK 0644
 #endif
 
+#define MAX_REGISTERS	10
 #define ERR		(-1)
 
 #define NewTab(type, size)	(type **) alloc(sizeof(type *) * size)
@@ -1060,6 +1063,36 @@ store_room()
 	nrooms++;
 }
 
+void
+store_place_list(int npart, int nlist, int nloc, const struct coord *plist)
+{
+	int i;
+	char msg[256];
+	if (!tmppart[npart]->nloc) {
+	    tmppart[npart]->nloc = (char *) alloc(MAX_REGISTERS);
+	    tmppart[npart]->rloc_x = NewTab(char, MAX_REGISTERS);
+	    tmppart[npart]->rloc_y = NewTab(char, MAX_REGISTERS);
+	}
+	if (nlist < tmppart[npart]->nlocset) {
+	    Sprintf(msg,
+		    "Location registers for place list %d already initialized!",
+		    nlist);
+	    yyerror(msg);
+	} else if (nlist > tmppart[npart]->nlocset) {
+	    Sprintf(msg, "Place list %d out of order!", nlist);
+	    yyerror(msg);
+	} else {
+	    tmppart[npart]->nlocset++;
+	    tmppart[npart]->rloc_x[nlist] = (char *) alloc(n_plist);
+	    tmppart[npart]->rloc_y[nlist] = (char *) alloc(n_plist);
+	    for(i = 0; i < n_plist; i++) {
+		tmppart[npart]->rloc_x[nlist][i] = plist[i].x;
+		tmppart[npart]->rloc_y[nlist][i] = plist[i].y;
+	    }
+	    tmppart[npart]->nloc[nlist] = nloc;
+	}
+}
+
 /*
  * Output some info common to all special levels.
  */
@@ -1317,12 +1350,18 @@ specialmaze *maze;
 		    Write(fd, pt->robjects, pt->nrobjects);
 		    Free(pt->robjects);
 	    }
-	    Write(fd, &(pt->nloc), sizeof(pt->nloc));
-	    if(pt->nloc) {
-		    Write(fd, pt->rloc_x, pt->nloc);
-		    Write(fd, pt->rloc_y, pt->nloc);
-		    Free(pt->rloc_x);
-		    Free(pt->rloc_y);
+	    Write(fd, &(pt->nlocset), sizeof(pt->nlocset));
+	    if (pt->nlocset) {
+		Write(fd, pt->nloc, pt->nlocset);
+		for (j = 0; j < pt->nlocset; j++) {
+		    Write(fd, pt->rloc_x[j], pt->nloc[j]);
+		    Write(fd, pt->rloc_y[j], pt->nloc[j]);
+		    Free(pt->rloc_x[j]);
+		    Free(pt->rloc_y[j]);
+		}
+		Free(pt->nloc);
+		Free(pt->rloc_x);
+		Free(pt->rloc_y);
 	    }
 	    Write(fd, &(pt->nrmonst), sizeof(pt->nrmonst));
 	    if(pt->nrmonst) {

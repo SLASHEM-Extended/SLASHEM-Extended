@@ -8,6 +8,8 @@
  * It may handle special mazes & special room-levels
  */
 
+#define LEVEL_COMPILER	1	/* Enable definition of internal structures */
+
 /* In case we're using bison in AIX.  This definition must be
  * placed before any other C-language construct in the file
  * excluding comments and preprocessor directives (thanks IBM
@@ -57,6 +59,7 @@ extern boolean NDECL(check_subrooms);
 extern void FDECL(check_coord, (int,int,const char *));
 extern void NDECL(store_part);
 extern void NDECL(store_room);
+extern void FDECL(store_place_list, (int,int,int,const struct coord *));
 extern boolean FDECL(write_level_file, (char *,splev *,specialmaze *));
 extern void FDECL(free_rooms, (splev *));
 
@@ -65,10 +68,7 @@ static struct reg {
 	int x2, y2;
 }		current_region;
 
-static struct coord {
-	int x;
-	int y;
-}		current_coord, current_align;
+static struct coord current_coord, current_align;
 
 static struct size {
 	int height;
@@ -739,18 +739,19 @@ init_reg	: RANDOM_OBJECTS_ID ':' object_list
 		  }
 		| RANDOM_PLACES_ID ':' place_list
 		  {
-			if (tmppart[npart]->nloc) {
+			if (tmppart[npart]->nlocset)
 			    yyerror("Location registers already initialized!");
-			} else {
-			    register int i;
-			    tmppart[npart]->rloc_x = (char *) alloc(n_plist);
-			    tmppart[npart]->rloc_y = (char *) alloc(n_plist);
-			    for(i=0;i<n_plist;i++) {
-				tmppart[npart]->rloc_x[i] = plist[i].x;
-				tmppart[npart]->rloc_y[i] = plist[i].y;
-			    }
-			    tmppart[npart]->nloc = n_plist;
-			}
+			else
+			    store_place_list(npart, 0, n_plist, plist);
+			n_plist = 0;
+		  }
+		| RANDOM_PLACES_ID '[' INTEGER ']' ':' place_list
+		  {
+			if ($3 >= MAX_REGISTERS)
+			    yyerror("Register Index overflow!");
+			else
+			    store_place_list(npart, $3, n_plist, plist);
+			n_plist = 0;
 		  }
 		| RANDOM_MONSTERS_ID ':' monster_list
 		  {
@@ -1666,8 +1667,19 @@ p_register	: P_REGISTER '[' INTEGER ']'
 		  {
 			if ( $3 >= MAX_REGISTERS )
 				yyerror("Register Index overflow!");
-			else
-				current_coord.x = current_coord.y = - $3 - 1;
+			else {
+				current_coord.x = -1;
+				current_coord.y = - $3 - 1;
+			}
+		  }
+		| P_REGISTER '[' INTEGER ']' '[' INTEGER ']'
+		  {
+			if ( $3 >= MAX_REGISTERS || $6 >= MAX_REGISTERS )
+				yyerror("Register Index overflow!");
+			else {
+				current_coord.x = - $3 - 1;
+				current_coord.y = - $6 - 1;
+			}
 		  }
 		;
 

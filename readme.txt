@@ -98,6 +98,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -fixed bug 733338: Crash when monster attacks an empty space (Rich Walker).
 -Actioned feature request 454805: cloak of "poisonousness"?
 -Actioned feature request 513881: Count Dracula/Vlad the Impaler race.
+-Actioned feature request 538741: Multiple random place arrays.
 
 See history.txt for changes made in previous versions.
 

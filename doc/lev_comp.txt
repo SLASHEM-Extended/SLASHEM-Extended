@@ -212,6 +212,7 @@ GRAMMAR
 
        init_reg        : RANDOM_OBJECTS_ID ':' object_list
                        | RANDOM_PLACES_ID ':' place_list
+                       | RANDOM_PLACES_ID '[' INTEGER ']' ':' place_list
                        | RANDOM_MONSTERS_ID ':' monster_list
                        | rndlevregion
                        ;
@@ -435,6 +436,7 @@ GRAMMAR
                        ;
 
        p_register      : P_REGISTER '[' INTEGER ']'
+                       | P_REGISTER '[' INTEGER ']' '[' INTEGER ']'
                        ;
 
        r_register      : R_REGISTER '[' INTEGER ']'
@@ -482,6 +484,18 @@ GRAMMAR
 
        NOTE:
        Lines beginning with '#' are considered comments.
+
+       Each region in a special level may use  either  single  or
+       multiple random placement list commands but these commands
+       should not be mixed within a region. Single random  place-
+       ment  list  commands  are "RANDOM_PLACES:" and "place[n]";
+       multiple  random  placement  list   commands   are   "RAN-
+       DOM_PLACES[l]:"  and  "place[l][n]". Where multiple random
+       placement  lists  are  used  they  must  be  specified  in
+       increasing  order  with  no  gaps.  The  first  number  in
+       "place[l][n]" specifies the list  number  and  the  second
+       number  the  index into the shuffled list. Lists may be of
+       varying lengths and are shuffled independently.
 
        The contents of a "MAP" description of a maze is a rectan-
        gle  showing  the  exact level map that should be used for
