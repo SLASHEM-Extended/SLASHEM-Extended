@@ -269,8 +269,8 @@ endif
 #
 # Common files for proxy window interface and window servers.
 PROXYCOMSRC = ../win/proxy/nhext.c ../win/proxy/nhxdr.c \
-	../win/proxy/nhextxdr.c ../win/proxy/compxdr.c
-PROXYCOMOBJ = nhext.o nhxdr.o nhextxdr.o compxdr.o
+	../win/proxy/nhextxdr.c ../win/proxy/nhextio.c ../win/proxy/compxdr.c
+PROXYCOMOBJ = nhext.o nhxdr.o nhextxdr.o nhextio.o compxdr.o
 # Files for the proxy utility modules. These are provided for use with window
 # ports that support the proxy interface. The GTK2 window interface needs
 # these files regardless of whether proxy support is enabled or not.
@@ -1485,7 +1485,8 @@ winproxy.o: ../win/proxy/winproxy.c $(HACK_H) ../include/nhxdr.h \
 		../include/winproxy.h
 	$(COPY) ..\win\proxy\winproxy.c .
 	$(CCOMPILE) $(CFLAGS) -c winproxy.c
-nhext.o: ../win/proxy/nhext.c $(HACK_H) ../include/nhxdr.h ../include/winproxy.h
+nhext.o: ../win/proxy/nhext.c $(HACK_H) ../include/nhxdr.h \
+		../include/proxycom.h ../include/winproxy.h
 	$(COPY) ..\win\proxy\nhext.c .
 	$(CCOMPILE) $(CFLAGS) -c nhext.c
 nhxdr.o: ../win/proxy/nhxdr.c $(HACK_H) ../include/nhxdr.h
@@ -1494,6 +1495,9 @@ nhxdr.o: ../win/proxy/nhxdr.c $(HACK_H) ../include/nhxdr.h
 nhextxdr.o: ../win/proxy/nhextxdr.c $(HACK_H) ../include/nhxdr.h
 	$(COPY) ..\win\proxy\nhextxdr.c .
 	$(CCOMPILE) $(CFLAGS) -c nhextxdr.c
+nhextio.o: ../win/proxy/nhextio.c ../include/proxycom.h
+	$(COPY) ..\win\proxy\nhextio.c .
+	$(CCOMPILE) $(CFLAGS) -c nhextio.c
 compxdr.o: ../win/proxy/compxdr.c $(HACK_H) ../include/nhxdr.h \
 		../include/winproxy.h
 	$(COPY) ..\win\proxy\compxdr.c .

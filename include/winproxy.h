@@ -1,4 +1,4 @@
-/* $Id: winproxy.h,v 1.9 2002-10-05 19:22:54 j_ali Exp $ */
+/* $Id: winproxy.h,v 1.10 2002-10-09 16:20:34 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -82,10 +82,10 @@ struct nhext_svc {
     void FDECL((*handler), (unsigned short, NhExtXdr *, NhExtXdr *));
 };
 
-typedef int (*nhext_io_func)(void *handle, void *buf, unsigned int len);
-
+#ifdef PROXYCOM_H
 E int FDECL(nhext_subprotocol1_init,
     (nhext_io_func, void *, nhext_io_func, void *, struct nhext_svc *));
+#endif
 E void NDECL(nhext_subprotocol1_end);
 E void FDECL(nhext_subprotocol1_end_c, (int));
 E char *FDECL(nhext_subprotocol1_get_failed_packet, (int, int *));

@@ -1,4 +1,4 @@
-# $Id: Makefile.unx,v 1.4 2002-06-29 11:37:45 j_ali Exp $
+# $Id: Makefile.unx,v 1.5 2002-10-09 16:20:35 j_ali Exp $
 # Copyright (c) Slash'EM Development Team 2001-2002
 # NetHack may be freely redistributed.  See license for details.
 #
@@ -17,13 +17,13 @@ CFLAGS = -g -I../../include
 CONFIG_H = ../../src/config.h-t
 HACK_H  = ../../src/hack.h-t
 
-CSRC = nhxdr.c nhextxdr.c
+CSRC = nhxdr.c nhext.c nhextxdr.c nhextio.c
 
 all:	tests
 
 FORCE:
 
-tests:	test_xdr rpcgen-test_xdr test_ext FORCE
+tests:	test_xdr rpcgen-test_xdr test_ext test_io FORCE
 	@echo ""
 	@echo Testing NhExt XDR routines...
 	@echo The output of these two tests should be identical:
@@ -36,6 +36,11 @@ tests:	test_xdr rpcgen-test_xdr test_ext FORCE
 	@echo Testing NhExt sub-protocol 1 support routines...
 	@echo ============================
 	- ./test_ext
+	@echo ============================
+	@echo ""
+	@echo Testing NhExt I/O buffering routines...
+	@echo ============================
+	- ./test_io
 	@echo ============================
 
 test_xdr:	test_xdr.c nhxdr.o nhextxdr.o
@@ -53,15 +58,18 @@ rpcgen-nhext.x:	ext_protocol.html
 test_ext:	test_ext.c nhext.o nhxdr.o nhextxdr.o
 	$(CC) $(CFLAGS) -o test_ext test_ext.c nhext.o nhxdr.o nhextxdr.o
 
+test_io:	test_io.c nhextio.o
+	$(CC) $(CFLAGS) -o test_io test_io.c nhextio.o
+
 clean:
-	$(RM) *.o test_xdr rpcgen-test_xdr test_ext
+	$(RM) *.o test_xdr rpcgen-test_xdr test_ext test_io
 
 spotless:	clean
 	$(RM) rpcgen-nhext.h rpcgen-nhext_xdr.c rpcgen-nhext.x
 
 depend: ../../sys/unix/depend.awk $(CSRC)
 	$(AWK) -f ../../sys/unix/depend.awk ../../include/*.h $(CSRC) | \
-	sed -e 's:\.\./include:\.\./\.\./include:' > makedep
+	sed -e 's:\.\./include:\.\./\.\./include:g' > makedep
 	@echo '/^# DO NOT DELETE THIS LINE OR CHANGE ANYTHING BEYOND IT/+2,$$d' >eddep
 	@echo '$$r makedep' >>eddep
 	@echo 'w' >>eddep
@@ -88,7 +96,10 @@ $(HACK_H): ../../include/hack.h
 	touch $(HACK_H)
 #
 nhxdr.o: nhxdr.c $(HACK_H) ../../include/nhxdr.h
+nhext.o: nhext.c $(HACK_H) ../../include/nhxdr.h ../../include/proxycom.h \
+		../../include/winproxy.h
 nhextxdr.o: nhextxdr.c $(HACK_H) ../../include/nhxdr.h
+nhextio.o: nhextio.c ../../include/proxycom.h
 # DEPENDENCIES MUST END AT END OF FILE
 # IF YOU PUT STUFF HERE IT WILL GO AWAY
 # see make depend above

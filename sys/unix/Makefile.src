@@ -248,8 +248,8 @@ WINPROXYOBJ = winproxy.o callback.o nhwin.a
 #
 # Common files for proxy window interface and window servers.
 PROXYCOMSRC = ../win/proxy/nhext.c ../win/proxy/nhxdr.c \
-	../win/proxy/nhextxdr.c ../win/proxy/compxdr.c
-PROXYCOMOBJ = nhext.o nhxdr.o nhextxdr.o compxdr.o
+	../win/proxy/nhextxdr.c ../win/proxy/nhextio.c ../win/proxy/compxdr.c
+PROXYCOMOBJ = nhext.o nhxdr.o nhextxdr.o nhextio.o compxdr.o
 #
 # Files for the proxy utility modules. These are provided for use with window
 # ports that support the proxy interface. The GTK2 window interface needs
@@ -352,11 +352,11 @@ WINLIB = $(WINTTYLIB)
 # WINLIB = $(WINTTYLIB) $(WINX11LIB)
 # Use this declaration if you want to support the Qt windowing system
 # WINLIB = $(WINTTYLIB) $(WINQTLIB)
-# Use this declarations if you want to support the GTK windowing system
+# Use this declaration if you want to support the GTK windowing system
 # WINLIB = $(WINTTYLIB) $(WINGTKLIB)
-# Use this declarations to only support the SDL/GL windowing system
+# Use this declaration to only support the SDL/GL windowing system
 # WINLIB = $(WINGLLIB)
-# Use this declarations if you want to support external windowing systems
+# Use this declaration if you want to support external windowing systems
 # WINLIB = $(WINTTYLIB) $(WINPROXYLIB)
 
 # any other strange libraries your system needs (for Sysunix only -- the more
@@ -860,12 +860,15 @@ prxychar.o: ../win/proxy/prxychar.c $(HACK_H) ../include/winproxy.h \
 prxytile.o: ../win/proxy/prxytile.c $(HACK_H) ../include/winproxy.h \
 		../include/proxysvr.h ../include/proxycb.h
 	$(CC) $(CFLAGS) -c ../win/proxy/prxytile.c
-nhext.o: ../win/proxy/nhext.c $(HACK_H) ../include/nhxdr.h ../include/winproxy.h
+nhext.o: ../win/proxy/nhext.c $(HACK_H) ../include/nhxdr.h \
+		../include/proxycom.h ../include/winproxy.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhext.c
 nhxdr.o: ../win/proxy/nhxdr.c $(HACK_H) ../include/nhxdr.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhxdr.c
 nhextxdr.o: ../win/proxy/nhextxdr.c $(HACK_H) ../include/nhxdr.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhextxdr.c
+nhextio.o: ../win/proxy/nhextio.c ../include/proxycom.h
+	$(CC) $(CFLAGS) -c ../win/proxy/nhextio.c
 compxdr.o: ../win/proxy/compxdr.c $(HACK_H) ../include/nhxdr.h \
 		../include/winproxy.h ../include/proxycb.h
 	$(CC) $(CFLAGS) -c ../win/proxy/compxdr.c
