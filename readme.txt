@@ -68,6 +68,7 @@ http://www.slashem.org/
 -----------
 
 ver 0.0.7E7F1 [?] [Released by ?]
+-fixed bug 1155634: charm spell or command undead spell invoke genocide
 
 See history.txt for changes made in previous versions.
 
