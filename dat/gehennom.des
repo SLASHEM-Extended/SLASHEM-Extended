@@ -155,8 +155,28 @@ MONSTER:'M',random,random
 # The Juiblex level
 #
 MAZE:"juiblex",' '
-FLAGS:noteleport
+FLAGS:noteleport,shortsighted
 INIT_MAP:'.','}',true,true,unlit,false
+# guarantee at least one open spot to ensure successful stair placement
+GEOMETRY:left,bottom
+MAP
+}}}}}}}}
+}}...}}}
+}}}...}}
+}}}}.}}}
+}}}}}}}}
+ENDMAP
+OBJECT:'`',"boulder",random
+GEOMETRY:right,top
+MAP
+}}}}}}}}
+}}}}.}}}
+}}}...}}
+}}...}}}
+}}}}}}}}
+ENDMAP
+OBJECT:'`',"boulder",random
+# lair
 GEOMETRY:center,center
 MAP
 ..}}}}}.}}}}}.}}}}}.}}}}}.}}}}}.}}}}}.}}}}}.}}}}}..
@@ -185,10 +205,10 @@ RANDOM_PLACES:(04,02),(46,02),(04,15),(46,15)
 REGION:(00,00,50,17),unlit,"swamp"
 MAZEWALK:(00,09),west
 MAZEWALK:(50,08),east
-STAIR:levregion(01,00,08,20),(0,0,50,17),down
+STAIR:levregion(01,00,11,20),(0,0,50,17),down
 STAIR:levregion(69,00,79,20),(0,0,50,17),up
-BRANCH:levregion(01,00,08,20),(0,0,50,17)
-TELEPORT_REGION:levregion(01,00,08,20),(0,0,50,17),up
+BRANCH:levregion(01,00,11,20),(0,0,50,17)
+TELEPORT_REGION:levregion(01,00,11,20),(0,0,50,17),up
 TELEPORT_REGION:levregion(69,00,79,20),(0,0,50,17),down
 FOUNTAIN:place[0]
 MONSTER:'m',"giant mimic",place[1],m_feature "fountain"
@@ -197,9 +217,9 @@ MONSTER:'m',"giant mimic",place[3],m_feature "fountain"
 # The demon of the swamp
 MONSTER:'&',"Juiblex",(25,08)
 # And a couple demons
-MONSTER:'i',"quasit",(43,08)
-MONSTER:'i',"quasit",(44,08)
-MONSTER:'i',"quasit",(45,08)
+MONSTER:'i',"lemure",(43,08)
+MONSTER:'i',"lemure",(44,08)
+MONSTER:'i',"lemure",(45,08)
 # Some liquids and gems
 OBJECT:'*',random,(43,06)
 OBJECT:'*',random,(45,06)
@@ -240,6 +260,7 @@ OBJECT:'!',random,random
 OBJECT:'%',random,random
 OBJECT:'%',random,random
 OBJECT:'%',random,random
+OBJECT:'`',"boulder",random
 # Some traps
 TRAP:"sleep gas",random
 TRAP:"sleep gas",random
