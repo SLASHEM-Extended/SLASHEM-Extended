@@ -368,7 +368,7 @@ A("The Heart of Ahriman", LUCKSTONE,
 	NO_ATTK,        NO_DFNS,        NO_CARY,
 	LEVITATION,	A_NEUTRAL, PM_BARBARIAN, NON_PM ),
 
-A("The Sceptre of Might",       QUARTERSTAFF,
+A("The Sceptre of Might",       MACE,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_DALIGN), 0, 0,
 	PHYS(3,5),      NO_DFNS,        CARY(AD_MAGM),
 	CONFLICT,	A_LAWFUL, PM_CAVEMAN, NON_PM ),
