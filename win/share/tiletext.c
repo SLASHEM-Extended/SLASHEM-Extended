@@ -546,6 +546,22 @@ FILE *txtfile;
 }
 
 boolean
+read_text_file_colormap(filename)
+const char *filename;
+{
+	FILE *fp;
+
+	fp = fopen(filename, RDTMODE);
+	if (fp == (FILE *)0) {
+		Fprintf(stderr, "cannot open text file %s\n", filename);
+		return FALSE;
+	}
+	read_text_colormap(fp);
+	fclose(fp);
+	return TRUE;
+}
+
+boolean
 fopen_text_file(filename, type)
 const char *filename;
 const char *type;

@@ -123,6 +123,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -fixed bug 739987: impossible boolean condition.
 -Actioned feature request 464475: recentering view with gtk: optional.
 -Actioned feature request 421203: Mages' draconic polymorph.
+-Updated tilesets to use latest version of Mitsuhiro Itakura's tiles.
 
 See history.txt for changes made in previous versions.
 

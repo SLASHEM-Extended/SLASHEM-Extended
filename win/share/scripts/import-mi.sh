@@ -1,24 +1,16 @@
 #!/bin/sh
 #
-#   Copyright (c) J. Ali Harlow 2000
+#   Copyright (c) J. Ali Harlow 2003
 #   NetHack may be freely redistributed.  See license for details.
 #
 #   This shell script imports Mitshurio Itakura's tilesets from
-#   his diy33 package. You must have a copy of this package first!
-#   diy33.zip is available from
-#     http://www.geocities.co.jp/SiliconValley-SanJose/9606/nh/diy33.html
+#   his diy package. You must have a copy of this package first!
+#   diy.tgz is available from
+#     http://www.geocities.co.jp/SiliconValley-SanJose/9606/nh/eng.html
 #   It should be unpacked into a suitable direcory and the variable
 #   below set to point at it.
 #
-#   You will also need a copy of the relevant tilemap. For the version of
-#   diy33 current at 22 Sep 2000, this is the NetHack 3.3.0 map.
-#
-#   Note: It would be nice to be able to create these from the name.txt
-#   file included in diy33, but this lacks the information as to wether
-#   a tile is a monster, object or other. SlashEM's supplemental cmap
-#   names (see win/share/tilemap.c) also need special handling.
-#
-#   There appear to be a few tiles that didn't make it into diy33. These
+#   There appear to be a few tiles that didn't make it into diy. These
 #   are included as mon32mix.txt and obj32mix.txt (which were imported
 #   from t32-1024.xpm). Hopefully the need for these files should go
 #   away in future.
@@ -31,8 +23,9 @@
 #
 # Configuration variables
 #
-input=diy33
-tilemap=nh330
+input=diy
+tilemap=mi
+palette=../palette.txt
 extra_mon=mon32mix.txt
 extra_obj=obj32mix.txt
 xpm2txt=../../../util/xpm2txt
@@ -41,6 +34,84 @@ txtmerge=../../../util/txtmerge
 #
 # Functions
 #
+generate_palette()
+# Usage: generate_palette <input-txt> <output-ppm>
+{
+    awk '/^[A-Za-z$_]+[ 	]*=[ 	]*\([0-9][0-9]*,[ 	]*[0-9][0-9]*,[ 	]*[0-9][0-9]*\)$/ {print}' $1 > /tmp/pal$$.txt
+    echo P3 1 `wc -l /tmp/pal$$.txt | awk '{print $1}'` 255 > $2
+    sed -e 's/.*(\(.*\))/\1/' -e 's/,[ 	]*/ /g' < /tmp/pal$$.txt >> $2
+    rm -f /tmp/pal$$.txt
+}
+generate_tilemap()
+# Usage: generate_tilemap <tilemap> <input>
+{
+    tr -d '\015' < $2 | grep -v '^#' | awk "BEGIN {subset=\"monsters\"; \
+	cmap[67]=\"dig beam\"; \
+	cmap[68]=\"camera flash\"; \
+	cmap[69]=\"thrown boomerang, open left\"; \
+	cmap[70]=\"thrown boomerang, open right\"; \
+	cmap[71]=\"magic shield 1\"; \
+	cmap[72]=\"magic shield 2\"; \
+	cmap[73]=\"magic shield 3\"; \
+	cmap[74]=\"magic shield 4\"; \
+	cmap[75]=\"swallow top left\"; \
+	cmap[76]=\"swallow top center\"; \
+	cmap[77]=\"swallow top right\"; \
+	cmap[78]=\"swallow middle left\"; \
+	cmap[79]=\"swallow middle right\"; \
+	cmap[80]=\"swallow bottom left\"; \
+	cmap[81]=\"swallow bottom center\"; \
+	cmap[82]=\"swallow bottom right\"; \
+	} \
+	{ \
+	    id=\$1; \
+	    \$1=\"\"; \
+	    if (\$0 == \" strange object\") \
+		subset=\"objects\"; \
+	    else if (\$0 == \" wall\") \
+		subset=\"other\"; \
+	    else if (\$0 == \" blank\") \
+		subset=\"special\"; \
+	    if (\$2 == \"explode\" || \$2 == \"cmap\" && \
+	      \$3 + 0 >= 83 && \$3 + 0 <= 91) { \
+		\$2 = \"explosion\"; \
+		if (\$3 == \"black\") \
+		    \$3 = \"dark\"; \
+		else if (\$3 == \"green\") \
+		    \$3 = \"noxious\"; \
+		else if (\$3 == \"brown\") \
+		    \$3 = \"muddy\"; \
+		else if (\$3 == \"blue\") \
+		    \$3 = \"wet\"; \
+		else if (\$3 == \"purple\") \
+		    \$3 = \"magical\"; \
+		else if (\$3 == \"darkblue\") \
+		    \$3 = \"frosty\"; \
+		else { \
+		    \$4 = \$3; \
+		    \$3 = \"fiery\"; \
+		} \
+		\$4 = \$4 - 83; \
+	    } else if (\$2 == \"cmap\" && cmap[\$3]\"\" != \"\") \
+	    { \
+		\$4 = cmap[\$3]; \
+		\$3 = \"/\"; \
+	    } else if (\$0 == \" anti-magic trap field\") \
+	    { \
+		\$3 = \$4; \
+		NF--; \
+	    } else if (\$0 == \" beholder\") \
+		\$2 = \"Beholder\"; \
+	    printf(\"%s@%s@\",\"$1\",subset); \
+	    for(i=2;i<NF;i++) \
+		printf(\"%s \",\$i); \
+	    printf(\"%s@%s\\n\",\$NF,id); \
+	}" > ${tilemap}.tile
+    fgrep "@monsters@" ${tilemap}.tile > ${tilemap}-monsters.tile
+    fgrep "@objects@" ${tilemap}.tile > ${tilemap}-objects.tile
+    fgrep "@other@" ${tilemap}.tile > ${tilemap}-other.tile
+    rm -f ${tilemap}.tile
+}
 addtile()
 # Usage: addtile <output> <id> <name> <input>
 {
@@ -66,7 +137,7 @@ addtile()
     "dull"|"thin")
 	ad_name=$oc_descr;;
     esac
-    echo "s£^# tile ${ad_count} (unknown)£# tile ${id} ($ad_name)£" >> ${ad_sed}
+    echo "s£^# tile ${ad_count} (unknown)£# tile ${ad_id} ($ad_name)£" >> ${ad_sed}
 }
 import()
 # Usage: import <tileset> <sub>
@@ -83,37 +154,30 @@ import()
     else
 	echo "Error: import: tileset unknown \"${tileset}\""
     fi
-    if test "$short" = "mon"; then
-	offset=0
-    elif test "$short" = "obj"; then
-	offset=`wc -l ${tilemap}-monsters.tile`
-    else
-	offset=`cat ${tilemap}-monsters.tile ${tilemap}-objects.tile | wc -l`
-    fi
-    offset=`echo $offset | awk '{ print $1 }'`
     cat ${tilemap}-${long}.tile | while read line; do
-	id=`echo $line | sed 's:.*@\([^@]*\)$:\1:'`
-	id=`echo 1000 + ${offset} + ${id} | bc | sed 's/^1//'`
+	tag=`echo $line | sed 's:.*@\([^@]*\)$:\1:'`
 	name=`echo $line | sed 's:.*@\([^@]*\)@[^@]*$:\1:'`
-	bmp=$input/${key}xxx/${key}$id.bmp
+	bmp=$input/${key}xxx/$tag.bmp
 	if test -r $bmp; then
 	    bmptoppm $bmp > /tmp/et$$.ppm 2> /dev/null
-	    addtile ${ex_output}.ppm "$id" "$name" /tmp/et$$.ppm
+	    addtile ${ex_output}.ppm 0 "$name" /tmp/et$$.ppm
 	fi
     done
     if test -r ${ex_output}.ppm; then
-	ppmtoxpm ${ex_output}.ppm > ${ex_output}.xpm
+	ppmquant -fs -map palette.ppm ${ex_output}.ppm 2> /dev/null | \
+	ppmtoxpm > ${ex_output}.xpm
 	if test "$tileset" = "32"; then
 	    $xpm2txt -w32 -h32 ${ex_output}.xpm /tmp/et$$.txt
 	    sed -f ${ex_output}.sed < /tmp/et$$.txt > /tmp/et$$-2.txt
 	    if test "$short" = "mon" -a -n "${extra_mon}"; then
 		${txtmerge} /tmp/et$$.txt /tmp/et$$-2.txt ${extra_mon}
-		${txtfilt} /tmp/et$$.txt ${ex_output}.txt
+		${txtfilt} -p ../palette.txt /tmp/et$$.txt ${ex_output}.txt
 	    elif test "$short" = "obj" -a -n "${extra_obj}"; then
 		${txtmerge} /tmp/et$$.txt /tmp/et$$-2.txt ${extra_obj}
-		${txtfilt} /tmp/et$$.txt ${ex_output}.txt
+		${txtfilt} -p ../palette.txt /tmp/et$$.txt ${ex_output}.txt
 	    else
-		${txtfilt} /tmp/et$$-2.txt ${ex_output}.txt
+		${txtmerge} /tmp/et$$.txt /tmp/et$$-2.txt
+		${txtfilt} -p ../palette.txt /tmp/et$$.txt ${ex_output}.txt
 	    fi
 	else
 	    $xpm2txt -w48 -h64 ${ex_output}.xpm /tmp/et$$.txt
@@ -130,10 +194,16 @@ if test ! -d ${input}/pxxx; then
     echo "Error: Can't find bitmaps: ${input}/pxxx: No such directory"
     exit 1
 fi
+if test ! -r ${palette}; then
+    echo "Error: Can't find palette file: $palette"
+    exit 1
+fi
+if test ! -r palette.ppm; then
+    generate_palette ${palette} palette.ppm
+fi
 if test ! \( -r ${tilemap}-monsters.tile -a -r ${tilemap}-objects.tile -a \
   -r ${tilemap}-other.tile \) ; then
-    echo "Error: Can't find tilemap"
-    exit 1
+    generate_tilemap $tilemap ${input}/name341.txt
 fi
 if test ! \( -x "${xpm2txt}" -a -x "${txtfilt}" \) ; then
     echo "Error: Can't find tile utils"

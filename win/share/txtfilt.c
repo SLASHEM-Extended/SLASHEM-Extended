@@ -215,13 +215,28 @@ char **argv;
 		exit(EXIT_FAILURE);
 	    }
 	    argn ++;
+	} else if (!strcmp(argv[argn], "-p")) {
+	    argn ++;
+	    if (argn >= argc)
+	    {
+		Fprintf(stderr, "txtfilt: -p option requires a palette file\n");
+		exit(EXIT_FAILURE);
+	    }
+	    if (!read_text_file_colormap(argv[argn]))
+	    {
+		perror(argv[argn]);
+		exit(EXIT_FAILURE);
+	    }
+	    init_colormap();
+	    argn ++;
 	}
 	else
 	    break;
     }
 
     if (argc - argn != 2) {
-	Fprintf(stderr, "usage: txtfilt [-f match-file] infile outfile\n");
+	Fprintf(stderr,
+	  "usage: txtfilt [-f match-file] [-p palette-file] infile outfile\n");
 	exit(EXIT_FAILURE);
     }
 
