@@ -143,6 +143,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 1066530: Fired/thrown items get new inventory letter when retrieved
 -fixed bug 992244: Alt Gr key doesn't work
 -fixed bug 1076125: Unsuccessful use of medical kits
+-fixed bug 1076123: Vampires can eat white pills
 
 See history.txt for changes made in previous versions.
 
