@@ -30,6 +30,10 @@ ALIGNMENT:      unaligned
 #   deeper, penalizing many characters.  The balance patch restores
 #   the entrance to levels 2 to 4.
 BRANCH:		"The Gnomish Mines" @ (2, 3)
+
+# Test alternate route through the maze
+BRANCH:		"A Short but Boring Road" @ (3, 5)
+
 #
 #   New mall is on levels 5 to 6, 75% chance.
 #   There shouldn't be any other special levels down to the Oracle.
@@ -42,7 +46,7 @@ LEVELDESC:	town
 #   Oracle on levels 7 to 9.
 LEVEL:		"oracle" "O" @ (7, 3)
 LEVALIGN:	neutral
-CHAINBRANCH:	"Sokoban" "oracle" + (1, 0) up
+CHAINBRANCH:	"Sokoban" "oracle" + (1, 0) up -1
 
 
 # Levels between the Oracle and the Quest.
@@ -99,9 +103,14 @@ CHAINBRANCH:	"Gehennom" "castle" + (0, 0) no_down
 
 
 # Branch to the endgame...
-BRANCH:			"The Elemental Planes" @ (1, 0) no_down up
+BRANCH:			"The Elemental Planes" @ (1, 0) no_down up -1
 
 
+### A Short but Boring Road ###
+# Alternate, boring, route to the castle
+
+DUNGEON:	"A Short but Boring Road" "C" (10, 5)
+BRANCH:		"The Dungeons of Doom" @ (-1, 0) -2
 
 ### Gehennom ###
 #
@@ -130,7 +139,7 @@ ALIGNMENT:      noalign
 LEVEL:          "valley" "V" @ (1, 0)
 LEVEL:          "sanctum" "none" @ (-1, 0)
 # Tower before wiz, please
-BRANCH:         "Vlad's Tower" @ (3, 10) up
+BRANCH:         "Vlad's Tower" @ (3, 10) up -1
 # Dr. Frankenstein's Lab
 BRANCH:         "Frankenstein's Lab" @ (3, 10) up
 # The demon levels
@@ -197,7 +206,6 @@ LEVEL:			"lich" "none" @ (1, 0)
 DUNGEON:		"Sokoban" "none" (4, 0)
 DESCRIPTION:    mazelike
 ALIGNMENT:      neutral
-ENTRY:          -1
 RNDLEVEL:		"soko1" "none" @ (1, 0) 2
 RNDLEVEL:		"soko2" "none" @ (2, 0) 2
 RNDLEVEL:		"soko3" "none" @ (3, 0) 2
@@ -266,7 +274,6 @@ DUNGEON:        "Vlad's Tower" "T" (3, 0)
 PROTOFILE:      "tower"
 DESCRIPTION:    mazelike
 ALIGNMENT:      chaotic
-ENTRY:          -1
 
 
 ### Dr Frankenstein's Lab ###
@@ -280,7 +287,6 @@ LEVEL:          "frnknstn" "none" @ (1, 0)
 DUNGEON:        "The Elemental Planes" "E" (5, 0)
 DESCRIPTION:    mazelike
 ALIGNMENT:      unaligned
-ENTRY:          -1
 LEVEL:          "astral" "none" @ (1, 0)
 LEVEL:          "water"  "none" @ (2, 0)
 LEVEL:          "fire"   "none" @ (3, 0)
