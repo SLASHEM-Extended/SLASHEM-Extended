@@ -68,6 +68,7 @@ http://www.slashem.org/
 -----------
 
 ver 0.0.7E6F3 [?] [Released by ?]
+-fixed bug 923003: Invisible mirrors can be applied
 
 See history.txt for changes made in previous versions.
 
