@@ -1706,7 +1706,9 @@ register struct obj *obj;
 	int chg;
 #ifdef DEVEL_BRANCH
 	int otyp = obj->otyp, otyp2;
+	xchar ox, oy;
 	long owornmask;
+	struct obj *otmp;
 #endif
 
 	/* Check to see if object is valid */
@@ -2057,6 +2059,50 @@ register struct obj *obj;
 			return (FALSE);
 	}
 
+#ifdef DEVEL_BRANCH
+	if ((!carried(obj) || obj->unpaid) &&
+#ifdef UNPOLYPILE
+		!is_fuzzy(obj) &&
+#endif
+		get_obj_location(obj, &ox, &oy, BURIED_TOO|CONTAINED_TOO) &&
+		costly_spot(ox, oy)) {
+	    char objroom = *in_rooms(ox, oy, SHOPBASE);
+	    register struct monst *shkp = shop_keeper(objroom);
+
+	    if ((!obj->no_charge ||
+		 (Has_contents(obj) &&
+		    (contained_cost(obj, shkp, 0L, FALSE) != 0L)))
+	       && inhishop(shkp)) {
+		if(shkp->mpeaceful) {
+		    if(*u.ushops && *in_rooms(u.ux, u.uy, 0) ==
+			    *in_rooms(shkp->mx, shkp->my, 0) &&
+			    !costly_spot(u.ux, u.uy))
+			make_angry_shk(shkp, ox, oy);
+		    else {
+			pline("%s gets angry!", Monnam(shkp));
+			hot_pursuit(shkp);
+		    }
+		} else Norep("%s is furious!", Monnam(shkp));
+		otyp2 = obj->otyp;
+		obj->otyp = otyp;
+		/*
+		 * [ALI] When unpaid containers are upgraded, the
+		 * old container is billed as a dummy object, but
+		 * it's contents are unaffected and will remain
+		 * either unpaid or not as appropriate.
+		 */
+		otmp = obj->cobj;
+		obj->cobj = NULL;
+		if (costly_spot(u.ux, u.uy) && objroom == *u.ushops)
+		    bill_dummy_object(obj);
+		else
+		    (void) stolen_value(obj, ox, oy, FALSE, FALSE);
+		obj->otyp = otyp2;
+		obj->cobj = otmp;
+	    }
+	}
+#endif
+
 	/* The object was transformed */
 	obj->owt = weight(obj);
 	obj->oclass = objects[obj->otyp].oc_class;
@@ -2219,30 +2265,17 @@ dodip()
 	 * 	 Give out name of new object and allow user to name the potion
 	 */
 	/* KMH, balance patch -- idea by Dylan O'Donnell <dylanw@demon.net> */
-	else if (potion->otyp == POT_GAIN_LEVEL) {
-	    if (upgrade_obj(obj)) {
-		/* The object was upgraded */
-		/* FIXME -- charge for purchased merchandise */
-		/*check_unpaid(obj);
-		check_unpaid(potion);*/
-
-		if (obj->oclass != POTION_CLASS) {
-			pline("Hmm! You don't recall dipping that into the potion.");
-			prinv((char *)0, obj, 0L);			
-			if(!(objects[potion->otyp].oc_name_known) &&
-			   !(objects[potion->otyp].oc_uname))
-		          	docall(potion);
-		} else {
-		    pline_The("potions mix...");
-		    if (!Blind) 
-			pline_The("mixture looks %s.",
-				hcolor(OBJ_DESCR(objects[obj->otyp])));
-		}
-		useup(potion);
-		update_inventory();
-		exercise(A_WIS, TRUE);
-		return (1);	    
-	    }
+	else if (potion->otyp == POT_GAIN_LEVEL && upgrade_obj(obj)) {
+	    /* The object was upgraded */
+	    pline("Hmm!  You don't recall dipping that into the potion.");
+	    prinv((char *)0, obj, 0L);			
+	    if (!objects[potion->otyp].oc_name_known &&
+		    !objects[potion->otyp].oc_uname)
+		docall(potion);
+	    useup(potion);
+	    update_inventory();
+	    exercise(A_WIS, TRUE);
+	    return(1);	    
 	} else if (obj->otyp == POT_POLYMORPH ||
 		potion->otyp == POT_POLYMORPH) {
 	    /* some objects can't be polymorphed */
