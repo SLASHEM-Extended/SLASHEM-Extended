@@ -6,8 +6,8 @@
 #
 # by Michaelª Hamel and Ross Brown 1991 : michael@otago.ac.nz
 #
-# Updated for Slash'EM 0.0.5-2 to .6-6
-# Paul Hurtley, August 1999 to May 2002
+# Updated for Slash'EM 0.0.5-2 to .6-7
+# Paul Hurtley, August 1999 to September 2002
 
 #--------------------------------------------------------------------------
 #
@@ -70,7 +70,7 @@ LexYYC = lex.yy.c
 # The following files are in the binary distribution
 DataFiles 	=	"{Results}"Record   		¶
 				"{Results}"Guidebook.txt	¶
-				"{Results}"History			¶
+				"{Results}"History.txt		¶
 				"{Results}"License			¶
 				"{Results}"Slash¶'EM¶ Defaults   ¶
 				"{Results}"README
@@ -454,9 +454,9 @@ Levels Ä "{LibDir}"Levels.list "{MacDir}"Levels.make
 		Duplicate -y "{Doc}"Guidebook.txt "{Results}"Guidebook.txt
 		SetFile -c "MOSS" "{Results}"Guidebook.txt
 		
-"{Results}"History  Ä	"{Top}"readme.txt
-		Duplicate -y "{Top}"readme.txt "{Results}"History
-		SetFile -c "MOSS" "{Results}"History
+"{Results}"History.txt  Ä	"{Top}"readme.txt
+		Duplicate -y "{Top}"readme.txt "{Results}"History.txt
+		SetFile -c "MOSS" "{Results}"History.txt
 		
 "{Results}"README  Ä	"{MacDir}"README.txt
 		Duplicate -y "{MacDir}"README.txt "{Results}"README
@@ -503,7 +503,9 @@ Levels Ä "{LibDir}"Levels.list "{MacDir}"Levels.make
 
 RecoverSrcs = "{MacDir}"MRecover.c
 
-RecoverRsrcs = "{MacDir}"MRecover.r
+RecoverRsrcs = ¶
+	"{MacDir}"MFiles.r ¶
+	"{MacDir}"MRecover.r
 	
 "{ObjDir}"Recover.make	Ä
 		CreateMake "{ObjDir}"Recover {RecoverSrcs} -{Processor} ¶
