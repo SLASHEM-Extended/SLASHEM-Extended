@@ -1604,7 +1604,8 @@ do_stone:
 		    else You("are getting confused.");
 		    make_confused(HConfusion + dmg, FALSE);
 		}
-		/* fall through to next case */
+		dmg = 0;
+		break;
 	    case AD_DETH:
 		pline("%s reaches out with its deadly touch.", Monnam(mtmp));
 		if (is_undead(youmonst.data)) {
