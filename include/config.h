@@ -10,6 +10,7 @@
 
 /*#define DEBUG*/
 /*#define DDEBUG*/
+/*#define MONITOR_HEAP*/
 
 /*
  * Section 1:	Operating and window systems selection.

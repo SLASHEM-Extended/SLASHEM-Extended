@@ -1,5 +1,5 @@
 /*
-  $Id: gtkyn.c,v 1.5 2000-12-03 15:07:38 j_ali Exp $
+  $Id: gtkyn.c,v 1.6 2000-12-15 15:38:10 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -262,7 +262,6 @@ GTK_yn_function(const char *query, const char *resp, CHAR_P def)
 	gtk_signal_disconnect(GTK_OBJECT(window), hid);
 
 	gtk_widget_destroy(frame);
-	gtk_widget_destroy(vbox);
 	if(clist)
 	    gtk_widget_destroy(clist);
 	gtk_widget_destroy(window);

@@ -318,6 +318,14 @@ typedef xchar	boolean;		/* 0 or 1 */
 #ifdef MONITOR_HEAP
 extern long *FDECL(nhalloc, (unsigned int,const char *,int));
 extern void FDECL(nhfree, (genericptr_t,const char *,int));
+#ifdef LINUX
+extern void FDECL(monitor_heap_push, (const char *, int));
+extern unsigned long FDECL(monitor_heap_pop, (const char *, int, unsigned long));
+extern void FDECL(monitor_heap_set_subid, (const char *, int ));
+extern size_t NDECL(monitor_heap_getmem);
+extern boolean FDECL(monitor_heap_trace, (boolean flag));
+extern void NDECL(monitor_heap_mark);
+#endif
 # ifndef __FILE__
 #  define __FILE__ ""
 # endif

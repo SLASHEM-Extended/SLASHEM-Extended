@@ -1,10 +1,12 @@
 /*
-  $Id: gtk.c,v 1.17 2000-12-03 15:07:38 j_ali Exp $
+  $Id: gtk.c,v 1.18 2000-12-15 15:38:10 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
+
+/* #define DEBUG */			/* Uncomment for debugging */
 
 #include <sys/types.h>
 #include <signal.h>
@@ -17,8 +19,6 @@
 #else
 #include "patchlevel.h"
 #endif
-
-/* #define DEBUG */			/* Uncomment for debugging */
 
 static int	initialized;
 static int	initialized2;
@@ -301,10 +301,13 @@ win_GTK_init()
 GtkWidget *
 nh_gtk_new(GtkWidget *w, GtkWidget *parent, gchar *lbl)
 {
+#if 0
+    /* [ALI] Removed this code, it doesn't seem to achive anything */
     gtk_widget_ref(w);
     gtk_object_set_data_full(
 	GTK_OBJECT(parent), lbl, w,
 	(GtkDestroyNotify)gtk_widget_unref);
+#endif
     gtk_widget_show(w);
 
     return w;
@@ -313,10 +316,12 @@ nh_gtk_new(GtkWidget *w, GtkWidget *parent, gchar *lbl)
 GtkWidget *
 nh_gtk_new_and_add(GtkWidget *w, GtkWidget *parent, gchar *lbl)
 {
+#if 0
     gtk_widget_ref(w);
     gtk_object_set_data_full(
 	GTK_OBJECT(parent), lbl, w,
 	(GtkDestroyNotify)gtk_widget_unref);
+#endif
     gtk_widget_show(w);
 
     gtk_container_add(GTK_CONTAINER(parent), w);
@@ -328,10 +333,12 @@ GtkWidget *
 nh_gtk_new_and_pack(GtkWidget *w, GtkWidget *parent, gchar *lbl, 
 		    gboolean a1, gboolean a2, guint a3)
 {
+#if 0
     gtk_widget_ref(w);
     gtk_object_set_data_full(
 	GTK_OBJECT(parent), lbl, w,
 	(GtkDestroyNotify)gtk_widget_unref);
+#endif
     gtk_widget_show(w);
 
     gtk_box_pack_start(GTK_BOX(parent), w, a1, a2, a3);
@@ -343,10 +350,12 @@ GtkWidget *
 nh_gtk_new_and_attach(GtkWidget *w, GtkWidget *parent, gchar *lbl, 
 		      guint a1, guint a2, guint a3, guint a4)
 {
+#if 0
     gtk_widget_ref(w);
     gtk_object_set_data_full(
 	GTK_OBJECT(parent), lbl, w,
 	(GtkDestroyNotify)gtk_widget_unref);
+#endif
     gtk_widget_show(w);
 
     gtk_table_attach_defaults(GTK_TABLE(parent), w, a1, a2, a3, a4);
@@ -361,10 +370,12 @@ nh_gtk_new_and_attach2(GtkWidget *w, GtkWidget *parent, gchar *lbl,
 		      GtkAttachOptions a6,
 		      guint a7, guint  a8)
 {
+#if 0
     gtk_widget_ref(w);
     gtk_object_set_data_full(
 	GTK_OBJECT(parent), lbl, w,
 	(GtkDestroyNotify)gtk_widget_unref);
+#endif
     gtk_widget_show(w);
 
     gtk_table_attach(GTK_TABLE(parent), w, a1, a2, a3, a4, a5, a6, a7, a8);
@@ -1280,11 +1291,20 @@ select_node_dump(struct select_node *node, int level)
  */
 
 static void
-init_select_player(void)
+init_select_player(boolean init)
 {
     int num_opts, i;
     struct select_node *root;
+    static int no_dynamic_opts, first_dynamic_opt;
 
+    if (!init) {	/* Exit */
+	for (i = 0; i < no_dynamic_opts; i++) {
+	    free(menu_items[first_dynamic_opt + i].path);
+	    free(menu_items[first_dynamic_opt + i].accelerator);
+	}
+	free(menu_items);
+	return;
+    }
     root = (struct select_node *)alloc(sizeof(struct select_node));
     root->key = 0;
     num_opts = select_node_fill(root, 0);
@@ -1297,8 +1317,11 @@ init_select_player(void)
     for (i = 0; i < SIZE(menu_template); i++) {
 	if (menu_template[i].path)
 	    menu_items[nmenu_items++] = menu_template[i];
-	else
+	else {
+	    first_dynamic_opt = nmenu_items;
 	    nmenu_items = select_node_traverse(root, nmenu_items, 0);
+	    no_dynamic_opts = nmenu_items - first_dynamic_opt;
+	}
     }
     if (nmenu_items > num_opts + SIZE(menu_template) - 1)
 	panic("GTK: init_select_player: Too many options (%d instead of %d)",
@@ -1359,7 +1382,7 @@ GTK_init_nhwindows(int *argc, char **argv)
     (void) seteuid(savuid);
 #endif
     
-    init_select_player();
+    init_select_player(TRUE);
 
 /*
   creat credit widget and show
@@ -1397,10 +1420,12 @@ GTK_init_nhwindows(int *argc, char **argv)
 #ifdef FILE_AREAS
     free(credit_file);
 #endif
-    if (credit_pixmap)
+    if (credit_pixmap) {
 	credit_credit = nh_gtk_new_and_pack(
 	    gtk_pixmap_new(credit_pixmap, credit_mask), credit_vbox, "",
 	    FALSE, FALSE, NH_PAD);
+	gdk_pixmap_unref(credit_pixmap);
+    }
     gtk_widget_show_all(credit_window);
 
     gtk_main();
@@ -1492,7 +1517,7 @@ GTK_init_nhwindows(int *argc, char **argv)
     nh_menu_sensitive("/Action", FALSE);
     nh_menu_sensitive("/Religion", FALSE);
     nh_menu_sensitive("/Special", FALSE);
-    
+
     main_hbox = nh_gtk_new_and_pack(
 	gtk_hbox_new(FALSE, 1), main_vbox, "",
 	FALSE, FALSE, 0);
@@ -1527,10 +1552,18 @@ GTK_init_nhwindows(int *argc, char **argv)
     initialized = 1;
 
     gtk_widget_hide(credit_window);
+    gtk_widget_destroy(credit_window);
     gtk_widget_show_all(main_window);
     
     iflags.window_inited = 1;
 }
+
+#ifdef MONITOR_XRESOURCES
+static int GTK_X11_error_handler(Display *dpy, XErrorEvent *e)
+{
+    return 0;
+}
+#endif
 
 void
 GTK_exit_nhwindows(const char *str)
@@ -1543,6 +1576,53 @@ GTK_exit_nhwindows(const char *str)
 	GTK_display_nhwindow(id, TRUE);
 	GTK_destroy_nhwindow(id);
     }
+
+    init_select_player(FALSE);
+
+    for(id = 0; id < MAXWIN; id++)
+	if (gtkWindows[id].type != NHW_NONE)
+	    GTK_destroy_nhwindow(id);
+
+    nh_map_destroy();
+    nh_status_destroy();
+
+#ifdef RADAR
+    nh_radar_destroy();
+#endif
+    gtk_widget_destroy(main_window);
+    g_blow_chunks();
+
+#ifdef MONITOR_XRESOURCES
+    /* ALI: An exceedingly unportable way of checking that
+     * there are no X drawables still allocated at this point.
+     */
+    {
+	struct _XDisplay *dpy = (struct _XDisplay *)GDK_DISPLAY();
+	XID i;
+	Drawable d;
+	Window root;
+	int x, y;
+	unsigned int w, h, bw, dp;
+	XWindowAttributes wa;
+	char *type;
+	fprintf(stderr, "X Drawables not freed:\n");
+	fprintf(stderr, "XID       Type    Width   Height\n");
+	XSetErrorHandler(GTK_X11_error_handler);
+	for(i = 0; i < dpy->resource_id; i++) {
+	    d = (Drawable)(dpy->resource_base + (i << dpy->resource_shift));
+	    if (XGetGeometry(dpy, d, &root, &x, &y, &w, &h, &bw, &dp)) {
+		if (x || y || bw)
+		    type = "Window";
+		else if (XGetWindowAttributes(dpy, (Window)d, &wa))
+		    type = wa.screen ? "Window" : "Pixmap";
+		else
+		    type = "Pixmap";
+		fprintf(stderr, "%-10lX%-8s%-8u%u\n",
+		  (unsigned long)d, type, w, h);
+	    }
+	}
+    }
+#endif
 }
 
 void
@@ -1631,9 +1711,6 @@ GTK_destroy_nhwindow(winid id)
 {
 /*    int i;*/
     NHWindow *w;
-
-    if(id == NHW_MAP)
-	nh_map_destroy();
 
     if(id == NHW_STATUS || id == NHW_MESSAGE || id == NHW_MAP)
 	return;
@@ -1911,9 +1988,8 @@ GTK_display_file(const char *fname, BOOLEAN_P complain)
 
     (void) dlb_fclose(fp);
 
-    if(hid > 0){
+    if (w) {
 	gtk_signal_disconnect(GTK_OBJECT(w), hid);
-
 	gtk_widget_destroy(button);
 	gtk_widget_destroy(hbox2);
 	gtk_widget_destroy(scrollbar);

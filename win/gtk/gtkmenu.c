@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.10 2000-12-05 20:05:39 j_ali Exp $
+  $Id: gtkmenu.c,v 1.11 2000-12-15 15:38:10 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -348,8 +348,10 @@ GTK_load_menu_clist(NHWindow *w)
 	if(menu->nhMenuItem[j].glyph != NO_GLYPH && map_visual){
 	    GdkPixmap *pixmap;
 	    pixmap = GTK_glyph_to_gdkpixmap(menu->nhMenuItem[j].glyph);
-	    if (pixmap)
+	    if (pixmap) {
 		gtk_clist_set_pixmap(c, j, 0, pixmap, NULL);
+		gdk_pixmap_unref(pixmap);
+	    }
 	}
 #endif
     }

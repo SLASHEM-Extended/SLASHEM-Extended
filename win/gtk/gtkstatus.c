@@ -1,5 +1,5 @@
 /*
-  $Id: gtkstatus.c,v 1.5 2000-09-28 18:20:30 j_ali Exp $
+  $Id: gtkstatus.c,v 1.6 2000-12-15 15:38:10 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -194,6 +194,14 @@ stat_align(void *data)
     return "";
 }
 
+#if defined(MONITOR_HEAP) && defined(LINUX)
+static int
+stat_mem()
+{
+    return monitor_heap_getmem();
+}
+#endif
+
 #define	NOVALUE		-999
 
 enum {
@@ -241,6 +249,9 @@ struct nh_stat_tab {
 	{NOVALUE, STAT_TYPE_F_INT, NULL,	"INT",		stat_stat, (void *)A_CON},
 	{NOVALUE, STAT_TYPE_F_INT, NULL,	"WIZ",		stat_stat, (void *)A_WIS},
 	{NOVALUE, STAT_TYPE_F_INT, NULL,	"CHA",		stat_stat, (void *)A_CHA},
+#if defined(MONITOR_HEAP) && defined(LINUX)
+	{NOVALUE, STAT_TYPE_F_INT, NULL,	"MEM",		stat_mem},
+#endif
     },
 };
 
@@ -441,6 +452,17 @@ nh_status_index_update()
 	    text[0] = t->name;
 	}
     }
+}
+
+void
+nh_status_destroy()
+{
+    /*
+     * [ALI] Most objects will be destroyed when the status widget is
+     * destroyed (ie., as part of destroying the main window).
+     */
+    gdk_pixmap_unref(hp_bar_pixmap);
+    gdk_pixmap_unref(mp_bar_pixmap);
 }
 
 GtkWidget *

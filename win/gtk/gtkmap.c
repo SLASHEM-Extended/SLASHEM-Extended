@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.18 2000-12-08 15:47:50 j_ali Exp $
+  $Id: gtkmap.c,v 1.19 2000-12-15 15:38:10 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -189,6 +189,7 @@ static struct tilemap{
 static void	nh_map_init();
 
 /*
+  -1:   deallocate
   zero: character
   else: various tiles
  */
@@ -202,19 +203,25 @@ nh_set_map_visual(int mode)
 	return;
     setting_visual++;
 
-    if(mode < 0 || mode > no_tileTab)
+    if(mode < -1 || mode > no_tileTab)
 	panic("Bad visual!\n");
 
     if(saved_vis != mode){
 	gtk_widget_hide(map);
 
-	nh_map_clear();
+	if (saved_vis >=0)
+	    nh_map_clear();
 
-	if(saved_vis > 0)
+	if(saved_vis > 0) {
+	    x_tile_destroy();
 	    gdk_image_destroy(tile_image);
+	}
 	else if (saved_vis == 0)
 	    free(map_xoffsets);
-	if(mode == 0){
+	if (mode < 0) {
+	    map_visual = mode;
+	    return;
+	} else if (mode == 0) {
 	    int i, width, min_width;
 	    /*
 	     * ALI
@@ -566,6 +573,15 @@ nh_map_init()
 void
 nh_map_destroy()
 {
+    int i;
+    nh_set_map_visual(-1);
+    gtk_widget_destroy(map_scroll);
+    gdk_font_unref(map_font);
+    gdk_gc_unref(map_gc);
+    for (i = 0; i < N_NH_COLORS; i++)
+	gdk_gc_unref(map_color_gc[i]);
+    gdk_pixmap_unref(map_pixmap);
+    xshm_map_destroy();
     map_scroll = NULL;
 }
 
@@ -580,10 +596,10 @@ nh_map_destroy()
  * that sxpm can. It won't reject all invalid XPM files, however.
  */
 
-static void
+static int
 tile_scan(void)
 {
-    int i, v, ch;
+    int i, v, visual, ch;
     int state;
     FILE *fp;
 
@@ -657,10 +673,10 @@ tile_scan(void)
 	v++;
     }
     no_tileTab = v - 1;
-    map_visual = -1;
+    visual = -1;
     for (v = 1; v <= no_tileTab; v++){
 	if (!strcmp(tileset, tileTab[v].ident)){
-	    map_visual = v;
+	    visual = v;
 	    break;
 	}
     }
@@ -669,12 +685,12 @@ tile_scan(void)
      *
      * Default to the first valid tile set
      */
-    if (map_visual < 0 && no_tileTab > 0) {
+    if (visual < 0 && no_tileTab > 0) {
 	if (tileset[0])
 	    pline("Warning: Tile set \"%s\" not supported.", tileset);
 	else
 	    pline("Warning: Can't start in character mode.");
-	map_visual = 1;
+	visual = 1;
 	strcpy(tileset, tileTab[map_visual].ident);
     }
     /*
@@ -684,9 +700,9 @@ tile_scan(void)
      * requires too many changes to nh_map_init and nh_map_new.
      * For now, we just abort.
      */
-    if (map_visual < 0)
+    if (visual < 0)
 	panic("No valid tiles found");
-    Tile = tileTab + map_visual;
+    return visual;
 }
 
 GtkWidget *
@@ -694,8 +710,10 @@ nh_map_new(GtkWidget *w)
 {
     int i/*, n*/;
     int width, height;
+    int visual;
 
-    tile_scan();
+    visual = tile_scan();
+    Tile = tileTab + visual;
     nh_map_init();
 
     NH_MAP_MAX_WIDTH = -1;
@@ -748,9 +766,10 @@ nh_map_new(GtkWidget *w)
     (void) xshm_map_init(NH_MAP_MAX_WIDTH, NH_MAP_MAX_HEIGHT);
 
 
-    if (map->style && map->style->font)
+    if (map->style && map->style->font) {
 	map_font = map->style->font;
-    else
+	gdk_font_ref(map_font);
+    } else
 	map_font = gdk_font_load(NH_FONT);
     if(!map_font){
 /*	fprintf(stderr, "warning: cannot load %s. try to load %s", NH_FONT, NH_FONT2);*/
@@ -767,9 +786,7 @@ nh_map_new(GtkWidget *w)
 
     map_gc = gdk_gc_new(w->window);
 
-    i = map_visual;
-    map_visual = -1;			/* Force initialisation */
-    nh_set_map_visual(i);
+    nh_set_map_visual(visual);
 
     map_pixmap = gdk_pixmap_new(
 	w->window,
@@ -810,6 +827,14 @@ nh_map_new(GtkWidget *w)
  */
 
 #ifdef RADAR
+void
+nh_radar_destroy()
+{
+    gdk_pixmap_unref(radar_pixmap);
+    gdk_pixmap_unref(radar_pixmap2);
+    gtk_widget_destroy(radar);
+}
+
 GtkWidget *
 nh_radar_new()
 {

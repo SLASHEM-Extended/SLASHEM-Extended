@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.10 2000-12-08 17:29:23 j_ali Exp $
+  $Id: winGTK.h,v 1.11 2000-12-15 15:38:10 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -14,6 +14,9 @@
 # endif
 #else
 #define WINGTK_X11	/* X11 libraries are available for our use */
+#ifdef DEBUG
+#define MONITOR_XRESOURCES	/* Debugging */
+#endif
 #endif
 
 #define WINGTK_MENU_IMAGES	/* Pretty images (tiles) in first column */
@@ -21,6 +24,9 @@
 #ifdef WINGTK_X11
 #include <gdk/gdkx.h>
 #include <X11/Xlib.h>
+#ifdef MONITOR_XRESOURCES
+#include <X11/Xlibint.h>
+#endif
 #include <X11/extensions/XShm.h>
 #endif
 
@@ -301,5 +307,36 @@ extern int	map_visual;
 
 /* Current map cursor position */
 extern int	cursx, cursy;
+
+#if defined(MONITOR_HEAP) && defined(LINUX)
+#define XCreatePixmap(dpy, root, width, height, depth) \
+	(monitor_heap_push(__FILE__, __LINE__), \
+	monitor_heap_pop(__FILE__, __LINE__, \
+	  (XCreatePixmap)(dpy, root, width, height, depth)))
+#define gdk_pixmap_new(w, width, height, depth) \
+	(GdkPixmap *)(monitor_heap_push(__FILE__, __LINE__), \
+	monitor_heap_pop(__FILE__, __LINE__, \
+	  (unsigned long)(gdk_pixmap_new)(w, width, height, depth)))
+#define gdk_image_new(type, visual, width, height) \
+	(GdkImage *)(monitor_heap_push(__FILE__, __LINE__), \
+	monitor_heap_pop(__FILE__, __LINE__, \
+	  (unsigned long)(gdk_image_new)(type, visual, width, height)))
+#define gtk_window_new(type) \
+	(GtkWidget *)(monitor_heap_push(__FILE__, __LINE__), \
+	monitor_heap_pop(__FILE__, __LINE__, \
+	  (unsigned long)(gtk_window_new)(type)))
+#define gtk_hbox_new(homogeneous, spacing) \
+	(GtkWidget *)(monitor_heap_push(__FILE__, __LINE__), \
+	monitor_heap_pop(__FILE__, __LINE__, \
+	  (unsigned long)(gtk_hbox_new)(homogeneous, spacing)))
+#define gtk_vbox_new(homogeneous, spacing) \
+	(GtkWidget *)(monitor_heap_push(__FILE__, __LINE__), \
+	monitor_heap_pop(__FILE__, __LINE__, \
+	  (unsigned long)(gtk_vbox_new)(homogeneous, spacing)))
+#define gtk_clist_new(columns) \
+	(GtkWidget *)(monitor_heap_push(__FILE__, __LINE__), \
+	monitor_heap_pop(__FILE__, __LINE__, \
+	  (unsigned long)(gtk_clist_new)(columns)))
+#endif
 
 #endif

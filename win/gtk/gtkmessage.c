@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmessage.c,v 1.2 2000-09-17 03:10:23 wacko Exp $
+  $Id: gtkmessage.c,v 1.3 2000-12-15 15:38:10 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -52,7 +52,7 @@ nh_message_putstr(const char *str)
 
   t = GTK_TEXT(message_text);
 
-  buf = malloc(strlen(str) + 2);
+  buf = (char *)alloc(strlen(str) + 2);
 
   sprintf(buf, "\n%s", str);
 

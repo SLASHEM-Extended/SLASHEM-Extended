@@ -1,5 +1,5 @@
 /*
-  $Id: xshm.c,v 1.4 2000-09-11 16:37:20 j_ali Exp $
+  $Id: xshm.c,v 1.5 2000-12-15 15:38:10 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -42,19 +42,22 @@ ErrorHandler(Display *dpy, XErrorEvent *event)
 void
 XShmDestroyXShmImage(Display *dpy, XShmImage *xshm)
 {
+    XFreePixmap(dpy, xshm->pixmap);
+    XDestroyImage(xshm->image);
     if(xshm->shmflg){
 	XShmDetach(dpy, &xshm->shminfo);
-	XDestroyImage(xshm->image);
-	XFreePixmap(dpy, xshm->pixmap);
 	shmdt(xshm->shminfo.shmaddr);
 	shmctl(xshm->shminfo.shmid, IPC_RMID, 0);
-	free(xshm);
     }
+    free(xshm);
 }
 #else
 void
 XShmDestroyXShmImage(XShmImage *xshm)
 {
+    gdk_bitmap_unref(xshm->pixmap);
+    gdk_image_destroy(xshm->image);
+    free(xshm);
 }
 #endif
 

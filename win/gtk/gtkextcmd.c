@@ -1,5 +1,5 @@
 /*
-  $Id: gtkextcmd.c,v 1.3 2000-12-03 15:07:38 j_ali Exp $
+  $Id: gtkextcmd.c,v 1.4 2000-12-15 15:38:10 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -192,8 +192,8 @@ GTK_get_ext_cmd()
 	gtk_widget_unmap(window);
 	gtk_signal_disconnect(GTK_OBJECT(window), hid);
 
-	gtk_widget_destroy(frame);
 	gtk_widget_destroy(vbox);
+	gtk_widget_destroy(frame);
 	gtk_widget_destroy(window);
     }
 
