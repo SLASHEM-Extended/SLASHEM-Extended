@@ -323,6 +323,8 @@ monsndx(ptr)            /* return an index into the mons array */
 {
 	register int    i;
 
+	if (ptr == &upermonst) return PM_PLAYERMON;
+
 	i = (int)(ptr - &mons[0]);
 	if (i < LOW_PM || i >= NUMMONS) {
 		/* ought to switch this to use `fmt_ptr' */

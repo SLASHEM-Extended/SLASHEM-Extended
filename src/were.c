@@ -107,6 +107,11 @@ register boolean yours;
 
 	if(Protection_from_shape_changers && !yours)
 		return FALSE;
+	/*
+	 * Allow lycanthropes in normal form to summon hordes as well.  --ALI
+	 */
+	if (pm == PM_PLAYERMON)
+	    pm = urace.malenum;
 	/*STEPHEN WHITE'S NEW CODE*/
 	for(i = rnd(2); i > 0; i--) {
 	   switch(pm) {
