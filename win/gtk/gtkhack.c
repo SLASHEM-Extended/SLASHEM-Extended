@@ -1,4 +1,4 @@
-/* $Id: gtkhack.c,v 1.4 2003-05-31 08:12:44 j_ali Exp $ */
+/* $Id: gtkhack.c,v 1.5 2003-12-05 12:23:50 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -114,7 +114,7 @@ GTK_connection_add(const char *name, const char *scheme, const char *address)
 	path = gtk_tree_row_reference_get_path(ref);
 	if (gtk_tree_model_get_iter(GTK_TREE_MODEL(GTK_connections), &iter,
 	  path))
-	gtk_tree_selection_select_iter(sel, &iter);
+	    gtk_tree_selection_select_iter(sel, &iter);
 	gtk_tree_row_reference_free(ref);
 	gtk_tree_path_free(path);
     }
@@ -257,6 +257,7 @@ main(int argc, char **argv)
     if (!gtk_tree_model_iter_n_children(GTK_TREE_MODEL(GTK_connections), NULL))
 	GTK_connection_add("local", "file", "slashem");
     treeview = lookup_widget(connections, "ConnectionsTreeView");
+    g_object_ref(treeview);
     gtk_tree_view_set_model(GTK_TREE_VIEW(treeview),
       GTK_TREE_MODEL(GTK_connections));
     renderer = gtk_cell_renderer_text_new();
@@ -330,6 +331,8 @@ main(int argc, char **argv)
 	    g_free(scheme);
 	    g_free(address);
 	    if (!retval) {
+		g_object_unref(treeview);
+		treeview = NULL;
 		gtk_widget_destroy(connections);
 		nh_write_gtkhackrc();
 		proxy_start_client_services();
@@ -337,6 +340,8 @@ main(int argc, char **argv)
 	    }
 	}
     }
+    g_object_unref(treeview);
+    treeview = NULL;
     gtk_widget_destroy(connections);
     exit(0);
 }

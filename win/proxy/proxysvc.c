@@ -1,4 +1,4 @@
-/* $Id: proxysvc.c,v 1.23 2003-10-25 18:06:01 j_ali Exp $ */
+/* $Id: proxysvc.c,v 1.24 2003-12-05 12:23:50 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -886,7 +886,7 @@ proxy_svc_yn_function(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    int retval, count, def;
+    int retval, count = 0, def;
     char *ques = (char *)0, *choices = (char *)0;
     nhext_rpc_params(request,
       3, EXT_STRING_P(ques), EXT_STRING_P(choices), EXT_INT_P(def));

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.30 2003-09-30 12:43:19 j_ali Exp $
+  $Id: gtkmap.c,v 1.31 2003-12-05 12:23:50 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -234,6 +234,7 @@ nh_conf_map_dimens(int rows, int cols, int layers, int preserve)
 		    i = 0;
 		for(; i < cols; i++) {
 		    tm = GTKMAP_PTR(new[j], i, new_size);
+		    tm->flags = 0;
 		    for(k = 0; k < layers; k++)
 			tm->glyphs[k] = NO_GLYPH;
 		}
@@ -243,6 +244,7 @@ nh_conf_map_dimens(int rows, int cols, int layers, int preserve)
 	for(; j < rows; j++)
 	    for(i = 0; i < cols; i++) {
 		tm = GTKMAP_PTR(new[j], i, new_size);
+		tm->flags = 0;
 		for(k = 0; k < layers; k++)
 		    tm->glyphs[k] = NO_GLYPH;
 	    }
@@ -921,8 +923,6 @@ nh_radar_new()
     gtk_window_set_title(GTK_WINDOW(radar), DEF_GAME_NAME " Radar");
 
     radar_darea = nh_gtk_new_and_add(gtk_drawing_area_new(), radar, "");
-    gtk_drawing_area_size(GTK_DRAWING_AREA(radar_darea),
-      NH_RADAR_WIDTH, NH_RADAR_HEIGHT);
 
     gtk_signal_connect(GTK_OBJECT(radar_darea), "expose_event",
       GTK_SIGNAL_FUNC(radar_expose_event), NULL);
@@ -933,7 +933,11 @@ nh_radar_new()
     gtk_signal_connect(GTK_OBJECT(radar), "delete_event",
       GTK_SIGNAL_FUNC(radar_destroy_event), 0);
 
-    nh_radar_set_use(use_radar);
+    if (use_radar && NH_RADAR_WIDTH > 0 && NH_RADAR_HEIGHT > 0) {
+	gtk_drawing_area_size(GTK_DRAWING_AREA(radar_darea),
+	  NH_RADAR_WIDTH, NH_RADAR_HEIGHT);
+	gtk_widget_show(radar);
+    }
 
     return radar;
 }
@@ -945,6 +949,7 @@ nh_radar_configure()
 	gtk_drawing_area_size(GTK_DRAWING_AREA(radar_darea),
 	  NH_RADAR_WIDTH, NH_RADAR_HEIGHT);
 	nh_radar_update();
+	gtk_widget_show(radar);
     } else {
 	if (radar_pixmap)
 	    gdk_pixmap_unref(radar_pixmap);

@@ -70,6 +70,7 @@ http://www.slashem.org/
 -----------
 
 ver 0.0.7E4F2 [?] [Released by ?]
+-fixed bug 854683: gtkhack produces many warnings on start-up
 
 ver 0.0.7E4F1 [December 2/2003] [Released by Ali]
 -fixed bug 852547: UNIX: make install can't find license
