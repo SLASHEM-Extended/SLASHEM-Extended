@@ -2327,6 +2327,10 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 				return FALSE;
 	}
 
+	/* armed grenades do not merge */
+	if ((obj->timed || otmp->timed) && is_grenade(obj))
+	    return FALSE;
+
 	/* hatching eggs don't merge; ditto for revivable corpses */
 	if ((obj->timed || otmp->timed) && (obj->otyp == EGG ||
 	    (obj->otyp == CORPSE && otmp->corpsenm >= LOW_PM &&
