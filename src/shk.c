@@ -925,11 +925,13 @@ register boolean silentkops;
 {
 	boolean wasmad = ANGRY(shkp);
 	struct eshk *eshkp = ESHK(shkp);
+	boolean guilty = wasmad ||
+		eshkp->surcharge || eshkp->following || eshkp->robbed;
 
 	pacify_shk(shkp);
 	eshkp->following = 0;
 	eshkp->robbed = 0L;
-	if (!Role_if(PM_ROGUE)) {
+	if (guilty && !Role_if(PM_ROGUE)) {
 		adjalign(sgn(u.ualign.type));
 		You("feel your guilt vanish.");        
 	}
