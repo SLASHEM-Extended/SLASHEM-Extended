@@ -328,6 +328,7 @@ ver 0.0.6E3F2 [September XX/2000]
 -changed some checks in tech.c to use DEADMONSTER()
 -updated Guidebook
 -fixed bug 112478: game crashes whenever the Amulet of Yendor is referred to
+-fixed bug 112489: #twoweapon while no secondary weapon seg. faults
 
 ver 0.0.6E3F1 [August 21/2000] [Released by Ali]
 -fixed some bugs in the zap/cast code for magic missile, fire, cold, fireball, etc.
