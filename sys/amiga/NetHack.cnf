@@ -47,6 +47,7 @@ SCOREDIR=Nethack:
 LOCKDIR=Nethack:
 CONFIGDIR=Nethack:
 DATADIR=Nethack:
+TROUBLEDIR=Nethack:
 
 # *** CHARACTER GRAPHICS ***
 #

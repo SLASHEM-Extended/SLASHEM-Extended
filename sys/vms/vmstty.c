@@ -477,5 +477,9 @@ error VA_DECL(const char *,s)
 	Vprintf(s,VA_ARGS);
 	(void) putchar('\n');
 	VA_END();
+#ifndef SAVE_ON_FATAL_ERROR
+	/* prevent vmsmain's exit handler byebye() from calling hangup() */
+	(void)signal(SIGHUP, SIG_DFL);
+#endif
 	exit(EXIT_FAILURE);
 }
