@@ -14,7 +14,7 @@
 # BEFORE YOU BUILD FOR THE FIRST TIME
 
 #  Set this equate to the folder containing all the Slash'EM source folders
-Top   		= Cabell:Users:paulhu:Projects:SlashEM:slashem-cvs:slashem:
+Top   		= Vance:SlashEM:SlashEM-OS9:slashem-cvs:slashem:
 
 #  Choose your target processor. There are bugs in the 68K version, so I 
 #  recommend you select 'PowerPC'
@@ -68,9 +68,8 @@ LexYYC = lex.yy.c
 # Macintosh is an abstract target which in fact consists of:
 
 # The following files are in the binary distribution
-DataFiles 	=	"{Results}"Record   		¶
-				"{Results}"Guidebook.txt	¶
-				"{Results}"History.txt		¶
+DataFiles 	=	"{Results}"Guidebook		¶
+				"{Results}"MacHelp			¶
 				"{Results}"License			¶
 				"{Results}"Slash¶'EM¶ Defaults   ¶
 				"{Results}"README
@@ -442,21 +441,17 @@ Levels Ä "{LibDir}"Levels.list "{MacDir}"Levels.make
 		SetFile -t "{FileType}" -c "{SlashEMCreator}" "{LibDir}"Oracles
 		Directory "{Pwd}"
 
-"{Results}"Record  Ä 
-		Echo "This is the record file" > "{Results}"Record
-		SetFile -c "ttxt"  -t "ttro" "{Results}"Record
-
 "{Results}"Slash¶'EM¶ Defaults  Ä	"{MacDir}"NHDeflts 
 		Duplicate -y "{MacDir}"NHDeflts "{Results}"Slash¶'EM¶ Defaults
 		SetFile -c "ttxt" "{Results}"Slash¶'EM¶ Defaults
 
-"{Results}"Guidebook.txt  Ä	"{Doc}"Guidebook.txt
-		Duplicate -y "{Doc}"Guidebook.txt "{Results}"Guidebook.txt
-		SetFile -c "MOSS" "{Results}"Guidebook.txt
+"{Results}"Guidebook  Ä	"{Doc}"Guidebook.txt
+		Duplicate -y "{Doc}"Guidebook.txt "{Results}"Guidebook
+		SetFile -c "ttxt" -t "ttro" "{Results}"Guidebook
 		
-"{Results}"History.txt  Ä	"{Top}"readme.txt
-		Duplicate -y "{Top}"readme.txt "{Results}"History.txt
-		SetFile -c "MOSS" "{Results}"History.txt
+"{Results}"MacHelp  Ä	"{MacDir}"MacHelp
+		Duplicate -y "{MacDir}"MacHelp "{Results}"MacHelp
+		SetFile -c "ttxt" -t "ttro" "{Results}"MacHelp
 		
 "{Results}"README  Ä	"{MacDir}"README.txt
 		Duplicate -y "{MacDir}"README.txt "{Results}"README
