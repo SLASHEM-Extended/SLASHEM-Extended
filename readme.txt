@@ -92,6 +92,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -Actioned feature request 492518: resize inventory window.
 -Actioned feature request 421535: shop keepers are too dumb.
 -Applied patch 687552: Grund's stronghold.
+-GTK: Ported to Gtk+ 2.2.x
 
 See history.txt for changes made in previous versions.
 

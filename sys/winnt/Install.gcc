@@ -40,6 +40,7 @@ To build the GTK interface, you will also need:
   o libiconv runtime and development packages version 1.7 or later
   o libintl version 0.10.40 or later
   o pkgconfig version 0.14 or later
+  o If using Gtk+ version 2.2 or later, freetype version 2.0.5 or later
 
 All these packages can be downloaded from http://www.gtk.org/win32/
 
@@ -63,8 +64,8 @@ Setting up the GTK build environment
 	o c:\gtk2\include\gtk-2.0\* to c:\gtk2\include
 	o c:\gtk2\include\atk-1.0\* to c:\gtk2\include
 	o c:\gtk2\include\pango-1.0\* to c:\gtk2\include
-	o c:\gtk2\lib\glib-1.0\include\* to c:\gtk2\include
-	o c:\gtk2\lib\gtk-1.0\include\* to c:\gtk2\include
+	o c:\gtk2\lib\glib-2.0\include\* to c:\gtk2\include
+	o c:\gtk2\lib\gtk-2.0\include\* to c:\gtk2\include
 
 Setting up the Slash'EM build environment
 -----------------------------------------

@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.29 2003-04-25 18:00:54 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.30 2003-04-26 08:08:40 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -13,13 +13,14 @@
 #				- MinGW 2.0.0-3
 #
 #	Win32 libraries tested:
-#				- glib 2.0.7-20021201
-#				- gtk+ 2.0.9-20021201
+#				- glib 2.2.1
+#				- gtk+ 2.2.1
 #				- atk 1.0.3-20020821
-#				- pango 1.0.5-20021201
+#				- pango 1.2.1
 #				- libintl 0.10.40-20020310
 #				- libiconv 1.7
 #				- pkgconfig 0.14
+#				- freetype 2.0.5-20020112
 #
 #       In addition to your C compiler,
 #

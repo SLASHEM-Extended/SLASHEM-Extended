@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.18 2003-04-17 23:15:53 j_ali Exp $
+  $Id: gtkmap.c,v 1.19 2003-04-26 08:08:41 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -627,6 +627,8 @@ radar_configure_event(GtkWidget *widget, GdkEventConfigure *event,
      */
 
     GdkPixmap *pixmap;
+    GdkGC *gc;
+    gint w, h;
 
     if (radar_pixmap2)
 	gdk_pixmap_unref(radar_pixmap2);
@@ -634,18 +636,19 @@ radar_configure_event(GtkWidget *widget, GdkEventConfigure *event,
     radar_pixmap2 = gdk_pixmap_new(widget->window,
       event->width, event->height, -1);
     pixmap = gdk_pixmap_new(widget->window, event->width, event->height, -1);
+    gc = gdk_gc_new(pixmap);
+    gdk_gc_set_foreground(gc, &nh_color[CLR_BLACK]);
+    gdk_draw_rectangle(pixmap, gc, TRUE, 0, 0, event->width, event->height);
     if (radar_pixmap) {
-	if (map_gc) {
-	    gint w, h;
-	    gdk_drawable_get_size(GDK_DRAWABLE(radar_pixmap), &w, &h);
-	    if (w > event->width)
-		w = event->width;
-	    if (h > event->height)
-		h = event->height;
-	    gdk_draw_pixmap(pixmap, map_gc, radar_pixmap, 0, 0, 0, 0, w, h);
-	}
+	gdk_drawable_get_size(GDK_DRAWABLE(radar_pixmap), &w, &h);
+	if (w > event->width)
+	    w = event->width;
+	if (h > event->height)
+	    h = event->height;
+	gdk_draw_pixmap(pixmap, gc, radar_pixmap, 0, 0, 0, 0, w, h);
 	gdk_pixmap_unref(radar_pixmap);
     }
+    gdk_gc_unref(gc);
     radar_pixmap = pixmap;
 
     return FALSE;
