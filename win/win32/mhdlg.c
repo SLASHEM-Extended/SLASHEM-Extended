@@ -311,6 +311,7 @@ BOOL CALLBACK PlayerSelectorDlgProc(HWND hWnd, UINT message, WPARAM wParam, LPAR
 	struct plsel_data* data;
 	RECT   main_rt, dlg_rt;
 	SIZE   dlg_sz;
+	LRESULT unchecked;
 
 	switch (message) 
 	{
@@ -373,37 +374,45 @@ BOOL CALLBACK PlayerSelectorDlgProc(HWND hWnd, UINT message, WPARAM wParam, LPAR
 			if( HIWORD(wParam)==BN_CLICKED ) {
 				/* enable corresponding list window if "random"
 				   checkbox was "unchecked" */
+				unchecked = (SendMessage((HWND)lParam, BM_GETCHECK, 0, 0)==BST_UNCHECKED);
 				EnableWindow(
 					GetDlgItem(hWnd, IDC_PLSEL_ROLE_LIST), 
-					SendMessage((HWND)lParam, BM_GETCHECK, 0, 0)==BST_UNCHECKED
+					unchecked
 				  );
+				if (!unchecked) plselAdjustLists( hWnd, -1);
 			}
 		break;
 
 		case IDC_PLSEL_RACE_RANDOM:
 			if( HIWORD(wParam)==BN_CLICKED ) {
+				unchecked = (SendMessage((HWND)lParam, BM_GETCHECK, 0, 0)==BST_UNCHECKED);
 				EnableWindow(
 					GetDlgItem(hWnd, IDC_PLSEL_RACE_LIST), 
-					SendMessage((HWND)lParam, BM_GETCHECK, 0, 0)==BST_UNCHECKED
+					unchecked
 				  );
+				if (!unchecked) plselAdjustLists( hWnd, -1);
 			}
 		break;
 
 		case IDC_PLSEL_GENDER_RANDOM:
 			if( HIWORD(wParam)==BN_CLICKED ) {
+				unchecked = (SendMessage((HWND)lParam, BM_GETCHECK, 0, 0)==BST_UNCHECKED);
 				EnableWindow(
 					GetDlgItem(hWnd, IDC_PLSEL_GENDER_LIST), 
-					SendMessage((HWND)lParam, BM_GETCHECK, 0, 0)==BST_UNCHECKED
+					unchecked
 				  );
+				if (!unchecked) plselAdjustLists( hWnd, -1);
 			}
 		break;
 
 		case IDC_PLSEL_ALIGN_RANDOM:
 			if( HIWORD(wParam)==BN_CLICKED ) {
+				unchecked = (SendMessage((HWND)lParam, BM_GETCHECK, 0, 0)==BST_UNCHECKED);
 				EnableWindow(
 					GetDlgItem(hWnd, IDC_PLSEL_ALIGN_LIST), 
-					SendMessage((HWND)lParam, BM_GETCHECK, 0, 0)==BST_UNCHECKED
+					unchecked
 				  );
+				if (!unchecked) plselAdjustLists( hWnd, -1);
 			}
 		break;
 
@@ -493,14 +502,15 @@ void plselInitDialog(HWND hWnd)
    invalid combinations 
    changed_sel points to the list where selection occured
    (-1 if unknown)
+   WAC - allow filtering in any order.
 */
 void  plselAdjustLists(HWND hWnd, int changed_sel)
 {
 	HWND control_role, control_race, control_gender, control_align;
 	int  initrole, initrace, initgend, initalign;
+	int  selrole, selrace, selgend, selalign;
 	int i;
 	int ind;
-	int valid_opt;
 	TCHAR wbuf[255];
 
 	/* get control handles */
@@ -511,131 +521,93 @@ void  plselAdjustLists(HWND hWnd, int changed_sel)
 
 	/* get current selections */	
 	ind = SendMessage(control_role, CB_GETCURSEL, 0, 0);
-	initrole = (ind==LB_ERR)? ROLE_NONE : SendMessage(control_role, CB_GETITEMDATA, ind, 0);
+	selrole = initrole = (ind==LB_ERR)? ROLE_NONE : SendMessage(control_role, CB_GETITEMDATA, ind, 0);
+	if (!IsWindowEnabled(control_role))
+		initrole = ROLE_NONE;
 
 	ind = SendMessage(control_race, CB_GETCURSEL, 0, 0);
-	initrace = (ind==LB_ERR)? ROLE_NONE : SendMessage(control_race, CB_GETITEMDATA, ind, 0);
+	selrace = initrace = (ind==LB_ERR)? ROLE_NONE : SendMessage(control_race, CB_GETITEMDATA, ind, 0);
+	if (!IsWindowEnabled(control_race))
+		initrace = ROLE_NONE;
 
 	ind = SendMessage(control_gender, CB_GETCURSEL, 0, 0);
-	initgend = (ind==LB_ERR)? ROLE_NONE : SendMessage(control_gender, CB_GETITEMDATA, ind, 0);
+	selgend = initgend = (ind==LB_ERR)? ROLE_NONE : SendMessage(control_gender, CB_GETITEMDATA, ind, 0);
+	if (!IsWindowEnabled(control_gender))
+		initgend = ROLE_NONE;
 
 	ind = SendMessage(control_align, CB_GETCURSEL, 0, 0);
-	initalign = (ind==LB_ERR)? ROLE_NONE : SendMessage(control_align, CB_GETITEMDATA, ind, 0);
+	selalign = initalign = (ind==LB_ERR)? ROLE_NONE : SendMessage(control_align, CB_GETITEMDATA, ind, 0);
+	if (!IsWindowEnabled(control_align))
+		initalign = ROLE_NONE;
 
-	/* intialize roles list */
-	if( changed_sel==-1 ) {
-		valid_opt = 0;
-
-		/* reset content and populate the list */
-		SendMessage(control_role, CB_RESETCONTENT, 0, 0); 
-		for (i = 0; roles[i].name.m; i++) {
-			if (ok_role(i, initrace, initgend, initalign)) {
-			    if (initgend>=0 && flags.female && roles[i].name.f)
-					ind = SendMessage(control_role, CB_ADDSTRING, (WPARAM)0, (LPARAM)NH_A2W(roles[i].name.f, wbuf, sizeof(wbuf)) );
-				else 
-					ind = SendMessage(control_role, CB_ADDSTRING, (WPARAM)0, (LPARAM)NH_A2W(roles[i].name.m, wbuf, sizeof(wbuf)) );
-
-				SendMessage(control_role, CB_SETITEMDATA, (WPARAM)ind, (LPARAM)i );
-				if( i==initrole ) { 
-					SendMessage(control_role, CB_SETCURSEL, (WPARAM)ind, (LPARAM)0 );
-					valid_opt = 1;
-				}
-			}
-		}
-		
-		/* set selection to the previously selected role
-		   if it is still valid */
-		if( !valid_opt ) {
-			initrole = ROLE_NONE;
-			initrace = ROLE_NONE;
-			initgend = ROLE_NONE;
-			initalign = ROLE_NONE;
+	if (!ok_role(selrole, selrace, selgend, selalign)) {
+		if (changed_sel != IDC_PLSEL_ROLE_LIST) {
+			selrole = ROLE_NONE;
 			SendMessage(control_role, CB_SETCURSEL, (WPARAM)-1, (LPARAM)0 );
 		}
-
-		/* trigger change of the races list */
-		changed_sel=IDC_PLSEL_ROLE_LIST;
-	}
-
-	/* intialize races list */
-	if( changed_sel==IDC_PLSEL_ROLE_LIST ) {
-		valid_opt = 0;
-
-		/* reset content and populate the list */
-		SendMessage(control_race, CB_RESETCONTENT, 0, 0); 
-		for (i = 0; races[i].noun; i++)
-			if (ok_race(initrole, i, ROLE_NONE, ROLE_NONE)) {
-				ind = SendMessage(control_race, CB_ADDSTRING, (WPARAM)0, (LPARAM)NH_A2W(races[i].noun, wbuf, sizeof(wbuf)) ); 
-				SendMessage(control_race, CB_SETITEMDATA, (WPARAM)ind, (LPARAM)i ); 
-				if( i==initrace ) { 
-					SendMessage(control_race, CB_SETCURSEL, (WPARAM)ind, (LPARAM)0 );
-					valid_opt = 1;
-				}
-			}
-
-		/* set selection to the previously selected race
-		   if it is still valid */
-		if( !valid_opt ) {
-			initrace = ROLE_NONE;
-			initgend = ROLE_NONE;
-			initalign = ROLE_NONE;
+		if (changed_sel != IDC_PLSEL_RACE_LIST) {
+			selrace = ROLE_NONE;
 			SendMessage(control_race, CB_SETCURSEL, (WPARAM)-1, (LPARAM)0 );
 		}
-
-		/* trigger change of the genders list */
-		changed_sel=IDC_PLSEL_RACE_LIST;
-	}
-
-	/* intialize genders list */
-	if( changed_sel==IDC_PLSEL_RACE_LIST ) {
-		valid_opt = 0;
-
-		/* reset content and populate the list */
-		SendMessage(control_gender, CB_RESETCONTENT, 0, 0); 
-		for (i = 0; i < ROLE_GENDERS; i++)
-			if (ok_gend(initrole, initrace, i, ROLE_NONE)) {
-				ind = SendMessage(control_gender, CB_ADDSTRING, (WPARAM)0, (LPARAM)NH_A2W(genders[i].adj, wbuf, sizeof(wbuf)) ); 
-				SendMessage(control_gender, CB_SETITEMDATA, (WPARAM)ind, (LPARAM)i ); 
-				if( i==initgend ) { 
-					SendMessage(control_gender, CB_SETCURSEL, (WPARAM)ind, (LPARAM)0 );
-				}
-			}
-
-		/* set selection to the previously selected gender
-		   if it is still valid */
-		if( !valid_opt ) {
-			initgend = ROLE_NONE;
-			initalign = ROLE_NONE;
+		if (changed_sel != IDC_PLSEL_GENDER_LIST) {
+			selgend = ROLE_NONE;
 			SendMessage(control_gender, CB_SETCURSEL, (WPARAM)-1, (LPARAM)0 );
 		}
-
-		/* trigger change of the alignments list */
-		changed_sel=IDC_PLSEL_GENDER_LIST;
-	}
-
-	/* intialize alignments list */
-	if( changed_sel==IDC_PLSEL_GENDER_LIST ) {
-		valid_opt = 0;
-
-		/* reset content and populate the list */
-		SendMessage(control_align, CB_RESETCONTENT, 0, 0); 
-		for (i = 0; i < ROLE_ALIGNS; i++)
-			if (ok_align(initrole, initrace, initgend, i)) {
-				ind = SendMessage(control_align, CB_ADDSTRING, (WPARAM)0, (LPARAM)NH_A2W(aligns[i].adj, wbuf, sizeof(wbuf)) ); 
-				SendMessage(control_align, CB_SETITEMDATA, (WPARAM)ind, (LPARAM)i ); 
-				if( i==initalign ) { 
-					SendMessage(control_align, CB_SETCURSEL, (WPARAM)ind, (LPARAM)0 );
-					valid_opt = 1;
-				}
-			}
-
-		/* set selection to the previously selected alignment
-		   if it is still valid */
-		if( !valid_opt ) {
-			initalign = ROLE_NONE;
+		if (changed_sel != IDC_PLSEL_ALIGN_LIST) {
+			selalign = ROLE_NONE;
 			SendMessage(control_align, CB_SETCURSEL, (WPARAM)-1, (LPARAM)0 );
 		}
 	}
+
+	/* reset content and populate the list */
+	SendMessage(control_role, CB_RESETCONTENT, 0, 0); 
+	for (i = 0; roles[i].name.m; i++) {
+		if (ok_role(i, initrace, initgend, initalign)) {
+			if (initgend>=0 && flags.female && roles[i].name.f)
+				ind = SendMessage(control_role, CB_ADDSTRING, (WPARAM)0, (LPARAM)NH_A2W(roles[i].name.f, wbuf, sizeof(wbuf)) );
+			else 
+				ind = SendMessage(control_role, CB_ADDSTRING, (WPARAM)0, (LPARAM)NH_A2W(roles[i].name.m, wbuf, sizeof(wbuf)) );
+
+			SendMessage(control_role, CB_SETITEMDATA, (WPARAM)ind, (LPARAM)i );
+			if( i==selrole ) { 
+				SendMessage(control_role, CB_SETCURSEL, (WPARAM)ind, (LPARAM)0 );
+			}
+		}
+	}
+	
+	/* reset content and populate the list */
+	SendMessage(control_race, CB_RESETCONTENT, 0, 0); 
+	for (i = 0; races[i].noun; i++)
+		if (ok_race(initrole, i, ROLE_NONE, ROLE_NONE)) {
+			ind = SendMessage(control_race, CB_ADDSTRING, (WPARAM)0, (LPARAM)NH_A2W(races[i].noun, wbuf, sizeof(wbuf)) ); 
+			SendMessage(control_race, CB_SETITEMDATA, (WPARAM)ind, (LPARAM)i ); 
+			if( i==selrace ) { 
+				SendMessage(control_race, CB_SETCURSEL, (WPARAM)ind, (LPARAM)0 );
+			}
+		}
+
+	/* reset content and populate the list */
+	SendMessage(control_gender, CB_RESETCONTENT, 0, 0); 
+	for (i = 0; i < ROLE_GENDERS; i++)
+		if (ok_gend(initrole, initrace, i, ROLE_NONE)) {
+			ind = SendMessage(control_gender, CB_ADDSTRING, (WPARAM)0, (LPARAM)NH_A2W(genders[i].adj, wbuf, sizeof(wbuf)) ); 
+			SendMessage(control_gender, CB_SETITEMDATA, (WPARAM)ind, (LPARAM)i ); 
+			if( i==selgend ) { 
+				SendMessage(control_gender, CB_SETCURSEL, (WPARAM)ind, (LPARAM)0 );
+			}
+		}
+
+	/* reset content and populate the list */
+	SendMessage(control_align, CB_RESETCONTENT, 0, 0); 
+	for (i = 0; i < ROLE_ALIGNS; i++)
+		if (ok_align(initrole, initrace, initgend, i)) {
+			ind = SendMessage(control_align, CB_ADDSTRING, (WPARAM)0, (LPARAM)NH_A2W(aligns[i].adj, wbuf, sizeof(wbuf)) ); 
+			SendMessage(control_align, CB_SETITEMDATA, (WPARAM)ind, (LPARAM)i ); 
+			if( i==selalign ) { 
+				SendMessage(control_align, CB_SETCURSEL, (WPARAM)ind, (LPARAM)0 );
+			}
+		}
+
 }
 
 /* player made up his mind - get final selection here */ 
