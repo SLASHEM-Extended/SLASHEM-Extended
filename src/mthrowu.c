@@ -610,13 +610,13 @@ struct monst *mtmp;
 	if (!lined_up(mtmp) || (URETREATING(x,y) && rn2(chance)))
 	    return;
 
+	skill = objects[otmp->otyp].oc_skill;
+	mwep = MON_WEP(mtmp);		/* wielded weapon */
+
 	if (ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range &&
 		dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) >
 		objects[mwep->otyp].oc_range * objects[mwep->otyp].oc_range)
 	    return; /* Out of range */
-
-	skill = objects[otmp->otyp].oc_skill;
-	mwep = MON_WEP(mtmp);		/* wielded weapon */
 
 	/* Multishot calculations */
 	multishot = 1;
