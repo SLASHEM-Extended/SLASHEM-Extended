@@ -231,7 +231,7 @@ TRAP:"fire",random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:'@',"Count Dracula",(13,05)
+MONSTER:'V',"Count Dracula",(13,05)
 MONSTER:'M',"human mummy",random
 MONSTER:'M',"human mummy",random
 MONSTER:'M',"human mummy",random
