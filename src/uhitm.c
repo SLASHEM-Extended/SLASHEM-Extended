@@ -3022,12 +3022,14 @@ use_weapon:
 int
 passive(mon, mhit, malive, aatyp)
 register struct monst *mon;
-register boolean mhit;
+register int mhit;
 register int malive;
 uchar aatyp;
 {
 	register struct permonst *ptr = mon->data;
 	register int i, tmp;
+	struct obj *target = mhit & HIT_UWEP ? uwep :
+		mhit & HIT_USWAPWEP ? uswapwep : (struct obj *)0;
 /*	char buf[BUFSZ]; */
 
 
@@ -3067,7 +3069,7 @@ uchar aatyp;
 			(void)rust_dmg(uarmf, xname(uarmf), 3, TRUE, &youmonst);
 		} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
 			   aatyp == AT_MAGC || aatyp == AT_TUCH)
-		    passive_obj(mon, (struct obj*)0, &(ptr->mattk[i]));
+		    passive_obj(mon, target, &(ptr->mattk[i]));
 	    }
 	    exercise(A_STR, FALSE);
 	    break;
@@ -3104,7 +3106,7 @@ uchar aatyp;
 			(void)rust_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
 		} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
 			   aatyp == AT_MAGC || aatyp == AT_TUCH)
-		    passive_obj(mon, (struct obj*)0, &(ptr->mattk[i]));
+		    passive_obj(mon, target, &(ptr->mattk[i]));
 	    }
 	    break;
 	  case AD_CORR:
@@ -3114,7 +3116,7 @@ uchar aatyp;
 			(void)rust_dmg(uarmf, xname(uarmf), 3, TRUE, &youmonst);
 		} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
 			   aatyp == AT_MAGC || aatyp == AT_TUCH)
-		    passive_obj(mon, (struct obj*)0, &(ptr->mattk[i]));
+		    passive_obj(mon, target, &(ptr->mattk[i]));
 	    }
 	    break;
 	  case AD_MAGM:
@@ -3222,15 +3224,16 @@ uchar aatyp;
 		break;
 	      case AD_ENCH:	/* KMH -- remove enchantment (disenchanter) */
 		if (mhit) {
-		    struct obj *obj = (struct obj *)0;
+		    struct obj *obj = target;
 
 		    if (aatyp == AT_KICK) {
 			obj = uarmf;
 			if (!obj) break;
 		    } else if (aatyp == AT_BITE || aatyp == AT_BUTT ||
-			(aatyp >= AT_STNG && aatyp < AT_WEAP)) {
-		    break;		/* no object involved */
-		    }
+			       (aatyp >= AT_STNG && aatyp < AT_WEAP)) {
+			break;		/* no object involved */
+		    } else if (!obj && mhit & (HIT_UWEP | HIT_USWAPWEP))
+			obj = uarmg;
 		    passive_obj(mon, obj, &(ptr->mattk[i]));
 	    	}
 	    	break;
@@ -3254,6 +3257,7 @@ struct attack *mattk;		/* null means we find one internally */
 	register struct permonst *ptr = mon->data;
 	register int i;
 
+#if 0
 	/* if caller hasn't specified an object, use uwep, uswapwep or uarmg */
 	if (!obj) {
 	    obj = (u.twoweap && uswapwep && !rn2(2)) ? uswapwep : uwep;
@@ -3261,6 +3265,10 @@ struct attack *mattk;		/* null means we find one internally */
 		obj = uarmg;		/* no weapon? then must be gloves */
 	    if (!obj) return;		/* no object to affect */
 	}
+#else
+	/* In Slash'EM, the caller always specifies the object */
+	if (!obj) return;		/* no object to affect */
+#endif
 
 	/* if caller hasn't specified an attack, find one */
 	if (!mattk) {
