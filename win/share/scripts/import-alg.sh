@@ -5,23 +5,18 @@
 #
 #   This shell script imports Kelly Youngblood's tilesets from his
 #   AllegroHack package. You must have a copy of the binary zip
-#   file. anh_15b.zip is available from
+#   file. anh_161b.zip is available from
 #     http://www.pinn.net/~jry/allegrohack/
 #   Set the variable below set to point at it (there's no need to
 #   unpack the archive first).
 #
-#   Warning: This code assumes that the Allegro tile index file lists all
-#   monsters, followed by all objects, followed by all others. If this changes
-#   then id in ppm_package() will be wrong. Solve by having a pass one to
-#   determine how many monsters and objects there are and then using mon_indx,
-#   num_mon + obj_indx, and num_mon + num_obj + oth_indx instead of id.
-#
 #   Configuration variables
 #
-input=anh_15b.zip
+input=anh_161b.zip
+# Backup input for missing bitmaps (eg., lords.bmp, missing from version 1.61)
+input2=anh_15b.zip
 xpm2txt=../../../util/xpm2txt
 txtfilt=../../../util/txtfilt
-ranger=ran.ppm
 #
 # Functions
 #
@@ -42,7 +37,7 @@ addtile()
 	anytopnm $ad_input > $ad_output
 	ad_count=0
     fi
-    echo "s£^# tile ${ad_count} (unknown)£# tile ${id} ($name)£" >> ${ad_sed}
+    echo "s£^# tile ${ad_count} (unknown)£# tile ${id} ($ad_name)£" >> ${ad_sed}
 }
 #
 initialize()
@@ -75,6 +70,8 @@ initialize()
 	91	explosion bottom right
 	EOF
     cat <<-EOF > mon32alg-main.names
+	winter wolf cub
+	Cerberus
 	gas spore
 	flaming sphere
 	shocking sphere
@@ -82,6 +79,9 @@ initialize()
 	glass piercer
 	mastodon
 	trapper
+	pony
+	horse
+	warhorse
 	baby silver dragon
 	silver dragon
 	stalker
@@ -93,6 +93,7 @@ initialize()
 	vampire
 	vampire lord
 	vampire mage
+	barrow wight
 	monkey
 	carnivorous ape
 	gold golem
@@ -124,6 +125,7 @@ initialize()
 	broad short sword / dwarvish short sword
 	runed short sword / elven short sword
 	runed broadsword / elven broadsword
+	silver saber
 	crude spear / orcish spear
 	silver spear
 	runed spear / elven spear
@@ -186,70 +188,115 @@ initialize()
 	gold piece
 	EOF
     cat <<-EOF > oth32alg-sub.names
+	teleportation trap
+	level teleporter
 	grave
 	EOF
     toplevel=ahack-dist
+    toplevel_backup=ahack-dist-backup
     output=ahack
-    /bin/rm -rf $toplevel
+    /bin/rm -rf $toplevel $toplevel_backup
     unzip -L -q -d $toplevel ${input}
-    if test -n "$ranger"; then
-	if test -r "$ranger"; then
-	    ppmtobmp -windows $ranger > $toplevel/tiles/mon/ran.bmp
-	else
-	    echo "Warning: Can't read ranger tile ($ranger)" 2>&1
-	fi
-    fi
+    unzip -L -q -d $toplevel_backup ${input2}
     rm -f ${output}-monsters.tile ${output}-objects.tile ${output}-other.tile
     rm -rf $output
     mkdir $output
     id=1
-    mon_indx=1
-    obj_indx=1
-    oth_indx=1
+}
+#
+# Usage: get_tile <input-dir> <tile> [<set>]
+get_tile()
+{
+    tile_dir=$1
+    tile_pat=$2
+    if [ $# -gt 2 ]; then
+	set_filter=": $3[/\\]"
+    else
+	set_filter='.*'
+    fi
+    if test "$tile_pat" = '*'; then
+	egrep_flags="-v"
+	egrep_args="^#|^[ 	]*$"
+    else
+	egrep_flags="--"
+	egrep_args="^[^ 	]+[ 	]+\(${tile_pat}\)"
+    fi
+    tr -d '[\015]' < $tile_dir/tiles/index | sed -e 's:\\:/:g' | \
+      egrep "${egrep_flags}" "${egrep_args}" | egrep -- "${set_filter}" | \
+      while read "gt_line"; do
+	gt_name=`echo $gt_line | sed -n 's/.*(\([^)]*\)).*/\1/p'`
+	gt_bmp=`echo $gt_line | sed -n 's/.*:[ 	]*\([^ 	]*\).*/\1/p'`
+	gt_offset=`echo $gt_line | sed -n 's/.*\@[ 	]*\([^ 	]*\).*/\1/p'`
+	echo "$gt_bmp" "${gt_offset:-0}" "$gt_name"
+    done
+}
+#
+# Usage: proc_tile <bmpfile> <offset> <name>
+proc_tile()
+{
+    pt_bmp=$1
+    pt_offset=$2
+    pt_name=$3
+    if echo $pt_name | egrep -s '^cmap [0-9]+$' >/dev/null; then
+	no=`echo $pt_name | sed 's/cmap *//'`
+	nline=`egrep "^${no}	" cmap.names`
+	if test -n "$nline"; then
+	    pt_name=`echo $nline | sed 's:^[^ 	]*[ 	]:cmap / :'`
+	fi
+    fi
+    case $pt_bmp in
+    */mon/*)
+	ex_output=mon32alg
+	echo ${output}@monsters@${pt_name}@${id} >> ${output}-monsters.tile
+	;;
+    */obj/*)
+	ex_output=obj32alg
+	echo ${output}@objects@${pt_name}@${id} >> ${output}-objects.tile
+	;;
+    */etc/*)
+	ex_output=oth32alg
+	echo ${output}@other@${pt_name}@${id} >> ${output}-other.tile
+	;;
+    *)
+	echo "Warning: tile not in a known tileset ($pt_bmp): ignored" 1>&2
+	return
+	;;
+    esac
+    bmptoppm $pt_bmp > $output/x${id}.ppm 2> /dev/null
+    pnmcut 0 "$pt_offset" 32 32 $output/x${id}.ppm > $output/x${id}.pnm
+    addtile ${ex_output}.ppm "$id" "$pt_name" $output/x${id}.pnm
 }
 #
 ppm_package()
 {
     rm -f mon32alg.ppm obj32alg.ppm oth32alg.ppm
-    sed -e 's:\\:/:g' -e 's///g' $toplevel/tiles/index | egrep -v '^#|^[ 	]*$' | while read "line"; do
-	name=`echo $line | sed -n 's/.*(\([^)]*\)).*/\1/p'`
-	bmp=`echo $line | sed -n 's/.*:[ 	]*\([^ 	]*\).*/\1/p'`
-	offset=`echo $line | sed -n 's/.*\@[ 	]*\([^ 	]*\).*/\1/p'`
-	if echo $name | egrep -s '^cmap [0-9]+$' >/dev/null; then
-	    no=`echo $name | sed 's/cmap *//'`
-	    nline=`egrep "^${no}	" cmap.names`
-	    if test -n "$nline"; then
-		name=`echo $nline | sed 's:^[^ 	]*[ 	]:cmap / :'`
+    for pp_set in mon obj etc; do
+	get_tile "$toplevel" '*' $pp_set | while read bmp offset "name"; do
+	    bmpfile=$toplevel/tiles/$bmp
+	    if test \! -r $bmpfile; then
+		set +e
+		get_tile "$toplevel_backup" "$name" |
+		{
+		    read sbmp soffset "sname"
+		    if test $? -ne 0; then
+			echo "Warning: tile bitmap ($bmpfile) not readable: ignored" 1>&2
+			exit 1;
+		    elif test \! -r $toplevel_backup/tiles/$sbmp; then
+			echo "Warning: tile bitmap ($bmpfile) not readable: ignored" 1>&2
+			exit 1;
+		    else
+			echo "Warning: tile bitmap ($bmp) not readable: using backup" 1>&2
+			echo "$toplevel_backup/tiles/$sbmp" "$soffset" "$sname"
+			exit 0;
+		    fi
+		}
+		set -e
+	    else
+		echo "$bmpfile" "$offset" "$name"
 	    fi
-	fi
-	if test \! -r $toplevel/tiles/$bmp; then
-	    echo "Warning: tile bitmap ($bmp) not readable: ignored" 1>&2
-	    continue;
-	fi
-	case $bmp in
-	mon/*)
-	    ex_output=mon32alg
-	    echo ${output}@monsters@${name}@${mon_indx} >> ${output}-monsters.tile
-	    mon_indx=`echo $mon_indx + 1 | bc`
-	    ;;
-	obj/*)
-	    ex_output=obj32alg
-	    echo ${output}@objects@${name}@${obj_indx} >> ${output}-objects.tile
-	    obj_indx=`echo $obj_indx + 1 | bc`
-	    ;;
-	etc/*)
-	    ex_output=oth32alg
-	    echo ${output}@other@${name}@${oth_indx} >> ${output}-other.tile
-	    oth_indx=`echo $oth_indx + 1 | bc`
-	    ;;
-	*)
-	    echo "Warning: tile not in a known tileset ($bmp): ignored" 1>&2
-	    continue
-	    ;;
-	esac
-	bmptoppm $toplevel/tiles/$bmp > $output/x${id}.ppm 2> /dev/null
-	pnmcut 0 ${offset:-0} 32 32 $output/x${id}.ppm > $output/x${id}.pnm
-	addtile ${ex_output}.ppm "$id" "$name" $output/x${id}.pnm
+	done
+    done | while read bmpfile offset "name"; do
+	proc_tile "$bmpfile" "$offset" "$name"
 	id=`echo ${id} + 1 | bc`
     done
 }
@@ -293,7 +340,7 @@ clean()
     rm -f -- cmap.names mon32alg-main.names obj32alg-main.names
     rm -f -- oth32alg-main.names mon32alg-sub.names obj32alg-sub.names
     rm -f -- oth32alg-sub.names
-    rm -rf -- ${toplevel} ${output}
+    rm -rf -- ${toplevel} ${toplevel_backup} ${output}
     rm -f -- mon32alg.ppm obj32alg.ppm oth32alg.ppm
     rm -f -- ${output}-monsters.tile ${output}-objects.tile ${output}-other.tile
     rm -f -- mon32alg.xpm obj32alg.xpm oth32alg.xpm
