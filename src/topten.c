@@ -993,6 +993,12 @@ char **argv;
 	    else {
 		if (playerct > 1) Strcat(pbuf, "any of ");
 		for (i = 0; i < playerct; i++) {
+		    /* stop printing players if there are too many to fit */
+		    if (strlen(pbuf) + strlen(players[i]) + 2 >= BUFSZ) {
+			if (strlen(pbuf) < BUFSZ-4) Strcat(pbuf, "...");
+			else Strcpy(pbuf+strlen(pbuf)-4, "...");
+			break;
+		    }
 		    Strcat(pbuf, players[i]);
 		    if (i < playerct-1) {
 			if (players[i][0] == '-' &&
