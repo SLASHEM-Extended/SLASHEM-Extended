@@ -83,6 +83,7 @@ ver 0.0.7E6F2 [?] [Released by ?]
 -fixed bug 932818: [GTK] Can't close main window before starting game
 -fixed bug 932827: [win32] Session windows slowly creep right and down
 -fixed bug 932832: [GTK] Can't cancel at "Who are you?" prompt
+-fixed bug 932905: [GTK] Apparently random crashes
 
 See history.txt for changes made in previous versions.
 
