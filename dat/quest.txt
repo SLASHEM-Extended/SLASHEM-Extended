@@ -1728,7 +1728,7 @@ Go forth, and return when you feel ready."
 as %n, had begun to summon horrible elementals from the plane of 
 Water.
 
-"%nC and his hordes of elementals wept down upon %i and stole
+"%nC and his hordes of elementals swept down upon %H and stole
 %o, and seeks to bend it to his will.  
 After many brave wizards were slain by his watery servants, I
 sent forth a summons for you!
