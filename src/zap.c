@@ -142,12 +142,11 @@ struct obj *otmp;
 	struct obj *obj;
 #endif
 	
-	int skill = 0, skilldmg = 0;
+	int skilldmg = 0;
 
 	if (objects[otyp].oc_class == SPBOOK_CLASS) {
 	    /* Is a spell */
-	    skill = P_SKILL(spell_skilltype(otyp));
-	    skilldmg = spell_damage_bonus(skill);  
+	    skilldmg = spell_damage_bonus(otyp);  
 	    zap_type_text = "spell";
 	} else zap_type_text = "wand";
 
@@ -2665,12 +2664,10 @@ register struct obj     *obj;
 {
 	int otyp = obj->otyp;
 	boolean disclose = FALSE, was_unkn = !objects[otyp].oc_name_known;
-	int skill = 0, skilldmg = 0; /*WAC - Skills damage bonus*/
+	int skilldmg = 0; /*WAC - Skills damage bonus*/
 
-	if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_ACID_STREAM) {
-		skill = P_SKILL(spell_skilltype(obj->otyp));
-		skilldmg = spell_damage_bonus(skill);
-	}
+	if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_ACID_STREAM)
+		skilldmg = spell_damage_bonus(obj->otyp);
 
 #ifdef BLACKMARKET
 	if (Is_blackmarket(&u.uz) && 
@@ -2762,8 +2759,8 @@ register struct obj     *obj;
  */
 /*  WAC now also depends on skill level.  Returns -2 to 5 */
 int
-spell_damage_bonus(skill)
-register int skill;
+spell_damage_bonus(booktype)
+register int booktype;
 {
 	register int intell = ACURR(A_INT);
 	int tmp;
@@ -2775,7 +2772,7 @@ register int skill;
 	else if (intell <= 18) tmp = 2;            
 	else tmp = 3;                   /* Hero may have helm of brilliance on */
 
-	switch (P_SKILL(spell_skilltype(skill))) {
+	switch (P_SKILL(spell_skilltype(booktype))) {
 		case P_ISRESTRICTED:
 		case P_UNSKILLED:   tmp -= 1; break;
 		case P_BASIC:       break;
@@ -3170,10 +3167,7 @@ struct obj **ootmp;   /* to return worn armor for caller to disintegrate */
 	boolean sho_shieldeff = FALSE;
 	boolean spellcaster = (is_hero_spell(type) || is_mega_spell(type)); 
 				/* maybe get a bonus! */
-    	int skilldmg;
-
-	/* if its a Hero Spell then get its spell damage bonus */
-    	skilldmg = spellcaster ? spell_damage_bonus(SPE_MAGIC_MISSILE + abstype) : 0;
+    	int skilldmg = 0;
 
 	*ootmp = (struct obj *)0;
 	switch(abstype) {
@@ -3183,6 +3177,8 @@ struct obj **ootmp;   /* to return worn armor for caller to disintegrate */
 		    break;
 		}
 		tmp = d(nd,6);
+		if (spellcaster)
+		    skilldmg = spell_damage_bonus(SPE_MAGIC_MISSILE);
 		break;
 	case ZT_FIRE:
 		if (resists_fire(mon)) {
@@ -3191,6 +3187,8 @@ struct obj **ootmp;   /* to return worn armor for caller to disintegrate */
 		}
 		tmp = d(nd,6);
 		if (resists_cold(mon)) tmp += 7;
+		if (spellcaster)
+		    skilldmg = spell_damage_bonus(SPE_FIREBALL);
 		if (burnarmor(mon)) {
 		    if (!rn2(3)) (void)destroy_mitem(mon, POTION_CLASS, AD_FIRE);
 		    if (!rn2(3)) (void)destroy_mitem(mon, SCROLL_CLASS, AD_FIRE);
@@ -3204,6 +3202,8 @@ struct obj **ootmp;   /* to return worn armor for caller to disintegrate */
 		}
 		tmp = d(nd,6);
 		if (resists_fire(mon)) tmp += d(nd, 3);
+		if (spellcaster)
+		    skilldmg = spell_damage_bonus(SPE_CONE_OF_COLD);
 		if (!rn2(3)) (void)destroy_mitem(mon, POTION_CLASS, AD_COLD);
 		break;
 	case ZT_SLEEP:
@@ -3268,6 +3268,8 @@ struct obj **ootmp;   /* to return worn armor for caller to disintegrate */
 		    /* can still blind the monster */
 		} else
 		    tmp = d(nd,6);
+		if (spellcaster)
+		    skilldmg = spell_damage_bonus(SPE_LIGHTNING);
 		if (!resists_blnd(mon) &&
 				!(type > 0 && u.uswallow && mon == u.ustuck)) {
 			register unsigned rnd_tmp = rnd(50);
@@ -3301,12 +3303,11 @@ struct obj **ootmp;   /* to return worn armor for caller to disintegrate */
 	if (spellcaster && (Role_if(PM_KNIGHT) && u.uhave.questart))
 	    tmp *= 2;
 
-	tmp += skilldmg;
 #ifdef WIZ_PATCH_DEBUG
 	if (spellcaster)
-	    pline("Damage = %d + %d", skilldmg,
-		spell_damage_bonus());
+	    pline("Damage = %d + %d", tmp, skilldmg);
 #endif
+	tmp += skilldmg;
 	    
 	if (tmp > 0 && type >= 0 &&
 		resist(mon, type < ZT_SPELL(0) ? WAND_CLASS : '\0', 0, NOTELL))

@@ -949,8 +949,8 @@ boolean atme;
 	case SPE_RESIST_POISON:
 		if(!(HPoison_resistance & INTRINSIC)) {
 			You("feel healthy ..... for the moment at least.");
-			incr_itimeout(&HPoison_resistance,
-					rn1(1000, 500) + spell_damage_bonus(skill)*100);
+			incr_itimeout(&HPoison_resistance, rn1(1000, 500) +
+				spell_damage_bonus(spellid(spell))*100);
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_RESIST_SLEEP:
@@ -959,15 +959,15 @@ boolean atme;
 				pline("Too much coffee!");
 			else
 				You("no longer feel tired.");
-			incr_itimeout(&HSleep_resistance,
-					rn1(1000, 500) + spell_damage_bonus(skill)*100);
+			incr_itimeout(&HSleep_resistance, rn1(1000, 500) +
+				spell_damage_bonus(spellid(spell))*100);
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_ENDURE_COLD:
 		if(!(HCold_resistance & INTRINSIC)) {
 			You("feel warmer.");
-			incr_itimeout(&HCold_resistance,
-					rn1(1000, 500) + spell_damage_bonus(skill)*100);
+			incr_itimeout(&HCold_resistance, rn1(1000, 500) +
+				spell_damage_bonus(spellid(spell))*100);
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_ENDURE_HEAT:
@@ -976,8 +976,8 @@ boolean atme;
 				pline("Excellent! You feel, like, totally cool!");
 			else
 				You("feel colder.");
-			incr_itimeout(&HFire_resistance,
-					rn1(1000, 500) + spell_damage_bonus(skill)*100);
+			incr_itimeout(&HFire_resistance, rn1(1000, 500) +
+				spell_damage_bonus(spellid(spell))*100);
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_INSULATE:
@@ -986,8 +986,8 @@ boolean atme;
 				pline("Bummer! You've been grounded!");
 			else
 				You("are not at all shocked by this feeling.");
-			incr_itimeout(&HShock_resistance,
-					rn1(1000, 500) + spell_damage_bonus(skill)*100);
+			incr_itimeout(&HShock_resistance, rn1(1000, 500) +
+				spell_damage_bonus(spellid(spell))*100);
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_ENLIGHTEN: 
