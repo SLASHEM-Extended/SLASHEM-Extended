@@ -125,6 +125,7 @@ ver 0.0.7E6F3 [?] [Released by ?]
 -fixed bug 1055724: Raise Zombies gives tame troll
 -fixed bug 1020980: Objects are forgotten when you search blind
 -fixed bug 954414: pickup_thrown option includes some non-throw weapons
+-fixed bug 937239: Wrong cause of death from exploding wands
 
 See history.txt for changes made in previous versions.
 
