@@ -75,6 +75,7 @@ ver 0.0.7E6F4 [?] [Released by ?]
 -fixed bug 1087609: Some platforms fails to compile win/proxy/nhext.c
 -fixed bug 1084366: ghoul queen don't has M2_FEMALE
 -fixed bug 1066530: Fired/thrown items get new inventory letter when retrieved
+-fixed bug 992244: Alt Gr key doesn't work
 
 See history.txt for changes made in previous versions.
 
