@@ -13,38 +13,39 @@
 /*
  * Files expected to exist in the playground directory if file areas are not
  * enabled and in the named areas otherwise.
+ * [WAC] - put a NH_ prefix on all the names to prevent conflicts
  */
 
-#define RECORD		"record"  /* a file containing list of topscorers */
-#define RECORD_AREA	FILE_AREA_VAR
-#define HELP		"help"	  /* a file containing command descriptions */
-#define HELP_AREA	FILE_AREA_SHARE
-#define SHELP		"hh"		/* abbreviated form of the same */
-#define SHELP_AREA	FILE_AREA_SHARE
-#define DEBUGHELP	"wizhelp"	/* a file containing debug mode cmds */
-#define DEBUGHELP_AREA	FILE_AREA_SHARE
-#define RUMORFILE	"rumors"	/* a file with fortune cookies */
-#define RUMORAREA	FILE_AREA_SHARE
-#define ORACLEFILE	"oracles"	/* a file with oracular information */
-#define ORACLEAREA	FILE_AREA_SHARE
-#define DATAFILE	"data"	/* a file giving the meaning of symbols used */
-#define DATAAREA	FILE_AREA_SHARE
-#define CMDHELPFILE	"cmdhelp"	/* file telling what commands do */
-#define CMDHELPAREA	FILE_AREA_SHARE
-#define HISTORY		"history"	/* a file giving nethack's history */
-#define HISTORY_AREA	FILE_AREA_SHARE
-#define LICENSE		"license"	/* file with license information */
-#define LICENSE_AREA	FILE_AREA_DOC
-#define OPTIONFILE	"opthelp"	/* a file explaining runtime options */
-#define OPTIONAREA	FILE_AREA_SHARE
-#define OPTIONS_USED	"options"	/* compile-time options, for #version */
-#define OPTIONS_USED_AREA FILE_AREA_SHARE
+#define NH_RECORD		"record"  /* a file containing list of topscorers */
+#define NH_RECORD_AREA	FILE_AREA_VAR
+#define NH_HELP		"help"	  /* a file containing command descriptions */
+#define NH_HELP_AREA	FILE_AREA_SHARE
+#define NH_SHELP		"hh"		/* abbreviated form of the same */
+#define NH_SHELP_AREA	FILE_AREA_SHARE
+#define NH_DEBUGHELP	"wizhelp"	/* a file containing debug mode cmds */
+#define NH_DEBUGHELP_AREA	FILE_AREA_SHARE
+#define NH_RUMORFILE	"rumors"	/* a file with fortune cookies */
+#define NH_RUMORAREA	FILE_AREA_SHARE
+#define NH_ORACLEFILE	"oracles"	/* a file with oracular information */
+#define NH_ORACLEAREA	FILE_AREA_SHARE
+#define NH_DATAFILE	"data"	/* a file giving the meaning of symbols used */
+#define NH_DATAAREA	FILE_AREA_SHARE
+#define NH_CMDHELPFILE	"cmdhelp"	/* file telling what commands do */
+#define NH_CMDHELPAREA	FILE_AREA_SHARE
+#define NH_HISTORY		"history"	/* a file giving nethack's history */
+#define NH_HISTORY_AREA	FILE_AREA_SHARE
+#define NH_LICENSE		"license"	/* file with license information */
+#define NH_LICENSE_AREA	FILE_AREA_DOC
+#define NH_OPTIONFILE	"opthelp"	/* a file explaining runtime options */
+#define NH_OPTIONAREA	FILE_AREA_SHARE
+#define NH_OPTIONS_USED	"options"	/* compile-time options, for #version */
+#define NH_OPTIONS_USED_AREA FILE_AREA_SHARE
 #ifdef SHORT_FILENAMES
-# define GUIDEBOOK       "guideboo.txt"        /* Nethack Guidebook*/
+# define NH_GUIDEBOOK       "guideboo.txt"        /* Nethack Guidebook*/
 #else
-#define GUIDEBOOK       "Guidebook.txt"       /* Nethack Guidebook*/
+#define NH_GUIDEBOOK       "Guidebook.txt"       /* Nethack Guidebook*/
 #endif
-#define GUIDEBOOK_AREA	FILE_AREA_DOC
+#define NH_GUIDEBOOK_AREA	FILE_AREA_DOC
 
 #define LEV_EXT	".lev"		/* extension for special level files */
 

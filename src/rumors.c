@@ -74,10 +74,10 @@ boolean exclude_cookie;
 	char	*endp, line[BUFSZ], xbuf[BUFSZ];
 
 	rumor_buf[0] = '\0';
-	if (true_rumor_size < 0L)	/* we couldn't open RUMORFILE */
+	if (true_rumor_size < 0L)	/* we couldn't open NH_RUMORFILE */
 		return rumor_buf;
 
-	rumors = dlb_fopen_area(RUMORAREA, RUMORFILE, "r");
+	rumors = dlb_fopen_area(NH_RUMORAREA, NH_RUMORFILE, "r");
 
 	if (rumors) {
 	    int count = 0;
@@ -89,7 +89,7 @@ boolean exclude_cookie;
 		    init_rumors(rumors);
 		    if (true_rumor_size < 0L) {	/* init failed */
 			Sprintf(rumor_buf, "Error reading \"%.80s\".",
-				RUMORFILE);
+				NH_RUMORFILE);
 			return rumor_buf;
 		    }
 		}
@@ -236,11 +236,11 @@ boolean delphi;
 	int oracle_idx;
 	char xbuf[BUFSZ];
 
-	if(oracle_flg < 0 ||			/* couldn't open ORACLEFILE */
+	if(oracle_flg < 0 ||			/* couldn't open NH_ORACLEFILE */
 	   (oracle_flg > 0 && oracle_cnt == 0))	/* oracles already exhausted */
 		return;
 
-	oracles = dlb_fopen_area(ORACLEAREA, ORACLEFILE, "r");
+	oracles = dlb_fopen_area(NH_ORACLEAREA, NH_ORACLEFILE, "r");
 
 	if (oracles) {
 		winid tmpwin;

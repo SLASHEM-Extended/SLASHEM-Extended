@@ -1746,9 +1746,9 @@ const char *dir;
 	
 #if defined(UNIX) || defined(VMS)
 # ifdef FILE_AREAS
-	fd = open_area(RECORD_AREA, RECORD, O_RDWR, 0);
+	fd = open_area(NH_RECORD_AREA, NH_RECORD, O_RDWR, 0);
 # else
-	fq_record = fqname(RECORD, SCOREPREFIX, 0);
+	fq_record = fqname(NH_RECORD, SCOREPREFIX, 0);
 	fd = open(fq_record, O_RDWR, 0);
 # endif
 
@@ -1761,24 +1761,24 @@ const char *dir;
 		    wait_synch();
 		}
 # endif
-	    (void) close(fd);   /* RECORD is accessible */
+	    (void) close(fd);   /* NH_RECORD is accessible */
 #  ifdef FILE_AREAS
-	} else if ((fd = open_area(RECORD_AREA, RECORD, O_CREAT|O_RDWR, FCMASK)) >= 0) {
+	} else if ((fd = open_area(NH_RECORD_AREA, NH_RECORD, O_CREAT|O_RDWR, FCMASK)) >= 0) {
 #  else
 	} else if ((fd = open(fq_record, O_CREAT|O_RDWR, FCMASK)) >= 0) {
 #  endif
-	    (void) close(fd);   /* RECORD newly created */
+	    (void) close(fd);   /* NH_RECORD newly created */
 # if defined(VMS) && !defined(SECURE)
-	    /* Re-protect RECORD with world:read+write+execute+delete access. */
+	    /* Re-protect NH_RECORD with world:read+write+execute+delete access. */
 #  ifdef FILE_AREAS
-	    (void) chmod_area(RECORD_AREA, RECORD, FCMASK | 007);
+	    (void) chmod_area(NH_RECORD_AREA, NH_RECORD, FCMASK | 007);
 #  else
 	    (void) chmod(fq_record, FCMASK | 007);
 #  endif
 # endif /* VMS && !SECURE */
 	} else {
 # ifdef FILE_AREAS
-	    raw_printf("Warning: cannot write scoreboard file %s", RECORD);
+	    raw_printf("Warning: cannot write scoreboard file %s", NH_RECORD);
 # else
 	    raw_printf("Warning: cannot write scoreboard file %s", fq_record);
 # endif
@@ -1793,28 +1793,28 @@ const char *dir;
 	 * for later access to the file via fopen_datafile? ? */
 	(void) strncpy(tmp, dir, PATHLEN - 1);
 	tmp[PATHLEN-1] = '\0';
-	if ((strlen(tmp) + 1 + strlen(RECORD)) < (PATHLEN - 1)) {
+	if ((strlen(tmp) + 1 + strlen(NH_RECORD)) < (PATHLEN - 1)) {
 		append_slash(tmp);
-		Strcat(tmp, RECORD);
+		Strcat(tmp, NH_RECORD);
 	}
 #  ifndef FILE_AREAS
 	fq_record = tmp;
 #  endif
 # else
-	Strcpy(tmp, RECORD);
+	Strcpy(tmp, NH_RECORD);
 #  ifndef FILE_AREAS
-	fq_record = fqname(RECORD, SCOREPREFIX, 0);
+	fq_record = fqname(NH_RECORD, SCOREPREFIX, 0);
 #  endif
 # endif
 
 # ifdef FILE_AREAS
-	if ((fd = open_area(RECORD_AREA, tmp, O_RDWR)) < 0) {
+	if ((fd = open_area(NH_RECORD_AREA, tmp, O_RDWR)) < 0) {
 # else
 	if ((fd = open(fq_record, O_RDWR)) < 0) {
 # endif
 	    /* try to create empty record */
 # if defined(FILE_AREAS)
-	    if ((fd = open_area(RECORD_AREA, tmp, O_CREAT|O_RDWR,
+	    if ((fd = open_area(NH_RECORD_AREA, tmp, O_CREAT|O_RDWR,
 	      S_IREAD|S_IWRITE)) < 0) {
 # elif defined(AZTEC_C) || defined(_DCC)
 	    /* Aztec doesn't use the third argument */
@@ -1833,7 +1833,7 @@ const char *dir;
 
 # ifdef MAC
 	/* Create the "record" file, if necessary */
-	fq_record = fqname(RECORD, SCOREPREFIX, 0);
+	fq_record = fqname(NH_RECORD, SCOREPREFIX, 0);
 	fd = macopen (fq_record, O_RDWR | O_CREAT, TEXT_TYPE);
 	if (fd != -1) macclose (fd);
 # endif /* MAC */

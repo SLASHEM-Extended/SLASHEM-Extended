@@ -285,7 +285,7 @@ checkfile(inp, pm, user_typed_name, without_asking)
     int chk_skip;
     boolean found_in_file = FALSE, skipping_entry = FALSE;
 
-    fp = dlb_fopen_area(DATAAREA, DATAFILE, "r");
+    fp = dlb_fopen_area(NH_DATAAREA, NH_DATAFILE, "r");
     if (!fp) {
 	pline("Cannot open data file!");
 	return;
@@ -751,7 +751,7 @@ dowhatdoes()
 	char bufr[BUFSZ+6];
 	register char *buf = &bufr[6], *ep, q, ctrl, meta;
 
-	fp = dlb_fopen_area(CMDHELPAREA, CMDHELPFILE, "r");
+	fp = dlb_fopen_area(NH_CMDHELPAREA, NH_CMDHELPFILE, "r");
 	if (!fp) {
 		pline("Cannot open data file!");
 		return 0;
@@ -874,29 +874,29 @@ dohelp()
 
 	if (help_menu(&sel)) {
 		switch (sel) {
-			case  0:  display_file_area(HELP_AREA, HELP, TRUE);
+			case  0:  display_file_area(NH_HELP_AREA, NH_HELP, TRUE);
 				  break;
-			case  1:  display_file_area(SHELP_AREA, SHELP, TRUE);
+			case  1:  display_file_area(NH_SHELP_AREA, NH_SHELP, TRUE);
 				  break;
 			case  2:  (void) dohistory();  break;
 			case  3:  (void) dowhatis();  break;
 			case  4:  (void) dowhatdoes();  break;
 			case  5:  option_help();  break;
-			case  6:  display_file_area(OPTIONAREA,
-				    OPTIONFILE, TRUE);
+			case  6:  display_file_area(NH_OPTIONAREA,
+				    NH_OPTIONFILE, TRUE);
 				  break;
 			case  7:  (void) doextlist();  break;
-			case  8:  display_file_area(LICENSE_AREA,
-				    LICENSE, TRUE);
+			case  8:  display_file_area(NH_LICENSE_AREA,
+				    NH_LICENSE, TRUE);
 				  break;
 /*WAC add guidebook.*/
-                        case  9:  display_file_area(GUIDEBOOK_AREA,
-				    GUIDEBOOK, TRUE);
+                        case  9:  display_file_area(NH_GUIDEBOOK_AREA,
+				    NH_GUIDEBOOK, TRUE);
 				  break;
 #ifdef WIZARD
                         /* handle slot 10 or 11 */
-			default:  display_file_area(DEBUGHELP_AREA,
-				    DEBUGHELP, TRUE);
+			default:  display_file_area(NH_DEBUGHELP_AREA,
+				    NH_DEBUGHELP, TRUE);
 				  break;
 #endif
 #ifdef PORT_HELP
@@ -910,7 +910,7 @@ dohelp()
 int
 dohistory()
 {
-	display_file_area(HISTORY_AREA, HISTORY, TRUE);
+	display_file_area(NH_HISTORY_AREA, NH_HISTORY, TRUE);
 	return 0;
 }
 

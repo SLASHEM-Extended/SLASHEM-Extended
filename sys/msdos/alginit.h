@@ -600,6 +600,7 @@ display_nh_title()
 	FONT *loadfont;
 
 	/* WAC load font file if present (do this only once!) */
+#if 0
 	if (!font_loaded) {
 		font_loaded = TRUE;
 		loadfont = load_font("anethack.fnt");
@@ -608,6 +609,7 @@ display_nh_title()
 		    error("Could not load anethack.fnt.");
 		}
 	}
+#endif
 
 	/* Background */
         sprintf(filename, "%stitlebg%s", TILEDIR, EXT);

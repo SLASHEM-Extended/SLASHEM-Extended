@@ -2,6 +2,7 @@
    Shawn Hargreaves' code for the Allegro grabber */
 
 /* TODO:  Detect/Make compatible with Allegro WIP */
+#if 0
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -511,4 +512,4 @@ static void *load_font(char *filename)
 	 return fixup_font(import_bios_font(filename));
    }
 }
-
+#endif

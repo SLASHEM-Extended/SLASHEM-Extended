@@ -20,6 +20,7 @@
 
 #include "hack.h"
 #include "epri.h"
+
 #include <allegro.h>
 
 #ifdef ALLEGRO_USE_AA

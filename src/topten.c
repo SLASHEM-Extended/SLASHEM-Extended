@@ -359,21 +359,21 @@ int how;
 	}
 
 #ifdef FILE_AREAS
-	if (!lock_file_area(RECORD_AREA, RECORD, 60))
+	if (!lock_file_area(NH_RECORD_AREA, NH_RECORD, 60))
 #else
-	if (!lock_file(RECORD, SCOREPREFIX, 60))
+	if (!lock_file(NH_RECORD, SCOREPREFIX, 60))
 #endif
 		goto destroywin;
 
 #ifdef UPDATE_RECORD_IN_PLACE
-	rfile = fopen_datafile_area(RECORD_AREA, RECORD, "r+", TRUE);
+	rfile = fopen_datafile_area(NH_RECORD_AREA, NH_RECORD, "r+", TRUE);
 #else
-	rfile = fopen_datafile_area(RECORD_AREA, RECORD, "r", TRUE);
+	rfile = fopen_datafile_area(NH_RECORD_AREA, NH_RECORD, "r", TRUE);
 #endif
 
 	if (!rfile) {
 		HUP raw_print("Cannot open record file!");
-		unlock_file_area(RECORD_AREA, RECORD);
+		unlock_file_area(NH_RECORD_AREA, NH_RECORD);
 		goto destroywin;
 	}
 
@@ -445,9 +445,9 @@ int how;
 				     t0->fpos : final_fpos), SEEK_SET);
 #else
 		(void) fclose(rfile);
-		if(!(rfile = fopen_datafile_area(RECORD_AREA, RECORD, "w", TRUE))){
+		if(!(rfile = fopen_datafile_area(NH_RECORD_AREA, NH_RECORD, "w", TRUE))){
 			HUP raw_print("Cannot write record file");
-			unlock_file_area(RECORD_AREA, RECORD);
+			unlock_file_area(NH_RECORD_AREA, NH_RECORD);
 			free_ttlist(tt_head);
 			goto destroywin;
 		}
@@ -523,7 +523,7 @@ int how;
 	}
 #endif	/* UPDATE_RECORD_IN_PLACE */
 	(void) fclose(rfile);
-	unlock_file_area(RECORD_AREA, RECORD);
+	unlock_file_area(NH_RECORD_AREA, NH_RECORD);
 	free_ttlist(tt_head);
 
   showwin:
@@ -753,7 +753,7 @@ char **argv;
 		return;
 	}
 
-	rfile = fopen_datafile_area(RECORD_AREA, RECORD, "r", TRUE);
+	rfile = fopen_datafile_area(NH_RECORD_AREA, NH_RECORD, "r", TRUE);
 	if (!rfile) {
 		raw_print("Cannot open record file!");
 		return;
@@ -903,7 +903,7 @@ struct obj *otmp;
 
 	if (!otmp) return((struct obj *) 0);
 
-	rfile = fopen_datafile_area(RECORD_AREA, RECORD, "r", TRUE);
+	rfile = fopen_datafile_area(NH_RECORD_AREA, NH_RECORD, "r", TRUE);
 	if (!rfile) {
 		impossible("Cannot open record file!");
 		return (struct obj *)0;

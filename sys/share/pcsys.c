@@ -305,7 +305,7 @@ record_exists()
 {
 	FILE *fp;
 
-	fp = fopen_datafile(RECORD, "r", TRUE);
+	fp = fopen_datafile(NH_RECORD, "r", TRUE);
 	if (fp) {
 		fclose(fp);
 		return TRUE;
@@ -350,7 +350,7 @@ gameDiskPrompt()
 	if (!comspec_exists())
 		msmsg("\n\nWARNING: can't find command processor \"%s\"!\n", getcomspec());
 	if (!record_exists())
-		msmsg("\n\nWARNING: can't find record file \"%s\"!\n", RECORD);
+		msmsg("\n\nWARNING: can't find record file \"%s\"!\n", NH_RECORD);
 	msmsg("If the game disk is not in, insert it now.\n");
 	getreturn("to continue");
 	return;
