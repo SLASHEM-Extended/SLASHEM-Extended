@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.18 2002-07-07 14:38:10 j_ali Exp $
+  $Id: gtk.c,v 1.19 2002-07-09 13:24:54 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -610,7 +610,12 @@ help_license(GtkWidget *widget, gpointer data)
 static void
 help_history(GtkWidget *widget, gpointer data)
 {
+#ifdef GTK_PROXY
+    if (!GTK_display_file("$(HISTORY)"))
+	pline("Cannot display history.  Sorry.");
+#else
     dohistory();
+#endif
     keysym = '\0';
 }
 
@@ -1641,10 +1646,6 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
     GdkPixmap	*credit_pixmap;
     GdkBitmap	*credit_mask;
 
-#ifdef UNIX
-    uid_t savuid;
-#endif
-
     gtk_set_locale();
 #ifdef GTK_V20
     nh_option_cache_set_bool_addr("color", &copts.use_color);
@@ -1657,26 +1658,8 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
     for (i = 0; i < MAXWIN; i++)
 	gtkWindows[i].type = NHW_NONE;
 
-    /*
-     * setuid hack: make sure that if nethack is setuid, to use real uid
-     * when opening X11 connections, in case the user is using xauth, since
-     * the "games" or whatever user probably doesn't have permission to open
-     * a window on the user's display.  This code is harmless if the binary
-     * is not installed setuid.  See include/system.h on compilation failures.
-     */
-#ifdef UNIX
-    savuid = geteuid();
-    (void) seteuid(getuid());
-    hide_privileges(TRUE);
-#endif
-    
     gtk_init(argc, &argv);
 
-#ifdef UNIX
-    hide_privileges(FALSE);
-    (void) seteuid(savuid);
-#endif
-    
 /*
   creat credit widget and show
 */
@@ -2554,7 +2537,7 @@ GTK_raw_print(const char *str)
     if(rawprint_win != WIN_ERR)
 	GTK_putstr(rawprint_win, 0, str);
     else {
-#ifdef TTY_GRAPHICS
+#if defined(TTY_GRAPHICS) && !defined(GTK_PROXY)
 	tty_raw_print(str);
 #else
 	puts(str); (void) fflush(stdout);
@@ -2568,7 +2551,7 @@ GTK_raw_print_bold(const char *str)
     if(rawprint_win != WIN_ERR)
 	GTK_putstr(rawprint_win, ATR_BOLD, str);
     else {
-#ifdef TTY_GRAPHICS
+#if defined(TTY_GRAPHICS) && !defined(GTK_PROXY)
 	tty_raw_print_bold(str);
 #else
 	puts(str); (void) fflush(stdout);
