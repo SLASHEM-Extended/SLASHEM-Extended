@@ -287,7 +287,7 @@ void alleg_Init(void)
                 inc_progress_meter();
         }
 
-        for(i = 0; i < 10; i++)
+        for(i = 0; i < SIZE(enames); i++)
         {
                 sprintf(filename, "%s%s%s%s", TILEDIR, "spfx\\", 
                                               enames[i], EXT);

@@ -95,6 +95,7 @@ ver 0.0.7E6 [February 28/2004] [Released by Ali]
 -Support gentoo configuration system
 -fixed bug 901798: gtkhack 7E5 crashes if it can't write to cache
 -Documented configuration for proxy servers
+-fixed bug 908980: allgrohack crashes on startup
 
 See history.txt for changes made in previous versions.
 
