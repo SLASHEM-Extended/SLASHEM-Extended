@@ -323,8 +323,7 @@ TODO:
 	-currently need to redo the font loading code (at least)
 	-it appears to be segfaulting (randomly?)
 
-ver 0.0.6E3F1 [September XX/2000]
-
+ver 0.0.6E3F1 [August 21/2000] [Released by Ali]
 -changed all the file names in global.h to be prefixed with NH_
 	(DATAFILE, HELP, RECORD, ORACLE, RUMOUR, etc.)
 -Changed #define FILENAME (macconf.h, pcconf.h) to FILENAMELEN since FILENAME 
