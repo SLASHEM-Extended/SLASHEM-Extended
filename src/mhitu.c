@@ -514,7 +514,7 @@ mattacku(mtmp)
 		if (!youseeit) pline("It gets stuck on you.");
 		else pline("Wait, %s!  That's a %s named %s!",
 			   m_monnam(mtmp), youmonst.data->mname, plname);
-		u.ustuck = mtmp;
+		setustuck(mtmp);
 		youmonst.m_ap_type = M_AP_NOTHING;
 		youmonst.mappearance = 0;
 		newsym(u.ux,u.uy);
@@ -976,7 +976,7 @@ hitmu(mtmp, mattk)
 			if (u_slip_free(mtmp, mattk)) {
 			    dmg = 0;
 			} else {
-			    u.ustuck = mtmp;
+			    setustuck(mtmp);
 			    pline("%s grabs you!", Monnam(mtmp));
 			}
 		    } else if(u.ustuck == mtmp) {
@@ -1373,7 +1373,7 @@ do_stone:
 	    case AD_STCK:
 		hitmsg(mtmp, mattk);
 		if (uncancelled && !u.ustuck && !sticks(youmonst.data))
-			u.ustuck = mtmp;
+			setustuck(mtmp);
 		break;
 	    case AD_WRAP:
 		if ((!mtmp->mcan || u.ustuck == mtmp) && !sticks(youmonst.data)) {
@@ -1383,7 +1383,7 @@ do_stone:
 			} else {
 			    pline("%s swings itself around you!",
 				  Monnam(mtmp));
-			    u.ustuck = mtmp;
+			    setustuck(mtmp);
 			}
 		    } else if(u.ustuck == mtmp) {
 			if (is_pool(mtmp->mx,mtmp->my) && !Swimming
@@ -1841,7 +1841,6 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		remove_monster(mtmp->mx, mtmp->my);
 		mtmp->mtrapped = 0;		/* no longer on old trap */
 		place_monster(mtmp, u.ux, u.uy);
-		u.ustuck = mtmp;
 		newsym(mtmp->mx,mtmp->my);
 #ifdef STEED
 		if (is_animal(mtmp->data) && u.usteed) {
@@ -1882,6 +1881,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		display_nhwindow(WIN_MESSAGE, FALSE);
 		vision_recalc(2);	/* hero can't see anything */
 		u.uswallow = 1;
+		setustuck(mtmp);
 		/* u.uswldtim always set > 1 */
 		tim_tmp = 25 - (int)mtmp->m_lev;
 		if (tim_tmp > 0) tim_tmp = rnd(tim_tmp) / 2;

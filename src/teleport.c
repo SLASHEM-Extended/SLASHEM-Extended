@@ -415,7 +415,7 @@ register int nux,nuy;
 		unplacebc();
 	}
 	u.utrap = 0;
-	u.ustuck = 0;
+	setustuck(0);
 	u.ux0 = u.ux;
 	u.uy0 = u.uy;
 	u.ux = nux;
@@ -1086,7 +1086,7 @@ register int x, y;
 			u.ux = x;
 			u.uy = y;
 			docrt();
-		} else	u.ustuck = 0;
+		} else	setustuck(0);
 	}
 
 	newsym(x, y);				/* update new location */

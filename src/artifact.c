@@ -963,7 +963,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 					nomovemsg = "";
 					if (magr && magr == u.ustuck
 						&& sticks(youmonst.data)) {
-					    u.ustuck = (struct monst *)0;
+					    setustuck((struct monst *)0);
 					    You("release %s!", mon_nam(magr));
 					}
 				}

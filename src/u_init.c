@@ -923,7 +923,7 @@ u_init()
 	 * Note that some values may have been incorrectly set by a failed restore.
 	 */
 	(void) memset((genericptr_t)&u, 0, sizeof(u));
-	u.ustuck = (struct monst *)0;
+	setustuck((struct monst *)0);
 #if 0	/* documentation of more zero values as desirable */
 	u.usick_cause[0] = 0;
 	u.uluck  = u.moreluck = 0;

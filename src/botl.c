@@ -48,11 +48,11 @@ STATIC_DCL void FDECL(set_botl_warn, (int));
  * longest practical second status line at the moment is
  *	Astral Plane $:12345 HP:700(700) Pw:111(111) AC:-127 Xp:30/123456789
  *      Wt:5000/1000 T:123456 Satiated Lev Conf FoodPois Ill Blind Stun Hallu
- *      Slime Overloaded
- * -- or somewhat over 150 characters
+ *      Slime Held Overloaded
+ * -- or somewhat over 160 characters
  */
-#if COLNO <= 160
-#define MAXCO 180
+#if COLNO <= 170
+#define MAXCO 190
 #else
 #define MAXCO (COLNO+20)
 #endif
@@ -418,6 +418,8 @@ bot2str(char *newbot2)
 		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Hal" : " Hallu");
 	if(Slimed)
 		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Slm" : " Slime");
+	if(u.ustuck && !u.uswallow && !sticks(youmonst.data))
+		Sprintf(nb = eos(nb), " Held");
 	if(cap > UNENCUMBERED)
 		Sprintf(nb = eos(nb), " %s",
 		  bot2_abbrev >= 2 ? enc_abbrev_stat[cap] : enc_stat[cap]);
