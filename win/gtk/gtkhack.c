@@ -1,4 +1,4 @@
-/* $Id: gtkhack.c,v 1.8 2003-12-21 20:30:23 j_ali Exp $ */
+/* $Id: gtkhack.c,v 1.9 2004-02-21 16:59:10 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -195,7 +195,15 @@ static void GTK_proxy_clnt_errhandler(const char *error)
 
 static void GTK_nhext_errhandler(int class, const char *error)
 {
-    GTK_proxy_clnt_errhandler(error);
+    GtkWidget *w;
+    if (class == EXT_ERROR_COMMS) {
+	w = gtk_message_dialog_new(NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_NONE,
+	  "Connection to game server lost.\n\n%s", error);
+	gtk_dialog_add_button(GTK_DIALOG(w), GTK_STOCK_QUIT, 0);
+	gtk_dialog_run(GTK_DIALOG(w));
+	exit(1);
+    } else
+	GTK_proxy_clnt_errhandler(error);
 }
 
 void
