@@ -83,10 +83,8 @@ int thrown;
 
 	multi = 0;		/* reset; it's been used up */
 	
-	if (thrown == 1 && uwep && ammo_and_launcher(obj, uwep)) 
-		launcher = uwep;
-	else if (thrown == 2 && uswapwep && ammo_and_launcher(obj, uswapwep))
-		launcher = uswapwep;
+	if (thrown == 1) launcher = uwep;
+	else if (thrown == 2) launcher = uswapwep;
 	else launcher = (struct obj *)0;
 
 	/* ask "in what direction?" */
@@ -215,12 +213,10 @@ int thrown;
 	       
 	    /* Tech: Flurry */
 	    if (objects[obj->otyp].oc_skill == -P_BOW && tech_inuse(T_FLURRY)) {
-		multishot += 1; /* Let'em rip! */
-
 		/* more than usual == volley */
-		if (((shotlimit <= 0) || (shotlimit >= multishot)) && 
-			(obj->quan >= multishot))
+		if (obj->quan >= (multishot + 1))
 		    You("let fly a volley of %s!", xname(obj));
+		multishot += 1; /* Let'em rip! */
 	    }
 
 	    /* Shotlimit controls your rate of fire */
@@ -987,14 +983,14 @@ struct obj *obj;
 
 void
 throwit(obj, wep_mask, twoweap, thrown)
-struct obj *obj;
+register struct obj *obj;
 long wep_mask;	/* used to re-equip returning boomerang */
 boolean twoweap; /* used to restore twoweapon mode if wielded weapon returns */
 int thrown;
 {
 	register struct monst *mon;
 	register int range, urange;
-	struct obj *launcher = (struct obj*) 0;
+	register struct obj *launcher = (struct obj*) 0;
 	boolean impaired = (Confusion || Stunned || Blind ||
 			   Hallucination || Fumbling);
 
@@ -1159,16 +1155,11 @@ int thrown;
 		mon = bhit(u.dx,u.dy,range,THROWN_WEAPON,
 			   (int FDECL((*),(MONST_P,OBJ_P)))0,
 			   (int FDECL((*),(OBJ_P,OBJ_P)))0,
-			   &obj);
+			   obj);
 
 		/* have to do this after bhit() so u.ux & u.uy are correct */
 		if(Is_airlevel(&u.uz) || Levitation)
 		    hurtle(-u.dx, -u.dy, urange, TRUE);
-
-		if (!obj) {
-		    thrownobj = (struct obj *)0;
-		    return;
-		}
 	}
 
 	if(mon) {
@@ -1191,7 +1182,22 @@ int thrown;
 			 !index(in_rooms(mon->mx, mon->my, SHOPBASE), *u.ushops)))
 		    hot_pursuit(mon);
 
-		if (obj_gone) return;
+		if (obj_gone) {
+#ifdef FIREARMS
+		    /* Detonate rockets */
+		    if (is_grenade(obj)) {
+			grenade_explode(obj, bhitpos.x, bhitpos.y, TRUE, 0);
+		    } else if (ammo_and_launcher(obj, launcher) &&
+			    (objects[obj->otyp].oc_dir & EXPLOSION)) {
+			if (cansee(bhitpos.x,bhitpos.y)) 
+			    pline("%s explodes in a ball of fire!", Doname2(obj));
+			else You_hear("an explosion");
+			explode(bhitpos.x, bhitpos.y, ZT_SPELL(ZT_FIRE),
+				d(3,8), WEAPON_CLASS, EXPL_FIERY);
+		    }
+#endif
+		    return;
+		}
 	}
 
 #ifdef FIREARMS
@@ -1576,25 +1582,6 @@ int thrown;
 		    if (broken) {
 			if (*u.ushops)
 			    check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
-#ifdef FIREARMS
-			/*
-			 * Thrown grenades and explosive ammo used with the
-			 * relevant launcher explode rather than simply
-			 * breaking.
-			 */
-			if ((thrown == 1 || thrown == 2) && is_grenade(obj)) {
-			    grenade_explode(obj, bhitpos.x, bhitpos.y, TRUE, 0);
-			} else if (ammo_and_launcher(obj, launcher) &&
-				(objects[obj->otyp].oc_dir & EXPLOSION)) {
-			    if (cansee(bhitpos.x,bhitpos.y)) 
-				pline("%s explodes in a ball of fire!",
-					Doname2(obj));
-			    else You_hear("an explosion");
-			    explode(bhitpos.x, bhitpos.y, ZT_SPELL(ZT_FIRE),
-				    d(3,8), WEAPON_CLASS, EXPL_FIERY);
-			    obfree(obj, (struct obj *)0);
-			} else
-#endif
 			obfree(obj, (struct obj *)0);
 			return 1;
 		    }
@@ -2036,9 +2023,7 @@ struct obj *obj;
 			mon = bhit(u.dx, u.dy, range, THROWN_WEAPON,
 				   (int FDECL((*),(MONST_P,OBJ_P)))0,
 				   (int FDECL((*),(OBJ_P,OBJ_P)))0,
-				   &obj);
-			if (!obj)
-			    return 1;
+				   obj);
 			if(mon) {
 			    if (ghitm(mon, obj))	/* was it caught? */
 				return 1;

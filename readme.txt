@@ -40,7 +40,7 @@
 
 The development of version 0.0.7 of Slash'EM started with version 0.0.6E5
 (yes, we realise our version numbers are a little odd - it made sense at
-the time!). Version 0.0.7E6 was the first beta release.
+the time!). We are hoping to release the first beta version this Spring.
 
 If you find any bugs then please submit a report via the offical bug page:
 
@@ -67,34 +67,45 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E6F2 [May 3/2004] [Released by Ali]
--fixed bug 910334: Vampire blood and foodless conduct
--fixed bug 924384: Inconsistency with shoggoth corroding items
--Macintosh: Include fix-level in about-box version
--fixed bug 924277: Monsters can retaliate against themselves
--fixed bug 925892: Vampire corpse on early bones level
--fixed bug 922320: Grenade thrown by soldier angered monster
--fixed bug 929873: Crash while reading spellbook off floor
--fixed bug 932788: Permanent inventory window not updated immediately
--fixed bug 932791: Permanent inventory window not closed immediately
--fixed bug 932800: [GTK] Changing hilite_pet from "more options" not immed.
--fixed bug 932801: [GTK] Changing hilite_pet from options not immed. honoured
--fixed bug 932816: Disabled radar window appears (but isn't updated) on startup
--fixed bug 932818: [GTK] Can't close main window before starting game
--fixed bug 932827: [win32] Session windows slowly creep right and down
--fixed bug 932832: [GTK] Can't cancel at "Who are you?" prompt
--fixed bug 932905: [GTK] Apparently random crashes
--NhExt: Added support for authentication (eg., for dgamelaunch)
--fixed bug 938859: Rate of fire affected by non-launcher weapon
--fixed bug 929876: Monsters can pass between Sokoban bars
--fixed bug 934073: Spurious "don't seem to harm" messages for Drow
--fixed bug 926829: Vampires "don't seem to harm" when draining levels
--fixed bug 939133: dmonsfree error after exploding /WoPoly
--fixed bug 911485: Monk techniques and vampire lords
--fixed bug 935175: monsters cheating to use polearm
--fixed bug 938871: Izchak does not appear
--fixed bug 938864: Bad message when using flurry and limiting shots
--fixed bug 931200: Gnolls in Gnomish Mines
+ver 0.0.7E5 [January 20/2004] [Released by Ali]
+-fixed bug 854683: gtkhack produces many warnings on start-up
+-fixed bug 846444: [0.0.7e3] Negative disarm skill
+-fixed bug 583464: Uncharged use of spellbooks
+-fixed bug 436054: Striking unusual monsters' vital organs
+-fixed bug 731772: Two-weapon skill categorization
+-GtkHack: Added provision for disabling asynchronous NhExt
+-Merged vanilla 3.4.3 codebase.
+-fixed bug 857644: Gnome: tty_raw_print should be removed
+-fixed bug 857488: gtkprogress not handled in proxified build
+-GtkHack: Added user-level logging
+-fixed bug 858984: GTK: Dialogs don't open until after the next game command
+-Gtk: Smother scrolling
+-Gtk: Upgrade file display window to use GtkTextView instead of broken GtkText
+-Gtk: Add facility to change font used in help windows
+-Improved tile2png to use paletted images where possible
+-Winnt: Add support for png tilesets and build them by default
+-fixed bug 456453: Deep dragon resistances
+-fixed bug 662821: magic candles burn in the candelabrum of invocation
+-fixed bug 863646: Fails to compile under Gtk 2.0
+-fixed bug 863679: GTK interface fails to build as an internal port
+-Winnt: Use pkg-config in build (for Gtk+ and libpng) based on cc-gtk
+-fixed bug 864193: Using Arrow keys in win32 GTK
+-fixed bug 866750: The number_pad windowing API is not called correctly
+-fixed bug 821864: [0.0.7e2] Recharge lightsaber loses enchantment
+-fixed bug 790120: Wolf form can't hold Torch but can if already holding
+-fixed bug 603184: Stacking explosives
+-fixed bug 857651: Gnome: tileset refreshing
+-fixed bug 567573: Killed lichen corpses don't merge
+-fixed bug 575178: Fighting with a weapon and a bare fist
+-fixed bug 869951: Random crashes shortly after restore
+-fixed bug 870027: GTK: Closing main window has no effect until after next cmd
+-fixed bug 870762: Lighting a candle from a stack lights the remainder
+		   (Nico Kist)
+-fixed bug 857492: gtkrc not removed by make spotless (Clive Crous)
+-fixed bug 873593: runtime delta showweight doesn't reconfig status
+		   (Clive Crous)
+-fixed bug 788895: [X11] showweight option not supported (Clive Crous)
+-GtkHack: Profile versioning
 
 See history.txt for changes made in previous versions.
 
@@ -219,7 +230,7 @@ overhead perspective.
 ----------------
 
 o Project administrators: Warren Cheung and J. Ali Harlow
-o Developers: Pekka Rousu and Clive Crous
+o Developer: Pekka Rousu
 o Mac port: Paul Hurtley
 
 4.2 Acknowledgements
@@ -228,7 +239,7 @@ o Mac port: Paul Hurtley
 Thanks to Andrew Apted, who contributed the glHack interface.
 
 Thanks to Kevin Hugo (hugo@cae.wisc.edu), the previous Macintosh
-maintainer and the author of many changes, who has had to move on to
+maintainer and the author of many changes, who has had to move on to 
 other projects.
 
 Thanks to Dirk Schönberger (shoenberger@signsoft.com), who worked on
@@ -236,7 +247,7 @@ the Qt and Linux ports.
 
 Thanks to Ben Olmstead for mirroring the homepage.
 
-Thanks for the support, bug reports and suggestions of
+Thanks for the support, bug reports and suggestions of 
 (in no particular order):
 
 	Pat Rankin, Linley Henzell, 0ystein Kerstad, Jim Miller, pi,

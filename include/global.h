@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 
-/* #define ALPHA */	/* if an alpha-test copy */
+#define ALPHA		/* if an alpha-test copy */
 #define BETA		/* if an alpha- or beta-test copy */
 
 /*

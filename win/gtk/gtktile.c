@@ -1,5 +1,5 @@
 /*
-  $Id: gtktile.c,v 1.6 2004-02-27 09:07:03 j_ali Exp $
+  $Id: gtktile.c,v 1.5 2003-09-30 12:43:19 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -478,16 +478,14 @@ x_tile_load_map(TileTab *t, NhGtkProgressWindow *w)
 	retval = x_tile_generate_map(t, w);
 	if (retval) {
 	    io = GTK_io_open(x_tile_loadmap.file, NHEXT_IO_WRONLY);
-	    if (io) {
-		nhext_xdrio_create(&xdr, io, NHEXT_XDR_ENCODE);
-		rv = nhext_xdr_int(&xdr, &total_tiles_used);
-		rv &= nhext_xdr_array(&xdr, (char **)&GTK_glyph2tile, &no_glyph,
-		  (unsigned int)-1, sizeof(short), nhext_xdr_short);
-		nhext_xdr_destroy(&xdr);
-		GTK_io_close(io);
-		if (!rv)
-		    remove(x_tile_loadmap.file);
-	    }
+	    nhext_xdrio_create(&xdr, io, NHEXT_XDR_ENCODE);
+	    rv = nhext_xdr_int(&xdr, &total_tiles_used);
+	    rv &= nhext_xdr_array(&xdr, (char **)&GTK_glyph2tile, &no_glyph,
+	      (unsigned int)-1, sizeof(short), nhext_xdr_short);
+	    nhext_xdr_destroy(&xdr);
+	    GTK_io_close(io);
+	    if (!rv)
+		remove(x_tile_loadmap.file);
 	}
     }
     free(x_tile_loadmap.file);

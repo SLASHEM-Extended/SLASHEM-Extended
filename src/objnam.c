@@ -508,7 +508,7 @@ register struct obj *obj;
 #endif
 	register char *buf = &(bufr[PREFIX]);   /* leave room for "17 -3 " */
 
-	if (Hallucination && !program_state.gameover) {
+	if (Hallucination) {
 		hobj = mkobj(obj->oclass, 0);
 		hobj->quan = obj->quan;
 		/* WAC clean up */
@@ -668,7 +668,6 @@ register struct obj *obj;
 
 	switch(obj->oclass) {
 	case AMULET_CLASS:
-		add_erosion_words(obj, prefix);
 		if(obj->owornmask & W_AMUL)
 			Strcat(bp, " (being worn)");
 		break;

@@ -54,7 +54,6 @@ E int FDECL(wand_explode, (struct obj *,BOOLEAN_P));
 /* ### artifact.c ### */
 
 E void NDECL(init_artifacts);
-E void NDECL(init_artifacts1);
 E void FDECL(save_artifacts, (int));
 E void FDECL(restore_artifacts, (int));
 E const char *FDECL(artiname, (int));
@@ -2421,7 +2420,6 @@ E void NDECL(practice_weapon);
 
 /* ### were.c ### */
 
-E int FDECL(counter_were,(int));
 E void FDECL(were_change, (struct monst *));
 E void FDECL(new_were, (struct monst *));
 E int FDECL(were_summon, (struct permonst *,BOOLEAN_P,int *,char *));
@@ -2542,7 +2540,7 @@ E const char *FDECL(exclam, (int force));
 E void FDECL(hit, (const char *,struct monst *,const char *));
 E void FDECL(miss, (const char *,struct monst *));
 E struct monst *FDECL(bhit, (int,int,int,int,int (*)(MONST_P,OBJ_P),
-			     int (*)(OBJ_P,OBJ_P),struct obj **));
+			     int (*)(OBJ_P,OBJ_P),struct obj *));
 E struct monst *FDECL(boomhit, (int,int));
 E int FDECL(burn_floor_paper, (int,int,BOOLEAN_P,BOOLEAN_P));
 E void FDECL(buzz, (int,int,XCHAR_P,XCHAR_P,int,int));

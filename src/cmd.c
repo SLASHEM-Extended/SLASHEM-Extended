@@ -1964,12 +1964,9 @@ int final;
 	putstr(en_win, 0, "Voluntary challenges:");
 	putstr(en_win, 0, "");
 
-	if (!u.uconduct.food && !u.uconduct.unvegan)
+	if (!u.uconduct.food)
 	    enl_msg(You_, "have gone", "went", " without food");
 	    /* But beverages are okay */
-	else if (!u.uconduct.food)
-	    enl_msg(You_, "have gone", "went", " without eating");
-	    /* But quaffing animal products (eg., blood) is okay */
 	else if (!u.uconduct.unvegan)
 	    you_have_X("followed a strict vegan diet");
 	else if (!u.uconduct.unvegetarian)
@@ -3384,29 +3381,21 @@ wiz_port_debug()
 	int num_menu_selections;
 	struct menu_selection_struct {
 		char *menutext;
-		char *portname;
 		void NDECL((*fn));
 	} menu_selections[] = {
 #ifdef WIN32CON
-		{"test win32 keystrokes", "tty", win32con_debug_keystrokes},
-		{"show keystroke handler information", "tty",
-				win32con_handler_info},
+		{"test win32 keystrokes", win32con_debug_keystrokes},
+		{"show keystroke handler information", win32con_handler_info},
 #endif
-		{(char *)0, (char *)0, (void NDECL((*)))0}/* array terminator */
+		{(char *)0, (void NDECL((*)))0}		/* array terminator */
 	};
 
 	num_menu_selections = SIZE(menu_selections) - 1;
-	for (k=n=0; k < num_menu_selections; ++k)
-		if (!strcmp(menu_selections[k].portname, windowprocs.name))
-			n++;
-	if (n > 0) {
+	if (num_menu_selections > 0) {
 		menu_item *pick_list;
 		win = create_nhwindow(NHW_MENU);
 		start_menu(win);
 		for (k=0; k < num_menu_selections; ++k) {
-			if (strcmp(menu_selections[k].portname,
-				   windowprocs.name))
-				continue;
 			any.a_int = k+1;
 			add_menu(win, NO_GLYPH, &any, item++, 0, ATR_NONE,
 				menu_selections[k].menutext, MENU_UNSELECTED);

@@ -380,8 +380,7 @@ register struct obj *otmp;
 	    (void)strncpy(ONAME(dummy), ONAME(otmp), (int)otmp->onamelth);
 	if (Is_candle(dummy)) dummy->lamplit = 0;
 	addtobill(dummy, FALSE, TRUE, TRUE);
-	if (otmp->where != OBJ_INVENT)
-	    otmp->no_charge = 1;
+	otmp->no_charge = 1;
 	otmp->unpaid = 0;
 	return;
 }

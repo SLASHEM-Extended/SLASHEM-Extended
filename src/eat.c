@@ -545,9 +545,8 @@ register int pm;
 	    case PM_HOUSECAT:
 	    case PM_LARGE_CAT:
 		if (!CANNIBAL_ALLOWED()) {
-		    You_feel("that %s the %s%s was a bad idea.",
-		      victual.eating ? "eating" : "biting",
-		      occupation == opentin ? "tinned " : "", mons[pm].mname);
+		    You_feel("that %s the %s was a bad idea.",
+		      victual.eating ? "eating" : "biting", mons[pm].mname);
 		    HAggravate_monster |= FROMOUTSIDE;
 		}
 		break;
@@ -1310,9 +1309,6 @@ opentin()		/* called during each move whilst opening a tin */
 	    if (!vegetarian(&mons[tin.tin->corpsenm]))
 		violated_vegetarian();
 
-#ifdef EATEN_MEMORY
-	    if (mvitals[tin.tin->corpsenm].eaten)
-#endif
 	    tin.tin->dknown = tin.tin->known = TRUE;
 	    cprefx(tin.tin->corpsenm); cpostfx(tin.tin->corpsenm);
 
@@ -2544,12 +2540,6 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		    otmp->orotten = TRUE;
 		    dont_start = TRUE;
 		}
-		if (otmp->oeaten < 2) {
-		    victual.piece = (struct obj *)0;
-		    if (carried(otmp)) useup(otmp);
-		    else useupf(otmp, 1L);
-		    return 1;
-		} else
 		consume_oeaten(otmp, 1);	/* oeaten >>= 1 */
 	    } else fprefx(otmp);
 	}

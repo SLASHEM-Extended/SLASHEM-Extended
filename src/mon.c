@@ -1539,7 +1539,6 @@ STATIC_OVL void
 lifesaved_monster(mtmp)
 struct monst *mtmp;
 {
-	int visible;
 	struct obj *lifesave = mlifesaver(mtmp);
 
 	if (lifesave) {
@@ -1547,11 +1546,7 @@ struct monst *mtmp;
 		/* to show this for a long worm with only a tail visible. */
 		/* Nor do you check invisibility, because glowing and disinte- */
 		/* grating amulets are always visible. */
-		/* [ALI] Always treat swallower as visible for consistency */
-		/* with unpoly_monster(). */
-		visible = u.uswallow && u.ustuck == mtmp ||
-			cansee(mtmp->mx, mtmp->my);
-		if (visible) {
+		if (cansee(mtmp->mx, mtmp->my)) {
 			pline("But wait...");
 			pline("%s medallion begins to glow!",
 				s_suffix(Monnam(mtmp)));
@@ -1572,7 +1567,7 @@ struct monst *mtmp;
 		if (mtmp->mhpmax <= 0) mtmp->mhpmax = 10;
 		mtmp->mhp = mtmp->mhpmax;
 		if (mvitals[monsndx(mtmp->data)].mvflags & G_GENOD) {
-			if (visible)
+			if (cansee(mtmp->mx, mtmp->my))
 			    pline("Unfortunately %s is still genocided...",
 				mon_nam(mtmp));
 		} else
@@ -1586,25 +1581,20 @@ static void
 unpoly_monster(mtmp)
 struct monst *mtmp;
 {
-	int visible;
 	char buf[BUFSZ];
 
 	sprintf(buf, Monnam(mtmp));
 
 	/* If there is a timer == monster was poly'ed */
 	if (stop_timer(UNPOLY_MON, (genericptr_t) mtmp)) {
-	    /* [ALI] Always treat swallower as visible so that the message
-	     * indicating that the monster hasn't died comes _before_ any
-	     * message about breaking out of the "new" monster.
-	     */
-	    visible = u.uswallow && u.ustuck == mtmp || cansee(mtmp->mx,mtmp->my);
 	    mtmp->mhp = mtmp->mhpmax;
-	    if (visible)
+	    if (cansee(mtmp->mx,mtmp->my))
 		pline("But wait...");
-	    if (newcham(mtmp, &mons[mtmp->oldmonnm], FALSE, visible))
+	    if (newcham(mtmp, &mons[mtmp->oldmonnm], FALSE,
+		    cansee(mtmp->mx,mtmp->my))) {
 		mtmp->mhp = mtmp->mhpmax/2;
-	    else {
-		if (visible)
+	    } else {
+		if (cansee(mtmp->mx,mtmp->my))
 		    pline("%s shudders!", Monnam(mtmp));
 		mtmp->mhp = 0;
 	    }
@@ -2056,15 +2046,14 @@ xkilled(mtmp, dest)
 	if(stoned) monstone(mtmp);
 	else mondead(mtmp);
 
-	if (mtmp->mhp > 0) { /* monster cheated death */
+	if (mtmp->mhp > 0) { /* monster lifesaved */
 		/* Cannot put the non-visible lifesaving message in
-		 * lifesaved_monster()/unpoly_monster() since the message
-		 * appears only when you kill it (as opposed to visible
-		 * lifesaving which always appears).
+		 * lifesaved_monster() since the message appears only when you
+		 * kill it (as opposed to visible lifesaving which always
+		 * appears).
 		 */
 		stoned = FALSE;
-		if ((!u.uswallow || u.ustuck != mtmp) && !cansee(x, y))
-		    pline("Maybe not...");
+		if (!cansee(x,y)) pline("Maybe not...");
 		return;
 	}
 
@@ -2695,7 +2684,7 @@ boolean msg;
 {
 	int mhp, hpn, hpd;
 	int mndx, tryct;
-	int couldsee = canseemon(mtmp);
+	int couldspot = canspotmon(mtmp);
 	struct permonst *olddata = mtmp->data;
 	char oldname[BUFSZ];
 	boolean alt_mesg = FALSE;	/* Avoid "<rank> turns into a <rank>" */
@@ -2752,7 +2741,6 @@ boolean msg;
 
 	/* [ALI] Detect transforming between player monsters with the
 	 * same rank title to avoid badly formed messages.
-	 * Similarly for were creatures transforming to their alt. form.
 	 */
 	if (msg && is_mplayer(olddata) && is_mplayer(mdat)) {
 	    const struct Role *role;
@@ -2774,10 +2762,8 @@ boolean msg;
 			}
 		}
 	    }
-	} else if (msg && is_were(olddata) &&
-		monsndx(mdat) == counter_were(monsndx(olddata)))
-	    alt_mesg = TRUE;
-
+	}
+	
 	/* WAC - At this point,  the transformation is going to happen */
 	/* Reset values, remove worm tails, change levels...etc. */
 
@@ -2843,46 +2829,6 @@ boolean msg;
 	    if (!can_ride(u.usteed)) dismount_steed(DISMOUNT_POLY);
 	}
 #endif
-
-#ifndef DCC30_BUG
-	if (mdat == &mons[PM_LONG_WORM] && (mtmp->wormno = get_wormno()) != 0) {
-#else
-	/* DICE 3.0 doesn't like assigning and comparing mtmp->wormno in the
-	 * same expression.
-	 */
-	if (mdat == &mons[PM_LONG_WORM] &&
-		(mtmp->wormno = get_wormno(), mtmp->wormno != 0)) {
-#endif
-	    /* we can now create worms with tails - 11/91 */
-	    initworm(mtmp, rn2(5));
-	    if (count_wsegs(mtmp))
-		place_worm_tail_randomly(mtmp, mtmp->mx, mtmp->my);
-	}
-
-	newsym(mtmp->mx,mtmp->my);
-
-	if (msg && (u.uswallow && mtmp == u.ustuck || canspotmon(mtmp))) {
-	    if (alt_mesg && is_mplayer(mdat))
-		pline("%s is suddenly very %s!", oldname,
-			mtmp->female ? "feminine" : "masculine");
-	    else if (alt_mesg)
-		pline("%s changes into a %s!", oldname,
-			is_human(mdat) ? "human" : mdat->mname + 4);
-	    else {
-	    uchar save_mnamelth = mtmp->mnamelth;
-	    mtmp->mnamelth = 0;
-	    pline("%s turns into %s!", oldname,
-		  mdat == &mons[PM_GREEN_SLIME] ? "slime" :
-		  x_monnam(mtmp, ARTICLE_A, (char*)0, SUPPRESS_SADDLE, FALSE));
-	    mtmp->mnamelth = save_mnamelth;
-	    }
-	} else if (msg && couldsee)
-	    /* No message if we only sensed the monster previously */
-	    pline("%s suddenly disappears!", oldname);
-
-	/* [ALI] In Slash'EM, this must come _after_ "<mon> turns into <mon>"
-	 * since it's possible to get both messages.
-	 */
 	if (u.ustuck == mtmp) {
 		if(u.uswallow) {
 			if(!attacktype(mdat,AT_ENGL)) {
@@ -2902,6 +2848,37 @@ boolean msg;
 			}
 		} else if (!sticks(mdat) && !sticks(youmonst.data))
 			unstuck(mtmp);
+	}
+
+#ifndef DCC30_BUG
+	if (mdat == &mons[PM_LONG_WORM] && (mtmp->wormno = get_wormno()) != 0) {
+#else
+	/* DICE 3.0 doesn't like assigning and comparing mtmp->wormno in the
+	 * same expression.
+	 */
+	if (mdat == &mons[PM_LONG_WORM] &&
+		(mtmp->wormno = get_wormno(), mtmp->wormno != 0)) {
+#endif
+	    /* we can now create worms with tails - 11/91 */
+	    initworm(mtmp, rn2(5));
+	    if (count_wsegs(mtmp))
+		place_worm_tail_randomly(mtmp, mtmp->mx, mtmp->my);
+	}
+
+	newsym(mtmp->mx,mtmp->my);
+
+	if (msg && (couldspot || canspotmon(mtmp))) {
+	    if (alt_mesg)
+		pline("%s is suddenly very %s!", oldname,
+			mtmp->female ? "feminine" : "masculine");
+	    else {
+	    uchar save_mnamelth = mtmp->mnamelth;
+	    mtmp->mnamelth = 0;
+	    pline("%s turns into %s!", oldname,
+		  mdat == &mons[PM_GREEN_SLIME] ? "slime" :
+		  x_monnam(mtmp, ARTICLE_A, (char*)0, SUPPRESS_SADDLE, FALSE));
+	    mtmp->mnamelth = save_mnamelth;
+	    }
 	}
 
 	possibly_unwield(mtmp, polyspot);	/* might lose use of weapon */

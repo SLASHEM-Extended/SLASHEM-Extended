@@ -1,5 +1,5 @@
-/* $Id: proxycom.h,v 1.17 2004-04-19 06:56:41 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2002-2004 */
+/* $Id: proxycom.h,v 1.16 2003-10-25 18:06:00 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #ifndef PROXYCOM_H
@@ -9,7 +9,7 @@
 
 #define EXT_STANDARD_MAJOR	1
 #define EXT_STANDARD_MINOR	0
-#define EXT_STANDARD_MICRO	2	/* Not used in the code */
+#define EXT_STANDARD_MICRO	1	/* Not used in the code */
 
 #define EXT_IM_STATUS		0x0001
 #define EXT_IM_DISPLAY_LAYERS	0x0002
