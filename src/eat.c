@@ -898,8 +898,13 @@ register int pm;
 			break;
 		case 2:                        
 			You("don't feel so good ...");
-			u.uhpmax -= 4;
-			if (u.uhpmax < 1) u.uhpmax = 1;
+			if (Upolyd) {
+			    u.mhmax -= 4;
+			    if (u.mhmax < 1) u.mhmax = 1;
+			} else {
+			    u.uhpmax -= 4;
+			    if (u.uhpmax < 1) u.uhpmax = 1;
+			}
 			u.uenmax -= 8;
 			if (u.uenmax < 1) u.uenmax = 1;
 			u.uen -= 8;
@@ -913,8 +918,13 @@ register int pm;
 			break;
 		case 5: 
 			You("feel physically and mentally stronger!");
-			u.uhpmax += 4;
-			u.uhp = u.uhpmax;
+			if (Upolyd) {
+			    u.mhmax += 4;
+			    u.mh = u.mhmax;
+			} else {
+			    u.uhpmax += 4;
+			    u.uhp = u.uhpmax;
+			}
 			u.uenmax += 8;
 			u.uen = u.uenmax;
 			break;
