@@ -1,0 +1,81 @@
+Installing Slash'EM with a Qt or KDE interface
+----------------------------------------------
+
+This document describes the installation of Slash'EM with a Qt interface
+on X11.  The Qt interface is an alternative to the Athena-widgets interface
+found in ../win/X11.  You can download Qt for UNIX from http://www.troll.no.
+You need Qt 2.0 or later to use this code.
+
+There are no explicit UNIX dependencies in this code, but we only regularly
+test it under UNIX.  If you have Qt for Windows, that should also work.
+
+To use this code:
+
+   1. follow the directions for the UNIX installation (in ../sys/unix)
+      to create the Makefiles.
+
+   2. ../../include/config.h
+
+        define QT_GRAPHICS (search for it).  You can comment out
+        TTY_GRAPHICS if you want to, or leave it in to support both
+        interfaces (in which case be sure you have the right curses
+        libraries etc. required for that interface).
+
+	You may define X11_GRAPHICS and/or GTK_GRAPHICS in addition to
+	support multiple windowing ports (and tty as well, if you want)
+	in the same executable if you so desire.
+
+   3. ../../src/Makefile
+
+        add $(WINQTSRC), $(WINQTOBJ), and $(WINQTLIB) to WINSRC, WINOBJ,
+        and WINLIB respectively, and compile.  This will give you an
+        executable supporting both Qt and tty windowing.  Prepend
+        -L$(QTDIR)/lib to LFLAGS.
+
+	As part of your Qt installation, you should have an environment
+	variable QTDIR defined which src/Makefile uses to find the
+	Qt libraries and support files. If you don't have such a
+	variable defined, then you can define QTDIR in src/Makefile to
+	the appropriate place. You can also change the definitions of
+	QTLIBDIR etc. if your installation is particularly unusual.
+
+	To support multiple windowing ports, change the definitions
+	of WINSRC, WINOBJ and WINLIB to include all the relevant
+	variables.
+
+   4. ../../Makefile (the top-level makefile)
+
+        change the CNF_SHARE_QTND setting to contain the files "x11tiles"
+        and "rip.xpm" and the CNF_SHARE_DATND to include $(CNF_SHARE_QTND).
+
+	If you want to support the other windowing ports, include
+	their $(CNF_SHARE_XXXND) variables also.
+
+   5. Follow all the instructions in ../../sys/unix/Install.unx for
+      the remainder of the installation process.
+
+   6. Consider adding the lines below to your .slashemrc (or equivalent
+      if you don't run UNIX), as they are likely to give the best interface
+      for this window port:
+
+        OPTIONS=name:player,number_pad,menustyle:partial,!time,showexp
+        OPTIONS=hilite_pet,toptenwin,msghistory:200
+
+      The Qt port has support for three extra variables which can also be
+      specified. These are:
+
+	   qt_tilewidth    The width of each tile in pixels
+	   qt_tileheight   The height of each tile in pixels
+	   qt_fontsize	   The font size. One of huge, large, medium or small.
+	   		   These can be abreviated to h, l, m or s.
+
+
+If you are using KDE, you may want to also try the KDE version. It just
+uses the KDE menubar and follows other KDE conventions - there is no
+extra functionality. To do so, first ensure that you have KDE 2.x
+libraries on your system (in 1999 KDE 1.x was the norm); then, add
+$(KDECXXFLAGS) to the CXXFLAGS definition, $(KDELFLAGS) to the LFLAGS
+definition and $(WINKDELIB) to WINLIB.  Some additional files here -
+kse-mini.xpm, kse.xpm, and kslashem.lnk are useful if you want to
+install "kslashem" in the KDE games directory.  
+

@@ -1,0 +1,71 @@
+#
+# Kobold level
+#
+
+LEVEL: "kobold-1"
+RANDOM_MONSTERS: 'k'
+ROOM: "ordinary" , lit, random, random, (11,9)
+NAME: "central"
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT: ')',random,(4,4)
+OBJECT: ')',random,(4,4)
+OBJECT: '/',random,(4,4)
+OBJECT: '[',random,(4,4)
+OBJECT: '[',random,(4,4)
+OBJECT: '!',random,(4,4)
+OBJECT: '!',random,(4,4)
+MONSTER: 'k', random, random, hostile
+MONSTER: 'k', random, random, hostile
+MONSTER: 'k', random, random, hostile
+MONSTER: 'k', random, random, hostile
+MONSTER: 'k', random, random, hostile
+MONSTER: 'k', "large kobold", random, hostile
+MONSTER: 'k', "large kobold", random, hostile
+MONSTER: 'k', "large kobold", random, hostile
+MONSTER: 'k', "kobold lord", random, hostile
+MONSTER: 'k', "kobold lord", random, hostile
+MONSTER: 'k', "swamp kobold", random, hostile
+MONSTER: 'k', "swamp kobold", random, hostile
+MONSTER: 'k', "swamp kobold", random, hostile
+MONSTER: 'k', "rock kobold", random, hostile
+MONSTER: 'k', "rock kobold", random, hostile
+MONSTER: 'k', "rock kobold", random, hostile
+MONSTER: 'k', "Kroo the Kobold King", (4,4), hostile
+  
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: 'k', random, random, hostile
+MONSTER: 'k', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'k', random, random, hostile
+MONSTER: 'k', random, random, hostile
+MONSTER: 'k', random, random, hostile
+MONSTER: 'k', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+MONSTER: 'k', random, random, hostile
+MONSTER: 'k', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'k', random, random, hostile
+MONSTER: 'k', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'k', random, random, hostile
+MONSTER: 'k', random, random, hostile
+
+RANDOM_CORRIDORS

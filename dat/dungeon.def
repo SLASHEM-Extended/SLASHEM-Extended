@@ -1,0 +1,285 @@
+#	SCCS Id: @(#)dungeon.def	3.3	96/03/10
+# Copyright (c) 1990-92 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+# The dungeon description file for Slash'em.
+# Modified by KMH for the balance patch.
+#
+# Note:   The order of the definition of dungeons in this file
+#         reflects in their order of creation in the real dungeon.
+#         The "Main" branch must *always* be first.
+#		Also note that the order of the dungeons in this file
+#		determines the order in which branch levels are assigned.
+#		If two dungeons have overlapping ranges for their entry
+#		points, then you should list the dungeon with the _least_
+#		number of choices for its branch level _first_.
+
+### The Dungeons of Doom ###
+# The main dungeon is from 42 to 47 levels deep...
+# [Tom] stretched it out to make it a little more interesting, and
+# have more "normal" levels, because the special ones were more
+# frequent than normal ones!
+DUNGEON:        "The Dungeons of Doom" "D" (42, 5)
+ALIGNMENT:      unaligned
+
+
+# Early levels, to the Oracle
+#   KMH -- The Gnomish Mines are an important source of essential
+#   items for low-level characters: food, armor, and tools.  Even a
+#   short stay in the mines pays off.  Slash moved the entrance
+#   deeper, penalizing many characters.  The balance patch restores
+#   the entrance to levels 2 to 4.
+BRANCH:		"The Gnomish Mines" @ (2, 3)
+#
+#   New mall is on levels 5 to 6, 75% chance.
+#   There shouldn't be any other special levels down to the Oracle.
+#   This allows a weak character to plunge to the Oracle, then return
+#   to the Mines.
+RNDLEVEL:	"mall" "T" @ (5, 2) 75 2
+LEVALIGN:	lawful
+LEVELDESC:	town
+#
+#   Oracle on levels 7 to 9.
+LEVEL:		"oracle" "O" @ (7, 3)
+LEVALIGN:	neutral
+CHAINBRANCH:	"Sokoban" "oracle" + (1, 0) up
+
+
+# Levels between the Oracle and the Quest.
+#   There's no guarantee that all will be created.
+LEVEL:		"rats" "R" @ (10, 2) 50
+RNDLEVEL:	"kobold" "K" @ (11, 2) 50 2
+BRANCH: 	"The Orc Caverns" @ (12, 2)
+
+
+# The quests, on levels 15 to 19.
+#   These levels should not be shared with other special levels
+#   or branches, else the quests may not be generated!
+BRANCH:	"The Quest" @ (15, 5) portal
+BRANCH:	"Lawful Quest" @ (15, 5) portal
+BRANCH:	"Neutral Quest" @ (15, 5) portal
+BRANCH:	"Chaotic Quest" @ (15, 5) portal
+
+
+# Post-quest levels
+#   Now all the branches... stretching all along the dungeon
+#   Put the branches with the least number of choices first
+BRANCH: 	"The Wyrm Caves" @ (20, 2)
+BRANCH: 	"One-eyed Sam's Market" @ (22, 2) portal
+BRANCH: 	"The Lost Tomb" @ (21, 4)
+BRANCH:		"The Spider Caves" @ (26, 4)
+BRANCH:		"The Sunless Sea" @ (28, 4)
+BRANCH: 	"The Temple of Moloch" @ (32, 4)
+BRANCH: 	"The Giant Caverns" @ (32, 4)
+#   And the levels...
+LEVEL:		"nymph" "N" @ (23, 2) 45
+RNDLEVEL:	"bigrm" "B" @ (20, 7) 15 5
+#   Storage room (treasure) on levels 19-26, 66% of the time
+#   "Unused 'cause they suck"?
+RNDLEVEL:	"stor" "S" @ (19, 8) 66 3
+#   Rounding out the bottom levels
+LEVEL:		"guild" "G" @ (26, 6) 50
+
+
+# The famous Fort Ludios...
+BRANCH:			"Fort Ludios" @ (23, 4) portal
+
+
+# Medusa and the castle.  There should be nothing in between.
+RNDLEVEL:		"medusa" "none" @ (-5, 4) 2
+LEVALIGN:		chaotic
+LEVEL:			"castle" "none" @ (-1, 0)
+CHAINBRANCH:	"Gehennom" "castle" + (0, 0) no_down
+
+
+# Branch to the endgame...
+BRANCH:			"The Elemental Planes" @ (1, 0) no_down up
+
+
+
+### Gehennom ###
+#
+# Now re-worked for 3.1, hell is hopefully going to be a little
+# less boring.  Also, in 3.1, the tower is not considered as a
+# part of hell, but is set up as a separate dungeon.
+#
+# Gehennom is no longer considered "hellish" as a complete dungeon.
+# That is, fire resistance is no longer a condition for survival in
+# it.  However, Gehennom, and the special levels in it in particular,
+# is abundant with fire traps.  As a result, fire resistance is still
+# a prudent survival strategy in Gehennom.
+#
+# Note:   Gehennom *must* be the second dungeon defined so that
+#         monsters can properly migrate here under certain
+#         circumstances.
+#
+# [Tom] tried to remove most of the non-unique levels (i.e. lame mazes)
+# also tried to organize it a little -- demons before the wizard, devils
+# after.
+
+DUNGEON:        "Gehennom" "G" (17, 0)
+DESCRIPTION:    mazelike
+DESCRIPTION:    hellish
+ALIGNMENT:      noalign
+LEVEL:          "valley" "V" @ (1, 0)
+LEVEL:          "sanctum" "none" @ (-1, 0)
+# Tower before wiz, please
+BRANCH:         "Vlad's Tower" @ (3, 10) up
+# Dr. Frankenstein's Lab
+BRANCH:         "Frankenstein's Lab" @ (3, 10) up
+# The demon levels
+LEVEL:          "juiblex" "J" @ (2, 5)
+LEVEL:          "yeenoghu" "E" @ (2, 5)
+LEVEL:          "orcus" "O" @ (2, 5)
+LEVEL:          "demogorg" "D" @ (2, 5)
+# Half-way down
+LEVEL:          "wizard1" "none" @ (7, 0)
+CHAINLEVEL:     "wizard2" "X" "wizard1" + (1, 0)
+CHAINLEVEL:     "wizard3" "Y" "wizard1" + (2, 0)
+# The devil levels
+LEVEL:          "baalz" "B" @ (10, 6)
+LEVEL:          "geryon" "R" @ (10, 6)
+LEVEL:          "dispater" "S" @ (10, 6)
+LEVEL:          "asmodeus" "A" @ (10, 6)
+LEVEL:          "fakewiz1" "F" @ (10, 6)
+LEVEL:          "fakewiz2" "G" @ (10, 6)
+
+
+### Gnomish Mines ###
+# (The Mines of the Gnomes of Zurich.)
+#
+DUNGEON:	"The Gnomish Mines" "M" (8, 2)
+ALIGNMENT:	lawful
+DESCRIPTION:	mazelike
+# LEVEL:	"minetown" "T" @ (3, 2)
+RNDLEVEL:	"minetn" "T" @ (3, 2) 2
+LEVELDESC:	town
+# LEVEL:	"mine_end" "E" @ (-2, 0)
+RNDLEVEL:	"minend" "E" @ (-2, 0) 2
+LEVEL:		"mineking" "M" @ (-1, 0)
+
+
+### The Quest Dungeon ###
+#   This is a proto-dungeon.  The level file names will be prepended with
+#   the first letter of the character name during initialization.
+#   Special "x-fila" and "x-filb" levels must be defined in the levels
+#   description file.  It will be used for all levels not defined explicitly
+#   below.
+DUNGEON:    "The Quest" "Q" (5, 2)
+LEVEL:  	"x-strt" "none" @ (1, 1)
+LEVEL:  	"x-loca" "L" @ (3, 1)
+LEVEL:  	"x-goal" "none" @ (-1, 0)
+
+
+### The aligned key quests ###
+DUNGEON:		"Lawful Quest" "none" (1, 0)
+ALIGNMENT:		lawful
+DESCRIPTION:	mazelike
+LEVEL:			"nightmar" "none" @ (1, 0)
+
+DUNGEON:		"Neutral Quest" "none" (1, 0)
+ALIGNMENT:		neutral
+DESCRIPTION:	mazelike
+LEVEL:			"beholder" "none" @ (1, 0)
+
+DUNGEON:		"Chaotic Quest" "none" (1, 0)
+ALIGNMENT:		chaotic
+DESCRIPTION:	mazelike
+LEVEL:			"lich" "none" @ (1, 0)
+
+#
+# Sokoban
+#
+DUNGEON:		"Sokoban" "none" (4, 0)
+DESCRIPTION:    mazelike
+ALIGNMENT:      neutral
+ENTRY:          -1
+RNDLEVEL:		"soko1" "none" @ (1, 0) 2
+RNDLEVEL:		"soko2" "none" @ (2, 0) 2
+RNDLEVEL:		"soko3" "none" @ (3, 0) 2
+RNDLEVEL:		"soko4" "none" @ (4, 0) 2
+
+
+### The Orc Caverns ###
+DUNGEON:        "The Orc Caverns" "Z" (1, 0)
+ALIGNMENT:      chaotic
+DESCRIPTION:    mazelike
+LEVEL:          "cavefill" "Z" @ (1, 0)
+
+### Fort Ludios ###
+# (The Central Vault of Croesus.)
+#
+DUNGEON:        "Fort Ludios" "K" (1, 0)
+DESCRIPTION:    mazelike
+ALIGNMENT:      unaligned
+LEVEL:          "knox" "K" @ (-1, 0)
+
+### The Wyrm Caves ###
+DUNGEON:        "The Wyrm Caves" "D" (1, 0)
+ALIGNMENT:      chaotic
+DESCRIPTION:    mazelike
+LEVEL:          "dragons" "D" @ (1, 0)
+
+### The Black Market ###
+DUNGEON:        "One-eyed Sam's Market" "D" (1, 0)
+ALIGNMENT:      chaotic
+DESCRIPTION:    mazelike
+LEVEL:          "blkmar" "D" @ (1, 0)
+
+### The Lost Tomb ###
+DUNGEON:        "The Lost Tomb" "L" (1, 0)
+ALIGNMENT:      chaotic
+DESCRIPTION:    mazelike
+LEVEL:          "tomb" "L" @ (1, 0)
+
+### The Spider Caves ###
+DUNGEON:        "The Spider Caves" "S" (1, 0)
+ALIGNMENT:      chaotic
+DESCRIPTION:    mazelike
+LEVEL:          "spiders" "S" @ (1, 0)
+
+### The Sunless Sea ###
+DUNGEON:        "The Sunless Sea" "none" (1, 0)
+ALIGNMENT:      chaotic
+DESCRIPTION:    mazelike
+LEVEL:          "sea" "none" @ (1, 0)
+
+### The Temple of Moloch ###
+DUNGEON:        "The Temple of Moloch" "none" (1, 0)
+ALIGNMENT:      chaotic
+DESCRIPTION:    mazelike
+LEVEL:          "mtemple" "none" @ (1, 0)
+
+### The Giant Caverns ###
+DUNGEON:        "The Giant Caverns" "H" (1, 0)
+ALIGNMENT:      chaotic
+DESCRIPTION:    mazelike
+LEVEL:          "cav2fill" "H" @ (1, 0)
+
+### Vlad's Tower ###
+#   It has been removed from Gehennom, and it is surrounded by stone.
+DUNGEON:        "Vlad's Tower" "T" (3, 0)
+PROTOFILE:      "tower"
+DESCRIPTION:    mazelike
+ALIGNMENT:      chaotic
+ENTRY:          -1
+
+
+### Dr Frankenstein's Lab ###
+DUNGEON:        "Frankenstein's Lab" "none" (1, 0)
+ALIGNMENT:      chaotic
+DESCRIPTION:    mazelike
+LEVEL:          "frnknstn" "none" @ (1, 0)
+
+
+### The Endgame levels ###
+DUNGEON:        "The Elemental Planes" "E" (5, 0)
+DESCRIPTION:    mazelike
+ALIGNMENT:      unaligned
+ENTRY:          -1
+LEVEL:          "astral" "none" @ (1, 0)
+LEVEL:          "water"  "none" @ (2, 0)
+LEVEL:          "fire"   "none" @ (3, 0)
+LEVEL:          "air"    "none" @ (4, 0)
+LEVEL:          "earth"  "none" @ (5, 0)
+

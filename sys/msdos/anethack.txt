@@ -1,0 +1,84 @@
+          ###  #    #    ####  ###  ####   ###  @   @  @@@   @@@ @  @
+         #   # #    #    #    #     #   # #   # @   @ @   @ @    @ @
+         ##### #    #    ###  #  ## ####  #   # @@@@@ @@@@@ @    @@
+         #   # #    #    #    #   # #   # #   # @   @ @   @ @    @ @
+         #   # #### #### ####  ###  #   #  ###  @   @ @   @  @@@ @  @
+
+                 (Angel, leprechaun, leprechaun, eye, gremlin, 
+                 rodent, orc, giant, ant, cockatrice, kobold)
+
+                          Version 3.3.0 - 1.3 Manual
+        
+        Legal stuff:
+             AllegroHack (c) 2000 by Kelly Youngblood.
+             AllegroHack is distributed under the same terms as 
+               Nethack, see license for details.
+
+        
+        System requirements:
+             Pentium class CPU or better.
+             8 megabytes RAM.
+             Windows 98, windows 95, or MSDOS-compatible operating 
+                     system.
+
+             AllegroHack may run on a 486 or with less RAM. It will 
+        most certainly NOT run under Windows NT or Windows 2000.
+
+
+        Installing AllegroHack:
+
+             From the command line, copy ahack12b.zip to your Nethack 
+        3.3.0 directory, and then type "pkunzip -d ahack12b.zip". Or 
+        using Winzip, Extract ahack12b.zip to your Nethack 3.3.0 
+        directory with the "use folder names" box checked.
+
+             Then, edit alleg.cnf in a text editor such as Notepad to 
+        set your preferences.  Edit defaults.nh and ensure the line 
+        "OPTIONS=video:autodetect" doesn't have a # in front of it.
+
+             Finally, run anethack.exe as you would nethack.exe.
+
+             If AllegroHack crashes when you run it, make sure that 
+        OPTIONS=video:autodetect is set in your nethack config file!
+        
+        Controls:
+
+             F3 : Cycle HUD between equipment display, mini-map, and 
+                  off.
+             F4 : Toggle overview mode.
+             F5 : Save screenshot. This will dump 2 files, 
+                  "nethack.bmp" contains what's on your screen.
+                  "nhmap.bmp" is a graphical map of the whole level.
+
+             Control-Left  : Pan the screen left.
+             Control-Right : Pan the screen right.
+             Control-PgUp  : Pan the screen up.
+             Control-PgDn  : Pan the screen down.
+        
+             (I can't get Control-up or Control-down to work)
+
+        
+        Known Bugs:
+
+             There is a long pause when entering or leaving the rogue 
+        level, just be patient.
+
+             AllegroHack may not allow you to alt-tab out of it.  
+        Create a shortcut to anethack.exe and make sure that all the 
+        windows function keys are enabled in its shortcut properties. 
+        You may also be able to shell out with '!' then alt-tab.
+        If this doesn't fix it email me or post to 
+        rec.games.roguelike.nethack.
+
+             On some systems, AllegroHack crashes when the backspace 
+        key is pressed.  I have no idea why.
+
+        
+        Contacting me:
+
+             You can email me at jry@pinn.net, or post to 
+        rec.games.roguelike.nethack.  I check news more often than 
+        email, so a post to RGRN will probably reach me quicker.  In 
+        either case, be sure to include "AllegroHack" somewhere in the 
+        subject: line.
+

@@ -1,0 +1,235 @@
+***************
+*** 23,31 ****
+   * Mac-tty becomes mt_
+   */
+  
+- 
+- static void _mt_set_colors (long *colors);
+- 
+  static long _mt_attrs [5] [2] = {
+  	{ 0x000000, 0xffffff }, /* Normal */
+  	{ 0xff8080, 0xffffff }, /* Underline */
+--- 22,27 ----
+   * Mac-tty becomes mt_
+   */
+  
+  static long _mt_attrs [5] [2] = {
+  	{ 0x000000, 0xffffff }, /* Normal */
+  	{ 0xff8080, 0xffffff }, /* Underline */
+***************
+*** 214,222 ****
+  	 * offscreen GWorld
+  	 */
+  	if (!Gestalt (gestaltQuickdrawVersion, &resp) && resp > 0x1ff) {
+! 	GDHandle gdh;
+! 
+! 		gdh = GetDeviceList ();
+  		while (gdh) {
+  			if (TestDeviceAttribute (gdh, screenDevice)) {
+  				if (HasDepth (gdh, 4, 1, 1) ||
+--- 210,216 ----
+  	 * offscreen GWorld
+  	 */
+  	if (!Gestalt (gestaltQuickdrawVersion, &resp) && resp > 0x1ff) {
+! 		GDHandle gdh = GetDeviceList ();
+  		while (gdh) {
+  			if (TestDeviceAttribute (gdh, screenDevice)) {
+  				if (HasDepth (gdh, 4, 1, 1) ||
+***************
+*** 256,270 ****
+  	mustwork (set_tty_attrib (_mt_window, TTY_ATTRIB_FLAGS, flag));
+  
+  	mustwork (get_tty_attrib (_mt_window, TTY_ATTRIB_CURSOR, &flag));
+! 	flag |= TA_BLINKING_CURSOR;
+! #ifdef applec
+! 	flag &= ~ TA_CR_ADD_NL;
+! #else
+! 	flag &= ~ TA_NL_ADD_CR;
+! #endif
+  	mustwork (set_tty_attrib (_mt_window, TTY_ATTRIB_CURSOR, flag));
+  	mustwork (set_tty_attrib (_mt_window, TTY_ATTRIB_FOREGROUND, _mt_colors [NO_COLOR] [0]));
+  	mustwork (set_tty_attrib (_mt_window, TTY_ATTRIB_BACKGROUND, _mt_colors [NO_COLOR] [1]));
+  
+  	InitMenuRes ();
+  }
+--- 250,261 ----
+  	mustwork (set_tty_attrib (_mt_window, TTY_ATTRIB_FLAGS, flag));
+  
+  	mustwork (get_tty_attrib (_mt_window, TTY_ATTRIB_CURSOR, &flag));
+! 	flag |= (TA_BLINKING_CURSOR | TA_NL_ADD_CR);
+  	mustwork (set_tty_attrib (_mt_window, TTY_ATTRIB_CURSOR, flag));
++ 
+  	mustwork (set_tty_attrib (_mt_window, TTY_ATTRIB_FOREGROUND, _mt_colors [NO_COLOR] [0]));
+  	mustwork (set_tty_attrib (_mt_window, TTY_ATTRIB_BACKGROUND, _mt_colors [NO_COLOR] [1]));
++ 	clear_tty (_mt_window);//
+  
+  	InitMenuRes ();
+  }
+***************
+*** 275,281 ****
+  EventRecord event;
+  long sleepTime = 0;
+  int ret = 0;
+- int key;
+  
+  	for (;!ret;) {
+  		WaitNextEvent (-1, &event, sleepTime, 0);
+--- 266,271 ----
+  EventRecord event;
+  long sleepTime = 0;
+  int ret = 0;
+  
+  	for (;!ret;) {
+  		WaitNextEvent (-1, &event, sleepTime, 0);
+***************
+*** 303,309 ****
+  
+  int
+  has_color (int color) {
+! #if defined(applec)
+  # pragma unused(color)
+  #endif
+  Rect r;
+--- 293,299 ----
+  
+  int
+  has_color (int color) {
+! #if defined(applec) || defined(__MWERKS__)
+  # pragma unused(color)
+  #endif
+  Rect r;
+***************
+*** 316,322 ****
+  
+  	r = _mt_window->portRect;
+  	SetPort (_mt_window);
+! 	GlobalToLocal (&p);
+  	OffsetRect (&r, p.h, p.v);
+  
+  	gh = GetMaxDevice (&r);
+--- 306,312 ----
+  
+  	r = _mt_window->portRect;
+  	SetPort (_mt_window);
+! 	LocalToGlobal (&p);
+  	OffsetRect (&r, p.h, p.v);
+  
+  	gh = GetMaxDevice (&r);
+***************
+*** 371,377 ****
+  
+  void
+  term_end_attr (int attr) {
+! #if defined(applec)
+  # pragma unused (attr)
+  #endif
+  	_mt_set_colors (_mt_attrs [0]);
+--- 361,367 ----
+  
+  void
+  term_end_attr (int attr) {
+! #if defined(applec) || defined(__MWERKS__)
+  # pragma unused (attr)
+  #endif
+  	_mt_set_colors (_mt_attrs [0]);
+***************
+*** 421,427 ****
+  void
+  cl_end (void) {
+  	_mt_set_colors (_mt_attrs [0]);
+! 	clear_tty_window (_mt_window, ttyDisplay->curx, ttyDisplay->cury ,
+  		CO - 1, ttyDisplay->cury);
+  }
+  
+--- 411,417 ----
+  void
+  cl_end (void) {
+  	_mt_set_colors (_mt_attrs [0]);
+! 	clear_tty_window (_mt_window, ttyDisplay->curx, ttyDisplay->cury,
+  		CO - 1, ttyDisplay->cury);
+  }
+  
+***************
+*** 436,442 ****
+  void
+  cl_eos (void) {
+  	_mt_set_colors (_mt_attrs [0]);
+! 	clear_tty_window (_mt_window, ttyDisplay->curx, ttyDisplay->cury, CO - 1 ,
+  		LI - 1);
+  }
+  
+--- 426,432 ----
+  void
+  cl_eos (void) {
+  	_mt_set_colors (_mt_attrs [0]);
+! 	clear_tty_window (_mt_window, ttyDisplay->curx, ttyDisplay->cury, CO - 1,
+  		LI - 1);
+  }
+  
+***************
+*** 500,515 ****
+  	flag |= TA_INHIBIT_VERT_SCROLL; /* don't scroll */
+  	mustwork (set_tty_attrib (_mt_window, TTY_ATTRIB_FLAGS, flag));
+  
+- 	mustwork (get_tty_attrib (_mt_window, TTY_ATTRIB_CURSOR, &flag));
+- 
+- #ifdef applec
+- 	flag &= ~ TA_CR_ADD_NL;
+- #else
+- 	flag &= ~ TA_NL_ADD_CR;
+- #endif
+- 
+- 	mustwork (set_tty_attrib (_mt_window, TTY_ATTRIB_CURSOR, flag));
+- 
+  	iflags.cbreak = 1;
+  }
+  
+--- 490,495 ----
+  	flag |= TA_INHIBIT_VERT_SCROLL; /* don't scroll */
+  	mustwork (set_tty_attrib (_mt_window, TTY_ATTRIB_FLAGS, flag));
+  
+  	iflags.cbreak = 1;
+  }
+  
+***************
+*** 539,554 ****
+  	flag |= TA_ALWAYS_REFRESH;
+  	mustwork (set_tty_attrib (_mt_window, TTY_ATTRIB_FLAGS, flag));
+  
+- 	mustwork (get_tty_attrib (_mt_window, TTY_ATTRIB_CURSOR, &flag));
+- 
+- #ifdef applec
+- 	flag |= TA_CR_ADD_NL;
+- #else
+- 	flag |= TA_NL_ADD_CR;
+- #endif
+- 
+- 	mustwork (set_tty_attrib (_mt_window, TTY_ATTRIB_CURSOR, flag));
+- 
+  	tty_raw_print ("\n");
+  	if (str) {
+  		tty_raw_print (str);
+--- 519,524 ----
+  	flag |= TA_ALWAYS_REFRESH;
+  	mustwork (set_tty_attrib (_mt_window, TTY_ATTRIB_FLAGS, flag));
+  
+  	tty_raw_print ("\n");
+  	if (str) {
+  		tty_raw_print (str);
+***************
+*** 558,564 ****
+  
+  void
+  tty_number_pad (int arg) {
+! #if defined(applec)
+  # pragma unused(arg)
+  #endif
+  }
+--- 528,534 ----
+  
+  void
+  tty_number_pad (int arg) {
+! #if defined(applec) || defined(__MWERKS__)
+  # pragma unused(arg)
+  #endif
+  }

@@ -1,0 +1,87 @@
+#
+# The guild of disgruntled adventurers.
+#
+
+LEVEL: "guild"
+
+ROOM: "ordinary", lit, random, random, (12,6)
+NAME: "central"
+# stuff for them to use on you...
+OBJECT: '?',random,random
+OBJECT: '?',random,random
+OBJECT: '?',random,random
+OBJECT: '?',random,random
+OBJECT: '/',random,random
+OBJECT: '/',random,random
+OBJECT: '!',random,random
+OBJECT: '!',random,random
+OBJECT: '!',random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+MONSTER: '@', "archeologist", random, hostile
+MONSTER: '@', "archeologist", random, hostile
+MONSTER: '@', "barbarian", random, hostile
+MONSTER: '@', "barbarian", random, hostile
+MONSTER: '@', "caveman", random, hostile
+MONSTER: '@', "cavewoman", random, hostile
+MONSTER: '@', "doppelganger", random, hostile
+MONSTER: '@', "doppelganger", random, hostile
+MONSTER: '@', "elf", random, hostile
+MONSTER: '@', "elf", random, hostile
+MONSTER: '@', "flame mage", random, hostile
+MONSTER: '@', "flame mage", random, hostile
+MONSTER: '@', "healer", random, hostile
+MONSTER: '@', "healer", random, hostile
+MONSTER: '@', "ice mage", random, hostile
+MONSTER: '@', "ice mage", random, hostile
+MONSTER: '@', "knight", random, hostile
+MONSTER: '@', "knight", random, hostile
+MONSTER: '@', "monk", random, hostile
+MONSTER: '@', "monk", random, hostile
+MONSTER: '@', "necromancer", random, hostile
+MONSTER: '@', "necromancer", random, hostile
+MONSTER: '@', "priest", random, hostile
+MONSTER: '@', "priestess", random, hostile
+MONSTER: '@', "rogue", random, hostile
+MONSTER: '@', "rogue", random, hostile
+MONSTER: '@', "samurai", random, hostile
+MONSTER: '@', "samurai", random, hostile
+MONSTER: '@', "tourist", random, hostile
+MONSTER: '@', "tourist", random, hostile
+MONSTER: '@', "undead slayer", random, hostile
+MONSTER: '@', "undead slayer", random, hostile
+MONSTER: '@', "valkyrie", random, hostile
+MONSTER: '@', "valkyrie", random, hostile
+MONSTER: '@', "wizard", random, hostile
+MONSTER: '@', "wizard", random, hostile
+  
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+RANDOM_CORRIDORS

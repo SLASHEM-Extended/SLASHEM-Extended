@@ -1,0 +1,146 @@
+#       SCCS Id: @(#)caves.des  3.1     93/02/23
+#       Copyright (c) 1989 by Jean-Christophe Collet
+#       Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#
+#
+MAZE: "tomb",' '
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+                    --------
+                    |......|
+                    |......|
+                    |---.--|
+                        # 
+                        # 
+                   |----S---|           --------|
+       |------|    |........|           |.......|
+       |......------........|------------.......|
+       |......+.............+...........+.......|
+       |......+.............+...........+.......|
+       |......------........|------------.......|
+       |------|    |........|           |.......|
+                   |---S----|           --------|
+                       #  
+                       #  
+                    |--.---|
+                    |......|
+                    |......|
+                    --------
+ENDMAP
+RANDOM_MONSTERS: 'Z','M'
+STAIR:(08,09),up
+BRANCH:(08,09,08,09),(0,0,0,0)
+DOOR: locked,(14,09)
+DOOR: locked,(14,10)
+DOOR: locked,(28,09)
+DOOR: locked,(28,10)
+DOOR: locked,(40,09)
+DOOR: locked,(40,10)
+TRAP: "spiked pit",random
+TRAP: "spiked pit",random
+TRAP: "spiked pit",random
+TRAP: "spiked pit",random
+TRAP: "spiked pit",random
+OBJECT:'(',"chest",(47,9)
+GOLD: random,(47,9)
+GOLD: random,(47,9)
+GOLD: random,(47,9)
+GOLD: random,(47,9)
+GOLD: random,(47,9)
+GOLD: random,(47,9)
+GOLD: random,(47,9)
+GOLD: random,(47,9)
+GOLD: random,(47,9)
+GOLD: random,(47,9)
+OBJECT: '?', random, (47,9)
+OBJECT: '?', random, (47,9)
+OBJECT: '?', random, (47,9)
+OBJECT: '?', random, (47,9)
+OBJECT: '!', random, (47,9)
+OBJECT: '!', random, (47,9)
+OBJECT: '!', random, (47,9)
+OBJECT: random, random, (47,9)
+OBJECT: random, random, (47,9)
+OBJECT: random, random, random
+OBJECT:'(',"chest",(23,1)
+OBJECT: random, random, (23,1)
+OBJECT: random, random, (23,1)
+OBJECT: random, random, (23,1)
+OBJECT:'(',"chest",(24,18)
+OBJECT: random, random, (24,18)
+OBJECT: random, random, (24,18)
+OBJECT: random, random, (24,18)
+OBJECT:'(',"chest",(47,10)
+GOLD: random,(47,10)
+GOLD: random,(47,10)
+GOLD: random,(47,10)
+GOLD: random,(47,10)
+GOLD: random,(47,10)
+GOLD: random,(47,10)
+GOLD: random,(47,10)
+GOLD: random,(47,10)
+GOLD: random,(47,10)
+GOLD: random,(47,10)
+OBJECT: '?', random, (47,10)
+OBJECT: '?', random, (47,10)
+OBJECT: '?', random, (47,10)
+OBJECT: '?', random, (47,10)
+OBJECT: '+', random, (47,10)
+OBJECT: '+', random, (47,10)
+OBJECT: '+', random, (47,10)
+OBJECT: '+', random, (47,10)
+OBJECT: random, random, (47,10)
+OBJECT: random, random, (47,10)
+OBJECT: random, random, (47,10)
+OBJECT: random, random, (47,10)
+OBJECT: random, random, (47,10)
+MONSTER: 'L', "lich", (47,9)
+MONSTER: ' ',"shadow",random
+MONSTER: ' ',"shadow",random
+MONSTER: ' ',"shadow",random
+MONSTER: ' ',"shadow",random
+MONSTER: ' ',"shadow",random
+MONSTER: ' ',"shadow",random
+MONSTER: ' ',"shadow",random
+MONSTER: ' ',"shadow",random
+MONSTER: ' ',"shadow",random
+MONSTER: ' ',"shadow",random
+MONSTER: ' ',"shadow",random
+MONSTER: ' ',"shadow",random
+MONSTER: ' ',"shadow",random
+MONSTER: ' ',"shadow",random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'M',random,random
+MONSTER: 'M',random,random
+MONSTER: 'M',random,random
+MONSTER: 'M',random,random
+MONSTER: 'M',random,random
+MONSTER: 'M',random,random
+MONSTER: 'M',random,random
+MONSTER: 'M',random,random
+MONSTER: 'M',random,random
+MONSTER: 'M',random,random
+MONSTER: 'M',random,random
+

@@ -1,0 +1,1022 @@
+0000 (giant ant)                : mon\giantant.bmp
+0001 (killer bee)               : mon\killerb.bmp                  
+0002 (soldier ant)              : mon\soldiera.bmp
+0003 (fire ant)                 : mon\fireant.bmp
+0004 (giant beetle)             : mon\gbeetle.bmp
+0005 (queen bee)                : mon\queenb.bmp
+0006 (acid blob)                : mon\acidblob.bmp
+0007 (quivering blob)           : mon\quivblob.bmp
+0008 (gelatinous cube)          : mon\gelcube.bmp            
+0009 (chickatrice)              : mon\chick.bmp
+0010 (cockatrice)               : mon\cock.bmp
+0011 (pyrolisk)                 : mon\pyrolisk.bmp
+0012 (jackal)                   : mon\jackal.bmp
+0013 (fox)                      : mon\fox.bmp
+0014 (coyote)                   : mon\coyote.bmp
+0015 (werejackal)               : mon\wwjackal.bmp
+0016 (little dog)               : mon\dog1.bmp
+0017 (dog)                      : mon\dog2.bmp
+0018 (large dog)                : mon\dog3.bmp
+0019 (dingo)                    : mon\dingo.bmp
+0020 (wolf)                     : mon\wolf.bmp
+0021 (werewolf)                 : mon\wwwolf.bmp
+0022 (warg)                     : mon\warg.bmp
+0023 (winter wolf cub)          : mon\wwolfc.bmp
+0024 (winter wolf)              : mon\wwolf.bmp
+0025 (hell hound pup)           : mon\hellhp.bmp
+0026 (hell hound)               : mon\hellh.bmp
+0027 (Cerberus)                 : mon\cerberus.bmp
+0028 (gas spore)                : mon\gasspore.bmp
+0029 (floating eye)             : mon\floateye.bmp
+0030 (freezing sphere)          : mon\freezesp.bmp
+0031 (flaming sphere)           : mon\flamesp.bmp
+0032 (shocking sphere)          : mon\shocksp.bmp
+0035 (beholder)                 : mon\beholder.bmp
+0036 (kitten)                   : mon\cat1.bmp
+0037 (housecat)                 : mon\cat2.bmp
+0038 (jaguar)                   : mon\jaguar.bmp
+0039 (lynx)                     : mon\lynx.bmp
+0040 (panther)                  : mon\panther.bmp
+0041 (large cat)                : mon\cat3.bmp
+0042 (tiger)                    : mon\tiger.bmp
+0045 (gremlin)                  : mon\gremlin.bmp
+0046 (gargoyle)                 : mon\gargoyl.bmp
+0047 (winged gargoyle)          : mon\gargoylw.bmp
+0048 (hobbit)                   : mon\hobbit.bmp
+0049 (dwarf)                    : mon\dwarf.bmp
+0050 (bugbear)                  : mon\bugbear.bmp
+0051 (dwarf lord)               : mon\dwalord.bmp
+0052 (dwarf king)               : mon\dwaking.bmp
+0053 (mind flayer)              : mon\mflayer.bmp
+0054 (master mind flayer)       : mon\mmflayer.bmp
+0055 (manes)                    : mon\manes.bmp
+0056 (homunculus)               : mon\homun.bmp
+0057 (imp)                      : mon\imp.bmp
+0058 (lemure)                   : mon\lemure.bmp
+0059 (quasit)                   : mon\quasit.bmp
+0060 (tengu)                    : mon\tengu.bmp
+0061 (blue jelly)               : mon\bjelly.bmp
+0062 (spotted jelly)            : mon\sjelly.bmp
+0063 (ochre jelly)              : mon\ojelly.bmp
+0064 (kobold)                   : mon\kobold.bmp
+0065 (large kobold)             : mon\lkobold.bmp
+0066 (kobold lord)              : mon\koboldl.bmp
+0067 (kobold shaman)            : mon\kobolds.bmp
+0068 (leprechaun)               : mon\lep.bmp
+0069 (small mimic)              : mon\mimsmall.bmp
+0070 (large mimic)              : mon\mimlarge.bmp
+0071 (giant mimic)              : mon\mimgiant.bmp
+0072 (wood nymph)               : mon\nymphwo.bmp
+0073 (water nymph)              : mon\nymphwa.bmp
+0074 (mountain nymph)           : mon\nymphmo.bmp
+0075 (goblin)                   : mon\goblin.bmp
+0076 (hobgoblin)                : mon\hobgob.bmp
+0077 (orc)                      : mon\orc.bmp
+0078 (hill orc)                 : mon\hillorc.bmp
+0079 (Mordor orc)               : mon\mordoro.bmp
+0080 (Uruk-hai)                 : mon\urukhai.bmp
+0081 (orc shaman)               : mon\oshaman.bmp
+0082 (orc-captain)              : mon\ocaptain.bmp
+0083 (rock piercer)             : mon\rpiercer.bmp
+0084 (iron piercer)             : mon\ipiercer.bmp
+0085 (glass piercer)            : mon\gpiercer.bmp
+0086 (rothe)                    : mon\rothe.bmp
+0087 (mumak)                    : mon\mumak.bmp
+0088 (leocrotta)                : mon\leocrota.bmp
+0089 (wumpus)                   : mon\wumpus.bmp
+0090 (titanothere)              : mon\titant.bmp
+0091 (baluchitherium)           : mon\baluch.bmp
+0092 (mastodon)                 : mon\mastodon.bmp
+0093 (sewer rat)                : mon\sewerrat.bmp
+0094 (giant rat)                : mon\giantrat.bmp
+0095 (rabid rat)                : mon\rabidrat.bmp
+0096 (wererat)                  : mon\wwererat.bmp
+0097 (rock mole)                : mon\rockmole.bmp
+0098 (woodchuck)                : mon\zotme.bmp
+0099 (cave spider)              : mon\cavespid.bmp
+0100 (centipede)                : mon\centiped.bmp
+0101 (giant spider)             : mon\giantspi.bmp
+0102 (scorpion)                 : mon\scorpion.bmp
+0103 (lurker above)             : mon\labove.bmp
+0104 (trapper)                  : mon\trapper.bmp
+0105 (white unicorn)            : mon\wunicorn.bmp
+0106 (gray unicorn)             : mon\gunicorn.bmp
+0107 (black unicorn)            : mon\bunicorn.bmp
+0108 (pony)                     : mon\horse1.bmp
+0109 (horse)                    : mon\horse2.bmp
+0110 (warhorse)                 : mon\horse3.bmp
+0111 (fog cloud)                : mon\fogcloud.bmp
+0112 (dust vortex)              : mon\dustv.bmp
+0113 (ice vortex)               : mon\icev.bmp
+0114 (energy vortex)            : mon\energyv.bmp
+0115 (steam vortex)             : mon\steamv.bmp
+0116 (fire vortex)              : mon\firev.bmp
+0117 (baby long worm)           : mon\blongw.bmp
+0118 (baby purple worm)         : mon\bpurplew.bmp
+0119 (long worm)                : mon\longw.bmp
+0120 (purple worm)              : mon\purplew.bmp
+0121 (grid bug)                 : mon\gridbug.bmp
+0122 (xan)                      : mon\xan.bmp
+0123 (yellow light)             : mon\ylight.bmp
+0124 (black light)              : mon\blight.bmp
+0125 (zruty)                    : mon\zruty.bmp
+                                
+0126 (couatl)                   : mon\couatl.bmp
+0127 (Aleax)                    : mon\aleax.bmp
+0128 (Angel)                    : mon\angel.bmp
+0129 (ki-rin)                   : mon\kirin.bmp
+0130 (Archon)                   : mon\archon.bmp
+0131 (bat)                      : mon\bat.bmp
+0132 (giant bat)                : mon\giantbat.bmp
+0133 (raven)                    : mon\raven.bmp
+0134 (vampire bat)              : mon\vampbat.bmp
+0135 (plains centaur)           : mon\centaurp.bmp
+0136 (forest centaur)           : mon\centaurf.bmp
+0137 (mountain centaur)         : mon\centaurm.bmp
+0138 (baby gray dragon)         : mon\bgrayd.bmp
+0139 (baby silver dragon)       : mon\bsilverd.bmp
+0140 (baby shimmering dragon)   : mon\bshimd.bmp
+0141 (baby red dragon)          : mon\bredd.bmp
+0142 (baby white dragon)        : mon\bwhited.bmp
+0143 (baby orange dragon)       : mon\boranged.bmp
+0144 (baby black dragon)        : mon\bblackd.bmp
+0145 (baby blue dragon)         : mon\bblued.bmp
+0146 (baby green dragon)        : mon\bgreend.bmp
+0147 (baby yellow dragon)       : mon\byellowd.bmp
+0148 (gray dragon)              : mon\grayd.bmp  
+0149 (silver dragon)            : mon\silverd.bmp
+0150 (shimmering dragon)        : mon\shimd.bmp  
+0151 (red dragon)               : mon\redd.bmp   
+0152 (white dragon)             : mon\whited.bmp 
+0153 (orange dragon)            : mon\oranged.bmp
+0154 (black dragon)             : mon\blackd.bmp 
+0155 (blue dragon)              : mon\blued.bmp
+0156 (green dragon)             : mon\greend.bmp
+0157 (yellow dragon)            : mon\yellowd.bmp
+0158 (stalker)                  : mon\stalker.bmp
+0159 (air elemental)            : mon\aire.bmp
+0160 (fire elemental)           : mon\firee.bmp
+0161 (earth elemental)          : mon\earthe.bmp
+0162 (water elemental)          : mon\watere.bmp
+0163 (lichen)                   : mon\lichen.bmp
+0164 (brown mold)               : mon\brownm.bmp
+0165 (yellow mold)              : mon\yellowm.bmp
+0166 (green mold)               : mon\greenm.bmp
+0167 (red mold)                 : mon\redm.bmp
+0168 (shrieker)                 : mon\shrieker.bmp
+0169 (violet fungus)            : mon\vfungus.bmp
+0170 (gnome)                    : mon\gnome.bmp
+0171 (gnome lord)               : mon\gnolord.bmp
+0172 (gnomish wizard)           : mon\gnowiz.bmp
+0173 (gnome king)               : mon\gnoking.bmp
+0174 (giant)                    : mon\giant.bmp
+0175 (stone giant)              : mon\sgiant.bmp
+0176 (hill giant)               : mon\hgiant.bmp
+0177 (fire giant)               : mon\figiant.bmp
+0178 (frost giant)              : mon\frgiant.bmp
+0179 (storm giant)              : mon\stgiant.bmp
+0180 (ettin)                    : mon\ettin.bmp
+0181 (titan)                    : mon\titan.bmp
+0182 (minotaur)                 : mon\minotaur.bmp
+0183 (jabberwock)               : mon\jabber.bmp
+0184 (vorpal jabberwock)        : mon\jabber.bmp
+0185 (Keystone Kop)             : mon\kop.bmp
+0186 (Kop Sergeant)             : mon\kopsgt.bmp
+0187 (Kop Lieutenant)           : mon\koplt.bmp
+0188 (Kop Kaptain)              : mon\kopcapt.bmp
+0189 (lich)                     : mon\lich.bmp
+0190 (demilich)                 : mon\demilich.bmp
+0191 (master lich)              : mon\mastlich.bmp
+0192 (arch-lich)                : mon\archlich.bmp
+0193 (kobold mummy)             : mon\koboldm.bmp
+0194 (gnome mummy)              : mon\gnomem.bmp
+0195 (orc mummy)                : mon\orcm.bmp
+0196 (dwarf mummy)              : mon\dwarfm.bmp
+0197 (elf mummy)                : mon\elfm.bmp
+0198 (human mummy)              : mon\humanm.bmp
+0199 (ettin mummy)              : mon\ettinm.bmp
+0200 (giant mummy)              : mon\giantm.bmp
+0201 (red naga hatchling)       : mon\rednagah.bmp
+0202 (black naga hatchling)     : mon\blnagah.bmp
+0203 (golden naga hatchling)    : mon\gldnagah.bmp
+0204 (guardian naga hatchling)  : mon\grdnagah.bmp
+0205 (red naga)                 : mon\rednaga.bmp
+0206 (black naga)               : mon\blnaga.bmp
+0207 (golden naga)              : mon\gldnaga.bmp
+0208 (guardian naga)            : mon\grdnaga.bmp
+0209 (ogre)                     : mon\ogre.bmp
+0210 (ogre lord)                : mon\ogrelord.bmp
+0211 (ogre king)                : mon\ogreking.bmp
+0212 (gray ooze)                : mon\grayooze.bmp
+0213 (brown pudding)            : mon\brownp.bmp
+0214 (black pudding)            : mon\blackp.bmp
+0215 (green slime)              : mon\slime.bmp
+0216 (quantum mechanic)         : mon\quantum.bmp
+0217 (rust monster)             : mon\rustmon.bmp
+0218 (disenchanter)             : mon\disench.bmp
+0219 (garter snake)             : mon\garters.bmp
+0220 (snake)                    : mon\snake.bmp
+0221 (water moccasin)           : mon\watermoc.bmp
+0222 (pit viper)                : mon\pitviper.bmp
+0223 (python)                   : mon\python.bmp
+0224 (cobra)                    : mon\cobra.bmp
+0225 (troll)                    : mon\troll.bmp
+0226 (ice troll)                : mon\itroll.bmp
+0227 (rock troll)               : mon\rtroll.bmp
+0228 (water troll)              : mon\wtroll.bmp
+0229 (Olog-hai)                 : mon\ologhai.bmp
+0230 (umber hulk)               : mon\hulk.bmp
+0231 (vampire)                  : mon\vampire.bmp
+0232 (vampire lord)             : mon\vampirel.bmp
+0233 (vampire mage)             : mon\vampire.bmp
+0234 (Vlad the Impaler)         : mon\vlad.bmp
+0235 (barrow wight)             : mon\wight.bmp
+0236 (wraith)                   : mon\wraith.bmp
+0237 (Nazgul)                   : mon\nazgul.bmp
+0238 (xorn)                     : mon\xorn.bmp
+0239 (monkey)                   : mon\monkey.bmp
+0240 (ape)                      : mon\ape.bmp
+0241 (owlbear)                  : mon\owlbear.bmp
+0242 (yeti)                     : mon\yeti.bmp
+0243 (carnivorous ape)          : mon\carnape.bmp
+0244 (sasquatch)                : mon\bigfoot.bmp
+0245 (kobold zombie)            : mon\koboldz.bmp
+0246 (gnome zombie)             : mon\gnomez.bmp
+0247 (orc zombie)               : mon\orcz.bmp
+0248 (dwarf zombie)             : mon\dwarfz.bmp
+0249 (elf zombie)               : mon\elfz.bmp
+0250 (human zombie)             : mon\humanz.bmp
+0251 (ettin zombie)             : mon\ettinz.bmp
+0252 (giant zombie)             : mon\giantz.bmp
+0253 (ghoul)                    : mon\ghoul.bmp
+0254 (skeleton)                 : mon\skeleton.bmp
+
+0255 (straw golem)              : mon\strawg.bmp
+0256 (paper golem)              : mon\paperg.bmp
+0257 (rope golem)               : mon\ropeg.bmp
+0258 (gold golem)               : mon\goldg.bmp
+0259 (leather golem)            : mon\leatherg.bmp
+0260 (wood golem)               : mon\woodg.bmp
+0261 (flesh golem)              : mon\fleshg.bmp
+0262 (clay golem)               : mon\clayg.bmp
+0263 (stone golem)              : mon\stoneg.bmp
+0264 (glass golem)              : mon\glassg.bmp
+0265 (iron golem)               : mon\irong.bmp
+0266 (human)                    : mon\human.bmp
+0267 (wererat)                  : mon\hwererat.bmp
+0268 (werejackal)               : mon\hwjackal.bmp
+0269 (werewolf)                 : mon\hwwolf.bmp
+0272 (elf)                      : mon\elf.bmp
+0273 (Woodland-elf)             : mon\woodelf.bmp
+0274 (Green-elf)                : mon\greenelf.bmp
+0275 (Grey-elf)                 : mon\greyelf.bmp
+0276 (elf-lord)                 : mon\elflord.bmp
+0277 (Elvenking)                : mon\elfking.bmp
+0278 (doppelganger)             : mon\dplgngr.bmp
+0279 (nurse)                    : mon\nurse.bmp
+0280 (shopkeeper)               : mon\shk.bmp
+0281 (guard)                    : mon\guard.bmp
+0282 (prisoner)                 : mon\prisoner.bmp
+0283 (Oracle)                   : mon\oracle.bmp
+0284 (aligned priest)           : mon\apriest.bmp
+0285 (high priest)              : mon\hpriest.bmp
+0286 (soldier)                  : mon\soldier.bmp
+0287 (sergeant)                 : mon\sgt.bmp
+0288 (lieutenant)               : mon\lt.bmp
+0289 (captain)                  : mon\capt.bmp
+0290 (watchman)                 : mon\watch.bmp
+0291 (watch captain)            : mon\watchc.bmp
+0292 (Medusa)                   : mon\medusa.bmp
+0293 (Wizard of Yendor)         : mon\rodney.bmp
+0294 (Croesus)                  : mon\croesus.bmp
+0295 (Charon)                   : mon\charon.bmp
+0296 (ghost)                    : mon\ghost.bmp
+0297 (shade)                    : mon\shade.bmp
+0298 (water demon)              : mon\waterd.bmp
+0299 (horned devil)             : mon\hornedd.bmp
+0300 (succubus)                 : mon\succubus.bmp
+0301 (incubus)                  : mon\incubus.bmp
+0302 (erinys)                   : mon\erinys.bmp
+0303 (barbed devil)             : mon\barbedd.bmp
+0304 (marilith)                 : mon\marilith.bmp
+0305 (vrock)                    : mon\vrock.bmp
+0306 (hezrou)                   : mon\hezrou.bmp
+0309 (bone devil)               : mon\bondevil.bmp
+0310 (ice devil)                : mon\icedevil.bmp
+0311 (nalfeshnee)               : mon\nalfesh.bmp
+0312 (pit fiend)                : mon\pitfiend.bmp
+0313 (balrog)                   : mon\balrog.bmp
+0314 (Juiblex)                  : mon\juiblex.bmp
+0315 (Yeenoghu)                 : mon\yeenoghu.bmp
+0316 (Orcus)                    : mon\orcus.bmp
+0317 (Geryon)                   : mon\geryon.bmp
+0318 (Dispater)                 : mon\dispater.bmp
+0319 (Baalzebub)                : mon\balzebub.bmp
+0320 (Asmodeus)                 : mon\asmodeus.bmp
+0321 (Demogorgon)               : mon\demogorg.bmp
+0322 (Death)                    : mon\death.bmp
+0323 (Pestilence)               : mon\pestilen.bmp
+0324 (Famine)                   : mon\famine.bmp
+0325 (mail daemon)              : mon\mail.bmp
+0326 (djinni)                   : mon\djinni.bmp
+0327 (sandestin)                : mon\sandest.bmp
+0328 (jellyfish)                : mon\jelyfish.bmp
+0329 (piranha)                  : mon\piranha.bmp
+0330 (shark)                    : mon\shark.bmp
+0331 (giant eel)                : mon\gianteel.bmp
+0332 (electric eel)             : mon\eleceel.bmp
+0333 (kraken)                   : mon\kraken.bmp
+0334 (newt)                     : mon\newt.bmp
+0335 (gecko)                    : mon\gecko.bmp
+0336 (iguana)                   : mon\iguana.bmp
+0337 (baby crocodile)           : mon\bcroc.bmp
+0338 (lizard)                   : mon\lizard.bmp
+0339 (chameleon)                : mon\cham.bmp
+0340 (crocodile)                : mon\croc.bmp
+0341 (salamander)               : mon\salamand.bmp
+0342 (long worm tail)           : mon\longwt.bmp
+0343 (archeologist)             : mon\arc.bmp
+0344 (barbarian)                : mon\bar.bmp
+0345 (caveman)                  : mon\cav_mal.bmp
+0346 (cavewoman)                : mon\cav_fem.bmp
+0347 (healer)                   : mon\hea.bmp
+0348 (knight)                   : mon\kni.bmp
+0349 (monk)                     : mon\mon.bmp
+0351 (priest)                   : mon\pri_mal.bmp
+0352 (priestess)                : mon\pri_fem.bmp
+0353 (ranger)                   : mon\ran.bmp
+0354 (rogue)                    : mon\rog.bmp
+0355 (samurai)                  : mon\sam.bmp
+0356 (tourist)                  : mon\tou.bmp
+0357 (valkyrie)                 : mon\val.bmp
+0358 (wizard)                   : mon\wiz.bmp
+0359 (Lord Carnarvon)           : mon\arc_l.bmp
+0360 (Pelias)                   : mon\bar_l.bmp
+0361 (Shaman Karnov)            : mon\cav_l.bmp
+0362 (Earendil)                 : mon\invis.bmp
+0363 (Elwing)                   : mon\invis.bmp
+0364 (Hippocrates)              : mon\hea_l.bmp
+0365 (King Arthur)              : mon\kni_l.bmp
+0366 (Grand Master)             : mon\mon_l.bmp
+0368 (Arch Priest)              : mon\pri_l.bmp
+0369 (Orion)                    : mon\ran_l.bmp
+0370 (Master of Thieves)        : mon\rog_l.bmp
+0371 (Lord Sato)                : mon\sam_l.bmp
+0372 (Twoflower)                : mon\tou_l.bmp
+0373 (Norn)                     : mon\val_l.bmp
+0374 (Wizard of Balance)        : mon\wiz_l.bmp
+0375 (Minion of Huhetotl)       : mon\minion.bmp
+0376 (Thoth Amon)               : mon\thothamn.bmp
+0377 (Chromatic Dragon)         : mon\tiamat.bmp
+0378 (Goblin King)              : mon\invis.bmp
+0379 (Cyclops)                  : mon\cyclops.bmp
+0380 (Ixoth)                    : mon\ixoth.bmp
+0381 (Master Kaen)              : mon\kaen.bmp
+0383 (Nalzok)                   : mon\nalzok.bmp
+0384 (Scorpius)                 : mon\scorpius.bmp
+0385 (Master Assassin)          : mon\assassin.bmp
+0386 (Ashikaga Takauji)         : mon\ashikaga.bmp
+0387 (Lord Surtur)              : mon\surtur.bmp
+0388 (Dark One)                 : mon\sauron.bmp
+0389 (student)                  : mon\arc_g.bmp
+0390 (chieftain)                : mon\bar_g.bmp
+0391 (neanderthal)              : mon\cav_g.bmp
+0392 (High-elf)                 : mon\invis.bmp
+0393 (attendant)                : mon\hea_g.bmp
+0394 (page)                     : mon\kni_g.bmp
+0395 (abbot)                    : mon\mon_g.bmp
+0397 (acolyte)                  : mon\pri_g.bmp
+0398 (hunter)                   : mon\ran_g.bmp
+0399 (thug)                     : mon\rog_g.bmp
+0400 (ninja)                    : mon\ninja.bmp
+0401 (roshi)                    : mon\sam_g.bmp
+0402 (guide)                    : mon\tou_g.bmp
+0403 (warrior)                  : mon\val_g.bmp
+0404 (apprentice)               : mon\wiz_g.bmp
+
+0405 (invisible monster)        : mon\invis.bmp
+# objects
+0406 (strange object) : obj\strange.bmp
+#weapons
+0407 (arrow)                            : obj\)arrow.bmp
+0408 (runed arrow / elven arrow)        : obj\)arrowe.bmp
+0409 (crude arrow / orcish arrow)       : obj\)arrowo.bmp
+0410 (silver arrow)                     : obj\)arrows.bmp
+0411 (bamboo arrow / ya)                : obj\)ya.bmp
+0412 (crossbow bolt)                    : obj\)bolt.bmp
+0413 (dart)                             : obj\)dart.bmp
+0414 (throwing star / shuriken)         : obj\)star.bmp
+0415 (boomerang)                        : obj\)brang.bmp
+0416 (spear)                            : obj\)spear.bmp
+0417 (runed spear / elven spear)        : obj\)speare.bmp
+0418 (crude spear / orcish spear)       : obj\)spearo.bmp
+0419 (stout spear / dwarvish spear)     : obj\)speard.bmp
+0420 (silver spear)                     : obj\)spears.bmp
+0421 (throwing spear / javelin)         : obj\)javelin.bmp
+0422 (trident)                          : obj\)trident.bmp
+0423 (dagger)                           : obj\)dagger.bmp
+0424 (runed dagger / elven dagger)      : obj\)daggere.bmp
+0425 (crude dagger / orcish dagger)     : obj\)daggero.bmp
+0426 (silver dagger)                    : obj\)daggers.bmp
+0427 (athame)                           : obj\)athame.bmp
+0428 (scalpel)                          : obj\)scalpel.bmp
+0429 (knife)                            : obj\)knife.bmp
+0430 (stiletto)                         : obj\)stileto.bmp
+0431 (worm tooth)                       : obj\)tooth.bmp
+0432 (crysknife)                        : obj\)crknife.bmp
+0433 (axe)                              : obj\)axe.bmp
+0434 (double-headed axe / battle-axe)   : obj\)baxe.bmp
+0435 (short sword)                              : obj\)shorts.bmp
+0436 (runed short sword / elven short sword)    : obj\)shortse.bmp
+0437 (crude short sword / orcish short sword)   : obj\)shortso.bmp
+0438 (broad short sword / dwarvish short sword) : obj\)shortsd.bmp
+0439 (curved sword / scimitar)                  : obj\)scim.bmp
+0440 (silver saber)                             : obj\)ssaber.bmp
+0441 (broadsword)                               : obj\)broads.bmp
+0442 (runed broadsword / elven broadsword)      : obj\)broadse.bmp
+0443 (long sword)                       : obj\)longs.bmp
+0444 (two-handed sword)                 : obj\)2hs.bmp
+0445 (samurai sword / katana)           : obj\)katana.bmp
+0446 (long samurai sword / tsurugi)     : obj\)tsurugi.bmp
+0447 (runed broadsword / runesword)     : obj\)stormy.bmp
+0448 (vulgar polearm / partisan)        : obj\)partisa.bmp
+0449 (hilted polearm / ranseur)         : obj\)ranseur.bmp
+0450 (forked polearm / spetum)          : obj\)spetum.bmp
+0451 (single-edged polearm / glaive)    : obj\)glaive.bmp
+0452 (lance)                            : obj\)lance.bmp
+0453 (angled poleaxe / halberd)         : obj\)halberd.bmp
+0454 (long poleaxe / bardiche)          : obj\)bardich.bmp
+0455 (pole cleaver / voulge)            : obj\)voulge.bmp
+0456 (broad pick / dwarvish mattock)    : obj\)mattock.bmp
+0457 (pole sickle / fauchard)           : obj\)fauchar.bmp
+0458 (pruning hook / guisarme)          : obj\)guisarm.bmp
+0459 (hooked polearm / bill-guisarme)   : obj\)bilguis.bmp
+0460 (pronged polearm / lucern hammer)  : obj\)lucernh.bmp
+0461 (beaked polearm / bec de corbin)   : obj\)bcorbin.bmp
+0462 (mace)                             : obj\)mace.bmp
+0463 (morning star)                     : obj\)m_star.bmp
+0464 (war hammer)                       : obj\)hammer.bmp
+0465 (club)                             : obj\)club.bmp
+0466 (rubber hose)                      : obj\)hose.bmp
+0467 (staff / quarterstaff)             : obj\)staff.bmp
+0468 (thonged club / aklys)             : obj\)aklys.bmp
+0469 (flail)                            : obj\)flail.bmp
+0470 (bullwhip)                         : obj\)whip.bmp
+0471 (bow)                              : obj\)bow.bmp
+0472 (runed bow / elven bow)            : obj\)bowe.bmp
+0473 (crude bow / orcish bow)           : obj\)bowo.bmp
+0474 (long bow / yumi)                  : obj\)yumi.bmp
+0475 (sling)                            : obj\)sling.bmp
+0476 (crossbow)                         : obj\)xbow.bmp
+# armor                                 
+# helmets
+0477 (leather hat / elven leather helm)            : obj\h_elf.bmp
+0478 (iron skull cap / orcish helm)                : obj\h_orc.bmp
+0479 (hard hat / dwarvish iron helm)               : obj\h_dwarf.bmp
+0480 (fedora)                                      : obj\h_fedora.bmp
+0481 (conical hat / cornuthaum)                    : obj\h_cone.bmp
+0482 (conical hat / dunce cap)                     : obj\h_cone.bmp
+0483 (dented pot)                                  : obj\h_pot.bmp
+0484 (plumed helmet / helmet)                      : obj\h_plumed.bmp
+0485 (etched helmet / helm of brilliance)          : obj\h_etched.bmp
+0486 (crested helmet / helm of opposite alignment) : obj\h_crest.bmp
+0487 (visored helmet / helm of telepathy)          : obj\h_visor.bmp
+# dragon scale mails
+0488 (gray dragon scale mail)       : obj\dsmgray.bmp
+0489 (silver dragon scale mail)     : obj\dsmsilvr.bmp
+0490 (shimmering dragon scale mail) : obj\dsmshim.bmp
+0491 (red dragon scale mail)        : obj\dsmred.bmp
+0492 (white dragon scale mail)      : obj\dsmwhite.bmp
+0493 (orange dragon scale mail)     : obj\dsmorang.bmp
+0494 (black dragon scale mail)      : obj\dsmblack.bmp
+0495 (blue dragon scale mail)       : obj\dsmblue.bmp
+0496 (green dragon scale mail)      : obj\dsmgreen.bmp
+0497 (yellow dragon scale mail)     : obj\dsmyello.bmp
+0498 (gray dragon scales)           : obj\dsgray.bmp 
+0499 (silver dragon scales)         : obj\dssilvr.bmp
+0500 (shimmering dragon scales)     : obj\dsshim.bmp 
+0501 (red dragon scales)            : obj\dsred.bmp  
+0502 (white dragon scales)          : obj\dswhite.bmp
+0503 (orange dragon scales)         : obj\dsorang.bmp                      
+0504 (black dragon scales)          : obj\dsblack.bmp
+0505 (blue dragon scales)           : obj\dsblue.bmp 
+0506 (green dragon scales)          : obj\dsgreen.bmp
+0507 (yellow dragon scales)         : obj\dsyello.bmp
+# mundane body armor
+0508 (plate mail)            : obj\_platem.bmp
+0509 (crystal plate mail)    : obj\_cplatem.bmp
+0510 (bronze plate mail)     : obj\_bplatem.bmp
+0511 (splint mail)           : obj\_splintm.bmp
+0512 (banded mail)           : obj\_bandedm.bmp
+0513 (dwarvish mithril-coat) : obj\_dmithc.bmp
+0514 (elven mithril-coat)    : obj\_emithc.bmp
+0515 (chain mail)            : obj\_chainm.bmp
+0516 (crude chain mail / orcish chain mail) : obj\_ochainm.bmp
+0517 (scale mail)            : obj\_scalem.bmp
+0518 (studded leather armor) : obj\_studla.bmp
+0519 (ring mail)             : obj\_ringm.bmp
+0520 (crude ring mail / orcish ring mail) : obj\_oringm.bmp
+0521 (leather armor)         : obj\_larmor.bmp
+0522 (leather jacket)        : obj\_ljacket.bmp
+# shirts
+0523 (Hawaiian shirt) : obj\_hshirt.bmp
+0524 (T-shirt)        : obj\_tshirt.bmp
+# cloaks
+0525 (mummy wrapping)                              : obj\c_mummy.bmp
+0526 (faded pall / elven cloak)                    : obj\c_elf.bmp
+0527 (coarse mantelet / orcish cloak)              : obj\c_orc.bmp
+0528 (hooded cloak / dwarvish cloak)               : obj\c_dwarf.bmp
+0529 (slippery cloak / oilskin cloak)              : obj\c_oils.bmp
+0530 (robe)                                        : obj\c_robe.bmp
+0531 (apron / alchemy smock)                       : obj\c_apron.bmp
+0532 (tattered cape / cloak of protection)         : obj\c_cape.bmp
+0533 (opera cloak / cloak of invisibility)         : obj\c_opera.bmp
+0534 (ornamental cope / cloak of magic resistance) : obj\c_cope.bmp
+0535 (piece of cloth / cloak of displacement)      : obj\c_cloth.bmp
+# shields
+0536 (small shield)                                  : obj\ssmall.bmp
+0537 (blue and green shield / elven shield)          : obj\self.bmp
+0538 (white-handed shield / Uruk-hai shield)         : obj\surukhai.bmp
+0539 (red-eyed shield / orcish shield)               : obj\sorc.bmp
+0540 (large shield)                                  : obj\slarge.bmp
+0541 (large round shield / dwarvish roundshield)     : obj\sdwarf.bmp
+0542 (polished silver shield / shield of reflection) : obj\sreflect.bmp
+# gloves
+0547 (old gloves)                       : obj\_gold.bmp
+0548 (padded gloves)                    : obj\_gpadded.bmp
+0549 (fencing gloves)                   : obj\_gfence.bmp
+0550 (riding gloves)                    : obj\_griding.bmp
+# shoes
+0551 (walking shoes / low boots)          : obj\blow.bmp
+0552 (hard shoes / iron shoes)            : obj\biron.bmp
+0553 (jackboots / high boots)             : obj\bhigh.bmp
+0555 (combat boots / speed boots)         : obj\bcombat.bmp
+0556 (jungle boots / water walking boots) : obj\bjungle.bmp
+0557 (hiking boots / jumping boots)       : obj\bhiking.bmp
+0558 (mud boots / elven boots)            : obj\bmud.bmp
+0559 (buckled boots / kicking boots)      : obj\bbuckled.bmp
+0560 (riding boots / fumble boots)        : obj\briding.bmp
+0561 (snow boots / levitation boots)      : obj\bsnow.bmp
+# rings
+0562 (wooden / adornment)                     : obj\r_wood.bmp  
+0563 (granite / gain strength)                : obj\r_gran.bmp  
+0564 (opal / gain constitution)               : obj\r_opal.bmp  
+0565 (clay / increase accuracy)               : obj\r_clay.bmp  
+0566 (coral / increase damage)                : obj\r_coral.bmp 
+0567 (black onyx / protection)                : obj\r_bonyx.bmp 
+0568 (moonstone / regeneration)               : obj\r_moons.bmp 
+0569 (tiger eye / searching)                  : obj\r_teye.bmp  
+0570 (jade / stealth)                         : obj\r_jade.bmp  
+0571 (bronze / sustain ability)               : obj\r_bronze.bmp
+0572 (agate / levitation)                     : obj\r_agate.bmp 
+0573 (topaz / hunger)                         : obj\r_topaz.bmp 
+0574 (sapphire / aggravate monster)           : obj\r_saph.bmp  
+0575 (ruby / conflict)                        : obj\r_ruby.bmp  
+0576 (diamond / warning)                      : obj\r_diam.bmp  
+0577 (pearl / poison resistance)              : obj\r_pearl.bmp 
+0578 (iron / fire resistance)                 : obj\r_iron.bmp  
+0579 (brass / cold resistance)                : obj\r_brass.bmp 
+0580 (copper / shock resistance)              : obj\r_copper.bmp
+0581 (twisted / free action)                  : obj\r_twist.bmp 
+0582 (steel / slow digestion)                 : obj\r_steel.bmp 
+0583 (silver / teleportation)                 : obj\r_silver.bmp
+0584 (gold / teleport control)                : obj\r_gold.bmp  
+0585 (ivory / polymorph)                      : obj\r_ivory.bmp 
+0586 (emerald / polymorph control)            : obj\r_emrld.bmp 
+0587 (wire / invisibility)                    : obj\r_wire.bmp  
+0588 (engagement / see invisible)             : obj\r_eng.bmp   
+0589 (shiny / protection from shape changers) : obj\r_shiny.bmp
+# amulets
+0590 (circular / amulet of ESP)               : obj\a_circle.bmp
+0591 (spherical / amulet of life saving)      : obj\a_sphere.bmp
+0592 (oval / amulet of strangulation)         : obj\a_oval.bmp
+0593 (triangular / amulet of restful sleep)   : obj\a_tri.bmp
+0594 (pyramidal / amulet versus poison)       : obj\a_pyra.bmp
+0595 (square / amulet of change)              : obj\a_square.bmp
+0596 (concave / amulet of unchanging)         : obj\a_conc.bmp
+0597 (hexagonal / amulet of reflection)       : obj\a_hex.bmp
+0598 (octagonal / amulet of magical breathing) : obj\a_octa.bmp
+0599 (Amulet of Yendor / cheap plastic imitation of the Amulet of Yendor) : obj\a_yendor.bmp
+0600 (Amulet of Yendor / Amulet of Yendor) : obj\a_yendor.bmp
+# tools
+0601 (large box)                        : obj\(box.bmp
+0602 (chest)                            : obj\(chest.bmp
+0603 (ice box)                          : obj\(icebox.bmp
+0604 (bag / sack)                       : obj\(bag.bmp
+0605 (bag / oilskin sack)               : obj\(bag.bmp
+0606 (bag / bag of holding)             : obj\(bag.bmp
+0607 (bag / bag of tricks)              : obj\(bag.bmp
+0608 (key / skeleton key)               : obj\(key.bmp
+0609 (lock pick)                        : obj\(l_pick.bmp
+0610 (credit card)                      : obj\(card.bmp
+0611 (candle / tallow candle)           : obj\(candle.bmp
+0612 (candle / wax candle)              : obj\(candle.bmp
+0613 (brass lantern)                    : obj\(lantern.bmp
+0614 (lamp / oil lamp)                  : obj\(lamp.bmp
+0615 (lamp / magic lamp)                : obj\(lamp.bmp
+0616 (expensive camera)                 : obj\(camera.bmp
+0617 (looking glass / mirror)           : obj\(mirror.bmp
+0618 (glass orb / crystal ball)         : obj\(ball.bmp
+0619 (lenses)                           : obj\(lenses.bmp
+0620 (blindfold)                        : obj\(blindf.bmp
+0621 (towel)                            : obj\(towel.bmp
+0622 (saddle)                           : obj\(saddle.bmp
+0623 (leash)                            : obj\(leash.bmp
+0624 (stethoscope)                      : obj\(scope.bmp
+0625 (tinning kit)                      : obj\(kit.bmp
+0626 (tin opener)                       : obj\(opener.bmp
+0627 (can of grease)                    : obj\(grease.bmp
+0628 (figurine)                         : obj\(figurin.bmp
+0629 (magic marker)                     : obj\(marker.bmp
+0630 (land mine)                        : obj\(mine.bmp
+0631 (beartrap)                         : obj\(bear.bmp
+0632 (whistle / tin whistle)            : obj\(whistle.bmp
+0633 (whistle / magic whistle)          : obj\(whistle.bmp
+0634 (flute / wooden flute)             : obj\(flute.bmp
+0635 (flute / magic flute)              : obj\(flute.bmp
+0636 (horn / tooled horn)               : obj\(horn.bmp
+0637 (horn / frost horn)                : obj\(horn.bmp
+0638 (horn / fire horn)                 : obj\(horn.bmp
+0639 (horn / horn of plenty)            : obj\(horn.bmp
+0640 (harp / wooden harp)               : obj\(harp.bmp
+0641 (harp / magic harp)                : obj\(harp.bmp
+0642 (bell)                             : obj\(bell.bmp
+0643 (bugle)                            : obj\(bugle.bmp
+0644 (drum / leather drum)              : obj\(drum.bmp
+0645 (drum / drum of earthquake)        : obj\(drum.bmp
+0646 (pick-axe)                         : obj\(pickaxe.bmp
+0647 (iron hook / grappling hook)       : obj\(hook.bmp
+0648 (unicorn horn)                     : obj\(u_horn.bmp
+0649 (candelabrum / Candelabrum of Invocation)  : obj\(menorah.bmp
+0650 (silver bell / Bell of Opening)            : obj\(thebell.bmp
+# food
+0656 (tripe ration)       : obj\tripe.bmp
+0657 (corpse)             : obj\corpse.bmp
+0658 (egg)                : obj\egg.bmp
+0659 (meatball)           : obj\meatball.bmp
+0660 (meat stick)         : obj\meatwand.bmp
+0661 (huge chunk of meat) : obj\meathunk.bmp
+0662 (meat ring)          : obj\meatring.bmp
+0663 (kelp frond)         : obj\kelp.bmp
+0664 (eucalyptus leaf)    : obj\leaf.bmp
+0665 (apple)              : obj\apple.bmp
+0666 (orange)             : obj\orange.bmp
+0667 (pear)               : obj\pear.bmp
+0668 (melon)              : obj\melon.bmp
+0669 (banana)             : obj\banana.bmp
+0670 (carrot)             : obj\carrot.bmp
+0671 (sprig of wolfsbane) : obj\sprig.bmp
+0672 (clove of garlic)    : obj\garlic.bmp
+0673 (slime mold)         : obj\fruit.bmp
+0674 (lump of royal jelly): obj\jelly.bmp
+0675 (cream pie)          : obj\pie.bmp
+0676 (candy bar)          : obj\candybar.bmp
+0677 (fortune cookie)     : obj\cookie.bmp
+0678 (pancake)            : obj\pancake.bmp
+0679 (lembas wafer)       : obj\lembas.bmp
+0680 (cram ration)        : obj\cram.bmp
+0681 (food ration)        : obj\ration.bmp
+0682 (K-ration)           : obj\kration.bmp
+0683 (C-ration)           : obj\cration.bmp
+0684 (tin)                : obj\tin.bmp
+# potions
+0685 (ruby / gain ability)           : obj\p_ruby.bmp
+0686 (pink / restore ability)        : obj\p_pink.bmp
+0687 (orange / confusion)            : obj\p_orange.bmp
+0688 (yellow / blindness)            : obj\p_yellow.bmp
+0689 (emerald / paralysis)           : obj\p_emerld.bmp
+0690 (dark green / speed)            : obj\p_dgreen.bmp
+0691 (cyan / levitation)             : obj\p_cyan.bmp
+0692 (sky blue / hallucination)      : obj\p_skyblu.bmp
+0693 (brilliant blue / invisibility) : obj\p_briblu.bmp
+0694 (magenta / see invisible)       : obj\p_magent.bmp
+0695 (purple-red / healing)          : obj\p_pred.bmp
+0696 (puce / extra healing)          : obj\p_puce.bmp
+0697 (milky / gain level)            : obj\p_milky.bmp
+0698 (swirly / enlightenment)        : obj\p_swirly.bmp
+0699 (bubbly / monster detection)    : obj\p_bubbly.bmp
+0700 (smoky / object detection)      : obj\p_smoky.bmp
+0701 (cloudy / gain energy)          : obj\p_cloudy.bmp
+0702 (effervescent / sleeping)       : obj\p_efferv.bmp
+0703 (black / full healing)          : obj\p_black.bmp
+0704 (golden / polymorph)            : obj\p_golden.bmp
+0705 (brown / booze)                 : obj\p_brown.bmp
+0706 (fizzy / sickness)              : obj\p_fizzy.bmp
+0707 (dark / fruit juice)            : obj\p_dark.bmp
+0708 (white / acid)                  : obj\p_white.bmp
+0709 (murky / oil)                   : obj\p_murky.bmp
+0710 (clear / water)                 : obj\p_clear.bmp
+# scrolls
+0711 (ZELGO MER / enchant armor)            : obj\s_scroll.bmp
+0712 (JUYED AWK YACC / destroy armor)       : obj\s_scroll.bmp
+0713 (NR 9 / confuse monster)               : obj\s_scroll.bmp
+0714 (XIXAXA XOXAXA XUXAXA / scare monster) : obj\s_scroll.bmp
+0715 (PRATYAVAYAH / remove curse)           : obj\s_scroll.bmp
+0716 (DAIYEN FOOELS / enchant weapon)       : obj\s_scroll.bmp
+0717 (LEP GEX VEN ZEA / create monster)     : obj\s_scroll.bmp
+0718 (PRIRUTSENIE / taming)                 : obj\s_scroll.bmp
+0719 (ELBIB YLOH / genocide)                : obj\s_scroll.bmp
+0720 (VERR YED HORRE / light)               : obj\s_scroll.bmp
+0721 (VENZAR BORGAVVE / teleportation)      : obj\s_scroll.bmp
+0722 (THARR / gold detection)               : obj\s_scroll.bmp
+0723 (YUM YUM / food detection)             : obj\s_scroll.bmp
+0724 (KERNOD WEL / identify)                : obj\s_scroll.bmp
+0725 (ELAM EBOW / magic mapping)            : obj\s_scroll.bmp
+0726 (DUAM XNAHT / amnesia)                 : obj\s_scroll.bmp
+0727 (ANDOVA BEGARIN / fire)                : obj\s_scroll.bmp
+0728 (KIRJE / earth)                        : obj\s_scroll.bmp
+0729 (VE FORBRYDERNE / punishment)          : obj\s_scroll.bmp
+0730 (HACKEM MUCHE / charging)              : obj\s_scroll.bmp
+0731 (VELOX NEB / stinking cloud)           : obj\s_scroll.bmp
+0732 (FOOBIE BLETCH)                        : obj\s_scroll.bmp
+0733 (TEMOV)                                : obj\s_scroll.bmp
+0734 (GARVEN DEH)                           : obj\s_scroll.bmp
+0735 (READ ME)                              : obj\s_scroll.bmp
+0736 (stamped / mail)                       : obj\s_mail.bmp
+0737 (unlabeled / blank paper)              : obj\s_blank.bmp
+# spellbooks
+0738 (parchment / dig)                 : obj\b_parch.bmp
+0739 (vellum / magic missile)          : obj\b_vellum.bmp
+0740 (ragged / fireball)               : obj\b_ragged.bmp
+0741 (dog eared / cone of cold)        : obj\b_eared.bmp
+0742 (mottled / sleep)                 : obj\b_mottle.bmp
+0743 (stained / finger of death)       : obj\b_stain.bmp
+0744 (cloth / light)                   : obj\b_cloth.bmp
+0745 (leather / detect monsters)       : obj\b_leath.bmp
+0746 (white / healing)                 : obj\b_white.bmp
+0747 (pink / knock)                    : obj\b_pink.bmp
+0748 (red / force bolt)                : obj\b_red.bmp
+0749 (orange / confuse monster)        : obj\b_orange.bmp
+0750 (yellow / cure blindness)         : obj\b_yellow.bmp
+0751 (velvet / drain life)             : obj\b_velvet.bmp
+0752 (light green / slow monster)      : obj\b_lgreen.bmp
+0753 (dark green / wizard lock)        : obj\b_dgreen.bmp
+0754 (turquoise / create monster)      : obj\b_turq.bmp
+0755 (cyan / detect food)              : obj\b_cyan.bmp
+0756 (light blue / cause fear)         : obj\b_lblue.bmp
+0757 (dark blue / clairvoyance)        : obj\b_dblue.bmp
+0758 (indigo / cure sickness)          : obj\b_indigo.bmp
+0759 (magenta / charm monster)         : obj\b_wrink.bmp
+0760 (purple / haste self)             : obj\b_purple.bmp
+0761 (violet / detect unseen)          : obj\b_violet.bmp
+0762 (tan / levitation)                : obj\b_tan.bmp
+0763 (plaid / extra healing)           : obj\b_plaid.bmp
+0764 (light brown / restore ability)   : obj\b_lbrown.bmp
+0765 (dark brown / invisibility)       : obj\b_dbrown.bmp
+0766 (gray / detect treasure)          : obj\b_gray.bmp
+0767 (wrinkled / remove curse)         : obj\b_wrink.bmp
+0768 (dusty / magic mapping)           : obj\b_dusty.bmp
+0769 (bronze / identify)               : obj\b_bronze.bmp
+0770 (copper / turn undead)            : obj\b_copper.bmp
+0771 (silver / polymorph)              : obj\b_silver.bmp
+0772 (gold / teleport away)            : obj\b_gold.bmp
+0773 (glittering / create familiar)    : obj\b_gliter.bmp
+0774 (shining / cancellation)          : obj\b_shine.bmp
+0775 (dull / protection)               : obj\b_dull.bmp
+0776 (thin / jumping)                  : obj\b_thin.bmp
+0779 (thick / stone to flesh)          : obj\b_thick.bmp
+0780 (plain / blank paper)             : obj\b_blank.bmp
+0781 (papyrus / Book of the Dead)      : obj\b_dead.bmp
+#wands
+0782 (glass / light)                    : obj\w_glass.bmp
+0783 (balsa / secret door detection)    : obj\w_balsa.bmp
+0784 (crystal / enlightenment)          : obj\w_crys.bmp
+0785 (maple / create monster)           : obj\w_maple.bmp
+0786 (pine / wishing)                   : obj\w_pine.bmp
+0787 (oak / nothing)                    : obj\w_oak.bmp
+0788 (ebony / striking)                 : obj\w_ebony.bmp
+0789 (marble / make invisible)          : obj\w_marble.bmp
+0790 (tin / slow monster)               : obj\w_tin.bmp
+0791 (brass / speed monster)            : obj\w_brass.bmp
+0792 (copper / undead turning)          : obj\w_copper.bmp
+0793 (silver / polymorph)               : obj\w_silver.bmp
+0794 (platinum / cancellation)          : obj\w_platin.bmp
+0795 (iridium / teleportation)          : obj\w_irid.bmp
+0796 (zinc / opening)                   : obj\w_zinc.bmp
+0797 (aluminum / locking)               : obj\w_alum.bmp
+0798 (uranium / probing)                : obj\w_uran.bmp
+0799 (iron / digging)                   : obj\w_iron.bmp
+0800 (steel / magic missile)            : obj\w_steel.bmp
+0801 (hexagonal / fire)                 : obj\w_hex.bmp
+0802 (short / cold)                     : obj\w_short.bmp
+0803 (runed / sleep)                    : obj\w_runed.bmp
+0804 (long / death)                     : obj\w_long.bmp
+0805 (curved / lightning)               : obj\w_curved.bmp
+0806 (forked)                           : obj\w_forked.bmp
+0807 (spiked)                           : obj\w_spiked.bmp
+0808 (jeweled)                          : obj\w_jewel.bmp
+# money                                 
+0809 (gold piece) : obj\gold.bmp
+# glass, and a few gems
+0810 (white / dilithium crystal)                  : obj\g_white.bmp
+0811 (white / diamond)                            : obj\g_white.bmp
+0812 (red / ruby)                                 : obj\g_red.bmp
+0813 (orange / jacinth)                           : obj\g_orange.bmp
+0814 (blue / sapphire)                            : obj\g_blue.bmp
+0815 (black / black opal)                         : obj\g_black.bmp
+0816 (green / emerald)                            : obj\g_green.bmp
+0817 (green / turquoise)                          : obj\g_green.bmp
+0818 (yellow / citrine)                           : obj\g_yellow.bmp
+0819 (green / aquamarine)                         : obj\g_green.bmp
+0820 (yellowish brown / amber)                    : obj\g_yb.bmp
+0821 (yellowish brown / topaz)                    : obj\g_yb.bmp
+0822 (black / jet)                                : obj\g_black.bmp
+0823 (white / opal)                               : obj\g_white.bmp
+0824 (yellow / chrysoberyl)                       : obj\g_yellow.bmp
+0825 (red / garnet)                               : obj\g_red.bmp
+0826 (violet / amethyst)                          : obj\g_violet.bmp
+0827 (red / jasper)                               : obj\g_red.bmp
+0828 (violet / fluorite)                          : obj\g_violet.bmp
+0829 (black / obsidian)                           : obj\g_black.bmp
+0830 (orange / agate)                             : obj\g_orange.bmp
+0831 (green / jade)                               : obj\g_green.bmp
+0832 (white / worthless piece of white glass)     : obj\g_white.bmp
+0833 (blue / worthless piece of blue glass)       : obj\g_blue.bmp
+0834 (red / worthless piece of red glass)         : obj\g_red.bmp
+0835 (yellowish brown / worthless piece of yellowish brown glass) : obj\g_yb.bmp
+0836 (orange / worthless piece of orange glass)   : obj\g_orange.bmp
+0837 (yellow / worthless piece of yellow glass)   : obj\g_yellow.bmp
+0838 (black / worthless piece of black glass)     : obj\g_black.bmp
+0839 (green / worthless piece of green glass)     : obj\g_green.bmp
+0840 (violet / worthless piece of violet glass)   : obj\g_violet.bmp
+# rocks
+0841 (gray / luckstone) : obj\g_stone.bmp
+0842 (gray / loadstone) : obj\g_stone.bmp
+0843 (gray / flint)     : obj\g_stone.bmp
+0844 (rock)             : obj\g_rock.bmp
+# other
+0845 (boulder) : obj\boulder.bmp
+0846 (statue) : obj\statue.bmp
+0847 (heavy iron ball) : obj\ball.bmp
+0848 (iron chain) : obj\chain.bmp
+0849 (splash of venom / blinding venom) : obj\venom.bmp
+0850 (splash of venom / acid venom) : obj\venom.bmp
+# terrain
+0852 (dark part of a room) : etc\blank.bmp
+0853 (wall) : etc\wall11.bmp
+0854 (wall) : etc\wall12.bmp
+0855 (wall) : etc\wall13.bmp
+0856 (wall) : etc\wall14.bmp
+0857 (wall) : etc\wall15.bmp
+0858 (wall) : etc\wall16.bmp
+0859 (wall) : etc\wall17.bmp
+0860 (wall) : etc\wall18.bmp
+0861 (wall) : etc\wall19.bmp
+0862 (wall) : etc\wall1a.bmp
+0863 (wall) : etc\wall1b.bmp
+0864 (doorway)     : etc\doorway.bmp
+0865 (open door)   : etc\odoor1.bmp
+0866 (open door)   : etc\odoor2.bmp
+0867 (closed door) : etc\cdoor1.bmp
+0868 (closed door) : etc\cdoor2.bmp
+0869 (iron bars)       : etc\bars.bmp
+0870 (tree)            : etc\tree.bmp
+0871 (floor of a room) : etc\floor.bmp
+0872 (corridor)        : etc\corr.bmp
+0873 (lit corridor)    : etc\litcorr.bmp
+0874 (staircase up)    : etc\stairsu.bmp
+0875 (staircase down)  : etc\stairsd.bmp
+0876 (ladder up)       : etc\ladderu.bmp
+0877 (ladder down)     : etc\ladderd.bmp
+0878 (altar)           : etc\altar.bmp
+0879 (grave)           : etc\grave.bmp
+0880 (opulent throne)  : etc\throne.bmp
+0881 (sink)            : etc\sink.bmp
+0882 (fountain)        : etc\fountain.bmp
+0883 (water)           : etc\water.bmp
+0884 (ice)             : etc\ice.bmp
+0885 (molten lava)     : etc\lava.bmp
+0886 (lowered drawbridge) : etc\bridged1.bmp
+0887 (lowered drawbridge) : etc\bridged2.bmp
+0888 (raised drawbridge)  : etc\bridgeu1.bmp
+0889 (raised drawbridge)  : etc\bridgeu2.bmp
+0890 (air) : etc\air.bmp
+0891 (cloud) : etc\cloud.bmp
+0892 (water) : etc\water2.bmp
+0893 (arrow trap)            : etc\t_arrow.bmp
+0894 (dart trap)             : etc\t_dart.bmp
+0895 (falling rock trap)     : etc\t_rock.bmp
+0896 (squeaky board)         : etc\t_board.bmp
+0897 (bear trap)             : etc\t_bear.bmp
+0898 (land mine)             : etc\t_mine.bmp
+0899 (rolling boulder trap)  : etc\t_roll.bmp
+0900 (sleeping gas trap)     : etc\t_sleep.bmp
+0901 (rust trap)             : etc\t_rust.bmp
+0902 (fire trap)             : etc\t_fire.bmp
+0903 (pit)                   : etc\t_pit.bmp
+0904 (spiked pit)            : etc\t_spiked.bmp
+0905 (hole)                  : etc\t_hole.bmp
+0906 (trap door)             : etc\t_door.bmp
+0907 (teleportation trap)    : etc\t_port.bmp
+0908 (level teleporter)      : etc\t_lport.bmp
+0909 (magic portal)          : etc\t_portal.bmp
+0910 (web)                   : etc\t_web.bmp
+0911 (statue trap)           : etc\t_statue.bmp
+0912 (magic trap)            : etc\t_magic.bmp
+0913 (anti-magic trap field) : etc\t_amagic.bmp
+0914 (polymorph trap)        : etc\t_morph.bmp
+0915 (wall) : etc\blank.bmp
+0916 (wall) : etc\blank.bmp
+0917 (wall) : etc\blank.bmp
+0918 (wall) : etc\blank.bmp
+0919 (cmap 67) : etc\cmap_67.bmp
+0920 (cmap 68) : etc\cmap_68.bmp
+0921 (cmap 69) : etc\cmap_69.bmp
+0922 (cmap 70) : etc\cmap_70.bmp
+0923 (cmap 71) : etc\cmap_71.bmp
+0924 (cmap 72) : etc\cmap_72.bmp
+0925 (cmap 73) : etc\cmap_73.bmp
+0926 (cmap 74) : etc\cmap_74.bmp
+0927 (cmap 75) : etc\cmap_75.bmp
+0928 (cmap 76) : etc\cmap_76.bmp
+0929 (cmap 77) : etc\cmap_77.bmp
+0930 (cmap 78) : etc\cmap_78.bmp
+0931 (cmap 79) : etc\cmap_79.bmp
+0932 (cmap 80) : etc\cmap_80.bmp
+0933 (cmap 81) : etc\cmap_81.bmp
+0934 (cmap 82) : etc\cmap_82.bmp
+0935 (cmap 83) : etc\boom1.bmp
+0936 (cmap 84) : etc\boom2.bmp
+0937 (cmap 85) : etc\boom3.bmp
+0938 (cmap 86) : etc\boom4.bmp
+0939 (cmap 87) : etc\boom5.bmp
+0940 (cmap 88) : etc\boom6.bmp
+0941 (cmap 89) : etc\boom7.bmp
+0942 (cmap 90) : etc\boom8.bmp
+0943 (cmap 91) : etc\boom9.bmp
+0944 (zap 0 0) : etc\zap00.bmp
+0945 (zap 0 1) : etc\zap01.bmp
+0946 (zap 0 2) : etc\zap02.bmp
+0947 (zap 0 3) : etc\zap03.bmp
+0948 (zap 1 0) : etc\zap10.bmp
+0949 (zap 1 1) : etc\zap11.bmp
+0950 (zap 1 2) : etc\zap12.bmp
+0951 (zap 1 3) : etc\zap13.bmp
+0952 (zap 2 0) : etc\zap20.bmp
+0953 (zap 2 1) : etc\zap21.bmp
+0954 (zap 2 2) : etc\zap22.bmp
+0955 (zap 2 3) : etc\zap23.bmp
+0956 (zap 3 0) : etc\zap30.bmp
+0957 (zap 3 1) : etc\zap31.bmp
+0958 (zap 3 2) : etc\zap32.bmp
+0959 (zap 3 3) : etc\zap33.bmp
+0960 (zap 4 0) : etc\zap40.bmp
+0961 (zap 4 1) : etc\zap41.bmp
+0962 (zap 4 2) : etc\zap42.bmp
+0963 (zap 4 3) : etc\zap43.bmp
+0964 (zap 5 0) : etc\zap50.bmp
+0965 (zap 5 1) : etc\zap51.bmp
+0966 (zap 5 2) : etc\zap52.bmp
+0967 (zap 5 3) : etc\zap53.bmp
+0968 (zap 6 0) : etc\zap60.bmp
+0969 (zap 6 1) : etc\zap61.bmp
+0970 (zap 6 2) : etc\zap62.bmp
+0971 (zap 6 3) : etc\zap63.bmp
+0972 (zap 7 0) : etc\zap70.bmp
+0973 (zap 7 1) : etc\zap71.bmp
+0974 (zap 7 2) : etc\zap72.bmp
+0975 (zap 7 3) : etc\zap73.bmp
+0976 (sub mine walls 0)  : etc\wall21.bmp
+0977 (sub mine walls 1)  : etc\wall22.bmp
+0978 (sub mine walls 2)  : etc\wall23.bmp
+0979 (sub mine walls 3)  : etc\wall24.bmp
+0980 (sub mine walls 4)  : etc\wall25.bmp
+0981 (sub mine walls 5)  : etc\wall26.bmp
+0982 (sub mine walls 6)  : etc\wall27.bmp
+0983 (sub mine walls 7)  : etc\wall28.bmp
+0984 (sub mine walls 8)  : etc\wall29.bmp
+0985 (sub mine walls 9)  : etc\wall2a.bmp
+0986 (sub mine walls 10) : etc\wall2b.bmp
+0987 (sub gehennom walls 0)  : etc\wall31.bmp
+0988 (sub gehennom walls 1)  : etc\wall32.bmp
+0989 (sub gehennom walls 2)  : etc\wall33.bmp
+0990 (sub gehennom walls 3)  : etc\wall34.bmp
+0991 (sub gehennom walls 4)  : etc\wall35.bmp
+0992 (sub gehennom walls 5)  : etc\wall36.bmp
+0993 (sub gehennom walls 6)  : etc\wall37.bmp
+0994 (sub gehennom walls 7)  : etc\wall38.bmp
+0995 (sub gehennom walls 8)  : etc\wall39.bmp
+0996 (sub gehennom walls 9)  : etc\wall3a.bmp
+0997 (sub gehennom walls 10) : etc\wall3b.bmp
+0998 (sub knox walls 0)  : etc\wall41.bmp
+0999 (sub knox walls 1)  : etc\wall42.bmp
+1000 (sub knox walls 2)  : etc\wall43.bmp
+1001 (sub knox walls 3)  : etc\wall44.bmp
+1002 (sub knox walls 4)  : etc\wall45.bmp
+1003 (sub knox walls 5)  : etc\wall46.bmp
+1004 (sub knox walls 6)  : etc\wall47.bmp
+1005 (sub knox walls 7)  : etc\wall48.bmp
+1006 (sub knox walls 8)  : etc\wall49.bmp
+1007 (sub knox walls 9)  : etc\wall4a.bmp
+1008 (sub knox walls 10) : etc\wall4b.bmp
+1009 (sub sokoban walls 0)  : etc\wall41.bmp
+1010 (sub sokoban walls 1)  : etc\wall42.bmp
+1011 (sub sokoban walls 2)  : etc\wall43.bmp
+1012 (sub sokoban walls 3)  : etc\wall44.bmp
+1013 (sub sokoban walls 4)  : etc\wall45.bmp
+1014 (sub sokoban walls 5)  : etc\wall46.bmp
+1015 (sub sokoban walls 6)  : etc\wall47.bmp
+1016 (sub sokoban walls 7)  : etc\wall48.bmp
+1017 (sub sokoban walls 8)  : etc\wall49.bmp
+1018 (sub sokoban walls 9)  : etc\wall4a.bmp
+1019 (sub sokoban walls 10) : etc\wall4b.bmp

@@ -1,0 +1,340 @@
+#       SCCS Id: @(#)Slayer.des 3.1     92/09/22
+#       Copyright (c) 1989 by Jean-Christophe Collet
+#       Copyright (c) 1991-2 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#       The "start" level for the quest.
+#
+#       Here you meet your (besieged) class leader, Van Helsing
+#       and receive your quest assignment.
+#
+MAZE: "Und-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+............................................................................
+............................................................................
+............................................................................
+....................------------------------------------....................
+....................|................|.....|.....|.....|....................
+....................|..------------..|--+-----+-----+--|....................
+....................|..|..........|..|.................|....................
+....................|..|..........|..|+---+---+-----+--|....................
+..................---..|..........|......|...|...|.....|....................
+..................+....|..........+......|...|...|.....|....................
+..................+....|..........+......|...|...|.....|....................
+..................---..|..........|......|...|...|.....|....................
+....................|..|..........|..|+-----+---+---+--|....................
+....................|..|..........|..|.................|....................
+....................|..------------..|--+-----+-----+--|....................
+....................|................|.....|.....|.....|....................
+....................------------------------------------....................
+............................................................................
+............................................................................
+............................................................................
+ENDMAP
+# Random Monsters
+RANDOM_MONSTERS: 'Z', 'W', 'V', 'M'
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+REGION:(24,06,33,13),lit,"temple"
+# Portal arrival point
+BRANCH:(05,04,05,04),(0,0,0,0)
+# Stairs
+STAIR:(52,09),down
+# Doors
+DOOR:locked,(18,09)
+DOOR:locked,(18,10)
+DOOR:closed,(34,09)
+DOOR:closed,(34,10)
+DOOR:closed,(40,05)
+DOOR:closed,(46,05)
+DOOR:closed,(52,05)
+DOOR:locked,(38,07)
+DOOR:closed,(42,07)
+DOOR:closed,(46,07)
+DOOR:closed,(52,07)
+DOOR:locked,(38,12)
+DOOR:closed,(44,12)
+DOOR:closed,(48,12)
+DOOR:closed,(52,12)
+DOOR:closed,(40,14)
+DOOR:closed,(46,14)
+DOOR:closed,(52,14)
+# Unattended Altar - unaligned due to conflict - player must align it.
+ALTAR:(28,09),noalign,altar
+# High Priest
+MONSTER:'@',"Van Helsing",(28,10)
+# The treasure of Van Helsing
+OBJECT:'(',"chest",(27,10)
+# knight guards for the audience chamber
+MONSTER:'@',"exterminator",(32,07)
+MONSTER:'@',"exterminator",(32,08)
+MONSTER:'@',"exterminator",(32,11)
+MONSTER:'@',"exterminator",(32,12)
+MONSTER:'@',"exterminator",(33,07)
+MONSTER:'@',"exterminator",(33,08)
+MONSTER:'@',"exterminator",(33,11)
+MONSTER:'@',"exterminator",(33,12)
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# Random traps
+TRAP:"dart",(20,09)
+TRAP:"dart",(20,10)
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Monsters on siege duty.
+MONSTER: 'M',"human mummy",(37,01)
+MONSTER: 'M',"human mummy",(37,18)
+MONSTER: 'M',"human mummy",(03,03)
+MONSTER: 'M',"human mummy",(65,04)
+MONSTER: 'M',"human mummy",(12,11)
+MONSTER: 'M',"human mummy",(60,12)
+MONSTER: 'M',"human mummy",(14,08)
+MONSTER: 'M',"human mummy",(55,00)
+MONSTER: 'M',"human mummy",(18,18)
+MONSTER: 'M',"human mummy",(59,10)
+MONSTER: 'M',"human mummy",(13,09)
+MONSTER: 'M',"human mummy",(01,17)
+ 
+#
+#       The "locate" level for the quest.
+#
+#       Here you have to locate the Crypt of Vlad to go
+#       further towards your assigned quest.
+#
+
+MAZE: "Und-loca",' '
+FLAGS: hardfloor
+# This is a kludge to init the level as a lit field.
+INIT_MAP: '.' , '.' , false , false , lit , false
+GEOMETRY:center,center
+MAP
+........................................
+........................................
+..........----------+----------.........
+..........|........|.|........|.........
+..........|........|.|........|.........
+..........|----.----.----.----|.........
+..........+...................+.........
+..........+...................+.........
+..........|----.----.----.----|.........
+..........|........|.|........|.........
+..........|........|.|........|.........
+..........----------+----------.........
+........................................
+........................................
+ENDMAP
+# Random Monsters
+RANDOM_MONSTERS: 'Z', 'W', 'V', 'M'
+# Dungeon Description
+REGION:(00,00,09,13),unlit,"morgue"
+REGION:(09,00,30,01),unlit,"morgue"
+REGION:(09,12,30,13),unlit,"morgue"
+REGION:(31,00,39,13),unlit,"morgue"
+REGION:(11,03,29,10),lit,"temple",filled,true
+# The altar inside the temple
+ALTAR:(20,07),noalign,shrine
+MONSTER:'@',"aligned priest",(20,07),noalign,hostile
+# Doors
+DOOR:locked,(10,06)
+DOOR:locked,(10,07)
+DOOR:locked,(20,02)
+DOOR:locked,(20,11)
+DOOR:locked,(30,06)
+DOOR:locked,(30,07)
+# Stairs
+# Note:  The up stairs are *intentionally* off of the map.
+STAIR:(43,05),up
+STAIR:(20,06),down
+# Non diggable walls
+NON_DIGGABLE:(10,02,30,13)
+# Objects (inside the antechambers).
+OBJECT:random,random,(14,03)
+OBJECT:random,random,(15,03)
+OBJECT:random,random,(16,03)
+OBJECT:random,random,(14,10)
+OBJECT:random,random,(15,10)
+OBJECT:random,random,(16,10)
+OBJECT:random,random,(17,10)
+OBJECT:random,random,(24,03)
+OBJECT:random,random,(25,03)
+OBJECT:random,random,(26,03)
+OBJECT:random,random,(27,03)
+OBJECT:random,random,(24,10)
+OBJECT:random,random,(25,10)
+OBJECT:random,random,(26,10)
+OBJECT:random,random,(27,10)
+# Random traps
+TRAP:random,(15,04)
+TRAP:random,(25,04)
+TRAP:random,(15,09)
+TRAP:random,(25,09)
+TRAP:random,random
+TRAP:random,random
+# No random monsters - the morgue generation will put them in.
+
+#
+#       The "goal" level for the quest.
+#
+#       Here you meet Count Dracula your nemesis monster.  You have to
+#       defeat Count Dracula in combat to gain the artifact you have
+#       been assigned to retrieve.
+#
+
+MAZE: "Und-goal", ' '
+INIT_MAP: 'L' , '.' , false , false , unlit , false
+GEOMETRY:center,center
+MAP
+.L......L.LLL.......LL....
+.LLL.......L......LL......
+LL.LL.............L.LL....
+..........................
+......................LL..
+......................LLL.
+LL........................
+.LL.......................
+.LL................LL.L...
+..LL.....L.LL.......LLL...
+.........LLL.........L....
+ENDMAP
+# Random Monsters
+RANDOM_MONSTERS: 'Z', 'W', 'V', 'M'
+# Dungeon Description
+REGION:(00,00,25,10),unlit,"ordinary"
+# Stairs
+STAIR:(20,05),up
+# Objects
+OBJECT:')',"wooden stake",(13,05),blessed,0,"The Stake of Van Helsing"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'@',"Count Dracula",(13,05)
+MONSTER:'M',"human mummy",random
+MONSTER:'M',"human mummy",random
+MONSTER:'M',"human mummy",random
+MONSTER:'M',"human mummy",random
+MONSTER:'M',"human mummy",random
+MONSTER:'M',"human mummy",random
+MONSTER:'M',random,random
+MONSTER:'M',random,random
+MONSTER:'V',"vampire",random
+MONSTER:'V',"vampire",random
+MONSTER:'V',"vampire",random
+MONSTER:'V',"vampire",random
+MONSTER:'V',random,random
+MONSTER:'V',random,random
+MONSTER:'V',random,random
+
+#
+#       The "fill" levels for the quest.
+#
+#       These levels are used to fill out any levels not occupied by specific
+#       levels as defined above. "filla" is the upper filler, between the
+#       start and locate levels, and "fillb" the lower between the locate
+#       and goal levels.
+#
+
+LEVEL: "Und-fila"
+# Random Monsters
+RANDOM_MONSTERS: 'Z', 'W', 'V', 'M'
+#
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: 'V', "vampire", random
+MONSTER: 'M', "human mummy", random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: 'V', "vampire", random
+MONSTER: 'M', "human mummy", random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: 'V', "vampire", random
+MONSTER: 'M', "human mummy", random
+
+ROOM: "morgue" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'V', "vampire", random
+MONSTER: 'M', "human mummy", random
+
+ROOM: "morgue" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+RANDOM_CORRIDORS
+
+LEVEL: "Und-filb"
+# Random Monsters
+RANDOM_MONSTERS: 'Z', 'W', 'V', 'M'
+#
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: 'M', "human mummy", random
+MONSTER: 'V', "vampire", random
+
+ROOM: "morgue" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: 'M', "human mummy", random
+MONSTER: 'V', "vampire", random
+
+ROOM: "morgue" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'M', "human mummy", random
+MONSTER: 'V', "vampire", random
+
+ROOM: "morgue" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+RANDOM_CORRIDORS

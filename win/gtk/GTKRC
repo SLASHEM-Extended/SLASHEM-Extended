@@ -1,0 +1,10 @@
+#
+#
+#
+style "text"
+{
+	fontset = "-misc-fixed-medium-r-normal--14-*-*-*-*-*-*-*"
+}
+
+widget "fixed font*GtkText" style "text"
+widget "fixed font*GtkCList" style "text"

@@ -1,0 +1,47 @@
+#
+# Storage level (#1)
+#
+
+LEVEL: "stor-3"
+
+ROOM: "ordinary", unlit, random, random, (4,4)
+NAME: "central"
+OBJECT:'(',"chest",(2,2)
+OBJECT:'/',random,(2,2)
+OBJECT:'/',random,(2,2)
+OBJECT:'(',random,(2,2)
+OBJECT:'(',random,(2,2)
+OBJECT:'(',random,(2,2)
+OBJECT:'=',random,(2,2)
+ENGRAVING:(2,2),burn,"Property of the Wizard! Do Not Touch!"
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+  
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: random, random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random, random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+MONSTER: random, random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random, random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random, random, random, hostile
+
+RANDOM_CORRIDORS

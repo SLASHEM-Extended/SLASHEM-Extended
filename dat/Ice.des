@@ -1,0 +1,292 @@
+#       SCCS Id: @(#)Ice.des       3.2     91/09/30
+#       Copyright (c) 1989 by Jean-Christophe Collet
+#       Copyright (c) 1991-2 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#       The "start" level for the quest.
+#
+#       Here you meet your (besieged) class leader, the High Ice Mage,
+#       and receive your quest assignment.
+#
+MAZE: "Ice-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIII                 IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIII  ...............  IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIII  ..             ..  IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIII  ..   IIII    .....   IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIII            ..  IIIII  .....        IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIII  ............  IIIII  ..     IIIIII   IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+III  ..            III    ..    IIIIIIIIII  IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+II  ..  IIIIIIIIIIIII  ....    IIIPPPPPPIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+II ..  IIIIIIIIIIIII  ..      IIPPP....PPPII  IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+I  .... IIIIIIIIIIII ..   ...IIPP........PPII  IIIIIIIIIIIIIIIIIIIIIIIIIIIII
+I  .....  IIIIIIIIII  .....   IIPPP....PPPII  IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+II  ...  IIIIIIIIIIII          IIIPPPPPPIII  IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+III     IIIIIIIIIIIIIIIIIIIIII  IIIIIIIII  IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII   IIIIII  IIIIIIIIIIIIIIIIIIIIII...IIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII        IIIIIIIIIIIIIIIIIIIIII.....IIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII...IIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ENDMAP
+# Random Monsters
+RANDOM_MONSTERS: 'R', 'E'
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Portal arrival point
+BRANCH:(65,16,65,16),(0,0,0,0)
+# Stairs
+STAIR:(05,12),down
+# High Ice Mage
+MONSTER:'@',"High Ice Mage",(36,11)
+# The treasure of the High Ice Mage
+OBJECT:'(',"chest",(37,11)
+# guards for the audience chamber
+MONSTER:'@',"froster",(35,10)
+MONSTER:'@',"froster",(35,11)
+MONSTER:'@',"froster",random
+MONSTER:'@',"froster",random
+MONSTER:'@',"froster",random
+MONSTER:'@',"froster",random
+MONSTER:'@',"froster",random
+MONSTER:'D',"baby white dragon",random,peaceful
+MONSTER:'D',"white dragon",random,peaceful
+MONSTER:'D',"white dragon",random,peaceful
+# Non diggable 
+NON_DIGGABLE:(00,00,75,19)
+# Random traps
+TRAP:"falling rock",random
+TRAP:"falling rock",random
+TRAP:"falling rock",random
+TRAP:"falling rock",random
+TRAP:"falling rock",random
+TRAP:"falling rock",random
+TRAP:"magic",random
+TRAP:"magic",random
+# Monsters on siege duty.
+MONSTER: 'E',"earth elemental",random,hostile
+MONSTER: 'E',"earth elemental",random,hostile
+MONSTER: 'E',"earth elemental",random,hostile
+MONSTER: 'E',"earth elemental",random,hostile
+MONSTER: 'E',"earth elemental",random,hostile
+MONSTER: 'X',"xorn",random,hostile
+MONSTER: 'X',"xorn",random,hostile
+MONSTER: 'X',"xorn",random,hostile
+MONSTER: 'X',"xorn",random,hostile
+ 
+#
+#       The "locate" level for the quest.
+#
+#       Here you have to find the stairs to go
+#       further towards your assigned quest.
+#
+
+MAZE: "Ice-loca",' '
+FLAGS: hardfloor
+INIT_MAP: '.' , ' ' , true , true , lit , false
+GEOMETRY:center,center
+MAP
+    ....                      ....    ..
+   ...                          ..     .
+  .     ......................    .     
+..   ... ........... ............  .   .
+.  ...... ......... . ......... ..  ....
+  ........ ....... ... ....... ....   ..
+........... ..... ..... ..... ......   .
+  .......... ... ....... ... ........   
+.  .......... . ......... . .........  .
+..   ......... ........... ........   ..
+  .   ..........................     .  
+   ..                             ...    
+   ....                         ....   .
+ENDMAP
+# Random Monsters
+RANDOM_MONSTERS: 'E', 'R'
+# Dungeon Description
+REGION:(00,00,39,12),lit,"ordinary"
+# Stairs
+STAIR:(48,14),up
+STAIR:(20,06),down
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:"falling rock",random
+TRAP:"falling rock",random
+TRAP:"falling rock",random
+TRAP:"falling rock",random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'E',"earth elemental",random,hostile
+MONSTER:'E',"earth elemental",random,hostile
+MONSTER:'E',"earth elemental",random,hostile
+MONSTER:'E',"earth elemental",random,hostile
+MONSTER:'E',"earth elemental",random,hostile
+MONSTER:'E',"earth elemental",random,hostile
+MONSTER:'E',"earth elemental",random,hostile
+MONSTER:'E',"earth elemental",random,hostile
+MONSTER:'E',"earth elemental",random,hostile
+MONSTER:'E',"earth elemental",random,hostile
+MONSTER:'X',"xorn",random,hostile
+MONSTER:'X',"xorn",random,hostile
+MONSTER:'X',"xorn",random,hostile
+MONSTER:'X',"xorn",random,hostile
+
+#
+#       The "goal" level for the quest.
+#
+#       Here you meet the Earth Mage, your nemesis monster.  You have
+#       to defeat him in combat to gain the artifact you have
+#       been assigned to retrieve.
+#
+
+MAZE: "Ice-goal", 'P'
+INIT_MAP: '.' , ' ' , true , true , lit , false
+GEOMETRY:center,center
+MAP
+...................................
+.....            .           ......
+...        .............        ...
+..       ...|---------|...       ..
+.       ..|--.........--|..       .
+        .|-...       ...-|.        
+       ..|...  .....  ...|..       
+       .|-..  .......  ..-|.       
+       .|...  .......  ...|.       
+       .|-..  .......  ..-|.       
+       ..|...  .....  ...|..       
+        .|-...       ...-|.        
+.       ..|--.........--|..       .
+..       ...|---------|...       ..
+...        .............        ...
+.....            .            .....
+...................................
+ENDMAP
+# Random Monsters
+RANDOM_MONSTERS: 'E', 'R'
+# Dungeon Description
+REGION:(00,00,34,16),lit,"ordinary"
+# Stairs
+# Note:  The up stairs are *intentionally* off of the map.
+STAIR:(45,10),up
+# Drawbridges
+DRAWBRIDGE:(17,02),south,closed
+DRAWBRIDGE:(17,14),north,closed
+# Objects
+OBJECT:'(',"magic whistle",(17,08),blessed,0,"The Storm Whistle"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:"falling rock",random
+TRAP:"falling rock",random
+TRAP:"falling rock",random
+TRAP:"falling rock",random
+TRAP:random,random
+TRAP:random,random
+# KMH, balance patch 2 -- all quests now have an altar
+ALTAR:(17,08),noalign,altar
+# Random monsters.
+MONSTER:'@',"Earth Mage",(17,08)
+MONSTER:'E',"earth elemental",random,hostile
+MONSTER:'E',"earth elemental",random,hostile
+MONSTER:'E',"earth elemental",random,hostile
+MONSTER:'E',"earth elemental",random,hostile
+MONSTER:'E',"earth elemental",random,hostile
+MONSTER:'E',"earth elemental",random,hostile
+MONSTER:'E',"earth elemental",random,hostile
+MONSTER:'E',"earth elemental",random,hostile
+MONSTER:'X',"xorn",random,hostile
+MONSTER:'X',"xorn",random,hostile
+MONSTER:'X',"xorn",random,hostile
+MONSTER:'X',"xorn",random,hostile
+MONSTER:'X',"xorn",random,hostile
+
+#
+#       The "fill" levels for the quest.
+#
+#       These levels are used to fill out any levels not occupied by specific
+#       levels as defined above. "filla" is the upper filler, between the
+#       start and locate levels, and "fillb" the lower between the locate
+#       and goal levels.
+#
+
+MAZE: "Ice-fila" , 'I'
+INIT_MAP: '.' , 'I' , true , true , lit, false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER: 'E', "earth elemental", random
+MONSTER: 'E', "earth elemental", random
+MONSTER: 'E', "earth elemental", random
+MONSTER: 'E', "earth elemental", random
+MONSTER: 'E', "earth elemental", random
+MONSTER: 'E', "earth elemental", random
+MONSTER: 'E', "earth elemental", random
+MONSTER: 'X', "xorn", random, hostile
+MONSTER: 'X', "xorn", random, hostile
+MONSTER: 'X', "xorn", random, hostile
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MAZE: "Ice-filb" , ' '
+INIT_MAP: '.' , ' ' , true , true , lit, false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER: 'E', "earth elemental", random
+MONSTER: 'E', "earth elemental", random
+MONSTER: 'E', "earth elemental", random
+MONSTER: 'E', "earth elemental", random
+MONSTER: 'E', "earth elemental", random
+MONSTER: 'E', "earth elemental", random
+MONSTER: 'E', "earth elemental", random
+MONSTER: 'X', "xorn", random, hostile
+MONSTER: 'X', "xorn", random, hostile
+#
+TRAP: "falling rock", random
+TRAP: "falling rock", random
+TRAP: "falling rock", random
+TRAP: "falling rock", random
+TRAP: "falling rock", random
+TRAP: random, random
+TRAP: random, random

@@ -1,0 +1,153 @@
+***************
+*** 4,15 ****
+  Macintosh port of NetHack 3.3.  Bug reports, suggestions, comments,
+  and so on, should be addressed to:
+  
+! 	To: devteam@nethack.org
+! 	Subject: Mac NetHack 3.3
+  
+  or you can use our on-line bug reporting form at
+  
+! 	http://www.nethack.org
+  
+  Please include your machine-type, system software version and other
+  relevant information (i.e. system extensions, monitor, accelerators
+--- 4,15 ----
+  Macintosh port of NetHack 3.3.  Bug reports, suggestions, comments,
+  and so on, should be addressed to:
+  
+!     To: nethack-bugs@nethack.org
+!     Subject: Mac NetHack 3.3
+  
+  or you can use our on-line bug reporting form at
+  
+!     http://www.nethack.org
+  
+  Please include your machine-type, system software version and other
+  relevant information (i.e. system extensions, monitor, accelerators
+***************
+*** 20,28 ****
+      NetHack 3.3 is packaged in a Dungeon Folder which includes:
+          NetHack - the application file itself.
+          NetHack Defaults - text file for default option settings.
+! 	license - licensing terms for nethack.
+! 	Guidebook - description of the game in long format.
+          Recover - the application to restore save files from crashed games.
+  
+      During play another file type appears:
+          Player level files (labelled "iName.n", i is a constant number,
+--- 20,31 ----
+      NetHack 3.3 is packaged in a Dungeon Folder which includes:
+          NetHack - the application file itself.
+          NetHack Defaults - text file for default option settings.
+!         license - licensing terms for nethack.
+!         Guidebook - description of the game in long format.
+          Recover - the application to restore save files from crashed games.
++     Previous versions had a large number of data files in the Dungeon
++     Folder.  These are now packaged as resources inside the application
++     file and will no longer appear in the Dungeon Folder.
+  
+      During play another file type appears:
+          Player level files (labelled "iName.n", i is a constant number,
+***************
+*** 39,83 ****
+          Player level files _not_ belonging to a game in progress.
+              Alternatively, these files may be processed by Recover,
+              which may be able to restore a save file from the level files.
+!             Old bones files and saved games.
+  
+  === Resuming a saved game
+      Double-click (or open) the desired saved game file or open NetHack
+!         and answer the "Who are you?" dialog with the player name of
+!         the saved game in the Dungeon Folder.
+  
+  === Windows
+      The Dungeon Map and Message windows are the essential windows used
+!         during window-mode play.  During tty-mode play there is only one
+!         window which displays the map, messages, lists and other info.
+!         For window-mode play, lists (e.g. the list of objects that may
+!         be wielded) and special info windows appear as needed.  Windows
+!         may be closed in the normal ways (i.e. clicking their close box,
+!         choosing 'Close' from the File menu or typing the command
+!         equivalent for 'Close', cmd-W) and the list windows may also be
+!         dismissed by hitting the space bar (or Return or Enter Keys).
+!         Hitting the ESCape key will dismiss special windows without
+!         scrolling to the end.
+  
+      The command "Reposition" on the File menu may be used to restore the
+!         the startup sizes and locations of the various windows.  The
+!         window positions are saved in a file labelled "NetHack Windows"
+!         in the appropriate preferences folder.
+  
+  === Default options
+      The following options are specific to the Macintosh port:
+      MACgraphics  - use enhanced dungeon map symbols [TRUE]
+      large_font   - use 12 point font instead of 9 point font [FALSE]
+      popup_dialog - use real dialogs for question prompts [FALSE]
+      page_wait    - display  --MORE--  after messages [TRUE]
+  
+      large_font is currently a pre-game option and has no effect
+!         after the Dungeon Map window is created.
+  
+      Default options may be set by editing the NetHack Defaults text
+!         file (possibly using SimpleText or your favorite editor).
+!         Unix(tm)-style notation is used, as in:
+!     OPTIONS=name:Arnold,time,!tombstone
+  
+      It should also be mentioned here that there are two graphic
+      interface modes available: 'mac' and 'tty'.  Choosing between
+--- 42,95 ----
+          Player level files _not_ belonging to a game in progress.
+              Alternatively, these files may be processed by Recover,
+              which may be able to restore a save file from the level files.
+!         Old bones files and saved games.
+! 
+  
+  === Resuming a saved game
+      Double-click (or open) the desired saved game file or open NetHack
+!     and answer the "Who are you?" dialog with the player name of
+!     the saved game in the Dungeon Folder.
+  
+  === Windows
+      The Dungeon Map and Message windows are the essential windows used
+!     during window-mode play.  During tty-mode play there is only one
+!     window which displays the map, messages, lists and other info.
+!     For window-mode play, lists (e.g. the list of objects that may
+!     be wielded) and special info windows appear as needed.  Windows
+!     may be closed in the normal ways (i.e. clicking their close box,
+!     choosing 'Close' from the File menu or typing the command
+!     equivalent for 'Close', cmd-W) and the list windows may also be
+!     dismissed by hitting the space bar (or Return or Enter Keys).
+!     Hitting the ESCape key will dismiss special windows without
+!     scrolling to the end.
+  
+      The command "Reposition" on the File menu may be used to restore the
+!     the startup sizes and locations of the various windows.  The
+!     window positions are saved in a file labelled "NetHack Windows"
+!     in the appropriate preferences folder.
+  
+  === Default options
+      The following options are specific to the Macintosh port:
++     background:  - black or white
+      MACgraphics  - use enhanced dungeon map symbols [TRUE]
+      large_font   - use 12 point font instead of 9 point font [FALSE]
+      popup_dialog - use real dialogs for question prompts [FALSE]
+      page_wait    - display  --MORE--  after messages [TRUE]
++     use_stone:#  - use a background pattern for the dungeon.
+  
+      large_font is currently a pre-game option and has no effect
+!     after the Dungeon Map window is created.
+  
++ 	use_stone is also a pre-game option.  The number parameter
++     specifies which pattern to use.  If the number is 0 or
++     greater than the number of available patterns, it has no
++     effect.
++         
+      Default options may be set by editing the NetHack Defaults text
+!     file (using SimpleText or your favorite editor).  The following
+!     notation is used:
+! 
+!         OPTIONS=name:Arnold,time,!tombstone
+  
+      It should also be mentioned here that there are two graphic
+      interface modes available: 'mac' and 'tty'.  Choosing between

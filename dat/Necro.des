@@ -1,0 +1,415 @@
+#	SCCS Id: @(#)Necro.des	3.1	92/07/11
+#	Copyright (c) 1992 by David Cohrs
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+# [Tom] -- the necromancer quest
+#
+MAZE: "Nec-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#
+#
+#
+#
+#
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+.LLLLLLLL...............................C...................................
+...LLLLLLLL..........................C.C.CCC................................
+....LLLLLLLLLL.........................C..CCCC..............................
+......LLLLLLLLLL......LLLLLLLLLLLLLL........CC...............CCCCC..........
+.....LLLLLLLLLLLLLL...L|----------|L.......CCCC............CCC...CC.........
+.........LLLLLLLLLLLLLL|..........|LLLL...CCCCCC..........CCC.....CCC.......
+..............LLLLLL|--|..........|--|L...C...............CC........CC......
+..........LLLLLL...L|................|...CCC...............CC......CC.......
+............LLL....L|....\...........S.....CCC............CCCC....C.........
+.............LLL...L|................|..................C.CCCCC.CCC.........
+..............LLL..L|--|..........|--|L...CC...........CCCCCCC..............
+...................LLLL|..........|LLLL...CCCCC.........C...CCC.............
+......................L|----------|L.........CCCCC......C...C...............
+......................LLLLLLLLLLLLLL..........CC............................
+.........................................CCC..................C.............
+................................C....C.....CCC..............................
+...........................CCCC........CCCCC................................
+..............................C....CCCC.....................................
+......................CCC...................................................
+............................................................................
+ENDMAP
+# Random Monsters
+RANDOM_MONSTERS: 'B', 'i'
+# Dungeon Description
+REGION:(00,00,75,19),unlit,"ordinary"
+#REGION:(35,00,49,03),unlit,"ordinary"
+#REGION:(43,12,49,16),unlit,"ordinary"
+#REGION:(19,11,33,15),unlit,"ordinary",unfilled,true
+#REGION:(30,10,31,10),unlit,"ordinary"
+# Stairs
+STAIR:(16,07),down
+# Portal arrival point
+BRANCH:(63,06,63,06),(0,0,0,0)
+# Doors
+MONSTER:'@',"the Dark Lord",(25,08)
+# The treasure of Wizard of Balance
+OBJECT:'(',"chest",(25,09)
+# apprentice guards for the audience chamber
+MONSTER:'@',"embalmer",(24,07)
+MONSTER:'@',"embalmer",(25,07)
+MONSTER:'@',"embalmer",(26,07)
+MONSTER:'@',"embalmer",(24,09)
+MONSTER:'@',"embalmer",(25,09)
+MONSTER:'@',"embalmer",(26,09)
+MONSTER:'@',"embalmer",(24,11)
+MONSTER:'@',"embalmer",(25,11)
+MONSTER:'@',"embalmer",(26,11)
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# Monsters on siege duty.
+MONSTER: 'B',"mongbat",(60,09),hostile
+MONSTER: 'B',"mongbat",(60,10),hostile
+MONSTER: 'B',"mongbat",(60,11),hostile
+MONSTER: 'B',"mongbat",(60,12),hostile
+MONSTER: 'i',"nupperibo",(60,13),hostile
+MONSTER: 'B',"mongbat",(61,10),hostile
+MONSTER: 'B',"mongbat",(61,11),hostile
+MONSTER: 'B',"mongbat",(61,12),hostile
+MONSTER: 'B',random,(35,03),hostile
+MONSTER: 'i',random,(35,17),hostile
+MONSTER: 'B',random,(36,17),hostile
+MONSTER: 'B',random,(34,16),hostile
+MONSTER: 'i',random,(34,17),hostile
+MONSTER: 'B',random,(10,19),hostile
+ 
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to find the Entrance to the Tower of Darkness to go
+#	further towards your assigned quest.
+#
+
+MAZE: "Nec-loca",' '
+FLAGS: hardfloor
+GEOMETRY:center,center
+MAP
+                                                                           
+                           .....                                           
+                         .........              .............              
+                       ............           .................            
+                     ..............        .......................         
+     ...CC..       .................       .......................         
+  ....C.......C    ..L...L..LLL.....        ......................         
+  ..............   LLL.......LLL.....         ....................         
+ ......L..L.....  ...................L       .....................         
+ ............L..CC................L..L        ..................           
+  ..............   .................L          ..................          
+  ....L..L.....     ......C.C.......L              ..............          
+    ........L..             ..CCC...       CCC....   ...........           
+   ...   .....                  .C.C..C....C........     ........         
+   ...                              .C..CCC...C.........  --S--            
+  ....                                 ........................            
+  .....                                 ......C.C............              
+   ....                                     ..................             
+                                                    ........               
+                                                                           
+                                                                          
+ENDMAP
+# Random Monsters
+RANDOM_MONSTERS: '&', 'i'
+# Dungeon Description
+REGION:(00,00,66,20),unlit,"ordinary"
+# Stairs
+STAIR:(03,17),up
+STAIR:(54,05),down
+# Non diggable walls
+NON_DIGGABLE:(00,00,66,20)
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"magic",random
+TRAP:"dart",random
+TRAP:"dart",random
+TRAP:"dart",random
+# Random monsters.
+MONSTER:'B',"mongbat",random,hostile
+MONSTER:'B',"mongbat",random,hostile
+MONSTER:'B',"mongbat",random,hostile
+MONSTER:'B',"mongbat",random,hostile
+MONSTER:'B',"mongbat",random,hostile
+MONSTER:'B',"mongbat",random,hostile
+MONSTER:'B',"mongbat",random,hostile
+MONSTER:'B',"mongbat",random,hostile
+MONSTER:'B',"mongbat",random,hostile
+MONSTER:'B',"mongbat",random,hostile
+MONSTER:'B',random,random,hostile
+MONSTER:'B',random,random,hostile
+MONSTER:'B',random,random,hostile
+MONSTER:'i',"nupperibo",random,hostile
+MONSTER:'i',"nupperibo",random,hostile
+MONSTER:'i',"nupperibo",random,hostile
+MONSTER:'i',"nupperibo",random,hostile
+MONSTER:'i',"nupperibo",random,hostile
+MONSTER:'i',"nupperibo",random,hostile
+MONSTER:'i',"nupperibo",random,hostile
+MONSTER:'i',"nupperibo",random,hostile
+MONSTER:'i',"blood imp",random,hostile
+MONSTER:'i',"blood imp",random,hostile
+MONSTER:'i',"blood imp",random,hostile
+MONSTER:'i',"blood imp",random,hostile
+MONSTER:'i',"blood imp",random,hostile
+MONSTER:'i',"blood imp",random,hostile
+MONSTER:'i',"blood imp",random,hostile
+MONSTER:'i',random,random,hostile
+MONSTER:'i',random,random,hostile
+MONSTER:'i',random,random,hostile
+MONSTER:'i',random,random,hostile
+MONSTER:'i',random,random,hostile
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Maugneshaagar, your nemesis monster.  You have to
+#	defeat Maugneshaagar in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Nec-goal", ' '
+GEOMETRY:center,center
+MAP
+                                                                            
+
+
+                   -------------                 -------------
+                   |...........|                 |...........|
+            -------|...........-------------------...........|
+            |......S...........|..|..|..|..|..|..|...........|
+            |......|...........|..|..|..|..|..|..|...........|
+            |......|...........--+--+--+--+--+--+-...........|
+            --S----|...........S.................+...........|
+            |......|...........--+--+--+--+--+--+-...........|
+            |......|...........|..|..|..|..|..|..|...........|
+            |......|...........|..|..|..|..|..|..|...........|
+            -------|...........-------------------...........|
+                   |...........|                 |...........|
+                   -------------                 -------------
+
+
+
+                                                                            
+ENDMAP
+# Random Monsters
+RANDOM_MONSTERS: 'B', 'i'
+# Dungeon Description
+REGION:(13,10,18,12),unlit,"temple"
+REGION:(13,06,18,08),lit,"ordinary"
+REGION:(20,04,30,14),unlit,"ordinary"
+REGION:(32,06,33,07),unlit,"ordinary"
+REGION:(35,06,36,07),unlit,"ordinary"
+REGION:(38,06,39,07),unlit,"ordinary"
+REGION:(41,06,42,07),unlit,"ordinary"
+REGION:(44,06,45,07),unlit,"ordinary"
+REGION:(47,06,48,07),unlit,"ordinary"
+REGION:(32,09,48,09),unlit,"ordinary"
+REGION:(32,11,33,12),unlit,"ordinary"
+REGION:(35,11,36,12),unlit,"ordinary"
+REGION:(38,11,39,12),unlit,"ordinary"
+REGION:(41,11,42,12),unlit,"ordinary"
+REGION:(44,11,45,12),unlit,"ordinary"
+REGION:(47,11,48,12),unlit,"ordinary"
+REGION:(50,04,60,14),lit,"ordinary"
+# Doors
+DOOR:locked,(19,06)
+DOOR:locked,(14,09)
+DOOR:locked,(31,09)
+DOOR:locked,(33,08)
+DOOR:locked,(36,08)
+DOOR:locked,(39,08)
+DOOR:locked,(42,08)
+DOOR:locked,(45,08)
+DOOR:locked,(48,08)
+DOOR:locked,(33,10)
+DOOR:locked,(36,10)
+DOOR:locked,(39,10)
+DOOR:locked,(42,10)
+DOOR:locked,(45,10)
+DOOR:locked,(48,10)
+DOOR:locked,(49,09)
+# Stairs
+STAIR:(55,05),up
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# The altar of Anhur.  This is not a shrine.
+ALTAR:(16,11),noalign,altar
+# Objects
+OBJECT:')',"great dagger",(16,11),blessed,0,"The Great Dagger of Glaurgnaa"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'&',"Maugneshaagar",(16,11)
+MONSTER:'B',"mongbat",random,hostile
+MONSTER:'B',"mongbat",random,hostile
+MONSTER:'B',"mongbat",random,hostile
+MONSTER:'B',"mongbat",random,hostile
+MONSTER:'&',random,random,hostile
+MONSTER:'&',random,random,hostile
+MONSTER:'&',random,random,hostile
+MONSTER:'&',random,random,hostile
+MONSTER:'&',random,random,hostile
+MONSTER:'&',random,random,hostile
+MONSTER:'&',random,random,hostile
+MONSTER:'&',random,random,hostile
+MONSTER:'&',random,random,hostile
+MONSTER:'i',"nupperibo",random,hostile
+MONSTER:'i',"nupperibo",random,hostile
+MONSTER:'i',"nupperibo",random,hostile
+MONSTER:'i',"nupperibo",random,hostile
+MONSTER:'i',"nupperibo",random,hostile
+MONSTER:'i',"nupperibo",random,hostile
+MONSTER:'i',"nupperibo",random,hostile
+MONSTER:'i',"nupperibo",random,hostile
+MONSTER:'i',"blood imp",random,hostile
+MONSTER:'i',"blood imp",random,hostile
+MONSTER:'i',"blood imp",random,hostile
+MONSTER:'i',"blood imp",random,hostile
+MONSTER:'i',"blood imp",random,hostile
+MONSTER:'i',"blood imp",random,hostile
+MONSTER:'i',"blood imp",random,hostile
+# Captive Monsters in the dungeon
+#MONSTER:'@',"rogue",(35,06),peaceful,"Pug"
+#MONSTER:'Y',"owlbear",(47,06),peaceful,asleep
+#MONSTER:'@',"wizard",(32,11),peaceful,asleep,"Newt"
+#MONSTER:'@',"Grey-elf",(44,11),peaceful
+#MONSTER:'H',"hill giant",(47,11),peaceful,asleep
+#MONSTER:'G',"gnomish wizard",(38,06),peaceful
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+LEVEL: "Nec-fila"
+# Random Monsters
+RANDOM_MONSTERS: 'B', 'i'
+#
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: 'i', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: 'i', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: 'B', "mongbat", random
+MONSTER: 'B', "mongbat", random
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'i', random, random, hostile
+MONSTER: 'B', "mongbat", random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'i', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'B', "mongbat", random
+
+RANDOM_CORRIDORS
+
+LEVEL: "Nec-filb"
+# Random Monsters
+RANDOM_MONSTERS: 'B', 'i'
+#
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: 'i', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: 'i', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: 'i', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'i', random, random, hostile
+MONSTER: 'B', "mongbat", random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'i', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'B', "mongbat", random
+
+RANDOM_CORRIDORS

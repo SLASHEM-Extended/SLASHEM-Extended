@@ -1,0 +1,1813 @@
+
+	 BEGINNER'S GUIDE TO NETHACK SOURCES
+        ---------------------- by German Martin --
+                                        german@spain.hp.com
+
+                  		   version 1.0  March '95
+
+Contents
+--------
+
+   1. About this document.
+   2. Hey, I want to modify the game!
+   3. Starting point.
+   4. The wizard mode.
+   5. Creating a new level.
+   6. Creating a new monster.
+   7. Refining your monster.
+	   7.0. The 'monst' struct.
+	   7.1. Adding a new attack type.
+	   7.2. Adding new monster's abilities.
+	   7.3. Adding a 'mextra' struct.
+   8. Creating a new object.
+	   8.0. The 'objects' array.
+	   8.1. Adding a tool.
+	   8.2. Adding a wand.
+	   8.3. Adding a potion.
+	   8.4. Adding armor/weapon.
+	   8.5. Adding a ring.
+	   8.6. Adding an amulet.
+	   8.7. Adding a spellbook.
+	   8.8. Adding food.
+   9. Creating a new room type.
+  10. Creating a new shop type.
+  11. Goodbye.
+  Apendix A. Reference Function listing
+
+
+1. About this document
+----------------------
+
+   Have you played - and enjoyed - nethack for several [ months | years ] ?
+  Do you have some cool new ideas for the game but nobody seems to hear you?
+  Do you have access to a machine with a C compiler? Have you ever programmed
+  before?
+
+   If you answered yes to the above questions then this paper can be of your
+  interest.
+
+   Around middle '94 I started to look around in the nethack sources; loving
+  the game I really wanted to add some new monsters & features, but the task
+  was quite painful. I'm not a C newbie, but 100 (actually more) source
+  files was more than I could manage: even trying to find the main() entry
+  to the code proved to be difficult. The help provided by the inlined 
+  comments is useless for the newcomer. Now, nine months later, I've learned
+  a lot about the main structures in the code: I've been able to add new
+  monsters, objects, rooms, levels and behaviours. I - not being a member of
+  the Dev Team, in case you were wondered - don't pretend to have a full
+  knowledge of the huge beast, but my objective here is to help new ideas
+  to be added to the game, not being a complete guide to the code.
+
+   So, it is quite possible that you found many things incorrect here; more
+  than possible - that is, sure - that you found many things incomplete.
+  OK, send the bug/comment/addition to me and I'd modify/add it.
+
+   Please, USE THIS AT YOUR OWN RISK. If you get nothing but frustration don't
+  flame me: I was only trying to help.
+
+   All the documentation here refers to Nethack 3.1.3 (the current official
+  version at the date this is written).
+
+
+2. Hey, I want to modify the game!
+----------------------------------
+
+   OK. You have started to play nethack last week; got an account in a Unix
+  machine and thought "Hey, I have a great idea! I'll learn C while modifying
+  this game! All I have to do is follow this cookbook!". Forget it. Unless you
+  are a reincarnation of Leonardo da Vinci you'll get nothing but a headache.
+
+   In other words, to use this info you need at last:
+
+     - Few knowledge about the OS you are running in. That is, how to edit,
+      move, create and remove files basically.
+
+     - Good knowledge of the C programming language. That is, more than the
+      printf("Hello world\n") program. This includes the C preprocessor.
+
+     - A C compiler and feel comfortable with it.
+
+     - A blessed potion of gain ability.
+
+
+3. Starting point
+-----------------
+
+   The first thing you have to do is compile the sources by yourself. You
+   don't have to understand the whole process, but surely you need to be
+   able to compile the official code and get it running before you add any-
+   thing to the game. Refer to the README file in the top directory and to
+   the Install.XXX  (XXX depending of your operating system) in /sys/XXX
+   directory.
+
+   Once you have compiled the sources successfully you are now aware of what
+   to expect.
+
+
+4. The wizard mode
+------------------
+   As you probably know, the wizard mode is a way to start nethack with a
+   few extra commands:
+
+		^E  ==  detect secret doors and traps.
+		^F  ==  do magic mapping.
+		^G  ==  create monster.
+		^I  ==  identify items in pack.
+		^O  ==  tell locations of special levels.
+		^T  ==  do intra-level teleport.
+		^V  ==  do trans-level teleport.
+		^W  ==  make wish.
+		^X  ==  show intrinsic attributes.
+
+     plus some changes for known actions: i.e. read a scroll of create
+   monster allows to specify the type of monster.
+
+   That allows you to quickly try out the new feature/change you just added.
+   To start it, just type:
+
+                nethack -u wizard -D
+
+   It should work, but take present:
+
+   - If in a unix machine you should be the correct user-id.
+   - have a look in include/config.h and search for the #define WIZARD lines;
+    maybe you need to put another name after the -u.
+
+   Throughout your process of modifying nethack you should make extensible
+   usage of this mode so better make sure it works. (As an alternative you
+   can always play a complete game to try out your new monster in the astral
+   level :-) )
+
+
+
+5. Creating a new level
+-----------------------
+
+   To create a new level is easy. In fact, it doesn't require any knowledge
+   of C: the dev team prepared it for us.
+
+   Under the "util" directory the process of creating a nethack executable
+   should have left a program called 'lev_comp' (lev_comp.exe if in MS-DOS).
+   That binary is capable of create a new special level for nethack: give it
+   a description file (named <something>.des) and it gives you a level file
+   (named <something>.lev) suitable for the nethack binary:
+
+
+            mylevel.des -----------
+                                   |
+                                __ | __
+                                \  V  /
+                              ___\___/___
+                              |         | _
+                              |lev_comp |/
+                              |         |  -----> mylevel.lev
+                              -------------
+
+   The lev_comp compiler has a manual page (have a look in the "doc" directory)
+   called 'lev_comp.6'. If you are in a unix machine a command like 
+                          nroff -man lev_comp.6 | more
+   should give you a standard formatted man page. If not... well, you should
+   have to get used to the .SH .PP etc... garbage in the file. This man page
+   shows (quite obtusely) how to create a .des file; but better than starting
+   from scratch is starting trying to understand a predefined file.
+   For example, let's view the begining of "dat/castle.des" file:
+
+	MAZE:"castle",random
+	FLAGS: noteleport
+	GEOMETRY:center,center
+	MAP
+	}}}}}}}}}.............................................}}}}}}}}}
+	}-------}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}-------}
+	}|.....|-----------------------------------------------|.....|}
+	}|.....+...............................................+.....|}
+	}-------------------------------+-----------------------------}
+	}}}}}}|........|..........+...........|.......S.S.......|}}}}}}
+	.....}|........|..........|...........|.......|.|.......|}.....
+	.....}|........------------...........---------S---------}.....
+	.....}|...{....+..........+.........\.S.................+......
+	.....}|........------------...........---------S---------}.....
+	.....}|........|..........|...........|.......|.|.......|}.....
+	}}}}}}|........|..........+...........|.......S.S.......|}}}}}}
+	}-------------------------------+-----------------------------}
+	}|.....+...............................................+.....|}
+	}|.....|-----------------------------------------------|.....|}
+	}-------}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}-------}
+	}}}}}}}}}.............................................}}}}}}}}}
+	ENDMAP
+
+   Sounds familiar? This file is the description from where the castle
+   level is created. The part showed here just sets the level aspect: a
+   drawed castle centered between mazes (note the MAZE line). 
+
+   The rest of the file puts doors, traps, objects and monsters in a random
+   or specific position (with coordinates relative to the previous map).
+
+   The man page describes the exact syntax, so if you dare you can now start
+   modifying the whole file; but let's make a very easy change and see how it
+   works: suppose you feel the soldiers at the castle are too wimpy and think
+   changing them to more difficult monsters, say minotaurs for example. So,
+   just change the lines:
+
+   MONSTER:'@',"soldier",(08,06) and subsequents
+
+   with
+
+   MONSTER:'H',"minotaur",(08,06) etc...
+
+   (Note that with this change we are chosing a specific monster. We could have
+   chosen to create monsters of a certain class, like
+
+   MONSTER:'D',RANDOM,(08,06)   # Create a random type dragon )
+
+   Save the new castle.des file and run: (from the dat directory)
+
+      ../util/lev_comp castle.des      (change the /'s with \'s if in MS-DOS)
+
+   That creates a new 'castle.lev' file in the 'dat' directory. To try it,
+   copy it to the playing directory (something like games/nethack) and start
+   a game in wizard mode. Teleport to the castle, wish for a floating eye
+   corpse and a blindfold and have a look: you should have lots of brown H's!
+
+
+   But now it is time to deal with the original subject: we wanted to added
+   a NEW level to nethack, not just modifying one. Let the castle.des alone
+   and create a newlevel.des!
+
+   For that, we have to introduce a new compiler: dgn_comp, the dungeon
+   compiler. As the lev_comp it has a manual page: dgn_comp.6. Its purpose
+   is a step ahead: it takes a file describing the complete dungeon (as a
+   collection of levels) and creates a "dungeon" file suitable for the
+   nethack binary.
+
+   The description file in question is called "dungeon.def":
+
+	DUNGEON:        "The Dungeons of Doom" "D" (25, 5)
+	ALIGNMENT:      unaligned
+	%MULDGN BRANCH: "The Gnomish Mines" @ (2, 3)
+	%REINCARNATION LEVEL:           "rogue" "R" @ (15, 4)
+	LEVEL:          "oracle" "O" @ (5, 5)
+	LEVALIGN:       neutral
+	LEVEL:          "bigroom" "B" @ (10, 3) 15
+	%MULDGN CHAINBRANCH:    "The Quest" "oracle" + (6, 2) portal
+	%MULDGN BRANCH:         "Fort Ludios" @ (18, 4) portal
+	RNDLEVEL:       "medusa" "none" @ (-5, 4) 2
+	LEVALIGN:       chaotic
+	LEVEL:          "castle" "none" @ (-1, 0)
+	CHAINBRANCH:    "Gehennom" "castle" + (0, 0) no_down
+	BRANCH:         "The Elemental Planes" @ (1, 0) no_down up
+
+   As you probably knew, there are 'levels' and branches of the main dungeon,
+   being composed of levels. The easiest thing is to add a simple level inside
+   the main dungeon: 
+
+   Suppose you created a new mylevel.des file where you define a 'mylevel' 
+   level:
+
+   MAZE:"mylevel",' '
+
+   (IMPORTANT note here: usually the file is named the same as the MAZE it
+   defines, as in castle.des, but the name for the .lev file is taken from
+   the MAZE line !!)
+
+   To add it to the main dungeon we can add a line after the bigroom one:
+
+   LEVEL:	"mylevel" "none" @ (15,2)
+
+   That is, create the 'mylevel' level randomly at 15 +-2 level deep. The 
+   level won't left bones files (the 'none' part).
+
+   And run ../util/dgn_comp dungeon.def  to get the 'dungeon' file. Copy it
+   to the game directory and try it out (wizard mode command Ctrl-O is quite
+   useful here).
+
+   If there is any error loading the new level, nethack will create a random
+   maze instead.
+
+   Finally, if we wanted to add a whole new branch to the dungeon, we will
+   put a line like:
+
+   %MULDGN BRANCH: "newbranch" @ (18, 1)
+   
+   and later on, the lines defining the levels in this new branch:
+
+   DUNGEON:        "newbranch" "S" (4,0)
+   DESCRIPTION:    mazelike
+   LEVEL:          "mylevel1" "none" @ (1, 0)
+   LEVEL:          "mylevel2" "none" @ (2, 0)
+   LEVEL:          "mylevel3" "none" @ (3, 0)
+   LEVEL:          "mylevel4" "none" @ (4, 0)
+
+
+   Now you should take a while and play around with the existing .des files
+   and become familiar with the syntax. Creating new levels and dungeon wasn't
+   difficult, was it?
+
+   Maybe this chapter covers all your needs; but if you really want 
+   exciting new emotions, read on.
+
+
+6. Creating a new monster
+-------------------------
+
+      "Beware, there will be no return! Still read? (y/n)"
+      
+   Welcome to Darkness of Mordor... This is going to be painful but the
+   reward is great: some modification could be blessed by the dev team and
+   you will reach inmortality! And anyway, modifying nethack will give you
+   even happier hours than playing it.
+
+   So, let's cope with it:
+
+   For start, you should know that there are two HUGE arrays: one defining the
+   possible monsters and the other defining the possible objects. The first
+   one is called 'mons': it's an array of 'permonst' structs defined in the
+   file monst.c, under the src directory (by the way, after this point, I'll
+   stop saying where the files are located: you should be familiar with the
+   directory structure by now). The 'permonst' struct is defined in the
+   file permonst.h, and giving it a look should give you an idea of what 
+   element of the struct is for, but, for your convenience here is an expla-
+   nation of what to put in a new entry for the mons array, i.e:
+
+
+        {"myself", S_HUMAN, 1, 10, 10, 0, 0, G_GENO | G_NOGEN,
+        { { AT_WEAP, AD_PHYS, 1, 6 }, NO_ATTK, NO_ATTK,
+          NO_ATTK, NO_ATTK, NO_ATTK },
+        WT_HUMAN, 400, PL_NSIZ, MS_HUMANOID, MZ_HUMAN, 0, 0,
+        M1_NEEDPICK | M1_HUMANOID | M1_OMNIVORE,
+        M2_HUMAN | M2_STRONG | M2_COLLECT, 0, C(HI_DOMESTIC)}
+
+   -name: ("myself") is the name for the monster.
+
+   -symbol: (S_HUMAN) is the letter used for it. The complete list is defined
+	  in the file monsym.h
+
+   -level: (1). The monster is initially created with this level.
+
+   -move rate: (10). Ranges from 0 -don't move- to 30 -really fast-.
+
+   -AC: (10). Come on! you now quite well what this is.
+
+   -magic resistance: (0). Ranges from 0 -none- to 127 -full-.
+
+   -alignment: (0). negative value means chaotic, positive lawful.
+
+   -creation/geno flags: (G_GENO | G_NOGEN) 
+	these are flags or'ded, with this meaning:
+
+        G_UNIQ          /* generated only once */
+        G_NOHELL        /* not generated in "hell" */
+        G_HELL          /* generated only in "hell" */
+        G_NOGEN         /* generated only specially */
+        G_NOCORPSE      /* no corpse left ever */
+        G_SGROUP        /* appear in small groups normally */
+        G_LGROUP        /* appear in large groups normally */
+        G_GENO          /* can be genocided */
+        G_GENOD         /* have been genocided */
+        G_EXTINCT       /* have been extinguished as
+                           population control */
+        G_FREQ          /* creation frequency mask */
+
+                 (from monsym.h)
+
+   -attack: ({ { AT_WEAP, AD_PHYS, 1, 6 }, NO_ATTK, NO_ATTK,
+           NO_ATTK, NO_ATTK, NO_ATTK },)
+      This defines how the monster attacks. This element is composed of six 
+      'attack' struct, each one being the form:
+
+	  ( attack_type, damage_type, # of dice, # of sides of each )
+
+      where attack_type is one of:
+
+        AT_NONE         /* passive monster (ex. acid blob) */
+        AT_CLAW         /* claw (punch, hit, etc.) */
+        AT_BITE         /* bite */
+        AT_KICK         /* kick */
+        AT_BUTT         /* head butt (ex. a unicorn) */
+        AT_TUCH         /* touches */
+        AT_STNG         /* sting */
+        AT_HUGS         /* crushing bearhug */
+        AT_SPIT         /* spits substance - ranged */
+        AT_ENGL         /* engulf (swallow or by a cloud) */
+        AT_BREA         /* breath - ranged */
+        AT_EXPL         /* explodes - proximity */
+        AT_GAZE         /* gaze - ranged */
+        AT_TENT         /* tentacles */
+        AT_WEAP         /* uses weapon */
+        AT_MAGC         /* uses magic spell(s) */
+
+      damage_type is one of:
+
+        AD_PHYS         /* ordinary physical */
+        AD_MAGM         /* magic missiles */
+        AD_FIRE         /* fire damage */
+        AD_COLD         /* frost damage */
+        AD_SLEE         /* sleep ray */
+        AD_DISN         /* disintegration (death ray) */
+        AD_ELEC         /* shock damage */
+        AD_DRST         /* drains str (poison) */
+        AD_ACID         /* acid damage */
+        AD_SPC1         /* for extension of buzz() */
+        AD_SPC2         /* for extension of buzz() */
+        AD_BLND         /* blinds (glowing eye) */
+        AD_STUN         /* stuns */
+        AD_SLOW         /* slows */
+        AD_PLYS         /* paralyses */
+        AD_DRLI         /* drains life levels (Vampire) */
+        AD_DREN         /* drains magic energy */
+        AD_LEGS         /* damages legs (xan) */
+        AD_STON         /* petrifies (Medusa, Cockatrice) */
+        AD_STCK         /* sticks to you (Mimic) */
+        AD_SGLD         /* steals gold (Leppie) */
+        AD_SITM         /* steals item (Nymphs) */
+        AD_SEDU         /* seduces & steals multiple items */
+        AD_TLPT         /* teleports you (Quantum Mech.) */
+        AD_RUST         /* rusts armour (Rust Monster)*/
+        AD_CONF         /* confuses (Umber Hulk) */
+        AD_DGST         /* digests opponent (trapper, etc.) */
+        AD_HEAL         /* heals opponent's wounds (nurse) */
+        AD_WRAP         /* special "stick" for eels */
+        AD_WERE         /* confers lycanthropy */
+        AD_DRDX         /* drains dexterity (Quasit) */
+        AD_DRCO         /* drains constitution */
+        AD_DRIN         /* drains intelligence (mind flayer) */
+        AD_DISE         /* confers diseases */
+        AD_DCAY         /* decays organics (Brown pudding) */
+        AD_SSEX         /* Succubus seduction (extended) */
+        AD_DETH         /* for Death only */
+        AD_PEST         /* for Pestilence only */
+        AD_FAMN         /* for Famine only */
+        AD_CLRC         /* random clerical spell */
+        AD_SPEL         /* random magic spell */
+        AD_RBRE         /* random breath weapon */
+        AD_SAMU         /* hits, may steal Amulet (Wizard) */
+        AD_CURS         /* random curse (ex. gremlin) */
+
+      and the # dice/faces sets a range of damage:
+
+           i.e:   1,6     means a possible damage between 1 and 6,
+              but 3,7     means a possible damage between 3 and 21.
+
+      So, a monster can attack six times per turn at maximum. To attack less
+      times use the 'NO_ATTACK' entry.
+
+   -weight: (WT_HUMAN). Can be one of several defines like WT_DRAGON, WT_HUMAN,
+      WT_ELF, but also a direct number can be used.
+
+   -nutritional value: (400). The title says it all.
+
+   -extension length: (PL_NSIZ). Here comes a problem...This is the size of an
+      extra struct added to the normal permonst if the monster has any. For
+      example, shopkeepers have an extra struct used to manage the shop
+      code, dogs an extra to manage taming levels, etc... For the moment
+      forget about this part.
+
+   -sounds made: (MS_HUMAN). It is one of: (from monflag.h)
+
+        MS_SILENT       /* makes no sound */
+        MS_BARK         /* if full moon, may howl */
+        MS_MEW          /* mews or hisses */
+        MS_ROAR         /* roars */
+        MS_GROWL        /* growls */
+        MS_SQEEK        /* squeaks, as a rodent */
+        MS_SQAWK        /* squawks, as a bird */
+        MS_HISS         /* hisses */
+        MS_BUZZ         /* buzzes (killer bee) */
+        MS_GRUNT        /* grunts (or speaks own language) */
+        MS_NEIGH        /* neighs, as an equine */
+        MS_WAIL         /* wails, as a tortured soul */
+        MS_GURGLE       /* gurgles, as liquid or through saliva */
+        MS_BURBLE       /* burbles (jabberwock) */
+        MS_ANIMAL       /* up to here are animal noises */
+        MS_SHRIEK       /* wakes up others */
+        MS_BONES        /* rattles bones (skeleton) */
+        MS_LAUGH        /* grins, smiles, giggles, and laughs */
+        MS_MUMBLE       /* says something or other */
+        MS_IMITATE      /* imitates others (leocrotta) */
+        MS_ORC          /* intelligent brutes */
+        MS_HUMANOID     /* generic traveling companion */
+        MS_ARREST       /* "Stop in the name of the law!" (Kops) */
+        MS_SOLDIER      /* army and watchmen expressions */
+        MS_GUARD        /* "Please drop that gold and follow me." */
+        MS_DJINNI       /* "Thank you for freeing me!" */
+        MS_NURSE        /* "Take off your shirt, please." */
+        MS_SEDUCE       /* "Hello, sailor." (Nymphs) */
+        MS_VAMPIRE      /* vampiric seduction, Vlad's exclamations */
+        MS_BRIBE        /* asks for money, or berates you */
+        MS_CUSS         /* berates (demons) or intimidates (Wiz) */
+        MS_RIDER        /* astral level special monsters */
+        MS_LEADER       /* your class leader */
+        MS_NEMESIS      /* your nemesis */
+        MS_GUARDIAN     /* your leader's guards */
+        MS_SELL         /* demand payment, complain about shoplifters */
+        MS_ORACLE       /* do a consultation */
+        MS_PRIEST       /* ask for contribution; do cleansing */
+
+
+   -physical size: (MZ_HUMAN). Is one of:
+
+        MZ_TINY         0               /* < 2' */
+        MZ_SMALL        1               /* 2-4' */
+        MZ_MEDIUM       2               /* 4-7' */
+        MZ_HUMAN        MZ_MEDIUM       /* human-sized */
+        MZ_LARGE        3               /* 7-12' */
+        MZ_HUGE         4               /* 12-25' */
+        MZ_GIGANTIC     7               /* off the scale */
+
+   -resistance conferred (randomly) when eaten: (0)
+
+        MR_FIRE         /* resists fire */
+        MR_COLD         /* resists cold */
+        MR_SLEEP        /* resists sleep */
+        MR_DISINT       /* resists disintegration */
+        MR_ELEC         /* resists electricity */
+        MR_POISON       /* resists poison */
+        MR_ACID         /* resists acid */
+        MR_STONE        /* resists petrification */
+
+   -First group of flags: (specify the monster behaviour)
+          (M1_NEEDPICK | M1_HUMANOID | M1_OMNIVORE)
+
+        M1_FLY          /* can fly or float */
+        M1_SWIM         /* can traverse water */
+        M1_AMORPHOUS    /* can flow under doors */
+        M1_WALLWALK     /* can phase thru rock */
+        M1_CLING        /* can cling to ceiling */
+        M1_TUNNEL       /* can tunnel thru rock */
+        M1_NEEDPICK     /* needs pick to tunnel */
+        M1_CONCEAL      /* hides under objects */
+        M1_HIDE         /* mimics, blends in with ceiling */
+        M1_AMPHIBIOUS   /* can survive underwater */
+        M1_BREATHLESS   /* doesn't need to breathe */
+        M1_NOEYES       /* no eyes to gaze into or blind */
+        M1_NOHANDS      /* no hands to handle things */
+        M1_NOLIMBS      /* no arms/legs to kick/wear on */
+        M1_NOHEAD       /* no head to behead */
+        M1_MINDLESS     /* has no mind--golem, zombie, mold */
+        M1_HUMANOID     /* has humanoid head/arms/torso */
+        M1_ANIMAL       /* has animal body */
+        M1_SLITHY       /* has serpent body */
+        M1_UNSOLID      /* has no solid or liquid body */
+        M1_THICK_HIDE   /* has thick hide or scales */
+        M1_OVIPAROUS    /* can lay eggs */
+        M1_REGEN        /* regenerates hit points */
+        M1_SEE_INVIS    /* can see invisible creatures */
+        M1_TPORT        /* can teleport */
+        M1_TPORT_CNTRL  /* controls where it teleports to */
+        M1_ACID         /* acidic to eat */
+        M1_POIS         /* poisonous to eat */
+        M1_CARNIVORE    /* eats corpses */
+        M1_HERBIVORE    /* eats fruits */
+        M1_OMNIVORE     /* eats both */
+        M1_METALLIVORE  /* eats metal */
+
+
+   -Second group of flags: (specify more monster behaviour)
+        (M2_HUMAN | M2_STRONG | M2_COLLECT)
+
+        M2_NOPOLY       /* players mayn't poly into one */
+        M2_UNDEAD       /* is walking dead */
+        M2_WERE         /* is a lycanthrope */
+        M2_ELF          /* is an elf */
+        M2_DWARF        /* is a dwarf */
+        M2_GIANT        /* is a giant */
+        M2_ORC          /* is an orc */
+        M2_HUMAN        /* is a human */
+        M2_DEMON        /* is a demon */
+        M2_MERC         /* is a guard or soldier */
+        M2_LORD         /* is a lord to its kind */
+        M2_PRINCE       /* is an overlord to its kind */
+        M2_MINION       /* is a minion of a deity */
+        M2_MALE         /* always male */
+        M2_FEMALE       /* always female */
+        M2_NEUTER       /* neither male nor female */
+        M2_PNAME        /* monster name is a proper name */
+        M2_HOSTILE      /* always starts hostile */
+        M2_PEACEFUL     /* always starts peaceful */
+        M2_DOMESTIC     /* can be tamed by feeding */
+        M2_WANDER       /* wanders randomly */
+        M2_STALK        /* follows you to other levels */
+        M2_NASTY        /* extra-nasty monster (more xp) */
+        M2_STRONG       /* strong (or big) monster */
+        M2_ROCKTHROW    /* throws boulders */
+        M2_GREEDY       /* likes gold */
+        M2_JEWELS       /* likes gems */
+        M2_COLLECT      /* picks up weapons and food */
+        M2_MAGIC        /* picks up magic items */
+
+   -Third group of flags: (0) (specify even more monster behaviour)
+
+        M3_WANTSAMUL    /* would like to steal the amulet */
+        M3_WANTSBELL    /* wants the bell */
+        M3_WANTSBOOK    /* wants the book */
+        M3_WANTSCAND    /* wants the candelabrum */
+        M3_WANTSARTI    /* wants the quest artifact */
+        M3_WANTSALL     /* wants any major artifact */
+        M3_WANTSALL     /* wants any major artifact */
+        M3_WAITFORU     /* waits to see you or get attacked */
+        M3_CLOSE        /* lets you close unless attacked */
+        M3_COVETOUS     /* wants something */
+        M3_WAITMASK     /* waiting... */
+
+   -symbol color: (C(HI_DOMESTIC))
+
+        C(RED), C(BROWN), C(HI_DOMESTIC), etc...
+
+            (HI_DOMESTIC is the color for a peaceful monster).
+
+   You should also follow this rules, as the glorious dev team says:
+
+  
+        Rule #1:        monsters of a given class are contiguous in the
+                        mons[] array.
+  
+        Rule #2:        monsters of a given class are presented in ascending
+                        order of strength.
+  
+        Rule #3:        monster frequency is included in the geno mask;
+                        the frequency can be from 0 to 7.  0's will also
+                        be skipped during generation.
+  
+        Rule #4:        monster subclasses (e.g. giants) should be kept
+                        together, unless it violates Rule 2.  NOGEN monsters
+                        won't violate Rule 2.
+  
+  
+
+   And that's all. As usual it is easier to begin copying an existing monster.
+   For example if you want to create a stronger centaur, get the plain one
+   and change the AC and attack part.
+
+   Now you need to recompile the whole code. Yes, you read right: the WHOLE
+   CODE. The reason is this: the mons array sets a unique number for each
+   monster used later for reference it in the array. Did you saw a 'makedefs'
+   command while compiling? It is a vital part: generates #define for each
+   monster & object. So if you look at the pm.h file:
+
+	/* This source file is generated by 'makedefs'.  Do not edit. */
+	#ifndef PM_H
+	#define PM_H
+
+	#define PM_GIANT_ANT    0
+	#define PM_KILLER_BEE   1
+	#define PM_SOLDIER_ANT  2
+	#define PM_FIRE_ANT     3
+
+   you understand now how it works: the sources can use the PM_SOMETHING
+   define to access the permonst struct of a 'something' monster without
+   knowing previously its location.
+
+   If you did set up make or ndmake correctly, make itself will take care of
+   the process of recompiling the code. Note that the *.des files are also
+   recompiled.
+
+   Now, to try out the new monster start nethack in wizard mode and wish for
+   a scroll of create monster. Read it and answer to create a 'your monster'
+   one. Voila! You now have your own monster.
+
+   IMPORTANT NOTE:
+      It is quite important to separate your own code with the appropriate
+   #ifdef, #ifndef statements. Just add the necessary #define SOMETHING 
+   line at the end of include/config.h file.
+
+
+7. Refining your monster
+-------------------------
+
+   7.0. The 'monst' struct.
+
+   From the chapter 5 you now have a monster of your own wandering through
+   the dungeons. But surely you want more action: specific objects, armor
+   or weapon for him; concrete chatting sentences, etc... How can you
+   accomplish this? read on.
+
+   Now is the moment to introduce the 'monst' structure. This struct is what
+   defines a 'concrete' monster: hps, taming status, etc... very different
+   from the 'permonst' structure, where the capabilities of all monsters of
+   a type are defined. The elements in 'monst' are defined in monst.h:
+
+   -nmon: All monsters in current level are organized in a chained list. 
+   Starting with a first monster descriptor ('fmon') you can navigate through
+   all of them, thanks to this pointer to the next monster:
+
+                    --------    --------   --------   --------
+            fmon -> | nmon ---> | nmon --->| nmon --->| nmon ---> NULL
+                    |      |    |      |   |      |   |      |
+                    | MONST|    | MONST|   | MONST|   | MONST|
+                    |  #1  |    |  #2  |   |  #3  |   |  #4  |
+                    --------    --------   --------   --------
+
+   -data: Is a pointer to the permonst structure for this monster. Obviously,
+   as the weight of a newt is permanent it doesn't make sense to keep it for
+   each concrete newt.
+
+   -m_id: unique number for a monster, asigned at creation time.
+
+   -mnum: Permanent monster index number. Number asigned by makedefs. That is,
+    the PM_NAME_OF_MONSTER #define in include file pm.h.  It is unique to this
+    type of monster.
+
+   -m_lev: Adjusted difficulty level of monster; that is, the level of a 
+   monster can have changed from the default one (experience, potions,etc...)
+
+   -malign: Alignment of this monster, relative to the player. A positive
+   number means is good to kill it.
+
+   -mx, my: Position of the monster in the level map (x,y coordinates).
+
+   -mux,muy: Position in the map where the monster thinks player is. May be
+   different from actual one due to cloack of displacement, invisibility, etc.
+
+   -mtrack: Monster track???. Used in the movement routines, but I've no clear
+    idea of what it is.
+
+   -mappearance: For mimics & the wizard. How it looks to the player.
+
+   -m_ap_type: What mappearance is describing. Is one of:
+	M_AP_NOTHING    0/*mappearance is unused --monster appears as itself */
+	M_AP_FURNITURE  1/* stairs, a door, an altar, etc. */
+	M_AP_OBJECT     2/* an object */
+	M_AP_MONSTER    3/* a monster */
+
+   -mtame: Level of tameness. If greater than 0 monster is tamed, and also
+    implies peacefulness (as it doesn't make sense a tamed monster aggresive
+    to the player).
+
+   -mspec_used: Monster's special ability attack timeout. That is, monster 
+   won't use its special ability -like dragon's breath- until this counter 
+   reaches 0.
+
+   -female: 1 = yes, 0 = no.
+   -minvis: Monster is invisible. 1 = yes, 0 = no.
+   -cham: Monster is actually a chamaleon. 1 = yes, 0 = no.
+   -mundetected: Monster is hidden (as snakes) and hasn't been detected by
+   the player. 1 = yes, 0 = no.
+   -mcan: Monster has been zapped by a wand of cancellation (or spell).
+   -mspeed: Monster extra speed. 2 bits allow 4 possibilities.
+   -mflee: Monster is currently fleeing.
+   -mfleetim: (7 bits) timeout for that fleeing.
+   -mcansee/mblinded: monster can see / timeout for blinded.
+   -mcanmove/mfrozen: monster can move / timeout for frozen.
+   -msleep: monster is sleeping.
+   -mstun: monster is stunned.
+   -mconf: monster is confused.
+   -mpeaceful: monster is peaceful.
+   -mtrapped: monster is now trapped.
+   -mleashed: leashed is applied to it.
+   -isshk: This monster is a shopkeeper. 
+   -isminion: Is a minion.
+   -isgd: is a guard.
+   -ispriest: is a priest.
+   -iswiz: is the wizard of Yendor.
+   -wormno: If a worm, this sets the number this one makes. (there can't be
+    more than 31 per level).
+   -mstrategy: Strategy to follow. (just applies to very special monsters).
+   -mtrapseen: bitmap of traps we've been trapped in.
+   -mlstmv: flag to prevent two moves at once (?). 
+   -mgold: How rich this monster is.
+   -minvent: It points to a 'obj' struct. The objects a monster has are 
+    organized in a chained list, the same as the 'monst' struct. This is
+    the beginning of that list. (obviously NULL if nothing being carried).
+   -mw: If the monster is wielding a weapon, here it is.
+   -misc_worn_check: Some obscure value for the worms code (?).
+   -weapon_check: Flag to check if monster has to get a weapon.
+   -mnamelth: Length of this monster PROPER name.
+   -mxlth: Length of the 'extra' part of the struct. It differs from monster
+    to monster. Most have any.
+   -meating: Monster is eating timeout.
+   -mextra: Allows access to the 'extra' part of the struct. Profusely used
+    with shopkeepers, for example.
+
+   
+   Uffff! I'm sure you're impressed with this big struct. Don't worry, you
+   don't have to deal with all the fields, at least at the beginning.
+
+   First thing you should have to do is answer this question: Does this monster
+   need any object or special ability not reflected in the M-FLAGS? If the 
+   answer is yes, edit the file makemon.c and look for the 'm_initweap' 
+   function.
+
+   (NOTE to UNIX users:
+
+   A few tools become invaluable in the process of looking for functions:
+
+     The 'ctags' command allows to create an index for objects; run the line
+
+		ctags *.c          (in the src directory)
+
+     this will create a 'tags' file. After that the command 'vi -t m_initweap'
+     will take you directly to the implementation of m_initweap function.
+
+     Also, the 'grep' command allows searching for a string. I.e. Wants to
+     have a look in the chamaleon code? Start looking the output for
+    		 grep -i chamaleon | more
+
+   End of NOTE)
+
+
+   The m_initweap function is where the monster gets the objects it needs. A
+   huge switch statement  (switch (mtmp->data->mlet) ) specify what it gets
+   according to its type. This is done with the 'mongets' function. (See
+   Apendix A for a complete listing of nearly 100 useful functions). 
+
+   The easiest thing to do is search for a monster similar than ours and
+   copy the code. That way shouldn't be difficult to add a known object to
+   our monster. Note the usage of rn2() function to randomize the monsters
+   armors & weapon.
+
+   Really interesting monsters will have its own armor/weapon/object or type
+   of attack (if not, you will just get variations of standard monsters:
+   tougher newts, wimpy dragons, etc...). For adding a new object have a look
+   in the next section; Now we will see how to add new attacks or behaviours:
+
+
+   7.1. Adding a new attack type.
+
+   Edit the monattk.h file. Go after AT_TENT definition (in standard 3.1.3)
+   and add a line with something like:
+
+       #define AT_HELLO    16    /* Tries to kill you saying Hello */
+
+   This will be your new attack type. Now you have to define a new damage:
+   Put this line after the AD_FAMN definition:
+
+       #define AD_HELLO	   39    /* You're saluted */
+
+
+   Now go to the src directory and edit the mhitu.c (monster-hits-user) file.
+   Inside the hitmsg() function you should add the code for your AT_HELLO
+   attack type. I.e: just add a line after 
+
+                case AT_EXPL:
+                        pline("%s explodes!", Monnam(mtmp));
+                        break;
+
+   like:
+
+                case AT_HELLO:
+                        pline("%s says hello to you!", Monnam(mtmp));
+                        break;
+
+   Here we are introducing one of the most used function: pline() to show a
+   message to the screen (see apendix A for more information).
+
+   Later on look for the mattacku() function. You will have to add more code
+   for your AT_HELLO attack inside the 'switch(mattk->aatyp)'. Easiest is to
+   add a case to the 'hand to hand' attacks.
+
+   Now look for hitmu() function. There we have to add the code for AD_HELLO.
+   I.e., after 
+
+            case AD_FAMN:
+                pline("%s reaches out, and your body shrivels.",
+                        Monnam(mtmp));
+                exercise(A_CON, FALSE);
+                morehungry(rn1(40,40));
+                /* plus the normal damage */
+                break;
+
+   add
+
+            case AD_HELLO:
+                hitmsg(mtmp, mattk);
+		make_confused(2,FALSE);
+		break;
+
+   so this new attack confuses you, a la umber hulk gaze.
+
+   That finished the editing for the mhitu.c file. Now do the same with mhitm.c
+   (monster- hits-monster), so a monster can attack another one with AT_HELLO.
+
+
+   7.2. Adding new monster's abilities
+
+   Within this chapter the method to add an action for a monster it is 
+   explained. For example, let's add the code so a monster can read a
+   remove curse scroll.
+
+   Edit the muse.c file and look for the #define MUSE_WAN_SPEED_MONSTER 7
+   line. Add a new posibility:
+
+	#define MUSE_SCR_SCARE_MONSTER 8
+
+   After that, inside the find_misc function look for:
+
+                if(obj->otyp == WAN_POLYMORPH && !mtmp->cham
+                                && monstr[(monsndx(mtmp->data))] < 6) {
+                        m.misc = obj;
+                        m.has_misc = MUSE_WAN_POLYMORPH;
+                }
+
+   and add:
+                if(obj->otyp == SCR_REMOVE_CURSE) {
+                        m.misc =obj;
+                        m.has_misc = MUSE_SCR_REMOVE_CURSE;
+                        }  
+
+   Now a monster is able to detect a remove curse scroll as a potential action.
+   Inside use_misc() we'll add the code to execute that action:
+
+   After the lines
+
+        case MUSE_WAN_POLYMORPH:
+                mzapmsg(mtmp, otmp, TRUE);
+                otmp->spe--;
+                (void) newcham(mtmp, rndmonst());
+                if (oseen) makeknown(WAN_POLYMORPH);
+                return 2;
+
+   Add
+
+        case MUSE_SCR_REMOVE_CURSE:
+                {
+                register struct obj *obj;
+                mreadmsg(mtmp,otmp);
+                pline("%s feels than someone is helping %s.",Monnam(mtmp),
+                                 mtmp->female?"her":"him");
+                if (!otmp->cursed) {
+                   for(obj=mtmp->minvent;obj;obj=obj->nobj)
+                      if (otmp->blessed || obj->owornmask ||
+                         (obj->otyp == LOADSTONE)) {
+                            if (mtmp->mconf) blessorcurse(obj,2);
+                            else uncurse(obj);
+                            }
+                }
+                if (oseen && !objects[SCR_REMOVE_CURSE].oc_name_known
+                     && !objects[SCR_REMOVE_CURSE].oc_uname)
+                     docall(otmp); /* not makeknown() */
+                m_useup(mtmp, otmp);
+                return 2;
+                }
+
+
+   7.3. Adding a 'mextra' struct.
+
+   Real interesting monster behaviour needs the definition of new variables
+   in the monst struct. For example, suppose you want to add the possibility
+   to pray to god to your new monster; good idea would be to have a timeout
+   so the monster cannot pray every two turns. So, we could just add a new
+   element to the 'struct monst' in monst.h:
+
+		long praytime;
+
+   but that way EVERY MONSTER will have that variable defined, allocating
+   four bytes although only our new monster will use it.
+
+   Instead of that define a new struct - best in your own new include file-:
+
+	struct onlymymonster {
+		long praytime;
+	};
+
+   and in the monster's definition in monst.c put 'sizeof(struct onlymymonster)'
+   as the extension length field. To refer to your new variable use this
+   contruction:
+
+		((struct onlymymonster *)&(mon)->mextra[0])->praytime
+
+		     (where mon is a pointer to a monst struct)
+
+   To abbreviate such a beast, use a #define:
+
+	#define MYMONSTER(mon)   ((struct onlymymonster *)&(mon)->mextra[0])
+
+   so we can use 
+
+	MYMONSTER(mon)->praytime
+
+   Refer to the eshk.h file for an example of using a mextra part. (the
+   code for the shopkeepers).
+
+
+8. Adding a new object
+----------------------
+
+   8.1 The 'objects' array.
+
+   In chapter 6 I introduced you the mons[] array. Now it's the turn of the
+   'objects' array. It is a collection of structs objclass, being composed
+   of these elements: (from objclass.h)
+
+   oc_name_idx: actual name of the object.
+   oc_descr_idx: How the object is described when unknown (not identified).
+   oc_uname: Description given by the user (via the Call command).
+   oc_name_known: If 1, means the actual name is always showed.
+   oc_merge: If 1, merge otherwise equal objects.
+   oc_uses_known: Full description should be given.
+   oc_magic: It is a magical object.
+   oc_charged: This object may have charges.
+   oc_unique: This object is unique (amulet of Yendor, etc...)
+   oc_nowish: The player cannot wish for it.
+   oc_big: Big object.
+   oc_dir: Is it directional? Can be:
+					   NODIR
+					   IMMEDIATE
+					   RAY
+   oc_material: What is it made of? Can be one of:
+
+	   LIQUID	WAX		VEGGY	FLESH	PAPER
+	   CLOTH	LEATHER		WOOD	BONE	DRAGON_HIDE
+	   IRON		METAL		COPPER	SILVER	GOLD
+	   PLATINUM	MITHRIL		PLASTIC	GLASS	GEMSTONE
+	   MINERAL
+
+   oc_oprop: Properties conveyed by this object, i.e.: FIRE_RES, ANTIMAGIC,
+     etc...
+
+   oc_class: object class, i.e. WEAPON_CLASS, FOOD_CLASS, etc...
+   oc_delay: Delay when using such an object.
+   oc_color: Color of the object: Can be 
+           BLACK	RED		GREEN		BROWN
+	   BLUE		MAGENTA		CYAN		GRAY
+	   NO_COLOR	ORANGE_COLORED	BRIGHT_GREEN	YELLOW
+	   BRIGHT_BLUE	BRIGHT_MAGENTA	BRIGHT_CYAN	WHITE
+
+       but also take note of this (from color.h):
+
+		#define HI_OBJ          MAGENTA
+		#define HI_METAL        CYAN
+		#define HI_COPPER       YELLOW
+		#define HI_SILVER       GRAY
+		#define HI_GOLD         YELLOW
+		#define HI_LEATHER      BROWN
+		#define HI_CLOTH        BROWN
+		#define HI_ORGANIC      BROWN
+		#define HI_WOOD         BROWN
+		#define HI_PAPER        WHITE
+		#define HI_GLASS        BRIGHT_CYAN
+		#define HI_MINERAL      GRAY
+		#define HI_ZAP          BRIGHT_BLUE
+
+   oc_prob: probability of the object. The total sum of same class objects 
+     should be 100.
+   oc_weight: its weight.
+   oc_cost: Base cost in shops. Actual price depends on charisma & hawaiian 
+     shirts.
+   oc_wsdam:
+   oc_wldam: max small/large monster damage.
+   oc_oc1:
+   oc_oc2: Flags setting the +- something to the object. Its behaviour depends
+     on the class: for a weapon oc1 is the 'to hit' bonus while oc2 is a
+     negative value; for an armor, oc1 is the enchantment level & oc2 is the
+     - (rusting, etc...); for a spellbook oc2 is the spell level.
+   oc_nutrition: food value.
+
+   But for convenience, several "#defines" have been made so adding a certain
+   class of object is more direct. i.e:
+
+#define WEAPON(name,app,kn,mg,bi,prob,wt,cost,sdam,ldam,hitbon,metal,color) OBJE
+CT( \
+                OBJ(name,app), BITS(kn,mg,1,0,0,1,0,0,bi,0,metal), 0, \
+                WEAPON_CLASS, prob, 0, \
+                wt, cost, sdam, ldam, hitbon, 0, wt, color )
+
+   allows to add a new weapon with the WEAPON macro, that sets several default
+   values common for all weapons.
+
+   There are macros for almost everything: WEAPON, FOOD, ARMOR, RING, etc...
+   Just use the one adequate in your case, keeping in mind:
+
+      - Put all common class objects together.
+      - Check the probabilities for the class.
+      - Easiest way is -as usual- copy an existing object and modify it.
+
+   Here there are some examples of entries:
+
+      ARMOR("Merlin's helm", "sharp-pointed cap", 0, 1, 0, POLYMORPH_CONTROL,
+         0, 1, 10, 50,10, 0, CLOTH, BRIGHT_BLUE)
+
+      ARMOR("sport t-shirt", NULL, 1, 0, 0, 0, 0, 0, 5, 3,10, 0, CLOTH, BLUE)
+
+      TOOL("self-compatible personal computer",NULL,1, 0, 0, 0, 0,80,  200,
+         PLASTIC, GR AY)
+
+      FOOD("hamburger",            0, 1,  8, 0, VEGGY, 300, BROWN)
+
+
+   That's all for the objects[] array. Now, depending of the class some files
+   should be touched; but first, some general recomendations:
+
+   a) Don't put your object as the first or last of its class: there are TONS
+   of code in the form:
+
+		if ( (object > FIRST_OF_CLASS_X )
+		   && (object < LAST_OF_CLASS_X ) )  
+		   {   
+			/* Assume object is of class x */
+		   }
+		   else 
+		        /* Print some strange fatal error */
+
+   b) Start with easy objects. Even better: add the object and put no effect
+   for it ---> the warning/error messages will inform you of the correct place
+   to edit.
+    Later put all the complicated things you have in mind, but start it simple.
+
+   c) There are some general functions that can be applied to all classes.
+   i.e: special effects when eating an object, cancelling it, dipping it, etc.
+   Here is a few hints for adding that:
+
+   - cancel_item() function, in zap.c, specifies what to do when cancelling.
+   - dodip() in potion.c, for special effects when dipping an object.
+   - eatspecial() in eat.c.
+   - dropy() in do.c, when dropping an object (i.e: a crysknife).
+
+   
+   8.1. Adding a tool
+
+   Your new added tool should have an effect when a)pplying it. That's defined
+   in the doapply() function, inside the apply.c file.
+   There is a huge switch depending on the object type (switch(obj->otyp));
+   note that different objects are referenced with its name in upper case; that
+   constant is generated by the makedefs command (remember?) in the onames.h
+   file. 
+
+   What a tool does when applying is defined in its 'case'; if simple the
+   code is directly put there, if not a 'use_<tool-name>' function is defined
+   above. Studying such functions is a very good exercise, as they provide
+   lots of useful functions.
+
+
+   8.2. Adding a wand
+
+   A wand must have extra code in two ocasions: engraving with it and 
+   -obviously- zapping it.
+
+   In engrave.c file we found the doengrave() function. There you should add
+   the appropiate 'case' entry and the message or code for anything you want.
+   Note the differences between directional & no directional wands.
+
+   In zap.c you should edit different functions depending also in the direc-
+   tional capability of your wand:
+
+      non-directional     --------- >  function zapnodir()
+
+      directional         --------- >  function bhitm() (wand hits monster).
+                              |---- >  function bhito() (wand hits object).
+                              |---- >  function zapyourself() (you, silly).
+
+
+   In general adding a wand it is more difficult than any other object.
+   Better start with something else.
+
+
+   8.3. Adding a potion
+
+   In this case look in file potion.c, for this functions:
+
+   peffects():  Describes what happens when potion is quaffed.
+
+   potionhit(): Describes what happens when potion hits a monster.
+
+   potionbreathe(): Potion vapors effect.
+
+   Also you'd like to edit the dodip() function where some special effects
+   can be added for dipping cases.
+
+
+   8.4. Adding armor/weapon
+
+   Unless you want some special feature, there is nothing to do.
+
+   Good place for adding code is function dmgval() in weapon.c: it adds
+   special damage bonuses for a certain weapon hitting a certain monster.
+
+
+   8.5. Adding a ring
+
+   Functions to look for in this case:
+
+   - dosinkring() in do.c. That describes the effects when dropping a ring
+    in a sink.
+
+   - Ring_on() in do_wear.c  What happens when a ring is put on.
+
+   - Ring_off_or_gone() in do_wear.c  The opposite way.
+
+   - eatring() in eat.c  Polymorphed player eats a ring.
+
+
+   8.6. Adding an amulet 
+   
+   Quite similar to rings. Edit the functions Amulet_on() & Amulet_off in
+   do_wear.c
+
+
+   8.7. Adding a spellbook 
+
+   First, in spell.c edit two functions:
+
+   study_book(): for learning a spell.
+   spelleffects(): for casting a spell.
+
+   As many spells behave like wands you may also have to edit the functions
+   bhitm(), bhito() & zapyourself() in zap.c, a la wand class.
+
+
+   8.8. Adding food
+
+   Just two functions here, both in eat.c
+
+   fprefx(): called when first bite of food.
+   fpostfx(): called when consumed food.
+
+   You should at least add the 'case' lines for the default behaviour.
+
+
+9. Creating a new room type
+---------------------------
+
+   To explain how to create a new room type, I will use an example: a clinic,
+   that is, a room full of nurses.
+
+   First of all, go to the include directory and edit the mkroom.h file. After
+   the line
+		#define TEMPLE 10
+   add
+		#define CLINIC 11
+
+   Look than then you'll have to increment the SHOPBASE & subsequents defines
+   to reflect the change, so MAXRTYPE becomes 22.
+
+   Now edit the rm.h file and after
+		Bitfield(is_cavernous_lev,1);
+
+   add
+		Bitfield(has_clinic,1);
+
+   so we can add a special message (for example an ambulance like sound) when
+   being in a level that has a clinic.
+
+   That's all for the include files. Go to the src directory and edit mkroom.c
+   Look for the mkroom() function and after the line
+		case BARRACKS:  mkzoo(BARRACKS); break;
+
+   add
+		case CLINIC:     mkzoo(CLINIC); break;
+
+   Take note that we are just adding a new non-shop room type, because the
+   previous mkshop() call if (roomtype >= SHOPBASE). We could define a 
+   complete 'mkclinic()' function (see for example mktemple) but it is quite
+   simpler to use the mkzoo() code. That function will create a room and 
+   fill it -function fill_zoo- with the appropiate monsters.
+
+   After that, we should edit the mkshop() function. Why? because in wizard
+   mode we could specify a room type to be created using the environment
+   variable SHOPTYPE. For example, if SHOPTYPE='G' starting nethack will
+   create a general shop in first level, 'Z' will create a zoo, etc... It is
+   not necessary, but certainly a good idea to add a new SHOPTYPE for our
+   new room, so we can test it quickly.
+
+   So, after 
+			if(*ep == 't' || *ep == 'T' || *ep == '\\'){
+                                mkzoo(COURT);
+                                return;
+                        }
+
+   put the following:
+
+                        if(*ep == 'c' || *ep == 'C'){
+                                mkzoo(CLINIC);
+                                return;
+                        }
+
+   Now go for the fill_zoo() itself. After
+
+	        case ZOO:
+	            goldlim = 500 * level_difficulty();
+		    break;
+
+   just add
+		case CLINIC
+		    break;
+
+   Now we have to select the monster to be created in our room. After
+
+  	#ifdef ARMY
+                    	(type == BARRACKS) ? squadmon() :
+	#endif 
+
+   Add
+			(type == CLINIC) ? &mons[PM_NURSE]:
+
+   That is, if room type is CLINIC, monster to be created is a nurse. Several
+   things to note here: you can add a more complex function -see for example,
+   the courtmon() function- to select several monsters; also look how the
+   central point of the room is selected in other cases to create a special
+   monster -for example a queen bee in a beehive-.
+
+   If you want to add objects to the room, several lines after, you'll see:
+
+                    case BARRACKS:
+                        if(!rn2(20))    /* the payroll and some loot */
+                            (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST,
+                                             sx, sy, TRUE);
+                        break;
+
+   That is, 1 in 20 make a large box or a chest. We could put something like:
+
+		    case CLINIC:
+			if(!rn2(10))
+			    (void) mksobj_at(ICE_BOX,sx,sy,TRUE);
+			break;
+
+   To create random ice boxes. It doesn't have to be a container, can be any
+   object you like.
+
+   Finally add a flag indicating that the level has a clinic:
+
+              case CLINIC:
+                  level.flags.has_clinic = 1;
+                  break;
+
+   You could now recompile and try out your new room using the SHOPTYPE 
+   variable, but it will never generated in a normal dungeon. For that, we
+   have to edit mklev.c
+
+   First, at the beginning of the clear_level_structures() function add the
+   line:
+		level.flags.has_clinic = 0;
+
+   so the flag is reset.
+
+   Later, look for the code:
+
+        if(depth(&u.uz) > 1 &&
+           depth(&u.uz) < depth(&medusa_level) &&
+           rn2(depth(&u.uz)) < 3) mkroom(SHOPBASE);
+        else if(depth(&u.uz) > 4 && !rn2(6)) mkroom(COURT);
+        else if(depth(&u.uz) > 6 && !rn2(7)) mkroom(ZOO);
+        else if(depth(&u.uz) > 8 && !rn2(5)) mkroom(TEMPLE);
+        else if(depth(&u.uz) > 9 && !rn2(5) &&
+           !(mons[PM_KILLER_BEE].geno & (G_GENOD | G_EXTINCT))) mkroom(BEEHIVE);
+        else if(depth(&u.uz) > 11 && !rn2(6)) mkroom(MORGUE);
+        else
+
+   As you can see, here is where is defined when a certain room can be genera-
+   ted: i.e. zoo's after level 6 one in 7 times, etc... So adding a line like
+   
+        if (depth(&u.uz) > 10 && !rn2(4)) mkroom(CLINIC)
+
+   will generate a clinic quite frecuently over dungeon level 10.
+
+
+   Next, edit the sounds.c file. Look for dosounds() and after
+
+	#ifdef ARMY
+	    if (level.flags.has_barracks && !rn2(200)) {
+		static const char *barracks_msg[4] = {
+			"hear blades being honed.",
+			"hear loud snoring.",
+			"hear dice being thrown.",
+			"hear General MacArthur!",
+		};
+		You(barracks_msg[rn2(3)+hallu]);
+		return;
+	    }
+	#endif /* ARMY */
+
+   add
+	#ifdef CLINIC
+	    if (level.flags.has_hospital && !rn2(200)) {
+		static const char *hospital_msg[4] = {
+			"hear something about streptococus.",
+			"smell chloroform nearby.",
+			"hear someone cursing viruses.",
+			"seem to hear Doctor Frankenstein.",
+		};
+		You(hospital_msg[rn2(3)+hallu]);
+		return;
+	    }
+	#endif /* CLINIC */
+
+   so we get a funny message randomly when having a clinic in level.
+
+   Last, edit hack.c and see check_special_room(), to add a salute to the
+   player entering a clinic:
+
+	        case CLINIC:
+                    You("enter a modern hospital.");
+                    break;
+
+   Also after
+	#ifdef ARMY
+                            case BARRACKS:
+                                level.flags.has_barracks = 0;
+                                break;
+	#endif
+
+   add
+	#ifdef CLINIC
+                            case CLINIC:
+                                level.flags.has_clinic = 0;
+                                break;
+	#endif
+
+   Last of all, edit sp_lev.c and after
+	#ifdef ARMY
+		    case BARRACKS:
+			level.flags.has_barracks = TRUE;
+			break;
+	#endif
+   add
+	#ifdef CLINIC
+		    case CLINIC:
+			level.flags.has_clinic = TRUE;
+			break;
+	#endif
+
+   inside the fill_room() function.
+
+   Recompile your code. Congratulations. You just added a new room.
+
+
+10. Creating a new shop type
+----------------------------
+
+   Along this chapter we will work to add a 'pet shop' as an example.
+
+   Adding a new shop is similar to adding a new room: we have to start with
+   the mkroom.h file. After the
+	
+		#define BOOKSHOP 20
+
+   line add 
+		#define PETSHOP 21
+
+   and increase the numbers for UNIQUESHOP, CANDLESHOP & MAXRTYPE. (of course
+   if you already added other rooms in chapter 9 put the correct number
+   accordingly).
+
+   Now edit the file shknam.c, where most of the shop code is located. First
+   thing you'll note is several 'static const char *shksomething[]' arrays;
+   those are the shopkeeper names for each type of shop. So, after the 
+   definition of shkgeneral[], add a new array with the names for our petshops:
+
+   static const char *shkpetshop[] = {
+	   "Valoo","Tisney","Jakuna",
+	   ""
+	   };
+
+   Note the array ends with a "" string. Also you should put more than 3 names,
+   but for our example is enough.
+
+   Later on the 'const struct shclass shtypes[]' array is defined. It sets
+   the shop types, with these fields:
+
+   - Name of the shop (i.e:"general store").
+   
+   - Letter that identifies this type of shop. (i.e: SCROLL_CLASS). It is
+    later used for the SHOPTYPE environment variable in wizard mode.
+
+   - % probability. Note that the total of all types should be 100, so for
+   adding a new one you'll have to low the probability of other(s).
+
+   - Object placement type:
+		D_SCATTER = normal placement.
+		D_SHOP    = shop-like placement.
+		D_TEMPLE  = temple-like placement.
+
+   - Objects sold there, prefixed with the probability of each. i.e:
+	 {{85, RING_CLASS}, {10, GEM_CLASS}, {5, AMULET_CLASS}, {0, 0}}
+
+      means: rings (85% stock), gems(10%), amulets(5%). Note the NULL pair
+      at the end.
+      Also if defining a concrete object (instead of a class) a minus sign
+      is needed, as in:
+	 {{90, WAND_CLASS}, {5, -LEATHER_GLOVES}, {5, -ELVEN_CLOAK}, {0, 0}}
+
+      Note also that the array is defined (in mkroom.h) as 5 elements long,
+      so a shop cannot stock more than 5 classes/concrete objects. (You can
+      always increase that value as an alternative, of course).
+
+   - Names array -the shksomething array-.
+
+   So, in our case put something like:
+
+   {"pet shop", VENOM_CLASS, 5, D_SHOP,
+	{{70, -FIGURINE},{20,-TRIPE_RATION},{10,-LEASH}}, shkpetshop}
+
+   meaning: create FIGURINES 70% of the time, 20% tripe rations & 10% leash.
+   Also this shop will be created if setting SHOPTYPE="." or 5% of the time
+   a shop is created. The probability of the general store should be changed
+   from 44 to 39.
+
+   And that's all. Easy, isn't it?.
+
+   Just recompile the code and check it out setting:
+
+   export SHOPTYPE=.   (or set SHOPTYPE=. depending in your OS, or unix SHELL).
+   nethack -u wizard -D
+
+
+11. Goodbye
+-----------
+
+   Hundreds of other things can be added to the game, but this is the end;
+   from here you're on your own. I hope you found this reading useful. Just 
+   some last recommendations:
+
+      1. Put lots of comments in your code. From experience, in a week or two
+        you'll forget why something was that way or the other.
+
+      2. Interchange information about new ideas in rec.games.roguelike.nethack
+        newsgroup. They can help you to refine your ideas or coming up with
+        new ones.
+
+      3. Send your modifications to the dev team (at the mail address 
+        nethack-bugs@linc.cis.upenn.edu). You can possible win inmortality.
+
+      4. Play nethack a lot.
+
+
+   Good luck and happy hacking!!
+
+
+
+		-------------------------------------
+		Apendix A. REFERENCE FUNCTION LISTING
+		-------------------------------------
+
+   For your convenience here go some interesting functions: 
+
+Monster naming functions
+------------------------
+		They all take a pointer to a monst structure as parameter and 
+		return a string:
+
+char *mon_nam(struct monst *)
+                the rust monster  it  the invisible orc  Fido
+char *l_monnam(struct monst *)
+		rust monster    it  invisible orc      dog called fido
+char *Monnam(struct monst *)
+		The rust monster    It  The invisible orc  Fido
+char *Adjmonnam(struct monst *)
+		The poor rust monster  It  The poor invisible orc The poor Fido
+char *Amonnam(struct monst *)
+		A rust monster      It  An invisible orc   Fido
+char *a_monnam(struct monst *)
+		a rust monster      it  an invisible orc   Fido
+
+
+Object naming functions
+-----------------------
+
+char *xname(struct obj *)
+		"poisoned arrow"
+char *doname(struct obj *)
+		"poisoned +0 arrow"
+char *an(struct obj *)
+		"a poisoned arrow"
+char *An(struct obj *)
+		"A poisoned arrow"
+char *The(struct obj *)
+		"The poisoned arrow"
+char *the(struct obj *)
+		"the poisoned arrow"
+char *makeplural(char *) 
+		Takes a string an pluralizes it. It is quite smart, 
+		so the "homunculus" plural becomes "humunculi", etc...
+char *makesingular(char *) 
+		Just the opposite.
+
+
+Display functions
+-----------------
+		(Please refer to the doc/window.doc file for more information).
+
+pline(char *, ...)
+		Takes the same arguments as the standard printf() function,
+		and displays the result in the screen. It is massively used
+		throughout the code.
+You(char *, ...)
+		A shorter way to display the "You do something" messages.
+		pline("You sit") is equivalent to You("sit").
+Your(char *, ...)
+		A shorter way to display the "Your something" messages.
+		pline("Your hands glow") is equivalent to Your("hands glow").
+verbalize(char *, ...)
+		It also behaves as printf(), but displays the resulting string
+		between "". It is used for sounds made by other monsters.
+impossible(char *, ...)
+		Display an error message with the "impossible:" before it.
+
+
+Several object related functions
+--------------------------------
+
+struct obj *readobjnam(char *)
+		It creates an object from a string. Mainly used in the
+		wishing routines.
+int weight(obj)
+		Returns the weight of an object. (not obvious: it can be
+		a container).
+void docall(struct obj *)
+		Ask the player to call an object.
+makeknown(obj->otyp)
+		It's not a real function, just a macro. Marks an object type
+		as identified.
+void curse(struct obj *)
+		Curses an object.
+void uncurse(struct obj *)
+		Uncurses an object.
+void bless(struct obj *)
+		Blesses an object.
+void unbless(struct obj *)
+		Unblesses an object.
+void move_object(struct obj *,int,int)
+		Move object to x,y position.
+void remove_object(struct obj *)
+		Remove object.
+void place_object(struct obj *,int,int)
+		Put object in x,y position.
+int bhito(struct obj *, struct obj *)
+		Object was hit by the effect of wand indicated in second 
+		parameter.
+void cancel_item(struct obj *)
+		Object has been hit by cancellation ray.
+
+
+Several monster related functions
+---------------------------------
+struct monst *newmonst(struct permonst *)
+		Allocs a new 'monst' struct. It doesn't add it to the chained
+		list of monsters. Tipically the process will be:
+			mtmp = newmonst(ptr->pxlth);
+			*mtmp = zeromonst; /* clear all entries in structure */
+			mtmp->nmon = fmon;
+			fmon = mtmp;
+		Shouldn't be used directly. Better use makemon().
+struct monst *makemon(struct permonst, int, int)
+		Creates a new monster in the position determined by the two
+		other parameters (x,y). It returns the newly created monst
+		struct if success, NULL otherwise.
+		The first parameter can be null; in that case a random monster
+		will be created.
+		The (x,y) position can also be 0 to indicate a random location.
+void relmon(struct monst *mon)
+		Release monster from display and monster list.
+boolean mnearto(struct monst *,xchar, xchar, boolean)
+		Put monster near (or at) location if possible. The boolean
+		parameter is for forcing another one to move. Returns 
+		1 - if a monster was moved from x, y to put mtmp at x, y
+		0 - in most cases.
+struct permonst *grow_up(struct monst *, struct monst *)
+		Monster grows up to a bigger version. The last monst struct
+		parameter is the victim, if any. If there is none it implies
+		a gain level potion.
+void mongone(struct monst *)
+		Monster dissapears. The struct is released.
+void setmangry(struct monst *)
+		Monster gets angry. If already was it, does nothing.
+boolean angry_guards(register boolean)
+		Function used to angry guards in town. The parameter just indi-
+		cate to display messages if true. Returns TRUE if any guard
+		was there.
+void pacify_guards()
+		The name says it all.
+void wake_up(struct monst *)
+		Wake up -and angry- a monster.
+void wake_nearby()
+		Wake up nearby monsters.
+void mon_to_stone(struct monst *)
+		Changes the monster into a stone monster of the same type.
+boolean monnear(struct monst *, x, y)
+		Is the square close enough for the monster to move or 
+		attack into?
+int minwater(struct monst *)
+		Check monster and water for compatibility, 0 (survived), 
+		1 (drowned)
+int rndmonnum()
+		Select a random, common monster type.
+Sounds functions
+----------------
+
+void dosounds()
+		Make a sound, depending of what is in current level (shop,
+		thrones, etc...)
+void growl(struct monst *)
+		Monster is happy.
+void yelp(struct monst *)
+		Monster is not so happy.
+void whimper(struct monst *)
+		Monster is about to die.
+void beg(struct monst *)
+		Monster begs for food.
+int domonnoise(struct monst *)
+		Do whatever sound a monster does.
+int dotalk()
+		The #chat command.
+
+		
+Monsters<->objects functions
+----------------------------
+
+int mongets(struct monst *, int)
+		It creates an object and gives it to a monster. The int is
+		the identifier of the object as defined in onames.h (created
+		by makedefs). i.e. BLUE_DRAGON_SCALE_MAIL
+void m_useup(struct monst *, struct obj *)
+		An object is consumed by a monster. The obj struct is freed.
+void mpickobj(struct monst *, struct obj *)
+		An object is picked by a monster.
+void mpickgems(struct monst *)
+		A monster picks up the gems under him.
+void mpickgold(struct monst *)
+		A monster picks up the gold under him.
+void mpickstuff(struct monst *)
+		A monster picks up things under him. What it takes it depend
+		on the M-FLAGS defined for this type of monster.
+void meatobj(struct monst *)
+		Monster eats whatever in his position. Used for gelatinous
+		cubes.
+void meatgold(struct monst *)
+		A expensive meal :-)
+boolean can_carry(struct monst *, struct obj *)
+		Returns TRUE if the monster can carry that object
+struct obj *make_corpse(struct monst *)
+		Creates a monster corpse, a "special" corpse, or nothing 
+		if it doesn't leave corpses.
+
+Shop related functions
+----------------------
+
+struct monst *shop_keeper(char rmno)
+		Returns the shopkeeper given the room number. Example of usage:
+			struct monst *shkp;
+			shkp=shop_keeper(*in_rooms(u.ux,u.uy,SHOPBASE));
+int inhishop(struct monst *)
+		Returns true if shopkeeper is in his shop.
+void mkshobj_at(const struct shclass *,int,int)
+		Make an object of the appropriate type in a shop square.
+int shkinit(const struct shclass *,struct mkroom *sroom)
+		Create a new shopkeeper in the given room.
+boolean saleable(int,struct obj *)
+		Returns TRUE if the shop -indicated by the index - stocks that
+		type of objects.
+
+Other interesting functions
+---------------------------
+
+int rn2(int x)
+		Returns a random number between 0 & x.
+		( 0 <= rn2(x) < x )
+int rnl(int x)
+		Returns a random number between 0 & x, just as rn2(), but
+		this time the player's luck affects the result: good luck
+		approaches 0, bad luck approaches x-1.
+char *getrumor(int)
+		Returns a "rumor" string. if int = 1 rumor is always true,
+		-1 means false and 0 is random.
+void exercise(int, boolean)
+		Exercise an attribute (A_INT,A_CHA,A_WIS,A_STR,A_DEX). If
+		TRUE increases, FALSE decreases.
+find_misc() 
+use_misc()
+		Both functions are used in muse.c to detect an object/action
+		that a monster can do and execute it.
+void mkroom(int)
+		Make and stock a room of a given type.
+boolean has_dnstairs(struct mkroom *)
+		Returns true if room has downstairs.
+boolean has_upstairs(struct mkroom *)
+		Returns true if room has upstairs.
+schar depth(d_level)
+		Returns the depth of a level, in floors below the surface.
+		(note levels in different dungeons can have the same depth).
+doengrave()
+		User engraves.
+int bhitm(struct monst *, struct obj *)
+		Monster was hit by the effect of wand or spell indicated
+		in second parameter.
+int zapyourself(struct obj *)
+		The name says it all: player zapped himself with wand or spell.
+void zapnodir(struct obj *)
+		Zapping a non-directional wand.
+int breaks(struct obj *, boolean)
+		Object breaks. The boolean flag indicates if object is or not
+		in the fobj chain.
+int peffects(struct obj *)
+		Function for potion quaffing effects.
+void potionhit(struct monst *, struct obj *)
+		Potion hits monster.
+void potionbreathe(struct obj *)
+		Vapors effects.
+void dosinkring(struct obj *)
+		Ring is dropped in a sink.
+void eatring(struct obj *)
+		Polymorphed player eats a ring.
+void Ring_on(struct obj *)
+		Ring effects when on.
+void Ring_off_or_gone(struct obj *,boolean)
+		Ring is removed. The boolean flag indicates if gone (stolen).
+void Amulet_on()
+void Amulet_off()
+		Similar idea, but for amulets.
+void fprefx(struct obj *)
+		Called at first bite on food.
+void fpostfx(struct obj *)
+		Called after last bite on food.
+int study_book(struct obj *)
+		Study a spellbook.
+int spelleffects(struct obj *, boolean)
+		Cast a spell. boolean flag indicates if at player himself.
+

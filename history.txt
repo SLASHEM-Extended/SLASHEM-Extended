@@ -1,0 +1,2262 @@
++------------------------------------------------------------------------+
+|                             HISTORY.TXT                                |
++------------------------------------------------------------------------+
+|                          SLASH'EM ver 0.0.4E1                          |
+|               Super Lotsa Added Stuff Hack - Extended Magic            |
+|                           A Nethack Variant                            |
+| Courtesy of Warren Cheung (wac@intergate.bc.ca) (1997,1998)            |
++------------------------------------------------------------------------+
+| Nethack is Copyright (c) Mike Stephenson, Izchak Miller  1991.         |
+| SLASH'EM and NetHack may be freely redistributed.                      |
+| See license for details.                                               |
++------------------------------------------------------------------------+
+
++------------------------+
+|Section 0.0 Today's Menu|
++------------------------+
+1.0     Yesterday's News
+2.0     Storytime
+
++----------------------------+
+|Section 1.0 Yesterday's News|
++----------------------------+
+ver 0.0.4E9/E8 fixed [June 12/1999]
+-Fixed the wand explosion bug AGAIN...typo broke the code again...(zap.c)
+-only forced rehumanization should result in possible HP loss via exhaustion
+	ie dopps should be able to consciously revert without substantial HP loss
+	?? make this proportional? Cause hpbase burn ALWAYS on forced rehum?
+-You as wax, straw, paper golems will burn (instead of rot) when hit by fire attacks.
+	(msg error)
+	Unchanging will result in death when in poly'ed golem form hit by 
+	susceptible attack. (mhitu.c)
+-genociding species while Unchanging, polymorphed into that species will kill you
+	(read.c)
+-wraiths will now leave corpses (monst.c)
+-SLASH'EM now checks SLASHEMOPTIONS, then NETHACKOPTIONS, then HACKOPTIONS
+	-will use whichever is defined in environment first
+-hpmax now should never drop below 1.
+-fixed up the wraith corpse eating code - Thanks to Chris! (eat.c)
+
+ver 0.0.4E8 [June 6/1999]
+-reworked a bit of the monster unpolymorph/polymorph code
+	-fixed up monsters using traps, self using wands not calling new poly code
+	-message order should be better for armour bursting, etc.
+-fixed ifdefs for TOURIST, YEOMAN, FIREARMS
+	- Thanks to Jake Kesinger!
+-Added some CUA conventions
+	-ctrl-Q quits
+	-ctrl-S saves
+-hitting 'esc' brings up the menu (for people who are panicking :)
+	(cmd.c)
+-cleaned up some code in uhitm.c to prevent some crashes when hitting with
+	potions.  Boomerangs should now shatter properly when wielded 
+	(uhitm.c)
+-yet another attempt to patch the keep_save code.  Doesn't really work though...I'm 
+	hoping this will stop the file bloat, but it causes lots of error messages.
+	Might consider rewriting the keep_save routines completely instead of
+	patching through the normal save routines...
+-spellbooks should no longer always come with charges labelled :)
+	(objects.c)
+-Thanks to Christian Bressler/Marvin again :)
+	-cleaner fix to wands exploding
+	-no prompt for engravings if you're literate
+	-fixed monsters in wall from exploding create monster wand
+	-wand of striking affects objects again
+ver 0.0.4E7 [May 29/1999]
+-Added fixes from Christian Bressler
+	-fixed tool selection code.  Using the '(' key to display tools, select
+	tools, etc, works properly now.
+	-liquify now displays error "cannot flow there" instead of jump there
+	-god-given minions should attack properly now
+	-correct range calculation for kicking an object off the top of a stack
+	-fixed "You hear _an_ Asmodeus reading foo"
+-artifacts are excluded again from the two-weapon code until they get fixed ...
+	either only eliminate sentient artifacts,  or something :)
+	(wield.c)
+-removed the debugging code for the spellbooks...didn't hear any problems ;B
+	(spell.c)
+-fixed god revitalising (pray.c)
+-killed by a telepathy detected monster will now show that the monster name 
+
+ver 0.0.4E6 [April 12/1999]
+-fixed up some linux related stuff.  Hopefully things will compile better now
+-wands exploding via a lightning attack (external) will also call wand_explode
+	(so be careful with those wands 'o cancellation when facing them zappy 
+	dragons :)
+-reading scrolls increases related spellcasting skill (objects.c, read.c)
+-give out less pets - will now bless objects in your inventory (pray.c)
+-zapping spell increases memory by 500 (spell.c)
+-can use the n### command to extend study time up to 300 turns - extra study == 
+	longer memory timeout (spell.c)
+-spellbooks issued now correlate to basic skill in that spell type. (weapon.c)
+-reading spellbooks "exercises" the skill.  (So even if you can't cast the spell,
+	you can study to improve your skills) (spell.c)
+-spellbooks now last for 30 full readings.  However,  they are now charged - lose
+	a charge for every reading. Uncharged spellbooks can be read,  but take 2x 
+	as long. (spell.c)
+-no longer see monster name of corpses when hallucinating (objnam.c)
+-should now work with WEAPON_SKILLS turned off 
+-fixed getting strange neutral minions (minion.c)
+-You get a 50% (+luck) chance of escaping a grab attack if you have Free Action
+	(mhitu.c)
+-stoning death messages corrected.  Is now back to "petrified by <foo> 
+	(end.c, trap.c)
+-revised the "extra message line" code. Hopefully,  bottom line updates more 
+	reliably (wintty.c)
+-time flag now works again. (botl.c)
+-made the Necromancer's random spellbook more applicable (force bolt, knock
+	magic missile, create monster, wizard lock) (u_init.c)
+-will now contract the 1st bottom line such that you get to see some of your name
+	-old bug from Nethack vanilla - try turning into a guardian naga hatchling
+	(extern.h, wintty.c, botl.c)
+-turn undead is limited to the classes that can actually turn undead :)
+	(pray.c, tech.c, extern.h)
+-larva can no longer open doors,  etc. (no more limbs,  now animal, slithy)
+	(monst.c)
+-potions hitting monsters thrown by monsters won't credit you for the kill.
+	(potion.c, dothrow.c, extern.h, mthrowu.c,  uhitm.c)
+-breaking wand of teleport will create a teleport trap 
+	(wand needs more than 2 charges) (apply.c)
+-shopkeepers are now level 24, AC -6.  One-eyed Sam has an AC of -8 now.
+-you won't notice the effects of dipping objects in potions of see invis/invis if
+	you're blind (potion.c)
+-division by zero error fixed in monster throwing/polearm code (mthrowu.c)
+-fixed vanilla Nethack bug where if you save more than 80 level files,  you get 
+	lots of "bad curs pos" errors (since you went off the screen)
+	(save.c, restore.c)
+-forgot to put frnknstn in makefile.  Frankenstein level should be fine again :)
+	(makefile)
+-engraving counts as literacy (engrave.c)
+-fixed a bug when your steed teleports without you,  and is "cloned" :)
+	(teleport.c)
+-fixed a silly bug that allowed monsters to not quite die when they should have 
+	from scroll of earth (read.c)
+-fixed some odd messages during practice (tech.c)
+-all skills can reach Grand Master/Legendary/Wizard status. Restricted can be 
+	promoted to Unskilled.  Of course,  doing such things takes lots and lots
+	of practice... (weapon.c)
+-tin smells - "smells like <specific>" when eaten before
+	"smells kind of like <general class name>" sometimes when unknown
+	"smells unfamiliar" rest of the time
+	(eat.c)
+-fixed the funny monsters shooting arrows without bow behaviour (weapon.c)
+-bullets never "persist" -- always used up after fired (dothrow.c, mthrowu.c)
+-using UPX 0.61 to compress DOS binary
+-guns akimbo mode (ie. one handed ranged weapons are now handled). This uses the 
+	'f'ire command,  and both weapons need to use the ammo in your quiver.
+	If this breaks things,  I NEED TO KNOW!!!
+	(dothrow.c, uhitm.c,  extern.h)
+-made chests, large boxes, ice boxes two handed weapons (well, they're kinda
+	bulky :)  (objects.c)
+-most bows, etc. are now bimanual (objects.c)
+-two weapon combat now calculates hits/misses for each weapon separately
+	-artifacts are no longer excluded
+	-no longer drop out of twoweapon when wielding new weapons
+	(uhitm.c)
+-submachine gun added.  Slightly heavier than the pistol,  but fires 3 bullets
+	for each pull of the trigger :) 
+	(dothrow.c, objects.txt, objects.c, mthrowu.c)
+-cleaned up dothrow.c a bit ;)  All the indents should hopefully not be as off :)
+-you are prompted whether or not to read the fortune after having the cookie
+	-literacy updated properly now (eat.c)
+-lances give +4 dmg bonus when used astride (weapon.c)
+-changed the practice message to be "You cannot increase your skill in FOO" 
+	since you can be restricted and try to practice,  etc. (weapon.c)
+-silver hating monsters won't pick up silver things (noted by Chris Bevan)  (mon.c)
+-fixed Axe of Durin giving error messages on use.  (artilist.h)
+-shopkeepers use up credit before gold for services (shk.c)
+-fixed rogue levels not being generated properly.  Level files were labelled
+	Rou-XXXXX.lev instead of Rog-XXXX.lev (rogue.des)
+-fixed Hobbit's eating hobbit corpses and not getting the aggravation (and eating 
+	human corpses and getting aggravated!) and related bugs. Creation of
+	#define is_hobbit (role.h, mondata.h)
+-max_dlb_files is now up to 400 (dlb_main.c)
+
+ver 0.0.4E5 [February 24/1999]
+-Gnomish tinkering
+-more upgrades
+	-bows and arrows
+		orcish  -> normal
+		normal <-> elven or dark elven or yumi/ya
+	-daggers - orcish -> normal -> (dark) elven <-> great
+	-axe <==> battle axe
+	-pickax <==> dwarvish mattock
+	-short swords - orish to normal to dwarvish to (dark)elven
+	-broadsword <==> elven broadsword
+	-club <==> aklys
+	-hammer <==> heavy hammer
+	-elven mithril <==>  dark elven mithril
+	-orcish chain mail <==> chain mail
+	-leather jacket -> armour <=> studded armour
+	-orcish/dwarvish cloak -> elven/oilskin 
+		<-> protection/displacement/magic resist/invis
+	-fedora <-> elven leather helm	
+	-dented pot -> orcish helm -> dwarvish <-> telepathy/brilliance
+	-dunce cap <-> cornuthaum
+	-leather gloves <-> swimming/dexterity
+	-orcish/Uruk-Hai shield <-> elven shield
+	-large shield <-> dwarvish roundshield
+	-low boots <-> high boots
+	-large box -> chest  <-> ice box
+	-C/K ration ->  food/cram ration <-> lembas wafer
+	-loadstone -> flint <-> luckstone/healthstone
+-more gun code
+	-range is now 20 regardless of strength
+-New artifact - crossbow named Hellfire (dothrow.c, artilist.h)
+	-crossbow bolts hitting monsters will explode in a ball of fire 
+	-Fire Resistance when wielded
+-pet minions/angels won't attack minions/angels/priests of same alignment 
+   (pet vs other) (dogmove.c)
+-fixed the "infinite uses out of a wand" bug ;B (zap.c)
+
+Aligned quests
+  Coded and tested (4E5):
+    Nightmare, the Beholder, and Vecna now have special quests.
+  To do:
+    Finish implementation of artifact doors.
+
+Dwarf
+  Coded and tested (4E5):
+    Now includes the Dwarf Patch by Osku Salerma <osku@iki.fi>.
+
+e gas spore
+  Coded (4E5):
+    The player is not blamed for pets killed by attacking
+    gas spores.
+
+& efreeti, dao, marid
+  Removed (4E5):
+    These existed purely as alternatives to djinn.  Since they
+    were messing up the chance of a djinni, but have no substantial
+    difference, they were removed.
+
+Disenchantment
+  Coded and tested (4E5):
+    Objects can resist this attack.
+
+Fire
+  Coded (4E5):
+    Most fire attacks will immediately destroy straw, paper,
+    and wax golems.
+
+Artifacts
+  Coded and tested (4E5):
+    Now start with nonzero charges (if appropriate).
+    Artifacts have been balanced out among the alignments and roles.
+    Added aligned quest artifacts (Eye of the Beholder, Nighthorn).
+    Added Hellfire (WAC, chaotic crossbow).
+
+kicking boots
+  Coded (4E5):
+    Kicking boots will always succeed at breaking doors.
+
+Book of the Dead
+  Coded and tested (4E5):
+    Fixed a bug that displayed "a Book of the Dead" instead
+    of "the Book of the Dead".
+
+potion of restore ability
+  Coded and tested (4E5):
+    Objects destined to unpolypile can be #dipped to stop the
+    process.
+
+potion of see invisible
+  Coded and tested (4E5):
+    Invisible objects can be #dipped to become visible.
+
+Wands
+  Coded and tested (4E5):
+    Fixed the inexhaustible wand bug.
+
+Unpolypiling
+  Coded and tested (4E5):
+    Unpolypiling now works properly.
+    Dipping in a potion of restore ability stops unpolypiling.
+
+Now Y2K compliant!  (4E5)
+
+Picking up an object from another square is "there", not "here".
+(4E5)
+
+Intrinsic AC (such as by protection) is now calculated properly.
+(4E5)
+
+Fixed a comment at the start of pray.c that incorrectly stated:
+"if you're in Gehennom, all messages come from the chaotic god".
+(4E5)
+
+Fixed a typo in dgn_comp.y, check_level() that sometimes prevented
+a valid dungeon file from compiling.  (4E5)
+
+The record file is now closed properly upon failure.  (4E5)
+
+weapon.c, enhance_weapon_skill() now properly initializes "any".
+(4E5)
+
+Pets won't pick up zero items.  (4E5)
+
+Killing a glass golem won't crash the game.  (4E5)
+
+Fixed some problems with exploding monsters.  (4E5)
+
+show_dmg() has been centralized.  (4E5)
+
+Gypsies and shopkeeper services use %ld in printf's.  (4E5)
+
+False rumor (4E5):
+  Beware of the little people.
+
+
+ver 0.0.4E4 [December 24/1998]
+-UPX is used instead of DJP as the executable compressor (makefile) - DOS port
+
+Options
+~~~~~~~
+autoquiver
+  Defaults to true.  (4E4)
+
+
+Map features
+~~~~~~~~~~~~
+trees
+  Coded and tested (4E4):
+    "Digging" is now appropriately "cutting".
+    Monsters don't leave rocks.
+
+shopkeeper services
+  Coded (4E4):
+    Removed identify requirement for some services.
+      [Requested by Nathan T Moore <nathan@cs.wm.edu>]
+    Code clean-up; spelling and grammar fixes.
+
+
+Roles
+~~~~~
+New role system (the "role patch")
+  Coded and tested (4E4):
+    The 26-letter limitation is now fixed.
+    Replaced Role_is() with Role_if(), u.role with Role_switch.
+    Quest level files and text upgraded to new system.
+    Bones and record files upgraded to new system.
+
+Barbarian
+  Coded (4E4):
+    Shouldn't get "Barbarian needs food, badly!"
+
+Gnome
+  Coded and tested (4E4):
+    Now start with only 3 weapons (1 wielded + 2 ranged)
+    instead of a half-dozen.
+
+Hobbit
+  Added (4E4).  Does NOT replace the Healer role.
+  To do:
+    Revise skills, quest locate level, quest messages.
+
+Ice Mage
+  Coded (4E4):
+    Polymorph into white dragon (not blue).
+
+Knight
+  Coded (4E4):
+    Some quest text is now appropriately delivered by window
+    instead of by pline().
+
+Necromancer
+  Coded and tested (4E4):
+    Start with wand of draining.
+
+Yeoman
+  Coded (4E4):
+    More nemesis maledictions.
+    Quest leader and guardian equipment.
+
+
+Monsters
+~~~~~~~~
+z koala
+  Coded and tested (4E4):
+    "You calm down" only when appropriate.
+
+I enchanted beast
+  Coded and tested (4E4):
+    Now works as it should.
+
+L Vecna
+  Coded and tested (4E4):
+    You can now properly offer his body parts.
+
+@ gypsy
+  Added (4E4).
+
+
+Attacks
+~~~~~~~
+Calm
+  Coded and tested (4E4):
+    "You calm down" only when appropriate.
+
+Disenchantment
+  Coded and tested (4E4):
+    Armor cancellation factor applies.
+    Removes positive enchantments from weapon/armor.
+
+Kicking
+  Coded and tested (4E4):
+    Damage calculations are now more consistent with weapons.
+
+
+Objects
+~~~~~~~
+Artifacts
+  Coded and tested (4E4):
+    The limitations to getting artifacts added by Stephen White
+      are now #ifdef NOARTIFACTWISH, and are disabled by default.
+      This means that getting an artifact through sacrificing
+      or wishing is as likely as in vanilla NetHack.
+    Added Plague (chaotic Drow dark elven bow).
+
+amulet versus stone
+  Coded and tested (4E4):
+    Each time you are stoned, the blessing changes from blessed ->
+    uncursed -> cursed -> turns to dust.
+
+Polearms
+  Coded and tested (4E4):
+    Monsters can no longer use them through walls.
+
+New skill categories
+  Coded and tested (4E4):
+    Riding skill.
+
+kicking boots
+  Coded and tested (4E4):
+    Damage was too high.
+      [Reported by Nathan T Moore <nathan@cs.wm.edu>.]
+    Damage calculations are now more consistent with weapons.
+
+Spellbooks
+  Coded (4E4):
+    Now last 20 000 turns, up from 5000.
+    [Requested by Dave <mitch45678@aol.com>.]
+
+spell of drain life
+  Coded and tested (4E4):
+    Rewrote code.
+    Now affects objects.
+
+spells of flame/freeze sphere
+  Coded and tested (4E4):
+    Attacking peaceful monsters makes them angry.
+
+ring of indigestion
+  Coded (4E4):
+    Nausea frequency decreased to every 100 to 199 turns.
+
+wand of draining
+  Coded and tested (4E4):
+    Hits monster or player: Drains level, if not resistant.
+    Hits object: Removes enchantment/charging, but leaves
+      blessed/cursed status and other properties intact.
+    Cost $175, probability 15/1000, "ceramic".
+    Monsters know how to use it.
+
+saddle
+  Coded and tested (4E4):
+    Riding skill.
+    You can reach the floor at basic riding skill.
+    Your steed can now be attacked at close range, and will
+      attack back.
+    Traps, pools, and wounded legs are now properly handled.
+
+fishing pole (weapon-tool in polearm category)
+  Coded and tested (4E4):
+    Large/strong monsters have a chance of pulling you in.
+      [Idea by Aaron <aaron@iphc.washington.edu>.]
+    Sinks and toilets have effects.
+
+unicorn horn
+  Coded and tested (4E4):
+    blessed:  Tries multiple problems, each with chance given below.
+    uncursed: Tries one problem, with chance given below.
+    cursed:   Causes one problem.
+    ENCHANT  +0 or less  +1   +2   +3   +4   +5   +6 or more
+    CHANCE       30%     40%  50%  60%  70%  80%     90%
+
+
+Internal changes
+~~~~~~~~~~~~~~~~
+end.c, done() had references to the wizard flag without bracketing
+them in #ifdef WIZARD.  (4E4)
+
+zap.c, cancel_item() had missing cases for gauntlets of dexterity
+and for several variant objects.  (4E4)
+
+Enlightenment now properly reports being very fast.  (4E4)
+
+Fixed a Macintosh bug that would crash the entire system with a
+bus error if there was a bad option in the Slashem Defaults file.
+(4E4)
+
+
+Rumors and Help
+~~~~~~~~~~~~~~~
+True rumor (4E4):
+  You can't get gold from a gypsy.
+
+
+ver 0.0.4E3 [November XX/1998]
+-techniques - replaces special class effects (cmd.c)
+        (dothrow.c, timeout.c, tech.c, tech.h, makefile, u_init.c, uhitm.c,
+                cmd.c, mhitu.c, allmain.c, spell.c, wield.c)
+        -access using Meta-t,  or #techniques
+        -turn undead is now a technique (Priests and Wizards start with it)
+    -Current tech allotments:
+        Research (A), KIII (S), Healing Hands (K), Surgery (H),
+        Reinforce Memory (FINW), Berserk (B), Practice (UV), 
+        Psycho Slash (L), Missile Flurry (E), 
+-Sigil of Tempest shouldn' crash anymore...(spell.c, zap.c)
+-you only recognize tin types which you've eaten the corresponding corpses
+    (eat.c)
+-added poison blast explosion tiles, poison blast discharge/tempest modes
+    (spell.c, zap.c)
+-Frankenstein's monster now makes an OLD corpse (mon.c)
+-Doppelgangers can usually only polymorph into foes it has already eaten.   
+    You can try  others, but there's a good chance (esp. at lower levels) 
+    that you'll fail.
+    (cmd.c, polymorph.c)
+-flag for whether type has been eaten
+    (decl.h, decl.c, eat.c)
+-New Techs:  gave Monks Ward against burning, against ice, against lightning
+    instead of intrinsic resists.
+    If you want the resist "permanently",  you'll need to wear stuff...
+-added a hallu message for casting endure cold (spell.c)
+-made monster/object unpoly messages a bit more generic. (mon.c, timeout.c)
+-can drown, etc. when monsters cast create pool on you ;B (mcastu.c)
+-fixed zapping drain life on yourself.  I don't recommend it though... (zap.c)
+-Added Robin Johnson's glass, gold, wax golems
+-Added Acid Explosion,  and Discharge/Tempest varieties working 
+    explosion glyphs by Robin Johnson
+    (drawing.c, rm.h, explode.c, zap.c, spell.c)
+-Added Dr Frankenstein,  genetic engineers,  Frankenstein's Monster co: Robin 
+    Johnson
+-New Level:  In Gehemmon, there is now Dr. Frankenstein's Lab. co: Robin Johnson
+-New Tech:  Revivification: Healers get this at level 20 - can revive a corpse!
+    (costs 100 HP) (tech.c, tech.h, invent.c)
+-Ice Mage def'n from Drew Curtis
+-New Tech:  Raise Zombies: Necromancers can transform corpses into 
+    zombies.   Must be humanoidish to work (tech.c, tech.h)
+-Necromancer starting spell is now Drain Life
+    (need I mention that drain life - NEW SPELL - has been added :B)
+    causes HP loss (some) and level drain 
+    (zap.c, objects.c, objects.txt, spell.c)
+-minor compile error fixed for shops (mkroom.h)     
+-spells that get bonus duration from skill
+    -resist poison, resist sleep, endure cold, endure heat, insulate
+-fixed Mojo to be one-handed again.  Double checked the mythological version
+    and the handle wasn't quite finished. [Heiko Niemeier] (object.c)
+-invisible monsters leave invisible corpses ;B (mon.c)
+-mon hit mon gaze attack reflection implemented (mhitm.c)
+    -monsters using death gaze on each other implemented ;B
+-gaze attacks when polymorphed are now implemented ;B 
+    -takes 20 energy,  attacks only one monster
+    (cmd.c, polyself.c)
+-fixed an errant if statement that made dragon breath *harder* for doppelgangers
+    and Flame/Ice mages (polyself.c)
+    -Flame/Ice mages only get easier breath attacks when poly'ed into 
+        red/blue dragons
+    -All this doesn't matter anymore because monster breath attacks use energy
+        (10 if doppel, flame/ice as respective dragon,  15 otherwise)
+-Monster inventory starts: (makemon.c)
+    Gnolls:  might get Bardiche, Voulge or Halberd,  Leather armour 1/3
+    Trolls:  might get Spetum, Partisan, Glaive or Ranseur
+-Flame/Ice mages start with more Power, gain more every level (closer to Wizards)
+     (u_init.c, exper.c)
+-Monsters can now use polearms at a distance (weapon.c, mthrowu.c)
+-verb should now be "shoot" for monsters launching dark elven arrows, ya (mthrowu.c)
+-premier and basic identification service now cost different amounts in shops
+    (shk.c)
+-fixed bug where mounting a steed that is carrying an object causes a crash
+    (dogmove.c)
+-should no longer get "maybe_write_ls" errors on high score lists 
+    Unconfirmed bug - oh well,  the fix is in anyways :B (light.c)
+-unpolymorph messages for monsters and items (timeout.c)
+ "foo becomes foo"
+-Robin Johnson's Frozen Foods Store ;B (shknam.c)
+-wolf pups are now wolf cubs for accuracy ;B 
+    (monst.c, mondata.c, role.c)
+-explore mode can also be accessed via #explore (cmd.c)
+-menu accesible via apostrophe and tilde ;B (cmd.c)
+-objects will now unpolymorph! (timeout.c, timeout.h, zap.c, potion.c)
+-Spell damage bonus now also depends on Spell Skill. normal beams also get 
+    spell damage bonus (zap.c)
+-Fixed : Checking your symbol (Hitting ;.) now gives correct response (mondata.c)
+-Fixed crashing bug:  flame/freeze sphere exploding and killing gas spore (mhitm.c)
+-Fixed bug:  Getting 2 messages when eating a slime mold (eat.c)
+-New Techs:  Sigil of Tempest, Sigil of Control, Sigil of Discharge
+    Sigil of Tempest - invoked causes magic missile/lightning/fire/cold
+        to be cast as storms (also uses 50 PW)
+    Sigil of Control - you can control the direction of the beam (in-flight!)
+        (30 PW)
+    Sigil of Discharge - Megablasts. (100! PW)
+    
+    Combinations - Tempest & Control:  You choose where the storm is centered at
+            Tempest & Mega: storm,  but lasts 2x longer
+            Control & Mega:  can change dir of beam in midflight
+            All 3: storm,  selected center,  2x longer ;B
+    (tech.h, tech.c, spell.c, zap.c)
+-New Tech: Cutthroat for Rogues.  Possible insta-kill,  otherwise 50% damage
+    Acquired at level 15 (tech.c)
+-Techniques can be gained and lost (like intrinsics) with levels ;B
+-New Tech: Liquid Leap for Doppelgangers.   Doppelgangers can liquify,  and acid
+    bolt a couple spaces *through* enemies before reforming.  They're 
+    invulnerable while doing it,  too ;B
+-fixed typo with the "Your knowledge of the spell is twisted...It invokes nightmarish yadda!"
+    (spell.c)
+-all spell effects that duplicate objects will act like blessed version ;B
+    (spell.c)
+-new spellbook tiles (note these get shuffled ;B)
+    tartan, psychedelic, spiral-bound, rainbow striped, left handed
+    spotty spellbooks
+-junk mail should no longer give version number (since I'm too lazy to change it ;B"
+-Yeoman corpses should be properly generated in graves (topten.c)
+-New Tech: Primal Roar for Cavepeople : Gains Fast,  aggravates monsters around
+    nearby (range 5) pets nearby grow up temporarily.  Did I forget to mention
+    pets do double damage for the duration ;B
+    (tech.c, tech.h, extern.h,timeout.c)
+-Killer bees shouldn't grow into queens anymore (mondata.c)
+-New Tech: Elemental fist for Monks : Punches inflict a random 
+    fire/cold/elec/acid/poison dmg bonus (tech.c, tech.h, uhitm.c)
+-Yeoman now have a "special spell" - knock (spell.c)
+-New Tech:  Blessing for Priests (tech.c)
+-winter wolf cubs should grow up properly now (mondata.c)
+-fixed wrong glyph being displayed when zapping a gas spore and it explodes (zap.c)
+    -this should slow things down...I really need to get feedback about the 
+        efficiency of SLASH'EM (probably not good <G>)
+-klutzes (not dex enough) really should now take a turn when swapping weapons (wield.c)
+-New Tech: Critical Strike for Rogues - weapon + 50% + techlevel damage against humanoids
+        (+25% instead of +50% if non-humanoid) (tech.c, tech.h, u_init.c)
+-spheres should attack monsters of any level (dogmove.c)
+-slime warning on bottom line (botl.c)
+-push back effect from blessed wands of striking only happen 1/3.  Monsters using
+    wands of striking will also get push back effect (on you and other mons) now 
+    (muse.c, zap.c, dothrow.c, dokick.c)
+-weight on bottom line is linked to the showweight option (botl.c)
+-New Tech:  Vanish for Gnomes  - short term speed and invisibility (tech.c, u_init.c, tech.h)
+-level names for flame mage and ice mage are back. (role.c)
+-flaming sphere now likes fire.  flaming and shocking spheres emit light
+        (range 1) (mondata.h)
+-Meta-e is back to "enhance weapon skills".  
+        M-k still works for now.
+-DOS version runs in tile mode under Pure DOS (botl.c)
+
+
+My Additions
+~~~~~~~~~~~~
+autoquiver
+  If you use the (f)ire command when the quiver is empty, and
+  this option is set, a suitable weapon will be placed in your
+  quiver.  You must still remember to wield your bow if you plan
+  to fire arrows (or other launcher/ammo combination).  You may
+  still use the (Q)uiver command manually, if desired.
+  (4E3)
+
+Medusa level
+  Coded and tested (4E3):
+    The Wallet of Perseus is now an artifact bag of holding.
+
+Rolling boulder traps
+  Coded (4E3):
+    No delay when the boulder is out of your sight.
+    [Code provided by D. Stage <dstage@u.washington.edu>.]
+
+New role system (the "role patch")
+  Coded and tested (4E3):
+    Game engine makes complete use of urole.
+    Fixed "This game you will be a chaotic knight" bug.
+
+Voluntary challenges
+  Coded and tested (4E3):
+    Pacifist.
+
+Pets
+  Coded and tested (4E3):
+    Winter wolf pup now "cub" and grows up properly.
+
+u pony, horse, thoroughbred
+  Coded (4E3):
+    is_unicorn() macro.
+    No longer treated like a unicorn.
+
+Spellcasting monsters
+  Coded (4E3):
+    The create pool effect is now harder for monsters to cast.
+
+Wielded, secondary, and quiver weapon slots
+  Coded and tested (4E3):
+    "autoquiver" option.
+    [Suggested by Jeffrey Bay <jbay@convex.hp.com>.]
+
+Two-weapon combat
+  Coded and tested (4E3):
+    Cannot use artifact in second weapon slot.
+
+Multiple attacks
+  Coded (4E3):
+    Weapon to-hit (hitval()) bonuses no longer accumulate with
+    each attack round.  For example, a +1 weapon acted like a +6
+    weapon for a marilith's sixth attack!  Fixed.
+
+Artifacts
+  Coded (WAC, 4E3):
+    Mjollnir is once again a one-handed weapon.
+
+darts
+  Coded and tested (4E3):
+    Monsters will now throw darts.
+    [Reported by <kbailey@reed.edu>.]
+
+Polearms
+  Coded (WAC, 4E3):
+    Monsters know how to use from a distance.
+
+New skill categories
+  Coded (4E1):
+    Category titles (weapon.c)
+  Coded and tested (4E3):
+    Paddles
+    Firearms (#ifdef'd)
+
+apple
+  Coded and tested (4E3):
+    Macintosh users get an appropriate special message.
+
+spell of drain life
+  Coded (WAC, 4E3):
+    Effect: See wand of draining.
+    Attack spell, level 7, cost $700, chance /1000, "velvet".
+
+spell of passwall
+  Coded and tested (4E3):
+    Effect: You can pass through walls for 50 to 149 turns.
+    Body spell, level 6, cost $600, chance /1000, "ochre".
+
+potion of full healing
+  Coded and tested (4E3):
+    Blessed restores lost experience levels.
+
+Reading rings
+  Coded and tested (4E3):
+    Rings can be read when they are worn.
+    Applicable rings: mood ring, warning.
+
+mood ring
+  Coded and tested (4E3):
+    Worn: If identified, you can (r)ead it.  A non-cursed ring glows red,
+      yellow, or green if your god is angry, pleased, or well-pleased.
+      A cursed ring appears dark.
+    Eaten: No effect.
+    Sink message: "The sink looks groovy."
+    Cost $100, "ridged".
+
+ring of increase accuracy
+  Coded and tested (4E3):
+    Worn or eaten: Confers a to-hit bonus.
+    Sink message: "The water flow hits/misses the drain."
+    Cost $150, has enchantment, "clay".
+
+ring of indigestion
+  Coded and tested (4E3):
+    Worn:
+      You are immune to digestion attacks.
+      You cannot use a digestion attack.
+      Causes hunger.
+      Induces nausea every 50-80 turns.
+    Eaten: "This ring is indigestible!" and you choke.
+    Sink effect: "The ring is regurgitated!" and does not disappear.
+    (If wearing the ring doesn't make you naseous, the bad puns will.)
+    Cost $150, usually cursed, "steel".
+
+bag of holding
+  Coded and tested (4E3):
+    Artifacts behave 4x cursed, 1/6 x blessed, 1/3 x uncursed.
+    Wallet of Perseus is an artifact bag of holding.
+
+silver wallet
+  Deleted (4E3).
+
+saddle
+  Coded and tested (4E3):
+    Riding a strong monster maximizes your carrying capacity.
+    Fixed divide-by-zero bug when steed carries an item.
+    Fixed magic whistle bug.
+    Monsters won't be placed under you when not riding.
+
+Weapon-tools are no longer displayed as chargeable (4E3).
+
+You cannot auto-identify items while hallucinating.
+  Coded (4E3).
+  [Reported by Nick <mote@scf-fs.usc.edu>.]
+
+Added the macro is_unicorn().  (4E3, mondata.h)
+
+Repaired a bug while praying during a full moon.  Add "case 9:"
+after "case 8": in pray.c, pleased().  Also, cases 7 to 9 should
+be placed before case 6, in case ELBERETH is not defined. 
+(4E3)
+
+spell.c, spelleffects() once again directly calls percent_success()
+(4E3).
+
+False rumors (4E3):
+  Waltz, dumb nymph, for quick jigs vex.
+    [A pangram (sentence with all 26 letters of the alphabet), from
+    the rec.puzzles archive, by Gyles Brandreth and Stephen Smith.]
+
+Major Oracularities (4E3):
+  Upon a level before all maze
+  There lies a woman who kills with gaze.
+  Should she be killed, not petrified,
+  You will receive a magical ride.
+  [Pegasus]
+
+ver 0.0.4E2 [October 29/1998]
+-Database entries updated thanks to many people ;B Thanks folks!
+-Check out the new features!
+-BIG Thanks to Kevin Hugo and Robin Johnson!  THEY made SLASH'EM 0.0.4E2!
+
+Options
+~~~~~~~
+role
+  Your starting role (e.g., role:Barbarian, role:Elf).
+  Although you can specify just the first letter, for future
+  compatibility, it is recommended that you spell out the entire
+  role name.  You can also still denote your role by appending
+  it to the "name" option (e.g., name:Vic-V), but the "role"
+  option will take precedence.
+
+gender
+  Your starting gender (gender:male or gender:female).
+  You may specify just the first letter.  Although you can
+  still denote your gender using the "male" and "female"
+  options, the "gender" option will take precedence.
+
+align
+  Your starting alignment (align:lawful, align:neutral, or
+  align:chaotic).  You may specify just the first letter.
+
+pushweapon
+  If true, then using the (w)ield command will push your old
+  main weapon (if there is one) into the secondary weapon slot.
+
+
+Map features
+~~~~~~~~~~~~
+Sokoban branch
+  New addition (4E1).
+  Coded (4E2):
+    Can no longer cheat with cursed potion of gain level.
+
+Oracle level
+  Coded and tested (4E2):
+    #offering corpses to the Oracle.
+    Groundhog day.
+
+Medusa level
+  Coded and tested (4E2):
+    Pegasus is created when Medusa is killed and leaves a corpse.
+
+Smarter handling of overlapping branch levels.
+  Coded and tested (4E2).
+  (dungeon.c, dungeon.def)
+
+trees
+  Coded and tested (4E2):
+    Glyphs for tile, IBM, DEC, and Mac graphics.
+    Gold and gems aren't be deposited on arboreal levels.
+
+Documentation of new map features
+  To do.
+
+
+Roles
+~~~~~
+New role system (the "role patch")
+  Coded and tested (4E2):
+    "role", "gender", "align" options.
+    Centralized structure containing role information.
+    Less dependeny on using letters to specify roles.
+    Role, gender, and alignment selection now dynamic (no
+      longer hard-coded).
+    References to urole (partially done).
+    Hello() and Goodbye() functions.
+  To do:
+    References to urole.
+
+Voluntary challenges
+  Coded and tested (4E2):
+    (Genocideless is already apparent)
+    Wishless, no artifact wishes, polypileless, polyselfless
+    Vegetarian, vegan, foodless
+    Athiest, illiterate, non-weapon-using
+    Reported by #ethics command and at game end.
+  To do:
+    Adjust final score based on challenges?
+
+Yeoman class
+  Coded (4E2):
+    Quest levels.
+    Mac role selection dialog box.
+  To do:
+    Nemesis maledictions need some work.
+
+Quest features
+  Coded (4E2):
+    All quests have at least one guaranteed altar.  If one
+      had to be added, it was placed under the nemesis.
+    The Wizard start level has a large bookstore.
+    [Suggested by Aaron Eichelberger <aaron@ull.srl.caltech.edu>.]
+    quest.txt, %Cc R 00070, should not be in quotes.
+
+Skills
+  Coded and tested (4E2):
+    Your maximum skill of your first artifact gifts is at least
+    skilled.
+    Your maximum skill of your quest artifact is expert.
+    Spellcasting roles have at least basic maximum skill in all
+    of the spell skills.
+
+Pets
+  Fixed some of the pets (4E2):
+  Flame mage   hell hound pup
+  Gnome        ?
+  Ice mage     ice wolf pup
+  Knight       pony
+  Lycanthrope  wolf pup
+  Necromancer  zombie
+  Yeoman       pony
+  [Suggested by Aaron <aaron@iphc.washington.edu>.]
+  All 'd' use dogname, etc.
+
+
+Monsters
+~~~~~~~~
+gas spore
+  Coded and tested (4E2):
+    No longer explode when genocided.
+    [Reported by Julian Bell <cool@tartarus.uwa.edu.au>.]
+
+koala
+  Coded and tested (4E2):
+    Calm attack.
+    Eats only eucalyptus.
+
+Tasmanian devil
+  Coded and tested (4E2):
+    Eats organics (like gelatinous cubes).
+
+
+Attacks
+~~~~~~~
+Acid, rust, rot damage
+  Coded and tested (4E2):
+    Acid has a 5% chance of removing your weapon's
+    erosionproofing.
+    Your weapon or armor can no longer be completely
+    destroyed by a rust or rot attack.
+
+Calm
+  Coded and tested (4E2):
+    Turns the defender peaceful.
+    Only applies when attacker is tame and defender is hostile,
+      or vice versa.  Some defenders can resist.
+
+Wielded, secondary, and quiver weapon slots
+  Coded and tested (4E2):
+    Overhauled and aggresively tested.
+    "pushweapon" option.
+    Secondary and quiver no longer weld or convey intrinsics.
+    "Corpse in quiver" bug fixed.
+  To do:
+    Did this fix the bad monster weapon restore bug?
+
+Two-weapon combat
+  Coded and tested (4E2):
+    #twoweapon command implemented.
+    Necessary checks are made.
+    Damage for both primary and secondary weapons.
+    Weapon skill is used and can be advanced.
+  To do:
+    As it is now, you either hit with both weapons, or with
+    neither.  The to-hit code either needs a kludge, or an
+    overhaul (uhitm.c).
+
+
+Objects
+~~~~~~~
+Artifacts
+  Coded and tested (4E2):
+    Each role has a designated first and second gifts.
+    Automatically change alignment of quest artifact and first
+      and second gifts.
+
+crysknife
+  Done (4E2):
+    Can "fix" it by reading a scroll of enchant weapon while
+    confused.  A fixed crysknife has a 10% chance of reverting
+    to a worm tooth when dropped.
+    [Requested by Nick Number <number@sirius.com>.]
+
+Robes
+  Coded and tested (4E2):
+    Putting on a robe of weakness and/or protection automatically
+    identifies it.
+
+eucalyptus leaf
+  Coded and tested (4E2):
+    Koalas can only eat this food.
+
+saddle
+  Coded (4E2):
+    Finally enabled by default!
+    Knights and Yeomen start with a pony, a saddle, 10+ apples,
+    and 10+ carrots.
+    #sitting tells you about your steed.
+
+
+Internal changes
+~~~~~~~~~~~~~~~~
+Added "role.c".  (4E2)
+
+spell.c, study_book() condensed by using oc_level.  (4E2)
+
+
+Rumors and Help
+~~~~~~~~~~~~~~~
+False rumors (4E2):
+  You can make holy water by boiling the hell out of it.
+  On Groundhog Day, you should play the same game over and over and over...
+
+-3 line bottom line for systems that support it ;B
+-minor fixes to the slashem.txt file
+-updated history sections ingame and in guidebook (guideboo.mn, history)
+-added Robin Johnson's new tiles!  more than 50 at the last count!:
+        intern, lightning explosion
+        Lareth,  Maagnashagar, athol,  rhaumbusan,  necromancer,  nightmare
+        shifter, page, Sir Lorimar,  Master Kaen, Transmuter,
+        enchanted beast, dao, wombat, Aleax, healer, Hippocrates,
+        attendant, Nalzok,
+        hydra, giant crab, pony, horse, thoroughbred, doppelganger,
+        Master Shifter, wyvern, prisoner, monkey, arc bug, spark bug,
+        undead slayer, van helsing, pegasus, winter wolf pup, exterminator
+        dingo pup, large dingo,  tasmanian devil,  kangaroo, wallaby
+        wallaroo, platypus, woodchuck, giant spider, largest giant
+        iron bars, tree
+        fishing pole, eucalyptus leaf
+        -new zap beams
+        -new explosions
+        -this guy deserves eternal gratitude.  
+-database additions
+        -bottle Matthew B. Ryan
+        -2 more stormbringer quotes...
+	-added lembas wafer, elven cloak,  Stormbringer to data.bas - 
+		thanks to Nick Number
+	-added Shelob's description from "The Two Towers" (Tolkien) for 
+		giant spider
+	-Earth (Mostly Harmless ;B) from HHGTG
+	-silver (Webster's)
+	-rodney now links to WoY
+-added in sokoban level for DOS port 
+-made it so if the screen is long enough,  TTY port will allow a 3 line
+        status line (best of ALL worlds ;B) (wintty.c)
+-yellow jelly is now yellow in tiles ;B (other.txt)
+-renumbered the tile files.  (objects.txt, monsters.txt, other.txt)
+-a new look for the readme.txt, slamfaq.txt, history.txt
+
+ver 0.0.4E1 [October 09/1998]
+-DOS binaries compressed with DJP 1.07
+-a couple extra touches to the Oracle level
+-lots of tweaks on the old monsters (monst.c)
+-A new branch!  Look for a stairway up early in the game...
+-new monsters - enchanted beast,  Taz devil,  kangaroo,  wallaby, wallaroo,
+        echidna, platypus
+-polymorphing/unpolymorphing monsters will give messages if it suffers a
+        system shock/doesn't survive the polymorph (timeout.c)
+-range of polearms increase with skill (apply.c)
+-healing potions have same effect on monsters as on humans (almost) rather
+        than always completely healing. (potion.c)
+-chance that a shopkeeper won't cheat you (depends a bit on luck and quite
+        a bit on Charisma) (shk.c)
+-wraiths are 50% likely to get a robe (read the database entry ;B)
+        (makemon.c)
+-Ice Mages get Expert in Enchantment as well as Matter,
+        Skilled in Protection and Healing,  Basic in others. (U_init.c)
+-Flame Mages  get Expert in Divination as well as Matter,
+        Skilled in Body and Attack,  Basic in others. (U_init.c)
+-Wizards can only get Expert in Attack Spells - rest can only go to Skilled
+        They are still the "jack of all trades" for magic. (u_init.c)
+-new spells:  Flame Sphere,  Freeze Sphere for Flame and Ice Mages!  Now
+        these Mages have something to call their own,  instead of having to
+        rely on the out of category (therefore, less effective) force bolt.
+        Pretty much,  you can summon Flaming/Freezing Spheres,  who will
+        follow you around and attack enemies (well, that's the plan ;B)
+        You also get the experience ;B
+        Disadvantages:  Relatively short range,  not directable,  can't hit
+                multiple enemies.
+        Advantages:  You can generate and save for a rainy day ;B
+        (dog.c, spell.c, objects.c, objects.txt, doname.c, mon.c, mhitm.c
+        monst.h)
+-bashing message when hitting monsters in melee with polearms (wield.c)
+-attacking with pole-weapons in melee does bashing damage (uhitm.c)
+-minimum range for applying pole-weapons (apply.c)
+-priests now start with a +2 robe and +2 small shield (blessed,  of course ;B)
+        (u_init.c)
+-dragons should blast open doors properly ;B (monmove.c,  mthrowu.c)
+-rechecked/cleaned up part of the wielding code (again :B) (wield.c)
+-fixed bug - wielding quivered item then throwing used to crash
+        (wield.c)
+-all magic candles should no longer show up partly used when unidentified,
+        not just the Candle of Eternal Flame. (objnam.c)
+-gas spores should always explode when dying.  There should no longer be any
+        gas spore corpses left behind (explode.c,  mon.c)
+-force bolt at Skilled and blessed wands of striking will push back enemies
+        (zap.c)
+-no longer charged for reading a spellbook of a spell you already know well
+        in a shop (spell.c)
+-fixed free reading of spellbooks off floor (shk.c)
+-fixed game crashing when reading off the floor, spellbook is destroyed and
+        game crashes. (spell.c)
+-fixed ordering of spells to accomodate assumptions in zap.c
+        (objects.txt, objects.c)
+
+ver 0.0.4E0 [September 09/1998]
+-balance patch additions merged in thanks to Kevin Hugo (many)
+        -there are a good many changes ;B  Check out slamfaq.txt if you
+                haven't read his post yet <g>
+-some rearranging of the objects.txt to work with the tile code (objects.txt)
+
+ver 0.0.3E9 [August XX/1998]
+-fixed game crashing bug.  All machines should be able to get past the
+        selection screen without crashing now. (save.c)
+
+ver 0.0.3E8 [August 10/1998]
+-no longer get "<foo> gets angry!" if monster is not visible (mon.c)
+-fixed game crashing when kicking stoning corpse with bare feet (dokick.c)
+-Wallet of Perseus should now explode if you put a wand of cancellation,
+        etc. in it (obj.h)
+-Game Crashing bug fix:  Fatal error when drowning while carrying no inventory
+        and a lot of gold (trap.c)
+-cancellation now eliminates sliming,  drain exp attacks from harming you
+        (mhitu.c)
+-removed extra carriage returns in 'A' special ability (cmd.c)
+-Barbarians can read spellbooks again,  albeit unreliably (their "Magic! Bah!"
+        comes up often) (read.c)
+-blessed keys, credit cards,  etc. break off less often in locks. (lock.c)
+-it is no longer as difficult to open tins using dark elven daggers,
+        great dagger, silver dagger (eat.c)
+-if you try to fire with no ammo,  will go to standard throw prompt
+        (dothrow.c)
+-having strength 18/91-18/99 no longer gives +11 damage bonus - is now +3
+        (weapon.c)
+-Ice Mage now has levels Cooler, Condenser, Chiller, Froster, Permafroster,
+        Icer, Freezer, Sublimer, Ice-Master (botl.c)
+-Flame Mage now goes through named levels Spark, Igniter, Broiler, Combuster,
+        Torcher, Scorcher, Incinerator, Disintegrator,  Flame_master. (botl.c)
+-Player's with Con > 15 also have a chance of getting the "Strange....no etc."
+        msg (potion.c)
+-fixed a silly bug...Barbarians can drink potions successfully again
+        (potion.c)
+-Turn condensed back to T:,  Levitate is now Float on status bar (botl.c)
+-now runs in 24 lines (rather than 25) for compatability with other platforms
+        (botl.c)
+-made getting djinni's from smoky potions more frequent.  Used to be one in
+        200+ chance... (potion.c)
+-recompiled using gcc 2.8.1 for more stability
+-fire/frost/etc weapons now have interesting effects when dipped/etc.
+-"bad monster weapon restore" bug should be fixed (crude hack here)
+        (restore.c)
+-updated slashem.6
+-you can also drink objects on the ground (see reading) (potion.c)
+-you can now read objects off the ground (like eating) (read.c)
+-shopkeepers get services randomly
+        (eshk.h, shk.c, shknam.c)
+-shopkeeper services should now be #ifdef OTHER_SERVICES
+        (shk.c, config.h)
+-there is now premium service available for identification
+        (shk.c)
+-all 'foo'sabers are now bimanual. (objects.c)
+-'--help' command line option should invoke command-line help (pcmain.c)
+-spoon is now a "whacking" weapon,  rather than piercing (objects.c)
+-rapier is now classed as a saber (weapon.c)
+-new option {pickup_burden} lets you specify when the game should start
+        prompting you about lifting heavy things.
+        (options.c, flag.h, pickup.c, guideboo.mn, guideboo.tex)
+-can no longer get endure cold/heat if flame or ice mage
+-hopefully fixed doubled spellbook bug in initial inventory
+        (u_init.c, spell.c)
+-You get messages when dipping frost/fire weapons into water
+        (potion.c, artifact.c)
+-prayer timeout is reset to zero right after successful altar conversion
+        (pray.c)
+-fixed (hopefully) the swapwep problem for good.  Really.  (I hope).
+        So I don't read all the comments :)
+        As a matter of note, I've finally discovered that the bitfields
+        are in octal form.   And a long being only guaranteed to have 32 bits,
+        it's interesting to note that there's been a use made of 31 of them...
+        (obj.h)
+-changed typename() to obj_typename()
+-fixed naming a known wand of fireball/fire when breaking/exploding (apply.c)
+-fixed naming known potion in blackmarket (potion.c)
+
+ver 0.0.3E7 [June 11/1998]
+-fixed a couple typos in the 'D' quest (quest.txt)
+-fixed undeleted light source when artifacts are destroyed
+        (extern.h, mkobj.c, artifact.c, light.c)
+-fixed PYEC doing a level teleport when "nothing happens" (artifact.c)
+-Elves/Drow now have expert quarterstaff skill - quest arty for Drow
+        is Tentacle Staff (u_init.c)
+-Gnomes now have expert pickaxe skill - their quest arty was a pickaxe,
+        no less! (u_init.c)
+-dragons and other monsters with door destroying breath weapons will
+        use their breath weapon do destroy doors (monmove.c, mthrowu.c, extern.h)
+-acid will melt away doors (zap.c)
+-rings of strength can now counter robe of weakness (attrib.c)
+-gauntlets of power and rings of strength can now work in tandem. (attrib.c)
+-gauntlets of power will now only counteract effect of robe of weakness.
+        (attrib.c)
+-pickaxes now have a bonus against statue gargoyles and stone golems
+        (weapon.c)
+-wands of digging now affect earth elementals, xorns, statue gargoyles,
+        stone golems and boulders. (dig.c, zap.c)
+-can now quiver secondary weapons and wield quivered weapons (wield.c)
+-spell cure sickness, Healers' and Knights' special ability will remove
+        slime. (spell.c, cmd.c)
+-not penalized for trying to reinforce a spell that doesn't need
+        to be.  (spell.c)
+-did all kinds of funny things to hopefully fix the "bad monsndx" bug.
+        -removed messages
+        -changed variable from a permonst pointer to an int PM array #
+        -moved variable...was conflicting with mextra array
+        (timeout.c, makemon.c,  monst.h)
+-eroded and other adjetives can have funny caps now when wishing (objnam.c)
+-Thiefbane should now exist as an artifact weaponand wishable
+        (objnam.c, artilist.h)
+-changed Lord Vlad the Impaler to Count Dracula. Yes,  I know they are
+        related,  but one is fiction,  the other is real.  Plus,
+        this helps keep them slightly apart.
+        (monst.c, monsters.txt, slayer.des, questpgr.c)
+-spoon named Houchou is a chaotic artifact - 9999 damage when thrown
+        and hits :)
+        (uhitm.c, dothrow.c, weapon.c,  mthrowu.c)
+-spoon is now normal object - no special abilities.
+-'\' shows intrinsic and discoveries on same screen  - intrinsic knowledge
+        is prefixed with a "*" (o_init.c)
+
+ver 0.0.3E6 [June 04/1998]
+-will no longer see correct name for priests, minions, angels when
+        hallucinating (do_name.c)
+-valkyries now get a +1 spear rather than a long sword (u_init.c)
+-monks no longer get spellbooks of sleep - spellbooks of resist sickness
+        instead (u_init.c)
+-'\' command now also shows "Intrinsic" knowledge
+-can now wish for Graywand, Staff of Withering, Hand/Eye of Vecna,
+        Stake of Van Helsing, Wallet of Perseus, Medallion of Shifters
+        (objnam.c)
+-can now wish for an aklys (objnam.c)
+-made w_swapwep and w_quiver 0200000000L and 0400000000L
+        hopefully remove problem of randomly occurring (secondary weapon)
+        and (in quiver) (obj.h)
+-removed tempwep - unused (wield.c, worn.c, decl.c, decl.h, obj.h)
+-added keyboard accelerators to slamfaq.txt
+-"bad monster weapon" bug when corpse wielded by a monster rots away fixed
+        (dig.c)
+-exploding wands of polymorph and drinking potions of polymorph
+        no longer cause polymorphing on Blackmarket level (potion.c, apply.c)
+-"let me run run my fingers through your hair" succubus message fixed
+        (mhitu.c)
+-the "Strange...nothing much happens" when 'B' quaff potions no longer
+        id's the potion.  Message is now standard nothing happening message
+        (potion.c)
+-only burning explosion destroys player corpse (explode.c)
+-death by exploding monster is now recorded correctly (explode.c, mon.c)
+-problem with petshop shopkeeper's names fixed? (shknam.c)
+-dipping objects into potions of polymorph now causes object polymorphing
+        (potion.c)
+-version (normal and extended) now display game name as per DEF_GAME_NAME
+        (defined in patchlev.h (or patchlevel.h))
+        (makedefs.c)
+-pc versions now have "Welcome to DEF_GAME_NAME" as defined in patchlev.h
+        (pcmain.c)
+-made guidebook short name #ifdef SHORT_FILENAMES (global.h)
+-added Title bar changing for DOS boxes under Win95 (pcmain.c, msdos.c)
+-system shock now does damage to monsters rather than just killing outright
+        -polymorph traps can now cause system shock (trap.c, zap.c)
+-polymorphed monsters will revert to old forms after a period of time
+        -potions, spells/zaps, traps
+        (extern.h, timeout.c, zap.c,  light.c, trap.c)
+-graves should no longer in "unique" rooms (mklev.c)
+-save_prompt has been merged with keep_save...however,  use with caution.  It
+        seems that there are buglets in the save/restore code... (save.c)
+-bullwhip won't be able to yank out cursed weapons
+        (apply.c, muse.c)
+-replaced mine levels with 3.2.2 levels. Removed minefill.des and
+        mineend.des (mines.des, dungeon.def)
+-monsters will no longer wield non-petrifying corpses. (weapon.c)
+-troll mummies leave troll corpses (mon.c)
+-eating petrification egg now results in correct final screen message
+-artifact wishing is back the way it used to be (objnam.c)
+-the inventory accessible by the '*' key now has the right appendages
+        when polymorphed (invent.c)
+-monster casting spells will no longer create pools of water
+        on top of pools of water, altars,  clouds or in the air. (mcastu.c)
+-wands of create horde will act similarly to wands of create monster
+        if applied/exploded (explosive blast will be 2x stronger though)
+        (apply.c)
+-let you loot a chest on top of a grave (pickup.c)
+-characters with intrinsic/automatic special powers no longer
+        lose a turn. (cmd.c)
+-monsters hitting monsters take silver, stake damage (mhitm.c)
+-monsters hitting you with stakes do bonus damage if you're vampire
+        (mhitu.c)
+-fixed bug where monster name and corpse name were mixed up with monster
+        hitting you with corpse (mhitu.c)
+-monsters use stakes (weapon.c)
+-Stake of Van Helsing always has 1/20 chance of vaporizing vampires
+        (uhitm.c)
+-Ogre king is now level 9 (monst.c) - used to be 7 (same as Ogre Lord!)
+-removed save_prompt as it was causing savefile problems (save.c)
+-'B' should no longer get spellbooks from praying. (pray.c)
+-chickatrice grows into cockatrice,  hatches from cockatrice eggs.
+        (mondata.c)
+-master mind flayer get mental blast and telepathy
+        (polyself.c,  cmd.c, monmove.c, allmain.c)
+-Rodney summons
+        -vamp mages rather than lords
+        -master mind flayers rather than mind flayers
+        (wizard.c)
+-vampire mages leave human corpses (mon.c)
+-piles of killer coins will "grow up" to large and huge piles (mondata.c)
+-fixed applying wands of enlightenment (apply.c)
+-fixed inventories so ice mage/flame mages can't have doubled spellbooks
+        (u_init.c)
+-more fixes from Max
+        -fixed spell % success inconsistencies (spell.c)
+        -fixed bracketing and casting
+                (apply.c, artifact.c,  ball.c, botl.c, cmd.c,
+                detect.c, do_wear.c, dog.c, dogmove.c, do_throw.c,
+                eat.c, engrave.c, explode.c,  files.c, fountain.c,
+                hacklib.c, invent.c, makemon.c, mhitu.c,  mkobj.c,
+                mon.c, music.c,  objnam.c, options.c,  potion.c,
+                pray.c,  read.c,  sp_lev.c, trap.c, uhitm.c, wield.c,
+                worn.c, zap.c
+        -limited "chain combo" of 'L' to 4 hits (give the enemy a chance to
+                dodge) (uhitm.c)
+        -added more extern fcns (extern.h)
+        -prototypes (hack.h)
+        -added SVR4 to machines that need msleep(k) redefined (unixconf.h)
+        -tweaked special ability durations again (cmd.c)
+-fixed turning to stone when engulfing.  Forgot a ! in an if statement ;B
+        (uhitm.c)
+-remove extra period in "caught himself in his own ...."  (explode.c)
+-'c' is always lawful (u_init.c)
+-'u', 'v' weapon id special ability no longer crashes when attempting to
+        id non-weapons (cmd.c)
+-optimization has been dropped to O2 to prevent compile errors (makefile)
+-snuffing out candle of eternal flame - used wrong object variable (apply.c)
+ver 0.0.3E5 [Apr 30/1998]
+-Doppelgangers have a 1:20 chance of becoming a "new man" rather than 1:5
+        (polyself.c)
+-can no longer wield a pickaxe by applying if holding a shield. (apply.c)
+-made all character classes level 10,  and just G_NOGEN
+        -change to no special gen flags?
+        (monst.c)
+-bad food has been moved before worm tail so that it will be randomly
+        generated in the dungeon (monst.c)
+-if you are polymorphed as green slime,  sliming has no effect
+        -you get to passively respond to sliming
+        -if fire elemental,  fire vortex - Immunity
+        (mhitu.c)
+-ghouls will no longer eat stoning corpses, riders(!!) (eat.c)
+-fix cockatrice, basilisk, chickatrice and pyrolisk (and eggs)
+        -eat corpse: pyrolisk no longer stones, basilisk stones
+        -eating eggs: basilisk, chickatrice, asphynx now stone
+        (eat.c)
+        -throwing: eggs, corpses  - basilisk, chickatrice, asphynx now stone
+                at self (dothrow.c)
+        -pets will no longer eat corpses, eggs (dog.c, dogmove.c)
+        -touching corpses (invent.c)
+        -monsters attacking each other with corpses (mhitm.c)
+        -tinning (apply.c)
+        -wielding (do_wear.c)
+        -monsters picking up without gloves, eating
+                (mon.c)
+        -monsters regurgitating, attacking you with corpse
+                swallowing (mhitu.c)
+        -picking up corpses (pickup.c)
+        -monsters stealing corpses (steal.c)
+        -no killer == by petrification (timeout.c)
+        -touching after falling -players and monsters
+        -untrapping (trap.c)
+        -gloved monsters will look for petrifying corpses (muse.c)
+        -monsters will wield all petrifying corpses (weapon.c)
+        -wielding petrifying corpse w/o gloves == stoning (wield.c)
+        -kicking petrifying corpse stones (dokick.c)
+        -eating petrifiers,  throwing eggs, hitting with corpse (uhitm.c)
+        -if polymorphed in to a biter/tentacle/kicker,  will not use touch
+                attack if wielding a weapon and attacking a cockatrice.
+                Same for monsters wielding weapon but also having hth attacks.
+                (eg.  mind flayers)
+                (uhitm.c, mhitm.c, mhitu.c)
+-fixed selfpolymorph into silver dragon not giving reflection
+        silver dragon armor gives protection from god lightning
+        and monster defensive gaze attacks
+        (mhitu.c, zap.c, pray.c, uhitm.c, youprop.h)
+-for some reason,  Wizard Patch made the probability of being hit by
+        a wand always 15/20.  Now based on AC
+        (zap.c)
+-you will now die if polymorphed and hit by a wand of death/disintegration
+        blast.  Fixed bug in losehp that 'return' before the check for
+        negative hp if poly'ed
+        (hack.c)
+-losehp no longer does damage to your original hp if polymorphed (hack.c)
+-eating mimick corpse used to always end with " prefer mimicking a human"
+        even when polymorphed. Will also catch gnomes as well now (eat.c) 
+-dark elven equip do MUCHO more damage in the hands of elves
+        - especially during special ability... (uhitm.c)
+-fixing the dropping some of quiver/secondary weapon unwields all
+        standard 'd'rop and traditional 'D'
+        (invent.c)
+-bugfixes (A big thanks to Max for sending me a patch containing almost
+all of this of this - all I did was check do a couple small corrections
+or changes!) function declarations, unused variables, typedefs
+variables not correctly casted, brackets - major code cleanup!...
+        -fixed/added some prototypes
+                (extern.h, system.h)
+        -removed unused var temp
+                (allmain.c)
+        -fixed casts
+        -fixed brackets
+                (apply.c)
+        -corrected prototyping,  sprintf syntax,  casts
+                (botl.c)
+        -corrected fcn declarations
+        -removed unused variable res in makemenu
+        -junk_char in parse is now ifdef BORG
+                (cmd.c)
+        -cast fix
+                (dokick.c)
+        -volley count fix
+        -cast fix
+        -fcn declaration
+                (dothrow.c)
+        -fixed ambiguous brackets
+                (eat.c)
+        -made resist message nonambiguous resistance type
+        -now showdmg as per uhitm
+                (explode.c)
+        -added prototypes for redirect, docompress
+        -made filename, mode in redirect and docompress const char
+                (files.c)
+        -losehp does no dmg if invulnerable
+                (hack.c)
+        -missed check for accessing null variable in new menu access UI
+                (invent.c)
+        -bracketing
+                (makemon.c)
+        -survive poisin if invulnerable
+                (mon.c)
+        -fixed casting in askchain
+                (pickup.c)
+        -monsters can resist !oPoly
+                (potion.c)
+        -added a declare for god_gives_pet
+                (pray.c)
+        -added fcn declare for read_grave
+        -made epitaph a const char
+                (read.c)
+        -made variable fd in dosave ifdef KEEP_SAVE
+                (save.c)
+        -removed unused variables
+        -added correct casting for various variables, arguments
+                (shk.c)
+        -removed unused vars cl, buf
+                (shknam.c)
+        -added declares
+        -removed unused variables
+                (spell.c)
+        -added declare for write_timer
+                (timeout.c)
+        -made *fmt static const char from static char
+                (topten.c)
+        -added fcn typedefs
+        -fixed martial_dmg - doesn't need params
+        -added ifdef SHOW_DMG to polymorphed player attacks
+        -fixed monster damage taken twice.
+                (uhitm.c)
+        -fixed casting for null argument of view_from
+                (vision.c)
+        -added some typedefs
+        -fixed "no ammunition" message
+        -rearranged readyweapon to catch null wep first
+                (wield.c)
+        -removed unnecessary variable buf
+        -replaced long string of if comparison with strchr with 
+                (u_init.c)
+        -bracketing, static fcn declare
+        -removed unused variable int i in zapping fcns
+        -explosions now show monster dmg
+        -survive disintegration/death zaps if invulnerable
+                (zap.c)
+        -removed unused variable (char buf)
+                (wintty.c)
+        -fixed prototypes
+                (unixmain.c)
+        -added prototypes
+                (unixunix.c)
+        -removed unused variable
+                (makedefs.c)
+        -added SHOW_WEIGHT option
+                (flag.h, options.c, objnam.c)
+-should have fixed the problem with encumber messages appearing at the
+        beginning.  (attrib.c) Tough nut to crack - one of the things that
+        only appears every now and then,  and you can't tell that it's
+        broken until it appears again.  Pink Elephant.
+-added grave, toilet symbol positions to dungeon option definition
+        (guideboo.txt, guideboo.mn, guideboo.tex, nethack.cnf)
+-monsters using unicorn horn message fixed.  Is now
+        "xxx uses a unicorn horn"  rather than "xxx uses a unicorn horns"
+        (muse.c)
+-you will at least throw one of an object when you throw.  Unskilled
+        used to be completely unable to throw objects.
+        (dothrow.c)
+-gas spores no longer explode as wands (as food;B) (mon.c)
+-fixed damage sustained in retributive strike ('a'pplying
+        wands) and double damage in explosions. (explode.c)
+-armor falling off will no longer disappear (polyself.c)
+-fixed config file not detecting system properly (file.h)
+-added more tiles courtesy of Dirk!
+        -monadic deva, astral deva, Planetar, Solar, storm giant,
+        ghast, bar-igura, chasme, babau, nabassu, gila monster,
+        basilisk, komodo dragon, High Lycanthrope have tiles!!
+        (monsters.txt)
+
+ver 0.0.3E4 [Mar 31/1998]
+-fixed the god giving gift (spellbook/sword) messages. (pray.c)
+-Tsanth code patches:
+        -dimasber now exercises twohanded sword skill (weapon.c)
+        -dimsaber now acts as a +4 weapon (uhitm.c, mhitm.c)
+        -dimsaber now burns engravings (engrave.c)
+-'D' or 'L' no longer destroy armor when taking it off  - the message said
+        the 'D' or 'L' took off the armor quickly,  but the code
+        destroyed it ;B (polyself.c)
+-the duration for 'L' and 'B' is quite reduced at higher levels (used to be
+        30+ turns long at high levels!).  Increased length of 'E' and 'S'
+        specials slightly
+        (cmd.c)
+-Doomblade,  Staff of Withering are now aligned to starting 'L' base.
+        (artifact.c)
+-"MU GETSU NO RAIGUMI!", Shermie from King of Fighters '97,  is
+        now the lightning yell.
+-"RUPUSHI KAMUI EMUSHI-TOITOI!", Rimururu from Samurai Shodown is now
+        the cone of cold yell.  Hope I got it right ;B (zap.c)
+-Gauntlets of Power no longer make you weaker if you had base 19+ strength
+        (attrib.c)
+-acid worms are now stone resistant,  and confer stone resistance. (monst.c)
+-proper removal of wielded secondary weapons/quiver when you eat,  it rots
+        away,  etc. (dig.c, eat.c, steal.c,  trap.c)
+-you can also multithrow daggers now when skilled or up (dothrow.c)
+-fixed bug where dropping some but not all of a wielded item (in quiver
+        or secondary weapon)  unwielded it. (do.c)
+-updated the dedication (Pillars of Strength) in this document
+-fixed the filename for the guidebook.  Is now guideboo.txt for
+        msdos (problem accessing from menu)  (global.h)
+-fixed wrong message appearing when Envoy of Balance and receiving objects
+        (pray.c)
+-changed the elven damage during special use is +1 if using normal arrows
+        +2 if using elven (uhitm.c)
+-monsters casting lightning strike now call lightning strike special fx code
+        (mcastu.c)
+-[xx pts.]  damage display does not show up for explosions if
+        option is not set anymore. (explode.c)
+-Valkyries can now go to Expert with Matter spells (u_init.c)
+-slashem website can now be reached at http://slashem.home.ml.org
+-fixed bug that caused a crash when firing arrows and running
+        out of ammo ;B (dothrow.c)
+-strength adjustment really is quiet now ;B (u_init.c)
+-removed leftover debugging code that was putting "6" at the
+        beginning of message history. (dungeon.c)
+-New STORM capability for lightning, fireball, and cone of cold
+        If you are skilled, or have the respective resistance,  or are
+        of the class type V, F or I respectively,  if you Zap the spell
+        at yourself (hit '.')  you cast the "storm" variant of the spell.
+        Pretty much, instead of a beam,  you get a whole bunch of explosions
+        in the area around you.
+        (zap.c)
+-when "unpolymorph", you have 1/2 full hp (polyself.c)
+-fixed bug that made gold show up only when showscore is on
+        (botl.c)
+
+ver 0.0.3E3 [Mar 04/1998]
+-Acknowledgements added.  Let me know if I spelled your name wrong,
+        or I forgot someone ;B  To all those people who bothered
+        to tell me SLASH'EM is broken.  <g>
+-Linux support is officially included! Go to the sys/unix and follow
+        directions in there for setting up for Unix.  Don't forget
+        to uncomment the right unix type in unixconf.h (namely LINUX,
+        although other Unices should be fine too...)  I don't
+        personally have any way of verifying whether this works,
+        but I hear that it should be fine ;B  (whole bunch of directories)
+        Also includes Qt and X windows support.
+-fixed problem where not wearing gloves when hitting monsters caused a page
+        fault.  I'm learning a bit late to be careful with NULL pointers...
+        (uhitm.c)
+-fixed problem causing bigroom from not being created properly (dungeon.def)
+-Undead Slayers starting with 2 wooden stakes bug corrected (u_init.c)
+-Elves have a new special ability - they do +2 damage on arrows and
+        shoot 2 extra arrows for 1-3 turns. (elven equip.)
+        or 1 extra shot if non elven bow and arrows.
+        Replaces weapon practice. (dothrow.c, cmd.c, uhitm.c)
+-added spoon handling code just in case monsters decide to
+        throw it (mthrowu.c)
+-monsters will now use dark elven arrows, short swords and bows
+        silver dagger given more priority (was after rocks!)
+        (weapon.c)
+-monster elves, samurais get multiple shots with their special weapons
+        elven bows and arrow, yumi and ya. Monsters using elven equip
+        get extra shots as per players (mthrowu.c)
+-fixed bug that kept monsters from shooting ya (bamboo arrows)
+-fixed bug that crashed shopkeepers' menus if you hit 'esc' to quit them
+        (shk.c)
+-reworked the throwing code.  Added multiple bow/weapon throws for
+        anyone with more than basic skill.  You throw an extra
+        object for every level above basic,  and another extra one
+        if you're a samurai using yumi and ya or an elf with elven
+        bow and arrow.  Extra throws for using elven equip (dothrow.c)
+-fixed bug where dropping secondary weapon when polymorphing caused a crash
+-redid the hallucination objects code (objnam.c) to be more reasonable
+-added Tsanth's modifications:
+        Perseus' Silver Wallet:  Artifact super BoH
+                4x wt cursed
+                /3 wt normal
+                /6 wt blessed
+              with rudimentary tile 
+        the dimsaber - neutral lightsaber
+                new tiles for dark, light and dimsaber
+        the spoon - FF2 thrown weapon that does 9999 dmg (with tile)
+        wizard mode AC gain, invulnerability
+        Exact modifications are in slamfaq.txt
+
+-added Tsanth's petname code.  Now you can specify the name of your first
+        badger, bat, ghoul....
+       (opthelp, opthelp.des, decl.h, decl.c, dog.c, files.c, options.c
+       guideboo.tex, guideboo.mn, guideboo.txt)
+-fixed a bug I caused by commenting stuff out in mkobj.c that was
+        creating double corpses.  And I thought I was being smart ;B
+
+
+ver 0.0.3E2 [Feb 21/1998]
+-redid and updated the menusystem (cmd.c)
+-fixed silly bug in hmon() (uhitm.c)  that caused DPMI crashes under DOS DPMI
+-skillled spellcasters can cast spells without enough power by suffering
+        hp loss.  This will abuse wisdom if you're not Expert level (spell.c)
+-updated the docs (guideboo.mn, guideboo.tex, hh, cmdhelp, help)
+        with the new '`' and '*' commands
+-hitting esc in a submenu brings you back a menu
+        (func_tab.h, cmd.c)
+-bug fixes:
+        -fixed damage showing up during kicks even if showdmg isn't on
+                (dokick.c)
+        -fixed polymorphing into new man not updating vision (polyself.c)
+        -fixed dmg display for kicking (dokick.c)
+        -got rid of the "musical notes" in command help.
+                cmdhelp needs to be flip -u (unix style end of line rather
+                        than DOS style carriage returns and linefeeds)
+        -fixed problems with boulders,  hallucination is better (objnam.c)
+        -fixed Monks dmg going down to 10 pts at reaching grand master of
+                martal arts before exp level 16 (uhitm.c)
+-made patch file using diff -c -r -N.  All future source code releases will
+        probably be in this format.
+
+ver 0.0.3E1 [Feb 16/1998]
+-there is a "more" at the end of the firing of a beam weapon to let you enjoy
+        the effects ;B (and take in the damage)
+        (zap.c)
+-adding menu system accessible by the ~ or ` key
+        (cmd.c, func_tab.h)
+-the weapon selection screen removes swapwep and quivered weapons from
+        wield list,  like the primary weapon is normally removed
+        (invent.c)
+-adding Angband style inventory done by "body part"
+        Currently an elaborate hack ;B
+        (cmd.c, invent.c, do_wear.c)
+-the FPU coprocessor emulator is now linked into the executable.
+        -added -lemu to the linker flags
+        -should now allow 486sx and lower machines to handle things properly        
+        (makefile.gcc)
+-enchanted gloves +ses (and -ses) add to barehanded combat damage
+-added alternate spellings to pick-axe - pickaxe and pickax
+        the right way to spell it IMHO ;B
+        (objnam.c)
+-enchant armour catches negative enchantments as per positive enchants
+        for those silly people who try to enchant beyond -127.  Now paralels
+        the +ve case.
+        (read.c)
+-Since everyone should be in the credits,  I've shortened the
+        intro screen and and modified the copyright banners
+        (wintty.c, patchlev.h)                
+-added Nathan La to the credits.  Reordered the credits properly so that
+        SLASH'EM came after SLASH (silly boo-boo)
+        (guideboo.mn, guideboo.tex, guideboo.txt)
+-mall level now has at least one guaranteed (random) shop.
+        (mall-1.des, mall-2.des)
+-bug fix:  if polymorphed into a form that hates silver or a lycanthrope,
+        "silver sears your flesh" and dmg bonus done properly (mhitu.c)
+        [used to be only class 'L' players were checked,  and only for
+        lycanthrope.  Now follows hates_silver and lycanthrope check]
+-breaking wand of death will create a "sphere of death" rather than
+        disintegration field (explode.c)
+-Fixed the stat.h reference in files.c - should fix a Linux bug
+-replaced nethack references/e-mail in junk mail with my e-mail
+        and SLASH'EM ver number (mail.c)
+-wishing now accepts abbreviations (BoH == Bag of Holding)
+        (objnam.c)
+-minor update to text documentation (guideboo.txt, slashem.txt)
+-hit messages for monsters using beam weapons fixed e.g. yellow dragon
+        acid breath (zap.c)
+-monks can start with a spellbook of protection rather than force bolt
+        (u_init.c)
+-generic direction prompt has a list of possible directions, to match
+        the digging prompt. (cmd.c)
+-fixed the score display on the bottom line. Score should now show up
+        only once, and only if showscore is TRUE in the config
+-fixed the Xp display.  the showexp option is now active again
+-the [xx dmg] and (xx dmg) are now activated by the showdmg config option
+        (hack.c, uhitm.c, mhitu.c, options.c, flag.h, makedefs.c, config.h
+        guideboo.tex, guideboo.mn, guideboo.txt)
+
+ver 0.0.3E0 [Jan 30 1998]
+-Added new names for various Doppelganger levels
+        -Copier x3, Shifter x2, Changer x2,  Adept Changer, Master Changer
+        -now Copier, Duplicator, Modifier, Shifter, Clone, Reshaper,
+         Manipulator, Adept Changer, Master/Mistress of Forms
+         (botl.c)
+-Monsters have more (default) inventory (makemon.c)
+        -Hobbits (monster) with slings also have rocks to throw now ;B 
+                -have a chance of wearing leather armour if not
+                        wearing elven mithril
+        -Ogres get clubs if they don't have axes
+        -All orcs have at least an orcish dagger
+        -Mordor Orcs get 1:3 chance of getting orcish spears
+        -Goblins get orcish shortsword 1:3
+        -Hobgoblins get either morning star 1:3 or 1:3 orcish short sword
+        -kobolds get javelins 1:4 or darts, short sword 1:4 or dagger
+        -mind flayers get robes 1:2
+        -master mind flayers get robes of protection 1:10, robes of power
+                1:10 or else robes 
+-you get the [xx pts.] damage report from all calls to losehp()
+        eg thrown weapon damage
+        (hack.c)
+-if invisible and teleported into a shop,  you are allowed to leave
+        (shk.c)
+-when polymorphing - "feel like a new elf/man/woman"  now added gnomes
+        -as well, gnomes polymorphing into gnomes become new gnomes
+        (polyself.c)
+-Reworked the monk attack code again. (uhitm.c)
+        -Bug fix:  Monks should now gain experience in martial arts
+        -All martial arts users get extra damage,  Monks can just
+                do more damage (eventually)
+     Martial Arts and:
+        Monk and Grand Master   6d4
+        Grand Master            5d4
+        Master                  4d4
+        etc....
+        Basic                   1d4
+-Undead Slayer inventory changed (u_init.c)
+        -now starts with wooden stakes
+        -matched with whip +2 or silver spear [Castlevania] 25%/25%
+                or crossbow [Buffy] 50%
+        -silver daggers or crossbow bolts
+        -helmet or low boots +1
+        -chain mail or leather jacket +1
+-reworked kicking damage
+        -includes bonuses due to +ses on boot
+        -kicking boots,  rings of damage, +ses will do (some) damage
+                against thickskinned animals (eg dragons)
+        (dokick.c)        
+-made bare handed combat and martial arts separate skills
+        (you.h, weapon.c)
+-wooden stakes now use the dagger weapon skill,  and are piercing weapons.
+        -if you are an expert with the dagger or an undead slayer
+                have a chance at plunging the stake into the heart of the
+                vampire,  which will kill it instantly and vape the corpse
+                (uhitm.c)
+-Gnomes start with more equipment:
+        -short sword, aklys, hammer
+        -crossbow or sling w/ bolts or rocks
+-Flame/Ice Mages, Necromancers start with +1 blessed quarterstaves,
+        spellbook force bolt
+        (u_init.c)
+-pets will no longer eat own species unless starving.
+        (dog.c)
+-reworked the weapon swapping code
+        -quiver,  secondary weapons init properly (u_init.c)
+        -no weird inventory names when failing to swap to a 2-handed weapon
+                from a single weapon and shield 
+        (wield.c)
+-DOS binaries now compiled using PGCC 1.0.1
+-the tile files are now "absorbed" into NHDAT.  The files
+        *.tib are redundant now ;B.
+        (dlb.c, dlb.h, pctiles.c)
+-bug fix:
+        -FATAL BUG fixed: ball and chain on Water Level (Endgame) used
+                to cause crashing (dungeon collapsing)
+                Fixed. (mkmaze.c)
+        -MAJOR bug:-The game used to crash if you hit esc, space in
+               the spelluser's special ability menu. Fixed (spell.c)
+                -spellusers' special abilities should no longer crash/
+                        cause errors. (spell.c, cmd.c)
+        -fixed healing spells showing up with a class "restore"
+                in Zap menu.  now "healing" (spell.c)
+        -bug fix: Shopkeeper will get mad at people escaping the shop
+                even if unable to stop them from leaving or grabbing their
+                backpacks
+                (shk.c)
+        -Wearing a wielded ring will take it out of your hand
+                You used to be able to both wield and wear a ring
+                (do_wear.c)
+        -the "new strength" message has been disabled (u_init.c)
+-Candle of Eternal Flame now has an eternal flame
+        -fixed the "partly used" in description
+        (artifact.c, apply.c)
+-In the shopkeeper's menu,  'uncurse' is now spelled correctly (shk.c)
+-noartifactwish (defined by default) now stops ALL artifact wishing
+        -undefining noartifactwish will let you wish for limited
+        artifacts (objnam.c)
+
+ver 0.0.2E9 [Jan 17 1997]
+-included CWSDPMI (for the pure DOS users)
+-binaries now compiled with PGCC 1.0
+        -NOTE to PGCC users:
+                -To get this going, I had to stubedit the PGCC cc1.exe
+                 to a stack size of 768k from 256k
+                -The stack size of the the DJGPP cc1.exe is 768k
+        -This binary is now Pentium optimized,  with an optimization
+         level of O6 (for those of you who don't use PGCC,  that's
+         the maximum optimization.  To compare, gcc was optimizing
+         before at O2.  The original makefile optimized at O1)
+         (makefile.gcc)
+-Added Skill type headings in the skills list (weapon.c)
+-wand beams will now clear when bouncing back,  so that you can see the
+        bounce (zap.c)
+-wands of lightning will always explode if used underwater,  except
+        if the wand is blessed. (zap.c)
+-cursed wands will blow up MUCH more frequently
+        -explosion is done similar to breaking the wand
+        (zap.c, apply.c)
+-Sunsword,  Holy Spear of light are now a light source
+        -slight bug - once created,  they are NEVER deleted (just hidden)
+                -It's not really a problem, as you can't turn them off ;B
+                -only minor thing is if there end up being a lot of artifact
+                 lights,  this could become quite draining on resources for
+                 slower comps.
+        (artifact.c, mkobj.c, light.c)
+-Toned down the monk.  He got to be a bit powerful at high levels.
+        -His base damage is maxxed at level 16 (6d4 + 2) (uhitm.c)
+        -max AC bonus of -11 (due to level) (do_wear.c)
+-fixed makedefs -f to not use strlwr.  Changed some defines.(makedefs.c)
+-weapons/objects with names that have "holy" in them can be wished for
+        (mostly artifacts).  Holy no longer means blessed (objnam.c)
+-old feature:  changed the name of some constants
+        -weapon.c, you.h,  spell.c, u_init.c
+-added explosion tiles/colored chars for lightning and death/disintegration
+        (lightning is white, death is grey on tty nontile)
+        (other.txt, explode.c, rm.h, drawing.c)
+-Necromancers start with quarterstaff (u_init.c)
+-redid the bouncing code so that bounzing 'zaps' don't go into walls.  Looks
+        nicer ;B (zap.c)
+-bug fix:
+        -plugged up an object leak in studyspell (spell.c)
+        -make spotless now deletes the filename.h (since it will be generated
+                automatically by makedefs) (makefile)
+        -problem with spellcasters starting with a blank spell read.(u_init.c)
+        -explosions are properly clipped for walls/corridors (explode.c)
+-Flame Mages,  Ice Mages, Necromancer get Wizard bonus for breaking wands
+        -(damage /10)
+        (explode.c)
+-light sourcing for effects
+        -light sourced zap, explosion for lightning and fire spells
+        -light sourced camera flash
+        -could be computer intensive, so I made it a compile-time option
+                -#define LIGHT_SRC_SPELL in config.h
+        -this had better work...tough to implement!
+                -I had to add another light source type - LS_TEMP
+        -BTW, I went to the elemental plane of fire and stressed tested the
+                light sourcing code.  Thing still flies on the Pentium.  I
+                do have to note that the "on-the-fly" light sourcing is
+                very neat.  Kudos to the person who did the vision system ;B
+        (vision.c, zap.c, explode.c, config.h, vision.h, display.c)
+-executables now compressed with DJP  - exe is a little less than half
+ previous size! (makefile)
+-when invoked from cmd line with -?, etc,  usage no longer includes .exe after
+ game name
+        -stubedit now supplies an argv0 w/o .exe
+        argv0=$(GAME) [in (makefile)]
+-when blind,  differentiates between nearby and distant zaps
+        (muse.c)
+
+ver 0.0.2E8 [Jan/07/1998]
+-Flame/Ice Mages have weapon skills severely curtailed.
+        -Flame Mages now use primarily small-medium blades
+        -Ice mages use stabbing(piercing) weapons
+        -neither have any more ability in bows, etc.
+        (u_init.c)
+-fireballs are now bolts rather than streams (spell.c)
+-the FAQ has been updated with the NHPlus changes.  It should now cover
+        nearly all the changes due to SLASH (and its predecessor NHPLus)
+        and Wizard patch. (slamfaq.txt)
+-increased lights/fire vortex to cast light at range 3,  fire elementals
+        at range of 2. Since my computer just zips through SLASHEM,
+        mail me if you encounter performance problems. (mondata.h)
+-The vision tables are now defined.  Supposed Performance boost (I can't
+        tell...This game always flew on this comp) (config.h)
+-config file is now SLASHEM.cnf.
+        -makedefs now constructs filename.h using -f which defines filenames
+                -actual game name is in patchlev.h
+        -affects the config file,  tile files
+        (filename.h [new file in \include], file.h (new file in [\include],
+        files.c, makedefs.c, patchlev.h)
+-blessed scrolls of genocide now have menusystem.  access by typing '?'
+        (read.c)
+-added message for monsters clawing- now "claws you!" rather than just "hits!"
+        (mhitu.c)
+-bug squash: (mostly from reading old r.g.r.n news)
+        -'a'pplying wand of fireball now has correct effect
+                as well, applying a wand of fire or fireball does NOT
+                identify the wand,  but does as if you wish to name it
+                (apply.c)
+        -genocided monsters wearing amulet of lifesaving but not
+                visible no longer generate a message.
+                (mon.c [lifesaved_monster])
+        -rust monsters now work properly - will only attack nonmetal items
+                or your main body.  (mhitu.c [hurtarmor])
+        -elbereth engraving now repels monsters again.  If you don't want to
+                use it, just remove the define elbereth/don't use it ;B
+                (mon.c, monmove.c)
+        -"pile of coins" message for evil food and "piece of food"  for evil
+                food mixup fixed. (drawing.c)
+        -handling of riders and disintegration (especially Death) improved
+                -riders were absorbing disintegration blasts
+                -Death was getting HP reduced to 1
+                        -Death now gains HP as per original code
+                (zap.c)
+-F1 now invokes help (pckeys.c)
+-setup.bat now copies makefile.doc to the doc directory (setup.bat)
+-optimized compiling now.  Compiler uses -O2 compiling rather than -O
+        -Linker uses -s,  removing symbol tables
+        -.exes are smaller,  supposedly faster.
+        (makefile.gcc/makefile)
+-failed stealing, most special abilities now take a turn (cmd.c)
+-silver daggers are now piercing weapons ie. can now be thrown w/o
+        penalty.  (objects.c)
+-players start with spells in spellbooks memorized. (spell.c, u_init.c)
+-players now start with secondary weapons wielded,  ammunition in
+        quiver (u_init.c)
+-pressing ^P twice consecutively will bring up message history
+        tty port only.
+        (topl.c)
+-the shell was accidentally commented out (PC ports)
+        Can now shell out to commmand.com, etc.
+        (pcconf.h)
+-executable is now slashem.exe,  with a corresponding
+        slashem.txt based off nethack.txt,command line help, etc.
+        (makefile.doc, slashem.6, makefile, pcmain.c)
+-can access guidebook from help menu (pager.c, global.h)
+-monsters can now use wand of fireball (zap.c, muse.c)
+-makefile now moves the readme to the game dir (makefile)
+
+ver 0.0.2E7 [Dec/20/1997]
+-added history of SLASH'EM and predecessors
+        -SLASH, Wizard, Nethack Plus, Nethack--(history, guidebook.mn)
+-begun updating documentation
+        -added keyboard commands (M-b, M-e, M-k, M-q, M-y, Q, x, f)
+                -synchronized with help files 
+        -Options (keep_savefile, save_prompt)
+        -Character bios for the slash classes
+        -added more info on #enhance (weapon+spells)
+        -weapon swapping, quiver/fire
+        (guidebook.mn,  guidebook.tex,  help, cmdhelp, hh, msdoshlp.txt) 
+-Added makefiles for the documentation. Note that to compile the .txt docs
+        you either need GNU Groff (DJGPP has a port) or nroff and col
+        (makefile.doc)
+-discovered that makefiles require real tabs, and EDIT doesn't do tabs.
+        Looks like a job for NOTEPAD ;B 
+-version display registers borg,  invisible objects, keep_save and
+        noartifactwish compile-time options (makedefs.c)
+-changed the prompt in monster special power to "You aren't a monster"
+        rather than "you don't have a special ability"  since SLASH
+        characters have special class effects.(cmd.c)
+-keep savefile compile time option
+        -grouped under #define KEEP_SAVE (config.h)
+                comment out to compile without this option.
+        -keep_savefiles [FALSE]
+                This is a bit controversial,  but it defaults to FALSE and
+                purists will play it that way,  for the true challenge.
+                (files.c, options.c, flag.h, opthelp)
+        -save_prompt [FALSE]
+                Only useful with above defined TRUE.  Prompts for quit after
+                save. (save.c, options.c, flag.h, opthelp)
+                NOTE:  This is experimental,  so I wouldn't mind feedback
+                on whether it works.  Mail me! (wac@intergate.bc.ca)
+-Changed some skills for Undead Slayer class (u_init.c)
+        -made spear skill Expert rather than Skilled
+              Slayer artifact is a spear,  after all
+        -made dagger skill expert too,  since it's a starting weapon
+        -made crossbow skill Expert - Dracula movies
+        -changed bare handed basic to martial arts master
+                - Buffy the Vampire Slayer
+        -Added whip Expert - Castlevania
+        -made club, flail, mace, morning star, hammer, quarterstaff Skilled
+                from Expert to balance
+        -removed Trident skill - from Skilled to Restricted
+        -removed Lance skill - from Basic to Restricted
+-fixed the offsets for #enhance skills screen (added missing brackets).
+        #enhance screen should be now properly aligned even when there
+        are some skills available to advance. (weapon.c)
+-fixed the engulfing colors (my mistake..i turned some of them blue)
+        (other.txt)
+-when summoning undead,  people who know how to command undead will
+        automatically cast that as well. (read.c)
+-'E','U','V' special ability also practices the with weapon. Increased
+        the delay between uses as balance. (cmd.c, weapon.c)
+-'A' now has the identification ability. (the old spellcaster special
+        ability). He recognises objects from past research.  (cmd.c)
+-'N','F','I' and 'W' special ability is now study spells.  Saves wear
+        and tear on those spellbooks. (cmd.c)
+-bug fixes for 'Slashing ability'
+        - you can't extend claws when 'L' and polymorphed.  Think of it
+        as needing your "human" bone structure. (cmd.c)
+        -retract claws when swapping to a weapon. (wield.c)
+        -message is now "fingernails extending to claws"
+                Thanks Ben Newall (ben@eki.com) (cmd.c)
+-In #enhance skills menu - will keep calling the menu if you can enhance
+        more than one skill. Saw a comment at the top and implemented it.
+        (weapon.c)
+-Added "yell"  preceding successful megafireball cast.  "Kamehameha" for
+        magic missile,  "Shinkuu Hadouken" for fireball and
+        "Gessho Suityaha" for cone of cold. (Now, where could these
+        have come from.  Haven't been playing SF vs Xmen/Samurai Shodown ;B )
+        (zap.c) Actually, I wouldn't mind more
+        appropriate "yells" (esp for cone of cold). Feel free to submit.
+-In Wizard MODE: can now advance skills without practice.  For debugging
+        the fireballs (Yeah right ;B) #enhance will now prompt for whether
+        you want to advance skills without practice. (weapon.c)
+
+ver 0.0.2E6 [Dec/09/97]
+-fixed the wand of fireball zapping green.  It should now be a more "normal"
+        red. (zap.c)
+-Added a magenta magical explosion.  Note that the cold explosion,  magical
+        explosions are also visible as different colored ASCII characters
+        for those of you who use colored IBM char set.  If you use b&w,
+        this won't change much. (explode.c,  rm.h, drawing.c)
+-fixed some silly glyph things: whenever a shield glpyh/tile came on
+        during an explosion,  Nethack would replace it with a normal
+        explosion glyph - even if it was a cold explosion.  (explode.c)
+-Added Mega Magic Missile/Fireball/Cone of cold:
+                For those who complain that spells
+        just aren't powerful enough,  here's the spells for you.  When
+        a wizard is skilled in matter spells, he will no longer cast
+        wimpy wandlike bolts of fire/cold/magic missiles.  
+        He will fire a blast 3 times as large and 3x as strong.
+        These are powerful spells - do not play with these!
+        --As a technical note, what I've done is taken a standard
+                fire/cold bolt/magmissile and caused it to explode
+                every step of the way...
+        (spell.c, zap.c, explode.c)
+        As a matter of note,  I hope to add "enhanced" versions of all the
+        spells,  but I wouldn't mind any suggestions.
+        I'll probably put the old super fireball/cones in as spells.
+-fixed the explosions...I had accidentally replaced the normal fire
+        explosions with the cold explosion tiles. (other.txt)
+-'L' now has a new special ability - slash!  Based loosely off Wolverine's
+        Berserker Barrage (arcade ;B),  you have to be empty handed to use.
+        When you attack your next enemy,  you will go into a similar state
+        as when you go berserk,  except the enemy can't hit you back.
+        Note that you have to land a hit before the barrage starts,  and
+        while you're attacking,  you can still be hit by other monsters.
+        If you wield a weapon,  you will retract your claws.
+        (timeout.c, uhitm.c, cmd.c, wield.c)
+-Added timeout message for special abilities 'S', 'B', 'L' (timeout.c)
+-Dirk Schönberger is proud to present you with another set of tiles!
+        (monsters.txt)
+
+ver 0.0.2E5 [Nov/22/97]
+-Added even more of Dirk Schönberger (shoenberger@signsoft.com)'s
+        monster tiles!  The ghouls no longer look like ogres! As a
+        bonus,  dotted the o in his name now!
+        (monsters.txt)               
+-Magic users' special class effect now calls the standard identify
+        routines (cmd.c)
+-undead can now resist Command Undead spell - message now for successful
+        commanding (read.c)
+-Necronomancers have a chance to command undead when summoning undead
+        -spell + scroll (read.c)
+
+ver 0.0.2E4 [Nov/15/97]
+-Shopkeepers can now improve your tool-weapons (ie unicorn horns,
+        pick-axes can be enchanted/rustproofed/poisoned) (shk.c, invent.c)
+-Added Dirk Schönberger (shoenberger@signsoft.com)'s new monster tiles!
+        LOTS and LOTS of additions - Thanks Dirk!! (monster.txt)
+-Added poison blast [attack], acid stream spells [matter]
+        (objects.txt, objects.c, spell.c, zap.c)
+-Valkyries' special spell is now Lightning, rather than cone of cold
+        (u_init.c)
+-Master key of Thievery should not break off in locks anymore!
+        (Side Note:  This ISN'T true of the Platinum Yendorian
+        Express Card...) (lock.c)
+
+ver 0.0.2E3 [Nov/08/1997]
+-Added bolt of lightning spell/tile for spellbook (HI_PAPER spellbook)!
+        (Side note - to prevent problems in recompile whenever new tiles
+        or objects are added,  touch *.* in the src/ directory)
+        (objects.c, spell.c, zap.c, objects.txt)
+-'W'ear command now puts on amulets, rings and blindfolds.
+-Once you are "skilled" in a certain spell class, all effects paralleling
+        scrolls act the same as blessed scrolls (all spells, rather than
+        just remove curse) (spell.c)
+-healing spell class bonus applied to the general healing spell class
+        rather than specific spells
+-Fixed credits again!  Added Warwick Allison (warwick@cs.uq.edu.au)
+        (readme.txt - this file!, wintty.c)
+-Changed version number to fit Nethack scheme (patchlev.h)
+-fixed keys in dos help file  - added/fixed alt keys for quit,
+        skills, class effects(msdoshlp.txt) (you may need to delete nhdat
+        to force a recompile of the help file)
+
+ver 0.22 [Nov/05/1997]
+-made menu accelerators for character class, alignment and gender lowercase (wintty.c, u_init.c)
+-added menu for Shopkeepers for other services (shk.c)
+-Necromancers are now Chaotic - raising the dead isn't exactly "neutral" (u_init.c)
+-Necromancers now have force bolt rather than turn undead. (u_init.c)
+-fixed a bug in the new menus - forgot to dismiss the windows. (u_init.c, wintty.c)
+
+ver 0.21 [Nov/04/1997]
+-Added tiles for cone of cold explosion. (drawing.c, other.txt, rm.h, explode.c)
+-Knights are given Alignment Lawful.  used to be Neutral?? (u_init.c)
+-Figured out how the menus work!  Now you get a nice menu for choosing
+        character class (wintty.c), gender and alignment (u_init.c).
+-Added initial spell skills for Flame, Ice Mage,  Monk and Necronomancer
+        (weapon.c)
+
+ver 0.2 [Nov/02/1997]
+-Added and Revised spell skills for all the classes - skills should now
+        make sense.   (u_init.c)
+-Added spell skills for Caveman - stupid omission (u_init.c)
+-reorganised spells - hopefully the organisation is more understandable
+        (spell.c)
+-"fixed" offsets for "Z"ap columns - do they look right? (spell.c)
+-fixed the credits.  The e-mail for bug reports is now corrected on the
+        main screen (wintty.c)
+
+ver 0.1 [Nov/01/1997]
+-Just released!
+-As far as I know,  I've pretty much implemented all the features of 
+the Wizard patch onto Slash E8 (except for the decreased power regeneration)
+-Changed files (from SLASH E8):
+        extern.h, spell.h, you.h, allmain.c, apply.c, attrib.c , do_wear.c,
+        dokick.c, objects.c, pray.c, spell.c, u_init.c, uhitm.c, weapon.c,
+        zap.c
+
++---------------------+
+|Section 2.0 Storytime|
++---------------------+
+
+The tale of Nethack and I really doesn't go too far back.  I remember
+downloading an old version of Nethack off some BBS way back in my early
+high school years.  Played it a couple times,  was wiped out really fast
+most of the time.  Made it to the Gnomish mines.  Must have been 3.1.3.
+Ran into Alphaman and a couple other roguelikes.  Got deleted sometime.
+
+Early in Grade 11,  I was poking around and I stumbled upon BW's (no,
+I'm not going to spell it wrong ;B) Nethack pages.  Found 3.2.2,  and
+played it for a while.  Good fun,  and the tiles let me know at a glance
+I was pounding away at,  but I was playing around with QuakeC,  so I
+figured I may as well put my little install of DJGPP to good use.
+Downloaded the sources,  figured out how to fix the DOS makefile.  Made
+one change,  got bored,  and it got lost the next time my HD needed
+pruning.
+
+Sometime at the beginning of 1997 (my graduating year),  I ran into
+Nethack again.  BW's page was still standing,  and I got the game and
+the source.  Ran amok a couple links,  and came across Darren Hebden's
+Roguelike News page.  Was reading some news items,  and thought to
+myself
+
+"Hey!  How come it's all this Angband stuff?   I can't even stand
+playing Angband for more than 30 seconds. (Must have been that runin
+with the room filled with lice).  Where's the Nethack mods?"
+
+So with a little poking around,  I came across SLASH V6 4.1.2E8 and the
+Wizard Patch.  They both looked neat.  I wanted both.
+
+Correction.  I wanted both,  AND I wanted myself on the news page.
+Phew!  Finally got that off my conscience.  Yes,  this labour of love
+was also spurred by an odd initial self-centered desire to get some
+fame.
+
+So I made SLASH'EM.  Actually,  I tried patching the Wizard Patch onto
+the SLASH ported to Nethack 3.2.2 source.  Failure.  Sources were too
+different.  About a hundred incompatible chunks.  Gave up,  and put it
+away.  Then,  one strange night,  I was REALLY BORED.  So I did the
+patch by hand.  By the end of it,  I was almost 100% sure it would
+explode.
+
+I had to fix a couple typos.  It compiled.  It ran.  SLASH'EM was born.
+This was probably where SLASH'EM probably would have died.  With an
+incredible dash of luck,  it all somehow worked.  Despite the fact the
+two weren't designed to mix.  Despite the fact that I'd never done C
+programming before.
+
+Yes.  Nethack was actually my pounding block for learning the C programming
+language.  Scary,  neh?  I learned a lot.  Not much terminology - but it's
+come to the point that most things work all right.  New features
+actually being implemented.  For those wondering, before Nethack and real C,
+I did BASIC programming (various versions)  and some QuakeC.  
+
+Not too long after,  I was actually adding features.  Original
+stuff.  Spur of the moment additions.  Bug fixes.
+
+Sometimes,  things were touch and go.  There was the time I was trying to
+add light sourced spells.  That was supposed to be a couple hours.
+I broke the entire zap code.  But the thing is - if I'm halfway in,  I'll
+generally finish the job.  Just because it would be a waste of my time if
+I gave up.
+
+Then,  somewhere along the way,  other people actually played it.  I
+started getting bug reports.  People actually saying good things.  People
+telling me every other version that yes - the boulder bug is back ;B
+
+Actually,  if it hadn't been for the fact I'd get a message every week
+or so from someone different telling me about some bug,  thanking me for
+making the game,  this probably would have died eons ago.  The SLASH'EM
+page gets tons more hits than my actual personal webpage ;B
+
+It taught me C programming.  It taught me that there is actually a
+community of people out there who are awfully nice,  even though half a
+dozen posts a week to their message board concern computer hacking.
+
+I'm now a 2nd year university student at the University of British
+Columbia.  Looks like I'm going to do an Honours in Microbiology -
+Immunology Option.  Haven't ever taken a computer course yet,  although
+I plan on doing the 1st year Compsci courses this summer.  I play
+SLASH'EM in the time I should probably be studying and doing homework.
+I've never gotten to Medusa,  let alone ascended,  without using Wizard
+mode.
+
+Anyhow,  this ended up awfully longwinded and probably very boring.  But
+hopefully,  this'll encourage anybody with their little Nethack dream to
+never stop suggesting their ideas,  or going out and making their
+patch.  It could happen.
+
+Plus,  now you know why every other SLASH'EM version crashes terribly :B
+
+Happy Hacking!

@@ -1,0 +1,60 @@
+#	SCCS Id: @(#)nightmar.des	3.2	95/10/07
+#	Copyright (c) 1999 by Kevin Hugo
+# NetHack may be freely redistributed.  See license for details.
+#
+
+MAZE: "nightmar" , ' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+          -----------------------          
+        ---.....................---        
+       --....--------.--------....--       
+      --....--...............--....--      
+      |....--...-----------...--....|      
+-------...--...--.........--...--...-------
+|....F...F-...--...--.--...--...-F...F....|
+|....F...F...F-...--...--...-F...F...F....|
+|....+...F...F....F..\..F....F...F...+....|
+|....F...F...F-...--...--...-F...F...F....|
+|....F...F-...--...-----...--...-F...F....|
+-------...--...--.........--...--...-------
+      |....--...-----.-----...--....|      
+      --....--...............--....--      
+       --....-----------------....--       
+        ---.....................---        
+          -----------------------          
+ENDMAP
+
+# Specifications for the whole level
+RANDOM_MONSTERS: 'u', 'C'
+REGION:(00,00,42,16),lit,"ordinary"
+NON_DIGGABLE:(00,00,42,16)
+BRANCH:(01,06,04,10),(0,0,0,0)
+
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+# Monsters
+MONSTER: 'u', "Nightmare", (21,08), asleep
+MONSTER: 'u', random, random
+MONSTER: 'u', random, random
+MONSTER: 'u', random, random
+MONSTER: 'u', random, random
+MONSTER: 'u', random, random
+MONSTER: 'u', random, random
+
+# Traps
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+

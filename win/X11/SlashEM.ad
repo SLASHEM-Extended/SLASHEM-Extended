@@ -1,0 +1,166 @@
+! The display_file, tombstone, and menu windows are all formatted assuming
+! a fixed width font.  Text windows may or may not be formatted as above.
+! The rip window applies if the GRAPHIC_TOMBSTONE option is turned on, and
+! requires a 12 pixel font for correct appearance.
+!
+SlashEM*font:				variable
+SlashEM*display_file*font:		fixed
+SlashEM*tombstone*font:			fixed
+SlashEM*rip*font:			-*-times-medium-r-*-*-12-*-*-*-*-*-*-*
+SlashEM*menu*font:			fixed
+!SlashEM*text*font:			fixed
+SlashEM*map*font:			nh10
+
+! To use full-color tiles for the map, uncomment the tile file name.
+! If you use a 100dpi (or greater) monitor you may wish to double the
+! tile size so you can see the figures.  If SlashEM was compiled to
+! use XPM (USE_XPM in config.h), the tile_file is a standard XPM file.
+! Otherwise, it is a custom format.  double_tile_size only applies to
+! the custom format - to enlarge an XPM file, use processing tools
+! such as XV or preferably PBMplus.
+!
+!SlashEM.tile_file: x11tiles
+!SlashEM.double_tile_size: True
+!
+! The annotation of pets.
+!SlashEM.pet_mark_bitmap: pet_mark.xbm
+!SlashEM.pet_mark_color: Red
+
+! Tombstone
+! The image file
+!SlashEM.tombstone: rip.xpm
+! Text starts at (tombtext_x, tombtext_y) and subsequent lines
+! are displaced by (tombtext_dx, tombtext_dy) pixels.  If you
+!SlashEM.tombtext_x: 155
+!SlashEM.tombtext_y: 78
+!SlashEM.tombtext_dx: 0
+!SlashEM.tombtext_dy: 13
+! The color to use for the text on the hero's tombstone
+SlashEM*rip*foreground: black
+
+! Translation tables.  There are currently several actions in nethack, but
+! the only one you should be using is "input()", which, with no parameters,
+! uses XLookupString to translate your keypress into a command.  You
+! can optionally give it parameters to change the behavior, see the example
+! below.  Note that you have to specify the translations in every appropriate
+! window.
+SlashEM*message*translations:	<KeyPress>: input()
+!
+! Example extra translations for the map window.
+!
+!SlashEM*map*translations:	#override \
+!				!<Key>Left: input(h) \n\
+!				!<Key>Right: input(l) \n\
+!				!<Key>Up: input(k) \n\
+!				!<Key>Down: input(j)
+!
+! The icon to use; supported values are nh72, nh56, and nh32; nh72 is the
+! default.  Some window managers may not support the larger icon sizes.
+! It is not guaranteed that the window manager will honor the icon selection.
+!SlashEM*icon: nh56
+!
+! If True, a popup for single character prompts such as y/n questions is _not_
+! used.
+!SlashEM*slow: True
+!
+! The number of lines the message window will show without scrolling.
+!SlashEM*message_lines: 12
+!
+! If True, the message window has a line that seperates old and new messages.
+!SlashEM*message_line: True
+!
+! If True, force keyboard to attach to popup windows.  Some window managers
+! enforce a click-to-focus-keyboard policy (e.g. the DECwindows wm).  SlashEM
+! has a lot of popups and is almost unplayable without some kind of autofocus.
+!SlashEM*autofocus: True
+!
+! Specify the number of rows and columns of the map window.  The default
+! is the standard 80x21 window.  Note: this _does_not_ change nethack's
+! level size, only what you see of it.
+!SlashEM*map*rows:	21
+!SlashEM*map*columns:	80
+
+! Parts of the fancy status display.
+!
+SlashEM*status_condition.borderWidth:	0
+SlashEM*status_info*borderWidth:	0
+
+! Sample color screen entries.
+!
+SlashEM*nethack.background: 	wheat
+SlashEM*map*yellow:		gold
+SlashEM*map*brown:		tan
+SlashEM*map*gray:		grey85
+SlashEM*map*foreground:		wheat
+SlashEM*map*background:		grey40
+
+SlashEM*fancy_status.skipAdjust:        True
+SlashEM*fancy_status.background:	wheat
+SlashEM*status_info*foreground:		Sienna
+SlashEM*status_info*background:		wheat
+SlashEM*status_info.background:		wheat
+SlashEM*status_attributes*foreground:	black
+SlashEM*status_attributes*background:	white
+SlashEM*status_condition*foreground:	red
+SlashEM*status_condition*background:	wheat
+SlashEM*Scrollbar*foreground:		Sienna
+SlashEM*Scrollbar*background:		wheat
+SlashEM*status_info*showGrip:		False
+SlashEM*status_attributes*showGrip:	False
+
+SlashEM*player_selection*random.borderColor:	blue
+SlashEM*player_selection*random.borderWidth:    2
+SlashEM*player_selection*random.foreground:	blue
+SlashEM*player_selection*random.accelerators: #override\n\
+				<Key>Return:	set() notify() unset()
+SlashEM*player_selection*quit.borderColor:	blue
+SlashEM*player_selection*quit.foreground:	blue
+SlashEM*player_selection*Command.borderColor:	red
+SlashEM*player_selection*Command.foreground:	red
+SlashEM*player_selection*quit.accelerators: #override\n\
+				<Key>Escape:	set() notify() unset()
+
+SlashEM*race_selection*random.borderColor:	blue
+SlashEM*race_selection*random.borderWidth:	2
+SlashEM*race_selection*random.foreground:	blue
+SlashEM*race_selection*random.accelerators: #override\n\
+				<Key>Return:	set() notify() unset()
+SlashEM*race_selection*quit.borderColor:	blue
+SlashEM*race_selection*quit.foreground:		blue
+SlashEM*race_selection*Command.borderColor:	red
+SlashEM*race_selection*Command.foreground:	red
+SlashEM*race_selection*quit.accelerators: #override\n\
+				<Key>Escape:	set() notify() unset()
+
+SlashEM*extended_commands*dismiss.borderColor:	blue
+SlashEM*extended_commands*dismiss.foreground:	blue
+SlashEM*extended_commands*help.borderColor:	blue
+SlashEM*extended_commands*help.foreground:	blue
+SlashEM*extended_commands*Command.borderColor:	red
+SlashEM*extended_commands*Command.foreground:	red
+SlashEM*extended_commands*help.accelerators: #override\n\
+				:<Key>?:	set() notify() unset()
+SlashEM*extended_commands*dismiss.accelerators: #override\n\
+				<Key>Escape:	set() notify() unset()
+!
+!
+! The following are the default 15 colors that the nethack map uses.
+! If they don't look good on your screen, change them.
+!
+! The foreground color is used as "no color".
+!
+!SlashEM*map*black:		black
+!SlashEM*map*red:		red
+!SlashEM*map*green:		pale green
+!SlashEM*map*brown:		brown
+!SlashEM*map*blue:		blue
+!SlashEM*map*magenta:		magenta
+!SlashEM*map*cyan:		light cyan
+!SlashEM*map*gray:		gray
+!SlashEM*map*orange:		orange
+!SlashEM*map*bright_green:	green
+!SlashEM*map*yellow:		yellow
+!SlashEM*map*bright_blue:	royal blue
+!SlashEM*map*bright_magenta:	violet
+!SlashEM*map*bright_cyan:	cyan
+!SlashEM*map*white:		white

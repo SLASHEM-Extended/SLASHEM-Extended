@@ -1,0 +1,17 @@
+        To compile Nethack for the allegro interface:
+
+             First, follow the instructions in the sys\msdos directory 
+        to compile a non-allegro binary and all the game datafiles.
+
+             Then, rename "makefile.alg" to "makefile" and run make.
+
+             The Allegro makefile DOES NOT automatically create the 
+        neccesary tile files.  To create them manually, run 
+        "tile2bmp.exe" in the src\ directory, tile2bmp is created 
+        automatically by make.  Then create an index for these tiles 
+        with "tileidx > index", "move index ..\tiles".
+
+             Alternately, if your version of nethack has all the same 
+        monsters/objects/traps/terrain types as 3.3.0, you can just 
+        download a tileset. (currently only available with the 
+        binaries.)

@@ -1,0 +1,86 @@
+Read Your Fortune
+  For 50 zorkmids, the gypsy will draw a random card.  If your
+  card is a suited card, you get a special fortune.  Trump cards
+  each have specific effects, good or bad.
+
+  There is no skill involved with this service; however, the
+  most useful effects have an extra cost that can be only paid
+  by credit.  For this reason, you may want to play the other
+  games first to win enough credit for a good outcome.
+
+
+Three-Card Monte
+  "Let me show you the easiest game to win.  I've got these three
+  cards: the ace of swords, two of swords, and three of swords.
+  Watch me shuffle them in front of you.  Are you looking carefully?
+  Good.  Now can you tell me which one is the ace?  That's right!
+  Wasn't that easy?  Would you like to win some credit?  Just
+  place a bet, and if you can pick the ace again, I'll pay your
+  bet."
+
+  Actually, it doesn't matter how carefully you watch the gypsy --
+  by using slight of hand, she can control whether you win or lose.
+  Your chances of winning may increase or decrease as you continue
+  to play the game, depending upon whether the gypsy thinks you are
+  "hooked" on the game.
+
+
+Ninety-Nine
+  After placing a bet, you and the gypsy are each dealt three cards.
+  You alternate turns with the gypsy in which you must play one card
+  from your hand, adjust a total depending on the card you played,
+  and then draw a new card.  The object of the game is to force your
+  opponent to play a card that makes the total less than zero or more
+  than niney-nine.  The effects of the cards upon the total are as
+  follows:
+    Ace           Adds 1 to the total.
+    2 through 10  Adds the card's value to the total.
+    Jack, Queen   Subtracts 10 from the total.
+    King          Raises the total to 99.  Always safe to play.
+    Fool          Raises the total to 100.  Always loses.
+    Other trumps  No change to the total.  Always safe to play.
+  You are the first to play.  If there are no more cards left to draw
+  from, you win.
+
+
+Yendorian Tarocchi
+  This game is still under construction, and will be released in
+  a future version.
+
+  Tarot cards originated for the purpose of playing Tarocchi, an
+  Italian trick-based card game.  (Their use in fortunetelling
+  and the occult began much later.)  Tarocchi has been adapted
+  and renamed by other cultures: Tarot (France), Tarok (Danish),
+  Troccas (Switzerland), and so on.
+
+
+Pawn Gems
+  You can sell valuable gems to gypsies for credit.
+
+
+About the Cards
+Our deck of playing cards is derived from several different European
+card systems.  The Italian card system is the oldest, believed to be
+imported from India, Persia, or Arabia circa 1370.  (Note that although
+playing cards were invented in China, scholarly evidence indicates
+that they had no direct influence on European cards.  Also, cards did
+not appear in Europe until long after Marco Polo or the Crusades, so
+it is unlikely that they were introduced by these travellers.)  Tarot
+cards were invented during the 15th century for the purpose of playing
+trick-taking card games.  They were not associated with Gypsies or the
+occult until the 18th century.  Finally, there is the French card system,
+which has been widely adopted by the English-speaking world.
+
+The deck can be divided into two parts.  There are 52 "suited" cards
+that are very similar to the familiar French system (4 suits with 13 ranks);
+in a Tarot deck, these are called the "minor arcana".  The other part
+of the deck are the "trump" cards, which are called the "major arcana" in
+a Tarot deck.
+
+Our suits are named "swords", "wands", "shields", and "rings".  These
+are assigned by matching the Tarot suits to their closest equivalent
+NetHack object.  Interestingly, there are two "offensive" suits (swords,
+wands), two "defensive" suits (shields, rings), two "ordinary" suits
+(swords, shields), and two "magical" suits (wands, rings).
+
+

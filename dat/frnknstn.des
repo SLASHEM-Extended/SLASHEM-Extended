@@ -1,0 +1,96 @@
+#	SCCS Id: @(#)frnknstn.des	3.1	98/NOV/11
+#	1998,  Robin Johnson
+#	Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+# Doctor Frankenstein's laboratory
+#
+MAZE:"frnknstn",random
+FLAGS:hardfloor
+# noteleport would render the quantummechs a bit useless here
+GEOMETRY:center,center
+MAP
+----------------------------.
+|..........................|.
+|.-----------------------|.|.
+|.|......................|.|.
+|.|.--------------------.|.|.
+|.|.|....|.............|.|.|.
+|.S.|....S.............S.|.S.
+|.|.|....|.............|.|.|.
+|.|.--------------------.|.|.
+|.|......................|.|.
+|.------------------------.|.
+|..........................|.
+----------------------------.
+ENDMAP
+STAIR:levregion(01,00,79,20),(0,0,28,12),up
+STAIR:(5,6),down
+BRANCH:levregion(01,00,79,20),(0,0,28,12)
+MAZEWALK:(28,05),east
+# Undiggable walls
+NON_DIGGABLE:(00,00,11,12)
+NON_DIGGABLE:(11,00,21,00)
+NON_DIGGABLE:(11,10,27,12)
+NON_DIGGABLE:(21,00,27,10)
+# Frankenstein and his bodyguard
+MONSTER:'Q',"Doctor Frankenstein",(06,06),asleep
+MONSTER:''',"flesh golem",(06,05)
+MONSTER:''',"flesh golem",(06,07)
+MONSTER:''',"flesh golem",(05,06)
+MONSTER:''',"flesh golem",(07,06)
+MONSTER:'Q',"genetic engineer",(05,05)
+MONSTER:'Q',"genetic engineer",(05,07)
+MONSTER:'Q',"quantum mechanic",(07,05)
+MONSTER:'Q',"quantum mechanic",(07,07)
+# Golems guarding the lab
+MONSTER:''',random,(19,05)
+MONSTER:''',random,(20,06)
+MONSTER:''',random,(21,07)
+MONSTER:''',random,(19,05)
+MONSTER:''',random,(20,06)
+MONSTER:''',random,(21,07)
+MONSTER:''',random,(19,05)
+MONSTER:''',random,(20,06)
+MONSTER:''',random,(21,07)
+# Frankenstein's treasure
+OBJECT:'(',"ice box",(06,06)
+# Geddit?
+# Some more roamers
+MONSTER:''',"Frankenstein's Monster",random
+MONSTER:'Q',"genetic engineer",random
+MONSTER:'Q',"genetic engineer",random
+MONSTER:'Q',"quantum mechanic",random
+MONSTER:'Q',"quantum mechanic",random
+MONSTER:''',random,random
+MONSTER:''',random,random
+MONSTER:''',random,random
+MONSTER:''',random,random
+# Some extra random monsters
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+# Squeaky boards
+TRAP:"board",(08,05)
+TRAP:"board",(08,06)
+TRAP:"board",(08,07)
+TRAP:"board",(22,05)
+TRAP:"board",(22,06)
+TRAP:"board",(22,07)
+# Randomly-placed traps
+TRAP:"spiked pit",random
+TRAP:"anti magic",random
+TRAP:"magic",random
+TRAP:"polymorph",random
+# Some random treasure
+OBJECT:'!',random,random
+OBJECT:'!',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:'/',random,random
+OBJECT:'/',random,random
+OBJECT:'+',random,random
+OBJECT:'+',random,random
+
+

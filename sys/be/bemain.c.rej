@@ -1,0 +1,25 @@
+***************
+*** 140,150 ****
+  	char *s;
+  
+  	if (*plname) return;
+! 	if (s = getenv("USER")) {
+  		(void) strncpy(plname, s, sizeof(plname)-1);
+  		return;
+  	}
+! 	if (s = getenv("LOGNAME")) {
+  		(void) strncpy(plname, s, sizeof(plname)-1);
+  		return;
+  	}
+--- 140,150 ----
+  	char *s;
+  
+  	if (*plname) return;
+! 	if (s = nh_getenv("USER")) {
+  		(void) strncpy(plname, s, sizeof(plname)-1);
+  		return;
+  	}
+! 	if (s = nh_getenv("LOGNAME")) {
+  		(void) strncpy(plname, s, sizeof(plname)-1);
+  		return;
+  	}

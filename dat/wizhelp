@@ -1,0 +1,14 @@
+Debug-Mode Quick Reference:
+
+^C  ==  increase AC
+^E  ==  detect secret doors and traps.
+^F  ==  do magic mapping.
+^G  ==  create monster.
+^I  ==  identify items in pack.
+^J  ==  go up an experience level
+^N  ==  toggle invulnerability
+^O  ==  tell locations of special levels.
+^T  ==  do intra-level teleport.
+^V  ==  do trans-level teleport.
+^W  ==  make wish.
+^X  ==  show attributes including intrinsic attributes.

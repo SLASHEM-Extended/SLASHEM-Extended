@@ -1,0 +1,150 @@
+#       SCCS Id: @(#)mtemple.des  3.1     93/02/23
+#       Copyright (c) 1989 by Jean-Christophe Collet
+#       Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#
+#       The "fill" level for the mines.
+#
+#       This level is used to fill out any levels not occupied by specific
+#       levels as defined above.
+#
+# This is the Temple of Moloch.
+# Within lie priests, demons, and, most importantly.... candles!
+#
+#
+MAZE: "mtemple",' '
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+            ----- ----- ----- ----- -----
+            |...| |...| |...| |...| |...|
+   ----------...---...---...---...---...|-|        -----
+   |...|..................................|        |...|
+   |...+..................................S########S...|
+   |...|..................................|        |...|
+   ----------...---...---...---...---...|-|        -----
+            |...| |...| |...| |...| |...|
+            ----- ----- ----- ----- -----
+ENDMAP
+RANDOM_MONSTERS: '&','Z'
+REGION:(00,00,55,08),unlit,"ordinary"
+#REGION:(39,03,41,05),unlit,"temple"
+REGION:(08,01,41,07),unlit,"temple"
+STAIR:(05,04),up
+BRANCH:(05,04,05,04),(0,0,0,0)
+DOOR: locked,(07,04)
+# the altar of Moloch (making four will make four priests....)
+ALTAR:(40,04),noalign,shrine
+ALTAR:(40,04),noalign,shrine
+ALTAR:(40,04),noalign,shrine
+ALTAR:(40,04),noalign,shrine
+# flanking the doorway....
+TRAP: "spiked pit",(06,03)
+TRAP: "spiked pit",(06,05)
+# the treasure chamber!
+OBJECT:'(',"chest",(52,3)
+OBJECT:'(',"wax candle",(52,3)
+GOLD: random,(52,3)
+GOLD: random,(52,3)
+OBJECT: random, random, (52,3)
+OBJECT: random, random, (52,3)
+OBJECT: random, random, (52,3)
+OBJECT:'(',"chest",(53,3)
+OBJECT:'(',"wax candle",(53,3)
+GOLD: random,(53,3)
+GOLD: random,(53,3)
+OBJECT: random, random, (53,3)
+OBJECT: random, random, (53,3)
+OBJECT: random, random, (53,3)
+OBJECT:'(',"chest",(54,3)
+OBJECT:'(',"wax candle",(54,3)
+GOLD: random,(54,3)
+GOLD: random,(54,3)
+OBJECT: random, random, (54,3)
+OBJECT: random, random, (54,3)
+OBJECT: random, random, (54,3)
+OBJECT:'(',"chest",(52,4)
+OBJECT:'(',"wax candle",(52,4)
+GOLD: random,(52,4)
+GOLD: random,(52,4)
+OBJECT: random, random, (52,4)
+OBJECT: random, random, (52,4)
+OBJECT: random, random, (52,4)
+OBJECT:'(',"chest",(53,4)
+OBJECT:'(',"wax candle",(53,4)
+GOLD: random,(53,4)
+GOLD: random,(53,4)
+OBJECT: random, random, (53,4)
+OBJECT: random, random, (53,4)
+OBJECT: random, random, (53,4)
+OBJECT:'(',"chest",(54,4)
+OBJECT:'(',"wax candle",(54,4)
+GOLD: random,(54,4)
+GOLD: random,(54,4)
+OBJECT: random, random, (54,4)
+OBJECT: random, random, (54,4)
+OBJECT: random, random, (54,4)
+OBJECT:'(',"chest",(52,5)
+OBJECT:'(',"wax candle",(52,5)
+GOLD: random,(52,5)
+GOLD: random,(52,5)
+OBJECT: random, random, (52,5)
+OBJECT: random, random, (52,5)
+OBJECT: random, random, (52,5)
+OBJECT:'(',"chest",(53,5)
+OBJECT:'(',"wax candle",(53,5)
+GOLD: random,(53,5)
+GOLD: random,(53,5)
+OBJECT: random, random, (53,5)
+OBJECT: random, random, (53,5)
+OBJECT: random, random, (53,5)
+OBJECT:'(',"chest",(54,5)
+OBJECT:'(',"wax candle",(54,5)
+GOLD: random,(54,5)
+GOLD: random,(54,5)
+OBJECT: random, random, (54,5)
+OBJECT: random, random, (54,5)
+OBJECT: random, random, (54,5)
+# five gargoyles on either side, in the niches of the temple
+MONSTER: 'g',"statue gargoyle",(14,1),hostile,asleep
+MONSTER: 'g',"statue gargoyle",(20,1),hostile,asleep
+MONSTER: 'g',"statue gargoyle",(26,1),hostile,asleep
+MONSTER: 'g',"statue gargoyle",(32,1),hostile,asleep
+MONSTER: 'g',"statue gargoyle",(38,1),hostile,asleep
+MONSTER: 'g',"statue gargoyle",(14,7),hostile,asleep
+MONSTER: 'g',"statue gargoyle",(20,7),hostile,asleep
+MONSTER: 'g',"statue gargoyle",(26,7),hostile,asleep
+MONSTER: 'g',"statue gargoyle",(32,7),hostile,asleep
+MONSTER: 'g',"statue gargoyle",(38,7),hostile,asleep
+# demons down by the altar...
+MONSTER: '&',"bone devil",(37,2),hostile,asleep
+MONSTER: '&',"babau",(38,2),hostile,asleep
+MONSTER: '&',"barbed devil",(39,2),hostile,asleep
+MONSTER: '&',"vrock",(37,6),hostile,asleep
+MONSTER: '&',"horned devil",(38,6),hostile,asleep
+MONSTER: '&',"hezrou",(39,6),hostile,asleep
+# a horde of zombies is also inside....
+MONSTER: 'Z',random,(17,3),hostile,asleep
+MONSTER: 'Z',random,(18,3),hostile,asleep
+MONSTER: 'Z',random,(19,3),hostile,asleep
+MONSTER: 'Z',random,(20,3),hostile,asleep
+MONSTER: 'Z',random,(21,3),hostile,asleep
+MONSTER: 'Z',random,(22,3),hostile,asleep
+MONSTER: 'Z',random,(23,3),hostile,asleep
+MONSTER: 'Z',random,(17,4),hostile,asleep
+MONSTER: 'Z',random,(18,4),hostile,asleep
+MONSTER: 'Z',random,(19,4),hostile,asleep
+MONSTER: 'Z',random,(20,4),hostile,asleep
+MONSTER: 'Z',random,(21,4),hostile,asleep
+MONSTER: 'Z',random,(22,4),hostile,asleep
+MONSTER: 'Z',random,(23,4),hostile,asleep
+MONSTER: 'Z',random,(17,5),hostile,asleep
+MONSTER: 'Z',random,(18,5),hostile,asleep
+MONSTER: 'Z',random,(19,5),hostile,asleep
+MONSTER: 'Z',random,(20,5),hostile,asleep
+MONSTER: 'Z',random,(21,5),hostile,asleep
+MONSTER: 'Z',random,(22,5),hostile,asleep
+MONSTER: 'Z',random,(23,5),hostile,asleep
+ENGRAVING:(06,04),burn,"Those Not of Moloch, Begone!"

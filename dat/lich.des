@@ -1,0 +1,153 @@
+#
+# Vecna's dungeon
+#
+
+LEVEL: "lich"
+#MESSAGE: "You feel deathly cold."
+RANDOM_MONSTERS: 'L','W','V'
+
+ROOM: "ordinary" , unlit, random, random, (05,05)
+STAIR: random, up
+OBJECT: random,random,random
+
+ROOM: "ordinary" , unlit, random, random, (20,10)
+NAME: "central"
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '+', random, random
+OBJECT: '+', random, random
+OBJECT: '+', random, random
+OBJECT: '+', random, random
+OBJECT: '+', random, random
+OBJECT: '+', random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+MONSTER: 'L', "Vecna", random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+  
+ROOM: "ordinary" , random, random, random, random
+#STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'L', random, random, hostile
+MONSTER: 'V', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+MONSTER: 'L', random, random, hostile
+MONSTER: 'W', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'L', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'L', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+
+RANDOM_CORRIDORS

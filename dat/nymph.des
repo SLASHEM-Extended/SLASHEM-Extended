@@ -1,0 +1,59 @@
+#
+# Nymph level
+#
+
+LEVEL: "nymph"
+RANDOM_MONSTERS: 'n'
+ROOM: "ordinary" , unlit, random, random, (12,7)
+NAME: "central"
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT: '=', random, random
+OBJECT: '=', random, random
+OBJECT: '=', random, random
+OBJECT: '=', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+MONSTER: 'n', random, random, hostile
+MONSTER: 'n', random, random, hostile
+MONSTER: 'n', random, random, hostile
+MONSTER: 'n', random, random, hostile
+MONSTER: 'n', random, random, hostile
+MONSTER: 'n', "Aphrodite", random, hostile
+  
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: 'n', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'n', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+MONSTER: 'n', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'n', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'n', random, random, hostile
+
+RANDOM_CORRIDORS

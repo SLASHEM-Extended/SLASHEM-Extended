@@ -1,0 +1,18 @@
+# KDE Config File 
+# Call this file kslashem.kdelnk or kslashem.desktop
+[KDE Desktop Entry]
+Name=SlashEM
+Name[fr]=SlashEM
+Name[hu]=SlashEM
+Name[no]=SlashEM
+Name[sk]=SlashEM
+Name[cs]=SlashEM
+Name[hr]=SlashEM
+Name[pt]=SlashEM
+Name[pt_BR]=SlashEM
+Icon=kse.xpm
+Exec=kslashem -caption "%c" %i %m
+Type=Application
+DocPath=kslashem/index.html
+Comment=Variant of the role-playing game, NetHack - fight monsters and seek the Amulet of Yendor for your god!
+

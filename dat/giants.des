@@ -1,0 +1,122 @@
+# the Giant caves
+
+MAZE: "cav2fill",' '
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+                 ----------|    |---|
+                 |.........|    |...|         |---------|
+ -----------|    |.........|    |...|         |.........|
+ |..........|    |.........|    |...|         |.........|
+ |..........|   |----+------------+----------------+------|
+ |..........|   |.........................................|
+ |..........|   |.........................................|-----------|
+ |--|.......|   |----+------+----------------+-----------+|...........|
+    |---+--------.......|...........|....|......|    |................|
+    |...................|...........|....|......|    |................|
+    |...................|-----------|....|......|    |................|
+    |\..................S...........|....|......|    |................|
+    |...................|-------------+--|......|    |----------------|
+    |-------+-----------|......|................|
+        |...............|......|................|
+        |...............+......|................|
+        |...............|-----------------------|
+        |...............|
+        |---------------|
+ENDMAP
+#
+#
+STAIR:(34,02),up
+BRANCH:(34,02,34,02),(0,0,0,0)
+#
+DOOR: closed,(34,4)
+DOOR: closed,(21,4)
+DOOR: closed,(51,4)
+DOOR: closed,(57,7)
+DOOR: closed,(45,7)
+DOOR: closed,(28,7)
+DOOR: closed,(21,7)
+DOOR: closed,(8,8)
+DOOR: closed,(38,12)
+DOOR: closed,(12,13)
+DOOR: closed,(24,15)
+#
+# the king's hidden treasure
+OBJECT:'(',"chest",(35,11)
+GOLD: random,(35,11)
+GOLD: random,(35,11)
+GOLD: random,(35,11)
+GOLD: random,(35,11)
+GOLD: random,(35,11)
+GOLD: random,(35,11)
+GOLD: random,(35,11)
+OBJECT: '*', random, (35,11)
+OBJECT: '*', random, (35,11)
+OBJECT: '*', random, (35,11)
+OBJECT: '*', random, (35,11)
+OBJECT: '*', random, (35,11)
+OBJECT: '"', random, (35,11)
+OBJECT: '"', random, (35,11)
+OBJECT: random, random, (35,11)
+OBJECT: random, random, (35,11)
+OBJECT: random, random, (35,11)
+# stuff scattered around
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+#
+#
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', "the Largest Giant", (5,11), hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'T', random, random, hostile
+MONSTER: 'T', random, random, hostile
+MONSTER: 'T', random, random, hostile
+MONSTER: 'T', random, random, hostile
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random

@@ -1,0 +1,420 @@
+New in Slash release 6! (March 29, 1996)
+
+NOTE: Saved games are not compatible with previous versions, and delete
+      any bones files you've got collected so far (bones*.*).
+
+Bugs fixed
+----------
+* valkyries and Barbarians were unable to read the Book of the Dead. Oops.
+* fixed specific warning from some artifacts
+* the "it doesn't seem to harm" message appears only if the creature is seen
+* wishing for an artifact could cause a crash later on. Urp...
+* added damage amount display to explosions
+* fixed bugs with explosion damage: polymorphed players and invulnerability
+  wasn't working right with fireballs, gas spores, etc.
+* changed // comments to /* */ to help other platforms out... :)
+* also put lots of the Watcom stuff in #ifdefs
+* fixed reflection message... again....
+* fixed conflict & god-given pets
+* fixed "You return to human form" for Gnomes
+* crash bug with archeologists falling in trapdoors fixed.
+* added message when necromancers gain gain undead warning
+
+Adjustments
+-----------
+* id wands of healing if you zap yourself
+* healing/extra-healing potions give you more permanent hit points
+* weapons can be enchanted from +5 now (was +3)
+* removed the "steps reluctantly" message from god-given pets... it was
+  annoying and misleading
+* angels don't show up unless you're in deep trouble.
+
+Additions
+---------
+* weapon swap command - 'x' -- list spells is now 'X'
+* added dark elven equipment -- chaotic elves are now dark elves
+* invisible objects (invisible weapons get a +3 to hit monsters who can't
+  see invisible; nymphs, etc. won't steal invisible objects they can't see;
+  1 in 1250 random objects are now invisible)
+* made a makefile for Watcom
+* added/enhanced some wizard mode commands
+* put in four Neutral weapons from Nehwon: Graywand, Heartseeker, Scalpel,
+  and Cat's Claw.
+
+Many people have given lots of helpful suggestions, but several have
+been especially helpful and have sent me huge lists of bugs.
+They are Wolfe, David Robertson, and Kentaro Shirakata.
+
+Thanks to everyone for their help in squashing bugs. No one likes to
+lose a character to a bug, and the more bugs that are found, the fewer
+remain.
+
+----------------------------------------------------------------------
+Fixed in Slash release 5 (3/17/96)
+
+Bugs fixed
+----------
+* fixed bug that locked up Priest, Ice Mage, and Monk quests... gulp!
+* fixed bug with attacking a tame monster that needed a magic weapon to hit
+* fixed another bug with undead/special creature warning
+* made firing mjollnir return to quiver rather than readied weapon slot
+* killer rations now leave "bodies" like they're supposed to
+* corrected message for silver dragon scale mail
+* made kamadans sleep resistant
+* corrected message for strength-draining creatures that touch you
+* fixed crash bug with quiver -- crashed if you put an item in the
+  quiver, manually threw it (not 'f'ire), dropped it, and picked it up.
+* fixed a bug with throwing a potion of sleeping
+* fixed a bug with Hand of Elbereth & Excalibur
+* put the history, license, etc. files in the binary zip (whoops)
+
+Adjustments
+-----------
+* stretched out the pre-castle dungeon a bit
+* put the original Gnome Mines back in, with some adjustments... heh heh...
+* made the Giant Caves & Spider Caves actual levels, not minefill-ish
+* made altars and graves rarer because of increased dungeon length
+* toilets only appear in rooms with sinks
+* made silver dragons actually reflect stuff & breathe cold instead
+  of missiles
+* made Lawful gods sometimes send you an angel if you pray (gotta be some
+  reason to be Lawful...)
+* 'W'izards can now only be neutral... after all, their patron is
+   the Wizard of Balance... :<
+* 'L'ycanthropes stats changed, and they sometimes go berserk.
+* put gnolls on Yeenoghu's level
+* ghouls & ghasts eat old, decaying bodies
+* made getting a pet from sacrificing even rarer
+* made dragons do more damage
+* went through and fixed up the plus-weapon-to-hit monsters
+* enemy characters in the dungeon now have appropriate equipment & are rarer
+* because of the new life-drain protection items, made level draining a
+  little nastier (magic resistance is down to 50% protection from 90%)
+* put in a message for wand of speed monster
+* made lightsabers one-handed & able to engrave
+* made gas spore explosions neater -- chain reactions possible!
+* made rings of gain strength, etc., go up to +5/-5
+* fixed up the special levels a little more
+* priests of Moloch are always hostile
+* made gauntlets of swimming work right
+* adjusted the item probabilities a little
+* if you get touched by green slime, you don't drop dead quite so fast
+* the studly classes -- Barbarians, Cavemen, Samurai, and Valkyries,
+  have a little more trouble with some magic items
+* put some more monsters in the data file to look up during the game
+* put in a message when monsters flee
+* undead and demonic pets will step on cursed items
+
+Additions
+---------
+* new classes! 'N'ecromancers and 'G'nomes!
+* new spells: summon undead & command undead (for necromancers, of course)
+* added deep dragons, deep dragon scale mail; cloaks, rings & amulets of
+  drain resistance
+* added devas, Planetars, made Solars harder
+* added spined & bearded devils
+* added babau, bar-lgura, chasme, and nabassu demons
+* added giant badgers (gnome pet)
+* added the Temple of Moloch & Sunless Sea, new special levels
+* made traps & altars color-coded
+* added abandoned food shops gone wild & cockatrice nests
+* made some more interesting results to human sacrifice by Chaotics
+* added a couple of more Gauntlet messages
+
+----------------------------------------------------------------------------
+Things that were fixed in release #4 (3/8/96)
+
+Bugs
+----
+* Fixed crash caused by a god-given angelic pet
+* Fixed a bug that kept soldiers & shopkeepers from having armor & K-rations
+* Eating a master mind flayer increases intelligence.
+* Fixed a crash bug with kicking (only happened in UNIX... :<)
+* Fixed a bug with monks getting artifacts from sacrificing.
+
+Adjustments
+-----------
+* You gain hit points faster -- 1.5 as fast as in release 3 for a 25
+  constitution, and the lower constitution doesn't drop the speed as fast
+  as it did.
+* Fixed a bug with hp regeneration rounding.
+* Artifacts hit as magical weapons 2 plusses better than listed.
+* Made monsters that need magic weapons to hit strike as those magic weapons.
+* Lightsabers can hit anything.
+* Made candles more common and cheaper.
+* Made getting pets less likely and artifacts more likely from sacrificing.
+* Made low level bones files (levels 2, 3, etc.) less common.
+* Made altars a lot more common, because they won't appear on special
+  levels.
+* Made level draining less likely to work, and magic resistance helps
+  to protect from it (not 100%, though)
+* Made the nethack directory in nethack.cnf default to '.'
+
+-----------------------------------------------------------------------------
+Things that were fixed in release #3: (2/26/96)
+
+Bugs
+----
+* Fixed a bug with regeneration.
+* Won't allow you to put worn items into the quiver.
+* Fireballs will burn away slime.
+* The beholder and catoblepas's death gazes do not affect undead creatures.
+
+Adjustments
+-----------
+* Added release number to intro screen.
+* Added "Levitate" to bottom line when levitating.
+* Fixed up some of the special levels a little.
+* Made monster-carried items a little rarer.
+
+---------------------------------------------------------------------------
+Things that were fixed in release #2: (2/18/96)
+
+* The source is available, and named slashsrc.zip.
+
+* If there are more bugs uncovered, the exes will continue as slash3, slash4,
+  slash 5, etc. The source will consist of the affected files only, though,
+  and will be named slashsr2, slashsr3, etc.
+
+Important things (bugs)
+-----------------------
+* Would crash (divide by zero) after level 24... now fixed.
+* Special warnings (like with Sting or Undead Slayers) fixed to show
+  right monsters.
+* The beholder had a "head". Not now...
+* Engraving with a wand of fireballs gave the wrong message --
+  "this is a wand of fire!"
+* Included dos4gw.exe in zip file.
+
+
+Less important things (adjustments)
+-----------------------------------
+* Pets won't attack gas spores very often.
+* Quicklings armor class worsened considerably. (easier to hit them)
+* Changed the container interface back to standard NH 3.1.1.
+* Confirmed that Magicbane seems to work ok.
+* Made a message for the wand of slow monster.
+
+
+
+
+Old readme file
+-----------------------------------------------------------------
+Welcome to SLASH, the ridiculously bloated successor to Nethack++!
+
+But first, a short history of the life of Nethack++ and SLASH-Hack:
+
+One day, a long long time ago (~1991 or 92, I forget...), nobody played
+NetHack 3.11, because it hadn't been released. Us Nethack-Junkies (tm)
+played NetHack 3.0j, which had been out for a Very Long Time, and
+we were getting good at the game. Good enough, in fact that two of us,
+me (Tom) and my roommate (Yuval) decided one day to download the source
+and start messing around with it, adding monsters, items, and all sorts of
+stuff.
+
+After a while, we decided that we Really Had Something here and decided to
+upload it to an ftp site, and told everyone on rec.games.nethack about
+our bloated creation, henceforth called NetHack++!
+
+We were immediately swamped with mail demanding Our Secrets, for many people
+thought we had miraculously ported NetHack 3.0j to C++!
+
+In a flash, we re-named our creation NetHack--.
+
+Meanwhile, the elusive DevTeam must have been chuckling up a storm, for not
+one month later, NetHack 3.1 appeared, and our moment of glory was gone.
+
+Time passes...
+You feel a yearning for your distant homeland...
+
+Eventually, however, some people ascended in Nethack 3.11, and people were
+getting restless again, and someone named Chris decided to port the changes
+Yuval and I made to Nethack 3.0j to Nethack 3.11, creating Nethack--
+all over again, but better, because monsters could now use stuff and so
+forth.
+
+Then Nethack-The Next Generation appeared, and it was cool.
+
+Meanwhile, I was busy puttering away on my personal version of Nethack 3.11,
+adding things here and there, such as Firemen, Musicians, and wands of
+fireballs -- you know.
+
+Then Nethack Plus, by some guy named Stephen White, appeared, and it was
+cool. And it had neat new classes, like Monks, and Lycanthropes,
+and Doppelgangers!
+
+So I downloaded the source and changed it all over again (a third time)
+into SLASH-Hack!
+
+Then the second version of Nethack Plus appeared, with weapon skills, and
+other stuff.
+
+And this time, I said "Screw it!", and I was not about to change everything
+a fourth time.
+
+So SLASH-Hack progressed, and time passed, and it was soon April of 1995.
+And I decided to use Watcom C, because it was neat. And one day, just
+as the Last Bug had been fixed, and I was about to do the final compile,
+instead of typing 'del *.obj', I typed 'del *.c'.
+
+And there was much gnashing of teeth.
+
+I whipped out ol' trusty Norton Unerase and got almost everything back,
+except for mhitu.c, uhitm.c, zap.c, and do.c
+
+So I gave up changing things, not about to re-create everything that was
+different and cool.
+
+And I played the Right Before the Final Compile for a few months.
+
+And I said to myself, "Hey, this is actually sorta cool."
+
+And I thought, "Maybe I _could_ recreate the last few changes."
+
+So, I did. Eventually.
+
+From memory, here is the new stuff:
+---------------------------------------------------------------------------
+SPOILERS!
+SPOILERS!
+SPOILERS!
+---------------------------------------------------------------------------
+The changes from Nethack Plus, except for:
+   * you _can_ wish for artifacts, except there is a chance it doesn't work
+   * the hit point regeneration is completely changed, and is now
+     based on your Con and Max Hp. A side affect of this is a ring/amulet
+     of regeneration is not so easily identified, because it doubles your
+     healing rate, and that may or may not be 1 point/turn.
+   * the magic-weapon-to-hit-a-monster thing is still in there, but
+     significantly toned down
+   * the Doppelganger no longer prompts you "want to change (y/n)?" every
+     couple of dozen turns. This drove me up the wall! If you want to
+     polymorph, use alt-Y and 10 energy.
+
+About 150 new monsters. Some of the more, um, interesting ones:
+   * rot worm -- Causes sickness, and is a low level monster. Fortunately,
+     it's kinda slow. Unfortunately, it hides under things.
+   * rhambusun -- Has a paralyzation gaze (lasts for only a couple of turns)
+   * pyrolisk -- Has a fire-damage gaze
+   * green slime -- Touch causes you to slowly turn into slime unless you
+     burn it away.
+
+The grand ol' list:
+   a: snow ant, yellow jacket, tsetse fly, giant wasp, black wasp,
+      army ant, spitting beetle, assassin bug, killer beetle
+   b: jiggling blob, lava blob, crackling blob, burbling blob
+   c: chickatrice, pyrolisk
+   d: dingo, fox, coyote, pit bull, rabid wolf, hyena, wolverine,
+      shadow wolf, mist wolf, death dog
+   e: glowing eye, flaming sphere, shocking sphere, bloodshot eye,
+      blinking eye, beholder, gas spore
+   f: lynx, panther, werepanther, weretiger, sabre-toothed cat,
+      displacer beast, hellcat, caterwaul, kamadan
+   g: galltrit, jermlaine
+   h: dwarf thief, duergar, master mind flayer, gnoll
+   i: dretch, rutterkin, nupperibo, blood imp, larva
+   j: red jelly, orange jelly, black jelly
+   k: swamp kobold, rock kobold, kobold wizard, kobold warrior, Kroo
+   l: leprechaun wizard, brownie, quickling, pixie
+   n: Aphrodite
+   o: orc, war orc, great orc, Grund, snow orc, demon orc
+   p: glass piercer, roper
+   q: scramper, squealer, mangler, mastodon, Jumbo, juggernaut, catoblepas
+   r: rabbit, black rat, pack rat, rabid rabbit, hellrat, the Rat King
+   s: centipede, recluse spider, barking spider, nickelpede,
+      giant scorpion, Girtab, Shelob, werespider, carrion crawler,
+      phase spider
+   u: nightmare
+   w: maggot, dung worm, acid worm, tunnel worm, rot worm, bloodworm
+   x: arc bug, spark bug, lightning bug
+   y: red light, blue light
+   A: Solar
+   B: rhumbat, athol, hellbat, mongbat, mobat, harpy
+   D: shimmering dragon, silver dragon, wyvern, hydra
+   F: disgusting mold, black mold
+   G: gnome thief, deep gnome, gnome warrior, Ruggo
+   H: storm giant, the Largest Giant
+   I: sneaker, squeaker
+   J: vorpal jabberwock
+   L: arch-lich, Vecna
+   M: troll mummy
+   O: ogre mage, shadow ogre
+   P: moldy pudding, green slime
+   S: king cobra, weresnake, asphynx
+   T: black troll, two-headed troll
+   U: water hulk
+   V: vampire mage
+   W: wight
+   Y: monkey
+   Z: ghoul, ghast
+   ': gargoyle
+   @: mugger, thief, character classes (at all different levels),
+      jackalwere, gibberling, grimlock, drow
+    : shadow
+   &: efreeti, dao, marid
+   ;: shark, giant crab
+   :: gila monster, salamander, rhaumbusun, basilisk, komodo dragon
+
+There are new spells for the monsters to cast, and they will use a lot of the
+new items, so be careful of the original monsters as well!
+
+I tried to color the new monsters appropriately, and colored people
+according to their clothing. There are some duplicated colors, now, though,
+so be careful.
+
+The characters are colored now, according to their preferred dress, so
+the Tourist is purple, Elf green, Rogue black, Wizard blue, and so on.
+Call me stupid, but this helps remind me which class I am, since I die
+so often...
+
+Pets only pick up 5 gold pieces out of a pile, and won't pick up a whole
+bunch of arrows.
+
+New terrain types: graves (you can 'r'ead the headstone, or dig it up)
+		   toilets (um, you can sit, kick, drink, all sorts of stuff)
+
+New artifacts, like the Eye/Hand of Vecna. I wouldn't use either one of
+these too often, if I were you. There's also Mirrorbright the silver shield,
+Whisperfeet the speed boots, and Deluder the displacement cloak. Also,
+a bunch of weapons, which I don't remember too well.
+
+Buncha special levels, like the Rat King level, the Kobold King level, Orc
+level, Giant level, spider level, etc. Some are side-dungeons, others
+aren't.
+
+New rooms, like a Real Zoo (with zoo-like monsters), Leprechaun Throne Room,
+Giant Throne Room, and stuff like that.
+
+Buncha items. I remember these:
+
+armor: silver dragon scale mail (reflection)
+       shimmering dragon scale mail (displacement)
+       gauntlets of swimming
+       cloak of poisonousness (don't wear this)
+       lab coat (poison res)
+       asbestos jacket, fire helmet  (left over from my Fireman class)
+       kicking boots
+
+amulets: regeneration
+	 conflict
+	 polymorph
+
+rings:   free action (no paralyzing! cool item!)
+	 gain Con/Dex/Wis/Int
+	 sleeping
+
+potions: full healing
+	 invulnerability (for a few turns, anyway)
+	 polymorph
+	 clairvoyance
+	 ESP
+	 fire resistance
+
+wands:   healing
+	 fear
+	 extra healing
+	 create horde (don't use this, unless you're studly)
+	 fireball (fortunately, monsters won't zap this one because I
+		   couldn't get it to work right)
+
+Good luck, and try not to get killed by a horde of snow orcs!

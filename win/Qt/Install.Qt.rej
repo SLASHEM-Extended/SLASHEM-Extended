@@ -1,0 +1,45 @@
+***************
+*** 23,33 ****
+  
+     3. ../../src/Makefile
+  
+          add $(WINQTSRC), $(WINQTOBJ), and $(WINQTLIB) to WINSRC, WINOBJ,
+          and WINLIB respectively, and compile.  This will give you an
+!         executable supporting both Qt and tty windowing.  Prepend
+!         -L$(QTDIR)/lib to LFLAGS, and ensure your QTDIR environment variable
+!         was set correctly when you installed Qt.
+  
+     4. ../../Makefile (the top-level makefile)
+  
+--- 23,38 ----
+  
+     3. ../../src/Makefile
+  
++ 	ensure your QTDIR environment variable was set correctly when
++ 	you installed Qt - $QTDIR/include/qwidget.h should exist, for
++ 	example.
++ 
++ 	ensure CXX and LD are set to the compiler and linker you need
++ 	for compiling and linking C++ software (e.g., set both to g++).
++ 
+          add $(WINQTSRC), $(WINQTOBJ), and $(WINQTLIB) to WINSRC, WINOBJ,
+          and WINLIB respectively, and compile.  This will give you an
+!         executable supporting both Qt and tty windowing.
+  
+     4. ../../Makefile (the top-level makefile)
+  
+***************
+*** 50,55 ****
+  libraries on your system (in 1999 KDE 1.x was the norm); then, add
+  $(KDECXXFLAGS) to the CXXFLAGS definition, $(KDELFLAGS) to the LFLAGS
+  definition and $(WINKDELIB) to WINLIB.  Some additional files here -
+! knh-mini.xpm, knh.lnk, and knethack.xpm are useful if you want to
+  install "knethack" in the KDE games directory.  
+  
+--- 55,60 ----
+  libraries on your system (in 1999 KDE 1.x was the norm); then, add
+  $(KDECXXFLAGS) to the CXXFLAGS definition, $(KDELFLAGS) to the LFLAGS
+  definition and $(WINKDELIB) to WINLIB.  Some additional files here -
+! knh-mini.xpm, knh.xpm, and knethack.lnk are useful if you want to
+  install "knethack" in the KDE games directory.  
+  

@@ -1,0 +1,2042 @@
+__ = (4, 2, 4)
+_A = (5, 133, 4)
+_B = (4, 2, 132)
+_C = (7, 68, 4)
+_D = (7, 133, 135)
+_E = (150, 75, 4)
+_F = (133, 2, 4)
+_G = (6, 194, 4)
+_H = (44, 74, 77)
+_I = (106, 218, 132)
+_J = (5, 4, 70)
+_K = (134, 131, 5)
+_L = (140, 89, 77)
+_M = (149, 2, 77)
+_N = (133, 35, 5)
+_O = (18, 49, 10)
+_P = (160, 139, 83)
+_Q = (150, 111, 4)
+_R = (59, 99, 76)
+_S = (140, 138, 139)
+_T = (147, 203, 13)
+_U = (212, 37, 4)
+_V = (149, 195, 147)
+_W = (90, 45, 4)
+_X = (175, 206, 89)
+_Y = (10, 73, 134)
+_Z = (13, 99, 4)
+_a = (155, 196, 200)
+_b = (215, 75, 4)
+_c = (165, 163, 4)
+_d = (69, 67, 69)
+_e = (84, 2, 4)
+_f = (150, 149, 199)
+_g = (239, 2, 4)
+_h = (164, 43, 40)
+_i = (160, 163, 84)
+_j = (110, 106, 90)
+_k = (205, 102, 4)
+_l = (99, 76, 11)
+_m = (186, 69, 158)
+_n = (6, 131, 69)
+_o = (91, 91, 101)
+_p = (151, 164, 148)
+_q = (78, 154, 200)
+_r = (93, 43, 42)
+_s = (166, 238, 92)
+_t = (69, 110, 108)
+_u = (252, 136, 4)
+_v = (17, 4, 49)
+_w = (142, 57, 10)
+_x = (4, 42, 44)
+_y = (135, 254, 4)
+_z = (164, 118, 91)
+_0 = (237, 46, 41)
+_1 = (85, 84, 85)
+_2 = (172, 226, 228)
+_3 = (159, 16, 48)
+_4 = (51, 74, 219)
+_5 = (229, 83, 39)
+_6 = (224, 104, 41)
+_7 = (144, 73, 43)
+_8 = (172, 226, 171)
+_9 = (21, 22, 15)
+_$ = (152, 21, 9)
+A_ = (198, 52, 5)
+AA = (76, 72, 50)
+AB = (115, 116, 118)
+AC = (141, 2, 141)
+AD = (238, 144, 73)
+AE = (78, 57, 52)
+AF = (222, 91, 5)
+AG = (188, 173, 42)
+AH = (245, 176, 143)
+AI = (5, 166, 133)
+AJ = (35, 56, 72)
+AK = (250, 145, 47)
+AL = (33, 121, 142)
+AM = (101, 102, 5)
+AN = (35, 56, 56)
+AO = (4, 163, 4)
+AP = (107, 90, 52)
+AQ = (208, 122, 76)
+AR = (245, 199, 77)
+AS = (199, 164, 70)
+AT = (123, 89, 75)
+AU = (252, 247, 146)
+AV = (170, 41, 7)
+AW = (233, 229, 173)
+AX = (236, 209, 105)
+AY = (96, 3, 50)
+AZ = (250, 2, 54)
+Aa = (221, 195, 4)
+Ab = (143, 92, 51)
+Ac = (217, 23, 13)
+Ad = (232, 115, 6)
+Ae = (6, 163, 85)
+Af = (25, 89, 113)
+Ag = (101, 99, 101)
+Ah = (239, 201, 39)
+Ai = (202, 200, 201)
+Aj = (81, 43, 73)
+Ak = (241, 56, 4)
+Al = (95, 132, 133)
+Am = (169, 54, 6)
+An = (149, 111, 111)
+Ao = (172, 172, 173)
+Ap = (172, 22, 6)
+Aq = (114, 70, 48)
+Ar = (168, 240, 124)
+As = (245, 246, 4)
+At = (44, 21, 6)
+Au = (95, 115, 142)
+Av = (237, 177, 113)
+Aw = (4, 2, 196)
+Ax = (242, 245, 208)
+Ay = (86, 22, 4)
+Az = (148, 176, 204)
+A0 = (252, 175, 48)
+A1 = (154, 111, 47)
+A2 = (163, 54, 52)
+A3 = (45, 2, 7)
+A4 = (104, 54, 49)
+A5 = (165, 2, 4)
+A6 = (52, 82, 84)
+A7 = (150, 136, 110)
+A8 = (198, 146, 4)
+A9 = (38, 36, 38)
+A$ = (240, 121, 44)
+B_ = (205, 142, 115)
+BA = (4, 194, 99)
+BB = (4, 195, 196)
+BC = (167, 78, 230)
+BD = (133, 2, 252)
+BE = (57, 50, 147)
+BF = (165, 55, 70)
+BG = (48, 166, 219)
+BH = (51, 55, 214)
+BI = (69, 253, 70)
+BJ = (108, 254, 196)
+BK = (5, 239, 4)
+BL = (133, 100, 133)
+BM = (4, 98, 196)
+BN = (181, 51, 226)
+BO = (4, 254, 132)
+BP = (167, 43, 149)
+BQ = (132, 94, 196)
+BR = (70, 131, 4)
+BS = (247, 92, 75)
+BT = (241, 9, 75)
+BU = (249, 130, 133)
+BV = (202, 196, 148)
+BW = (71, 67, 134)
+BX = (197, 148, 196)
+BY = (123, 90, 204)
+BZ = (106, 168, 135)
+Ba = (88, 163, 5)
+Bb = (97, 168, 84)
+Bc = (231, 172, 227)
+Bd = (87, 199, 84)
+Be = (102, 196, 201)
+Bf = (100, 43, 136)
+Bg = (100, 179, 211)
+Bh = (188, 54, 122)
+Bi = (4, 232, 121)
+Bj = (4, 247, 246)
+Bk = (50, 238, 60)
+Bl = (77, 4, 150)
+Bm = (77, 5, 74)
+Bn = (89, 138, 77)
+Bo = (112, 3, 219)
+Bp = (197, 2, 196)
+Bq = (169, 122, 166)
+Br = (4, 134, 252)
+Bs = (4, 115, 228)
+Bt = (230, 68, 219)
+Bu = (109, 56, 235)
+Bv = (100, 194, 4)
+Bw = (252, 2, 132)
+Bx = (170, 51, 178)
+By = (44, 150, 47)
+Bz = (31, 75, 49)
+B0 = (172, 138, 52)
+B1 = (137, 84, 114)
+B2 = (44, 103, 105)
+B3 = (170, 146, 176)
+B4 = (5, 82, 164)
+B5 = (10, 103, 52)
+B6 = (229, 171, 172)
+B7 = (27, 51, 105)
+B8 = (100, 103, 51)
+B9 = (212, 106, 108)
+B$ = (218, 201, 250)
+C_ = (99, 44, 110)
+CA = (107, 146, 179)
+CB = (251, 239, 39)
+CC = (123, 122, 167)
+CD = (249, 251, 249)
+CE = (180, 181, 233)
+CF = (12, 219, 252)
+CG = (36, 53, 180)
+CH = (5, 182, 251)
+CI = (228, 74, 123)
+CJ = (203, 2, 103)
+CK = (228, 214, 177)
+CL = (252, 130, 252)
+CM = (74, 69, 252)
+CN = (124, 162, 124)
+CO = (116, 213, 248)
+CP = (229, 108, 211)
+CQ = (229, 170, 4)
+CR = (151, 249, 50)
+CS = (6, 92, 250)
+CT = (4, 162, 164)
+CU = (40, 171, 44)
+CV = (116, 227, 116)
+CW = (105, 232, 234)
+CX = (4, 2, 164)
+CY = (29, 145, 175)
+CZ = (5, 2, 103)
+Ca = (141, 20, 124)
+Cb = (138, 215, 249)
+Cc = (101, 3, 103)
+Cd = (104, 132, 107)
+Ce = (252, 2, 252)
+Cf = (138, 136, 252)
+Cg = (236, 126, 132)
+Ch = (109, 243, 4)
+Ci = (164, 162, 124)
+Cj = (137, 253, 251)
+Ck = (91, 183, 51)
+Cl = (146, 212, 117)
+Cm = (123, 162, 164)
+Cn = (236, 58, 236)
+Co = (31, 115, 175)
+Cp = (251, 230, 109)
+Cq = (98, 105, 203)
+Cr = (115, 109, 242)
+Cs = (4, 2, 249)
+Ct = (103, 195, 103)
+Cu = (165, 83, 163)
+Cv = (188, 201, 180)
+Cw = (29, 43, 239)
+Cx = (104, 147, 46)
+Cy = (30, 136, 117)
+Cz = (246, 239, 86)
+C0 = (76, 196, 164)
+C1 = (132, 254, 132)
+C2 = (197, 146, 148)
+C3 = (97, 84, 159)
+C4 = (228, 42, 108)
+C5 = (79, 189, 239)
+C6 = (4, 162, 123)
+C7 = (100, 213, 44)
+C8 = (4, 214, 4)
+C9 = (36, 222, 124)
+C$ = (116, 238, 60)
+# tile 415 (athame)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_2AiCe__CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_2AiAo__CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiAiAo____CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAi_2Ao____CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAi_2AiAo____CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAi_2AiAo____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_2AiAiCvAo__CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiAi_2AoAo____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAi_2A9AoAo____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAlCeCeCeCeAiAiA9AoAo____CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAB_d_dCeCeAi_dA9AoAo____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_dAE_dAi_dAEA9Ao____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_d_d_d_dA9Ao____CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAlAE_dA9Ao____CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeA7AN_dA9AN_d__CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_S_dAEA9_9A9A9_dCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAl_dANA9A9____A9_9A9CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAlAE_d_9A9____CeCeA9____CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAE_dA9A9____CeCeCeCe__CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeA9A9_9____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 414 (silver dagger)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCD__CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCD____CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCD_2A3__CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDAiCv__CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDAxAiAi____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_2CDAiAi____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCeCeCDCDAiAiAo____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeAiCD_2AxB$AoCv____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiCDAiAoAi____CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_Q_QAx_a____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_Q_EAiCD__CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_Q_QAM____AiCD__CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_E_Q_E____Ce______CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_Q_l____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 419 (worm tooth)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAxCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAxCDAxCDAxAxCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAxAxCDCDCDCDAxCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCKAxB$AxAxCDAxAxCDCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeAxAxAxCDAxAxCDCDAx__CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAxCKAxCDAxCDAxAxAxCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeAxAxAiCDAxCDCDCK__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAxAxCKCDAxCDAxAxCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAxCKCDAxCDAxAi__CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAxCDAxAxCDAx__CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAxAxB$AxAxCK__CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCKCDAxAxAx____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAxCDAxAx__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDAxAx____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAxCDCK__CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAxAx____CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 420 (crysknife)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__AyAy__CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_NAyAy__CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAVAtAy____CeCe______CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_N_WAy________AS__CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAVAyAyAy____B0ARARCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAV_NAyAt__B0ARBjBjCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAVAy_WA1ARCDCDBjBjCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeAVB0ARBjBjCDBjBjBjCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeB0ARBjBjBjBjCDBjBj__CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeASARBjBjBjBjBjCDBjBjBjCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeARCeCeBjBjBjBjBjCDBjBj_9CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeBjBjBjBjBjCDBjBjCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeBjBjBjBjCDBjBj__CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeBjBjBjBjBjBj__CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeBjBjBjBjBjBj__CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeBjBjBjBjBj____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeBjBjBjBj__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeBjBjBj____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeBjBjBj__CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeBjBj____CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 425 (crude short sword / orcish short sword)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAoCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAxAoCe__CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_2AoAB__CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeB$AxAoAB____CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_2CDAo_S____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeB$_2AxAoABAB____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_2AxAoAoABAB____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_2Ax_2AoAoAoAB____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_SCeCeCeAxB$AxAoAoAoABAB____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe___SCeCD_2_2AoAo_1AoABAB____CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe___SAxB$AxAo_SAgAoABAB____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe___S_2AxAo_S_o_1AoABAB____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__Ag_o_1_SAg_jAoABAB____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_______SAg_1AoABAB____CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe___SAA_dAgABABAB____CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_SAg_H___dABAB____CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_S_S_d_d_____d_d_d_d_d__CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe___SAg_d__________________CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe___o_d_d________________CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe__________CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 423 (short sword)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDAiCe__CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDAiAo__CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDAiAo____CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDAxAiAi____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAxCDCD_2AoAo____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDAi_2B6Ao____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeAxCDCD_2AiAiAo____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeARCeCeCeCDCDCDAi_2AiCvAo____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__ARCe_2CDCDAiAiASAiAoAo____CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__ARAxCDCDAiARASAiCvAo____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__ARCDCDAiARASAS_2AoAo____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__ASASB0ARASASAiAoAo____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe______ARASASAiCvAo____CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe__ARB0B0ASAoAoAo____CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeARASB0__B0AoAo____CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeARARB0B0____B0B0B0B0B0__CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe__ARASB0__________________CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe__ASB0B0________________CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe__________CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 426 (broad short sword / dwarvish short sword)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCD_2Ce__CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCD_2B6__CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDAiAo____CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDAiAi____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDCD_2AoCv____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDAiAiAoAo____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDCDAi_2AiCv____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAiCeCeCeCDAxCDAi_2AiAiAo____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__AiCeCDCDCDB$AiAoAiAzAo____CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__AiCDCDCDAiAi_pAiAoCv____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__AiCDCDAiAiAoAoAiAiAo____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__Ao_p_pAi_pAoAiCvAo____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe______Ai_pAoAiAzAo____CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe__Ai_S_SAoAoAoCv____CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAiAo_S_9_SAoCv____CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAiCv_S_S_____S_S_S_S_S__CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe__AiAo_S__________________CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe__Ao_S_S________________CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe__________CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 424 (runed short sword / elven short sword)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeB_CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAHASCe__CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAvAvA1__CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAXAH_iAQ____CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAvAHASAQ____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAXAHAvASAQB0____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAvBVASB_AQB0____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeAHAXAHASB_ASB0____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCQCeCeCeAvAXAHB_ASB_A1AQ____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe___uCeAHAXAHB__i_kASAQB0____CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__CQAHAvBVADCQ_kASAQB0____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe___uAXAHASA8_k_kB_B0AQ____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe___k_k_k_uAd_kASAQA1____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe______CQ_Q_k_iAQB0____CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe__CQ_b_EAdB0A1AQ____CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeA8_k_E___EAQB0____CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCQ_u_E_k_____k_EAF_EAF__CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe___u_QAF__________________CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe___k_k_E________________CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe__________CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 430 (runed broadsword / elven broadsword)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeA8AF__
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAd_E_w__
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_u_E_E____
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_Q_k_w____Ce
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCQ_u_Q_k_E_w____CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_uCQ_u_kAd_EAd_E____CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe____AXAvA1_k_E_E__CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAvAvA1AQAS_kAF__CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAvAXA1__AvB0Ad_E__CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAvAvA1B0AvADB0_Q__CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAvAXA1A3AvB0AD__Ad__CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAXAvA1A3Av_PAD_____k__CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAXAvA1B0AvB0B0__________CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeAvAvA1A3Av_PAD______CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAXAvA1B0AvB0AD______CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeAvAvA1__Av_PAD______CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAvAX_6__AvB0B0______CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAvAvA1B0Av_PAD______CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAvAXA1A3AvB0AD______CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAXAvA1A3AvB0AD______CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAXAvA1A3AvB0_P______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAvAvA1B0Av_PAD______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeAXAvA1A3AvB0B0______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeAvAvA1B0Av_PAD______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeAvAXA1A3AvB0AD______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeAXBVAvB0AvB0AD______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeBVAXBVASADB0_P______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeAXBVASB0_PAD______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeBVADAD_PAD______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeAS_PADB0______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  Ce____________CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 406 (crude spear / orcish spear)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAi__Ce
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiAi____Ce
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiAi_p_S__CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiAiAiB3_S____CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiAi_p_S_S__CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAi_pB3Cd____CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAoAi_S_S_S__CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAg_1Ao______CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAgA6_d____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAg_1AE____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAgA6_d____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAg_1AE____CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAgA6_d____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAg_1AE____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeAgA6_d____CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAg_1AE____CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeAgA6_d____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAg_1AE____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAgA6_d____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAg_1AE____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAgA6_d____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAg_1AE____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAgA6_d____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeAg_1AE____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeAgA6_d____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeAg_1AE____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCe_1A6_d____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  Ce___dAE____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  Ce________CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 408 (silver spear)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCD_xCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDA9_rCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDAxB$ANCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDCDCDAxA9A9CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDAxB$_2A9CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDB$AxA9AECeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCfAx_2Ax_2A9CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAoB3CfAEA9ANCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAo_p_SANA9CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAoCm_SA9ANCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAo_p_SAEA9CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAoB3_S_r_xCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAo_p_SANA9CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAoCm_SA9ANCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeAo_p_SAEA9CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAoB3_S_r_xCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeAo_p_SANA9CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAoCm_SA9ANCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAo_p_SAEA9CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAoB3_S_r_xCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAo_p_SANA9CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAoCm_SANA9CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAo_p_S_rA9CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeAoB3_SA9ANCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeAo_p_SANA9CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeAo_p_SA9ANCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCe_pCm_SAEA9CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeA9_S_S_r_xCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeANA9ANA9CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 405 (runed spear / elven spear)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E__Ce
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_E____Ce
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_wBK_W__CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_k_lC8_E____CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_l_EC8_E_W__CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_wC8_E_W____CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeASCK_E_E_W__CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_EAS______CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_l_w____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_k_l_w____CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_E_l_w____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe_k_l_w____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCe_l_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  Ce___W_w____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  Ce________CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 407 (stout spear / dwarvish spear)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCD__Ce
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCD____Ce
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCD_2Ao__CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDCDAiAi____CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDCDAiAiCv__CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDAiAiAo____CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_EAvBVAiAiAo__CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_k_lASAiAi____CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_Q_E_w_W_w______CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_E_E_l_W______CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_k_E_E_W_W____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_E_E_W_w____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_k_E_l_w_W____CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_E_E_l_W____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_k_E_E_W_W____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_E_E_E_W_w____CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_k_E_l_w_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_E_E_E_l_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_k_E_E_W_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_E_E_E_W_w____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_k_E_l_w_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe_E_E_E_l_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCe_k_E_E_W_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCe_E_E_E_W_w____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCe_k_E_l_w_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCe_E_E_E_l_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  Ce___l_E_W_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  Ce___w_W_w____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  Ce_____W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCe______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 409 (throwing spear / javelin)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCD__CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDAi__CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDAiAi__CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDAiAi__CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDAiAi____CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDAiAiAi__CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_EAi____CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_l_w____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_k_l_w____CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_E_l_w____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe_k_l_w____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCe_E_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCe_l_E_W____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  Ce___W_w____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  Ce________CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 410 (trident)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAi__CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAi____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAi_p_S__CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAi_p_S____CeCeAi__CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_aCvAo_S____CeCeCv____CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiAo_S____CeAiCm_S__CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAoAi_S_S__CeAiAo_S____CeCeAi__Ce
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAg_1Ao____AiAi_p_S____CeCeCv____Ce
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeAg_1AN____CeCvB3_p____CeAi_p_S__CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAg_1AECeAoAi_S_S__CeAi_pB3____CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_o_1AE_1Ao____CvCvAo_S____CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAg_1AN____CeAiB3_S____CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAgA6_d___dCeAoAi_p_S__CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAg_1AE__Ag_1AEA6Ao____CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeAgA6_d____Ce_o_1_d____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAg_1AE____CeCeCeAg______CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeAgA6_d____CeCeCeCeCe____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAg_1AE____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAgA6_d____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAg_1AE____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAgA6_d____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAg_1AE____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAgA6_d____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeAg_1AE____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeAgA6_d____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeAg_1AE____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCe_1A6_d____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  Ce___dAE____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  Ce________CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 460 (runed bow / elven bow)
+{
+  CeCeCeCeCeCeCeCeCeCeCe_k_kCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_kCrCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCr_kCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_kCmCmCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCm_k_kCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCe_k_k_ECeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCe_kAFCrCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCr_k_ECeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCe_k_k_ECeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCe_k_kCrCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCeCeCr_kCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCeCe_k_k_ECeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCeCe_k_kCr_kCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCeCeCeCrAHAHCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCeCeCe_kAHAHCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAWCeCeCeCeCeCe_k_ECeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAWCeCeCeCeCeCe_k_ECeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCeCeCe_kAHAHCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCeCeCe_kAHAHCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCeCe_kCr_k_ECeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCeCeCr_k_ECeCeCeCe______CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCeCe_k_kCeCeCeCe__________CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCe_k_k_ECeCeCeCe______CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCrCr_ECeCeCeCe______CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCe_k_k_ECeCeCeCeCe______CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCe_k_k_ECeCeCeCeCe______CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCr_k_ECeCeCeCe______CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCm_kCrCeCeCe________CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_kCmCm______________CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_kCr______________CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCr_k__________CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_k_k______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 462 (long bow / yumi)
+{
+  CeCeCeCeCeCeCeCeCeCeCe_iB_CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeB_B_CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeASCiCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeB_CmCmCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCmB_B_CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeB__iB_CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeB__iA7CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeB_B_B_CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeB__iB_A7CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCeB_B_A7CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCe_PA7CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeB_AvA7CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeB_CiB_A7CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeB__iAHAHCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCeB_AHAHCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAWCeCeCeCeB__PCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAWCeCeCeCeB_A7CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCeCiAHAHCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeB_B_AHAHCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeB__iB_A7CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCe_iB_A7CeCeCeCeCeCe______CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCeB_B_CeCeCeCeCe__________CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeCeB__iA7CeCeCeCe______CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCe_iB_B_A7CeCeCe______CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeCeB_B_A7CeCeCeCe______CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeCeB__iB_CeCeCeCe______CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCeASB_A7CeCeCeCe______CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmCmCiB_CeCeCe________CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_iCmCm______________CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeB_B__9____________CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeB__i__________CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeB_B_______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 464 (crossbow)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_k_E_k_ECeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_k_k_E__CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_k_k_k____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_E_QAHAHAHAH_E_kCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_E_E_k_kAHAHAHAH_k_k_E_ECeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_E_k_k_k_k_E_k_k_E_k_k_k_k_ECeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_E_k_k_k_____E_k_k_E_____k_k_k_ECeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_E_k_k______Ce_E_k_k_Q_________k_k_ECeCeCeCeCeCeCe
+  CeCeCeCeCeCe_k_k_k____CeCeCe_E_k_k_E____CeCe___k_k_kCeCeCeCeCeCe
+  CeCeCeCeCe_k_k_k____CeCeCeCe_E_k_k_E____CeCeCe___k_k_kCeCeCeCeCe
+  CeCeCeCeCeCmCm____CeCeCeCeCe_Q_k_k_E____CeCeCeCe__CmCmCeCeCeCeCe
+  CeCeCeCe_k_kCmCmCeCeCeCeCeCe_E_k_k_E____CeCeCeCeCmCm_k_kCeCeCeCe
+  CeCeCeCe_k_k__CeCmCeCeCeCeCe_E_k_k_E____CeCeCeCmCe___k_k__CeCeCe
+  CeCeCeCe_k__CeCeCeCmCeCeCeCe_E_k_k_E____CeCeCmCeCeCe___k__CeCeCe
+  CeCeCeCe__CeCeCeCeCeCmCeCeCe_E_k_k_k____CeCmCeCeCeCeCe____CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCmCeCe_EAd_k_E____CmCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCmCe_E_k_k_E__CmCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCm_E_F_F_ECm__CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeAW_F_FAW____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_EAWAW_E____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_k_k_E____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_k_k_k_E____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_k_k_E____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_k_k_E____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_E_k_E_E____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe__________CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe______CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 511 (Hawaiian shirt)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeBIBIBIBIBIBIBIBIBkBIBIBkBIBIBIBIBICeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeBIAsAsAsBIAa_TCQ_TAaAaAa_TAaBIAsAsAsBICeCeCeCeCeCeCeCe
+  CeCeCeCeBIAsAsCjAsAsBIAa_TAa_c_TAaAaBIAsAsAsAsCjBICeCeCeCeCeCeCe
+  CeCeCeBIAsAsCjBjBjAsAsBIAh_TAaAaAhBIAsAsAsCPCjBjBjBICeCeCeCeCeCe
+  CeCeBIBJCPAs_GCjAsCPAsC1BIBIBIBIBIBIAsBjAsAsAsCjAsAsBICeCeCeCeCe
+  CeBIBjCjAsC8_GAsAsAsBIAsAsAsAsBjAsAs_sBjCjAs_GAsCPAsAsBICeCeCeCe
+  CeCeBIAsAsAs_GAsAsBIAsCjAsAsBJBjCjAsAsC1AsAs_G_GAsAsBI____CeCeCe
+  CeCeCeBIAsAs_G_GC1AsBjBjCjAsAsCjAsAs_GAsBI_G_GAsAsBI____CeCeCeCe
+  CeCeCeCeBIBIBIBIAsAsAsCjC8AsCPAsAsAsC8AsAsBIBIBIBI____CeCeCeCeCe
+  CeCeCeCeCeCeCeBIAsAsAsAs_G_G_GAsCjAsAsAsAsBI________CeCeCeCeCeCe
+  CeCeCeCeCeCeCeBI_G_GAsAsAsAsAsBjBjCjAsAsCPBI__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeBIAs_GAsAsCPAsAsAsCjAsAsAsAsBI__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeBIAs_G_GAsAsAsAs_G_GAsAsAs_GBI__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeBIAsAsAs_GBjAs_G_GAsAsAs_G_GBI__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeBIAsAsAsBjCjBj_GAsAsAsAs_GAsBI__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeBIAsAsAsAsCjC8AsAsAsCPBjAsAsBI__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeBIAsAsCPAsAs_G_G_GAsBjCjBjAsBI__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeBIAsAsAsAsAsAsAs_G_GAsBJAsAsBI__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeBIBIBIBIBIBIBIBIBIBIBIBIBIBIBI__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe______________________________CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 512 (T-shirt)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAo_aAoCm_p_pCm_pCm_p_p_p_pCmAo_aAoCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCe_aCDCDCD_aCKCKCKCKAWAi_8CKCK_aCDCDCDAoCeCeCeCeCeCeCeCe
+  CeCeCeCeAoCDCDCDCDCD_aCvCKAWCKAWCKAi_aCDCDCDCDCD_aCeCeCeCeCeCeCe
+  CeCeCe_aCDCDCDCDCDCDCDAzCKCKCKCKCKAoCDCDCDCDCDCDCDAoCeCeCeCeCeCe
+  CeCe_aCDCDCDCDCDCDCDCDAx_aAo_aAo_aAxCDCDCDCDCDCDCDCD_aCeCeCeCeCe
+  CeAoCDCDCDCDCDCDCDCDAxCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDAoCeCeCeCe
+  CeCe_aCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDAxCDCDCDCDCDCD_a____CeCeCe
+  CeCeCeAoCDCDCDCDAxCDCDCDCDCDCDCDCDCDCDCDAxCDCDCDCDAo____CeCeCeCe
+  CeCeCeCeAzAoAoAoCDCDCDCDCDCDCDCDCDCDCDCDCD_aAoAo_a____CeCeCeCeCe
+  CeCeCeCeCeCeCe_aCDCDCD_h_hB9_2_hBF_hA2C2CDAo________CeCeCeCeCeCe
+  CeCeCeCeCeCeCeAoCDCDCDCDCDCDCDCDCDCDCDCDCD_a__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_aCDCDCD_hBFCDCD_LB9_LCDCDCDAo__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAoCDCDCDCDCDCDCDCDCDCDCDCDCD_a__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_aCDCDB6_hC2CDCDC2_hA2_LCDCDAo__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAoCDCDCDCDCDCDCDCDCDCDCDCDCD_a__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_aCDCDCDCDCDCDCDCDCDCDCDCDCDAo__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAoCDCDCDCDCDCDCDCDCDCDCDCDCDAo__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAoCDCDCDCDCDCDCDCDCDCDCDCDCD_a__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAzAoAo_aAoAo_aAoAo_aAoAo_aAoAo__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe______________________________CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 477 (silver dragon scale mail)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  B$CDB$CDB$B$CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDB$_2B$CECE
+  Ce_____2CD_2CEB$CECeCeCeCeCeCeCeCeCeCeCeCeCeCeB$_2B$_2B$CE____Ce
+  CeCe____B$CDB$CDCEB$CECeCeCeCeCeCeCeCeCeCe_2CDB$CDB$B$CE__CeCeCe
+  CeCeCe____CDCDB$CDB$CECECeCeCeCeCeCeCeCeCDB$CDCDB$B$CE__CeCeCeCe
+  CeCeCeCe__B$_2CD_2B$CDCEB$CeCeCeCeCeCeCEB$CDCDB$B$CECECeCeCeCeCe
+  CeCeCeCe________B$CD_2B$B$CE________CECD_2B$_2CECeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeB$CECDB$CDB$________CEB$CDB$B$CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeB$CEB$_2CDB$____CDCDCECEB$B$CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCDCDCECDCDCDCECDCDB$B$CDCDCDCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCD_2B$CDCDB$B$CDCD_2B$CDCDB$CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCDB$B$_2CD_2B$_2CDB$B$_2CD_2CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_2CDB$B$B$CDB$B$_2CDB$CE__CeCeCe__________Ce
+  CeCeCeCeCeCeCeCeCeCeCDCD_2B$CDCDB$B$CDCDCDCE____________________
+  CeCeCeCeCeCeCeCeCeCeCDCDB$B$CDCD_2B$CDCD_2B$__________________Ce
+  CeCeCeCeCeCeCeCeCeCeB$CDCDCEB$CDB$B$_2CDB$CE______________CeCeCe
+  CeCeCeCeCeCeCeCeCeCeBrBrCECECECD_2CECECE_Y_Y____________CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeBrBrBrBMBMBjCjBMBM_YB7_Y____________CeCeCeCe
+  CeCeCeCeCeCeCeCeCDCDB$_2BrBMBMCjBjBMBM_YCDB$B$CE________CeCeCeCe
+  CeCeCeCeCeCeCDCDB$CDCECE____CDCDB$B$____CDCD_2CDCEB$____CeCeCeCe
+  CeCeCeCeCeCDCDB$CDCECE______CDB$_2CE______CDCDB$_2B$CE__CeCeCeCe
+  CeCeCeCeCDCDCDB$CE________CDCDCDB$B$CE________B$CDB$B$B$__CeCeCe
+  CeCeCeCeCD_2CE____________CDCD_2B$B$CE____________B$_2CE____CeCe
+  CeCeCeCDCD________CeCeCe____CDCDB$CE__________________CEB$__CeCe
+  CeCeCeCD____CeCeCeCeCeCeCe__CDB$CDCE________CeCeCeCeCe__CE__CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe__B$_2______CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDB$__CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 487 (silver dragon scales)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDCDCDB$__CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDCDCDB$CECE__CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCDCDCECECEB$CE__CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeB$CEB$B$B$_f_f__CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCEB$CECE_f_f_f________CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCDCDCDCDB$CDCDCDCECDCDAz_fAzCD__CD____CeCeCeCe
+  CeCeCeCeCeCeCeCeCDCDCDCEB$CECDCDCDCDB$CECECDCDCDCDCDB$____CeCeCe
+  CeCeCeCeCeCeCeCDCDCECEB$CEB$CDCDCECECEB$CECDCDCECEB$CECE__CeCeCe
+  CeCeCeCeCeCeCeCEB$CEB$CE_f_fB$CEB$CEB$_f_fB$CECEB$CEAz_f__CeCeCe
+  CeCeCeCeCeCe__CECEB$_f_fAzCECEB$CE_f_fB$CECEB$B$_f_f______CeCeCe
+  CeCeCeCeCeCe_______fAz_fCDB$CE_fAz_fAzCEB$CE_f_fAz_f________CeCe
+  CeCeCeCeCeCe________CDCDCDCDCDB$CECDCDCEAz_fAz_fCDCDCDCDCDCE__Ce
+  CeCeCeCeCeCeCe______CDCDCDCECEB$CECDCDCDCDCDCEB$CDCDCDB$CECE__Ce
+  CeCeCeCeCeCeCeCe____CEB$CEB$B$_fAzCDCDCDB$CEB$CECDCECECEB$CE__Ce
+  CeCeCeCeCeCeCeCe__CECEB$CE_f_fCDCDCDB$CEB$CECE_fB$CEB$_fAz_f__Ce
+  CeCeCeCeCeCeCeCe____CEAz_f_fAzCDCEB$CECE_fAz_fB$CEB$_f_f_f____Ce
+  CeCeCeCeCeCeCeCeCe_______fCDCDCDCDCDB$_fAz_fCE__CE_fAz_f______Ce
+  CeCeCeCeCeCeCeCeCeCe______CDCDCDCEB$CECE_f_________f______CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe__CDCDB$CECECEB$________________CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe__B$CECECEB$Az_f______CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe__CEB$_fAz_f_f______CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_______f_f_f______CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe____________CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 516 (hooded cloak / dwarvish cloak)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCrCGBECeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCGCrCrCrCrCGBECeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCrCrCrCrC3C3BYC3CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCrCrCr______C3CGC3BECeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCrCrCr__________BYC3BECeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCrCr______________C3C3BECeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCrCrCr____________C3_4BECeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeC3CrCr____________C3BECeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCrCrCr__________C3BECeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeBYC3CGCr_______4C3BECeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeC3C3A3__BYC3Cr__BYC3A3____BECeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeBYCGCrCrCrA3____A3C3A3BEBE__BECeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeC3CrCrCrCrCrCr____A3_eC3C3BEBEBECeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeC3CrCMCrCrCrCrA3CrC3__A3_e_4C3C3BEBECeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeC3C3CrCrCrCMCrCrCrCG____C3C3C3_4BEBECeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeBYCGCrCrCrCrCrCrCrC3_______4C3C3C3BEBECeCeCeCeCeCeCe
+  CeCeCeCeCeCeC3C3CrCrBCCrCrCMCrC3________C3_4C3CGBECeCeCeCeCeCeCe
+  CeCeCeCeCeCeC3CrCrCrCrCrCrCrCrC3__________C3BEC3BEBECeCeCeCeCeCe
+  CeCeCeCeCeCeC3CrCMCrCrCrCrCrCrCrC3________BYC3BEBEBE__CeCeCeCeCe
+  CeCeCeCeCeCGCrCrCrCrCrCMCrCrCMCr_4________C3CGC3_4BE__CeCeCeCeCe
+  CeCeCeCeCeC3CrCrCrCrCrCrCrCrCrCrC3__________C3C3C3BE__CeCeCeCeCe
+  CeCeCeCeC3CrCGCrCrCMCrCrCrCrCrBYC3__________C3BYCGBE__CeCeCeCeCe
+  CeCeCeCeC3C3CrCrCrCrCrCrCMCrCrCMC3__________C3BEC3BEBECeCeCeCeCe
+  CeCeCeCeC3CrCrCrCrCrCrCrCGCrCrC3C3____________C3BEBEBE__CeCeCeCe
+  CeCeCeCeCrCMCrCrCMCrCrBCAwCGCrCr_4______________BYBEBE__CeCeCeCe
+  CeCeCeCrCrCrCrCrCrCrCrCrCGAwCrCr________________CGC3BE__CeCeCeCe
+  CeCeCeC3CrCrCrCrCrCMCr_JCGCrCrC3________________C3BEBE__CeCeCeCe
+  CeCeCe____Cr_4C3CrCrCGCZAwCrC3________________C3BEBE____CeCeCeCe
+  CeCeCeCe________C3C3__CGCrC3________________BEBE______CeCeCeCeCe
+  CeCeCeCeCeCeCe________________________BE____________CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe__________________________CeCeCeCeCeCeCeCeCe
+}
+# tile 517 (slippery cloak / oilskin cloak)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_F_F__CeCeCeCeCeCeCeCe___F_FCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_F_FA5____CeCeCeCe_____F_F_e____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_e_F_F__A3_________F_F_eA3____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_F_F___________F_F_e______CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_eA5______A3_F_e__A3__CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_e_FA3_____eA3____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_g_g_F____A5_g______A3CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_e_e_g_g_____gA5A3________CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_e_F_F_e_g_____g______A3______CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_e_F_eA5_e_gA3__A5________________CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_e_F_e_F_F_eA5_____g_e__A3____A3______CeCeCeCeCeCe
+  CeCeCeCeCeCe_e_F_F_F_F_F___g_____g_F____________A3__CeCeCeCeCeCe
+  CeCeCeCeCe_F_e_FA5_F_F_e__A3_______F__A3______________CeCeCeCeCe
+  CeCeCeCeCe_e_F_F_F_F_F_F___________F_e______A3________CeCeCeCeCe
+  CeCeCeCe_e_F_e_F_F_FA5_eA3______A3___F____________A3__CeCeCeCeCe
+  CeCeCeCe_F_eA5_FA5_F_e_______________F_e____A3__________CeCeCeCe
+  CeCeCeCe_F_e_F_F_F_F_F______A3____A3___F__________A3____CeCeCeCe
+  CeCeCeCe_e_eA5_F_FA5_eA3_______________F______A3________CeCeCeCe
+  CeCeCeCe_F_e_F_F_F_F_e________A3_______F________________CeCeCeCe
+  CeCeCeCe_e_F_F_F_F_F_F__A3__________A3___e______A3__A3__CeCeCeCe
+  CeCeCeCeCe_eA5_F_F_F________A3___________F______________CeCeCeCe
+  CeCeCeCeCeCe_eA5_F_e_______________________F__________CeCeCeCeCe
+  CeCeCeCeCeCeCe_e_F_F______A3____A3____A3___eA3____A3__CeCeCeCeCe
+  CeCeCeCeCeCeCe___F_e__A3___________________F________CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe___F______CeCeCeCeCeCe_____F______CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe______CeCeCeCeCeCeCeCe_____F__CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe__CeCeCeCeCeCeCeCeCeCe____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 520 (tattered cape / cloak of protection)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_BCeCeCeCeCeCeCaCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeBhCI_B_BCeBfCIBl_BCZCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCICICZCaCaCICc_B_BCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeBqBcCI_B_BCIBcCaCc_B_BCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeBhBhCPBc_B_BBcBqCaBlCc_B_BCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeBhBhCICIBq_BCZBXACCcBlCaCc_B_BCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeBhCIBhCIBhBc_B_BBcCcBfCcBlCaCc_B_BCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeBhBhBhCICICaB$CZ_BBcCICaCaCaCcBlCZ_BCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeBhBh_mCIBhCZBc_B_BAiCICaBlCcBlCaBlCZ_BCeCeCeCeCeCe
+  CeCeCeCeCeCeCeBhCIBhCIBh_BBc_BCZBcCIBfCaCaCcCcCa_B_BCeCeCeCeCeCe
+  CeCeCeCeCeCeCIBhCICICIBh_BCZ_B_B_BBhBhCaCaBlCaBlCc_BCeCeCeCeCeCe
+  CeCeCeCeCeCeBhCeCICICICI_B_B_BCcBf_BBhCaCaCcBfCcBl_BCeCeCeCeCeCe
+  CeCeCeCeCeBhBhCeCIBhBhBh_B_BCcCaCa_BCIBhBfCaBlCcCaCZ_BCeCeCeCeCe
+  CeCeCeCeCeBhCeBhCICI_BBh_BCZBlCcCaBh_BBhCaCaCcCaBl_B_BCeCeCeCeCe
+  CeCeCeCeCeCeBhBhCICI_BBh_B_BCaCaBfCaCZCICaCaCaBlCcCZ_BCeCeCeCeCe
+  CeCeCeCeCeBhCICIBPCZBhBh_BCcBlCaBhBhBPBhC_BlCZBlCa_B_BCeCeCeCeCe
+  CeCeCeCeCeBhBhCICICIBh_B_BCaCeCaCeCaBh_BBhCaCaCZBlCZ_BCeCeCeCeCe
+  CeCeCeCeCeBhBhCICIBh_mCZCcBlCeCaCeBhCa_BBhCaCaCZ_BCe_BCeCeCeCeCe
+  CeCeCeCeCeCeBhCeCIBhCZ_BCa_B_BCZ_B_B_BBh_BBhCaBlCc_BCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_BCIBh_B_B_BCZ_B_B_BCZ_BCZ_BBhCaCaBl_BCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_BBhBh_BCZ_B_BCe_BCe_B_B_B_BBhBlCcCZ_BCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_BBhCZ_B_BCeCeCeCeCeCe_BCZCICa_B_BCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_B_B_BCeCeCeCeCeCeCeCe_B_BBh_BCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_BCeCeCeCeCeCeCeCeCeCe_B_BCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 522 (ornamental cope / cloak of magic resistance)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeBxBPBxBPBxCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeBPBtBtBtBtBtBxCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeBxBtBtCcCcCcCcCaCaCaAYCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeBPBtBtCcA3_vA3_vBmBPBm_vBmCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeBxBtBtCcA3_vAYBmBmCcBPACBmBmBmCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeBPBtBtCc_vAY_v_vCaBPBPBPBPBmA3CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeBxBtBtBmA3Bm_vCaCcCaBPBPBPBm_vAYCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeBPBt_M_vAYBmCaCaBPBPBPBmBmA3BmCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeBxCnBtCcBmBmCaBPACBPCc_vA3_vBmCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeBPBtBtBmBmBmCaBPBPBPBmA3_vA3BmCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeBPBtBtBtBt_MBmCcBPBPBpBPBm_v_vAYCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeBPBtCnBtBtBtBm_vBmBPBPBPBPBPBm__BmCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeBxBtBtBxCnBtBt_MBmBmBPBPBPBpBm_vAYBmCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeBPBtBtBtBtBtBtBtCcA3BmBPBPBPBmA3_vA3CeCeCeCeCeCeCe
+  CeCeCeCeCeCeBPCnBtBtBtBtBtBtBtBtCcBmBmBPBPBPBmBm_vCeCeCeCeCeCeCe
+  CeCeCeCeCeBPBtBtBtBtBtBtBtBtBtBtCcAY_vBmBPBpBPBmA3CeCeCeCeCeCeCe
+  CeCeCeCeCeBxBtBtBtBtBtBtBtBtBtBxBtCcA3BmBPBPBPCc_vAYCeCeCeCeCeCe
+  CeCeCeCeCeBPBtCnBtBtBtBtBtBtBtBtBtCcA3CcBPBPBPBmA3BmCeCeCeCeCeCe
+  CeCeCeCeCeBxBtBtBxBtBtBtBtBtBtBtBtBtBmAYBmBPBPBm_vAYCeCeCeCeCeCe
+  CeCeCeCeCeBPBtBtBtBtBNBtBtBtBtBtBtBtBtCc_vBmBPBm_vBmCeCeCeCeCeCe
+  CeCeCeCeCeBxCnBtBtBtBtBtBtBtCnBtBtBtBt_MA3BmBPBmA3BmCeCeCeCeCeCe
+  CeCeCeCeCeBPBtBtBtBtBtBtBxBtBtBxBtBtBtCc_vCcBPAY_vAYCeCeCeCeCeCe
+  CeCeCeCeCeBxBtBtBtBtBtBtBtBtBtBtBtBtBtBmA3BmBPCc_vBmCeCeCeCeCeCe
+  CeCeCeCeCeBPBtBtBtBtBtBtBtBtBtBtBtBtBtCc_vBmBPBmA3BmCeCeCeCeCeCe
+  CeCeCeCeCeBxBtBtBtBtBtBtBtBtBtBtBtBtBtBm_vBmBPBm_vAYCeCeCeCeCeCe
+  CeCeCeCeCeBPBtBtBtBtBtBtBtBtBtBtBtBtBtCcA3BmBPBmA3BmCeCeCeCeCeCe
+  CeCeCeCeCeCaCcBtBtBtBtBtBtBtBtBtBtBtBtCc_9BmBmAY_vCeCeCeCeCeCeCe
+  CeCeCeCeCeBmA3CcBtBtBtBtBtBtBtBtBtBtBt_M_vA3_vA3_vCeCeCeCeCeCeCe
+  CeCeCeCeCeCeBmBmCcCcCcCcCc_MCcCcCcCcCcAY_vA3_vAYCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAY_vA3_vA3_v_vA3_v_vA3_v_vA3_vCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_vA3_vA3_vA3_vA3_vA3_vCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 542 (buckled boots / kicking boots)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_jA1AbA1AbAbAbB8AbAbAbAb_jCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAbAdAdAdAF_b_b_b_b_b_b_bAbCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_jA1_6AF_E_w_N_W_W_N_W_W_w_E_EAP_1CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeA1AdAF_b_W______________Ay_E_E_EAPCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeA1AFAF_b_w_W_W_W_W_W_N_W_w_E_E_E_WANA6CeCe
+  CeCeCeCeCeCeCeCeCeCeCeAb_bAF_b_b_b_b_b_b_E_b_E_b_b_E_E_W__ANCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_jAb_7_E_bAF_EAF_bAF_bAF_bAF_E_EAt__ANCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAP_E_E_b_b_b_b_b_b_E_b_b_E_E_W__ANCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAbAF_b_E_bAF_EAF_bAF_b_b_E_EAy__ANCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeA1_k_k_E_E_b_b_b_b_b_b_b_E_w_W__ANCeCe
+  CeCeCeCeCeCeCeCeCeCeCeBn_XAGAvB__PA1_bAF_b_b_bAFAFAm_WA9AN_HCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAGAsCpCKCKCKAD_b_b_b_b_bAFAd_w__ANCeCeCeCe
+  CeCeCeCeCe_jA1AbAbCxAGAGCQAGADARCzA0AFAFAFAFAFAFAd_w__ANCeCeCeCe
+  CeCeCeCeCeA1AdAF_bCQAsCQ_b_b_bCQAsAaAFAdAdAdAdAd_k_w__ANCeCeCeCe
+  CeCeCe_jA1_6AFAF_bAKARARADASCQCQCQ_uAdAFAdAFAdAFAF_W__ANCeCeCeCe
+  CeCeCeA1Ad_k_bAF_bB0AHCKCKCzAsCQAdAdAdAdAdAdAdAF_E_W__ANCeCeCeCe
+  Ce_jA1_6AFAF_E_b_b_6AD_PADASCQ_uAFAFAFAFAFAFAFAF_EAt__ANCeCeCeCe
+  CeAbAdAF_b_b_bAF_b_b_b_bAF_bAF_bAF_E_E_E_bAF_b_E_w_W__ANCeCeCeCe
+  CeA1AdAF_b_bAF_b_bAF_b_b_b_b_b_b_b_b_E_b_b_b_b_E_EAy__ANCeCeCeCe
+  CeA1AdAFAF_b_b_b_b_b_b_b_b_b_b_b_b_b_b_b_b_b_b_E_E_W__ANCeCeCeCe
+  Ce_jA1_7_E_E_E_E_E_E_E_E_E_E_E_E_E_E_E_E_E_E_E_E_EAt__ANCeCeCeCe
+  CeCeCeAP_E_E_w_E_E_E_E_E_E_E_E_E_E_E_E_E_E_E_E_E_EAy__ANCeCeCeCe
+  CeCeCe_jAPA4_WAt_WAy_WAt_WAy_WAt_WAy_WAt_WAy_WAt_WAt__ANCeCeCeCe
+  CeCeCeCeCeAN__________________________________________ANCeCeCeCe
+  CeCeCeCeCeA6ANANANANANANANANANANANANANANANANANANANANANA6CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 554 (bronze / sustain ability)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeB6_VASA8_aCTCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_nAS_VBVASAeCT_Q_nAMCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_QCT_VCvAHCTA8Ae_D_Q_n_lCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeB5_nCTAeBV_VAeCTA8_nCyALB5_lCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAf_QA8CTCeCeCeCeCeCe_nB5A6B5CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeB5B5CeCeCeCeCeCeCeCeCeCe_lB5CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAM_WBzANCeCeCeCeCeCeB5AN_W_n__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeB5_OAN_OB5_lAL_lB5_lAf_C_WB5____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__AN_OBzAf_lCy_nAMA6B5_O_W______CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_____WAN_l_R_nALAMAf_l_C________CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_________RAfAMAM_n_l__________CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe__________________________CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe__________________CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 548 (clay / increase accuracy)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeB$AiCgCgB6B6CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCgAiAxAiBUB6B6B6CgCgCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCgBUAiBUAiAiCgCg_LCgBSB1CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCgAiBSCIB6BSB1BSB9A2B9BSCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeB9BS_LB9CeCeCeCeCeCeA2BFBFBFCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeB6_3CeCeCeCeCeCeCeCeCeCe_NB6CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeB6_r_$CeCeCeCeCeCeCeCe_hCgB6CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__A2_hCg____________Cg_$BF____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe____B6Cg_h_________hCgB6________CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe______A2A2________A2A2________CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe__________________________CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe__________________CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 565 (steel / slow digestion)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCDCD_2B3AoABCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAoAiCDCDAiAo_pAB_S_1CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeABAo_2CDCDAiAoAoABAB_1_1CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_1ABAoAiCDCDAiAo_pAB_S_1_1AECeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_oABAoAiCeCeCeCeCeCeAB_1_1ANCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_1ABCeCeCeCeCeCeCeCeCeCe_1ANCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_1_9A9_9CeCeCeCeCeCeANA9_9AE__CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_1A9_9A9ANAN_1_1_1AEAN_9A9AN____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe___9A9_9AEAN_1_1_1ANAEA9_9______CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_____9A9ANAE_1_1_1AEAN_9________CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe________AEAN_1_1_1AN__________CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe__________________________CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe__________________CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 564 (twisted / free action)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeBOBOBOBOBOBOCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeBOBOBABABABABABABABACeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeBOBABAAN_CBzBz_CBABABABACeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeBOBABz_CBzAN_CBzAN_CBOBABABzCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeBOBABz_CANBzCeCeCeCeCeCeBOBA_CBzCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeBOBA_CBz_CCeCeCeCeCeCeCeBOBABA_C_CCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeBOBABzANCeCeCeCeCeCeCeCeCeBOBABABzBzCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeBOBA_CBzCeCeCeCeCeCeCeCeCeCeBOBA_CBzCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeBOBABz_CCeCeCeCeCeCeCeCeCeCeBOBA_xBzCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeBOBABzANCeCeCeCeCeCeCeCeCeBOBABABz_CCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeBOBA_CBz_CAN_CBOBOBOBOBOBOBABA_CBzCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeBOBABA_C_CBzBOBABABABABABABA_CANCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeBOBABOBOBOBABAANBzANBz_CBzBzCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeBzBABABABABABz_CBz_CBzAN_CCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_CBzAN_CBzBz_CANBzCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeBzAN_CBzCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 579 (concave / amulet of unchanging)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeASASASASASASCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeASAS____________ASASCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeASAS____CeCeCeCeCeCeCeCeAS__CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAS____CeCeCeCeCeCeCeCeCeCeAS__CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAS__CeCeCeCeCeCeCeCeCeCeCeCeCeAS__CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAS__CeCeCeCeCeCeCeCeCeCeCeCeCeAS__CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAS__CeCeCeASASASASCeCeCeCeCeCeCeCeAS__CeCeCeCe
+  CeCeCeCeCeCeCeCeCeAS__CeCeAS________ASCeCeCeCeCeCeCeAS__CeCeCeCe
+  CeCeCeCeCeCeCeCeAS__CeCeCeAS__CeCeCe__ASCeCeCeCeCeCeAS__CeCeCeCe
+  CeCeCeCeCeCeCeCeAS__CeCeAS__CeCeCeCeCe__ASCeCeCeCeCeAS__CeCeCeCe
+  CeCeCeCeCeCeCeCeAS__CeCeAS__CeCeCeCeCe__ASCeCeCeCeCeAS__CeCeCeCe
+  CeCeCeCeCeCeCeCeAS__CeCeAS__CeCeCeCeCeCeCeASCeCeCeCeAS__CeCeCeCe
+  CeCeCeCeCeCeCeCeAS__CeCeAS__CeCeCeCeCeCeCeAS__CeCeCeAS__CeCeCeCe
+  CeCeCeCeCeCeCeCeAS__CeCeAS__CeCeCeCeCeCeCeAS__CeCeCeAS__CeCeCeCe
+  CeCeCeCeCeCeCeCeCeAS__CeAS__CeCeCeCeCeCeCeAS__CeCeCeAS__CeCeCeCe
+  CeCeCeCeCeCeCeCeCeAS__CeAS__CeCeCeCeCeCeCeAS__CeCeCeAS__CeCeCeCe
+  CeCeCeCeCeCeCeCeCeAS__ASCe__CeCeCeCeCeCeCeAS__CeCeCeAS__CeCeCeCe
+  CeCeCeCeCeCeCeCeCeAS__ASCe__CeCeCeCeCeCeCeAS__CeCeAS__CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeASASCe__CeCeCeCeCeCeCeCeAS__CeAS__CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_SAB_SCeCeCeCeCeCeCeCeCeAS__CeAS__CeCeCeCeCe
+  CeCeCeCeCeCeCeCeAgAg_d_dABA7B3CeCeCeCeCeCeCeCeASAS__CeCeCeCeCeCe
+  CeCeCeCeCeCeCe_jAgA9A9_dAg_S_pAi__CeCeCeCeCeCe____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAgA9__A9_dAgABAo_a______CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAB_dA9A9A9_dAgAlC2AiAx_9____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe_S_d_d_d_dAg_SB3AiAiAi______CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAB_SAgAgAgA7Au_pAi_2CD______CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAB_SABAlAo_pAiB6_2________CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAo_pB3AoB6AiAi_2Ax______CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAiCvAiAi_2AxB$_9____CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCDB$Ax_2________CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe__________CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 591 (key / skeleton key)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAiAiCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAiB3_p_p__CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAi_p_pB3__CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeAiAi_pAgAB_p__CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeAi_pB3AB____AiAiAiAiAiAiAiAiAiAiCvAiAiAiAiAiAiAi_S__CeCeCe
+  CeCeCeAgAo_pAg____Ai_p_p_p_p_p_p_p_pB3Ao_pCmC2CmB3_p_pAB__CeCeCe
+  CeCeCe__AgAB_pAiAi_pAgABAgABAgABAgABAgCvB3_1Ai_p_1Ai_pAg__CeCeCe
+  CeCeCe______Ag_pB3AB__________________Ai_p__AgAB__AiCmAn__CeCeCe
+  CeCeCeCeCe__AB_p_pAg__CeCeCeCeCeCeCe__Ai_p________Ai_pAg__CeCeCe
+  CeCeCeCeCeCe__AgAB____CeCeCeCeCeCeCe______________________CeCeCe
+  CeCeCeCeCeCe________CeCeCeCeCeCeCeCeCeCe____CeCe________CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 592 (lock pick)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAlCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCm____CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCmAl__CeCeCeCeCeCe
+  CeCeCeCFCFBrBrBrBrCeCeCeCeCeCeCeCeCeCeCeCeCeCmCm____CeCeCeCeCeCe
+  CeCeCFBrBrBsBrBrBrB4CmCmCmCmCmCmCmCmCmCmCmCmCmAl__CeCeCeCeCeCeCe
+  CeCeCeCFBrB4B4B4B4B4CmCmCmCmCmCmCmCmCmCmCmAlAl____CeCeCeCeCeCeCe
+  CeCeCeCe________________________________________CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 602 (lenses)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAuAlAuAlAuCeCeCeCeCeCeCeCeCeAuAlAuCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAuCACA_qAlCeCeCeCeCeCeCeCeCeAl_qAuCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAuAlAuAlAuAlAuCCAfAN_HCeCeCeAuAlAuAuAlCCAfAN_HCeCe
+  CeCeCeCeCeCeCeAuCAAl_t_t_tAlCAA6__ANCeCeCeAu_qAl_tAlCA_H__ANCeCe
+  CeCeCeCeCe_tAlAlAlAu_tA6ANAJ_HAJANA6CeAuAlAlAu_oANAJA6AJANA6CeCe
+  CeCeCeCeCeCCCACC_t_tB2AN______ANCeCeCeAuCACC_tAN______ANCeCeCeCe
+  CeCeCeAuAlCm_aBgCYAfAJA9___9ANABAzCmCYCACAAfAN_9___9ANA6CeCeCeCe
+  CeCeCeAlCAB$CDCbCHAf______AN_tAoCDCOCHBGCA_H______ANCeCeCeCeCeCe
+  CeCeCeCmAiAoAl_tAfAfAfAfB7Al_a_p_S_tAfCYBGAf______ANCeCeCeCeCeCe
+  CeCeCeAoCDAB_______YCHBGCAAiCDAB_______YCHAf______ANCeCeCeCeCeCe
+  CeCeCe_qCbAL___9ANALBGCoA6CACOAL___9ANALBG_Y______ANCeCeCeCeCeCe
+  CeCeCeCYCHAf__ANB2CCCA_H___YCHAf__ANB2CCCA_H______ANCeCeCeCeCeCe
+  CeCeCeALCYCoAfALAu_tA6A9___HCYCoAfALAu_tA6A9___9ANA6CeCeCeCeCeCe
+  CeCeCeCeCeCYCHBGCA_H______ANCeCYCHBGCA_H______ANCeCeCeCeCeCeCeCe
+  CeCeCeCeCeALCYCAAu_oANANANA6CeALCYCAAu_oANANANA6CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 605 (saddle)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_jAPAPAPAAAN_HCeCeCeCeCe_jAPAPAPAAAN_HCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAP_w_E_E_W__ANCeCeCeCeCeAP_E_E_w_W__ANCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAP_E_E_E_wAt_lAPAPAPAPAP_7_E_E_EAy__ANCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAP_E_E_b_E_E_E_E_E_E_E_E_E_b_b_w_W__ANCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_jAP_7_E_bAF_bAF_b_E_E_E_b_E_W_WA9AN_HCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAP_wAFAdAdAd_k_b_b_b_E_E_W__ANCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAP_E_bAFAFAFAF_EAF_b_E_E_W__ANCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAP_E_E_b_bAF_b_b_b_b_E_EAt__ANCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_jAP_7_E_b_b_bAF_b_E_wAt_WANA6CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAP_E_EAF_b_b_E_E_W__ANCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_jAP_7_E_E_E_wAtAt__ANCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAP_w_E_w_W______ANCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAP_E_W_WA3___9ANANAN_HCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAP_E_W______ANB2AN__ANCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_t_j_r___9ANA6_tAN__ANCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAuCABW__AN_t_tAgAN__ANCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAuAlBL_HA6_H_dANANANANAN_HCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAuCA_H___HCAB7______ANCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAlCAAuB7AuCAA6___9ANA6CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAuCACACA_fCA_H__ANCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAuAlAfA6_H_HA9__ANCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAN__________ANCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeA6ANANANANANA6CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 611 (figurine)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeBA_n_nCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeC9AeCeCeCeC9BiAeAe_nCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeC9AeCeCeC9C9BnAe_n_nCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeC9AeCeCeCeC9C9AeBABn_nCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeC9BAAeCeCeCe_n_nBA_n_n_nCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeC9AeCeCeCeCeC9AeAe_n_nB5CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_nBAAeCeCeAe_n_nCeCeCeCeCeCeC9C9C9CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAeAeBAC9C9BA_nCeCeCeCeCeCeC9C9AeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_nBAC9C9C9C9AeCeCeCeC9C9C9BAAeAeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAeC9C9C9C9C9AeC9C9_n_nCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_nC9_nC9C9_nB5B5_n_n__CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_nAe_nC9_n_n_nCeCe____Ce______CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeC9AeBAB5B5_nCeCeCe______________CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAeC9C9Ae_nB5__CeCeCe____________CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeC9C9C9Ae_nB5__Ce______________CeCeCe__CeCeCeCeCe
+  CeCeCeCeCeCeCe_nAeBbAeBABb_nAeB5B5B5__________________CeCeCeCeCe
+  CeCeCeCeCeCeCe_n_nBAAeAeAe_n_nB5_nB5Bz__________CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_nAeAe_n_nAe_nB5_nBz_Z________CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_n_n_nBy_nByB5_nBzBzBz______CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeB5_nB5_nB5_nB5_ZBz_ZBz____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeB5_nB5_nB5_nB5_nBzBzBz______CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeBzBzBzBzBzBzBz____________CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 637 (meatball)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_$A5A5A5CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeAcAcAcA5A5AcA5A5CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAc_wAmAc_N_$_$A5_gA5A3CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAc_0AcAmAcAc_$_$A5A5_F__A3CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAc_7AmAV_N_N_NA5AcA5A5A5__A3CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAcAcAcApA5_NAm_gAcAcA5A5A3__A3CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAV_$A5_NAmA5Ac_NAmA5A5_eA3__A3CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeA5AcA5Ac_$A_A2A__7ApA5_e____A3CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_$_F_g_N_gA2AV_0A5Ap_FA3__A3_eCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_FA5_$_$_F_NAVA5_F_F___9_9A3CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_e_e_F_FA5_e_F_e__A3_O_9CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeA3A3_e_e_eA3__AtA3_9CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeA3A3A3_eA3A3CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 637 (meatball)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_$A5A5A5CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeAcAcAcA5A5AcA5A5CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAc_wAmAc_N_$_$A5_gA5A3CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAc_0AcAmAcAc_$_$A5A5_F__A3CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAc_7AmAV_N_N_NA5AcA5A5A5__A3CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAcAcAcApA5_NAm_gAcAcA5A5A3__A3CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAV_$A5_NAmA5Ac_NAmA5A5_eA3__A3CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeA5AcA5Ac_$A_A2A__7ApA5_e____A3CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_$_F_g_N_gA2AV_0A5Ap_FA3__A3_eCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_FA5_$_$_F_NAVA5_F_F___9_9A3CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_e_e_F_FA5_e_F_e__A3_O_9CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeA3A3_e_e_eA3__AtA3_9CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeA3A3A3_eA3A3CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 638 (meat stick)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_jA1_7A2_LCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeA1AdAk_gA2CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_jA1_5AkAp_FAyANA6CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeA1AdAk_g_F______ANCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAlA7BSAkAp_F_e___9ANA6CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeB_AHBS_g_F______ANCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_1A2_LB_A7AD_w_FA3___9ANA6CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeA2_gBSAHAD_b_N______ANCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeABB_BSAk_5AD_7_WAt___9ANA6CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCiAHADAdAF_b_N______ANCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAlB_B_AKA$AFAm_WAt___9ANA6CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeA7AHADAdAF_b_W______ANCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCd_SAHAHADAF_E_NAt___9ANA6CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeC2AHAHAHAD_b_N______ANCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeATA2_6ADADAQ_7_WAt___9ANA6CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeA2_gAkAdAF_b_N______ANCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCe_7AkAkAF_E_WAt___9ANA6CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeA1AdAF_b_N______ANCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCe_jA1_7_WAt___9ANA6CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAN______ANCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeA6ANANANA6CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 639 (huge chunk of meat)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_w_ECeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeA5A5A5A5_w_W_W_W_WCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAcAcA5_gA5Ac_F_FA5_$_w_W_$CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAcAc_3_gAc_3_F_0A5_gAcApAc_WA5_FA5ApCeCeCeCeCeCeCeCe
+  CeCeCeCeCe_$_0_0_0_0Ac_0AcAcA5A5_$_0Ac_FA5Ac_$_eA5CeCeCeCeCeCeCe
+  CeCeCeCeApAc_0_0_0_0_0_0AcAcAcAcAc_3_FAc_$_0A5A5A5A5CeCeCeCeCeCe
+  CeCeCeCeAc_0_0_3_0Ac_0Ap_0Ap_0_F_hAcAc_0Ac_0AcAcA5_$______CeCeCe
+  CeCeCe_0_0Ac_0_0_0_5_0_0_0_w_0ApAc_0AcA5Ac_0AcA5_g_$_eAc________
+  CeCeAV_e_0_0_0_0_0Ac_$A2AcAp_0Ap_FAcA5AcA5Ac_0Ac_e_gA5A5________
+  CeCeAcAc_0_3_0_0_0A5_0AcA5_FAc_wAcA5AcA5A5A5AcA5Ac_FA5A5________
+  CeCe_0AcAcAc_0_0Ac_0AcAcA5AcA5Ac_hApAcAcAcA5_0AcA5_gA5_F________
+  Ce_WAc_0AcA5AcAcAVAcAc_3_0AcA5AcAcA5Ac_FAc_0A5_F_FA5_e_F_$______
+  Ce_EA5AcA5_F_3Ap_W_0AcAcAcAc_0Ac_0_eAcApAcAcA5A5AcA5_F_F________
+  CeCeA5AcAcAcAcAcAcApA5AcAc_3AcApAcAcAc_E_wAcAcA5_$A5_F_e________
+  CeCeA5_gA5A5AcAcAc_3AcAcAcAcAc_FA5AcA5A5A5A5A5_gA5_F_F__________
+  CeCeCeA5A5_gA5Ac_0AcAcA5AcAVAcApAcAcAcA5_gApA5_F_F_e_F________Ce
+  CeCeCe_F_FA5A5_gAcAcA5_0_FA5Ac_gAcA5_gA5A5_F_F_e_F_F__________Ce
+  CeCeCe_F_F_FA5AcA5A5_gAcAcA5_FA5A5A5_FA5_F_F_F_FA3_e_______F_FCe
+  CeCe_FA5_F_F_F_e_F_FA5A5A5_gA5A5_F_F_F_F_FA5_F_eA3_______F_F_eCe
+  Ce_F_FA5_F_FA3_e_e_F_F_F_F_e_F_F_F_e_F_F_eA3_eA3_______F_F_F_F_e
+  Ce_F_gA5_F_F_F_FA3_e_eA3_e_e_eA3_e_e_e_eA3_e_______F_F_F_F_F_F_e
+  Ce_FA5_F_F_F_F_F____A3_eA3_eA3_eA3_eA3___________F_F_F_F_e_e_eCe
+  Ce_FA5_F_F_e_F_F_F_F_________________________F_F_F_F_F_eCeCeCeCe
+  Ce_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_eCeCeCeCeCe
+  CeCe_F_F_F_F_F_F_F_F_F_F_F_e_e_e_e_e_F_F_F_F_F_F_F_F_eCeCeCeCeCe
+  CeCeCe_F_F_F_F_F_F_F_F_e_eCeCeCeCeCe_e_F_F_F_F_F_F_e_eCeCeCeCeCe
+  CeCeCeCe_e_e_e_e_e_e_eCeCeCeCeCeCeCeCe_e_e_e_e_e_e_eCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 639 (huge chunk of meat)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_w_ECeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeA5A5A5A5_w_W_W_W_WCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAcAcA5_gA5Ac_F_FA5_$_w_W_$CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAcAc_3_gAc_3_F_0A5_gAcApAc_WA5_FA5ApCeCeCeCeCeCeCeCe
+  CeCeCeCeCe_$_0_0_0_0Ac_0AcAcA5A5_$_0Ac_FA5Ac_$_eA5CeCeCeCeCeCeCe
+  CeCeCeCeApAc_0_0_0_0_0_0AcAcAcAcAc_3_FAc_$_0A5A5A5A5CeCeCeCeCeCe
+  CeCeCeCeAc_0_0_3_0Ac_0Ap_0Ap_0_F_hAcAc_0Ac_0AcAcA5_$______CeCeCe
+  CeCeCe_0_0Ac_0_0_0_5_0_0_0_w_0ApAc_0AcA5Ac_0AcA5_g_$_eAc________
+  CeCeAV_e_0_0_0_0_0Ac_$A2AcAp_0Ap_FAcA5AcA5Ac_0Ac_e_gA5A5________
+  CeCeAcAc_0_3_0_0_0A5_0AcA5_FAc_wAcA5AcA5A5A5AcA5Ac_FA5A5________
+  CeCe_0AcAcAc_0_0Ac_0AcAcA5AcA5Ac_hApAcAcAcA5_0AcA5_gA5_F________
+  Ce_WAc_0AcA5AcAcAVAcAc_3_0AcA5AcAcA5Ac_FAc_0A5_F_FA5_e_F_$______
+  Ce_EA5AcA5_F_3Ap_W_0AcAcAcAc_0Ac_0_eAcApAcAcA5A5AcA5_F_F________
+  CeCeA5AcAcAcAcAcAcApA5AcAc_3AcApAcAcAc_E_wAcAcA5_$A5_F_e________
+  CeCeA5_gA5A5AcAcAc_3AcAcAcAcAc_FA5AcA5A5A5A5A5_gA5_F_F__________
+  CeCeCeA5A5_gA5Ac_0AcAcA5AcAVAcApAcAcAcA5_gApA5_F_F_e_F________Ce
+  CeCeCe_F_FA5A5_gAcAcA5_0_FA5Ac_gAcA5_gA5A5_F_F_e_F_F__________Ce
+  CeCeCe_F_F_FA5AcA5A5_gAcAcA5_FA5A5A5_FA5_F_F_F_FA3_e_______F_FCe
+  CeCe_FA5_F_F_F_e_F_FA5A5A5_gA5A5_F_F_F_F_FA5_F_eA3_______F_F_eCe
+  Ce_F_FA5_F_FA3_e_e_F_F_F_F_e_F_F_F_e_F_F_eA3_eA3_______F_F_F_F_e
+  Ce_F_gA5_F_F_F_FA3_e_eA3_e_e_eA3_e_e_e_eA3_e_______F_F_F_F_F_F_e
+  Ce_FA5_F_F_F_F_F____A3_eA3_eA3_eA3_eA3___________F_F_F_F_e_e_eCe
+  Ce_FA5_F_F_e_F_F_F_F_________________________F_F_F_F_F_eCeCeCeCe
+  Ce_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_F_eCeCeCeCeCe
+  CeCe_F_F_F_F_F_F_F_F_F_F_F_e_e_e_e_e_F_F_F_F_F_F_F_F_eCeCeCeCeCe
+  CeCeCe_F_F_F_F_F_F_F_F_e_eCeCeCeCeCe_e_F_F_F_F_F_F_e_eCeCeCeCeCe
+  CeCeCeCe_e_e_e_e_e_e_eCeCeCeCeCeCeCeCe_e_e_e_e_e_e_eCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 642 (eucalyptus leaf)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeABCiABCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCiAH_SCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_SAH_zANA6CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCiAHAT__ANCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeB_AHAS_KB8CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_SAHCzAsAGCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeBnCkClBVCpAs_cANA6CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCkCh_sCKCzAs_K__ANCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCkCh_sCKAUCzB8__ANCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCk_y_sCKCKAW_j__ANCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeBnCkBd_sArCK_p_j_1AN_HCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCkCh_s_8CKCK_j__ANCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCkCh_sCKAUCzB8__ANCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCk_y_sCKCzAs_K__ANCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeBb_s_8AW_i_K_lANA6CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_pCKAWCK_j__ANCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAl_pClCz_i_j_1AN_HCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_pAWCzAs_K__ANCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_pCK_i_K_lANA6CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_pCK_j__ANCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeAl_pA7_jA6AN_HCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCe_pCK_j__ANCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeAl_pAgANA6CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 680 (effervescent / sleeping)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_w_l_wCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCm_w_E_wAoCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCDAi_w_W_WAoAoCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCDAi_2Ai_pCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_S_S_oAA_SCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_pABAg_d_SCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAo_S_o_d_SCeCeCeCeCeCeCeCe______CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAo_S_o_d_SCeCeCeCeCeCeCe__________CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAo_S_o_d_SCeCeCeCeCeCe____________CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAo_pAg_d_SCeCeCeCeCe____________CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAoAo_oAEABCeCeCe______________CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_SAiAiAo_pBc_dABAB______________CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_SB$CDCDAiB3_2CDBXAEAB__________CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_SBcCDCDCDAxB$BXBcCDBcB$Ag________CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_SB$BcB$CDB$B$AiCD_2BcCDCDB$An______CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeABBqCDAiB$BcCDBXCDBcCDBc_2BLAB____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_SB$BqB$CDBcB3_2BcCDB$BLB1BLAg____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeABBLBqBqBqBqBLBLBLBLBLB1BcBqAB____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAlBcBLB1BLBcB1BLBcB1B3BqBqBqAB____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeA7BLBLBcBLBLBLBqBqBqBqBqBXBXAB__CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__ABBLBLB1BqBqBqBqBXBXBcBXAg____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__AlBqBqB$BqBqBcBXBcBXBXBcAB____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_____SBXBXBXBXBXBXBcBcBcAg____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_____S_SBcB$BcBcB$ABAB____CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe______ABABABABAB______CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe______________CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 681 (black / full healing)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_w_l_wCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCm_E_w_wAoCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCDAi_w_W_WAo_pCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCDAi_2CvAoCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_S_S_o_d_SCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_SA7_o_d_SCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAo_S_j_d_SCeCeCeCeCeCeCeCe______CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAoAB_o_d_SCeCeCeCeCeCeCe__________CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAo_SAg_d_SCeCeCeCeCeCe____________CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAo_p_o_d_SCeCeCeCeCe____________CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAoAoAg_d_jCeCeCe______________CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_S_2AiAo_p_o_dABAB______________CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_SABCDCDAiAo_o_jAN_dAB__________CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeABA7_SCDCDABAl_d_9A9AE_dAB________CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_S_d_oAlAB_SA7_o_dA9A9A9A9ANAB______CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_SA9_d_oA7ABAg_dANA9ANAE_d_9AB____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_SA9AN_d_d_d_dAN_dAEA9A9A9A9AB____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeABA9_rANA9A9A9_9A9A9A9_9AN_9AB____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAlA9_9A9A9A9A9A9A9_9A9A9A9A9AB____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeA7A9A9A9_9A9A9_9A9A9A9A9ANA9AB__CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__ABA9A9A9A9_9A9A9A9AEANA9AB____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__AlA9A9_9A9A9_dA9ANANA9AEAB____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_____SANAEANA9AN_r_dAN_dAB____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_____S_SANAE_dANAEABAB____CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe______ABABABABAB______CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe______________CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 682 (golden / polymorph)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_w_E_wCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_p_l_w_E_pCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCDAi_w_W_WAoAoCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCDAiAiAi_pCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_S_S_o_d_SCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_SAlAg_d_SCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAoA7_o_d_SCeCeCeCeCeCeCeCe______CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAoAl_o_d_SCeCeCeCeCeCeCe__________CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAo_S_oAA_SCeCeCeCeCeCe____________CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAo_pAg_H_SCeCeCeCeCe____________CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAoA1A1_QABCeCeCe______________CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_SAiAUB8_QB8_1ABAB______________CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_S_2CDCDAUASARB0B0AMAB__________CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAlARAUCDCDAUARASASB0B0A1AB________CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeABASARARAUAUARARASB0B0B0A1_lAB______CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAlB0ASARARARARAGARASB0B0B8_lAB____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_SARASB0ASASASARB0B0B0A1AMA1_j____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeABASARARARASARASB0B0CxA1_lB8AB____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_SB0B0ASASB0B0B0ASB0A1_lAP_QAB____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCdA1B0ASB0B0ASASB0B0A1_lA1B8AB__CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__ABA1_KB0B0B0AMB0A1_lA1_KAB____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__AlB0B0B0B0B8_KB8AMB8A1_lAB____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_____SA1A1A1A1A1A1A1_l_lAB____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_____S_S_l_lAP_l_lABAB____CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe______ABABAgABAB______CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe______________CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 686 (white / acid)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_w_w_lCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_p_l_w_w_pCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCDAi_w_W_WAo_pCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCDAi_2Ai_pCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_S_SAT_d_SCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_SAlAg_d_SCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAo_S_o_d_SCeCeCeCeCeCeCeCe______CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAoAB_j_d_SCeCeCeCeCeCeCe__________CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAo_S_1_d_SCeCeCeCeCeCe____________CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAoAo_o_d_SCeCeCeCeCe____________CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAoAi_o_dABCeCeCe______________CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_SAiAiAiB6Ao_dAnAn______________CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_SAiCDCDCD_2AiAi_2AAAB__________CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAn_2CDCDCDAxB$Ax_2AiB$CvAB________CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_SCDCDAiCDCD_2AxB$AxCDCDB$AxAn______CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_SAiCDCD_2AiCDB$CD_2CDAxCD_2Ag____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_S_2AxB$AxCDCDAxCDCDB$AxB$AxAB____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeBLAxB$AxB$AxB$_2AxAiAxB$AxAiAB____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAlAxAi_2AxAiAxB$AxB$AxB$Ax_2An____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeA7B$AxB$AxB$AxB$_2AxB$AxB$_2AB__CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__AB_2AxB$Ax_2AxB$Ax_2AxAiAB____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe___SAiAiAxB$AxB$AxB$_2AiAiAB____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_____SAiAi_2AiAiAiAiAiCvAB____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_____S_SAoCvAiCvCvABAB____CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe______ABABAgABAB______CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe______________CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 688 (clear / water)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_w_l_wCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAo_w_E_wAoCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCDAi_w_W_WAo_pCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCDAi_2CvAoCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_SAlAg_d_SCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeC2Al_j_d_SCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAo_SAgAE_SCeCeCeCeCeCeCeCe______CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAoABAg_d_SCeCeCeCeCeCeCe__________CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAo_S_o_d_SCeCeCeCeCeCe____________CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAoAo_o_d_SCeCeCeCeCe____________CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAo_pAg_dABCeCeCe______________CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeA7_2AiAo_p_o_dABAB______________CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAB_2CDCDAi_p_oAg_dAEAB__________CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAl_a_2CDCD_2_aAlCeCe_d_dAB________CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_S_RCm_a_2_2_aCmAlCeCeCeCeCeAB______CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeABB2AuCm_a_aCmABCeCeCeB2B2CeAB____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_SB2_RAlAlABAlB2B2A6CeCeCeCeAB____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeABCeB2A6B2B2CeCeCeCeCeCeCeCeAB____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_SCeCeCeCeCeCeCeCeCeCeCeCeCeAB____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_SCeCeCeCeCeCeCeCeCeCeCeCeCeAB__CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__ABCeCeCeCeCeCeCeCeCeCeCeAB____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe___SCeCeCeCeCeB2CeCeCeCeB2AB____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_____SCeCeCeCeCeCeB2B2A6AB____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_____S_S_RB2A6B2A6ABAB____CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe______ABABABABAB______CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe______________CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 729 (velvet / drain life)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeACACCcCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCcACCcCcCcCcCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCcCuCuCu_mCcCcCcACCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeACACCcACACCuACBmACBmCcCcCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeACCcACCuCcCcCcBmACACCuBmCcCcACCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCcACCuACCcCcBmCcCcACBmACCuCuCuACCcCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeACACBmCcCcCcACACCcCcACBmACCcACACCuACACBmCeCeCe
+  CeCeCeCeCeCeCeCeCcCcCcACCcACACCcCuACCcACCcCcCcCcCcCcACCcACCcCeCe
+  CeCeCeCeCeCeCeCcCcCcCcCcCcCcCuCuACCcACCcBmCcCcBmCcCcCcACCcCcBmCe
+  CeCeCeCeCeCeCcACCcACCcCuACCcACCcACACBmCcACBmACACCcCcBmACCcBmBmCe
+  CeCeCeCeCeACBmCcCcCcACCuCcCcCcCcBmCcCcCcCcACCuCuCuACACBmCcBmBm__
+  CeCeCeCeCcACCcBmACACCuACACCcBmCcCcCcACCcACCuCcACCcACBmCcBmAY_v__
+  CeCeCeCcCcCcACBmACCcCuCuCcCcACCcACCcCuCuACCcACCcCcCcA8BmAY_v_9__
+  CeCeACACCuACACCcBmACCcCuACCcACCcCcCcACCcCuCuCcCcCcCcAY_Q_v______
+  CeACCcCuACCcCcCcACCcACCu_mACCcBmCcBmCcACACACACCcCc_vBm_Q_9____Ce
+  ACCcCuCcCuACCcCcBmCcBmACCuACBmCcCcACCcBmCcCcCcBmBmAY_vAM____CeCe
+  ACCcCuACACCcCcBmACACCcBmACBmCcACCcACBmCcCcCcCcBmAY_v_9____CeCeCe
+  CeACACCcCcBmCcACCuCuCcCcCcCcCcCcCuACACACCcBmBmAY_v______CeCeCeCe
+  CeAoAoACCcCcCcCcCcACCuCuCcCcBmACCuCcCcCcBmBmBm_v_9____CeCeCeCeCe
+  CeAiAiAoAoCcCcACCcCcCcACACCcACACCuACBmCcBmAY_v______CeCeCeCeCeCe
+  CeAi_2AiAiAoAoACBmACCcBmACBmCcCuCcCcCcBmAY_v_9____CeCeCeCeCeCeCe
+  ACAiAiAiAiCvAiAoAoACCcACCcACCcACCcCcBmAY_v______CeCeCeCeCeCeCeCe
+  __ACCcAiAi_2AiAiAiAoAoACBmACACBmCc_vBm_v_9____CeCeCeCeCeCeCeCeCe
+  Ce____ACACAiAi_2AiCvAiAoAoACBmCcBmAY_v______CeCeCeCeCeCeCeCeCeCe
+  CeCeCe____ACCcAiAiAi_2AiAiAoCcBmAY_v_9____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCe____ACACAiAiAiAiCvCcAY_v______CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe____ACACAiAiCvBm_v_9____CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe____CcACAoBm______CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_____v_9____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 739 (violet / detect unseen)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeBDBDBoCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeBoBDBoBoBDBDCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeBDBoBoBoBDBDBoBDBDCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeBDBDBDBoBDBDBDBoBDBoBDBoCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeBoBoBDBoBoBoBDBDBoBDBoBoBoBDBDCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeBDBDBoBoBDBoBDBDBDBDBoBoBDBDBoBDBoCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeBDBDBoBDBoBoBoBoBoBDBoBDBDBDBDBoBDBoBDBDCeCeCe
+  CeCeCeCeCeCeCeCeBoBDBDBDBoBoBDBDBoBDBDBoBoBDBDBoBoBDBoBDBoBoCeCe
+  CeCeCeCeCeCeCeBoBoBDBoBoBoBDBDBDBDBoBoBDBoBoBDBoBDBoBDBoBDBoBoCe
+  CeCeCeCeCeCeBDBDBoBDBoBDBDBoBDBoBoBDBoBDBDBoBoBDBDBoBoBDBoBoBoCe
+  CeCeCeCeCeBoBDBDBDBoBoBDBDBoBoBDBDBDBoBDBDBoBoBDBDBoBoBoBoBoBl__
+  CeCeCeCeBoBoBDBDBDBoBDBoBoBDBDBoBDBDBoBoBDBDBoBoBoBDBoBoBoBoBl__
+  CeCeCeBDBDBoBDBDBoBDBoBDBDBoBoBoBDBDBDBoBoBoBDBoBDBo_QBoBlBlBl__
+  CeCeBDBDBDBoBDBoBDBoBoBDBDBoBDBDBoBoBoBoBDBoBDBDBoBoBo_QBlBl____
+  CeBoBDBDBoBDBoBoBDBoBDBDBDBoBoBoBDBoBDBoBoBDBoBoBoBlBo_QCc____Ce
+  BoBDBoBoBoBoBDBDBoBoBDBDBoBDBoBDBoBoBDBoBDBoBoBoBoBoBlAM____CeCe
+  BDBDBoBDBDBoBDBDBDBoBDBoBoBoBoBDBDBDBDBoBoBoBoBoBlBlBl____CeCeCe
+  CeBDBoBDBDBoBoBDBoBDBDBoBDBDBoBoBDBDBDBDBoBDBlBoBlBl____CeCeCeCe
+  CeAoAoBDBDBDBDBoBDBDBoBDBDBDBDBoBoBDBoBoBoBlBoBl_B____CeCeCeCeCe
+  CeAiAiAoAoBoBoBDBDBoBoBoBoBoBDBDBDBoBoBoBoBoBlBl____CeCeCeCeCeCe
+  CeAi_2AiAiAoAoBoBoBoBoBDBDBoBoBoBoBDBoBoBlBlBl____CeCeCeCeCeCeCe
+  BDAiAi_2AiAiAiAoAoBDBDBoBDBoBDBDBDBDBlBoBlBl____CeCeCeCeCeCeCeCe
+  __BoBoAiAi_2AiAiAiAoAoBDBoBDBDBoBoBlBoBl_B____CeCeCeCeCeCeCeCeCe
+  Ce____BoBDAiAi_2AiAiAiAoAoBoBoBoBoBoBlBl____CeCeCeCeCeCeCeCeCeCe
+  CeCeCe____BoBoAiAi_2CKAiAiAoBoBoBlBlBl____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCe____BoBoAiB$AiAiCvBoBoBlBl____CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe____BoBoAi_2AiBoBlBl____CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe____BoBoAoBlBl____CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe____BlBl____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 760 (crystal / enlightenment)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_SCeCy__CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeALA6B2__CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeB2B2Ai_SAl__CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_SAlB2_RB2____CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAi_tB2A6AL____CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiCyAl____CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_SAlB2B2______CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiALAlCy_S__CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeB2B2Cv_SAl____CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_SAlA6B2B2____CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiALA6B2Ce____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiCyAl____CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_SAlB2_R______CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAiAL_RB2_S__CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeB2B2Ai_SAL____CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_SAl_1B2_R____CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAiAL_RAfCy____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAiCyAl____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_SAlB2A6______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_aAlB2_RB2__CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeB2A6AiAL_S____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCe_SAlB2_RB2____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeAiCyAf_RAL____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeAuCyAl____CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCe__CvAi______CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCe__________CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+

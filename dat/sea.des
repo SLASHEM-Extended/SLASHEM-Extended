@@ -1,0 +1,93 @@
+#       SCCS Id: @(#)mtemple.des  3.1     93/02/23
+#       Copyright (c) 1989 by Jean-Christophe Collet
+#       Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#
+#       The "fill" level for the mines.
+#
+#       This level is used to fill out any levels not occupied by specific
+#       levels as defined above.
+#
+# This is the Sunless Sea... home of sharks, squids, and underwater
+# treasure. Hope you brought your amulet of magical breathing!
+#
+#
+MAZE: "sea",' '
+MESSAGE:"You hear the roar of the sea. That can't be right...."
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+                            }}}}}}}}        }}}}}}}}}}             
+                       }}}}}}}}}}}}}}}}   }}}}}}}}}}}}}}}}}}}      
+      .......}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}    
+   ...........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+  .............}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}  
+  .............}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...}}}}}}}}}}}}}}}}}   
+  ..............}}}}}}}}}}}}}}}}}}}}}}}}}}}.....}}}}}}}}}}}}}}}}}}}
+    ...........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.....}}}}}}}}}}}}}}}}}}
+   ............}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...}}}}}}}}}}}}}}}   
+     ...........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}  
+     ..........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}  
+       ........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}} 
+     ..........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}  
+      .......}}}}}}}}}}}}}}}}}}}}}}}}}}}}     }}}}}}}}}}}}}}}}}     
+         ....}}}}}}}}  }}}  }}}}}}}}}}}       }}}}}}}}}}}}}}}}     
+                             }}}}}}}              }}}}}}}          
+ENDMAP
+RANDOM_PLACES:(40,06),(49,05),(46,10),(30,07)
+RANDOM_MONSTERS: ';',':'
+REGION:(00,00,66,15),unlit,"ordinary"
+STAIR:(05,12),up
+BRANCH:(05,12,05,12),(0,0,0,0)
+# the treasure island!
+OBJECT:'(',"chest",(45,6)
+OBJECT: random, random, (45,6)
+OBJECT: random, random, (45,6)
+OBJECT: random, random, (45,6)
+OBJECT: '/', random, (45,6)
+OBJECT: '/', random, (45,6)
+OBJECT: '"', random, (45,6)
+OBJECT: '"', random, (45,6)
+OBJECT: '=', random, (45,6)
+OBJECT: '=', random, (45,6)
+OBJECT: '*', random, (45,6)
+OBJECT: '*', random, (45,6)
+OBJECT: '*', random, (45,6)
+# beach junk...
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+# the missing magic lamp!
+OBJECT:'(',"magic lamp",place[0]
+# the beach-combing committee
+MONSTER: ';',"giant crab",(10,6),hostile
+MONSTER: ';',"giant crab",(11,7),hostile
+MONSTER: ';',"giant crab",(10,8),hostile
+MONSTER: ';',"giant crab",(12,9),hostile
+MONSTER: ';',"giant crab",(10,11),hostile
+# lurking offshore...
+MONSTER: ';',"shark",(26,05),hostile
+MONSTER: ';',"shark",(28,05),hostile
+MONSTER: ';',"shark",(30,06),hostile
+MONSTER: ';',"shark",(27,07),hostile
+MONSTER: ';',"shark",(26,09),hostile
+MONSTER: ';',"shark",(30,09),hostile
+MONSTER: ';',"shark",(31,11),hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';',random,random,hostile
+MONSTER: ';',random,random,hostile
+MONSTER: ';',random,random,hostile
+MONSTER: ';',random,random,hostile
+MONSTER: ';',random,random,hostile
+MONSTER: ';',random,random,hostile
+MONSTER: ';',random,random,hostile
+ENGRAVING:(11,03),burn,"The lamp washed into the sea while I slept! Woe and damnnation!"
+OBJECT: random,random,(11,03)

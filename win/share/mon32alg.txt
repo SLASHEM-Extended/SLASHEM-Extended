@@ -1,0 +1,1378 @@
+__ = (4, 2, 4)
+_A = (5, 133, 4)
+_B = (4, 2, 132)
+_C = (7, 68, 4)
+_D = (7, 133, 135)
+_E = (150, 75, 4)
+_F = (133, 2, 4)
+_G = (6, 194, 4)
+_H = (44, 74, 77)
+_I = (106, 218, 132)
+_J = (5, 4, 70)
+_K = (134, 131, 5)
+_L = (140, 89, 77)
+_M = (149, 2, 77)
+_N = (133, 35, 5)
+_O = (18, 49, 10)
+_P = (160, 139, 83)
+_Q = (150, 111, 4)
+_R = (59, 99, 76)
+_S = (140, 138, 139)
+_T = (147, 203, 13)
+_U = (212, 37, 4)
+_V = (149, 195, 147)
+_W = (90, 45, 4)
+_X = (175, 206, 89)
+_Y = (10, 73, 134)
+_Z = (13, 99, 4)
+_a = (155, 196, 200)
+_b = (215, 75, 4)
+_c = (165, 163, 4)
+_d = (69, 67, 69)
+_e = (84, 2, 4)
+_f = (150, 149, 199)
+_g = (239, 2, 4)
+_h = (164, 43, 40)
+_i = (160, 163, 84)
+_j = (110, 106, 90)
+_k = (205, 102, 4)
+_l = (99, 76, 11)
+_m = (186, 69, 158)
+_n = (6, 131, 69)
+_o = (91, 91, 101)
+_p = (151, 164, 148)
+_q = (78, 154, 200)
+_r = (93, 43, 42)
+_s = (166, 238, 92)
+_t = (69, 110, 108)
+_u = (252, 136, 4)
+_v = (17, 4, 49)
+_w = (142, 57, 10)
+_x = (4, 42, 44)
+_y = (135, 254, 4)
+_z = (164, 118, 91)
+_0 = (237, 46, 41)
+_1 = (85, 84, 85)
+_2 = (172, 226, 228)
+_3 = (159, 16, 48)
+_4 = (51, 74, 219)
+_5 = (229, 83, 39)
+_6 = (224, 104, 41)
+_7 = (144, 73, 43)
+_8 = (172, 226, 171)
+_9 = (21, 22, 15)
+_$ = (152, 21, 9)
+A_ = (198, 52, 5)
+AA = (76, 72, 50)
+AB = (115, 116, 118)
+AC = (141, 2, 141)
+AD = (238, 144, 73)
+AE = (78, 57, 52)
+AF = (222, 91, 5)
+AG = (188, 173, 42)
+AH = (245, 176, 143)
+AI = (5, 166, 133)
+AJ = (35, 56, 72)
+AK = (250, 145, 47)
+AL = (33, 121, 142)
+AM = (101, 102, 5)
+AN = (35, 56, 56)
+AO = (4, 163, 4)
+AP = (107, 90, 52)
+AQ = (208, 122, 76)
+AR = (245, 199, 77)
+AS = (199, 164, 70)
+AT = (123, 89, 75)
+AU = (252, 247, 146)
+AV = (170, 41, 7)
+AW = (233, 229, 173)
+AX = (236, 209, 105)
+AY = (96, 3, 50)
+AZ = (250, 2, 54)
+Aa = (221, 195, 4)
+Ab = (143, 92, 51)
+Ac = (217, 23, 13)
+Ad = (232, 115, 6)
+Ae = (6, 163, 85)
+Af = (25, 89, 113)
+Ag = (101, 99, 101)
+Ah = (239, 201, 39)
+Ai = (202, 200, 201)
+Aj = (81, 43, 73)
+Ak = (241, 56, 4)
+Al = (95, 132, 133)
+Am = (169, 54, 6)
+An = (149, 111, 111)
+Ao = (172, 172, 173)
+Ap = (172, 22, 6)
+Aq = (114, 70, 48)
+Ar = (168, 240, 124)
+As = (245, 246, 4)
+At = (44, 21, 6)
+Au = (95, 115, 142)
+Av = (237, 177, 113)
+Aw = (4, 2, 196)
+Ax = (242, 245, 208)
+Ay = (86, 22, 4)
+Az = (148, 176, 204)
+A0 = (252, 175, 48)
+A1 = (154, 111, 47)
+A2 = (163, 54, 52)
+A3 = (45, 2, 7)
+A4 = (104, 54, 49)
+A5 = (165, 2, 4)
+A6 = (52, 82, 84)
+A7 = (150, 136, 110)
+A8 = (198, 146, 4)
+A9 = (38, 36, 38)
+A$ = (240, 121, 44)
+B_ = (205, 142, 115)
+BA = (4, 194, 99)
+BB = (4, 195, 196)
+BC = (167, 78, 230)
+BD = (133, 2, 252)
+BE = (57, 50, 147)
+BF = (165, 55, 70)
+BG = (48, 166, 219)
+BH = (51, 55, 214)
+BI = (69, 253, 70)
+BJ = (108, 254, 196)
+BK = (5, 239, 4)
+BL = (133, 100, 133)
+BM = (4, 98, 196)
+BN = (181, 51, 226)
+BO = (4, 254, 132)
+BP = (167, 43, 149)
+BQ = (132, 94, 196)
+BR = (70, 131, 4)
+BS = (247, 92, 75)
+BT = (241, 9, 75)
+BU = (249, 130, 133)
+BV = (202, 196, 148)
+BW = (71, 67, 134)
+BX = (197, 148, 196)
+BY = (123, 90, 204)
+BZ = (106, 168, 135)
+Ba = (88, 163, 5)
+Bb = (97, 168, 84)
+Bc = (231, 172, 227)
+Bd = (87, 199, 84)
+Be = (102, 196, 201)
+Bf = (100, 43, 136)
+Bg = (100, 179, 211)
+Bh = (188, 54, 122)
+Bi = (4, 232, 121)
+Bj = (4, 247, 246)
+Bk = (50, 238, 60)
+Bl = (77, 4, 150)
+Bm = (77, 5, 74)
+Bn = (89, 138, 77)
+Bo = (112, 3, 219)
+Bp = (197, 2, 196)
+Bq = (169, 122, 166)
+Br = (4, 134, 252)
+Bs = (4, 115, 228)
+Bt = (230, 68, 219)
+Bu = (109, 56, 235)
+Bv = (100, 194, 4)
+Bw = (252, 2, 132)
+Bx = (170, 51, 178)
+By = (44, 150, 47)
+Bz = (31, 75, 49)
+B0 = (172, 138, 52)
+B1 = (137, 84, 114)
+B2 = (44, 103, 105)
+B3 = (170, 146, 176)
+B4 = (5, 82, 164)
+B5 = (10, 103, 52)
+B6 = (229, 171, 172)
+B7 = (27, 51, 105)
+B8 = (100, 103, 51)
+B9 = (212, 106, 108)
+B$ = (218, 201, 250)
+C_ = (99, 44, 110)
+CA = (107, 146, 179)
+CB = (251, 239, 39)
+CC = (123, 122, 167)
+CD = (249, 251, 249)
+CE = (180, 181, 233)
+CF = (12, 219, 252)
+CG = (36, 53, 180)
+CH = (5, 182, 251)
+CI = (228, 74, 123)
+CJ = (203, 2, 103)
+CK = (228, 214, 177)
+CL = (252, 130, 252)
+CM = (74, 69, 252)
+CN = (124, 162, 124)
+CO = (116, 213, 248)
+CP = (229, 108, 211)
+CQ = (229, 170, 4)
+CR = (151, 249, 50)
+CS = (6, 92, 250)
+CT = (4, 162, 164)
+CU = (40, 171, 44)
+CV = (116, 227, 116)
+CW = (105, 232, 234)
+CX = (4, 2, 164)
+CY = (29, 145, 175)
+CZ = (5, 2, 103)
+Ca = (141, 20, 124)
+Cb = (138, 215, 249)
+Cc = (101, 3, 103)
+Cd = (104, 132, 107)
+Ce = (252, 2, 252)
+Cf = (138, 136, 252)
+Cg = (236, 126, 132)
+Ch = (109, 243, 4)
+Ci = (164, 162, 124)
+Cj = (137, 253, 251)
+Ck = (91, 183, 51)
+Cl = (146, 212, 117)
+Cm = (123, 162, 164)
+Cn = (236, 58, 236)
+Co = (31, 115, 175)
+Cp = (251, 230, 109)
+Cq = (98, 105, 203)
+Cr = (115, 109, 242)
+Cs = (4, 2, 249)
+Ct = (103, 195, 103)
+Cu = (165, 83, 163)
+Cv = (188, 201, 180)
+Cw = (29, 43, 239)
+Cx = (104, 147, 46)
+Cy = (30, 136, 117)
+Cz = (246, 239, 86)
+C0 = (76, 196, 164)
+C1 = (132, 254, 132)
+C2 = (197, 146, 148)
+C3 = (97, 84, 159)
+C4 = (228, 42, 108)
+C5 = (79, 189, 239)
+C6 = (4, 162, 123)
+C7 = (100, 213, 44)
+C8 = (4, 214, 4)
+C9 = (36, 222, 124)
+C$ = (116, 238, 60)
+# tile 28 (gas spore)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCBCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeC7CUCUCBC$CBCBCzCUCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_GCUBy_T_TAhC7CBCBAhCBCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCUAOByAOByAG_TAGAhAhCB_XAhCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeBdCUCUAOByAOBy_A_cAGAGAGAG_XAGCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCBBdAeByCUByCUBy_AB5A8Cx_cAGAGAGAhCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeBdAeCBCUCUCUByBy_AAGCx_K_KCxAGAGAhCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCtCBAhCUCUCUByBy_cA8_K_KB8_K_KAGAGCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCBAhAhAhCU_TAhAGAGCxCxAM_QBRA1CxAGCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCBCBAh_TAhAGAGAG_c_c_K_KAM_KB8_K_KByAhCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAh_TAGAGByAG_cCx_KB8_KA1AMA1_KB8ByCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAhAG_ABRBR_AB0_K_K_K_KBR_KB8BRA1_cCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe_TAGB0BRB5_K_KA1_KBRA1_KB8_KA1B0AGCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAG_c_KCx_K_K_K_K_Q_K_K_KA1Cx_KCxAGCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCx_KAM_KAMBR_l_ZB5AMB5_KB0CxA8CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeA1AMAMAMAM_Z_Z_l_ZB5B0_cB0CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAPAMB8AMAMB5AMA1_K_KCxCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_lAM_lB8AM_KA1Cx_cCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_________9___K______________CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe____________________________________CeCeCeCeCeCeCeCe
+  CeCeCeCeCe________________________________________CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe__________________________________CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe________________________CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 31 (flaming sphere)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCe__AT__CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe__CeA9_7AVAV_LAg_xCe_dCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeA9A9AqA2ApAdAV_UAqAc_H__CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe___oAVAV_5AkA__UA_Ac_5_$CeCe__CeAAA9CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_9Aj_UAkAVA__UAFAj_gA$AF_$A4A6Ag_oCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_j_rApAp_bAFAdAj_6CpCB_U_UAk_$_9AN__CeCeCeCeCeCe
+  CeCeCe_9ABCeCeAB__AkAaCBCBCpAXAFAUAUCpAX_uAdAp_UAc_gAqCeCeCeCeCe
+  CeCeCeAg_9_jA3ApAFARCpARCpAUAUA0CpCpAUCpCpA0A0AKA0_u_r_9CeCeCeCe
+  CeCeCeCe____AT_UAUCzCBCpAUAWCpAvCpAWAUCpA0AXCp_5A$_uAkA2CeCeCeCe
+  CeCeCeCe_9_rAV_UA0ARA0AUAWAUAWAUAUAUAUAUAUAWCpAc_UA_Am_dA9_1AECe
+  CeCeCeCeCe_oA5_uA0AQCpCpAWAWAWAXAxAUAUAWAWAUAUA$AkAR_uAc_9CeCeCe
+  CeCeCeATCeAyAkAkAXARCpCpAUAUAUCpAUAxAUAxAUCpCpCpARA0AFA__jCeCeCe
+  CeCeCeCe___h_UAkARCpAXCpAUCpAUAUAxAxAxAWARAUAUAWCpA0CBAFApAgCeCe
+  CeCeCeA2__A__UASCpAUAUAWAWAWAxAxAxAxAxAxCpAUAUAUCpAKA0CQ_$AgCeCe
+  _oAB___9_o_gAXCpCpAUAUAUCpAUAWAUAUAxAxAUCpAxAxAWAUA$AKAR_bA6__Ce
+  CeCeAE__AjAdA0CpCpAUAUAUAWAUAxAxAxAUAxAxCpAUAxAxAR_bAKAsAF__AECe
+  CeCeAqAcAkAKCpAXCpAUAxAWAWAUAUAxAUAxAWAxAUAUCpCpARAk_6AK_UA6CeCe
+  CeA9AV_uAhAkAKASAXAUAUAWAxAUAxAxAxAxAWAUAWAxCpAUAX_6A5_$A4_oCeCe
+  Ce_j_b_UAKAdAdARAUAUAUAxAUCpAxAxAUAxAUAxAWAWAWAUAUAKAKAd_N_1CeCe
+  CeAN_UAkAK_uA0A0CpAUAUAUAWAUAxAxAxAxAWAWAUAxAUAUAXAKA0CBAcAjCeCe
+  CeCeAgAj_bA0AKARAUAUAUAUCpCpAUAxAWAxAUAxAWAWAUA0AsA0AsAd_$_oCeCe
+  CeCeCe__ApAdAdAKA0CpAWAUAUAUAUAUAUAxAWAUAUAUCpAXA0A0A0_UCeCeCeCe
+  CeCeCeCeA9AYAVAKA0A0CpCpAUAUAWAUAxAxAUAWAXCpCpCpAdA0_UAj_9CeCeCe
+  CeCeCeA9_____o_6A$_bCpCpCpAUAUAUAUAxAUCpA0AUCpCpAhAdAc_U__CeCeCe
+  CeCeAAA4___9_rAk_$_$AKA0CpCpAUAUCpAUAUAUA$AvCpCpA0A5AmA_ABCeCeCe
+  CeCe__Ag_9_dA4_1_UA_AkA$AsCpCpCpCpA0AXCp_5_UARAhAF_hAgAqCeCeCe__
+  CeCeCeCeCeCe_1_9Aq_h_rAkAk_uAXARA0_gAsA0AdA5A0AsAk_o__ATCeCeCeCe
+  CeCeCeCeCeCeCeCeAq_L_d_U_hAJAkAk_U_F_U_UAdA4AdAc_7CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_jA2__ATAVAk_b_UAp_b_U_U_UA2_u_r_r__CeCeCeCeCeCe
+  CeCeCeCeCeCeCe__A2__Ce_1A_Ac_U_NAgBF_hAmA_A6ApCeA9__CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAB__CeA9_7_NA__hCeCeANAk_h___9CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe___h_9CeCeCeA6CeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 32 (shocking sphere)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe___BAB___B_B_BAiABCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_____B_B_BAiAo_B_B_BCv_BABCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_____B_B_B_B_BCZAiAlCZ_BAi_B_BA7ABCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe___BCZ_B_B_B_B_B_B_BCD_B_BCv_B_B_B_BAlCeCeCeCeCeCeCe
+  CeCeCeCeCe_____B_B_BCs_BCs_BCs_BAi_B_SCD_BCs_BCs_BABCeCeCeCeCeCe
+  CeCeCeCe___B_B_B_BCs_BCs_BCs_B_BCDCD_BCDCs_B_B_B_B_BAiCeCeCeCeCe
+  CeCeCeCe___B_B_B_BCsCsCsCsCsCsCs_B_BCDCD_BCs_B_B_BA7ABAiCeCeCeCe
+  CeCeCe___BCZ_B_BCs_BCsCsCsCsCsCsCs_B_BCD_B_B_BAB_S_B_BAlCeCeCeCe
+  CeCeCe___B_B_BCs_BCsCs_DBj_DCsCsCZ_B_DCv_BCs_BCv_B_B_BCZ_SCeCeCe
+  CeCe___B_B_BCs_BCs_BCsBjAiABCsCs_B_DCD_B_B_B_BCv_BCs_B_BABCeCeCe
+  CeCe__CZ_B_B_BCs_BCsCsALAl_DCs_B_B_DCD_BCs_B_BAi_BCZ_B_B_B_SCeCe
+  CeCe___B_B_BCs_BCs_BCsCsCsCsCsCs_B_BCDCvCDCDCvCs_B_B_____BABCeCe
+  CeCe___B_BCZ_BCs_BCs_BCs_BCsCZ_BCs_B_B_B_B_a_B_B_B___B_B_B_SCeCe
+  CeCe___B_B_B_B_B_B_B_B_BCZ_B_B_B_B_BCs_BA7Ai_DCs_B_B_____BABCeCe
+  CeCe___BCZ_B_BCs_BCs_BCs_B_B_B_B_B_B_BAiCDAB_BCZ_B___B_____SCeCe
+  CeCe___B_B_B_B_B_BCZ_B_B_B_B_BCDCDAiCDCD_B_B_B_B___B_____BABCeCe
+  CeCe___B____CZ_BCs_B_B_BCs_BCD_B_BCZ_BCD_B_B_B___B___B_B_B_SCeCe
+  CeCe___B_B_B_B_B_B_B_B_BCZ_BCD_B_B_B_BCD_BCs_B_B_BAB_DCZ_BABCeCe
+  CeCe___B_BCZ_B___BCZ_B___B_BCD_B_B_B_BAiAo_aA7AB_D_B_B_B_SCeCeCe
+  CeCeCe___B_B_B_B___B_B_B_B_BCD_B_B_B_BCD_S_D___B___D___BABCeCeCe
+  CeCeCe___B_B_B___B___B_B_B_BCDAoCv_B_BCvCsCZ_B___BCZ_B_SCeCeCeCe
+  CeCeCeCe___BCZ_B_B_BCZ_B__Cv_____S_BCv_B_B_B_______B_BABCeCeCeCe
+  CeCeCeCe___B_B_B_B___B_DCv___B__CvAB_D___B___B___B_B_SCeCeCeCeCe
+  CeCeCeCeCe_____B___DCy_B___B___BCD_D_______B___BCZAlCeCeCeCeCeCe
+  CeCeCeCeCeCe_____B___B___B___DAB_D_______B_B_B_B_SCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_______B_BCZ___D___________B_BAB_SCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe___B_B_B_B_B_____B___BAB_SCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_________SAB_SABCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 50 (master mind flayer)
+{
+  CeCeCeCeBcBXBXBXBLCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeB$CeCe
+  CeCeCeB$B$B$B$BXBXBLBLCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeB$CeCeBX
+  CeCeCeBXB$B$B$BcB$BXBXBLBLBLCeCeCeCeCeCeCeAkAkCeCeCeCeCeB$CeBXCe
+  CeCeCeBLBXBXB$B$B$BcB$BXBXBLBLBLCeCeCeA5Ak_9_9CeCeCeCeCeB$BXCeCe
+  CeCeCeBLBLBXBXB$B$B$B$B$BXBXBXBLBLBL_g_9_9_9_9CeCeCeCeCeB$BXCeBL
+  CeCeCeCeBLBXBXBXB$B$B$B$B$BcBXBXBXBLBL_9_9_v_9CeCeCeCeB$BXBXBLCe
+  CeCeCeCeCeBLBXAkAkAkB$B$B$B$B$B$BXBXBLBL___9CeCeCe_rANBXBXBLCeCe
+  CeCeCeCeCeCeBLBLBXAkAkAkBXBXB$B$B$BXBXBL_9_9CeCeCeANANAEBXCeCeCe
+  CeCeCeCeCeCeCeA5A5_9_9_9BXBXBXBXB$BX_gAs_9_9CeAN_rANAEA9BLCeCeCe
+  CeCeCeCeCeCeCeCe_9_9_v_9_9BLBX_gAsBLAs_gBXANANAEANANA9A9BXCeCeCe
+  CeCeCeCeCeCeCeCeCe_9_9_9_9BLBXAs_gBLBLBXBXBX_rAN_rA9A9A9CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_9_9_v_9BLBLBXBXBXBLBXBXBXB$A9_9A9A9A9CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_9_9_9_9BLBLBLBXBLBXBLBLBLB$_9_9A9A9CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_9ANAN_rA9BXBXBXBXB$CuBLBXA9A9_9A9CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeANAN_rAEA9A9BXBLBXBLBXB$BL_9BXA9_9A9CeCeCe
+  B$CeCeCeCeCeCeCeCeCeAEANA9ANA9A9B$BXBLB$BLBLBX_9_9BXA9_9A9CeCeCe
+  CeB$B$CeCeCeCeCeANAEA9ANAEANA9A9BXBLBLB$BLBLBX_9_9_9_9A9A9CeCeCe
+  CeCeBXB$B$CeCe_9A3ANAEAN_rANA9BXBX_9_vBXBL_9BX_9_v_9_9A9A9CeCeCe
+  CeCeCeBXB$B$B$B$B$AEANA9ANANA9BX_9A9_9BX_9_9BX_9_9_9_v_9A9CeCeCe
+  CeBXBXBXBXBXBXBXBXANAEA9AN_9A9_9_xA9_9BXA9AN_9AN_9_9_9_9A9CeCeCe
+  BXBXCeCeBXBLBLBL_9ANA9A9A9_9A9A9A9_9_9BXA9A9ARAECe_9_9_9A9____Ce
+  CeCeCeBXBLCeCe_9_vA9A9_9A9_9A9A9___9A9_9ARARA9ANCeCeCe_9_9______
+  CeCeBXBLCeCeCe_9_9A9A9_vA9_9A9___9_9A1B0_9ASA9A9AE_______9______
+  CeCeBLCeCeCeCeCe_9A9A9_9A9A9A9___9A9A9_9A9A9ASANAN______________
+  CeCeCeCeCeCeCeCe_9A9A9_9_9A9___9_9A9A9_9A9ANASA9_rAN____________
+  CeCeCeCeCeCeCeCe_9A9_9A9_9___9_v_9A9_9A9A9A1ANA9AEAN____________
+  CeCeCeCeCeCeCeCe_9A9_9A9A9___9_9_9A9_9A9_9B0ANA9ANAm__________Ce
+  CeCeCeCeCeCeCeCeCe_9_9A9A9___9_9_9A9_9A9_9A9ANA9AV__________CeCe
+  CeCeCeCeCeCeCeCeCeCeCeA9A9__At_9_9A9_9A9_9A9A9Am__________CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe____Ay_9A9_xAy_NAy_N__________CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe____AyAy_N____________CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe____________CeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 81 (glass piercer)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCbCWCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCECeCECECeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  Ce_a_2CE_2CEAzCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeAoCe_2CeCEBgCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCmBgCeCjCeCbBgBgCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeAoBeCeCWCeCEC5BeCeCeCeCeCeCeCeCeCe_2AoCeCeCeCeCeCeAi_pCeCe
+  CeCeCeCmCmBgCeCWCeC5C5CeBgCeCeCeCeCeCe_2AoCDCeCeCeCeCeAiAi_2CeCe
+  CeCeCeCeCmCeBgCeCOCeCEC5CeCeBeCeCeCeCeAi_2BWCeCeCeCeCe_2_2BWCeCe
+  CeCeCeCeCeCmCeAlCeCOCeB$BeBGCeC5AzCeCe_aCeCeCeCeCeCe_aAiCeCeCeCe
+  CeCeCeCeCeCeCeAzCACeCOCeB$B$CECeCe_qAoAoCeCeCeCeCeCeAiCeCeCeCeCe
+  CeCeCeCeCeCeAlCeBgCCCeCOCeCeCE_fCECeAzB7CeCeCeCeCeCeAiCeCeCeCeCe
+  CeCeCeCeCeCeCeCmCeCAC3CeBgCOCeB$CECEAiCbCe_fCeCeCeCeAoCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCmCeCCCYCeBgCECeB$CqAiB$CECeCE_fCeCeAoCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCmCeCCCC_qCeCTC5CeCC_aCECqCCCCCeBWCe_pCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCmCeCq_f_qCeBGCCCe_pCmCCBfB7BWB7B3CmCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_SBeCe_f_fCoCeCCCqBW_p_pBWCvAi_pAoBWB7CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCmBgCeCCCAC3CCBWB7BEAiAi_2Ai_2AoB7BWCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAoCeCCC3CCB7BWC_CmCv_2AiCe_2Ai_fC_B7CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeBgCeALALBWB7_aAiCmAiAiB$Cv_2_2BWBWCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAfCeALC_BWAi_pCe_aAi_2CeAoAiBWCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeC3CeBWAi_2_pAlAiAo_2_p_p_aAiCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeBWCeBW_2_2B3Ce_a_SAi_2CeAo_aCvAiCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeB7C3CeAiAoAl_S_pCeCv_2Cm_pCeB3_aCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeC3Cv_a_pCeCmAi_2C2AiAi_aAoCeCvAiCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeC3CmCm_SABAoAi_2Ce_a_2Ai_aAoCmAlCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAl_p_aAiAl_SAiAiAi_aCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAlAB_aAi_pCe_aAiAiCmCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAl_SAoAiCm_SCmAiAiCeCmCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCmCmCeCeAlAlCeCmCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 88 (mastodon)
+{
+  CeCeCeCeCeCeCeAo_SCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_SCeCeCeCeCe
+  CeCeCeCeCeCeCeAo_S_SCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_S_p_SCeCeCeCe
+  CeCeCeCeCeCeCe_pB3_SCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeB3_p_SCeCeCe
+  CeCeCeCeCeCeAoB3_p_SCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_S_pCeCeCe
+  CeCeCeCeCeCe_p_p_S_SCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeB3CeCeCe
+  CeCeCeCeCeCe_pB3_SCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_SCeCeCe
+  CeCeCeCeCe_pAo_SCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_pCeCeCe
+  CeCeCeCeAoB3_p_SCeCeCeCeCeCeCeCeCeCe_p_S_p_S_SA7CeCeCeB3_SCeCeCe
+  CeCeCeCe_p_p_SCeCeCe_p_SC2CeCeCeCe_SB3_S_SAlC2Al_SCe_S_SCeCeCeCe
+  CeCeCeCeAo_S_SCeCe_SB3_SCm_SC2Al_SAo_S_S_SB3AlC2Al_S_SCeCeCeCeCe
+  CeCeCeCeB3_p_SCeB3_p_SCmC2ABCmA7_S_S_S_S_S_S_S_S_SAB_SCeCeCeCeCe
+  CeCeCeCe_pB3Ce_S_p_S_p_p_S_SABB3_S_p_S_p_S_p_S_SA7Al_SCeCeCeCeCe
+  CeCeCeCeAo_SCe_pB3_SB3_S___S_p_S_p_SB3_p_SAB_S_S_S_SAB_SCeCeCeCe
+  CeCeCeCe_pC2Al_S_S_p_S_____S_S_p_S_p_S_S_pB3_S_S_S_S_S_S_SCeCeCe
+  CeCeCeCeAoCm_pC2Cm_S_p___p_SB3_S_p_SB3_S_S_pAB_pB3_S_pAB_SCeCeCe
+  CeCeCeCeCeAo_S_S_pC2_S_p_SCmC2Cm_S_S_S_pB3_S_SAl_S_p_S_SAB_SCeCe
+  CeCeCeCeCeB3CmC2_SAlB3_S_S_S_S_p_S_p_S_p_S_SA7_S_S_SAl_SAB_SCeCe
+  CeCeCeCeCeCDAn_S_S_S_SCDAi_S_SAB_S_SB3_S_p_SAB_S_SC2_S_SAB_SCeCe
+  CeCeCeCeAxCD_2_2_SAB_SCDAxB3AB_S_S_SAB_S_SAB_S_S_S_SAl_S_S_SCeCe
+  CeCeCeCDCDB$AxC2_S_SCDCDB$A7_S_S_S_S_S_SAB_SCeCe_SAlC2Al_SABCeCe
+  CeCeCDCDAx_2CeAl_SABCDAx_2_SAB_S_p_S_pAB_S_SCeCe_S_S_SA7_S_SCeCe
+  CDCDCDB$AxCeCe_SC2CDAi_2_SAB_S_S_SAlC2Al_SABCeCe_S_S_S_S_SABCeCe
+  AxB$Ax_2CeCeCeCDCD_2Ax_S_SCe_S_S_S_S_S_SAl_SCeCe_p_S_SAB_S_SCeCe
+  CeCeCeCeCeCeCe_2_2B$_SABCeCeCe_p_S_SAB_SA7ABCeCeAlB3_S_S_SABCeCe
+  CeCeCeCeCeCe_S_p_S_SA7AlA9A9A9_SAB_S_SAB_S_SAlA9C2AB_p_S_S_SA9Ce
+  CeCeCeCeCeA9_SAl_SA7Al_SA9A9A9_S_S_S_SAB_SAB_SA9_SAlC2Al_SABA9A9
+  CeCeCeCeA9A9_SC2_SCCA7_SA9A9A9_S_p_S_S_S_SA7A9A9_p_S_SA7Al_SA9A9
+  CeCeCeA9A9A9_pAl_pA7AlA9A9A9A9_S_S_S_S_S_SAlA9A9A9_p_S_SA9A9A9A9
+  CeCeCeA9A9A9A9A9A9A9A9A9A9A9A9_S_S_SAl_S_SA9A9A9A9A9A9A9A9A9A9Ce
+  CeCeCeCeA9A9A9A9A9A9A9A9A9A9A9A9_p_S_pA9A9A9A9A9A9A9A9A9A9CeCeCe
+  CeCeCeCeCeA9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeA9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9CeCeCeCeCeCe
+}
+# tile 94 (woodchuck)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_Q_K_QCeCeCe
+  CeCeCeCeCeCeCeCeCeA8A8A8_QA8A8A8CeCeCeCeCeCeCeCe_Q_Q_Q_E_K_QCeCe
+  CeCeCeCeCeCeCeCeAxA9A8_QA8A9B$A8_QCeCeCeCeCeCe_QAM_Q_K_Q_K_Q_QCe
+  CeCeCeCeCeCeCeA8_2AEA8A8_KAEAxA8A8_QCeCeCeCeCe_Q_Q_QAdAM_Q_QAMCe
+  CeCeCeCeCeCeCeA8A8_QA8_Q_QA8_QA8_Q_QAMCeCeCe_QAM_Q_Q_K_QAM_E_lCe
+  CeCeCeCeCeCeA8A8A8A8_QA8A8_QA8_QA8_Q_QCeCeCe_Q_Q_Q_Q_Q_EAM_l_lCe
+  CeCeCeCeCeCeA8AdAi_2A8Ax_2A8_K_Q_K_Q_QCeCeCe_Q_Q_Q_QAMAM_l_lCeCe
+  CeCeCeCeCeCe_Q_KAxB$_QB$Ax_E_QAM_Q_EAM_ECeCe_QAM_Q_K_Q_E_lCeCeCe
+  CeCeCeCeCeCeCe_Q_2Ai_lAxAi_l_l_wAMAM_QAMCeCe_Q_Q_K_EAM_l_lCeCeCe
+  CeCeCeCeCeCeCeCe_lAx_W_2_l_l_lAM_Q_E_QAMCeCe_Q_Q_Q_Q_E_lCeCeCeCe
+  CeCeCeCeCeCeCeCe_QCiCNCiCiCiBVAM_EAM_QAMCeCe_K_E_K_QAM_lCe____Ce
+  CeCeCeCeCeCeCe_Q_KBVBVAv_VBVBV_iA8AM_E_QCeCe_Q_Q_Q_Q_Q_l________
+  CeCeCeCeCeCe_QA8_KAv_8BVAW_VCKAW_QA8AM_QCe_QAM_Q_Q_K_l_l_l______
+  CeCeCeCeCeCeA8_Q_QBVAWBVCKAWAWAW_QA8_QAMCe_Q_Q_K_Q_Q_Q_l_l____Ce
+  CeCeCeCeCeCeA8_Q_QCKAWCKAWCKAWAW_QA8_EAMCe_QAMAd_QAM_E_l_l____Ce
+  CeCeCeCeCeCeA8_Q_KAWBV_8AWBVAW_QA8A8_Q_QCeAM_Q_K_Q_EAM_l______Ce
+  CeCeCeCeCeCeA8A8_Q_QBVAWCKBV_QA8A8_QAM_QAMAd_Q_Q_QAM_l_l____CeCe
+  CeCeCeCeCeCe_EA8A8_KCKAWBV_8A8A8_QAM_EAM_Q_K_Q_Q_l_l_l______CeCe
+  CeCeCeCeCeCeAMAMA8A8AWCKBVAW_Q_Q_Q_QAM_Q_QAM_l_l_l_l______CeCeCe
+  CeCeCeCeCeCeCe_Q_EBVBV_8AWBVCKBVAM_E_Q_Q_l_l_l_l________CeCeCeCe
+  CeCeCeCeCeCeCeAM_Q_QAWAWAvAWCK_QAM_Q_Q_Q______________CeCeCeCeCe
+  CeCeCeA8A8CeCe_QAM_QCiCKAW_8BVAM_E_QA8____________CeCeCeCeCeCeCe
+  CeCeA8A8A8A8A8A8A8_EAMBVAWBV_EAMAMA8A8A8A8A8____CeCeCeCeCeCeCeCe
+  _____Q_K_Q_K_Q_K_QA8AM____A8A8A8A8A8A8_K_Q_QA8__CeCeCeCeCeCeCeCe
+  _______Q_Q_K_Q_Q_________________Q_K_Q_Q________CeCeCeCeCeCeCeCe
+  CeCe__________________________________________CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe________________CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 100 (trapper)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAlCdCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAlAfB2AlCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAl_RCeCeB2ABCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAlCeCeCeCeAlCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAlB2CeCeCeCeCeAlCe
+  CeCeCeCeABAlCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeABB2CeCeCeCeCeCeCeCe
+  CeCeAlB2B2AfAlCeCeCeCeCeCeCeCeCeCeCeCeCeCeAlB2CeCeCeCeCeCeCeCeCe
+  CeAlCeCeCeCe_RAlCeCeCeCeCeCeCeCeCeCeCeCeCeAu_RCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeB2AuCeCeCeCeCeCeCeCeCeCeA5A5AlB2CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_RAlCeCeCeCeCeCeCeCeCvA5_FA5AiCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeB2ABCeCeCeCeCeCeA5A5_F_F_F_F_F_FCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeB2AlCeCeCeCeCvA5A5_F_F_F_FA5A5AiCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAlCeCeCeA5A5A5_F_F_F_F_e_F_F_F_FCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeA5A5_F_F_F_e_e_e_e_F_FAiCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAi_F_e_e_e_F_e_e_e_eCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_e_e_e_eA3_e_e_eCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeA3_eA3_eA3_eAiCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_eA3_eA3_eCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAi_eA3CvCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeA3_eCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeB2AlCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeA6AlCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeB2AlCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_RAfAlCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeB2_RAlCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeB2ABB2CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeB2B2A6AlCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeB2AlCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 129 (raven)
+{
+  CeCeCeAN______________AN_t_t_t_t_tAN__________ANCeCeCeCeCeCeCeCe
+  Ce_HAN_9_______________9AN_H_tA6AN_9_______9ANA6CeCeCeCeCeCeCeCe
+  CeAN______________________AN_tAN__________ANCeCeCeCeCeCeCeCeCeCe
+  AN_9_______________________9AN_9__________ANCeA6ANANAN_HCeCeCeCe
+  __________________________________________ANCeAN______ANCeCeCeCe
+  ___9ANANANANAN_9___________________________9AN_9_______9AN_HCeCe
+  __ANCeCeCeCeCeAN__________________________________________ANCeCe
+  ANA6CeCeCeCeCeA6ANANAN_9__________________________________ANCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAN__________________________________ANCeCe
+  CeCeCeCeCeCeCeCeCeA6AN_9___________9ANANANANANANANANAN_9___9ANAN
+  CeCeCeCeCeCeCeCeCeAN______________ANCeCeCeCeCeCeCeCeCeAN________
+  CeCeCeCeCeCeCeCeCeAN__A3_F_e___9ANA6CeCeCeCeCeCeCeCeCeA6AN_9____
+  CeCeCeCeCeCeCeCeCeAN___F_g_F__ANCeCeCeCeCeCeCeCeCeCeCeCeCeAN____
+  CeCeCeCeCeCeCeCeCe_o_HAj_FAyANA6CeCeCeCeCeCeCeCeCeCeCeCeCeA6ANAN
+  CeCeCeCeCeCeCeCeCeAuCAA6__ANCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAlCAAfANA6CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAuCAAlCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAuAlAuCeCeCeCeCeAuAlAuCeAuAlAuCeAuAlAuCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAuCAAlCeAl_qAuCeAu_qAlCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAuAlAlALCCAlAlAuAlCCALAlAuAlAuCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAlCACC_tAl_qAu_tAlCAAlCeAuCAAlCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAuAlCoAlAlAuAlCCAlALCCAlAuCeAuAlAuCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAuCAAl_tAu_qAl_tCCCAAlCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAuAlAlAuAuAlAuALAlAlCCALAuCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAuCAAlCeAlCACC_tAlCAAlCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAuAlAuCeAuAlAlAuAuAlAuCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAuCAAlCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAuAlAuCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 135 (baby silver dragon)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCDCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCDCDCeCeCDCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCDCDCDCDCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCDCDCDCDB$CDCeCeCDCDCDCDCDCDCDCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCDCD____CDCDCDCDCDCDCDCDCDCDCDCDCDCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCDCD_2B$CDB$CDCDCDB$_2B$CDB$CDCDCDCDCDCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCDCDCDB$B$_2B$_2B$CDCDB$CDB$_2B$CDB$CDCDCDCeCeCeCeCeCeCe
+  CeCeCeCeCDCDB$CeCeB$CECDCDCD_2CDB$CDCDCDB$CDB$CDCDCDCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeB$CECDB$B$_2B$CDCDB$CDB$CDB$_2CDCDCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe____CDCDCDCECDB$CDCD_2CEB$CECECDB$CDCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe______CDB$B$_2CDCDB$CDCEB$CEB$CE_2CDB$CeCeCeCe
+  CeCeCeCeCeCeCeCeCe_____2B$CDCE____CDCDB$B$______B$CDB$B$CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe____________B$CDB$_2__________CD_2CDCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe________________________CDCDCDB$__CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe__B$CDB$_2__CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe________CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 145 (silver dragon)
+{
+  AlA7CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAu_SCCCCCCCCCCCCCe
+  CeCCCCCC_SCeCeCeCeCeCeCeCeCeCDCeCeCeCDCDCC_SCCCCCCCCCCCCCCCCCeCe
+  CeCeCCCCCCCCCCCCCCCCCCCCCACDCeCeCeCeCe_SCCCCCCCCCC_fCE_fCECeCeCe
+  CeCeCeCCCCCCCC_f_f_fCCCCCCCCCeCeCeCeCCAlCCCCCCAzCEAz_f_fCeCeCeCe
+  CeCeCeCCCCCECECqCCCCCCCC_fCCCeCeCeCeCCCECCCCCCCCCCB3_f_fCeCeCeCe
+  CeCeCeCEAz_fCCCC_f_fB$CDCE_fCCCeCeCeCCCCCECCCCCqCCCC_f_fCeCeCeCe
+  CeCe_f_f_fCCCC_fCD_2_fB$CECDCCCeCeCeCCCqCECC_fCCCCCCCC_fCeCeCeCe
+  CeCe_fCCCCCC_fCD_fCEB$_fB$_fB$CECeCeCCCCCCCE_f_f_fCCCCABCeCeCeCe
+  CeCeCCCCCCCC_f_2B$BXAz_fBXAzCEAzCECeCCCCCCCE_f_fCC_fCCCC_SCeCeCe
+  CeCeCeCC_f_fB$B$B$CE_2_fCA_fAz_fB$AzCeCCCCCCCE_f_f_fCeCeCeCeCeCe
+  CeCeCeCeB$_fCECD_2BX_2CCCEAzCE_f_fCEB$CCCCCC_fCE_fCeCeCeCeCeCeCe
+  CeCeCeCe_fCDCE_2B$B$B$CCCCCC_fCACC_fB$CCCCCCCCCECeCeCeCeCeCeCeCe
+  CeCeCeCeCeCECDB$CDCECDCeCCCCCECECECCAzB$CEB$CE_fCeCeCeCeCeCeCeCe
+  CeCeCeCeCe_fCDB$_2B$CD_fCD_f_f_f_fCC_fCE_f_2CDCEB$CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCECDCECDCDCDCCCC_f_2CECECCCCCE_f_fCE_2B$CECeCeCeCeCe
+  CeCeCeCeCeCeB$CDCD_2CDCDCC_f_fCE_fCC_f_fCC_f_f_f_fB$_2B$CeCeCeCe
+  CeCeCeCeCeCeCCCDCDCDCDCDCDCCCC_2AzCECCCCB$CC_fCCAz_fAzCECeCeCeCe
+  CeCeCeCeCeAzCCCE_2_2CDCDB$CA_fCE_f_fCCCCCE_f_fCCCeCe_fCEB$CeCeCe
+  CeCeCeCe_f_fCCAuAiB$B$CDB$CCBc_2CEAzCECCCC_fCCCeCeCD_fB$CECECeCe
+  CeCeAz_fCECCBLC3CD_fB$CDCD_fCCCE_f_fCCCC_fCECE________CDB$CDCeCe
+  CeCC_fCACCC3BLCeCeCe_fCECD_f_fCDAzCECECCAzCC_fAz______CD____CDCe
+  CeCDCeCCBLCDCeCeCeCeCe_fCeAzCCCA_f_fAuCCCCB$_fCCB$Az_____fAzCeCe
+  CDCeCeCDCeCDCeCeCeCeCeCe_f_f_fCCCDAzCECCAzCE_fB$CCCC_fAz_f____Ce
+  CeCeCeCDCeCeCeCeCeCe_fAzCEBcCCCCCCCCCCCCCCCCB$_fAzCCCC_f______Ce
+  CeCeCeCeCeCeCeCeCeCe_fB$CECACCBLC3Az_fCAAzC3CCB$_fB$________CeCe
+  CeCeCeCeCeCeCeCeCe_fB$_fAzCCC3_t____CCCCCCCCAzCEB$_f______CeCeCe
+  CeCeCeCeCeCeCeCeCeAoCEAz_fCCBL____________C3CCCE_fCECC____CeCeCe
+  CeCeCeCeCeCeCeCeCeCEB$_fCAC3C3______________CCCCB$B$CC______CeCe
+  CeCeCeCeCeCeCeCeCABXAzCCCCBL________________C3AzCCCCB3CC______Ce
+  CeCeCeCeCeCeCCCCCC_fAzCCC3__________CeCe______CCAzCCCECCCC____Ce
+  CeCeCeCeCeCECC__AzCC__CCBLAz____CeCeCe______AzCC__C3CE__C3Az__Ce
+  CeCeCeCeCe____________________CeCeCeCeCeCe__________________CeCe
+}
+# tile 154 (stalker)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCDCDCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCDCDCDCDCDCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCDCeCDCeCDCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCDCDCDCDCDCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCDCDCDCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCDCDCDCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCDCDCDCeCeCeCeCeCDCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCDCDCDCDCDCeCeCeCeCDCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCDCDCDCDCDCDCDCDCeCeCDCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCDCDCeCeCeCeCDCDCDCDCDCDCeCDCDCDCeCDCDCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCDCDCeCeCDCDCDCeCeCDCDCDCeCeCeCDCDCDCDCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCDCDCDCDCeCeCeCeCDCDCDCeCeCeCeCeCDCDCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCDCDCDCeCeCeCDCDCDCDCDCeCeCeCeCeCeCDCDCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCDCDCDCDCDCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCDCDCeCDCDCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCDCDCeCeCDCDCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCDCDCDCeCeCeCDCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCDCDCDCeCeCeCeCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCDCDCDCeCeCeCeCeCDCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCDCDCDCeCeCeCeCeCDCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCDCDCeCeCeCeCeCDCDCDCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCDCDCeCeCeCeCeCDCDCDCDCDCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCDCDCeCeCeCeCeCeCeCDCDCDCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCDCDCeCeCeCeCeCeCeCeCeCDCDCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCDCDCDCeCeCeCeCeCeCeCeCeCDCDCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCDCDCeCeCeCeCeCeCeCeCeCeCDCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCDCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCDCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 159 (lichen)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_G_G_GCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_G_kAF_G_k_k_A_k_GCeCe_k_k_GCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_k_k_w_A_kAMAM_Z_AAa_G_k_w_wAF_GCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCe_G_k_wAM_A_A_E_A_A_A_AAa_k_wAM_A_AAa_GCeCeCeCeCeCeCeCe
+  CeCeCeCe_k_TAFAM_A_Z_Z_k_Z_Z_Z_G_kAF_G_Z_Z_A_A_GCeCeCeCeCeCeCeCe
+  CeCeCe_k_wAM_AAa_k_kAFAa_k_Z_ZAF_l_w_k_k_G_Z_A_G_G_GCeCeCeCeCeCe
+  CeCeCe_kAM_A_Z_Z_k_w_lAMAMAa_k_wAM_l_wAM_G_kAF_G_A_G_GCeCeCeCeCe
+  CeCeCeAaAM_AAF_TAF_wAMAM_Z_Z_kAMAMAMAM_ZAF_Z_ZAF_A_A_GCeCeCeCeCe
+  CeCeCe_G_AAF_Z_ZAFAM_Z_Z_Z_ZAa_Z_Z_Z_Z_ZAF_Z_Z_AAa_A_GCeCeCeCeCe
+  CeCeCe_G_k_w_Z_ZAa_Z_Z_Z_Z_kAa_G_Z_Z_Z_G_G_Z_Z_Z_A_G_GCeCeCeCeCe
+  CeCeCe_GAF_A_A_Z_k_G_G_G_k_wAM_kAa_Z_G_k_k_Z_A_A_A_GCeCeCeCeCeCe
+  CeCeCeCe_GAa_A_k_Z_k_Z_E_ZAMAMAM_ZAa_k_wAMAa_A_A_GCeCeCeCeCeCeCe
+  CeCeCe___G_G_k_w_A_C_ZAa_Z_Z_Z_Z_Z_Z_k_C_Z_A_G_G_G__CeCeCeCeCeCe
+  CeCe_________G_k_A_A_A_A_G_A_A_A_A_k_A_A_A_A_G_G______CeCeCeCeCe
+  CeCe____________Aa_A_A_A_G_G_G_G_GAF_A_A_A_G_G_G______CeCeCeCeCe
+  CeCe_____________G_G_G_G_G________AaAa_G_G_G__________CeCeCeCeCe
+  CeCeCe______________________________________________CeCeCeCeCeCe
+  CeCeCeCeCe________________________________________CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__________________________CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 188 (arch-lich)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAaCeCe_KCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAaCeAaAa_KCe_KCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_TAaAa_TAaAa_K_K_KCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAaA5A5A5_F_e_e_F_KCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeA5A5AiAxB$AxAi_e_eCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeA5Ai_g_g_2_g_gAi_FCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeA5Ai_g_gAx_g_gAi_eCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeA5AiAxB$A9CDAxAi_eCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeA5_dAg_2Ax_2Ag_d_eCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  Ce_FA5A5CeCeCeCeCeA5_dAg_jAgAg_j_dAyCeCe_e_F_eCeCeCeCeCeCeCeCeCe
+  CeAaA5A5A5A5CeCeCeApA5_dAiAiAi_d_e_F_e_F_e_e_KCeCeCeCeCeCeCeCeCe
+  CeCeAa_FA5ApA5A5A5A5A5A5A5A5_e_e_eA5_e_e_F_KCeCeCeCeCeCeCeCeCeCe
+  CeCeCeAaA5A5A5ApA5A5_KA5A5A5_eAaAa_$_F_e_K_eA5A5CeCeCeCeCeCeCeCe
+  CeCeCe_eAa_K_K_K_K_K_eA5ApA5_e_e_eAa_K_KAy_FA5_KCeCeCeCeCeCeCeCe
+  CeCeAa_e_e_e_e_e_eAy_KA5A5A5_F_eAa_e_e_e_eA5_KCeCeCeCe_gA5CeCeCe
+  CeCeCeAaAaA5A5A5A5_KA5A5A5A5_eAyAa_FA5A5_K_K_eCeCeCeA5_g_g_gCeCe
+  CeCeCeCeA5_K_K_K_KA5A5A5ApA5_e_F_eAaAa_KA5A5_F_eCeCe_g_g_gA5CeCe
+  CeCeCeA5A5Ay_FCeCe_FA5A5A5A5_e_e_eCeCeCeA5A5Ay_eCeCe_dA5_gCeCeCe
+  CeCeCeA5A5_e_eCeCeAaAaA5A5_$_eA5_KCeCeCeA5A5A5_F_eCe_1_1CeCeCeCe
+  CeCeCeA5A5_F_eCeCeA5A5A5AaAa_K_KAyCeCeCeCeA5A5_e_e_1_dCeCeCeCeCe
+  CeCeA5A5_e_eCeCeCeA5A5A5A5A5A5_e_F_eCeCeCeA5A5_e_F_1_dCeCeCeCeCe
+  CeCe_2A5_FCeCeCeCeA5A5Ap_eA5A5_F_e_eCeCeCeA5A5_F_2_1CeCeCeCeCeCe
+  CeCeAxB$_2CeCeCeCeA5_eA5_eA5A5_e_F_eCeCeCeA5B$CD_d_1CeCeCeCeCeCe
+  CeCe_2CeAxCeCeCeA5A5_FA5_eA5Ap_e_e_FCeCeCeCe_2_dAxCeCeCeCeCeCeCe
+  CeCeCeCe_2CeCeCeA5Ay_eA5_FA5A5_e_F_e_eCeCeCeAx_1_2CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeA5_eA5A5AyA5A5_eAy_F_eCeCeCe_d_1CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeA5_FA5A5_eA5_eA5_F_e_eCeCeCe_1_1CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_eA5A5_F_eA5_FA5_e_e_F_____1_d____CeCeCeCeCeCeCe
+  CeCeCe_________FAyA5A5AyA5A5AyA5_FAy_e_____1_1____CeCeCeCeCeCeCe
+  CeCeCe_________eA5A5A5_eA5A5_eA5_e_F_e___1_d____CeCeCeCeCeCeCeCe
+  CeCeCeCe__________A5_eA5A5A5_e___________d_1CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCe______________________________CeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 211 (green slime)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeC8_G_GC8_GCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  Ce_G_G_G_G_G_GC8_GC8CeCeCeC8C8C8C8C8CeCeCeCeCeCe_G_G_G_G_G_CCeCe
+  Ce_C_GAO_G_G_G_G_G_GC8C8BKC8C8C8C8C8C8_G_G_G_GC8_G_G_G_GAO_C_CCe
+  Ce_C_O_C_CAO_G_G_G_GC8C8C8C8C8C8C8C8_G_G_G_G_G_G_G_G_G_O_C_OCeCe
+  CeCeCe_C_O_C_CAO_G_GC8C8C8C8C8C8C8C8_G_GC8C8_G_G_GAO_C_O_CCeCeCe
+  CeCeCeCeCe_C_O_C_G_GBKBKC8C8_GC8_GC8C8C8_G_G_G_G_O_C_O_CCeCeCeCe
+  CeCeCeCeCeCeCe_C_GC8C8BKC8C8_G_GC8_G_GC8C8_G_G_C_O_C_CCeCeCeCeCe
+  CeCeCeCeCeCe_O_CC8BKBKC8C8C8_G_G_G_G_G_GC8C8_G_C_O_C_OCeCeCeCeCe
+  CeCeCeCeCeCe_C_GBKBKC8C8_G_G_G_G_G_G_G_GC8_G_G_O_C_O_CCeCeCeCeCe
+  CeCeCeCeCeCe_GBKBKC8_G_G_G_G_G_G_G_G_G_G_GC8_G_G_C_O_CCeCeCeCeCe
+  CeCeCeCeCe_GBKC8_G_G_G_G_GAO_G_G_G_G_G_G_G_GC8_G_G_C_O_CCeCeCeCe
+  CeCeCeCe_G_G_G_G_G_G_GAO_G_GAO_GAO_G_GAO_GAOC8C8_G_G_C_CCeCeCeCe
+  CeCeCe_G_G_G_G_GAO_G_O_C_C_O_C_O_C_CAO_G_G_GAO_GC8_G_G_O_CCeCeCe
+  Ce_G_G_G_G_GAO_G_O_C_O_C_O_C_O_C_O_C_C_O_CAO_G_G_G_GC8_C_OCeCeCe
+  _G_G_G_GAO_G_O_C_C_O_C_C_O_C_C_O_C_C_O_C_O_C_CAO_G_G_G_G_G_CCeCe
+  _GAO_C_C_O_C_C_O_CCeCeCeCeCeCeCeCeCeCeCe_C_O_C_C_O_GAO_G_G_G_OCe
+  _C_O_CCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_C_O_C_O_G_G_G_C
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_C_O_C_CCe
+}
+# tile 214 (disenchanter)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_2Ai_2_2CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_2AiCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeABAgABABABABCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiAxCeCeAgAgABABCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_2_2Ai_2CeCeCeAgAgABABCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeABAg_1_1CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeABAg_j_1CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeABAgAg_oCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiAiAiAiCeCeCeCeCeCeCeCeCeABAgAgCe
+  CeCeCeCeCeCeCeCeCeCeCeCeAiAiAiCeCeCeCeCeCeCeCeCeCeCeCeCeABAg_j_1
+  CeCeCeCeCeCeCeCeCeCeAiAiCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeABAg_1
+  CeCeCeCeCeCeCeCeAiAiCeCeCeCeAlABA7AB_1A7ABABCeCeCeCeCeCeCeABAg_1
+  CeCeCeCeCeCeCeAiCeCeCeCe_1ABABAgAB_1ABABABAB_1_1CeCeCeCeCeABAg_1
+  CeCeCeCeCeCeAiCeCeCeABAl_1ABABABABA6ABABABAB_1ABABCeCeCeCeABAg_1
+  CeCeCeCeCeAiCeCeAB_SAB_j_o_jAB_jAB_dABABAB_j_dA9ABABCeCeCeABAg_1
+  CeCeCeCeAiCeCe_SAB_1_1_d_d_dABAB_j_d_dAg_jA9A9ABA9A9ABCeABAgAg_1
+  CeCeCeCeAiCe_dAB_jAB_d_jABAB_dA9A9ABABA9A9AiAiAiAiA9_dAB_jAg_1_1
+  CeCeCeCeABABAB_dAB_1_dABAgAgABA9ABAiCvAiAiA9_1_1A9_j_dAgAg_1_1Ce
+  CeCeCe_SABAgAgAgA9AB_1AgAg_1A9AiAi_1_o_1A9_1A9A9Ag_dABABABAl_1Ce
+  CeCeABAoA9CvAg_j_oA9A9A9_jAiAiA9A9_1A9A9AgA9ABAgABABABABABABAgCe
+  CeAiAi_1_1_1_1_1_dA9AgABAiAB_jABAgA9_jAg_1_jABAgABABAgABA7AgA9Ce
+  AiAoCv_1_d_d_d_d_dA9_1AiA9ABABABABA9_1ABABABABABAgAgA7ABABA9A9A9
+  CvA9Ao_1AA_dAi_dAAAiAiABABAB_jABAB_dAnABABAgAgAgAlABABA9ANA9A9A9
+  A9AoA9ANA9A9A9AiAiA9ANA9A7ABABA9A9A9ANAgAgA9A9A7ABABA9A9A9A9A9Ce
+  A9A9A9A9A9ANA9A9A9A9A9ABABA9ANA9A9A9A9A9A9AlABABA9A9A9A9A9A9CeCe
+  A9A9A9A9A9A9A9A9ANA9ABABA9A9A9A9A9ANA9A9A7ABABA9A9A9A9A9CeCeCeCe
+  CeCeA9A9A9A9ABABABABABA9A9A9A9A9A9ABABABABA9A9A9A9A9CeCeCeCeCeCe
+  CeCeCeCeA9A9ABA9ABABA9A9CeCeCeCeABABA9A9A9A9A9CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 218 (pit viper)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_dAgAgAg_dAgCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAgAgAg_o_o_d_1AgAgAg_1CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeABAg_dAgAgA7CDAiCDAi_2Ag_d_1CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeABAo___1_d_oAiCeCeCeCeCvAg_o_1CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeAB_o_____1AiCDCeCeCeCeCeCDABAg_1CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_1_pAiAiCeCeCeCeCeCeCvABAg_d_1CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCe_dCeAiCeCeCeCeCeCeCeCDAB_S_d_1CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_1Ce_1CeCeCeCeCeCeCeAo_j_d_o_1CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCD_oAg_o_1CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAo_jAg_d_dCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCD_o_o_dCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAo_o_j_dAgAg_dAgAgAgCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCD_1Ag_1_o_jAgAgAgAg_d_j_oCe
+  CeCeCeCeCeAgAgAgABAgCeCeCeCeCeCeAgAoABAB_1AN_dANAE_dANAEAgAgABAg
+  Ce_oCeCeAB_oABAgAg_oABCeCeCeCeABAgCDABAg_1AE____________AN_j_oAg
+  Ce_1AgAgAg_1_______1AgAgCeCeAgAgAgAoAB_o_1__CeCeCeCeCeCeAgABAgAg
+  Ce__________CeCeCe___1_dAgABAgAgAo_2AnAgAB_oAgAgABAgAgAgAg_oAg__
+  CeCeCeCeCeCeCeCeCeCe___1_1_1AgAo____AoAgA7_SABAgAgAgABAgAg_S____
+  CeCeCeCeCeCeCeCeCeCeCe__________CeCe___2AoAgAgAgAgAgAg________Ce
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe__________________CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 227 (vampire)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeB0B0B0ASCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeASB0CmB0ASB0CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeAS_aCmCmB0ASB0CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCe_aCeCeAiCeCeCeCeASB0A6CmB2ABASB0ASCeCeCeCeAi_a_aCeCeCeCeCe
+  CeCeCm_a_aAiAoCeCeCeCeAoB0_aCmCmAlB0AiB0B0CeCeAoAi_aCmCeCeCeCeCe
+  CeCeCeCmAoAo_pAoCeCeCeCeAiB0CmAlAlAi_SCeB0CeAoAo_pAoCeCeCeCeCeCe
+  CeCeCeCeAo_SAo_pAiAiAi_pAi_p_S_SAiC2AoAoAo_pAo_SCeAoCeCeCeCeCeCe
+  CeCeCeCeAoCe_S_SAo_pAoAoAoAiAo_2AiAoAo_pB3_S_pCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_S_SAoAoAiAiAiAo_p_S_S_p_SAyAyAyCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAyAyAyAy_SAoAiAiAo_p_SAyAyAyAyAyAyAyAyAyAyAyAyAy
+  CeCeCeCeCeCeCe_NAyAyAyA3Ay_pAiAoAo_SAyAtAyAy_eAtAyAy_NAy_NAy_NAy
+  CeCeCeCeCeCeAyAyAy_eAtAyAy_pAiAo_p_SAyAy_eAyAyAyA3AyA3AyAyAyAyCe
+  CeCeCeCeAyAyAyAtAyAtAyAyAy_wASAS_E_wAyAyAtAyAyAyAyAtAyA3AyAyCeCe
+  CeCeCeAy_NAyAyAyA3AyAyAyAyANA9AEA9A9AtAyAyAyAtAyAyAyAyAtAyA3CeCe
+  CeCeAyAyAyAyA3AyAyAt_NA9_dA9A9A9AN_9A9AyAy_eAtAy_NAyAy_eAtAyCeCe
+  CeAy_NAyAyAtAyA3AyAyANAEANA9A9_dA9AEA9A3AyAyAy_eAyAy_NAyAyCeCeCe
+  CeAyAyAyA3AyA3_NAyAy_dANA9A9A9AEANAN_9Ay_NAyAyAtAyAyAyAyCeCeCeCe
+  CeCeCeAyAtAyAtAyAy_r_dA9A9A9Ay_dA9AEA9A3AyAyAyAyA3AyAyCeCeCeCeCe
+  CeCeCeCeAyA3_NAyAyAN_rAN_9AyAyAEANA9A9AtAyAyAyAtAyA3AyCeCeCeCeCe
+  CeCeCeCeCeCeAyAyAyAyA9ANA9AyAyAEANAEA9_eAtAyAyCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_eAtAN_rA9A9AyANA9A9_9AtAyAyCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAyA3ANA9A9AyAEA9_9CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAEA9A9AyA9A9A9A9CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeANA9CeANA9A9A9CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeAEA9CeA9AE_9A9CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeANCeA9ANA9CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe______A9A9__________CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe__________A9____________CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe______________________CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe__________________CeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 228 (vampire lord)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeB0B0B0ASCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeASB0CmB0ASB0CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeAS_aCmCmB0ASB0CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeA6CeCeAECeCeCeCeASB0A6CmB2AlASB0ASCeCeCeCeAJA6A6CeCeCeCeCe
+  CeCe_tB2A6AE_1CeCeCeCeAoB0_aCmCmABB0CvB0B0CeCe_1AEB2ABCeCeCeCeCe
+  CeCeCeAB_HAg_o_dCeCeCeCeAiB0CmAlAlAi_SCeB0Ce_1_1_o_dCeCeCeCeCeCe
+  CeCeCeCe_1Ag_oAgAE_dAE_1_d_o_S_pA9AB_1_d_1_o_1ABCe_1CeCeCeCeCeCe
+  CeCeCeCe_1CeABAg_o_o_o_1_d_d_oA9_d_d_o_o_o_jABCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeABAg_oA6AE_dA9_d_oABAgABAnAyAyAyCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAy_NAyAyAg_1A9_d_1_jAnAtAyAyAyAyAyAyAyAyAyAyAyAy
+  CeCeCeCeCeCeCe_NAyAyAt_eAtATAN_d_oABAyAtAyAy_eAtAyAy_NAy_NAy_NAy
+  CeCeCeCeCeCeAyAyAy_eAtAyAy_oAE_H_o_jAyAy_eAyAyAyA3AyA3AyAyAyAyCe
+  CeCeCeCeAyAyAyAtAyAtAyAyAy_wASAS_E_wAyAyAtAyAyAyAyAtAyA3AyAyCeCe
+  CeCeCeAy_NAyAyAyA3AyAyAyAyANA9AEA9A9AtAyAyAyAtAyAyAyAyAtAyA3CeCe
+  CeCeAyAyAyAyA3AyAyAt_NA9_dA9A9A9AN_9A9AyAy_eAtAy_NAyAy_eAtAyCeCe
+  CeAy_NAyAyAtAyA3AyAyANAEANA9A9_dA9AEA9A3AyAyAy_eAyAy_NAyAyCeCeCe
+  CeAyAyAyA3AyA3_NAyAy_dANA9A9A9AEANAN_9Ay_NAyAyAtAyAyAyAyCeCeCeCe
+  CeCeCeAyAtAyAtAyAy_r_dA9A9A9Ay_dA9AEA9A3AyAyAyAyA3AyAyCeCeCeCeCe
+  CeCeCeCeAyA3_NAyAyAN_rAN_9AyAyAEANA9A9AtAyAyAyAtAyA3AyCeCeCeCeCe
+  CeCeCeCeCeCeAyAyAyAyA9ANA9AyAyAEANAEA9_eAtAyAyCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_eAtAN_rA9A9AyANA9A9_9AtAyAyCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAyA3ANA9A9AyAEA9_9CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAEA9A9AyA9A9A9A9CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeANA9CeANA9A9A9CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeAEA9CeA9AE_9A9CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeANCeA9ANA9CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe______A9A9__________CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe__________A9____________CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe______________________CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe__________________CeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 229 (vampire mage)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeB0ASB0ASCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeASA1CmB0ASB0CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeAS_aCmCmB0ASB0CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCe_aCeCeAiCeCeCeCeASB0B2Cm_RAlASB0ASCeCeCeCeAi_a_aCeCeCeCeCe
+  CeCeCm_a_aAiAoCeCeCeCeAoB0_aCmCmAlB0AiB0B0CeCeAoAi_aCmCeCeCeCeCe
+  CeCeCeCmAoAoB3AoCeCeCeCeAiB0CmAlABAi_SCeB0CeAoAo_pAoCeCeCeCeCeCe
+  CeCeCeCeAo_SAo_pAi_aAi_pAiCmC2_S_2_SAoAoAoCmAo_SCeAoCeCeCeCeCeCe
+  CeCeCeCeAoCe_S_SAo_pAoAoAoAi_pB$CvAoAoAo_pC2_SCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeC2_S_pAoAiAiAiAoAo_S_S_S_SAyAyAyCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAyAyAyAy_SAoAiAiAo_S_pAyAyAyAyAyAyAyAyAyAyAyAyAy
+  CeCeCeCeCeCeCeAyAyAyAyAt_eAoAiAoAo_SAyA3AyAyAyA3AyAyAy_NAyAy_NAy
+  CeCeCeCeCeCeAyAyAyAyA3AyAy_pCvAo_p_SAyAyAtAyAyAyAtAyAtAyAyAyAyCe
+  CeCeCeCe_NAyAyAtAyAtAyAyAy_wASAS_l_wAy_NA3AyAyAy_eAt_eAtAyAyCeCe
+  CeCeCeAyAyAyAy_eAt_eAyAyAyAN_rAN_rA9AtAyAyAyAtAy_NAyAyA3AyA3CeCe
+  CeCeAyAyAyAyAyAtAyAyAyAN_dA9_9ANA9A9_9At_NA3AyAyAyAyAyAyAtAyCeCe
+  CeAy_NAyAyAtAyA3AyAyANAEANA9A9_dA9AEA9A3AyAyAy_eAyAy_NAyAyCeCeCe
+  CeAyAyAyA3AyA3_NAyAy_dANA9A9A9AEANAN_9Ay_NAyAyAtAyAyAyAyCeCeCeCe
+  CeCeCeAyAtAyAtAyAy_r_dA9A9A9Ay_dA9AEA9A3AyAyAyAyA3AyAyCeCeCeCeCe
+  CeCeCeCeAyA3_NAyAyAN_rAN_9AyAyAEANA9A9AtAyAyAyAtAyA3AyCeCeCeCeCe
+  CeCeCeCeCeCeAyAyAyAyA9ANA9AyAyAEANAEA9_eAtAyAyCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_eAtAN_rA9A9AyANA9A9_9AtAyAyCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAyA3ANA9A9AyAEA9_9CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAEA9A9AyA9A9A9A9CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeANA9CeANA9A9A9CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeAEA9CeA9AE_9A9CeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeANCeA9ANA9CeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe______A9A9__________CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe__________A9____________CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe______________________CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe__________________CeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 235 (monkey)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeAHCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAHAHCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeB9AHCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAHAHBUCeCeCeCeCeCeCeCeCeCeCeCeCe_kCgAHAHCeCeCeCeCe
+  CeCeCeCeCeCeCe_E_E_ECeCeCeCeCeCeCeCeCeCeCeCeCe_k_kAHCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_EAFAVCeCeCeCeCeCeCeCeCeCeCeCeCe_k_E_ECeCeCeCeCeCe
+  CeCeCeCeCeCeCe_E_E_E_wCeCeCeCeCeCeCeCeCeCeCeCe_k_E_NCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_E_EAF_lCeCeCeCeCeCe_E_E_ECeCe_k_E_E_ECeCeCeCeCeCe
+  CeCeCeCeCeCeCe_u_E_E_E_wCeCeCeCe_k_k_EARASCe_k_E_E_wCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_u_E_EAF_lCe_w_k_E_EAS__AS__AS_E_E_ECeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_u_E_E_E_E_k_k_E_EA1AvASAS___k_E_wCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_E_E_E_E_k_k_E_E_K_iAS__AH_E_E_ECeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_k_w_E_E_E_k_E_EA1_KAHAHA1_E_wCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_k_k_w_E_E_E_E_E_EB8A1A1_K_w_lCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_E_k_E_E_k_E_E_E_KA1_Q_wCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAg_k_E_E_E_E_E_w_w_l_wCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_k_W_EAF_E_E_w_w_l_w_wA4_E_ECeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_E_E_E_F_E_E_E_w_l_w_l_EAV_E_ECeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_kAV_E_E_W_E_l_w_E_w_w_W_EAF_ECeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_k_N_E_W_E_E_l_w_l_E_W_E_E_ECeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_k_k_E_W_E_w_w_w_W_w_E_ECeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_E_EAFARCeCeCeASARCKCKCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAHAHAHCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 239 (carnivorous ape)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCjCeCjCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCjCjCjCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeC0CjCjCeCeCe
+  CeCeCeCjCjCjCjCjC5CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeBGBJCjC5CjCeCe
+  CeCeCeCYCWCjBJC5CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCTBJCjCjCjCeCe
+  CeCeCeBZCYCTCYALCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeBGCYCjCjCeCeCe
+  CeCeCeCeCY_DAIALCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeBB_DCYCYCeCeCe
+  CeCeCeCeCYCYCYALCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeBGCTCYALCeCeCe
+  CeCeCeCeCY_DCTCYALCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCTCY_DCyCeCeCe
+  CeCeCeCeCYCYCY_DALCeCeCeCeCeCeCeCeCY_DCYCYCeCeCeBGCTCYCYALCeCeCe
+  CeCeCeCeCFCYCTCYCYB2CeCeCeCeCeCeBBCYCYBgBGBgCeCeBG_DCYCYALCeCeCe
+  CeCeCeCeCeCF_DCYCYALALCeCeCeCeBG_DCYBG__Bg__BgCeBBCYCY_DALCeCeCe
+  CeCeCeCeCeCFCYCY_DCTALALCeALCTCYCTCYBgBgBgBG__BgBgBgCYCTALCeCeCe
+  CeCeCeCeCeCeCFCYCYCY_DALALBGBB_DCYCYAfBgBGBgBgBg_____DCYALCeCeCe
+  CeCeCeCeCeCeCeCFCY_DCYCY_DBBBGCYCYCYAfB4BgBg____CjCjCYCYB2CeCeCe
+  CeCeCeCeCeCeCeCFBBCYCYCYCY_DBB_DCYCYAfAfBgCjCjCjCjCY_DALALCeCeCe
+  CeCeCeCeCeCeCeCeCTALAL_DCYCYCYCYCYCYAfB4_tCjCjCjAfCYALALCeCeCeCe
+  CeCeCeCeCeCeCeCeBGBBALCYCYCYCT_DCY_D_DAfB4AfB4Af_YALALCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCYCTALCY_DCYCYCYCYCYB2Af_YAfAfALCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeBGALCYCTCYCYCY_DALALALALALALCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAlBB_DCY_DCYCYCTALALB2ALALB2ALCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCTA6AfCYCT_DCY_DALALALB2ALALAL_RCYCYCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCY_DCYAfB5CYCYCY_DB2ALALALALB2ALAICY_DCYCeCeCeCe
+  CeCeCeCeCeCeCeCeCYALCY_DAfCT_DCYALALB2ALB2ALALA6CYCYCTCYCeCeCeCe
+  CeCeCeCeCeCeCeCeBGAICYCYCYAfCTCYB2ALALALALALA6CTCYCY_DCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeBBAICT_DAf_DCYALALALALB2ALAfCY_DCYCYCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeBGAICYCYAfCY_DALALB2ALAfB2CTCYCYCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAfBGAICT_DAfCYB5ALALAfALCYBGCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCYCYCYCjC5CeCeCeCe_qC5C5Cj_2CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCjCjCjCjC5CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeC5CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 254 (gold golem)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeBnAGClAoCtAGBbCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAGAsAUCDAUAsAGCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeA1_uAvCDAH_uA1CeCeCeCeCe_S_a_SCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeA2_gBUCDCg_gA2CeCeCeCeCeAoCDAoCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeB0_uBVCDAX_uA1CeCeCeCeCeA7CiB_A1_jCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAGAsCzCDAUAsAGCeCeCeCeCeAP_E_bAdA1CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAGAsAUCDAUAs_XCeCeCeCeCe_SCiADAdAbCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAGAsAUCDAUAsAGCeCeCeCeCeAoCDAvAdA1CeCeCeCe
+  CeCeCeCeCeBnAG_XAGAGCk_c_KBnAB_P_K_lANB8AGBn_x_pCDAHAdAbCeCeCeCe
+  CeCeCeCeCeAGAsAsAsAsAs_K_______________KAs_K___SCDAvAdA1CeCeCeCe
+  CeCeCeBbAG_sAUAh_cARAUAh_KCxABB0_KBnABB0_cASAB_SABAQAdA1CeA6ANAN
+  CeCeCeAGAsAUCDAH_ECiCDAUAsAUCDAUAsAUCDAH_ECiCDAl___NAdA1CeAN____
+  CeCeCeAGAsCBAUAhCQAhAUCBAsCBAUCBAsCBAUAhCQAhAUAh_KAM_wAACeAN____
+  CeCeCeAGAsAsAsAsAsAsAsAsAsAsAsAsAsAsAsAsAsAsAsAsAs_K__ANCeAN____
+  Ce_S_aASAaA8_KA8AaCQCQCQCQAaCQCQCQAaCQCQCQCQAaA8_K_lANA6CeAN____
+  CeAoCDAHAd_w___wAdAFAdAdAdAdAFAdAdAFAdAdAdAdAd_w__ANCeCeCeAN____
+  CeCtAUCBCQA1AN_W_w_w_w_w_W_w_w_w_w_w_w_W_w_w_WAy__ANCeA6AN_9____
+  CeAGAsAsAsAGCeAN__________________________________ANCeAN________
+  Ce_VAUCBAsCkCeAN___dAB_L_w_rAN_9___C_KB0ABAT_w_WANANAN_9________
+  CeAoCDAUAsAGCeAN__AlCDAvAdA1CeAN___KAsAUCDAvAdA1CeAN____________
+  CeAzCDAXCQB0CeAN__A1AUARAFA1CeAN___KAsCBAUARAdAbCeAN____________
+  CeAoCDCi_EAPCeAN___KAsCQAdA1CeAN___KAsAsAsCQAdA1CeAN____________
+  Ce_S_a_iCQCxCeAN__BnAUA0AdA1CeAN___KAsCBAUA0AdA1CeAN____________
+  CeCeCeCkAsAGCeAN__A7CDAvAdA1CeAN___KAsAUCDAvAdA1CeAN____________
+  CeCeCe_PAGBnCeA1_K_PCiADAdAbCeAN___KAsAh_pADAdAbCeAN_______9ANAN
+  CeCeCeCeCeCeCeCkAsCQ_EAFAdA1CeAN___KAsCQ_EAFAdA1CeAN______AN_tB2
+  AGBbCeCeCeCeCeAGAsAhCiADAFA1CeAN___KAsAhCiADAFA1CeAN___9ANA1AG_X
+  AsAGCeCeCeCeCeAGAsAUCDAvAdA1CeAN___KAsAUCDAvAdA1CeAN__ANCeCkAsAs
+  AGBnCeBnAGBbCeBnAG_VAoCiA1_jCeA6ANB8AG_VAoCiA1_jCeA6ANA6Ce_PAGCk
+  CeCeCe_XAsAGCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeAGAsAGCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 271 (Elvenking)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeARCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeASCeCeARCeCeASCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeASAoARAoB0CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeASAR_gARARB0CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAoAiB_B_AiAoAiCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAoB_AHCiB_Ao_2AoCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiB_B_AHB_AiAoAoCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAiB_AHB__zAiCvAiAoCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeAi_zB_B__zAoAoAiAoCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_GARARCdAP_LCN_S_SAiARARCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_GC8C8C8ARASCNCNBnBZCN_VCNASBKC8C8C8CeCeCeCe
+  CeCeCeCeCeCeCeCe_GC8BK_G_G_G_GCdCd_VCNCNCd_VAwAwAw_G_G_GC8C8CeCe
+  CeCeCeCeCeCeARCeCe_G_G_K_QCNBn_VCNCdCd_VCsCsAw_GAw_B_BB5_G_GC8Ce
+  CeCeCeCeCeCeASCeCeCeCe_Q_Q_QCNCNBn_VCNCsCsCs_G_GAw_B_B_BB5CeCeCe
+  CeCeCeCeCeCeAHB_CeCe_Q_QAM_lCd_VCNCNCdCsCs_G_G_GAw_BCZ_BB5CeCeCe
+  CeCeCeCeCeCeAHB_B__Q_Q_QAMB5_CCN_t_VCNCsCsCsAw_GAw_A_A_BB5CeCeCe
+  CeCeCeCeARASASASAM_E_Q_lB5B5_xASASARARCsCs_G_G_G_G_A_B_BB5CeCeCe
+  CeCeCeCeCeCeAiCeCeAMAMB5B5Bz_CCN_VARARCsCs_GAw_G_A_B_B_BB5CeCeCe
+  CeCeCeCeCeCeAiCeCeCeCeBzB5Bz_O_VCNBZCdCsCsCs_G_A_A_A_BCZB5CeCeCe
+  CeCeCeCeCeCeAiCeCeCeCeB5B5_OCNCNBn_VCNCNCsCs_G_G_A_BCZB5B5B5CeCe
+  CeCeCeCeCeCeAiCeCeCeCeB5Bz_VCd_VCNCNCd_VCsCsAw_G_A_B_BB5BzB5CeCe
+  CeCeCeCeCeCeAiCeCeCeCeB5B5_C_VCN_j_V_CANCsCsAw_G_A_BCZBzB5B5CeCe
+  CeCeCeCeCeCeAiCeCeCeB5B5Bz_OB5CN_VAMAN_C_KCsCsAw_A_BAN_CBzB5CeCe
+  CeCeCeCeCeCeAiCeCeCeB5B5_xBzB5_Q_QAM_CAN_QCsCsAwAwCZBzANB5B5B5Ce
+  CeCeCeCeCeCeAiCeCeCeBzB5_C_xB5_K_EAMAN_C_Q_QAwAwAwAN_C_xB5BzB5Ce
+  CeCeCeCeCeCeAiCeCeCeB5B5AN_CB5_QAMAM_OBz_KAMAMAwB5_CAN_CB5B5B5B5
+  CeCeCeCeCeCeAiCeCeB5B5_CAN_OB5_N_NAyBz_OAy_$AyB5B5AN_CBz_OB5BzB5
+  CeCeCeCeCeCeAiCeCeB5BzBz_CB5B5_$_NAy_CBzAy_NAyB5Bz_CAN_CBzB5B5B5
+  CeCeCeCeCeCeAiCe__B5_CBz_xB5B5Ay_NAyAN_C_N_NAyB5B5AN_CBz_xB5BzB5
+  CeCeCeCeCeCeAi_______CAN_CAy_N_NAyAy_CAN_NAy_N_NAyB5_CAN_CB5B5__
+  CeCeCeCeCeCeAi____________AyAyAyAyAyAN_C_NAyAyAyAyB5AN_C________
+  CeCeCeCeCeCe____CeCe____________________________________________
+}
+# tile 278 (aligned priest)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeA5AkA5CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_gAkA_ARAkCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_FA5A__gARA5_FCeCeCeCeCeCeCeCeAe_nCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeA5AkARARASB0_FCeCeCeCeCeCeCe_nBA_n_nCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_F_gA5A5ASA5_FCeCeCeCeCeCeCeBA_nAe_nCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_FA5Ak_gAS_FCeCeCeCeCeCeCeCeAeAe_nAeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_FAkA5_F_FCeCeCeCeCeCeCeCeCeAeBACeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_FAH__AH__CeCeCeCeCeCeCeCeARASASB0CeCeCe
+  CeCeCeCeA5_gCeCeCeCeCeCeB_AvAHAHAHCeCeCeCeCe_g_gCeCeASB0CeCeCeCe
+  CeCeAHB_AH_g_g_gCeCeCeCeB_C2AHAHAvCeCeCe_g_g_g_g_gCeASB_B_CeCeCe
+  CeCeB_AHB_B__z_g_g_gARANB5B_B_AH_nAU_g_g_g_g_g_g_gAvASB__zCeCeCe
+  CeCeCe_eB_B__z_g_g_g_gAU_CB5B5B5Bz_CAU_g_g_g_g_g_gB_ASB0Ce______
+  CeCeCe_F_e_e_e_gA5_g_gCpB5_C_OASB5ANAU_g_g_g_g_gA5__B0B0Ce______
+  CeCeCe_e_e_F_eA5A5_gA5_gCpB5B5ARB5B5B5ARA5_gA5A5A5__ASB0________
+  CeCeCe_F_e_e_FA5A5A5A5A5ARAN_CAR_C_OB5AR_FA5A5A5A5__ASB0________
+  CeCeCe_e_e_FA5A5A5A5A5A5ARB5_xASB5B5ANAR_F_F_FA5_F__ASB0________
+  CeCeCeCe_e_eA5_F_F_FA5A5ARB5_CARANB5_OAR___F_F_F_F__ASB0________
+  CeCeCeCe_e_FA5_F_FCe_F_FARB5ANARB5_CBzAR_____F_F_F__ASB0________
+  CeCeCeCe_e_e_F_FCeCeAw_FARAN_CAS_CAN_OAR_______F____B0B0________
+  CeCeCeCeCe_F_FCeCeCeAw_BAR_CANAS_OBzB5AR_______F____ASB0______Ce
+  CeCeCeCeCe_FCeCeCeCe_g_BARAN_CB5_i_CB5AR____________ASB0Ce____Ce
+  CeCeCeCeCeCeCeCeCeCe_g_gARB5_OB5AS_CANAR____________ASB0______Ce
+  CeCeCeCeCeCeCeCeCeCeA5A5ARB5AN_OASB5ANAR__________CeASB0____CeCe
+  CeCeCeCeCeCeCeCeCe_g_g_gAR_CBzASB5_x_CAR________CeCeASB0____CeCe
+  CeCeCeCeCeCeCeCeCe_g_gA5ARB5BzAS_CBz_CAS________CeCeASB0____CeCe
+  CeCeCeCeCeCeCeCe_g_gA5_gAS_CBzAS_C_xAS_F______CeCeCeASB0__CeCeCe
+  CeCeCeCeCeCeCeA5_g_g_gA5AS_x_CB5ANB5ASA5_F____CeCeCeASB0__CeCeCe
+  CeCeCeCeCeCe_g_g_g_gA5A5_FASB5ANB5_OASA5_F______CeCeASB0__CeCeCe
+  CeCeCeCeCeCe___gA5A5_gA5A5B0_OB5_CAS_F_F_F______CeCe____CeCeCeCe
+  CeCeCeCeCeCe____A5A5A5A5_g_FB0B0B0A5_FA5______CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe________A5A5________A5_F______CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe________________________CeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 279 (high priest)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeBoBpBoCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeBlBDBpBtCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeBlBoBpBoBtBlBlCeCeCeCeCeCeCeCeCDAiCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeBoBpBtBt_m_mBlCeCeCeCeCeCeCe_2CD_2_2CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeBlBoBlBo_mBlBlCeCeCeCeCeCeCeCD_2CDAiCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeBlBlBDBo_mBlCeCeCeCeCeCeCeCeCDCD_2CDCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeBlBpBoCcBlCeCeCeCeCeCeCeCeCeCDCDCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeBlAH__AH__CeCeCeCeCeCeCeCeBt_m_mBhCeCeCe
+  CeCeCeCeBlBoCeCeCeCeCeCeB_AHAHAHAHCeCeCeCeCeBDBDCeCe_mBPCeCeCeCe
+  CeCeAHB_AHBDBDBDCeCeCeCeB_B_AHAHAHCeCeCeBDBDBDBDBDCe_mAHB_CeCeCe
+  CeCeB_AHAvB_BqBDBDBDBt_lAMB_AHB__KBXBDBDBDBDBDBDBoAH_mB__zCeCeCe
+  CeCeCeCZB_B_CuBoBoBDBDBX_lAMAMAMAM_WBcBDBDBoBoBoBoB__mBhCe______
+  CeCeCeCcCZCcCZBoBoBoBoCPAM_C_l_mAM_lB6BoBoBoBoBoBo___mBPCe______
+  CeCeCeCZCcCZCcBlBoBoBlBoCPAMAMBtAMAMAMBtBoBoBoBoBl___m_m________
+  CeCeCeCcCZCcBlBlBoBlBoBoBt_l_lBt_C_lAMBtBlBlBlBlBl___mBP________
+  CeCeCeCZCcCZBlBlBlBlBlBlBtAM_C_mAMAM_CBtCcBlBlBlBl___m_m________
+  CeCeCeCeCcCZBlBlCcBlBlBlBtAM_lBt_lAM_lBt__BlCc_BBl___mBh________
+  CeCeCeCeCZCcBlBlBlCeBlBlBtAM_lBtAM_C_lBt____BlCcBl___mBP________
+  CeCeCeCeBmCZCcBlCeCeBACcBt_C_l_m_W_l_lBt______Bl_9___mBh_9______
+  CeCeCeCeCeBlBlCeCeCeBA_nBt_l_C_m_l_CAMBtAt____Bl_____mBP______Ce
+  CeCeCeCeCeBlCeCeCeCeBD_nBt_l_lAMBP_lAMBt_____________m_mCe____Ce
+  CeCeCeCeCeCeCeCeCeCeBlBDBtAM_CAM_m_l_CBtAt___________mBP______Ce
+  CeCeCeCeCeCeCeCeCeCeBoBoBtAM_l_l_mAM_lBt__________Ce_mBh____CeCe
+  CeCeCeCeCeCeCeCeCeBDBDBlBt_l_C_mAM_C_lBt________CeCe_mBP____CeCe
+  CeCeCeCeCeCeCeCeCeBDBDBoBtAMAM_m_l_W_l_m________CeCe_m_m____CeCe
+  CeCeCeCeCeCeCeCeBoBDBlBo_m_l_W_m_C_l_mBl_v____CeCeCe_mBP__CeCeCe
+  CeCeCeCeCeCeCeBlBDBDBoBo_m_l_CAM_lAM_mBlCc____CeCeCe_mBh__CeCeCe
+  CeCeCeCeCeCeBDBoBDBlBoBlBl_mAM_lAM_C_mBlBl______CeCe_mBP__CeCeCe
+  CeCeCeCeCeCe__BDBoBlBoBlBlBP_CAM_l_mBlBlBl______CeCe____CeCeCeCe
+  CeCeCeCeCeCe____BoBlBoBlBoBl_mBPBhBlBlBl______CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe________BlBo________BlBl______CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe________________________CeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 341 (monk)
+{
+  CeCeCeCeCeCeCeCeCeCeCe_d_1_1CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_1_1_1_d_1CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_d_1B__1B_CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_1AHCsAHCsCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_d_1_1B_AHB_B_CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe_1A6CeCe_bAvAHB__z_bCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_bAm_bAFB__z_b_b_b_bCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeAmAm_b_b_b_b_NAF_bAm_E_bAmCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe_b_b_bAm_EAm_bCNCNAm_wAm_b_b_bCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAmAF_b_b_b_bA__w_b_bAmAmAFAmAmCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCe_b_bAm_b_b_b_bBIC2Bk_bAF_bAm_b_w_wCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeAm_E_bAm_bAm_bBkAHCV_bAm_b_E_bAm_NCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCe_wAm_w_b_bAm_bBI_NBIAm_bAm_bAmAm_WCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCe_NAm_wAm_E_bCk_w_W_bBIAm_b_wAm_WAVCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe_wAmAmAmAmBdAmCNCN_wBdAm_N_w_NCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_N_WCUCUAm_E_N_EA__wCU_N_WCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_wAm_b_b_N_bAm_w_wCeCe______________CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_NAm_EA_CNCNAmAm_N_W________________CeCeCeCeCe
+  CeCeCeCeCeCeCeCe_W_wAm_b_b_w_b_E_b_w_N__________________CeCeCeCe
+  CeCeCeCeCeCeCeCeBdAV_bAm_E_N_bAmAmBdCU__________________CeCeCeCe
+  CeCeCeCeCeCeCeCeCeBIBIBdBdAyBdBIBkBd____________________CeCeCeCe
+  CeCeCeCeCeCeCeCeCe_wAmAm_W__AmAm_b_w__________________CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_b_bAmAy__Am_b_wAm__________________CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAm_EAm_W___W_bAmAm______________CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_bAm_N_W___N_b_w_w____________CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAm_w_N_W___WAmAm_N__________CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAm_w_N_W___N_wAm_W________CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe___N_N______AV_N________CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__A3_Z_Z_______ZBR________CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe_____Z_Z_ZAM_______Z_Z_ZBR__CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCe______________________________CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe__________________CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 342 (priest)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCDAsAsCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAaAmAmAmAaCeCeCeCeCeCeCeCDASCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeA_AF_bAmAmAaCeCeCeCeCeCeAsASCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAFAFAFAFAmAmCeCeCeCeCeCeAaASCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAFAFAFAFAmAm_1CeCeCeCeCDAsAsASCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_dAFAsAsAFAm_w_d_dCeAsAaCDAaAsAaAaASCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_dAsCDAsAsAaAa_1_dCeASASAsAs_cASASASCeCe
+  CeCeCeCeCeCeCeCeCeCeCeA9_dAH__B___AHB__d_1_dCeCeCeAaASASCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeANAACKAWAHBVAHB__1_d_1CeCeCeAaASCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeA9_dAHAHAHAHB_ANAE_H_dCeCeCeAsASCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAN_d_dAHBVAHA9_d_1_dAmAmCeCeAaASCeCeCeCeCe
+  CeCeCeCeCeCeCeCe_ECeCeCeA9_1_d_HA9AA_1_dAmAm_wAmCeAsASCeCeCeCeCe
+  CeCeCeCeCeCeCe_E_2_wCe_rAF_r_H_r_d_1_dAmAmAmAm_j_1CKCKAHCeCeCeCe
+  CeCeCeCeCeCe_ECD_E_wANAFAmAmA9AN_d_1_1AmAFAm_o_1_1AHCKAHCeCeCeCe
+  CeCeCeCeCe_ECDAF_E_wA9AmAmANAN_d_1_1A_AFAF_wAg_1_1B_AHB_CeCeCeCe
+  CeCeCeCeCeCe_E_E_EAEAFAmAmA9AA_1_1_dAF_bAm_oAT_1_1AaA7CeCeCeCeCe
+  CeCeCeCeCeCeCe_E_EA9AmAmANA9_d_1_1_dAFAFAm_j_1_1_1AaASCeCeCeCeCe
+  CeCeCeCeCeCeCeCK_EAEAm_wA9_d_1_d_1_dAFAFAm_o_1_1_1AsASCeCeCeCeCe
+  CeCeCeCeCeCeCeCKB_A9AmAmA9_d_1_d_1_d_bAFAmAg_1_1AlAsASCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeANAmAmAN_d_d_1_d_1AFAFAm_1_1_1_SAsASCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeA9AmAmA9_d_d_d_1_dAFAFAm_1_1_1ABAsASCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeAN_w_wANAE_1_d_1AAAFAFAm_1_1AB_SAaASCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeA9AaAaA9AA_1_d_1_dAsAsAa_1_1_SABAaASCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeANAE_dA9_d_H_d_1_1_1_1_1_1_1AlCe_TB0CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeA9_d_d_xAE_1_1_d_d_d_o_1_1_1CeCeAaASCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_d_d_d_d_HAT_1_d_1AA_1_1_1CeCeAaASCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_d_d_dAm_d_1_H_1_d_1_1_1_1____AaASCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCe_d_dAmAm_1_d_d_1_d_1_1_1____ASB0__CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeAEAFAmAm_d_1_dA6_1_1_1____AaAS______CeCe
+  CeCeCeCeCeCeCeCeCeCeCe____AFAmAm_wAm_d_d_1_1______AsAS__CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe____AmAmAmAmAmAm_wAmAmAm________CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe________________________CeCeCeCeCeCeCeCe
+}
+# tile 343 (priestess)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCe_1ANA9_d_1_EAm_NCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCDASCeCeCeCe_1AEA9AN_r_d_1_b_w_NCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAsASCeCeCeCe_dA9ANA9AN_d_1AmAm_NCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAaASCeCeCeCe_dANA9_rA9_d_1_bAm_WCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCDAsAsASCeCeCeCeAE_z_zAM_1A_Am_N_NCeCeCeCeCeCeCeCeCeCe
+  CeCeCeAsAaCDAaAsAa_TADCeCe_lCKAHAH_z_lAM_l_NCeCeCeCeCeCeCeCeCeCe
+  CeCeCeASASAsAs_cASASASCeCeCKANAH_rAv_z_EAMCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAaASASCeCeCeCeCKAHAHAHC2B_AMB0_wCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAaASCeCeCeCeCe_EAH_wAHAv_z_lB0AMCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAsASCeCeCeCeCe_lAMAvC2_z_l_lAMB0_lCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAaASCeCeCeCeCeCe_1AN_d_d_j_E_QB0_l_lCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAsASCeCeCeCeCe_d_dAE_d_d_1AgAFA__Q_l_lCeCeCeCeCeCeCe
+  CeCeCeCeCeAHAHB_CeCeCe_rAF_1A9ANA9_d_dAFAmAN_dAM_lCeCeCeCeCeCeCe
+  CeCeCeCeCeAHAHAHAFA_ANA9_bAF_d_r_d_d_bAmAN_r_d_dAM_lCeCeCeCeCeCe
+  CeCeCeCeCeAHAvB__b_bA9_d_dA_AFAFAFAm_bAmANA9_d_1_E_lCeCeCeCeCeCe
+  CeCeCeCeCeCeAaAm_b_w_d_1_d_bAm_bAm_b_NAm_d_d_d_jAM_lCeCeCeCeCeCe
+  CeCeCeCeCeCeAaASAmAmAm_d_1A3_bAm_b_wAm_Q_1_bAm_NAM_lCeCeCeCeCeCe
+  CeCeCeCeCeCeAsASCeCeCeCe_l_l_dA9_r_dAmAmAMAFA_Am_lA3CeCeCeCeCeCe
+  CeCeCeCeCeCeAsASCeCeCeCe_lAm_bAFAFAmAm_wAVAFAm_NAtA3CeCeCeCeCeCe
+  CeCeCeCeCeCeAsASCeCeCeCeA__bAEA9AN_dAm_bAmAF_bAmAtCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAsASCeCeCeCeAF_bANA9AEA9_wA_AmAFA__NCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAaASCeCeCe_b_bAkA9ANA9_dAm_b_wAHAHA7CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe_TASCeCeCe_bAFAFANA9AN_d_wAmAmAHAHAHCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeAaASCeCeCeAF_bAF_rANA9_dAmAm_w_NAv_N____CeCeCeCeCeCe
+  CeCeCeCeCeCe_cASCeCeAFAFAFAFA9_d_r_d_wAm_w_N_w_N_W______CeCeCeCe
+  CeCeCeCeCeCeAaASCeCeAF_bAFA_ANAAAN_1AmAm_b_w_N_w_N__________CeCe
+  CeCeCeCeCeCeAaASCeAm_bAFAF_bA9_dA9_HAmAmAm_b_w_N_W_N________CeCe
+  CeCeCeCeCeCeASASCeAs_bAm_bAmAN_dAE_dAm_wA_AmAm_N_NAa________CeCe
+  CeCeCeCeCeCeAaASCeAmAsAs_b_b_r_dAN_dAm_w_b_b_NAs_T_N______CeCeCe
+  CeCeCeCeCeCeAsAS____Am_wAsAsAN_1A9_1AaAsAsAsAsAV_N________CeCeCe
+  CeCeCeCeCeCeCe__________AmAmA9_dAN_d_wAmAm_wAmAm______CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe________________________________CeCeCeCeCeCeCe
+}
+# tile 344 (ranger)
+{
+  CeCeCeCeCeCeCeCeCeCeCeCeCeAXCzCpCpCzCeCeCeCeCeCeCeCeCeCeCeA8CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCpCzCKCKAHARCpCeCeCeCeCeCeCeCeCe_lA8CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCpCKAHAHAHB_CzAXCeCeCeCeCeCe_l_lCeA8CeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeARCKAyAHAyAHARCpCzCeCeCe_l_lCeCeA8CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeARAHAHB_AHB_CzARAXCz_l_lCeCeCeCeA8CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCe_GB_AvC2AvB__GCpARARAXARCeCeCeA8CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_F_$_F_F_$B__F_$_F_$C8CpARCzCpCeCeA8CeCeCeCe
+  CeCeCeCeCeCeCeCeCe_F_FAp_F_$_e_Z_e_e_F_$_F_FCpCeASCpA8CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_FAp_F_$_F_F_ZAp_eAt_e_eB_ARCpCeCeA8CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCKAp_F_e_$_e_Z_eA3_e_eB_CKCeARCeA8CeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCKCKB__$_e_e_$_F_e_eA3__B_AvCKCeARARCeCeCeCeCeCe
+  CeCeCeCeCeCeCe_lCKAvC2Ce_FAy_FAyA3AyA3CeAHB_B_A8______CeCeCeCeCe
+  CeCeCeCeCe_l_lCKB_AHCeCe_W_FA3_e_e_W_WCeB_B_AH________CeCeCeCeCe
+  CeCeCe_l_lCeCeCKB_CeCeCe_W_E_WAR_WAtAt_W__B_CKAv________CeCeCeCe
+  CeA8A8CeCeCeCeCKAHCeCeA8Ay_w_WAR_W_W_Z___W_WB_ARARAR______CeCeCe
+  CeCeCeA8A8A8CKB_B_A8A8_e_F_$_F_eAy_e_e_____WASAR_2______CeCeCeCe
+  CeCeCeCeCeCeCKAHB_Ce_e_e_$_F_$_F_$_e_eA3__ASASAoAiAx____CeCeCeCe
+  CeCeCeCeCeCeCKB_CeCe_e_F_$_F_$_F_e_$_eA3__ASAoAo_pAi____CeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCz_F_F_$_F_$_eA5ASAS__AS___1ABAi_2CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCpApA5_FARARASB_AH______Ce__AgAiCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeAHAXCpAR____B_AHB_____________AgCvCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCKCKB_______B_B_AH______________ABAiCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAvCKAHB_______B_B_Av________________ABCDCeCe
+  CeCeCeCeCeCeCeCeCeCeCKCKAHB_______B_B_Ci______CeCeCe______AgCeCe
+  CeCeCeCeCeCeCeCeCeCeCKAHB___________B_B_______CeCeCeCeCe__CeCeCe
+  CeCeCeCeCeCeCeCeCeCeCKAHB____________w_w______CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCe_E_l_w__________B_Av______CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAHAH_E___________w_l_w____CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe_l_w_w_w_____________w_w__CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe___w_l_w____CeCeCeCe________CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe__________CeCeCeCeCeCe____CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 357 (Grand Master)
+{
+  CeCeCeCeCeCeCeCeCeCeCeAoAoAoCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeCeAoAoAoAoAoCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCe_SCeCeCeCeCeCeCeAoAoAvAoB_CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCe_SCeCeCeCeCeCeCeAoAH_zC2_zCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeAoCeCeCeCeAoAoAoB_AHAvB_CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeAoAoAoAoCeCeBpAHC2B__zCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeBpBpCeBpB__zCeBpBpBpCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeBpBpBpBpCeBpACBpBpBpBpBpBpCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeBpBpBpACBpBpBpCNCiBpACACCeBpBpCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeBpCeBpBpBpBpBpACBpBpACBpBpBpACCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeBpBpBpBpBpCeBpARAvARCeBpBpBpBpACACCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeACBpBpBpBpBpBpARB_ARBpBpBpBpBpACACCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeACACACBpBpBpBpARACARBpBpBpBpBpACACCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeACACBpACBpBpASACACBpARBpBpACACACACCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeACACACACBpASACCiCiACASACACCcACCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeACACB0B0ACBpACBpBpACB0ACACCeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeACACBpBpACBpACACACCeCe______________CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeACACBpBpCiCiACBpCcAC________________CeCeCeCeCe
+  CeCeCeCeCeCeCeCeACACBpBpBpACBpBpBpACAC__________________CeCeCeCe
+  CeCeCeCeCeCeCeCeASACBpBpBpCcBpBpACASB0__________________CeCeCeCe
+  CeCeCeCeCeCeCeCeCeARARASASCcASARARAS____________________CeCeCeCe
+  CeCeCeCeCeCeCeCeCeACBpBpCc__ACBpBpAC__________________CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeBpBpACCc__ACBpBpAC__________________CeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeBpACACCc__ACBpBpAC______________CeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeBpACACCc__ACBpACAC____________CeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeBpACACBm__ACACBpCc__________CeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCeACACACCc__CcACACAC________CeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCeCe__ACBm______ACCc________CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCeCeCe____AyAy______Ay_N________CeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe____AyAyAyAy______AyAyAy_N__CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCe______________________________CeCeCeCeCeCeCeCeCeCeCeCe
+  CeCeCeCeCeCe__________________CeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe
+}
+# tile 370 (Ixoth)
+{
+  _F_FCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCeCe_F_F_F_F_F_e_F_FCe
+  Ce_F_F_e_FCeCeCeCeCeCeCeCeCeAdCeCeCeAdAd_F_F_F_e_F_F_F_F_F_FCeCe
+  CeCe_F_F_F_e_F_F_F_F_e_F_FAdCeCeCeCeCe_F_F_e_F_F_FAVApAVApCeCeCe
+  CeCeCe_F_F_F_FA5_F_F_F_F_F_FCeCeCeCe_F_F_F_F_FApAVAp_F_$CeCeCeCe
+  CeCeCe_F_FApAV_e_F_F_F_F_F_FCeCeCeCe_FAV_e_F_F_e_F_F_$A5CeCeCeCe
+  CeCeCeAVAV_F_F_F_FA5AFAFA__F_FCeCeCe_F_FAp_F_F_F_F_eA5_FCeCeCeCe
+  CeCe_$_F_F_F_FA5AFAF_$A_A_AF_FCeCeCe_F_FAVA5_F_F_F_F_F_FCeCeCeCe
+  CeCe_F_F_F_eA5AFApA_A__$A__$A_A_CeCe_F_e_FAp_$_F_F_F_F_FCeCeCeCe
+  CeCe_F_F_F_FA5AFA__$Ap_$A5ApA__$A_Ce_F_F_FAV_FA5_$_F_F_F_FCeCeCe
+  CeCeCe_F_FA5AFA_AFAp_b_F_$_$_FApA__$Ce_F_F_FAV_FA5A5CeCeCeCeCeCe
+  CeCeCeCe_bApA_AF_bApAF_F_NAVAV_$_$AmA__F_e_FApAV_FCeCeCeCeCeCeCe
+  CeCeCeCe_$_bA_AFA_AFA__F_F_F_F_F_F_$A__F_F_F_FAVCeCeCeCeCeCeCeCe
+  CeCeCeCeCeA_AFAFAFA_AdCe_F_FAVAVAV_FA5AFA_A_A__FCeCeCeCeCeCeCeCe
+  CeCeCeCeCeApAdA_AFA_AdA5AF_$_F_F_$_F_$_$_$_bAFA_A_CeCeCeCeCeCeCe
+  CeCeCeCeCeCeA_AdAk_bAdAd_F_FApAFAVAV_F_F_F_$_$A5AFA_A_CeCeCeCeCe
+  CeCeCeCeCeCeA_AdAdAFAdAd_F_$_FAV_F_F_$_$_F_$_F_$_$A_AFA_CeCeCeCe
+  CeCeCeCeCeCe_FAdAdAd_bAdAF_F_FAFAVAV_F_FA__F_$_F_$A5_$A_CeCeCeCe
+  CeCeCeCeCeA5_FA_AFAFAdAdAF_F_$AV_F_F_e_F_$_F_F_FCeCeApA_A_CeCeCe
+  CeCeCeCe_$Ap_F_eA_A_AFAdA__F_$AFAVAVAV_F_F_$_FCeCeAdApA_A_A_CeCe
+  CeCe_$A5_$_F_e_eAdApA_AFAdAp_FAV_F_$_e_F_$_$A_________AdA_AdCeCe
+  Ce_F_$_F_F_e_eCeCeCeApA__b_$_$AFAVAVAV_F_$_FA5_$______Ad____AdCe
+  CeAdCe_F_eAdCeCeCeCeCe_$Ce_$_F_F_F_F_F_F_FA__$_FAm_$_____$A5CeCe
+  AdCeCeAdCeAdCeCeCeCeCeCe_$A5_$_FAFAVAV_F_$A__$A__F_F_$A5_$____Ce
+  CeCeCeAdCeCeCeCeCeCe_$ApA__$_F_F_F_e_F_e_F_FA__$_$_F_F_$______Ce
+  CeCeCeCeCeCeCeCeCeCe_$A_A__F_F_e_eAV_F_F_$_e_FA__$A_________CeCe
+  CeCeCeCeCeCeCeCeCeApA__$_$_F_e_e_____F_e_F_F_$A_A__$______CeCeCe
+  CeCeCeCeCeCeCeCeCe_$AmA5_$_F_e_____________e_F_$_$Am_F____CeCeCe
+  CeCeCeCeCeCeCeCeCeA_A__$_F_e_e_______________F_FA_A__F______CeCe
+  CeCeCeCeCeCeCeCe_FA5_$_F_F_e_________________e_$_F_F_F_F______Ce
+  CeCeCeCeCeCe_F_F_F_$_$_F_e__________CeCe_______F_$_FA__F_F____Ce
+  CeCeCeCeCeAV_F__AV_F___F_eAV____CeCeCe______AV_F___eAV___eAV__Ce
+  CeCeCeCeCe____________________CeCeCeCeCeCe__________________CeCe
+}
+
+

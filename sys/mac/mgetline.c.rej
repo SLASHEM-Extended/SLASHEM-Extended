@@ -1,0 +1,49 @@
+***************
+*** 27,40 ****
+  
+  
+  static void
+! topl_getlin(const char *query, char *bufp, key_func key) {
+  	int q_len = strlen(query);
+  
+  	if (get_line_from_key_queue (bufp))
+  		return;
+  
+  	enter_topl_mode((char *) query);
+! 	while ((*key)(nhgetch()));
+  	leave_topl_mode(bufp);
+  }
+  
+--- 27,41 ----
+  
+  
+  static void
+! topl_getlin(const char *query, char *bufp, Boolean ext) {
+  	int q_len = strlen(query);
+  
+  	if (get_line_from_key_queue (bufp))
+  		return;
+  
+  	enter_topl_mode((char *) query);
+! 	while (topl_key(nhgetch(), ext))
+! 		;
+  	leave_topl_mode(bufp);
+  }
+  
+***************
+*** 53,59 ****
+  		popup_getlin (query, bufp);
+  	else
+  #endif
+! 		topl_getlin (query, bufp, &topl_key);
+  }
+  
+  
+--- 54,60 ----
+  		popup_getlin (query, bufp);
+  	else
+  #endif
+! 		topl_getlin (query, bufp, false);
+  }
+  
+  

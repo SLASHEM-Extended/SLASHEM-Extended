@@ -1,0 +1,299 @@
+#       SCCS Id: @(#)Flame.des       3.1     91/09/30
+#       Copyright (c) 1989 by Jean-Christophe Collet
+#       Copyright (c) 1991-2 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#       The "start" level for the quest.
+#
+#       Here you meet your (besieged) class leader, the High Flame Mage,
+#       and receive your quest assignment.
+#
+MAZE: "Fla-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLL........LLLLLLLL....LLLLLLLLLLLLL......................LLLLLLLLL.LLLLLLLL
+LLL.LLLLLLL.LLLLLL.L...LLLLLLLLLLLLL.LLLLLLLLLLLLLLLLLLLLL.LLLLLLL...LLLLLLL
+LLL.LLLLLLLL.LLLL.LLLLLLLLLLLLLLLLLL.LLLLLLLLLLLLLLLLLLLLLL.LLLLL.L.LLLLLLLL
+LLL.LLLLLLLLL.LL.LLLLLLLLLLLLLLLLLLL.LLLLLLLLLLLLLLLLLLLLLLL.LLL.LLLLLLLLLLL
+LLL.LLLLLLLLLL..LLLLLLLLLLLLLLLL..........LLLLLLLLLLLLLLLLLLL.L.LLLLLLLLLLLL
+LLL.LLL.LLLLLLL.LLLLLLLLLLLLLL...LLLLLLLL...LLLLLLLLLLLLLLLLLL.LLLLLLLLLLLLL
+LPL.LLPPLLLLLLLLL.LLLLLLLLLL...LLL......LLL...LLLLLLLLLLLLLLLL.LLLLLLLLLLLLL
+LLPP.PPPLPLLLLLLLL....LLLLL...LL..........LL...LLLLLLLLLLLLLLL.LLLLLLLLLLLLL
+LLPP...PPLLLLLLLL.LLLL.......LL............LL........LLLLLLLLL.LLLLLLLLLLLLL
+LPP.....PPPLLLLL.LLLLLLLLLL...LL..........LL...LLLLLL.LLLLLLLL.LLLLLLLLLLLLL
+LPPP...PPPLLLLL.LLLLLLLLLLLL...LLL......LLL...LLLLLLLL.LLLLLLLL.LLLLLLLLLLLL
+LLLPP.PPPLLLLL.LLLLLLLLLLLLLLL...LLLLLLLL...LLLLLLLLLLL.LLLLLLLL.LLLLLLLLLLL
+L.LLPPPPLLLLLL.LLLLLLLLLLLLLLLLL..........LLLLLLLLLLLL.LLLLLLLLLL.LL..LLLLLL
+LLLLLLLPLLLLLLL.LLLLLLLLLLLLLLLLLLLL.LLLLLLLLLLLLLLLL.LLLLLLLLLLLL.....LLLLL
+LL.LLL.PPLLLLLLL.LLLLLLLLLLLLLLLLLLL.LLLLLLLLL.......LLLLLLLLLLLLLL....LLLLL
+LLLLLL.LLLLLLLLLL.............................LLLLLLLLLLLLLLLLLLLLLL..LLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+ENDMAP
+# Random Monsters
+RANDOM_MONSTERS: 'R', 'E'
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Portal arrival point
+BRANCH:(69,17,69,17),(0,0,0,0)
+# Stairs
+STAIR:(05,12),down
+# High Flame Mage
+MONSTER:'@',"High Flame Mage",(36,11)
+# The treasure of the High Flame Mage
+OBJECT:'(',"chest",(37,11)
+# guards for the audience chamber
+MONSTER:'@',"igniter",(34,09)
+MONSTER:'@',"igniter",(34,10)
+MONSTER:'@',"igniter",(34,11)
+MONSTER:'@',"igniter",(34,12)
+MONSTER:'@',"igniter",(34,13)
+MONSTER:'@',"igniter",random
+MONSTER:'@',"igniter",random
+MONSTER:'D',"baby red dragon",random,peaceful
+MONSTER:'D',"red dragon",random,peaceful
+MONSTER:'D',"red dragon",random,peaceful
+# Non diggable 
+NON_DIGGABLE:(00,00,75,19)
+# Random traps
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP:"rust",random
+# Monsters on siege duty.
+MONSTER: 'E',"water elemental",random,hostile
+MONSTER: 'E',"water elemental",random,hostile
+MONSTER: 'E',"water elemental",random,hostile
+MONSTER: 'E',"water elemental",random,hostile
+MONSTER: 'E',"water elemental",random,hostile
+MONSTER: 'E',"water elemental",random,hostile
+MONSTER: 'R',"rust monster",random,hostile
+MONSTER: 'R',"rust monster",random,hostile
+MONSTER: 'R',"rust monster",random,hostile
+MONSTER: 'R',"rust monster",random,hostile
+ 
+#
+#       The "locate" level for the quest.
+#
+#       Here you have to find the cave of Surtur to go
+#       further towards your assigned quest.
+#
+
+MAZE: "Fla-loca",' '
+FLAGS: hardfloor
+INIT_MAP: '.' , 'L' , true , true , lit , false
+GEOMETRY:center,center
+MAP
+PPPP....                      ....PPPPP.
+PLP...                          .PPLLLPP
+PPP    .......................    PPPLLP
+..   ............................   PPPP
+.  ...............................  ....
+  .................................   ..
+....................................   .
+  ...................................   
+.  ..................................  .
+..   ..............................   PP
+.PPP  ..........................     PLP
+.PLLP                             ..PLLP
+.PPPP..                         ....PPPP
+ENDMAP
+# Random Monsters
+RANDOM_MONSTERS: 'E', 'R'
+# Dungeon Description
+REGION:(00,00,39,12),lit,"ordinary"
+# Stairs
+STAIR:(48,14),up
+STAIR:(20,06),down
+# Non diggable walls
+NON_DIGGABLE:(00,00,39,12)
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'R',"rust monster",random,hostile
+MONSTER:'R',"rust monster",random,hostile
+MONSTER:'R',"rust monster",random,hostile
+MONSTER:'R',"rust monster",random,hostile
+
+#
+#       The "goal" level for the quest.
+#
+#       Here you meet Lord Surtur your nemesis monster.  You have to
+#       defeat Lord Surtur in combat to gain the artifact you have
+#       been assigned to retrieve.
+#
+
+MAZE: "Fla-goal", 'P'
+INIT_MAP: '.' , 'P' , true , true , lit , false
+GEOMETRY:center,center
+MAP
+.....PPPPPPPPPPPPPPPPPPPPPPPPP.....
+...PPPPPPPPPPPPPP.PPPPPPPPPPPPPP...
+..PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP..
+.PPPPPPPPPPP|---------|PPPPPPPPPPP.
+.PPPPPPPPP|--.........--|PPPPPPPPP.
+PPPPPPPPP|-...PPPPPPP...-|PPPPPPPPP
+PPPPPPPPP|...PP.....PP...|PPPPPPPPP
+PPPPPPPP|-..PP.......PP..-|PPPPPPPP
+PPPPPPPP|...PP.......PP...|PPPPPPPP
+PPPPPPPP|-..PP.......PP..-|PPPPPPPP
+PPPPPPPPP|...PP.....PP...|PPPPPPPPP
+PPPPPPPPP|-...PPPPPPP...-|PPPPPPPPP
+.PPPPPPPPP|--.........--|PPPPPPPPP.
+.PPPPPPPPPPP|---------|PPPPPPPPPPP.
+..PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP..
+...PPPPPPPPPPPPPP.PPPPPPPPPPPPPP...
+.....PPPPPPPPPPPPPPPPPPPPPPPPP.....
+ENDMAP
+# Random Monsters
+RANDOM_MONSTERS: 'E', 'R'
+# Dungeon Description
+REGION:(00,00,34,16),lit,"ordinary"
+# Stairs
+# Note:  The up stairs are *intentionally* off of the map.
+STAIR:(45,10),up
+# Non diggable walls
+NON_DIGGABLE:(00,00,34,16)
+# Drawbridges
+DRAWBRIDGE:(17,02),south,closed
+DRAWBRIDGE:(17,14),north,closed
+# Objects
+OBJECT:'(',"magic candle",(17,08),blessed,0,"The Candle of Eternal Flame"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP:random,random
+TRAP:random,random
+# KMH, balance patch 2 -- all quests now have an altar
+ALTAR:(17,08),noalign,altar
+# Random monsters.
+MONSTER:'@',"Water Mage",(17,08)
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'E',"water elemental",random,hostile
+MONSTER:'R',"rust monster",random,hostile
+MONSTER:'R',"rust monster",random,hostile
+MONSTER:'R',"rust monster",random,hostile
+MONSTER:'R',"rust monster",random,hostile
+
+#
+#       The "fill" levels for the quest.
+#
+#       These levels are used to fill out any levels not occupied by specific
+#       levels as defined above. "filla" is the upper filler, between the
+#       start and locate levels, and "fillb" the lower between the locate
+#       and goal levels.
+#
+
+MAZE: "Fla-fila" , 'L'
+INIT_MAP: '.' , 'L' , true , true , lit, false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER: 'E', "water elemental", random
+MONSTER: 'E', "water elemental", random
+MONSTER: 'E', "water elemental", random
+MONSTER: 'E', "water elemental", random
+MONSTER: 'E', "water elemental", random
+MONSTER: 'E', "water elemental", random
+MONSTER: 'E', "water elemental", random
+MONSTER: 'R', "rust monster", random, hostile
+MONSTER: 'R', "rust monster", random, hostile
+MONSTER: 'R', "rust monster", random, hostile
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MAZE: "Fla-filb" , 'P'
+INIT_MAP: '.' , 'P' , true , true , lit, false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER: 'E', "water elemental", random
+MONSTER: 'E', "water elemental", random
+MONSTER: 'E', "water elemental", random
+MONSTER: 'E', "water elemental", random
+MONSTER: 'E', "water elemental", random
+MONSTER: 'E', "water elemental", random
+MONSTER: 'E', "water elemental", random
+MONSTER: 'R', "rust monster", random, hostile
+MONSTER: 'R', "rust monster", random, hostile
+#
+TRAP: "rust", random
+TRAP: "rust", random
+TRAP: "rust", random
+TRAP: "rust", random
+TRAP: "rust", random
+TRAP: random, random
+TRAP: random, random

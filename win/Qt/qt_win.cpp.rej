@@ -1,0 +1,99 @@
+***************
+*** 2932,2938 ****
+  {
+      //  012
+      //
+!     //0  hB   
+      //1 s"w   
+      //2 gCg   
+      //3 =A=   
+--- 2943,2949 ----
+  {
+      //  012
+      //
+!     //0 WhB   
+      //1 s"w   
+      //2 gCg   
+      //3 =A=   
+***************
+*** 2943,2949 ****
+      painter.begin(this);
+  
+      // Blanks
+-     drawWorn(painter,0,0,0,FALSE);
+      drawWorn(painter,0,0,4,FALSE);
+      drawWorn(painter,0,0,5,FALSE);
+      drawWorn(painter,0,2,4,FALSE);
+--- 2954,2959 ----
+      painter.begin(this);
+  
+      // Blanks
+      drawWorn(painter,0,0,4,FALSE);
+      drawWorn(painter,0,0,5,FALSE);
+      drawWorn(painter,0,2,4,FALSE);
+***************
+*** 2966,2971 ****
+      drawWorn(painter,uright,2,3); // RingR
+  
+      drawWorn(painter,uwep,2,1); // Weapon
+      drawWorn(painter,uamul,1,1); // Amulet
+      drawWorn(painter,ublindf,2,0); // Blindfold
+  
+--- 2976,2982 ----
+      drawWorn(painter,uright,2,3); // RingR
+  
+      drawWorn(painter,uwep,2,1); // Weapon
++     drawWorn(painter,uswapwep,0,0); // Secondary weapon
+      drawWorn(painter,uamul,1,1); // Amulet
+      drawWorn(painter,ublindf,2,0); // Blindfold
+  
+***************
+*** 3024,3029 ****
+  	{ apparel,	0, 0 },
+  	{ apparel,	"Wield weapon\tw",      "w" },
+  	{ apparel,	"Exchange weapons\tx",      "x" },
+  	{ apparel,	0, 0 },
+  	{ apparel,	"Wear armour\tShift-W",       "W" },
+  	{ apparel,	"Take off armour\tShift-T",   "T" },
+--- 3035,3041 ----
+  	{ apparel,	0, 0 },
+  	{ apparel,	"Wield weapon\tw",      "w" },
+  	{ apparel,	"Exchange weapons\tx",      "x" },
++ 	{ apparel,	"Two weapon combat\t#two",      "#tw" },
+  	{ apparel,	0, 0 },
+  	{ apparel,	"Wear armour\tShift-W",       "W" },
+  	{ apparel,	"Take off armour\tShift-T",   "T" },
+***************
+*** 3465,3471 ****
+  	tile_file = "nhtiles.bmp";
+  	if (!img.load(tile_file)) {
+  	    QString msg;
+! 	    msg.sprintf("Cannot load tiles.xpm or nhtiles.bmp");
+  	    QMessageBox::warning(0, "IO Error", msg);
+  	} else {
+  	    tiles_per_row = 40;
+--- 3503,3509 ----
+  	tile_file = "nhtiles.bmp";
+  	if (!img.load(tile_file)) {
+  	    QString msg;
+! 	    msg.sprintf("Cannot load x11tiles or nhtiles.bmp");
+  	    QMessageBox::warning(0, "IO Error", msg);
+  	} else {
+  	    tiles_per_row = 40;
+***************
+*** 3966,3972 ****
+  	}
+  
+  	if (strcmp (choices,"yn") == 0) {
+! 	    switch (QMessageBox::information(0,"Slashem",question,"&Yes", "&No",0,1))
+  	    {
+  	      case 0: return 'y';
+  	      case 1: return 'n'; 
+--- 4009,4015 ----
+  	}
+  
+  	if (strcmp (choices,"yn") == 0) {
+! 	    switch (QMessageBox::information(0,"NetHack",question,"&Yes", "&No",0,1))
+  	    {
+  	      case 0: return 'y';
+  	      case 1: return 'n'; 

@@ -1,0 +1,1458 @@
++------------------------------------------------------------------------+
+|                             SLAMFAQ.TXT                                |
++------------------------------------------------------------------------+
+|                              SLASH'EM                                  |
+|               Super Lotsa Added Stuff Hack - Extended Magic            |
+|                           A Nethack Variant                            |
+| Courtesy of Warren Cheung (wac@intergate.bc.ca) (1997-2000)            |
+| Last Time the Date was Updated:  August 13, 2000                       |
++------------------------------------------------------------------------+
+| Nethack is Copyright (c) Mike Stephenson, Izchak Miller  1991.         |
+| SLASH'EM and NetHack may be freely redistributed.                      |
+| See license for details.                                               |
++------------------------------------------------------------------------+
+
+Section 0.0 Contents
+--------------------
+
+
+Q.      What is SLASH'EM
+------------------------
+                At it's very heart and core,  it's still good ol' Nethack
+        3.3.1, by the illustrious DevTeam (http://www.nethack.org/).
+
+                The code base from which this was started is
+        SuperLotsaAddedStuffHack (SLASH) 4.1.2E8, ported by Enrico Horn
+        (enhorn@Wirtschaft.TU-Ilmenau.De).  He took the old SLASH V6 (a
+        variant for Nethack 3.1.3) code by Tom Proudfoot ,  and
+        ported it to use the Nethack 3.2.2 code.  SLASH is probably the
+        most popular variant of Nethack.
+
+                On top of this is added the Wizard Patch 0.7 by Larry
+        Stewart-Zerba (larry@cs.uq.edu.au) and Warwick Allison
+        (warwick@cs.uq.edu.au) (also known for the Qt Nethack port).
+
+                Enriched with additional tiles by Dirk Schönberger
+        (shoenberger@signsoft.com)
+
+                Knead in Kevin Hugo (hugo@cae.wisc.edu)'s Balance Patch
+
+                Add half a pound of bugfixes,  new spells,  tweaked/new
+        special abilities and features as they come to yours truly.
+
+                Toss in some hefty submissions from other Nethack denizens
+
+                Recently,  it's been migrated to use the recently released 
+	Nethack 3.3.0 and Nethack 3.3.1 codebase.
+
+Q.      How do you Patch the source code
+----------------------------------------
+-To use the slamXXX.pat file, you need the patch.exe program (or equivalent).
+        Go into the top directory of the unpacked SLASH sources.  
+        (eg.  C:\GAMES\SLASH) and type:
+
+        patch -p 1 < slamXXX.pat
+
+Q.      What is SLASH?
+----------------------
+        SLASH originally by Tom Proudfoot -- proudft@ccnet.com
+        SLASH 4.1.2E8 by Enrico Horn -- enhorn@Wirtschaft.TU-Ilmenau.De
+
+                SLASH is Super-Lotso-Added-Stuff-Hack.  Pretty much, it's
+        Nethack with more spells, monsters,  artifacts, character classes
+        and other added features.  Originally by Tom Proudfoot.
+        (http://www.proudft.com/)
+
+Q.      What is the Wizard Patch?
+---------------------------------
+        Wizard Patch 1.0 by Larry Stewart-Zerba -- larry@cs.uq.edu.au
+        and Warwick Allison -- warwick@cs.uq.edu.au
+
+                The Wizard Patch takes the skills system in Nethack 3.2.2
+        and extends it to include spellcasting abilities.  It also added
+        some spells. As a note, I chose not to include (left commented out)
+        the decreased power regeneration code.
+
+Q.      What are the new commands?
+----------------------------------
+
+                Here's a list of the most useful ones.  As well,  I've been
+        going through and The Guidebook should be now up to date as well.
+
+'?'
+        Standard Help files should be up-to-date.
+#enhance
+meta-k  (Alt-k)
+        New in nethack 3.2.2 and extended in the Wizard Patch are the
+        skills.  As you practice with various weapons and spells,  you
+        will eventuallybecome more proficient with that weapon class or
+        spell class.  Eventually,  you'll get a message telling you that
+        you can improve that weapon/spell skill.  If you're in DOS,  hit
+        Alt-k and you'll bring up the weapons skills (same as typing
+        #enhance).  Select the skill to improve,  and put the improved
+        skill to use.  Becoming more skilled at a weapon/spell skill
+        improves chances to hit/casting success, as well as other special
+        abilities (enhanced spells,  etc.)
+meta-y (Alt-y for MSDOS users)
+        This is for controlled polymorphing.  Only Lycanthropes and 
+        Dopplegangers can use this,  initially.
+meta-b  (Alt-b)
+        Allows you to steal gold from monsters,  if you are able.  Helps
+        if you're good at it...like Rogues...
+meta-t  (Alt-t)
+        Allows you to use the class/role-specific techniques.  Many of the roles
+        and races start off with techniques, and gain more as they gain experience
+        levels.
+
+Q.      What are the new user interface keys?
+---------------------------------------------
+        As of Nethack 3.2.2,  users can now use a new (and dare I say it)
+        much more user-friendly interface.  Actual key assignments are done in
+        include/wintype.h,  but by default,  the accelerator keys are:
+        MENU_FIRST_PAGE         '^'
+        MENU_LAST_PAGE          '|'
+        MENU_NEXT_PAGE          '>'
+        MENU_PREVIOUS_PAGE      '<'
+        MENU_SELECT_ALL         '.'
+        MENU_UNSELECT_ALL       '-'
+        MENU_INVERT_ALL         '@'
+        MENU_SELECT_PAGE        ','
+        MENU_UNSELECT_PAGE      '\'
+        MENU_INVERT_PAGE        '~'
+        MENU_SEARCH             ':'
+
+Q.      What about a Linux version/source?
+------------------------------------------
+        The SLASH'EM source should now compile under Linux.  Linux binaries
+        are also now available.  Special thanks to J. Ali Harlow.
+
+Q.      What is the include/filename.h file for?
+------------------------------------------------
+        That handles the names of the various config files and the like.
+        It should be automatically generated from file.h by running
+
+                makedefs -f
+
+        Stick this in your makefile next to makedefs -v and the others.
+        Take a look at the current DOS makefile (makefile.gcc) for more.
+        As to why I implemented that,  it allowed me to redefine the name
+        of the config file to slashem.cnf, but more importantly, it allows
+        anyone to change the name of the config files by simply fiddling
+        with the DEF_GAME_NAME define in patchlev.h
+
+Q.      How do I invoke the wizard mode?
+----------------------------------------
+        Invoke SLASH'EM with
+
+        slashem -uwizard -Z
+
+Q.      What's this "bad monster weapon restore bug"?  Should I be worried?
+---------------------------------------------------------------------------
+        There's nothing to be actually worried about.  This means the code
+        was reloading a monster from disk,  and for some reason it's main
+        weapon disappeared.  However, this won't disrupt gameplay, since
+        the code automatically selects a new weapon for the monster.  The
+        only thing is that it *shouldn't* happen. Anyone know why? :(
+
+Q.      What is SLASH'EM Currently Developed On?
+------------------------------------------------
+        This is being compiled on a Win95 120 MHz Pentium (Hewlett Packard
+Pavilion) with an S3 Trio video card,  Meschede's VESA 2.0 extensions,
+Crystal Soundblaster compatible sound card, 1 GB Hard drive w/ approx. 30Megs
+free.  Nethack is edited with MSDOS Edit 2.0.026 in one DOS box,  and
+another DOS box for compiling/testing/playing.  I compile using DJGPP
+V2.01 (only partially installed) and gnu make. As of 0.0.2E9,  I have used
+the Pentium Group's version of EGCS,  PGCC (current version 1.0.1) to
+compile Pentium optimized binaries at optimization -O6. Programming
+experience includes Apple IIGS,  GW- and Q- BASIC, and QuakeC. DOS
+binaries are compressed using DJP.  Archives zipped with DOS PKZIP
+2.04g.
+
+        As of sometime August 1998,  I've been compiling this on a Win95
+266MHz Pentium2 (NEC Ready 9765) with a Trident 3DImagge video card,  Sound4
+Winmodem, 7 GB Hard drive (now with 4 GB free!  The space!!!).  Compile speed
+is no longer an issue <G>.   Currently back the distrib GNU gcc 2.8.1.
+
+Q.      Who is this WACko fellow anyways?
+-----------------------------------------
+Warren Alexander Cheung is based in good old rainy Vancouver, British
+Columbia in Canada and wouldn't trade his shoes for anyone else's.  (Not
+that anyone would want my shoes,  but still ;B).  He is currently entering
+his second undergraduate year at the University of British Columbia
+(as of Winter 1998),  proving that even bears of little brain can do some
+programming.
+
+
+Q.      What is that ;B mean
+----------------------------
+                A take off on the tongue out of the mouth smiley ;b , mine
+        represents a double-tongued smiley.  Then again,  some things
+        are best kept to oneself ;B
+               
+**********************************************************************
+****DANGER********DANGER********DANGER********DANGER********DANGER****
+**********************************************************************
+***SPOILERS******SPOILERS******SPOILERS******SPOILERS******SPOILERS***
+****AHEAD*********AHEAD*********AHEAD*********AHEAD*********AHEAD*****
+**********************************************************************
+****DANGER********DANGER********DANGER********DANGER********DANGER****
+**********************************************************************
+
+Q.      What's new/different in SLASH'EM from
+        Nethack 3.2.2/SLASH/Wizard Patch
+
+A.      Please refer to the history.txt
+
+Q.      What the...?  The xxx in Nethack weren't like this?!!
+        If you didn't change it, who did?
+
+A.      Here's a list of what SLASH and Wizard Patch have contributed
+If it's not listed above,  you have SLASH or Wizard patch to thank
+for it.
+
+From SLASHV6 
+------------
+(Quoted directly from a news post by Tom Proudfoot)
+The changes from Nethack Plus, except for:
+   * you _can_ wish for artifacts, except there is a chance it doesn't work
+   * the hit point regeneration is completely changed, and is now
+     based on your Con and Max Hp. A side affect of this is a ring/amulet
+     of regeneration is not so easily identified, because it doubles your
+     healing rate, and that may or may not be 1 point/turn.
+   * the magic-weapon-to-hit-a-monster thing is still in there, but
+     significantly toned down
+   * the Doppelganger no longer prompts you "want to change (y/n)?" every
+     couple of dozen turns. This drove me up the wall! If you want to
+     polymorph, use alt-Y and 10 energy.
+   * Warning is now actually useful, instead of annoying.
+
+-shopkeepers have extra services
+-class specials
+-new character classes
+
+About 150 new monsters. Some of the more, um, interesting ones:
+   * rot worm -- Causes sickness, and is a low level monster. Fortunately,
+     it's kinda slow. Unfortunately, it hides under things.
+   * rhambusun -- Has a paralyzation gaze (lasts for only a couple of turns)
+   * pyrolisk -- Has a fire-damage gaze
+   * green slime -- Touch causes you to slowly turn into slime unless you
+     burn it away.
+
+The grand ol' list:
+   a: snow ant, yellow jacket, tsetse fly, giant wasp, black wasp,
+      army ant, spitting beetle, assassin bug, killer beetle
+   b: jiggling blob, lava blob, crackling blob, burbling blob
+   c: chickatrice, pyrolisk
+   d: dingo, fox, coyote, pit bull, rabid wolf, hyena, wolverine,
+      shadow wolf, mist wolf, death dog
+   e: glowing eye, flaming sphere, shocking sphere, bloodshot eye,
+      blinking eye, beholder, gas spore
+   f: lynx, panther, werepanther, weretiger, sabre-toothed cat,
+      displacer beast, hellcat, caterwaul, kamadan
+   g: galltrit, jermlaine
+   h: dwarf thief, duergar, master mind flayer, gnoll
+   i: dretch, rutterkin, nupperibo, blood imp, larva
+   j: red jelly, orange jelly, black jelly
+   k: swamp kobold, rock kobold, kobold wizard, kobold warrior, Kroo
+   l: leprechaun wizard, brownie, quickling, pixie
+   n: Aphrodite
+   o: orc, war orc, great orc, Grund, snow orc, demon orc
+   p: glass piercer, roper
+   q: scramper, squealer, mangler, mastodon, Jumbo, juggernaut, catoblepas
+   r: rabbit, black rat, pack rat, rabid rabbit, hellrat, the Rat King
+   s: centipede, recluse spider, barking spider, nickelpede,
+      giant scorpion, Girtab, Shelob, werespider, carrion crawler,
+      phase spider
+   u: nightmare
+   w: maggot, dung worm, acid worm, tunnel worm, rot worm, bloodworm
+   x: arc bug, spark bug, lightning bug
+   y: red light, blue light
+   A: Solar
+   B: rhumbat, athol, hellbat, mongbat, mobat, harpy
+   D: shimmering dragon, silver dragon, wyvern, hydra
+   F: disgusting mold, black mold
+   G: gnome thief, deep gnome, gnome warrior, Ruggo
+   H: storm giant, the Largest Giant
+   I: sneaker, squeaker
+   J: vorpal jabberwock
+   L: arch-lich, Vecna
+   M: troll mummy
+   O: ogre mage, shadow ogre
+   P: moldy pudding, green slime
+   S: king cobra, weresnake, asphynx
+   T: black troll, two-headed troll
+   U: water hulk
+   V: vampire mage
+   W: wight
+   Y: monkey
+   Z: ghoul, ghast
+   ': gargoyle
+   @: mugger, thief, character classes (at all different levels),
+      jackalwere, gibberling, grimlock, drow
+    : shadow
+   &: efreeti, dao, marid
+   ;: shark, giant crab
+   :: gila monster, salamander, rhaumbusun, basilisk, komodo dragon
+
+There are new spells for the monsters to cast, and they will use a lot of the
+new items, so be careful of the original monsters as well!
+
+I tried to color the new monsters appropriately, and colored people
+according to their clothing. There are some duplicated colors, now, though,
+so be careful.
+
+The characters are colored now, according to their preferred dress, so
+the Tourist is purple, Elf green, Rogue black, Wizard blue, and so on.
+Call me stupid, but this helps remind me which class I am, since I die
+so often...
+
+Pets only pick up 5 gold pieces out of a pile, and won't pick up a whole
+bunch of arrows.
+
+New terrain types: graves (you can 'r'ead the headstone, or dig it up)
+                   toilets (um, you can sit, kick, drink, all sorts of stuff)
+
+New artifacts, like the Eye/Hand of Vecna. I wouldn't use either one of
+these too often, if I were you. There's also Mirrorbright the silver shield,
+Whisperfeet the speed boots, and Deluder the displacement cloak. Also,
+a bunch of weapons, which I don't remember too well.
+
+Buncha special levels, like the Rat King level, the Kobold King level, Orc
+level, Giant level, spider level, etc. Some are side-dungeons, others
+aren't.
+
+New rooms, like a Real Zoo (with zoo-like monsters), Leprechaun Throne Room,
+Giant Throne Room, and stuff like that.
+
+Buncha items. I remember these:
+
+armor: silver dragon scale mail (reflection)
+       shimmering dragon scale mail (displacement)
+       gauntlets of swimming
+       cloak of poisonousness (don't wear this)
+       lab coat (poison res)
+       asbestos jacket, fire helmet  (left over from my Fireman class)
+       kicking boots
+
+amulets: regeneration
+         conflict
+         polymorph
+
+rings:   free action (no paralyzing! cool item!)
+         gain Con/Dex/Wis/Int
+         sleeping
+
+potions: full healing
+         invulnerability (for a few turns, anyway)
+         polymorph
+         clairvoyance
+         ESP
+         fire resistance
+
+wands:   healing
+         fear
+         extra healing
+         create horde (don't use this, unless you're studly)
+         fireball (fortunately, monsters won't zap this one because I
+                   couldn't get it to work right)
+
+I feel like an idiot. There are certainly more items than these, but I can't
+remember them. Oh well. Good luck, and try not to get killed by a horde
+of snow orcs!
+
+
+From the Wizard Patch: (Copied from the Wizard Patch Homepage)
+--------------------------------------------------------------
+   * Wizard Patch 0.7
+        o A read of a spellbook now lasts 5000 turns
+        o A spellbook can now only be read 3 times.
+        o Spell Energy (mana) regeneration has been lowered.
+        o Minor bug fix with spell damage.
+        o Added ifdefs for debugging code.
+        o A binary with Qt NetHack is available on Warwick's home page.
+   * Wizard Patch 0.4
+        o Wizard's starting weapon is now blessed +1 quarterstaff.
+        o Added spell hit bonus and spell damage bonus, similar to weapon
+          hit and damage bonuses.
+        o Skill gained in a spell class is now based on the level of the
+          spell.
+        o Some minor bug fixes.
+   * Wizard Patch 0.3.1
+        o The percent success of casting a spell is now based heavily on
+          your skill level, and the level of a spellbook.
+   * Wizard Patch 0.3
+        o Protection spell added.
+        o Jump spell added.
+        o Minor bug fixes.
+   * Wizard Patch 0.2
+        o Spell casting now has skills and slots (like weapon skills)
+        o Spell Skill advancement uses nethack 3.2.1 advancement menus.
+        o See below for table of classes, starting and maximum skill level.
+   * Wizard Patch 0.1 the start of it all.
+
+Nethack Plus
+------------
+(from the spoiler file included with the source)
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+                    SEMI-SPOILER FILE FOR NETHACK PLUS
+          Source & Spoiler by: Stephen White (swhite@cs.mun.ca)
+          Release Date: 06/27/94           Release Version: 1.0
+
+This file contains information on the following topics:
+
+(1) CLASSES:       Abilities, Intrinsics and Maximum Stats.
+(2) OBJECTS:       New items list.
+(3) SHOPS:         List of "Special Services" and info on Shopkeepers.
+(4) ARTIFACTS:     List of new artifacts and info on how to get them. 
+(5) GENERAL:       Anything not covered above.
+(6) SPECIAL NOTES: Discalmers and information on Patches and Bugs
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+                           SECTION 1: CLASSES
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+A lot of the classes (new and old) have special abilites as of now, I'll
+list as many as I can remember:
+
+        "A" ->  Heheh ... when wielding you bullwhip try walking over a 
+                trapdoor some time :)
+
+                That fedora you are wearing .. there's something special
+                about it ... see if you can find out (Hint: Watch your
+                stats)
+
+        "B" ->  This already is a very powerful class! However, you now
+                get the ability to eat rotted corpses with no ill effect.
+                (Note: You are NOT immune to sickness, you can just eat
+                 ANYTHING!)
+
+        "C" ->  Nothing too special, JUST infravision! (You'll know what
+                I mean next time you play.
+
+        "D" ->  Well, the ability to polymorph with out risk of level change
+                or system shock is good enough, in addition you get the 
+                ability to polymorph at will (costs 10 energy) at level 6.
+                
+        "E" ->  Pretty standard really, High Dexterity and Infravision.
+
+        "F" ->  Ability to polymorph into a baby red dragon gained at level 7,
+                at level 15 you can poly into a full red dragon. Baby dragon
+                costs 25 mana, full costs 50. If you wear red dragon scale
+                mail you can polymorph into a full red dragon at level 7 and
+                above for a cost of 35 energy.
+        
+        "H" ->  Spell casting suffers if a shield or body armor is worn.
+
+        "I" ->  See "F" except it's a white dragon.
+
+        "K" ->  Can get Excalibur via dipping a long sword into a fountain.
+                (All other lawful classes have a MUCH lower chanch)
+
+        "L" ->  Hehe .. is EVIL! Can eat humans without penelty (actually, 
+                it's GOOD to eat them :), ability to poly into a werewolf at 
+                level 3. Is immune to other forms of Lycanropy and doesn't
+                randomly change, you must use the CTRL-Y command (costs 10
+                energy to transform into/out of werewolf form)
+
+        "M" ->  Definatly has the most benifits (and hinderances :). You
+                do 1d3 / 5 levels + 1 / level until 20 damage when not using
+                any weapon (ie, you bare hands), -1 Ac per 2 levels and a 
+                chanch of stuning or seriously maiming an opponent with
+                bare hand attacks. Can hit monsters hit only by + level/4
+                weapons. Hinderances, can not wear body armor or a shield 
+                (well, you CAN but it's not recomended ... you bonuses are 
+                severly diminished) may not eat ANYTHING he kills, if he uses
+                any form of weapon, he suffers a -4 hit and -2 damage (and
+                gets no bonus)
+
+        "P" ->  What can I say? Their good enough as is :)
+
+        "R" ->  MUCH better chanch of successfully Stealing gold form someone.
+                It's a good idea to wear light (or no) armor while doing so.
+
+        "S" ->  No change.
+        
+        "T" ->  Couldn't think of anything  ...
+
+        "V" ->  Their good enough already!
+
+        "W" ->  Best spellcasters in the game! See Healer armor restrictions
+                on spell casting.
+        
+As you may have noticed if you have played the game, the usual stat maximums
+of 18 have been altered for some classes allowing them to go as high as 21
+in one case and as low as 7 in another. Here is a chart containing the
+information for each class.
+                           
+
+ CLASS:  STR:   INT:  WIS:  DEX:  CON:  CHR:   NOTE: Some classes may have
+  "A"    18     19    18    19    17    19           higher maximum averages   
+  "B"    20     12    16    18    20    10           than others. This is
+  "C"    20     14    16    18    20    15           done to reduce the power
+  "D"    18/**  18    18    18    18    18           of really powerful 
+  "E"    18/50  19    16    21    13    19           classes (Like Barbarian)
+  "F"    15/50  19    17    19    16    18           and to increase weak 
+  "H"    14     19    19    19    19    18           ones (Like Healer)
+  "I"    18/50  19    17    19    16    18  
+  "K"    19     17    19    13    18    19     Also, minimum for all classes
+  "L"    20     20    18    18    20     7     are 3 for each stat.
+  "M"    10     20    20    18    20    18  
+  "P"    18/**  17    20    15    18    18  
+  "R"    18/**  17    17    20    17    16  
+  "S"    19     15    15    20    19    15  
+  "T"    18/50  19    19    15    18    19  
+  "V"    20     12    17    16    20    16  
+  "W"    12     20    20    19    16    18  
+
+Finally, Intrinsics.  Well, their self explanitory so here's the list.
+
+ CLASS:    LEVEL:   INTRINSIC GAINED:
+  "A"        1      Stealth      
+             1      Fast      
+             5      See Invisible      
+            10      Searching
+      
+  "B"        1      Poison Resistance      
+             4      Stealth
+             7      Fast
+
+  "C"        7      Fast
+            15      Warning
+        
+  "D"        1      Polymorph      
+             9      Polymorph Control
+       
+  "E"        1      Sleep Resistance      
+             1      See Invisible      
+             1      Searching      
+             7      Fast
+       
+  "F"        1      Fire Resistance      
+             7      Shock Resistance
+            13      Cold Resistance
+       
+  "H"        1      Poison Resistance      
+            15      Warning
+       
+  "I"        1      Cold Resistance      
+             7      Shock Resistance
+            13      Fire Resistance
+       
+  "K"        7      Fast
+       
+  "L"        1      Poison Resistance      
+             7      Fast
+            13      Sleep Resistance      
+       
+  "M"        1      Fast      
+             1      Sleep Resistance      
+             1      See Invisible      
+             3      Poison Resistance
+             5      Stealth
+             7      Warning
+             9      Searching
+            11      Fire Resistance
+            13      Cold Resistance
+            15      Shock Resistance
+            17      Teleport Control
+      
+  "P"        1      Shock Resistance      
+            15      Warning
+            20      Fire Resistance
+      
+  "R"        1      Stealth
+            10      Searching
+
+  "S"        1      Fast      
+            15      Stealth
+
+  "T"       10      Searching
+            20      Poison Resistance
+
+  "V"        1      Cold Resistance      
+             1      Stealth      
+             7      Fast
+   
+  "W"       15      Warning
+            17      Teleport Control
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+                           SECTION 2: OBJECTS
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+A list of new items:
+
+WEAPONS:
+silver dagger      ------.     
+silver short sword       |
+silver long sword        |- Pretty standard really, just new silver weapons.
+silver mace              |
+silver spear       ------'
+heavy hammer (This one is special, like the runesword ... just for Mjollnir)
+
+ARMOR:
+robe               (Yup, just a robe. Wizards can wear this and cast spells)     
+robe of protection (Gives Protection and same AC bonus as Cloak of Prot.)
+robe of power      (Makes spellcasting easier for all classes)
+robe of weakness   (Hehe ... Nasty one :)
+
+RINGS:
+gain constitution  (As per ring of gain strength ... only for constitution)
+
+TOOLS:
+magic candle       (Doesn't give a wish, but gives infinite light)
+orb of enchantment (REALLY powerful and rare, enchants weapons. 2-5 charges)
+orb of charging    (Charges things, but can't be charged :)
+orb of destruction (I'm not going to tell you, Ha!)
+
+SPELLBOOKS:
+resist poison      (Temperary imunity to poison)     
+resist sleep       (Temperary imunity to sleep)     
+endure heat        (Temperary imunity to fire)     
+endure cold        (Temperary imunity to cold)     
+insolate           (Temperary imunity to electricity)     
+enlighten          (As per potion of enlightenment)
+enchant weapon     (Rarely works, and cost A LOT of energy, but sometimes...)
+enchant armor      (Rarely works, and cost A LOT of energy, but sometimes...)
+
+WANDS:
+enlightenment      (As per potion of enlightenment)
+
+STONES:
+stone of health    (Lets you naturally heal at a faster rate)
+stone of rotting   (Lets you naturally heal at a slower rate)
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+                           SECTION 3: SHOPS
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+Shops and Shopkeepers:
+
+SPECIAL SERVICES:
+All shops now have "Special Services" avaliable to the kind player who may
+want to purchase them. I will only give a list of them so you know they are
+there, I want to leave the actual discovery of them to you :)
+
+For starters, to "activate" them simply try to pay for something when you 
+owe nothing (in case you wondering, this is done so you just don't pick up 
+everything in the shop and identify it BEFORE paying for it :)
+
+        Services: (Varies with shop)
+
+        Identify, Rustproofing/Enchant Weapons, Rustproofing/Enchant Armor,
+        Charge Wand/Ring/Tool, Poison Weapons, Remove Curse, Apprase (This
+        doesn't work very well)
+
+PLEASE NOTE: I didn't write this code, but I can not find the name of person 
+             who did anywhere in the source he gave me (It's been about 6
+             months since I talked to him and I lost his address when my
+             systems mail was purged). However, I have done MAJOR revisions 
+             to it in my source to help balance this version, so please 
+             refere all question and comments to me.
+
+SHOPKEEPERS:
+A brief note on shopkeepers, they are CONSIDERABLY more powerful now.  This
+was done because of possable shopkeeper abuse due to the "Special Services"
+they provide. You will now find it nearly impossable to kill these buggers,
+they are now level 24 rather then level 10, have an 4 attacks per round, are 
+very fast AND immune to sleep, poison and death rays (Ha!) If you can kill
+one now, you TRULY deserve the abuse you can extract from them :)  This
+power enhancement is also done to ensure fewer pets can kill shopkeeper by
+themselves.
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+                           SECTION 4: ARTIFACTS
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+New Artifacts:
+
+WEAPONS:
+Serpants Tongue:  TYPE: Dagger             ALIGN: Chaotic  CLASS: Rogue
+Doomblade:        TYPE: Orcish Short Sword ALIGN: Chaotic  CLASS: Lycanthrope
+Elfslayer:        TYPE: Orcish Spear       ALIGN: Chaotic  CLASS: None
+Disrupter:        TYPE: Mace               ALIGN: Neutral  CLASS: Priest
+Luckblade:        TYPE: Short Sword        ALIGN: Neutral  CLASS: Tourist
+Giantkiller:      TYPE: Dwarvish Mattock   ALIGN: Neutral  CLASS: None
+Skullcrusher      TYPE: Club               ALIGN: Lawful   CLASS: Cave Man
+Quick Blade       TYPE: Elven Short Sword  ALIGN: Lawful   CLASS: Elf
+Fire Dagger       TYPE: Dagger             ALIGN: Lawful   CLASS: Healer
+Holy Sword        TYPE: Long Sword         ALIGN: Lawful   CLASS: None
+
+ARMOR:
+Gauntlets of      TYPE: Gauntlets of Dex.  ALIGN: Neutral  CLASS: Monk
+        Defense   
+
+QUEST:
+Medallion of Shifters   (Doppelgangers)
+Candle of Ever Burning  (Flame Mage)
+Storm Whistle           (Ice mage)
+Staff of Withering      (Lycanthrope)
+The Mantle of Knowledge (Monk)
+
+Sacrificing for artifacts:
+
+This are has been changed to make it harder to obtain artifacts through
+sacrifice. My reasoning for this is all the people who say "Aww ... 
+Dragonbane! Thats junk! I'll throw that away and wait for something better"
+or "Hmm ... Magicbane is good for a Wizard, but I'd rather have Mjollnir"
+
+Now if you get an artifact, be happy! I mean, think about it ... to get 
+something SO powerful from just sacrificing a newt on level 2 is crazy!
+The gods don't have an infinite supply of artifacts to throw around, if
+you are good enough to get one you deserve it but you HAVE to be GOOD enough
+There's only one Mjollnir, only the mightiest will get it!
+
+Ok, here's how it works:
+
+        If you make a sacrifice and it qualifies to give you an artifact
+        as it used to (ie. high luck, high align) you get 1 point.
+
+        If that sacrifice just converted an altar, you get 5 points. The
+        same applies to sacrificing a unicorn of an opposing color.
+
+        You then have a chanch, based on the number of points you have 
+        obtained and the number of artifacts in the game, of being granted
+        an artifact. A number from 1 to 100 + 25 per artifact in existance,
+        (ie. no artifacts -> 1 to 100, 1 artifact -> 26 - 125, etc) is 
+        compared to your points. If your number is higher than the number
+        picked, you get an artifact!
+
+Now, this may seem like a good deal _BUT_ it has a few drawbacks.
+
+        If you piss your god off, your points are reset to 0.
+        (This of course includes changing alignments)
+
+        Every 200 moves one point is deducted from your points. In other
+        words, the gods like it when you constantly sacrifice ... not
+        just a sacrifice now and then.
+
+So there you have it!  Simple isn't it?  Mind you, this is about the only
+way to get artifacts in the game at present. There are four others:
+
+        (1) Find them. (Yes, it DOES happen :)
+        (2) Become the Hand/Envoy/Soul Taker (or #dip for Excalibur)
+        (3) Kill something that has one (like an Archon)
+        (4) Wish for them (However, most generaly powerful ones have been
+            disabled, such as Vorpal Blade, Stormbringer. But "minor" ones
+            such as Dragonbane or Ogresmasher are still avaliable via wish)
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+                           SECTION 5: GENERAL
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+(1) Spells and Spellcasting:  I have totally overhalled the spellcasting 
+    system, certain classes are better than others and use different stats 
+    in determining sucess (ie. Wizard uses INT, Priest uses WIS). Instead of
+    a flat success or fail, there is now a percent chanch of casting a spell 
+    based on class, level, spell level and for some classes armor worn.
+
+(2) Magical Creatures:  Certain creatures can only be hit by magic 
+    weapons (or spells) of various power. Simallarly, some powerful creatures 
+    strike as if they had magical weapons of various power. Ex: Unicorns are 
+    now +2 or better to hit, and stike as if they had a +1 weapon. Another
+    "common" monster hit only by +2 or better weapon is the Ghost
+
+(3) Monster Improvements:  Powerfull monsters are now harded to kill, 
+    including Shopkeepers. Some important monster may be immune to Wands of 
+    Death (new monster intrinsic, no Mr. Barbarian you CAN'T get it by eating 
+    him! :) ... players arn't the ONLY all-powerful force in THIS dungeon!
+
+(4) Two New Commands:  There are two new commands avaliable in the game now,
+    Steal (CRTL-B) and Polymorph (CTRL-Y). Anybody can attemp to steal, but
+    the chanchs of a non-Rogue succeding is very low. Only four classes can 
+    attempt to Polymorph: Doppelgangers (of course!), Flame Mages, Ice Mages
+    and Lycanthropes (Duh!)
+
+(5) XP and Levels:  There has been a drastic change in the ammount of 
+    experence you need to gain a level, you now need a lot more. Many people
+    have asked "Why so much? It's TOO hard!", the answer is simple: Power.
+    There are two main reasons this was done: (A) To offset the powerful
+    affects gain at the higher levels, like with Barbarians with a 20
+    con ... they could have ~50 HP at level 4! So I made advancement slower
+    to curb the rate of power increase, you will still have ~50 HP at level
+    four, but it will take a long time to get there. (B) You will now 
+    appriciate gaining a level, rather than "Oh, great. Level 7" it will
+    be "YESSSS! I finally made Level 6 and it only took me three days, that 
+    must be a new record!"  ... (Well, maybe not THAT bad :)
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+                           SECTION 6: SPECIAL NOTES
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+   The Patch fo the "Special Services" has been included in this version
+   but has been drastically altared. If the author is out there reading
+   this, please contact me.
+
+   Also the Patch for the "Black Market" has been INCLUDED but not enabled
+   in both the source and the executable. It turns out that it's a weee bit
+   too buggy (Well, anything that has even ONE bug is too buggy. But thats
+   another topic all together) to be used in my version. Again, if the 
+   author is out there please contact me.
+
+   There is (as far as my vast knowledge can see) only ONE bug contained
+   within the source code. It have to do with dwarves with pick-axes not
+   being restored properly, you will run into this problem. Just ignore it,
+   the game will tell you the program is in disorder any perhapes you should
+   quit but you don't need to as the problem is very minor and will have
+   no effect on the outcome of the game. If anyone knows what might cause 
+   this, PLEASE let me know
+
+   
+   DISCLAMER: I am NOT responsable for any damages this program may cause
+              on you computer, socal life, job or sanity. It is mostly
+              bug free and shouldn't have any major problems, however if
+              you descover what you think may be a bug, please report it
+              to me, Stephen White (swhite@cs.mun.ca).
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-   
+
+                            Tsanth's Modifications
+                            ----------------------
+
+.\APPLY.C
+   Lines 2075-2077
+      Added code to support CONTAINER(silver wallet).
+         Bounded by "# ifdef WALLET_O_P".
+   Lines 2128-2132
+      Added code to handle WEPTOOL(spoon).
+         Bounded by "# ifdef P_SPOON".
+
+.\ARTIFACT.C - WAC not added.  Undergoing modification
+   Lines 1043-1051
+      Added code to make the chance to behead with the Vorpal Blade increase
+      with your level.  (The Vorpal Blade gets more user-friendly when used
+      by more experienced adventurers. ;)
+         Bounded by "# ifdef TSANTH".
+
+..\INCLUDE\ARTILIST.H
+   Lines 243-250
+      Added Wallet of Perseus
+         From the mythology - Perseus, when sent to kill Medusa, was given
+         a silver wallet that could hold anything put into it; I've modified
+         it somewhat, to be able to hold anything, multiplying by 4 the
+         weight of everything in it if cursed, reducing by 1/8 the weight of
+         everything in it if uncursed, and _negating_ the weight of
+         everything put into it if blessed.
+            Bounded by "# ifdef WALLET_O_P".
+
+.\CMD.C
+   Lines 119-123
+      Added prototypes for wiz_gain_ac(), wiz_gain_level(), and
+      wiz_toggle_invulnerability().
+         Bounded by /* xxx TSANTH'S CODE */
+   Lines 790-828
+      Added code to allow wizard mode users to increase their AC.
+         Bounded by /* xxx TSANTH'S CODE */
+   Lines 1360-1362
+      Added code to handle the control-sequence for increasing AC in wizard
+      mode.  (Ctrl-A)
+         Bounded by /* xxx TSANTH'S CODE */
+   Lines 1371-1373
+      Added code to handle the control-sequence for toggling invulnerability
+      in wizard mode.  (Ctrl-N)
+         Bounded by /* xxx TSANTH'S CODE */
+
+.\DOTHROW.C /* WAC */
+   Lines 768-773
+     destroy spoon after hit.
+
+..\INCLUDE\CONFIG.H
+   Lines 478-482
+      Added #define's for various mods.
+
+.\ENGRAVE.C
+   Lines 31-47
+      Added several quotes, just for fun.
+
+.\MAKEFILE
+   Line 120
+      Added a line to support 4DOS
+         I had some minor trouble compiling SLASH (the levels would not
+         compile correctly with and without DLB enabled), due to 4DOS's DIR;
+         it lists two columns of data, unless you add the /z switch.  So I
+         added it.
+            Unbounded
+
+..\DAT\MEDUSA.DES
+   Line 59
+      Added code to support Wallet of Perseus, no comments.
+
+.\MKOBJ.C
+   Lines 775-795
+      Added code to support Wallet of Perseus, comments.
+         Bounded by "# ifdef WALLET_O_P".
+
+.\OBJECTS.C
+   Lines 186-194, 208-211
+      Added WEAPON(dimsaber).
+         Bounded by "# ifdef D_SABER".
+   Lines 668-673
+      Added CONTAINER(silver wallet) to support Wallet of Perseus, no
+      comments.
+         Bounded by "# ifdef WALLET_O_P".
+   Line 674
+      Made CONTAINER(sack) probability == 40.  To fix the 1005% over problem.
+   Lines 753-762
+      Added WEPTOOL(spoon).  (In homage to Final Fantasy 2.)
+         Bounded by "# ifdef P_SPOON".
+
+.\PICKUP.C      - WAC
+  Lines 45-48
+        Weight correction calculation
+  Lines 806-812
+        Added weight correction for WALLET OF P
+  Lines 837-843
+        Added weight correction for WALLET OF P
+
+  
+
+..\WIN\SHARE\OBJECTS.TXT
+   Lines 891-909
+      Edited tile for WEAPON(lightsaber); I made it green.  (Tile 46)
+   Lines 910-928
+      Added tile for WEAPON(dimsaber).  (Tile 46)
+   Lines 929-947
+      Edited tile for WEAPON(darksaber); I made it red.  (Tile 47)
+   Lines 4273-4291
+      Added tile for CONTAINER(silver wallet).  (Tile 222)
+   Lines 5223-5241
+      Added tile for WEPTOOL(spoon).  (Tile 271)
+
+.\OBJNAM.C
+   Lines 2032-2034, 2037-2039
+      Added code to allow wishing for unique monster tins in wizard mode.
+         Bounded by "# ifdef WIZARD".
+   Lines 2044-2046, 2049-2051
+      Added code to allow wishing for unique monster corpses in wizard mode.
+         Bounded by "# ifdef WIZARD".
+   Lines 2062-2064, 2067-2069
+      Added code to allow wishing for unique monster figurines in wizard mode.
+         Bounded by "# ifdef WIZARD".
+
+..\INCLUDE\PATCHLEV.H
+   Line 42
+      Changed VERSION_COMPATIBILITY to 0x0000020AL (was previously
+      0x00000209L).
+
+.\TELEPORT.C
+   Lines 145-147, 154-156, 164-166, 172-174, 309-311, 313-315, 601-604,
+         608-610, 615-617, 619-621
+      Added code to handle teleportation in wizard (debug) mode; you should
+      now be able to teleport anywhere, anywhen, provided you're in wizard
+      mode.
+         Bounded by "# ifdef WIZARD".
+
+..\WIN\SHARE\TILEMAP.C
+   Lines 75-83
+      Added conditional statements to support WEAPON(dimsaber).
+         Bounded by "# ifndef D_SABER".
+      Added conditional statements to support CONTAINER(silver wallet).
+         Bounded by "# ifndef WALLET_O_P".
+      Added conditional statements to support WEPTOOL(spoon).
+         Bounded by "# ifndef P_SPOON".
+
+.\UHITM.C
+   Lines 519-525
+      Added code to make WEPTOOL(spoon) "flash brightly" when hitting any
+      monster.
+         Bounded by "# ifdef P_SPOON".
+
+.\WEAPON.C
+   Lines 171-174
+      Added code to handle WEPTOOL(spoon) damage; it does 9999 damage.
+         Bounded by "# ifdef P_SPOON".
+   Lines 1063-1065
+      Added code to make throwing WEPTOOL(spoon) count toward DART skills.
+         Bounded by "# ifdef P_SPOON".
+
+.\WEILD.C
+   Lines 202-210
+      Added code to support WEAPON(dimsaber).
+         Bounded by "# ifdef D_SABER".
+
+..\WIN\TTY\WINTTY.C - WAC removed
+   Lines 306-309
+      Added text to the opening screen.
+         Bounded by "# ifdef TSANTH".
+
+..\DAT\WIZHELP
+   Line 3
+      Added text to the wizard-mode help screen.
+         Unbounded
+   Line 9
+      Added text to the wizard-mode help screen.
+         Unbounded
+
+Additions from Kevin Hugo's Balance Patch
+-----------------------------------------
+New Objects
+~~~~~~~~~~~
+amulet of flying [tile from removed amulet]
+  (instead of amulet of free action, which is a ring again)
+  Worn: You can fly at will.
+  Eaten: No effect.
+  Coded and tested.
+
+amulet of unchanging [tile from removed amulet]
+  Worn or eaten:
+    You won't change into the form of another creature, whether
+    accidentally, intentionally, or periodically.  This includes
+    polymorph traps and rays, the polymorph intrinsic, lycanthropy
+    (were-creatures), turning to slime, becoming a "new man", or
+    returning to your normal form.  If you were polymorphed, you
+    stay polymorphed and will permanently die when you lose all
+    hit points.  Lycanthropy may be purified, but you will remain in
+    creature form.  However, you can turn into another material;
+    namely, turning to stone, mimicing gold, or conversion/destruction
+    as a golem.  It also does *not* stop the sliming process once it
+    has started.
+  Note: Magic resistance and/or polymorph control sometimes serve
+    the same purpose.
+  You have to be a metallivore (xorn would be best) to eat it.
+    Then you would be stuck in that form, which probably isn't a
+    good idea.
+? Should the Doppleganager's quest artifact be this type of amulet?
+  Fully coded but partially tested.
+
+amulet versus stone [tile from removed amulet]
+  Worn:
+    You are resistant to turning to stone.
+?   Each time you are stoned, the blessing changes from blessed ->
+    uncursed -> cursed -> turns to dust.
+    The stoning process stops if it has started.
+  Eaten: Stops a stoning process which has already started.
+  Coded and tested.
+
+kiwifruit  [standin from asian pear]
+  (Intended for starting inventory of new Zoutherner class)
+  Same cost ($7), weight (2), and nutrition (50) as an apple.
+  Random probability 3/1000.
+  Coded and tested.
+
+eucalyptus leaf [standin from sprig of wolfsbane]
+  (Intended for starting inventory of new Zoutherner class)
+  Cost $6, weight 1, nutrition 30, random probability 4.
+  Cures food poisoning, sickness, and nausea.
+  Koalas (a future creature) will only be able to eat this food.
+  Coded and tested.  You can even wish for them in plural!
+
+scroll of earth [standin from another scroll]
+  (Derived from an idea by Virtanen <jajvirta@cc.helsinki.fi>)
+  Blessed: Drops one rock on your head.
+  Uncursed: Drops 2 to 6 rocks on your head.
+  Cursed: Drops a boulder on your head.
+  Confused: Drops the objects as above on the 8 surrounding squares
+    instead of on you.
+  Note: No effect on the Rogue level or in the endgame (except Plane
+    of Earth).  The objects aren't dropped where the terrain won't permit
+    it (e.g., no objects will be stuck in walls).  Amorphous, unsolid,
+    and wall-passing monsters are undamaged.
+  Cost $200, random probability 15/1000, marker charges 8.
+  Coded and tested.
+
+potion of acid [tile from removed potion]
+  If acid-resistant,
+    "This tastes sour."  (non-hallucinating)
+    "This tastes tangy."  (hallucinating)
+  Blessed: d4 damage and abuse constitution if not acid-resistant.
+    "This burns a little!"
+  Uncursed: d8 damage and abuse constitution if not acid-resistant.
+    "This burns!"
+  Cursed: 2d8 damage and abuse constitution if not acid-resistant.
+    "This burns a lot!"
+  Hits monster: Same damage as above.
+  Vapors: Abuse constitution.
+  Can be quaffed by players and monsters to stop the stoning process.
+  Thrown by monsters as an attack.
+  Cancels to water.
+# Dip: Non-blessed removes erosionproofing.  Explodes with d10
+    damage when dipped into any water or mixed with other potions.
+  Cost $250, probability 20/1000.
+  Coded and tested.
+
+ring of sustain ability [tile from removed ring]
+  Worn: Your statistics (Str, Con, Dex, ...) will neither increase
+    nor decrease (e.g., by attack, poison, gain ability, or restore
+    ability).  The adjustments are lost forever, and they don't appear
+    after you remove the ring.  Does not affect changes due to worn
+    items (e.g., ring of adornment, gauntlets of power).
+  Eaten: No effect.  (Would be too powerful late in the game.)
+  Sink message: "The water flow seems fixed."
+  Notes: You can still accumulate exercise and abuse, although it
+    won't result in changes in your attributes while the ring is
+    worn.
+#   You are not protected from other attack effects such as mind
+    flayer amnesia or instant-kill poison.
+  Cost $100.
+  Fully coded but partially tested.
+
+saddle (tool) [no tile]
+  Can be found randomly and in pet stores.
+  You can ride certain pets.  Try the following:
+      Apply a saddle to various monsters.
+      Kick or whip your steed.
+      Try the above at various experience levels and monster tameness.
+      Try getting on when polymorphed or impaired.
+      Move around while riding.
+      Try picking up or manipulating objects in the floor.
+      Polymorph yourself (or your steed).
+      Climb or descend stairs.
+      Generate a bones file.
+#     You are considered flying when you ride a flying monster.
+      Dismount by applying the saddle.
+  Partially coded and tested.  I don't think there are any game-
+  stopping bugs, but there are several known inconsistencies:
+      Your steed does not yet attack or get attacked.
+?     Use your steed to carry things as a pack animal?
+      Although I have attempted to compensate for the speed of the
+        saddled pet, it is far from perfect.  To do an adequate job,
+        I would have to completely rehaul NetHack's speed system.
+      Traps, pools, and wounded legs are not properly handled.
+      More inconsistencies as they are discovered.
+  Conditionally coded by #ifdef YEOMAN, which is commented out be
+  default.  You may experiment with it if you like, but the game
+  should be distributed with it commented out for now.
+  In the future, Knights and Yeomen will start with a pony, a saddle,
+  10+ apples, and 10+ carrots.
+
+fishing pole (weapon-tool in polearm category) [standin from pickax]
+  (Idea by StarChaser)
+  When you apply any polearm,
+    You can't use apply a polearm if swallowed.
+    You try to wield the polearm.  If you can't, no further effect.
+    You are asked to select a square within a 3 square radius.
+    You have to see the spot (hence no barriers permitted).
+  There is a 1/6 chance of each of the following:
+  1.  If using a fishing pole, you hook yourself with 10+d10 damage.
+  2.  If using a fishing pole to attack a monster in water, you
+      reel it in adjacent to you.
+  3.  If you are using a fishing pole and there is an object on
+      the floor of that spot, you snag the topmost object.
+  4.  If using a fishing pole in water, you snag a low boot.
+#     (Only occurs once per game.)
+  5.  If using a fishing pole in water, you snag a cram ration.
+  6.  Untraps (not yet implemented because the untrap code
+      currently assumes you're on or adjacent to the trap).
+  If the action selected above does not apply, but there is a
+    monster on the square, it is attacked.
+  Otherwise, nothing happens.
+  Coded and tested.
+
+healthstone [tile from removed stone of health]
+  (Replaces stones of health and rotting)
+  Each stone in your main inventory adds a bonus (+2 blessed, +1
+  uncursed, -2 cursed) to the experience level and constitution used
+  in determining your healing rate.  In no case will the effective
+  experience level or constitution exceed their natural ranges.
+  Regeneration is still a better effect.
+  Same cost ($60), weight (10), and probability (10/1000) as a
+  luckstone.
+  Always generated cursed; a target for uncursed scrolls of remove
+  curse.
+  Coded and tested.
+
+
+Deleted objects
+~~~~~~~~~~~~~~~
+These following objects each convey a property that is obtainable in
+another way.  This reduces the chance of getting a useful item in the
+same item class, and none of these contribute _new_ ways to solve
+situations.  They have been eliminated for the balance patch.
+  amulet of conflict
+  amulet of polymorph
+  amulet of regeneration
+  asbestos jacket
+  fire helmet
+  scroll of trap detection
+  potion of fire resistance
+
+I see little use for pan pipes.  Although some of them generate monsters
+which could be helpful for sacrificing, the probability of other methods
+(bags of tricks, wands of create monster) have been reduced.  In the
+balance patch, pan pipes have been eliminated and the probability of the
+other methods have been restored.
+  pan pipe
+  pan pipe of summoning
+  pan pipe of the sewers
+
+These new orbs make crystal balls more difficult to identify (they're
+already not very useful), and I consider them a potential source of
+charging/polypiling abuse.  Apparently they make up for the lower
+probabilities and chance of success of their respective scrolls.  Why
+not just keep the old scroll mechanism, which seemed to work well?
+  orb of charging
+  orb of destruction
+  orb of enchantment
+
+The following items now exist in a different form.  See above.
+  cloak of drain resistance
+  ring of drain resistance
+  stone of health
+  stone of rotting
+
+
+Internal changes
+~~~~~~~~~~~~~~~~
+Mixed case is now supported for the automatically-generated file
+names (i.e., you can use "Slash-EM", "SLASH-EM", or "slash-em").
+See patchlevel.h, makedefs.c, and file.h.
+
+Added "skills.h" and moved code into it.  Zero is used to represent
+no skill; positive numbers represents wielded items, launchers, and
+spells; negative numbers are used for ammunition and projectiles.
+Note that weapon_type() converts negative skill numbers into positive
+ones, and spell_skilltype() never returns a negative skill.
+
+Skills are now embedded in the object table, using the oc_subtyp
+field.  The field size was increased to an schar.  This also makes
+the order of items (esp. weapons) in the object table less critical.
+
+Updated the following macros to reflect the above changes:
+  is_sword()
+  is_blade()
+  is_weptool()
+Added new macros:
+  is_pole()
+  is_spear()
+  is_launcher()
+  is_ammo()
+  is_missile()
+  is_multigen()
+  is_poisonable()
+  is_weptool()
+  is_pick()
+  ammo_and_launcher()
+Incorporated these macros into the code as an alternative to the
+WEP_ and WP_ constants.
+
+Fixed some prototypes and invalid string constants.
+
+Consolidated all worn and intrinsic bits to obj.h, and rewrote them
+in hexadecimal for readability.  We have now exhausted all 32 bits.
+
+Needed to move blkmar_guards() within shk.c so it will compile for
+older 68k Macintoshes.
+
+Repaired two bugs from NetHack.  If you carry nothing but gold, are
+stressed, and fall into water, the game will no longer crash with a
+divide-by-zero bug.  A line in uhitm.c, steal_it() had read
+  mdef->misc_worn_check &= !otmp->owornmask;
+and now reads
+  mdef->misc_worn_check &= ~otmp->owornmask;
+
+The Macintosh distribution is built with a fat binary.  This means
+it will run on both 68k and PowerPC machines.
+
+
+Other changes
+~~~~~~~~~~~~~
+Entrance to Gnomish Mines moved to levels 2-4 (same as NetHack).
+
+# You once again have 7 chances to start your quest, not one.
+
+The Silver Wallet of Perseus now has an 85% chance of appearing in
+either variation of Medusa's isle.  It used to only appear in one
+of the variations.
+
+Chance of generating a bones level increases with dungeon depth
+(same as NetHack), not decreases.  No bones levels at depth 1 to 3.
+You are once again asked if you want to create bones files in debug
+mode (you couldn't make any at all, which made testing difficult).
+
+If "your pack shakes violently" while stepping on a magic trap,
+some of your inventory letters are jumbled.  Totally harmless to
+the character, yet deliciously evil.
+(Idea by Wolfgang von Hansen <wvh@geodesy.inka.de>)
+# If fixed inventory letters are set, you instead get 2 hp damage
+  for each item that would have been jumbled.
+
+# The number of experience points needed for each level, and the
+  level required to start the quest (*), has been adjusted again:
+  LEV  NETHACK  SLASH   BALANCE : LEV  NETHACK      SLASH        BALANCE
+  ~~~  ~~~~~~~  ~~~~~~  ~~~~~~~ : ~~~  ~~~~~~~~~~~  ~~~~~~~~~    ~~~~~~~
+   1         0       0        0 : 16       320 000     31 000    300 000
+   2        20      50       40 : 17       640 000     38 500    350 000
+   3        40     100       80 : 18     1 280 000     48 000    400 000
+   4        80     200      160 : 19     2 560 000     60 000    450 000
+   5       160     500      320 : 20     5 120 000     76 000    500 000
+   6       320   1 000*     640 : 21    10 000 000     97 000    550 000
+   7       640   1 750    1 280 : 22    20 000 000    125 000    600 000
+   8     1 280   2 750    2 560 : 23    30 000 000    163 000    650 000
+   9     2 560   4 250    5 120 : 24    40 000 000    213 000    700 000
+  10     5 120   6 250   10 000*: 25    50 000 000    279 000    750 000
+  11    10 000   8 750   20 000 : 26    60 000 000    365 000    800 000
+  12    20 000  11 750   40 000 : 27    70 000 000    476 000    850 000
+  13    40 000  15 500   80 000 : 28    80 000 000    617 000    900 000
+  14    80 000* 20 000  150 000 : 29    90 000 000    798 000    950 000
+  15   160 000  25 000  250 000 : 30   100 000 000  1 034 000  1 000 000
+
+Hit-point healing algorithm now the same as NetHack's, with addition
+of healthstones and a healing limit of 15:
+  LEVEL  TURNS  HEAL RANGE   :  LEVEL  TURNS  HEAL RANGE
+  ~~~~~  ~~~~~  ~~~~~~~~~~   :  ~~~~~  ~~~~~  ~~~~~~~~~~
+  POLY    20         1       :   13      3      1 to 4
+    1     15         1       :   14      3      1 to 5
+    2     11         1       :   15      3      1 to 6
+    3      9         1       :   16      3      1 to 7
+    4      8         1       :   17      3      1 to 8
+    5      7         1       :   18      3      1 to 9
+    6      6         1       :   19      3     1 to 10
+    7      5         1       :   20      3     1 to 11
+    8      5         1       :   21      3     1 to 12
+    9      4         1       :   22      3     1 to 13
+   10      3         1       :   23      3     1 to 14
+   11      3      1 to 2     :   24+     3     1 to 15
+   12      3      1 to 3     :
+Your healing rate depends upons your experience LEVEL, plus any
+bonuses/penalties due to healthstones in your main inventory.
+The POLY rate applies if you are polymorphed into another creature
+or if your effective level is less than one.  You regain your hit
+points once every given number of TURNS, or every turn if you have
+regeneration.  However, you don't heal if you are stressed or worse,
+don't have regeneration, and try to move that turn.  The amount of
+healing is a random number between 1 and (effective constitution -
+12); this value is adjusted so that it falls within the HEAL RANGE
+for your effective level.  You won't heal beyond your maximum
+number of hit points.
+
+Many changes to the cost, probability, armor bonus, and marker
+charges of many items.  Many have been restored to the values found
+in vanilla NetHack.  Some points of interest:
+  Polearms are about 1/3 as likely.
+  Ammunition is more likely.  This works well with Warren's
+    improvements to ammunition.
+  Magical armor was very rare and gave no AC bonus.  Restored.
+  Containers and unlocking tools are more common.
+  Musical instruments are now very rare.
+    (Note: Soldiers often carry bugles anyways.)
+  Tin openers are less common.
+  Scrolls (especially enchant ___) were too expensive.  Restored.
+  Potions were too cheap.  Restored.
+  The most useful spells are now the most common books.
+
+Amulets are no longer randomly generated on the main dungeon floor,
+although their probability in boxes and Gehennom are increased.
+# Note that they will still be found in shops, boxes, chests,
+  monster starting inventories, and preplaced locations -- just not
+  on the floor before Gehennom.
+Their effects generally do not overlap with other worn objects.
+This means that some of the rarer intrinsics won't appear until
+later in the game.
+
+# Free action is once again (only) a ring, since it is most useful
+  earlier in the game.  Eating it conveys only sleep resistance.
+
+# You cannot get drain resistance by eating its amulet.
+
+Polearms can be applied to attack within a 3-square radius.
+Monsters do not yet take advantage of this feature.
+
+You can no longer apply a bullwhip at an incubus/succubus to make
+it your pet.  This variant code didn't allocate memory for the pet
+information, which will eventually crash the program.  Since there
+is no easy fix for this "feature", it was simply eliminated.
+
+# A dwarvish mattock can be used to dig, by players and monsters.
+  Shopkeepers also recognize them as picks.
+
+Talking artifacts (e.g., Magic Mirror of Merlin) are finally
+implemented.
+
+Robes are the preferred dress of the clergy.  They are not generated
+randomly, but priest(esse)s are found wearing them (they used to wear
+cloaks instead).
+
+Lab coat gives _both_ poison and acid resistance.
+(Idea by Manzilla <manzilla@aol.com>)
+
+# Note that yellow dragon armor still gives a better AC, but NOT acid
+  resistance.  Yellow dragon corpses are still acidic, but do NOT grant
+  acid resistance.  The player must make the critical decision between
+  better AC or getting an intrinsic.
+
+# The extremely unpopular effect of getting temporary intrinsics from
+  corpses is discontinued; all effects are permanent.  Although several
+  alternatives were proposed, this solution is least likely to lead
+  to arguments or misunderstandings by players.
+
+Eating a non-cursed, non-rustproof trident is "pure chewing
+satisfaction" (idea from "Tommy the Terrorist") and exercises wisdom.
+Eating a non-cursed flint stone is "Yabba-dabba delicious" and exercises
+constitution.
+
+# Scrolls of enchant armor/weapon have the same success rate as in
+  vanilla NetHack.  To offset this, there will be a new disenchantment
+  attack; it is not yet implemented and will only be used by monsters
+  generated only in Gehennom (see below).
+
+Engraving with a wand of enlightenment now zaps the wand, as expected.
+
+Zapping yourself with wands of invisibility and speed monster behave
+as in vanilla NetHack.  Invisibility is temporary if not yet invisible,
+or permanent if you already are.  Speed monster is permanent, but note
+that it does not convey "very fast".
+
+Unlocking tools no longer break in locks when they are blessed or are
+any artifact.
+
+Dipping a tool in a potion of gain level upgrades it to another tool:
+  OLD                     NEW
+  ~~~~~~~~~~~~~~~~~~~~~   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  sack                    bag of holding (20%) or oilskin sack (80%)
+  oilskin sack            bag of holding
+  bag of holding          oilskin sack
+  blindfold               towel
+  towel                   blindfold
+  lock pick, credit card  skeleton key
+  skeleton key            lock pick
+  tallow candle           wax candle
+  wax candle              tallow candle
+  oil lamp                brass lantern
+  brass lantern           oil lamp
+  tin whistle             magic whistle
+  magic whistle           tin whistle
+  wooden flute            magic flute
+  magic flute             wooden flute
+  tooled horn             fire/frost horn, horn of plenty (equal chances)
+  other horns             tooled horn
+  wooden harp             magic harp
+  magic harp              wooden harp
+  leash                   saddle
+  saddle                  leash
+  tin opener              tinning kit
+  tinning kit             tin opener
+  crystal ball            magic marker
+  magic marker            crystal ball
+(Based on an idea by Dylan O'Donnell <dylanw@demon.net>)
+# Note that gain level is now the only potion that causes these
+  transformations, and the transformations work both ways.
+
+Some classes (mostly BCVS) had significantly reduced chances of using
+magic items such as scrolls, spellbooks, potions, and wands.  This
+penalized the classes that newer players are likely to play (BVS).
+Caveman (a moderately difficult class) is now the only class restricted
+from using magic items, and all classes can quaff potions.  Of course,
+players can still voluntarily place their own restrictions on their play.
+
+Statistic maxima for all classes are now no less than 18 strength, 12
+intelligence and wisdom, 18 dexterity and constitution, and 12 charisma.
+
+New intrinsics include unchanging and fixed abilities.  Flying, stone
+resistance, and acid resistance previously existed for some polymorph
+forms and are now a full intrinsic.
+
+Pets now pick up 10 times their level in gold, not just simply $5.
+
+Tsetse flies changed from level 1 to level 3, so they appear later.
+
+There are no new attacks or monsters.  However, some will be added in
+the future Zoutherner class.
+
+True rumors:
+  A life saver is not the fresh maker.
+  As Crom is my witness, I'll never go hungry again!
+# The pen is mightier than the sword.
+False rumor:
+  They say that archeologists find more bones piles.
+

@@ -1,0 +1,1127 @@
+__ = (255, 0, 0)
+_A = (224, 0, 0)
+_B = (192, 0, 0)
+_C = (160, 0, 0)
+_D = (128, 0, 0)
+_E = (96, 0, 0)
+_F = (64, 0, 0)
+_G = (48, 0, 0)
+_H = (32, 0, 0)
+_I = (24, 0, 0)
+_J = (16, 0, 0)
+_K = (128, 64, 64)
+_L = (160, 80, 80)
+_M = (192, 96, 96)
+_N = (224, 112, 112)
+_O = (255, 128, 128)
+_P = (255, 64, 0)
+_Q = (224, 56, 0)
+_R = (192, 48, 0)
+_S = (160, 40, 0)
+_T = (128, 32, 0)
+_U = (96, 24, 0)
+_V = (64, 16, 0)
+_W = (48, 12, 0)
+_X = (32, 32, 0)
+_Y = (24, 24, 0)
+_Z = (16, 16, 0)
+_a = (128, 128, 64)
+_b = (160, 160, 80)
+_c = (192, 192, 96)
+_d = (224, 224, 112)
+_e = (255, 255, 128)
+_f = (255, 128, 0)
+_g = (224, 112, 0)
+_h = (192, 96, 0)
+_i = (160, 80, 0)
+_j = (128, 64, 0)
+_k = (96, 48, 0)
+_l = (64, 32, 0)
+_m = (48, 24, 0)
+_n = (0, 32, 0)
+_o = (0, 24, 0)
+_p = (0, 16, 0)
+_q = (64, 128, 64)
+_r = (80, 160, 80)
+_s = (96, 192, 96)
+_t = (112, 224, 112)
+_u = (128, 255, 128)
+_v = (255, 192, 0)
+_w = (224, 168, 0)
+_x = (192, 144, 0)
+_y = (160, 120, 0)
+_z = (128, 96, 0)
+_0 = (96, 72, 0)
+_1 = (64, 48, 0)
+_2 = (48, 36, 0)
+_3 = (0, 32, 32)
+_4 = (0, 24, 24)
+_5 = (0, 16, 16)
+_6 = (64, 128, 128)
+_7 = (80, 160, 160)
+_8 = (96, 192, 192)
+_9 = (112, 224, 224)
+_$ = (128, 255, 255)
+A_ = (255, 255, 0)
+AA = (224, 224, 0)
+AB = (192, 192, 0)
+AC = (160, 160, 0)
+AD = (128, 128, 0)
+AE = (96, 96, 0)
+AF = (64, 64, 0)
+AG = (48, 48, 0)
+AH = (0, 0, 32)
+AI = (0, 0, 24)
+AJ = (0, 0, 16)
+AK = (64, 64, 128)
+AL = (80, 80, 160)
+AM = (96, 96, 192)
+AN = (112, 112, 224)
+AO = (128, 128, 255)
+AP = (128, 255, 0)
+AQ = (112, 224, 0)
+AR = (96, 192, 0)
+AS = (80, 160, 0)
+AT = (64, 128, 0)
+AU = (48, 96, 0)
+AV = (32, 64, 0)
+AW = (24, 48, 0)
+AX = (32, 0, 32)
+AY = (24, 0, 24)
+AZ = (16, 0, 16)
+Aa = (128, 64, 128)
+Ab = (160, 80, 160)
+Ac = (192, 96, 192)
+Ad = (224, 112, 224)
+Ae = (255, 128, 255)
+Af = (0, 255, 0)
+Ag = (0, 224, 0)
+Ah = (0, 192, 0)
+Ai = (0, 160, 0)
+Aj = (0, 128, 0)
+Ak = (0, 96, 0)
+Al = (0, 64, 0)
+Am = (0, 48, 0)
+An = (96, 48, 48)
+Ao = (64, 32, 32)
+Ap = (48, 24, 24)
+Aq = (128, 96, 96)
+Ar = (160, 120, 120)
+As = (192, 144, 144)
+At = (224, 168, 168)
+Au = (255, 192, 192)
+Av = (0, 255, 128)
+Aw = (0, 224, 112)
+Ax = (0, 192, 96)
+Ay = (0, 160, 80)
+Az = (0, 128, 64)
+A0 = (0, 96, 48)
+A1 = (0, 64, 32)
+A2 = (0, 48, 24)
+A3 = (96, 96, 48)
+A4 = (64, 64, 32)
+A5 = (48, 48, 24)
+A6 = (128, 128, 96)
+A7 = (160, 160, 120)
+A8 = (192, 192, 144)
+A9 = (224, 224, 168)
+A$ = (255, 255, 192)
+B_ = (0, 255, 255)
+BA = (0, 224, 224)
+BB = (0, 192, 192)
+BC = (0, 160, 160)
+BD = (0, 128, 128)
+BE = (0, 96, 96)
+BF = (0, 64, 64)
+BG = (0, 48, 48)
+BH = (48, 96, 48)
+BI = (32, 64, 32)
+BJ = (24, 48, 24)
+BK = (96, 128, 96)
+BL = (120, 160, 120)
+BM = (144, 192, 144)
+BN = (168, 224, 168)
+BO = (192, 255, 192)
+BP = (0, 128, 255)
+BQ = (0, 112, 224)
+BR = (0, 96, 192)
+BS = (0, 80, 160)
+BT = (0, 64, 128)
+BU = (0, 48, 96)
+BV = (0, 32, 64)
+BW = (0, 24, 48)
+BX = (48, 96, 96)
+BY = (32, 64, 64)
+BZ = (24, 48, 48)
+Ba = (96, 128, 128)
+Bb = (120, 160, 160)
+Bc = (144, 192, 192)
+Bd = (168, 224, 224)
+Be = (192, 255, 255)
+Bf = (0, 0, 255)
+Bg = (0, 0, 224)
+Bh = (0, 0, 192)
+Bi = (0, 0, 160)
+Bj = (0, 0, 128)
+Bk = (0, 0, 96)
+Bl = (0, 0, 64)
+Bm = (0, 0, 48)
+Bn = (48, 48, 96)
+Bo = (32, 32, 64)
+Bp = (24, 24, 48)
+Bq = (96, 96, 128)
+Br = (120, 120, 160)
+Bs = (144, 144, 192)
+Bt = (168, 168, 224)
+Bu = (192, 192, 255)
+Bv = (128, 0, 255)
+Bw = (112, 0, 224)
+Bx = (96, 0, 192)
+By = (80, 0, 160)
+Bz = (64, 0, 128)
+B0 = (48, 0, 96)
+B1 = (32, 0, 64)
+B2 = (24, 0, 48)
+B3 = (96, 48, 96)
+B4 = (64, 32, 64)
+B5 = (48, 24, 48)
+B6 = (128, 96, 128)
+B7 = (160, 120, 160)
+B8 = (192, 144, 192)
+B9 = (224, 168, 224)
+B$ = (255, 192, 255)
+C_ = (255, 0, 255)
+CA = (224, 0, 224)
+CB = (192, 0, 192)
+CC = (160, 0, 160)
+CD = (128, 0, 128)
+CE = (96, 0, 96)
+CF = (64, 0, 64)
+CG = (48, 0, 48)
+CH = (255, 255, 255)
+CI = (224, 224, 224)
+CJ = (192, 192, 192)
+CK = (160, 160, 160)
+CL = (128, 128, 128)
+CM = (96, 96, 96)
+CN = (64, 64, 64)
+CO = (32, 32, 32)
+CP = (255, 0, 128)
+CQ = (224, 0, 112)
+CR = (192, 0, 96)
+CS = (160, 0, 80)
+CT = (128, 0, 64)
+CU = (96, 0, 48)
+CV = (64, 0, 32)
+CW = (48, 0, 24)
+CX = (240, 240, 240)
+CY = (208, 208, 208)
+CZ = (176, 176, 176)
+Ca = (144, 144, 144)
+Cb = (112, 112, 112)
+Cc = (80, 80, 80)
+Cd = (48, 48, 48)
+Ce = (16, 16, 16)
+Cf = (127, 90, 72)
+Cg = (165, 118, 94)
+Ch = (202, 143, 114)
+Ci = (229, 162, 130)
+Cj = (255, 182, 145)
+Ck = (255, 211, 175)
+Cl = (104, 84, 31)
+Cm = (128, 112, 32)
+Cn = (170, 136, 52)
+Co = (192, 160, 64)
+Cp = (242, 196, 77)
+Cq = (248, 224, 96)
+Cr = (252, 252, 153)
+Cs = (117, 105, 88)
+Ct = (145, 135, 110)
+Cu = (171, 154, 129)
+Cv = (224, 192, 160)
+Cw = (208, 168, 80)
+Cx = (0, 0, 0)
+Cy = (0, 0, 0)
+Cz = (0, 0, 0)
+C0 = (0, 0, 0)
+C1 = (0, 0, 0)
+C2 = (0, 0, 0)
+C3 = (0, 0, 0)
+C4 = (0, 0, 0)
+C5 = (0, 0, 0)
+C6 = (0, 0, 0)
+C7 = (0, 0, 0)
+C8 = (0, 0, 0)
+C9 = (0, 0, 0)
+C$ = (71, 108, 108)
+# tile 122 (gray dragon)
+{
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CYCZCaCbCbCcCd
+  C$C$C$C$C$C$CbCbCbCaCaC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CYCZCaCcCdCdCdC$C$
+  C$C$C$C$C$CbCcCcCbCbCbCaCaC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CZCaCcCdCdCdCdC$C$C$
+  C$C$C$C$C$CcCECICcCcCbCbCbCaCaCdCcCbCZCYCMCaCZCYCHCHCZCaC$C$C$C$C$C$C$C$C$CYCaCcCdCdCdCdCdC$C$C$
+  C$C$C$C$C$CcCJCECFCICcCcCbCbCbCaCbCxCHCbCZCNCMCaCZCICHCHCICZC$C$C$C$C$C$CZCaCcCdCdCdCdCdCdC$C$C$
+  C$C$C$C$C$C$CcCJCECECFCICcCbCbCbCaCbCcCdCbCNCNCNCMC$C$C$C$CZCaC$C$C$C$C$CaCcCdCdCdCdCdCdCdCdC$C$
+  C$C$C$C$C$C$C$CcCJCDCECFCFCcCcCbCbCbCbCbCbCaCNC$C$C$C$C$C$C$C$C$C$C$C$CZCcCdCdCdCdCcCaCYCZCaCbCc
+  C$C$C$C$C$C$C$C$CcCKCDCECFCICFCcCcCbCbCbCbCbCaCaC$C$C$C$C$C$C$C$C$C$C$CbCdCcCaCZCZCaCbCcCdCdC$C$
+  C$C$C$C$C$C$C$C$C$C$CKCDCECFCFCICFCcCcCcCbCbCbCaCaCaC$C$C$C$C$C$C$C$CZCaCaCbCbCcCdCdCdCdCdC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CKCDCECFCFCFCJA7A8CcCbCbCbCaCZCaC$C$C$C$C$C$C$C$CcCbCZCcCdCdCdCdCdCdC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CKCDCECFCFA7A8A9A8CcCbCbCaCZCYCaC$C$C$C$C$C$C$C$CcCdCaCZCcCdCdCdC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$CcCBCCCIA8A9A$A9A8BrCbCbCaCZCZCaC$C$C$C$C$C$C$C$CcCdCcCaCcCdCdC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CKCCCACDA8A9A$CHA9A8BrCbCbCaCaCZCYCaC$C$C$C$C$C$C$C$CcCdCcCaCcCdC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CDCACCCHA8A9A9A9A8A7A6BrCbCbCaCaCZCZCaC$C$C$C$C$C$C$CcCdCdCcCaCdCdC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CJCCCBCDA8A8A8A8A8A7A3A7A8BrCbCbCaCaCZCYCaC$C$C$C$C$C$C$CcCdCdCcCcCdC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CDCBCDCHA8A7A7A7A6A3A3A8A8A8BrCbCbCaCaCZCYCaC$C$C$C$C$C$CaCdCdCdCaCdC$C$C$
+  C$C$C$C$C$C$C$C$C$C$CJCCCDA7A8A7A6A3A3A3A3A6A7A9A8BrCbCbCbCaCaCZCYC$C$C$C$C$CbCcCdCdCdCcCcC$C$C$
+  C$C$C$C$C$C$C$C$C$CJCDCDCHA8A7A6A3C$C$C$A3A6A6A8A9A8BrCbCbCbCaCZCYCZC$C$CbCcCdCdCdCdCdCdCaC$C$C$
+  C$C$C$C$C$C$C$C$A7CDCIA7A7A6A3A3C$C$C$C$C$A3A6A7A9A$A8BrCbCbCaCaCZCYCaCcCdCdCdCdCdCdCdCdCcC$C$C$
+  C$C$C$C$C$C$C$C$A6A8A8A7A6A3C$C$C$C$C$C$C$C$A3A7A8A9A8A8BrCbCbCaCZCYCZCdCdCdCdCdC$C$C$CdCcC$C$C$
+  C$C$C$C$C$C$C$C$C$A6A3A3C$C$C$C$C$C$C$C$C$C$A3A6A8A9A$A8BrCbCbCaCaCZCZCaCdCdC$C$C$C$C$C$CdC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$A3A6A7A8A$A8A8BrCbCbCaCZCZCaCdC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$A3A7A8A9A$A8BrCbCbCaCaCZCaCbC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$A3A6A8A9A$A9A8BrCbCbCaCaCaCaCbC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CaC$C$C$C$C$C$A3A6A7A8A9A9A8BrCbCbCbCbCaCZCaC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CZCMC$C$C$C$C$C$A3A6A7A8A9A8A8A8BrCbCcCbCbCaCZCbC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CHCdC$C$C$C$C$C$A3A6A7A7A8A8A8A7A6A6BrCbCbCbCaCbC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCaCdC$C$C$C$C$A3A3A3A7A7A7A6A6A6A7A8A8BrCbCbCbCaCbC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCaCcC$C$C$CMA3A6A7A7A6A6A6A7A8A8A9A9A8A8BrCbCbCbCbC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$CdCcCbCaCcCaCHA3A8A9A8A7A7A8A8A8A9A9A$CHA9A8A8BrCbCbCcCcC$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CdCcCaCaCbCbCaCaCdA3A8A$A9A7A8A9A9A$A$CHA$A$A9A9A8BrCbCbCaCbCcC$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$CZCHCaCbCcCdCcCbCdC$A3A7A8A8A6A8A8A8A9A9A9A9A9A8A8A7BrCbCaCYCaCbCcC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$CaCMC$CcCdCdCdCdCdC$C$A3A6A7A7A3A7A8A8A8A8A8A8A8A8A7A6BqCcCbCaCaCcCcC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCcCdC$C$C$A3A3A6A6A3A6A7A8A8A8A8A8A8A7A6A3BqCdCbCaCaCbCcC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCbCcC$C$CcCaA3A3A3A3A3A6A6A7A8A8A8A7A6A3A3BqCdCcCZCaCaCcC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCaCbCcC$CaCaCbA3A3A3A3A3A3A6A6A6A6A6A3A3BqCaCaCdCHCaCaCcC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CcCaCbCcCbCbCcA3A3A6A6A6A3A3A3A3A3A3A3A6BrCaCaCdCaCdCaCbC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCaCbCbCbCcCdA3A6A7A7A7A7A6A6A6A6A6A6A7A7BrCaCcCbCdCaCbCcC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCaCbCdCdC$A3A7A8A7A8A7A7A7A7A7A7A7A7CdCdCcCaCbCaCdCbCcC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdC$C$CdA3A8A7A8A7A8A7A8A7A8A7CZCHCaCaCaCbCbCaCaCcCdC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdA3A6A7A8A7A8A8A8A7A8A7CZCMCdCdCcCbCcCbCbCaCaCHCZC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CcCcCcCcCdCbA3A7A8A7A8A9A8A9A8A8CaA7A7A7A7A7CdCdCcCcCcCdCdCMCZC$C$
+  C$C$C$C$C$C$C$C$C$C$C$CcCcCcCbCaCaCaCaCcCaA3A7A7A8A9A8A9A8A9A8A7A8A7A7A7CaCaCaCdCdCdCcCcC$C$C$C$
+  C$C$C$C$C$C$C$C$CcCcCbCaCaCaCZCZCZCZCaCcCZA3A7A8A7A8A9A8A9A8A8A8A7A7CcCaCZCYCYCZCaCbCcCcCcC$C$C$
+  C$C$C$C$C$C$CcCbCaCaCaCZCZCZCZCZCaCbCbCcCaA3A7A7A8A7A8A8A8A8A8A7A8CcCaCZCYCYCYCYCZCaCbCcCcC$C$C$
+  C$C$C$C$CcCbCaCaCZCZCZCZCaCaCbCbCcCbCcCdCbA3A6A8A7A8A7A8A7A8A7A8A7CcCaCZCYCYCYCZCaCbCcCcCdCcC$C$
+  C$C$C$CcCaCaCZCZCaCbCbCbCbCcCbCcCbCcCbCdCbA3A6A7A7A7A8A7A8A7A8A7A7CbCZCZCZCZCZCZCaCbCcCdCcCdC$C$
+  C$C$CcCaCZCaCbCbCcCbCcCbCcCbCcCcCcCcCcCcCdA3A3A6A7A7A7A7A7A7A7A6CcCaCaCZCaCZCaCZCaCbCcCcCdCcC$C$
+  C$CcCbCaCbCcCbCcCbCcCcCcCcCcCdCcCdCcCdCcCdCdA3A6A6A7A6A7A6A7A6A7CcCaCaCaCZCaCZCaCaCbCcCdCcCdC$C$
+  C$CcCaCbCcCbCcCcCcCdCcCdCcCdCdCdCdCdCdCdCdCdA3A3A6A6A7A6A7A6A7A6CcCaCaCaCaCaCaCaCaCaCbCdCdCdC$C$
+  CcCbCaCaCbCcCdCcCdCdCdCdCdCxCxCxCxCxCxCxCxCxCxCdA3A6A6A6A6A6A6A6CcCaCaCaCaCaCaCaCaCaCbCcCdCdC$C$
+  CcCbCaCbCcCcCdCdCxCxCxCxCxCxCxCxCxCxC$CxC$CxCdCcA3A3A6A6A6A6A6A6A3CcCaCaCaCaCaCaCaCaCbCcCdCdC$C$
+  CcCbCaCbCbCdCxCxCxCxCxCxCxC$CxC$CxC$CxC$CxCYCdCaCbA3A3A3A6A3A6A3A6CcCbCaCaCaCaCaCbCbCbCbCdCdC$C$
+  CcCcCaCaCcCdCxCxCxCxC$CxC$CxC$C$C$C$C$CxCICMCICdCbCcCaA3A3A6A3A6A3CdCcCbCbCbCbCbCbCbCbCbCcCdCdC$
+  CdCcCbCaCaCcCxCxCxC$CxC$C$C$C$C$C$CxCxCaCMCICJCaCdCYCdCcA3A3A3A3A3A3CdCcCbCbCbCbCbCbCbCbCcCdCdC$
+  C$CdCcCbCaCaCcCxCxCxC$CxC$C$C$C$CxC$CxCMCICaCMCxCMCICaCdCdCxCxCxCxCxCxCdCdCcCbCbCbCcCdCcCcCcCdC$
+  C$CdCcCcCbCaCaCcCxCxCxC$C$C$C$C$C$CxCxCxCxCxCxCxCICaCMCxCxCxCxCxCxCxCxCxCxCdCdCdCdCdCcCbCcCcCdCx
+  C$C$CdCcCcCbCbCaCcCcCxCxC$C$C$C$CxC$CxCxCxCxCxCxCxCxCxCxCxC$CxC$CxCxCxCxCxCxCdCbCbCbCbCbCcCcCdCx
+  C$C$C$CdCdCcCcCcCcCbCdCxCxC$CxC$C$CxC$CxCxCxCxCxCxCxC$CxC$CxC$CxC$CxC$CxCdCdCcCbCaCaCaCbCbCdCxC$
+  C$C$C$C$C$CdCdCdCdCdCxCxC$CxC$C$C$C$CxC$CxC$CxC$CxC$CxC$C$C$C$C$CxC$CxCICYCdCaCbCcCaCZCaCbCdC$Cx
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CMCYCaCMCICdCcCdCZCaCbCcCdCxC$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxCaCYCYCdCYCdCbCcCdCxC$Cx
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CMCICYCMCxCMCICaCdCdCxC$CxC$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxCxCxCICaCMCxCxC$CxC$C$
+}
+# tile 123 (red dragon)
+{
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$___A_B_C_C_D_E
+  C$C$C$C$C$C$_C_C_C_B_BC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$___A_B_D_E_E_EC$C$
+  C$C$C$C$C$_C_D_D_C_C_C_B_BC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_A_B_D_E_E_E_EC$C$C$
+  C$C$C$C$C$_DCECI_D_D_C_C_C_B_B_E_D_C_A__CMCaCZCYCHCHCZCaC$C$C$C$C$C$C$C$C$___B_D_E_E_E_E_EC$C$C$
+  C$C$C$C$C$_DCJCECFCI_D_D_C_C_C_B_CCxCH_C_ACNCMCaCZCICHCHCICZC$C$C$C$C$C$_A_B_D_E_E_E_E_E_EC$C$C$
+  C$C$C$C$C$C$_DCJCECECFCI_D_C_C_C_B_C_D_E_CCNCNCNCMC$C$C$C$CZCaC$C$C$C$C$_B_D_E_E_E_E_E_E_E_EC$C$
+  C$C$C$C$C$C$C$_DCJCDCECFCF_D_D_C_C_C_C_C_C_BCNC$C$C$C$C$C$C$C$C$C$C$C$_A_D_E_E_E_E_D_B___A_B_C_D
+  C$C$C$C$C$C$C$C$_DCKCDCECFCICF_D_D_C_C_C_C_C_B_BC$C$C$C$C$C$C$C$C$C$C$_C_E_D_B_A_A_B_C_D_E_EC$C$
+  C$C$C$C$C$C$C$C$C$C$CKCDCECFCFCICF_D_D_D_C_C_C_B_B_BC$C$C$C$C$C$C$C$_A_B_B_C_C_D_E_E_E_E_EC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CKCDCECFCFCFCJ_y_x_D_C_C_C_B_A_BC$C$C$C$C$C$C$C$_D_C_A_D_E_E_E_E_E_EC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CKCDCECFCF_y_x_w_x_D_C_C_B_A___BC$C$C$C$C$C$C$C$_D_E_B_A_D_E_E_EC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$_DCBCCCI_x_w_v_w_x_h_C_C_B_A_A_BC$C$C$C$C$C$C$C$_D_E_D_B_D_E_EC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CKCCCACD_x_w_vCq_w_x_h_C_C_B_B_A___BC$C$C$C$C$C$C$C$_D_E_D_B_D_EC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CDCACCCH_x_w_w_w_x_y_z_h_C_C_B_B_A_A_BC$C$C$C$C$C$C$_D_E_E_D_B_E_EC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CJCCCBCD_x_x_x_x_x_y_0_y_x_h_C_C_B_B_A___BC$C$C$C$C$C$C$_D_E_E_D_D_EC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CDCBCDCH_x_y_y_y_z_0_0_x_x_x_h_C_C_B_B_A___BC$C$C$C$C$C$_B_E_E_E_B_EC$C$C$
+  C$C$C$C$C$C$C$C$C$C$CJCCCD_y_x_y_z_0_0_0_0_z_y_w_x_h_C_C_C_B_B_A__C$C$C$C$C$_C_D_E_E_E_D_DC$C$C$
+  C$C$C$C$C$C$C$C$C$CJCDCDCH_x_y_z_0C$C$C$_0_z_z_x_w_x_h_C_C_C_B_A___AC$C$_C_D_E_E_E_E_E_E_BC$C$C$
+  C$C$C$C$C$C$C$C$_yCDCI_y_y_z_0_0C$C$C$C$C$_0_z_y_w_v_x_h_C_C_B_B_A___B_D_E_E_E_E_E_E_E_E_DC$C$C$
+  C$C$C$C$C$C$C$C$_z_x_x_y_z_0C$C$C$C$C$C$C$C$_0_y_x_w_x_x_h_C_C_B_A___A_E_E_E_E_EC$C$C$_E_DC$C$C$
+  C$C$C$C$C$C$C$C$C$_z_0_0C$C$C$C$C$C$C$C$C$C$_0_z_x_w_v_x_h_C_C_B_B_A_A_B_E_EC$C$C$C$C$C$_EC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_0_z_y_x_v_x_x_h_C_C_B_A_A_B_EC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_0_y_x_w_v_x_h_C_C_B_B_A_B_CC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_0_z_x_w_v_w_x_h_C_C_B_B_B_B_CC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CaC$C$C$C$C$C$_0_z_y_x_w_w_x_h_C_C_C_C_B_A_BC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CZCMC$C$C$C$C$C$_0_z_y_x_w_x_x_x_h_C_D_C_C_B_A_CC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CH_EC$C$C$C$C$C$_0_z_y_y_x_x_x_y_z_z_h_C_C_C_B_CC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_E_B_EC$C$C$C$C$_0_0_0_y_y_y_z_z_z_y_x_x_h_C_C_C_B_CC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_E_B_DC$C$C$CM_0_z_y_y_z_z_z_y_x_x_w_w_x_x_h_C_C_C_CC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$_E_D_C_B_D_BCH_0_x_w_x_y_y_x_x_x_w_w_vCq_w_x_x_h_C_C_D_DC$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$_E_D_B_B_C_C_B_B_E_0_x_v_w_y_x_w_w_v_vCq_v_v_w_w_x_h_C_C_B_C_DC$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$CZCH_B_C_D_E_D_C_EC$_0_y_x_x_z_x_x_x_w_w_w_w_w_x_x_y_h_C_B___B_C_DC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$CaCMC$_D_E_E_E_E_EC$C$_0_z_y_y_0_y_x_x_x_x_x_x_x_x_y_z_i_D_C_B_B_D_DC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_E_D_EC$C$C$_0_0_z_z_0_z_y_x_x_x_x_x_x_y_z_0_i_E_CCa_B_C_DC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_E_C_DC$C$_D_B_0_0_0_0_0_z_z_y_x_x_x_y_z_0_0_i_E_DCZ_B_B_DC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_E_B_C_DC$_B_B_C_0_0_0_0_0_0_z_z_z_z_z_0_0_i_B_B_ECH_B_B_DC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_D_B_C_D_C_C_D_0_0_z_z_z_0_0_0_0_0_0_0_z_h_B_B_E_B_E_B_CC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_E_B_C_C_C_D_E_0_z_y_y_y_y_z_z_z_z_z_z_y_y_h_B_D_C_E_B_C_DC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_E_B_C_E_EC$_0_y_x_y_x_y_y_y_y_y_y_y_y_E_E_D_B_C_B_E_C_DC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_E_EC$C$_E_0_x_y_x_y_x_y_x_y_x_yCZCH_B_B_B_C_C_B_B_D_EC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_E_0_z_y_x_y_x_x_x_y_x_yCZCM_E_E_D_C_D_C_C_B_BCHCZC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_D_D_D_D_E_C_0_y_x_y_x_w_x_w_x_xCa_y_y_y_y_y_E_E_D_D_D_E_ECMCZC$C$
+  C$C$C$C$C$C$C$C$C$C$C$_D_D_D_C_B_B_B_B_D_B_0_y_y_x_w_x_w_x_w_x_y_x_y_y_y_B_B_B_E_E_E_D_DC$C$C$C$
+  C$C$C$C$C$C$C$C$_D_D_C_B_B_B_A_A_A_A_B_D_A_0_y_x_y_x_w_x_w_x_x_x_y_y_D_B_A_____A_B_C_D_D_DC$C$C$
+  C$C$C$C$C$C$_D_C_B_B_B_A_A_A_A_A_B_C_C_D_B_0_y_y_x_y_x_x_x_x_x_y_x_D_B_A_________A_B_C_D_DC$C$C$
+  C$C$C$C$_D_C_B_B_A_A_A_A_B_B_C_C_D_C_D_E_C_0_z_x_y_x_y_x_y_x_y_x_y_D_B_A_______A_B_C_D_D_E_DC$C$
+  C$C$C$_D_B_B_A_A_B_C_C_C_C_D_C_D_C_D_C_E_C_0_z_y_y_y_x_y_x_y_x_y_y_C_A_A_A_A_A_A_B_C_D_E_D_EC$C$
+  C$C$_D_B_A_B_C_C_D_C_D_C_D_C_D_D_D_D_D_D_E_0_0_z_y_y_y_y_y_y_y_z_D_B_B_A_B_A_B_A_B_C_D_D_E_DC$C$
+  C$_D_C_B_C_D_C_D_C_D_D_D_D_D_E_D_E_D_E_D_E_E_0_z_z_y_z_y_z_y_z_y_D_B_B_B_A_B_A_B_B_C_D_E_D_EC$C$
+  C$_D_B_C_D_C_D_D_D_E_D_E_D_E_E_E_E_E_E_E_E_E_0_0_z_z_y_z_y_z_y_z_D_B_B_B_B_B_B_B_B_B_C_E_E_EC$C$
+  _D_C_B_B_C_D_E_D_E_E_E_E_ECxCxCxCxCxCxCxCxCxCx_E_0_z_z_z_z_z_z_z_D_B_B_B_B_B_B_B_B_B_C_D_E_EC$C$
+  _D_C_B_C_D_D_E_ECxCxCxCxCxCxCxCxCxCxC$CxC$Cx_E_D_0_0_z_z_z_z_z_z_0_D_B_B_B_B_B_B_B_B_C_D_E_EC$C$
+  _D_C_B_C_C_ECxCxCxCxCxCxCxC$CxC$CxC$CxC$CxCY_E_B_C_0_0_0_z_0_z_0_z_D_C_B_B_B_B_B_C_C_C_C_E_EC$C$
+  _D_D_B_B_D_ECxCxCxCxC$CxC$CxC$C$C$C$C$CxCICMCI_E_C_D_B_0_0_z_0_z_0_E_D_C_C_C_C_C_C_C_C_C_D_E_EC$
+  _E_D_C_B_B_DCxCxCxC$CxC$C$C$C$C$C$CxCxCaCMCICJCa_ECY_E_D_0_0_0_0_0_0_E_D_C_C_C_C_C_C_C_C_D_E_EC$
+  C$_E_D_C_B_B_DCxCxCxC$CxC$C$C$C$CxC$CxCMCICaCMCxCMCICa_E_ECxCxCxCxCxCx_E_E_D_C_C_C_D_E_D_D_D_EC$
+  C$_E_D_D_C_B_B_DCxCxCxC$C$C$C$C$C$CxCxCxCxCxCxCxCICaCMCxCxCxCxCxCxCxCxCxCx_E_E_E_E_E_D_C_D_D_ECx
+  C$C$_E_D_D_C_C_B_D_DCxCxC$C$C$C$CxC$CxCxCxCxCxCxCxCxCxCxCxC$CxC$CxCxCxCxCxCx_E_C_C_C_C_C_D_D_ECx
+  C$C$C$_E_E_D_D_D_D_C_ECxCxC$CxC$C$CxC$CxCxCxCxCxCxCxC$CxC$CxC$CxC$CxC$Cx_E_E_D_C_B_B_B_C_C_ECxC$
+  C$C$C$C$C$_E_E_E_E_ECxCxC$CxC$C$C$C$CxC$CxC$CxC$CxC$CxC$C$C$C$C$CxC$CxCICY_E_B_C_D_B_A_B_C_EC$Cx
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CMCYCaCMCI_E_D_E_A_B_C_D_ECxC$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxCaCYCY_ECY_E_C_D_ECxC$Cx
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CMCICYCMCxCMCICa_E_ECxC$CxC$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxCxCxCICaCMCxCxC$CxC$C$
+}
+# tile 124 (white dragon)
+{
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CHBeBdBcBcBbBa
+  C$C$C$C$C$C$BcBcBcBdBdC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CHBeBdBbBaBaBaC$C$
+  C$C$C$C$C$BcBbBbBcBcBcBdBdC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BeBdBbBaBaBaBaC$C$C$
+  C$C$C$C$C$BbCECIBbBbBcBcBcBdBdBaBbBcBeCHCMBaCZCYCHCHCZBaC$C$C$C$C$C$C$C$C$CHBdBbBaBaBaBaBaC$C$C$
+  C$C$C$C$C$BbCJCECFCIBbBbBcBcBcBdBcCxCHBcBeCNCMBaCZCICHCHCICZC$C$C$C$C$C$BeBdBbBaBaBaBaBaBaC$C$C$
+  C$C$C$C$C$C$BbCJCECECFCIBbBcBcBcBdBcBbBaBcCNCNCNCMC$C$C$C$CZBaC$C$C$C$C$BdBbBaBaBaBaBaBaBaBaC$C$
+  C$C$C$C$C$C$C$BbCJCDCECFCFBbBbBcBcBcBcBcBcBdCNC$C$C$C$C$C$C$C$C$C$C$C$BeBbBaBaBaBaBbBdCHBeBdBcBb
+  C$C$C$C$C$C$C$C$BbCKCDCECFCICFBbBbBcBcBcBcBcBdBdC$C$C$C$C$C$C$C$C$C$C$BcBaBbBdBeBeBdBcBbBaBaC$C$
+  C$C$C$C$C$C$C$C$C$C$CKCDCECFCFCICFBbBbBbBcBcBcBdBdBdC$C$C$C$C$C$C$C$BeBdBdBcBcBbBaBaBaBaBaC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CKCDCECFCFCFCJCaCZBbBcBcBcBdBeBdC$C$C$C$C$C$C$C$BbBcBeBbBaBaBaBaBaBaC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CKCDCECFCFCaCZCYCZBbBcBcBdBeCHBdC$C$C$C$C$C$C$C$BbBaBdBeBbBaBaBaC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$BbCBCCCICZCYCXCYCZ_7BcBcBdBeBeBdC$C$C$C$C$C$C$C$BbBaBbBdBbBaBaC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CKCCCACDCZCYCXCHCYCZ_7BcBcBdBdBeCHBdC$C$C$C$C$C$C$C$BbBaBbBdBbBaC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CDCACCCHCZCYCYCYCZCaCb_7BcBcBdBdBeBeBdC$C$C$C$C$C$C$BbBaBaBbBdBaBaC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CJCCCBCDCZCZCZCZCZCaCcCaCZ_7BcBcBdBdBeCHBdC$C$C$C$C$C$C$BbBaBaBbBbBaC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CDCBCDCHCZCaCaCaCbCcCcCZCZCZ_7BcBcBdBdBeCHBdC$C$C$C$C$C$BdBaBaBaBdBaC$C$C$
+  C$C$C$C$C$C$C$C$C$C$CJCCCDCaCZCaCbCcCcCcCcCbCaCYCZ_7BcBcBcBdBdBeCHC$C$C$C$C$BcBbBaBaBaBbBbC$C$C$
+  C$C$C$C$C$C$C$C$C$CJCDCDCHCZCaCbCcC$C$C$CcCbCbCZCYCZ_7BcBcBcBdBeCHBeC$C$BcBbBaBaBaBaBaBaBdC$C$C$
+  C$C$C$C$C$C$C$C$CaCDCICaCaCbCcCcC$C$C$C$C$CcCbCaCYCXCZ_7BcBcBdBdBeCHBdBbBaBaBaBaBaBaBaBaBbC$C$C$
+  C$C$C$C$C$C$C$C$CbCZCZCaCbCcC$C$C$C$C$C$C$C$CcCaCZCYCZCZ_7BcBcBdBeCHBeBaBaBaBaBaC$C$C$BaBbC$C$C$
+  C$C$C$C$C$C$C$C$C$CbCcCcC$C$C$C$C$C$C$C$C$C$CcCbCZCYCXCZ_7BcBcBdBdBeBeBdBaBaC$C$C$C$C$C$BaC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CcCbCaCZCXCZCZ_7BcBcBdBeBeBdBaC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CcCaCZCYCXCZ_7BcBcBdBdBeBdBcC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CcCbCZCYCXCYCZ_7BcBcBdBdBdBdBcC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BaC$C$C$C$C$C$CcCbCaCZCYCYCZ_7BcBcBcBcBdBeBdC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CZCMC$C$C$C$C$C$CcCbCaCZCYCZCZCZ_7BcBbBcBcBdBeBcC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CHBaC$C$C$C$C$C$CcCbCaCaCZCZCZCaCbCb_7BcBcBcBdBcC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$BaBdBaC$C$C$C$C$CcCcCcCaCaCaCbCbCbCaCZCZ_7BcBcBcBdBcC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$BaBdBbC$C$C$CMCcCbCaCaCbCbCbCaCZCZCYCYCZCZ_7BcBcBcBcC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$BaBbBcBdBbBdCHCcCZCYCZCaCaCZCZCZCYCYCXCHCYCZCZ_7BcBcBbBbC$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$BaBbBdBdBcBcBdBdBaCcCZCXCYCaCZCYCYCXCXCHCXCXCYCYCZ_7BcBcBdBcBbC$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$CZCHBdBcBbBaBbBcBaC$CcCaCZCZCbCZCZCZCYCYCYCYCYCZCZCa_7BcBdCHBdBcBbC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$BaCMC$BbBaBaBaBaBaC$C$CcCbCaCaCcCaCZCZCZCZCZCZCZCZCaCb_6BbBcBdBdBbBbC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$BaBbBaC$C$C$CcCcCbCbCcCbCaCZCZCZCZCZCZCaCbCc_6BaBcBaBdBcBbC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$BaBcBbC$C$BbBdCcCcCcCcCcCbCbCaCZCZCZCaCbCcCc_6BaBbCZBdBdBbC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$BaBdBcBbC$BdBdBcCcCcCcCcCcCcCbCbCbCbCbCcCc_6BdBdBaCHBdBdBbC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BbBdBcBbBcBcBbCcCcCbCbCbCcCcCcCcCcCcCcCb_7BdBdBaBdBaBdBcC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BaBdBcBcBcBbBaCcCbCaCaCaCaCbCbCbCbCbCbCaCa_7BdBbBcBaBdBcBbC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BaBdBcBaBaC$CcCaCZCaCZCaCaCaCaCaCaCaCaBaBaBbBdBcBdBaBcBbC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BaBaC$C$BaCcCZCaCZCaCZCaCZCaCZCaCZCHBdBdBdBcBcBdBdBbBaC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BaCcCbCaCZCaCZCZCZCaCZCaCZCMBaBaBbBcBbBcBcBdBdCHCZC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BbBbBbBbBaBcCcCaCZCaCZCYCZCYCZCZBaCaCaCaCaCaBaBaBbBbBbBaBaCMCZC$C$
+  C$C$C$C$C$C$C$C$C$C$C$BbBbBbBcBdBdBdBdBbBdCcCaCaCZCYCZCYCZCYCZCaCZCaCaCaBdBdBdBaBaBaBbBbC$C$C$C$
+  C$C$C$C$C$C$C$C$BbBbBcBdBdBdBeBeBeBeBdBbBeCcCaCZCaCZCYCZCYCZCZCZCaCaBbBdBeCHCHBeBdBcBbBbBbC$C$C$
+  C$C$C$C$C$C$BbBcBdBdBdBeBeBeBeBeBdBcBcBbBdCcCaCaCZCaCZCZCZCZCZCaCZBbBdBeCHCHCHCHBeBdBcBbBbC$C$C$
+  C$C$C$C$BbBcBdBdBeBeBeBeBdBdBcBcBbBcBbBaBcCcCbCZCaCZCaCZCaCZCaCZCaBbBdBeCHCHCHBeBdBcBbBbBaBbC$C$
+  C$C$C$BbBdBdBeBeBdBcBcBcBcBbBcBbBcBbBcBaBcCcCbCaCaCaCZCaCZCaCZCaCaBcBeBeBeBeBeBeBdBcBbBaBbBaC$C$
+  C$C$BbBdBeBdBcBcBbBcBbBcBbBcBbBbBbBbBbBbBaCcCcCbCaCaCaCaCaCaCaCbBbBdBdBeBdBeBdBeBdBcBbBbBaBbC$C$
+  C$BbBcBdBcBbBcBbBcBbBbBbBbBbBaBbBaBbBaBbBaBaCcCbCbCaCbCaCbCaCbCaBbBdBdBdBeBdBeBdBdBcBbBaBbBaC$C$
+  C$BbBdBcBbBcBbBbBbBaBbBaBbBaBaBaBaBaBaBaBaBaCcCcCbCbCaCbCaCbCaCbBbBdBdBdBdBdBdBdBdBdBcBaBaBaC$C$
+  BbBcBdBdBcBbBaBbBaBaBaBaBaCxCxCxCxCxCxCxCxCxCxBaCcCbCbCbCbCbCbCbBbBdBdBdBdBdBdBdBdBdBcBbBaBaC$C$
+  BbBcBdBcBbBbBaBaCxCxCxCxCxCxCxCxCxCxC$CxC$CxBaBbCcCcCbCbCbCbCbCbCcBbBdBdBdBdBdBdBdBdBcBbBaBaC$C$
+  BbBcBdBcBcBaCxCxCxCxCxCxCxC$CxC$CxC$CxC$CxCYBaBdBcCcCcCcCbCcCbCcCbBbBcBdBdBdBdBdBcBcBcBcBaBaC$C$
+  BbBbBdBdBbBaCxCxCxCxC$CxC$CxC$C$C$C$C$CxCICMCIBaBcBbBdCcCcCbCcCbCcBaBbBcBcBcBcBcBcBcBcBcBbBaBaC$
+  BaBbBcBdBdBbCxCxCxC$CxC$C$C$C$C$C$CxCxBaCMCICJBaBaCYBaBbCcCcCcCcCcCcBaBbBcBcBcBcBcBcBcBcBbBaBaC$
+  C$BaBbBcBdBdBbCxCxCxC$CxC$C$C$C$CxC$CxCMCIBaCMCxCMCIBaBaBaCxCxCxCxCxCxBaBaBbBcBcBcBbBaBbBbBbBaC$
+  C$BaBbBbBcBdBdBbCxCxCxC$C$C$C$C$C$CxCxCxCxCxCxCxCIBaCMCxCxCxCxCxCxCxCxCxCxBaBaBaBaBaBbBcBbBbBaCx
+  C$C$BaBbBbBcBcBdBbBbCxCxC$C$C$C$CxC$CxCxCxCxCxCxCxCxCxCxCxC$CxC$CxCxCxCxCxCxBaBcBcBcBcBcBbBbBaCx
+  C$C$C$BaBaBbBbBbBbBcBaCxCxC$CxC$C$CxC$CxCxCxCxCxCxCxC$CxC$CxC$CxC$CxC$CxBaBaBbBcBdBdBdBcBcBaCxC$
+  C$C$C$C$C$BaBaBaBaBaCxCxC$CxC$C$C$C$CxC$CxC$CxC$CxC$CxC$C$C$C$C$CxC$CxCICYBaBdBcBbBdBeBdBcBaC$Cx
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CMCYBaCMCIBaBbBaBeBdBcBbBaCxC$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxBaCYCYBaCYBaBcBbBaCxC$Cx
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CMCICYCMCxCMCIBaBaBaCxC$CxC$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxCxCxCIBaCMCxCxC$CxC$C$
+}
+# tile 125 (orange dragon)
+{
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_f_g_h_i_i_j_k
+  C$C$C$C$C$C$_i_i_i_h_hC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_f_g_h_j_k_k_kC$C$
+  C$C$C$C$C$_i_j_j_i_i_i_h_hC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_g_h_j_k_k_k_kC$C$C$
+  C$C$C$C$C$_jCECI_j_j_i_i_i_h_h_k_j_i_g_fCMCaCZCYCHCHCZCaC$C$C$C$C$C$C$C$C$_f_h_j_k_k_k_k_kC$C$C$
+  C$C$C$C$C$_jCJCECFCI_j_j_i_i_i_h_iCxCH_i_gCNCMCaCZCICHCHCICZC$C$C$C$C$C$_g_h_j_k_k_k_k_k_kC$C$C$
+  C$C$C$C$C$C$_jCJCECECFCI_j_i_i_i_h_i_j_k_iCNCNCNCMC$C$C$C$CZCaC$C$C$C$C$_h_j_k_k_k_k_k_k_k_kC$C$
+  C$C$C$C$C$C$C$_jCJCDCECFCF_j_j_i_i_i_i_i_i_hCNC$C$C$C$C$C$C$C$C$C$C$C$_g_j_k_k_k_k_j_h_f_g_h_i_j
+  C$C$C$C$C$C$C$C$_jCKCDCECFCICF_j_j_i_i_i_i_i_h_hC$C$C$C$C$C$C$C$C$C$C$_i_k_j_h_g_g_h_i_j_k_kC$C$
+  C$C$C$C$C$C$C$C$C$C$CKCDCECFCFCICF_j_j_j_i_i_i_h_h_hC$C$C$C$C$C$C$C$_g_h_h_i_i_j_k_k_k_k_kC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CKCDCECFCFCFCJACAB_j_i_i_i_h_g_hC$C$C$C$C$C$C$C$_j_i_g_j_k_k_k_k_k_kC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CKCDCECFCFACABAAAB_j_i_i_h_g_f_hC$C$C$C$C$C$C$C$_j_k_h_g_j_k_k_kC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$_jCBCCCIABAAA_AAAB_h_i_i_h_g_g_hC$C$C$C$C$C$C$C$_j_k_j_h_j_k_kC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CKCCCACDABAAA_CHAAAB_h_i_i_h_h_g_f_hC$C$C$C$C$C$C$C$_j_k_j_h_j_kC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CDCACCCHABAAAAAAABACAD_h_i_i_h_h_g_g_hC$C$C$C$C$C$C$_j_k_k_j_h_k_kC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CJCCCBCDABABABABABACAEACAB_h_i_i_h_h_g_f_hC$C$C$C$C$C$C$_j_k_k_j_j_kC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CDCBCDCHABACACACADAEAEABABAB_h_i_i_h_h_g_f_hC$C$C$C$C$C$_h_k_k_k_h_kC$C$C$
+  C$C$C$C$C$C$C$C$C$C$CJCCCDACABACADAEAEAEAEADACAAAB_h_i_i_i_h_h_g_fC$C$C$C$C$_i_j_k_k_k_j_jC$C$C$
+  C$C$C$C$C$C$C$C$C$CJCDCDCHABACADAEC$C$C$AEADADABAAAB_h_i_i_i_h_g_f_gC$C$_i_j_k_k_k_k_k_k_hC$C$C$
+  C$C$C$C$C$C$C$C$ACCDCIACACADAEAEC$C$C$C$C$AEADACAAA_AB_h_i_i_h_h_g_f_h_j_k_k_k_k_k_k_k_k_jC$C$C$
+  C$C$C$C$C$C$C$C$ADABABACADAEC$C$C$C$C$C$C$C$AEACABAAABAB_h_i_i_h_g_f_g_k_k_k_k_kC$C$C$_k_jC$C$C$
+  C$C$C$C$C$C$C$C$C$ADAEAEC$C$C$C$C$C$C$C$C$C$AEADABAAA_AB_h_i_i_h_h_g_g_h_k_kC$C$C$C$C$C$_kC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AEADACABA_ABAB_h_i_i_h_g_g_h_kC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AEACABAAA_AB_h_i_i_h_h_g_h_iC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AEADABAAA_AAAB_h_i_i_h_h_h_h_iC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CaC$C$C$C$C$C$AEADACABAAAAAB_h_i_i_i_i_h_g_hC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CZCMC$C$C$C$C$C$AEADACABAAABABAB_h_i_j_i_i_h_g_iC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CH_kC$C$C$C$C$C$AEADACACABABABACADAD_h_i_i_i_h_iC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_k_h_kC$C$C$C$C$AEAEAEACACACADADADACABAB_h_i_i_i_h_iC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_k_h_jC$C$C$CMAEADACACADADADACABABAAAAABAB_h_i_i_i_iC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$_k_j_i_h_j_hCHAEABAAABACACABABABAAAAA_CHAAABAB_h_i_i_j_jC$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$_k_j_h_h_i_i_h_h_kAEABA_AAACABAAAAA_A_CHA_A_AAAAAB_h_i_i_h_i_jC$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$CZCH_h_i_j_k_j_i_kC$AEACABABADABABABAAAAAAAAAAABABAC_h_i_h_f_h_i_jC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$CaCMC$_j_k_k_k_k_kC$C$AEADACACAEACABABABABABABABABACAD_i_j_i_h_h_j_jC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_k_j_kC$C$C$AEAEADADAEADACABABABABABABACADAE_i_k_iCa_h_i_jC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_k_i_jC$C$_j_hAEAEAEAEAEADADACABABABACADAEAE_i_k_jCZ_h_h_jC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_k_h_i_jC$_h_h_iAEAEAEAEAEAEADADADADADAEAE_i_h_h_kCH_h_h_jC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_j_h_i_j_i_i_jAEAEADADADAEAEAEAEAEAEAEAD_h_h_h_k_h_k_h_iC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_k_h_i_i_i_j_kAEADACACACACADADADADADADACAC_h_h_j_i_k_h_i_jC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_k_h_i_k_kC$AEACABACABACACACACACACACAC_k_k_j_h_i_h_k_i_jC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_k_kC$C$_kAEABACABACABACABACABACCZCH_h_h_h_i_i_h_h_j_kC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_kAEADACABACABABABACABACCZCM_k_k_j_i_j_i_i_h_hCHCZC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_j_j_j_j_k_iAEACABACABAAABAAABABCaACACACACAC_k_k_j_j_j_k_kCMCZC$C$
+  C$C$C$C$C$C$C$C$C$C$C$_j_j_j_i_h_h_h_h_j_hAEACACABAAABAAABAAABACABACACAC_h_h_h_k_k_k_j_jC$C$C$C$
+  C$C$C$C$C$C$C$C$_j_j_i_h_h_h_g_g_g_g_h_j_gAEACABACABAAABAAABABABACAC_j_h_g_f_f_g_h_i_j_j_jC$C$C$
+  C$C$C$C$C$C$_j_i_h_h_h_g_g_g_g_g_h_i_i_j_hAEACACABACABABABABABACAB_j_h_g_f_f_f_f_g_h_i_j_jC$C$C$
+  C$C$C$C$_j_i_h_h_g_g_g_g_h_h_i_i_j_i_j_k_iAEADABACABACABACABACABAC_j_h_g_f_f_f_g_h_i_j_j_k_jC$C$
+  C$C$C$_j_h_h_g_g_h_i_i_i_i_j_i_j_i_j_i_k_iAEADACACACABACABACABACAC_i_g_g_g_g_g_g_h_i_j_k_j_kC$C$
+  C$C$_j_h_g_h_i_i_j_i_j_i_j_i_j_j_j_j_j_j_kAEAEADACACACACACACACAD_j_h_h_g_h_g_h_g_h_i_j_j_k_jC$C$
+  C$_j_i_h_i_j_i_j_i_j_j_j_j_j_k_j_k_j_k_j_k_kAEADADACADACADACADAC_j_h_h_h_g_h_g_h_h_i_j_k_j_kC$C$
+  C$_j_h_i_j_i_j_j_j_k_j_k_j_k_k_k_k_k_k_k_k_kAEAEADADACADACADACAD_j_h_h_h_h_h_h_h_h_h_i_k_k_kC$C$
+  _j_i_h_h_i_j_k_j_k_k_k_k_kCxCxCxCxCxCxCxCxCxCx_kAEADADADADADADAD_j_h_h_h_h_h_h_h_h_h_i_j_k_kC$C$
+  _j_i_h_i_j_j_k_kCxCxCxCxCxCxCxCxCxCxC$CxC$Cx_k_jAEAEADADADADADADAE_j_h_h_h_h_h_h_h_h_i_j_k_kC$C$
+  _j_i_h_i_i_kCxCxCxCxCxCxCxC$CxC$CxC$CxC$CxCY_k_h_iAEAEAEADAEADAEAD_j_i_h_h_h_h_h_i_i_i_i_k_kC$C$
+  _j_j_h_h_j_kCxCxCxCxC$CxC$CxC$C$C$C$C$CxCICMCI_k_i_j_hAEAEADAEADAE_k_j_i_i_i_i_i_i_i_i_i_j_k_kC$
+  _k_j_i_h_h_jCxCxCxC$CxC$C$C$C$C$C$CxCxCaCMCICJCa_kCY_k_jAEAEAEAEAEAE_k_j_i_i_i_i_i_i_i_i_j_k_kC$
+  C$_k_j_i_h_h_jCxCxCxC$CxC$C$C$C$CxC$CxCMCICaCMCxCMCICa_k_kCxCxCxCxCxCx_k_k_j_i_i_i_j_k_j_j_j_kC$
+  C$_k_j_j_i_h_h_jCxCxCxC$C$C$C$C$C$CxCxCxCxCxCxCxCICaCMCxCxCxCxCxCxCxCxCxCx_k_k_k_k_k_j_i_j_j_kCx
+  C$C$_k_j_j_i_i_h_j_jCxCxC$C$C$C$CxC$CxCxCxCxCxCxCxCxCxCxCxC$CxC$CxCxCxCxCxCx_k_i_i_i_i_i_j_j_kCx
+  C$C$C$_k_k_j_j_j_j_i_kCxCxC$CxC$C$CxC$CxCxCxCxCxCxCxC$CxC$CxC$CxC$CxC$Cx_k_k_j_i_h_h_h_i_i_kCxC$
+  C$C$C$C$C$_k_k_k_k_kCxCxC$CxC$C$C$C$CxC$CxC$CxC$CxC$CxC$C$C$C$C$CxC$CxCICY_k_h_i_j_h_g_h_i_kC$Cx
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CMCYCaCMCI_k_j_k_g_h_i_j_kCxC$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxCaCYCY_kCY_k_i_j_kCxC$Cx
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CMCICYCMCxCMCICa_k_kCxC$CxC$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxCxCxCICaCMCxCxC$CxC$C$
+}
+# tile 126 (black dragon)
+{
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CKCbCMCcCcCNCO
+  C$C$C$C$C$C$CcCcCcCMCMC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CKCbCMCNCOCOCOC$C$
+  C$C$C$C$C$CcCNCNCcCcCcCMCMC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CbCMCNCOCOCOCOC$C$C$
+  C$C$C$C$C$CNCECICNCNCcCcCcCMCMCOCNCcCbCKCcCaCZCYCHCHCZCaC$C$C$C$C$C$C$C$C$CKCMCNCOCOCOCOCOC$C$C$
+  C$C$C$C$C$CNCKCECFCICNCNCcCcCcCMCcCxCHCcCbCNCcCaCZCICHCHCICZC$C$C$C$C$C$CbCMCNCOCOCOCOCOCOC$C$C$
+  C$C$C$C$C$C$CNCKCECECFCICNCcCcCcCMCcCNCOCcCNCNCNCcC$C$C$C$CZCaC$C$C$C$C$CMCNCOCOCOCOCOCOCOCOC$C$
+  C$C$C$C$C$C$C$CNCKCDCECFCFCNCNCcCcCcCcCcCcCMCNC$C$C$C$C$C$C$C$C$C$C$C$CbCNCOCOCOCOCNCMCKCbCMCcCN
+  C$C$C$C$C$C$C$C$CNCbCDCECFCICFCNCNCcCcCcCcCcCMCMC$C$C$C$C$C$C$C$C$C$C$CcCOCNCMCbCbCMCcCNCOCOC$C$
+  C$C$C$C$C$C$C$C$C$C$CbCDCECFCFCICFCNCNCNCcCcCcCMCMCMC$C$C$C$C$C$C$C$CbCMCMCcCcCNCOCOCOCOCOC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CbCDCECFCFCFCKAbAcCNCcCcCcCMCbCMC$C$C$C$C$C$C$C$CNCcCbCNCOCOCOCOCOCOC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CbCDCECFCFAbAcAdAcCNCcCcCMCbCKCMC$C$C$C$C$C$C$C$CNCOCMCbCNCOCOCOC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$CNCBCCCIAcAdAeAdAcCDCcCcCMCbCbCMC$C$C$C$C$C$C$C$CNCOCNCMCNCOCOC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CbCCCACDAcAdAeB$AdAcCDCcCcCMCMCbCKCMC$C$C$C$C$C$C$C$CNCOCNCMCNCOC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CDCACCCHAcAdAdAdAcAbAaCDCcCcCMCMCbCbCMC$C$C$C$C$C$C$CNCOCOCNCMCOCOC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CKCCCBCDAcAcAcAcAcAbCEAbAcCDCcCcCMCMCbCKCMC$C$C$C$C$C$C$CNCOCOCNCNCOC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CDCBCDCHAcAbAbAbAaCECEAcAcAcCDCcCcCMCMCbCKCMC$C$C$C$C$C$CMCOCOCOCMCOC$C$C$
+  C$C$C$C$C$C$C$C$C$C$CKCCCDAbAcAbAaCECECECEAaAbAdAcCDCcCcCcCMCMCbCKC$C$C$C$C$CcCNCOCOCOCNCNC$C$C$
+  C$C$C$C$C$C$C$C$C$CKCDCDCHAcAbAaCEC$C$C$CEAaAaAcAdAcCDCcCcCcCMCbCKCbC$C$CcCNCOCOCOCOCOCOCMC$C$C$
+  C$C$C$C$C$C$C$C$AbCDCIAbAbAaCECEC$C$C$C$C$CEAaAbAdAeAcCDCcCcCMCMCbCKCMCNCOCOCOCOCOCOCOCOCNC$C$C$
+  C$C$C$C$C$C$C$C$AaAcAcAbAaCEC$C$C$C$C$C$C$C$CEAbAcAdAcAcCDCcCcCMCbCKCbCOCOCOCOCOC$C$C$COCNC$C$C$
+  C$C$C$C$C$C$C$C$C$AaCECEC$C$C$C$C$C$C$C$C$C$CEAaAcAdAeAcCDCcCcCMCMCbCbCMCOCOC$C$C$C$C$C$COC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CEAaAbAcAeAcAcCDCcCcCMCbCbCMCOC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CEAbAcAdAeAcCDCcCcCMCMCbCMCcC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CEAaAcAdAeAdAcCDCcCcCMCMCMCMCcC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CaC$C$C$C$C$C$CEAaAbAcAdAdAcCDCcCcCcCcCMCbCMC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CZCcC$C$C$C$C$C$CEAaAbAcAdAcAcAcCDCcCNCcCcCMCbCcC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CHCOC$C$C$C$C$C$CEAaAbAbAcAcAcAbAaAaCDCcCcCcCMCcC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$COCMCOC$C$C$C$C$CECECEAbAbAbAaAaAaAbAcAcCDCcCcCcCMCcC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$COCMCNC$C$C$CcCEAaAbAbAaAaAaAbAcAcAdAdAcAcCDCcCcCcCcC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$COCNCcCMCNCMCHCEAcAdAcAbAbAcAcAcAdAdAeB$AdAcAcCDCcCcCNCNC$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$COCNCMCMCcCcCMCMCOCEAcAeAdAbAcAdAdAeAeB$AeAeAdAdAcCDCcCcCMCcCNC$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$CZCHCMCcCNCOCNCcCOC$CEAbAcAcAaAcAcAcAdAdAdAdAdAcAcAbCDCcCMCKCMCcCNC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$CaCcC$CNCOCOCOCOCOC$C$CEAaAbAbCEAbAcAcAcAcAcAcAcAcAbAaCECNCcCMCMCNCNC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$COCNCOC$C$C$CECEAaAaCEAaAbAcAcAcAcAcAcAbAaCECECOCcCaCMCcCNC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$COCcCNC$C$CNCMCECECECECEAaAaAbAcAcAcAbAaCECECECOCNCZCMCMCNC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$COCMCcCNC$CMCMCcCECECECECECEAaAaAaAaAaCECECECMCMCOCHCMCMCNC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CNCMCcCNCcCcCNCECEAaAaAaCECECECECECECEAaCDCMCMCOCMCOCMCcC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$COCMCcCcCcCNCOCEAaAbAbAbAbAaAaAaAaAaAaAbAbCDCMCNCcCOCMCcCNC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$COCMCcCOCOC$CEAbAcAbAcAbAbAbAbAbAbAbAbCOCOCNCMCcCMCOCcCNC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$COCOC$C$COCEAcAbAcAbAcAbAcAbAcAbCZCHCMCMCMCcCcCMCMCNCOC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$COCEAaAbAcAbAcAcAcAbAcAbCZCcCOCOCNCcCNCcCcCMCMCHCZC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CNCNCNCNCOCcCEAbAcAbAcAdAcAdAcAcCaAbAbAbAbAbCOCOCNCNCNCOCOCcCZC$C$
+  C$C$C$C$C$C$C$C$C$C$C$CNCNCNCcCMCMCMCMCNCMCEAbAbAcAdAcAdAcAdAcAbAcAbAbAbCMCMCMCOCOCOCNCNC$C$C$C$
+  C$C$C$C$C$C$C$C$CNCNCcCMCMCMCbCbCbCbCMCNCbCEAbAcAbAcAdAcAdAcAcAcAbAbCNCMCbCKCKCbCMCcCNCNCNC$C$C$
+  C$C$C$C$C$C$CNCcCMCMCMCbCbCbCbCbCMCcCcCNCMCEAbAbAcAbAcAcAcAcAcAbAcCNCMCbCKCKCKCKCbCMCcCNCNC$C$C$
+  C$C$C$C$CNCcCMCMCbCbCbCbCMCMCcCcCNCcCNCOCcCEAaAcAbAcAbAcAbAcAbAcAbCNCMCbCKCKCKCbCMCcCNCNCOCNC$C$
+  C$C$C$CNCMCMCbCbCMCcCcCcCcCNCcCNCcCNCcCOCcCEAaAbAbAbAcAbAcAbAcAbAbCcCbCbCbCbCbCbCMCcCNCOCNCOC$C$
+  C$C$CNCMCbCMCcCcCNCcCNCcCNCcCNCNCNCNCNCNCOCECEAaAbAbAbAbAbAbAbAaCNCMCMCbCMCbCMCbCMCcCNCNCOCNC$C$
+  C$CNCcCMCcCNCcCNCcCNCNCNCNCNCOCNCOCNCOCNCOCOCEAaAaAbAaAbAaAbAaAbCNCMCMCMCbCMCbCMCMCcCNCOCNCOC$C$
+  C$CNCMCcCNCcCNCNCNCOCNCOCNCOCOCOCOCOCOCOCOCOCECEAaAaAbAaAbAaAbAaCNCMCMCMCMCMCMCMCMCMCcCOCOCOC$C$
+  CNCcCMCMCcCNCOCNCOCOCOCOCOCxCxCxCxCxCxCxCxCxCxCOCEAaAaAaAaAaAaAaCNCMCMCMCMCMCMCMCMCMCcCNCOCOC$C$
+  CNCcCMCcCNCNCOCOCxCxCxCxCxCxCxCxCxCxC$CxC$CxCOCNCECEAaAaAaAaAaAaCECNCMCMCMCMCMCMCMCMCcCNCOCOC$C$
+  CNCcCMCcCcCOCxCxCxCxCxCxCxC$CxC$CxC$CxC$CxCYCOCMCcCECECEAaCEAaCEAaCNCcCMCMCMCMCMCcCcCcCcCOCOC$C$
+  CNCNCMCMCNCOCxCxCxCxC$CxC$CxC$C$C$C$C$CxCICcCICOCcCNCMCECEAaCEAaCECOCNCcCcCcCcCcCcCcCcCcCNCOCOC$
+  COCNCcCMCMCNCxCxCxC$CxC$C$C$C$C$C$CxCxCaCcCICKCaCOCYCOCNCECECECECECECOCNCcCcCcCcCcCcCcCcCNCOCOC$
+  C$COCNCcCMCMCNCxCxCxC$CxC$C$C$C$CxC$CxCcCICaCcCxCcCICaCOCOCxCxCxCxCxCxCOCOCNCcCcCcCNCOCNCNCNCOC$
+  C$COCNCNCcCMCMCNCxCxCxC$C$C$C$C$C$CxCxCxCxCxCxCxCICaCcCxCxCxCxCxCxCxCxCxCxCOCOCOCOCOCNCcCNCNCOCx
+  C$C$COCNCNCcCcCMCNCNCxCxC$C$C$C$CxC$CxCxCxCxCxCxCxCxCxCxCxC$CxC$CxCxCxCxCxCxCOCcCcCcCcCcCNCNCOCx
+  C$C$C$COCOCNCNCNCNCcCOCxCxC$CxC$C$CxC$CxCxCxCxCxCxCxC$CxC$CxC$CxC$CxC$CxCOCOCNCcCMCMCMCcCcCOCxC$
+  C$C$C$C$C$COCOCOCOCOCxCxC$CxC$C$C$C$CxC$CxC$CxC$CxC$CxC$C$C$C$C$CxC$CxCICYCOCMCcCNCMCbCMCcCOC$Cx
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CcCYCaCcCICOCNCOCbCMCcCNCOCxC$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxCaCYCYCOCYCOCcCNCOCxC$Cx
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CcCICYCcCxCcCICaCOCOCxC$CxC$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxCxCxCICaCcCxCxC$CxC$C$
+}
+# tile 127 (blue dragon)
+{
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BfBgBhBiBiBjBk
+  C$C$C$C$C$C$BiBiBiBhBhC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BfBgBhBjBkBkBkC$C$
+  C$C$C$C$C$BiBjBjBiBiBiBhBhC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BgBhBjBkBkBkBkC$C$C$
+  C$C$C$C$C$BjCECIBjBjBiBiBiBhBhBkBjBiBgBfCMCaCZCYCHCHCZCaC$C$C$C$C$C$C$C$C$BfBhBjBkBkBkBkBkC$C$C$
+  C$C$C$C$C$BjCJCECFCIBjBjBiBiBiBhBiCxCHBiBgCNCMCaCZCICHCHCICZC$C$C$C$C$C$BgBhBjBkBkBkBkBkBkC$C$C$
+  C$C$C$C$C$C$BjCJCECECFCIBjBiBiBiBhBiBjBkBiCNCNCNCMC$C$C$C$CZCaC$C$C$C$C$BhBjBkBkBkBkBkBkBkBkC$C$
+  C$C$C$C$C$C$C$BjCJCDCECFCFBjBjBiBiBiBiBiBiBhCNC$C$C$C$C$C$C$C$C$C$C$C$BgBjBkBkBkBkBjBhBfBgBhBiBj
+  C$C$C$C$C$C$C$C$BjCKCDCECFCICFBjBjBiBiBiBiBiBhBhC$C$C$C$C$C$C$C$C$C$C$BiBkBjBhBgBgBhBiBjBkBkC$C$
+  C$C$C$C$C$C$C$C$C$C$CKCDCECFCFCICFBjBjBjBiBiBiBhBhBhC$C$C$C$C$C$C$C$BgBhBhBiBiBjBkBkBkBkBkC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CKCDCECFCFCFCJ_s_tBjBiBiBiBhBgBhC$C$C$C$C$C$C$C$BjBiBgBjBkBkBkBkBkBkC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CKCDCECFCF_s_t_u_tBjBiBiBhBgBfBhC$C$C$C$C$C$C$C$BjBkBhBgBjBkBkBkC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$BjCBCCCI_t_uBO_u_tBDBiBiBhBgBgBhC$C$C$C$C$C$C$C$BjBkBjBhBjBkBkC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CKCCCACD_t_uBOCH_u_tBDBiBiBhBhBgBfBhC$C$C$C$C$C$C$C$BjBkBjBhBjBkC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CDCACCCH_t_u_u_u_t_s_rBDBiBiBhBhBgBgBhC$C$C$C$C$C$C$BjBkBkBjBhBkBkC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CJCCCBCD_t_t_t_t_t_s_q_s_tBDBiBiBhBhBgBfBhC$C$C$C$C$C$C$BjBkBkBjBjBkC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CDCBCDCH_t_s_s_s_r_q_q_t_t_tBDBiBiBhBhBgBfBhC$C$C$C$C$C$BhBkBkBkBhBkC$C$C$
+  C$C$C$C$C$C$C$C$C$C$CJCCCD_s_t_s_r_q_q_q_q_r_s_u_tBDBiBiBiBhBhBgBfC$C$C$C$C$BiBjBkBkBkBjBjC$C$C$
+  C$C$C$C$C$C$C$C$C$CJCDCDCH_t_s_r_qC$C$C$_q_r_r_t_u_tBDBiBiBiBhBgBfBgC$C$BiBjBkBkBkBkBkBkBhC$C$C$
+  C$C$C$C$C$C$C$C$_sCDCI_s_s_r_q_qC$C$C$C$C$_q_r_s_uBO_tBDBiBiBhBhBgBfBhBjBkBkBkBkBkBkBkBkBjC$C$C$
+  C$C$C$C$C$C$C$C$_r_t_t_s_r_qC$C$C$C$C$C$C$C$_q_s_t_u_t_tBDBiBiBhBgBfBgBkBkBkBkBkC$C$C$BkBjC$C$C$
+  C$C$C$C$C$C$C$C$C$_r_q_qC$C$C$C$C$C$C$C$C$C$_q_r_t_uBO_tBDBiBiBhBhBgBgBhBkBkC$C$C$C$C$C$BkC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_q_r_s_tBO_t_tBDBiBiBhBgBgBhBkC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_q_s_t_uBO_tBDBiBiBhBhBgBhBiC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_q_r_t_uBO_u_tBDBiBiBhBhBhBhBiC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CaC$C$C$C$C$C$_q_r_s_t_u_u_tBDBiBiBiBiBhBgBhC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CZCMC$C$C$C$C$C$_q_r_s_t_u_t_t_tBDBiBjBiBiBhBgBiC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CHBkC$C$C$C$C$C$_q_r_s_s_t_t_t_s_r_rBDBiBiBiBhBiC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$BkBhBkC$C$C$C$C$_q_q_q_s_s_s_r_r_r_s_t_tBDBiBiBiBhBiC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$BkBhBjC$C$C$CM_q_r_s_s_r_r_r_s_t_t_u_u_t_tBDBiBiBiBiC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$BkBjBiBhBjBhCH_q_t_u_t_s_s_t_t_t_u_uBOCH_u_t_tBDBiBiBjBjC$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$BkBjBhBhBiBiBhBhBk_q_tBO_u_s_t_u_uBOBOCHBOBO_u_u_tBDBiBiBhBiBjC$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$CZCHBhBiBjBkBjBiBkC$_q_s_t_t_r_t_t_t_u_u_u_u_u_t_t_sBDBiBhBfBhBiBjC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$CaCMC$BjBkBkBkBkBkC$C$_q_r_s_s_q_s_t_t_t_t_t_t_t_t_s_rBEBjBiBhBhBjBjC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$BkBjBkC$C$C$_q_q_r_r_q_r_s_t_t_t_t_t_t_s_r_qBEBkBiCaBhBiBjC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$BkBiBjC$C$BjBh_q_q_q_q_q_r_r_s_t_t_t_s_r_q_qBEBkBjCZBhBhBjC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$BkBhBiBjC$BhBhBi_q_q_q_q_q_q_r_r_r_r_r_q_qBEBhBhBkCHBhBhBjC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BjBhBiBjBiBiBj_q_q_r_r_r_q_q_q_q_q_q_q_rBDBhBhBkBhBkBhBiC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BkBhBiBiBiBjBk_q_r_s_s_s_s_r_r_r_r_r_r_s_sBDBhBjBiBkBhBiBjC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BkBhBiBkBkC$_q_s_t_s_t_s_s_s_s_s_s_s_sBkBkBjBhBiBhBkBiBjC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BkBkC$C$Bk_q_t_s_t_s_t_s_t_s_t_sCZCHBhBhBhBiBiBhBhBjBkC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$Bk_q_r_s_t_s_t_t_t_s_t_sCZCMBkBkBjBiBjBiBiBhBhCHCZC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BjBjBjBjBkBi_q_s_t_s_t_u_t_u_t_tCa_s_s_s_s_sBkBkBjBjBjBkBkCMCZC$C$
+  C$C$C$C$C$C$C$C$C$C$C$BjBjBjBiBhBhBhBhBjBh_q_s_s_t_u_t_u_t_u_t_s_t_s_s_sBhBhBhBkBkBkBjBjC$C$C$C$
+  C$C$C$C$C$C$C$C$BjBjBiBhBhBhBgBgBgBgBhBjBg_q_s_t_s_t_u_t_u_t_t_t_s_sBjBhBgBfBfBgBhBiBjBjBjC$C$C$
+  C$C$C$C$C$C$BjBiBhBhBhBgBgBgBgBgBhBiBiBjBh_q_s_s_t_s_t_t_t_t_t_s_tBjBhBgBfBfBfBfBgBhBiBjBjC$C$C$
+  C$C$C$C$BjBiBhBhBgBgBgBgBhBhBiBiBjBiBjBkBi_q_r_t_s_t_s_t_s_t_s_t_sBjBhBgBfBfBfBgBhBiBjBjBkBjC$C$
+  C$C$C$BjBhBhBgBgBhBiBiBiBiBjBiBjBiBjBiBkBi_q_r_s_s_s_t_s_t_s_t_s_sBiBgBgBgBgBgBgBhBiBjBkBjBkC$C$
+  C$C$BjBhBgBhBiBiBjBiBjBiBjBiBjBjBjBjBjBjBk_q_q_r_s_s_s_s_s_s_s_rBjBhBhBgBhBgBhBgBhBiBjBjBkBjC$C$
+  C$BjBiBhBiBjBiBjBiBjBjBjBjBjBkBjBkBjBkBjBkBk_q_r_r_s_r_s_r_s_r_sBjBhBhBhBgBhBgBhBhBiBjBkBjBkC$C$
+  C$BjBhBiBjBiBjBjBjBkBjBkBjBkBkBkBkBkBkBkBkBk_q_q_r_r_s_r_s_r_s_rBjBhBhBhBhBhBhBhBhBhBiBkBkBkC$C$
+  BjBiBhBhBiBjBkBjBkBkBkBkBkCxCxCxCxCxCxCxCxCxCxBk_q_r_r_r_r_r_r_rBjBhBhBhBhBhBhBhBhBhBiBjBkBkC$C$
+  BjBiBhBiBjBjBkBkCxCxCxCxCxCxCxCxCxCxC$CxC$CxBkBj_q_q_r_r_r_r_r_r_qBjBhBhBhBhBhBhBhBhBiBjBkBkC$C$
+  BjBiBhBiBiBkCxCxCxCxCxCxCxC$CxC$CxC$CxC$CxCYBkBhBi_q_q_q_r_q_r_q_rBjBiBhBhBhBhBhBiBiBiBiBkBkC$C$
+  BjBjBhBhBjBkCxCxCxCxC$CxC$CxC$C$C$C$C$CxCICMCIBkBiBjBh_q_q_r_q_r_qBkBjBiBiBiBiBiBiBiBiBiBjBkBkC$
+  BkBjBiBhBhBjCxCxCxC$CxC$C$C$C$C$C$CxCxCaCMCICJCaBkCYBkBj_q_q_q_q_q_qBkBjBiBiBiBiBiBiBiBiBjBkBkC$
+  C$BkBjBiBhBhBjCxCxCxC$CxC$C$C$C$CxC$CxCMCICaCMCxCMCICaBkBkCxCxCxCxCxCxBkBkBjBiBiBiBjBkBjBjBjBkC$
+  C$BkBjBjBiBhBhBjCxCxCxC$C$C$C$C$C$CxCxCxCxCxCxCxCICaCMCxCxCxCxCxCxCxCxCxCxBkBkBkBkBkBjBiBjBjBkCx
+  C$C$BkBjBjBiBiBhBjBjCxCxC$C$C$C$CxC$CxCxCxCxCxCxCxCxCxCxCxC$CxC$CxCxCxCxCxCxBkBiBiBiBiBiBjBjBkCx
+  C$C$C$BkBkBjBjBjBjBiBkCxCxC$CxC$C$CxC$CxCxCxCxCxCxCxC$CxC$CxC$CxC$CxC$CxBkBkBjBiBhBhBhBiBiBkCxC$
+  C$C$C$C$C$BkBkBkBkBkCxCxC$CxC$C$C$C$CxC$CxC$CxC$CxC$CxC$C$C$C$C$CxC$CxCICYBkBhBiBjBhBgBhBiBkC$Cx
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CMCYCaCMCIBkBjBkBgBhBiBjBkCxC$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxCaCYCYBkCYBkBiBjBkCxC$Cx
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CMCICYCMCxCMCICaBkBkCxC$CxC$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxCxCxCICaCMCxCxC$CxC$C$
+}
+# tile 128 (green dragon)
+{
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AvAwAxAyAyAzA0
+  C$C$C$C$C$C$AyAyAyAxAxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AvAwAxAzA0A0A0C$C$
+  C$C$C$C$C$AyAzAzAyAyAyAxAxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AwAxAzA0A0A0A0C$C$C$
+  C$C$C$C$C$AzCECIAzAzAyAyAyAxAxA0AzAyAwAvCMCaCZCYCHCHCZCaC$C$C$C$C$C$C$C$C$AvAxAzA0A0A0A0A0C$C$C$
+  C$C$C$C$C$AzCJCECFCIAzAzAyAyAyAxAyCxCHAyAwCNCMCaCZCICHCHCICZC$C$C$C$C$C$AwAxAzA0A0A0A0A0A0C$C$C$
+  C$C$C$C$C$C$AzCJCECECFCIAzAyAyAyAxAyAzA0AyCNCNCNCMC$C$C$C$CZCaC$C$C$C$C$AxAzA0A0A0A0A0A0A0A0C$C$
+  C$C$C$C$C$C$C$AzCJCDCECFCFAzAzAyAyAyAyAyAyAxCNC$C$C$C$C$C$C$C$C$C$C$C$AwAzA0A0A0A0AzAxAvAwAxAyAz
+  C$C$C$C$C$C$C$C$AzCKCDCECFCICFAzAzAyAyAyAyAyAxAxC$C$C$C$C$C$C$C$C$C$C$AyA0AzAxAwAwAxAyAzA0A0C$C$
+  C$C$C$C$C$C$C$C$C$C$CKCDCECFCFCICFAzAzAzAyAyAyAxAxAxC$C$C$C$C$C$C$C$AwAxAxAyAyAzA0A0A0A0A0C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CKCDCECFCFCFCJASARAzAyAyAyAxAwAxC$C$C$C$C$C$C$C$AzAyAwAzA0A0A0A0A0A0C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CKCDCECFCFASARAQARAzAyAyAxAwAvAxC$C$C$C$C$C$C$C$AzA0AxAwAzA0A0A0C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$AzCBCCCIARAQAPAQARBDAyAyAxAwAwAxC$C$C$C$C$C$C$C$AzA0AzAxAzA0A0C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CKCCCACDARAQAPA$AQARBDAyAyAxAxAwAvAxC$C$C$C$C$C$C$C$AzA0AzAxAzA0C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CDCACCCHARAQAQAQARASATBDAyAyAxAxAwAwAxC$C$C$C$C$C$C$AzA0A0AzAxA0A0C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CJCCCBCDARARARARARASAUASARBDAyAyAxAxAwAvAxC$C$C$C$C$C$C$AzA0A0AzAzA0C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CDCBCDCHARASASASATAUAUARARARBDAyAyAxAxAwAvAxC$C$C$C$C$C$AxA0A0A0AxA0C$C$C$
+  C$C$C$C$C$C$C$C$C$C$CJCCCDASARASATAUAUAUAUATASAQARBDAyAyAyAxAxAwAvC$C$C$C$C$AyAzA0A0A0AzAzC$C$C$
+  C$C$C$C$C$C$C$C$C$CJCDCDCHARASATAUC$C$C$AUATATARAQARBDAyAyAyAxAwAvAwC$C$AyAzA0A0A0A0A0A0AxC$C$C$
+  C$C$C$C$C$C$C$C$ASCDCIASASATAUAUC$C$C$C$C$AUATASAQAPARBDAyAyAxAxAwAvAxAzA0A0A0A0A0A0A0A0AzC$C$C$
+  C$C$C$C$C$C$C$C$ATARARASATAUC$C$C$C$C$C$C$C$AUASARAQARARBDAyAyAxAwAvAwA0A0A0A0A0C$C$C$A0AzC$C$C$
+  C$C$C$C$C$C$C$C$C$ATAUAUC$C$C$C$C$C$C$C$C$C$AUATARAQAPARBDAyAyAxAxAwAwAxA0A0C$C$C$C$C$C$A0C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AUATASARAPARARBDAyAyAxAwAwAxA0C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AUASARAQAPARBDAyAyAxAxAwAxAyC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AUATARAQAPAQARBDAyAyAxAxAxAxAyC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CaC$C$C$C$C$C$AUATASARAQAQARBDAyAyAyAyAxAwAxC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CZCMC$C$C$C$C$C$AUATASARAQARARARBDAyAzAyAyAxAwAyC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CHA0C$C$C$C$C$C$AUATASASARARARASATATBDAyAyAyAxAyC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$A0AxA0C$C$C$C$C$AUAUAUASASASATATATASARARBDAyAyAyAxAyC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$A0AxAzC$C$C$CMAUATASASATATATASARARAQAQARARBDAyAyAyAyC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$A0AzAyAxAzAxCHAUARAQARASASARARARAQAQAPA$AQARARBDAyAyAzAzC$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$A0AzAxAxAyAyAxAxA0AUARAPAQASARAQAQAPAPA$APAPAQAQARBDAyAyAxAyAzC$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$CZCHAxAyAzA0AzAyA0C$AUASARARATARARARAQAQAQAQAQARARASBDAyAxAvAxAyAzC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$CaCMC$AzA0A0A0A0A0C$C$AUATASASAUASARARARARARARARARASATBEAzAyAxAxAzAzC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$A0AzA0C$C$C$AUAUATATAUATASARARARARARARASATAUBEA0AyCaAxAyAzC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$A0AyAzC$C$AzAxAUAUAUAUAUATATASARARARASATAUAUBEA0AzCZAxAxAzC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$A0AxAyAzC$AxAxAyAUAUAUAUAUAUATATATATATAUAUBEAxAxA0CHAxAxAzC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AzAxAyAzAyAyAzAUAUATATATAUAUAUAUAUAUAUATBDAxAxA0AxA0AxAyC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$A0AxAyAyAyAzA0AUATASASASASATATATATATATASASBDAxAzAyA0AxAyAzC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$A0AxAyA0A0C$AUASARASARASASASASASASASASA0A0AzAxAyAxA0AyAzC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$A0A0C$C$A0AUARASARASARASARASARASCZCHAxAxAxAyAyAxAxAzA0C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$A0AUATASARASARARARASARASCZCMA0A0AzAyAzAyAyAxAxCHCZC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AzAzAzAzA0AyAUASARASARAQARAQARARCaASASASASASA0A0AzAzAzA0A0CMCZC$C$
+  C$C$C$C$C$C$C$C$C$C$C$AzAzAzAyAxAxAxAxAzAxAUASASARAQARAQARAQARASARASASASAxAxAxA0A0A0AzAzC$C$C$C$
+  C$C$C$C$C$C$C$C$AzAzAyAxAxAxAwAwAwAwAxAzAwAUASARASARAQARAQARARARASASAzAxAwAvAvAwAxAyAzAzAzC$C$C$
+  C$C$C$C$C$C$AzAyAxAxAxAwAwAwAwAwAxAyAyAzAxAUASASARASARARARARARASARAzAxAwAvAvAvAvAwAxAyAzAzC$C$C$
+  C$C$C$C$AzAyAxAxAwAwAwAwAxAxAyAyAzAyAzA0AyAUATARASARASARASARASARASAzAxAwAvAvAvAwAxAyAzAzA0AzC$C$
+  C$C$C$AzAxAxAwAwAxAyAyAyAyAzAyAzAyAzAyA0AyAUATASASASARASARASARASASAyAwAwAwAwAwAwAxAyAzA0AzA0C$C$
+  C$C$AzAxAwAxAyAyAzAyAzAyAzAyAzAzAzAzAzAzA0AUAUATASASASASASASASATAzAxAxAwAxAwAxAwAxAyAzAzA0AzC$C$
+  C$AzAyAxAyAzAyAzAyAzAzAzAzAzA0AzA0AzA0AzA0A0AUATATASATASATASATASAzAxAxAxAwAxAwAxAxAyAzA0AzA0C$C$
+  C$AzAxAyAzAyAzAzAzA0AzA0AzA0A0A0A0A0A0A0A0A0AUAUATATASATASATASATAzAxAxAxAxAxAxAxAxAxAyA0A0A0C$C$
+  AzAyAxAxAyAzA0AzA0A0A0A0A0CxCxCxCxCxCxCxCxCxCxA0AUATATATATATATATAzAxAxAxAxAxAxAxAxAxAyAzA0A0C$C$
+  AzAyAxAyAzAzA0A0CxCxCxCxCxCxCxCxCxCxC$CxC$CxA0AzAUAUATATATATATATAUAzAxAxAxAxAxAxAxAxAyAzA0A0C$C$
+  AzAyAxAyAyA0CxCxCxCxCxCxCxC$CxC$CxC$CxC$CxCYA0AxAyAUAUAUATAUATAUATAzAyAxAxAxAxAxAyAyAyAyA0A0C$C$
+  AzAzAxAxAzA0CxCxCxCxC$CxC$CxC$C$C$C$C$CxCICMCIA0AyAzAxAUAUATAUATAUA0AzAyAyAyAyAyAyAyAyAyAzA0A0C$
+  A0AzAyAxAxAzCxCxCxC$CxC$C$C$C$C$C$CxCxCaCMCICJCaA0CYA0AzAUAUAUAUAUAUA0AzAyAyAyAyAyAyAyAyAzA0A0C$
+  C$A0AzAyAxAxAzCxCxCxC$CxC$C$C$C$CxC$CxCMCICaCMCxCMCICaA0A0CxCxCxCxCxCxA0A0AzAyAyAyAzA0AzAzAzA0C$
+  C$A0AzAzAyAxAxAzCxCxCxC$C$C$C$C$C$CxCxCxCxCxCxCxCICaCMCxCxCxCxCxCxCxCxCxCxA0A0A0A0A0AzAyAzAzA0Cx
+  C$C$A0AzAzAyAyAxAzAzCxCxC$C$C$C$CxC$CxCxCxCxCxCxCxCxCxCxCxC$CxC$CxCxCxCxCxCxA0AyAyAyAyAyAzAzA0Cx
+  C$C$C$A0A0AzAzAzAzAyA0CxCxC$CxC$C$CxC$CxCxCxCxCxCxCxC$CxC$CxC$CxC$CxC$CxA0A0AzAyAxAxAxAyAyA0CxC$
+  C$C$C$C$C$A0A0A0A0A0CxCxC$CxC$C$C$C$CxC$CxC$CxC$CxC$CxC$C$C$C$C$CxC$CxCICYA0AxAyAzAxAwAxAyA0C$Cx
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CMCYCaCMCIA0AzA0AwAxAyAzA0CxC$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxCaCYCYA0CYA0AyAzA0CxC$Cx
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CMCICYCMCxCMCICaA0A0CxC$CxC$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxCxCxCICaCMCxCxC$CxC$C$
+}
+# tile 129 (yellow dragon)
+{
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_v_w_x_y_y_z_0
+  C$C$C$C$C$C$_y_y_y_x_xC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_v_w_x_z_0_0_0C$C$
+  C$C$C$C$C$_y_z_z_y_y_y_x_xC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_w_x_z_0_0_0_0C$C$C$
+  C$C$C$C$C$_zCECI_z_z_y_y_y_x_x_0_z_y_w_vCMCaCZCYCHCHCZCaC$C$C$C$C$C$C$C$C$_v_x_z_0_0_0_0_0C$C$C$
+  C$C$C$C$C$_zCJCECFCI_z_z_y_y_y_x_yCxCH_y_wCNCMCaCZCICHCHCICZC$C$C$C$C$C$_w_x_z_0_0_0_0_0_0C$C$C$
+  C$C$C$C$C$C$_zCJCECECFCI_z_y_y_y_x_y_z_0_yCNCNCNCMC$C$C$C$CZCaC$C$C$C$C$_x_z_0_0_0_0_0_0_0_0C$C$
+  C$C$C$C$C$C$C$_zCJCDCECFCF_z_z_y_y_y_y_y_y_xCNC$C$C$C$C$C$C$C$C$C$C$C$_w_z_0_0_0_0_z_x_v_w_x_y_z
+  C$C$C$C$C$C$C$C$_zCKCDCECFCICF_z_z_y_y_y_y_y_x_xC$C$C$C$C$C$C$C$C$C$C$_y_0_z_x_w_w_x_y_z_0_0C$C$
+  C$C$C$C$C$C$C$C$C$C$CKCDCECFCFCICF_z_z_z_y_y_y_x_x_xC$C$C$C$C$C$C$C$_w_x_x_y_y_z_0_0_0_0_0C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CKCDCECFCFCFCJACAB_z_y_y_y_x_w_xC$C$C$C$C$C$C$C$_z_y_w_z_0_0_0_0_0_0C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CKCDCECFCFACABAAAB_z_y_y_x_w_v_xC$C$C$C$C$C$C$C$_z_0_x_w_z_0_0_0C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$_zCBCCCIABAAA_AAAB_x_y_y_x_w_w_xC$C$C$C$C$C$C$C$_z_0_z_x_z_0_0C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CKCCCACDABAAA_CqAAAB_x_y_y_x_x_w_v_xC$C$C$C$C$C$C$C$_z_0_z_x_z_0C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CDCACCCHABAAAAAAABACAD_x_y_y_x_x_w_w_xC$C$C$C$C$C$C$_z_0_0_z_x_0_0C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CJCCCBCDABABABABABACAEACAB_x_y_y_x_x_w_v_xC$C$C$C$C$C$C$_z_0_0_z_z_0C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CDCBCDCHABACACACADAEAEABABAB_x_y_y_x_x_w_v_xC$C$C$C$C$C$_x_0_0_0_x_0C$C$C$
+  C$C$C$C$C$C$C$C$C$C$CJCCCDACABACADAEAEAEAEADACAAAB_x_y_y_y_x_x_w_vC$C$C$C$C$_y_z_0_0_0_z_zC$C$C$
+  C$C$C$C$C$C$C$C$C$CJCDCDCHABACADAEC$C$C$AEADADABAAAB_x_y_y_y_x_w_v_wC$C$_y_z_0_0_0_0_0_0_xC$C$C$
+  C$C$C$C$C$C$C$C$ACCDCIACACADAEAEC$C$C$C$C$AEADACAAA_AB_x_y_y_x_x_w_v_x_z_0_0_0_0_0_0_0_0_zC$C$C$
+  C$C$C$C$C$C$C$C$ADABABACADAEC$C$C$C$C$C$C$C$AEACABAAABAB_x_y_y_x_w_v_w_0_0_0_0_0C$C$C$_0_zC$C$C$
+  C$C$C$C$C$C$C$C$C$ADAEAEC$C$C$C$C$C$C$C$C$C$AEADABAAA_AB_x_y_y_x_x_w_w_x_0_0C$C$C$C$C$C$_0C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AEADACABA_ABAB_x_y_y_x_w_w_x_0C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AEACABAAA_AB_x_y_y_x_x_w_x_yC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AEADABAAA_AAAB_x_y_y_x_x_x_x_yC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CaC$C$C$C$C$C$AEADACABAAAAAB_x_y_y_y_y_x_w_xC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CZCMC$C$C$C$C$C$AEADACABAAABABAB_x_y_z_y_y_x_w_yC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CH_0C$C$C$C$C$C$AEADACACABABABACADAD_x_y_y_y_x_yC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_0_x_0C$C$C$C$C$AEAEAEACACACADADADACABAB_x_y_y_y_x_yC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_0_x_zC$C$C$CMAEADACACADADADACABABAAAAABAB_x_y_y_y_yC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$_0_z_y_x_z_xCHAEABAAABACACABABABAAAAA_CqAAABAB_x_y_y_z_zC$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$_0_z_x_x_y_y_x_x_0AEABA_AAACABAAAAA_A_CqA_A_AAAAAB_x_y_y_x_y_zC$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$CZCH_x_y_z_0_z_y_0C$AEACABABADABABABAAAAAAAAAAABABAC_x_y_x_v_x_y_zC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$CaCMC$_z_0_0_0_0_0C$C$AEADACACAEACABABABABABABABABACAD_z_z_y_x_x_z_zC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_0_z_0C$C$C$AEAEADADAEADACABABABABABABACADAE_z_0_yCa_x_y_zC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_0_y_zC$C$_z_xAEAEAEAEAEADADACABABABACADAEAE_z_0_zCZ_x_x_zC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_0_x_y_zC$_x_x_yAEAEAEAEAEAEADADADADADAEAE_z_x_x_0CH_x_x_zC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_z_x_y_z_y_y_zAEAEADADADAEAEAEAEAEAEAEAD_x_x_x_0_x_0_x_yC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_0_x_y_y_y_z_0AEADACACACACADADADADADADACAC_x_x_z_y_0_x_y_zC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_0_x_y_0_0C$AEACABACABACACACACACACACAC_0_0_z_x_y_x_0_y_zC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_0_0C$C$_0AEABACABACABACABACABACCZCH_x_x_x_y_y_x_x_z_0C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_0AEADACABACABABABACABACCZCM_0_0_z_y_z_y_y_x_xCHCZC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_z_z_z_z_0_yAEACABACABAAABAAABABCaACACACACAC_0_0_z_z_z_0_0CMCZC$C$
+  C$C$C$C$C$C$C$C$C$C$C$_z_z_z_y_x_x_x_x_z_xAEACACABAAABAAABAAABACABACACAC_x_x_x_0_0_0_z_zC$C$C$C$
+  C$C$C$C$C$C$C$C$_z_z_y_x_x_x_w_w_w_w_x_z_wAEACABACABAAABAAABABABACAC_z_x_w_v_v_w_x_y_z_z_zC$C$C$
+  C$C$C$C$C$C$_z_y_x_x_x_w_w_w_w_w_x_y_y_z_xAEACACABACABABABABABACAB_z_x_w_v_v_v_v_w_x_y_z_zC$C$C$
+  C$C$C$C$_z_y_x_x_w_w_w_w_x_x_y_y_z_y_z_0_yAEADABACABACABACABACABAC_z_x_w_v_v_v_w_x_y_z_z_0_zC$C$
+  C$C$C$_z_x_x_w_w_x_y_y_y_y_z_y_z_y_z_y_0_yAEADACACACABACABACABACAC_y_w_w_w_w_w_w_x_y_z_0_z_0C$C$
+  C$C$_z_x_w_x_y_y_z_y_z_y_z_y_z_z_z_z_z_z_0AEAEADACACACACACACACAD_z_x_x_w_x_w_x_w_x_y_z_z_0_zC$C$
+  C$_z_y_x_y_z_y_z_y_z_z_z_z_z_0_z_0_z_0_z_0_0AEADADACADACADACADAC_z_x_x_x_w_x_w_x_x_y_z_0_z_0C$C$
+  C$_z_x_y_z_y_z_z_z_0_z_0_z_0_0_0_0_0_0_0_0_0AEAEADADACADACADACAD_z_x_x_x_x_x_x_x_x_x_y_0_0_0C$C$
+  _z_y_x_x_y_z_0_z_0_0_0_0_0CxCxCxCxCxCxCxCxCxCx_0AEADADADADADADAD_z_x_x_x_x_x_x_x_x_x_y_z_0_0C$C$
+  _z_y_x_y_z_z_0_0CxCxCxCxCxCxCxCxCxCxC$CxC$Cx_0_zAEAEADADADADADADAE_z_x_x_x_x_x_x_x_x_y_z_0_0C$C$
+  _z_y_x_y_y_0CxCxCxCxCxCxCxC$CxC$CxC$CxC$CxCY_0_x_yAEAEAEADAEADAEAD_z_y_x_x_x_x_x_y_y_y_y_0_0C$C$
+  _z_z_x_x_z_0CxCxCxCxC$CxC$CxC$C$C$C$C$CxCICMCI_0_y_z_xAEAEADAEADAE_0_z_y_y_y_y_y_y_y_y_y_z_0_0C$
+  _0_z_y_x_x_zCxCxCxC$CxC$C$C$C$C$C$CxCxCaCMCICJCa_0CY_0_zAEAEAEAEAEAE_0_z_y_y_y_y_y_y_y_y_z_0_0C$
+  C$_0_z_y_x_x_zCxCxCxC$CxC$C$C$C$CxC$CxCMCICaCMCxCMCICa_0_0CxCxCxCxCxCx_0_0_z_y_y_y_z_0_z_z_z_0C$
+  C$_0_z_z_y_x_x_zCxCxCxC$C$C$C$C$C$CxCxCxCxCxCxCxCICaCMCxCxCxCxCxCxCxCxCxCx_0_0_0_0_0_z_y_z_z_0Cx
+  C$C$_0_z_z_y_y_x_z_zCxCxC$C$C$C$CxC$CxCxCxCxCxCxCxCxCxCxCxC$CxC$CxCxCxCxCxCx_0_y_y_y_y_y_z_z_0Cx
+  C$C$C$_0_0_z_z_z_z_y_0CxCxC$CxC$C$CxC$CxCxCxCxCxCxCxC$CxC$CxC$CxC$CxC$Cx_0_0_z_y_x_x_x_y_y_0CxC$
+  C$C$C$C$C$_0_0_0_0_0CxCxC$CxC$C$C$C$CxC$CxC$CxC$CxC$CxC$C$C$C$C$CxC$CxCICY_0_x_y_z_x_w_x_y_0C$Cx
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CMCYCaCMCI_0_z_0_w_x_y_z_0CxC$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxCaCYCY_0CY_0_y_z_0CxC$Cx
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CMCICYCMCxCMCICa_0_0CxC$CxC$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxCxCxCICaCMCxCxC$CxC$C$
+}
+# tile 146 (hill giant)
+{
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_T_U_U_UC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_T_S_T_U_U_U_TC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_U_U_U_U_U_U_U_U_TC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_UCg_U_jCgCf_j_U_UC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CiCkCiChCgCf_U_U_UC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CgCiCgCgCfCf_UCh_UC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CkCiCgCiChCf_UCg_UC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CfCiCiCfChCgCf_U_V_VC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CfCfCfChCgCfChCgCf_V_V_0_0C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CgChChCgCfCiChCgCfCN_0_0_0CgCgCfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$CgCjCiCkCjCiChCgCfCf_z_z_0CgChCiCiCjCjChC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CgCjCjCjCjCiCkCjCj_y_z_z_0CgChCiCjCjCkCiCiCjC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CiCkCkCjCjCjCjCj_x_y_y_zChCiCiCiCjCkCHCjCgCiCiC$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CfCjCkCHCkCkCiCj_x_v_x_zChCiCiChCiCiCjCkCjChCiChC$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CfCiCjCkCkCjChCi_w_w_yCjCiCiChChCiCgCiCjCjCiChCgC$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CfChCiCjCjCiCh_y_x_x_zCjCjCiChCfChCiCgChCiChCiCjCgC$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CgChCiCiCiCg_y_y_yCjCjCiChChCNCgChCgCfCgCgCjChCiCgC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CgCfCgChChCg_z_z_y_zCiCiChChCgCNCfCgCfCgCfCiCkCjChCgCgC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$ChCiCgCfCgCgCg_0_0_z_zChChChCgCfCNCNCfCfCfCfCgCiCiCgChCgCfC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$ChCiCjChCgChCg_0_0_z_0_0CgCgCgCfCNCNCNCNCNCfCfCfCfCgChCiChCgC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$CgCiCkCjCiCgCgCh_0_z_0_z_0_zChChCgCfCfCNCNC$C$CfChCiCjCjCjCiCgC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$CfCiCjCjCiChCfCfCg_0_0_z_0_z_z_zChChCgCfCNC$C$C$ChCjCkCjCiCiCjCfC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$CgCiCjCiCiCiCgCfCfCf_0_0_z_z_z_z_z_y_0ChCgCfC$C$C$C$CiCkCkCjCgCiCiCfC$C$C$C$C$C$C$C$C$
+  C$C$C$C$CiCjCjCkCjCiChCgCfC$_0_0_z_z_z_z_z_y_z_z_0_0CfC$C$C$CgCjCkCjCjCfCiChCfC$C$C$C$C$C$C$C$C$
+  C$C$C$CgCjChCiCjCiChCgCfC$C$_0_z_z_z_y_z_y_z_y_z_z_0_0C$C$C$ChCjCjCjCgChChCgC$C$C$C$C$C$C$C$C$C$
+  C$C$C$ChCjCjCgCjChCgCfC$C$C$_0_0_z_y_z_y_y_y_z_z_0_z_0_0C$C$CiCjCjCgChChChCfC$C$C$C$C$C$C$C$C$C$
+  C$C$C$CgCgCgCgChCiCgCfC$C$C$_0_z_z_z_y_y_y_y_y_y_z_0_0CfCgChCiCiChChChChCfC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$CfCgChCgCgCfC$C$C$C$_1_0_z_y_y_y_y_y_y_y_z_0CgCiCjCjCiChChChChCfC$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$CfCfCgCfC$C$C$C$C$_1_1_0_z_y_x_y_y_y_z_0_0ChChCjCjCiChChChCfC$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_1_0_z_y_x_y_x_y_z_0_zChCfCjCjCiChChChCfC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_1_1_0_z_y_w_w_x_y_z_0CiCjCjCiChChChChC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_1_1_0_y_x_w_x_y_z_0_0CfCgChCjChChChCgC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_1_1_z_y_x_w_x_y_z_0_1CfCgChCiChChCfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CN_0_z_x_y_x_y_z_0_0_1_1CfCgChChCfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CNCN_z_z_y_y_z_0_0_1_1CfC$C$CfCfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CNCNCfChCiCjCjCiChCgCfCfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CNCfCiCjCkCjCjChChCgCfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CNCgCiCjCkCjCiCgChCgCfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CNCgCjCHCjCjChCgChCgCfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CfChCjCkCjCiChChCgCfCfCiC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CfChCjCjCjCiCgChCgCfCgChCiC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CfCiCjCjCiChChCgCfCfCgChChChC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CgCiCjCjCiChCgCgCfCNCfCgChCgC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CgCjCjCiChChCgCfCfCNCNCfCgC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CgCjCjCjCiChChCgCfCNCNCfCfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CgCkCjCjCjCjCiChCgCfCNCfCxCxCxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CgCHCkCkCjCjCjCiCgCfCNCxCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CfCiCjCjCjCjCjCkCjCgCxCxCxCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CfCgCiCiChCjCiCjCiCgCxCxCxCxCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CfCgChCiCjCgCiChCfCxC$CxCxCxCxCxCxCxCxC$CxC$CxC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CfCfCgChCiChCgCgCfC$CxC$CxCxCxCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CfCfChCiCiChCfC$CxC$CxCxCxCxCxCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CfCgCfChCiChCfC$C$CxC$CxCxCxCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CfCfCgCiChCiCfC$CxC$CxCxCxCxCxCxCxCxC$CxC$CxC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CfCfChCiChCfC$C$CxCxCxCxCxCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CfCgCgChCiCgC$CxC$CxCxCxCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CfCfCgChChCgCfCxCxCxCxCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CgChChChChChCfCxCxCxCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CgCiCjCjCiCiChCfCxCxCxCxCxC$CxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CgCiCjCjCjCiChCgCfCxCxCxCxC$CxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CiChCiCjCjCiCiChCgCfCxCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CfCgCfCjCiChCgCgCfCfCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CfCgChCgCfCfCxCxCxC$CxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CfCfCfCxCxCxC$CxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+}
+# tile 280 (kraken)
+{
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AyC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$AzC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AyC$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$AzC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AyC$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$AzC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AyC$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$A2AzC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AyC$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$AzAzC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AzC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$A2AzAyC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AyAzC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$A2AyC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AyAzC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$A2AzAzC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AzC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$A2AzAyC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AzC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$A2AyC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AzAzC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$A2A2AzC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AzAzC$C$C$C$C$C$C$C$C$
+  C$AzAzAzAzAzC$C$C$C$C$C$C$A2AzAzC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AyC$C$C$C$C$C$C$C$C$C$
+  C$C$C$AyAyAzAzC$C$C$C$C$C$C$A2AyC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AyAzC$C$C$C$C$C$C$C$AyC$
+  C$C$C$C$C$A2A2AzAzC$C$C$C$C$A2A2AyC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AyAyA0C$C$C$C$C$C$C$AyAzC$C$
+  C$C$C$C$C$C$C$AyAzAzC$C$C$C$C$A2AzC$C$C$C$AzAzAzAzAzAzC$C$C$C$C$C$AyAyA0C$C$C$C$C$AyAyAzAzC$C$C$
+  C$C$C$C$C$C$C$C$A2A2AzC$C$C$C$A2AyC$C$AzAzA0A0A0A0A0AzAzC$C$C$C$AyAyAzC$C$C$C$C$AzAzA2A2C$C$C$C$
+  C$C$C$C$C$C$C$C$C$A2AzC$C$C$A2A2AyC$BiAzAzA0BiBiBiA0A0AzBiBiC$BiBiAzAzBiC$C$AzAyA2C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$AyAzAzC$C$A2AzC$BiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiC$AzA2C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$A2AzC$A2AzAzBiBiBiBiBiBiC$BiBiBiBiBiBiAzAzAzAzAzAzBiAyAyC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$AyAzAzA2AzAzBiBiC$C$C$C$C$BiBiBiC$AzAzAzAzAzA1AzAzAyA2BiC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$AyAzBiBiAzC$C$C$AyAyAyAyC$C$AzAzAzAzAzAzAzAzAzAzAzA2AzAzAzC$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$AyAzC$BiBiC$C$AyAyAzAyAzAzAzAzAzAzA0A0A0A0A0A0AyA2AyA0A0AzAzC$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$BiA2A2AzC$C$C$AyAzAyAyAzAzAyAzAzA0A0A0A0A0A0A0A0AyA2A0A0A1A0A0C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$BiBiAyAzC$C$BiBiAyAzAzAyAzAzAzA0A0A0A1A1A1A1A1AyAzAyA1A1A1A1A1C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$BiBiAyAzAzC$BiBiBiAyAzAzAyAzABABA0A1A1A1A1A1A1AyA1A0A1A1A1A1BiC$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$BiBiA2AzC$C$C$BiBiBiAzAzABABCxABA1BiBiBiBiA1AzA1A0A1A1A1BiBiAyAyC$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$A2AzAzC$C$C$BiBiA1A1ABABCxABA1BiBiBiBiAyAzA1A0BiBiBiAyAyAzAzAzC$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$AyAyAzAzC$C$BiBiBiA1A1ABABA1BiBiC$C$BiAyAzAyBiBiBiAyAzA1AzA1AzAyC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$AyAzAzC$C$C$C$BiBiBiBiBiBiBiBiC$C$AyAzA1A1C$C$C$AyA1AyC$C$AzAzC$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$A2AzAzC$C$C$C$BiBiBiBiBiBiC$C$C$AyAzA1C$C$C$C$AzA1C$C$C$C$A1AyC$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AyAzAzC$C$C$C$C$C$C$C$C$C$C$AyAyAzA1A1C$C$C$AyAzAyC$C$C$C$C$A1AzC$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AyAyAzAzC$C$C$C$C$C$C$C$C$AyAzA1A1AyC$C$C$AyAzA1A1C$C$C$C$C$C$A1Az
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$A2A2AzAzC$C$C$C$C$C$C$BiAyAzA1AyC$C$C$C$C$AyAzAyC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AyAyAzC$C$C$C$C$C$BiBiBiA1A1C$C$C$C$C$AyAzA1A1C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AyAyAzAzC$C$C$C$C$BiBiBiBiBiC$C$C$C$AyAzAyAyC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$A2AzAzAzC$C$C$C$C$C$BiBiBiBiC$C$C$AyAzA1A1C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AyAyAzAzC$C$C$C$C$C$C$C$C$C$C$C$AyAzAzA1C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$AyAyAzAzBiC$C$C$C$C$C$C$C$C$AyAyAyAzAyAyC$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$A2AzAzBiBiC$C$C$C$C$C$AyAyAyAzAzAzA1A1C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BiBiBiBiBiC$C$C$C$C$BiAzAzAzAzA1AyAyC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BiBiBiBiC$C$C$C$BiBiBiAzAzA1A1A1C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BiBiBiBiBiBiBiC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$BiBiBiBiC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+}
+# tile 291 (barbarian)
+{
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CHCHCICYCYCYC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CHCHCICYCMCcCcCMCJCYC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CHCICYCMCcCNCNCNCNCcC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CHCICYCMCNCNCNCNCNCNC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$CHCICYCMCNCNCNCNCNCNC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$CHCYCMCNCNCNCNCNCNCNC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CHCICJCcCNCNCNCNCNCNCNC$CrCoC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CHCYCMCdCdCdCNCNCNCNCNCNCoCnCmC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CICJC$C$C$C$CdCNCNCNCMCbCdCmClC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$CYC$C$C$C$C$C$CdCNCMCKCcCNCdC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CMCaCcCNCdC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_SCMCLCcCNCdC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_U_TCcCNCd_T_SC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_T_S_S_T_T_T_V_UC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_TCx_T_TCx_T_T_TC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_T_S_T_T_U_U_T_U_T_UC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$_T_S_T_SC$C$C$C$C$Cc_U_T_T_U_UCf_U_T_U_TC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$_T_S_T_S_T_SC$C$C$CcCNCH_U_UCHChCgCf_U_T_U_TC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$_U_T_U_T_S_T_U_S_TCiCiCdCf_lChCf_lCf_V_U_U_UC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$_U_U_T_U_T_U_T_TCiCjChCdCfCjChCfChCf_V_V_U_U_UC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$_V_U_U_T_U_T_UChCjChCgChCfChCgCfCgCfCXCHCHCX_UC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$_V_V_U_U_V_UCfChCgChCfCgCgChCgCfCXCHCHCHCHCXCYCaC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$_V_V_VCcCNCfCfCgChCgCfCfCZCZCXCXCXCYCZCaCYCHC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$CMCcCNCdCfCfCiCiCiCiChCaCZCaCZCYCaCbCbCZCYCHC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$ChCjCk_TCdC$CfCiCjChCjCjCiCfCaCZCZCaCYCHCNCNCZCYC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$ChCjCj_T_S_TC$CfChCiChCiCjCjCfCgCfCaCbCZCYCHCNC$CZCYC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$CjCh_T_S_TCYCKCfCgChCgChCiCiCfCgChChCgCfCZCYCNC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$ChCg_T_TCYCK_S_T_UCgCfCgChCgCfCgChCiChCgCfCaCYC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$CMCfCg_U_TCJ_S_T_S_T_S_T_UCgCiChCfChChCfChCgCf_UC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$CMCcCNCd_U_UCK_T_U_T_S_T_S_T_SChCiCjChCfCgCgCf_V_UC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$CMCcCNCdC$C$C$Cb_U_T_U_T_T_T_S_T_TCiCiChCgCfCf_V_UC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$CMCcCNCdC$C$C$C$C$_V_U_T_U_T_U_T_U_UChChCgCgCfCd_VC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$CrCcCNCdC$C$C$C$C$C$C$_V_U_U_U_T_U_U_VCgCgCgCfCd_V_UC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  CrCnCpCdC$C$C$C$C$C$C$C$C$_V_V_U_U_U_VCfCfCfCfCdCd_UC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  CnCmClC$C$C$C$C$C$C$C$C$C$C$C$_V_V_VCfCgCgCgCgCfCdC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$ClC$C$C$C$C$C$C$C$C$C$C$C$C$C$_V_U_U_T_S_S_S_T_UC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_U_T_U_U_U_U_U_U_U_TC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_T_S_T_T_UCfCgCgCg_UC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_U_T_T_UCgChChCgCfCfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_V_U_UCgChCiCiChCgCfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_V_VCgChCiCiChCfCgCfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_VCgChCiCiChCfCgCgCfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CgChCiChChCfCgChCfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CgChChChCgChChCgCfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CgChChChChChCgCgCfCeCnC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$ChCiChCgChChCfCfCeCmCn_SC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CiCiChCfCgCfCeCeCeClCm_TCnC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$ChChCgCfCpCoCmCeCeCl_UCmCnC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CoCgCgCfCpCoCoCnCeCeCe_UCmClC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CmCoCoCoCnCoCoCoCeCe_UClClClC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$ClClCmCmCmCnCo_TClCeCeCeClCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_UClClClCl_TClCm_UCeClCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_U_U_U_TCnCoCn_TCxCxCxCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$ClClCmCmCnCn_TCnCxCxC$CxC$CxCxCxCxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_UClClCl_TCnCoCnC$CxC$CxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$Cl_U_UCmCnCoCpCnC$C$CxC$CxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$ClCmCmCnCnCoCo_TC$C$CxC$CxCxCxCxC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$ClClCmCnCnCoCmC$CxC$CxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_UClClCm_TCmCnCxC$CxCxCxCxCxCxC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$Cl_U_U_UCmCnCmC$CxCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CnCpCoCoCnCmCmClCxCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CnCoCoCnCnCmClClClCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CmCnCnCmCmClClClCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CmCmClClClCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+}
+# tile 296 (knight)
+{
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  CZC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  CYC$C$C$C$C$C$C$C$C$C$C$C$CHC$C$C$CZCaCbC$C$C$CZC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  CICZC$C$C$C$C$C$C$C$C$C$C$C$CYC$CYCZCaCbCcC$CZC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  CXCYC$C$C$C$C$C$C$C$C$C$C$C$CZCaCZCZCaCbCcCcCaC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  CHCYC$C$C$C$C$C$C$C$C$C$C$C$C$CZCMCZCaCbCxCaC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  CHCICZC$C$C$C$C$C$C$C$C$C$C$C$C$CZCMCNCxCcCxCxCLCaCJC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$CXCYC$C$C$C$C$C$C$C$C$C$C$CJCbCZCZCaCbCcCxCLCaCKCKCJC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$CHCICZC$C$C$C$C$C$C$C$C$CJCKCbCMCZCaCbCxCxCMCLCLCaCKCKCNCYCZC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$CHCXCYC$C$C$C$C$C$C$C$C$CKCaCMCNCMCMCxCNCNCNCxCMCLCLCNCYCaCaCLC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$CHCICZC$C$C$C$C$C$C$CKCaCbCMCYCaCKCKCbCNCJCaCxCMCNCHCaCaCLCaCMC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$CHCXCYC$C$C$C$C$C$C$CaCbCMCNCZCbCKCKCaCMCaCMCxCxCNCYCaCaCaCLCMC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$CHCICZC$C$C$C$C$C$CMCNCNCxCaCbCaCaCaCMCMCOCOCOCYCaCaCLCaCLCbCMC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$CHCXCYC$C$C$C$C$C$CaCbCNCOCOCbCbCbCMCNCOCNCOCxCZCaCaCaCLCbCLCMC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$CHCICZC$C$C$C$CaCcCNCOC$C$COCNCNCNCNCNCOCxCbCZCaCaCLCLCLCbCMC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$CHCXCYCaCNCOCZCaCbCOC$C$C$C$COCOCOCOCOCxCNCZCaCaCLCaCLCbCbCNC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$CHCaCOCOCaCLCbCMCNC$C$C$C$CNCaCbCMCMCMCNCZCaCaCaCLCLCLCbCNC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$CaCbCOCbCNCbCMCNCOC$C$C$C$CZCNCbCaCbCNCLCaCLCaCaCLCLCLCbCbCNC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$CNCOCbCcCNCNC$C$C$C$C$C$CYCZCaCNCbCMCLCZCaCLCaCLCaCLCbCLCbCNC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$CbCNCxC$C$C$C$C$CYCZCaCLCNCMCMCLCYCaCMCLCaCLCLCLCbCMCdC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$COCOC$C$C$CZCZCaCLCMCMCNCNCYCaCLCLCNCLCLCbCLCbCMCdC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CNCaCLCMCNCNC$CLCZCaCLCbCMCNCbCLCbCMCNC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$CYCaCNCMCNC$C$C$CLCaCLCbCMCNC$CNCNCMCMCdC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$CZCaCLCNC$C$C$CYCZCMCbCMCNC$C$C$C$CdCdC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$CaCLCNCMCZC$CYCZCaCLCMCNC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$CMCNCMCLCaC$CZCaCLCMCNCZC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CNCbCLC$CMCLCLCMCdCaCZC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CNCMCbCMC$CbCMCdCMCaCZC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CNCMCNC$CNCdCMCbCaCaCZC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CLCNCMCdC$C$CNCMCbCbCaCbC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CbCMCdCdCxCxCxCxCNCMCbCMCaCxCxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$CMCNCdCxCxCxCxCxCxCxCNCNCbCaCxCxCxCxC$CxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxCxCdCMCMCbCMCxCxCxCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCNCMCMCNCxCxCxCxCxC$CxC$CxC$CxC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCMCMCdCxCxCxCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCNCdCxCxCxCxCxC$CxC$CxC$CxC$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CaCbCMCdCxCxCxCxCxCxC$CxC$CxC$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CZCaCbCMCdCxCxCxCxCxC$CxC$CxC$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CaCaCbCMCNCdCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CMCbCMCNCdCxCxCxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+}
+# tile 300 (samurai)
+{
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$CxCaCxCxC$C$C$C$C$C$C$C$C$C$C$CJCKC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$CxCxCdCdCxCxC$C$C$C$C$C$C$C$C$CJCKC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$CxCxCxCxCxCdCxCxC$C$C$C$C$C$CJCJC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$CxCdCxCxCxCxCxC$C$C$C$C$CICJC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$CfCi_1CcCxCxChCxCxC$C$C$C$CICJC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$_C_DCjChCjCiCxCxChCxCfCxC$C$CICIC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$_C_D_E_DCiChChBjChCjCkChCxCHCIC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$_D_E_E_DChCfCfBjCfCiChCHCIBWBjBjC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$_E_F_D_E_ECfCxBjBjCHCHBWBjChCjBjBgC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$_F_E_F_ECjCxCnCHCYBWBjCiCjCkCjBjBgC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$_FCjCjCjCxCnBWBjBjCiChCjCiBjBhC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$CjChCfCjChCxCxCfChCjCfCiChCfBjBhBgCpC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$CjChCj_D_D_D_D_CChCjChChCfCfBjBiBiBhBhCpCqC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$Cj_E_E_E_E_D_E_CCiChCfBjBjBiBjBiBiBiCoCpC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$_F_E_E_E_DChCfBjBjBiBjBiBiBiCoCoC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$_F_E_FC$_1BkBjBjBiBjBiCoCoCoC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$BVBVBjBjBjCnCoCnCoBUC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$BTBUBVClCmCnCnCoBUBUBTC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$BPBQBTBUBVBVCmCmBUBUBTBTBTC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$BQBQBRBTBUBVBVBUBUBSBSBSBTBUC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$BQBQBRBTBUBVBVC$BSBSBSBSBTBTC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$BRBRBSBUBVBVC$C$BSBRBRBSBTBUC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$BTBSBSBRBVC$C$BSBRBRBSBTBTC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$BUBTBSBSBRBSC$BRBRBRBSBTBUC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$BUBUBTBTBTC$BRBRBRBSBSC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$BUBUBU_EC$BRBPBRBSBRC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$_F_E_DBSBRBRBSBSBPC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$_F_EBTBSBSBTBSBRC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$CaCaCbC$BTBTBUBTBSC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$Ca_ECb_ECxBUBUBUBTBSCxCxCxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$_E_E_ECxCxCxBUBUBT_DCxCxCxCxCxC$CxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxCxCxCxCx_F_E_D_CCxCxCxCxCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCxCxCx_E_E_DCxCxCxCxCxCxC$CxC$CxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CxCx_F_E_ECxCxCxCxCxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$Cx_F_FCNCxCxCxCxCxCxC$CxC$CxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CYCZCaCxCxCxCxCxCxCxC$CxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CYCYCZCaCxCxCxCxCxCxC$CxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$Ca_DCZCa_ECxCxCxCxCxC$CxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$_D_D_D_ECxCxCxCxC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+}

@@ -1,0 +1,98 @@
+#       SCCS Id: @(#)beholder.des  3.1     93/02/23
+#       Copyright (c) 1989 by Jean-Christophe Collet
+#       Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The Beholder's dungeon.
+#
+
+MAZE: "beholder",' '
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+                                                 |----
+                |--------|                  |-----...|
+                |........|------------------|........|
+                |........+...........................|
+                |........|---------|..|-----|........|
+                |........|         |..|     -------|.|             ---
+                ----------        -|..|            |.|         ----|.|
+                                  |..-|     |--- ---.|---------|.....---
+                      |---|   |---|..|     -|..|-|.....................|
+                    -|-...----|......|-    |.......------------........|
+                    |............--|..|-| -|....---|          |........|
+                    |.....-------| -|...|--.....|-            --|...----
+                    |-----|         -|...........|              ----|
+                                     |-----|....|-
+                                           ------
+ENDMAP
+RANDOM_MONSTERS: 'e','F'
+#ROOM: "ordinary" , lit, random, random, (11,09)
+DOOR: closed,(25,03)
+FOUNTAIN: (52,01)
+STAIR:(45,12),up
+BRANCH:(45,12,45,12),(0,0,0,0)
+TRAP: "spiked pit",(26,03)
+TRAP: "spiked pit",(28,03)
+TRAP: "spiked pit",(30,03)
+TRAP: random,random
+TRAP: random,random
+TRAP: random,random
+TRAP: random,random
+TRAP: random,random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT:'(',"chest",(17,4)
+GOLD: random,(17,4)
+GOLD: random,(17,4)
+GOLD: random,(17,4)
+GOLD: random,(17,4)
+GOLD: random,(17,4)
+MONSTER: 'e', "Beholder", (17,04)
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random

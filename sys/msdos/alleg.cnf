@@ -1,0 +1,110 @@
+# X and Y resolution, and color depth(in bits)
+# minimum of 512x384x15bit
+width = 640
+height = 480
+colordepth = 16
+
+# If you can't get AllegroHack to start, try changing this to specify
+# how AllegroHack should try to cummunicate with your video card.
+#
+# Valid choices are: (not case sensitive)
+#       VESA1  = VESA 1.0
+#       VESA2L = VESA 2.0 linear
+#       VESA2B = VESA 2.0 banked
+#       VESA3  = VESA 3.0
+#       VBEAF  = VBE/AF
+# any other value will use autodetection
+videomode = auto
+
+# This sets the speed of AllegroHack's animations, it's is in vsyncs/frame,
+# so the animation speed will change dependant on your refresh rate.
+# IE: with "fxdelay = 1"
+#     60hz = 60 frames/second
+#     75hz = 75 frames/second
+#
+# Set it to 0 to play animations as fast as possible with no vsync.
+#
+# this doesn't seem to work on some systems, I'm working on a fix
+#
+
+fxdelay = 1
+
+# Controls how smooth the screen scrolling is
+#
+# You can also use the smoothing setting to control the scrolling speed
+#
+#  0 - no smoothing (fastest)
+#  1 - medium smoothing
+#  2 - maximum smoothing (slowest)
+smoothing = 2
+
+# Heads-up-display
+#
+#       This controls the display in the lower-right hand corner of the screen.
+#
+#       Can be set to either
+#               equipment - shows your curent weapons/armors, or
+#               map       - shows a map of the level showing your position
+#                           as an X and stairs as arrows pointing up or down.
+#
+#       Other settings turn head-up-display off.
+
+HUD = Map
+
+# Text Colors
+#
+#  text - normal text
+#  hilite - emphasized text
+#  status - status bar text
+#
+#black   0        invisible      8 (not advised)
+#red     1        orange         9     
+#green   2        bright green   10    
+#brown   3        yellow         11    
+#blue    4        bright blue    12    
+#magenta 5        bright magenta 13    
+#cyan    6        bright cyan    14    
+#gray    7        white          15    
+#
+text = 2
+hilite = 10
+status = 12
+
+# Tile Files
+#
+# bigtile_file - name of file containing all the tiles
+# the game will automatically look for slam3d.bmp, slam32.bmp and slam16.bmp
+# in that order and use the first one found
+# You can use this to override the default ordering or specify a custom tileset
+
+#bigtile_file = slam3D.bmp
+#bigtile_file = slam32.bmp
+#bigtile_file = slam16.bmp
+
+# tile_width - width of tile displayed (tiles will be stretched to this size)
+# tile_height - height of tile displayed (tiles will be stretched to this size)
+# 
+# Please note that for 3D tiles to be autodetected properly, the width:height ratio
+# must remain 3:4
+# Or, you can set the draw_3Dtiles below to force 3D tile drawing
+
+#tile_width =
+#tile_height =
+
+# interpolate - set this to 1 to activate Kreed's 2xSaI interpolation and 
+# 		scaling routines.
+# A big thanks to Kreed for making the source code accessible :)
+#
+# Valid values are:
+#	1	- the 2xSaI engine
+#	2	- the SuperEagle engine
+#	3	- the Super2xSaI engine
+
+interpolate = 3
+
+# draw_3Dtiles - set this to Y or 1 to force 3D tile drawing
+# 		 use this if you rescale the 3D tiles to an odd width:height ratio
+#	       - set this to N or 0 to force normal tile drawing
+#	       - anything else sets for autodetection (default)
+#
+#draw_3Dtiles = Y

@@ -1,0 +1,158 @@
+#
+# Kobold level
+#
+MAZE: "kobold-2",' '
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+|--------------------------------------    -------------------|  ----|
+|....|...|.|...|......|.|......|......|----|............+.....S##+...|
+|S---|...|.+...|......|.+......|......|....|.|---+------|.....|  |...|
+|....|...+.|...|......+.|......|......|....+.|..|.......|.....|  |---|
+|....|...|.|...|......|.|......|......|....|.|..--|.....|.....S#### 
+|--+------+------------+----------+---------.+....|.....---+--|   #  
+|.......................|.....|..............|....|.....|.....|   ### 
+|+--------------------|.|.....+.|---+-----S------------+|.....|     # 
+|.......+.+.....|.....|.|.....|.|......|  #           |.|.....|     # 
+|.---+---.|----.+.....|.|.....|.|......|  ##          |.+.....|     # 
+|.|.....|.|...|.|.....|.-------.|------|   #          |.|.....|  #### 
+|.|.....|.+...|+|-----|.|...|...|....|     ###        |+------|  #   
+|.|-----|.|...|.......|.|...|.|-|....|     ###        |.......| |+--|
+|.|.....|.|...|.......|.|...|.+K|....|                |.......| |...|
+|.|.....|.----|...\...|.--+--.-----+------------------|.......| |...|
+|.+.....|.....+.......+..............S................S.......| |---|
+|--------------------------------------------------------------
+ENDMAP
+RANDOM_MONSTERS: 'k'
+#ROOM: "ordinary" , lit, random, random, (11,9)
+DOOR: closed,(1,7)
+DOOR: closed,(2,15)
+DOOR: closed,(3,5)
+DOOR: closed,(5,9)
+DOOR: closed,(8,8)
+DOOR: closed,(9,3)
+DOOR: closed,(10,5)
+DOOR: closed,(10,11)
+DOOR: closed,(10,8)
+DOOR: closed,(11,2)
+DOOR: closed,(14,15)
+DOOR: closed,(15,11)
+DOOR: closed,(16,9)
+DOOR: closed,(22,15)
+DOOR: closed,(22,3)
+DOOR: closed,(23,5)
+DOOR: closed,(24,2)
+DOOR: closed,(26,14)
+DOOR: closed,(30,7)
+DOOR: closed,(30,13)
+DOOR: closed,(34,5)
+DOOR: closed,(35,14)
+DOOR: closed,(36,7)
+DOOR: closed,(43,3)
+DOOR: closed,(45,5)
+DOOR: closed,(49,2)
+DOOR: closed,(55,7)
+DOOR: closed,(55,11)
+DOOR: closed,(56,1)
+DOOR: closed,(56,9)
+DOOR: closed,(59,5)
+TRAP: random,random
+TRAP: random,random
+TRAP: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+MONSTER: 'B',"rhumbat", (43,11), hostile, asleep
+OBJECT:'(',"chest",(45,12)
+GOLD: random,(45,12)
+GOLD: random,(45,12)
+GOLD: random,(45,12)
+OBJECT: '*',random,(45,12)
+OBJECT: '/',random,(45,12)
+OBJECT: '*',random,(45,12)
+MONSTER: 'B',"rhumbat", (65,13), hostile, asleep
+OBJECT:'(',"chest",(65,13)
+GOLD: random,(65,13)
+GOLD: random,(65,13)
+OBJECT: '*',random,(65,13)
+OBJECT: '*',random,(65,13)
+OBJECT: '*',random,(65,13)
+MONSTER: 's',"giant spider", (67,1), hostile, asleep
+GOLD: random,(68,2)
+GOLD: random,(68,2)
+GOLD: random,(68,2)
+OBJECT: '*',random,(68,2)
+OBJECT: '*',random,(68,2)
+OBJECT: '*',random,(68,2)
+OBJECT:'(',"chest",(68,2)
+OBJECT:'(',"chest",(2,1)
+OBJECT:'(',"chest",(3,1)
+OBJECT:'(',"chest",(4,1)
+OBJECT:'(',"chest",(18,14)
+OBJECT: ')',random,(18,14)
+OBJECT: ')',random,(18,14)
+OBJECT: '/',random,(18,14)
+OBJECT: '[',random,(18,14)
+OBJECT: '[',random,(18,14)
+OBJECT: '!',random,(18,14)
+OBJECT: '!',random,(18,14)
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', "kobold", random, hostile
+MONSTER: 'k', random, random, hostile
+MONSTER: 'k', random, random, hostile
+MONSTER: 'k', random, random, hostile
+MONSTER: 'k', random, random, hostile
+MONSTER: 'k', random, random, hostile
+MONSTER: 'k', "large kobold", (15,12), hostile
+MONSTER: 'k', random, (17,12), hostile
+MONSTER: 'k', "large kobold", (19,12), hostile
+MONSTER: 'k', "rock kobold", (20,12), hostile
+MONSTER: 'k', random, (21,12), hostile
+MONSTER: 'k', "swamp kobold", (16,13), hostile
+MONSTER: 'k', random, (18,13), hostile
+MONSTER: 'k', "large kobold", (19,13), hostile
+MONSTER: 'k', random, (21,13), hostile
+MONSTER: 'k', "swamp kobold", (15,14), hostile
+MONSTER: 'k', "swamp kobold", (17,14), hostile
+MONSTER: 'k', "Kroo the Kobold King", (18,14), hostile
+MONSTER: 'k', "rock kobold", (20,14), hostile
+MONSTER: 'k', "kobold shaman", (15,15), hostile
+MONSTER: 'k', "kobold shaman", (16,15), hostile
+MONSTER: 'k', random, (20,15), hostile
+MONSTER: 'k', random, (21,15), hostile
+STAIR: (23,6), up  
+STAIR: (19,14), down
+

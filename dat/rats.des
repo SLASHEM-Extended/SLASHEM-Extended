@@ -1,0 +1,87 @@
+#
+# Rat level
+#
+
+LEVEL: "rats"
+RANDOM_MONSTERS: 'r'
+ROOM: "ordinary" , unlit, random, random, (16,8)
+NAME: "central"
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: '!',"invulnerability",random
+OBJECT: ')',"long sword",(8,4)
+OBJECT: '[',"elven boots",(8,4)
+OBJECT: '%',"cheese",(8,4)
+OBJECT: '%',"cheese",(8,4)
+OBJECT: '/',random,(8,4)
+OBJECT: '!',random,(8,4)
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', "pack rat", random, hostile
+MONSTER: 'r', "pack rat", random, hostile
+MONSTER: 'r', "pack rat", random, hostile
+MONSTER: 'r', "pack rat", random, hostile
+MONSTER: 'r', "black rat", random, hostile
+MONSTER: 'r', "black rat", random, hostile
+MONSTER: 'r', "black rat", random, hostile
+MONSTER: 'r', "black rat", random, hostile
+MONSTER: 'r', "black rat", random, hostile
+MONSTER: 'r', "black rat", random, hostile
+MONSTER: 'r', "black rat", random, hostile
+MONSTER: 'r', "black rat", random, hostile
+MONSTER: 'r', "giant rat", random, hostile
+MONSTER: 'r', "giant rat", random, hostile
+MONSTER: 'r', "giant rat", random, hostile
+MONSTER: 'r', "giant rat", random, hostile
+MONSTER: 'r', "giant rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "rabid rat", random, hostile
+MONSTER: 'r', "the Rat King", (8,8), hostile
+  
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: 'r', "giant rat", random, hostile
+MONSTER: 'r', "giant rat", random, hostile
+MONSTER: 'r', "giant rat", random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'r', "rabid rat", random, hostile
+MONSTER: 'r', "rabid rat", random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+MONSTER: 'r', "giant rat", random, hostile
+MONSTER: 'r', "giant rat", random, hostile
+MONSTER: 'r', "giant rat", random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'r', "giant rat", random, hostile
+MONSTER: 'r', "giant rat", random, hostile
+MONSTER: 'r', "giant rat", random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'r', "giant rat", random, hostile
+MONSTER: 'r', "giant rat", random, hostile
+MONSTER: 'r', "giant rat", random, hostile
+
+RANDOM_CORRIDORS
