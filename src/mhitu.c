@@ -158,38 +158,33 @@ register struct attack *mattk;
 	if(could_seduce(mtmp, &youmonst, mattk) && !mtmp->mcan)
 	    pline("%s pretends to be friendly.", Monnam(mtmp));
 	else {
-                if (!flags.verbose || !nearmiss) {
-                	if (!flags.verbose || !blocker) {
+	    if (!flags.verbose || !nearmiss && !blocker)
 		pline("%s misses.", Monnam(mtmp));
-                        } else if (blocker == &zeroobj) {
-                        	pline("%s is stopped by the golden haze.", 
-                        		Monnam(mtmp));
-                        } else {
-                        	/* Blocker */
-                        	Your("%s %s %s attack.", 
-                        		aobjnam(blocker, (char *)0),
-                        		(rn2(2) ? "blocks" : "deflects"),
-                        		s_suffix(mon_nam(mtmp)));
-                        }
-                } else {
+	    else if (!blocker)
 		pline("%s just misses!", Monnam(mtmp));
+	    else if (blocker == &zeroobj)
+		pline("%s is stopped by the golden haze.", Monnam(mtmp));
+	    else
+		Your("%s %s%s %s attack.", 
+			simple_typename(blocker->otyp),
+			rn2(2) ? "block" : "deflect",
+			(blocker == uarmg || blocker == uarmf) ? "" : "s",
+			s_suffix(mon_nam(mtmp)));
+
+	    if (MON_WEP(mtmp)) {
+		struct obj *obj = MON_WEP(mtmp);
+		obj->owornmask &= ~W_WEP;
+		if (rnd(100) < (obj->oeroded * 5 / 2)) {
+		    if (obj->spe > -5) {    
+			obj->spe--;
+			pline("%s %s is damaged further!",
+				s_suffix(Monnam(mtmp)), xname(obj));
+		    } else
+			pline("%s %s is badly battered!", 
+				s_suffix(Monnam(mtmp)), xname(obj));
+		}
+	    }
 	}
-		
-                if (MON_WEP(mtmp)) {
-                        struct obj *obj = MON_WEP(mtmp);
-                        obj->owornmask &= ~W_WEP;
-                        if (rnd(100) < (obj->oeroded * 5 / 2)) {
-                                if(obj->spe > -5) {    
-                                        obj->spe--;
-                                        pline("%s %s is damaged further!",
-                                                s_suffix(Monnam(mtmp)), xname(obj));
-                                } else {
-                                        pline("%s %s is badly battered!", 
-                                        s_suffix(Monnam(mtmp)), xname(obj));
-                                }    
-                        }
-                }
-        }
 }
 
 STATIC_OVL void

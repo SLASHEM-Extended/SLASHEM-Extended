@@ -99,6 +99,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -Actioned feature request 454805: cloak of "poisonousness"?
 -Actioned feature request 513881: Count Dracula/Vlad the Impaler race.
 -Actioned feature request 538741: Multiple random place arrays.
+-Actioned feature request 457867: <verbose armor name> blocks (Lars Huttar).
 
 See history.txt for changes made in previous versions.
 
