@@ -718,7 +718,9 @@ check_cursor_visibility(wp)
 	XtSetArg(arg[1], XtNtopOfThumb, &top);
 	XtGetValues(horiz_sb, arg, TWO);
 
-	cursor_middle = (((float) wp->cursx) + 0.5) / (float) COLNO;
+	/* [ALI] Don't assume map widget is the same size as actual map */
+	cursor_middle = (wp->cursx + 0.5) * wp->map_information->square_width /
+	  wp->pixel_width;
 	do_call = True;
 
 #ifdef VERBOSE
@@ -764,7 +766,8 @@ check_cursor_visibility(wp)
 	XtSetArg(arg[1], XtNtopOfThumb, &top);
 	XtGetValues(vert_sb, arg, TWO);
 
-	cursor_middle = (((float) wp->cursy) + 0.5) / (float) ROWNO;
+	cursor_middle = (wp->cursy + 0.5) * wp->map_information->square_height /
+	  wp->pixel_height;
 	do_call = True;
 
 #ifdef VERBOSE
@@ -838,11 +841,30 @@ map_check_size_change(wp)
     /* Only do cursor check if new size is smaller. */
     if (new_width < map_info->viewport_width
 		    || new_height < map_info->viewport_height) {
+	/* [ALI] If the viewport was larger than the map (and so the map
+	 * widget was contrained to be larger than the actual map) then we
+	 * may be able to shrink the map widget as the viewport shrinks.
+	 */
+	wp->pixel_width = map_info->square_width * COLNO;
+	if (wp->pixel_width < new_width)
+	    wp->pixel_width = new_width;
+	wp->pixel_height = map_info->square_height * ROWNO;
+	if (wp->pixel_height < new_height)
+	    wp->pixel_height = new_height;
+	XtSetArg(arg[0], XtNwidth, wp->pixel_width);
+	XtSetArg(arg[1], XtNheight, wp->pixel_height);
+	XtSetValues(wp->w, arg, TWO);
+
 	check_cursor_visibility(wp);
     }
 
     map_info->viewport_width = new_width;
     map_info->viewport_height = new_height;
+
+    /* [ALI] These may have changed if the user has re-sized the viewport */
+    XtSetArg(arg[0], XtNwidth, &wp->pixel_width);
+    XtSetArg(arg[1], XtNheight, &wp->pixel_height);
+    XtGetValues(wp->w, arg, TWO);
 }
 
 /*
