@@ -107,6 +107,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -Actioned feature request 459902: YAFM suggestion: good vibes.
 -Actioned feature request 709525: ki-rin are humanoid.
 -fixed bug 729024: Sokoban dead end.
+-fixed bug 617219: data.base has many redundant entries.
 
 See history.txt for changes made in previous versions.
 

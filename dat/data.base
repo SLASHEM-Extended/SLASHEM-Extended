@@ -1,5 +1,5 @@
 #	SCCS Id: @(#)data.base	3.4	2002/12/28
-#	    $Id: data.base,v 1.10 2003-03-12 11:14:49 j_ali Exp $
+#	    $Id: data.base,v 1.11 2003-05-14 11:03:46 j_ali Exp $
 #   Copyright (c) 1994, 1995, 1996 by the NetHack Development Team
 #   Copyright (c) 1994 by Boudewijn Wayers
 #   Copyright (c) 2002 by the Slash'EM Development Team
@@ -261,12 +261,6 @@ arioch
 	I found again in the heart of a friend.
 		[ The Arrow and the Song,
 		  by Henry Wadsworth Longfellow ]
-arioch
-	Arioch, the patron demon of Elric's ancestors; one of the most
-	powerful of all the Dukes of Hell, who was called Knight of
-	the Swords, Lord of the Seven Darks, Lord of the Higher Hell
-	and many more names besides.
-				  [ Elric of Melnibone, by Michael Moorcock ]
 arkenstone
 	Arkenstone, Heart of the Mountain, property of the King
 	under the Mountain, is the most valued jewel that the
@@ -326,95 +320,11 @@ athol
 
 		[ "A Belfry of Crypto-bats." by Shuker, Dr. Karl P.N. 
 		Fortean Studies 1, pp. 235-245. ]
-horned devil
-	Horned devils lack any real special abilities,  though  they
-	are quite difficult to kill.
-incubus
-succubus
-	The incubus and succubus are male and female versions of the
-	same  demon, one who lies with a human for its own purposes,
-	usually to the detriment of the mortals who  are  unwise  in
-	their dealings with them.
-erinyes
-	These female-seeming devils  attack hand to hand  and poison
-	their unwary victims as well.
-marilith
-	The marilith, a type V demon, has a torso shaped  like  that
-	of  a human female, and the lower body of a great snake.  It
-	has multiple arms, and can freely attack with all  of  them.
-	Since it is intelligent enough to use weapons, this means it
-	can cause great damage.
-barbed devil
-	Barbed devils lack any real special abilities,  though  they
-	are quite difficult to kill.
-vrock
-	The vrock is one of the weaker forms of demon, being only  a
-	type  I.   It  resembles a cross between a human being and a
-	vulture and does physical damage by biting and by using  the
-	claws on both its arms and feet.
-hezrou
-	``Hezrou'' is the common name for the type II demon.  It  is
-	among the weaker of demons, but still quite formidable.
-bone devil
-	Bone devils attack with weapons and with a great hooked tail
-	which causes a loss of strength to those they sting.
-nalfeshnee
-	Not only do these demons, which are of type IV, do  physical
-	damage  with  their  claws and bite, but they are capable of
-	using magic as well.
-ice devil
-	Ice devils  are  large  semi-insectoid  creatures,  who  are
-	equally  at home in the fires of Hell and the cold of Limbo,
-	and who can cause the traveller to feel the latter with just
-	a touch of their tail.
-pit fiend
-	Pit fiends are among the more powerful of devils, capable of
-	attacking  twice with weapons as well as grabbing and crush-
-	ing the life out of  those  unwary  enough  to  enter  their
-	domains.
-juiblex
-jubilex
-	Little is known about the Faceless Lord,  even  the  correct
-	spelling  of  his name.  He does not have a physical form as
-	we know it, and those who have peered into his  realm  claim
-	he  is  a  slime-like  creature who swallows other creatures
-	alive, spits acidic secretions, and causes  disease  in  his
-	victims which can be almost instantly fatal.
-yeenoghu
-	Yeenoghu, the demon lord of gnolls,  still  exists  although
-	all his followers have been wiped off the face of the earth.
-	He casts magic projectiles at those close to him, and a mere
-	gaze  into  his  piercing  eyes  may  hopelessly confuse the
-	battle-weary adventurer.
-orcus
-	Orcus, Prince of the Undead, has a rams head  and  a  poison
-	stinger.   He is most feared, though, for his powerful magic
-	abilities.  His wand causes death to those he chooses.
-geryon
-	Geryon is an arch-devil sometimes  called  the  Wild  Beast,
-	attacking  with  his claws and poison sting.  His ranking in
-	Hell is rumored to be quite low.
-dispater
-	Dispater is an arch-devil who rules the city of Dis.  He  is
-	a powerful mage.
-b*lzebub
-	The "lord of the flies" is a translation of the Hebrew
-	Ba'alzevuv (Beelzebub in Greek).  It has been suggested that
-	it was a mistranslation of a mistransliterated word which
-	gave us this pungent and suggestive name of the Devil, a
-	devil whose name suggests that he is devoted to decay,
-	destruction, demoralization, hysteria and panic...
-	[ Notes on _Lord of the Flies_, by E. L. Epstein ]
 asmodeus
 	It is said that Asmodeus is the overlord over all  of  hell.
 	His  appearance,  unlike  many  other  demons and devils, is
 	human apart from his horns and tail.  He  can  freeze  flesh
 	with a touch.
-demogorgon
-	Demogorgon, the prince of demons, wallows in filth  and  can
-	spread  a quickly fatal illness to his victims while rending
-	them.  He is a mighty spellcaster, and he can drain the life
-	of mortals with a touch of his tail.
 athame
 	The consecrated ritual knife of a Wiccan initiate (one of
 	four basic tools, together with the wand, chalice and
@@ -458,6 +368,14 @@ sack
 	is outside it; and whatever is outside it, is inside it.  So
 	you have all the wealth of the world in that leetle Purse!"
 		[ Sylvie and Bruno Concluded, by Lewis Carroll ]
+b*lzebub
+	The "lord of the flies" is a translation of the Hebrew
+	Ba'alzevuv (Beelzebub in Greek).  It has been suggested that
+	it was a mistranslation of a mistransliterated word which
+	gave us this pungent and suggestive name of the Devil, a
+	devil whose name suggests that he is devoted to decay,
+	destruction, demoralization, hysteria and panic...
+		[ Notes on _Lord of the Flies_, by E. L. Epstein ]
 balrog
 	...  It came to the edge of the fire and the light faded as
 	if a cloud had bent over it.  Then with a rush it leaped
@@ -537,8 +455,9 @@ barbarian
 barbed devil
 	Barbed devils lack any real special abilities, though they
 	are quite difficult to kill.
++~mongbat
++~vampire bat
 *bat
-giant bat
 	A bat, flitting in the darkness outside, took the wrong turn
 	as it made its nightly rounds and came in through the window
 	which had been left healthfully open.  It then proceeded to
@@ -1146,7 +1065,7 @@ kht*ul*u
 	the green, sticky spawn of the stars, had awakened to claim
 	his own.  The stars were right again... great Cthulhu was
 	loose again, and ravening for delight."
-               [ The Call of Cthulhu, by H.P. Lovecraft ]
+		[ The Call of Cthulhu, by H.P. Lovecraft ]
 	
 	The exact origins of Cthulhu are lost to time, but it is
 	known that in aeons long past a race of space faring
@@ -1521,17 +1440,6 @@ elv* cl*
 	the trees they seemed to be; and yet if they were moved, 
 	or set in another light, they were green as shadowed leaves,
 	or brown as fallow fields by night, dusk-silver as water under 
-	the stars.
-	   [ The Fellowship of the Ring, by J.R.R. Tolkien ]
-elven cloak
-	The Elves next unwrapped and gave to each of the Company the
-	clothes they had brought.  For each they had provided a hood
-	and cloak, made according to his size, of the light but warm
-	silken stuff that the Galadrim wove.  It was hard to say of
-	what colour they were: grey with the hue of twilight under
-	the trees they seemed to be; and yet if they were moved, or
-	set in another light, they were green as shadowed leaves, or
-	brown as fallow fields by night, dusk-silver as water under
 	the stars.
 		[ The Fellowship of the Ring, by J.R.R. Tolkien ]
 emerald
@@ -2284,10 +2192,10 @@ horned devil
 	King Richard III: A horse! a horse! my kingdom for a horse!
 	Catesby: Withdraw, my lord; I'll help you to a horse.
 	King Richard III: Slave, I have set my life upon a cast,
-					  And I will stand the hazard of the die:
-					  I think there be six Richmonds in the field;
-					  Five have I slain to-day instead of him.
-					  A horse! a horse! my kingdom for a horse!
+			  And I will stand the hazard of the die:
+			  I think there be six Richmonds in the field;
+			  Five have I slain to-day instead of him.
+			  A horse! a horse! my kingdom for a horse!
 		[ King Richard III, by William Shakespeare ]
 *horsem*
 rider*
@@ -3052,7 +2960,13 @@ master of thieves
 	left eye.  But not his life, however.  Ymor never grudged a
 	man his ambitions.
 		[ The Colour of Magic, by Terry Pratchett ]
-MASTODON
+mastodon
+	Any large, elephantlike mammal of the genera Mammut, Mastodon,
+	etc., from the Oligocene and Pleistocene epochs, having
+	conical projections on the molar teeth.
+		[ Webster's Encyclopedic Unabridged Dictionary
+			of the English Language ]
+
 	Yakwawi, the Mastodon, was placed on the world to be useful 
 	to man; but the great monstrous beast was fierce, powerful and
 	invincible. Its hide was so strong and so thick that the sharpest 
@@ -3061,12 +2975,6 @@ MASTODON
 	the woods and on the plains; other animals that the Creator put 
 	here to be used as meat for the Lenapé people.)
 		[ From Legends of the Lenape Native Americans ]
-mastodon
-	Any large, elephantlike mammal of the genera Mammut, Mastodon,
-	etc., from the Oligocene and Pleistocene epochs, having
-	conical projections on the molar teeth.
-		[ Webster's Encyclopedic Unabridged Dictionary
-			of the English Language ]
 meat*
 huge chunk of meat
 	Some hae meat and canna eat,
@@ -4426,8 +4334,6 @@ shelob
 	great knobbed joints high above her back, and hairs that stuck
 	out like steel spines, and at each leg's end there was a claw.
 		[ The Two Towers, by J.R.R. Tolkien ]
-
-*spellbook
 spell
 	A spell is a consciously directed act of magic which may take
 	almost any form, depending on the laws of magic in operation.
