@@ -42,30 +42,11 @@ STATIC_DCL void FDECL(backfire, (struct obj *));
 STATIC_DCL int FDECL(spell_hit_bonus, (int));
 #endif
 
-#if 0 /* WAC -- moved to spell.h, since explode uses these types */
-#define ZT_MAGIC_MISSILE        (AD_MAGM-1)
-#define ZT_FIRE                 (AD_FIRE-1)
-#define ZT_COLD                 (AD_COLD-1)
-#define ZT_SLEEP                (AD_SLEE-1)
-#define ZT_DEATH                (AD_DISN-1)     /* or disintegration */
-#define ZT_LIGHTNING            (AD_ELEC-1)
-#define ZT_POISON_GAS           (AD_DRST-1)
-#define ZT_ACID                 (AD_ACID-1)
-
-#define ZT_LAST                 (ZT_ACID) /*For checking of spells of a type*/
-#define ZT_FIRST                (ZT_MAGIC_MISSILE)
-/* 8 and 9 are currently unassigned */
-
-#define ZT_WAND(x)              (x)
-#define ZT_SPELL(x)             (10+(x))
-#define ZT_BREATH(x)    (20+(x))
-/*WAC for mega, monster wands*/
-#define ZT_MEGA(x)      (30+(x))
-#define ZT_MONWAND(x)   (-(30+(x)))
-
-#endif
+/* WAC -- ZT_foo #defines moved to spell.h, since explode uses these types */
 
 #define is_hero_spell(type)	((type) >= 10 && (type) < 20)
+#define is_mega_spell(type)	(type >= ZT_MEGA(ZT_FIRST) && \
+				 type <= ZT_MEGA(ZT_LAST))
 
 #ifndef OVLB
 STATIC_VAR const char are_blinded_by_the_flash[];
@@ -3045,13 +3026,9 @@ struct obj **ootmp;   /* to return worn armor for caller to disintegrate */
 	register int tmp = 0;
 	register int abstype = abs(type) % 10;
 	boolean sho_shieldeff = FALSE;
-	boolean spellcaster = is_hero_spell(type); /* maybe get a bonus! */
+	boolean spellcaster = (is_hero_spell(type) || is_mega_spell(type)); 
+				/* maybe get a bonus! */
     	int skilldmg;
-
-	/*WAC types 30 to 39 are also hero spells*/
-	if ( (type >= ZT_SPELL(ZT_FIRST) && type <= ZT_SPELL(ZT_LAST))
-	    || (type >= ZT_MEGA(ZT_FIRST) && type <= ZT_MEGA(ZT_LAST)))
-		spellcaster = TRUE;
 
 	/* if its a Hero Spell then get its spell damage bonus */
     	skilldmg = spellcaster ? spell_damage_bonus(SPE_MAGIC_MISSILE + abstype) : 0;
@@ -3457,11 +3434,10 @@ register int dx,dy;
     if  ((type <= ZT_MONWAND(ZT_FIRST) && type >=ZT_MONWAND(ZT_LAST)) &&
         ( (abs(type) % 10) == ZT_WAND(ZT_LIGHTNING+1))) type = - ZT_SPELL(ZT_FIRE);
 
-    /*WAC bugfix - should show right color stream now (for wands of fireball*/
+    /*WAC bugfix - should show right color stream now (for wands of fireball) */
     abstype = abs(type) % 10;
 
-    if ((type >= ZT_SPELL(ZT_FIRST) && type <= ZT_SPELL(ZT_LAST))  ||
-            (type >= ZT_MEGA(ZT_FIRST) && type <= ZT_MEGA(ZT_LAST)))
+    if (is_hero_spell(type)  || is_mega_spell(type))
         spell_type = abstype + SPE_MAGIC_MISSILE;
 
     /*  WAC Whoops...this just catches monster wands ;B */
@@ -3486,7 +3462,9 @@ register int dx,dy;
     if(dx == 0 && dy == 0) range = 1;
     save_bhitpos = bhitpos;
 
-    /* WAC Moved tmp_at set glyph function further down */
+    if (!is_mega_spell(type)) {
+	tmp_at(DISP_BEAM, zapdir_to_glyph(dx, dy, abstype));
+    }
 
     while(range-- > 0) {
         /*hack to keep mega spells from blowing up in your face WAC*/
@@ -3536,16 +3514,9 @@ register int dx,dy;
 		    unmap_object(sx, sy);
 		    newsym(sx, sy);
 		}
-		if(ZAP_POS(lev->typ) || cansee(lsx,lsy)) {
-		/* This needs to be reset every time - just in case 
-		 * a monster death changes the glyph (ex gas spore 
-		 * explosion, etc.) --WAC
-		 */
-		if (!(type >= ZT_MEGA(ZT_FIRST) && type <= ZT_MEGA(ZT_LAST))) {
-		    tmp_at(DISP_BEAM, zapdir_to_glyph(dx, dy, abstype));
-		}
-		tmp_at(sx,sy);
-		delay_output(); /* wait a little */
+		if(!is_mega_spell(type) && (ZAP_POS(lev->typ) || cansee(lsx,lsy))) {
+		    tmp_at(sx,sy);
+		    delay_output(); /* wait a little */
 		}
             }
 
@@ -3557,11 +3528,6 @@ register int dx,dy;
 		lits--;
 	    }
 #endif
-            if (((away != 1)
-               && (type >= ZT_MEGA(ZT_FIRST) && type <= ZT_MEGA(ZT_LAST)))
-               || (abs(type) == ZT_SPELL(ZT_FIRE)))          {
-                         tmp_at(DISP_END,0);
-                         }
 	} else
 	    goto make_bounce;
 
@@ -3588,8 +3554,11 @@ register int dx,dy;
 		    }
 		    dx = -dx;
 		    dy = -dy;
-                /* WAC clear the beam so you can see it bounce back ;B */
-                    tmp_at(DISP_END,0);
+		    /* WAC clear the beam so you can see it bounce back ;B */
+		    if (!is_mega_spell(type)) {
+                    	tmp_at(DISP_END,0);
+                    	tmp_at(DISP_BEAM, zapdir_to_glyph(dx, dy, abstype));
+		    }
                     delay_output();
 		} else {
 		    boolean mon_could_move = mon->mcanmove;
@@ -3700,8 +3669,11 @@ register int dx,dy;
 		    dx = -dx;
 		    dy = -dy;
 		    shieldeff(sx, sy);
-			/* WAC clear the beam so you can see it bounce back ;B */
+		    /* WAC clear the beam so you can see it bounce back ;B */
+		    if (!is_mega_spell(type)) {
 			tmp_at(DISP_END,0);
+			tmp_at(DISP_BEAM, zapdir_to_glyph(dx, dy, abstype));
+		    }
 		} else {
 		    zhitu(type, nd, fltxt, sx, sy);
 		}
@@ -3734,8 +3706,11 @@ register int dx,dy;
 	    if(!dx || !dy || !rn2(20)) {
 		dx = -dx;
 		dy = -dy;
-                /* WAC clear the beam so you can see it bounce back ;B */
-                tmp_at(DISP_END,0);
+		/* WAC clear the beam so you can see it bounce back ;B */
+		if (!is_mega_spell(type)) {
+		    tmp_at(DISP_END,0);
+		    tmp_at(DISP_BEAM, zapdir_to_glyph(dx, dy, abstype));
+                }
                 delay_output();
 	    } else {
 		if(isok(sx,lsy) && ZAP_POS(rmn = levl[sx][lsy].typ) &&
@@ -3751,15 +3726,18 @@ register int dx,dy;
 		switch(bounce) {
                 case 0: dx = -dx;
                         dy = -dy;
-                /* WAC clear the beam so you can see it bounce back ;B */
-                        tmp_at(DISP_END,0); break;
+			/* WAC clear the beam so you can see it bounce back ;B */
+			if (!is_mega_spell(type)) {
+			    tmp_at(DISP_END,0); break;
+			    tmp_at(DISP_BEAM, zapdir_to_glyph(dx, dy, abstype));
+			}
                         delay_output();
                 case 1: dy = -dy;
                         sx = lsx; break;
 		case 2: dx = -dx;
                         sy = lsy; break;
 		}
-                if (!(type >= ZT_MEGA(ZT_FIRST) && type <= ZT_MEGA(ZT_LAST)))
+                if (!is_mega_spell(type))
                     tmp_at(DISP_CHANGE, zapdir_to_glyph(dx,dy,abstype));
 	    }
 	}
@@ -3781,9 +3759,11 @@ register int dx,dy;
         vision_recalc(0); /*clean up vision*/
         }
 #endif
-    tmp_at(DISP_END,0);
 
-        /*WAC Player/Monster fireball*/
+    if (!is_mega_spell(type))
+	tmp_at(DISP_END,0);
+
+    /*WAC Player/Monster fireball*/
     if (abs(type) == ZT_SPELL(ZT_FIRE))
 	explode(sx, sy, type, d(12,6), 0);
     if (shopdamage)

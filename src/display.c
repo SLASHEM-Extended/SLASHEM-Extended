@@ -822,7 +822,6 @@ tmp_at(x, y)
 	    break;
     }
 
-
     if (!tglyph) panic("tmp_at: tglyph not initialized");
 
     switch (x) {

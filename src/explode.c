@@ -328,10 +328,7 @@ do_explode(x, y, type, dam, olet, dest, yours)
 		    delay_output();
 		    delay_output();
 		}
-
-		/*WAC clear megablasts later*/
-        	if (!(type >= 30 && type <= 39))
-		    tmp_at(DISP_END, 0); /* clear the explosion */
+		tmp_at(DISP_END, 0); /* clear the explosion */
 #ifdef ALLEG_FX
 	    }
 #endif
