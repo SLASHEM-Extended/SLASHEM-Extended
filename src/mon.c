@@ -2695,7 +2695,7 @@ boolean msg;
 {
 	int mhp, hpn, hpd;
 	int mndx, tryct;
-	int couldspot = u.uswallow && mtmp == u.ustuck || canspotmon(mtmp);
+	int couldsee = canseemon(mtmp);
 	struct permonst *olddata = mtmp->data;
 	char oldname[BUFSZ];
 	boolean alt_mesg = FALSE;	/* Avoid "<rank> turns into a <rank>" */
@@ -2858,7 +2858,7 @@ boolean msg;
 
 	newsym(mtmp->mx,mtmp->my);
 
-	if (msg && (couldspot || canspotmon(mtmp))) {
+	if (msg && (u.uswallow && mtmp == u.ustuck || canspotmon(mtmp))) {
 	    if (alt_mesg)
 		pline("%s is suddenly very %s!", oldname,
 			mtmp->female ? "feminine" : "masculine");
@@ -2870,7 +2870,9 @@ boolean msg;
 		  x_monnam(mtmp, ARTICLE_A, (char*)0, SUPPRESS_SADDLE, FALSE));
 	    mtmp->mnamelth = save_mnamelth;
 	    }
-	}
+	} else if (msg && couldsee)
+	    /* No message if we only sensed the monster previously */
+	    pline("%s suddenly disappears!", oldname);
 
 	/* [ALI] In Slash'EM, this must come _after_ "<mon> turns into <mon>"
 	 * since it's possible to get both messages.
