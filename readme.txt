@@ -6,7 +6,7 @@
 |                           A Nethack Variant                            |
 | Courtesy of the Slash'EM development team with the efforts and support |
 | of countless others, especially the slashem-devel mailing list.        |
-|                                                             (1997-2003)|
+|                                                             (1997-2004)|
 +------------------------------------------------------------------------+
 | Nethack is Copyright 1985-2003                                         |
 |            By Stichting Mathematisch Centrum and M. Stephenson.        |
@@ -100,6 +100,7 @@ ver 0.0.7E5 [?] [Released by ?]
 -fixed bug 567573: Killed lichen corpses don't merge
 -fixed bug 575178: Fighting with a weapon and a bare fist
 -fixed bug 869951: Random crashes shortly after restore
+-fixed bug 870027: GTK: Closing main window has no effect until after next cmd
 
 See history.txt for changes made in previous versions.
 

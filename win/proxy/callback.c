@@ -1,5 +1,5 @@
-/* $Id: callback.c,v 1.21 2003-12-13 14:37:57 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001-2003 */
+/* $Id: callback.c,v 1.22 2004-01-03 19:11:18 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2004 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 /* #define DEBUG */
@@ -488,8 +488,7 @@ NhExtXdr *request, *reply;
 	terminate(EXIT_SUCCESS);
     }
     /* Not reached */
-    if (!nhext_async_mode())
-	nhext_rpc_params(reply, 0);
+    nhext_rpc_params(reply, 0);
 }
 
 static void
