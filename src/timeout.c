@@ -609,32 +609,52 @@ long timeout;
 
 	silent = (timeout != monstermoves);     /* exploded while away */
 
-	if (get_obj_location(bomb, &x, &y, 0)) {
+	if (get_obj_location(bomb, &x, &y, BURIED_TOO | CONTAINED_TOO)) {
 		switch(bomb->where) {		
 		    case OBJ_MINVENT:
 		    	mtmp = bomb->ocarry;
+			if (!silent) {
+			    if (canseemon(mtmp))
+				You("see %s explode!", mon_nam(mtmp));
+			    else if (flags.soundok)
+				You_hear("a blast.");
+			}
 		    	mtmp->mhp -= d(2,5);
 			if(mtmp->mhp < 1) {
 				if(!bomb->yours) 
 					monkilled(mtmp, 
 						  (silent ? "" : "explosion"),
 						  AD_PHYS);
-				else xkilled(mtmp, (silent ? 1 : 0));
+				else xkilled(mtmp, !silent);
 			}
 			break;
 		    case OBJ_INVENT:
 		    	/* This shouldn't be silent! */
 			pline("Something explodes inside your knapsack!");
 		    	losehp(d(2,5), "carrying live explosives", KILLED_BY);
-		    	break;    	
+		    	break;
 		    case OBJ_FLOOR:
+			if (!silent) {
+			    if (x == u.ux && y == u.uy)
+				pline("A bomb explodes under your %s!",
+				  makeplural(body_part(FOOT)));
+			    else if (cansee(x, y))
+				You("see a bomb explode.");
+			    else if (flags.soundok)
+				You_hear("a blast.");
+			}
 		    	redraw = TRUE;
 		    	break;
+		    default:	/* Buried, contained, etc. */
+			if (!silent)
+			    You_hear("a muffled explosion.");
+			goto free_bomb;
+			break;
 		}
-		grenade_explode(bomb->otyp, x, y, bomb->yours, silent);
+		grenade_explode(bomb->otyp, x, y, bomb->yours, silent ? 2 : 1);
 	} /* Migrating grenades "blow up in midair" */
 
-	/* free bomb */
+free_bomb:
 	obj_extract_self(bomb);
 	obfree(bomb, (struct obj *)0);
 	if (redraw) newsym(x, y);

@@ -433,7 +433,9 @@ do_explode(x, y, type, dam, olet, dest, yours)
 	if (remote) uhurt = FALSE;
 	
 	if (uhurt) {
-		if ((type >= 0 || adtyp == AD_PHYS) &&	/* gas spores */
+		/* [ALI] Give message if it's a weapon (grenade) exploding */
+		if ((type >= 0 || adtyp == AD_PHYS || olet == WEAPON_CLASS) &&
+		    /* gas spores */
 				flags.verbose && olet != SCROLL_CLASS)
 			You("are caught in the %s!", str);
 		/* do property damage first, in case we end up leaving bones */
@@ -708,10 +710,10 @@ splatter_burning_oil(x, y)
 #define BY_OBJECT       ((struct monst *)0)
 
 void
-grenade_explode(otyp,x,y, isyou, remote)
+grenade_explode(otyp,x,y, isyou, dest)
 int otyp, x, y;
 boolean isyou;
-boolean remote;
+int dest;
 {
 	int ztype;
 	int numdice = 3, dicetype = 6;
@@ -735,10 +737,8 @@ boolean remote;
 	if (expl) {
 		if (!isyou) ztype = -ztype;
 		
-		if (!remote) 
-		    do_explode(x, y, ztype, d(numdice,dicetype), WEAPON_CLASS,0, isyou);
-		else 
-		    do_explode(x, y, ztype, d(numdice,dicetype), WEAPON_CLASS,2, isyou);
+		do_explode(x, y, ztype, d(numdice,dicetype), WEAPON_CLASS,
+		  dest, isyou);
 	}
 	if (dig_expl) {
 	    	/* Like cartoons - the explosion first, then 

@@ -135,7 +135,7 @@ int x,y;
 			create = 1; /* Don't destroy */
 			arm_bomb(obj, FALSE);
 		} else {
-			grenade_explode(obj->otyp, bhitpos.x, bhitpos.y, FALSE, FALSE);
+			grenade_explode(obj->otyp, bhitpos.x, bhitpos.y, FALSE, 0);
 		}
 	} else if (objects[obj->otyp].oc_dir & EXPLOSION) {
 	    	if (cansee(bhitpos.x,bhitpos.y)) 

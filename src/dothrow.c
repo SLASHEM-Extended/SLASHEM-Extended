@@ -917,7 +917,7 @@ int thrown;
 #ifdef FIREARMS
 			/* Detonate rockets */
 			if (is_grenade(obj)) {
-				grenade_explode(obj->otyp, bhitpos.x, bhitpos.y, TRUE, FALSE);
+				grenade_explode(obj->otyp, bhitpos.x, bhitpos.y, TRUE, 0);
 			} else if (launcher && is_ammo(obj) && (objects[obj->otyp].oc_dir & EXPLOSION)
 			   && ammo_and_launcher(obj, launcher)) {
 			    	if (cansee(bhitpos.x,bhitpos.y)) 

@@ -609,7 +609,7 @@ E void FDECL(explode, (int,int,int,int,CHAR_P));
 E void FDECL(scatter, (int, int, int, unsigned int, struct obj *));
 E void FDECL(splatter_burning_oil, (int, int));
 #ifdef FIREARMS
-E void FDECL(grenade_explode, (int, int, int, BOOLEAN_P, BOOLEAN_P));
+E void FDECL(grenade_explode, (int, int, int, BOOLEAN_P, int));
 E void FDECL(arm_bomb, (struct obj *, BOOLEAN_P));
 #endif
 
