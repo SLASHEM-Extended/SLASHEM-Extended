@@ -1,4 +1,4 @@
-/* $Id: proxycb.h,v 1.11 2002-11-02 15:47:02 j_ali Exp $ */
+/* $Id: proxycb.h,v 1.12 2002-12-31 21:30:43 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -19,7 +19,13 @@ extern struct proxycb_get_player_choices_res
 		*NDECL(proxy_cb_get_player_choices);
 extern void FDECL(proxy_cb_free_player_choices,
 		(struct proxycb_get_player_choices_res *choices));
-extern int FDECL(proxy_cb_is_valid_selection, (int, int, int, int));
+extern struct proxycb_get_valid_selections_res
+		*NDECL(proxy_cb_get_valid_selections);
+extern void FDECL(proxy_cb_free_valid_selections,
+		(struct proxycb_get_valid_selections_res *vs));
+extern void NDECL(proxy_cb_valid_selection_open);
+extern int FDECL(proxy_cb_valid_selection_check, (int, int, int, int));
+extern void NDECL(proxy_cb_valid_selection_close);
 extern void NDECL(proxy_cb_quit_game);
 extern void NDECL(proxy_cb_display_score);
 extern void NDECL(proxy_cb_doset);

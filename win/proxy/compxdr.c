@@ -1,4 +1,4 @@
-/* $Id: compxdr.c,v 1.10 2002-12-29 21:34:52 j_ali Exp $ */
+/* $Id: compxdr.c,v 1.11 2002-12-31 21:30:44 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -105,6 +105,18 @@ struct proxycb_get_player_choices_res *datum;
       nhext_xdr_array(xdr, (char **)&datum->roles, &datum->n_roles,
         (unsigned int)-1, sizeof(struct proxycb_get_player_choices_res_role),
 	proxycb_xdr_get_player_choices_res_role);
+}
+
+nhext_xdr_bool_t proxycb_xdr_get_valid_selections_res(xdr, datum)
+NhExtXdr *xdr;
+struct proxycb_get_valid_selections_res *datum;
+{
+    return nhext_xdr_int(xdr, &datum->no_roles) &
+      nhext_xdr_int(xdr, &datum->no_races) &
+      nhext_xdr_int(xdr, &datum->no_aligns) &
+      nhext_xdr_int(xdr, &datum->no_genders) &
+      nhext_xdr_array(xdr, (char **)&datum->masks, &datum->n_masks,
+        (unsigned int)-1, sizeof(unsigned long), nhext_xdr_u_long);
 }
 
 nhext_xdr_bool_t proxycb_xdr_get_extended_commands_res(xdr, datum)

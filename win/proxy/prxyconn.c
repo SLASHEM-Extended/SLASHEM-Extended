@@ -1,4 +1,4 @@
-/* $Id: prxyconn.c,v 1.2 2002-12-29 21:31:57 j_ali Exp $ */
+/* $Id: prxyconn.c,v 1.3 2002-12-31 21:30:44 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -177,36 +177,47 @@ connect_pipe(void *rfd, void *wfd)
 
 #endif /* WIN32 */
 
+static int exit_server;
+
 void
+proxy_exit_server()
+{
+    exit_server = 1;
+}
+
+int
 proxy_start_server(char *prgname, void *read_h, void *write_h)
 {
     int nb;
     char *s;
-    if (!win_proxy_svr_init(read_h, write_h))
-	panic("%s: Failed to start sub-protocol1", prgname);
-    while(win_proxy_svr_iteration() >= 0)
+    if (!win_proxy_svr_init(read_h, write_h)) {
+	fprintf(stderr, "%s: Proxy interface failed; switching to text mode\n",
+	  prgname);
+	/*
+	 * Most likely cause of failing to start the proxy interface is that
+	 * either the game executable we called doesn't support proxy interfaces
+	 * or that an error occured during initialisation. The assumption is
+	 * that the output from the game is actually a message intended for the
+	 * user. In either case, we are best to retrieve the failed packet from
+	 * the nhext module and display it. Then we can connect the games's
+	 * standard I/O to the user for them to interpret and take appropriate
+	 * action.
+	 */
+	s = win_proxy_svr_get_failed_packet(&nb);
+	if (s)
+	    write(1, s, nb);
+	connect_pipe(read_h, write_h);
+	return 1;
+    }
+    exit_server = 0;
+    while(win_proxy_svr_iteration() >= 0 && !exit_server)
 	;
-    fprintf(stderr, "%s: Proxy interface failed; switching to text mode\n",
-      prgname);
-    /*
-     * Most likely cause of failing to start the proxy interface is that
-     * either the game executable we called doesn't support proxy interfaces
-     * or that an error occured during initialisation. The assumption is
-     * that the output from the game is actually a message intended for the
-     * user. In either case, we are best to retrieve the failed packet from
-     * the nhext module and display it. Then we can connect the games's
-     * standard I/O to the user for them to interpret and take appropriate
-     * action.
-     */
-    s = win_proxy_svr_get_failed_packet(&nb);
-    if (s)
-	write(1, s, nb);
-    connect_pipe(read_h, write_h);
+    return 0;
 }
 
 #ifdef WIN32
 
-static void
+static int
 proxy_connect_file(char *address, int *argcp, char **argv)
 {
     char *filename;
@@ -220,46 +231,47 @@ proxy_connect_file(char *address, int *argcp, char **argv)
 	nargv[i + 1] = argv[i];
     if (!pipe_create(to_game_h, 1) || !pipe_create(from_game_h, 0)) {
 	fprintf(stderr, "%s: Failed to create pipes\n", argv[0]);
-	return;
+	return 1;
     }
     save_stdin = dup_osf(0);
     if (save_stdin == INVALID_HANDLE_VALUE) {
 	fprintf(stderr, "%s: Failed to save stdin\n", argv[0]);
-	return;
+	return 1;
     }
     if (!redirect_to_osf(STD_INPUT_HANDLE, to_game_h[0])) {
 	fprintf(stderr, "%s: Failed to redirect stdin\n", argv[0]);
-	return;
+	return 1;
     }
     save_stdout = dup_osf(1);
     if (save_stdout == INVALID_HANDLE_VALUE) {
 	fprintf(stderr, "%s: Failed to save stdout\n", argv[0]);
-	return;
+	return 1;
     }
     if (!redirect_to_osf(STD_OUTPUT_HANDLE, from_game_h[1])) {
 	fprintf(stderr, "%s: Failed to redirect stdout\n", argv[0]);
-	return;
+	return 1;
     }
     pid = spawnv(P_NOWAIT, nargv[0], nargv);
     if (pid < 0) {
 	perror(nargv[0]);
-	return;
+	return 1;
     }
     free(nargv);
     if (!redirect_to_osf(STD_INPUT_HANDLE, save_stdin)) {
 	fprintf(stderr, "%s: Failed to restore stdin\n", argv[0]);
-	return;
+	return 1;
     }
     if (!redirect_to_osf(STD_OUTPUT_HANDLE, save_stdout)) {
 	fprintf(stderr, "%s: Failed to restore stdout\n", argv[0]);
-	return;
+	return 1;
     }
-    proxy_start_server(argv[0], (void *)from_game_h[0], (void *)to_game_h[1]);
+    return proxy_start_server(argv[0], (void *)from_game_h[0],
+      (void *)to_game_h[1]);
 }
 
 #else /* WIN32 */
 
-static void
+static int
 proxy_connect_file(char *address, int *argcp, char **argv)
 {
     int i;
@@ -284,13 +296,16 @@ proxy_connect_file(char *address, int *argcp, char **argv)
 	free(nargv);
 	close(to_game[0]);
 	close(from_game[1]);
-	proxy_start_server(argv[0], (void *)from_game[0], (void *)to_game[1]);
+	return proxy_start_server(argv[0], (void *)from_game[0],
+	  (void *)to_game[1]);
     }
+    /*NOTREACHED*/
+    return 1;
 }
 
 #endif	/* WIN32 */
 
-static void
+static int
 proxy_connect_tcp(char *address, char *prgname)
 {
 #ifdef WIN32
@@ -341,7 +356,7 @@ proxy_connect_tcp(char *address, char *prgname)
 	panic("proxy_connect: Failed to connect to remote machine");
     }
     free(s);
-    proxy_start_server(prgname, (void *)skt, (void *)skt);
+    return proxy_start_server(prgname, (void *)skt, (void *)skt);
 }
 
 /*
@@ -353,13 +368,15 @@ proxy_connect_tcp(char *address, char *prgname)
  *	tcp		Connect to remote computer	host:port
  */
 
-void
+int
 proxy_connect(char *scheme, char *address, int *argcp, char **argv)
 {
     if (!strcmp(scheme, "file"))
-	proxy_connect_file(address, argcp, argv);
+	return proxy_connect_file(address, argcp, argv);
     else if (!strcmp(scheme, "tcp"))
-	proxy_connect_tcp(address, argv[0]);
+	return proxy_connect_tcp(address, argv[0]);
     else
 	panic("proxy_connect: Unsupported scheme: %s", scheme);
+    /*NOTREACHED*/
+    return 1;
 }

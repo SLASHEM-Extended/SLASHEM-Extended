@@ -1030,7 +1030,7 @@ Plug-in window ports may assume that the following call backs are supported.
 <tr><td>parse_options</td><td>0x09</td></tr>
 <tr><td>get_option</td><td>0x0A</td></tr>
 <tr><td>get_player_choices</td><td>0x0B</td></tr>
-<tr><td>is_valid_selection</td><td>0x0C</td></tr>
+<tr><td>get_valid_selections</td><td>0x0C</td></tr>
 <tr><td>quit_game</td><td>0x0D</td></tr>
 <tr><td>display_score</td><td>0x0E</td></tr>
 <tr><td>doset</td><td>0x0F</td></tr>
@@ -1209,25 +1209,33 @@ just the ones that are compatible with the currently set options.
 <p>The (integer) values of align, gend, race and role used by the
 player_selection procedure can be used as indices into these arrays.
 
-<h3>is_valid_selction</h3>
+<h3>get_valid_selctions</h3>
 <pre>
-struct is_valid_selection_req {
-    int role;
-    int race;
-    int gend;
-    int align;
-};
-
-struct is_valid_selection_res {
-    int retval;
+struct get_valid_selections_res {
+    int no_roles;
+    int no_races;
+    int no_aligns;
+    int no_genders;
+    unsigned long masks<>;
 };
 </pre>
 
-<p>Check if the specified combination of role, race, gender and alignment
-forms a valid player selection. Any or all of role, race, gend and align
-may be passed as -1 in which case all possible values will be checked.
+<p>Get a packed array of masks of combinations of role, race, gender
+and alignment which form a valid player selection.
 
-<p>Returns 0 if the selection is invalid.
+<p>When unpacked, the array contains no_roles * no_races * no_aligns
+elements each of which is a mask of the valid genders for this
+combination of role, race, alignment. If there are no valid genders
+then this mask will be zero, otherwise it will be the bitwise-OR of
+(1<<gender) for each gender that is valid.
+
+<p>The array is packed by copying no_gender bits from the next mask
+in the unpacked array into the least significant unused bits of the
+current element in the packed array (the order of bits within each
+mask is unchanged during this process). A new element in the packed
+array is started when there is not enough room for a complete mask
+to be stored (masks are not split across array elements). The final
+element in the packed array may only be partially filled.
 
 <h3>quit_game</h3>
 quit_game takes no arguments and returns no values.

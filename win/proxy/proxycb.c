@@ -1,4 +1,4 @@
-/* $Id: proxycb.c,v 1.12 2002-12-01 17:23:38 j_ali Exp $ */
+/* $Id: proxycb.c,v 1.13 2002-12-31 21:30:44 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -160,16 +160,78 @@ struct proxycb_get_player_choices_res *choices;
     free(choices);
 }
 
-int
-proxy_cb_is_valid_selection(role, race, gender, alignment)
-int role, race, gender, alignment;
+struct proxycb_get_valid_selections_res *
+proxy_cb_get_valid_selections()
 {
-    int retval;
-    if (!nhext_rpc(EXT_CID_IS_VALID_SELECTION,
-      4, EXT_INT(role), EXT_INT(race), EXT_INT(gender), EXT_INT(alignment),
-      1, EXT_INT_P(retval)))
-	retval = -1;
+    struct proxycb_get_valid_selections_res *retval;
+    retval=(struct proxycb_get_valid_selections_res *)alloc(sizeof(*retval));
+    memset(retval, 0, sizeof(*retval));
+    if (!nhext_rpc(EXT_CID_GET_VALID_SELECTIONS, 0, 1,
+      EXT_XDRF(proxycb_xdr_get_valid_selections_res, retval))) {
+	free(retval);
+	return (struct proxycb_get_valid_selections_res *)0;
+    }
     return retval;
+}
+
+void
+proxy_cb_free_valid_selections(vs)
+struct proxycb_get_valid_selections_res *vs;
+{
+    nhext_xdr_free(proxycb_xdr_get_valid_selections_res, (char *)vs);
+    free(vs);
+}
+
+static struct proxycb_get_valid_selections_res *valid_selections;
+
+void
+proxy_cb_valid_selection_open()
+{
+    if (!valid_selections)
+	valid_selections = proxy_cb_get_valid_selections();
+}
+
+/*
+ * If s is negative, then iterate i over 0 <= i < n, otherwise do just one
+ * iteration at i == s. Early exit as soon as we find a valid combination.
+ */
+
+#define ITERATE(i, s, n) for((i) = (s) >= 0 ? (s) : 0; \
+			    !valid && ((s) >= 0 ? (i) == (s) : (i) < (n)); \
+			    (i)++)
+
+int
+proxy_cb_valid_selection_check(role, race, gend, align)
+int role, race, gend, align;
+{
+    int valid = 0;
+    int pack;			/* No. masks packed in each element */
+    int i, k, n;
+    int irole, irace, igend, ialign;
+    pack = 32 / valid_selections->no_genders;
+    ITERATE(irole, role, valid_selections->no_roles)
+	ITERATE(irace, race, valid_selections->no_races)
+	    ITERATE(ialign, align, valid_selections->no_aligns) {
+		n = (irole * valid_selections->no_races + irace) *
+		  valid_selections->no_aligns + ialign;
+		i = n / pack;
+		k = (n % pack) * valid_selections->no_genders;
+		ITERATE(igend, gend, valid_selections->no_genders)
+		    if (valid_selections->masks[i] & 1L << k + igend)
+			valid = 1;
+	    }
+    return valid;
+}
+
+#undef ITERATE
+
+void
+proxy_cb_valid_selection_close()
+{
+    if (valid_selections) {
+	proxy_cb_free_valid_selections(valid_selections);
+	valid_selections = (struct proxycb_get_valid_selections_res *)0;
+    }
 }
 
 void

@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.26 2002-12-29 21:34:52 j_ali Exp $
+  $Id: gtk.c,v 1.27 2002-12-31 21:30:43 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1202,18 +1202,18 @@ struct select_node {
 };
 
 #ifdef GTK_PROXY
-#define valid_race(role, race)	proxy_cb_is_valid_selection(role, race, -1, -1)
+#define valid_race(role, race)	proxy_cb_valid_selection_check(role, race, -1, -1)
 
 static boolean
 valid_gend(int role, int race, int gend)
 {
-    return proxy_cb_is_valid_selection(role, race, gend, -1);
+    return proxy_cb_valid_selection_check(role, race, gend, -1);
 }
 
 static boolean
 valid_align(int role, int race, int align)
 {
-    return proxy_cb_is_valid_selection(role, race, -1, align);
+    return proxy_cb_valid_selection_check(role, race, -1, align);
 }
 #define number_roles		(player_choices->n_roles)
 #define number_races		(player_choices->n_races)
@@ -1669,6 +1669,7 @@ init_select_player(boolean init)
 	free(menu_items);
 	menu_items = NULL;
 #ifdef GTK_PROXY
+	proxy_cb_valid_selection_close();
 	proxy_cb_free_player_choices(player_choices);
 	player_choices = NULL;
 #endif
@@ -1676,6 +1677,7 @@ init_select_player(boolean init)
     }
 #ifdef GTK_PROXY
     player_choices = proxy_cb_get_player_choices();
+    proxy_cb_valid_selection_open();
 #else
     for(number_roles = 0; roles[number_roles].name.m; number_roles++)
 	;
@@ -1958,7 +1960,7 @@ GTK_exit_nhwindows(const char *str)
     }
 #endif
 #if defined(GTK_PROXY)
-    exit(0);
+    proxy_exit_server();
 #endif
 }
 

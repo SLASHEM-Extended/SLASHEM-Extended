@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.12 2002-12-30 20:00:26 j_ali Exp $ */
+/* $Id: callback.c,v 1.13 2002-12-31 21:30:44 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -32,7 +32,7 @@ static void FDECL(callback_get_option, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(callback_get_player_choices, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_is_valid_selection, \
+static void FDECL(callback_get_valid_selections, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(callback_quit_game, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
@@ -308,47 +308,62 @@ NhExtXdr *request, *reply;
     free(choices.roles);
 }
 
-/*
- * If s is negative, then iterate i over 0 <= i < n, otherwise do just one
- * iteration at i == s. Early exit as soon as we find a valid combination.
- */
-
-#define ITERATE(i, s, n) for((i) = (s) >= 0 ? (s) : 0; \
-			     !valid && ((s) >= 0 ? (i) == (s) : (i) < (n)); \
-			     (i)++)
+#define SKIP(n)	do { \
+	    i += (n) / pack; \
+	    k += ((n) % pack) * ROLE_GENDERS; \
+	    if (k >= pack * ROLE_GENDERS) { \
+		i++; \
+		k -= pack * ROLE_GENDERS; \
+	    } \
+	} while(0)
 
 static void
-callback_is_valid_selection(id, request, reply)
+callback_get_valid_selections(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    int valid = 0;
     int role, race, gend, align;
-    int irole, irace, igend, ialign;
-    int nrole, nrace;
-    nhext_rpc_params(request, 4, EXT_INT_P(role), EXT_INT_P(race),
-      EXT_INT_P(gend), EXT_INT_P(align));
-    if (role < 0)
-	for(nrole = 0; roles[nrole].name.m; nrole++)
-	    ;
-    if (race < 0)
-	for(nrace = 0; races[nrace].noun; nrace++)
-	    ;
-    ITERATE(irole, role, nrole)
-	if (validrole(irole))
-	    ITERATE(irace, race, nrace)
-		if (validrace(irole, irace)) {
-		    ITERATE(igend, gend, ROLE_GENDERS)
-			if (validgend(irole, irace, igend))
-			    valid = 1;
-		    ITERATE(ialign, align, ROLE_ALIGNS)
-			if (validalign(irole, irace, ialign))
-			    valid = 1;
-		}
-    nhext_rpc_params(reply, 1, EXT_INT(valid));
+    const int pack = 32 / ROLE_GENDERS;	/* No. masks packed in each element */
+    int i, k;
+    struct proxycb_get_valid_selections_res vs;
+    for(vs.no_roles = 0; roles[vs.no_roles].name.m; vs.no_roles++)
+	;
+    for(vs.no_races = 0; races[vs.no_races].noun; vs.no_races++)
+	;
+    vs.no_aligns = ROLE_ALIGNS;
+    vs.no_genders = ROLE_GENDERS;
+    vs.n_masks = (vs.no_roles * vs.no_races * ROLE_ALIGNS + pack - 1) / pack;
+    vs.masks = (unsigned long *)alloc(vs.n_masks * sizeof(unsigned long));
+    memset((genericptr_t)vs.masks, 0, vs.n_masks * sizeof(unsigned long));
+    for(role = 0, i = 0, k = 0; role < vs.no_roles; role++)
+	if (!validrole(role))
+	    SKIP(vs.no_races * ROLE_ALIGNS);
+	else
+	    for(race = 0; race < vs.no_races; race++)
+		if (!validrace(role, race))
+		    SKIP(ROLE_ALIGNS);
+		else
+		    for(align = 0; align < ROLE_ALIGNS; align++) {
+			if (!validalign(role, race, align))
+			    k += ROLE_GENDERS;
+			else
+			    for(gend = 0; gend < ROLE_GENDERS; gend++, k++)
+				if (validgend(role, race, gend))
+				    vs.masks[i] |= 1L << k;
+			if (k >= pack * ROLE_GENDERS) {
+			    i++;
+			    k = 0;
+			}
+		    }
+    if (i != (k ? vs.n_masks - 1 : vs.n_masks))
+	panic("callback_get_valid_selections: Bad packing (%d, %d, %d)",
+	  i, k, vs.n_masks);
+    nhext_rpc_params(reply, 1,
+      EXT_XDRF(proxycb_xdr_get_valid_selections_res, &vs));
+    free(vs.masks);
 }
 
-#undef ITERATE
+#undef SKIP
 
 static void
 callback_quit_game(id, request, reply)
@@ -511,7 +526,7 @@ struct nhext_svc proxy_callbacks[] = {
     EXT_CID_PARSE_OPTIONS,		callback_parse_options,
     EXT_CID_GET_OPTION,			callback_get_option,
     EXT_CID_GET_PLAYER_CHOICES,		callback_get_player_choices,
-    EXT_CID_IS_VALID_SELECTION,		callback_is_valid_selection,
+    EXT_CID_GET_VALID_SELECTIONS,	callback_get_valid_selections,
     EXT_CID_QUIT_GAME,			callback_quit_game,
     EXT_CID_DISPLAY_SCORE,		callback_display_score,
     EXT_CID_DOSET,			callback_doset,

@@ -1,4 +1,4 @@
-/* $Id: proxycom.h,v 1.6 2002-12-29 21:34:52 j_ali Exp $ */
+/* $Id: proxycom.h,v 1.7 2002-12-31 21:30:43 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -174,7 +174,7 @@ E nhext_xdr_bool_t FDECL(proxy_xdr_print_glyph_layered_req,
 #define EXT_CID_PARSE_OPTIONS		0x09
 #define EXT_CID_GET_OPTION		0x0A
 #define EXT_CID_GET_PLAYER_CHOICES	0x0B
-#define EXT_CID_IS_VALID_SELECTION	0x0C
+#define EXT_CID_GET_VALID_SELECTIONS	0x0C
 #define EXT_CID_QUIT_GAME		0x0D
 #define EXT_CID_DISPLAY_SCORE		0x0E
 #define EXT_CID_DOSET			0x0F
@@ -199,6 +199,15 @@ struct proxycb_get_player_choices_res {
 	const char **races;
 	int n_roles;
 	struct proxycb_get_player_choices_res_role *roles;
+};
+
+struct proxycb_get_valid_selections_res {
+	int no_roles;
+	int no_races;
+	int no_aligns;
+	int no_genders;
+	int n_masks;
+	unsigned long *masks;
 };
 
 struct proxycb_get_extended_commands_res {
@@ -253,6 +262,8 @@ extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_player_choices_res_role,
 		(NhExtXdr *, struct proxycb_get_player_choices_res_role *));
 extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_player_choices_res,
 		(NhExtXdr *, struct proxycb_get_player_choices_res *));
+extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_valid_selections_res,
+		(NhExtXdr *, struct proxycb_get_valid_selections_res *));
 extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_extended_commands_res,
 		(NhExtXdr *, struct proxycb_get_extended_commands_res *));
 extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_tilesets_res_tileset,
