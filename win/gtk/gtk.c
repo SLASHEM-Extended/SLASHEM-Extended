@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.35 2003-08-02 15:32:25 j_ali Exp $
+  $Id: gtk.c,v 1.36 2003-08-02 15:40:04 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1898,7 +1898,8 @@ init_select_player(boolean init)
 	menu_items = NULL;
 #ifdef GTK_PROXY
 	proxy_cb_valid_selection_close();
-	proxy_cb_free_player_choices(player_choices);
+	if (player_choices)
+	    proxy_cb_free_player_choices(player_choices);
 	player_choices = NULL;
 #endif
 	return;
