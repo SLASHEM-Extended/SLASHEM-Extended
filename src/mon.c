@@ -1726,6 +1726,7 @@ register struct monst *mdef;
 	if (cansee(x, y)) newsym(x,y);
 	/* We don't currently trap the hero in the statue in this case but we could */
 	if (u.uswallow && u.ustuck == mdef) wasinside = TRUE;
+	(void) stop_timer(UNPOLY_MON, (genericptr_t) mdef);
 	mondead(mdef);
 	if (wasinside) {
 		if (is_animal(mdef->data))

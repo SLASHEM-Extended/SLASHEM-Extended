@@ -383,6 +383,7 @@ ver 0.0.6E6 [?] [Released by ?]
 -fixed bug 575250: Priest creation crash
 -Proxy: Add support for tilesets.
 -Actioned feature request 457998: Inconsistencies in monster polymorph
+-fixed bug 580276: Stoning polyed monsters leaves statue.
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).
