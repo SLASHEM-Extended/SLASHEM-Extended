@@ -88,6 +88,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 949016: Draining a rotten corpse
 -fixed bug 951439: Invisible Corpses and Ressurection
 -fixed bug 941453: Grand slam against monsters needing +n weapons
+-fixed bug 962515: Disarming fire trap doesn't use up water
 
 See history.txt for changes made in previous versions.
 
