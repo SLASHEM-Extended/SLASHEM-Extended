@@ -22,7 +22,7 @@ static void FDECL(xexit, (int));
 #define LIBLISTFILE "dlb.lst"		/* default list file */
 
 /* library functions (from dlb.c) */
-extern boolean FDECL(open_library,(const char *,library *));
+extern boolean FDECL(open_library,(const char *,const char *,library *));
 extern void FDECL(close_library,(library *));
 
 char *FDECL(eos, (char *));	/* also used by dlb.c */
@@ -230,7 +230,7 @@ main(argc, argv)
 	xexit(EXIT_FAILURE);
 	break;
     case 't':			/* list archive */
-	if (!open_library(library_file, &lib)) {
+	if (!open_library(NULL, library_file, &lib)) {
 	    printf("Can't open dlb file\n");
 	    xexit(EXIT_FAILURE);
 	}
@@ -255,7 +255,7 @@ main(argc, argv)
 	long remainder, total_read;
 	char buf[BUFSIZ];
 
-	if (!open_library(library_file, &lib)) {
+	if (!open_library(NULL, library_file, &lib)) {
 	    printf("Can't open dlb file\n");
 	    xexit(EXIT_FAILURE);
 	}

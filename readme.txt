@@ -372,6 +372,7 @@ ver 0.0.6E4F7 [?] [Released by ?]
 -fixed bug 520950: Level generator doesn't support scrawls.
 -fixed bug 520412: Level generator doesn't support toilets.
 -fixed bug 490400: Riders and revivification.
+-fixed bug 516027: dlb utility program crashes on query.
 
 ver 0.0.6E4F6 [November 30/2001] [Released by Ali]
 -fixed bug 453246: Genetic engineers attacking monsters.
