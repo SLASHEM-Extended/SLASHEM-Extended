@@ -369,6 +369,7 @@ ver 0.0.6E6 [?] [Released by ?]
 -fixed bug 562550: Blank graves on priest quest.
 -fixed bug 558230: Sokoban penalty for liquid leap.
 -fixed bug 570738: Tame arch-lich summons hostiles.
+-fixed bug 571086: C340-29: couldn't place lregion.
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).

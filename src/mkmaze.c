@@ -288,14 +288,38 @@ xchar rtype;
 boolean oneshot;
 d_level *lev;
 {
+#ifdef BUG_C340_29	/* [ALI] NetHack 3.4.0 code causing bug C340-29 */
     if (bad_location(x, y, nlx, nly, nhx, nhy)) return FALSE;
+#else
+    struct trap *lifted_trap = (struct trap *)0;
+#endif
     if (oneshot) {
 	/* must make due with the only location possible */
 	/* avoid failure due to a misplaced trap */
 	/* it might still fail if there's a dungeon feature here */
 	struct trap *t = t_at(x,y);
+#ifndef BUG_C340_29
+	if (t) {
+	    /* Take a copy of the lifted trap so that we can put it
+	     * back again if the location proves unsuitable.
+	     */
+	    lifted_trap = newtrap();
+	    (void) memcpy((genericptr_t)lifted_trap, (genericptr_t)t,
+		    sizeof(struct trap));
+	}
+#endif
 	if (t) deltrap(t);
     }
+#ifndef BUG_C340_29
+    if (bad_location(x, y, nlx, nly, nhx, nhy)) {
+	/* Replace lifted trap */
+	if (lifted_trap) {
+	    lifted_trap->ntrap = ftrap;
+	    ftrap = lifted_trap;
+	}
+	return(FALSE);
+    }
+#endif
     switch (rtype) {
     case LR_TELE:
     case LR_UPTELE:
@@ -304,6 +328,9 @@ d_level *lev;
 	if(MON_AT(x, y)) {
 	    /* move the monster if no choice, or just try again */
 	    if(oneshot) rloc(m_at(x,y));
+#ifndef BUG_C340_29
+	    /* lifted_trap must be 0 if !oneshot, so safe to simply return */
+#endif
 	    else return(FALSE);
 	}
 	u_on_newpos(x, y);
@@ -319,6 +346,10 @@ d_level *lev;
 	place_branch(Is_branchlev(&u.uz), x, y);
 	break;
     }
+#ifndef BUG_C340_29
+    if (lifted_trap)
+	dealloc_trap(lifted_trap);
+#endif
     return(TRUE);
 }
 
