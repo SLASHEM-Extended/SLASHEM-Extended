@@ -914,14 +914,18 @@ tty_create_nhwindow(type)
 	break;
     case NHW_STATUS:
 	/* status window, 2 lines long, full width, bottom of screen */
+	/* WAC make it a variable lines long */
 	newwin->offx = 0;
 #if defined(USE_TILES) && defined(MSDOS)
+	/* We're in VGA 640x480 mode.  There's room for 3 lines */
 	if (iflags.grmode) {
-		newwin->offy = ttyDisplay->rows-2;
+		newwin->offy = ttyDisplay->rows-3;
 	} else
 #endif
 	newwin->offy = min((int)ttyDisplay->rows-2, ROWNO+1);
-	newwin->rows = newwin->maxrow = 2;
+	/* newwin->rows = newwin->maxrow = 2; */
+	newwin->rows = newwin->maxrow =
+	    ((ttyDisplay->rows - newwin->offy) > 2) ? 3 : 2;
 	newwin->cols = newwin->maxcol = min(ttyDisplay->cols, COLNO);
 	break;
     case NHW_MAP:
@@ -1819,6 +1823,7 @@ tty_putstr(window, attr, str)
     register char *ob;
     register const char *nb;
     register int i, j, n0;
+    register int k;
 
     /* Assume there's a real problem if the window is missing --
      * probably a panic message
@@ -1856,6 +1861,16 @@ tty_putstr(window, attr, str)
 	    if(nb && nb > str+2)
 		str = nb - 2;
 	}
+	k = -1;
+	/* WAC - attempt to break or shorten line 2 if it's too long */
+	if(cw->cury && (int)strlen(str) >= CO) {
+	    if(cw->cury < (cw->maxrow - 1))
+		for(k = CO - 1; k && str[k] != ' '; k--)
+		    ;
+	    else
+		str = shorten_bot2(str, CO);
+	}
+
 	nb = str;
 	for(i = cw->curx+1, n0 = cw->cols; i < n0; i++, nb++) {
 	    if(!*nb) {
@@ -1869,6 +1884,30 @@ tty_putstr(window, attr, str)
 	    if(*ob != *nb)
 		tty_putsym(WIN_STATUS, i, cw->cury, *nb);
 	    if(*ob) ob++;
+
+	    /* String break? --WAC */
+	    if ((k > 0) && (i == k)) {
+		(void) strncpy(&cw->data[cw->cury][j], str, cw->cols - j - 1);
+		cw->data[cw->cury][++k] = '\0';
+
+		if(*ob || flags.botlx) {
+		    /* last char printed may be in middle of line */
+		    tty_curs(WIN_STATUS, k, cw->cury);
+		    cl_end();
+		}
+		nb++;
+
+		str = nb + 1;
+		i = j = 0;
+		cw->curx = 0;
+		cw->cury++;
+
+		ob = &cw->data[cw->cury][cw->curx];
+		if(flags.botlx) *ob = 0;
+
+		tty_curs(WIN_STATUS, 1, cw->cury);
+		k = 0;
+	    }
 	}
 
 	(void) strncpy(&cw->data[cw->cury][j], str, cw->cols - j - 1);

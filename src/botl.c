@@ -7,6 +7,16 @@
 #ifdef OVL0
 extern const char *hu_stat[];   /* defined in eat.c */
 
+const char *hu_abbrev_stat[] = {	/* must be kept consistent with eat.c */
+	"Sat",
+	"",
+	"Hun",
+	"Wea",
+	"Ftg",
+	"Ftd",
+	"Sta"
+};
+
 const char *enc_stat[] = {
 	"",
 	"Burdened",
@@ -14,6 +24,15 @@ const char *enc_stat[] = {
 	"Strained",
 	"Overtaxed",
 	"Overloaded"
+};
+
+const char *enc_abbrev_stat[] = {
+	"",
+	"Brd",
+	"Ssd",
+	"Snd",
+	"Otd",
+	"Old"
 };
 
 STATIC_DCL void NDECL(bot1);
@@ -28,11 +47,12 @@ STATIC_DCL void FDECL(set_botl_warn, (int));
  *
  * longest practical second status line at the moment is
  *      Astral Plane $:12345 HP:700(700) Pw:111(111) AC:-127 Xp:30/123456789
- *      T:123456 Satiated Conf FoodPois Ill Blind Stun Hallu Overloaded
- * -- or somewhat over 130 characters
+ *      Wt:5000/1000 T:123456 Satiated Lev Conf FoodPois Ill Blind Stun Hallu
+ *      Slime Overloaded
+ * -- or somewhat over 150 characters
  */
-#if COLNO <= 140
-#define MAXCO 160
+#if COLNO <= 160
+#define MAXCO 180
 #else
 #define MAXCO (COLNO+20)
 #endif
@@ -251,10 +271,28 @@ char *buf;
 	return ret;
 }
 
+/* [ALI] Line 2 abbreviation levels:
+ *	0 - No abbreviation
+ *	1 - Omit gold
+ *	2 - Abbreviated status tags
+ *	3 - Disable show options
+ *	4 - Omit dungeon level
+ *
+ * We omit gold first since the '$' command is always available.
+ *
+ * While the abbreviated status tags are very difficult to interpret, we use
+ * these before disabling the show options on the basis that the user always
+ * has the choice of turning the show options off if that would be preferable.
+ *
+ * Last to go is the dungeon level on the basis that there is no way of
+ * finding this information other than via the status line.
+ */
+
+static int bot2_abbrev = 0;	/* Line 2 abbreviation level (max 4) */
+
 STATIC_OVL void
-bot2()
+bot2str(char *newbot2)
 {
-	char  newbot2[MAXCO];
 	register char *nb;
 	register int con = ACURR(A_CON), wis = ACURR(A_WIS),
 		     intl = ACURR(A_INT);
@@ -268,29 +306,35 @@ bot2()
 	hpmax = Upolyd ? u.mhmax : u.uhpmax;
 
 	if(hp < 0) hp = 0;
-	(void) describe_level(newbot2);
-	Sprintf(nb = eos(newbot2),
-	       "%c:%-2ld HP:%d(%d) Pw:%d(%d) AC:%-2d", oc_syms[GOLD_CLASS],
-	       u.ugold, hp, hpmax, u.uen, u.uenmax, u.uac);
-	nb = eos(newbot2);
+	if (bot2_abbrev < 4)
+		(void) describe_level(newbot2);
+	else
+		newbot2[0] = '\0';
+	if (bot2_abbrev < 1)
+		Sprintf(nb = eos(newbot2), "%c:%-2ld ",
+		  oc_syms[GOLD_CLASS], u.ugold);
+	else
+		nb = newbot2;
+	Sprintf(nb = eos(nb), "HP:%d(%d) Pw:%d(%d) AC:%-2d",
+	       hp, hpmax, u.uen, u.uenmax, u.uac);
 
 	if (Upolyd)
 		Sprintf(nb = eos(nb), " HD:%d", ((u.ulycn == u.umonnum) ? 
 						u.ulevel : mons[u.umonnum].mlevel));
 #ifdef EXP_ON_BOTL
-	else if(flags.showexp)
+	else if(flags.showexp && bot2_abbrev < 3)
 		Sprintf(nb = eos(nb), " Xp:%u/%-1ld", u.ulevel,u.uexp);
 #endif
 	else
 		Sprintf(nb = eos(nb), " Exp:%u", u.ulevel);
 
 #ifdef SHOW_WEIGHT
-	if (flags.showweight)
+	if (flags.showweight && bot2_abbrev < 3)
 		Sprintf(nb = eos(nb), "  Wt:%ld/%ld", (long)(inv_weight()+weight_cap()),
 				(long)weight_cap());
 #endif
 
-	if(flags.time)
+	if(flags.time && bot2_abbrev < 3)
 	        Sprintf(nb = eos(nb), "  T:%ld ", moves);
 
 #ifdef ALLEG_FX
@@ -302,7 +346,13 @@ bot2()
         }
 #endif
 	        
-        if(strcmp(hu_stat[u.uhs], "        ")) {
+        if (bot2_abbrev >= 2) {
+		if (hu_abbrev_stat[u.uhs][0]!='\0') {
+			Sprintf(nb = eos(nb), " ");
+			Strcat(newbot2, hu_abbrev_stat[u.uhs]);
+		}
+	}
+	else if(strcmp(hu_stat[u.uhs], "        ")) {
 		Sprintf(nb = eos(nb), " ");
 		Strcat(newbot2, hu_stat[u.uhs]);
 	}
@@ -316,20 +366,35 @@ bot2()
 */
 	/* KMH -- changed to Lev */
 	if (Levitation)    Sprintf(nb = eos(nb), " Lev");
-	if(Confusion)      Sprintf(nb = eos(nb), " Conf");
+	if(Confusion)
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Cnf" : " Conf");
 	if(Sick) {
 		if (u.usick_type & SICK_VOMITABLE)
-			   Sprintf(nb = eos(nb), " FoodPois");
+			   Sprintf(nb = eos(nb),
+			     bot2_abbrev >= 2 ? " FPs" : " FoodPois");
 		if (u.usick_type & SICK_NONVOMITABLE)
 			   Sprintf(nb = eos(nb), " Ill");
 	}
 
-	if(Blind)          Sprintf(nb = eos(nb), " Blind");
-	if(Stunned)        Sprintf(nb = eos(nb), " Stun");
-	if(Hallucination)  Sprintf(nb = eos(nb), " Hallu");
-	if(Slimed)         Sprintf(nb = eos(nb), " Slime");
+	if(Blind)
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Bnd" : " Blind");
+	if(Stunned)
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Stn" : " Stun");
+	if(Hallucination)
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Hal" : " Hallu");
+	if(Slimed)
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Slm" : " Slime");
 	if(cap > UNENCUMBERED)
-		Sprintf(nb = eos(nb), " %s", enc_stat[cap]);
+		Sprintf(nb = eos(nb), " %s",
+		  bot2_abbrev >= 2 ? enc_abbrev_stat[cap] : enc_stat[cap]);
+}
+
+STATIC_OVL void
+bot2()
+{
+	char  newbot2[MAXCO];
+
+	bot2str(newbot2);
 	curs(WIN_STATUS, 1, 1);
 
 	putstr(WIN_STATUS, 0, newbot2);
@@ -337,11 +402,11 @@ bot2()
 }
 
 /* WAC -- Shorten bot1 to fit in len spaces.
- * Currently only used by wintty
+ * Not currently used
  * Longest string past Str: is
  * ". Str:18/99 Dx:11 Co:13 In:12 Wi:14 Ch:14 Neutral" or 49 Chars long.
  */
-#ifdef TTY_GRAPHICS
+#if 0
 const char*
 shorten_bot1(str, len)
 const char *str;
@@ -365,6 +430,32 @@ int len;
     do {
             *bp1++ = *bp0;
     } while(*bp0++);
+    return cbuf;
+}
+#endif /* 0 */
+
+/* ALI -- Shorten bot2 to fit in len spaces.
+ * Currently only used by tty port
+ * After the forth attempt the longest practical bot2 becomes:
+ *      HP:700(700) Pw:111(111) AC:-127 Exp:30
+ *      Sat Lev Cnf FPs Ill Bnd Stn Hal Slm Old
+ * -- or just under 80 characters
+ */
+#ifdef TTY_GRAPHICS
+const char*
+shorten_bot2(str, len)
+const char *str;
+int len;
+{
+    static char cbuf[MAXCO];
+    for(bot2_abbrev = 1; bot2_abbrev <= 4; bot2_abbrev++) {
+	bot2str(cbuf);
+	if (strlen(cbuf) <= len)
+	    break;
+    }
+    if (bot2_abbrev > 4)
+	cbuf[len] = '\0';	/* If all else fails, truncate the line */
+    bot2_abbrev = 0;
     return cbuf;
 }
 #endif /* TTY_GRAPHICS */

@@ -138,7 +138,12 @@ E long NDECL(botl_score);
 E int FDECL(describe_level, (char *));
 E const char *FDECL(rank_of, (int,SHORT_P,BOOLEAN_P));
 E void NDECL(bot);
+#if 0
 E const char * FDECL(shorten_bot1, (const char *, int));
+#endif
+#ifdef TTY_GRAPHICS
+E const char * FDECL(shorten_bot2, (const char *, int));
+#endif
 
 /* ### cmd.c ### */
 
