@@ -20,6 +20,7 @@ struct proto_dungeon {
 	struct	tmplevel   tmplevel[LEV_LIMIT];
 	s_level *final_lev[LEV_LIMIT];	/* corresponding level pointers */
 	struct	tmpbranch  tmpbranch[BRANCH_LIMIT];
+	int	tmpparent[BRANCH_LIMIT];
 
 	int	start;	/* starting index of current dungeon sp levels */
 	int	n_levs;	/* number of tmplevel entries */
@@ -33,9 +34,8 @@ static branch *branches = (branch *) 0;	/* dungeon branch list		   */
 static void FDECL(Fread, (genericptr_t, int, int, dlb *));
 STATIC_DCL xchar FDECL(dname_to_dnum, (const char *));
 STATIC_DCL int FDECL(find_branch, (const char *, struct proto_dungeon *));
-STATIC_DCL xchar FDECL(parent_dnum, (const char *, struct proto_dungeon *));
 STATIC_DCL int FDECL(level_range, (XCHAR_P,int,int,int,struct proto_dungeon *,int *));
-STATIC_DCL xchar FDECL(parent_dlevel, (const char *, struct proto_dungeon *));
+STATIC_DCL xchar FDECL(parent_dlevel, (int, struct proto_dungeon *));
 STATIC_DCL int FDECL(correct_branch_type, (struct tmpbranch *));
 STATIC_DCL branch *FDECL(add_branch, (int, int, struct proto_dungeon *));
 STATIC_DCL void FDECL(add_level, (s_level *));
@@ -242,33 +242,6 @@ find_branch(s, pd)
 	return i;
 }
 
-
-/*
- * Find the "parent" by searching the prototype branch list for the branch
- * listing, then figuring out to which dungeon it belongs.
- */
-STATIC_OVL xchar
-parent_dnum(s, pd)
-const char	   *s;	/* dungeon name */
-struct proto_dungeon *pd;
-{
-	int	i;
-	xchar	pdnum;
-
-	i = find_branch(s, pd);
-	/*
-	 * Got branch, now find parent dungeon.  Stop if we have reached
-	 * "this" dungeon (if we haven't found it by now it is an error).
-	 */
-	for (pdnum = 0; strcmp(pd->tmpdungeon[pdnum].name, s); pdnum++)
-	    if ((i -= pd->tmpdungeon[pdnum].branches) < 0)
-		return(pdnum);
-
-	panic("parent_dnum: couldn't resolve branch.");
-	/*NOT REACHED*/
-	return (xchar)0;
-}
-
 /*
  * Return a starting point and number of successive positions a level
  * or dungeon entrance can occupy.
@@ -313,15 +286,13 @@ level_range(dgn, base, rand, chain, pd, adjusted_base)
 }
 
 STATIC_OVL xchar
-parent_dlevel(s, pd)
-	const char	*s;
+parent_dlevel(i, pd)
+	int i;
 	struct proto_dungeon *pd;
 {
-	int i, j, num, base, dnum = parent_dnum(s, pd);
+	int j, num, base, dnum = pd->tmpparent[i];
 	branch *curr;
 
-
-	i = find_branch(s, pd);
 	num = level_range(dnum, pd->tmpbranch[i].lev.base,
 					      pd->tmpbranch[i].lev.rand,
 					      pd->tmpbranch[i].chain,
@@ -408,24 +379,40 @@ insert_branch(new_branch, extract_first)
 
 /* Add a dungeon branch to the branch list. */
 STATIC_OVL branch *
-add_branch(dgn, child_entry_level, pd)
-    int dgn;
-    int child_entry_level;
+add_branch(dgn, branch_num, pd)
+    int dgn, branch_num;
     struct proto_dungeon *pd;
 {
     static int branch_id = 0;
-    int branch_num;
     branch *new_branch;
+    int entry_lev;
 
-    branch_num = find_branch(dungeons[dgn].dname,pd);
     new_branch = (branch *) alloc(sizeof(branch));
     new_branch->next = (branch *) 0;
     new_branch->id = branch_id++;
     new_branch->type = correct_branch_type(&pd->tmpbranch[branch_num]);
-    new_branch->end1.dnum = parent_dnum(dungeons[dgn].dname, pd);
-    new_branch->end1.dlevel = parent_dlevel(dungeons[dgn].dname, pd);
+    new_branch->end1.dnum = pd->tmpparent[branch_num];
+    new_branch->end1.dlevel = parent_dlevel(branch_num, pd);
     new_branch->end2.dnum = dgn;
-    new_branch->end2.dlevel = child_entry_level;
+    /*
+     * Calculate the entry level for target dungeon.  The pd.tmpbranch entry
+     * value means:
+     *		< 0	from bottom (-1 == bottom level)
+     *		  0	default (top)
+     *		> 0	actual level (1 = top)
+     */
+    if (pd->tmpbranch[branch_num].entry_lev < 0) {
+	entry_lev = dungeons[dgn].num_dunlevs +	pd->tmpbranch[branch_num].entry_lev + 1;
+	if (entry_lev <= 0) entry_lev = 1;
+    } else if (pd->tmpbranch[dgn].entry_lev > 0) {
+	entry_lev = pd->tmpbranch[branch_num].entry_lev;
+	if (entry_lev > dungeons[dgn].num_dunlevs)
+	    entry_lev = dungeons[dgn].num_dunlevs;
+    }
+    else
+	entry_lev = 1;	/* defaults to top level */
+
+    new_branch->end2.dlevel = entry_lev;
     new_branch->end1_up = pd->tmpbranch[branch_num].up ? TRUE : FALSE;
 
     insert_branch(new_branch, FALSE);
@@ -733,40 +720,31 @@ init_dungeons()
 		dungeons[i].ledger_start = dungeons[i-1].ledger_start +
 					      dungeons[i-1].num_dunlevs;
 		dungeons[i].dunlev_ureached = 0;
+
+		if (dungeons[i].ledger_start + dungeons[i].num_dunlevs > 127)
+		    panic("init_dungeons: too many levels");
 	    }
 
 	    dungeons[i].flags.hellish = !!(pd.tmpdungeon[i].flags & HELLISH);
 	    dungeons[i].flags.maze_like = !!(pd.tmpdungeon[i].flags & MAZELIKE);
 	    dungeons[i].flags.rogue_like = !!(pd.tmpdungeon[i].flags & ROGUELIKE);
 	    dungeons[i].flags.align = ((pd.tmpdungeon[i].flags & D_ALIGN_MASK) >> 4);
-	    /*
-	     * Set the entry level for this dungeon.  The pd.tmpdungeon entry
-	     * value means:
-	     *		< 0	from bottom (-1 == bottom level)
-	     *		  0	default (top)
-	     *		> 0	actual level (1 = top)
-	     *
-	     * Note that the entry_lev field in the dungeon structure is
-	     * redundant.  It is used only here and in print_dungeon().
-	     */
-	    if (pd.tmpdungeon[i].entry_lev < 0) {
-		dungeons[i].entry_lev = dungeons[i].num_dunlevs +
-						pd.tmpdungeon[i].entry_lev + 1;
-		if (dungeons[i].entry_lev <= 0) dungeons[i].entry_lev = 1;
-	    } else if (pd.tmpdungeon[i].entry_lev > 0) {
-		dungeons[i].entry_lev = pd.tmpdungeon[i].entry_lev;
-		if (dungeons[i].entry_lev > dungeons[i].num_dunlevs)
-		    dungeons[i].entry_lev = dungeons[i].num_dunlevs;
-	    } else { /* default */
-		dungeons[i].entry_lev = 1;	/* defaults to top level */
-	    }
+	    dungeons[i].entry_lev = 1;	/* defaults to top level */
 
 	    if (i) {	/* set depth */
 		branch *br;
 		schar from_depth;
 		boolean from_up;
+		int branch_num;
 
-		br = add_branch(i, dungeons[i].entry_lev, &pd);
+		for (branch_num = 0; branch_num < pd.n_brs; branch_num++)
+		    if (!strcmp(pd.tmpbranch[branch_num].name, dungeons[i].dname)) {
+			br = add_branch(i, branch_num, &pd);
+			break;
+		    }
+		
+		/* Set the dungeon entry level from the first branch */
+		dungeons[i].entry_lev = br->end2.dlevel;
 
 		/* Get the depth of the connecting end. */
 		if (br->end1.dnum == i) {
@@ -833,9 +811,17 @@ init_dungeons()
 	    pd.n_brs += pd.tmpdungeon[i].branches;
 	    if (pd.n_brs > BRANCH_LIMIT)
 		panic("init_dungeon: too many branches");
-	    for(; cb < pd.n_brs; cb++)
+	    for(; cb < pd.n_brs; cb++) {
+		int dgn;
 		Fread((genericptr_t)&pd.tmpbranch[cb],
 					sizeof(struct tmpbranch), 1, dgn_file);
+		pd.tmpparent[cb] = i;
+		for (dgn = 0; dgn < i; dgn++)
+		    if (!strcmp(pd.tmpbranch[cb].name, dungeons[dgn].dname)) {
+			(void)add_branch(dgn, cb, &pd);
+			break;
+		    }
+	    }
 	}
 	(void) dlb_fclose(dgn_file);
 
