@@ -327,6 +327,8 @@ TODO:
 -tofix: using the nethack config files.
 -vampires shouldn't be allowed to become Flame Mages
 
+ver 0.0.6E7 [?] [Released by ?]
+
 ver 0.0.6E6 [September 13/2002] [Released by Ali]
 -Implemented "none" as a possible random place in level compiler.
 -fixed bug 500833: Spellbook learn.
