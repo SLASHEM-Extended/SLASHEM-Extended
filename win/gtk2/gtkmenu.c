@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.9 2002-03-11 00:09:21 j_ali Exp $
+  $Id: gtkmenu.c,v 1.10 2002-06-23 18:31:23 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -63,7 +63,11 @@ menu_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
     NHWindow *w = (NHWindow *)data;
     struct menu_info_t *menu_info = w->menu_information;
 
+#ifdef GTK_PROXY
+    menu_info->keysym = proxy_cb_map_menu_cmd(nh_keysym(event));
+#else
     menu_info->keysym = map_menu_cmd(nh_keysym(event));
+#endif
     if (event->keyval == GDK_Escape) {
 	menu_info->keysym = '\033';
 	menu_info->cancelled = 1;

@@ -994,7 +994,7 @@ nsb_unmung_line(p)
 }
 #endif /* NO_SCAN_BRACK */
 
-#ifdef GTK_GRAPHICS
+#if defined(GTK_GRAPHICS) || defined(PROXY_GRAPHICS)
 winid
 create_toptenwin()
 {

@@ -1,10 +1,11 @@
-/* $Id: callback.c,v 1.4 2002-06-23 15:32:20 j_ali Exp $ */
+/* $Id: callback.c,v 1.5 2002-06-23 18:31:23 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 /* #define DEBUG */
 
 #include "hack.h"
+#include "func_tab.h"
 #include "nhxdr.h"
 #include "winproxy.h"
 #include "proxycb.h"
@@ -30,6 +31,16 @@ static void FDECL(callback_get_option, \
 static void FDECL(callback_get_player_choices, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(callback_is_valid_selection, \
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(callback_quit_game, \
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(callback_display_score, \
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(callback_doset, \
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(callback_get_extended_commands, \
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(callback_map_menu_cmd, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 
 static void
@@ -269,6 +280,77 @@ NhExtXdr *request, *reply;
 
 #undef ITERATE
 
+static void
+callback_quit_game(id, request, reply)
+unsigned short id;
+NhExtXdr *request, *reply;
+{
+    if (program_state.something_worth_saving)
+	done2();
+    else {
+	clearlocks();
+	exit_nhwindows(NULL);
+	terminate(EXIT_SUCCESS);
+    }
+}
+
+static void
+callback_display_score(id, request, reply)
+unsigned short id;
+NhExtXdr *request, *reply;
+{
+    extern int proxy_rawprint_win;
+    char *argv[] = {
+	"nethack",
+	"-sall",
+    };
+
+    proxy_rawprint_win = create_toptenwin();
+    prscore(2, argv);
+    display_nhwindow(proxy_rawprint_win, TRUE);
+    destroy_toptenwin();
+    dlb_init();                         /* Re-initialise DLB */
+    proxy_rawprint_win = WIN_ERR;
+}
+
+static void
+callback_doset(id, request, reply)
+unsigned short id;
+NhExtXdr *request, *reply;
+{
+    doset();
+}
+
+static void
+callback_get_extended_commands(id, request, reply)
+unsigned short id;
+NhExtXdr *request, *reply;
+{
+    int i;
+    extern struct ext_func_tab extcmdlist[];
+    struct proxycb_get_extended_commands_res list;
+    for(i = 0; extcmdlist[i].ef_txt; i++)
+	;
+    list.n_commands = i;
+    list.commands = (const char **)alloc(i * sizeof(const char *));
+    for(i = 0; i < list.n_commands; i++)
+	list.commands[i] = extcmdlist[i].ef_txt;
+    nhext_rpc_params(reply, 1,
+      EXT_XDRF(proxycb_xdr_get_extended_commands_res, &list));
+    free(list.commands);
+}
+
+static void
+callback_map_menu_cmd(id, request, reply)
+unsigned short id;
+NhExtXdr *request, *reply;
+{
+    int ch, retval;
+    nhext_rpc_params(request, 1, EXT_INT_P(ch));
+    retval = map_menu_cmd(ch);
+    nhext_rpc_params(reply, 1, EXT_INT(retval));
+}
+
 struct nhext_svc proxy_callbacks[] = {
     EXT_CID_DISPLAY_INVENTORY,		callback_display_inventory,
     EXT_CID_DLBH_FOPEN,			callback_dlbh_fopen,
@@ -281,5 +363,10 @@ struct nhext_svc proxy_callbacks[] = {
     EXT_CID_GET_OPTION,			callback_get_option,
     EXT_CID_GET_PLAYER_CHOICES,		callback_get_player_choices,
     EXT_CID_IS_VALID_SELECTION,		callback_is_valid_selection,
+    EXT_CID_QUIT_GAME,			callback_quit_game,
+    EXT_CID_DISPLAY_SCORE,		callback_display_score,
+    EXT_CID_DOSET,			callback_doset,
+    EXT_CID_GET_EXTENDED_COMMANDS,	callback_get_extended_commands,
+    EXT_CID_MAP_MENU_CMD,		callback_map_menu_cmd,
     0, NULL,
 };

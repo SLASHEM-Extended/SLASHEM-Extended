@@ -1,4 +1,4 @@
-/* $Id: compxdr.c,v 1.4 2002-06-22 15:36:52 j_ali Exp $ */
+/* $Id: compxdr.c,v 1.5 2002-06-23 18:31:23 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -78,4 +78,12 @@ struct proxycb_get_player_choices_res *datum;
       nhext_xdr_array(xdr, (char **)&datum->roles, &datum->n_roles,
         (unsigned int)-1, sizeof(struct proxycb_get_player_choices_res_role),
 	proxycb_xdr_get_player_choices_res_role);
+}
+
+boolean proxycb_xdr_get_extended_commands_res(xdr, datum)
+NhExtXdr *xdr;
+struct proxycb_get_extended_commands_res *datum;
+{
+    return nhext_xdr_array(xdr, (char **)&datum->commands, &datum->n_commands,
+        (unsigned int)-1, sizeof(char *), nhext_xdr_wrapstring);
 }

@@ -1098,16 +1098,16 @@ just the ones that are compatible with the currently set options.
 player_selection procedure can be used as indices into these arrays.
 
 <h3>is_valid_selction</h3>
-<p><pre>
+<pre>
 struct is_valid_selection_req {
-	int role;
-	int race;
-	int gend;
-	int align;
+    int role;
+    int race;
+    int gend;
+    int align;
 };
 
-struct player_selection_res {
-	int retval;
+struct is_valid_selection_res {
+    int retval;
 };
 </pre>
 
@@ -1116,6 +1116,47 @@ forms a valid player selection. Any or all of role, race, gend and align
 may be passed as -1 in which case all possible values will be checked.
 
 <p>Returns 0 if the selection is invalid.
+
+<h3>quit_game</h3>
+quit_game takes no arguments and returns no values.
+
+<p>User request to quit the game.
+
+<h3>display_score</h3>
+display_score takes no arguments and returns no values.
+
+<p>Display the current score list.
+
+<h3>doset</h3>
+doset takes no arguments and returns no values.
+
+<p>Display the current options and allow the user to modify them.
+
+<h3>get_extended_commands</h3>
+<pre>
+typedef string commands<>;
+
+struct get_extended_commands_res {
+    commands ext_cmd_list<>;
+};
+</pre>
+
+<p>Get a list of extended commands. Note that this command list may change
+(for example when starting in wizard mode).
+
+<h3>map_menu_cmd</h3>
+<pre>
+struct map_menu_cmd_req {
+    int ch;
+};
+
+struct map_menu_cmd_res {
+    int retval;
+};
+</pre>
+
+<p>Map the given character to its corresponding menu command. If it
+doesn't match anything, just return the original.
 
 </body>
 </html>

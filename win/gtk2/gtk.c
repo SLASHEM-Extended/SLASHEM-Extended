@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.14 2002-06-23 15:32:20 j_ali Exp $
+  $Id: gtk.c,v 1.15 2002-06-23 18:31:23 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -570,6 +570,10 @@ game_option(GtkWidget *widget, gpointer data)
 static void
 game_topten(GtkWidget *widget, gpointer data)
 {
+#ifdef GTK_PROXY
+    in_topten++;			/* Prevent radar window appearing */
+    proxy_cb_display_score();
+#else
     winid id;
     char *argv[] = {
 	"nethack",
@@ -583,6 +587,7 @@ game_topten(GtkWidget *widget, gpointer data)
     destroy_toptenwin();
     dlb_init();				/* Re-initialise DLB */
     rawprint_win = WIN_ERR;
+#endif
     keysym = '\0';
     in_topten--;
 }
@@ -713,6 +718,9 @@ ext_command(GtkWidget *widget, gpointer data)
 static void
 quit()
 {
+#ifdef GTK_PROXY
+    proxy_cb_quit_game();
+#else
     if (program_state.something_worth_saving)
 	done2();
     else {
@@ -720,6 +728,7 @@ quit()
 	GTK_exit_nhwindows(NULL);
 	terminate(0);
     }
+#endif
 }
 
 static gint

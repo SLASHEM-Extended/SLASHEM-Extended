@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmisc.c,v 1.7 2002-05-08 09:51:08 j_ali Exp $
+  $Id: gtkmisc.c,v 1.8 2002-06-23 18:31:23 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -131,7 +131,11 @@ default_clicked(GtkWidget *widget, gpointer data)
 		    break;
 	    }
 	}
+#ifdef GTK_PROXY
+	proxy_cb_doset();
+#else
 	doset();
+#endif
 	nh_option_set();
     }
     else
