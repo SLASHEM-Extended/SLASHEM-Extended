@@ -1442,51 +1442,37 @@ int thrown;
                 hittxt = TRUE;
             }
         }
-	/* Checks for no_obj instead of !uwep */
-	if (Role_if(PM_MONK) && !Upolyd && !thrown &&
-	    no_obj &&  (!uarm || (uarm &&
-		    (uarm->otyp >= ROBE &&
-		     uarm->otyp <= ROBE_OF_WEAKNESS))) &&
-		     !uarms) {
 
-		/* just so we don't need another variable ... */
-		canhitmon = rnd(100);
-		if (canhitmon < u.ulevel / 8 &&
-				!thick_skinned(mdat)) {
-			if(!Blind)
-			pline("You strike %s extremely hard!",
-				mon_nam(mon));
-			tmp *= 2;
-			hittxt = TRUE;
+	/* Special monk strikes */
+	if (Role_if(PM_MONK) && !Upolyd && !thrown && no_obj &&
+		(!uarm || (uarm && uarm->otyp >= ROBE &&
+		 uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms &&
+		 distu(mon->mx, mon->my) == 1) {
+	    /* just so we don't need another variable ... */
+	    canhitmon = rnd(100);
+	    if (canhitmon < u.ulevel / 8 && !thick_skinned(mdat)) {
+		if (canspotmon(mon))
+		    You("strike %s extremely hard!", mon_nam(mon));
+		tmp *= 2;
+		hittxt = TRUE;
+	    } else if (canhitmon < u.ulevel / 4 && !thick_skinned(mdat)) {
+		if (canspotmon(mon))
+		    You("strike %s very hard!", mon_nam(mon));
+		tmp += tmp / 2;
+		hittxt = TRUE;
+	    } else if (canhitmon < u.ulevel / 2 && !bigmonst(mon->data) &&
+		    !thick_skinned(mdat)) {
+		if (canspotmon(mon))
+		    pline("%s %s from your powerful strike!", Monnam(mon),
+			  makeplural(stagger(mon->data, "stagger")));
+		/* avoid migrating a dead monster */
+		if (mon->mhp > tmp) {
+		    mhurtle(mon, u.dx, u.dy, 1);
+		    mdat = mon->data; /* in case of a polymorph trap */
+		    if (DEADMONSTER(mon)) already_killed = TRUE;
 		}
-		else if (canhitmon < u.ulevel / 4 &&
-				!thick_skinned(mdat)) {
-			if(!Blind)
-			pline("You strike %s very hard!",
-				mon_nam(mon));
-			tmp += (tmp/2);
-			hittxt = TRUE;
-		}
-		else if (canhitmon < u.ulevel / 2 &&
-			 !bigmonst(mon->data) && !thick_skinned(mdat)) {
-			if(!Blind)
-			pline("%s staggers from your powerful strike!",
-				Monnam(mon));
-			mon->mstun = 1;
-			hittxt = TRUE;
-			if (mon->mcanmove && mon != u.ustuck) {
-			    /* see if the monster has a place to move into */
-			    mdx = mon->mx + u.dx;
-			    mdy = mon->my + u.dy;
-			    if (goodpos(mdx, mdy, mon, 0)) {
-				remove_monster(mon->mx, mon->my);
-				newsym(mon->mx, mon->my);
-				place_monster(mon, mdx, mdy);
-				newsym(mon->mx, mon->my);
-				set_apparxy(mon);
-			    }
-			}
-		} 
+		hittxt = TRUE;
+	    }
 	}
 
 	if (!already_killed) mon->mhp -= tmp;
