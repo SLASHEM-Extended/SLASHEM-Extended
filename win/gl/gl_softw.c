@@ -53,6 +53,55 @@ static GH_INLINE Uint32 rgb2sdl(SDL_PixelFormat *fmt, rgbcol_t color)
   return SDL_MapRGB(fmt, r, g, b);
 }
 
+static void create_iso_borders(struct TileSet *set)
+{
+  int x, y;
+  Uint32 c;
+  
+  /* the surface consists of three tiles, one for the corners, one for
+   * horizontal lines, and one for vertical lines.  "+ - |"
+   */
+  set->borders = SDL_CreateRGBSurface(SDL_SWSURFACE, 48 * 3, 64,
+      8 /* bpp */, 0, 0, 0, 0);
+ 
+  if (! set->borders)
+    sdlgl_error("Couldn't create SDL surface for iso borders.\n");
+
+  sdlgl_set_surface_colors(set->borders);
+  SDL_SetColorKey(set->borders, SDL_SRCCOLORKEY, TRANS_PIX);
+ 
+  c = rgb2sdl(set->borders->format, BORDER_COL);
+
+  for (y=0; y < 64; y++)
+  for (x=0; x < 48; x++)
+  {
+    int horiz = (y == 48) && (x >= 8) && (x < 40);
+    int vert  = (y >= 32) && (x == (48 - y / 2));
+
+    SDL_Rect drect;
+
+    drect.x = x; drect.y = y;
+    drect.w = drect.h = 1;
+
+    SDL_FillRect(set->borders, &drect, (horiz || vert) ? c : TRANS_PIX);
+
+    drect.x = x + 48; drect.y = y;
+    drect.w = drect.h = 1;
+
+    SDL_FillRect(set->borders, &drect, horiz ? c : TRANS_PIX);
+
+    drect.x = x + 96; drect.y = y;
+    drect.w = drect.h = 1;
+
+    SDL_FillRect(set->borders, &drect, vert ? c : TRANS_PIX);
+  }
+
+  set->borders_small = sdlgl_shrink_surface(set->borders);
+
+  if (! set->borders_small)
+    sdlgl_error("Could not create surface for shrunken borders.\n");
+}
+
 static struct TileSet *sw_load_tileset(const char *filename,
     int tile_w, int tile_h, int is_text, int *across, int *down)
 {
@@ -61,6 +110,7 @@ static struct TileSet *sw_load_tileset(const char *filename,
   unsigned char *data_ptr;
   int width, height;
   int num_w, num_h;
+  int is_isometric = ! is_text && tile_h == 64;
 
   data_ptr = sdlgl_load_png_file(filename, &width, &height);
   if (! data_ptr)
@@ -77,12 +127,12 @@ static struct TileSet *sw_load_tileset(const char *filename,
 
   free(data_ptr);
 
-  set->surf_16 = NULL;
-  if (tile_h == 32)
+  set->surf_small = NULL;
+  if (tile_h >= 32)
   {
-    set->surf_16 = sdlgl_shrink_surface(set->surf);
+    set->surf_small = sdlgl_shrink_surface(set->surf);
 
-    if (! set->surf_16)
+    if (! set->surf_small)
     {
       sdlgl_error("Could not create surface for shrunken tileset.\n");
       return NULL; /* NOT REACHED */
@@ -94,6 +144,10 @@ static struct TileSet *sw_load_tileset(const char *filename,
   num_w = set->surf->w / tile_w;
   num_h = set->surf->h / tile_h;
   set->tile_num = num_w * num_h;
+
+  set->lap_w = is_isometric ? 16 : 0;
+  set->lap_h = is_isometric ? 32 : 0;
+  set->lap_skew = is_isometric ? 16 : 0;
 
   set->pack_w = num_w;
   set->pack_h = num_h;
@@ -108,6 +162,12 @@ static struct TileSet *sw_load_tileset(const char *filename,
   if (is_text)
   {
     sdlgl_create_font_cache(set);
+  }
+
+  set->borders = set->borders_small = NULL;
+  if (is_isometric)
+  {
+    create_iso_borders(set);
   }
    
   if (across)
@@ -126,9 +186,9 @@ static void sw_free_tileset(struct TileSet *set)
     set->surf = NULL;
   }
 
-  if (set->surf_16)
+  if (set->surf_small)
   {
-    SDL_FreeSurface(set->surf_16);
+    SDL_FreeSurface(set->surf_small);
     set->surf = NULL;
   }
 
@@ -231,7 +291,7 @@ static GH_INLINE void draw_line(int x1, int y1, int x2, int y2,
 {
   SDL_Rect r;
 
-  /* doesn't handle diagonal lines */
+  /* doesn't handle diagonal lines (never will) */
   assert(x1 == x2 || y1 == y2);
 
   if (x1 == x2)  /* vertical line */
@@ -300,8 +360,8 @@ static void sw_draw_one_extra(struct TileWindow *win, struct ExtraShape *shape)
   sw = win->scale_w;
   sh = win->scale_h;
 
-  sx = win->scr_x + shape->x * sw - win->pan_x;
-  sy = win->scr_y + shape->y * sh - win->pan_y;
+  sx = win->scr_x - win->pan_x + shape->x * sw + shape->y * win->scale_skew;
+  sy = win->scr_y - win->pan_y + shape->y * sh;
    
   /* trivial clipping */
   if (sx + sw <= win->scr_x || sx >= win->scr_x + win->scr_w)
@@ -325,8 +385,8 @@ static void sw_draw_one_extra(struct TileWindow *win, struct ExtraShape *shape)
       if (sw < 14 || sh < 14)
         return;
 
-      sx += sw - 8;
-      sy += sh - 8;
+      sx += (win->scale_full_w + sw) / 2 - 8;
+      sy += (win->scale_full_h + sh) / 2 - 8;
 
       drect.w = drect.h = 8;
       drect.x = sx;
@@ -358,11 +418,14 @@ static void sw_draw_cursor(struct TileWindow *win)
    
   assert(x >= 0 && y >= 0 && w > 0);
 
-  sw = win->scale_w * w;
+  sw = win->scale_w;
   sh = win->scale_h;
 
-  sx = win->scr_x + x * sw - win->pan_x;
-  sy = win->scr_y + y * sh - win->pan_y;
+  sx = win->scr_x - win->pan_x + x * sw + y * win->scale_skew;
+  sy = win->scr_y - win->pan_y + y * sh;
+
+  sw = sw * (w - 1) + win->scale_full_w;
+  sh = win->scale_full_h;
 
   /* trivial clipping */
   if (sx + sw <= win->scr_x || sx >= win->scr_x + win->scr_w ||
@@ -396,7 +459,7 @@ static void sw_draw_cursor(struct TileWindow *win)
   }
 }
 
-static void sw_begin_tile_draw(int blending)
+static void sw_begin_tile_draw(int blending, int overlap)
 {
   /* nothing needed */
 }
@@ -407,7 +470,7 @@ static void sw_finish_tile_draw(void)
 }
 
 static void sw_draw_one_tile(struct TileWindow *win, int sx, int sy,
-    int sw, int sh, tileidx_t tile, tilecol_t tilecol, short pass)
+    int sw, int sh, tileidx_t tile, tilecol_t tilecol, short layer)
 {
   struct TileSet *set = win->set;
 
@@ -467,12 +530,63 @@ static void sw_draw_one_tile(struct TileWindow *win, int sx, int sy,
   {
     surf = set->surf;
 
-    if (set->surf_16 && set->tile_w == 32 && win->scale_h == 16)
+    if (set->surf_small && set->tile_h / 2 == win->scale_full_h)
     {
-      surf = set->surf_16;
+      surf = set->surf_small;
 
       trect.x /= 2; trect.y /= 2; trect.w /= 2; trect.h /= 2;
     }
+  }
+
+  sdlgl_dirty_matrix_blit(sdlgl_matrix, surf, &trect, &drect, 0,
+      win->scr_depth);
+}
+
+static void draw_iso_border_tile(struct TileWindow *win, int x, int y)
+{
+  struct TileSet *set = win->set;
+
+  SDL_Rect trect, drect;
+  SDL_Surface *surf;
+
+  int sx = win->scr_x - win->pan_x + x * win->scale_w + y * win->scale_skew;
+  int sy = win->scr_y - win->pan_y + y * win->scale_h;
+  int tile;
+
+  assert(set);
+
+  /* SDL coordinates are y-inverted from OpenGL coordinates */
+  drect.x = sx;
+  drect.y = sdlgl_surf->h - sy - win->scale_h;
+  drect.w = win->scale_full_w;
+  drect.h = win->scale_full_h;
+
+  /* ignore tiles that are not dirty */
+  if (sdlgl_dirty_matrix_test(sdlgl_matrix, drect.x, drect.y,
+      drect.w, drect.h, win->scr_depth) == 0)
+  {
+    return;
+  }
+
+  if (x > 0 && x < win->total_w - 1)
+    tile = 1;
+  else if (y > 0 && y < win->total_h - 1)
+    tile = 2;
+  else
+    tile = 0;
+ 
+  trect.x = tile * 48;
+  trect.y = 0;
+  trect.w = 48;
+  trect.h = 64;
+
+  surf = set->borders;
+
+  if (set->borders_small && set->tile_h / 2 == win->scale_full_h)
+  {
+    surf = set->borders_small;
+
+    trect.x /= 2; trect.y /= 2; trect.w /= 2; trect.h /= 2;
   }
 
   sdlgl_dirty_matrix_blit(sdlgl_matrix, surf, &trect, &drect, 0,
@@ -488,6 +602,26 @@ static void sw_draw_border(struct TileWindow *win, rgbcol_t col)
   int sides = 0x1111;   /* L, R, B, T */
 
   Uint32 c;
+
+  /* handle isometric tileset specially, since the dirty matrix code
+   * doesn't support drawing diagonal lines (would *really* mess it
+   * up).
+   */
+  if (win->set->borders)
+  {
+    for (x1 = 0; x1 < win->total_w; x1++)
+    {
+      draw_iso_border_tile(win, x1, 0);
+      draw_iso_border_tile(win, x1, win->total_h - 1);
+    }
+
+    for (y1 = 0; y1 < win->total_h; y1++)
+    {
+      draw_iso_border_tile(win, 0, y1);
+      draw_iso_border_tile(win, win->total_w - 1, y1);
+    }
+    return;
+  }
 
   x1 = win->scr_x - win->pan_x;
   y1 = win->scr_y - win->pan_y;

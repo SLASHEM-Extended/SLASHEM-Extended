@@ -17,21 +17,13 @@
 #include "winGL.h"
 
 
-static struct ZoomInfo
+static int zoom_sets[] =
 {
-  int scale_w, scale_h;
-}
-zoom_sets[] =
-{
-  { 10, 10 },
-  { 12, 12 },
-  { 16, 16 },
-  { 20, 20 },
-  { 24, 24 },
-  { 32, 32 },
-  { 40, 40 },
-  { 48, 48 },
-  { 64, 64 }
+  10, 12,
+  16, 20, 24, 
+  32, 40, 48, 
+  64, 80, 96,
+  128
 };
 
 #define MAX_ZOOM  (sizeof(zoom_sets) / sizeof(zoom_sets[0]))
@@ -58,14 +50,14 @@ int sdlgl_quantize_zoom(int zoom_h)
 
   for (i=MAX_ZOOM; i > 0; i--)
   {
-    if (zoom_h >= zoom_sets[i].scale_h)
+    if (zoom_h >= zoom_sets[i])
       break;
   }
 
-  return zoom_sets[i].scale_h;
+  return zoom_sets[i];
 }
 
-static void center_on_map(struct TextWindow *win)
+static void center_on_text_map(struct TextWindow *win)
 {
   int tw, th;
   int mx, my;
@@ -76,6 +68,8 @@ static void center_on_map(struct TextWindow *win)
   tw = win->base->scale_w;
   th = win->base->scale_h;
 
+  /* doesn't need to use scale_skew (text map is never skewed) */
+
   mx = win->base->total_w * tw / 2 - win->base->scr_w / 2;
   my = win->base->total_h * th / 2 - win->base->scr_h / 2;
 
@@ -84,7 +78,7 @@ static void center_on_map(struct TextWindow *win)
 
 static void center_on_player(struct TextWindow *win)
 {
-  int tw, th;
+  int tw, th, tk;
   int fx, fy;
 
   assert(win->base);
@@ -92,8 +86,10 @@ static void center_on_player(struct TextWindow *win)
 
   tw = win->base->scale_w;
   th = win->base->scale_h;
+  tk = win->base->scale_skew;
 
-  fx = win->focus_x * tw + tw / 2 - win->base->scr_w / 2;
+  fx = win->focus_x * tw + tw / 2 - win->base->scr_w / 2 + 
+       win->focus_y * tk;
   fy = win->focus_y * th + th / 2 - win->base->scr_h / 2;
 
   sdlgl_set_pan(win->base, fx, fy);
@@ -130,18 +126,15 @@ void sdlgl_create_map(struct TextWindow *win, int w, int h)
     win->zoom_h = iflags.wc_tile_height;
 
     sdlgl_change_tileset(win->base, sdlgl_font_map, 1);
+    sdlgl_set_scale(win->base, sdlgl_font_map->tile_h);
 
-    sdlgl_set_scale(win->base,
-        sdlgl_font_map->tile_w, sdlgl_font_map->tile_h);
-
-    center_on_map(win);
+    center_on_text_map(win);
   }
   else
   {
     win->zoom_h = sdlgl_def_zoom;
 
-    /* assumes square tiles ! */
-    sdlgl_set_scale(win->base, win->zoom_h, win->zoom_h);
+    sdlgl_set_scale(win->base, win->zoom_h);
 
     center_on_player(win);
   }
@@ -517,7 +510,7 @@ static void clip_vector(int *dx, int *dy, int w, int h)
  */
 static void update_jail(struct TextWindow *win)
 {
-  int fx, fy, tw, th;
+  int fx, fy, tw, th, tk;
   int jx, jy, jw, jh;
   int extra_x, extra_y;
 
@@ -527,6 +520,7 @@ static void update_jail(struct TextWindow *win)
 
   tw = base->scale_w;
   th = base->scale_h;
+  tk = base->scale_skew;
 
   /* no jail required for text view.  We just center the map on the
    * screen.  We assume it fits -- only when using a very small mode
@@ -544,7 +538,7 @@ static void update_jail(struct TextWindow *win)
     int marg_x = tw * iflags.wc_scroll_margin * 17 / 10;
     int marg_y = th * iflags.wc_scroll_margin;
 
-    fx = win->focus_x * tw + tw / 2;
+    fx = win->focus_x * tw + tw / 2 + win->focus_y * tk;
     fy = win->focus_y * th + th / 2;
 
     if (fx < win->map_px + marg_x ||
@@ -582,7 +576,7 @@ static void update_jail(struct TextWindow *win)
    * Removing the loops is left as an exercise for the reader :).
    */
   
-  fx = win->focus_x * tw + tw / 2;
+  fx = win->focus_x * tw + tw / 2 + win->focus_y * tk;
   fy = win->focus_y * th + th / 2;
 
   /* jail no smaller than one tile */
@@ -726,7 +720,7 @@ static void do_zoom(struct TextWindow *win, int zoom_h)
 {
   struct TileWindow *base;
   
-  int tw, th;
+  int tw, th, tk;
   int dx, dy;
   int cur_x, cur_y;
 
@@ -746,10 +740,11 @@ static void do_zoom(struct TextWindow *win, int zoom_h)
    */
   tw = base->scale_w;
   th = base->scale_h;
+  tk = base->scale_skew;
 
-  cur_x = win->focus_x * tw + tw / 2 - win->map_px;
+  cur_x = win->focus_x * tw + tw / 2 - win->map_px + win->focus_y * tk;
   cur_y = win->focus_y * th + th / 2 - win->map_py;
- 
+
   /* update zoom */
 
   win->zoom_h = zoom_h;
@@ -757,12 +752,13 @@ static void do_zoom(struct TextWindow *win, int zoom_h)
   /* update panning, so that the focus tile remains as close as
    * possible on the screen to where it was before.
    */
-  tw = zoom_h;  /* assumes square tiles ! */
-  th = zoom_h;
- 
-  sdlgl_set_scale(win->base, tw, th);
+  sdlgl_set_scale(win->base, zoom_h);
 
-  win->map_px = win->focus_x * tw + tw / 2 - cur_x;
+  tw = win->base->scale_w;
+  th = win->base->scale_h;
+  tk = win->base->scale_skew;
+
+  win->map_px = win->focus_x * tw + tw / 2 - cur_y + win->focus_y * tk;
   win->map_py = win->focus_y * th + th / 2 - cur_y;
 
   /* move jail center towards focus, upto 1 tile step.  The rough
@@ -837,7 +833,7 @@ void sdlgl_zoom_map(int adjust)
       int i;
 
       for (i=0; i < MAX_ZOOM; i++)
-        if (zoom_sets[i].scale_h == win->zoom_h)
+        if (zoom_sets[i] == win->zoom_h)
           break;
 
       assert(i != MAX_ZOOM);
@@ -845,7 +841,7 @@ void sdlgl_zoom_map(int adjust)
       if ((i + adjust) < 0 || (i + adjust) >= MAX_ZOOM)
         return;
 
-      zoom_h = zoom_sets[i + adjust].scale_h;
+      zoom_h = zoom_sets[i + adjust];
     }
   }
  
@@ -885,8 +881,7 @@ void sdlgl_toggle_text_view(void)
     sdlgl_change_tileset(win->base, sdlgl_tiles, 0);
     update_all_glyphs(win);
 
-    /* assumes square tiles ! */
-    sdlgl_set_scale(win->base, win->zoom_h, win->zoom_h);
+    sdlgl_set_scale(win->base, win->zoom_h);
 
     update_jail(win);
     return;
@@ -895,10 +890,9 @@ void sdlgl_toggle_text_view(void)
   sdlgl_change_tileset(win->base, sdlgl_font_map, 1);
   update_all_glyphs(win);
 
-  sdlgl_set_scale(win->base,
-      sdlgl_font_map->tile_w, sdlgl_font_map->tile_h);
+  sdlgl_set_scale(win->base, sdlgl_font_map->tile_h);
 
-  center_on_map(win);
+  center_on_text_map(win);
 }
 
 #ifdef POSITIONBAR
@@ -926,20 +920,16 @@ int sdlgl_map_find_click(int *x, int *y)
 
   base = win->base;
 
-  xx = *x;
-  yy = sdlgl_height - 1 - *y;
+  xx = *x - base->scr_x;
+  yy = sdlgl_height - 1 - *y - base->scr_y;
 
-  if (xx < base->scr_x || yy < base->scr_y ||
-      xx >= base->scr_x + base->scr_w ||
-      yy >= base->scr_y + base->scr_h)
-  {
+  if (xx < 0 || yy < 0 || xx >= base->scr_w || yy >= base->scr_h)
     return 0;
-  }
 
-  xx = (xx - base->scr_x + base->pan_x) / base->scale_w;
-  yy = (yy - base->scr_y + base->pan_y) / base->scale_h;
+  yy = (yy + base->pan_y) / base->scale_h;
+  xx = (xx + base->pan_x - yy * base->scale_skew) / base->scale_w;
  
-  if (xx < 0 || xx >= base->total_w || yy < 0 || yy >= base->total_h)
+  if (xx < 0 || yy < 0 || xx >= base->total_w || yy >= base->total_h)
     return 0;
   
   *x = xx;

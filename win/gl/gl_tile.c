@@ -559,8 +559,11 @@ struct TileWindow *sdlgl_new_tilewin(struct TileSet *set,
   win->mapped_idx = -1;
 
   /* set defaults */
-  win->scale_w = set->tile_w;
-  win->scale_h = set->tile_h;
+  win->scale_full_w = set->tile_w;
+  win->scale_full_h = set->tile_h;
+  win->scale_w = set->tile_w - set->lap_w;
+  win->scale_h = set->tile_h - set->lap_h;
+  win->scale_skew = set->lap_skew;
   win->pan_x = win->pan_y = 0;
   win->background = RGB_MAKE(0, 0, 0);
   win->curs_x = win->curs_y = -1;
@@ -704,11 +707,11 @@ static GH_INLINE void mark_dirty_tiles(struct TileWindow *win,
 {
   int x2, y2;
 
-  x = win->scr_x - win->pan_x + x * win->scale_w;
+  x = win->scr_x - win->pan_x + x * win->scale_w + y * win->scale_skew;
   y = win->scr_y - win->pan_y + y * win->scale_h;
 
-  x2 = x + w * win->scale_w;
-  y2 = y + h * win->scale_h;
+  x2 = x + w * win->scale_full_w;
+  y2 = y + h * win->scale_full_h;
 
   /* clip to window coords */
 
@@ -720,7 +723,7 @@ static GH_INLINE void mark_dirty_tiles(struct TileWindow *win,
 
   if (x2 <= x || y2 <= y)
     return;
-      
+   
   sdlgl_mark_dirty(x, y, x2 - x, y2 - y, win->scr_depth);
 }
 
@@ -910,10 +913,22 @@ void sdlgl_transfer_line(struct TileWindow *win, int x, int y,
   }
 }
  
-void sdlgl_set_scale(struct TileWindow *win, int w, int h)
+void sdlgl_set_scale(struct TileWindow *win, int h)
 {
-  win->scale_w = w;
-  win->scale_h = h;
+  int th = win->set->tile_h;
+
+  int lw = win->set->lap_w * h / th;
+  int lh = win->set->lap_h * h / th;
+
+  win->scale_full_w = win->set->tile_w * h / th;
+  win->scale_full_h = h;
+
+  win->scale_w = win->scale_full_w - lw;
+  win->scale_h = win->scale_full_h - lh;
+  win->scale_skew = win->set->lap_skew * h / th;
+
+  assert(win->scale_w > 0);
+  assert(win->scale_h > 0);
 
   sdlgl_mark_dirty(win->scr_x, win->scr_y, win->scr_w, win->scr_h,
       win->scr_depth);
@@ -976,7 +991,7 @@ int sdlgl_test_tile_visible(int start_idx, int x, int y, int w, int h)
 static void draw_tilewindow(struct TileWindow *win)
 {
   int x, y, n;
-  int sx, sy, sw, sh;
+  int sx, sy, sw, sh, sfw, sfh;
   int top, bottom, left, right;
   tilecol_t tilecol = 0;
   struct TilePair *cur;
@@ -994,33 +1009,42 @@ static void draw_tilewindow(struct TileWindow *win)
    */
   sdlgl_enable_clipper(win->scr_x, win->scr_y, win->scr_w, win->scr_h);
 
-  sw = win->scale_w;
-  sh = win->scale_h;
- 
+  if (win->has_border)
+    sdlgl_draw_border(win, BORDER_COL);
+
   /* block cursors are drawn under (text) tiles, outline cursors are
    * drawn over (map) tiles.
    */
   if (win->curs_x >= 0 && win->curs_block)
     sdlgl_draw_cursor(win);
 
-  sdlgl_begin_tile_draw(1);
+  sdlgl_begin_tile_draw(1, (win->set->lap_w || win->set->lap_h));
 
-  top    = win->scr_y - sh;
-  bottom = win->scr_y + win->scr_h;
-  left   = win->scr_x - sw;
+  sw = win->scale_w;
+  sh = win->scale_h;
+  sfw = win->scale_full_w;
+  sfh = win->scale_full_h;
+ 
+  top    = win->scr_y + win->scr_h;
+  bottom = win->scr_y;
+  left   = win->scr_x;
   right  = win->scr_x + win->scr_w;
   
-  for (y=0, sy=win->scr_y - win->pan_y; y < win->total_h; y++, sy += sh)
+  for (y=win->total_h - 1; y >= 0; y--)
   {
-    if (sy <= top || sy >= bottom)
+    sy = win->scr_y - win->pan_y + y * sh;
+
+    if (sy + sfh <= bottom || sy >= top)
       continue;
 
-    for (x=0, sx=win->scr_x - win->pan_x; x < win->total_w; x++, sx += sw)
+    for (x=0; x < win->total_w; x++)
     {
-      if (sx <= left || sx >= right)
+      sx = win->scr_x - win->pan_x + x * sw + y * win->scale_skew;
+       
+      if (sx + sfw <= left || sx >= right)
         continue;
       
-      if (!sdlgl_test_tile_visible(win->mapped_idx + 1, sx, sy, sw, sh))
+      if (!sdlgl_test_tile_visible(win->mapped_idx + 1, sx, sy, sfw, sfh))
         continue;
       
       cur = win->tiles + (y * win->total_w + x);
@@ -1034,21 +1058,18 @@ static void draw_tilewindow(struct TileWindow *win)
       if (! win->is_text)
       {
         if (cur->u.bg != TILE_EMPTY)
-          sdlgl_draw_one_tile(win, sx, sy, sw, sh, cur->u.bg, 0, 0);
+          sdlgl_draw_one_tile(win, sx, sy, sfw, sfh, cur->u.bg, 0, 0);
 
         if (cur->mg != TILE_EMPTY)
-          sdlgl_draw_one_tile(win, sx, sy, sw, sh, cur->mg, 0, 1);
+          sdlgl_draw_one_tile(win, sx, sy, sfw, sfh, cur->mg, 0, 1);
       }
 
       if (cur->fg != TILE_EMPTY)
-        sdlgl_draw_one_tile(win, sx, sy, sw, sh, cur->fg, tilecol, 2);
+        sdlgl_draw_one_tile(win, sx, sy, sfw, sfh, cur->fg, tilecol, 2);
     }
   }
 
   sdlgl_finish_tile_draw();
-
-  if (win->has_border)
-    sdlgl_draw_border(win, BORDER_COL);
 
   /* draw the extra shapes, like the love heart */
   for (n=0; n < win->extra_num; n++)

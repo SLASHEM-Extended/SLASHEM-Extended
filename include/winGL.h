@@ -265,7 +265,7 @@ struct GraphicUnit
 E void NDECL(sdlgl_unit_startup);
 E void NDECL(sdlgl_unit_shutdown);
 
-E void FDECL(sdlgl_begin_units, (int));
+E void FDECL(sdlgl_begin_units, (int, int));
 E void FDECL(sdlgl_add_unit, (GLuint,float,float,float,float,
       short,short,short,short,short,rgbcol_t,float));
 E void NDECL(sdlgl_finish_units);
@@ -320,8 +320,11 @@ struct TileSet
   /* size of each tile */
   int tile_w, tile_h;
 
-  /* overlap size.  Only non-zero for the pseudo 3D tileset */
+  /* overlap size.  Only non-zero for the pseudo 3D tileset.  lap_skew
+   * is the difference (of horizontal pixels) between to rows.
+   */
   int lap_w, lap_h;
+  int lap_skew;
 
   /* number of tiles horizontal/vertical that fit in each 256x256
    * image (or whatever size the 3D card supports).  Tiles are packed
@@ -349,11 +352,18 @@ struct TileSet
   unsigned char *has_alpha;
 
   /* for Software mode, this surface contains the tiles.  When using
-   * the 32x32 tileset, surf_16 contains the shrunk-down version
-   * (otherwise it is NULL).
+   * large tilesets (32x32 and 48x64), surf_small contains the
+   * shrunk-down version (otherwise it is NULL).
    */
   SDL_Surface *surf;
-  SDL_Surface *surf_16;
+  SDL_Surface *surf_small;
+
+  /* when using the Isometric tileset in software mode, these contain
+   * some extra tiles to draw the map borders.  (Needed since the
+   * dirty matrix code doesn't support drawing diagonal lines).
+   */
+  SDL_Surface *borders;
+  SDL_Surface *borders_small;
 
   /* fonts are normally bright white.  For software mode, we need to
    * colorise them, and this is done by the font cache.  This is
@@ -430,9 +440,13 @@ struct TileWindow
   int pan_x, pan_y;
   
   /* used for zooming.  The values represent the displayed size of
-   * each tile (in screen pixels).
+   * each tile (in screen pixels).  For NHW_MAP windows using the
+   * pseudo 3D tileset, scale_w/h *ignore* the overlap portion of the
+   * tiles (i.e. they give the stepping distance).
    */
   int scale_w, scale_h;
+  int scale_full_w, scale_full_h;  /* !!!! Document */
+  int scale_skew;
 
   /* the position (in terms of tiles) where to draw a cursor.
    * Negative values mean that no cursor should be drawn.
@@ -506,7 +520,7 @@ E void FDECL(sdlgl_transfer_area, (struct TileWindow *, int, int,
       int, int, struct TileWindow *, int, int));
 E void FDECL(sdlgl_transfer_line, (struct TileWindow *, int, int,
       int, struct TilePair *, int));
-E void FDECL(sdlgl_set_scale, (struct TileWindow *, int, int));
+E void FDECL(sdlgl_set_scale, (struct TileWindow *, int));
 E void FDECL(sdlgl_set_cursor, (struct TileWindow *, int, int, int));
 
 
@@ -639,7 +653,7 @@ struct rendering_procs
   void FDECL((*draw_one_extra), (struct TileWindow *,
       struct ExtraShape *));
   void FDECL((*draw_cursor), (struct TileWindow *));
-  void FDECL((*begin_tile_draw), (int));
+  void FDECL((*begin_tile_draw), (int, int));
   void FDECL((*draw_one_tile), (struct TileWindow *, int, int,
       int, int, tileidx_t, tilecol_t, short));
   void NDECL((*finish_tile_draw));

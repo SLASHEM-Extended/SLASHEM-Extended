@@ -25,6 +25,7 @@ int sdlgl_tex_max = 0;
 static struct GraphicUnit unit_array[MAX_UNITS];
 static short unit_map[MAX_UNITS];
 static int num_units = 0;
+static int unit_overlap = 0;
 
 
 void sdlgl_unit_startup(void)
@@ -143,7 +144,8 @@ static void flush_units(void)
   for (i=0; i < num_units; i++)
     unit_map[i] = i;
 
-  qsort(unit_map, num_units, sizeof(short), unit_compare);
+  if (! unit_overlap)
+    qsort(unit_map, num_units, sizeof(short), unit_compare);
 
   glEnable(GL_TEXTURE_2D);
 
@@ -195,12 +197,14 @@ static void flush_units(void)
 /* ---------------------------------------------------------------- */
 
 
-void sdlgl_begin_units(int blending)
+void sdlgl_begin_units(int blending, int overlap)
 {
   assert(num_units == 0);
 
   if (blending)
     glEnable(GL_BLEND);
+
+  unit_overlap = overlap;
 }
 
 void sdlgl_add_unit(GLuint id, float tx1, float ty1, 

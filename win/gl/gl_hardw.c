@@ -216,8 +216,8 @@ static struct TileSet *hw_load_tileset(const char *filename,
     return NULL; /* NOT REACHED */
   }
 
-  num_w  = image_w / tile_w;
-  num_h  = image_h / tile_h;
+  num_w = image_w / tile_w;
+  num_h = image_h / tile_h;
 
   set = (struct TileSet *) alloc(sizeof(struct TileSet));
   memset(set, 0, sizeof(struct TileSet));
@@ -225,6 +225,10 @@ static struct TileSet *hw_load_tileset(const char *filename,
   set->tile_num = num_h * num_w;
   set->tile_w = tile_w;
   set->tile_h = tile_h;
+  
+  set->lap_w = (tile_h == 64) ? 16 : 0;
+  set->lap_h = (tile_h == 64) ? 32 : 0;
+  set->lap_skew = (tile_h == 64) ? 16 : 0;
 
   set->tex_size_w = sdlgl_tex_max;
   set->tex_size_h = sdlgl_tex_max;
@@ -472,8 +476,8 @@ static void hw_draw_one_extra(struct TileWindow *win,
   sw = win->scale_w;
   sh = win->scale_h;
 
-  sx = win->scr_x + shape->x * sw - win->pan_x;
-  sy = win->scr_y + shape->y * sh - win->pan_y;
+  sx = win->scr_x - win->pan_x + shape->x * sw + shape->y * win->scale_skew;
+  sy = win->scr_y - win->pan_y + shape->y * sh;
    
   /* trivial clipping */
   if (sx + sw <= win->scr_x || sx >= win->scr_x + win->scr_w)
@@ -492,12 +496,14 @@ static void hw_draw_one_extra(struct TileWindow *win,
       /* 
        * par1: 0 is normal, 1 puts it on the left.
        */
-      sx += sw * (shape->par1 ? 1 : 3) / 4;
+      sx += win->scale_full_w * (shape->par1 ? 1 : 3) / 4;
 
       size = (win->scale_h <= 10) ? 6 : 8;
 
       if (win->scale_h > 24)
         size += (win->scale_h - 24) / 4;
+
+      sy += (win->scale_full_h - sh) * 3 / 5;
 
       if (win->scale_h < 16)
         sy += 4;
@@ -539,12 +545,15 @@ static void hw_draw_cursor(struct TileWindow *win)
   
   assert(x >= 0 && y >= 0 && w > 0);
 
-  sw = win->scale_w * w;
+  sw = win->scale_w;
   sh = win->scale_h;
 
-  sx = win->scr_x + x * sw - win->pan_x;
-  sy = win->scr_y + y * sh - win->pan_y;
+  sx = win->scr_x - win->pan_x + x * sw + y * win->scale_skew;
+  sy = win->scr_y - win->pan_y + y * sh;
    
+  sw = sw * (w - 1) + win->scale_full_w;
+  sh = win->scale_full_h;
+
   /* trivial clipping */
   if (sx + sw <= win->scr_x || sx >= win->scr_x + win->scr_w)
     return;
@@ -577,9 +586,11 @@ static void hw_draw_cursor(struct TileWindow *win)
 static void hw_draw_border(struct TileWindow *win, rgbcol_t col)
 {
   int sx, sy, sw, sh;
+  int skew;
   
   sw = win->total_w * win->scale_w;
   sh = win->total_h * win->scale_h;
+  skew = win->total_h * win->scale_skew;
 
   sx = win->scr_x - win->pan_x;
   sy = win->scr_y - win->pan_y;
@@ -588,15 +599,15 @@ static void hw_draw_border(struct TileWindow *win, rgbcol_t col)
 
   glBegin(GL_LINE_LOOP);
   glVertex2i(sx, sy);
-  glVertex2i(sx, sy+sh);
-  glVertex2i(sx+sw, sy+sh);
+  glVertex2i(sx+skew, sy+sh);
+  glVertex2i(sx+skew+sw, sy+sh);
   glVertex2i(sx+sw, sy);
   glEnd();
 }
 
-static void hw_begin_tile_draw(int blending)
+static void hw_begin_tile_draw(int blending, int overlap)
 {
-  sdlgl_begin_units(blending);
+  sdlgl_begin_units(blending, overlap);
 }
 
 static void hw_finish_tile_draw(void)
@@ -605,7 +616,7 @@ static void hw_finish_tile_draw(void)
 }
 
 static void hw_draw_one_tile(struct TileWindow *win, int sx, int sy,
-    int sw, int sh, tileidx_t tile, tilecol_t tilecol, short pass)
+    int sw, int sh, tileidx_t tile, tilecol_t tilecol, short layer)
 {
   struct TileSet *set = win->set;
   rgbcol_t color;
@@ -653,7 +664,7 @@ static void hw_draw_one_tile(struct TileWindow *win, int sx, int sy,
     color = RGB_MAKE(255, 255, 255);
 
   sdlgl_add_unit(set->tex_ids[til_idx], tx1, ty1, tx2, ty2,
-      sx, sy, sw, sh, pass, color, 
+      sx, sy, sw, sh, layer, color, 
       win->see_through ? RIP_ALPHA : 1.0);
 }
 

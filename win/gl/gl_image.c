@@ -154,7 +154,7 @@ static unsigned char gamma_table_bottom[256] =
 
 void sdlgl_generate_gamma_table(void)
 {
-  int i, result;
+  int i, result = 0;
 
   for (i=0; i < 256; i++)
   {

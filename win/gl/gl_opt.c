@@ -89,12 +89,17 @@ static struct LocalOption local_option_list[] =
   { "windowed", "Runs in a window instead of fullscreen",
     &sdlgl_windowed, VALTYPE_BOOLEAN, 0 },
 
-  { "gamma", "Gamma correction (-2 to 2, 0 is normal)",
+  { "gamma", "Gamma correction (-2 to +2, where 0 is normal)",
     &sdlgl_gamma, VALTYPE_INTEGER, 0 },
 
   /* ---- command-line only options ---- */
 
-  { "tileheight", "Which tileset to use (16, 32 or 64)",
+  { "tileheight",
+#ifdef VANILLA_GLHACK
+    "Which tileset to use (16 or 32)",
+#else
+    "Which tileset to use (16, 32 or 64)",
+#endif
     &iflags.wc_tile_height, VALTYPE_INTEGER, LOPT_CMDLINE_ONLY },
 
   { "fontsize", "Size of text font (8, 14, 20 or 22)",

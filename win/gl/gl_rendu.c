@@ -906,4 +906,4 @@ void sdlgl_dirty_matrix_blit(struct DirtyMatrix *mat, SDL_Surface *src,
 
 
 #endif /* SDL_GRAPHICS */
-/*gl_softw.c*/
+/*gl_rendu.c*/
