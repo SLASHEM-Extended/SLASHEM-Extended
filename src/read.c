@@ -416,15 +416,33 @@ int curse_bless;
    
 	    /*
 	     * Recharging might cause spellbooks to crumble.
+	     *	 v = number of previous recharges
+	     *	       v = percentage chance to crumble on this attempt
+	     *	               v = cumulative odds for crumbling
+	     *	 0 :   0       0
+	     *	 1 :   0.15    0.15
+	     *	 2 :   0.73    0.87
+	     *	 3 :   1.97    2.82
+	     *	 4 :   4.08    6.79
+	     *	 5 :   7.29   13.58
+	     *	 6 :  11.81   23.79
+	     *	 7 :  17.86   37.40
+	     *	 8 :  25.17   53.16
+	     *	 9 :  33.03   68.63
+	     *	10 :  40.68   81.39
+	     *	11 :  47.64   90.26
+	     *	12 :  53.72   95.49
+	     *	13 :  58.90   98.15
+	     *	14 :  63.29   99.32
 	     */
 	    n = (int)obj->recharged;
-	    if (n > 0 && (n * n * n > rn2(14*14*14))) {	/* recharge_limit */
+	    if (n > 0 && (n * n * n > rn2(7*7*7))) {	/* recharge_limit */
 		Your("%s crumbles to dust!", xname(obj));
 		useup(obj);
 		return;
 	    }
-	    /* didn't explode, so increment the recharge count */
-	    obj->recharged = (unsigned)(n + 1);
+	    /* didn't crumble, so possibly increment the recharge count */
+	    if (!rn2(2)) obj->recharged = (unsigned)(n + 1);
 
 	    /* now handle the actual recharging */
 	    if (is_cursed) {
