@@ -141,7 +141,7 @@ CALLOC = ../src/alloc.c panic.c
 OALLOC = ../src/alloc.o panic.o
 
 # object files for makedefs
-MAKEOBJS = makedefs.o $(OMONOBJ)
+MAKEOBJS = makedefs.o $(OMONOBJ) $(OALLOC)
 
 # object files for special levels compiler
 SPLEVOBJS = lev_yacc.o lev_lex.o lev_main.o $(OALLOC) $(ONAMING)

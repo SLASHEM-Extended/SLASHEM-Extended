@@ -10,12 +10,55 @@
 #define EXTERN_H	/* comment line for pre-compiled headers */
 #include "config.h"
 
+/* [Ali]
+ * There are a number of preprocessor symbols which affect how this
+ * file is compiled:
+ *
+ * NHALLOC_DLL	When set this causes the alloc module to build as a stand-alone
+ *		allocator (which can either be used in object form for use
+ *		with utility programs or combined with panic.o to form a DLL
+ *		for dynamic linking with the game - this last allows for the
+ *		possibility of 3rd party libraries to allocate memory via the
+ *		module and thus be represented in the heap monitoring).
+ *
+ *		Global symbols defined: malloc, calloc etc.
+ *		                        monitor_heap_push, monitor_heap_pop etc.
+ *
+ *		Warning: The version of panic defined in panic.o does _not_
+ *		attempt to save the game. nhalloc.dll should therefore only be
+ *		used for testing.
+ *
+ * WIZARD	When set this causes the definition of the fmt_ptr function.
+ *
+ * MONITOR_HEAP	When set this causes the alloc module to define the nhalloc and
+ *		nhfree functions (which can then be used by the alloc and free
+ *		macros). This allows some basic monitoring of the heap for
+ *		memory leaks by dumping the heap to a log file on exit.
+ *
+ *		Note: This symbol also causes fmt_ptr to be defined.
+ *
+ *		Note: If the INTERNAL_MALLOC symbol is also defined, then
+ *		nhalloc and nhfree will use the monitor_heap_ functions to
+ *		store information about where the memory was allocated from.
+ *		Unless compiling on the WIN32 platform, this will also cause
+ *		the definition of the monitor_heap_ functions, the trivial
+ *		allocator and a standard front end (malloc and friends).
+ *		On the WIN32 platform, the monitor_heap_ and standard allocator
+ *		functions are left as external references.
+ */
+
 /* to get the definitons of ENOMEM and errno */
-#if defined(MONITOR_HEAP) && defined(LINUX)
+#if defined(NHALLOC_DLL) || defined(MONITOR_HEAP) && defined(INTERNAL_MALLOC)
 #include <stdlib.h>
 #include <errno.h>
+#ifdef WIN32
+#include <win32api.h>
+#endif
 #endif
 
+#ifdef NHALLOC_DLL
+#undef free
+#else	/* NHALLOC_DLL */
 #if defined(MONITOR_HEAP) || defined(WIZARD)
 char *FDECL(fmt_ptr, (const genericptr,char *));
 #endif
@@ -91,9 +134,10 @@ char *buf;
 	return buf;
 }
 
-#endif
+#endif	/* MONITOR_HEAP || WIZARD */
+#endif	/* !NHALLOC_DLL */
 
-#ifdef MONITOR_HEAP
+#if defined(MONITOR_HEAP) && !defined(NHALLOC_DLL)
 
 /* If ${NH_HEAPLOG} is defined and we can create a file by that name,
    then we'll log the allocation and release information to that file. */
@@ -116,11 +160,11 @@ int line;
 	long *ptr;
 	char ptr_address[20];
 
-#ifdef LINUX
+#ifdef INTERNAL_MALLOC
 	monitor_heap_push(file, line);
 #endif
 	ptr = alloc(lth);
-#ifdef LINUX
+#ifdef INTERNAL_MALLOC
 	(void)monitor_heap_pop(file, line, 0);
 #endif
 	if (!tried_heaplog) heapmon_init();
@@ -151,8 +195,14 @@ int line;
 
 	free(ptr);
 }
+#endif	/* MONITOR_HEAP && !NHALLOC_DLL */
 
-#ifdef LINUX
+/*
+ * Under Win32, the trivial allocator and monitor front end are
+ * placed in nhalloc.dll rather than in the main executable.
+ */
+
+#if defined(NHALLOC_DLL) || (defined(INTERNAL_MALLOC) && !defined(WIN32))
 /*
  * [Ali] A trivial malloc implementation.
  *
@@ -195,6 +245,14 @@ struct triv_head {
 };
 
 static struct triv_head *triv_freelist = NULL;
+#ifdef WIN32
+/*
+ * MS-Windows rounds size request up to a system page, so we need to
+ * ensure we always request an exact number of system pages. This
+ * variable holds TRIV_PAGESIZE rounded up accordingly.
+ */
+static unsigned int triv_pagesize = 0;
+#endif
 
 #define ROUNDUP(nbytes, align) (((nbytes) + (align) - 1) / (align) * (align))
 
@@ -279,8 +337,18 @@ void *triv_malloc(size_t nb)
 	    return f + 1;
 	}
     /* Get new block */
+#ifdef WIN32
+    if (triv_pagesize == 0) {
+	SYSTEM_INFO si;
+	GetSystemInfo(&si);
+	triv_pagesize = ROUNDUP(TRIV_PAGESIZE, si.dwPageSize);
+    }
+    pagesize = ROUNDUP(sizeof(struct triv_head) + size, triv_pagesize);
+    f = VirtualAlloc(NULL, pagesize, MEM_COMMIT, PAGE_READWRITE);
+#else
     pagesize = ROUNDUP(sizeof(struct triv_head) + size, TRIV_PAGESIZE);
     f = sbrk(pagesize);
+#endif
     if (!f) {
 	errno = ENOMEM;
 	return f;
@@ -480,10 +548,13 @@ void *malloc(size_t nb)
     static int busy = 0;
     static int inited = 0;
     struct monitor_head *m;
-    if (!busy && !inited) {
-	char *s;
-	inited++;
+    if (!busy && !(inited&1) && !monitor_id_stack_depth) {
+	inited|=1;
 	monitor_heap_push(monitor_id_stack_default_id, 0);
+    }
+    if (!busy && !(inited&2)) {
+	char *s;
+	inited|=2;
 	atexit(monitor_dump);
 	s = getenv("NH_HEAPDUMP");
 	monitor_fp = s ? fopen(s, "w"): NULL;
@@ -574,8 +645,6 @@ void free(void *p)
     }
 }
 
-#endif /* LINUX */
-
-#endif /* MONITOR_HEAP */
+#endif /* NHALLOC_DLL || INTERNAL_MALLOC && !WIN32 */
 
 /*alloc.c*/

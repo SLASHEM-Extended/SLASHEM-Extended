@@ -134,6 +134,15 @@ SUPPRESS_GRAPHICS =
 
 USE_GTK = Y
 
+#
+# Uncomment the line below if you want to compile with the internal malloc
+# routines (used to test for memory leaks).
+# You will also need to define MONITOR_HEAP and INTERNAL_MALLOC in config.h
+#
+# Warning: Doing this increases the risk of a non-recoverable game crash.
+
+# USE_NHALLOC = Y
+
 
 #############################################################################
 #
@@ -247,20 +256,30 @@ endif
 #  Utility Objects.
 #
 
+ifeq ($(USE_NHALLOC),Y)
+NHALLOCOBJ = nhalloc.o
+NHALLOCDLL = nhalloc.dll
+NHALLOCA = nhalloc.a
+else
+NHALLOCOBJ =
+NHALLOCDLL =
+NHALLOCA =
+endif
+
 MAKESRC	    = makedefs.c
 
 SPLEVSRC    = lev_yacc.c  lev_$(LEX).c	 lev_main.c  panic.c
 
 DGNCOMPSRC  = dgn_yacc.c  dgn_$(LEX).c	 dgn_main.c
 
-MAKEOBJS    = makedefs.o  monst.o	 objects.o
+MAKEOBJS    = makedefs.o  monst.o	 objects.o alloc.o panic.o $(NHALLOCOBJ)
 
 SPLEVOBJS   = lev_yacc.o  lev_$(LEX).o	lev_main.o  alloc.o	\
 		monst.o	    objects.o	    panic.o  \
-		drawing.o	decl.o
+		drawing.o	decl.o $(NHALLOCOBJ)
 
 DGNCOMPOBJS = dgn_yacc.o  dgn_$(LEX).o	dgn_main.o  alloc.o	 \
-		panic.o
+		panic.o $(NHALLOCOBJ)
 
 RECOVOBJS   = recover.o
 
@@ -283,9 +302,11 @@ PPMWRIT2     =
 
 else
 
-TEXTIO      = tiletext.o tiletxt.o drawing.o decl.o monst.o objects.o
+TEXTIO      = tiletext.o tiletxt.o drawing.o decl.o monst.o objects.o \
+              panic.o alloc.o $(NHALLOCOBJ)
 
-TEXTIO2     = tiletex2.o tiletxt2.o drawing.o decl.o monst.o objects.o
+TEXTIO2     = tiletex2.o tiletxt2.o drawing.o decl.o monst.o objects.o \
+              panic.o alloc.o $(NHALLOCOBJ)
 
 
 PLANAR_TIB  = NetHack1.tib
@@ -383,7 +404,7 @@ DLB_H      = $(INCL)\dlb.h
 
 ifeq ($(USE_DLB),Y)
 DLB = $(DAT)\nhshare $(DAT)\nhushare
-DLBOBJS = dlb_main.o dlb.o alloc.o panic.o
+DLBOBJS = dlb_main.o dlb.o alloc.o panic.o $(NHALLOCOBJ)
 else
 DLB =
 DLBOBJS =
@@ -449,6 +470,9 @@ ifeq ($(USE_GTK),Y)
 else
 	$(COPY) $(SSHR)\NetHack.cnf  $(GAMEDIR)\defaults.nh
 endif
+ifeq ($(USE_NHALLOC),Y)
+	$(COPY) nhalloc.dll          $(GAMEDIR)
+endif
 	$(COPY) recover.exe          $(GAMEDIR)
 	$(COPY) $(DOC)\guidebook.txt $(GAMEDIR)
 	$(COPY) $(DOC)\recover.txt   $(GAMEDIR)
@@ -458,7 +482,7 @@ endif
 #  The main target.
 
 
-$(GAMEFILE): utility.tag $(ALLOBJ) $(GAME).lnk
+$(GAMEFILE): utility.tag $(NHALLOCDLL) $(NHALLOCA) $(ALLOBJ) $(GAME).lnk
 	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -o$(GAME).exe $(GAME).lnk
 	$(COPY) $(GAME).exe $(GAMEFILE)
 	$(DEL) $(GAME).exe
@@ -496,6 +520,9 @@ ifeq ($(USE_GTK),Y)
 	@echo INPUT( $(WINGTKLIB2)  )>> $@
 	@echo INPUT( tile.o  )>> $@
 endif
+ifeq ($(USE_NHALLOC),Y)
+	@echo INPUT( nhalloc.a )>> $@
+endif
 
 #
 #  Housekeeping.
@@ -504,6 +531,7 @@ endif
 clean:
 	$(DEL) *.o
 	$(DEL) *.map
+	$(DEL) nhalloc.*
 	$(DEL) dlb_main.exe
 
 spotless: clean
@@ -653,6 +681,34 @@ vis_tab.c: makedefs.exe
 $(INCL)\filename.h: makedefs.exe
 	-makedefs -f
 
+nhalloc.o:	$(CONFIG_H) alloc.c
+	$(CCOMPILE) $(CFLAGS) -DNHALLOC_DLL -onhalloc.o alloc.c
+
+nhalloc.def:
+	@echo EXPORTS > nhalloc.def
+	@echo malloc >> nhalloc.def
+	@echo calloc >> nhalloc.def
+	@echo realloc >> nhalloc.def
+	@echo free >> nhalloc.def
+	@echo monitor_heap_push >> nhalloc.def
+	@echo monitor_heap_pop >> nhalloc.def
+	@echo monitor_heap_set_subid >> nhalloc.def
+	@echo monitor_heap_getmem >> nhalloc.def
+	@echo monitor_heap_trace >> nhalloc.def
+	@echo monitor_heap_mark >> nhalloc.def
+	@echo monitor_heap_release >> nhalloc.def
+
+nhalloc.dll:	nhalloc.def nhalloc.o panic.o
+	$(CCOMPILE) -mdll -o junk.tmp -Wl,--base-file,base.tmp nhalloc.o panic.o
+	$(DEL) junk.tmp
+	dlltool --dllname nhalloc.dll --base-file base.tmp --output-exp nhalloc.exp --def nhalloc.def
+	$(DEL) base.tmp
+	$(CCOMPILE) -mdll -o nhalloc.dll nhalloc.o panic.o -Wl,nhalloc.exp
+	$(DEL) nhalloc.exp
+
+nhalloc.a:	nhalloc.def
+	dlltool --dllname nhalloc.dll --def nhalloc.def --output-lib nhalloc.a -k
+
 #
 #  Makedefs Stuff
 #
@@ -671,7 +727,9 @@ makedefs.o:  $(CONFIG_H)	$(PERMONST_H)	   $(INCL)\objclass.h \
 #
 
 lev_comp.exe:  $(SPLEVOBJS)
-	$(LINK) $(LFLAGS) -olev_comp.exe $(SPLEVOBJS)
+	@echo INPUT( $(SPLEVOBJS) )> tmp.lnk
+	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -olev_comp.exe tmp.lnk
+	@$(DEL) tmp.lnk
 
 ifeq ($(YACC_LEX),Y)
 
@@ -730,7 +788,9 @@ endif
 #
 
 dgn_comp.exe:  $(DGNCOMPOBJS)
-	$(LINK) $(LFLAGS) -odgn_comp.exe $(DGNCOMPOBJS)
+	@echo INPUT( $(DGNCOMPOBJS) )> tmp.lnk
+	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -odgn_comp.exe tmp.lnk
+	@$(DEL) tmp.lnk
 
 ifeq ($(YACC_LEX),Y)
 
@@ -808,27 +868,41 @@ $(INCL)\tile.h: $(WSHR)\tile.h tilemap.exe
 #  Utilities
 
 $(WSHR)\txtmerge.exe: txtmerge.o $(TEXTIO)
-	$(CCOMPILE) $(LFLAGS) -otxtmerge.exe txtmerge.o $(TEXTIO)
-	move txtmerge.exe $(WSHR)\txtmerge.exe
+	@echo INPUT( txtmerge.o )> tmp.lnk
+	@echo INPUT( $(TEXTIO) )>> tmp.lnk
+	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -o$(WSHR)\txtmerge.exe tmp.lnk
+	@$(DEL) tmp.lnk
 
 tile2x11.exe: tile2x11.o $(TEXTIO)
-	$(CCOMPILE) $(LFLAGS) -otile2x11.exe tile2x11.o $(TEXTIO)
+	@echo INPUT( tile2x11.o )> tmp.lnk
+	@echo INPUT( $(TEXTIO) )>> tmp.lnk
+	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -otile2x11.exe tmp.lnk
+	@$(DEL) tmp.lnk
 
 magtile.exe: magtile.o $(TEXTIO)
-	$(CCOMPILE) $(LFLAGS) -omagtile.exe magtile.o $(TEXTIO)
+	@echo INPUT( magtile.o )> tmp.lnk
+	@echo INPUT( $(TEXTIO) )>> tmp.lnk
+	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -omagtile.exe tmp.lnk
+	@$(DEL) tmp.lnk
 
 bigtile.exe: bigtile.o $(TEXTIO)
-	$(CCOMPILE) $(LFLAGS) -obigtile.exe bigtile.o $(TEXTIO)
+	@echo INPUT( bigtile.o )> tmp.lnk
+	@echo INPUT( $(TEXTIO) )>> tmp.lnk
+	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -obigtile.exe tmp.lnk
+	@$(DEL) tmp.lnk
 
 txtbg.exe: txtbg.o $(TEXTIO)
-	$(CCOMPILE) $(LFLAGS) -otxtbg.exe txtbg.o $(TEXTIO)
+	@echo INPUT( txtbg.o )> tmp.lnk
+	@echo INPUT( $(TEXTIO) )>> tmp.lnk
+	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -otxtbg.exe tmp.lnk
+	@$(DEL) tmp.lnk
 
 tile.c: tilemap.exe
 	tilemap.exe
 	@echo A new $@ has been created
 
 tilemap.exe: tilemap.o
-	$(CCOMPILE) $(LFLAGS) -o tilemap.exe tilemap.o
+	$(CCOMPILE) $(LFLAGS) -otilemap.exe tilemap.o
 
 tilemap.c: $(WSHR)\tilemap.c
 	copy $(WSHR)\tilemap.c .
@@ -871,6 +945,7 @@ x11big3dtiles:	tile2x11.exe ../win/share/mon3d.txt \
 		../win/share/obj3d.txt ../win/share/oth3d.txt
 	cd $(WSHR)
 	..\$(SRC)\tile2x11 -o ..\$(SRC)\x11big3dtiles mon3d.txt obj3d.txt oth3d.txt
+	cd ..\$(SRC)
 
 $(WSHR)\monmag.txt:	magtile.exe ../win/share/monsters.txt
 	magtile

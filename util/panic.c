@@ -54,7 +54,7 @@ panic VA_DECL(char *,str)
 long *alloca(cnt)
 unsigned cnt;
 {
-	return cnt ? alloc(cnt) : (long *)0;
+	return cnt ? malloc(cnt) : (long *)0;
 }
 #endif
 
