@@ -1,4 +1,5 @@
 #	Mingw32 under Win95, modified for use with SLASH'EM
+#	Now allows building the GTK port
 #
 #	This version uses DOS-style Directory separators only!
 #
@@ -229,7 +230,7 @@ endif
 # Shareable (architecture independent) data files which are not candidates
 # for inclusion in DLB libraries (ND) and which are (D). Port specific files
 # per discussions in Install.X11, Install.Qt and Install.GTK
-CNF_SHARE_GTKND = x11bigtiles x11tiles rip.xpm credit.xpm gtkrc
+CNF_SHARE_GTKND = x11bigtiles x11tiles rip.xpm credit.xpm
 
 ifeq ($(USE_GTK),Y)
 CNF_SHARE_DATND = $(CNF_SHARE_GTKND)
@@ -425,7 +426,7 @@ else
 #	$(DEL) $(GAMEDIR)\makefile.
 endif
 ifeq ($(USE_GTK),Y)
-	$(COPY) gtkrc                $(GAMEDIR)
+	$(COPY) $(WSYS)\gkrc.w32     $(GAMEDIR)
 	$(COPY) rip.xpm              $(GAMEDIR)
 	$(COPY) credit.xpm           $(GAMEDIR)
 	$(COPY) x11tiles             $(GAMEDIR)
@@ -857,9 +858,6 @@ tiletext.o:  $(CONFIG_H) $(INCL)\tile.h $(WSHR)\tiletext.c
 
 tiletxt.o: $(CONFIG_H)	$(INCL)\tile.h tilemap.c
 	$(CCOMPILE) $(CFLAGS) -DTILETEXT -o$@ tilemap.c
-  
-gtkrc: ../win/gtk/gtkrc
-	$(COPY) ..\win\gtk\gtkrc .
 
 #
 #  Other Util Dependencies.

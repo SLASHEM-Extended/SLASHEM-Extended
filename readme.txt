@@ -358,11 +358,12 @@ ver 0.0.6E4F0 [September XX/2000]
 -fixed bug 113366: GTK: Checking your scores before starting a game panics
 -fixed bug 113947: can't compile without #define FIREARMS
 -alpha compile of win32 with gtk windowsystem.
-	-win32 GTK port prompts for name (gtk.c) 
-	[possibly change to be more general?]
+	-prompts for name (gtk.c) 
+	[possibly change to be more general than just WIN32?]
+	-win32 port uses different fonts (but can't draw walls properly :P)
 -GTK: barebones error checking before destroying window widgets (gtkmenu.c)
 -GTK: directional dialog works with number_pad true
--GTK: hitting 'enter' while in a yn dialog chooses default choice 
+-GTK: hitting 'enter' while in a yn dialog chooses default choice
 
 ver 0.0.6E3F1 [August 21/2000] [Released by Ali]
 -fixed some bugs in the zap/cast code for magic missile, fire, cold, fireball, etc.

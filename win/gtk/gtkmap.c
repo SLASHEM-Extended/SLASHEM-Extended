@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.6 2000-09-15 01:12:30 wacko Exp $
+  $Id: gtkmap.c,v 1.7 2000-09-15 07:25:24 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -208,9 +208,19 @@ static struct tilemap{
     int update;
 } gtkmap[NH_HEIGHT][NH_WIDTH];
 
+#ifdef WIN32 
+/* Windows systems don't have the expected fonts 
+ * [FIXME] Other than Courier New,  are there any other fixed width fonts
+ * on all systems?
+ */
+#define	NH_FONT		"-*-Courier New-normal-r-normal--20-*-*-*-*-*-*-*"
+#define	NH_FONT2	""
+#define	NH_FONT3	""
+#else
 #define	NH_FONT		"nh10"
 #define	NH_FONT2	"-misc-fixed-medium-r-normal--20-*-*-*-*-*-iso8859-1"
 #define	NH_FONT3	"fixed"	
+#endif
 
 static void	nh_map_init();
 
@@ -234,13 +244,13 @@ nh_set_map_visual(int mode)
 	if(saved_vis != 0)
 	    gdk_image_destroy(tile_image);
 	if(mode == 0){
-	    if(map_font->type != GDK_FONT_FONT)
-		panic("Bad font");
 #ifndef WINGTK_X11
 	    if (gdk_char_width(map_font, 'm') != gdk_char_width(map_font, 'l'))
 	    	panic("Proportional font!");
 	    c_width = gdk_char_width(map_font, 'm');
 #else
+	    if(map_font->type != GDK_FONT_FONT)
+		panic("Bad font");
 	    c_width = ((XFontStruct *)GDK_FONT_XFONT(map_font))->max_bounds.width;
 #endif
 	    c_height = map_font->ascent + map_font->descent;

@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.8 2000-09-15 01:12:30 wacko Exp $
+  $Id: gtk.c,v 1.9 2000-09-15 07:25:24 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -96,7 +96,7 @@ hook()
     ;
 }
 
-#ifdef WIN32
+#ifdef GTK_ASKNAME
 void
 gtk_askname() {
     int tryct = 0;

@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.3 2000-08-30 13:48:50 j_ali Exp $
+  $Id: winGTK.h,v 1.4 2000-09-15 07:25:23 wacko Exp $
  */
 
 #ifndef WINGTK_H
@@ -8,7 +8,11 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 
-#ifndef WIN32
+#ifdef WIN32
+# ifndef GTK_ASKNAME
+#  define GTK_ASKNAME
+# endif
+#else
 #define WINGTK_X11	/* X11 libraries are available for our use */
 #endif
 
