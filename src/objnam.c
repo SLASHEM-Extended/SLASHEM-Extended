@@ -2197,6 +2197,7 @@ srch:
 		}
 		if(!BSTRCMP(bp, p-9, "headstone") || !BSTRCMP(bp, p-5, "grave")) {
 			levl[u.ux][u.uy].typ = GRAVE;
+			make_grave(u.ux, u.uy, (char *) 0);
 			pline("A grave.");
 			newsym(u.ux, u.uy);
 			return(&zeroobj);

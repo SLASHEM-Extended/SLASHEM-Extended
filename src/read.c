@@ -47,7 +47,6 @@ static void FDECL(p_glow2,(struct obj *,const char *));
 static void FDECL(randomize,(int *, int));
 static void FDECL(forget_single_object, (int));
 static void FDECL(forget, (int));
-static void FDECL(read_grave, (int));
 /* WAC for reading off the ground */
 static struct obj *NDECL(floorread);
 
@@ -61,14 +60,9 @@ doread()
 	register boolean confused;
 	int grave_num;
 
-	if (IS_GRAVE(levl[u.ux][u.uy].typ) && !Levitation) {
-	    if(yn("Read the headstone?") == 'y') {
-	    	/* KMH, conduct */
-	    	u.uconduct.literate++;
-	    	read_grave(u.ux + u.uy + urole.name.m[0]);
-	    	return 1;
-	    }
-	}
+	/* Try to read the engraving, if there is one */
+	if(read_engr_at(u.ux,u.uy,TRUE))
+		return 1;
 
 	known = FALSE;
 	if(check_capacity((char *)0)) return (0);
@@ -291,70 +285,6 @@ floorread()
 		}
 	}
 	return(getobj(readable, "read"));
-}
-
-static void
-read_grave (inscription)
-	int inscription;
-{
-	const char *epitaph;
-
-
-#define EPITAPHS 25
-	switch (inscription % EPITAPHS) {
-		case 0: epitaph = "Note -- there are NO valuable items in this grave.";
-		break;
-		case 1: epitaph = "1994-1995. The Longest-Lived Hacker Ever.";
-		break;
-		case 2: epitaph = "The Grave of the Unknown Hacker.";
-		break;
-		case 3:
-		case 4:
-		case 5: epitaph = "R.I.P.";
-		break;
-		case 6: epitaph = "Rest In Pieces.";
-		break;
-		case 7: epitaph = "We weren't sure who this was, but we buried him here anyway.";
-		break;
-		case 8: epitaph = "Sparky -- he was a very good dog.";
-		break;
-		case 9: epitaph = "Beware of Electric Third Rail.";
-		break;
-		case 10: epitaph = "Made in Taiwan.";
-		break;
-		case 11: epitaph = "Og friend. Og good dude. Og died. Og now food.";
-		break;
-		case 12: epitaph = "Beetlejuice Beetlejuice Beetlejuice";
-		break;
-		case 13: epitaph = "Look out below!";
-		break;
-		case 14: epitaph = "Please don't dig me up. I'm perfectly happy down here. -- Resident";
-		break;
-		case 15: epitaph = "Postman, please note forwarding address: Gehennom, Asmodeus's Fortress, fifth lemure on the left.";
-		break;
-		case 16: epitaph = "This old man, he played one, he played knick-knack on my thumb.";
-		break;
-		case 17: epitaph = "Mary had a little lamb, its fleece was white as snow. When Mary was in trouble here, the lamb was first to go.";
-		break;
-		case 18: epitaph = "Be careful, or this could happen to you! -- occupant";
-		break;
-		case 19: epitaph = "Soon you'll join this fellow in hell! -- the Wizard of Yendor";
-		break;
-		case 20: epitaph = "Caution! This grave contains toxic waste.";
-		break;
-		case 21: epitaph = "Go away!";
-		break;
-		case 22: epitaph = "Saved by the bell.";
-		break;
-		case 23:
-		case 24:
-		default:
-		pline("It is blank...");
-		return;
-	}
-	/* Headstones are engraved, so you can read them while blind */
-	pline("It reads:");
-	pline(epitaph);
 }
 
 static void

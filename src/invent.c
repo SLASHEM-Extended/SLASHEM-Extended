@@ -1957,7 +1957,7 @@ boolean picked_some;
 
 	if (!otmp || is_lava(u.ux,u.uy) || (is_pool(u.ux,u.uy) && !Underwater)) {
 		if (dfeature) pline(fbuf);
-		read_engr_at(u.ux, u.uy); /* Eric Backus */
+		read_engr_at(u.ux, u.uy, FALSE); /* Eric Backus */
 		if (!skip_objects && (Blind || !dfeature))
 		    You("%s no objects here.", verb);
   		return(!!Blind);
@@ -1966,14 +1966,14 @@ boolean picked_some;
 
 	if (skip_objects) {
 	    if (dfeature) pline(fbuf);
-	    read_engr_at(u.ux, u.uy); /* Eric Backus */
+	    read_engr_at(u.ux, u.uy, FALSE); /* Eric Backus */
 	    There("are %s%s objects here.",
 		  (obj_cnt <= 10) ? "several" : "many",
 		  picked_some ? " more" : "");
 	} else if (!otmp->nexthere) {
 	    /* only one object */
 	    if (dfeature) pline(fbuf);
-	    read_engr_at(u.ux, u.uy); /* Eric Backus */
+	    read_engr_at(u.ux, u.uy, FALSE); /* Eric Backus */
 #ifdef INVISIBLE_OBJECTS
 	    if (otmp->oinvis && !See_invisible) verb = "feel";
 #endif
@@ -1993,7 +1993,7 @@ boolean picked_some;
 	    }
 	    display_nhwindow(tmpwin, TRUE);
 	    destroy_nhwindow(tmpwin);
-	    read_engr_at(u.ux, u.uy); /* Eric Backus */
+	    read_engr_at(u.ux, u.uy, FALSE); /* Eric Backus */
 	}
 	return(!!Blind);
 }

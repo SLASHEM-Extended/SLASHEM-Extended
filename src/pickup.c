@@ -228,7 +228,7 @@ boolean picked_some;
 	    flush_screen(1);
 	    (void) look_here(ct, picked_some);
 	} else {
-	    read_engr_at(u.ux,u.uy);
+	    read_engr_at(u.ux,u.uy,FALSE);
 	}
 }
 
@@ -340,14 +340,14 @@ int what;		/* should be a long */
 	/* no auto-pick if no-pick move, nothing there, or in a pool */
 	if (autopickup && (flags.nopick || !OBJ_AT(u.ux, u.uy) ||
 			(is_pool(u.ux, u.uy) && !Underwater) || is_lava(u.ux, u.uy))) {
-	    read_engr_at(u.ux, u.uy);
+	    read_engr_at(u.ux, u.uy,FALSE);
 	    return (0);
 	}
 
 	/* no pickup if levitating & not on air or water level */
 	if (!can_reach_floor()) {
 	    if ((multi && !flags.run) || (autopickup && !flags.pickup))
-		read_engr_at(u.ux, u.uy);
+		read_engr_at(u.ux, u.uy,FALSE);
 	    return (0);
 	}
 

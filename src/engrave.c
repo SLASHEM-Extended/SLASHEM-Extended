@@ -293,9 +293,10 @@ register xchar x,y,cnt;
 #endif /* OVL1 */
 #ifdef OVL2
 
-void
-read_engr_at(x,y)
+boolean
+read_engr_at(x,y,always_prompt)
 register int x,y;
+boolean always_prompt; /* Always ask the yn question */
 {
 	register struct engr *ep = engr_at(x,y);
 	register int    sensed = 0;
@@ -352,7 +353,8 @@ register int x,y;
 				Something);
 		sensed = 1;
 	    }
-	    if (sensed && (u.uconduct.literate || yn("Read the message?") == 'y')) {
+	    if (sensed && ((u.uconduct.literate && !always_prompt) ||
+	    		   yn("Read the message?") == 'y')) {
 	    	/* MAR Don't prompt if you're already literate */
 	    	/* WAC -- Hey,  there's a prompt here now so no excuses :) */
 		int len;
@@ -373,8 +375,10 @@ register int x,y;
 		You("%s: \"%s\".",
 		      (Blind) ? "feel the words" : "read",  et);
 		if(flags.run > 1) nomul(0);
+		return TRUE;
 	    }
 	}
+	return FALSE;
 }
 
 #endif /* OVL2 */
@@ -1258,7 +1262,9 @@ static const char *epitaphs[] = {
 	"I made an ash of myself",
 	"Soon ripe. Soon rotten. Soon gone. But not forgotten.",
 	"Here lies the body of Jonathan Blake. Stepped on the gas instead of the brake.",
-	"Go away!"
+	"Go away!",
+	/* From SLASH'EM */
+	"This old man, he played one, he played knick-knack on my thumb."
 };
 
 /* Create a headstone at the given location.
