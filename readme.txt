@@ -355,6 +355,7 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -fixed bug 422880: Sleep ray kills monsters? Bug?
 -fixed bug 422153: inaccessible spells after first 52.
 -fixed bug 424394: Summon Undead causes crash.
+-fixed bug 423686: Steed resisting and hilite_pet.
 
 ver 0.0.6E4F4 [May 2/2001] [Released by Ali]
 -fixed bug 404825: wands of teleportation that explode/zapped at yourself

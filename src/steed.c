@@ -251,6 +251,7 @@ mount_steed(mtmp, force)
 	    return (FALSE);
 	}
 	if (!force && !Role_if(PM_KNIGHT) && !(--mtmp->mtame)) {
+	    newsym(mtmp->mx, mtmp->my);
 	    pline("%s resists!", Monnam(mtmp));
 	    return (FALSE);
 	}
