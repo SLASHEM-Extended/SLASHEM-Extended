@@ -105,6 +105,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -Actioned feature request 616101: Cannibalism and Cavemen.
 -Actioned feature request 513873: skill in Spell of Enchant <foo>.
 -Actioned feature request 459902: YAFM suggestion: good vibes.
+-Actioned feature request 709525: ki-rin are humanoid.
 
 See history.txt for changes made in previous versions.
 
