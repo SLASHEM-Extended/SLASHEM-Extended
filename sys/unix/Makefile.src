@@ -141,6 +141,12 @@ SYSOBJ = ioctl.o unixmain.o unixtty.o unixunix.o unixres.o
 #LINK = gcc
 #LFLAGS = -Xlinker -soname=_APP_
 
+# flags for debugging:
+# CFLAGS = -g -I../include
+
+CFLAGS = -O -I../include
+LFLAGS =
+
 # Only used for the Gnome interface.
 # When including the Gnome interface, you need to include gnome specific
 # directories.  The ones given below is the usual spot for linux systems.
@@ -149,17 +155,13 @@ SYSOBJ = ioctl.o unixmain.o unixtty.o unixunix.o unixres.o
 #GNOMEINC=-I/usr/lib/glib/include -I/usr/lib/gnome-libs/include -I../win/gnome
 GNOMEINC=`gnome-config gnome --cflags` -I../win/gnome
 
-# flags for debugging:
-# CFLAGS = -g -I../include
-
-CFLAGS = -O -I../include
-LFLAGS =
-
 # QT windowing system
+# Gentoo
+# QTDIR = /usr/qt/2
 # SuSE 6.1
-# QTDIR=/usr/lib/qt
+# QTDIR = /usr/lib/qt
 # RedHat 6.1
-# QTDIR=/usr/lib/qt-2.0.1
+# QTDIR = /usr/lib/qt-2.0.1
 #
 QTLIBDIR=$(QTDIR)/lib
 QTINCDIR=$(QTDIR)/include
@@ -285,7 +287,7 @@ WINGLSRC = ../win/gl/gl_conf.c ../win/gl/gl_emul.c  \
 WINGLOBJ = gl_conf.o gl_emul.o gl_font.o gl_hardw.o \
     gl_image.o gl_main.o gl_map.o gl_menu.o gl_opt.o \
     gl_rendu.o gl_role.o gl_softw.o gl_stat.o \
-    gl_text.o gl_tile.o gl_unit.o gl_win.o tile.o
+    gl_text.o gl_tile.o gl_unit.o gl_win.o nhwin.a
 SDLGL_CFLAGS = `sdl-config --cflags`
 
 # Use these declarations if you only want to support the TTY windowing system
@@ -313,6 +315,14 @@ WINOBJ = $(WINTTYOBJ)
 # Use these declarations if you want to support external windowing systems
 # WINSRC = $(WINTTYSRC) $(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYCOMSRC)
 # WINOBJ = $(WINTTYOBJ) $(WINPROXYOBJ) $(PROXYUTLOBJ) $(PROXYCOMOBJ)
+# Use these declarations if you want to support all standard windowing systems
+WINSRC = $(WINTTYSRC) $(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYCOMSRC) \
+	$(WINX11SRC) $(WINQTSRC) $(WINGTKSRC) $(WINGLSRC) $(WINGNOMESRC)
+
+WINOBJ = $(WINTTYOBJ) $(WINPROXYOBJ) $(PROXYUTLOBJ) $(PROXYCOMOBJ) \
+	$(WINX11OBJ) $(WINQTOBJ) $(WINGTKOBJ) $(WINGLOBJ) $(WINGNOMEOBJ)
+
+
 #
 # You must also change the definition of WINLIB (below) to match these
 
@@ -358,7 +368,8 @@ WINGEMLIB = -le_gem -lgem
 WINBELIB = -lbe
 #
 # libraries for SDL/GL window port
-WINGLLIB = `sdl-config --libs` -lGL -lz -lpng
+WINSDLLIB = `sdl-config --libs` -lz -lpng
+WINGLLIB = -lGL
 #
 # libraries for proxy
 WINPROXYLIB = -lpthread
@@ -379,6 +390,10 @@ WINLIB = $(WINTTYLIB)
 # WINLIB = $(WINGLLIB)
 # Use this declaration if you want to support external windowing systems
 # WINLIB = $(WINTTYLIB) $(WINPROXYLIB)
+# Use these declarations if you want to support all standard windowing systems
+WINLIB = $(WINTTYLIB) $(WINPROXYLIB) $(WINGTKLIB) \
+	$(WINX11LIB) $(WINQTLIB) $(WINGNOMELIB) $(WINSDLLIB) $(WINGLLIB) 
+
 
 # any other strange libraries your system needs (for Sysunix only -- the more
 # specialized targets should already be right)

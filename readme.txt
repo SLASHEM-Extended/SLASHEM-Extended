@@ -92,6 +92,7 @@ ver 0.0.7E6 [?] [Released by ?]
 -fixed bug 878816: Bad button label in "more options" confirm dialog
 -fixed bug 878817: More options confirmation: No button does nothing
 -fixed bug 878812: Duplicates in list of game commands
+-Support gentoo configuration system
 
 See history.txt for changes made in previous versions.
 
