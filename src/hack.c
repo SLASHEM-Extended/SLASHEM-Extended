@@ -278,7 +278,7 @@ seed_tree(x,y)
 xchar x,y;
 {
    coord pos, pos2;
-   struct rm *lev = &levl[pos.x][pos.y];
+   struct rm *lev;
    
    rndmappos(&x,&y);
    if (IS_TREE(levl[x][y].typ)) {
