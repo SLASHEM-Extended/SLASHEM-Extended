@@ -41,7 +41,7 @@ j       Go south 1 space (or if number_pad is on, jump to another location)
 J       Go south until you are on top of something
 ^J      Go south until you are near something
 k       Go north 1 space (or if number_pad is on, kick something)
-K       Go north until you are on top of something
+K       Go north until you are on top of something (if number_pad, list kills)
 ^K      Go north until you are near something
 l       Go east 1 space (or if number_pad is on, loot a box on the floor)
 L       Go east until you are on top of something

@@ -584,6 +584,7 @@ E void VDECL(panic, (const char *,...)) PRINTF_F(1,2);
 E void FDECL(done, (int));
 E void FDECL(container_contents, (struct obj *,BOOLEAN_P,BOOLEAN_P));
 E void FDECL(terminate, (int));
+E int NDECL(dolistvanq);
 E int NDECL(num_genocides);
 /* KMH, ethics */
 E int NDECL(doethics);

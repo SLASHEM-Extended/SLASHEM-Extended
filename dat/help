@@ -186,6 +186,7 @@ Commands:
         h       displays the help menu, like '?'
         j       Jump to another location.
         k       Kick (for doors, usually).
+        K       List vanquished monsters (whether by you or not).
         l       Loot a box on the floor.
         n       followed by number of times to repeat the next command
         N       Name an object or type of object.

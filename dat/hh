@@ -120,6 +120,7 @@ n               followed by number of times to repeat the next command
 h       help    display one of several informative texts, like '?'
 j       jump    jump to another location
 k       kick    kick something (usually a door)
+K       kills   list vanquished monsters (whether by you or not)
 l       loot    loot a box on the floor
 N       name    name an item or type of object
 u       untrap  untrap something (usually a trapped object)

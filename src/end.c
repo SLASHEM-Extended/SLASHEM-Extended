@@ -40,7 +40,7 @@ STATIC_DCL void FDECL(sort_valuables, (struct valuable_data *,int));
 STATIC_DCL void FDECL(add_artifact_score, (struct obj *));
 STATIC_DCL void FDECL(display_artifact_score, (struct obj *,winid));
 STATIC_DCL void FDECL(savelife, (int));
-STATIC_DCL void FDECL(list_vanquished, (int, BOOLEAN_P));
+STATIC_DCL boolean FDECL(list_vanquished, (int, BOOLEAN_P));
 STATIC_DCL void FDECL(list_genocided, (int, BOOLEAN_P));
 STATIC_DCL boolean FDECL(should_query_disclose_option, (int, int*));
 
@@ -997,7 +997,7 @@ int status;
 	nethack_exit(status);
 }
 
-STATIC_OVL void
+STATIC_OVL boolean
 list_vanquished(defquery, ask)
 int defquery;
 boolean ask;
@@ -1070,8 +1070,17 @@ boolean ask;
 	    destroy_nhwindow(klwin);
 	}
     }
+    return (boolean) (total_killed);
 }
 
+int
+dolistvanq()
+{
+    if (!list_vanquished('y', FALSE))
+        pline("No monsters have yet been killed.");
+    return(0);
+}
+    
 /* number of monster species which have been genocided */
 int
 num_genocides()

@@ -336,6 +336,7 @@ ver 0.0.6E8 [?] [Released by ?]
 -Merged Sam Dennis's extended wizard-mode ^V command
 -Merged Roderick Schertler's pickup thrown patch
 -Merged Dylan O'Donnell's rumors of mail patch
+-Merged Eric Wright's and Dylan O'Donnell's #vanquished patch
 
 ver 0.0.6E7 [December 6/2002] [Released by Ali]
 -Lethe: Treacherous pets; Cthulhu revivification; monsters use of potions of

@@ -770,6 +770,8 @@ use suitable weapons for this type of combat, or it will
 be automatically turned off.
 .lp #untrap
 Untrap something (trap, door, or chest).
+.lp #vanquished
+List vanquished monsters (whether by you or not).
 .lp #youpoly
 Polymorph yourself, if you have the ability.
 .lp #version
@@ -844,6 +846,8 @@ Help menu:  display one of several help texts available, like ``?''.
 Jump to another location.  Same as ``#jump'' or ``M-j''.
 .lp k
 Kick something (usually a door).  Same as `^D'.
+.lp K
+List vanquished monsters (whether by you or not).  Same as ``#vanquished''.
 .lp l
 Loot a box or bag on the floor beneath you, or the saddle 
 from a horse standing next to you.  Same as ``#loot'' or ``M-l''.

@@ -101,6 +101,7 @@ extern int NDECL(dowieldquiver); /**/
 extern int NDECL(dowieldquiver); /**/
 extern int NDECL(dozap); /**/
 extern int NDECL(doorganize); /**/
+extern int NDECL(dolistvanq); /**/
 
 #endif /* DUMB */
 
@@ -2022,6 +2023,7 @@ static const struct func_tab cmdlist[] = {
 	{'j', FALSE, dojump}, /* if number_pad is on */
 	{M('j'), FALSE, dojump},
 	{'k', FALSE, dokick}, /* if number_pad is on */
+	{'K', TRUE, dolistvanq}, /* if number_pad is on */
 	{M('k'), TRUE, enhance_weapon_skill},
 	{'l', FALSE, doloot}, /* if number_pad is on */
 	{M('l'), FALSE, doloot},
@@ -2137,6 +2139,7 @@ struct ext_func_tab extcmdlist[] = {
 	{"turn", "turn undead", doturn, TRUE},
 	{"twoweapon", "toggle two-weapon combat", dotwoweapon, FALSE},
 	{"untrap", "untrap something", dountrap, FALSE},
+	{"vanquished", "list vanquished monsters", dolistvanq, TRUE},
 	{"version", "list compile time options for this version of Slash'EM",
 		doextversion, TRUE},
 	{"wipe", "wipe off your face", dowipe, FALSE},
