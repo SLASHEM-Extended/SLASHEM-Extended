@@ -1,4 +1,4 @@
-/* $Id: gtkhack.c,v 1.2 2002-12-23 22:59:03 j_ali Exp $ */
+/* $Id: gtkhack.c,v 1.3 2002-12-29 21:30:22 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -11,6 +11,7 @@ int
 main(int argc, char **argv)
 {
     char *s;
+    proxy_svc_set_ext_procs(win_GTK_init, &GTK_ext_procs);
     s = g_find_program_in_path("slashem");
     proxy_connect("file", s ? s : "slashem", &argc, argv);
     /* proxy_connect only returns if it failed */

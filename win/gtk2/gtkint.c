@@ -1,5 +1,5 @@
 /*
-  $Id: gtkint.c,v 1.5 2002-12-23 22:59:03 j_ali Exp $
+  $Id: gtkint.c,v 1.6 2002-12-29 21:30:22 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -115,6 +115,7 @@ GTK_proxy_init_nhwindows(int *argcp, char **argv)
 #ifdef WIN32
     /* Win32 has no concept of fork, so we simply execute ourselves */
     char *s;
+    proxy_svc_set_ext_procs(win_GTK_init, &GTK_ext_procs);
     s = g_find_program_in_path(argv[0]);
     proxy_connect("file", s ? s : argv[0], argcp, argv);
 #else
@@ -154,6 +155,7 @@ GTK_proxy_init_nhwindows(int *argcp, char **argv)
 	setuid(uid);
 #endif
 #endif
+	proxy_svc_set_ext_procs(win_GTK_init, &GTK_ext_procs);
 	proxy_start_server(argv[0], (void *)from_game[0], (void *)to_game[1]);
 	exit(1);
     }

@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.29 2002-12-23 22:59:02 j_ali Exp $
+  $Id: winGTK.h,v 1.30 2002-12-29 21:30:22 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -103,6 +103,9 @@ enum xshm_map_mode {
 #endif
 
 #if defined(GTK_V20)
+extern void	win_GTK_init(void);
+extern struct	window_ext_procs GTK_ext_procs;
+
 extern int	GTK_ext_init_nhwindows(int *, char **);
 extern char	*GTK_ext_askname(void);
 extern int	GTK_ext_player_selection(int *, int *, int *, int *);
