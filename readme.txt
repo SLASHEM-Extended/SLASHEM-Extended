@@ -8,7 +8,8 @@
 |              the efforts and support of countless others               |
 |                                                             (1997-2001)|
 +------------------------------------------------------------------------+
-| Nethack is Copyright (c) Mike Stephenson,(Izchak Miller) 1991 - 2000.  |
+| Nethack is Copyright 1985-2000                                         |
+|            By Stichting Mathematisch Centrum and M. Stephenson.        |
 | SLASH'EM and NetHack may be freely redistributed.                      |
 | See license for details.                                               |
 +------------------------------------------------------------------------+
@@ -398,6 +399,7 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -Change strchr back to index in role.c
 -Don't create 600-byte automatic in makedefs.c
 -Support Mac build with Guidebook in doc directory
+-fixed bug 453083: Vecna doesn't always leave his hand.
 
 ver 0.0.6E4F4mac0 [May 13/2001] [Released by Paul]
 -built Mac 68K port

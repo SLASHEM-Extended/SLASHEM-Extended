@@ -1801,7 +1801,8 @@ xkilled(mtmp, dest)
 #ifdef REINCARNATION
 		 || Is_rogue_level(&u.uz)
 #endif
-	   || (level.flags.graveyard && is_undead(mdat) && rn2(3)))
+	   || (level.flags.graveyard && is_undead(mdat) &&
+	       mdat != &mons[PM_VECNA] && rn2(3)))
 		goto cleanup;
 
 #ifdef MAIL
