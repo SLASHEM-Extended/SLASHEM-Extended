@@ -2059,6 +2059,9 @@ mergable(otmp, obj)     /* returns TRUE if obj  & otmp can be merged */
 #ifdef INVISIBLE_OBJECTS
 		obj->oinvis != otmp->oinvis ||
 #endif
+#ifdef UNPOLYPILE
+	    obj->oldtyp != otmp->oldtyp ||
+#endif
 	    obj->greased != otmp->greased ||
 	    obj->oeroded != otmp->oeroded ||
 	    obj->oeroded2 != otmp->oeroded2)
