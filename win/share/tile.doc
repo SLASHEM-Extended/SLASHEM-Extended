@@ -56,6 +56,24 @@ game executable to use, probably providing only one merged output file.
 See the tilemap.c discussion at the bottom for more hints on adding tiles.
 
 
+Transparency is handled using (71, 108, 108) to represent the
+see-through parts of tiles.  It is defined in include/tile.h as
+DEFAULT_BACKGROUND.  This color has been chosen so that window
+interfaces that do not handle transparency will still look OK,
+especially new interfaces that may appear in vanilla NetHack.
+
+The color (72, 108, 108) should be used instead of (71, 108, 108) when
+an opaque color is required, for example: in the standard 32x32 floor
+tiles.  Tools that handle tilesets should know the difference and not
+merge these two colors together, or indeed, should not remap any other
+color to (71, 108, 108).
+
+Note that the 16x16 tileset is supposed to be completely opaque.
+Tools that handle 16x16 tiles should treat (71, 108, 108) as
+transparent (i.e. as they normally would), but windowing interfaces
+should treat it as opaque.
+
+
 Shared code provided for conversion utilities:
 
 tile.h contains shared declarations.
@@ -113,6 +131,7 @@ and merge their colormaps into a common colormap before processing any tiles.
 Although there are expected to be only 256 colors in the distribution tiles,
 conversion programs should be prepared to accept up to MAXCOLORMAPSIZE
 colors and map them to a smaller number if their port requires it.
+The preferred set of 256 colors can be found in include/tilepal.h.
 
 
 Expected sequence for editing tiles:
