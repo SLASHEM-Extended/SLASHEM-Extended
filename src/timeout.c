@@ -1623,7 +1623,7 @@ end_burn(obj, timer_attached)
 	}
 
 	if (obj->otyp == MAGIC_LAMP || obj->otyp == MAGIC_CANDLE ||
-		artifact_list(obj))
+		artifact_light(obj))
 	    timer_attached = FALSE;
 
 	if (!timer_attached) {

@@ -828,7 +828,7 @@ register const char *let,*word;
 		/* Second ugly check; unlike the first it won't trigger an
 		 * "else" in "you don't have anything else to ___".
 		 */
-                else if ((puting_on(word) &&
+                else if ((putting_on(word) &&
 		    ((otmp->oclass == FOOD_CLASS && otmp->otyp != MEAT_RING) ||
 		    (otmp->oclass == TOOL_CLASS &&
 		     otyp != BLINDFOLD && otyp != TOWEL && otyp != LENSES)))

@@ -2253,8 +2253,8 @@ boolean ordinary;
 			damage = d(12,6);
 			exercise(A_STR, FALSE);
         	    }
-        	    if (!rn2(u.twoweap ? 3 : 6)) erode_weapon(uwep, TRUE);
-        	    if (u.twoweap && !rn2(3)) erode_weapon(uswapwep, TRUE);
+        	    if (!rn2(u.twoweap ? 3 : 6)) erode_obj(uwep, TRUE, TRUE);
+        	    if (u.twoweap && !rn2(3)) erode_obj(uswapwep, TRUE, TRUE);
         	    if (!rn2(6)) erode_armor(&youmonst, TRUE);
         	    break;
 		case WAN_LIGHTNING:

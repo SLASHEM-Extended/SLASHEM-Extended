@@ -646,7 +646,7 @@ doforce()		/* try to force a chest with your weapon */
 	    }
 	    /* Lightsabers dig through doors and walls via dig.c */
 	    if (is_lightsaber(uwep) || is_pick(uwep) || is_axe(uwep)) 
-	    	return use_obj_dig(uwep);
+	    	return use_pick_axe2(uwep);
 
 	    if(!IS_DOOR(door->typ)) { 
 		if (is_drawbridge_wall(x,y) >= 0)

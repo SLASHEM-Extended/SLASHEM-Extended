@@ -230,7 +230,7 @@ boolean sanctum;   /* is it the seat of the high priest? */
 		    obj = mksobj(rn2(p_coaligned(priest) ? 2 : 5) ?
 			    ROBE_OF_PROTECTION : ROBE_OF_POWER, TRUE, FALSE);
 		    if (p_coaligned(priest))
-			unsurse(obj);
+			uncurse(obj);
 		    else
 			curse(obj);
 		    (void) mpickobj(priest, obj);
