@@ -2448,6 +2448,8 @@ struct obj *obj;	/* wand or spell */
 		case WAN_SPEED_MONSTER:
 		case SPE_HEALING:
 		case SPE_EXTRA_HEALING:
+		case WAN_HEALING:
+		case WAN_EXTRA_HEALING:
 		case SPE_DRAIN_LIFE:
 		case WAN_OPENING:
 		case SPE_KNOCK:
