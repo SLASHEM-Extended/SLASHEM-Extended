@@ -2404,8 +2404,7 @@ dodip()
   
 	if (potion->otyp == POT_OIL &&
                 (obj->oclass == WEAPON_CLASS || is_weptool(obj))) {
-		boolean wisx = FALSE;
-
+	    boolean wisx = FALSE;
 	    if (potion->lamplit) {      /* burning */
                 int omat = objects[obj->otyp].oc_material;
                 if (obj->oerodeproof || obj_resists(obj, 5, 95) ||
@@ -2415,19 +2414,19 @@ dodip()
                           Yname2(obj),
                           (obj->quan > 1L) ? "" : "s");
   		} else {
-			if (omat == PLASTIC) obj->oeroded = MAX_ERODE;
-            pline_The("burning oil %s %s.",
+		    if (omat == PLASTIC) obj->oeroded = MAX_ERODE;
+		    pline_The("burning oil %s %s.",
   			    obj->oeroded == MAX_ERODE ? "destroys" : "damages",
                             yname(obj));
   		    if (obj->oeroded == MAX_ERODE) {
-	  			obj_extract_self(obj);
-	  			obfree(obj, (struct obj *)0);
-	  			obj = (struct obj *) 0;
-			} else {
+			obj_extract_self(obj);
+			obfree(obj, (struct obj *)0);
+			obj = (struct obj *) 0;
+		    } else {
                         /* should check for and do something about
                            damaging unpaid shop goods here */
-	  			obj->oeroded++;
-			}
+			obj->oeroded++;
+		    }
   		}
 	    } else if (potion->cursed) {
                 pline_The("potion spills and covers your %s with oil.",
@@ -2442,7 +2441,7 @@ dodip()
                 /* uses up potion, doesn't set obj->greased */
                pline("%s gleam%s with an oily sheen.",
                      Yname2(obj),
-                      (obj->quan > 1L) ? "" : "s");
+                     (obj->quan > 1L) ? "" : "s");
   	    } else {
                 pline("%s %s less %s.",
                       Yname2(obj),
@@ -2453,25 +2452,29 @@ dodip()
 		if (obj->oeroded2 > 0) obj->oeroded2--;
                 wisx = TRUE;
   	    }
-        exercise(A_WIS, wisx);
+	    exercise(A_WIS, wisx);
   	    makeknown(potion->otyp);
   	    useup(potion);
-        return 1;
+	    return 1;
 	}
 
 	/* KMH, balance patch -- acid affects damage(proofing) */
 	if (potion->otyp == POT_ACID && (obj->oclass == ARMOR_CLASS ||
-			obj->oclass == WEAPON_CLASS || is_weptool(obj))) {
-		if (flags.verbose) You("dip %s into the potion.", yname(obj));
-		if (!potion->blessed && obj->oerodeproof) {
-			pline("%s %s golden shield.",  Yname2(obj),
-                  (obj->quan > 1L) ? "lose their" : "loses its");
-			obj->oerodeproof = 0;
-	        exercise(A_WIS, FALSE);
-	  	    makeknown(potion->otyp);
-		}
+		obj->oclass == WEAPON_CLASS || is_weptool(obj))) {
+	    if (!potion->blessed && obj->oerodeproof) {
+		pline("%s %s golden shield.",  Yname2(obj),
+			(obj->quan > 1L) ? "lose their" : "loses its");
+		obj->oerodeproof = 0;
+		makeknown(potion->otyp);
+	    } else {
+		pline("%s looks a little dull.", Yname2(obj));
+		if (!objects[potion->otyp].oc_name_known &&
+			!objects[potion->otyp].oc_uname)
+		    docall(potion);
+	    }
+	    exercise(A_WIS, FALSE);
   	    useup(potion);
-        return 1;
+	    return 1;
 	}
 
 	/* Allow filling of MAGIC_LAMPs to prevent identification by player */
