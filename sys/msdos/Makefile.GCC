@@ -129,12 +129,14 @@ UPD = copy  # copy from DOS
 # SUPPRESS_GRAPHICS = Y
 SUPPRESS_GRAPHICS = 
 
+# set USE_VGA to Y to use the VGA tiles
+# you also need to uncomment SCREEN_VGA in pcconf.h
+USE_VGA = Y
+#USE_VGA
+
 # set USE_ALLEGRO to Y to use the allegro library
 # set USE_AALIB to Y to use anti-aliasing library
 # BE SURE TO ALSO UNCOMMENT OUT the #define ALLEG_FX in pcconf.h
-# To enable the old tile support:
-# 	Uncomment SCREEN_VGA in pcconf.h 
-#	Add vidvga.o to VGAOBJ
 
 #USE_ALLEGRO =
 USE_ALLEGRO = Y
@@ -224,11 +226,18 @@ endif
 #
 
 ifeq ($(USE_ALLEGRO),Y)
-VGAOBJ      = vidalleg.o 2xsai.o
+ALLEGROOBJ      = vidalleg.o 2xsai.o
 else
-VGAOBJ      = vidvga.o 
+ALLEGROOBJ      =
 endif
-#VGAOBJ     = vidvga.o vidalleg.o    # both alleg and vga (untested by JRN)
+
+ifeq ($(USE_VGA),Y)
+VGAOBJ      = vidvga.o 
+else
+VGAOBJ      =
+endif
+
+VIDEOOBJ = $(VGAOBJ) $(ALLEGROOBJ)
 
 MAKEOBJS    = makedefs.o  monst.o	 objects.o
 
@@ -256,23 +265,41 @@ GIFREADERS   =
 PPMWRITERS   = 
 else
 TEXTIO      = tiletext.o tiletxt.o drawing.o decl.o monst.o objects.o stubvid.o
+
 ifeq ($(USE_ALLEGRO),Y)
-TILOBJ      = tile.o $(VGAOBJ)
-PLANAR_TIB  = 
-OVERVIEW_TIB = 
-TILEUTIL    = $(TILOBJ) allegro.tag alltiles.tag
-TILEFILES   = 
-TILEFILES2  = 
-IGIFREADERS  = igifread.o alloc.o panic.o
+ALLEG_TILOBJ      = $(ALLEGROOBJ)
+ALLEG_TILEUTIL    = $(TILOBJ) allegro.tag alltiles.tag
+ALLEG_IGIFREADERS  = igifread.o alloc.o panic.o
 else
-TILOBJ      = tile.o pctiles.o $(VGAOBJ)
-PLANAR_TIB  = $(GAME)1.tib
-OVERVIEW_TIB = $(GAME)o.tib
-TILEUTIL    = $(TILOBJ) tile2bin.exe til2bin2.exe $(PLANAR_TIB) $(OVERVIEW_TIB)
-TILEFILES   = $(WSHR)\monsters.txt $(WSHR)\objects.txt $(WSHR)\other.txt
-TILEFILES2  = $(WSHR)\monthin.txt $(WSHR)\objthin.txt $(WSHR)\oththin.txt
-IGIFREADERS =
+ALLEG_TILOBJ      = 
+ALLEG_TILEUTIL    = 
+ALLEG_IGIFREADERS  = 
 endif
+
+ifeq ($(USE_VGA),Y)
+VGA_TILOBJ      = pctiles.o $(VGAOBJ)
+VGA_PLANAR_TIB  = $(GAME)1.tib
+VGA_OVERVIEW_TIB = $(GAME)o.tib
+VGA_TILEUTIL    = $(TILOBJ) tile2bin.exe til2bin2.exe $(PLANAR_TIB) $(OVERVIEW_TIB)
+VGA_TILEFILES   = $(WSHR)\monsters.txt $(WSHR)\objects.txt $(WSHR)\other.txt
+VGA_TILEFILES2  = $(WSHR)\monthin.txt $(WSHR)\objthin.txt $(WSHR)\oththin.txt
+else
+VGA_TILOBJ      =
+VGA_PLANAR_TIB  =
+VGA_OVERVIEW_TIB =
+VGA_TILEUTIL    =
+VGA_TILEFILES   =
+VGA_TILEFILES2  =
+endif
+
+TILOBJ      = tile.o $(ALLEG_TILOBJ) $(VGA_TILOBJ)
+PLANAR_TIB  = $(VGA_PLANAR_TIB)
+OVERVIEW_TIB = $(VGA_OVERVIEW_TIB)
+TILEUTIL    = $(ALLEG_TILEUTIL) $(VGA_TILEUTIL)
+TILEFILES   = $(VGA_TILEFILES)
+TILEFILES2  = $(VGA_TILEFILES2)
+IGIFREADERS  = $(ALLEG_IGIFREADERS)
+
 GIFREADERS  = gifread.o alloc.o panic.o
 PPMWRITERS  = ppmwrite.o alloc.o panic.o
 endif
@@ -796,7 +823,7 @@ tile2bin.o: $(MSYS)\tile2bin.c $(HACK_H) $(INCL)\tile.h $(INCL)\pctiles.h \
 
 til2bin2.o:  $(HACK_H) $(INCL)\tile.h $(INCL)\pctiles.h $(INCL)\pcvideo.h \
 	$(MSYS)\tile2bin.c
-	$(CC) $(CFLAGS) -DTILE_X=8 -DOVERVIEW_FILE -o$@ $<
+	$(CC) $(CFLAGS) -DTILE_X=8 -DOVERVIEW_FILE -o$@ $(MSYS)\tile2bin.c
 
 tiletext.o:  $(WSHR)\tiletext.c $(CONFIG_H) $(INCL)\tile.h
 	$C

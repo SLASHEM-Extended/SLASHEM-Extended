@@ -311,8 +311,10 @@ Bug - cockatrice lairs no longer have "goodies"?
 -monsters should use "techniques" against you...pets using techniques
 	-pet unicorns remove ailments, etc...
 
+ver 0.0.6E3F1 [September XX/2000]
+-cleaned up the DOS makefile to allow easy building of TTY+VGA+Allegro binary
 
-ver 0.0.6E3F0 [August XX/2000]
+ver 0.0.6E3F0 [August 12/2000]
 -Nethack 3.3.1 Integration Preliminary done
 	-flag.h - remove possibly unused vars initrole, etc...
 	-changed position of TREE ...
