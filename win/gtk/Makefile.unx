@@ -1,4 +1,4 @@
-# $Id: Makefile.unx,v 1.3 2003-05-27 09:48:45 j_ali Exp $
+# $Id: Makefile.unx,v 1.4 2003-08-31 12:54:23 j_ali Exp $
 # Copyright (c) Slash'EM Development Team 2002-2003
 # NetHack may be freely redistributed.  See license for details.
 #
@@ -46,10 +46,12 @@ all:	gtkhack
 
 CSRC = gtkhack.c gtk.c gtkgetlin.c gtkstatus.c gtkmenu.c gtkyn.c gtkextcmd.c \
 	gtkmap.c gtkmessage.c gtkmisc.c gtktile.c xshmmap.c gtkext.c \
-	gtkhackrc.c gtkprefs.c panic.c gtkconnect.c gtkconcb.c gtksupport.c
+	gtkhackrc.c gtkprefs.c panic.c gtkconnect.c gtkconcb.c gtksupport.c \
+	gtkprogress.c
 OBJS = gtkhack.o gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
 	gtkmap.o gtkmessage.o gtkmisc.o gtktile.o xshmmap.o gtkext.o \
-	gtkhackrc.o gtkprefs.o panic.o gtkconnect.o gtkconcb.o gtksupport.o
+	gtkhackrc.o gtkprefs.o panic.o gtkconnect.o gtkconcb.o gtksupport.o \
+	gtkprogress.o
 
 gtkhack:	$(OBJS) $(NHPROXYLIB)/nhproxy.a
 	$(CC) `$(GTKLIBS)` $(LFLAGS) -o $@ $(OBJS) $(NHPROXYLIB)/nhproxy.a $(LIBS)
@@ -91,8 +93,9 @@ $(HACK_H): ../../include/hack.h
 gtkhack.o: gtkhack.c ../../include/winGTK.h ../../include/prxyclnt.h \
 		../../include/proxycb.h gtkconnect.h \
 		gtksupport.h
-gtk.o: gtk.c ../../include/winGTK.h ../../include/wintype.h ../../include/func_tab.h \
-		../../include/dlb.h ../../include/patchlevel.h ../../include/proxycb.h
+gtk.o: gtk.c ../../include/md5.h ../../include/winGTK.h ../../include/wintype.h \
+		../../include/func_tab.h ../../include/dlb.h ../../include/patchlevel.h \
+		../../include/proxycb.h
 gtkgetlin.o: gtkgetlin.c ../../include/winGTK.h
 gtkstatus.o: gtkstatus.c ../../include/winGTK.h
 gtkmenu.o: gtkmenu.c ../../include/winGTK.h ../../include/patchlevel.h
@@ -101,11 +104,11 @@ gtkextcmd.o: gtkextcmd.c ../../include/winGTK.h ../../include/proxycb.h \
 		../../include/func_tab.h
 gtkmap.o: gtkmap.c ../../include/winGTK.h ../../include/dlb.h \
 		../../include/patchlevel.h ../../include/decl.h ../../include/proxycb.h \
-		../../include/prxyclnt.h
+		../../include/prxyclnt.h gtkprogress.h
 gtkmessage.o: gtkmessage.c ../../include/winGTK.h
 gtkmisc.o: gtkmisc.c ../../include/winGTK.h ../../include/proxycb.h
 gtktile.o: gtktile.c ../../include/winGTK.h ../../include/dlb.h ../../include/proxycb.h \
-		../../include/prxyclnt.h
+		../../include/prxyclnt.h gtkprogress.h
 xshmmap.o: xshmmap.c ../../include/winGTK.h
 gtkext.o: gtkext.c ../../include/winGTK.h ../../include/prxyclnt.h
 gtkhackrc.o: gtkhackrc.c ../../include/winGTK.h
@@ -114,8 +117,9 @@ panic.o: panic.c $(CONFIG_H)
 gtkconnect.o: gtkconnect.c gtkconcb.h gtkconnect.h \
 		gtksupport.h
 gtkconcb.o: gtkconcb.c gtkconcb.h gtkconnect.h \
-		gtksupport.h
+		gtksupport.h ../../include/winGTK.h
 gtksupport.o: gtksupport.c gtksupport.h
+gtkprogress.o: gtkprogress.c ../../include/winGTK.h gtkprogress.h
 # DEPENDENCIES MUST END AT END OF FILE
 # IF YOU PUT STUFF HERE IT WILL GO AWAY
 # see make depend above

@@ -1,4 +1,4 @@
-/* $Id: prxytile.c,v 1.5 2003-01-01 12:13:33 j_ali Exp $ */
+/* $Id: prxytile.c,v 1.6 2003-08-31 12:54:24 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -75,8 +75,10 @@ proxy_tilemap_add_entry(struct proxy_tilemap *map, int tn, char *entry)
 }
 
 struct proxy_tilemap *
-proxy_load_tilemap(fh)
+proxy_load_tilemap(fh, pulse, pulse_data)
 int fh;
+void (*pulse)();
+void *pulse_data;
 {
     int i, j, k, tn;
     char buf[1024], buf2[256];
@@ -87,6 +89,8 @@ int fh;
     map->no_tiles = 0;
     map->entries = NULL;
     while(proxy_cb_dlbh_fgets(buf, 1024, fh)) {
+	if (pulse)
+	    (*pulse)(pulse_data);
 	cmd = buf;
 	arg = strchr(buf, ' ');
 	if (arg)
@@ -249,9 +253,11 @@ proxy_log_mapping(int glyph, int tile, struct proxy_tilemap *tile_map, struct pr
 #endif	/* DEBUG */
 
 short *
-proxy_map_glyph2tile(glyph_map, tile_map)
+proxy_map_glyph2tile(glyph_map, tile_map, pulse, pulse_data)
 struct proxycb_get_glyph_mapping_res *glyph_map;
 struct proxy_tilemap *tile_map;
+void (*pulse)();
+void *pulse_data;
 {
     int i, j, k, m, glyph = 0;
     struct proxy_glyph_map_info info;
@@ -269,6 +275,8 @@ struct proxy_tilemap *tile_map;
 	glyph2tile[i] = -1;
     mapping = proxy_glyph_map_first(&info, glyph_map);
     while (mapping) {
+	if (pulse)
+	    (*pulse)(pulse_data);
 	/* TODO: Where the tileset defines tiles for a mapping, this should
 	 * take precedence over the alternate glyph. Currently, we always
 	 * use the alternative glyph, if set.

@@ -1,4 +1,4 @@
-/* $Id: prxyclnt.h,v 1.6 2003-05-31 08:12:43 j_ali Exp $ */
+/* $Id: prxyclnt.h,v 1.7 2003-08-31 12:54:23 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -120,14 +120,17 @@ extern struct proxy_glyph_mapping *proxy_glyph_map_first(
 extern struct proxy_glyph_mapping *proxy_glyph_map_next(
 	struct proxy_glyph_map_info *);
 extern void proxy_glyph_map_close(struct proxy_glyph_map_info *);
+extern unsigned int proxy_glyph_map_get_length(
+	struct proxycb_get_glyph_mapping_res *);
 
 /* ### prxytile.c ### */
 
-extern struct proxy_tilemap *proxy_load_tilemap(int);
+extern struct proxy_tilemap *proxy_load_tilemap(int, void (*pulse)(),
+	void *pulse_data);
 extern void proxy_free_tilemap(struct proxy_tilemap *);
 extern short * proxy_map_glyph2tile(
 	struct proxycb_get_glyph_mapping_res *glyph_map,
-	struct proxy_tilemap *);
+	struct proxy_tilemap *, void (*pulse)(), void *pulse_data);
 
 /* ### prxychar.c ### */
 

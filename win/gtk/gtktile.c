@@ -1,5 +1,5 @@
 /*
-  $Id: gtktile.c,v 1.2 2003-08-02 16:10:44 j_ali Exp $
+  $Id: gtktile.c,v 1.3 2003-08-31 12:54:24 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -13,6 +13,7 @@
 #include "dlb.h"
 #include "proxycb.h"
 #include "prxyclnt.h"
+#include "gtkprogress.h"
 
 /* #define DEBUG */
 
@@ -201,9 +202,10 @@ static void calc_tile_transp(TileTab *t, GdkPixbuf *pixbuf, int i)
 }
 
 static int
-x_tile_load(TileTab *t)
+x_tile_load(TileTab *t, NhGtkProgressWindow *w)
 {
     int fh, nb;
+    long len, done = 0;
     char buf[1024];
     GdkPixbufLoader *loader;
     GError *err = NULL;
@@ -223,6 +225,11 @@ x_tile_load(TileTab *t)
 	return 0;
     }
     loader = gdk_pixbuf_loader_new();
+#ifndef GTK_PROXY
+    dlbh_fseek(fh, 0, SEEK_END);
+    len = dlbh_ftell(fh);
+    dlbh_fseek(fh, 0, SEEK_SET);
+#endif
 #ifdef GTK_PROXY
     while (nb = proxy_cb_dlbh_fread(buf, 1, sizeof(buf), fh), nb > 0) {
 #else
@@ -234,17 +241,33 @@ x_tile_load(TileTab *t)
 	    err = NULL;
 	    break;
 	}
+	done += nb;
+#ifdef GTK_PROXY
+	nh_gtk_progress_window_stage_pulse(w);
+#else
+	nh_gtk_progress_window_stage_set_fraction(w, (done * 0.9) / len);
+#endif
     }
     if (nb < 0) {
 	pline("Read error from tile file %s!", t->file);
 	(void)gdk_pixbuf_loader_close(loader, NULL);
     } else if (!nb) {
 	if (!gdk_pixbuf_loader_close(loader, &err)) {
+#ifdef GTK_PROXY
+	    nh_gtk_progress_window_stage_pulse(w);
+#else
+	    nh_gtk_progress_window_stage_set_fraction(w, 1.0);
+#endif
 	    pline("Error loading %s: %s", t->file, err->message);
 	    g_error_free(err);
 	    err = NULL;
 	} else {
 	    tile_pixbuf = gdk_pixbuf_loader_get_pixbuf(loader);
+#ifdef GTK_PROXY
+	    nh_gtk_progress_window_stage_pulse(w);
+#else
+	    nh_gtk_progress_window_stage_set_fraction(w, 1.0);
+#endif
 	    if (!tile_pixbuf)
 		pline("No image found in tile file %s!", t->file);
 	    else
@@ -276,7 +299,7 @@ x_tile_load(TileTab *t)
 
 #ifdef GTK_PROXY
 static struct proxy_tilemap *
-x_tile_load_tilemap(TileTab *t)
+x_tile_load_tilemap(TileTab *t, NhGtkProgressWindow *w)
 {
     int fh;
     struct proxy_tilemap *map;
@@ -285,7 +308,7 @@ x_tile_load_tilemap(TileTab *t)
 	pline("Cannot open tile map file %s!", t->mapfile);
 	return NULL;
     }
-    map = proxy_load_tilemap(fh);
+    map = proxy_load_tilemap(fh, nh_gtk_progress_window_stage_pulse, w);
     proxy_cb_dlbh_fclose(fh);
     return map;
 }
@@ -305,33 +328,66 @@ ceil_sqrt(int c)
     return a*a==c?a:a+1;
 }
 
+static void
+x_tile_load_map_add_stages(NhGtkProgressWindow *w)
+{
+    nh_gtk_progress_window_add_stage(w, "Transferring glyph descriptions");
+    nh_gtk_progress_window_add_stage(w, "Transferring tileset descriptions");
+    nh_gtk_progress_window_add_stage(w, "Assigning tiles to glyphs");
+}
+
+struct _x_tile_load_map_pulse {
+    unsigned int count, step, length;
+    NhGtkProgressWindow *w;
+};
+
+static void x_tile_load_map_pulse(struct _x_tile_load_map_pulse *p)
+{
+    p->count++;
+    if (p->count % p->step == 0)
+	nh_gtk_progress_window_stage_set_fraction(p->w,
+	  p->count/(gdouble)p->length);
+}
+
 static int
-x_tile_load_map(TileTab *t)
+x_tile_load_map(TileTab *t, NhGtkProgressWindow *w)
 {
     struct proxycb_get_glyph_mapping_res *glyph_map;
     struct proxy_tilemap *tile_map;
+    struct _x_tile_load_map_pulse *pulse;
+    nh_gtk_progress_window_stage_pulse(w);
     glyph_map = proxy_cb_get_glyph_mapping();
     if (!glyph_map) {
 	pline("Cannot get glyph mapping.");
 	return 0;
     }
-    tile_map = x_tile_load_tilemap(t);
+    nh_gtk_progress_window_complete_stage(w);
+    tile_map = x_tile_load_tilemap(t, w);
     if (!tile_map) {
 	proxy_cb_free_glyph_mapping(glyph_map);
 	return 0;
     }
+    nh_gtk_progress_window_complete_stage(w);
     total_tiles_used = tile_map->no_tiles;
     tiles_per_row = ceil_sqrt(total_tiles_used);
     tiles_per_col = (total_tiles_used + tiles_per_row - 1) / tiles_per_row;
-    GTK_glyph2tile = proxy_map_glyph2tile(glyph_map, tile_map);
+    pulse = g_new(struct _x_tile_load_map_pulse, 1);
+    pulse->count = 0;
+    pulse->length = proxy_glyph_map_get_length(glyph_map);
+    pulse->step = pulse->length >= 100 ? pulse->length / 100 : 1;
+    pulse->w = w;
+    GTK_glyph2tile = proxy_map_glyph2tile(glyph_map, tile_map,
+      x_tile_load_map_pulse, pulse);
+    g_free(pulse);
     proxy_cb_free_glyph_mapping(glyph_map);
     proxy_free_tilemap(tile_map);
+    nh_gtk_progress_window_complete_stage(w);
     return 1;
 }
 #endif
 
 static enum xshm_map_mode
-x_tile_set_map_mode(TileTab *t)
+x_tile_set_map_mode(TileTab *t, NhGtkProgressWindow *w)
 {
     int i;
     enum xshm_map_mode mode;
@@ -363,18 +419,22 @@ x_tile_set_map_mode(TileTab *t)
 	copy = gdk_pixbuf_new(gdk_pixbuf_get_colorspace(tile_pixbuf), FALSE,
 	  gdk_pixbuf_get_bits_per_sample(tile_pixbuf),
 	  t->tilemap_width, t->tilemap_height);
+	nh_gtk_progress_window_stage_set_fraction(w, 0.25);
 	if (copy) {
 	    gdk_pixbuf_copy_area(tile_pixbuf, 0, 0,
 	      t->tilemap_width, t->tilemap_height, copy, 0, 0);
 	    gdk_pixbuf_unref(tile_pixbuf);
 	    tile_pixbuf = copy;
+	    nh_gtk_progress_window_stage_set_fraction(w, 0.5);
 	} else {
 	    pline("Warning: Not enough memory: Tiles may be degraded");
 	    mode = XSHM_MAP_IMAGE;
+	    nh_gtk_progress_window_stage_set_fraction(w, 0.0);
 	}
     }
     if (mode == XSHM_MAP_PIXBUF && !gdk_pixbuf_get_has_alpha(tile_pixbuf)) {
 	pixels = gdk_pixbuf_get_pixels(tile_pixbuf);
+	nh_gtk_progress_window_stage_set_fraction(w, 0.75);
 	copy = gdk_pixbuf_add_alpha(tile_pixbuf, TRUE,
 	  pixels[0], pixels[1], pixels[2]);
 	if (copy) {
@@ -383,6 +443,7 @@ x_tile_set_map_mode(TileTab *t)
 	} else {
 	    pline("Warning: Not enough memory: Tiles may be degraded");
 	    mode = XSHM_MAP_IMAGE;
+	    nh_gtk_progress_window_stage_set_fraction(w, 0.0);
 	}
     }
     tmp_pixbuf = NULL;
@@ -391,16 +452,25 @@ x_tile_set_map_mode(TileTab *t)
 	  t->tilemap_width, t->tilemap_height, -1);
 	if (!tile_pixmap)
 	    panic("Not enough memory to load tiles!");
+	nh_gtk_progress_window_stage_set_fraction(w,
+	  mode == XSHM_MAP_IMAGE ? 0.025 : 0.3);
 	gc = gdk_gc_new(tile_pixmap);
 	gdk_pixbuf_render_to_drawable(tile_pixbuf, tile_pixmap, gc, 0, 0, 0, 0,
 	  t->tilemap_width, t->tilemap_height, GDK_RGB_DITHER_NORMAL, 0, 0);
 	gdk_gc_unref(gc);
 	if (mode == XSHM_MAP_IMAGE) {
+	    int step = total_tiles_used >= 100 ? total_tiles_used / 100 : 1;
+	    nh_gtk_progress_window_stage_set_fraction(w, 0.1);
 	    tile_transp = (struct tile_transp *)
 	      alloc(total_tiles_used * sizeof(*tile_transp));
-	    for(i = 0; i < total_tiles_used; i++)
+	    for(i = 0; i < total_tiles_used; i++) {
 		calc_tile_transp(t, tile_pixbuf, i);
+		if (i % step == 0)
+		    nh_gtk_progress_window_stage_set_fraction(w,
+		      0.1 + (i * 0.8) / total_tiles_used);
+	    }
 	    calc_tile_transp(t, tile_pixbuf, -1);
+	    nh_gtk_progress_window_stage_set_fraction(w, 0.9);
 	    /* TODO: Creating an image via a pixmap is very inefficient;
 	     * this should be done directly from pixbuf, even if GTK+ doesn't
 	     * provide any easy way to do this.
@@ -411,6 +481,7 @@ x_tile_set_map_mode(TileTab *t)
 		panic("Not enough memory to load tiles!");
 	    gdk_pixmap_unref(tile_pixmap);
 	    tile_pixmap = NULL;
+	    nh_gtk_progress_window_stage_set_fraction(w, 0.975);
 	    tmp_img = gdk_image_new(GDK_IMAGE_NORMAL, gdk_visual_get_system(),
 	      t->unit_width, t->unit_height);
 	    if (!tmp_img)
@@ -431,25 +502,42 @@ x_tile_set_map_mode(TileTab *t)
 	gdk_pixbuf_unref(tile_pixbuf);
 	tile_pixbuf = NULL;
     }
+    nh_gtk_progress_window_stage_set_fraction(w, 1.0);
     return mode;
 }
 
-enum xshm_map_mode
-x_tile_init(TileTab *t)
+void
+x_tile_init_add_stages(NhGtkProgressWindow *w)
 {
+#ifdef GTK_PROXY
+    x_tile_load_map_add_stages(w);
+    nh_gtk_progress_window_add_stage(w, "Transferring tileset images");
+#else
+    nh_gtk_progress_window_add_stage(w, "Loading tileset images");
+#endif
+    nh_gtk_progress_window_add_stage(w, "Converting images");
+}
+
+enum xshm_map_mode
+x_tile_init(TileTab *t, NhGtkProgressWindow *w)
+{
+    int retval;
     int glyph = cmap_to_glyph(S_stone);
 #ifdef GTK_PROXY
-    if (!x_tile_load_map(t))
+    if (!x_tile_load_map(t, w))
 	return XSHM_MAP_NONE;
 #endif
-    if (!x_tile_load(t))
+    if (!x_tile_load(t, w))
 	return XSHM_MAP_NONE;
+    nh_gtk_progress_window_complete_stage(w);
 #ifdef GTK_PROXY
     stone_tile = GTK_glyph2tile[glyph];
 #else
     stone_tile = glyph2tile[glyph];
 #endif
-    return x_tile_set_map_mode(t);
+    retval = x_tile_set_map_mode(t, w);
+    nh_gtk_progress_window_complete_stage(w);
+    return retval;
 }
 
 void

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.28 2003-08-21 19:00:23 j_ali Exp $
+  $Id: gtkmap.c,v 1.29 2003-08-31 12:54:24 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -19,6 +19,7 @@
 #include "decl.h"
 #include "proxycb.h"
 #include "prxyclnt.h"
+#include "gtkprogress.h"
 
 #undef red
 #undef green
@@ -496,6 +497,9 @@ nh_set_map_visual(int mode)
 {
     static int setting_visual = FALSE;		/* Ignore recursive calls */
     int saved_vis = map_visual;
+    gchar *buf;
+    GdkCursor *cursor;
+    GtkWidget *progress;
 
     if (setting_visual)
 	return 0;
@@ -516,11 +520,24 @@ switch_mode:
 	    setting_visual--;
 	    return 1;
 	} else if (mode != 0) {      /* mode 0 is handled in configure_map() */
+	    buf = g_strdup_printf("Selecting %s", tileTab[mode].ident);
+	    progress = nh_gtk_progress_window_new(buf, GTK_WINDOW(main_window));
+	    g_free(buf);
+	    if (tileTab[mode].ident[0])
+		x_tile_init_add_stages(NH_GTK_PROGRESS_WINDOW(progress));
+	    gtk_widget_realize(progress);
+	    cursor = gdk_cursor_new_for_display(
+	      gdk_drawable_get_display(progress->window), GDK_WATCH);
+	    gdk_window_set_cursor(progress->window, cursor);
+	    gdk_cursor_unref(cursor);
+	    gtk_widget_show_now(progress);
 	    if (!tileTab[mode].ident[0])
 		map_mode = XSHM_MAP_NONE;
 	    else {
 		Tile = tileTab + mode;
-		map_mode = x_tile_init(Tile);
+		map_mode = x_tile_init(Tile, NH_GTK_PROGRESS_WINDOW(progress));
+		while(gtk_events_pending())
+		    gtk_main_iteration();
 	    }
 
 	    if (map_mode != XSHM_MAP_NONE) {
@@ -534,20 +551,26 @@ switch_mode:
 		c_map_height = c_3dheight * (no_rows - 1) + Tile->unit_height;
 	    } else {
 		if (saved_vis > 0 && tileTab[saved_vis].ident || !saved_vis) {
+		    gtk_widget_destroy(progress);
 		    pline("Warning: Switching back to %s.",
 		      saved_vis?tileTab[saved_vis].ident:"character mode");
 		    mode = saved_vis;
 		    saved_vis = -1;
 		    goto switch_mode;
-		} else if (map_visual > 0)
+		} else if (map_visual > 0) {
+		    gtk_widget_destroy(progress);
 		    panic("Failed to switch back to previous mode.");
-		else {
+		} else {
 		    setting_visual--;
+		    gtk_widget_destroy(progress);
 		    return 0;
 		}
 	    }
 
 	    map = xshm_map_init(map_mode, c_map_width, c_map_height);
+	    while(gtk_events_pending())
+		gtk_main_iteration();
+	    gtk_widget_destroy(progress);
 	}
 
 	map_visual = mode;

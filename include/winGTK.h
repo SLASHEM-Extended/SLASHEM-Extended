@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.44 2003-08-02 16:02:44 j_ali Exp $
+  $Id: winGTK.h,v 1.45 2003-08-31 12:54:23 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -57,6 +57,7 @@
 #define NH_SESSION_PLACED	8    /* Initial window placement has occured */
 
 struct gtkhackrc;
+typedef struct _NhGtkProgressWindow NhGtkProgressWindow;
 
 extern GtkWidget *nh_gtk_window_dialog(boolean is_modal);
 
@@ -342,7 +343,8 @@ extern void xshm_map_draw_drawable(GdkDrawable *src, int src_x, int src_y,
   int dest_x, int dest_y, int width, int height);
 extern GtkAdjustment *xshm_map_get_hadjustment(void);
 extern GtkAdjustment *xshm_map_get_vadjustment(void);
-extern enum xshm_map_mode x_tile_init(TileTab *t);
+extern void x_tile_init_add_stages(NhGtkProgressWindow *w);
+extern enum xshm_map_mode x_tile_init(TileTab *t, NhGtkProgressWindow *w);
 extern void x_tile_tmp_clear();
 extern int x_tile_render_to_drawable(GdkDrawable *drawable, GdkGC *gc,
   int tile, int src_x, int src_y, int dest_x, int dest_y,
