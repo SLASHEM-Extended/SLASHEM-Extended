@@ -232,7 +232,7 @@ CF = (0, 0, 255)
   BRBfBfBf_FBgBf_FBfBfBD_Q_QBf_FBfBgBfBg_FBfBfBfBD_Q_Q_nBfBgBf_Q_n
   BfBD_QBD_Q_Q_Q_Q_Q_n_Q_Q_n_Q_n_Q_n_Q_n_Q_QBD_Q_Q_n_Q_Q_Q_QBD_Q_Q
 }
-# tile 889 (anti-magic trap field)
+# tile 889 (anti-magic field)
 {
   BRAnBfBRBLBRAnBfBRBLBRBfAnBRBLBRBfBRBLBRBfAnBRBLBRBfAnBRBfBRBL_F
   BLBgBfBf_FBfBfBf_Q_Q_QBgBf_FBf_FBfBf_FBfBgBf_FBf_QBDBfBfBfBf_F_Q
@@ -302,7 +302,7 @@ CF = (0, 0, 255)
   BL_FBfBgBf_FBfBgBR_9_$Ac_$Ac_$_HAVAc_$_$Ac_$_9Bo_Q_Q_Q_FBfBfBD_Q
   Bg_QBD_Q_Q_Q_Q_Q_Q_QBu_l_9At_bAV_bAwBF_9A5BsBD_Q_Q_Q_n_Q_QBD_Q_Q
 }
-# tile 911 (cmap / explosion top left)
+# tile 911 (explosion fiery 0)
 {
   AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
   AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
@@ -337,7 +337,7 @@ CF = (0, 0, 255)
   AjAjAjAjAjAjAjAjAjAjAjAjAaAS_9_9_9_DAwAH_$_$AVAFAF_OBWAJAFBWBW_p
   AjAjAjAjAjAjAjAjAjAjAjAjB9_DA$BI_9_LBlBl_$AJABBWAFABAJABBXBWANAN
 }
-# tile 912 (cmap / explosion top center)
+# tile 912 (explosion fiery 1)
 {
   AjAjAjAjAjAjB9BR_JB5AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
   AjAjAjAjAjAjB9BR_JB5AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
@@ -372,7 +372,7 @@ CF = (0, 0, 255)
   _pBJB4BZBZBZB4BJB4BJB4BJBJANBWBW_pBJBJBJBJBJBJB4BJB4BJB4BJB4B4BJ
   C_ANANBJBZB4BJB4B4B4BJBJ_pC_BWBWANB4BJBJBJ_pANBJB4BJB4BJBJBJB4BJ
 }
-# tile 913 (cmap / explosion top right)
+# tile 913 (explosion fiery 2)
 {
   AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
   AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
@@ -407,7 +407,7 @@ CF = (0, 0, 255)
   ANBJ_pBWAFAV_$_$_$AFAF_x_$A7A7AwA7BIBgB5______BsBBBsB5AjAjAjAjAj
   BJBJC_BWAFAFAJ_$AJAFBWBW_OAJ_$_$AwAo_D_4____AjAjAjAjAj__AjAjAjAj
 }
-# tile 914 (cmap / explosion middle left)
+# tile 914 (explosion fiery 3)
 {
   AjAjAjAjAjAjAjAjAjAj____AjAjAnBRBlAwBxAHAJAFBW_5BWAJABAFBW_p_pAN
   AjAjAjAjAjAjAj__AjAjBgBsAjAjAsBB_9AH_$_$_$AJAFAFC__pBWABBWANC__p
@@ -442,7 +442,7 @@ CF = (0, 0, 255)
   AjAjAjAj__AnBIAS_9BVBVBlAVAFAFBWBWAFBWAJAFBWAN_pANBJANBJ_pANBJAN
   AjAjAjAj__B5B9BsAnBNBoBl_$AFBWAFBWBW_OAJAJBW_pANANBJ_p_pANBJBJB4
 }
-# tile 915 (cmap / explosion middle center)
+# tile 915 (explosion fiery 4)
 {
   BJAN_pBJBJB4BJB4BJB4BJBJ_p_pBWC_BZBZBJBJBJ_pBJB4BJB4BJB4BJB4B4BJ
   _pAN_pBJBJBJB4BJB4BJBJBJ_pC_BW_pB4BZBZBJB4ANANBZBZBJB4BJBJBJB4BJ
@@ -477,7 +477,7 @@ CF = (0, 0, 255)
   BJB4BJB4_pANBJ_pBJBJBJB4BJBZBZBZB4BZBZBZBZB4BZBZBZBZBZB4B4B4BJB4
   BJBJBJBJBJANANC__pANBJBJB4B4B4BZBZ_yBZBZBZBZBZB4BZBZBZBZBZBJB4BJ
 }
-# tile 916 (cmap / explosion middle right)
+# tile 916 (explosion fiery 5)
 {
   BJB4ANBWABAJAFAV_$BXBWBWBWBWAFAVAwA7_9BI_4AjAjAjAjAjAjAjAjAjAjAj
   BJBJ_pBWBWBWAFABAJBXBWBWBWBWBWAVAVAHBl_DAAAj__AjAjAjAjAjAjAjAjAj
@@ -512,7 +512,7 @@ CF = (0, 0, 255)
   BJBZBJ_pBWAF_$ABBYBYBWBWBW_pBYBW_5AVAVAVBx_DBAA$B9AjAjAjAjAjAjAj
   B4BZBJC_AFAVAVBWBWBWBY_p_pBY_5BWBWAV_$_$_9BsB5B9__AjAjAjAjAjAjAj
 }
-# tile 917 (cmap / explosion bottom left)
+# tile 917 (explosion fiery 6)
 {
   AjAjAjAjAjAjAj_sBI__Bs_9AHAJ_5AFAFBWAFAJABAF_p_p_p_p_p_pANBJBJB4
   AjAjAjAjAjAjAjAUBg__Bg_9A7_$AJAFAFAJAJAJAFAFBWBWBWC_BW_p_p_pBJB4
@@ -547,7 +547,7 @@ CF = (0, 0, 255)
   AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
   AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
 }
-# tile 918 (cmap / explosion bottom center)
+# tile 918 (explosion fiery 7)
 {
   BJBJBJBJBJBJBJ_p_pBJANANB4BJBJB4BZBZBJB4BZBZB4BJBJBZBZBZBZBJBJB4
   BJANBJANBJBJB4_pBJBJBJ_pBJANB4BJB4BJBZBZBJB4BJB4BJANBJB4B4BJBJAN
@@ -582,7 +582,7 @@ CF = (0, 0, 255)
   AjB9BgBgBgAzAnAn_9BlAw_9_9BRB5AjAjAjAjAjAjAjB5CC_9_9_9_9AWAjAj__
   AjAjAjAjAjAjAj__An_aBlBlBIB5AjAjAjAjAjAjAjAjAj_wA$Bg_JBBAjAjAjAj
 }
-# tile 919 (cmap / explosion bottom right)
+# tile 919 (explosion fiery 8)
 {
   BJANBJ_pBWAV_OBWBWBWBY_pBWBYBWAFAF_$_R_uBo_4AjAjAj__AjAjAjAjAjAj
   BJBJANBWC__pBWAFBWAFBW_5BWAFBWAFAVAwAaAjAjAj__AjAjAjAjAjAjAjAjAj

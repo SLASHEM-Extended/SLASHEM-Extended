@@ -223,7 +223,6 @@ noteleport	{ yylval.i=NOTELEPORT; return FLAG_TYPE; }
 hardfloor	{ yylval.i=HARDFLOOR; return FLAG_TYPE; }
 nommap		{ yylval.i=NOMMAP; return FLAG_TYPE; }
 arboreal	{ yylval.i=ARBOREAL; return FLAG_TYPE; }	/* KMH */
-sokoban		{ yylval.i=SOKOBAN; return FLAG_TYPE; }		/* KMH */
 shortsighted	{ yylval.i=SHORTSIGHTED; return FLAG_TYPE; }
 \[\ *[0-9]+\%\ *\] { yylval.i = atoi(yytext + 1); return PERCENT; }
 [+\-]?[0-9]+	{ yylval.i=atoi(yytext); return INTEGER; }

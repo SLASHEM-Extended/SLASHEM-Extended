@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)wintext.c	3.3	96/04/05	*/
+/*	SCCS Id: @(#)wintext.c	3.4	1996/04/05	*/
 /* Copyright (c) Dean Luick, 1992				  */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -469,8 +469,8 @@ calculate_rip_text(int how)
 	Sprintf(rip_line[NAME_LINE], "%s", plname);
 
 	/* Put $ on stone */
-	Sprintf(rip_line[GOLD_LINE], "%ld Au", u.ugold);
-
+	Sprintf(rip_line[GOLD_LINE], "%ld Au",
+		u.ugold);
 	/* Put together death description */
 	switch (killer_format) {
 		default: impossible("bad killer format?");

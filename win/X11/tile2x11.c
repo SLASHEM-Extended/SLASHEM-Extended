@@ -154,9 +154,9 @@ FILE *fp;
 		*curr_tb++ = 1;
 	    }
 
-    fprintf(fp, "/* XPM */\n");
-    fprintf(fp, "static char* nhtiles[] = {\n");
-    fprintf(fp, "\"%lu %lu %lu %d\",\n",
+    Fprintf(fp, "/* XPM */\n");
+    Fprintf(fp, "static char* nhtiles[] = {\n");
+    Fprintf(fp, "\"%lu %lu %lu %d\",\n",
 		header.tile_width*TILES_PER_ROW,
 		header.tile_height*TILES_PER_COL,
 		header.ncolors,
@@ -169,7 +169,7 @@ FILE *fp;
 	}
 	else
 	    c[0] = i + '0';	/* just one char per color */
-	fprintf(fp, "\"%s  c #%02x%02x%02x\",\n", c,
+	Fprintf(fp, "\"%s  c #%02x%02x%02x\",\n", c,
 		x11_colormap[i][0],
 		x11_colormap[i][1],
 		x11_colormap[i][2]);
@@ -179,7 +179,7 @@ FILE *fp;
 	for (y = 0; y < header.tile_height; y++) {
 	    bytes=tile_bytes+(j*TILES_PER_ROW*header.tile_height+y)*
 	      header.tile_width;
-	    fprintf(fp, "\"");
+	    Fprintf(fp, "\"");
 	    for (i = 0; i < TILES_PER_ROW; i++) {
 		for (x = 0; x < header.tile_width; x++) {
 		    if (header.ncolors > 64) {
@@ -193,7 +193,7 @@ FILE *fp;
 		}
 		bytes+=header.tile_height*header.tile_width;
 	    }
-	    fprintf(fp, "\",\n");
+	    Fprintf(fp, "\",\n");
 	}
 
     return fprintf(fp, "};\n")>=0;
@@ -228,7 +228,8 @@ FILE *fp;
       fwrite_tile_header_item(header->ncolors,fp) &&
       fwrite_tile_header_item(header->tile_width,fp) &&
       fwrite_tile_header_item(header->tile_height,fp) &&
-      fwrite_tile_header_item(header->ntiles,fp);
+      fwrite_tile_header_item(header->ntiles,fp) &&
+      fwrite_tile_header_item(header->per_row,fp);
 }
 
 int
@@ -240,9 +241,10 @@ main(argc, argv)
     int i, argn = 1;
     char *outname = OUTNAME;
 
-    header.version	= 1;
+    header.version	= 2;		/* version 1 had no per_row field */
     header.ncolors	= 0;
     header.ntiles	= 0;		/* updated as we read in files */
+    header.per_row	= 1;
 
     while (argn < argc) {
 	if (argn + 1 < argc && !strcmp(argv[argn], "-o")) {

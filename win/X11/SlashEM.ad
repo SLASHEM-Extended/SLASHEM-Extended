@@ -59,9 +59,9 @@ SlashEM*message*translations:	<KeyPress>: input()
 ! It is not guaranteed that the window manager will honor the icon selection.
 !SlashEM*icon: nh56
 !
-! If True, a popup for single character prompts such as y/n questions is _not_
-! used.
-!SlashEM*slow: True
+! If True, the default, a popup for single character prompts such as y/n
+! questions is _not_ used.
+SlashEM*slow: True
 !
 ! The number of lines the message window will show without scrolling.
 !SlashEM*message_lines: 12

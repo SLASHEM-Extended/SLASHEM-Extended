@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)winmap.c	3.3	96/04/05	*/
+/*	SCCS Id: @(#)winmap.c	3.4	1996/04/05	*/
 /* Copyright (c) Dean Luick, 1992				  */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -107,75 +107,16 @@ X11_print_glyph(window, x, y, glyph)
 
     } else {
 	uchar			ch;
-	register int		offset;
 	register unsigned char *ch_ptr;
+	int			color,och;
+	unsigned		special;
 #ifdef TEXTCOLOR
-	int			color;
 	register unsigned char *co_ptr;
-
-#define zap_color(n)  color = zapcolors[n]
-#define cmap_color(n) color = defsyms[n].color
-#define obj_color(n)  color = objects[n].oc_color
-#define mon_color(n)  color = mons[n].mcolor
-#define invis_color(n) color = NO_COLOR
-#define pet_color(n)  color = mons[n].mcolor
-#define warn_color(n) color = iflags.use_color ? def_warnsyms[n].color : NO_COLOR
-# else /* no text color */
-
-#define zap_color(n)
-#define cmap_color(n)
-#define obj_color(n)
-#define mon_color(n)
-#define invis_color(n)
-#define pet_color(n)
-#define warn_color(n)
-
 #endif
-
-	/*
-	 *  Map the glyph back to a character.
-	 *
-	 *  Warning:  For speed, this makes an assumption on the order of
-	 *            offsets.  The order is set in display.h.
-	 */
-	if ((offset = (glyph - GLYPH_WARNING_OFF)) >= 0) { 	/* a warning flash */
-		ch = warnsyms[offset];
-		warn_color(offset);
-	} else if ((offset = (glyph - GLYPH_SWALLOW_OFF)) >= 0) {	/* swallow */
-	    /* see swallow_to_glyph() in display.c */
-	    ch = (uchar) showsyms[S_sw_tl + (offset & 0x7)];
-	    mon_color(offset >> 3);
-	} else if ((offset = (glyph - GLYPH_ZAP_OFF)) >= 0) {	/* zap beam */
-	    /* see zapdir_to_glyph() in display.c */
-	    ch = showsyms[S_vbeam + (offset & 0x3)];
-	    zap_color((offset >> 2));
-	} else if ((offset = (glyph - GLYPH_CMAP_OFF)) >= 0) {	/* cmap */
-	    ch = showsyms[offset];
-	    cmap_color(offset);
-	} else if ((offset = (glyph - GLYPH_OBJ_OFF)) >= 0) {	/* object */
-	    ch = oc_syms[(int) objects[offset].oc_class];
-	    obj_color(offset);
-	} else if ((offset = (glyph - GLYPH_RIDDEN_OFF)) >= 0) {/* ridden mon */
-	    ch = monsyms[(int) mons[offset].mlet];
-	    mon_color(offset);
-	} else if ((offset = (glyph - GLYPH_BODY_OFF)) >= 0) {	/* a corpse */
-	    ch = oc_syms[(int) objects[CORPSE].oc_class];
-	    mon_color(offset);
-	} else if ((offset = (glyph - GLYPH_DETECT_OFF)) >= 0) {
-	    /* monster detection; should really be inverse */
-	    ch = monsyms[(int) mons[offset].mlet];
-	    mon_color(offset);
-	} else if ((offset = (glyph - GLYPH_INVIS_OFF)) >= 0) {	/* invisible */
-	    ch = DEF_INVISIBLE;
-	    invis_color(offset);
-	} else if ((offset = (glyph - GLYPH_PET_OFF)) >= 0) {	/* a pet */
-	    ch = monsyms[(int) mons[offset].mlet];
-	    pet_color(offset);
-	} else {						/* a monster */
-	    ch = monsyms[(int) mons[glyph].mlet];
-	    mon_color(glyph);
-	}
-
+	/* map glyph to character and color */
+        mapglyph(glyph, &och, &color, &special, x, y);
+	ch = (uchar)och;
+	
 	/* Only update if we need to. */
 	ch_ptr = &map_info->mtype.text_map->text[y][x];
 
@@ -193,12 +134,6 @@ X11_print_glyph(window, x, y, glyph)
 	    update_bbox = TRUE;
 	} else
 	    update_bbox = FALSE;
-
-#undef zap_color
-#undef cmap_color
-#undef obj_color
-#undef mon_color
-#undef pet_color
     }
 
     if (update_bbox) {		/* update row bbox */
@@ -341,11 +276,19 @@ fread_tile_header(header, fp)
 x11_header *header;
 FILE *fp;
 {
-    return fread_tile_header_item(&header->version,fp) &&
+    int retval;
+    retval = fread_tile_header_item(&header->version,fp) &&
       fread_tile_header_item(&header->ncolors,fp) &&
       fread_tile_header_item(&header->tile_width,fp) &&
       fread_tile_header_item(&header->tile_height,fp) &&
       fread_tile_header_item(&header->ntiles,fp);
+    if (retval) {
+	if (header->version == 1)
+	    header->per_row = 1;
+	else
+	    retval = fread_tile_header_item(&header->per_row,fp);
+    }
+    return retval;
 }
 #endif
 
@@ -357,7 +300,11 @@ static boolean
 init_tiles(wp)
     struct xwindow *wp;
 {
-#ifndef USE_XPM
+#ifdef USE_XPM
+    XpmAttributes attributes;
+    int errorcode;
+    char *tile_file;
+#else
     FILE *fp = (FILE *)0;
     x11_header header;
     unsigned char *cp, *colormap = (unsigned char *)0;
@@ -366,13 +313,14 @@ init_tiles(wp)
     XColor *colors = (XColor *)0;
     int i, x, y;
     int bitmap_pad;
-    unsigned int image_height, image_width;
     int ddepth;
 #endif
+    char buf[BUFSZ];
     Display *dpy = XtDisplay(toplevel);
     Screen *screen = DefaultScreenOfDisplay(dpy);
     struct map_info_t *map_info = (struct map_info_t *)0;
     struct tile_map_info_t *tile_info = (struct tile_map_info_t *)0;
+    unsigned int image_height = 0, image_width = 0;
     boolean result = TRUE;
     XGCValues values;
     XtGCMask mask;
@@ -396,70 +344,65 @@ init_tiles(wp)
 				sizeof(struct tile_map_info_t));
 
 #ifdef USE_XPM
-    {
-	char buf[BUFSIZ],*tile_file;
-	XpmAttributes attributes;
-	int errorcode;
-
-	attributes.valuemask = XpmCloseness;
-	attributes.closeness = 25000;
+    attributes.valuemask = XpmCloseness;
+    attributes.closeness = 25000;
 
 #ifndef FILE_AREAS
-	tile_file = tilesets[tile_index].file;
+    tile_file = tilesets[tile_index].file;
 #else
-	tile_file = make_file_name(FILE_AREA_SHARE, tilesets[tile_index].file);
+    tile_file = make_file_name(FILE_AREA_SHARE, tilesets[tile_index].file);
 #endif
-	errorcode=XpmReadFileToImage(dpy,tile_file,&tile_image,0,&attributes);
+    errorcode = XpmReadFileToImage(dpy, tile_file, &tile_image, 0, &attributes);
 
+    if (errorcode == XpmColorFailed) {
+	Sprintf(buf, "Insufficient colors available to load %s.",
+		tilesets[tile_index].file);
+	X11_raw_print(buf);
+	X11_raw_print("Try closing other colorful applications and restart.");
+	X11_raw_print("Attempting to load with inferior colors.");
+	attributes.closeness = 50000;
+	errorcode = XpmReadFileToImage(dpy, tile_file,
+		&tile_image, 0, &attributes);
+    }
+#ifdef FILE_AREAS
+    free(tile_file);
+#endif
+
+    if (errorcode!=XpmSuccess) {
 	if (errorcode == XpmColorFailed) {
 	    Sprintf(buf, "Insufficient colors available to load %s.",
-	      tilesets[tile_index].file);
+		    tilesets[tile_index].file);
 	    X11_raw_print(buf);
-	    X11_raw_print("Try closing other colorful applications and restart.");
-	    X11_raw_print("Attempting to load with inferior colors.");
-	    attributes.closeness = 50000;
-	    errorcode=XpmReadFileToImage(dpy,tile_file,&tile_image,0,&attributes);
+	} else {
+	    Sprintf(buf, "Failed to load %s: %s",tilesets[tile_index].file,
+		    XpmGetErrorString(errorcode));
+	    X11_raw_print(buf);
 	}
-#ifdef FILE_AREAS
-	free(tile_file);
-#endif
+	result = FALSE;
+	X11_raw_print("Switching to text-based mode.");
+	goto tiledone;
+    }
 
-	if (errorcode!=XpmSuccess) {
-	    if (errorcode == XpmColorFailed) {
-		Sprintf(buf, "Insufficient colors available to load %s.",
-		  tilesets[tile_index].file);
-		X11_raw_print(buf);
-	    } else {
-		Sprintf(buf, "Failed to load %s: %s",tilesets[tile_index].file,
-			XpmGetErrorString(errorcode));
-		X11_raw_print(buf);
-	    }
-	    result = FALSE;
-	    X11_raw_print("Switching to text-based mode.");
-	    goto tiledone;
-	}
-
-	if (tile_image->height%tiles_per_col != 0 ||
-	  tile_image->width%tiles_per_row != 0) {
-	    char buf[BUFSIZ];
-	    Sprintf(buf,
+    if (tile_image->height % tiles_per_col != 0 ||
+	    tile_image->width % tiles_per_row != 0) {
+	char buf[BUFSIZ];
+	Sprintf(buf,
 		"%s appears to have a non-integer tile size.\n"
 		"Its size (%dx%d) should be a multiple of %dx%d",
 		tilesets[tile_index].file,
-		tile_image->width,tile_image->height,
-		tiles_per_row,tiles_per_col);
-	    X11_raw_print(buf);
-	    XDestroyImage(tile_image);
-	    tile_image = 0;
-	    result = FALSE;
-	    goto tiledone;
-	}
-
-	/* infer tile dimensions from image size */
-	tile_count=total_tiles_used;
-	tile_width=tile_image->width/tiles_per_row;
-	tile_height=tile_image->height/tiles_per_col;
+		tile_image->width, tile_image->height,
+		tiles_per_row, tiles_per_col);
+	X11_raw_print(buf);
+	XDestroyImage(tile_image);
+	tile_image = 0;
+	result = FALSE;
+	goto tiledone;
     }
+
+    /* infer tile dimensions from image size */
+    tile_count = total_tiles_used;
+    tile_width = tile_image->width / tiles_per_row;
+    tile_height = tile_image->height / tiles_per_col;
 #else
     /* any less than 16 colours makes tiles useless */
     ddepth = DefaultDepthOfScreen(screen);
@@ -470,7 +413,7 @@ init_tiles(wp)
     }
 
     fp = fopen_datafile_area(FILE_AREA_SHARE, tilesets[tile_index].file,
-      RDBMODE, FALSE);
+	    RDBMODE, FALSE);
     if (!fp) {
 	X11_raw_print("can't open tile file");
 	perror(tilesets[tile_index].file);
@@ -484,12 +427,21 @@ init_tiles(wp)
 	goto tiledone;
     }
 
+    if (header.version != 1 && header.version != 2) {
+	Sprintf(buf, "Wrong tile file version, expected 1 or 2, got %lu",
+		header.version);
+	X11_raw_print(buf);
+	result = FALSE;
+	goto tiledone;
+    }
+
 # ifdef VERBOSE
-    fprintf(stderr, "X11 tile file:\n    version %ld\n    ncolors %ld\n    tile width %ld\n    tile height %ld\n    ntiles %ld\n",
+    fprintf(stderr, "X11 tile file:\n    version %ld\n    ncolors %ld\n    tile width %ld\n    tile height %ld\n    per row %ld\n    ntiles %ld\n",
 	header.version,
 	header.ncolors,
 	header.tile_width,
 	header.tile_height,
+	header.per_row,
 	header.ntiles);
 # endif
 
@@ -518,9 +470,8 @@ init_tiles(wp)
 	if (!XAllocColor(dpy, DefaultColormapOfScreen(screen), &colors[i]) &&
 	    !nhApproxColor(screen, DefaultColormapOfScreen(screen),
 			   (char *)0, &colors[i])) {
-	    char buf[BUFSZ];
 	    Sprintf(buf, "%dth out of %ld color allocation failed",
-		i, header.ncolors);
+		    i, header.ncolors);
 	    X11_raw_print(buf);
 	    result = FALSE;
 	    goto tiledone;
@@ -532,8 +483,11 @@ init_tiles(wp)
      * This alloc() and the one below require 32-bit ints, since tile_bytes
      * is currently ~200k and alloc() takes an int
      */
-    tile_bytes = (unsigned char *) alloc((unsigned)header.ntiles*size);
     tile_count = header.ntiles;
+    if ((tile_count % header.per_row) != 0) {
+	tile_count += header.per_row - (tile_count % header.per_row);
+    }
+    tile_bytes = (unsigned char *) alloc((unsigned)tile_count*size);
     if (fread((char *) tile_bytes, size, tile_count, fp) != tile_count) {
 	X11_raw_print("read of tile bytes failed");
 	result = FALSE;
@@ -541,7 +495,6 @@ init_tiles(wp)
     }
 
     if (header.ntiles < total_tiles_used) {
-	char buf[BUFSZ];
 	Sprintf(buf, "tile file incomplete, expecting %d tiles, found %lu",
 		total_tiles_used, header.ntiles);
 	X11_raw_print(buf);
@@ -592,39 +545,55 @@ init_tiles(wp)
 	(char *) alloc((unsigned)tile_image->bytes_per_line * image_height);
 
     if (appResources.double_tile_size) {
-	for (tb = tile_bytes, i = 0; i < tile_count; i++)
+	unsigned long pixel;
+	for (i = 0; i < tile_count; i++)
 	{
-	    for (y = 0; y < header.tile_height; y++)
-		for (x = 0; x < header.tile_width; x++, tb++)
+	    /* point at the upper-left corner of the next tile */
+	    y = i / header.per_row;
+	    x = i - y * header.per_row;
+	    tb = tile_bytes + header.tile_width *
+		    (x + y * header.tile_height * header.per_row);
+	    for (y = 0; y < header.tile_height; y++) {
+		for (x = 0; x < header.tile_width; x++)
 		{
+		    pixel = colors[tb[x]].pixel;
 		    XPutPixel(tile_image,
 		      (i % tiles_per_row) * tile_width + 2*x,
 		      (i / tiles_per_row) * tile_height + 2*y,
-		      colors[*tb].pixel);
+		      pixel);
 		    XPutPixel(tile_image,
 		      (i % tiles_per_row) * tile_width + 2*x,
 		      (i / tiles_per_row) * tile_height + 2*y+1,
-		      colors[*tb].pixel);
+		      pixel);
 		    XPutPixel(tile_image,
 		      (i % tiles_per_row) * tile_width + 2*x+1,
 		      (i / tiles_per_row) * tile_height + 2*y,
-		      colors[*tb].pixel);
+		      pixel);
 		    XPutPixel(tile_image,
 		      (i % tiles_per_row) * tile_width + 2*x+1,
 		      (i / tiles_per_row) * tile_height + 2*y+1,
-		      colors[*tb].pixel);
+		      pixel);
 		}
+		tb += header.tile_width * header.per_row;
+	    }
 	}
 
     } else {
-	for (tb = tile_bytes, i = 0; i < tile_count; i++)
+	for (i = 0; i < tile_count; i++)
 	{
-	    for (y = 0; y < header.tile_height; y++)
-		for (x = 0; x < header.tile_width; x++, tb++)
+	    /* point at the upper-left corner of the next tile */
+	    y = i / header.per_row;
+	    x = i - y * header.per_row;
+	    tb = tile_bytes + header.tile_width *
+		    (x + y * header.tile_height * header.per_row);
+	    for (y = 0; y < header.tile_height; y++) {
+		for (x = 0; x < header.tile_width; x++)
 		    XPutPixel(tile_image,
 		      (i % tiles_per_row) * tile_width + x,
 		      (i / tiles_per_row) * tile_height + y,
-		      colors[*tb].pixel);
+		      colors[tb[x]].pixel);
+		tb += header.tile_width * header.per_row;
+	    }
 	}
     }
 #endif /* USE_XPM */
@@ -649,12 +618,8 @@ init_tiles(wp)
      */
     mask = GCFunction | GCForeground | GCGraphicsExposures;
     values.graphics_exposures = False;
-#if 1
     values.foreground = WhitePixelOfScreen(screen) ^
 	XGetPixel(tile_image, 0, tile_height*glyph2tile[cmap_to_glyph(S_corr)]);
-#else
-    values.foreground = ~((unsigned long) 0);
-#endif
     values.function = GXxor;
     tile_info->white_gc = XtGetGC(wp->w, mask, &values);
 
@@ -662,7 +627,7 @@ init_tiles(wp)
     values.function = GXCopy;
     values.graphics_exposures = False;
     tile_info->black_gc = XtGetGC(wp->w, mask, &values);
-#endif
+#endif /* USE_WHITE */
 
 tiledone:
 #ifndef USE_XPM
@@ -1097,7 +1062,7 @@ get_char_info(wp)
 
 #ifdef VERBOSE
     printf("Font information:\n");
-    printf("fid = %d, direction = %d\n", fs->fid, fs->direction);
+    printf("fid = %ld, direction = %d\n", fs->fid, fs->direction);
     printf("first = %d, last = %d\n",
 			fs->min_char_or_byte2, fs->max_char_or_byte2);
     printf("all chars exist? %s\n", fs->all_chars_exist?"yes":"no");
@@ -1109,7 +1074,7 @@ get_char_info(wp)
 		fs->max_bounds.lbearing, fs->max_bounds.rbearing,
 		fs->max_bounds.width, fs->max_bounds.ascent,
 		fs->max_bounds.descent, fs->max_bounds.attributes);
-    printf("per_char = 0x%x\n", fs->per_char);
+    printf("per_char = 0x%lx\n", (unsigned long) fs->per_char);
     printf("Text: (max) width = %d, height = %d\n",
 	    map_info->square_width, map_info->square_height);
 #endif
@@ -1366,27 +1331,26 @@ map_update(wp, start_row, stop_row, start_col, stop_col, inverted)
     if (map_info->is_tile) {
 	struct tile_map_info_t *tile_map = map_info->mtype.tile_map;
 	int cur_col;
-	Display* dpy=XtDisplay(wp->w);
-	Screen* screen=DefaultScreenOfDisplay(dpy);
+	Display* dpy = XtDisplay(wp->w);
+	Screen* screen = DefaultScreenOfDisplay(dpy);
 
 	for (row = start_row; row <= stop_row; row++) {
 	    for (cur_col = start_col; cur_col <= stop_col; cur_col++) {
 		int glyph = tile_map->glyphs[row][cur_col];
 		int tile = glyph2tile[glyph];
+		int src_x, src_y;
 		int dest_x = cur_col * map_info->square_width;
 		int dest_y = row * map_info->square_height;
 
+		src_x = (tile % tiles_per_row) * map_info->square_width;
+		src_y = (tile / tiles_per_row) * map_info->square_height;
 		XCopyArea(dpy, tile_pixmap, XtWindow(wp->w),
 			tile_map->black_gc,	/* no grapics_expose */
-			(tile % tiles_per_row) * map_info->square_width,
-			(tile / tiles_per_row) * map_info->square_height,			tile_width, tile_height,
-			dest_x,dest_y);
+			src_x, src_y,
+			tile_width, tile_height,
+			dest_x, dest_y);
 
-		if (glyph_is_pet(glyph)
-#ifdef TEXTCOLOR
-			&& iflags.hilite_pet
-#endif
-			) {
+		if (glyph_is_pet(glyph) && iflags.hilite_pet) {
 		    /* draw pet annotation (a heart) */
 		    XSetForeground(dpy, tile_map->black_gc, pet_annotation.foreground);
 		    XSetClipOrigin(dpy, tile_map->black_gc, dest_x, dest_y);
