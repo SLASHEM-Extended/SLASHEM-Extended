@@ -41,6 +41,7 @@
 #define ANSI_DEFAULT		/* allows NetHack to run without termcap file */
 #define TEXTCOLOR		/* allow color */
 #define MAIL		/* Allows for fake mail daemon to deliver mail */
+#define TIMED_DELAY		/* enable the `timed_delay' run-time option */
 
 /*
  * The remaining code shouldn't need modification.
@@ -101,6 +102,10 @@
 #ifndef REDO
 # undef	Getchar
 # define Getchar nhgetch
+#endif
+
+#ifdef TIMED_DELAY
+#define msleep(k) _sleep2(k)
 #endif
 
 void hangup(int i);
