@@ -474,8 +474,8 @@ display_file returns no results.
 
 <p> Display the file whose handle is <var>fh</var>.
 <p> The proxy module is responsible for opening the file to be displayed
-  as if the dlb_fopen callback had been called. The window-port should
-  read the data from the file using the dlb_fopen callback (passing it
+  as if the dlbh_fopen callback had been called. The window-port should
+  read the data from the file using the dlbh_fgets callback (passing it
   <var>fh</var> as the handle). When the display_file procedure returns,
   the proxy module will close the file again.
 <p>The proxy module is responsible for complaining (via <code>pline</code>)
@@ -1000,20 +1000,22 @@ Plug-in window ports may assume that the following call backs are supported.
 <tr><td>display_inventory</td><td>0x01</td></tr>
 <tr><td>dlbh_fopen</td><td>0x02</td></tr>
 <tr><td>dlbh_fgets</td><td>0x03</td></tr>
-<tr><td>dlbh_fclose</td><td>0x04</td></tr>
-<tr><td>flush_screen</td><td>0x05</td></tr>
-<tr><td>doredraw</td><td>0x06</td></tr>
-<tr><td>interface_mode</td><td>0x07</td></tr>
-<tr><td>parse_options</td><td>0x08</td></tr>
-<tr><td>get_option</td><td>0x09</td></tr>
-<tr><td>get_player_choices</td><td>0x0A</td></tr>
-<tr><td>is_valid_selection</td><td>0x0B</td></tr>
-<tr><td>quit_game</td><td>0x0C</td></tr>
-<tr><td>display_score</td><td>0x0D</td></tr>
-<tr><td>doset</td><td>0x0E</td></tr>
-<tr><td>get_extended_commands</td><td>0x0F</td></tr>
-<tr><td>map_menu_cmd</td><td>0x10</td></tr>
-<tr><td>get_standard_winid</td><td>0x11</td></tr>
+<tr><td>dlbh_fread</td><td>0x04</td></tr>
+<tr><td>dlbh_fclose</td><td>0x05</td></tr>
+<tr><td>flush_screen</td><td>0x06</td></tr>
+<tr><td>doredraw</td><td>0x07</td></tr>
+<tr><td>interface_mode</td><td>0x08</td></tr>
+<tr><td>parse_options</td><td>0x09</td></tr>
+<tr><td>get_option</td><td>0x0A</td></tr>
+<tr><td>get_player_choices</td><td>0x0B</td></tr>
+<tr><td>is_valid_selection</td><td>0x0C</td></tr>
+<tr><td>quit_game</td><td>0x0D</td></tr>
+<tr><td>display_score</td><td>0x0E</td></tr>
+<tr><td>doset</td><td>0x0F</td></tr>
+<tr><td>get_extended_commands</td><td>0x10</td></tr>
+<tr><td>map_menu_cmd</td><td>0x11</td></tr>
+<tr><td>get_standard_winid</td><td>0x12</td></tr>
+<tr><td>get_tilesets</td><td>0x13</td></tr>
 </table>
 
 <h3>display_inventory</h3>
@@ -1050,7 +1052,7 @@ special meanings as follows:
 <tr><td>$(GUIDEBOOK)</td><td>NetHack guidebook</td></tr>
 </table>
 
-<p>The following modes are supported: <pre>r</pre> and <pre>rb</pre>.
+<p>The following modes are supported: <b>r</b> and <b>rb</b>.
 
 <h3>dlbh_fgets</h3>
 <pre>
@@ -1070,6 +1072,24 @@ If len is too short to return a whole line the first len characters will
 be returned (with no terminating newline) and the rest of the line will
 be available for reading with the next call the dlbh_fgets. An empty
 string will be returned on end of file or other error.
+
+<h3>dlbh_fread</h3>
+<pre>
+struct dlbh_fread_req {
+    int len;
+    int fh;
+};
+
+struct dlbh_fread_res {
+    int retval;
+    opaque buffer<>;
+};
+</pre>
+
+<p>Read up to len bytes of a file previously opened with dlbh_fopen.
+If an error occurs, retval will be non-zero. Any bytes read before the
+error occured will be returned in the buffer. An empty buffer will be
+returned on end of file.
 
 <h3>dlbh_fclose</h3>
 <pre>
@@ -1249,6 +1269,21 @@ The following window names are currently recognized:
 </table>
 
 <p>Unrecognized windows will return -1.
+
+<h3>get_tilesets</h3>
+<pre>
+struct get_tilesets_res_tileset {
+    string name<>;
+    string file<>;
+    long flags;
+};
+
+struct get_tilesets_res {
+    struct get_tilesets_res_tileset tilesets<>;
+};
+</pre>
+
+<p>Return a list of the currently configured tile sets.
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-/* $Id: proxycb.c,v 1.7 2002-07-07 14:38:10 j_ali Exp $ */
+/* $Id: proxycb.c,v 1.8 2002-07-10 16:31:24 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -25,7 +25,7 @@ proxy_cb_display_inventory()
 
 int
 proxy_cb_dlbh_fopen(name, mode)
-char *name, *mode;
+const char *name, *mode;
 {
     int retval;
     nhext_rpc(EXT_CID_DLBH_FOPEN, 2, EXT_STRING(name), EXT_STRING(mode),
@@ -50,6 +50,35 @@ int len, fh;
 	retval = (char *)0;
     free(line);
     return retval;
+}
+
+int
+proxy_cb_dlbh_fread(buf, size, no, fh)
+char *buf;
+int size, no, fh;
+{
+    int retval, offset = 0, nb;
+    char *buffer = (char *)0;
+    nhext_rpc(EXT_CID_DLBH_FREAD, 2, EXT_INT(size * no), EXT_INT(fh),
+	2, EXT_INT_P(retval), EXT_BYTES_P(buffer, nb));
+    if (nb)
+	memcpy(buf, buffer, nb);
+    free(buffer);
+    while (!retval && nb % size) {
+	/*
+	 * The dblh_fread() callback has no concept of item sizes
+	 * (it acts more like read() in this respect than fread()).
+	 * If we get a sucessful read which is short then we shouldn't
+	 * discard the remainder unless we have reached end of file.
+	 */
+	offset += nb;
+	nhext_rpc(EXT_CID_DLBH_FREAD, 2, EXT_INT(size * no - offset), EXT_INT(fh),
+	    2, EXT_INT_P(retval), EXT_BYTES_P(buffer, nb));
+	if (nb)
+	    memcpy(buf + offset, buffer, nb);
+	free(buffer);
+    }
+    return retval ? -1 : (offset + nb) / size;
 }
 
 int
@@ -182,4 +211,23 @@ char *window;
     nhext_rpc(EXT_CID_GET_STANDARD_WINID, 1, EXT_STRING(window),
       1, EXT_WINID_P(retval));
     return retval;
+}
+
+struct proxycb_get_tilesets_res *
+proxy_cb_get_tilesets()
+{
+    struct proxycb_get_tilesets_res *retval;
+    retval=(struct proxycb_get_tilesets_res *)alloc(sizeof(*retval));
+    memset(retval, 0, sizeof(*retval));
+    nhext_rpc(EXT_CID_GET_TILESETS, 0, 1,
+      EXT_XDRF(proxycb_xdr_get_tilesets_res, retval));
+    return retval;
+}
+
+void
+proxy_cb_free_tilesets(tilesets)
+struct proxycb_get_tilesets_res *tilesets;
+{
+    nhext_xdr_free(proxycb_xdr_get_tilesets_res, (char *)tilesets);
+    free(tilesets);
 }

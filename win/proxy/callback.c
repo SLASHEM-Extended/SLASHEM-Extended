@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.7 2002-07-07 14:38:10 j_ali Exp $ */
+/* $Id: callback.c,v 1.8 2002-07-10 16:31:24 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -15,6 +15,8 @@ static void FDECL(callback_display_inventory, \
 static void FDECL(callback_dlbh_fopen, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(callback_dlbh_fgets, \
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(callback_dlbh_fread, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(callback_dlbh_fclose, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
@@ -44,6 +46,8 @@ static void FDECL(callback_map_menu_cmd, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(callback_get_standard_winid, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(callback_get_tilesets, \
+			(unsigned short, NhExtXdr *, NhExtXdr *));
 
 static void
 callback_display_inventory(id, request, reply)
@@ -64,7 +68,7 @@ callback_dlbh_fopen(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    char *name, *mode, *file;
+    char *name, *mode, *file, *subname;
 #ifdef FILE_AREAS
     char *area;
 #endif
@@ -75,14 +79,37 @@ NhExtXdr *request, *reply;
     else {
 	for(i = 0; name[i] && name[i] != ')'; i++)
 	    ;
-	if (!name[i] || name[i + 1])
+	if (!name[i])
 	    retval = -1;
-	else
+	else {
 	    name[i] = '\0';
+	    subname = name + i + 1;
+	    if (*subname=='/')
+		subname++;
+	    else if (*subname)
+		retval = -1;
+	}
     }
     if (strcmp(mode, "r") && strcmp(mode, "rb"))
 	retval = -1;
-    if (!retval) {
+    if (!retval && *subname) {
+	if (!strcmp(name + 2, "TILEDIR")) {
+#ifdef MAXNOTILESETS
+	    for(i = 0; i < no_tilesets; i++)
+		if (!strcmp(tilesets[i].file, subname))
+		    break;
+	    if (i == no_tilesets)
+		retval = -1;
+	    else
+#else
+	    if (strcmp(tile_file, subname))
+		retval = -1;
+	    else
+#endif
+		SET_FILE(subname, FILE_AREA_SHARE);
+	} else
+	    retval = -1;
+    } else if (!retval) {
 	if (!strcmp(name + 2, "RECORD"))
 	    SET_FILE(NH_RECORD, NH_RECORD_AREA);
 	else if (!strcmp(name + 2, "HELP"))
@@ -114,12 +141,14 @@ NhExtXdr *request, *reply;
 	else
 	    retval = -1;
     }
-    if (!retval)
+    if (!retval) {
+	dlb_init();
 #ifndef FILE_AREAS
 	retval = dlbh_fopen(file, mode);
 #else
 	retval = dlbh_fopen_area(area, file, mode);
 #endif
+    }
     nhext_rpc_params(reply, 1, EXT_INT(retval));
     free(name);
     free(mode);
@@ -134,11 +163,26 @@ NhExtXdr *request, *reply;
 {
     int fh, len;
     char *retval;
-    char buf[BUFSIZ];
+    char buf[512];	/* Must be small enough that packet fits into 1Kb */
     extern char *dlbh_fgets();
     nhext_rpc_params(request, 2, EXT_INT_P(len), EXT_INT_P(fh));
-    retval = dlbh_fgets(buf, len < BUFSIZ ? len : BUFSIZ, fh);
+    retval = dlbh_fgets(buf, len < 512 ? len : 512, fh);
     nhext_rpc_params(reply, 1, EXT_STRING(retval ? retval : ""));
+}
+
+static void
+callback_dlbh_fread(id, request, reply)
+unsigned short id;
+NhExtXdr *request, *reply;
+{
+    int fh, len, nb;
+    char buf[512];	/* Must be small enough that packet fits into 1Kb */
+    nhext_rpc_params(request, 2, EXT_INT_P(len), EXT_INT_P(fh));
+    if (len > 512)
+	len = 512;
+    nb = dlbh_fread(buf, 1, len, fh);
+    nhext_rpc_params(reply, 2,
+      EXT_INT(nb < 0), EXT_BYTES(buf, nb >= 0 ? nb : 0));
 }
 
 static void
@@ -374,10 +418,46 @@ NhExtXdr *request, *reply;
     nhext_rpc_params(reply, 1, EXT_INT(retval));
 }
 
+static void
+callback_get_tilesets(id, request, reply)
+unsigned short id;
+NhExtXdr *request, *reply;
+{
+    int i;
+    char *file;
+    struct proxycb_get_tilesets_res list;
+#ifdef MAXNOTILESETS
+    list.n_tilesets = no_tilesets;
+    list.tilesets = (struct proxycb_get_tilesets_res_tileset *)
+      alloc(no_tilesets * sizeof(*list.tilesets));
+    for(i = 0; i < list.n_tilesets; i++) {
+	list.tilesets[i].name = tilesets[i].name;
+	file = (char *)alloc(strlen(tilesets[i].file) + 12);
+	sprintf(file, "$(TILEDIR)/%s", tilesets[i].file);
+	list.tilesets[i].file = file;
+	list.tilesets[i].flags = tilesets[i].flags;
+    }
+#else
+    list.n_tilesets = 1;
+    list.tilesets = (struct proxycb_get_tilesets_res_tileset *)
+      alloc(1 * sizeof(*list.tilesets));
+    list.tilesets[0].name = "Default";
+    file = (char *)alloc(strlen(tile_file) + 12);
+    sprintf(file, "$(TILEDIR)/%s", tile_file);
+    list.tilesets[0].file = file;
+    list.tilesets[0].flags = 0;
+#endif
+    nhext_rpc_params(reply, 1, EXT_XDRF(proxycb_xdr_get_tilesets_res, &list));
+    for(i = 0; i < list.n_tilesets; i++)
+	free((char *)list.tilesets[i].file);
+    free(list.tilesets);
+}
+
 struct nhext_svc proxy_callbacks[] = {
     EXT_CID_DISPLAY_INVENTORY,		callback_display_inventory,
     EXT_CID_DLBH_FOPEN,			callback_dlbh_fopen,
     EXT_CID_DLBH_FGETS,			callback_dlbh_fgets,
+    EXT_CID_DLBH_FREAD,			callback_dlbh_fread,
     EXT_CID_DLBH_FCLOSE,		callback_dlbh_fclose,
     EXT_CID_FLUSH_SCREEN,		callback_flush_screen,
     EXT_CID_DOREDRAW,			callback_doredraw,
@@ -392,5 +472,6 @@ struct nhext_svc proxy_callbacks[] = {
     EXT_CID_GET_EXTENDED_COMMANDS,	callback_get_extended_commands,
     EXT_CID_MAP_MENU_CMD,		callback_map_menu_cmd,
     EXT_CID_GET_STANDARD_WINID,		callback_get_standard_winid,
+    EXT_CID_GET_TILESETS,		callback_get_tilesets,
     0, NULL,
 };

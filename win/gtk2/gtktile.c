@@ -1,5 +1,5 @@
 /*
-  $Id: gtktile.c,v 1.2 2002-03-24 07:39:03 j_ali Exp $
+  $Id: gtktile.c,v 1.3 2002-07-10 16:31:23 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include "winGTK.h"
 #include "dlb.h"
+#include "proxycb.h"
 
 /* from tile.c */
 extern int total_tiles_used;
@@ -191,33 +192,72 @@ static void calc_tile_transp(TileTab *t, GdkPixbuf *pixbuf, int i)
 enum xshm_map_mode
 x_tile_init(TileTab *t)
 {
-    int i;
+    int i, fh, nb;
     enum xshm_map_mode mode;
-    char *tile_file;
+    GdkPixbufLoader *loader;
     GdkPixbuf *copy;
     guchar *pixels;
     GdkGC *gc;
+    GError *err = NULL;
+    char buf[1024];
     Tile = t;
     if (!t->spread && !t->transparent)
 	mode = XSHM_MAP_PIXMAP;
     else
 	mode = getenv("HACKPIXBUF") ? XSHM_MAP_PIXBUF : XSHM_MAP_IMAGE;
-#ifndef FILE_AREAS
-    tile_file =	t->file;
+    tile_pixbuf = NULL;
+#ifdef GTK_PROXY
+    fh = proxy_cb_dlbh_fopen(t->file, "rb");
 #else
-    tile_file =	make_file_name(FILE_AREA_SHARE, t->file);
-#endif
-    tile_pixbuf = gdk_pixbuf_new_from_file(tile_file, NULL);
-    if (!tile_pixbuf) {
-	pline("Cannot load tile file %s!", tile_file);
-#ifdef FILE_AREAS
-	free(tile_file);
-#endif
+# ifdef FILE_AREAS
+    fh = dlbh_fopen(FILE_AREA_SHARE, t->file, "rb");
+# else
+    fh = dlbh_fopen(t->file, "rb");
+# endif
+#endif /* GTK_PROXY */
+    if (fh < 0) {
+	pline("Cannot open tile file %s!", t->file);
 	return XSHM_MAP_NONE;
     }
-#ifdef FILE_AREAS
-    free(tile_file);
+    loader = gdk_pixbuf_loader_new();
+#ifdef GTK_PROXY
+    while (nb = proxy_cb_dlbh_fread(buf, 1, sizeof(buf), fh), nb > 0) {
+#else
+    while (nb = dlbh_fread(buf, 1, sizeof(buf), fh), nb > 0) {
 #endif
+	if (!gdk_pixbuf_loader_write(loader, buf, nb, &err)) {
+	    pline("Error loading %s: %s", t->file, err->message);
+	    g_error_free(err);
+	    err = NULL;
+	    break;
+	}
+    }
+    if (nb < 0) {
+	pline("Read error from tile file %s!", t->file);
+	(void)gdk_pixbuf_loader_close(loader, NULL);
+    } else if (!nb) {
+	if (!gdk_pixbuf_loader_close(loader, &err)) {
+	    pline("Error loading %s: %s", t->file, err->message);
+	    g_error_free(err);
+	    err = NULL;
+	}
+	else {
+	    tile_pixbuf = gdk_pixbuf_loader_get_pixbuf(loader);
+	    if (!tile_pixbuf)
+		pline("No image found in tile file %s!", t->file);
+	    else
+		g_object_ref(tile_pixbuf);
+	}
+    } else
+	(void)gdk_pixbuf_loader_close(loader, NULL);
+#ifdef GTK_PROXY
+    proxy_cb_dlbh_fclose(fh);
+#else
+    dlbh_fclose(fh);
+#endif
+    g_object_unref(loader);
+    if (!tile_pixbuf)
+	return XSHM_MAP_NONE;
     t->tilemap_width = gdk_pixbuf_get_width(tile_pixbuf);
     t->tilemap_height = gdk_pixbuf_get_height(tile_pixbuf);
     t->unit_width = t->tilemap_width / tiles_per_row;
@@ -905,7 +945,7 @@ x_tile_draw_rectangle(int dstx, int dsty, GdkColor *c)
 /*
  * [ALI]
  *
- * Create the GTK interface's tileTab[] array from the generic tileset[]
+ * Create the GTK interface's tileTab[] array from the game's tileset
  * array. We drop any tilesets which we can easily tell aren't supported
  * but we won't be sure until we actually try and load them.
  * Information which depends on the size of the tilemap will be completed
@@ -916,22 +956,36 @@ int
 tile_scan(void)
 {
     int i, v, visual, ch;
-    FILE *fp;
+    int fh;
+    const char *tileset = nh_option_cache_get("tileset");
+#ifdef GTK_PROXY
+    struct proxycb_get_tilesets_res *tilesets_res = proxy_cb_get_tilesets();
+    struct proxycb_get_tilesets_res_tileset *tilesets = tilesets_res->tilesets;
+    int no_tilesets = tilesets_res->n_tilesets;
+#endif
 
     v = 1;	/* Index into tileTab[] array */
     for(i=0 ; i < no_tilesets ; ++i){
 	if ((tilesets[i].flags & ~(TILESET_TRANSPARENT | TILESET_PSEUDO3D)) != 0)
 	    continue;	/* Unsupported flag set */
-#ifdef FILE_AREAS
-	fp = fopen_datafile_area(FILE_AREA_SHARE, tilesets[i].file, RDTMODE, FALSE);
+#ifdef GTK_PROXY
+	fh = proxy_cb_dlbh_fopen(tilesets[i].file, "r");
 #else
-	fp = fopen_datafile(tilesets[i].file, RDTMODE, FALSE);
-#endif
-	if (!fp)
+# ifdef FILE_AREAS
+	fh = dlbh_fopen(FILE_AREA_SHARE, tilesets[i].file, RDTMODE);
+# else
+	fh = dlbh_fopen(tilesets[i].file, RDTMODE);
+# endif
+#endif	/* GTK_PROXY */
+	if (fh < 0)
 	    continue;	/* Missing or unreadable tile file */
-	fclose(fp);
-	tileTab[v].ident = tilesets[i].name;
-	tileTab[v].file = tilesets[i].file;
+#ifdef GTK_PROXY
+	proxy_cb_dlbh_fclose(fh);
+#else
+	dlbh_fclose(fh);
+#endif
+	tileTab[v].ident = strdup(tilesets[i].name);
+	tileTab[v].file = strdup(tilesets[i].file);
 	tileTab[v].transparent = !!(tilesets[i].flags & TILESET_TRANSPARENT);
 	tileTab[v].spread = !!(tilesets[i].flags & TILESET_PSEUDO3D);
 	v++;
@@ -951,13 +1005,16 @@ tile_scan(void)
 	    pline("Warning: Tile set \"%s\" not supported.", tileset);
 	    if (no_tileTab > 0) {
 		visual = 1;	/* Default to the first valid tile set */
-		strcpy(tileset, tileTab[visual].ident);
+		nh_option_cache_set("tileset", tileTab[visual].ident);
 	    }
 	    else {
 		visual = 0;	/* Drop down to character mode */
-		tileset[0] = '\0';
+		nh_option_cache_set("tileset", "");
 	    }
 	}
     }
+#ifdef GTK_PROXY
+    proxy_cb_free_tilesets(tilesets_res);
+#endif
     return visual;
 }

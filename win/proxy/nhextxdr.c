@@ -1,5 +1,5 @@
-/* $Id: nhextxdr.c,v 1.3 2001-12-11 20:43:49 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001 */
+/* $Id: nhextxdr.c,v 1.4 2002-07-10 16:31:24 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
@@ -161,38 +161,39 @@ boolean *datum;
     return retval;
 }
 
-boolean
-nhext_xdr_string(xdrs, datum, maxsize)
+/*
+ * A common routine for nhext_xdr_string() and nhext_xdr_bytes()
+ */
+
+static boolean
+nhext_xdr_bytestring(xdrs, datum, len, maxlen, ext)
 NhExtXdr *xdrs;
 char **datum;
-unsigned int maxsize;
+unsigned int *len;
+unsigned int maxlen, ext;
 {
     int retval;
-    long slen;
     long zero = 0;
     if (xdrs->x_op == NHEXT_XDR_ENCODE) {
-	slen = strlen(*datum);
-	if (slen > maxsize)
+	if (*len > maxlen)
 	    return FALSE;
-	retval = nhext_xdr_long(xdrs, &slen);
-	retval &= xdrs->x_write(xdrs, *datum, slen);
-	if (slen & 3)
-	    retval &= xdrs->x_write(xdrs, &zero, 4 - (slen & 3));
+	retval = nhext_xdr_u_int(xdrs, len);
+	retval &= xdrs->x_write(xdrs, *datum, *len);
+	if (*len & 3)
+	    retval &= xdrs->x_write(xdrs, &zero, 4 - (*len & 3));
     }
     else if (xdrs->x_op == NHEXT_XDR_DECODE) {
-	retval = nhext_xdr_long(xdrs, &slen);
+	retval = nhext_xdr_u_int(xdrs, len);
 	if (retval) {
-	    if (slen > maxsize)
+	    if (*len > maxlen)
 		return FALSE;
 	    if (!*datum) {
-		*datum = malloc(MAX(NHEXT_XDR_RNDUP(slen), slen + 1));
+		*datum = malloc(MAX(NHEXT_XDR_RNDUP(*len), *len + ext));
 		if (!*datum)
 		    return FALSE;
 	    }
-	    retval &= xdrs->x_read(xdrs, *datum, NHEXT_XDR_RNDUP(slen));
-	    (*datum)[slen] = '\0';
+	    retval &= xdrs->x_read(xdrs, *datum, NHEXT_XDR_RNDUP(*len));
 	}
-	
     }
     else if (xdrs->x_op == NHEXT_XDR_FREE) {
 	free(*datum);
@@ -200,6 +201,32 @@ unsigned int maxsize;
 	retval = TRUE;
     }
     return retval;
+}
+
+boolean
+nhext_xdr_string(xdrs, datum, maxsize)
+NhExtXdr *xdrs;
+char **datum;
+unsigned int maxsize;
+{
+    int retval;
+    unsigned int slen;
+    if (xdrs->x_op == NHEXT_XDR_ENCODE)
+	slen = strlen(*datum);
+    retval = nhext_xdr_bytestring(xdrs, datum, &slen, maxsize, 1);
+    if (retval && xdrs->x_op == NHEXT_XDR_DECODE)
+	(*datum)[slen] = '\0';
+    return retval;
+}
+
+boolean
+nhext_xdr_bytes(xdrs, datum, len, maxlen)
+NhExtXdr *xdrs;
+char **datum;
+unsigned int *len;
+unsigned int maxlen;
+{
+    return nhext_xdr_bytestring(xdrs, datum, len, maxlen, 0);
 }
 
 boolean

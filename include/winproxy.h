@@ -1,5 +1,5 @@
-/* $ Id: $ */
-/* Copyright (c) Slash'EM Development Team 2001 */
+/* $Id: winproxy.h,v 1.7 2002-07-10 16:31:23 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #ifndef WINEXT_H
@@ -98,16 +98,18 @@ E char * FDECL(get_killer_string, (int));
 #define EXT_PARAM_INT		0x4001
 #define EXT_PARAM_LONG		0x4002
 #define EXT_PARAM_STRING	0x4003
-#define EXT_PARAM_WINID		0x4004
-#define EXT_PARAM_BOOLEAN	0x4005
-#define EXT_PARAM_CHAR		0x4006
-#define EXT_PARAM_XDRF		0x4007
+#define EXT_PARAM_BYTES		0x4004
+#define EXT_PARAM_WINID		0x4005
+#define EXT_PARAM_BOOLEAN	0x4006
+#define EXT_PARAM_CHAR		0x4007
+#define EXT_PARAM_XDRF		0x4008
 
 #define EXT_PARAM_PTR		0x8000
 
 #define EXT_INT(i)		EXT_PARAM_INT, i
 #define EXT_LONG(l)		EXT_PARAM_LONG, l
 #define EXT_STRING(s)		EXT_PARAM_STRING, (s) ? (s) : ""
+#define EXT_BYTES(buf,nb)	EXT_PARAM_BYTES, buf, nb
 #define EXT_WINID(w)		EXT_PARAM_WINID, w
 #define EXT_BOOLEAN(b)		EXT_PARAM_BOOLEAN, b
 #define EXT_CHAR(c)		EXT_PARAM_CHAR, c
@@ -116,6 +118,7 @@ E char * FDECL(get_killer_string, (int));
 #define EXT_INT_P(i)		EXT_PARAM_PTR | EXT_PARAM_INT, &(i)
 #define EXT_LONG_P(l)		EXT_PARAM_PTR | EXT_PARAM_LONG, &(l)
 #define EXT_STRING_P(s)		EXT_PARAM_PTR | EXT_PARAM_STRING, &(s)
+#define EXT_BYTES_P(buf,nb)	EXT_PARAM_PTR | EXT_PARAM_BYTES, &(buf), &(nb)
 #define EXT_WINID_P(w)		EXT_PARAM_PTR | EXT_PARAM_WINID, &(w)
 #define EXT_BOOLEAN_P(b)	EXT_PARAM_PTR | EXT_PARAM_BOOLEAN, &(b)
 #define EXT_CHAR_P(c)		EXT_PARAM_PTR | EXT_PARAM_CHAR, &(c)

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.9 2002-07-07 14:38:10 j_ali Exp $
+  $Id: gtkmap.c,v 1.10 2002-07-10 16:31:23 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -378,7 +378,7 @@ switch_mode:
 #ifdef RADAR
 	nh_radar_update();
 #endif
-	strcpy(tileset, tileTab[map_visual].ident);
+	nh_option_cache_set("tileset", tileTab[map_visual].ident);
 	nh_map_redraw();
 
 	gtk_widget_show(map);
@@ -491,6 +491,7 @@ nh_map_clear()
     int i, j, k;
     int glyph = cmap_to_glyph(S_stone);
     int stone = fix_tile(glyph2tile[glyph]);
+    const char *tileset = nh_option_cache_get("tileset");
     /*
      * Check if tileset has changed and change map_visual if required.
      * This can happen if tileset changed via doset() and doredraw() was
@@ -505,7 +506,7 @@ nh_map_clear()
 	    }
 	if (i > no_tileTab) {
 	    pline("Tileset %s not valid.", tileset);
-	    strcpy(tileset, tileTab[map_visual].ident);
+	    nh_option_cache_set("tileset", tileTab[map_visual].ident);
 	}
     }
 

@@ -1,5 +1,5 @@
-/* $Id: nhext.c,v 1.6 2002-03-23 10:33:28 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001 */
+/* $Id: nhext.c,v 1.7 2002-07-10 16:31:24 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #define NEED_VARARGS
@@ -16,7 +16,7 @@ static int no_connections = 0;
 /*
  * During development (when we have both the server and the client in one
  * executable) we need to be able to maintain two seperate connections.
- * This will become unecessary in the final application and the facility
+ * This will become unnecessary in the final application and the facility
  * should probably be removed for efficiency.
  */
 
@@ -93,6 +93,11 @@ int nhext_rpc_vparams(NhExtXdr *xdrs, int no, va_list *app)
 		param_s = va_arg(ap, char *);
 		nhext_xdr_string(xdrs, &param_s, (unsigned int)-1);
 		break;
+	    case EXT_PARAM_BYTES:
+		param_s = va_arg(ap, char *);
+		param_i = va_arg(ap, int);
+		nhext_xdr_bytes(xdrs, &param_s, &param_i, (unsigned int)-1);
+		break;
 	    case EXT_PARAM_WINID:
 		param_i = va_arg(ap, winid);
 		nhext_xdr_int(xdrs, &param_i);
@@ -117,6 +122,12 @@ int nhext_rpc_vparams(NhExtXdr *xdrs, int no, va_list *app)
 		param_ps = va_arg(ap, char **);
 		*param_ps = NULL;
 		retval = nhext_xdr_string(xdrs, param_ps, (unsigned int)-1);
+		break;
+	    case EXT_PARAM_PTR | EXT_PARAM_BYTES:
+		param_ps = va_arg(ap, char **);
+		*param_ps = NULL;
+		param_pi = va_arg(ap, int *);
+		nhext_xdr_bytes(xdrs, param_ps, param_pi, (unsigned int)-1);
 		break;
 	    case EXT_PARAM_PTR | EXT_PARAM_WINID:
 		param_pw = va_arg(ap, winid *);
