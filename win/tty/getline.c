@@ -124,7 +124,7 @@ getlin_hook_proc hook;
 			    (bufp-obufp < BUFSZ-1 && bufp-obufp < COLNO)) {
 				/* avoid isprint() - some people don't have it
 				   ' ' is not always a printing char */
-			int i;
+			char *i;
 
 			*bufp = c;
 
