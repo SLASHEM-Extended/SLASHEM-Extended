@@ -67,35 +67,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E6 [February 28/2004] [Released by Ali]
--fixed bug 876092: Wrong filename in message during build process (Clive Crous)
--fixed bug 876094: Tiles are miscoloured in allegro port (Clive Crous)
--fixed bug 876096: Tiles are misdrawn/cropped in allegro port (Clive Crous)
--fixed bug 510249: poisoned frag grenade (Nico Kist)
--fixed bug 873349: <artifact> should be at least expert. Fixing...
--fixed bug 878808: Build of gtkhack fails under win32
--fixed bug 872666: [0.0.7e4f1] Xorns + Sokoban = cake walk
--fixed bug 878813: GtkHack/win32: #portdebug crashes
--Mac: Update Install.mpw to require yacc/lex
--fixed bug 883643: Crash when throwing potions at monsters behind iron bars
--fixed bug 854779: Unknown tin auto-IDed as dog when eaten
--fixed bug 878951: [winnt] tiles32.bmp not in makefile
--fixed bug 879237: [winnt] stdout & stderr prints dont show
--fixed bug 879242: tile2bmp does not abort if no tiles created
--fixed bug 879243: [unix] nhtiles.bmp build info error in makefile.dat
--fixed bug 879244: tile2bmp draws stripes instead of checks
--fixed bug 878815: GtkHack: bad handling of text fields set via "more options"
--fixed bug 890801: two entrances to mines
--fixed bug 858838: Stake of Van Helsing mis-listed in score detail
--fixed bug 846930: [0.0.7E2]Strange msg order when swallowed by a poly'ed mnstr
--fixed bug 869958: GTK handling of unexpected game exits
--fixed bug 878816: Bad button label in "more options" confirm dialog
--fixed bug 878817: More options confirmation: No button does nothing
--fixed bug 878812: Duplicates in list of game commands
--Support gentoo configuration system
--fixed bug 901798: gtkhack 7E5 crashes if it can't write to cache
--Documented configuration for proxy servers
--fixed bug 908980: allgrohack crashes on startup
+ver 0.0.7E6F1 [?] [Released by ?]
 
 See history.txt for changes made in previous versions.
 
