@@ -8632,13 +8632,6 @@ resource 'CURS' (514, purgeable) {
 	{4, 4}
 };
 
-data 'sLem' (0, purgeable) {
-	$"35A9 5374 6963 6874 696E 6720 4D61 7468"            /* 5©Stichting Math */
-	$"656D 6174 6973 6368 2043 656E 7472 756D"            /* ematisch Centrum */
-	$"2C20 416D 7374 6572 6461 6D2C 2031 3938"            /* , Amsterdam, 198 */
-	$"35D0 3139 3939"                                     /* 5Ð1999 */
-};
-
 resource 'FREF' (128, purgeable) {
 	'APPL',
 	0,
@@ -9046,7 +9039,7 @@ resource 'MENU' (137) {
 		/* [14] */
 		"-", noIcon, noKey, "#", 2,
 		/* [15] */
-		"Climp Up", noIcon, noKey, "<", plain,
+		"Climb Up", noIcon, noKey, "<", plain,
 		/* [16] */
 		"Climb Down", noIcon, noKey, ">", plain
 	}
