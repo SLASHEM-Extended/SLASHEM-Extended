@@ -254,6 +254,7 @@ short *otyp;
     register const char *aname;
 
     if(!strncmpi(name, "the ", 4)) name += 4;
+    if(!strncmpi(name, "poisoned ", 9)) name += 9;
 
     for (a = artilist+1; a->otyp; a++) {
 	aname = a->name;

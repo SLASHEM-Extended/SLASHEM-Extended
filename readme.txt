@@ -86,6 +86,7 @@ ver 0.0.7E6 [?] [Released by ?]
 -fixed bug 879244: tile2bmp draws stripes instead of checks
 -fixed bug 878815: GtkHack: bad handling of text fields set via "more options"
 -fixed bug 890801: two entrances to mines
+-fixed bug 858838: Stake of Van Helsing mis-listed in score detail
 
 See history.txt for changes made in previous versions.
 

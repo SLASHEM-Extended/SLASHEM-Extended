@@ -508,7 +508,7 @@ register struct obj *obj;
 #endif
 	register char *buf = &(bufr[PREFIX]);   /* leave room for "17 -3 " */
 
-	if (Hallucination) {
+	if (Hallucination && !program_state.gameover) {
 		hobj = mkobj(obj->oclass, 0);
 		hobj->quan = obj->quan;
 		/* WAC clean up */
