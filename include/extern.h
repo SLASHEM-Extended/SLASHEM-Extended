@@ -1908,6 +1908,9 @@ E void FDECL(learntech, (SHORT_P,long,int));
 
 E boolean FDECL(goodpos, (int,int,struct monst *));
 E boolean FDECL(enexto, (coord *,XCHAR_P,XCHAR_P,struct permonst *));
+#ifdef DEVEL_BRANCH
+E int FDECL(epathto, (coord *,int,XCHAR_P,XCHAR_P,struct permonst *));
+#endif
 E void FDECL(teleds, (int,int));
 E boolean NDECL(safe_teleds);
 E boolean FDECL(teleport_pet, (struct monst *,BOOLEAN_P));

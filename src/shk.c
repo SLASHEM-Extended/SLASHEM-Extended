@@ -3352,6 +3352,9 @@ coord *mm;
 	int kop_cnt[5];        
 	int kop_pm[5];
 	int ik, cnt;
+#ifdef DEVEL_BRANCH
+	coord *mc;
+#endif
   
 	kop_pm[0] = PM_KEYSTONE_KOP;
 	kop_pm[1] = PM_KOP_SERGEANT;
@@ -3378,34 +3381,25 @@ coord *mm;
 	kop_cnt[2] = (cnt / 6);       /* maybe a lieutenant */
 	kop_cnt[3] = (cnt / 9);       /* and maybe a kaptain */
  
+#ifdef DEVEL_BRANCH
+	mc = (coord *)alloc(cnt * sizeof(coord));
+#endif
 	for (ik=0; kop_pm[ik]; ik++) {
 	  if (!(mvitals[kop_pm[ik]].mvflags & G_GONE)) {
+#ifdef DEVEL_BRANCH
+	    cnt = epathto(mc, kop_cnt[ik], mm->x, mm->y, &mons[kop_pm[ik]]);
+	    while(--cnt >= 0)
+		(void) makemon(&mons[kop_pm[ik]], mc[cnt].x, mc[cnt].y, NO_MM_FLAGS);
+#else
 	    while(kop_cnt[ik]--) {
 	      if (enexto(mm, mm->x, mm->y, &mons[kop_pm[ik]]))
 		(void) makemon(&mons[kop_pm[ik]], mm->x, mm->y, NO_MM_FLAGS);
 	    }
+#endif
 	  }
 	}
-#if 0
-	static const short k_mndx[4] = {
-	    PM_KEYSTONE_KOP, PM_KOP_SERGEANT, PM_KOP_LIEUTENANT, PM_KOP_KAPTAIN
-	};
-	int k_cnt[4], cnt, mndx, k;
-
-	k_cnt[0] = cnt = abs(depth(&u.uz)) + rnd(5);
-	k_cnt[1] = (cnt / 3) + 1;       /* at least one sarge */
-	k_cnt[2] = (cnt / 6);           /* maybe a lieutenant */
-	k_cnt[3] = (cnt / 9);           /* and maybe a kaptain */
-
-	for (k = 0; k < 4; k++) {
-	    if ((cnt = k_cnt[k]) == 0) break;
-	    mndx = k_mndx[k];
-	    if (mvitals[mndx].mvflags & G_GONE) continue;
-
-	    while (cnt--)
-		if (enexto(mm, mm->x, mm->y, &mons[mndx]))
-		    (void) makemon(&mons[mndx], mm->x, mm->y, NO_MM_FLAGS);
-	}
+#ifdef DEVEL_BRANCH
+	free((genericptr_t)mc);
 #endif
 }
 #endif  /* KOPS */

@@ -333,6 +333,7 @@ ver 0.0.6E5F2 [? ?/2001] [Released by ?]
 -Upgraded GTK 2.0 interface to support Gtk+ version 1.3.9
 -Actioned feature request 455676: Invulnerability & casting without power.
 -Actioned feature request 469036: Thiefbane should drain levels.
+-fixed bug 457682: Steal from black market - militia gen.
 
 ver 0.0.6E5F1 [August 31/2001] [Released by Ali]
 -New messages when engraving with wand of draining.

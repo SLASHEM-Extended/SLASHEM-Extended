@@ -10,6 +10,86 @@ STATIC_DCL void NDECL(vault_tele);
 STATIC_DCL boolean FDECL(rloc_pos_ok, (int,int,struct monst *));
 STATIC_DCL void FDECL(mvault_tele, (struct monst *));
 
+#ifdef DEVEL_BRANCH
+/*
+ * Is (x, y) a bad position of mtmp?  If mtmp is NULL, then is (x, y) bad
+ * for an object?
+ *
+ * Caller is responsible for checking (x, y) with isok() if required.
+ *
+ * Returns: -1: Inaccessible, 0: Good pos, 1: Temporally inacessible
+ */
+static int
+badpos(x, y, mtmp)
+int x, y;
+struct monst *mtmp;
+{
+	int badpos = 0, pool;
+	struct permonst *mdat = NULL;
+	struct monst *mtmp2;
+
+	/* in many cases, we're trying to create a new monster, which
+	 * can't go on top of the player or any existing monster.
+	 * however, occasionally we are relocating engravings or objects,
+	 * which could be co-located and thus get restricted a bit too much.
+	 * oh well.
+	 */
+	if (mtmp != &youmonst && x == u.ux && y == u.uy
+#ifdef STEED
+		    && (!u.usteed || mtmp != u.usteed)
+#endif
+		    )
+	    badpos = 1;
+
+	if (mtmp) {
+	    mtmp2 = m_at(x,y);
+	    if (mtmp2 && mtmp2 != mtmp)
+		badpos = 1;
+
+	    mdat = mtmp->data;
+	    pool = is_pool(x,y);
+	    if (mdat->mlet == S_EEL && !pool && rn2(13))
+		badpos = 1;
+
+	    if (pool) {
+		if (mtmp == &youmonst)
+			return (HLevitation || Flying || Wwalking ||
+					Swimming || Amphibious) ? badpos : -1;
+		else    return (is_flyer(mdat) || is_swimmer(mdat) ||
+					is_clinger(mdat)) ? badpos : -1;
+	    } else if (is_lava(x,y)) {
+		if (mtmp == &youmonst)
+		    return HLevitation ? badpos : -1;
+		else
+		    return (is_flyer(mdat) || likes_lava(mdat)) ? badpos : -1;
+	    }
+	    if (passes_walls(mdat) && may_passwall(x,y)) return badpos;
+	}
+	if (!ACCESSIBLE(levl[x][y].typ)) return -1;
+	if (closed_door(x, y) && (!mdat || !amorphous(mdat)))
+	    return mdat && (nohands(mdat) || verysmall(mdat)) ? -1 : 1;
+	if (sobj_at(BOULDER, x, y) && (!mdat || !throws_rocks(mdat)))
+	    return mdat ? -1 : 1;
+	return badpos;
+}
+
+/*
+ * Is (x,y) a good position of mtmp?  If mtmp is NULL, then is (x,y) good
+ * for an object?
+ *
+ * This function will only look at mtmp->mdat, so makemon, mplayer, etc can
+ * call it to generate new monster positions with fake monster structures.
+ */
+boolean
+goodpos(x, y, mtmp)
+int x,y;
+struct monst *mtmp;
+{
+    if (!isok(x, y)) return FALSE;
+
+    return !badpos(x, y, mtmp);
+}
+#else	/* DEVEL_BRANCH */
 /*
  * Is (x,y) a good position of mtmp?  If mtmp is NULL, then is (x,y) good
  * for an object?
@@ -69,6 +149,7 @@ struct monst *mtmp;
 		return FALSE;
 	return TRUE;
 }
+#endif
 
 /*
  * "entity next to"
@@ -150,6 +231,174 @@ full:
     cc->y = good[i].y;
     return TRUE;
 }
+
+#ifdef DEVEL_BRANCH
+/*
+ * "entity path to"
+ *
+ * Attempt to find nc good places for the given monster type with the shortest
+ * path to (xx,yy).  Where there is more than one valid set of positions, one
+ * will be chosen at random.  Return the number of positions found.
+ * Warning:  This routine is much slower than enexto and should be used
+ * with caution.
+ */
+
+#define EPATHTO_UNSEEN		0x0
+#define EPATHTO_INACCESSIBLE	0x1
+#define EPATHTO_DONE		0x2
+#define EPATHTO_TAIL(n)		(0x3 + ((n) & 1))
+
+#define EPATHTO_XY(x,y)		(((y) + 1) * COLNO + (x))
+#define EPATHTO_Y(xy)		((xy) / COLNO - 1)
+#define EPATHTO_X(xy)		((xy) % COLNO)
+
+#ifdef DEBUG
+coord epathto_debug_cc[100];
+#endif
+
+int
+epathto(cc, nc, xx, yy, mdat)
+coord *cc;
+int nc;
+register xchar xx, yy;
+struct permonst *mdat;
+{
+    int i, j, d, xy, x, y, r;
+    int path_len, postype;
+    int first_col, last_col;
+    int nd, n;
+    static unsigned char *map;
+    static const int dirs[8] =
+      /* N, S, E, W, NW, NE, SE, SW */
+      { -COLNO, COLNO, 1, -1, -COLNO-1, -COLNO+1, COLNO+1, COLNO-1};
+    struct monst fakemon;	/* dummy monster */
+    fakemon.data = mdat;	/* set up for badpos */
+    map = (unsigned char *)alloc(COLNO * (ROWNO + 2));
+    (void) memset((genericptr_t)map, EPATHTO_INACCESSIBLE, sizeof(map));
+    for(i = 1; i < COLNO; i++)
+	for(j = 0; j < ROWNO; j++)
+	    map[EPATHTO_XY(i, j)] = EPATHTO_UNSEEN;
+    map[EPATHTO_XY(xx, yy)] = EPATHTO_TAIL(0);
+    if (badpos(xx, yy, &fakemon) == 0) {
+	cc[0].x = xx;
+	cc[0].y = yy;
+	nd = n = 1;
+    }
+    else
+	nd = n = 0;
+    for(path_len = 0; nd < nc; path_len++)
+    {
+	first_col = max(1, xx - path_len);
+	last_col = min(COLNO - 1, xx + path_len);
+	for(j = max(0, yy - path_len); j <= min(ROWNO - 1, yy + path_len); j++)
+	    for(i = first_col; i <= last_col; i++)
+		if (map[EPATHTO_XY(i, j)] == EPATHTO_TAIL(path_len)) {
+		    map[EPATHTO_XY(i, j)] = EPATHTO_DONE;
+		    for(d = 0; d < (mdat == &mons[PM_GRID_BUG] ? 4 : 8); d++) {
+			xy = EPATHTO_XY(i, j) + dirs[d];
+			if (map[xy] == EPATHTO_UNSEEN) {
+			    x = EPATHTO_X(xy);
+			    y = EPATHTO_Y(xy);
+			    postype = badpos(x, y, &fakemon);
+			    map[xy] = postype < 0 ? EPATHTO_INACCESSIBLE :
+				    EPATHTO_TAIL(path_len + 1);
+			    if (postype == 0) {
+				if (n < nc)
+				{
+				    cc[n].x = x;
+				    cc[n].y = y;
+				}
+				else if (rn2(n - nd + 1) < nc - nd)
+				{
+				    r = rn2(nc - nd) + nd;
+				    cc[r].x = x;
+				    cc[r].y = y;
+				}
+				++n;
+			    }
+			}
+		    }
+		}
+	if (nd == n)
+	    break;	/* No more positions */
+	else
+	    nd = n;
+    }
+    if (nd > nc)
+	nd = nc;
+#ifdef DEBUG
+    if (cc == epathto_debug_cc)
+    {
+	winid win;
+	int glyph;
+	char row[COLNO+1];
+
+	win = create_nhwindow(NHW_TEXT);
+	putstr(win, 0, "");
+	for (y = 0; y < ROWNO; y++) {
+	    for (x = 1; x < COLNO; x++) {
+		xy = EPATHTO_XY(x, y);
+		if (map[xy] == EPATHTO_INACCESSIBLE) {
+		    glyph = back_to_glyph(x, y);
+		    row[x] = showsyms[glyph_to_cmap(glyph)];
+		}
+		else
+		    row[x] = ' ';
+	    }
+	    for (i = 0; i < nd; i++)
+		if (cc[i].y == y)
+		    row[cc[i].x] = i < 10 ? '0' + i :
+			i < 36 ? 'a' + i - 10 :
+			i < 62 ? 'A' + i - 36 :
+			'?';
+	    /* remove trailing spaces */
+	    for (x = COLNO-1; x >= 1; x--)
+		if (row[x] != ' ') break;
+	    row[x+1] = '\0';
+
+	    putstr(win, 0, &row[1]);
+	}
+	display_nhwindow(win, TRUE);
+	destroy_nhwindow(win);
+    }
+#endif
+
+    free((genericptr_t)map);
+    return nd;
+}
+
+#ifdef DEBUG
+void
+wiz_debug_cmd() /* in this case, run epathto on arbitary monster & goal */
+{
+    struct permonst *ptr;
+    int mndx, i;
+    coord cc;
+    char buf[BUFSIZ];
+    for(i = 0; ; i++) {
+	if(i >= 5) {
+	    pline(thats_enough_tries);
+	    return;
+	}
+	getlin("What monster do you want to test? [type the name]", buf);
+
+	mndx = name_to_mon(buf);
+	if (mndx == NON_PM) {
+	    pline("Such creatures do not exist in this world.");
+	    continue;
+	}
+	ptr = &mons[mndx];
+	pline("Which position do you want to aim for?");
+	cc.x = u.ux;
+	cc.y = u.uy;
+	if (getpos(&cc, TRUE, "the goal position") < 0)
+	    return;	/* abort */
+	epathto(epathto_debug_cc, SIZE(epathto_debug_cc), cc.x, cc.y, ptr);
+	break;
+    }
+}
+#endif	/* DEBUG */
+#endif	/* DEVEL_BRANCH */
 
 /*
  * Check for restricted areas present in some special levels.  (This might
