@@ -190,8 +190,6 @@ struct obj *otmp;
 		if (!resist(mtmp, otmp->oclass, 0, NOTELL)) {
 			mon_adjust_speed(mtmp, 1, otmp);
 			m_dowear(mtmp, FALSE); /* might want speed boots */
-			if (canseemon(mtmp))
-			    pline("%s speeds up!", Monnam(mtmp));
 		}
 		break;
 	case SPE_TURN_UNDEAD:
