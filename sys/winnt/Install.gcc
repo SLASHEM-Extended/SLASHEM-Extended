@@ -1,21 +1,18 @@
          Copyright (c) NetHack Development Team 1990-2002
-         Copyright (c) Slash'EM Development Team 2002
+         Copyright (c) Slash'EM Development Team 2002-2003
          NetHack may be freely redistributed.  See license for details.
          ==============================================================
                     Instructions for compiling and installing
          Slash'EM 0.0.7 on a Windows NT, 95, 98, Me, 2000, or XP system
          ==============================================================
-                        Last revision: December 14, 2002
+                        Last revision: March 6, 2003
 
 This file deals with compiling Slash'EM with gcc (the GNU Compiler Collection)
 and other free utility programs and libraries.
 
-You can build either the TTY version of Slash'EM or the GTK version.  If
-you want to try and build the graphical interface that comes from NetHack,
-then you may read Install.nt and try and translate the advice given there
-into the appropriate commands for Slash'EM.  Please let us know if you get
-anything working.  Note that Makefile.gcc contains rules suitable for use
-with the procedure documented here rather than in Install.nt -- follow the
+You can build either the TTY version of Slash'EM or one of the GUI versions:
+GTK or native MS-Windows.  Note that Makefile.gcc contains rules suitable for
+use with the procedure documented here rather than in Install.nt -- follow the
 procedure laid out in this file to build a TTY version of Slash'EM with gcc.
 
 You will need
@@ -100,12 +97,19 @@ Setting up the Slash'EM build environment
 			Default: N
 	USE_DLB		Set to N to keep data files seperate.
 			Default: Y
+	USE_MSWIN	Set to Y to include the native windowing interface.
+			Default: N
 	USE_GTK		Set to Y to include the GTK windowing interface.
 			Default: N
 	USE_PROXY	Set to Y to support proxified and plug-in interfaces.
 			Default: N
+    Note: While there's no theoretical reason why an executable could not
+    contain both the native and GTK windowing interfaces, Makefile.gcc does
+    not support this configuration. Building a proxified GTK interface under
+    MS-Windows is possible, if somewhat pointless. Building a proxified
+    native interface is not possible.
 
-5.  If the comments in the Makfile told you to make any changes to config.h,
+5.  If the comments in the Makefile told you to make any changes to config.h,
     then change into the include subdirectory and do so now.
 
 Compiling and installing Slash'EM

@@ -482,6 +482,7 @@ int *x, *y, *mod;
 	int done = 0;
 	boolean valid = 0;
 	if (!cmode) {
+	    char ch;
 	    *mod = 0;
 	    return ReadFile(hConIn,&ch,1,&count,NULL) && count ? ch : '\032';
 	}

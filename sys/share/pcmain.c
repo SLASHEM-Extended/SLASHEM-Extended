@@ -86,6 +86,11 @@ extern unsigned _stklen;
 #endif
 
 #ifdef OVL0
+/* If the graphics version is built, we don't need a main; it is skipped
+ * to help MinGW decide which entry point to choose. If both main and
+ * WinMain exist, the resulting executable won't work correctly.
+ */
+#ifndef MSWIN_GRAPHICS
 int
 main(argc,argv)
 int argc;
@@ -100,6 +105,7 @@ char *argv[];
      /*NOTREACHED*/
      return 0;
 }
+#endif /*MSWIN_GRAPHICS*/
 #endif /*OVL0*/
 #ifdef OVL1
 
@@ -336,7 +342,7 @@ char *argv[];
 
 	/* Set up level 0 file to keep the game state.
 	 */
-	fd = create_levelfile(0);
+	fd = create_levelfile(0, (char *)0);
 	if (fd < 0) {
 		raw_print("Cannot create lock file");
 	} else {

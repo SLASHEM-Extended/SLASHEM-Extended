@@ -1,11 +1,12 @@
-#       $Id: Makefile.gcc,v 1.26 2003-02-08 11:03:27 j_ali Exp $
-#       Copyright (c) NetHack PC Development Team 1993-2001
+#       $Id: Makefile.gcc,v 1.27 2003-03-12 00:43:54 j_ali Exp $
+#       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
 #
 #       Slash'EM 0.0.7 Makefile for MinGW 1.0 and above and Gtk+ 2.0 and above
 #  
 #       Win32 systems tested:
+#				- Windows 95
 #				- Windows 2000 SP1
 #
 #       Win32 compilers tested:
@@ -62,6 +63,7 @@ SRC  = ..\src
 SSHR = ..\sys\share
 UTIL = ..\util
 WTTY = ..\win\tty
+WIN32 = ..\win\win32
 WGTK = ..\win\gtk2
 WSHR = ..\win\share
 #
@@ -70,9 +72,9 @@ GNUDLL = $(MW32GTK)/lib
 #
 #  Executables.
 
-CC    = gcc
-LINK  = gcc
-MAKEBIN  = mingw32-make
+CC     = gcc
+RC     = windres
+LINK   = gcc
 
 #
 # The MinGW switch needed to specify Microsoft packing & alignment rules
@@ -111,10 +113,6 @@ ECHO = echo
 LS = dir /l/b/-p	# DOS command WAC - disable pause for dos6
 #LS = *dir /l/b/z	# 4DOS command - cuts through ALIASes
 
-# if you have a uudecode program, add its name here
-# otherwise leave blank
-UUDECODE =
-
 #
 #  Yacc/Lex ... if you got 'em.
 #
@@ -149,6 +147,13 @@ USE_DLB = Y
 # SUPPRESS_GRAPHICS = Y
 
 #
+# Uncomment the line below if you want to compile with the native
+# MS-Windows graphics windowsystem.  You will also need to define
+# MSWIN_GRAPHICS in config.h.
+
+# USE_MSWIN = Y
+
+#
 # Uncomment the line below if you want to compile with the GTK windowsystem.
 # You will also need to define GTK_GRAPHICS and GTK_V20 in config.h.
 
@@ -181,8 +186,9 @@ USE_DLB = Y
 # nothing below this line should have to be changed
 #
 
-#Do not uncomment this for 0.0.7
-#SOUND = $(OBJ)\ntsound.o
+SOUND = ntsound.o
+
+#SOUND =
 
 GAMEFILE = $(GAMEDIR)\$(GAME).exe
 
@@ -210,12 +216,16 @@ LFLAGS =
 else
 
 # Debugging
-#CFLAGS = -pg -c -I..\include $(DLBFLG) -DWIN32CON
+#CFLAGS = -pg -c -I..\include $(DLBFLG)
 #LFLAGS = -pg
 
 #    Normal
-CFLAGS = -c -O -I../include $(DLBFLG) -DWIN32CON
+CFLAGS = -c -O -I../include $(DLBFLG)
 LFLAGS =
+
+ifneq ($(USE_MSWIN),Y)
+CFLAGS += -DWIN32CON
+endif
 endif
 
 # Select Windowing system(s) below
@@ -230,6 +240,19 @@ WINGTKCFLAGS=-I$(MW32GTK)/include
 WINTTYSRC = ../win/tty/getline.c ../win/tty/termcap.c ../win/tty/topl.c \
 	../win/tty/wintty.c 
 WINTTYOBJ = getline.o termcap.o topl.o wintty.o 
+#
+# files for a native MS-Windows port
+# (tile.c is included in the defn. for WINCSRC, below)
+ifeq ($(USE_MSWIN),Y)
+WINMSCFLAGS=-I../win/win32 -D_WIN32_IE=0x0400
+WINMSSRC = ../win/win32/mswproc.c ../win/win32/winhack.c ../win/win32/mhdlg.c \
+	../win/win32/mhaskyn.c ../win/win32/mhfont.c ../win/win32/mhinput.c \
+	../win/win32/mhmain.c ../win/win32/mhmsgwnd.c ../win/win32/mhsplash.c \
+	../win/win32/mhstatus.c ../win/win32/mhtext.c ../win/win32/mhmenu.c \
+	../win/win32/mhmap.c ../win/win32/mhrip.c
+WINMSOBJ1 = mswproc.o winhack.o mhdlg.o mhaskyn.o mhfont.o mhinput.o mhmain.o
+WINMSOBJ2 = mhmsgwnd.o mhsplash.o mhstatus.o mhtext.o mhmenu.o mhmap.o mhrip.o
+endif
 #
 # files for a GTK 2.0 port
 # (tile.c is included in the defn. for WINCSRC, below)
@@ -275,7 +298,18 @@ WOBJ02 =
 WOBJ03 =
 WOBJ04 =
 
+CCOMPILE = $(CC) $(MS_BITFIELDS)
+
+ifeq ($(USE_MSWIN),Y)
+USE_GUI = Y
+WINSRC += $(WINMSSRC)
+WOBJ02 += $(WINMSOBJ1)
+WOBJ03 += $(WINMSOBJ2)
+WOBJ04 += winres.o tile.o
+LFLAGS += -mwindows -Wl,-Map,slashem.map -v
+else	# USE_MSWIN
 ifeq ($(USE_GTK),Y)
+USE_GUI = Y
 WINSRC += $(WINGTKSRC)
 WOBJ02 += $(WINGTKOBJ1)
 WOBJ03 += $(WINGTKOBJ2)
@@ -283,11 +317,9 @@ ifneq ($(USE_PROXY),Y)
 WINSRC += $(PROXYUTLSRC)
 WOBJ04 += tile.o
 WOBJ05 += $(PROXYUTLOBJ)
-endif
-CCOMPILE = $(CC) $(MS_BITFIELDS)
-else
-CCOMPILE = $(CC)
-endif
+endif	# USE_PROXY
+endif	# USE_GTK
+endif	# USE_MSWIN
 
 ifeq ($(USE_PROXY),Y)
 WINSRC += $(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYCOMSRC)
@@ -309,7 +341,12 @@ WINOBJ = $(WOBJ01) $(WOBJ02) $(WOBJ03) $(WOBJ04) $(WOBJ05)
 # WINSRC & WINOBJ.
 #
 
-WINTTYLIB = 
+WINTTYLIB =
+
+# libraries for native MS-Windows
+ifeq ($(USE_MSWIN),Y)
+WINMSLIB = libcomctl32.a libgdi32.a
+endif
 
 # libraries for GTK
 # WINGTKLIB = `pkg-config gtk+-2.0 --libs`
@@ -327,6 +364,10 @@ WINPROXYLIB = libwsock32.a
 endif
 
 WINLIB = $(WINTTYLIB)
+
+ifeq ($(USE_MSWIN),Y)
+WINLIB += $(WINMSLIB)
+endif
 
 ifeq ($(USE_GTK),Y)
 WINLIB += $(WINGTKLIB1) $(WINGTKLIB2) $(WINGTKLIB3)
@@ -424,7 +465,7 @@ VOBJ04 = do_wear.o  dog.o      dogmove.o  dokick.o   dothrow.o
 VOBJ05 = drawing.o  dungeon.o  eat.o	  end.o	     engrave.o
 VOBJ06 = exper.o    explode.o  extralev.o files.o    fountain.o
 VOBJ07 = hack.o     hacklib.o  invent.o   lock.o
-VOBJ08 = mail.o	    main.o     makemon.o  mcastu.o   mhitm.o
+VOBJ08 = mail.o	    pcmain.o   makemon.o  mcastu.o   mhitm.o
 VOBJ09 = mhitu.o    minion.o   mkmap.o	  mklev.o    mkmaze.o
 VOBJ10 = mkobj.o    mkroom.o   mon.o	  mondata.o  monmove.o
 VOBJ11 = monst.o    monstr.o   mplayer.o  mthrowu.o  muse.o
@@ -432,18 +473,20 @@ VOBJ12 = music.o    o_init.o   objects.o  objnam.o   options.o
 VOBJ13 = pickup.o   pline.o    polyself.o potion.o   quest.o
 VOBJ14 = questpgr.o pager.o    pray.o	  priest.o   read.o
 VOBJ15 = rect.o	    restore.o  rip.o	  rnd.o	     role.o
-VOBJ16 = rumors.o   save.o	   shk.o      shknam.o	 sit.o
-VOBJ17 = sounds.o   sp_lev.o   spell.o    steal.o	 steed.o
+VOBJ16 = rumors.o   save.o     shk.o      shknam.o   sit.o
+VOBJ17 = sounds.o   sp_lev.o   spell.o    steal.o    steed.o
 VOBJ18 = timeout.o  topten.o   track.o
 VOBJ19 = trap.o     u_init.o   uhitm.o    vault.o    vision.o
 VOBJ20 = vis_tab.o  weapon.o   were.o	  wield.o    windows.o
-VOBJ21 = wizard.o   worm.o	  worn.o     write.o
+VOBJ21 = wizard.o   worm.o     worn.o     write.o
 VOBJ22 = zap.o	    light.o    dlb.o      dig.o      teleport.o
 VOBJ23 = region.o   tech.o     gypsy.o    mapglyph.o
 
-SOBJ   = winnt.o    sys.o      unix.o     nttty.o    random.o \
+SOBJ   = winnt.o    pcsys.o    pcunix.o   nttty.o    random.o \
 	 $(SOUND)   nhlan.o
 #	 $(SOUND)   mapimail.o nhlan.o
+
+SYSLIB = libwinmm.a
 
 VVOBJ  = version.o
 
@@ -644,6 +687,9 @@ endif
 ifneq ($(WINLIB),)
 	@echo INPUT( $(WINLIB) )>> $@
 endif
+ifneq ($(SYSLIB),)
+	@echo INPUT( $(SYSLIB) )>> $@
+endif
 ifeq ($(USE_NHALLOC),Y)
 	@echo INPUT( nhalloc.a )>> $@
 endif
@@ -843,6 +889,46 @@ nhproxy.a:	$(PROXYCLNTOBJ) $(PROXYCOMOBJ)
 	ar r nhproxy.a $(PROXYCOMOBJ)
 	ranlib nhproxy.a
 
+$(WIN32)\mnsel.bmp:	$(UTIL)\uudecode.exe $(WIN32)\mnsel.uu
+	$(UTIL)\uudecode $(WIN32)\mnsel.uu
+	$(COPY) mnsel.bmp $@
+	$(DEL) mnsel.bmp
+
+$(WIN32)\mnselcnt.bmp:	$(UTIL)\uudecode.exe $(WIN32)\mnselcnt.uu
+	$(UTIL)\uudecode $(WIN32)\mnselcnt.uu
+	$(COPY) mnselcnt.bmp $@
+	$(DEL) mnselcnt.bmp
+
+$(WIN32)\mnunsel.bmp:	$(UTIL)\uudecode.exe $(WIN32)\mnunsel.uu
+	$(UTIL)\uudecode $(WIN32)\mnunsel.uu
+	$(COPY) mnunsel.bmp $@
+	$(DEL) mnunsel.bmp
+
+$(WIN32)\petmark.bmp:	$(UTIL)\uudecode.exe $(WIN32)\petmark.uu
+	$(UTIL)\uudecode $(WIN32)\petmark.uu
+	$(COPY) petmark.bmp $@
+	$(DEL) petmark.bmp
+
+$(WIN32)\SlashEM.ico:	$(UTIL)\uudecode.exe $(WSYS)\seico.uu
+	$(UTIL)\uudecode $(WSYS)\seico.uu
+	$(COPY) SlashEM.ico $@
+	$(DEL) SlashEM.ico
+
+$(WIN32)\rip.bmp:	$(UTIL)\uudecode.exe $(WIN32)\rip.uu
+	$(UTIL)\uudecode $(WIN32)\rip.uu
+	$(COPY) rip.bmp $@
+	$(DEL) rip.bmp
+
+$(WIN32)\splash.bmp:	$(UTIL)\uudecode.exe $(WIN32)\splash.uu
+	$(UTIL)\uudecode $(WIN32)\splash.uu
+	$(COPY) splash.bmp $@
+	$(DEL) splash.bmp
+
+winres.o:	tiles.bmp $(WIN32)\winhack.rc $(WIN32)\mnsel.bmp \
+		$(WIN32)\mnselcnt.bmp $(WIN32)\mnunsel.bmp $(WIN32)\rip.bmp \
+		$(WIN32)\petmark.bmp $(WIN32)\SlashEM.ico $(WIN32)\splash.bmp
+	$(RC) -o$@ --include-dir=$(WIN32) -DNODEBUG -i $(WIN32)\winhack.rc
+
 #
 #  Makedefs Stuff
 #
@@ -908,7 +994,7 @@ lev_yacc.c: $(SSHR)\lev_yacc.c
 
 $(INCL)\lev_comp.h: $(SSHR)\lev_comp.h
 	$(COPY) $(SSHR)\lev_comp.h $@
-	$(ECHO) /**/ >>$(DINCL)\lev_comp.h
+	$(ECHO) /**/ >>$(INCL)\lev_comp.h
 
 lev_$(LEX).c: $(SSHR)\lev_lex.c
 	$(COPY) $(SSHR)\lev_lex.c $@
@@ -970,7 +1056,7 @@ dgn_yacc.c: $(SSHR)\dgn_yacc.c
 
 $(INCL)\dgn_comp.h: $(SSHR)\dgn_comp.h
 	$(COPY) $(SSHR)\dgn_comp.h $@
-	$(ECHO) /**/ >>$(DINCL)\dgn_comp.h
+	$(ECHO) /**/ >>$(INCL)\dgn_comp.h
 
 dgn_$(LEX).c: $(SSHR)\dgn_lex.c
 	$(COPY) $(SSHR)\dgn_lex.c $@
@@ -1001,16 +1087,22 @@ $(INCL)\tile.h: $(WSHR)\tile_t.h tilemap.exe
 
 #  Utilities
 
-$(WSHR)\txtmerge.exe: txtmerge.o $(TEXTIO)
+txtmerge.exe: txtmerge.o $(TEXTIO)
 	@echo INPUT( txtmerge.o )> tmp.lnk
 	@echo INPUT( $(TEXTIO) )>> tmp.lnk
-	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -o$(WSHR)\txtmerge.exe tmp.lnk
+	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -otxtmerge.exe tmp.lnk
 	@$(DEL) tmp.lnk
 
 tile2x11.exe: tile2x11.o $(TEXTIO)
 	@echo INPUT( tile2x11.o )> tmp.lnk
 	@echo INPUT( $(TEXTIO) )>> tmp.lnk
 	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -otile2x11.exe tmp.lnk
+	@$(DEL) tmp.lnk
+
+tile2bmp.exe: tile2bmp.o $(TEXTIO)
+	@echo INPUT( tile2bmp.o )> tmp.lnk
+	@echo INPUT( $(TEXTIO) )>> tmp.lnk
+	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -otile2bmp.exe tmp.lnk
 	@$(DEL) tmp.lnk
 
 magtile.exe: magtile.o $(TEXTIO)
@@ -1067,6 +1159,10 @@ tile2x11.o: ../win/X11/tile2x11.c $(INCL)\hack.h $(INCL)\tile.h \
 						$(INCL)\tile2x11.h
 	$(CCOMPILE) $(CFLAGS) -c ../win/X11/tile2x11.c
 
+tile2bmp.o: ../win/share/tile2bmp.c $(INCL)\hack.h $(INCL)\tile.h \
+						$(INCL)\win32api.h
+	$(CCOMPILE) $(CFLAGS) -c ../win/share/tile2bmp.c
+
 
 x11tiles: tile2x11.exe ../win/share/monsters.txt ../win/share/objects.txt \
 				../win/share/other.txt
@@ -1093,6 +1189,11 @@ x11big3dtiles:	tile2x11.exe ../win/share/mon3d.txt \
 
 x11big3dtiles.map:	x11tiles.map
 	$(COPY) x11tiles.map x11big3dtiles.map
+
+tiles.bmp:	tile2bmp.exe ../win/share/monsters.txt \
+		../win/share/objects.txt ../win/share/other.txt
+	tile2bmp $@ $(WSHR)\monsters.txt $(WSHR)\objects.txt \
+		$(WSHR)\other.txt
 
 $(WSHR)\monmag.txt:	magtile.exe ../win/share/monsters.txt
 	magtile
@@ -1127,46 +1228,43 @@ $(WSHR)\othbig.txt:	bigtile.exe ../win/share/mon32-t.txt \
 ../win/share/oth32.txt:	txtbg.exe ../win/share/oth32-t.txt
 	txtbg ../win/share/oth32-t.txt ../win/share/oth32.txt
 
-../win/share/mon32-t.txt:	$(WSHR)\txtmerge.exe $(WSHR)\monmag.txt \
+../win/share/mon32-t.txt:	txtmerge.exe $(WSHR)\monmag.txt \
 		$(WSHR)\mon32mi.txt $(WSHR)\mon32alg.txt \
 		$(WSHR)\mon32aw.txt 
-	cd $(WSHR) & \
-	txtmerge mon32-t.txt monmag.txt -b mon32mi.txt -bff00ff mon32alg.txt & \
-	txtmerge mon32-t.txt mon32-t.txt -bff00ff mon32aw.txt & \
-	cd ..\$(SRC)
+	txtmerge $(WSHR)\mon32-t.txt $(WSHR)\monmag.txt -b $(WSHR)\mon32mi.txt \
+		-bff00ff $(WSHR)\mon32alg.txt
+	txtmerge $(WSHR)\mon32-t.txt $(WSHR)\mon32-t.txt \
+		-bff00ff $(WSHR)\mon32aw.txt
 
-../win/share/obj32-t.txt:	$(WSHR)\txtmerge.exe $(WSHR)\objmag.txt \
+../win/share/obj32-t.txt:	txtmerge.exe $(WSHR)\objmag.txt \
 		$(WSHR)\obj32mi.txt $(WSHR)\obj32se.txt \
 		$(WSHR)\obj32alg.txt
-	cd $(WSHR) & \
-	txtmerge obj32-t.txt objmag.txt -b obj32mi.txt -b obj32se.txt & \
-	txtmerge obj32-t.txt obj32-t.txt -bff00ff obj32alg.txt & \
-	cd ..\$(SRC)
+	txtmerge $(WSHR)\obj32-t.txt $(WSHR)\objmag.txt -b $(WSHR)\obj32mi.txt \
+		-b $(WSHR)\obj32se.txt
+	txtmerge $(WSHR)\obj32-t.txt $(WSHR)\obj32-t.txt \
+		-bff00ff $(WSHR)\obj32alg.txt
 
-../win/share/oth32-t.txt:	$(WSHR)\txtmerge.exe $(WSHR)\othmag.txt \
+../win/share/oth32-t.txt:	txtmerge.exe $(WSHR)\othmag.txt \
 		$(WSHR)\oth32mi.txt $(WSHR)\oth32se.txt \
 		$(WSHR)\oth32alg.txt
-	cd $(WSHR) & \
-	txtmerge oth32-t.txt othmag.txt -b oth32mi.txt -b oth32se.txt & \
-	txtmerge oth32-t.txt oth32-t.txt -bff00ff oth32alg.txt & \
-	cd ..\$(SRC)
+	txtmerge $(WSHR)\oth32-t.txt $(WSHR)\othmag.txt -b $(WSHR)\oth32mi.txt \
+		-b $(WSHR)\oth32se.txt
+	txtmerge $(WSHR)\oth32-t.txt $(WSHR)\oth32-t.txt \
+		-bff00ff $(WSHR)\oth32alg.txt
 
-../win/share/mon3d.txt:	$(WSHR)\txtmerge.exe $(WSHR)\monbig.txt \
+../win/share/mon3d.txt:	txtmerge.exe $(WSHR)\monbig.txt \
 		$(WSHR)\mon3dmi.txt
-	cd $(WSHR) & \
-	txtmerge mon3d.txt monbig.txt -b mon3dmi.txt & \
-	cd ..\$(SRC)
+	txtmerge $(WSHR)\mon3d.txt $(WSHR)\monbig.txt -b $(WSHR)\mon3dmi.txt
 
-../win/share/obj3d.txt:	$(WSHR)\txtmerge.exe $(WSHR)\objbig.txt
+../win/share/obj3d.txt:	txtmerge.exe $(WSHR)\objbig.txt
 	$(COPY) $(WSHR)\objbig.txt $(WSHR)\obj3d.txt
 
-../win/share/oth3d.txt:	$(WSHR)\txtmerge.exe $(WSHR)\othbig.txt \
+../win/share/oth3d.txt:	txtmerge.exe $(WSHR)\othbig.txt \
 		$(WSHR)\oth3dmi.txt $(WSHR)\oth-2kmi.txt \
 		$(WSHR)\oth3dse.txt
-	cd $(WSHR) & \
-	txtmerge oth3d.txt othbig.txt -b oth3dmi.txt -b oth-2kmi.txt & \
-	txtmerge oth3d.txt oth3d.txt -b oth3dse.txt & \
-	cd ..\$(SRC)
+	txtmerge $(WSHR)\oth3d.txt $(WSHR)\othbig.txt -b $(WSHR)\oth3dmi.txt \
+		-b $(WSHR)\oth-2kmi.txt
+	txtmerge $(WSHR)\oth3d.txt $(WSHR)\oth3d.txt -b $(WSHR)\oth3dse.txt
 
 pet_mark.xbm: ../win/X11/pet_mark.xbm
 	$(COPY) ..\win\X11\pet_mark.xbm pet_mark.xbm
@@ -1183,6 +1281,12 @@ tiletext.o:  $(CONFIG_H) $(INCL)\tile.h $(WSHR)\tiletext.c
 
 tiletxt.o: $(CONFIG_H)	$(INCL)\tile.h tilemap.c
 	$(CCOMPILE) $(CFLAGS) -DTILETEXT -o$@ tilemap.c
+
+uudecode.o: $(SSHR)\uudecode.c
+	$(CCOMPILE) $(CFLAGS) -c $(SSHR)\uudecode.c
+
+$(UTIL)\uudecode.exe:	uudecode.o
+	$(CCOMPILE) $(LFLAGS) -o$@ uudecode.o
 
 #
 #  Other Util Dependencies.
@@ -1210,12 +1314,6 @@ panic.c:  $(UTIL)\panic.c
 	$(COPY) $(UTIL)\panic.c .
 
 panic.o:   $(CONFIG_H)	  panic.c
-
-random.c: $(SSHR)\random.c
-	$(COPY) $(SSHR)\random.c .
-
-random.o: $(HACK_H) random.c
-	$(CCOMPILE) $(CFLAGS) -orandom.o random.c
 
 nhlan.c: $(SSHR)\nhlan.c
 	$(COPY) $(SSHR)\nhlan.c .
@@ -1325,9 +1423,8 @@ sp_lev.tag: utility.tag     $(DAT)\beholder.des $(DAT)\bigroom.des \
 	$(ECHO) sp_levs done > sp_lev.tag
 	
 $(DAT)\dungeon:	  utility.tag  $(DAT)\dungeon.def
-	@copy $(SRC)\dgn_comp.exe $(DAT)\dgn_comp.exe
 	-makedefs -e
-	cd $(DAT) & dgn_comp dungeon.pdf & cd $(SRC)
+	dgn_comp $(DAT)\dungeon.pdf
 #
 # DLB stuff
 #
@@ -1335,7 +1432,7 @@ $(DAT)\nhshare:	dlb_main.exe $(DAT)\data $(DAT)\rumors $(DAT)\dungeon \
 	    $(DAT)\oracles $(DAT)\quest.dat sp_lev.tag
 	$(ECHO) data >$(DAT)\dlb.lst
 	$(ECHO) oracles >>$(DAT)\dlb.lst
-ifeq ($(USE_GTK),Y)
+ifeq ($(USE_GUI),Y)
 	$(ECHO) guioptions >>$(DAT)\dlb.lst
 else
 	$(ECHO) ttyoptions >>$(DAT)\dlb.lst
@@ -1349,15 +1446,13 @@ endif
 	$(ECHO) wizhelp >>$(DAT)\dlb.lst
 	$(ECHO) gypsy.txt >>$(DAT)\dlb.lst
 	$(ECHO) license >>$(DAT)\dlb.lst
-	cd $(DAT) & dlb_main cvIf dlb.lst nhshare & cd $(SRC)
+	dlb_main cvCIf $(DAT) dlb.lst nhshare
 
 $(DAT)\nhushare:	dlb_main.exe $(DAT)\dungeon $(DAT)\quest.dat sp_lev.tag
 	$(ECHO) dungeon > $(DAT)\dlb2.lst
 	$(ECHO) quest.dat >>$(DAT)\dlb2.lst
-	cd $(DAT) & cd & \
-	$(LS) *.lev >>dlb2.lst & \
-	dlb_main cvIf dlb2.lst nhushare & \
-	cd $(SRC)
+	$(LS) $(DAT)\*.lev >>$(DAT)\dlb2.lst
+	dlb_main cvCIf $(DAT) dlb2.lst nhushare
 
 
 dlb_main.exe: $(DLBOBJS)
@@ -1369,285 +1464,446 @@ dlb_main.o: $(UTIL)\dlb_main.c $(INCL)\config.h $(DLB_H)
 	$(COPY) $(UTIL)\dlb_main.c .
 	$(CCOMPILE) $(CFLAGS) -odlb_main.o dlb_main.c
 
-# Game Dependencies
+#
+# NT dependencies
+#
 
-# sys/share
-main.o:	 $(HACK_H) $(DLB_H) $(SSHR)\pcmain.c
-	$(COPY) $(SSHR)\pcmain.c .
-	$(CCOMPILE) $(CFLAGS) -o$@ pcmain.c
+nttty.o: $(HACK_H) $(TILE_H) $(INCL)/win32api.h ../sys/winnt/nttty.c
+	$(CCOMPILE) $(CFLAGS) -o$@ ../sys/winnt/nttty.c
+winnt.o: $(HACK_H) $(INCL)/win32api.h ../sys/winnt/winnt.c
+	$(CCOMPILE) $(CFLAGS) -o$@ ../sys/winnt/winnt.c
+ntsound.o: $(HACK_H) ../sys/winnt/ntsound.c
+	$(CCOMPILE) $(CFLAGS) -o$@ ../sys/winnt/ntsound.c
+mapimail.o: $(HACK_H) $(INCL)/nhlan.h ../sys/winnt/mapimail.c
+	$(CCOMPILE) $(CFLAGS) -DMAPI_VERBOSE -o$@ ../sys/winnt/mapimail.c
 
-unix.o:	 $(HACK_H) $(SSHR)\pcunix.c
-	$(COPY) $(SSHR)\pcunix.c .
-	$(CCOMPILE) $(CFLAGS) -o$@ pcunix.c
+#
+# win/win32
+#
 
-sys.o : $(HACK_H) $(SSHR)\pcsys.c
-	$(COPY) $(SSHR)\pcsys.c .
-	$(CCOMPILE) $(CFLAGS) -o$@ pcsys.c
+mswproc.o: $(WIN32)/mswproc.c
+	$(CCOMPILE) $(CFLAGS) $(WINMSCFLAGS) -o$@ ../win/win32/mswproc.c
+winhack.o: $(WIN32)/winhack.c
+	$(CCOMPILE) $(CFLAGS) $(WINMSCFLAGS) -o$@ ../win/win32/winhack.c
+mhdlg.o: $(WIN32)/mhdlg.c
+	$(CCOMPILE) $(CFLAGS) $(WINMSCFLAGS) -o$@ ../win/win32/mhdlg.c
+mhaskyn.o: $(WIN32)/mhaskyn.c
+	$(CCOMPILE) $(CFLAGS) $(WINMSCFLAGS) -o$@ ../win/win32/mhaskyn.c
+mhfont.o: $(WIN32)/mhfont.c
+	$(CCOMPILE) $(CFLAGS) $(WINMSCFLAGS) -o$@ ../win/win32/mhfont.c
+mhinput.o: $(WIN32)/mhinput.c
+	$(CCOMPILE) $(CFLAGS) $(WINMSCFLAGS) -o$@ ../win/win32/mhinput.c
+mhmain.o: $(WIN32)/mhmain.c
+	$(CCOMPILE) $(CFLAGS) $(WINMSCFLAGS) -o$@ ../win/win32/mhmain.c
+mhmsgwnd.o: $(WIN32)/mhmsgwnd.c
+	$(CCOMPILE) $(CFLAGS) $(WINMSCFLAGS) -o$@ ../win/win32/mhmsgwnd.c
+mhsplash.o: $(WIN32)/mhsplash.c
+	$(CCOMPILE) $(CFLAGS) $(WINMSCFLAGS) -o$@ ../win/win32/mhsplash.c
+mhstatus.o: $(WIN32)/mhstatus.c
+	$(CCOMPILE) $(CFLAGS) $(WINMSCFLAGS) -o$@ ../win/win32/mhstatus.c
+mhtext.o: $(WIN32)/mhtext.c
+	$(CCOMPILE) $(CFLAGS) $(WINMSCFLAGS) -o$@ ../win/win32/mhtext.c
+mhmenu.o: $(WIN32)/mhmenu.c
+	$(CCOMPILE) $(CFLAGS) $(WINMSCFLAGS) -o$@ ../win/win32/mhmenu.c
+mhmap.o: $(WIN32)/mhmap.c
+	$(CCOMPILE) $(CFLAGS) $(WINMSCFLAGS) -o$@ ../win/win32/mhmap.c
+mhrip.o: $(WIN32)/mhrip.c
+	$(CCOMPILE) $(CFLAGS) $(WINMSCFLAGS) -o$@ ../win/win32/mhrip.c
 
-# sys/winnt
-winnt.o : $(HACK_H)  $(WSYS)\winnt.c
-	$(COPY) $(WSYS)\winnt.c .
-	$(COPY) $(WSYS)\win32api.h ..\include
-	$(CCOMPILE) $(CFLAGS) -o$@ winnt.c
-
-nttty.o : $(HACK_H)  $(WSYS)\nttty.c
-	$(COPY) $(WSYS)\nttty.c .
-	$(CCOMPILE) $(CFLAGS) -o$@ nttty.c
-
-ntsound.o: $(PCH) $(WSYS)\ntsound.c   $(HACK_H)
-	$(COPY) $(WSYS)\ntsound.c .
-	$(CCOMPILE) $(CFLAGS) -o$@ ntsound.c
-
-mapimail.o: $(PCH) $(WSYS)\mapimail.c   $(HACK_H) $(NHLAN_H)
-	$(COPY) $(WSYS)\mapimail.c .
-	$(CCOMPILE) $(CFLAGS) -DMAPI_VERBOSE -o$@ mapimail.c
-
-
-# win/tty
-getline.o : $(HACK_H) $(INCL)\wintty.h $(WTTY)\getline.c
-	$(COPY) $(WTTY)\getline.c .
-	$(CCOMPILE) $(CFLAGS) -o$@ getline.c
-
-termcap.o : $(CONFIG_H) $(WTTY)\termcap.c
-	$(COPY) $(WTTY)\termcap.c .
-	$(CCOMPILE) $(CFLAGS) -o$@ termcap.c
-
-topl.o : $(CONFIG_H) $(WTTY)\topl.c
-	$(COPY) $(WTTY)\topl.c .
-	$(CCOMPILE) $(CFLAGS) -o$@ topl.c
-
-wintty.o : $(HACK_H) $(WTTY)\wintty.c
-	$(COPY) $(WTTY)\wintty.c .
-	$(CCOMPILE) $(CFLAGS) -o$@ wintty.c
-
-# win/gtk, win/gtk2
-gtk.o: $(WGTK)/gtk.c ../include/winGTK.h $(HACK_H) ../include/func_tab.h \
-		../include/dlb.h ../include/patchlevel.h
-	$(COPY) $(WGTK)\gtk.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtk.c
-gtkgetlin.o: $(WGTK)/gtkgetlin.c ../include/winGTK.h $(HACK_H)
-	$(COPY) $(WGTK)\gtkgetlin.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkgetlin.c
-gtkstatus.o: $(WGTK)/gtkstatus.c ../include/winGTK.h $(HACK_H)
-	$(COPY) $(WGTK)\gtkstatus.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkstatus.c
-gtkmenu.o: $(WGTK)/gtkmenu.c ../include/winGTK.h $(HACK_H)
-	$(COPY) $(WGTK)\gtkmenu.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkmenu.c
-gtkyn.o: $(WGTK)/gtkyn.c ../include/winGTK.h $(HACK_H)
-	$(COPY) $(WGTK)\gtkyn.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkyn.c
-gtkextcmd.o: $(WGTK)/gtkextcmd.c ../include/winGTK.h $(HACK_H) \
-		../include/func_tab.h
-	$(COPY) $(WGTK)\gtkextcmd.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkextcmd.c
-gtkmap.o: $(WGTK)/gtkmap.c ../include/winGTK.h $(HACK_H) ../include/dlb.h \
-		../include/patchlevel.h
-	$(COPY) $(WGTK)\gtkmap.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkmap.c
-gtkmessage.o: $(WGTK)/gtkmessage.c ../include/winGTK.h $(HACK_H)
-	$(COPY) $(WGTK)\gtkmessage.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkmessage.c
-gtkmisc.o: $(WGTK)/gtkmisc.c ../include/winGTK.h $(HACK_H)
-	$(COPY) $(WGTK)\gtkmisc.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkmisc.c
-xshmmap.o: $(WGTK)/xshmmap.c ../include/winGTK.h $(HACK_H) ../include/xshm.h
-	$(COPY) $(WGTK)\xshmmap.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c xshmmap.c
-xshm.o: $(WGTK)/xshm.c ../include/xshm.h
-	$(COPY) $(WGTK)\xshm.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c xshm.c
-gtktile.o: $(WGTK)/gtktile.c ../include/winGTK.h ../include/dlb.h
-	$(COPY) $(WGTK)\gtktile.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtktile.c
-gtkint.o: $(WGTK)/gtkint.c ../include/nhxdr.h ../include/proxycom.h
-		../include/prxyclnt.h ../include/winGTK.h ../include/dlb.h \
-		../include/patchlevel.h
-	$(COPY) $(WGTK)\gtkint.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkint.c
-gtkext.o: $(WGTK)/gtkext.c ../include/winGTK.h ../include/prxyclnt.h \
-		../include/dlb.h ../include/patchlevel.h
-	$(COPY) $(WGTK)\gtkext.c .
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkext.c
-# win/proxy
-winproxy.o: ../win/proxy/winproxy.c $(HACK_H) ../include/patchlevel.h \
-		../include/date.h ../include/nhxdr.h ../include/proxycom.h \
-		../include/winproxy.h
-	$(COPY) ..\win\proxy\winproxy.c .
-	$(CCOMPILE) $(CFLAGS) -c winproxy.c
-nhext.o: ../win/proxy/nhext.c ../include/nhxdr.h ../include/proxycom.h
-	$(COPY) ..\win\proxy\nhext.c .
-	$(CCOMPILE) $(CFLAGS) -c nhext.c
-nhxdr.o: ../win/proxy/nhxdr.c ../include/nhxdr.h
-	$(COPY) ..\win\proxy\nhxdr.c .
-	$(CCOMPILE) $(CFLAGS) -c nhxdr.c
-nhextxdr.o: ../win/proxy/nhextxdr.c ../include/nhxdr.h
-	$(COPY) ..\win\proxy\nhextxdr.c .
-	$(CCOMPILE) $(CFLAGS) -c nhextxdr.c
-nhextio.o: ../win/proxy/nhextio.c ../include/nhxdr.h
-	$(COPY) ..\win\proxy\nhextio.c .
-	$(CCOMPILE) $(CFLAGS) -c nhextio.c
-compxdr.o: ../win/proxy/compxdr.c ../include/nhxdr.h ../include/proxycom.h
-	$(COPY) ..\win\proxy\compxdr.c .
-	$(CCOMPILE) $(CFLAGS) -c compxdr.c
-dlbh.o: ../win/proxy/dlbh.c $(HACK_H) ../include/dlb.h
-	$(COPY) ..\win\proxy\dlbh.c .
-	$(CCOMPILE) $(CFLAGS) -c dlbh.c
-mapid.o: ../win/proxy/mapid.c $(HACK_H) ../include/nhxdr.h \
-		../include/winproxy.h
-	$(COPY) ..\win\proxy\mapid.c .
-	$(CCOMPILE) $(CFLAGS) -c mapid.c
+# The rest are stolen from sys/unix/Makefile.src,
+# with the following changes:
+#   * ../include changed to $(INCL)
+#   * -c (which is included in CFLAGS) substituted
+#       with -o$@
+#   * $(CC) changed to $(CCOMPILE)
+#   * Dependencies on win32api.h revealed
+# but otherwise untouched.
+# That means that there is some irrelevant stuff
+# in here, but maintenance should be easier.
+#
+tos.o: ../sys/atari/tos.c $(HACK_H) $(INCL)/tcap.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../sys/atari/tos.c
+pcmain.o: ../sys/share/pcmain.c $(HACK_H) $(INCL)/dlb.h \
+		$(INCL)/patchlevel.h $(INCL)/win32api.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../sys/share/pcmain.c
+pcsys.o: ../sys/share/pcsys.c $(HACK_H)
+	$(CCOMPILE) $(CFLAGS) -o$@ ../sys/share/pcsys.c
+pctty.o: ../sys/share/pctty.c $(HACK_H)
+	$(CCOMPILE) $(CFLAGS) -o$@ ../sys/share/pctty.c
+pcunix.o: ../sys/share/pcunix.c $(HACK_H)
+	$(CCOMPILE) $(CFLAGS) -o$@ ../sys/share/pcunix.c
+random.o: ../sys/share/random.c $(HACK_H)
+	$(CCOMPILE) $(CFLAGS) -o$@ ../sys/share/random.c
+ioctl.o: ../sys/share/ioctl.c $(HACK_H) $(INCL)/tcap.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../sys/share/ioctl.c
+unixtty.o: ../sys/share/unixtty.c $(HACK_H)
+	$(CCOMPILE) $(CFLAGS) -o$@ ../sys/share/unixtty.c
+unixmain.o: ../sys/unix/unixmain.c $(HACK_H) $(INCL)/dlb.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../sys/unix/unixmain.c
+unixunix.o: ../sys/unix/unixunix.c $(HACK_H)
+	$(CCOMPILE) $(CFLAGS) -o$@ ../sys/unix/unixunix.c
+unixres.o: ../sys/unix/unixres.c $(CONFIG_H)
+	$(CCOMPILE) $(CFLAGS) -o$@ ../sys/unix/unixres.c
+bemain.o: ../sys/be/bemain.c $(HACK_H) $(INCL)/dlb.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../sys/be/bemain.c
+getline.o: ../win/tty/getline.c $(HACK_H) $(INCL)/func_tab.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/tty/getline.c
+termcap.o: ../win/tty/termcap.c $(HACK_H) $(INCL)/tcap.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/tty/termcap.c
+topl.o: ../win/tty/topl.c $(HACK_H) $(INCL)/tcap.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/tty/topl.c
+wintty.o: ../win/tty/wintty.c $(HACK_H) $(INCL)/dlb.h \
+		$(INCL)/patchlevel.h $(INCL)/tcap.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/tty/wintty.c
+Window.o: ../win/X11/Window.c $(INCL)/xwindowp.h $(INCL)/xwindow.h \
+		$(CONFIG_H)
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/X11/Window.c
+dialogs.o: ../win/X11/dialogs.c $(CONFIG_H)
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/X11/dialogs.c
+winX.o: ../win/X11/winX.c $(HACK_H) $(INCL)/winX.h $(INCL)/dlb.h \
+		$(INCL)/patchlevel.h ../win/X11/nh72icon \
+		../win/X11/nh56icon ../win/X11/nh32icon
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/X11/winX.c
+winmap.o: ../win/X11/winmap.c $(INCL)/xwindow.h $(HACK_H) $(INCL)/dlb.h \
+		$(INCL)/winX.h $(INCL)/patchlevel.h $(INCL)/tile2x11.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/X11/winmap.c
+winmenu.o: ../win/X11/winmenu.c $(HACK_H) $(INCL)/winX.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/X11/winmenu.c
+winmesg.o: ../win/X11/winmesg.c $(INCL)/xwindow.h $(HACK_H) $(INCL)/winX.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/X11/winmesg.c
+winmisc.o: ../win/X11/winmisc.c $(HACK_H) $(INCL)/func_tab.h \
+		$(INCL)/winX.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/X11/winmisc.c
+winstat.o: ../win/X11/winstat.c $(HACK_H) $(INCL)/winX.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/X11/winstat.c
+wintext.o: ../win/X11/wintext.c $(HACK_H) $(INCL)/winX.h $(INCL)/xwindow.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/X11/wintext.c
+winval.o: ../win/X11/winval.c $(HACK_H) $(INCL)/winX.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/X11/winval.c
+gtk.o: ../win/gtk2/gtk.c $(INCL)/winGTK.h $(HACK_H) $(INCL)/nhxdr.h \
+		$(INCL)/proxycom.h $(INCL)/func_tab.h $(INCL)/dlb.h \
+		$(INCL)/patchlevel.h $(INCL)/proxycb.h
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtk.c
+gtkgetlin.o: ../win/gtk2/gtkgetlin.c $(INCL)/winGTK.h $(HACK_H) \
+		$(INCL)/nhxdr.h $(INCL)/proxycom.h
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkgetlin.c
+gtkstatus.o: ../win/gtk2/gtkstatus.c $(INCL)/winGTK.h $(HACK_H) \
+		$(INCL)/nhxdr.h $(INCL)/proxycom.h
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkstatus.c
+gtkmenu.o: ../win/gtk2/gtkmenu.c $(INCL)/winGTK.h $(HACK_H) \
+		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/patchlevel.h
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkmenu.c
+gtkyn.o: ../win/gtk2/gtkyn.c $(INCL)/winGTK.h $(HACK_H) $(INCL)/nhxdr.h \
+		$(INCL)/proxycom.h
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkyn.c
+gtkextcmd.o: ../win/gtk2/gtkextcmd.c $(INCL)/winGTK.h $(HACK_H) \
+		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/proxycb.h \
+		$(INCL)/func_tab.h
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkextcmd.c
+gtkmap.o: ../win/gtk2/gtkmap.c $(INCL)/winGTK.h $(HACK_H) \
+		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/dlb.h \
+		$(INCL)/patchlevel.h $(INCL)/proxycb.h \
+		$(INCL)/prxyclnt.h
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkmap.c
+gtkmessage.o: ../win/gtk2/gtkmessage.c $(INCL)/winGTK.h $(HACK_H) \
+		$(INCL)/nhxdr.h $(INCL)/proxycom.h
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkmessage.c
+gtkmisc.o: ../win/gtk2/gtkmisc.c $(INCL)/winGTK.h $(HACK_H) \
+		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/proxycb.h
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkmisc.c
+gtktile.o: ../win/gtk2/gtktile.c $(INCL)/winGTK.h $(HACK_H) \
+		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/dlb.h \
+		$(INCL)/proxycb.h $(INCL)/prxyclnt.h
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtktile.c
+xshmmap.o: ../win/gtk2/xshmmap.c $(INCL)/winGTK.h $(HACK_H) \
+		$(INCL)/nhxdr.h $(INCL)/proxycom.h
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/xshmmap.c
+gtkext.o: ../win/gtk2/gtkext.c $(INCL)/winGTK.h $(HACK_H) \
+		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/prxyclnt.h
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkext.c
+gtkint.o: ../win/gtk2/gtkint.c $(INCL)/nhxdr.h $(INCL)/proxycom.h \
+		$(INCL)/prxyclnt.h $(INCL)/winGTK.h $(HACK_H) \
+		$(INCL)/func_tab.h $(INCL)/dlb.h $(INCL)/patchlevel.h
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkint.c
+gnaskstr.o: ../win/gnome/gnaskstr.c ../win/gnome/gnaskstr.h \
+		../win/gnome/gnmain.h
+	$(CCOMPILE) $(CFLAGS) $(GNOMEINC) -o$@ ../win/gnome/gnaskstr.c
+gnbind.o: ../win/gnome/gnbind.c ../win/gnome/gnbind.h ../win/gnome/gnmain.h \
+		../win/gnome/gnaskstr.h ../win/gnome/gnyesno.h
+	$(CCOMPILE) $(CFLAGS) $(GNOMEINC) -o$@ ../win/gnome/gnbind.c
+gnglyph.o: ../win/gnome/gnglyph.c ../win/gnome/gnglyph.h
+	$(CCOMPILE) $(CFLAGS) $(GNOMEINC) -o$@ ../win/gnome/gnglyph.c
+gnmain.o: ../win/gnome/gnmain.c ../win/gnome/gnmain.h ../win/gnome/gnsignal.h \
+		../win/gnome/gnbind.h ../win/gnome/gnopts.h $(HACK_H) \
+		$(INCL)/date.h
+	$(CCOMPILE) $(CFLAGS) $(GNOMEINC) -o$@ ../win/gnome/gnmain.c
+gnmap.o: ../win/gnome/gnmap.c ../win/gnome/gnmap.h ../win/gnome/gnglyph.h \
+		../win/gnome/gnsignal.h $(HACK_H)
+	$(CCOMPILE) $(CFLAGS) $(GNOMEINC) -o$@ ../win/gnome/gnmap.c
+gnmenu.o: ../win/gnome/gnmenu.c ../win/gnome/gnmenu.h ../win/gnome/gnmain.h \
+		../win/gnome/gnbind.h
+	$(CCOMPILE) $(CFLAGS) $(GNOMEINC) -o$@ ../win/gnome/gnmenu.c
+gnmesg.o: ../win/gnome/gnmesg.c ../win/gnome/gnmesg.h ../win/gnome/gnsignal.h
+	$(CCOMPILE) $(CFLAGS) $(GNOMEINC) -o$@ ../win/gnome/gnmesg.c
+gnopts.o: ../win/gnome/gnopts.c ../win/gnome/gnopts.h ../win/gnome/gnglyph.h \
+		../win/gnome/gnmain.h ../win/gnome/gnmap.h $(HACK_H)
+	$(CCOMPILE) $(CFLAGS) $(GNOMEINC) -o$@ ../win/gnome/gnopts.c
+gnplayer.o: ../win/gnome/gnplayer.c ../win/gnome/gnplayer.h \
+		../win/gnome/gnmain.h $(HACK_H)
+	$(CCOMPILE) $(CFLAGS) $(GNOMEINC) -o$@ ../win/gnome/gnplayer.c
+gnsignal.o: ../win/gnome/gnsignal.c ../win/gnome/gnsignal.h \
+		../win/gnome/gnmain.h
+	$(CCOMPILE) $(CFLAGS) $(GNOMEINC) -o$@ ../win/gnome/gnsignal.c
+gnstatus.o: ../win/gnome/gnstatus.c ../win/gnome/gnstatus.h \
+		../win/gnome/gnsignal.h ../win/gnome/gn_xpms.h \
+		../win/gnome/gnomeprv.h
+	$(CCOMPILE) $(CFLAGS) $(GNOMEINC) -o$@ ../win/gnome/gnstatus.c
+gntext.o: ../win/gnome/gntext.c ../win/gnome/gntext.h ../win/gnome/gnmain.h \
+		../win/gnome/gn_rip.h
+	$(CCOMPILE) $(CFLAGS) $(GNOMEINC) -o$@ ../win/gnome/gntext.c
+gnyesno.o: ../win/gnome/gnyesno.c ../win/gnome/gnbind.h ../win/gnome/gnyesno.h
+	$(CCOMPILE) $(CFLAGS) $(GNOMEINC) -o$@ ../win/gnome/gnyesno.c
+gnworn.o: ../win/gnome/gnworn.c ../win/gnome/gnworn.h ../win/gnome/gnglyph.h \
+		../win/gnome/gnsignal.h ../win/gnome/gnomeprv.h
+	$(CCOMPILE) $(CFLAGS) $(GNOMEINC) -o$@ ../win/gnome/gnworn.c
+wingem.o: ../win/gem/wingem.c $(HACK_H) $(INCL)/func_tab.h $(INCL)/dlb.h \
+		$(INCL)/patchlevel.h $(INCL)/wingem.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/gem/wingem.c
+wingem1.o: ../win/gem/wingem1.c $(INCL)/gem_rsc.h $(INCL)/load_img.h \
+		$(INCL)/gr_rect.h $(INCL)/wintype.h $(INCL)/wingem.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/gem/wingem1.c
+load_img.o: ../win/gem/load_img.c $(INCL)/load_img.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/gem/load_img.c
+gr_rect.o: ../win/gem/gr_rect.c $(INCL)/gr_rect.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/gem/gr_rect.c
+winproxy.o: ../win/proxy/winproxy.c $(HACK_H) $(INCL)/patchlevel.h \
+		$(INCL)/date.h $(INCL)/nhxdr.h $(INCL)/proxycom.h \
+		$(INCL)/winproxy.h $(INCL)/win32api.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/winproxy.c
+callback.o: ../win/proxy/callback.c $(HACK_H) $(INCL)/func_tab.h \
+		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/winproxy.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/callback.c
+dlbh.o: ../win/proxy/dlbh.c $(HACK_H) $(INCL)/dlb.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/dlbh.c
+mapid.o: ../win/proxy/mapid.c $(HACK_H) $(INCL)/nhxdr.h $(INCL)/winproxy.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/mapid.c
 riputil.o: ../win/proxy/riputil.c $(HACK_H)
-	$(COPY) ..\win\proxy\riputil.c .
-	$(CCOMPILE) $(CFLAGS) -c riputil.c
-glyphmap.o: ../win/proxy/glyphmap.c $(HACK_H) ../include/nhxdr.h \
-		../include/proxycom.h ../include/winproxy.h
-	$(COPY) ..\win\proxy\glyphmap.c .
-	$(CCOMPILE) $(CFLAGS) -c glyphmap.c
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/riputil.c
 getopt.o: ../win/proxy/getopt.c $(HACK_H)
-	$(COPY) ..\win\proxy\getopt.c .
-	$(CCOMPILE) $(CFLAGS) -c getopt.c
-callback.o: ../win/proxy/callback.c $(HACK_H) ../include/nhxdr.h \
-		../include/proxycom.h ../include/winproxy.h
-	$(COPY) ..\win\proxy\callback.c .
-	$(CCOMPILE) $(CFLAGS) -c callback.c
-proxysvc.o: ../win/proxy/proxysvc.c ../include/nhxdr.h \
-		../include/proxycom.h ../include/prxyclnt.h
-	$(COPY) ..\win\proxy\proxysvc.c .
-	$(CCOMPILE) $(CFLAGS) -c proxysvc.c
-proxycb.o: ../win/proxy/proxycb.c ../include/nhxdr.h ../include/proxycom.h \
-		../include/proxycb.h
-	$(COPY) ..\win\proxy\proxycb.c .
-	$(CCOMPILE) $(CFLAGS) -c proxycb.c
-prxymap.o: ../win/proxy/prxymap.c ../include/nhxdr.h ../include/proxycom.h \
-		../include/prxyclnt.h
-	$(COPY) ..\win\proxy\prxymap.c .
-	$(CCOMPILE) $(CFLAGS) -c prxymap.c
-prxychar.o: ../win/proxy/prxychar.c ../include/nhxdr.h ../include/proxycom.h \
-		../include/prxyclnt.h
-	$(COPY) ..\win\proxy\prxychar.c .
-	$(CCOMPILE) $(CFLAGS) -c prxychar.c
-prxytile.o: ../win/proxy/prxytile.c ../include/nhxdr.h ../include/proxycom.h \
-		../include/prxyclnt.h
-	$(COPY) ..\win\proxy\prxytile.c .
-	$(CCOMPILE) $(CFLAGS) -c prxytile.c
-prxyconn.o: ../win/proxy/prxyconn.c ../include/nhxdr.h ../include/proxycom.h \
-		../include/prxyclnt.h
-	$(COPY) ..\win\proxy\prxyconn.c .
-	$(CCOMPILE) $(CFLAGS) -c prxyconn.c
-
-# src dependencies
-allmain.o:  $(HACK_H)
-alloc.o:    $(CONFIG_H)
-apply.o:    $(HACK_H) $(INCL)\edog.h
-artifact.o: $(HACK_H) $(INCL)\artifact.h $(INCL)\artilist.h
-attrib.o:   $(HACK_H) $(INCL)\artifact.h
-ball.o:	    $(HACK_H)
-bones.o:    $(HACK_H) $(INCL)\lev.h
-botl.o:	    $(HACK_H)
-cmd.o:	    $(HACK_H) $(INCL)\func_tab.h
-dbridge.o:  $(HACK_H)
-decl.o:	    $(HACK_H) $(INCL)\quest.h
-detect.o:   $(HACK_H) $(INCL)\artifact.h
-dig.o:      $(HACK_H)
-display.o:  $(HACK_H)
-dlb.o:      $(HACK_H) $(DLB_H)
-do.o:	    $(HACK_H) $(INCL)\lev.h
-do_name.o:  $(HACK_H)
-do_wear.o:  $(HACK_H)
-dog.o:	    $(HACK_H) $(INCL)\edog.h
-dogmove.o:  $(HACK_H) $(INCL)\mfndpos.h $(INCL)\edog.h
-dokick.o:   $(HACK_H) $(ESHK_H)
-dothrow.o:  $(HACK_H)
-drawing.o:  $(HACK_H) $(INCL)\tcap.h
-dungeon.o:  $(HACK_H) $(INCL)\dgn_file.h
-eat.o:	    $(HACK_H)
-end.o:	    $(HACK_H) $(ESHK_H)
-engrave.o:  $(HACK_H) $(INCL)\lev.h
-exper.o:    $(HACK_H)
-explode.o:  $(HACK_H)
-extralev.o:  $(HACK_H)
-files.o:     $(HACK_H)
-fountain.o:  $(HACK_H)
-gypsy.o:     $(HACK_H)
-hack.o:	     $(HACK_H)
-hacklib.o:   $(HACK_H)
-invent.o:    $(HACK_H) $(INCL)\artifact.h
-light.o:     $(HACK_H) $(INCL)\lev.h
-lock.o:	     $(HACK_H)
-mail.o:	     $(HACK_H) $(INCL)\mail.h
-makemon.o:   $(HACK_H) $(EPRI_H) $(EMIN_H) $(INCL)\edog.h
-mapglyph.o:  $(HACK_H)
-mcastu.o:    $(HACK_H)
-mhitm.o:     $(HACK_H) $(INCL)\artifact.h $(INCL)\edog.h
-mhitu.o:     $(HACK_H) $(INCL)\artifact.h $(INCL)\edog.h
-minion.o:    $(HACK_H) $(EMIN_H) $(EPRI_H)
-mklev.o:     $(HACK_H)
-mkmap.o:     $(HACK_H) $(INCL)\sp_lev.h
-mkmaze.o:    $(HACK_H) $(INCL)\sp_lev.h
-mkobj.o:     $(HACK_H) $(INCL)\artifact.h $(INCL)\prop.h
-mkroom.o:    $(HACK_H)
-mon.o:	     $(HACK_H) $(INCL)\mfndpos.h $(INCL)\edog.h
-mondata.o:   $(HACK_H) $(ESHK_H) $(EPRI_H)
-monmove.o:   $(HACK_H) $(INCL)\mfndpos.h $(INCL)\artifact.h
-monst.o:     $(CONFIG_H) $(PERM_H) $(ESHK_H) $(EPRI_H) \
-	  $(INCL)\color.h $(INCL)\monsym.h $(INCL)\vault.h
-mplayer.o:   $(HACK_H)
-mthrowu.o:   $(HACK_H)
-muse.o:	     $(HACK_H)
-music.o:     $(HACK_H)
-o_init.o:    $(HACK_H)
-objects.o:   $(CONFIG_H) $(INCL)\obj.h $(INCL)\objclass.h \
-	       $(INCL)\prop.h $(SKILLS_H) $(INCL)\color.h
-objnam.o:    $(HACK_H)
-options.o:   $(CONFIG_H) $(HACK_H) $(INCL)\objclass.h $(INCL)\flag.h \
-	      $(INCL)\tcap.h
-pager.o:     $(HACK_H)
-pickup.o:    $(HACK_H)
-pline.o:     $(HACK_H) $(EPRI_H)
-polyself.o:  $(HACK_H)
-potion.o:    $(HACK_H)
-pray.o:	     $(HACK_H) $(EPRI_H)
-priest.o:    $(HACK_H) $(INCL)\mfndpos.h $(ESHK_H) $(EPRI_H) $(EMIN_H)
-quest.o:     $(HACK_H) $(INCL)\quest.h $(INCL)\qtext.h
-questpgr.o:  $(HACK_H) $(INCL)\qtext.h
-read.o:	     $(HACK_H)
-rect.o:	     $(HACK_H)
-region.o:    $(HACK_H)
-restore.o:   $(HACK_H) $(INCL)\lev.h $(INCL)\tcap.h $(INCL)\quest.h
-rip.o:	     $(HACK_H)
-role.o:	     $(HACK_H)
-rnd.o:	     $(HACK_H)
-rumors.o:    $(HACK_H)
-save.o:	     $(HACK_H) $(INCL)\lev.h $(INCL)\quest.h
-shk.o:	     $(HACK_H) $(ESHK_H)
-shknam.o:    $(HACK_H) $(ESHK_H)
-sit.o:	     $(HACK_H) $(INCL)\artifact.h
-sounds.o:    $(HACK_H) $(INCL)\edog.h
-sp_lev.o:    $(HACK_H) $(INCL)\sp_lev.h $(INCL)\align.h $(INCL)\rect.h
-spell.o:     $(HACK_H)
-steal.o:     $(HACK_H)
-steed.o:     $(HACK_H)
-teleport.o:  $(HACK_H)
-tech.o:	     $(HACK_H) $(INCL)\tech.h
-tile.o:	     $(HACK_H) $(TILE_H)
-timeout.o:   $(HACK_H)
-topten.o:    $(HACK_H)
-track.o:     $(HACK_H)
-trap.o:	     $(HACK_H)
-u_init.o:    $(HACK_H)
-uhitm.o:     $(HACK_H)
-vault.o:     $(HACK_H) $(INCL)\vault.h
-version.o:   $(HACK_H) $(INCL)\patchlevel.h
-vision.o:    $(HACK_H) $(INCL)\vis_tab.h
-weapon.o:    $(HACK_H)
-were.o:	     $(HACK_H)
-wield.o:     $(HACK_H)
-windows.o:   $(HACK_H) $(INCL)\wintty.h
-wizard.o:    $(HACK_H) $(INCL)\qtext.h
-worm.o:	     $(HACK_H) $(INCL)\lev.h
-worn.o:	     $(HACK_H)
-write.o:     $(HACK_H)
-zap.o:	     $(HACK_H)
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/getopt.c
+glyphmap.o: ../win/proxy/glyphmap.c $(HACK_H) $(INCL)/nhxdr.h \
+		$(INCL)/proxycom.h $(INCL)/winproxy.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/glyphmap.c
+proxysvc.o: ../win/proxy/proxysvc.c $(INCL)/nhxdr.h $(INCL)/proxycom.h \
+		$(INCL)/proxycb.h $(INCL)/prxyclnt.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/proxysvc.c
+proxycb.o: ../win/proxy/proxycb.c $(INCL)/nhxdr.h $(INCL)/proxycom.h \
+		$(INCL)/proxycb.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/proxycb.c
+prxymap.o: ../win/proxy/prxymap.c $(INCL)/nhxdr.h $(INCL)/proxycom.h \
+		$(INCL)/prxyclnt.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/prxymap.c
+prxychar.o: ../win/proxy/prxychar.c $(INCL)/nhxdr.h $(INCL)/proxycom.h \
+		$(INCL)/prxyclnt.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/prxychar.c
+prxytile.o: ../win/proxy/prxytile.c $(INCL)/nhxdr.h $(INCL)/proxycom.h \
+		$(INCL)/prxyclnt.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/prxytile.c
+prxyconn.o: ../win/proxy/prxyconn.c $(INCL)/nhxdr.h $(INCL)/proxycom.h \
+		$(INCL)/prxyclnt.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/prxyconn.c
+nhext.o: ../win/proxy/nhext.c $(INCL)/nhxdr.h $(INCL)/proxycom.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/nhext.c
+nhxdr.o: ../win/proxy/nhxdr.c $(INCL)/nhxdr.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/nhxdr.c
+nhextxdr.o: ../win/proxy/nhextxdr.c $(INCL)/nhxdr.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/nhextxdr.c
+nhextio.o: ../win/proxy/nhextio.c $(INCL)/nhxdr.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/nhextio.c
+compxdr.o: ../win/proxy/compxdr.c $(INCL)/nhxdr.h $(INCL)/proxycom.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/compxdr.c
+gl_conf.o: ../win/gl/gl_conf.c $(HACK_H) $(INCL)/dlb.h \
+		$(INCL)/patchlevel.h $(INCL)/winGL.h
+	$(CCOMPILE) $(CFLAGS) $(SDLGL_CFLAGS) -o$@ ../win/gl/gl_conf.c
+gl_emul.o: ../win/gl/gl_emul.c $(HACK_H) $(INCL)/winGL.h \
+		$(INCL)/func_tab.h
+	$(CCOMPILE) $(CFLAGS) $(SDLGL_CFLAGS) -o$@ ../win/gl/gl_emul.c
+gl_font.o: ../win/gl/gl_font.c $(HACK_H) $(INCL)/patchlevel.h \
+		$(INCL)/winGL.h
+	$(CCOMPILE) $(CFLAGS) $(SDLGL_CFLAGS) -o$@ ../win/gl/gl_font.c
+gl_hardw.o: ../win/gl/gl_hardw.c $(HACK_H) $(INCL)/patchlevel.h \
+		$(INCL)/winGL.h
+	$(CCOMPILE) $(CFLAGS) $(SDLGL_CFLAGS) -o$@ ../win/gl/gl_hardw.c
+gl_image.o: ../win/gl/gl_image.c $(HACK_H) $(INCL)/patchlevel.h \
+		$(INCL)/winGL.h
+	$(CCOMPILE) $(CFLAGS) $(SDLGL_CFLAGS) -o$@ ../win/gl/gl_image.c
+gl_main.o: ../win/gl/gl_main.c $(HACK_H) $(INCL)/dlb.h \
+		$(INCL)/patchlevel.h $(INCL)/winGL.h
+	$(CCOMPILE) $(CFLAGS) $(SDLGL_CFLAGS) -o$@ ../win/gl/gl_main.c
+gl_map.o: ../win/gl/gl_map.c $(HACK_H) $(INCL)/patchlevel.h \
+		$(INCL)/winGL.h
+	$(CCOMPILE) $(CFLAGS) $(SDLGL_CFLAGS) -o$@ ../win/gl/gl_map.c
+gl_menu.o: ../win/gl/gl_menu.c $(HACK_H) $(INCL)/dlb.h \
+		$(INCL)/patchlevel.h $(INCL)/winGL.h
+	$(CCOMPILE) $(CFLAGS) $(SDLGL_CFLAGS) -o$@ ../win/gl/gl_menu.c
+gl_opt.o: ../win/gl/gl_opt.c $(HACK_H) $(INCL)/dlb.h \
+		$(INCL)/patchlevel.h $(INCL)/date.h $(INCL)/winGL.h
+	$(CCOMPILE) $(CFLAGS) $(SDLGL_CFLAGS) -o$@ ../win/gl/gl_opt.c
+gl_role.o: ../win/gl/gl_role.c $(HACK_H) $(INCL)/dlb.h \
+		$(INCL)/patchlevel.h $(INCL)/winGL.h
+	$(CCOMPILE) $(CFLAGS) $(SDLGL_CFLAGS) -o$@ ../win/gl/gl_role.c
+gl_rendu.o: ../win/gl/gl_rendu.c $(HACK_H) $(INCL)/patchlevel.h \
+		$(INCL)/winGL.h
+	$(CCOMPILE) $(CFLAGS) $(SDLGL_CFLAGS) -o$@ ../win/gl/gl_rendu.c
+gl_softw.o: ../win/gl/gl_softw.c $(HACK_H) $(INCL)/patchlevel.h \
+		$(INCL)/winGL.h
+	$(CCOMPILE) $(CFLAGS) $(SDLGL_CFLAGS) -o$@ ../win/gl/gl_softw.c
+gl_stat.o: ../win/gl/gl_stat.c $(HACK_H) $(INCL)/winGL.h
+	$(CCOMPILE) $(CFLAGS) $(SDLGL_CFLAGS) -o$@ ../win/gl/gl_stat.c
+gl_text.o: ../win/gl/gl_text.c $(HACK_H) $(INCL)/dlb.h \
+		$(INCL)/patchlevel.h $(INCL)/winGL.h
+	$(CCOMPILE) $(CFLAGS) $(SDLGL_CFLAGS) -o$@ ../win/gl/gl_text.c
+gl_tile.o: ../win/gl/gl_tile.c $(HACK_H) $(INCL)/patchlevel.h \
+		$(INCL)/winGL.h
+	$(CCOMPILE) $(CFLAGS) $(SDLGL_CFLAGS) -o$@ ../win/gl/gl_tile.c
+gl_unit.o: ../win/gl/gl_unit.c $(HACK_H) $(INCL)/winGL.h
+	$(CCOMPILE) $(CFLAGS) $(SDLGL_CFLAGS) -o$@ ../win/gl/gl_unit.c
+gl_win.o: ../win/gl/gl_win.c $(HACK_H) $(INCL)/dlb.h \
+		$(INCL)/patchlevel.h $(INCL)/winGL.h
+	$(CCOMPILE) $(CFLAGS) $(SDLGL_CFLAGS) -o$@ ../win/gl/gl_win.c
+tile.o: tile.c $(HACK_H)
+qt_win.o: ../win/Qt/qt_win.cpp $(HACK_H) $(INCL)/func_tab.h \
+		$(INCL)/dlb.h $(INCL)/date.h $(INCL)/patchlevel.h \
+		$(INCL)/tile2x11.h $(INCL)/qt_win.h \
+		$(INCL)/qt_clust.h $(INCL)/qt_kde0.h \
+		$(INCL)/qt_xpms.h qt_win.moc qt_kde0.moc qttableview.moc
+	$(CXX) $(CXXFLAGS) -o$@ ../win/Qt/qt_win.cpp
+qt_clust.o: ../win/Qt/qt_clust.cpp $(INCL)/qt_clust.h
+	$(CXX) $(CXXFLAGS) -o$@ ../win/Qt/qt_clust.cpp
+qttableview.o: ../win/Qt/qttableview.cpp $(INCL)/qttableview.h
+	$(CXX) $(CXXFLAGS) -o$@ ../win/Qt/qttableview.cpp
+monstr.o: monstr.c $(CONFIG_H)
+vis_tab.o: vis_tab.c $(CONFIG_H) $(INCL)/vis_tab.h
+allmain.o: allmain.c $(HACK_H) $(INCL)/patchlevel.h
+alloc.o: alloc.c $(CONFIG_H)
+apply.o: apply.c $(HACK_H) $(INCL)/edog.h
+artifact.o: artifact.c $(HACK_H) $(INCL)/artifact.h $(INCL)/artilist.h
+attrib.o: attrib.c $(HACK_H)
+ball.o: ball.c $(HACK_H)
+bones.o: bones.c $(HACK_H) $(INCL)/lev.h
+botl.o: botl.c $(HACK_H)
+cmd.o: cmd.c $(HACK_H) $(INCL)/func_tab.h
+dbridge.o: dbridge.c $(HACK_H)
+decl.o: decl.c $(HACK_H)
+detect.o: detect.c $(HACK_H) $(INCL)/artifact.h
+dig.o: dig.c $(HACK_H) $(INCL)/edog.h
+display.o: display.c $(HACK_H)
+dlb.o: dlb.c $(CONFIG_H) $(INCL)/dlb.h
+do.o: do.c $(HACK_H) $(INCL)/lev.h
+do_name.o: do_name.c $(HACK_H)
+do_wear.o: do_wear.c $(HACK_H)
+dog.o: dog.c $(HACK_H) $(INCL)/edog.h $(INCL)/emin.h $(INCL)/epri.h
+dogmove.o: dogmove.c $(HACK_H) $(INCL)/mfndpos.h $(INCL)/edog.h \
+		$(INCL)/emin.h $(INCL)/epri.h
+dokick.o: dokick.c $(HACK_H) $(INCL)/eshk.h
+dothrow.o: dothrow.c $(HACK_H)
+drawing.o: drawing.c $(HACK_H) $(INCL)/tcap.h
+dungeon.o: dungeon.c $(HACK_H) $(INCL)/dgn_file.h $(INCL)/dlb.h
+eat.o: eat.c $(HACK_H)
+end.o: end.c $(HACK_H) $(INCL)/eshk.h $(INCL)/dlb.h
+engrave.o: engrave.c $(HACK_H) $(INCL)/lev.h
+exper.o: exper.c $(HACK_H)
+explode.o: explode.c $(HACK_H)
+extralev.o: extralev.c $(HACK_H)
+files.o: files.c $(HACK_H) $(INCL)/dlb.h $(INCL)/filename.h \
+		$(INCL)/winGL.h
+fountain.o: fountain.c $(HACK_H)
+hack.o: hack.c $(HACK_H)
+hacklib.o: hacklib.c $(HACK_H)
+invent.o: invent.c $(HACK_H)
+light.o: light.c $(HACK_H) $(INCL)/lev.h
+lock.o: lock.c $(HACK_H)
+mail.o: mail.c $(HACK_H) $(INCL)/mail.h
+makemon.o: makemon.c $(HACK_H) $(INCL)/epri.h $(INCL)/emin.h \
+		$(INCL)/edog.h
+mapglyph.o: mapglyph.c $(HACK_H)
+mcastu.o: mcastu.c $(HACK_H)
+mhitm.o: mhitm.c $(HACK_H) $(INCL)/artifact.h $(INCL)/edog.h
+mhitu.o: mhitu.c $(HACK_H) $(INCL)/artifact.h $(INCL)/edog.h
+minion.o: minion.c $(HACK_H) $(INCL)/emin.h $(INCL)/epri.h
+mklev.o: mklev.c $(HACK_H)
+mkmap.o: mkmap.c $(HACK_H) $(INCL)/sp_lev.h
+mkmaze.o: mkmaze.c $(HACK_H) $(INCL)/sp_lev.h $(INCL)/lev.h
+mkobj.o: mkobj.c $(HACK_H)
+mkroom.o: mkroom.c $(HACK_H)
+mon.o: mon.c $(HACK_H) $(INCL)/mfndpos.h $(INCL)/edog.h \
+		$(INCL)/artifact.h
+mondata.o: mondata.c $(HACK_H) $(INCL)/eshk.h $(INCL)/epri.h
+monmove.o: monmove.c $(HACK_H) $(INCL)/mfndpos.h $(INCL)/artifact.h \
+		$(INCL)/epri.h
+monst.o: monst.c $(CONFIG_H) $(INCL)/permonst.h $(INCL)/align.h \
+		$(INCL)/monattk.h $(INCL)/monflag.h $(INCL)/monsym.h \
+		$(INCL)/dungeon.h $(INCL)/eshk.h $(INCL)/vault.h \
+		$(INCL)/epri.h $(INCL)/egyp.h $(INCL)/color.h
+mplayer.o: mplayer.c $(HACK_H)
+mthrowu.o: mthrowu.c $(HACK_H)
+muse.o: muse.c $(HACK_H) $(INCL)/edog.h
+music.o: music.c $(HACK_H) #interp.c
+o_init.o: o_init.c $(HACK_H) $(INCL)/lev.h
+objects.o: objects.c $(CONFIG_H) $(INCL)/obj.h $(INCL)/objclass.h \
+		$(INCL)/prop.h $(INCL)/skills.h $(INCL)/color.h
+objnam.o: objnam.c $(HACK_H)
+options.o: options.c $(CONFIG_H) $(INCL)/objclass.h $(INCL)/flag.h \
+		$(HACK_H) $(INCL)/tcap.h $(INCL)/winGL.h \
+		$(INCL)/filename.h
+pager.o: pager.c $(HACK_H) $(INCL)/dlb.h
+pickup.o: pickup.c $(HACK_H)
+pline.o: pline.c $(HACK_H) $(INCL)/epri.h $(INCL)/edog.h
+polyself.o: polyself.c $(HACK_H)
+potion.o: potion.c $(HACK_H)
+pray.o: pray.c $(HACK_H) $(INCL)/epri.h
+priest.o: priest.c $(HACK_H) $(INCL)/mfndpos.h $(INCL)/eshk.h \
+		$(INCL)/epri.h $(INCL)/emin.h
+quest.o: quest.c $(HACK_H) $(INCL)/qtext.h
+questpgr.o: questpgr.c $(HACK_H) $(INCL)/dlb.h $(INCL)/qtext.h
+read.o: read.c $(HACK_H)
+rect.o: rect.c $(HACK_H)
+region.o: region.c $(HACK_H) $(INCL)/lev.h
+restore.o: restore.c $(HACK_H) $(INCL)/lev.h $(INCL)/tcap.h
+rip.o: rip.c $(HACK_H)
+rnd.o: rnd.c $(HACK_H)
+role.o: role.c $(HACK_H)
+rumors.o: rumors.c $(HACK_H) $(INCL)/lev.h $(INCL)/dlb.h
+save.o: save.c $(HACK_H) $(INCL)/lev.h
+shk.o: shk.c $(HACK_H) $(INCL)/eshk.h
+shknam.o: shknam.c $(HACK_H) $(INCL)/eshk.h
+sit.o: sit.c $(HACK_H) $(INCL)/artifact.h
+sounds.o: sounds.c $(HACK_H) $(INCL)/edog.h
+sp_lev.o: sp_lev.c $(HACK_H) $(INCL)/dlb.h $(INCL)/sp_lev.h
+spell.o: spell.c $(HACK_H) $(INCL)/edog.h
+steal.o: steal.c $(HACK_H)
+steed.o: steed.c $(HACK_H)
+teleport.o: teleport.c $(HACK_H)
+timeout.o: timeout.c $(HACK_H) $(INCL)/lev.h
+topten.o: topten.c $(HACK_H) $(INCL)/dlb.h $(INCL)/patchlevel.h
+track.o: track.c $(HACK_H)
+trap.o: trap.c $(HACK_H)
+u_init.o: u_init.c $(HACK_H)
+uhitm.o: uhitm.c $(HACK_H)
+vault.o: vault.c $(HACK_H) $(INCL)/vault.h
+version.o: version.c $(HACK_H) $(INCL)/date.h $(INCL)/patchlevel.h
+vision.o: vision.c $(HACK_H) $(INCL)/vis_tab.h
+weapon.o: weapon.c $(HACK_H)
+were.o: were.c $(HACK_H)
+wield.o: wield.c $(HACK_H)
+windows.o: windows.c $(HACK_H) $(INCL)/wingem.h $(INCL)/winGnome.h \
+		$(INCL)/winGL.h $(INCL)/winproxy.h
+wizard.o: wizard.c $(HACK_H) $(INCL)/qtext.h $(INCL)/epri.h
+worm.o: worm.c $(HACK_H) $(INCL)/lev.h
+worn.o: worn.c $(HACK_H)
+write.o: write.c $(HACK_H)
+zap.o: zap.c $(HACK_H)
+gypsy.o: gypsy.c $(HACK_H) $(INCL)/egyp.h $(INCL)/qtext.h
+tech.o: tech.c $(HACK_H)
 
 # end of file
