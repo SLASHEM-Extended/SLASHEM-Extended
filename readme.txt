@@ -85,6 +85,7 @@ ver 0.0.7E5 [?] [Released by ?]
 -Gtk: Upgrade file display window to use GtkTextView instead of broken GtkText
 -Gtk: Add facility to change font used in help windows
 -Improved tile2png to use paletted images where possible
+-Winnt: Add support for png tilesets and build them by default
 
 See history.txt for changes made in previous versions.
 

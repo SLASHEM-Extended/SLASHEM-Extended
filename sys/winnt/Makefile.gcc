@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.44 2003-12-13 12:52:57 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.45 2003-12-15 23:15:35 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -54,6 +54,7 @@ DSRC  = ../src
 DINCL = ../include
 NTSYS = ../sys/winnt
 MW32GTK = /mingw32/gtk2
+MW32PNG = /win-gtk
 
 # Normal dos commands get confused by \\
 DAT  = ..\dat
@@ -384,8 +385,9 @@ endif
 # Shareable (architecture independent) data files which are not candidates
 # for inclusion in DLB libraries (ND). Port specific files per discussions
 # in Install.GTK and Install.pxy
-CNF_SHARE_GTKND = x11bigtiles x11big3dtiles x11tiles rip.xpm credit.xpm
-CNF_SHARE_PROXYND = x11bigtiles.map x11big3dtiles.map x11tiles.map
+CNF_SHARE_GTKND = gltile16.png gltile32.png gltile64.png rip.xpm credit.xpm
+CNF_SHARE_PROXYND = gltile16.png gltile32.png gltile64.png \
+		gltile16.map gltile32.map gltile64.map
 
 ifeq ($(USE_GTK),Y)
 CNF_SHARE_DATND += $(CNF_SHARE_GTKND)
@@ -601,9 +603,9 @@ ifeq ($(USE_GTK),Y)
 	$(COPY) $(subst /,\,$(WGTK)\GTKRC.w32		$(GAMEDIR)\gtkrc)
 	$(COPY) $(subst /,\,rip.xpm			$(GAMEDIR))
 	$(COPY) $(subst /,\,credit.xpm			$(GAMEDIR))
-	$(COPY) $(subst /,\,x11tiles			$(GAMEDIR))
-	$(COPY) $(subst /,\,x11bigtiles			$(GAMEDIR))
-	$(COPY) $(subst /,\,x11big3dtiles		$(GAMEDIR))
+	$(COPY) $(subst /,\,gltile16.png		$(GAMEDIR))
+	$(COPY) $(subst /,\,gltile32.png		$(GAMEDIR))
+	$(COPY) $(subst /,\,gltile64.png		$(GAMEDIR))
 	$(COPY) $(subst /,\,$(GNUDLL)\\libglib*.dll	$(GAMEDIR))
 	$(COPY) $(subst /,\,$(GNUDLL)\\iconv*.dll	$(GAMEDIR))
 	$(COPY) $(subst /,\,$(GNUDLL)\\libgdk*.dll	$(GAMEDIR))
@@ -629,9 +631,12 @@ else
 	$(COPY) $(subst /,\,$(WSYS)\defaults.nh		$(GAMEDIR)\defaults.nh)
 endif
 ifeq ($(USE_PROXY),Y)
-	$(COPY) $(subst /,\,x11tiles.map		$(GAMEDIR))
-	$(COPY) $(subst /,\,x11bigtiles.map		$(GAMEDIR))
-	$(COPY) $(subst /,\,x11big3dtiles.map		$(GAMEDIR))
+	$(COPY) $(subst /,\,gltile16.png		$(GAMEDIR))
+	$(COPY) $(subst /,\,gltile32.png		$(GAMEDIR))
+	$(COPY) $(subst /,\,gltile64.png		$(GAMEDIR))
+	$(COPY) $(subst /,\,gltile16.map		$(GAMEDIR))
+	$(COPY) $(subst /,\,gltile32.map		$(GAMEDIR))
+	$(COPY) $(subst /,\,gltile64.map		$(GAMEDIR))
 endif
 ifeq ($(USE_NHALLOC),Y)
 	$(COPY) $(subst /,\,nhalloc.dll			$(GAMEDIR))
@@ -760,6 +765,13 @@ spotless: clean
 	-$(DEL) x11bigtiles.map
 	-$(DEL) x11big3dtiles.map
 	-$(DEL) x11tiles.map
+	-$(DEL) tile2png.exe
+	-$(DEL) gltile16.png
+	-$(DEL) gltile32.png
+	-$(DEL) gltile64.png
+	-$(DEL) gltile16.map
+	-$(DEL) gltile32.map
+	-$(DEL) gltile64.map
 	-$(DEL) gtkrc
 	-$(DEL) *.xpm
 	-$(DEL) tiletext.c
@@ -843,8 +855,6 @@ spotless: clean
 	-$(DEL) $(PLANAR_TIB)
 	-$(DEL) $(OVERVIEW_TIB)
 	-$(DEL) pet_mark.xbm
-	-$(DEL) rip.xpm
-	-$(DEL) mapbg.xpm
 	-$(DEL) $(WSHR)\monmag.txt
 	-$(DEL) $(WSHR)\mon32.txt
 	-$(DEL) $(WSHR)\objmag.txt 
@@ -1141,6 +1151,14 @@ tile2bmp.exe: tile2bmp.o $(TEXTIO)
 	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -otile2bmp.exe tmp.lnk
 	@$(DEL) tmp.lnk
 
+tile2png.exe: tile2png.o $(TEXTIO)
+	@echo INPUT( tile2png.o )> tmp.lnk
+	@echo INPUT( $(TEXTIO) )>> tmp.lnk
+	@echo INPUT( $(MW32PNG)/lib/libpng.dll.a )>> tmp.lnk
+	@echo INPUT( $(MW32PNG)/lib/libz.dll.a )>> tmp.lnk
+	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -otile2png.exe tmp.lnk
+	@$(DEL) tmp.lnk
+
 magtile.exe: magtile.o $(TEXTIO)
 	@echo INPUT( magtile.o )> tmp.lnk
 	@echo INPUT( $(TEXTIO) )>> tmp.lnk
@@ -1199,6 +1217,8 @@ tile2bmp.o: ../win/share/tile2bmp.c $(INCL)\hack.h $(INCL)\tile.h \
 						$(INCL)\win32api.h
 	$(CCOMPILE) $(CFLAGS) -c ../win/share/tile2bmp.c
 
+tile2png.o: ../win/share/tile2png.c $(INCL)\hack.h $(INCL)\tile.h
+	$(CCOMPILE) $(CFLAGS) -I$(MW32PNG)/include -c ../win/share/tile2png.c
 
 x11tiles: tile2x11.exe ../win/share/monsters.txt ../win/share/objects.txt \
 				../win/share/other.txt
@@ -1230,6 +1250,32 @@ tiles.bmp:	tile2bmp.exe ../win/share/monsters.txt \
 		../win/share/objects.txt ../win/share/other.txt
 	tile2bmp $@ $(WSHR)\monsters.txt $(WSHR)\objects.txt \
 		$(WSHR)\other.txt
+
+gltile16.png: tile2png.exe ../win/share/monsters.txt ../win/share/objects.txt \
+				../win/share/other.txt
+	tile2png -o gltile16.png $(WSHR)\monsters.txt $(WSHR)\objects.txt \
+		$(WSHR)\other.txt
+
+gltile16.map: mapmerge.exe ../win/share/monsters.map ../win/share/objects.map \
+				../win/share/other.map
+	mapmerge gltile16.map $(WSHR)\monsters.map $(WSHR)\objects.map \
+		$(WSHR)\other.map
+
+gltile32.png:	tile2png.exe ../win/share/mon32.txt \
+		../win/share/obj32.txt ../win/share/oth32.txt
+	tile2png -o gltile32.png $(WSHR)\mon32.txt $(WSHR)\obj32.txt \
+		$(WSHR)\oth32.txt
+
+gltile32.map:	gltile16.map
+	$(COPY) gltile16.map gltile32.map
+
+gltile64.png:	tile2png.exe ../win/share/mon3d.txt \
+		../win/share/obj3d.txt ../win/share/oth3d.txt
+	tile2png -o gltile64.png $(WSHR)\mon3d.txt $(WSHR)\obj3d.txt \
+		$(WSHR)\oth3d.txt
+
+gltile64.map:	gltile16.map
+	$(COPY) gltile16.map gltile64.map
 
 $(WSHR)\monmag.txt:	magtile.exe ../win/share/monsters.txt
 	magtile
@@ -1610,7 +1656,7 @@ winval.o: ../win/X11/winval.c $(HACK_H) $(INCL)/winX.h
 	$(CCOMPILE) $(CFLAGS) -o$@ ../win/X11/winval.c
 gtk.o: ../win/gtk/gtk.c $(INCL)/md5.h $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/func_tab.h \
-		$(INCL)/dlb.h $(INCL)/patchlevel.h $(INCL)/proxycb.h
+		$(INCL)/dlb.h $(INCL)/patchlevel.h $(INCL)/proxycb.h \
 		$(INCL)/prxyclnt.h
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtk.c
 gtkgetlin.o: ../win/gtk/gtkgetlin.c $(INCL)/winGTK.h $(HACK_H) \
@@ -1649,7 +1695,7 @@ xshmmap.o: ../win/gtk/xshmmap.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/xshmmap.c
 gtkhackrc.o: ../win/gtk/gtkhackrc.c $(INCL)/winGTK.h $(HACK_H) \
-		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/proxyclnt.h
+		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/prxyclnt.h
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkhackrc.c
 gtkprefs.o: ../win/gtk/gtkprefs.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h
