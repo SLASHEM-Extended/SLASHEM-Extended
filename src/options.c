@@ -2469,6 +2469,9 @@ goodfruit:
 #ifdef SCORE_ON_BOTL
 			 || (boolopt[i].addr) == &flags.showscore
 #endif
+#ifdef SHOW_WEIGHT
+			 || (boolopt[i].addr) == &flags.showweight
+#endif
 			    )
 			    bot_reconfig();
 
