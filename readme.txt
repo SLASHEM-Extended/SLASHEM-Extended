@@ -92,6 +92,7 @@ ver 0.0.7E6F3 [?] [Released by ?]
 -fixed bug 962515: Disarming fire trap doesn't use up water
 -fixed bug 1001167: Is this a Gray Stone bug?
 -fixed bug 992247: wolfname & ghoulname in default.nh doesn't work
+-fixed bug 931679: Space Bar not working as rest
 
 See history.txt for changes made in previous versions.
 
