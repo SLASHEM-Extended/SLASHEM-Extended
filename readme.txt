@@ -83,6 +83,7 @@ ver 0.0.7E6F1 [?] [Released by ?]
 -fixed bug 911335: Monster polymorph permanent?
 -fixed bug 874318: Partly eaten food more nutrious than untouched food
 -fixed bug 911845: "The poison was poisoned!" (Nico Kist)
+-fixed bug 915683: Shopkeeper doesn't handle timed objects correctly
 
 See history.txt for changes made in previous versions.
 

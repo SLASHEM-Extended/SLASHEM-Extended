@@ -618,27 +618,22 @@ int fuse;
 boolean yours;
 {
 	long expiretime;	
-	
+
 	if (bomb->cursed && !rn2(2)) return; /* doesn't arm if not armed */
-	
+
+	/* Now if you play with other people's property... */
+	if (yours && (!carried(bomb) && costly_spot(bomb->ox, bomb->oy) &&
+		!bomb->no_charge || bomb->unpaid)) {
+	    verbalize("You play with it, you pay for it!");
+	    bill_dummy_object(bomb);
+	}
+
 	expiretime = stop_timer(BOMB_BLOW, (genericptr_t) bomb);
 	if (expiretime > 0L) fuse = fuse - (expiretime - monstermoves);
 	bomb->yours = yours;
 	bomb->oarmed = TRUE;
-	
-	/* Now if you play with other people's property... */
-	if (yours) {
-	    if((!carried(bomb) && costly_spot(bomb->ox, bomb->oy) &&
-		 !bomb->no_charge) || bomb->unpaid) {
-		/* create a dummy duplicate to put on bill */
-		verbalize("You play with it, you pay for it!");
-		bill_dummy_object(bomb);
-		bomb->no_charge = 1;    /* you now own the hot potato */
-	    }
-	}
-	
+
 	(void) start_timer((long)fuse, TIMER_OBJECT, BOMB_BLOW, (genericptr_t)bomb);
-	
 }
 
 /* timer callback routine: detonate the explosives */

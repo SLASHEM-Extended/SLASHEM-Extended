@@ -1286,8 +1286,17 @@ light_cocktail(obj)
 	    /* Normally, we shouldn't both partially and fully charge
 	     * for an item, but (Yendorian Fuel) Taxes are inevitable...
 	     */
+#ifdef FIREARMS
+	    if (obj->otyp != STICK_OF_DYNAMITE) {
+#endif
 	    check_unpaid(obj);
-		verbalize("That's in addition to the cost of the %s, of course.", objnam);
+	    verbalize("That's in addition to the cost of the potion, of course.");
+#ifdef FIREARMS
+	    } else {
+		const char *ithem = obj->quan > 1L ? "them" : "it";
+		verbalize("You burn %s, you bought %s!", ithem, ithem);
+	    }
+#endif
 	    bill_dummy_object(obj);
 	}
 	makeknown(obj->otyp);
