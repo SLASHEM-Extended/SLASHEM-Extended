@@ -739,6 +739,7 @@ int dest;
 		
 		do_explode(x, y, ztype, d(numdice,dicetype), WEAPON_CLASS,
 		  dest, isyou);
+		wake_nearto(x, y, 400);
 	}
 	if (dig_expl) {
 	    	/* Like cartoons - the explosion first, then 
