@@ -123,7 +123,7 @@ int jumble_pack ()
 	for (obj = invent; obj; obj = nobj)
 	{
 		nobj = obj->nobj;
-		if (rn2(10))
+		if (rnd(10))
 			/* Skip it */;
 		else if (flags.invlet_constant)
 			dmg += 2;
@@ -436,16 +436,9 @@ void
 useupall(obj)
 struct obj *obj;
 {
-#ifdef DEVEL_BRANCH
-	if (Has_contents(obj)) delete_contents(obj);
-#endif
 	setnotworn(obj);
 	freeinv(obj);
-#ifdef DEVEL_BRANCH
-	obfree(obj, (struct obj *)0);
-#else
 	obfree(obj, (struct obj *)0);	/* deletes contents also */
-#endif
 }
 
 void
@@ -554,14 +547,10 @@ register struct obj *obj;
 {
         boolean update_map;
   
-#ifdef DEVEL_BRANCH
-	if (evades_destruction(obj)) {
-#else
 	if (obj->otyp == AMULET_OF_YENDOR ||
 			obj->otyp == CANDELABRUM_OF_INVOCATION ||
 			obj->otyp == BELL_OF_OPENING ||
 			obj->otyp == SPE_BOOK_OF_THE_DEAD) {
-#endif
 		/* player might be doing something stupid, but we
 		 * can't guarantee that.  assume special artifacts
 		 * are indestructible via drawbridges, and exploding
@@ -569,19 +558,10 @@ register struct obj *obj;
 		 */
 		return;
 	}
-#ifdef DEVEL_BRANCH
-	update_map = (obj->where == OBJ_FLOOR || Has_contents(obj) &&
-		(obj->where == OBJ_INVENT || obj->where == OBJ_MINVENT));
-	if (Has_contents(obj)) delete_contents(obj);
-	obj_extract_self(obj);
-	if (update_map) newsym(obj->ox, obj->oy);
-	obfree(obj, (struct obj *) 0);
-#else
 	update_map = (obj->where == OBJ_FLOOR);
 	obj_extract_self(obj);
 	if (update_map) newsym(obj->ox, obj->oy);
 	obfree(obj, (struct obj *) 0);  /* frees contents also */
-#endif
 }
 
 #endif /* OVL2 */
@@ -2078,9 +2058,6 @@ mergable(otmp, obj)     /* returns TRUE if obj  & otmp can be merged */
 	    obj->lamplit != otmp->lamplit ||
 #ifdef INVISIBLE_OBJECTS
 		obj->oinvis != otmp->oinvis ||
-#endif
-#ifdef UNPOLYPILE
-	    obj->oldtyp != otmp->oldtyp ||
 #endif
 	    obj->greased != otmp->greased ||
 	    obj->oeroded != otmp->oeroded ||

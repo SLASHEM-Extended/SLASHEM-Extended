@@ -962,13 +962,6 @@ obj_resists(obj, ochance, achance)
 struct obj *obj;
 int ochance, achance;   /* percent chance for ordinary objects, artifacts */
 {
-#ifdef DEVEL_BRANCH
-	/* [ALI] obj_resists(obj, 0, 0) is used to test for objects resisting
-	 * containment (see bury_an_obj() and monstone() for details).
-	 */
-	if (evades_destruction(obj) && (ochance || achance))
-		return TRUE;
-#endif
 	if (obj->otyp == AMULET_OF_YENDOR ||
 	    obj->otyp == SPE_BOOK_OF_THE_DEAD ||
 	    obj->otyp == CANDELABRUM_OF_INVOCATION ||
@@ -1021,9 +1014,6 @@ polyuse(objhdr, mat, minwt)
 	otmp2 = otmp->nexthere;
 	if (otmp == uball || otmp == uchain) continue;
 	if (obj_resists(otmp, 0, 0)) continue;	/* preserve unique objects */
-#ifdef DEVEL_BRANCH
-	if (evades_destruction(otmp)) continue;
-#endif
 #ifdef MAIL
 	if (otmp->otyp == SCR_MAIL) continue;
 #endif
@@ -2458,8 +2448,6 @@ struct obj *obj;	/* wand or spell */
 		case WAN_SPEED_MONSTER:
 		case SPE_HEALING:
 		case SPE_EXTRA_HEALING:
-		case WAN_HEALING:
-		case WAN_EXTRA_HEALING:
 		case SPE_DRAIN_LIFE:
 		case WAN_OPENING:
 		case SPE_KNOCK:
@@ -2607,7 +2595,7 @@ struct obj *obj;        /* wand or spell */
 		      ceiling(x, y), body_part(HEAD));
 		losehp(rnd((uarmh && is_metallic(uarmh)) ? 2 : 6),
 		       "falling rock", KILLED_BY_AN);
-		if ((otmp = mksobj_at(ROCK, x, y, FALSE, FALSE)) != 0) {
+		if ((otmp = mksobj_at(ROCK, x, y, FALSE)) != 0) {
 		    (void)xname(otmp);  /* set dknown, maybe bknown */
 		    stackobj(otmp);
 		}
@@ -3033,7 +3021,7 @@ struct obj *obj;                        /* object tossed/used */
 		}
 	    } else {
 		if (weapon == ZAPPED_WAND && obj->otyp == WAN_PROBING &&
-		   memory_is_invisible(bhitpos.x, bhitpos.y)) {
+		   glyph_is_invisible(levl[bhitpos.x][bhitpos.y].glyph)) {
 		    unmap_object(bhitpos.x, bhitpos.y);
 		    newsym(x, y);
 		}
@@ -3082,7 +3070,7 @@ boolean costly = shop_keeper(*in_rooms(bhitpos.x, bhitpos.y, SHOPBASE)) &&
 	    if(weapon != ZAPPED_WAND && weapon != INVIS_BEAM) {
 		/* 'I' present but no monster: erase */
 		/* do this before the tmp_at() */
-		if (memory_is_invisible(bhitpos.x, bhitpos.y)
+		if (glyph_is_invisible(levl[bhitpos.x][bhitpos.y].glyph)
 			&& cansee(x, y)) {
 		    unmap_object(bhitpos.x, bhitpos.y);
 		    newsym(x, y);
@@ -3680,7 +3668,7 @@ register int dx,dy;
 		/* reveal/unreveal invisible monsters before tmp_at() */
 		if (mon && !canspotmon(mon))
 		    map_invisible(sx, sy);
-		else if (!mon && memory_is_invisible(sx, sy)) {
+		else if (!mon && glyph_is_invisible(levl[sx][sy].glyph)) {
 		    unmap_object(sx, sy);
 		    newsym(sx, sy);
 		}
@@ -3783,9 +3771,6 @@ register int dx,dy;
 			for (otmp = mon->minvent; otmp; otmp = otmp2) {
 			    otmp2 = otmp->nobj;
 			    if (!oresist_disintegration(otmp)) {
-#ifdef DEVEL_BRANCH
-				if (Has_contents(otmp)) delete_contents(otmp);
-#endif
 				obj_extract_self(otmp);
 				obfree(otmp, (struct obj *)0);
 			    }
@@ -3831,7 +3816,7 @@ register int dx,dy;
 	    if (zap_hit((int) u.uac, 0)) {
 		range -= 2;
 		pline("%s hits you!", The(fltxt));
-		if (Reflecting && abs(type) != ZT_SPELL(ZT_FIRE)) {
+		if (Reflecting) {
 		    if (!Blind) {
 		    	(void) ureflects("But %s reflects from your %s!", "it");
 		    } else
@@ -3845,10 +3830,7 @@ register int dx,dy;
 			tmp_at(DISP_BEAM, zapdir_to_glyph(dx, dy, abstype));
 		    }
 		} else {
-		    if (abs(type) != ZT_SPELL(ZT_FIRE))
-			zhitu(type, nd, fltxt, sx, sy);
-		    else
-			range = 0;
+		    zhitu(type, nd, fltxt, sx, sy);
 		}
 	    } else {
 		pline("%s whizzes by you!", The(fltxt));

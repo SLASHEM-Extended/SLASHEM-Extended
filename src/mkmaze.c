@@ -547,7 +547,7 @@ register const char *s;
 	maze0xy(&mm);
 	walkfrom((int) mm.x, (int) mm.y);
 	/* put a boulder at the maze center */
-	(void) mksobj_at(BOULDER, (int) mm.x, (int) mm.y, TRUE, FALSE);
+	(void) mksobj_at(BOULDER, (int) mm.x, (int) mm.y, TRUE);
 
 #ifdef WALLIFIED_MAZE
 	wallification(2, 2, x_maze_max, y_maze_max);
@@ -610,7 +610,7 @@ register const char *s;
 	}
 	for(x = rn1(10,2); x; x--) {
 		mazexy(&mm);
-		(void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE);
+		(void) mksobj_at(BOULDER, mm.x, mm.y, TRUE);
 	}
 	for (x = rn2(3); x; x--) {
 		mazexy(&mm);
@@ -1144,6 +1144,7 @@ setup_waterlevel()
 {
 	register int x, y;
 	register int xskip, yskip;
+	register int water_glyph = cmap_to_glyph(S_water);
 
 	/* ouch, hardcoded... */
 
@@ -1156,7 +1157,7 @@ setup_waterlevel()
 
 	for (x = xmin; x <= xmax; x++)
 		for (y = ymin; y <= ymax; y++)
-			clear_memory_glyph(x, y, S_water);
+			levl[x][y].glyph = water_glyph;
 
 	/* make bubbles */
 

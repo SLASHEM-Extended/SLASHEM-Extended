@@ -96,13 +96,13 @@ boolean artif;
 }
 
 struct obj *
-mksobj_at(otyp, x, y, init, artif)
+mksobj_at(otyp,x,y,init)
 int otyp,x,y;
-boolean init, artif;
+boolean init;
 {
 	register struct obj *otmp;
 
-	otmp = mksobj(otyp, init, artif);
+	otmp = mksobj(otyp,init,TRUE);
 	place_object(otmp, x, y);
 	return(otmp);
 }
@@ -796,7 +796,6 @@ register struct obj *otmp;
 	otmp->cursed = 0;
 	otmp->blessed = 1;
 	if (otmp->otyp == LUCKSTONE
-		|| (otmp->otyp == FEDORA && otmp == uarmh)
 		|| (otmp->oartifact && spec_ability(otmp, SPFX_LUCK)))
 	    set_moreluck();
 	/* KMH, balance patch -- healthstones affect healing */
@@ -834,7 +833,6 @@ register struct obj *otmp;
 	otmp->blessed = 0;
 	otmp->cursed = 1;
 	if (otmp->otyp == LUCKSTONE
-		|| (otmp->otyp == FEDORA && otmp == uarmh)
 		|| (otmp->oartifact && spec_ability(otmp, SPFX_LUCK)))
 	    set_moreluck();
 	/* KMH, balance patch -- healthstones affect healing */
@@ -857,7 +855,6 @@ register struct obj *otmp;
 {
 	otmp->cursed = 0;
 	if (otmp->otyp == LUCKSTONE
-		|| (otmp->otyp == FEDORA && otmp == uarmh)
 		|| (otmp->oartifact && spec_ability(otmp, SPFX_LUCK)))
 	    set_moreluck();
 	/* KMH, balance patch -- healthstones affect healing */
@@ -953,13 +950,9 @@ register struct obj *obj;
 #undef CEILDIV
 		return wt + cwt;
 	}
-	if (obj->oclass == FOOD_CLASS) {
-	    if (obj->otyp == CORPSE && obj->corpsenm >= LOW_PM)
-		wt = (int)obj->quan * mons[obj->corpsenm].cwt;
-	    else
-		wt = wt ? wt * (int)obj->quan : ((int)obj->quan + 1) >> 1;
-	    return obj->oeaten ? eaten_stat(wt, obj) : wt;
-	} else if (obj->oclass == GOLD_CLASS)
+	if (obj->otyp == CORPSE && obj->corpsenm >= LOW_PM)
+		return (int)obj->quan * mons[obj->corpsenm].cwt;
+	else if (obj->oclass == GOLD_CLASS)
 		return (int)((obj->quan + 50L) / 100L);
 	else if (obj->otyp == HEAVY_IRON_BALL && obj->owt != 0)
 		return((int)(obj->owt));        /* kludge for "very" heavy iron ball */
@@ -971,7 +964,7 @@ static int treefruits[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF};
 struct obj *
 rnd_treefruit_at(x,y)
 {
-	return mksobj_at(treefruits[rn2(SIZE(treefruits))], x, y, TRUE, FALSE);
+	return mksobj_at(treefruits[rn2(SIZE(treefruits))],x,y,TRUE);
 }
 #endif /* OVL0 */
 #ifdef OVLB
@@ -987,7 +980,7 @@ int x, y;
     if (gold) {
 	gold->quan += amount;
     } else {
-	gold = mksobj_at(GOLD_PIECE, x, y, TRUE, FALSE);
+	gold = mksobj_at(GOLD_PIECE,x,y,TRUE);
 	gold->quan = amount;
     }
     gold->owt = weight(gold);
@@ -1027,7 +1020,7 @@ boolean init;
 
 	if (objtype != CORPSE && objtype != STATUE)
 	    impossible("making corpstat type %d", objtype);
-	otmp = mksobj_at(objtype, x, y, init, FALSE);
+	otmp = mksobj_at(objtype, x, y, init);
 	if (otmp) {
 	    if (mtmp) {
 		struct obj *otmp2;
@@ -1148,7 +1141,7 @@ register int x, y;
 
 	/* player statues never contain books */
 	initialize_it = (objtype != STATUE);
-	if ((otmp = mksobj_at(objtype, x, y, initialize_it, FALSE)) != 0) {
+	if ((otmp = mksobj_at(objtype, x, y, initialize_it)) != 0) {
 	    /* tt_oname will return null if the scoreboard is empty */
 	    if ((otmp2 = tt_oname(otmp)) != 0) otmp = otmp2;
 	}
@@ -1379,14 +1372,6 @@ struct monst *mtmp;
 
     while ((otmp = mtmp->minvent) != 0) {
 	obj_extract_self(otmp);
-#ifdef DEVEL_BRANCH
-	if (evades_destruction(otmp)) {
-	    impossible("%s discarded from %s inventory",
-	      obj_typename(otmp->otyp), s_suffix(mon_nam(mtmp)));
-	    place_object(otmp, mtmp->mx, mtmp->my);
-	    continue;
-	}
-#endif
 	obfree(otmp, (struct obj *)0);  /* dealloc_obj() isn't sufficient */
     }
 }
@@ -1592,9 +1577,9 @@ dealloc_obj(obj)
      * list must track all objects that can have a light source
      * attached to it (and also requires lamplit to be set).
      */
-    if (obj_sheds_light(obj))
+    if (obj_sheds_light(obj)) {
         del_light_source(LS_OBJECT, (genericptr_t) obj);
-
+    }
     free((genericptr_t) obj);
 }
 

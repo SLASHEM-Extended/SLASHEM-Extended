@@ -236,7 +236,7 @@ do_explode(x, y, type, dam, olet, dest, yours)
 		}
 		if (mtmp && cansee(i+x-1,j+y-1) && !canspotmon(mtmp))
 		    map_invisible(i+x-1, j+y-1);
-		else if (!mtmp && memory_is_invisible(i+x-1, j+y-1)) {
+		else if (!mtmp && glyph_is_invisible(levl[i+x-1][j+y-1].glyph)) {
 		    unmap_object(i+x-1, j+y-1);
 		    newsym(i+x-1, j+y-1);
 		}
@@ -640,7 +640,7 @@ struct obj *obj;			/* only scatter this obj        */
 			} else if ((mtmp = m_at(bhitpos.x, bhitpos.y)) != 0) {
 				if (scflags & MAY_HITMON) {
 				    stmp->range--;
-				    if (ohitmon((struct monst *)0, mtmp, stmp->obj, 1, FALSE)) {
+				    if (ohitmon(mtmp, stmp->obj, 1, FALSE)) {
 					stmp->obj = (struct obj *)0;
 					stmp->stopped = TRUE;
 				    }

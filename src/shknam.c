@@ -320,7 +320,7 @@ int sx, sy;
 			mtmp->mappearance = STRANGE_OBJECT;
 		}
 	} else if ((atype = get_shop_item(shp - shtypes)) < 0)
-		(void) mksobj_at(-atype, sx, sy, TRUE, TRUE);
+		(void) mksobj_at(-atype, sx, sy, TRUE);
 	else (void) mkobj_at(atype, sx, sy, TRUE);
 }
 
@@ -627,6 +627,7 @@ register int sh;
     goodcl[ 9] = WAND_CLASS;
     goodcl[10] = GEM_CLASS;
     goodcl[11] = 0;
+    goodcl[12] = 0;
 
     for (i=0; i < NUM_OBJECTS; i++) {
       blkmar_gen[i] = 0;
@@ -675,7 +676,7 @@ register int sh;
 /* generate multiple copies with decreasing probabilities */
 /*        if (rn2(blkmar_gen[typ]+1) && i<49)  continue; */
 
-/*        otmp = mksobj_at(typ, sx, sy, TRUE, TRUE);
+/*        otmp = mksobj_at(typ, sx, sy, TRUE);
 	  blkmar_gen[typ]++;*/
 
 /* prevent wishing abuse */

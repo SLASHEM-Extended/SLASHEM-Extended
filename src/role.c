@@ -393,9 +393,7 @@ const struct Role roles[] = {
 },
 {	{"Samurai", 0}, {
 	{"Hatamoto",    0},  /* Banner Knight */
-#ifndef DEVEL_BRANCH
 	{"Ronin",       0},  /* no allegiance */
-#endif
 	{"Ninja",       0},  /* secret society */
 	{"Joshu",       0},  /* heads a castle */
 	{"Ryoshu",      0},  /* has a territory */
@@ -598,7 +596,7 @@ struct Role urole =
 
 /* Table of all races */
 const struct Race races[] = {
-{	"doppelganger", "doppelganger", "doppelganger-kind", "Dop",
+{	"doppelganger", "doppelgangen", "doppelganger-kind", "Dop",
 	{0, 0},
 	PM_DOPPELGANGER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
 	MH_HUMAN | ROLE_MALE|ROLE_FEMALE | ROLE_NEUTRAL|ROLE_CHAOTIC,

@@ -600,7 +600,7 @@ playersteal()
 			} else
 				You("don't find anything to steal.");
 
-			if (!mdat->mtame) exercise(A_DEX, TRUE);
+			exercise(A_DEX, TRUE);
 			return(1);
 		} else {
 			You("failed to steal anything.");
@@ -1181,42 +1181,13 @@ int final;      /* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if (Blind_telepat) you_are("telepathic");
 	if (Warning) you_are("warned");
 	if (Warn_of_mon && flags.warntype) {
-	    /* [ALI] Add support for undead */
-	    int i, nth = 0;
-	    unsigned long warntype = flags.warntype;
-	    struct { unsigned long mask; char *str; } warntypes[] = {
-		M2_ORC,		"orcs",
-		M2_DEMON,	"demons",
-		M2_UNDEAD,	"undead",
-	    };
-
-	    Sprintf(buf, "aware of the presence of ");
-	    for(i = 0; i < SIZE(warntypes); i++)
-	    {
-		if (warntype & warntypes[i].mask) {
-		    warntype &= ~warntypes[i].mask;
-		    if (nth) {
-			if (warntype)
-			    strcat(buf, ", ");
-			else
-			    strcat(buf, " and ");
-		    }
-		    else
-			nth = 1;
-		    strcat(buf, warntypes[i].str);
-		}
-	    }
-	    if (warntype)
-	    {
-		if (nth)
-		    strcat(buf, " and ");
-		strcat(buf, something); 
-	    }
-	    you_are(buf);
+		Sprintf(buf, "aware of the presence of %s",
+			(flags.warntype & M2_ORC) ? "orcs" :
+			(flags.warntype & M2_DEMON) ? "demons" :
+			something); 
+		you_are(buf);
 	}
-#if 0	/* ALI - dealt with under Warn_of_mon */
 	if (Undead_warning) you_are("warned of undead");
-#endif
 	if (Searching) you_have("automatic searching");
 	if (Clairvoyant) you_are("clairvoyant");
 	if (Infravision) you_have("infravision");
@@ -1291,8 +1262,6 @@ int final;      /* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if (Reflecting) you_have("reflection");
 	if (Free_action) you_have("free action");
 	if (Fixed_abil) you_have("fixed abilities");
-	if (uamul && uamul->otyp == AMULET_VERSUS_STONE)
-		enl_msg("You ", "will be", "would have been", " depetrified");
 	if (Lifesaved)
 		enl_msg("Your life ", "will be", "would have been", " saved");
 	if (u.twoweap) you_are("wielding two weapons at once");

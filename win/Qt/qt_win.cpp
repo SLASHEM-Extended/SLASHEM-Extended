@@ -1712,10 +1712,11 @@ void NetHackQtLabelledIcon::setAlignments()
 static void
 tryload(QPixmap& pm, const char* fn)
 {
+    const char *filename;
 #ifndef FILE_AREAS
-    const char *filename = fn;
+    filename = fn;
 #else
-    char *filename = make_file_name(FILE_AREA_SHARE, fn);
+    filename = make_file_name(FILE_AREA_SHARE, fn);
 #endif
     if (!pm.load(filename)) {
 	QString msg;
@@ -2087,7 +2088,7 @@ void NetHackQtStatusWindow::updateStats()
     }
     name.setLabel(buf,NetHackQtLabelledIcon::NoNum,u.ulevel);
 
-    if (describe_level(buf, FALSE)) {
+    if (describe_level(buf)) {
 	dlevel.setLabel(buf,TRUE);
     } else {
 	Sprintf(buf, "%s, level ", dungeons[u.uz.dnum].dname);
@@ -3505,17 +3506,18 @@ void NetHackQtYnDialog::done(int i)
 int NetHackQtGlyphs::loadTiles(const char *file)
 {
     int tw, th;
+    const char *tile_file;
 #ifndef FILE_AREAS
-    const char *tile_file = file;
+    tile_file = file;
 #else
-    char *tile_file = make_file_name(FILE_AREA_SHARE, file);
+    tile_file = make_file_name(FILE_AREA_SHARE, file);
 #endif
     if (!img.load(tile_file))
 	return 0;
     tw = img.width() / tiles_per_row;
     th = img.height() / tiles_per_col;
 #ifdef FILE_AREAS
-    free(tile_file);
+    free((void *)tile_file);
 #endif
 
     resize(tw, th);
