@@ -3845,7 +3845,10 @@ register int dx,dy;
 			tmp_at(DISP_BEAM, zapdir_to_glyph(dx, dy, abstype));
 		    }
 		} else {
-		    zhitu(type, nd, fltxt, sx, sy);
+		    if (abs(type) != ZT_SPELL(ZT_FIRE))
+			zhitu(type, nd, fltxt, sx, sy);
+		    else
+			range = 0;
 		}
 	    } else {
 		pline("%s whizzes by you!", The(fltxt));
