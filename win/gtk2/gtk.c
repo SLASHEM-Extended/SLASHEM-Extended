@@ -1,9 +1,9 @@
 /*
-  $Id: gtk.c,v 1.27 2002-12-31 21:30:43 j_ali Exp $
+  $Id: gtk.c,v 1.28 2003-01-01 12:13:32 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
-               Copyright (c) Slash'EM Development Team 2001-2002
+               Copyright (c) Slash'EM Development Team 2001-2003
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -1960,7 +1960,7 @@ GTK_exit_nhwindows(const char *str)
     }
 #endif
 #if defined(GTK_PROXY)
-    proxy_exit_server();
+    proxy_exit_client_services();
 #endif
 }
 

@@ -1,7 +1,7 @@
-#       $Id: Makefile.gcc,v 1.22 2002-12-24 10:14:21 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.23 2003-01-01 12:13:32 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2001
 #       Copyright (c) Karl Garrison 1999
-#       Copyright (c) Slash'EM Development Team 1999-2002
+#       Copyright (c) Slash'EM Development Team 1999-2003
 #
 #       Slash'EM 0.0.7 Makefile for MinGW 1.0 and above and Gtk+ 2.0 and above
 #  
@@ -261,13 +261,13 @@ PROXYUTLSRC = ../win/proxy/dlbh.c ../win/proxy/mapid.c \
 	../win/proxy/riputil.c ../win/proxy/getopt.c ../win/proxy/glyphmap.c
 PROXYUTLOBJ = dlbh.o mapid.o riputil.o getopt.o glyphmap.o
 #
-# Files for the proxy window server interface. These are needed to support
-# external window ports and provide the interface to the game executable.
-# Currently, only the GTK2 window interface supports proxy window servers.
-PROXYSVRSRC = ../win/proxy/proxysvc.c ../win/proxy/proxycb.c \
+# Files for plug-in window interfaces. These are needed to support external
+# window ports and provide the interface to the game executable.  Currently,
+# only the GTK2 window interface supports plug-in window interfaces.
+PROXYCLNTSRC = ../win/proxy/proxysvc.c ../win/proxy/proxycb.c \
 	../win/proxy/prxymap.c ../win/proxy/prxychar.c ../win/proxy/prxytile.c \
 	../win/proxy/prxyconn.c
-PROXYSVROBJ = proxysvc.o proxycb.o prxymap.o prxychar.o prxytile.o prxyconn.o
+PROXYCLNTOBJ = proxysvc.o proxycb.o prxymap.o prxychar.o prxytile.o prxyconn.o
 
 WINSRC = $(WINTTYSRC)
 WOBJ01 = $(WINTTYOBJ)
@@ -298,8 +298,8 @@ WOBJ05 += $(PROXYUTLOBJ)
 endif
 
 ifeq ($(USE_PROXIFIED),Y)
-WINSRC += $(PROXYSVRSRC)
-WOBJ04 += $(PROXYSVROBJ)
+WINSRC += $(PROXYCLNTSRC)
+WOBJ04 += $(PROXYCLNTOBJ)
 endif
 
 WINOBJ = $(WOBJ01) $(WOBJ02) $(WOBJ03) $(WOBJ04) $(WOBJ05)
@@ -836,9 +836,9 @@ nhalloc.dll:	nhalloc.def nhalloc.o panic.o
 nhalloc.a:	nhalloc.def
 	dlltool --dllname nhalloc.dll --def nhalloc.def --output-lib nhalloc.a -k
 
-nhproxy.a:	$(PROXYSVROBJ) $(PROXYCOMOBJ)
+nhproxy.a:	$(PROXYCLNTOBJ) $(PROXYCOMOBJ)
 	-$(DEL) nhproxy.a
-	ar rc nhproxy.a $(PROXYSVROBJ)
+	ar rc nhproxy.a $(PROXYCLNTOBJ)
 	ar r nhproxy.a $(PROXYCOMOBJ)
 	ranlib nhproxy.a
 
@@ -1463,7 +1463,7 @@ gtkint.o: $(WGTK)/gtkint.c ../include/winGTK.h ../include/dlb.h \
 		../include/patchlevel.h
 	$(COPY) $(WGTK)\gtkint.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkint.c
-gtkext.o: $(WGTK)/gtkext.c ../include/winGTK.h ../include/proxysvr.h \
+gtkext.o: $(WGTK)/gtkext.c ../include/winGTK.h ../include/prxyclnt.h \
 		../include/dlb.h ../include/patchlevel.h
 	$(COPY) $(WGTK)\gtkext.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkext.c
@@ -1510,7 +1510,7 @@ callback.o: ../win/proxy/callback.c $(HACK_H) ../include/nhxdr.h \
 	$(COPY) ..\win\proxy\callback.c .
 	$(CCOMPILE) $(CFLAGS) -c callback.c
 proxysvc.o: ../win/proxy/proxysvc.c ../include/nhxdr.h \
-		../include/proxycom.h ../include/proxysvr.h
+		../include/proxycom.h ../include/prxyclnt.h
 	$(COPY) ..\win\proxy\proxysvc.c .
 	$(CCOMPILE) $(CFLAGS) -c proxysvc.c
 proxycb.o: ../win/proxy/proxycb.c ../include/nhxdr.h ../include/proxycom.h \
@@ -1518,19 +1518,19 @@ proxycb.o: ../win/proxy/proxycb.c ../include/nhxdr.h ../include/proxycom.h \
 	$(COPY) ..\win\proxy\proxycb.c .
 	$(CCOMPILE) $(CFLAGS) -c proxycb.c
 prxymap.o: ../win/proxy/prxymap.c ../include/nhxdr.h ../include/proxycom.h \
-		../include/proxysvr.h
+		../include/prxyclnt.h
 	$(COPY) ..\win\proxy\prxymap.c .
 	$(CCOMPILE) $(CFLAGS) -c prxymap.c
 prxychar.o: ../win/proxy/prxychar.c ../include/nhxdr.h ../include/proxycom.h \
-		../include/proxysvr.h
+		../include/prxyclnt.h
 	$(COPY) ..\win\proxy\prxychar.c .
 	$(CCOMPILE) $(CFLAGS) -c prxychar.c
 prxytile.o: ../win/proxy/prxytile.c ../include/nhxdr.h ../include/proxycom.h \
-		../include/proxysvr.h
+		../include/prxyclnt.h
 	$(COPY) ..\win\proxy\prxytile.c .
 	$(CCOMPILE) $(CFLAGS) -c prxytile.c
 prxyconn.o: ../win/proxy/prxyconn.c ../include/nhxdr.h ../include/proxycom.h \
-		../include/proxysvr.h
+		../include/prxyclnt.h
 	$(COPY) ..\win\proxy\prxyconn.c .
 	$(CCOMPILE) $(CFLAGS) -c prxyconn.c
 

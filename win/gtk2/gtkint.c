@@ -1,9 +1,9 @@
 /*
-  $Id: gtkint.c,v 1.7 2002-12-29 21:34:52 j_ali Exp $
+  $Id: gtkint.c,v 1.8 2003-01-01 12:13:32 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
-               Copyright (c) Slash'EM Development Team 2001-2002
+               Copyright (c) Slash'EM Development Team 2001-2003
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -156,7 +156,8 @@ GTK_proxy_init_nhwindows(int *argcp, char **argv)
 #endif
 #endif
 	proxy_svc_set_ext_procs(win_GTK_init, &GTK_ext_procs);
-	proxy_start_server(argv[0], (void *)from_game[0], (void *)to_game[1]);
+	proxy_start_client_services(argv[0], (void *)from_game[0],
+	  (void *)to_game[1]);
 	exit(1);
     }
 #endif	/* WIN32 */

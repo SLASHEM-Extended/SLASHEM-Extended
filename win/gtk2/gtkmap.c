@@ -1,9 +1,9 @@
 /*
-  $Id: gtkmap.c,v 1.15 2002-12-29 21:34:52 j_ali Exp $
+  $Id: gtkmap.c,v 1.16 2003-01-01 12:13:32 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
-               Copyright (c) Slash'EM Development Team 2000-2001
+               Copyright (c) Slash'EM Development Team 2000-2003
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -18,7 +18,7 @@
 #endif
 #include "decl.h"
 #include "proxycb.h"
-#include "proxysvr.h"
+#include "prxyclnt.h"
 
 #undef red
 #undef green

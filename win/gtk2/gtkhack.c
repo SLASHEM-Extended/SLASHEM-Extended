@@ -1,10 +1,10 @@
-/* $Id: gtkhack.c,v 1.3 2002-12-29 21:30:22 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2002 */
+/* $Id: gtkhack.c,v 1.4 2003-01-01 12:13:32 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include <stdio.h>
 #include "winGTK.h"
-#include "proxysvr.h"
+#include "prxyclnt.h"
 #include "proxycb.h"
 
 int

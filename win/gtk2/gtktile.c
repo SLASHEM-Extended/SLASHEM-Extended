@@ -1,9 +1,9 @@
 /*
-  $Id: gtktile.c,v 1.7 2002-10-05 19:22:54 j_ali Exp $
+  $Id: gtktile.c,v 1.8 2003-01-01 12:13:32 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
-               Copyright (c) Slash'EM Development Team 2000-2002
+               Copyright (c) Slash'EM Development Team 2000-2003
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -12,7 +12,7 @@
 #include "winGTK.h"
 #include "dlb.h"
 #include "proxycb.h"
-#include "proxysvr.h"
+#include "prxyclnt.h"
 
 /* #define DEBUG */
 

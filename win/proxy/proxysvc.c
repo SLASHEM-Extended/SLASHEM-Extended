@@ -1,5 +1,5 @@
-/* $Id: proxysvc.c,v 1.14 2002-12-29 21:34:52 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001-2002 */
+/* $Id: proxysvc.c,v 1.15 2003-01-01 12:13:33 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 /* #define DEBUG */
@@ -13,7 +13,7 @@
 #endif
 #include "nhxdr.h"
 #include "proxycom.h"
-#include "proxysvr.h"
+#include "prxyclnt.h"
 
 static void NDECL((*proxy_ini));		/* optional (can be 0) */
 static struct window_ext_procs *proxy_svc;
@@ -36,7 +36,8 @@ static void FDECL(proxy_svc_init_nhwindows,
 static void FDECL(proxy_svc_player_selection,
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_askname, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_get_nh_event, (unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_get_nh_event,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_exit_nhwindows,
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_suspend_nhwindows,
@@ -53,41 +54,59 @@ static void FDECL(proxy_svc_destroy_nhwindow,
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_curs, (unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_putstr, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_display_file, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_start_menu, (unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_display_file,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_start_menu,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_add_menu, (unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_end_menu, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_select_menu, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_message_menu, (unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_select_menu,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_message_menu,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_update_inventory,
 			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_mark_synch, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_wait_synch, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_cliparound, (unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_mark_synch,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_wait_synch,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_cliparound,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_update_positionbar,
 			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_print_glyph, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_raw_print, (unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_print_glyph,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_raw_print,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_raw_print_bold,
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_nhgetch, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_nh_poskey, (unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_nh_poskey,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_nhbell, (unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_doprev_message,
 			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_yn_function, (unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_yn_function,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_getlin, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_get_ext_cmd, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_number_pad, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_delay_output, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_change_color, (unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_get_ext_cmd,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_number_pad,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_delay_output,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_change_color,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_change_background,
 			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_set_font_name, (unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_set_font_name,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_get_color_string,
 			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_start_screen, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_end_screen, (unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_start_screen,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_end_screen,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_outrip, (unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_status, (unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_print_glyph_layered,
@@ -719,7 +738,7 @@ struct window_ext_procs *windowprocs;
 
 #ifdef WIN32
 static int
-server_read(void *handle, void *buf, unsigned int len)
+client_read(void *handle, void *buf, unsigned int len)
 {
     DWORD nb;
     if (!ReadFile((HANDLE)handle, buf, len, &nb, NULL))
@@ -729,7 +748,7 @@ server_read(void *handle, void *buf, unsigned int len)
 }
 
 static int
-server_write(void *handle, void *buf, unsigned int len)
+client_write(void *handle, void *buf, unsigned int len)
 {
     DWORD nb;
     if (!WriteFile((HANDLE)handle, buf, len, &nb, NULL))
@@ -739,7 +758,7 @@ server_write(void *handle, void *buf, unsigned int len)
 }
 #else	/* WIN32 */
 static int
-server_read(void *handle, void *buf, unsigned int len)
+client_read(void *handle, void *buf, unsigned int len)
 {
     int nb;
     nb = read((int)handle, buf, len);
@@ -747,7 +766,7 @@ server_read(void *handle, void *buf, unsigned int len)
 }
 
 static int
-server_write(void *handle, void *buf, unsigned int len)
+client_write(void *handle, void *buf, unsigned int len)
 {
     int nb;
     nb = write((int)handle, buf, len);
@@ -810,7 +829,7 @@ void *buf;
 unsigned int len;
 {
     int retval;
-    retval = server_read(handle, buf, len);
+    retval = client_read(handle, buf, len);
     if (retval < 0)
 	fputs("<= ERROR\n", stderr);
     else
@@ -825,7 +844,7 @@ void *buf;
 unsigned int len;
 {
     int retval;
-    retval = server_write(handle, buf, len);
+    retval = client_write(handle, buf, len);
     if (retval < 0)
 	fputs("=> ERROR\n", stderr);
     else
@@ -835,7 +854,7 @@ unsigned int len;
 #endif	/* DEBUG */
 
 static int
-win_proxy_svr_gettag(lp, tag)
+win_proxy_clnt_gettag(lp, tag)
 struct nhext_line *lp;
 const char *tag;
 {
@@ -847,7 +866,7 @@ const char *tag;
 }
 
 int
-win_proxy_svr_init(read_h, write_h)
+win_proxy_clnt_init(read_h, write_h)
 void *read_h, *write_h;
 {
     int i;
@@ -858,15 +877,15 @@ void *read_h, *write_h;
     rd = nhext_io_open(debug_read, read_h, NHEXT_IO_RDONLY);
     wr = nhext_io_open(debug_write, write_h, NHEXT_IO_WRONLY);
 #else
-    rd = nhext_io_open(server_read, read_h, NHEXT_IO_RDONLY);
-    wr = nhext_io_open(server_write, write_h, NHEXT_IO_WRONLY);
+    rd = nhext_io_open(client_read, read_h, NHEXT_IO_RDONLY);
+    wr = nhext_io_open(client_write, write_h, NHEXT_IO_WRONLY);
 #endif
     if (!rd || !wr) {
-	fprintf(stderr, "proxy_svc: Failed to open I/O streams.\n");
+	fprintf(stderr, "proxy_clnt: Failed to open I/O streams.\n");
 	exit(1);
     }
     if (nhext_init(rd, wr, services) < 0) {
-	fprintf(stderr, "proxy_svc: Failed to initialize NhExt.\n");
+	fprintf(stderr, "proxy_clnt: Failed to initialize NhExt.\n");
 	nhext_io_close(wr);
 	nhext_io_close(rd);
 	return FALSE;
@@ -874,22 +893,22 @@ void *read_h, *write_h;
     lp = nhext_subprotocol0_read_line();
     if (!lp) {
 failed:
-	fprintf(stderr, "proxy_svc: Failed to start NhExt.\n");
+	fprintf(stderr, "proxy_clnt: Failed to start NhExt.\n");
 	/* We leave the NhExtIO streams open and NhExt initialized so
-	 * that win_proxy_svr_get_failed_packet() will still work.
+	 * that win_proxy_clnt_get_failed_packet() will still work.
 	 */
 	return FALSE;
     }
-    if (strcmp(lp->type, "NhExt") || win_proxy_svr_gettag(lp, "game") < 0 ||
-      win_proxy_svr_gettag(lp, "version") < 0 ||
-      (i = win_proxy_svr_gettag(lp, "protocols")) < 0) {
+    if (strcmp(lp->type, "NhExt") || win_proxy_clnt_gettag(lp, "game") < 0 ||
+      win_proxy_clnt_gettag(lp, "version") < 0 ||
+      (i = win_proxy_clnt_gettag(lp, "protocols")) < 0) {
 	nhext_subprotocol0_free_line(lp);
 	goto failed;
     }
     s = strchr(lp->values[i], '1');
     if (!s || s > lp->values[i] && s[-1] != ',' || s[1] && s[1] != ',') {
 	nhext_subprotocol0_free_line(lp);
-	fprintf(stderr, "proxy_svc: Sub-protocol 1 not supported.\n");
+	fprintf(stderr, "proxy_clnt: Sub-protocol 1 not supported.\n");
 	s = "Error mesg \"No supported protocols\"\n";
 	(void)nhext_io_write(wr, s, strlen(s));
 	nhext_end();
@@ -910,7 +929,7 @@ failed:
     free(line.tags);
     free(line.values);
     if (!i) {
-	fprintf(stderr, "proxy_svc: Failed to write NhExt acknowledgement.\n");
+	fprintf(stderr, "proxy_clnt: Failed to write NhExt acknowledgement.\n");
 	nhext_end();
 	nhext_io_close(wr);
 	nhext_io_close(rd);
@@ -920,17 +939,17 @@ failed:
 }
 
 int
-win_proxy_svr_iteration()
+win_proxy_clnt_iteration()
 {
     int i;
     i = nhext_svc(services);
     if (!i)
-	fprintf(stderr, "proxy_svc: Ignoring packet with zero ID\n");
+	fprintf(stderr, "proxy_clnt: Ignoring packet with zero ID\n");
     return i;
 }
 
 char *
-win_proxy_svr_get_failed_packet(int *nb)
+win_proxy_clnt_get_failed_packet(int *nb)
 {
     return nhext_subprotocol0_get_failed_packet(nb);
 }

@@ -1,9 +1,9 @@
-/* $Id: proxysvr.h,v 1.6 2002-12-31 21:30:43 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2002 */
+/* $Id: prxyclnt.h,v 1.1 2003-01-01 12:13:30 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
-#ifndef PROXYSVR_H
-#define PROXYSVR_H
+#ifndef PRXYCLNT_H
+#define PRXYCLNT_H
 
 extern short *proxy_glyph2tile;
 
@@ -99,8 +99,8 @@ struct window_ext_procs {
 /* ### proxysvc.c ### */
 
 extern void proxy_svc_set_ext_procs(void (*)(void), struct window_ext_procs *);
-extern int win_proxy_svr_init(void *, void *);
-extern char *win_proxy_svr_get_failed_packet(int *);
+extern int win_proxy_clnt_init(void *, void *);
+extern char *win_proxy_clnt_get_failed_packet(int *);
 
 /* ### prxymap.c ### */
 
@@ -124,9 +124,10 @@ extern long *proxy_map_glyph2char(struct proxycb_get_glyph_mapping_res *);
 
 /* ### prxyconn.c ### */
 
-extern void proxy_exit_server(void);
-extern int proxy_start_server(char *prgname, void *read_h, void *write_h);
+extern void proxy_exit_client_services(void);
+extern int proxy_start_client_services(char *prgname, void *read_h,
+	void *write_h);
 extern int proxy_connect(
 	char *protocol, char *address, int *argcp, char **argv);
 
-#endif /* PROXYSVR_H */
+#endif /* PRXYCLNT_H */

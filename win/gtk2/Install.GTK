@@ -111,9 +111,9 @@ To use this code:
 		[WINLIB]    $(WINGTKLIB)
 	    [proxified]
 		[WINSRC]    $(WINGTKSRC) $(WINPROXYSRC) $(PROXYUTLSRC) \
-			    $(PROXYCOMSRC) $(PROXYSVRSRC)
+			    $(PROXYCOMSRC) $(PROXYCLNTSRC)
 		[WINOBJ]    $(WINGTKOBJ) $(WINPROXYOBJ) $(PROXYUTLOBJ) \
-			    $(PROXYCOMOBJ) $(PROXYSVROBJ)
+			    $(PROXYCOMOBJ) $(PROXYCLNTOBJ)
 		[WINLIB]    $(WINGTKLIB) $(WINPROXYLIB)
 
         This will give you an executable supporting GTK 2.0 and possibly

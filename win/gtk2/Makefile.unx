@@ -1,5 +1,5 @@
-# $Id: Makefile.unx,v 1.4 2002-12-24 10:14:21 j_ali Exp $
-# Copyright (c) Slash'EM Development Team 2002
+# $Id: Makefile.unx,v 1.5 2003-01-01 12:13:32 j_ali Exp $
+# Copyright (c) Slash'EM Development Team 2002-2003
 # NetHack may be freely redistributed.  See license for details.
 #
 # This makefile is for making gtkhack, a seperate program which talks
@@ -86,7 +86,7 @@ $(CONFIG_H): ../../include/config.h
 $(HACK_H): ../../include/hack.h
 	touch $(HACK_H)
 #
-gtkhack.o: gtkhack.c ../../include/winGTK.h ../../include/proxysvr.h \
+gtkhack.o: gtkhack.c ../../include/winGTK.h ../../include/prxyclnt.h \
 		../../include/proxycb.h
 gtk.o: gtk.c ../../include/winGTK.h ../../include/wintype.h ../../include/func_tab.h \
 		../../include/dlb.h ../../include/patchlevel.h ../../include/proxycb.h
@@ -98,13 +98,13 @@ gtkextcmd.o: gtkextcmd.c ../../include/winGTK.h ../../include/proxycb.h \
 		../../include/func_tab.h
 gtkmap.o: gtkmap.c ../../include/winGTK.h ../../include/dlb.h \
 		../../include/patchlevel.h ../../include/decl.h ../../include/proxycb.h \
-		../../include/proxysvr.h
+		../../include/prxyclnt.h
 gtkmessage.o: gtkmessage.c ../../include/winGTK.h
 gtkmisc.o: gtkmisc.c ../../include/winGTK.h ../../include/proxycb.h
 gtktile.o: gtktile.c ../../include/winGTK.h ../../include/dlb.h ../../include/proxycb.h \
-		../../include/proxysvr.h
+		../../include/prxyclnt.h
 xshmmap.o: xshmmap.c ../../include/winGTK.h
-gtkext.o: gtkext.c ../../include/winGTK.h ../../include/proxysvr.h
+gtkext.o: gtkext.c ../../include/winGTK.h ../../include/prxyclnt.h
 panic.o: panic.c $(CONFIG_H)
 # DEPENDENCIES MUST END AT END OF FILE
 # IF YOU PUT STUFF HERE IT WILL GO AWAY

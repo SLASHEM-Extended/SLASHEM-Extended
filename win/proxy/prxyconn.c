@@ -1,5 +1,5 @@
-/* $Id: prxyconn.c,v 1.3 2002-12-31 21:30:44 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2002 */
+/* $Id: prxyconn.c,v 1.4 2003-01-01 12:13:33 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include <stdlib.h>
@@ -18,7 +18,7 @@
 #endif
 #include "nhxdr.h"
 #include "proxycom.h"
-#include "proxysvr.h"
+#include "prxyclnt.h"
 
 #ifdef WIN32
 
@@ -177,20 +177,20 @@ connect_pipe(void *rfd, void *wfd)
 
 #endif /* WIN32 */
 
-static int exit_server;
+static int exit_client_services;
 
 void
-proxy_exit_server()
+proxy_exit_client_services()
 {
-    exit_server = 1;
+    exit_client_services = 1;
 }
 
 int
-proxy_start_server(char *prgname, void *read_h, void *write_h)
+proxy_start_client_services(char *prgname, void *read_h, void *write_h)
 {
     int nb;
     char *s;
-    if (!win_proxy_svr_init(read_h, write_h)) {
+    if (!win_proxy_clnt_init(read_h, write_h)) {
 	fprintf(stderr, "%s: Proxy interface failed; switching to text mode\n",
 	  prgname);
 	/*
@@ -203,14 +203,14 @@ proxy_start_server(char *prgname, void *read_h, void *write_h)
 	 * standard I/O to the user for them to interpret and take appropriate
 	 * action.
 	 */
-	s = win_proxy_svr_get_failed_packet(&nb);
+	s = win_proxy_clnt_get_failed_packet(&nb);
 	if (s)
 	    write(1, s, nb);
 	connect_pipe(read_h, write_h);
 	return 1;
     }
-    exit_server = 0;
-    while(win_proxy_svr_iteration() >= 0 && !exit_server)
+    exit_client_services = 0;
+    while(win_proxy_clnt_iteration() >= 0 && !exit_client_services)
 	;
     return 0;
 }
@@ -265,7 +265,7 @@ proxy_connect_file(char *address, int *argcp, char **argv)
 	fprintf(stderr, "%s: Failed to restore stdout\n", argv[0]);
 	return 1;
     }
-    return proxy_start_server(argv[0], (void *)from_game_h[0],
+    return proxy_start_client_services(argv[0], (void *)from_game_h[0],
       (void *)to_game_h[1]);
 }
 
@@ -296,7 +296,7 @@ proxy_connect_file(char *address, int *argcp, char **argv)
 	free(nargv);
 	close(to_game[0]);
 	close(from_game[1]);
-	return proxy_start_server(argv[0], (void *)from_game[0],
+	return proxy_start_client_services(argv[0], (void *)from_game[0],
 	  (void *)to_game[1]);
     }
     /*NOTREACHED*/
@@ -356,7 +356,7 @@ proxy_connect_tcp(char *address, char *prgname)
 	panic("proxy_connect: Failed to connect to remote machine");
     }
     free(s);
-    return proxy_start_server(prgname, (void *)skt, (void *)skt);
+    return proxy_start_client_services(prgname, (void *)skt, (void *)skt);
 }
 
 /*

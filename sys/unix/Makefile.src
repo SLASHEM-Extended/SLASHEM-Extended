@@ -246,7 +246,7 @@ WINBEOBJ =
 WINPROXYSRC = ../win/proxy/winproxy.c ../win/proxy/callback.c
 WINPROXYOBJ = winproxy.o callback.o nhwin.a
 #
-# Common files for proxy window interface and window servers.
+# Common files for proxy window interface and plug-in window interfaces.
 PROXYCOMSRC = ../win/proxy/nhext.c ../win/proxy/nhxdr.c \
 	../win/proxy/nhextxdr.c ../win/proxy/nhextio.c ../win/proxy/compxdr.c
 PROXYCOMOBJ = nhext.o nhxdr.o nhextxdr.o nhextio.o compxdr.o
@@ -258,13 +258,13 @@ PROXYUTLSRC = ../win/proxy/dlbh.c ../win/proxy/mapid.c \
 	../win/proxy/riputil.c ../win/proxy/getopt.c ../win/proxy/glyphmap.c
 PROXYUTLOBJ = dlbh.o mapid.o riputil.o getopt.o glyphmap.o
 #
-# Files for the proxy window server interface. These are needed to support
-# external window ports and provide the interface to the game executable.
-# Currently, only the GTK2 window interface supports proxy window servers.
-PROXYSVRSRC = ../win/proxy/proxysvc.c ../win/proxy/proxycb.c \
+# Files for plug-in window interfaces. These are needed to support external
+# window ports and provide the interface to the game executable.  Currently,
+# only the GTK2 window interface supports plug-in window interfaces.
+PROXYCLNTSRC = ../win/proxy/proxysvc.c ../win/proxy/proxycb.c \
 	../win/proxy/prxymap.c ../win/proxy/prxychar.c ../win/proxy/prxytile.c \
 	../win/proxy/prxyconn.c
-PROXYSVROBJ = proxysvc.o proxycb.o prxymap.o prxychar.o prxytile.o prxyconn.o
+PROXYCLNTOBJ = proxysvc.o proxycb.o prxymap.o prxychar.o prxytile.o prxyconn.o
 #
 # Files for the SDL/GL window port
 WINGLSRC = ../win/gl/gl_conf.c ../win/gl/gl_emul.c  \
@@ -295,9 +295,9 @@ WINOBJ = $(WINTTYOBJ)
 # Use these declarations if you want to support external windowing systems
 # and a proxified GTK windowing system (see Install.GTK)
 # WINSRC = $(WINTTYSRC) $(WINGTKSRC) \
-#	$(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYCOMSRC) $(PROXYSVRSRC)
+#	$(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYCOMSRC) $(PROXYCLNTSRC)
 # WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ) \
-#	$(WINPROXYOBJ) $(PROXYUTLOBJ) $(PROXYCOMOBJ) $(PROXYSVROBJ)
+#	$(WINPROXYOBJ) $(PROXYUTLOBJ) $(PROXYCOMOBJ) $(PROXYCLNTOBJ)
 # Use these declarations to only support the SDL/GL windowing systems
 # WINSRC = $(WINGLSRC)
 # WINOBJ = $(WINGLOBJ)
@@ -454,7 +454,7 @@ GENCSRC = monstr.c vis_tab.c  #tile.c
 
 # all windowing-system-dependent .c (for dependencies and such)
 WINCSRC = $(WINTTYSRC) $(WINX11SRC) $(WINGTKSRC) $(WINGNOMESRC) $(WINGEMSRC) \
-	$(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYSVRSRC) $(PROXYCOMSRC) \
+	$(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYCLNTSRC) $(PROXYCOMSRC) \
 	$(WINGLSRC) tile.c
 # all windowing-system-dependent .cpp (for dependencies and such)
 WINCXXSRC = $(WINQTSRC) $(WINBESRC)
@@ -595,8 +595,8 @@ nhwin.a:	tile.o
 	$(AR) cr nhwin.a tile.o
 
 # NetHack proxy library for external window interfaces.
-nhproxy.a:      $(PROXYSVROBJ) $(PROXYCOMOBJ)
-	$(AR) cr nhproxy.a $(PROXYSVROBJ) $(PROXYCOMOBJ)
+nhproxy.a:      $(PROXYCLNTOBJ) $(PROXYCOMOBJ)
+	$(AR) cr nhproxy.a $(PROXYCLNTOBJ) $(PROXYCOMOBJ)
 
 $(MAKEDEFS): ../util/makedefs.c  $(CONFIG_H) ../include/permonst.h \
 		../include/objclass.h ../include/monsym.h \
@@ -860,22 +860,22 @@ glyphmap.o: ../win/proxy/glyphmap.c $(HACK_H) ../include/nhxdr.h \
 		../include/proxycom.h ../include/winproxy.h
 	$(CC) $(CFLAGS) -c ../win/proxy/glyphmap.c
 proxysvc.o: ../win/proxy/proxysvc.c ../include/nhxdr.h ../include/proxycom.h \
-		../include/proxysvr.h
+		../include/prxyclnt.h
 	$(CC) $(CFLAGS) -c ../win/proxy/proxysvc.c
 proxycb.o: ../win/proxy/proxycb.c ../include/nhxdr.h ../include/proxycom.h \
 		../include/proxycb.h
 	$(CC) $(CFLAGS) -c ../win/proxy/proxycb.c
 prxymap.o: ../win/proxy/prxymap.c ../include/nhxdr.h ../include/proxycom.h \
-		../include/proxysvr.h
+		../include/prxyclnt.h
 	$(CC) $(CFLAGS) -c ../win/proxy/prxymap.c
 prxychar.o: ../win/proxy/prxychar.c ../include/nhxdr.h ../include/proxycom.h \
-		../include/proxysvr.h
+		../include/prxyclnt.h
 	$(CC) $(CFLAGS) -c ../win/proxy/prxychar.c
 prxytile.o: ../win/proxy/prxytile.c ../include/nhxdr.h ../include/proxycom.h \
-		../include/proxysvr.h
+		../include/prxyclnt.h
 	$(CC) $(CFLAGS) -c ../win/proxy/prxytile.c
 prxyconn.o: ../win/proxy/prxyconn.c ../include/nhxdr.h ../include/proxycom.h \
-		../include/proxysvr.h
+		../include/prxyclnt.h
 	$(CC) $(CFLAGS) -c ../win/proxy/prxyconn.c
 nhext.o: ../win/proxy/nhext.c ../include/nhxdr.h ../include/proxycom.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhext.c

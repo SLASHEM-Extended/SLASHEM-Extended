@@ -1,5 +1,5 @@
-/* $Id: prxytile.c,v 1.4 2002-11-02 15:47:04 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2002 */
+/* $Id: prxytile.c,v 1.5 2003-01-01 12:13:33 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include <stdlib.h>
@@ -7,7 +7,7 @@
 #include <string.h>
 #include "nhxdr.h"
 #include "proxycom.h"
-#include "proxysvr.h"
+#include "prxyclnt.h"
 
 /* #define DEBUG */
 

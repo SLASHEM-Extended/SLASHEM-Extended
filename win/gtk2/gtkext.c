@@ -1,9 +1,9 @@
 /*
-  $Id: gtkext.c,v 1.6 2002-12-29 21:34:52 j_ali Exp $
+  $Id: gtkext.c,v 1.7 2003-01-01 12:13:32 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
-               Copyright (c) Slash'EM Development Team 2001-2002
+               Copyright (c) Slash'EM Development Team 2001-2003
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -13,7 +13,7 @@
  */
 
 #include "winGTK.h"
-#include "proxysvr.h"
+#include "prxyclnt.h"
 
 static void v_hook();
 static int i_hook();
