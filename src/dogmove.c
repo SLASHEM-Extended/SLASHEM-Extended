@@ -134,6 +134,7 @@ boolean devour;
 	boolean poly = FALSE, grow = FALSE, heal = FALSE;
 	int nutrit;
 	boolean vis = (cansee(x, y) || cansee(mtmp->mx, mtmp->my));
+	boolean vampiric = is_vampire(mtmp->data);
 
 	if(edog->hungrytime < monstermoves)
 	    edog->hungrytime = monstermoves;
@@ -147,7 +148,10 @@ boolean devour;
 	}
 
 	/* vampires only get 1/5 normal nutrition */
-	if (is_vampire(mtmp->data)) nutrit = (int)(nutrit/5);
+	if (vampiric) {
+	    mtmp->meating = (mtmp->meating + 4) / 5;
+	    nutrit = (nutrit + 4) / 5;
+	}
 	
 	edog->hungrytime += nutrit;
 	mtmp->mconf = 0;
@@ -169,7 +173,7 @@ boolean devour;
 	/* hack: observe the action if either new or old location is in view */
 	if (vis)
 	    pline("%s %s %s.", Monnam(mtmp),
-		  devour ? "devours" : "eats",
+		  vampiric ? "drains" : devour ? "devours" : "eats",
 		  (obj->oclass == FOOD_CLASS) ?
 			singular(obj, doname) : doname(obj));
 	/* It's a reward if it's DOGFOOD and the player dropped/threw it. */
@@ -189,7 +193,7 @@ boolean devour;
 		pline("%s spits %s out in disgust!",
 		      Monnam(mtmp), distant_name(obj,doname));
 	    }
-	} else if (is_vampire(mtmp->data)) {
+	} else if (vampiric) {
 		/* Split Object */
 		if (obj->quan > 1L) {
 		    if(!carried(obj)) {
@@ -210,7 +214,8 @@ boolean devour;
 		}
 		
 		/* Take away blood nutrition */
-	    	obj->oeaten = (int)((mons[obj->corpsenm].cnutrit * 4) / 5);
+	    	obj->oeaten = drainlevel(obj);
+		obj->odrained = 1;
 	} else if (obj == uball) {
 	    unpunish();
 	    delobj(obj);

@@ -326,7 +326,10 @@ TODO:
 -tofix: using the nethack config files.
 -vampires shouldn't be allowed to become Flame Mages
 
-ver 0.0.6E4F2 [XXX XX/2001]
+ver 0.0.6E4F3 (Might become 0.0.6E5) [January XX/2001]
+-fixed bug 127211: Pet vampires leave corpses partly eaten.
+
+ver 0.0.6E4F2 DOS? (or perhaps merge into F3) [XXX XX/2001]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined
 ver 0.0.6E4F2 [December 30/2000] [Released by Ali]
 -DOS: Allegro window port adapted to display the ground underneath walls
