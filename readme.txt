@@ -356,6 +356,7 @@ ver 0.0.6E4F4 [? ?/2001] [Released by ?]
 -fixed bug 409198: underwater vampires.
 -fixed bug 411277: strange charging messages.
 -fixed bug 413366: Couldn't eat fortune cookie.
+-fixed bug 413243: eating amulets of flying.
 
 ver 0.0.6E4F3 [February 28/2001] [Released by Ali]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined

@@ -1882,6 +1882,7 @@ struct obj *otmp;
 		(void)uunstone();
 		break;
 	    case RIN_SUSTAIN_ABILITY:
+	    case AMULET_OF_FLYING: /* Intrinsic flying not supported --ALI */
 	    case AMULET_OF_LIFE_SAVING:
 	    case AMULET_OF_REFLECTION: /* nice try */
 	    /* KMH, balance patch -- more nice tries */
