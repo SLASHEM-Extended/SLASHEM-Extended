@@ -668,6 +668,7 @@ register struct obj *obj;
 
 	switch(obj->oclass) {
 	case AMULET_CLASS:
+		add_erosion_words(obj, prefix);
 		if(obj->owornmask & W_AMUL)
 			Strcat(bp, " (being worn)");
 		break;
