@@ -785,6 +785,16 @@ boolean ghostly;
 	mread(fd, (genericptr_t)&level.flags, sizeof(level.flags));
 	mread(fd, (genericptr_t)doors, sizeof(doors));
 	rest_rooms(fd);		/* No joke :-) */
+	/* ALI - regenerate doorindex */
+	if (nroom)
+	    doorindex = rooms[nroom - 1].fdoor + rooms[nroom - 1].doorct;
+	else {
+	    doorindex = 0;
+	    for (y = 0; y < ROWNO; y++)
+		for (x = 0; x < COLNO; x++)
+		    if (IS_DOOR(levl[x][y].typ))
+			doorindex++;
+	}
 
 	restore_timers(fd, RANGE_LEVEL, ghostly, monstermoves - omoves);
 	restore_light_sources(fd);

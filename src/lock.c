@@ -277,6 +277,9 @@ pick_lock(pick) /* pick a lock with a given object */
 	register struct obj     *pick;
 {
 	int picktyp, c, ch;
+#ifdef DEVEL_BRANCH
+	int key;
+#endif
 	xchar x,y;
 	struct rm       *door;
 	struct obj      *otmp;
@@ -463,6 +466,10 @@ pick_lock(pick) /* pick a lock with a given object */
 			return(0);
 		    }
 #endif
+#ifdef DEVEL_BRANCH
+		    /* ALI - Artifact doors */
+		    key = artifact_door(x, y);
+#endif
 
 		    Sprintf(qbuf,"%sock it?",
 			(door->doormask & D_LOCKED) ? "Unl" : "L" );
@@ -504,6 +511,17 @@ pick_lock(pick) /* pick a lock with a given object */
 		    }
 		    xlock.door = door;
 		    xlock.box = 0;
+
+#ifdef DEVEL_BRANCH
+		    /* ALI - Artifact doors */
+		    if (key && pick->oartifact != key) {
+			if (picktyp == SKELETON_KEY) {
+			    Your("key doesn't seem to fit.");
+			    return(0);
+			}
+			else ch = -1;		/* -1 == 0% chance */
+		    }
+#endif
 	    }
 	}
 	flags.move = 0;
@@ -1086,6 +1104,27 @@ struct obj *otmp;
 	}
 	pline("%s %s %s!", article, thing, disposition);
 }
+
+#ifdef DEVEL_BRANCH
+/* ALI - Kevin Hugo's artifact doors.
+ * Return the artifact which unlocks the door at (x, y), or
+ * zero if it is an ordinary door.
+ */
+
+int
+artifact_door(x, y)
+int x, y;
+{
+    int i;
+
+    for(i = 0; i < doorindex; i++) {
+	if (x == doors[i].x && y == doors[i].y)
+	    return doors[i].arti_key;
+    }
+    impossible("No door at (%d, %d)", x, y);
+    return 0;
+}
+#endif	/* DEVEL_BRANCH */
 
 #endif /* OVLB */
 

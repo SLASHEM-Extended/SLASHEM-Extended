@@ -996,7 +996,11 @@ E void FDECL(add_room, (int,int,int,int,BOOLEAN_P,SCHAR_P,BOOLEAN_P));
 E void FDECL(add_subroom, (struct mkroom *,int,int,int,int,
 			   BOOLEAN_P,SCHAR_P,BOOLEAN_P));
 E void NDECL(makecorridors);
+#ifndef DEVEL_BRANCH
 E void FDECL(add_door, (int,int,struct mkroom *));
+#else
+E int FDECL(add_door, (int,int,struct mkroom *));
+#endif
 E void NDECL(mklev);
 #ifdef SPECIALIZATION
 E void FDECL(topologize, (struct mkroom *,BOOLEAN_P));

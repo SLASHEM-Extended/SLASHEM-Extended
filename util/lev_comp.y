@@ -42,6 +42,9 @@ extern void FDECL(yywarning, (const char *));
 extern int NDECL(yylex);
 int NDECL(yyparse);
 
+#ifdef DEVEL_BRANCH
+extern int FDECL(get_artifact_id, (char *));
+#endif
 extern int FDECL(get_floor_type, (CHAR_P));
 extern int FDECL(get_room_type, (char *));
 extern int FDECL(get_trap_type, (char *));
@@ -588,12 +591,21 @@ room_door	: DOOR_ID ':' secret ',' door_state ',' door_wall ',' door_pos
 			/* ERR means random here */
 			if ($7 == ERR && $9 != ERR) {
 		     yyerror("If the door wall is random, so must be its pos!");
+			    tmprdoor[ndoor] = (struct room_door *)0;
 			} else {
 			    tmprdoor[ndoor] = New(room_door);
 			    tmprdoor[ndoor]->secret = $3;
 			    tmprdoor[ndoor]->mask = $5;
 			    tmprdoor[ndoor]->wall = $7;
 			    tmprdoor[ndoor]->pos = $9;
+#ifdef DEVEL_BRANCH
+			    tmprdoor[ndoor]->arti_key = 0;
+#endif
+			}
+		  }
+		  room_door_infos
+		  {
+			if (tmprdoor[ndoor]) {
 			    ndoor++;
 			    if (ndoor >= MAX_OF_TYPE) {
 				    yyerror("Too many doors in room!");
@@ -602,6 +614,26 @@ room_door	: DOOR_ID ':' secret ',' door_state ',' door_wall ',' door_pos
 			}
 		  }
 		;
+
+room_door_infos	: /* nothing */
+		| room_door_infos room_door_info
+		;
+
+room_door_info	: ',' string
+		  {
+#ifdef DEVEL_BRANCH
+			int token = get_artifact_id($2);
+			if (token == ERR) {
+			    char ebuf[100];
+			    Sprintf(ebuf, "Undefined artifact key \"%s\"", $2);
+			    yyerror(ebuf);
+			}
+			else if (tmprdoor[ndoor])
+			    tmprdoor[ndoor]->arti_key = token;
+#endif
+		  }
+		;
+
 
 secret		: BOOLEAN
 		| RANDOM_TYPE
@@ -998,15 +1030,39 @@ door_detail	: DOOR_ID ':' door_state ',' coordinate
 			tmpdoor[ndoor]->x = current_coord.x;
 			tmpdoor[ndoor]->y = current_coord.y;
 			tmpdoor[ndoor]->mask = $<i>3;
+#ifdef DEVEL_BRANCH
+			tmpdoor[ndoor]->arti_key = 0;
+#endif
 			if(current_coord.x >= 0 && current_coord.y >= 0 &&
 			   tmpmap[current_coord.y][current_coord.x] != DOOR &&
 			   tmpmap[current_coord.y][current_coord.x] != SDOOR)
 			    yyerror("Door decl doesn't match the map");
-			ndoor++;
-			if (ndoor >= MAX_OF_TYPE) {
-				yyerror("Too many doors in mazepart!");
-				ndoor--;
+		  }
+		 door_infos
+		  {
+			if (++ndoor >= MAX_OF_TYPE) {
+			    yyerror("Too many doors in mazepart!");
+			    ndoor--;
 			}
+		  }
+		;
+
+door_infos	: /* nothing */
+		| door_infos door_info
+		;
+
+door_info	: ',' string
+		  {
+#ifdef DEVEL_BRANCH
+			int token = get_artifact_id($2);
+			if (token == ERR) {
+			    char ebuf[100];
+			    Sprintf(ebuf, "Undefined artifact key \"%s\"", $2);
+			    yyerror(ebuf);
+			}
+			else
+			    tmpdoor[ndoor]->arti_key = token;
+#endif
 		  }
 		;
 

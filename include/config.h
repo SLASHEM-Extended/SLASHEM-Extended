@@ -401,6 +401,8 @@ typedef unsigned char	uchar;
 
 /* #define SHOUT */ /* JRN -- shouting and petcommands - not implemented */
 
+#define DEVEL_BRANCH	/* Include development code */
+
 #include "global.h"	/* Define everything else according to choices above */
 
 #endif /* CONFIG_H */

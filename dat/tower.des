@@ -11,9 +11,9 @@ MAP
   |.| |.| |.|  
 ---S---S---S---
 |.......+.+...|
----+-----.-----
-  |...\.|.+.|  
----+-----.-----
+---+-+---.-----
+  |....\|.+.|  
+---+-+---.-----
 |.......+.+...|
 ---S---S---S---
   |.| |.| |.|  
@@ -21,7 +21,7 @@ MAP
 ENDMAP
 LADDER:(11,05),down
 # The lord and his court
-MONSTER:'V',"Vlad the Impaler",(06,05)
+MONSTER:'V',"Vlad the Impaler",(07,05)
 MONSTER:'V',random,(03,09)
 MONSTER:'V',random,(07,09)
 MONSTER:'V',random,(11,09)
@@ -29,13 +29,15 @@ MONSTER:'V',random,(03,01)
 MONSTER:'V',random,(07,01)
 MONSTER:'V',random,(11,01)
 # The doors
-DOOR:closed,(08,03)
-DOOR:closed,(10,03)
-DOOR:closed,(03,04)
+DOOR:locked,(08,03),"The Key of Chaos"
+DOOR:locked,(10,03)
+DOOR:locked,(03,04),"The Key of Law"
+DOOR:locked,(05,04),"The Key of Neutrality"
 DOOR:locked,(10,05)
-DOOR:locked,(08,07)
+DOOR:locked,(08,07),"The Key of Law"
 DOOR:locked,(10,07)
-DOOR:closed,(03,06)
+DOOR:locked,(03,06),"The Key of Chaos"
+DOOR:locked,(05,06),"The Key of Neutrality"
 # treasures
 OBJECT:'(',"chest",(07,05)
 OBJECT:'(',"chest",(03,09)
@@ -46,6 +48,8 @@ OBJECT:'(',"chest",(07,01)
 OBJECT:'(',"chest",(11,01)
 # We have to protect the tower against outside attacks
 NON_DIGGABLE:(00,00,14,10)
+# and force the use of the aligned doors
+NON_PASSWALL:(00,00,14,10)
 
 
 # Intermediate stage of Vlad's tower

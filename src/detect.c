@@ -537,7 +537,7 @@ register struct obj *sobj;
     register int door;
     int uw = u.uinwater;
     boolean found = FALSE;
-    coord cc;
+    int x, y;
 
     for (ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) {
 	if (ttmp->tx != u.ux || ttmp->ty != u.uy)
@@ -552,9 +552,10 @@ register struct obj *sobj;
 	}
     }
     for (door = 0; door <= doorindex; door++) {
-	cc = doors[door];
-	if (levl[cc.x][cc.y].doormask & D_TRAPPED) {
-	    if (cc.x != u.ux || cc.x != u.uy)
+	x = doors[door].x;
+	y = doors[door].y;
+	if (levl[x][y].doormask & D_TRAPPED) {
+	    if (x != u.ux || y != u.uy)
 		goto outtrapmap;
 	    else found = TRUE;
 	}
@@ -580,9 +581,10 @@ outtrapmap:
 	sense_trap((struct trap *)0, obj->ox, obj->oy, sobj && sobj->cursed);
 
     for (door = 0; door <= doorindex; door++) {
-	cc = doors[door];
-	if (levl[cc.x][cc.y].doormask & D_TRAPPED)
-	sense_trap((struct trap *)0, cc.x, cc.y, sobj && sobj->cursed);
+	x = doors[door].x;
+	y = doors[door].y;
+	if (levl[x][y].doormask & D_TRAPPED)
+	sense_trap((struct trap *)0, x, y, sobj && sobj->cursed);
     }
 
     newsym(u.ux,u.uy);

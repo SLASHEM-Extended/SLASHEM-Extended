@@ -210,7 +210,7 @@ lev_comp:  $(SPLEVOBJS)
 
 lev_yacc.o:  lev_yacc.c $(HACK_H) ../include/sp_lev.h
 lev_main.o:  lev_main.c $(HACK_H) ../include/sp_lev.h ../include/tcap.h \
-		../include/date.h
+		../include/date.h ../include/artilist.h
 
 # see lev_comp.l for WEIRD_LEX discussion
 # egrep will return failure if it doesn't find anything, but we know there
