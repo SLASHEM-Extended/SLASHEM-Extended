@@ -417,7 +417,7 @@ boolean artif;
 	if (!objects[otmp->otyp].oc_uses_known)
 		otmp->known = 1;
 #ifdef INVISIBLE_OBJECTS
-	otmp->oinvis = !rn2(1250);
+	otmp->oinvis = !always_visible(otmp) && !rn2(1250);
 #endif
 	if (init) switch (let) {
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */                   

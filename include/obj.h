@@ -136,6 +136,11 @@ struct obj {
 			(otmp)->oartifact == ART_KEY_OF_LAW || \
 			(otmp)->oartifact == ART_KEY_OF_NEUTRALITY || \
 			(otmp)->oartifact == ART_KEY_OF_CHAOS)
+#ifdef INVISIBLE_OBJECTS
+#define always_visible(otmp) ( \
+			(otmp)->otyp == MUMMY_WRAPPING || \
+			(otmp)->oclass == COIN_CLASS)
+#endif
 
 /* Weapons and weapon-tools */
 /* KMH -- now based on skill categories.  Formerly:

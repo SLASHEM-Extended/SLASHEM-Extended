@@ -1840,8 +1840,10 @@ struct obj *obj, *otmp;
 		break;
 	case WAN_MAKE_INVISIBLE:
 #ifdef INVISIBLE_OBJECTS
-		obj->oinvis = TRUE;
-		newsym(obj->ox,obj->oy);	/* make object disappear */
+		if (!always_visible(obj)) {
+		    obj->oinvis = TRUE;
+		    newsym(obj->ox,obj->oy);	/* make object disappear */
+		}
 #endif
 		break;
 	case WAN_UNDEAD_TURNING:

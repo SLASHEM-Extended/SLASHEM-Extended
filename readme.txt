@@ -112,6 +112,8 @@ ver 0.0.7E1 [?] [Released by ?]
 -fixed bug 734765: level-draining Thiefbane.
 -fixed bug 737751: Thiefbane referred to as vorpal blade.
 -fixed bug 466802: Items which count as magic.
+-fixed bug 575210: Invisible mummy wrappings.
+-fixed bug 405815: Invisible gold is inconsistent.
 
 See history.txt for changes made in previous versions.
 
