@@ -304,7 +304,8 @@ fortune (mtmp)
 			if (u.uevent.udemigod)
 				resurrect();
 			else
-				fortune_lev(mtmp, "fakewiz1", "the Wizard");
+				fortune_lev(mtmp, "fakewiz1",
+					"an entrance to the Wizard's tower");
 				/*fortune_lev(mtmp, &portal_level);*/
 			break;
 		case 2: /* the High Priestess */
@@ -431,7 +432,8 @@ fortune (mtmp)
 				verbalize("It is daytime.  Shouldn't you be working?");
 			break;
 		case 18: /* Judgement */
-			fortune_lev(mtmp, "portal to quest", "a quest");
+			fortune_lev(mtmp, "portal to quest",
+				"a portal to a quest");
 			/* fortune_lev(mtmp, &quest_level); */
 			break;
 		case 19: /* Infinity */
