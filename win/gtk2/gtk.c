@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.9 2002-01-31 22:21:25 j_ali Exp $
+  $Id: gtk.c,v 1.10 2002-03-02 19:44:06 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -589,7 +589,7 @@ game_topten(GtkWidget *widget, gpointer data)
 static void
 help_license(GtkWidget *widget, gpointer data)
 {
-#ifdef PROXY_GRAPHICS
+#ifdef GTK_PROXY
     if (!GTK_display_file("$(LICENSE)"))
 	pline("Cannot display license.  Sorry.");
 #else
@@ -613,7 +613,7 @@ help_history(GtkWidget *widget, gpointer data)
 static void
 help_option(GtkWidget *widget, gpointer data)
 {
-#ifdef PROXY_GRAPHICS
+#ifdef GTK_PROXY
     if (!GTK_display_file("$(OPTIONFILE)"))
 	pline("Cannot display option help.  Sorry.");
 #else
@@ -629,7 +629,7 @@ help_option(GtkWidget *widget, gpointer data)
 static void
 help_shelp(GtkWidget *widget, gpointer data)
 {
-#ifdef PROXY_GRAPHICS
+#ifdef GTK_PROXY
     if (!GTK_display_file("$(SHELP)"))
 	pline("Cannot display short help.  Sorry.");
 #else
@@ -645,7 +645,7 @@ help_shelp(GtkWidget *widget, gpointer data)
 static void
 help_help(GtkWidget *widget, gpointer data)
 {
-#ifdef PROXY_GRAPHICS
+#ifdef GTK_PROXY
     if (!GTK_display_file("$(HELP)"))
 	pline("Cannot display command help.  Sorry.");
 #else
@@ -2158,7 +2158,7 @@ GTK_nh_poskey(int *x, int *y, int *mod)
     return key;
 }
 
-#ifdef PROXY_GRAPHICS
+#ifdef GTK_PROXY
 static int
 GTK_display_file(char *name)
 {
@@ -2227,7 +2227,7 @@ GTK_ext_display_file(int fh)
 	GTK_OBJECT(button), "clicked",
 	GTK_SIGNAL_FUNC(default_button_press), (gpointer)'\033');
 
-#ifndef PROXY_GRAPHICS
+#ifndef GTK_PROXY
     while(dlbh_fgets(buf, NH_BUFSIZ, fh)) {
 #else
     while(proxy_cb_dlbh_fgets(buf, NH_BUFSIZ, fh)) {
@@ -2310,7 +2310,7 @@ static void
 GTK_display_inventory(void)
 {
     display_inventory_needed = FALSE;
-#ifdef PROXY_GRAPHICS
+#ifdef GTK_PROXY
     proxy_cb_display_inventory();
 #else
     (void) display_inventory((char *)0, FALSE);

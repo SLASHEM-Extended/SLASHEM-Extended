@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmisc.c,v 1.4 2002-01-31 22:21:26 j_ali Exp $
+  $Id: gtkmisc.c,v 1.5 2002-03-02 19:44:06 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -12,6 +12,9 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include "winGTK.h"
+#ifdef GTK_PROXY
+#include "proxycb.h"
+#endif
 
 /*
  * Gtk+ font selector sometimes hangs in 1.2.x
@@ -35,50 +38,54 @@ static GtkWidget *radio_menu_t, *radio_menu_p, *radio_menu_c, *radio_menu_f;
 static GtkWidget *font_selection_map;
 #endif
 
-static struct GTK_Option{
-    char      *opt_name;	
-    char      *on;	
-    char      *off;	
-    boolean   *opt_p;	
+static struct GTK_Option {
+    char      *opt_name;
+    char      *on;
+    char      *off;
     char      *option;
     boolean   not;
     GSList    *group;
     GtkWidget *radio1;
     GtkWidget *radio2;
 } gtk_option[] = {
-    {"prevent you from attacking your pet", "Yes", "No", &flags.safe_dog, "safe_pet"},
-    {"ask before hidding peaceful monsters", "Yes", "No", &flags.confirm, "confirm"},
+    {"prevent you from attacking your pet", "Yes", "No", "safe_pet"},
+    {"ask before hidding peaceful monsters", "Yes", "No", "confirm"},
 #ifdef TEXTCOLOR
-    {"display pets in a red square", "Yes", "No", &iflags.hilite_pet, "hilite_pet"},
+    {"display pets in a red square", "Yes", "No", "hilite_pet"},
 #endif
 #ifdef RADAR
-    {"display radar", "Yes", "No", &flags.radar, "radar"},
+    {"display radar", "Yes", "No", "radar"},
 #endif
     {NULL,},
-    {"display experience points", "Yes", "No", &flags.showexp, "showexp"},
+    {"display experience points", "Yes", "No", "showexp"},
 #ifdef SCORE_ON_BOTL
-    {"display score points", "Yes", "No", &flags.showscore, "showscore"},
+    {"display score points", "Yes", "No", "showscore"},
 #endif
-    {"display elapsed game time", "Yes", "No", &flags.time, "time"},
+    {"display elapsed game time", "Yes", "No", "time"},
     {NULL,},
-    {"automatically pick up objects", "Yes", "No", &flags.pickup, "autopickup"},
+    {"automatically pick up objects", "Yes", "No", "autopickup"},
     {NULL,},
-    {"print introductory message", "Yes", "No", &flags.legacy, "legacy"},
+    {"print introductory message", "Yes", "No", "legacy"},
 #ifdef NEWS
-    {"print any news", "Yes", "No", &iflags.news, "news"},
+    {"print any news", "Yes", "No", "news"},
 #endif
 #ifdef MAIL
-    {"enable the mail dameon", "Yes", "No", &flags.biff, "mail"},
+    {"enable the mail dameon", "Yes", "No", "mail"},
 #endif
     {NULL,},
-    {"space bar as a rest character", "Yes", "No", &flags.rest_on_space, "rest_on_space"},
-    {"print more commentary", "Yes", "No", &flags.verbose, "verbose"},
+    {"space bar as a rest character", "Yes", "No", "rest_on_space"},
+    {"print more commentary", "Yes", "No", "verbose"},
     {NULL,},
-    {"print tombstone when die", "Yes", "No", &flags.tombstone, "tombstone"},
+    {"print tombstone when die", "Yes", "No", "tombstone"},
     {NULL,},
-    {"try to retain the same letter for the same objects", "Yes", "No", &flags.invlet_constant, "fixinv"},
-    {"group similar kinds of objects in inventory", "Yes", "No", &flags.sortpack, "sortpack"},
+    {"try to retain the same letter for the same objects", "Yes", "No", "fixinv"},
+    {"group similar kinds of objects in inventory", "Yes", "No", "sortpack"},
 };
+
+static char *	nh_option_cache_get(char *option);
+static boolean	nh_option_cache_get_bool(char *option);
+static void	nh_option_cache_set(char *option, const char *value);
+static void	nh_option_cache_set_bool(char *option, boolean value);
 
 static void	nh_option_set(void);
 static void	nh_option_get(void);
@@ -242,55 +249,50 @@ static void
 nh_option_set(void)
 {
     int i;
+    GtkWidget *button;
     struct GTK_Option *p;
+    char *s;
 
-    if(preferred_pet == 'c' || preferred_pet == 'k')
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(radio_k), TRUE);
-    else if(preferred_pet == 'd')
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(radio_d), TRUE);
+    s = nh_option_cache_get("pettype");
+    if (*s == 'c')
+	button = radio_k;
+    else if (*s == 'd')
+	button = radio_d;
     else
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(radio_r), TRUE);
+	button = radio_r;
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), TRUE);
 
-    switch(flags.menu_style){
-    case MENU_TRADITIONAL:
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(radio_menu_t), TRUE);
+    s = nh_option_cache_get("menustyle");
+    switch (*s) {
+    default:
+    case 't':
+	button = radio_menu_t;
 	break;
-    case MENU_PARTIAL:
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(radio_menu_p), TRUE);
+    case 'p':
+	button = radio_menu_p;
 	break;
-    case MENU_COMBINATION:
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(radio_menu_c), TRUE);
+    case 'c':
+	button = radio_menu_c;
 	break;
-    case MENU_FULL:
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(radio_menu_f), TRUE);
+    case 'f':
+	button = radio_menu_f;
 	break;
     }
-	
-    for(i=0 ; i<sizeof(gtk_option)/sizeof(struct GTK_Option) ; ++i){
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), TRUE);
+
+    for(i = 0; i < SIZE(gtk_option); i++) {
 	p = &gtk_option[i];
 	p->group = NULL;
-	if(p->opt_name){
-	    if(p->opt_p && *p->opt_p){
-		if(!p->not)
-		    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(p->radio1), TRUE);
-		else
-		    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(p->radio2), TRUE);
-	    }
-	    else{
-		if(!p->not)
-		    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(p->radio2), TRUE);
-		else
-		    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(p->radio1), TRUE);
-	    }
-	    
+	if (p->opt_name) {
+	    button = p->not ^ nh_option_cache_get_bool(p->option) ?
+		    p->radio1 : p->radio2;
+	    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), TRUE);
 	}
     }
 
     gtk_toggle_button_set_active(
       GTK_TOGGLE_BUTTON(tileTab[nh_get_map_visual()].data), TRUE);
 }
-
-#if 0	/* We'll need this once we've implemented a get option callback */
 
 /* [ALI] We could probably do this better with glib functions */
 
@@ -320,13 +322,14 @@ nh_option_cache_getent(char *option)
 	if (!nh_option_cache[i].option)
 	    break;
     if (i == nh_option_cache_size) {
-	new = (struct nh_option *)realloc(nh_option_cache_size + 1,
-	  sizeof(*nh_option_cache));
+	new = (struct nh_option *)realloc(nh_option_cache,
+	  (nh_option_cache_size + 1) * sizeof(*nh_option_cache));
 	if (!new)
 	    return NULL;
+	nh_option_cache = new;
 	i = nh_option_cache_size++;
     }
-    memset(nh_option_cache + i, sizeof(*nh_option_cache), 0);
+    memset(nh_option_cache + i, 0, sizeof(*nh_option_cache));
     nh_option_cache[i].option = strdup(option);
     return nh_option_cache[i].option ? nh_option_cache + i : NULL;
 }
@@ -334,7 +337,7 @@ nh_option_cache_getent(char *option)
 static int
 nh_option_cache_sync(void)
 {
-    int nb = 0;
+    int i, nb = 0;
     char *buf, *bp;
     for(i = 0; i < nh_option_cache_size; i++)
 	if (nh_option_cache[i].flags & NHOF_DIRTY) {
@@ -352,7 +355,7 @@ nh_option_cache_sync(void)
 	    if (bp != buf)
 		*bp++ = ',';
 	    if ((nh_option_cache[i].flags & NHOF_BOOLEAN) &&
-	      nh_option_cache[i].value != boolean_set))
+	      nh_option_cache[i].value != boolean_set)
 		*bp++ = '!';
 	    strcpy(bp, nh_option_cache[i].option);
 	    bp = eos(bp);
@@ -363,13 +366,17 @@ nh_option_cache_sync(void)
 	    }
 	    nh_option_cache[i].flags &= ~NHOF_DIRTY;
 	}
+#ifdef GTK_PROXY
+    proxy_cb_parse_options(buf);
+#else
     parseoptions(buf, FALSE, FALSE);
+#endif
     free(buf);
     return TRUE;
 }
 
 static void
-nh_option_cache_set(char *option, char *value)
+nh_option_cache_set(char *option, const char *value)
 {
     struct nh_option *no = nh_option_cache_getent(option);
     if (no->flags & NHOF_BOOLEAN)
@@ -387,7 +394,7 @@ nh_option_cache_set_bool(char *option, boolean value)
     struct nh_option *no = nh_option_cache_getent(option);
     if (!(no->flags & NHOF_BOOLEAN) && no->value)
 	panic("Setting boolean value for text option %s", option);
-    if (no && no->value != value ? boolean_set : boolean_reset) {
+    if (no && no->value != (value ? boolean_set : boolean_reset)) {
 	no->value = value ? boolean_set : boolean_reset;
 	no->flags |= NHOF_DIRTY | NHOF_BOOLEAN;
     }
@@ -396,12 +403,17 @@ nh_option_cache_set_bool(char *option, boolean value)
 static char *
 nh_option_cache_get(char *option)
 {
+    char *value;
     struct nh_option *no = nh_option_cache_getent(option);
     if (!no)
 	return "";
     if (!no->value) {
-	/* FIXME: We should get the value from the game here */
-	return "";
+#ifdef GTK_PROXY
+	value = proxy_cb_get_option(option);
+#else
+	value = get_option(option);
+#endif
+	no->value = strdup(value);
     }
     return no->value;
 }
@@ -409,9 +421,20 @@ nh_option_cache_get(char *option)
 static boolean
 nh_option_cache_get_bool(char *option)
 {
-    return nh_option_cache_get(option) == boolean_set;
-}
+    char *value;
+    struct nh_option *no = nh_option_cache_getent(option);
+    if (!no)
+	return FALSE;
+    if (!no->value) {
+#ifdef GTK_PROXY
+	value = proxy_cb_get_option(option);
+#else
+	value = get_option(option);
 #endif
+	no->value = strcmp(value, "yes") ? boolean_reset : boolean_set;
+    }
+    return no->value == boolean_set;
+}
 
 static void
 nh_option_get(void)
@@ -427,10 +450,12 @@ nh_option_get(void)
     gchar *font_name;
 #endif
 
-    Strcpy(plname, gtk_entry_get_text(GTK_ENTRY(entry_plname)));
-    Strcpy(catname, gtk_entry_get_text(GTK_ENTRY(entry_catname)));
-    Strcpy(dogname, gtk_entry_get_text(GTK_ENTRY(entry_dogname)));
-    Strcpy(pl_fruit, gtk_entry_get_text(GTK_ENTRY(entry_fruit)));
+    nh_option_cache_set("name", gtk_entry_get_text(GTK_ENTRY(entry_plname)));
+    nh_option_cache_set("catname",
+	    gtk_entry_get_text(GTK_ENTRY(entry_catname)));
+    nh_option_cache_set("dogname",
+	    gtk_entry_get_text(GTK_ENTRY(entry_dogname)));
+    nh_option_cache_set("fruit", gtk_entry_get_text(GTK_ENTRY(entry_fruit)));
 #ifdef NH_EXTENSION
     set_homeurl(gtk_entry_get_text(GTK_ENTRY(entry_url)));
     sprintf(port, "%s", gtk_entry_get_text(GTK_ENTRY(entry_proxy_port)));
@@ -444,30 +469,38 @@ nh_option_get(void)
 #endif
 
     if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_k)))
-	preferred_pet = 'c';
+	nh_option_cache_set("pettype", "cat");
     else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_d)))
-	preferred_pet = 'd';
+	nh_option_cache_set("pettype", "dog");
     else
-	preferred_pet = 0;
+	nh_option_cache_set("pettype", "random");
 
     if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_menu_t)))
-	flags.menu_style = MENU_TRADITIONAL;
+	nh_option_cache_set("menustyle", "traditional");
     else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_menu_c)))
-	flags.menu_style = MENU_COMBINATION;
+	nh_option_cache_set("menustyle", "combination");
     else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_menu_p)))
-	flags.menu_style = MENU_PARTIAL;
+	nh_option_cache_set("menustyle", "partial");
     else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_menu_f)))
-	flags.menu_style = MENU_FULL;
+	nh_option_cache_set("menustyle", "full");
 
     for(i=0 ; i<sizeof(gtk_option)/sizeof(struct GTK_Option) ; ++i){
 	char buf[BUFSIZ];
 	p = &gtk_option[i];
 	if (p->opt_name) {
 	    if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(p->radio1)))
+#ifdef GTK_PROXY
+		proxy_cb_parse_options(p->option);
+#else
 		parseoptions(p->option, FALSE, FALSE);
+#endif
 	    else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(p->radio2))) {
 		sprintf(buf, "!%s", p->option);
+#ifdef GTK_PROXY
+		proxy_cb_parse_options(buf);
+#else
 		parseoptions(buf, FALSE, FALSE);
+#endif
 	    }
 	}
     }
@@ -489,11 +522,12 @@ nh_option_get(void)
 	    nh_set_map_visual(i);
 	    break;
 	}
-#ifdef PROXY_GRAPHICS
+#ifdef GTK_PROXY
     proxy_cb_flush_screen();
 #else
     flush_screen(cursx == u.ux && cursy == u.uy ? 1 : 0);
 #endif
+    nh_option_cache_sync();
 }
 
 static int
@@ -502,18 +536,24 @@ nh_option_has_changed(void)
     int i;
     struct GTK_Option *p;
     GtkWidget *button;
+    char *s;
+    boolean b;
 #ifdef NH_EXTENSION
     char buf[BUFSIZ];
     char port[16];
 #endif
 
-    if (strcmp(plname, gtk_entry_get_text(GTK_ENTRY(entry_plname))))
+    if (strcmp(nh_option_cache_get("name"),
+      gtk_entry_get_text(GTK_ENTRY(entry_plname))))
 	return TRUE;
-    if (strcmp(catname, gtk_entry_get_text(GTK_ENTRY(entry_catname))))
+    if (strcmp(nh_option_cache_get("catname"),
+      gtk_entry_get_text(GTK_ENTRY(entry_catname))))
 	return TRUE;
-    if (strcmp(dogname, gtk_entry_get_text(GTK_ENTRY(entry_dogname))))
+    if (strcmp(nh_option_cache_get("dogname"),
+      gtk_entry_get_text(GTK_ENTRY(entry_dogname))))
 	return TRUE;
-    if (strcmp(pl_fruit, gtk_entry_get_text(GTK_ENTRY(entry_fruit))))
+    if (strcmp(nh_option_cache_get("fruit"),
+      gtk_entry_get_text(GTK_ENTRY(entry_fruit))))
 	return TRUE;
 #ifdef NH_EXTENSION
     if (strcmp(get_homeurl(), gtk_entry_get_text(GTK_ENTRY(entry_url))))
@@ -529,9 +569,9 @@ nh_option_has_changed(void)
 	return TRUE;
 #endif
 
-    switch(preferred_pet) {
+    s = nh_option_cache_get("pettype");
+    switch (*s) {
 	case 'c':
-	case 'k':
 	    button = radio_k;
 	    break;
 	case 'd':
@@ -541,34 +581,35 @@ nh_option_has_changed(void)
 	    button = radio_r;
 	    break;
     }
+
     if(!gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)))
 	return TRUE;
 
-    switch(flags.menu_style) {
-	case MENU_TRADITIONAL:
+    s = nh_option_cache_get("menustyle");
+    switch(*s) {
+	case 'n':
+	case 't':
 	    button = radio_menu_t;
 	    break;
-	case MENU_COMBINATION:
+	case 'c':
 	    button = radio_menu_c;
 	    break;
-	case MENU_PARTIAL:
+	case 'p':
 	    button = radio_menu_p;
 	    break;
 	default:
 	    button = radio_menu_f;
 	    break;
     }
-    if(!gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)))
+    if (!gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)))
 	return TRUE;
 
-    for(i=0 ; i<sizeof(gtk_option)/sizeof(struct GTK_Option) ; ++i){
+    for (i = 0; i < SIZE(gtk_option); i++) {
 	p = &gtk_option[i];
-	if(p->opt_name && p->opt_p){
-	    if (*p->opt_p == !p->not &&
-	      !gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(p->radio1)))
-		return TRUE;
-	    if (*p->opt_p != !p->not &&
-	      !gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(p->radio2)))
+	if (p->opt_name && p->option) {
+	    button = p->not ^ nh_option_cache_get_bool(p->option) ?
+	      p->radio1 : p->radio2;
+	    if (!gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)))
 		return TRUE;
 	}
     }
@@ -593,7 +634,7 @@ nh_option_plname_new()
 
   entry_plname = nh_gtk_new_and_pack(gtk_entry_new_with_max_length(PL_NSIZ),
 			      hbox, "", FALSE, FALSE, NH_PAD);
-  gtk_entry_set_text(GTK_ENTRY(entry_plname), (const gchar *)plname);
+  gtk_entry_set_text(GTK_ENTRY(entry_plname), nh_option_cache_get("name"));
 
   hbox2 = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "", FALSE, FALSE, NH_PAD);
   gtk_widget_set_sensitive(GTK_WIDGET(label), !option_lock);
@@ -624,7 +665,7 @@ nh_option_pet_kitten_new()
       gtk_entry_new_with_max_length(PL_NSIZ),
       hbox, "", FALSE, FALSE, NH_PAD);
 
-  gtk_entry_set_text(GTK_ENTRY(entry_catname), (const gchar *)catname);
+  gtk_entry_set_text(GTK_ENTRY(entry_catname), nh_option_cache_get("catname"));
 
   gtk_widget_set_sensitive(GTK_WIDGET(label), !option_lock);
 
@@ -654,7 +695,7 @@ nh_option_pet_dog_new()
       gtk_entry_new_with_max_length(PL_NSIZ),
       hbox, "", FALSE, FALSE, NH_PAD);
 
-  gtk_entry_set_text(GTK_ENTRY(entry_dogname), (const gchar *)dogname);
+  gtk_entry_set_text(GTK_ENTRY(entry_dogname), nh_option_cache_get("dogname"));
 
   gtk_widget_set_sensitive(GTK_WIDGET(label), !option_lock);
 
@@ -744,7 +785,7 @@ nh_option_fruit_new()
       gtk_entry_new_with_max_length(PL_NSIZ),
       hbox, "", FALSE, FALSE, NH_PAD);
 
-  gtk_entry_set_text(GTK_ENTRY(entry_fruit), (const gchar *)pl_fruit);
+  gtk_entry_set_text(GTK_ENTRY(entry_fruit), nh_option_cache_get("fruit"));
 
   return frame;
 }

@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.1 2002-01-31 22:21:26 j_ali Exp $ */
+/* $Id: callback.c,v 1.2 2002-03-02 19:44:06 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -22,6 +22,10 @@ static void FDECL(callback_flush_screen, \
 static void FDECL(callback_doredraw, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(callback_status_mode, \
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(callback_parse_options, \
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(callback_get_option, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 
 static void
@@ -158,6 +162,30 @@ NhExtXdr *request, *reply;
     bot_set_handler(mode & 1 ? proxy_status : (void (*)())0L);
 }
 
+static void
+callback_parse_options(id, request, reply)
+unsigned short id;
+NhExtXdr *request, *reply;
+{
+    char *opts;
+    nhext_rpc_params(request, 1, EXT_STRING_P(opts));
+    parseoptions(opts, FALSE, FALSE);
+    free(opts);
+    nhext_rpc_params(reply, 1, EXT_INT(0));
+}
+
+static void
+callback_get_option(id, request, reply)
+unsigned short id;
+NhExtXdr *request, *reply;
+{
+    char *opt, *value;
+    nhext_rpc_params(request, 1, EXT_STRING_P(opt));
+    value = get_option(opt);
+    free(opt);
+    nhext_rpc_params(reply, 1, EXT_STRING(value));
+}
+
 struct nhext_svc proxy_callbacks[] = {
     EXT_CID_DISPLAY_INVENTORY,		callback_display_inventory,
     EXT_CID_DLBH_FOPEN,			callback_dlbh_fopen,
@@ -166,5 +194,7 @@ struct nhext_svc proxy_callbacks[] = {
     EXT_CID_FLUSH_SCREEN,		callback_flush_screen,
     EXT_CID_DOREDRAW,			callback_doredraw,
     EXT_CID_STATUS_MODE,		callback_status_mode,
+    EXT_CID_PARSE_OPTIONS,		callback_parse_options,
+    EXT_CID_GET_OPTION,			callback_get_option,
     0, NULL,
 };

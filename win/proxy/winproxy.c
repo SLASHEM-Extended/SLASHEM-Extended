@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.5 2002-01-31 22:21:26 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.6 2002-03-02 19:44:06 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -619,12 +619,14 @@ void *buf;
 int len;
 {
     DWORD nb;
+#ifdef PROXY_INTERNAL
     /*
      * Hack for single process operation - let the server handle the pending
      * call; issue any call backs and write a reply.
      */
     if (!proxy_unread)
 	win_proxy_svr_iteration();
+#endif
     if (!ReadFile((HANDLE)handle, buf, len, &nb, NULL))
 	return -1;
     else {
@@ -670,8 +672,10 @@ proxy_init()
 	pipe_close(to_child);
 	return FALSE;
     }
+#ifdef PROXY_INTERNAL
     if (!win_proxy_svr_init(to_child[0], to_parent[1]))
 	return FALSE;
+#endif
     return TRUE;
 }
 #else	/* WIN32 */
@@ -684,12 +688,14 @@ void *buf;
 unsigned int len;
 {
     int fd = (int)handle, nb;
+#ifdef PROXY_INTERNAL
     /*
      * Hack for single process operation - let the server handle the pending
      * call; issue any call backs and write a reply.
      */
     if (!proxy_unread)
 	win_proxy_svr_iteration();
+#endif
     nb = read(fd, buf, len);
     if (nb > 0)
 	proxy_unread -= nb;
@@ -745,8 +751,10 @@ proxy_init()
 	close(to_parent[1]);
 	return FALSE;
     }
+#ifdef PROXY_INTERNAL
     if (!win_proxy_svr_init(to_child[0], to_parent[1]))
 	return FALSE;
+#endif
     return TRUE;
 }
 #endif	/* WIN32 */

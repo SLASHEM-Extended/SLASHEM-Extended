@@ -1,5 +1,5 @@
 /*
-  $Id: gtkstatus.c,v 1.3 2002-01-31 22:21:26 j_ali Exp $
+  $Id: gtkstatus.c,v 1.4 2002-03-02 19:44:06 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -115,6 +115,15 @@ struct nh_stat_tab {
 #endif
 };
 
+static int in_trouble = FALSE;
+static stat_tab_hp = -1;
+
+boolean
+nh_status_in_trouble(void)
+{
+    return in_trouble;
+}
+
 static void
 nh_status_reconfig(nv, values)
 int nv;
@@ -137,6 +146,8 @@ char **values;
 	    } else if (stat_tab[i].quan &&
 		    !strcmp(stat_tab[i].quan, values[j])) {
 		stat_tab[i].vi = j;
+		if (!strcmp(stat_tab[i].quan, "HP"))
+		    stat_tab_hp = i;
 		k = stat_tab[i].where - STAT_COLUMN(1);
 		if (k >=0 && k < STAT_COLS) {
 		    if (stat_tab[i].row != rowno[k]) {
@@ -184,6 +195,7 @@ const char **values;
 	nh_status_reconfig(nv, values);
 	return;
     }
+    in_trouble = FALSE;
     for(i = 0; i < STAT_COLS; i++)
     	gtk_clist_freeze(GTK_CLIST(clist[i]));
     for(i = 0; i < SIZE(stat_tab); i++) {
@@ -223,6 +235,8 @@ const char **values;
 		    sscanf(value, "%d", &val);
 		    if (stat_tab[i].dvi >= 0) {
 			sscanf(values[stat_tab[i].dvi], "%d", &dval);
+			if (i == stat_tab_hp && (val <= 5 || val * 7 <= dval))
+			    in_trouble = TRUE;
 			val = val * NH_BAR_WIDTH / dval;
 		    }
 		    gdk_draw_rectangle(bar[j].pixmap, bar[j].gc, TRUE,
@@ -427,7 +441,7 @@ nh_status_new()
     for(i = 0; i < SIZE(stat_tab); i++)
 	stat_tab[i].vi = stat_tab[i].dvi = -1;
 
-#ifdef PROXY_GRAPHICS
+#ifdef GTK_PROXY
     proxy_cb_status_mode(1);
 #else
     bot_set_handler(GTK_ext_status);

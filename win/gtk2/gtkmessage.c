@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmessage.c,v 1.2 2001-04-22 17:21:20 j_ali Exp $
+  $Id: gtkmessage.c,v 1.3 2002-03-02 19:44:06 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -80,7 +80,7 @@ nh_message_putstr(const char *str)
     gtk_text_freeze(t);
 #endif
 
-  if(u.uhpmax > 0 && (((double)u.uhp) / u.uhpmax < 0.1 || u.uhp < 5))
+  if (nh_status_in_trouble())
     i = CLR_RED;
   else
     i = MAP_BLACK;

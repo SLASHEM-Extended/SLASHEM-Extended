@@ -1,0 +1,79 @@
+The proxy window interface is far from finished. None of the
+configurations described below are supported. Some of them may work -
+others do not. Not all of the configurations listed will make it into
+the final version.
+
+CLIENT/SERVER
+
+In this configuration the game itself is configured as a proxy
+client. Typically just two windowing systems will be installed in the
+main executable - tty and proxy. The tty interface should be the
+default windowing system.
+
+Each windowing system which needs to be supported is then supplied
+as a server.
+
+The client and server consist of the following systems:
+
+Client:
+	WINPROXY	Client side proxy support
+	PROXYCOM	Common proxy support
+	PROXYUTL	Interfaces between proxy and the game
+	NHWIN		Tile support
+	WINTTY		TTY window interface
+	HACK		The game core
+
+Server:
+	WINDOW		The window interface (eg., GTK 2.0)
+	PROXYSVR	Server side proxy support
+	PROXYCOM	Common proxy support
+	HACKLIB		Common hack library
+
+To build:
+	1. Configure src/Makefile for GTK 2.0 use
+	   (WINGTKCONFIG, WINGTKSRC, WINGTKOBJ, WINLIB)
+	2. Configure config.h as follows:
+		Comment out GTK_GRAPHICS
+		Define PROXY_GRAPHICS, but not PROXY_INTERNAL
+		Define GTK_V20 and GTK_PROXY inside
+		  #ifdef GTK_GRAPHICS ... #endif
+	3. Add panic and remove gtkint modules from the WINGTK system
+	4. Define WINSRC and WINOBJ as follows:
+		WINSRC = $(WINTTYSRC) $(WINPROXYSRC) \
+			$(PROXYUTLSRC) $(PROXYCOMSRC)
+		WINOBJ = $(WINTTYOBJ) $(WINPROXYOBJ) \
+			$(PROXYUTLOBJ) $(PROXYCOMOBJ)
+	5. Build client by make all, make install as normal
+	6. Build server by make slashem-gtk
+
+INTERNAL
+
+This configuration is intended for testing the proxy interface. It
+uses one executable and one process (which removes most if not all
+advantages of the proxy interface).  It's advantage is that it will
+compile and run even before all the linker issues have been resolved
+with the client/server configuration.
+
+To build:
+	1. Configure src/Makefile for GTK 2.0 use
+	   (WINGTKCONFIG, WINGTKSRC, WINGTKOBJ, WINLIB)
+	2. Configure config.h as follows:
+		Define GTK_GRAPHICS
+		Define PROXY_GRAPHICS and PROXY_INTERNAL
+		Define GTK_V20 and GTK_PROXY
+	3. Add gtkint and remove panic modules from the WINGTK system
+	4. Define WINSRC and WINOBJ as follows:
+		WINSRC = $(WINTTYSRC) $(WINPROXYSRC) \
+			$(PROXYUTLSRC) $(PROXYCOMSRC) $(PROXYSVRSRC)
+		WINOBJ = $(WINTTYOBJ) $(WINPROXYOBJ) \
+			$(PROXYUTLOBJ) $(PROXYCOMOBJ) $(PROXYSVROBJ)
+	5. Build by make all, make install as normal
+
+SINGLE EXECUTABLE
+
+This configuration uses dual processes (which has the advantage of
+allowing the windowing interface to run without elevated privileges -
+necessary for GTK).  It is somewhat simpler than the client/server
+configuration but is much less flexible.
+
+Build not yet supported.

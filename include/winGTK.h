@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.20 2002-01-31 22:21:25 j_ali Exp $
+  $Id: winGTK.h,v 1.21 2002-03-02 19:44:06 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -29,6 +29,8 @@
 #define MONITOR_XRESOURCES	/* Debugging */
 #endif
 #endif
+
+#define GTK_GRAPHICS	/* Needed when building an external interface */
 
 #ifdef WINGTK_X11
 #include <gdk/gdkx.h>
@@ -200,6 +202,7 @@ extern void		nh_message_putstr(const char *);
 
 extern GtkWidget	*nh_status_new(void);
 #if defined(DEVEL_BRANCH) && defined(GTK_V20)
+extern boolean		nh_status_in_trouble(void);
 extern void		GTK_ext_status(int, int, const char **);
 #else
 extern void		nh_status_update(void);
