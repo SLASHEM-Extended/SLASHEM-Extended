@@ -655,20 +655,27 @@ int tech_no;
 		    You("are in no condition to perform surgery!");
 		    break;
 		}
-		if ((Sick) || (Slimed)) {       /* WAC cure sliming too */
-		    if(carrying(SCALPEL)) {
+		if (Sick || Slimed) {
+		    if (carrying(SCALPEL)) {
 			pline("Using your scalpel (ow!), you cure your infection!");
-			make_sick(0L,(char *)0, TRUE,SICK_ALL);
+			make_sick(0L, (char *)0, TRUE, SICK_ALL);
 			Slimed = 0;
-			if(u.uhp > 6) u.uhp -= 5;
-			else          u.uhp = 1;
+			if (Upolyd) {
+			    u.mh -= 5;
+			    if (u.mh < 1)
+				rehumanize();
+			} else if (u.uhp > 6)
+			    u.uhp -= 5;
+			else
+			    u.uhp = 1;
                         t_timeout = rn1(500,500);
+			flags.botl = TRUE;
 			break;
 		    } else pline("If only you had a scalpel...");
 		}
-		if (u.uhp < u.uhpmax) {
+		if (Upolyd ? u.mh < u.mhmax : u.uhp < u.uhpmax) {
 		    otmp = use_medical_kit(BANDAGE, FALSE,
-			    "bandage your wounds with");
+			    "dress your wounds with");
 		    if (otmp) {
 			check_unpaid(otmp);
 			if (otmp->quan > 1L)
@@ -677,28 +684,32 @@ int tech_no;
 			    obj_extract_self(otmp);
 			    obfree(otmp, (struct obj *)0);
 			}
-			pline("Using %s, you bandage your wounds.", yname(otmp));
-			u.uhp += (techlev(tech_no) * (rnd(2)+1)) + rn1(5,5);
+			pline("Using %s, you dress your wounds.", yname(otmp));
+			healup(techlev(tech_no) * (rnd(2)+1) + rn1(5,5),
+			  0, FALSE, FALSE);
 		    } else {
-			pline("You strap your wounds as best you can.");
-			u.uhp += (techlev(tech_no)) + rn1(5,5);
+			You("strap your wounds as best you can.");
+			healup(techlev(tech_no) + rn1(5,5), 0, FALSE, FALSE);
 		    }
                     t_timeout = rn1(1000,500);
-		    if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		    flags.botl = TRUE;
-		} else pline("You don't need your healing powers!");
+		} else You("don't need your healing powers!");
 		break;
             case T_HEAL_HANDS:
-		if (u.uhp < u.uhpmax || Sick || Slimed) { /*WAC heal sliming */
-			if (Sick) You("lay your hands on the foul sickness...");
-			pline("A warm glow spreads through your body!");
-			if (Slimed) pline_The("slime is removed.");
-			Slimed = 0;
-			if(Sick) make_sick(0L,(char*)0, TRUE, SICK_ALL);
-			else     u.uhp += (techlev(tech_no) * 4);
-			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
-                        t_timeout = 3000;
-		} else pline("Nothing happens...");
+		if (Slimed) {
+		    Your("body is on fire!");
+		    burn_away_slime();
+		    t_timeout = 3000;
+		} else if (Sick) {
+		    You("lay your hands on the foul sickness...");
+		    make_sick(0L, (char*)0, TRUE, SICK_ALL);
+		    t_timeout = 3000;
+		} else if (Upolyd ? u.mh < u.mhmax : u.uhp < u.uhpmax) {
+		    pline("A warm glow spreads through your body!");
+		    healup(techlev(tech_no) * 4, 0, FALSE, FALSE);
+		    t_timeout = 3000;
+		} else
+		    pline(nothing_happens);
 		break;
             case T_KIII:
 		You("scream \"KIIILLL!\"");

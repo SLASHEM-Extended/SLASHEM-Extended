@@ -112,6 +112,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 1005587: Beholder killed by "it's" own gaze (Andy Ruse)
 -fixed bug 1022460: [C343-8] The plural of Nazgul is Nazgul (Andy Ruse)
 -fixed bug 1039689: malloc_consolidate hang after using cursed bag of holding
+-fixed bug 1028955: Surgery technique doesn't work with polymorph
 
 See history.txt for changes made in previous versions.
 
