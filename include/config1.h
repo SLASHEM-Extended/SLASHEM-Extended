@@ -32,8 +32,9 @@
 /*
  * Mac Stuff.
  */
-#ifdef macintosh	/*	Auto-defined symbol for MPW compilers (sc and mrc) */
+#if defined(__SC__) || defined(__MRC__) /* MPW compilers, but not Metrowerks */
 # define MAC
+# define MAC_MPW
 #endif
 
 #ifdef THINK_C		/* Think C auto-defined symbol */
