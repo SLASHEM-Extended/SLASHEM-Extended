@@ -1097,5 +1097,25 @@ just the ones that are compatible with the currently set options.
 <p>The (integer) values of align, gend, race and role used by the
 player_selection procedure can be used as indices into these arrays.
 
+<h3>is_valid_selction</h3>
+<p><pre>
+struct is_valid_selection_req {
+	int role;
+	int race;
+	int gend;
+	int align;
+};
+
+struct player_selection_res {
+	int retval;
+};
+</pre>
+
+<p>Check if the specified combination of role, race, gender and alignment
+forms a valid player selection. Any or all of role, race, gend and align
+may be passed as -1 in which case all possible values will be checked.
+
+<p>Returns 0 if the selection is invalid.
+
 </body>
 </html>

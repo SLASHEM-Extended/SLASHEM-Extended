@@ -1,4 +1,4 @@
-/* $Id: proxycb.c,v 1.3 2002-06-22 15:36:52 j_ali Exp $ */
+/* $Id: proxycb.c,v 1.4 2002-06-23 15:32:20 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -115,4 +115,15 @@ struct proxycb_get_player_choices_res *choices;
 {
     nhext_xdr_free(proxycb_xdr_get_player_choices_res, (char *)choices);
     free(choices);
+}
+
+int
+proxy_cb_is_valid_selection(role, race, gender, alignment)
+int role, race, gender, alignment;
+{
+    int retval;
+    nhext_rpc(EXT_CID_IS_VALID_SELECTION,
+      4, EXT_INT(role), EXT_INT(race), EXT_INT(gender), EXT_INT(alignment),
+      1, EXT_INT_P(retval));
+    return retval;
 }

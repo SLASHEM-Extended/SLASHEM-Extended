@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.3 2002-06-22 15:36:52 j_ali Exp $ */
+/* $Id: callback.c,v 1.4 2002-06-23 15:32:20 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -28,6 +28,8 @@ static void FDECL(callback_parse_options, \
 static void FDECL(callback_get_option, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(callback_get_player_choices, \
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(callback_is_valid_selection, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 
 static void
@@ -225,6 +227,48 @@ NhExtXdr *request, *reply;
     free(choices.roles);
 }
 
+/*
+ * If s is negative, then iterate i over 0 <= i < n, otherwise do just one
+ * iteration at i == s. Early exit as soon as we find a valid combination.
+ */
+
+#define ITERATE(i, s, n) for((i) = (s) >= 0 ? (s) : 0; \
+			     !valid && ((s) >= 0 ? (i) == (s) : (i) < (n)); \
+			     (i)++)
+
+static void
+callback_is_valid_selection(id, request, reply)
+unsigned short id;
+NhExtXdr *request, *reply;
+{
+    int valid = 0;
+    int role, race, gend, align;
+    int irole, irace, igend, ialign;
+    int nrole, nrace;
+    nhext_rpc_params(request, 4, EXT_INT_P(role), EXT_INT_P(race),
+      EXT_INT_P(gend), EXT_INT_P(align));
+    if (role < 0)
+	for(nrole = 0; roles[nrole].name.m; nrole++)
+	    ;
+    if (race < 0)
+	for(nrace = 0; races[nrace].noun; nrace++)
+	    ;
+    ITERATE(irole, role, nrole)
+	if (validrole(irole))
+	    ITERATE(irace, race, nrace)
+		if (validrace(irole, irace)) {
+		    ITERATE(igend, gend, ROLE_GENDERS)
+			if (validgend(irole, irace, igend))
+			    valid = 1;
+		    ITERATE(ialign, align, ROLE_ALIGNS)
+			if (validalign(irole, irace, ialign))
+			    valid = 1;
+		}
+    nhext_rpc_params(reply, 1, EXT_INT(valid));
+}
+
+#undef ITERATE
+
 struct nhext_svc proxy_callbacks[] = {
     EXT_CID_DISPLAY_INVENTORY,		callback_display_inventory,
     EXT_CID_DLBH_FOPEN,			callback_dlbh_fopen,
@@ -236,5 +280,6 @@ struct nhext_svc proxy_callbacks[] = {
     EXT_CID_PARSE_OPTIONS,		callback_parse_options,
     EXT_CID_GET_OPTION,			callback_get_option,
     EXT_CID_GET_PLAYER_CHOICES,		callback_get_player_choices,
+    EXT_CID_IS_VALID_SELECTION,		callback_is_valid_selection,
     0, NULL,
 };

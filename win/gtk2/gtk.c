@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.13 2002-06-22 15:36:52 j_ali Exp $
+  $Id: gtk.c,v 1.14 2002-06-23 15:32:20 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1150,6 +1150,26 @@ struct select_node {
     struct select_node *sons;
 };
 
+#ifdef GTK_PROXY
+#define valid_race(role, race)	proxy_cb_is_valid_selection(role, race, -1, -1)
+
+static boolean
+valid_gend(int role, int race, int gend)
+{
+    return proxy_cb_is_valid_selection(role, race, gend, -1);
+}
+
+static boolean
+valid_align(int role, int race, int align)
+{
+    return proxy_cb_is_valid_selection(role, race, -1, align);
+}
+#else	/* GTK_PROXY */
+#define valid_race	validrace
+#define valid_gend	validgend
+#define valid_align	validalign
+#endif	/* GTK_PROXY */
+
 /*
  * Return the <indx>th possible answer to the question at level <level>
  * given the answers already given in <key>. Note that indx==0 represents
@@ -1167,7 +1187,7 @@ static int
 select_node_option(unsigned long key, int level, int indx)
 {
     int rolenum, racenum, n, i, j;
-    boolean (*valid)(int rolenum, int racenum, int alignnum);
+    boolean (*valid)(int rolenum, int racenum, int gendalignnum);
     switch(level)
     {
 	case 0:
@@ -1183,10 +1203,10 @@ select_node_option(unsigned long key, int level, int indx)
 	    /* Race */
 	    rolenum = SELECT_KEY_ROLENUM(key);
 	    if (select_player_flags.race >= 0 &&
-	      (rolenum < 0 || validrace(rolenum, select_player_flags.race)))
+	      (rolenum < 0 || valid_race(rolenum, select_player_flags.race)))
 		return indx ? -1 : select_player_flags.race;
 	    for (i = 0; i < player_choices->n_races; i++)
-		if (rolenum < 0 || validrace(rolenum, i))
+		if (rolenum < 0 || valid_race(rolenum, i))
 		    if (!indx--)
 			return i;
 	    return -1;
@@ -1199,13 +1219,13 @@ select_node_option(unsigned long key, int level, int indx)
 	    if (level == 2)
 	    {
 		n = player_choices->n_genders;
-		valid = validgend;
+		valid = valid_gend;
 		i = select_player_flags.gend;
 	    }
 	    else
 	    {
 		n = player_choices->n_aligns;
-		valid = validalign;
+		valid = valid_align;
 		i = select_player_flags.align;
 	    }
 	    rolenum = SELECT_KEY_ROLENUM(key);
