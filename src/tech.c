@@ -555,7 +555,6 @@ int tech_no;
 		aggravate();
                 techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/6 + 1)) + 2;
                 t_timeout = rn1(1000,500);
-		return(0);
 		break;
 #ifdef STEED
 	    case T_CALM_STEED:
