@@ -549,6 +549,7 @@ spotless: clean
 	$(DEL) $(PLANAR_TIB)
 	$(DEL) $(OVERVIEW_TIB)
 	$(DEL) $(INCL)/win32api.h
+	$(DEL) $(DAT)/dlb2.lst
 
 
 #
