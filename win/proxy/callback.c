@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.11 2002-11-23 22:41:59 j_ali Exp $ */
+/* $Id: callback.c,v 1.12 2002-12-30 20:00:26 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -118,6 +118,7 @@ NhExtXdr *request, *reply;
 		if (s) {
 		    buf = (char *)alloc(s - subname + 5);
 		    (void)strncpy(buf, subname, s - subname);
+		    buf[s - subname] = '\0';
 		} else {
 		    buf = (char *)alloc(strlen(subname) + 5);
 		    Strcpy(buf, subname);
