@@ -32,8 +32,13 @@
 #define COPYRIGHT_BANNER_B \
 "NetHack, Copyright 1985-2000 Stichting Mathematisch Centrum, M. Stephenson."
 
+#ifdef MAC_MPW
+#define COPYRIGHT_BANNER_C \
+"         See license for details. Bug reports to hurtley@acm.org"
+#else
 #define COPYRIGHT_BANNER_C \
 "         See license for details. Bug reports to wac@intergate.bc.ca"
+#endif
 
 #if 0
 /*
