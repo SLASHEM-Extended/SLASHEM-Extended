@@ -182,7 +182,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room)
 		levl[lowx-1][hiy+1].typ = BLCORNER;
 		levl[hix+1][hiy+1].typ = BRCORNER;
 	    } else {	/* a subroom */
-		wallification(lowx-1, lowy-1, hix+1, hiy+1);
+		wallification(lowx-1, lowy-1, hix+1, hiy+1, FALSE);
 	    }
 	}
 }
@@ -604,6 +604,9 @@ clear_level_structures()
 	level.flags.is_cavernous_lev = 0;
 	/* KMH -- more level properties */
 	level.flags.arboreal = 0;
+
+	/* [DS] - Michael Clarke's Lethe flag */
+	level.flags.lethe = 0;
 
 	nroom = 0;
 	rooms[0].hx = -1;

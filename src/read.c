@@ -46,7 +46,6 @@ static void FDECL(p_glow1,(struct obj *));
 static void FDECL(p_glow2,(struct obj *,const char *));
 static void FDECL(randomize,(int *, int));
 static void FDECL(forget_single_object, (int));
-static void FDECL(forget, (int));
 static void FDECL(maybe_tame, (struct monst *,struct obj *));
 /* WAC for reading off the ground */
 static struct obj *NDECL(floorread);
@@ -830,7 +829,7 @@ forget_levels(percent)
  *	howmuch & ALL_MAP	= forget whole map
  *	howmuch & ALL_SPELLS	= forget all spells
  */
-static void
+void
 forget(howmuch)
 int howmuch;
 {

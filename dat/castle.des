@@ -17,7 +17,7 @@
 # gems) and a wand of wishing in one of the 4 towers...
 
 MAZE:"castle",random
-FLAGS: noteleport
+FLAGS: noteleport, lethe
 GEOMETRY:center,center
 MAP
 }}}}}}}}}.............................................}}}}}}}}}

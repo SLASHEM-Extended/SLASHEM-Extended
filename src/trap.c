@@ -2496,6 +2496,9 @@ water_damage(obj, force, here)
 register struct obj *obj;
 register boolean force, here;
 {
+	/* Dips in the Lethe are a very poor idea */
+	int luckpenalty = level.flags.lethe? 7 : 0;
+
 	/* Scrolls, spellbooks, potions, weapons and
 	   pieces of armor may get affected by the water */
 	for (; obj; obj = (here ? obj->nexthere : obj->nobj)) {
@@ -2509,41 +2512,142 @@ register boolean force, here;
 		} else if(Is_container(obj) && !Is_box(obj) &&
 			(obj->otyp != OILSKIN_SACK || (obj->cursed && !rn2(3)))) {
 			water_damage(obj->cobj, force, FALSE);
-		} else if (!force && (Luck + 5) > rn2(20)) {
+		} else if (!force && (Luck - luckpenalty + 5) > rn2(20)) {
 			/*  chance per item of sustaining damage:
 			 *	max luck (full moon):	 5%
 			 *	max luck (elsewhen):	10%
 			 *	avg luck (Luck==0):	75%
 			 *	awful luck (Luck<-4):  100%
+			 *  If this is the Lethe, things are much worse.
 			 */
 			continue;
-		} else if (obj->oclass == SCROLL_CLASS) {
-#ifdef MAIL
-		    if (obj->otyp != SCR_MAIL)
-#endif
-		    {
-			obj->otyp = SCR_BLANK_PAPER;
-			obj->spe = 0;
+		/* An oil skin cloak protects your body armor  */
+		} else if( obj->oclass == ARMOR_CLASS
+			&& obj == uarm
+			&& uarmc
+			&& uarmc->otyp == OILSKIN_CLOAK
+			&& (!uarmc->cursed || rn2(3))) {
+		    continue;
+		} else {
+		    /* The Lethe strips blessed and cursed status... */
+		    if (level.flags.lethe) {
+			uncurse(obj);
+			unbless(obj);
 		    }
-		} else if (obj->oclass == SPBOOK_CLASS) {
+
+		    switch (obj->oclass) {
+		    case SCROLL_CLASS:
+#ifdef MAIL
+			if (obj->otyp != SCR_MAIL)
+#endif
+			{
+			    /* The Lethe sometimes does a little rewrite */
+			    obj->otyp = (level.flags.lethe && !rn2(10))?
+					SCR_AMNESIA : SCR_BLANK_PAPER;
+			    obj->spe = 0;
+			}
+			break;
+		    case SPBOOK_CLASS:
+			/* Spell books get blanked... */
 			if (obj->otyp == SPE_BOOK_OF_THE_DEAD)
 				pline("Steam rises from %s.", the(xname(obj)));
 			else obj->otyp = SPE_BLANK_PAPER;
-		} else if (obj->oclass == POTION_CLASS) {
-			if (obj->odiluted) {
+			break;
+		    case POTION_CLASS:
+			/* Potions turn to water or amnesia... */
+			if (level.flags.lethe) {
+			    if (obj->otyp == POT_WATER)
+				obj->otyp = POT_AMNESIA;
+			    else if (obj->otyp != POT_AMNESIA) {
+				obj->otyp = POT_WATER;
+				obj->odiluted = 0;
+			    }
+			} else {
+			    if (obj->odiluted || obj->otyp == POT_AMNESIA) {
 				obj->otyp = POT_WATER;
 				obj->blessed = obj->cursed = 0;
 				obj->odiluted = 0;
-			} else if (obj->otyp != POT_WATER)
+			    } else if (obj->otyp != POT_WATER)
 				obj->odiluted++;
-		} else if (is_rustprone(obj) && obj->oeroded < MAX_ERODE &&
-			  !(obj->oerodeproof || (obj->blessed && !rnl(4)))) {
-			/* all metal stuff and armor except (body armor
-			   protected by oilskin cloak) */
-			if(obj->oclass != ARMOR_CLASS || obj != uarm ||
-			   !uarmc || uarmc->otyp != OILSKIN_CLOAK ||
-			   (uarmc->cursed && !rn2(3)))
-				obj->oeroded++;
+			}
+			break;
+		    case GEM_CLASS:
+			if (level.flags.lethe && (obj->otyp == LUCKSTONE
+					|| obj->otyp == LOADSTONE
+					|| obj->otyp == HEALTHSTONE
+					|| obj->otyp == TOUCHSTONE))
+			    obj->otyp = FLINT;
+			break;
+		    case TOOL_CLASS:
+			if (level.flags.lethe) {
+			    switch (obj->otyp) {
+			    case MAGIC_LAMP:
+				obj->otyp = OIL_LAMP;
+				break;
+			    case MAGIC_CANDLE:
+				obj->otyp = rn2(2)? WAX_CANDLE : TALLOW_CANDLE;
+				break;
+			    case MAGIC_WHISTLE:
+				obj->otyp = TIN_WHISTLE;
+				break;	
+			    case MAGIC_FLUTE:
+				obj->otyp = WOODEN_FLUTE;
+				obj->spe  = 0;
+				break;	
+			    case MAGIC_HARP:
+				obj->otyp = WOODEN_HARP;
+				obj->spe  = 0;
+				break;
+			    case FIRE_HORN:
+			    case FROST_HORN:
+			    case HORN_OF_PLENTY:
+				obj->otyp = TOOLED_HORN;
+				obj->spe  = 0;
+				break;
+			    case DRUM_OF_EARTHQUAKE:
+				obj->otyp = LEATHER_DRUM;
+				obj->spe  = 0;
+				break;
+			    }
+			}
+
+			/* Drop through */
+			/* Weapons, armor and tools may be disenchanted... */
+			/* Wands and rings lose a charge... */
+		    case WEAPON_CLASS:
+		    case ARMOR_CLASS:
+		    case WAND_CLASS:
+		    case RING_CLASS:
+			if ( level.flags.lethe
+					&& ( obj->oclass == WEAPON_CLASS
+						|| obj->oclass == ARMOR_CLASS
+						|| obj->oclass == WAND_CLASS
+						|| obj->oclass == RING_CLASS
+						|| is_weptool(obj) )) {
+
+			    /* Shift enchantment one step closer to 0 */
+			    if (obj->spe > 0) drain_item(obj);
+			}
+
+			/* Magic markers run... */
+			if ( level.flags.lethe
+					&& obj->otyp == MAGIC_MARKER ) {
+			    obj->spe -= (3 + rn2(10));
+			    if (obj->spe < 0) obj->spe = 0;
+			}
+
+			/* Drop through for rusting effects... */
+			/* Weapons, armor, tools and other things may rust... */
+		    default:
+			if (is_rustprone(obj) && obj->oeroded < MAX_ERODE &&
+					!(obj->oerodeproof || 
+					 (obj->blessed && !rnl(4))))
+			    obj->oeroded++;
+			/* The Lethe may unfooproof the item... */
+			if (level.flags.lethe
+					&& obj->oerodeproof && !rn2(5))
+			    obj->oerodeproof = FALSE;
+		    }
 		}
 	}
 }
@@ -2633,6 +2737,7 @@ drown()
 {
 	boolean inpool_ok = FALSE, crawl_ok;
 	int i, x, y;
+	char *sparkle = level.flags.lethe? "sparkling " : "";
 
 	/* happily wading in the same contiguous pool */
 	if (u.uinwater && is_pool(u.ux-u.dx,u.uy-u.dy) &&
@@ -2643,12 +2748,20 @@ drown()
 	}
 
 	if (!u.uinwater) {
-	    You("%s into the water%c",
+	    You("%s into the %swater%c",
 		Is_waterlevel(&u.uz) ? "plunge" : "fall",
+		sparkle,
 		Amphibious || Swimming ? '.' : '!');
 	    if (!Swimming && !Is_waterlevel(&u.uz))
 		    You("sink like %s.",
 			Hallucination ? "the Titanic" : "a rock");
+	}
+
+	if (level.flags.lethe) {
+	    /* Bad idea */
+	    You_feel("the sparkling waters of the Lethe sweep away your "
+			    "cares!");
+	    forget(25);
 	}
 
 	water_damage(invent, FALSE, FALSE);

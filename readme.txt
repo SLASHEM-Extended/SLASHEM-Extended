@@ -391,6 +391,7 @@ ver 0.0.6E6 [?] [Released by ?]
 -Added new SDL/GL windowing port.
 -Added spooky sounds to nightmare level (Tina Hall).
 -fixed bug 542027: Drained corpse gets moldy (Darshan Shaligram).
+-Added potions of amnesia and Lethe water effects (Darshan Shaligram).
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).

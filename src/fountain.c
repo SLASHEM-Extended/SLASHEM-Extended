@@ -390,7 +390,7 @@ register struct obj *obj;
 		if(slev && slev->flags.town)
 		    (void) angry_guards(FALSE);
 		return;
-	} else (void) get_wet(obj);
+	} else (void) get_wet(obj, FALSE);
 	/* KMH, balance patch -- acid and water don't mix */
 	if (obj->otyp == POT_ACID) {
 		useup(obj);
@@ -509,7 +509,7 @@ register struct obj *obj;
 	    floating_above("toilet");
 	    return;
 	}
-	(void) get_wet(obj);
+	(void) get_wet(obj, FALSE);
 	/* KMH -- acid and water don't mix */
 	if (obj->otyp == POT_ACID) {
 	    useup(obj);

@@ -1,5 +1,5 @@
 #	SCCS Id: @(#)data.base	3.4	1999/11/28
-#	    $Id: data.base,v 1.6 2002-03-28 11:06:10 j_ali Exp $
+#	    $Id: data.base,v 1.7 2002-08-30 18:53:30 j_ali Exp $
 #   Copyright (c) 1994, 1995, 1996 by the NetHack Development Team
 #   Copyright (c) 1994 by Boudewijn Wayers
 #   Copyright (c) 2002 by the Slash'EM Development Team
@@ -799,6 +799,12 @@ bugle
 	His blast is heard at merry morn,
 	And mine at dead of night.'
 		[ Brignall Banks, by Sir Walter Scott ]
+byakhee
+	A creature of the stars, this bat like being can be summoned
+	across the vast interstellar gulfs to serve magicians and
+	dark powers.  It is said that they will seize those who 
+	summon them and cannot best them and carry them off to whatever
+	terrible fate awaits them on other worlds.
 *camaxtli
 	A classical Mesoamerican Aztec god, also known as Mixcoatl-
 	Camaxtli (the Cloud Serpent), Camaxtli is the god of war.  He
@@ -1112,6 +1118,28 @@ crystal ball
 	without sound of something that is going to happen to you
 	soon.  It is seldom good news.
 	[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
+ct*ul*u
+kt*ul*u
+cht*ul*u
+kht*ul*u
+	"The Thing cannot be described -- there is no language for such
+	abysms of shrieking and immemorial lunacy, such eldritch
+	contradictions of all matter, force, and cosmic order.  A
+	mountain walked or stumbled.  God!... the Thing of the idols,
+	the green, sticky spawn of the stars, had awakened to claim
+	his own.  The stars were right again... great Cthulhu was
+	loose again, and ravening for delight."
+               [ The Call of Cthulhu, by H.P. Lovecraft ]
+	
+	The exact origins of Cthulhu are lost to time, but it is
+	known that in aeons long past a race of space faring
+	beings came to this world and Cthulhu was amongst their
+	number as the high priest who interceded between them
+	and the dark gods they worshipped.  Whether Cthulhu is
+	a long lived individual or a title of office, is not
+	known, but a creature bearing this name lives on,
+	trapped in eternal slumber in the ruins of his great
+	city. 
 curse*
 	Curses are longstanding ill-wishings which, in Fantasyland,
 	often manifest as semisentient.  They have to be broken or
@@ -1187,6 +1215,16 @@ dark one
 	and the Orcs were at his command and multiplied like flies.
 	Thus the Black Years began ...
 		[ The Silmarillion, by J.R.R. Tolkien ]
+deep* one
+	For eighty thousand years Pth'thya-l'yi had lived in Y'ha-nthlei,
+	and thither she had gone back after Obed Marsh was dead. 
+	Y'ha-nthlei was not destroyed when the upper-earth men shot death
+	into the sea.  It was hurt, but not destroyed.  The Deep Ones 
+	could never be destroyed, even though the palaeogean magic of the
+	forgotten Old Ones might sometimes check them.  For the present 
+	they would rest; but some day, if they remembered, they would 
+	rise again for the tribute Great Cthulhu craved.
+		[ The Shadow Over Innsmouth, by H.P. Lovecraft ]
 demogorgon
 	Demogorgon, the prince of demons, wallows in filth and can
 	spread a quickly fatal illness to his victims while rending
@@ -1530,6 +1568,16 @@ eye of the aethiopica
 	the power to instantly open a portal to any other area of the
 	dungeon, allowing its invoker to travel quickly between
 	areas.
+father dagon
+mother hydra
+	"Yield up enough sacrifices an' savage knick-knacks an' 
+	harbourage in the taown when they wanted it, an' they'd let 
+	well enough alone. Wudn't bother no strangers as might bear
+	tales aoutside - that is, withaout they got pryin'. All in
+	the band of the faithful - Order o' Dagon - an' the children
+	shud never die, but go back to the Mother Hydra an' Father 
+	Dagon what we all come from once ... Ia! Ia! Cthulhu ..."
+		[ The Shadow Over Innsmouth, by H.P. Lovecraft ]
 fauchard
 	This weapon is a development of the scythe or sickle. Set 
 	upon a long pole, the curving blade of a fauchard can be 
@@ -1556,6 +1604,10 @@ figurine*
 	years by private owners and dealers too stupid to see what
 	it was under the skin.
 		[ The Maltese Falcon, by Dashiell Hammett ]
+fire vampire
+	A swirling clould of bright, burning motes, the fire vampire
+	descends upon its victim and easily burns them to death once
+	they are in its deadly embrace.
 floating eye
 	Floating eyes, not surprisingly, are large, floating eyeballs
 	which drift about the dungeon.  Though not dangerous in and
@@ -1723,7 +1775,7 @@ geryon
 	trench, there came a moaning that was horrible to hear.
 	Panic drained the blood from my cheeks.
 		 [ The Odyssey, (chapter Lambda), by Homer ]
-ghoul
+ghoul*
 	The forces of the gloom know each other, and are strangely
 	balanced by each other.  Teeth and claws fear what they cannot
 	grasp.  Blood-drinking bestiality, voracious appetites, hunger
@@ -1977,6 +2029,12 @@ arc bug
 spark bug
 	"What was that?" cried Buck, rubbing his numb and tingling arm.
 	"Nature's revenge for bug zappers," replied his companion.
+gug
+	These foul creatures dwell in the endless darkness of the 
+	Gulf of N'Kai, scavenging the bones of whatever luckless
+	intruders have stumbled into it.  It is suspected that they
+	may be some warped form of ghoul, but few have survived
+	seeing them so information is scarce.
 guisarme
 	Medieval peasants discovered that their pruning hooks made 
 	reasonably effective pole arms. The result: the guisarme. 
@@ -2695,6 +2753,12 @@ leprechaun
 	twinkling of an eye.
 		[ A Field Guide to the Little People
 				   by Nancy Arrowsmith & George Moorse ]
+lethe
+sparkling water
+	The Lethe is a river, slow, dark and deep, which flows from
+	the mortal world to the forbidden lands of Gehennom.  It is
+	said that a single sip of its sparkling waters is enough to
+	wash a man's memories away, never to return.
 *lich
 	But on its heels ere the sunset faded, there came a second
 	apparition, striding with incredible strides and halting when
@@ -2990,6 +3054,15 @@ mercury
 	Roman god of commerce, trade and travellers.  He is commonly
 	depicted carrying a caduceus (a staff with two snakes
 	intertwining around it) and a purse.
+migo*
+mi-go*
+	These strange beings are visitors from another realm.  An 
+	unusual symbiotic relationship exists between the intelligent 
+	fungus and the insectoid form that comprises the bulk of its 
+	body.  They are said to have access to great magical powers. 
+	Their queens have been known to steal human brains, taking 
+	them back to distant Yuggoth.
+	Migo are also known as the Fungi from Yuggoth. 
 *mimic
 	The ancestors of the modern day chameleon, these creatures can
 	assume the form of anything in their surroundings.  They may
@@ -3238,6 +3311,13 @@ newt
 		[ Macbeth, by William Shakespeare ]
 ninja-to
 	A Japanese broadsword.
+*nkia
+*n'kai
+	A vast, endless, eternally dark gulf said to lie at the bottom
+	of Gehennom.  Even daemons fear to tread there.  The source of
+	the Lethe river is said to be within the great gulf.  What few
+	tales exist of its outer reaches speak of hordes of hideous
+	gugs that scavenge and devour the bodies of all who enter.
 *norn
 	The Norns were the three Norse Fates, or the goddesses of fate.
 	Female giants, they brought the wonderful Golden Age to an end.
@@ -4005,6 +4085,24 @@ shark
  		[ Close to Shore, by Michael Capuzzo ]
 shito
 	A Japanese stabbing knife.
+*shoggoth
+*shuggoth
+	"... in the place of utter blasphemy, the unholy pit where 
+	the black realm begins and the watcher guards the gate - 
+	I saw a shoggoth - it changed shape ..."
+		[ The Thing on the Doorstep, by H.P. Lovecraft ]
+
+	It was a terrible, indescribable thing vaster than any subway 
+	train -- a shapeless congeries of protoplasmic bubbles, faintly
+	self-luminous, and with myriads of temporary eyes forming and 
+	un-forming as pustules of greenish light all over the tunnel-
+	filling front that bore down upon us, crushing the frantic 
+	penguins and slithering over the glistening floor that it and 
+	its kind had swept so evilly free of all litter. Still came 
+	that eldritch, mocking cry -- "Tekeli-li! Tekeli-li!" and at 
+	last we remembered that the demoniac Shoggoths - given life, 
+	thought, and plastic organ patterns solely by the Old Ones ...
+		[ At the Mountains of Madness, by H.P. Lovecraft ]
 shrieker
  	With a single, savage thrust of her spear, the warrior-woman 
  	impaled the fungus, silencing it.  However, it was too late:  
@@ -4252,6 +4350,12 @@ staircase*
 	"Infinity is a dreadfully poor place.  They can never manage to
 	make ends meet."
 		[ The Phantom Tollbooth, by Norton Juster ]
+star vampire
+	A creature from beyond the stars. Invisible, it floats along
+	until it finds something to feed upon and then draws its
+	life energy and blood into itself.  It is said that they
+	become briefly visible just after they have eaten and that
+	this is such a terrible sight it can drive a mortal insane.
 ~statue trap
 statue*
 	Then at last he began to wonder why the lion was standing so

@@ -225,6 +225,7 @@ nommap		{ yylval.i=NOMMAP; return FLAG_TYPE; }
 arboreal	{ yylval.i=ARBOREAL; return FLAG_TYPE; }	/* KMH */
 shortsighted	{ yylval.i=SHORTSIGHTED; return FLAG_TYPE; }
 spooky		{ yylval.i=SPOOKY; return FLAG_TYPE; }
+lethe		{ yylval.i=LETHE; return FLAG_TYPE; }
 \[\ *[0-9]+\%\ *\] { yylval.i = atoi(yytext + 1); return PERCENT; }
 [+\-]?[0-9]+	{ yylval.i=atoi(yytext); return INTEGER; }
 \"[^"]*\"	{ yytext[yyleng-1] = 0; /* Discard the trailing \" */

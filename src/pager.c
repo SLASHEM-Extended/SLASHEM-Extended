@@ -264,6 +264,10 @@ lookat(x, y, buf, monbuf)
     case S_cloud:
 	Strcpy(buf, Is_airlevel(&u.uz) ? "cloudy area" : "fog/vapor cloud");
 	break;
+    case S_water:
+    case S_pool:
+	Strcpy(buf, level.flags.lethe? "sparkling water" : "water");
+	break;
     default:
 	Strcpy(buf,defsyms[glyph_to_cmap(glyph)].explanation);
 	break;
@@ -618,6 +622,8 @@ do_look(quick)
 		    if (is_cmap_trap(i)) {
 			Sprintf(out_str, "%c       a trap", sym);
 			hit_trap = TRUE;
+		    } else if (level.flags.lethe && !strcmp(x_str, "water")) {
+			Sprintf(out_str, "%c       sparkling water", sym);
 		    } else {
 			Sprintf(out_str, "%c       %s", sym,
 				article == 2 ? the(x_str) :
@@ -627,7 +633,10 @@ do_look(quick)
 		    found++;
 		} else if (!u.uswallow && !(hit_trap && is_cmap_trap(i)) &&
 			   !(found >= 3 && is_cmap_drawbridge(i))) {
-		    found += append_str(out_str,
+		    if (level.flags.lethe && !strcmp(x_str, "water"))
+			found += append_str(out_str, "sparkling water");
+		    else
+		    	found += append_str(out_str,
 					article == 2 ? the(x_str) :
 					article == 1 ? an(x_str) : x_str);
 		    if (is_cmap_trap(i)) hit_trap = TRUE;
@@ -710,7 +719,9 @@ do_look(quick)
 	    if (found == 1 && ans != LOOK_QUICK && ans != LOOK_ONCE &&
 			(ans == LOOK_VERBOSE || (flags.help && !quick))) {
 		char temp_buf[BUFSZ];
-		Strcpy(temp_buf, firstmatch);
+		Strcpy(temp_buf, level.flags.lethe 
+					&& !strcmp(firstmatch, "water")?
+				"lethe" : firstmatch);
 		checkfile(temp_buf, pm, FALSE, (boolean)(ans == LOOK_VERBOSE));
 	    }
 	} else {

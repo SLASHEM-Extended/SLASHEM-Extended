@@ -23,6 +23,7 @@
 #define SHORTSIGHTED	8
 #define ARBOREAL	16
 #define SPOOKY		32
+#define LETHE		64		/* All water on level is Lethe-ized */
 
     /* special level types */
 #define SP_LEV_ROOMS	1

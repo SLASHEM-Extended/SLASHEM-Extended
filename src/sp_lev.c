@@ -1791,6 +1791,8 @@ int typ;
 	    level.flags.arboreal = 1;
 	if (lev_flags & SPOOKY)
 	    level.flags.spooky = 1;
+	if (lev_flags & LETHE)
+	    level.flags.lethe = 1;
 
 	/* Read message */
 	Fread((genericptr_t) &n, 1, sizeof(n), fd);
@@ -2632,7 +2634,7 @@ dlb *fd;
 
 	    walkfrom(x, y);
     }
-    wallification(1, 0, COLNO-1, ROWNO-1);
+    wallification(1, 0, COLNO-1, ROWNO-1, FALSE);
 
     /*
      * If there's a significant portion of maze unused by the special level,

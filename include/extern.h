@@ -1059,7 +1059,7 @@ void FDECL(flood_fill_rm, (int,int,int,BOOLEAN_P,BOOLEAN_P));
 
 /* ### mkmaze.c ### */
 
-E void FDECL(wallification, (int,int,int,int));
+E void FDECL(wallification, (int,int,int,int, BOOLEAN_P));
 E void FDECL(walkfrom, (int,int));
 E void FDECL(makemaz, (const char *));
 E void FDECL(mazexy, (coord *));
@@ -1584,7 +1584,7 @@ E void FDECL(healup, (int,int,BOOLEAN_P,BOOLEAN_P));
 E void FDECL(strange_feeling, (struct obj *,const char *));
 E void FDECL(potionhit, (struct monst *,struct obj *,BOOLEAN_P));
 E void FDECL(potionbreathe, (struct obj *));
-E boolean FDECL(get_wet, (struct obj *));
+E boolean FDECL(get_wet, (struct obj *, BOOLEAN_P));
 E int NDECL(dodip);
 E void FDECL(djinni_from_bottle, (struct obj *));
 /* KMH, balance patch -- new function */
@@ -1670,6 +1670,7 @@ E long NDECL(random);
 E int NDECL(doread);
 E boolean FDECL(is_chargeable, (struct obj *));
 E void FDECL(recharge, (struct obj *,int));
+E void FDECL(forget, (int));
 E void FDECL(forget_objects, (int));
 E void FDECL(forget_levels, (int));
 E void NDECL(forget_traps);

@@ -5581,7 +5581,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 0 (bandage)
+# tile 293 (bandage)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -5600,7 +5600,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 0 (phial)
+# tile 294 (phial)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -5619,7 +5619,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 293 (candelabrum / Candelabrum of Invocation)
+# tile 295 (candelabrum / Candelabrum of Invocation)
 {
   MMMMMMMNMMMMMMMM
   MMMMMMMDMMMMMMMM
@@ -5638,7 +5638,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 294 (silver bell / Bell of Opening)
+# tile 296 (silver bell / Bell of Opening)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMOAMMMMMMM
@@ -5657,7 +5657,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 295 (tripe ration)
+# tile 297 (tripe ration)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -5676,7 +5676,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 296 (corpse)
+# tile 298 (corpse)
 {
   MMMMMMMMMMMMMMMM
   MMMMMDMDPLNMMMMM
@@ -5695,7 +5695,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 297 (egg)
+# tile 299 (egg)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -5714,7 +5714,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 298 (meatball)
+# tile 300 (meatball)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -5733,7 +5733,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 299 (meat stick)
+# tile 301 (meat stick)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -5752,7 +5752,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 300 (huge chunk of meat)
+# tile 302 (huge chunk of meat)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -5771,7 +5771,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 301 (meat ring)
+# tile 303 (meat ring)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -5790,7 +5790,7 @@ P = (108, 145, 182)
   MMMMMMAAAAAMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 302 (eyeball)
+# tile 304 (eyeball)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -5809,7 +5809,7 @@ P = (108, 145, 182)
   MMMMMMMOOOPAAAMM
   MMMMMMMMMMMMMMMM
 }
-# tile 303 (severed hand)
+# tile 305 (severed hand)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -5828,7 +5828,7 @@ P = (108, 145, 182)
   MMMMMMMMAAAMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 304 (kelp frond)
+# tile 306 (kelp frond)
 {
   MMMMFAMMMMMMMMMM
   MMMMFFAMMMMMMMMM
@@ -5847,7 +5847,7 @@ P = (108, 145, 182)
   MMMMMFFFFAMMMMMM
   MMMMMMFFFFAMMMMM
 }
-# tile 305 (eucalyptus leaf)
+# tile 307 (eucalyptus leaf)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -5866,7 +5866,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 306 (clove of garlic)
+# tile 308 (clove of garlic)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -5885,7 +5885,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 307 (sprig of wolfsbane)
+# tile 309 (sprig of wolfsbane)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -5904,7 +5904,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 308 (apple)
+# tile 310 (apple)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -5923,7 +5923,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 309 (carrot)
+# tile 311 (carrot)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMFMMFMM
@@ -5942,7 +5942,7 @@ P = (108, 145, 182)
   MMMAMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 310 (pear)
+# tile 312 (pear)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -5961,7 +5961,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 311 (asian pear)
+# tile 313 (asian pear)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -5980,7 +5980,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 312 (banana)
+# tile 314 (banana)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -5999,7 +5999,7 @@ P = (108, 145, 182)
   MMMMMAAAAAMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 313 (orange)
+# tile 315 (orange)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6018,7 +6018,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 314 (mushroom)
+# tile 316 (mushroom)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6037,7 +6037,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 315 (melon)
+# tile 317 (melon)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6056,7 +6056,7 @@ P = (108, 145, 182)
   MMMMMMAAAMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 316 (slime mold)
+# tile 318 (slime mold)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6075,7 +6075,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 317 (lump of royal jelly)
+# tile 319 (lump of royal jelly)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6094,7 +6094,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 318 (cream pie)
+# tile 320 (cream pie)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6113,7 +6113,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 319 (sandwich)
+# tile 321 (sandwich)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6132,7 +6132,7 @@ P = (108, 145, 182)
   MMMMMMMAAAAAAMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 320 (candy bar)
+# tile 322 (candy bar)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6151,7 +6151,7 @@ P = (108, 145, 182)
   MMMMAMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 321 (fortune cookie)
+# tile 323 (fortune cookie)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6170,7 +6170,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 322 (pancake)
+# tile 324 (pancake)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6189,7 +6189,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 323 (tortilla)
+# tile 325 (tortilla)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6208,7 +6208,7 @@ P = (108, 145, 182)
   MMMAAAAAAAMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 324 (cheese)
+# tile 326 (cheese)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6227,7 +6227,7 @@ P = (108, 145, 182)
   MMMMAAAAAAAMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 325 (pill)
+# tile 327 (pill)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6246,7 +6246,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 326 (holy wafer)
+# tile 328 (holy wafer)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6265,7 +6265,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 327 (lembas wafer)
+# tile 329 (lembas wafer)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6284,7 +6284,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 328 (cram ration)
+# tile 330 (cram ration)
 {
   MMMMMMMMMMMMMMMM
   MMMJKAMMMMMMMMMM
@@ -6303,7 +6303,7 @@ P = (108, 145, 182)
   MMMMMAAAAAAMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 329 (food ration)
+# tile 331 (food ration)
 {
   MMMJJAMMMMMMMMMM
   MMMBPAMMMMMMMMMM
@@ -6322,7 +6322,7 @@ P = (108, 145, 182)
   MMMMCKKKKCKKCAMM
   MMMMMAAAAAAAAMMM
 }
-# tile 330 (K-ration)
+# tile 332 (K-ration)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6341,7 +6341,7 @@ P = (108, 145, 182)
   MMMMCKKKKCKCKAMM
   MMMMMAAAAAAAAMMM
 }
-# tile 331 (C-ration)
+# tile 333 (C-ration)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6360,7 +6360,7 @@ P = (108, 145, 182)
   MMMMKKKKCKKCKAMM
   MMMMMAAAAAAAAMMM
 }
-# tile 332 (tin)
+# tile 334 (tin)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6379,7 +6379,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 333 (brown / booze)
+# tile 335 (brown / booze)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6398,7 +6398,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 334 (dark / fruit juice)
+# tile 336 (dark / fruit juice)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6417,7 +6417,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 335 (magenta / see invisible)
+# tile 337 (magenta / see invisible)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6436,7 +6436,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 336 (fizzy / sickness)
+# tile 338 (fizzy / sickness)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6455,7 +6455,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 337 (effervescent / sleeping)
+# tile 339 (effervescent / sleeping)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6474,7 +6474,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 338 (luminescent / clairvoyance)
+# tile 340 (luminescent / clairvoyance)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6493,7 +6493,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 339 (orange / confusion)
+# tile 341 (orange / confusion)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6512,7 +6512,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 340 (sky blue / hallucination)
+# tile 342 (sky blue / hallucination)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6531,7 +6531,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 341 (purple-red / healing)
+# tile 343 (purple-red / healing)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6550,7 +6550,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 342 (puce / extra healing)
+# tile 344 (puce / extra healing)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6569,7 +6569,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 343 (pink / restore ability)
+# tile 345 (pink / restore ability)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6588,7 +6588,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 344 (yellow / blindness)
+# tile 346 (yellow / blindness)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6607,7 +6607,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 345 (muddy / ESP)
+# tile 347 (muddy / ESP)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6626,7 +6626,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 346 (cloudy / gain energy)
+# tile 348 (cloudy / gain energy)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6645,7 +6645,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 347 (brilliant blue / invisibility)
+# tile 349 (brilliant blue / invisibility)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6664,7 +6664,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 348 (bubbly / monster detection)
+# tile 350 (bubbly / monster detection)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6683,7 +6683,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 349 (smoky / object detection)
+# tile 351 (smoky / object detection)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6702,7 +6702,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 350 (swirly / enlightenment)
+# tile 352 (swirly / enlightenment)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6721,7 +6721,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 351 (black / full healing)
+# tile 353 (black / full healing)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6740,7 +6740,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 352 (cyan / levitation)
+# tile 354 (cyan / levitation)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6759,7 +6759,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 353 (golden / polymorph)
+# tile 355 (golden / polymorph)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6778,7 +6778,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 354 (dark green / speed)
+# tile 356 (dark green / speed)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6797,7 +6797,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 355 (white / acid)
+# tile 357 (white / acid)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6816,7 +6816,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 356 (murky / oil)
+# tile 358 (murky / oil)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6835,7 +6835,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 357 (ruby / gain ability)
+# tile 359 (ruby / gain ability)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6854,7 +6854,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 358 (milky / gain level)
+# tile 360 (milky / gain level)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6873,7 +6873,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 359 (icy / invulnerability)
+# tile 361 (icy / invulnerability)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6892,7 +6892,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 360 (emerald / paralysis)
+# tile 362 (emerald / paralysis)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6911,7 +6911,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 361 (blood-red / blood)
+# tile 363 (blood-red / blood)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6930,7 +6930,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 362 (blood-red / vampire blood)
+# tile 364 (blood-red / vampire blood)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6949,7 +6949,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 363 (clear / water)
+# tile 365 (clear / water)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6968,7 +6968,26 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 364 (LEP GEX VEN ZEA / create monster)
+# tile 366 (sparkling / amnesia)
+{
+  MMMMMMMMMMMMMMMM
+  MMMMMMMMMMMMMMMM
+  MMMMMMMMMMMMMMMM
+  MMMMMLJAMMMMMMMM
+  MMMMMKJAMMMMMMMM
+  MMMMBPPPAMMMMMMM
+  MMMMMBPAMMMMMMMM
+  MMMMBPPBAMMMMMMM
+  MMMBPPBPPAMAAMMM
+  MMMBEEEBEAAAAMMM
+  MMMBEBEEBAAMMMMM
+  MMMMBEBEAAMMMMMM
+  MMMMMAAAAMMMMMMM
+  MMMMMMMMMMMMMMMM
+  MMMMMMMMMMMMMMMM
+  MMMMMMMMMMMMMMMM
+}
+# tile 367 (LEP GEX VEN ZEA / create monster)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -6987,7 +7006,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 365 (PRIRUTSENIE / taming)
+# tile 368 (PRIRUTSENIE / taming)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7006,7 +7025,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 366 (VERR YED HORRE / light)
+# tile 369 (VERR YED HORRE / light)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7025,7 +7044,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 367 (YUM YUM / food detection)
+# tile 370 (YUM YUM / food detection)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7044,7 +7063,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 368 (THARR / gold detection)
+# tile 371 (THARR / gold detection)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7063,7 +7082,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 369 (KERNOD WEL / identify)
+# tile 372 (KERNOD WEL / identify)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7082,7 +7101,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 370 (ELAM EBOW / magic mapping)
+# tile 373 (ELAM EBOW / magic mapping)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7101,7 +7120,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 371 (NR 9 / confuse monster)
+# tile 374 (NR 9 / confuse monster)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7120,7 +7139,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 372 (XIXAXA XOXAXA XUXAXA / scare monster)
+# tile 375 (XIXAXA XOXAXA XUXAXA / scare monster)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7139,7 +7158,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 373 (DAIYEN FOOELS / enchant weapon)
+# tile 376 (DAIYEN FOOELS / enchant weapon)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7158,7 +7177,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 374 (ZELGO MER / enchant armor)
+# tile 377 (ZELGO MER / enchant armor)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7177,7 +7196,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 375 (PRATYAVAYAH / remove curse)
+# tile 378 (PRATYAVAYAH / remove curse)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7196,7 +7215,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 376 (VENZAR BORGAVVE / teleportation)
+# tile 379 (VENZAR BORGAVVE / teleportation)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7215,7 +7234,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 377 (ANDOVA BEGARIN / fire)
+# tile 380 (ANDOVA BEGARIN / fire)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7234,7 +7253,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 378 (KIRJE / earth)
+# tile 381 (KIRJE / earth)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7253,7 +7272,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 379 (JUYED AWK YACC / destroy armor)
+# tile 382 (JUYED AWK YACC / destroy armor)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7272,7 +7291,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 380 (DUAM XNAHT / amnesia)
+# tile 383 (DUAM XNAHT / amnesia)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7291,7 +7310,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 381 (HACKEM MUCHE / charging)
+# tile 384 (HACKEM MUCHE / charging)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7310,7 +7329,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 382 (ELBIB YLOH / genocide)
+# tile 385 (ELBIB YLOH / genocide)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7329,7 +7348,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 383 (VE FORBRYDERNE / punishment)
+# tile 386 (VE FORBRYDERNE / punishment)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7348,7 +7367,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 384 (VELOX NEB / stinking cloud)
+# tile 387 (VELOX NEB / stinking cloud)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7367,7 +7386,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 385 (FOOBIE BLETCH)
+# tile 388 (FOOBIE BLETCH)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7386,7 +7405,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 386 (TEMOV)
+# tile 389 (TEMOV)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7405,7 +7424,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 387 (GARVEN DEH)
+# tile 390 (GARVEN DEH)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7424,7 +7443,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 388 (READ ME)
+# tile 391 (READ ME)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7443,7 +7462,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 389 (stamped / mail)
+# tile 392 (stamped / mail)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7462,7 +7481,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 390 (unlabeled / blank paper)
+# tile 393 (unlabeled / blank paper)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7481,7 +7500,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 391 (red / force bolt)
+# tile 394 (red / force bolt)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7500,7 +7519,7 @@ P = (108, 145, 182)
   MMMMMMMDDDAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 392 (turquoise / create monster)
+# tile 395 (turquoise / create monster)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7519,7 +7538,7 @@ P = (108, 145, 182)
   MMMMMMMFBBAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 393 (velvet / drain life)
+# tile 396 (velvet / drain life)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7538,7 +7557,7 @@ P = (108, 145, 182)
   MMMMMMMJIJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 394 (dark / command undead)
+# tile 397 (dark / command undead)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7557,7 +7576,7 @@ P = (108, 145, 182)
   MMMMAAABBBAMMMMM
   MMMMMMMAAAMMMMMM
 }
-# tile 395 (black / summon undead)
+# tile 398 (black / summon undead)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7576,7 +7595,7 @@ P = (108, 145, 182)
   MMMMMMMAAAMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 396 (thick / stone to flesh)
+# tile 399 (thick / stone to flesh)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7595,7 +7614,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 397 (white / healing)
+# tile 400 (white / healing)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7614,7 +7633,7 @@ P = (108, 145, 182)
   MMMMMMMPNNAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 398 (yellow / cure blindness)
+# tile 401 (yellow / cure blindness)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7633,7 +7652,7 @@ P = (108, 145, 182)
   MMMMMMMHHHAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 399 (indigo / cure sickness)
+# tile 402 (indigo / cure sickness)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7652,7 +7671,7 @@ P = (108, 145, 182)
   MMMMMMMEEEAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 400 (plaid / extra healing)
+# tile 403 (plaid / extra healing)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7671,7 +7690,7 @@ P = (108, 145, 182)
   MMMMMMMEFDAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 401 (light brown / restore ability)
+# tile 404 (light brown / restore ability)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7690,7 +7709,7 @@ P = (108, 145, 182)
   MMMMMMMAAAPPMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 402 (glittering / create familiar)
+# tile 405 (glittering / create familiar)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7709,7 +7728,7 @@ P = (108, 145, 182)
   MMMMMMMPPPANMMMM
   MMMMMMMNMMMMMMMM
 }
-# tile 403 (cloth / light)
+# tile 406 (cloth / light)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7728,7 +7747,7 @@ P = (108, 145, 182)
   MMMMMMMPPPAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 404 (leather / detect monsters)
+# tile 407 (leather / detect monsters)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7747,7 +7766,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 405 (cyan / detect food)
+# tile 408 (cyan / detect food)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7766,7 +7785,7 @@ P = (108, 145, 182)
   MMMMMMMBBBAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 406 (dark blue / clairvoyance)
+# tile 409 (dark blue / clairvoyance)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7785,7 +7804,7 @@ P = (108, 145, 182)
   MMMMMMMEEEAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 407 (violet / detect unseen)
+# tile 410 (violet / detect unseen)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7804,7 +7823,7 @@ P = (108, 145, 182)
   MMMMMMMIIIAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 408 (bronze / identify)
+# tile 411 (bronze / identify)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7823,7 +7842,7 @@ P = (108, 145, 182)
   MMMMMMMCCCAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 409 (gray / detect treasure)
+# tile 412 (gray / detect treasure)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7842,7 +7861,7 @@ P = (108, 145, 182)
   MMMMMMMPPPAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 410 (dusty / magic mapping)
+# tile 413 (dusty / magic mapping)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7861,7 +7880,7 @@ P = (108, 145, 182)
   MKAKAMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 411 (orange / confuse monster)
+# tile 414 (orange / confuse monster)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7880,7 +7899,7 @@ P = (108, 145, 182)
   MMMMMMMCCCAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 412 (light green / slow monster)
+# tile 415 (light green / slow monster)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7899,7 +7918,7 @@ P = (108, 145, 182)
   MMMMMMMGGGAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 413 (light blue / cause fear)
+# tile 416 (light blue / cause fear)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7918,7 +7937,7 @@ P = (108, 145, 182)
   MMMMMMMBBBAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 414 (magenta / charm monster)
+# tile 417 (magenta / charm monster)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7937,7 +7956,7 @@ P = (108, 145, 182)
   MMMMMMMIIIAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 415 (dull / enchant weapon)
+# tile 418 (dull / enchant weapon)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7956,7 +7975,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 416 (thin / enchant armor)
+# tile 419 (thin / enchant armor)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7975,7 +7994,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 417 (wide / protection)
+# tile 420 (wide / protection)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -7994,7 +8013,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 418 (big / resist poison)
+# tile 421 (big / resist poison)
 {
   MMMMMMMMMMMMMMMM
   MMMMMKDMMMMMMMMM
@@ -8013,7 +8032,7 @@ P = (108, 145, 182)
   MMMMMMMDDDAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 419 (fuzzy / resist sleep)
+# tile 422 (fuzzy / resist sleep)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8032,7 +8051,7 @@ P = (108, 145, 182)
   MMAMAAAFFFAMMMMM
   MMMMAMMAAAMMMMMM
 }
-# tile 420 (deep / endure cold)
+# tile 423 (deep / endure cold)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8051,7 +8070,7 @@ P = (108, 145, 182)
   MMMMMMMIIIAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 421 (spotted / endure heat)
+# tile 424 (spotted / endure heat)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8070,7 +8089,7 @@ P = (108, 145, 182)
   MMMMMMMEEEAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 422 (long / insulate)
+# tile 425 (long / insulate)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8089,7 +8108,7 @@ P = (108, 145, 182)
   MMMMMMMEEEAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 423 (wrinkled / remove curse)
+# tile 426 (wrinkled / remove curse)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8108,7 +8127,7 @@ P = (108, 145, 182)
   MMMMMMJJKKAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 424 (copper / turn undead)
+# tile 427 (copper / turn undead)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8127,7 +8146,7 @@ P = (108, 145, 182)
   MMMMMMMJCJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 425 (torn / jumping)
+# tile 428 (torn / jumping)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8146,7 +8165,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 426 (purple / haste self)
+# tile 429 (purple / haste self)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8165,7 +8184,7 @@ P = (108, 145, 182)
   MMMMMMMIIIAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 427 (faded / enlighten)
+# tile 430 (faded / enlighten)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8184,7 +8203,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 428 (dark brown / invisibility)
+# tile 431 (dark brown / invisibility)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8203,7 +8222,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 429 (tan / levitation)
+# tile 432 (tan / levitation)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8222,7 +8241,7 @@ P = (108, 145, 182)
   MMMMMMMKKCAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 430 (gold / teleport away)
+# tile 433 (gold / teleport away)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8241,7 +8260,7 @@ P = (108, 145, 182)
   MMMMMMMHHHAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 431 (ochre / passwall)
+# tile 434 (ochre / passwall)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8260,7 +8279,7 @@ P = (108, 145, 182)
   MMMMMMMDDDAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 432 (silver / polymorph)
+# tile 435 (silver / polymorph)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8279,7 +8298,7 @@ P = (108, 145, 182)
   MMMMMMMPPPAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 433 (pink / knock)
+# tile 436 (pink / knock)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8298,7 +8317,7 @@ P = (108, 145, 182)
   MMMMMMMIIIAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 434 (canvas / flame sphere)
+# tile 437 (canvas / flame sphere)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8317,7 +8336,7 @@ P = (108, 145, 182)
   MMMMMMMPPPAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 435 (hardcover / freeze sphere)
+# tile 438 (hardcover / freeze sphere)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8336,7 +8355,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 436 (dark green / wizard lock)
+# tile 439 (dark green / wizard lock)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8355,7 +8374,7 @@ P = (108, 145, 182)
   MMMMMMMFFFAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 437 (parchment / dig)
+# tile 440 (parchment / dig)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8374,7 +8393,7 @@ P = (108, 145, 182)
   MMMMMMMPPPAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 438 (shining / cancellation)
+# tile 441 (shining / cancellation)
 {
   MMMMNMMMMMMMMMMM
   MMMMMMMNMMMMMMMM
@@ -8393,7 +8412,7 @@ P = (108, 145, 182)
   MMMMMMMPPPAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 439 (vellum / magic missile)
+# tile 442 (vellum / magic missile)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8412,7 +8431,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 440 (ragged / fireball)
+# tile 443 (ragged / fireball)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8431,7 +8450,7 @@ P = (108, 145, 182)
   MMMMMMOOJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 441 (dog eared / cone of cold)
+# tile 444 (dog eared / cone of cold)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8450,7 +8469,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 442 (mottled / sleep)
+# tile 445 (mottled / sleep)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8469,7 +8488,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 443 (stained / finger of death)
+# tile 446 (stained / finger of death)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8488,7 +8507,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 444 (rainbow / lightning)
+# tile 447 (rainbow / lightning)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8507,7 +8526,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 445 (tattered / poison blast)
+# tile 448 (tattered / poison blast)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8526,7 +8545,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 446 (colorful / acid stream)
+# tile 449 (colorful / acid stream)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8545,7 +8564,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 447 (tartan)
+# tile 450 (tartan)
 {
   MMMMMMMMMMMMMMMM
   MMMMMPPPPAMMMMMM
@@ -8564,7 +8583,7 @@ P = (108, 145, 182)
   MMMMMMMPPPAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 448 (stylish)
+# tile 451 (stylish)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8583,7 +8602,7 @@ P = (108, 145, 182)
   MMMMMMMDCDAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 449 (psychedelic)
+# tile 452 (psychedelic)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8602,7 +8621,7 @@ P = (108, 145, 182)
   MMMMMMMPPPAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 450 (spiral-bound)
+# tile 453 (spiral-bound)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8621,7 +8640,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 451 (left-handed)
+# tile 454 (left-handed)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8640,7 +8659,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 452 (stapled)
+# tile 455 (stapled)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8659,7 +8678,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 453 (plain / blank paper)
+# tile 456 (plain / blank paper)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8678,7 +8697,7 @@ P = (108, 145, 182)
   MMMMMMMJJJAAMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 454 (papyrus / Book of the Dead)
+# tile 457 (papyrus / Book of the Dead)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8697,7 +8716,7 @@ P = (108, 145, 182)
   MMMMMMMAAAMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 455 (glass / light)
+# tile 458 (glass / light)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8716,7 +8735,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 456 (oak / nothing)
+# tile 459 (oak / nothing)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8735,7 +8754,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 457 (crystal / enlightenment)
+# tile 460 (crystal / enlightenment)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8754,7 +8773,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 458 (bamboo / healing)
+# tile 461 (bamboo / healing)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMFMMMMMM
@@ -8773,7 +8792,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 459 (aluminum / locking)
+# tile 462 (aluminum / locking)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8792,7 +8811,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 460 (marble / make invisible)
+# tile 463 (marble / make invisible)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8811,7 +8830,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 461 (zinc / opening)
+# tile 464 (zinc / opening)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8830,7 +8849,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 462 (uranium / probing)
+# tile 465 (uranium / probing)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8849,7 +8868,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 463 (balsa / secret door detection)
+# tile 466 (balsa / secret door detection)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8868,7 +8887,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 464 (tin / slow monster)
+# tile 467 (tin / slow monster)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8887,7 +8906,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 465 (brass / speed monster)
+# tile 468 (brass / speed monster)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8906,7 +8925,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 466 (ebony / striking)
+# tile 469 (ebony / striking)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8925,7 +8944,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 467 (copper / undead turning)
+# tile 470 (copper / undead turning)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8944,7 +8963,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 468 (ceramic / draining)
+# tile 471 (ceramic / draining)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8963,7 +8982,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 469 (platinum / cancellation)
+# tile 472 (platinum / cancellation)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -8982,7 +9001,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 470 (maple / create monster)
+# tile 473 (maple / create monster)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9001,7 +9020,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 471 (rusty / fear)
+# tile 474 (rusty / fear)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9020,7 +9039,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 472 (silver / polymorph)
+# tile 475 (silver / polymorph)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9039,7 +9058,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 473 (iridium / teleportation)
+# tile 476 (iridium / teleportation)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9058,7 +9077,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 474 (black / create horde)
+# tile 477 (black / create horde)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9077,7 +9096,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 475 (bronze / extra healing)
+# tile 478 (bronze / extra healing)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9096,7 +9115,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 476 (pine / wishing)
+# tile 479 (pine / wishing)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9115,7 +9134,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 477 (iron / digging)
+# tile 480 (iron / digging)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9134,7 +9153,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 478 (steel / magic missile)
+# tile 481 (steel / magic missile)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9153,7 +9172,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 479 (hexagonal / fire)
+# tile 482 (hexagonal / fire)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9172,7 +9191,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 480 (short / cold)
+# tile 483 (short / cold)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9191,7 +9210,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 481 (runed / sleep)
+# tile 484 (runed / sleep)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9210,7 +9229,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 482 (long / death)
+# tile 485 (long / death)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMNOM
@@ -9229,7 +9248,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 483 (curved / lightning)
+# tile 486 (curved / lightning)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMNOMMMMMMM
@@ -9248,7 +9267,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 484 (octagonal / fireball)
+# tile 487 (octagonal / fireball)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9267,7 +9286,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 485 (forked)
+# tile 488 (forked)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9286,7 +9305,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 486 (spiked)
+# tile 489 (spiked)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9305,7 +9324,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 487 (jeweled)
+# tile 490 (jeweled)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9324,7 +9343,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 488 (gold piece)
+# tile 491 (gold piece)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9343,7 +9362,7 @@ P = (108, 145, 182)
   MMMMMMMMMHAMMMMM
   MMMMMMMMMMMHAMMM
 }
-# tile 489 (white / dilithium crystal)
+# tile 492 (white / dilithium crystal)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9362,7 +9381,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 490 (white / diamond)
+# tile 493 (white / diamond)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9381,7 +9400,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 491 (red / ruby)
+# tile 494 (red / ruby)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9400,7 +9419,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 492 (orange / jacinth)
+# tile 495 (orange / jacinth)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9419,7 +9438,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 493 (blue / sapphire)
+# tile 496 (blue / sapphire)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9438,7 +9457,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 494 (black / black opal)
+# tile 497 (black / black opal)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9457,7 +9476,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 495 (green / emerald)
+# tile 498 (green / emerald)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9476,7 +9495,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 496 (green / turquoise)
+# tile 499 (green / turquoise)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9495,7 +9514,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 497 (yellow / citrine)
+# tile 500 (yellow / citrine)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9514,7 +9533,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 498 (green / aquamarine)
+# tile 501 (green / aquamarine)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9533,7 +9552,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 499 (yellowish brown / amber)
+# tile 502 (yellowish brown / amber)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9552,7 +9571,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 500 (yellowish brown / topaz)
+# tile 503 (yellowish brown / topaz)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9571,7 +9590,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 501 (black / jet)
+# tile 504 (black / jet)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9590,7 +9609,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 502 (white / opal)
+# tile 505 (white / opal)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9609,7 +9628,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 503 (yellow / chrysoberyl)
+# tile 506 (yellow / chrysoberyl)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9628,7 +9647,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 504 (red / garnet)
+# tile 507 (red / garnet)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9647,7 +9666,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 505 (violet / amethyst)
+# tile 508 (violet / amethyst)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9666,7 +9685,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 506 (red / jasper)
+# tile 509 (red / jasper)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9685,7 +9704,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 507 (violet / fluorite)
+# tile 510 (violet / fluorite)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9704,7 +9723,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 508 (black / obsidian)
+# tile 511 (black / obsidian)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9723,7 +9742,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 509 (orange / agate)
+# tile 512 (orange / agate)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9742,7 +9761,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 510 (green / jade)
+# tile 513 (green / jade)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9761,7 +9780,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 511 (white / worthless piece of white glass)
+# tile 514 (white / worthless piece of white glass)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9780,7 +9799,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 512 (blue / worthless piece of blue glass)
+# tile 515 (blue / worthless piece of blue glass)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9799,7 +9818,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 513 (red / worthless piece of red glass)
+# tile 516 (red / worthless piece of red glass)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9818,7 +9837,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 514 (yellowish brown / worthless piece of yellowish brown glass)
+# tile 517 (yellowish brown / worthless piece of yellowish brown glass)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9837,7 +9856,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 515 (orange / worthless piece of orange glass)
+# tile 518 (orange / worthless piece of orange glass)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9856,7 +9875,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 516 (yellow / worthless piece of yellow glass)
+# tile 519 (yellow / worthless piece of yellow glass)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9875,7 +9894,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 517 (black / worthless piece of black glass)
+# tile 520 (black / worthless piece of black glass)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9894,7 +9913,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 518 (green / worthless piece of green glass)
+# tile 521 (green / worthless piece of green glass)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9913,7 +9932,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 519 (violet / worthless piece of violet glass)
+# tile 522 (violet / worthless piece of violet glass)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9932,7 +9951,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 520 (gray / luckstone)
+# tile 523 (gray / luckstone)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9951,7 +9970,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 521 (gray / healthstone)
+# tile 524 (gray / healthstone)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9970,7 +9989,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 522 (gray / loadstone)
+# tile 525 (gray / loadstone)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -9989,7 +10008,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 523 (gray / touchstone)
+# tile 526 (gray / touchstone)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -10008,7 +10027,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 524 (gray / flint)
+# tile 527 (gray / flint)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -10027,7 +10046,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 525 (rock)
+# tile 528 (rock)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -10046,7 +10065,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 526 (boulder)
+# tile 529 (boulder)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -10065,7 +10084,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 527 (statue)
+# tile 530 (statue)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMJJMMMMMM
@@ -10084,7 +10103,7 @@ P = (108, 145, 182)
   MMMMMJJJJJJAAMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 528 (heavy iron ball)
+# tile 531 (heavy iron ball)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -10103,7 +10122,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 529 (iron chain)
+# tile 532 (iron chain)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -10122,7 +10141,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMPPMPA
   MMMMMMMMMMMMAAMM
 }
-# tile 530 (splash of venom / blinding venom)
+# tile 533 (splash of venom / blinding venom)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
@@ -10141,7 +10160,7 @@ P = (108, 145, 182)
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
 }
-# tile 531 (splash of venom / acid venom)
+# tile 534 (splash of venom / acid venom)
 {
   MMMMMMMMMMMMMMMM
   MMMMMMMMMMMMMMMM
