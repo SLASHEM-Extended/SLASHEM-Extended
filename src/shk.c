@@ -1453,6 +1453,7 @@ shk_other_services()
 	if ((ESHK(shkp)->services & (SHK_SPECIAL_A|SHK_SPECIAL_B)) &&
 			((shk_class_match(WAND_CLASS, shkp) == SHK_MATCH) ||
 			(shk_class_match(TOOL_CLASS, shkp) == SHK_MATCH) ||
+			(shk_class_match(SPBOOK_CLASS, shkp) == SHK_MATCH) ||
 			(shk_class_match(RING_CLASS, shkp) == SHK_MATCH))) {
 		any.a_int = 6;
 		add_menu(tmpwin, NO_GLYPH, &any , 'c', 0, ATR_NONE,
@@ -4602,6 +4603,7 @@ shk_armor_works(slang, shkp)
 static NEARDATA const char wand_types[] = { WAND_CLASS, 0 };
 static NEARDATA const char tool_types[] = { TOOL_CLASS, 0 };
 static NEARDATA const char ring_types[] = { RING_CLASS, 0 };
+static NEARDATA const char spbook_types[] = { SPBOOK_CLASS, 0 };
 
 static void
 shk_charge(slang, shkp)
@@ -4622,6 +4624,8 @@ shk_charge(slang, shkp)
 		obj = getobj(tool_types, "charge");
 	else if (shk_class_match(RING_CLASS, shkp) == SHK_MATCH)
 		obj = getobj(ring_types, "charge");
+	else if (shk_class_match(SPBOOK_CLASS, shkp) == SHK_MATCH)
+		obj = getobj(spbook_types, "charge");
 	if (!obj) return;
 
 	/*
