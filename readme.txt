@@ -334,6 +334,12 @@ ver 0.0.6E3F2 [September XX/2000]
 -the ')' command now prints varying messages depending on twoweap status
 	and mentions empty hands if needed. (invent.c)
 -Monks starting with the sleep spell no longer get warnings on startup (u_init.c)
+-the "use #quit to quit message" only occurs if you comment out suppress_alert
+-time before next use shows up in wizard mode tech menu (tech.c)
+-added the use of technique limit breaks.  When HP drops below 10%,
+ there is a random chance each turn that you are in LIMIT mode. In limit mode,
+ all your known techniques are useable (even the ones usually Not Prepared) 
+ (tech.c)
 
 ver 0.0.6E3F1 [August 21/2000] [Released by Ali]
 -fixed some bugs in the zap/cast code for magic missile, fire, cold, fireball, etc.

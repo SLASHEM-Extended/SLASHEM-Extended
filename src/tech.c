@@ -189,6 +189,29 @@ static const struct innate_tech
 #define techlet(tech)  \
         ((char)((tech < 26) ? ('a' + tech) : ('A' + tech - 26)))
 
+/* A simple pseudorandom number generator 
+ * This must be fairly random mod LP_HPMOD from 2 to 9
+ * but can't use the normal RNG since can_limitbreak() must
+ * return the same state on the same turn
+ */
+#if 0 /* Probably overkill */
+#define LB_CYCLE 259993L	/* number of turns before the pattern repeats */
+#define LB_ADD 300L	/* Add this to guarantee large numbers */
+#define LB_DIV 100	/* Remove the last few bits as they tend to be less random */
+#endif
+ 
+#define LB_CYCLE 101L	/* number of turns before the pattern repeats */
+#define LB_ADD 10L	/* Add this to guarantee large numbers */
+#define LB_DIV 10	/* Remove the last few bits as they tend to be less random */
+ 
+#define LB_HPMOD ((long) ((u.uhp * 10 / u.uhpmax > 2) ? \
+        			(u.uhp * 10 / u.uhpmax) : 2))
+
+#define can_limitbreak() (!Upolyd && (u.uhp*10 < u.uhpmax) && \
+        		  (u.uhp == 1 || (!((((monstermoves + LB_ADD) * \
+        		  (monstermoves + LB_ADD) % LB_CYCLE) / LB_DIV) \
+        		  % LB_HPMOD))))
+        
 /* Whether you know the tech */
 boolean
 tech_known(tech)
@@ -306,13 +329,24 @@ dotechmenu(how, tech_no)
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, MENU_UNSELECTED);
 
         for (i = 0; i < MAXTECH && techid(i) != NO_TECH; i++) {
+#ifdef WIZARD
+		if (wizard) Sprintf(buf, "%-26s %5d   %s(%i)",
+                    techname(i), techlev(i),
+                      tech_inuse(techid(i)) ? "Active" :
+                      can_limitbreak() ? "LIMIT" :
+                      !techtout(i) ? "Prepared" : 
+		      techtout(i) > 100 ? "Not Ready" : 
+		      "Soon",
+		    techtout(i));
+		else
+#endif
                 Sprintf(buf, "%-26s %5d   %s",
                     techname(i), techlev(i),
                       tech_inuse(techid(i)) ? "Active" :
+                      can_limitbreak() ? "LIMIT" :
                       !techtout(i) ? "Prepared" : 
 		      techtout(i) > 100 ? "Not Ready" : 
 		      "Soon");
-
 		any.a_int = i+1;        /* must be non-zero */
 		add_menu(tmpwin, NO_GLYPH, &any,
                          techlet(i), 0, ATR_NONE, buf, MENU_UNSELECTED);
@@ -369,7 +403,7 @@ int tech_no;
 	int num;
 	char Your_buf[BUFSZ];
 	char allowall[2];
-	int i, j;
+	int i, j, t_timeout = 0;
 
 
 	/* check timeout */
@@ -377,7 +411,7 @@ int tech_no;
 	    pline("This technique is already active!");
 	    return (0);
 	}
-        if (techtout(tech_no)) {
+        if (techtout(tech_no) && !can_limitbreak()) {
 	    You("have to wait %s before using your technique again.",
                 (techtout(tech_no) > 100) ?
                         "for a while" : "a little longer");
@@ -387,7 +421,7 @@ int tech_no;
                 return(0);
         }
 
-/* switch to the tech and do stuff */
+	/* switch to the tech and do stuff */
         switch (techid(tech_no)) {
             case T_RESEARCH:
 		/* WAC stolen from the spellcasters...'A' can identify from
@@ -397,7 +431,7 @@ int tech_no;
 		    return(0);
 		} else if((ACURR(A_INT) + ACURR(A_WIS)) < rnd(60)) {
 			pline("Nothing in your pack looks familiar.");
-                    techtout(tech_no) = rn1(500,500);
+                    t_timeout = rn1(500,500);
 		    break;
 		} else if(invent) {
 			You("examine your possessions.");
@@ -407,7 +441,7 @@ int tech_no;
 		    You("are already quite familiar with the contents of your pack.");
 		    break;
 		}
-                techtout(tech_no) = rn1(500,1500);
+                t_timeout = rn1(500,1500);
 		break;
             case T_EVISCERATE:
 		/*only when empty handed, in human form!*/
@@ -419,7 +453,7 @@ int tech_no;
 		        Your("fingernails extend into claws!");
 		        aggravate();
                         techt_inuse(tech_no) = d(2,4) + (techlev(tech_no)/5) + 2; /* [max] was d(2,8) */
-                        techtout(tech_no) = rn1(1000,1000); /* [max] increased delay */
+                        t_timeout = rn1(1000,1000); /* [max] increased delay */
 		} else {
 		    You("can't do this while holding a weapon!");
 		    return(0);
@@ -430,7 +464,7 @@ int tech_no;
                		techt_inuse(tech_no) = d(2,8) +
                		(techlev(tech_no)/5) + 2;
 			incr_itimeout(&HFast, techt_inuse(tech_no));
-			techtout(tech_no) = rn1(1000,500);
+			t_timeout = rn1(1000,500);
 			return(0);
 			break;
             case T_REINFORCE:
@@ -440,7 +474,7 @@ int tech_no;
 				break;
                		} else {
 				You("concentrate...");
-				if (studyspell()) techtout(tech_no) = rn1(1000,500); /*in spell.c*/
+				if (studyspell()) t_timeout = rn1(1000,500); /*in spell.c*/
 			}
                break;
             case T_FLURRY:
@@ -448,7 +482,7 @@ int tech_no;
 			uarmg ? "gloved" : "bare",      /* Del Lamb */
 			makeplural(body_part(HAND)));
                 techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/6 + 1)) + 2;
-                techtout(tech_no) = rn1(1000,500);
+                t_timeout = rn1(1000,500);
 		break;
             case T_PRACTICE:
                 if(!uwep || (weapon_type(uwep) == P_NONE)) {
@@ -469,7 +503,7 @@ int tech_no;
                 /*WAC Added practicing code - in weapon.c*/
                     practice_weapon();
 		}
-                techtout(tech_no) = rn1(500,500);
+                t_timeout = rn1(500,500);
 		break;
             case T_SURGERY:
 		if (Hallucination || Stunned || Confusion) {
@@ -483,7 +517,7 @@ int tech_no;
 			Slimed = 0;
 			if(u.uhp > 6) u.uhp -= 5;
 			else          u.uhp = 1;
-                        techtout(tech_no) = rn1(500,500);
+                        t_timeout = rn1(500,500);
 			break;
 		    } else pline("If only you had a scalpel...");
 		}
@@ -495,7 +529,7 @@ int tech_no;
 			pline("You bandage your wounds as best you can.");
 			u.uhp += (techlev(tech_no)) + rn1(5,5);
 		    }
-                    techtout(tech_no) = rn1(1000,500);
+                    t_timeout = rn1(1000,500);
 		    if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		} else pline("You don't need your healing powers!");
 		break;
@@ -508,14 +542,14 @@ int tech_no;
 			if(Sick) make_sick(0L,(char*)0, TRUE, SICK_ALL);
 			else     u.uhp += (techlev(tech_no) * 4);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
-                        techtout(tech_no) = 3000;
+                        t_timeout = 3000;
 		} else pline("Nothing happens...");
 		break;
             case T_KIII:
 		You("scream \"KIIILLL!\"");
 		aggravate();
                 techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/6 + 1)) + 2;
-                techtout(tech_no) = rn1(1000,500);
+                t_timeout = rn1(1000,500);
 		return(0);
 		break;
 #ifdef STEED
@@ -523,7 +557,7 @@ int tech_no;
                 if (u.usteed) {
                         pline("%s gets tamer.", Monnam(u.usteed));
                         tamedog(u.usteed, (struct obj *) 0);
-                        techtout(tech_no) = rn1(1000,500);
+                        t_timeout = rn1(1000,500);
                 } else
                         Your("technique is only effective when riding a monster.");
                 break;
@@ -540,7 +574,7 @@ int tech_no;
 		incr_itimeout(&HInvis, techt_inuse(tech_no));
 		incr_itimeout(&HFast, techt_inuse(tech_no));
 		newsym(u.ux,u.uy);      /* update position */
-		techtout(tech_no) = rn1(1000,500);
+		t_timeout = rn1(1000,500);
 		break;
 	    case T_CRIT_STRIKE:
 		if (!getdir((char *)0)) return(0);
@@ -567,7 +601,7 @@ int tech_no;
 				tmp = mtmp->mhp/4;
 			    }
 			    tmp += techlev(tech_no);
-			    techtout(tech_no) = rn1(1000,500);
+			    t_timeout = rn1(1000,500);
 			    hurtmon(mtmp, tmp);
 			}
 		}
@@ -604,7 +638,7 @@ int tech_no;
 					tmp = mtmp->mhp / 2;
 				}
 				tmp += techlev(tech_no);
-				techtout(tech_no) = rn1(1000,500);
+				t_timeout = rn1(1000,500);
 				hurtmon(mtmp, tmp);
 			}
 		}
@@ -640,8 +674,7 @@ int tech_no;
 			obj->bknown=1;
 			pline("The aura fades.");
 		}
-		techtout(tech_no) = rn1(1000,500);
-		techtout(tech_no) -= (techlev(tech_no)*10);
+		t_timeout = rn1(1000,500);
 		break;
 	    case T_E_FIST: 
 	    	blitz_e_fist();
@@ -650,7 +683,7 @@ int tech_no;
                 You("focus the powers of the elements into your %s", str);
                 techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/3 + 1)) + d(1,4) + 2;
 #endif
-		techtout(tech_no) = rn1(1000,500);
+		t_timeout = rn1(1000,500);
 	    	break;
 	    case T_PRIMAL_ROAR:	    	
 	    	You("let out a bloodcurdling roar!");
@@ -676,7 +709,7 @@ int tech_no;
 		    	    }
 		    	}
 		    }
-		techtout(tech_no) = rn1(1000,500);
+		t_timeout = rn1(1000,500);
 	    	break;
 	    case T_LIQUID_LEAP: {
 	    	coord cc;
@@ -768,7 +801,7 @@ int tech_no;
 		    nomul(-1);
 		    nomovemsg = "";
 	    	}
-		techtout(tech_no) = rn1(1000,500);
+		t_timeout = rn1(1000,500);
 	    	break;
 	    }
             case T_SIGIL_TEMPEST: 
@@ -843,8 +876,7 @@ int tech_no;
 			}
 		}
 		nomul(-2); /* You need to recover */
-		techtout(tech_no) = rn1(1000,500);
-		techtout(tech_no) -= (techlev(tech_no)*10);
+		t_timeout = rn1(1000,500);
 		break;
             }
             case T_REVIVE: 
@@ -862,7 +894,7 @@ int tech_no;
             	if (mtmp) (void) tamedog(mtmp, (struct obj *) 0);
             	if (Upolyd) u.mh -= num;
             	else u.uhp -= num;
-		techtout(tech_no) = rn1(1000,500);
+		t_timeout = rn1(1000,500);
             	break;
 	    case T_WARD_FIRE:
 		/* Already have it intrinsically? */
@@ -871,7 +903,7 @@ int tech_no;
 		You("invoke the ward against flame!");
 		HFire_resistance += rn1(100,50);
 		HFire_resistance += techlev(tech_no);
-		techtout(tech_no) = rn1(1000,500);
+		t_timeout = rn1(1000,500);
 
 	    	break;
 	    case T_WARD_COLD:
@@ -881,7 +913,7 @@ int tech_no;
 		You("invoke the ward against ice!");
 		HCold_resistance += rn1(100,50);
 		HCold_resistance += techlev(tech_no);
-		techtout(tech_no) = rn1(1000,500);
+		t_timeout = rn1(1000,500);
 
 	    	break;
 	    case T_WARD_ELEC:
@@ -891,7 +923,7 @@ int tech_no;
 		You("invoke the ward against lightning!");
 		HShock_resistance += rn1(100,50);
 		HShock_resistance += techlev(tech_no);
-		techtout(tech_no) = rn1(1000,500);
+		t_timeout = rn1(1000,500);
 
 	    	break;
 	    case T_TINKER:
@@ -919,16 +951,16 @@ int tech_no;
 	    	techt_inuse(tech_no) = num + 1;
 		u.uhpmax += num;
 		u.uhp = u.uhpmax;
-		techtout(tech_no) = rn1(1000,500);
+		t_timeout = rn1(1000,500);
 		break;	    
 	    case T_BLINK:
 	    	You("feel the flow of time slow to a crawl.");
                 techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/10 + 1)) + 2;
-		techtout(tech_no) = rn1(1000,500);	    
+		t_timeout = rn1(1000,500);	    
 	    	break;
             case T_CHI_STRIKE:
             	if (!blitz_chi_strike()) return(0);
-                techtout(tech_no) = rn1(1000,500);
+                t_timeout = rn1(1000,500);
 		break;
             case T_DRAW_ENERGY:
             	if (u.uen == u.uenmax) {
@@ -939,7 +971,7 @@ int tech_no;
                 You("begin drawing energy from your surroundings!");
 		delay=-15;
 		set_occupation(draw_energy, "drawing energy", 0);                
-                techtout(tech_no) = rn1(1000,500);
+                t_timeout = rn1(1000,500);
 		break;
             case T_CHI_HEALING:
             	if (u.uen < 1) {
@@ -948,7 +980,7 @@ int tech_no;
             	}
 		You("direct your internal energy to restoring your body!");
                 techt_inuse(tech_no) = techlev(tech_no)*2 + 4;
-                techtout(tech_no) = rn1(1000,500);
+                t_timeout = rn1(1000,500);
 		break;	
 	    case T_DISARM:
 	    	if (P_SKILL(weapon_type(uwep)) == P_NONE) {
@@ -1068,7 +1100,7 @@ int tech_no;
 		} else {
                        pline("%s breaks the stare!", Monnam(mtmp));
 		}
-               	techtout(tech_no) = rn1(50,25);
+               	t_timeout = rn1(50,25);
 	    	break;
 	    case T_BLITZ:
 	    	if (uwep || (u.twoweap && uswapwep)) {
@@ -1080,7 +1112,7 @@ int tech_no;
 	    	}
 	    	if (!doblitz()) return (0);		
 		
-                techtout(tech_no) = rn1(1000,500);
+                t_timeout = rn1(1000,500);
 	    	break;
             case T_PUMMEL:
 	    	if (uwep || (u.twoweap && uswapwep)) {
@@ -1096,7 +1128,7 @@ int tech_no;
 			return(0);
 		}
             	if (!blitz_pummel()) return(0);
-                techtout(tech_no) = rn1(1000,500);
+                t_timeout = rn1(1000,500);
 		break;
             case T_G_SLAM:
 	    	if (uwep || (u.twoweap && uswapwep)) {
@@ -1112,7 +1144,7 @@ int tech_no;
 			return(0);
 		}
             	if (!blitz_g_slam()) return(0);
-                techtout(tech_no) = rn1(1000,500);
+                t_timeout = rn1(1000,500);
 		break;
             case T_DASH:
 		if (!getdir((char *)0)) return(0);
@@ -1121,11 +1153,11 @@ int tech_no;
 			return(0);
 		}
             	if (!blitz_dash()) return(0);
-                techtout(tech_no) = rn1(50, 25);
+                t_timeout = rn1(50, 25);
 		break;
             case T_POWER_SURGE:
             	if (!blitz_power_surge()) return(0);
-		techtout(tech_no) = rn1(1000,500);
+		t_timeout = rn1(1000,500);
 		break;            	
             case T_SPIRIT_BOMB:
 	    	if (uwep || (u.twoweap && uswapwep)) {
@@ -1137,12 +1169,15 @@ int tech_no;
 	    	}
 		if (!getdir((char *)0)) return(0);
             	if (!blitz_spirit_bomb()) return(0);
-		techtout(tech_no) = rn1(1000,500);
+		t_timeout = rn1(1000,500);
 		break;            	
 	    default:
 	    	pline ("Error!  No such effect (%i)", tech_no);
 		break;
-	  }
+        }
+        if (!can_limitbreak())
+	    techtout(tech_no) = (t_timeout * (100 - techlev(tech_no))/100);
+
 	/*By default,  action should take a turn*/
 	return(1);
 }
@@ -1256,7 +1291,7 @@ tech_timeout()
 	        }
 	    } 
 
-	    if (techtout(i)) techtout(i)--;
+	    if (techtout(i) > 0) techtout(i)--;
         }
 }
 
@@ -1963,4 +1998,5 @@ dash(dx, dy, range, verbos)
 	}
     }
 }
+
 
