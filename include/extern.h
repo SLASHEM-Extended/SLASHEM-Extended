@@ -257,7 +257,6 @@ E void FDECL(digactualhole, (int,int,struct monst *,int));
 E boolean FDECL(dighole, (BOOLEAN_P));
 E int FDECL(use_pick_axe, (struct obj *));
 E int FDECL(use_pick_axe2, (struct obj *));
-E int FDECL(use_obj_dig, (struct obj *));
 E boolean FDECL(mdig_tunnel, (struct monst *));
 E void FDECL(watch_dig, (struct monst *,XCHAR_P,XCHAR_P,BOOLEAN_P));
 E void NDECL(zap_dig);
