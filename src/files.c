@@ -13,6 +13,10 @@
 #include "wintty.h" /* more() */
 #endif
 
+#if defined(GL_GRAPHICS) || defined(SDL_GRAPHICS)
+#include "winGL.h"  /* Sdlgl_parse_options */
+#endif
+
 #include <ctype.h>
 
 #if !defined(MAC) && !defined(O_WRONLY) && !defined(AZTEC_C)
@@ -1713,6 +1717,10 @@ char		*tmp_levels;
 	} else if (match_varname(buf, "QT_COMPACT", 10)) {
 		extern int qt_compact_mode;
 		qt_compact_mode = atoi(bufp);
+#endif
+#if defined(GL_GRAPHICS) || defined(SDL_GRAPHICS)
+	} else if (match_varname(buf, "GL_OPTIONS", 10)) {
+		Sdlgl_parse_options(bufp, TRUE, TRUE);
 #endif
 	} else
 		return 0;

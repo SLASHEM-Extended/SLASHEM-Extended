@@ -44,6 +44,14 @@ extern struct window_procs win32_procs;
 #include "winGnome.h"
 extern struct window_procs Gnome_procs;
 #endif
+#ifdef GL_GRAPHICS
+#include "winGL.h"
+extern struct window_procs sdlgl_hardw_procs;
+#endif
+#ifdef SDL_GRAPHICS
+#include "winGL.h"
+extern struct window_procs sdlgl_softw_procs;
+#endif
 #ifdef PROXY_GRAPHICS
 #include "winproxy.h"
 extern struct window_procs proxy_procs;
@@ -92,6 +100,12 @@ struct win_choices {
 #endif
 #ifdef GNOME_GRAPHICS
     { &Gnome_procs, 0 },
+#endif
+#ifdef GL_GRAPHICS
+    { &sdlgl_hardw_procs, 0 },
+#endif
+#ifdef SDL_GRAPHICS
+    { &sdlgl_softw_procs, 0 },
 #endif
 #ifdef PROXY_GRAPHICS
     { &proxy_procs, win_proxy_init },

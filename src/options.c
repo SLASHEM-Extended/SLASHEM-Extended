@@ -15,6 +15,10 @@ NEARDATA struct instance_flags iflags;	/* provide linkage */
 #include <ctype.h>
 #endif
 
+#if defined(GL_GRAPHICS) || defined(SDL_GRAPHICS)
+#include "winGL.h"  /* Sdlgl_parse_options */
+#endif
+
 #include "filename.h"
 
 #define WINTYPELEN 16
@@ -621,6 +625,15 @@ initoptions()
 	/* as a named (or default) fruit.  Wishing for "fruit" will	*/
 	/* result in the player's preferred fruit [better than "\033"].	*/
 	obj_descr[SLIME_MOLD].oc_name = "fruit";
+
+#if defined(GL_GRAPHICS) || defined(SDL_GRAPHICS)
+	/* -AJA- SDL/GL support.  Needs to happen after main config
+	 *       file has been read.
+	 */
+	opts = getenv(SDLGL_ENV_VAR);
+	if (opts)
+		Sdlgl_parse_options(opts, TRUE, FALSE);
+#endif
 
 	return;
 }

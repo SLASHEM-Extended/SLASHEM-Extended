@@ -360,11 +360,12 @@ doborgtoggle()
 }
 #endif
 
-#ifdef TTY_GRAPHICS
+#if defined(TTY_GRAPHICS) || defined(GL_GRAPHICS) || defined(SDL_GRAPHICS)
 #define MAX_EXT_CMD 40		/* Change if we ever have > 40 ext cmds */
 /*
  * This is currently used only by the tty port and is
  * controlled via runtime option 'extmenu'
+ * -AJA- The SDL/GL window systems use it too.
  */
 int
 extcmd_via_menu()	/* here after # - now show pick-list of possible commands */
