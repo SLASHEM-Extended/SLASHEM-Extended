@@ -163,7 +163,7 @@ aboutMsg()
 	  "KDE:\n     http://www.kde.org\n"
 #endif
 	  "Qt:\n     http://www.troll.no\n"
-    "Slash'EM:\n     http://slashem.cjb.net/",
+    "Slash'EM:\n     http://www.slashem.org/",
 	VERSION_MAJOR,
 	VERSION_MINOR,
 	PATCHLEVEL

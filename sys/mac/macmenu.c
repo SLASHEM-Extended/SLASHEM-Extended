@@ -1118,7 +1118,7 @@ aboutNetHack() {
 		}
 		aboutStr[++aboutStr[0]] = CHAR_CR;
 
-		ParamText(aboutStr, "\pslashem.cjb.net", "\p", "\p");
+		ParamText(aboutStr, "\pwww.slashem.org", "\p", "\p");
 		(void) Alert(alrtMenuNote, (ModalFilterUPP) 0L);
 		ResetAlertStage();
 	}

@@ -454,7 +454,7 @@ struct obj *otmp;
 /* WAC updated with SLASHEM info
 	"Report bugs to <devteam@nethack.org>."
 */
-        "To submit bug reports and suggestions go to our web page, http://slashem.cjb.net",
+        "To submit bug reports and suggestions go to our web page, http://www.slashem.org",
         "Talk about Slash'EM on <slashem-discuss@lists.sourceforge.net>"
     };
 

@@ -249,7 +249,7 @@ resource 'vers' (1) {
 	0,
 	"0.0.6e6",
 	"Recover (Slash'EM) 0.0.6e6\n"
-	"slashem.cjb.net"
+	"www.slashem.org"
 };
 
 resource 'vers' (2) {
