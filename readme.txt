@@ -118,6 +118,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -fixed bug 603179: Holy wafers in und.slayer starting inv.
 -Proxy: Added window interface capabilities.
 -GTK: Added preferences dialog.
+-Actioned feature request 710544: Rename Fuzzy Spellbook.
 
 See history.txt for changes made in previous versions.
 

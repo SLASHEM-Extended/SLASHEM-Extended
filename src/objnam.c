@@ -627,7 +627,7 @@ register struct obj *obj;
 	if (obj->oinvis) Strcat(prefix,"invisible ");
 #endif
 #if defined(WIZARD) && defined(UNPOLYPILE)
-	if (wizard && is_fuzzy(obj)) Strcat(prefix,"fuzzy ");
+	if (wizard && is_hazy(obj)) Strcat(prefix,"hazy ");
 #endif
 
 	if ((!Hallucination || Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER)) &&

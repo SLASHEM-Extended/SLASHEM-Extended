@@ -2504,7 +2504,7 @@ register struct obj *obj;
 
 	if ((!carried(obj) || obj->unpaid) &&
 #ifdef UNPOLYPILE
-		!is_fuzzy(obj) &&
+		!is_hazy(obj) &&
 #endif
 		get_obj_location(obj, &ox, &oy, BURIED_TOO|CONTAINED_TOO) &&
 		costly_spot(ox, oy)) {
@@ -2770,12 +2770,12 @@ dodip()
 	    potion->in_use = FALSE;	/* didn't go poof */
 	    return(1);
 #ifdef UNPOLYPILE
-	} else if (potion->otyp == POT_RESTORE_ABILITY && is_fuzzy(obj)) {
+	} else if (potion->otyp == POT_RESTORE_ABILITY && is_hazy(obj)) {
 		/* KMH -- Restore ability will stop unpolymorphing */
 		stop_timer(UNPOLY_OBJ, (genericptr_t) obj);
 		obj->oldtyp = STRANGE_OBJECT;
 		if (!Blind)
-			pline("%s seems less fuzzy.", Yname2(obj));
+			pline("%s seems less hazy.", Yname2(obj));
 		useup(potion);
 		return (1);
 #endif
@@ -2846,13 +2846,10 @@ dodip()
 	if (!always_visible(obj)) {
 	    if (potion->otyp == POT_INVISIBILITY && !obj->oinvis) {
 		obj->oinvis = TRUE;
-		if (!Blind) {
-		    if (!See_invisible)
-			pline("Where did %s go?", the(xname(obj)));
-		    else
-			You("notice a little haziness around %s.",
-				the(xname(obj)));
-		}
+		if (!Blind)
+		    pline(!See_invisible ? "Where did %s go?" :
+			  "Gee!  All of a sudden you can see right through %s.",
+			  the(xname(obj)));
 		goto poof;
 	    } else if (potion->otyp == POT_SEE_INVISIBLE && obj->oinvis) {
 		obj->oinvis = FALSE;
@@ -2860,7 +2857,7 @@ dodip()
 		    if (!See_invisible)
 			pline("So that's where %s went!", the(xname(obj)));
 		    else
-			pline_The("haziness around %s disappears.",
+			You("can no longer see through %s.",
 				the(xname(obj)));
 		}
 		goto poof;

@@ -2289,7 +2289,7 @@ register boolean unpaid_only;
 		if (saleable(shkp, otmp) &&
 			!otmp->unpaid && otmp->oclass != BALL_CLASS &&
 #if defined(UNPOLYPILE)
-			!is_fuzzy(otmp) &&
+			!is_hazy(otmp) &&
 #endif
 			!(otmp->oclass == FOOD_CLASS && otmp->oeaten) &&
 			!(Is_candle(otmp) && otmp->age <
@@ -3010,7 +3010,7 @@ move_on:
 	   || obj->oclass == BALL_CLASS
 	   || obj->oclass == CHAIN_CLASS || offer == 0L
 #if defined(UNPOLYPILE)
-	   || is_fuzzy(obj)
+	   || is_hazy(obj)
 #endif
 	   || (obj->oclass == FOOD_CLASS && obj->oeaten)
 	   || (Is_candle(obj) &&

@@ -448,7 +448,7 @@ set_obj_poly(obj, old)
 struct obj *obj, *old;
 {
 	/* Same unpolytime (500,500) as for player */
-	if (is_fuzzy(old))
+	if (is_hazy(old))
 	    obj->oldtyp = old->oldtyp;
 	else
 	    obj->oldtyp = old->otyp;
@@ -471,7 +471,7 @@ unpoly_obj(arg, timeout)
 	boolean silent = (timeout != monstermoves);     /* unpoly'ed while away */
 
 	obj = (struct obj *) arg;
-	if (!is_fuzzy(obj)) return;
+	if (!is_hazy(obj)) return;
 	oldobj = obj->oldtyp;
 
 	if (carried(obj) && !silent) /* silent == TRUE is a strange case... */
@@ -489,7 +489,7 @@ unpoly_obj(arg, timeout)
 
 #ifdef UNPOLYPILE
 /*
- * Cleanup a fuzzy object if timer stopped.
+ * Cleanup a hazy object if timer stopped.
  */
 /*ARGSUSED*/
 static void

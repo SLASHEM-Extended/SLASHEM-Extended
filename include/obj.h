@@ -121,7 +121,7 @@ struct obj {
 
 /* All objects */
 #ifdef UNPOLYPILE
-#define is_fuzzy(otmp)	((otmp)->oldtyp != STRANGE_OBJECT)
+#define is_hazy(otmp)	((otmp)->oldtyp != STRANGE_OBJECT)
 #endif
 /* [ALI] None of the objects listed here can be picked up by normal monsters.
  * If any such objects need to be marked as indestructible then consideration

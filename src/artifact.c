@@ -303,7 +303,7 @@ register boolean mod;
 		    if (mod) {
 			otmp->quan = 1; /* guarantee only one of this artifact */
 #ifdef UNPOLYPILE	/* Artifacts are immune to unpolypile --ALI */
-			if (is_fuzzy(otmp)) {
+			if (is_hazy(otmp)) {
 			    (void) stop_timer(UNPOLY_OBJ, (genericptr_t) otmp);
 			    otmp->oldtyp = STRANGE_OBJECT;
 			}

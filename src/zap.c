@@ -1503,7 +1503,7 @@ poly_obj(obj, id)
 	    }
 #ifdef UNPOLYPILE
 	    else if (otmp->otyp == LAND_MINE || otmp->otyp == BEARTRAP) {
-		/* Avoid awkward questions about traps set using fuzzy objs */
+		/* Avoid awkward questions about traps set using hazy objs */
 		unpoly = FALSE;
 	    }
 #endif
@@ -1569,7 +1569,7 @@ poly_obj(obj, id)
 		 * special effects when putting them on (no meat objects have
 		 * any) and only three worn masks are possible.
 		 */
-	    /* [ALI] Unfortunately, fuzzy polymorphs means that this
+	    /* [ALI] Unfortunately, hazy polymorphs means that this
 	     * is not true for Slash'EM, and we need to be a little more
 	     * careful.
 	     */
@@ -1642,8 +1642,8 @@ poly_obj(obj, id)
 	/* WAC -- Attach unpoly timer if this is a standard poly */
 	if (unpoly /* && !rn2(20) */) {
 		set_obj_poly(otmp, obj);
-		if (is_fuzzy(otmp) && !Blind && carried(obj))
-			pline("%s seems fuzzy.", Yname2(otmp));
+		if (is_hazy(otmp) && !Blind && carried(obj))
+			pline("%s seems hazy.", Yname2(otmp));
 	}
 #endif
 
@@ -1671,7 +1671,7 @@ poly_obj(obj, id)
 
 	if ((!carried(otmp) || obj->unpaid) &&
 #if defined(UNPOLYPILE)
-		!is_fuzzy(obj) &&
+		!is_hazy(obj) &&
 #endif
 		get_obj_location(otmp, &ox, &oy, BURIED_TOO|CONTAINED_TOO) &&
 		costly_spot(ox, oy)) {
