@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.2 2000-08-29 11:49:56 j_ali Exp $
+  $Id: winGTK.h,v 1.3 2000-08-30 13:48:50 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -20,6 +20,9 @@
 
 #include "hack.h"
 #include "wintty.h"
+
+#define NHW_NONE 0		/* Unallocated window type.  Must be	*/
+				/* different from any other NHW_* type. */
 
 #define	NH_PAD			5
 
@@ -134,6 +137,8 @@ extern int		nh_check_map_visual(int);
 
 extern void		main_hook(void);
 extern void		quit_hook(void);
+extern gint		GTK_default_key_press(GtkWidget *widget,
+			  GdkEventKey *event, gpointer data);
 
 extern GtkWidget	*nh_radar_new(void);
 extern void		nh_radar_update(void);
@@ -155,6 +160,31 @@ extern void		nh_option_lock(void);
  */
 extern int		create_toptenwin();
 
+
+struct menu {
+    GtkCList	*clist;
+    const char	*prompt;
+    struct _NHMenuItem *nhMenuItem;
+    int		alloc_menuitem;
+    int		n_menuitem;
+    int		c_menuitem;
+};
+
+struct menu_info_t {
+    struct menu	curr_menu;		/* Menu being displayed. */
+    struct menu	new_menu;		/* New menu being built. */
+    /*
+     * cancelled may take the following values:
+     *	0	Menu window is blocking on user input
+     *	1	Menu window is being torn down
+     *	-1	Menu window is non-blocking
+     */
+    int		cancelled;
+    int		n_select;
+    int		selmode;
+    int 	keysym;
+    int		valid_widgets;
+};
 
 typedef struct _NHWindow{
     int		type;
@@ -180,7 +210,14 @@ typedef struct _NHWindow{
     int	n_button;
     GtkWidget	*button[20];
 
+    union {
+	struct menu_info_t	*Menu_info;	/* menu window info */
+    } Win_info;
+
 }NHWindow;
+
+/* Defines to use for the window information union. */
+#define menu_information   Win_info.Menu_info
 
 typedef struct _TileTab{
     char *ident;

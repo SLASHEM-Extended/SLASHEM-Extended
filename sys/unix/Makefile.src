@@ -673,7 +673,8 @@ gtkgetlin.o: ../win/gtk/gtkgetlin.c ../include/winGTK.h $(HACK_H)
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkgetlin.c
 gtkstatus.o: ../win/gtk/gtkstatus.c ../include/winGTK.h $(HACK_H)
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkstatus.c
-gtkmenu.o: ../win/gtk/gtkmenu.c ../include/winGTK.h $(HACK_H)
+gtkmenu.o: ../win/gtk/gtkmenu.c ../include/winGTK.h $(HACK_H) \
+		../include/patchlevel.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmenu.c
 gtkyn.o: ../win/gtk/gtkyn.c ../include/winGTK.h $(HACK_H)
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkyn.c

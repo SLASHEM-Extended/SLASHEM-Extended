@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.2 2000-08-23 12:26:58 j_ali Exp $
+  $Id: gtk.c,v 1.3 2000-08-30 13:48:51 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -116,7 +116,7 @@ struct window_procs GTK_procs = {
     GTK_end_menu,
     GTK_select_menu,
     genl_message_menu,
-    hook, /*tty_update_inventory,*/
+    GTK_update_inventory,
     GTK_mark_synch,
     GTK_wait_synch,
 #ifdef CLIPPING
@@ -566,8 +566,8 @@ default_destroy(GtkWidget *widget, gpointer data)
     return FALSE;
 }
 
-static gint
-default_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
+gint
+GTK_default_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
     keysym = nh_keysym(event);
 
@@ -1065,12 +1065,17 @@ void
 GTK_init_nhwindows(int *argc, char **argv)
 {
     char *credit_file;
+    int i;
     uid_t savuid;
     if(initialized2)
 	goto selection;
 
     gtk_set_locale();
     nh_rc();
+
+    /* Init windows to nothing. */
+    for (i = 0; i < MAXWIN; i++)
+	gtkWindows[i].type = NHW_NONE;
 
     /*
      * setuid hack: make sure that if nethack is setuid, to use real uid
@@ -1233,6 +1238,19 @@ GTK_init_nhwindows(int *argc, char **argv)
 	nh_map_new(main_window), main_vbox, "",
 	FALSE, FALSE, 0);
 
+    /*
+     * Initialize standard windows. It used to be the case that window type
+     * and id were equivalent (and therefore there could only be one type
+     * of each window). We maintain this correlation for the standard
+     * windows for compatibility -ALI
+     */
+    gtkWindows[NHW_MESSAGE].type = NHW_MESSAGE;
+    gtkWindows[NHW_MESSAGE].w = main_window;	
+    gtkWindows[NHW_STATUS].type = NHW_STATUS;
+    gtkWindows[NHW_STATUS].w = main_window;	
+    gtkWindows[NHW_MAP].type = NHW_MAP;
+    gtkWindows[NHW_MAP].w = main_window;	
+
  selection:
     initialized = 1;
 
@@ -1279,12 +1297,12 @@ GTK_init_nhwindows2()
 
     gtk_signal_connect(
 	GTK_OBJECT(main_window), "key_press_event",
-	GTK_SIGNAL_FUNC(default_key_press), NULL);
+	GTK_SIGNAL_FUNC(GTK_default_key_press), NULL);
 
 #ifdef RADAR
     gtk_signal_connect(
 	GTK_OBJECT(main_radar), "key_press_event",
-	GTK_SIGNAL_FUNC(default_key_press), NULL);
+	GTK_SIGNAL_FUNC(GTK_default_key_press), NULL);
 #endif
 
     initialized2 = 1;
@@ -1298,13 +1316,13 @@ GTK_create_nhwindow(int type)
 
     switch(type){
 /* 
-   these windows had already created
+   these windows have already been created
 */
     case NHW_MESSAGE:
     case NHW_STATUS:
     case NHW_MAP:
-	w = &gtkWindows[type];
-	w->w = main_window;	
+	if (gtkWindows[type].type != type)
+	    panic("GTK_create_nhwindow: standard window (%d) not valid",type);
 	return type;
 	break;
 /*
@@ -1312,14 +1330,21 @@ GTK_create_nhwindow(int type)
 */
     case NHW_MENU:
     case NHW_TEXT:
-	id = type;
-	while(id < MAXWIN){
+	for (id = 0; id < MAXWIN; id++) {
 	    w = &gtkWindows[id];
-	    memset(w, 0, sizeof(NHWindow));
-
-	    return id;
-	    ++id;
+	    if (w->type == NHW_NONE)
+	    {
+		memset(w, 0, sizeof(NHWindow));
+		w->type = type;
+		if (type == NHW_MENU)
+		    GTK_create_menu_window(w);
+		return id;
+	    }
 	}
+	panic("GTK_create_nhwindow: no free windows!");
+	break;
+    default:
+	panic("GTK_create_nhwindow: Unknown type (%d)!", type);
     }
     return 0;
 }
@@ -1338,15 +1363,18 @@ GTK_destroy_nhwindow(winid id)
 
     w = &gtkWindows[id]; 
 
+    if (w->type == NHW_MENU)
+	GTK_destroy_menu_window(w);
+
     if(w->w){
 	gtk_widget_hide_all(w->w);
 	if(w->hid > 0)
 	    gtk_signal_disconnect(GTK_OBJECT(w->w), w->hid);
 
 	gtk_widget_destroy(w->w);
-
-	memset(w, 0, sizeof(NHWindow));
     }
+    memset(w, 0, sizeof(NHWindow));
+    w->type = NHW_NONE;
 }
 
 void
@@ -1413,7 +1441,7 @@ GTK_putstr(winid id, int attr, const char *str)
 
 	gtk_signal_connect(
 	    GTK_OBJECT(w->w), "key_press_event",
-	    GTK_SIGNAL_FUNC(default_key_press), NULL);
+	    GTK_SIGNAL_FUNC(GTK_default_key_press), NULL);
 	w->hid = gtk_signal_connect(
 	    GTK_OBJECT(w->w), "destroy",
 	    GTK_SIGNAL_FUNC(default_destroy), &w->w);
@@ -1545,7 +1573,7 @@ GTK_display_file(const char *fname, BOOLEAN_P complain)
     gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
     gtk_signal_connect(
 	GTK_OBJECT(w), "key_press_event",
-	GTK_SIGNAL_FUNC(default_key_press), NULL);
+	GTK_SIGNAL_FUNC(GTK_default_key_press), NULL);
     hid = gtk_signal_connect(
 	GTK_OBJECT(w), "destroy",
 	GTK_SIGNAL_FUNC(default_destroy), &w);
@@ -1612,6 +1640,15 @@ GTK_player_selection(void)
 	gtk_main();
 	pl_character[0] = pl_selection;
     }
+}
+
+void
+GTK_update_inventory(void)
+{
+    if (flags.perm_invent)
+	(void) display_inventory((char *)0, FALSE);
+    else if (WIN_INVEN != WIN_ERR)
+	GTK_unmap_menu_window(&gtkWindows[WIN_INVEN]);
 }
 
 void
@@ -1684,7 +1721,7 @@ GTK_outrip(winid id, int how)
 	GTK_SIGNAL_FUNC(default_button_press), NULL);
     gtk_signal_connect(
 	GTK_OBJECT(w), "key_press_event",
-	GTK_SIGNAL_FUNC(default_key_press), NULL);
+	GTK_SIGNAL_FUNC(GTK_default_key_press), NULL);
     gtk_signal_connect(
 	GTK_OBJECT(w), "destroy",
 	GTK_SIGNAL_FUNC(default_destroy), &w);

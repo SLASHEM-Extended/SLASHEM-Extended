@@ -1831,6 +1831,8 @@ goodfruit:
 # endif
 			}
 #endif
+                        else if ((boolopt[i].addr) == &flags.perm_invent)
+                            update_inventory();
 
 			return;
 		}
