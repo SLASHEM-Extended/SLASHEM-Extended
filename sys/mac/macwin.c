@@ -13,6 +13,7 @@
 #include <Gestalt.h>
 #include <TextUtils.h>
 #include <DiskInit.h>
+#include <Script.h>
 
 #ifdef MAC_MPW
 # include <ControlDefinitions.h>
@@ -1863,20 +1864,32 @@ HandleKey (EventRecord *theEvent) {
 			/* Flush key queue */
 			keyQueueCount = keyQueueWrite = keyQueueRead = 0;
 			theEvent->message = '\033';
-			goto dispatchKey;
 		} else {
 			UndimMenuBar ();
 			DoMenuEvt (MenuKey (theEvent->message & 0xff));
+			return;
 		}
+	} else if (theEvent->modifiers & optionKey) {
+			if ((theEvent->message & charCodeMask) == '#') {
+				/* On the British keyboard layout the # key is option+3 */
+				theEvent->modifiers -= optionKey;
+			} else {
+	   			Ptr     KCHRPtr;
+	   			UInt16  keycode;
+	   			unsigned long    state = 0;
+	   			KCHRPtr = (char*)GetScriptManagerVariable(smKCHRCache);
+				keycode = (theEvent->message & keyCodeMask) >> 8;
+				keycode |= (theEvent->modifiers - optionKey) & 0xFF00;
+				keycode = KeyTranslate(KCHRPtr, keycode, &state);
+				theEvent->message &= ~charCodeMask;
+				theEvent->message |= keycode | 0x80;
+			}
+	}
+	if (theWindow) {
+		int kind = ((WindowPeek)theWindow)->windowKind - WIN_BASE_KIND;
+		winKeyFuncs [kind] (theEvent, theWindow);
 	} else {
-
-dispatchKey :
-		if (theWindow) {
-			int kind = ((WindowPeek)theWindow)->windowKind - WIN_BASE_KIND;
-			winKeyFuncs [kind] (theEvent, theWindow);
-		} else {
-			GeneralKey (theEvent, (WindowPtr) 0);
-		}
+		GeneralKey (theEvent, (WindowPtr) 0);
 	}
 }
 
