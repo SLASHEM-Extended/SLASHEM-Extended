@@ -114,6 +114,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -fixed bug 466802: Items which count as magic.
 -fixed bug 575210: Invisible mummy wrappings.
 -fixed bug 405815: Invisible gold is inconsistent.
+-fixed bug 609748: Elfrist should be PM_ORC.
 
 See history.txt for changes made in previous versions.
 

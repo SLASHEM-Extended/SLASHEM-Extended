@@ -255,7 +255,7 @@ A("Bat from Hell",                BASEBALL_BAT,
 
 A("Elfrist",                    ORCISH_SPEAR,
 	SPFX_DFLAG2, 0, M2_ELF,
-	PHYS(5,15),     NO_DFNS,        NO_CARY,        0, A_CHAOTIC, PM_HUMAN_WEREWOLF, NON_PM, 300L ),
+	PHYS(5,15),     NO_DFNS,        NO_CARY,        0, A_CHAOTIC, PM_HUMAN_WEREWOLF, PM_ORC, 300L ),
 
 A("Plague", DARK_ELVEN_BOW,	/* KMH */
 	(SPFX_RESTR|SPFX_DEFN), 0, 0,
