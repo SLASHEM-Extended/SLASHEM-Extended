@@ -177,7 +177,7 @@
 #ifdef UNIX
 /* path and file name extension for compression program */
 # define COMPRESS "/usr/bin/compress" /* Lempel-Ziv compression */
-# define COMPRESS_EXTENSION ".Z"	 /* compress's extension */
+# define COMPRESS_EXTENSION ".Z"	     /* compress's extension */
 
 /* An example of one alternative you might want to use: */
 /* # define COMPRESS "/usr/local/bin/gzip" */   /* FSF gzip compression */
@@ -295,7 +295,7 @@ typedef unsigned char	uchar;
  */
 #define BITFIELDS	/* Good bitfield handling */
 
-/* #define STRNCMPI */	/* compiler/library has the strncmpi function */
+/* #define STRNCMPI */ /* compiler/library has the strncmpi function */
 
 /*
  * There are various choices for the NetHack vision system.  There is a
@@ -389,8 +389,8 @@ typedef unsigned char	uchar;
 
 #define EXP_ON_BOTL	/* Show experience on bottom line */
 /* #define SCORE_ON_BOTL */	/* added by Gary Erickson (erickson@ucivax) */
-/* #define BORG */	/* Works only under DOS */
-/* #define KEEP_SAVE */	/* Keep savefiles after Restore (wac@intergate.bc.ca)*/
+/* #define BORG */            /* Works only under DOS */
+/* #define KEEP_SAVE */       /* Keep savefiles after Restore (wac@intergate.bc.ca)*/
 /*#define CHARON */          /* Charon's boat, enables Cerebus */
 #define SHOW_DMG        /* WAC made dmg reports optional (wac@intergate.bc.ca)*/
 #define SHOW_WEIGHT     /* [max] added display of object weight when picking up */

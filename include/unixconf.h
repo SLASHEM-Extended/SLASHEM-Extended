@@ -169,7 +169,6 @@
  * (This might be preferable for security reasons.)
  * #define DEF_PAGER	".../mydir/mypager"
  */
-/* #define DEF_PAGER "/usr/bin/pager" */
 
 /*
  * If you want the static parts of your playground on a read-only file
