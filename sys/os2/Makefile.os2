@@ -41,13 +41,11 @@ with_x11 = yes
 #	Compiler and linker selection.
 #
 
-CC	= gcc		# GCC
-
-.IF $(format) == a.out
+CC	= gcc
 LINK	= gcc
-.ELSE
-LINK	= link386	# GCC OMF
-LFLAGS = /noig /stack:40000	# GCC OMF
+
+.IF $(format) == omf
+LFLAGS	= -Zomf -Zsys
 .END
 
 #
@@ -168,7 +166,7 @@ X11ROOT = c:\xfree86
 #
 
 GAME	= slashem
-GAMEDES = "SlashEM 0.0.6E9"
+GAMEDES = "SlashEM 0.0.7"
 
 #
 #	GCC: compile only, compiler id, object format selection, warnings,
@@ -197,11 +195,14 @@ WINX11VARDAT= x11tiles x11bigtiles pet_mark.xbm rip.xpm
 #	all be benign.
 #
 
-WARN	=#-W -Wimplicit -Wreturn-type -Wunused -Wformat -Wswitch -Wshadow -Wcast-qual -Wwrite-strings -DGCC_WARN # GCC
+.IF $(debug) == yes
+WARN	=-W -Wimplicit -Wreturn-type -Wunused -Wformat -Wswitch -Wshadow -Wcast-qual -Wwrite-strings -DGCC_WARN # GCC
+.ELSE
+WARN	=-w
+.END
 
 #
-#	GCC object format selection.  The upper line for standard OS/2 OMF
-#	object format, the lower for Unix style a.out format.
+#	GCC object format selection.
 #
 
 .IF $(format) == omf
@@ -219,7 +220,7 @@ CDFLAGS = -g		# GDB (GCC a.out)
 LDFLAGS = -g		# - " -
 .ELSE
 CDFLAGS = -O -s
-LDFLAGS = -s
+LDFLAGS = $(LFLAGS) -s
 .END
 
 #
@@ -232,27 +233,16 @@ STDC	=-ansi
 #	Possible system object files required during linking.
 #
 
-.IF $(format) == omf
-SYSOBJ = $(PLIBP)\crt0.obj $(PLIBP)\end.lib	# GCC OMF
-.ELSE
-SYSOBJ =					# GCC a.out
-.END
+SYSOBJ 	=
 
 #
 #	Compiler library selection.  Change if necessary.
 #
-#	GCC emx 0.9 OMF: C single-threaded libs, Unix system call alias lib,
-#	extra GCC lib, single threaded system lib, OS/2 API entry points.
-#
-#	GCC a.out: extra GCC lib, C standard lib, extra GCC lib (again),
+#	GCC : extra GCC lib, C standard lib, extra GCC lib (again),
 #	OS/2 API entry points.
 #
 
-.IF $(format) == omf
-PLIBS	=$(PLIBP)\st\c $(PLIBP)\st\c_app $(PLIBP)\c_alias $(PLIBP)\gcc $(PLIBP)\st\sys $(PLIBP)\os2	# GCC emx 0.9 OMF
-.ELSE
-PLIBS	=-lgcc -lc -lgcc -los2 $(X11LIBS)	# GCC a.out
-.END
+PLIBS	=-lgcc -lc -lgcc -los2 $(X11LIBS)
 
 #
 #	C libraries used by makedefs, lev_comp and dgn_comp (change if
@@ -272,26 +262,15 @@ PSYSCC	= $(BEG) cd $(SSYS) $(SEP) $(CC) $(CFLAGS) $(OPT) $@ pc$(AB) $(END)
 WINCC	= $(BEG) cd $(WIN) $(SEP) $(CC) $(CFLAGS) $(OPT) $@ $(AB) $(END)
 
 #
-#	Default linker skeletons.  The upper six lines for everything
-#	that uses standard OS/2 object format (GCC OMF),  The lower six
-#	for GCC a.out format.
+#	Default linker skeletons.
 #
 
-.IF $(format) == omf
-GAMELN = $(LINK) @$(TEMP)\$(GAME).rsp
-MKDFLN = $(LINK) @$(TEMP)\makedefs.rsp
-LEVCLN = $(LINK) @$(TEMP)\lev_comp.rsp
-DGNCLN = $(LINK) @$(TEMP)\dgn_comp.rsp
-RCVRLN = $(LINK) @$(TEMP)\recover.rsp
-DLBRLN = $(LINK) @$(TEMP)\dlb.rsp
-.ELSE
-GAMELN	= $(CC) $(LDFLAGS) -o $(GAMEDIR)\$(GAME).exe @$(TEMP)\$(GAME).r $(PLIBS) $(WINX11CFLAGS) $(WINX11LIB)
+GAMELN	= $(CC) $(LDFLAGS) -o $(GAMEFILE) @$(TEMP)\$(GAME).r $(PLIBS) $(WINX11CFLAGS) $(WINX11LIB)
 MKDFLN	= $(CC) $(LDFLAGS) -o $(TEMP)\makedefs.exe $(TEMP)\$(MKDFDEF) $(SYSOBJ) $(MAKEOBJS) $(PLIBS)
 LEVCLN	= $(CC) $(LDFLAGS) -o $(TEMP)\lev_comp.exe $(TEMP)\$(LEVCDEF) $(SYSOBJ) $(SPLEVOBJS) $(PLIBS)
 DGNCLN	= $(CC) $(LDFLAGS) -o $(TEMP)\dgn_comp.exe $(TEMP)\$(DGNCDEF) $(SYSOBJ) $(DGNCOMPOBJS) $(PLIBS)
 RCVRLN	= $(CC) $(LDFLAGS) -o $(GAMEDIR)\recover.exe $(TEMP)\$(RCVRDEF) $(SYSOBJ) $(RECOVOBJS) $(PLIBS)
 DLBRLN	= $(CC) $(LDFLAGS) -o $(TEMP)\dlb.exe $(TEMP)\$(DLBDEF) $(SYSOBJ) $(DLBOBJS) $(PLIBS)
-.END
 
 #
 #	OS/2 module definition files for NetHack,
@@ -534,13 +513,17 @@ SPEC_LEVS = \
  tower3.lev	valley.lev	wizard1.lev	wizard2.lev	wizard3.lev \
  astral.lev	air.lev 	earth.lev	fire.lev	water.lev   \
  soko1-1.lev	soko1-2.lev	soko2-1.lev	soko2-2.lev	soko3-1.lev \
- soko3-2.lev	soko4-1.lev	soko4-2.lev	beholder.lev	blkmar.lev  \
- grund-1.lev	grund-2.lev	grund-3.lev	cav2fill.lev	demogorg.lev\
- dispater.lev	dragons.lev	geryon.lev	guild.lev	frnknstn.lev\
- kobold-1.lev	kobold-2.lev	lich.lev	mall.lev	mall-1.lev  \
- mall-2.lev	mineking.lev	mtemple.lev	nightmar.lev	nymph.lev   \
- rats.lev	sea.lev 	spiders.lev	stor-1.lev	stor-2.lev  \
- stor-3.lev	tomb.lev	yeenoghu.lev
+ soko3-2.lev	soko4-1.lev	soko4-2.lev \
+ \
+ soko1-3.lev	soko1-4.lev	soko2-3.lev	soko2-4.lev	soko2-5.lev \
+ soko2-6.lev	soko2-7.lev	soko3-3.lev	soko3-4.lev	soko3-5.lev \
+ soko3-6.lev	soko3-7.lev	soko4-3.lev	soko4-4.lev	soko4-5.lev \
+ beholder.lev	blkmar.lev	cav2fill.lev	demogorg.lev	dispater.lev\
+ dragons.lev	geryon.lev	grund-1.lev	grund-2.lev	grund-3.lev \
+ guild.lev	frnknstn.lev	kobold-1.lev	kobold-2.lev	lich.lev    \
+ mall.lev	mall-1.lev	mall-2.lev	mineking.lev	mtemple.lev \
+ nightmar.lev	nymph.lev	rats.lev	sea.lev 	spiders.lev \
+ stor-1.lev	stor-2.lev	stor-3.lev	tomb.lev	yeenoghu.lev
 
 QUEST_LEVS = \
  Arc-goal.lev Arc-fila.lev Arc-filb.lev Arc-loca.lev Arc-strt.lev \
@@ -784,8 +767,7 @@ do_def :
 #
 
 $(GAME) : $(GAMEFILE)
-$(GAME).exe : $(GAMEFILE)
-$(GAMEFILE) : $(TEMP)\$(GAME).rsp $(TEMP)\$(GAME).r
+$(GAMEFILE) : $(TEMP)\$(GAME).r
 	$(GAMELN)
 
 $(TEMP)\$(GAME).r : $(HOBJ) $(TEMP)\$(GAMEDEF)
@@ -925,57 +907,13 @@ $(TEMP)\$(GAME).r : $(HOBJ) $(TEMP)\$(GAMEDEF)
 	$(X11ECHO) $(WINX11OBJ11) >> $@
 .END
 
-$(TEMP)\$(GAME).rsp : $(HOBJ) $(TEMP)\$(GAMEDEF)
-	$(ECHO) $(SYSOBJ) $(VOBJ01) +> $@
-	$(ECHO) $(VOBJ02) +>> $@
-	$(ECHO) $(VOBJ03) +>> $@
-	$(ECHO) $(VOBJ04) +>> $@
-	$(ECHO) $(VOBJ05) +>> $@
-	$(ECHO) $(VOBJ06) +>> $@
-	$(ECHO) $(VOBJ07) +>> $@
-	$(ECHO) $(VOBJ08) +>> $@
-	$(ECHO) $(VOBJ09) +>> $@
-	$(ECHO) $(VOBJ10) +>> $@
-	$(ECHO) $(VOBJ11) +>> $@
-	$(ECHO) $(VOBJ12) +>> $@
-	$(ECHO) $(VOBJ13) +>> $@
-	$(ECHO) $(VOBJ14) +>> $@
-	$(ECHO) $(VOBJ15) +>> $@
-	$(ECHO) $(VOBJ16) +>> $@
-	$(ECHO) $(VOBJ17) +>> $@
-	$(ECHO) $(VOBJ18) +>> $@
-	$(ECHO) $(VOBJ19) +>> $@
-	$(ECHO) $(VOBJ20) +>> $@
-	$(ECHO) $(VOBJ21) +>> $@
-	$(ECHO) $(VOBJ22) +>> $@
-	$(ECHO) $(VOBJ23) +>> $@
-	$(ECHO) $(VOBJ24) +>> $@
-	$(ECHO) $(VOBJ25) +>> $@
-	$(ECHO) $(VOBJ26) +>> $@
-	$(ECHO) $(VOBJ27) +>> $@
-	$(ECHO) $(VOBJ28) +>> $@
-	$(ECHO) $(VOBJ29) +>> $@
-	$(ECHO) $(VOBJ30) +>> $@
-	$(ECHO) $(HHOBJ)>> $@
-	$(ECHO) $(GAMEDIR)\$(GAME).exe>> $@
-	$(ECHO) $(TEMP)\$(GAME)>> $@
-	$(ECHO) $(PLIBS) $(TERMLIB)>> $@
-	$(ECHO) $(TEMP)\$(GAMEDEF) $(LFLAGS);>> $@
-
 #
 #	Targets for makedefs.
 #
 
 makedefs : $(TEMP)\makedefs.exe
-$(TEMP)\makedefs.exe : $(TEMP)\makedefs.rsp
+$(TEMP)\makedefs.exe : $(MAKEOBJS) $(TEMP)\$(MKDFDEF)
 	$(MKDFLN)
-
-$(TEMP)\makedefs.rsp : $(MAKEOBJS) $(TEMP)\$(MKDFDEF)
-	$(ECHO) $(SYSOBJ) $(MAKEOBJS)> $@
-	$(ECHO) $(TEMP)\makedefs.exe>> $@
-	$(ECHO) nul>> $@
-	$(ECHO) $(RLIBS)>> $@
-	$(ECHO) $(MKDFMD) $(LFLAGS);>> $@
 
 $(OBJ)\makedefs.o : $(UTIL)\$(CB) $(CONFIG_H) $(INCL)\permonst.h $(INCL)\objclass.h \
 		    $(INCL)\monsym.h $(INCL)\artilist.h $(INCL)\qtext.h
@@ -986,17 +924,8 @@ $(OBJ)\makedefs.o : $(UTIL)\$(CB) $(CONFIG_H) $(INCL)\permonst.h $(INCL)\objclas
 #
 
 lev_comp : $(TEMP)\lev_comp.exe
-$(TEMP)\lev_comp.exe : $(TEMP)\lev_comp.rsp
+$(TEMP)\lev_comp.exe : $(SPLEVOBJS) $(TEMP)\$(LEVCDEF)
 	$(LEVCLN)
-
-$(TEMP)\lev_comp.rsp : $(SPLEVOBJS) $(TEMP)\$(LEVCDEF)
-	$(ECHO) $(SYSOBJ) $(SOBJ01) +> $@
-	$(ECHO) $(SOBJ02) +>> $@
-	$(ECHO) $(SOBJ03)>> $@
-	$(ECHO) $(TEMP)\lev_comp.exe>> $@
-	$(ECHO) nul>> $@
-	$(ECHO) $(RLIBS)>> $@
-	$(ECHO) $(LEVCMD) $(LFLAGS);>> $@
 
 $(OBJ)\lev_yacc.o : $(UTIL)\$(CB) $(HACK_H) $(INCL)\sp_lev.h
 	$(UTILCC)
@@ -1017,16 +946,8 @@ $(UTIL)\lev_lex.c  : $(UTIL)\lev_comp.l
 #
 
 dgn_comp : $(TEMP)\dgn_comp.exe
-$(TEMP)\dgn_comp.exe : $(TEMP)\dgn_comp.rsp
+$(TEMP)\dgn_comp.exe : $(DGNCOMPOBJS) $(TEMP)\$(DGNCDEF)
 	$(DGNCLN)
-
-$(TEMP)\dgn_comp.rsp : $(DGNCOMPOBJS) $(TEMP)\$(DGNCDEF)
-	$(ECHO) $(SYSOBJ) $(DOBJ01) +> $@
-	$(ECHO) $(DOBJ02)>> $@
-	$(ECHO) $(TEMP)\dgn_comp.exe>> $@
-	$(ECHO) nul>> $@
-	$(ECHO) $(RLIBS)>> $@
-	$(ECHO) $(DGNCMD) $(LFLAGS);>> $@
 
 $(OBJ)\dgn_yacc.o : $(UTIL)\$(CB) $(CONFIG_H) $(INCL)\date.h $(INCL)\dgn_file.h
 	$(UTILCC)
@@ -1096,15 +1017,8 @@ faketouch :
 #
 
 recover : $(GAMEDIR)\recover.exe
-$(GAMEDIR)\recover.exe : $(TEMP)\recover.rsp
+$(GAMEDIR)\recover.exe : $(RECOVOBJS) $(TEMP)\$(RCVRDEF)
 	$(RCVRLN)
-
-$(TEMP)\recover.rsp : $(RECOVOBJS) $(TEMP)\$(RCVRDEF)
-	$(ECHO) $(SYSOBJ) $(RECOVOBJS)> $@
-	$(ECHO) $(GAMEDIR)\recover.exe>> $@
-	$(ECHO) nul>> $@
-	$(ECHO) $(PLIBS)>> $@
-	$(ECHO) $(TEMP)\$(RCVRDEF) $(LFLAGS);>> $@
 
 $(OBJ)\recover.o : $(UTIL)\$(CB) $(CONFIG_H)
 	$(UTILCC)
@@ -1114,15 +1028,8 @@ $(OBJ)\recover.o : $(UTIL)\$(CB) $(CONFIG_H)
 #
 
 dlb : $(TEMP)\dlb.exe
-$(TEMP)\dlb.exe : $(TEMP)\dlb.rsp
+$(TEMP)\dlb.exe : $(DLBOBJS) $(TEMP)\$(DLBDEF)
 	$(DLBRLN)
-
-$(TEMP)\dlb.rsp : $(DLBOBJS) $(TEMP)\$(DLBDEF)
-	$(ECHO) $(SYSOBJ) $(DLBOBJS)> $@
-	$(ECHO) $(TEMP)\dlb.exe>> $@
-	$(ECHO) nul>> $@
-	$(ECHO) $(PLIBS)>> $@
-	$(ECHO) $(TEMP)\$(DLBDEF) $(LFLAGS);>> $@
 
 $(OBJ)\dlb_main.o : $(UTIL)\$(CB) $(CONFIG_H) $(INCL)\dlb.h
 	$(UTILCC)
@@ -1136,134 +1043,140 @@ $(GAMEDIR)\$(DLBFILE2): $(HACK_H)
 dlb_yup : $(TEMP)\dlb.exe $(GAMEDIR)\$(DLBFILE) $(GAMEDIR)\$(DLBFILE2)
 
 removedat:
+	$(RM) $(DATDIR)\cmdhelp
+	$(RM) $(DATDIR)\data
+	$(RM) $(DATDIR)\dungeon
 	$(RM) $(DATDIR)\help
 	$(RM) $(DATDIR)\hh
-	$(RM) $(DATDIR)\cmdhelp
 	$(RM) $(DATDIR)\history
 	$(RM) $(DATDIR)\opthelp
+	$(RM) $(DATDIR)\options
+	$(RM) $(DATDIR)\oracles
+	$(RM) $(DATDIR)\quest.dat
+	$(RM) $(DATDIR)\rumors
 	$(RM) $(DATDIR)\wizhelp
+	$(RM) $(DATDIR)\gypsy.txt\
+
+	$(RM) $(DATDIR)\???-fil?.lev
+	$(RM) $(DATDIR)\???-goal.lev
+	$(RM) $(DATDIR)\???-loca.lev
+	$(RM) $(DATDIR)\???-strt.lev
+	$(RM) $(DATDIR)\air.lev
 	$(RM) $(DATDIR)\asmodeus.lev
-	$(RM) $(DATDIR)\baalz.lev
+	$(RM) $(DATDIR)\astral.lev
 	$(RM) $(DATDIR)\bigrm-?.lev
 	$(RM) $(DATDIR)\castle.lev
+	$(RM) $(DATDIR)\earth.lev
 	$(RM) $(DATDIR)\fakewiz?.lev
+	$(RM) $(DATDIR)\fire.lev
+	$(RM) $(DATDIR)\guild.lev
 	$(RM) $(DATDIR)\juiblex.lev
 	$(RM) $(DATDIR)\knox.lev
 	$(RM) $(DATDIR)\medusa-?.lev
-	$(RM) $(DATDIR)\minend-?.lev
 	$(RM) $(DATDIR)\minefill.lev
+	$(RM) $(DATDIR)\minend-?.lev
 	$(RM) $(DATDIR)\minetn-?.lev
 	$(RM) $(DATDIR)\oracle.lev
 	$(RM) $(DATDIR)\orcus.lev
 	$(RM) $(DATDIR)\sanctum.lev
+	$(RM) $(DATDIR)\soko?-?.lev
 	$(RM) $(DATDIR)\tower?.lev
 	$(RM) $(DATDIR)\valley.lev
-	$(RM) $(DATDIR)\wizard?.lev
-	$(RM) $(DATDIR)\astral.lev
-	$(RM) $(DATDIR)\air.lev
-	$(RM) $(DATDIR)\earth.lev
-	$(RM) $(DATDIR)\fire.lev
 	$(RM) $(DATDIR)\water.lev
-	$(RM) $(DATDIR)\???-goal.lev
-	$(RM) $(DATDIR)\???-fil?.lev
-	$(RM) $(DATDIR)\???-loca.lev
-	$(RM) $(DATDIR)\???-strt.lev
-	$(RM) $(DATDIR)\data
-	$(RM) $(DATDIR)\oracles
-	$(RM) $(DATDIR)\options
-	$(RM) $(DATDIR)\quest.dat
-	$(RM) $(DATDIR)\rumors
-	$(RM) $(DATDIR)\dungeon
-	$(RM) $(DATDIR)\soko?-?.lev
+	$(RM) $(DATDIR)\wizard?.lev\
+
+	$(RM) $(DATDIR)\baalz.lev
 	$(RM) $(DATDIR)\beholder.lev
-	$(RM) $(DATDIR)\dragons.lev
-	$(RM) $(DATDIR)\lich.lev
-	$(RM) $(DATDIR)\nightmar.lev
 	$(RM) $(DATDIR)\blkmar.lev
-	$(RM) $(DATDIR)\frnknstn.lev
-	$(RM) $(DATDIR)\nymph.lev
-	$(RM) $(DATDIR)\geryon.lev
-	$(RM) $(DATDIR)\rats.lev
-	$(RM) $(DATDIR)\tomb.lev
-	$(RM) $(DATDIR)\guild.lev
-	$(RM) $(DATDIR)\mall.lev
-	$(RM) $(DATDIR)\sea.lev
-	$(RM) $(DATDIR)\yeenoghu.lev
+	$(RM) $(DATDIR)\cav2fill.lev
 	$(RM) $(DATDIR)\demogorg.lev
-	$(RM) $(DATDIR)\mineking.lev
-	$(RM) $(DATDIR)\spiders.lev
 	$(RM) $(DATDIR)\dispater.lev
-	$(RM) $(DATDIR)\mtemple.lev
-	$(RM) $(DATDIR)\cav?fill.lev
-	$(RM) $(DATDIR)\mall-?.lev
-	$(RM) $(DATDIR)\stor-?.lev
+	$(RM) $(DATDIR)\dragons.lev
+	$(RM) $(DATDIR)\frnknstn.lev
+	$(RM) $(DATDIR)\geryon.lev
+	$(RM) $(DATDIR)\grund-?.lev
 	$(RM) $(DATDIR)\kobold-?.lev
-	$(RM) $(DATDIR)\gypsy.txt
+	$(RM) $(DATDIR)\lich.lev
+	$(RM) $(DATDIR)\mall-?.lev
+	$(RM) $(DATDIR)\mall.lev
+	$(RM) $(DATDIR)\mineking.lev
+	$(RM) $(DATDIR)\mtemple.lev
+	$(RM) $(DATDIR)\nightmar.lev
+	$(RM) $(DATDIR)\nymph.lev
+	$(RM) $(DATDIR)\rats.lev
+	$(RM) $(DATDIR)\sea.lev
+	$(RM) $(DATDIR)\spiders.lev
+	$(RM) $(DATDIR)\stor-?.lev
+	$(RM) $(DATDIR)\tomb.lev
+	$(RM) $(DATDIR)\yeenoghu.lev
 
 copydat:
+	$(CP) $(TEMP)\cmdhelp		$(GAMEDIR)
+	$(CP) $(TEMP)\data		$(GAMEDIR)
+	$(CP) $(TEMP)\dungeon		$(GAMEDIR)
 	$(CP) $(TEMP)\help		$(GAMEDIR)
 	$(CP) $(TEMP)\hh		$(GAMEDIR)
-	$(CP) $(TEMP)\cmdhelp		$(GAMEDIR)	
 	$(CP) $(TEMP)\history		$(GAMEDIR)
 	$(CP) $(TEMP)\opthelp		$(GAMEDIR)
+	$(CP) $(TEMP)\options		$(GAMEDIR)
+	$(CP) $(TEMP)\oracles		$(GAMEDIR)
+	$(CP) $(TEMP)\quest.dat 	$(GAMEDIR)
+	$(CP) $(TEMP)\rumors		$(GAMEDIR)
 	$(CP) $(TEMP)\wizhelp		$(GAMEDIR)
+	$(CP) $(TEMP)\gypsy.txt 	$(GAMEDIR)\
+
+	$(CP) $(TEMP)\???-fil?.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\???-goal.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\???-loca.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\???-strt.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\air.lev		$(GAMEDIR)
 	$(CP) $(TEMP)\asmodeus.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\baalz.lev		$(GAMEDIR)
+	$(CP) $(TEMP)\astral.lev	$(GAMEDIR)
 	$(CP) $(TEMP)\bigrm-?.lev	$(GAMEDIR)
 	$(CP) $(TEMP)\castle.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\earth.lev 	$(GAMEDIR)
 	$(CP) $(TEMP)\fakewiz?.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\fire.lev		$(GAMEDIR)
+	$(CP) $(TEMP)\guild.lev 	$(GAMEDIR)
 	$(CP) $(TEMP)\juiblex.lev	$(GAMEDIR)
 	$(CP) $(TEMP)\knox.lev		$(GAMEDIR)
 	$(CP) $(TEMP)\medusa-?.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\minend-?.lev	$(GAMEDIR)
 	$(CP) $(TEMP)\minefill.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\minend-?.lev	$(GAMEDIR)
 	$(CP) $(TEMP)\minetn-?.lev	$(GAMEDIR)
 	$(CP) $(TEMP)\oracle.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\orcus.lev		$(GAMEDIR)
+	$(CP) $(TEMP)\orcus.lev 	$(GAMEDIR)
 	$(CP) $(TEMP)\sanctum.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\tower?.lev 	$(GAMEDIR)
-	$(CP) $(TEMP)\valley.lev 	$(GAMEDIR)
-	$(CP) $(TEMP)\wizard?.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\astral.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\air.lev		$(GAMEDIR)
-	$(CP) $(TEMP)\earth.lev		$(GAMEDIR)
-	$(CP) $(TEMP)\fire.lev		$(GAMEDIR)
-	$(CP) $(TEMP)\water.lev		$(GAMEDIR)
-	$(CP) $(TEMP)\???-goal.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\???-fil?.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\???-loca.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\???-strt.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\data		$(GAMEDIR)
-	$(CP) $(TEMP)\oracles		$(GAMEDIR)
-	$(CP) $(TEMP)\options		$(GAMEDIR)
-	$(CP) $(TEMP)\quest.dat		$(GAMEDIR)
-	$(CP) $(TEMP)\rumors		$(GAMEDIR)
-	$(CP) $(TEMP)\dungeon		$(GAMEDIR)
 	$(CP) $(TEMP)\soko?-?.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\tower?.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\valley.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\water.lev 	$(GAMEDIR)
+	$(CP) $(TEMP)\wizard?.lev	$(GAMEDIR)\
+
+	$(CP) $(TEMP)\baalz.lev 	$(GAMEDIR)
 	$(CP) $(TEMP)\beholder.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\dragons.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\lich.lev		$(GAMEDIR)
-	$(CP) $(TEMP)\nightmar.lev	$(GAMEDIR)
 	$(CP) $(TEMP)\blkmar.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\frnknstn.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\nymph.lev		$(GAMEDIR)
-	$(CP) $(TEMP)\geryon.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\rats.lev		$(GAMEDIR)
-	$(CP) $(TEMP)\tomb.lev		$(GAMEDIR)
-	$(CP) $(TEMP)\guild.lev		$(GAMEDIR)
-	$(CP) $(TEMP)\mall.lev		$(GAMEDIR)
-	$(CP) $(TEMP)\sea.lev		$(GAMEDIR)
-	$(CP) $(TEMP)\yeenoghu.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\cav2fill.lev	$(GAMEDIR)
 	$(CP) $(TEMP)\demogorg.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\mineking.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\spiders.lev	$(GAMEDIR)
 	$(CP) $(TEMP)\dispater.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\mtemple.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\cav?fill.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\mall-?.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\stor-?.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\dragons.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\frnknstn.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\geryon.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\grund-?.lev	$(GAMEDIR)
 	$(CP) $(TEMP)\kobold-?.lev	$(GAMEDIR)
-	$(CP) $(TEMP)\gypsy.txt		$(GAMEDIR)
+	$(CP) $(TEMP)\lich.lev		$(GAMEDIR)
+	$(CP) $(TEMP)\mall-?.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\mall.lev		$(GAMEDIR)
+	$(CP) $(TEMP)\mineking.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\mtemple.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\nightmar.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\nymph.lev 	$(GAMEDIR)
+	$(CP) $(TEMP)\rats.lev		$(GAMEDIR)
+	$(CP) $(TEMP)\sea.lev		$(GAMEDIR)
+	$(CP) $(TEMP)\spiders.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\stor-?.lev	$(GAMEDIR)
+	$(CP) $(TEMP)\tomb.lev		$(GAMEDIR)
+	$(CP) $(TEMP)\yeenoghu.lev	$(GAMEDIR)
 
 dlb_nope :
 	$(ECHO) DLB not requested.
@@ -1431,43 +1344,43 @@ XFILES = $(AFILES) $(BFILES) $(CFILES) $(HFILES) $(KFILES) $(MFILES) \
 	 $(PFILES) $(RANFILES) $(RFILES) $(SFILES) $(TFILES) $(VFILES) $(WFILES) \
 	 $(FFILES) $(IFILES) $(NFILES) $(UFILES) $(YFILES)
 
-spec_lev :	$(TEMP)\astral.lev	\
-		$(TEMP)\beholder.lev	\
-		$(TEMP)\bigrm-1.lev	\
-		$(TEMP)\blkmar.lev	\
-		$(TEMP)\castle.lev	\
-		$(TEMP)\grund-1.lev	\
-		$(TEMP)\grund-2.lev	\
-		$(TEMP)\grund-3.lev	\
-		$(TEMP)\cav2fill.lev	\
-		$(TEMP)\dragons.lev	\
-		$(TEMP)\frnknstn.lev	\
-		$(TEMP)\guild.lev	\
-		$(TEMP)\knox.lev	\
-		$(TEMP)\kobold-1.lev	\
-		$(TEMP)\kobold-2.lev	\
-		$(TEMP)\lich.lev	\
-		$(TEMP)\mall.lev	\
-		$(TEMP)\mall-1.lev	\
-		$(TEMP)\mall-2.lev	\
-		$(TEMP)\medusa-1.lev	\
-		$(TEMP)\minefill.lev	\
-		$(TEMP)\mtemple.lev	\
-		$(TEMP)\nightmar.lev	\
-		$(TEMP)\nymph.lev	\
-		$(TEMP)\oracle.lev	\
-		$(TEMP)\rats.lev	\
-		$(TEMP)\sea.lev 	\
-		$(TEMP)\soko1-1.lev	\
-		$(TEMP)\spiders.lev	\
-		$(TEMP)\stor-1.lev	\
-		$(TEMP)\stor-2.lev	\
-		$(TEMP)\stor-3.lev	\
-		$(TEMP)\tomb.lev	\
-		$(TEMP)\tower1.lev	\
-		$(TEMP)\valley.lev	\
-		$(TEMP)\wizard1.lev	\
-		$(XFILES)
+spec_lev :\
+ $(TEMP)\astral.lev	\
+ $(TEMP)\bigrm-1.lev	\
+ $(TEMP)\castle.lev	\
+ $(TEMP)\knox.lev	\
+ $(TEMP)\medusa-1.lev	\
+ $(TEMP)\minefill.lev	\
+ $(TEMP)\oracle.lev	\
+ $(TEMP)\soko1-1.lev	\
+ $(TEMP)\tower1.lev	\
+ $(TEMP)\valley.lev	\
+ $(TEMP)\wizard1.lev	\
+\
+ $(TEMP)\beholder.lev	\
+ $(TEMP)\blkmar.lev	\
+ $(TEMP)\cav2fill.lev	\
+ $(TEMP)\dragons.lev	\
+ $(TEMP)\frnknstn.lev	\
+ $(TEMP)\guild.lev	\
+ $(TEMP)\grund-1.lev	\
+ $(TEMP)\kobold-1.lev	\
+ $(TEMP)\kobold-2.lev	\
+ $(TEMP)\lich.lev	\
+ $(TEMP)\mall.lev	\
+ $(TEMP)\mall-1.lev	\
+ $(TEMP)\mall-2.lev	\
+ $(TEMP)\mtemple.lev	\
+ $(TEMP)\nightmar.lev	\
+ $(TEMP)\nymph.lev	\
+ $(TEMP)\rats.lev	\
+ $(TEMP)\sea.lev 	\
+ $(TEMP)\spiders.lev	\
+ $(TEMP)\stor-1.lev	\
+ $(TEMP)\stor-2.lev	\
+ $(TEMP)\stor-3.lev	\
+ $(TEMP)\tomb.lev	\
+ $(XFILES)
 
 #	Single special level files
 
@@ -1544,15 +1457,15 @@ $(TEMP)\bigrm-1.lev : $(DAT)\bigroom.des $(TEMP)\lev_comp.exe
 	$(CP) bigrm-?.lev $(TEMP)
 	$(RM) bigrm-?.lev
 
-$(TEMP)\grund-1.lev : $(DAT)\grund.des $(TEMP)\lev_comp.exe
-	$(TEMP)\lev_comp $(DAT)\grund.des
-	$(CP) grund-?.lev $(TEMP)
-	$(RM) grund-?.lev
-
 $(TEMP)\cav2fill.lev : $(DAT)\giants.des $(TEMP)\lev_comp.exe
 	$(TEMP)\lev_comp $(DAT)\giants.des
 	$(CP) cav2fill.lev $(TEMP)
 	$(RM) cav2fill.lev
+
+$(TEMP)\grund-1.lev : $(DAT)\grund.des $(TEMP)\lev_comp.exe
+	$(TEMP)\lev_comp $(DAT)\grund.des
+	$(CP) grund-?.lev $(TEMP)
+	$(RM) grund-?.lev
 
 $(TEMP)\mall.lev : $(DAT)\newmall.des $(TEMP)\lev_comp.exe
 	$(TEMP)\lev_comp $(DAT)\newmall.des
@@ -1779,7 +1692,6 @@ spotless : clean
 	$(RM) $(TEMP)\magtile.exe
 	$(RM) $(TEMP)\txtbg.exe
 	$(RM) $(TEMP)\txtmerge.exe
-	$(RM) $(TEMP)\*.rsp
 	$(RM) $(TEMP)\*.def
 	$(RM) $(TEMP)\*.map
 	$(RM) $(TEMP)\tile2x11.exe
