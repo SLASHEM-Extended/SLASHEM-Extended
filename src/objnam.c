@@ -2633,6 +2633,17 @@ typfnd:
 	/* more wishing abuse: don't allow wishing for certain artifacts */
 	/* and make them pay; charge them for the wish anyway! */
 	if ((is_quest_artifact(otmp) ||
+#ifdef DEVEL_BRANCH
+	    /* [ALI] Can't wish for artifacts which have a set location */
+	    (otmp->oartifact &&
+	       (otmp->oartifact == ART_KEY_OF_CHAOS ||
+	        otmp->oartifact == ART_KEY_OF_NEUTRALITY ||
+	        otmp->oartifact == ART_KEY_OF_LAW ||
+	        otmp->oartifact == ART_HAND_OF_VECNA ||
+	        otmp->oartifact == ART_EYE_OF_THE_BEHOLDER ||
+	        otmp->oartifact == ART_NIGHTHORN ||
+	        otmp->oartifact == ART_THIEFBANE)) ||
+#endif
 # ifdef NOARTIFACTWISH
 /* Wishing for a "weak" artifact is easier than for a stronger one */
 	(otmp->oartifact &&
