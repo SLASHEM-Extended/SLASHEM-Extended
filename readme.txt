@@ -77,6 +77,7 @@ ver 0.0.7E3 [?] [Released by ?]
 -fixed bug 781994: GTK interface crashes on exit from a restored game.
 -fixed bug 781997: GTK's concept of the initial value of number_pad is wrong.
 -fixed bug 781998: No confirmation of exit when main window closed.
+-fixed bug 782002: Gdk errors: window unexpectedly destroyed.
 
 See history.txt for changes made in previous versions.
 

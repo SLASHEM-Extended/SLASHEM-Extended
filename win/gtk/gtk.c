@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.38 2003-08-02 16:02:44 j_ali Exp $
+  $Id: gtk.c,v 1.39 2003-08-02 16:09:21 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1152,7 +1152,8 @@ focus_in(GtkWidget *widget, GdkEventFocus *event, gpointer data)
     if (!focus_top || w == focus_top->master ||
       g_slist_find(focus_top->slaves, w))
 	return 0;
-    gtk_window_present(focus_top->master);
+    if (focus_top->master)
+	gtk_window_present(focus_top->master);
     return 1;
 }
 
@@ -1172,31 +1173,37 @@ focus_destroy(GtkWidget *widget, gpointer data)
     struct focus_hierarchy *fh, *fhl = NULL;
     for(fh = focus_top; fh; fhl = fh, fh = fh->next) {
 	if (fh->master == w) {
-	    /* Not sure how this could happen in practice, but re-parenting
-	     * any slave windows to the next master in the hierarchy seems
-	     * a resonable sort of thing to do. If there is no next then
-	     * we're probably exiting the game anyway so just drop them.
+	    /* This should only happen during game exit when a master window
+	     * is destroyed before one or more of its slaves. We mark this
+	     * special case by setting the master to NULL and hope to
+	     * clean-up when the last slave is destroyed.
 	     */
 	    if (fh->slaves)
-		if (fh->next)
-		    fh->next->slaves = g_slist_concat(fh->next->slaves,
-		      fh->slaves);
+		fh->master = NULL;
+	    else {
+		if (fhl)
+		    fhl->next = fh->next;
 		else
-		    g_slist_free(fh->slaves);
-	    if (fhl)
-		fhl->next = fh->next;
-	    else
-		focus_top = fh->next;
-	    free(fh);
+		    focus_top = fh->next;
+		free(fh);
+	    }
 	    break;
 	}
 	else if (list = g_slist_find(fh->slaves, w)) {
 	    fh->slaves = g_slist_remove(fh->slaves, w);
+	    if (!fh->slaves && !fh->master) {
+		/* Last slave destroyed of a previously destroyed master */
+		if (fhl)
+		    fhl->next = fh->next;
+		else
+		    focus_top = fh->next;
+		free(fh);
+	    }
 	    break;
 	}
     }
     if (!fh)
-	impossible("Destroying unknown focus window");
+	impossible("Destroying unknown focus window (%p)", w);
     else
 	gtk_widget_unref(widget);
 }
@@ -1222,7 +1229,7 @@ focus_key_press_early(GtkWidget *widget, GdkEventKey *event, gpointer data)
 gint
 focus_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
-    if (focus_top)
+    if (focus_top && focus_top->master)
 	return focus_top->handler(GTK_WIDGET(focus_top->master), event,
 	  focus_top->data);
     else
