@@ -24,8 +24,7 @@ struct tmpdungeon {
 	int	flags,
 		chance,
 		levels,
-		branches,
-		entry_lev;		/* entry level for this dungeon */
+		branches;
 	char	boneschar;
 };
 
@@ -42,6 +41,7 @@ struct tmpbranch {
 	int	chain;		/* index into tmplevel array (chained branch)*/
 	int	type;		/* branch type (see below) */
 	int	up;		/* branch is up or down */
+	int	entry_lev;	/* entry level in target dungeon */
 };
 
 /*
