@@ -6,6 +6,9 @@
          ==============================================================
 		      Last revision: March 2, 2002
 
+{This file is included unchanged from NetHack 3.4.  You may want to read
+ Install.gcc first and come back here if necessary afterwards.}
+
 {TODO: there are some TODO's in the text below to be resolved before release}
 
 Credit for the porting of NetHack to the Win32 Console Subsystem goes to 

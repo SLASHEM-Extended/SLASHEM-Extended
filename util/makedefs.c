@@ -57,8 +57,10 @@ static	const char	SCCS_Id[] = "@(#)makedefs.c\t3.4\t2002/02/03";
 #define DATE_FILE       "date.h"
 #define MONST_FILE      "pm.h"
 #define ONAME_FILE      "onames.h"
-#ifndef OPTIONS_FILE
+#ifndef NH_OPTIONS_FILE
 #define OPTIONS_FILE    "options"
+#else
+#define OPTIONS_FILE    NH_OPTIONS_FILE
 #endif
 #define ORACLE_FILE     "oracles"
 #define DATA_FILE       "data"

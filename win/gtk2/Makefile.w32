@@ -1,4 +1,4 @@
-# $Id: Makefile.w32,v 1.3 2002-12-23 22:59:03 j_ali Exp $
+# $Id: Makefile.w32,v 1.4 2002-12-24 10:14:21 j_ali Exp $
 # Copyright (c) Slash'EM Development Team 2002
 # NetHack may be freely redistributed.  See license for details.
 #
@@ -82,10 +82,11 @@ gtkhack.exe:	cc-gtk.exe $(OBJS01) $(OBJS02) $(NHPROXYLIB)/nhproxy.a
 	@echo INPUT( $(OBJS02) )>> tmp.lnk
 	@echo INPUT( $(NHPROXYLIB)/nhproxy.a )>> tmp.lnk
 	cc-gtk -l $(LINK) $(LFLAGS) -o $@ tmp.lnk $(LIBS)
-	@$(RM) tmp.lnk
+	@del tmp.lnk
 
 clean:
-	$(RM) *.o gtkhack.exe
+	-del *.o
+	-del gtkhack.exe
 
 spotless:	clean
 
@@ -93,10 +94,10 @@ spotless:	clean
 
 # config.h timestamp
 $(CONFIG_H): ../../include/config.h
-	touch $(CONFIG_H)
+	@echo /**/ >> $(CONFIG_H)
 # hack.h timestamp
 $(HACK_H): ../../include/hack.h
-	touch $(HACK_H)
+	@echo /**/ >> $(HACK_H)
 #
 gtkhack.o: gtkhack.c ../../include/winGTK.h ../../include/proxysvr.h \
 		../../include/proxycb.h

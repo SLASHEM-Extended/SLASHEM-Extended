@@ -1,9 +1,10 @@
-# $Id: Makefile.w32,v 1.4 2002-11-23 22:41:59 j_ali Exp $
+# $Id: Makefile.w32,v 1.5 2002-12-24 10:14:21 j_ali Exp $
 # Copyright (c) Slash'EM Development Team 2001-2002
 # NetHack may be freely redistributed.  See license for details.
 #
 # This makefile is for maintainer use. It is not needed when building the game.
 
+CC = gcc
 CFLAGS = -g -I../../include
 
 # ----------------------------------------
@@ -31,7 +32,8 @@ test_ext:	test_ext.c nhext.o nhxdr.o nhextxdr.o nhextio.o
 	$(CC) $(CFLAGS) -o test_ext test_ext.c nhext.o nhxdr.o nhextxdr.o nhextio.o
 
 clean:
-	$(RM) *.o test_ext
+	-del *.o
+	-del test_ext
 
 spotless:	clean
 
@@ -39,10 +41,10 @@ spotless:	clean
 
 # config.h timestamp
 $(CONFIG_H): ../../include/config.h
-	touch $(CONFIG_H)
+	@echo /**/ >> $(CONFIG_H)
 # hack.h timestamp
 $(HACK_H): ../../include/hack.h
-	touch $(HACK_H)
+	@echo /**/ >> $(HACK_H)
 #
 nhxdr.o: nhxdr.c ../../include/nhxdr.h
 nhext.o: nhext.c ../../include/nhxdr.h ../../include/proxycom.h

@@ -5,7 +5,7 @@
 #
 style "text"
 {
-    font_name = "Sans Medium 14"
+    font_name = "Sans Medium 10"
 }
 widget_class "*" style "text"
 widget "fixed font*GtkText" style "text"
@@ -13,7 +13,7 @@ widget "fixed font*GtkCList" style "text"
 
 style "map"
 {
-    font_name = "Sans Medium 20"
+    font_name = "Sans Medium 12"
     # Map colours:
     #
     # - These are only used in character mode.

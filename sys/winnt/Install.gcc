@@ -1,0 +1,113 @@
+         Copyright (c) NetHack Development Team 1990-2002
+         Copyright (c) Slash'EM Development Team 2002
+         NetHack may be freely redistributed.  See license for details.
+         ==============================================================
+                    Instructions for compiling and installing
+         Slash'EM 0.0.7 on a Windows NT, 95, 98, Me, 2000, or XP system
+         ==============================================================
+                        Last revision: December 14, 2002
+
+This file deals with compiling Slash'EM with gcc (the GNU Compiler Collection)
+and other free utility programs and libraries.
+
+You can build either the TTY version of Slash'EM or the GTK version.  If
+you want to try and build the graphical interface that comes from NetHack,
+then you may read Install.nt and try and translate the advice given there
+into the appropriate commands for Slash'EM.  Please let us know if you get
+anything working.  Note that Makefile.gcc contains rules suitable for use
+with the procedure documented here rather than in Install.nt -- follow the
+procedure laid out in this file to build a TTY version of Slash'EM with gcc.
+
+You will need
+-------------
+
+  o A copy of MinGW 1.0 or later (2.0 or later recommended).
+    You can download MinGW at http://www.mingw.org/
+  o You may find it useful to obtain copies of lex (flex) and yacc (bison,
+    or byacc).  While not strictly necessary to compile Slash'EM, they are 
+    required should you desire to make any changes to the level and dungeon 
+    compilers.
+
+To build the GTK interface, you will also need:
+
+  o glib runtime and development packages version 2.0 or later
+  o gtk+ runtime and development packages version 2.0 or later
+  o atk runtime and development packages version 1.0 or later
+  o pango runtime and development packages version 1.0 or later
+  o libiconv runtime and development packages version 1.7 or later
+  o libintl version 0.10.40 or later
+  o pkgconfig version 0.14 or later
+
+All these packages can be downloaded from http://www.gtk.org/win32/
+
+Setting up the MinGW build environment
+--------------------------------------
+
+1.  Run the mingw installation program and install in c:\MinGW
+2.  Add c:\MinGW\bin to your path.
+
+The last step may be accomplished by adding the following line
+to the end of your autoexec.bat file and re-booting:
+
+	PATH=c:\MinGW\bin;%PATH%
+
+Setting up the GTK build environment
+------------------------------------
+
+1.  Extract all packages (both runtime and development) to c:\gtk2
+2.  Simplify the include paths by copying:
+	o c:\gtk2\include\glib-2.0\* to c:\gtk2\include
+	o c:\gtk2\include\gtk-2.0\* to c:\gtk2\include
+	o c:\gtk2\include\atk-1.0\* to c:\gtk2\include
+	o c:\gtk2\include\pango-1.0\* to c:\gtk2\include
+	o c:\gtk2\lib\glib-1.0\include\* to c:\gtk2\include
+	o c:\gtk2\lib\gtk-1.0\include\* to c:\gtk2\include
+
+Setting up the Slash'EM build environment
+-----------------------------------------
+
+1.  Extract the Slash'EM source tarball to a suitable directory.
+    We recommend winzip for this which appears to handle text files
+    appropriately. If you use a different unpacker you may need to
+    convert at least sys/winnt/setup.bat and win/share/*.txt to text
+    format.
+
+2.  Start an Command Prompt window (MS-DOS Prompt window under Win 95).
+
+3.  Change into the sys/winnt subdirectory and run setup.bat
+
+4.  Change into the src subdirectory and edit Makefile to review and,
+    if necessary, modify any variables. The following, in particular,
+    may need consideration:
+	GAMEDIR		The directory where the game will be installed.
+			Default: \games\slam32d
+	MW32GTK		The directory where the MinGW version of the Gtk+ 2.0
+			tree is installed.  Default: \mingw32\gtk2
+	MS_BITFIELDS	Switch between gcc 2.x and 3.x command line flags.
+			Default: gcc 3.x (MinGW 2.x)
+	RDEL		Switch between Win 95 and Win 2000 derived systems.
+			Default: rd (Win 2K)
+			You may want to change some of the other commands in
+			this section, but you shouldn't need to when building
+			from a clean install.
+	YACC_LEX	Set to Y if yacc and lex are installed.
+			Default: N
+	USE_DLB		Set to N to keep data files seperate.
+			Default: Y
+	USE_GTK		Set to Y to include the GTK windowing interface.
+			Default: N
+	USE_PROXY	Set to Y to support proxified and plug-in interfaces.
+			Default: N
+
+5.  If the comments in the Makfile told you to make any changes to config.h,
+    then change into the include subdirectory and do so now.
+
+Compiling and installing Slash'EM
+---------------------------------
+
+Now, from your command prompt, change to the src directory, and type:
+
+mingw32-make install
+
+After some time, the game should be compiled and installed in the
+\games\slam32d directory or whatever directory you specified.  Happy Hacking!

@@ -33,15 +33,15 @@
 #define NO_TERMS
 #define ASCIIGRAPH
 
-#ifdef OPTIONS_USED
-#undef OPTIONS_USED
+#ifdef NH_OPTIONS_USED
+#undef NH_OPTIONS_USED
 #endif
-#ifdef MSWIN_GRAPHICS
-#define OPTIONS_USED	"guioptions"
+#if defined(MSWIN_GRAPHICS) || defined(GTK_GRAPHICS)
+#define NH_OPTIONS_USED	"guioptions"
 #else
-#define OPTIONS_USED	"ttyoptions"
+#define NH_OPTIONS_USED	"ttyoptions"
 #endif
-#define OPTIONS_FILE OPTIONS_USED
+#define NH_OPTIONS_FILE NH_OPTIONS_USED
 
 #define PORT_HELP	"porthelp"
 

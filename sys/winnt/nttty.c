@@ -17,8 +17,8 @@
 #include "win32api.h"
 #include <wincon.h>
 
-/* Some defines missing from the mingw32/cygwin wincon.h */
-#ifdef __MINGW32__
+/* Some defines missing from early mingw32/cygwin wincon.h */
+#if defined(__MINGW32__) && !defined(MOUSE_MOVED)
 #define FROM_LEFT_1ST_BUTTON_PRESSED    0x0001
 #define RIGHTMOST_BUTTON_PRESSED        0x0002
 #define FROM_LEFT_2ND_BUTTON_PRESSED    0x0004

@@ -1,28 +1,39 @@
-#	Mingw32 under Win95, modified for use with SLASH'EM
-#	Now allows building the GTK port
+#       $Id: Makefile.gcc,v 1.22 2002-12-24 10:14:21 j_ali Exp $
+#       Copyright (c) NetHack PC Development Team 1993-2001
+#       Copyright (c) Karl Garrison 1999
+#       Copyright (c) Slash'EM Development Team 1999-2002
 #
-#	This version uses DOS-style Directory separators only!
+#       Slash'EM 0.0.7 Makefile for MinGW 1.0 and above and Gtk+ 2.0 and above
+#  
+#       Win32 systems tested:
+#				- Windows 2000 SP1
 #
-#	Requires Gnu gcc compiler for Win32 (Mingw32 or Cygwin)
-#	Also requires Gnu Make utility, either Mingw32 or Cygwin version
+#       Win32 compilers tested:
+#				- MinGW 2.0.0-3
 #
-#	For questions or comments: karlgarrison@earthlink.net
+#	Win32 libraries tested:
+#				- glib 2.0.7-20021201
+#				- gtk+ 2.0.9-20021201
+#				- atk 1.0.3-20020821
+#				- pango 1.0.5-20021201
+#				- libintl 0.10.40-20020310
+#				- libiconv 1.7
+#				- pkgconfig 0.14
 #
-#	In addition to your C compiler, you will need a workalike for the
-#       UNIX yacc and lex utilities.  Theoretically, you should be able to
-#       compile without them, but I ran into errors when I tried to do this.
+#       In addition to your C compiler,
 #
-#	Note that flex (workalike for lex) and bison (workalike for yacc) are
-#       included with the Cygwin package (full version only).  There may be
-#       other ports of these tools available for Win32, but these are the only
-#       ones I am aware of.
+#       if you want to change           you will need a
+#       files with suffix               workalike for
+#              .y                           yacc   (such as bison)
+#              .l                           lex    (such as flex)
 #
-#       Note that compiling will fail under WinNT (including Win2k) if
-#       the command line gets too long (eg. your directory names are longer
-#       than mine).
-
-# Directory Seperator
 #
+#       If you have any questions read the sys/winnt/Install.gcc file included 
+#       with the distribution.
+#
+#       Note that compiling will fail under WinNT (including Win2k and XP) if
+#       the command line gets too long (eg., your directory names are longer
+#       than the default).
 
 # Game Installation Variables
 # NOTE: Make sure GAMEDIR exists before make is started.
@@ -35,7 +46,7 @@ GAMEDIR = \games\slam32d
 # Directories
 #
 
-# These are for Mingw32's GCC,  which gets confused by \ 
+# These are for MinGW's GCC,  which gets confused by \ 
 DDAT  = ../dat
 DUTIL = ../util
 DSRC  = ../src
@@ -53,21 +64,24 @@ UTIL = ..\util
 WTTY = ..\win\tty
 WGTK = ..\win\gtk2
 WSHR = ..\win\share
-# From GIMP
-GNUDLL = f:\progra~1\common~1\gnu
+#
+GNUDLL = $(MW32GTK)/lib
 
 #
 #  Executables.
 
 CC    = gcc
 LINK  = gcc
-#CC    = gccw32
-#LINK  = gccw32
-MAKEBIN  = make
+MAKEBIN  = mingw32-make
 
+#
+# The MinGW switch needed to specify Microsoft packing & alignment rules
+# (use gcc --target-help if you're not sure)
+MS_BITFIELDS = -mms-bitfields
+# MS_BITFIELDS = -fnative-struct
 
-# The copy, del and echo commands don't seem to work from a makefile since
-# it's part of the shell rather than an external utility.  We can get around
+# The copy, del and echo commands don't work from a makefile since they are
+# internal shell commands rather than external utilities.  We can get around
 # this by specifying an external utility that performs the same function like
 # the cp and rm commands from Cygwin32, or xcopy for copy.  Another way to do
 # it is to call the shell explicitly and use the /c option to run the built-in
@@ -75,25 +89,27 @@ MAKEBIN  = make
 
 #COPY = command.com /c copy
 #COPY = cmd.exe /c copy	# Same as above, but for Windows NT
-#COPY = xcopy		# MSDOS xcopy command
-COPY = cp		# UNIX copy command
-#COPY = copy		# MSDOS copy command (gets confused by '+')
-RCOPY = xcopy /s
+#COPY = xcopy		# MSDOS xcopy command (asks if target File or Dir)
+#COPY = cp		# UNIX copy command
+COPY = copy /y		# MSDOS copy command (gets confused by '+')
+RCOPY = xcopy /y /s
 #RCOPY = cp -r
 #DEL = command.com /c del
 #DEL = cmd.exe /c del	# Same as above, but for Windows NT
-#DEL = rm -f 		#UNIX del command
-DEL = del 		#MSDOS del command
-#RDEL = deltree
-RDEL = rd /s /q
+#DEL = rm -f 		# UNIX del command
+DEL = del 		# MSDOS del command
+#RDEL = deltree		# Win 95 recursive del command
+RDEL = rd /s /q		# Win 2K recursive del command
 #RDEL = rm -rf
-#ECHO = command.com /c echo     # For some reason this doesn't seem to work
-#ECHO = cmd.exe /c $(ECHO)	# Same as above, but for Windows NT
-#ECHO = echo.exe # UNIX echo command
-ECHO = echo # MSDOS echo command
+# Echo is very sensitive to trailing spaces so comments should be avoided
+# on the following lines, which define Win95, NT, UNIX and MS-DOS versions.
+#ECHO = command.com /c echo
+#ECHO = cmd.exe /c echo
+#ECHO = echo.exe
+ECHO = echo
 #LS = ls -1		# ls.exe from djgpp distribution
-LS = dir /l/b/-p           # DOS command WAC - disable pause for dos6
-#LS = *dir /l/b/z        # 4DOS command - cuts through ALIASes
+LS = dir /l/b/-p	# DOS command WAC - disable pause for dos6
+#LS = *dir /l/b/z	# 4DOS command - cuts through ALIASes
 
 # if you have a uudecode program, add its name here
 # otherwise leave blank
@@ -104,7 +120,7 @@ UUDECODE =
 #
 # If you have yacc/lex or a work-alike set YACC_LEX to Y
 #
-YACC_LEX = Y
+YACC_LEX = N
 
 # If YACC_LEX is Y above, set the following to values appropriate for
 # your tools.
@@ -131,20 +147,24 @@ USE_DLB = Y
 # set SUPPRESS_GRAPHICS to Y
 # (Note: binary will require ANSI.SYS driver or equivalent loaded)
 # SUPPRESS_GRAPHICS = Y
-SUPPRESS_GRAPHICS = 
 
 #
-# Uncomment exactly one of the lines below. Use 'N' if you do not want to
-# compile with the GTK windowsystem.  You will also need to modify config.h
-# as follows:
-#	USE_GTK = 1.2		Define GTK_GRAPHICS
-#	USE_GTK = 2.0		Define GTK_GRAPHICS and GTK_V20
-#	USE_GTK = proxy		Define GTK_GRAPHICS, GTK_V20 and PROXY_GRAPHICS
+# Uncomment the line below if you want to compile with the GTK windowsystem.
+# You will also need to define GTK_GRAPHICS and GTK_V20 in config.h.
 
-#USE_GTK = N
-#USE_GTK = 1.2
-USE_GTK = 2.0
-#USE_GTK = proxy
+# USE_GTK = Y
+
+#
+# Uncomment the line below if you want to compile with the proxy system.
+# You will also need to define PROXY_GRAPHICS in config.h.
+
+# USE_PROXY = Y
+
+#
+# Uncomment USE_GTK, USE_PROXY and the line below if you want to build a
+# proxified GTK interface.  You will also need to define GTK_PROXY in config.h.
+
+# USE_PROXIFIED = Y
 
 #
 # Uncomment the line below if you want to compile with the internal malloc
@@ -161,10 +181,7 @@ USE_GTK = 2.0
 # nothing below this line should have to be changed
 #
 
-#Do not uncomment these for 3.3.0
-#TILEGAME  = $(OBJ)\tile.o
-#TILEDEF   = -DTILES
-#TILEHDR   =
+#Do not uncomment this for 0.0.7
 #SOUND = $(OBJ)\ntsound.o
 
 GAMEFILE = $(GAMEDIR)\$(GAME).exe
@@ -204,18 +221,7 @@ endif
 # Select Windowing system(s) below
 # GTK windowing system
 #WINGTKCFLAGS=`pkg-config gtk+-2.0 --cflags`
-#WINGTKCFLAGS=-Ic:/mingw32/src/gtk+ -Ic:/mingw32/src/glib -Ic:/mingw32/src/gtk+/gdk
-#WINGTKCFLAGS=-I$(MW32GTK)/include
-WINGTKCFLAGS=-I$(MW32GTK)
-ifeq ($(USE_GTK),1.2)
-GTK_TARGET = 1.2
-endif
-ifeq ($(USE_GTK),2.0)
-GTK_TARGET = 2.0
-endif
-ifeq ($(USE_GTK),proxy)
-GTK_TARGET = 2.0
-endif
+WINGTKCFLAGS=-I$(MW32GTK)/include
 
 # Set the WINSRC, WINOBJ, and WINLIB lines to correspond to your desired
 # combination of windowing systems.  Also set windowing systems in config.h.
@@ -225,20 +231,9 @@ WINTTYSRC = ../win/tty/getline.c ../win/tty/termcap.c ../win/tty/topl.c \
 	../win/tty/wintty.c 
 WINTTYOBJ = getline.o termcap.o topl.o wintty.o 
 #
-# files for a GTK 1.2 port
-# (tile.c is included in the defn. for WINCSRC, below)
-ifeq ($(USE_GTK),1.2)
-WINGTKSRC = ../win/gtk/gtk.c ../win/gtk/gtkgetlin.c ../win/gtk/gtkstatus.c \
-	../win/gtk/gtkmenu.c ../win/gtk/gtkyn.c ../win/gtk/gtkextcmd.c \
-	../win/gtk/gtkmap.c ../win/gtk/gtkmessage.c ../win/gtk/gtkmisc.c \
-	../win/gtk/xshmmap.c ../win/gtk/xshm.c
-WINGTKOBJ1 = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
-	gtkmap.o gtkmessage.o gtkmisc.o xshmmap.o
-WINGTKOBJ2 = xshm.o
-endif
 # files for a GTK 2.0 port
 # (tile.c is included in the defn. for WINCSRC, below)
-ifeq ($(USE_GTK),2.0)
+ifeq ($(USE_GTK),Y)
 WINGTKSRC = ../win/gtk2/gtk.c ../win/gtk2/gtkgetlin.c ../win/gtk2/gtkstatus.c \
 	../win/gtk2/gtkmenu.c ../win/gtk2/gtkyn.c ../win/gtk2/gtkextcmd.c \
 	../win/gtk2/gtkmap.c ../win/gtk2/gtkmessage.c ../win/gtk2/gtkmisc.c \
@@ -248,21 +243,9 @@ WINGTKOBJ1 = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
 	gtkmap.o gtkmessage.o gtkmisc.o xshmmap.o
 WINGTKOBJ2 = gtktile.o gtkint.o gtkext.o
 endif
-# files for a GTK 2.0 proxy port
-# (tile.c is included in the defn. for WINCSRC, below)
-ifeq ($(USE_GTK),proxy)
-WINGTKSRC = ../win/gtk2/gtk.c ../win/gtk2/gtkgetlin.c ../win/gtk2/gtkstatus.c \
-	../win/gtk2/gtkmenu.c ../win/gtk2/gtkyn.c ../win/gtk2/gtkextcmd.c \
-	../win/gtk2/gtkmap.c ../win/gtk2/gtkmessage.c ../win/gtk2/gtkmisc.c \
-	../win/gtk2/xshmmap.c ../win/gtk2/gtktile.c ../win/gtk2/panic.c \
-	../win/gtk2/gtkext.c
-WINGTKOBJ1 = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
-	gtkmap.o gtkmessage.o gtkmisc.o xshmmap.o
-WINGTKOBJ2 = gtktile.o panic.o gtkext.o
-endif
 #
 # Files for a proxy interface.
-ifeq ($(USE_GTK),proxy)
+ifeq ($(USE_PROXY),Y)
 WINPROXYSRC = ../win/proxy/winproxy.c ../win/proxy/callback.c
 WINPROXYOBJ = winproxy.o callback.o
 endif
@@ -274,98 +257,97 @@ PROXYCOMOBJ = nhext.o nhxdr.o nhextxdr.o nhextio.o compxdr.o
 # Files for the proxy utility modules. These are provided for use with window
 # ports that support the proxy interface. The GTK2 window interface needs
 # these files regardless of whether proxy support is enabled or not.
-ifeq ($(GTK_TARGET),2.0)
 PROXYUTLSRC = ../win/proxy/dlbh.c ../win/proxy/mapid.c \
 	../win/proxy/riputil.c ../win/proxy/getopt.c ../win/proxy/glyphmap.c
 PROXYUTLOBJ = dlbh.o mapid.o riputil.o getopt.o glyphmap.o
-endif
 #
 # Files for the proxy window server interface. These are needed to support
 # external window ports and provide the interface to the game executable.
 # Currently, only the GTK2 window interface supports proxy window servers.
-ifeq ($(USE_GTK),proxy)
 PROXYSVRSRC = ../win/proxy/proxysvc.c ../win/proxy/proxycb.c \
-	../win/proxy/prxymap.c ../win/proxy/prxychar.c ../win/proxy/prxytile.c
-PROXYSVROBJ = proxysvc.o proxycb.o prxymap.o prxychar.o prxytile.o
-endif
+	../win/proxy/prxymap.c ../win/proxy/prxychar.c ../win/proxy/prxytile.c \
+	../win/proxy/prxyconn.c
+PROXYSVROBJ = proxysvc.o proxycb.o prxymap.o prxychar.o prxytile.o prxyconn.o
 
-ifneq ($(USE_GTK),N)
-ifeq ($(USE_GTK),1.2)
-WINSRC = $(WINTTYSRC) $(WINGTKSRC)
-WOBJ01 = $(WINTTYOBJ)
-WOBJ02 = $(WINGTKOBJ1)
-WOBJ03 = $(WINGTKOBJ2)
-WOBJ04 = tile.o
-endif
-ifeq ($(USE_GTK),2.0)
-WINSRC = $(WINTTYSRC) $(WINGTKSRC) $(PROXYUTLSRC)
-WOBJ01 = $(WINTTYOBJ)
-WOBJ02 = $(WINGTKOBJ1)
-WOBJ03 = $(WINGTKOBJ2)
-WOBJ04 = $(PROXYUTLOBJ)
-WOBJ05 = tile.o
-endif
-ifeq ($(USE_GTK),proxy)
-WINSRC = $(WINTTYSRC) $(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYCOMSRC)
-WOBJ01 = $(WINTTYOBJ)
-WOBJ02 = $(WINPROXYOBJ)
-WOBJ03 = $(PROXYUTLOBJ)
-WOBJ04 = $(PROXYCOMOBJ)
-WOBJ05 = tile.o
-endif
-CCOMPILE = $(CC) -fnative-struct
-else
 WINSRC = $(WINTTYSRC)
 WOBJ01 = $(WINTTYOBJ)
-GTKGCCFLAGS = 
+WOBJ02 =
+WOBJ03 =
+WOBJ04 =
+
+ifeq ($(USE_GTK),Y)
+WINSRC += $(WINGTKSRC)
+WOBJ02 += $(WINGTKOBJ1)
+WOBJ03 += $(WINGTKOBJ2)
+ifneq ($(USE_PROXY),Y)
+WINSRC += $(PROXYUTLSRC)
+WOBJ04 += tile.o
+WOBJ05 += $(PROXYUTLOBJ)
+endif
+CCOMPILE = $(CC) $(MS_BITFIELDS)
+else
 CCOMPILE = $(CC)
 endif
+
+ifeq ($(USE_PROXY),Y)
+WINSRC += $(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYCOMSRC)
+WOBJ02 += $(WINPROXYOBJ)
+WOBJ03 += $(PROXYCOMOBJ)
+WOBJ04 += tile.o
+WOBJ05 += $(PROXYUTLOBJ)
+endif
+
+ifeq ($(USE_PROXIFIED),Y)
+WINSRC += $(PROXYSVRSRC)
+WOBJ04 += $(PROXYSVROBJ)
+endif
+
 WINOBJ = $(WOBJ01) $(WOBJ02) $(WOBJ03) $(WOBJ04) $(WOBJ05)
 
 #
-# You must also change the definition of WINLIB (below) to match these
+# The definition of WINLIB (below) must also be changed to match
+# WINSRC & WINOBJ.
+#
 
 WINTTYLIB = 
+
 # libraries for GTK
-# WINGTKLIB = `gtk-config --libs`
-ifeq ($(GTK_TARGET),2.0)
-WINGTKLIB1 = $(MW32GTK)/lib/libgtk-win32-2.0.dll.a $(MW32GTK)/lib/libgdk-win32-2.0.dll.a 
-WINGTKLIB2 = $(MW32GTK)/lib/libglib-2.0.dll.a $(MW32GTK)/lib/libgdk_pixbuf-2.0.dll.a
-WINGTKLIB3 = $(MW32GTK)/lib/libgobject-2.0.dll.a $(MW32GTK)/lib/libpango-1.0.dll.a
-endif
-ifeq ($(GTK_TARGET),1.2)
-WINGTKLIB1 = $(MW32GTK)/src/gtk+/gtk/libgtk-1.3.a
-WINGTKLIB2 = $(MW32GTK)/src/gtk+/gdk/libgdk-1.3.a
-WINGTKLIB3 = $(MW32GTK)/src/glib/libglib-1.3.a
-#WINGTKLIB1 = $(MW32GTK)/lib/libgtk.dll.a
-#WINGTKLIB2 = $(MW32GTK)/lib/libgdk.dll.a 
-#WINGTKLIB3 = $(MW32GTK)/lib/libglib-1.3.dll.a
+# WINGTKLIB = `pkg-config gtk+-2.0 --libs`
+ifeq ($(USE_GTK),Y)
+WINGTKLIB1 = $(MW32GTK)/lib/libgtk-win32-2.0.dll.a \
+		$(MW32GTK)/lib/libgdk-win32-2.0.dll.a 
+WINGTKLIB2 = $(MW32GTK)/lib/libglib-2.0.dll.a \
+		$(MW32GTK)/lib/libgdk_pixbuf-2.0.dll.a
+WINGTKLIB3 = $(MW32GTK)/lib/libgobject-2.0.dll.a \
+		$(MW32GTK)/lib/libpango-1.0.dll.a
 endif
 
-ifeq ($(USE_GTK),proxy)
+ifeq ($(USE_PROXY),Y)
 WINPROXYLIB = libwsock32.a
 endif
 
-ifneq ($(USE_GTK),N)
-ifeq ($(USE_GTK),proxy)
-WINLIB = $(WINTTYLIB) $(WINPROXYLIB)
-else
-WINLIB = $(WINTTYLIB) $(WINGTKLIB1) $(WINGTKLIB2) $(WINGTKLIB3)
-endif
-else
 WINLIB = $(WINTTYLIB)
+
+ifeq ($(USE_GTK),Y)
+WINLIB += $(WINGTKLIB1) $(WINGTKLIB2) $(WINGTKLIB3)
+endif
+
+ifeq ($(USE_PROXY),Y)
+WINLIB += $(WINPROXYLIB)
 endif
 
 # Shareable (architecture independent) data files which are not candidates
-# for inclusion in DLB libraries (ND) and which are (D). Port specific files
-# per discussions in Install.X11, Install.Qt and Install.GTK
-CNF_SHARE_GTKND = x11bigtiles x11big3dtiles x11tiles rip.xpm credit.xpm \
-	x11bigtiles.map x11big3dtiles.map x11tiles.map
+# for inclusion in DLB libraries (ND). Port specific files per discussions
+# in Install.GTK and Install.pxy
+CNF_SHARE_GTKND = x11bigtiles x11big3dtiles x11tiles rip.xpm credit.xpm
+CNF_SHARE_PROXYND = x11bigtiles.map x11big3dtiles.map x11tiles.map
 
-ifneq ($(USE_GTK),N)
-CNF_SHARE_DATND = $(CNF_SHARE_GTKND)
-else
-CNF_SHARE_DATND =
+ifeq ($(USE_GTK),Y)
+CNF_SHARE_DATND += $(CNF_SHARE_GTKND)
+endif
+
+ifeq ($(USE_PROXY),Y)
+CNF_SHARE_DATND += $(CNF_SHARE_PROXYND)
 endif
 
 #
@@ -558,60 +540,57 @@ utility.tag: $(INCL)\date.h $(INCL)\trap.h    $(INCL)\onames.h	       \
 
 install.tag: dat.tag $(GAMEFILE)
 ifeq ($(USE_DLB),Y)
-	$(COPY) $(DAT)\nhshare       $(GAMEDIR)
-	$(COPY) $(DAT)\nhushare      $(GAMEDIR)
-	$(COPY) $(DAT)\license       $(GAMEDIR)
+	$(COPY) $(DAT)\nhshare				$(GAMEDIR)
+	$(COPY) $(DAT)\nhushare				$(GAMEDIR)
+	$(COPY) $(DAT)\license				$(GAMEDIR)
 else
-	$(COPY) $(DAT)\*.            $(GAMEDIR)
-	$(COPY) $(DAT)\*.dat         $(GAMEDIR)
-	$(COPY) $(DAT)\*.lev         $(GAMEDIR)
+	$(COPY) $(DAT)\*.				$(GAMEDIR)
+	$(COPY) $(DAT)\*.dat				$(GAMEDIR)
+	$(COPY) $(DAT)\*.lev				$(GAMEDIR)
 #	$(DEL) $(GAMEDIR)\makefile.
 endif
-ifneq ($(USE_GTK),N)
-	$(COPY) $(WGTK)\GTKRC.w32    $(GAMEDIR)\gtkrc
-	$(COPY) rip.xpm              $(GAMEDIR)
-	$(COPY) credit.xpm           $(GAMEDIR)
-	$(COPY) x11tiles             $(GAMEDIR)
-	$(COPY) x11bigtiles          $(GAMEDIR)
-	$(COPY) x11big3dtiles        $(GAMEDIR)
-	$(COPY) x11tiles.map         $(GAMEDIR)
-	$(COPY) x11bigtiles.map      $(GAMEDIR)
-	$(COPY) x11big3dtiles.map    $(GAMEDIR)
-#	$(COPY) $(MW32GTK)\src\glib\glib*.dll $(GAMEDIR)
-#	$(COPY) $(MW32GTK)\src\glib\gmodule\gmodule*.dll $(GAMEDIR)
-#	$(COPY) $(MW32GTK)\src\gtk+\gdk\gdk*.dll $(GAMEDIR)
-#	$(COPY) $(MW32GTK)\src\gtk+\gtk\gtk*.dll $(GAMEDIR)
-#	$(COPY) $(MW32GTK)\src\gtk+\gtk\gtk*.dll $(GAMEDIR)
-#	$(COPY) $(MW32GTK)\src\libiconv-1.3\src\iconv*.dll $(GAMEDIR)
-#	$(COPY) $(MW32GTK)\src\intl\gnu*.dll $(GAMEDIR)
-	$(COPY) $(GNUDLL)\\libglib*.dll $(GAMEDIR)
-	$(COPY) $(GNUDLL)\\iconv*.dll $(GAMEDIR)
-	$(COPY) $(GNUDLL)\\libgdk*.dll $(GAMEDIR)
-	$(COPY) $(GNUDLL)\\libgtk*.dll $(GAMEDIR)
-	$(COPY) $(GNUDLL)\\libgmodule*.dll $(GAMEDIR)
-	$(COPY) $(GNUDLL)\\libintl*.dll $(GAMEDIR)
-	$(COPY) $(GNUDLL)\\libpango*.dll $(GAMEDIR)
-	$(COPY) $(GNUDLL)\\libatk*.dll $(GAMEDIR)
-	$(COPY) $(GNUDLL)\\libgobject*.dll $(GAMEDIR)
-ifeq ($(GTK_TARGET),2.0)
-	$(RCOPY) $(MW32GTK)\etc $(GAMEDIR)
-	-$(RDEL) $(GAMEDIR)\lib
-	mkdir $(GAMEDIR)\lib
-	$(RCOPY) $(MW32GTK)\lib\pango $(GAMEDIR)\lib
-	$(RCOPY) $(MW32GTK)\lib\glib-2.0 $(GAMEDIR)\lib
-	$(RCOPY) $(MW32GTK)\lib\gtk-2.0 $(GAMEDIR)\lib
-endif
-	$(COPY) $(WSYS)\winnt.cnf    $(GAMEDIR)\defaults.nh
+ifeq ($(USE_GTK),Y)
+	$(COPY) $(subst /,\,$(WGTK)\GTKRC.w32		$(GAMEDIR)\gtkrc)
+	$(COPY) $(subst /,\,rip.xpm			$(GAMEDIR))
+	$(COPY) $(subst /,\,credit.xpm			$(GAMEDIR))
+	$(COPY) $(subst /,\,x11tiles			$(GAMEDIR))
+	$(COPY) $(subst /,\,x11bigtiles			$(GAMEDIR))
+	$(COPY) $(subst /,\,x11big3dtiles		$(GAMEDIR))
+	$(COPY) $(subst /,\,$(GNUDLL)\\libglib*.dll	$(GAMEDIR))
+	$(COPY) $(subst /,\,$(GNUDLL)\\iconv*.dll	$(GAMEDIR))
+	$(COPY) $(subst /,\,$(GNUDLL)\\libgdk*.dll	$(GAMEDIR))
+	$(COPY) $(subst /,\,$(GNUDLL)\\libgtk*.dll	$(GAMEDIR))
+	$(COPY) $(subst /,\,$(GNUDLL)\\libgmodule*.dll	$(GAMEDIR))
+	$(COPY) $(subst /,\,$(GNUDLL)\\libintl*.dll	$(GAMEDIR))
+	$(COPY) $(subst /,\,$(GNUDLL)\\libpango*.dll	$(GAMEDIR))
+	$(COPY) $(subst /,\,$(GNUDLL)\\libatk*.dll	$(GAMEDIR))
+	$(COPY) $(subst /,\,$(GNUDLL)\\libgobject*.dll	$(GAMEDIR))
+	mkdir $(subst /,\,$(GAMEDIR)\etc)
+	$(RCOPY) $(subst /,\,$(MW32GTK)\etc		$(GAMEDIR)\etc)
+	-$(RDEL) $(subst /,\,$(GAMEDIR)\lib)
+	mkdir $(subst /,\,$(GAMEDIR)\lib)
+	mkdir $(subst /,\,$(GAMEDIR)\lib\pango)
+	$(RCOPY) $(subst /,\,$(MW32GTK)\lib\pango	$(GAMEDIR)\lib\pango)
+	mkdir $(subst /,\,$(GAMEDIR)\lib\glib-2.0)
+	$(RCOPY) $(subst /,\,$(MW32GTK)\lib\glib-2.0	$(GAMEDIR)\lib\glib-2.0)
+	mkdir $(subst /,\,$(GAMEDIR)\lib\gtk-2.0)
+	$(RCOPY) $(subst /,\,$(MW32GTK)\lib\gtk-2.0	$(GAMEDIR)\lib\gtk-2.0)
+	$(COPY) $(subst /,\,$(WSYS)\winnt.cnf		$(GAMEDIR)\defaults.nh)
 else
-	$(COPY) $(SSHR)\NetHack.cnf  $(GAMEDIR)\defaults.nh
+	$(COPY) $(subst /,\,$(SSHR)\NetHack.cnf		$(GAMEDIR)\defaults.nh)
+endif
+ifeq ($(USE_PROXY),Y)
+	$(COPY) $(subst /,\,x11tiles.map		$(GAMEDIR))
+	$(COPY) $(subst /,\,x11bigtiles.map		$(GAMEDIR))
+	$(COPY) $(subst /,\,x11big3dtiles.map		$(GAMEDIR))
 endif
 ifeq ($(USE_NHALLOC),Y)
-	$(COPY) nhalloc.dll          $(GAMEDIR)
+	$(COPY) $(subst /,\,nhalloc.dll			$(GAMEDIR))
 endif
-	$(COPY) recover.exe          $(GAMEDIR)
-	$(COPY) $(DOC)\guidebook.txt $(GAMEDIR)
-	$(COPY) $(DOC)\recover.txt   $(GAMEDIR)
-	$(COPY) $(DOC)\slashem.txt   $(GAMEDIR)
+	$(COPY) $(subst /,\,recover.exe			$(GAMEDIR))
+	$(COPY) $(subst /,\,$(DOC)\guidebook.txt	$(GAMEDIR))
+	$(COPY) $(subst /,\,$(DOC)\recover.txt		$(GAMEDIR))
+	$(COPY) $(subst /,\,$(DOC)\slashem.txt		$(GAMEDIR))
 	$(ECHO) install done > install.tag
 
 #  The main target.
@@ -649,11 +628,21 @@ $(GAME).lnk: $(ALLOBJ)
 	@echo INPUT( $(SOBJ)   )>> $@
 	@echo INPUT( $(VVOBJ)  )>> $@
 	@echo INPUT( $(WOBJ01) )>> $@
+ifneq ($(WOBJ02),)
 	@echo INPUT( $(WOBJ02) )>> $@
+endif
+ifneq ($(WOBJ03),)
 	@echo INPUT( $(WOBJ03) )>> $@
+endif
+ifneq ($(WOBJ04),)
 	@echo INPUT( $(WOBJ04) )>> $@
+endif
+ifneq ($(WOBJ05),)
 	@echo INPUT( $(WOBJ05) )>> $@
+endif
+ifneq ($(WINLIB),)
 	@echo INPUT( $(WINLIB) )>> $@
+endif
 ifeq ($(USE_NHALLOC),Y)
 	@echo INPUT( nhalloc.a )>> $@
 endif
@@ -663,130 +652,131 @@ endif
 #
 
 clean:
-	$(DEL) *.o
-	$(DEL) *.map
-	$(DEL) nhalloc.*
-	$(DEL) dlb_main.exe
+	-$(DEL) *.o
+	-$(DEL) *.map
+	-$(DEL) nhalloc.*
+	-$(DEL) dlb_main.exe
 
 spotless: clean
-	$(DEL) utility.tag
-	$(DEL) install.tag
-	$(DEL) dat.tag
-	$(DEL) $(GAME).lnk
-	$(DEL) makedefs.exe
-	$(DEL) lev_comp.exe
-	$(DEL) dgn_comp.exe
-	$(DEL) txtmerge.exe
-	$(DEL) magtile.exe
-	$(DEL) bigtile.exe
-	$(DEL) txtbg.exe
-	$(DEL) mapmerge.exe
-	$(DEL) tile2x11.exe
-	$(DEL) x11bigtiles
-	$(DEL) x11big3dtiles
-	$(DEL) x11tiles
-	$(DEL) x11bigtiles.map
-	$(DEL) x11big3dtiles.map
-	$(DEL) x11tiles.map
-	$(DEL) gtkrc
-	$(DEL) *.xpm
-	$(DEL) tiletext.c
-	$(DEL) txtmerge.c
-	$(DEL) magtile.c
-	$(DEL) lev_flex.c
-	$(DEL) lev_yacc.c
-	$(DEL) dgn_flex.c
-	$(DEL) dgn_yacc.c
-	$(DEL) recover.exe
-	$(DEL) $(INCL)\onames.h
-	$(DEL) $(INCL)\pm.h
-	$(DEL) $(INCL)\vis_tab.h
-	$(DEL) $(INCL)\pcvideo.h
-	$(DEL) $(INCL)\pctiles.h
-	$(DEL) $(INCL)\portio.h
-	$(DEL) $(INCL)\tile.h
-	$(DEL) monstr.c
-	$(DEL) vis_tab.c
-	$(DEL) $(SRC)\panic.c
-	$(DEL) $(SRC)\makedefs.c
-	$(DEL) $(SRC)\recover.c
-	$(DEL) $(SRC)\lev_main.c
-	$(DEL) $(SRC)\dlb_main.c
-	$(DEL) $(SRC)\dgn_main.c
-	$(DEL) $(SRC)\wintty.c
-	$(DEL) $(SRC)\topl.c
-	$(DEL) $(SRC)\getline.c
-	$(DEL) $(SRC)\termcap.c
-	$(DEL) $(SRC)\tile2bin.c
-	$(DEL) $(SRC)\msdos.c
-	$(DEL) $(SRC)\pckeys.c
-	$(DEL) $(SRC)\video.c
-	$(DEL) $(SRC)\sound.c
-	$(DEL) $(SRC)\tilemap.c
-	$(DEL) $(SRC)\gifread.c
-	$(DEL) $(SRC)\ppmwrite.c
-	$(DEL) $(SRC)\pcmain.c
-	$(DEL) $(SRC)\pcunix.c
-	$(DEL) $(SRC)\pcsys.c
-	$(DEL) $(SRC)\tile.c
-	$(DEL) $(SRC)\gtk*.c
-	$(DEL) $(SRC)\xshmmap.c
-	$(DEL) $(SRC)\xshm.c
-	$(DEL) $(INCL)\date.h
-	$(DEL) $(INCL)\onames.h
-	$(DEL) $(INCL)\pm.h
-	$(DEL) $(INCL)\vis_tab.h
-	$(DEL) $(SRC)\nhlan.c
-	$(DEL) $(SRC)\winnt.c
-	$(DEL) $(SRC)\nttty.c
-	$(DEL) $(SRC)\ntsound.c
-	$(DEL) $(SRC)\mapimail.c
-	$(DEL) vis_tab.c
-	$(DEL) random.c
-	$(DEL) nhlan.c
-	$(DEL) *.lnk
-	$(DEL) *.def
-	$(DEL) *.map
-	$(DEL) *.lev
-	$(DEL) a.out
-	$(DEL) tilemap.exe
-	$(DEL) tile2bin.exe
-	$(DEL) $(DAT)\data
-	$(DEL) $(DAT)\*.lev
-	$(DEL) $(DAT)\data
-	$(DEL) $(DAT)\dungeon
-	$(DEL) $(DAT)\options
-	$(DEL) $(DAT)\oracles
-	$(DEL) $(DAT)\rumors
-	$(DEL) $(DAT)\quest.dat
-	$(DEL) $(DAT)\nhshare
-	$(DEL) $(DAT)\nhushare
-	$(DEL) $(DAT)\dlb.lst
-	$(DEL) $(DAT)\msdoshlp.txt
-	$(DEL) $(DAT)\dlb_main.exe
-	$(DEL) $(DAT)\lev_comp.exe
-	$(DEL) $(DAT)\dgn_comp.exe
-	$(DEL) sp_lev.tag
-	$(DEL) $(PLANAR_TIB)
-	$(DEL) $(OVERVIEW_TIB)
-	$(DEL) pet_mark.xbm
-	$(DEL) rip.xpm
-	$(DEL) mapbg.xpm
-	$(DEL) $(WSHR)\monmag.txt
-	$(DEL) $(WSHR)\mon32.txt
-	$(DEL) $(WSHR)\objmag.txt 
-	$(DEL) $(WSHR)\obj32.txt
-	$(DEL) $(WSHR)\othmag.txt
-	$(DEL) $(WSHR)\oth32.txt
-	$(DEL) $(WSHR)\monbig.txt
-	$(DEL) $(WSHR)\mon3d.txt
-	$(DEL) $(WSHR)\objbig.txt
-	$(DEL) $(WSHR)\obj3d.txt
-	$(DEL) $(WSHR)\othbig.txt
-	$(DEL) $(WSHR)\oth3d.txt
-	$(DEL) $(WSHR)\mon32-t.txt
-	$(DEL) $(WSHR)\obj32-t.txt
-	$(DEL) $(WSHR)\oth32-t.txt
+	-$(DEL) utility.tag
+	-$(DEL) install.tag
+	-$(DEL) dat.tag
+	-$(DEL) $(GAME).lnk
+	-$(DEL) makedefs.exe
+	-$(DEL) lev_comp.exe
+	-$(DEL) dgn_comp.exe
+	-$(DEL) txtmerge.exe
+	-$(DEL) magtile.exe
+	-$(DEL) bigtile.exe
+	-$(DEL) txtbg.exe
+	-$(DEL) mapmerge.exe
+	-$(DEL) tile2x11.exe
+	-$(DEL) x11bigtiles
+	-$(DEL) x11big3dtiles
+	-$(DEL) x11tiles
+	-$(DEL) x11bigtiles.map
+	-$(DEL) x11big3dtiles.map
+	-$(DEL) x11tiles.map
+	-$(DEL) gtkrc
+	-$(DEL) *.xpm
+	-$(DEL) tiletext.c
+	-$(DEL) txtmerge.c
+	-$(DEL) magtile.c
+	-$(DEL) lev_flex.c
+	-$(DEL) lev_yacc.c
+	-$(DEL) dgn_flex.c
+	-$(DEL) dgn_yacc.c
+	-$(DEL) recover.exe
+	-$(DEL) $(INCL)\onames.h
+	-$(DEL) $(INCL)\pm.h
+	-$(DEL) $(INCL)\vis_tab.h
+	-$(DEL) $(INCL)\pcvideo.h
+	-$(DEL) $(INCL)\pctiles.h
+	-$(DEL) $(INCL)\portio.h
+	-$(DEL) $(INCL)\tile.h
+	-$(DEL) monstr.c
+	-$(DEL) vis_tab.c
+	-$(DEL) $(SRC)\panic.c
+	-$(DEL) $(SRC)\makedefs.c
+	-$(DEL) $(SRC)\recover.c
+	-$(DEL) $(SRC)\lev_main.c
+	-$(DEL) $(SRC)\dlb_main.c
+	-$(DEL) $(SRC)\dgn_main.c
+	-$(DEL) $(SRC)\wintty.c
+	-$(DEL) $(SRC)\topl.c
+	-$(DEL) $(SRC)\getline.c
+	-$(DEL) $(SRC)\termcap.c
+	-$(DEL) $(SRC)\tile2bin.c
+	-$(DEL) $(SRC)\msdos.c
+	-$(DEL) $(SRC)\pckeys.c
+	-$(DEL) $(SRC)\video.c
+	-$(DEL) $(SRC)\sound.c
+	-$(DEL) $(SRC)\tilemap.c
+	-$(DEL) $(SRC)\gifread.c
+	-$(DEL) $(SRC)\ppmwrite.c
+	-$(DEL) $(SRC)\pcmain.c
+	-$(DEL) $(SRC)\pcunix.c
+	-$(DEL) $(SRC)\pcsys.c
+	-$(DEL) $(SRC)\tile.c
+	-$(DEL) $(SRC)\gtk*.c
+	-$(DEL) $(SRC)\xshmmap.c
+	-$(DEL) $(SRC)\xshm.c
+	-$(DEL) $(INCL)\date.h
+	-$(DEL) $(INCL)\onames.h
+	-$(DEL) $(INCL)\pm.h
+	-$(DEL) $(INCL)\vis_tab.h
+	-$(DEL) $(SRC)\nhlan.c
+	-$(DEL) $(SRC)\winnt.c
+	-$(DEL) $(SRC)\nttty.c
+	-$(DEL) $(SRC)\ntsound.c
+	-$(DEL) $(SRC)\mapimail.c
+	-$(DEL) vis_tab.c
+	-$(DEL) random.c
+	-$(DEL) nhlan.c
+	-$(DEL) *.lnk
+	-$(DEL) *.def
+	-$(DEL) *.map
+	-$(DEL) *.lev
+	-$(DEL) a.out
+	-$(DEL) tilemap.exe
+	-$(DEL) tile2bin.exe
+	-$(DEL) $(DAT)\data
+	-$(DEL) $(DAT)\*.lev
+	-$(DEL) $(DAT)\data
+	-$(DEL) $(DAT)\dungeon
+	-$(DEL) $(DAT)\ttyoptions
+	-$(DEL) $(DAT)\guioptions
+	-$(DEL) $(DAT)\oracles
+	-$(DEL) $(DAT)\rumors
+	-$(DEL) $(DAT)\quest.dat
+	-$(DEL) $(DAT)\nhshare
+	-$(DEL) $(DAT)\nhushare
+	-$(DEL) $(DAT)\dlb.lst
+	-$(DEL) $(DAT)\msdoshlp.txt
+	-$(DEL) $(DAT)\dlb_main.exe
+	-$(DEL) $(DAT)\lev_comp.exe
+	-$(DEL) $(DAT)\dgn_comp.exe
+	-$(DEL) sp_lev.tag
+	-$(DEL) $(PLANAR_TIB)
+	-$(DEL) $(OVERVIEW_TIB)
+	-$(DEL) pet_mark.xbm
+	-$(DEL) rip.xpm
+	-$(DEL) mapbg.xpm
+	-$(DEL) $(WSHR)\monmag.txt
+	-$(DEL) $(WSHR)\mon32.txt
+	-$(DEL) $(WSHR)\objmag.txt 
+	-$(DEL) $(WSHR)\obj32.txt
+	-$(DEL) $(WSHR)\othmag.txt
+	-$(DEL) $(WSHR)\oth32.txt
+	-$(DEL) $(WSHR)\monbig.txt
+	-$(DEL) $(WSHR)\mon3d.txt
+	-$(DEL) $(WSHR)\objbig.txt
+	-$(DEL) $(WSHR)\obj3d.txt
+	-$(DEL) $(WSHR)\othbig.txt
+	-$(DEL) $(WSHR)\oth3d.txt
+	-$(DEL) $(WSHR)\mon32-t.txt
+	-$(DEL) $(WSHR)\obj32-t.txt
+	-$(DEL) $(WSHR)\oth32-t.txt
 
 #
 #  Secondary Targets.
@@ -847,7 +837,7 @@ nhalloc.a:	nhalloc.def
 	dlltool --dllname nhalloc.dll --def nhalloc.def --output-lib nhalloc.a -k
 
 nhproxy.a:	$(PROXYSVROBJ) $(PROXYCOMOBJ)
-	$(DEL) nhproxy.a
+	-$(DEL) nhproxy.a
 	ar rc nhproxy.a $(PROXYSVROBJ)
 	ar r nhproxy.a $(PROXYCOMOBJ)
 	ranlib nhproxy.a
@@ -917,7 +907,7 @@ lev_yacc.c: $(SSHR)\lev_yacc.c
 
 $(INCL)\lev_comp.h: $(SSHR)\lev_comp.h
 	$(COPY) $(SSHR)\lev_comp.h $@
-	touch $(DINCL)\lev_comp.h
+	$(ECHO) /**/ >>$(DINCL)\lev_comp.h
 
 lev_$(LEX).c: $(SSHR)\lev_lex.c
 	$(COPY) $(SSHR)\lev_lex.c $@
@@ -979,7 +969,7 @@ dgn_yacc.c: $(SSHR)\dgn_yacc.c
 
 $(INCL)\dgn_comp.h: $(SSHR)\dgn_comp.h
 	$(COPY) $(SSHR)\dgn_comp.h $@
-	touch $(DINCL)\dgn_comp.h
+	$(ECHO) /**/ >>$(DINCL)\dgn_comp.h
 
 dgn_$(LEX).c: $(SSHR)\dgn_lex.c
 	$(COPY) $(SSHR)\dgn_lex.c $@
@@ -1079,30 +1069,26 @@ tile2x11.o: ../win/X11/tile2x11.c $(INCL)\hack.h $(INCL)\tile.h \
 
 x11tiles: tile2x11.exe ../win/share/monsters.txt ../win/share/objects.txt \
 				../win/share/other.txt
-	cd $(WSHR)
-	..\$(SRC)\tile2x11 -o ..\$(SRC)\x11tiles monsters.txt objects.txt other.txt
-	cd ..\$(SRC)
+	tile2x11 -o x11tiles $(WSHR)\monsters.txt $(WSHR)\objects.txt \
+		$(WSHR)\other.txt
 
 x11tiles.map: mapmerge.exe ../win/share/monsters.map ../win/share/objects.map \
 				../win/share/other.map
-	cd $(WSHR)
-	..\$(SRC)\mapmerge ..\$(SRC)\x11tiles.map monsters.map objects.map other.map
-	cd ..\$(SRC)
+	mapmerge x11tiles.map $(WSHR)\monsters.map $(WSHR)\objects.map \
+		$(WSHR)\other.map
 
 x11bigtiles:	tile2x11.exe ../win/share/mon32.txt \
 		../win/share/obj32.txt ../win/share/oth32.txt
-	cd $(WSHR)
-	..\$(SRC)\tile2x11 -o ..\$(SRC)\x11bigtiles mon32.txt obj32.txt oth32.txt
-	cd ..\$(SRC)
+	tile2x11 -o x11bigtiles $(WSHR)\mon32.txt $(WSHR)\obj32.txt \
+		$(WSHR)\oth32.txt
 
 x11bigtiles.map:	x11tiles.map
 	$(COPY) x11tiles.map x11bigtiles.map
 
 x11big3dtiles:	tile2x11.exe ../win/share/mon3d.txt \
 		../win/share/obj3d.txt ../win/share/oth3d.txt
-	cd $(WSHR)
-	..\$(SRC)\tile2x11 -o ..\$(SRC)\x11big3dtiles mon3d.txt obj3d.txt oth3d.txt
-	cd ..\$(SRC)
+	tile2x11 -o x11big3dtiles $(WSHR)\mon3d.txt $(WSHR)\obj3d.txt \
+		$(WSHR)\oth3d.txt
 
 x11big3dtiles.map:	x11tiles.map
 	$(COPY) x11tiles.map x11big3dtiles.map
@@ -1143,31 +1129,31 @@ $(WSHR)\othbig.txt:	bigtile.exe ../win/share/mon32-t.txt \
 ../win/share/mon32-t.txt:	$(WSHR)\txtmerge.exe $(WSHR)\monmag.txt \
 		$(WSHR)\mon32mi.txt $(WSHR)\mon32alg.txt \
 		$(WSHR)\mon32aw.txt 
-	cd $(WSHR)
-	txtmerge mon32-t.txt monmag.txt -b mon32mi.txt -bff00ff mon32alg.txt 
-	txtmerge mon32-t.txt mon32-t.txt -bff00ff mon32aw.txt 
+	cd $(WSHR) & \
+	txtmerge mon32-t.txt monmag.txt -b mon32mi.txt -bff00ff mon32alg.txt & \
+	txtmerge mon32-t.txt mon32-t.txt -bff00ff mon32aw.txt & \
 	cd ..\$(SRC)
 
 ../win/share/obj32-t.txt:	$(WSHR)\txtmerge.exe $(WSHR)\objmag.txt \
 		$(WSHR)\obj32mi.txt $(WSHR)\obj32se.txt \
 		$(WSHR)\obj32alg.txt
-	cd $(WSHR)
-	txtmerge obj32-t.txt objmag.txt -b obj32mi.txt -b obj32se.txt
-	txtmerge obj32-t.txt obj32-t.txt -bff00ff obj32alg.txt
+	cd $(WSHR) & \
+	txtmerge obj32-t.txt objmag.txt -b obj32mi.txt -b obj32se.txt & \
+	txtmerge obj32-t.txt obj32-t.txt -bff00ff obj32alg.txt & \
 	cd ..\$(SRC)
 
 ../win/share/oth32-t.txt:	$(WSHR)\txtmerge.exe $(WSHR)\othmag.txt \
 		$(WSHR)\oth32mi.txt $(WSHR)\oth32se.txt \
 		$(WSHR)\oth32alg.txt
-	cd $(WSHR)
-	txtmerge oth32-t.txt othmag.txt -b oth32mi.txt -b oth32se.txt
-	txtmerge oth32-t.txt oth32-t.txt -bff00ff oth32alg.txt
+	cd $(WSHR) & \
+	txtmerge oth32-t.txt othmag.txt -b oth32mi.txt -b oth32se.txt & \
+	txtmerge oth32-t.txt oth32-t.txt -bff00ff oth32alg.txt & \
 	cd ..\$(SRC)
 
 ../win/share/mon3d.txt:	$(WSHR)\txtmerge.exe $(WSHR)\monbig.txt \
 		$(WSHR)\mon3dmi.txt
-	cd $(WSHR)
-	txtmerge mon3d.txt monbig.txt -b mon3dmi.txt
+	cd $(WSHR) & \
+	txtmerge mon3d.txt monbig.txt -b mon3dmi.txt & \
 	cd ..\$(SRC)
 
 ../win/share/obj3d.txt:	$(WSHR)\txtmerge.exe $(WSHR)\objbig.txt
@@ -1176,9 +1162,9 @@ $(WSHR)\othbig.txt:	bigtile.exe ../win/share/mon32-t.txt \
 ../win/share/oth3d.txt:	$(WSHR)\txtmerge.exe $(WSHR)\othbig.txt \
 		$(WSHR)\oth3dmi.txt $(WSHR)\oth-2kmi.txt \
 		$(WSHR)\oth3dse.txt
-	cd $(WSHR)
-	txtmerge oth3d.txt othbig.txt -b oth3dmi.txt -b oth-2kmi.txt
-	txtmerge oth3d.txt oth3d.txt -b oth3dse.txt
+	cd $(WSHR) & \
+	txtmerge oth3d.txt othbig.txt -b oth3dmi.txt -b oth-2kmi.txt & \
+	txtmerge oth3d.txt oth3d.txt -b oth3dse.txt & \
 	cd ..\$(SRC)
 
 pet_mark.xbm: ../win/X11/pet_mark.xbm
@@ -1340,9 +1326,7 @@ sp_lev.tag: utility.tag     $(DAT)\beholder.des $(DAT)\bigroom.des \
 $(DAT)\dungeon:	  utility.tag  $(DAT)\dungeon.def
 	@copy $(SRC)\dgn_comp.exe $(DAT)\dgn_comp.exe
 	-makedefs -e
-	cd $(DAT)
-	dgn_comp dungeon.pdf 
-	cd $(SRC)
+	cd $(DAT) & dgn_comp dungeon.pdf & cd $(SRC)
 #
 # DLB stuff
 #
@@ -1350,7 +1334,11 @@ $(DAT)\nhshare:	dlb_main.exe $(DAT)\data $(DAT)\rumors $(DAT)\dungeon \
 	    $(DAT)\oracles $(DAT)\quest.dat sp_lev.tag
 	$(ECHO) data >$(DAT)\dlb.lst
 	$(ECHO) oracles >>$(DAT)\dlb.lst
-#	$(ECHO) options >>$(DAT)\dlb.lst
+ifeq ($(USE_GTK),Y)
+	$(ECHO) guioptions >>$(DAT)\dlb.lst
+else
+	$(ECHO) ttyoptions >>$(DAT)\dlb.lst
+endif
 	$(ECHO) rumors >>$(DAT)\dlb.lst
 	$(ECHO) help >>$(DAT)\dlb.lst
 	$(ECHO) hh >>$(DAT)\dlb.lst
@@ -1360,15 +1348,14 @@ $(DAT)\nhshare:	dlb_main.exe $(DAT)\data $(DAT)\rumors $(DAT)\dungeon \
 	$(ECHO) wizhelp >>$(DAT)\dlb.lst
 	$(ECHO) gypsy.txt >>$(DAT)\dlb.lst
 	$(ECHO) license >>$(DAT)\dlb.lst
-# The line above works, but the line below doesn't.  I can't figure-out why.
-# WAC - for some reason, this is OK under the DJGPP make...
-	cd $(DAT) ; dlb_main cvIf dlb.lst nhshare
-	cd $(SRC)
+	cd $(DAT) & dlb_main cvIf dlb.lst nhshare & cd $(SRC)
 
 $(DAT)\nhushare:	dlb_main.exe $(DAT)\dungeon $(DAT)\quest.dat sp_lev.tag
 	$(ECHO) dungeon > $(DAT)\dlb2.lst
 	$(ECHO) quest.dat >>$(DAT)\dlb2.lst
-	cd $(DAT) ; $(LS) *.lev >>dlb2.lst ; dlb_main cvIf dlb2.lst nhushare
+	cd $(DAT) & cd & \
+	$(LS) *.lev >>dlb2.lst & \
+	dlb_main cvIf dlb2.lst nhushare & \
 	cd $(SRC)
 
 
@@ -1542,6 +1529,10 @@ prxytile.o: ../win/proxy/prxytile.c ../include/nhxdr.h ../include/proxycom.h \
 		../include/proxysvr.h
 	$(COPY) ..\win\proxy\prxytile.c .
 	$(CCOMPILE) $(CFLAGS) -c prxytile.c
+prxyconn.o: ../win/proxy/prxyconn.c ../include/nhxdr.h ../include/proxycom.h \
+		../include/proxysvr.h
+	$(COPY) ..\win\proxy\prxyconn.c .
+	$(CCOMPILE) $(CFLAGS) -c prxyconn.c
 
 # src dependencies
 allmain.o:  $(HACK_H)

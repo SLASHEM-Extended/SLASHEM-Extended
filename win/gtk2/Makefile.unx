@@ -1,4 +1,4 @@
-# $Id: Makefile.unx,v 1.3 2002-12-23 22:59:03 j_ali Exp $
+# $Id: Makefile.unx,v 1.4 2002-12-24 10:14:21 j_ali Exp $
 # Copyright (c) Slash'EM Development Team 2002
 # NetHack may be freely redistributed.  See license for details.
 #
@@ -59,7 +59,8 @@ spotless:	clean
 
 depend: ../../sys/unix/depend.awk $(CSRC) 
 	$(AWK) -f ../../sys/unix/depend.awk ../../include/*.h $(CSRC) | \
-	sed -e 's:\.\./include:\.\./\.\./include:g' > makedep
+	sed -e 's:\.\./include:\.\./\.\./include:g' \
+	  -e 's:touch:@echo /**/ >>:' > makedep
 	@echo '/^# DO NOT DELETE THIS LINE OR CHANGE ANYTHING BEYOND IT/+2,$$d' >eddep
 	@echo '$$r makedep' >>eddep
 	@echo 'w' >>eddep

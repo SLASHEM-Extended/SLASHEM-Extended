@@ -272,7 +272,7 @@ typedef xchar	boolean;		/* 0 or 1 */
 # endif
 # ifdef WIN32
 #  define PORT_ID	"Windows"
-#  ifdef MSWIN_GRAPHICS
+#  if defined(MSWIN_GRAPHICS) || defined(GTK_GRAPHICS)
 #   define PORT_SUB_ID	"graphical"
 #  else
 #   define PORT_SUB_ID	"tty"
