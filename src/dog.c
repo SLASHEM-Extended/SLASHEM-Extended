@@ -517,12 +517,11 @@ boolean pets_only;      /* true for ascension or final escape */
 			    pline("%s is still eating.", Monnam(mtmp));
 			stay_behind = TRUE;
 #ifdef BLACKMARKET                
-		if (mtmp->mtame && (ttmp = t_at(u.ux,u.uy)) && 
+		} else if (mtmp->mtame && (ttmp = t_at(u.ux,u.uy)) && 
 		    ttmp->ttyp == MAGIC_PORTAL && Is_blackmarket(&(ttmp->dst))) {
 			pline("%s can't follow you into the Black Market.",
 			      Monnam(mtmp));
 			stay_behind = TRUE;
-		}
 #endif /* BLACKMARKET */
 		} else if (mon_has_amulet(mtmp)) {
 			if (canseemon(mtmp))

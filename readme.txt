@@ -388,6 +388,7 @@ ver 0.0.6E4F1 [October XX/2000]
 	-can't drain partly eaten corpses
 	-Vampire race gets 20% chance of cpostfx()
 	-Vampires are exempt for cannibalism penalties.
+-fixed bug 116403: Pets can follow you into the Black Market.
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()
