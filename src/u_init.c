@@ -465,14 +465,14 @@ static struct def_skill Skill_A[] = {
 #endif
     { P_SLING, P_SKILLED },             { P_DART, P_BASIC },
     { P_BOOMERANG, P_EXPERT },          { P_WHIP, P_EXPERT },
-	{ P_UNICORN_HORN, P_SKILLED },
-    { P_ATTACK_SPELL, P_BASIC },     { P_HEALING_SPELL, P_BASIC },
-    { P_DIVINATION_SPELL, P_EXPERT }, { P_ENCHANTMENT_SPELL, P_BASIC },
+    { P_UNICORN_HORN, P_SKILLED },
+    { P_ATTACK_SPELL, P_BASIC },        { P_HEALING_SPELL, P_BASIC },
+    { P_DIVINATION_SPELL, P_EXPERT },   { P_ENCHANTMENT_SPELL, P_BASIC },
     { P_PROTECTION_SPELL, P_BASIC },    { P_BODY_SPELL, P_BASIC },
-    { P_MATTER_SPELL, P_BASIC },
+    { P_MATTER_SPELL, P_SKILLED },
     /*WAC- 'A' knows of all spells from studying,  but only really good
     at divination class*/
-	{ P_TWO_WEAPON_COMBAT, P_BASIC },
+    { P_TWO_WEAPON_COMBAT, P_BASIC },
     { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
 };

@@ -466,22 +466,21 @@ int tech_no;
 		}
 		break;
             case T_BERSERK:
-			You("fly into a berserk rage!");
-               		techt_inuse(tech_no) = d(2,8) +
+		You("fly into a berserk rage!");
+		techt_inuse(tech_no) = d(2,8) +
                		(techlev(tech_no)/5) + 2;
-			incr_itimeout(&HFast, techt_inuse(tech_no));
-			t_timeout = rn1(1000,500);
-			return(0);
-			break;
+		incr_itimeout(&HFast, techt_inuse(tech_no));
+		t_timeout = rn1(1000,500);
+		break;
             case T_REINFORCE:
-			/* WAC spell-users can study their known spells*/
-			if(Hallucination || Stunned || Confusion) {
-				You("can't concentrate right now!");
-				break;
-               		} else {
-				You("concentrate...");
-				if (studyspell()) t_timeout = rn1(1000,500); /*in spell.c*/
-			}
+		/* WAC spell-users can study their known spells*/
+		if(Hallucination || Stunned || Confusion) {
+		    You("can't concentrate right now!");
+		    break;
+               	} else {
+		    You("concentrate...");
+		    if (studyspell()) t_timeout = rn1(1000,500); /*in spell.c*/
+		}
                break;
             case T_FLURRY:
                 Your("%s %s become blurs as they reach for your quiver!",
