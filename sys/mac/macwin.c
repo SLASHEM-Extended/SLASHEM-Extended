@@ -3,16 +3,12 @@
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
+#include "dlb.h"
 #include "func_tab.h"
 #include "macwin.h"
 #include "mactty.h"
 #include "wintty.h"
-
-#if defined(applec)
-#include <sysequ.h>
-#else
 #include <LowMem.h>
-#endif
 #include <Resources.h>
 #include <Menus.h>
 #include <Devices.h>
@@ -20,16 +16,22 @@
 #include <Gestalt.h>
 #include <toolutils.h>
 #include <DiskInit.h>
+#include <ControlDefinitions.h>
 
 static Boolean kApplicInFront = TRUE;
 
 NhWindow * theWindows = (NhWindow *) 0 ;
 
 void mac_synch ();
+void WindowGoAway (EventRecord *theEvent, WindowPtr theWindow);
+
+#ifdef MAC_MPW
+#define USESROUTINEDESCRIPTORS
+#endif /* MAC_MPW */
 
 #ifndef USESROUTINEDESCRIPTORS /* not using universal headers */
   /* Cast everything in terms of the new Low Memory function calls. */
-# if defined(applec)
+# if defined(MAC_MPW)
 #  define LMGetCurStackBase()	(*(long *) CurStackBase)
 #  define LMGetDefltStack()		(*(long *) DefltStack)
 # elif defined(THINK_C)
@@ -40,6 +42,15 @@ void mac_synch ();
 #  error /* need to define LM functions for this compiler */
 # endif
 #endif /* !USEROUTINEDESCRIPTORS (universal headers) */
+
+#ifdef MAC_MPW
+# define inPageUp kControlPageUpPart
+# define DisposHandle DisposeHandle
+# define inPageDown kControlPageDownPart
+# define geneva applFont
+  static short Monaco = -1;
+# define monaco (Monaco==-1 ? (GetFNum("Monaco", &Monaco), Monaco) : Monaco)
+#endif
 
 /* Borrowed from the Mac tty port */
 extern WindowPtr _mt_window;
@@ -116,7 +127,7 @@ AddToKeyQueue (int ch, Boolean force) {
 	}
 	if (keyQueueWrite >= QUEUE_LEN)
 		keyQueueWrite = 0;
-		}
+}
 
 
 /*
@@ -227,6 +238,9 @@ static pascal OSErr AppleEventHandler (
 	AppleEvent*			outAEReply,
 	long				inRefCon)
 {
+#if defined(MAC_MPW)
+# pragma unused ( inRefCon,outAEReply )
+#endif
 	Size     actualSize;
 	AEKeyword   keywd;
 	DescType typeCode;
@@ -303,8 +317,9 @@ static pascal OSErr AppleEventHandler (
 	return err;
 }
 
-
+#ifndef MAC_MPW
 short win_fonts [NHW_TEXT + 1];
+#endif
 
 void
 InitMac(void) {
@@ -360,7 +375,12 @@ InitMac(void) {
 	InitCursor ( ) ;
 	ObscureCursor ( ) ;
 	
+#ifdef MAC_MPW
+	UpUPP = NewControlActionProc(Up);
+	DownUPP = NewControlActionProc(Down);
+#else
 	MoveScrollUPP = NewControlActionProc(MoveScrollBar);
+#endif
 
 	/* set up base fonts for all window types */
 	GetFNum ("\pHackFont", &i);
@@ -498,7 +518,11 @@ SanePositions (void) {
 	WindowPtr theWindow ;
 	NhWindow * nhWin ;
 
+#ifndef MAC_MPW
 	screenArea = qd . thePort -> portBits . bounds ;
+#else
+	screenArea = qd . screenBits . bounds ;
+#endif /* MAC_MPW */
 	OffsetRect ( & screenArea , - screenArea . left , - screenArea . top ) ;
 
 /* Map Window */
@@ -539,7 +563,7 @@ SanePositions (void) {
 	MoveWindow (theWindow, left, top, 1);
 	SizeWindow (theWindow, width, height, 1);
 	if (nhWin->scrollBar)
-		DrawScrollbar (nhWin, theWindow);
+		DrawScrollbar (nhWin);
 
 /* Handle other windows */
 	for ( ix = 0 ; ix < NUM_MACWINDOWS ; ix ++ ) {
@@ -707,9 +731,6 @@ mac_init_nhwindows (int *argcp, char **argv) {
 	small_screen = scr.bottom - scr.top <= (iflags.large_font ? 12*40 : 9*40);
 
 	InitMenuRes ();
-
-	theWindows = (NhWindow *) NewPtrClear (NUM_MACWINDOWS * sizeof (NhWindow));
-	mustwork(MemError());
 
 	DimMenuBar ( ) ;
 
@@ -1223,7 +1244,7 @@ mac_number_pad (int pad) {
 
 void
 trans_num_keys(EventRecord *theEvent) {
-#if defined(applec) || defined(__MWERKS__)
+#if defined(MAC_MPW) || defined(__MWERKS__)
 # pragma unused(theEvent)
 #endif
 /* KMH -- Removed this translation.
@@ -1255,7 +1276,7 @@ trans_num_keys(EventRecord *theEvent) {
  */
 void
 GeneralKey (EventRecord *theEvent, WindowPtr theWindow) {
-#if defined(applec)
+#if defined(MAC_MPW)
 # pragma unused(theWindow)
 #endif
 	trans_num_keys ( theEvent ) ;
@@ -1284,7 +1305,6 @@ macKeyMenu (EventRecord *theEvent, WindowPtr theWindow) {
 	NhWindow *aWin = GetNhWin(theWindow);
 	MacMHMenuItem *mi;
 	int l, ch = theEvent->message & 0xff;
-	Rect r;
 
 	if (aWin) {
 		HLock ((char**)aWin->menuInfo);
@@ -1334,24 +1354,6 @@ macKeyText (EventRecord *theEvent, WindowPtr theWindow) {
 			GeneralKey ( theEvent , theWindow ) ;
 		}
 }
-}
-
-
-static void
-macClickText (EventRecord *theEvent, WindowPtr theWindow) {
-	NhWindow *aWin = GetNhWin (theWindow);
-
-	if (aWin->scrollBar && (*aWin->scrollBar)->contrlVis) {
-		short code;
-		Point p = theEvent->where;
-		ControlHandle theBar;
-
-		GlobalToLocal (&p);
-		code = FindControl (p, theWindow, &theBar);
-		if (code) {
-			DoScrollBar (p, code, theBar, aWin);
-		}
-	}
 }
 
 
@@ -1908,7 +1910,7 @@ macCursorTerm (EventRecord *theEvent, WindowPtr theWindow, RgnHandle mouseRgn) {
 
 static void
 GeneralCursor (EventRecord *theEvent, WindowPtr theWindow, RgnHandle mouseRgn) {
-#if defined(applec) || defined(__MWERKS__)
+#if defined(MAC_MPW) || defined(__MWERKS__)
 # pragma unused(theWindow)
 #endif
 	Rect r = {-1, -1, 2, 2};
@@ -1994,7 +1996,7 @@ HandleClick (EventRecord *theEvent) {
 			SetPort ( theWindow ) ;
 			InvalRect ( & ( theWindow -> portRect ) ) ;
 			if ( aWin -> scrollBar ) {
-				DrawScrollbar (aWin, theWindow);
+				DrawScrollbar (aWin);
 			}
 		} else {
 			nhbell ( ) ;
@@ -2190,6 +2192,9 @@ mac_synch(void) {
 
 static void
 mac_cliparound (int x, int y) {
+#if defined(MAC_MPW)
+# pragma unused ( x,y )
+#endif
 	/* TODO */
 }
 
@@ -2344,6 +2349,13 @@ mac_curs (winid win, int x, int y) {
 	aWin->y_curs = y;
 }
 
+void
+mac_print_glyph (winid window, XCHAR_P x, XCHAR_P y, int glyph) {
+	if (theWindows[window].its_window != _mt_window)
+		Debugger();
+	tty_print_glyph(window, x, y, glyph);
+}
+
 
 int
 mac_nh_poskey (int *a, int *b, int *c) {
@@ -2364,6 +2376,9 @@ mac_start_menu (winid win) {
 
 void
 mac_add_menu (winid win, int glyph, const anything *any, CHAR_P menuChar, CHAR_P groupAcc, int attr, const char *inStr, int preselected) {
+#if defined(MAC_MPW)
+# pragma unused ( preselected,glyph )
+#endif
 	NhWindow * aWin = & theWindows [ win ] ;
 	const char *str;
 	char locStr[4+BUFSZ];
@@ -2514,9 +2529,15 @@ mac_select_menu (winid win, int how, menu_item **selected_list) {
 
 
 void
+#ifndef NEED_PROTOTYPE
 mac_display_file ( name, complain )
-const char *name;	/* not ANSI prototype because of boolean parameter */
+const char * name;
 boolean	complain;
+#else
+mac_display_file (
+const char * name,
+boolean	complain)
+#endif /* NEED_PROTOTYPE */
 {
 	long l ;
 	Ptr buf ;
@@ -2568,6 +2589,9 @@ mac_update_inventory (void) {
 
 void
 mac_suspend_nhwindows (const char *foo) {
+#if defined(MAC_MPW)
+# pragma unused ( foo )
+#endif
 	/*	Can't really do that :-)		*/
 }
 
@@ -2640,5 +2664,14 @@ struct window_procs mac_procs = {
 	0, //    mac_end_screen,
     genl_outrip,
 } ;
+
+#ifdef MAC_MPW
+int kbhit(void)
+{
+	EventRecord event_record;
+	
+	return EventAvail(keyUpMask, &event_record);
+}
+#endif /* MAC_MPW */
 
 /*macwin.c*/

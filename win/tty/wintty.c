@@ -10,6 +10,7 @@
 
 #include "hack.h"
 #include "dlb.h"
+
 #ifdef SHORT_FILENAMES
 #include "patchlev.h"
 #else
@@ -250,6 +251,9 @@ tty_init_nhwindows(argcp,argv)
 int* argcp;
 char** argv;
 {
+#if defined(MAC_MPW)
+# pragma unused(argcp,argv)
+#endif
     int wid, hgt;
 
     /*
@@ -2116,6 +2120,9 @@ tty_add_menu(window, glyph, identifier, ch, gch, attr, str, preselected)
     const char *str;	/* menu string */
     boolean preselected; /* item is marked as selected */
 {
+#if defined(MAC_MPW)
+# pragma unused(glyph)
+#endif
     register struct WinDesc *cw = 0;
     tty_menu_item *item;
     const char *newstr;
@@ -2826,6 +2833,9 @@ int
 tty_nh_poskey(x, y, mod)
     int *x, *y, *mod;
 {
+#if defined(MAC_MPW)
+# pragma unused(x,y,mod)
+#endif
 # if defined(WIN32CON)
     int i;
     (void) fflush(stdout);

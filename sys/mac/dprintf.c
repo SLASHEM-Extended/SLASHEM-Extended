@@ -28,7 +28,7 @@ int doit;
 		if ( macFlags.hasDebugger && KeyDown ( 0x39 ) ) {					/* Caps Lock */
 			doit = DO_DEBUGSTR ;
 		} else if ( KeyDown ( 0x3B ) && iflags . window_inited &&			/* Control */
-			(WIN_MESSAGE != -1) && theWindows [WIN_MESSAGE].its_window) {
+			(WIN_MESSAGE != -1) && theWindows && theWindows[WIN_MESSAGE].its_window) {
 			doit = DO_PLINE ;
 		}
 		

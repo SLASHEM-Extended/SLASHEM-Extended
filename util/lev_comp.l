@@ -78,7 +78,7 @@ static int map_cnt = 0;
  *	This is a hack required by Michael Hamel to get things
  *	working on the Mac.
  */
-#if defined(applec) && !defined(FLEX_SCANNER) && !defined(FLEXHACK_SCANNER)
+#if defined(MAC_MPW) && !defined(FLEX_SCANNER) && !defined(FLEXHACK_SCANNER)
 #undef input
 #undef unput
 #define unput(c) { yytchar = (c); if (yytchar == 10) yylineno--; *yysptr++ = yytchar; }
@@ -100,7 +100,7 @@ input()		/* Under MPW \n is chr(13)! Compensate for this. */
 		else		    return(yytchar);
 	}
 }
-#endif	/* applec && !FLEX_SCANNER && !FLEXHACK_SCANNER */
+#endif	/* MAC_MPW && !FLEX_SCANNER && !FLEXHACK_SCANNER */
 
 %}
 %e 1500

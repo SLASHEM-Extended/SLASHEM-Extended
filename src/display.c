@@ -1580,6 +1580,9 @@ STATIC_OVL boolean
 more_than_one(x, y, a, b, c)
     int x, y, a, b, c;
 {
+#if defined(MAC_MPW)
+# pragma unused ( x,y )
+#endif
     if ((a && (b|c)) || (b && (a|c)) || (c && (a|b))) {
 	error4(x,y,a,b,c,0);
 	return TRUE;

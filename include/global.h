@@ -232,6 +232,15 @@ typedef xchar	boolean;		/* 0 or 1 */
 # endif
 # ifdef MAC
 #  define PORT_ID	"Mac"
+#  if 0
+#  ifdef MAC_MPW_PPC
+#   define PORT_SUB_ID "PPC"
+#  else
+#   ifdef MAC_MPW_68K
+#    define PORT_SUB_ID "68K"
+#   endif
+#  endif
+#  endif
 # endif
 # ifdef MSDOS
 #  ifdef PC9800

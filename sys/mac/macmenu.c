@@ -37,6 +37,19 @@
 
 /******** Local Defines ********/
 
+#ifdef MAC_MPW
+# define ResetAlrtStage ResetAlertStage
+# define GetItem GetMenuItemText
+# define SetItem SetMenuItemText
+# define DelMenuItem DeleteMenuItem
+# define AddResMenu AppendResMenu
+# define GetDItem GetDialogItem
+# define SetDItem SetDialogItem
+# define SelIText SelectDialogItemText
+# define GetIText GetDialogItemText
+# define SetIText SetDialogItemText
+#endif
+
 /* 'MNU#' (menu list record) */
 typedef union menuRefUnn
 {
@@ -202,7 +215,7 @@ static	unsigned char *menuErrStr[err_Menu_total] =
 static	menuListPtr	pMenuList[2];
 static	short		theMenubar = mbarDA;	/* force initial update */
 static	short		kAdjustWizardMenu = 1;
-
+static  WindowPtr   mapWindow;
 
 /******** Prototypes ********/
 static	void alignAD(Rect *, short);
@@ -594,7 +607,7 @@ void mac_askname ()
 	AppendMenu(askmenu[RSRC_ASK_MODE], "\pNormal");
 	AppendMenu(askmenu[RSRC_ASK_MODE], "\pExplore");
 #ifdef WIZARD
-	AppendMenu(askmenu[RSRC_ASK_MODE], "\pDebug");
+	AppendMenu(askmenu[RSRC_ASK_MODE], "\pWizard");
 #endif
 	InsertMenu(askmenu[RSRC_ASK_MODE], hierMenu);
 	currmode = 0;
@@ -758,7 +771,7 @@ void mac_askname ()
 	    discover = 1;
 	    break;
 #ifdef WIZARD
-	case 2:		/* Debug */
+	case 2:		/*Wizard */
 	    wizard = 1;
 	    strcpy(plname, WIZARD);
 	    break;
@@ -915,7 +928,7 @@ short		i;
 		{
 			kAdjustWizardMenu = 0;
 
-			SetMenuItemText(MHND_FILE, menuFilePlayMode, "\pDebug");
+			SetMenuItemText(MHND_FILE, menuFilePlayMode, "\pWizard");
 		}
 	}
 #endif
@@ -1059,6 +1072,22 @@ DoMenuEvt(long menuEntry)
 
 			for (i = 1; ((i <= mstr[0]) && (mstr[i] != mstrEndChar)); i++)
 				AddToKeyQueue(mstr[i], false);
+#ifdef MAC_MPW
+				
+			/* Special processing for extended commands. The command
+			   selection appears before mstrEndChar, the rest appears
+			   after. The rest is used only when in Mac windows mode.
+			   In any case we add a newline to get the command
+			   going.
+			*/
+			if ( mstr[1] == '#' )
+			{
+				if ( windowprocs.win_init_nhwindows == mac_procs.win_init_nhwindows )
+					for ( i++; ((i <= mstr[0]) && (mstr[i] != mstrEndChar)); i++)
+						AddToKeyQueue(mstr[i], false);
+				AddToKeyQueue('\n', false);
+			}
+#endif /* MAC_MPW */
 		}
 		break;
 	}
@@ -1072,7 +1101,7 @@ aboutNetHack() {
 	if (theMenubar >= mbarRegular) {
 		(void) doversion();				/* is this necessary? */
 	} else {
-		unsigned char aboutStr[32] = "\pNetHack 3.3.";
+		unsigned char aboutStr[32] = "\pSlash'EM 0.0.";
 
 		if (PATCHLEVEL > 10) {
 			aboutStr[++aboutStr[0]] = '0'+PATCHLEVEL/10;
@@ -1080,7 +1109,7 @@ aboutNetHack() {
 
 		aboutStr[++aboutStr[0]] = '0' + (PATCHLEVEL % 10);
 
-		ParamText(aboutStr, "\p\rdevteam@www.nethack.org", "\p", "\p");
+		ParamText(aboutStr, "\p\rhurtley@acm.org", "\p", "\p");
 		(void) Alert(alrtMenuNote, (ModalFilterUPP) 0L);
 		ResetAlertStage();
 	}
@@ -1089,6 +1118,7 @@ aboutNetHack() {
 static void
 openMap()
 {
+#if 0
 	WindowPeek	peekWindow = *(WindowPeek*) LMGetWindowList();
 
 	while (peekWindow && (peekWindow->windowKind != WKND_MAP))
@@ -1099,6 +1129,10 @@ openMap()
 
 	ShowWindow((WindowPtr) peekWindow);
 	SelectWindow((WindowPtr) peekWindow);
+#else
+	ShowWindow(mapWindow);
+	SelectWindow(mapWindow);
+#endif
 }
 
 static void
@@ -1110,8 +1144,10 @@ closeFrontWindow()
 		return;				/* impossible? */
 	else if (peekWindow->windowKind < 0)
 		CloseDeskAcc(peekWindow->windowKind);
-	else if (peekWindow->windowKind == WKND_MAP)
+	else if (peekWindow->windowKind == WKND_MAP) {
 		HideWindow((WindowPtr) peekWindow);
+		mapWindow = (WindowPtr)peekWindow;
+	}
 	else
 		WindowGoAway((EventRecord *) 0L, (WindowPtr) peekWindow);
 }
@@ -1159,30 +1195,27 @@ Boolean doYes = 0 ;
 		ResetAlrtStage();
 
 		if (itemHit != bttnMenuAlertYes) {
-			doQuit = 0;
+			doQuit = 0 ;
 		} else {
-			doYes = 1;
+			doYes = 1 ;
 		}
 	}
-	if (doQuit) {
-		/* MWM -- forgive me lord, an even uglier kludge to deal with differences
-			in command input handling
-		 */
-		 if (winMac)
-			quitinput = "#quit\r";
-		else
-			quitinput = "#q\r";
-			
-		/* KMH -- Ugly kludge */
-		while (*quitinput)
-			AddToKeyQueue(*quitinput++, 1);
-		if (doYes) {
-			if (winMac)
-				quitinput = "y\rq\r\r\r";
-			else
-				quitinput = "yq\r";
-			while (*quitinput)
-				AddToKeyQueue(*quitinput++, 1);
+	if ( doQuit ) {
+#ifndef MAC_MPW
+		AddToKeyQueue ( 'Q' , 1 ) ;
+#else
+		AddToKeyQueue ( '#' , 1 ) ;
+		AddToKeyQueue ( 'q' , 1 ) ;
+		if ( windowprocs.win_init_nhwindows == mac_procs.win_init_nhwindows )
+		{
+			AddToKeyQueue ( 'u' , 1 ) ;
+			AddToKeyQueue ( 'i' , 1 ) ;
+			AddToKeyQueue ( 't' , 1 ) ;
+		}
+		AddToKeyQueue ( '\n' , 1 ) ;
+#endif /* MAC_MPW */
+		if ( doYes ) {
+			AddToKeyQueue ( 'y' , 1 ) ;
 		}
 	}
 }

@@ -16,6 +16,10 @@
 #include <ToolUtils.h>
 #include "dlb.h"
 
+#ifdef MAC_MPW
+QDGlobals qd;
+#endif /* MAC_MPW */
+
 /*
  * We should get the default dirID and volRefNum (from name) from prefs and
  * the situation at startup... For now, this will have to do.

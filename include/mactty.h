@@ -64,8 +64,15 @@
 #define CHAR_ENTER ((char)3)
 #define CHAR_BELL ((char)7)
 #define CHAR_BS ((char)8)
+
+//#ifdef MAC_MPW
+//#define CHAR_LF ('\n')
+//#define CHAR_CR ('\r')
+//#else
 #define CHAR_LF ((char)10)
 #define CHAR_CR ((char)13)
+//#endif
+
 #define CHAR_ESC ((char)27)
 #define CHAR_BLANK ((char)32)
 #define CHAR_DELETE ((char)127)

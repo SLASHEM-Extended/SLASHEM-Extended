@@ -3,11 +3,18 @@
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include <Dialogs.h>
-#if ENABLE_MAC_POPUP
 #include "hack.h"
+
+#if ENABLE_MAC_POPUP
 #include "mactty.h"
 #endif
+
 #include "macpopup.h"
+#include <controlDefinitions.h>
+
+#ifdef MAC_MPW
+#define GetDItem GetDialogItem
+#endif
 
 /* Flash a dialog button when its accelerator key is pressed */
 void

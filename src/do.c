@@ -1449,6 +1449,9 @@ revive_mon(arg, timeout)
 genericptr_t arg;
 long timeout;
 {
+#if defined(MAC_MPW)
+# pragma unused ( timeout )
+#endif
     struct obj *body = (struct obj *) arg;
 
     /* if we succeed, the corpse is gone, otherwise, rot it away */

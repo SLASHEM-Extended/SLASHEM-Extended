@@ -117,7 +117,7 @@ make_helper(mnum,x,y)
 {
 	struct permonst *pm;
 	struct monst *mtmp = 0;
-	int chance, trycnt = 100;
+	int trycnt = 100;
 
 	do {
 		pm = &mons[mnum];

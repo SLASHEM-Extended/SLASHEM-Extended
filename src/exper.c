@@ -85,7 +85,7 @@ int
 experience(mtmp, nk)    /* return # of exp points for mtmp after nk killed */
 	register struct monst *mtmp;
 	register int    nk;
-#if defined(applec)
+#if defined(MAC_MPW)
 # pragma unused(nk)
 #endif
 {

@@ -132,6 +132,9 @@ char let;
 int how;
 const char *mesg;
 {
+#if defined(MAC_MPW)
+# pragma unused ( how,let )
+#endif
     pline("%s", mesg);
     return 0;
 }

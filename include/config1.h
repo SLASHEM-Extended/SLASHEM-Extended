@@ -32,8 +32,24 @@
 /*
  * Mac Stuff.
  */
-#ifdef applec		/*	MPW auto-defined symbol */
+#ifdef macintosh    /*  MPW pre-defined macro */
 # define MAC
+# define MAC_MPW
+# define MAC_MPW_PPC
+# define NEED_VARARGS
+# define USE_STDARG
+# define NEED_PROTOTYPE
+# undef UNIX
+#endif
+
+#ifdef applec    /*  MPW pre-defined macro */
+# define MAC
+# define MAC_MPW
+# define MAC_MPW_68K
+# define NEED_VARARGS
+# define USE_STDARG
+# define NEED_PROTOTYPE
+# undef UNIX
 #endif
 
 #ifdef THINK_C		/* Think C auto-defined symbol */

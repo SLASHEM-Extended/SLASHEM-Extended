@@ -9,6 +9,11 @@
 #include <Folders.h>
 #include <Windows.h>
 #include <ToolUtils.h>
+
+#ifdef MAC_MPW
+#include <TextUtils.h>
+#endif /* MAC_MPW */
+
 #include <Resources.h>
 #include <Files.h>
 
@@ -56,7 +61,11 @@ InitWinFile ( void )
 		BlockMove ( * sh , winFileName , * * sh + 1 ) ;
 		ReleaseResource ( (Handle) sh ) ;
 	} else {
+#ifndef MAC_MPW
 		BlockMove ( "\PNetHack Preferences" , winFileName , 20 ) ;
+#else
+		BlockMove ( "\pSlashEM Preferences" , winFileName , 20 ) ;
+#endif /* MAC_MPW */
 	}
 	if ( HOpen ( winFileVol , winFileDir , winFileName , fsRdPerm , & ref ) ) {
 		return ;

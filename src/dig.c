@@ -775,9 +775,8 @@ struct obj *obj;
 	char qbuf[QBUFSZ];
 	register char *dsp = dirsyms;
 	register const char *sdp;
-	register struct rm *lev;
 	register int rx, ry;
-	int dig_target, res = 0;
+	int res = 0;
 
 
 	if(iflags.num_pad) sdp = ndir; else sdp = sdir;  /* DICE workaround */
@@ -1310,6 +1309,9 @@ rot_organic(arg, timeout)
 genericptr_t arg;
 long timeout;   /* unused */
 {
+#if defined(MAC_MPW)
+# pragma unused ( timeout )
+#endif
 	struct obj *obj = (struct obj *) arg;
 
 	while (Has_contents(obj)) {

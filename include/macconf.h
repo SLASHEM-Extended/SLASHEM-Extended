@@ -9,7 +9,8 @@
 /*
  * Compiler selection is based on the following symbols:
  *
- *	applec			MPW compiler
+ *	applec			MPW 68K compiler
+ *  macintosh		MPW PPC compiler
  *	THINK_C			Think C compiler
  *	__MWERKS__		Metrowerks compiler
  *
@@ -20,14 +21,6 @@
  # WIDENED_PROTOTYPES (defined if UNWIDENED_PROTOTYPES is undefined and
  # NHSTDC is defined).
  */
-#  ifdef applec
-#   define MAC_MPW32		/* Headers, and for avoiding a bug */
-#  endif
-
-#  ifndef __powerc
-#   define MAC68K		/* 68K mac (non-powerpc) */
-#  endif
-
 #  define RANDOM
 #  define NO_SIGNAL		/* You wouldn't believe our signals ... */
 #  define FILENAMELEN 256
@@ -58,6 +51,11 @@
 #  define DebugStr(aStr)
 #endif
 
+#ifdef MAC_MPW
+# define getpid() 1
+# define getuid() 1
+#endif /* MAC_MPW */
+
 /*
  * We could use the PSN under sys 7 here ...
  */
@@ -65,11 +63,16 @@
 #  define getpid() 1
 #  define getuid() 1
 #endif
+
 #  define index strchr
 #  define rindex strrchr
-
 #  define Rand random
+
+#ifdef MAC_MPW
+# define error progerror
+#endif /* MAC_MPW */
 extern void error(const char *,...);
+
 
 # if !defined(O_WRONLY)
 #  ifdef __MWERKS__
@@ -88,7 +91,7 @@ extern void error(const char *,...);
  * MPW.  With MPW, we make them into MPW tools, which use unix IO.  SPEC_LEV
  * and DGN_COMP are defined when compiling for LevComp and DgnComp respectively.
  */
-#if !(defined(applec) && (defined(SPEC_LEV) || defined(DGN_COMP)))
+#if !(defined(MAC_MPW) && (defined(SPEC_LEV) || defined(DGN_COMP)))
 # define creat maccreat
 # define open macopen
 # define close macclose
@@ -103,7 +106,7 @@ extern void error(const char *,...);
 # define SAVE_TYPE 'SAVE'
 # define PREF_TYPE 'PREF'
 # define DATA_TYPE 'DATA'
-# define MAC_CREATOR 'nh31' /* Registered with DTS ! */
+# define MAC_CREATOR 'slEm' /* Not yet registered with DTS ! */
 
 /*
  * Define PORT_HELP to be the name of the port-specfic help file.

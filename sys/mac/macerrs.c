@@ -2,8 +2,9 @@
 /* Copyright (c) Michael Hamel, 1991 */
 /* NetHack may be freely redistributed.  See license for details. */
 
-#ifdef applec	/* This needs to be resident always */
-#pragma segment Main
+#ifdef MAC_MPW	/* This needs to be resident always */
+# pragma segment Main
+# include "config.h"
 #endif
 
 #include "hack.h"
@@ -12,9 +13,10 @@
 #include <OSUtils.h>
 #include <files.h>
 #include <Types.h>
-#ifdef MAC_MPW32
-#include <String.h>
-#include <Strings.h>
+
+#ifdef MAC_MPW
+# include <String.h>
+# include <Strings.h>
 #else
 # ifdef __MWERKS__
 #  include <strings.h>
@@ -22,9 +24,15 @@
 #  include <pascal.h>
 # endif
 #endif
+
 #include <Dialogs.h>
 #include <Packages.h>
 #include <ToolUtils.h>
+
+#ifdef MAC_MPW
+# include <TextUtils.h>
+#endif /* MAC_MPW */
+
 #include <Resources.h>
 
 #define stackDepth  4
@@ -165,4 +173,3 @@ void popattempt( void )
   if (gTopactivity > 1) --gTopactivity;
 	else error("activity stack underflow");
 }
-#endif /* Apparently unused */

@@ -15,9 +15,9 @@
 #endif
 
 #ifdef MAC
-# ifdef applec
+# ifdef MAC_MPW
 #  define MPWTOOL
-#include <CursorCtl.h>
+#  include <CursorCtl.h>
 # else
 #  define PREFIX ":lib:"        /* place output files here */
 # endif
@@ -47,7 +47,11 @@
 # define OMASK 0644
 #endif
 
-#define NEWLINE 10      /* under Mac MPW C '\n' is 13 so don't use it. */
+#ifndef MAC_MPW
+# define NEWLINE 10      /* under Mac MPW C '\n' is 13 so don't use it. */
+#else
+# define NEWLINE 13
+#endif
 
 #define ERR             (-1)
 
@@ -340,8 +344,13 @@ void
 yyerror(s)
 const char *s;
 {
-	(void) fprintf(stderr, "%s: line %d : %s\n", fname,
-		(*s >= 'A' && *s <= 'Z') ? colon_line_number : line_number, s);
+	(void) fprintf(stderr,
+#ifndef MAC_MPW
+	  "%s: line %d : %s\n",
+#else
+	  "File %s ; Line %d :# %s\n",
+#endif
+	  fname, (*s >= 'A' && *s <= 'Z') ? colon_line_number : line_number, s);
 	if (++fatal_error > MAX_ERRORS) {
 		(void) fprintf(stderr,"Too many errors, good bye!\n");
 		exit(EXIT_FAILURE);
@@ -355,8 +364,13 @@ void
 yywarning(s)
 const char *s;
 {
-	(void) fprintf(stderr, "%s: line %d : WARNING : %s\n",
-				fname, colon_line_number, s);
+	(void) fprintf(stderr,
+#ifndef MAC_MPW
+	  "%s: line %d : WARNING : %s\n",
+#else
+	  "File %s ; Line %d # WARNING : %s\n",
+#endif
+	  fname, colon_line_number, s);
 }
 
 /*

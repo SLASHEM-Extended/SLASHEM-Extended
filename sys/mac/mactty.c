@@ -78,7 +78,7 @@ empty_rect ( Rect * r ) {
 
 
 /*
- * Union twp rect together
+ * Union two rect together
  */
 static void
 union_rect ( Rect * r1 , Rect * r2 , Rect * dest ) {
@@ -444,6 +444,9 @@ static void
 copy_bits (tty_record *record, Rect *bounds, short xfer_mode, RgnHandle mask_rgn) {
 GWorldFlags pix_state;
 BitMap * source;
+RGBColor old_fore , old_back;
+RGBColor rgb_black = {0, 0, 0};
+RGBColor rgb_white = {0xffff, 0xffff, 0xffff};
 
 	if (record->uses_gworld) {
 		pix_state = GetPixelsState (GetGWorldPixMap (record->offscreen_world));
@@ -719,7 +722,7 @@ RECORD_EXISTS (record);
 static void
 do_add_string ( tty_record * record , char * str , short len ) {
 Rect r ;
-register int x_pos , count = len ;
+register int count = len ;
 
 	if ( len < 1 ) {
 		return ;
@@ -1039,7 +1042,7 @@ short blink_cursor (WindowPtr window, long when) {
  */
 short
 image_tty (EventRecord *theEvent, WindowPtr window) {
-#if defined(applec) || defined(__MWERKS__)
+#if defined(MAC_MPW) || defined(__MWERKS__)
 # pragma unused(theEvent)
 #endif
 RECORD_EXISTS (record);

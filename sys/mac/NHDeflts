@@ -5,7 +5,7 @@ OPTIONS=rest,!autopickup,!time,!silent,dogname:Rover,catname:Pixel
 #OPTIONS=name:Brother-E,pettype:cat
 
 # Enable these (remove the # before them) to get a "classic" look & feel
-OPTIONS=window:tty,standout,hilite_pet
+#OPTIONS=window:tty,standout,hilite_pet
 
 # Enable these if you have a 13" color screen or larger in TTY mode
 # If you have a color classic, remove the ",large" option

@@ -256,7 +256,7 @@ short hor , vert ;
 
 	mustwork ( get_tty_attrib ( _mt_window , TTY_ATTRIB_CURSOR , & flag ) ) ;
 	flag |= TA_BLINKING_CURSOR;
-#ifdef applec
+#ifdef MAC_MPW
 	flag &= ~ TA_CR_ADD_NL ;
 #else
 	flag &= ~ TA_NL_ADD_CR ;
@@ -274,7 +274,6 @@ tgetch ( void ) {
 EventRecord event ;
 long sleepTime = 0 ;
 int ret = 0;
-int key ;
 
 	for (;!ret;) {
 		WaitNextEvent ( -1 , & event , sleepTime , 0 ) ;
@@ -286,7 +285,7 @@ int key ;
 			sleepTime = 0 ;
 		}
 		ret = GetFromKeyQueue ();
-		if (ret == CHAR_CR) ret = CHAR_LF;
+		if (ret == '\r') ret = '\n';
 	}
 	return ret;
 }
@@ -302,7 +301,7 @@ getreturn ( char * str ) {
 
 int
 has_color ( int color ) {
-#if defined(applec)
+#if defined(MAC_MPW)
 # pragma unused(color)
 #endif
 Rect r;
@@ -370,7 +369,7 @@ short err ;
 
 void
 term_end_attr ( int attr ) {
-#if defined(applec)
+#if defined(MAC_MPW)
 # pragma unused ( attr )
 #endif
 	_mt_set_colors ( _mt_attrs [ 0 ] ) ;
@@ -501,7 +500,7 @@ long flag ;
 
 	mustwork ( get_tty_attrib ( _mt_window , TTY_ATTRIB_CURSOR , & flag ) ) ;
 
-#ifdef applec
+#ifdef MAC_MPW
 	flag &= ~ TA_CR_ADD_NL ;
 #else
 	flag &= ~ TA_NL_ADD_CR ;
@@ -540,7 +539,7 @@ long flag ;
 
 	mustwork ( get_tty_attrib ( _mt_window , TTY_ATTRIB_CURSOR , & flag ) ) ;
 
-#ifdef applec
+#ifdef MAC_MPW
 	flag |= TA_CR_ADD_NL ;
 #else
 	flag |= TA_NL_ADD_CR ;
@@ -557,7 +556,7 @@ long flag ;
 
 void
 tty_number_pad ( int arg ) {
-#if defined(applec)
+#ifdef MAC_MPW
 # pragma unused(arg)
 #endif
 }

@@ -86,6 +86,9 @@ void
 done1(sig_unused)   /* called as signal() handler, so sent at least one arg */
 int sig_unused;
 {
+#if defined(MAC_MPW)
+# pragma unused ( sig_unused )
+#endif
 #ifndef NO_SIGNAL
 	(void) signal(SIGINT,SIG_IGN);
 #endif
@@ -154,6 +157,9 @@ STATIC_PTR void
 done_intr(sig_unused) /* called as signal() handler, so sent at least one arg */
 int sig_unused;
 {
+#if defined(MAC_MPW)
+# pragma unused ( sig_unused )
+#endif
 	done_stopprint++;
 	(void) signal(SIGINT, SIG_IGN);
 # if defined(UNIX) || defined(VMS)

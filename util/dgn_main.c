@@ -12,9 +12,9 @@
 #include "dlb.h"
 
 #ifdef MAC
-# ifdef applec
+# ifdef MAC_MPW
 #  define MPWTOOL
-#include <CursorCtl.h>
+#  include <CursorCtl.h>
 # else
    /* put dungeon file in library location */
 #  define PREFIX ":lib:"
@@ -52,7 +52,7 @@ main(argc, argv)
 int argc;
 char **argv;
 {
-	char	infile[64], outfile[64], basename[64];
+	char	*infile, *outfile, *basename;
 	FILE	*fin, *fout;
 	int	i, len;
 	boolean errors_encountered = FALSE;
@@ -66,9 +66,9 @@ char **argv;
 	argv = mac_argv;
 #endif
 
-	Strcpy(infile, "(stdin)");
+	infile = "(stdin)";
 	fin = stdin;
-	Strcpy(outfile, "(stdout)");
+	outfile = "(stdout)";
 	fout = stdout;
 
 	if (argc == 1) {	/* Read standard input */
@@ -78,7 +78,10 @@ char **argv;
 	    if (fatal_error > 0)
 		errors_encountered = TRUE;
 	} else {		/* Otherwise every argument is a filename */
+	    infile = outfile = (char *)0;
 	    for(i=1; i<argc; i++) {
+		if (infile) free(infile);
+		infile = alloc(strlen(argv[i]) + 1);
 		fname = strcpy(infile, argv[i]);
 		/* the input file had better be a .pdf file */
 		len = strlen(fname) - 4;	/* length excluding suffix */
@@ -87,6 +90,7 @@ char **argv;
 			    "Error - file name \"%s\" in wrong format.\n",
 			    fname);
 		    errors_encountered = TRUE;
+		    free(infile);
 		    continue;
 		}
 
@@ -94,7 +98,9 @@ char **argv;
 #if defined(MAC) && (defined(THINK_C) || defined(__MWERKS__))
 		/* extract basename from path to infile */
 		mark = strrchr(infile, ':');
-		strcpy(basename, mark ? mark+1 : infile);
+		mark = mark ? mark+1 : infile;
+		basename = alloc(strlen(mark) + 1);
+		Strcpy(basename, mark);
 		mark = strchr(basename, '.');
 		if (mark) *mark = '\0';
 #else
@@ -103,15 +109,21 @@ char **argv;
 #ifdef VMS	/* avoid possible interaction with logical name */
 		len++;	/* retain "." as trailing punctuation */
 #endif
+		basename = alloc(len + 1);
 		(void) strncpy(basename, infile, len);
 		basename[len] = '\0';
 #endif
 
-		outfile[0] = '\0';
+		if (outfile) free(outfile);
 #ifdef PREFIX
-		(void) strcat(outfile, PREFIX);
+		outfile = alloc(strlen(PREFIX) + strlen(basename) + 1);
+		Strcpy(outfile, PREFIX);
+#else
+		outfile = alloc(strlen(basename) + 1);
+		outfile[0] = '\0';
 #endif
 		(void) strcat(outfile, basename);
+		free(basename);
 
 		fin = freopen(infile, "r", stdin);
 		if (!fin) {
@@ -137,14 +149,18 @@ char **argv;
 		}
 	    }
 	}
-	if (fout && fclose(fout) < 0) {
+	if (fout && fout != stdout && fclose(fout) < 0) {
 	    Fprintf(stderr, "Can't finish output file.");
 	    perror(outfile);
 	    errors_encountered = TRUE;
 	}
+#ifndef MAC_MPW
 	exit(errors_encountered ? EXIT_FAILURE : EXIT_SUCCESS);
 	/*NOTREACHED*/
 	return 0;
+#else
+	return (errors_encountered ? EXIT_FAILURE : EXIT_SUCCESS);
+#endif
 }
 
 /*
@@ -156,7 +172,13 @@ char **argv;
 void yyerror(s)
 const char *s;
 {
-	(void) fprintf(stderr,"%s : line %d : %s\n",fname,line_number, s);
+	Fprintf(stderr,
+#ifndef MAC_MPW
+	  "%s : line %d : %s\n",
+#else
+	  "File %s ; Line %d # %s\n",
+#endif
+	  fname, line_number, s);
 	if (++fatal_error > MAX_ERRORS) {
 		(void) fprintf(stderr,"Too many errors, good bye!\n");
 		exit(EXIT_FAILURE);
@@ -170,7 +192,13 @@ const char *s;
 void yywarning(s)
 const char *s;
 {
-	(void) fprintf(stderr,"%s : line %d : WARNING : %s\n",fname,line_number,s);
+	Fprintf(stderr,
+#ifndef MAC_MPW
+	  "%s : line %d : WARNING : %s\n",
+#else
+	  "File %s ; Line %d # WARNING : %s\n",
+#endif
+	  fname, line_number, s);
 }
 
 int yywrap()

@@ -37,7 +37,6 @@ tty_doprev_message()
 {
 /*WAC adding windowstuff*/
     winid tmpwin;
-    int buf;
 
     register struct WinDesc *cw = wins[WIN_MESSAGE];
 

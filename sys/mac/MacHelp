@@ -1,4 +1,5 @@
             Macintosh-specific help file for NetHack 3.2
+		(Note that this has not yet been updated for Slash'EM)
 
 The following are options, features, or concerns specific to the
 Macintosh port of NetHack 3.2.  Bug reports, suggestions, comments,
@@ -101,9 +102,9 @@ and so on).
     be heard when an instrument is applied.
 
 
-=== Explore and Debug Modes
+=== Explore and Wizard Modes
     As of version 3.1.2, you can enter Explore (aka Discover) mode or
-    Debug (aka Wizard) mode by choosing the appropriate entries on the
+    Wizard (aka Debug) mode by choosing the appropriate entries on the
     'Mode' popup-menu section of the "Who are you?" startup dialog.
     This same dialog allows you to specify your role, race, gender,
     alignment, and name, of course.
@@ -116,7 +117,7 @@ and so on).
     see your intrinsic abilities using the command ctl-X (also available
     on the 'Explore' submenu on the File menu).
 
-    Starting in Debug mode is only intended for developers and others
+    Starting in Wizard mode is only intended for developers and others
     interested in characterizing bugs.  Using this mode for other
     purposes will have confusing results and eliminate your enjoyment
     of the game!

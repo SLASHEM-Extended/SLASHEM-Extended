@@ -966,7 +966,7 @@ compress_area(filearea, filename)
 const char *filearea, *filename;
 {
 #ifndef COMPRESS
-#if defined(applec) || defined(__MWERKS__)
+#if defined(MAC_MPW) || defined(__MWERKS__)
 # pragma unused(filename)
 #endif
 #else
@@ -981,7 +981,7 @@ uncompress_area(filearea, filename)
 const char *filearea, *filename;
 {
 #ifndef COMPRESS
-#if defined(applec) || defined(__MWERKS__)
+#if defined(MAC_MPW) || defined(__MWERKS__)
 # pragma unused(filename)
 #endif
 #else
@@ -1013,7 +1013,7 @@ make_lockname(filename, lockname)
 const char *filename;
 char *lockname;
 {
-#if defined(applec) || defined(__MWERKS__)
+#if defined(MAC_MPW) || defined(__MWERKS__)
 # pragma unused(filename,lockname)
 	return (char*)0;
 #else
@@ -1050,7 +1050,7 @@ const char *filename;
 int whichprefix;
 int retryct;
 {
-#if defined(applec) || defined(__MWERKS__)
+#if defined(MAC_MPW) || defined(__MWERKS__)
 # pragma unused(filename, retryct)
 #endif
 	char locknambuf[BUFSZ];
@@ -1407,7 +1407,7 @@ char            *buf;
 char            *tmp_ramdisk;
 char            *tmp_levels;
 {
-#if defined(applec) || defined(__MWERKS__)
+#if defined(MAC_MPW) || defined(__MWERKS__)
 # pragma unused(tmp_ramdisk,tmp_levels)
 #endif
 	char            *bufp, *altp;
@@ -1765,7 +1765,7 @@ void
 check_recordfile(dir)
 const char *dir;
 {
-#if defined(applec) || defined(__MWERKS__)
+#if defined(MAC_MPW) || defined(__MWERKS__)
 # pragma unused(dir)
 #endif
 	int fd;

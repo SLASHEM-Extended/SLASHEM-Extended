@@ -12,17 +12,16 @@
 #include <OSUtils.h>
 #include <files.h>
 #include <Types.h>
-#ifdef MAC_MPW32
+
+#ifdef MAC_MPW
 #include <String.h>
 #include <Strings.h>
 #endif
+
 #include <Dialogs.h>
 #include <Packages.h>
 #include <ToolUtils.h>
 #include <Resources.h>
-#ifdef applec
-#include <SysEqu.h>
-#endif
 #include <Errors.h>
 
 #ifndef O_RDONLY
@@ -42,6 +41,9 @@ main ( void )
 
 	windowprocs = mac_procs ;
 	InitMac ( ) ;
+
+	theWindows = (NhWindow *) NewPtrClear (NUM_MACWINDOWS * sizeof (NhWindow));
+	mustwork(MemError());
 
 	hname = "Mac Hack" ;
 	hackpid = getpid();
@@ -119,7 +121,7 @@ main ( void )
 			if(yn("Do you want to keep the save file?") == 'n')
 			    (void) delete_savefile();
 			else {
-			    compress(SAVEF);
+			    compress_area(FILE_AREA_SAVE, SAVEF);
 			}
 		}
 		}
@@ -283,7 +285,6 @@ finder_file_request(void)
 }
 }
 #endif /* MAC68K */
-#endif /* 0 */
 }
 
 /*macmain.c*/

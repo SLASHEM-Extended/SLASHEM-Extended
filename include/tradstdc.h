@@ -203,7 +203,7 @@ typedef genericptr genericptr_t;	/* (void *) or (char *) */
 #if defined(AMIGA) && !defined(AZTEC_50)
 #define UNWIDENED_PROTOTYPES
 #endif
-#if defined(applec)
+#if defined(MAC_MPW)
 #define UNWIDENED_PROTOTYPES
 #endif
 #if defined(__MWERKS__) && defined(__BEOS__)

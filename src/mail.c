@@ -454,7 +454,11 @@ struct obj *otmp;
 /* WAC updated with SLASHEM info
 	"Report bugs to nethack-bugs@linc.cis.upenn.edu"
 */
+#ifndef MAC_MPW
         "Send bug reports and suggestions to wac@intergate.bc.ca"
+#else
+        "Send bug reports and suggestions to hurtley@acm.org"
+#endif /* MAC_MPW */
 	};
 
     if (Blind) {
