@@ -69,6 +69,7 @@ http://www.slashem.org/
 -----------
 
 ver 0.0.7E4 [?] [Released by ?]
+-fixed bug 782005: Menu generated which picking objects up should scroll
 
 See history.txt for changes made in previous versions.
 
