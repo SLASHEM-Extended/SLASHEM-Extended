@@ -84,7 +84,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E2 [?] [Released by ?]
+ver 0.0.7E2 [July 5/2003] [Released by Ali]
 -fixed bug 759709: Some orcs get unwarranted food.
 -fixed bug 754921: won't compile pure gtk.
 -fixed bug 653195: Level teleport out of Black Market.
