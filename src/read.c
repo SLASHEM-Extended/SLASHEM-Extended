@@ -239,11 +239,7 @@ register struct obj *obj;
 	else {
 		if (obj->spe > 0) {
 		    obj->spe = 0;
-		    if (obj->otyp == OIL_LAMP ||
-#ifdef LIGHTSABERS
-			    is_lightsaber(obj) ||
-#endif
-			    obj->otyp == BRASS_LANTERN)
+		    if (obj->otyp == OIL_LAMP || obj->otyp == BRASS_LANTERN)
 			obj->age = 0;
 		    Your("%s %s briefly.",xname(obj), otense(obj, "vibrate"));
 		} else pline(nothing_happens);
@@ -519,18 +515,17 @@ int curse_bless;
 	    case RED_LIGHTSABER:
 	    case RED_DOUBLE_LIGHTSABER:
 		if (is_cursed) {
-		    stripspe(obj);
 		    if (obj->lamplit) {
+			end_burn(obj, TRUE);
+			obj->age = 0;
 			if (!Blind)
 			    pline("%s deactivates!", The(xname(obj)));
-			end_burn(obj, TRUE);
-		    }
+		    } else
+			obj->age = 0;
 		} else if (is_blessed) {
-		    obj->spe = 1;
 		    obj->age = 1500;
 		    p_glow2(obj, NH_BLUE);
 		} else {
-		    obj->spe = 1;
 		    obj->age += 750;
 		    if (obj->age > 1500) obj->age = 1500;
 		    p_glow1(obj);
