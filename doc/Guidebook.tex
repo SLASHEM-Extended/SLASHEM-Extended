@@ -46,14 +46,14 @@
 % input file: Guidebook.mn
 %
 
-% $Revision: 1.16 $ $Date: 2004-05-03 15:52:57 $
+% $Revision: 1.17 $ $Date: 2004-09-18 15:00:49 $
 \DefineString{h0}{{\it SLASH'EM\/} Guidebook}
 \DefineString{h1}{}
 \DefineString{h2}{\%}
-\DefineString{vr}{{\it SLASH'EM\/} 0.0.7}
+\DefineString{vr}{{\it SLASH'EM\/} 0.0.8}
 \DefineString{f0}{\UseString{vr}}
 \DefineString{f1}{}
-\DefineString{f2}{December 10, 2003}
+\DefineString{f2}{May 3, 2004}
 %.mt
 \title{\LARGE A Guide to the Mazes of Menace:\\
 \Large Guidebook for {\it SLASH'EM\/}}
@@ -2573,7 +2573,7 @@ Cannot be set with the `{\tt O}' command.
 
 \item[\ib{dumpfile}]
 The name of a file where the disclosure information is written when the
-game ends. You may use the macro %n that will be replaced with the name
+game ends. You may use the macro \%n that will be replaced with the name
 of your player character. The game must have write permissions to the
 directory where the file is written. Normally /tmp may be used for unix
 systems.
@@ -3041,7 +3041,9 @@ Show your approximate accumulated score on bottom line (default off).
 %.lp
 
 \item[\ib{showdmg}]
-Show damage inflicted/damage received (default off).
+Show damage inflicted/damage received (default off).  Inflicted
+damage is only shown to characters who have become experienced
+enough to quantify their damage.
 %.lp
 
 \item[\ib{showweight}]

@@ -1,4 +1,4 @@
-.\" $Revision: 1.17 $ $Date: 2004-05-03 15:52:57 $
+.\" $Revision: 1.18 $ $Date: 2004-09-18 15:00:49 $
 .ds h0 "SLASH'EM Guidebook
 .ds h1
 .ds h2 %
@@ -2221,7 +2221,9 @@ the appearance of the display, not the way the game treats you.
 .lp showscore
 Show your approximate accumulated score on bottom line (default off).
 .lp showdmg
-Show damage inflicted/damage received (default off).
+Show damage inflicted/damage received (default off).  Inflicted
+damage is only shown to characters who have become experienced
+enough to quantify their damage.
 .lp showweight
 Show total weight in inventory on bottom line (default off).
 .lp "silent  "

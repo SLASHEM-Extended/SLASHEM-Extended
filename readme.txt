@@ -104,6 +104,8 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 976157: Dipping into !oAmnesia didn't use up potion
 -fixed bug 982331: Can't name Cursed scrolls of teleport after reading them
 -fixed some theoretical bugs thrown up by valgrind
+-fixed bug 980258: Guidebook doesn't describe showdmg option accurately
+		   (Andy Ruse)
 
 See history.txt for changes made in previous versions.
 
