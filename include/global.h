@@ -195,7 +195,11 @@ typedef xchar	boolean;		/* 0 or 1 */
 #endif
 
 #ifdef WIN32
+#ifdef WIN_CE
+#include "wceconf.h"
+#else
 #include "ntconf.h"
+#endif
 #endif
 
 #ifndef FILE_AREAS
@@ -272,18 +276,20 @@ typedef xchar	boolean;		/* 0 or 1 */
 # endif
 # ifdef WIN32
 #  define PORT_ID	"Windows"
-#  if defined(MSWIN_GRAPHICS) || defined(GTK_GRAPHICS)
-#   define PORT_SUB_ID	"graphical"
-#  else
-#   define PORT_SUB_ID	"tty"
+#  ifndef PORT_SUB_ID
+#   if defined(MSWIN_GRAPHICS) || defined(GTK_GRAPHICS)
+#    define PORT_SUB_ID	"graphical"
+#   else
+#    define PORT_SUB_ID	"tty"
+#   endif
 #  endif
 # endif
 #endif
 
 #if defined(MICRO)
-# if !defined(AMIGA) && !defined(TOS) && !defined(OS2_HPFS) && !defined(WIN32)
+#if !defined(AMIGA) && !defined(TOS) && !defined(OS2_HPFS)
 #define SHORT_FILENAMES		/* filenames are 8.3 */
-# endif
+#endif
 #endif
 
 #ifdef VMS

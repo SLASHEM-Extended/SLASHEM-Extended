@@ -47,6 +47,9 @@ struct window_procs tty_procs = {
 #ifdef MSDOS
     WC_TILED_MAP|WC_ASCII_MAP|
 #endif
+#if defined(WIN32CON)
+    WC_MOUSE_SUPPORT|
+#endif
     WC_COLOR|WC_HILITE_PET|WC_INVERSE|WC_EIGHT_BIT_IN,
     tty_init_nhwindows,
     tty_player_selection,
@@ -101,7 +104,11 @@ struct window_procs tty_procs = {
     tty_start_screen,
     tty_end_screen,
     genl_outrip,
+#if defined(WIN32CON)
+    nttty_preference_update,
+#else
     genl_preference_update,
+#endif
 };
 
 static int maxwin = 0;			/* number of windows in use */
@@ -808,20 +815,19 @@ tty_askname()
 	while((c = tty_nhgetch()) != '\n') {
 		if(c == EOF) error("End of input\n");
 		if (c == '\033') { ct = 0; break; }  /* continue outer loop */
+#if defined(WIN32CON)
+		if (c == '\003') bail("^C abort.\n");
+#endif
 		/* some people get confused when their erase char is not ^H */
 		if (c == '\b' || c == '\177') {
 			if(ct) {
 				ct--;
-#ifdef MICRO
-# if defined(WIN32CON)
+#if defined(MICRO) || defined(WIN32CON)
+# if defined(WIN32CON) || defined(MSDOS)
 				backsp();       /* \b is visible on NT */
+				(void) putchar(' ');
+				backsp();
 # else
-#  if defined(MSDOS)
-				if (iflags.grmode) {
-					backsp();
-				} else
-
-#  endif
 				msmsg("\b \b");
 # endif
 #else
@@ -837,7 +843,7 @@ tty_askname()
 		if(c < 'A' || (c > 'Z' && c < 'a') || c > 'z') c = '_';
 #endif
 		if (ct < (int)(sizeof plname) - 1) {
-#if defined(MICRO)
+#if defined(MICRO) || defined(WIN32CON)
 # if defined(MSDOS)
 			if (iflags.grmode) {
 				(void) putchar(c);
@@ -1932,6 +1938,9 @@ tty_putstr(window, attr, str)
     switch(cw->type) {
     case NHW_MESSAGE:
 	/* really do this later */
+#if defined(USER_SOUNDS) && defined(WIN32CON)
+	play_sound_for_message(str);
+#endif
 	update_topl(str);
 	break;
 
@@ -2701,7 +2710,7 @@ tty_raw_print(str)
     const char *str;
 {
     if(ttyDisplay) ttyDisplay->rawprint++;
-#ifdef MICRO
+#if defined(MICRO) || defined(WIN32CON)
     msmsg("%s\n", str);
 #else
     puts(str); (void) fflush(stdout);
@@ -2714,13 +2723,13 @@ tty_raw_print_bold(str)
 {
     if(ttyDisplay) ttyDisplay->rawprint++;
     term_start_raw_bold();
-#ifdef MICRO
+#if defined(MICRO) || defined(WIN32CON)
     msmsg("%s", str);
 #else
     (void) fputs(str, stdout);
 #endif
     term_end_raw_bold();
-#ifdef MICRO
+#if defined(MICRO) || defined(WIN32CON)
     msmsg("\n");
 #else
     puts("");

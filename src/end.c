@@ -58,7 +58,11 @@ extern void FDECL(nethack_exit,(int));
 # ifdef SYSV
 # define NH_abort()	(void) abort()
 # else
+#  ifdef WIN32
+# define NH_abort()	win32_abort()
+#  else
 # define NH_abort()	abort()
+#  endif
 # endif
 #endif
 
@@ -260,6 +264,10 @@ register struct monst *mtmp;
 	return;
 }
 
+#if defined(WIN32)
+#define NOTIFY_NETHACK_BUGS
+#endif
+
 /*VARARGS1*/
 void
 panic VA_DECL(const char *, str)
@@ -280,15 +288,23 @@ panic VA_DECL(const char *, str)
 		  "Program initialization has failed." :
 		  "Suddenly, the dungeon collapses.");
 #if defined(WIZARD) && !defined(MICRO)
+# if defined(NOTIFY_NETHACK_BUGS)
+	if (!wizard)
+	    raw_printf("Report the following error to \"%s\".",
+			"slashem-discuss@lists.sourceforge.net");
+	else if (program_state.something_worth_saving)
+	    raw_print("\nError save file being written.\n");
+# else
 	if (!wizard)
 	    raw_printf("Report error to \"%s\"%s.",
-# ifdef WIZARD_NAME	/*(KR1ED)*/
+#  ifdef WIZARD_NAME	/*(KR1ED)*/
 			WIZARD_NAME,
-# else
+#  else
 			WIZARD,
-# endif
+#  endif
 			!program_state.something_worth_saving ? "" :
 			" and it may be possible to rebuild.");
+# endif
 	if (program_state.something_worth_saving) {
 	    set_error_savefile();
 	    (void) dosave0();
@@ -298,8 +314,9 @@ panic VA_DECL(const char *, str)
 	    char buf[BUFSZ];
 	    Vsprintf(buf,str,VA_ARGS);
 	    raw_print(buf);
+	    paniclog("panic", buf);
 	}
-#if defined(WIZARD) && (defined(UNIX) || defined(VMS) || defined(LATTICE))
+#if defined(WIZARD) && (defined(UNIX) || defined(VMS) || defined(LATTICE) || defined(WIN32))
 	if (wizard)
 	    NH_abort();	/* generate core dump */
 #endif

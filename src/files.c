@@ -869,6 +869,9 @@ compress_bonesfile()
 void
 set_savefile_name()
 {
+#if defined(WIN32)
+	char fnamebuf[BUFSZ], encodedfnamebuf[BUFSZ];
+#endif
 #ifdef VMS
 #ifndef FILE_AREAS
 	Sprintf(SAVEF, "[.save]%d%s", getuid(), plname);
@@ -879,7 +882,7 @@ set_savefile_name()
 #endif
 	Strcat(SAVEF, ";1");
 #else
-# if defined(MICRO) && !defined(WIN32)
+# if defined(MICRO)
 	Strcpy(SAVEF, SAVEP);
 #  ifdef AMIGA
 	strncat(SAVEF, bbs_id, PATHLEN);
@@ -898,7 +901,12 @@ set_savefile_name()
 # else
 #  ifndef FILE_AREAS
 #  if defined(WIN32)
-	Sprintf(SAVEF,"%s-%s.NetHack-saved-game",get_username(0), plname);
+	/* Obtain the name of the logged on user and incorporate
+	 * it into the name. */
+	Sprintf(fnamebuf, "%s-%s", get_username(0), plname);
+	(void)fname_encode("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_-.",
+				'%', fnamebuf, encodedfnamebuf, BUFSZ);
+	Sprintf(SAVEF, "%s.NetHack-saved-game", encodedfnamebuf);
 #  else
 	Sprintf(SAVEF, "save/%d%s", (int)getuid(), plname);
 	regularize(SAVEF+5);	/* avoid . or / in name */
@@ -961,7 +969,7 @@ create_savefile()
 # endif
 #else	/* FILE_AREAS */
 	fq_save = fqname(SAVEF, SAVEPREFIX, 0);
-# ifdef MICRO
+# ifdef MICRO || defined(WIN32)
 	fd = open(fq_save, O_WRONLY | O_BINARY | O_CREAT | O_TRUNC, FCMASK);
 # else
 #  ifdef MAC
@@ -1663,7 +1671,7 @@ const char *filename;
 		}
 	}
 
-#if defined(MICRO) || defined(MAC) || defined(__BEOS__)
+#if defined(MICRO) || defined(MAC) || defined(__BEOS__) || defined(WIN32)
 	if ((fp = fopenp(fqname(configfile, CONFIGPREFIX, 0), "r"))
 								!= (FILE *)0)
 		return(fp);
@@ -2136,7 +2144,7 @@ const char *filename;
 #define tmp_levels	(char *)0
 #define tmp_ramdisk	(char *)0
 
-#ifdef MICRO
+#if defined(MICRO) || defined(WIN32)
 #undef tmp_levels
 	char	tmp_levels[PATHLEN];
 # ifdef MFLOPPY
@@ -2152,7 +2160,7 @@ const char *filename;
 
 	if (!(fp = fopen_config_file(filename))) goto post_process;
 
-#ifdef MICRO
+#if defined(MICRO) || defined(WIN32)
 # ifdef MFLOPPY
 #  ifndef AMIGA
 	tmp_ramdisk[0] = 0;
@@ -2383,7 +2391,7 @@ const char *dir;
 	    wait_synch();
 	}
 #endif  /* !UNIX && !VMS */
-#ifdef MICRO
+#if defined(MICRO) || defined(WIN32)
 	char tmp[PATHLEN];
 
 # ifdef OS2_CODEVIEW   /* explicit path on opening for OS/2 */
@@ -2427,7 +2435,7 @@ const char *dir;
 		(void) close(fd);
 	} else		/* open succeeded */
 	    (void) close(fd);
-#else /* MICRO */
+#else /* MICRO || WIN32*/
 
 # ifdef MAC
 	/* Create the "record" file, if necessary */
@@ -2436,9 +2444,189 @@ const char *dir;
 	if (fd != -1) macclose (fd);
 # endif /* MAC */
 
-#endif /* MICRO */
+#endif /* MICRO || WIN32*/
 }
 
 /* ----------  END SCOREBOARD CREATION ----------- */
+
+/* ----------  BEGIN PANIC/IMPOSSIBLE LOG ----------- */
+
+/*ARGSUSED*/
+void
+paniclog(why, s)
+const char* why;
+const char* s;
+{
+#ifdef PANICLOG
+	FILE *lfile;
+
+	lfile = fopen_datafile(PANICLOG, "a", TROUBLEPREFIX);
+	if (lfile) {
+	    (void) fprintf(lfile, "%08ld: %s %s\n",
+			   yyyymmdd((time_t)0L), why, s);
+	    (void) fclose(lfile);
+	}
+#endif /* PANICLOG */
+}
+
+/* ----------  END PANIC/IMPOSSIBLE LOG ----------- */
+
+#ifdef SELF_RECOVER
+
+/* ----------  BEGIN INTERNAL RECOVER ----------- */
+boolean
+recover_savefile()
+{
+	int gfd, lfd, sfd;
+	int lev, savelev, hpid;
+	xchar levc;
+	struct version_info version_data;
+	int processed[256];
+	char savename[SAVESIZE], errbuf[BUFSZ];
+
+	for (lev = 0; lev < 256; lev++)
+		processed[lev] = 0;
+
+	/* level 0 file contains:
+	 *	pid of creating process (ignored here)
+	 *	level number for current level of save file
+	 *	name of save file nethack would have created
+	 *	and game state
+	 */
+	gfd = open_levelfile(0, errbuf);
+	if (gfd < 0) {
+	    raw_printf("%s\n", errbuf);
+	    return FALSE;
+	}
+	if (read(gfd, (genericptr_t) &hpid, sizeof hpid) != sizeof hpid) {
+	    raw_printf(
+"\nCheckpoint data incompletely written or subsequently clobbered. Recovery impossible.");
+	    (void)close(gfd);
+	    return FALSE;
+	}
+	if (read(gfd, (genericptr_t) &savelev, sizeof(savelev))
+							!= sizeof(savelev)) {
+	    raw_printf("\nCheckpointing was not in effect for %s -- recovery impossible.\n",
+			lock);
+	    (void)close(gfd);
+	    return FALSE;
+	}
+	if ((read(gfd, (genericptr_t) savename, sizeof savename)
+		!= sizeof savename) ||
+	    (read(gfd, (genericptr_t) &version_data, sizeof version_data)
+		!= sizeof version_data)) {
+	    raw_printf("\nError reading %s -- can't recover.\n", lock);
+	    (void)close(gfd);
+	    return FALSE;
+	}
+
+	/* save file should contain:
+	 *	version info
+	 *	current level (including pets)
+	 *	(non-level-based) game state
+	 *	other levels
+	 */
+	set_savefile_name();
+	sfd = create_savefile();
+	if (sfd < 0) {
+	    raw_printf("\nCannot recover savefile %s.\n", SAVEF);
+	    (void)close(gfd);
+	    return FALSE;
+	}
+
+	lfd = open_levelfile(savelev, errbuf);
+	if (lfd < 0) {
+	    raw_printf("\n%s\n", errbuf);
+	    (void)close(gfd);
+	    (void)close(sfd);
+	    delete_savefile();
+	    return FALSE;
+	}
+
+	if (write(sfd, (genericptr_t) &version_data, sizeof version_data)
+		!= sizeof version_data) {
+	    raw_printf("\nError writing %s; recovery failed.", SAVEF);
+	    (void)close(gfd);
+	    (void)close(sfd);
+	    delete_savefile();
+	    return FALSE;
+	}
+
+	if (!copy_bytes(lfd, sfd)) {
+		(void) close(lfd);
+		(void) close(sfd);
+		delete_savefile();
+		return FALSE;
+	}
+	(void)close(lfd);
+	processed[savelev] = 1;
+
+	if (!copy_bytes(gfd, sfd)) {
+		(void) close(lfd);
+		(void) close(sfd);
+		delete_savefile();
+		return FALSE;
+	}
+	(void)close(gfd);
+	processed[0] = 1;
+
+	for (lev = 1; lev < 256; lev++) {
+		/* level numbers are kept in xchars in save.c, so the
+		 * maximum level number (for the endlevel) must be < 256
+		 */
+		if (lev != savelev) {
+			lfd = open_levelfile(lev, (char *)0);
+			if (lfd >= 0) {
+				/* any or all of these may not exist */
+				levc = (xchar) lev;
+				write(sfd, (genericptr_t) &levc, sizeof(levc));
+				if (!copy_bytes(lfd, sfd)) {
+					(void) close(lfd);
+					(void) close(sfd);
+					delete_savefile();
+					return FALSE;
+				}
+				(void)close(lfd);
+				processed[lev] = 1;
+			}
+		}
+	}
+	(void)close(sfd);
+
+#ifdef HOLD_LOCKFILE_OPEN
+	really_close();
+#endif
+	/*
+	 * We have a successful savefile!
+	 * Only now do we erase the level files.
+	 */
+	for (lev = 0; lev < 256; lev++) {
+		if (processed[lev]) {
+			const char *fq_lock;
+			set_levelfile_name(lock, lev);
+			fq_lock = fqname(lock, LEVELPREFIX, 3);
+			(void) unlink(fq_lock);
+		}
+	}
+	return TRUE;
+}
+
+boolean
+copy_bytes(ifd, ofd)
+int ifd, ofd;
+{
+	char buf[BUFSIZ];
+	int nfrom, nto;
+
+	do {
+		nfrom = read(ifd, buf, BUFSIZ);
+		nto = write(ofd, buf, nfrom);
+		if (nto != nfrom) return FALSE;
+	} while (nfrom == BUFSIZ);
+	return TRUE;
+}
+
+/* ----------  END INTERNAL RECOVER ----------- */
+#endif /*SELF_RECOVER*/
 
 /*files.c*/
