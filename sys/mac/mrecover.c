@@ -45,9 +45,6 @@
 #include <OSUtils.h>
 #include <Resources.h>
 #include <Files.h>
-#ifdef applec
-#include <SysEqu.h>
-#endif
 #include <Menus.h>
 #include <Devices.h>
 #include <Events.h>
