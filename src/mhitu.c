@@ -1167,7 +1167,7 @@ hitmu(mtmp, mattk)
 			}
 
 			if (otmp->opoisoned) {
-			    poisoned(obj_typename(otmp), A_STR,
+			    poisoned(obj_typename(otmp->otyp), A_STR,
 				    killer_xname(otmp), 10);
 			    if (nopoison < 2) nopoison = 2;
 			    if (!rn2(nopoison)) {
