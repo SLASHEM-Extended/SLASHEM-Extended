@@ -4379,7 +4379,9 @@ boolean altusage; /* some items have an "alternate" use with different cost */
 	} else if (otmp->otyp == TORCH) {
 	            tmp /= 2L;	
 	} else if (otmp->oclass == SPBOOK_CLASS) {
-		tmp -= tmp / 5L;
+		/* Normal use is studying. Alternate use is using up a charge */
+		if (altusage) tmp /= 10L;		 /* 2 - 4 */
+		else tmp -= tmp / 5L;
 	} else if (otmp->otyp == CAN_OF_GREASE ||
 		   otmp->otyp == TINNING_KIT
 #ifdef TOURIST
@@ -4426,7 +4428,7 @@ boolean altusage;
 	    return;
 
 	arg1 = arg2 = "";
-	if (otmp->oclass == SPBOOK_CLASS) {
+	if (otmp->oclass == SPBOOK_CLASS && !altusage) {
 	    fmt = "%sYou owe%s %ld %s.";
 	    arg1 = rn2(2) ? "This is no free library, cad!  " : "";
 	    arg2 = ESHK(shkp)->debit > 0L ? " an additional" : "";

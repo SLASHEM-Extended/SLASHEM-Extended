@@ -397,8 +397,6 @@ learn()
 			/* make book become known even when spell is already
 			   known, in case amnesia made you forget the book */
 			makeknown((int)booktype);
-			/* WAC browsing only if no end_delay */
-			if (!end_delay) costly = FALSE; 
 			break;
 		} else if (spellid(i) == NO_SPELL)  {
 			spl_book[i].sp_id = booktype;
@@ -446,6 +444,14 @@ register struct obj *spellbook;
 			makeknown(booktype);
 			return(1);
 		}
+		if (spellbook->spe && confused) {
+		    check_unpaid_usage(spellbook, TRUE);
+		    consume_obj_charge(spellbook, FALSE);
+		    pline_The("words on the page seem to glow faintly purple.");
+		    You_cant("quite make them out.");
+		    return 1;
+		}
+
 		switch (objects[booktype].oc_level) {
 		 case 1:
 		 case 2:
@@ -483,7 +489,7 @@ register struct obj *spellbook;
 			    + ((ublindf && ublindf->otyp == LENSES) ? 2 : 0);
 			/* only wizards know if a spell is too difficult */
 			if (Role_if(PM_WIZARD) && read_ability < 20 &&
-			    !confused) {
+			    !confused && !spellbook->spe) {
 			    char qbuf[QBUFSZ];
 			    Sprintf(qbuf,
 		      "This spellbook is %sdifficult to comprehend. Continue?",
@@ -500,7 +506,7 @@ register struct obj *spellbook;
 		    }
 		}
 
-		if (too_hard) {
+		if (too_hard && !spellbook->spe) {
 		    boolean gone = cursed_book(spellbook);
 
 		    nomul(delay);			/* study time */
@@ -525,14 +531,16 @@ register struct obj *spellbook;
 		}
 		spellbook->in_use = FALSE;
 
-		/* WAC uncharged books take longer to read */
+		/* The glowing words make studying easier */
 		if (spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
-			if (spellbook->spe > 0) {
-				pline_The("words on the page seem to glow faintly.");
-				spellbook->spe--;
-			} else {
-				delay *= 2;
-			}
+		    delay *= 2;
+		    if (spellbook->spe) {
+			check_unpaid_usage(spellbook, TRUE);
+			consume_obj_charge(spellbook, FALSE);
+			pline_The("words on the page seem to glow faintly.");
+			if (!too_hard)
+			    delay /= 3;
+		    }
 		}
 		end_delay = 0;  /* Changed if multi != 0 */
 
