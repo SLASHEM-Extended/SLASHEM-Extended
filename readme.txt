@@ -368,6 +368,7 @@ ver 0.0.6E4F8 [?] [Released by ?]
 -Implemented "none" as a possible random place in level compiler.
 -fixed bug 500833: Spellbook learn.
 -fixed bug 456805: Baby dragons don't grow up.
+-fixed bug 531179: Beheading when invulnerable.
 
 ver 0.0.6E4F7 [February 28/2002] [Released by Ali]
 -Improvements to database (Lars Huttar)

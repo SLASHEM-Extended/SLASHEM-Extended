@@ -1061,7 +1061,7 @@ hitmu(mtmp, mattk)
                 break;
         case AD_DISE:
                 hitmsg(mtmp, mattk);
-                if (!diseasemu(mdat)) dmg = 0;
+                if (!diseasemu(mdat) || Invulnerable) dmg = 0;
                 break;
         case AD_FIRE:
                 hitmsg(mtmp, mattk);
@@ -1633,6 +1633,9 @@ do_stone:
 		pline("%s reaches out, and you feel fever and chills.",
 			Monnam(mtmp));
 		(void) diseasemu(mdat); /* plus the normal damage */
+		/* No damage if invulnerable; setting dmg zero prevents
+		 * "You are unharmed!" after a sickness inducing attack */
+		if (Invulnerable) dmg = 0;
 		break;
 	    case AD_FAMN:
 		pline("%s reaches out, and your body shrivels.",
