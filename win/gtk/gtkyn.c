@@ -1,5 +1,5 @@
 /*
-  $Id: gtkyn.c,v 1.2 2000-09-15 01:12:30 wacko Exp $
+  $Id: gtkyn.c,v 1.3 2000-09-15 03:47:37 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -43,10 +43,10 @@ yn_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
     if(keysym){
 	if(yn_resp && index(yn_resp, keysym))
 	    gtk_main_quit();
-	if(!yn_resp)
+	if(!yn_resp || keysym == '\n' || keysym == ' ' || keysym == '\033') {
+	    keysym = yn_def;	
 	    gtk_main_quit();
-	if(keysym == '\n' || keysym == ' ' || keysym == '\033')
-	    gtk_main_quit();
+	}
     }
     
     return FALSE;
