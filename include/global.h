@@ -9,6 +9,7 @@
 
 /* #define ALPHA */	/* if an alpha-test copy */
 #define BETA		/* if an alpha- or beta-test copy */
+#define OBJ_SANITY	/* Object sanity checks for all players */
 
 /*
  * Files expected to exist in the playground directory if file areas are not

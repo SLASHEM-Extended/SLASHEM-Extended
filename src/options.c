@@ -189,7 +189,9 @@ static struct Bool_Opt
 #endif
 	{"rest_on_space", &flags.rest_on_space, FALSE, SET_IN_GAME},
 	{"safe_pet", &flags.safe_dog, TRUE, SET_IN_GAME},
-#ifdef WIZARD
+#if defined(OBJ_SANITY)
+	{"sanity_check", &iflags.sanity_check, TRUE, SET_IN_GAME},
+#elif defined(WIZARD)
 	{"sanity_check", &iflags.sanity_check, FALSE, SET_IN_GAME},
 #else
 	{"sanity_check", (boolean *)0, FALSE, SET_IN_FILE},
@@ -2868,7 +2870,9 @@ doset()
 			 (boolopt[i].optflags == SET_IN_GAME && pass == 1))) {
 		    if (bool_p == &flags.female) continue;  /* obsolete */
 #ifdef WIZARD
+#ifndef OBJ_SANITY
 		    if (bool_p == &iflags.sanity_check && !wizard) continue;
+#endif
 		    if (bool_p == &iflags.menu_tab_sep && !wizard) continue;
 #endif
 		    if (is_wc_option(boolopt[i].name) &&
@@ -3794,7 +3798,9 @@ option_help()
     for (i = 0; boolopt[i].name; i++) {
 	if (boolopt[i].addr) {
 #ifdef WIZARD
+#ifndef OBJ_SANITY
 	    if (boolopt[i].addr == &iflags.sanity_check && !wizard) continue;
+#endif
 	    if (boolopt[i].addr == &iflags.menu_tab_sep && !wizard) continue;
 #endif
 	    next_opt(datawin, boolopt[i].name);

@@ -431,6 +431,9 @@ moveloop()
 #ifdef WIZARD
 	if (iflags.sanity_check)
 	    sanity_check();
+#elif defined(OBJ_SANITY)
+	if (iflags.sanity_check)
+	    obj_sanity_check();
 #endif
 
 #ifdef CLIPPING

@@ -1168,7 +1168,7 @@ E void FDECL(add_to_buried, (struct obj *));
 E void FDECL(dealloc_obj, (struct obj *));
 E void FDECL(obj_ice_effects, (int, int, BOOLEAN_P));
 E long FDECL(peek_at_iced_corpse_age, (struct obj *));
-#ifdef WIZARD
+#if defined(OBJ_SANITY) || defined(WIZARD)
 E void NDECL(obj_sanity_check);
 #endif
 
