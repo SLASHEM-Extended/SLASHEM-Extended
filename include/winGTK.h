@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.33 2003-04-17 23:15:48 j_ali Exp $
+  $Id: winGTK.h,v 1.34 2003-04-21 19:14:26 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -54,10 +54,16 @@
 #define	NH_PAD			5
 
 #if defined(GTK_V20)
+#define NH_SESSION_RESIZABLE	1    /* Allow the user to resize window */
+#define NH_SESSION_USER_POS	2    /* Window position from user */
+#define NH_SESSION_USER_SIZE	4    /* Window size from user */
+#define NH_SESSION_PLACED	8    /* Initial window placement has occured */
+
 extern GtkWidget *nh_gtk_window_dialog(boolean is_modal);
 extern void nh_gtk_focus_set_master(GtkWindow *w, GtkSignalFunc func, gpointer data);
 extern void nh_gtk_focus_set_slave_for(GtkWindow *w, GtkWindow *slave_for);
 extern GtkWidget *nh_session_window_new(const char *name);
+extern unsigned long nh_session_window_flags(const char *name);
 extern int nh_session_set_geometry(const char *name,
 					int x, int y, int width, int height);
 extern int nh_session_save(FILE *fp);
@@ -309,12 +315,20 @@ typedef struct _NHWindow{
     GtkWidget	*hbox, *hbox2, *hbox3;
     GtkWidget	*vbox, *vbox2;
     GtkWidget	*clist;
+#if defined(GTK_V20)
+    GtkWidget	*scrolled, *scrolled2;
+#else
     GtkWidget	*scrolled;
+#endif
 
     GtkWidget	*frame;
     GtkWidget	*query;
 
+#if defined(GTK_V20)
+    GtkAdjustment *adj, *adj2;
+#else
     GtkAdjustment *adj;
+#endif
 
     int	n_subclist;
     GtkWidget	*subclist[20];

@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.35 2003-04-17 23:15:53 j_ali Exp $
+  $Id: gtk.c,v 1.36 2003-04-21 19:14:27 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -62,11 +62,6 @@ NHWindow gtkWindows[MAXWIN];
  * The Gtk interface maintains information about most top level windows
  * so that it can be saved in the rc file between sessions.
  */
-
-#define NH_SESSION_RESIZABLE 1	/* Allow the user to resize window */
-#define NH_SESSION_USER_POS  2	/* Window position from user */
-#define NH_SESSION_USER_SIZE 4	/* Window size from user */
-#define NH_SESSION_PLACED    8	/* Initial window placement has occured */
 
 struct session_window_info {
     const char *name;		/* The name is only used in the rc file */
@@ -639,6 +634,16 @@ session_window_size_request(GtkWidget *widget, GtkRequisition *requisition,
     session_window_info[i].requisition = *requisition;
 }
 
+unsigned long
+nh_session_window_flags(const char *name)
+{
+    int i;
+    for(i = SIZE(session_window_info) - 1; i >= 0; i--)
+       if (!strcmp(name, session_window_info[i].name))
+	   return (unsigned long)session_window_info[i].flags;
+    return 0;
+}
+
 GtkWidget *
 nh_session_window_new(const char *name)
 {
@@ -778,6 +783,8 @@ static void
 game_option(GtkWidget *widget, gpointer data)
 {
     nh_option_new();
+    if (display_inventory_needed)
+	GTK_display_inventory();
 }
 
 static void
@@ -1905,11 +1912,8 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
     GdkBitmap	*credit_mask;
 
     gtk_set_locale();
-#ifdef GTK_V20
     nh_option_cache_set_bool_addr("color", &copts.use_color);
     nh_option_cache_set_bool_addr("hilite_pet", &copts.hilite_pet);
-    nh_option_cache_set_bool_addr("perm_invent", &copts.perm_invent);
-#endif
     nh_rc();
 
     /* Init windows to nothing. */
@@ -2602,6 +2606,7 @@ GTK_update_inventory(void)
 #else
     winid inven = WIN_INVEN;
 #endif
+    copts.perm_invent = nh_option_cache_get_bool("perm_invent");
     if (copts.perm_invent) {
 	if (inven == WIN_ERR ||
 		!(gtkWindows[inven].flags & NHWF_DISPLAYED))

@@ -87,6 +87,7 @@ http://www.slashem.org/
 ver 0.0.7E1 [?] [Released by ?]
 -Actioned feature request 414274: Lazy yn_function().
 -GTK: Added session save file.
+-Actioned feature request 492518: resize inventory window.
 
 See history.txt for changes made in previous versions.
 

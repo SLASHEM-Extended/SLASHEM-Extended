@@ -1,4 +1,4 @@
-/* $Id: proxycom.h,v 1.10 2003-01-18 17:52:09 j_ali Exp $ */
+/* $Id: proxycom.h,v 1.11 2003-04-21 19:14:26 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -306,5 +306,14 @@ extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_glyph_mapping_res,
 extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_extensions_res,
 		(NhExtXdr *, struct proxycb_get_extensions_res *));
 #endif  /* NHXDR_H */
+
+/* riputil.c */
+extern char * FDECL(get_killer_string, (int));
+/* getopt.c */
+extern char * FDECL(get_option, (char *));
+/* glyphmap.c */
+extern void NDECL(set_glyph_mapping);
+extern struct proxycb_get_glyph_mapping_res * NDECL(get_glyph_mapping);
+extern void FDECL(free_glyph_mapping, (struct proxycb_get_glyph_mapping_res *));
 
 #endif /* PROXYCOM_H */

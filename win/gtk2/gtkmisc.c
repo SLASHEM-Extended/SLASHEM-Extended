@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmisc.c,v 1.11 2003-01-21 14:26:38 j_ali Exp $
+  $Id: gtkmisc.c,v 1.12 2003-04-21 19:14:28 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -131,6 +131,7 @@ default_clicked(GtkWidget *widget, gpointer data)
 		    break;
 	    }
 	}
+	nh_option_cache_invalidate();
 #ifdef GTK_PROXY
 	proxy_cb_doset();
 #else
@@ -334,6 +335,10 @@ nh_option_cache_getent(char *option)
     return nh_option_cache[i].option ? nh_option_cache + i : NULL;
 }
 
+/*
+ * Synchronize the game core with the cache
+ */
+
 int
 nh_option_cache_sync(void)
 {
@@ -375,6 +380,45 @@ nh_option_cache_sync(void)
 #endif
     free(buf);
     return TRUE;
+}
+
+/*
+ * Invalidate the cache. This is normally only done after doset() has
+ * been called.
+ */
+
+int
+nh_option_cache_invalidate(void)
+{
+    int i;
+    char *value;
+    boolean bv;
+    struct nh_option *no = nh_option_cache;
+    for(i = 0; i < nh_option_cache_size; i++, no++) {
+	if (!(no->flags & NHOF_BOOLEAN))
+	    free(no->value);
+	if (no->addr) {
+#ifdef GTK_PROXY
+	    value = proxy_cb_get_option(no->option);
+#else
+	    value = get_option(no->option);
+#endif
+	    no->flags &= ~NHOF_DIRTY;
+	    if (no->flags & NHOF_BOOLEAN) {
+		bv = !strcmp(value, "yes");
+		no->value = bv ? boolean_set : boolean_reset;
+		*(boolean *)no->addr = bv;
+	    } else {
+		no->value = strdup(value);
+		free(*(char **)no->addr);
+		*(char **)no->addr = strdup(value);
+	    }
+	} else {
+	    free(no->option);
+	    no->option = no->value = NULL;
+	    no->flags = 0;
+	}
+    }
 }
 
 void
@@ -488,11 +532,14 @@ nh_option_get(void)
     gchar *font_name;
 #endif
 
-    nh_option_cache_set("name", gtk_entry_get_text(GTK_ENTRY(entry_plname)));
-    nh_option_cache_set("catname",
-	    gtk_entry_get_text(GTK_ENTRY(entry_catname)));
-    nh_option_cache_set("dogname",
-	    gtk_entry_get_text(GTK_ENTRY(entry_dogname)));
+    if (!option_lock) {
+	nh_option_cache_set("name",
+	  gtk_entry_get_text(GTK_ENTRY(entry_plname)));
+	nh_option_cache_set("catname",
+	  gtk_entry_get_text(GTK_ENTRY(entry_catname)));
+	nh_option_cache_set("dogname",
+	  gtk_entry_get_text(GTK_ENTRY(entry_dogname)));
+    }
     nh_option_cache_set("fruit", gtk_entry_get_text(GTK_ENTRY(entry_fruit)));
 #ifdef NH_EXTENSION
     set_homeurl(gtk_entry_get_text(GTK_ENTRY(entry_url)));

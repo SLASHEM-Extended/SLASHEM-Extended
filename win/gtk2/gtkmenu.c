@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.15 2003-04-17 23:15:53 j_ali Exp $
+  $Id: gtkmenu.c,v 1.16 2003-04-21 19:14:28 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -192,12 +192,12 @@ GTK_init_menu_widgets(NHWindow *w, winid inven)
 	 w->w = nh_gtk_window_dialog(TRUE);
 	 nh_gtk_focus_set_master(GTK_WINDOW(w->w),
 	   GTK_SIGNAL_FUNC(menu_key_press), w);
+	 nh_position_popup_dialog(GTK_WIDGET(w->w));
      } else {
 	 w->w = nh_session_window_new("inventory");
 	 nh_gtk_focus_set_slave_for(GTK_WINDOW(w->w), GTK_WINDOW(main_window));
      }
      gtk_widget_set_name(GTK_WIDGET(w->w), "fixed font");
-     nh_position_popup_dialog(GTK_WIDGET(w->w));
      w->hid = gtk_signal_connect(
 	 GTK_OBJECT(w->w), "destroy",
 	 GTK_SIGNAL_FUNC(menu_destroy), w);
@@ -256,15 +256,18 @@ GTK_init_menu_widgets(NHWindow *w, winid inven)
 #endif
      w->hbox2 = nh_gtk_new_and_pack(
 	 gtk_hbox_new(FALSE, 0), w->vbox, "",
-	 FALSE, FALSE, NH_PAD);
+	 TRUE, TRUE, NH_PAD);
 
      w->adj = (GtkAdjustment *)gtk_adjustment_new(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+     w->adj2 =
+       (GtkAdjustment *)gtk_adjustment_new(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 
      GTK_load_menu_clist(w, inven);
      w->clist = nh_gtk_new_and_pack(
-	 GTK_WIDGET(w->clist), w->hbox2, "", FALSE, FALSE, NH_PAD);
+	 GTK_WIDGET(w->clist), w->hbox2, "", TRUE, TRUE, NH_PAD);
 
      gtk_clist_set_vadjustment(GTK_CLIST(w->clist), w->adj);
+     gtk_clist_set_hadjustment(GTK_CLIST(w->clist), w->adj2);
      gtk_clist_set_selection_mode(GTK_CLIST(w->clist), GTK_SELECTION_EXTENDED);
 
      gtk_clist_set_shadow_type(GTK_CLIST(w->clist), GTK_SHADOW_ETCHED_IN);
@@ -278,6 +281,9 @@ GTK_init_menu_widgets(NHWindow *w, winid inven)
 
      w->scrolled = nh_gtk_new_and_pack(
 	 gtk_vscrollbar_new(GTK_CLIST(w->clist)->vadjustment), w->hbox2,
+	 "", FALSE, FALSE, NH_PAD);
+     w->scrolled2 = nh_gtk_new_and_pack(
+	 gtk_hscrollbar_new(GTK_CLIST(w->clist)->hadjustment), w->vbox,
 	 "", FALSE, FALSE, NH_PAD);
 
      if (w->menu_information->cancelled >= 0) {
@@ -503,6 +509,8 @@ GTK_ext_select_menu(winid id, int how, struct proxy_mi **menu_list)
 /*
     GtkAdjustment *a, *aa;
     */
+    extern int root_width, root_height;
+    gint width, height;
 #ifdef GTK_PROXY
     winid inven = proxy_cb_get_standard_winid("INVEN");
 #else
@@ -553,15 +561,40 @@ GTK_ext_select_menu(winid id, int how, struct proxy_mi **menu_list)
 	}
     }
     
-    {
-	extern int root_height;
-	int height = w->clist->requisition.height;
-	
-	if(height >= (2 * root_height) / 3)
-	    gtk_widget_set_usize(w->clist, -1, (2 * root_height) / 3);
+    if (w->menu_information->cancelled < 0) {
+	/* Permenant inventory.
+	 * The default size request from a clist is based on the initial
+	 * contents which means that the user can't resize the window smaller
+	 * than required to display the initial list regardless of what is
+	 * currently being displayed. We reduce the request to the minimum
+	 * width and 1 row high.
+	 */
+	gtk_widget_set_size_request(w->clist, 0,
+	  GTK_CLIST(w->clist)->row_height);
+	/* The default size is the size that the window will initially be
+	 * displayed at. If the session system hasn't already set this then
+	 * choose a suitable default size based on the root window. It would
+	 * be nice to use a size capable of displaying the initial contents
+	 * but, at least under MS-Windows, it doesn't seem possible to get
+	 * this from Gtk+.
+	 */
+	if (!(nh_session_window_flags("inventory") & NH_SESSION_USER_SIZE))
+	    gtk_window_set_default_size(GTK_WINDOW(w->w),
+	      root_width / 3, root_height * 2 / 3);
+	gtk_widget_queue_resize(w->w);
+    } else {
+	/* Popup menus are normally displayed at full size so that their
+	 * contents are instantly viewable. The exception is where this
+	 * would mean that the window is too large to fit on the screen.
+	 */
+	if (w->clist->requisition.height >= root_height * 2 / 3)
+	    gtk_widget_set_size_request(w->clist, -1, root_height * 2 / 3);
+	else
+	    gtk_widget_hide(w->scrolled);
+	gtk_widget_hide(w->scrolled2);
     }
-    
-    gtk_widget_show_all(w->w);
+
+    gtk_widget_show(w->w);
     
     if (menu_info->cancelled < 0) {
 	gtk_window_present(GTK_WINDOW(w->w));
@@ -724,5 +757,5 @@ void
 GTK_unmap_menu_window(NHWindow *w)
 {
     if (w && w->w) /* FIXME:  This shouldn't be necessary, but is */
-    	gtk_widget_unmap(w->w);
+    	gtk_widget_hide(w->w);
 }
