@@ -1,4 +1,4 @@
-/* $Id: winproxy.h,v 1.16 2004-12-31 19:22:46 j_ali Exp $ */
+/* $Id: winproxy.h,v 1.17 2005-02-02 09:42:13 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2004 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -87,6 +87,7 @@ E char *FDECL(get_option, (const char *));
 E void NDECL(set_glyph_mapping);
 E struct nhproxy_cb_get_glyph_mapping_res *NDECL(get_glyph_mapping);
 E void FDECL(free_glyph_mapping, (struct nhproxy_cb_get_glyph_mapping_res *));
+E int NDECL(get_no_glyph);
 
 /* dlbh.c */
 #ifndef FILE_AREAS

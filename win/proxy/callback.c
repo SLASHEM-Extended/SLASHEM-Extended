@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.27 2004-12-31 19:22:48 j_ali Exp $ */
+/* $Id: callback.c,v 1.28 2005-02-02 09:42:13 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2004 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -403,4 +403,7 @@ struct nhproxy_serv_callbacks win_proxy_callbacks = {
     get_glyph_mapping,
     free_glyph_mapping,
     set_option_mod_status,
+#if NHPROXY_CHECK_VERSION(0,9,1)
+    get_no_glyph,
+#endif
 };

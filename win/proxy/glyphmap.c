@@ -1,4 +1,4 @@
-/* $Id: glyphmap.c,v 1.5 2004-12-31 19:22:48 j_ali Exp $ */
+/* $Id: glyphmap.c,v 1.6 2005-02-02 09:42:13 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2004 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -742,4 +742,10 @@ struct nhproxy_cb_get_glyph_mapping_res *mapping;
     }
     if (mapping->n_mappings)
 	free(mapping->mappings);
+}
+
+int
+get_no_glyph()
+{
+    return NO_GLYPH;
 }
