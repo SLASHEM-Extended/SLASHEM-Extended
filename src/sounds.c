@@ -8,10 +8,6 @@
 #include <regex.h>
 #endif
 
-#ifdef USER_SOUNDS
-#include <regex.h>
-#endif
-
 /* Hmm.... in working on SHOUT I started thinking about things.
  * I think something like this should be set up:
  *  You_hear_mon(mon,loud, msg) - You_hear(msg); monnoise(mon,loud);
@@ -967,90 +963,6 @@ dochat()
 
     return domonnoise(mtmp);
 }
-
-
-#ifdef USER_SOUNDS
-
-typedef struct audio_mapping_rec {
-	struct re_pattern_buffer regex;
-      char* filename;
-	int volume;
-      struct audio_mapping_rec* next;
-} audio_mapping;
-
-static audio_mapping* soundmap=0;
-
-char* sounddir=".";
-
-int
-add_sound_mapping(mapping)
-const char* mapping;
-{
-	char text[256];
-	char filename[256];
-	char filespec[256];
-	int volume;
-
-      if (sscanf(mapping, "MESG \"%[^\"]\"%*[\t ]\"%[^\"]\" %d",
-              text, filename, &volume)==3)
-      {
-              const char* err;
-              audio_mapping* new_map;
-
-              sprintf(filespec,"%s/%s",sounddir,filename);
-
-              if (access(filespec, R_OK)==0) {
-                      new_map=(audio_mapping*)alloc(sizeof(audio_mapping));
-                      new_map->regex.translate=0;
-                      new_map->regex.fastmap=0;
-                      new_map->regex.buffer=0;
-                      new_map->regex.allocated=0;
-                      new_map->regex.regs_allocated=REGS_FIXED;
-                      new_map->filename=strdup(filespec);
-                      new_map->volume=volume;
-                      new_map->next=soundmap;
-
-                      err=re_compile_pattern(text, strlen(text), &new_map->regex);
-
-		if (err) {
-                              sprintf(text, "%s\n", err);
-                              raw_print(text);
-		    free(new_map->filename);
-		    free(new_map);
-		    return 0;
-		} else {
-                              soundmap=new_map;
-		}
-	    } else {
-                      sprintf(text, "%s not readable.\n", filespec);
-		raw_print(text);
-		return 0;
-	    }
-	} else {
-              sprintf(text, "syntax error in SOUND\n");
-              raw_print(text);
-	    return 0;
-	}
-
-	return 1;
-}
-
-void
-play_sound_for_message(msg)
-const char* msg;
-{
-      audio_mapping* cursor=soundmap;
-
-	while (cursor) {
-              if (re_search(&cursor->regex, msg, strlen(msg), 0, 9999, 0)>=0) {
-		play_usersound(cursor->filename, cursor->volume);
-	    }
-              cursor=cursor->next;
-	}
-}
-
-#endif
-
 
 #ifdef USER_SOUNDS
 

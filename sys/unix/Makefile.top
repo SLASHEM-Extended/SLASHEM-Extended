@@ -75,7 +75,7 @@ SHELLDIR = $(PREFIX)/local/bin
 # Shareable (architecture independent) data files which are not candidates
 # for inclusion in DLB libraries (ND) and which are (D). Port specific files
 # per discussions in Install.X11, Install.Qt and Install.GTK
-CNF_SHARE_QTND = x11tiles rip.xpm
+CNF_SHARE_QTND = x11tiles rip.xpm nhsplash.xpm
 CNF_SHARE_X11ND = x11bigtiles x11tiles pet_mark.xbm
 # CNF_SHARE_X11ND = x11bigtiles x11tiles pet_mark.xbm rip.xpm
 CNF_SHARE_GTKND = x11big3dtiles x11bigtiles x11tiles rip.xpm credit.xpm gtkrc

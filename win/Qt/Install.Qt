@@ -2,12 +2,12 @@ Installing Slash'EM with a Qt or KDE interface
 ----------------------------------------------
 
 This document describes the installation of Slash'EM with a Qt interface
-on X11.  The Qt interface is an alternative to the Athena-widgets interface
-found in ../X11.  You can download Qt for UNIX from http://www.troll.no.
-You need Qt 2.0 or later to use this code.
+on UNIX/X11 or Mac OS X. This code should also work with Qt/Windows, but
+support for that is not currently official.
 
-There are no explicit UNIX dependencies in this code, but we only regularly
-test it under UNIX.  If you have Qt for Windows, that should also work.
+You can download Qt for UNIX and Qt for Windows from http://www.trolltech.com.
+Qt for Mac OS X is currently only available commercially.  You need Qt 2.0 or
+later to use this code.
 
 To use this code:
 
@@ -48,8 +48,12 @@ To use this code:
 
    4. ../../Makefile (the top-level makefile)
 
-        change the CNF_SHARE_QTND setting to contain the files "x11tiles"
-        and "rip.xpm" and the CNF_SHARE_DATND to include $(CNF_SHARE_QTND).
+        change the CNF_SHARE_QTND setting to contain the files "x11tiles",
+        "rip.xpm", and "nhsplash.xpm" and the CNF_SHARE_DATND to include
+	$(CNF_SHARE_QTND):
+
+	    CNF_SHARE_QTND = x11tiles rip.xpm nhsplash.xpm
+	    CNF_SHARE_DATND = $(CNF_SHARE_QTND)
 
 	If you want to support the other windowing ports, include
 	their $(CNF_SHARE_XXXND) variables also.
@@ -63,15 +67,18 @@ To use this code:
 
         TILESET=name:Small tiles,file:x11tiles
         OPTIONS=name:player,number_pad,menustyle:partial,!time,showexp
-        OPTIONS=hilite_pet,toptenwin,msghistory:200,tiles:Small tiles
+        OPTIONS=hilite_pet,toptenwin,msghistory:200,windowtype:Qt
+        OPTIONS=tiles:Small tiles
 
-      The Qt port has support for three extra variables which can also be
+      The Qt port has support for four extra variables which can also be
       specified. These are:
 
 	   qt_tilewidth    The width of each tile in pixels
 	   qt_tileheight   The height of each tile in pixels
 	   qt_fontsize	   The font size. One of huge, large, medium or small.
-	   		   These can be abreviated to h, l, m or s.
+			   These can be abreviated to h, l, m or s.
+	   qt_compact	   Set to 1 to run in a more compact mode suitable
+			   for handhelds or 0 for normal operation.
 
 
 If you are using KDE, you may want to also try the KDE version. It just

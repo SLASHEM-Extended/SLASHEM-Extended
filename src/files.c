@@ -1730,15 +1730,6 @@ char		*tmp_levels;
 	} else if (match_varname(buf, "SOUND", 5)) {
 		add_sound_mapping(bufp);
 #endif
-#ifdef USER_SOUNDS
-	} else if (!strncmpi(buf, "SOUNDDIR", 8)) {
-		extern char* sounddir;
-		sounddir=(char *)strdup(bufp);
-	} else if (!strncmpi(buf, "SOUND", 5)) {
-		if (!add_sound_mapping(bufp))
-			return 0;
-#endif
-
 #ifdef QT_GRAPHICS
 	} else if (match_varname(buf, "QT_TILEWIDTH", 12)) {
 		extern char *qt_tilewidth;
@@ -1752,11 +1743,23 @@ char		*tmp_levels;
 		extern char *qt_fontsize;
 		if (qt_fontsize == NULL)
 			qt_fontsize=(char *)strdup(bufp);
+	} else if (match_varname(buf, "QT_COMPACT", 10)) {
+		extern int qt_compact_mode;
+		qt_compact_mode = atoi(bufp);
 #endif
 	} else
 		return 0;
 	return 1;
 }
+
+#ifdef USER_SOUNDS
+boolean
+can_read_file(filename)
+const char *filename;
+{
+	return (access(filename, 4) == 0);
+}
+#endif /* USER_SOUNDS */
 
 void
 read_config_file(filename)
