@@ -97,9 +97,9 @@ ghack_settings_dialog()
     if (gn_tileset < no_tilesets) {
 	    if (tilesets[gn_tileset].file[0] != '/') {
 		char *path;
-		path = (char *)alloc(strlen(HACKDIR) +
+		path = (char *)alloc(strlen(TILESETDIR) +
 		  strlen(tilesets[gn_tileset].file) + 2);
-		sprintf(path, HACKDIR "/%s", tilesets[gn_tileset].file);
+		sprintf(path, TILESETDIR "/%s", tilesets[gn_tileset].file);
 		ghack_free_glyphs();
 		if (ghack_init_glyphs(path))
 			  g_error ("ERROR:  Could not initialize glyphs.\n");

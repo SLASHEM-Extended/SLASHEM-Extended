@@ -94,7 +94,6 @@ void gnome_init_nhwindows(int* argc, char** argv)
     ghack_init_main_window( *argc, argv);
     ghack_init_signals( );
 
-#ifdef HACKDIR
     for(i = 0; i < no_tilesets; i++)
 	if (!strcmp(tileset, tilesets[i].name))
 	    break;
@@ -109,14 +108,11 @@ void gnome_init_nhwindows(int* argc, char** argv)
 	if (i == no_tilesets)
 	    g_error("ERROR: No valid tiles found\n");
     }
-    path = (char *)alloc(strlen(HACKDIR) + strlen(tilesets[i].file) + 2);
-    sprintf(path, HACKDIR "/%s", tilesets[i].file);
+    path = (char *)alloc(strlen(TILESETDIR) + strlen(tilesets[i].file) + 2);
+    sprintf(path, TILESETDIR "/%s", tilesets[i].file);
     if (ghack_init_glyphs(path))
 	g_error ("ERROR:  Could not initialize glyphs.\n");
     free(path);
-#else
-#   error HACKDIR is not defined!
-#endif
   
     /* Force wizard mode on for debugging */
     //wizard = TRUE;

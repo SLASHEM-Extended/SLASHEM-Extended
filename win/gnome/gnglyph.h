@@ -39,4 +39,12 @@ extern GdkImlibImage* ghack_image_from_glyph( int, gboolean);
 extern int            ghack_glyph_height( void);
 extern int            ghack_glyph_width( void);
 
+#if defined(FILE_AREAS)
+#define TILESETDIR FILE_AREA_SHARE
+#elif defined(HACKDIR)
+#define TILESETDIR HACKDIR
+#else
+#   error HACKDIR is not defined!
+#endif
+
 #endif  /* GnomeHackGlyph_h */

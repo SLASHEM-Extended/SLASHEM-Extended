@@ -92,6 +92,7 @@ ghack_init_map_window ( )
   GnomeCanvasImage  *bg;
   double width, height, x, y;
   int i;
+  char *path;
 
   width = COLNO * ghack_glyph_width();
   height = ROWNO * ghack_glyph_height();
@@ -179,13 +180,22 @@ ghack_init_map_window ( )
 		    NULL) );
 
   /* Tile the map background with a pretty image */ 
-  background = gdk_imlib_load_image((char *) "mapbg.xpm");
-  gdk_imlib_render( background, background->rgb_width,
-	  background->rgb_height);
+#ifdef FILE_AREAS
+  path = (char *)alloc(strlen(FILE_AREA_SHARE) + 11);
+  strcpy(path, FILE_AREA_SHARE "/mapbg.xpm");
+#else
+  path = "mapbg.xpm";
+#endif
+  background = gdk_imlib_load_image(path);
+#ifdef FILE_AREAS
+  free(path);
+#endif
   if (background == NULL) {
       g_warning("Bummer! Failed to load the map background image (mapbg.xpm)!");
   }
   else {
+    gdk_imlib_render( background, background->rgb_width,
+	  background->rgb_height);
     /* Tile the map background */
     for (y = 0; y < height+background->rgb_height; y+=background->rgb_height)
     {
@@ -229,12 +239,12 @@ ghack_init_map_window ( )
 
    /* Set up the pet mark image */
   petmark = gdk_imlib_create_image_from_xpm_data( pet_mark_xpm);
-  gdk_imlib_render( petmark, petmark->rgb_width,
-	  petmark->rgb_height);
   if (petmark == NULL) {
     g_warning("Bummer! Failed to load the pet_mark image!");
   }
   else {
+      gdk_imlib_render( petmark, petmark->rgb_width,
+	  petmark->rgb_height);
       /* ghack_map.overlay is an array of canvas images used to
        * overlay tile images...
       */
