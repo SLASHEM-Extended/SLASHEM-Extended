@@ -1,0 +1,67 @@
+***************
+*** 252,258 ****
+  #	dependencies for dlb
+  #
+  dlb:	$(DLBOBJS)
+! 	$(CC) $(LFLAGS) -o dlb $(DLBOBJS)
+  
+  dlb_main.o: dlb_main.c $(CONFIG_H) ../include/dlb.h ../include/date.h
+  	$(CC) $(CFLAGS) -c dlb_main.c
+--- 259,265 ----
+  #	dependencies for dlb
+  #
+  dlb:	$(DLBOBJS)
+! 	$(CC) $(LFLAGS) -o dlb $(DLBOBJS) $(LIBS)
+  
+  dlb_main.o: dlb_main.c $(CONFIG_H) ../include/dlb.h ../include/date.h
+  	$(CC) $(CFLAGS) -c dlb_main.c
+***************
+*** 268,282 ****
+  tileutils: tilemap gif2txt txt2ppm tile2x11
+  
+  gif2txt: $(GIFREADERS) $(TEXT_IO)
+! 	$(CC) $(LFLAGS) -o gif2txt $(GIFREADERS) $(TEXT_IO)
+  txt2ppm: $(PPMWRITERS) $(TEXT_IO)
+! 	$(CC) $(LFLAGS) -o txt2ppm $(PPMWRITERS) $(TEXT_IO)
+  
+  tile2x11: tile2x11.o $(TEXT_IO)
+! 	$(CC) $(LFLAGS) -o tile2x11 tile2x11.o $(TEXT_IO)
+  
+  tilemap: ../win/share/tilemap.c $(HACK_H)
+! 	$(CC) $(CFLAGS) $(LFLAGS) -o tilemap ../win/share/tilemap.c
+  ../src/tile.c: tilemap
+  	./tilemap
+  
+--- 275,295 ----
+  tileutils: tilemap gif2txt txt2ppm tile2x11
+  
+  gif2txt: $(GIFREADERS) $(TEXT_IO)
+! 	$(CC) $(LFLAGS) -o gif2txt $(GIFREADERS) $(TEXT_IO) $(LIBS)
+  txt2ppm: $(PPMWRITERS) $(TEXT_IO)
+! 	$(CC) $(LFLAGS) -o txt2ppm $(PPMWRITERS) $(TEXT_IO) $(LIBS)
+  
+  tile2x11: tile2x11.o $(TEXT_IO)
+! 	$(CC) $(LFLAGS) -o tile2x11 tile2x11.o $(TEXT_IO) $(LIBS)
+! 
+! tile2img.ttp: tile2img.o bitmfile.o $(TEXT_IO)
+! 	$(CC) $(LFLAGS) -o tile2img.ttp tile2img.o bitmfile.o $(TEXT_IO) $(LIBS)
+! 
+! tile2beos: tile2beos.o $(TEXT_IO)
+! 	$(CC) $(LFLAGS) -o tile2beos tile2beos.o $(TEXT_IO) -lbe
+  
+  tilemap: ../win/share/tilemap.c $(HACK_H)
+! 	$(CC) $(CFLAGS) $(LFLAGS) -o tilemap ../win/share/tilemap.c $(LIBS)
+  ../src/tile.c: tilemap
+  	./tilemap
+  
+***************
+*** 374,377 ****
+  	-rm -f ../include/lev_comp.h ../include/dgn_comp.h
+  	-rm -f ../include/tile.h
+  	-rm -f makedefs lev_comp dgn_comp recover dlb
+! 	-rm -f gif2txt txt2ppm tile2x11 tilemap
+--- 395,398 ----
+  	-rm -f ../include/lev_comp.h ../include/dgn_comp.h
+  	-rm -f ../include/tile.h
+  	-rm -f makedefs lev_comp dgn_comp recover dlb
+! 	-rm -f gif2txt txt2ppm tile2x11 tile2img.ttp tilemap
