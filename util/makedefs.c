@@ -563,9 +563,10 @@ void
 do_date()
 {
 	long    clocktim = 0;
-	char *c,  cbuf[600], buf[BUFSZ];
+	char *c,  *cbuf, buf[BUFSZ];
 	const char *ul_sfx;
 	
+	cbuf = malloc(600);
 	filename[0]='\0';
 #ifdef FILE_PREFIX
 	Strcat(filename,file_prefix);
@@ -617,6 +618,7 @@ do_date()
 	}
 #endif
 	Fclose(ofp);
+	free(cbuf);
 	return;
 }
 
