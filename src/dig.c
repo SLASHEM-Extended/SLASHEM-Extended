@@ -843,7 +843,7 @@ struct obj *obj;
 				(digtyp == 1 ? "cut" : "chop"));
 			}
 		} else {
-			You_cant(" %s.",ceiling(u.ux,u.uy));
+			You_cant("reach the %s.",ceiling(u.ux,u.uy));
 		}
 	} else if(!u.dx && !u.dy && !u.dz) {
 		/* NOTREACHED for lightsabers/axes called from doforce */
