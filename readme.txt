@@ -312,14 +312,17 @@ Bug - cockatrice lairs no longer have "goodies"?
 	-pet unicorns remove ailments, etc...
 -Buy items via a menu - #chat with shopkeeper
 -Limit Break based on HP loss? (see howling code)
-
-ver 0.0.6E3F1 [September XX/2000]
+-redo sound system using allegro
+-split allegro into separate windowsystem after implementing use of GUI
+-merge allegro to TTY / separate from DOS code
 TODO: 
 	-Do the Role/Race/Align/Gender Menusystem (WAC)
 	-alleg_xputs should use const char (Strcpy then put up?)
-*compiling with Allegro WIP 3.9.32
+*[In Progress] (Trying to) compile with Allegro WIP 3.9.32
 	-anticipating using allegro on other systems
 	-currently need to redo the font loading code (at least)
+
+ver 0.0.6E3F1 [September XX/2000]
 -Changed #define FILENAME (macconf.h, pcconf.h) to FILENAMELEN since FILENAME 
 	is #defined by dir.h, used by Allegro WIP
 -fixed dereferencing NULL pointer when monster throwing items
