@@ -12,10 +12,6 @@
 #include <OSUtils.h>
 #include <files.h>
 #include <Types.h>
-#ifdef MAC_MPW32
-#include <String.h>
-#include <Strings.h>
-#endif
 #include <Dialogs.h>
 #include <Packages.h>
 #include <ToolUtils.h>
@@ -26,10 +22,13 @@
 #include <fcntl.h>
 #endif
 
-static void
-finder_file_request(void);
+static void finder_file_request(void);
+int main(void);
 
-int NDECL(main);
+#if defined(MAC_MPW)
+QDGlobals qd;
+#endif
+
 
 int
 main (void)
@@ -41,7 +40,6 @@ main (void)
 	InitMac ();
 
 	theWindows = (NhWindow *) NewPtrClear (NUM_MACWINDOWS * sizeof (NhWindow));
-	mustwork(MemError());
 
 	hname = "Slash'EM";
 	hackpid = getpid();
@@ -61,7 +59,6 @@ main (void)
 	setrandom();
 	initoptions();
 	init_nhwindows(&argc, (char **)&hname);
-	DimMenuBar();
 
 	/*
 	 * It seems you really want to play.

@@ -1021,7 +1021,7 @@ short blink_cursor (WindowPtr window, long when) {
  */
 short
 image_tty (EventRecord *theEvent, WindowPtr window) {
-#if defined(MAC_MPW) || defined(__MWERKS__)
+#if defined(MAC_MPW)
 # pragma unused(theEvent)
 #endif
 RECORD_EXISTS (record);
