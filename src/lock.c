@@ -549,11 +549,13 @@ doforce()		/* try to force a chest with your weapon */
 	if (u.utrap && u.utraptype == TT_WEB) {
 	    You("are entangled in a web!");
 	    return(0);
+#ifdef LIGHTSABERS
 	} else if (uwep && is_lightsaber(uwep)) {
 	    if (!uwep->lamplit) {
 		Your("lightsaber is deactivated!");
 		return(0);
 	    }
+#endif
 	} else if(uwep->otyp == LOCK_PICK ||
 #ifdef TOURIST
 	    uwep->otyp == CREDIT_CARD ||
@@ -576,7 +578,12 @@ doforce()		/* try to force a chest with your weapon */
 	    return(0);
 	}
 
-	picktyp = (is_lightsaber(uwep) ? 2 : (is_blade(uwep) ? 1 : 0));
+#ifdef LIGHTSABERS
+	if (is_lightsaber(uwep))
+	    picktyp = 2;
+	else
+#endif
+	picktyp = is_blade(uwep) ? 1 : 0;
 	if(xlock.usedtime && picktyp == xlock.picktyp) {
 	    if (xlock.box) {
 	    You("resume your attempt to force the lock.");
@@ -610,15 +617,22 @@ doforce()		/* try to force a chest with your weapon */
 		if(c == 'q') return(0);
 		if(c == 'n') continue;
 
-		    if(picktyp == 2)
-			You("begin melting it with your %s.", xname(uwep));
-		    else if(picktyp == 1)
+#ifdef LIGHTSABERS
+		if(picktyp == 2)
+		    You("begin melting it with your %s.", xname(uwep));
+		else
+#endif
+		if(picktyp)
 		    You("force your %s into a crack and pry.", xname(uwep));
 		else
 		    You("start bashing it with your %s.", xname(uwep));
 		xlock.box = otmp;
-		    xlock.chance = ((2 * uwep->spe) + (is_lightsaber(uwep) ? 75 :
-						objects[uwep->otyp].oc_wldam * 2));
+#ifdef LIGHTSABERS
+		if (is_lightsaber(uwep))
+		    xlock.chance = uwep->spe * 2 + 75;
+		else
+#endif
+		    xlock.chance = (uwep->spe + objects[uwep->otyp].oc_wldam) * 2;
 		xlock.picktyp = picktyp;
 		xlock.usedtime = 0;
 		break;
@@ -643,7 +657,11 @@ doforce()		/* try to force a chest with your weapon */
 		return(0);
 	    }
 	    /* Lightsabers dig through doors and walls via dig.c */
-	    if (is_lightsaber(uwep) || is_pick(uwep) || is_axe(uwep)) 
+	    if (is_pick(uwep) ||
+#ifdef LIGHTSABERS
+		    is_lightsaber(uwep) ||
+#endif
+		    is_axe(uwep)) 
 	    	return use_pick_axe2(uwep);
 
 	    if(!IS_DOOR(door->typ)) { 
@@ -678,8 +696,12 @@ doforce()		/* try to force a chest with your weapon */
 		    else
 			You("start bashing it with your %s.", xname(uwep));
 		    xlock.box = otmp;
-		    xlock.chance = (uwep->spe + (is_lightsaber(uwep) ? 38 :
-			  objects[uwep->otyp].oc_wldam));
+#ifdef LIGHTSABERS
+		    if (is_lightsaber(uwep))
+			xlock.chance = uwep->spe + 38;
+		    else
+#endif
+			xlock.chance = uwep->spe + objects[uwep->otyp].oc_wldam;
 		    xlock.picktyp = picktyp;
 		    xlock.usedtime = 0;    
 		    xlock.door = door;

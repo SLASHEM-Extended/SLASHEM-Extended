@@ -50,9 +50,15 @@
 #define P_BOOMERANG			29
 #define P_WHIP				30
 #define P_UNICORN_HORN			31	
+#ifdef LIGHTSABERS
 #define P_LIGHTSABER			32	/* last weapon */
+#endif
 #define P_FIRST_WEAPON			P_DAGGER
+#ifdef LIGHTSABERS
 #define P_LAST_WEAPON			P_LIGHTSABER
+#else
+#define P_LAST_WEAPON			P_UNICORN_HORN
+#endif
 
 /* Spell skills -- Wizard Patch by Larry Stewart-Zerba */
 #define P_ATTACK_SPELL		(P_LAST_WEAPON + 1)

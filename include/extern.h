@@ -2072,7 +2072,9 @@ E void FDECL(burn_object, (genericptr_t, long));
 E void FDECL(begin_burn, (struct obj *, BOOLEAN_P));
 E void FDECL(end_burn, (struct obj *, BOOLEAN_P));
 E void FDECL(burn_faster, (struct obj *, long));
+#ifdef LIGHTSABERS
 E void FDECL(lightsaber_deactivate, (struct obj *, BOOLEAN_P));
+#endif
 E void NDECL(do_storms);
 E boolean FDECL(start_timer, (long, SHORT_P, SHORT_P, genericptr_t));
 E long FDECL(stop_timer, (SHORT_P, genericptr_t));

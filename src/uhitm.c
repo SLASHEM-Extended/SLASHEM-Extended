@@ -850,8 +850,10 @@ int thrown;
 		     !u.usteed &&
 #endif
 		     is_pole(obj)) ||
+#ifdef LIGHTSABERS
 		    /* lightsaber that isn't lit ;) */
 		    (is_lightsaber(obj) && !obj->lamplit) ||
+#endif
 		    /* or throw a missile without the proper bow... */
 		    (thrown == 1 && is_ammo(obj) && 
 		    	!ammo_and_launcher(obj, launcher)) || 
@@ -1310,7 +1312,9 @@ int thrown;
   
 	if (obj && obj->oartifact == ART_MAGICBANE) objenchant = 4;
   
+#ifdef LIGHTSABERS
 	if (obj && is_lightsaber(obj)) objenchant = 4;
+#endif
   
 	if (tmp < 1) {
 	    /* make sure that negative damage adjustment can't result

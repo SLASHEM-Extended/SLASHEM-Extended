@@ -1064,7 +1064,8 @@ hitmu(mtmp, mattk)
 		} else {			  /* hand to hand weapon */
 		    if(mattk->aatyp == AT_WEAP && otmp) {
 			int nopoison = (10 - (otmp->owt/10));
-			if (otmp->otyp == CORPSE && touch_petrifies(&mons[otmp->corpsenm])) {
+			if (otmp->otyp == CORPSE &&
+				touch_petrifies(&mons[otmp->corpsenm])) {
 			    dmg = 1;
 			    pline("%s hits you with the %s corpse.",
 				Monnam(mtmp), mons[otmp->corpsenm].mname);
@@ -1082,76 +1083,80 @@ hitmu(mtmp, mattk)
 			  dmg++;
 			}
 
-				/* WAC -- Real weapon?
-				 * Could be stuck with a cursed bow/polearm it wielded
-				 */
-				if (/* if you strike with a bow... */
-				    is_launcher(otmp) ||
-				    /* or strike with a missile in your hand... */
-				    (is_missile(otmp) || is_ammo(otmp)) ||
-				    /* WAC -- or using a pole at short range... */
-				    (is_pole(otmp)) ||
-				    /* lightsaber that isn't lit ;) */
-				    (is_lightsaber(otmp) && !otmp->lamplit)) {
-				    /* then do only 1-2 points of damage */
-				    if (u.umonnum == PM_SHADE && otmp->otyp != SILVER_ARROW)
-					dmg = 0;
-				    else
-					dmg = rnd(2);
+			/* WAC -- Real weapon?
+			 * Could be stuck with a cursed bow/polearm it wielded
+			 */
+			if (/* if you strike with a bow... */
+				is_launcher(otmp) ||
+				/* or strike with a missile in your hand... */
+				(is_missile(otmp) || is_ammo(otmp)) ||
+#ifdef LIGHTSABERS
+				/* lightsaber that isn't lit ;) */
+				(is_lightsaber(otmp) && !otmp->lamplit) ||
+#endif
+				/* WAC -- or using a pole at short range... */
+				(is_pole(otmp))) {
+			    /* then do only 1-2 points of damage */
+			    if (u.umonnum == PM_SHADE && otmp->otyp != SILVER_ARROW)
+				dmg = 0;
+			    else
+				dmg = rnd(2);
 
 #if 0 /* Monsters don't wield boomerangs */
-			    	    if(otmp->otyp == BOOMERANG /* && !rnl(3) */) {
-					pline("As %s hits you, %s breaks into splinters.",
-					      mon_nam(mtmp), the(xname(otmp)));
-					useup(otmp);
-					otmp = (struct obj *) 0;
-					possibly_unwield(mtmp);
-					if (u.umonnum != PM_SHADE)
-					    dmg++;
-			    	    }
+			    if (otmp->otyp == BOOMERANG /* && !rnl(3) */) {
+				pline("As %s hits you, %s breaks into splinters.",
+				      mon_nam(mtmp), the(xname(otmp)));
+				useup(otmp);
+				otmp = (struct obj *) 0;
+				possibly_unwield(mtmp);
+				if (u.umonnum != PM_SHADE)
+				    dmg++;
+			    }
 #endif
-				} else dmg += dmgval(otmp, &youmonst);
-				
-                                if(otmp && (objects[otmp->otyp].oc_material == SILVER) &&
-						hates_silver(youmonst.data)) {
-					pline("The silver sears your flesh!");
-                                        
-                                }
-                                /* Stakes do extra dmg agains vamps */
-                                if (otmp && otmp->otyp == WOODEN_STAKE && is_vampire(youmonst.data)) {
-                                        if(otmp->oartifact == ART_STAKE_OF_VAN_HELSING) {
-                                                if (!rn2(10)) {
-                                                        pline("%s plunges the stake into your heart.",
-                                                                Monnam(mtmp));
-                                                        killer = "a wooden stake in the heart.";
-                                                        killer_format = KILLED_BY_AN;
-                                                        u.ugrave_arise = NON_PM; /* No corpse */
-                                                        done(DIED);
-                                                } else {
-                                                        pline("%s drives the stake into you.", Monnam(mtmp));
-                                                        dmg += rnd(6) + 2;
-                                                }
-                                        } else {
-                                                pline("%s drives the stake into you.", Monnam(mtmp));
-                                                dmg += rnd(6);
-                                        }
-                                }
+			} else dmg += dmgval(otmp, &youmonst);
 
-                                if (otmp && otmp->opoisoned) {
-                                /* it's safe to call xname twice because it's the
-                                   same object both times... */
-                                        poisoned(xname(otmp), A_STR, xname(otmp), 10);
-                                        if(nopoison < 2) nopoison = 2;
-                                        if (otmp && !rn2(nopoison)) {
-                                                otmp->opoisoned = FALSE;
-                                                pline("%s %s no longer poisoned.",
-                                                       s_suffix(Monnam(mtmp)),
-                                                       aobjnam(otmp, "are"));
-                                        }
+			if (objects[otmp->otyp].oc_material == SILVER &&
+				hates_silver(youmonst.data)) {
+			    pline("The silver sears your flesh!");
+			}
+			/* Stakes do extra dmg agains vamps */
+			if (otmp->otyp == WOODEN_STAKE &&
+				is_vampire(youmonst.data)) {
+			    if (otmp->oartifact == ART_STAKE_OF_VAN_HELSING) {
+				if (!rn2(10)) {
+				    pline("%s plunges the stake into your heart.",
+					    Monnam(mtmp));
+				    killer = "a wooden stake in the heart.";
+				    killer_format = KILLED_BY_AN;
+				    u.ugrave_arise = NON_PM; /* No corpse */
+				    done(DIED);
+				} else {
+				    pline("%s drives the stake into you.",
+					    Monnam(mtmp));
+				    dmg += rnd(6) + 2;
+				}
+			    } else {
+				pline("%s drives the stake into you.",
+					Monnam(mtmp));
+				dmg += rnd(6);
+			    }
+			}
+
+			if (otmp->opoisoned) {
+			    /* it's safe to call xname twice because it's the
+			       same object both times... */
+			    poisoned(xname(otmp), A_STR, xname(otmp), 10);
+			    if (nopoison < 2) nopoison = 2;
+			    if (!rn2(nopoison)) {
+				otmp->opoisoned = FALSE;
+				pline("%s %s no longer poisoned.",
+				       s_suffix(Monnam(mtmp)),
+				       aobjnam(otmp, "are"));
+			    }
 			}
 			if (dmg <= 0) dmg = 1;
-                                if (!(otmp && otmp->oartifact &&
-				artifact_hit(mtmp, &youmonst, otmp, &dmg,dieroll)))
+			if (!otmp->oartifact || !artifact_hit(mtmp, &youmonst,
+				otmp, &dmg, dieroll))
 			     hitmsg(mtmp, mattk);
 
 			if (burnmsg) {
@@ -1199,8 +1204,9 @@ hitmu(mtmp, mattk)
 			    if(cloneu())
 			    You("divide as %s hits you!",mon_nam(mtmp));
 			}
-                                if (otmp) urustm(mtmp, otmp);
-                        } else if (mattk->aatyp != AT_TUCH || dmg != 0 || mtmp != u.ustuck)
+			urustm(mtmp, otmp);
+		    } else if (mattk->aatyp != AT_TUCH || dmg != 0 ||
+			    mtmp != u.ustuck)
 			hitmsg(mtmp, mattk);
 		}
 		break;

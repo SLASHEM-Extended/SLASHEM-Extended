@@ -168,7 +168,10 @@ dig_check(madeby, verbose, x, y)
 	struct trap *ttmp = t_at(x, y);
 	const char *verb =
 	    (madeby != BY_YOU || !uwep || is_pick(uwep)) ? "dig in" :
-	    is_lightsaber(uwep) ? "cut" : "chop";
+#ifdef LIGHTSABERS
+	    is_lightsaber(uwep) ? "cut" :
+#endif
+	    "chop";
 
 	if (On_stairs(x, y)) {
 	    if (x == xdnladder || x == xupladder) {
@@ -221,15 +224,21 @@ dig()
 	register boolean ispick = uwep && is_pick(uwep);
 	const char *verb =
 	    (!uwep || is_pick(uwep)) ? "dig into" :
-	    is_lightsaber(uwep) ? "cut through" : "chop through";
+#ifdef LIGHTSABERS
+	    is_lightsaber(uwep) ? "cut through" :
+#endif
+	    "chop through";
 	int bonus;
 
 	lev = &levl[dpx][dpy];
 	/* perhaps a nymph stole your pick-axe while you were busy digging */
 	/* or perhaps you teleported away */
 	/* WAC allow lightsabers */
-	if (u.uswallow || !uwep || (!ispick && !is_axe(uwep)
-		&& (!is_lightsaber(uwep) || !uwep->lamplit)) ||
+	if (u.uswallow || !uwep || (!ispick &&
+#ifdef LIGHTSABERS
+		(!is_lightsaber(uwep) || !uwep->lamplit) &&
+#endif
+		!is_axe(uwep)) ||
 	    !on_level(&digging.level, &u.uz) ||
 	    ((digging.down ? (dpx != u.ux || dpy != u.uy)
 			   : (distu(dpx,dpy) > 2))))
@@ -252,8 +261,12 @@ dig()
 		return(0);
 	    }
 	}
-	/* Can't exactly miss holding a lightsaber to the wall */
-	if(Fumbling && !rn2(3) && !is_lightsaber(uwep)) {
+	if(Fumbling &&
+#ifdef LIGHTSABERS
+		/* Can't exactly miss holding a lightsaber to the wall */
+		!is_lightsaber(uwep) &&
+#endif
+		!rn2(3)) {
 	    switch(rn2(3)) {
 	    case 0:
 		if(!welded(uwep)) {
@@ -287,8 +300,10 @@ dig()
 	bonus = 10 + rn2(5) + abon() + uwep->spe - greatest_erosion(uwep) + u.udaminc;
 	if (Race_if(PM_DWARF))
 	    bonus *= 2;
+#ifdef LIGHTSABERS
 	if (is_lightsaber(uwep))
 	    bonus -= rn2(20); /* Melting a hole takes longer */
+#endif
 
 	digging.effort += bonus;
 
@@ -302,7 +317,9 @@ dig()
 		}
 
 		if (digging.effort <= 50 ||
-		    (is_lightsaber(uwep)) ||
+#ifdef LIGHTSABERS
+		    is_lightsaber(uwep) ||
+#endif
 		    ((ttmp = t_at(dpx,dpy)) != 0 &&
 			(ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT ||
 			 ttmp->ttyp == TRAPDOOR || ttmp->ttyp == HOLE)))
@@ -444,9 +461,12 @@ cleanup:
 		} else if (!IS_ROCK(lev->typ) && dig_target == DIGTYP_ROCK)
 		    return(0); /* statue or boulder got taken */
 		if(!did_dig_msg) {
+#ifdef LIGHTSABERS
 		    if (is_lightsaber(uwep)) You("burn steadily through %s.",
 			d_target[dig_target]);
-		    else You("hit the %s with all your might.",
+		    else
+#endif
+		    You("hit the %s with all your might.",
 			d_target[dig_target]);
 		    did_dig_msg = TRUE;
 		}
@@ -908,10 +928,17 @@ struct obj *obj;
 	int dig_target, res = 0, digtyp;
 	boolean ispick = is_pick(obj);
 	const char *verbing = ispick ? "digging" :
-		is_lightsaber(uwep) ? "cutting" : "chopping";
+#ifdef LIGHTSABERS
+		is_lightsaber(uwep) ? "cutting" :
+#endif
+		"chopping";
 
 	/* 0 = pick, 1 = lightsaber, 2 = axe */
-	digtyp = (is_pick(uwep) ? 0 : is_lightsaber(uwep) ? 1 : 2);
+	digtyp = (is_pick(uwep) ? 0 :
+#ifdef LIGHTSABERS
+		is_lightsaber(uwep) ? 1 :
+#endif
+		2);
 
 	if (u.uswallow && attack(u.ustuck)) {
 		;  /* return(1) */

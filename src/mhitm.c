@@ -977,7 +977,9 @@ mdamagem(magr, mdef, mattk)
 		if (otmp->spe < 2) objenchant += 1;
 		else objenchant = 2;
 	    }
-	    if (otmp && is_lightsaber(otmp)) objenchant = 4;
+#ifdef LIGHTSABERS
+	    if (is_lightsaber(otmp)) objenchant = 4;
+#endif
 	} else objenchant = 0;
 
 	/* a monster that needs a +1 weapon to hit it hits as a +1 weapon... */
@@ -1082,10 +1084,12 @@ physical:
 			    is_launcher(otmp) ||
 			    /* or strike with a missile in your hand... */
 			    (is_missile(otmp) || is_ammo(otmp)) ||
-			    /* WAC -- or using a pole at short range... */
-			    (is_pole(otmp)) ||
+#ifdef LIGHTSABERS
 			    /* lightsaber that isn't lit ;) */
-			    (is_lightsaber(otmp) && !otmp->lamplit)) {
+			    (is_lightsaber(otmp) && !otmp->lamplit) ||
+#endif
+			    /* WAC -- or using a pole at short range... */
+			    (is_pole(otmp))) {
 			    /* then do only 1-2 points of damage */
 			    if (pd == &mons[PM_SHADE] && otmp->otyp != SILVER_ARROW)
 				tmp = 0;

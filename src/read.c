@@ -237,8 +237,11 @@ register struct obj *obj;
 	else {
 		if (obj->spe > 0) {
 		    obj->spe = 0;
-		    if ((obj->otyp == OIL_LAMP || obj->otyp == BRASS_LANTERN) ||
-		    		is_lightsaber(obj))
+		    if (obj->otyp == OIL_LAMP ||
+#ifdef LIGHTSABERS
+			    is_lightsaber(obj) ||
+#endif
+			    obj->otyp == BRASS_LANTERN)
 			obj->age = 0;
 		    Your("%s %s briefly.",xname(obj), otense(obj, "vibrate"));
 		} else pline(nothing_happens);
@@ -276,12 +279,14 @@ struct obj *obj;
 	if (obj->oclass == RING_CLASS)
 	    return (boolean)(objects[obj->otyp].oc_charged &&
 			(obj->known || objects[obj->otyp].oc_uname));
+#ifdef LIGHTSABERS
+	if (is_lightsaber(obj))
+	    return TRUE;
+#endif
 	if (is_weptool(obj))	/* specific check before general tools */
 	    return FALSE;
 	if (obj->oclass == TOOL_CLASS)
-		/* KMH -- not weapon-tools */
-	    return (boolean)(objects[obj->otyp].oc_charged && 
-	    	(!is_weptool(obj) || is_lightsaber(obj)));
+	    return (boolean)(objects[obj->otyp].oc_charged);
 	return FALSE; /* why are weapons/armor considered charged anyway? */
 }
 
@@ -504,6 +509,7 @@ int curse_bless;
 		    p_glow1(obj);
 		}
 		break;
+#ifdef LIGHTSABERS
 	    case GREEN_LIGHTSABER:
 #ifdef D_SABER
 	    case BLUE_LIGHTSABER:
@@ -528,6 +534,7 @@ int curse_bless;
 		    p_glow1(obj);
 		}
 		break;
+#endif
 	    case CRYSTAL_BALL:
 		if (is_cursed) stripspe(obj);
 		else if (is_blessed) {

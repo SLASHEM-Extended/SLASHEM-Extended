@@ -534,8 +534,10 @@ obj_is_burning(obj)
 		|| obj->otyp == TALLOW_CANDLE
 		|| obj->otyp == WAX_CANDLE
 		|| obj->otyp == POT_OIL
-		|| artifact_light(obj)
-		|| is_lightsaber(obj)));
+#ifdef LIGHTSABERS
+		|| is_lightsaber(obj)
+#endif
+		|| artifact_light(obj)));
 }
 
 /* WAC Return TRUE if object always lights up

@@ -1095,17 +1095,19 @@ struct obj *obj;
 		if(obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP ||
 				obj->otyp == BRASS_LANTERN) {
 		    pline("%s lamp is now off.", Shk_Your(buf, obj));
+#ifdef LIGHTSABERS
 		} else if(is_lightsaber(obj)) {
-			if (obj->otyp == RED_DOUBLE_LIGHTSABER) {
-			    /* Do we want to activate dual bladed mode? */
-			    if (!obj->altmode && (!obj->cursed || rn2(4))) {
-			    	You("ignite the second blade of %s.", yname(obj));
-			    	obj->altmode = TRUE;
-			    	return;
-			    } else obj->altmode = FALSE;
-			}
-			lightsaber_deactivate(obj, TRUE);
-			return;
+		    if (obj->otyp == RED_DOUBLE_LIGHTSABER) {
+			/* Do we want to activate dual bladed mode? */
+			if (!obj->altmode && (!obj->cursed || rn2(4))) {
+			    You("ignite the second blade of %s.", yname(obj));
+			    obj->altmode = TRUE;
+			    return;
+			} else obj->altmode = FALSE;
+		    }
+		    lightsaber_deactivate(obj, TRUE);
+		    return;
+#endif
 		} else if (artifact_light(obj)) {
 		    You_cant("snuff out %s.", yname(obj));
 		    return;
@@ -1118,7 +1120,11 @@ struct obj *obj;
 	/* magic lamps with an spe == 0 (wished for) cannot be lit */
 	if ((!Is_candle(obj) && obj->age == 0)
 			|| (obj->otyp == MAGIC_LAMP && obj->spe == 0)) {
-		if ((obj->otyp == BRASS_LANTERN) || (is_lightsaber(obj)))
+		if ((obj->otyp == BRASS_LANTERN)
+#ifdef LIGHTSABERS
+			|| is_lightsaber(obj)
+#endif
+			)
 			Your("%s has run out of power.", xname(obj));
 		else if (obj->otyp == TORCH) {
 		        Your("torch has burnt out and cannot be relit.");
@@ -1141,6 +1147,7 @@ struct obj *obj;
 			plur(obj->quan),
 			obj->quan > 1L ? "" : "s",
 			Blind ? "." : " brightly!");
+#ifdef LIGHTSABERS
 		} else if (is_lightsaber(obj)) {
 		    /* WAC -- lightsabers */
 		    /* you can see the color of the blade */
@@ -1148,6 +1155,7 @@ struct obj *obj;
 		    if (!Blind) makeknown(obj->otyp);
 		    You("ignite %s.", yname(obj));
 		    unweapon = FALSE;
+#endif
 		} else {	/* candle(s) */
 		    Sprintf(qbuf, "Light all of %s?", the(xname(obj)));
 
@@ -3431,14 +3439,16 @@ doapply()
 	case TALLOW_CANDLE:
 		use_candle(obj);
 		break;
+#ifdef LIGHTSABERS
 	case GREEN_LIGHTSABER:
 #ifdef D_SABER
   	case BLUE_LIGHTSABER:
 #endif
 	case RED_LIGHTSABER:
 	case RED_DOUBLE_LIGHTSABER:
-		/* Fall through - activate via use_lamp */
 		if (uwep != obj && !wield_tool(obj, (const char *)0)) break;
+		/* Fall through - activate via use_lamp */
+#endif
 	case OIL_LAMP:
 	case MAGIC_LAMP:
 	case BRASS_LANTERN:

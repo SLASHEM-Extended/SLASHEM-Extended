@@ -682,20 +682,28 @@ plus:
 			Strcat(prefix, sitoa(obj->spe));
 			Strcat(prefix, " ");
 		}
-		if (is_lightsaber(obj) 
 #ifdef FIREARMS
-				|| obj->otyp == STICK_OF_DYNAMITE
-#endif
-				) {
-			if(obj->lamplit) Strcat(bp, " (lit)");
-#ifdef DEBUG
-			Sprintf(eos(bp), " (%d)", obj->age);		
-#endif
-#ifdef FIREARMS
-		} else if (is_grenade(obj)) {
-			if(obj->oarmed) Strcat(bp, " (armed)");
-#endif
+		if (
+# ifdef LIGHTSABERS
+			is_lightsaber(obj) ||
+# endif
+			obj->otyp == STICK_OF_DYNAMITE) {
+		    if (obj->lamplit) Strcat(bp, " (lit)");
+#  ifdef DEBUG
+		    Sprintf(eos(bp), " (%d)", obj->age);		
+#  endif
+		} else if (is_grenade(obj))
+		    if (obj->oarmed) Strcat(bp, " (armed)");
+#else	/* FIREARMS */
+# ifdef LIGHTSABERS
+		if (is_lightsaber(obj)) {
+		    if (obj->lamplit) Strcat(bp, " (lit)");
+#  ifdef DEBUG
+		    Sprintf(eos(bp), " (%d)", obj->age);		
+#  endif
 		}
+# endif
+#endif	/* FIREARMS */
 		break;
 	case ARMOR_CLASS:
 		if(obj->owornmask & W_ARMOR)
@@ -1554,7 +1562,9 @@ STATIC_OVL NEARDATA const struct o_range o_ranges[] = {
 			ARMOR_CLASS,  GRAY_DRAGON_SCALE_MAIL, YELLOW_DRAGON_SCALE_MAIL },
 	{ "sword",      WEAPON_CLASS, ORCISH_SHORT_SWORD,    TSURUGI },
 	{ "polearm",    WEAPON_CLASS, PARTISAN, LANCE },
+#ifdef LIGHTSABERS
 	{ "lightsaber", WEAPON_CLASS, GREEN_LIGHTSABER, RED_DOUBLE_LIGHTSABER },
+#endif
 #ifdef FIREARMS
 	{ "firearm", 	WEAPON_CLASS, PISTOL, AUTO_SHOTGUN },
 	{ "gun", 	WEAPON_CLASS, PISTOL, AUTO_SHOTGUN },

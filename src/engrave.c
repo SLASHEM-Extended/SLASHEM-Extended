@@ -849,10 +849,13 @@ doengrave()
 		break;
 
 	    case WEAPON_CLASS:
+#ifdef LIGHTSABERS
 		if (is_lightsaber(otmp)) {
 			if (otmp->lamplit) type = BURN;
 			else Your("%s is deactivated!", aobjnam(otmp,"are"));
-		} else if(is_blade(otmp)) {
+		} else
+#endif
+		if(is_blade(otmp)) {
 		    if ((int)otmp->spe > -3)
 			type = ENGRAVE;
 		    else

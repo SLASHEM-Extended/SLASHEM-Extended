@@ -395,7 +395,10 @@ typedef unsigned char	uchar;
 #define INVISIBLE_OBJECTS /* Not yet fully implemented */
 #define UNPOLYPILE	/* WAC -- Items can unpolymorph */
 #define WALLET_O_P      /* Perseus' Wallet, and all related code (tsanth@iname.com)*/
-#define D_SABER         /* Enable WEAPON(dimsaber), and all related code (tsanth@iname.com)*/
+#define LIGHTSABERS
+#ifdef LIGHTSABERS
+# define D_SABER	/* Enable WEAPON(dimsaber), and all related code (tsanth@iname.com)*/
+#endif
 #define P_SPOON         /* Enable WEPTOOL(spoon), and all related code (tsanth@iname.com)*/
 #define FIREARMS	/* KMH -- Guns and bullets */
 #define EATEN_MEMORY	/* WAC -- Remember which monsters have been eaten */

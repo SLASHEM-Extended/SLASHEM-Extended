@@ -182,17 +182,6 @@ WEAPON("katana", "samurai sword",
 WEAPON("two-handed sword", (char *)0,
 	1, 0, 1, 25,150, 50, 12,  6, 0, S,   P_TWO_HANDED_SWORD, IRON, HI_METAL),
 	/* +2d6 large */
-/* [Tom] adds star wars stuff... (same damage as unicorn horns -- d16/d20, +2 to hit) */
-#if 0
-WEAPON("lightsaber", "green shimmering sword",
-	0, 0, 1,  1, 60, 500, 16,  20, 2, S, P_TWO_HANDED_SWORD, PLASTIC, CLR_GREEN),
-# ifdef D_SABER
-WEAPON("dimsaber",  "blue shimmering sword",
-	0, 0, 1,  1, 60, 500, 16,  20, 2, S, P_TWO_HANDED_SWORD, PLASTIC, CLR_BLUE),
-# endif /* D_SABER */
-WEAPON("darksaber",  "red shimmering sword",
-	0, 0, 1,  1, 60, 500, 16,  20, 2, S, P_TWO_HANDED_SWORD, PLASTIC, CLR_RED),
-#endif
 WEAPON("tsurugi", "long samurai sword",
 	0, 0, 1,  0, 60,500, 16,  8, 2, S,   P_TWO_HANDED_SWORD, METAL, HI_METAL),
 	/* +2d6 large; base for artifact (T of Muramasa) */
@@ -807,12 +796,17 @@ TOOL("beartrap", (char *)0,     1, 0, 0, 0,   0,200,  60, IRON, HI_METAL),
 WEPTOOL("spoon", (char *)0,
 	1, 0, 0, 0,  0,  1, 5000,  0,  0, 0, WHACK,  -P_DART, PLATINUM, HI_METAL),
 # endif /* P_SPOON */
-#ifdef D_SABER
+#ifdef LIGHTSABERS
+# ifdef D_SABER
 WEPTOOL("pick-axe", (char *)0,
 	1, 0, 0, 0, 17, 80,   50,  6,  3, 0, WHACK,  P_PICK_AXE, IRON, HI_METAL),
-#else
+# else
 WEPTOOL("pick-axe", (char *)0,
 	1, 0, 0, 0, 18, 80,   50,  6,  3, 0, WHACK,  P_PICK_AXE, IRON, HI_METAL),
+# endif
+#else	/* LIGHTSABERS */
+WEPTOOL("pick-axe", (char *)0,
+	1, 0, 0, 0, 20, 80,   50,  6,  3, 0, WHACK,  P_PICK_AXE, IRON, HI_METAL),
 #endif
 WEPTOOL("fishing pole", (char *)0,
 	1, 0, 0, 0,  5,  30,  50,  2,  6, 0, WHACK,  P_POLEARMS, METAL, HI_METAL),
@@ -828,7 +822,9 @@ OBJECT(OBJ("torch", (char *)0),
 	BITS(1,1,1,0,0,1,0,0,0,0,WHACK,P_CLUB,WOOD),
 	0, TOOL_CLASS, 25, 0,
 	20, 8, 2, 5, WHACK, 0, 20, HI_WOOD ),
-/* WAC -- lightsabers are here now 
+
+#ifdef LIGHTSABERS
+/* [WAC]
  * Lightsabers are -3 to hit 
  * Double lightsaber is -4 to hit (only red)
  * DMG is increased: 10.5/15.5
@@ -847,6 +843,7 @@ WEPTOOL("red lightsaber",  "lightsaber",
 	0, 0, 1, 0,  1, 60, 500, 9,  11, -3, SLASH, P_LIGHTSABER, PLATINUM, HI_METAL),
 WEPTOOL("red double lightsaber",  "double lightsaber",
 	0, 0, 1, 1,  0, 60,1000, 9,  11, -4, SLASH, P_LIGHTSABER, PLATINUM, HI_METAL),
+#endif	/* LIGHTSABERS */
 
 /* Other tools */
 #ifdef TOURIST

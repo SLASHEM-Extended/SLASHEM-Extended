@@ -94,6 +94,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -Applied patch 687552: Grund's stronghold.
 -GTK: Ported to Gtk+ 2.2.x
 -GTK: Replaced obsolete 1.2 interface with new 2.x version.
+-Actioned feature request 487616: Put lightsabers under config control.
 
 See history.txt for changes made in previous versions.
 

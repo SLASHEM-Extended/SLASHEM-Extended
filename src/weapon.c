@@ -27,13 +27,17 @@
 #define PN_MARTIAL_ARTS		(-15)
 #define PN_RIDING		(-16)
 #define PN_TWO_WEAPONS		(-17)
+#ifdef LIGHTSABERS
 #define PN_LIGHTSABER		(-18)
+#endif
 
 static void FDECL(give_may_advance_msg, (int));
 STATIC_PTR int NDECL(practice);
 static int FDECL(get_obj_skill, (struct obj *));
 
+#ifdef LIGHTSABERS
 static void FDECL(mon_ignite_lightsaber, (struct obj *, struct monst *));
+#endif
 
 /*WAC practicing needs a delay counter*/
 static NEARDATA schar delay;            /* moves left for practice */
@@ -58,7 +62,9 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	JAVELIN,          TRIDENT,        LANCE,        BOW,
 	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
 	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
+#ifdef LIGHTSABERS
 	PN_LIGHTSABER,
+#endif
 	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
 	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
 	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
@@ -87,7 +93,9 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "martial arts",
     "riding",
     "two-weapon combat",
+#ifdef LIGHTSABERS
     "lightsaber"
+#endif
 };
 
 
@@ -264,14 +272,16 @@ struct monst *mon;
 		case DWARVISH_MATTOCK:
 		case TWO_HANDED_SWORD:	tmp += d(2,6); break;
 
+#ifdef LIGHTSABERS
 		case GREEN_LIGHTSABER:  tmp +=13; break;
 #ifdef D_SABER
 		case BLUE_LIGHTSABER:   tmp +=12; break;
 #endif
 		case RED_DOUBLE_LIGHTSABER: 
-			if (otmp->altmode) tmp += rnd(11);
-			/* fallthrough */
+					if (otmp->altmode) tmp += rnd(11);
+					/* fallthrough */
 		case RED_LIGHTSABER:    tmp +=10; break;
+#endif
 	    }
 	} else {
 	    if (objects[otyp].oc_wsdam)
@@ -298,14 +308,16 @@ struct monst *mon;
 		case RUNESWORD:
 		case VOULGE:		tmp += rnd(4); break;
 
+#ifdef LIGHTSABERS
 		case GREEN_LIGHTSABER:  tmp +=9; break;
 #ifdef D_SABER
 		case BLUE_LIGHTSABER:   tmp +=8; break;
 #endif
 		case RED_DOUBLE_LIGHTSABER:
-			if (otmp->altmode) tmp += rnd(9);
-			/* fallthrough */
+					if (otmp->altmode) tmp += rnd(9);
+					/* fallthrough */
 		case RED_LIGHTSABER: 	tmp +=6; break;
+#endif
 
 		case ACID_VENOM:	tmp += rnd(6); break;
 	    }
@@ -408,7 +420,9 @@ int x;
 		    /* never select non-cockatrice corpses */
 		    !((x == CORPSE || x == EGG) &&
 			!touch_petrifies(&mons[otmp->corpsenm])) &&
+#ifdef LIGHTSABERS
                     (!is_lightsaber(otmp) || otmp->age) &&
+#endif
 		    (!otmp->oartifact || touch_artifact(otmp,mtmp)))
 		return otmp;
 	}
@@ -593,11 +607,13 @@ static const NEARDATA short hwep[] = {
 	  CORPSE,  /* cockatrice corpse */
 	  TSURUGI, RUNESWORD, HEAVY_HAMMER, 
 	  DWARVISH_MATTOCK, 
+#ifdef LIGHTSABERS
 	  RED_DOUBLE_LIGHTSABER, RED_LIGHTSABER,
 #ifdef D_SABER
 	  BLUE_LIGHTSABER,
 #endif
 	  GREEN_LIGHTSABER,
+#endif
 	  TWO_HANDED_SWORD, BATTLE_AXE,
 	  KATANA, UNICORN_HORN, CRYSKNIFE, TRIDENT, LONG_SWORD,
 	  ELVEN_BROADSWORD, BROADSWORD, SCIMITAR, SILVER_SABER,
@@ -758,8 +774,10 @@ register struct monst *mon;
 		
 		if (mw_tmp && mw_tmp->otyp == obj->otyp) {
 		/* already wielding it */
+#ifdef LIGHTSABERS
 			if (is_lightsaber(obj))
-				mon_ignite_lightsaber(obj, mon);
+			    mon_ignite_lightsaber(obj, mon);
+#endif
 			mon->weapon_check = NEED_WEAPON;
 			return 0;
 		}
@@ -817,14 +835,17 @@ register struct monst *mon;
 			    s_suffix(mon_nam(mon)), mbodypart(mon,HAND));
 		}
 		obj->owornmask = W_WEP;
+#ifdef LIGHTSABERS
 		if (is_lightsaber(obj))
 		    mon_ignite_lightsaber(obj, mon);
+#endif
 		return 1;
 	}
 	mon->weapon_check = NEED_WEAPON;
 	return 0;
 }
 
+#ifdef LIGHTSABERS
 static void
 mon_ignite_lightsaber(obj, mon)
 struct obj * obj;
@@ -862,6 +883,7 @@ struct monst * mon;
 		return;
 	}
 }
+#endif
 
 /* STEPHEN WHITE'S NEW CODE */
 int

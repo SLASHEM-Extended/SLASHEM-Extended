@@ -465,21 +465,27 @@ make_version()
 	 * groupings are just for convenience.
 	 */
 	version.feature_set = (unsigned long)(0L
-		/* levels and/or topology (0..4) */
+		/* levels and/or topology (0..3) */
 #ifdef REINCARNATION
 			| (1L <<  1)
 #endif
 #ifdef SINKS
 			| (1L <<  2)
 #endif
-		/* monsters (5..9) */
+#ifdef BLACKMARKET
+			| (1L <<  3)
+#endif
+		/* monsters (4..7) */
 #ifdef KOPS
 			| (1L <<  6)
 #endif
 #ifdef MAIL
 			| (1L <<  7)
 #endif
-		/* objects (10..14) */
+		/* objects (8..15) */
+#ifdef P_SPOON
+			| (1L <<  9)
+#endif
 #ifdef TOURIST
 			| (1L << 10)
 #endif
@@ -489,11 +495,17 @@ make_version()
 #ifdef GOLDOBJ
 			| (1L << 12)
 #endif
-		/* flag bits and/or other global variables (15..26) */
-#ifdef DISPLAY_LAYERS
-			| (1L << 15)
+#ifdef FIREARMS
+			| (1L << 13)
 #endif
-#ifdef BLACKMARKET
+#ifdef LIGHTSABERS
+			| (1L << 14)
+# ifdef D_SABER
+			| (1L << 15)
+# endif
+#endif
+		/* flag bits and/or other global variables (16..26) */
+#ifdef DISPLAY_LAYERS
 			| (1L << 16)
 #endif
 #ifdef TEXTCOLOR
@@ -797,6 +809,19 @@ static const char *build_opts[] = {
 #endif
 #ifdef TIMED_DELAY
 		"timed wait for display effects",
+#endif
+#ifdef LIGHTSABERS
+# ifdef D_SABER
+		"lightsabers and dim lightsabers",
+# else
+		"lightsabers",
+# endif
+#endif
+#ifdef P_SPOON
+		"Houchou",
+#endif
+#ifdef FIREARMS
+		"firearms",
 #endif
 #ifdef TOURIST
 		"tourists",
