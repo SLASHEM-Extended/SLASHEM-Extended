@@ -422,6 +422,7 @@ private:
 
 	NetHackQtLabelledIcon time;
 	NetHackQtLabelledIcon score;
+	NetHackQtLabelledIcon weight;
 
 	NetHackQtLabelledIcon hunger;
 	NetHackQtLabelledIcon confused;
