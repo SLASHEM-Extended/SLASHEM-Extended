@@ -212,7 +212,7 @@ adjattrib(ndx, incr, msgflg)
 		  (incr > 1 || incr < -1) ? "very ": "",
 		  (incr > 0) ? plusattr[ndx] : minusattr[ndx]);
 	flags.botl = 1;
-	if (moves > 0 && (ndx == A_STR || ndx == A_CON))
+	if (moves > 1 && (ndx == A_STR || ndx == A_CON))
 		(void)encumber_msg();
 	return TRUE;
 }
