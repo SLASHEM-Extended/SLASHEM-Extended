@@ -97,6 +97,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -Actioned feature request 487616: Put lightsabers under config control.
 -fixed bug 733338: Crash when monster attacks an empty space (Rich Walker).
 -Actioned feature request 454805: cloak of "poisonousness"?
+-Actioned feature request 513881: Count Dracula/Vlad the Impaler race.
 
 See history.txt for changes made in previous versions.
 
