@@ -920,6 +920,7 @@ void
 u_init()
 {
 	register int i, temp, temp2;
+	int no_extra_food = FALSE;
 
 	flags.female = flags.initgend;
 	flags.beginner = 1;
@@ -1209,28 +1210,34 @@ u_init()
 #endif /* TOURIST */
 	case PM_UNDEAD_SLAYER:
 		switch (rn2(100) / 25) {
-			case 0:	/* Pistol and silver bullets */
+		    case 0:	/* Pistol and silver bullets */
 #ifdef FIREARMS
-		        UndeadSlayer[U_MINOR].trotyp = PISTOL;
-		        UndeadSlayer[U_RANGE].trotyp = SILVER_BULLET;
-				UndeadSlayer[U_RANGE].trquan = rn1(10, 30);
-		        break;
+			UndeadSlayer[U_MINOR].trotyp = PISTOL;
+			UndeadSlayer[U_RANGE].trotyp = SILVER_BULLET;
+			UndeadSlayer[U_RANGE].trquan = rn1(10, 30);
+			break;
 #endif
-			case 1:	/* Crossbow and bolts */
-				UndeadSlayer[U_MINOR].trotyp = CROSSBOW;
-				UndeadSlayer[U_RANGE].trotyp = CROSSBOW_BOLT;
-				UndeadSlayer[U_RANGE].trquan = rn1(10, 30);
-				UndeadSlayer[U_MISC].trotyp = LOW_BOOTS;
-				UndeadSlayer[U_MISC].trspe = 1;
-				UndeadSlayer[U_ARMOR].trotyp = LEATHER_JACKET;
-				UndeadSlayer[U_ARMOR].trspe = 1;
+		    case 1:	/* Crossbow and bolts */
+			UndeadSlayer[U_MINOR].trotyp = CROSSBOW;
+			UndeadSlayer[U_RANGE].trotyp = CROSSBOW_BOLT;
+			UndeadSlayer[U_RANGE].trquan = rn1(10, 30);
+			UndeadSlayer[U_MISC].trotyp = LOW_BOOTS;
+			UndeadSlayer[U_MISC].trspe = 1;
+			UndeadSlayer[U_ARMOR].trotyp = LEATHER_JACKET;
+			UndeadSlayer[U_ARMOR].trspe = 1;
+			/* helmet & armour are no longer candidates for
+			 * substitution for orcish versions so no extra
+			 * food should be given in compensation.
+			 */
+			if (Race_if(PM_ORC))
+			    no_extra_food = TRUE;
 		        break;
-			case 2:	/* Whip and daggers */
+		    case 2:	/* Whip and daggers */
 		        UndeadSlayer[U_MINOR].trotyp = BULLWHIP;
 		        UndeadSlayer[U_MINOR].trspe = 2;
 		        break;
-			case 3:	/* Silver spear and daggers */
-				break;
+		    case 3:	/* Silver spear and daggers */
+			break;
 		}
 		ini_inv(UndeadSlayer);
 		knows_class(WEAPON_CLASS);
@@ -1362,7 +1369,9 @@ u_init()
 
 	case PM_ORC:
 	    /* compensate for generally inferior equipment */
-	    if (!Role_if(PM_WIZARD))
+	    if (!no_extra_food && !Role_if(PM_WIZARD) &&
+		    !Role_if(PM_FLAME_MAGE) && !Role_if(PM_ICE_MAGE) &&
+		    !Role_if(PM_NECROMANCER))
 		ini_inv(Xtra_food);
 	    /* Orcs can recognize all orcish objects */
 	    knows_object(ORCISH_SHORT_SWORD);
