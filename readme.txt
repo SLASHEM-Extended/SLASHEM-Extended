@@ -254,6 +254,7 @@ There appear to be many many Titans....
 -splinter attack
 -races - vampires, liches (like elf but low char), demons...
 -make all source files 8.3 so that SHORT_FILENAMES so no truncating filenames
+-stackwep (e.g. marilith wield 6 daggers)
 
 ===>1.2 What's NEW
 ------------------
@@ -329,6 +330,7 @@ ver 0.0.6E3F2 [September XX/2000]
 -updated Guidebook
 -fixed bug 112478: game crashes whenever the Amulet of Yendor is referred to
 -fixed bug 112489: #twoweapon while no secondary weapon seg. faults
+-fixed bug 112520: game crashes when beams reflect diagonally
 
 ver 0.0.6E3F1 [August 21/2000] [Released by Ali]
 -fixed some bugs in the zap/cast code for magic missile, fire, cold, fireball, etc.
