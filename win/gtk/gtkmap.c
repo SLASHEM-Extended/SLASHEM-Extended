@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.27 2003-05-20 18:36:10 j_ali Exp $
+  $Id: gtkmap.c,v 1.28 2003-08-21 19:00:23 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -299,7 +299,10 @@ nh_conf_map_font(void)
 	    desc = pango_font_description_from_string(map_font_name);
 	    map_font = gdk_font_from_description(desc);
 	    pango_font_description_free(desc);
-	} else {
+	    if (!map_font)
+		g_warning("Can't load map font \"%s\"", map_font_name);
+	}
+	if (!map_font) {
 	    g_return_val_if_fail(map->style != NULL, 1);
 	    map_font = gtk_style_get_font(map->style);
 	    g_return_val_if_fail(map_font != NULL, 1);

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkprefs.c,v 1.3 2003-05-27 09:48:45 j_ali Exp $
+  $Id: gtkprefs.c,v 1.4 2003-08-21 19:00:24 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -48,7 +48,9 @@ static void GTK_pref_apply(GtkWidget *w, gpointer data)
 int
 GTK_preferences_save(struct gtkhackrc *rc)
 {
-    nh_gtkhackrc_store(rc, "map.font = \"%s\"", nh_get_map_font());
+    gchar *map_font = nh_get_map_font();
+    if (map_font)
+	nh_gtkhackrc_store(rc, "map.font = \"%s\"", map_font);
     nh_gtkhackrc_store(rc, "radar = %d", nh_radar_get_use());
     nh_gtkhackrc_store(rc, "map.clip_dist2 = %d", map_clip_dist2);
 }
