@@ -341,10 +341,12 @@ touchfood(otmp)
 register struct obj *otmp;
 {
 	if (otmp->quan > 1L) {
-	    if(!carried(otmp))
-		(void) splitobj(otmp, 1L);
-	    else
-		otmp = splitobj(otmp, otmp->quan - 1L);
+	    struct obj *obj = otmp;
+	    otmp = splitoneoff(&obj);
+	    if (!otmp) {
+		impossible("unsplitable food");
+		return obj;
+	    }
 #ifdef DEBUG
 	    debugpline("split object,");
 #endif

@@ -30,6 +30,37 @@ extern boolean notonhead;       /* for long worms */
 #define THROW_UWEP 	1
 #define THROW_USWAPWEP 	2
 
+/* Split this object off from its slot */
+
+struct obj *
+splitoneoff(pobj)
+struct obj **pobj;
+{
+    struct obj *obj = *pobj;
+    struct obj *otmp = (struct obj *)0;
+    if (obj == uquiver) {
+	if (obj->quan > 1L)
+	    setuqwep(otmp = splitobj(obj, 1L));
+	else
+	    setuqwep((struct obj *)0);
+    } else if (obj == uswapwep) {
+	if (obj->quan > 1L)
+	    setuswapwep(otmp = splitobj(obj, 1L));
+	else
+	    setuswapwep((struct obj *)0);
+    } else if (obj == uwep) {
+	if (obj->quan > 1L)
+	    setworn(otmp = splitobj(obj, 1L), W_WEP);
+	    /* not setuwep; do not change unweapon */
+	else {
+	    setuwep((struct obj *)0);
+	    if (uwep) return (struct obj *)0; /* unwielded, died, rewielded */
+	}
+    } else if (obj->quan > 1L)
+	otmp = splitobj(obj, 1L);
+    *pobj = otmp;
+    return obj;
+}
 
 /* Throw the selected object, asking for direction */
 STATIC_OVL int
@@ -182,38 +213,14 @@ int thrown;
 
 	if (multishot < 1) multishot = 1;
 
-	while (obj && (multishot-- > 0)) {
-		wep_mask = obj->owornmask;
-		/* Split this object off from its slot */
-		otmp = (struct obj *)0;
-		if (obj == uquiver) {
-			if(obj->quan > 1L)
-				setuqwep(otmp = splitobj(obj, 1L));
-			else
-				setuqwep((struct obj *)0);
-		} else if (obj == uswapwep) {
-			if(obj->quan > 1L)
-				setuswapwep(otmp = splitobj(obj, 1L));
-			else
-				setuswapwep((struct obj *)0);
-		} else if (obj == uwep) {
-		    if (welded(obj)) {
-			weldmsg(obj);
-			return(1);
-		    }
-		    if (obj->quan > 1L)
- 			setworn(otmp = splitobj(obj, 1L), W_WEP);
-			/* not setuwep; do not change unweapon */
-		    else {
-			setuwep((struct obj *)0);
-			if (uwep) return(1); /* unwielded, died, rewielded */
-		    }
-		} else if(obj->quan > 1L)
-			otmp = splitobj(obj, 1L);
-
+	otmp = obj;
+	while (otmp && (multishot-- > 0)) {
+		wep_mask = otmp->owornmask;
+		obj = splitoneoff(&otmp);
+		if (!obj)
+			return 1;
 		freeinv(obj);
 		throwit(obj, wep_mask, thrown);
-		obj = otmp;
 	}	/* while (multishot) */
 	return (1);
 }
