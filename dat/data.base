@@ -1,5 +1,5 @@
 #	SCCS Id: @(#)data.base	3.4	1999/11/28
-#	    $Id: data.base,v 1.7 2002-08-30 18:53:30 j_ali Exp $
+#	    $Id: data.base,v 1.8 2003-01-22 04:23:50 paulhurtley Exp $
 #   Copyright (c) 1994, 1995, 1996 by the NetHack Development Team
 #   Copyright (c) 1994 by Boudewijn Wayers
 #   Copyright (c) 2002 by the Slash'EM Development Team
@@ -28,7 +28,7 @@ abbathor
 	race. He is a hunched, twisted creature, warped by his own
 	greeds, jealousies, and desires. Like many other deities, his
 	name is often invoked by followers of other gods to keep him away
-	from ones treasure.
+	from one's treasure.
 abbot
 	For it had been long apparent to Count Landulf that nothing
 	could be done with his seventh son Thomas, except to make him
