@@ -1,4 +1,4 @@
-/* $Id: nhext.c,v 1.5 2002-01-31 22:21:26 j_ali Exp $ */
+/* $Id: nhext.c,v 1.6 2002-03-23 10:33:28 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -238,6 +238,13 @@ nhext_svc_c(int cn, struct nhext_svc *services)
     int i, len;
     unsigned short id;
     unsigned long value;
+    /*
+     * FIXME:	This does not cope with fragmentation and relies on
+     *		the synchronous nature of the NhExt protocol to prevent
+     *		packet merging. This needs to be changed without breaking
+     *		the potential for using a seqpacket connection. This
+     *		probably means buffering the input.
+     */
     nc->reply_len = (*nc->read_f)(nc->read_h, nc->reply, sizeof(nc->reply));
     if (nc->reply_len < 4) {
 	if (nc->reply_len > 0)
