@@ -12,15 +12,22 @@
 #--------------------------------------------------------------------------
 #
 # BEFORE YOU BUILD FOR THE FIRST TIME
+
 #  Set this equate to the folder containing all the Slash'EM source folders
 Top   		= Cabell:Users:paulhu:Projects:SlashEM:slashem-cvs:slashem:
 
+#  Choose your target processor. There are bugs in the 68K version, so I 
+#  recommend you select 'PowerPC'
 Processor  = PowerPC
 #Processor	= 68K
 #Processor	= Fat
-#
-#--------------------------------------------------------------------------
 
+#  Choose a Debug (ie, -sym) or non-Debug build
+#Debug = -sym
+Debug =
+
+#--------------------------------------------------------------------------
+#
 # Set up symbols for folders from the distribution
 Src			= {Top}Src:
 Util		= {Top}Util:
@@ -33,10 +40,10 @@ MacTty		= {Top}Sys:Mac:
 Share		= {Top}Sys:Share:
 
 # These folders are new
-ObjDir     = {Top}Obj{Processor}:		# "Temporary" stuff
-LibDir     = {Top}Lib:					# "Temporary" stuff
-Preserve   = {Top}Preserve:				# Generated items for source distribution
-Results	   = {Top}Dungeon{Processor}:	# Where the game goes
+ObjDir     = {Top}Obj{Processor}{Debug}:		# "Temporary" stuff
+LibDir     = {Top}Lib:							# "Temporary" stuff
+Preserve   = {Top}Preserve:						# Generated items for source distribution
+Results	   = {Top}Dungeon{Processor}{Debug}:	# Where the game goes
 
 # Override the settings in "{Include}"config.h
 # NHConfig = -d PORT_LEVEL='¶".0¶"' 
@@ -49,14 +56,8 @@ SlashEMCreator = slEm
 RecoverCreator = slRc
 
 #
-#  Yacc/Lex ... if you got 'em.
-#
-# If you have yacc/lex or a work-alike set YACC_LEX to Y
-#
-YACC_LEX = Y
-
-# If YACC_LEX is Y above, set the following to values appropriate for
-# your tools.
+#  Yacc/Lex ... if you got 'em, set the following to values appropriate for
+#  your tools.
 #
 YACC   = bison -y
 LEX    = flex
@@ -110,29 +111,8 @@ Setup	Ä
 		NewFolder "{LibDir}"
 	End
 	
-# Compiler options. We set up to look in the Mac dir first for include files
-# so we can take over hack.h and use a dump file
-# Note that this is disabled for Slash'EM
-
 COptions = {NHConfig}					¶
 		   -w 2 -w 3 -ansi relaxed -typecheck relaxed -align power
-
-#------------------- Use a dump file for hack.h to speed compiles -----------------
-# We do this by having our own hack.h in :sys:mac which just grabs the dump file
-# from ObjDir. The dependencies are set up to build the dump file if its missing
-
-realhack.h = "{Include}"hack.h "{Include}"dungeon.h ¶
-			 "{Include}"monsym.h "{Include}"mkroom.h "{Include}"objclass.h ¶
-			 "{Include}"trap.h "{Include}"flag.h "{Include}"rm.h ¶
-			 "{Include}"wintype.h "{Include}"engrave.h ¶
-			 "{Include}"rect.h  "{Include}"trampoli.h "{Include}"extern.h 
-
-hack.h = "{ObjDir}"hack.hdump
-
-# This compile is done solely for the side effect of generating hack.hdump
-"{ObjDir}"hack.hdump Ä {realhack.h} "{MacDir}"mhdump.c
-	C -i "{ObjDir}" -i "{Include}" {NHConfig} {SADEOptions} ¶
-	  "{MacDir}"mhdump.c -o "{Src}"mhdump.c
 
 #------------------- Files included as resources -----------------
 
@@ -307,7 +287,7 @@ DgnCompSrcs = 				¶
 
 "{ObjDir}"DgnComp.make	Ä	 "{Preserve}"dgn_lex.c "{Preserve}"dgn_yacc.c
 	CreateMake "{ObjDir}"DgnComp {DgnCompSrcs} -tool -powerpc -objdir "{ObjDir}" ¶
-		-i "{Preserve}" -i "{ObjDir}" -i {Include} -ppccoptions "{COptions}" -sym -depends
+		-i "{Preserve}" -i "{ObjDir}" -i {Include} -ppccoptions "{COptions}" {Debug} -depends
 	
 "{ObjDir}"DgnComp DgnComp.lnk Ä "{ObjDir}"DgnComp.make
 	BuildProgram "{ObjDir}"DgnComp
@@ -338,7 +318,7 @@ LevCompSrcs= "{Src}"monst.c		¶
 
 "{ObjDir}"LevComp.make	Ä	 "{Preserve}"lev_lex.c "{Preserve}"lev_yacc.c
 	CreateMake "{ObjDir}"LevComp {LevCompSrcs} -tool -powerpc -objdir "{ObjDir}" ¶
-		-i "{Preserve}" -i "{ObjDir}" -i {Include} -ppccoptions "{COptions}" -sym -depends
+		-i "{Preserve}" -i "{ObjDir}" -i {Include} -ppccoptions "{COptions}" {Debug} -depends
 	
 "{ObjDir}"LevComp LevComp.lnk Ä "{ObjDir}"LevComp.make
 	BuildProgram "{ObjDir}"LevComp
@@ -374,7 +354,7 @@ MakeDefsSrcs= "{Src}"objects.c		¶
 
 "{ObjDir}"MakeDefs.make Ä
 	CreateMake "{ObjDir}"MakeDefs {MakeDefsSrcs} -tool -powerpc -objdir "{ObjDir}" ¶
-		-i "{Preserve}" -i "{ObjDir}" -i {Include} -ppccoptions "{COptions}" -sym -depends
+		-i "{Preserve}" -i "{ObjDir}" -i {Include} -ppccoptions "{COptions}" {Debug} -depends
 
 "{ObjDir}"MakeDefs MakeDefs.lnk Ä "{ObjDir}"MakeDefs.make
 	BuildProgram "{ObjDir}"MakeDefs
@@ -528,7 +508,7 @@ RecoverRsrcs = "{MacDir}"MRecover.r
 "{ObjDir}"Recover.make	Ä
 		CreateMake "{ObjDir}"Recover {RecoverSrcs} -{Processor} ¶
 			-i "{Preserve}" -i "{ObjDir}" -i {Include} ¶
-			-objdir "{ObjDir}" -sym -depends -c {RecoverCreator} ¶
+			-objdir "{ObjDir}" {Debug} -depends -c {RecoverCreator} ¶
 			-ppccoptions "{COptions}" ¶
 			-coptions "{COptions}" -model far ¶
 				"{SharedLibraries}"AppearanceLib ¶
@@ -559,7 +539,7 @@ RecoverRsrcs = "{MacDir}"MRecover.r
 "{ObjDir}"SlashEM.make	Ä 
 		CreateMake "{ObjDir}"SlashEM {SlashEMSrcs} -{Processor} ¶
 			-i "{Preserve}" -i "{ObjDir}" -i {Include} ¶
-			-objdir "{ObjDir}" -sym -depends -c {SlashEMCreator} ¶
+			-objdir "{ObjDir}" {Debug} -depends -c {SlashEMCreator} ¶
 			-ppccoptions "{COptions}" ¶
 			-coptions "{COptions}" -model far ¶
 				"{SharedLibraries}"AppearanceLib ¶
