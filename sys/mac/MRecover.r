@@ -247,8 +247,8 @@ resource 'vers' (1) {
 	beta,
 	0x4,
 	0,
-	"0.0.6e4f5",
-	"Recover/Slash'EM 0.0.6e4f5 (2001/08)\n"
+	"0.0.6e4f7",
+	"Recover/Slash'EM 0.0.6e4f7 (2001/12)\n"
 	"http://slashem.sourceforge.net/"
 };
 
@@ -258,8 +258,8 @@ resource 'vers' (2) {
 	beta,
 	0x4,
 	0,
-	"0.0.6e4f5",
-	"Recover/Slash'EM 0.0.6e4f5 (2001/08)"
+	"0.0.6e4f7",
+	"Recover/Slash'EM 0.0.6e4f6 (2001/12)"
 };
 
 resource 'icl4' (128) {

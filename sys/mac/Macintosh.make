@@ -6,14 +6,14 @@
 #
 # by Michaelª Hamel and Ross Brown 1991 : michael@otago.ac.nz
 #
-# Updated for Slash'EM 0.0.5-2 to .6-4F5
-# Paul Hurtley, August 1999 to August 2001
+# Updated for Slash'EM 0.0.5-2 to .6-4F7
+# Paul Hurtley, August 1999 to December 2001
 
 #--------------------------------------------------------------------------
 #
 # BEFORE YOU BUILD FOR THE FIRST TIME
 #  Set this equate to the folder containing all the Slash'EM source folders
-Top   		= Cabell:Documents:Projects:SlashEM:slam645mac0-cvs:slashem:
+Top   		= Cabell:Documents:Projects:SlashEM:slashem-cvs:slashem:
 
 Processor  = PowerPC
 #Processor	= 68K
@@ -449,8 +449,8 @@ Levels Ä "{ObjDir}"Levels.list "{MacDir}"Levels.make
 		Duplicate -y "{Doc}"Guidebook.txt "{Results}"Guidebook.txt
 		SetFile -c "MOSS" "{Results}"Guidebook.txt
 		
-"{Results}"History  Ä	"{MacDir}"History.html
-		Duplicate -y "{MacDir}"History.html "{Results}"History
+"{Results}"History  Ä	"{Top}"readme.txt
+		Duplicate -y "{Top}"readme.txt "{Results}"History
 		SetFile -c "MOSS" "{Results}"History
 		
 "{Results}"README  Ä	"{MacDir}"README.txt
