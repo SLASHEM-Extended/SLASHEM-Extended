@@ -1,0 +1,97 @@
+Installing Slash'EM with a SDL/GL interface
+-------------------------------------------
+
+[NOTE: this text is not finished !]
+
+This document describes the installation of Slash'EM with the SDL/GL
+interface on UNIX.  "SDL" refers to Simple Directmedia Layer, a
+library commonly used for games on Linux and other UNIX systems.  
+"GL" refers to OpenGL(R), which offers hardware accelerated graphics
+(usually 3D graphics, but that is not being used here).  OpenGL(R) is
+completely optional, there is a fully functional software renderer
+that uses plain SDL.
+
+The SDL/GL interface originally appeared in my glHack project, which
+can be found at http://glhack.sourceforge.net/.  Since the windowing
+interface is almost identical between vanilla NetHack and Slash'EM,
+the code has fitted in very well.  In fact the exact same windowing
+code is used in both (with #ifdefs to handle the differences).
+
+(NOTE: the filenames mentioned here are relative to the win/gl
+directory, i.e. where this Install.GL document resides)
+
+To use this code:
+
+   1. follow the directions for the UNIX installation (in ../sys/unix)
+      to create the Makefiles.
+
+   2. ../../include/config.h
+
+      define SDL_GRAPHICS and GL_GRAPHICS (search for them).  If you
+      don't have OpenGL(R) on your system, then leave GL_GRAPHICS
+      commented out.
+      
+      Comment out TTY_GRAPHICS, or leave it in if you want to support
+      both interfaces (in which case be sure you have the right curses
+      libraries etc. required for that interface).
+
+      You may define X11_GRAPHICS and/or QT_GRAPHICS in addition to
+      support multiple windowing ports (and even TTY as well) in the
+      same executable if you so desire.  This hasn't been tested yet
+      though.
+
+   3. ../../src/Makefile
+
+      add $(WINGLSRC), $(WINGLOBJ), and $(WINGLLIB) to WINSRC, WINOBJ,
+      and WINLIB respectively, and compile.  This will give you an
+      executable supporting both SDL/GL and TTY windowing.
+
+      If you left GL_GRAPHICS commented out in config.h, then remove
+      the "-lGL" from the WINGLLIB line, otherwise the build may fail.
+
+      To support multiple windowing ports, change the definitions
+      of WINSRC, WINOBJ and WINLIB to include all the relevant
+      variables.
+
+   4. ../../Makefile (the top-level makefile)
+
+      change CNF_SHARE_DATND to include $(CNF_SHARE_GLND).
+
+      If you want to support the other windowing ports, include
+      their $(CNF_SHARE_XXXND) variables also.
+
+      Under Linux, you may want to install using SETGID permissions.
+      (This is the only configuration I've tested BTW).  This can be
+      done by changing the following variables at the top of the
+      makefile to these values:
+
+         GAMEUID  = root
+         GAMEGRP  = games
+
+         GAMEPERM = 02755
+         VARFILEPERM = 0664
+         VARDIRPERM  = 02775
+
+      This also requires that the variable-playground directory
+      (defined by VARDIR in the makefile, and VARPLAYGROUND in
+      include/unixconf.h) to be set to some directory in /var, such as
+      /var/lib/games/slashem.
+
+   5. Follow all the instructions in ../../sys/unix/Install.unx for
+      the remainder of the installation process.
+
+
+[TODO: keyboard & mouse controls.]
+
+[TODO: .slashemrc and GL_OPTIONS lines, and available options]
+
+[TODO: available command-line options.]
+
+[TODO: SLASHEMGLOPTIONS shell var.]
+
+
+Cheers,
+
+Andrew Apted  <ajapted@users.sourceforge.net>
+
+Last updated: 1st October 2002
