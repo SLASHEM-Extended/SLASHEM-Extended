@@ -1,4 +1,4 @@
-/* $Id: gtkconcb.c,v 1.1 2003-05-27 09:48:45 j_ali Exp $ */
+/* $Id: gtkconcb.c,v 1.2 2003-12-08 22:20:49 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -7,6 +7,7 @@
 #include "gtkconnect.h"
 #include "gtksupport.h"
 #include "winGTK.h"
+#include "prxyclnt.h"
 
 void
 GTK_add_connection(GtkButton *button, gpointer user_data)
@@ -86,7 +87,7 @@ GTK_revert_connections(GtkTreeView *treeview, gpointer user_data)
     gtk_list_store_clear(GTK_LIST_STORE(model));
     nh_read_gtkhackrc();
     if (!gtk_tree_model_iter_n_children(model, NULL))
-	GTK_connection_add("local", "file", "slashem");
+	GTK_connection_add("local", "file", "slashem", 0UL);
 }
 
 void
@@ -95,9 +96,13 @@ GTK_create_connection(GtkWidget *dialog, gpointer user_data)
     GtkWidget *w;
     GtkWidget *ConnectionName = lookup_widget(dialog, "ConnectionName");
     GtkWidget *ServerType = lookup_widget(dialog, "ServerType");
+    GtkWidget *DisableAsync = lookup_widget(dialog, "DisableAsync");
     GtkTreeRowReference *ref;
     const gchar *name = gtk_entry_get_text(GTK_ENTRY(ConnectionName));
     const gchar *type = gtk_entry_get_text(GTK_ENTRY(ServerType));
+    unsigned long flags = 0UL;
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(DisableAsync)))
+	flags |= PROXY_CLNT_SYNCHRONOUS;
     if (!*name) {
 	w = gtk_message_dialog_new(GTK_WINDOW(dialog),
 	  GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
@@ -125,6 +130,7 @@ GTK_create_connection(GtkWidget *dialog, gpointer user_data)
     }
     g_object_set_data_full(G_OBJECT(w), "connection-name", g_strdup(name),
       g_free);
+    g_object_set_data(G_OBJECT(w), "proxy-clnt-flags", GUINT_TO_POINTER(flags));
     gtk_widget_destroy(dialog);
     gtk_widget_show(w);
 }
@@ -165,8 +171,10 @@ GTK_add_file_server(GtkWidget *entry, gpointer user_data)
     GtkWidget *LocalExecutable = lookup_widget(entry, "LocalExecutable");
     const gchar *name = g_object_get_data(G_OBJECT(LocalExecutable),
       "connection-name");
+    unsigned long flags = GPOINTER_TO_UINT(
+      g_object_get_data(G_OBJECT(LocalExecutable), "proxy-clnt-flags"));
     const gchar *path = gtk_entry_get_text(GTK_ENTRY(entry));
-    GTK_connection_add(name, "file", path);
+    GTK_connection_add(name, "file", path, flags);
     gtk_widget_destroy(LocalExecutable);
 }
 
@@ -180,6 +188,8 @@ GTK_add_tcp_server(GtkWidget *RemoteExecutable, gpointer user_data)
     GtkWidget *Port = lookup_widget(RemoteExecutable, "RemoteMachinePort");
     const gchar *name = g_object_get_data(G_OBJECT(RemoteExecutable),
       "connection-name");
+    unsigned long flags = GPOINTER_TO_UINT(
+      g_object_get_data(G_OBJECT(RemoteExecutable), "proxy-clnt-flags"));
     const gchar *host = gtk_entry_get_text(GTK_ENTRY(Hostname));
     const gchar *port = gtk_entry_get_text(GTK_ENTRY(Port));
     if (!*host) {
@@ -211,7 +221,7 @@ GTK_add_tcp_server(GtkWidget *RemoteExecutable, gpointer user_data)
 	return;
     }
     address = g_strdup_printf("%s:%s", host, port);
-    GTK_connection_add(name, "tcp", address);
+    GTK_connection_add(name, "tcp", address, flags);
     g_free(address);
     gtk_widget_destroy(RemoteExecutable);
 }

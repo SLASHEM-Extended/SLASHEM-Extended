@@ -1,4 +1,4 @@
-# $Id: Makefile.unx,v 1.6 2003-10-25 18:06:01 j_ali Exp $
+# $Id: Makefile.unx,v 1.7 2003-12-08 22:20:49 j_ali Exp $
 # Copyright (c) Slash'EM Development Team 2002-2003
 # NetHack may be freely redistributed.  See license for details.
 #
@@ -117,7 +117,8 @@ panic.o: panic.c $(CONFIG_H)
 gtkconnect.o: gtkconnect.c gtkconcb.h gtkconnect.h \
 		gtksupport.h
 gtkconcb.o: gtkconcb.c gtkconcb.h gtkconnect.h \
-		gtksupport.h ../../include/winGTK.h
+		gtksupport.h ../../include/winGTK.h \
+		../../include/prxyclnt.h
 gtksupport.o: gtksupport.c gtksupport.h
 gtkprogress.o: gtkprogress.c ../../include/winGTK.h gtkprogress.h
 # DEPENDENCIES MUST END AT END OF FILE

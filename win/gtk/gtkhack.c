@@ -1,4 +1,4 @@
-/* $Id: gtkhack.c,v 1.5 2003-12-05 12:23:50 j_ali Exp $ */
+/* $Id: gtkhack.c,v 1.6 2003-12-08 22:20:49 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -48,6 +48,7 @@ struct update_datum {
     const char *name;
     const char *scheme;
     const char *address;
+    unsigned long flags;
     gboolean found;
 };
 
@@ -59,7 +60,8 @@ static gboolean update(GtkTreeModel *model, GtkTreePath *path,
     gtk_tree_model_get(model, iter, COLUMN_NAME, &name, -1);
     if (name && !strcmp(name, datum->name)) {
 	gtk_list_store_set(GTK_connections, iter, COLUMN_NAME, datum->name,
-	  COLUMN_SCHEME, datum->scheme, COLUMN_ADDRESS, datum->address, -1);
+	  COLUMN_SCHEME, datum->scheme, COLUMN_ADDRESS, datum->address,
+	  COLUMN_FLAGS, datum->flags, -1);
 	datum->found = TRUE;
     }
     g_free(name);
@@ -89,7 +91,8 @@ GTK_connection_set_weak_default(const char *name)
  */
 
 void
-GTK_connection_add(const char *name, const char *scheme, const char *address)
+GTK_connection_add(const char *name, const char *scheme, const char *address,
+  unsigned long flags)
 {
     GtkTreeRowReference *ref;
     GtkTreePath *path;
@@ -99,13 +102,15 @@ GTK_connection_add(const char *name, const char *scheme, const char *address)
     datum.name = name;
     datum.scheme = scheme;
     datum.address = address;
+    datum.flags = flags;
     datum.found = FALSE;
     gtk_tree_model_foreach(GTK_TREE_MODEL(GTK_connections),
       (GtkTreeModelForeachFunc)update, &datum);
     if (!datum.found) {
 	gtk_list_store_append(GTK_connections, &iter);
 	gtk_list_store_set(GTK_connections, &iter, COLUMN_NAME, name,
-	  COLUMN_SCHEME, scheme, COLUMN_ADDRESS, address, -1);
+	  COLUMN_SCHEME, scheme, COLUMN_ADDRESS, address,
+	  COLUMN_FLAGS, flags, -1);
     }
     GTK_connection_set_weak_default(name);
     if (treeview) {
@@ -124,11 +129,12 @@ static gboolean save(GtkTreeModel *model, GtkTreePath *path,
   GtkTreeIter *iter, gpointer data)
 {
     gchar *name, *scheme, *address;
+    gulong flags;
     GString *str = data;
     gtk_tree_model_get(model, iter, COLUMN_NAME, &name, COLUMN_SCHEME, &scheme, 
-      COLUMN_ADDRESS, &address, -1);
-    g_string_append_printf(str, "{\"%s\",\"%s\",\"%s\"},",
-      g_strescape(name, ""), scheme, g_strescape(address, ""));
+      COLUMN_ADDRESS, &address, COLUMN_FLAGS, &flags, -1);
+    g_string_append_printf(str, "{\"%s\",\"%s\",\"%s\",%lu},",
+      g_strescape(name, ""), scheme, g_strescape(address, ""), flags);
     g_free(name);
     g_free(scheme);
     g_free(address);
@@ -237,12 +243,13 @@ main(int argc, char **argv)
     GtkTreeIter iter;
     GError *err;
     gchar *name, *scheme, *address, *os_path;
+    gulong flags;
 #ifdef SIGPIPE
     signal(SIGPIPE, SIG_IGN);
 #endif
     g_type_init();
     GTK_connections = gtk_list_store_new(N_COLUMNS,
-      G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+      G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_ULONG);
     GTK_init_gtk(&argc, argv);
     connections = create_Connections();
     /* Stop the clicked signal from propogating from the revert button
@@ -255,7 +262,7 @@ main(int argc, char **argv)
       g_signal_lookup("clicked", GTK_TYPE_BUTTON), 0, NULL, NULL,
       G_OBJECT(connections));
     if (!gtk_tree_model_iter_n_children(GTK_TREE_MODEL(GTK_connections), NULL))
-	GTK_connection_add("local", "file", "slashem");
+	GTK_connection_add("local", "file", "slashem", 0UL);
     treeview = lookup_widget(connections, "ConnectionsTreeView");
     g_object_ref(treeview);
     gtk_tree_view_set_model(GTK_TREE_VIEW(treeview),
@@ -286,7 +293,8 @@ main(int argc, char **argv)
 	sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
 	if (gtk_tree_selection_get_selected(sel, &model, &iter)) {
 	    gtk_tree_model_get(model, &iter, COLUMN_NAME, &name,
-	      COLUMN_SCHEME, &scheme, COLUMN_ADDRESS, &address, -1);
+	      COLUMN_SCHEME, &scheme, COLUMN_ADDRESS, &address,
+	      COLUMN_FLAGS, &flags, -1);
 	    GTK_connection_set_weak_default(name);
 	    gtk_widget_hide(connections);
 	    progress = gtk_message_dialog_new(NULL,
@@ -297,6 +305,7 @@ main(int argc, char **argv)
 	    proxy_svc_set_ext_procs(win_GTK_init, &GTK_ext_procs);
 	    proxy_clnt_set_errhandler(GTK_proxy_clnt_errhandler);
 	    nhext_set_errhandler(GTK_nhext_errhandler);
+	    win_proxy_clnt_set_flags(PROXY_CLNT_SYNCHRONOUS, flags);
 	    gtk_widget_realize(progress);
 	    cursor = gdk_cursor_new_for_display(
 	      gdk_drawable_get_display(progress->window), GDK_WATCH);

@@ -233,13 +233,16 @@ create_AddConnection (void)
   GtkWidget *combo1;
   GList *combo1_items = NULL;
   GtkWidget *ServerType;
+  GtkWidget *hseparator3;
+  GtkWidget *label14;
+  GtkWidget *DisableAsync;
   GtkWidget *dialog_action_area2;
   GtkWidget *cancelbutton2;
   GtkWidget *okbutton2;
 
   AddConnection = gtk_dialog_new ();
   gtk_widget_set_name (AddConnection, "AddConnection");
-  gtk_window_set_title (GTK_WINDOW (AddConnection), "Choose Server Type");
+  gtk_window_set_title (GTK_WINDOW (AddConnection), "Add Connection");
   gtk_window_set_modal (GTK_WINDOW (AddConnection), TRUE);
 
   dialog_vbox2 = GTK_DIALOG (AddConnection)->vbox;
@@ -317,6 +320,24 @@ create_AddConnection (void)
   gtk_editable_set_editable (GTK_EDITABLE (ServerType), FALSE);
   gtk_entry_set_activates_default (GTK_ENTRY (ServerType), TRUE);
 
+  hseparator3 = gtk_hseparator_new ();
+  gtk_widget_set_name (hseparator3, "hseparator3");
+  gtk_widget_show (hseparator3);
+  gtk_box_pack_start (GTK_BOX (vbox2), hseparator3, TRUE, TRUE, 5);
+
+  label14 = gtk_label_new ("Troubleshooting");
+  gtk_widget_set_name (label14, "label14");
+  gtk_widget_show (label14);
+  gtk_box_pack_start (GTK_BOX (vbox2), label14, FALSE, FALSE, 10);
+  gtk_label_set_justify (GTK_LABEL (label14), GTK_JUSTIFY_LEFT);
+  gtk_label_set_line_wrap (GTK_LABEL (label14), TRUE);
+  gtk_misc_set_alignment (GTK_MISC (label14), 0, 0.5);
+
+  DisableAsync = gtk_check_button_new_with_mnemonic ("Disable _asynchronous support (will increase latency)");
+  gtk_widget_set_name (DisableAsync, "DisableAsync");
+  gtk_widget_show (DisableAsync);
+  gtk_box_pack_start (GTK_BOX (vbox2), DisableAsync, FALSE, FALSE, 0);
+
   dialog_action_area2 = GTK_DIALOG (AddConnection)->action_area;
   gtk_widget_set_name (dialog_action_area2, "dialog_action_area2");
   gtk_widget_show (dialog_action_area2);
@@ -358,6 +379,9 @@ create_AddConnection (void)
   GLADE_HOOKUP_OBJECT (AddConnection, label4, "label4");
   GLADE_HOOKUP_OBJECT (AddConnection, combo1, "combo1");
   GLADE_HOOKUP_OBJECT (AddConnection, ServerType, "ServerType");
+  GLADE_HOOKUP_OBJECT (AddConnection, hseparator3, "hseparator3");
+  GLADE_HOOKUP_OBJECT (AddConnection, label14, "label14");
+  GLADE_HOOKUP_OBJECT (AddConnection, DisableAsync, "DisableAsync");
   GLADE_HOOKUP_OBJECT_NO_REF (AddConnection, dialog_action_area2, "dialog_action_area2");
   GLADE_HOOKUP_OBJECT (AddConnection, cancelbutton2, "cancelbutton2");
   GLADE_HOOKUP_OBJECT (AddConnection, okbutton2, "okbutton2");

@@ -1,9 +1,11 @@
-/* $Id: prxyclnt.h,v 1.9 2003-10-25 18:06:00 j_ali Exp $ */
+/* $Id: prxyclnt.h,v 1.10 2003-12-08 22:20:49 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #ifndef PRXYCLNT_H
 #define PRXYCLNT_H
+
+#define PROXY_CLNT_SYNCHRONOUS	1
 
 extern short *proxy_glyph2tile;
 
@@ -104,6 +106,7 @@ typedef void FDECL((*proxy_clnt_errhandler), (const char *));
 
 extern void proxy_svc_set_ext_procs(void (*)(void), struct window_ext_procs *);
 extern char *win_proxy_clnt_gettag(const char *tag);
+extern void win_proxy_clnt_set_flags(unsigned long mask, unsigned long value);
 #ifdef NHXDR_H
 extern int win_proxy_clnt_log_open(nhext_io_func func, void *handle);
 extern int win_proxy_clnt_init(nhext_io_func, void *, nhext_io_func, void *);

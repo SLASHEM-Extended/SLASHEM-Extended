@@ -1,4 +1,4 @@
-/* $Id: proxysvc.c,v 1.24 2003-12-05 12:23:50 j_ali Exp $ */
+/* $Id: proxysvc.c,v 1.25 2003-12-08 22:20:49 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -29,6 +29,7 @@ static struct window_ext_procs *proxy_svc;
 int proxy_svc_ver_major, proxy_svc_ver_minor, proxy_svc_protocol;
 
 NhExtIO *proxy_clnt_log = NULL;
+unsigned long proxy_clnt_flags = 0;
 
 /*
  * The proxy svc module provides a set of service functions (ie., suitable
@@ -1402,6 +1403,13 @@ const char *tag;
     return (char *)0;
 }
 
+void
+win_proxy_clnt_set_flags(unsigned long mask, unsigned long value)
+{
+    proxy_clnt_flags &= ~mask;
+    proxy_clnt_flags |= mask & value;
+}
+
 int
 win_proxy_clnt_log_open(nhext_io_func func, void *handle)
 {
@@ -1488,7 +1496,10 @@ failed:
 	nhext_io_close(rd);
 	return FALSE;
     }
-    s = strchr(protocols, '2');
+    if (proxy_clnt_flags & PROXY_CLNT_SYNCHRONOUS)
+	s = NULL;
+    else
+	s = strchr(protocols, '2');
     if (s && (s == protocols || s[-1] == ',') && (!s[1] || s[1] == ','))
 	proxy_svc_protocol = 2;
     else {
@@ -1497,7 +1508,10 @@ failed:
 	    proxy_svc_protocol = 1;
 	else {
 	    nhext_subprotocol0_free_line(win_proxy_clnt_subprotocol0_lp);
-	    proxy_clnt_error("Sub-protocols 1 & 2 not supported");
+	    if (proxy_clnt_flags & PROXY_CLNT_SYNCHRONOUS)
+		proxy_clnt_error("Sub-protocol 1 not supported");
+	    else
+		proxy_clnt_error("Sub-protocols 1 & 2 not supported");
 	    s = "Error mesg \"No supported protocols\"\n";
 	    (void)nhext_io_write(wr, s, strlen(s));
 	    nhext_end();

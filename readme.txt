@@ -75,6 +75,7 @@ ver 0.0.7E5 [?] [Released by ?]
 -fixed bug 583464: Uncharged use of spellbooks
 -fixed bug 436054: Striking unusual monsters' vital organs
 -fixed bug 731772: Two-weapon skill categorization
+-GtkHack: Added provision for disabling asynchronous NhExt
 
 See history.txt for changes made in previous versions.
 
