@@ -40,6 +40,7 @@
 /* #define TERMLIB */		/* use termcap file */
 #define ANSI_DEFAULT		/* allows NetHack to run without termcap file */
 #define TEXTCOLOR		/* allow color */
+#define MAIL		/* Allows for fake mail daemon to deliver mail */
 
 /*
  * The remaining code shouldn't need modification.
