@@ -1431,8 +1431,8 @@ begin_burn(obj, already_lit)
 	long turns = 0;
 	boolean do_timer = TRUE;
 
-	if (obj->age == 0 && (obj->otyp != MAGIC_LAMP ||
-			      obj->otyp != MAGIC_CANDLE)) return;
+	if (obj->age == 0 && obj->otyp != MAGIC_LAMP &&
+	    obj->otyp != MAGIC_CANDLE && !obj->oartifact) return;
 
 	switch (obj->otyp) {
 	    case MAGIC_LAMP:
@@ -1492,8 +1492,16 @@ begin_burn(obj, already_lit)
 		break;
 
 	    default:
-		impossible("begin burn: unexpected %s", xname(obj));
-		turns = obj->age;
+		/* [ALI] Support artifact light sources */
+		if (obj->oartifact && artifact_light(obj)) {
+		    obj->lamplit = 1;
+		    do_timer = FALSE;
+		    radius = 2;
+		}
+		else {
+		    impossible("begin burn: unexpected %s", xname(obj));
+		    turns = obj->age;
+		}
 		break;
 	}
 
@@ -1512,10 +1520,10 @@ begin_burn(obj, already_lit)
 	if (obj->lamplit && !already_lit) {
 	    xchar x, y;
 
-	    if (get_obj_location(obj, &x, &y, CONTAINED_TOO|BURIED_TOO))
-		new_light_source(x, y, radius, LS_OBJECT, (genericptr_t) obj);
-	    else
-		impossible("begin_burn: can't get obj position");
+	    /* [ALI] Support floating light sources (eg., wished for artifacts)
+	     */
+	    (void)get_obj_location(obj, &x, &y, CONTAINED_TOO|BURIED_TOO);
+	    new_light_source(x, y, radius, LS_OBJECT, (genericptr_t) obj);
 	}
 }
 

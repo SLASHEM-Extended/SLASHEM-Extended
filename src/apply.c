@@ -952,7 +952,10 @@ register struct obj *obj;
 	}
 
 	otmp = carrying(CANDELABRUM_OF_INVOCATION);
-	if(!otmp || otmp->spe == 7) {
+	/* [ALI] Artifact candles can't be attached to candelabrum
+	 *       (magic candles still can be).
+	 */
+	if(obj->oartifact || !otmp || otmp->spe == 7) {
 		use_lamp(obj);
 		return;
 	}
@@ -1072,6 +1075,9 @@ struct obj *obj;
 			}
 			lightsaber_deactivate(obj, TRUE);
 			return;
+		} else if (artifact_light(obj)) {
+		    You_cant("snuff out %s.", yname(obj));
+		    return;
 		} else {
 		    You("snuff out %s.", yname(obj));
 		}

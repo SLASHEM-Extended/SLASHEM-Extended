@@ -31,10 +31,6 @@ STATIC_DCL int FDECL(arti_invoke, (struct obj*));
    hit points so that taking (uhp + 1234)/2 damage was survivable. */
 #define FATAL_DAMAGE 9999
 
-/* WAC Light Range of Artifacts such as Holy Spear of Light, Sunsword, etc
- */
-#define ARTIFACT_LIGHT_RANGE 2
-
 #ifndef OVLB
 STATIC_DCL int spec_dbon_applies;
 STATIC_DCL xchar artidisco[NROFARTIFACTS];
@@ -293,13 +289,9 @@ register boolean mod;
         creation*/
 		    /* For the check so artifact_light recognizes it */
 		    otmp->oartifact = m;
-		    if (!artiexist[m] && mod && artifact_light(otmp) ) {
-			xchar x, y;
-
-			get_obj_location(otmp, &x, &y, 0);
-			otmp->lamplit = 1;
-			new_light_source(x, y, ARTIFACT_LIGHT_RANGE,
-			        LS_OBJECT, (genericptr_t) otmp);
+		    if (!artiexist[m] && mod && (artifact_light(otmp) ||
+						 otmp->otyp == MAGIC_CANDLE)) {
+			begin_burn(otmp, FALSE);
 			/* WAC light source deletion handled in obfree */
 		    }
 		    otmp->oartifact = (char)(mod ? m : 0);
