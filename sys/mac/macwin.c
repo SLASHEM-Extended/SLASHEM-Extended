@@ -13,7 +13,10 @@
 #include <Gestalt.h>
 #include <TextUtils.h>
 #include <DiskInit.h>
-#include <ControlDefinitions.h>
+
+#ifdef MAC_MPW
+# include <ControlDefinitions.h>
+#endif
 
 NhWindow *theWindows = (NhWindow *) 0;
 

@@ -4,7 +4,10 @@
 
 #include <Dialogs.h>
 #include "macpopup.h"
-#include <ControlDefinitions.h>
+
+#if defined(__SC__) || defined(__MRC__)
+# include <ControlDefinitions.h>
+#endif
 
 /* Flash a dialog button when its accelerator key is pressed */
 void
