@@ -1465,37 +1465,54 @@ arti_invoke(obj)
 	case LEV_TELE:
 	    level_tele();
 	    break;
- /* STEPHEN WHITE'S NEW CODE */       
+	/* STEPHEN WHITE'S NEW CODE */       
 	case LIGHT_AREA:
 	    if (!Blind)
-		pline("%s shines brightly for an instant!", The(xname(obj)));
+			pline("%s shines brightly for an instant!", The(xname(obj)));
 	    else
-		pline("%s grows warm for a second!", The(xname(obj)));
+			pline("%s grows warm for a second!", The(xname(obj)));
 
 	    litroom(TRUE, obj); /* Light up the room */
 
 	    vision_recalc(0); /*clean up vision*/
 
+		/* WAC - added effect to self, damage is now range dependant */
+		if(is_undead(youmonst.data)) {
+			You("burn in the radiance!");
+			
+			/* This is ground zero.  Not good news ... */
+			u.uhp /= 100;
+
+			if (u.uhp < 1) {
+				u.uhp = 0;
+				killer_format = KILLED_BY;
+				killer = "the Holy Spear of Light";
+				done(DIED);
+			}
+		}
+
 	    /* Undead and Demonics can't stand the light */
 	    unseen = 0;
 	    for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
-		if (DEADMONSTER(mtmp)) continue;
-	    	/* Range is 9 paces */
+			if (DEADMONSTER(mtmp)) continue;
+	    	
+			/* Range is 9 paces */
 	    	if (distu(mtmp->mx,mtmp->my) > 81) continue;
 
-		if (couldsee(mtmp->mx, mtmp->my) &&
-			(is_undead(mtmp->data) || is_demon(mtmp->data)) &&
-			!resist(mtmp, '\0', 0, TELL)) {
-		    if (canseemon(mtmp))
-			pline("%s burns in the radiance!", Monnam(mtmp));
-		    else
-			unseen++;
-		    mtmp->mhp /= 2;
-		    if (mtmp->mhp < 1) mtmp->mhp = 1;
-		}
+			if (couldsee(mtmp->mx, mtmp->my) &&
+				(is_undead(mtmp->data) || is_demon(mtmp->data)) &&
+				!resist(mtmp, '\0', 0, TELL)) {
+					if (canseemon(mtmp))
+						pline("%s burns in the radiance!", Monnam(mtmp));
+					else
+						unseen++;
+					/* damage now depends on distance, divisor ranges from 10 to 2 */
+					mtmp->mhp /= (10 - (distu(mtmp->mx,mtmp->my)/10));
+					if (mtmp->mhp < 1) mtmp->mhp = 1;
+			}
 	    }
 	    if (unseen)
-		You("hear %s of intense pain!", unseen > 1 ? "cries" : "a cry");
+			You("hear %s of intense pain!", unseen > 1 ? "cries" : "a cry");
 	    break;
 	case DEATH_GAZE:
 	    if (u.uluck < -9) { /* uh oh... */
