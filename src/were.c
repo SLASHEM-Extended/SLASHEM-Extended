@@ -180,9 +180,9 @@ boolean purify;
 	if (purify) {
 	    if (Race_if(PM_HUMAN_WEREWOLF)) {
 		/* An attempt to purify you has been made! */
-		You("feel very bad!");
-		(void) adjattrib(A_STR, -rn1(3,3), TRUE);
-		(void) adjattrib(A_CON, -rn1(3,3), TRUE);
+		You_feel("very bad!");
+		(void) adjattrib(A_STR, -rn1(3,3), 2);
+		(void) adjattrib(A_CON, -rn1(3,3), 1);
 		if (u.uhp > 10) u.uhp = rnd(5);
 		else u.uhp = 1;
 		return;

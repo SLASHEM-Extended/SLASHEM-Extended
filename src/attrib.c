@@ -161,7 +161,8 @@ STATIC_DCL void NDECL(exerper);
 boolean
 adjattrib(ndx, incr, msgflg)
 	int	ndx, incr;
-	int	msgflg;	    /* positive => no message, zero => message, and */
+	int	msgflg;	    /* 2 => no message at all, 1 => no message */
+			    /* except encumber, zero => message, and */
 {			    /* negative => conditional (msg if change made) */
 	if (Fixed_abil || !incr) return FALSE;
 
@@ -212,7 +213,7 @@ adjattrib(ndx, incr, msgflg)
 		  (incr > 1 || incr < -1) ? "very ": "",
 		  (incr > 0) ? plusattr[ndx] : minusattr[ndx]);
 	flags.botl = 1;
-	if (moves > 1 && (ndx == A_STR || ndx == A_CON))
+	if (msgflg <= 1 && moves > 1 && (ndx == A_STR || ndx == A_CON))
 		(void)encumber_msg();
 	return TRUE;
 }

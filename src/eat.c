@@ -1706,15 +1706,20 @@ struct obj *otmp;
 		if (otmp->otyp == EGG && stale_egg(otmp)) {
 		    pline("Ugh.  Rotten egg."); /* perhaps others like it */
 		    make_vomiting(Vomiting+d(10,4), TRUE);
-		} else
+		} else {
+		    boolean bad_for_you;
  give_feedback:
+		    bad_for_you = otmp->cursed ||
+		      (Race_if(PM_HUMAN_WEREWOLF) &&
+		      otmp->otyp == SPRIG_OF_WOLFSBANE);
 		    pline("This %s is %s", singular(otmp, xname),
-		      otmp->cursed ? (Hallucination ? "grody!" : "terrible!") :
+		      bad_for_you ? (Hallucination ? "grody!" : "terrible!") :
 		      (otmp->otyp == CRAM_RATION
 		      || otmp->otyp == K_RATION
 		      || otmp->otyp == C_RATION)
 		      ? "bland." :
 		      Hallucination ? "gnarly!" : "delicious!");
+		}
 		break;
 	}
 
@@ -2147,7 +2152,6 @@ doeat()         /* generic "eat" command funtion (see cmd.c) */
 		} else
 		    You("seem unaffected by the poison.");
 	    } else if (!otmp->cursed)
-		if (!Race_if(PM_HUMAN_WEREWOLF) || otmp->otyp != SPRIG_OF_WOLFSBANE)
 		      pline("This %s is delicious!",
 		      otmp->oclass == GOLD_CLASS ? foodword(otmp) :
 		      singular(otmp, xname));
