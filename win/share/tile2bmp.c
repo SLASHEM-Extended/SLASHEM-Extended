@@ -224,6 +224,13 @@ char *argv[];
 		++filenum;
 	}
 
+	if (tilecount<1) {
+	    Fprintf(stderr,"No tiles created! (check line end character sequence for your OS).\n");
+	    fclose(fp);
+	    unlink(bmpname);
+		exit(EXIT_FAILURE);
+	}
+
 	/* fill the rest with the checkerboard */
 	for (j=0; j < tile_y; j++)
 	{
