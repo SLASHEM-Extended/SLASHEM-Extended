@@ -58,12 +58,14 @@
 /* #define GNOME_GRAPHICS */	/* Gnome interface */
 /* #define PROXY_GRAPHICS */	/* Plug-in interfaces (not yet supported) */
 /* #define MSWIN_GRAPHICS */	/* Windows NT, CE, Graphics */
+/* #define GL_GRAPHICS */	/* OpenGL graphics */
+/* #define SDL_GRAPHICS */	/* Software SDL graphics */
 
 /*
  * Define the default window system.  This should be one that is compiled
  * into your system (see defines above).  Known window systems are:
  *
- *	tty, X11, mac, amii, BeOS, Qt, Gem, Gnome, gtk, proxy
+ *	tty, X11, mac, amii, BeOS, Qt, Gem, Gnome, gtk, proxy, GL, SDL
  */
 
 /* MAC also means MAC windows */
@@ -146,6 +148,25 @@
 #  define DEFAULT_WINDOW_SYS "mswin"
 # endif
 # define HACKDIR "\\nethack"
+#endif
+
+#ifdef GL_GRAPHICS
+# ifndef DEFAULT_WINDOW_SYS
+#  define DEFAULT_WINDOW_SYS "GL"
+# endif
+#endif
+
+#ifdef SDL_GRAPHICS
+# ifndef DEFAULT_WINDOW_SYS
+#  define DEFAULT_WINDOW_SYS "SDL"
+# endif
+#endif
+
+#if defined(GL_GRAPHICS) || defined(SDL_GRAPHICS)
+# define GRAPHIC_TOMBSTONE     /* Use graphical tombstone */
+/* -AJA- workaround for clash with ZLIB headers */
+# define compress    nh_compress
+# define uncompress  nh_uncompress
 #endif
 
 #ifndef DEFAULT_WINDOW_SYS

@@ -317,6 +317,11 @@ typedef xchar	boolean;		/* 0 or 1 */
 #  define USE_TILES
 # endif
 #endif
+#if defined(GL_GRAPHICS) || defined(SDL_GRAPHICS)
+# ifndef USE_TILES
+#  define USE_TILES
+# endif
+#endif
 
 #define Sprintf  (void) sprintf
 #define Strcat   (void) strcat

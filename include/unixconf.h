@@ -332,6 +332,14 @@
 
 #define SHELL		/* do not delete the '!' command */
 
+/* -AJA- Escaping to a shell doesn't work when SDL port is running
+ *       fullscreen (makes the computer seem frozen).  Undefining
+ *       `SHELL' is a bit blunt though...
+ */
+#if defined(GL_GRAPHICS) || defined(SDL_GRAPHICS)
+#undef SHELL
+#endif
+
 #include "system.h"
 
 #if defined(POSIX_TYPES) || defined(__GNUC__)
