@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.32 2003-12-13 16:35:16 j_ali Exp $
+  $Id: gtkmap.c,v 1.33 2003-12-20 19:07:28 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -530,8 +530,12 @@ switch_mode:
 		x_tile_init_add_stages(Tile, NH_GTK_PROGRESS_WINDOW(progress));
 	    }
 	    gtk_widget_realize(progress);
+#if GTK_CHECK_VERSION(2,2,0)
 	    cursor = gdk_cursor_new_for_display(
 	      gdk_drawable_get_display(progress->window), GDK_WATCH);
+#else
+	    cursor = gdk_cursor_new(GDK_WATCH);
+#endif
 	    gdk_window_set_cursor(progress->window, cursor);
 	    gdk_cursor_unref(cursor);
 	    gtk_widget_show_now(progress);

@@ -88,6 +88,7 @@ ver 0.0.7E5 [?] [Released by ?]
 -Winnt: Add support for png tilesets and build them by default
 -fixed bug 456453: Deep dragon resistances
 -fixed bug 662821: magic candles burn in the candelabrum of invocation
+-fixed bug 863646: Fails to compile under Gtk 2.0
 
 See history.txt for changes made in previous versions.
 
