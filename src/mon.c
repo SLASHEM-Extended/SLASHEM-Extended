@@ -2752,6 +2752,7 @@ boolean msg;
 
 	/* [ALI] Detect transforming between player monsters with the
 	 * same rank title to avoid badly formed messages.
+	 * Similarly for were creatures transforming to their alt. form.
 	 */
 	if (msg && is_mplayer(olddata) && is_mplayer(mdat)) {
 	    const struct Role *role;
@@ -2773,8 +2774,10 @@ boolean msg;
 			}
 		}
 	    }
-	}
-	
+	} else if (msg && is_were(olddata) &&
+		monsndx(mdat) == counter_were(monsndx(olddata)))
+	    alt_mesg = TRUE;
+
 	/* WAC - At this point,  the transformation is going to happen */
 	/* Reset values, remove worm tails, change levels...etc. */
 
@@ -2859,9 +2862,12 @@ boolean msg;
 	newsym(mtmp->mx,mtmp->my);
 
 	if (msg && (u.uswallow && mtmp == u.ustuck || canspotmon(mtmp))) {
-	    if (alt_mesg)
+	    if (alt_mesg && is_mplayer(mdat))
 		pline("%s is suddenly very %s!", oldname,
 			mtmp->female ? "feminine" : "masculine");
+	    else if (alt_mesg)
+		pline("%s changes into a %s!", oldname,
+			is_human(mdat) ? "human" : mdat->mname + 4);
 	    else {
 	    uchar save_mnamelth = mtmp->mnamelth;
 	    mtmp->mnamelth = 0;

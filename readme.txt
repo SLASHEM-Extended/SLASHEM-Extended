@@ -78,6 +78,7 @@ ver 0.0.7E6F1 [?] [Released by ?]
 -fixed bug 911457: Macintosh dungeon creation not random
 -fixed bug 912586: Crashes in Grund's Stronghold
 -fixed bug 907565: Unidentified tin auto-ided when eaten
+-fixed bug 908189: "The wererat turns into a wererat!"
 
 See history.txt for changes made in previous versions.
 

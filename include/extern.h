@@ -2421,6 +2421,7 @@ E void NDECL(practice_weapon);
 
 /* ### were.c ### */
 
+E int FDECL(counter_were,(int));
 E void FDECL(were_change, (struct monst *));
 E void FDECL(new_were, (struct monst *));
 E int FDECL(were_summon, (struct permonst *,BOOLEAN_P,int *,char *));
