@@ -348,6 +348,7 @@ ver 0.0.6E4F2 [December XX/2000]
 -fixed bug 124069: gtk/win32: Inventory screen non-closeable.
 -fixed bug 123915: Bags of holding can be identified by weight.
 -fixed bug 124967: Pick axe ceiling.
+-fixed bug 124070: GTK port doesn't support variable width map fonts.
 
 ver 0.0.6E4F1 [November 10/2000] [Released by Ali]
 -GTK: status window stats columns should never be too small

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.17 2000-12-05 19:23:25 j_ali Exp $
+  $Id: gtkmap.c,v 1.18 2000-12-08 15:47:50 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -27,6 +27,7 @@ static GtkWidget	*map_scroll;
 static GtkWidget	*map;
 static GdkPixmap	*map_pixmap;
 static GdkFont		*map_font;
+static unsigned char	*map_xoffsets;		/* For character mode only */
 
 #ifdef WINGTK_X11
 static Display		*display;
@@ -211,32 +212,53 @@ nh_set_map_visual(int mode)
 
 	if(saved_vis > 0)
 	    gdk_image_destroy(tile_image);
+	else if (saved_vis == 0)
+	    free(map_xoffsets);
 	if(mode == 0){
 	    int i, width, min_width;
-	    c_width = min_width = gdk_char_width(map_font, oc_syms[0]);
+	    /*
+	     * ALI
+	     * We might want to consider making the size of this array
+	     * variable in the future, but for now 8 bits is always enough.
+	     */
+	    map_xoffsets = (unsigned char *) alloc(256);
+	    for(i = 0; i < 256; i++)
+		map_xoffsets[i] = 0;
+	    c_width = min_width =
+	      gdk_char_width_wc(map_font, (GdkWChar)oc_syms[0]);
+	    if (c_width > 0)
+		map_xoffsets[oc_syms[i]] = c_width;
 	    for(i = 1; i < SIZE(oc_syms); i++) {
-		width = gdk_char_width(map_font, oc_syms[i]);
+		width = gdk_char_width_wc(map_font, (GdkWChar)oc_syms[i]);
+		if (width > 0)
+		    map_xoffsets[oc_syms[i]] = width;
 		if (width < min_width)
 		    min_width = width;
 		if (width > c_width)
 		    c_width = width;
 	    }
 	    for(i = 0; i < SIZE(showsyms); i++) {
-		width = gdk_char_width(map_font, showsyms[i]);
+		width = gdk_char_width_wc(map_font, (GdkWChar)showsyms[i]);
+		if (width > 0)
+		    map_xoffsets[showsyms[i]] = width;
 		if (width < min_width)
 		    min_width = width;
 		if (width > c_width)
 		    c_width = width;
 	    }
 	    for(i = 0; i < SIZE(monsyms); i++) {
-		width = gdk_char_width(map_font, monsyms[i]);
+		width = gdk_char_width_wc(map_font, (GdkWChar)monsyms[i]);
+		if (width > 0)
+		    map_xoffsets[monsyms[i]] = width;
 		if (width < min_width)
 		    min_width = width;
 		if (width > c_width)
 		    c_width = width;
 	    }
 	    for(i = 0; i < SIZE(warnsyms); i++) {
-		width = gdk_char_width(map_font, warnsyms[i]);
+		width = gdk_char_width_wc(map_font, (GdkWChar)warnsyms[i]);
+		if (width > 0)
+		    map_xoffsets[warnsyms[i]] = width;
 		if (width < min_width)
 		    min_width = width;
 		if (width > c_width)
@@ -244,13 +266,11 @@ nh_set_map_visual(int mode)
 	    }
 	    if (min_width <= 0)
 		pline("Warning: Not all expected glyphs present in map font.");
-	    else if (min_width < c_width)
-		/* Variable width fonts work after a fashion, but since each
-		 * character is not centered in its cell, they look somewhat
-		 * odd. If we want to add proper support for these fonts then
-		 * nh_map_print_glyph_traditional() should center the glyphs.
-		 */
-		pline("Warning: Map font is not fixed width.");
+
+	    /* Convert widths to offsets */
+	    for(i = 0; i < 256; i++)
+		if (map_xoffsets[i])
+		    map_xoffsets[i] = (c_width - map_xoffsets[i]) / 2;
 
 	    c_height = map_font->ascent + map_font->descent;
 	    c_3dwidth = c_width;
@@ -957,7 +977,7 @@ nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap, GdkRe
     gdk_draw_text_wc(
 	map_pixmap, map_font,
 	map_color_gc[iflags.use_color?color:MAP_WHITE],
-	x * c_width, y * c_height, ch, 1);
+	x * c_width + map_xoffsets[ch[0]], y * c_height, ch, 1);
     
     if(glyph_is_pet(glyph) && iflags.hilite_pet){
 	gdk_draw_rectangle(
@@ -976,7 +996,7 @@ nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap, GdkRe
     gdk_draw_text_wc(
 	map_pixmap, map_font,
 	map->style->black_gc,
-	x*c_width, y*c_height, ch, 1);
+	x * c_width + map_xoffsets[ch[0]], y * c_height, ch, 1);
 #endif
     if(rect)
 	*rect = update_rect;
