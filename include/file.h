@@ -17,7 +17,7 @@
 # define NH_CONFIG_FILE     ".@LOWER@rc"
 #else
 # if defined(MAC) || defined(__BEOS__)
-#  define NH_CONFIG_FILE     "@MIXED@ Defaults"
+#  define NH_CONFIG_FILE     "Slash'EM Defaults"
 # else                     
 #  ifdef VMS                
 #   define NH_CONFIG_FILE     "@LOWER@ini"

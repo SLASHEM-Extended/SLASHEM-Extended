@@ -476,10 +476,10 @@ STATIC_OVL int
 restlevelfile(fd, ltmp)
 register int fd;
 xchar ltmp;
+{
 #ifdef MAC_MPW
 # pragma unused(fd)
 #endif
-{
 	register int nfd;
 
 	nfd = create_levelfile(ltmp);

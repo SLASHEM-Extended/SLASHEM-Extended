@@ -32,7 +32,7 @@ resource 'hfdr' (-5696, purgeable) {
 };
 
 resource 'STR ' (2000, purgeable) { /* Help message for app icon */
-   "Slash'EM 6e0\nThis is the famous Dungeons and Dragons*-like game ported to the Macintosh." 
+   "Slash'EM\nThis is the famous Dungeons and Dragons*-like game ported to the Macintosh." 
 };
 
 resource 'STR '(-16396, purgeable) {	/* Will be copied to the saved file. */

@@ -29,9 +29,10 @@
 #  define TEXTCOLOR		/* For Mac TTY interface */
 #  define CHANGE_COLOR
 
-/* Use these two includes instead of system.h. */
+/* Use these includes instead of system.h. */
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 
 /* Uncomment this line if your headers don't already define off_t */
 /*typedef long off_t;*/
@@ -106,7 +107,7 @@ extern void error(const char *,...);
 # define SAVE_TYPE 'SAVE'
 # define PREF_TYPE 'PREF'
 # define DATA_TYPE 'DATA'
-# define MAC_CREATOR 'slEm' /* Not yet registered with DTS ! */
+# define MAC_CREATOR 'slEm' /* Registered with DTS */
 
 /*
  * Define PORT_HELP to be the name of the port-specfic help file.

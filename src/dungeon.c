@@ -14,6 +14,9 @@
  */
 
 #define DEBUG_420942	/* Two entrances to mines */
+#ifdef macintosh
+#define getch() getchar()
+#endif
 
 #ifdef OVL1
 

@@ -457,7 +457,7 @@ struct obj *otmp;
 #ifndef MAC_MPW
         "Send bug reports and suggestions to wac@intergate.bc.ca"
 #else
-        "Send bug reports and suggestions to hurtley@acm.org"
+        "To submit bug reports and suggestions go to our web page, http://sourceforge.net/projects/slashem/"
 #endif /* MAC_MPW */
 	};
 

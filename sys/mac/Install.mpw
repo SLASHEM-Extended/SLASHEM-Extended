@@ -1,53 +1,47 @@
 How to make Mac Slash'EM using MPW
 ==================================
 Copyright (c) 1992-11-23 Jon W{tte
-Modifications copyright (c) 1999 Paul Hurtley
+Modifications copyright (c) 1999-2001 Paul Hurtley
 
 Please read these instructions through carefully before starting to
 build Slash'EM for the Macintosh.  Most important is the part about
 keeping the folder structure intact.
 
 1)	Suggested Requirements:
-	- MPW; I used MPW-PR off the August 99 Developer Cds
-	- Macintosh (I used a Power Macintosh 7600/132)
-	- 35 MB free disk (my Power-Mac only build area used this much)
-	- 35 MB memory (using system 8.6 in 15 MB and MPW in 20 MB)
-	- Time. Maybe an hour or so. I'll try building from scratch sometime,
-	  and then I may have a number for my setup.
+	- MPW development software
+	- Macintosh computer system
+	- 70 MB free disk (my Power-Mac only build area used this much)
 	- bison, from http://perso.wanadoo.fr/gilles.depeyrot/DevTools_en.html#Bison;
 	  other yacc-alikes should also work, or you can do without.
 	- lex, from http://perso.wanadoo.fr/gilles.depeyrot/DevTools_en.html#Flex;
 	  other lex-alikes should also work, or you can do without.
+    - MacCVS Pro, from http://sourceforge.net/projects/maccvspro/
+	  This will allow you to keep up-to-date with our development sources.
+	  Other CVS clients should also work, or you can do without
 
 2)	Unpack the  source files onto your hard disk.  Make sure to keep the
 	folder structure the way it is. 
 	
-3)	Edit the make file Macintosh.make to set the Top variable. This file 
-	should be in the top directory in the distributtion. Move it there
-	if you have to.
+3)	Edit the make file :sys:mac:Macintosh.make to set the Top variable.
 
 4)	You may want to edit some of the options in :include:config.h to suit
 	your tastes.  However, using MPW, this file will self-configure for
 	the default Mac distribution.
 
-	NOTE: The make file defines VISION_TABLES, so you should not concern
-	yourself with that option in config.h. However, compiling with the
-	option VISION_TABLES will generate a faster binary, at the expense of
-	the size of the application, and compilation time.
-
-5)	Choose Update Dependences from the Build menu. This should create the 
+5)	Choose Update Dependencies from the Build menu. This should create the 
 	sub-makefiles. You can leave this step out, but then header dependencies
 	won't be added to the sub-makefiles, and the builds will stop at
 	each CreateMake.
 	
-6)	Make sure your current directory is the top one in the distribution,
+6)	Make sure your current folder is :sys:mac,
 	choose Build from the Build menu and build "Macintosh". 
 	
-7)	When the build is done the results are in the Dungeon folder.  Enjoy!
+7)	When the build is done the results are in the DungeonPPC, DungeonFat or
+    Dungeon68K folder, depending on which Processor you have chosen.  Enjoy!
 
 8)	If you want to make any changes to the dungeon compiler or the special
 	level compiler, you will need to get bison and lex; the outputs are 
-	included in the distribution (in the Obj directory), so the build
+	included in the distribution (in the :Grammar folder), so the build
 	rules should not be invoked if you don't change the .l or .y files.
 
 9)	If, heaven forbid, you experience any configuration problems or make
@@ -59,8 +53,8 @@ keeping the folder structure intact.
 	turn off all INITs and re-boot if you have any problems, and they
 	might go away.
 
-	If you experience any bugs, please mail them to the bug report address
-	hurtley@acm.org
+	If you experience any bugs, please report them via our web page
+	  https://sourceforge.net/projects/slashem/
 	Be sure to include what computer you use, how it is configured, what
 	version of MPW and C and the headers you use, where you got the
 	Slash'EM source etc. etc.
@@ -70,4 +64,4 @@ keeping the folder structure intact.
 	protected under copyright law, and may only be re-distributed under
 	the terms of the NetHack license also found in this package, or
 	otherwise with the authors' permission.  (If the license is missing,
-	mail the bug report address for a copy.)
+	email us via the web page for a copy.)

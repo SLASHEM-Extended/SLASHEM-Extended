@@ -744,6 +744,9 @@ const struct Gender genders[] = {
 	{"neuter",	"it",	"it",	"its",	"Ntr",	ROLE_NEUTER}
 };
 
+#ifdef MAC_MPW
+const size_t maxGender = sizeof genders/sizeof genders[0];
+#endif /* MAC_MPW */
 
 /* Table of all alignments */
 const struct Align aligns[] = {
@@ -756,6 +759,9 @@ const struct Align aligns[] = {
 /* used by str2XXX() */
 static char NEARDATA randomstr[] = "random";
 
+#ifdef MAC_MPW
+const size_t maxAlign = sizeof aligns/sizeof aligns[0];
+#endif /* MAC_MPW */
 
 boolean
 validrole(rolenum)
@@ -1304,12 +1310,13 @@ plnamesuffix()
 	int i;
 
 	/* Look for tokens delimited by '-' */
-	if ((eptr = index(plname, '-')) != (char *) 0)
+	eptr = strchr(plname, '-');
+	if (eptr && *eptr)
 	    *eptr++ = '\0';
-	while (eptr) {
+	while (eptr && *eptr) {
 	    /* Isolate the next token */
 	    sptr = eptr;
-	    if ((eptr = index(sptr, '-')) != (char *)0)
+	    if ((eptr = strchr(sptr, '-')) != (char *)0)
 		*eptr++ = '\0';
 
 	    /* Try to match it to something */

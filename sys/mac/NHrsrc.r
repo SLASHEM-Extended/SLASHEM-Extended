@@ -1,3 +1,11 @@
+#include "MacWindows.r"
+#include "Dialogs.r"
+#include "MacTypes.r"
+#include "Icons.r"
+#include "Fonts.r"
+#include "Finder.r"
+#include "Menus.r"
+
 resource 'WIND' (128, "NULL") {
 	{40, 40, 140, 162},
 	documentProc,
@@ -7086,9 +7094,8 @@ resource 'vers' (1, purgeable) {
 	beta,
 	0x4,
 	0,
-	"0.0.6e4f2mac0",
-	"Slash'EM 0.0.6e4f2mac0 (2001/01)\nhurtley"
-	"@acm.org"
+	"0.0.6e4f5",
+	"Slash'EM 0.0.6e4f5 (2001/08)\nhttp://slashem.sourceforge.net/"
 };
 
 resource 'vers' (2, purgeable) {
@@ -7097,8 +7104,8 @@ resource 'vers' (2, purgeable) {
 	beta,
 	0x4,
 	0,
-	"0.0.6e4f2mac0",
-	"Slash'EM 0.0.6e4f2mac0 (2001/01)"
+	"0.0.6e4f5",
+	"Slash'EM 0.0.6e4f5 (2001/08)"
 };
 
 resource 'STR ' (128, "Pref File Name") {

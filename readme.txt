@@ -6,9 +6,9 @@
 |                           A Nethack Variant                            |
 | Courtesy of Warren Cheung (wac@intergate.bc.ca), Kevin Hugo and        |
 |              the efforts and support of countless others               |
-|                                                            (1997 -2000)|
+|                                                             (1997-2001)|
 +------------------------------------------------------------------------+
-| Nethack is Copyright (c) Mike Stephenson,(Izchak Miller) 1991 - 2000.  |
+| Nethack is Copyright (c) Mike Stephenson,(Izchak Miller) 1991 - 2001.  |
 | SLASH'EM and NetHack may be freely redistributed.                      |
 | See license for details.                                               |
 +------------------------------------------------------------------------+
@@ -380,6 +380,16 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -Added debugging for bug 420942: Two entrances to mines.
 -fixed bug 450316: Sting isn't listed as poisoned.
 -fixed bug 436375: X11 Text windows too small.
+-Put lex/yacc files in separate folder in mac build
+-Direct bugs to SourceForge not hurtley in mac build
+-Merge mac patches into SourceForge sources
+
+ver 0.0.6E4F4mac0 [May 13/2001] [Released by Paul]
+-built Mac 68K port
+-fix bug: version garbled in Mac About box
+-fix bug: crash selecting Help/Options/Macgraphics
+-fix bug: Guidebook not displayed when selecting Help/Help/Guidebook.
+          For now, only the first 10000 characters are displayed
 
 ver 0.0.6E4F4 [May 2/2001] [Released by Ali]
 -fixed bug 404825: wands of teleportation that explode/zapped at yourself

@@ -6,16 +6,14 @@
 #
 # by Michaelª Hamel and Ross Brown 1991 : michael@otago.ac.nz
 #
-# Updated for Slash'EM 0.0.5-2 to .6-4F2
-# Paul Hurtley, August 1999 to January 2001
+# Updated for Slash'EM 0.0.5-2 to .6-4F5
+# Paul Hurtley, August 1999 to August 2001
 
 #--------------------------------------------------------------------------
 #
 # BEFORE YOU BUILD FOR THE FIRST TIME
-#  Set this equate to the folder containing all the Slash'EM source folders,
-#  move this file to that directory, and choose your processor
-
-Top   	   	= Tolkien:Development:Project:SlashEM:slam642mac0:
+#  Set this equate to the folder containing all the Slash'EM source folders
+Top   		= Cabell:Documents:Projects:SlashEM:slam645mac0-cvs:slashem:
 
 Processor  = PowerPC
 #Processor	= 68K
@@ -28,6 +26,7 @@ Src   	   = {Top}Src:
 Util 	   = {Top}Util:
 Dat		   = {Top}Dat:
 Doc		   = {Top}Doc:
+Grammar	   = {Top}Grammar:
 Include    = {Top}Include:
 MacDir	   = {Top}Sys:Mac:
 TtyDir     = {Top}Win:Tty:
@@ -39,7 +38,7 @@ ObjDir     = {Top}Obj{Processor}:				# "Temporary" stuff
 Results	   = {Top}Dungeon{Processor}:			# Where the game goes
 
 # Override the settings in "{Include}"config.h
-NHConfig = -d PORT_LEVEL='¶".0¶"' 
+# NHConfig = -d PORT_LEVEL='¶".0¶"' 
 
 # Type and creator - note that we use "PREF" for all non-save files
 # currently. Since we will integrate the data files into the game
@@ -68,7 +67,7 @@ LexYYC = lex.yy.c
 
 # The following files are in the binary distribution
 DataFiles 	=	"{Results}"Record   		¶
-				"{Results}"Guidebook		¶
+				"{Results}"Guidebook.txt	¶
 				"{Results}"History			¶
 				"{Results}"License			¶
 				"{Results}"Slash¶'EM¶ Defaults   ¶
@@ -82,10 +81,10 @@ Preserved	=	"{ObjDir}"date.h 		¶
 				"{ObjDir}"vis_tab.h 	¶
 				"{ObjDir}"vis_tab.c 	¶
 				"{ObjDir}"filename.h 	¶
-				"{ObjDir}"lev_yacc.c 	¶
-				"{ObjDir}"lev_comp.h 	¶
-				"{ObjDir}"dgn_yacc.c 	¶
-				"{ObjDir}"dgn_comp.h	¶
+				"{Grammar}"lev_yacc.c 	¶
+				"{Grammar}"lev_comp.h 	¶
+				"{Grammar}"dgn_yacc.c 	¶
+				"{Grammar}"dgn_comp.h	¶
 				"{ObjDir}"MRecover.rsrc	¶
 				"{ObjDir}"NHrsrc.rsrc	¶
 				"{ObjDir}"NHsound.rsrc				
@@ -97,7 +96,7 @@ Macintosh Ä   	Setup				¶
 				DgnComp.lnk 		¶
 				{DataFiles} 		¶
 				Recover.lnk 		¶
-				Slash¶'EM.lnk
+				SlashEM.lnk
 				
 Setup	Ä
 	If Not "`Exists -d "{Results}"`"
@@ -105,6 +104,9 @@ Setup	Ä
 	End
 	If Not "`Exists -d "{ObjDir}"`"
 		NewFolder "{ObjDir}"
+	End
+	If Not "`Exists -d "{Grammar}"`"
+		NewFolder "{Grammar}"
 	End
 	
 # Compiler options. We set up to look in the Mac dir first for include files
@@ -141,6 +143,7 @@ FileResources = ¶
 	"{Dat}"hh ¶
 	"{Dat}"history ¶
 	"{Dat}"license ¶
+	"{Results}"Guidebook.txt ¶
 	"{MacDir}"MacHelp ¶
 	"{MacDir}"News ¶
 	"{Dat}"opthelp ¶
@@ -288,33 +291,33 @@ SlashEMSrcs = ¶
 	"{TtyDir}"wintty.c
 	
 SlashEMRsrcs = 				¶
-	"{MacDir}"NetHack.r		¶
+	"{MacDir}"MPW.r			¶
 	"{ObjDir}"NHrsrc.rsrc	¶
 	"{ObjDir}"NHSound.rsrc
 
 # -------- Build the dungeon compiler, as an MPW tool ---------------
 
 DgnCompSrcs = 				¶
-	"{ObjDir}"dgn_lex.c		¶
+	"{Grammar}"dgn_lex.c	¶
 	"{Util}"dgn_main.c		¶
-	"{ObjDir}"dgn_yacc.c	¶
+	"{Grammar}"dgn_yacc.c	¶
 	"{Src}"alloc.c			¶
 	"{Util}"panic.c
 
-"{ObjDir}"DgnComp.make	Ä	 "{ObjDir}"dgn_lex.c "{ObjDir}"dgn_yacc.c
-	CreateMake "{ObjDir}"DgnComp {DgnCompSrcs} -tool -powerpc -objdir "{ObjDir}" -i "{ObjDir}" -i {NHIncludes} -ppccoptions "{COptions}" -sym -depends
+"{ObjDir}"DgnComp.make	Ä	 "{Grammar}"dgn_lex.c "{Grammar}"dgn_yacc.c
+	CreateMake "{ObjDir}"DgnComp {DgnCompSrcs} -tool -powerpc -objdir "{ObjDir}" -i "{Grammar}" -i "{ObjDir}" -i {NHIncludes} -ppccoptions "{COptions}" -sym -depends
 	
 "{ObjDir}"DgnComp DgnComp.lnk Ä "{ObjDir}"DgnComp.make
 	BuildProgram "{ObjDir}"DgnComp
 
-"{ObjDir}"dgn_comp.h "{ObjDir}"dgn_yacc.c	Ä  "{Util}"dgn_comp.y
+"{Grammar}"dgn_comp.h "{Grammar}"dgn_yacc.c	Ä  "{Util}"dgn_comp.y
 	{YACC} -d "{Util}"dgn_comp.y
-	Move -y "{YTabC}" "{ObjDir}"dgn_yacc.c
-	Move -y "{YTabH}" "{ObjDir}"dgn_comp.h
+	Move -y "{YTabC}" "{Grammar}"dgn_yacc.c
+	Move -y "{YTabH}" "{Grammar}"dgn_comp.h
 	
-{ObjDir}dgn_lex.c	Ä  {Util}dgn_comp.l
+{Grammar}dgn_lex.c	Ä  {Util}dgn_comp.l
 	{LEX} {Util}dgn_comp.l
-	Move -y {LexYYC} {ObjDir}dgn_lex.c
+	Move -y {LexYYC} {Grammar}dgn_lex.c
 	
 # -------- Build the special-level compiler, as an MPW tool ---------------
 
@@ -323,28 +326,28 @@ LevCompSrcs= "{Src}"monst.c		¶
 		 "{Src}"drawing.c		¶
 		 "{Src}"alloc.c			¶
 		 "{Util}"panic.c		¶
-		 "{ObjDir}"lev_lex.c	¶
-		 "{ObjDir}"lev_yacc.c	¶
+		 "{Grammar}"lev_lex.c	¶
+		 "{Grammar}"lev_yacc.c	¶
 		 "{MacDir}"macfile.c	¶
 		 "{MacDir}"macerrs.c	¶
 		 "{Src}"files.c			¶
 		 "{Src}"decl.c			¶
 		 "{Util}"lev_main.c
 
-"{ObjDir}"LevComp.make	Ä	 "{ObjDir}"lev_lex.c "{ObjDir}"lev_yacc.c
-	CreateMake "{ObjDir}"LevComp {LevCompSrcs} -tool -powerpc -objdir "{ObjDir}" -i "{ObjDir}" -i {NHIncludes} -ppccoptions "{COptions}" -sym -depends
+"{ObjDir}"LevComp.make	Ä	 "{Grammar}"lev_lex.c "{Grammar}"lev_yacc.c
+	CreateMake "{ObjDir}"LevComp {LevCompSrcs} -tool -powerpc -objdir "{ObjDir}" -i "{Grammar}" -i "{ObjDir}" -i {NHIncludes} -ppccoptions "{COptions}" -sym -depends
 	
 "{ObjDir}"LevComp LevComp.lnk Ä "{ObjDir}"LevComp.make
 	BuildProgram "{ObjDir}"LevComp
 
-"{ObjDir}"lev_comp.h "{ObjDir}"lev_yacc.c	Ä  "{Util}"lev_comp.y
+"{Grammar}"lev_comp.h "{Grammar}"lev_yacc.c	Ä  "{Util}"lev_comp.y
 	{YACC} -d "{Util}"lev_comp.y
-	Move -y "{YTabH}" "{ObjDir}"lev_comp.h
-	Move -y "{YTabC}" "{ObjDir}"lev_yacc.c
+	Move -y "{YTabH}" "{Grammar}"lev_comp.h
+	Move -y "{YTabC}" "{Grammar}"lev_yacc.c
 	
-"{ObjDir}"lev_lex.c	Ä  {Util}lev_comp.l
+"{Grammar}"lev_lex.c	Ä  {Util}lev_comp.l
 	{LEX} {Util}lev_comp.l
-	Move -y {LexYYC} {ObjDir}lev_lex.c
+	Move -y {LexYYC} {Grammar}lev_lex.c
 	
 # -------- Build "{ObjDir}"MakeDefs, as an MPW tool ---------------
 
@@ -353,7 +356,7 @@ MakeDefsSrcs= "{Src}"objects.c		¶
 			  "{Util}"MakeDefs.c
 
 "{ObjDir}"MakeDefs.make Ä
-	CreateMake "{ObjDir}"MakeDefs {MakeDefsSrcs} -tool -powerpc -objdir "{ObjDir}" -i "{ObjDir}" -i {NHIncludes} -ppccoptions "{COptions}" -sym -depends
+	CreateMake "{ObjDir}"MakeDefs {MakeDefsSrcs} -tool -powerpc -objdir "{ObjDir}" -i "{Grammar}" -i "{ObjDir}" -i {NHIncludes} -ppccoptions "{COptions}" -sym -depends
 
 "{ObjDir}"MakeDefs MakeDefs.lnk Ä "{ObjDir}"MakeDefs.make
 	BuildProgram "{ObjDir}"MakeDefs
@@ -364,6 +367,7 @@ MakeDefsSrcs= "{Src}"objects.c		¶
 	Directory "{Top}"
 	"{ObjDir}"MakeDefs -f
 	Move -y "{Include}"filename.h "{ObjDir}"filename.h
+	Directory "{MacDir}"
 
 "{ObjDir}"date.h 	Ä 	"{ObjDir}"Options "{ObjDir}"MakeDefs
 	Move -y "{Include}"date.h "{ObjDir}"date.h
@@ -372,16 +376,19 @@ MakeDefsSrcs= "{Src}"objects.c		¶
 	Set -e ObjDir "{ObjDir}"
 	Directory "{Top}"
 	"{ObjDir}"MakeDefs -v
+	Directory "{MacDir}"
 	
 "{ObjDir}"onames.h Ä	"{ObjDir}"MakeDefs
 	Directory "{Top}"
 	"{ObjDir}"MakeDefs -o
 	Move -y "{Include}"onames.h "{ObjDir}"onames.h
+	Directory "{MacDir}"
 
 "{ObjDir}"pm.h 	Ä	"{ObjDir}"MakeDefs
 	Directory "{Top}"
 	"{ObjDir}"MakeDefs -p
 	Move -y "{Include}"pm.h "{ObjDir}"pm.h
+	Directory "{MacDir}"
 
 "{ObjDir}"vis_tab.c	Ä	"{ObjDir}"vis_tab.h
 	Move -y "{Src}"vis_tab.c "{ObjDir}"vis_tab.c
@@ -390,16 +397,19 @@ MakeDefsSrcs= "{Src}"objects.c		¶
 	Directory "{Top}"
 	"{ObjDir}"MakeDefs -z
 	Move -y "{Include}"vis_tab.h "{ObjDir}"vis_tab.h
+	Directory "{MacDir}"
 
 "{ObjDir}"Dungeon.pdf  Ä "{Dat}"Dungeon.def "{ObjDir}"MakeDefs
 	Directory "{Top}"
 	"{ObjDir}"MakeDefs -e
 	Move -y "{Dat}"Dungeon.pdf "{ObjDir}"Dungeon.pdf
+	Directory "{MacDir}"
 
 "{ObjDir}"monstr.c Ä "{ObjDir}"MakeDefs
 	Directory "{Top}"
 	"{ObjDir}"MakeDefs -m
 	Move -y "{Src}"monstr.c "{ObjDir}"monstr.c
+	Directory "{MacDir}"
 
 #---------------- Data files -------------------
 
@@ -413,16 +423,19 @@ Levels Ä "{ObjDir}"Levels.list "{MacDir}"Levels.make
 		Directory "{Top}"
 	    "{ObjDir}"MakeDefs -d
 		SetFile -t "{FileType}" -c "{SlashEMCreator}" "{ObjDir}"Data
+		Directory "{MacDir}"
 
 "{ObjDir}"Rumors  Ä "{Dat}"Rumors.tru "{Dat}"Rumors.fal "{ObjDir}"MakeDefs
 		Directory "{Top}"
 	    "{ObjDir}"MakeDefs -r
 		SetFile -t "{FileType}" -c "{SlashEMCreator}" "{ObjDir}"Rumors
+		Directory "{MacDir}"
 
 "{ObjDir}"Oracles Ä "{Dat}"Oracles.txt "{ObjDir}"MakeDefs
 		Directory "{Top}"
 	    "{ObjDir}"MakeDefs -h
 		SetFile -t "{FileType}" -c "{SlashEMCreator}" "{ObjDir}"Oracles
+		Directory "{MacDir}"
 
 "{Results}"Record  Ä 
 		Echo "This is the record file" > "{Results}"Record
@@ -432,9 +445,9 @@ Levels Ä "{ObjDir}"Levels.list "{MacDir}"Levels.make
 		Duplicate -y "{MacDir}"NHDeflts "{Results}"Slash¶'EM¶ Defaults
 		SetFile -c "ttxt" "{Results}"Slash¶'EM¶ Defaults
 
-"{Results}"Guidebook  Ä	"{Doc}"Guidebook.txt
-		Duplicate -y "{Doc}"Guidebook.txt "{Results}"Guidebook
-		SetFile -c "MOSS" "{Results}"Guidebook
+"{Results}"Guidebook.txt  Ä	"{Doc}"Guidebook.txt
+		Duplicate -y "{Doc}"Guidebook.txt "{Results}"Guidebook.txt
+		SetFile -c "MOSS" "{Results}"Guidebook.txt
 		
 "{Results}"History  Ä	"{MacDir}"History.html
 		Duplicate -y "{MacDir}"History.html "{Results}"History
@@ -477,6 +490,7 @@ Levels Ä "{ObjDir}"Levels.list "{MacDir}"Levels.make
 		Directory "{Top}"
 	    "{ObjDir}"MakeDefs -q
 		SetFile -t "{FileType}" -c "{SlashEMCreator}" "{ObjDir}"Quest.dat
+		Directory "{MacDir}"
 
 #---------------- The "{ObjDir}"Recover application -------------------
 RecoverSrcs = "{MacDir}"MRecover.c
@@ -484,24 +498,24 @@ RecoverSrcs = "{MacDir}"MRecover.c
 RecoverRsrcs = "{ObjDir}"MRecover.rsrc
 	
 "{ObjDir}"Recover.make	Ä
-		CreateMake "{ObjDir}"Recover {RecoverSrcs} {RecoverRsrcs} -{Processor} -i "{ObjDir}" -i {NHIncludes} -objdir "{ObjDir}" -sym -depends -c {RecoverCreator} ¶
+		CreateMake "{ObjDir}"Recover {RecoverSrcs} {RecoverRsrcs} -{Processor} -i "{Grammar}" -i "{ObjDir}" -i {NHIncludes} -objdir "{ObjDir}" -sym -depends -c {RecoverCreator} ¶
 			-ppccoptions "{COptions}" ¶
 			-coptions "{COptions}" -model far ¶
-				{SharedLibraries}AppearanceLib ¶
-				{SharedLibraries}ATSUnicodeLib ¶
-				{SharedLibraries}ContextualMenu ¶
-				{SharedLibraries}ControlsLib ¶
-				{SharedLibraries}DialogsLib ¶
-				{SharedLibraries}FindByContent ¶
-				{SharedLibraries}FontManager ¶
-				{SharedLibraries}IconServicesLib ¶
-				{SharedLibraries}MenusLib ¶
-				{SharedLibraries}NavigationLib ¶
-				{SharedLibraries}UnicodeUtilitiesLib ¶
-				{SharedLibraries}WindowsLib  ¶
-				{SharedLibraries}TextCommon ¶
-				{SharedLibraries}TextEncodingConverter ¶
-				{SharedLibraries}UnicodeConverter
+				"{SharedLibraries}"AppearanceLib ¶
+				"{SharedLibraries}"ATSUnicodeLib ¶
+				"{SharedLibraries}"ContextualMenu ¶
+				"{SharedLibraries}"ControlsLib ¶
+				"{SharedLibraries}"DialogsLib ¶
+				"{SharedLibraries}"FindByContent ¶
+				"{SharedLibraries}"FontManager ¶
+				"{SharedLibraries}"IconServicesLib ¶
+				"{SharedLibraries}"MenusLib ¶
+				"{SharedLibraries}"NavigationLib ¶
+				"{SharedLibraries}"UnicodeUtilitiesLib ¶
+				"{SharedLibraries}"WindowsLib  ¶
+				"{SharedLibraries}"TextCommon ¶
+				"{SharedLibraries}"TextEncodingConverter ¶
+				"{SharedLibraries}"UnicodeConverter
 
 "{Results}"Recover Recover.lnk ÄÄ "{ObjDir}"Recover.make
 		BuildProgram "{ObjDir}"Recover
@@ -517,30 +531,30 @@ RecoverRsrcs = "{ObjDir}"MRecover.rsrc
 		Set -e Dat "{Dat}"			# Make the internal Make variable a Shell variable
 		Set -e MacDir "{MacDir}"
 		Set -e Results "{Results}"
-		CreateMake "{ObjDir}"SlashEM {SlashEMSrcs} {SlashEMRsrcs} -{Processor} -i "{ObjDir}" -i {NHIncludes} -objdir "{ObjDir}" -sym -depends -c {SlashEMCreator} ¶
+		CreateMake "{ObjDir}"SlashEM {SlashEMSrcs} {SlashEMRsrcs} -{Processor} -i "{Grammar}" -i "{ObjDir}" -i {NHIncludes} -objdir "{ObjDir}" -sym -depends -c {SlashEMCreator} ¶
 			-ppccoptions "{COptions}" ¶
 			-coptions "{COptions}" -model far ¶
-				{SharedLibraries}AppearanceLib ¶
-				{SharedLibraries}ATSUnicodeLib ¶
-				{SharedLibraries}ContextualMenu ¶
-				{SharedLibraries}ControlsLib ¶
-				{SharedLibraries}DialogsLib ¶
-				{SharedLibraries}FindByContent ¶
-				{SharedLibraries}FontManager ¶
-				{SharedLibraries}IconServicesLib ¶
-				{SharedLibraries}MenusLib ¶
-				{SharedLibraries}NavigationLib ¶
-				{SharedLibraries}UnicodeUtilitiesLib ¶
-				{SharedLibraries}WindowsLib  ¶
-				{SharedLibraries}TextCommon ¶
-				{SharedLibraries}TextEncodingConverter ¶
-				{SharedLibraries}UnicodeConverter
+				"{SharedLibraries}"AppearanceLib ¶
+				"{SharedLibraries}"ATSUnicodeLib ¶
+				"{SharedLibraries}"ContextualMenu ¶
+				"{SharedLibraries}"ControlsLib ¶
+				"{SharedLibraries}"DialogsLib ¶
+				"{SharedLibraries}"FindByContent ¶
+				"{SharedLibraries}"FontManager ¶
+				"{SharedLibraries}"IconServicesLib ¶
+				"{SharedLibraries}"MenusLib ¶
+				"{SharedLibraries}"NavigationLib ¶
+				"{SharedLibraries}"UnicodeUtilitiesLib ¶
+				"{SharedLibraries}"WindowsLib  ¶
+				"{SharedLibraries}"TextCommon ¶
+				"{SharedLibraries}"TextEncodingConverter ¶
+				"{SharedLibraries}"UnicodeConverter
 
-"{Results}"Slash¶'EM Slash¶'EM.lnk Ä "{ObjDir}"SlashEM.make {FileResources}
+"{Results}"Slash¶'EM SlashEM.lnk Ä "{ObjDir}"SlashEM.make {FileResources}
 		Set -e Dat "{Dat}"
 		Set -e MacDir "{MacDir}"
 		Set -e Results "{Results}"
-		Set -e RIncludes {RIncludes},"{MacDir}"
+		Set -e RIncludes "{RIncludes}","{MacDir}"
 		BuildProgram "{ObjDir}"SlashEM
 		SetFile -a B "{ObjDir}"SlashEM
 		Move -y "{ObjDir}"SlashEM "{Results}"Slash¶'EM 	
@@ -573,8 +587,8 @@ Dependencies Ä	Setup					¶
 		"{ObjDir}"SlashEM.makeout
 
 "{ObjDir}"Levels.list Ä
-		Echo LevelList Ä ¶¶ > "{ObjDir}"Levels.list
-		For file in :dat:Å.des
+		Echo 'LevelList Ä ¶' > "{ObjDir}"Levels.list
+		For file in "{Top}"dat:Å.des
 			StreamEdit "{file}" -d -e '/MAZE:[ ]*¶"(Å)¨1¶"/||/LEVEL:[ ]*¶"(Å)¨1¶"/ Change "    ¶"{ObjDir}¶""¨1".lev ¶¶";Print;Exit' >> "{ObjDir}"Levels.list
 		End
 		Echo "" >> "{ObjDir}"Levels.list
@@ -595,6 +609,9 @@ Clean	Ä
 		Delete -i -y "{ObjDir}"date.h "{ObjDir}"dungeon.pdf "{ObjDir}"filename.h  
 		Delete -i -y "{ObjDir}"monstr.c "{ObjDir}"onames.h
 		Delete -i -y "{ObjDir}"pm.h "{ObjDir}"vis_tab.c "{ObjDir}"vis_tab.h
+		Delete -i -y "{ObjDir}"Å.lev
+		Delete -i -y "{ObjDir}"data "{ObjDir}"dungeon "{ObjDir}"options "{ObjDir}"oracles
+		Delete -i -y "{ObjDir}"rumors "{ObjDir}"quest.dat
 		Delete -i -y "{Top}"Å.rej
 		Delete -i -y "{Top}"Å.orig
 		Delete -i -y "{Top}"Å:Å.rej
@@ -608,9 +625,9 @@ Clean	Ä
 
 #---------------- Spotless -------------------
 
-Spotless	Ä
+Spotless	Ä	Clean
 		set exit 0
-		Delete -i -y ObjPPC Obj68K ObjFat DungeonPPC Dungeon68K DungeonFat
+		Delete -i -y "{Top}"ObjPowerPC "{Top}"Obj68K "{Top}"ObjFat "{Top}"DungeonPowerPC "{Top}"Dungeon68K "{Top}"DungeonFat
 		Delete -i -y "{ObjDir}"NHrsrc.rsrc "{ObjDir}"NHsound.rsrc "{ObjDir}"MRecover.rsrc
 		set exit 1
 
@@ -623,4 +640,4 @@ Pack	Ä	"{ObjDir}"NHrsrc.rsrc "{ObjDir}"NHsound.rsrc "{ObjDir}"MRecover.rsrc
 
 #---------------- Unpack -------------------
 
-Unpack	Ä
+Unpack	Ä	"{ObjDir}"NHrsrc.rsrc "{ObjDir}"NHsound.rsrc "{ObjDir}"MRecover.rsrc

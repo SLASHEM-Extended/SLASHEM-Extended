@@ -1,25 +1,23 @@
-            Macintosh-specific help file for NetHack 3.2
-		(Note that this has not yet been updated for Slash'EM)
+            Macintosh-specific help file for Slash'EM 0.0.6e4
+		(Note that this has not yet been fully updated for Slash'EM)
 
 The following are options, features, or concerns specific to the
-Macintosh port of NetHack 3.2.  Bug reports, suggestions, comments,
-and so on, should be addressed to:
+Macintosh port of Slash'EM.  Bug reports, suggestions, comments,
+and so on, can be sent to the Slash'EM developers at our web page:
 
-	To: nethack-bugs@linc.cis.upenn.edu
-	Subject: Mac NetHack 3.2
+	http://slashem.sourceforge.net/
 
 Please include your machine-type, system software version and other
-relevant information (i.e. system extensions, monitor, accelerators
+relevant information (eg, system extensions, monitor, accelerators
 and so on).
 
 
 === Configuration of a playground
-    NetHack 3.2 is packaged in a Dungeon Folder which includes:
-        NetHack - the application file itself.
-        NetHack Defaults - text file for default option settings.
+    Slash'EM is packaged in a Dungeon Folder which includes:
+        Slash'EM - the application file itself.
+        Slash'EM Defaults - text file for default option settings.
         Miscellaneous text files - Record and logfile.  logfile
             will be created if it doesn't exist.
-        Various special level files (with a ".lev" suffix).
         Various help and other utility NetHack documents.
         Recover - the application to restore save files from crashed games.
 
@@ -41,7 +39,7 @@ and so on).
             Old bones files and saved games.
 
 === Resuming a saved game
-    Double-click (or open) the desired saved game file or open NetHack
+    Double-click (or open) the desired saved game file or open Slash'EM
         and answer the "Who are you?" dialog with the player name of
         the saved game in the Dungeon Folder.
 
@@ -49,9 +47,9 @@ and so on).
     The Dungeon Map and Message windows are the essential windows used
         during window-mode play.  During tty-mode play there is only one
         window which displays the map, messages, lists and other info.
-        For window-mode play, lists (e.g. the list of objects that may
+        For window-mode play, lists (eg, the list of objects that may
         be wielded) and special info windows appear as needed.  Windows
-        may be closed in the normal ways (i.e. clicking their close box,
+        may be closed in the normal ways (eg, clicking their close box,
         choosing 'Close' from the File menu or typing the command
         equivalent for 'Close', cmd-W) and the list windows may also be
         dismissed by hitting the space bar (or Return or Enter Keys).
@@ -60,8 +58,8 @@ and so on).
 
     The command "Reposition" on the File menu may be used to restore the
         the startup sizes and locations of the various windows.  The
-        window positions are saved in a file labelled "NetHack Windows"
-        in the appropriate preferences folder.
+        window positions are saved in a file labelled "Slash'EM Windows"
+        in the Preferences Folder.
 
 === Default options
     The following options are specific to the Macintosh port:
@@ -73,8 +71,8 @@ and so on).
     large_font is currently a pre-game option and has no effect
         after the Dungeon Map window is created.
 
-    Default options may be set by editing the NetHack Defaults text
-        file (possibly using TeachText or your favorite editor).
+    Default options may be set by editing the Slash'EM Defaults text
+        file (possibly using SimpleText or your favorite editor).
         Unix(tm)-style notation is used, as in:
     OPTIONS=name:Arnold,time,!tombstone
 
@@ -151,4 +149,4 @@ and so on).
 
 
 ===
-The members of the Macintosh NetHack port team hope you enjoy this game.
+We hope you enjoy this game.

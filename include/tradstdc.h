@@ -204,7 +204,10 @@ typedef genericptr genericptr_t;	/* (void *) or (char *) */
 #define UNWIDENED_PROTOTYPES
 #endif
 #if defined(MAC_MPW)
-#define UNWIDENED_PROTOTYPES
+#define WIDENED_PROTOTYPES
+#endif
+#if defined(__MWERKS__)
+#define WIDENED_PROTOTYPES
 #endif
 #if defined(__MWERKS__) && defined(__BEOS__)
 #define UNWIDENED_PROTOTYPES
