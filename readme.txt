@@ -325,6 +325,9 @@ TODO:
 	-it appears to be segfaulting (randomly?)
 -tofix: using the nethack config files.
 
+ver 0.0.6E4F2 [December XX/2000]
+-fixed bug 122396: Bottom line slow to refresh.
+
 ver 0.0.6E4F1 [November 10/2000] [Released by Ali]
 -GTK: status window stats columns should never be too small
 -GTK: deactivated the unimplemented Fight command

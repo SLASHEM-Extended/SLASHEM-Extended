@@ -1912,6 +1912,13 @@ tty_putstr(window, attr, str)
 
 	(void) strncpy(&cw->data[cw->cury][j], str, cw->cols - j - 1);
 	cw->data[cw->cury][cw->cols-1] = '\0'; /* null terminate */
+	/* ALI - Clear third line if present and unused */
+	if (cw->cury == 1 && cw->cury < (cw->maxrow - 1) && k < 0)
+	{
+	    cw->data[cw->cury + 1][0] = '\0';
+	    tty_curs(WIN_STATUS, 1, cw->cury + 1);
+	    cl_end();
+	}
 	cw->cury = (cw->cury+1) % 2;
 	cw->curx = 0;
 	break;
