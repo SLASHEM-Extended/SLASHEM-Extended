@@ -7,13 +7,13 @@
 # by Michaelª Hamel and Ross Brown 1991 : michael@otago.ac.nz
 #
 # Updated for Slash'EM 0.0.5-2 to .6-6
-# Paul Hurtley, August 1999 to April 2002
+# Paul Hurtley, August 1999 to May 2002
 
 #--------------------------------------------------------------------------
 #
 # BEFORE YOU BUILD FOR THE FIRST TIME
 #  Set this equate to the folder containing all the Slash'EM source folders
-Top   		= Cabell:Documents:Projects:SlashEM:slashem-cvs:slashem:
+Top   		= Cabell:Users:paulhu:Projects:SlashEM:slashem-cvs:slashem:
 
 Processor  = PowerPC
 #Processor	= 68K
@@ -142,7 +142,6 @@ FileResources = ¶
 	"{Dat}"hh ¶
 	"{Dat}"history ¶
 	"{Dat}"license ¶
-	"{Results}"Guidebook.txt ¶
 	"{MacDir}"MacHelp ¶
 	"{MacDir}"News ¶
 	"{Dat}"opthelp ¶
