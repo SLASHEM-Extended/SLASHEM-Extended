@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.9 2000-09-15 07:25:24 wacko Exp $
+  $Id: gtk.c,v 1.10 2000-09-17 03:10:23 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -173,6 +173,7 @@ struct window_procs GTK_procs = {
 
 static GtkItemFactoryEntry menu_template[] = {
     {"/Game",			NULL,		NULL,		0,	"<Branch>"},
+    {"/Game/Gtear1",		NULL,		NULL,		0,	"<Tearoff>"},
     {"/Game/Play",		NULL,		NULL,		0,	"<Branch>"},
     /* Roles are inserted in the place of this NULL element */
     {NULL,			NULL,		NULL,		0,	NULL},
@@ -189,10 +190,10 @@ static int nmenu_items;
 
 static GtkItemFactoryEntry helpmenu_items[] = {
     {"/Help",			NULL,		NULL,		0,	"<LastBranch>"},
+    {"/Help/Htear1",		NULL,		NULL,		0,	"<Tearoff>"},
     {"/Help/Command Help",	NULL,		help_help,	0,	NULL},
     {"/Help/Key Help",		NULL,		help_shelp,	0,	NULL},
     {"/Help/Option Help",	NULL,		help_option,	0,	NULL},
-    {"/Help/sep3",		NULL,		NULL,		0,	"<Separator>"},
     {"/Help/sep3",		NULL,		NULL,		0,	"<Separator>"},
     {"/Help/History",		NULL,		help_history,	0,	NULL},
     {"/Help/License",		NULL,		help_license,	0,	NULL},
@@ -200,29 +201,36 @@ static GtkItemFactoryEntry helpmenu_items[] = {
 
 static GtkItemFactoryEntry playmenu_items[] = {
     {"/Move",			NULL,		NULL,		0,	"<Branch>"},
-    {"/Move/North",		NULL,		move_command,	'k',	NULL},
-    {"/Move/East",		NULL,		move_command,	'l',	NULL},
-    {"/Move/South",		NULL,		move_command,	'j',	NULL},
-    {"/Move/West",		NULL,		move_command,	'h',	NULL},
-    {"/Move/Northeast",		NULL,		move_command,	'u',	NULL},
-    {"/Move/Northwest",		NULL,		move_command,	'y',	NULL},
-    {"/Move/Southeast",		NULL,		move_command,	'n',	NULL},
-    {"/Move/Southwest",		NULL,		move_command,	'b',	NULL},
+    {"/Move/Mtear1",		NULL,		NULL,		0,	"<Tearoff>"},
+    {"/Move/North",		NULL,		move_command,	0,	NULL},
+    {"/Move/East",		NULL,		move_command,	1,	NULL},
+    {"/Move/South",		NULL,		move_command,	2,	NULL},
+    {"/Move/West",		NULL,		move_command,	3,	NULL},
+    {"/Move/Northeast",		NULL,		move_command,	4,	NULL},
+    {"/Move/Northwest",		NULL,		move_command,	5,	NULL},
+    {"/Move/Southeast",		NULL,		move_command,	6,	NULL},
+    {"/Move/Southwest",		NULL,		move_command,	7,	NULL},
     {"/Move/Down",		"greater",	key_command,	'>',	NULL},
     {"/Move/Up",		"less",		key_command,	'<',	NULL},
+/* Not Implemented Yet
     {"/Fight",			NULL,		NULL,		0,	"<Branch>"},
-    {"/Fight/North",		NULL,		fight_command,	'k',	NULL},
-    {"/Fight/East",		NULL,		fight_command,	'l',	NULL},
-    {"/Fight/South",		NULL,		fight_command,	'j',	NULL},
-    {"/Fight/West",		NULL,		fight_command,	'h',	NULL},
-    {"/Fight/Northeast",	NULL,		fight_command,	'u',	NULL},
-    {"/Fight/Northwest",	NULL,		fight_command,	'y',	NULL},
-    {"/Fight/Southeast",	NULL,		fight_command,	'n',	NULL},
-    {"/Fight/Southwest",	NULL,		fight_command,	'b',	NULL},
+    {"/Fight/Ftear1",		NULL,		NULL,		0,	"<Tearoff>"},
+    {"/Fight/North",		NULL,		fight_command,	0,	NULL},
+    {"/Fight/East",		NULL,		fight_command,	1,	NULL},
+    {"/Fight/South",		NULL,		fight_command,	2,	NULL},
+    {"/Fight/West",		NULL,		fight_command,	3,	NULL},
+    {"/Fight/Northeast",	NULL,		fight_command,	4,	NULL},
+    {"/Fight/Northwest",	NULL,		fight_command,	5,	NULL},
+    {"/Fight/Southeast",	NULL,		fight_command,	6,	NULL},
+    {"/Fight/Southwest",	NULL,		fight_command,	7,	NULL},
+*/
     {"/Check",			NULL,		NULL,		0,	"<Branch>"},
+    {"/Check/Ctear1",		NULL,		NULL,		0,	"<Tearoff>"},
     {"/Check/Here",		"colon",	key_command,	':',	NULL},
     {"/Check/There",		"semicolon",	key_command,	';',	NULL},
     {"/Check/Trap",		"asciicircum",	key_command,	'^',	NULL},
+    {"/Equip",			NULL,		NULL,		0,	"<Branch>"},
+    {"/Equip/Etear1",		NULL,		NULL,		0,	"<Tearoff>"},
     {"/Equip/Wield",		"w",		key_command,	'w',	NULL},	
     {"/Equip/Exchange weapons",	"x",		key_command,	'x',	NULL},	
     {"/Equip/Two-handed",	NULL,		ext_command,	EXT_CMD_TWOWEAPON,	NULL},	
@@ -232,6 +240,7 @@ static GtkItemFactoryEntry playmenu_items[] = {
     {"/Equip/Puton",		"<shift>p",	key_command,	'P',	NULL},	
     {"/Equip/Remove",		"<shift>r",	key_command,	'R',	NULL},	
     {"/You",			NULL,		NULL,		0,	"<Branch>"},
+    {"/You/Ytear1",		NULL,		NULL,		0,	"<Tearoff>"},
     {"/You/Inventory",		"i",		key_command,	'i',	NULL},
     {"/You/Weapon",		"parenright",	key_command,	')',	NULL},	
     {"/You/Armor",		"bracketleft",	key_command,	'[',	NULL},	
@@ -242,10 +251,12 @@ static GtkItemFactoryEntry playmenu_items[] = {
     {"/You/Known Item",		"backslash",	key_command,	'\\',	NULL},	
     {"/You/Conduct",		NULL,		ext_command,	EXT_CMD_CONDUCT,	NULL},	
     {"/Adventure",		NULL,		NULL,		0,	"<Branch>"},
+    {"/Adventure/ADtear1",	NULL,		NULL,		0,	"<Tearoff>"},
     {"/Adventure/Name",		"<alt>n",	key_command,	'n' | 0x80,	NULL},
     {"/Adventure/Call",		"<shift>C",	key_command,	'C',	NULL},
     {"/Adventure/Adjust",	"<alt>a",	key_command,	'a' | 0x80,	NULL},
     {"/Action",			NULL,		NULL,		0,	"<Branch>"},
+    {"/Action/ACtear1",		NULL,		NULL,		0,	"<Tearoff>"},
     {"/Action/Rest",		"period",	key_command,	'.',	NULL},
     {"/Action/Search",		"s",		key_command,	's',	NULL},
     {"/Action/Eat",		"e",		key_command,	'e',	NULL},
@@ -268,9 +279,11 @@ static GtkItemFactoryEntry playmenu_items[] = {
     {"/Action/Dip",		"<alt>d",	key_command,	'd' | 0x80,	NULL},
     {"/Action/Sit",		"<alt>s",	key_command,	's' | 0x80,	NULL},
     {"/Religion",		NULL,		NULL,		0, 	"<Branch>"},
+    {"/Religion/Rtear1",		NULL,		NULL,		0,	"<Tearoff>"},
     {"/Religion/Pray",		"<alt>p",	key_command,	'p' | 0x80,	NULL},
     {"/Religion/Offer",		"<alt>o",	key_command,	'o' | 0x80,	NULL},
     {"/Special",		NULL,		NULL,		0, 	"<Branch>"},
+    {"/Special/Stear1",		NULL,		NULL,		0,	"<Tearoff>"},
     {"/Special/Engrave",	"<shift>E",	key_command,	'E', 		NULL},
     {"/Special/Pay",		"p",		key_command,	'p', 		NULL},
     {"/Special/Borrow",		"<alt>b",	key_command,	'b' | 0x80,	NULL},
@@ -526,11 +539,25 @@ key_command(GtkWidget *widget, gpointer data)
     quit_hook();
 }
 
+static const int dir_keys[8][2] = {
+    	{'k','8'},	/* North */
+    	{'l','6'},	/* East */
+    	{'j','2'},	/* South */
+    	{'h','4'},	/* West */
+    	{'u','9'},	/* Northeast */
+    	{'y','7'},	/* Northwest */
+    	{'n','3'},	/* Southeast */
+    	{'b','1'},	/* Southwest */
+};
+
 static void
 move_command(GtkWidget *widget, gpointer data)
 {
+
     keysym = 'm';
-    keysym1 = (int)data;
+    keysym1 = (int) (iflags.num_pad ? 
+    				dir_keys[(int)data][1] : 
+    				dir_keys[(int)data][0]);
 
     quit_hook();
 }
@@ -539,7 +566,9 @@ static void
 fight_command(GtkWidget *widget, gpointer data)
 {
     keysym = 'F';
-    keysym1 = (int)data;
+    keysym1 = (int) (iflags.num_pad ? 
+    				dir_keys[(int)data][1] : 
+    				dir_keys[(int)data][0]);
 
     quit_hook();
 }
@@ -1243,6 +1272,9 @@ GTK_init_nhwindows(int *argc, char **argv)
   nh_menu_sensitive("/Game/Option", FALSE);
 */
     nh_menu_sensitive("/Move", FALSE);
+/*
+    nh_menu_sensitive("/Fight", FALSE);
+*/
     nh_menu_sensitive("/Check", FALSE);
     nh_menu_sensitive("/Equip", FALSE);
     nh_menu_sensitive("/You", FALSE);
@@ -1252,12 +1284,12 @@ GTK_init_nhwindows(int *argc, char **argv)
     nh_menu_sensitive("/Special", FALSE);
     
     main_hbox = nh_gtk_new_and_pack(
-	gtk_hbox_new(FALSE, 0), main_vbox, "",
+	gtk_hbox_new(FALSE, 1), main_vbox, "",
 	FALSE, FALSE, 0);
 	
     main_message = nh_gtk_new_and_pack(
 	nh_message_new(), main_hbox, "",
-	FALSE, FALSE, 0);
+	TRUE, TRUE, 0);
 
     main_status = nh_gtk_new_and_pack(
 	nh_status_new(), main_hbox, "",
@@ -1267,7 +1299,7 @@ GTK_init_nhwindows(int *argc, char **argv)
 #endif
     main_map = nh_gtk_new_and_pack(
 	nh_map_new(main_window), main_vbox, "",
-	FALSE, FALSE, 0);
+	TRUE, TRUE, 0);
 
     /*
      * Initialize standard windows. It used to be the case that window type
@@ -1311,11 +1343,15 @@ GTK_init_nhwindows2()
 	return;
     nh_menu_sensitive("/Game/Play", FALSE);
     nh_menu_sensitive("/Game/Save", TRUE);
+/*
     nh_menu_sensitive("/Game/Option", TRUE);
-
+*/
     nh_menu_sensitive("/Game/Save", TRUE);
     nh_menu_sensitive("/Game/Option", TRUE);
     nh_menu_sensitive("/Move", TRUE);
+/*
+    nh_menu_sensitive("/Fight", TRUE);
+*/
     nh_menu_sensitive("/Check", TRUE);
     nh_menu_sensitive("/Equip", TRUE);
     nh_menu_sensitive("/You", TRUE);

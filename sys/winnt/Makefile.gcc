@@ -37,7 +37,7 @@ DDAT  = ../dat
 DUTIL = ../util
 DSRC  = ../src
 DINCL = ../include
-MW32GTK = /mingw32/gtk/src
+MW32GTK = /mingw32/gtk
 
 # Normal dos commands get confused by \\
 DAT  = ..\dat
@@ -180,7 +180,7 @@ endif
 # GTK windowing system
 #WINGTKCFLAGS=`gtk-config --cflags`
 #WINGTKCFLAGS=-Ic:/mingw32/src/gtk+ -Ic:/mingw32/src/glib -Ic:/mingw32/src/gtk+/gdk
-WINGTKCFLAGS=-Ic:/mingw32/src/
+WINGTKCFLAGS=-I$(MW32GTK)
 
 # Set the WINSRC, WINOBJ, and WINLIB lines to correspond to your desired
 # combination of windowing systems.  Also set windowing systems in config.h.
@@ -202,7 +202,7 @@ WINGTKOBJ = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
 
 ifeq ($(USE_GTK),Y)
 WINSRC = $(WINTTYSRC) $(WINGTKSRC)
-WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ)
+WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ) tile.o
 CCOMPILE = $(CC) -fnative-struct
 else
 WINSRC = $(WINTTYSRC)
@@ -217,12 +217,12 @@ endif
 WINTTYLIB = 
 # libraries for GTK
 # WINGTKLIB = `gtk-config --libs`
-WINGTKLIB1 = $(MW32GTK)/gtk+/gtk/libgtk-1.3.a $(MW32GTK)/gtk+/gdk/libgdk-1.3.a 
-WINGTKLIB2 = $(MW32GTK)/glib/libglib-1.3.a
+WINGTKLIB1 = $(MW32GTK)/src/gtk+/gtk/libgtk-1.3.a $(MW32GTK)/src/gtk+/gdk/libgdk-1.3.a 
+WINGTKLIB2 = $(MW32GTK)/src/glib/libglib-1.3.a
 #WINGTKLIB = /mingw32/src/libgtk-1.3.a /mingw32/src/libgdk-1.3.a /mingw32/src/libglib-1.3.a
 
 ifeq ($(USE_GTK),Y)
-WINLIB = $(WINTTYLIB) $(WINGTKLIB) tile.o
+WINLIB = $(WINTTYLIB) $(WINGTKLIB)
 else
 WINLIB = $(WINTTYLIB)
 endif
@@ -426,7 +426,7 @@ else
 #	$(DEL) $(GAMEDIR)\makefile.
 endif
 ifeq ($(USE_GTK),Y)
-	$(COPY) $(WSYS)\gkrc.w32     $(GAMEDIR)
+	$(COPY) $(WSYS)\gtkrc.w32     $(GAMEDIR)
 	$(COPY) rip.xpm              $(GAMEDIR)
 	$(COPY) credit.xpm           $(GAMEDIR)
 	$(COPY) x11tiles             $(GAMEDIR)
@@ -438,7 +438,6 @@ ifeq ($(USE_GTK),Y)
 	$(COPY) $(GNUDLL)\*.* $(GAMEDIR)
 endif
 	$(COPY) $(SSHR)\NetHack.cnf  $(GAMEDIR)\defaults.nh
-	$(COPY) $(MSYS)\NHAccess.nh  $(GAMEDIR)
 	$(COPY) recover.exe          $(GAMEDIR)
 	$(COPY) $(DOC)\guidebook.txt $(GAMEDIR)
 	$(COPY) $(DOC)\recover.txt   $(GAMEDIR)

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkstatus.c,v 1.3 2000-09-11 16:37:20 j_ali Exp $
+  $Id: gtkstatus.c,v 1.4 2000-09-17 03:10:23 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -317,8 +317,11 @@ nh_status_update()
     if(buf[0])
 	gtk_label_set_text(GTK_LABEL(dlvl), buf);
 
-    for(i=0 ; i<STAT_ROWS ; ++i)
-	for(j=0 ; j<STAT_COLS ; ++j){
+
+    for(j=0 ; j<STAT_COLS ; ++j) {
+    	gtk_clist_freeze(GTK_CLIST(clist[j]));
+    	
+	for(i=0 ; i<STAT_ROWS ; ++i) {
 	    struct nh_stat_tab *t;
 	    t = &stat_tab[j][i];
 
@@ -375,6 +378,13 @@ nh_status_update()
 		GTK_CLIST(clist[j]),
 		i, 0, t->name);
 	}
+	
+	gtk_clist_set_column_min_width(GTK_CLIST(clist[j]), 0, 
+		gtk_clist_optimal_column_width(GTK_CLIST(clist[j]), 0));
+	gtk_clist_set_column_min_width(GTK_CLIST(clist[j]), 1, 
+		gtk_clist_optimal_column_width(GTK_CLIST(clist[j]), 1));
+    	gtk_clist_thaw(GTK_CLIST(clist[j]));
+    }
 
 
     if(Blind)
@@ -443,6 +453,7 @@ nh_status_new()
 
     handle = gtk_handle_box_new();
     GTK_HANDLE_BOX(handle)->shrink_on_detach = 1;
+    
 /*
     gtk_widget_realize(handle);
 */
@@ -527,8 +538,10 @@ nh_status_new()
 	GTK_WIDGET_UNSET_FLAGS(w, GTK_CAN_FOCUS);
 
 	gtk_clist_set_shadow_type(GTK_CLIST(w), GTK_SHADOW_ETCHED_IN);
-	gtk_clist_set_column_width(GTK_CLIST(w), 0, 50);
-	gtk_clist_set_column_width(GTK_CLIST(w), 1, 50);
+
+	gtk_clist_set_column_min_width(GTK_CLIST(w), 0, 50);
+	gtk_clist_set_column_min_width(GTK_CLIST(w), 1, 50);
+
 	gtk_clist_set_column_justification(
 	    GTK_CLIST(w), 0, GTK_JUSTIFY_RIGHT
 	    );
@@ -580,6 +593,28 @@ nh_status_new()
     encu = nh_gtk_new_and_pack(
 	gtk_label_new(""), hbox2, "",
 	FALSE, FALSE, 0);
+
+    /* Clear HP/MP bars */
+    {
+	GdkRectangle update_rect;
+
+	update_rect.x = 0;
+	update_rect.y = 0;
+	update_rect.width = NH_BAR_WIDTH;
+	update_rect.height = NH_BAR_HEIGHT;
+
+	gdk_draw_rectangle(
+		hp_bar_pixmap, hp_bar->style->black_gc, TRUE,
+		0, 0, NH_BAR_WIDTH, NH_BAR_HEIGHT);
+	
+	gdk_draw_rectangle(
+		mp_bar_pixmap, mp_bar->style->black_gc, TRUE,
+		0, 0, NH_BAR_WIDTH, NH_BAR_HEIGHT);
+
+	gtk_widget_draw(hp_bar, &update_rect);
+	gtk_widget_draw(mp_bar, &update_rect);
+
+    }
 
     return handle;
 }

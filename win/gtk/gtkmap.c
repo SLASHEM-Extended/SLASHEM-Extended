@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.7 2000-09-15 07:25:24 wacko Exp $
+  $Id: gtkmap.c,v 1.8 2000-09-17 03:10:23 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -301,7 +301,7 @@ nh_set_map_visual(int mode)
 #ifdef RADAR
 	nh_radar_update();
 #endif
-	doredraw();
+	doredraw();	
     }
     map_visual = mode;
 }
@@ -771,10 +771,11 @@ nh_map_new(GtkWidget *w)
     if(width >= root_width)
 	width = root_width - 50;
 
-    if(height >= root_height * .67)
-	height = root_height * .67 - 50;
-    
+    if(height >= (root_height * 2 / 3))
+	height = (root_height * 2 / 3) - 50;
+
     gtk_widget_set_usize(GTK_WIDGET(map_scroll), width, height);
+    
 /*
   set gc 
  */

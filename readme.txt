@@ -325,6 +325,17 @@ TODO:
 	-it appears to be segfaulting (randomly?)
 -tofix: using the nethack config files.
 
+ver 0.0.6E4F1 [September XX/2000]
+-GTK: status window stats columns should never be too small
+-GTK: deactivated the unimplemented Fight command
+-GTK: made the menus able to "tear-off"
+-GTK: move menu works with num_pad TRUE
+-GTK: message window now word wraps
+-GTK: mesage window takes up all available horizontal space minus that of status bar
+-GTK: map window takes up all available vertical space minus status bar/message bar
+	space
+-GTK: MP/HP bars are initialized to black at startup
+
 ver 0.0.6E4F0 [September XX/2000]
 -changed some checks in tech.c to use DEADMONSTER()
 -updated Guidebook

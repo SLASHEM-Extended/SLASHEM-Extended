@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmessage.c,v 1.1 2000-08-15 19:55:13 wacko Exp $
+  $Id: gtkmessage.c,v 1.2 2000-09-17 03:10:23 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -30,11 +30,11 @@ nh_message_new()
     
     message_text = nh_gtk_new_and_pack(
 	gtk_text_new(NULL, NULL), message_hbox, "",
-	FALSE, FALSE, NH_PAD);
-    GTK_WIDGET_UNSET_FLAGS(message_text, GTK_CAN_FOCUS);
+	TRUE, TRUE, NH_PAD);
 
-    gtk_widget_set_usize(GTK_WIDGET(message_text), (root_width)/2, -1);
-    
+    GTK_WIDGET_UNSET_FLAGS(message_text, GTK_CAN_FOCUS);
+    gtk_text_set_word_wrap((GtkText *) message_text, TRUE);
+  
     message_scrollbar = nh_gtk_new_and_pack(
 	gtk_vscrollbar_new(GTK_TEXT(message_text)->vadj), message_hbox, "",
 	FALSE, FALSE, NH_PAD);
