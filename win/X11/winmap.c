@@ -1584,6 +1584,9 @@ create_map_window(wp, create_popup, parent)
     (void) memset((genericptr_t) map_info->t_stop, (char) 0,
 			sizeof(map_info->t_stop));
 
+    map_info->mtype.text_map = (struct text_map_info_t *)0;
+    map_info->mtype.tile_map = (struct tile_map_info_t *)0;
+
     /* Backwards compatibility */
     if (appResources.tile_file[0]) {
 	int i;

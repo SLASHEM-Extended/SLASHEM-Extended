@@ -84,6 +84,7 @@ ver 0.0.7E4 [?] [Released by ?]
 -refixed bug 790230: BUG: obfree() called on non-empty container
 -fixed bug 841965: hallucinating vampire eats normal food
 -fixed bug 843535: Disasm technique kills game
+-fixed bug 846684: X11 port crashes on start-up in tile mode
 
 See history.txt for changes made in previous versions.
 
