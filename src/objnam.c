@@ -235,6 +235,10 @@ register struct obj *obj;
 	if (!Blind) obj->dknown = TRUE;
 	if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER)) obj->bknown = TRUE;
 
+	/* We could put a switch(obj->oclass) here but currently only this one case exists */
+	if (obj->oclass == WEAPON_CLASS && is_poisonable(obj) && obj->opoisoned)
+		Strcpy(buf, "poisoned ");
+
 	if (obj_is_pname(obj))
 	    goto nameit;
 	switch (obj->oclass) {
@@ -253,8 +257,6 @@ register struct obj *obj;
 			Sprintf(buf,"%s amulet", dn);
 		break;
 	    case WEAPON_CLASS:
-		if (is_poisonable(obj) && obj->opoisoned)
-			Strcpy(buf, "poisoned ");
 	    case VENOM_CLASS:
 	    case TOOL_CLASS:
 		if (typ == LENSES)
