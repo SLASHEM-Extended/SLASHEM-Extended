@@ -649,7 +649,7 @@ long timeout;
 {
 	struct obj *bomb, *otmp;
 	xchar x,y;
-	boolean redraw = FALSE, silent, underwater;
+	boolean silent, underwater;
 	struct monst *mtmp = (struct monst *)0;
 
 	bomb = (struct obj *) arg;
@@ -725,7 +725,6 @@ long timeout;
 			    }
 			    goto free_bomb;
 			}
-		    	redraw = TRUE;
 		    	break;
 		    default:	/* Buried, contained, etc. */
 			if (!silent)
@@ -733,13 +732,13 @@ long timeout;
 			goto free_bomb;
 			break;
 		}
-		grenade_explode(bomb->otyp, x, y, bomb->yours, silent ? 2 : 0);
+		grenade_explode(bomb, x, y, bomb->yours, silent ? 2 : 0);
+		return;
 	} /* Migrating grenades "blow up in midair" */
 
 free_bomb:
 	obj_extract_self(bomb);
 	obfree(bomb, (struct obj *)0);
-	if (redraw) newsym(x, y);
 }
 #endif
 

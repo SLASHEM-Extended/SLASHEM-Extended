@@ -131,7 +131,8 @@ int x,y;
 			create = 1; /* Don't destroy */
 			arm_bomb(obj, FALSE);
 		} else {
-			grenade_explode(obj->otyp, bhitpos.x, bhitpos.y, FALSE, 0);
+			grenade_explode(obj, bhitpos.x, bhitpos.y, FALSE, 0);
+			obj = (struct obj *)0;
 		}
 	} else if (objects[obj->otyp].oc_dir & EXPLOSION) {
 	    	if (cansee(bhitpos.x,bhitpos.y)) 
@@ -176,7 +177,7 @@ int x,y;
 			    retvalu = 0;
 			}
 		}
-	} else obfree(obj, (struct obj*) 0);
+	} else if (obj) obfree(obj, (struct obj*) 0);
 
 	return retvalu;
 }
