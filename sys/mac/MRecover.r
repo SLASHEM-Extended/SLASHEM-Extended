@@ -230,11 +230,6 @@ resource 'BNDL' (128) {
 	}
 };
 
-data 'slRc' (0) {
-	$"1344 6176 6964 2048 6169 7273 746F 6E20"            /* .David Hairston  */
-	$"332F 3933"                                          /* 3/93 */
-};
-
 resource 'FREF' (128) {
 	'APPL',
 	0,
