@@ -73,7 +73,8 @@ ver 0.0.7E6F4 [?] [Released by ?]
 -fixed bug 1071623: Cannot compile on FreeBSD due to menucolor inclusion
 -fixed bug 993420: Crashes when typing symbols on drop menu
 -fixed bug 1087609: Some platforms fails to compile win/proxy/nhext.c
--fixed bug 1084366 ] ghoul queen don't has M2_FEMALE
+-fixed bug 1084366: ghoul queen don't has M2_FEMALE
+-fixed bug 1066530: Fired/thrown items get new inventory letter when retrieved
 
 See history.txt for changes made in previous versions.
 
