@@ -337,6 +337,8 @@ typedef signed char	schar;
 typedef unsigned char	uchar;
 #endif
 
+#define RECORD_CONDUCT /* Record conduct challenges in logfile */
+
 /*
  * Various structures have the option of using bitfields to save space.
  * If your C compiler handles bitfields well (e.g., it can initialize structs

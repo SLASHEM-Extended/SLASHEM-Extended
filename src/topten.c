@@ -50,6 +50,9 @@ struct toptenentry {
 	int maxlvl, hp, maxhp, deaths;
 	int ver_major, ver_minor, patchlevel;
 	long deathdate, birthdate;
+#ifdef RECORD_CONDUCT
+	long conduct;
+#endif
 	int uid;
 	char plrole[ROLESZ+1];
 	char plrace[ROLESZ+1];
@@ -70,6 +73,9 @@ STATIC_DCL void FDECL(free_ttlist, (struct toptenentry *));
 STATIC_DCL int FDECL(classmon, (char *,BOOLEAN_P));
 STATIC_DCL int FDECL(score_wanted,
 		(BOOLEAN_P, int,struct toptenentry *,int,const char **,int));
+#ifdef RECORD_CONDUCT
+STATIC_DCL long FDECL(encodeconduct, (void));
+#endif
 #ifdef NO_SCAN_BRACK
 STATIC_DCL void FDECL(nsb_mung_line,(char*));
 STATIC_DCL void FDECL(nsb_unmung_line,(char*));
@@ -123,6 +129,29 @@ d_level *lev;
 	    return depth(lev);
 }
 
+#ifdef RECORD_CONDUCT
+long
+encodeconduct(void)
+{
+       long e = 0L;
+
+       if(u.uconduct.unvegetarian)    e |= 0x1L;
+       if(u.uconduct.unvegan)         e |= 0x2L;
+       if(u.uconduct.food)            e |= 0x4L;
+       if(u.uconduct.gnostic)         e |= 0x8L;
+       if(u.uconduct.weaphit)         e |= 0x10L;
+       if(u.uconduct.killer)          e |= 0x20L;
+       if(u.uconduct.literate)        e |= 0x40L;
+       if(u.uconduct.polypiles)       e |= 0x80L;
+       if(u.uconduct.polyselfs)       e |= 0x100L;
+       if(u.uconduct.wishes)          e |= 0x200L;
+       if(u.uconduct.wisharti)        e |= 0x400L;
+       if(num_genocides())            e |= 0x800L;
+
+       return e;
+}
+#endif
+
 STATIC_OVL void
 readentry(rfile,tt)
 FILE *rfile;
@@ -143,6 +172,11 @@ struct toptenentry *tt;
 	final_fpos = tt->fpos = ftell(rfile);
 #endif
 #define TTFIELDS 13
+
+#ifdef RECORD_CONDUCT
+	tt->conduct = 4095;
+#endif
+
 	if(fscanf(rfile, fmt,
 			&tt->ver_major, &tt->ver_minor, &tt->patchlevel,
 			&tt->points, &tt->deathdnum, &tt->deathlev,
@@ -177,6 +211,37 @@ struct toptenentry *tt;
 			nsb_unmung_line(tt->death);
 		}
 #endif
+
+#ifdef RECORD_CONDUCT
+		if(tt->points > 0) {
+			/* If the string "Conduct=%d" appears, set tt->conduct and remove that
+			 * portion of the string */
+			char *dp, *dp2;
+			for(dp = tt->death; *dp; dp++) {
+				if(!strncmp(dp, " Conduct=", 9)) {
+					dp2 = dp + 9;
+					sscanf(dp2, "%d", &tt->conduct);
+					/* Find trailing null or space */
+					while(*dp2 && *dp2 != ' ')
+						dp2++;
+
+					/* Cut out the " Conduct=" portion of the death string */
+					while(*dp2) {
+						*dp = *dp2;
+						dp2++;
+						dp++;
+					}
+					
+					*dp = *dp2;
+				}
+			}
+
+			/* Sanity check */
+			if(tt->conduct < 0 || tt->conduct > 4095)
+				tt->conduct = 4095;
+		}
+#endif
+
 	}
 
 	/* check old score entries for Y2K problem and fix whenever found */
@@ -191,6 +256,16 @@ writeentry(rfile,tt)
 FILE *rfile;
 struct toptenentry *tt;
 {
+	char *cp = NULL;
+
+#ifdef RECORD_CONDUCT
+	/* Add a trailing " Conduct=%d" to tt->death */
+	if(tt->conduct != 4095) {
+		cp = tt->death + strlen(tt->death);
+		Sprintf(cp, " Conduct=%d", tt->conduct);
+	}
+#endif
+
 #ifdef NO_SCAN_BRACK
 	nsb_mung_line(tt->name);
 	nsb_mung_line(tt->death);
@@ -223,6 +298,12 @@ struct toptenentry *tt;
 #ifdef NO_SCAN_BRACK
 	nsb_unmung_line(tt->name);
 	nsb_unmung_line(tt->death);
+#endif
+
+#ifdef RECORD_CONDUCT
+	/* Return the tt->death line to the original form */
+	if(cp)
+		*cp = '\0';
 #endif
 }
 
@@ -333,6 +414,9 @@ int how;
 	}
 	t0->birthdate = yyyymmdd(u.ubirthday);
 	t0->deathdate = yyyymmdd((time_t)0L);
+#ifdef RECORD_CONDUCT
+	t0->conduct = encodeconduct();
+#endif
 	t0->tt_next = 0;
 #ifdef UPDATE_RECORD_IN_PLACE
 	t0->fpos = -1L;
@@ -596,6 +680,39 @@ boolean so;
 		*bp = (t1->deathdnum == astral_level.dnum) ? '\0' : ' ';
 	    second_line = FALSE;
 	} else if (!strncmp("ascended", t1->death, 8)) {
+
+#ifdef RECORD_CONDUCT
+		/* Add a notation for conducts kept */
+		if(t1->conduct != 4095) {
+			int i, m;
+			char d = 0, skip;
+			const char *conduct_names[] = {
+				"Food", "Vgn", "Vgt", "Ath", "Weap", "Pac",
+				"Ill", "Poly", "Form", "Wish", "Art", "Geno",
+				NULL };
+		
+			Strcat(eos(linebuf), "(");
+			for(i = 0, m = 1; conduct_names[i]; i += skip + 1, m <<= (skip + 1)) {
+				skip = 0;
+				if(t1->conduct & m)
+					continue;
+		
+				/* Only show one of foodless, vegan, vegetarian */
+				if(i == 0) skip = 2;
+				if(i == 1) skip = 1;
+
+				/* Only show one of wishless, artiwishless */
+				if(i == 9) skip = 1;
+
+				/* Add a hyphen for multiple conducts */
+				if(d) Strcat(eos(linebuf), "-");
+				Strcat(eos(linebuf), conduct_names[i]);
+				d = 1;
+			}
+			Strcat(eos(linebuf), ") ");
+		}
+#endif
+
 	    Sprintf(eos(linebuf), "ascended to demigod%s-hood",
 		    (t1->plgend[0] == 'F') ? "dess" : "");
 	    second_line = FALSE;
