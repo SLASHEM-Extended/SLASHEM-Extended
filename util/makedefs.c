@@ -862,12 +862,17 @@ do_options()
 
 /* WAC use DEF_GAME_NAME */
 
-	Fprintf(ofp,"\n    %s version %d.%d.%dE%d",
-		DEF_GAME_NAME, VERSION_MAJOR, VERSION_MINOR, PATCHLEVEL, EDITLEVEL);
+	Fprintf(ofp,"\n    %s version %d.%d.%d",
+		DEF_GAME_NAME, VERSION_MAJOR, VERSION_MINOR, PATCHLEVEL);
+#ifdef EDITLEVEL
+	Fprintf(ofp, "E%d", EDITLEVEL);
 #ifdef FIXLEVEL
 	Fprintf(ofp, "F%d", FIXLEVEL);
 #endif
-#ifdef BETA
+#endif
+#if defined(ALPHA)
+	Fprintf(ofp, " [alpha]\n");
+#elif defined(BETA)
 	Fprintf(ofp, " [beta]\n");
 #else
 	Fprintf(ofp, "\n");
