@@ -1810,14 +1810,20 @@ struct monst *mtmp, *victim;
 	if (mtmp->mhpmax <= hp_threshold)
 	    return ptr;         /* doesn't gain a level */
 
-	if (is_mplayer(ptr)) lev_limit = 30;    /* same as player */
-	else if (lev_limit < 5) lev_limit = 5;  /* arbitrary */
-	else if (lev_limit > 49) lev_limit = (ptr->mlevel > 49 ? 50 : 49);
-
 	/* note:  none of the monsters with special hit point calculations
 	   have both little and big forms */
 	oldtype = monsndx(ptr);
 	newtype = little_to_big(oldtype);
+
+	/* Allow to grow up even if grown up form would normally be
+	 * out of range */
+	if (lev_limit < mons[newtype].mlevel)
+	    lev_limit = mons[newtype].mlevel;
+
+	if (is_mplayer(ptr)) lev_limit = 30;    /* same as player */
+	else if (lev_limit < 5) lev_limit = 5;  /* arbitrary */
+	else if (lev_limit > 49) lev_limit = (ptr->mlevel > 49 ? 50 : 49);
+
 	if (newtype == PM_PRIEST && mtmp->female) newtype = PM_PRIESTESS;
 	if ((int)++mtmp->m_lev >= mons[newtype].mlevel && newtype != oldtype) {
 	    ptr = &mons[newtype];
