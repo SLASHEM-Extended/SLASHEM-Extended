@@ -191,10 +191,17 @@ struct obj {
 #define is_multigen(otmp)	((otmp)->oclass == WEAPON_CLASS && \
 			 objects[(otmp)->otyp].oc_skill >= -P_SHURIKEN && \
 			 objects[(otmp)->otyp].oc_skill <= -P_BOW)
+#ifdef FIREARMS
+#define is_unpoisonable_firearm_ammo(otmp)	\
+			 (is_bullet(otmp) || (otmp)->otyp == STICK_OF_DYNAMITE)
+#else
+#define is_unpoisonable_firearm_ammo(otmp)	0
+#endif
 #define is_poisonable(otmp)	((otmp)->oclass == WEAPON_CLASS && \
-			 (objects[(otmp)->otyp].oc_skill <= P_TWO_HANDED_SWORD || \
+			 (objects[(otmp)->otyp].oc_skill <= P_SABER || \
 			 (objects[(otmp)->otyp].oc_skill >= P_POLEARMS && \
-			 objects[(otmp)->otyp].oc_skill <= P_LANCE)))
+			 objects[(otmp)->otyp].oc_skill <= P_LANCE)) && \
+			 !is_unpoisonable_firearm_ammo(otmp))
 #define uslinging()	(uwep && objects[uwep->otyp].oc_skill == P_SLING)
 #define is_weptool(o)	((o)->oclass == TOOL_CLASS && \
 			 objects[(o)->otyp].oc_skill != P_NONE)

@@ -71,6 +71,7 @@ ver 0.0.7E6 [?] [Released by ?]
 -fixed bug 876092: Wrong filename in message during build process (Clive Crous)
 -fixed bug 876094: Tiles are miscoloured in allegro port (Clive Crous)
 -fixed bug 876096: Tiles are misdrawn/cropped in allegro port (Clive Crous)
+-fixed bug 510249: poisoned frag grenade (Nico Kist)
 
 See history.txt for changes made in previous versions.
 
