@@ -560,6 +560,8 @@ register char *enterstring;
 		    tool = "mattock";
 		    while ((mattock = mattock->nobj) != 0)
 			if (mattock->otyp == DWARVISH_MATTOCK) ++cnt;
+		    /* [ALI] Shopkeeper indicates the mattock(s) */
+		    if (!Blind)  makeknown(DWARVISH_MATTOCK);
 		}
 		verbalize(NOTANGRY(shkp) ?
 			  "Will you please leave your %s%s outside?" :
