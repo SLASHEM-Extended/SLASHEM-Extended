@@ -792,7 +792,7 @@ ring:
 	if ((obj->otyp != BOULDER) || !throws_rocks (youmonst.data))
 	  if ((obj->otyp < LUCKSTONE) && (obj->otyp != CHEST) && (obj->otyp != LARGE_BOX) &&
 	      (obj->otyp != ICE_BOX) && (flags.invweight == TRUE))
-		        Sprintf (eos(bp), " {%d}", weight(obj));
+		        Sprintf (eos(bp), " {%d}", obj->owt);
 #endif
 
 	bp = strprepend(bp, prefix);
