@@ -3031,6 +3031,8 @@ typfnd:
 #endif
 	    ) {
 	    artifact_exists(otmp, ONAME(otmp), FALSE);
+	    if (Has_contents(otmp))
+		delete_contents(otmp);
 	    obfree(otmp, (struct obj *) 0);
 	    otmp = &zeroobj;
 	    pline("For a moment, you feel %s in your %s, but it disappears!",
