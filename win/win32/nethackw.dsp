@@ -54,12 +54,12 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib comctl32.lib advapi32.lib /nologo /subsystem:windows /machine:I386
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib comctl32.lib advapi32.lib /nologo /subsystem:windows /machine:I386 /out:"Release/slashemw.exe"
 # Begin Special Build Tool
 OutDir=.\Release
 SOURCE="$(InputPath)"
 PostBuild_Desc=Install exe
-PostBuild_Cmds=copy $(OutDir)\nethackw.exe ..\binary	 copy ..\dat\nhdat ..\binary	 copy ..\dat\license ..\binary	 if exist tiles.bmp copy tiles.bmp ..\binary	 if exist ..\doc\Guidebook.txt copy ..\doc\Guidebook.txt ..\binary\Guidebook.txt	 if exist ..\doc\nethack.txt copy ..\doc\nethack.txt ..\binary\NetHack.txt	 if exist ..\doc\recover.txt copy ..\doc\recover.txt ..\binary\recover.txt	 copy ..\sys\winnt\defaults.nh ..\binary\defaults.nh
+PostBuild_Cmds=copy $(OutDir)\slashemw.exe ..\binary	 copy ..\dat\nhdat ..\binary	 copy ..\dat\license ..\binary	 if exist ..\src\tiles32.bmp copy ..\src\tiles32.bmp ..\binary	 if exist ..\doc\Guidebook.txt copy ..\doc\Guidebook.txt ..\binary\Guidebook.txt	 if exist ..\doc\slashem.txt copy ..\doc\slashem.txt ..\binary\SlashEM.txt	 if exist ..\doc\recover.txt copy ..\doc\recover.txt ..\binary\recover.txt	 copy ..\sys\winnt\defaults.nh ..\binary\defaults.nh
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "nethackw - Win32 Debug"
@@ -87,12 +87,12 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib comctl32.lib advapi32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib comctl32.lib advapi32.lib /nologo /subsystem:windows /debug /machine:I386 /out:"Debug/slashemw.exe" /pdbtype:sept
 # Begin Special Build Tool
 OutDir=.\Debug
 SOURCE="$(InputPath)"
 PostBuild_Desc=Install exe
-PostBuild_Cmds=if NOT exist ..\binary\*.* mkdir ..\binary	 copy $(OutDir)\nethackw.exe ..\binary	 copy ..\dat\nhshare ..\binary	 copy ..\dat\nhushare ..\binary	 copy ..\dat\license ..\binary	rem  if exist ..\src\tiles.bmp copy ..\src\tiles.bmp ..\binary	 if exist ..\src\tiles32.bmp copy ..\src\tiles32.bmp ..\binary	 if exist ..\doc\Guidebook.txt copy ..\doc\Guidebook.txt ..\binary\Guidebook.txt	 if exist ..\doc\nethack.txt copy ..\doc\nethack.txt ..\binary\NetHack.txt	 if exist ..\doc\recover.txt copy ..\doc\recover.txt ..\binary\recover.txt	 copy ..\sys\winnt\defaults.nh ..\binary\defaults.nh
+PostBuild_Cmds=if NOT exist ..\binary\*.* mkdir ..\binary	 copy $(OutDir)\slashemw.exe ..\binary	 copy ..\dat\nhshare ..\binary	 copy ..\dat\nhushare ..\binary	 copy ..\dat\license ..\binary	rem  if exist ..\src\tiles.bmp copy ..\src\tiles.bmp ..\binary	 if exist ..\src\tiles32.bmp copy ..\src\tiles32.bmp ..\binary	 if exist ..\doc\Guidebook.txt copy ..\doc\Guidebook.txt ..\binary\Guidebook.txt	 if exist ..\doc\slashem.txt copy ..\doc\slashem.txt ..\binary\SlashEM.txt	 if exist ..\doc\recover.txt copy ..\doc\recover.txt ..\binary\recover.txt	 copy ..\sys\winnt\defaults.nh ..\binary\defaults.nh
 # End Special Build Tool
 
 !ENDIF 
