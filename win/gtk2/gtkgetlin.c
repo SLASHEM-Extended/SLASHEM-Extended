@@ -1,5 +1,5 @@
 /*
-  $Id: gtkgetlin.c,v 1.3 2001-09-18 12:09:18 j_ali Exp $
+  $Id: gtkgetlin.c,v 1.4 2001-12-11 20:43:49 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -55,9 +55,10 @@ entry_cancel(GtkWidget *widget, GdkEventButton *event, gpointer data)
     return FALSE;
 }
 
-void
-GTK_getlin(const char *query, char *ret)
+char *
+GTK_ext_getlin(const char *query)
 {
+    char *s, *ret;
     GtkWidget *frame;
     GtkWidget *vbox;
     GtkWidget *hbox;
@@ -112,13 +113,20 @@ GTK_getlin(const char *query, char *ret)
 
     gtk_main();
 
-    if(!cancelled)
-	Strcpy(ret, (char *)gtk_entry_get_text(GTK_ENTRY(entry)));
-    else
+    if(!cancelled) {
+	s = (char *)gtk_entry_get_text(GTK_ENTRY(entry));
+	ret = (char *)alloc(strlen(s) + 1);
+	Strcpy(ret, s);
+    }
+    else {
+	ret = (char *)alloc(1);
 	*ret = '\0';
+    }
 
     if (window) {
 	gtk_widget_unmap(window);
 	gtk_widget_destroy(window);
     }
+
+    return ret;
 }

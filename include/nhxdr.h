@@ -1,4 +1,4 @@
-/* $Id: nhxdr.h,v 1.2 2001-09-06 18:06:38 j_ali Exp $ */
+/* $Id: nhxdr.h,v 1.1 2001-12-11 20:43:49 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -56,6 +56,7 @@ E boolean FDECL(nhext_xdr_u_char, (NhExtXdr *, unsigned char *));
 E boolean FDECL(nhext_xdr_enum, (NhExtXdr *, int *));
 E boolean FDECL(nhext_xdr_bool, (NhExtXdr *, boolean *));
 E boolean FDECL(nhext_xdr_string, (NhExtXdr *, char **, unsigned int));
+E boolean FDECL(nhext_xdr_wrapstring, (NhExtXdr *, char **));
 E boolean FDECL(nhext_xdr_vector, (NhExtXdr *, char *, unsigned int,
   unsigned int, boolean (*)()));
 E boolean FDECL(nhext_xdr_array, (NhExtXdr *, char **, unsigned int *,

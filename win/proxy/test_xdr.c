@@ -1,4 +1,4 @@
-/* $Id: test_xdr.c,v 1.1 2001-09-06 18:06:38 j_ali Exp $ */
+/* $Id: test_xdr.c,v 1.2 2001-12-11 20:43:49 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -19,8 +19,8 @@
 #include <rpc/rpc.h>
 #else
 #include "hack.h"
-#include "winproxy.h"
 #include "nhxdr.h"
+#include "winproxy.h"
 #endif	/* RPCGEN */
 
 #ifdef RPCGEN
@@ -33,6 +33,7 @@
 
 #define nhext_xdr_op		xdr_op
 typedef XDR NhExtXdr;
+typedef xdrproc_t nhext_xdrproc_t;
 
 #define nhext_xdrmem_create	xdrmem_create
 #define nhext_xdr_getpos	xdr_getpos
@@ -51,6 +52,8 @@ typedef XDR NhExtXdr;
 #define nhext_xdr_vector	xdr_vector
 #define nhext_xdr_array		xdr_array
 #define nhext_xdr_string	xdr_string
+#else
+typedef boolean (*nhext_xdrproc_t) ();
 #endif	/* RPCGEN */
 
 int
@@ -84,7 +87,7 @@ enum nhext_xdr_op op;
     for(i = 0; i < 8; i++)
 	vector[i] = i;
     if (!nhext_xdr_vector(xdrs, (char *)vector, SIZE(vector), sizeof(short),
-      nhext_xdr_short)) {
+      (nhext_xdrproc_t)nhext_xdr_short)) {
 	fprintf(stderr, "nhext_xdr_vector failed\n");
 	return FALSE;
     }
@@ -119,7 +122,7 @@ enum nhext_xdr_op op;
     else
 	array = NULL;
     if (!nhext_xdr_array(xdrs, (char **)&array, &length, (unsigned int)-1,
-      sizeof(unsigned char), nhext_xdr_u_char)) {
+      sizeof(unsigned char), (nhext_xdrproc_t)nhext_xdr_u_char)) {
 	fprintf(stderr, "nhext_xdr_array failed\n");
 	return FALSE;
     }
@@ -134,7 +137,7 @@ enum nhext_xdr_op op;
     array = NULL;
     length = 0;
     if (!nhext_xdr_array(xdrs, (char **)&array, &length, (unsigned int)-1,
-      sizeof(unsigned char), nhext_xdr_u_char)) {
+      sizeof(unsigned char), (nhext_xdrproc_t)nhext_xdr_u_char)) {
 	fprintf(stderr, "nhext_xdr_array failed\n");
 	return FALSE;
     }

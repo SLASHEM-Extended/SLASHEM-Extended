@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.6 2001-10-01 06:32:49 j_ali Exp $
+  $Id: gtk.c,v 1.7 2001-12-11 20:43:49 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -95,86 +95,22 @@ GdkColor	  nh_color[N_NH_COLORS] = {
     {0, 255*257, 255*257, 255*257,},	/* fixed white */
 };
 
-void
-hook()
-{
-    ;
-}
-
-#ifdef GTK_ASKNAME
-void
-gtk_askname() {
+char *
+GTK_ext_askname() {
     int tryct = 0;
+    char *buf = (char *)0;
     static char who_are_you[] = "Who are you? ";
     
     do {
 	if (tryct > 10) panic("Giving up after 10 tries.\n");
 	else tryct++;
     	
-	GTK_getlin(who_are_you, plname);
-    } while (*plname == '\0');
+	if (buf)
+	    free(buf);
+	buf = GTK_ext_getlin(who_are_you);
+    } while (*buf == '\0');
+    return buf;
 }
-#endif
-
-struct window_procs GTK_procs = {
-    "gtk",
-    GTK_init_nhwindows,
-    GTK_player_selection,
-#ifdef WIN32
-    gtk_askname, /* tty_askname,*/
-#else
-    hook, /* tty_askname,*/
-#endif
-    GTK_get_nh_event,
-    GTK_exit_nhwindows,
-    hook, /*tty_suspend_nhwindows,*/
-    hook, /*tty_resume_nhwindows,*/
-    GTK_create_nhwindow,
-    GTK_clear_nhwindow,
-    GTK_display_nhwindow,
-    GTK_destroy_nhwindow,
-    GTK_curs,
-    GTK_putstr,
-    GTK_display_file,
-    GTK_start_menu,
-    GTK_add_menu,
-    GTK_end_menu,
-    GTK_select_menu,
-    genl_message_menu,
-    GTK_update_inventory,
-    GTK_mark_synch,
-    GTK_wait_synch,
-#ifdef CLIPPING
-    GTK_cliparound,
-#endif
-#ifdef POSITIONBAR
-    hook,
-#endif
-    GTK_print_glyph,
-    GTK_raw_print,
-    GTK_raw_print_bold,
-    GTK_nhgetch,
-    GTK_nh_poskey,
-    hook, /* tty_nhbell,*/
-    GTK_doprev_message,
-    GTK_yn_function,
-    GTK_getlin,
-    GTK_get_ext_cmd,
-    hook, /*tty_number_pad,*/
-    GTK_delay_output,
-#ifdef CHANGE_COLOR/* only a Mac option currently */
-    hook,
-    hook,
-#endif
-    /* other defs that really should go away (they're tty specific) */
-    hook, /* tty_start_screen,*/
-    hook, /* tty_end_screen,*/
-#ifdef GRAPHIC_TOMBSTONE
-    GTK_outrip,
-#else
-    genl_outrip,
-#endif
-};
 
 static GtkItemFactoryEntry menu_template[] = {
     {"/Game",			NULL,		NULL,		0,	"<Branch>"},
@@ -649,9 +585,9 @@ static void
 help_license(GtkWidget *widget, gpointer data)
 {
 #ifndef FILE_AREAS    
-    GTK_display_file(NH_LICENSE, TRUE);
+    display_file(NH_LICENSE, TRUE);
 #else
-    GTK_display_file(NH_LICENSE_AREA, NH_LICENSE, TRUE);
+    display_file(NH_LICENSE_AREA, NH_LICENSE, TRUE);
 #endif
     keysym = '\0';
 }
@@ -668,9 +604,9 @@ static void
 help_option(GtkWidget *widget, gpointer data)
 {
 #ifndef FILE_AREAS    
-    GTK_display_file(NH_OPTIONFILE, TRUE);
+    display_file(NH_OPTIONFILE, TRUE);
 #else
-    GTK_display_file(NH_OPTIONAREA, NH_OPTIONFILE, TRUE);
+    display_file(NH_OPTIONAREA, NH_OPTIONFILE, TRUE);
 #endif
     keysym = '\0';
 }
@@ -679,9 +615,9 @@ static void
 help_shelp(GtkWidget *widget, gpointer data)
 {
 #ifndef FILE_AREAS    
-    GTK_display_file(NH_SHELP, TRUE);
+    display_file(NH_SHELP, TRUE);
 #else
-    GTK_display_file(NH_SHELP_AREA, NH_SHELP, TRUE);
+    display_file(NH_SHELP_AREA, NH_SHELP, TRUE);
 #endif
     keysym = '\0';
 }
@@ -690,9 +626,9 @@ static void
 help_help(GtkWidget *widget, gpointer data)
 {
 #ifndef FILE_AREAS    
-    GTK_display_file(NH_HELP, TRUE);
+    display_file(NH_HELP, TRUE);
 #else
-    GTK_display_file(NH_HELP_AREA, NH_HELP, TRUE);
+    display_file(NH_HELP_AREA, NH_HELP, TRUE);
 #endif
     keysym = '\0';
 }
@@ -1648,8 +1584,8 @@ init_select_player(boolean init)
     free(root);
 }
 
-void
-GTK_init_nhwindows(int *argc, char **argv)
+int
+GTK_ext_init_nhwindows(int *argc, char **argv)
 {
     char *credit_file;
     int i;
@@ -1867,7 +1803,7 @@ GTK_init_nhwindows(int *argc, char **argv)
     gtk_widget_destroy(credit_window);
     gtk_widget_show_all(main_window);
     
-    iflags.window_inited = 1;
+    return TRUE;
 }
 
 #ifdef MONITOR_XRESOURCES
@@ -2255,15 +2191,10 @@ GTK_nh_poskey(int *x, int *y, int *mod)
     return key;
 }
 
-#ifdef FILE_AREAS
 void
-GTK_display_file(const char *farea, const char *fname, BOOLEAN_P complain)
-#else
-void
-GTK_display_file(const char *fname, BOOLEAN_P complain)
-#endif
+GTK_ext_display_file(int fh)
 {
-    guint hid;	
+    guint hid;
     GtkWidget *w;
     GtkWidget *scrollbar;
     GtkWidget *label;
@@ -2272,20 +2203,7 @@ GTK_display_file(const char *fname, BOOLEAN_P complain)
     GtkWidget *text;
     GtkWidget *button;
 
-    dlb		*fp;
     char	buf[NH_BUFSIZ];
-
-#ifdef FILE_AREAS
-    fp = dlb_fopen_area(farea, fname, RDTMODE);
-#else
-    fp = dlb_fopen(fname, RDTMODE);
-#endif
-
-    if(!fp) {
-	if(complain) pline("Cannot open %s.  Sorry.",fname);
-
-	return;
-    }
 
     w = nh_gtk_window_dialog(TRUE);
     gtk_widget_set_name(GTK_WIDGET(w), "fixed font");
@@ -2328,7 +2246,7 @@ GTK_display_file(const char *fname, BOOLEAN_P complain)
 	GTK_OBJECT(button), "clicked",
 	GTK_SIGNAL_FUNC(default_button_press), (gpointer)'\033');
 
-    while(dlb_fgets(buf, NH_BUFSIZ, fp)){
+    while(dlbh_fgets(buf, NH_BUFSIZ, fh)){
 	char *s;
 	if ((s = index(buf, '\r')) != 0)
 	    memmove(s, s + 1, strlen(s));
@@ -2337,8 +2255,6 @@ GTK_display_file(const char *fname, BOOLEAN_P complain)
 
     gtk_widget_show_all(w);
     main_hook();
-
-    (void) dlb_fclose(fp);
 
     if (w) {
 	gtk_signal_disconnect(GTK_OBJECT(w), hid);
@@ -2353,13 +2269,14 @@ GTK_display_file(const char *fname, BOOLEAN_P complain)
     }
 }
 
-void
-GTK_player_selection(void)
+int
+GTK_ext_player_selection(int *role, int *race, int *gend, int *align)
 {
     if(!pl_character[0]){
 	gtk_main();
 	pl_character[0] = pl_selection;
     }
+    return FALSE;		/* User didn't quit */
 }
 
 void
@@ -2416,8 +2333,8 @@ static struct{
     int		width;
 } rip_line[YEAR_LINE + 1];
 
-void
-GTK_outrip(winid id, int how)
+int
+GTK_ext_outrip(winid id, char *str)
 {
     int		x, y;
     int		width;
@@ -2477,23 +2394,7 @@ GTK_outrip(winid id, int how)
     Sprintf(mstr, "%4d", getyear());
     rip_line[YEAR_LINE].len = gdk_mbstowcs(rip_line[YEAR_LINE].str, mstr, NH_BUFSIZ);
 
-    switch (killer_format) {
-    default:
-	impossible("bad killer format?");
-    case KILLED_BY_AN:
-	Strcpy(mstr, killed_by_prefix[how]);
-	Strcat(mstr, an(killer));
-	break;
-    case KILLED_BY:
-	Strcpy(mstr, killed_by_prefix[how]);
-	Strcat(mstr, killer);
-	break;
-    case NO_KILLER_PREFIX:
-	Strcpy(mstr, killer);
-	break;
-    }
-
-    total_len = gdk_mbstowcs(wstr, mstr, NH_BUFSIZ);
+    total_len = gdk_mbstowcs(wstr, str, NH_BUFSIZ);
     line = DEATH_LINE;
     wc = wstr;
 
@@ -2546,6 +2447,7 @@ GTK_outrip(winid id, int how)
 
     gtk_widget_show_all(w);
     gtk_main();
+    return TRUE;
 }
 
 void

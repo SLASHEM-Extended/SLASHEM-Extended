@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.4 2001-10-01 06:32:49 j_ali Exp $
+  $Id: gtkmap.c,v 1.5 2001-12-11 20:43:49 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -934,7 +934,7 @@ nh_map_print_glyph(XCHAR_P x, XCHAR_P y, struct tilemap *tmap)
 }
 
 void
-GTK_print_glyph(winid id, XCHAR_P x, XCHAR_P y, int glyph)
+GTK_ext_print_glyph(winid id, int x, int y, int glyph)
 {
     struct rm *lev = &levl[x][y];
     int tile;

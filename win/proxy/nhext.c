@@ -1,4 +1,4 @@
-/* $Id: nhext.c,v 1.3 2001-09-18 22:20:21 j_ali Exp $ */
+/* $Id: nhext.c,v 1.4 2001-12-11 20:43:49 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -11,36 +11,55 @@
  * This module implements the low-level NhExt protocols.
  */
 
-static char request[1024];
-static char reply[1024];
-static int reply_len;
-static NhExtXdr *in, *out;
-static nhext_io_func read_f, write_f;
-static void *read_h, *write_h;
-static struct nhext_svc *callbacks;
+static int no_connections = 0;
+
+/*
+ * During development (when we have both the server and the client in one
+ * executable) we need to be able to maintain two seperate connections.
+ * This will become unecessary in the final application and the facility
+ * should probably be removed for efficiency.
+ */
+
+static struct nhext_connection {
+    char request[1024];
+    char reply[1024];
+    int reply_len;
+    NhExtXdr *in, *out;
+    nhext_io_func read_f, write_f;
+    void *read_h, *write_h;
+    struct nhext_svc *callbacks;
+} nhext_connections[2];
 
 int nhext_subprotocol1_init(nhext_io_func rf, void *rh, nhext_io_func wf, void *wh, struct nhext_svc *cb)
 {
-    in = (NhExtXdr *)alloc(sizeof(*out));
-    out = (NhExtXdr *)alloc(sizeof(*out));
-    nhext_xdrmem_create(in, reply, sizeof(reply), NHEXT_XDR_DECODE);
-    nhext_xdrmem_create(out, request, sizeof(request), NHEXT_XDR_ENCODE);
-    read_f = rf;
-    read_h = rh;
-    write_f = wf;
-    write_h = wh;
-    callbacks = cb;
-    return 0;
+    int cn;
+    if (no_connections == 2)
+	return -1;
+    cn = no_connections++;
+    nhext_connections[cn].in = (NhExtXdr *)alloc(sizeof(NhExtXdr));
+    nhext_connections[cn].out = (NhExtXdr *)alloc(sizeof(NhExtXdr));
+    nhext_xdrmem_create(nhext_connections[cn].in,
+      nhext_connections[cn].reply, sizeof(nhext_connections[cn].reply),
+      NHEXT_XDR_DECODE);
+    nhext_xdrmem_create(nhext_connections[cn].out,
+      nhext_connections[cn].request, sizeof(nhext_connections[cn].request),
+      NHEXT_XDR_ENCODE);
+    nhext_connections[cn].read_f = rf;
+    nhext_connections[cn].read_h = rh;
+    nhext_connections[cn].write_f = wf;
+    nhext_connections[cn].write_h = wh;
+    nhext_connections[cn].callbacks = cb;
+    return cn;
 }
 
-void nhext_subprotocol1_end(void)
+void nhext_subprotocol1_end_c(int cn)
 {
-    nhext_xdr_destroy(in);
-    nhext_xdr_destroy(out);
-    free(in);
-    free(out);
-    in = NULL;
-    out = NULL;
+    nhext_xdr_destroy(nhext_connections[cn].in);
+    nhext_xdr_destroy(nhext_connections[cn].out);
+    free(nhext_connections[cn].in);
+    free(nhext_connections[cn].out);
+    nhext_connections[cn].in = NULL;
+    nhext_connections[cn].out = NULL;
 }
 
 int nhext_rpc_vparams(NhExtXdr *xdrs, int no, va_list *app)
@@ -48,7 +67,9 @@ int nhext_rpc_vparams(NhExtXdr *xdrs, int no, va_list *app)
     int retval = TRUE;
     int param;
     va_list ap;
-    long param_i;
+    long param_l;
+    long *param_pl;
+    int param_i;
     int *param_pi;
     char *param_s;
     char **param_ps, *param_pc;
@@ -62,7 +83,11 @@ int nhext_rpc_vparams(NhExtXdr *xdrs, int no, va_list *app)
 	switch(param) {
 	    case EXT_PARAM_INT:
 		param_i = va_arg(ap, int);
-		nhext_xdr_long(xdrs, &param_i);
+		nhext_xdr_int(xdrs, &param_i);
+		break;
+	    case EXT_PARAM_LONG:
+		param_l = va_arg(ap, long);
+		nhext_xdr_long(xdrs, &param_l);
 		break;
 	    case EXT_PARAM_STRING:
 		param_s = va_arg(ap, char *);
@@ -70,7 +95,7 @@ int nhext_rpc_vparams(NhExtXdr *xdrs, int no, va_list *app)
 		break;
 	    case EXT_PARAM_WINID:
 		param_i = va_arg(ap, winid);
-		nhext_xdr_long(xdrs, &param_i);
+		nhext_xdr_int(xdrs, &param_i);
 		break;
 	    case EXT_PARAM_BOOLEAN:
 		param_b = va_arg(ap, boolean);
@@ -78,11 +103,15 @@ int nhext_rpc_vparams(NhExtXdr *xdrs, int no, va_list *app)
 		break;
 	    case EXT_PARAM_CHAR:
 		param_i = va_arg(ap, char);
-		nhext_xdr_long(xdrs, &param_i);
+		nhext_xdr_int(xdrs, &param_i);
 		break;
 	    case EXT_PARAM_PTR | EXT_PARAM_INT:
 		param_pi = va_arg(ap, int *);
 		retval = nhext_xdr_int(xdrs, param_pi);
+		break;
+	    case EXT_PARAM_PTR | EXT_PARAM_LONG:
+		param_pl = va_arg(ap, long *);
+		retval = nhext_xdr_long(xdrs, param_pl);
 		break;
 	    case EXT_PARAM_PTR | EXT_PARAM_STRING:
 		param_ps = va_arg(ap, char **);
@@ -91,7 +120,7 @@ int nhext_rpc_vparams(NhExtXdr *xdrs, int no, va_list *app)
 		break;
 	    case EXT_PARAM_PTR | EXT_PARAM_WINID:
 		param_pw = va_arg(ap, winid *);
-		retval = nhext_xdr_long(xdrs, &param_i);
+		retval = nhext_xdr_int(xdrs, &param_i);
 		*param_pw = (winid)param_i;
 		break;
 	    case EXT_PARAM_PTR | EXT_PARAM_BOOLEAN:
@@ -145,30 +174,31 @@ int nhext_rpc_params(NhExtXdr *xdrs, int no, ...)
  */
 
 int
-nhext_rpc(unsigned short id, ...)
+nhext_rpc_c(int cn, unsigned short id, ...)
 {
+    struct nhext_connection *nc = nhext_connections + cn;
     va_list ap;
     unsigned long value;
     int i, retval;
     int len;		/* Length of the request packet */
     int no;		/* Number of fields */
 
-    nhext_xdr_setpos(out, 4);		/* Leave space for value */
+    nhext_xdr_setpos(nc->out, 4);		/* Leave space for value */
     va_start(ap, id);
     no = va_arg(ap, int);
-    if (!nhext_rpc_vparams(out, no, &ap))
+    if (!nhext_rpc_vparams(nc->out, no, &ap))
 	return FALSE;
-    len = nhext_xdr_getpos(out) - 4;
+    len = nhext_xdr_getpos(nc->out) - 4;
     value = (id << 16) | (len >> 2);
-    nhext_xdr_setpos(out, 0);
-    nhext_xdr_u_long(out, &value);
-    if ((*write_f)(write_h, request, len + 4) != len + 4) {
+    nhext_xdr_setpos(nc->out, 0);
+    nhext_xdr_u_long(nc->out, &value);
+    if ((*nc->write_f)(nc->write_h, nc->request, len + 4) != len + 4) {
 	impossible("Write to proxy interface failed");
 	return FALSE;
     }
     do
     {
-	retval = nhext_svc(callbacks);
+	retval = nhext_svc_c(cn, nc->callbacks);
 	if (retval < 0) {
 	    impossible("Proxy server failed");
 	    return FALSE;
@@ -176,9 +206,9 @@ nhext_rpc(unsigned short id, ...)
     } while(retval);
     id = (unsigned short)retval;
     no = va_arg(ap, int);
-    if (!nhext_rpc_vparams(in, no, &ap))
+    if (!nhext_rpc_vparams(nc->in, no, &ap))
 	return FALSE;
-    if (nhext_xdr_getpos(in) != reply_len) {
+    if (nhext_xdr_getpos(nc->in) != nc->reply_len) {
 	impossible("Unexpected results in proxy rpc (%d, %d)", id, len);
 	return FALSE;
     }
@@ -202,42 +232,44 @@ nhext_rpc(unsigned short id, ...)
  */
 
 int
-nhext_svc(struct nhext_svc *services)
+nhext_svc_c(int cn, struct nhext_svc *services)
 {
+    struct nhext_connection *nc = nhext_connections + cn;
     int i, len;
     unsigned short id;
     unsigned long value;
-    reply_len = (*read_f)(read_h, reply, sizeof(reply));
-    if (reply_len < 4) {
-	if (reply_len > 0)  impossible("Bad reply packet (len %d)", reply_len);
+    nc->reply_len = (*nc->read_f)(nc->read_h, nc->reply, sizeof(nc->reply));
+    if (nc->reply_len < 4) {
+	if (nc->reply_len > 0)
+	    impossible("Bad reply packet (len %d)", nc->reply_len);
 	return -1;
     }
-    nhext_xdr_setpos(in, 0);
-    nhext_xdr_u_long(in, &value);
+    nhext_xdr_setpos(nc->in, 0);
+    nhext_xdr_u_long(nc->in, &value);
     id = value >> 16;
-    if (reply_len - 4 != (value & 0xffff) << 2) {
-	impossible("Bad reply packet (%d != %d)", reply_len - 4,
+    if (nc->reply_len - 4 != (value & 0xffff) << 2) {
+	impossible("Bad reply packet (%d != %d)", nc->reply_len - 4,
 	  (value & 0xffff) << 2);
 	return -1;
     }
     if (id)
     {
-	nhext_xdr_setpos(out, 4);
+	nhext_xdr_setpos(nc->out, 4);
 	for(i = 0; services[i].id; i++) {
 	    if (id == services[i].id) {
-		(*services[i].handler)(id, in, out);
+		(*services[i].handler)(id, nc->in, nc->out);
 		break;
 	    }
 	}
 	if (!services[i].id)
 	    impossible("Unsupported proxy callback ID %d", id);
-	len = nhext_xdr_getpos(out) - 4;
+	len = nhext_xdr_getpos(nc->out) - 4;
 	if (len < 0 || len & 3)
 	    impossible("Handler for proxy callback ID %d error", id);
 	value = len >> 2;
-	nhext_xdr_setpos(out, 0);
-	nhext_xdr_u_long(out, &value);
-	if ((*write_f)(write_h, request, len + 4) != len + 4) {
+	nhext_xdr_setpos(nc->out, 0);
+	nhext_xdr_u_long(nc->out, &value);
+	if ((*nc->write_f)(nc->write_h, nc->request, len + 4) != len + 4) {
 	    impossible("Write to proxy interface failed");
 	    return -1;
 	}

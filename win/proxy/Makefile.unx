@@ -1,5 +1,5 @@
-# $Id: Makefile,v 1.2 2001-09-18 22:20:21 j_ali Exp $
-# Copyright (c) Slash'EM Development Team 2001
+# $Id: Makefile.unx,v 1.1 2001-12-11 20:43:49 j_ali Exp $
+# Copyright (c) Slash'EM Development Team 2001-2002
 # NetHack may be freely redistributed.  See license for details.
 #
 # This makefile is for maintainer use. It is not needed when building the game.
@@ -28,14 +28,14 @@ tests:	test_xdr rpcgen-test_xdr test_ext FORCE
 	@echo Testing NhExt XDR routines...
 	@echo The output of these two tests should be identical:
 	@echo ============================
-	- test_xdr -w | rpcgen-test_xdr -r
+	- ./test_xdr -w | ./rpcgen-test_xdr -r
 	@echo ============================
-	- rpcgen-test_xdr -w | test_xdr -r
+	- ./rpcgen-test_xdr -w | ./test_xdr -r
 	@echo ============================
 	@echo ""
 	@echo Testing NhExt sub-protocol 1 support routines...
 	@echo ============================
-	- test_ext
+	- ./test_ext
 	@echo ============================
 
 test_xdr:	test_xdr.c nhxdr.o nhextxdr.o
@@ -54,25 +54,24 @@ test_ext:	test_ext.c nhext.o nhxdr.o nhextxdr.o
 	$(CC) $(CFLAGS) -o test_ext test_ext.c nhext.o nhxdr.o nhextxdr.o
 
 clean:
-	$(RM) *.o test_xdr rpcgen-test_xdr
+	$(RM) *.o test_xdr rpcgen-test_xdr test_ext
 
 spotless:	clean
 	$(RM) rpcgen-nhext.h rpcgen-nhext_xdr.c rpcgen-nhext.x
 
 depend: ../../sys/unix/depend.awk $(CSRC)
 	$(AWK) -f ../../sys/unix/depend.awk ../../include/*.h $(CSRC) | \
-	sed -e 's:\.\./include:\.\./\.\./include:' \
-	    -e 's:\.\./\.\./include/nhxdr.h:nhxdr.h:' >makedep
+	sed -e 's:\.\./include:\.\./\.\./include:' > makedep
 	@echo '/^# DO NOT DELETE THIS LINE OR CHANGE ANYTHING BEYOND IT/+2,$$d' >eddep
 	@echo '$$r makedep' >>eddep
 	@echo 'w' >>eddep
-	@cp Makefile Makefile.bak
-	ed - Makefile < eddep
+	@cp Makefile.unx Makefile.bak
+	ed - Makefile.unx < eddep
 	@rm -f eddep makedep
-	@echo '# DEPENDENCIES MUST END AT END OF FILE' >> Makefile
-	@echo '# IF YOU PUT STUFF HERE IT WILL GO AWAY' >> Makefile
-	@echo '# see make depend above' >> Makefile
-	- diff Makefile.bak Makefile
+	@echo '# DEPENDENCIES MUST END AT END OF FILE' >> Makefile.unx
+	@echo '# IF YOU PUT STUFF HERE IT WILL GO AWAY' >> Makefile.unx
+	@echo '# see make depend above' >> Makefile.unx
+	- diff Makefile.bak Makefile.unx
 	@rm -f Makefile.bak
 
 # DO NOT DELETE THIS LINE OR CHANGE ANYTHING BEYOND IT
@@ -84,9 +83,8 @@ $(CONFIG_H): ../../include/config.h
 $(HACK_H): ../../include/hack.h
 	touch $(HACK_H)
 #
-nhxdr.o: nhxdr.c $(HACK_H) nhxdr.h
-nhext.o: nhext.c
-nhextxdr.o: nhextxdr.c $(HACK_H) nhxdr.h
+nhxdr.o: nhxdr.c $(HACK_H) ../../include/nhxdr.h
+nhextxdr.o: nhextxdr.c $(HACK_H) ../../include/nhxdr.h
 # DEPENDENCIES MUST END AT END OF FILE
 # IF YOU PUT STUFF HERE IT WILL GO AWAY
 # see make depend above

@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.18 2001-10-15 06:26:32 j_ali Exp $
+  $Id: winGTK.h,v 1.19 2001-12-11 20:43:49 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -41,6 +41,9 @@
 
 #include "hack.h"
 #include "wintty.h"
+#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+#include "winproxy.h"
+#endif
 
 #define WINGTK_MENU_IMAGES	/* Pretty images (tiles) in first column */
 
@@ -98,9 +101,37 @@ enum xshm_map_mode {
 };
 #endif
 
+#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+extern int	GTK_ext_init_nhwindows(int *, char **);
+extern char	*GTK_ext_askname(void);
+extern int	GTK_ext_player_selection(int *, int *, int *, int *);
+extern void	GTK_ext_display_file(int fh);
+extern void	GTK_ext_add_menu(winid, int, int, CHAR_P, CHAR_P, int,
+			const char *, BOOLEAN_P);
+extern int	GTK_ext_select_menu(winid, int, struct proxy_mi **);
+extern void	GTK_ext_print_glyph(winid id, int x, int y, int glyph);
+extern char	GTK_ext_yn_function(const char *, const char *, CHAR_P, int *);
+extern int	GTK_ext_outrip(winid, char *);
+extern char *	GTK_ext_getlin(const char *query);
+#else	/* DEVEL_BRANCH && GTK_V20 */
 extern void	GTK_init_nhwindows(int *, char **);
-extern void	GTK_player_selection(void);
 extern void	GTK_askname(void);
+extern void	GTK_player_selection(void);
+#ifdef FILE_AREAS
+extern void	GTK_display_file(const char *, const char *, BOOLEAN_P);
+#else
+extern void	GTK_display_file(const char *, BOOLEAN_P);
+#endif
+extern void	GTK_add_menu(winid, int, const ANY_P *, CHAR_P, CHAR_P, int,
+			const char *, BOOLEAN_P);
+extern int	GTK_select_menu(winid, int, MENU_ITEM_P **);
+extern void	GTK_print_glyph(winid, XCHAR_P, XCHAR_P, int);
+extern char	GTK_yn_function(const char *, const char *, CHAR_P);
+#ifdef GRAPHIC_TOMBSTONE
+extern void	GTK_outrip(winid, int);
+#endif
+extern void	GTK_getlin(const char *, char *);
+#endif	/* DEVEL_BRANCH && GTK_V20 */
 extern void	GTK_get_nh_event(void);
 extern void	GTK_exit_nhwindows(const char *);
 extern void	GTK_suspend_nhwindows(void);
@@ -111,40 +142,24 @@ extern void	GTK_display_nhwindow(winid, BOOLEAN_P);
 extern void	GTK_destroy_nhwindow(winid);
 extern void	GTK_curs(winid, int, int);
 extern void	GTK_putstr(winid, int, const char *);
-#ifdef FILE_AREAS
-extern void	GTK_display_file(const char *, const char *, BOOLEAN_P);
-#else
-extern void	GTK_display_file(const char *, BOOLEAN_P);
-#endif
 extern void	GTK_start_menu(winid);
-extern void	GTK_add_menu(winid, int, const ANY_P *, CHAR_P,CHAR_P,int,const char *, BOOLEAN_P);
 extern void	GTK_end_menu(winid, const char *);
-extern int	GTK_select_menu(winid, int, MENU_ITEM_P **);
 extern void	GTK_update_inventory(void);
 extern void	GTK_mark_synch(void);
 extern void	GTK_wait_synch(void);
 #ifdef CLIPPING
 extern void	GTK_cliparound(int, int);
 #endif
-extern void	GTK_prvoid_glyph(void);
-extern void	GTK_raw_prvoid(void);
-extern void	GTK_raw_prvoid_bold(void);
 extern int	GTK_nhgetch(void);
 extern int	GTK_nh_poskey(int *, int *, int *);
 extern void	GTK_nhbell(void);
 extern int	GTK_doprev_message(void);
-extern char	GTK_yn_function(const char *, const char *, CHAR_P);
-extern void	GTK_getlin(const char *, char *);
 extern void	GTK_extcmd_set(int cmd);
 extern int	GTK_get_ext_cmd(void);
 extern void	GTK_number_pad(void);
 extern void	GTK_delay_output(void);
 extern void	GTK_start_screen(void);
 extern void	GTK_end_screen(void);
-#ifdef GRAPHIC_TOMBSTONE
-extern void	GTK_outrip(winid, int);
-#endif
-extern void	GTK_print_glyph(winid, XCHAR_P, XCHAR_P, int);
 extern void	GTK_raw_print(const char *);
 extern void	GTK_raw_print_bold(const char *);
 

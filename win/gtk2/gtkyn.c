@@ -1,5 +1,5 @@
 /*
-  $Id: gtkyn.c,v 1.3 2001-06-16 18:14:41 j_ali Exp $
+  $Id: gtkyn.c,v 1.4 2001-12-11 20:43:49 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -45,7 +45,7 @@ yn_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 	keysym = nh_keysym(event);
     
     if(keysym){
-	if(!yn_resp || index(yn_resp, keysym))
+	if(!*yn_resp || index(yn_resp, keysym))
 	    gtk_main_quit();
 	if (keysym == '\n' || keysym == ' ' || keysym == '\033') {
 	    keysym = yn_def;	
@@ -57,7 +57,7 @@ yn_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 }
 
 char
-GTK_yn_function(const char *query, const char *resp, CHAR_P def)
+GTK_ext_yn_function(const char *query, const char *resp, CHAR_P def, int *count)
 {
     guint	hid;
 
@@ -72,7 +72,7 @@ GTK_yn_function(const char *query, const char *resp, CHAR_P def)
     gchar	buf[NH_BUFSIZ], *bp;
     gchar	*text[1];
 
-    if(resp)
+    if(*resp)
     {
 	sprintf(buf, "%s [", query);
 	bp = eos(buf);
@@ -124,7 +124,7 @@ GTK_yn_function(const char *query, const char *resp, CHAR_P def)
 	gtk_clist_append(GTK_CLIST(clist), text);
     }
 
-    if(resp){
+    if(*resp){
 	hbox = nh_gtk_new_and_pack(
 	    gtk_hbox_new(FALSE, 0), vbox, "",
 	    FALSE, FALSE, NH_PAD);

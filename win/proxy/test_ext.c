@@ -1,4 +1,4 @@
-/* $Id: test_ext.c,v 1.1 2001-09-18 22:20:21 j_ali Exp $ */
+/* $Id: test_ext.c,v 1.2 2001-12-11 20:43:49 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -19,6 +19,7 @@
 #include "winproxy.h"
 
 static int is_child=0;
+static int connection, server_connection;
 
 long *alloc(unsigned int nb)
 {
@@ -423,7 +424,8 @@ void svc_test7(unsigned short id, NhExtXdr *request, NhExtXdr *reply)
 {
     int i;
     nhext_rpc_params(request, 1, EXT_INT_P(i));
-    nhext_rpc(EXT_CID_TEST7, 1, EXT_INT(i), 1, EXT_INT_P(i));
+    nhext_rpc_c(server_connection,
+      EXT_CID_TEST7, 1, EXT_INT(i), 1, EXT_INT_P(i));
     nhext_rpc_params(reply, 1, EXT_INT(i));
 }
 
@@ -452,17 +454,18 @@ int server_write(void *handle, void *buf, unsigned int len)
 void server(void)
 {
     int i;
-    if (nhext_subprotocol1_init(server_read, (void *)0,
-      server_write, (void *)1, callbacks)) {
+    server_connection = nhext_subprotocol1_init(server_read, (void *)0,
+      server_write, (void *)1, callbacks);
+    if (server_connection < 0) {
 	fprintf(stderr, "C Failed to initialize sub-protocol1.\n");
 	exit(1);
     }
     do {
-	i = nhext_svc(services);
+	i = nhext_svc_c(server_connection, services);
 	if (!i)
 	    impossible("Ignoring packet with zero ID");
     } while (!server_exit);
-    nhext_subprotocol1_end();
+    nhext_subprotocol1_end_c(server_connection);
 }
 
 void run_tests(void)
@@ -474,18 +477,18 @@ void run_tests(void)
     int total;
     struct test5_request req;
     fprintf(stderr, "Test 1...\n");
-    retval = nhext_rpc(EXT_FID_TEST1, 0, 0);
+    retval = nhext_rpc_c(connection, EXT_FID_TEST1, 0, 0);
     fprintf(stderr, "Test 1 %s.\n", retval ? "passed" : "failed");
     fprintf(stderr, "Test 2...\n");
-    retval = nhext_rpc(EXT_FID_TEST2, 1, EXT_INT(0), 0);
+    retval = nhext_rpc_c(connection, EXT_FID_TEST2, 1, EXT_INT(0), 0);
     fprintf(stderr, "Test 2 %s.\n", retval ? "passed" : "failed");
     fprintf(stderr, "Test 3...\n");
-    retval = nhext_rpc(EXT_FID_TEST3, 1, EXT_INT(67), 1, EXT_INT_P(i));
+    retval = nhext_rpc_c(connection, EXT_FID_TEST3, 1, EXT_INT(67), 1, EXT_INT_P(i));
     if (i != 68)
 	retval = FALSE;
     fprintf(stderr, "Test 3 %s.\n", retval ? "passed" : "failed");
     fprintf(stderr, "Test 4...\n");
-    retval = nhext_rpc(EXT_FID_TEST4, 1, EXT_STRING("Hello"),
+    retval = nhext_rpc_c(connection, EXT_FID_TEST4, 1, EXT_STRING("Hello"),
       1, EXT_STRING_P(s));
     if (strcmp(s, "<Hello>"))
 	retval = FALSE;
@@ -495,8 +498,8 @@ void run_tests(void)
     req.array = (long *)alloc(req.n * sizeof(long));
     for(i = 0; i < 5; i++)
 	req.array[i] = 7 * i + 3;
-    retval = nhext_rpc(EXT_FID_TEST5, 1, EXT_XDRF(svc_xdr_test5_request, &req),
-      1, EXT_INT_P(total));
+    retval = nhext_rpc_c(connection, EXT_FID_TEST5,
+      1, EXT_XDRF(svc_xdr_test5_request, &req), 1, EXT_INT_P(total));
     for(i = 0; i < 5; i++)
 	total -= req.array[i];
     if (total)
@@ -504,7 +507,7 @@ void run_tests(void)
     free(req.array);
     fprintf(stderr, "Test 5 %s.\n", retval ? "passed" : "failed");
     fprintf(stderr, "Test 6...\n");
-    retval = nhext_rpc(EXT_FID_TEST6,
+    retval = nhext_rpc_c(connection, EXT_FID_TEST6,
       5, EXT_INT(37), EXT_WINID(2), EXT_CHAR('l'), EXT_STRING("Shalom"),
          EXT_BOOLEAN(TRUE),
       5, EXT_WINID_P(w), EXT_STRING_P(s), EXT_CHAR_P(c), EXT_INT_P(i),
@@ -514,7 +517,7 @@ void run_tests(void)
     free(s);
     fprintf(stderr, "Test 6 %s.\n", retval ? "passed" : "failed");
     fprintf(stderr, "Test 7...\n");
-    retval = nhext_rpc(EXT_FID_TEST7, 1, EXT_INT(11), 1, EXT_INT_P(i));
+    retval = nhext_rpc_c(connection, EXT_FID_TEST7, 1, EXT_INT(11), 1, EXT_INT_P(i));
     if (i != 58)
 	retval = FALSE;
     fprintf(stderr, "Test 7 %s.\n", retval ? "passed" : "failed");
@@ -533,14 +536,15 @@ char **argv;
 	fprintf(stderr, "Failed to start child.\n");
 	exit(1);
     }
-    if (nhext_subprotocol1_init(debug_read, (void *)to_parent[0],
-      debug_write, (void *)to_child[1], callbacks)) {
+    connection = nhext_subprotocol1_init(debug_read, (void *)to_parent[0],
+      debug_write, (void *)to_child[1], callbacks);
+    if (connection < 0) {
 	fprintf(stderr, "Failed to initialize sub-protocol1.\n");
 	exit(1);
     }
     run_tests();
-    nhext_rpc(EXT_FID_EXIT, 0, 0);
-    nhext_subprotocol1_end();
+    nhext_rpc_c(connection, EXT_FID_EXIT, 0, 0);
+    nhext_subprotocol1_end_c(connection);
     if (!child_wait()) {
 	fprintf(stderr, "Error while waiting for child.\n");
 	exit(1);
