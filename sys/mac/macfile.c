@@ -8,12 +8,16 @@
 
 #include "hack.h"
 #include "macwin.h"
+
+#ifndef __MACH__
 #include <files.h>
 #include <errors.h>
 #include <resources.h>
 #include <memory.h>
 #include <TextUtils.h>
 #include <ToolUtils.h>
+#endif
+
 #include "dlb.h"
 
 /*
@@ -364,8 +368,20 @@ macseek (int fd, long where, short whence)
 	if (SetFPos(fd, posMode, where) == noErr && GetFPos(fd, &curPos) == noErr)
 		return (curPos);
 	else
-	return(-1);
+		return(-1);
 }
+
+
+int
+macunlink(const char *name)
+{
+	Str255 pname;
+
+
+	C2P(name, pname);
+	return (HDelete(theDirs.dataRefNum, theDirs.dataDirID, pname) == noErr ? 0 : -1);
+}
+
 
 
 /* ---------------------------------------------------------------------- */

@@ -45,6 +45,9 @@
 #include <OSUtils.h>
 #include <Resources.h>
 #include <Files.h>
+#ifdef applec
+#include <SysEqu.h>
+#endif
 #include <Menus.h>
 #include <Devices.h>
 #include <Events.h>
@@ -74,6 +77,7 @@ QDGlobals qd;
 #define DisposHandle DisposeHandle
 #define AddResMenu AppendResMenu
 #define DisposPtr DisposePtr
+#define ResrvMem ReserveMem
 
 /**** Application defines ****/
 
@@ -671,6 +675,8 @@ adjustMemory()
 
 	if (MaxMem(&grow) < pBytes->memWarning)
 		note(noErr, alidNote, "\pWarning: Memory is running low");
+
+	(void) ResrvMem((Size) FreeMem());		/* move all handles high */
 }
 
 /* show memory stats: FreeMem, MaxBlock, PurgeSpace, and StackSpace */

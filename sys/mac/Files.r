@@ -4,6 +4,11 @@
 #include "date.h"
 #include "patchlevel.h"
 
+#ifdef TGT_API_MAC_CARBON
+resource 'plst' (0, purgeable) {
+};
+#endif
+
 type 'sLem' as 'STR ';
 resource 'sLem' (0, purgeable) {
 	"Slash'EM " VERSION_STRING
