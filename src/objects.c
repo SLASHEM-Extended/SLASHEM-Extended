@@ -809,10 +809,10 @@ WEPTOOL("spoon", (char *)0,
 # endif /* P_SPOON */
 #ifdef D_SABER
 WEPTOOL("pick-axe", (char *)0,
-	1, 0, 0, 1, 17, 80,   50,  6,  3, 0, WHACK,  P_PICK_AXE, IRON, HI_METAL),
+	1, 0, 0, 0, 17, 80,   50,  6,  3, 0, WHACK,  P_PICK_AXE, IRON, HI_METAL),
 #else
 WEPTOOL("pick-axe", (char *)0,
-	1, 0, 0, 1, 18, 80,   50,  6,  3, 0, WHACK,  P_PICK_AXE, IRON, HI_METAL),
+	1, 0, 0, 0, 18, 80,   50,  6,  3, 0, WHACK,  P_PICK_AXE, IRON, HI_METAL),
 #endif
 WEPTOOL("fishing pole", (char *)0,
 	1, 0, 0, 0,  5,  30,  50,  2,  6, 0, WHACK,  P_POLEARMS, METAL, HI_METAL),
