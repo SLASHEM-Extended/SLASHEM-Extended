@@ -1136,9 +1136,11 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	    return Mb_hit(magr, mdef, otmp, dmgptr, dieroll, vis, hittee);
 	}
 
-	if (!spec_dbon_applies) {
+	if (!spec_dbon_applies && !spec_ability(otmp, SPFX_BEHEAD)) {
 	    /* since damage bonus didn't apply, nothing more to do;  
 	       no further attacks have side-effects on inventory */
+	    /* [ALI] The Tsurugi of Muramasa has no damage bonus but
+	       is handled below so avoid early exit if SPFX_BEHEAD set */
 	    return FALSE;
 	}
 
