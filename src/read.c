@@ -63,8 +63,10 @@ doread()
 	scroll = getobj(class_list, "read");
 	if(!scroll) return(0);
 
-	if (scroll == &thisplace)
-	    return sense_engr_at(u.ux, u.uy, TRUE);
+	if (scroll == &thisplace) {
+	    (void) sense_engr_at(u.ux, u.uy, TRUE);
+	    return 0;
+	}
 
 	/* KMH -- some rings can be read, even while illiterate */
 	if (scroll->oclass == RING_CLASS) {

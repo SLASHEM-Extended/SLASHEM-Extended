@@ -127,6 +127,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -Applied patch 467847 (updated): Prettier GTK buttons & status highlight.
 -GtkHack: Added connections dialogs.
 -fixed bug 731418: #twoweaponing?
+-fixed bug 742693: Cannot read engravings without spending a turn.
 
 See history.txt for changes made in previous versions.
 
