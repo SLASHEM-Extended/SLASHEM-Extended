@@ -833,10 +833,13 @@ newsym(x,y)
 	else if (!lev->waslit) {
 #ifdef DISPLAY_LAYERS
 	    if (flags.lit_corridor && lev->mem_bg == S_litcorr &&
-							    lev->typ == CORR)
-		show_glyph(x, y, cmap_to_glyph(lev->mem_bg = S_corr));
-	    else if (lev->mem_bg == S_room && lev->typ == ROOM)
-		show_glyph(x, y, cmap_to_glyph(lev->mem_bg = S_stone));
+							    lev->typ == CORR) {
+		lev->mem_bg = S_corr;
+		show_glyph(x, y, memory_glyph(x, y));
+	    } else if (lev->mem_bg == S_room && lev->typ == ROOM) {
+		lev->mem_bg = S_stone;
+		show_glyph(x, y, memory_glyph(x, y));
+	    }
 #else	/* DISPLAY_LAYERS */
 	    if (flags.lit_corridor && lev->glyph == cmap_to_glyph(S_litcorr) &&
 							    lev->typ == CORR)

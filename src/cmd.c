@@ -148,6 +148,9 @@ STATIC_DCL void FDECL(mon_invent_chain, (winid, const char *, struct monst *, lo
 STATIC_DCL void FDECL(mon_chain, (winid, const char *, struct monst *, long *, long *));
 STATIC_DCL void FDECL(contained, (winid, const char *, long *, long *));
 STATIC_PTR int NDECL(wiz_show_stats);
+#ifdef DISPLAY_LAYERS
+STATIC_PTR int NDECL(wiz_show_display);
+#endif
 # endif
 STATIC_PTR int NDECL(enter_explore_mode);
 STATIC_PTR int NDECL(doattributes);
@@ -1690,6 +1693,9 @@ static const struct menu_tab player_menu[] = {
 #ifdef WIZARD
 static const struct menu_tab wizard_menu[] = {
 	{'c', TRUE, wiz_gain_ac, "Increase AC"},
+#ifdef DISPLAY_LAYERS
+	{'d', TRUE, wiz_show_display, "Detail display layers"},
+#endif
 	{'e', TRUE, wiz_detect, "Detect secret doors and traps"},
 	{'f', TRUE, wiz_map, "Do magic mapping"},
 	{'g', TRUE, wiz_genesis, "Create monster"},
@@ -2140,12 +2146,15 @@ struct ext_func_tab extcmdlist[] = {
 	 * There must be a blank entry here for every entry in the table
 	 * below.
 	 */
+#ifdef DISPLAY_LAYERS
 	{(char *)0, (char *)0, donull, TRUE},
+#endif
 	{(char *)0, (char *)0, donull, TRUE},
 	{(char *)0, (char *)0, donull, TRUE},
 	{(char *)0, (char *)0, donull, TRUE},
 	{(char *)0, (char *)0, donull, TRUE},
         {(char *)0, (char *)0, donull, TRUE},
+	{(char *)0, (char *)0, donull, TRUE},
 	{(char *)0, (char *)0, donull, TRUE},
 	{(char *)0, (char *)0, donull, TRUE},
 #ifdef DEBUG
@@ -2158,6 +2167,9 @@ struct ext_func_tab extcmdlist[] = {
 
 #if defined(WIZARD)
 static const struct ext_func_tab debug_extcmdlist[] = {
+#ifdef DISPLAY_LAYERS
+	{"display", "detail display layers", wiz_show_display, TRUE},
+#endif
 	{"levelchange", "change experience level", wiz_level_change, TRUE},
 	{"light sources", "show mobile light sources", wiz_light_sources, TRUE},
 	{"monpoly_control", "control monster polymorphs", wiz_mon_polycontrol, TRUE},
@@ -2383,6 +2395,55 @@ sanity_check()
 	obj_sanity_check();
 	timer_sanity_check();
 }
+
+#ifdef DISPLAY_LAYERS
+/*
+ * Detail contents of each display layer at specified location(s).
+ */
+static int
+wiz_show_display()
+{
+    int ans;
+    coord cc;
+    winid win;
+    char buf[BUFSZ];
+    struct rm *lev;
+
+    cc.x = u.ux;
+    cc.y = u.uy;
+    pline("Pick a location.");
+    ans = getpos(&cc, FALSE, "a location of interest");
+    if (ans < 0 || cc.x < 0)
+	return 0;	/* done */
+    lev = &levl[cc.x][cc.y];
+    win = create_nhwindow(NHW_TEXT);
+    Sprintf(buf, "Contents of hero's memory at (%d, %d):", cc.x, cc.y);
+    putstr(win, 0, buf);
+    putstr(win, 0, "");
+    Sprintf(buf, "Invisible monster: %s",
+	    lev->mem_invis ? "present" : "none");
+    putstr(win, 0, buf);
+    if (lev->mem_obj && lev->mem_corpse)
+	if (mons[lev->mem_obj - 1].geno & G_UNIQ)
+	    Sprintf(buf, "Object: %s%s corpse",
+		    type_is_pname(&mons[lev->mem_obj - 1]) ? "" : "the ",
+		    s_suffix(mons[lev->mem_obj - 1].mname));
+	else
+	    Sprintf(buf, "Object: %s corpse", mons[lev->mem_obj - 1].mname);
+    else
+	Sprintf(buf, "Object: %s", lev->mem_obj ?
+		obj_typename(lev->mem_obj - 1) : "none");
+    putstr(win, 0, buf);
+    Sprintf(buf, "Trap: %s", lev->mem_trap ?
+	    defsyms[trap_to_defsym(lev->mem_trap)].explanation : "none");
+    putstr(win, 0, buf);
+    Sprintf(buf, "Backgroud: %s", defsyms[lev->mem_bg].explanation);
+    putstr(win, 0, buf);
+    display_nhwindow(win, FALSE);
+    destroy_nhwindow(win);
+    return 0;
+}
+#endif
 
 #endif /* WIZARD */
 
