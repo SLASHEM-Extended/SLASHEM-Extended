@@ -734,14 +734,14 @@ break_armor()
 	}
 #ifdef TOURIST
 	if ((otmp = uarmu) != 0) {
-		if (controlled_change && !otmp->cursed) {
-			You("take off your shirt just before it starts to rip.");
-			setworn((struct obj *)0, otmp->owornmask & W_ARMU);
-			dropx(otmp);
-		} else {                
+	    if (controlled_change && !otmp->cursed && !uskin) {
+		You("take off your shirt just before it starts to rip.");
+		setworn((struct obj *)0, otmp->owornmask & W_ARMU);
+		dropx(otmp);
+	    } else {                
 		Your("shirt rips to shreds!");
 		useup(uarmu);
-	}
+	    }
 	}
 #endif
     } else if (sliparm(youmonst.data)) {
@@ -1794,6 +1794,13 @@ merge_with_armor()
 	 * Should check that monster being morphed into is not genocided
 	 * see do_merge above for correct use
 	 */
+	if (Race_if(PM_DOPPELGANGER) && !uarm->cursed && uarmu &&
+	  !uarmu->cursed) {
+	    struct obj *otmp = uarmu;
+	    You("quickly remove your shirt as you start to change.");
+	    setworn((struct obj *)0, otmp->owornmask & W_ARMU);
+	    dropx(otmp);
+	}
 	You("merge with your scaly armor.");
 	uskin = uarm;
 	uarm = (struct obj *)0;
