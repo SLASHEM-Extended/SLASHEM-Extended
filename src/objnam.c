@@ -709,15 +709,27 @@ ring:
 		}
 		break;
 	case FOOD_CLASS:
-		if (obj->oeaten)
-		    Strcat(prefix, "partly eaten ");
+		if (obj->otyp == CORPSE && obj->odrained) {
+#ifdef WIZARD
+		    if (wizard && obj->oeaten < drainlevel(obj))
+			Strcpy(tmpbuf, "over-drained ");
+		    else
+#endif
+		    Sprintf(tmpbuf, "%sdrained ",
+		      (obj->oeaten > drainlevel(obj)) ? "partly " : "");
+		}
+		else if (obj->oeaten)
+		    Strcpy(tmpbuf, "partly eaten ");
+		else
+		    tmpbuf[0] = '\0';
+		Strcat(prefix, tmpbuf);
 		if (obj->otyp == CORPSE && !Hallucination) {
 		    if (mons[obj->corpsenm].geno & G_UNIQ) {
 			Sprintf(prefix, "%s%s ",
 				(type_is_pname(&mons[obj->corpsenm]) ?
 					"" : "the "),
 				s_suffix(mons[obj->corpsenm].mname));
-			if (obj->oeaten) Strcat(prefix, "partly eaten ");
+			Strcat(prefix, tmpbuf);
 		    } else {
 			Strcat(prefix, mons[obj->corpsenm].mname);
 			Strcat(prefix, " ");
@@ -1594,12 +1606,12 @@ register char *bp;
 	register int i;
 	register struct obj *otmp;
 	int cnt, spe, spesgn, typ, very, rechrg;
-	int blessed, uncursed, iscursed, ispoisoned, isgreased;
+	int blessed, uncursed, iscursed, ispoisoned, isgreased, isdrained;
 	int eroded, eroded2, erodeproof;
 #ifdef INVISIBLE_OBJECTS
 	int isinvisible;
 #endif
-	int halfeaten, mntmp, contents;
+	int halfeaten, halfdrained, mntmp, contents;
 	int islit, unlabeled, ishistoric, isdiluted;
 	struct fruit *f;
 	int ftype = current_fruit;
@@ -1625,7 +1637,7 @@ register char *bp;
 
 
 	cnt = spe = spesgn = typ = very = rechrg =
-		blessed = uncursed = iscursed =
+		blessed = uncursed = iscursed = isdrained = halfdrained =
 #ifdef INVISIBLE_OBJECTS
 		isinvisible =
 #endif
@@ -1716,6 +1728,12 @@ register char *bp;
 			   !strncmpi(bp, "rotted ", l=7)) {
 			eroded2 = 1 + very;
 			very = 0;
+		} else if (!strncmpi(bp, "partly drained ", l=15)) {
+			isdrained = 1;
+			halfdrained = 1;
+		} else if (!strncmpi(bp, "drained ", l=8)) {
+			isdrained = 1;
+			halfdrained = 0;
 		} else if (!strncmpi(bp, "partly eaten ", l=13)) {
 			halfeaten = 1;
 		} else if (!strncmpi(bp, "historic ", l=9)) {
@@ -2608,6 +2626,19 @@ typfnd:
 		otmp->oeaten /= 2;
 		if (!otmp->owt) otmp->owt = 1;
 		if (!otmp->oeaten) otmp->oeaten = 1;
+	}
+	if (isdrained && otmp->otyp == CORPSE) {
+		otmp->odrained = 1;
+		otmp->oeaten = drainlevel(otmp);
+		if (halfdrained) {
+		    otmp->oeaten =
+		      (otmp->oeaten + mons[otmp->corpsenm].cnutrit) / 2;
+		    if (otmp->oeaten == drainlevel(otmp))
+			otmp->oeaten++;
+		}
+		otmp->owt = otmp->owt * otmp->oeaten /
+		  mons[otmp->corpsenm].cnutrit;
+		if (!otmp->owt) otmp->owt = 1;
 	}
 	return(otmp);
 }

@@ -374,6 +374,20 @@ ver 0.0.6E4F1 [October XX/2000]
 -fixed bug 115821: Molds grow from corpses underwater.
 -fixed bug 115598: Gtk-WARNING if you kill the "more options" window.
 -fixed bug 115765: Inappropriate messages when corpses go moldy.
+-fixed bug 115297: Vampires can feed off monsters without penalty
+-Vampire feeding revamp:
+ ATTACKS
+	-biting living monsters gets appropriate penalties/benefits
+	-don't bite monster if it would lead to death
+	-drain lifeblood (6 nutrition points per HP drained)
+	-does not count against conduct
+ EATING
+ 	-now multi-turn occupation
+	-corpses marked as (partly) drained
+	-can continue draining if blood hasn't coagulated
+	-can't drain partly eaten corpses
+	-Vampire race gets 20% chance of cpostfx()
+	-Vampires are exempt for cannibalism penalties.
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()

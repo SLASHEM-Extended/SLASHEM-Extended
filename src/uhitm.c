@@ -1768,20 +1768,27 @@ register struct attack *mattk;
 		tmp = 0;
 		break;
 	    case AD_DRLI:
-		if (maybe_polyd(is_vampire(youmonst.data), 
-			Race_if(PM_VAMPIRE)) && mattk->aatyp == AT_BITE &&
-			has_blood(pd)) {
-			   You("feed on the fresh blood.");
-			   /* Get 1/20th of full corpse value
-			    * Therefore 4 bites == 1 drink
-			    */
-	    	    	    lesshungry(((int)(pd->cnutrit / 20) + 1));
-		}
-
 		if (!rn2(3) && !resists_drli(mdef)) {
 			int xtmp = d(2,6);
+			if (mdef->mhp < xtmp) xtmp = mdef->mhp;
+			if (maybe_polyd(is_vampire(youmonst.data), 
+			    Race_if(PM_VAMPIRE)) && mattk->aatyp == AT_BITE &&
+			    has_blood(pd)) {
+				/* For the life of a creature is in the blood
+				   (Lev 17:11) */
+				if (flags.verbose)
+				    You("feed on the lifeblood.");
+				/* [ALI] Biting monsters does not count against
+				   eating conducts. The draining of life is
+				   considered to be primarily a non-physical
+				   effect */
+				lesshungry(xtmp * 6);
+			}
 			pline("%s suddenly seems weaker!", Monnam(mdef));
 			mdef->mhpmax -= xtmp;
+#ifdef SHOW_DMG
+			if (xtmp < mdef->mhp) showdmg(xtmp);
+#endif
 			if ((mdef->mhp -= xtmp) <= 0 || !mdef->m_lev) {
 				pline("%s dies!", Monnam(mdef));
 				xkilled(mdef,0);
@@ -2344,6 +2351,8 @@ register int roll;
  *		(I don't think any exist yet)
  * This code now handles ALL hand to hand whether you are poly'ed or not
  * (uses your current race as the monster type)
+ *
+ * [ALI] Returns TRUE if you hit (and maybe killed) the monster.
  */
 STATIC_OVL boolean
 hmonas(mon, tmp)                /* attack monster as a monster. */
@@ -2458,7 +2467,7 @@ use_weapon:
 			if (!known_hitum(mon,mhit,&dhit,mattk)) {
 			    sum[i] = 2;
 			    break;
-			} else sum[i] = 1;
+			} else sum[i] = !!dhit;
 			
 			/* might be a worm that gets cut in half */
 			if (m_at(u.ux+u.dx, u.uy+u.dy) != mon) return((boolean)(nsum != 0));
@@ -2481,6 +2490,12 @@ use_weapon:
 #endif
 #endif
 		case AT_BITE:
+			/* [ALI] Vampires are also smart. They avoid biting
+			   monsters if doing so would be fatal */
+			if (uwep && is_vampire(youmonst.data) &&
+			  (is_rider(mon->data) ||
+			  mon->data == &mons[PM_GREEN_SLIME]))
+			    break;
 		case AT_STNG:
 		case AT_TUCH:
 		case AT_BUTT:
@@ -2489,7 +2504,9 @@ use_weapon:
 			/* WAC if attacking cockatrice/etc, player is smart
 			   if wielding a weapon.  So don't let him
 			   touch the monster */
-			if (uwep && touch_petrifies(mon->data)) break;
+			if (uwep && (touch_petrifies(mon->data) ||
+			  mon->data == &mons[PM_MEDUSA]))
+			    break;
 		case AT_KICK:
 			if ((dhit = (tmp > (dieroll = rnd(20)) || u.uswallow)) != 0) {
 			    int compat;
@@ -2663,6 +2680,10 @@ uchar aatyp;
 /*	char buf[BUFSZ]; */
 
 
+	if (mhit && aatyp == AT_BITE && is_vampire(youmonst.data)) {
+	    if (bite_monster(mon))
+		return 2;			/* lifesaved */
+	}
 	for(i = 0; ; i++) {
 	    if(i >= NATTK) return(malive | mhit);       /* no passive attacks */
 	    if(ptr->mattk[i].aatyp == AT_NONE /*||

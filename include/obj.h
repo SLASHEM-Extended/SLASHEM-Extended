@@ -73,6 +73,7 @@ struct obj {
 #define MAX_ERODE 3
 #define orotten oeroded		/* rotten food */
 #define odiluted oeroded	/* diluted potions */
+#define odrained oeroded2	/* drained corpse */
 	Bitfield(oerodeproof,1); /* erodeproof weapon/armor */
 	Bitfield(olocked,1);	/* object is locked */
 #define oarmed olocked
@@ -209,6 +210,7 @@ struct obj {
 #define polyfodder(obj)	(ofood(obj) && (obj)->corpsenm == PM_CHAMELEON)
 #define mlevelgain(obj)	(ofood(obj) && (obj)->corpsenm == PM_WRAITH)
 #define mhealup(obj)	(ofood(obj) && (obj)->corpsenm == PM_NURSE)
+#define drainlevel(corpse) (mons[(corpse)->corpsenm].cnutrit*4/5)
 
 /* Containers */
 #define carried(o)	((o)->where == OBJ_INVENT)

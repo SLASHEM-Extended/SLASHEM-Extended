@@ -2065,7 +2065,7 @@ mergable(otmp, obj)     /* returns TRUE if obj  & otmp can be merged */
 	    return FALSE;
 
 	if (obj->oclass == FOOD_CLASS && (obj->oeaten != otmp->oeaten ||
-					  obj->orotten != otmp->orotten))
+	  obj->odrained != otmp->odrained || obj->orotten != otmp->orotten))
 	    return(FALSE);
 
 	if (obj->otyp == CORPSE || obj->otyp == EGG || obj->otyp == TIN) {
