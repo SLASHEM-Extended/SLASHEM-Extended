@@ -195,8 +195,8 @@ nhtiles.bmp: ../util/tile2bmp ../win/share/monsters.txt ../win/share/objects.txt
 				../win/share/other.txt
 	../util/tile2bmp $@
 
-NetHack.ad: ../win/X11/NetHack.ad
-	cp ../win/X11/NetHack.ad NetHack.ad
+SlashEM.ad: ../win/X11/SlashEM.ad
+	cp ../win/X11/SlashEM.ad SlashEM.ad
 
 pet_mark.xbm: ../win/X11/pet_mark.xbm
 	cp ../win/X11/pet_mark.xbm pet_mark.xbm
@@ -333,7 +333,7 @@ spotless:
 	-rm -f x11tiles.map x11bigtiles.map x11big3dtiles.map
 	-rm -f gl*.png
 	-rm -f pet_mark.xbm rip.xpm mapbg.xpm
-	-rm -f rip.img GEM_RSC.RSC title.img nh16.img NetHack.ad
+	-rm -f rip.img GEM_RSC.RSC title.img nh16.img SlashEM.ad
 	-rm -f ../win/share/monmag.txt ../win/share/mon32.txt
 	-rm -f ../win/share/objmag.txt ../win/share/obj32.txt
 	-rm -f ../win/share/othmag.txt ../win/share/oth32.txt

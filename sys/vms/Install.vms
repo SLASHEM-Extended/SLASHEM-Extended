@@ -456,7 +456,7 @@ Notes:
     its Unix X client have a compatible transport between them (either
     TCP/IP added to VMS or DECnet added to Unix) and session security
     is set up appropriately.  You'll need to add the contents of file
-    [.win.X11]NetHack.ad into your DECW$USER_DEFAULTS:DECW$XDEFAULTS.DAT,
+    [.win.X11]SlashEM.ad into your DECW$USER_DEFAULTS:DECW$XDEFAULTS.DAT,
     and modify some of the lines.  The DECwindows window manager does not
     support having input focus automatically follow the pointer, so you
     should uncomment the "NetHack*autofocus" resource line.  (For Motif
