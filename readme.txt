@@ -363,6 +363,7 @@ ver 0.0.6E4F1 [September XX/2000]
 -fixed bug 115656: Player can start with ring of sleeping.
 -fixed bug 115471: Shopkeepers mistakenly think items are fully identified.
 -fixed bug 115837: Double "your" in messages.
+-fixed bug 115475: Eating identified tins should add to eaten memories.
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()

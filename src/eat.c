@@ -1134,8 +1134,11 @@ opentin()               /* called during each move whilst opening a tin */
 	    victual.fullwarn = victual.eating = victual.doreset = FALSE;
 
 #ifdef EATEN_MEMORY
-		/* WAC - you only recognize if you've eaten this before */
-		You("consume %s %s.", tintxts[r].txt,
+	    /* ALI - you already know the type of the tinned meat */
+	    if (tin.tin->known && mvitals[tin.tin->corpsenm].eaten < 255)
+		mvitals[tin.tin->corpsenm].eaten++;
+	    /* WAC - you only recognize if you've eaten this before */
+	    You("consume %s %s.", tintxts[r].txt,
 				mvitals[tin.tin->corpsenm].eaten ?
 				mons[tin.tin->corpsenm].mname : "food");
 #else
