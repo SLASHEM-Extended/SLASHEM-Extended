@@ -355,6 +355,7 @@ ver 0.0.6E4F1 [September XX/2000]
 -fixed bug 113621: GTK port now supports 3D tileset.
 -fixed bug 113813: Update tileset.
 -fixed bug 115554: Primal roar technique can cause crash.
+-fixed bug 115292: Better grammar in draining blood message (vampires).
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()

@@ -1335,7 +1335,7 @@ eatcorpse(otmp)         /* called when a corpse is selected as food */
 
 		/* Generate the name for the corpse */
 		if (!uniq)
-		    Sprintf(buf, "%s", corpse_xname(otmp,TRUE));
+		    Sprintf(buf, "%s", the(corpse_xname(otmp,TRUE)));
 		else
 		    Sprintf(buf, "%s%s corpse",
 			    !type_is_pname(&mons[mnum]) ? "the " : "",
