@@ -1,4 +1,4 @@
-/* $Id: prxyconn.c,v 1.6 2003-05-27 09:48:46 j_ali Exp $ */
+/* $Id: prxyconn.c,v 1.7 2003-09-04 19:11:41 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -296,12 +296,41 @@ proxy_start_client_services()
 static int
 proxy_connect_file(char *address, int *argcp, char **argv)
 {
-    char *filename;
+    char *filename, *dirname, *save_wd;
     char **nargv;
     int i, pid;
     HANDLE to_game_h[2], from_game_h[2], save_stdin, save_stdout;
     nargv = (char **)alloc((*argcp + 2) * sizeof(char *));
-    nargv[0] = address;
+    filename = strrchr(address, '\\');
+    if (filename) {
+	i = 1024;
+	save_wd = malloc(i);
+	*save_wd = '\0';
+	while(!getcwd(save_wd, i) && errno == ERANGE) {
+	    free(save_wd);
+	    i *= 2;
+	    save_wd = malloc(i);
+	    *save_wd = '\0';
+	}
+	filename++;
+	i = filename - address;
+	dirname = malloc(i);
+	if (!dirname) {
+	    proxy_clnt_error("Not enough memory");
+	    return 1;
+	}
+	strncpy(dirname, address, i - 1);
+	dirname[i - 1] = '\0';
+	if (chdir(dirname)) {
+	    proxy_clnt_error("Can't change to directory %s", dirname);
+	    return 1;
+	}
+	free(dirname);
+	nargv[0] = filename;
+    } else {
+	nargv[0] = address;
+	save_wd = NULL;
+    }
     nargv[1] = "--proxy";
     for(i = 1; i <= *argcp; i++)
 	nargv[i + 1] = argv[i];
@@ -341,6 +370,10 @@ proxy_connect_file(char *address, int *argcp, char **argv)
 	proxy_clnt_error("Failed to restore stdout");
 	return 1;
     }
+    if (save_wd && *save_wd)
+	chdir(save_wd);
+    if (save_wd)
+	free(save_wd);
     return proxy_init_client_services(client_read_file, (void *)from_game_h[0],
       client_write_file, (void *)to_game_h[1]);
 }
