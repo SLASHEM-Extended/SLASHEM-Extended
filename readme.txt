@@ -349,6 +349,7 @@ ver 0.0.6E9 [?] [Released by ?]
 -Actioned feature request 422158: so painful to read, etc. from inventory.
 -fixed bug 704203: Finishing off drained corpse.
 -Actioned feature request 563965: Reduce gypsy wishes.
+-Actioned feature request 594639: Monsters which should be bloodless.
 
 ver 0.0.6E8 [January 24/2003] [Released by Ali]
 -fixed bug 233901: Gtk-Critical errors from gtk_main_quit.

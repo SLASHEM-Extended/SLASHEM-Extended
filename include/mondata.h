@@ -218,6 +218,8 @@
 /* For vampires */
 #define has_blood(ptr)		(!vegetarian(ptr) && \
 				   (ptr)->mlet != S_GOLEM && \
+				  ((ptr)->mlet != S_BAD_FOOD || \
+				   (ptr) == &mons[PM_KILLER_TRIPE_RATION]) && \
 				   (!is_undead(ptr) || is_vampire(ptr)))
 
 #define befriend_with_obj(ptr, obj) ((obj)->oclass == FOOD_CLASS && ( \
