@@ -377,6 +377,7 @@ ver 0.0.6E4F8 [?] [Released by ?]
 -fixed bug 524758: #borrow on pets exercises dexterity.
 -fixed bug 525461: Can't compile without UNPOLYPILE.
 -fixed bug 479068: Bones can contain guaranteed artifacts.
+-fixed bug 479067: Bones can contain aligned nemeses.
 
 ver 0.0.6E4F7 [February 28/2002] [Released by Ali]
 -Improvements to database (Lars Huttar)
