@@ -618,7 +618,8 @@ void onPaint(HWND hWnd)
 					int t_x, t_y;
 					RECT glyph_rect;
 
-					ntile = glyph2tile[ data->map[i][j] ];
+/*					ntile = glyph2tile[ data->map[i][j] ];*/
+					ntile = glyph2tile[ back_to_glyph(i,j) ];
 					t_x = (ntile % GetNHApp()->mapTilesPerLine)*GetNHApp()->mapTile_X;
 					t_y = (ntile / GetNHApp()->mapTilesPerLine)*GetNHApp()->mapTile_Y;
 					
@@ -637,6 +638,28 @@ void onPaint(HWND hWnd)
 						GetNHApp()->mapTile_Y, 
 						SRCCOPY 
 					);
+
+					if (ntile != glyph2tile[ data->map[i][j] ])
+					{
+						ntile = glyph2tile[ data->map[i][j] ];
+						t_x = (ntile % GetNHApp()->mapTilesPerLine)*GetNHApp()->mapTile_X;
+						t_y = (ntile / GetNHApp()->mapTilesPerLine)*GetNHApp()->mapTile_Y;
+
+						nhapply_image_transparent( 
+							hDC,
+							glyph_rect.left,
+							glyph_rect.top, 
+							data->xScrTile,
+							data->yScrTile,
+							tileDC,
+							t_x,
+							t_y,
+							GetNHApp()->mapTile_X, 
+							GetNHApp()->mapTile_Y, 
+							TILE_BK_COLOR 
+						);
+					}
+					
 					if( glyph_is_pet(data->map[i][j]) && iflags.wc_hilite_pet ) {
 						/* apply pet mark transparently over 
 						   pet image */
