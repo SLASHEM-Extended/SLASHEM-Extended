@@ -179,7 +179,7 @@ A("Disrupter",                  MACE,
 
 /*
  *	Mjollnir will return to the hand of a Valkyrie when thrown
- *	if the wielder is a Valkyrie wearing Gauntlets of Power.
+ *	if the wielder is a Valkyrie with strength of 25 or more.
  */
 A("Mjollnir",                   HEAVY_HAMMER,           /* Mjo:llnir */
 	(SPFX_RESTR|SPFX_ATTK),  0, 0,
