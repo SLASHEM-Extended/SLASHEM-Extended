@@ -431,7 +431,7 @@ drawbars()
         long hpfact = 512*hcur;
         long enfact = 512*u.uen;
         int hcolor = RYG(hpfact/(long)hmax);
-        int ecolor = MBC(enfact/(long)u.uenmax);
+        int ecolor = MBC(enfact/(long)emax);
 
         if(hud_setting == 2)
                 maxx = X_RES-81;
