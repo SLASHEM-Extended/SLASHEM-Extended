@@ -67,34 +67,23 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E6F2 [May 3/2004] [Released by Ali]
--fixed bug 910334: Vampire blood and foodless conduct
--fixed bug 924384: Inconsistency with shoggoth corroding items
--Macintosh: Include fix-level in about-box version
--fixed bug 924277: Monsters can retaliate against themselves
--fixed bug 925892: Vampire corpse on early bones level
--fixed bug 922320: Grenade thrown by soldier angered monster
--fixed bug 929873: Crash while reading spellbook off floor
--fixed bug 932788: Permanent inventory window not updated immediately
--fixed bug 932791: Permanent inventory window not closed immediately
--fixed bug 932800: [GTK] Changing hilite_pet from "more options" not immed.
--fixed bug 932801: [GTK] Changing hilite_pet from options not immed. honoured
--fixed bug 932816: Disabled radar window appears (but isn't updated) on startup
--fixed bug 932818: [GTK] Can't close main window before starting game
--fixed bug 932827: [win32] Session windows slowly creep right and down
--fixed bug 932832: [GTK] Can't cancel at "Who are you?" prompt
--fixed bug 932905: [GTK] Apparently random crashes
--NhExt: Added support for authentication (eg., for dgamelaunch)
--fixed bug 938859: Rate of fire affected by non-launcher weapon
--fixed bug 929876: Monsters can pass between Sokoban bars
--fixed bug 934073: Spurious "don't seem to harm" messages for Drow
--fixed bug 926829: Vampires "don't seem to harm" when draining levels
--fixed bug 939133: dmonsfree error after exploding /WoPoly
--fixed bug 911485: Monk techniques and vampire lords
--fixed bug 935175: monsters cheating to use polearm
--fixed bug 938871: Izchak does not appear
--fixed bug 938864: Bad message when using flurry and limiting shots
--fixed bug 931200: Gnolls in Gnomish Mines
+ver 0.0.7E6F1 [March 20/2004] [Released by Ali]
+-fixed bug 909623: Surgery technique causes crash
+-fixed bug 909397: Windows help|about twice crashes
+-New branding for MS-Windows native GUI port
+-fixed bug 907789: "The poisoned runed dagger was poisoned!" (Nico Kist)
+-fixed bug 908187: Excessive prompts when reading graffiti (Nico Kist)
+-fixed bug 910891: Overly terse description of bones/save file compatibility
+-fixed bug 908983: "The large kobold turns into it!" (Nico Kist)
+-fixed bug 911457: Macintosh dungeon creation not random
+-fixed bug 912586: Crashes in Grund's Stronghold
+-fixed bug 907565: Unidentified tin auto-ided when eaten
+-fixed bug 908189: "The wererat turns into a wererat!"
+-fixed bug 914897: Wrong AC displayed at start of game
+-fixed bug 911335: Monster polymorph permanent?
+-fixed bug 874318: Partly eaten food more nutrious than untouched food
+-fixed bug 911845: "The poison was poisoned!" (Nico Kist)
+-fixed bug 915683: Shopkeeper doesn't handle timed objects correctly
 
 See history.txt for changes made in previous versions.
 

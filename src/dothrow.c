@@ -83,10 +83,8 @@ int thrown;
 
 	multi = 0;		/* reset; it's been used up */
 	
-	if (thrown == 1 && uwep && ammo_and_launcher(obj, uwep)) 
-		launcher = uwep;
-	else if (thrown == 2 && uswapwep && ammo_and_launcher(obj, uswapwep))
-		launcher = uswapwep;
+	if (thrown == 1) launcher = uwep;
+	else if (thrown == 2) launcher = uswapwep;
 	else launcher = (struct obj *)0;
 
 	/* ask "in what direction?" */
@@ -215,12 +213,10 @@ int thrown;
 	       
 	    /* Tech: Flurry */
 	    if (objects[obj->otyp].oc_skill == -P_BOW && tech_inuse(T_FLURRY)) {
-		multishot += 1; /* Let'em rip! */
-
 		/* more than usual == volley */
-		if (((shotlimit <= 0) || (shotlimit >= multishot)) && 
-			(obj->quan >= multishot))
+		if (obj->quan >= (multishot + 1))
 		    You("let fly a volley of %s!", xname(obj));
+		multishot += 1; /* Let'em rip! */
 	    }
 
 	    /* Shotlimit controls your rate of fire */
@@ -987,7 +983,7 @@ struct obj *obj;
 
 void
 throwit(obj, wep_mask, twoweap, thrown)
-struct obj *obj;
+register struct obj *obj;
 long wep_mask;	/* used to re-equip returning boomerang */
 boolean twoweap; /* used to restore twoweapon mode if wielded weapon returns */
 int thrown;

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmisc.c,v 1.17 2004-04-10 14:30:50 j_ali Exp $
+  $Id: gtkmisc.c,v 1.15 2004-02-21 17:13:43 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -118,19 +118,12 @@ default_clicked(GtkWidget *widget, gpointer data)
 		    break;
 	    }
 	}
-	/*
-	 * We have to disable the cache during the call to doset since the
-	 * game may call a number of window interface functions during the
-	 * call and there is no way for us to know at what point the options
-	 * have been set.
-	 */
-	nh_option_cache_disable();
 #ifdef GTK_PROXY
 	proxy_cb_doset();
 #else
 	doset();
 #endif
-	nh_option_cache_enable();
+	nh_option_cache_invalidate();
 	nh_option_set();
     } else
 	gtk_main_quit();
@@ -283,21 +276,17 @@ nh_option_set(void)
 
 /* [ALI] We could probably do this better with glib functions */
 
-#define NHOF_NOCACHE	1
-
 #define NHOF_DIRTY	1
 #define NHOF_BOOLEAN	2
 
 static char *boolean_set = "yes";	/* Where value points for booleans */
 static char *boolean_reset = "no";
 
-static unsigned nh_option_cache_flags;
 static int nh_option_cache_size;
 static struct nh_option {
     char *option;
     char *value;
     void *addr;
-    void (*callback)();	/* boolean: func(boolean) non-boolean: func(char *) */
     unsigned flags;
 } *nh_option_cache;
 
@@ -374,41 +363,20 @@ nh_option_cache_sync(void)
 }
 
 /*
- * Disable the cache. This is normally only done during calls to doset().
- * Note that this will cause spurious callbacks to be triggered for options
- * that are not changed by doset() when the options are re-entered into
- * the cache. Options with an address set do not suffer from this problem.
+ * Invalidate the cache. This is normally only done after doset() has
+ * been called.
  */
 
 int
-nh_option_cache_disable(void)
+nh_option_cache_invalidate(void)
 {
     int i;
     char *value;
     boolean bv;
     struct nh_option *no = nh_option_cache;
-    nh_option_cache_flags |= NHOF_NOCACHE;
     for(i = 0; i < nh_option_cache_size; i++, no++) {
 	if (!(no->flags & NHOF_BOOLEAN))
 	    free(no->value);
-	if (!no->addr) {
-	    free(no->option);
-	    no->option = NULL;
-	    no->flags = 0;
-	}
-	no->value = NULL;
-    }
-}
-
-int
-nh_option_cache_enable(void)
-{
-    int i;
-    char *value, *old_value;
-    boolean bv, obv;
-    struct nh_option *no = nh_option_cache;
-    nh_option_cache_flags &= ~NHOF_NOCACHE;
-    for(i = 0; i < nh_option_cache_size; i++, no++) {
 	if (no->addr) {
 #ifdef GTK_PROXY
 	    value = proxy_cb_get_option(no->option);
@@ -419,18 +387,16 @@ nh_option_cache_enable(void)
 	    if (no->flags & NHOF_BOOLEAN) {
 		bv = !strcmp(value, "yes");
 		no->value = bv ? boolean_set : boolean_reset;
-		obv = *(boolean *)no->addr;
 		*(boolean *)no->addr = bv;
-		if (no->callback && bv != obv)
-		    (*no->callback)(bv);
 	    } else {
 		no->value = strdup(value);
-		old_value = *(char **)no->addr;
+		free(*(char **)no->addr);
 		*(char **)no->addr = strdup(value);
-		if (no->callback && strcmp(no->value, old_value))
-		    (*no->callback)(no->value);
-		free(old_value);
 	    }
+	} else {
+	    free(no->option);
+	    no->option = no->value = NULL;
+	    no->flags = 0;
 	}
     }
 }
@@ -438,66 +404,32 @@ nh_option_cache_enable(void)
 void
 nh_option_cache_set(char *option, const char *value)
 {
-    boolean changed = FALSE;
-    char *buf;
     struct nh_option *no = nh_option_cache_getent(option);
     if (no && no->flags & NHOF_BOOLEAN)
 	panic("Setting value for boolean option %s", option);
-    if (nh_option_cache_flags & NHOF_NOCACHE) {
-	buf = malloc(strlen(option) + strlen(value) + 2);
-	if (buf) {
-	    sprintf(buf, "%s=%s", option, value);
-#ifdef GTK_PROXY
-	    proxy_cb_parse_options(buf);
-#else
-	    parseoptions(buf, FALSE, FALSE);
-#endif
-	    free(buf);
-	}
-	changed = TRUE;
-    } else if (no && (!no->value || strcmp(value, no->value))) {
+    if (no && (!no->value || strcmp(value, no->value))) {
 	free(no->value);
 	no->value = strdup(value);
 	no->flags |= NHOF_DIRTY;
-	changed = TRUE;
     }
     if (no && no->addr) {
 	free(*(char **)no->addr);
 	*(char **)no->addr = strdup(value);
     }
-    if (no->callback && changed)
-	(*no->callback)(no->value);
 }
 
 void
 nh_option_cache_set_bool(char *option, boolean value)
 {
-    boolean changed;
-    char *buf;
     struct nh_option *no = nh_option_cache_getent(option);
     if (no && !(no->flags & NHOF_BOOLEAN) && no->value)
 	panic("Setting boolean value for text option %s", option);
-    if (nh_option_cache_flags & NHOF_NOCACHE) {
-	buf = malloc(strlen(option) + value ? 1 : 2);
-	if (buf) {
-	    sprintf(buf, "%s%s", value ? "" : "!", option);
-#ifdef GTK_PROXY
-	    proxy_cb_parse_options(buf);
-#else
-	    parseoptions(buf, FALSE, FALSE);
-#endif
-	    free(buf);
-	}
-	changed = TRUE;
-    } else if (no && no->value != (value ? boolean_set : boolean_reset)) {
+    if (no && no->value != (value ? boolean_set : boolean_reset)) {
 	no->value = value ? boolean_set : boolean_reset;
 	no->flags |= NHOF_DIRTY | NHOF_BOOLEAN;
-	changed = TRUE;
     }
     if (no && no->addr)
 	*(boolean *)no->addr = value;
-    if (no->callback && changed)
-	(*no->callback)(value);
 }
 
 void
@@ -529,28 +461,6 @@ nh_option_cache_set_bool_addr(char *option, boolean *addr)
     }
 }
 
-void
-nh_option_cache_set_callback(char *option, void (*func)(char *new_value))
-{
-    struct nh_option *no = nh_option_cache_getent(option);
-    if (no) {
-	if (no->flags & NHOF_BOOLEAN)
-	    panic("Setting callback for boolean option %s", option);
-	no->callback = (void (*)())func;
-    }
-}
-
-void
-nh_option_cache_set_bool_callback(char *option, void (*func)(boolean new_value))
-{
-    struct nh_option *no = nh_option_cache_getent(option);
-    if (no) {
-	if (!(no->flags & NHOF_BOOLEAN) && no->value)
-	    panic("Setting boolean callback for text option %s", option);
-	no->callback = (void (*)())func;
-    }
-}
-
 char *
 nh_option_cache_get(char *option)
 {
@@ -564,8 +474,6 @@ nh_option_cache_get(char *option)
 #else
 	value = get_option(option);
 #endif
-	if (nh_option_cache_flags & NHOF_NOCACHE)
-	    return value;
 	no->value = strdup(value);
     }
     return no->value;
@@ -596,16 +504,13 @@ nh_option_cache_get_bool(char *option)
 	 * values mean various shades of true.
 	 */
 	if (!strcmp(value, "yes"))
-	    value = boolean_set;
+	    no->value = boolean_set;
 	else if (!strcmp(value, "no"))
-	    value = boolean_reset;
+	    no->value = boolean_reset;
 	else if (sscanf(value, "%d", &v) == 1)
-	    value = v ? boolean_set : boolean_reset;
+	    no->value = v ? boolean_set :  boolean_reset;
 	else
-	    value = boolean_reset;
-	if (nh_option_cache_flags & NHOF_NOCACHE)
-	    return value == boolean_set;
-	no->value = value;
+	    no->value = boolean_reset;
     }
     return no->value == boolean_set;
 }
@@ -617,16 +522,12 @@ GTK_ext_preference_update(const char *option, const char *value)
     struct nh_option *no = nh_option_cache_getent(option);
     if (no && no->flags & NHOF_BOOLEAN) {
 	bv = !strcmp(value, "yes");
-	if (!(nh_option_cache_flags & NHOF_NOCACHE) &&
-	  no->value != (bv ? boolean_set : boolean_reset))
+	if (no->value != (bv ? boolean_set : boolean_reset))
 	    no->value = bv ? boolean_set : boolean_reset;
 	if (no->addr)
 	    *(boolean *)no->addr = bv;
-	if (no->callback)
-	    (*no->callback)(bv);
     } else if (no) {
-	if (!(nh_option_cache_flags & NHOF_NOCACHE) &&
-	  (!no->value || strcmp(value, no->value))) {
+	if (!no->value || strcmp(value, no->value)) {
 	    free(no->value);
 	    no->value = strdup(value);
 	}
@@ -634,8 +535,6 @@ GTK_ext_preference_update(const char *option, const char *value)
 	    free(*(char **)no->addr);
 	    *(char **)no->addr = strdup(value);
 	}
-	if (no->callback)
-	    (*no->callback)(value);
     }
 }
 
