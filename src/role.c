@@ -596,7 +596,7 @@ struct Role urole =
 
 /* Table of all races */
 const struct Race races[] = {
-{	"doppelganger", "doppelgangen", "doppelganger-kind", "Dop",
+{	"doppelganger", "doppelganger", "doppelganger-kind", "Dop",
 	{0, 0},
 	PM_DOPPELGANGER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
 	MH_HUMAN | ROLE_MALE|ROLE_FEMALE | ROLE_NEUTRAL|ROLE_CHAOTIC,
