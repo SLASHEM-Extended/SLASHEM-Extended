@@ -59,6 +59,9 @@
 # define NEED_VARARGS
 #endif
 
+#ifdef __APPLE__        /* defined by GCC on Mac OS X */
+# define OSX
+#endif
 
 /*
  * Amiga setup.
