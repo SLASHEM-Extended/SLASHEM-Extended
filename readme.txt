@@ -332,6 +332,7 @@ ver 0.0.6E5F1 [? ?/2001] [Released by ?]
 -fixed bug 424479: Dipping into potions of gain level.
 -Full support for Kevin Hugo's aligned keys.
 -fixed bug 436639: Polyself in the Black Market.
+-Actioned feature request 454655: Fuzzy object and shopkeepers.
 
 ver 0.0.6E5 [May 3/2001] [Released by Warren]
 -Basic support for Kevin Hugo's aligned keys

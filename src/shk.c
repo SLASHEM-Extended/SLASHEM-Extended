@@ -1924,6 +1924,9 @@ register boolean usell;
 	    if (usell) {
 		if (saleable(shkp, otmp) &&
 			!otmp->unpaid && otmp->oclass != BALL_CLASS &&
+#if defined(DEVEL_BRANCH) && defined(UNPOLYPILE)
+			!is_fuzzy(otmp) &&
+#endif
 			!(otmp->oclass == FOOD_CLASS && otmp->oeaten) &&
 			!(Is_candle(otmp) && otmp->age <
 				20L * (long)objects[otmp->otyp].oc_cost))
@@ -2630,6 +2633,9 @@ move_on:
 	   || eshkp->billct == BILLSZ
 	   || obj->oclass == BALL_CLASS
 	   || obj->oclass == CHAIN_CLASS || offer == 0L
+#if defined(DEVEL_BRANCH) && defined(UNPOLYPILE)
+	   || is_fuzzy(obj)
+#endif
 	   || (obj->oclass == FOOD_CLASS && obj->oeaten)
 	   || (Is_candle(obj) &&
 		   obj->age < 20L * (long)objects[obj->otyp].oc_cost)) {

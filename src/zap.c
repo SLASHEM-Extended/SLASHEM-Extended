@@ -1545,10 +1545,18 @@ poly_obj(obj, id)
 	}
 
 	if ((!carried(otmp) || obj->unpaid) &&
+#if defined(DEVEL_BRANCH) && defined(UNPOLYPILE)
+		!is_fuzzy(obj) &&
+#endif
 		get_obj_location(otmp, &ox, &oy, BURIED_TOO|CONTAINED_TOO) &&
 		costly_spot(ox, oy)) {
+#ifdef DEVEL_BRANCH
+	    char objroom = *in_rooms(ox, oy, SHOPBASE);
+	    register struct monst *shkp = shop_keeper(objroom);
+#else
 	    register struct monst *shkp =
 		shop_keeper(*in_rooms(ox, oy, SHOPBASE));
+#endif
 
 	    if ((!obj->no_charge ||
 		 (Has_contents(obj) &&
@@ -1564,6 +1572,14 @@ poly_obj(obj, id)
 			hot_pursuit(shkp);
 		    }
 		} else Norep("%s is furious!", Monnam(shkp));
+#ifdef DEVEL_BRANCH
+		if (!carried(otmp)) {
+		    if (costly_spot(u.ux, u.uy) && objroom == *u.ushops)
+			bill_dummy_object(obj);
+		    else
+			(void) stolen_value(obj, ox, oy, FALSE, FALSE);
+		}
+#endif
 	    }
 	}
 	delobj(obj);
