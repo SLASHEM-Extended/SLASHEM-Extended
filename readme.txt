@@ -139,6 +139,7 @@ ver 0.0.8E0 [?] [Released by ?]
 	http://www.nongnu.org/nhproxy/
 	http://www.gtkhack.org/
 -fixed bug 993420: Crashes when typing symbols on drop menu
+-fixed bug 1084366: ghoul queen don't has M2_FEMALE
 
 See history.txt for changes made in previous versions.
 
