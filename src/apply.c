@@ -2604,7 +2604,7 @@ wand_explode(obj, hero_broke)
 		goto discard_broken_wand;
     }
 
-#ifdef BLACKMARKET
+#if defined(BLACKMARKET) && !defined(DEVEL_BRANCH)
     if (obj->otyp == WAN_POLYMORPH && Is_blackmarket(&u.uz)) {
                 /* No ID */
 		pline("A mysterious force surrounds the broken wand.");
