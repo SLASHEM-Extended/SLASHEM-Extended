@@ -352,21 +352,28 @@ unmap_object(x, y)
  * Internal to display.c, this is a #define for speed.
  */
 #ifdef DISPLAY_LAYERS
-#define _map_location(x,y,show)                                         \
-{                                                                       \
-    register struct obj   *obj;                                         \
-    register struct trap  *trap;                                        \
+#define _map_location(x,y,show)						\
+{									\
+    register struct obj   *obj;						\
+    register struct trap  *trap;					\
 									\
-    if ((obj = vobj_at(x, y)) && !covers_objects(x, y))                 \
-	map_object(obj, FALSE);                                         \
-    else if (level.flags.hero_memory)                                   \
-	levl[x][y].mem_corpse = levl[x][y].mem_obj = 0;                 \
-    if ((trap = t_at(x, y)) && trap->tseen && !covers_traps(x, y))      \
-	map_trap(trap, FALSE);                                          \
-    else if (level.flags.hero_memory)                                   \
-	levl[x][y].mem_trap = 0;                                        \
-    map_background(x, y, FALSE);                                        \
-    if (show) show_glyph(x, y, memory_glyph(x, y));                     \
+    if (level.flags.hero_memory) {					\
+	if ((obj = vobj_at(x, y)) && !covers_objects(x, y))		\
+	    map_object(obj, FALSE);					\
+	else								\
+	    levl[x][y].mem_corpse = levl[x][y].mem_obj = 0;		\
+	if ((trap = t_at(x, y)) && trap->tseen && !covers_traps(x, y))	\
+	    map_trap(trap, FALSE);					\
+	else								\
+	    levl[x][y].mem_trap = 0;					\
+	map_background(x, y, FALSE);					\
+	if (show) show_glyph(x, y, memory_glyph(x, y));			\
+    } else if ((obj = vobj_at(x,y)) && !covers_objects(x,y))		\
+	map_object(obj,show);						\
+    else if ((trap = t_at(x,y)) && trap->tseen && !covers_traps(x,y))	\
+	map_trap(trap,show);						\
+    else								\
+	map_background(x,y,show);					\
 }
 #else	/* DISPLAY_LAYERS */
 #define _map_location(x,y,show)						\
