@@ -69,6 +69,7 @@ http://www.slashem.org/
 
 ver 0.0.7E6F3 [?] [Released by ?]
 -fixed bug 923003: Invisible mirrors can be applied
+-fixed bug 916544: Wrong weight of corpses on Nightmare level
 
 See history.txt for changes made in previous versions.
 

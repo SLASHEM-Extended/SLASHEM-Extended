@@ -1054,8 +1054,11 @@ struct mkroom	*croom;
 	}
 
 	/*	corpsenm is "empty" if -1, random if -2, otherwise specific */
-	if (o->corpsenm == NON_PM - 1) otmp->corpsenm = rndmonnum();
-	else if (o->corpsenm != NON_PM) otmp->corpsenm = o->corpsenm;
+	if (o->corpsenm != NON_PM) {
+	    if (o->corpsenm == NON_PM - 1) otmp->corpsenm = rndmonnum();
+	    else otmp->corpsenm = o->corpsenm;
+	    otmp->owt = weight(otmp);
+	}
 
 	if (otmp->otyp == EGG && In_spiders(&u.uz)) {
 	    otmp->corpsenm = PM_GIANT_SPIDER;
