@@ -723,6 +723,14 @@ register int after;     /* this is extra fast monster movement */
 	    }
 	}
 
+	/* ALI -- Mindless pets shouldn't attack monsters when
+	 * scared; they have no sense of allegiance to the hero,
+	 * only self-preservation. This prevents weak pets blocking
+	 * your exit from a shop by constantly missing shopkeeper.
+	 */
+	if (mindless(mtmp->data) && mtmp->mflee)
+	    allowflags &= ~ALLOW_M;
+
 	if (!nohands(mtmp->data) && !verysmall(mtmp->data)) {
 		allowflags |= OPENDOOR;
 		if (m_carrying(mtmp, SKELETON_KEY)) allowflags |= BUSTDOOR;
@@ -803,13 +811,9 @@ register int after;     /* this is extra fast monster movement */
 			  || mtmp2->data->msound == MS_GUARDIAN
 			  || mtmp2->data->msound == MS_LEADER) &&
 			 mtmp2->mpeaceful && !Conflict) ||
-			(touch_petrifies(mtmp2->data) && !resists_ston(mtmp)) ||
-			/* ALI -- Scared pets shouldn't attack monsters.
-			 * This prevents weak, mindless pets blocking your
-			 * exit from a shop by constantly missing shopkeeper.
-			 */
-			mtmp->mflee)
-			    continue;
+			   (touch_petrifies(mtmp2->data) &&
+				!resists_ston(mtmp)))
+			continue;
 
 		    if (after) return(0); /* hit only once each move */
 
