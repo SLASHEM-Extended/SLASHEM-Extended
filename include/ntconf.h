@@ -21,7 +21,7 @@
 #define EXEPATH			/* Allow .exe location to be used as HACKDIR */
 #define TRADITIONAL_GLYPHMAP	/* Store glyph mappings at level change time */
 #if defined(WIN32CON) && !defined(__CYGWIN__)
-# define LAN_FEATURES		*//* Include code for lan-aware features. */
+# define LAN_FEATURES		/* Include code for lan-aware features. */
 #endif
 
 #define PC_LOCKING		/* Prevent overwrites of aborted or in-progress games */
