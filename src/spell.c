@@ -148,10 +148,15 @@ cursed_book(lev)
 		    if (uarmg->oerodeproof || !is_corrodeable(uarmg)) {
 			Your("gloves seem unaffected.");
 		    } else if (uarmg->oeroded2 < MAX_ERODE) {
-			Your("gloves corrode%s!",
-			     uarmg->oeroded2+1 == MAX_ERODE ? " completely" :
-			     uarmg->oeroded2 ? " further" : "");
-			uarmg->oeroded2++;
+			if (uarmg->greased) {
+			    grease_protect(uarmg, "gloves", TRUE, &youmonst);
+			} else {
+			    Your("gloves corrode%s!",
+				 uarmg->oeroded2+1 == MAX_ERODE ?
+				 " completely" : uarmg->oeroded2 ?
+				 " further" : "");
+			    uarmg->oeroded2++;
+			}
 		    } else
 			Your("gloves %s completely corroded.",
 			     Blind ? "feel" : "look");
