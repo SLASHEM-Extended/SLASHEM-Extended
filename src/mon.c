@@ -68,9 +68,6 @@ int mndx;
 	case PM_VAMPIRE_MAGE:
 	case PM_HUMAN_ZOMBIE:
 	case PM_HUMAN_MUMMY:    mndx = PM_HUMAN;  break;
-#if 0	/* DEFERRED */
-	case PM_VAMPIRE_MAGE:
-#endif
 	case PM_GIANT_ZOMBIE:
 	case PM_GIANT_MUMMY:    mndx = PM_GIANT;  break;
 	case PM_ETTIN_ZOMBIE:
@@ -166,6 +163,7 @@ register struct monst *mtmp;
 		return (struct obj *)0;
 	    case PM_VAMPIRE:
 	    case PM_VAMPIRE_LORD:
+	    case PM_VAMPIRE_MAGE:
 		/* include mtmp in the mkcorpstat() call */
 		num = undead_to_corpse(mndx);
 		obj = mkcorpstat(CORPSE, mtmp, &mons[num], x, y, TRUE);
