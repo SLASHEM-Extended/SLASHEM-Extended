@@ -709,6 +709,12 @@ unsigned trflags;
 		    u.mh = 0;
 		    rehumanize();
 		    break;
+		} else if (u.umonnum == PM_FLAMING_SPHERE) {
+		    pline("%s you!", A_gush_of_water_hits);
+		    You("are extinguished!");
+		    u.mh = 0;
+		    rehumanize();
+		    break;
 		} else if (u.umonnum == PM_GREMLIN && rn2(3)) {
 		    pline("%s you!", A_gush_of_water_hits);
 		    (void)split_mon(&youmonst, (struct monst *)0);
@@ -1757,6 +1763,12 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 				else if(mtmp->mtame)
 				    pline("May %s rust in peace.",
 								mon_nam(mtmp));
+				mondied(mtmp);
+				if (mtmp->mhp <= 0)
+					trapkilled = TRUE;
+			} else if (mptr == &mons[PM_FLAMING_SPHERE]) {
+				if (in_sight)
+				    pline("%s is extinguished!", Monnam(mtmp));
 				mondied(mtmp);
 				if (mtmp->mhp <= 0)
 					trapkilled = TRUE;

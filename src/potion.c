@@ -1358,9 +1358,12 @@ boolean your_fault;
 		} else if(mon->data == &mons[PM_GREMLIN]) {
 		    angermon = FALSE;
 		    (void)split_mon(mon, (struct monst *)0);
-		} else if(mon->data == &mons[PM_IRON_GOLEM]) {
+		} else if(mon->data == &mons[PM_FLAMING_SPHERE] ||
+			mon->data == &mons[PM_IRON_GOLEM]) {
 		    if (canseemon(mon))
-			pline("%s rusts.", Monnam(mon));
+			pline("%s %s.", Monnam(mon),
+				mon->data == &mons[PM_IRON_GOLEM] ?
+				"rusts" : "flickers");
 		    mon->mhp -= d(1,6);
 		    if (mon->mhp < 1) {
 			if (your_fault)
@@ -1377,15 +1380,19 @@ boolean your_fault;
 		    mon->mtame = FALSE;	
 		    (void)split_mon(mon, (struct monst *)0);
 		    break;
+		case PM_FLAMING_SPHERE:
 		case PM_IRON_GOLEM:
-		    if (canseemon(mon)) pline("%s rusts.", Monnam(mon));
+		    if (canseemon(mon)) pline("%s %s.", Monnam(mon),
+			    monsndx(mon->data) == PM_IRON_GOLEM ?
+			    "rusts" : "flickers");
 		    mon->mhp -= d(1,6);
-		    mon->mtame = FALSE;	
 		    if (mon->mhp < 1)
 			if (your_fault)
 			    killed(mon);
 			else
-			    monkilled(mon, (char *) 0, AD_RUST);
+			    monkilled(mon, "", AD_ACID);
+		    else
+			mon->mtame = FALSE;	
 		    break;
 		case PM_WIZARD_OF_YENDOR:
 		    if (your_fault) {
@@ -1619,7 +1626,10 @@ register struct obj *obj;
 	case POT_AMNESIA:
 		if(u.umonnum == PM_GREMLIN)
 		    (void)split_mon(&youmonst, (struct monst *)0);
-		else if(u.umonnum == PM_IRON_GOLEM) {
+		else if(u.umonnum == PM_FLAMING_SPHERE) {
+		    You("flicker!");
+		    losehp(d(1,6),"potion of amnesia", KILLED_BY_AN);
+		} else if(u.umonnum == PM_IRON_GOLEM) {
 		    You("rust!");
 		    losehp(d(1,6),"potion of amnesia", KILLED_BY_AN);
 		}
