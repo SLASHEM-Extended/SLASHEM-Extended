@@ -186,12 +186,9 @@ boolean use_scoreprefix;
 {
 	FILE *fp;
 
-#ifdef AMIGA
-	fp = fopenp(filename, mode);
-#else
 	filename = fqname(filename,
 				use_scoreprefix ? SCOREPREFIX : DATAPREFIX, 0);
-# ifdef VMS	/* essential to have punctuation, to avoid logical names */
+#ifdef VMS	/* essential to have punctuation, to avoid logical names */
     {
 	char tmp[BUFSIZ];
 
@@ -199,9 +196,8 @@ boolean use_scoreprefix;
 		filename = strcat(strcpy(tmp, filename), ";0");
 	fp = fopen(filename, mode, "mbc=16");
     }
-# else
+#else
 	fp = fopen(filename, mode);
-# endif
 #endif
 	return fp;
 }
@@ -224,9 +220,7 @@ set_lock_and_bones()
 	strncat(levels, bbs_id, PATHLEN);
 #endif
 	append_slash(bones);
-#ifndef AMIGA /* We'll want bones & levels in the user specified directory -jhsa */
 	Strcat(bones, "bonesnn.*");
-#endif
 	Strcpy(lock, levels);
 #ifndef AMIGA
 	Strcat(lock, alllevels);
@@ -388,20 +382,9 @@ d_level *lev;
 {
 	s_level *sptr;
 	char *dptr;
-#ifdef AMIGA
-	char bonetmp[16];
-#endif
 
-#ifdef AMIGA /* We'll want the bones go the user defined Levels directory -jhsa */
-	/* permbones should be subsumed by fqn_prefix[BONESPREFIX] */
-	Sprintf(bonetmp, "bon%c%s", dungeons[lev->dnum].boneid,
-			In_quest(lev) ? urole.filecode : "0");
-	Strcpy(file, permbones);
-	Strcat(file, bonetmp);
-#else
 	Sprintf(file, "bon%c%s", dungeons[lev->dnum].boneid,
 			In_quest(lev) ? urole.filecode : "0");
-#endif
 	dptr = eos(file);
 	if ((sptr = Is_special(lev)) != 0)
 	    Sprintf(dptr, ".%c", sptr->boneid);
@@ -697,20 +680,16 @@ create_savefile()
 	fd = creat_area(FILE_AREA_SAVE, SAVEF, FCMASK);
 # endif
 #else	/* FILE_AREAS */
-# ifdef AMIGA
-	fd = ami_wbench_getsave(O_WRONLY | O_CREAT | O_TRUNC);
-# else
 	fq_save = fqname(SAVEF, SAVEPREFIX, 0);
 # ifdef MICRO
 	fd = open(fq_save, O_WRONLY | O_BINARY | O_CREAT | O_TRUNC, FCMASK);
 # else
-# ifdef MAC
+#  ifdef MAC
 	fd = maccreat(fq_save, SAVE_TYPE);
-# else
+#  else
 	fd = creat(fq_save, FCMASK);
-# endif
-#  endif /* MICRO */
-# endif  /* AMIGA */
+#  endif
+# endif /* MICRO */
 #endif  /* FILE_AREAS */
 
 #if defined(VMS) && !defined(SECURE)
@@ -727,7 +706,7 @@ create_savefile()
 # else
 	(void) chown(fq_save, getuid(), getgid());
 # endif
-#endif
+#endif /* VMS && !SECURE */
 
 	return fd;
 }
@@ -743,16 +722,12 @@ open_savefile()
 	fd = open_area(FILE_AREA_SAVE, SAVEF, O_RDONLY | O_BINARY, 0);
 #else
 	const char *fq_save;
-# ifdef AMIGA
-	fd = ami_wbench_getsave(O_RDONLY);
-# else
 	fq_save = fqname(SAVEF, SAVEPREFIX, 0);
 # ifdef MAC
 	fd = macopen(fq_save, O_RDONLY | O_BINARY, SAVE_TYPE);
 # else
 	fd = open(fq_save, O_RDONLY | O_BINARY, 0);
 # endif
-# endif /* AMIGA */
 #endif	/* FILE_AREAS */
 	return fd;
 }
@@ -776,9 +751,6 @@ delete_savefile()
 #ifdef FILE_AREAS
 	(void) remove_area(FILE_AREA_SAVE, SAVEF);
 #else
-# ifdef AMIGA
-	ami_wbench_unlink(SAVEF);
-# endif
 	(void) unlink(fqname(SAVEF, SAVEPREFIX, 0));
 #endif
 	return 0;	/* for restore_saved_game() (ex-xxxmain.c) test */
@@ -796,13 +768,8 @@ restore_saved_game()
 
 	set_savefile_name();
 #ifdef MFLOPPY
-	if (
-# ifdef AMIGA
-	    !(FromWBench || saveDiskPrompt(1))
-# else
-	    !saveDiskPrompt(1)
-# endif
-	  ) return -1;
+	if (!saveDiskPrompt(1))
+	    return -1;
 #endif /* MFLOPPY */
 #ifndef FILE_AREAS
 	fq_save = fqname(SAVEF, SAVEPREFIX, 0);
@@ -2034,7 +2001,7 @@ const char *dir;
 # if defined(FILE_AREAS)
 	    if ((fd = open_area(NH_RECORD_AREA, tmp, O_CREAT|O_RDWR,
 	      S_IREAD|S_IWRITE)) < 0) {
-# elif defined(AZTEC_C) || defined(_DCC)
+# elif defined(AZTEC_C) || defined(_DCC) || (defined(__GNUC__) && defined(__AMIGA__))
 	    /* Aztec doesn't use the third argument */
 	    /* DICE doesn't like it */
 	    if ((fd = open(fq_record, O_CREAT|O_RDWR)) < 0) {

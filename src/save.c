@@ -238,9 +238,6 @@ dosave0()
 	    for (ltmp = 1; ltmp <= maxledgerno(); ltmp++)
 		if (ltmp != ledger_no(&u.uz) && level_info[ltmp].where)
 		    needed += level_info[ltmp].size + (sizeof ltmp);
-# ifdef AMIGA
-	    needed += ami_wbench_iconsize(fq_save);
-# endif
 	    fds = freediskspace(fq_save);
 	    if (needed > fds) {
 		HUP {
@@ -324,9 +321,6 @@ dosave0()
 	delete_levelfile(ledger_no(&u.uz));
 	delete_levelfile(0);
 	compress_area(FILE_AREA_SAVE, fq_save);
-#ifdef AMIGA
-	ami_wbench_iconwrite(fq_save);
-#endif
 	return(1);
 }
 

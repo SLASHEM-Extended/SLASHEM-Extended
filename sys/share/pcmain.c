@@ -177,13 +177,9 @@ char *argv[];
 	if(argc == 0)
 		chdirx(HACKDIR, 1);
 # endif
-	ami_argset(&argc, argv);
 	ami_wininit_data();
 #endif
 	initoptions();
-#ifdef AMIGA
-	ami_mkargline(&argc, &argv);
-#endif
 
 #if defined(TOS) && defined(TEXTCOLOR)
 	if (iflags.BIOS && iflags.use_color)
@@ -394,12 +390,6 @@ char *argv[];
 			if(yn("Do you want to keep the save file?") == 'n'){
 				(void) delete_savefile();
 			}
-                        else {
-/*                                compress(SAVEF);*/
-# ifdef AMIGA
-				preserve_icon();
-# endif
-                        }
 		}
 
 		flags.move = 0;

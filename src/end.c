@@ -53,7 +53,6 @@ extern void FDECL(nethack_exit,(int));
 #define done_stopprint program_state.stopprint
 
 #ifdef AMIGA
-void NDECL(clear_icon);
 # define NH_abort()	Abort(0)
 #else
 # ifdef SYSV
@@ -682,7 +681,8 @@ die:
 		u.ugrave_arise = (NON_PM - 2);	/* leave no corpse */
 	    else if (how == STONING)
 		u.ugrave_arise = (NON_PM - 1);	/* statue instead of corpse */
-	    else if (u.ugrave_arise == NON_PM) {
+	    else if (u.ugrave_arise == NON_PM &&
+		     !(mvitals[u.umonnum].mvflags & G_NOCORPSE)) {
 		corpse = mk_named_object(CORPSE, &mons[u.umonnum],
 				       u.ux, u.uy, plname);
 		Sprintf(pbuf, "%s, %s%s", plname,
@@ -713,9 +713,7 @@ die:
 	} else	taken = FALSE;	/* lint; assert( !bones_ok ); */
 
 	clearlocks();
-#ifdef AMIGA
-	clear_icon();
-#endif
+
 	if (have_windows) display_nhwindow(WIN_MESSAGE, FALSE);
 
 	if (strcmp(flags.end_disclose, "none") && how != PANICKED)

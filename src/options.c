@@ -614,9 +614,7 @@ initoptions()
 	} else
 #endif
 		read_config_file((char *)0);
-#ifdef AMIGA
-	ami_wbench_init();	/* must be here or can't set fruit */
-#endif
+
 	(void)fruitadd(pl_fruit);
 	/* Remove "slime mold" from list of object names; this will	*/
 	/* prevent it from being wished unless it's actually present	*/
@@ -2989,11 +2987,6 @@ option_help()
     winid datawin;
 
     datawin = create_nhwindow(NHW_TEXT);
-#ifdef AMIGA
-    if (FromWBench)
-	Sprintf(buf, "Set options as OPTIONS= in %s or in icon", configfile);
-    else
-#endif
     Sprintf(buf, "Set options as OPTIONS=<options> in %s", configfile);
     opt_intro[CONFIG_SLOT] = (const char *) buf;
     for (i = 0; opt_intro[i]; i++)

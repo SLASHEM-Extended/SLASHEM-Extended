@@ -438,7 +438,7 @@ fuzzymatch(s1, s2, ignore_chars, caseblind)
  *	- determination of what files are "very old"
  */
 
-#if defined(AMIGA) && !defined(AZTEC_C) && !defined(__SASC_60) && !defined(_DCC)
+#if defined(AMIGA) && !defined(AZTEC_C) && !defined(__SASC_60) && !defined(_DCC) && !defined(__GNUC__)
 extern struct tm *FDECL(localtime,(time_t *));
 #endif
 static struct tm *NDECL(getlt);
