@@ -133,6 +133,7 @@ FLAGS		return FLAGS_ID;
 GEOMETRY	return GEOMETRY_ID;
 ^MAP\n		{ BEGIN(MAPC); line_number++; }
 OBJECT		return OBJECT_ID;
+OBJFLAGS	return OBJFLAGS_ID;
 CONTAINER	return COBJECT_ID;
 MONSTER		return MONSTER_ID;
 TRAP		return TRAP_ID;
@@ -219,7 +220,6 @@ blessed		{ yylval.i=1; return CURSE_TYPE; }
 uncursed	{ yylval.i=2; return CURSE_TYPE; }
 cursed		{ yylval.i=3; return CURSE_TYPE; }
 contained	{ return CONTAINED; }
-flags		{ return OBJFLAGS; }
 o_lit		{ yylval.i=OBJF_LIT; return OBJFLAG_TYPE; }
 o_buried	{ yylval.i=OBJF_BURIED; return OBJFLAG_TYPE; }
 noteleport	{ yylval.i=NOTELEPORT; return FLAG_TYPE; }

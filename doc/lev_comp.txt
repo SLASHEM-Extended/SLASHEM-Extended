@@ -145,6 +145,7 @@ GRAMMAR
                        | room_door
                        | monster_detail
                        | object_detail
+                       | object_flags
                        | trap_detail
                        | altar_detail
                        | fountain_detail
@@ -232,6 +233,7 @@ GRAMMAR
 
        map_detail      : monster_detail
                        | object_detail
+                       | object_flags
                        | door_detail
                        | trap_detail
                        | drawbridge_detail
@@ -282,6 +284,12 @@ GRAMMAR
                        | ',' curse_state ',' monster_id ',' enchantment optional_name
                        | ',' curse_state ',' enchantment optional_name
                        | ',' monster_id ',' enchantment optional_name
+                       ;
+
+       object_flags    : OBJFLAGS_ID ':' obj_flag_list
+
+       obj_flag_list   : obj_flag_list ',' OBJFLAG_TYPE
+                       | OBJFLAG_TYPE
                        ;
 
        curse_state     : RANDOM_TYPE

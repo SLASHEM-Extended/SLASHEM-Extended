@@ -155,7 +155,7 @@ extern const char *fname;
 %token	<i> SUBROOM_ID NAME_ID FLAGS_ID FLAG_TYPE MON_ATTITUDE MON_ALERTNESS
 %token	<i> MON_APPEARANCE
 %token	<i> CONTAINED
-%token	<i> OBJFLAG_TYPE OBJFLAGS
+%token	<i> OBJFLAG_TYPE OBJFLAGS_ID
 %token	<i> ',' ':' '(' ')' '[' ']'
 %token	<map> STRING MAP_ID
 %type	<i> h_justif v_justif trap_name room_type door_state light_state
@@ -554,6 +554,7 @@ room_detail	: room_name
 		| room_door
 		| monster_detail
 		| object_detail
+		| object_flags
 		| trap_detail
 		| altar_detail
 		| fountain_detail
@@ -817,6 +818,7 @@ map_details	: /* nothing */
 
 map_detail	: monster_detail
 		| object_detail
+		| object_flags
 		| door_detail
 		| trap_detail
 		| drawbridge_detail
@@ -921,6 +923,7 @@ object_desc	: chance ':' object_c ',' o_name
 			tmpobj[nobj]->name.str = 0;
 			tmpobj[nobj]->chance = $1;
 			tmpobj[nobj]->id = -1;
+			tmpobj[nobj]->oflags = 0;
 			if ($5) {
 			    int token = get_object_id($5, $<i>3);
 			    if (token == ERR)
@@ -968,24 +971,22 @@ object_infos	: /* nothing */
 	 * alone, ",random" requires too much lookahead to parse.
 	 */
 		  }
-		| ',' curse_state ',' monster_id ',' enchantment optional_name object_flags
+		| ',' curse_state ',' monster_id ',' enchantment optional_name
 		  {
 		  }
-		| ',' curse_state ',' enchantment optional_name object_flags
+		| ',' curse_state ',' enchantment optional_name
 		  {
 		  }
-		| ',' monster_id ',' enchantment optional_name object_flags
+		| ',' monster_id ',' enchantment optional_name
 		  {
 		  }
 		;
 
-object_flags	: /* nothing*/
+object_flags	: OBJFLAGS_ID ':' obj_flag_list
 		  {
-		   	tmpobj[nobj]->oflags = 0;
-		  }
-		| ',' OBJFLAGS '(' obj_flag_list ')'
-		  {
-		   	tmpobj[nobj]->oflags = $4;
+		   	if (nobj > 0)
+		   	   tmpobj[nobj-1]->oflags = $3;
+			else yyerror("Need an object before object flags!");
 		  }
 		;
 
