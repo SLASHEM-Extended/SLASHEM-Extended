@@ -635,13 +635,6 @@ boolean new_game;	/* false => restoring an old game */
 	  Hello((struct monst *) 0), plname, buf, urace.adj,
 	  (currentgend && urole.name.f) ? urole.name.f : urole.name.m, 
 	  DEF_GAME_NAME);
-
-#if !defined(GTK_V20)
-#ifdef GTK_GRAPHICS
-    if(!strcmp(windowprocs.name, "gtk"))
-	GTK_init_nhwindows2();
-#endif
-#endif
 }
 
 #ifdef POSITIONBAR

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkextcmd.c,v 1.4 2000-12-15 15:38:10 j_ali Exp $
+  $Id: gtkextcmd.c,v 1.5 2003-05-03 11:12:27 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -12,9 +12,15 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include "winGTK.h"
-#include "func_tab.h"
+#include "proxycb.h"
 
+#ifndef GTK_PROXY
+#include "func_tab.h"
 extern struct ext_func_tab extcmdlist[];
+#endif
+
+static int n_extcmds = 0;
+static const char **extcmds = NULL;
 
 /*
  * These must agree with the list in winGTK.h -ALI
@@ -53,18 +59,49 @@ struct ext_cmd_map {
 
 static int extcmd = 0;
 
+static void extcmd_init(boolean init)
+{
+    int i;
+#ifdef GTK_PROXY
+    struct proxycb_get_extended_commands_res *list;
+#endif
+    if (!init) {	/* Exit */
+	for(i = 0; i < n_extcmds; i++)
+	    free((char *)extcmds[i]);
+	free(extcmds);
+	extcmds = NULL;
+	n_extcmds = 0;
+    }
+#ifdef GTK_PROXY
+    list = proxy_cb_get_extended_commands();
+    n_extcmds = list->n_commands;
+    extcmds = (const char **)malloc(n_extcmds * sizeof(const char *));
+    for(i = 0; i < n_extcmds; i++)
+	extcmds[i] = strdup(list->commands[i]);
+    proxy_cb_free_extended_commands(list);
+#else
+    for(n_extcmds = 0; extcmdlist[n_extcmds].ef_txt; n_extcmds++)
+	;
+    extcmds = (const char **)malloc(n_extcmds * sizeof(const char *));
+    for(i = 0; i < n_extcmds; i++)
+	extcmds[i] = strdup(extcmdlist[i].ef_txt);
+#endif
+}
+
 void GTK_extcmd_set(int cmd)
 {
     int j;
-    
+
+    if (!extcmds)
+	extcmd_init(TRUE);
+
     extcmd = -1;
-    
+
     if (cmd < 0 || cmd >= NO_EXT_CMD_MAPS)
 	return;
     else {
-	for(j = 0; extcmdlist[j].ef_txt; j++)
-	    if (!strcmpi(extcmdmap[cmd].txt, extcmdlist[j].ef_txt))
-	    {
+	for(j = 0; j < n_extcmds; j++)
+	    if (!nh_strncmpi(extcmdmap[cmd].txt, extcmds[j], -1)) {
 		extcmd = j;
 		return;
 	    }
@@ -101,20 +138,16 @@ extcmd_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
     int i, keysym;
     keysym = nh_keysym(event);
-    
-    if(keysym){
-	i = 0;
-	extcmd=-1;
-	while(extcmdlist[i].ef_txt){
-	    if(extcmdlist[i].ef_txt[0] == keysym){
-		extcmd=i;
-	    }
-	    ++i;
-	}
-	if(extcmd>=0 || keysym=='\033')
+
+    if (keysym) {
+	extcmd = -1;
+	for (i = 0; i < n_extcmds; i++)
+	    if (extcmds[i][0] == keysym)
+		extcmd = i;
+	if (extcmd >= 0 || keysym == '\033')
 	    gtk_main_quit();
     }
-    
+
     return FALSE;
 }
 
@@ -132,63 +165,53 @@ GTK_get_ext_cmd()
     int i, data;
     const char *label;
 
-    if (extcmd)
-    {
+    if (!extcmds)
+	extcmd_init(TRUE);
+
+    if (extcmd) {
 	i = extcmd;
 	extcmd = 0;
 	return i;
     }
 
-    window = gtk_window_new(GTK_WINDOW_DIALOG);
+    window = nh_gtk_window_dialog(TRUE);
     nh_position_popup_dialog(GTK_WIDGET(window));
-    gtk_signal_connect_after(
-	GTK_OBJECT(window), "key_press_event",
-	GTK_SIGNAL_FUNC(extcmd_key_press), NULL);
-    hid = gtk_signal_connect(
-	GTK_OBJECT(window), "destroy",
-	GTK_SIGNAL_FUNC(extcmd_destroy), &hid);
+    nh_gtk_focus_set_master(GTK_WINDOW(window),
+      GTK_SIGNAL_FUNC(extcmd_key_press), 0);
+    hid = gtk_signal_connect(GTK_OBJECT(window), "destroy",
+      GTK_SIGNAL_FUNC(extcmd_destroy), &hid);
 
     frame = nh_gtk_new_and_add(gtk_frame_new(NULL), window, "");
 
     vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), frame, "");
 
-    hbox = nh_gtk_new_and_pack(
-	gtk_hbox_new(FALSE, 0), vbox, "",
-	FALSE, FALSE, NH_PAD);
-    for(i=0; extcmdlist[i].ef_txt; i++)
-	;
-    table = nh_gtk_new_and_pack(
-	gtk_table_new((i+2)/3, 3, TRUE), hbox, "",
-	FALSE, FALSE, NH_PAD);
-    for(i = 0; extcmdlist[i].ef_txt; i++)
-    {
-	if (!strcmp(extcmdlist[i].ef_txt, "?"))
-	{
+    hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
+      FALSE, FALSE, NH_PAD);
+    table = nh_gtk_new_and_pack(gtk_table_new((n_extcmds+2)/3, 3, TRUE), hbox,
+      "", FALSE, FALSE, NH_PAD);
+    for(i = 0; i < n_extcmds; i++) {
+	if (!strcmp(extcmds[i], "?")) {
 	    /*
 	     * Rather more useful than '?' in these circumstances -ALI
 	     */
 	    label = "Cancel";
 	    data = -1;
-	}
-	else
-	{
-	    label = extcmdlist[i].ef_txt;
+	} else {
+	    label = extcmds[i];
 	    data = i;
 	}
-	d = nh_gtk_new_and_attach(
-	    gtk_button_new_with_label(label), table, "",
-	    i%3, i%3+1, i/3, i/3+1);
-	gtk_signal_connect(
-	    GTK_OBJECT(d), "clicked",
-	    GTK_SIGNAL_FUNC(extcmd_clicked), (gpointer)data);
+	d = nh_gtk_new_and_attach(gtk_button_new_with_label(label), table, "",
+	  i%3, i%3+1, i/3, i/3+1);
+	gtk_signal_connect(GTK_OBJECT(d), "clicked",
+	  GTK_SIGNAL_FUNC(extcmd_clicked), (gpointer)data);
     }
 
     gtk_grab_add(window);
     gtk_widget_show_all(window);
-    
+
     gtk_main();
 
-    if(hid > 0){
+    if (hid > 0) {
 	gtk_widget_unmap(window);
 	gtk_signal_disconnect(GTK_OBJECT(window), hid);
 

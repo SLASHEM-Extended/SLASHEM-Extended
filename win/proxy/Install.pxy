@@ -34,7 +34,7 @@ Game:
 	HACK		The game core
 
 Plug-in interface:
-	WINDOW		The window interface (eg., GTK 2.0)
+	WINDOW		The window interface (eg., GTK)
 	NHPROXY		Plug-in side proxy support
 
 To build:

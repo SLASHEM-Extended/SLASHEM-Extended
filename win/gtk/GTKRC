@@ -3,15 +3,14 @@
 #
 style "text"
 {
-	fontset = "-misc-fixed-medium-r-normal--14-*-*-*-*-*-*-*"
+    font_name = "fixed Medium 12"
 }
 style "map"
 {
     # Map font:
     #
-    # You may want to uncomment the following to use the IBMgraphics option.
+    # FIXME: There is currently no way to use the IBMgraphics option.
     #
-    #font = "vga"
 
     # Map colours:
     #
@@ -38,4 +37,4 @@ style "map"
 
 widget "fixed font*GtkText" style "text"
 widget "fixed font*GtkCList" style "text"
-widget "SlashEM map*" style "map"
+widget "SlashEM.*.map" style "map"

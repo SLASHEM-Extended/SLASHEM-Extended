@@ -1,41 +1,11 @@
 #
 # Win32 Gtkrc
 #
-# Fonts are specified as X Logical Font Descriptions (XLFDs).
-#
-# The format for these is as follows:
-# -Foundry-Family name-Weight-Slant-Set width-Add style-Pixel size-Point size
-# -Resolution X-Resolution Y-Spacing-Average width-Charset registry-encoding
-#
-# Win32/gtk recognises the following possible values:
-#
-# Foundry: (ignored)
-# Family name: All valid MS-Windows values
-# Weight: thin, extralight, ultralight, light, normal, regular, medium,
-#	semibold, demibold, bold, extrabold, ultrabold, heavy, black
-# Slant: italic, i, oblique, o, roman, r
-# Set width: (ignored)
-# Add style: (ignored)
-# Pixel size: Any integer value
-# Point size: Any integer value
-# Resolution X and Y: (ignored)
-# Spacing: m, p
-# Average width: (ignored)
-# Charset registry and encoding: iso8859-1, iso8859-2, iso8859-7, iso8859-8,
-#	iso8859-9, jisx0208.1983-*, ksc5601.1987-*, gb2312.1980-*, big5-*,
-#	microsoft-symbol, microsoft-shiftjis, microsoft-gb2312,
-#	microsoft-hangeul, microsoft-big5, microsoft-johab, microsoft-hebrew,
-#	microsoft-arabic, microsoft-greek, microsoft-turkish,
-#	microsoft-easteurope, microsoft-russian, microsoft-mac,
-#	microsoft-baltic, microsoft-cp1251
-#
-# All quantities can be given as '*', which will match any value. Add style
-# should be left empty. The 'windows' charset registry is also recognised as
-# an alias for 'microsoft'.
+# Fonts are specified as Pango Font Descriptions.
 #
 style "text"
 {
-	fontset = "-*-Courier New-normal-r-*--14-*-*-*-m-*-*-*"
+    font_name = "Sans Medium 10"
 }
 widget_class "*" style "text"
 widget "fixed font*GtkText" style "text"
@@ -43,7 +13,7 @@ widget "fixed font*GtkCList" style "text"
 
 style "map"
 {
-    fontset = "-*-Terminal-normal-r-*--20-*-*-*-m-*-*-*"
+    font_name = "Sans Medium 12"
     # Map colours:
     #
     # - These are only used in character mode.
@@ -66,4 +36,4 @@ style "map"
     fg[SELECTED] = { 1.0, 1.0, 1.0 }
     fg[INSENSITIVE] = { 1.0, 1.0, 1.0 }
 }
-widget "SlashEM map*" style "map"
+widget "SlashEM.*.map" style "map"

@@ -122,11 +122,9 @@
 #endif
 
 #ifdef GTK_GRAPHICS
-/* # define GTK_V20 */		/* Use GTK 2.0 interface */
 # define USE_XPM		/* Use XPM format for images (required) */
 # define GRAPHIC_TOMBSTONE	/* Use graphical tombstone (rip.xpm) */
 # define RADAR			/* Use radar map */
-/* #define GTK_ASKNAME */	/* Prompt for playername */
 /* # define GTK_PROXY */	/* Build for proxy interface */
 # ifndef DEFAULT_WINDOW_SYS
 #  define DEFAULT_WINDOW_SYS "gtk"

@@ -1,8 +1,9 @@
 /*
-  $Id: gtkyn.c,v 1.8 2001-06-16 18:14:40 j_ali Exp $
+  $Id: gtkyn.c,v 1.9 2003-05-03 11:12:28 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
+               Copyright (c) Slash'EM Development Team 2000-2003
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -12,182 +13,145 @@
 #include <gdk/gdkkeysyms.h>
 #include "winGTK.h"
 
-static int		keysym;
-static const char	*yn_resp;
-static int		yn_def;
-static int		yn_isdir;
+static struct yn_params {
+    const char *query;
+    const char *resp;
+    CHAR_P def;
+    int *count;
+    int isdir;
+    int watch;
+    GtkWidget *w;
+} params;
 
-static void
+static gint
 yn_clicked(GtkWidget *widget, gpointer data)
 {
-    keysym = (int)data;
-    gtk_main_quit();
+    nh_key_add((char)GPOINTER_TO_INT(data));
+    return TRUE;
 }
 
 static gint
 yn_destroy(GtkWidget *widget, gpointer data)
 {
-    guint *hid = (guint *)data;
-    *hid = 0;
-    keysym = yn_def;
-    
-    gtk_main_quit();
-
+    params.w = 0;
+    params.watch++;
     return FALSE;
+}
+
+static int
+yn_valid_response(int keysym)
+{
+    if (!*params.resp || index(params.resp, keysym))
+	return keysym;
+    else if (keysym == '\n' || keysym == ' ' || keysym == '\033')
+	return params.def;
+    else
+	return 0;
 }
 
 static gint
 yn_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
-    keysym = yn_isdir ? nh_dir_keysym(event) : 0;
+    char keysym;
 
+    keysym = params.isdir ? nh_dir_keysym(event) : 0;
     if (!keysym)
 	keysym = nh_keysym(event);
-    
-    if(keysym){
-	if(!yn_resp || index(yn_resp, keysym))
-	    gtk_main_quit();
-	if (keysym == '\n' || keysym == ' ' || keysym == '\033') {
-	    keysym = yn_def;	
-	    gtk_main_quit();
-	}
-    }
-    
-    return FALSE;
+    keysym = yn_valid_response(keysym);
+    if (keysym)
+	nh_key_add(keysym);
+    return TRUE;
 }
 
-char
-GTK_yn_function(const char *query, const char *resp, CHAR_P def)
+static gboolean
+yn_show_window(gpointer data)
 {
-    guint	hid;
-
     GtkWidget *window;
     GtkWidget *frame;
     GtkWidget *vbox;
     GtkWidget *hbox;
-    GtkWidget *clist = NULL;
     GtkWidget *table = NULL;
-    GtkWidget	*y, *n, *q;
-    GtkWidget	*d;
-    gchar	buf[NH_BUFSIZ], *bp;
-    gchar	*text[1];
+    GtkWidget *y, *n, *q;
+    GtkWidget *d;
+    gchar buf[NH_BUFSIZ], *bp;
 
-    if(resp)
-    {
-	sprintf(buf, "%s [", query);
+    if (nh_key_check())		/* Avoid race condition */
+	return FALSE;
+
+    if (*params.resp) {
+	sprintf(buf, "%s [", params.query);
 	bp = eos(buf);
-	strcpy(bp, resp);
+	strcpy(bp, params.resp);
 	bp = index(bp, '\033');
 	if (bp)
 	    *bp = '\0';
 	bp = eos(buf);
 	*bp++ = ']';
-	if (def)
-	    sprintf(bp, "(%c) ", def);
-	else
-	{
+	if (params.def)
+	    sprintf(bp, "(%c) ", params.def);
+	else {
 	    *bp++ = ' ';
 	    *bp = '\0';
 	}
-    }
-    else
-	sprintf(buf, "%s ", query);
-    text[0] = (gchar *)buf;
+    } else
+	sprintf(buf, "%s ", params.query);
 
-    yn_def = def;
-    yn_resp = resp;
-    yn_isdir = FALSE;
+    params.isdir = FALSE;
 
-    window = gtk_window_new(GTK_WINDOW_DIALOG);
+    params.w = window = nh_gtk_window_dialog(FALSE);
     nh_position_popup_dialog(GTK_WIDGET(window));
-    gtk_signal_connect_after(
-	GTK_OBJECT(window), "key_press_event",
-	GTK_SIGNAL_FUNC(yn_key_press), NULL);
-    hid = gtk_signal_connect(
-	GTK_OBJECT(window), "destroy",
-	GTK_SIGNAL_FUNC(yn_destroy), &hid);
+    nh_gtk_focus_set_master(GTK_WINDOW(window),
+      GTK_SIGNAL_FUNC(yn_key_press), 0);
+    gtk_signal_connect(GTK_OBJECT(window), "destroy",
+      GTK_SIGNAL_FUNC(yn_destroy), 0);
 
-    if(query){
-	frame = nh_gtk_new_and_add(gtk_frame_new(buf), window, "");
-	gtk_container_border_width(GTK_CONTAINER(frame), NH_PAD);
+    frame = nh_gtk_new_and_add(gtk_frame_new(buf), window, "");
+    gtk_container_border_width(GTK_CONTAINER(frame), NH_PAD);
+    vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), frame, "");
 
-	vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), frame, "");
-    }
-    else{
-	frame = nh_gtk_new_and_add(gtk_frame_new(NULL), window, "");
-
-	vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), frame, "");
-
-	clist = nh_gtk_new_and_pack(
-	    gtk_clist_new(1), vbox, "",
-	    FALSE, FALSE, NH_PAD);
-	gtk_clist_set_column_auto_resize(GTK_CLIST(clist), 0, TRUE);
-	gtk_clist_append(GTK_CLIST(clist), text);
-    }
-
-    if(resp){
-	hbox = nh_gtk_new_and_pack(
-	    gtk_hbox_new(FALSE, 0), vbox, "",
-	    FALSE, FALSE, NH_PAD);
-	
-	if(!strcmp(resp, "yn") || !strcmp(resp, "ynq")){
-	    y = nh_gtk_new_and_pack(
-		gtk_button_new_with_label("Yes"), hbox, "",
-		FALSE, FALSE, NH_PAD);
-	    gtk_signal_connect(
-		GTK_OBJECT(y), "clicked",
-		GTK_SIGNAL_FUNC(yn_clicked), (gpointer)'y');
+    if (*params.resp) {
+	hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
+	  FALSE, FALSE, NH_PAD);
+	if (!strcmp(params.resp, "yn") || !strcmp(params.resp, "ynq")) {
+	    y = nh_gtk_new_and_pack(gtk_button_new_with_label("Yes"), hbox, "",
+	      FALSE, FALSE, NH_PAD);
+	    gtk_signal_connect(GTK_OBJECT(y), "clicked",
+	      GTK_SIGNAL_FUNC(yn_clicked), (gpointer)'y');
 	}
-	if(!strcmp(resp, "yn") ||
-	   !strcmp(resp, "ynq") ||
-	   !strcmp(resp, "ynaq") ||
-	   !strcmp(resp, "yn#aq")){
-	    n = nh_gtk_new_and_pack(
-		gtk_button_new_with_label("No"), hbox, "",
-		FALSE, FALSE, NH_PAD);
-	    gtk_signal_connect(
-		GTK_OBJECT(n), "clicked",
-		GTK_SIGNAL_FUNC(yn_clicked), (gpointer)'n');
+	if (!strcmp(params.resp, "yn") || !strcmp(params.resp, "ynq") ||
+	 !strcmp(params.resp, "ynaq") || !strcmp(params.resp, "yn#aq")) {
+	    n = nh_gtk_new_and_pack(gtk_button_new_with_label("No"), hbox, "",
+	      FALSE, FALSE, NH_PAD);
+	    gtk_signal_connect(GTK_OBJECT(n), "clicked",
+	      GTK_SIGNAL_FUNC(yn_clicked), (gpointer)'n');
 	}
-	if(!strcmp(resp, "ynaq") ||
-	   !strcmp(resp, "yn#aq")){
-	    q = nh_gtk_new_and_pack(
-		gtk_button_new_with_label("All"), hbox, "",
-		FALSE, FALSE, NH_PAD);
-	    gtk_signal_connect(
-		GTK_OBJECT(q), "clicked",
-		GTK_SIGNAL_FUNC(yn_clicked), (gpointer)'a');
+	if (!strcmp(params.resp, "ynaq") || !strcmp(params.resp, "yn#aq")) {
+	    q = nh_gtk_new_and_pack(gtk_button_new_with_label("All"), hbox, "",
+	      FALSE, FALSE, NH_PAD);
+	    gtk_signal_connect(GTK_OBJECT(q), "clicked",
+	      GTK_SIGNAL_FUNC(yn_clicked), (gpointer)'a');
 	}
-	if(!strcmp(resp, "ynq") ||
-	   !strcmp(resp, "ynaq") ||
-	   !strcmp(resp, "yn#aq")){
-	    q = nh_gtk_new_and_pack(
-		gtk_button_new_with_label("Cancel"), hbox, "",
-		FALSE, FALSE, NH_PAD);
-	    gtk_signal_connect(
-		GTK_OBJECT(q), "clicked",
-		GTK_SIGNAL_FUNC(yn_clicked), (gpointer)'q');
+	if (!strcmp(params.resp, "ynq") || !strcmp(params.resp, "ynaq") ||
+	  !strcmp(params.resp, "yn#aq")) {
+	    q = nh_gtk_new_and_pack(gtk_button_new_with_label("Cancel"), hbox,
+	      "", FALSE, FALSE, NH_PAD);
+	    gtk_signal_connect(GTK_OBJECT(q), "clicked",
+	      GTK_SIGNAL_FUNC(yn_clicked), (gpointer)'q');
 	}
-    }
-    else{
-	hbox = nh_gtk_new_and_pack(
-	    gtk_hbox_new(FALSE, 0), vbox, "",
-	    FALSE, FALSE, NH_PAD);
-	if(index(query, '*')){
-	    q = nh_gtk_new_and_pack(
-		gtk_button_new_with_label("List"), hbox, "",
-		FALSE, FALSE, NH_PAD);
-	    gtk_signal_connect(
-		GTK_OBJECT(q), "clicked",
-		GTK_SIGNAL_FUNC(yn_clicked), (gpointer)'?');
-	    q = nh_gtk_new_and_pack(
-		gtk_button_new_with_label("All List"), hbox, "",
-		FALSE, FALSE, NH_PAD);
-	    gtk_signal_connect(
-		GTK_OBJECT(q), "clicked",
-		GTK_SIGNAL_FUNC(yn_clicked), (gpointer)'*');
-	}
-	else if (strstr(query, "In what direction")){	/* maybe direction */
+    } else {
+	hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
+	  FALSE, FALSE, NH_PAD);
+	if (index(params.query, '*')) {
+	    q = nh_gtk_new_and_pack(gtk_button_new_with_label("List"), hbox, "",
+	      FALSE, FALSE, NH_PAD);
+	    gtk_signal_connect(GTK_OBJECT(q), "clicked",
+	      GTK_SIGNAL_FUNC(yn_clicked), (gpointer)'?');
+	    q = nh_gtk_new_and_pack(gtk_button_new_with_label("All List"), hbox,
+	      "", FALSE, FALSE, NH_PAD);
+	    gtk_signal_connect(GTK_OBJECT(q), "clicked",
+	      GTK_SIGNAL_FUNC(yn_clicked), (gpointer)'*');
+	} else if (strstr(params.query, "In what direction")) {
+	    /* maybe direction */
 	    int i, j;
 	    struct {
 		char *str;
@@ -236,43 +200,51 @@ GTK_yn_function(const char *query, const char *resp, CHAR_P def)
 		    {"Down", '>'},
 		}
 	    };
-	    
-	    table = nh_gtk_new_and_pack(
-		gtk_table_new(4, 3, TRUE), hbox, "",
-		FALSE, FALSE, NH_PAD);
-	    for(i=0 ; i<4 ; ++i)
-		for(j=0 ; j<3 ; ++j){
+
+	    table = nh_gtk_new_and_pack(gtk_table_new(4, 3, TRUE), hbox, "",
+	      FALSE, FALSE, NH_PAD);
+	    for(i = 0; i < 4; i++)
+		for(j = 0; j < 3; j++) {
 		    d = nh_gtk_new_and_attach(
-			gtk_button_new_with_label(
-			    (iflags.num_pad ? np_dirstr[i][j].str : dirstr[i][j].str)),
-			table, "",
-			j, j+1,
-			i, i+1);
-		    gtk_signal_connect(
-			GTK_OBJECT(d), "clicked",
-			GTK_SIGNAL_FUNC(yn_clicked), 
-			(iflags.num_pad ? (gpointer)np_dirstr[i][j].key : 
-			    (gpointer)dirstr[i][j].key));
+		      gtk_button_new_with_label(copts.num_pad ?
+		        np_dirstr[i][j].str : dirstr[i][j].str),
+		      table, "", j, j+1, i, i+1);
+		    gtk_signal_connect(GTK_OBJECT(d), "clicked",
+		      GTK_SIGNAL_FUNC(yn_clicked), 
+		      copts.num_pad ? (gpointer)np_dirstr[i][j].key : 
+			(gpointer)dirstr[i][j].key);
 		}
-	    yn_isdir = TRUE;
+	    params.isdir = TRUE;
 	}
     }
 
-    gtk_grab_add(window);
     gtk_widget_show_all(window);
-    nh_gtk_perm_invent_hack();
-    
-    gtk_main();
+    return FALSE;
+}
 
-    if(hid > 0){
-	gtk_widget_unmap(window);
-	gtk_signal_disconnect(GTK_OBJECT(window), hid);
+char
+GTK_ext_yn_function(const char *query, const char *resp, CHAR_P def, int *count)
+{
+    guint timeout_id;
 
-	gtk_widget_destroy(frame);
-	if(clist)
-	    gtk_widget_destroy(clist);
-	gtk_widget_destroy(window);
+    if (!nh_key_check()) {
+	params.query = query;
+	params.resp = resp;
+	params.def = def;
+	params.count = count;
+	params.watch = 0;
+	timeout_id = g_timeout_add(500, yn_show_window, 0);
+	main_hook(&params.watch);
+	g_source_remove(timeout_id);
+	if (params.watch) {
+	    /* Dialog was created and then closed by user */
+	    nh_key_add(def);
+	}
+	if (params.w) {
+	    gtk_widget_destroy(params.w);
+	    params.w = 0;
+	}
     }
 
-    return keysym;
+    return nh_key_get();
 }

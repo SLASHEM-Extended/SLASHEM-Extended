@@ -175,8 +175,7 @@ CXX=g++
 #LD=g++
 
 # GTK windowing system
-WINGTKCONFIG=gtk-config
-# WINGTKCONFIG=PKG_CONFIG_PATH=/usr/devel/lib/pkgconfig pkg-config gtk+-2.0
+WINGTKCONFIG=PKG_CONFIG_PATH=/usr/devel/lib/pkgconfig pkg-config gtk+-2.0
 WINGTKCFLAGS=`$(WINGTKCONFIG) --cflags`
 
 # Set the WINSRC, WINOBJ, and WINLIB lines to correspond to your desired
@@ -203,21 +202,14 @@ WINQTOBJ = qt_win.o qt_clust.o qttableview.o nhwin.a
 #
 # files for a GTK port
 #
-WINGTKSRC = ../win/gtk/gtk.c ../win/gtk/gtkgetlin.c ../win/gtk/gtkstatus.c \
-	../win/gtk/gtkmenu.c ../win/gtk/gtkyn.c ../win/gtk/gtkextcmd.c \
-	../win/gtk/gtkmap.c ../win/gtk/gtkmessage.c ../win/gtk/gtkmisc.c \
-	../win/gtk/xshmmap.c ../win/gtk/xshm.c
+WINGTKSRC = ../win/gtk/gtk.c ../win/gtk/gtkgetlin.c \
+	../win/gtk/gtkstatus.c ../win/gtk/gtkmenu.c ../win/gtk/gtkyn.c \
+	../win/gtk/gtkextcmd.c ../win/gtk/gtkmap.c ../win/gtk/gtkmessage.c \
+	../win/gtk/gtkmisc.c ../win/gtk/gtktile.c ../win/gtk/xshmmap.c \
+	../win/gtk/gtkhackrc.c ../win/gtk/gtkext.c ../win/gtk/gtkint.c
 WINGTKOBJ = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
-	gtkmap.o gtkmessage.o gtkmisc.o xshmmap.o xshm.o nhwin.a
-# Files for a GTK 2.0 port
-# WINGTKSRC = ../win/gtk2/gtk.c ../win/gtk2/gtkgetlin.c \
-#	../win/gtk2/gtkstatus.c ../win/gtk2/gtkmenu.c ../win/gtk2/gtkyn.c \
-#	../win/gtk2/gtkextcmd.c ../win/gtk2/gtkmap.c ../win/gtk2/gtkmessage.c \
-#	../win/gtk2/gtkmisc.c ../win/gtk2/gtktile.c ../win/gtk2/xshmmap.c \
-#	../win/gtk2/gtkhackrc.c ../win/gtk2/gtkext.c ../win/gtk2/gtkint.c
-# WINGTKOBJ = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
-# 	gtkmap.o gtktile.o gtkmessage.o gtkmisc.o xshmmap.o gtkhackrc.o \
-#	gtkext.o gtkint.o nhwin.a
+ 	gtkmap.o gtktile.o gtkmessage.o gtkmisc.o xshmmap.o gtkhackrc.o \
+	gtkext.o gtkint.o nhwin.a
 #
 # Files for a Gnome port
 #
@@ -762,7 +754,7 @@ winval.o: ../win/X11/winval.c $(HACK_H) ../include/winX.h
 	$(CC) $(CFLAGS) -c ../win/X11/winval.c
 gtk.o: ../win/gtk/gtk.c ../include/winGTK.h $(HACK_H) ../include/nhxdr.h \
 		../include/proxycom.h ../include/func_tab.h ../include/dlb.h \
-		../include/patchlevel.h
+		../include/patchlevel.h ../include/proxycb.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtk.c
 gtkgetlin.o: ../win/gtk/gtkgetlin.c ../include/winGTK.h $(HACK_H) \
 		../include/nhxdr.h ../include/proxycom.h
@@ -777,23 +769,36 @@ gtkyn.o: ../win/gtk/gtkyn.c ../include/winGTK.h $(HACK_H) ../include/nhxdr.h \
 		../include/proxycom.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkyn.c
 gtkextcmd.o: ../win/gtk/gtkextcmd.c ../include/winGTK.h $(HACK_H) \
-		../include/nhxdr.h ../include/proxycom.h ../include/func_tab.h
+		../include/nhxdr.h ../include/proxycom.h ../include/proxycb.h \
+		../include/func_tab.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkextcmd.c
 gtkmap.o: ../win/gtk/gtkmap.c ../include/winGTK.h $(HACK_H) ../include/nhxdr.h \
-		../include/proxycom.h ../include/dlb.h ../include/patchlevel.h
+		../include/proxycom.h ../include/dlb.h ../include/patchlevel.h \
+		../include/proxycb.h ../include/prxyclnt.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmap.c
 gtkmessage.o: ../win/gtk/gtkmessage.c ../include/winGTK.h $(HACK_H) \
 		../include/nhxdr.h ../include/proxycom.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmessage.c
 gtkmisc.o: ../win/gtk/gtkmisc.c ../include/winGTK.h $(HACK_H) \
-		../include/nhxdr.h ../include/proxycom.h
+		../include/nhxdr.h ../include/proxycom.h ../include/proxycb.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmisc.c
+gtktile.o: ../win/gtk/gtktile.c ../include/winGTK.h $(HACK_H) \
+		../include/nhxdr.h ../include/proxycom.h ../include/dlb.h \
+		../include/proxycb.h ../include/prxyclnt.h
+	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtktile.c
 xshmmap.o: ../win/gtk/xshmmap.c ../include/winGTK.h $(HACK_H) \
-		../include/nhxdr.h ../include/proxycom.h ../include/xshm.h
+		../include/nhxdr.h ../include/proxycom.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshmmap.c
-xshm.o: ../win/gtk/xshm.c ../include/winGTK.h $(HACK_H) ../include/nhxdr.h \
-		../include/proxycom.h ../include/xshm.h
-	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshm.c
+gtkhackrc.o: ../win/gtk/gtkhackrc.c ../include/winGTK.h $(HACK_H) \
+		../include/nhxdr.h ../include/proxycom.h
+	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkhackrc.c
+gtkext.o: ../win/gtk/gtkext.c ../include/winGTK.h $(HACK_H) ../include/nhxdr.h \
+		../include/proxycom.h ../include/prxyclnt.h
+	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkext.c
+gtkint.o: ../win/gtk/gtkint.c ../include/winGTK.h $(HACK_H) ../include/nhxdr.h \
+		../include/proxycom.h ../include/prxyclnt.h \
+		../include/func_tab.h ../include/dlb.h ../include/patchlevel.h
+	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkint.c
 gnaskstr.o: ../win/gnome/gnaskstr.c ../win/gnome/gnaskstr.h \
 		../win/gnome/gnmain.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c ../win/gnome/gnaskstr.c

@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.30 2003-04-26 08:08:40 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.31 2003-05-03 11:12:27 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -65,7 +65,7 @@ SSHR = ..\sys\share
 UTIL = ..\util
 WTTY = ..\win\tty
 WIN32 = ..\win\win32
-WGTK = ..\win\gtk2
+WGTK = ..\win\gtk
 WSHR = ..\win\share
 #
 GNUDLL = $(MW32GTK)/lib
@@ -156,7 +156,7 @@ USE_DLB = Y
 
 #
 # Uncomment the line below if you want to compile with the GTK windowsystem.
-# You will also need to define GTK_GRAPHICS and GTK_V20 in config.h.
+# You will also need to define GTK_GRAPHICS in config.h.
 
 # USE_GTK = Y
 
@@ -255,14 +255,14 @@ WINMSOBJ1 = mswproc.o winhack.o mhdlg.o mhaskyn.o mhfont.o mhinput.o mhmain.o
 WINMSOBJ2 = mhmsgwnd.o mhsplash.o mhstatus.o mhtext.o mhmenu.o mhmap.o mhrip.o
 endif
 #
-# files for a GTK 2.0 port
+# files for a GTK port
 # (tile.c is included in the defn. for WINCSRC, below)
 ifeq ($(USE_GTK),Y)
-WINGTKSRC = ../win/gtk2/gtk.c ../win/gtk2/gtkgetlin.c ../win/gtk2/gtkstatus.c \
-	../win/gtk2/gtkmenu.c ../win/gtk2/gtkyn.c ../win/gtk2/gtkextcmd.c \
-	../win/gtk2/gtkmap.c ../win/gtk2/gtkmessage.c ../win/gtk2/gtkmisc.c \
-	../win/gtk2/xshmmap.c ../win/gtk2/gtktile.c ../win/gtkhackrc.c \
-	../win/gtk2/gtkint.c ../win/gtk2/gtkext.c
+WINGTKSRC = ../win/gtk/gtk.c ../win/gtk/gtkgetlin.c ../win/gtk/gtkstatus.c \
+	../win/gtk/gtkmenu.c ../win/gtk/gtkyn.c ../win/gtk/gtkextcmd.c \
+	../win/gtk/gtkmap.c ../win/gtk/gtkmessage.c ../win/gtk/gtkmisc.c \
+	../win/gtk/xshmmap.c ../win/gtk/gtktile.c ../win/gtk/gtkhackrc.c \
+	../win/gtk/gtkint.c ../win/gtk/gtkext.c
 WINGTKOBJ1 = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
 	gtkmap.o gtkmessage.o gtkmisc.o xshmmap.o
 WINGTKOBJ2 = gtktile.o gtkhackrc.o gtkint.o gtkext.o
@@ -1581,54 +1581,54 @@ wintext.o: ../win/X11/wintext.c $(HACK_H) $(INCL)/winX.h $(INCL)/xwindow.h
 	$(CCOMPILE) $(CFLAGS) -o$@ ../win/X11/wintext.c
 winval.o: ../win/X11/winval.c $(HACK_H) $(INCL)/winX.h
 	$(CCOMPILE) $(CFLAGS) -o$@ ../win/X11/winval.c
-gtk.o: ../win/gtk2/gtk.c $(INCL)/winGTK.h $(HACK_H) $(INCL)/nhxdr.h \
+gtk.o: ../win/gtk/gtk.c $(INCL)/winGTK.h $(HACK_H) $(INCL)/nhxdr.h \
 		$(INCL)/proxycom.h $(INCL)/func_tab.h $(INCL)/dlb.h \
 		$(INCL)/patchlevel.h $(INCL)/proxycb.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtk.c
-gtkgetlin.o: ../win/gtk2/gtkgetlin.c $(INCL)/winGTK.h $(HACK_H) \
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtk.c
+gtkgetlin.o: ../win/gtk/gtkgetlin.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkgetlin.c
-gtkstatus.o: ../win/gtk2/gtkstatus.c $(INCL)/winGTK.h $(HACK_H) \
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkgetlin.c
+gtkstatus.o: ../win/gtk/gtkstatus.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkstatus.c
-gtkmenu.o: ../win/gtk2/gtkmenu.c $(INCL)/winGTK.h $(HACK_H) \
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkstatus.c
+gtkmenu.o: ../win/gtk/gtkmenu.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/patchlevel.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkmenu.c
-gtkyn.o: ../win/gtk2/gtkyn.c $(INCL)/winGTK.h $(HACK_H) $(INCL)/nhxdr.h \
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkmenu.c
+gtkyn.o: ../win/gtk/gtkyn.c $(INCL)/winGTK.h $(HACK_H) $(INCL)/nhxdr.h \
 		$(INCL)/proxycom.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkyn.c
-gtkextcmd.o: ../win/gtk2/gtkextcmd.c $(INCL)/winGTK.h $(HACK_H) \
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkyn.c
+gtkextcmd.o: ../win/gtk/gtkextcmd.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/proxycb.h \
 		$(INCL)/func_tab.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkextcmd.c
-gtkmap.o: ../win/gtk2/gtkmap.c $(INCL)/winGTK.h $(HACK_H) \
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkextcmd.c
+gtkmap.o: ../win/gtk/gtkmap.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/dlb.h \
 		$(INCL)/patchlevel.h $(INCL)/proxycb.h \
 		$(INCL)/prxyclnt.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkmap.c
-gtkmessage.o: ../win/gtk2/gtkmessage.c $(INCL)/winGTK.h $(HACK_H) \
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkmap.c
+gtkmessage.o: ../win/gtk/gtkmessage.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkmessage.c
-gtkmisc.o: ../win/gtk2/gtkmisc.c $(INCL)/winGTK.h $(HACK_H) \
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkmessage.c
+gtkmisc.o: ../win/gtk/gtkmisc.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/proxycb.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkmisc.c
-gtktile.o: ../win/gtk2/gtktile.c $(INCL)/winGTK.h $(HACK_H) \
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkmisc.c
+gtktile.o: ../win/gtk/gtktile.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/dlb.h \
 		$(INCL)/proxycb.h $(INCL)/prxyclnt.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtktile.c
-xshmmap.o: ../win/gtk2/xshmmap.c $(INCL)/winGTK.h $(HACK_H) \
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtktile.c
+xshmmap.o: ../win/gtk/xshmmap.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/xshmmap.c
-gtkhackrc.o: ../win/gtk2/gtkhackrc.c $(INCL)/winGTK.h $(HACK_H) \
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/xshmmap.c
+gtkhackrc.o: ../win/gtk/gtkhackrc.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkhackrc.c
-gtkext.o: ../win/gtk2/gtkext.c $(INCL)/winGTK.h $(HACK_H) \
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkhackrc.c
+gtkext.o: ../win/gtk/gtkext.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/prxyclnt.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkext.c
-gtkint.o: ../win/gtk2/gtkint.c $(INCL)/nhxdr.h $(INCL)/proxycom.h \
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkext.c
+gtkint.o: ../win/gtk/gtkint.c $(INCL)/nhxdr.h $(INCL)/proxycom.h \
 		$(INCL)/prxyclnt.h $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/func_tab.h $(INCL)/dlb.h $(INCL)/patchlevel.h
-	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk2/gtkint.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkint.c
 gnaskstr.o: ../win/gnome/gnaskstr.c ../win/gnome/gnaskstr.h \
 		../win/gnome/gnmain.h
 	$(CCOMPILE) $(CFLAGS) $(GNOMEINC) -o$@ ../win/gnome/gnaskstr.c

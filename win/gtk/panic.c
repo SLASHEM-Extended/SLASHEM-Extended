@@ -1,5 +1,5 @@
 /*
-  $Id: panic.c,v 1.3 2002-10-05 19:22:54 j_ali Exp $
+  $Id: panic.c,v 1.1 2003-05-03 11:12:28 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000

@@ -1,8 +1,9 @@
 /*
-  $Id: gtkstatus.c,v 1.9 2001-04-22 17:21:20 j_ali Exp $
+  $Id: gtkstatus.c,v 1.10 2003-05-03 11:12:28 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
+               Copyright (c) Slash'EM Development Team 2001-2003
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -15,6 +16,7 @@
 
 #define STAT_ROWS	8
 #define STAT_COLS	2
+#define STAT_BARS	2
 
 static GtkWidget *handle;
 static GtkWidget *frame;
@@ -24,6 +26,7 @@ static GtkWidget *hbox2;
 static GtkWidget *vbox;
 static GtkWidget *clist[STAT_COLS+1];
 
+static GtkWidget *levi;
 static GtkWidget *conf;
 static GtkWidget *blin;
 static GtkWidget *stun;
@@ -31,167 +34,30 @@ static GtkWidget *hall;
 static GtkWidget *hung;
 static GtkWidget *sick;
 static GtkWidget *encu;
+static GtkWidget *slim;
 
 static GtkWidget *bar_table;
-static GtkWidget *hp_hbox;
-static GtkWidget *mp_hbox;
-static GtkWidget *hp_bar_vbox;
-static GtkWidget *mp_bar_vbox;
-static GtkWidget *hp_lbl;
-static GtkWidget *mp_lbl;
-static GtkWidget *hp_bar;
-static GtkWidget *mp_bar;
-
-static GdkPixmap *hp_bar_pixmap;
-static GdkPixmap *mp_bar_pixmap;
-
-static GdkGC	*hp_gc;
-static GdkGC	*mp_gc;
-
-extern const char *hu_stat[];	/* eat.c */
-extern const char *enc_stat[];	/* botl.c */
+static struct {
+    GtkWidget *hbox, *vbox, *lbl, *area;
+    GdkPixmap *pixmap;
+    GdkGC *gc;
+} bar[STAT_BARS];
 
 static gint
-hp_bar_expose_event(GtkWidget *widget, GdkEventExpose *event)
+bar_expose_event(GtkWidget *widget, GdkEventExpose *event)
 {
-    gdk_draw_pixmap(
-	widget->window,
-	widget->style->fg_gc[GTK_WIDGET_STATE(widget)],
-	hp_bar_pixmap,
-	event->area.x, event->area.y,
-	event->area.x, event->area.y,
-	event->area.width, event->area.height);
+    int i;
+    for(i = 0; i < STAT_BARS; i++)
+	if (widget == bar[i].area)
+	    break;
+    if (i == STAT_BARS)
+	return FALSE;
+    gdk_draw_pixmap(widget->window,
+      widget->style->fg_gc[GTK_WIDGET_STATE(widget)], bar[i].pixmap,
+      event->area.x, event->area.y, event->area.x, event->area.y,
+      event->area.width, event->area.height);
 
-    return FALSE;
-}
-
-static gint
-mp_bar_expose_event(GtkWidget *widget, GdkEventExpose *event)
-{
-    gdk_draw_pixmap(
-	widget->window,
-	widget->style->fg_gc[GTK_WIDGET_STATE(widget)],
-	mp_bar_pixmap,
-	event->area.x, event->area.y,
-	event->area.x, event->area.y,
-	event->area.width, event->area.height);
-
-    return FALSE;
-}
-
-static int
-stat_mhp(void *data)
-{
-    return u.mtimedone ? u.mhmax : u.uhpmax;
-}
-
-static int
-stat_hp(void *data)
-{
-    return u.mtimedone ? (u.mh > 0 ? u.mh : 0) : (u.uhp > 0 ? u.uhp : 0);
-}
-
-static int
-stat_lvl(void *data)
-{
-    return u.mtimedone ? mons[u.umonnum].mlevel : u.ulevel;     
-}
-
-/*
-static int
-stat_char(void *data)
-{
-    return *((char *)data);
-}
-*/
-
-static int
-stat_stat(void *data)
-{
-    int d = (int)data;
-
-    return (int)ACURR(d);
-}
-
-static char *
-stat_str(void)
-{
-    static char buf[6];
-    if (ACURR(A_STR) > 18) {
-	if (ACURR(A_STR) > STR18(100))
-	    Sprintf(buf,"%2d",ACURR(A_STR)-100);
-	else if (ACURR(A_STR) < STR18(100))
-	    Sprintf(buf, "18/%02d",ACURR(A_STR)-18);
-	else
-	    Sprintf(buf,"18/**");
-    } else
-	Sprintf(buf, "%-1d",ACURR(A_STR));
-    return buf;
-}
-
-#ifdef SCORE_ON_BOTL
-static int
-f_score()
-{
-    return flags.showscore;
-}
-
-static int
-stat_score(void *data)
-{
-    return flags.showscore ? botl_score() : 0L;
-}
-#endif
-
-#ifdef SHOW_WEIGHT
-static int
-f_weight()
-{
-    return flags.showweight;
-}
-
-static char *
-stat_weight(void *data)
-{
-    static char buf[50];
-    if (flags.showweight)
-	Sprintf(buf, "%ld/%ld", (long)(inv_weight()+weight_cap()),
-	  (long)weight_cap());
-    else
-	buf[0] = '\0';
-    return buf;
-}
-#endif
-
-#ifdef EXP_ON_BOTL
-static int
-f_exp()
-{
-    return flags.showexp;
-}
-#endif
-
-static int
-f_time()
-{
-    return flags.time;
-}
-
-static char *
-stat_align(void *data)
-{
-    switch(u.ualign.type){
-    case A_CHAOTIC:
-	return "Chaotic";
-	break;
-    case A_NEUTRAL:
-	return "Neutral";
-	break;
-    case A_LAWFUL:
-	return "Lawful";
-	break;
-    }
-    return "";
+    return TRUE;
 }
 
 #if defined(MONITOR_HEAP) && defined(INTERNAL_MALLOC)
@@ -202,255 +68,234 @@ stat_mem()
 }
 #endif
 
-#define	NOVALUE		-999
-
-enum {
-    STAT_TYPE_NULL,
-    STAT_TYPE_INT_P,
-    STAT_TYPE_CHAR_P,
-    STAT_TYPE_F_INT,
-    STAT_TYPE_F_CHAR_P
-};
+#define STAT_COLUMN(n)		(n)
+#define STAT_BAR(n)		(STAT_COLS + (n))
+#define STAT_FRAME		(STAT_COLS + STAT_BARS + 1)
+#define STAT_DLEVEL		(STAT_COLS + STAT_BARS + 2)
+#define STAT_HUNGER		(STAT_COLS + STAT_BARS + 3)
+#define STAT_ENCUMBERANCE	(STAT_COLS + STAT_BARS + 4)
+#define STAT_FLAGS		(STAT_COLS + STAT_BARS + 5)
 
 struct nh_stat_tab {
-    int 	oldvalue;
-    int		typ;
-    int		(*flg)();
-    char	*name;
-    void	*v;	/* pointer for value or function */
-    void	*arg;
-} stat_tab[STAT_COLS][STAT_ROWS] = {
-    {
-	{NOVALUE, STAT_TYPE_CHAR_P, NULL,	"AC",   	(void *)&u.uac},
-	{NOVALUE, STAT_TYPE_INT_P, NULL,	"GOLD",  	(void *)&u.ugold},
-	{NOVALUE, STAT_TYPE_F_INT, NULL,	"LEVEL",	stat_lvl},
-	{NOVALUE, STAT_TYPE_F_CHAR_P, NULL,	"ALIGN",	stat_align},
-	{NOVALUE, STAT_TYPE_INT_P, f_time,	"TIME",		(void *)&moves},
-#ifdef EXP_ON_BOTL
-	{NOVALUE, STAT_TYPE_INT_P, f_exp,	"EXP", 		(void *)&u.uexp},
-#else
-	{NOVALUE, STAT_TYPE_NULL},
-#endif
-#ifdef SCORE_ON_BOTL
-	{NOVALUE, STAT_TYPE_F_INT, f_score,	"SCORE",	stat_score},
-#else
-	{NOVALUE, STAT_TYPE_NULL},
-#endif
-#ifdef SHOW_WEIGHT
-	{NOVALUE, STAT_TYPE_F_CHAR_P, f_weight,	"WEIGHT",	stat_weight},
-#else
-	{NOVALUE, STAT_TYPE_NULL},
-#endif
-    },
-    {
-	{NOVALUE, STAT_TYPE_F_CHAR_P, NULL,	"STR",		stat_str},
-	{NOVALUE, STAT_TYPE_F_INT, NULL,	"DEX",		stat_stat, (void *)A_DEX},
-	{NOVALUE, STAT_TYPE_F_INT, NULL,	"CON",		stat_stat, (void *)A_CON},
-	{NOVALUE, STAT_TYPE_F_INT, NULL,	"INT",		stat_stat, (void *)A_INT},
-	{NOVALUE, STAT_TYPE_F_INT, NULL,	"WIS",		stat_stat, (void *)A_WIS},
-	{NOVALUE, STAT_TYPE_F_INT, NULL,	"CHA",		stat_stat, (void *)A_CHA},
+    int		where;
+    char	*label;
+    char	*quan;		/* Name of quantity from game executable */
+    char	*divisor;	/* Value to show as max */
+    int		vi,dvi;		/* indecies into values array */
+    int		row;
+    gchar	*oldvalue;
+} stat_tab[] = {
+    {STAT_FRAME,	"",		"player",	NULL},
+    {STAT_DLEVEL,	"",		"dlevel",	NULL},
+    {STAT_HUNGER,	"",		"hunger",	NULL},
+    {STAT_ENCUMBERANCE,	"",		"encumberance",	NULL},
+    {STAT_FLAGS,	"",		"flags",	NULL},
+    {STAT_BAR(1),	"HP",		"hp",		"hpmax"},
+    {STAT_BAR(2),	"MP",		"pw",		"pwmax"},
+    {STAT_COLUMN(1),	"AC",   	"ac",		NULL},
+    {STAT_COLUMN(1),	"GOLD",  	"gold",		NULL},
+    {STAT_COLUMN(1),	"LEVEL",	"elevel",	NULL},
+    {STAT_COLUMN(1),	"HD",		"hitdice",	NULL},
+    {STAT_COLUMN(1),	"ALIGN",	"align",	NULL},
+    {STAT_COLUMN(1),	"TIME",		"time",		NULL},
+    {STAT_COLUMN(1),	"EXP", 		"experience",	NULL},
+    {STAT_COLUMN(1),	"SCORE",	"score",	NULL},
+    {STAT_COLUMN(1),	"WEIGHT",	"weight",	"capacity"},
+    {STAT_COLUMN(2),	"STR",		"strength",	NULL},
+    {STAT_COLUMN(2),	"DEX",		"dexterity",	NULL},
+    {STAT_COLUMN(2),	"CON",		"constitution",	NULL},
+    {STAT_COLUMN(2),	"INT",		"intelligence",	NULL},
+    {STAT_COLUMN(2),	"WIS",		"wisdom",	NULL},
+    {STAT_COLUMN(2),	"CHA",		"charisma",	NULL},
 #if defined(MONITOR_HEAP) && defined(INTERNAL_MALLOC)
-	{NOVALUE, STAT_TYPE_F_INT, NULL,	"MEM",		stat_mem},
+    {STAT_COLUMN(2),	"MEM",		NULL,		NULL},
 #endif
-    },
 };
 
-void
-nh_status_update()
+static int in_trouble = FALSE;
+static stat_tab_hp = -1;
+
+boolean
+nh_status_in_trouble(void)
 {
-    char cval;
-    int i, j, val;
-    char buf[NH_BUFSIZ];
-    char *Dummy = NULL;
+    return in_trouble;
+}
 
-    {
-	int hp;
-	int mp;
-	gchar *str;
-	GdkRectangle update_rect;
+char *
+nh_status_last_displayed(char *quan)
+{
+    int i;
+    for(i = 0; i < SIZE(stat_tab); i++)
+	if (!strcmp(quan, stat_tab[i].quan))
+	    return stat_tab[i].oldvalue;
+    return NULL;
+}
 
-	update_rect.x = 0;
-	update_rect.y = 0;
-	update_rect.width = NH_BAR_WIDTH;
-	update_rect.height = NH_BAR_HEIGHT;
-
-	hp = ((1.0 * stat_hp(Dummy)) / stat_mhp(Dummy)) * NH_BAR_WIDTH;
-	mp = ((1.0 * u.uen) / u.uenmax) * NH_BAR_WIDTH;
-
-	gdk_draw_rectangle(
-	    hp_bar_pixmap, hp_gc, TRUE,
-	    0, 0, hp, NH_BAR_HEIGHT);
-	gdk_draw_rectangle(
-	    mp_bar_pixmap, mp_gc, TRUE,
-	    0, 0, mp, NH_BAR_HEIGHT);
-
-	if(hp < NH_BAR_WIDTH)
-	    gdk_draw_rectangle(
-		hp_bar_pixmap, hp_bar->style->black_gc, TRUE,
-		hp, 0, NH_BAR_WIDTH - hp, NH_BAR_HEIGHT);
-	
-	if(mp < NH_BAR_WIDTH)
-	    gdk_draw_rectangle(
-		mp_bar_pixmap, mp_bar->style->black_gc, TRUE,
-		mp, 0, NH_BAR_WIDTH - mp, NH_BAR_HEIGHT);
-
-	gtk_widget_draw(hp_bar, &update_rect);
-	gtk_widget_draw(mp_bar, &update_rect);
-
-	str = g_strdup_printf("HP %d/%d", stat_hp(Dummy), stat_mhp(Dummy));
-	gtk_label_set_text(GTK_LABEL(hp_lbl), str);
-	g_free(str);
-
-	str = g_strdup_printf("MP %d/%d", u.uen , u.uenmax);
-	gtk_label_set_text(GTK_LABEL(mp_lbl), str);
-	g_free(str);
+static void
+nh_status_reconfig(nv, values)
+int nv;
+char **values;
+{
+    int i, j, k;
+    int rowno[STAT_COLS];
+    for(i = 0; i < STAT_COLS; i++) {
+	rowno[i] = 0;
+    	gtk_clist_freeze(GTK_CLIST(clist[i]));
     }
-
-    Strcpy(buf, plname);
-    if ('a' <= buf[0] && buf[0] <= 'z') buf[0] += 'A'-'a';
-    Strcat(buf, " ");
-    if (u.mtimedone) {
-	char mname[BUFSZ];
-	Strcpy(mname, mons[u.umonnum].mname);
-	Strcat(buf, mname);
-    } else
-	Strcat(buf, rank_of(u.ulevel, pl_character[0], flags.female));
-
-    if(buf[0])
-	gtk_frame_set_label(GTK_FRAME(frame), buf);
-
-    if (In_endgame(&u.uz)) {
-	Strcpy(buf, (Is_astralevel(&u.uz) ? "Astral Plane":"End Game"));
-    } else {
-	Strcpy(buf, dungeons[u.uz.dnum].dname);
-	Sprintf(eos(buf), ", level %d", depth(&u.uz));
-    }
-    if(buf[0])
-	gtk_label_set_text(GTK_LABEL(dlvl), buf);
-
-
-    for(j=0 ; j<STAT_COLS ; ++j) {
-    	gtk_clist_freeze(GTK_CLIST(clist[j]));
-    	
-	for(i=0 ; i<STAT_ROWS ; ++i) {
-	    struct nh_stat_tab *t;
-	    t = &stat_tab[j][i];
-
-	    if(t->typ == STAT_TYPE_NULL)
-		continue;
-	    else if(t->flg && !t->flg()){
-		gtk_clist_set_text(
-		    GTK_CLIST(clist[j]),
-		    i, 1, "");
-	    }
-	    else if(t->typ == STAT_TYPE_INT_P){
-		val = *((int *)(t->v));
-		if(val != t->oldvalue){
-		    sprintf(buf, "%d", val);
-		    gtk_clist_set_text(
-			GTK_CLIST(clist[j]),
-			i, 1, buf);
-		    t->oldvalue = val;
+    for(i = 0; i < SIZE(stat_tab); i++) {
+	stat_tab[i].vi = stat_tab[i].dvi = -1;
+	for(j = 0; j < nv; j++) {
+	    if (stat_tab[i].divisor &&
+	      !strcmp(stat_tab[i].divisor, values[j])) {
+		stat_tab[i].dvi = j;
+		if (!stat_tab[i].quan || stat_tab[i].vi >= 0)
+		    break;
+	    } else if (stat_tab[i].quan &&
+	      !strcmp(stat_tab[i].quan, values[j])) {
+		stat_tab[i].vi = j;
+		if (!strcmp(stat_tab[i].quan, "hp"))
+		    stat_tab_hp = i;
+		k = stat_tab[i].where - STAT_COLUMN(1);
+		if (k >=0 && k < STAT_COLS) {
+		    if (stat_tab[i].row != rowno[k]) {
+			stat_tab[i].row = rowno[k];
+			g_free(stat_tab[i].oldvalue);
+			stat_tab[i].oldvalue = (gchar *)0;
+		    }
+		    gtk_clist_set_text(GTK_CLIST(clist[k]), rowno[k]++,
+		      0, stat_tab[i].label);
 		}
+		if (!stat_tab[i].divisor || stat_tab[i].dvi >= 0)
+		    break;
 	    }
-	    else if(t->typ == STAT_TYPE_CHAR_P){
-		cval = *((char *)(t->v));
-		if(cval != t->oldvalue){
-		    sprintf(buf, "%d", cval);
-		    gtk_clist_set_text(
-			GTK_CLIST(clist[j]),
-			i, 1, buf);
-		    t->oldvalue = cval;
-		}
-	    }
-	    else if(t->typ == STAT_TYPE_F_INT){
-		int	(*f)();
-
-		f = t->v;
-		val = (*f)(t->arg);
-		if(val != t->oldvalue){
-		    sprintf(buf, "%d", val);
-		    gtk_clist_set_text(
-			GTK_CLIST(clist[j]),
-			i, 1, buf);
-		    t->oldvalue = val;
-		}
-	    }
-	    else if(t->typ == STAT_TYPE_F_CHAR_P){
-		char	*(*f)();
-
-		f = t->v;
-		Strcpy(buf, (*f)(t->arg));
-		gtk_clist_set_text(
-		    GTK_CLIST(clist[j]),
-		    i, 1, buf);
-	    }
-	    gtk_clist_set_text(
-		GTK_CLIST(clist[j]),
-		i, 0, t->name);
 	}
-	
-	gtk_clist_set_column_min_width(GTK_CLIST(clist[j]), 0, 
-		gtk_clist_optimal_column_width(GTK_CLIST(clist[j]), 0));
-	gtk_clist_set_column_min_width(GTK_CLIST(clist[j]), 1, 
-		gtk_clist_optimal_column_width(GTK_CLIST(clist[j]), 1));
-    	gtk_clist_thaw(GTK_CLIST(clist[j]));
+	if (stat_tab[i].vi < 0 && stat_tab[i].oldvalue) {
+	    g_free(stat_tab[i].oldvalue);
+	    stat_tab[i].oldvalue = (gchar *)0;
+	}
     }
-
-
-    if(Blind)
-	gtk_label_set_text(GTK_LABEL(blin), "Blind");
-    else
-	gtk_label_set_text(GTK_LABEL(blin), "");
-
-    if(Confusion)
-	gtk_label_set_text(GTK_LABEL(conf), "Confused");
-    else
-	gtk_label_set_text(GTK_LABEL(conf), "");
-
-    if(Sick){
-	if(u.usick_type & SICK_VOMITABLE)
-	    gtk_label_set_text(GTK_LABEL(sick), "FoodPois");
-	else
-	    gtk_label_set_text(GTK_LABEL(sick), "Ill");
+    for(i = 0; i < STAT_COLS; i++) {
+	for(j = rowno[i]; j < STAT_ROWS; j++) {
+	    gtk_clist_set_text(GTK_CLIST(clist[i]), j, 0, "");
+	    gtk_clist_set_text(GTK_CLIST(clist[i]), j, 1, "");
+	}
+	gtk_clist_set_column_min_width(GTK_CLIST(clist[i]), 0, 
+	  gtk_clist_optimal_column_width(GTK_CLIST(clist[i]), 0));
+    	gtk_clist_thaw(GTK_CLIST(clist[i]));
     }
-    else
-	gtk_label_set_text(GTK_LABEL(sick), "");
-
-    if(Stunned)
-	gtk_label_set_text(GTK_LABEL(stun), "Stunned");
-    else
-	gtk_label_set_text(GTK_LABEL(stun), "");
-
-    if(Hallucination)
-	gtk_label_set_text(GTK_LABEL(hall), "Hallucinating");
-    else
-	gtk_label_set_text(GTK_LABEL(hall), "");
-
-    if(u.uhs != 1)
-	gtk_label_set_text(GTK_LABEL(hung), hu_stat[u.uhs]);
-    else
-	gtk_label_set_text(GTK_LABEL(hung), "");
-
-    if(near_capacity())
-	gtk_label_set_text(GTK_LABEL(encu), enc_stat[near_capacity()]);
-    else
-	gtk_label_set_text(GTK_LABEL(encu), "");
 }
 
 void
-nh_status_index_update()
+GTK_ext_status(reconfig, nv, values)
+int reconfig, nv;
+const char **values;
 {
-    int i, j;
-    gchar	*text[3];
-    struct nh_stat_tab *t;
+    int i, j, val, dval;
+    unsigned long fl;
+    char buf[NH_BUFSIZ];
+    char *Dummy = NULL;
+    const char *value;
+    gchar *str = NULL, *s;
+    GdkRectangle update_rect;
 
-    for(j=0 ; j<2 ; ++j){
-	for(i=0 ; i<7 ; ++i){
-	    t = &stat_tab[j][i];
-      
-	    text[0] = t->name;
+    if (reconfig) {
+	nh_status_reconfig(nv, values);
+	return;
+    }
+    in_trouble = FALSE;
+    for(i = 0; i < STAT_COLS; i++)
+    	gtk_clist_freeze(GTK_CLIST(clist[i]));
+    for(i = 0; i < SIZE(stat_tab); i++) {
+	if (stat_tab[i].vi < 0)
+	    continue;
+	value = values[stat_tab[i].vi];
+	if (stat_tab[i].dvi >= 0)
+	    s = g_strdup_printf("%s/%s", value, values[stat_tab[i].dvi]);
+	else
+	    s = g_strdup(value);
+	j = stat_tab[i].where - STAT_BAR(1);
+	if (j >= 0 && j < 2 && *stat_tab[i].label)
+	    str = g_strdup_printf("%s %s", stat_tab[i].label, s);
+	else if (*s && (stat_tab[i].where == STAT_HUNGER ||
+	  stat_tab[i].where == STAT_ENCUMBERANCE))
+	    str = g_strdup_printf(" %s ", s);
+	else {
+	    str = s;
+	    s = (gchar *)0;
 	}
+	g_free(s);
+	if (!stat_tab[i].oldvalue || strcmp(str, stat_tab[i].oldvalue)) {
+	    switch(stat_tab[i].where) {
+		case STAT_COLUMN(1):
+		case STAT_COLUMN(2):
+		    j = stat_tab[i].where - STAT_COLUMN(1);
+		    gtk_clist_set_text(GTK_CLIST(clist[j]), stat_tab[i].row,
+		      1, str);
+		    break;
+		case STAT_BAR(1):
+		case STAT_BAR(2):
+		    j = stat_tab[i].where - STAT_BAR(1);
+		    update_rect.x = 0;
+		    update_rect.y = 0;
+		    update_rect.width = NH_BAR_WIDTH;
+		    update_rect.height = NH_BAR_HEIGHT;
+		    sscanf(value, "%d", &val);
+		    if (stat_tab[i].dvi >= 0) {
+			sscanf(values[stat_tab[i].dvi], "%d", &dval);
+			if (i == stat_tab_hp && (val <= 5 || val * 7 <= dval))
+			    in_trouble = TRUE;
+			val = val * NH_BAR_WIDTH / dval;
+		    }
+		    gdk_draw_rectangle(bar[j].pixmap, bar[j].gc, TRUE,
+			0, 0, val, NH_BAR_HEIGHT);
+		    if (val < NH_BAR_WIDTH)
+			gdk_draw_rectangle(bar[j].pixmap,
+			  bar[j].area->style->black_gc,
+			  TRUE, val, 0, NH_BAR_WIDTH - val, NH_BAR_HEIGHT);
+		    gtk_widget_draw(bar[j].area, &update_rect);
+		    gtk_label_set_text(GTK_LABEL(bar[j].lbl), str);
+		    break;
+		case STAT_FRAME:
+		    gtk_frame_set_label(GTK_FRAME(frame), str);
+		    break;
+		case STAT_DLEVEL:
+		    gtk_label_set_text(GTK_LABEL(dlvl), str);
+		    break;
+		case STAT_HUNGER:
+		    gtk_label_set_text(GTK_LABEL(hung), str);
+		    break;
+		case STAT_ENCUMBERANCE:
+		    gtk_label_set_text(GTK_LABEL(encu), str);
+		    break;
+		case STAT_FLAGS:
+		    sscanf(value, "%lX", &fl);
+		    gtk_label_set_text(GTK_LABEL(levi),
+		      (fl & RAW_STAT_LEVITATION) ? " Levitation " : "");
+		    gtk_label_set_text(GTK_LABEL(blin),
+		      (fl & RAW_STAT_BLIND) ? " Blind " : "");
+		    gtk_label_set_text(GTK_LABEL(conf),
+		      (fl & RAW_STAT_CONFUSION) ? " Confused " : "");
+		    gtk_label_set_text(GTK_LABEL(sick),
+		      (fl & RAW_STAT_FOODPOIS) ? " FoodPois " :
+		      (fl & RAW_STAT_ILL) ? " Ill " : "");
+		    gtk_label_set_text(GTK_LABEL(stun),
+		      (fl & RAW_STAT_STUNNED) ? " Stunned " : "");
+		    gtk_label_set_text(GTK_LABEL(hall),
+		      (fl & RAW_STAT_HALLUCINATION) ? " Hallucination " : "");
+		    gtk_label_set_text(GTK_LABEL(slim),
+		      (fl & RAW_STAT_SLIMED) ? " Slimed " : "");
+		    break;
+	    }
+	    g_free(stat_tab[i].oldvalue);
+	    stat_tab[i].oldvalue = str;
+	    str = (gchar *)0;
+	}
+	g_free(str);
+    }
+    for(i = 0; i < STAT_COLS; i++) {
+	gtk_clist_set_column_min_width(GTK_CLIST(clist[i]), 1, 
+	  gtk_clist_optimal_column_width(GTK_CLIST(clist[i]), 1));
+    	gtk_clist_thaw(GTK_CLIST(clist[i]));
     }
 }
 
@@ -461,100 +306,63 @@ nh_status_destroy()
      * [ALI] Most objects will be destroyed when the status widget is
      * destroyed (ie., as part of destroying the main window).
      */
-    gdk_pixmap_unref(hp_bar_pixmap);
-    gdk_pixmap_unref(mp_bar_pixmap);
+    int i;
+    for(i = 0; i < STAT_BARS; i++)
+	gdk_pixmap_unref(bar[i].pixmap);
 }
 
 GtkWidget *
 nh_status_new()
 {
-    extern GtkWidget	*main_window;
-    GtkWidget	*w;
+    extern GtkWidget *main_window;
+    GtkWidget *w;
     int	i, j;
-    gchar	*text[3];
+    gchar *text[3] = { "", "", NULL};
 
     handle = gtk_handle_box_new();
     GTK_HANDLE_BOX(handle)->shrink_on_detach = 1;
-    
-/*
-    gtk_widget_realize(handle);
-*/
 
     frame = nh_gtk_new_and_add(gtk_frame_new(NULL), handle, "");
 
     vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), frame, "");
 
-    dlvl = nh_gtk_new_and_pack(
-	gtk_label_new(""), vbox, "",
-	FALSE, FALSE, 0);
+    dlvl = nh_gtk_new_and_pack(gtk_label_new(""), vbox, "", FALSE, FALSE, 0);
 
     bar_table = nh_gtk_new_and_add(gtk_table_new(2, 2, FALSE), vbox, "");
 
-    hp_hbox = nh_gtk_new_and_attach(
-	gtk_hbox_new(FALSE, 0), bar_table, "",
-	0, 1, 0, 1);
+    for(i = 0; i < STAT_BARS; i++) {
+	bar[i].hbox = nh_gtk_new_and_attach(gtk_hbox_new(FALSE, 0), bar_table,
+	  "", 0, 1, i, i + 1);
 
-    mp_hbox = nh_gtk_new_and_attach(
-	gtk_hbox_new(FALSE, 0), bar_table, "",
-	0, 1, 1, 2);
+	for(j = 0; j < SIZE(stat_tab); j++)
+	    if (stat_tab[j].where == STAT_BAR(i + 1))
+		break;
+	bar[i].lbl = nh_gtk_new_and_pack(gtk_label_new(stat_tab[j].label),
+	  bar[i].hbox, "", FALSE, FALSE, 0);
 
-    hp_lbl = nh_gtk_new_and_pack(
-	gtk_label_new("HP"), hp_hbox, "",
-	FALSE, FALSE, 0);
+	bar[i].vbox = nh_gtk_new_and_attach(gtk_vbox_new(TRUE, 0), bar_table,
+	  "", 1, 2, i, i + 1);
 
-    mp_lbl = nh_gtk_new_and_pack(
-	gtk_label_new("MP"), mp_hbox, "",
-	FALSE, FALSE, 0);
+	bar[i].area = nh_gtk_new_and_pack(gtk_drawing_area_new(), bar[i].vbox,
+	  "", FALSE, FALSE, 0);
 
-    hp_bar_vbox = nh_gtk_new_and_attach(
-	gtk_vbox_new(TRUE, 0), bar_table, "",
-	1, 2, 0, 1);
-    mp_bar_vbox = nh_gtk_new_and_attach(
-	gtk_vbox_new(TRUE, 0), bar_table, "",
-	1, 2, 1, 2);
+	gtk_signal_connect(GTK_OBJECT(bar[i].area), "expose_event",
+	  GTK_SIGNAL_FUNC(bar_expose_event), NULL);
+	bar[i].gc = gdk_gc_new(main_window->window);
 
-    hp_bar = nh_gtk_new_and_pack(
-	gtk_drawing_area_new(), hp_bar_vbox, "",
-	FALSE, FALSE, 0);
-    mp_bar = nh_gtk_new_and_pack(
-	gtk_drawing_area_new(), mp_bar_vbox, "",
-	FALSE, FALSE, 0);
+	gtk_drawing_area_size(GTK_DRAWING_AREA(bar[i].area),
+	  NH_BAR_WIDTH, NH_BAR_HEIGHT);
 
-    gtk_signal_connect(
-	GTK_OBJECT(hp_bar), "expose_event",
-	GTK_SIGNAL_FUNC(hp_bar_expose_event), NULL);
-    gtk_signal_connect(
-	GTK_OBJECT(mp_bar), "expose_event",
-	GTK_SIGNAL_FUNC(mp_bar_expose_event), NULL);
+	bar[i].pixmap = gdk_pixmap_new(main_window->window,
+	  NH_BAR_WIDTH, NH_BAR_HEIGHT, -1);
+    }
 
-    hp_gc = gdk_gc_new(main_window->window);
-    mp_gc = gdk_gc_new(main_window->window);
+    hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
+      TRUE, FALSE, 0);
 
-    gtk_drawing_area_size(
-	GTK_DRAWING_AREA(hp_bar),
-	NH_BAR_WIDTH, NH_BAR_HEIGHT);
-
-    gtk_drawing_area_size(
-	GTK_DRAWING_AREA(mp_bar),
-	NH_BAR_WIDTH, NH_BAR_HEIGHT);
-
-    hp_bar_pixmap = gdk_pixmap_new(
-	main_window->window,
-	NH_BAR_WIDTH, NH_BAR_HEIGHT, -1);
-
-    mp_bar_pixmap = gdk_pixmap_new(
-	main_window->window,
-	NH_BAR_WIDTH, NH_BAR_HEIGHT, -1);
-
-
-    hbox = nh_gtk_new_and_pack(
-	gtk_hbox_new(FALSE, 0), vbox, "",
-	TRUE, FALSE, 0);
-
-    for(j=0 ; j<STAT_COLS ; ++j){
-	w = clist[j] = nh_gtk_new_and_pack(
-	    gtk_clist_new(2), hbox, "",
-	    FALSE, FALSE, 0);
+    for(j = 0; j < STAT_COLS; j++) {
+	w = clist[j] = nh_gtk_new_and_pack(gtk_clist_new(2), hbox, "",
+	  FALSE, FALSE, 0);
 	GTK_WIDGET_UNSET_FLAGS(w, GTK_CAN_FOCUS);
 
 	gtk_clist_set_shadow_type(GTK_CLIST(w), GTK_SHADOW_ETCHED_IN);
@@ -562,62 +370,37 @@ nh_status_new()
 	gtk_clist_set_column_min_width(GTK_CLIST(w), 0, 50);
 	gtk_clist_set_column_min_width(GTK_CLIST(w), 1, 50);
 
-	gtk_clist_set_column_justification(
-	    GTK_CLIST(w), 0, GTK_JUSTIFY_RIGHT
-	    );
-	gtk_clist_set_column_justification(
-	    GTK_CLIST(w), 1, GTK_JUSTIFY_RIGHT
-	    );
+	gtk_clist_set_column_justification(GTK_CLIST(w), 0, GTK_JUSTIFY_RIGHT);
+	gtk_clist_set_column_justification(GTK_CLIST(w), 1, GTK_JUSTIFY_RIGHT);
 
-	for(i=0 ; i<STAT_ROWS ; ++i){
-	    struct nh_stat_tab *t;
-
-	    t = &stat_tab[j][i];
-
-/*	    text[0] = t->name;*/
-	    text[0] = "";
-
-	    text[1] = "";
+	for(i = 0; i < STAT_ROWS; i++) {
 	    gtk_clist_append(GTK_CLIST(w), text);
-/*	    gtk_clist_set_selectable(GTK_CLIST(w), i, FALSE);*/
+	    /* gtk_clist_set_selectable(GTK_CLIST(w), i, FALSE); */
 	}
     }
-    hbox2 = nh_gtk_new_and_pack(
-	gtk_hbox_new(FALSE, 0), vbox, "",
-	FALSE, FALSE, 0);
+    hbox2 = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
+      FALSE, FALSE, 0);
 
-    hung = nh_gtk_new_and_pack(
-	gtk_label_new(""), hbox2, "",
-	FALSE, FALSE, 0);
+    hung = nh_gtk_new_and_pack(gtk_label_new(""), hbox2, "", FALSE, FALSE, 0);
 
-    conf = nh_gtk_new_and_pack(
-	gtk_label_new(""), hbox2, "",
-	FALSE, FALSE, 0);
+    levi = nh_gtk_new_and_pack(gtk_label_new(""), hbox2, "", FALSE, FALSE, 0);
 
-    blin = nh_gtk_new_and_pack(
-	gtk_label_new(""), hbox2, "",
-	FALSE, FALSE, 0);
+    conf = nh_gtk_new_and_pack(gtk_label_new(""), hbox2, "", FALSE, FALSE, 0);
 
-    stun = nh_gtk_new_and_pack(
-	gtk_label_new(""), hbox2, "",
-	FALSE, FALSE, 0);
+    blin = nh_gtk_new_and_pack(gtk_label_new(""), hbox2, "", FALSE, FALSE, 0);
 
-    hall = nh_gtk_new_and_pack(
-	gtk_label_new(""), hbox2, "",
-	FALSE, FALSE, 0);
+    stun = nh_gtk_new_and_pack(gtk_label_new(""), hbox2, "", FALSE, FALSE, 0);
 
-    sick = nh_gtk_new_and_pack(
-	gtk_label_new(""), hbox2, "",
-	FALSE, FALSE, 0);
+    hall = nh_gtk_new_and_pack(gtk_label_new(""), hbox2, "", FALSE, FALSE, 0);
 
-    encu = nh_gtk_new_and_pack(
-	gtk_label_new(""), hbox2, "",
-	FALSE, FALSE, 0);
+    sick = nh_gtk_new_and_pack(gtk_label_new(""), hbox2, "", FALSE, FALSE, 0);
+
+    slim = nh_gtk_new_and_pack(gtk_label_new(""), hbox2, "", FALSE, FALSE, 0);
+
+    encu = nh_gtk_new_and_pack(gtk_label_new(""), hbox2, "", FALSE, FALSE, 0);
 
     /* Clear HP/MP bars */
-    gdk_gc_set_foreground(hp_gc, &nh_color[MAP_BLACK]);
-    gdk_gc_set_foreground(mp_gc, &nh_color[MAP_BLACK]);
-    {
+    for(i = 0; i < STAT_BARS; i++) {
 	GdkRectangle update_rect;
 
 	update_rect.x = 0;
@@ -625,20 +408,16 @@ nh_status_new()
 	update_rect.width = NH_BAR_WIDTH;
 	update_rect.height = NH_BAR_HEIGHT;
 
-	gdk_draw_rectangle(
-		hp_bar_pixmap, hp_gc, TRUE,
-		0, 0, NH_BAR_WIDTH, NH_BAR_HEIGHT);
+	gdk_gc_set_foreground(bar[i].gc, &nh_color[MAP_BLACK]);
+	gdk_draw_rectangle(bar[i].pixmap, bar[i].gc, TRUE,
+	  0, 0, NH_BAR_WIDTH, NH_BAR_HEIGHT);
 	
-	gdk_draw_rectangle(
-		mp_bar_pixmap, mp_gc, TRUE,
-		0, 0, NH_BAR_WIDTH, NH_BAR_HEIGHT);
-
-	gtk_widget_draw(hp_bar, &update_rect);
-	gtk_widget_draw(mp_bar, &update_rect);
-
+	gtk_widget_draw(bar[i].area, &update_rect);
+	gdk_gc_set_foreground(bar[i].gc, &nh_color[i ? CLR_GREEN : CLR_BLUE]);
     }
-    gdk_gc_set_foreground(hp_gc, &nh_color[CLR_BLUE]);
-    gdk_gc_set_foreground(mp_gc, &nh_color[CLR_GREEN]);
+
+    for(i = 0; i < SIZE(stat_tab); i++)
+	stat_tab[i].vi = stat_tab[i].dvi = -1;
 
     return handle;
 }

@@ -1,4 +1,4 @@
-/* $Id: gtkhack.c,v 1.6 2003-01-27 10:11:57 j_ali Exp $ */
+/* $Id: gtkhack.c,v 1.1 2003-05-03 11:12:27 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 

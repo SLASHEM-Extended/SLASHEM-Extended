@@ -1,5 +1,5 @@
 /*
-  $Id: gtkint.c,v 1.11 2003-04-26 10:56:45 j_ali Exp $
+  $Id: gtkint.c,v 1.1 2003-05-03 11:12:27 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000

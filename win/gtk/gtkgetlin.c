@@ -1,8 +1,9 @@
 /*
-  $Id: gtkgetlin.c,v 1.3 2001-09-18 12:09:18 j_ali Exp $
+  $Id: gtkgetlin.c,v 1.4 2003-05-03 11:12:27 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
+               Copyright (c) Slash'EM Development Team 2000-2003
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -27,10 +28,10 @@ getlin_destroy(GtkWidget *widget, gpointer data)
 static gint
 entry_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
-    if(event->keyval == GDK_Return)
+    if (event->keyval == GDK_Return)
 	gtk_main_quit();
 
-    if(event->keyval == GDK_Escape){
+    if (event->keyval == GDK_Escape) {
 	cancelled = 1;
 	gtk_main_quit();
     }
@@ -55,19 +56,21 @@ entry_cancel(GtkWidget *widget, GdkEventButton *event, gpointer data)
     return FALSE;
 }
 
-void
-GTK_getlin(const char *query, char *ret)
+char *
+GTK_ext_getlin(const char *query)
 {
+    char *s, *ret;
     GtkWidget *frame;
     GtkWidget *vbox;
     GtkWidget *hbox;
     GtkWidget *entry;
     GtkWidget *ok;
     GtkWidget *cancel;
+    gulong h;
 
     cancelled = 0;
 
-    window = gtk_window_new(GTK_WINDOW_DIALOG);
+    window = nh_gtk_window_dialog(TRUE);
     nh_position_popup_dialog(GTK_WIDGET(window));
 
     frame = nh_gtk_new_and_add(gtk_frame_new(query), window, "");
@@ -75,37 +78,36 @@ GTK_getlin(const char *query, char *ret)
 
     vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), frame, "");
 
-    entry = nh_gtk_new_and_pack(
-	gtk_entry_new(), vbox, "",
-	FALSE, FALSE, NH_PAD);
+    entry = nh_gtk_new_and_pack(gtk_entry_new(), vbox, "",
+      FALSE, FALSE, NH_PAD);
 
-    gtk_signal_connect_after(
-	GTK_OBJECT(entry), "key_press_event",
-	GTK_SIGNAL_FUNC(entry_key_press), NULL);
+#if GTK_CHECK_VERSION(2,0,0)
+    gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE);
+#endif
 
-    hbox = nh_gtk_new_and_pack(
-	gtk_hbox_new(FALSE, 0), vbox, "",
-	FALSE, FALSE, NH_PAD);
+    nh_gtk_focus_set_master(GTK_WINDOW(window),
+      GTK_SIGNAL_FUNC(entry_key_press), 0);
 
-    ok = nh_gtk_new_and_pack(
-	gtk_button_new_with_label("OK"), hbox, "",
-	FALSE, FALSE, NH_PAD);
+    hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
+      FALSE, FALSE, NH_PAD);
 
-    gtk_signal_connect(
-	GTK_OBJECT(ok), "clicked",
-	GTK_SIGNAL_FUNC(entry_ok), NULL);
+    ok = nh_gtk_new_and_pack(gtk_button_new_with_label("OK"), hbox, "",
+      FALSE, FALSE, NH_PAD);
 
-    cancel = nh_gtk_new_and_pack(
-	gtk_button_new_with_label("CANCEL"), hbox, "",
-	FALSE, FALSE, NH_PAD);
+    GTK_WIDGET_SET_FLAGS(ok, GTK_CAN_DEFAULT);
+    gtk_widget_grab_default(ok);
 
-    gtk_signal_connect(
-	GTK_OBJECT(cancel), "clicked",
-	GTK_SIGNAL_FUNC(entry_cancel), NULL);
+    gtk_signal_connect(GTK_OBJECT(ok), "clicked",
+      GTK_SIGNAL_FUNC(entry_ok), NULL);
 
-    gtk_signal_connect(
-	GTK_OBJECT(window), "destroy",
-	GTK_SIGNAL_FUNC(getlin_destroy), NULL);
+    cancel = nh_gtk_new_and_pack(gtk_button_new_with_label("CANCEL"), hbox, "",
+      FALSE, FALSE, NH_PAD);
+
+    gtk_signal_connect(GTK_OBJECT(cancel), "clicked",
+      GTK_SIGNAL_FUNC(entry_cancel), NULL);
+
+    h = gtk_signal_connect(GTK_OBJECT(window), "destroy",
+      GTK_SIGNAL_FUNC(getlin_destroy), NULL);
 
     gtk_widget_grab_focus(entry);
     gtk_grab_add(window);
@@ -113,13 +115,20 @@ GTK_getlin(const char *query, char *ret)
 
     gtk_main();
 
-    if(!cancelled)
-	Strcpy(ret, (char *)gtk_entry_get_text(GTK_ENTRY(entry)));
-    else
+    if (!cancelled) {
+	s = (char *)gtk_entry_get_text(GTK_ENTRY(entry));
+	ret = (char *)alloc(strlen(s) + 1);
+	Strcpy(ret, s);
+    } else {
+	ret = (char *)alloc(1);
 	*ret = '\0';
+    }
 
     if (window) {
+	gtk_signal_disconnect(GTK_OBJECT(window), h);
 	gtk_widget_unmap(window);
 	gtk_widget_destroy(window);
     }
+
+    return ret;
 }
