@@ -155,6 +155,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 1105100: Escaping from pits by polymorphing into a mind flayer
 -Proxy: Implement get_no_glyph method for compatibility with nhproxy 0.9.1
 -fixed bug 1110081: in_container() uses obj->quan after deallocatin obj
+-fixed bug 1116877: Dereferencing freed memory when applying bags which explode
 
 See history.txt for changes made in previous versions.
 
