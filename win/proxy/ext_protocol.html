@@ -7,7 +7,7 @@
 <body>
 <h1>NhExt: A protocol for NetHack plug-in window ports</h1>
 
-<p>This document describes NhExt 1.0.1, a protocol to be used when NetHack
+<p>This document describes NhExt 1.0.2, a protocol to be used when NetHack
 calls a function located inside a plug-in window port and for when that window
 port function in turn calls a function located inside NetHack (a call back).
 The protocol specifies no limit to the depth of recursion which may occur.
@@ -67,6 +67,14 @@ that this game supports. There should be no whitespace in the list.
 Sub-protocol zero is not listed.
 </ul>
 
+<p>The following tag may also be present:
+<ul>
+<li><strong>authmethods</strong>. This is a comma seperated list of
+authentication methods that this game allows. There should be no whitespace
+in the list. If this tag is not present, its value should be taken as
+&quot;0&quot;.
+</ul>
+
 <p>Window ports should ignore tags they do not recognize.
 
 <p>Example:
@@ -100,6 +108,14 @@ by a number of tags and values.
 <li><strong>protocol</strong>. The sub-protocol to use.
 </ul>
 
+<p>The following tags may be present:
+<ul>
+<li><strong>authmethod</strong>. The authentication method used.
+If this tag is not present, its value should be taken as &quot;0&quot;.
+<li><strong>username</strong>. The user name for authentication.
+<li><strong>password</strong>. The password for authentication.
+</ul>
+
 <p>The game will ignore tags it does not recognize.
 
 <p>Example:
@@ -109,6 +125,33 @@ Ack windowtype "Gtk" protocol "1"
 
 On receipt of an acknowledgment response, the game will immediately start
 the requested sub-protocol. The window-port should enter listening mode.
+
+<h2>Authentication</h2>
+
+<p>There is currently just one method of authentication defined (in addition
+to method 0). This is a simple password authenticaion scheme which transmits
+the password in clear text. A future version of this standard may define a
+more secure authentication method, perhaps along the same lines as RFC 2195.
+
+<p>Game servers that wish to take advantage of authentication should declare
+that they allow authentication by method 1 and optionally also via method 0
+if they wish to allow non-authenticated users. On receipt of an acknowledgment
+response, the game should check that the authenticaion method employed is
+allowed and, in the case of method 1, that the user name and password are
+acceptable. The game should then remember whether the remote interface is
+authenticated or not. Note that a compliant game may <em>not</em> refuse to
+enter the requested sub-protocol even if authentication fails.
+
+<p>If authentication fails then the game should issue an error and exit after
+the error is displayed and acknowledged by the user (eg., by using
+display_nhwindow with blocking set to TRUE). Games may fail all callbacks
+received during this period (while still sending replies where required).
+
+<p>Example:
+<pre>
+NhExt standard "1.0" game "SlashEM" version "0.0.7E6F2" protocols "1,2" authmethods "1"
+Ack windowtype "Gtk" protocol "2" authmethod "1" username "fred" password "secret"
+</pre>
 
 <h1>Sub-protocol 1</h1>
 
@@ -1708,5 +1751,12 @@ may be invoked before the init procedure returns.
 <ul>
 <li>Added sub-protocol 2.
 </ul>
+
+<h2>NhExt 1.0.2</h2>
+
+<ul>
+<li>Added authentication.
+</ul>
+
 </body>
 </html>

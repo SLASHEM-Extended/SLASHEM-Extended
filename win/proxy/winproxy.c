@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.33 2004-04-10 13:58:50 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.34 2004-04-19 06:56:42 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2004 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -58,6 +58,10 @@ unsigned long proxy_interface_mode = 0;
 /* Flag to advise raw print functions not to attempt to use proxy */
 
 static int in_proxy_init = 0;
+
+/* Flag to indicate that the remote interface is authorized */
+
+int proxy_authorized = 0;
 
 /* Interface definition for plug-in windowing ports */
 struct window_procs proxy_procs = {
@@ -1016,8 +1020,227 @@ unsigned int len;
 }
 #endif	/* WIN32 */
 
+struct proxy_auth_connection {
+    int sin, sout, serr, pid;
+    char error[BUFSZ + 1];
+};
+
+static void
+proxy_auth_emit_error(struct proxy_auth_connection *auth)
+{
+    /*
+     * If auth->error is empty then proxy_auth_verify was never called,
+     * which implies that the remote end probably doesn't support
+     * an authentication method which we allow.
+     */
+    char *message = *auth->error ? auth->error : "Please upgrade your client.";
+    winid w;
+    int argc = 1;
+    char *argv[2];
+    /*
+     * We are called before init_nhwindows,
+     * but a window is much more user friendly.
+     */
+    argv[0] = DEF_GAME_NAME;
+    argv[1] = NULL;
+    proxy_init_nhwindows(&argc, argv);
+    w = proxy_create_nhwindow(NHW_MENU);
+    proxy_putstr(w, ATR_BOLD, "Authentication failed.");
+    proxy_putstr(w, ATR_NONE, "");
+    proxy_putstr(w, ATR_NONE, message);
+    proxy_display_nhwindow(w, TRUE);
+    proxy_destroy_nhwindow(w);
+    proxy_exit_nhwindows(NULL);
+}
+
+/*
+ * Returns non-NULL if helper program opened.
+ */
+ 
+static struct proxy_auth_connection *
+proxy_auth_open()
+{
+    struct proxy_auth_connection *pac;
+    char *authopts = nh_getenv("HACKAUTHENTICATION");
+#ifdef WIN32
+    if (authopts) {
+	pac = (struct proxy_auth_connection *)alloc(sizeof(*pac));
+	pac->sin = pac->sout = pac->serr = pac->pid = -1;
+	strcpy(pac->error, "Authentication not supported under win32.");
+	return pac;
+    } else
+	return NULL;
+#else
+    int sin[2], sout[2], serr[2], r, status;
+    char buf[BUFSZ + 1];
+    if (authopts)
+	parseauthentication(authopts);
+    if (authentication.prog[0]) {
+	pac = (struct proxy_auth_connection *)alloc(sizeof(*pac));
+	pac->sin = pac->sout = pac->serr = pac->pid = -1;
+	pac->error[0] = '\0';
+	if (pipe(sin) || pipe(sout) || pipe(serr)) {
+	    strcpy(pac->error, "Can't create pipes to helper program.");
+	    return pac;
+	}
+	if (!(pac->pid = fork())) {
+	    int i, j, argc = 1;
+	    char **argv;
+	    char args[BUFSZ];
+	    (void)setgid(getgid());
+	    (void)setuid(getuid());
+	    dup2(sin[0], 0);
+	    dup2(sout[1], 1);
+	    dup2(serr[1], 2);
+	    close(sin[0]);
+	    close(sin[1]);
+	    close(sout[0]);
+	    close(sout[1]);
+	    close(serr[0]);
+	    close(serr[1]);
+	    strcpy(args, authentication.args);
+	    for(i = 0; args[i]; i++)
+		if (args[i] == ' ' && i && args[i - 1] != ' ')
+		    argc++;
+	    argv = (char **) malloc((argc + 1) * sizeof(char *));
+	    if (!argv)
+	    {
+		fprintf(stderr, "Resource failure\n");
+		exit(1);
+	    }
+	    argv[0] = authentication.prog;
+	    j = 1;
+	    argv[j] = args;
+	    for(i = 0; args[i]; i++)
+		if (args[i] == ' ' && i) {
+		    args[i] = '\0';
+		    while(args[i + 1] == ' ')
+			i++;
+		    argv[++j] = args + i + 1;
+		}
+	    argv[++j] = NULL;
+	    execvp(authentication.prog, argv);
+	    perror(authentication.prog);
+	    exit(1);
+	}
+	close(sin[0]);
+	close(sout[1]);
+	close(serr[1]);
+	pac->sin = sin[1];
+	pac->sout = sout[0];
+	pac->serr = serr[0];
+	r = read(pac->sout, buf, BUFSZ);
+	if (r < 0) {
+	    strcpy(pac->error, "Error reading from helper program.");
+	    return pac;
+	}
+	if (r == 0) {
+	    /*
+	     * Authentication program has failed. If it has output an
+	     * error on stardard error then report this.
+	     */
+	    r = read(pac->serr, buf, BUFSZ);
+	    if (r > 0) {
+		if (buf[r - 1] == '\n')
+		    r--;
+		buf[r] = '\0';
+		strcpy(pac->error, buf);
+	    } else {
+		waitpid(pac->pid, &status, 0);
+		if (!WIFEXITED(status)) {
+		    if (WIFSIGNALED(status))
+			sprintf(pac->error, "Helper program died (signal %d).",
+			  WTERMSIG(status));
+		    else
+			strcpy(pac->error, "Helper program died.");
+		} else if (WEXITSTATUS(status)) {
+		    r = read(pac->serr, buf, BUFSZ);
+		    if (r > 0) {
+			if (buf[r - 1] == '\n')
+			    r--;
+			buf[r] = '\0';
+			strcpy(pac->error, buf);
+		    } else
+			sprintf(pac->error, "Helper program exited (error %d).",
+			  WEXITSTATUS(status));
+		}
+		else
+		    sprintf(pac->error, "Helper program exited.");
+	    }
+	}
+	/* TODO: Do something with the challenge string if not empty */
+	return pac;
+    }
+    else
+	return NULL;
+#endif	/* WIN32 */
+}
+
 static int
-proxy_init()
+proxy_auth_verify(struct proxy_auth_connection *pac,
+  const char *name, const char *response)
+{
+#ifndef WIN32
+    int r, status, verified = 0;
+    char buf[BUFSZ + 1];
+    if (*pac->error)
+	return 0;
+    strcpy(buf, name);
+    strcat(buf, "\n");
+    write(pac->sin, buf, strlen(buf));
+    strcpy(buf, response);
+    strcat(buf, "\n");
+    write(pac->sin, buf, strlen(buf));
+    waitpid(pac->pid, &status, 0);
+    pac->pid = -1;
+    if (!WIFEXITED(status)) {
+	if (WIFSIGNALED(status))
+	    sprintf(pac->error, "Helper program died (signal %d).",
+	      WTERMSIG(status));
+	else
+	    strcpy(pac->error, "Helper program died.");
+    } else if (WEXITSTATUS(status)) {
+	r = read(pac->serr, buf, BUFSZ);
+	if (r > 0) {
+	    if (buf[r - 1] == '\n')
+		r--;
+	    buf[r] = '\0';
+	    strcpy(pac->error, buf);
+	} else
+	    strcpy(pac->error, "Helper program exited.");
+    }
+    else
+	verified = 1;
+    return verified;
+#else
+    return 0;
+#endif	/* WIN32 */
+}
+
+static void
+proxy_auth_close(struct proxy_auth_connection *pac)
+{
+#ifndef WIN32
+    int status;
+    if (pac->sin >= 0)
+	close(pac->sin);
+    if (pac->sout >= 0)
+	close(pac->sout);
+    if (pac->serr >= 0)
+	close(pac->serr);
+    if (pac->pid >= 0) {
+	if (!waitpid(pac->pid, &status, WNOHANG)) {
+	    kill(pac->pid, 15);
+	    sleep(1);
+	    (void)waitpid(pac->pid, &status, WNOHANG);
+	}
+    }
+#endif
+    free(pac);
+}
+
+static int
+proxy_init(struct proxy_auth_connection *auth)
 {
     int i, j, k;
     static char *name = (char *)0;
@@ -1075,7 +1298,7 @@ proxy_init()
 	return FALSE;
     }
     line.type = "NhExt";
-    line.n = 4;
+    line.n = auth ? 5 : 4;
     line.tags = (char **)alloc(line.n * sizeof(char *));
     line.values = (char **)alloc(line.n * sizeof(char *));
     line.tags[0] = "standard";
@@ -1087,6 +1310,10 @@ proxy_init()
     line.values[2] = VERSION_STRING;
     line.tags[3] = "protocols";
     line.values[3] = "1,2";
+    if (auth) {
+	line.tags[4] = "authmethods";
+	line.values[4] = "1";
+    }
     i = nhext_subprotocol0_write_line(&line);
     free(line.tags);
     free(line.values);
@@ -1125,6 +1352,28 @@ failed:
 	pline("Proxy: Missing protocol in acknowledgment");
 	goto failed;
     }
+    if (auth) {
+	int method = 0;
+	char *user = NULL;
+	char *passwd = NULL;
+	for(i = 0; i < lp->n; i++) {
+	    if (!strcmp(lp->tags[i], "authmethod")) {
+		if (!strcmp(lp->values[i], "1"))
+		    method = 1;
+	    } else if (!strcmp(lp->tags[i], "username"))
+		user = lp->values[i];
+	    else if (!strcmp(lp->tags[i], "password"))
+		passwd = lp->values[i];
+	}
+	if (method == 1) {
+	    proxy_authorized = proxy_auth_verify(auth, user, passwd);
+	    if (proxy_authorized) {
+		strncpy(plname, user, sizeof(plname) - 1);
+		plname[sizeof(plname) - 1] = '\0';
+	    }
+	}
+    } else
+	proxy_authorized = 1;
     for(i = 0; i < lp->n; i++)
 	if (!strcmp(lp->tags[i], "windowtype"))
 	    break;
@@ -1257,10 +1506,12 @@ win_proxy_init()
 {
     int retval;
     struct proxycb_subprot2_init request, result;
+    struct proxy_auth_connection *auth;
     in_proxy_init = TRUE;
     set_glyph_mapping();
     (void)nhext_set_errhandler(win_proxy_errhandler);
-    if (!proxy_init())
+    auth = proxy_auth_open();
+    if (!proxy_init(auth))
 	panic("Proxy: Failed to initialize");
     if (proxy_protocol == 1)
 	retval = nhext_rpc(EXT_FID_INIT, 0, 0);
@@ -1278,7 +1529,19 @@ win_proxy_init()
     }
     if (!retval)
 	panic("Proxy: Failed to initialize window interface");
+    /*
+     * raw_print and raw_print_bold are now useable
+     * and proxy_auth_emit_error() needs them.
+     */
     in_proxy_init = FALSE;
+    if (auth) {
+	if (!proxy_authorized) {
+	    proxy_auth_emit_error(auth);
+	    clearlocks();
+	    terminate(EXIT_SUCCESS);
+	}
+	proxy_auth_close(auth);
+    }
 }
 
 int

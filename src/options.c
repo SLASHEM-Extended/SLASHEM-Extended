@@ -799,6 +799,14 @@ const char *opts;
 }
 
 STATIC_OVL void
+badauthoption(opts)
+const char *opts;
+{
+	raw_printf("Bad syntax in AUTHENTICATION in %s: %s.", configfile, opts);
+	wait_synch();
+}
+
+STATIC_OVL void
 badtileoption(opts)
 const char *opts;
 {
@@ -821,6 +829,16 @@ boolean val_optional;
 		if (!val_optional) badoption(opts);
 		return (char *)0;
 	}
+	return colon;
+}
+
+STATIC_OVL char *
+string_for_auth_opt(opts, val_optional)
+char *opts;
+boolean val_optional;
+{
+	char *colon = string_for_opt(opts, TRUE);
+	if (!colon && !val_optional) badauthoption(opts);
 	return colon;
 }
 
@@ -1728,6 +1746,12 @@ goodfruit:
 	if (match_optname(opts, fullname, 4, TRUE)) {
 		if (negated) bad_negation(fullname, FALSE);
 		else if ((op = string_for_env_opt(fullname, opts, FALSE)) != 0)
+#ifdef PROXY_GRAPHICS
+		    /*
+		     * Can't change player name if authentication required.
+		     */
+		    if (!getenv("HACKAUTHENTICATION"))
+#endif
 			nmcpy(plname, op, PL_NSIZ);
 		return;
 	}
@@ -2531,6 +2555,75 @@ goodfruit:
 
 	/* out of valid options */
 	badoption(opts);
+}
+
+static void
+parseauthopt(opts)
+register char *opts;
+{
+	register char *op;
+	boolean negated;
+	int i;
+	const char *fullname;
+
+	if (strlen(opts) > BUFSZ/2) {
+		badauthoption("option too long");
+		return;
+	}
+
+	/* strip leading and trailing white space */
+	while (isspace((int)*opts)) opts++;
+	op = eos(opts);
+	while (--op >= opts && isspace((int)*op)) *op = '\0';
+
+	if (!*opts) return;
+	negated = FALSE;
+	while ((*opts == '!') || !strncmpi(opts, "no", 2)) {
+		if (*opts == '!') opts++; else opts += 2;
+		negated = !negated;
+	}
+
+	/* compound options */
+
+        fullname = "prog";
+	if (match_optname(opts, fullname, 4, TRUE)) {
+		if (negated) bad_negation(fullname, FALSE);
+		else if ((op = string_for_auth_opt(opts, FALSE)) != 0)
+                        nmcpy(authentication.prog, op, BUFSZ);
+		return;
+	}
+
+        fullname = "args";
+	if (match_optname(opts, fullname, 4, TRUE)) {
+		if (negated) bad_negation(fullname, FALSE);
+		else if ((op = string_for_auth_opt(opts, FALSE)) != 0)
+                        nmcpy(authentication.args, op, BUFSZ);
+		return;
+	}
+
+	/* out of valid options */
+	badauthoption(opts);
+}
+
+void
+parseauthentication(opts)
+register char *opts;
+{
+	register char *op;
+
+	/* Initial values */
+	authentication.prog[0] = '\0';
+	authentication.args[0] = '\0';
+
+	while ((op = index(opts, ',')) != 0) {
+		*op++ = 0;
+		parseauthopt(opts);
+		opts = op;
+	}
+	parseauthopt(opts);
+
+	if (!authentication.prog[0] && authentication.args[0])
+		badauthoption("Arguments given but no program specified.");
 }
 
 static void

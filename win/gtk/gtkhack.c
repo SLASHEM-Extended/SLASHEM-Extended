@@ -1,5 +1,5 @@
-/* $Id: gtkhack.c,v 1.9 2004-02-21 16:59:10 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2002-2003 */
+/* $Id: gtkhack.c,v 1.10 2004-04-19 06:56:42 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2002-2004 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include <stdio.h>
@@ -206,6 +206,94 @@ static void GTK_nhext_errhandler(int class, const char *error)
 	GTK_proxy_clnt_errhandler(error);
 }
 
+static int GTK_proxy_clnt_authhandler(unsigned long methods)
+{
+    int r;
+    char *s;
+    GtkSizeGroup *group = gtk_size_group_new(GTK_SIZE_GROUP_HORIZONTAL);
+    GtkWidget *dialog, *w, *hbox, *vbox, *user, *passwd;
+
+    /*
+     * Always use method 1 if available (simple password).
+     * Otherwise, use method 0 (no authentication).
+     * If neither method is allowed, then fail.
+     */
+    if (!(methods & (1UL << 1))) {
+	if (methods & (1UL << 0)) {
+	    win_proxy_clnt_settag("authmethod", "0");
+	    return 0;
+	}
+	s = g_strdup_printf("Game server requires authentication,\n"
+	  "but doesn't allow any of my supported methods.\n\n"
+	  "Supported methods: 0,1\n"
+	  "Allowed methods: %s",win_proxy_clnt_gettag("authmethods"));
+	GTK_proxy_clnt_errhandler(s);
+	g_free(s);
+	win_proxy_clnt_settag("mesg", "No supported authentication methods");
+	return 1;
+    }
+
+    dialog = gtk_dialog_new_with_buttons("Authentication",
+      GTK_WINDOW(main_window),
+      GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+      GTK_STOCK_OK, GTK_RESPONSE_ACCEPT, NULL);
+    gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_ACCEPT);
+    gtk_container_set_border_width(GTK_CONTAINER(dialog), 12);
+
+    vbox = gtk_vbox_new(FALSE, 6);
+
+    hbox = gtk_hbox_new(FALSE, 6);
+    w = gtk_label_new_with_mnemonic("_User:");
+    gtk_box_pack_start(GTK_BOX(hbox), w, FALSE, FALSE, 0);
+    gtk_size_group_add_widget(group, w);
+    user = gtk_entry_new();
+    gtk_box_pack_start(GTK_BOX(hbox), user, FALSE, FALSE, 0);
+    gtk_label_set_mnemonic_widget(GTK_LABEL(w), user);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, TRUE, 0);
+
+    hbox = gtk_hbox_new(FALSE, 6);
+    w = gtk_label_new_with_mnemonic("_Password:");
+    gtk_box_pack_start(GTK_BOX(hbox), w, FALSE, FALSE, 0);
+    gtk_size_group_add_widget(group, w);
+    passwd = gtk_entry_new();
+    gtk_entry_set_visibility(GTK_ENTRY(passwd), FALSE);
+    gtk_entry_set_activates_default(GTK_ENTRY(passwd), TRUE);
+    g_signal_connect_swapped(G_OBJECT(user), "activate",
+      (GCallback)gtk_widget_grab_focus, passwd);
+    gtk_box_pack_start(GTK_BOX(hbox), passwd, FALSE, FALSE, 0);
+    gtk_label_set_mnemonic_widget(GTK_LABEL(w), passwd);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, TRUE, 0);
+
+    hbox = gtk_hbox_new(FALSE, 0);
+    w = gtk_label_new("    ");
+    gtk_box_pack_start(GTK_BOX(hbox), w, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(hbox), vbox, TRUE, TRUE, 0);
+
+    vbox = gtk_vbox_new(FALSE, 6);
+    w = gtk_label_new(NULL);
+    gtk_label_set_markup(GTK_LABEL(w),
+      "<span weight=\"bold\">Your details</span>");
+    gtk_misc_set_alignment(GTK_MISC(w), 0, 0.5);
+    gtk_box_pack_start(GTK_BOX(vbox), w, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, TRUE, 0);
+
+    w = gtk_vbox_new(FALSE, 18);
+    gtk_box_pack_start(GTK_BOX(w), vbox, TRUE, TRUE, 0);
+    gtk_widget_show_all(w);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox), w, TRUE, TRUE, 0);
+
+    do {
+	r = gtk_dialog_run(GTK_DIALOG(dialog));
+    } while (r != GTK_RESPONSE_ACCEPT);
+
+    win_proxy_clnt_settag("authmethod", "1");
+    win_proxy_clnt_settag("username", gtk_entry_get_text(GTK_ENTRY(user)));
+    win_proxy_clnt_settag("password", gtk_entry_get_text(GTK_ENTRY(passwd)));
+    g_object_unref(group);
+    gtk_widget_destroy(dialog);
+    return 0;
+}
+
 void
 GTK_ext_send_config_file(int fh)
 {
@@ -380,6 +468,7 @@ main(int argc, char **argv)
 	      "GtkHack: Connecting...");
 	    proxy_svc_set_ext_procs(win_GTK_init, &GTK_ext_procs);
 	    proxy_clnt_set_errhandler(GTK_proxy_clnt_errhandler);
+	    proxy_clnt_set_authhandler(GTK_proxy_clnt_authhandler);
 	    nhext_set_errhandler(GTK_nhext_errhandler);
 	    win_proxy_clnt_set_flags(PROXY_CLNT_SYNCHRONOUS, flags);
 	    gtkhack_enable_logging(TRUE);

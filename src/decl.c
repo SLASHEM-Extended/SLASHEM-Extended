@@ -286,6 +286,8 @@ char toplines[TBUFSZ];
 /* Windowing stuff that's really tty oriented, but present for all ports */
 struct tc_gbl_data tc_gbl_data = { 0,0, 0,0 };	/* AS,AE, LI,CO */
 
+struct authentication authentication = { "", "" };
+
 struct tileset tilesets[MAXNOTILESETS];
 int no_tilesets = 0;
 struct tileset def_tilesets[] = {

@@ -413,6 +413,11 @@ E struct tc_gbl_data {	/* also declared in tcap.h */
 #define CO tc_gbl_data.tc_CO
 #endif
 
+E struct authentication {
+    char prog[BUFSZ];
+    char args[BUFSZ];
+} authentication;
+
 #define MAXNOTILESETS		20
 #ifndef TILESET_MAX_FILENAME
 #define TILESET_MAX_FILENAME	256
