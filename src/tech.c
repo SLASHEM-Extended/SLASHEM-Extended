@@ -732,31 +732,37 @@ int tech_no;
 	    case T_CRIT_STRIKE:
 		if (!getdir((char *)0)) return(0);
 		if (!u.dx && !u.dy) {
-			/* Hopefully a mistake ;B */
-			You("decide against that idea.");
-			return(0);
+		    /* Hopefully a mistake ;B */
+		    You("decide against that idea.");
+		    return(0);
 		}
 		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 		if (!mtmp) {
-			You("perform a flashy twirl!");
-			return (0);
+		    You("perform a flashy twirl!");
+		    return (0);
 		} else {
-			int oldhp = mtmp->mhp;
-			int tmp = 0;
-			
-			if (!attack(mtmp)) return(0);
-			if (!DEADMONSTER(mtmp) && mtmp->mhp < oldhp) {
-			    tmp = oldhp - mtmp->mhp;
-			    You("strike %s vital organs!", s_suffix(mon_nam(mtmp)));
-			    if (humanoid(mtmp->data)) tmp = mtmp->mhp / 2;
-			    else {
-				You("are hampered by the differences in anatomy.");
-				tmp = mtmp->mhp/4;
-			    }
-			    tmp += techlev(tech_no);
-			    t_timeout = rn1(1000,500);
-			    hurtmon(mtmp, tmp);
+		    int oldhp = mtmp->mhp;
+		    int tmp;
+
+		    if (!attack(mtmp)) return(0);
+		    if (!DEADMONSTER(mtmp) && mtmp->mhp < oldhp &&
+			    !noncorporeal(mtmp->data) && !unsolid(mtmp->data)) {
+			You("strike %s vital organs!", s_suffix(mon_nam(mtmp)));
+			/* Base damage is always something, though it may be
+			 * reduced to zero if the hero is hampered. However,
+			 * since techlev will never be zero, stiking vital
+			 * organs will always do _some_ damage.
+			 */
+			tmp = mtmp->mhp > 1 ? mtmp->mhp / 2 : 1;
+			if (!humanoid(mtmp->data) || is_golem(mtmp->data) ||
+				mtmp->data->mlet == S_CENTAUR) {
+			    You("are hampered by the differences in anatomy.");
+			    tmp /= 2;
 			}
+			tmp += techlev(tech_no);
+			t_timeout = rn1(1000, 500);
+			hurtmon(mtmp, tmp);
+		    }
 		}
 		break;
 	    case T_CUTTHROAT:
