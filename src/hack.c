@@ -902,11 +902,15 @@ int mode;
      */
     if (IS_ROCK(tmpr->typ) || tmpr->typ == IRONBARS) {
 	if (Blind && mode == DO_MOVE) feel_location(x,y);
-	if (Passes_walls && may_passwall(x,y)) {
-	    ;	/* do nothing */
-	} else if (tmpr->typ == IRONBARS) {
+	if (tmpr->typ == IRONBARS) {
 	    if (!(Passes_walls || passes_bars(youmonst.data)))
 		return FALSE;
+	    else if (In_sokoban(&u.uz)) {
+		pline_The("Sokoban bars resist your ability.");
+		return FALSE;
+	    }
+	} else if (Passes_walls && may_passwall(x,y)) {
+	    ;	/* do nothing */
 	} else if (tunnels(youmonst.data) && !needspick(youmonst.data)) {
 	    /* Eat the rock. */
 	    if (mode == DO_MOVE && still_chewing(x,y)) return FALSE;

@@ -74,6 +74,7 @@ ver 0.0.7E6 [?] [Released by ?]
 -fixed bug 510249: poisoned frag grenade (Nico Kist)
 -fixed bug 873349: <artifact> should be at least expert. Fixing...
 -fixed bug 878808: Build of gtkhack fails under win32
+-fixed bug 872666: [0.0.7e4f1] Xorns + Sokoban = cake walk
 
 See history.txt for changes made in previous versions.
 
