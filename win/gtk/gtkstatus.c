@@ -1,5 +1,5 @@
 /*
-  $Id: gtkstatus.c,v 1.4 2000-09-17 03:10:23 wacko Exp $
+  $Id: gtkstatus.c,v 1.5 2000-09-28 18:20:30 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -507,8 +507,6 @@ nh_status_new()
 
     hp_gc = gdk_gc_new(main_window->window);
     mp_gc = gdk_gc_new(main_window->window);
-    gdk_gc_set_foreground(hp_gc, &nh_color[MAP_BLUE]);
-    gdk_gc_set_foreground(mp_gc, &nh_color[MAP_GREEN]);
 
     gtk_drawing_area_size(
 	GTK_DRAWING_AREA(hp_bar),
@@ -595,6 +593,8 @@ nh_status_new()
 	FALSE, FALSE, 0);
 
     /* Clear HP/MP bars */
+    gdk_gc_set_foreground(hp_gc, &nh_color[MAP_BLACK]);
+    gdk_gc_set_foreground(mp_gc, &nh_color[MAP_BLACK]);
     {
 	GdkRectangle update_rect;
 
@@ -604,17 +604,19 @@ nh_status_new()
 	update_rect.height = NH_BAR_HEIGHT;
 
 	gdk_draw_rectangle(
-		hp_bar_pixmap, hp_bar->style->black_gc, TRUE,
+		hp_bar_pixmap, hp_gc, TRUE,
 		0, 0, NH_BAR_WIDTH, NH_BAR_HEIGHT);
 	
 	gdk_draw_rectangle(
-		mp_bar_pixmap, mp_bar->style->black_gc, TRUE,
+		mp_bar_pixmap, mp_gc, TRUE,
 		0, 0, NH_BAR_WIDTH, NH_BAR_HEIGHT);
 
 	gtk_widget_draw(hp_bar, &update_rect);
 	gtk_widget_draw(mp_bar, &update_rect);
 
     }
+    gdk_gc_set_foreground(hp_gc, &nh_color[MAP_BLUE]);
+    gdk_gc_set_foreground(mp_gc, &nh_color[MAP_GREEN]);
 
     return handle;
 }
