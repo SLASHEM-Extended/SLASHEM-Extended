@@ -90,6 +90,7 @@ ver 0.0.7E7 [?] [Released by ?]
 -fixed bug 1107123: GTK Accepts any keypress as the default response to
 		    question
 -fixed bug 1110081: in_container() uses obj->quan after deallocatin obj
+-fixed bug 1116877: Dereferencing freed memory when applying bags which explode
 
 See history.txt for changes made in previous versions.
 

@@ -33,7 +33,7 @@ STATIC_PTR int FDECL(ck_bag,(struct obj *));
 STATIC_PTR int FDECL(out_container,(struct obj *));
 STATIC_DCL long FDECL(mbag_item_gone, (int,struct obj *));
 STATIC_DCL void FDECL(observe_quantum_cat, (struct obj *));
-STATIC_DCL int FDECL(menu_loot, (int, struct obj *, BOOLEAN_P));
+STATIC_DCL int FDECL(menu_loot, (int, struct obj **, BOOLEAN_P));
 STATIC_DCL int FDECL(in_or_out_menu, (const char *,struct obj *, BOOLEAN_P, BOOLEAN_P));
 STATIC_DCL int FDECL(container_at, (int, int, BOOLEAN_P));
 STATIC_DCL boolean FDECL(able_to_loot, (int, int));
@@ -1515,7 +1515,7 @@ int x, y;
 int
 doloot()	/* loot a container on the floor or loot saddle from mon. */
 {
-    register struct obj *cobj, *nobj;
+    struct obj *cobj, *nobj;
     register int c = -1;
     int timepassed = 0;
     coord cc;
@@ -1572,7 +1572,7 @@ lootcont:
 		}
 
 		You("carefully open %s...", the(xname(cobj)));
-		timepassed |= use_container(cobj, 0);
+		timepassed |= use_container(&cobj, 0);
 		if (multi < 0) return 1;		/* chest trap */
 	    }
 	}
@@ -2096,10 +2096,11 @@ struct obj *box;
 #undef Icebox
 
 int
-use_container(obj, held)
-register struct obj *obj;
+use_container(objp, held)
+struct obj **objp;
 register int held;
 {
+	register struct obj *obj = *objp;
 	struct obj *curr, *otmp;
 #ifndef GOLDOBJ
 	struct obj *u_gold = (struct obj *)0;
@@ -2206,7 +2207,7 @@ register int held;
 		}
 		if (loot_out) {
 		    add_valid_menu_class(0);	/* reset */
-		    used |= menu_loot(0, current_container, FALSE) > 0;
+		    used |= menu_loot(0, objp, FALSE) > 0;
 		}
 	    } else {
 		/* traditional code */
@@ -2234,15 +2235,14 @@ ask_again2:
 				     0, "nodot"))
 			    used = 1;
 		    } else if (menu_on_request < 0) {
-			used |= menu_loot(menu_on_request,
-					  current_container, FALSE) > 0;
+			used |= menu_loot(menu_on_request, objp, FALSE) > 0;
 		    }
 		    /*FALLTHRU*/
 		case 'n':
 		    break;
 		case 'm':
 		    menu_on_request = -2; /* triggers ALL_CLASSES */
-		    used |= menu_loot(menu_on_request, current_container, FALSE) > 0;
+		    used |= menu_loot(menu_on_request, objp, FALSE) > 0;
 		    break;
 		case 'q':
 		default:
@@ -2276,7 +2276,7 @@ ask_again2:
 		case 'm':
 		    add_valid_menu_class(0);	  /* reset */
 		    menu_on_request = -2; /* triggers ALL_CLASSES */
-		    used |= menu_loot(menu_on_request, current_container, TRUE) > 0;
+		    used |= menu_loot(menu_on_request, objp, TRUE) > 0;
 		    break;
 		case 'q':
 		default:
@@ -2304,7 +2304,7 @@ ask_again2:
 #endif
 	    add_valid_menu_class(0);	  /* reset */
 	    if (flags.menu_style != MENU_TRADITIONAL) {
-		used |= menu_loot(0, current_container, TRUE) > 0;
+		used |= menu_loot(0, objp, TRUE) > 0;
 	    } else {
 		/* traditional code */
 		menu_on_request = 0;
@@ -2317,10 +2317,11 @@ ask_again2:
 		    (void) askchain((struct obj **)&invent,
 				    (one_by_one ? (char *)0 : select), allflag,
 				    in_container, ck_bag, 0, "nodot");
+		    *objp = current_container;
 		    used = 1;
 		} else if (menu_on_request < 0) {
 		    used |= menu_loot(menu_on_request,
-				      current_container, TRUE) > 0;
+				      objp, TRUE) > 0;
 		}
 	    }
 	}
@@ -2339,11 +2340,12 @@ ask_again2:
 
 /* Loot a container (take things out, put things in), using a menu. */
 STATIC_OVL int
-menu_loot(retry, container, put_in)
+menu_loot(retry, containerp, put_in)
 int retry;
-struct obj *container;
+struct obj **containerp;
 boolean put_in;
 {
+    struct obj *container = *containerp;
     int n, i, n_looted = 0;
     boolean all_categories = TRUE, loot_everything = FALSE;
     char buf[BUFSZ];
@@ -2373,6 +2375,8 @@ boolean put_in;
 	}
 	free((genericptr_t) pick_list);
     }
+
+    current_container = container;	/* for use by in/out_container */
 
     if (loot_everything) {
 	for (otmp = container->cobj; otmp; otmp = otmp2) {
@@ -2408,6 +2412,9 @@ boolean put_in;
 		free((genericptr_t)pick_list);
 	}
     }
+
+    *containerp = current_container;
+
     return n_looted;
 }
 
