@@ -1,5 +1,5 @@
 /*
-  $Id: xshmmap.c,v 1.2 2000-08-29 11:49:56 j_ali Exp $
+  $Id: xshmmap.c,v 1.3 2000-09-10 02:19:24 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -132,7 +132,11 @@ x_tile_init(GdkImage *img, TileTab *t)
 void
 x_tile_destroy()
 {
+#ifdef WINGTK_X11
     XDestroyImage(tile_img);
+#else
+    gdk_image_destroy(tile_img);
+#endif
 }
 
 void

@@ -1,5 +1,5 @@
 /*
-  $Id: xshm.c,v 1.2 2000-08-29 11:49:56 j_ali Exp $
+  $Id: xshm.c,v 1.3 2000-09-10 02:19:24 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -19,8 +19,10 @@
 #include <machine/param.h>
 #endif
 #include <sys/types.h>
+#ifndef WIN32
 #include <sys/ipc.h>
 #include <sys/shm.h>
+#endif
 
 #include "winGTK.h"
 #include "xshm.h"

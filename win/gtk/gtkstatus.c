@@ -1,5 +1,5 @@
 /*
-  $Id: gtkstatus.c,v 1.1 2000-08-15 19:55:16 wacko Exp $
+  $Id: gtkstatus.c,v 1.2 2000-09-10 02:19:24 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -10,7 +10,9 @@
 #include <signal.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
+#ifndef WIN32
 #include <gdk/gdkx.h>
+#endif
 #include "winGTK.h"
 
 #define	NH_BAR_WIDTH	150

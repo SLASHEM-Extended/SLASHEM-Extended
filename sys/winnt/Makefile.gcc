@@ -36,6 +36,7 @@ DDAT  = ../dat
 DUTIL = ../util
 DSRC  = ../src
 DINCL = ../include
+MW32GTK = /mingw32/gtk/src
 
 # Normal dos commands get confused by \\
 DAT  = ..\dat
@@ -48,6 +49,8 @@ UTIL = ..\util
 WTTY = ..\win\tty
 WGTK = ..\win\gtk
 WSHR = ..\win\share
+# From GIMP
+GNUDLL = \progra~1\common~1\gnu
 
 #
 #  Executables.
@@ -67,9 +70,9 @@ MAKEBIN  = make
 
 #COPY = command.com /c copy
 #COPY = cmd.exe /c copy	# Same as above, but for Windows NT
-#COPY = xcopy
-#COPY = cp		# UNIX copy command
-COPY = copy		# MSDOS copy command
+#COPY = xcopy		# MSDOS xcopy command
+COPY = cp		# UNIX copy command
+#COPY = copy		# MSDOS copy command (gets confused by '+')
 #DEL = command.com /c del
 #DEL = cmd.exe /c del	# Same as above, but for Windows NT
 #DEL = rm -f 		#UNIX del command
@@ -119,6 +122,12 @@ USE_DLB = Y
 # (Note: binary will require ANSI.SYS driver or equivalent loaded)
 # SUPPRESS_GRAPHICS = Y
 SUPPRESS_GRAPHICS = 
+
+#
+# Uncomment the line below if you want to compile with the GTK windowsystem
+# You will also need to modify config.h
+
+USE_GTK = Y
 
 
 #############################################################################
@@ -170,7 +179,7 @@ endif
 # GTK windowing system
 #WINGTKCFLAGS=`gtk-config --cflags`
 #WINGTKCFLAGS=-Ic:/mingw32/src/gtk+ -Ic:/mingw32/src/glib -Ic:/mingw32/src/gtk+/gdk
-#WINGTKCFLAGS=-Ic:/mingw32/src/
+WINGTKCFLAGS=-Ic:/mingw32/src/
 
 # Set the WINSRC, WINOBJ, and WINLIB lines to correspond to your desired
 # combination of windowing systems.  Also set windowing systems in config.h.
@@ -187,34 +196,46 @@ WINGTKSRC = ../win/gtk/gtk.c ../win/gtk/gtkgetlin.c ../win/gtk/gtkstatus.c \
 	../win/gtk/gtkmap.c ../win/gtk/gtkmessage.c ../win/gtk/gtkmisc.c \
 	../win/gtk/xshmmap.c ../win/gtk/xshm.c
 WINGTKOBJ = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
-	gtkmap.o gtkmessage.o gtkmisc.o xshmmap.o xshm.o nhwin.a
+	gtkmap.o gtkmessage.o gtkmisc.o \
+	xshmmap.o xshm.o
 
-# Use these declarations if you only want to support the TTY windowing system
+ifeq ($(USE_GTK),Y)
+WINSRC = $(WINTTYSRC) $(WINGTKSRC)
+WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ)
+CCOMPILE = $(CC) -fnative-struct
+else
 WINSRC = $(WINTTYSRC)
 WINOBJ = $(WINTTYOBJ)
-# Use these declarations if you want to support the GTK windowing system
-# WINSRC = $(WINTTYSRC) $(WINGTKSRC)
-# WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ)
+GTKGCCFLAGS = 
+CCOMPILE = $(CC)
+endif
+
 #
 # You must also change the definition of WINLIB (below) to match these
 
 WINTTYLIB = 
 # libraries for GTK
 # WINGTKLIB = `gtk-config --libs`
-WINGTKLIB = /mingw32/src/gtk+/gtk/libgtk~1.a /mingw32/src/gtk+/gdk/libgdk~1.a 
+WINGTKLIB1 = $(MW32GTK)/gtk+/gtk/libgtk-1.3.a $(MW32GTK)/gtk+/gdk/libgdk-1.3.a 
+WINGTKLIB2 = $(MW32GTK)/glib/libglib-1.3.a
+#WINGTKLIB = /mingw32/src/libgtk-1.3.a /mingw32/src/libgdk-1.3.a /mingw32/src/libglib-1.3.a
 
-# Use this declaration if you only want to support the TTY windowing system
+ifeq ($(USE_GTK),Y)
+WINLIB = $(WINTTYLIB) $(WINGTKLIB) tile.o
+else
 WINLIB = $(WINTTYLIB)
-
+endif
 
 # Shareable (architecture independent) data files which are not candidates
 # for inclusion in DLB libraries (ND) and which are (D). Port specific files
 # per discussions in Install.X11, Install.Qt and Install.GTK
-CNF_SHARE_GTKND = x11bigtiles x11tiles rip.xpm credit.xpm
+CNF_SHARE_GTKND = x11bigtiles x11tiles rip.xpm credit.xpm gtkrc
 
-#Uncomment below to build tiles needed for GTK distrib
-#CNF_SHARE_DATND = $(CNF_SHARE_GTKND)
+ifeq ($(USE_GTK),Y)
+CNF_SHARE_DATND = $(CNF_SHARE_GTKND)
+else
 CNF_SHARE_DATND =
+endif
 
 #
 #  Utility Objects.
@@ -369,7 +390,7 @@ endif
 .SUFFIXES:  .exe .o .c .y .l
 
 .c.o:
-	$(CC) $(CFLAGS) -o$@ $<
+	$(CCOMPILE) $(CFLAGS) -o$@ $<
 
 #.phony: dlb
 
@@ -394,8 +415,8 @@ utility.tag: $(INCL)\date.h $(INCL)\trap.h    $(INCL)\onames.h	       \
 
 install.tag: dat.tag $(GAMEFILE)
 ifeq ($(USE_DLB),Y)
-	$(COPY) $(DAT)\nhshare         $(GAMEDIR)
-	$(COPY) $(DAT)\nhushare         $(GAMEDIR)
+	$(COPY) $(DAT)\nhshare       $(GAMEDIR)
+	$(COPY) $(DAT)\nhushare      $(GAMEDIR)
 	$(COPY) $(DAT)\license       $(GAMEDIR)
 else
 	$(COPY) $(DAT)\*.            $(GAMEDIR)
@@ -403,20 +424,31 @@ else
 	$(COPY) $(DAT)\*.lev         $(GAMEDIR)
 #	$(DEL) $(GAMEDIR)\makefile.
 endif
-#	$(COPY) *.tib                $(GAMEDIR)
+ifeq ($(USE_GTK),Y)
+	$(COPY) gtkrc                $(GAMEDIR)
+	$(COPY) rip.xpm              $(GAMEDIR)
+	$(COPY) credit.xpm           $(GAMEDIR)
+	$(COPY) x11tiles             $(GAMEDIR)
+	$(COPY) x11bigtiles          $(GAMEDIR)
+#	$(COPY) $(MW32GTK)\glib\glib*.dll $(GAMEDIR)
+#	$(COPY) $(MW32GTK)\glib\gmodule\gmodule*.dll $(GAMEDIR)
+#	$(COPY) $(MW32GTK)\gtk+\gdk\gdk*.dll $(GAMEDIR)
+#	$(COPY) $(MW32GTK)\gtk+\gtk\gtk*.dll $(GAMEDIR)
+	$(COPY) $(GNUDLL)\*.* $(GAMEDIR)
+endif
 	$(COPY) $(SSHR)\NetHack.cnf  $(GAMEDIR)\defaults.nh
 	$(COPY) $(MSYS)\NHAccess.nh  $(GAMEDIR)
 	$(COPY) recover.exe          $(GAMEDIR)
-	$(COPY) $(DOC)\guidebook.txt   $(GAMEDIR)
-	$(COPY) $(DOC)\recover.txt $(GAMEDIR)
-	$(COPY) $(DOC)\slashem.txt $(GAMEDIR)
+	$(COPY) $(DOC)\guidebook.txt $(GAMEDIR)
+	$(COPY) $(DOC)\recover.txt   $(GAMEDIR)
+	$(COPY) $(DOC)\slashem.txt   $(GAMEDIR)
 	$(ECHO) install done > install.tag
 
 #  The main target.
 
 
 $(GAMEFILE): utility.tag $(ALLOBJ) $(GAME).lnk
-	$(LINK) $(LFLAGS) -o$(GAME).exe $(GAME).lnk
+	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -o$(GAME).exe $(GAME).lnk
 	$(COPY) $(GAME).exe $(GAMEFILE)
 	$(DEL) $(GAME).exe
 
@@ -446,7 +478,13 @@ $(GAME).lnk: $(ALLOBJ)
 	@echo INPUT( $(VOBJ23) )>> $@
 	@echo INPUT( $(SOBJ)   )>> $@
 	@echo INPUT( $(VVOBJ)  )>> $@
-	@echo INPUT( $(WINOBJ)  )>> $@
+	@echo INPUT( $(WINTTYOBJ)  )>> $@
+ifeq ($(USE_GTK),Y)
+	@echo INPUT( $(WINGTKOBJ)  )>> $@
+	@echo INPUT( $(WINGTKLIB1)  )>> $@
+	@echo INPUT( $(WINGTKLIB2)  )>> $@
+	@echo INPUT( tile.o  )>> $@
+endif
 
 #
 #  Housekeeping.
@@ -470,6 +508,8 @@ spotless: clean
 	$(DEL) tile2x11.exe
 	$(DEL) x11bigtiles
 	$(DEL) x11tiles
+	$(DEL) gtkrc
+	$(DEL) *.xpm
 	$(DEL) tiletext.c
 	$(DEL) txtmerge.c
 	$(DEL) magtile.c
@@ -605,18 +645,18 @@ lev_comp.exe:  $(SPLEVOBJS)
 ifeq ($(YACC_LEX),Y)
 
 lev_yacc.o:  $(HACK_H)	 $(SP_LEV_H)	lev_yacc.c
-	$(CC) $(CFLAGS) -o$@ lev_yacc.c
+	$(CCOMPILE) $(CFLAGS) -o$@ lev_yacc.c
 
 else
 
 lev_yacc.o:  $(HACK_H)	 $(SP_LEV_H) $(INCL)\lev_comp.h lev_yacc.c
-	$(CC) $(CFLAGS) -o$@ lev_yacc.c
+	$(CCOMPILE) $(CFLAGS) -o$@ lev_yacc.c
 
 endif
 
 lev_$(LEX).o:  $(HACK_H)   $(SP_LEV_H)	  $(INCL)\lev_comp.h \
 	lev_$(LEX).c
-	$(CC) $(CFLAGS) -o$@ lev_$(LEX).c
+	$(CCOMPILE) $(CFLAGS) -o$@ lev_$(LEX).c
 
 lev_main.c:  $(UTIL)\lev_main.c
 	$(COPY) $(UTIL)\lev_main.c .
@@ -664,18 +704,18 @@ dgn_comp.exe:  $(DGNCOMPOBJS)
 ifeq ($(YACC_LEX),Y)
 
 dgn_yacc.o:  $(HACK_H)	 $(DGN_FILE_H)	dgn_yacc.c
-	$(CC) $(CFLAGS) -o$@ dgn_yacc.c
+	$(CCOMPILE) $(CFLAGS) -o$@ dgn_yacc.c
 
 else
 
 dgn_yacc.o:  $(HACK_H)	 $(DGN_FILE_H)	$(INCL)\dgn_comp.h dgn_yacc.c
-	$(CC) $(CFLAGS) -o$@ dgn_yacc.c
+	$(CCOMPILE) $(CFLAGS) -o$@ dgn_yacc.c
 
 endif
 
 dgn_$(LEX).o:  $(HACK_H)   $(DGN_FILE_H)  $(INCL)\dgn_comp.h \
 	dgn_$(LEX).c
-	$(CC) $(CFLAGS) -o$@ dgn_$(LEX).c
+	$(CCOMPILE) $(CFLAGS) -o$@ dgn_$(LEX).c
 
 dgn_main.c:  $(UTIL)\dgn_main.c
 	$(COPY) $(UTIL)\dgn_main.c .
@@ -723,7 +763,7 @@ recover.c:  $(UTIL)\recover.c
 	$(COPY) $(UTIL)\recover.c .
 
 recover.o:   $(CONFIG_H) recover.c
-	$(CC) $(CFLAGS) -o$@ recover.c
+	$(CCOMPILE) $(CFLAGS) -o$@ recover.c
 
 #
 #  Tiles
@@ -737,34 +777,38 @@ $(INCL)\tile.h: $(WSHR)\tile.h tilemap.exe
 #  Utilities
 
 txtmerge.exe: txtmerge.o $(TEXTIO)
-	$(CC) $(LFLAGS) -otxtmerge.exe txtmerge.o $(TEXTIO)
+	$(CCOMPILE) $(LFLAGS) -otxtmerge.exe txtmerge.o $(TEXTIO)
 
 tile2x11.exe: tile2x11.o $(TEXTIO)
-	$(CC) $(LFLAGS) -otile2x11.exe tile2x11.o $(TEXTIO)
+	$(CCOMPILE) $(LFLAGS) -otile2x11.exe tile2x11.o $(TEXTIO)
 
 magtile.exe: magtile.o $(TEXTIO)
-	$(CC) $(LFLAGS) -omagtile.exe magtile.o $(TEXTIO)
+	$(CCOMPILE) $(LFLAGS) -omagtile.exe magtile.o $(TEXTIO)
+
+tile.c: tilemap.exe
+	tilemap.exe
+	@echo A new $@ has been created
 
 tilemap.exe: tilemap.o
-	$(CC) $(LFLAGS) -o tilemap.exe tilemap.o
+	$(CCOMPILE) $(LFLAGS) -o tilemap.exe tilemap.o
 
 tilemap.c: $(WSHR)\tilemap.c
 	copy $(WSHR)\tilemap.c .
 
 tilemap.o: $(WSHR)\tilemap.c $(HACK_H)
-	$(CC) $(CFLAGS) -c ../win/share/tilemap.c
+	$(CCOMPILE) $(CFLAGS) -c ../win/share/tilemap.c
 
 
 magtile.o: $(WSHR)\magtile.c $(INCL)\config.h $(INCL)\tile.h
 	$(COPY) $(WSHR)\magtile.c .
-	$(CC) $(CFLAGS) -c magtile.c
+	$(CCOMPILE) $(CFLAGS) -c magtile.c
 
 txtmerge.o: $(WSHR)\txtmerge.c $(INCL)\config.h $(INCL)\tile.h
-	$(CC) $(CFLAGS) -c ../win/share/txtmerge.c
+	$(CCOMPILE) $(CFLAGS) -c ../win/share/txtmerge.c
 
 tile2x11.o: ../win/X11/tile2x11.c $(INCL)\hack.h $(INCL)\tile.h \
 						$(INCL)\tile2x11.h
-	$(CC) $(CFLAGS) -c ../win/X11/tile2x11.c
+	$(CCOMPILE) $(CFLAGS) -c ../win/X11/tile2x11.c
 
 
 x11tiles: tile2x11.exe $(WSHR)\monsters.txt $(WSHR)\objects.txt \
@@ -809,34 +853,35 @@ credit.xpm: ../dat/credit.xpm
 
 tiletext.o:  $(CONFIG_H) $(INCL)\tile.h $(WSHR)\tiletext.c
 	$(COPY) $(WSHR)\tiletext.c .
-	$(CC) $(CFLAGS) -o$@ tiletext.c
+	$(CCOMPILE) $(CFLAGS) -o$@ tiletext.c
 
 tiletxt.o: $(CONFIG_H)	$(INCL)\tile.h tilemap.c
-	$(CC) $(CFLAGS) -DTILETEXT -o$@ tilemap.c
+	$(CCOMPILE) $(CFLAGS) -DTILETEXT -o$@ tilemap.c
   
-
+gtkrc: ../win/gtk/gtkrc
+	$(COPY) ..\win\gtk\gtkrc .
 
 #
 #  Other Util Dependencies.
 #
 
 alloc.o: $(CONFIG_H)	 alloc.c
-	$(CC) $(CFLAGS) -oalloc.o alloc.c
+	$(CCOMPILE) $(CFLAGS) -oalloc.o alloc.c
 
 drawing.o: $(CONFIG_H) drawing.c
-	$(CC) $(CFLAGS) -odrawing.o drawing.c
+	$(CCOMPILE) $(CFLAGS) -odrawing.o drawing.c
 
 decl.o: $(CONFIG_H) decl.c
-	$(CC) $(CFLAGS) -odecl.o decl.c
+	$(CCOMPILE) $(CFLAGS) -odecl.o decl.c
 
 monst.o: $(CONFIG_H)	     $(PERMONST_H)	$(ESHK_H)	   \
 	$(EPRI_H)	      $(VAULT_H)	 $(INCL)\monsym.h   \
 	$(INCL)\color.h	 monst.c
-	$(CC) $(CFLAGS) -omonst.o monst.c
+	$(CCOMPILE) $(CFLAGS) -omonst.o monst.c
 
 objects.o: $(CONFIG_H)	      $(INCL)\obj.h	 $(INCL)\objclass.h \
 	$(INCL)\prop.h	    $(INCL)\color.h    objects.c
-	$(CC) $(CFLAGS) -oobjects.o objects.c
+	$(CCOMPILE) $(CFLAGS) -oobjects.o objects.c
 
 panic.c:  $(UTIL)\panic.c
 	$(COPY) $(UTIL)\panic.c .
@@ -847,14 +892,14 @@ random.c: $(SSHR)\random.c
 	$(COPY) $(SSHR)\random.c .
 
 random.o: $(HACK_H) random.c
-	$(CC) $(CFLAGS) -orandom.o random.c
+	$(CCOMPILE) $(CFLAGS) -orandom.o random.c
 
 nhlan.c: $(SSHR)\nhlan.c
 	$(COPY) $(SSHR)\nhlan.c .
 
 nhlan.o: $(HACK_H) $(NHLAN_H) $(SSHR)\nhlan.c
 	$(COPY) $(SSHR)\nhlan.c .
-	$(CC) $(CFLAGS) -o$@ nhlan.c
+	$(CCOMPILE) $(CFLAGS) -o$@ nhlan.c
 
 DATABASE = $(DAT)\data.base
 
@@ -953,7 +998,7 @@ sp_lev.tag: utility.tag     $(DAT)\beholder.des $(DAT)\bigroom.des \
 #	lev_comp $(DDAT)/dwarf.des
 	lev_comp $(DDAT)/nightmar.des
 	lev_comp $(DDAT)/ranger.des
-	$(COPY) .\*.lev $(DAT)
+	$(COPY) *.lev $(DAT)
 	$(ECHO) sp_levs done > sp_lev.tag
 	
 $(DAT)\dungeon:	  utility.tag  $(DAT)\dungeon.def
@@ -997,96 +1042,96 @@ dlb_main.exe: $(DLBOBJS)
 
 dlb_main.o: $(UTIL)\dlb_main.c $(INCL)\config.h $(DLB_H)
 	$(COPY) $(UTIL)\dlb_main.c .
-	$(CC) $(CFLAGS) -odlb_main.o dlb_main.c
+	$(CCOMPILE) $(CFLAGS) -odlb_main.o dlb_main.c
 
 # Game Dependencies
 
 # sys/share
 main.o:	 $(HACK_H) $(DLB_H) $(SSHR)\pcmain.c
 	$(COPY) $(SSHR)\pcmain.c .
-	$(CC) $(CFLAGS) -o$@ pcmain.c
+	$(CCOMPILE) $(CFLAGS) -o$@ pcmain.c
 
 unix.o:	 $(HACK_H) $(SSHR)\pcunix.c
 	$(COPY) $(SSHR)\pcunix.c .
-	$(CC) $(CFLAGS) -o$@ pcunix.c
+	$(CCOMPILE) $(CFLAGS) -o$@ pcunix.c
 
 sys.o : $(HACK_H) $(SSHR)\pcsys.c
 	$(COPY) $(SSHR)\pcsys.c .
-	$(CC) $(CFLAGS) -o$@ pcsys.c
+	$(CCOMPILE) $(CFLAGS) -o$@ pcsys.c
 
 # sys/winnt
 winnt.o : $(HACK_H)  $(WSYS)\winnt.c
 	$(COPY) $(WSYS)\winnt.c .
 	$(COPY) $(WSYS)\win32api.h ..\include
-	$(CC) $(CFLAGS) -o$@ winnt.c
+	$(CCOMPILE) $(CFLAGS) -o$@ winnt.c
 
 nttty.o : $(HACK_H)  $(WSYS)\nttty.c
 	$(COPY) $(WSYS)\nttty.c .
-	$(CC) $(CFLAGS) -o$@ nttty.c
+	$(CCOMPILE) $(CFLAGS) -o$@ nttty.c
 
 ntsound.o: $(PCH) $(WSYS)\ntsound.c   $(HACK_H)
 	$(COPY) $(WSYS)\ntsound.c .
-	$(CC) $(CFLAGS) -o$@ ntsound.c
+	$(CCOMPILE) $(CFLAGS) -o$@ ntsound.c
 
 mapimail.o: $(PCH) $(WSYS)\mapimail.c   $(HACK_H) $(NHLAN_H)
 	$(COPY) $(WSYS)\mapimail.c .
-	$(CC) $(CFLAGS) -DMAPI_VERBOSE -o$@ mapimail.c
+	$(CCOMPILE) $(CFLAGS) -DMAPI_VERBOSE -o$@ mapimail.c
 
 
 # win/tty
 getline.o : $(HACK_H) $(INCL)\wintty.h $(WTTY)\getline.c
 	$(COPY) $(WTTY)\getline.c .
-	$(CC) $(CFLAGS) -o$@ getline.c
+	$(CCOMPILE) $(CFLAGS) -o$@ getline.c
 
 termcap.o : $(CONFIG_H) $(WTTY)\termcap.c
 	$(COPY) $(WTTY)\termcap.c .
-	$(CC) $(CFLAGS) -o$@ termcap.c
+	$(CCOMPILE) $(CFLAGS) -o$@ termcap.c
 
 topl.o : $(CONFIG_H) $(WTTY)\topl.c
 	$(COPY) $(WTTY)\topl.c .
-	$(CC) $(CFLAGS) -o$@ topl.c
+	$(CCOMPILE) $(CFLAGS) -o$@ topl.c
 
 wintty.o : $(HACK_H) $(WTTY)\wintty.c
 	$(COPY) $(WTTY)\wintty.c .
-	$(CC) $(CFLAGS) -o$@ wintty.c
+	$(CCOMPILE) $(CFLAGS) -o$@ wintty.c
 
 # win/gtk
 gtk.o: ../win/gtk/gtk.c ../include/winGTK.h $(HACK_H) ../include/func_tab.h \
 		../include/dlb.h ../include/patchlevel.h
 	$(COPY) $(WGTK)\gtk.c .
-	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtk.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtk.c
 gtkgetlin.o: ../win/gtk/gtkgetlin.c ../include/winGTK.h $(HACK_H)
 	$(COPY) $(WGTK)\gtkgetlin.c .
-	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkgetlin.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkgetlin.c
 gtkstatus.o: ../win/gtk/gtkstatus.c ../include/winGTK.h $(HACK_H)
 	$(COPY) $(WGTK)\gtkstatus.c .
-	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkstatus.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkstatus.c
 gtkmenu.o: ../win/gtk/gtkmenu.c ../include/winGTK.h $(HACK_H)
 	$(COPY) $(WGTK)\gtkmenu.c .
-	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmenu.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmenu.c
 gtkyn.o: ../win/gtk/gtkyn.c ../include/winGTK.h $(HACK_H)
 	$(COPY) $(WGTK)\gtkyn.c .
-	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkyn.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkyn.c
 gtkextcmd.o: ../win/gtk/gtkextcmd.c ../include/winGTK.h $(HACK_H) \
 		../include/func_tab.h
 	$(COPY) $(WGTK)\gtkextcmd.c .
-	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkextcmd.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkextcmd.c
 gtkmap.o: ../win/gtk/gtkmap.c ../include/winGTK.h $(HACK_H) ../include/dlb.h \
 		../include/patchlevel.h
 	$(COPY) $(WGTK)\gtkmap.c .
-	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmap.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmap.c
 gtkmessage.o: ../win/gtk/gtkmessage.c ../include/winGTK.h $(HACK_H)
 	$(COPY) $(WGTK)\gtkmessage.c .
-	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmessage.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmessage.c
 gtkmisc.o: ../win/gtk/gtkmisc.c ../include/winGTK.h $(HACK_H)
 	$(COPY) $(WGTK)\gtkmisc.c .
-	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmisc.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmisc.c
 xshmmap.o: ../win/gtk/xshmmap.c ../include/winGTK.h $(HACK_H) ../include/xshm.h
 	$(COPY) $(WGTK)\xshmmap.c .
-	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshmmap.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshmmap.c
 xshm.o: ../win/gtk/xshm.c ../include/xshm.h
 	$(COPY) $(WGTK)\xshm.c .
-	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshm.c
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshm.c
 
 # src dependencies
 allmain.o:  $(HACK_H)

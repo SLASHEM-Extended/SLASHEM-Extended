@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.3 2000-08-29 11:49:56 j_ali Exp $
+  $Id: gtkmap.c,v 1.4 2000-09-10 02:19:24 wacko Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -10,7 +10,12 @@
 #include <signal.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
+#ifndef WIN32
 #include <gdk/gdkx.h>
+#else
+#define True -1
+#define False 0
+#endif
 #include "winGTK.h"
 #include "dlb.h"
 #ifdef SHORT_FILENAMES
@@ -239,8 +244,11 @@ nh_set_map_visual(int mode)
 	if(mode == 0){
 	    if(map_font->type != GDK_FONT_FONT)
 		panic("Bad font");
-
+#ifdef WIN32
+	    c_width = gdk_char_width(map_font, 'm');
+#else
 	    c_width = ((XFontStruct *)GDK_FONT_XFONT(map_font))->max_bounds.width;
+#endif
 	    c_height = map_font->ascent + map_font->descent;
 	    c_3dwidth = c_width;
 	    c_3dheight = c_height;

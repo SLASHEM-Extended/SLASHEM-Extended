@@ -82,7 +82,7 @@ typedef xchar	boolean;		/* 0 or 1 */
 #endif
 
 #ifndef STRNCMPI
-# ifndef __SASC_60		/* SAS/C already shifts to stricmp */
+# if !defined(__SASC_60) && !defined(__MINGW32__) /* SAS/C already shifts to stricmp */
 #  define strcmpi(a,b) strncmpi((a),(b),-1)
 # endif
 #endif
