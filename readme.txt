@@ -79,6 +79,12 @@ ver 0.0.7E3 [?] [Released by ?]
 -fixed bug 781998: No confirmation of exit when main window closed.
 -fixed bug 782002: Gdk errors: window unexpectedly destroyed.
 -fixed bug 454798: Program in Disorder - No door at (50,12).
+-Macintosh: revise binary package
+-Macintosh: add missing version resources
+-Macintosh: make record and logfile read-only
+-Macintosh: allow logfile to be deleted
+-Macintosh: open Slash'EM when save files are double-clicked
+-Macintosh: windows no longer disappear when Reposition is selected
 
 See history.txt for changes made in previous versions.
 
