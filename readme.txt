@@ -75,6 +75,7 @@ ver 0.0.7E6F3 [?] [Released by ?]
 -fixed bug 933365: wand of draining does not interrupt ctrl-run
 -fixed bug 933379: weird behaviour with polyself into monsters like migo drone
 -fixed bug 929546: Flaming spheres won't attack acid blobs
+-fixed bug 951991: Reading spellbooks not safe for wizards
 
 See history.txt for changes made in previous versions.
 

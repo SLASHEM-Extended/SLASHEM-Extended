@@ -507,7 +507,7 @@ register struct obj *spellbook;
 		    }
 		}
 
-		if (too_hard && (spellbook->cursed || spellbook->spe)) {
+		if (too_hard && (spellbook->cursed || !spellbook->spe)) {
 		    boolean gone = cursed_book(spellbook);
 
 		    nomul(delay);			/* study time */
