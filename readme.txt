@@ -375,6 +375,7 @@ ver 0.0.6E4F4 [? ?/2001] [Released by ?]
 -fixed bug 412289: Spellbook charging abuse.
 -fixed bug 413966: Colours in map style ignored.
 -fixed bug 418310: handling of vampire mage corpse.
+-fixed bug 419866: Qt: Can't load "rip.xpm".
 
 ver 0.0.6E4F3 [February 28/2001] [Released by Ali]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined

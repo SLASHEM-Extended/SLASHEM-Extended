@@ -1712,11 +1712,20 @@ void NetHackQtLabelledIcon::setAlignments()
 static void
 tryload(QPixmap& pm, const char* fn)
 {
-    if (!pm.load(fn)) {
+    const char *filename;
+#ifndef FILE_AREAS
+    filename = fn;
+#else
+    filename = make_file_name(FILE_AREA_SHARE, fn);
+#endif
+    if (!pm.load(filename)) {
 	QString msg;
 	msg.sprintf("Cannot load \"%s\"", fn);
 	QMessageBox::warning(0, "IO Error", msg);
     }
+#ifdef FILE_AREAS
+    free(filename);
+#endif
 }
 
 NetHackQtStatusWindow::NetHackQtStatusWindow() :
