@@ -1569,6 +1569,7 @@ dealloc_obj(obj)
     if (obj->timed)
 	obj_stop_timers(obj);
 
+#if 0	/* [ALI] No longer needed; now dealt with by timer cleanup handler */
     /*
      * Free up any light sources attached to the object.
      *
@@ -1580,6 +1581,7 @@ dealloc_obj(obj)
     if (obj_sheds_light(obj)) {
         del_light_source(LS_OBJECT, (genericptr_t) obj);
     }
+#endif
     free((genericptr_t) obj);
 }
 
