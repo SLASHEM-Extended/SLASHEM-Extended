@@ -1,4 +1,4 @@
-/* $Id: prxyclnt.h,v 1.2 2003-01-18 17:52:09 j_ali Exp $ */
+/* $Id: prxyclnt.h,v 1.3 2003-01-27 10:11:57 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -99,7 +99,9 @@ struct window_ext_procs {
 /* ### proxysvc.c ### */
 
 extern void proxy_svc_set_ext_procs(void (*)(void), struct window_ext_procs *);
-extern int win_proxy_clnt_init(void *, void *);
+#ifdef NHXDR_H
+extern int win_proxy_clnt_init(nhext_io_func, void *, nhext_io_func, void *);
+#endif
 extern char *win_proxy_clnt_get_failed_packet(int *);
 extern char *win_proxy_clnt_get_extension(const char *name, const char *min_ver,	const char *next_ver, unsigned short *idp);
 
@@ -126,8 +128,10 @@ extern long *proxy_map_glyph2char(struct proxycb_get_glyph_mapping_res *);
 /* ### prxyconn.c ### */
 
 extern void proxy_exit_client_services(void);
-extern int proxy_start_client_services(char *prgname, void *read_h,
-	void *write_h);
+#ifdef NHXDR_H
+extern int proxy_start_client_services(char *prgname, nhext_io_func read_f,
+	void *read_h, nhext_io_func write_f, void *write_h);
+#endif
 extern int proxy_connect(
 	char *protocol, char *address, int *argcp, char **argv);
 

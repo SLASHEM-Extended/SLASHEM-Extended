@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.24 2003-01-02 19:27:25 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.25 2003-01-27 10:11:57 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2001
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -996,7 +996,7 @@ recover.o:   $(CONFIG_H) recover.c
 
 #  Headers
 
-$(INCL)\tile.h: $(WSHR)\tile.h tilemap.exe
+$(INCL)\tile.h: $(WSHR)\tile_t.h tilemap.exe
 	tilemap.exe
 
 #  Utilities

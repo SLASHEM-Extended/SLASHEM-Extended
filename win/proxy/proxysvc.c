@@ -1,4 +1,4 @@
-/* $Id: proxysvc.c,v 1.18 2003-01-18 17:52:10 j_ali Exp $ */
+/* $Id: proxysvc.c,v 1.19 2003-01-27 10:11:57 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -737,44 +737,6 @@ struct window_ext_procs *windowprocs;
     proxy_svc = windowprocs;
 }
 
-#ifdef WIN32
-static int
-client_read(void *handle, void *buf, unsigned int len)
-{
-    DWORD nb;
-    if (!ReadFile((HANDLE)handle, buf, len, &nb, NULL))
-	return -1;
-    else
-	return nb;
-}
-
-static int
-client_write(void *handle, void *buf, unsigned int len)
-{
-    DWORD nb;
-    if (!WriteFile((HANDLE)handle, buf, len, &nb, NULL))
-	return -1;
-    else
-	return nb;
-}
-#else	/* WIN32 */
-static int
-client_read(void *handle, void *buf, unsigned int len)
-{
-    int nb;
-    nb = read((int)handle, buf, len);
-    return nb;
-}
-
-static int
-client_write(void *handle, void *buf, unsigned int len)
-{
-    int nb;
-    nb = write((int)handle, buf, len);
-    return nb;
-}
-#endif	/* WIN32 */
-
 #ifdef DEBUG
 static void
 debug_dump(buf, len, arrow)
@@ -823,33 +785,25 @@ char *arrow;
     fputc('\n', stderr);
 }
 
-static int
-debug_read(handle, buf, len)
-void *handle;
-void *buf;
-unsigned int len;
-{
-    int retval;
-    retval = client_read(handle, buf, len);
-    if (retval < 0)
-	fputs("<= ERROR\n", stderr);
-    else
-	debug_dump(buf, retval, "<=");
-    return retval;
-}
+struct debug_handle {
+    nhext_io_func f;
+    void *h;
+    char *arrow;
+};
 
 static int
-debug_write(handle, buf, len)
+debug_snoop(handle, buf, len)
 void *handle;
 void *buf;
 unsigned int len;
 {
     int retval;
-    retval = client_write(handle, buf, len);
+    struct debug_handle *h = (struct debug_handle *)handle;
+    retval = h->f(h->h, buf, len);
     if (retval < 0)
-	fputs("=> ERROR\n", stderr);
+	fprintf(stderr, "%s ERROR\n", h->arrow);
     else
-	debug_dump(buf, retval, "=>");
+	debug_dump(buf, retval, h->arrow);
     return retval;
 }
 #endif	/* DEBUG */
@@ -867,7 +821,8 @@ const char *tag;
 }
 
 int
-win_proxy_clnt_init(read_h, write_h)
+win_proxy_clnt_init(read_f, read_h, write_f, write_h)
+nhext_io_func read_f, write_f;
 void *read_h, *write_h;
 {
     int i, j;
@@ -876,11 +831,18 @@ void *read_h, *write_h;
     NhExtIO *rd, *wr;
     struct nhext_line *lp, line;
 #ifdef DEBUG
-    rd = nhext_io_open(debug_read, read_h, NHEXT_IO_RDONLY);
-    wr = nhext_io_open(debug_write, write_h, NHEXT_IO_WRONLY);
+    static struct debug_handle dhr, dhw;
+    dhr.f = read_f;
+    dhr.h = read_h;
+    dhr.arrow = "<=";
+    rd = nhext_io_open(debug_snoop, &dhr, NHEXT_IO_RDONLY);
+    dhw.f = write_f;
+    dhw.h = write_h;
+    dhw.arrow = "=>";
+    wr = nhext_io_open(debug_snoop, &dhw, NHEXT_IO_WRONLY);
 #else
-    rd = nhext_io_open(client_read, read_h, NHEXT_IO_RDONLY);
-    wr = nhext_io_open(client_write, write_h, NHEXT_IO_WRONLY);
+    rd = nhext_io_open(read_f, read_h, NHEXT_IO_RDONLY);
+    wr = nhext_io_open(write_f, write_h, NHEXT_IO_WRONLY);
 #endif
     if (!rd || !wr) {
 	fprintf(stderr, "proxy_clnt: Failed to open I/O streams.\n");

@@ -1,4 +1,4 @@
-/* $Id: prxyconn.c,v 1.4 2003-01-01 12:13:33 j_ali Exp $ */
+/* $Id: prxyconn.c,v 1.5 2003-01-27 10:11:58 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -11,6 +11,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #else
+#include <errno.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -21,6 +22,18 @@
 #include "prxyclnt.h"
 
 #ifdef WIN32
+
+/* Mingw uses slightly different names to the platform SDK */
+
+#if defined(WSAEINVALIDPROCTABLE) && !defined(WSAINVALIDPROCTABLE)
+#define WSAINVALIDPROCTABLE WSAEINVALIDPROCTABLE
+#endif
+#if defined(WSAEINVALIDPROVIDER) && !defined(WSAINVALIDPROVIDER)
+#define WSAINVALIDPROVIDER WSAEINVALIDPROVIDER
+#endif
+#if defined(WSAEPROVIDERFAILEDINIT) && !defined(WSAPROVIDERFAILEDINIT)
+#define WSAPROVIDERFAILEDINIT WSAEPROVIDERFAILEDINIT
+#endif
 
 /* Create an anonymous pipe with one end inheritable. */
 static int
@@ -138,6 +151,48 @@ connect_pipe(void *rh, void *wh)
     return 1;
 }
 
+static int
+client_read_file(void *handle, void *buf, unsigned int len)
+{
+    DWORD nb;
+    if (!ReadFile((HANDLE)handle, buf, len, &nb, NULL))
+	return -1;
+    else
+	return nb;
+}
+
+static int
+client_write_file(void *handle, void *buf, unsigned int len)
+{
+    DWORD nb;
+    if (!WriteFile((HANDLE)handle, buf, len, &nb, NULL))
+	return -1;
+    else
+	return nb;
+}
+
+static int
+client_read_skt(void *handle, void *buf, unsigned int len)
+{
+    int nb;
+    nb = recv((SOCKET)handle, buf, len, 0);
+    if (nb == SOCKET_ERROR)
+	return -1;
+    else
+	return nb;
+}
+
+static int
+client_write_skt(void *handle, void *buf, unsigned int len)
+{
+    int nb;
+    nb = send((SOCKET)handle, buf, len, 0);
+    if (nb == SOCKET_ERROR)
+	return -1;
+    else
+	return nb;
+}
+
 #else /* WIN32 */
 
 static int
@@ -175,6 +230,22 @@ connect_pipe(void *rfd, void *wfd)
     }
 }
 
+static int
+client_read(void *handle, void *buf, unsigned int len)
+{
+    int nb;
+    nb = read((int)handle, buf, len);
+    return nb;
+}
+
+static int
+client_write(void *handle, void *buf, unsigned int len)
+{
+    int nb;
+    nb = write((int)handle, buf, len);
+    return nb;
+}
+
 #endif /* WIN32 */
 
 static int exit_client_services;
@@ -186,11 +257,12 @@ proxy_exit_client_services()
 }
 
 int
-proxy_start_client_services(char *prgname, void *read_h, void *write_h)
+proxy_start_client_services(char *prgname, nhext_io_func read_f, void *read_h,
+  nhext_io_func write_f, void *write_h)
 {
     int nb;
     char *s;
-    if (!win_proxy_clnt_init(read_h, write_h)) {
+    if (!win_proxy_clnt_init(read_f, read_h, write_f, write_h)) {
 	fprintf(stderr, "%s: Proxy interface failed; switching to text mode\n",
 	  prgname);
 	/*
@@ -265,8 +337,146 @@ proxy_connect_file(char *address, int *argcp, char **argv)
 	fprintf(stderr, "%s: Failed to restore stdout\n", argv[0]);
 	return 1;
     }
-    return proxy_start_client_services(argv[0], (void *)from_game_h[0],
-      (void *)to_game_h[1]);
+    return proxy_start_client_services(argv[0], client_read_file,
+      (void *)from_game_h[0], client_write_file, (void *)to_game_h[1]);
+}
+
+static const char *strerror_WSA(int errnum)
+{
+    int i;
+    static char buf[30];
+    struct {
+	int errnum;
+	const char *err;
+    } errors[] = {
+	WSAEACCES, "Perminssion denied",
+	WSAEADDRINUSE, "Address already in use",
+	WSAEADDRNOTAVAIL, "Cannot assign requested address",
+	WSAEAFNOSUPPORT, "Address family not supported by protocol family",
+	WSAEALREADY, "Operation already in progress",
+	WSAECONNABORTED, "Software caused connection abort",
+	WSAECONNREFUSED, "Connection refused",
+	WSAECONNRESET, "Connection reser by peer",
+	WSAEDESTADDRREQ, "Destination address required",
+	WSAEFAULT, "Bad address",
+	WSAEHOSTDOWN, "Host is down",
+	WSAEHOSTUNREACH, "No route to host",
+	WSAEINPROGRESS, "Operation now in progress",
+	WSAEINTR, "Interrupted function call",
+	WSAEINVAL, "Invalid argument",
+	WSAEISCONN, "Socket is already connected",
+	WSAEMFILE, "Too many open files",
+	WSAEMSGSIZE, "Message too long",
+	WSAENETDOWN, "Network is down",
+	WSAENETRESET, "Network dropped connection on reset",
+	WSAENETUNREACH, "Network is unreachable",
+	WSAENOBUFS, "No buffer space available",
+	WSAENOPROTOOPT, "Bad protocol option",
+	WSAENOTCONN, "Socket is not connected",
+	WSAENOTSOCK, "Socket operation on nonsocket",
+	WSAEOPNOTSUPP, "Operation not supported",
+	WSAEPFNOSUPPORT, "Protocol family not supported",
+	WSAEPROCLIM, "Too many processes",
+	WSAEPROTONOSUPPORT, "Protocol not supported",
+	WSAEPROTOTYPE, "Protocol wrong for socket",
+	WSAESHUTDOWN, "Cannot send after socket shutdown",
+	WSAESOCKTNOSUPPORT, "Socket type not supported",
+	WSAETIMEDOUT, "Connection timed out",
+	WSATYPE_NOT_FOUND, "Class type not found",
+	WSAEWOULDBLOCK, "Resource temporarily unavailable",
+	WSAHOST_NOT_FOUND, "Host not found",
+	WSA_INVALID_HANDLE, "Specified event object handle is invalid",
+	WSA_INVALID_PARAMETER, "One or more parameters are invalid",
+	WSAINVALIDPROCTABLE, "Invalid procedure table from service provider",
+	WSAINVALIDPROVIDER, "Invalid service provider version number",
+	WSA_IO_INCOMPLETE, "Overlapped I/O event object not in signaled state",
+	WSA_IO_PENDING, "Overlapped operations will complete later",
+	WSA_NOT_ENOUGH_MEMORY, "Insufficient memory available",
+	WSANOTINITIALISED, "Successful WSAStartup not yet performed",
+	WSANO_DATA, "Valid name, no data record of requested type",
+	WSANO_RECOVERY, "This is a nonrecoverable error",
+	WSAPROVIDERFAILEDINIT, "Unable to initialize a service provider",
+	WSASYSCALLFAILURE, "System call failure",
+	WSASYSNOTREADY, "Network subsystem is unavailable",
+	WSATRY_AGAIN, "Nonauthoritive host found",
+	WSAVERNOTSUPPORTED, "Winsock.dll version out of range",
+	WSAEDISCON, "Graceful shutdown in progress",
+	WSA_OPERATION_ABORTED, "Overlapped operation aborted",
+    };
+    for(i = 0; i < sizeof(errors)/sizeof(*errors); i++)
+	if (errors[i].errnum == errnum)
+	    return errors[i].err;
+    sprintf(buf, "Unknown error %d", errnum);
+    return buf;
+}
+
+static int
+proxy_connect_tcp(char *address, char *prgname)
+{
+    SOCKET skt;
+    WSADATA wsa_data;
+    int i, port;
+    long iaddr;
+    char *s, *err;
+    struct hostent *he;
+    struct sockaddr_in sa;
+    s = strrchr(address, ':');
+    if (!s)
+	panic("proxy_connect: Missing port number in tcp scheme");
+    port=atoi(s + 1);
+    if (!port)
+	panic("proxy_connect: Illegal port number in tcp scheme");
+    i = s - address;
+    s = (char *)alloc(i + 1);
+    strncpy(s, address, i);
+    s[i] = '\0';
+    switch (WSAStartup(MAKEWORD(2, 0), &wsa_data))
+    {
+	case 0:
+	    err = NULL;
+	    break;
+	case WSASYSNOTREADY:
+	    err = "Network subsystem not ready";
+	    break;
+	case WSAVERNOTSUPPORTED:
+	    err = "WinSock API: Version 2.0 not supported";
+	    break;
+	case WSAEINPROGRESS:
+	    err = "WinSock API: Blocking operation in progress";
+	    break;
+	case WSAEPROCLIM:
+	    err = "WinSock API: Too many tasks";
+	    break;
+	case WSAEFAULT:
+	    err = "WinSock API: Application error";
+	    break;
+	default:
+	    err = "WinSock API: Unknown error";
+	    break;
+    }
+    if (err)
+	panic("proxy_connect: %s", err);
+    skt = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    if (skt == INVALID_SOCKET)
+	panic("proxy_connect: Failed to create socket: %s",
+	  strerror_WSA(WSAGetLastError()));
+    sa.sin_family = AF_INET;
+    sa.sin_port = htons(port);
+    iaddr = inet_addr(s);
+    if (iaddr == INADDR_NONE) {
+	he = gethostbyname(s);
+	if (!he)
+	    panic("proxy_connect: Can't resolve hostname: %s",
+	      strerror_WSA(WSAGetLastError()));
+	iaddr = *((long *)he->h_addr);
+    }
+    sa.sin_addr.S_un.S_addr = iaddr;
+    if (connect(skt, (struct sockaddr *)&sa, sizeof(sa)))
+	panic("proxy_connect: Failed to connect to remote machine: %s",
+	  strerror_WSA(WSAGetLastError()));
+    free(s);
+    return proxy_start_client_services(prgname, client_read_skt, (void *)skt,
+      client_write_skt, (void *)skt);
 }
 
 #else /* WIN32 */
@@ -296,26 +506,20 @@ proxy_connect_file(char *address, int *argcp, char **argv)
 	free(nargv);
 	close(to_game[0]);
 	close(from_game[1]);
-	return proxy_start_client_services(argv[0], (void *)from_game[0],
-	  (void *)to_game[1]);
+	return proxy_start_client_services(argv[0], client_read,
+	  (void *)from_game[0], client_write, (void *)to_game[1]);
     }
     /*NOTREACHED*/
     return 1;
 }
 
-#endif	/* WIN32 */
-
 static int
 proxy_connect_tcp(char *address, char *prgname)
 {
-#ifdef WIN32
-    SOCKET skt;
-#else
     int skt;
-#endif
     int i, port;
     long iaddr;
-    char *s;
+    char *s, *err;
     struct hostent *he;
     struct sockaddr_in sa;
     s = strrchr(address, ':');
@@ -329,35 +533,31 @@ proxy_connect_tcp(char *address, char *prgname)
     strncpy(s, address, i);
     s[i] = '\0';
     skt = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-#ifdef WIN32
-    if (skt == INVALID_SOCKET)
-#else
     if (skt < 0)
-#endif
-	panic("proxy_connect: Failed to create socket");
+	panic("proxy_connect: Failed to create socket: %s",
+	  strerror(errno));
     sa.sin_family = AF_INET;
     sa.sin_port = htons(port);
     iaddr = inet_addr(s);
     if (iaddr == INADDR_NONE) {
 	he = gethostbyname(s);
 	if (!he) {
-	    perror(s);
-	    panic("proxy_connect: Can't resolve hostname");
+	    extern int h_errno;
+	    panic("proxy_connect: Can't resolve hostname: %s",
+	      hstrerror(h_errno));
 	}
 	iaddr = *((long *)he->h_addr);
     }
-#ifdef WIN32
-    sa.sin_addr.S_un.S_addr = iaddr;
-#else
     sa.sin_addr.s_addr = iaddr;
-#endif
-    if (connect(skt, (struct sockaddr *)&sa, sizeof(sa))) {
-	perror(s);
-	panic("proxy_connect: Failed to connect to remote machine");
-    }
+    if (connect(skt, (struct sockaddr *)&sa, sizeof(sa)))
+	panic("proxy_connect: Failed to connect to remote machine: %s",
+	  strerror(errno));
     free(s);
-    return proxy_start_client_services(prgname, (void *)skt, (void *)skt);
+    return proxy_start_client_services(prgname, client_read, (void *)skt,
+      client_write, (void *)skt);
 }
+
+#endif	/* WIN32 */
 
 /*
  * Currently supported schemes:
