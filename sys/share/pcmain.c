@@ -532,28 +532,6 @@ char *argv[];
 			    	flags.initrace = i;
 			}
 			break;
-		case 'a': /* align */
-			if (argv[0][2]) {
-			    if ((i = str2align(&argv[0][2])) >= 0)
-			    	flags.initalign = i;
-			} else if (argc > 1) {
-				argc--;
-				argv++;
-			    if ((i = str2align(argv[0])) >= 0)
-			    	flags.initalign = i;
-			}
-			break;
-		case 'g': /* gender */
-			if (argv[0][2]) {
-			    if ((i = str2gend(&argv[0][2])) >= 0)
-			    	flags.initgend = i;
-			} else if (argc > 1) {
-				argc--;
-				argv++;
-			    if ((i = str2gend(argv[0])) >= 0)
-			    	flags.initgend = i;
-			}
-			break;
 #ifdef MFLOPPY
 # ifndef AMIGA
 		/* Player doesn't want to use a RAM disk
