@@ -151,6 +151,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 1065927: Should bars stop bullets?
 -fixed bug 947009: Scroll of taming exercises skill in healing spells
 -fixed bug 1077355: game crashes with: "panic monsndx - could not index monster"
+-fixed bug 1098686: Restoring a mounted character wielding Sting can fail
 
 See history.txt for changes made in previous versions.
 
