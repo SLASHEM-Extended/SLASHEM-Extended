@@ -1,7 +1,5 @@
-
-
-
 DLB(6)                                                     DLB(6)
+
 
 
 NAME
@@ -57,19 +55,6 @@ EXAMPLES
 AUTHOR
        Kenneth Lorber
 
-
-
-
-
-                           28 Oct 1993                          1
-
-
-
-
-
-DLB(6)                                                     DLB(6)
-
-
 SEE ALSO
        nethack(6), tar(1)
 
@@ -80,53 +65,5 @@ BUGS
        examining  the  source is the only way to know which files
        can be.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                           28 Oct 1993                          2
 
 

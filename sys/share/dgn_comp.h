@@ -1,3 +1,7 @@
+#ifndef YYERRCODE
+#define YYERRCODE 256
+#endif
+
 #define INTEGER 257
 #define A_DUNGEON 258
 #define BRANCH 259

@@ -16,13 +16,13 @@ DESCRIPTION
        and  produces level files that can be loaded by NetHack at
        runtime.
 
-       The purpose of this tool is to provide NetHack administra­
+       The purpose of this tool is to provide NetHack administra-
        tors  and  implementors  with  a convenient way for adding
        special levels to the game, or  modifying  existing  ones,
        without having to recompile the entire world.
 
        The  -w  option causes lev_comp to perform extra checks on
-       the level and display extra warnings, however these  warn­
+       the level and display extra warnings, however these  warn-
        ings  are  sometimes superfluous, so they are not normally
        displayed.
 
@@ -467,9 +467,9 @@ GRAMMAR
        NOTE:
        Lines beginning with '#' are considered comments.
 
-       The contents of a "MAP" description of a maze is a rectan­
+       The contents of a "MAP" description of a maze is a rectan-
        gle  showing  the  exact level map that should be used for
-       the given part of a maze.  Each character in the map  cor­
+       the given part of a maze.  Each character in the map  cor-
        responds  to a location on the screen.  Different location
        types are denoted using different ASCII  characters.   The
        following  characters  are recognized.  To give an idea of
@@ -544,7 +544,7 @@ EXAMPLE
        This  says  that  level  teleports  or  other non-stairway
        arrivals on this level can  land  anywhere  on  the  level
        except  the  area  of  the map.  This shows the use of the
-       ``levregion'' prefix allowed in certain region  specifica­
+       ``levregion'' prefix allowed in certain region  specifica-
        tions.   Normally,  regions  apply only to the most recent
        MAP specification, but when prefixed  with  ``levregion'',
        one  can refer to any area of the level, regardless of the
@@ -557,7 +557,7 @@ SEE ALSO
        dgn_comp(6), nethack(6)
 
 BUGS
-       Probably infinite.  Most importantly,  still  needs  addi­
+       Probably infinite.  Most importantly,  still  needs  addi-
        tional bounds checking.
 
 

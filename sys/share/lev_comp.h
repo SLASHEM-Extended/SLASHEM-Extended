@@ -1,3 +1,7 @@
+#ifndef YYERRCODE
+#define YYERRCODE 256
+#endif
+
 #define CHAR 257
 #define INTEGER 258
 #define BOOLEAN 259

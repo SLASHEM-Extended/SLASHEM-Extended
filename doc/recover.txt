@@ -1,7 +1,5 @@
-
-
-
 RECOVER(6)                                             RECOVER(6)
+
 
 
 NAME
@@ -58,18 +56,6 @@ DESCRIPTION
        ordinary  players access to recover through setuid or set-
        gid  is  tantamount  to  leaving  the  playground   world-
        writable,  with  respect  to  both cheating and messing up
-
-
-
-                          9 January 1993                        1
-
-
-
-
-
-RECOVER(6)                                             RECOVER(6)
-
-
        other players.  For a single-user system, this  of  course
        does  not  change  anything,  so some of the microcomputer
        ports install recover by default.
@@ -77,11 +63,11 @@ RECOVER(6)                                             RECOVER(6)
        For a multi-user system, the game administrator  may  want
        to arrange for all .0 files in the playground to be fed to
        recover when the  host  machine  boots,  and  handle  game
-       crashes  individually.   If  the user population is suffi-
-       ciently trustworthy, recover can  be  installed  with  the
-       same  permissions  the  nethack executable has.  In either
-       case, recover is easily  compiled  from  the  distribution
-       utility directory.
+       crashes   individually.    If   the   user  population  is
+       sufficiently trustworthy, recover can  be  installed  with
+       the  same  permissions  the  nethack  executable  has.  In
+       either case, recover is easily compiled from the distribu-
+       tion utility directory.
 
 NOTES
        Like nethack itself, recover will overwrite existing save-
@@ -103,30 +89,4 @@ BUGS
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                          9 January 1993                        2
-
-
+                          9 January 1993               RECOVER(6)

@@ -1,7 +1,5 @@
-
-
-
 DGN_COMP(6)                                           DGN_COMP(6)
+
 
 
 NAME
@@ -59,17 +57,6 @@ GRAMMAR
 
        LEVEL: name bonesmarker @ ( base , rand ) [ %age ]
 
-
-
-                           12 Dec 1995                          1
-
-
-
-
-
-DGN_COMP(6)                                           DGN_COMP(6)
-
-
        where name is the level name, bonesmarker is a letter  for
        marking  bones  files, ( base , rand ) is the location and
        %age is the generation percentage, as above.
@@ -124,18 +111,6 @@ DGN_COMP(6)                                           DGN_COMP(6)
        CHAINBRANCH:  name  prev_name  + ( base , rand ) [ stair |
        no_up | no_down | portal ] [ up | down ]
 
-
-
-
-                           12 Dec 1995                          2
-
-
-
-
-
-DGN_COMP(6)                                           DGN_COMP(6)
-
-
        where name is the  name  of  the  dungeon  to  branch  to,
        prev_name  is the name of a previously defined level and (
        base , rand ) is the offset from the level  being  chained
@@ -154,9 +129,9 @@ GENERIC RULES
 
        The value rand may be in the range of -1 to MAXLEVEL.
 
-       If rand is -1 it will be replaced with the value (num_dun-
-       levs(dungeon) - base) during the load  process  (ie.  from
-       here to the end of the dungeon).
+       If  rand  is  -1  it  will  be  replaced  with  the  value
+       (num_dunlevs(dungeon) - base) during the load process (ie.
+       from here to the end of the dungeon).
 
        If rand is 0 the level is located absolutely at base.
 
@@ -190,18 +165,6 @@ EXAMPLE
 
 
        #
-
-
-
-                           12 Dec 1995                          3
-
-
-
-
-
-DGN_COMP(6)                                           DGN_COMP(6)
-
-
        #       The dungeon description file for the "standard" original
        #       3.0 NetHack.
        #
@@ -252,13 +215,4 @@ BUGS
 
 
 
-
-
-
-
-
-
-
-                           12 Dec 1995                          4
-
-
+                           12 Dec 1995                DGN_COMP(6)
