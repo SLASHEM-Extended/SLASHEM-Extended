@@ -1400,14 +1400,13 @@ int tech_no;
 		    return 0;
 		}
 		check_unpaid(obj);
-		if (otmp->quan > 1L)
-		    otmp->quan--;
+		if (obj->quan > 1L)
+		    obj->quan--;
 		else {
-		    obj_extract_self(otmp);
-		    obfree(otmp, (struct obj *)0);
+		    obj_extract_self(obj);
+		    obfree(obj, (struct obj *)0);
 		}
-		pline("Using %s, you draw off a bottle of your blood.",
-			yname(obj));
+		pline("Using your medical kit, you draw off a phial of your blood.");
 		losexp("drawing blood", TRUE);
 		if (u.uexp > 0)
 		    u.uexp = newuexp(u.ulevel - 1);
