@@ -157,7 +157,7 @@ readentry(rfile,tt)
 FILE *rfile;
 struct toptenentry *tt;
 {
-#ifdef NO_SCAN_BRACK /* Version_ Pts DgnLevs_ Hp___ Died__Born id */
+#ifdef NO_SCAN_BRACK		/* Version_ Pts DgnLevs_ Hp___ Died__Born id */
 	static const char fmt[] = "%d %d %d %ld %d %d %d %d %d %d %ld %ld %d%*c";
 	static const char fmt005[] = "%s %c %s %s%*c";
 	static const char fmt33[] = "%s %s %s %s %s %s%*c";
@@ -735,16 +735,13 @@ boolean so;
 	    } else Strcat(linebuf, "died");
 
 	    if (t1->deathdnum == astral_level.dnum) {
+		int deathlev = t1->deathlev;
 		const char *arg, *fmt = " on the Plane of %s";
 
-		/* [ALI] Quick hack to cope with the fact that 0.0.6E4
-		 * is missing the dummy surface level. This hack can
-		 * be removed once dungeon.def is corrected. See bug
-		 * 130857: Wrong location given for death.
-		 */
-		if (find_level("dummy") == 0) t1->deathlev--;
+		if (!t1->ver_major && !t1->ver_minor && t1->patchlevel < 7)
+			deathlev--;
 
-		switch (t1->deathlev) {
+		switch (deathlev) {
 		case -5:
 			fmt = " on the %s Plane";
 			arg = "Astral";	break;

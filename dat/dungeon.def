@@ -103,7 +103,7 @@ CHAINBRANCH:	"Gehennom" "castle" + (0, 0) no_down
 
 
 # Branch to the endgame...
-BRANCH:			"The Elemental Planes" @ (1, 0) no_down up -1
+BRANCH:			"The Elemental Planes" @ (1, 0) no_down up -2
 
 
 ### A Short but Boring Road ###
@@ -284,7 +284,12 @@ LEVEL:          "frnknstn" "none" @ (1, 0)
 
 
 ### The Endgame levels ###
-DUNGEON:        "The Elemental Planes" "E" (5, 0)
+#
+#	Enter on 2nd level from bottom; 1st (from bottom) is a
+#	placeholder for surface level, and should be unreachable.
+#	[Note: the name "dummy" is checked for in init_dungeons().]
+#
+DUNGEON:        "The Elemental Planes" "E" (6, 0)
 DESCRIPTION:    mazelike
 ALIGNMENT:      unaligned
 LEVEL:          "astral" "none" @ (1, 0)
@@ -292,4 +297,4 @@ LEVEL:          "water"  "none" @ (2, 0)
 LEVEL:          "fire"   "none" @ (3, 0)
 LEVEL:          "air"    "none" @ (4, 0)
 LEVEL:          "earth"  "none" @ (5, 0)
-
+LEVEL:          "dummy"  "none" @ (6, 0)
