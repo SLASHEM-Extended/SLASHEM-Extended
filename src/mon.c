@@ -1320,14 +1320,6 @@ struct monst *magr,	/* monster that is currently deciding where to move */
 		mdef->data == &mons[PM_SHRIEKER])
 	    return ALLOW_M|ALLOW_TM;
 
-	/* Since the quest guardians are under siege, it makes sense to have 
-       them fight hostiles.  (But we don't want the quest leader to be in danger.) */
-	if(magr->data->msound==MS_GUARDIAN && mdef->mpeaceful==FALSE)
-		return ALLOW_M|ALLOW_TM;
-	/* and vice versa */
-	if(mdef->data->msound==MS_GUARDIAN && magr->mpeaceful==FALSE)
-		return ALLOW_M|ALLOW_TM;
-
 	/* elves vs. orcs */
 	if(magr->data->mflags2 & M2_ELF && mdef->data->mflags2 & M2_ORC)
 		return ALLOW_M|ALLOW_TM;
