@@ -1239,7 +1239,7 @@ int thrown;
 
 	    if (tmp >= rnd(20)) {
 		if (hmon(mon,obj,thrown)) {  /* mon still alive */
-		    cutworm(mon, bhitpos.x, bhitpos.y, obj);
+		    (void) cutworm(mon, bhitpos.x, bhitpos.y, obj);
 		}
 		exercise(A_DEX, TRUE);
 

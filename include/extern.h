@@ -2296,7 +2296,7 @@ E void FDECL(worm_move, (struct monst *));
 E void FDECL(worm_nomove, (struct monst *));
 E void FDECL(wormgone, (struct monst *));
 E void FDECL(wormhitu, (struct monst *));
-E void FDECL(cutworm, (struct monst *,XCHAR_P,XCHAR_P,struct obj *));
+E int FDECL(cutworm, (struct monst *,XCHAR_P,XCHAR_P,struct obj *));
 E void FDECL(see_wsegs, (struct monst *));
 E void FDECL(save_worm, (int,int));
 E void FDECL(rest_worm, (int));

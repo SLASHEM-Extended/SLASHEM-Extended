@@ -506,10 +506,13 @@ struct attack *uattk;
 		if (mon->mhp == oldhp)
 			*mhit = 0;
 		if (mon->wormno && *mhit) {
-		    if (!u.twoweap || (*mhit & HIT_UWEP)) 
-			cutworm(mon, u.ux+u.dx, u.uy+u.dy, uwep);
-		    if (u.twoweap && (*mhit & HIT_USWAPWEP)) 
-			cutworm(mon, u.ux+u.dx, u.uy+u.dy, uswapwep);
+		    int hit = *mhit;
+		    if (!u.twoweap || (hit & HIT_UWEP)) {
+			if (cutworm(mon, u.ux+u.dx, u.uy+u.dy, uwep))
+			    hit = 0;	/* Don't try and cut a worm twice */
+		    }
+		    if (u.twoweap && (hit & HIT_USWAPWEP))
+			(void) cutworm(mon, u.ux+u.dx, u.uy+u.dy, uswapwep);
 		}
 	    }
 

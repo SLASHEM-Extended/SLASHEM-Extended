@@ -310,8 +310,10 @@ wormhitu(worm)
  *  When hitting a worm (worm) at position x, y, with a weapon (weap),
  *  there is a chance that the worm will be cut in half, and a chance
  *  that both halves will survive.
+ *
+ *  [ALI] Return true if worm is cut.
  */
-void
+int
 cutworm(worm, x, y, weap)
     struct monst *worm;
     xchar x,y;
@@ -322,9 +324,9 @@ cutworm(worm, x, y, weap)
     int wnum = worm->wormno;
     int cut_chance, new_wnum;
 
-    if (!wnum) return; /* bullet proofing */
+    if (!wnum) return 0; /* bullet proofing */
 
-    if (x == worm->mx && y == worm->my) return;		/* hit on head */
+    if (x == worm->mx && y == worm->my) return 0;	/* hit on head */
 
     /* cutting goes best with a bladed weapon */
     cut_chance = rnd(20);	/* Normally  1-16 does not cut */
@@ -333,7 +335,7 @@ cutworm(worm, x, y, weap)
     if (weap && is_blade(weap))	/* With a blade 1- 6 does not cut */
 	cut_chance += 10;	/*		7-20 does */
 
-    if (cut_chance < 17) return;	/* not good enough */
+    if (cut_chance < 17) return 0;	/* not good enough */
 
     /* Find the segment that was attacked. */
     curr = wtails[wnum];
@@ -342,14 +344,14 @@ cutworm(worm, x, y, weap)
 	curr = curr->nseg;
 	if (!curr) {
 	    impossible("cut_worm:  no segment at (%d,%d)", (int) x, (int) y);
-	    return;
+	    return 0;
 	}
     }
 
     /* If this is the tail segment, then the worm just loses it. */
     if (curr == wtails[wnum]) {
 	shrink_worm(wnum);
-	return;
+	return 1;
     }
 
     /*
@@ -371,7 +373,7 @@ cutworm(worm, x, y, weap)
 	You("cut part of the tail off of %s.", mon_nam(worm));
 	toss_wsegs(new_tail, TRUE);
 	if (worm->mhp > 1) worm->mhp /= 2;
-	return;
+	return 1;
     }
 
     /* Create the second worm. */
@@ -426,6 +428,8 @@ cutworm(worm, x, y, weap)
 #endif
 
     You("cut %s in half.", mon_nam(worm));
+
+    return 1;
 }
 
 
