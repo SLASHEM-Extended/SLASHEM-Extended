@@ -368,6 +368,7 @@ ver 0.0.6E4F4 [? ?/2001] [Released by ?]
 -fixed bug 414674: Crash when walking over items.
 -fixed bug 414673: Crash with exploding rings and wands.
 -fixed bug 414152: W32 interface: directions.
+-fixed bug 411280: Dragon Caves full of babies.
 
 ver 0.0.6E4F3 [February 28/2001] [Released by Ali]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined
