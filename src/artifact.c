@@ -561,6 +561,9 @@ touch_artifact(obj,mon)
 
     if(!oart) return 1;
 
+    /* [ALI] Thiefbane has a special affinity with shopkeepers */
+    if (mon->isshk && obj->oartifact == ART_THIEFBANE) return 1;
+
     yours = (mon == &youmonst);
     /* all quest artifacts are self-willed; it this ever changes, `badclass'
        will have to be extended to explicitly include quest artifacts */
@@ -1189,12 +1192,13 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			otmp->dknown = TRUE;
 			return TRUE;
 		}
-	    } else if (otmp->oartifact == ART_VORPAL_BLADE &&
-			(dieroll < 3 || mdef->data == &mons[PM_JABBERWOCK])) {
+	    } else if (dieroll < 3 || otmp->oartifact == ART_VORPAL_BLADE &&
+				      mdef->data == &mons[PM_JABBERWOCK]) {
 		static const char *behead_msg[2] = {
 		     "%s beheads %s!",
 		     "%s decapitates %s!"
 		};
+		const char *artiname = artilist[otmp->oartifact].name;
 
 		if (youattack && u.uswallow && mdef == u.ustuck)
 			return FALSE;
@@ -1211,13 +1215,13 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			}
 			if (noncorporeal(mdef->data) || amorphous(mdef->data)) {
 				pline("%s slices through %s %s.",
-				      artilist[ART_VORPAL_BLADE].name,
+				      artiname,
 				      s_suffix(mon_nam(mdef)), mbodypart(mdef,NECK));
 				return TRUE;
 			}
 			*dmgptr = mdef->mhp + FATAL_DAMAGE;
 			pline(behead_msg[rn2(SIZE(behead_msg))],
-			      artilist[ART_VORPAL_BLADE].name,
+			      artiname,
 			      mon_nam(mdef));
 			otmp->dknown = TRUE;
 			return TRUE;
@@ -1230,17 +1234,17 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			}
 			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) {
 				pline("%s slices through your %s.",
-				      artilist[ART_VORPAL_BLADE].name, body_part(NECK));
+				      artiname, body_part(NECK));
 				return TRUE;
 			}
   			*dmgptr = (Upolyd ? u.mh : u.uhp) + FATAL_DAMAGE;
 			pline(behead_msg[rn2(SIZE(behead_msg))],
-			      artilist[ART_VORPAL_BLADE].name, "you");
+			      artiname, "you");
 			otmp->dknown = TRUE;
 			/* Should amulets fall off? */
 			return TRUE;
 		}
-	    }  /* No default action for other cases of SPFX_BEHEAD (eg. Thiefbane) */
+	    }
 	}
 	if (spec_ability(otmp, SPFX_DRLI)) {
 		if (!youdefend) {
