@@ -3674,6 +3674,9 @@ doapply()
 			    break;
 		    if (!otmp)
 			You_cant("find any more pills in %s.", yname(obj));
+		    else if (!is_edible(otmp))
+			You("find, but cannot eat, a white pill in %s.",
+			  yname(obj));
 		    else {
 			check_unpaid(obj);
 			if (otmp->quan > 1L)
