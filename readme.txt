@@ -390,6 +390,7 @@ ver 0.0.6E4F1 [October XX/2000]
 	-Vampires are exempt for cannibalism penalties.
 -fixed bug 116403: Pets can follow you into the Black Market.
 -fixed bug 116356: Lighting one of a stack of candles is buggy.
+-fixed bug 116587: Molds can have HP above their max HP.
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()

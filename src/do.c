@@ -1385,6 +1385,12 @@ boolean moldy;
     Strcpy(cname, corpse_xname(corpse, TRUE));
     mcarry = (where == OBJ_MINVENT) ? corpse->ocarry : 0;
     mtmp = revive(corpse);      /* corpse is gone if successful */
+    /*
+     * [ALI] Override revive's HP calculation. The HP that a mold starts
+     * with do not depend on the HP of the monster who's corpse it grew on.
+     */
+    if (moldy)
+	mtmp->mhp = mtmp->mhpmax;
 
     if (mtmp) {
 	chewed = !moldy && (mtmp->mhp < mtmp->mhpmax);
