@@ -22,7 +22,7 @@ static void getlock(void);
 int MAIN(int argc, char **argv)
 {
 	int fd;
-	char *dir;	
+	char *dir;
 
 	dir = nh_getenv("NETHACKDIR");
 	if (!dir) dir = nh_getenv("HACKDIR");
@@ -140,11 +140,11 @@ static void whoami(void)
         char *s;
 
         if (*plname) return;
-        if (s = getenv("USER")) {
+        if (s = nh_getenv("USER")) {
 		(void) strncpy(plname, s, sizeof(plname)-1);
 		return;
 	}
-        if (s = getenv("LOGNAME")) {
+        if (s = nh_getenv("LOGNAME")) {
 		(void) strncpy(plname, s, sizeof(plname)-1);
 		return;
 	}
@@ -235,6 +235,9 @@ static void process_options(int argc, char **argv)
 			    if ((i = str2align(argv[0])) >= 0)
 			    	flags.initalign = i;
 			}
+			break;
+		case '@':
+			flags.randomall = 1;
 			break;
 		default:
 			raw_printf("Unknown option: %s", *argv);
