@@ -633,8 +633,11 @@ int oldlevel, newlevel;
 	case PM_DROW:
 	case PM_ELF:		rabil = elf_abil;	break;
 	case PM_GNOME:		rabil = gno_abil;	break;
-	case PM_HOBBIT:		rabil = hob_abil;break;
+	case PM_HOBBIT:		rabil = hob_abil;	break;
+	case PM_ORC:		rabil = orc_abil;	break;
 	case PM_HUMAN_WEREWOLF:	rabil = lyc_abil;	break;
+	case PM_HUMAN:
+	case PM_VAMPIRE:
 	default:		rabil = 0;		break;
 	}
 
