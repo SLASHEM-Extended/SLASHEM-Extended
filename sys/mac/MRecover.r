@@ -241,27 +241,6 @@ resource 'FREF' (128) {
 	""
 };
 
-resource 'vers' (1) {
-	0x0,
-	0x6,
-	beta,
-	0x6,
-	0,
-	"0.0.6e6",
-	"Recover (Slash'EM) 0.0.6e6\n"
-	"www.slashem.org"
-};
-
-resource 'vers' (2) {
-	0x0,
-	0x6,
-	beta,
-	0x6,
-	0,
-	"0.0.6e6",
-	"Recover (Slash'EM) 0.0.6e6"
-};
-
 resource 'icl4' (128) {
 	$"0000 0000 0000 0000 0000 0000 0000 0000"
 	$"0000 0000 00FF FFFF 0000 0000 0000 0000"
