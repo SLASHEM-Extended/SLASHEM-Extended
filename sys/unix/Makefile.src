@@ -225,10 +225,11 @@ WINGNOMESRC = ../win/gnome/gnaskstr.c ../win/gnome/gnbind.c \
       ../win/gnome/gnglyph.c ../win/gnome/gnmain.c ../win/gnome/gnmap.c \
       ../win/gnome/gnmenu.c ../win/gnome/gnmesg.c ../win/gnome/gnopts.c \
       ../win/gnome/gnplayer.c ../win/gnome/gnsignal.c \
-      ../win/gnome/gnstatus.c ../win/gnome/gntext.c ../win/gnome/gnyesno.c
+      ../win/gnome/gnstatus.c ../win/gnome/gntext.c ../win/gnome/gnyesno.c \
+      ../win/gnome/gnworn.c
 WINGNOMEOBJ = gnaskstr.o gnbind.o gnglyph.o gnmain.o gnmap.o gnmenu.o \
       gnmesg.o gnopts.o gnplayer.o gnsignal.o gnstatus.o gntext.o \
-      gnyesno.o nhwin.a
+      gnyesno.o gnworn.o nhwin.a
 #
 # Files for a Gem port
 WINGEMSRC = ../win/gem/wingem.c ../win/gem/wingem1.c ../win/gem/load_img.c \

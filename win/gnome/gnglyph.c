@@ -9,6 +9,9 @@ extern int tiles_per_row;
 extern int tiles_per_col;
 extern int total_tiles_used;
 
+/* from tile.c */
+extern int total_tiles_used;
+
 static GHackGlyphs     ghack_glyphs;
 static GdkImlibImage** ghack_tiles = NULL;
 
@@ -49,33 +52,31 @@ static GdkImlibImage** ghack_tiles = NULL;
  */
 
 int
-ghack_init_glyphs( const char *xpmFile)
+ghack_init_glyphs(const char *xpmFile)
 {
-  ghack_glyphs.im = gdk_imlib_load_image((char *) xpmFile);
-  if ( ! ghack_glyphs.im )
-    {
-      g_error("Couldn't load required xpmFile!");
-      return -1;
+    ghack_glyphs.im = gdk_imlib_load_image((char *) xpmFile);
+    if ( ! ghack_glyphs.im ) {
+	g_error("Couldn't load required xpmFile!");
+	return -1;
     }
 
-  gdk_imlib_render(ghack_glyphs.im, ghack_glyphs.im->rgb_width,
-	  ghack_glyphs.im->rgb_height);
+    gdk_imlib_render(ghack_glyphs.im, ghack_glyphs.im->rgb_width,
+		   ghack_glyphs.im->rgb_height);
 
-  if (ghack_glyphs.im->rgb_width % tiles_per_row ||
-  	ghack_glyphs.im->rgb_height % tiles_per_col) {
-	  g_error("%s is not a multiple of %d, %d (tiles/row, tiles/col) pixels wide",
-	  xpmFile, tiles_per_row, tiles_per_col);
-	  return -1;
-  }
-  ghack_glyphs.width = ghack_glyphs.im->rgb_width / tiles_per_row;
-  ghack_glyphs.height = ghack_glyphs.im->rgb_height / tiles_per_col;
-  ghack_glyphs.count = total_tiles_used;
+    if ((ghack_glyphs.im->rgb_width % tiles_per_row) != 0 ||
+	ghack_glyphs.im->rgb_width <= tiles_per_row ||
+  	(ghack_glyphs.im->rgb_height % tiles_per_col) != 0 ||
+	ghack_glyphs.im->rgb_height <= tiles_per_col) {
+	g_error("%s is not a multiple of %d, %d (tiles/row, tiles/col) pixels wide",
+		xpmFile, tiles_per_row, tiles_per_col);
+	return -1;
+    }
+    ghack_glyphs.width = ghack_glyphs.im->rgb_width / tiles_per_row;
+    ghack_glyphs.height = ghack_glyphs.im->rgb_height / tiles_per_col;
+    ghack_glyphs.count = total_tiles_used;
 
-  ghack_tiles = g_new0( GdkImlibImage*, ghack_glyphs.count );
-  if (ghack_tiles == NULL)
-      return -1;
-  else
-      return 0;
+    ghack_tiles = g_new0( GdkImlibImage*, ghack_glyphs.count );
+    return (ghack_tiles == NULL) ? -1 : 0;
 }
 
 void
@@ -209,8 +210,8 @@ ghack_image_from_glyph( int glyph, gboolean force )
       src_y = tile / tiles_per_row * ghack_glyphs.height;
       ghack_tiles[tile] = gdk_imlib_crop_and_clone_image(ghack_glyphs.im,
 	      src_x, src_y,
-	      ghack_glyphs.height,
-	      ghack_glyphs.width);
+	      ghack_glyphs.width,
+	      ghack_glyphs.height);
   }
 
   if (ghack_tiles[tile] && (!ghack_tiles[tile]->pixmap || force))
