@@ -1,14 +1,14 @@
-#	SCCS Id: @(#)Makefile.os2	3.4	1996/10/29
-#	OS/2 NetHack 3.4 Makefile for OS/2 versions 1.x and 2.x
+#	SCCS Id: @(#)Makefile.os2	3.4.1	1996/10/29
+#	OS/2 NetHack 3.4.1 Makefile for OS/2 versions 1.x and 2.x
 #	Copyright (C) 1990, 1991, 1992, 1993, 1996 Timo Hakulinen
 #
 #	Additional credits for honing GCC support for 3.2 go to Ronald
 #	Van Iwaarden (ron@vaniwaarden.org) and Stefan Neis (neis@cs.uni-sb.de).
 #
-#	Modified for Slash'EM by Pekka Rousu (prousu@cs.helsinki.fi).
+#	Slash'EM version by Pekka Rousu (prousu@users.sourceforge.net).
 #
-#	Supported compilers: GCC emx 0.9d
-#	Supported make utilities: dmake 4.0
+#	Several compilers exist for OS/2 but, currently only GCC emx is tested
+#	and used for releases.  make programs other than dmake are not tested.
 #
 #	Copy this file into $(SRC) directory, rename it to "makefile"
 #	(important, many targets rely on it), compile and link inside
@@ -33,7 +33,7 @@ format = omf
 #format = a.out
 
 .IF $(format) == a.out
-#with_x11 = yes
+with_x11 = yes
 #debug = yes
 .END
 
@@ -54,14 +54,14 @@ LFLAGS = /noig /stack:40000	# GCC OMF
 #	Make syntax peculiarities.
 #
 
-MAKEB	 = @dmake    	# Executable name (change if necessary)
-CMD	 = @cmd /C  	# Command processor name if required
-AB	 = $(@:B).c 	# Base name of the target in target action
-CB	 = $$(@:B).c	#               - " -               dependent
-B	 = $(CMD) " 	# Command line begin in shell one-liners
-E	!= "		#   - " -      end   - " -
-S	!= &		# Command separator  - " -
-P	 = %		# Literal percent sign
+MAKEB	= @dmake	# Executable name (change if necessary)
+CMD	= @cmd /C	# Command processor name if required
+AB	= $(@:B).c	# Base name of the target in target action
+CB	= $$(@:B).c	#               - " -               dependent
+BEG	= $(CMD) "	# Command line begin in shell one-liners
+END	= "		#   - " -      end   - " -
+SEP	= &		# Command separator  - " -
+P	= %		# Literal percent sign
 
 #
 #	Most makes execute actions automatically inside a subshell,
@@ -70,12 +70,14 @@ P	 = %		# Literal percent sign
 
 ECHO	= $(CMD) echo
 X11ECHO	= $(CMD) echo
-RM	= -$(CMD) rm -f
-#RM	= $(CMD) del
-CP	= $(CMD) cp
+
+#RM	= -$(CMD) del
 #CP	= $(CMD) copy
-CAT	= $(CMD) cat
 #CAT	= $(CMD) type
+
+RM	= -$(CMD) rm -f
+CP	= $(CMD) cp
+CAT	= $(CMD) cat
 
 #
 #	For those of us who have these on PC.
@@ -118,7 +120,7 @@ LEXYYC	= lexyy.c
 #	Source tree base directory.
 #
 
-NHSRC	= \slashem\6e6
+NHSRC	= \slashem
 
 #
 #	Source directories.  Makedefs hardcodes these, don't change them.
@@ -145,9 +147,15 @@ WINSHARE= $(NHSRC)\win\share	# Shared system files
 #	case, all directories have to reside on the same drive.
 #
 
+.IF $(with_x11) == yes
+GAMEDIR  = \games\$(GAME)-x11	# Game directory
+.ELSE
+GAMEDIR  = \games\$(GAME)	# Game directory
+.END
+
 OBJ	 = \tmp\se_obj		# Object files
 TEMP	 = \tmp\se_bin		# Temporary files during make process
-GAMEDIR	 = \games\$(GAME)	# Game directory
+
 DLBFILE	 = nhshare		# Platform independent data files
 DLBFILE2 = nhushare		# Platform specific data files
 MAN6DIR	 = $(GAMEDIR)		# Manual page section 6 directory (\man\man6)
@@ -160,7 +168,7 @@ X11ROOT = c:\xfree86
 #
 
 GAME	= slashem
-GAMEDES = "SlashEM 0.0.6E6"
+GAMEDES = "SlashEM 0.0.6E9"
 
 #
 #	GCC: compile only, compiler id, object format selection, warnings,
@@ -168,7 +176,7 @@ GAMEDES = "SlashEM 0.0.6E6"
 #
 
 CFLAGS	=-c $(GCCO) $(WARN) -I$(INCL) $(CDFLAGS) $(STDC) $(WINX11CFLAGS)
-O	!=-s -O -o
+OPT	=-o
 
 .IF $(with_x11) == yes
 WINX11CFLAGS = -I$(X11ROOT)\include -Zmtd
@@ -210,8 +218,8 @@ GCCO	=
 CDFLAGS = -g		# GDB (GCC a.out)
 LDFLAGS = -g		# - " -
 .ELSE
-CDFLAGS =
-LDFLAGS =
+CDFLAGS = -O -s
+LDFLAGS = -s
 .END
 
 #
@@ -225,9 +233,9 @@ STDC	=-ansi
 #
 
 .IF $(format) == omf
-SYSOBJ = $(PLIBP)\crt0.obj	$(PLIBP)\end.lib# GCC OMF
+SYSOBJ = $(PLIBP)\crt0.obj $(PLIBP)\end.lib	# GCC OMF
 .ELSE
-SYSOBJ	=# GCC a.out
+SYSOBJ =					# GCC a.out
 .END
 
 #
@@ -256,16 +264,17 @@ PLIBS	=-lgcc -lc -lgcc -los2 $(X11LIBS)	# GCC a.out
 #RLIBS	= $(RLIBP)\llibcer
 RLIBS	= $(PLIBS)
 
-SRCCC	= $(CC) $(CFLAGS) $(O) $@ $(AB)
-UTILCC	= $(B) cd $(UTIL) $(S) $(CC) $(CFLAGS) $(O) $@ $(AB) $(E)
-SYSCC	= $(B) cd $(SYS) $(S) $(CC) $(CFLAGS) $(O) $@ $(AB) $(E)
-SSYSCC	= $(B) cd $(SSYS) $(S) $(CC) $(CFLAGS) $(O) $@ $(AB) $(E)
-PSYSCC	= $(B) cd $(SSYS) $(S) $(CC) $(CFLAGS) $(O) $@ pc$(AB) $(E)
-WINCC	= $(B) cd $(WIN) $(S) $(CC) $(CFLAGS) $(O) $@ $(AB) $(E)
+SRCCC	= $(CC) $(CFLAGS) $(OPT) $@ $(AB)
+UTILCC	= $(BEG) cd $(UTIL) $(SEP) $(CC) $(CFLAGS) $(OPT) $@ $(AB) $(END)
+SYSCC	= $(BEG) cd $(SYS) $(SEP) $(CC) $(CFLAGS) $(OPT) $@ $(AB) $(END)
+SSYSCC	= $(BEG) cd $(SSYS) $(SEP) $(CC) $(CFLAGS) $(OPT) $@ $(AB) $(END)
+PSYSCC	= $(BEG) cd $(SSYS) $(SEP) $(CC) $(CFLAGS) $(OPT) $@ pc$(AB) $(END)
+WINCC	= $(BEG) cd $(WIN) $(SEP) $(CC) $(CFLAGS) $(OPT) $@ $(AB) $(END)
 
 #
-#	Default linker skeletons.  The upper six lines for GCC OMF,
-#	the lower six for GCC a.out format.
+#	Default linker skeletons.  The upper six lines for everything
+#	that uses standard OS/2 object format (GCC OMF),  The lower six
+#	for GCC a.out format.
 #
 
 .IF $(format) == omf
@@ -346,9 +355,6 @@ DATABASE = data.base	# - " -
 
 GUIDE	=
 #GUIDE	= $(TEMP)\$(GUIDEBOO).dvi
-
-
-
 
 #
 #	Set WINOBJ lines corresponding to your desired combination
@@ -519,22 +525,22 @@ DATHELP = \
  help hh cmdhelp history opthelp wizhelp license gypsy.txt $(GUIDEBOO).txt
 
 SPEC_LEVS = \
- asmodeus.lev baalz.lev    bigrm-1.lev	bigrm-2.lev  bigrm-3.lev \
- bigrm-4.lev  bigrm-5.lev  castle.lev   fakewiz1.lev fakewiz2.lev \
- juiblex.lev  knox.lev     medusa-1.lev medusa-2.lev minend-1.lev \
- minend-2.lev minend-3.lev minefill.lev minetn-1.lev minetn-2.lev\
- minetn-3.lev minetn-4.lev minetn-5.lev minetn-6.lev minetn-7.lev \
- oracle.lev   orcus.lev    sanctum.lev  tower1.lev   tower2.lev  \
- tower3.lev   valley.lev   wizard1.lev  wizard2.lev  wizard3.lev \
- astral.lev   air.lev      earth.lev    fire.lev     water.lev   \
- soko1-1.lev  soko1-2.lev  soko2-1.lev  soko2-2.lev  soko3-1.lev \
- soko3-2.lev  soko4-1.lev  soko4-2.lev  \
- beholder.lev blkmar.lev   cavefill.lev cav2fill.lev demogorg.lev\
- dispater.lev dragons.lev  geryon.lev   guild.lev    frnknstn.lev\
- kobold-1.lev kobold-2.lev lich.lev     mall.lev     mall-1.lev  \
- mall-2.lev   mineking.lev mtemple.lev	nightmar.lev nymph.lev	 \
- rats.lev     sea.lev	   spiders.lev	stor-1.lev   stor-2.lev  \
- stor-3.lev   tomb.lev	   yeenoghu.lev
+ asmodeus.lev	baalz.lev	bigrm-1.lev	bigrm-2.lev	bigrm-3.lev \
+ bigrm-4.lev	bigrm-5.lev	castle.lev	fakewiz1.lev	fakewiz2.lev\
+ juiblex.lev	knox.lev	medusa-1.lev	medusa-2.lev	minend-1.lev\
+ minend-2.lev	minend-3.lev	minefill.lev	minetn-1.lev	minetn-2.lev\
+ minetn-3.lev	minetn-4.lev	minetn-5.lev	minetn-6.lev	minetn-7.lev\
+ oracle.lev	orcus.lev	sanctum.lev	tower1.lev	tower2.lev  \
+ tower3.lev	valley.lev	wizard1.lev	wizard2.lev	wizard3.lev \
+ astral.lev	air.lev 	earth.lev	fire.lev	water.lev   \
+ soko1-1.lev	soko1-2.lev	soko2-1.lev	soko2-2.lev	soko3-1.lev \
+ soko3-2.lev	soko4-1.lev	soko4-2.lev				    \
+ beholder.lev	blkmar.lev	cavefill.lev	cav2fill.lev	demogorg.lev\
+ dispater.lev	dragons.lev	geryon.lev	guild.lev	frnknstn.lev\
+ kobold-1.lev	kobold-2.lev	lich.lev	mall.lev	mall-1.lev  \
+ mall-2.lev	mineking.lev	mtemple.lev	nightmar.lev	nymph.lev   \
+ rats.lev	sea.lev 	spiders.lev	stor-1.lev	stor-2.lev  \
+ stor-3.lev	tomb.lev	yeenoghu.lev
 
 QUEST_LEVS = \
  Arc-goal.lev Arc-fila.lev Arc-filb.lev Arc-loca.lev Arc-strt.lev \
@@ -1083,7 +1089,7 @@ realtouch :
 	$(TOUCH) $(TT)
 
 faketouch :
-	$(B) $(CAT) $(TT) > $(TEMP)\foo.bar $(S) $(CP) $(TEMP)\foo.bar $(TT) $(S) $(RM) $(TEMP)\foo.bar $(E)
+	$(BEG) $(CAT) $(TT) > $(TEMP)\foo.bar $(SEP) $(CP) $(TEMP)\foo.bar $(TT) $(SEP) $(RM) $(TEMP)\foo.bar $(END)
 
 #
 #	Targets for the recovery utility.
@@ -1124,11 +1130,10 @@ $(OBJ)\dlb_main.o : $(UTIL)\$(CB) $(CONFIG_H) $(INCL)\dlb.h
 $(GAMEDIR)\$(DLBFILE):
 	$(TEMP)\dlb.exe cCf $(TEMP) $(GAMEDIR)\$(DLBFILE) $(DATDLB)
 
-$(GAMEDIR)\$(DLBFILE2):
+$(GAMEDIR)\$(DLBFILE2): $(HACK_H)
 	$(TEMP)\dlb.exe cCf $(TEMP) $(GAMEDIR)\$(DLBFILE2) $(DATDLB2)
 
 dlb_yup : $(TEMP)\dlb.exe $(GAMEDIR)\$(DLBFILE) $(GAMEDIR)\$(DLBFILE2)
-	$(MAKEB) DATDIR=$(GAMEDIR) removedat
 
 removedat:
 	$(RM) $(DATDIR)\help
@@ -1426,40 +1431,40 @@ XFILES = $(AFILES) $(BFILES) $(CFILES) $(HFILES) $(KFILES) $(MFILES) \
 	 $(PFILES) $(RANFILES) $(RFILES) $(SFILES) $(TFILES) $(VFILES) $(WFILES) \
 	 $(FFILES) $(IFILES) $(NFILES) $(UFILES) $(YFILES)
 
-spec_lev :	$(TEMP)\astral.lev   \
-		$(TEMP)\beholder.lev \
-		$(TEMP)\bigrm-1.lev  \
-		$(TEMP)\blkmar.lev   \
-		$(TEMP)\castle.lev   \
-		$(TEMP)\cavefill.lev \
-		$(TEMP)\cav2fill.lev \
-		$(TEMP)\dragons.lev  \
-		$(TEMP)\frnknstn.lev \
-		$(TEMP)\guild.lev    \
-		$(TEMP)\knox.lev     \
-		$(TEMP)\kobold-1.lev \
-		$(TEMP)\kobold-2.lev \
-		$(TEMP)\lich.lev     \
-		$(TEMP)\mall.lev     \
-		$(TEMP)\mall-1.lev   \
-		$(TEMP)\mall-2.lev   \
-		$(TEMP)\medusa-1.lev \
-		$(TEMP)\minefill.lev \
-		$(TEMP)\mtemple.lev  \
-		$(TEMP)\nightmar.lev \
-		$(TEMP)\nymph.lev    \
-		$(TEMP)\oracle.lev   \
-		$(TEMP)\rats.lev     \
-		$(TEMP)\sea.lev      \
-		$(TEMP)\soko1-1.lev  \
-		$(TEMP)\spiders.lev  \
-		$(TEMP)\stor-1.lev   \
-		$(TEMP)\stor-2.lev   \
-		$(TEMP)\stor-3.lev   \
-		$(TEMP)\tomb.lev     \
-		$(TEMP)\tower1.lev   \
-		$(TEMP)\valley.lev   \
-		$(TEMP)\wizard1.lev  \
+spec_lev :	$(TEMP)\astral.lev	\
+		$(TEMP)\beholder.lev	\
+		$(TEMP)\bigrm-1.lev	\
+		$(TEMP)\blkmar.lev	\
+		$(TEMP)\castle.lev	\
+		$(TEMP)\cavefill.lev	\
+		$(TEMP)\cav2fill.lev	\
+		$(TEMP)\dragons.lev	\
+		$(TEMP)\frnknstn.lev	\
+		$(TEMP)\guild.lev	\
+		$(TEMP)\knox.lev	\
+		$(TEMP)\kobold-1.lev	\
+		$(TEMP)\kobold-2.lev	\
+		$(TEMP)\lich.lev	\
+		$(TEMP)\mall.lev	\
+		$(TEMP)\mall-1.lev	\
+		$(TEMP)\mall-2.lev	\
+		$(TEMP)\medusa-1.lev	\
+		$(TEMP)\minefill.lev	\
+		$(TEMP)\mtemple.lev	\
+		$(TEMP)\nightmar.lev	\
+		$(TEMP)\nymph.lev	\
+		$(TEMP)\oracle.lev	\
+		$(TEMP)\rats.lev	\
+		$(TEMP)\sea.lev 	\
+		$(TEMP)\soko1-1.lev	\
+		$(TEMP)\spiders.lev	\
+		$(TEMP)\stor-1.lev	\
+		$(TEMP)\stor-2.lev	\
+		$(TEMP)\stor-3.lev	\
+		$(TEMP)\tomb.lev	\
+		$(TEMP)\tower1.lev	\
+		$(TEMP)\valley.lev	\
+		$(TEMP)\wizard1.lev	\
 		$(XFILES)
 
 #	Single special level files

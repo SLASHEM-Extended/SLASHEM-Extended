@@ -358,4 +358,9 @@ int *lan_username_size;
 {
   return (char*)0;
 }
+
+#ifdef X11_GRAPHICS
+int errno;
+#endif
+
 #endif /* OS2 */
