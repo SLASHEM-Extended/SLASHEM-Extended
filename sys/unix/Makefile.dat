@@ -143,7 +143,7 @@ glrip.png:	../util/tile2png ../win/gl/rip.txt
 		../win/share/mon32mi.txt ../win/share/mon32alg.txt \
 		../win/share/mon32aw.txt 
 	../util/txtmerge ../win/share/mon32-t.txt ../win/share/monmag.txt \
-		-b204040 ../win/share/mon32mi.txt \
+		-b ../win/share/mon32mi.txt \
 		-bff00ff ../win/share/mon32alg.txt \
 		-bff00ff ../win/share/mon32aw.txt 
 
@@ -151,20 +151,20 @@ glrip.png:	../util/tile2png ../win/gl/rip.txt
 		../win/share/obj32mi.txt ../win/share/obj32se.txt \
 		../win/share/obj32alg.txt
 	../util/txtmerge ../win/share/obj32-t.txt ../win/share/objmag.txt \
-		-b204040 ../win/share/obj32mi.txt -b ../win/share/obj32se.txt \
+		-b ../win/share/obj32mi.txt -b ../win/share/obj32se.txt \
 		-bff00ff ../win/share/obj32alg.txt
 
 ../win/share/oth32-t.txt:	../util/txtmerge ../win/share/othmag.txt \
 		../win/share/oth32mi.txt ../win/share/oth32se.txt \
 		../win/share/oth32alg.txt
 	../util/txtmerge ../win/share/oth32-t.txt ../win/share/othmag.txt \
-		-b204040 ../win/share/oth32mi.txt -b ../win/share/oth32se.txt \
+		-b ../win/share/oth32mi.txt -b ../win/share/oth32se.txt \
 		-bff00ff ../win/share/oth32alg.txt
 
 ../win/share/mon3d.txt:	../util/txtmerge ../win/share/monbig.txt \
 		../win/share/mon3dmi.txt
 	../util/txtmerge ../win/share/mon3d.txt ../win/share/monbig.txt \
-		-b204040 ../win/share/mon3dmi.txt
+		-b ../win/share/mon3dmi.txt
 
 ../win/share/obj3d.txt:	../util/txtmerge ../win/share/objbig.txt
 	cp ../win/share/objbig.txt ../win/share/obj3d.txt
@@ -173,8 +173,8 @@ glrip.png:	../util/tile2png ../win/gl/rip.txt
 		../win/share/oth3dmi.txt ../win/share/oth-2kmi.txt \
 		../win/share/oth3dse.txt
 	../util/txtmerge ../win/share/oth3d.txt ../win/share/othbig.txt \
-		-b204040 ../win/share/oth3dmi.txt \
-		-b204040 ../win/share/oth-2kmi.txt -b ../win/share/oth3dse.txt
+		-b ../win/share/oth3dmi.txt \
+		-b ../win/share/oth-2kmi.txt -b ../win/share/oth3dse.txt
 
 pet_mark.xbm: ../win/X11/pet_mark.xbm
 	cp ../win/X11/pet_mark.xbm pet_mark.xbm

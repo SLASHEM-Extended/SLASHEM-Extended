@@ -54,7 +54,7 @@ clean:
 		..\win\share\mon32mi.txt ..\win\share\mon32alg.txt \
 		..\win\share\mon32aw.txt 
 	   chdir ..\win\share
-	   ..\..\util\txtmerge mon32-t.txt monmag.txt -b204040 mon32mi.txt -bff00ff mon32alg.txt 
+	   ..\..\util\txtmerge mon32-t.txt monmag.txt -b mon32mi.txt -bff00ff mon32alg.txt 
 	   ..\..\util\txtmerge mon32-t.txt mon32-t.txt -bff00ff mon32aw.txt 
 	   chdir ..\..\build
 
@@ -62,7 +62,7 @@ clean:
 		..\win\share\obj32mi.txt ..\win\share\obj32se.txt \
 		..\win\share\obj32alg.txt
 	   chdir ..\win\share
-	   ..\..\util\txtmerge obj32-t.txt objmag.txt -b204040 obj32mi.txt -b obj32se.txt
+	   ..\..\util\txtmerge obj32-t.txt objmag.txt -b obj32mi.txt -b obj32se.txt
 	   ..\..\util\txtmerge obj32-t.txt obj32-t.txt -bff00ff obj32alg.txt
 	   chdir ..\..\build
 
@@ -70,7 +70,7 @@ clean:
 		..\win\share\oth32mi.txt ..\win\share\oth32se.txt \
 		..\win\share\oth32alg.txt
 	   chdir ..\win\share
-	   ..\..\util\txtmerge oth32-t.txt othmag.txt -b204040 oth32mi.txt -b oth32se.txt
+	   ..\..\util\txtmerge oth32-t.txt othmag.txt -b oth32mi.txt -b oth32se.txt
 	   ..\..\util\txtmerge oth32-t.txt oth32-t.txt -bff00ff oth32alg.txt
 	   chdir ..\..\build
 

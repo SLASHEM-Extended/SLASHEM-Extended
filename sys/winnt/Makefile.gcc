@@ -1121,7 +1121,7 @@ $(WSHR)\othbig.txt:	bigtile.exe ../win/share/mon32-t.txt \
 		$(WSHR)\mon32mi.txt $(WSHR)\mon32alg.txt \
 		$(WSHR)\mon32aw.txt 
 	cd $(WSHR)
-	txtmerge mon32-t.txt monmag.txt -b204040 mon32mi.txt -bff00ff mon32alg.txt 
+	txtmerge mon32-t.txt monmag.txt -b mon32mi.txt -bff00ff mon32alg.txt 
 	txtmerge mon32-t.txt mon32-t.txt -bff00ff mon32aw.txt 
 	cd ..\$(SRC)
 
@@ -1129,7 +1129,7 @@ $(WSHR)\othbig.txt:	bigtile.exe ../win/share/mon32-t.txt \
 		$(WSHR)\obj32mi.txt $(WSHR)\obj32se.txt \
 		$(WSHR)\obj32alg.txt
 	cd $(WSHR)
-	txtmerge obj32-t.txt objmag.txt -b204040 obj32mi.txt -b obj32se.txt
+	txtmerge obj32-t.txt objmag.txt -b obj32mi.txt -b obj32se.txt
 	txtmerge obj32-t.txt obj32-t.txt -bff00ff obj32alg.txt
 	cd ..\$(SRC)
 
@@ -1137,14 +1137,14 @@ $(WSHR)\othbig.txt:	bigtile.exe ../win/share/mon32-t.txt \
 		$(WSHR)\oth32mi.txt $(WSHR)\oth32se.txt \
 		$(WSHR)\oth32alg.txt
 	cd $(WSHR)
-	txtmerge oth32-t.txt othmag.txt -b204040 oth32mi.txt -b oth32se.txt
+	txtmerge oth32-t.txt othmag.txt -b oth32mi.txt -b oth32se.txt
 	txtmerge oth32-t.txt oth32-t.txt -bff00ff oth32alg.txt
 	cd ..\$(SRC)
 
 ../win/share/mon3d.txt:	$(WSHR)\txtmerge.exe $(WSHR)\monbig.txt \
 		$(WSHR)\mon3dmi.txt
 	cd $(WSHR)
-	txtmerge mon3d.txt monbig.txt -b204040 mon3dmi.txt
+	txtmerge mon3d.txt monbig.txt -b mon3dmi.txt
 	cd ..\$(SRC)
 
 ../win/share/obj3d.txt:	$(WSHR)\txtmerge.exe $(WSHR)\objbig.txt
@@ -1154,7 +1154,7 @@ $(WSHR)\othbig.txt:	bigtile.exe ../win/share/mon32-t.txt \
 		$(WSHR)\oth3dmi.txt $(WSHR)\oth-2kmi.txt \
 		$(WSHR)\oth3dse.txt
 	cd $(WSHR)
-	txtmerge oth3d.txt othbig.txt -b204040 oth3dmi.txt -b204040 oth-2kmi.txt
+	txtmerge oth3d.txt othbig.txt -b oth3dmi.txt -b oth-2kmi.txt
 	txtmerge oth3d.txt oth3d.txt -b oth3dse.txt
 	cd ..\$(SRC)
 

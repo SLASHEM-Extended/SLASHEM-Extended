@@ -909,29 +909,30 @@ $(WSHR)\othmag.txt:	magtile.exe $(WSHR)\other.txt
 $(WSHR)\mon32-t.txt:	txtmerge.exe $(WSHR)\monmag.txt $(WSHR)\mon32mi.txt \
 			$(WSHR)\mon32alg.txt $(WSHR)\mon32al2.txt \
 			$(WSHR)\mon32aw.txt
-	txtmerge $(WSHR)\mon32-t.txt $(WSHR)\monmag.txt -b204040 $(WSHR)\mon32mi.txt \
-		-b204040 $(WSHR)\mon32alg.txt \
-		-b204040 $(WSHR)\mon32al2.txt \
-		-b204040 $(WSHR)\mon32aw.txt
+	txtmerge $(WSHR)\mon32-t.txt $(WSHR)\monmag.txt -b $(WSHR)\mon32mi.txt \
+		-bff00ff $(WSHR)\mon32alg.txt \
+		-bff00ff $(WSHR)\mon32al2.txt \
+		-bff00ff $(WSHR)\mon32aw.txt
 			
 
 $(WSHR)\obj32-t.txt:	txtmerge.exe $(WSHR)\objmag.txt $(WSHR)\obj32mi.txt \
 			$(WSHR)\obj32se.txt $(WSHR)\obj32alg.txt \
 			$(WSHR)\obj32al2.txt
 	txtmerge $(WSHR)\obj32-t.txt $(WSHR)\objmag.txt \
-		-b204040 $(WSHR)\obj32mi.txt -b $(WSHR)\obj32se.txt \
-		-b204040 $(WSHR)\obj32alg.txt \
-		-b204040 $(WSHR)\obj32al2.txt
+		-b $(WSHR)\obj32mi.txt -b $(WSHR)\obj32se.txt \
+		-bff00ff $(WSHR)\obj32alg.txt \
+		-bff00ff $(WSHR)\obj32al2.txt
 
 $(WSHR)\oth32-t.txt:	txtmerge.exe $(WSHR)\othmag.txt \
 		$(WSHR)\oth32mi.txt $(WSHR)\oth32se.txt \
-		$(WSHR)\oth32fl.txt $(WSHR)\oth32alg.txt \
-		$(WSHR)\oth32al2.txt
+		$(WSHR)\oth32fl.txt \
+		-bff00ff $(WSHR)\oth32alg.txt \
+		-bff00ff $(WSHR)\oth32al2.txt
 	cd $(WSHR)
 	..\$(SRC)\txtmerge oth32-t.txt othmag.txt \
-		-b204040 oth32mi.txt oth32se.txt \
-		oth32fl.txt oth32alg.txt \
-		oth32al2.txt
+		-b oth32mi.txt oth32se.txt \
+		oth32fl.txt -bff00ff oth32alg.txt \
+		-bff00ff oth32al2.txt
 	cd ..\$(SRC)
 
 $(WSHR)\mon32.txt:	txtbg.exe $(WSHR)\mon32-t.txt

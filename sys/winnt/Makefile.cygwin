@@ -787,17 +787,17 @@ $(WSHR)/othmag.txt:	magtile.exe $(WSHR)/other.txt
 	./magtile.exe
 
 $(WSHR)/mon32.txt:	txtmerge.exe $(WSHR)/monmag.txt $(WSHR)/mon32mi.txt
-	./txtmerge ../win/share/mon32.txt ..\\win\\share\\monmag.txt -b204040 ..\\win\\share\\mon32mi.txt 
+	./txtmerge ../win/share/mon32.txt ..\\win\\share\\monmag.txt -b ..\\win\\share\\mon32mi.txt 
 
 $(WSHR)/obj32.txt:	txtmerge.exe $(WSHR)/objmag.txt \
 		../win/share/obj32mi.txt ../win/share/obj32se.txt
 	./txtmerge ../win/share/obj32.txt ../win/share/objmag.txt \
-		-b204040 ../win/share/obj32mi.txt -b ../win/share/obj32se.txt
+		-b ../win/share/obj32mi.txt -b ../win/share/obj32se.txt
 
 $(WSHR)/oth32.txt:	txtmerge.exe $(WSHR)/othmag.txt \
 		../win/share/oth32mi.txt ../win/share/oth32se.txt
 	./txtmerge ../win/share/oth32.txt ../win/share/othmag.txt \
-		-b204040 ../win/share/oth32mi.txt -b ../win/share/oth32se.txt
+		-b ../win/share/oth32mi.txt -b ../win/share/oth32se.txt
 
 pet_mark.xbm: ../win/X11/pet_mark.xbm
 	$(COPY) ../win/X11/pet_mark.xbm pet_mark.xbm
