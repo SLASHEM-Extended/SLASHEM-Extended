@@ -127,6 +127,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 937239: Wrong cause of death from exploding wands
 -fixed bug 962572: Inventory item prints to console instead of chat buffer
 -fixed bug 936167: Started with empty medical kit (Pasi Kallinen)
+-fixed bug 934077: Wrote an invisible scroll (Pasi Kallinen)
 
 See history.txt for changes made in previous versions.
 
