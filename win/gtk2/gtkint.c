@@ -1,5 +1,5 @@
 /*
-  $Id: gtkint.c,v 1.8 2003-01-01 12:13:32 j_ali Exp $
+  $Id: gtkint.c,v 1.9 2003-02-08 11:03:27 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -14,6 +14,9 @@
 
 #include <sys/types.h>
 #include <signal.h>
+#include "nhxdr.h"
+#include "proxycom.h"
+#include "prxyclnt.h"
 #include "winGTK.h"
 #include "wintype.h"
 #include "func_tab.h"
@@ -109,6 +112,24 @@ GTK_proxy_raw_print_bold(const char *str)
     fputs(str, stderr); fputc('\n', stderr); (void) fflush(stderr);
 }
 
+#ifndef WIN32
+static int
+GTK_client_read(void *handle, void *buf, unsigned int len)
+{
+    int nb;
+    nb = read((int)handle, buf, len);
+    return nb;
+}
+
+static int
+GTK_client_write(void *handle, void *buf, unsigned int len)
+{
+    int nb;
+    nb = write((int)handle, buf, len);
+    return nb;
+}
+#endif
+
 static void
 GTK_proxy_init_nhwindows(int *argcp, char **argv)
 {
@@ -156,8 +177,8 @@ GTK_proxy_init_nhwindows(int *argcp, char **argv)
 #endif
 #endif
 	proxy_svc_set_ext_procs(win_GTK_init, &GTK_ext_procs);
-	proxy_start_client_services(argv[0], (void *)from_game[0],
-	  (void *)to_game[1]);
+	proxy_start_client_services(argv[0], GTK_client_read,
+	  (void *)from_game[0], GTK_client_write, (void *)to_game[1]);
 	exit(1);
     }
 #endif	/* WIN32 */

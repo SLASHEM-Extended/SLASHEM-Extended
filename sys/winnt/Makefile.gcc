@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.25 2003-01-27 10:11:57 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.26 2003-02-08 11:03:27 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2001
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -1460,7 +1460,8 @@ xshm.o: $(WGTK)/xshm.c ../include/xshm.h
 gtktile.o: $(WGTK)/gtktile.c ../include/winGTK.h ../include/dlb.h
 	$(COPY) $(WGTK)\gtktile.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtktile.c
-gtkint.o: $(WGTK)/gtkint.c ../include/winGTK.h ../include/dlb.h \
+gtkint.o: $(WGTK)/gtkint.c ../include/nhxdr.h ../include/proxycom.h
+		../include/prxyclnt.h ../include/winGTK.h ../include/dlb.h \
 		../include/patchlevel.h
 	$(COPY) $(WGTK)\gtkint.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkint.c

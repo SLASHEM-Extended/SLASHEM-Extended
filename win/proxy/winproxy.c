@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.21 2003-01-21 12:12:14 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.22 2003-02-08 11:03:27 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -622,6 +622,7 @@ const char *str;
     if (active++ || in_proxy_init ||
       !nhext_rpc(EXT_FID_RAW_PRINT, 1, EXT_STRING(str), 0)) {
 	fputs(str, stderr);
+	fputc('\n', stderr);
 	(void) fflush(stderr);
     }
     active--;
@@ -639,6 +640,7 @@ const char *str;
     if (active++ || in_proxy_init ||
       !nhext_rpc(EXT_FID_RAW_PRINT_BOLD, 1, EXT_STRING(str), 0)) {
 	fputs(str, stderr);
+	fputc('\n', stderr);
 	(void) fflush(stderr);
     }
     active--;
@@ -983,10 +985,13 @@ proxy_init()
     struct nhext_line *lp = (struct nhext_line *)0, line;
     char standard[8];
     rd = nhext_io_open(READ_F, READ_H, NHEXT_IO_RDONLY);
-    if (!rd)
+    if (!rd) {
+	pline("Proxy: Failed to open read NhExtIO stream");
 	return FALSE;
+    }
     wr = nhext_io_open(WRITE_F, WRITE_H, NHEXT_IO_WRONLY);
     if (!wr) {
+	pline("Proxy: Failed to open write NhExtIO stream");
 	nhext_io_close(rd);
 	return FALSE;
     }
@@ -1009,6 +1014,7 @@ proxy_init()
     } else
 	services = proxy_callbacks;
     if (nhext_init(rd, wr, services) < 0) {
+	pline("Proxy: Failed to initialize NhExt");
 	nhext_io_close(rd);
 	nhext_io_close(wr);
 	return FALSE;
@@ -1030,6 +1036,7 @@ proxy_init()
     free(line.tags);
     free(line.values);
     if (!i) {
+	pline("Proxy: Failed to write NhExt greeting");
 failed:
 	if (lp)
 	    nhext_subprotocol0_free_line(lp);
@@ -1039,15 +1046,21 @@ failed:
 	return FALSE;
     }
     lp = nhext_subprotocol0_read_line();
-    if (!lp)
+    if (!lp) {
+	pline("Proxy: Failed to read reply to NhExt greeting");
 	goto failed;
-    if (strcmp(lp->type,"Ack"))
+    }
+    if (strcmp(lp->type,"Ack")) {
+	pline("Proxy: NhExt greeting not acknowledged");
 	goto failed;
+    }
     for(i = 0; i < lp->n; i++)
 	if (!strcmp(lp->tags[i], "protocol"))
 	    break;
-    if (i == lp->n || strcmp(lp->values[i], "1"))
+    if (i == lp->n || strcmp(lp->values[i], "1")) {
+	pline("Proxy: Remote end does not support sub-protocol 1");
 	goto failed;
+    }
     for(i = 0; i < lp->n; i++)
 	if (!strcmp(lp->tags[i], "windowtype"))
 	    break;
@@ -1126,6 +1139,8 @@ unsigned int len;
     retval = proxy_read(handle, buf, len);
     if (retval < 0)
 	fputs("<- ERROR\n", stderr);
+    else if (!retval)
+	fputs("<- EOF\n", stderr);
     else
 	debug_dump(buf, retval, "<-");
     return retval;
