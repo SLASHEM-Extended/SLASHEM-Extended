@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.13 2000-09-28 19:04:10 j_ali Exp $
+  $Id: gtk.c,v 1.14 2000-09-29 15:56:52 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1441,6 +1441,7 @@ void
 GTK_display_nhwindow(winid id, BOOLEAN_P blocking)
 {
     NHWindow *w;
+    extern int root_height;
 
     if(id == NHW_STATUS || id == NHW_MESSAGE){
     }
@@ -1450,6 +1451,8 @@ GTK_display_nhwindow(winid id, BOOLEAN_P blocking)
     else{
 	w = &gtkWindows[id];
 
+	if(w->clist && w->clist->requisition.height >= (2 * root_height) / 3)
+	    gtk_widget_set_usize(w->clist, -1, (2 * root_height) / 3);
 	gtk_grab_add(w->w);
 	gtk_widget_show_all(w->w);
     }
@@ -1512,17 +1515,29 @@ GTK_putstr(winid id, int attr, const char *str)
 	w->vbox = nh_gtk_new_and_add(
 	    gtk_vbox_new(FALSE, 0), w->frame, "");
 
-	w->clist = nh_gtk_new_and_pack(
-	    gtk_clist_new(1), w->vbox, "",
-	    FALSE, FALSE, NH_PAD);
-	gtk_clist_set_column_auto_resize(GTK_CLIST(w->clist), 0, TRUE);
-
 	w->hbox2 = nh_gtk_new_and_pack(
 	    gtk_hbox_new(FALSE, 0), w->vbox, "",
 	    FALSE, FALSE, NH_PAD);
 
+	w->clist = nh_gtk_new_and_pack(
+	    gtk_clist_new(1), w->hbox2, "",
+	    FALSE, FALSE, NH_PAD);
+	gtk_clist_set_column_auto_resize(GTK_CLIST(w->clist), 0, TRUE);
+
+	w->adj = (GtkAdjustment *)gtk_adjustment_new(
+	    0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+	gtk_clist_set_vadjustment(GTK_CLIST(w->clist), w->adj);
+
+	w->scrolled = nh_gtk_new_and_pack(
+	    gtk_vscrollbar_new(GTK_CLIST(w->clist)->vadjustment), w->hbox2,
+	    "", FALSE, FALSE, NH_PAD);
+
+	w->hbox3 = nh_gtk_new_and_pack(
+	    gtk_hbox_new(FALSE, 0), w->vbox, "",
+	    FALSE, FALSE, NH_PAD);
+
 	w->button[0] = nh_gtk_new_and_pack(
-	    gtk_button_new_with_label("Close"), w->hbox2, "",
+	    gtk_button_new_with_label("Close"), w->hbox3, "",
 	    TRUE, FALSE, 0);
 	gtk_signal_connect(
 	    GTK_OBJECT(w->button[0]), "clicked",

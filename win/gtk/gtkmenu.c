@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.6 2000-09-23 10:15:09 j_ali Exp $
+  $Id: gtkmenu.c,v 1.7 2000-09-29 15:56:53 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -314,7 +314,7 @@ GTK_load_menu_clist(NHWindow *w)
 	c = GTK_CLIST(gtk_clist_new(MENU_COLS));
 	w->clist = GTK_WIDGET(c);
     }
-    s = gtk_rc_get_style(GTK_WIDGET(w->w));
+    s = gtk_rc_get_style(w->clist);
     if (!s)
 	s = w->clist->style;
     gtk_clist_freeze(c);
@@ -330,8 +330,19 @@ GTK_load_menu_clist(NHWindow *w)
 	gtk_clist_append(c, text);
 	if(!menu->nhMenuItem[j].id.a_void){
 	    gtk_clist_set_selectable(c, j, FALSE);
-	    if(menu->nhMenuItem[j].attr != 0)
-		gtk_clist_set_background(c, j, s->dark);
+	    if(menu->nhMenuItem[j].attr == ATR_INVERSE)
+		gtk_clist_set_background(c, j, s->dark + GTK_STATE_NORMAL);
+	    switch(menu->nhMenuItem[j].attr) {
+		case ATR_BOLD:
+		    gtk_clist_set_foreground(c, j, &s->black);
+		    break;
+		case ATR_DIM:
+		    gtk_clist_set_foreground(c, j, s->light + GTK_STATE_NORMAL);
+		    break;
+		default:
+		    gtk_clist_set_foreground(c, j, s->text + GTK_STATE_NORMAL);
+		    break;
+	    }
 	}
 #ifdef WINGTK_MENU_IMAGES
 	if(menu->nhMenuItem[j].glyph != NO_GLYPH && map_visual){

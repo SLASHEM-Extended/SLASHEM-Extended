@@ -358,6 +358,7 @@ ver 0.0.6E4F1 [September XX/2000]
 -fixed bug 115292: Better grammar in draining blood message (vampires).
 -fixed bug 115380: Avoid critical GTK errors from status bars.
 -fixed bug 114401: GTK port is no longer dependant on TTY port.
+-fixed bug 115301: Discovery list now has a scrollbar and menu images.
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()

@@ -752,15 +752,20 @@ winid tmpwin;		/* supplied by dodiscover() */
 {
     int i, m, otyp;
     char buf[BUFSZ];
+    anything any;
 
+    any.a_void = 0;
     for (i = 0; i < NROFARTIFACTS; i++) {
 	if (artidisco[i] == 0) break;	/* empty slot implies end of list */
-	if (i == 0) putstr(tmpwin, ATR_INVERSE, "Artifacts");
+	if (i == 0)
+	    add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_INVERSE,
+	      "Artifacts", MENU_UNSELECTED);
 	m = artidisco[i];
 	otyp = artilist[m].otyp;
 	Sprintf(buf, "  %s [%s %s]", artiname(m),
 		align_str(artilist[m].alignment), simple_typename(otyp));
-	putstr(tmpwin, 0, buf);
+	add_menu(tmpwin, objnum_to_glyph(otyp), &any, 0, 0, ATR_NONE,
+	  buf, MENU_UNSELECTED);
     }
     return i;
 }
