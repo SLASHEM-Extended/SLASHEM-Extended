@@ -341,6 +341,7 @@ ver 0.0.6E8 [?] [Released by ?]
 -Added compile time option to disable bones files
 -Merged Malcolm Ryan's enhanced alchemy patch
 -Merged Pasi Kallinen's dungeon growth patch
+-Merged Nephi's grudge patch
 
 ver 0.0.6E7 [December 6/2002] [Released by Ali]
 -Lethe: Treacherous pets; Cthulhu revivification; monsters use of potions of

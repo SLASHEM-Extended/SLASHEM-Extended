@@ -1272,9 +1272,33 @@ struct monst *magr,	/* monster that is currently deciding where to move */
 	if (magr->data == &mons[PM_PURPLE_WORM] &&
 		mdef->data == &mons[PM_SHRIEKER])
 	    return ALLOW_M|ALLOW_TM;
-	/* Various other combinations such as dog vs cat, cat vs rat, and
-	   elf vs orc have been suggested.  For the time being we don't
-	   support those. */
+
+	/* Since the quest guardians are under siege, it makes sense to have 
+       them fight hostiles.  (But we don't want the quest leader to be in danger.) */
+	if(magr->data->msound==MS_GUARDIAN && mdef->mpeaceful==FALSE)
+		return ALLOW_M|ALLOW_TM;
+	/* and vice versa */
+	if(mdef->data->msound==MS_GUARDIAN && magr->mpeaceful==FALSE)
+		return ALLOW_M|ALLOW_TM;
+
+	/* elves vs. orcs */
+	if(magr->data->mflags2 & M2_ELF && mdef->data->mflags2 & M2_ORC)
+		return ALLOW_M|ALLOW_TM;
+	/* and vice versa */
+	if(mdef->data->mflags2 & M2_ELF && magr->data->mflags2 & M2_ORC)
+		return ALLOW_M|ALLOW_TM;
+
+	/* angels vs. demons */
+	if(magr->data->mlet==S_ANGEL && mdef->data->mflags2 & M2_DEMON)
+		return ALLOW_M|ALLOW_TM;
+	/* and vice versa */
+	if(mdef->data->mlet==S_ANGEL && magr->data->mflags2 & M2_DEMON)
+		return ALLOW_M|ALLOW_TM;
+
+	/* woodchucks vs. The Oracle */
+	if(magr->data == &mons[PM_WOODCHUCK] && mdef->data == &mons[PM_ORACLE])
+		return ALLOW_M|ALLOW_TM;
+
 	return 0L;
 }
 
