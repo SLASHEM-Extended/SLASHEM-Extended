@@ -35,7 +35,7 @@ void mswin_display_splash_window (BOOL show_ver)
 	HWND hWnd;
 	int buttop;
 	int strsize = 0;
-	int bufsize = BUFSZ;
+	int bufsize = 400;		/* Enough for 4 lines plus extras */
 
 	char *buf = malloc(bufsize);
 	if (buf == NULL)
