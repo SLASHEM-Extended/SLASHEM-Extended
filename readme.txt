@@ -97,6 +97,7 @@ ver 0.0.7E3 [?] [Released by ?]
 -fixed bug 795384: some typos
 -fixed bug 793132: excessive magic by gnoll shamans
 -fixed bug 793144: putting corpses in ice box
+-fixed bug 789310: Lyc Rogues can't two-weapon
 
 See history.txt for changes made in previous versions.
 

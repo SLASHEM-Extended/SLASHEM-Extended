@@ -1131,6 +1131,9 @@ enhance_weapon_skill()
 	    to_advance = eventually_advance = maxxed_cnt = 0;
 	    for (longest = 0, i = 0; i < P_NUM_SKILLS; i++) {
 		if (P_RESTRICTED(i)) continue;
+		if (i == P_TWO_WEAPON_COMBAT &&
+			youmonst.data->mattk[1].aatyp != AT_WEAP)
+		    continue;
 		if ((len = strlen(P_NAME(i))) > longest)
 		    longest = len;
 		if (can_advance(i, speedy)) to_advance++;
@@ -1180,6 +1183,9 @@ enhance_weapon_skill()
 			     skill_ranges[pass].name, MENU_UNSELECTED);
 
 		if (P_RESTRICTED(i)) continue;
+		if (i == P_TWO_WEAPON_COMBAT &&
+			youmonst.data->mattk[1].aatyp != AT_WEAP)
+		    continue;
 		/*
 		 * Sigh, this assumes a monospaced font unless
 		 * iflags.menu_tab_sep is set in which case it puts
