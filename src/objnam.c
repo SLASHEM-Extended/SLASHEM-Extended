@@ -1915,6 +1915,7 @@ register char *bp;
 	if (strncmpi(bp, "master key", 10)) /* not the "master" rank */
         if (strncmpi(bp, "Thiefbane", 9)) /* not the "thief" rank */
         if (strncmpi(bp, "Ogresmasher", 11)) /* not the "ogre" monster */
+        if (strncmpi(bp, "Bat from Hell", 13)) /* not the "bat" monster */
 	if (mntmp < LOW_PM && strlen(bp) > 2 &&
 	    (mntmp = name_to_mon(bp)) >= LOW_PM) {
 		int mntmptoo, mntmplen; /* double check for rank title */
