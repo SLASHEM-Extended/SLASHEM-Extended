@@ -167,11 +167,8 @@
  * If defined, it can be overridden by the environment variable PAGER.
  * Hack will use its internal pager if DEF_PAGER is not defined.
  * (This might be preferable for security reasons.)
+ * #define DEF_PAGER	".../mydir/mypager"
  */
-/* #define DEF_PAGER	"/usr/bin/more" */
-
- 
-
 
 /*
  * If you want the static parts of your playground on a read-only file
@@ -230,7 +227,7 @@
  *             dan
  */
 
-/*#define NO_MAILREADER */	/* have mail daemon just tell player of mail */
+/* #define NO_MAILREADER */	/* have mail daemon just tell player of mail */
 
 #ifdef	MAIL
 # if defined(BSD) || defined(ULTRIX)

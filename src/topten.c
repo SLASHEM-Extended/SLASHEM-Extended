@@ -331,7 +331,11 @@ int how;
 #endif
 
 #ifdef LOGFILE		/* used for debugging (who dies of what, where) */
-	if (lock_file_area(LOGAREA, LOGFILE, SCOREPREFIX, 10)) {
+#ifdef FILE_AREAS
+	if (lock_file_area(LOGAREA, LOGFILE, 10)) {
+#else
+	if (lock_file(LOGFILE, SCOREPREFIX, 10)) {
+#endif
 	    if(!(lfile = fopen_datafile_area(LOGAREA, LOGFILE, "a", TRUE))) {
 		HUP raw_print("Cannot open log file!");
 	    } else {
@@ -353,7 +357,12 @@ int how;
 	    }
 	    goto showwin;
 	}
-	if (!lock_file_area(RECORD_AREA, RECORD, SCOREPREFIX, 60))
+
+#ifdef FILE_AREAS
+	if (!lock_file_area(RECORD_AREA, RECORD, 60))
+#else
+	if (!lock_file(RECORD, SCOREPREFIX, 60))
+#endif
 		goto destroywin;
 
 #ifdef UPDATE_RECORD_IN_PLACE

@@ -31,7 +31,7 @@ typedef struct dlb_procs {
 /* without extern.h via hack.h, these haven't been declared for us */
 #ifdef FILE_AREAS
 extern FILE *FDECL(fopen_datafile_area, (const char *,const char *,
-                                                            const char *));
+                                                      const char *,boolean));
 #else
 /*
  * If FILE_AREAS is not defined, then fopen_datafile_area

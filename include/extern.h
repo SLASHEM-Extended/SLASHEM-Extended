@@ -2022,18 +2022,7 @@ E int FDECL(flash_hits_mon, (struct monst *,struct obj *));
 # ifdef PORT_HELP
 E void NDECL(port_help);
 # endif
-#ifdef FILE_AREAS
-E char *FDECL(make_file_name, (const char *, const char *));
-E FILE *FDECL(fopen_datafile_area, (const char *,const char *,const char *));
-E FILE *FDECL(freopen_area, (const char *,const char *,const char *, FILE *));
-E int FDECL(chmod_area, (const char *, const char *, int));
-E int FDECL(open_area, (const char *, const char *, int, int));
-E int FDECL(creat_area, (const char *, const char *, int));
-E boolean FDECL(lock_file_area, (const char *, const char *,int));
-E void FDECL(unlock_file_area, (const char *, const char *));
-#endif
 #endif /* UNIX */
-
 
 /* ### unixtty.c ### */
 
@@ -2060,7 +2049,8 @@ E int FDECL(child, (int));
 # endif
 #ifdef FILE_AREAS
 E char *FDECL(make_file_name, (const char *, const char *));
-E FILE *FDECL(fopen_datafile_area, (const char *,const char *,const char *));
+E FILE *FDECL(fopen_datafile_area, (const char *,const char *,const char *,
+				boolean));
 E FILE *FDECL(freopen_area, (const char *,const char *,const char *, FILE *));
 E int FDECL(chmod_area, (const char *, const char *, int));
 E int FDECL(open_area, (const char *, const char *, int, int));

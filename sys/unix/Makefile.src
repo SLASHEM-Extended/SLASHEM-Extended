@@ -134,6 +134,13 @@ SYSOBJ = ioctl.o unixmain.o unixtty.o unixunix.o
 #LD = gcc
 #LFLAGS = -Xlinker -soname=_APP_
 
+# Only used for the Gnome interface.
+# When including the Gnome interface, you need to include gnome specific
+# directories.  The ones given below is the usual spot for linux systems.
+# The paths are for glibconfig.h and gnomesupport.h respectively.
+#
+GNOMEINC=-I/usr/lib/glib/include -I/usr/lib/gnome-libs/include -I../win/gnome
+
 # flags for debugging:
 # CFLAGS = -g -I../include
 
@@ -158,10 +165,12 @@ KDEINCDIR=/usr/include/kde
 # CFLAGS = -O -I../include
 # LFLAGS = -L/usr/X11/lib -L$(QTLIBDIR) -L$(KDELIBDIR)
 
-# Only used for Qt interface (other interfaces are standard C)
-CXXFLAGS = -g $(CFLAGS) -I. -I$(QTINCDIR)
+# The Qt and Be window systems are written in C++, while the rest of
+# NetHack is standard C.  If using Qt, uncomment the LD line here to get
+# the C++ libraries linked in.
+CXXFLAGS = $(CFLAGS) -I. -I$(QTINCDIR)
 # Qt is C++, so define the compiler and linker thus required:
-#CXX=g++
+CXX=g++
 #LD=g++
 
 # GTK windowing system
@@ -185,18 +194,40 @@ WINX11OBJ = Window.o dialogs.o winX.o winmap.o winmenu.o winmesg.o \
 	winmisc.o winstat.o wintext.o winval.o nhwin.a
 #
 # Files for a Qt port
-# (tile.c is included in the defn. for WINCSRC, below)
+#
 WINQTSRC = ../win/Qt/qt_win.cpp ../win/Qt/qt_clust.cpp
 WINQTOBJ = qt_win.o qt_clust.o nhwin.a
-
+#
 # files for a GTK port
-# (tile.c is included in the defn. for WINCSRC, below)
+#
 WINGTKSRC = ../win/gtk/gtk.c ../win/gtk/gtkgetlin.c ../win/gtk/gtkstatus.c \
 	../win/gtk/gtkmenu.c ../win/gtk/gtkyn.c ../win/gtk/gtkextcmd.c \
 	../win/gtk/gtkmap.c ../win/gtk/gtkmessage.c ../win/gtk/gtkmisc.c \
 	../win/gtk/xshmmap.c ../win/gtk/xshm.c
 WINGTKOBJ = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
 	gtkmap.o gtkmessage.o gtkmisc.o xshmmap.o xshm.o nhwin.a
+#
+# Files for a Gnome port
+#
+WINGNOMESRC = ../win/gnome/gnaskstr.c ../win/gnome/gnbind.c \
+      ../win/gnome/gnglyph.c ../win/gnome/gnmain.c ../win/gnome/gnmap.c \
+      ../win/gnome/gnmenu.c ../win/gnome/gnmesg.c ../win/gnome/gnopts.c \
+      ../win/gnome/gnplayer.c ../win/gnome/gnsignal.c \
+      ../win/gnome/gnstatus.c ../win/gnome/gntext.c ../win/gnome/gnyesno.c
+WINGNOMEOBJ = gnaskstr.o gnbind.o gnglyph.o gnmain.o gnmap.o gnmenu.o \
+      gnmesg.o gnopts.o gnplayer.o gnsignal.o gnstatus.o gntext.o \
+      gnyesno.o nhwin.a
+#
+# Files for a Gem port
+WINGEMSRC = ../win/gem/wingem.c ../win/gem/wingem1.c ../win/gem/load_img.c
+WINGEMOBJ = wingem.o wingem1.o load_img.o nhwin.a
+#
+# Files for a BeOS InterfaceKit port -- not ready for prime time
+WINBESRC =
+WINBEOBJ =
+#WINBESRC = ../win/BeOS/winbe.cpp ../win/BeOS/NHWindow.cpp \
+#     ../win/BeOS/NHMenuWindow.cpp ../win/BeOS/NHMapWindow.cpp
+#WINBEOBJ = winbe.o NHWindow.o NHMenuWindow.o NHMapWindow.o nhwin.a
 
 # Use these declarations if you only want to support the TTY windowing system
 WINSRC = $(WINTTYSRC)
@@ -244,6 +275,15 @@ WINKDELIB = -lkdecore -lkdeui -lXext
 #
 # libraries for GTK
 WINGTKLIB = `gtk-config --libs`
+#
+# libraries for Gnome
+WINGNOMELIB = -lgnomeui -lgnome -lart_lgpl -lgtk -lgdk -lpopt
+#
+# libraries for Gem port
+WINGEMLIB = -le_gem -lgem
+#
+# libraries for BeOS
+WINBELIB = -lbe
 
 # Use this declaration if you only want to support the TTY windowing system
 WINLIB = $(WINTTYLIB)
@@ -283,6 +323,7 @@ LIBS =
 
 # make NetHack
 GAME     = slashem
+# GAME     = slashem.prg
 
 # if you defined RANDOM in unixconf.h/tosconf.h since your system did not come
 # with a reasonable random number generator
@@ -331,14 +372,15 @@ SYSCSRC = ../sys/atari/tos.c ../sys/share/pcmain.c ../sys/share/pcsys.c \
 	../sys/unix/unixunix.c ../sys/be/bemain.c
 
 # all windowing-system-dependent .c (for dependencies and such)
-WINCSRC = $(WINTTYSRC) $(WINX11SRC) $(WINGTKSRC) tile.c
+WINCSRC = $(WINTTYSRC) $(WINX11SRC) $(WINGTKSRC) $(WINGNOMESRC) $(WINGEMSRC) \
+	tile.c
 # all windowing-system-dependent .cpp (for dependencies and such)
-WINCXXSRC = $(WINQTSRC)
+WINCXXSRC = $(WINQTSRC) $(WINBESRC)
 
 # .c files for this version (for date.h)
 VERSOURCES = $(HACKCSRC) $(SYSSRC) $(WINSRC) monstr.c vis_tab.c
 
-# .c files for all UNIX versions (for lint and tags)
+# .c files for all versions using this Makefile (for lint and tags)
 CSOURCES = $(HACKCSRC) $(SYSSRC) $(WINCSRC) monstr.c vis_tab.c
 
 
@@ -457,10 +499,10 @@ objects.o:
 
 # Qt windowport meta-object-compiler output
 qt_kde0.moc: ../include/qt_kde0.h
-	$(QTBINDIR)/moc $< >$@
+	$(QTBINDIR)/moc ../include/qt_kde0.h > qt_kde0.moc
 
 qt_win.moc: ../include/qt_win.h
-	$(QTBINDIR)/moc $< >$@
+	$(QTBINDIR)/moc ../include/qt_win.h > qt_win.moc
 
 # NetHack windows library for modules needed by more than one windows
 # interface.
@@ -523,8 +565,9 @@ clean:
 spotless: clean
 	-rm -f a.out core $(GAME) Sys*
 	-rm -f ../include/date.h ../include/onames.h ../include/pm.h
-	-rm -f monstr.c ../include/vis_tab.h vis_tab.c tile.c
-	-rm -f *.moc ../include/filename.h
+	-rm -f monstr.c ../include/vis_tab.h vis_tab.c tile.c *.moc
+	-rm -f ../win/gnome/gn_rip.h
+	-rm -f ../include/filename.h
 
 depend: ../sys/unix/depend.awk $(SYSCSRC) $(WINCSRC) $(WINCXXSRC) $(HACKCSRC)
 	$(AWK) -f ../sys/unix/depend.awk ../include/*.h $(SYSCSRC) $(WINCSRC) $(WINCXXSRC) $(HACKCSRC) >makedep
@@ -648,7 +691,6 @@ xshmmap.o: ../win/gtk/xshmmap.c ../include/winGTK.h $(HACK_H) ../include/xshm.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshmmap.c
 xshm.o: ../win/gtk/xshm.c ../include/xshm.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshm.c
-tile.o: tile.c $(HACK_H)
 gnaskstr.o: ../win/gnome/gnaskstr.c ../win/gnome/gnaskstr.h \
 		../win/gnome/gnmain.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c ../win/gnome/gnaskstr.c

@@ -108,13 +108,16 @@ function format_dep(target, source,		n, i, list)
   printf("\n")				#terminate
   #write build command if first source entry has non-include path prefix
   source = list[2]
-  if (source ~ /\// && substr(source, 1, 11) != "../include/")
+  if (source ~ /\// && substr(source, 1, 11) != "../include/") {
     if (source ~ /\.cpp$/ )
       print "\t$(CXX) $(CXXFLAGS) -c " source
     else if (source ~ /^..\/win\/gtk\// )
       print "\t$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c " source
+    else if (source ~ /\/gnome\//)    # "../win/gnome/foo.c"
+      print "\t$(CC) $(CFLAGS) $(GNOMEINC) -c " source
     else
       print "\t$(CC) $(CFLAGS) -c " source
+  }
 }
 
 #

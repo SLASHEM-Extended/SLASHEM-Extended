@@ -226,7 +226,9 @@ char *argv[];
 		boolean remember_wiz_mode = wizard;
 #endif
 #ifndef FILE_AREAS
-		(void) chmod(SAVEF,0);	/* disallow parallel restores */
+		const char *fq_save = fqname(SAVEF, SAVEPREFIX, 0);
+
+		(void) chmod(fq_save,0);	/* disallow parallel restores */
 #else
 		(void) chmod_area(FILE_AREA_SAVE, SAVEF, 0);
 #endif
@@ -252,11 +254,12 @@ char *argv[];
 			    (void) delete_savefile();
 			else {
 #ifndef FILE_AREAS
-			    (void) chmod(SAVEF,FCMASK); /* back to readable */
+			    (void) chmod(fq_save,FCMASK); /* back to readable */
+			    compress_area(NULL, fq_save);
 #else
 			    (void) chmod_area(FILE_AREA_SAVE, SAVEF, FCMASK);
-#endif
 			    compress_area(FILE_AREA_SAVE, SAVEF);
+#endif
 			}
 		}
 		flags.move = 0;

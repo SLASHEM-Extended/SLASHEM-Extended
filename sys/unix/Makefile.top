@@ -16,6 +16,7 @@
 # make NetHack
 PREFIX   = /usr
 GAME     = slashem
+# GAME     = slashem.prg
 GAMEUID  = games
 GAMEGRP  = bin
 
@@ -38,8 +39,9 @@ DIRPERM  = 0755
 
 # Defs. for non file areas support.
 GAMEDIR  = $(PREFIX)/local/slashemdir
-FILE_AREA_VAR = $(GAMEDIR)
-FILE_AREA_SAVE = $(GAMEDIR)/save
+VARDIR = $(GAMEDIR)
+FILE_AREA_VAR = $(VARDIR)
+FILE_AREA_SAVE = $(VARDIR)/save
 FILE_AREA_SHARE = $(GAMEDIR)
 FILE_AREA_UNSHARE = $(GAMEDIR)
 FILE_AREA_DOC = $(GAMEDIR)
@@ -74,11 +76,15 @@ SHELLDIR = $(PREFIX)/local/bin
 # for inclusion in DLB libraries (ND) and which are (D). Port specific files
 # per discussions in Install.X11, Install.Qt and Install.GTK
 CNF_SHARE_QTND = x11tiles rip.xpm
-
 CNF_SHARE_X11ND = x11bigtiles x11tiles pet_mark.xbm
 # CNF_SHARE_X11ND = x11bigtiles x11tiles pet_mark.xbm rip.xpm
-
 CNF_SHARE_GTKND = x11bigtiles x11tiles rip.xpm credit.xpm gtkrc
+# for Atari/Gem
+CNF_SHARE_GEMND = nh16.img title.img GEM_RSC.RSC
+# for BeOS
+CNF_SHARE_BEND = beostiles
+# for Gnome
+CNF_SHARE_GNOMEND = x11tiles pet_mark.xbm rip.xpm mapbg.xpm
 
 # CNF_SHARE_DATND = $(CNF_SHARE_X11ND)
 # CNF_SHARE_DATND = $(CNF_SHARE_QTND)
@@ -175,6 +181,10 @@ x11bigtiles:
 	( cd util ; $(MAKE) tile2x11 magtile txtmerge )
 	( cd dat ; $(MAKE) x11bigtiles )
 
+beostiles:
+	( cd util ; $(MAKE) tile2beos )
+	( cd dat ; $(MAKE) beostiles )
+
 util/txt2ppm:
 	( cd util ; $(MAKE) txt2ppm )
 
@@ -189,6 +199,19 @@ pet_mark.xbm:
 
 rip.xpm:
 	( cd dat ; $(MAKE) rip.xpm )
+
+mapbg.xpm:
+	(cd dat ; $(MAKE) mapbg.xpm )
+
+nh16.img:
+	( cd util ; $(MAKE) tile2img.ttp )
+	( cd dat ; $(MAKE) nh16.img )
+
+GEM_RSC.RSC:
+	( cd dat ; $(MAKE) GEM_RSC.RSC )
+
+title.img:
+	( cd dat ; $(MAKE) title.img )
 
 gtkrc:	win/gtk/GTKRC
 	cp win/gtk/GTKRC dat/gtkrc
@@ -274,13 +297,15 @@ update: $(GAME) $(CNF_SHARE_DAT) dungeon spec_levs Guidebook.txt
 
 install: $(GAME) $(CNF_SHARE_DAT) dungeon spec_levs Guidebook.txt
 # set up the directories
-	-mkdir $(SHELLDIR)
+# not all mkdirs have -p; those that don't will create a -p directory
+	-mkdir -p $(SHELLDIR)
 	-rm -rf $(FILE_AREA_VAR) $(FILE_AREA_BONES) $(FILE_AREA_SAVE)
 	-rm -rf $(FILE_AREA_LEVL) $(FILE_AREA_SHARE) $(FILE_AREA_UNSHARE)
 	-rm -rf $(FILE_AREA_DOC)
-	-mkdir $(FILE_AREA_VAR) $(FILE_AREA_BONES) $(FILE_AREA_SAVE)
-	-mkdir $(FILE_AREA_LEVL) $(FILE_AREA_SHARE) $(FILE_AREA_UNSHARE)
-	-mkdir $(FILE_AREA_DOC)
+	-mkdir -p $(FILE_AREA_VAR) $(FILE_AREA_BONES) $(FILE_AREA_SAVE)
+	-mkdir -p $(FILE_AREA_LEVL) $(FILE_AREA_SHARE) $(FILE_AREA_UNSHARE)
+	-mkdir -p $(FILE_AREA_DOC)
+	-rmdir ./-p
 	-$(CHOWN) $(GAMEUID) $(FILE_AREA_VAR) $(FILE_AREA_BONES) $(FILE_AREA_SAVE)
 	$(CHGRP) $(GAMEGRP) $(FILE_AREA_VAR) $(FILE_AREA_BONES) $(FILE_AREA_SAVE)
 	chmod $(DIRPERM) $(FILE_AREA_VAR) $(FILE_AREA_BONES) $(FILE_AREA_SAVE)

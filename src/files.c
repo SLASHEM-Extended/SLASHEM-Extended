@@ -30,6 +30,12 @@ extern int errno;
 #include <sys\stat.h>
 */
 
+/* ALI: For compatibility */
+#ifndef FILE_AREAS
+#define compress(file)		compress_area(NULL, file)
+#define uncompress(file)	uncompress_area(NULL, file)
+#endif
+
 #if defined(MSDOS) || defined(OS2) || defined(TOS) || defined(WIN32)
 # ifndef GNUDOS
 #include <sys\stat.h>
@@ -242,24 +248,28 @@ create_levelfile(lev)
 int lev;
 {
 	int fd;
+#ifndef FILE_AREAS
 	const char *fq_lock;
+#endif
 
 	set_levelfile_name(lock, lev);
+#ifndef FILE_AREAS
 	fq_lock = fqname(lock, LEVELPREFIX, 0);
+#endif
 
 #if defined(MICRO)
 	/* Use O_TRUNC to force the file to be shortened if it already
 	 * exists and is currently longer.
 	 */
 # ifdef FILE_AREAS
-	fd = open_area(FILE_AREA_LEVL, fq_lock,
+	fd = open_area(FILE_AREA_LEVL, lock,
 	  O_WRONLY |O_CREAT | O_TRUNC | O_BINARY, FCMASK);
 # else
 	fd = open(fq_lock, O_WRONLY |O_CREAT | O_TRUNC | O_BINARY, FCMASK);
 # endif
 #else	/* MICRO */
 # ifdef FILE_AREAS
-	fd = creat_area(FILE_AREA_LEVL, fq_lock, FCMASK);
+	fd = creat_area(FILE_AREA_LEVL, lock, FCMASK);
 # else
 #  ifdef MAC
 	fd = maccreat(fq_lock, LEVL_TYPE);
@@ -281,17 +291,21 @@ open_levelfile(lev)
 int lev;
 {
 	int fd;
+#ifndef FILE_AREAS
 	const char *fq_lock;
+#endif
 
 	set_levelfile_name(lock, lev);
+#ifndef FILE_AREAS
 	fq_lock = fqname(lock, LEVELPREFIX, 0);
+#endif
 #ifdef MFLOPPY
 	/* If not currently accessible, swap it in. */
 	if (level_info[lev].where != ACTIVE)
 		swapin_file(lev);
 #endif
 #ifdef FILE_AREAS
-	fd = open_area(FILE_AREA_LEVL, fq_lock, O_RDONLY | O_BINARY, 0);
+	fd = open_area(FILE_AREA_LEVL, lock, O_RDONLY | O_BINARY, 0);
 #else
 # ifdef MAC
 	fd = macopen(fq_lock, O_RDONLY | O_BINARY, LEVL_TYPE);
@@ -314,7 +328,7 @@ int lev;
 	if (lev == 0 || (level_info[lev].flags & LFILE_EXISTS)) {
 		set_levelfile_name(lock, lev);
 #ifdef FILE_AREAS
-		(void) remove_area(FILE_AREA_LEVL, fqname(lock, LEVELPREFIX, 0));
+		(void) remove_area(FILE_AREA_LEVL, lock, 0);
 #else
 		(void) unlink(fqname(lock, LEVELPREFIX, 0));
 #endif
@@ -414,7 +428,9 @@ char **bonesid;
 
 	*bonesid = set_bonesfile_name(bones, lev);
 	file = set_bonestemp_name();
+#ifndef FILE_AREAS
 	file = fqname(file, BONESPREFIX, 0);
+#endif
 
 #ifdef MICRO
 	/* Use O_TRUNC to force the file to be shortened if it already
@@ -464,10 +480,10 @@ cancel_bonesfile()
 	const char *tempname;
 
 	tempname = set_bonestemp_name();
-	tempname = fqname(tempname, BONESPREFIX, 0);
 # ifdef FILE_AREAS
 	(void) remove_area(FILE_AREA_BONES, tempname);
 # else
+	tempname = fqname(tempname, BONESPREFIX, 0);
 	(void) unlink(tempname);
 # endif
 }
@@ -482,12 +498,16 @@ d_level *lev;
 	int ret;
 
 	(void) set_bonesfile_name(bones, lev);
+#ifndef FILE_AREAS
 	fq_bones = fqname(bones, BONESPREFIX, 0);
+#endif
 	tempname = set_bonestemp_name();
+#ifndef FILE_AREAS
 	tempname = fqname(tempname, BONESPREFIX, 1);
+#endif
 
 #ifdef FILE_AREAS
-	ret = rename_area(FILE_AREA_BONES, tempname, fq_bones);
+	ret = rename_area(FILE_AREA_BONES, tempname, bones);
 #else
 # if (defined(SYSV) && !defined(SVR4)) || defined(GENIX)
 	/* old SYSVs don't have rename.  Some SVR3's may, but since they
@@ -502,7 +522,11 @@ d_level *lev;
 #endif	/* FILE_AREAS */
 #ifdef WIZARD
 	if (wizard && ret != 0)
+#ifdef FILE_AREAS
+		pline("couldn't rename %s to %s", tempname, bones);
+#else
 		pline("couldn't rename %s to %s", tempname, fq_bones);
+#endif
 #endif
 }
 
@@ -516,11 +540,12 @@ char **bonesid;
 	int fd;
 
 	*bonesid = set_bonesfile_name(bones, lev);
-	fq_bones = fqname(bones, BONESPREFIX, 0);
-	uncompress_area(FILE_AREA_BONES, fq_bones);  /* no effect if nonexistent */
 #ifdef FILE_AREAS
-	fd = open_area(FILE_AREA_BONES, fq_bones, O_RDONLY | O_BINARY, 0);
+	uncompress_area(FILE_AREA_BONES, bones);  /* no effect if nonexistent */
+	fd = open_area(FILE_AREA_BONES, bones, O_RDONLY | O_BINARY, 0);
 #else
+	fq_bones = fqname(bones, BONESPREFIX, 0);
+	uncompress(fq_bones);  /* no effect if nonexistent */
 # ifdef MAC
 	fd = macopen(fq_bones, O_RDONLY | O_BINARY, BONE_TYPE);
 # else
@@ -537,7 +562,7 @@ d_level *lev;
 {
 	(void) set_bonesfile_name(bones, lev);
 #ifdef FILE_AREAS
-	return !(remove_area(FILE_AREA_BONES, fqname(bones, BONESPREFIX, 0)) < 0);
+	return !(remove_area(FILE_AREA_BONES, bones) < 0);
 #else
 	return !(unlink(fqname(bones, BONESPREFIX, 0)) < 0);
 #endif
@@ -549,7 +574,11 @@ d_level *lev;
 void
 compress_bonesfile()
 {
-	compress_area(FILE_AREA_BONES, fqname(bones, BONESPREFIX, 0));
+#ifdef FILE_AREAS
+	compress_area(FILE_AREA_BONES, bones);
+#else
+	compress(fqname(bones, BONESPREFIX, 0));
+#endif
 }
 
 /* ----------  END BONES FILE HANDLING ----------- */
@@ -640,13 +669,14 @@ set_error_savefile()
 int
 create_savefile()
 {
+#ifndef FILE_AREAS
 	const char *fq_save;
+#endif
 	int fd;
 
 #ifdef FILE_AREAS
-	fq_save = fqname(SAVEF, SAVEPREFIX, 0);
 # ifdef MICRO
-	fd = open_area(FILE_AREA_SAVE, fq_save,
+	fd = open_area(FILE_AREA_SAVE, SAVEF,
 	  O_WRONLY | O_BINARY | O_CREAT | O_TRUNC, FCMASK);
 # else
 	fd = creat_area(FILE_AREA_SAVE, SAVEF, FCMASK);
@@ -678,7 +708,7 @@ create_savefile()
 #  undef getuid
 # endif
 # ifdef FILE_AREAS
-	(void) chown_area(FILE_AREA_SAVE, fq_save, getuid(), getgid());
+	(void) chown_area(FILE_AREA_SAVE, SAVEF, getuid(), getgid());
 # else
 	(void) chown(fq_save, getuid(), getgid());
 # endif
@@ -693,12 +723,11 @@ int
 open_savefile()
 {
 	int fd;
-	const char *fq_save;
 
 #ifdef FILE_AREAS
-	fq_save = fqname(SAVEF, SAVEPREFIX, 0);
-	fd = open_area(FILE_AREA_SAVE, fq_save, O_RDONLY | O_BINARY, 0);
+	fd = open_area(FILE_AREA_SAVE, SAVEF, O_RDONLY | O_BINARY, 0);
 #else
+	const char *fq_save;
 # ifdef AMIGA
 	fd = ami_wbench_getsave(O_RDONLY);
 # else
@@ -730,7 +759,7 @@ delete_savefile()
 #endif
 
 #ifdef FILE_AREAS
-	(void) remove_area(FILE_AREA_SAVE, fqname(SAVEF, SAVEPREFIX, 0));
+	(void) remove_area(FILE_AREA_SAVE, SAVEF);
 #else
 # ifdef AMIGA
 	ami_wbench_unlink(SAVEF);
@@ -745,7 +774,9 @@ delete_savefile()
 int
 restore_saved_game()
 {
+#ifndef FILE_AREAS
 	const char *fq_save;
+#endif
 	int fd;
 
 	set_savefile_name();
@@ -758,12 +789,20 @@ restore_saved_game()
 # endif
 	  ) return -1;
 #endif /* MFLOPPY */
+#ifndef FILE_AREAS
 	fq_save = fqname(SAVEF, SAVEPREFIX, 0);
 
-	uncompress_area(FILE_AREA_SAVE, fq_save);
+	uncompress(fq_save);
+#else
+	uncompress_area(FILE_AREA_SAVE, SAVEF);
+#endif
 	if ((fd = open_savefile()) < 0) return fd;
 
+#ifndef FILE_AREAS
 	if (!uptodate(fd, fq_save)) {
+#else
+	if (!uptodate(fd, SAVEF)) {
+#endif
 	    (void) close(fd),  fd = -1;
 	    (void) delete_savefile();
 	}
@@ -821,7 +860,8 @@ boolean uncomp;
 # endif
 	/* when compressing, we know the file exists */
 	if (uncomp) {
-	    if ((cf = fopen(cfn, RDBMODE)) == (FILE *)0)
+	    if ((cf = fopen_datafile_area(filearea, cfn, RDBMODE, FALSE)) ==
+	      (FILE *)0)
 		    return;
 	    (void) fclose(cf);
 	}
@@ -1699,13 +1739,13 @@ const char *dir;
 #if defined(applec) || defined(__MWERKS__)
 # pragma unused(dir)
 #endif
-	const char *fq_record;
 	int fd;
 #if defined(UNIX) || defined(VMS)
-	fq_record = fqname(RECORD, SCOREPREFIX, 0);
 # ifdef FILE_AREAS
-	fd = open_area(RECORD_AREA, fq_record, O_RDWR, 0);
+	fd = open_area(RECORD_AREA, RECORD, O_RDWR, 0);
 # else
+	const char *fq_record;
+	fq_record = fqname(RECORD, SCOREPREFIX, 0);
 	fd = open(fq_record, O_RDWR, 0);
 # endif
 
@@ -1720,7 +1760,7 @@ const char *dir;
 # endif
 	    (void) close(fd);   /* RECORD is accessible */
 #  ifdef FILE_AREAS
-	} else if ((fd = open_area(RECORD_AREA, fq_record, O_CREAT|O_RDWR, FCMASK)) >= 0) {
+	} else if ((fd = open_area(RECORD_AREA, RECORD, O_CREAT|O_RDWR, FCMASK)) >= 0) {
 #  else
 	} else if ((fd = open(fq_record, O_CREAT|O_RDWR, FCMASK)) >= 0) {
 #  endif
@@ -1728,13 +1768,17 @@ const char *dir;
 # if defined(VMS) && !defined(SECURE)
 	    /* Re-protect RECORD with world:read+write+execute+delete access. */
 #  ifdef FILE_AREAS
-	    (void) chmod_area(RECORD_AREA, fq_record, FCMASK | 007);
+	    (void) chmod_area(RECORD_AREA, RECORD, FCMASK | 007);
 #  else
 	    (void) chmod(fq_record, FCMASK | 007);
 #  endif
 # endif /* VMS && !SECURE */
 	} else {
+# ifdef FILE_AREAS
+	    raw_printf("Warning: cannot write scoreboard file %s", RECORD);
+# else
 	    raw_printf("Warning: cannot write scoreboard file %s", fq_record);
+# endif
 	    wait_synch();
 	}
 #endif  /* !UNIX && !VMS */
@@ -1750,20 +1794,24 @@ const char *dir;
 		append_slash(tmp);
 		Strcat(tmp, RECORD);
 	}
+#  ifndef FILE_AREAS
 	fq_record = tmp;
+#  endif
 # else
 	Strcpy(tmp, RECORD);
+#  ifndef FILE_AREAS
 	fq_record = fqname(RECORD, SCOREPREFIX, 0);
+#  endif
 # endif
 
 # ifdef FILE_AREAS
-	if ((fd = open_area(RECORD_AREA, fq_record, O_RDWR)) < 0) {
+	if ((fd = open_area(RECORD_AREA, tmp, O_RDWR)) < 0) {
 # else
 	if ((fd = open(fq_record, O_RDWR)) < 0) {
 # endif
 	    /* try to create empty record */
 # if defined(FILE_AREAS)
-	    if ((fd = open_area(RECORD_AREA, fq_record, O_CREAT|O_RDWR,
+	    if ((fd = open_area(RECORD_AREA, tmp, O_CREAT|O_RDWR,
 	      S_IREAD|S_IWRITE)) < 0) {
 # elif defined(AZTEC_C) || defined(_DCC)
 	    /* Aztec doesn't use the third argument */

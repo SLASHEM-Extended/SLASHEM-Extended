@@ -862,10 +862,7 @@ extern char *tparm();
 #  endif
 #define COLOR_BLACK COLOR_BLUE
 
-#ifndef NCURSES_VERSION
-const
-#endif
-int ti_map[8] = {
+const int ti_map[8] = {
 	COLOR_BLACK, COLOR_RED, COLOR_GREEN, COLOR_YELLOW,
 	COLOR_BLUE, COLOR_MAGENTA, COLOR_CYAN, COLOR_WHITE };
 
@@ -873,55 +870,28 @@ static void
 init_hilite()
 {
 	register int c;
-	char *setf, *setaf, *scratch;
-#ifndef NCURSES_VERSION
-	extern char *tparm();
-#endif
+	char *setf, *scratch;
 
 	for (c = 0; c < SIZE(hilites); c++)
-		hilites[c] = HI;
+		hilites[c] = nh_HI;
 	hilites[CLR_GRAY] = hilites[NO_COLOR] = (char *)0;
 
-	setf = tgetstr("Sf", (char **)0);
-	setaf = tgetstr("AF", (char **)0);
-	if (tgetnum("Co") < 8 || !setf && !setaf)
+	if (tgetnum("Co") < 8
+	    || ((setf = tgetstr("AF", (char **)0)) == (char *)0
+		 && (setf = tgetstr("Sf", (char **)0)) == (char *)0))
 		return;
-	/*
-	 * Prefer ANSI version if defined in case other curses packages
-	 * do similar colour re-mappings to ncurses.
-	 */
-	if (setaf)
-		setf=setaf;
-#ifdef NCURSES_VERSION
-	else
-	{
-		/*
-		 * ALI
-		 *
-		 * ncurses seems to switch from RGB to BGR if
-		 * you use setf rather than setaf. This is despite
-		 * the values for COLOR_FOO in curses.h which
-		 * always remain RGB. Tested against ncurses v4.2
-		 */
-#define SWAP_COLOR(c1,c2) (c=ti_map[c1],ti_map[c1]=ti_map[c2],ti_map[c2]=c)
-		SWAP_COLOR(CLR_RED,CLR_BLUE);
-		SWAP_COLOR(CLR_CYAN,CLR_YELLOW);
-		ti_map[CLR_BLACK]=ti_map[CLR_BLUE];
-#undef SWAP_COLOR
-	}
-#endif
 
 	for (c = 0; c < CLR_MAX / 2; c++) {
-		scratch = tparm(setf, ti_map[c]);
-		if (c != CLR_GRAY) {
-			hilites[c] = (char *) alloc(strlen(scratch) + 1);
-			Strcpy(hilites[c], scratch);
-		}
-		if (c != CLR_BLACK) {
-			hilites[c|BRIGHT] = (char*) alloc(strlen(scratch)+strlen(MD)+1);
-			Strcpy(hilites[c|BRIGHT], MD);
-			Strcat(hilites[c|BRIGHT], scratch);
-		}
+	    scratch = tparm(setf, ti_map[c]);
+	    if (c != CLR_GRAY) {
+		hilites[c] = (char *) alloc(strlen(scratch) + 1);
+		Strcpy(hilites[c], scratch);
+	    }
+	    if (c != CLR_BLACK) {
+		hilites[c|BRIGHT] = (char*) alloc(strlen(scratch)+strlen(MD)+1);
+		Strcpy(hilites[c|BRIGHT], MD);
+		Strcat(hilites[c|BRIGHT], scratch);
+	    }
 
 	}
 }
