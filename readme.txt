@@ -40,9 +40,7 @@
 
 The development of version 0.0.7 of Slash'EM started with version 0.0.6E5
 (yes, we realise our version numbers are a little odd - it made sense at
-the time!). There are just a few more bugs that need fixing which affect
-gameplay before we can release the first beta version which we hope to do
-in Spring, 2004.
+the time!). We are hoping to release the first beta version this Spring.
 
 If you find any bugs then please submit a report via the offical bug page:
 
@@ -69,7 +67,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E5 [?] [Released by ?]
+ver 0.0.7E5 [January 20/2004] [Released by Ali]
 -fixed bug 854683: gtkhack produces many warnings on start-up
 -fixed bug 846444: [0.0.7e3] Negative disarm skill
 -fixed bug 583464: Uncharged use of spellbooks
@@ -231,12 +229,14 @@ overhead perspective.
 4.1 The dev-team
 ----------------
 
-o Project administrators:  Warren Cheung and J. Ali Harlow
-o Developers: Pekka Rousu and Andrew Apted
+o Project administrators: Warren Cheung and J. Ali Harlow
+o Developer: Pekka Rousu
 o Mac port: Paul Hurtley
 
 4.2 Acknowledgements
 --------------------
+
+Thanks to Andrew Apted, who contributed the glHack interface.
 
 Thanks to Kevin Hugo (hugo@cae.wisc.edu), the previous Macintosh
 maintainer and the author of many changes, who has had to move on to 
