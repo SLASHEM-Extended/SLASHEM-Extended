@@ -1,5 +1,5 @@
 /*
-  $Id: gtkextcmd.c,v 1.5 2002-10-05 19:22:54 j_ali Exp $
+  $Id: gtkextcmd.c,v 1.6 2003-04-26 10:56:45 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -178,20 +178,17 @@ GTK_get_ext_cmd()
     nh_position_popup_dialog(GTK_WIDGET(window));
     nh_gtk_focus_set_master(GTK_WINDOW(window),
       GTK_SIGNAL_FUNC(extcmd_key_press), 0);
-    hid = gtk_signal_connect(
-	GTK_OBJECT(window), "destroy",
-	GTK_SIGNAL_FUNC(extcmd_destroy), &hid);
+    hid = gtk_signal_connect(GTK_OBJECT(window), "destroy",
+      GTK_SIGNAL_FUNC(extcmd_destroy), &hid);
 
     frame = nh_gtk_new_and_add(gtk_frame_new(NULL), window, "");
 
     vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), frame, "");
 
-    hbox = nh_gtk_new_and_pack(
-	gtk_hbox_new(FALSE, 0), vbox, "",
-	FALSE, FALSE, NH_PAD);
-    table = nh_gtk_new_and_pack(
-	gtk_table_new((n_extcmds+2)/3, 3, TRUE), hbox, "",
-	FALSE, FALSE, NH_PAD);
+    hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
+      FALSE, FALSE, NH_PAD);
+    table = nh_gtk_new_and_pack(gtk_table_new((n_extcmds+2)/3, 3, TRUE), hbox,
+      "", FALSE, FALSE, NH_PAD);
     for(i = 0; i < n_extcmds; i++) {
 	if (!strcmp(extcmds[i], "?")) {
 	    /*
@@ -199,17 +196,14 @@ GTK_get_ext_cmd()
 	     */
 	    label = "Cancel";
 	    data = -1;
-	}
-	else {
+	} else {
 	    label = extcmds[i];
 	    data = i;
 	}
-	d = nh_gtk_new_and_attach(
-	    gtk_button_new_with_label(label), table, "",
-	    i%3, i%3+1, i/3, i/3+1);
-	gtk_signal_connect(
-	    GTK_OBJECT(d), "clicked",
-	    GTK_SIGNAL_FUNC(extcmd_clicked), (gpointer)data);
+	d = nh_gtk_new_and_attach(gtk_button_new_with_label(label), table, "",
+	  i%3, i%3+1, i/3, i/3+1);
+	gtk_signal_connect(GTK_OBJECT(d), "clicked",
+	  GTK_SIGNAL_FUNC(extcmd_clicked), (gpointer)data);
     }
 
     gtk_grab_add(window);
@@ -217,7 +211,7 @@ GTK_get_ext_cmd()
 
     gtk_main();
 
-    if(hid > 0){
+    if (hid > 0) {
 	gtk_widget_unmap(window);
 	gtk_signal_disconnect(GTK_OBJECT(window), hid);
 

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkint.c,v 1.10 2003-03-12 00:28:11 j_ali Exp $
+  $Id: gtkint.c,v 1.11 2003-04-26 10:56:45 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -30,7 +30,6 @@
 static void
 hook()
 {
-    ;
 }
 
 #ifdef GTK_PROXY
@@ -280,7 +279,7 @@ GTK_int_player_selection(void)
      * player selection.
      */
     (void)GTK_ext_player_selection(&flags.initrole, &flags.initrace,
-	    &flags.initgend, &flags.initalign);
+      &flags.initgend, &flags.initalign);
 }
 
 static void
@@ -350,8 +349,7 @@ menu_item **menu_list;
     n = retval <= 0 ? 0 : retval;
     *menu_list = (menu_item *) alloc(n * sizeof(menu_item));
     for(i = 0; i < n; i++) {
-	mapid_unmap_identifier(window, selected[i].item,
-	  &(*menu_list)[i].item);
+	mapid_unmap_identifier(window, selected[i].item, &(*menu_list)[i].item);
 	(*menu_list)[i].count = selected[i].count;
     }
     if (n)

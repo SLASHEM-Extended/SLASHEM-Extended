@@ -1,5 +1,5 @@
 /*
-  $Id: gtkext.c,v 1.7 2003-01-01 12:13:32 j_ali Exp $
+  $Id: gtkext.c,v 1.8 2003-04-26 10:56:45 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -8,8 +8,9 @@
 */
 
 /*
- * This module contains everything that is only needed for the external interface
- * (ie., when linking the GTK interface seperately from the game executable).
+ * This module contains everything that is only needed for the external
+ * interface (ie., when linking the GTK interface seperately from the game
+ * executable).
  */
 
 #include "winGTK.h"
@@ -72,7 +73,6 @@ struct window_ext_procs GTK_ext_procs = {
 static void
 v_hook()
 {
-    ;
 }
 
 static int

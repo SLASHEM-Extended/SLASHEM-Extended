@@ -1,5 +1,5 @@
 /*
-  $Id: gtkstatus.c,v 1.7 2003-01-21 17:09:14 j_ali Exp $
+  $Id: gtkstatus.c,v 1.8 2003-04-26 10:56:45 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -52,13 +52,10 @@ bar_expose_event(GtkWidget *widget, GdkEventExpose *event)
 	    break;
     if (i == STAT_BARS)
 	return FALSE;
-    gdk_draw_pixmap(
-	widget->window,
-	widget->style->fg_gc[GTK_WIDGET_STATE(widget)],
-	bar[i].pixmap,
-	event->area.x, event->area.y,
-	event->area.x, event->area.y,
-	event->area.width, event->area.height);
+    gdk_draw_pixmap(widget->window,
+      widget->style->fg_gc[GTK_WIDGET_STATE(widget)], bar[i].pixmap,
+      event->area.x, event->area.y, event->area.x, event->area.y,
+      event->area.width, event->area.height);
 
     return TRUE;
 }
@@ -149,12 +146,12 @@ char **values;
 	stat_tab[i].vi = stat_tab[i].dvi = -1;
 	for(j = 0; j < nv; j++) {
 	    if (stat_tab[i].divisor &&
-		    !strcmp(stat_tab[i].divisor, values[j])) {
+	      !strcmp(stat_tab[i].divisor, values[j])) {
 		stat_tab[i].dvi = j;
 		if (!stat_tab[i].quan || stat_tab[i].vi >= 0)
 		    break;
 	    } else if (stat_tab[i].quan &&
-		    !strcmp(stat_tab[i].quan, values[j])) {
+	      !strcmp(stat_tab[i].quan, values[j])) {
 		stat_tab[i].vi = j;
 		if (!strcmp(stat_tab[i].quan, "hp"))
 		    stat_tab_hp = i;
@@ -166,7 +163,7 @@ char **values;
 			stat_tab[i].oldvalue = (gchar *)0;
 		    }
 		    gtk_clist_set_text(GTK_CLIST(clist[k]), rowno[k]++,
-			    0, stat_tab[i].label);
+		      0, stat_tab[i].label);
 		}
 		if (!stat_tab[i].divisor || stat_tab[i].dvi >= 0)
 		    break;
@@ -183,7 +180,7 @@ char **values;
 	    gtk_clist_set_text(GTK_CLIST(clist[i]), j, 1, "");
 	}
 	gtk_clist_set_column_min_width(GTK_CLIST(clist[i]), 0, 
-		gtk_clist_optimal_column_width(GTK_CLIST(clist[i]), 0));
+	  gtk_clist_optimal_column_width(GTK_CLIST(clist[i]), 0));
     	gtk_clist_thaw(GTK_CLIST(clist[i]));
     }
 }
@@ -220,7 +217,7 @@ const char **values;
 	if (j >= 0 && j < 2 && *stat_tab[i].label)
 	    str = g_strdup_printf("%s %s", stat_tab[i].label, s);
 	else if (*s && (stat_tab[i].where == STAT_HUNGER ||
-	    stat_tab[i].where == STAT_ENCUMBERANCE))
+	  stat_tab[i].where == STAT_ENCUMBERANCE))
 	    str = g_strdup_printf(" %s ", s);
 	else {
 	    str = s;
@@ -233,7 +230,7 @@ const char **values;
 		case STAT_COLUMN(2):
 		    j = stat_tab[i].where - STAT_COLUMN(1);
 		    gtk_clist_set_text(GTK_CLIST(clist[j]), stat_tab[i].row,
-			    1, str);
+		      1, str);
 		    break;
 		case STAT_BAR(1):
 		case STAT_BAR(2):
@@ -253,8 +250,8 @@ const char **values;
 			0, 0, val, NH_BAR_HEIGHT);
 		    if (val < NH_BAR_WIDTH)
 			gdk_draw_rectangle(bar[j].pixmap,
-			    bar[j].area->style->black_gc,
-			    TRUE, val, 0, NH_BAR_WIDTH - val, NH_BAR_HEIGHT);
+			  bar[j].area->style->black_gc,
+			  TRUE, val, 0, NH_BAR_WIDTH - val, NH_BAR_HEIGHT);
 		    gtk_widget_draw(bar[j].area, &update_rect);
 		    gtk_label_set_text(GTK_LABEL(bar[j].lbl), str);
 		    break;
@@ -273,20 +270,20 @@ const char **values;
 		case STAT_FLAGS:
 		    sscanf(value, "%lX", &fl);
 		    gtk_label_set_text(GTK_LABEL(levi),
-			(fl & RAW_STAT_LEVITATION) ? " Levitation " : "");
+		      (fl & RAW_STAT_LEVITATION) ? " Levitation " : "");
 		    gtk_label_set_text(GTK_LABEL(blin),
-			(fl & RAW_STAT_BLIND) ? " Blind " : "");
+		      (fl & RAW_STAT_BLIND) ? " Blind " : "");
 		    gtk_label_set_text(GTK_LABEL(conf),
-			(fl & RAW_STAT_CONFUSION) ? " Confused " : "");
+		      (fl & RAW_STAT_CONFUSION) ? " Confused " : "");
 		    gtk_label_set_text(GTK_LABEL(sick),
-			(fl & RAW_STAT_FOODPOIS) ? " FoodPois " :
-			(fl & RAW_STAT_ILL) ? " Ill " : "");
+		      (fl & RAW_STAT_FOODPOIS) ? " FoodPois " :
+		      (fl & RAW_STAT_ILL) ? " Ill " : "");
 		    gtk_label_set_text(GTK_LABEL(stun),
-			(fl & RAW_STAT_STUNNED) ? " Stunned " : "");
+		      (fl & RAW_STAT_STUNNED) ? " Stunned " : "");
 		    gtk_label_set_text(GTK_LABEL(hall),
-			(fl & RAW_STAT_HALLUCINATION) ? " Hallucination " : "");
+		      (fl & RAW_STAT_HALLUCINATION) ? " Hallucination " : "");
 		    gtk_label_set_text(GTK_LABEL(slim),
-			(fl & RAW_STAT_SLIMED) ? " Slimed " : "");
+		      (fl & RAW_STAT_SLIMED) ? " Slimed " : "");
 		    break;
 	    }
 	    g_free(stat_tab[i].oldvalue);
@@ -297,7 +294,7 @@ const char **values;
     }
     for(i = 0; i < STAT_COLS; i++) {
 	gtk_clist_set_column_min_width(GTK_CLIST(clist[i]), 1, 
-		gtk_clist_optimal_column_width(GTK_CLIST(clist[i]), 1));
+	  gtk_clist_optimal_column_width(GTK_CLIST(clist[i]), 1));
     	gtk_clist_thaw(GTK_CLIST(clist[i]));
     }
 }
@@ -317,64 +314,55 @@ nh_status_destroy()
 GtkWidget *
 nh_status_new()
 {
-    extern GtkWidget	*main_window;
-    GtkWidget	*w;
+    extern GtkWidget *main_window;
+    GtkWidget *w;
     int	i, j;
-    gchar	*text[3] = { "", "", NULL};
+    gchar *text[3] = { "", "", NULL};
 
     handle = gtk_handle_box_new();
     GTK_HANDLE_BOX(handle)->shrink_on_detach = 1;
-    
-/*
-    gtk_widget_realize(handle);
-*/
 
     frame = nh_gtk_new_and_add(gtk_frame_new(NULL), handle, "");
 
     vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), frame, "");
 
-    dlvl = nh_gtk_new_and_pack(
-	gtk_label_new(""), vbox, "",
-	FALSE, FALSE, 0);
+    dlvl = nh_gtk_new_and_pack(gtk_label_new(""), vbox, "", FALSE, FALSE, 0);
 
     bar_table = nh_gtk_new_and_add(gtk_table_new(2, 2, FALSE), vbox, "");
 
     for(i = 0; i < STAT_BARS; i++) {
-	bar[i].hbox = nh_gtk_new_and_attach(
-	    gtk_hbox_new(FALSE, 0), bar_table, "", 0, 1, i, i + 1);
+	bar[i].hbox = nh_gtk_new_and_attach(gtk_hbox_new(FALSE, 0), bar_table,
+	  "", 0, 1, i, i + 1);
 
 	for(j = 0; j < SIZE(stat_tab); j++)
 	    if (stat_tab[j].where == STAT_BAR(i + 1))
 		break;
-	bar[i].lbl = nh_gtk_new_and_pack(
-	    gtk_label_new(stat_tab[j].label), bar[i].hbox, "", FALSE, FALSE, 0);
+	bar[i].lbl = nh_gtk_new_and_pack(gtk_label_new(stat_tab[j].label),
+	  bar[i].hbox, "", FALSE, FALSE, 0);
 
-	bar[i].vbox = nh_gtk_new_and_attach(
-	    gtk_vbox_new(TRUE, 0), bar_table, "", 1, 2, i, i + 1);
+	bar[i].vbox = nh_gtk_new_and_attach(gtk_vbox_new(TRUE, 0), bar_table,
+	  "", 1, 2, i, i + 1);
 
-	bar[i].area = nh_gtk_new_and_pack(
-	    gtk_drawing_area_new(), bar[i].vbox, "", FALSE, FALSE, 0);
+	bar[i].area = nh_gtk_new_and_pack(gtk_drawing_area_new(), bar[i].vbox,
+	  "", FALSE, FALSE, 0);
 
-	gtk_signal_connect(
-	    GTK_OBJECT(bar[i].area), "expose_event",
-	    GTK_SIGNAL_FUNC(bar_expose_event), NULL);
+	gtk_signal_connect(GTK_OBJECT(bar[i].area), "expose_event",
+	  GTK_SIGNAL_FUNC(bar_expose_event), NULL);
 	bar[i].gc = gdk_gc_new(main_window->window);
 
-	gtk_drawing_area_size(
-	    GTK_DRAWING_AREA(bar[i].area), NH_BAR_WIDTH, NH_BAR_HEIGHT);
+	gtk_drawing_area_size(GTK_DRAWING_AREA(bar[i].area),
+	  NH_BAR_WIDTH, NH_BAR_HEIGHT);
 
-	bar[i].pixmap = gdk_pixmap_new(
-	    main_window->window,
-	    NH_BAR_WIDTH, NH_BAR_HEIGHT, -1);
+	bar[i].pixmap = gdk_pixmap_new(main_window->window,
+	  NH_BAR_WIDTH, NH_BAR_HEIGHT, -1);
     }
 
-    hbox = nh_gtk_new_and_pack(
-	gtk_hbox_new(FALSE, 0), vbox, "",
-	TRUE, FALSE, 0);
+    hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
+      TRUE, FALSE, 0);
 
     for(j = 0; j < STAT_COLS; j++) {
-	w = clist[j] = nh_gtk_new_and_pack(
-	    gtk_clist_new(2), hbox, "", FALSE, FALSE, 0);
+	w = clist[j] = nh_gtk_new_and_pack(gtk_clist_new(2), hbox, "",
+	  FALSE, FALSE, 0);
 	GTK_WIDGET_UNSET_FLAGS(w, GTK_CAN_FOCUS);
 
 	gtk_clist_set_shadow_type(GTK_CLIST(w), GTK_SHADOW_ETCHED_IN);
@@ -390,45 +378,26 @@ nh_status_new()
 	    /* gtk_clist_set_selectable(GTK_CLIST(w), i, FALSE); */
 	}
     }
-    hbox2 = nh_gtk_new_and_pack(
-	gtk_hbox_new(FALSE, 0), vbox, "",
-	FALSE, FALSE, 0);
+    hbox2 = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
+      FALSE, FALSE, 0);
 
-    hung = nh_gtk_new_and_pack(
-	gtk_label_new(""), hbox2, "",
-	FALSE, FALSE, 0);
+    hung = nh_gtk_new_and_pack(gtk_label_new(""), hbox2, "", FALSE, FALSE, 0);
 
-    levi = nh_gtk_new_and_pack(
-	gtk_label_new(""), hbox2, "",
-	FALSE, FALSE, 0);
+    levi = nh_gtk_new_and_pack(gtk_label_new(""), hbox2, "", FALSE, FALSE, 0);
 
-    conf = nh_gtk_new_and_pack(
-	gtk_label_new(""), hbox2, "",
-	FALSE, FALSE, 0);
+    conf = nh_gtk_new_and_pack(gtk_label_new(""), hbox2, "", FALSE, FALSE, 0);
 
-    blin = nh_gtk_new_and_pack(
-	gtk_label_new(""), hbox2, "",
-	FALSE, FALSE, 0);
+    blin = nh_gtk_new_and_pack(gtk_label_new(""), hbox2, "", FALSE, FALSE, 0);
 
-    stun = nh_gtk_new_and_pack(
-	gtk_label_new(""), hbox2, "",
-	FALSE, FALSE, 0);
+    stun = nh_gtk_new_and_pack(gtk_label_new(""), hbox2, "", FALSE, FALSE, 0);
 
-    hall = nh_gtk_new_and_pack(
-	gtk_label_new(""), hbox2, "",
-	FALSE, FALSE, 0);
+    hall = nh_gtk_new_and_pack(gtk_label_new(""), hbox2, "", FALSE, FALSE, 0);
 
-    sick = nh_gtk_new_and_pack(
-	gtk_label_new(""), hbox2, "",
-	FALSE, FALSE, 0);
+    sick = nh_gtk_new_and_pack(gtk_label_new(""), hbox2, "", FALSE, FALSE, 0);
 
-    slim = nh_gtk_new_and_pack(
-	gtk_label_new(""), hbox2, "",
-	FALSE, FALSE, 0);
+    slim = nh_gtk_new_and_pack(gtk_label_new(""), hbox2, "", FALSE, FALSE, 0);
 
-    encu = nh_gtk_new_and_pack(
-	gtk_label_new(""), hbox2, "",
-	FALSE, FALSE, 0);
+    encu = nh_gtk_new_and_pack(gtk_label_new(""), hbox2, "", FALSE, FALSE, 0);
 
     /* Clear HP/MP bars */
     for(i = 0; i < STAT_BARS; i++) {
@@ -440,9 +409,8 @@ nh_status_new()
 	update_rect.height = NH_BAR_HEIGHT;
 
 	gdk_gc_set_foreground(bar[i].gc, &nh_color[MAP_BLACK]);
-	gdk_draw_rectangle(
-		bar[i].pixmap, bar[i].gc, TRUE,
-		0, 0, NH_BAR_WIDTH, NH_BAR_HEIGHT);
+	gdk_draw_rectangle(bar[i].pixmap, bar[i].gc, TRUE,
+	  0, 0, NH_BAR_WIDTH, NH_BAR_HEIGHT);
 	
 	gtk_widget_draw(bar[i].area, &update_rect);
 	gdk_gc_set_foreground(bar[i].gc, &nh_color[i ? CLR_GREEN : CLR_BLUE]);

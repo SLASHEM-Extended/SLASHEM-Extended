@@ -1,5 +1,5 @@
 /*
-  $Id: gtktile.c,v 1.8 2003-01-01 12:13:32 j_ali Exp $
+  $Id: gtktile.c,v 1.9 2003-04-26 10:56:45 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -110,8 +110,8 @@ static void calc_tile_transp(TileTab *t, GdkPixbuf *pixbuf, int i)
     static int rowstride;
     static int n_channels;
     static int n_bytes;
-    if (i < 0)
-    {	/* Clean up */
+    if (i < 0) {
+	/* Clean up */
 #ifdef DEBUG
 	fprintf(stderr, "%d bytes used for transarency data\n", n_bytes);
 #endif
@@ -119,8 +119,8 @@ static void calc_tile_transp(TileTab *t, GdkPixbuf *pixbuf, int i)
 	rle_buf = NULL;
 	return;
     }
-    if (!rle_buf)
-    {	/* Init */
+    if (!rle_buf) {
+	/* Init */
 	n_bytes = 0;
 	pixels = gdk_pixbuf_get_pixels(pixbuf);
 	rowstride = gdk_pixbuf_get_rowstride(pixbuf);
@@ -173,11 +173,10 @@ static void calc_tile_transp(TileTab *t, GdkPixbuf *pixbuf, int i)
     }
     tile_transp[i].nx = x - tile_transp[i].ox;
     j = 0;
-    for(y = tile_transp[i].oy; y < tile_transp[i].oy + tile_transp[i].ny; y++)
-    {
+    for(y = tile_transp[i].oy; y < tile_transp[i].oy + tile_transp[i].ny; y++) {
 	k = n = 0;
-	for(x = tile_transp[i].ox; x < tile_transp[i].ox+tile_transp[i].nx; x++)
-	{
+	for(x = tile_transp[i].ox; x < tile_transp[i].ox + tile_transp[i].nx;
+	  x++) {
 	    if (k & 1)
 		if (PIXEL_OPAQUE(sx + x, sy + y))
 		    n++;
@@ -189,8 +188,7 @@ static void calc_tile_transp(TileTab *t, GdkPixbuf *pixbuf, int i)
 		if (PIXEL_OPAQUE(sx + x, sy + y)) {
 		    rle_buf[j + k++] = n;
 		    n = 1;
-		}
-		else
+		} else
 		    n++;
 	}
 	if (n)
@@ -245,8 +243,7 @@ x_tile_load(TileTab *t)
 	    pline("Error loading %s: %s", t->file, err->message);
 	    g_error_free(err);
 	    err = NULL;
-	}
-	else {
+	} else {
 	    tile_pixbuf = gdk_pixbuf_loader_get_pixbuf(loader);
 	    if (!tile_pixbuf)
 		pline("No image found in tile file %s!", t->file);
@@ -383,8 +380,7 @@ x_tile_set_map_mode(TileTab *t)
 	if (copy) {
 	    gdk_pixbuf_unref(tile_pixbuf);
 	    tile_pixbuf = copy;
-	}
-	else {
+	} else {
 	    pline("Warning: Not enough memory: Tiles may be degraded");
 	    mode = XSHM_MAP_IMAGE;
 	}
@@ -430,8 +426,7 @@ x_tile_set_map_mode(TileTab *t)
 	     */
 	    tile_bits_per_pixel = tile_image->bpl * 8 / t->tilemap_width;
 #endif
-	}
-	else
+	} else
 	    tmp_img = tile_image = NULL;
 	gdk_pixbuf_unref(tile_pixbuf);
 	tile_pixbuf = NULL;
@@ -517,31 +512,28 @@ x_tile_tmp_draw_rectangle(int ofsx, int ofsy, int nhc)
     width = Tile->unit_width;
     height = Tile->unit_height;
 
-    if (tmp_img)
-    {
+    if (tmp_img) {
 	c = nh_color[nhc].pixel;
-	if(ofsy >= 0 && ofsy < height)
-	    for(i=0 ; i<width ; ++i)
-		if(ofsx + i >= 0 && ofsx + i < width)
+	if (ofsy >= 0 && ofsy < height)
+	    for(i = 0; i < width; i++)
+		if (ofsx + i >= 0 && ofsx + i < width)
 		    gdk_image_put_pixel(tmp_img, ofsx + i, ofsy, c);
 
-	if(ofsy + height - 1 >= 0 && ofsy + height - 1 < height)
-	    for(i=0 ; i<width ; ++i)
-		if(ofsx + i >= 0 && ofsx + i < width)
+	if (ofsy + height - 1 >= 0 && ofsy + height - 1 < height)
+	    for(i = 0; i < width; i++)
+		if (ofsx + i >= 0 && ofsx + i < width)
 		    gdk_image_put_pixel(tmp_img, ofsx + i, ofsy + height -1, c);
 
-	if(ofsx >= 0 && ofsx < width)
-	    for(i=0 ; i<height ; ++i)
-		if(ofsy + i >= 0 && ofsy + i < height)
+	if (ofsx >= 0 && ofsx < width)
+	    for(i = 0; i < height; i++)
+		if (ofsy + i >= 0 && ofsy + i < height)
 		    gdk_image_put_pixel(tmp_img, ofsx, ofsy + i, c);
 
-	if(ofsx + width - 1 >= 0 && ofsx + width - 1 < width)
-	    for(i=0 ; i<height ; ++i)
-		if(ofsy + i >= 0 && ofsy + i < height)
+	if (ofsx + width - 1 >= 0 && ofsx + width - 1 < width)
+	    for(i = 0; i < height; i++)
+		if (ofsy + i >= 0 && ofsy + i < height)
 		    gdk_image_put_pixel(tmp_img, ofsx + width - 1, ofsy + i, c);
-    }
-    else
-    {
+    } else {
 	g_return_if_fail(gdk_pixbuf_get_bits_per_sample(tmp_pixbuf) == 8 &&
 	  gdk_pixbuf_get_colorspace(tmp_pixbuf) == GDK_COLORSPACE_RGB);
 	pixels = gdk_pixbuf_get_pixels(tmp_pixbuf);
@@ -551,24 +543,24 @@ x_tile_tmp_draw_rectangle(int ofsx, int ofsy, int nhc)
 	rgba[1] = nh_color[nhc].green / 257;
 	rgba[2] = nh_color[nhc].blue / 257;
 	rgba[3] = 255;
-	if(ofsy >= 0 && ofsy < height)
-	    for(i=0 ; i<width ; ++i)
-		if(ofsx + i >= 0 && ofsx + i < width)
+	if (ofsy >= 0 && ofsy < height)
+	    for(i = 0; i < width; i++)
+		if (ofsx + i >= 0 && ofsx + i < width)
 		    nh_pixbuf_put_pixel(ofsx + i, ofsy, rgba);
 
-	if(ofsy + height - 1 >= 0 && ofsy + height - 1 < height)
-	    for(i=0 ; i<width ; ++i)
-		if(ofsx + i >= 0 && ofsx + i < width)
+	if (ofsy + height - 1 >= 0 && ofsy + height - 1 < height)
+	    for(i = 0; i < width; i++)
+		if (ofsx + i >= 0 && ofsx + i < width)
 		    nh_pixbuf_put_pixel(ofsx + i, ofsy + height -1, rgba);
 
-	if(ofsx >= 0 && ofsx < width)
-	    for(i=0 ; i<height ; ++i)
-		if(ofsy + i >= 0 && ofsy + i < height)
+	if (ofsx >= 0 && ofsx < width)
+	    for(i = 0; i < height; i++)
+		if (ofsy + i >= 0 && ofsy + i < height)
 		    nh_pixbuf_put_pixel(ofsx, ofsy + i, rgba);
 
-	if(ofsx + width - 1 >= 0 && ofsx + width - 1 < width)
-	    for(i=0 ; i<height ; ++i)
-		if(ofsy + i >= 0 && ofsy + i < height)
+	if (ofsx + width - 1 >= 0 && ofsx + width - 1 < width)
+	    for(i = 0; i < height; i++)
+		if (ofsy + i >= 0 && ofsy + i < height)
 		    nh_pixbuf_put_pixel(ofsx + width - 1, ofsy + i, rgba);
     }
 }
@@ -941,8 +933,7 @@ nhgtk_image_draw_line(GdkImage *img, long c, int x1, int y1, int x2, int y2)
 	bpp = 0;
     else
 	bpp = img->bpp;
-    if (bpp == sizeof(unsigned long))
-    {
+    if (bpp == sizeof(unsigned long)) {
 	unsigned long *dst;
 	dst = img->mem + y1 * bpl + x1 * bpp;
 	if (y1 == y2)
@@ -953,9 +944,7 @@ nhgtk_image_draw_line(GdkImage *img, long c, int x1, int y1, int x2, int y2)
 		*dst = (unsigned long)c;
 		(unsigned char *)dst += bpl;
 	    }
-    }
-    else if (bpp == sizeof(unsigned short))
-    {
+    } else if (bpp == sizeof(unsigned short)) {
 	unsigned short *dst;
 	dst = img->mem + y1 * bpl + x1 * bpp;
 	if (y1 == y2)
@@ -966,9 +955,7 @@ nhgtk_image_draw_line(GdkImage *img, long c, int x1, int y1, int x2, int y2)
 		*dst = (unsigned short)c;
 		(unsigned char *)dst += bpl;
 	    }
-    }
-    else if (bpp == 1)
-    {
+    } else if (bpp == 1) {
 	unsigned char *dst;
 	dst = img->mem + y1 * bpl + x1 * bpp;
 	if (y1 == y2)
@@ -979,9 +966,7 @@ nhgtk_image_draw_line(GdkImage *img, long c, int x1, int y1, int x2, int y2)
 		*dst = (unsigned char)c;
 		dst += bpl;
 	    }
-    }
-    else
-    {
+    } else {
 	if (y1 == y2)
 	    for(i = x1; i <= x2; i++)
 		gdk_image_put_pixel(img, i, y1, c);
@@ -1011,7 +996,8 @@ nhgtk_image_draw_rectangle(GdkImage *img, long c, int dofill, int x, int y,
 	nhgtk_image_draw_line(img, c, x, y, x + width, y);
 	nhgtk_image_draw_line(img, c, x, y + height, x + width, y + height);
 	nhgtk_image_draw_line(img, c, x, y + 1, x, y + height - 1);
-	nhgtk_image_draw_line(img, c, x + width, y + 1, x + width, y + height - 1);
+	nhgtk_image_draw_line(img, c, x + width, y + 1, x + width,
+	  y + height - 1);
     }
 }
 
@@ -1065,8 +1051,8 @@ tile_scan(void)
 #endif
 
     v = 1;	/* Index into tileTab[] array */
-    for(i=0 ; i < no_tilesets ; ++i){
-	if ((tilesets[i].flags & ~(TILESET_TRANSPARENT | TILESET_PSEUDO3D)) != 0)
+    for(i = 0; i < no_tilesets; i++) {
+	if (tilesets[i].flags & ~(TILESET_TRANSPARENT | TILESET_PSEUDO3D))
 	    continue;	/* Unsupported flag set */
 #ifdef GTK_PROXY
 	if (!tilesets[i].mapfile) {
@@ -1111,8 +1097,8 @@ tile_scan(void)
 	visual = 0;
     else {
 	visual = -1;
-	for (v = 1; v <= no_tileTab; v++){
-	    if (!strcmp(tileset, tileTab[v].ident)){
+	for(v = 1; v <= no_tileTab; v++) {
+	    if (!strcmp(tileset, tileTab[v].ident)) {
 		visual = v;
 		break;
 	    }
@@ -1122,8 +1108,7 @@ tile_scan(void)
 	    if (no_tileTab > 0) {
 		visual = 1;	/* Default to the first valid tile set */
 		nh_option_cache_set("tileset", tileTab[visual].ident);
-	    }
-	    else {
+	    } else {
 		visual = 0;	/* Drop down to character mode */
 		nh_option_cache_set("tileset", "");
 	    }

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.19 2003-04-26 08:08:41 j_ali Exp $
+  $Id: gtkmap.c,v 1.20 2003-04-26 10:56:45 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -27,40 +27,39 @@
 /*
   if map_click is true, we do gtk_main_quit() when clicking map
  */
-static int		map_click;
-static int		map_update;
+static int map_click;
+static int map_update;
 
-static GtkWidget	*map;
-static GdkFont		*map_font;
-static gchar		*map_font_name;
-static unsigned char	*map_xoffsets;		/* For character mode only */
-static unsigned int	map_font_width;		/* Maximum width */
+static GtkWidget *map;
+static GdkFont *map_font;
+static gchar *map_font_name;
+static unsigned char *map_xoffsets;		/* For character mode only */
+static unsigned int map_font_width;		/* Maximum width */
 static enum xshm_map_mode map_mode;
 #ifdef GTK_PROXY
-static int		map_n_glyphs;
-static short		*map_glyph2colsym = (short *)0;
+static int map_n_glyphs;
+static short *map_glyph2colsym = (short *)0;
 #endif
 
-static GdkGC		*map_color_gc[N_NH_COLORS];
+static GdkGC *map_color_gc[N_NH_COLORS];
 
-static gint		map_button_event(void *map, GdkEventButton *event,
-			  gpointer data);
-static void		nh_map_cliparound(int x, int y, gboolean exact);
-static void		nh_map_redraw();
-static int		configure_map(GtkWidget *w, gpointer data);
+static gint map_button_event(void *map, GdkEventButton *event, gpointer data);
+static void nh_map_cliparound(int x, int y, gboolean exact);
+static void nh_map_redraw();
+static int configure_map(GtkWidget *w, gpointer data);
 
 #ifdef	RADAR
-static int	 radar_is_popuped;
-static int	 radar_is_created;
+static int radar_is_popuped;
+static int radar_is_created;
 
 static GtkWidget *radar;
 static GtkWidget *radar_darea;
 /*
-  we use 2 pixmaps for radar.
-
-  radar_pixmap keeps radar dot
-  radar_pixmap2 keeps radar dot and frame rectangle
-  */
+ * we use 2 pixmaps for radar.
+ *
+ * radar_pixmap keeps radar dot
+ * radar_pixmap2 keeps radar dot and frame rectangle
+ */
 static GdkPixmap *radar_pixmap;
 static GdkPixmap *radar_pixmap2;
 extern GtkAccelGroup *accel_group;
@@ -87,33 +86,33 @@ extern GtkAccelGroup *accel_group;
 static void		nh_radar_configure();
 #endif	/* RADAR */
 
-static GdkGC	 *map_gc;
+static GdkGC *map_gc;
 
 /*
-	BIG3DTILE
-
-                  +----------+
-  ^              /          /| 
-  |             /          / | 
-  |            /          /  | 
-  |           /          /   | 
-  *6         /          /    |
-  |         +----------+     +
-  |       ^ |          |    / ^
-  |       | |          |   /  |
-  |      *2 |          |  /   *4
-  |       | |          | /    |
-  v       v |          |/     v
-            +----------+      
-             <-- *1 --> <-*3->
-             <-- *5        -->
-
-*1 = 3D_WIDTH	= 32
-*2 = 3D_HEIGHT	= 32
-*3 = 3D_OFSET	= 16
-*4 = 3D_OFSETY	= 32
-*5 = WIDTH	= 48
-*6 = HEIGHT	= 64
+ *        BIG3DTILE
+ *
+ *                 +----------+
+ * ^              /          /| 
+ * |             /          / | 
+ * |            /          /  | 
+ * |           /          /   | 
+ * *6         /          /    |
+ * |         +----------+     +
+ * |       ^ |          |    / ^
+ * |       | |          |   /  |
+ * |      *2 |          |  /   *4
+ * |       | |          | /    |
+ * v       v |          |/     v
+ *           +----------+      
+ *            <-- *1 --> <-*3->
+ *            <-- *5        -->
+ *
+ * *1 = 3D_WIDTH	= 32
+ * *2 = 3D_HEIGHT 	= 32
+ * *3 = 3D_OFSET	= 16
+ * *4 = 3D_OFSETY	= 32
+ * *5 = WIDTH		= 48
+ * *6 = HEIGHT		= 64
  */
 
 TileTab tileTab[MAXNOTILESETS+1] = {
@@ -122,7 +121,7 @@ TileTab tileTab[MAXNOTILESETS+1] = {
 int no_tileTab = 0;	/* Not including dummy (index 0) */
 
 static TileTab *Tile;
-int	map_visual = -1;
+int map_visual = -1;
 
 /* from tile.c */
 extern int tiles_per_row;
@@ -135,31 +134,31 @@ extern int tiles_per_col;
 #endif
 
 #ifdef GTK_PROXY
-extern short	*GTK_glyph2tile;
-#define	glyph2tile	GTK_glyph2tile
+extern short *GTK_glyph2tile;
+#define	glyph2tile GTK_glyph2tile
 #else
-extern short	glyph2tile[];
+extern short glyph2tile[];
 #endif
 #define GLYPH2TILE(g)	((g) == NO_GLYPH ? stone_tile : glyph2tile[g])
 
-extern int	root_width;
-extern int	root_height;
+extern int root_width;
+extern int root_height;
 
-extern GtkWidget	*main_window;
+extern GtkWidget *main_window;
 
-int		cursx;
-int		cursy;
-int		cursm;
+int cursx;
+int cursy;
+int cursm;
 
-static int	c_width;
-static int	c_height;
+static int c_width;
+static int c_height;
 
-static int	c_3dwidth;
-static int	c_3dheight;
-static int	c_3dofset;
+static int c_3dwidth;
+static int c_3dheight;
+static int c_3dofset;
 
-static int	c_map_width;
-static int	c_map_height;
+static int c_map_width;
+static int c_map_height;
 
 #define TILEMAP_UPDATE	1
 
@@ -178,7 +177,7 @@ static struct tilemap **gtkmap = NULL;
 #define GTKMAP(row, col)	GTKMAP_PTR(gtkmap[row], col, tilemap_size)
 
 /*
-  fix tile number
+ * fix tile number
  */
 static int
 fix_tile(int tile)
@@ -398,7 +397,7 @@ nh_conf_map_font(void)
 		for(j = i + 1; j < map_n_glyphs; j++)
 		    if (RGBSYM_RGB(glyph2rgbsym[j]) == rgb)
 			map_glyph2colsym[j] =
-				best << 8 | RGBSYM_SYM(glyph2rgbsym[j]);
+			  best << 8 | RGBSYM_SYM(glyph2rgbsym[j]);
 	    }
 #ifdef DEBUG
 	    fprintf(stderr,"Glyph %d (0x%lX) -> sym %d, colour %d\n",
@@ -409,8 +408,7 @@ nh_conf_map_font(void)
 	free(glyph2rgbsym);
     }
     sym = map_glyph2colsym[0] & 0xFF;
-    map_font_width = min_width =
-      gdk_char_width_wc(map_font, (GdkWChar)sym);
+    map_font_width = min_width = gdk_char_width_wc(map_font, (GdkWChar)sym);
     if (c_width > 0)
 	map_xoffsets[sym] = c_width;
     for(i = 1; i < map_n_glyphs; i++) {
@@ -477,9 +475,9 @@ nh_conf_map_font(void)
 }
 
 /*
-  -1:   deallocate
-  zero: character
-  else: various tiles
+ * -1:   deallocate
+ * zero: character
+ * else: various tiles
  */
 int
 nh_set_map_visual(int mode)
@@ -491,10 +489,10 @@ nh_set_map_visual(int mode)
 	return 0;
     setting_visual++;
 
-    if(mode < -1 || mode > no_tileTab)
+    if (mode < -1 || mode > no_tileTab)
 	panic("Bad visual!\n");
 
-    if(saved_vis != mode){
+    if (saved_vis != mode) {
 	if (map)
 	    gtk_widget_hide(map);
 
@@ -522,23 +520,21 @@ switch_mode:
 		c_map_width = c_3dwidth * (no_cols - 1) + c_3dofset * no_rows +
 		  Tile->unit_width;
 		c_map_height = c_3dheight * (no_rows - 1) + Tile->unit_height;
-	    }
-	    else {
+	    } else {
 		if (saved_vis > 0 && tileTab[saved_vis].ident || !saved_vis) {
 		    pline("Warning: Switching back to %s.",
 		      saved_vis?tileTab[saved_vis].ident:"character mode");
 		    mode = saved_vis;
 		    saved_vis = -1;
 		    goto switch_mode;
-		}
-		else if (map_visual > 0)
+		} else if (map_visual > 0)
 		    panic("Failed to switch back to previous mode.");
 		else {
 		    setting_visual--;
 		    return 0;
 		}
 	    }
-	
+
 	    map = xshm_map_init(map_mode, c_map_width, c_map_height);
 	}
 
@@ -568,7 +564,7 @@ nh_get_map_visual(void)
 int
 nh_check_map_visual(int mode)
 {
-    if(mode < 0 || mode > no_tileTab || mode && !tileTab[mode].ident[0])
+    if (mode < 0 || mode > no_tileTab || mode && !tileTab[mode].ident[0])
 	return -1;
     else
 	return 0;
@@ -591,7 +587,8 @@ nh_set_map_font(GdkFont *font, gchar *name)
     return 0;
 }
 
-gchar *nh_get_map_font(void)
+gchar *
+nh_get_map_font(void)
 {
     if (map_font_name)
 	return g_strdup(map_font_name);
@@ -605,13 +602,10 @@ gchar *nh_get_map_font(void)
 static gint
 radar_expose_event(GtkWidget *widget, GdkEventExpose *event)
 {
-    gdk_draw_pixmap(
-	widget->window,
-	widget->style->fg_gc[GTK_WIDGET_STATE(widget)],
-	radar_pixmap2,
-	event->area.x, event->area.y,
-	event->area.x, event->area.y,
-	event->area.width, event->area.height);
+    gdk_draw_pixmap(widget->window,
+      widget->style->fg_gc[GTK_WIDGET_STATE(widget)], radar_pixmap2,
+      event->area.x, event->area.y, event->area.x, event->area.y,
+      event->area.width, event->area.height);
 
     return FALSE;
 }
@@ -708,10 +702,10 @@ nh_map_clear(int rows, int cols, int layers)
      * This can happen if tileset changed via doset() and doredraw() was
      * called.  --ALI
      */
-    if (strcmp(tileset, tileTab[map_visual].ident)){
+    if (strcmp(tileset, tileTab[map_visual].ident)) {
 	int i;
 	for(i = 0; i <= no_tileTab; i++)
-	    if (!strcmp(tileset, tileTab[i].ident)){
+	    if (!strcmp(tileset, tileTab[i].ident)) {
 		nh_set_map_visual(i);
 		break;
 	    }
@@ -791,14 +785,14 @@ configure_map(GtkWidget *w, gpointer data)
 #define COLOUR_IS_RGB(colour,r,g,b)   \
       ((colour).red==(r) && (colour).green==(g) && (colour).blue==(b))
 
-    if (COLOUR_IS_RGB(w->style->bg[GTK_STATE_NORMAL],0,0,0))
-      nh_color[CLR_BLACK] = nh_color[MAP_WHITE];
-    else if (COLOUR_IS_RGB(w->style->bg[GTK_STATE_NORMAL],65535,65535,65535))
-      nh_color[CLR_WHITE] = nh_color[MAP_BLACK];
+    if (COLOUR_IS_RGB(w->style->bg[GTK_STATE_NORMAL], 0, 0, 0))
+	nh_color[CLR_BLACK] = nh_color[MAP_WHITE];
+    else if (COLOUR_IS_RGB(w->style->bg[GTK_STATE_NORMAL], 65535, 65535, 65535))
+	nh_color[CLR_WHITE] = nh_color[MAP_BLACK];
 
 #undef COLOUR_IS_RGB
 
-    for(i=0 ; i < N_NH_COLORS ; ++i){
+    for(i = 0; i < N_NH_COLORS; i++) {
 	if (!map_color_gc[i])
 	    map_color_gc[i] = gdk_gc_new(w->window);
 	gdk_gc_set_foreground(map_color_gc[i], &nh_color[i]);
@@ -811,10 +805,10 @@ configure_map(GtkWidget *w, gpointer data)
     width = c_map_width;
     height = c_map_height;
 
-    if(width >= root_width)
+    if (width >= root_width)
 	width = root_width - 50;
 
-    if(height >= (root_height / 2))
+    if (height >= (root_height / 2))
 	height = (root_height / 2) - 50;
 
     gtk_widget_set_usize(map, width, height);
@@ -854,7 +848,7 @@ nh_map_new(GtkWidget *w)
 #ifdef RADAR
 
 /*
-  create radar
+ * create radar
  */
 
 void
@@ -882,21 +876,17 @@ nh_radar_new()
     gtk_window_set_title(GTK_WINDOW(radar), DEF_GAME_NAME " Radar");
 
     radar_darea = nh_gtk_new_and_add(gtk_drawing_area_new(), radar, "");
-    gtk_drawing_area_size(
-	GTK_DRAWING_AREA(radar_darea),
-	NH_RADAR_WIDTH, NH_RADAR_HEIGHT);
+    gtk_drawing_area_size(GTK_DRAWING_AREA(radar_darea),
+      NH_RADAR_WIDTH, NH_RADAR_HEIGHT);
 
-    gtk_signal_connect(
-	GTK_OBJECT(radar_darea), "expose_event",
-	GTK_SIGNAL_FUNC(radar_expose_event), NULL);
+    gtk_signal_connect(GTK_OBJECT(radar_darea), "expose_event",
+      GTK_SIGNAL_FUNC(radar_expose_event), NULL);
 
-    gtk_signal_connect(
-	GTK_OBJECT(radar_darea), "configure_event",
-	GTK_SIGNAL_FUNC(radar_configure_event), NULL);
+    gtk_signal_connect(GTK_OBJECT(radar_darea), "configure_event",
+      GTK_SIGNAL_FUNC(radar_configure_event), NULL);
 
-    gtk_signal_connect(
-	GTK_OBJECT(radar), "delete_event",
-	GTK_SIGNAL_FUNC(radar_destroy_event), 0);
+    gtk_signal_connect(GTK_OBJECT(radar), "delete_event",
+      GTK_SIGNAL_FUNC(radar_destroy_event), 0);
 
     return radar;
 }
@@ -906,7 +896,7 @@ nh_radar_configure()
 {
     if (NH_RADAR_WIDTH > 0 && NH_RADAR_HEIGHT > 0) {
 	gtk_drawing_area_size(GTK_DRAWING_AREA(radar_darea),
-		NH_RADAR_WIDTH, NH_RADAR_HEIGHT);
+	  NH_RADAR_WIDTH, NH_RADAR_HEIGHT);
 	nh_radar_update();
     } else {
 	if (radar_pixmap)
@@ -924,54 +914,51 @@ nh_print_radar(int x, int y, int glyph)
     int c;
     c = CLR_BLACK;
 
-    if(glyph < PM_ARCHEOLOGIST)
+    if (glyph < PM_ARCHEOLOGIST)
 	c = RADAR_MONSTER;
-    else if(glyph_is_monster(glyph))
+    else if (glyph_is_monster(glyph))
 	c = RADAR_HUMAN;
-    else if(glyph_is_pet(glyph))
+    else if (glyph_is_pet(glyph))
 	c = RADAR_PET;
-    else if(glyph_is_object(glyph))
+    else if (glyph_is_object(glyph))
 	c = RADAR_OBJECT;
-    else if(glyph_is_trap(glyph))
+    else if (glyph_is_trap(glyph))
 	c = RADAR_TRAP;
-    else if(glyph_is_swallow(glyph))
+    else if (glyph_is_swallow(glyph))
 	c = RADAR_SWALLOW;
-    else if(glyph_is_cmap(glyph)){
-	if(glyph == GLYPH_CMAP_OFF)
+    else if( glyph_is_cmap(glyph)) {
+	if (glyph == GLYPH_CMAP_OFF)
 	    ;
-	else if(glyph <= GLYPH_CMAP_OFF + S_trwall)
+	else if (glyph <= GLYPH_CMAP_OFF + S_trwall)
 	    c = RADAR_WALL;
-	else if(glyph <= GLYPH_CMAP_OFF + S_hcdoor)
+	else if (glyph <= GLYPH_CMAP_OFF + S_hcdoor)
 	    c = RADAR_DOOR;
-	else if(glyph <= GLYPH_CMAP_OFF + S_litcorr)
+	else if (glyph <= GLYPH_CMAP_OFF + S_litcorr)
 	    c = RADAR_FLOOR;
-	else if(glyph <= GLYPH_CMAP_OFF + S_dnladder)
+	else if (glyph <= GLYPH_CMAP_OFF + S_dnladder)
 	    c = RADAR_LADDER;
-	else if(glyph <= GLYPH_CMAP_OFF + S_pool)
+	else if (glyph <= GLYPH_CMAP_OFF + S_pool)
 	    c = RADAR_WATER;
-	else if(glyph <= GLYPH_CMAP_OFF + S_ice)
+	else if (glyph <= GLYPH_CMAP_OFF + S_ice)
 	    c = RADAR_ICE;	/* fountain sink ice */
-	else if(glyph <= GLYPH_CMAP_OFF + S_lava)
+	else if (glyph <= GLYPH_CMAP_OFF + S_lava)
 	    c = RADAR_LAVA;	/* lava */
-	else if(glyph <= GLYPH_CMAP_OFF + S_hcdbridge)
+	else if (glyph <= GLYPH_CMAP_OFF + S_hcdbridge)
 	    c = RADAR_BRIDGE;	/* bridge */
-	else if(glyph <= GLYPH_CMAP_OFF + S_air)
+	else if (glyph <= GLYPH_CMAP_OFF + S_air)
 	    c = RADAR_AIR;	/* air */
-	else if(glyph <= GLYPH_CMAP_OFF + S_cloud)
+	else if (glyph <= GLYPH_CMAP_OFF + S_cloud)
 	    c = RADAR_CLOUD;	/* cloud */
-	else if(glyph <= GLYPH_CMAP_OFF + S_water)
+	else if (glyph <= GLYPH_CMAP_OFF + S_water)
 	    c = RADAR_WATER;	/* water */
-	else if(glyph < GLYPH_CMAP_OFF + S_explode9)
+	else if (glyph < GLYPH_CMAP_OFF + S_explode9)
 	    c = RADAR_BEAM;	/* beam */
     }
     else
 	c = RADAR_WALL;
 
-    gdk_draw_rectangle(
-	radar_pixmap, map_color_gc[c],
-	TRUE, 
-	x * NH_RADAR_UNIT, y * NH_RADAR_UNIT,
-	NH_RADAR_UNIT, NH_RADAR_UNIT);
+    gdk_draw_rectangle(radar_pixmap, map_color_gc[c], TRUE, 
+      x * NH_RADAR_UNIT, y * NH_RADAR_UNIT, NH_RADAR_UNIT, NH_RADAR_UNIT);
 }
 #endif	/* RADAR */
 
@@ -1017,28 +1004,22 @@ nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap)
     if ((offset = (glyph - GLYPH_SWALLOW_OFF)) >= 0) {	/* swallow */
 	ch[0] = (uchar) showsyms[S_sw_tl + (offset & 0x7)];
 	color = mon_color(offset>>3);
-    }
-    else if ((offset = (glyph - GLYPH_ZAP_OFF)) >= 0) {	/* zap beam */
+    } else if ((offset = (glyph - GLYPH_ZAP_OFF)) >= 0) {	/* zap beam */
 	ch[0] = showsyms[S_vbeam + (offset & 0x3)];
 	color = zap_color(offset>>2);
-    }
-    else if ((offset = (glyph - GLYPH_CMAP_OFF)) >= 0) {/* cmap */
+    } else if ((offset = (glyph - GLYPH_CMAP_OFF)) >= 0) {/* cmap */
 	ch[0] = showsyms[offset];
 	color = cmap_color(offset);
-    }
-    else if ((offset = (glyph - GLYPH_OBJ_OFF)) >= 0) {	/* object */
+    } else if ((offset = (glyph - GLYPH_OBJ_OFF)) >= 0) {	/* object */
 	ch[0] = oc_syms[(int)objects[offset].oc_class];
 	color = obj_color(offset);
-    }
-    else if ((offset = (glyph - GLYPH_BODY_OFF)) >= 0) {/* a corpse */
+    } else if ((offset = (glyph - GLYPH_BODY_OFF)) >= 0) {/* a corpse */
 	ch[0] = oc_syms[(int)objects[CORPSE].oc_class];
 	color = mon_color(offset);
-    }
-    else if ((offset = (glyph - GLYPH_PET_OFF)) >= 0) {	/* a pet */
+    } else if ((offset = (glyph - GLYPH_PET_OFF)) >= 0) {	/* a pet */
 	ch[0] = monsyms[(int)mons[offset].mlet];
 	color = pet_color(offset);
-    }
-    else{						/* a monster */
+    } else{						/* a monster */
 	ch[0] = monsyms[(int)mons[glyph].mlet];
 	color = mon_color(glyph);
     }
@@ -1050,25 +1031,23 @@ nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap)
       map->style->bg_gc[GTK_WIDGET_STATE(map)],
       TRUE, x * c_width, y * c_height -  map_font->ascent, c_width, c_height);
     
-    gdk_draw_text_wc(
-	xshm_map_pixmap, map_font,
-	copts.use_color ? map_color_gc[color] : map->style->fg_gc[GTK_WIDGET_STATE(map)],
-	x * c_width + map_xoffsets[ch[0]], y * c_height, ch, 1);
+    gdk_draw_text_wc(xshm_map_pixmap, map_font, copts.use_color ?
+      map_color_gc[color] : map->style->fg_gc[GTK_WIDGET_STATE(map)],
+      x * c_width + map_xoffsets[ch[0]], y * c_height, ch, 1);
     
     if (glyph_is_pet(glyph) && copts.hilite_pet) {
 	gdk_draw_rectangle(xshm_map_pixmap,
-	    map_color_gc[copts.use_color ? CLR_RED : CLR_WHITE],
-	    FALSE, x * c_width, y * c_height - map_font->ascent,
-	    c_width - 1, c_height - 1);
+	  map_color_gc[copts.use_color ? CLR_RED : CLR_WHITE], FALSE,
+	  x * c_width, y * c_height - map_font->ascent,
+	  c_width - 1, c_height - 1);
     }
     else if (x == cursx && y == cursy)
-	gdk_draw_rectangle(xshm_map_pixmap,
-	    map_color_gc[CLR_WHITE], FALSE,
-	    x * c_width, y * c_height - map_font->ascent,
-	    c_width - 1, c_height - 1);
+	gdk_draw_rectangle(xshm_map_pixmap, map_color_gc[CLR_WHITE], FALSE,
+	  x * c_width, y * c_height - map_font->ascent,
+	  c_width - 1, c_height - 1);
 
     update_rect.x = x * c_width;
-    update_rect.y = y * c_height -  map_font->ascent;
+    update_rect.y = y * c_height - map_font->ascent;
     update_rect.width = c_width;
     update_rect.height = c_height;
     xshm_map_draw(&update_rect);
@@ -1160,8 +1139,7 @@ nh_map_print_glyph_tile(XCHAR_P x, XCHAR_P y, struct tilemap *tmap)
 		    NH_MAP_PRINT_GLYPH_TMP(y, x, 1, 1, k);
 	    }
 	}
-    }
-    else {
+    } else {
 	NH_MAP_PRINT_GLYPH_TMP(y, x, 0, 0, 1);
 	NH_MAP_PRINT_GLYPH_TMP(y, x, 0, 0, 0);
     }
@@ -1183,7 +1161,7 @@ nh_map_print_glyph_simple_tile(XCHAR_P x, XCHAR_P y, struct tilemap *tmap)
 	for(k = 0; k < no_layers; k++)
 	    if (glyph_is_pet(tmap->glyphs[k])) {
 		x_tile_draw_rectangle(x * c_width, y * c_height,
-			&nh_color[CLR_RED]);
+		  &nh_color[CLR_RED]);
 		break;
 	    }
 }
@@ -1247,7 +1225,7 @@ GTK_ext_print_glyph(winid id, int x, int y, int glyph)
 void
 GTK_curs(winid id, int x, int y)
 {
-    if(id != NHW_MAP)
+    if (id != NHW_MAP)
 	return;
 
     if (cursx != x || cursy != y) {
@@ -1269,7 +1247,7 @@ nh_radar_update()
     boolean use_radar = nh_option_cache_get_bool("radar");
 
     if (use_radar && !radar_is_popuped) {
-	if(radar_is_created == 0)
+	if (radar_is_created == 0)
 	    nh_radar_new();
 
 	gtk_widget_show_all(radar);
@@ -1278,23 +1256,19 @@ nh_radar_update()
 	gtk_widget_hide_all(radar);
 	radar_is_popuped= 0;
     }
-    
+
     if (radar_is_popuped && map && map_gc) {
 	hadj = xshm_map_get_hadjustment();
 	vadj = xshm_map_get_vadjustment();
 
-	gdk_draw_pixmap(
-	    radar_pixmap2, map_gc,
-	    radar_pixmap, 0, 0, 0, 0, 
-	    NH_RADAR_WIDTH, NH_RADAR_HEIGHT);
+	gdk_draw_pixmap(radar_pixmap2, map_gc, radar_pixmap, 0, 0, 0, 0, 
+	  NH_RADAR_WIDTH, NH_RADAR_HEIGHT);
 	
-	gdk_draw_rectangle(
-	    radar_pixmap2, map_color_gc[CLR_WHITE],
-	    FALSE,
-	    hadj->value / c_3dwidth * NH_RADAR_UNIT,
-	    vadj->value / c_3dheight * NH_RADAR_UNIT,
-	    hadj->page_size / c_3dwidth * NH_RADAR_UNIT,
-	    vadj->page_size / c_3dheight * NH_RADAR_UNIT);
+	gdk_draw_rectangle(radar_pixmap2, map_color_gc[CLR_WHITE], FALSE,
+	  hadj->value / c_3dwidth * NH_RADAR_UNIT,
+	  vadj->value / c_3dheight * NH_RADAR_UNIT,
+	  hadj->page_size / c_3dwidth * NH_RADAR_UNIT,
+	  vadj->page_size / c_3dheight * NH_RADAR_UNIT);
 	
 	update_rect.x = 0;
 	update_rect.y = 0;
@@ -1398,7 +1372,7 @@ nh_map_flush()
     if (!xshm_map_pixmap && !xshm_map_image && !xshm_map_pixbuf)
 	return;		/* Map not realized yet - pend flush */
 
-    if(map_update != 0){
+    if (map_update) {
 	map_update = 0;
 
 	for(j = 0; j < no_rows; j++)

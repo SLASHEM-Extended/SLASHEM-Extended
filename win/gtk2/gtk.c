@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.38 2003-04-26 08:10:37 j_ali Exp $
+  $Id: gtk.c,v 1.39 2003-04-26 10:56:45 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -23,30 +23,30 @@
 #endif
 #include "proxycb.h"
 
-int	GTK_initialized;
-static int	display_inventory_needed;
-static int	in_topten;
-static int	in_player_selection;
+int GTK_initialized;
+static int display_inventory_needed;
+static int in_topten;
+static int in_player_selection;
 
-static void	select_player(GtkWidget *w, guint data);
-static void	key_command(GtkWidget *w, gpointer data);
-static void	move_command(GtkWidget *w, gpointer data);
-static void	fight_command(GtkWidget *w, gpointer data);
-static void	ext_command(GtkWidget *w, gpointer data);
-static void	game_option(GtkWidget *w, gpointer data);
-static void	game_quit(GtkWidget *w, gpointer data);
-static void	game_topten(GtkWidget *w, gpointer data);
-static void	nh_menu_sensitive(char *menu, boolean f);
+static void select_player(GtkWidget *w, guint data);
+static void key_command(GtkWidget *w, gpointer data);
+static void move_command(GtkWidget *w, gpointer data);
+static void fight_command(GtkWidget *w, gpointer data);
+static void ext_command(GtkWidget *w, gpointer data);
+static void game_option(GtkWidget *w, gpointer data);
+static void game_quit(GtkWidget *w, gpointer data);
+static void game_topten(GtkWidget *w, gpointer data);
+static void nh_menu_sensitive(char *menu, boolean f);
 
-static int      GTK_display_file(char *name);
-static void	GTK_display_inventory(void);
+static int GTK_display_file(char *name);
+static void GTK_display_inventory(void);
 
-static void	help_help(GtkWidget *w, gpointer data);
-static void	help_shelp(GtkWidget *w, gpointer data);
-static void	help_option(GtkWidget *w, gpointer data);
-static void	help_je(GtkWidget *w, gpointer data);
-static void	help_history(GtkWidget *w, gpointer data);
-static void	help_license(GtkWidget *w, gpointer data);
+static void help_help(GtkWidget *w, gpointer data);
+static void help_shelp(GtkWidget *w, gpointer data);
+static void help_option(GtkWidget *w, gpointer data);
+static void help_je(GtkWidget *w, gpointer data);
+static void help_history(GtkWidget *w, gpointer data);
+static void help_license(GtkWidget *w, gpointer data);
 
 #define GTK_NORTH	0
 #define GTK_EAST	1
@@ -76,23 +76,23 @@ struct session_window_info {
     {"inventory", NH_SESSION_RESIZABLE, },
 };
 
-static winid		rawprint_win = WIN_ERR;
+static winid rawprint_win = WIN_ERR;
 
 GtkAccelGroup *accel_group=NULL;
 
-GtkWidget		*main_window, *main_vbox;
+GtkWidget *main_window, *main_vbox;
 #ifdef RADAR
-static GtkWidget	*main_radar;
+static GtkWidget *main_radar;
 #endif
 
-static GtkItemFactory	*main_item_factory;
+static GtkItemFactory *main_item_factory;
 
-int			root_width;
-int			root_height;
+int root_width;
+int root_height;
 
-static int		exiting = 0;
+static int exiting = 0;
 
-GdkColor	  nh_color[N_NH_COLORS] = {
+GdkColor nh_color[N_NH_COLORS] = {
     /*
      * Standard NetHack colours (CLR_...)
      * Note: black & white may be remapped depending on map background
@@ -133,8 +133,7 @@ GTK_ext_askname() {
     
     do {
 	if (tryct > 10) panic("Giving up after 10 tries.\n");
-	else tryct++;
-    	
+	    else tryct++;
 	if (buf)
 	    free(buf);
 	buf = GTK_ext_getlin(who_are_you);
@@ -334,9 +333,8 @@ nh_gtk_new(GtkWidget *w, GtkWidget *parent, gchar *lbl)
 #if 0
     /* [ALI] Removed this code, it doesn't seem to achive anything */
     gtk_widget_ref(w);
-    gtk_object_set_data_full(
-	GTK_OBJECT(parent), lbl, w,
-	(GtkDestroyNotify)gtk_widget_unref);
+    gtk_object_set_data_full(GTK_OBJECT(parent), lbl, w,
+      (GtkDestroyNotify)gtk_widget_unref);
 #endif
     gtk_widget_show(w);
 
@@ -348,9 +346,8 @@ nh_gtk_new_and_add(GtkWidget *w, GtkWidget *parent, gchar *lbl)
 {
 #if 0
     gtk_widget_ref(w);
-    gtk_object_set_data_full(
-	GTK_OBJECT(parent), lbl, w,
-	(GtkDestroyNotify)gtk_widget_unref);
+    gtk_object_set_data_full(GTK_OBJECT(parent), lbl, w,
+      (GtkDestroyNotify)gtk_widget_unref);
 #endif
     gtk_widget_show(w);
 
@@ -365,9 +362,8 @@ nh_gtk_new_and_pack(GtkWidget *w, GtkWidget *parent, gchar *lbl,
 {
 #if 0
     gtk_widget_ref(w);
-    gtk_object_set_data_full(
-	GTK_OBJECT(parent), lbl, w,
-	(GtkDestroyNotify)gtk_widget_unref);
+    gtk_object_set_data_full(GTK_OBJECT(parent), lbl, w,
+      (GtkDestroyNotify)gtk_widget_unref);
 #endif
     gtk_widget_show(w);
 
@@ -382,9 +378,8 @@ nh_gtk_new_and_attach(GtkWidget *w, GtkWidget *parent, gchar *lbl,
 {
 #if 0
     gtk_widget_ref(w);
-    gtk_object_set_data_full(
-	GTK_OBJECT(parent), lbl, w,
-	(GtkDestroyNotify)gtk_widget_unref);
+    gtk_object_set_data_full(GTK_OBJECT(parent), lbl, w,
+      (GtkDestroyNotify)gtk_widget_unref);
 #endif
     gtk_widget_show(w);
 
@@ -395,16 +390,13 @@ nh_gtk_new_and_attach(GtkWidget *w, GtkWidget *parent, gchar *lbl,
 
 GtkWidget *
 nh_gtk_new_and_attach2(GtkWidget *w, GtkWidget *parent, gchar *lbl, 
-		      guint a1, guint a2, guint a3, guint a4,
-		      GtkAttachOptions a5,
-		      GtkAttachOptions a6,
-		      guint a7, guint  a8)
+  guint a1, guint a2, guint a3, guint a4, GtkAttachOptions a5,
+  GtkAttachOptions a6, guint a7, guint  a8)
 {
 #if 0
     gtk_widget_ref(w);
-    gtk_object_set_data_full(
-	GTK_OBJECT(parent), lbl, w,
-	(GtkDestroyNotify)gtk_widget_unref);
+    gtk_object_set_data_full(GTK_OBJECT(parent), lbl, w,
+      (GtkDestroyNotify)gtk_widget_unref);
 #endif
     gtk_widget_show(w);
 
@@ -418,8 +410,7 @@ nh_keysym(GdkEventKey *ev)
 {
     int ret;
 
-    switch(ev->keyval)
-    {
+    switch(ev->keyval) {
 	case GDK_Return:
 	case GDK_KP_Enter:
 	    ret = '\n';
@@ -441,9 +432,8 @@ static void
 nh_menu_sensitive(char *menu, boolean f)
 {
     GtkWidget *p;
-    
-    p = gtk_item_factory_get_widget(
-	main_item_factory, menu);
+
+    p = gtk_item_factory_get_widget(main_item_factory, menu);
     gtk_widget_set_sensitive(p, f);
 }
 
@@ -493,8 +483,7 @@ popup_dialog_mapped(GtkWidget *w, gpointer data)
 	    return;
 	/* Wait for Window Manager to place window and add borders */
 	g_timer_start(t);
-	do
-	{
+	do {
 	    if (abandon) {
 		g_timer_destroy(t);
 		return;
@@ -548,7 +537,8 @@ popup_dialog_realizing(GtkWidget *w, gpointer data)
 	if (y + w->allocation.height + popup_dialog_bw > screen_height)
 	    y = screen_height - popup_dialog_bw - w->allocation.height;
 	/* (x,y) is the desired position of the window,
-	 * adjust to take into account the expected border. */
+	 * adjust to take into account the expected border.
+	 */
 	x -= popup_dialog_bw;
 	y -= popup_dialog_bh;
 	if (x < 0) x = 0;
@@ -566,9 +556,9 @@ nh_position_popup_dialog(GtkWidget *w)
     if (GTK_WIDGET_MAPPED(w))
 	popup_dialog_mapped(w, 0);
     gtk_signal_connect(GTK_OBJECT(w), "realize",
-	GTK_SIGNAL_FUNC(popup_dialog_realizing), 0);
+      GTK_SIGNAL_FUNC(popup_dialog_realizing), 0);
     gtk_signal_connect_after(GTK_OBJECT(w), "map",
-	GTK_SIGNAL_FUNC(popup_dialog_mapped), 0);
+      GTK_SIGNAL_FUNC(popup_dialog_mapped), 0);
 }
 
 static int
@@ -743,7 +733,7 @@ nh_session_set_geometry(const char *name, int x, int y, int width, int height)
 		session_window_info[i].flags |= NH_SESSION_USER_POS;
 	    }
 	    if (session_window_info[i].flags & NH_SESSION_RESIZABLE &&
-		    width >= 0 && height >= 0) {
+	      width >= 0 && height >= 0) {
 		session_window_info[i].bounding.width = width;
 		session_window_info[i].bounding.height = height;
 		session_window_info[i].flags |= NH_SESSION_USER_SIZE;
@@ -760,32 +750,30 @@ nh_session_save(struct gtkhackrc *rc)
     for(i = 0; i < SIZE(session_window_info); i++) {
 	if (session_window_info[i].flags & NH_SESSION_USER_POS)
 	    nh_gtkhackrc_store(rc, "window.position(\"%s\") = {%d, %d}",
-		    session_window_info[i].name,
-		    session_window_info[i].bounding.x,
-		    session_window_info[i].bounding.y);
+	      session_window_info[i].name,
+	      session_window_info[i].bounding.x,
+	      session_window_info[i].bounding.y);
 	if (session_window_info[i].flags & NH_SESSION_USER_SIZE)
 	    nh_gtkhackrc_store(rc, "window.size(\"%s\") = {%d, %d}",
-		    session_window_info[i].name,
-		    session_window_info[i].bounding.width -
-		    session_window_info[i].requisition.width,
-		    session_window_info[i].bounding.height -
-		    session_window_info[i].requisition.height);
+	      session_window_info[i].name,
+	      session_window_info[i].bounding.width -
+	      session_window_info[i].requisition.width,
+	      session_window_info[i].bounding.height -
+	      session_window_info[i].requisition.height);
     }
 }
 
 void
 quit_hook()
 {
-#if 0
-    gtk_main_quit();
-#endif
 }
 
 static char nh_key_buffer[32];
 static int nh_key_rp = 0;
 static int nh_key_wp = 0;
 
-void nh_key_add(char c)
+void
+nh_key_add(char c)
 {
     int p;
     p = nh_key_wp + 1;
@@ -798,12 +786,14 @@ void nh_key_add(char c)
     /* else buffer full */
 }
 
-int nh_key_check()
+int
+nh_key_check()
 {
     return nh_key_rp != nh_key_wp;
 }
 
-int nh_key_get()
+int
+nh_key_get()
 {
     int c;
     if (nh_key_rp == nh_key_wp)
@@ -963,7 +953,6 @@ static const int dir_keys[8][2] = {
 static void
 move_command(GtkWidget *widget, gpointer data)
 {
-
     nh_key_add('m');
     nh_key_add(copts.num_pad ? dir_keys[(int)data][1] : dir_keys[(int)data][0]);
 
@@ -1025,7 +1014,7 @@ default_destroy(GtkWidget *widget, gpointer data)
     GtkWindow **w = (GtkWindow **)data;
     *w = NULL;
     nh_key_add('\033');
-    
+
     quit_hook();
     return FALSE;
 }
@@ -1035,8 +1024,7 @@ nh_dir_keysym(GdkEventKey *ev)
 {
     int ret;
 
-    switch(ev->keyval)
-    {
+    switch(ev->keyval) {
 	case GDK_End:
 	case GDK_KP_End:
 	    ret = dir_keys[GTK_SOUTHWEST][!!copts.num_pad];
@@ -1113,7 +1101,8 @@ static struct focus_hierarchy {
 static int focus_game = FALSE;	/* Does any game window have focus? */
 
 #ifdef DEBUG
-static gint focus_dump(void)
+static gint
+focus_dump(void)
 {
     struct focus_hierarchy *fh;
     GSList *list;
@@ -1227,7 +1216,8 @@ focus_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 	return GTK_default_key_press(widget, event, data);
 }
 
-static void focus_set_events(GtkWindow *w)
+static void
+focus_set_events(GtkWindow *w)
 {
     gtk_widget_ref(GTK_WIDGET(w));
     gtk_signal_connect(GTK_OBJECT(w), "focus_in_event",
@@ -1244,7 +1234,8 @@ static void focus_set_events(GtkWindow *w)
       GTK_SIGNAL_FUNC(focus_key_press), 0);
 }
 
-void nh_gtk_focus_set_master(GtkWindow *w, GtkSignalFunc func, gpointer data)
+void
+nh_gtk_focus_set_master(GtkWindow *w, GtkSignalFunc func, gpointer data)
 {
     struct focus_hierarchy *fh;
     g_return_if_fail(w != NULL);
@@ -1261,7 +1252,8 @@ void nh_gtk_focus_set_master(GtkWindow *w, GtkSignalFunc func, gpointer data)
 #endif
 }
 
-void nh_gtk_focus_set_slave_for(GtkWindow *w,GtkWindow *slave_for)
+void
+nh_gtk_focus_set_slave_for(GtkWindow *w,GtkWindow *slave_for)
 {
     struct focus_hierarchy *fh;
     g_return_if_fail(w != NULL);
@@ -1290,8 +1282,7 @@ GTK_default_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 
     keysym = nh_dir_keysym(event);
     if (!keysym)
-	switch(event->keyval)
-	{
+	switch(event->keyval) {
 	    case GDK_Insert:
 	    case GDK_KP_Insert:
 		keysym = 'i';
@@ -1304,8 +1295,7 @@ GTK_default_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 	nh_key_add(keysym);
 	quit_hook();
 	return TRUE;
-    }
-    else
+    } else
 	return FALSE;
 }
 
@@ -1345,8 +1335,7 @@ nh_rc(void)
     if (!new_files)
 	return;
     new_files[0] = (gchar *)rc_file;
-    for(i = 0; files[i]; i++)
-    {
+    for(i = 0; files[i]; i++) {
 	new_files[i + 1] = g_strdup(files[i]);
 	if (!new_files[i + 1]) {
 	    for(; i > 0; i--)
@@ -1513,8 +1502,7 @@ select_node_option(unsigned long key, int level, int indx)
 {
     int rolenum, racenum, n, i, j;
     boolean (*valid)(int rolenum, int racenum, int gendalignnum);
-    switch(level)
-    {
+    switch(level) {
 	case 0:
 	    /* Role */
 	    if (select_player_flags.role >= 0)
@@ -1541,69 +1529,55 @@ select_node_option(unsigned long key, int level, int indx)
 	    /* FALL THROUGH */
 	case 2:
 	    /* Gender */
-	    if (level == 2)
-	    {
+	    if (level == 2) {
 		n = number_genders;
 		valid = valid_gend;
 		i = select_player_flags.gend;
-	    }
-	    else
-	    {
+	    } else {
 		n = number_aligns;
 		valid = valid_align;
 		i = select_player_flags.align;
 	    }
 	    rolenum = SELECT_KEY_ROLENUM(key);
 	    racenum = SELECT_KEY_RACENUM(key);
-	    if (i >= 0)
-	    {
+	    if (i >= 0) {
 		if (rolenum < 0)
 		    if (racenum < 0)
 			return indx ? -1 : i;
-		    else
-		    {
+		    else {
 			for (j = 0; j < number_roles; j++)
 			    if (valid(j, racenum, i))
 				return indx ? -1 : i;
 		    }
-		else if (racenum < 0)
-		{
+		else if (racenum < 0) {
 		    for (j = 0; j < number_races; j++)
 			if (valid(rolenum, j, i))
 			    return indx ? -1 : i;
-		}
-		else if (valid(rolenum, racenum, i))
+		} else if (valid(rolenum, racenum, i))
 		    return indx ? -1 : i;
 	    }
 	    if (rolenum < 0)
-		if (racenum < 0)
-		{
+		if (racenum < 0) {
 		    if (indx >= 0 && indx < n)
 			return indx;
-		}
-		else
-		{
+		} else {
 		    for (i = 0; i < n; i++)
 			for (j = 0; j < number_roles; j++)
-			    if (valid(j, racenum, i))
-			    {
+			    if (valid(j, racenum, i)) {
 				if (!indx--)
 				    return i;
 				break;
 			    }
 		}
-	    else if (racenum < 0)
-	    {
+	    else if (racenum < 0) {
 		for (i = 0; i < n; i++)
 		    for (j = 0; j < number_races; j++)
-			if (valid(rolenum, j, i))
-			{
+			if (valid(rolenum, j, i)) {
 			    if (!indx--)
 				return i;
 			    break;
 			}
-	    }
-	    else
+	    } else
 		for (i = 0; i < n; i++)
 		    if (valid(rolenum, racenum, i))
 			if (!indx--)
@@ -1634,13 +1608,10 @@ select_node_fill(struct select_node *node, int level)
 	shift = SELECT_KEY_GENDSHIFT;
     else
 	shift = SELECT_KEY_ALIGNSHIFT;
-    if (no_opts > 1)
-    {
+    if (no_opts > 1) {
 	node->no_sons = no_opts + 1;
 	count = no_opts + 2;
-    }
-    else
-    {
+    } else {
 	node->no_sons = no_opts;
 	count = no_opts;
     }
@@ -1648,14 +1619,12 @@ select_node_fill(struct select_node *node, int level)
 	count++;
     node->sons = (struct select_node *)alloc(node->no_sons *
       sizeof(struct select_node));
-    for (i = 0; i < node->no_sons; i++)
-    {
+    for (i = 0; i < node->no_sons; i++) {
 	option = select_node_option(node->key, level, i);
 	node->sons[i].key = node->key | (option + 1 << shift);
 	if (level<3)
 	    count += select_node_fill(node->sons + i, level + 1);
-	else
-	{
+	else {
 	    node->sons[i].no_sons = 0;
 	    node->sons[i].sons = NULL;
 	}
@@ -1705,28 +1674,23 @@ select_node_path(unsigned long key, int level, char *leaf)
     path = (gchar *) alloc(len);
     strcpy(path, "/Game/Play");
 #define SELECT_STR(num, str) (((num) >= 0) ? (str) : "Random")
-    if (level > 0)
-    {
+    if (level > 0) {
 	strcat(path, "/");
 	strcat(path, SELECT_STR(rolenum, PLAYER_ROLE_M(rolenum)));
     }
-    if (level > 1)
-    {
+    if (level > 1) {
 	strcat(path, "/");
 	strcat(path, SELECT_STR(racenum, PLAYER_RACE(racenum)));
     }
-    if (level > 2)
-    {
+    if (level > 2) {
 	strcat(path, "/");
 	strcat(path, SELECT_STR(gendnum, PLAYER_GENDER(gendnum)));
     }
-    if (level > 3)
-    {
+    if (level > 3) {
 	strcat(path, "/");
 	strcat(path, SELECT_STR(alignnum, PLAYER_ALIGN(alignnum)));
     }
-    if (leaf)
-    {
+    if (leaf) {
 	strcat(path, "/");
 	strcat(path, leaf);
     }
@@ -1759,18 +1723,13 @@ select_node_accel(unsigned long key)
 	return NULL;
     if (SELECT_KEY_ALIGNNUM(key) >= 0 && select_node_option(key, 3, 1) >= 0)
 	return NULL;
-    if (rolenum < 0)
-    {
+    if (rolenum < 0) {
 	accel = (gchar *) alloc(11);
 	sprintf(accel, "<shift>F12");
-    }
-    else if (rolenum < 12)
-    {
+    } else if (rolenum < 12) {
 	accel = (gchar *) alloc(rolenum > 8 ? 4 : 3);
 	sprintf(accel, "F%d", rolenum + 1);
-    }
-    else
-    {
+    } else {
 	accel = (gchar *) alloc(rolenum > 20 ? 11 : 10);
 	sprintf(accel, "<shift>F%d", rolenum - 11);
     }
@@ -1786,18 +1745,15 @@ select_node_traverse(struct select_node *node, int offset, int level)
 {
     int i;
     char *titles[] = { "Role", "Race", "Gender", "Alignment" };
-    if (node->no_sons)
-    {
+    if (node->no_sons) {
 	menu_items[offset].path =
 	  select_node_path(node->key, level, titles[level]);
 	menu_items[offset].accelerator = NULL;
 	menu_items[offset].callback = NULL;
 	menu_items[offset].callback_action = 0;
 	menu_items[offset++].item_type = "<Title>";
-	for (i = 0; i < node->no_sons; i++)
-	{
-	    if (node->sons[i].key == node->key)
-	    {
+	for (i = 0; i < node->no_sons; i++) {
+	    if (node->sons[i].key == node->key) {
 		menu_items[offset].path =
 		  select_node_path(node->key, level, "GPSepR");
 		menu_items[offset].accelerator = NULL;
@@ -1807,9 +1763,7 @@ select_node_traverse(struct select_node *node, int offset, int level)
 	    }
 	    offset = select_node_traverse(node->sons + i, offset, level + 1);
 	}
-    }
-    else
-    {
+    } else {
 	menu_items[offset].path = select_node_path(node->key, level, NULL);
 	menu_items[offset].accelerator = select_node_accel(node->key);
 	menu_items[offset].callback = select_player;
@@ -1841,8 +1795,7 @@ select_node_dump(struct select_node *node, int level)
 	for(i = 0; i < level; i++)
 	    fputs("    ", stderr);
 	sprintf(buf, "[%d] 0x%lX: ", count++, node->key);
-	switch (level)
-	{
+	switch (level) {
 	case 1:
 	    if (SELECT_KEY_ROLENUM(node->key) >= 0)
 		fprintf(stderr, "%s%s", buf,
@@ -1963,11 +1916,12 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
 {
     char *credit_file;
     int i;
-    GtkWidget 	*credit_window, *credit_vbox, *credit_credit, *main_hbox;
-    GtkWidget	*main_bar;
-    GtkStyle	*credit_style;
-    GdkPixmap	*credit_pixmap;
-    GdkBitmap	*credit_mask;
+    GtkWidget *credit_window, *credit_vbox, *credit_credit, *main_hbox;
+    GtkWidget *main_bar;
+    GtkStyle *credit_style;
+    GdkPixmap *credit_pixmap;
+    GdkBitmap *credit_mask;
+    GdkColormap *cmap;
 
     gtk_set_locale();
     nh_option_cache_set_bool_addr("color", &copts.use_color);
@@ -1980,27 +1934,22 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
 
     gtk_init(argc, &argv);
 
-/*
-  creat credit widget and show
-*/
+    /*
+     * create credit widget and show
+     */
     credit_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_position(GTK_WINDOW(credit_window), GTK_WIN_POS_CENTER);
 
     gtk_container_border_width(GTK_CONTAINER(credit_window), 2);
-/*
-  gtk_signal_connect(GTK_OBJECT(credit_window), "check_resize",
-  GTK_SIGNAL_FUNC(credit_map_event), NULL);
-*/
 
     gtk_signal_connect(GTK_OBJECT(credit_window), "expose_event",
-		       GTK_SIGNAL_FUNC(credit_expose_event), NULL);
+      GTK_SIGNAL_FUNC(credit_expose_event), NULL);
 
     gtk_widget_realize(credit_window);
     root_width = gdk_screen_width();
     root_height = gdk_screen_height();
 
-    credit_vbox = nh_gtk_new_and_add(
-	gtk_vbox_new(FALSE, 0), credit_window, "");
+    credit_vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), credit_window, "");
      
     credit_style = gtk_widget_get_style(credit_window);
 #ifndef FILE_AREAS
@@ -2008,34 +1957,29 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
 #else
     credit_file = make_file_name(FILE_AREA_SHARE, "credit.xpm");
 #endif
-    credit_pixmap = gdk_pixmap_create_from_xpm(
-	credit_window->window,
-	&credit_mask,
-	&credit_style->bg[GTK_STATE_NORMAL],
-	credit_file);
+    credit_pixmap = gdk_pixmap_create_from_xpm(credit_window->window,
+      &credit_mask, &credit_style->bg[GTK_STATE_NORMAL], credit_file);
 #ifdef FILE_AREAS
     free(credit_file);
 #endif
     if (credit_pixmap) {
-	credit_credit = nh_gtk_new_and_pack(
-	    gtk_pixmap_new(credit_pixmap, credit_mask), credit_vbox, "",
-	    FALSE, FALSE, NH_PAD);
+	credit_credit = nh_gtk_new_and_pack(gtk_pixmap_new(credit_pixmap,
+	  credit_mask), credit_vbox, "", FALSE, FALSE, NH_PAD);
 	gdk_pixmap_unref(credit_pixmap);
     }
     gtk_widget_show_all(credit_window);
 
     gtk_main();
 
-/*
-  create main widget
-*/
+    /*
+     * create main widget
+     */
     main_window = nh_session_window_new("main");
     nh_gtk_focus_set_master(GTK_WINDOW(main_window),
       GTK_SIGNAL_FUNC(GTK_default_key_press), 0);
 
-    gtk_signal_connect(
-	GTK_OBJECT(main_window), "delete_event",
-	GTK_SIGNAL_FUNC(main_window_destroy), 0);
+    gtk_signal_connect(GTK_OBJECT(main_window), "delete_event",
+      GTK_SIGNAL_FUNC(main_window_destroy), 0);
 
     gtk_window_set_title(GTK_WINDOW(main_window), DEF_GAME_NAME);
     gtk_widget_set_name(main_window, DEF_GAME_NAME);
@@ -2043,27 +1987,14 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
     gtk_widget_set_events(main_window, GDK_KEY_PRESS_MASK);
     gtk_widget_realize(main_window);
 
-/*
-  allocate color
- */
-    {
-	int 		i;
-	GdkColormap	*cmap;
-
-	cmap = gdk_window_get_colormap(main_window->window);
+    /*
+     * allocate color
+     */
+    cmap = gdk_window_get_colormap(main_window->window);
   
-	for(i=0 ; i < N_NH_COLORS ; ++i){
-	    if(0 && nh_color[i].pixel){
-		nh_color[i] = *(main_window->style->fg);
-	    }
-	    else if(gdk_colormap_alloc_color(cmap, &nh_color[i], FALSE, TRUE) == TRUE){
-		;
-	    }
-	    else{
-		fprintf(stderr, "cannot allocate color\n");
-	    }
-	}
-    }
+    for(i = 0; i < N_NH_COLORS; i++)
+	if (!gdk_colormap_alloc_color(cmap, &nh_color[i], FALSE, TRUE))
+	    fprintf(stderr, "cannot allocate color\n");
 
     main_vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), main_window, "");
 
@@ -2074,49 +2005,38 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
     gtk_accel_group_attach(accel_group, G_OBJECT(main_window));
 #endif
 
-    main_item_factory = gtk_item_factory_new(
-	GTK_TYPE_MENU_BAR, "<main>",
-	accel_group);
+    main_item_factory = gtk_item_factory_new(GTK_TYPE_MENU_BAR, "<main>",
+      accel_group);
 
     main_bar = nh_gtk_new_and_pack(
-	gtk_item_factory_get_widget(main_item_factory, "<main>"), main_vbox, "",
-	FALSE, FALSE, 0);
+      gtk_item_factory_get_widget(main_item_factory, "<main>"), main_vbox, "",
+      FALSE, FALSE, 0);
 
-    main_hbox = nh_gtk_new_and_pack(
-	gtk_hbox_new(FALSE, 1), main_vbox, "",
-	FALSE, FALSE, 0);
+    main_hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 1), main_vbox, "",
+      FALSE, FALSE, 0);
 	
-    gtk_item_factory_create_items(
-	main_item_factory,
-	SIZE(mainmenu_items), mainmenu_items,
-	NULL);
+    gtk_item_factory_create_items(main_item_factory, SIZE(mainmenu_items),
+      mainmenu_items, NULL);
 
-    gtk_item_factory_create_items(
-	main_item_factory,
-	SIZE(playmenu_items), playmenu_items,
-	NULL);
+    gtk_item_factory_create_items(main_item_factory, SIZE(playmenu_items),
+      playmenu_items, NULL);
 
-    gtk_item_factory_create_items(
-	main_item_factory,
-	SIZE(helpmenu_items), helpmenu_items,
-	NULL);
+    gtk_item_factory_create_items(main_item_factory, SIZE(helpmenu_items),
+      helpmenu_items, NULL);
 
     nh_menu_sensitive("/Game/Play", FALSE);
     nh_option_lock(TRUE);
 
-    (void) nh_gtk_new_and_pack(nh_message_new(), main_hbox, "",
-	TRUE, TRUE, 0);
-    (void) nh_gtk_new_and_pack(nh_status_new(), main_hbox, "",
-	FALSE, FALSE, 0);
+    (void) nh_gtk_new_and_pack(nh_message_new(), main_hbox, "", TRUE, TRUE, 0);
+    (void) nh_gtk_new_and_pack(nh_status_new(), main_hbox, "", FALSE, FALSE, 0);
 
 #ifdef RADAR
     main_radar = nh_radar_new();
     nh_gtk_focus_set_slave_for(GTK_WINDOW(main_radar), GTK_WINDOW(main_window));
 #endif
     
-    (void) nh_gtk_new_and_pack(
-	nh_map_new(main_window), main_vbox, "",
-	TRUE, TRUE, 0);
+    (void) nh_gtk_new_and_pack(nh_map_new(main_window), main_vbox, "",
+      TRUE, TRUE, 0);
 
     /*
      * Initialize standard windows. It used to be the case that window type
@@ -2142,12 +2062,13 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
     gtk_widget_hide(credit_window);
     gtk_widget_destroy(credit_window);
     gtk_widget_show_all(main_window);
-    
+
     return TRUE;
 }
 
 #ifdef MONITOR_XRESOURCES
-static int GTK_X11_error_handler(Display *dpy, XErrorEvent *e)
+static int
+GTK_X11_error_handler(Display *dpy, XErrorEvent *e)
 {
     return 0;
 }
@@ -2158,7 +2079,7 @@ GTK_exit_nhwindows(const char *str)
 {
     int id;
 
-    if(str && *str){
+    if (str && *str) {
 	id = GTK_create_nhwindow(NHW_MENU);
 	GTK_putstr(id, 0, str);
 	GTK_display_nhwindow(id, TRUE);
@@ -2220,30 +2141,29 @@ GTK_exit_nhwindows(const char *str)
 winid
 GTK_create_nhwindow(int type)
 {
-    int retval=-1;
-    winid	id;
-    NHWindow	*w;
+    int retval = -1;
+    winid id;
+    NHWindow *w;
 
     switch(type) {
-/* 
-   these windows have already been created
-*/
+    /* 
+     * these windows have already been created
+     */
     case NHW_MESSAGE:
     case NHW_STATUS:
     case NHW_MAP:
 	if (gtkWindows[type].type != type)
-	    panic("GTK_create_nhwindow: standard window (%d) not valid",type);
+	    panic("GTK_create_nhwindow: standard window (%d) not valid", type);
 	retval = type;
 	break;
-/*
-  create new window
-*/
+    /*
+     * create new window
+     */
     case NHW_MENU:
     case NHW_TEXT:
 	for (id = 0; id < MAXWIN; id++) {
 	    w = &gtkWindows[id];
-	    if (w->type == NHW_NONE)
-	    {
+	    if (w->type == NHW_NONE) {
 		memset(w, 0, sizeof(NHWindow));
 		w->type = type;
 		if (type == NHW_MENU)
@@ -2264,10 +2184,9 @@ GTK_create_nhwindow(int type)
 void
 GTK_destroy_nhwindow(winid id)
 {
-    NHWindow *w = &gtkWindows[id]; 
+    NHWindow *w = &gtkWindows[id];
 
-    switch (w->type)
-    {
+    switch (w->type) {
 	case NHW_STATUS:
 	case NHW_MESSAGE:
 	case NHW_MAP:
@@ -2347,7 +2266,7 @@ GTK_display_nhwindow(winid id, BOOLEAN_P blocking)
 		  "clicked", GTK_SIGNAL_FUNC(text_clicked), (gpointer)w->w);
 	    /* Fall through */
 	case NHW_MENU:
-	    if(w->clist &&
+	    if (w->clist &&
 	      w->clist->requisition.height >= (2 * root_height) / 3)
 		gtk_widget_set_usize(w->clist, -1, (2 * root_height) / 3);
 	    if (type == NHW_MENU)
@@ -2376,12 +2295,6 @@ GTK_ext_clear_nhwindow(winid id, int rows, int cols, int layers)
 	nh_map_clear(rows, cols, layers);
 }
 
-/*
-  ATR_ULINE
-  ATR_BOLD
-  ATR_BLINK
-  ATR_INVERSE
- */
 void
 GTK_putstr(winid id, int attr, const char *str)
 {
@@ -2413,11 +2326,10 @@ GTK_putstr(winid id, int attr, const char *str)
 		nh_gtk_focus_set_slave_for(GTK_WINDOW(w->w),
 		  GTK_WINDOW(main_window));
 
-		w->frame = nh_gtk_new_and_add(
-		  gtk_frame_new(NULL), w->w, "");
+		w->frame = nh_gtk_new_and_add(gtk_frame_new(NULL), w->w, "");
 
-		w->vbox = nh_gtk_new_and_add(
-		  gtk_vbox_new(FALSE, 0), w->frame, "");
+		w->vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0),
+		  w->frame, "");
 
 		w->hbox2 = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), w->vbox,
 		  "", FALSE, FALSE, NH_PAD);
@@ -2520,48 +2432,39 @@ GTK_ext_display_file(int fh)
     GtkWidget *text;
     GtkWidget *button;
 
-    char	buf[NH_BUFSIZ];
+    char buf[NH_BUFSIZ];
 
     w = nh_gtk_window_dialog(TRUE);
     gtk_widget_set_name(GTK_WIDGET(w), "fixed font");
 
     nh_position_popup_dialog(GTK_WIDGET(w));
     nh_gtk_focus_set_slave_for(GTK_WINDOW(w), GTK_WINDOW(main_window));
-    hid = gtk_signal_connect(
-	GTK_OBJECT(w), "destroy",
-	GTK_SIGNAL_FUNC(default_destroy), &w);
+    hid = gtk_signal_connect(GTK_OBJECT(w), "destroy",
+      GTK_SIGNAL_FUNC(default_destroy), &w);
 
     vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), w, "");
 
-    label = nh_gtk_new_and_pack(
-	gtk_label_new("HELP"), vbox, "",
-	FALSE, FALSE, NH_PAD);
+    label = nh_gtk_new_and_pack(gtk_label_new("HELP"), vbox, "",
+      FALSE, FALSE, NH_PAD);
 
-    hbox = nh_gtk_new_and_pack(
-	gtk_hbox_new(FALSE, 0), vbox, "",
-	FALSE, FALSE, NH_PAD);
+    hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
+      FALSE, FALSE, NH_PAD);
 
-    text = nh_gtk_new_and_pack(
-	gtk_text_new(NULL, NULL), hbox, "",
-	FALSE, FALSE, NH_PAD);
+    text = nh_gtk_new_and_pack(gtk_text_new(NULL, NULL), hbox, "",
+      FALSE, FALSE, NH_PAD);
 
-    gtk_widget_set_usize(
-	GTK_WIDGET(text), 600, (root_height * 2)/3);
+    gtk_widget_set_usize(GTK_WIDGET(text), 600, (root_height * 2)/3);
 
-    scrollbar = nh_gtk_new_and_pack(
-	gtk_vscrollbar_new(GTK_TEXT(text)->vadj), hbox, "",
-	FALSE, FALSE, NH_PAD);
+    scrollbar = nh_gtk_new_and_pack(gtk_vscrollbar_new(GTK_TEXT(text)->vadj),
+      hbox, "", FALSE, FALSE, NH_PAD);
 
-    hbox2 = nh_gtk_new_and_pack(
-	gtk_hbox_new(FALSE, 0), vbox, "",
-	FALSE, FALSE, NH_PAD);
+    hbox2 = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
+      FALSE, FALSE, NH_PAD);
 
-    button = nh_gtk_new_and_pack(
-	gtk_button_new_with_label("Close"), hbox2, "",
-	TRUE, FALSE, NH_PAD);
-    gtk_signal_connect(
-	GTK_OBJECT(button), "clicked",
-	GTK_SIGNAL_FUNC(default_button_press), (gpointer)'\033');
+    button = nh_gtk_new_and_pack(gtk_button_new_with_label("Close"), hbox2, "",
+      TRUE, FALSE, NH_PAD);
+    gtk_signal_connect(GTK_OBJECT(button), "clicked",
+      GTK_SIGNAL_FUNC(default_button_press), (gpointer)'\033');
 
 #ifndef GTK_PROXY
     while(dlbh_fgets(buf, NH_BUFSIZ, fh)) {
@@ -2602,10 +2505,8 @@ GTK_ext_player_selection(int *role, int *race, int *gend, int *align)
 
     init_select_player(TRUE);
 
-    gtk_item_factory_create_items(
-	main_item_factory,
-	nmenu_items, menu_items,
-	NULL);
+    gtk_item_factory_create_items(main_item_factory, nmenu_items, menu_items,
+      NULL);
 
     nh_menu_sensitive("/Game/Play", TRUE);
     nh_menu_sensitive("/Game/Save", FALSE);
@@ -2666,8 +2567,7 @@ GTK_update_inventory(void)
 #endif
     copts.perm_invent = nh_option_cache_get_bool("perm_invent");
     if (copts.perm_invent) {
-	if (inven == WIN_ERR ||
-		!(gtkWindows[inven].flags & NHWF_DISPLAYED))
+	if (inven == WIN_ERR || !(gtkWindows[inven].flags & NHWF_DISPLAYED))
 	    display_inventory_needed = TRUE;
 	else
 	    GTK_display_inventory();
@@ -2678,13 +2578,11 @@ GTK_update_inventory(void)
 void
 GTK_wait_synch()
 {
-    ;
 }
 
 void
 GTK_mark_synch()
 {
-    ;
 }
 
 volatile int delay_finished;
@@ -2704,8 +2602,7 @@ GTK_number_pad(int state)
 void
 GTK_delay_output()
 {
-    if (GTK_initialized)
-    {
+    if (GTK_initialized) {
 	delay_finished = 0;
 	gtk_timeout_add(50L, delay_timeout, 0);
 	while (!delay_finished)
@@ -2727,35 +2624,34 @@ static struct{
 int
 GTK_ext_outrip(winid id, char *str)
 {
-    int		x, y;
-    int		width;
-    int		total_len, len, line;
-    GtkWidget	*w;
-    GtkWidget	*vbox;
-    GtkWidget	*rip;
-    GdkPixmap 	*rip_pixmap;
-    char	mstr[NH_BUFSIZ];
-    GdkWChar	*wc;
-    GdkWChar	wstr[NH_BUFSIZ];
+    int x, y;
+    int width;
+    int total_len, len, line;
+    GtkWidget *w;
+    GtkWidget *vbox;
+    GtkWidget *rip;
+    GdkPixmap *rip_pixmap;
+    char mstr[NH_BUFSIZ];
+    GdkWChar *wc;
+    GdkWChar wstr[NH_BUFSIZ];
     extern const char *killed_by_prefix[];
-    char	*rip_file;
-    GdkFont	*rip_font;
-    char	*gold;
-    char	*player;
+    char *rip_file;
+    GdkFont *rip_font;
+    char *gold;
+    char *player;
+    gint dummy;
+    gint height = 0, ascent, descent;
 
     w = nh_gtk_window_dialog(TRUE);
     gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
 
-    gtk_widget_set_events(
-	w, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK);
+    gtk_widget_set_events(w, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK);
 
-    gtk_signal_connect(
-	GTK_OBJECT(w), "button_press_event",
-	GTK_SIGNAL_FUNC(default_button_press), NULL);
+    gtk_signal_connect(GTK_OBJECT(w), "button_press_event",
+      GTK_SIGNAL_FUNC(default_button_press), NULL);
     nh_gtk_focus_set_slave_for(GTK_WINDOW(w), GTK_WINDOW(main_window));
-    gtk_signal_connect(
-	GTK_OBJECT(w), "destroy",
-	GTK_SIGNAL_FUNC(default_destroy), &w);
+    gtk_signal_connect(GTK_OBJECT(w), "destroy",
+      GTK_SIGNAL_FUNC(default_destroy), &w);
 
     gtk_widget_realize(w);
 
@@ -2766,8 +2662,7 @@ GTK_ext_outrip(winid id, char *str)
 #else
     rip_file = make_file_name(FILE_AREA_SHARE, "rip.xpm");
 #endif
-    rip_pixmap = gdk_pixmap_create_from_xpm(
-	w->window, 0, 0, rip_file);
+    rip_pixmap = gdk_pixmap_create_from_xpm(w->window, 0, 0, rip_file);
 #ifdef FILE_AREAS
     free(rip_file);
 #endif
@@ -2778,32 +2673,34 @@ GTK_ext_outrip(winid id, char *str)
 	  310, 200);
     }
 
-    rip = nh_gtk_new_and_pack(
-	gtk_pixmap_new(rip_pixmap, 0), vbox, "",
-	FALSE, FALSE, NH_PAD);
+    rip = nh_gtk_new_and_pack(gtk_pixmap_new(rip_pixmap, 0), vbox, "",
+      FALSE, FALSE, NH_PAD);
 
     rip_font = gtk_style_get_font(rip->style);
 
     player = nh_status_last_displayed("player");
     Sprintf(mstr, "%s", player ? player : "Rodney");
-    rip_line[NAME_LINE].len = gdk_mbstowcs(rip_line[NAME_LINE].str, mstr, NH_BUFSIZ);
+    rip_line[NAME_LINE].len = gdk_mbstowcs(rip_line[NAME_LINE].str, mstr,
+      NH_BUFSIZ);
 
     gold = nh_status_last_displayed("gold");
     Sprintf(mstr, "%s Au", gold ? gold : "0");
-    rip_line[GOLD_LINE].len = gdk_mbstowcs(rip_line[GOLD_LINE].str, mstr, NH_BUFSIZ);
+    rip_line[GOLD_LINE].len = gdk_mbstowcs(rip_line[GOLD_LINE].str, mstr,
+      NH_BUFSIZ);
 
     Sprintf(mstr, "%4d", getyear());
-    rip_line[YEAR_LINE].len = gdk_mbstowcs(rip_line[YEAR_LINE].str, mstr, NH_BUFSIZ);
+    rip_line[YEAR_LINE].len = gdk_mbstowcs(rip_line[YEAR_LINE].str, mstr,
+      NH_BUFSIZ);
 
     total_len = gdk_mbstowcs(wstr, str, NH_BUFSIZ);
     line = DEATH_LINE;
     wc = wstr;
 
-    while(total_len > 0 && line < YEAR_LINE){
+    while(total_len > 0 && line < YEAR_LINE) {
 	len = total_len;
-	while(1){
+	while(1) {
 	    width = gdk_text_width_wc(rip_font, wc, len);
-	    if(width < 96)
+	    if (width < 96)
 		break;
 	    --len;
 	}
@@ -2818,32 +2715,18 @@ GTK_ext_outrip(winid id, char *str)
     x = 155;
     y = 78;
 
-    {
-	gint dummy;
-	gint height = 0, ascent, descent;
+    for(line = 0; line <= YEAR_LINE; line++) {
+	gdk_text_extents_wc(rip_font, rip_line[line].str, rip_line[line].len,
+	  &dummy, &dummy, &rip_line[line].width, &ascent, &descent);
+	if (height < (ascent + descent))
+	    height = ascent + descent;
+    }
 
-	for(line = 0 ; line <= YEAR_LINE ; ++line){
-	    gdk_text_extents_wc(
-		rip_font,
-		rip_line[line].str, rip_line[line].len,
-		&dummy,
-		&dummy,
-		&rip_line[line].width,
-		&ascent,
-		&descent);
-	    if(height < (ascent + descent))
-		height = ascent + descent;
-	}
-
-	for(line = 0 ; line <= YEAR_LINE ; ++line){
-	    gdk_draw_text_wc(
-		rip_pixmap,
-		rip_font,
-		rip->style->black_gc,
-		x - rip_line[line].width / 2, y,
-		rip_line[line].str, rip_line[line].len);
-	    y += height;
-	}
+    for(line = 0; line <= YEAR_LINE; line++) {
+	gdk_draw_text_wc(rip_pixmap, rip_font, rip->style->black_gc,
+	  x - rip_line[line].width / 2, y, rip_line[line].str,
+	  rip_line[line].len);
+	y += height;
     }
 
     gtk_widget_show_all(w);
@@ -2855,7 +2738,7 @@ GTK_ext_outrip(winid id, char *str)
 void
 GTK_raw_print(const char *str)
 {
-    if(rawprint_win != WIN_ERR)
+    if (rawprint_win != WIN_ERR)
 	GTK_putstr(rawprint_win, 0, str);
     else {
 #if defined(TTY_GRAPHICS) && !defined(GTK_PROXY)
@@ -2869,7 +2752,7 @@ GTK_raw_print(const char *str)
 void
 GTK_raw_print_bold(const char *str)
 {
-    if(rawprint_win != WIN_ERR)
+    if (rawprint_win != WIN_ERR)
 	GTK_putstr(rawprint_win, ATR_BOLD, str);
     else {
 #if defined(TTY_GRAPHICS) && !defined(GTK_PROXY)

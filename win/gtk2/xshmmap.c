@@ -1,5 +1,5 @@
 /*
-  $Id: xshmmap.c,v 1.3 2003-04-17 23:15:53 j_ali Exp $
+  $Id: xshmmap.c,v 1.4 2003-04-26 10:56:45 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -161,8 +161,7 @@ xshm_map_flush(void)
 	  clip.width, clip.height);
 #endif
 	gtk_widget_draw(xshm.area, &clip);
-    }
-    else if (xshm.dirty) {
+    } else if (xshm.dirty) {
 	gdk_region_get_clipbox(xshm.dirty, &expose_area);
 #ifdef DEBUG
 	time_stamp(stderr);
@@ -299,7 +298,7 @@ expose_event(GtkWidget *widget, GdkEventExpose *event)
 	  min(event->area.width, xshm.map_width),
 	  min(event->area.height, xshm.map_height));
     if (event->area.width > xshm.map_width ||
-		event->area.height > xshm.map_height) {
+      event->area.height > xshm.map_height) {
 	gdk_gc_set_foreground(gc, &widget->style->bg[GTK_STATE_NORMAL]);
 	if (event->area.width > xshm.map_width)
 	    gdk_draw_rectangle(widget->window, gc, TRUE, xshm.map_width, 0,
@@ -388,16 +387,14 @@ xshm_map_size(int mode, int width, int height)
 	gdk_pixmap_unref(xshm_map_pixmap);
 	xshm_map_pixmap = NULL;
 	xshm.pixmap = NULL;
-    }
-    else if (xshm_map_image) {
+    } else if (xshm_map_image) {
 	gdk_image_destroy(xshm_map_image);
 	xshm_map_image = NULL;
 	if (xshm.pixmap) {
 	    gdk_pixmap_unref(xshm.pixmap);
 	    xshm.pixmap = NULL;
 	}
-    }
-    else if (xshm_map_pixbuf) {
+    } else if (xshm_map_pixbuf) {
 	gdk_pixbuf_unref(xshm_map_pixbuf);
 	xshm_map_pixbuf = NULL;
 	gdk_pixmap_unref(xshm.pixmap);
@@ -418,8 +415,7 @@ xshm_map_size(int mode, int width, int height)
 	rect.width = width;
 	rect.height = height;
 	xshm.dirty = gdk_region_rectangle(&rect);
-    }
-    else if (mode == XSHM_MAP_IMAGE) {
+    } else if (mode == XSHM_MAP_IMAGE) {
 #ifdef DEBUG
 	fprintf(stderr, "Map: Switching to image mode\n");
 #endif
@@ -429,8 +425,7 @@ xshm_map_size(int mode, int width, int height)
 	    xshm_map_image =
 	      gdk_image_new(GDK_IMAGE_NORMAL, visual, width, height);
 	    xshm.pixmap = gdk_pixmap_new(xshm.area->window, width, height, -1);
-	}
-	else
+	} else
 	    xshm.pixmap = NULL;
 	if (xshm.pixmap) {
 	    /* Pixmap also needs updating; mark it as such */
@@ -438,11 +433,9 @@ xshm_map_size(int mode, int width, int height)
 	    rect.width = width;
 	    rect.height = height;
 	    xshm.dirty = gdk_region_rectangle(&rect);
-	}
-	else
+	} else
 	    xshm.dirty = NULL;
-    }
-    else {
+    } else {
 #ifdef DEBUG
 	fprintf(stderr, "Map: Switching to pixmap mode\n");
 #endif
@@ -462,8 +455,7 @@ xshm_map_size(int mode, int width, int height)
     if (xshm_map_pixmap) {
 	gdk_drawable_get_size(xshm_map_pixmap, &i, &j);
 	fprintf(stderr, "\txshm_map_pixmap: %d x %d\n", i, j);
-    }
-    else
+    } else
 	fprintf(stderr, "\txshm_map_pixmap: none\n");
     if (xshm_map_pixbuf)
 	fprintf(stderr, "\txshm_map_pixbuf: %d x %d\n",
@@ -474,8 +466,7 @@ xshm_map_size(int mode, int width, int height)
     if (xshm.pixmap) {
 	gdk_drawable_get_size(xshm.pixmap, &i, &j);
 	fprintf(stderr, "\tpixmap: %d x %d\n",i, j);
-    }
-    else
+    } else
 	fprintf(stderr, "\tpixmap: none\n");
     fprintf(stderr, "\tarea: %d x %d\n",
       (int)xshm.hadj->page_size, (int)xshm.vadj->page_size);
@@ -533,8 +524,7 @@ xshm_map_init(enum xshm_map_mode mode, int width, int height)
 	  GTK_SIGNAL_FUNC(realize_event), 0);
 	gtk_widget_ref(xshm.area);
     }
-    if (mode != XSHM_MAP_NONE)
-    {
+    if (mode != XSHM_MAP_NONE) {
 	if (GTK_WIDGET_REALIZED(xshm.area))
 	    xshm_map_size(mode, width, height);
 	else {
@@ -673,8 +663,7 @@ xshm_map_draw_image(GdkImage *src, int src_x, int src_y, int dest_x, int dest_y,
 		for(i = 0; i < width; i++)
 		    gdk_image_put_pixel(xshm_map_image, dest_x + i, dest_y + j,
 		      gdk_image_get_pixel(src, src_x + i, src_y + j));
-	else
-	{
+	else {
 	    dp = xshm_map_image->mem + dest_y * xshm_map_image->bpl +
 	      dest_x * xshm_map_image->bpp;
 	    sp = src->mem + src_y * src->bpl + src_x * src->bpp;
@@ -685,11 +674,9 @@ xshm_map_draw_image(GdkImage *src, int src_x, int src_y, int dest_x, int dest_y,
 		sp += src->bpl;
 	    }
 	}
-    }
-    else {
+    } else
 	gdk_draw_image(xshm_map_pixmap, xshm.gc,
 	  src, src_x, src_y, dest_x, dest_y, width, height);
-    }
     /* Propagate changes */
     area.x = dest_x;
     area.y = dest_y;
@@ -751,11 +738,9 @@ xshm_map_draw_drawable(GdkDrawable *src, int src_x, int src_y,
 		gdk_image_put_pixel(xshm_map_image, dest_x + i, dest_y + j,
 		  gdk_image_get_pixel(tmp_img, i, j));
 	gdk_image_destroy(tmp_img);
-    }
-    else {
+    } else
 	gdk_draw_drawable(xshm_map_pixmap, xshm.gc,
 	  src, src_x, src_y, dest_x, dest_y, width, height);
-    }
     /* Propagate changes */
     area.x = dest_x;
     area.y = dest_y;

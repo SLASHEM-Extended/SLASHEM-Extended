@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.17 2003-04-26 08:08:41 j_ali Exp $
+  $Id: gtkmenu.c,v 1.18 2003-04-26 10:56:45 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -92,15 +92,15 @@ menu_button_clicked(GtkWidget *widget, gpointer data)
 		    w = &gtkWindows[i];
 		    break;
 		}
-    if(!w)
+    if (!w)
 	panic("menu_button_clicked: Can't find window");
 
     w->menu_information->keysym = (int)data;
 
-    if(w->menu_information->keysym == '\033')
+    if (w->menu_information->keysym == '\033')
 	w->menu_information->cancelled = 1;
 
-    if(w->menu_information->keysym)
+    if (w->menu_information->keysym)
 	gtk_main_quit();
 
     return FALSE;
@@ -108,21 +108,20 @@ menu_button_clicked(GtkWidget *widget, gpointer data)
 
 static gint
 menu_selected(GtkWidget *clist, gint row, gint column,
-	      GdkEventButton *event, gpointer data)
+  GdkEventButton *event, gpointer data)
 {
     gchar buf[4];
     NHWindow *w = (NHWindow *)data;
     struct menu_info_t *menu_info = w->menu_information;
 
     menu_info->curr_menu.nhMenuItem[row].selected = 1;
-    ++menu_info->n_select;
+    menu_info->n_select++;
     buf[0] = menu_info->curr_menu.nhMenuItem[row].count >= 0 ? '#' : '-';
     if (menu_info->curr_menu.nhMenuItem[row].gch) {
 	buf[1] = ' ';
 	buf[2] = menu_info->curr_menu.nhMenuItem[row].gch;
 	buf[3] = '\0';
-    }
-    else
+    } else
 	buf[1] = '\0';
     gtk_clist_set_text(GTK_CLIST(clist), row, MENU_COLS - 2, buf);
     return FALSE;
@@ -130,14 +129,14 @@ menu_selected(GtkWidget *clist, gint row, gint column,
 
 static gint
 menu_unselected(GtkWidget *clist, gint row, gint column,
-	      GdkEventButton *event, gpointer data)
+  GdkEventButton *event, gpointer data)
 {
     gchar buf[4];
     NHWindow *w = (NHWindow *)data;
     struct menu_info_t *menu_info = w->menu_information;
 
     menu_info->curr_menu.nhMenuItem[row].selected = 0;
-    --menu_info->n_select;
+    menu_info->n_select--;
     if (menu_info->curr_menu.nhMenuItem[row].gch)
 	sprintf(buf, "- %c", menu_info->curr_menu.nhMenuItem[row].gch);
     else
@@ -161,15 +160,13 @@ GTK_start_menu(winid id)
     /* make sure we're starting with a clean slate */
     menu_info->new_menu.n_menuitem = 0;
 
-    if (!menu_info->new_menu.nhMenuItem)
-    {
+    if (!menu_info->new_menu.nhMenuItem) {
 	menu_info->new_menu.alloc_menuitem = 32;	/* Arbitary */
 	menu_info->new_menu.nhMenuItem = (NHMenuItem *)
 	  malloc((unsigned)(sizeof(NHMenuItem) *
 	  menu_info->new_menu.alloc_menuitem));
     }
-    if (!menu_info->new_menu.nhMenuItem)
-    {
+    if (!menu_info->new_menu.nhMenuItem) {
 	menu_info->new_menu.alloc_menuitem = 1;		/* Minimum */
 	menu_info->new_menu.nhMenuItem =
 	  (NHMenuItem *) malloc(sizeof(NHMenuItem));
@@ -187,144 +184,127 @@ GTK_start_menu(winid id)
 static void
 GTK_init_menu_widgets(NHWindow *w, winid inven)
 {
-     int i;
-     GtkWidget *b;
+    int i;
+    GtkWidget *b;
 
-     if (w->menu_information->cancelled >= 0) {
-	 w->w = nh_gtk_window_dialog(TRUE);
-	 nh_gtk_focus_set_master(GTK_WINDOW(w->w),
-	   GTK_SIGNAL_FUNC(menu_key_press), w);
-	 nh_position_popup_dialog(GTK_WIDGET(w->w));
-     } else {
-	 w->w = nh_session_window_new("inventory");
-	 nh_gtk_focus_set_slave_for(GTK_WINDOW(w->w), GTK_WINDOW(main_window));
-     }
-     gtk_widget_set_name(GTK_WIDGET(w->w), "fixed font");
-     w->hid = gtk_signal_connect(
-	 GTK_OBJECT(w->w), "destroy",
-	 GTK_SIGNAL_FUNC(menu_destroy), w);
+    if (w->menu_information->cancelled >= 0) {
+	w->w = nh_gtk_window_dialog(TRUE);
+	nh_gtk_focus_set_master(GTK_WINDOW(w->w),
+	  GTK_SIGNAL_FUNC(menu_key_press), w);
+	nh_position_popup_dialog(GTK_WIDGET(w->w));
+    } else {
+	w->w = nh_session_window_new("inventory");
+	nh_gtk_focus_set_slave_for(GTK_WINDOW(w->w), GTK_WINDOW(main_window));
+    }
+    gtk_widget_set_name(GTK_WIDGET(w->w), "fixed font");
+    w->hid = gtk_signal_connect(GTK_OBJECT(w->w), "destroy",
+      GTK_SIGNAL_FUNC(menu_destroy), w);
 
-     w->frame = nh_gtk_new_and_add(
-	 gtk_frame_new(NULL), w->w, "");
+    w->frame = nh_gtk_new_and_add(gtk_frame_new(NULL), w->w, "");
 
-     w->vbox = nh_gtk_new_and_add(
-	 gtk_vbox_new(FALSE, 0), w->frame, "");
+    w->vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), w->frame, "");
 
-     w->hbox = nh_gtk_new_and_pack(
-	 gtk_hbox_new(FALSE, 0), w->vbox, "",
-	 FALSE, FALSE, NH_PAD);
+    w->hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), w->vbox, "",
+      FALSE, FALSE, NH_PAD);
 
-     if (w->menu_information->cancelled >= 0) {
-	 b = w->button[0] = nh_gtk_new_and_pack(
-	     gtk_button_new_with_label("ok"), w->hbox, "",
-	     FALSE, FALSE, NH_PAD);
-	 gtk_signal_connect(GTK_OBJECT(b), "clicked",
-		    	    GTK_SIGNAL_FUNC(menu_button_clicked),
-			    (gpointer)'\n');
+    if (w->menu_information->cancelled >= 0) {
+	b = w->button[0] = nh_gtk_new_and_pack(gtk_button_new_with_label("ok"),
+	  w->hbox, "", FALSE, FALSE, NH_PAD);
+	gtk_signal_connect(GTK_OBJECT(b), "clicked",
+	  GTK_SIGNAL_FUNC(menu_button_clicked), (gpointer)'\n');
 
-	 b = w->button[1] = nh_gtk_new_and_pack(
-	     gtk_button_new_with_label("cancel"), w->hbox, "",
-	     FALSE, FALSE, NH_PAD);
-	 gtk_signal_connect(GTK_OBJECT(b), "clicked",
-		    	    GTK_SIGNAL_FUNC(menu_button_clicked),
-			    (gpointer)'\033');
+	b = w->button[1] = nh_gtk_new_and_pack(
+	  gtk_button_new_with_label("cancel"), w->hbox, "",
+	  FALSE, FALSE, NH_PAD);
+	gtk_signal_connect(GTK_OBJECT(b), "clicked",
+	  GTK_SIGNAL_FUNC(menu_button_clicked), (gpointer)'\033');
 
-	 b = w->button[2] = nh_gtk_new_and_pack(
-	     gtk_button_new_with_label("all"), w->hbox, "",
-	     FALSE, FALSE, NH_PAD);
-	 gtk_signal_connect(GTK_OBJECT(b), "clicked",
-			    GTK_SIGNAL_FUNC(menu_button_clicked),
-			    (gpointer)MENU_SELECT_ALL);
+	b = w->button[2] = nh_gtk_new_and_pack(
+	  gtk_button_new_with_label("all"), w->hbox, "",
+	  FALSE, FALSE, NH_PAD);
+	gtk_signal_connect(GTK_OBJECT(b), "clicked",
+	  GTK_SIGNAL_FUNC(menu_button_clicked), (gpointer)MENU_SELECT_ALL);
 
-	 b = w->button[3] = nh_gtk_new_and_pack(
-	     gtk_button_new_with_label("none"), w->hbox, "",
-	     FALSE, FALSE, NH_PAD);
-	 gtk_signal_connect(GTK_OBJECT(b), "clicked",
-			    GTK_SIGNAL_FUNC(menu_button_clicked),
-			    (gpointer)MENU_UNSELECT_ALL);
+	b = w->button[3] = nh_gtk_new_and_pack(
+	  gtk_button_new_with_label("none"), w->hbox, "",
+	  FALSE, FALSE, NH_PAD);
+	gtk_signal_connect(GTK_OBJECT(b), "clicked",
+	  GTK_SIGNAL_FUNC(menu_button_clicked), (gpointer)MENU_UNSELECT_ALL);
 
-	 b = w->button[4] = nh_gtk_new_and_pack(
-	     gtk_button_new_with_label("invert"), w->hbox, "",
-	     FALSE, FALSE, NH_PAD);
-	 gtk_signal_connect(GTK_OBJECT(b), "clicked",
-			    GTK_SIGNAL_FUNC(menu_button_clicked),
-			    (gpointer)MENU_INVERT_ALL);
-     }
-     else
+	b = w->button[4] = nh_gtk_new_and_pack(
+	  gtk_button_new_with_label("invert"), w->hbox, "",
+	  FALSE, FALSE, NH_PAD);
+	gtk_signal_connect(GTK_OBJECT(b), "clicked",
+	  GTK_SIGNAL_FUNC(menu_button_clicked), (gpointer)MENU_INVERT_ALL);
+    } else
 #if GTK_CHECK_VERSION(1,3,12)
 	gtk_window_add_accel_group(GTK_WINDOW(w->w), accel_group);
 #else
 	gtk_accel_group_attach(accel_group, G_OBJECT(w->w));
 #endif
-     w->hbox2 = nh_gtk_new_and_pack(
-	 gtk_hbox_new(FALSE, 0), w->vbox, "",
-	 TRUE, TRUE, NH_PAD);
+    w->hbox2 = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), w->vbox, "",
+      TRUE, TRUE, NH_PAD);
 
-     w->adj = (GtkAdjustment *)gtk_adjustment_new(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-     w->adj2 =
-       (GtkAdjustment *)gtk_adjustment_new(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+    w->adj = (GtkAdjustment *)gtk_adjustment_new(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+    w->adj2 = (GtkAdjustment *)gtk_adjustment_new(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 
-     GTK_load_menu_clist(w, inven);
-     w->clist = nh_gtk_new_and_pack(
-	 GTK_WIDGET(w->clist), w->hbox2, "", TRUE, TRUE, NH_PAD);
+    GTK_load_menu_clist(w, inven);
+    w->clist = nh_gtk_new_and_pack(GTK_WIDGET(w->clist), w->hbox2, "",
+      TRUE, TRUE, NH_PAD);
 
-     gtk_clist_set_vadjustment(GTK_CLIST(w->clist), w->adj);
-     gtk_clist_set_hadjustment(GTK_CLIST(w->clist), w->adj2);
-     gtk_clist_set_selection_mode(GTK_CLIST(w->clist), GTK_SELECTION_EXTENDED);
+    gtk_clist_set_vadjustment(GTK_CLIST(w->clist), w->adj);
+    gtk_clist_set_hadjustment(GTK_CLIST(w->clist), w->adj2);
+    gtk_clist_set_selection_mode(GTK_CLIST(w->clist), GTK_SELECTION_EXTENDED);
 
-     gtk_clist_set_shadow_type(GTK_CLIST(w->clist), GTK_SHADOW_ETCHED_IN);
-     for(i = 0; i < MENU_COLS; i++)
-	 gtk_clist_set_column_auto_resize(GTK_CLIST(w->clist), i, TRUE);
+    gtk_clist_set_shadow_type(GTK_CLIST(w->clist), GTK_SHADOW_ETCHED_IN);
+    for(i = 0; i < MENU_COLS; i++)
+	gtk_clist_set_column_auto_resize(GTK_CLIST(w->clist), i, TRUE);
 #ifdef WINGTK_MENU_IMAGES
-     if (w->menu_information->pixmaps &&
-       GTK_CLIST(w->clist)->row_height < nh_tile_3dheight())
+    if (w->menu_information->pixmaps &&
+      GTK_CLIST(w->clist)->row_height < nh_tile_3dheight())
 	gtk_clist_set_row_height(GTK_CLIST(w->clist), nh_tile_3dheight());
 #endif
 
-     w->scrolled = nh_gtk_new_and_pack(
-	 gtk_vscrollbar_new(GTK_CLIST(w->clist)->vadjustment), w->hbox2,
-	 "", FALSE, FALSE, NH_PAD);
-     w->scrolled2 = nh_gtk_new_and_pack(
-	 gtk_hscrollbar_new(GTK_CLIST(w->clist)->hadjustment), w->vbox,
-	 "", FALSE, FALSE, NH_PAD);
+    w->scrolled = nh_gtk_new_and_pack(
+      gtk_vscrollbar_new(GTK_CLIST(w->clist)->vadjustment), w->hbox2,
+      "", FALSE, FALSE, NH_PAD);
+    w->scrolled2 = nh_gtk_new_and_pack(
+      gtk_hscrollbar_new(GTK_CLIST(w->clist)->hadjustment), w->vbox,
+      "", FALSE, FALSE, NH_PAD);
 
-     if (w->menu_information->cancelled >= 0) {
-	 gtk_signal_connect(GTK_OBJECT(w->clist), "select_row",
-			    GTK_SIGNAL_FUNC(menu_selected), (gpointer)w);
-	 gtk_signal_connect(GTK_OBJECT(w->clist), "unselect_row",
-			    GTK_SIGNAL_FUNC(menu_unselected), (gpointer)w);
+    if (w->menu_information->cancelled >= 0) {
+	gtk_signal_connect(GTK_OBJECT(w->clist), "select_row",
+	  GTK_SIGNAL_FUNC(menu_selected), (gpointer)w);
+	gtk_signal_connect(GTK_OBJECT(w->clist), "unselect_row",
+	  GTK_SIGNAL_FUNC(menu_unselected), (gpointer)w);
 
-	 w->hbox3 = nh_gtk_new_and_pack(
-	     gtk_hbox_new(FALSE, 0), w->vbox, "",
-	     FALSE, FALSE, NH_PAD);
+	w->hbox3 = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), w->vbox, "",
+	  FALSE, FALSE, NH_PAD);
 
-	 b = w->button[5] = nh_gtk_new_and_pack(
-	     gtk_button_new_with_label("Close"), w->hbox3, "",
-	     TRUE, FALSE, 0);
-	 GTK_WIDGET_SET_FLAGS(b, GTK_CAN_DEFAULT);
-	 gtk_widget_grab_default(b);
-	 gtk_signal_connect(GTK_OBJECT(b), "clicked",
-			    GTK_SIGNAL_FUNC(menu_button_clicked),
-			    (gpointer)'\n');
+	b = w->button[5] = nh_gtk_new_and_pack(
+	  gtk_button_new_with_label("Close"), w->hbox3, "", TRUE, FALSE, 0);
+	GTK_WIDGET_SET_FLAGS(b, GTK_CAN_DEFAULT);
+	gtk_widget_grab_default(b);
+	gtk_signal_connect(GTK_OBJECT(b), "clicked",
+	  GTK_SIGNAL_FUNC(menu_button_clicked), (gpointer)'\n');
 
-	 w->n_button = 6;
-     }
-     else
-	 w->n_button = 0;
+	w->n_button = 6;
+    } else
+	w->n_button = 0;
 
-     if(w->menu_information->curr_menu.prompt)
-	  gtk_frame_set_label(GTK_FRAME(w->frame),
-	    w->menu_information->curr_menu.prompt);
+    if (w->menu_information->curr_menu.prompt)
+	gtk_frame_set_label(GTK_FRAME(w->frame),
+	  w->menu_information->curr_menu.prompt);
     
-     w->menu_information->valid_widgets = TRUE;
+    w->menu_information->valid_widgets = TRUE;
 }
 
 static void
 GTK_destroy_menu_widgets(NHWindow *w)
 {
-    if(w->w && w->menu_information->valid_widgets){
+    if (w->w && w->menu_information->valid_widgets) {
 	gtk_widget_hide_all(w->w);
-	if(w->hid > 0)
+	if (w->hid > 0)
 	    gtk_signal_disconnect(GTK_OBJECT(w->w), w->hid);
 
 	gtk_widget_destroy(w->w);
@@ -344,8 +324,7 @@ GTK_load_menu_clist(NHWindow *w, winid inven)
     
     if (w->menu_information->valid_widgets)
 	c = GTK_CLIST(w->clist);
-    else
-    {
+    else {
 	c = GTK_CLIST(gtk_clist_new(MENU_COLS));
 	w->clist = GTK_WIDGET(c);
     }
@@ -359,7 +338,6 @@ GTK_load_menu_clist(NHWindow *w, winid inven)
     w->menu_information->pixmaps = FALSE;
 #endif
     for(j = 0; ; j++) {
-    	
 	for(i = 0; i < MENU_COLS; i++)
 	    if (!gtk_clist_get_text(menu->clist, j, i, &text[i]))
 		break;
@@ -368,7 +346,7 @@ GTK_load_menu_clist(NHWindow *w, winid inven)
 	gtk_clist_append(c, text);
 	if (!menu->nhMenuItem[j].id) {
 	    gtk_clist_set_selectable(c, j, FALSE);
-	    if(menu->nhMenuItem[j].attr == ATR_INVERSE)
+	    if (menu->nhMenuItem[j].attr == ATR_INVERSE)
 		gtk_clist_set_background(c, j, s->dark + GTK_STATE_NORMAL);
 	    switch(menu->nhMenuItem[j].attr) {
 		case ATR_BOLD:
@@ -383,7 +361,7 @@ GTK_load_menu_clist(NHWindow *w, winid inven)
 	    }
 	}
 #ifdef WINGTK_MENU_IMAGES
-	if(menu->nhMenuItem[j].glyph != NO_GLYPH && map_visual){
+	if (menu->nhMenuItem[j].glyph != NO_GLYPH && map_visual) {
 	    GdkPixmap *pixmap;
 	    pixmap = GTK_glyph_to_gdkpixmap(menu->nhMenuItem[j].glyph);
 	    if (pixmap) {
@@ -410,33 +388,32 @@ GTK_load_menu_clist(NHWindow *w, winid inven)
 
 void
 GTK_ext_add_menu(winid id, int glyph, int identifier,
-	     CHAR_P ch,CHAR_P gch ,int attr ,const char *str, 
-	     BOOLEAN_P preselected)
+  CHAR_P ch,CHAR_P gch ,int attr ,const char *str, 
+  BOOLEAN_P preselected)
 {
-     GtkCList	*c;
-     NHWindow	*w;
-     struct menu *menu;
-     char 	buf[2], buf2[4];
-     gchar	*text[MENU_COLS];
+    GtkCList *c;
+    NHWindow *w;
+    struct menu *menu;
+    char buf[2], buf2[4];
+    gchar *text[MENU_COLS];
 
-     if(!str || str[0] == '\0')
-	  return;
+    if (!str || str[0] == '\0')
+	return;
 
-     w = &gtkWindows[id];
-     menu = &w->menu_information->new_menu;
+    w = &gtkWindows[id];
+    menu = &w->menu_information->new_menu;
 
-     c = menu->clist;
+    c = menu->clist;
 
-     if(identifier && !ch){
-	  ch = menu->c_menuitem++;
-	  if(ch == 'z')
-	       menu->c_menuitem = 'A';
-	  else if(ch == 'Z')
-	       menu->c_menuitem = 0;
-     }
+    if (identifier && !ch) {
+	ch = menu->c_menuitem++;
+	if (ch == 'z')
+	    menu->c_menuitem = 'A';
+	else if (ch == 'Z')
+	    menu->c_menuitem = 0;
+    }
 
-     if (menu->n_menuitem >= menu->alloc_menuitem)
-     {
+    if (menu->n_menuitem >= menu->alloc_menuitem) {
 	NHMenuItem *new;
 	new = (NHMenuItem *) realloc((genericptr_t)menu->nhMenuItem,
 	  (unsigned)(sizeof(NHMenuItem) * 2 * menu->alloc_menuitem));
@@ -449,68 +426,63 @@ GTK_ext_add_menu(winid id, int glyph, int identifier,
 	    panic("GTK_add_menu: Memory allocation failure; cannot get %u bytes",
 	      sizeof(NHMenuItem));
 	menu->nhMenuItem = new;
-     }
+    }
 
-     menu->nhMenuItem[menu->n_menuitem].ch = ch;
-     menu->nhMenuItem[menu->n_menuitem].gch = gch;
-     menu->nhMenuItem[menu->n_menuitem].selected = FALSE;
-     menu->nhMenuItem[menu->n_menuitem].count = -1;
-     menu->nhMenuItem[menu->n_menuitem].id = identifier;
-     menu->nhMenuItem[menu->n_menuitem].attr = attr;
-     menu->nhMenuItem[menu->n_menuitem].glyph = glyph;
+    menu->nhMenuItem[menu->n_menuitem].ch = ch;
+    menu->nhMenuItem[menu->n_menuitem].gch = gch;
+    menu->nhMenuItem[menu->n_menuitem].selected = FALSE;
+    menu->nhMenuItem[menu->n_menuitem].count = -1;
+    menu->nhMenuItem[menu->n_menuitem].id = identifier;
+    menu->nhMenuItem[menu->n_menuitem].attr = attr;
+    menu->nhMenuItem[menu->n_menuitem].glyph = glyph;
 
-     text[0] = "";
+    text[0] = "";
 
-     sprintf(buf, "%c", ch);
-     text[MENU_COLS-3] = buf;
+    sprintf(buf, "%c", ch);
+    text[MENU_COLS-3] = buf;
 
-     if(gch){
-	  sprintf(buf2, "- %c", gch);
-	  text[MENU_COLS-2] = buf2;
-     }	  
-     else
-	  text[MENU_COLS-2] = identifier ? "-" : "";
+    if (gch) {
+	sprintf(buf2, "- %c", gch);
+	text[MENU_COLS-2] = buf2;
+    } else
+	text[MENU_COLS-2] = identifier ? "-" : "";
 
-     text[MENU_COLS-1] = (gchar *)str;
+    text[MENU_COLS-1] = (gchar *)str;
 
-     gtk_clist_append(c, text);
+    gtk_clist_append(c, text);
      
-     ++menu->n_menuitem;
+    menu->n_menuitem++;
 }
 
 void
 GTK_end_menu(winid id, const char *prompt)
 {
-     NHWindow	*w;
-     NHMenuItem *new;
-     struct menu *menu;
+    NHWindow *w;
+    NHMenuItem *new;
+    struct menu *menu;
 
-     w = &gtkWindows[id];
-     menu = &w->menu_information->new_menu;
+    w = &gtkWindows[id];
+    menu = &w->menu_information->new_menu;
 
-     new = (NHMenuItem *) realloc((genericptr_t)menu->nhMenuItem,
+    new = (NHMenuItem *) realloc((genericptr_t)menu->nhMenuItem,
       (unsigned)(sizeof(NHMenuItem) * menu->n_menuitem));
-     if (new)
-     {
-          menu->alloc_menuitem = menu->n_menuitem;
-	  menu->nhMenuItem = new;
-     }
+    if (new) {
+	menu->alloc_menuitem = menu->n_menuitem;
+	menu->nhMenuItem = new;
+    }
 
-     menu->prompt = prompt ? strdup(prompt) : (char *)0;
+    menu->prompt = prompt ? strdup(prompt) : (char *)0;
 }
 
 int 
 GTK_ext_select_menu(winid id, int how, struct proxy_mi **menu_list)
 {
-    int	i;
-    int 	n;
-    NHWindow	*w;
+    int i;
+    int n;
+    NHWindow *w;
     struct menu_info_t *menu_info;
-    NHMenuItem	*item;
-    GtkCList	*c;
-/*
-    GtkAdjustment *a, *aa;
-    */
+    NHMenuItem *item;
+    GtkCList *c;
     extern int root_width, root_height;
     gint width, height;
 #ifdef GTK_PROXY
@@ -528,14 +500,12 @@ GTK_ext_select_menu(winid id, int how, struct proxy_mi **menu_list)
     menu_info->count = -1;
     *menu_list = 0;
 
-    if (id == inven)
-    {
+    if (id == inven) {
 	if (menu_info->cancelled < 0 && !copts.perm_invent ||
-	    menu_info->cancelled == 0 && copts.perm_invent)
+	  menu_info->cancelled == 0 && copts.perm_invent)
 	    GTK_destroy_menu_widgets(w);	/* perm_invent changed */
 	menu_info->cancelled = copts.perm_invent ? -1 : 0;
-    }
-    else
+    } else
 	menu_info->cancelled = 0;
 
     /* make new menu the current menu */
@@ -552,10 +522,9 @@ GTK_ext_select_menu(winid id, int how, struct proxy_mi **menu_list)
     else
 	gtk_window_set_title(GTK_WINDOW(w->w), DEF_GAME_NAME " Menu");
 	
-    if(how != PICK_ANY){
-	gtk_clist_set_selection_mode(GTK_CLIST(w->clist),
-	  GTK_SELECTION_SINGLE);
-	if (w->n_button>=4) {
+    if (how != PICK_ANY) {
+	gtk_clist_set_selection_mode(GTK_CLIST(w->clist), GTK_SELECTION_SINGLE);
+	if (w->n_button >= 4) {
 	    gtk_widget_set_sensitive(w->button[1], FALSE);
 	    gtk_widget_set_sensitive(w->button[2], FALSE);
 	    gtk_widget_set_sensitive(w->button[3], FALSE);
@@ -606,27 +575,23 @@ GTK_ext_select_menu(winid id, int how, struct proxy_mi **menu_list)
     gtk_widget_grab_focus(w->clist);
 
     c = GTK_CLIST(w->clist);
-/*    
-    a = GTK_CLIST(w->clist)->vadjustment;
-    aa = GTK_CLIST(w->clist)->hadjustment;
-    */
-    while(1){
+    while(1) {
 	gtk_main();
-	if(menu_info->keysym == '\033' || menu_info->keysym == '\n' ||
+	if (menu_info->keysym == '\033' || menu_info->keysym == '\n' ||
 	  menu_info->keysym == ' ')
 	    break;
 
-	if(how == PICK_ONE && menu_info->n_select == 1)
+	if (how == PICK_ONE && menu_info->n_select == 1)
 	    break;
 
-	if(how != PICK_NONE){
-	    for(i=0 ; i<menu_info->curr_menu.n_menuitem ; ++i){
+	if (how != PICK_NONE) {
+	    for(i = 0; i < menu_info->curr_menu.n_menuitem; i++) {
 		item = &menu_info->curr_menu.nhMenuItem[i];
-		if(how == PICK_ANY){
-		    if(menu_info->keysym == MENU_INVERT_PAGE ||
-		      menu_info->keysym == MENU_INVERT_ALL){
+		if (how == PICK_ANY) {
+		    if (menu_info->keysym == MENU_INVERT_PAGE ||
+		      menu_info->keysym == MENU_INVERT_ALL) {
 			if (item->id) {
-			    if(item->selected)
+			    if (item->selected)
 				gtk_clist_unselect_row(c, i, 0);
 			    else {
 				menu_info->curr_menu.nhMenuItem[i].count = -1;
@@ -634,20 +599,19 @@ GTK_ext_select_menu(winid id, int how, struct proxy_mi **menu_list)
 			    }
 			}
 		    }
-		    if(menu_info->keysym == MENU_UNSELECT_PAGE ||
+		    if (menu_info->keysym == MENU_UNSELECT_PAGE ||
 		      menu_info->keysym == MENU_UNSELECT_ALL){
 			if (item->id)
 			    gtk_clist_unselect_row(c, i, 0);
 		    }
-		    if(menu_info->keysym == MENU_SELECT_PAGE ||
+		    if (menu_info->keysym == MENU_SELECT_PAGE ||
 		      menu_info->keysym == MENU_SELECT_ALL){
 			if (item->id) {
 			    menu_info->curr_menu.nhMenuItem[i].count = -1;
 			    gtk_clist_select_row(c, i, 0);
 			}
-		    }
-		    else if(item->gch == menu_info->keysym){
-			if(item->selected)
+		    } else if (item->gch == menu_info->keysym) {
+			if (item->selected)
 			    gtk_clist_unselect_row(c, i, 0);
 			else {
 			    menu_info->curr_menu.nhMenuItem[i].count = -1;
@@ -655,7 +619,7 @@ GTK_ext_select_menu(winid id, int how, struct proxy_mi **menu_list)
 			}
 		    }
 		}
-		if(item->ch == menu_info->keysym){
+		if (item->ch == menu_info->keysym) {
 		    if (item->selected && menu_info->count < 0)
 			gtk_clist_unselect_row(c, i, 0);
 		    else {
@@ -663,7 +627,7 @@ GTK_ext_select_menu(winid id, int how, struct proxy_mi **menu_list)
 			  menu_info->count;
 			gtk_clist_select_row(c, i, 0);
 		    }
-		    if(how == PICK_ONE)
+		    if (how == PICK_ONE)
 			goto loopout;
 		}
 	    }
@@ -675,33 +639,32 @@ GTK_ext_select_menu(winid id, int how, struct proxy_mi **menu_list)
 		menu_info->count += menu_info->keysym - '0';
 		if (menu_info->count <= 0)
 		    menu_info->count = -1;
-	    }
-	    else
+	    } else
 		menu_info->count = -1;
 	}
     }
- loopout:
-    
+loopout:
+
     GTK_destroy_menu_widgets(w);
     
-    if(menu_info->cancelled)
+    if (menu_info->cancelled)
 	return -1;
     
-    for(i=0 ; i<menu_info->curr_menu.n_menuitem ; ++i)
-	if(menu_info->curr_menu.nhMenuItem[i].selected &&
+    for(i = 0; i < menu_info->curr_menu.n_menuitem; i++)
+	if (menu_info->curr_menu.nhMenuItem[i].selected &&
 	  menu_info->curr_menu.nhMenuItem[i].id)
-	    ++n;
+	    n++;
     
-    if(n > 0){
+    if (n > 0) {
 	*menu_list = (struct proxy_mi *) alloc(n * sizeof(struct proxy_mi));
-	
+
 	n = 0;
-	for(i = 0; i < menu_info->curr_menu.n_menuitem; ++i) {
+	for(i = 0; i < menu_info->curr_menu.n_menuitem; i++) {
 	    item = &menu_info->curr_menu.nhMenuItem[i];
 	    if (item->selected && item->id) {
 		(*menu_list)[n].item = item->id;
 		(*menu_list)[n].count = item->count;
-		++n;
+		n++;
 	    }
 	}
     }
@@ -740,9 +703,9 @@ void
 GTK_create_menu_window(NHWindow *w)
 {
     w->menu_information =
-		(struct menu_info_t *) alloc(sizeof(struct menu_info_t));
+      (struct menu_info_t *) alloc(sizeof(struct menu_info_t));
     (void) memset((genericptr_t) w->menu_information, '\0',
-						sizeof(struct menu_info_t));
+      sizeof(struct menu_info_t));
 }
 
 void
