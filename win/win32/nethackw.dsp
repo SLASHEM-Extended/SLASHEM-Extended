@@ -62,7 +62,7 @@ LINK32=link.exe
 OutDir=.\Release
 SOURCE="$(InputPath)"
 PostBuild_Desc=Install exe
-PostBuild_Cmds=copy $(OutDir)\slashemw.exe ..\binary	 copy ..\dat\nhshare ..\binary	copy ..\dat\nhushare ..\binary	  copy ..\dat\license ..\binary	  if exist ..\src\tiles32.bmp copy ..\src\tiles32.bmp ..\binary	  if exist ..\doc\Guidebook.txt copy ..\doc\Guidebook.txt ..\binary\Guidebook.txt	 if exist ..\doc\slashem.txt copy ..\doc\slashem.txt ..\binary\SlashEM.txt	 copy ..\sys\winnt\defaults.nh ..\binary\defaults.nh
+PostBuild_Cmds=copy $(OutDir)\slashemw.exe ..\binary	 copy ..\dat\nhshare ..\binary	copy ..\dat\nhushare ..\binary	  copy ..\dat\license ..\binary	  if exist ..\src\tiles32.bmp copy ..\src\tiles32.bmp ..\binary\tiles32.bmp	  if exist ..\src\tiles128.bmp copy ..\src\tiles128.bmp ..\binary\tiles128.bmp	  if exist ..\doc\Guidebook.txt copy ..\doc\Guidebook.txt ..\binary\Guidebook.txt	 if exist ..\doc\slashem.txt copy ..\doc\slashem.txt ..\binary\SlashEM.txt	 copy ..\sys\winnt\defaults.nh ..\binary\defaults.nh
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "NetHackW - Win32 Debug"
