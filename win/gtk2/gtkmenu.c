@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.10 2002-06-23 18:31:23 j_ali Exp $
+  $Id: gtkmenu.c,v 1.11 2002-06-29 11:37:45 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -39,7 +39,7 @@ extern GtkAccelGroup	*accel_group;
 
 static void move_menu(struct menu *src_menu, struct menu *dest_menu);
 static void free_menu(struct menu *m);
-static void GTK_load_menu_clist(NHWindow *w);
+static void GTK_load_menu_clist(NHWindow *w, winid inven);
 
 static gint
 menu_destroy(GtkWidget *widget, gpointer data)
@@ -183,7 +183,7 @@ GTK_start_menu(winid id)
 }
 
 static void
-GTK_init_menu_widgets(NHWindow *w)
+GTK_init_menu_widgets(NHWindow *w, winid inven)
 {
      int i;
      GtkWidget *b;
@@ -260,7 +260,7 @@ GTK_init_menu_widgets(NHWindow *w)
 
      w->adj = (GtkAdjustment *)gtk_adjustment_new(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 
-     GTK_load_menu_clist(w);
+     GTK_load_menu_clist(w, inven);
      w->clist = nh_gtk_new_and_pack(
 	 GTK_WIDGET(w->clist), w->hbox2, "", FALSE, FALSE, NH_PAD);
 
@@ -324,7 +324,7 @@ GTK_destroy_menu_widgets(NHWindow *w)
 }
 
 static void
-GTK_load_menu_clist(NHWindow *w)
+GTK_load_menu_clist(NHWindow *w, winid inven)
 {
     int i, j;
     GtkCList *c;
@@ -385,7 +385,7 @@ GTK_load_menu_clist(NHWindow *w)
 #endif
     }
     /* Inventory window doesn't really look good if it's completely empty */
-    if (w-gtkWindows == WIN_INVEN && !j) {
+    if (w-gtkWindows == inven && !j) {
 	if (u.ugold)
 	    text[0] = "Not carrying anything except gold.";
 	else
@@ -500,6 +500,11 @@ GTK_ext_select_menu(winid id, int how, struct proxy_mi **menu_list)
 /*
     GtkAdjustment *a, *aa;
     */
+#ifdef GTK_PROXY
+    winid inven = proxy_cb_get_standard_winid("INVEN");
+#else
+    winid inven = WIN_INVEN;
+#endif
 
     n = 0;
 
@@ -510,7 +515,7 @@ GTK_ext_select_menu(winid id, int how, struct proxy_mi **menu_list)
     menu_info->count = -1;
     *menu_list = 0;
 
-    if (id == WIN_INVEN)
+    if (id == inven)
     {
 	if (menu_info->cancelled < 0 && !copts.perm_invent ||
 	    menu_info->cancelled == 0 && copts.perm_invent)
@@ -525,11 +530,11 @@ GTK_ext_select_menu(winid id, int how, struct proxy_mi **menu_list)
 	move_menu(&menu_info->new_menu, &menu_info->curr_menu);
 
     if (!menu_info->valid_widgets)
-	GTK_init_menu_widgets(w);
+	GTK_init_menu_widgets(w, inven);
     else
-	GTK_load_menu_clist(w);
+	GTK_load_menu_clist(w, inven);
 
-    if (id == WIN_INVEN && copts.perm_invent)
+    if (id == inven && copts.perm_invent)
 	gtk_window_set_title(GTK_WINDOW(w->w), DEF_GAME_NAME " Inventory");
     else
 	gtk_window_set_title(GTK_WINDOW(w->w), DEF_GAME_NAME " Menu");

@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.5 2002-06-23 18:31:23 j_ali Exp $ */
+/* $Id: callback.c,v 1.6 2002-06-29 11:37:45 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -41,6 +41,8 @@ static void FDECL(callback_doset, \
 static void FDECL(callback_get_extended_commands, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(callback_map_menu_cmd, \
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(callback_get_standard_winid, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 
 static void
@@ -351,6 +353,27 @@ NhExtXdr *request, *reply;
     nhext_rpc_params(reply, 1, EXT_INT(retval));
 }
 
+static void
+callback_get_standard_winid(id, request, reply)
+unsigned short id;
+NhExtXdr *request, *reply;
+{
+    char *window;
+    int retval;
+    nhext_rpc_params(request, 1, EXT_STRING_P(window));
+    if (!strcmp(window,"MESSAGE"))
+	retval = WIN_MESSAGE;
+    else if (!strcmp(window,"STATUS"))
+	retval = WIN_STATUS;
+    else if (!strcmp(window,"MAP"))
+	retval = WIN_MAP;
+    else if (!strcmp(window,"INVEN"))
+	retval = WIN_INVEN;
+    else
+	retval = -1;
+    nhext_rpc_params(reply, 1, EXT_INT(retval));
+}
+
 struct nhext_svc proxy_callbacks[] = {
     EXT_CID_DISPLAY_INVENTORY,		callback_display_inventory,
     EXT_CID_DLBH_FOPEN,			callback_dlbh_fopen,
@@ -368,5 +391,6 @@ struct nhext_svc proxy_callbacks[] = {
     EXT_CID_DOSET,			callback_doset,
     EXT_CID_GET_EXTENDED_COMMANDS,	callback_get_extended_commands,
     EXT_CID_MAP_MENU_CMD,		callback_map_menu_cmd,
+    EXT_CID_GET_STANDARD_WINID,		callback_get_standard_winid,
     0, NULL,
 };

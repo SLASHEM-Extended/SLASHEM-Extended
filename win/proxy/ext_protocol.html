@@ -949,6 +949,29 @@ struct outrip_res {
 
 <h2>Standard window port call backs</h2>
 
+Plug-in window ports may assume that the following call backs are supported.
+
+<p><table>
+<tr><th>Call back</th><th>ID</th></tr>
+<tr><td>display_inventory</td><td>0x01</td></tr>
+<tr><td>dlbh_fopen</td><td>0x02</td></tr>
+<tr><td>dlbh_fgets</td><td>0x03</td></tr>
+<tr><td>dlbh_fclose</td><td>0x04</td></tr>
+<tr><td>flush_screen</td><td>0x05</td></tr>
+<tr><td>doredraw</td><td>0x06</td></tr>
+<tr><td>status_mode</td><td>0x07</td></tr>
+<tr><td>parse_options</td><td>0x08</td></tr>
+<tr><td>get_option</td><td>0x09</td></tr>
+<tr><td>get_player_choices</td><td>0x0A</td></tr>
+<tr><td>is_valid_selection</td><td>0x0B</td></tr>
+<tr><td>quit_game</td><td>0x0C</td></tr>
+<tr><td>display_score</td><td>0x0D</td></tr>
+<tr><td>doset</td><td>0x0E</td></tr>
+<tr><td>get_extended_commands</td><td>0x0F</td></tr>
+<tr><td>map_menu_cmd</td><td>0x10</td></tr>
+<tr><td>get_standard_winid</td><td>0x11</td></tr>
+</table>
+
 <h3>display_inventory</h3>
 display_inventory takes no arguments and returns no values.
 
@@ -1157,6 +1180,29 @@ struct map_menu_cmd_res {
 
 <p>Map the given character to its corresponding menu command. If it
 doesn't match anything, just return the original.
+
+<h3>get_standard_winid</h3>
+<pre>
+struct get_standard_winid_req {
+    string window<>;
+};
+
+struct get_standard_winid_res {
+    winid retval;
+};
+</pre>
+
+<p>Return the window ID of standard windows (this will be -1 if the window is not open).
+The following window names are currently recognized:
+<table>
+<tr><th>Name</th><th>Window</th></tr>
+<tr><td>MESSAGE</td><td>The message window</td></tr>
+<tr><td>STATUS</td><td>The status window</td></tr>
+<tr><td>MAP</td><td>The map window</td></tr>
+<tr><td>INVEN</td><td>The permanent inventory window or, if none, the current transitory inventory window</td></tr>
+</table>
+
+<p>Unrecognized windows will return -1.
 
 </body>
 </html>

@@ -378,6 +378,7 @@ ver 0.0.6E6 [?] [Released by ?]
 -Proxy: Add doset callback.
 -Proxy: Add get extended commands callback.
 -Proxy: Add map menu cmd callback.
+-Proxy: Add get standard winid callback.
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).

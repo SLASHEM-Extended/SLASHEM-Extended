@@ -1,4 +1,4 @@
-/* $Id: proxycb.c,v 1.5 2002-06-23 18:31:23 j_ali Exp $ */
+/* $Id: proxycb.c,v 1.6 2002-06-29 11:37:45 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -171,5 +171,15 @@ int ch;
 {
     int retval;
     nhext_rpc(EXT_CID_MAP_MENU_CMD, 1, EXT_INT(ch), 1, EXT_INT_P(retval));
+    return retval;
+}
+
+winid
+proxy_cb_get_standard_winid(window)
+char *window;
+{
+    winid retval;
+    nhext_rpc(EXT_CID_GET_STANDARD_WINID, 1, EXT_STRING(window),
+      1, EXT_WINID_P(retval));
     return retval;
 }

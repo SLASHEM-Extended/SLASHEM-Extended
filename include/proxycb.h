@@ -1,4 +1,4 @@
-/* $Id: proxycb.h,v 1.5 2002-06-23 18:31:23 j_ali Exp $ */
+/* $Id: proxycb.h,v 1.6 2002-06-29 11:37:45 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -21,6 +21,7 @@
 #define EXT_CID_DOSET			0x0E
 #define EXT_CID_GET_EXTENDED_COMMANDS	0x0F
 #define EXT_CID_MAP_MENU_CMD		0x10
+#define EXT_CID_GET_STANDARD_WINID	0x11
 
 struct proxycb_get_player_choices_res_role {
 	const char *male;
@@ -65,6 +66,7 @@ extern struct proxycb_get_extended_commands_res
 extern void FDECL(proxy_cb_free_extended_commands,
 		(struct proxycb_get_extended_commands_res *commands));
 extern int FDECL(proxy_cb_map_menu_cmd, (int));
+extern winid FDECL(proxy_cb_get_standard_winid, (char *));
 
 #ifdef NHXDR_H
 extern boolean FDECL(proxycb_xdr_get_player_choices_res_role,

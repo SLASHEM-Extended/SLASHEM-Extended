@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.15 2002-06-23 18:31:23 j_ali Exp $
+  $Id: gtk.c,v 1.16 2002-06-29 11:37:45 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -2358,14 +2358,19 @@ GTK_display_inventory(void)
 void
 GTK_update_inventory(void)
 {
+#ifdef GTK_PROXY
+    winid inven = proxy_cb_get_standard_winid("INVEN");
+#else
+    winid inven = WIN_INVEN;
+#endif
     if (copts.perm_invent) {
-	if (WIN_INVEN == WIN_ERR ||
-		!(gtkWindows[WIN_INVEN].flags & NHWF_DISPLAYED))
+	if (inven == WIN_ERR ||
+		!(gtkWindows[inven].flags & NHWF_DISPLAYED))
 	    display_inventory_needed = TRUE;
 	else
 	    GTK_display_inventory();
-    } else if (WIN_INVEN != WIN_ERR)
-	GTK_unmap_menu_window(&gtkWindows[WIN_INVEN]);
+    } else if (inven != WIN_ERR)
+	GTK_unmap_menu_window(&gtkWindows[inven]);
 }
 
 void
