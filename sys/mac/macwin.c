@@ -476,7 +476,7 @@ SanePositions (void) {
 	short left, top, width, height;
 	int ix, numText = 0, numMenu = 0;
 	int mbar_height = GetMBarHeight ();
-	Rect screenArea = qd.thePort->portBits.bounds;
+	Rect screenArea = qd.screenBits.bounds;
 	WindowPtr theWindow;
 	NhWindow *nhWin;
 
@@ -506,7 +506,6 @@ SanePositions (void) {
 		} else if (height < MIN_HEIGHT) {
 			height = MIN_HEIGHT;
 			width = MIN_WIDTH;
-			left = screenArea.right - width;
 			top = screenArea.bottom - MIN_HEIGHT;
 		}
 	}
