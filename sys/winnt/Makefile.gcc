@@ -54,7 +54,7 @@ WTTY = ..\win\tty
 WGTK = ..\win\gtk
 WSHR = ..\win\share
 # From GIMP
-GNUDLL = \progra~1\common~1\gnu
+GNUDLL = f:\progra~1\common~1\gnu
 
 #
 #  Executables.
@@ -552,7 +552,12 @@ ifneq ($(USE_GTK),N)
 #	$(COPY) $(MW32GTK)\src\gtk+\gtk\gtk*.dll $(GAMEDIR)
 #	$(COPY) $(MW32GTK)\src\libiconv-1.3\src\iconv*.dll $(GAMEDIR)
 #	$(COPY) $(MW32GTK)\src\intl\gnu*.dll $(GAMEDIR)
-	$(COPY) $(GNUDLL)\\*.dll $(GAMEDIR)
+	$(COPY) $(GNUDLL)\\glib*.dll $(GAMEDIR)
+	$(COPY) $(GNUDLL)\\iconv*.dll $(GAMEDIR)
+	$(COPY) $(GNUDLL)\\gdk*.dll $(GAMEDIR)
+	$(COPY) $(GNUDLL)\\gtk*.dll $(GAMEDIR)
+	$(COPY) $(GNUDLL)\\gmodule*.dll $(GAMEDIR)
+	$(COPY) $(GNUDLL)\\gnu*.dll $(GAMEDIR)
 ifeq ($(GTK_TARGET),2.0)
 	$(RCOPY) $(MW32GTK)\etc $(GAMEDIR)
 	-$(RDEL) $(GAMEDIR)\lib
