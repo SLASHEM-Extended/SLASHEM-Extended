@@ -583,7 +583,8 @@ die:
 	/* in case of a subsequent panic(), there's no point trying to save */
 	program_state.something_worth_saving = 0;
 	/* turn off vision subsystem */
-	vision_recalc(2);
+	if (viz_array)
+	    vision_recalc(2);
 	/* might have been killed while using a disposable item, so make sure
 	   it's gone prior to inventory disclosure and creation of bones data */
 	inven_inuse(TRUE);

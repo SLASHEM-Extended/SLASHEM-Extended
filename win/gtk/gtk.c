@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.3 2000-08-30 13:48:51 j_ali Exp $
+  $Id: gtk.c,v 1.4 2000-09-05 18:30:18 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -20,6 +20,7 @@
 
 static int	initialized;
 static int	initialized2;
+static int	in_topten;
 
 static void	select_player(GtkWidget *w, guint data);
 static void	key_command(GtkWidget *w, gpointer data);
@@ -412,7 +413,8 @@ main_hook()
 {
     nh_map_check_visibility();
 #ifdef RADAR
-    nh_radar_update();
+    if (!in_topten)
+	nh_radar_update();
 #endif
 
     gtk_main();
@@ -434,12 +436,15 @@ game_topten(GtkWidget *widget, gpointer data)
 	"-sall",
     };
     
+    in_topten++;			/* Prevent radar window appearing */
     id = rawprint_win = create_toptenwin();
     prscore(2, argv);
     GTK_display_nhwindow(id, TRUE);
     GTK_destroy_nhwindow(id);
+    dlb_init();				/* Re-initialise DLB */
     rawprint_win = WIN_ERR;
     keysym = '\0';
+    in_topten--;
 }
 
 static void
@@ -1129,11 +1134,12 @@ GTK_init_nhwindows(int *argc, char **argv)
 #ifdef FILE_AREAS
     free(credit_file);
 #endif
-    credit_credit = nh_gtk_new_and_pack(
-	gtk_pixmap_new(credit_pixmap, credit_mask), credit_vbox, "",
-	FALSE, FALSE, NH_PAD);
-
+    if (credit_pixmap)
+	credit_credit = nh_gtk_new_and_pack(
+	    gtk_pixmap_new(credit_pixmap, credit_mask), credit_vbox, "",
+	    FALSE, FALSE, NH_PAD);
     gtk_widget_show_all(credit_window);
+
     gtk_main();
 
 /*

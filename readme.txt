@@ -355,6 +355,7 @@ ver 0.0.6E4F0 [September XX/2000]
 -fixed bug 112614: rage eruption no longer drains energy
 -fixed bug 112616: dazzle no longer causes segfault, has limited range
 -integrated changes from Allegrohack 1.5
+-fixed bug 113366: GTK: Checking your scores before starting a game panics
 
 ver 0.0.6E3F1 [August 21/2000] [Released by Ali]
 -fixed some bugs in the zap/cast code for magic missile, fire, cold, fireball, etc.
