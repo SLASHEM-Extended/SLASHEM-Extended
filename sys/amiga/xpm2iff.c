@@ -15,12 +15,10 @@
 #include <graphics/view.h>
 #include <libraries/iffparse.h>
 #include <libraries/dos.h>
-#include <clib/dos_protos.h>
-#include <clib/iffparse_protos.h>
 #ifndef _DCC
-# include <pragmas/iffparse_pragmas.h>
-# include <pragmas/dos_pragmas.h>
-# include <pragmas/exec_pragmas.h>
+# include <proto/iffparse.h>
+# include <proto/dos.h>
+# include <proto/exec.h>
 #endif
 
 struct xpmscreen {
@@ -60,12 +58,6 @@ int colorsinmap;
 						 * rounding requirements.
 						 */
 #define	ID_PLNE	MAKE_ID( 'P', 'L', 'N', 'E' )	/* The planes of the image */
-
-extern struct DOSBase *DOSBase;
-#ifndef _DCC
-extern
-#endif
-struct Library *IFFParseBase;
 
 int nplanes;
 
@@ -117,7 +109,7 @@ main( int argc, char **argv )
     int tiles=0;
     int index;
 
-#ifdef _DCC
+#if defined(_DCC) || defined (__GNUC__)
     IFFParseBase = OpenLibrary( "iffparse.library", 0 );
     if( !IFFParseBase ) {
 	error( "unable to open iffparse.library" );
@@ -242,7 +234,7 @@ main( int argc, char **argv )
     Close( iff->iff_Stream );
     FreeIFF( iff );
 
-#ifdef _DCC
+#if defined(_DCC) || defined (__GNUC__)
     CloseLibrary( IFFParseBase );
 #endif
     exit( 0 );

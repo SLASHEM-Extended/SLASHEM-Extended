@@ -21,7 +21,11 @@ static void ProcessMessage( register struct IntuiMessage *message );
 
 #define BufferQueueChar(ch) (KbdBuffer[KbdBuffered++] = (ch))
 
+#ifdef __GNUC__ /* Conflicting includefiles ... */
+struct Device *ConsoleDevice;
+#else
 struct Library *ConsoleDevice;
+#endif
 
 #include "NH:sys/amiga/amimenu.c"
 
@@ -41,8 +45,6 @@ WEVENT lastevent;
 struct GfxBase *GfxBase;
 struct Library *DiskfontBase;
 #endif
-
-extern struct Library *ConsoleDevice;
 
 #define KBDBUFFER   10
 static unsigned char KbdBuffer[KBDBUFFER];
@@ -208,7 +210,7 @@ register struct IntuiMessage *message;
 		return( -1 );
 	    }
 #ifdef	CLIPPING
-	    else if( control )
+	    else if( WINVERS_AMIV && control )
 	    {
 		EditClipping();
 
@@ -290,6 +292,11 @@ arrow:
 		length = numpad[length];
 	    }
 	}
+
+	/* Kludge to allow altmeta on eg. scandinavian keymap (# == shift+alt+3)
+           and prevent it from interfering with # command (M-#) */
+	if (length == ('#'|0x80))
+	    return '#';
 	if (alt && flags.altmeta)
 	    length |= 0x80;
 	return(length);
@@ -628,7 +635,7 @@ void amii_cleanup()
     ConsoleIO.io_Device = 0;
 
     if( ConsoleIO.io_Message.mn_ReplyPort )
-	DeletePort( ConsoleIO.io_Message.mn_ReplyPort );
+	DeleteMsgPort( ConsoleIO.io_Message.mn_ReplyPort );
     ConsoleIO.io_Message.mn_ReplyPort = 0;
 
     /* Strip messages before deleting the port */
@@ -638,7 +645,7 @@ void amii_cleanup()
 	while (msg = (struct IntuiMessage *) GetMsg(HackPort))
 	    ReplyMsg((struct Message *) msg);
 	kill_nhwindows( 1 );
-	DeletePort( HackPort );
+	DeleteMsgPort( HackPort );
 	HackPort = NULL;
 	Permit();
     }
@@ -700,8 +707,12 @@ void amii_cleanup()
     }
 #endif
 
-    if( WINVERS_AMIV && LayersBase)
-    {
+    if (GadToolsBase) {
+	CloseLibrary((struct Library *)GadToolsBase);
+	GadToolsBase=NULL;
+    }
+
+    if (LayersBase) {
 	CloseLibrary((struct Library *)LayersBase);
 	LayersBase = NULL;
     }
@@ -866,6 +877,7 @@ DupNewWindow( win )
 	    nwin->FirstGadget = ngd;
 	pgd = ngd;
 	ngd->NextGadget = NULL;
+	ngd->UserData = (APTR) 0x45f35c3d;  // magic cookie for FreeNewWindow()
     }
     return( nwin );
 }
@@ -877,21 +889,18 @@ FreeNewWindow( win )
     register struct Gadget *gd, *pgd;
     register struct StringInfo *sip;
 
-    for( gd = win->FirstGadget; gd; gd = pgd )
-    {
+    for( gd = win->FirstGadget; gd; gd = pgd ) {
 	pgd = gd->NextGadget;
-	if( gd->GadgetType == STRGADGET )
-	{
-	    sip = (struct StringInfo *)gd->SpecialInfo;
-	    free( sip->Buffer );
-	    free( sip );
+	if ((ULONG)gd->UserData == 0x45f35c3d) {
+	    if( gd->GadgetType == STRGADGET ) {
+		sip = (struct StringInfo *)gd->SpecialInfo;
+		free( sip->Buffer );
+		free( sip );
+	    } else if( gd->GadgetType == PROPGADGET ) {
+		free( (struct PropInfo *)gd->SpecialInfo );
+	    }
+	    free( gd );
 	}
-	else if( gd->GadgetType == PROPGADGET )
-
-	{
-	    free( (struct PropInfo *)gd->SpecialInfo );
-	}
-	free( gd );
     }
     free( win );
 }

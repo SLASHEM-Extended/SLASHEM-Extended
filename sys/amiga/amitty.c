@@ -25,7 +25,9 @@ char *NDECL( tty_get_color_string );
 
 #ifdef TTY_GRAPHICS
 
-extern long afh_in;
+int amibbs=0;			/* BBS mode */
+char bbs_id[80]="";		/* BBS uid equivalent */
+long afh_in, afh_out;		/* BBS mode Amiga filehandles */
 
 void settty(const char *s){
 	end_screen();

@@ -158,7 +158,7 @@ makesound ( char *actualn , char * melody, int vol )
 	if( AudioIO == 0 )
 		goto killaudio;
 
-	AudioMP = CreatePort( NULL, 0 );
+	AudioMP = CreateMsgPort();
 	if( AudioMP == 0 )
 		goto killaudio;
 
@@ -279,6 +279,6 @@ makesound ( char *actualn , char * melody, int vol )
 	if( stream ) dlb_fclose( stream );
 	if( waveptr ) FreeMem( waveptr, samples );
 	if( device == 0 ) CloseDevice( (struct IORequest *)AudioIO );
-	if( AudioMP ) DeletePort( AudioMP );
+	if( AudioMP ) DeleteMsgPort( AudioMP );
 	if( AudioIO ) FreeMem( AudioIO, sizeof( *AudioIO ) );
 }

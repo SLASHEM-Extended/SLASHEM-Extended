@@ -29,6 +29,7 @@ long amii_scrnmode;
 struct window_procs amii_procs =
 {
     "amii",
+    WC_COLOR|WC_HILITE_PET|WC_INVERSE,
     amii_init_nhwindows,
     amii_player_selection,
     amii_askname,
@@ -76,7 +77,8 @@ struct window_procs amii_procs =
     /* other defs that really should go away (they're tty specific) */
     amii_delay_output,
     amii_delay_output,
-    amii_outrip
+    amii_outrip,
+    genl_preference_update
 };
 
 /* The view window layout uses the same function names so we can use
@@ -85,6 +87,7 @@ struct window_procs amii_procs =
 struct window_procs amiv_procs =
 {
     "amitile",
+    WC_COLOR|WC_HILITE_PET|WC_INVERSE,
     amii_init_nhwindows,
     amii_player_selection,
     amii_askname,
@@ -132,11 +135,12 @@ struct window_procs amiv_procs =
     /* other defs that really should go away (they're tty specific) */
     amii_delay_output,
     amii_delay_output,
-    amii_outrip
+    amii_outrip,
+    genl_preference_update
 };
 
 unsigned short amii_initmap[ AMII_MAXCOLORS ];
-/* Default pens used unless use overides in nethack.cnf. */
+/* Default pens used unless user overides in nethack.cnf. */
 unsigned short amii_init_map[ AMII_MAXCOLORS ] =
 {
     0x0000, /* color #0  C_BLACK    */
@@ -235,8 +239,10 @@ int wincnt=0;   /* # of nh windows opened */
  */
 
 #ifdef  INTUI_NEW_LOOK
+extern struct Hook fillhook;
 struct TagItem tags[] =
 {
+    { WA_BackFill, (ULONG)&fillhook },
     { WA_PubScreenName, (ULONG)"NetHack" },
     { TAG_DONE, 0 },
 };
@@ -262,9 +268,11 @@ struct win_setup new_wins[] =
     |WFLG_NW_EXTENDED
 #endif
     ,
-    NULL,NULL,(UBYTE*)"Messages",NULL,NULL,320,40,0xffff,0xffff,CUSTOMSCREEN,
+    NULL,NULL,(UBYTE*)"Messages",NULL,NULL,320,40,0xffff,0xffff,
 #ifdef  INTUI_NEW_LOOK
-    tags
+    PUBLICSCREEN,tags
+#else
+    CUSTOMSCREEN
 #endif
     },
     0,0,1,1,80,80},
@@ -278,9 +286,11 @@ struct win_setup new_wins[] =
     |WFLG_NW_EXTENDED
 #endif
     ,
-    NULL,NULL,(UBYTE*)"Game Status",NULL,NULL,0,0,0xffff,0xffff,CUSTOMSCREEN,
+    NULL,NULL,(UBYTE*)"Game Status",NULL,NULL,0,0,0xffff,0xffff,
 #ifdef  INTUI_NEW_LOOK
-    tags
+    PUBLICSCREEN,tags
+#else
+    CUSTOMSCREEN
 #endif
     },
     0,0,2,2,78,78},
@@ -294,9 +304,11 @@ struct win_setup new_wins[] =
     |WFLG_NW_EXTENDED
 #endif
     ,
-    NULL,NULL,(UBYTE*)"Dungeon Map",NULL,NULL,64,64,0xffff,0xffff,CUSTOMSCREEN,
+    NULL,NULL,(UBYTE*)"Dungeon Map",NULL,NULL,64,64,0xffff,0xffff,
 #ifdef  INTUI_NEW_LOOK
-    tags
+    PUBLICSCREEN,tags
+#else
+    CUSTOMSCREEN
 #endif
     },
     0,0,22,22,80,80},
@@ -311,9 +323,11 @@ struct win_setup new_wins[] =
     |WFLG_NW_EXTENDED
 #endif
     ,
-    &MenuScroll,NULL,NULL,NULL,NULL,64,32,0xffff,0xffff,CUSTOMSCREEN,
+    &MenuScroll,NULL,NULL,NULL,NULL,64,32,0xffff,0xffff,
 #ifdef  INTUI_NEW_LOOK
-    tags
+    PUBLICSCREEN,tags
+#else
+    CUSTOMSCREEN
 #endif
     },
     0,0,1,1,22,78},
@@ -328,9 +342,11 @@ struct win_setup new_wins[] =
     |WFLG_NW_EXTENDED
 #endif
     ,
-    &MenuScroll,NULL,(UBYTE*)NULL,NULL,NULL,100,32,0xffff,0xffff,CUSTOMSCREEN,
+    &MenuScroll,NULL,(UBYTE*)NULL,NULL,NULL,100,32,0xffff,0xffff,
 #ifdef  INTUI_NEW_LOOK
-    tags
+    PUBLICSCREEN,tags
+#else
+    CUSTOMSCREEN
 #endif
     },
     0,0,1,1,22,78},
@@ -344,9 +360,11 @@ struct win_setup new_wins[] =
     |WFLG_NW_EXTENDED
 #endif
     ,
-    NULL,NULL,(UBYTE*)NULL,NULL,NULL,-1,-1,0xffff,0xffff,CUSTOMSCREEN,
+    NULL,NULL,(UBYTE*)NULL,NULL,NULL,-1,-1,0xffff,0xffff,
 #ifdef  INTUI_NEW_LOOK
-    tags
+    PUBLICSCREEN,tags
+#else
+    CUSTOMSCREEN
 #endif
     },
     0,0,22,22,80,80},
@@ -360,9 +378,11 @@ struct win_setup new_wins[] =
     |WFLG_NW_EXTENDED
 #endif
     ,
-    NULL,NULL,(UBYTE*)NULL,NULL,NULL,64,32,0xffff,0xffff,CUSTOMSCREEN,
+    NULL,NULL,(UBYTE*)NULL,NULL,NULL,64,32,0xffff,0xffff,
 #ifdef  INTUI_NEW_LOOK
-    tags
+    PUBLICSCREEN,tags
+#else
+    CUSTOMSCREEN
 #endif
     },
     0,0,22,22,80,80},
@@ -423,10 +443,14 @@ struct NewScreen NewHackScreen =
 void
 amii_askname()
 {
-    *plname = 0;
+    char plnametmp[300]; /* From winreq.c: sizeof(StrStringSIBuff) */
+    *plnametmp = 0;
     do {
-	amii_getlin( "Who are you?", plname );
-    } while( strlen( plname ) == 0 );
+	amii_getlin( "Who are you?", plnametmp );
+    } while( strlen( plnametmp ) == 0 );
+
+    strncpy(plname, plnametmp, PL_NSIZ-1); /* Avoid overflowing plname[] */
+    plname[PL_NSIZ-1] = 0;
 
     if( *plname == '\33' )
     {
@@ -450,7 +474,7 @@ amii_player_selection()
     register struct IntuiMessage *imsg;
     register int aredone = 0;
     register struct Gadget *gd;
-    static int once=0;
+    static int once = 0;
     long class, code;
 
     amii_clear_nhwindow( WIN_BASE );
@@ -605,13 +629,13 @@ RandomWindow( name )
     int ticks = 0, aredone = 0, timerdone = 0;
     long mask, got;
 
-    tport = CreatePort( 0, 0 );
-    trq = (struct timerequest *)CreateExtIO( tport, sizeof( *trq ) );
+    tport = CreateMsgPort();
+    trq = (struct timerequest *)CreateIORequest( tport, sizeof( *trq ) );
     if( tport == NULL || trq == NULL )
     {
 allocerr:
-	if( tport ) DeletePort( tport );
-	if( trq ) DeleteExtIO( (struct IORequest *)trq );
+	if( tport ) DeleteMsgPort( tport );
+	if( trq ) DeleteIORequest( (struct IORequest *)trq );
 	Delay( 8 * 50 );
 	return;
     }
@@ -682,8 +706,8 @@ allocerr:
 	AbortIO( (struct IORequest *)trq );
 	WaitIO( (struct IORequest *)trq );
 	CloseDevice( (struct IORequest *)trq );
-	DeleteExtIO( (struct IORequest *) trq );
-	DeletePort( tport );
+	DeleteIORequest( (struct IORequest *) trq );
+	DeleteMsgPort( tport );
 	Delay( 50 * 8 );
 	return;
     }
@@ -734,8 +758,8 @@ allocerr:
     }
 
     CloseDevice( (struct IORequest *)trq );
-    DeleteExtIO( (struct IORequest *) trq );
-    DeletePort( tport );
+    DeleteIORequest( (struct IORequest *) trq );
+    DeleteMsgPort( tport );
     if(w) CloseShWindow( w );
 }
 #endif /* Discarded randwin ... -jhsa */
@@ -1176,7 +1200,7 @@ boolean complain;
     {
 	if (complain) {
 	    sprintf( buf, "Can't display %s: %s", fn,
-#ifdef _DCC
+#if defined(_DCC) || defined(__GNUC__)
 			strerror(errno)
 #else
 # ifdef  __SASC_60
@@ -1385,20 +1409,33 @@ amii_player_selection()
 {
 	int i, k, n;
 	char pick4u = 'n', thisch, lastch = 0;
-	char pbuf[QBUFSZ];
+	char pbuf[QBUFSZ], plbuf[QBUFSZ], rolenamebuf[QBUFSZ];
 	winid win;
 	anything any;
 	menu_item *selected = 0;
 
+	rigid_role_checks();
+
 	/* Should we randomly pick for the player? */
 	if (flags.initrole == ROLE_NONE || flags.initrace == ROLE_NONE ||
 		flags.initgend == ROLE_NONE || flags.initalign == ROLE_NONE) {
-	    const char *prompt = "Shall I pick a character for you?";
-	    pick4u = amii_yn_function(prompt, "ynq", 'y');
+	    char *prompt = build_plselection_prompt(pbuf, QBUFSZ, flags.initrole,
+				flags.initrace, flags.initgend, flags.initalign);
+	    pline("%s", prompt);
+	    do {	/* loop until we get valid input */
+		cursor_on(WIN_MESSAGE);
+		pick4u = lowc(WindowGetchar());
+		cursor_off(WIN_MESSAGE);
+		if (index(quitchars, pick4u)) pick4u = 'y';
+	    } while(!index(ynqchars, pick4u));
+	    pbuf[0] = pick4u;
+	    pbuf[1] = 0;
+	    amii_addtopl(pbuf);
 
 	    if (pick4u != 'y' && pick4u != 'n') {
 give_up:	/* Quit */
 		if (selected) free((genericptr_t) selected);
+		clearlocks();
 		exit_nhwindows(NULL);
 		terminate(0);
 		/*NOTREACHED*/
@@ -1406,15 +1443,18 @@ give_up:	/* Quit */
 	    }
 	}
 
+	(void) root_plselection_prompt(plbuf, QBUFSZ - 1,
+			flags.initrole, flags.initrace, flags.initgend, flags.initalign);
+
 	/* Select a role, if necessary */
 	/* we'll try to be compatible with pre-selected race/gender/alignment,
 	 * but may not succeed */
 	if (flags.initrole < 0) {
 	    /* Process the choice */
-	    if (pick4u == 'y' || flags.initrole == ROLE_RANDOM) {
+	    if (pick4u == 'y' || flags.initrole == ROLE_RANDOM || flags.randomall) {
 		/* Pick a random role */
 		flags.initrole = pick_role(flags.initrace, flags.initgend,
-						flags.initalign);
+						flags.initalign, PICK_RANDOM);
 		if (flags.initrole < 0) {
 		    amii_putstr(WIN_MESSAGE, 0, "Incompatible role!");
 		    flags.initrole = randrole();
@@ -1430,13 +1470,26 @@ give_up:	/* Quit */
 			any.a_int = i+1;	/* must be non-zero */
 			thisch = lowc(roles[i].name.m[0]);
 			if (thisch == lastch) thisch = highc(thisch);
+			if (flags.initgend != ROLE_NONE && flags.initgend != ROLE_RANDOM) {
+				if (flags.initgend == 1  && roles[i].name.f)
+					Strcpy(rolenamebuf, roles[i].name.f);
+				else
+					Strcpy(rolenamebuf, roles[i].name.m);
+			} else {
+				if (roles[i].name.f) {
+					Strcpy(rolenamebuf, roles[i].name.m);
+					Strcat(rolenamebuf, "/");
+					Strcat(rolenamebuf, roles[i].name.f);
+				} else 
+					Strcpy(rolenamebuf, roles[i].name.m);
+			}	
 			add_menu(win, NO_GLYPH, &any, thisch,
-			    0, ATR_NONE, an(roles[i].name.m), MENU_UNSELECTED);
+			    0, ATR_NONE, an(rolenamebuf), MENU_UNSELECTED);
 			lastch = thisch;
 		    }
 		}
 		any.a_int = pick_role(flags.initrace, flags.initgend,
-				    flags.initalign)+1;
+				    flags.initalign, PICK_RANDOM)+1;
 		if (any.a_int == 0)	/* must be non-zero */
 		    any.a_int = randrole()+1;
 		add_menu(win, NO_GLYPH, &any , '*', 0, ATR_NONE,
@@ -1444,7 +1497,8 @@ give_up:	/* Quit */
 		any.a_int = i+1;	/* must be non-zero */
 		add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
 				"Quit", MENU_UNSELECTED);
-		end_menu(win, "Pick a role");
+		Sprintf(pbuf, "Pick a role for your %s", plbuf);
+		end_menu(win, pbuf);
 		n = select_menu(win, PICK_ONE, &selected);
 		destroy_nhwindow(win);
 
@@ -1455,6 +1509,8 @@ give_up:	/* Quit */
 		flags.initrole = selected[0].item.a_int - 1;
 		free((genericptr_t) selected),	selected = 0;
 	    }
+	    (void) root_plselection_prompt(plbuf, QBUFSZ - 1,
+			flags.initrole, flags.initrace, flags.initgend, flags.initalign);
 	}
 
 	/* Select a race, if necessary */
@@ -1462,9 +1518,9 @@ give_up:	/* Quit */
 	 * pre-selected gender/alignment */
 	if (flags.initrace < 0 || !validrace(flags.initrole, flags.initrace)) {
 	    /* pre-selected race not valid */
-	    if (pick4u == 'y' || flags.initrace == ROLE_RANDOM) {
+	    if (pick4u == 'y' || flags.initrace == ROLE_RANDOM || flags.randomall) {
 		flags.initrace = pick_race(flags.initrole, flags.initgend,
-							flags.initalign);
+							flags.initalign, PICK_RANDOM);
 		if (flags.initrace < 0) {
 		    amii_putstr(WIN_MESSAGE, 0, "Incompatible race!");
 		    flags.initrace = randrace(flags.initrole);
@@ -1502,7 +1558,7 @@ give_up:	/* Quit */
 				0, ATR_NONE, races[i].noun, MENU_UNSELECTED);
 			}
 		    any.a_int = pick_race(flags.initrole, flags.initgend,
-					flags.initalign)+1;
+					flags.initalign, PICK_RANDOM)+1;
 		    if (any.a_int == 0)	/* must be non-zero */
 			any.a_int = randrace(flags.initrole)+1;
 		    add_menu(win, NO_GLYPH, &any , '*', 0, ATR_NONE,
@@ -1510,8 +1566,7 @@ give_up:	/* Quit */
 		    any.a_int = i+1;	/* must be non-zero */
 		    add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
 				    "Quit", MENU_UNSELECTED);
-		    Sprintf(pbuf, "Pick the race of your %s",
-				    roles[flags.initrole].name.m);
+		    Sprintf(pbuf, "Pick the race of your %s", plbuf);
 		    end_menu(win, pbuf);
 		    n = select_menu(win, PICK_ONE, &selected);
 		    destroy_nhwindow(win);
@@ -1523,6 +1578,8 @@ give_up:	/* Quit */
 		}
 		flags.initrace = k;
 	    }
+	    (void) root_plselection_prompt(plbuf, QBUFSZ - 1,
+			flags.initrole, flags.initrace, flags.initgend, flags.initalign);
 	}
 
 	/* Select a gender, if necessary */
@@ -1531,9 +1588,9 @@ give_up:	/* Quit */
 	if (flags.initgend < 0 || !validgend(flags.initrole, flags.initrace,
 						flags.initgend)) {
 	    /* pre-selected gender not valid */
-	    if (pick4u == 'y' || flags.initgend == ROLE_RANDOM) {
+	    if (pick4u == 'y' || flags.initgend == ROLE_RANDOM || flags.randomall) {
 		flags.initgend = pick_gend(flags.initrole, flags.initrace,
-						flags.initalign);
+						flags.initalign, PICK_RANDOM);
 		if (flags.initgend < 0) {
 		    amii_putstr(WIN_MESSAGE, 0, "Incompatible gender!");
 		    flags.initgend = randgend(flags.initrole, flags.initrace);
@@ -1571,7 +1628,7 @@ give_up:	/* Quit */
 				0, ATR_NONE, genders[i].adj, MENU_UNSELECTED);
 			}
 		    any.a_int = pick_gend(flags.initrole, flags.initrace,
-					    flags.initalign)+1;
+					    flags.initalign, PICK_RANDOM)+1;
 		    if (any.a_int == 0)	/* must be non-zero */
 			any.a_int = randgend(flags.initrole, flags.initrace)+1;
 		    add_menu(win, NO_GLYPH, &any , '*', 0, ATR_NONE,
@@ -1579,9 +1636,7 @@ give_up:	/* Quit */
 		    any.a_int = i+1;	/* must be non-zero */
 		    add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
 				    "Quit", MENU_UNSELECTED);
-		    Sprintf(pbuf, "Pick the gender of your %s %s",
-				    races[flags.initrace].adj,
-				    roles[flags.initrole].name.m);
+		    Sprintf(pbuf, "Pick the gender of your %s", plbuf);
 		    end_menu(win, pbuf);
 		    n = select_menu(win, PICK_ONE, &selected);
 		    destroy_nhwindow(win);
@@ -1593,6 +1648,8 @@ give_up:	/* Quit */
 		}
 		flags.initgend = k;
 	    }
+	    (void)  root_plselection_prompt(plbuf, QBUFSZ - 1,
+			flags.initrole, flags.initrace, flags.initgend, flags.initalign);
 	}
 
 	/* Select an alignment, if necessary */
@@ -1600,9 +1657,9 @@ give_up:	/* Quit */
 	if (flags.initalign < 0 || !validalign(flags.initrole, flags.initrace,
 							flags.initalign)) {
 	    /* pre-selected alignment not valid */
-	    if (pick4u == 'y' || flags.initalign == ROLE_RANDOM) {
+	    if (pick4u == 'y' || flags.initalign == ROLE_RANDOM || flags.randomall) {
 		flags.initalign = pick_align(flags.initrole, flags.initrace,
-							flags.initgend);
+							flags.initgend, PICK_RANDOM);
 		if (flags.initalign < 0) {
 		    amii_putstr(WIN_MESSAGE, 0, "Incompatible alignment!");
 		    flags.initalign = randalign(flags.initrole, flags.initrace);
@@ -1640,7 +1697,7 @@ give_up:	/* Quit */
 				 0, ATR_NONE, aligns[i].adj, MENU_UNSELECTED);
 			}
 		    any.a_int = pick_align(flags.initrole, flags.initrace,
-					    flags.initgend)+1;
+					    flags.initgend, PICK_RANDOM)+1;
 		    if (any.a_int == 0)	/* must be non-zero */
 			any.a_int = randalign(flags.initrole, flags.initrace)+1;
 		    add_menu(win, NO_GLYPH, &any , '*', 0, ATR_NONE,
@@ -1648,12 +1705,7 @@ give_up:	/* Quit */
 		    any.a_int = i+1;	/* must be non-zero */
 		    add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
 				    "Quit", MENU_UNSELECTED);
-		    Sprintf(pbuf, "Pick the alignment of your %s %s %s",
-			    genders[flags.initgend].adj,
-			    races[flags.initrace].adj,
-			    (flags.initgend && roles[flags.initrole].name.f) ?
-			    roles[flags.initrole].name.f :
-			    roles[flags.initrole].name.m);
+		    Sprintf(pbuf, "Pick the alignment of your %s", plbuf);
 		    end_menu(win, pbuf);
 		    n = select_menu(win, PICK_ONE, &selected);
 		    destroy_nhwindow(win);

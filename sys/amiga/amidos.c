@@ -18,7 +18,7 @@
 #include <intuition/intuition.h>
 
 #undef COUNT
-#ifdef __SASC_60
+#if defined(__SASC_60) || defined(__GNUC__)
 # include <proto/exec.h>
 # include <proto/dos.h>
 #endif
@@ -80,14 +80,15 @@ int
 dosh()
 {
     int i;
-    char buf[ 500 ];
+    char buf[ BUFSZ ];
     extern struct ExecBase *SysBase;
 
     /* Only under 2.0 and later ROMs do we have System() */
     if( SysBase->LibNode.lib_Version >= 37 && !amibbs)
     {
 	getlin("Enter CLI Command...", buf );
-	i = System( buf, NULL );
+	if (buf[0] != '\033')
+	    i = System( buf, NULL );
     }
     else
     {
@@ -225,6 +226,7 @@ const char *path, *files;
 
 /* This size makes that most files can be copied with two Read()/Write()s */
 
+#if 0 /* Unused */
 #define COPYSIZE    4096
 
 char *CopyFile(from, to)
@@ -257,7 +259,7 @@ const char *from, *to;
     free(buffer);
     return error;
 }
-
+#endif
 
 /* this should be replaced */
 saveDiskPrompt(start)
@@ -423,7 +425,7 @@ register const char *name, *mode;
 static BPTR OrgDirLock = NO_LOCK;
 
 chdir(dir)
-const char *dir;
+char *dir;
 {
     extern char orgdir[];
 

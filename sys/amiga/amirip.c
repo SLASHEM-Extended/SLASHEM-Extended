@@ -113,7 +113,7 @@ int how;
     int line, tw, ww;
     char *errstr = NULL;
 
-    if(HackScreen->RastPort.BitMap->Depth < 4)goto cleanup;
+    if(!WINVERS_AMIV || HackScreen->RastPort.BitMap->Depth < 4)goto cleanup;
 
     /* Use the users display size */
     newwin.Height = amiIDisplay->ypix - newwin.TopEdge;
@@ -132,6 +132,11 @@ int how;
     wh = ripwin->Height;
     ww = ripwin->Width;
 
+#ifdef HACKFONT
+    if (HackFont)
+	SetFont(rp, HackFont);
+#endif
+
     tomb_bmhd = ReadImageFiles(load_list, tbmp, &errstr );
     if(errstr)goto cleanup;
     if(tomb_bmhd.w > ww || tomb_bmhd.h > wh)goto cleanup;
@@ -144,16 +149,7 @@ int how;
     cmap_white = search_cmap(0,0,0);
     cmap_black = search_cmap(15,15,15);
 
-    {
-    int j,k;
-    for( j = 0; j < 4; ++j ){
-	for( k = 0; k < tomb_bmhd.h ; ++k ){
-	    memcpy(rp->BitMap->Planes[ j ] +(k+yoff)*(rp->BitMap->BytesPerRow) + (xoff/8),
-		tbmp[0]->Planes[ j ] + k*((tomb_bmhd.w+7)/8),
-		(tomb_bmhd.w +7)/8 );
-	}
-    }
-    }
+    BltBitMap(*tbmp, 0, 0, rp->BitMap, xoff, yoff, tomb_bmhd.w, tomb_bmhd.h, 0xc0, 0xff, NULL);
 
     /* Put together death description */
     switch (killer_format) {
@@ -201,7 +197,7 @@ int how;
     /* Put $ on stone */
     Sprintf(buf, "%ld Au",
 #ifndef GOLDOBJ
-  		u.ugold);
+		u.ugold);
 #else
 		done_money);
 #endif
@@ -261,7 +257,7 @@ int how;
     Sprintf(buf, "%4d", getyear());
     tomb_text(buf);
 
-
+#ifdef NH320_DEDICATION
     /* dedication */
     cno = 1;
     tomb_line=TEXT_TOP;
@@ -277,7 +273,7 @@ int how;
     tomb_text("1935-1994");
     tomb_text("");
     tomb_text("Ascended");
-
+#endif
     /* Fade from black to full color */
     dofade(0,16,1);
 

@@ -5,7 +5,7 @@
 #include <exec/types.h>
 #include <exec/memory.h>
 #include <exec/io.h>
-#ifndef _DCC
+#if !defined(_DCC) && !defined(__GNUC__)
 #include <dos.h>
 #endif
 #include <exec/alerts.h>
@@ -18,6 +18,7 @@
 #include <intuition/intuitionbase.h>
 #include <libraries/gadtools.h>
 #include <libraries/dosextens.h>
+#include <libraries/asl.h>
 /* stddef.h is included in the precompiled version of hack.h .  If we include
  * it here normally (through string.h) we'll get an "illegal typedef" later
  * on.  This is the easiest way I can think of to fix it without messing
@@ -78,6 +79,7 @@ CLIPPING must be defined for the AMIGA version
 #include <proto/layers.h>
 #include <proto/diskfont.h>
 #include <proto/gadtools.h>
+#include <proto/asl.h>
 #endif
 
 /* kludge - see amirip for why */

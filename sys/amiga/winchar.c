@@ -8,9 +8,8 @@
 #include <libraries/iffparse.h>
 #include <graphics/scale.h>
 #ifndef _DCC
-#include <pragmas/iffparse_pragmas.h>
+#include <proto/iffparse.h>
 #endif
-#include <clib/iffparse_protos.h>
 
 #ifdef TESTING
 # include "hack.h"
@@ -46,7 +45,6 @@ void amii_flush_glyph_buffer( struct Window * );
 
 int amii_extraplanes = 0;
 extern int reclip;
-struct Library *IFFParseBase;
 
 struct BitMap *MyAllocBitMap( int xsize, int ysize, int depth, long mflags );
 void MyFreeBitMap( struct BitMap *bmp );
@@ -343,7 +341,7 @@ ReadImageFiles(char **filenames, struct BitMap **iffimg, char **errstrp )
 	}
 
 	iffimg[ i ] = MyAllocBitMap( bmhd->w, bmhd->h,
-		pictdata.nplanes + amii_extraplanes, MEMF_CLEAR );
+		pictdata.nplanes + amii_extraplanes, MEMF_CHIP|MEMF_CLEAR );
 	if( iffimg[ i ] == NULL )
 	{
 	    char *buf = malloc(80);
@@ -967,11 +965,11 @@ static char amii_glyph_buffer[GLYPH_BUFFER_SIZE];
 #ifdef TEXTCOLOR
 /*
  * Map our amiga-specific colormap into the colormap specified in color.h.
- * See amiwind.c for the amiga specific colormap.
+ * See winami.c for the amiga specific colormap.
  */
 
-int foreg[16] = { 0, 7, 4, 2, 6, 5, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0 };
-int backg[16] = { 1, 0, 0, 0, 0, 0, 0, 0, 0, 7, 4, 1, 6, 5, 3, 1 };
+int foreg[AMII_MAXCOLORS] = { 0, 7, 4, 2, 6, 5, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0 };
+int backg[AMII_MAXCOLORS] = { 1, 0, 0, 0, 0, 0, 0, 0, 0, 7, 4, 1, 6, 5, 3, 1 };
 #if 0
 	#define CLR_BLACK	0
 	#define CLR_RED		1

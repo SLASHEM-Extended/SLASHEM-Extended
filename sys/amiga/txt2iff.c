@@ -18,10 +18,9 @@
 #include <clib/dos_protos.h>
 #include <clib/iffparse_protos.h>
 #ifndef _DCC
-# include <clib/exec_protos.h>
-# include <pragmas/iffparse_pragmas.h>
-# include <pragmas/dos_pragmas.h>
-# include <pragmas/exec_pragmas.h>
+# include <proto/exec.h>
+# include <proto/iffparse.h>
+# include <proto/dos.h>
 #endif
 
 void panic(const char *);
@@ -60,7 +59,6 @@ struct {
 #define	ID_PLNE	MAKE_ID( 'P', 'L', 'N', 'E' )	/* The planes of the image */
 
 
-extern struct DOSBase *DOSBase;
 #ifndef _DCC
 extern
 #endif
@@ -136,7 +134,7 @@ main( int argc, char **argv )
 	exit(1);
     }
 
-#ifdef _DCC
+#if defined(_DCC) || defined(__GNUC__)
     IFFParseBase = OpenLibrary( "iffparse.library", 0 );
     if( !IFFParseBase ) {
 	error( "unable to open iffparse.library" );
@@ -284,7 +282,7 @@ main( int argc, char **argv )
 
     printf( "\n%d tiles converted\n", cnt );
 
-#ifdef _DCC
+#if defined(_DCC) || defined(__GNUC__)
     CloseLibrary( IFFParseBase );
 #endif
     exit( 0 );

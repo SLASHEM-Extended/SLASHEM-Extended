@@ -128,9 +128,17 @@ extern struct PDAT pictdata;
 extern struct Hook fillhook;
 extern struct TagItem wintags[];
 #ifndef	SHAREDLIB
+#ifndef __GNUC__
 void __asm LayerFillHook(
     register __a0 struct Hook *hk,
     register __a2 struct RastPort *rp,
     register __a1 struct FillParams *fp );
+#else
+#ifdef __PPC__
+struct EmulLibEntry LayerFillHook;
+#else
+void LayerFillHook(void);
+#endif
+#endif
 #endif
 extern int mxsize, mysize;

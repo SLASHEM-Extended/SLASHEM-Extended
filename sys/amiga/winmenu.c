@@ -392,7 +392,7 @@ DoMenuScroll( win, blocking, how, retmip )
 	}
 	nw->Height = min( ysize, amiIDisplay->ypix - nw->TopEdge );
 
-	if( WINVERS_AMIV )
+	if( WINVERS_AMIV || WINVERS_AMII )
 	{
 	    /* Make sure we are using the correct hook structure */
 	    nw->Extension = cw->wintags;
@@ -661,7 +661,7 @@ DoMenuScroll( win, blocking, how, retmip )
 			if (how == PICK_ANY) {
 			    amip = cw->menu.items;
 			    while (amip) {
-				if (amip->canselect) {
+				if (amip->canselect && amip->selector) {
 				/*
 				 * Select those yet unselected
 				 * and apply count if necessary
@@ -692,7 +692,7 @@ DoMenuScroll( win, blocking, how, retmip )
 			if (how == PICK_ANY) {
 			    amip = cw->menu.items;
 			    while (amip) {
-				if (amip->canselect) {
+				if (amip->selected) {
 				    amip->selected = FALSE;
 				    amip->count = -1;
 				    amip->str[SOFF+2] = '-';
@@ -705,7 +705,7 @@ DoMenuScroll( win, blocking, how, retmip )
 			if (how == PICK_ANY) {
 			    amip = cw->menu.items;
 			    while (amip) {
-				if (amip->canselect) {
+				if (amip->canselect && amip->selector) {
 				    amip->selected = !amip->selected;
 				    if (counting && amip->selected) {
 					amip->count = count;
@@ -727,7 +727,7 @@ DoMenuScroll( win, blocking, how, retmip )
 			    while (amip && i++ < topidx)
 				amip = amip->next;
 			    for (i=0;i < wheight && amip; i++, amip=amip->next) {
-				if (amip->canselect) {
+				if (amip->canselect && amip->selector) {
 				    if (!amip->selected) {
 					if (counting) {
 					    amip->count = count;
@@ -750,7 +750,7 @@ DoMenuScroll( win, blocking, how, retmip )
 			    while (amip && i++ < topidx)
 				amip = amip->next;
 			    for (i=0;i < wheight && amip; i++, amip=amip->next) {
-				if (amip->canselect) {
+				if (amip->selected) {
 				    amip->selected = FALSE;
 				    amip->count = -1;
 				    amip->str[SOFF+2] = '-';
@@ -765,7 +765,7 @@ DoMenuScroll( win, blocking, how, retmip )
 			    while (amip && i++ < topidx)
 				amip = amip->next;
 			    for (i=0;i < wheight && amip; i++, amip=amip->next) {
-				if (amip->canselect) {
+				if (amip->canselect && amip->selector) {
 				    amip->selected = !amip->selected;
 				    if (counting && amip->selected) {
 					amip->count = count;
@@ -787,7 +787,7 @@ DoMenuScroll( win, blocking, how, retmip )
 			    if (!*buf || *buf == '\033')
 				break;
 			    while (amip) {
-				if (amip->canselect && amip->str &&
+				if (amip->canselect && amip->selector && amip->str &&
 				    strstri(&amip->str[SOFF], buf)) {
 				    if (how == PICK_ONE) {
 					amip->selected = TRUE;
@@ -1081,10 +1081,10 @@ DoMenuScroll( win, blocking, how, retmip )
 				amip->selected = 0;
 				amip->count = -1;
 				reset_counting = TRUE;
-				if (amip->canselect)
+				if (amip->canselect && amip->selector)
 				    amip->str[SOFF+2] = '-';
 			    }
-			    if (counting && amip->selected && amip->canselect) {
+			    if (counting && amip->selected && amip->canselect && amip->selector) {
 				amip->count = count;
 				reset_counting = TRUE;
 				amip->str[SOFF+2] = '#';
@@ -1104,14 +1104,14 @@ DoMenuScroll( win, blocking, how, retmip )
 				    amip->selected = 0;
 				    amip->count = -1;
 				    reset_counting = TRUE;
-				    if (amip->canselect)
+				    if (amip->canselect && amip->selector)
 					amip->str[SOFF+2] = '-';
 				}
 				oidx = -1;
 			    }
 			    amip = find_menu_item( cw, aidx );
 
-			    if( amip && amip->canselect && how != PICK_NONE )
+			    if( amip && amip->canselect && amip->selector && how != PICK_NONE )
 			    {
 				oidx = aidx;
 				if( !DoubleClick( oldsecs,
@@ -1125,7 +1125,7 @@ DoMenuScroll( win, blocking, how, retmip )
 				    } else {
 					amip->count = -1;
 					reset_counting = TRUE;
-					if (amip->canselect)
+					if (amip->canselect && amip->selector)
 					    amip->str[SOFF+2] = '-';
 				    }
 				}
@@ -1144,6 +1144,17 @@ DoMenuScroll( win, blocking, how, retmip )
 			DisplayBeep( NULL );
 		    }
 		    break;
+	    }
+	    if (!counting && morc == '\33') {
+		amip = cw->menu.items;
+		while (amip) {
+		    if (amip->canselect && amip->selector) {
+			amip->selected = FALSE;
+			amip->count = -1;
+			amip->str[SOFF+2] = '-';
+		    }
+		    amip=amip->next;
+		}
 	    }
 	    if (reset_counting) {
 		count = 0;

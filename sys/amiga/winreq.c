@@ -115,18 +115,29 @@ EditColor( )
 		((struct PropInfo *)Col_GreenPen.SpecialInfo)->Flags |= PROPNEWLOOK;
     }
 #endif
-	if( WINVERS_AMIV )
+	if( WINVERS_AMIV || WINVERS_AMII )
 	{
 #ifdef	INTUI_NEW_LOOK
 		Col_NewWindowStructure1.Extension = wintags;
 		Col_NewWindowStructure1.Flags |= WFLG_NW_EXTENDED;
+# ifdef __GNUC__
+		fillhook.h_Entry = (void *)&LayerFillHook;
+# else
 		fillhook.h_Entry = (ULONG(*)())LayerFillHook;
+# endif
 		fillhook.h_Data = (void *)-2;
 		fillhook.h_SubEntry = 0;
 #endif
 	}
 
     nw = OpenWindow( (void *)&Col_NewWindowStructure1 );
+
+    if( nw == NULL )
+    {
+	DisplayBeep( NULL );
+	return;
+    }
+
     PrintIText( nw->RPort, &Col_IntuiTextList1, 0, 0 );
 
     ClearCol( nw );
@@ -407,12 +418,16 @@ EditClipping( void )
 	((struct PropInfo *)ClipYCLIP.SpecialInfo)->Flags |= PROPNEWLOOK;
     }
 #endif
-    if( WINVERS_AMIV )
+    if( WINVERS_AMIV || WINVERS_AMII )
     {
 # ifdef	INTUI_NEW_LOOK
 	ClipNewWindowStructure1.Extension = wintags;
 	ClipNewWindowStructure1.Flags |= WFLG_NW_EXTENDED;
+#  ifdef __GNUC__
+	fillhook.h_Entry = (void *)&LayerFillHook;
+#  else
 	fillhook.h_Entry = (ULONG(*)())LayerFillHook;
+#  endif
 	fillhook.h_Data = (void *)-2;
 	fillhook.h_SubEntry = 0;
 # endif
@@ -957,26 +972,29 @@ void getlind(prompt,bufp, dflt)
 
     if( !once )
     {
-	if( bigscreen )
-/*
- * Old method, on pal interlace overscan screen this window opens right on
- * top of possible description of scroll/potion effect, thus requiring the
- * user to move the window elsewhere.
- * New method places the query window on top of gamemap window
- *	    StrWindow.TopEdge = (HackScreen->Height/2) - (StrWindow.Height/2);
- */
-	    StrWindow.TopEdge = amii_wins[WIN_MAP]->win->TopEdge;
+	if( bigscreen ) {
+	    StrWindow.LeftEdge = (HackScreen->Width/2) - (StrWindow.Width/2);
+	    if (amii_wins[WIN_MAP]) {
+		StrWindow.TopEdge = amii_wins[WIN_MAP]->win->TopEdge;
+	    } else {
+		StrWindow.TopEdge = (HackScreen->Height/2) - (StrWindow.Height/2);
+	    }
+	}
 	SetBorder( &String );
 	SetBorder( &Gadget2 );
 	once = 1;
     }
 
-    if( WINVERS_AMIV )
+    if( WINVERS_AMIV || WINVERS_AMII )
     {
 #ifdef	INTUI_NEW_LOOK
 	StrWindow.Extension = wintags;
 	StrWindow.Flags |= WFLG_NW_EXTENDED;
+# ifdef __GNUC__
+	fillhook.h_Entry = (void *)&LayerFillHook;
+# else
 	fillhook.h_Entry = (ULONG(*)())LayerFillHook;
+# endif
 	fillhook.h_Data = (void *)-2;
 	fillhook.h_SubEntry = 0;
 #endif

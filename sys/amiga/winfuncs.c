@@ -26,6 +26,8 @@ int mxsize, mysize;
 struct Rectangle amii_oldover;
 struct Rectangle amii_oldmsg;
 
+extern struct TextFont *RogueFont;
+
 int amii_msgAPen;
 int amii_msgBPen;
 int amii_statAPen;
@@ -123,10 +125,12 @@ ami_wininit_data( void )
 }
 
 # ifdef	INTUI_NEW_LOOK
+struct Hook SM_FilterHook;
 struct Hook fillhook;
 struct TagItem wintags[] =
 {
 	{ WA_BackFill, (ULONG)&fillhook },
+	{ WA_PubScreenName, (ULONG)"NetHack" },
 	{ TAG_END, 0 },
 };
 # endif
@@ -191,11 +195,22 @@ amii_destroy_nhwindow(win)      /* just hide */
     dismiss_nhwindow(win);
     type = cw->type;
 
-    if( cw->resp )    free( cw->resp );
-    if( cw->canresp ) free( cw->canresp );
-    if( cw->morestr ) free( cw->morestr );
-    if( cw->hook ) free( cw->hook );
-    cw->hook = NULL;
+    if( cw->resp ) {
+	free( cw->resp );
+	cw->resp = NULL;
+    }
+    if( cw->canresp ) {
+	free( cw->canresp );
+	cw->canresp = NULL;
+    }
+    if( cw->morestr ) {
+	free( cw->morestr );
+	cw->morestr = NULL;
+    }
+    if( cw->hook ) {
+	free( cw->hook );
+	cw->hook = NULL;
+    }
 
     if( cw->data && ( cw->type == NHW_MESSAGE ||
 			    cw->type == NHW_MENU || cw->type == NHW_TEXT ) )
@@ -228,16 +243,32 @@ struct FillParams
 	WORD offsety;
 };
 
+#ifdef __GNUC__
+#ifdef __PPC__
+void PPC_LayerFillHook(void);
+struct EmulLibEntry LayerFillHook = {TRAP_LIB, 0, (void (*)(void)) PPC_LayerFillHook};
+void PPC_LayerFillHook(void) {
+   struct Hook *hk = (struct Hook*)REG_A0;
+   struct RastPort *rp = (struct RastPort *)REG_A2;
+   struct FillParams *fp = (struct FillParams*)REG_A1;
+#else
+void LayerFillHook(void) {
+    register struct Hook *hk asm("a0");
+    register struct RastPort *rp asm("a2");
+    register struct FillParams *fp asm("a1");
+#endif
+#else
 void
 #ifndef _DCC
 __interrupt
 #endif
-__saveds __asm
-LayerFillHook(
+__saveds __asm LayerFillHook(
     register __a0 struct Hook *hk,
     register __a2 struct RastPort *rp,
     register __a1 struct FillParams *fp )
 {
+#endif
+
     register long x, y, xmax, ymax;
     register int apen;
     struct RastPort rptmp;
@@ -320,7 +351,7 @@ amii_create_nhwindow(type)
 
     if( HackPort == NULL )
     {
-	HackPort = CreatePort( NULL, 0 );
+	HackPort = CreateMsgPort();
 	if( !HackPort )
 	    panic( "no memory for msg port" );
     }
@@ -479,6 +510,7 @@ amii_create_nhwindow(type)
 	if( IntuitionBase->LibNode.lib_Version >= 37 )
 	{
 	    MsgPropScroll.Flags |= PROPNEWLOOK;
+	    PropScroll.Flags |= PROPNEWLOOK;
 	}
 #endif
     }
@@ -547,7 +579,11 @@ amii_create_nhwindow(type)
 	case NHW_MAP:
 	    if( wd )
 	    {
+#ifdef __GNUC__
+		fillhook.h_Entry = (void *)&LayerFillHook;
+#else
 		fillhook.h_Entry = (ULONG(*)())LayerFillHook;
+#endif
 		fillhook.h_Data = (void *)type;
 		fillhook.h_SubEntry = 0;
 		wd->hook = alloc( sizeof( fillhook ) );
@@ -642,6 +678,9 @@ amii_create_nhwindow(type)
 		}
 	    }
 	}
+	if ( type != NHW_MAP) {
+	    SetFont(w->RPort, TextsFont);
+	}
 #ifdef HACKFONT
 	else if( HackFont )
 	    SetFont(w->RPort, HackFont);
@@ -668,6 +707,7 @@ amii_create_nhwindow(type)
 	 */
 	case NHW_MESSAGE:
 	    SetMenuStrip(w, MenuStrip);
+	    MsgScroll.TopEdge = HackScreen->WBorTop + scrfontysize + 1;
 	    iflags.msg_history = wd->rows*10;
 	    if (iflags.msg_history < 40)
 		iflags.msg_history = 40;
@@ -695,6 +735,7 @@ amii_create_nhwindow(type)
 	     * MENU or TEXT window.
 	     */
 	case NHW_MENU:
+	    MenuScroll.TopEdge = HackScreen->WBorTop + scrfontysize + 1;
 	    wd->resp=(char*)alloc(256);
 	    wd->resp[0]=0;
 	    wd->rows = wd->maxrow = 0;
@@ -708,6 +749,7 @@ amii_create_nhwindow(type)
 	     * screen width.
 	     */
 	case NHW_TEXT:
+	    MenuScroll.TopEdge = HackScreen->WBorTop + scrfontysize + 1;
 	    wd->rows = wd->maxrow = 0;
 	    wd->cols = wd->maxcol = amiIDisplay->cols;
 	    wd->data = NULL;
@@ -742,7 +784,6 @@ amii_create_nhwindow(type)
 	    SetMenuStrip(w, MenuStrip);
 	    if( WINVERS_AMIV )
 	    {
-		extern struct TextFont *RogueFont;
 		CO = (w->Width-w->BorderLeft-w->BorderRight)/mxsize;
 		LI = (w->Height-w->BorderTop-w->BorderBottom)/mysize;
 		amii_setclipped();
@@ -773,7 +814,7 @@ amii_create_nhwindow(type)
 
 	    ConsoleIO.io_Data = (APTR) w;
 	    ConsoleIO.io_Length = sizeof( struct Window );
-	    ConsoleIO.io_Message.mn_ReplyPort = CreatePort(NULL, 0L);
+	    ConsoleIO.io_Message.mn_ReplyPort = CreateMsgPort();
 	    if( OpenDevice("console.device", -1L,
 				(struct IORequest *) &ConsoleIO, 0L) != 0)
 	    {
@@ -801,6 +842,48 @@ amii_create_nhwindow(type)
     }
 
     return( newid );
+}
+
+#ifdef __GNUC__
+#ifdef __PPC__
+int PPC_SM_Filter(void);
+struct EmulLibEntry SM_Filter = {TRAP_LIB, 0, (int (*)(void)) PPC_SM_Filter};
+int PPC_SM_Filter(void) {
+   struct Hook *hk = (struct Hook*)REG_A0;
+   ULONG modeID  = (ULONG)REG_A1;
+   struct ScreenModeRequester *smr = (struct ScreenModeRequester *)REG_A2;
+#else
+int SM_Filter(void) {
+    register struct Hook *hk asm("a0");
+    register ULONG modeID asm("a1");
+    register struct ScreenModeRequester *smr asm("a2");
+#endif
+#else
+int
+#ifndef _DCC
+__interrupt
+#endif
+__saveds __asm SM_Filter(
+    register __a0 struct Hook *hk,
+    register __a1 ULONG modeID,
+    register __a2 struct ScreenModeRequester *smr)
+{
+#endif
+    struct DimensionInfo dims;
+    struct DisplayInfo disp;
+    DisplayInfoHandle handle;
+    handle = FindDisplayInfo(modeID);
+    if (handle) {
+	GetDisplayInfoData(handle, (char *)&dims, sizeof(dims), DTAG_DIMS, modeID);
+	GetDisplayInfoData(handle, (char *)&disp, sizeof(disp), DTAG_DISP, modeID);
+	if (!disp.NotAvailable &&
+	     dims.MaxDepth <= 8 &&
+	     dims.StdOScan.MaxX >= WIDTH-1 &&
+	     dims.StdOScan.MaxY >= SCREENHEIGHT-1) {
+	    return 1;
+	}
+    }
+    return 0;
 }
 
 /* Initialize the windowing environment */
@@ -857,10 +940,18 @@ amii_init_nhwindows(argcp,argv)
 	Abort(AG_OpenLib | AO_GraphicsLib);
     }
 
-    if( WINVERS_AMIV && (LayersBase = (struct Library *)
+    if( (LayersBase = (struct Library *)
 		OpenLibrary("layers.library", amii_libvers )) == NULL)
     {
 	Abort(AG_OpenLib | AO_LayersLib);
+    }
+
+    if ((GadToolsBase = OpenLibrary("gadtools.library", amii_libvers)) == NULL) {
+	Abort(AG_OpenLib | AO_GadTools);
+    }
+
+    if ((AslBase = OpenLibrary("asl.library", amii_libvers)) == NULL) {
+	Abort(AG_OpenLib);
     }
 
     amiIDisplay=(struct amii_DisplayDesc *)alloc(sizeof(struct amii_DisplayDesc));
@@ -900,7 +991,8 @@ amii_init_nhwindows(argcp,argv)
 	    NewHackScreen.ViewModes |= LACE;
 	    bigscreen = 1;
 	}
-	else if( GfxBase->NormalDisplayRows >= 300 )
+	else if( GfxBase->NormalDisplayRows >= 300 ||
+		 amiIDisplay->ypix >= 300 )
 	{
 	    bigscreen = 1;
 	}
@@ -981,6 +1073,33 @@ amii_init_nhwindows(argcp,argv)
     }
 #endif
 
+    /* Adjust getlin window size to font */
+
+    if (TextsFont) {
+	extern SHORT BorderVectors1[];
+	extern SHORT BorderVectors2[];
+	extern struct Gadget Gadget2;
+	extern struct Gadget String;
+	extern struct NewWindow StrWindow;
+	BorderVectors1[2] += (TextsFont->tf_XSize-8)*6; /* strlen("Cancel") == 6 */
+	BorderVectors1[4] += (TextsFont->tf_XSize-8)*6;
+	BorderVectors1[5] += TextsFont->tf_YSize-8;
+	BorderVectors1[7] += TextsFont->tf_YSize-8;
+	BorderVectors2[2] += (TextsFont->tf_XSize-8)*6;
+	BorderVectors2[4] += (TextsFont->tf_XSize-8)*6;
+	BorderVectors2[5] += TextsFont->tf_YSize-8;
+	BorderVectors2[7] += TextsFont->tf_YSize-8;
+	Gadget2.TopEdge += TextsFont->tf_YSize-8;
+	Gadget2.Width += (TextsFont->tf_XSize-8)*6;
+	Gadget2.Height += TextsFont->tf_YSize-8;
+	String.LeftEdge += (TextsFont->tf_XSize-8)*6;
+	String.TopEdge += TextsFont->tf_YSize-8;
+	String.Width += TextsFont->tf_XSize-8;
+	String.Height += TextsFont->tf_YSize-8;
+	StrWindow.Width += (TextsFont->tf_XSize-8)*7;
+	StrWindow.Height += (TextsFont->tf_YSize-8)*2; /* Titlebar + 1 row of gadgets */
+    }
+
     /* This is the size screen we want to open, within reason... */
 
     NewHackScreen.Width = max( WIDTH, amiIDisplay->xpix );
@@ -1005,6 +1124,31 @@ amii_init_nhwindows(argcp,argv)
 
 	NewHackScreen.Width = STDSCREENWIDTH;
 	NewHackScreen.Height = STDSCREENHEIGHT;
+
+#ifdef HACKFONT
+	if (TextsFont) {
+	    NewHackScreen.Font = &TextsFont13;
+	}
+#endif
+
+	if ( amii_scrnmode == 0xffffffff ) {
+	    struct ScreenModeRequester *SMR;
+#ifdef __GNUC__
+	    SM_FilterHook.h_Entry = (void *)&SM_Filter;
+#else
+	    SM_FilterHook.h_Entry = (ULONG(*)())SM_Filter;
+#endif
+	    SM_FilterHook.h_Data = 0;
+	    SM_FilterHook.h_SubEntry = 0;
+	    SMR = AllocAslRequest(ASL_ScreenModeRequest,NULL);
+	    if (AslRequestTags(SMR,
+				ASLSM_FilterFunc, (ULONG)&SM_FilterHook,
+				TAG_END))
+		amii_scrnmode = SMR->sm_DisplayID;
+	    else
+		amii_scrnmode = 0;
+	    FreeAslRequest(SMR);
+	}
 
 	if( forcenobig == 0 )
 	{
@@ -1043,8 +1187,8 @@ amii_init_nhwindows(argcp,argv)
 		    /* Use the display database to get the correct information */
 		    if( disp.PropertyFlags & DIPF_IS_LACE )
 			NewHackScreen.ViewModes |= LACE;
-		    NewHackScreen.Height = dims.StdOScan.MaxY;
-		    NewHackScreen.Width = dims.StdOScan.MaxX;
+		    NewHackScreen.Height = dims.StdOScan.MaxY+1;
+		    NewHackScreen.Width = dims.StdOScan.MaxX+1;
 		}
 		NewHackScreen.TopEdge = 0;
 		NewHackScreen.LeftEdge = 0;
@@ -1078,8 +1222,8 @@ amii_init_nhwindows(argcp,argv)
 		    {
 			if( disp.PropertyFlags & DIPF_IS_LACE )
 			    NewHackScreen.ViewModes |= LACE;
-			NewHackScreen.Height = dims.StdOScan.MaxY;
-			NewHackScreen.Width = dims.StdOScan.MaxX;
+			NewHackScreen.Height = dims.StdOScan.MaxY+1;
+			NewHackScreen.Width = dims.StdOScan.MaxX+1;
 		    }
 		    break;
 
@@ -1798,8 +1942,8 @@ cursor_on( window )
 
     /* Draw in complement mode. The cursor body will be C_WHITE */
 
-    cw->curs_apen = C_RED;
-    cw->curs_bpen = C_RED;
+    cw->curs_apen = 0xff; /* Last color/all planes, regardless of depth */
+    cw->curs_bpen = 0xff;
     SetAPen( rp, cw->curs_apen );
     SetBPen( rp, cw->curs_bpen );
     SetDrMd( rp, COMPLEMENT );
@@ -1899,11 +2043,9 @@ amii_print_glyph(win,x,y,glyph)
 {
     struct amii_WinDesc *cw;
     uchar   ch;
-    register int offset;
-#ifdef TEXTCOLOR
-    int     color;
-#endif
-    extern int zapcolors[];
+    int     color, och;
+    extern const int zapcolors[];
+    unsigned special;
 
     /* In order for the overview window to work, we can not clip here */
     if( !WINVERS_AMIV )
@@ -1944,70 +2086,10 @@ if(u.uz.dlevel != x){
     }
     else		/* AMII, or Rogue level in either version */
     {
-#ifdef TEXTCOLOR
-#define zap_color(n)  color = iflags.use_color ? zapcolors[n] : NO_COLOR
-#define cmap_color(n) color = iflags.use_color ? defsyms[n].color : NO_COLOR
-#define obj_color(n)  color = iflags.use_color ? objects[n].oc_color : NO_COLOR
-#define mon_color(n)  color = iflags.use_color ? mons[n].mcolor : NO_COLOR
-#define invis_color(n) color = NO_COLOR
-#define pet_color(n)  color = iflags.use_color ? mons[n].mcolor :          \
-		/* If no color, try to hilite pets; black  */ \
-		/* should be HI                */ \
-		    ((iflags.hilite_pet) ? CLR_BLACK : NO_COLOR)
-# define warn_color(n) color = iflags.use_color ? def_warnsyms[n].color : NO_COLOR
-# else /* no text color */
-
-#define zap_color(n)
-#define cmap_color(n)
-#define obj_color(n)
-#define mon_color(n)
-#define invis_color(n)
-#define pet_color(n)
-#define warn_color(n)
-#endif
-
-	/*
-	 *  Map the glyph back to a character.
-	 *
-	 *  Warning:  For speed, this makes an assumption on the order of
-	 *        offsets.  The order is set in display.h.
-	 */
-	if ((offset = (glyph - GLYPH_WARNING_OFF)) >= 0) {	/* a warning flash */
-	    ch = warnsyms[offset];
-	    warn_color(offset);
-	} else if ((offset = (glyph - GLYPH_SWALLOW_OFF)) >= 0) {  /* swallow */
-	    /* see swallow_to_glyph()in display.c */
-	    ch = (uchar) showsyms[S_sw_tl + (offset & 0x7)];
-	    mon_color(offset >> 3);
-	} else if ((offset = (glyph - GLYPH_ZAP_OFF)) >= 0) {       /* zap beam */
-	    ch = showsyms[S_vbeam + (offset & 0x3)];
-	    zap_color((offset >> 2));
-	} else if( ( offset = (glyph - GLYPH_CMAP_OFF) ) >= 0 ) {   /* cmap */
-	    ch = showsyms[offset];
-	    cmap_color(offset);
-	} else if( ( offset = (glyph - GLYPH_OBJ_OFF) ) >= 0 ) {    /* object */
-	    ch = oc_syms[objects[offset].oc_class];
-	    obj_color(offset);
-	} else if ((offset = (glyph - GLYPH_RIDDEN_OFF)) >= 0) { /* a ridden monster */
-	    ch = (uchar) monsyms[mons[offset].mlet];
-	    mon_color(offset);
-	} else if ((offset = (glyph - GLYPH_BODY_OFF)) >= 0) {  /* a corpse */
-	    ch = oc_syms[objects[CORPSE].oc_class];
-	    mon_color(offset);
-	} else if ((offset = (glyph - GLYPH_DETECT_OFF)) >= 0) { /* a detected monster */
-	    ch = (uchar) monsyms[mons[offset].mlet];
-	    mon_color(offset);
-	} else if ((offset = (glyph - GLYPH_INVIS_OFF)) >= 0) {	/* invisible */
-	    ch = DEF_INVISIBLE;
-	    invis_color(offset);
-	} else if ((offset = (glyph - GLYPH_PET_OFF)) >= 0) {   /* a pet */
-	    ch = (uchar) monsyms[mons[offset].mlet];
-	    pet_color(offset);
-	} else /*if( glyph_is_monster(glyph) )*/ {      /* a monster */
-	    ch = (uchar) monsyms[mons[glyph].mlet];
-	    mon_color(glyph);
-	}
+	/* map glyph to character and color */
+    	mapglyph(glyph, &och, &color, &special, x, y);
 				/* XXX next if should be ifdef REINCARNATION */
+	ch = (uchar)och;
 	if( WINVERS_AMIV ){			/* implies Rogue level here */
 	    amii_curs(win,x,y);
 	    amiga_print_glyph(win,NO_COLOR,ch + 10000);

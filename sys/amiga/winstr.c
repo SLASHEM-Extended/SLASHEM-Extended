@@ -20,6 +20,7 @@ amii_putstr(window,attr,str)
     register struct amii_WinDesc *cw;
     char *ob;
     int i, j, n0, bottom, totalvis, wheight;
+    static int wrapping = 0;
 
     /* Always try to avoid a panic when there is no window */
     if( window == WIN_ERR )
@@ -213,11 +214,24 @@ amii_putstr(window,attr,str)
 
     case NHW_MAP:
     case NHW_BASE:
+	if (cw->type == NHW_BASE && wrapping) {
+	    amii_curs(window, cw->curx+1, cw->cury);
+	    TextSpaces(w->RPort, cw->cols);
+	    if (cw->cury < cw->rows) {
+		amii_curs(window, cw->curx+1, cw->cury+1);
+		TextSpaces(w->RPort, cw->cols);
+		cw->cury--;
+	    }
+	}
 	amii_curs(window, cw->curx+1, cw->cury);
 	Text(w->RPort,(char *)str,strlen((char *)str));
 	cw->curx = 0;
 	    /* CR-LF is automatic in these windows */
 	cw->cury++;
+	if (cw->type == NHW_BASE && cw->cury >= cw->rows) {
+	    cw->cury = 0;
+	    wrapping = 1;
+	}
 	break;
 
     case NHW_MENU:
@@ -237,8 +251,10 @@ amii_putstr(window,attr,str)
 	    for(i=0; i<cw->cury; i++)
 		tmp[i] = cw->data[i];
 
-	    if( cw->data )
+	    if( cw->data ) {
 		free( cw->data );
+		cw->data = NULL;
+	    }
 
 	    cw->data = tmp;
 
@@ -252,8 +268,10 @@ amii_putstr(window,attr,str)
 
 	    /* Shouldn't need to do this, but... */
 
-	if( cw->data && cw->data[cw->cury] )
+	if( cw->data && cw->data[cw->cury] ) {
 	    free( cw->data[cw->cury] );
+	    cw->data[cw->cury] = NULL;
+	}
 
 	n0 = strlen(str)+1;
 	cw->data[cw->cury] = (char*) alloc(n0+SOFF);
