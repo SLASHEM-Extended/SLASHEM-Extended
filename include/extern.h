@@ -1699,6 +1699,7 @@ E int FDECL(str2role, (char *));
 E int FDECL(str2race, (char *));
 E int FDECL(str2gend, (char *));
 E int FDECL(str2align, (char *));
+E int FDECL(mrace2race, (int));
 E boolean FDECL(ok_role, (int, int, int, int));
 E int FDECL(pick_role, (int, int, int));
 E boolean FDECL(ok_race, (int, int, int, int));

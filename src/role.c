@@ -846,6 +846,30 @@ randrace(rolenum)
 	return (rn2(SIZE(races)-1));
 }
 
+/*
+ * [ALI] Find the player equivalent race for a monster from its M2 flags.
+ */
+
+int
+mrace2race(mflags2)
+	int mflags2;
+{
+	int i;
+
+	/* Look for a race with the correct selfmask */
+	for (i = 0; races[i].noun; i++)
+	    if (mflags2 & races[i].selfmask) {
+		/* Where more than one player race has the same monster race,
+		 * return the base race.
+		 */
+		if (mflags2 & MH_HUMAN && races[i].malenum != PM_HUMAN)
+		    continue;
+		if (mflags2 & MH_ELF && races[i].malenum != PM_ELF)
+		    continue;
+		return i;
+	    }
+	return ROLE_NONE;
+}
 
 int
 str2race(str)
