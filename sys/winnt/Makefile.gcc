@@ -1,9 +1,9 @@
-#       $Id: Makefile.gcc,v 1.49 2004-01-20 20:58:47 entro-p Exp $
+#       $Id: Makefile.gcc,v 1.50 2004-05-03 15:04:20 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
 #
-#       Slash'EM 0.0.7 Makefile for MinGW 2.0 and above and Gtk+ 2.0 and above
+#       Slash'EM 0.0.8 Makefile for MinGW 2.0 and above and Gtk+ 2.0 and above
 #  
 #       Win32 systems tested:
 #				- Windows 95

@@ -1,11 +1,11 @@
-.\" $Revision: 1.15 $ $Date: 2003-12-11 09:49:05 $
+.\" $Revision: 1.16 $ $Date: 2004-05-03 15:04:19 $
 .ds h0 "SLASH'EM Guidebook
 .ds h1
 .ds h2 %
-.ds vr "SLASH'EM 0.0.7
+.ds vr "SLASH'EM 0.0.8
 .ds f0 "\*(vr
 .ds f1
-.ds f2 "December 10, 2003
+.ds f2 "May 3, 2004
 .mt
 A Guide to the Mazes of Menace
 (Guidebook for SLASH'EM)

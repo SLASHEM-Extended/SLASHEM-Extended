@@ -3,7 +3,7 @@
 #
 #       Slash'EM modifications by Lars Huttar and J. Ali Harlow.
 #
-#       Slash'EM 0.0.7 Makefile for MS Visual C++ V4.x and above and MS NMAKE
+#       Slash'EM 0.0.8 Makefile for MS Visual C++ V4.x and above and MS NMAKE
 #  
 #       Win32 Compilers Tested (with NetHack 3.3):
 #                              - Microsoft 32 bit Visual C++ V4.x
@@ -141,7 +141,7 @@ PRECOMPHEAD = N			# set to Y if you want to use precomp. headers
 
 RESFILE = $(GAME).res
 
-#Do not uncomment these for 0.0.7
+#Do not uncomment these for 0.0.8
 #TILEGAME  = $(OBJ)\tile.o
 #TILEDEF   = -DTILES
 #TILEHDR   =

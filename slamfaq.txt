@@ -1,12 +1,12 @@
 +------------------------------------------------------------------------+
 |                             SLAMFAQ.TXT                                |
 +------------------------------------------------------------------------+
-|                          SLASH'EM ver 0.0.7                            |
+|                          SLASH'EM ver 0.0.8                            |
 |               Super Lotsa Added Stuff Hack - Extended Magic            |
 |                           A Nethack Variant                            |
 | Courtesy of the Slash'EM development team with the efforts and support |
 | of countless others, especially the slashem-devel mailing list.        |
-|                                                             (1997-2003)|
+|                                                             (1997-2004)|
 +------------------------------------------------------------------------+
 | Nethack is Copyright 1985-2003                                         |
 |            By Stichting Mathematisch Centrum and M. Stephenson.        |
