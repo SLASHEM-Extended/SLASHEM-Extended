@@ -78,6 +78,12 @@ ver 0.0.7E6 [?] [Released by ?]
 -fixed bug 878813: GtkHack/win32: #portdebug crashes
 -Mac: Update Install.mpw to require yacc/lex
 -fixed bug 883643: Crash when throwing potions at monsters behind iron bars
+-fixed bug 854779: Unknown tin auto-IDed as dog when eaten
+-fixed bug 878951: [winnt] tiles32.bmp not in makefile
+-fixed bug 879237: [winnt] stdout & stderr prints dont show
+-fixed bug 879242: tile2bmp does not abort if no tiles created
+-fixed bug 879243: [unix] nhtiles.bmp build info error in makefile.dat
+-fixed bug 879244: tile2bmp draws stripes instead of checks
 
 See history.txt for changes made in previous versions.
 
