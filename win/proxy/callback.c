@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.17 2003-07-05 15:02:54 j_ali Exp $ */
+/* $Id: callback.c,v 1.18 2003-07-05 16:13:27 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -208,11 +208,19 @@ NhExtXdr *request, *reply;
 {
     int fh, len;
     char *retval;
-    char buf[512];	/* Must be small enough that packet fits into 1Kb */
+    char *buf;
     extern char *dlbh_fgets();
     nhext_rpc_params(request, 2, EXT_INT_P(len), EXT_INT_P(fh));
-    retval = dlbh_fgets(buf, len < 512 ? len : 512, fh);
+    if (len > 10*1024*1024)
+	len = 10*1024*1024;	/* Avoid pointless resource useage */
+    buf = (char *)malloc(len);
+    if (!buf && len > 512) {
+	len = 512;
+	buf = (char *)malloc(len);
+    }
+    retval = buf ? dlbh_fgets(buf, len, fh) : (char *)0;
     nhext_rpc_params(reply, 1, EXT_STRING(retval ? retval : ""));
+    free(buf);
 }
 
 static void
@@ -221,13 +229,19 @@ unsigned short id;
 NhExtXdr *request, *reply;
 {
     int fh, len, nb;
-    char buf[512];	/* Must be small enough that packet fits into 1Kb */
+    char *buf;
     nhext_rpc_params(request, 2, EXT_INT_P(len), EXT_INT_P(fh));
-    if (len > 512)
+    if (len > 10*1024*1024)
+	len = 10*1024*1024;	/* Avoid pointless resource useage */
+    buf = (char *)malloc(len);
+    if (!buf && len > 512) {
 	len = 512;
-    nb = dlbh_fread(buf, 1, len, fh);
+	buf = (char *)malloc(len);
+    }
+    nb = buf ? dlbh_fread(buf, 1, len, fh) : -1;
     nhext_rpc_params(reply, 2,
       EXT_INT(nb < 0), EXT_BYTES(buf, nb >= 0 ? nb : 0));
+    free(buf);
 }
 
 extern FILE *proxy_config_fp;

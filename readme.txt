@@ -92,6 +92,7 @@ ver 0.0.7E2 [?] [Released by ?]
 -fixed bug 620074: Spitting #monster collapses dungeon.
 -Proxy: Add md5sum callback to support file caching by external interfaces.
 -Proxy: Fix minor syntax errors in ext_protocol.html.
+-Proxy: Relax limits on buffer sizes to improve download speed.
 
 See history.txt for changes made in previous versions.
 
