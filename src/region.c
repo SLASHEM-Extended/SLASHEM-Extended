@@ -17,7 +17,7 @@ static int max_regions = 0;
 
 #define NO_CALLBACK (-1)
 
-boolean FDECL(inside_gas_cloud, (genericptr,genericptr,boolean));
+boolean FDECL(inside_gas_cloud, (genericptr,genericptr,BOOLEAN_P));
 boolean FDECL(inside_player_gas_cloud, (genericptr, genericptr));
 boolean FDECL(inside_mon_gas_cloud, (genericptr, genericptr));
 boolean FDECL(expire_gas_cloud, (genericptr,genericptr));
