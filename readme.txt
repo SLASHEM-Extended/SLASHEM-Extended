@@ -144,6 +144,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 992244: Alt Gr key doesn't work
 -fixed bug 1076125: Unsuccessful use of medical kits
 -fixed bug 1076123: Vampires can eat white pills
+-fixed bug 994993: when polying, you take off T-shirt after scales merge
 
 See history.txt for changes made in previous versions.
 
