@@ -1417,9 +1417,18 @@ void
 discard_minvent(mtmp)
 struct monst *mtmp;
 {
-    struct obj *otmp;
+    struct obj *otmp, *curr;
 
-    while ((otmp = mtmp->minvent) != 0) {
+    while (mtmp->minvent) {
+	/* Move all contained objects out into the monster's main inventory
+	 * so that we can easily check that every object (whether contained
+	 * or not) does not evade destruction.
+	 */
+	while (Has_contents((otmp = mtmp->minvent))) {
+	    curr = otmp->cobj;
+	    obj_extract_self(curr);
+	    (void) add_to_minv(mtmp, curr);
+	}
 	obj_extract_self(otmp);
 	if (evades_destruction(otmp)) {
 	    impossible("%s discarded from %s inventory",
@@ -1482,6 +1491,22 @@ obj_extract_self(obj)
     }
 }
 
+/* Extract a contained indestructable object (if one exists) and return it */
+struct obj *
+container_extract_indestructable(struct obj *obj)
+{
+    struct obj *otmp = obj->cobj, *indestructable = (struct obj *)0;
+    while (!indestructable && otmp) {
+	if (Has_contents(otmp))
+	    indestructable = container_extract_indestructable(otmp);
+	if (!indestructable && evades_destruction(otmp)) {
+	    indestructable = otmp;
+	    obj_extract_self(indestructable);
+	}
+	otmp = otmp->nobj;
+    }
+    return indestructable;
+}
 
 /* Extract the given object from the chain, following nobj chain. */
 void

@@ -254,14 +254,26 @@ struct obj *corpse;
 		    mptr == &mons[PM_CTHULHU]) {
 		/* Since these monsters may be carrying indestructible 
 		 * artifacts, free inventory specifically here to avoid
-		 * the indestructible sanity check in discard_minvent */
-		struct obj* otmp;
+		 * the indestructible sanity check in discard_minvent.
+		 * Similar considerations cause the necessity to avoid
+		 * calling delete_contents on containers which are
+		 * directly in a monster's inventory (indestructable
+		 * objects would be dropped on the floor).
+		 */
+		struct obj *otmp, *curr;
 	    	while ((otmp = mtmp->minvent) != 0) {
+		    while (Has_contents(otmp)) {
+			while (Has_contents(otmp->cobj))
+			    delete_contents(otmp->cobj);
+			curr = otmp->cobj;
+			obj_extract_self(curr);
+			obfree(curr, (struct obj *)0);
+		    }
 		    obj_extract_self(otmp);
 		    obfree(otmp, (struct obj *)0);
 		}
 		mongone(mtmp);
-	}
+	    }
 	}
 #ifdef STEED
 	if (u.usteed) dismount_steed(DISMOUNT_BONES);

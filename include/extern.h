@@ -1139,6 +1139,7 @@ E void FDECL(place_object, (struct obj *,int,int));
 E void FDECL(remove_object, (struct obj *));
 E void FDECL(discard_minvent, (struct monst *));
 E void FDECL(obj_extract_self, (struct obj *));
+E struct obj *FDECL(container_extract_indestructable, (struct obj *obj));
 E void FDECL(extract_nobj, (struct obj *, struct obj **));
 E void FDECL(extract_nexthere, (struct obj *, struct obj **));
 E int FDECL(add_to_minv, (struct monst *, struct obj *));

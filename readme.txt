@@ -88,6 +88,7 @@ ver 0.0.7E3 [?] [Released by ?]
 -fixed bug 782004: Poor transparency in tiles imported from Mitsuhiro Itakura.
 -fixed bug 603181: Problems with dynamite
 -fixed bug 789073: pickup_thrown and bones
+-fixed bug 790230: BUG: obfree() called on non-empty container
 
 See history.txt for changes made in previous versions.
 

@@ -1791,8 +1791,16 @@ register struct obj *obj;
 		}
 	} else if (Is_mbag(current_container) && mbag_explodes(obj, 0)) {
 		You("are blasted by a magical explosion!");
+		if (Has_contents(obj)) {
+		    struct obj *otmp;
+		    while((otmp = container_extract_indestructable(obj)))
+			if (!flooreffects(otmp, u.ux, u.uy, "fall"))
+			    place_object(otmp, u.ux, u.uy);
+		}
 		/* did not actually insert obj yet */
 		if (was_unpaid) addtobill(obj, FALSE, FALSE, TRUE);
+		if (Has_contents(obj))
+		    delete_contents(obj);
 		obfree(obj, (struct obj *)0);
 		delete_contents(current_container);
 		if (!floor_container)
