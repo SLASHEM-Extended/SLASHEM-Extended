@@ -50,7 +50,6 @@
  */
 
 STATIC_DCL int FDECL(ready_weapon, (struct obj *, BOOLEAN_P));
-STATIC_DCL void FDECL(unwield, (struct obj *, BOOLEAN_P));
 
 /* used by will_weld() */
 /* probably should be renamed */
@@ -117,10 +116,8 @@ boolean put_away;
 
 	
 	/* MRKR: Handle any special effects of unwielding a weapon */
-
-	if (olduwep && olduwep != uwep) {
-	  unwield(olduwep, put_away);
-	}
+	if (olduwep && olduwep != uwep)
+	    unwield(olduwep, put_away);
 
 	update_inventory();
 }
@@ -238,9 +235,8 @@ boolean put_away;
 	struct obj *oldswapwep = uswapwep;
 	setworn(obj, W_SWAPWEP);
 
-	if (oldswapwep && oldswapwep != uswapwep) {
-	  unwield(oldswapwep, put_away);
-	}
+	if (oldswapwep && oldswapwep != uswapwep)
+	    unwield(oldswapwep, put_away);
 	update_inventory();
 }
 
@@ -300,7 +296,7 @@ dowield()
 
 	/* Set your new primary weapon */
 	oldwep = uwep;
-	result = ready_weapon(wep, !flags.pushweapon);
+	result = ready_weapon(wep, TRUE);
 	if (flags.pushweapon && oldwep && uwep != oldwep)
 		setuswapwep(oldwep, TRUE);
 	untwoweapon();
@@ -329,10 +325,13 @@ doswapweapon()
 	/* Unwield your current secondary weapon */
 	oldwep = uwep;
 	oldswap = uswapwep;
+	if (uswapwep)
+		unwield(uswapwep, FALSE);
+	u.twoweap = 0;
 	setuswapwep((struct obj *) 0, FALSE);
 
 	/* Set your new primary weapon */
-	result = ready_weapon(oldswap, FALSE);
+	result = ready_weapon(oldswap, TRUE);
 
 	/* Set your new secondary weapon */
 	if (uwep == oldwep)
@@ -617,6 +616,8 @@ dotwoweapon()
 	/* You can always toggle it off */
 	if (u.twoweap) {
 		You("switch to your primary weapon.");
+		if (uswapwep)
+		    unwield(uswapwep, TRUE);
 		u.twoweap = 0;
 		update_inventory();
 		return (0);
@@ -643,14 +644,13 @@ void
 uwepgone()
 {
 	if (uwep) {
-	        struct obj *otmp;
 		if (artifact_light(uwep) && uwep->lamplit) {
 		    end_burn(uwep, FALSE);
 		    if (!Blind) pline("%s glowing.", Tobjnam(uwep, "stop"));
 		}
+		unwield(uwep, FALSE);
 		setworn((struct obj *)0, W_WEP);
 		unweapon = TRUE;
-		unwield(otmp, FALSE);
 		update_inventory();
 	}
 }
@@ -678,6 +678,8 @@ untwoweapon()
 {
 	if (u.twoweap) {
 		You("can no longer use two weapons at once.");
+		if (uswapwep)
+		    unwield(uswapwep, TRUE);
 		u.twoweap = FALSE;
 		update_inventory();
 	}
@@ -888,21 +890,16 @@ register struct obj *obj;
 	obj->owornmask = savewornmask;
 }
 
-STATIC_DCL void
+void
 unwield(obj, put_away)
 register struct obj *obj;
 boolean put_away;
 {
-
-  /* MRKR: Extinguish torches when they are put away */
-  
-  if (put_away && 
-      obj->otyp == TORCH && 
-      obj->lamplit) {
-    You("extinguish %s before putting it away.", yname(obj));
-    end_burn(obj, TRUE);
-  }
-  
+    /* MRKR: Extinguish torches when they are put away */
+    if (put_away && obj->otyp == TORCH && obj->lamplit) {
+	You("extinguish %s before putting it away.", yname(obj));
+	end_burn(obj, TRUE);
+    }
 }
 
 /*wield.c*/

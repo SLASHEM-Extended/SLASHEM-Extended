@@ -94,6 +94,7 @@ ver 0.0.7E5 [?] [Released by ?]
 -fixed bug 864193: Using Arrow keys in win32 GTK
 -fixed bug 866750: The number_pad windowing API is not called correctly
 -fixed bug 821864: [0.0.7e2] Recharge lightsaber loses enchantment
+-fixed bug 790120: Wolf form can't hold Torch but can if already holding
 
 See history.txt for changes made in previous versions.
 

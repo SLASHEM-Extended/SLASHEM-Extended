@@ -1236,8 +1236,8 @@ struct obj *obj;
 	obj = splitobj(otmp, 1L);
 	obj_extract_self(otmp);	/* free from inv */
     }
-    /* You can use a torch in either weapon slot */
-    if (obj != uwep && obj != uswapwep)
+    /* You can use a torch in either wielded weapon slot */
+    if (obj != uwep && (obj != uswapwep || !u.twoweap))
 	if (!wield_tool(obj, (const char *)0)) return 0;
     use_lamp(obj);
     /* shouldn't merge */

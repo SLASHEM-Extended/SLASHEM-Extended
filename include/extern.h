@@ -2427,9 +2427,9 @@ E void FDECL(you_unwere, (BOOLEAN_P));
 
 /* ### wield.c ### */
 
-E void FDECL(setuwep, (struct obj *, BOOLEAN_P));
+E void FDECL(setuwep, (struct obj *,BOOLEAN_P));
 E void FDECL(setuqwep, (struct obj *));
-E void FDECL(setuswapwep, (struct obj *, BOOLEAN_P));
+E void FDECL(setuswapwep, (struct obj *,BOOLEAN_P));
 E int NDECL(dowield);
 E int NDECL(doswapweapon);
 E int NDECL(dowieldquiver);
@@ -2446,6 +2446,7 @@ E int FDECL(chwepon, (struct obj *,int));
 E int FDECL(welded, (struct obj *));
 E void FDECL(weldmsg, (struct obj *));
 E void FDECL(setmnotwielded, (struct monst *,struct obj *));
+E void FDECL(unwield, (struct obj *,BOOLEAN_P));
 
 /* ### windows.c ### */
 
