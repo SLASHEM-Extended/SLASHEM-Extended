@@ -59,14 +59,15 @@ STATIC_DCL void FDECL(alleg_scrollmap,(BOOLEAN_P));
 STATIC_DCL void NDECL(positionbar);
 STATIC_DCL void NDECL(init_progress_meter);
 STATIC_DCL void NDECL(inc_progress_meter);
-STATIC_DCL int FDECL(tileback_to_glyph, (int,int));
 STATIC_DCL void FDECL(alleg_printGlyph_at, (int,int,int)); /* row, col, level */
-#define PRINT_BACKGROUND 1
-#define PRINT_FOREGROUND 2
+#define PRINT_BACKGROUND	1
+#define PRINT_FOREGROUND	2
 STATIC_DCL int FDECL(alleg_SwitchMode,(int));
-#define ALLEG_MODETEXT 0
-#define ALLEG_MODEGFX 1
-#define ALLEG_MODE_NONE -1
+#define ALLEG_MODETEXT	0
+#define ALLEG_MODEGFX	1
+#define ALLEG_MODE_NONE	-1
+
+#define FLOOR_GLYPH	cmap_to_glyph(S_room)
 
 /* Settings */
 static int video_mode   = GFX_AUTODETECT;
@@ -74,14 +75,14 @@ static int smoothing    = 0;           /* slightly smoother scrolling */
 static int hud_setting  = 0;           /* HUD status */
 static int fx_delay     = 1;           /* vsyncs per animation frame */
 static int alleg_colordepth = 16;            /* color depth 15-32 */
-static int X_RES = 640;                /* X resolution min 640 */
-static int Y_RES = 480;                /* Y resolution min 400 */
-static int X_WIDTH = 640;             /* viewport sixe, automatically set */
-static int Y_HEIGHT = 480;             /* viewport sixe, automatically set */
+static int X_RES	= 640;                /* X resolution min 640 */
+static int Y_RES	= 480;                /* Y resolution min 400 */
+static int X_WIDTH	= 640;             /* viewport sixe, automatically set */
+static int Y_HEIGHT	= 480;             /* viewport sixe, automatically set */
 static int attrib_allegro_normal = CLR_CYAN; /* was ATTRIB_VGA_NORMAL */
 static int attrib_allegro_intense = CLR_BRIGHT_MAGENTA; /* was ATTRIB_VGA_INTENSE */
 static int attrib_allegro_status = CLR_BRIGHT_BLUE; /* was ATTRIB_STATUS */
-static int scroll_lim = 0;             /* how many pixels to wait before a 
+static int scroll_lim	= 0;             /* how many pixels to wait before a 
                                            scroll*/
 static int need_update  = 0;           /* screen-update code flag */
 static int no_update    = 0;
@@ -944,9 +945,11 @@ int ch;
 	
 		set_clip(subscreen, posx, posy, posx + tile_x - 1, posy + tile_y - 1);
 		
+#if 0
 		rect(subscreen, posx, posy, posx + tile_x - 1, posy + tile_y - 1, 
 				colorpal[CLR_BLACK]);
-
+#endif
+				
 		for (j = row - 1; j <= row + 1; j++)
 		    for (i = col - 1; i <= col + 1; i++)
 			alleg_printGlyph_at(i, j, PRINT_BACKGROUND);
@@ -968,10 +971,10 @@ static void
 alleg_printGlyph_at(col, row, mode) 
 int col, row, mode;
 {
-       	int glyphnum;
+       	int glyphnum = NO_GLYPH;
         int mapx = col+1;
         int mapy = row-1;
-        int glyph2num;
+        int glyph2num = NO_GLYPH;
        	int posx = col*tile_x;
        	int posy = row*tile_y;
         register struct trap *trap;
@@ -985,7 +988,18 @@ int col, row, mode;
             (row < TOP_MAP_ROW || row >= (ROWNO + TOP_MAP_ROW))) return;
 
 	glyphnum = map[row - TOP_MAP_ROW][col].glyph;
-	
+	glyph2num = levl[mapx][mapy].glyph;
+	if(Blind || (viz_array && !cansee(mapx, mapy))){
+	    if(glyph_is_object(glyph2num)){
+		if(!levl[mapx][mapy].waslit)
+		    glyph2num = cmap_to_glyph(S_stone);
+		else
+		    glyph2num = back_to_glyph(mapx, mapy);
+	    }
+	} else {
+	    glyph2num = back_to_glyph(mapx, mapy);
+	}
+
 	if (draw_3Dtiles) {
 		posx = posxy_to_posx3d(posx, posy);
 		posy = posy_to_posy3d(posy);
@@ -993,32 +1007,19 @@ int col, row, mode;
 	need_update = 1;
  
 	if (mode & PRINT_BACKGROUND) {
-                glyph2num = tileback_to_glyph(mapx,mapy);
+		/* Draw floor */
+			
+		b_tile = tilecache[glyph2tile[FLOOR_GLYPH]];
+		draw_sprite(subscreen, b_tile, posx, posy);
+              
+                /* Use alternate altar tiles if appropriate */
+		if(!draw_3Dtiles && glyph2num == cmap_to_glyph(S_altar) &&
+		          !(Is_astralevel(&u.uz) || Is_sanctum(&u.uz))) {
+		        b_tile = sub_altar((aligntyp)Amask2align(levl[mapx][mapy].altarmask & ~AM_SHRINE));
+		} else {
+		        b_tile = tilecache[glyph2tile[glyph2num]];
+		}
 
-                b_tile = tilecache[glyph2tile[glyph2num]];
-		
-	        draw_sprite(subscreen, b_tile, posx, posy);
-	}
-	if (!(mode & PRINT_FOREGROUND)) {
-	        if (col < (CO - 1 )) ++col;
-	        alleg_gotoloc(col,row);
-	        return;
-	}
-
-	f_tile = tilecache[glyph2tile[glyphnum]];
-
-        if ((trap = t_at(mapx,mapy)) != 0 && trap->tseen && 
-            !covers_traps(mapx,mapy))
-                glyph2num = trap_to_glyph(trap);
-        else
-                glyph2num = back_to_glyph(mapx,mapy);
-
-	if (glyph2num != tileback_to_glyph(mapx, mapy)) {
-            if(glyph2num == cmap_to_glyph(S_altar) &&
-	          !(Is_astralevel(&u.uz) || Is_sanctum(&u.uz))) {
-                b_tile = sub_altar((aligntyp)Amask2align(levl[mapx][mapy].altarmask & ~AM_SHRINE));
-            } else 
-                b_tile = tilecache[glyph2tile[glyph2num]];
 #define glyph_is_wall(glyphnum)		(glyph_to_cmap(glyphnum) != NO_GLYPH && \
 	    		glyph_to_cmap(glyphnum) > S_stone && \
 	    		glyph_to_cmap(glyphnum) <= S_hcdoor)
@@ -1026,26 +1027,71 @@ int col, row, mode;
 	    		(glyph_to_cmap(glyphnum) != NO_GLYPH && \
 	    		glyph_to_cmap(glyphnum) >= S_stone && \
 	    		glyph_to_cmap(glyphnum) <= S_hcdoor)
+	    
 	    /* Check above, above right and to the left */
-	    if (draw_3Dtiles && glyphnum == glyph2num && glyph_is_wall(glyph2num) && (
-		 	((row > TOP_MAP_ROW) && 
-		 	 !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW - 1][col].glyph) ||
-   		 	 (col > 0 && 
-		 	   !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW - 1][col - 1].glyph)) ||
-		 	 (col < (COLNO - 1) && 
-		 	   !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW - 1][col + 1].glyph))) ||
-   		 	(col > 0 && 
-		 	   !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW][col - 1].glyph))))
- 	    {
+	    if (draw_3Dtiles && glyph_is_wall(glyph2num) && (
+	 	((row > TOP_MAP_ROW) && 
+	 	 !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW - 1][col].glyph) ||
+		 	 (col > 0 && 
+	 	   !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW - 1][col - 1].glyph)) ||
+	 	 (col < (COLNO - 1) && 
+	 	   !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW - 1][col + 1].glyph))) ||
+		 	(col > 0 && 
+	 	   !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW][col - 1].glyph))))
+	    {
+		/* Make walls see-through */
+		if (alleg_colordepth != 8)
+		    set_trans_blender(255, 255, 255, 128);
+		draw_trans_sprite(subscreen, b_tile, posx, posy);
+	    } else {
+	        draw_sprite(subscreen, b_tile, posx, posy);
+	    }
+	}
+	if (!(mode & PRINT_FOREGROUND)) {
+	        if (col < (CO - 1 )) ++col;
+	        alleg_gotoloc(col,row);
+	        return;
+	}
+
+	/* Draw the foreground layers */
+
+	f_tile = tilecache[glyph2tile[glyphnum]];
+
+#if 0
+        if ((trap = t_at(mapx,mapy)) != 0 && trap->tseen && 
+            !covers_traps(mapx,mapy))
+                glyph2num = trap_to_glyph(trap);
+        else
+                glyph2num = back_to_glyph(mapx,mapy);
+
+#define glyph_is_wall(glyphnum)		(glyph_to_cmap(glyphnum) != NO_GLYPH && \
+	    		glyph_to_cmap(glyphnum) > S_stone && \
+	    		glyph_to_cmap(glyphnum) <= S_hcdoor)
+#define glyph_is_wall_or_stone(glyphnum)	\
+	    		(glyph_to_cmap(glyphnum) != NO_GLYPH && \
+	    		glyph_to_cmap(glyphnum) >= S_stone && \
+	    		glyph_to_cmap(glyphnum) <= S_hcdoor)
+	/* Check above, above right and to the left */
+	if (draw_3Dtiles && glyphnum == glyph2num && glyph_is_wall(glyph2num) && (
+	 	((row > TOP_MAP_ROW) && 
+	 	 !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW - 1][col].glyph) ||
+		 	 (col > 0 && 
+	 	   !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW - 1][col - 1].glyph)) ||
+	 	 (col < (COLNO - 1) && 
+	 	   !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW - 1][col + 1].glyph))) ||
+		 	(col > 0 && 
+	 	   !glyph_is_wall_or_stone(map[row - TOP_MAP_ROW][col - 1].glyph))))
+	{
 		/* Make walls see-through */
 		if (alleg_colordepth != 8)
 		    set_trans_blender(255, 255, 255, 128);
 		draw_trans_sprite(subscreen, f_tile, posx, posy);
-	    }
-	        else
-            draw_sprite(subscreen, b_tile, posx, posy);
+	} else {
+	    draw_sprite(subscreen, b_tile, posx, posy);
 	}
-
+#endif
+	
+	/* Only draw foreground if it isn't the same as the background */
         if(glyphnum != glyph2num) {
 		if(glyph_to_mon(glyphnum) == NO_GLYPH) {
 			/* Do nothing */
@@ -1112,6 +1158,8 @@ int col, row, mode;
 	            draw_sprite(subscreen, f_tile, posx, posy);
 	        }
 	}
+	
+	/* Draw Aura if protection is active */
         if(u.uspellprot && mapx == u.ux && mapy == u.uy)
         {
         	int pixelcolor = ((u.uspellprot*20 < 200) ? (u.uspellprot*20 + 55) : 255);
@@ -1129,37 +1177,6 @@ int col, row, mode;
         if (col < (CO - 1 )) ++col;
         alleg_gotoloc(col,row);       
 }                      
-
-/* This function takes in map coordinates x,y and returns the appropriate
- * tile background
- */
-static 
-int tileback_to_glyph(int mapx, int mapy)
-{
-    int offset = (back_to_glyph(mapx,mapy) - GLYPH_CMAP_OFF);
-    int idx;
-
-    if(offset == S_stone) {
-	idx = S_stone;
-    } else if(offset >= S_vwall && offset <= S_trwall) {
-	idx = S_room;
-    }else if(offset >= S_vodoor && offset <= S_hcdoor) {
-    	idx = S_room;
-    }else if(offset >= S_upstair && offset <= S_fountain) {
-        idx = S_room;
-    }else if(offset >= S_vodbridge && offset <= S_hcdbridge) {
-        idx = S_pool;
-    }else if(offset >= S_arrow_trap && offset <= S_polymorph_trap) {
-        idx = S_room;
-    }else if(offset == S_cloud) {
-        idx = S_air;
-    }else {
-        idx = offset;
-    }
-    
-    return(cmap_to_glyph(idx));
-}
-
 
 /*
  * Cursor location manipulation, and location information fetching

@@ -315,7 +315,7 @@ Bug - cockatrice lairs no longer have "goodies"?
 -Limit Break based on HP loss? (see howling code)
 -redo/add sound system using allegro
 -split allegro into separate windowsystem after implementing use of GUI
--merge allegro to TTY / separate from DOS code
+-OR merge allegro to TTY / separate from DOS code
 TODO: 
 	-Do the Role/Race/Align/Gender Menusystem (WAC)
 	-alleg_xputs should use const char (Strcpy then put up?)
@@ -324,8 +324,12 @@ TODO:
 	-currently need to redo the font loading code (at least)
 	-it appears to be segfaulting (randomly?)
 -tofix: using the nethack config files.
+-vampires shouldn't be allowed to become Flame Mages
 
 ver 0.0.6E4F2 [December XX/2000]
+-DOS: Allegro window port adapted to display the ground underneath walls
+	(vidalleg.c)
+-Win32: binaries now compiled with the Oct/2000 build of Win GTK libs
 -fixed bug 122396: Bottom line slow to refresh.
 -fixed bug 122397: "Eating" an inedible corple leaves it partly eaten.
 -fixed bug 122966: Dwarf's rage technique should not heal as well.
