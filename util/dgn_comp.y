@@ -98,6 +98,8 @@ dungeon		: dungeonline
 dungeonline	: A_DUNGEON ':' STRING bones_tag rcouple optional_int
 		  {
 			init_dungeon();
+			if (strlen($3)+1 > sizeof(tmpdungeon[n_dgns].name))
+			    yyerror("Dungeon name is too long");
 			Strcpy(tmpdungeon[n_dgns].name, $3);
 			tmpdungeon[n_dgns].boneschar = (char)$4;
 			tmpdungeon[n_dgns].lev.base = couple.base;
@@ -124,7 +126,8 @@ dungeondesc	: entry
 
 entry		: ENTRY ':' INTEGER
 		  {
-			tmpdungeon[n_dgns].entry_lev = $3;
+			/* tmpdungeon[n_dgns].entry_lev = $3; */
+                        yyerror("ENTRY is obsolete!");
 		  }
 		;
 
@@ -149,6 +152,8 @@ desc		: DESCRIPTION ':' DESCRIPTOR
 
 prototype	: PROTOFILE ':' STRING
 		  {
+			if (strlen($3)+1 > sizeof(tmpdungeon[n_dgns].protoname))
+			    yyerror("Proto name is too long");
 			Strcpy(tmpdungeon[n_dgns].protoname, $3);
 			Free($3);
 		  }
@@ -164,6 +169,8 @@ levels		: level1
 level1		: LEVEL ':' STRING bones_tag '@' acouple
 		  {
 			init_level();
+			if (strlen($3)+1 > sizeof(tmplevel[n_levs].name))
+			    yyerror("Level name is too long");
 			Strcpy(tmplevel[n_levs].name, $3);
 			tmplevel[n_levs].boneschar = (char)$4;
 			tmplevel[n_levs].lev.base = couple.base;
@@ -174,6 +181,8 @@ level1		: LEVEL ':' STRING bones_tag '@' acouple
 		| RNDLEVEL ':' STRING bones_tag '@' acouple INTEGER
 		  {
 			init_level();
+			if (strlen($3)+1 > sizeof(tmplevel[n_levs].name))
+			    yyerror("Level name is too long");
 			Strcpy(tmplevel[n_levs].name, $3);
 			tmplevel[n_levs].boneschar = (char)$4;
 			tmplevel[n_levs].lev.base = couple.base;
@@ -187,6 +196,8 @@ level1		: LEVEL ':' STRING bones_tag '@' acouple
 level2		: LEVEL ':' STRING bones_tag '@' acouple INTEGER
 		  {
 			init_level();
+			if (strlen($3)+1 > sizeof(tmplevel[n_levs].name))
+			    yyerror("Level name is too long");
 			Strcpy(tmplevel[n_levs].name, $3);
 			tmplevel[n_levs].boneschar = (char)$4;
 			tmplevel[n_levs].lev.base = couple.base;
@@ -198,6 +209,8 @@ level2		: LEVEL ':' STRING bones_tag '@' acouple INTEGER
 		| RNDLEVEL ':' STRING bones_tag '@' acouple INTEGER INTEGER
 		  {
 			init_level();
+			if (strlen($3)+1 > sizeof(tmplevel[n_levs].name))
+			    yyerror("Level name is too long");
 			Strcpy(tmplevel[n_levs].name, $3);
 			tmplevel[n_levs].boneschar = (char)$4;
 			tmplevel[n_levs].lev.base = couple.base;
@@ -228,6 +241,8 @@ levdesc		: LEVELDESC ':' DESCRIPTOR
 chlevel1	: CHLEVEL ':' STRING bones_tag STRING '+' rcouple
 		  {
 			init_level();
+			if (strlen($3)+1 > sizeof(tmplevel[n_levs].name))
+			    yyerror("Level name is too long");
 			Strcpy(tmplevel[n_levs].name, $3);
 			tmplevel[n_levs].boneschar = (char)$4;
 			tmplevel[n_levs].chain = getchain($5);
@@ -241,6 +256,8 @@ chlevel1	: CHLEVEL ':' STRING bones_tag STRING '+' rcouple
 		| RNDCHLEVEL ':' STRING bones_tag STRING '+' rcouple INTEGER
 		  {
 			init_level();
+			if (strlen($3)+1 > sizeof(tmplevel[n_levs].name))
+			    yyerror("Level name is too long");
 			Strcpy(tmplevel[n_levs].name, $3);
 			tmplevel[n_levs].boneschar = (char)$4;
 			tmplevel[n_levs].chain = getchain($5);
@@ -257,6 +274,8 @@ chlevel1	: CHLEVEL ':' STRING bones_tag STRING '+' rcouple
 chlevel2	: CHLEVEL ':' STRING bones_tag STRING '+' rcouple INTEGER
 		  {
 			init_level();
+			if (strlen($3)+1 > sizeof(tmplevel[n_levs].name))
+			    yyerror("Level name is too long");
 			Strcpy(tmplevel[n_levs].name, $3);
 			tmplevel[n_levs].boneschar = (char)$4;
 			tmplevel[n_levs].chain = getchain($5);
@@ -271,6 +290,8 @@ chlevel2	: CHLEVEL ':' STRING bones_tag STRING '+' rcouple INTEGER
 		| RNDCHLEVEL ':' STRING bones_tag STRING '+' rcouple INTEGER INTEGER
 		  {
 			init_level();
+			if (strlen($3)+1 > sizeof(tmplevel[n_levs].name))
+			    yyerror("Level name is too long");
 			Strcpy(tmplevel[n_levs].name, $3);
 			tmplevel[n_levs].boneschar = (char)$4;
 			tmplevel[n_levs].chain = getchain($5);
@@ -289,29 +310,35 @@ branches	: branch
 		| chbranch
 		;
 
-branch		: BRANCH ':' STRING '@' acouple branch_type direction
+branch		: BRANCH ':' STRING '@' acouple branch_type direction optional_int
 		  {
 			init_branch();
+			if (strlen($3)+1 > sizeof(tmpbranch[n_brs].name))
+			    yyerror("Dungeon name is too long");
 			Strcpy(tmpbranch[n_brs].name, $3);
 			tmpbranch[n_brs].lev.base = couple.base;
 			tmpbranch[n_brs].lev.rand = couple.rand;
 			tmpbranch[n_brs].type = $6;
 			tmpbranch[n_brs].up = $7;
+                        tmpbranch[n_brs].entry_lev = $8;
 			if(!check_branch()) n_brs--;
 			else tmpdungeon[n_dgns].branches++;
 			Free($3);
 		  }
 		;
 
-chbranch	: CHBRANCH ':' STRING STRING '+' rcouple branch_type direction
+chbranch	: CHBRANCH ':' STRING STRING '+' rcouple branch_type direction optional_int
 		  {
 			init_branch();
+			if (strlen($3)+1 > sizeof(tmpbranch[n_brs].name))
+			    yyerror("Dungeon name is too long");
 			Strcpy(tmpbranch[n_brs].name, $3);
 			tmpbranch[n_brs].chain = getchain($4);
 			tmpbranch[n_brs].lev.base = couple.base;
 			tmpbranch[n_brs].lev.rand = couple.rand;
 			tmpbranch[n_brs].type = $7;
 			tmpbranch[n_brs].up = $8;
+			tmpbranch[n_brs].entry_lev = $9;
 			if(!check_branch()) n_brs--;
 			else tmpdungeon[n_dgns].branches++;
 			Free($3);
@@ -450,7 +477,6 @@ init_dungeon()
 	tmpdungeon[n_dgns].flags = 0;
 	tmpdungeon[n_dgns].levels = 0;
 	tmpdungeon[n_dgns].branches = 0;
-	tmpdungeon[n_dgns].entry_lev = 0;
 }
 
 void
@@ -482,6 +508,7 @@ init_branch()
 	tmpbranch[n_brs].lev.rand = 0;
 	Strcpy(tmpbranch[n_brs].name, "");
 	tmpbranch[n_brs].chain = -1;
+	tmpbranch[n_brs].entry_lev = 0;
 }
 
 int
@@ -564,12 +591,12 @@ check_level()
 	    }
 
 	if(tmplevel[i].chain == -2) {
-		yyerror("Invaild level chain reference.");
+		yyerror("Invalid level chain reference.");
 		return(0);
 	} else if(tmplevel[i].chain != -1) {	/* there is a chain */
 		/* KMH -- tmplevel[tmpbranch[i].chain].chance was in error */
 	    if(tmplevel[tmplevel[i].chain].chance != 100) {
-		yyerror("Level cannot chain from a probabalistic level.");
+		yyerror("Level cannot chain from a probabilistic level.");
 		return(0);
 	    } else if(tmplevel[i].chain == n_levs) {
 		yyerror("A level cannot chain to itself!");
@@ -581,8 +608,8 @@ check_level()
 
 /*
  *	- A branch may not branch backwards - to avoid branch loops.
- *	- A branch name must be unique.
- *	  (ie. You can only have one entry point to each dungeon).
+ *	- A branch name need not be unique.
+ *	  (ie. You can have many entry points to each dungeon).
  *	- If chained, the level used as reference for the chain
  *	  must be in this dungeon, must be previously defined, and
  *	  the level chained from must be "non-probabilistic" (ie.
@@ -598,21 +625,21 @@ check_branch()
 		yyerror("Branch defined outside of dungeon.");
 		return(0);
 	}
-
+#if 0
 	for(i = 0; i < n_dgns; i++)
 	    if(!strcmp(tmpdungeon[i].name, tmpbranch[n_brs].name)) {
 
 		yyerror("Reverse branching not allowed.");
 		return(0);
 	    }
+#endif
+	if(tmpbranch[n_dgns].chain == -2) {
 
-	if(tmpbranch[i].chain == -2) {
-
-		yyerror("Invaild branch chain reference.");
+		yyerror("Invalid branch chain reference.");
 		return(0);
-	} else if(tmpbranch[i].chain != -1) {	/* it is chained */
+	} else if(tmpbranch[n_dgns].chain != -1) {	/* it is chained */
 
-	    if(tmplevel[tmpbranch[i].chain].chance != 100) {
+	    if(tmplevel[tmpbranch[n_dgns].chain].chance != 100) {
 		yyerror("Branch cannot chain from a probabilistic level.");
 		return(0);
 	    }
