@@ -75,6 +75,7 @@ ver 0.0.7E6F1 [?] [Released by ?]
 -fixed bug 908187: Excessive prompts when reading graffiti (Nico Kist)
 -fixed bug 910891: Overly terse description of bones/save file compatibility
 -fixed bug 908983: "The large kobold turns into it!" (Nico Kist)
+-fixed bug 911457: Macintosh dungeon creation not random
 
 See history.txt for changes made in previous versions.
 
