@@ -1016,37 +1016,40 @@ int tech_no;
 		u_wipe_engr(2);
 		return(0);
 		break;
-            case T_RAISE_ZOMBIES: {
-            	int x,y;
-            	
+            case T_RAISE_ZOMBIES:
             	You("chant the ancient curse...");
 		for (i=0; i<3; i++) for (j=0; j<3; j++) {
-	            x = u.ux + i - 1; y = u.uy + j - 1;
-			if (OBJ_AT(x,y)) {
-				struct obj *obj, *obj2;
+		    int x = u.ux + i - 1, y = u.uy + j - 1;
+		    int corpsenm;
+		    struct obj *obj, *obj2;
 
-				for (obj = level.objects[x][y]; obj; obj = obj2) {
-				    obj2 = obj->nexthere;
+		    for (obj = level.objects[x][y]; obj; obj = obj2) {
+			obj2 = obj->nexthere;
 
-				    /* Only generate undead */
-				    if (mon_to_zombie(obj->corpsenm) != -1) {
-				    	obj->corpsenm = mon_to_zombie(obj->corpsenm);
-				    	mtmp = revive(obj);
-					if (mtmp) {
-				    	    if (!resist(mtmp, SPBOOK_CLASS, 0, TELL)) {
-			                       mtmp = tamedog(mtmp, (struct obj *) 0);
-			                       You("dominate %s!", mon_nam(mtmp));
-		                            } else setmangry(mtmp);
-					}
-				    }
-				}
+			/* Only generate undead */
+			corpsenm = mon_to_zombie(obj->corpsenm);
+			if (corpsenm != -1) {
+			    /* Maintain approx. proportion of oeaten to cnutrit
+			     * so that the zombie's HP relate roughly to how
+			     * much of the original corpse was left.
+			     */
+			    obj->oeaten =
+				    eaten_stat(mons[corpsenm].cnutrit, obj);
+			    obj->corpsenm = corpsenm;
+			    mtmp = revive(obj);
+			    if (mtmp) {
+				if (!resist(mtmp, SPBOOK_CLASS, 0, TELL)) {
+				   mtmp = tamedog(mtmp, (struct obj *) 0);
+				   You("dominate %s!", mon_nam(mtmp));
+				} else setmangry(mtmp);
+			    }
 			}
+		    }
 		}
 		nomul(-2); /* You need to recover */
 		nomovemsg = 0;
 		t_timeout = rn1(1000,500);
 		break;
-            }
             case T_REVIVE: 
 		if (u.uswallow) {
 		    You(no_elbow_room);
