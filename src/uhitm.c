@@ -1447,7 +1447,7 @@ int thrown;
 	if (Role_if(PM_MONK) && !Upolyd && !thrown && no_obj &&
 		(!uarm || (uarm && uarm->otyp >= ROBE &&
 		 uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms &&
-		 distu(mon->mx, mon->my) == 1) {
+		 distu(mon->mx, mon->my) <= 2) {
 	    /* just so we don't need another variable ... */
 	    canhitmon = rnd(100);
 	    if (canhitmon < u.ulevel / 8 && !thick_skinned(mdat)) {
