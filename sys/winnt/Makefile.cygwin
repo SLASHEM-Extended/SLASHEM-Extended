@@ -1,0 +1,1201 @@
+#	Mingw32 under Win95, modified for use with SLASH'EM
+#
+#	This version uses DOS-style Directory separators only!
+#
+#	Requires Gnu gcc compiler for Win32 (Mingw32 or Cygwin)
+#	Also requires Gnu Make utility, either Mingw32 or Cygwin version
+#
+#	For questions or comments: karlgarrison@earthlink.net
+#
+#	In addition to your C compiler, you will need a workalike for the
+#       UNIX yacc and lex utilities.  Theoretically, you should be able to
+#       compile without them, but I ran into errors when I tried to do this.
+#
+#	Note that flex (workalike for lex) and bison (workalike for yacc) are
+#       included with the Cygwin package (full version only).  There may be
+#       other ports of these tools available for Win32, but these are the only
+#       ones I am aware of.
+#
+
+# Directory Seperator
+#
+
+# Game Installation Variables
+# NOTE: Make sure GAMEDIR exists before make is started.
+
+GAME = slashem
+# The GNU Make has a problem if you include a drive spec below (unfortunately).
+GAMEDIR = /slam32d
+
+#
+# Directories
+#
+
+# These are for Mingw32's GCC,  which gets confused by \ 
+DDAT  = ../dat
+DUTIL = ../util
+DSRC  = ../src
+DINCL = ../include
+
+# Normal dos commands get confused by \\ JRN change
+DAT  = ../dat
+DOC  = ../doc
+INCL = ../include
+WSYS = ../sys/winnt
+SRC  = ../src
+SSHR = ../sys/share
+UTIL = ../util
+WTTY = ../win/tty
+WGTK = ../win/gtk
+WSHR = ../win/share
+
+#
+#  Executables.
+
+CC    = gcc
+LINK  = gcc
+MAKEBIN  = make
+
+# The copy, del and echo commands don't seem to work from a makefile since
+# it's part of the shell rather than an external utility.  We can get around
+# this by specifying an external utility that performs the same function like
+# the cp and rm commands from Cygwin32, or xcopy for copy.  Another way to do
+# it is to call the shell explicitly and use the /c option to run the built-in
+# command.  All of these examples appear below.
+
+#COPY = command.com /c copy
+#COPY = cmd.exe /c copy	# Same as above, but for Windows NT
+#COPY = xcopy
+COPY = cp		# UNIX copy command
+#COPY = copy		# MSDOS copy command
+#DEL = command.com /c del
+#DEL = cmd.exe /c del	# Same as above, but for Windows NT
+DEL = rm -f 		#UNIX del command
+#DEL = del 		#MSDOS del command
+#ECHO = command.com /c echo     # For some reason this doesn't seem to work
+#ECHO = cmd.exe /c $(ECHO)	# Same as above, but for Windows NT
+#ECHO = echo.exe # UNIX echo command
+ECHO = echo # MSDOS echo command
+LS = ls -1		# ls.exe from djgpp distribution
+#LS = dir /l/b/-p           # DOS command WAC - disable pause for dos6
+#LS = *dir /l/b/z        # 4DOS command - cuts through ALIASes
+
+# if you have a uudecode program, add its name here
+# otherwise leave blank
+UUDECODE =
+
+#
+#  Yacc/Lex ... if you got 'em.
+#
+# If you have yacc/lex or a work-alike set YACC_LEX to Y
+#
+YACC_LEX = Y
+
+# If YACC_LEX is Y above, set the following to values appropriate for
+# your tools.
+#
+YACC   = bison -y
+LEX    = flex
+# Win32 versions
+YTABC  = y.tab.c
+YTABH  = y.tab.h
+LEXYYC = lex.yy.c
+# DJGPP bison/lex doesn't use LFN
+#YTABC  = y_tab.c
+#YTABH  = y_tab.h
+#LEXYYC = lexyy.c
+
+#
+# Uncomment the line below if you want to store all the level files,
+# help files, etc. in a single library file.
+
+USE_DLB = Y
+
+# To build a binary without any graphics
+# suitable for blind players,
+# set SUPPRESS_GRAPHICS to Y
+# (Note: binary will require ANSI.SYS driver or equivalent loaded)
+# SUPPRESS_GRAPHICS = Y
+SUPPRESS_GRAPHICS = 
+
+
+#############################################################################
+#
+# nothing below this line should have to be changed
+#
+
+#Do not uncomment these for 3.3.0
+#TILEGAME  = $(OBJ)/tile.o
+#TILEDEF   = -DTILES
+#TILEHDR   =
+#SOUND = $(OBJ)/ntsound.o
+
+GAMEFILE = $(GAMEDIR)/$(GAME).exe
+
+# Changing this conditional block is not recommended
+ifeq ($(USE_DLB),Y)
+DLBFLG = -DDLB
+else
+DLBFLG =
+endif
+
+#
+#  Flags.
+#
+ifeq ($(SUPPRESS_GRAPHICS),Y)
+TERMLIB =
+# Build NetHack suitable for blind players
+
+# Debugging
+#CFLAGS = -pg -c -I../include $(DLBFLG) -DSUPPRESS_GRAPHICS
+#LFLAGS = -pg
+
+CFLAGS = -c -O -I../include $(DLBFLG) -DSUPPRESS_GRAPHICS
+LFLAGS =
+
+else
+
+# Debugging
+#CFLAGS = -pg -c -I../include -I../sys/winnt $(DLBFLG) -DWIN32CON
+#LFLAGS = -pg
+
+#    Normal
+CFLAGS = -ggdb -funsigned-char -c -O -I../include -I../sys/winnt \
+	$(DLBFLG) -DWIN32CON
+LFLAGS =
+endif
+
+# Select Windowing system(s) below
+# GTK windowing system
+#WINGTKCFLAGS=`gtk-config --cflags`
+#WINGTKCFLAGS=-Ic:/mingw32/src/gtk+ -Ic:/mingw32/src/glib -Ic:/mingw32/src/gtk+/gdk
+#WINGTKCFLAGS=-Ic:/mingw32/src/
+
+# Set the WINSRC, WINOBJ, and WINLIB lines to correspond to your desired
+# combination of windowing systems.  Also set windowing systems in config.h.
+#
+# files for a straight tty port using no native windowing system
+WINTTYSRC = ../win/tty/getline.c ../win/tty/termcap.c ../win/tty/topl.c \
+	../win/tty/wintty.c 
+WINTTYOBJ = getline.o termcap.o topl.o wintty.o 
+#
+# files for a GTK port
+# (tile.c is included in the defn. for WINCSRC, below)
+WINGTKSRC = ../win/gtk/gtk.c ../win/gtk/gtkgetlin.c ../win/gtk/gtkstatus.c \
+	../win/gtk/gtkmenu.c ../win/gtk/gtkyn.c ../win/gtk/gtkextcmd.c \
+	../win/gtk/gtkmap.c ../win/gtk/gtkmessage.c ../win/gtk/gtkmisc.c \
+	../win/gtk/xshmmap.c ../win/gtk/xshm.c
+WINGTKOBJ = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
+	gtkmap.o gtkmessage.o gtkmisc.o xshmmap.o xshm.o nhwin.a
+
+# Use these declarations if you only want to support the TTY windowing system
+WINSRC = $(WINTTYSRC)
+WINOBJ = $(WINTTYOBJ)
+# Use these declarations if you want to support the GTK windowing system
+# WINSRC = $(WINTTYSRC) $(WINGTKSRC)
+# WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ)
+#
+# You must also change the definition of WINLIB (below) to match these
+
+WINTTYLIB = 
+# libraries for GTK
+# WINGTKLIB = `gtk-config --libs`
+WINGTKLIB = /mingw32/src/gtk+/gtk/libgtk~1.a /mingw32/src/gtk+/gdk/libgdk~1.a 
+
+# Use this declaration if you only want to support the TTY windowing system
+WINLIB = $(WINTTYLIB)
+
+
+# Shareable (architecture independent) data files which are not candidates
+# for inclusion in DLB libraries (ND) and which are (D). Port specific files
+# per discussions in Install.X11, Install.Qt and Install.GTK
+CNF_SHARE_GTKND = x11bigtiles x11tiles rip.xpm credit.xpm
+
+#Uncomment below to build tiles needed for GTK distrib
+#CNF_SHARE_DATND = $(CNF_SHARE_GTKND)
+CNF_SHARE_DATND =
+
+#
+#  Utility Objects.
+#
+
+MAKESRC	    = makedefs.c
+
+SPLEVSRC    = lev_yacc.c  lev_$(LEX).c	 lev_main.c  panic.c
+
+DGNCOMPSRC  = dgn_yacc.c  dgn_$(LEX).c	 dgn_main.c
+
+MAKEOBJS    = makedefs.o  monst.o	 objects.o
+
+SPLEVOBJS   = lev_yacc.o  lev_$(LEX).o	lev_main.o  alloc.o	\
+		monst.o	    objects.o	    panic.o  \
+		drawing.o	decl.o
+
+DGNCOMPOBJS = dgn_yacc.o  dgn_$(LEX).o	dgn_main.o  alloc.o	 \
+		panic.o
+
+RECOVOBJS   = recover.o
+
+
+#  Tile related object files.
+
+ifeq ($(SUPPRESS_GRAPHICS),Y)
+TILOBJ       =
+TEXTIO       =
+TEXTIO2      =
+PLANAR_TIB   =
+OVERVIEW_TIB =
+TILEUTIL     = 
+TILEFILES    = 
+TILEFILES2   = 
+GIFREADERS   = 
+GIFREAD2     = 
+PPMWRITERS   = 
+PPMWRIT2     = 
+
+else
+
+TEXTIO      = tiletext.o tiletxt.o drawing.o decl.o monst.o objects.o
+
+TEXTIO2     = tiletex2.o tiletxt2.o drawing.o decl.o monst.o objects.o
+
+
+PLANAR_TIB  = NetHack1.tib
+
+OVERVIEW_TIB = NetHacko.tib
+
+DLBOBJ = dlb.o
+endif
+
+
+#  Object files for the game itself.
+
+VOBJ01 = allmain.o  alloc.o    apply.o	  artifact.o attrib.o
+VOBJ02 = ball.o	    bones.o    borg.o	  botl.o     cmd.o 	dbridge.o
+VOBJ03 = decl.o	    detect.o   display.o  do.o	     do_name.o
+VOBJ04 = do_wear.o  dog.o      dogmove.o  dokick.o   dothrow.o
+VOBJ05 = drawing.o  dungeon.o  eat.o	  end.o	     engrave.o
+VOBJ06 = exper.o    explode.o  extralev.o files.o    fountain.o
+VOBJ07 = hack.o     hacklib.o  invent.o   lock.o
+VOBJ08 = mail.o	    main.o     makemon.o  mcastu.o   mhitm.o
+VOBJ09 = mhitu.o    minion.o   mkmap.o	  mklev.o    mkmaze.o
+VOBJ10 = mkobj.o    mkroom.o   mon.o	  mondata.o  monmove.o
+VOBJ11 = monst.o    monstr.o   mplayer.o  mthrowu.o  muse.o
+VOBJ12 = music.o    o_init.o   objects.o  objnam.o   options.o
+VOBJ13 = pickup.o   pline.o    polyself.o potion.o   quest.o
+VOBJ14 = questpgr.o pager.o    pray.o	  priest.o   read.o
+VOBJ15 = rect.o	    restore.o  rip.o	  rnd.o	     role.o
+VOBJ16 = rumors.o   save.o	   shk.o      shknam.o	 sit.o
+VOBJ17 = sounds.o   sp_lev.o   spell.o    steal.o	 steed.o
+VOBJ18 = timeout.o  topten.o   track.o
+VOBJ19 = trap.o     u_init.o   uhitm.o    vault.o    vision.o
+VOBJ20 = vis_tab.o  weapon.o   were.o	  wield.o    windows.o
+VOBJ21 = wizard.o   worm.o	  worn.o     write.o
+VOBJ22 = zap.o	    light.o    dlb.o      dig.o      teleport.o
+VOBJ23 = region.o   tech.o     gypsy.o
+
+SOBJ   = winnt.o    sys.o      unix.o     nttty.o
+#	 $(SOUND)   mapimail.o nhlan.o random.o
+
+VVOBJ  = version.o
+
+VOBJ   = $(VOBJ01) $(VOBJ02) $(VOBJ03) $(VOBJ04) $(VOBJ05) \
+	$(VOBJ06) $(VOBJ07) $(VOBJ08) $(VOBJ09) $(VOBJ10) \
+	$(VOBJ11) $(VOBJ12) $(VOBJ13) $(VOBJ14) $(VOBJ15) \
+	$(VOBJ16) $(VOBJ17) $(VOBJ18) $(VOBJ19) $(VOBJ20) \
+	$(VOBJ21) $(VOBJ22) $(VOBJ23)
+
+ALLOBJ = $(VOBJ) $(SOBJ) $(VVOBJ) $(WINOBJ)
+
+#
+#  Header Objects.
+#
+
+DGN_FILE_H = $(INCL)/align.h	$(INCL)/dgn_file.h
+DUNGEON_H  = $(INCL)/align.h	$(INCL)/dungeon.h
+EMIN_H	   = $(DUNGEON_H)	$(INCL)/emin.h
+EPRI_H	   = $(DUNGEON_H)	$(INCL)/align.h	    $(INCL)/epri.h
+ESHK_H	   = $(DUNGEON_H)	$(INCL)/eshk.h
+MONDATA_H  = $(INCL)/align.h	$(INCL)/mondata.h
+MONST_H	   = $(INCL)/align.h	$(INCL)/monst.h
+NHLAN_H     = $(INCL)/nhlan.h
+PERMONST_H = $(INCL)/monattk.h	$(INCL)/monflag.h   $(INCL)/align.h   \
+	    $(INCL)/permonst.h
+REGION_H   = $(INCL)/region.h
+RM_H	   = $(INCL)/align.h	$(INCL)/rm.h
+SKILLS_H   = $(INCL)/skills.h
+SP_LEV_H   = $(INCL)/align.h	$(INCL)/sp_lev.h
+VAULT_H	   = $(DUNGEON_H)	$(INCL)/vault.h
+YOUPROP_H  = $(PERMONST_H)	$(MONDATA_H)	    $(INCL)/prop.h    \
+	    $(INCL)/pm.h       $(INCL)/youprop.h
+YOU_H	   = $(MONST_H)		$(YOUPROP_H)	    $(INCL)/align.h   \
+	     $(INCL)/attrib.h	$(INCL)/you.h
+DISPLAY_H  = $(MONDATA_H)	$(INCL)/vision.h    $(INCL)/display.h
+NTCONF_H   = $(INCL)/micro.h	$(INCL)/system.h    $(INCL)/ntconf.h
+CONFIG_H   = $(GLOBAL_H)	$(INCL)/tradstdc.h  $(INCL)/config1.h \
+	    $(INCL)/config.h
+DECL_H	   = $(YOU_H)		$(INCL)/spell.h	    $(INCL)/color.h   \
+	     $(INCL)/obj.h	$(INCL)/onames.h    $(INCL)/pm.h      \
+	      $(INCL)/decl.h
+GLOBAL_H   = $(NTCONF_H)	$(INCL)/coord.h	    $(INCL)/global.h
+HACK_H	   = $(CONFIG_H)	$(DUNGEON_H)	    $(DECL_H)	      \
+	       $(DISPLAY_H)	  $(INCL)/monsym.h    $(INCL)/mkroom.h	\
+	      $(INCL)/objclass.h $(INCL)/trap.h	  $(INCL)/flag.h    \
+	      $(RM_H)		 $(INCL)/vision.h    $(INCL)/wintype.h \
+	      $(INCL)/engrave.h	 $(INCL)/rect.h	  \
+	       $(INCL)/trampoli.h $(INCL)/hack.h $(REGION_H)
+DLB_H      = $(INCL)/dlb.h
+
+#ifeq ($(SUPPRESS_GRAPHICS),Y)
+#TILE_H     =
+#else
+#TILE_H	   = $(INCL)/tile.h $(INCL)/pctiles.h
+#endif
+
+ifeq ($(USE_DLB),Y)
+DLB = $(DAT)/nhshare $(DAT)/nhushare
+DLBOBJS = dlb_main.o dlb.o alloc.o panic.o
+else
+DLB =
+DLBOBJS =
+endif
+
+#
+#  Make Rules.
+#
+
+.SUFFIXES:  .exe .o .c .y .l
+
+.c.o:
+	$(CC) $(CFLAGS) -o$@ $<
+
+#.phony: dlb
+
+#
+#  Primary Targets.
+#
+
+#  The default target.
+
+default: $(GAMEFILE)
+
+all: install.tag
+
+util: utility.tag
+
+install: install.tag
+
+utility.tag: $(INCL)/date.h $(INCL)/trap.h    $(INCL)/onames.h	       \
+	$(INCL)/pm.h	  monstr.c   vis_tab.c	$(INCL)/filename.h\
+	lev_comp.exe	 dgn_comp.exe	 recover.exe $(TILEUTIL)
+	$(ECHO) utilities made > utility.tag
+
+install.tag: dat.tag $(GAMEFILE)
+ifeq ($(USE_DLB),Y)
+	$(COPY) $(DAT)/nhshare         $(GAMEDIR)
+	$(COPY) $(DAT)/nhushare         $(GAMEDIR)
+	$(COPY) $(DAT)/license       $(GAMEDIR)
+else
+	$(COPY) $(DAT)/*.            $(GAMEDIR)
+	$(COPY) $(DAT)/*.dat         $(GAMEDIR)
+	$(COPY) $(DAT)/*.lev         $(GAMEDIR)
+#	$(DEL) $(GAMEDIR)/makefile.
+endif
+#	$(COPY) *.tib                $(GAMEDIR)
+	$(COPY) $(SSHR)/NetHack.cnf  $(GAMEDIR)/defaults.nh
+	$(COPY) ../sys/msdos/NHAccess.nh  $(GAMEDIR)
+	$(COPY) recover.exe          $(GAMEDIR)
+	$(COPY) $(DOC)/guidebook.txt   $(GAMEDIR)
+	$(COPY) $(DOC)/recover.txt $(GAMEDIR)
+	$(COPY) $(DOC)/slashem.txt $(GAMEDIR)
+	$(ECHO) install done > install.tag
+
+#  The main target.
+
+
+$(GAMEFILE): utility.tag $(ALLOBJ) $(GAME).lnk
+	$(LINK) $(LFLAGS) -o$(GAME).exe $(GAME).lnk
+	$(COPY) $(GAME).exe $(GAMEFILE)
+	$(DEL) $(GAME).exe
+
+$(GAME).lnk: $(ALLOBJ)
+	@echo INPUT\( $(VOBJ01) \)> $@
+	@echo INPUT\( $(VOBJ02) \)>> $@
+	@echo INPUT\( $(VOBJ03) \)>> $@
+	@echo INPUT\( $(VOBJ04) \)>> $@
+	@echo INPUT\( $(VOBJ05) \)>> $@
+	@echo INPUT\( $(VOBJ06) \)>> $@
+	@echo INPUT\( $(VOBJ07) \)>> $@
+	@echo INPUT\( $(VOBJ08) \)>> $@
+	@echo INPUT\( $(VOBJ09) \)>> $@
+	@echo INPUT\( $(VOBJ10) \)>> $@
+	@echo INPUT\( $(VOBJ11) \)>> $@
+	@echo INPUT\( $(VOBJ12) \)>> $@
+	@echo INPUT\( $(VOBJ13) \)>> $@
+	@echo INPUT\( $(VOBJ14) \)>> $@
+	@echo INPUT\( $(VOBJ15) \)>> $@
+	@echo INPUT\( $(VOBJ16) \)>> $@
+	@echo INPUT\( $(VOBJ17) \)>> $@
+	@echo INPUT\( $(VOBJ18) \)>> $@
+	@echo INPUT\( $(VOBJ19) \)>> $@
+	@echo INPUT\( $(VOBJ20) \)>> $@
+	@echo INPUT\( $(VOBJ21) \)>> $@
+	@echo INPUT\( $(VOBJ22) \)>> $@
+	@echo INPUT\( $(VOBJ23) \)>> $@
+	@echo INPUT\( $(SOBJ)   \)>> $@
+	@echo INPUT\( $(VVOBJ)  \)>> $@
+	@echo INPUT\( $(WINOBJ) \)>> $@
+
+#
+#  Housekeeping.
+#
+
+clean:
+	$(DEL) *.o
+	$(DEL) *.map
+	$(DEL) dlb_main.exe
+
+spotless: clean
+	$(DEL) utility.tag
+	$(DEL) install.tag
+	$(DEL) dat.tag
+	$(DEL) $(GAME).lnk
+	$(DEL) makedefs.exe
+	$(DEL) lev_comp.exe
+	$(DEL) dgn_comp.exe
+	$(DEL) txtmerge.exe
+	$(DEL) magtile.exe
+	$(DEL) tile2x11.exe
+	$(DEL) x11bigtiles
+	$(DEL) x11tiles
+	$(DEL) tiletext.c
+	$(DEL) txtmerge.c
+	$(DEL) magtile.c
+	$(DEL) x11tiles
+	$(DEL) lev_flex.c
+	$(DEL) lev_yacc.c
+	$(DEL) dgn_flex.c
+	$(DEL) dgn_yacc.c
+	$(DEL) recover.exe
+	$(DEL) $(INCL)/onames.h
+	$(DEL) $(INCL)/pm.h
+	$(DEL) $(INCL)/vis_tab.h
+	$(DEL) $(INCL)/pcvideo.h
+	$(DEL) $(INCL)/pctiles.h
+	$(DEL) $(INCL)/portio.h
+	$(DEL) $(INCL)/tile.h
+	$(DEL) monstr.c
+	$(DEL) vis_tab.c
+	$(DEL) $(SRC)/panic.c
+	$(DEL) $(SRC)/makedefs.c
+	$(DEL) $(SRC)/recover.c
+	$(DEL) $(SRC)/lev_main.c
+	$(DEL) $(SRC)/dlb_main.c
+	$(DEL) $(SRC)/dgn_main.c
+	$(DEL) $(SRC)/wintty.c
+	$(DEL) $(SRC)/topl.c
+	$(DEL) $(SRC)/getline.c
+	$(DEL) $(SRC)/termcap.c
+	$(DEL) $(SRC)/tile2bin.c
+	$(DEL) $(SRC)/msdos.c
+	$(DEL) $(SRC)/pckeys.c
+	$(DEL) $(SRC)/video.c
+	$(DEL) $(SRC)/sound.c
+	$(DEL) $(SRC)/tilemap.c
+	$(DEL) $(SRC)/gifread.c
+	$(DEL) $(SRC)/ppmwrite.c
+	$(DEL) $(SRC)/pcmain.c
+	$(DEL) $(SRC)/pcunix.c
+	$(DEL) $(SRC)/pcsys.c
+	$(DEL) $(SRC)/tile.c
+	$(DEL) $(SRC)/gtk*.c
+	$(DEL) $(SRC)/xshmmap.c
+	$(DEL) $(SRC)/xshm.c
+	$(DEL) $(INCL)/date.h
+	$(DEL) $(INCL)/onames.h
+	$(DEL) $(INCL)/pm.h
+	$(DEL) $(INCL)/vis_tab.h
+	$(DEL) $(SRC)/nhlan.c
+	$(DEL) $(SRC)/winnt.c
+	$(DEL) $(SRC)/nttty.c
+	$(DEL) $(SRC)/ntsound.c
+	$(DEL) $(SRC)/mapimail.c
+	$(DEL) vis_tab.c
+	$(DEL) random.c
+	$(DEL) nhlan.c
+	$(DEL) *.lnk
+	$(DEL) *.def
+	$(DEL) *.map
+	$(DEL) *.lev
+	$(DEL) a.out
+	$(DEL) tilemap.exe
+	$(DEL) tile2bin.exe
+	$(DEL) $(DAT)/data
+	$(DEL) $(DAT)/*.lev
+	$(DEL) $(DAT)/data
+	$(DEL) $(DAT)/dungeon
+	$(DEL) $(DAT)/options
+	$(DEL) $(DAT)/oracles
+	$(DEL) $(DAT)/rumors
+	$(DEL) $(DAT)/quest.dat
+	$(DEL) $(DAT)/nhshare
+	$(DEL) $(DAT)/nhushare
+	$(DEL) $(DAT)/dlb.lst
+	$(DEL) $(DAT)/msdoshlp.txt
+	$(DEL) $(DAT)/dlb_main.exe
+	$(DEL) $(DAT)/lev_comp.exe
+	$(DEL) $(DAT)/dgn_comp.exe
+	$(DEL) sp_lev.tag
+	$(DEL) $(PLANAR_TIB)
+	$(DEL) $(OVERVIEW_TIB)
+
+
+#
+#  Secondary Targets.
+#
+#  The following include files depend on makedefs to be created.
+#
+#  date.h should be remade every time any of the source or include
+#  files is modified.
+
+
+$(INCL)/date.h : makedefs.exe
+	-./makedefs -v
+
+$(INCL)/onames.h: makedefs.exe
+	-./makedefs -o
+
+$(INCL)/pm.h: makedefs.exe
+	-./makedefs -p
+
+monstr.c: makedefs.exe
+	-./makedefs -m
+
+$(INCL)/vis_tab.h: makedefs.exe
+	-./makedefs -z
+
+vis_tab.c: makedefs.exe
+	-./makedefs -z
+
+$(INCL)/filename.h: makedefs.exe
+	-./makedefs -f
+
+#
+#  Makedefs Stuff
+#
+
+makedefs.exe:  $(MAKEOBJS)
+	$(LINK) $(LFLAGS) -omakedefs.exe $(MAKEOBJS)
+
+makedefs.c: $(UTIL)/makedefs.c
+	$(COPY) $(UTIL)/makedefs.c .
+
+makedefs.o:  $(CONFIG_H)	$(PERMONST_H)	   $(INCL)/objclass.h \
+		$(INCL)/monsym.h   $(INCL)/qtext.h makedefs.c
+
+#
+#  Level Compiler Dependencies
+#
+
+lev_comp.exe:  $(SPLEVOBJS)
+	$(LINK) $(LFLAGS) -olev_comp.exe $(SPLEVOBJS)
+
+ifeq ($(YACC_LEX),Y)
+
+lev_yacc.o:  $(HACK_H)	 $(SP_LEV_H)	lev_yacc.c
+	$(CC) $(CFLAGS) -o$@ lev_yacc.c
+
+else
+
+lev_yacc.o:  $(HACK_H)	 $(SP_LEV_H) $(INCL)/lev_comp.h lev_yacc.c
+	$(CC) $(CFLAGS) -o$@ lev_yacc.c
+
+endif
+
+lev_$(LEX).o:  $(HACK_H)   $(SP_LEV_H)	  $(INCL)/lev_comp.h \
+	lev_$(LEX).c
+	$(CC) $(CFLAGS) -o$@ lev_$(LEX).c
+
+lev_main.c:  $(UTIL)/lev_main.c
+	$(COPY) $(UTIL)/lev_main.c .
+
+lev_main.o:  $(HACK_H) lev_main.c
+
+$(INCL)/lev_comp.h: lev_yacc.c
+
+ifeq ($(YACC_LEX),Y)
+
+lev_yacc.c:  $(UTIL)/lev_comp.y
+	$(YACC) -d $(DUTIL)/lev_comp.y
+	$(COPY) $(YTABC) $@
+	$(COPY) $(YTABH) $(INCL)/lev_comp.h
+	$(DEL) $(YTABC)
+	$(DEL) $(YTABH)
+
+lev_$(LEX).c:  $(UTIL)/lev_comp.l
+	$(LEX) $(DUTIL)/lev_comp.l
+	$(COPY) $(LEXYYC) $@
+	$(DEL) $(LEXYYC)
+else
+
+lev_yacc.c: $(SSHR)/lev_yacc.c
+	$(COPY) $(SSHR)/lev_yacc.c $@
+
+$(INCL)/lev_comp.h: $(SSHR)/lev_comp.h
+	$(COPY) $(SSHR)/lev_comp.h $@
+	touch $(DINCL)/lev_comp.h
+
+lev_$(LEX).c: $(SSHR)/lev_lex.c
+	$(COPY) $(SSHR)/lev_lex.c $@
+
+endif
+
+
+
+#
+#  Dungeon Dependencies
+#
+
+dgn_comp.exe:  $(DGNCOMPOBJS)
+	$(LINK) $(LFLAGS) -odgn_comp.exe $(DGNCOMPOBJS)
+
+ifeq ($(YACC_LEX),Y)
+
+dgn_yacc.o:  $(HACK_H)	 $(DGN_FILE_H)	dgn_yacc.c
+	$(CC) $(CFLAGS) -o$@ dgn_yacc.c
+
+else
+
+dgn_yacc.o:  $(HACK_H)	 $(DGN_FILE_H)	$(INCL)/dgn_comp.h dgn_yacc.c
+	$(CC) $(CFLAGS) -o$@ dgn_yacc.c
+
+endif
+
+dgn_$(LEX).o:  $(HACK_H)   $(DGN_FILE_H)  $(INCL)/dgn_comp.h \
+	dgn_$(LEX).c
+	$(CC) $(CFLAGS) -o$@ dgn_$(LEX).c
+
+dgn_main.c:  $(UTIL)/dgn_main.c
+	$(COPY) $(UTIL)/dgn_main.c .
+
+dgn_main.o:  $(HACK_H)
+
+$(INCL)/dgn_comp.h:  dgn_yacc.c
+
+ifeq ($(YACC_LEX),Y)
+
+dgn_yacc.c: $(UTIL)/dgn_comp.y
+	$(YACC) -d $(DUTIL)/dgn_comp.y
+	$(COPY) $(YTABC) $@
+	$(COPY) $(YTABH) $(INCL)/dgn_comp.h
+	$(DEL) $(YTABC)
+	$(DEL) $(YTABH)
+
+dgn_$(LEX).c:  $(UTIL)/dgn_comp.l
+	$(LEX) $(DUTIL)/dgn_comp.l
+	$(COPY) $(LEXYYC) $@
+	$(DEL) $(LEXYYC)
+
+else
+
+dgn_yacc.c: $(SSHR)/dgn_yacc.c
+	$(COPY) $(SSHR)/dgn_yacc.c $@
+
+$(INCL)/dgn_comp.h: $(SSHR)/dgn_comp.h
+	$(COPY) $(SSHR)/dgn_comp.h $@
+	touch $(DINCL)/dgn_comp.h
+
+dgn_$(LEX).c: $(SSHR)/dgn_lex.c
+	$(COPY) $(SSHR)/dgn_lex.c $@
+ 
+endif
+
+#
+#  Recover Utility
+#
+
+recover.exe:   $(RECOVOBJS)
+	$(LINK) $(LFLAGS) -orecover.exe recover.o
+
+recover.c:  $(UTIL)/recover.c
+	$(COPY) $(UTIL)/recover.c .
+
+recover.o:   $(CONFIG_H) recover.c
+	$(CC) $(CFLAGS) -o$@ recover.c
+
+#
+#  Tiles
+#
+
+#  Headers
+
+$(INCL)/tile.h: $(WSHR)/tile.h tilemap.exe
+	./tilemap.exe
+
+#  Utilities
+
+txtmerge.exe: txtmerge.o $(TEXTIO)
+	$(CC) $(LFLAGS) -otxtmerge.exe txtmerge.o $(TEXTIO)
+
+tile2x11.exe: tile2x11.o $(TEXTIO)
+	$(CC) $(LFLAGS) -otile2x11.exe tile2x11.o $(TEXTIO)
+
+magtile.exe: magtile.o $(TEXTIO)
+	$(CC) $(LFLAGS) -omagtile.exe magtile.o $(TEXTIO)
+
+tilemap.exe: tilemap.o
+	$(CC) $(LFLAGS) -o tilemap.exe tilemap.o
+
+tilemap.c: $(WSHR)/tilemap.c
+	copy $(WSHR)/tilemap.c .
+
+tilemap.o: $(WSHR)/tilemap.c $(HACK_H)
+	$(CC) $(CFLAGS) -c ../win/share/tilemap.c
+
+
+magtile.o: $(WSHR)/magtile.c $(INCL)/config.h $(INCL)/tile.h
+	$(COPY) $(WSHR)/magtile.c .
+	$(CC) $(CFLAGS) -c magtile.c
+
+txtmerge.o: $(WSHR)/txtmerge.c $(INCL)/config.h $(INCL)/tile.h
+	$(CC) $(CFLAGS) -c ../win/share/txtmerge.c
+
+tile2x11.o: ../win/X11/tile2x11.c $(INCL)/hack.h $(INCL)/tile.h \
+						$(INCL)/tile2x11.h
+	$(CC) $(CFLAGS) -c ../win/X11/tile2x11.c
+
+
+x11tiles: tile2x11.exe $(WSHR)/monsters.txt $(WSHR)/objects.txt \
+				$(WSHR)/other.txt
+	./tile2x11 ../win/share/monsters.txt ../win/share/objects.txt \
+				../win/share/other.txt
+
+x11bigtiles:	tile2x11.exe $(WSHR)/mon32.txt $(WSHR)/obj32.txt \
+		$(WSHR)/oth32.txt
+	./tile2x11 -o x11bigtiles ../win/share/mon32.txt \
+		../win/share/obj32.txt ../win/share/oth32.txt
+
+$(WSHR)/monmag.txt:	magtile.exe $(WSHR)/monsters.txt
+	./magtile.exe
+
+$(WSHR)/objmag.txt:	magtile.exe $(WSHR)/objects.txt
+	./magtile.exe
+
+$(WSHR)/othmag.txt:	magtile.exe $(WSHR)/other.txt
+	./magtile.exe
+
+$(WSHR)/mon32.txt:	txtmerge.exe $(WSHR)/monmag.txt $(WSHR)/mon32mi.txt
+	./txtmerge ../win/share/mon32.txt ..\\win\\share\\monmag.txt -b204040 ..\\win\\share\\mon32mi.txt 
+
+$(WSHR)/obj32.txt:	txtmerge.exe $(WSHR)/objmag.txt \
+		../win/share/obj32mi.txt ../win/share/obj32se.txt
+	./txtmerge ../win/share/obj32.txt ../win/share/objmag.txt \
+		-b204040 ../win/share/obj32mi.txt -b ../win/share/obj32se.txt
+
+$(WSHR)/oth32.txt:	txtmerge.exe $(WSHR)/othmag.txt \
+		../win/share/oth32mi.txt ../win/share/oth32se.txt
+	./txtmerge ../win/share/oth32.txt ../win/share/othmag.txt \
+		-b204040 ../win/share/oth32mi.txt -b ../win/share/oth32se.txt
+
+pet_mark.xbm: ../win/X11/pet_mark.xbm
+	$(COPY) ../win/X11/pet_mark.xbm pet_mark.xbm
+
+rip.xpm: ../win/X11/rip.xpm
+	$(COPY) ../win/X11/rip.xpm rip.xpm
+
+credit.xpm: ../dat/credit.xpm
+	$(COPY) ../dat/credit.xpm credit.xpm
+
+tiletext.o:  $(CONFIG_H) $(INCL)/tile.h $(WSHR)/tiletext.c
+	$(COPY) $(WSHR)/tiletext.c .
+	$(CC) $(CFLAGS) -o$@ tiletext.c
+
+tiletxt.o: $(CONFIG_H)	$(INCL)/tile.h tilemap.c
+	$(CC) $(CFLAGS) -DTILETEXT -o$@ tilemap.c
+  
+
+
+#
+#  Other Util Dependencies.
+#
+
+alloc.o: $(CONFIG_H)	 alloc.c
+	$(CC) $(CFLAGS) -oalloc.o alloc.c
+
+drawing.o: $(CONFIG_H) drawing.c
+	$(CC) $(CFLAGS) -odrawing.o drawing.c
+
+decl.o: $(CONFIG_H) decl.c
+	$(CC) $(CFLAGS) -odecl.o decl.c
+
+monst.o: $(CONFIG_H)	     $(PERMONST_H)	$(ESHK_H)	   \
+	$(EPRI_H)	      $(VAULT_H)	 $(INCL)/monsym.h   \
+	$(INCL)/color.h	 monst.c
+	$(CC) $(CFLAGS) -omonst.o monst.c
+
+objects.o: $(CONFIG_H)	      $(INCL)/obj.h	 $(INCL)/objclass.h \
+	$(INCL)/prop.h	    $(INCL)/color.h    objects.c
+	$(CC) $(CFLAGS) -oobjects.o objects.c
+
+panic.c:  $(UTIL)/panic.c
+	$(COPY) $(UTIL)/panic.c .
+
+panic.o:   $(CONFIG_H)	  panic.c
+
+random.c: $(SSHR)/random.c
+	$(COPY) $(SSHR)/random.c .
+
+random.o: $(HACK_H) random.c
+	$(CC) $(CFLAGS) -orandom.o random.c
+
+nhlan.c: $(SSHR)/nhlan.c
+	$(COPY) $(SSHR)/nhlan.c .
+
+nhlan.o: $(HACK_H) $(NHLAN_H) $(SSHR)/nhlan.c
+	$(COPY) $(SSHR)/nhlan.c .
+	$(CC) $(CFLAGS) -o$@ nhlan.c
+
+DATABASE = $(DAT)/data.base
+
+dat.tag: $(DAT)/nhshare $(DAT)/nhushare $(CNF_SHARE_DATND)
+	@echo dat done >dat.tag
+
+$(DAT)/data:	 utility.tag	$(DATABASE)
+	-./makedefs -d
+
+$(DAT)/rumors:	     utility.tag    $(DAT)/rumors.tru	$(DAT)/rumors.fal
+	-./makedefs -r
+
+$(DAT)/quest.dat: utility.tag  $(DAT)/quest.txt
+	-./makedefs -q
+
+$(DAT)/oracles:	     utility.tag    $(DAT)/oracles.txt
+	-./makedefs -h
+
+sp_lev.tag: utility.tag     $(DAT)/beholder.des $(DAT)/bigroom.des \
+	$(DAT)/blkmar.des   $(DAT)/castle.des   $(DAT)/caves.des \
+	$(DAT)/dragons.des  $(DAT)/endgame.des \
+	$(DAT)/gehennom.des $(DAT)/giants.des   $(DAT)/guild.des \
+	$(DAT)/knox.des     $(DAT)/kobold-1.des $(DAT)/kobold-2.des \
+	$(DAT)/lich.des     $(DAT)/mall-1.des   $(DAT)/mall-2.des \
+	$(DAT)/medusa.des   $(DAT)/sokoban.des \
+	$(DAT)/mines.des    $(DAT)/mtemple.des  $(DAT)/newmall.des \
+	$(DAT)/nymph.des    $(DAT)/oracle.des   $(DAT)/rats.des \
+	$(DAT)/sea.des      $(DAT)/spiders.des  $(DAT)/stor-1.des \
+	$(DAT)/stor-2.des   $(DAT)/stor-3.des   $(DAT)/tomb.des \
+	$(DAT)/tower.des    $(DAT)/yendor.des \
+	$(DAT)/arch.des     $(DAT)/barb.des 	$(DAT)/caveman.des \
+	$(DAT)/flame.des \
+	$(DAT)/healer.des   $(DAT)/ice.des \
+	$(DAT)/knight.des   $(DAT)/monk.des \
+	$(DAT)/necro.des    $(DAT)/priest.des   $(DAT)/rogue.des \
+	$(DAT)/samurai.des  $(DAT)/tourist.des  $(DAT)/slayer.des \
+	$(DAT)/valkyrie.des $(DAT)/wizard.des   $(DAT)/yeoman.des \
+	$(DAT)/frnknstn.des $(DAT)/nightmar.des $(DAT)/ranger.des 
+
+	./lev_comp $(DDAT)/beholder.des
+	./lev_comp $(DDAT)/bigroom.des
+	./lev_comp $(DDAT)/blkmar.des
+	./lev_comp $(DDAT)/castle.des
+	./lev_comp $(DDAT)/caves.des
+#	./lev_comp $(DDAT)/darkelf.des
+	./lev_comp $(DDAT)/dragons.des
+	./lev_comp $(DDAT)/endgame.des
+	./lev_comp $(DDAT)/gehennom.des
+	./lev_comp $(DDAT)/giants.des
+	./lev_comp $(DDAT)/guild.des
+	./lev_comp $(DDAT)/knox.des
+	./lev_comp $(DDAT)/kobold-1.des
+	./lev_comp $(DDAT)/kobold-2.des
+	./lev_comp $(DDAT)/lich.des
+	./lev_comp $(DDAT)/mall-1.des
+	./lev_comp $(DDAT)/mall-2.des
+	./lev_comp $(DDAT)/medusa.des
+	./lev_comp $(DDAT)/sokoban.des
+	./lev_comp $(DDAT)/mines.des
+	./lev_comp $(DDAT)/mtemple.des
+	./lev_comp $(DDAT)/newmall.des
+	./lev_comp $(DDAT)/nymph.des
+	./lev_comp $(DDAT)/oracle.des
+	./lev_comp $(DDAT)/rats.des
+	./lev_comp $(DDAT)/sea.des
+	./lev_comp $(DDAT)/spiders.des
+	./lev_comp $(DDAT)/stor-1.des
+	./lev_comp $(DDAT)/stor-2.des
+	./lev_comp $(DDAT)/stor-3.des
+	./lev_comp $(DDAT)/tomb.des
+	./lev_comp $(DDAT)/tower.des
+	./lev_comp $(DDAT)/yendor.des
+	./lev_comp $(DDAT)/arch.des
+	./lev_comp $(DDAT)/barb.des
+	./lev_comp $(DDAT)/caveman.des
+#	./lev_comp $(DDAT)/dopp.des
+#	./lev_comp $(DDAT)/elf.des
+	./lev_comp $(DDAT)/flame.des
+#	./lev_comp $(DDAT)/gnome.des
+	./lev_comp $(DDAT)/healer.des
+	./lev_comp $(DDAT)/ice.des
+	./lev_comp $(DDAT)/knight.des
+#	./lev_comp $(DDAT)/lycn.des
+	./lev_comp $(DDAT)/monk.des
+	./lev_comp $(DDAT)/necro.des
+	./lev_comp $(DDAT)/priest.des
+	./lev_comp $(DDAT)/rogue.des
+	./lev_comp $(DDAT)/samurai.des
+	./lev_comp $(DDAT)/tourist.des
+	./lev_comp $(DDAT)/slayer.des
+	./lev_comp $(DDAT)/valkyrie.des
+	./lev_comp $(DDAT)/wizard.des
+	./lev_comp $(DDAT)/yeoman.des
+#	./lev_comp $(DDAT)/hobbit.des
+	./lev_comp $(DDAT)/frnknstn.des
+#	./lev_comp $(DDAT)/dwarf.des
+	./lev_comp $(DDAT)/nightmar.des
+	./lev_comp $(DDAT)/ranger.des
+	$(COPY) ./*.lev $(DAT)
+	$(ECHO) sp_levs done > sp_lev.tag
+	
+$(DAT)/dungeon:	  utility.tag  $(DAT)/dungeon.def
+	@$(COPY) $(SRC)/dgn_comp.exe $(DAT)/dgn_comp.exe
+	-./makedefs -e
+	( cd $(DAT); ./dgn_comp dungeon.pdf )
+#
+# DLB stuff
+#
+$(DAT)/nhshare:	dlb_main.exe $(DAT)/data $(DAT)/rumors $(DAT)/dungeon \
+	    $(DAT)/oracles $(DAT)/quest.dat sp_lev.tag
+	$(ECHO) data >$(DAT)/dlb.lst
+	$(ECHO) oracles >>$(DAT)/dlb.lst
+	$(ECHO) options >>$(DAT)/dlb.lst
+	$(ECHO) rumors >>$(DAT)/dlb.lst
+	$(ECHO) help >>$(DAT)/dlb.lst
+	$(ECHO) hh >>$(DAT)/dlb.lst
+	$(ECHO) cmdhelp >>$(DAT)/dlb.lst
+	$(ECHO) history >>$(DAT)/dlb.lst
+	$(ECHO) opthelp >>$(DAT)/dlb.lst
+	$(ECHO) wizhelp >>$(DAT)/dlb.lst
+	$(ECHO) license >>$(DAT)/dlb.lst
+# The line above works, but the line below doesn't.  I can't figure-out why.
+# WAC - for some reason, this is OK under the DJGPP make...
+	( cd $(DAT) ; ./dlb_main cvIf dlb.lst nhshare )
+	cd $(SRC)
+
+$(DAT)/nhushare:	dlb_main.exe $(DAT)/dungeon $(DAT)/quest.dat sp_lev.tag
+	$(ECHO) dungeon > $(DAT)/dlb2.lst
+	$(ECHO) quest.dat >>$(DAT)/dlb2.lst
+	cd $(DAT) ; $(LS) *.lev >>dlb2.lst ; ./dlb_main cvIf dlb2.lst nhushare
+	cd $(SRC)
+
+
+dlb_main.exe: $(DLBOBJS)
+	$(LINK) $(LFLAGS) -odlb_main.exe $(DLBOBJS)
+	$(COPY) $@ $(DAT)/dlb_main.exe
+
+
+dlb_main.o: $(UTIL)/dlb_main.c $(INCL)/config.h $(DLB_H)
+	$(COPY) $(UTIL)/dlb_main.c .
+	$(CC) $(CFLAGS) -odlb_main.o dlb_main.c
+
+# Game Dependencies
+
+# sys/share
+main.o:	 $(HACK_H) $(DLB_H) $(SSHR)/pcmain.c
+	$(COPY) $(SSHR)/pcmain.c .
+	$(CC) $(CFLAGS) -o$@ pcmain.c
+
+unix.o:	 $(HACK_H) $(SSHR)/pcunix.c
+	$(COPY) $(SSHR)/pcunix.c .
+	$(CC) $(CFLAGS) -o$@ pcunix.c
+
+sys.o : $(HACK_H) $(SSHR)/pcsys.c
+	$(COPY) $(SSHR)/pcsys.c .
+	$(CC) $(CFLAGS) -o$@ pcsys.c
+
+# sys/winnt
+winnt.o : $(HACK_H)  $(WSYS)/winnt.c
+	$(COPY) $(WSYS)/winnt.c .
+	$(COPY) $(WSYS)/win32api.h ../include
+	$(CC) $(CFLAGS) -o$@ winnt.c
+
+nttty.o : $(HACK_H)  $(WSYS)/nttty.c
+	$(COPY) $(WSYS)/nttty.c .
+	$(CC) $(CFLAGS) -o$@ nttty.c
+
+ntsound.o: $(PCH) $(WSYS)/ntsound.c   $(HACK_H)
+	$(COPY) $(WSYS)/ntsound.c .
+	$(CC) $(CFLAGS) -o$@ ntsound.c
+
+mapimail.o: $(PCH) $(WSYS)/mapimail.c   $(HACK_H) $(NHLAN_H)
+	$(COPY) $(WSYS)/mapimail.c .
+	$(CC) $(CFLAGS) -DMAPI_VERBOSE -o$@ mapimail.c
+
+
+# win/tty
+getline.o : $(HACK_H) $(INCL)/wintty.h $(WTTY)/getline.c
+	$(COPY) $(WTTY)/getline.c .
+	$(CC) $(CFLAGS) -o$@ getline.c
+
+termcap.o : $(CONFIG_H) $(WTTY)/termcap.c
+	$(COPY) $(WTTY)/termcap.c .
+	$(CC) $(CFLAGS) -o$@ termcap.c
+
+topl.o : $(CONFIG_H) $(WTTY)/topl.c
+	$(COPY) $(WTTY)/topl.c .
+	$(CC) $(CFLAGS) -o$@ topl.c
+
+wintty.o : $(HACK_H) $(WTTY)/wintty.c
+	$(COPY) $(WTTY)/wintty.c .
+	$(CC) $(CFLAGS) -o$@ wintty.c
+
+# win/gtk
+gtk.o: ../win/gtk/gtk.c ../include/winGTK.h $(HACK_H) ../include/func_tab.h \
+		../include/dlb.h ../include/patchlevel.h
+	$(COPY) $(WGTK)/gtk.c .
+	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtk.c
+gtkgetlin.o: ../win/gtk/gtkgetlin.c ../include/winGTK.h $(HACK_H)
+	$(COPY) $(WGTK)/gtkgetlin.c .
+	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkgetlin.c
+gtkstatus.o: ../win/gtk/gtkstatus.c ../include/winGTK.h $(HACK_H)
+	$(COPY) $(WGTK)/gtkstatus.c .
+	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkstatus.c
+gtkmenu.o: ../win/gtk/gtkmenu.c ../include/winGTK.h $(HACK_H)
+	$(COPY) $(WGTK)/gtkmenu.c .
+	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmenu.c
+gtkyn.o: ../win/gtk/gtkyn.c ../include/winGTK.h $(HACK_H)
+	$(COPY) $(WGTK)/gtkyn.c .
+	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkyn.c
+gtkextcmd.o: ../win/gtk/gtkextcmd.c ../include/winGTK.h $(HACK_H) \
+		../include/func_tab.h
+	$(COPY) $(WGTK)/gtkextcmd.c .
+	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkextcmd.c
+gtkmap.o: ../win/gtk/gtkmap.c ../include/winGTK.h $(HACK_H) ../include/dlb.h \
+		../include/patchlevel.h
+	$(COPY) $(WGTK)/gtkmap.c .
+	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmap.c
+gtkmessage.o: ../win/gtk/gtkmessage.c ../include/winGTK.h $(HACK_H)
+	$(COPY) $(WGTK)/gtkmessage.c .
+	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmessage.c
+gtkmisc.o: ../win/gtk/gtkmisc.c ../include/winGTK.h $(HACK_H)
+	$(COPY) $(WGTK)/gtkmisc.c .
+	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmisc.c
+xshmmap.o: ../win/gtk/xshmmap.c ../include/winGTK.h $(HACK_H) ../include/xshm.h
+	$(COPY) $(WGTK)/xshmmap.c .
+	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshmmap.c
+xshm.o: ../win/gtk/xshm.c ../include/xshm.h
+	$(COPY) $(WGTK)/xshm.c .
+	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshm.c
+
+# src dependencies
+allmain.o:  $(HACK_H)
+alloc.o:    $(CONFIG_H)
+apply.o:    $(HACK_H) $(INCL)/edog.h
+artifact.o: $(HACK_H) $(INCL)/artifact.h $(INCL)/artilist.h
+attrib.o:   $(HACK_H) $(INCL)/artifact.h
+ball.o:	    $(HACK_H)
+bones.o:    $(HACK_H) $(INCL)/lev.h
+botl.o:	    $(HACK_H)
+cmd.o:	    $(HACK_H) $(INCL)/func_tab.h
+dbridge.o:  $(HACK_H)
+decl.o:	    $(HACK_H) $(INCL)/quest.h
+detect.o:   $(HACK_H) $(INCL)/artifact.h
+dig.o:      $(HACK_H)
+display.o:  $(HACK_H)
+dlb.o:      $(HACK_H) $(DLB_H)
+do.o:	    $(HACK_H) $(INCL)/lev.h
+do_name.o:  $(HACK_H)
+do_wear.o:  $(HACK_H)
+dog.o:	    $(HACK_H) $(INCL)/edog.h
+dogmove.o:  $(HACK_H) $(INCL)/mfndpos.h $(INCL)/edog.h
+dokick.o:   $(HACK_H) $(ESHK_H)
+dothrow.o:  $(HACK_H)
+drawing.o:  $(HACK_H) $(INCL)/tcap.h
+dungeon.o:  $(HACK_H) $(INCL)/dgn_file.h
+eat.o:	    $(HACK_H)
+end.o:	    $(HACK_H) $(ESHK_H)
+engrave.o:  $(HACK_H) $(INCL)/lev.h
+exper.o:    $(HACK_H)
+explode.o:  $(HACK_H)
+extralev.o:  $(HACK_H)
+files.o:     $(HACK_H)
+fountain.o:  $(HACK_H)
+gypsy.o:     $(HACK_H)
+hack.o:	     $(HACK_H)
+hacklib.o:   $(HACK_H)
+invent.o:    $(HACK_H) $(INCL)/artifact.h
+light.o:     $(HACK_H) $(INCL)/lev.h
+lock.o:	     $(HACK_H)
+mail.o:	     $(HACK_H) $(INCL)/mail.h
+makemon.o:   $(HACK_H) $(EPRI_H) $(EMIN_H) $(INCL)/edog.h
+mcastu.o:    $(HACK_H)
+mhitm.o:     $(HACK_H) $(INCL)/artifact.h $(INCL)/edog.h
+mhitu.o:     $(HACK_H) $(INCL)/artifact.h $(INCL)/edog.h
+minion.o:    $(HACK_H) $(EMIN_H) $(EPRI_H)
+mklev.o:     $(HACK_H)
+mkmap.o:     $(HACK_H) $(INCL)/sp_lev.h
+mkmaze.o:    $(HACK_H) $(INCL)/sp_lev.h
+mkobj.o:     $(HACK_H) $(INCL)/artifact.h $(INCL)/prop.h
+mkroom.o:    $(HACK_H)
+mon.o:	     $(HACK_H) $(INCL)/mfndpos.h $(INCL)/edog.h
+mondata.o:   $(HACK_H) $(ESHK_H) $(EPRI_H)
+monmove.o:   $(HACK_H) $(INCL)/mfndpos.h $(INCL)/artifact.h
+monst.o:     $(CONFIG_H) $(PERM_H) $(ESHK_H) $(EPRI_H) \
+	  $(INCL)/color.h $(INCL)/monsym.h $(INCL)/vault.h
+mplayer.o:   $(HACK_H)
+mthrowu.o:   $(HACK_H)
+muse.o:	     $(HACK_H)
+music.o:     $(HACK_H)
+o_init.o:    $(HACK_H)
+objects.o:   $(CONFIG_H) $(INCL)/obj.h $(INCL)/objclass.h \
+	       $(INCL)/prop.h $(SKILLS_H) $(INCL)/color.h
+objnam.o:    $(HACK_H)
+options.o:   $(CONFIG_H) $(HACK_H) $(INCL)/objclass.h $(INCL)/flag.h \
+	      $(INCL)/tcap.h
+pager.o:     $(HACK_H)
+pickup.o:    $(HACK_H)
+pline.o:     $(HACK_H) $(EPRI_H)
+polyself.o:  $(HACK_H)
+potion.o:    $(HACK_H)
+pray.o:	     $(HACK_H) $(EPRI_H)
+priest.o:    $(HACK_H) $(INCL)/mfndpos.h $(ESHK_H) $(EPRI_H) $(EMIN_H)
+quest.o:     $(HACK_H) $(INCL)/quest.h $(INCL)/qtext.h
+questpgr.o:  $(HACK_H) $(INCL)/qtext.h
+read.o:	     $(HACK_H)
+rect.o:	     $(HACK_H)
+region.o:    $(HACK_H)
+restore.o:   $(HACK_H) $(INCL)/lev.h $(INCL)/tcap.h $(INCL)/quest.h
+rip.o:	     $(HACK_H)
+role.o:	     $(HACK_H)
+rnd.o:	     $(HACK_H)
+rumors.o:    $(HACK_H)
+save.o:	     $(HACK_H) $(INCL)/lev.h $(INCL)/quest.h
+shk.o:	     $(HACK_H) $(ESHK_H)
+shknam.o:    $(HACK_H) $(ESHK_H)
+sit.o:	     $(HACK_H) $(INCL)/artifact.h
+sounds.o:    $(HACK_H) $(INCL)/edog.h
+sp_lev.o:    $(HACK_H) $(INCL)/sp_lev.h $(INCL)/align.h $(INCL)/rect.h
+spell.o:     $(HACK_H)
+steal.o:     $(HACK_H)
+steed.o:     $(HACK_H)
+teleport.o:  $(HACK_H)
+tech.o:	     $(HACK_H) $(INCL)/tech.h
+tile.o:	     $(HACK_H) $(TILE_H)
+timeout.o:   $(HACK_H)
+topten.o:    $(HACK_H)
+track.o:     $(HACK_H)
+trap.o:	     $(HACK_H)
+u_init.o:    $(HACK_H)
+uhitm.o:     $(HACK_H)
+vault.o:     $(HACK_H) $(INCL)/vault.h
+version.o:   $(HACK_H) $(INCL)/patchlevel.h
+vision.o:    $(HACK_H) $(INCL)/vis_tab.h
+weapon.o:    $(HACK_H)
+were.o:	     $(HACK_H)
+wield.o:     $(HACK_H)
+windows.o:   $(HACK_H) $(INCL)/wintty.h
+wizard.o:    $(HACK_H) $(INCL)/qtext.h
+worm.o:	     $(HACK_H) $(INCL)/lev.h
+worn.o:	     $(HACK_H)
+write.o:     $(HACK_H)
+zap.o:	     $(HACK_H)
+
+# end of file
