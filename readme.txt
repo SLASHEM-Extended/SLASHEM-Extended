@@ -107,6 +107,7 @@ ver 0.0.7E5 [?] [Released by ?]
 -fixed bug 873593: runtime delta showweight doesn't reconfig status
 		   (Clive Crous)
 -fixed bug 788895: [X11] showweight option not supported (Clive Crous)
+-GtkHack: Profile versioning
 
 See history.txt for changes made in previous versions.
 

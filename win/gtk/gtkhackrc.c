@@ -1,4 +1,4 @@
-/* $Id: gtkhackrc.c,v 1.10 2003-12-22 09:30:10 j_ali Exp $ */
+/* $Id: gtkhackrc.c,v 1.11 2004-01-10 16:37:15 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -11,6 +11,26 @@
 #include <glib.h>
 #include "winGTK.h"
 #include "prxyclnt.h"
+
+/*
+ * This is the version of the gtkhackrc file format only. It has no
+ * relation to the version of gtkhack. Increase the minor version
+ * number when the new file format can not be read by earlier versions
+ * of gtkhack. Increase the major version number (and set minor to 0)
+ * when the new version of gtkhack can not read earlier file formats.
+ *
+ * Note: adding new settings will not normally require changing the
+ * file format version since gtkhack ignores (and preserves) settings
+ * it does not recognize as long as they follow the supported syntax.
+ */
+
+#define GTKHACKRC_VER_MAJOR	0
+#define GTKHACKRC_VER_MINOR	2
+
+#define GTKHACKRC_VERSTR(major, minor)		#major "." #minor
+#define GTKHACKRC_VERSTRING(major, minor)	GTKHACKRC_VERSTR(major, minor)
+#define GTKHACKRC_VERSION	GTKHACKRC_VERSTRING(GTKHACKRC_VER_MAJOR,\
+					GTKHACKRC_VER_MINOR)
 
 #define PARSE_OK		0
 #define PARSE_FAIL		1
@@ -63,7 +83,7 @@ struct gtkhackrc_value {
     } u;
 };
 
-extern void rc_version(GScanner *scanner, GtkHackRcValue *value);
+extern int check_rc_version(GScanner *scanner, GtkHackRcValue *value);
 extern void rc_window_position(GScanner *scanner, GtkHackRcVList *params,
   GtkHackRcValue *value);
 extern void rc_window_size(GScanner *scanner, GtkHackRcVList *params,
@@ -95,7 +115,6 @@ struct gtkhackrc_setting {
 	  GtkHackRcValue *value);
     } handler;
 } gtkhackrc_settings[] = {
-    GTKHACKRC_VARIABLE, "version", rc_version,
     GTKHACKRC_FUNCTION, "window.position", rc_window_position,
     GTKHACKRC_FUNCTION, "window.size", rc_window_size,
     GTKHACKRC_VARIABLE, "map.font", rc_map_font,
@@ -111,10 +130,11 @@ struct gtkhackrc_setting {
     GTKHACKRC_VARIABLE, "help.font", rc_help_font,
 };
 
-#define PARSE_ERROR_NONE	0
-#define PARSE_ERROR_TOKEN	1	/* Expecting token ... */
-#define PARSE_ERROR_RULE	2	/* Expecting rule ... */
-#define PARSE_ERROR_RESOURCE	3	/* Not enough memory */
+#define PARSE_ERROR_NONE		0
+#define PARSE_ERROR_TOKEN		1	/* Expecting token ... */
+#define PARSE_ERROR_RULE		2	/* Expecting rule ... */
+#define PARSE_ERROR_RESOURCE		3	/* Not enough memory */
+#define PARSE_ERROR_INCOMPATIBLE	4	/* Incompatible profile */
 
 struct gtkhackrc {
     int error_type;
@@ -134,6 +154,9 @@ struct gtkhackrc {
 
 /* Preserved for writing back to file */
 static GSList *unrecognized_settings = NULL;
+#ifndef WIN32
+static gboolean write_verspecific_file = FALSE;
+#endif
 
 static int
 action_setting(GScanner *scanner, GtkHackRcValue *lhs, GtkHackRcValue *rhs);
@@ -596,6 +619,10 @@ action_setting(GScanner *scanner, GtkHackRcValue *lhs, GtkHackRcValue *rhs)
 			break;
 		if (i < SIZE(gtkhackrc_settings))
 		    gtkhackrc_settings[i].handler.v(scanner, rhs);
+		else if (!strcmp(name, "version")) {
+		    i = -1;
+		    retval = check_rc_version(scanner, rhs);
+		}
 #ifdef DEBUG
 		else
 		    fprintf(stderr, "gtkhackrc: variable %s ignored\n", name);
@@ -652,11 +679,17 @@ nh_scan_gtkhackrc(GScanner *scanner)
     GtkHackRcValue *v;
     HKEY key;
     DWORD type, no_values, value_len, data_len, value_count, data_count;
-    char *value, *data;
-    if (RegOpenKeyEx(HKEY_CURRENT_USER, "Software\\NetHack\\GtkHack\\0.2",
-	    0, KEY_READ, &key) != ERROR_SUCCESS &&
-        RegOpenKeyEx(HKEY_CURRENT_USER, "Software\\NetHack\\GtkHack\\0.1",
-	    0, KEY_READ, &key) != ERROR_SUCCESS)
+    char *s, *value, *data;
+    int minor;
+    for(minor = GTKHACKRC_VER_MINOR; minor >= 0; minor--) {
+	s = g_strdup_printf("Software\\NetHack\\GtkHack\\%d.%d",
+	  GTKHACKRC_VER_MAJOR, minor);
+        retval = RegOpenKeyEx(HKEY_CURRENT_USER, s, 0, KEY_READ, &key);
+	g_free(s);
+	if (retval == ERROR_SUCCESS)
+	    break;
+    }
+    if (minor < 0)
 	return TRUE;
     if (RegQueryInfoKey(key, NULL, NULL, NULL, NULL, NULL, NULL, &no_values,
 	    &value_len, &data_len, NULL, NULL) != ERROR_SUCCESS) {
@@ -727,15 +760,22 @@ nh_scan_gtkhackrc(GScanner *scanner)
     home = getenv("HOME");
     if (!home)
 	return FALSE;			/* Can't write file */
-    file = malloc(strlen(home) + 12);
+    file = malloc(strlen(home) + 13 + strlen(GTKHACKRC_VERSION));
     if (!file)
 	return FALSE;
-    sprintf(file, "%s/.gtkhackrc", home);
+    sprintf(file, "%s/.gtkhackrc-" GTKHACKRC_VERSION, home);
     fd = open(file, O_RDONLY);
     if (fd < 0) {
-	free(file);
-	return TRUE;
+	write_verspecific_file = FALSE;
+	sprintf(file, "%s/.gtkhackrc", home);
+	fd = open(file, O_RDONLY);
+	if (fd < 0) {
+	    free(file);
+	    return TRUE;
+	}
     }
+    else
+	write_verspecific_file = TRUE;
     scanner->input_name = file;
     g_scanner_input_file(scanner, fd);
     clear_unrecognized();
@@ -760,6 +800,10 @@ nh_scan_gtkhackrc(GScanner *scanner)
 	    case PARSE_ERROR_RESOURCE:
 		g_scanner_error(scanner, "%s%s%s", "Resource failure", " - ",
 		  "Read of GtkHack profile aborted");
+		break;
+	    case PARSE_ERROR_INCOMPATIBLE:
+		g_scanner_error(scanner, "%s%s%s", "Incompatible profile",
+		  " - ", "Read of GtkHack profile aborted");
 		break;
 	    default:
 		g_scanner_error(scanner, "%s%s%s", "Unknown error", " - ",
@@ -837,18 +881,26 @@ nh_write_gtkhackrc(void)
     struct gtkhackrc rc;
     GSList *list;
 #ifdef WIN32
-    RegDeleteKey(HKEY_CURRENT_USER, "Software\\NetHack\\GtkHack\\0.2");
-    RegCreateKeyEx(HKEY_CURRENT_USER, "Software\\NetHack\\GtkHack\\0.2",
-	    0, NULL, REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &rc.key, NULL);
+    RegDeleteKey(HKEY_CURRENT_USER,
+      "Software\\NetHack\\GtkHack\\" GTKHACKRC_VERSION);
+    RegCreateKeyEx(HKEY_CURRENT_USER,
+      "Software\\NetHack\\GtkHack\\" GTKHACKRC_VERSION,
+      0, NULL, REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &rc.key, NULL);
 #else
     char *home, *file;
     home = getenv("HOME");
     if (!home)
 	return;
-    file = malloc(strlen(home) + 12);
+    if (write_verspecific_file)
+	file = malloc(strlen(home) + 13 + strlen(GTKHACKRC_VERSION));
+    else
+	file = malloc(strlen(home) + 12);
     if (!file)
 	return;
-    sprintf(file, "%s/.gtkhackrc", home);
+    if (write_verspecific_file)
+	sprintf(file, "%s/.gtkhackrc-" GTKHACKRC_VERSION, home);
+    else
+	sprintf(file, "%s/.gtkhackrc", home);
     rc.fp = fopen(file, "w");
     if (!rc.fp) {
 	perror(file);
@@ -859,7 +911,7 @@ nh_write_gtkhackrc(void)
       "# This file is generated by the Gtk interface of NetHack & friends.\n"
       "# Do not edit.\n"
       "\n"
-      "version = \"0.2\"\n");
+      "version = \"" GTKHACKRC_VERSION "\"\n");
 #endif
     nh_session_save(&rc);
     GTK_preferences_save(&rc);
@@ -916,9 +968,27 @@ int gtkhackrc_check_type(GScanner *scanner, GtkHackRcValue *value,
 	return TRUE;
 }
 
-void rc_version(GScanner *scanner, GtkHackRcValue *value)
+int check_rc_version(GScanner *scanner, GtkHackRcValue *value)
 {
-    /* We don't currently take any account of the version */
+    int major, minor;
+    if (!gtkhackrc_check_type(scanner, value, "value",
+      PARSE_VALUE_TYPE_STRING)) {
+	GTKHACKRC(scanner)->error_type = PARSE_ERROR_INCOMPATIBLE;
+	write_verspecific_file = TRUE;
+	return PARSE_ERROR;
+    }
+    if (sscanf(value->u.string, "%d.%d", &major, &minor) != 2) {
+	GTKHACKRC(scanner)->error_type = PARSE_ERROR_INCOMPATIBLE;
+	write_verspecific_file = TRUE;
+	return PARSE_ERROR;
+    }
+    if (major != GTKHACKRC_VER_MAJOR || minor > GTKHACKRC_VER_MINOR) {
+	GTKHACKRC(scanner)->error_type = PARSE_ERROR_INCOMPATIBLE;
+	if (major >= GTKHACKRC_VER_MAJOR)
+	    write_verspecific_file = TRUE;
+	return PARSE_ERROR;
+    }
+    return 0;
 }
 
 void rc_window_position(GScanner *scanner, GtkHackRcVList *params,
