@@ -89,11 +89,7 @@ static	const char	SCCS_Id[] = "@(#)makedefs.c\t3.4\t2002/02/03";
 #   define INCLUDE_TEMPLATE     ":include:%s"
 #   define SOURCE_TEMPLATE      ":src:%s"
 #   define DGN_TEMPLATE         ":dat:%s"  /* where dungeon.pdf file goes */
-#  ifndef MAC_MPW
 #   define DATA_TEMPLATE        ":lib:%s"
-#  else
-#   define DATA_TEMPLATE        (data_template())
-#  endif /* MAC_MPW */
 #   define DATA_IN_TEMPLATE     ":dat:%s"
 # else /* MAC */
 #  ifdef OS2
