@@ -429,7 +429,7 @@ VOBJ19 = trap.o     u_init.o   uhitm.o    vault.o    vision.o
 VOBJ20 = vis_tab.o  weapon.o   were.o	  wield.o    windows.o
 VOBJ21 = wizard.o   worm.o	  worn.o     write.o
 VOBJ22 = zap.o	    light.o    dlb.o      dig.o      teleport.o
-VOBJ23 = region.o   tech.o     gypsy.o
+VOBJ23 = region.o   tech.o     gypsy.o    mapglyph.o
 
 SOBJ   = winnt.o    sys.o      unix.o     nttty.o    random.o \
 	 $(SOUND)   nhlan.o
@@ -1303,7 +1303,7 @@ $(DAT)\nhshare:	dlb_main.exe $(DAT)\data $(DAT)\rumors $(DAT)\dungeon \
 	    $(DAT)\oracles $(DAT)\quest.dat sp_lev.tag
 	$(ECHO) data >$(DAT)\dlb.lst
 	$(ECHO) oracles >>$(DAT)\dlb.lst
-	$(ECHO) options >>$(DAT)\dlb.lst
+#	$(ECHO) options >>$(DAT)\dlb.lst
 	$(ECHO) rumors >>$(DAT)\dlb.lst
 	$(ECHO) help >>$(DAT)\dlb.lst
 	$(ECHO) hh >>$(DAT)\dlb.lst
@@ -1515,6 +1515,7 @@ light.o:     $(HACK_H) $(INCL)\lev.h
 lock.o:	     $(HACK_H)
 mail.o:	     $(HACK_H) $(INCL)\mail.h
 makemon.o:   $(HACK_H) $(EPRI_H) $(EMIN_H) $(INCL)\edog.h
+mapglyph.o:  $(HACK_H)
 mcastu.o:    $(HACK_H)
 mhitm.o:     $(HACK_H) $(INCL)\artifact.h $(INCL)\edog.h
 mhitu.o:     $(HACK_H) $(INCL)\artifact.h $(INCL)\edog.h

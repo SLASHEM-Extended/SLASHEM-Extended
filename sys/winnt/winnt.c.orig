@@ -11,8 +11,12 @@
 
 #define NEED_VARARGS
 #include "hack.h"
+#ifndef __CYGWIN__
 #include <dos.h>
+#ifndef __BORLANDC__
 #include <direct.h>
+#endif
+#endif
 #include <ctype.h>
 #include "win32api.h"
 
@@ -117,6 +121,7 @@ char *file;
 /*
  * Chdrive() changes the default drive.
  */
+#ifndef __CYGWIN__
 void
 chdrive(str)
 char *str;
@@ -129,6 +134,7 @@ char *str;
 		_chdrive((drive - 'A') + 1);
 	}
 }
+#endif 
 
 static int
 max_filename()
@@ -174,24 +180,16 @@ register char *s;
 char *get_username(lan_username_size)
 int *lan_username_size;
 {
-	static char username_buffer[BUFSZ];
+	static TCHAR username_buffer[BUFSZ];
 	unsigned int status;
-#ifndef __MINGW32__
-	int i = 0;
-#else
-	DWORD i = 0;
-#endif
+	DWORD i = BUFSZ - 1;
 
-	i = BUFSZ - 1;
 	/* i gets updated with actual size */
 	status = GetUserName(username_buffer, &i);		
-	if (status) {
-		if (lan_username_size) *lan_username_size = i;
-		username_buffer[i] = 0;
-		return username_buffer;
-	}
-	if (lan_username_size) *lan_username_size = 0;
-	return (char *)0;
+	if (status) username_buffer[i] = '\0';
+	else Strcpy(username_buffer, "NetHack");
+	if (lan_username_size) *lan_username_size = strlen(username_buffer);
+	return username_buffer;
 }
 
 
