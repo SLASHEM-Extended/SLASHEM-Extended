@@ -98,9 +98,9 @@ boolean make_big;
         tilebmp = create_bitmap(tile_x, tile_y);
 
         color2 = 0L;
-        color2 |= 108;
+        color2 |= 71;
         color2 |= (108) << 8;
-        color2 |= (71) << 16;
+        color2 |= (108) << 16;
 
         /* load the origional tile */
 
@@ -108,9 +108,9 @@ boolean make_big;
                 for (i = 0; i < tile_x; i++) 
                 {
                         color = 0L;
-                        color |= (pixels[j][i].b & 0x0000ff);
+                        color |= (pixels[j][i].r & 0x0000ff);
                         color |= (pixels[j][i].g & 0x0000ff) << 8;
-                        color |= (pixels[j][i].r & 0x0000ff) << 16;
+                        color |= (pixels[j][i].b & 0x0000ff) << 16;
                         putpixel(tilebmp, i, j, color);
                 }
         }
