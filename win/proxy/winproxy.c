@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.27 2003-08-22 19:40:57 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.28 2003-09-07 16:43:44 prousu Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -61,6 +61,7 @@ static int in_proxy_init = 0;
 struct window_procs proxy_procs = {
     "proxy",
     0x0,
+    0L,
     proxy_init_nhwindows,
     proxy_player_selection,
     proxy_askname,
