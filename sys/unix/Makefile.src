@@ -264,8 +264,8 @@ PROXYUTLOBJ = dlbh.o mapid.o riputil.o getopt.o glyphmap.o
 # external window ports and provide the interface to the game executable.
 # Currently, only the GTK2 window interface supports proxy window servers.
 PROXYSVRSRC = ../win/proxy/proxysvc.c ../win/proxy/proxycb.c \
-	../win/proxy/prxytile.c
-PROXYSVROBJ = proxysvc.o proxycb.o prxytile.o
+	../win/proxy/prxymap.c ../win/proxy/prxychar.c ../win/proxy/prxytile.c
+PROXYSVROBJ = proxysvc.o proxycb.o prxymap.o prxychar.o prxytile.o
 #
 # Files for the SDL/GL window port
 WINGLSRC = ../win/gl/gl_conf.c ../win/gl/gl_emul.c  \
@@ -865,6 +865,12 @@ proxysvc.o: ../win/proxy/proxysvc.c $(HACK_H) ../include/nhxdr.h \
 proxycb.o: ../win/proxy/proxycb.c $(HACK_H) ../include/nhxdr.h \
 		../include/winproxy.h ../include/proxycb.h
 	$(CC) $(CFLAGS) -c ../win/proxy/proxycb.c
+prxymap.o: ../win/proxy/prxymap.c $(HACK_H) ../include/winproxy.h \
+		../include/proxysvr.h ../include/proxycb.h
+	$(CC) $(CFLAGS) -c ../win/proxy/prxymap.c
+prxychar.o: ../win/proxy/prxychar.c $(HACK_H) ../include/winproxy.h \
+		../include/proxysvr.h ../include/proxycb.h
+	$(CC) $(CFLAGS) -c ../win/proxy/prxychar.c
 prxytile.o: ../win/proxy/prxytile.c $(HACK_H) ../include/winproxy.h \
 		../include/proxysvr.h ../include/proxycb.h
 	$(CC) $(CFLAGS) -c ../win/proxy/prxytile.c

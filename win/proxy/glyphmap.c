@@ -1,4 +1,4 @@
-/* $Id: glyphmap.c,v 1.1 2002-09-01 21:58:19 j_ali Exp $ */
+/* $Id: glyphmap.c,v 1.2 2002-09-12 18:21:47 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -23,9 +23,7 @@
 #define C(n)	NO_COLOR
 #endif
 
-/* The bottom 8 bits hold the symbol */
-
-#define RGB(r, g, b)	((r)<<24 | (g)<<16 | (b)<<8)
+#define RGB(r, g, b)	((r)<<16 | (g)<<8 | (b))
 
 /* Some arbitary, unused, colour */
 
@@ -70,26 +68,29 @@ get_glyph_mapping_monsters(map)
 struct proxycb_get_glyph_mapping_res_mapping *map;
 {
     int i, j, k, l;
+    int n_mons[MAXMCLASSES];
     map->flags = "";
     map->base_mapping = -1;
     map->alt_glyph = NO_GLYPH;
     map->symdef.rgbsym = RGB_SYM(RGB_TRANSPARENT, 0);
     map->symdef.description = "monster";
+    for(i = 0; i < MAXMCLASSES; i++)
+	n_mons[i] = 0;
+    for(i = 0; i < NUMMONS; i++)
+	if (mons[i].mlet >= 0 && mons[i].mlet < MAXMCLASSES)
+	    n_mons[mons[i].mlet]++;
     map->n_submappings = MAXMCLASSES;
     for(i = 0; i < MAXMCLASSES; i++)
-	if (!monexplain[i])
+	if (!monexplain[i] || !n_mons[i])
 	    map->n_submappings--;
     map->submappings = (struct proxycb_get_glyph_mapping_res_submapping *)
       alloc(map->n_submappings * sizeof(*map->submappings));
     for(i = j = 0; i < MAXMCLASSES; i++) {
-	if (monexplain[i]) {
+	if (monexplain[i] && n_mons[i]) {
 	    map->submappings[j].symdef.rgbsym =
 	      RGB_SYM(RGB_TRANSPARENT, monsyms[i]);
 	    map->submappings[j].symdef.description = monexplain[i];
-	    map->submappings[j].n_glyphs = 0;
-	    for(k = 0; k < NUMMONS; k++)
-		if (mons[k].mlet == i)
-		    map->submappings[j].n_glyphs++;
+	    map->submappings[j].n_glyphs = n_mons[i];
 	    map->submappings[j].glyphs =
 	      (struct proxycb_get_glyph_mapping_res_symdef *)
 	      alloc(map->submappings[j].n_glyphs *

@@ -1,4 +1,4 @@
-/* $Id: prxytile.c,v 1.1 2002-09-01 21:58:19 j_ali Exp $ */
+/* $Id: prxytile.c,v 1.2 2002-09-12 18:21:48 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -10,13 +10,6 @@
 #include "proxycb.h"
 
 /* #define DEBUG */
-
-short *proxy_glyph2tile = NULL;
-
-struct proxy_glyph_description {
-    unsigned int no_descs, max_descs;	/* No. valid and no. allocated */
-    const char **descs;
-};
 
 /*
  * entry is a comma seperated list of descriptions.
@@ -152,7 +145,7 @@ struct proxy_tilemap *map;
 
 static int
 proxy_match_descriptions(struct proxy_tilemap_entry *tile_entry,
-  struct proxy_glyph_description *glyph_desc)
+  struct proxy_glyph_mapping *glyph_desc)
 {
     int i, j;
     int no_matches = 0, no_exact_matches = 0;
@@ -179,7 +172,8 @@ proxy_match_descriptions(struct proxy_tilemap_entry *tile_entry,
 }
 
 static short
-proxy_map_glyph(struct proxy_tilemap *tile_map, struct proxy_glyph_description *desc)
+proxy_map_glyph(struct proxy_tilemap *tile_map,
+  struct proxy_glyph_mapping *desc)
 {
     int i, j, k;
     int best = -1;
@@ -246,195 +240,94 @@ proxy_log_mapping(int glyph, int tile, struct proxy_tilemap *tile_map, struct pr
 #define PROXY_MAP_GLYPH(glyph, tile, tile_map, desc) \
 	if (1) { \
 	    int PROXY_MAP_GLYPH_gn = (glyph); \
-	    proxy_glyph2tile[PROXY_MAP_GLYPH_gn] = (tile); \
+	    glyph2tile[PROXY_MAP_GLYPH_gn] = (tile); \
 	    proxy_log_mapping(PROXY_MAP_GLYPH_gn, tile, tile_map, desc); \
 	} else
 #else	/* DEBUG */
 #define PROXY_MAP_GLYPH(glyph, tile, tile_map, desc) \
-	(proxy_glyph2tile[(glyph)] = (tile))
+	(glyph2tile[(glyph)] = (tile))
 #endif	/* DEBUG */
 
-static void
-proxy_set_description(struct proxy_glyph_description *datum, int level,
-  const char *description)
-{
-    int i;
-    if (level >= datum->max_descs) {
-	if (datum->max_descs) {
-	    datum->max_descs *= 2;
-	    if (datum->max_descs <= level)
-		datum->max_descs = level + 1;
-	    datum->descs = (const char **)realloc(datum->descs,
-	      datum->max_descs * sizeof (char *));
-	} else {
-	    datum->max_descs = max(8, level + 1);
-	    datum->descs =
-	      (const char **)malloc(datum->max_descs * sizeof (char *));
-	}
-	if (!datum->descs)
-	    panic("Not enough memory to load glyph descriptions");
-    }
-    for(; datum->no_descs < level; datum->no_descs++)
-	datum->descs[datum->no_descs] = NULL;
-    datum->descs[level] = !description || !*description ? NULL : description;
-    if (datum->no_descs <= level)
-	datum->no_descs = level + 1;
-}
-
-#define LEVEL_MAPPING		0
-#define LEVEL_FLAGS		1
-#define LEVEL_SUBMAPPING	2
-#define LEVEL_GLYPH		3
-#define LEVEL_BASED_MAPPING	4
-#define LEVEL_BASED_SUBMAPPING	5
-#define LEVEL_BASED_GLYPH	6
-
-int
+short *
 proxy_map_glyph2tile(glyph_map, tile_map)
 struct proxycb_get_glyph_mapping_res *glyph_map;
 struct proxy_tilemap *tile_map;
 {
-    int i, j, k, bj, bk, m, glyph;
-    struct proxycb_get_glyph_mapping_res_mapping *mapping, *base;
-    struct proxy_glyph_description description = {0, 0, NULL};
+    int i, j, k, m, glyph = 0;
+    struct proxy_glyph_map_info info;
+    struct proxy_glyph_mapping *mapping;
     struct forward_ref {
 	int first_glyph;
 	int no_glyphs;
 	int ref_glyph;
     };
     int no_forward_refs = 0;
-    struct forward_ref *forward_refs = NULL;
-    proxy_glyph2tile = (short *)alloc(glyph_map->no_glyph * sizeof(short));
+    struct forward_ref *forward_refs = NULL, *fr;
+    short *glyph2tile;
+    glyph2tile = (short *)alloc(glyph_map->no_glyph * sizeof(short));
     for(i = 0; i < glyph_map->no_glyph; i++)
-	proxy_glyph2tile[i] = -1;
-    glyph = 0;
-    for(i = 0; i < glyph_map->n_mappings; i++) {
-	mapping = glyph_map->mappings + i;
-	description.no_descs = 0;
-	if (mapping->base_mapping >= 0) {
-	    if (mapping->base_mapping < i)
-		base = glyph_map->mappings + mapping->base_mapping;
-	    else
-		/* Forward references to mappings are not supported */
-		panic("Glyph mapping %d based on undefined mapping", i);
-	    proxy_set_description(&description, LEVEL_MAPPING,
-	      base->symdef.description);
-	    proxy_set_description(&description, LEVEL_BASED_MAPPING,
-	      mapping->symdef.description);
-	} else {
-	    base = NULL;
-	    proxy_set_description(&description, LEVEL_MAPPING,
-	      mapping->symdef.description);
-	}
-	/* We ignore flags from our base mapping (if any)
-	 * and always use our own.
+	glyph2tile[i] = -1;
+    mapping = proxy_glyph_map_first(&info, glyph_map);
+    while (mapping) {
+	/* TODO: Where the tileset defines tiles for a mapping, this should
+	 * take precedence over the alternate glyph. Currently, we always
+	 * use the alternative glyph, if set.
 	 */
-	proxy_set_description(&description, LEVEL_FLAGS,
-	  mapping->flags);
-	if (!mapping->n_submappings) {
-	    if (!base)
-		panic("Glyph mapping %d has no base and no sub-mappings", i);
-	    /* Where the tileset does not define tiles for a mapping, the
-	     * specified alternate glyph takes precedence, if set.
-	     * Otherwise, we default to the tiles from the base mapping.
-	     */
-	    if (mapping->alt_glyph != glyph_map->no_glyph) {
-		m = proxy_glyph2tile[mapping->alt_glyph];
-		if (m < 0) {
-		    /* Referenced glyph has not yet been mapped */
+	if (mapping->alt_glyph != glyph_map->no_glyph) {
+	    m = glyph2tile[mapping->alt_glyph];
+	    if (m < 0) {
+		/* Referenced glyph has not yet been mapped */
+		if (no_forward_refs && fr->ref_glyph == mapping->alt_glyph &&
+		  fr->first_glyph + fr->no_glyphs == glyph)
+		    fr->no_glyphs++;
+		else {
 		    if (no_forward_refs++)
 			forward_refs = realloc(forward_refs,
-				no_forward_refs * sizeof (struct forward_ref));
+			  no_forward_refs * sizeof (struct forward_ref));
 		    else
 			forward_refs = malloc(sizeof (struct forward_ref));
 		    if (!forward_refs)
 			panic("Not enough memory to map glyphs");
-		    forward_refs[no_forward_refs - 1].first_glyph = glyph;
-		    m = 0;
-		    for(j = 0; j < base->n_submappings; j++)
-			m += base->submappings[j].n_glyphs;
-		    forward_refs[no_forward_refs - 1].no_glyphs = m;
-		    glyph += m;
-		    forward_refs[no_forward_refs - 1].ref_glyph =
-			    mapping->alt_glyph;
+		    fr = forward_refs + no_forward_refs - 1;
+		    fr->first_glyph = glyph;
+		    fr->no_glyphs = 1;
+		    fr->ref_glyph = mapping->alt_glyph;
 		}
-		else
-		    for(j = 0; j < base->n_submappings; j++)
-			for(k = 0; k < base->submappings[j].n_glyphs; k++)
-			    PROXY_MAP_GLYPH(glyph++, m, tile_map, NULL);
-	    } else
-		for(j = 0; j < base->n_submappings; j++) {
-		    proxy_set_description(&description, LEVEL_SUBMAPPING,
-		      base->submappings[j].symdef.description);
-		    for(k = 0; k < base->submappings[j].n_glyphs; k++) {
-			proxy_set_description(&description, LEVEL_GLYPH,
-			  base->submappings[j].glyphs[k].description);
-			m = proxy_map_glyph(tile_map, &description);
-			PROXY_MAP_GLYPH(glyph++, m, tile_map, &description);
-		    }
-		}
-	} else if (base) {
-	    if (!base->n_submappings)
-		panic("Glyph mapping %d based on mapping with no sub-mappings",
-			i);
-	    for(bj = 0; bj < base->n_submappings; bj++) {
-		proxy_set_description(&description, LEVEL_SUBMAPPING,
-		  base->submappings[bj].symdef.description);
-		for(bk = 0; bk < base->submappings[bj].n_glyphs; bk++) {
-		    proxy_set_description(&description, LEVEL_GLYPH,
-		      base->submappings[bj].glyphs[bk].description);
-		    for(j = 0; j < mapping->n_submappings; j++) {
-			proxy_set_description(&description,
-			  LEVEL_BASED_SUBMAPPING,
-			  mapping->submappings[j].symdef.description);
-			for(k = 0; k < mapping->submappings[j].n_glyphs; k++) {
-			    proxy_set_description(&description,
-			      LEVEL_BASED_GLYPH,
-			      mapping->submappings[j].glyphs[k].description);
-			    m = proxy_map_glyph(tile_map, &description);
-			    PROXY_MAP_GLYPH(glyph++, m, tile_map, &description);
-			}
-		    }
-		}
+		glyph++;
 	    }
+	    else
+		PROXY_MAP_GLYPH(glyph++, m, tile_map, NULL);
 	} else {
-	    for(j = 0; j < mapping->n_submappings; j++) {
-		proxy_set_description(&description, LEVEL_SUBMAPPING,
-		  mapping->submappings[j].symdef.description);
-		for(k = 0; k < mapping->submappings[j].n_glyphs; k++) {
-		    proxy_set_description(&description, LEVEL_GLYPH,
-		      mapping->submappings[j].glyphs[k].description);
-		    m = proxy_map_glyph(tile_map, &description);
-		    PROXY_MAP_GLYPH(glyph++, m, tile_map, &description);
-		}
-	    }
+	    m = proxy_map_glyph(tile_map, mapping);
+	    PROXY_MAP_GLYPH(glyph++, m, tile_map, mapping);
 	}
+	mapping = proxy_glyph_map_next(&info);
     }
-    free(description.descs);
+    proxy_glyph_map_close(&info);
     /* Handle any forward references (ignoring any that reference undefined
      * glyphs - we treat these just like any other undefined glyphs).
      */
     do {
 	k = 0;
-	for(i = 0; i < no_forward_refs; i++) {
-	    if (!forward_refs[i].no_glyphs)
+	fr = forward_refs;
+	for(i = 0; i < no_forward_refs; i++, fr++) {
+	    if (!fr->no_glyphs)
 		continue;
-	    m = proxy_glyph2tile[forward_refs[i].ref_glyph];
+	    m = glyph2tile[fr->ref_glyph];
 	    if (m >= 0) {
-		for(j = 0; j < forward_refs[i].no_glyphs; j++)
-		    PROXY_MAP_GLYPH(forward_refs[i].first_glyph + j,
-		      m, tile_map, NULL);
-		forward_refs[i].no_glyphs = 0;
+		for(j = 0; j < fr->no_glyphs; j++)
+		    PROXY_MAP_GLYPH(fr->first_glyph + j, m, tile_map, NULL);
+		fr->no_glyphs = 0;
 		k = 1;	/* We've done some work */
 	    }
 	    else if (!k) {
-		i = forward_refs[i].ref_glyph;
-		for(j = 0; j < no_forward_refs; j++)
-		    if (forward_refs[j].no_glyphs &&
-		      i >= forward_refs[j].first_glyph &&
-		      i < forward_refs[j].first_glyph +
-		      forward_refs[j].no_glyphs)
+		m = fr->ref_glyph;
+		fr = forward_refs;
+		for(j = 0; j < no_forward_refs; j++, fr++)
+		    if (fr->no_glyphs && m >= fr->first_glyph &&
+		      m < fr->first_glyph + fr->no_glyphs)
 			break;
+		fr = forward_refs + i;
 		if (j < no_forward_refs)
 		    /* There's work still to do (and we haven't done any) */
 		    k = -1;
@@ -446,11 +339,11 @@ struct proxy_tilemap *tile_map;
     free(forward_refs);
     /* Make certain all glyphs map to _something_ */
     glyph = cmap_to_glyph(S_stone);
-    j = proxy_glyph2tile[glyph];
+    j = glyph2tile[glyph];
     if (j < 0)
 	j = 0;
     for(i = 0; i < glyph_map->no_glyph; i++)
-	if (proxy_glyph2tile[i] < 0)
-	    proxy_glyph2tile[i] = j;
-    return 1;
+	if (glyph2tile[i] < 0)
+	    glyph2tile[i] = j;
+    return glyph2tile;
 }

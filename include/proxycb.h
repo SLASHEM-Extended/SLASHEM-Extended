@@ -1,4 +1,4 @@
-/* $Id: proxycb.h,v 1.9 2002-09-01 21:58:18 j_ali Exp $ */
+/* $Id: proxycb.h,v 1.10 2002-09-12 18:21:47 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -60,6 +60,8 @@ struct proxycb_get_tilesets_res {
 };
 
 #define RGB_SYM(rgb, sym)	((rgb) << 8 | (sym))
+#define RGBSYM_RGB(rgbsym)	((rgbsym) >> 8 & 0xFFFFFF)
+#define RGBSYM_SYM(rgbsym)	((rgbsym) & 0xFF)
 
 struct proxycb_get_glyph_mapping_res_symdef {
 	long rgbsym;

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.11 2002-09-01 21:58:19 j_ali Exp $
+  $Id: gtkmap.c,v 1.12 2002-09-12 18:21:47 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -17,6 +17,8 @@
 #include "patchlevel.h"
 #endif
 #include "decl.h"
+#include "proxycb.h"
+#include "proxysvr.h"
 
 #undef red
 #undef green
@@ -33,6 +35,10 @@ static GdkFont		*map_font;
 static gchar		*map_font_name;
 static unsigned char	*map_xoffsets;		/* For character mode only */
 static unsigned int	map_font_width;		/* Maximum width */
+#ifdef GTK_PROXY
+static int		map_n_glyphs;
+static short		*map_glyph2colsym = (short *)0;
+#endif
 
 static GdkGC		*map_color_gc[N_NH_COLORS];
 
@@ -127,8 +133,8 @@ extern int tiles_per_col;
 #endif
 
 #ifdef GTK_PROXY
-extern short	*proxy_glyph2tile;
-#define	glyph2tile	proxy_glyph2tile
+extern short	*GTK_glyph2tile;
+#define	glyph2tile	GTK_glyph2tile
 #else
 extern short	glyph2tile[];
 #endif
@@ -237,15 +243,21 @@ nh_conf_map_layers(int no)
     return retval;
 }
 
-#if !defined(GTK_PROXY) || defined(PROXY_INTERNAL)
-/*
- * [ALI] The external proxy module does not yet support character mode.
- */
-
 static int
 nh_conf_map_font(void)
 {
-    int i, min_width, width;
+    int i, j, min_width, width;
+#ifdef GTK_PROXY
+    int rgb, sym, best;
+    double e, err = 0;
+    int r, g, b;
+    double d;
+    double X, Y, Z, up, vp;	/* Tri-stimulus and CIE-1976 UCS values */
+    double Ls, us, vs;
+    struct { double L, up, vp; } nh_Luv[N_NH_COLORS];
+    long *glyph2rgbsym;
+    struct proxycb_get_glyph_mapping_res *glyph_map;
+#endif
     if (!map_font) {
 	g_return_val_if_fail(map->style != NULL, 1);
 	map_font = gtk_style_get_font(map->style);
@@ -262,10 +274,125 @@ nh_conf_map_font(void)
     map_xoffsets = (unsigned char *) alloc(256);
     for(i = 0; i < 256; i++)
 	map_xoffsets[i] = 0;
+#ifdef GTK_PROXY
+    if (!map_glyph2colsym) {
+	glyph_map = proxy_cb_get_glyph_mapping();
+	if (!glyph_map) {
+	    pline("Cannot get glyph mapping.");
+	    return 0;
+	}
+	glyph2rgbsym = proxy_map_glyph2char(glyph_map);
+	map_n_glyphs = glyph_map->no_glyph;
+	proxy_cb_free_glyph_mapping(glyph_map);
+	map_glyph2colsym = (short *)alloc(map_n_glyphs * sizeof(short));
+	for(i = 0; i < map_n_glyphs; i++)
+	    map_glyph2colsym[i] = -1;
+	/*
+	 * The algorithm for determining colour closeness used here is
+	 * a sledgehammer to crack a nut. It is based on the CIE 1976
+	 * colour difference value (delta-E*(L*u*v*)), but modified
+	 * slightly to give much more weight to the chroma information.
+	 * Normally one would simply use (r-r0)^2 + (g-g0)^2 + (b-b0)^2
+	 * but this gives too much weight to lightness for our purposes
+	 * and while one can conceive of a number of ways to modify it
+	 * we really need to do some testing before using one of these.
+	 * This algorithm will work, although it's a little slow.
+	 *
+	 * Note that the values in nh_colors are in 16-bit, but are
+	 * specified as 8-bit * 257 so we can simply divide by 257
+	 * to get 8-bit.
+	 */
+	for(i = 0; i < N_NH_COLORS; i++) {
+	    r = nh_color[i].red/257;
+	    g = nh_color[i].green/257;
+	    b = nh_color[i].blue/257;
+	    if (r | g | b) {
+		X = 0.412453 * r + 0.357580 * g + 0.180423 * b;
+		Y = 0.212671 * r + 0.715160 * g + 0.072169 * b;
+		Z = 0.019334 * r + 0.119193 * g + 0.950227 * b;
+		nh_Luv[i].L = Y;
+		d = X + 15 * Y + 3 * Z;
+		nh_Luv[i].up = 4 * X / d;
+		nh_Luv[i].vp = 9 * Y / d;
+	    } else {
+		nh_Luv[i].L = 0.5;	/* Zero would imply infinite ratio */
+		nh_Luv[i].up = nh_Luv[i].vp = 0;
+	    }
+	}
+	for(i = 0; i < map_n_glyphs; i++) {
+	    if (map_glyph2colsym[i] == -1) {
+		rgb = RGBSYM_RGB(glyph2rgbsym[i]);
+		r = rgb>>16;
+		g = (rgb>>8)&0xFF;
+		b = rgb&0xFF;
+		if (r | g | b) {
+		    X = 0.412453 * r + 0.357580 * g + 0.180423 * b;
+		    Y = 0.212671 * r + 0.715160 * g + 0.072169 * b;
+		    Z = 0.019334 * r + 0.119193 * g + 0.950227 * b;
+		    d = X + 15 * Y + 3 * Z;
+		    up = 4 * X / d;
+		    vp = 9 * Y / d;
+		} else {
+		    Y = 0.5;
+		    up = vp = 0;
+		}
+		best = 0;
+		for(j = 0; j < N_NH_COLORS; j++) {
+		    Ls = 116 * pow(nh_Luv[j].L / Y, 1/3.) - 16;
+		    if (nh_Luv[j].up || up) {
+			/* These values are ten times the normal CIE 1976
+			 * u* and v* values. (Chroma is much more important
+			 * in NetHack than lightness.)
+			 */
+			us = 130 * Ls * (nh_Luv[j].up - up);
+			vs = 130 * Ls * (nh_Luv[j].vp - vp);
+		    } else
+			us = vs = 0;
+		    e = Ls * Ls + us * us + vs * vs;
+#ifdef DEBUG
+		    fprintf(stderr, "E[(%d,%d,%d), (%d,%d,%d)] = %lg\n",
+		      nh_color[j].red/257, nh_color[j].green/257,
+		      nh_color[j].blue/257, r, g, b, e);
+#endif
+		    if (!j || e < err) {
+			best = j;
+			err = e;
+		    }
+		}
+		map_glyph2colsym[i] = best << 8 | RGBSYM_SYM(glyph2rgbsym[i]);
+		for(j = i + 1; j < map_n_glyphs; j++)
+		    if (RGBSYM_RGB(glyph2rgbsym[j]) == rgb)
+			map_glyph2colsym[j] =
+				best << 8 | RGBSYM_SYM(glyph2rgbsym[j]);
+	    }
+#ifdef DEBUG
+	    fprintf(stderr,"Glyph %d (0x%lX) -> sym %d, colour %d\n",
+	      i, glyph2rgbsym[i],
+	      map_glyph2colsym[i] & 0xFF, map_glyph2colsym[i] >> 8);
+#endif
+	}
+	free(glyph2rgbsym);
+    }
+    sym = map_glyph2colsym[0] & 0xFF;
+    map_font_width = min_width =
+      gdk_char_width_wc(map_font, (GdkWChar)sym);
+    if (c_width > 0)
+	map_xoffsets[sym] = c_width;
+    for(i = 1; i < map_n_glyphs; i++) {
+	sym = map_glyph2colsym[i] & 0xFF;
+	width = gdk_char_width_wc(map_font, (GdkWChar)sym);
+	if (width > 0)
+	    map_xoffsets[sym] = width;
+	if (width < min_width)
+	    min_width = width;
+	if (width > map_font_width)
+	    map_font_width = width;
+    }
+#else
     map_font_width = min_width =
       gdk_char_width_wc(map_font, (GdkWChar)oc_syms[0]);
     if (c_width > 0)
-	map_xoffsets[oc_syms[i]] = c_width;
+	map_xoffsets[oc_syms[0]] = c_width;
     for(i = 1; i < SIZE(oc_syms); i++) {
 	width = gdk_char_width_wc(map_font, (GdkWChar)oc_syms[i]);
 	if (width > 0)
@@ -302,6 +429,7 @@ nh_conf_map_font(void)
 	if (width > map_font_width)
 	    map_font_width = width;
     }
+#endif /* GTK_PROXY */
     if (min_width <= 0)
 	pline("Warning: Not all expected glyphs present in map font \"%s\".",
 	  map_font_name);
@@ -310,9 +438,8 @@ nh_conf_map_font(void)
     for(i = 0; i < 256; i++)
 	if (map_xoffsets[i])
 	    map_xoffsets[i] = (map_font_width - map_xoffsets[i]) / 2;
-    return 0;
+    return 1;
 }
-#endif /* !GTK_PROXY || PROXY_INTERNAL */
 
 /*
   -1:   deallocate
@@ -337,7 +464,7 @@ nh_set_map_visual(int mode)
 	if (map)
 	    gtk_widget_hide(map);
 
-	if(saved_vis > 0)
+	if (saved_vis > 0)
 	    x_tile_destroy();
 switch_mode:
 	if (mode < 0) {
@@ -550,6 +677,10 @@ nh_map_destroy()
 	gdk_font_unref(map_font);
 	free(map_xoffsets);
     }
+    if (map_glyph2colsym) {
+	free(map_glyph2colsym);
+	map_glyph2colsym = (short *)0;
+    }
     gdk_gc_unref(map_gc);
     for (i = 0; i < N_NH_COLORS; i++)
 	gdk_gc_unref(map_color_gc[i]);
@@ -565,7 +696,6 @@ configure_map(GtkWidget *w, gpointer data)
     guint path_length;
     gchar *path;
 
-#if !defined(GTK_PROXY) || defined(PROXY_INTERNAL)
     /*
      * Configure for new font metrics
      */
@@ -581,7 +711,6 @@ configure_map(GtkWidget *w, gpointer data)
 	c_map_height = ROWNO * c_height;
 	w = map = xshm_map_init(XSHM_MAP_PIXMAP, c_map_width, c_map_height);
     }
-#endif
     /*
      * set gc 
      */
@@ -763,7 +892,7 @@ nh_print_radar(int x, int y, int glyph)
 }
 #endif	/* RADAR */
 
-#if !defined(GTK_PROXY) || defined(PROXY_INTERNAL)
+#ifndef GTK_PROXY
 #ifdef TEXTCOLOR
 #define zap_color(n)	(zapcolors[n])
 #define cmap_color(n)	(defsyms[n].color)
@@ -777,6 +906,7 @@ nh_print_radar(int x, int y, int glyph)
 #define mon_color(n)	(n)
 #define pet_color(n)	(n)
 #endif
+#endif	/* GTK_PROXY */
 
 static void
 nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap)
@@ -784,11 +914,17 @@ nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap)
     static GdkRectangle update_rect;
     int color;
     int glyph = tmap->glyph;
+#ifndef GTK_PROXY
     int offset;
+#endif
     GdkWChar ch[2];
 
     color = 0;
 
+#ifdef GTK_PROXY
+    ch[0] = map_glyph2colsym[glyph] & 0xFF;
+    color = map_glyph2colsym[glyph] >> 8 & 0xFF;
+#else
     if ((offset = (glyph - GLYPH_SWALLOW_OFF)) >= 0) {	/* swallow */
 	ch[0] = (uchar) showsyms[S_sw_tl + (offset & 0x7)];
 	color = mon_color(offset>>3);
@@ -817,9 +953,10 @@ nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap)
 	ch[0] = monsyms[(int)mons[glyph].mlet];
 	color = mon_color(glyph);
     }
-    
+#endif
+
     ch[1] = '\0';
-    
+
     gdk_draw_rectangle(xshm_map_pixmap,
       map->style->bg_gc[GTK_WIDGET_STATE(map)],
       TRUE, x * c_width, y * c_height -  map_font->ascent, c_width, c_height);
@@ -847,7 +984,6 @@ nh_map_print_glyph_traditional(XCHAR_P x, XCHAR_P y, struct tilemap *tmap)
     update_rect.height = c_height;
     xshm_map_draw(&update_rect);
 }
-#endif /* !GTK_PROXY || PROXY_INTERNAL */
 
 /*
  * The assumption that the glyph in the layer furthest from the viewer is
@@ -956,12 +1092,9 @@ nh_map_print_glyph(XCHAR_P x, XCHAR_P y, struct tilemap *tmap)
     nh_print_radar(x, y, tmap->glyph);
 #endif
     
-#if !defined(GTK_PROXY) || defined(PROXY_INTERNAL)
     if (map_visual == 0)
 	nh_map_print_glyph_traditional(x, y, tmap);
-    else
-#endif
-    if (!Tile->transparent && !Tile->spread)
+    else if (!Tile->transparent && !Tile->spread)
 	nh_map_print_glyph_simple_tile(x, y, tmap);
     else
 	nh_map_print_glyph_tile(x, y, tmap);

@@ -1,5 +1,5 @@
 /*
-  $Id: gtktile.c,v 1.4 2002-09-01 21:58:19 j_ali Exp $
+  $Id: gtktile.c,v 1.5 2002-09-12 18:21:47 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -19,6 +19,7 @@
 int stone_tile = 0;		/* The current tile for stone */
 
 #ifdef GTK_PROXY
+short *GTK_glyph2tile = (short *)0;
 int total_tiles_used;
 int tiles_per_row;
 int tiles_per_col;
@@ -325,7 +326,7 @@ x_tile_load_map(TileTab *t)
     total_tiles_used = tile_map->no_tiles;
     tiles_per_row = ceil_sqrt(total_tiles_used);
     tiles_per_col = (total_tiles_used + tiles_per_row - 1) / tiles_per_row;
-    retval = proxy_map_glyph2tile(glyph_map, tile_map);
+    GTK_glyph2tile = proxy_map_glyph2tile(glyph_map, tile_map);
     proxy_cb_free_glyph_mapping(glyph_map);
     proxy_free_tilemap(tile_map);
     return retval;
@@ -449,7 +450,7 @@ x_tile_init(TileTab *t)
     if (!x_tile_load(t))
 	return XSHM_MAP_NONE;
 #ifdef GTK_PROXY
-    stone_tile = proxy_glyph2tile[glyph];
+    stone_tile = GTK_glyph2tile[glyph];
 #else
     stone_tile = glyph2tile[glyph];
 #endif
@@ -486,6 +487,8 @@ x_tile_destroy()
 	gdk_image_destroy(tile_image);
 	tile_image = NULL;
     }
+    free(GTK_glyph2tile);
+    GTK_glyph2tile = (short *)0;
 }
 
 #define nh_pixbuf_get_pixel(x, y, pixel) \
