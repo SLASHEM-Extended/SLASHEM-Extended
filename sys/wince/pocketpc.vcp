@@ -88,7 +88,7 @@ RSC=rc.exe
 # ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "ARM" /d "_ARM_" /r
 CPP=clarm.exe
 # ADD BASE CPP /nologo /W3 /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "ARM" /D "_ARM_" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /YX /Oxs /M$(CECrtMT) /c
-# ADD CPP /nologo /W3 /Oi /Os /I "..\include" /I "..\sys\winnt" /I "..\wince\ceinc" /I "../sys/wince" /D "ARM" /D "_ARM_" /D "NDEBUG" /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "DLB" /D "MSWIN_GRAPHICS" /M$(CECrtMT) /c
+# ADD CPP /nologo /W3 /Oi /Os /I "..\include" /I "..\sys\winnt" /I "..\wince\ceinc" /I "../sys/wince" /D "ARM" /D "_ARM_" /D "NDEBUG" /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "DLB" /D "MSWIN_GRAPHICS" /FR /M$(CECrtMT) /c
 MTL=midl.exe
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
@@ -97,7 +97,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
-# ADD LINK32 commctrl.lib coredll.lib aygshell.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /nodefaultlib:"$(CENoDefaultLib)" /out:"ARMPocketPCRelease/nethackm.exe" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
+# ADD LINK32 commctrl.lib coredll.lib aygshell.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /nodefaultlib:"$(CENoDefaultLib)" /out:"ARMPocketPCRelease/slashemm.exe" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
 
@@ -130,7 +130,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 commctrl.lib coredll.lib $(CEx86Corelibc) /nologo /stack:0x10000,0x1000 /subsystem:windows /nodefaultlib:"OLDNAMES.lib" /nodefaultlib:$(CENoDefaultLib) /windowsce:emulation /MACHINE:IX86
-# ADD LINK32 commctrl.lib coredll.lib $(CEx86Corelibc) aygshell.lib /nologo /stack:0x10000,0x1000 /subsystem:windows /nodefaultlib:"OLDNAMES.lib" /nodefaultlib:$(CENoDefaultLib) /out:"X86EMPocketPCRelease/nethackm.exe" /windowsce:emulation /MACHINE:IX86
+# ADD LINK32 commctrl.lib coredll.lib $(CEx86Corelibc) aygshell.lib /nologo /stack:0x10000,0x1000 /subsystem:windows /nodefaultlib:"OLDNAMES.lib" /nodefaultlib:$(CENoDefaultLib) /out:"X86EMPocketPCRelease/slashemm.exe" /windowsce:emulation /MACHINE:IX86
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
 
@@ -290,6 +290,7 @@ DEP_CPP_ALLMA=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -307,6 +308,7 @@ DEP_CPP_ALLMA=\
 	"..\include\objclass.h"\
 	"..\include\onames.h"\
 	"..\include\os2conf.h"\
+	"..\include\patchlevel.h"\
 	"..\include\pcconf.h"\
 	"..\include\permonst.h"\
 	"..\include\pm.h"\
@@ -318,6 +320,7 @@ DEP_CPP_ALLMA=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -332,6 +335,9 @@ DEP_CPP_ALLMA=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	
+NODEP_CPP_ALLMA=\
+	"..\src\patchlev.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -350,6 +356,7 @@ DEP_CPP_ALLMA=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -367,6 +374,7 @@ DEP_CPP_ALLMA=\
 	"..\include\objclass.h"\
 	"..\include\onames.h"\
 	"..\include\os2conf.h"\
+	"..\include\patchlevel.h"\
 	"..\include\pcconf.h"\
 	"..\include\permonst.h"\
 	"..\include\pm.h"\
@@ -378,6 +386,7 @@ DEP_CPP_ALLMA=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -392,6 +401,9 @@ DEP_CPP_ALLMA=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	
+NODEP_CPP_ALLMA=\
+	"..\src\patchlev.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -552,6 +564,7 @@ DEP_CPP_ALLOC=\
 	"..\include\config.h"\
 	"..\include\config1.h"\
 	"..\include\coord.h"\
+	"..\include\file.h"\
 	"..\include\global.h"\
 	"..\include\macconf.h"\
 	"..\include\micro.h"\
@@ -565,6 +578,7 @@ DEP_CPP_ALLOC=\
 	"..\include\unixconf.h"\
 	"..\include\vmsconf.h"\
 	"..\include\wceconf.h"\
+	"..\include\win32api.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -575,6 +589,7 @@ DEP_CPP_ALLOC=\
 	"..\include\config.h"\
 	"..\include\config1.h"\
 	"..\include\coord.h"\
+	"..\include\file.h"\
 	"..\include\global.h"\
 	"..\include\macconf.h"\
 	"..\include\micro.h"\
@@ -588,6 +603,7 @@ DEP_CPP_ALLOC=\
 	"..\include\unixconf.h"\
 	"..\include\vmsconf.h"\
 	"..\include\wceconf.h"\
+	"..\sys\winnt\win32api.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -721,6 +737,7 @@ DEP_CPP_APPLY=\
 	"..\include\edog.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -749,6 +766,7 @@ DEP_CPP_APPLY=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -782,6 +800,7 @@ DEP_CPP_APPLY=\
 	"..\include\edog.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -810,6 +829,7 @@ DEP_CPP_APPLY=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -1035,6 +1055,7 @@ DEP_CPP_ARTIF=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -1063,6 +1084,7 @@ DEP_CPP_ARTIF=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -1097,6 +1119,7 @@ DEP_CPP_ARTIF=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -1125,6 +1148,7 @@ DEP_CPP_ARTIF=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -1338,7 +1362,6 @@ DEP_CPP_ATTRI=\
 DEP_CPP_ATTRI=\
 	"..\include\align.h"\
 	"..\include\amiconf.h"\
-	"..\include\artifact.h"\
 	"..\include\attrib.h"\
 	"..\include\beconf.h"\
 	"..\include\color.h"\
@@ -1350,6 +1373,7 @@ DEP_CPP_ATTRI=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -1378,6 +1402,7 @@ DEP_CPP_ATTRI=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -1399,7 +1424,6 @@ DEP_CPP_ATTRI=\
 DEP_CPP_ATTRI=\
 	"..\include\align.h"\
 	"..\include\amiconf.h"\
-	"..\include\artifact.h"\
 	"..\include\attrib.h"\
 	"..\include\beconf.h"\
 	"..\include\color.h"\
@@ -1411,6 +1435,7 @@ DEP_CPP_ATTRI=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -1439,6 +1464,7 @@ DEP_CPP_ATTRI=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -1660,6 +1686,7 @@ DEP_CPP_BALL_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -1688,6 +1715,7 @@ DEP_CPP_BALL_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -1720,6 +1748,7 @@ DEP_CPP_BALL_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -1748,6 +1777,7 @@ DEP_CPP_BALL_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -1968,6 +1998,7 @@ DEP_CPP_BONES=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -1997,6 +2028,7 @@ DEP_CPP_BONES=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -2029,6 +2061,7 @@ DEP_CPP_BONES=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -2058,6 +2091,7 @@ DEP_CPP_BONES=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -2279,6 +2313,7 @@ DEP_CPP_BOTL_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -2307,6 +2342,7 @@ DEP_CPP_BOTL_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -2339,6 +2375,7 @@ DEP_CPP_BOTL_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -2367,6 +2404,7 @@ DEP_CPP_BOTL_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -2586,6 +2624,7 @@ DEP_CPP_CESOU=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -2614,6 +2653,7 @@ DEP_CPP_CESOU=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -2646,6 +2686,7 @@ DEP_CPP_CESOU=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -2674,6 +2715,7 @@ DEP_CPP_CESOU=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -2894,6 +2936,7 @@ DEP_CPP_CMD_C=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\func_tab.h"\
 	"..\include\global.h"\
@@ -2923,6 +2966,7 @@ DEP_CPP_CMD_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -2955,6 +2999,7 @@ DEP_CPP_CMD_C=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\func_tab.h"\
 	"..\include\global.h"\
@@ -2984,6 +3029,7 @@ DEP_CPP_CMD_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -3205,6 +3251,7 @@ DEP_CPP_DBRID=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -3233,6 +3280,7 @@ DEP_CPP_DBRID=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -3265,6 +3313,7 @@ DEP_CPP_DBRID=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -3293,6 +3342,7 @@ DEP_CPP_DBRID=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -3512,6 +3562,7 @@ DEP_CPP_DECL_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -3540,6 +3591,7 @@ DEP_CPP_DECL_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -3572,6 +3624,7 @@ DEP_CPP_DECL_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -3600,6 +3653,7 @@ DEP_CPP_DECL_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -3821,6 +3875,7 @@ DEP_CPP_DETEC=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -3849,6 +3904,7 @@ DEP_CPP_DETEC=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -3882,6 +3938,7 @@ DEP_CPP_DETEC=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -3910,6 +3967,7 @@ DEP_CPP_DETEC=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -4133,6 +4191,7 @@ DEP_CPP_DIG_C=\
 	"..\include\edog.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -4161,6 +4220,7 @@ DEP_CPP_DIG_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -4194,6 +4254,7 @@ DEP_CPP_DIG_C=\
 	"..\include\edog.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -4222,6 +4283,7 @@ DEP_CPP_DIG_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -4443,6 +4505,7 @@ DEP_CPP_DISPL=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -4471,6 +4534,7 @@ DEP_CPP_DISPL=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -4503,6 +4567,7 @@ DEP_CPP_DISPL=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -4531,6 +4596,7 @@ DEP_CPP_DISPL=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -4707,6 +4773,7 @@ DEP_CPP_DLB_C=\
 	"..\include\config1.h"\
 	"..\include\coord.h"\
 	"..\include\dlb.h"\
+	"..\include\file.h"\
 	"..\include\global.h"\
 	"..\include\macconf.h"\
 	"..\include\micro.h"\
@@ -4731,6 +4798,7 @@ DEP_CPP_DLB_C=\
 	"..\include\config1.h"\
 	"..\include\coord.h"\
 	"..\include\dlb.h"\
+	"..\include\file.h"\
 	"..\include\global.h"\
 	"..\include\macconf.h"\
 	"..\include\micro.h"\
@@ -4878,6 +4946,7 @@ DEP_CPP_DO_C20=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -4907,6 +4976,7 @@ DEP_CPP_DO_C20=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -4939,6 +5009,7 @@ DEP_CPP_DO_C20=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -4968,6 +5039,7 @@ DEP_CPP_DO_C20=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -5189,6 +5261,7 @@ DEP_CPP_DO_NA=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -5217,6 +5290,7 @@ DEP_CPP_DO_NA=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -5249,6 +5323,7 @@ DEP_CPP_DO_NA=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -5277,6 +5352,7 @@ DEP_CPP_DO_NA=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -5496,6 +5572,7 @@ DEP_CPP_DO_WE=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -5524,6 +5601,7 @@ DEP_CPP_DO_WE=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -5556,6 +5634,7 @@ DEP_CPP_DO_WE=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -5584,6 +5663,7 @@ DEP_CPP_DO_WE=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -5803,8 +5883,11 @@ DEP_CPP_DOG_C=\
 	"..\include\display.h"\
 	"..\include\dungeon.h"\
 	"..\include\edog.h"\
+	"..\include\emin.h"\
 	"..\include\engrave.h"\
+	"..\include\epri.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -5833,6 +5916,7 @@ DEP_CPP_DOG_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -5864,8 +5948,11 @@ DEP_CPP_DOG_C=\
 	"..\include\display.h"\
 	"..\include\dungeon.h"\
 	"..\include\edog.h"\
+	"..\include\emin.h"\
 	"..\include\engrave.h"\
+	"..\include\epri.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -5894,6 +5981,7 @@ DEP_CPP_DOG_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -6116,8 +6204,11 @@ DEP_CPP_DOGMO=\
 	"..\include\display.h"\
 	"..\include\dungeon.h"\
 	"..\include\edog.h"\
+	"..\include\emin.h"\
 	"..\include\engrave.h"\
+	"..\include\epri.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -6147,6 +6238,7 @@ DEP_CPP_DOGMO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -6178,8 +6270,11 @@ DEP_CPP_DOGMO=\
 	"..\include\display.h"\
 	"..\include\dungeon.h"\
 	"..\include\edog.h"\
+	"..\include\emin.h"\
 	"..\include\engrave.h"\
+	"..\include\epri.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -6209,6 +6304,7 @@ DEP_CPP_DOGMO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -6434,6 +6530,7 @@ DEP_CPP_DOKIC=\
 	"..\include\engrave.h"\
 	"..\include\eshk.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -6462,6 +6559,7 @@ DEP_CPP_DOKIC=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -6495,6 +6593,7 @@ DEP_CPP_DOKIC=\
 	"..\include\engrave.h"\
 	"..\include\eshk.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -6523,6 +6622,7 @@ DEP_CPP_DOKIC=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -6744,6 +6844,7 @@ DEP_CPP_DOTHR=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -6772,6 +6873,7 @@ DEP_CPP_DOTHR=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -6804,6 +6906,7 @@ DEP_CPP_DOTHR=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -6832,6 +6935,7 @@ DEP_CPP_DOTHR=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -7052,6 +7156,7 @@ DEP_CPP_DRAWI=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -7081,6 +7186,7 @@ DEP_CPP_DRAWI=\
 	"..\include\spell.h"\
 	"..\include\system.h"\
 	"..\include\tcap.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -7113,6 +7219,7 @@ DEP_CPP_DRAWI=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -7142,6 +7249,7 @@ DEP_CPP_DRAWI=\
 	"..\include\spell.h"\
 	"..\include\system.h"\
 	"..\include\tcap.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -7367,6 +7475,7 @@ DEP_CPP_DUNGE=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -7395,6 +7504,7 @@ DEP_CPP_DUNGE=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -7429,6 +7539,7 @@ DEP_CPP_DUNGE=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -7457,6 +7568,7 @@ DEP_CPP_DUNGE=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -7680,6 +7792,7 @@ DEP_CPP_EAT_C=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -7708,6 +7821,7 @@ DEP_CPP_EAT_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -7740,6 +7854,7 @@ DEP_CPP_EAT_C=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -7768,6 +7883,7 @@ DEP_CPP_EAT_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -7991,6 +8107,7 @@ DEP_CPP_END_C=\
 	"..\include\engrave.h"\
 	"..\include\eshk.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -8019,6 +8136,7 @@ DEP_CPP_END_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -8053,6 +8171,7 @@ DEP_CPP_END_C=\
 	"..\include\engrave.h"\
 	"..\include\eshk.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -8081,6 +8200,7 @@ DEP_CPP_END_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -8305,6 +8425,7 @@ DEP_CPP_ENGRA=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -8334,6 +8455,7 @@ DEP_CPP_ENGRA=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -8366,6 +8488,7 @@ DEP_CPP_ENGRA=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -8395,6 +8518,7 @@ DEP_CPP_ENGRA=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -8616,6 +8740,7 @@ DEP_CPP_EXPER=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -8644,6 +8769,7 @@ DEP_CPP_EXPER=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -8676,6 +8802,7 @@ DEP_CPP_EXPER=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -8704,6 +8831,7 @@ DEP_CPP_EXPER=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -8923,6 +9051,7 @@ DEP_CPP_EXPLO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -8951,6 +9080,7 @@ DEP_CPP_EXPLO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -8983,6 +9113,7 @@ DEP_CPP_EXPLO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -9011,6 +9142,7 @@ DEP_CPP_EXPLO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -9230,6 +9362,7 @@ DEP_CPP_EXTRA=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -9258,6 +9391,7 @@ DEP_CPP_EXTRA=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -9290,6 +9424,7 @@ DEP_CPP_EXTRA=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -9318,6 +9453,7 @@ DEP_CPP_EXTRA=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -9539,6 +9675,8 @@ DEP_CPP_FILES=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
+	"..\include\filename.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -9567,6 +9705,7 @@ DEP_CPP_FILES=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -9576,11 +9715,13 @@ DEP_CPP_FILES=\
 	"..\include\vision.h"\
 	"..\include\vmsconf.h"\
 	"..\include\wceconf.h"\
+	"..\include\winGL.h"\
 	"..\include\winprocs.h"\
 	"..\include\wintty.h"\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	".\ceinc\assert.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -9600,6 +9741,8 @@ DEP_CPP_FILES=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
+	"..\include\filename.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -9628,6 +9771,7 @@ DEP_CPP_FILES=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -9637,11 +9781,13 @@ DEP_CPP_FILES=\
 	"..\include\vision.h"\
 	"..\include\vmsconf.h"\
 	"..\include\wceconf.h"\
+	"..\include\winGL.h"\
 	"..\include\winprocs.h"\
 	"..\include\wintty.h"\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	".\ceinc\assert.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -9849,6 +9995,7 @@ DEP_CPP_FOUNT=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -9877,6 +10024,7 @@ DEP_CPP_FOUNT=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -9909,6 +10057,7 @@ DEP_CPP_FOUNT=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -9937,6 +10086,7 @@ DEP_CPP_FOUNT=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -10078,6 +10228,333 @@ DEP_CPP_FOUNT=\
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\gypsy.c
+
+!IF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE MIPS) PocketPCRelease"
+
+DEP_CPP_GYPSY=\
+	"..\include\align.h"\
+	"..\include\amiconf.h"\
+	"..\include\attrib.h"\
+	"..\include\beconf.h"\
+	"..\include\color.h"\
+	"..\include\config.h"\
+	"..\include\config1.h"\
+	"..\include\coord.h"\
+	"..\include\decl.h"\
+	"..\include\display.h"\
+	"..\include\dungeon.h"\
+	"..\include\egyp.h"\
+	"..\include\engrave.h"\
+	"..\include\extern.h"\
+	"..\include\file.h"\
+	"..\include\flag.h"\
+	"..\include\global.h"\
+	"..\include\hack.h"\
+	"..\include\macconf.h"\
+	"..\include\micro.h"\
+	"..\include\mkroom.h"\
+	"..\include\monattk.h"\
+	"..\include\mondata.h"\
+	"..\include\monflag.h"\
+	"..\include\monst.h"\
+	"..\include\monsym.h"\
+	"..\include\nhlan.h"\
+	"..\include\ntconf.h"\
+	"..\include\obj.h"\
+	"..\include\objclass.h"\
+	"..\include\onames.h"\
+	"..\include\os2conf.h"\
+	"..\include\pcconf.h"\
+	"..\include\permonst.h"\
+	"..\include\pm.h"\
+	"..\include\prop.h"\
+	"..\include\qtext.h"\
+	"..\include\quest.h"\
+	"..\include\rect.h"\
+	"..\include\region.h"\
+	"..\include\rm.h"\
+	"..\include\skills.h"\
+	"..\include\spell.h"\
+	"..\include\system.h"\
+	"..\include\tech.h"\
+	"..\include\timeout.h"\
+	"..\include\tosconf.h"\
+	"..\include\tradstdc.h"\
+	"..\include\trampoli.h"\
+	"..\include\trap.h"\
+	"..\include\unixconf.h"\
+	"..\include\vision.h"\
+	"..\include\vmsconf.h"\
+	"..\include\wceconf.h"\
+	"..\include\winprocs.h"\
+	"..\include\wintty.h"\
+	"..\include\wintype.h"\
+	"..\include\you.h"\
+	"..\include\youprop.h"\
+	
+
+!ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE ARM) PocketPCRelease"
+
+DEP_CPP_GYPSY=\
+	"..\include\align.h"\
+	"..\include\amiconf.h"\
+	"..\include\attrib.h"\
+	"..\include\beconf.h"\
+	"..\include\color.h"\
+	"..\include\config.h"\
+	"..\include\config1.h"\
+	"..\include\coord.h"\
+	"..\include\decl.h"\
+	"..\include\display.h"\
+	"..\include\dungeon.h"\
+	"..\include\egyp.h"\
+	"..\include\engrave.h"\
+	"..\include\extern.h"\
+	"..\include\file.h"\
+	"..\include\flag.h"\
+	"..\include\global.h"\
+	"..\include\hack.h"\
+	"..\include\macconf.h"\
+	"..\include\micro.h"\
+	"..\include\mkroom.h"\
+	"..\include\monattk.h"\
+	"..\include\mondata.h"\
+	"..\include\monflag.h"\
+	"..\include\monst.h"\
+	"..\include\monsym.h"\
+	"..\include\nhlan.h"\
+	"..\include\ntconf.h"\
+	"..\include\obj.h"\
+	"..\include\objclass.h"\
+	"..\include\onames.h"\
+	"..\include\os2conf.h"\
+	"..\include\pcconf.h"\
+	"..\include\permonst.h"\
+	"..\include\pm.h"\
+	"..\include\prop.h"\
+	"..\include\qtext.h"\
+	"..\include\quest.h"\
+	"..\include\rect.h"\
+	"..\include\region.h"\
+	"..\include\rm.h"\
+	"..\include\skills.h"\
+	"..\include\spell.h"\
+	"..\include\system.h"\
+	"..\include\tech.h"\
+	"..\include\timeout.h"\
+	"..\include\tosconf.h"\
+	"..\include\tradstdc.h"\
+	"..\include\trampoli.h"\
+	"..\include\trap.h"\
+	"..\include\unixconf.h"\
+	"..\include\vision.h"\
+	"..\include\vmsconf.h"\
+	"..\include\wceconf.h"\
+	"..\include\winprocs.h"\
+	"..\include\wintty.h"\
+	"..\include\wintype.h"\
+	"..\include\you.h"\
+	"..\include\youprop.h"\
+	
+
+!ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
+
+DEP_CPP_GYPSY=\
+	"..\include\align.h"\
+	"..\include\amiconf.h"\
+	"..\include\attrib.h"\
+	"..\include\beconf.h"\
+	"..\include\color.h"\
+	"..\include\config.h"\
+	"..\include\config1.h"\
+	"..\include\coord.h"\
+	"..\include\decl.h"\
+	"..\include\display.h"\
+	"..\include\dungeon.h"\
+	"..\include\egyp.h"\
+	"..\include\engrave.h"\
+	"..\include\extern.h"\
+	"..\include\file.h"\
+	"..\include\flag.h"\
+	"..\include\global.h"\
+	"..\include\hack.h"\
+	"..\include\macconf.h"\
+	"..\include\micro.h"\
+	"..\include\mkroom.h"\
+	"..\include\monattk.h"\
+	"..\include\mondata.h"\
+	"..\include\monflag.h"\
+	"..\include\monst.h"\
+	"..\include\monsym.h"\
+	"..\include\nhlan.h"\
+	"..\include\ntconf.h"\
+	"..\include\obj.h"\
+	"..\include\objclass.h"\
+	"..\include\onames.h"\
+	"..\include\os2conf.h"\
+	"..\include\pcconf.h"\
+	"..\include\permonst.h"\
+	"..\include\pm.h"\
+	"..\include\prop.h"\
+	"..\include\qtext.h"\
+	"..\include\quest.h"\
+	"..\include\rect.h"\
+	"..\include\region.h"\
+	"..\include\rm.h"\
+	"..\include\skills.h"\
+	"..\include\spell.h"\
+	"..\include\system.h"\
+	"..\include\tech.h"\
+	"..\include\timeout.h"\
+	"..\include\tosconf.h"\
+	"..\include\tradstdc.h"\
+	"..\include\trampoli.h"\
+	"..\include\trap.h"\
+	"..\include\unixconf.h"\
+	"..\include\vision.h"\
+	"..\include\vmsconf.h"\
+	"..\include\wceconf.h"\
+	"..\include\winprocs.h"\
+	"..\include\wintty.h"\
+	"..\include\wintype.h"\
+	"..\include\you.h"\
+	"..\include\youprop.h"\
+	
+
+!ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
+
+DEP_CPP_GYPSY=\
+	"..\include\align.h"\
+	"..\include\amiconf.h"\
+	"..\include\attrib.h"\
+	"..\include\beconf.h"\
+	"..\include\color.h"\
+	"..\include\config.h"\
+	"..\include\config1.h"\
+	"..\include\coord.h"\
+	"..\include\decl.h"\
+	"..\include\display.h"\
+	"..\include\dungeon.h"\
+	"..\include\egyp.h"\
+	"..\include\engrave.h"\
+	"..\include\extern.h"\
+	"..\include\file.h"\
+	"..\include\flag.h"\
+	"..\include\global.h"\
+	"..\include\hack.h"\
+	"..\include\macconf.h"\
+	"..\include\micro.h"\
+	"..\include\mkroom.h"\
+	"..\include\monattk.h"\
+	"..\include\mondata.h"\
+	"..\include\monflag.h"\
+	"..\include\monst.h"\
+	"..\include\monsym.h"\
+	"..\include\nhlan.h"\
+	"..\include\ntconf.h"\
+	"..\include\obj.h"\
+	"..\include\objclass.h"\
+	"..\include\onames.h"\
+	"..\include\os2conf.h"\
+	"..\include\pcconf.h"\
+	"..\include\permonst.h"\
+	"..\include\pm.h"\
+	"..\include\prop.h"\
+	"..\include\qtext.h"\
+	"..\include\quest.h"\
+	"..\include\rect.h"\
+	"..\include\region.h"\
+	"..\include\rm.h"\
+	"..\include\skills.h"\
+	"..\include\spell.h"\
+	"..\include\system.h"\
+	"..\include\tech.h"\
+	"..\include\timeout.h"\
+	"..\include\tosconf.h"\
+	"..\include\tradstdc.h"\
+	"..\include\trampoli.h"\
+	"..\include\trap.h"\
+	"..\include\unixconf.h"\
+	"..\include\vision.h"\
+	"..\include\vmsconf.h"\
+	"..\include\wceconf.h"\
+	"..\include\winprocs.h"\
+	"..\include\wintty.h"\
+	"..\include\wintype.h"\
+	"..\include\you.h"\
+	"..\include\youprop.h"\
+	
+
+!ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE SH3) PocketPCRelease"
+
+DEP_CPP_GYPSY=\
+	"..\include\align.h"\
+	"..\include\amiconf.h"\
+	"..\include\attrib.h"\
+	"..\include\beconf.h"\
+	"..\include\color.h"\
+	"..\include\config.h"\
+	"..\include\config1.h"\
+	"..\include\coord.h"\
+	"..\include\decl.h"\
+	"..\include\display.h"\
+	"..\include\dungeon.h"\
+	"..\include\egyp.h"\
+	"..\include\engrave.h"\
+	"..\include\extern.h"\
+	"..\include\file.h"\
+	"..\include\flag.h"\
+	"..\include\global.h"\
+	"..\include\hack.h"\
+	"..\include\macconf.h"\
+	"..\include\micro.h"\
+	"..\include\mkroom.h"\
+	"..\include\monattk.h"\
+	"..\include\mondata.h"\
+	"..\include\monflag.h"\
+	"..\include\monst.h"\
+	"..\include\monsym.h"\
+	"..\include\nhlan.h"\
+	"..\include\ntconf.h"\
+	"..\include\obj.h"\
+	"..\include\objclass.h"\
+	"..\include\onames.h"\
+	"..\include\os2conf.h"\
+	"..\include\pcconf.h"\
+	"..\include\permonst.h"\
+	"..\include\pm.h"\
+	"..\include\prop.h"\
+	"..\include\qtext.h"\
+	"..\include\quest.h"\
+	"..\include\rect.h"\
+	"..\include\region.h"\
+	"..\include\rm.h"\
+	"..\include\skills.h"\
+	"..\include\spell.h"\
+	"..\include\system.h"\
+	"..\include\tech.h"\
+	"..\include\timeout.h"\
+	"..\include\tosconf.h"\
+	"..\include\tradstdc.h"\
+	"..\include\trampoli.h"\
+	"..\include\trap.h"\
+	"..\include\unixconf.h"\
+	"..\include\vision.h"\
+	"..\include\vmsconf.h"\
+	"..\include\wceconf.h"\
+	"..\include\winprocs.h"\
+	"..\include\wintty.h"\
+	"..\include\wintype.h"\
+	"..\include\you.h"\
+	"..\include\youprop.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\hack.c
 
 !IF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE MIPS) PocketPCRelease"
@@ -10156,6 +10633,7 @@ DEP_CPP_HACK_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -10184,6 +10662,7 @@ DEP_CPP_HACK_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -10216,6 +10695,7 @@ DEP_CPP_HACK_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -10244,6 +10724,7 @@ DEP_CPP_HACK_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -10463,6 +10944,7 @@ DEP_CPP_HACKL=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -10491,6 +10973,7 @@ DEP_CPP_HACKL=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -10523,6 +11006,7 @@ DEP_CPP_HACKL=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -10551,6 +11035,7 @@ DEP_CPP_HACKL=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -10760,7 +11245,6 @@ DEP_CPP_INVEN=\
 DEP_CPP_INVEN=\
 	"..\include\align.h"\
 	"..\include\amiconf.h"\
-	"..\include\artifact.h"\
 	"..\include\attrib.h"\
 	"..\include\beconf.h"\
 	"..\include\color.h"\
@@ -10772,6 +11256,7 @@ DEP_CPP_INVEN=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -10800,6 +11285,7 @@ DEP_CPP_INVEN=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -10821,7 +11307,6 @@ DEP_CPP_INVEN=\
 DEP_CPP_INVEN=\
 	"..\include\align.h"\
 	"..\include\amiconf.h"\
-	"..\include\artifact.h"\
 	"..\include\attrib.h"\
 	"..\include\beconf.h"\
 	"..\include\color.h"\
@@ -10833,6 +11318,7 @@ DEP_CPP_INVEN=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -10861,6 +11347,7 @@ DEP_CPP_INVEN=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -11083,6 +11570,7 @@ DEP_CPP_LIGHT=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -11112,6 +11600,7 @@ DEP_CPP_LIGHT=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -11144,6 +11633,7 @@ DEP_CPP_LIGHT=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -11173,6 +11663,7 @@ DEP_CPP_LIGHT=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -11394,6 +11885,7 @@ DEP_CPP_LOCK_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -11422,6 +11914,7 @@ DEP_CPP_LOCK_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -11454,6 +11947,7 @@ DEP_CPP_LOCK_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -11482,6 +11976,7 @@ DEP_CPP_LOCK_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -11702,6 +12197,7 @@ DEP_CPP_MAIL_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -11731,6 +12227,7 @@ DEP_CPP_MAIL_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -11763,6 +12260,7 @@ DEP_CPP_MAIL_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -11792,6 +12290,7 @@ DEP_CPP_MAIL_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -12019,6 +12518,7 @@ DEP_CPP_MAKEM=\
 	"..\include\engrave.h"\
 	"..\include\epri.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -12047,6 +12547,7 @@ DEP_CPP_MAKEM=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -12082,6 +12583,7 @@ DEP_CPP_MAKEM=\
 	"..\include\engrave.h"\
 	"..\include\epri.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -12110,6 +12612,7 @@ DEP_CPP_MAKEM=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -12335,6 +12838,7 @@ DEP_CPP_MAPGL=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -12363,6 +12867,7 @@ DEP_CPP_MAPGL=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -12395,6 +12900,7 @@ DEP_CPP_MAPGL=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -12423,6 +12929,7 @@ DEP_CPP_MAPGL=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -12642,6 +13149,7 @@ DEP_CPP_MCAST=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -12670,6 +13178,7 @@ DEP_CPP_MCAST=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -12702,6 +13211,7 @@ DEP_CPP_MCAST=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -12730,6 +13240,7 @@ DEP_CPP_MCAST=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -12953,6 +13464,7 @@ DEP_CPP_MHITM=\
 	"..\include\edog.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -12981,6 +13493,7 @@ DEP_CPP_MHITM=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -13015,6 +13528,7 @@ DEP_CPP_MHITM=\
 	"..\include\edog.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -13043,6 +13557,7 @@ DEP_CPP_MHITM=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -13270,6 +13785,7 @@ DEP_CPP_MHITU=\
 	"..\include\edog.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -13298,6 +13814,7 @@ DEP_CPP_MHITU=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -13332,6 +13849,7 @@ DEP_CPP_MHITU=\
 	"..\include\edog.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -13360,6 +13878,7 @@ DEP_CPP_MHITU=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -13587,6 +14106,7 @@ DEP_CPP_MINIO=\
 	"..\include\engrave.h"\
 	"..\include\epri.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -13615,6 +14135,7 @@ DEP_CPP_MINIO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -13649,6 +14170,7 @@ DEP_CPP_MINIO=\
 	"..\include\engrave.h"\
 	"..\include\epri.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -13677,6 +14199,7 @@ DEP_CPP_MINIO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -13900,6 +14423,7 @@ DEP_CPP_MKLEV=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -13928,6 +14452,7 @@ DEP_CPP_MKLEV=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -13960,6 +14485,7 @@ DEP_CPP_MKLEV=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -13988,6 +14514,7 @@ DEP_CPP_MKLEV=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -14208,6 +14735,7 @@ DEP_CPP_MKMAP=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -14237,6 +14765,7 @@ DEP_CPP_MKMAP=\
 	"..\include\sp_lev.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -14269,6 +14798,7 @@ DEP_CPP_MKMAP=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -14298,6 +14828,7 @@ DEP_CPP_MKMAP=\
 	"..\include\sp_lev.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -14521,6 +15052,7 @@ DEP_CPP_MKMAZ=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -14551,6 +15083,7 @@ DEP_CPP_MKMAZ=\
 	"..\include\sp_lev.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -14583,6 +15116,7 @@ DEP_CPP_MKMAZ=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -14613,6 +15147,7 @@ DEP_CPP_MKMAZ=\
 	"..\include\sp_lev.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -14826,7 +15361,6 @@ DEP_CPP_MKOBJ=\
 DEP_CPP_MKOBJ=\
 	"..\include\align.h"\
 	"..\include\amiconf.h"\
-	"..\include\artifact.h"\
 	"..\include\attrib.h"\
 	"..\include\beconf.h"\
 	"..\include\color.h"\
@@ -14838,6 +15372,7 @@ DEP_CPP_MKOBJ=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -14866,6 +15401,7 @@ DEP_CPP_MKOBJ=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -14887,7 +15423,6 @@ DEP_CPP_MKOBJ=\
 DEP_CPP_MKOBJ=\
 	"..\include\align.h"\
 	"..\include\amiconf.h"\
-	"..\include\artifact.h"\
 	"..\include\attrib.h"\
 	"..\include\beconf.h"\
 	"..\include\color.h"\
@@ -14899,6 +15434,7 @@ DEP_CPP_MKOBJ=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -14927,6 +15463,7 @@ DEP_CPP_MKOBJ=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -15148,6 +15685,7 @@ DEP_CPP_MKROO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -15176,6 +15714,7 @@ DEP_CPP_MKROO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -15208,6 +15747,7 @@ DEP_CPP_MKROO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -15236,6 +15776,7 @@ DEP_CPP_MKROO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -15446,6 +15987,7 @@ DEP_CPP_MON_C=\
 DEP_CPP_MON_C=\
 	"..\include\align.h"\
 	"..\include\amiconf.h"\
+	"..\include\artifact.h"\
 	"..\include\attrib.h"\
 	"..\include\beconf.h"\
 	"..\include\color.h"\
@@ -15458,6 +16000,7 @@ DEP_CPP_MON_C=\
 	"..\include\edog.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -15487,6 +16030,7 @@ DEP_CPP_MON_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -15508,6 +16052,7 @@ DEP_CPP_MON_C=\
 DEP_CPP_MON_C=\
 	"..\include\align.h"\
 	"..\include\amiconf.h"\
+	"..\include\artifact.h"\
 	"..\include\attrib.h"\
 	"..\include\beconf.h"\
 	"..\include\color.h"\
@@ -15520,6 +16065,7 @@ DEP_CPP_MON_C=\
 	"..\include\edog.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -15549,6 +16095,7 @@ DEP_CPP_MON_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -15776,6 +16323,7 @@ DEP_CPP_MONDA=\
 	"..\include\epri.h"\
 	"..\include\eshk.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -15804,6 +16352,7 @@ DEP_CPP_MONDA=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -15838,6 +16387,7 @@ DEP_CPP_MONDA=\
 	"..\include\epri.h"\
 	"..\include\eshk.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -15866,6 +16416,7 @@ DEP_CPP_MONDA=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -16091,7 +16642,9 @@ DEP_CPP_MONMO=\
 	"..\include\display.h"\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
+	"..\include\epri.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -16121,6 +16674,7 @@ DEP_CPP_MONMO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -16153,7 +16707,9 @@ DEP_CPP_MONMO=\
 	"..\include\display.h"\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
+	"..\include\epri.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -16183,6 +16739,7 @@ DEP_CPP_MONMO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -16374,8 +16931,10 @@ DEP_CPP_MONST=\
 	"..\include\config1.h"\
 	"..\include\coord.h"\
 	"..\include\dungeon.h"\
+	"..\include\egyp.h"\
 	"..\include\epri.h"\
 	"..\include\eshk.h"\
+	"..\include\file.h"\
 	"..\include\global.h"\
 	"..\include\macconf.h"\
 	"..\include\micro.h"\
@@ -16407,8 +16966,10 @@ DEP_CPP_MONST=\
 	"..\include\config1.h"\
 	"..\include\coord.h"\
 	"..\include\dungeon.h"\
+	"..\include\egyp.h"\
 	"..\include\epri.h"\
 	"..\include\eshk.h"\
+	"..\include\file.h"\
 	"..\include\global.h"\
 	"..\include\macconf.h"\
 	"..\include\micro.h"\
@@ -16533,6 +17094,7 @@ DEP_CPP_MONSTR=\
 	"..\include\config.h"\
 	"..\include\config1.h"\
 	"..\include\coord.h"\
+	"..\include\file.h"\
 	"..\include\global.h"\
 	"..\include\macconf.h"\
 	"..\include\micro.h"\
@@ -16556,6 +17118,7 @@ DEP_CPP_MONSTR=\
 	"..\include\config.h"\
 	"..\include\config1.h"\
 	"..\include\coord.h"\
+	"..\include\file.h"\
 	"..\include\global.h"\
 	"..\include\macconf.h"\
 	"..\include\micro.h"\
@@ -16700,6 +17263,7 @@ DEP_CPP_MPLAY=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -16728,6 +17292,7 @@ DEP_CPP_MPLAY=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -16760,6 +17325,7 @@ DEP_CPP_MPLAY=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -16788,6 +17354,7 @@ DEP_CPP_MPLAY=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -17007,6 +17574,7 @@ DEP_CPP_MTHRO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -17035,6 +17603,7 @@ DEP_CPP_MTHRO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -17067,6 +17636,7 @@ DEP_CPP_MTHRO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -17095,6 +17665,7 @@ DEP_CPP_MTHRO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -17316,6 +17887,7 @@ DEP_CPP_MUSE_=\
 	"..\include\edog.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -17344,6 +17916,7 @@ DEP_CPP_MUSE_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -17377,6 +17950,7 @@ DEP_CPP_MUSE_=\
 	"..\include\edog.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -17405,6 +17979,7 @@ DEP_CPP_MUSE_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -17629,6 +18204,7 @@ DEP_CPP_MUSIC=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -17657,6 +18233,7 @@ DEP_CPP_MUSIC=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -17692,6 +18269,7 @@ DEP_CPP_MUSIC=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -17720,6 +18298,7 @@ DEP_CPP_MUSIC=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -17949,6 +18528,7 @@ DEP_CPP_O_INI=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -17978,6 +18558,7 @@ DEP_CPP_O_INI=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -18010,6 +18591,7 @@ DEP_CPP_O_INI=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -18039,6 +18621,7 @@ DEP_CPP_O_INI=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -18221,6 +18804,7 @@ DEP_CPP_OBJEC=\
 	"..\include\config.h"\
 	"..\include\config1.h"\
 	"..\include\coord.h"\
+	"..\include\file.h"\
 	"..\include\global.h"\
 	"..\include\macconf.h"\
 	"..\include\micro.h"\
@@ -18249,6 +18833,7 @@ DEP_CPP_OBJEC=\
 	"..\include\config.h"\
 	"..\include\config1.h"\
 	"..\include\coord.h"\
+	"..\include\file.h"\
 	"..\include\global.h"\
 	"..\include\macconf.h"\
 	"..\include\micro.h"\
@@ -18407,6 +18992,7 @@ DEP_CPP_OBJNA=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -18435,6 +19021,7 @@ DEP_CPP_OBJNA=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -18467,6 +19054,7 @@ DEP_CPP_OBJNA=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -18495,6 +19083,7 @@ DEP_CPP_OBJNA=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -18715,6 +19304,8 @@ DEP_CPP_OPTIO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
+	"..\include\filename.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -18744,6 +19335,7 @@ DEP_CPP_OPTIO=\
 	"..\include\spell.h"\
 	"..\include\system.h"\
 	"..\include\tcap.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -18753,11 +19345,13 @@ DEP_CPP_OPTIO=\
 	"..\include\vision.h"\
 	"..\include\vmsconf.h"\
 	"..\include\wceconf.h"\
+	"..\include\winGL.h"\
 	"..\include\winprocs.h"\
 	"..\include\wintty.h"\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	".\ceinc\assert.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -18776,6 +19370,8 @@ DEP_CPP_OPTIO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
+	"..\include\filename.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -18805,6 +19401,7 @@ DEP_CPP_OPTIO=\
 	"..\include\spell.h"\
 	"..\include\system.h"\
 	"..\include\tcap.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -18814,11 +19411,13 @@ DEP_CPP_OPTIO=\
 	"..\include\vision.h"\
 	"..\include\vmsconf.h"\
 	"..\include\wceconf.h"\
+	"..\include\winGL.h"\
 	"..\include\winprocs.h"\
 	"..\include\wintty.h"\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	".\ceinc\assert.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -19028,6 +19627,7 @@ DEP_CPP_PAGER=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -19056,6 +19656,7 @@ DEP_CPP_PAGER=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -19089,6 +19690,7 @@ DEP_CPP_PAGER=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -19117,6 +19719,7 @@ DEP_CPP_PAGER=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -19343,6 +19946,7 @@ DEP_CPP_PCMAI=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -19360,6 +19964,7 @@ DEP_CPP_PCMAI=\
 	"..\include\objclass.h"\
 	"..\include\onames.h"\
 	"..\include\os2conf.h"\
+	"..\include\patchlevel.h"\
 	"..\include\pcconf.h"\
 	"..\include\permonst.h"\
 	"..\include\pm.h"\
@@ -19371,6 +19976,7 @@ DEP_CPP_PCMAI=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -19380,11 +19986,15 @@ DEP_CPP_PCMAI=\
 	"..\include\vision.h"\
 	"..\include\vmsconf.h"\
 	"..\include\wceconf.h"\
+	"..\include\win32api.h"\
 	"..\include\winprocs.h"\
 	"..\include\wintty.h"\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	
+NODEP_CPP_PCMAI=\
+	"..\sys\share\patchlev.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -19404,6 +20014,7 @@ DEP_CPP_PCMAI=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -19421,6 +20032,7 @@ DEP_CPP_PCMAI=\
 	"..\include\objclass.h"\
 	"..\include\onames.h"\
 	"..\include\os2conf.h"\
+	"..\include\patchlevel.h"\
 	"..\include\pcconf.h"\
 	"..\include\permonst.h"\
 	"..\include\pm.h"\
@@ -19432,6 +20044,7 @@ DEP_CPP_PCMAI=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -19446,9 +20059,10 @@ DEP_CPP_PCMAI=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\winnt\win32api.h"\
 	
 NODEP_CPP_PCMAI=\
-	"..\include\win32api.h"\
+	"..\sys\share\patchlev.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -19660,6 +20274,7 @@ DEP_CPP_PCSYS=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -19688,6 +20303,7 @@ DEP_CPP_PCSYS=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -19720,6 +20336,7 @@ DEP_CPP_PCSYS=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -19748,6 +20365,7 @@ DEP_CPP_PCSYS=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -19967,6 +20585,7 @@ DEP_CPP_PICKU=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -19995,6 +20614,7 @@ DEP_CPP_PICKU=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -20027,6 +20647,7 @@ DEP_CPP_PICKU=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -20055,6 +20676,7 @@ DEP_CPP_PICKU=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -20277,6 +20899,7 @@ DEP_CPP_PLINE=\
 	"..\include\engrave.h"\
 	"..\include\epri.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -20305,6 +20928,7 @@ DEP_CPP_PLINE=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -20335,9 +20959,11 @@ DEP_CPP_PLINE=\
 	"..\include\decl.h"\
 	"..\include\display.h"\
 	"..\include\dungeon.h"\
+	"..\include\edog.h"\
 	"..\include\engrave.h"\
 	"..\include\epri.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -20366,6 +20992,7 @@ DEP_CPP_PLINE=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -20588,6 +21215,7 @@ DEP_CPP_POLYS=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -20616,6 +21244,7 @@ DEP_CPP_POLYS=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -20648,6 +21277,7 @@ DEP_CPP_POLYS=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -20676,6 +21306,7 @@ DEP_CPP_POLYS=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -20895,6 +21526,7 @@ DEP_CPP_POTIO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -20923,6 +21555,7 @@ DEP_CPP_POTIO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -20955,6 +21588,7 @@ DEP_CPP_POTIO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -20983,6 +21617,7 @@ DEP_CPP_POTIO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -21204,6 +21839,7 @@ DEP_CPP_PRAY_=\
 	"..\include\engrave.h"\
 	"..\include\epri.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -21232,6 +21868,7 @@ DEP_CPP_PRAY_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -21265,6 +21902,7 @@ DEP_CPP_PRAY_=\
 	"..\include\engrave.h"\
 	"..\include\epri.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -21293,6 +21931,7 @@ DEP_CPP_PRAY_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -21521,6 +22160,7 @@ DEP_CPP_PRIES=\
 	"..\include\epri.h"\
 	"..\include\eshk.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -21550,6 +22190,7 @@ DEP_CPP_PRIES=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -21585,6 +22226,7 @@ DEP_CPP_PRIES=\
 	"..\include\epri.h"\
 	"..\include\eshk.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -21614,6 +22256,7 @@ DEP_CPP_PRIES=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -21842,6 +22485,7 @@ DEP_CPP_QUEST=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -21871,6 +22515,7 @@ DEP_CPP_QUEST=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -21903,6 +22548,7 @@ DEP_CPP_QUEST=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -21932,6 +22578,7 @@ DEP_CPP_QUEST=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -22156,6 +22803,7 @@ DEP_CPP_QUESTP=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -22185,6 +22833,7 @@ DEP_CPP_QUESTP=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -22218,6 +22867,7 @@ DEP_CPP_QUESTP=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -22247,6 +22897,7 @@ DEP_CPP_QUESTP=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -22470,6 +23121,7 @@ DEP_CPP_RANDO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -22498,6 +23150,7 @@ DEP_CPP_RANDO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -22530,6 +23183,7 @@ DEP_CPP_RANDO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -22558,6 +23212,7 @@ DEP_CPP_RANDO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -22777,6 +23432,7 @@ DEP_CPP_READ_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -22805,6 +23461,7 @@ DEP_CPP_READ_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -22837,6 +23494,7 @@ DEP_CPP_READ_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -22865,6 +23523,7 @@ DEP_CPP_READ_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -23084,6 +23743,7 @@ DEP_CPP_RECT_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -23112,6 +23772,7 @@ DEP_CPP_RECT_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -23144,6 +23805,7 @@ DEP_CPP_RECT_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -23172,6 +23834,7 @@ DEP_CPP_RECT_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -23391,6 +24054,7 @@ DEP_CPP_REGIO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -23420,6 +24084,7 @@ DEP_CPP_REGIO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -23452,9 +24117,11 @@ DEP_CPP_REGIO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
+	"..\include\lev.h"\
 	"..\include\macconf.h"\
 	"..\include\micro.h"\
 	"..\include\mkroom.h"\
@@ -23480,6 +24147,7 @@ DEP_CPP_REGIO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -23702,6 +24370,7 @@ DEP_CPP_RESTO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -23732,6 +24401,7 @@ DEP_CPP_RESTO=\
 	"..\include\spell.h"\
 	"..\include\system.h"\
 	"..\include\tcap.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -23764,6 +24434,7 @@ DEP_CPP_RESTO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -23794,6 +24465,7 @@ DEP_CPP_RESTO=\
 	"..\include\spell.h"\
 	"..\include\system.h"\
 	"..\include\tcap.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -24017,6 +24689,7 @@ DEP_CPP_RIP_C=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -24045,6 +24718,7 @@ DEP_CPP_RIP_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -24077,6 +24751,7 @@ DEP_CPP_RIP_C=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -24105,6 +24780,7 @@ DEP_CPP_RIP_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -24324,6 +25000,7 @@ DEP_CPP_RND_C=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -24352,6 +25029,7 @@ DEP_CPP_RND_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -24384,6 +25062,7 @@ DEP_CPP_RND_C=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -24412,6 +25091,7 @@ DEP_CPP_RND_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -24631,6 +25311,7 @@ DEP_CPP_ROLE_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -24659,6 +25340,7 @@ DEP_CPP_ROLE_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -24691,6 +25373,7 @@ DEP_CPP_ROLE_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -24719,6 +25402,7 @@ DEP_CPP_ROLE_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -24941,6 +25625,7 @@ DEP_CPP_RUMOR=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -24970,6 +25655,7 @@ DEP_CPP_RUMOR=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -25003,6 +25689,7 @@ DEP_CPP_RUMOR=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -25032,6 +25719,7 @@ DEP_CPP_RUMOR=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -25256,6 +25944,7 @@ DEP_CPP_SAVE_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -25285,6 +25974,7 @@ DEP_CPP_SAVE_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -25317,6 +26007,7 @@ DEP_CPP_SAVE_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -25346,6 +26037,7 @@ DEP_CPP_SAVE_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -25569,6 +26261,7 @@ DEP_CPP_SHK_C=\
 	"..\include\engrave.h"\
 	"..\include\eshk.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -25597,6 +26290,7 @@ DEP_CPP_SHK_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -25630,6 +26324,7 @@ DEP_CPP_SHK_C=\
 	"..\include\engrave.h"\
 	"..\include\eshk.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -25658,6 +26353,7 @@ DEP_CPP_SHK_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -25881,6 +26577,7 @@ DEP_CPP_SHKNA=\
 	"..\include\engrave.h"\
 	"..\include\eshk.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -25909,6 +26606,7 @@ DEP_CPP_SHKNA=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -25942,6 +26640,7 @@ DEP_CPP_SHKNA=\
 	"..\include\engrave.h"\
 	"..\include\eshk.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -25970,6 +26669,7 @@ DEP_CPP_SHKNA=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -26193,6 +26893,7 @@ DEP_CPP_SIT_C=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -26221,6 +26922,7 @@ DEP_CPP_SIT_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -26254,6 +26956,7 @@ DEP_CPP_SIT_C=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -26282,6 +26985,7 @@ DEP_CPP_SIT_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -26505,6 +27209,7 @@ DEP_CPP_SOUND=\
 	"..\include\edog.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -26533,6 +27238,7 @@ DEP_CPP_SOUND=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -26566,6 +27272,7 @@ DEP_CPP_SOUND=\
 	"..\include\edog.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -26594,6 +27301,7 @@ DEP_CPP_SOUND=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -26818,6 +27526,7 @@ DEP_CPP_SP_LE=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -26847,6 +27556,7 @@ DEP_CPP_SP_LE=\
 	"..\include\sp_lev.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -26880,6 +27590,7 @@ DEP_CPP_SP_LE=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -26909,6 +27620,7 @@ DEP_CPP_SP_LE=\
 	"..\include\sp_lev.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -27130,8 +27842,10 @@ DEP_CPP_SPELL=\
 	"..\include\decl.h"\
 	"..\include\display.h"\
 	"..\include\dungeon.h"\
+	"..\include\edog.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -27160,6 +27874,7 @@ DEP_CPP_SPELL=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -27190,8 +27905,10 @@ DEP_CPP_SPELL=\
 	"..\include\decl.h"\
 	"..\include\display.h"\
 	"..\include\dungeon.h"\
+	"..\include\edog.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -27220,6 +27937,7 @@ DEP_CPP_SPELL=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -27439,6 +28157,7 @@ DEP_CPP_STEAL=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -27467,6 +28186,7 @@ DEP_CPP_STEAL=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -27499,6 +28219,7 @@ DEP_CPP_STEAL=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -27527,6 +28248,7 @@ DEP_CPP_STEAL=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -27746,6 +28468,7 @@ DEP_CPP_STEED=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -27774,6 +28497,7 @@ DEP_CPP_STEED=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -27806,6 +28530,7 @@ DEP_CPP_STEED=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -27834,6 +28559,7 @@ DEP_CPP_STEED=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -27975,6 +28701,323 @@ DEP_CPP_STEED=\
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\tech.c
+
+!IF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE MIPS) PocketPCRelease"
+
+DEP_CPP_TECH_=\
+	"..\include\align.h"\
+	"..\include\amiconf.h"\
+	"..\include\attrib.h"\
+	"..\include\beconf.h"\
+	"..\include\color.h"\
+	"..\include\config.h"\
+	"..\include\config1.h"\
+	"..\include\coord.h"\
+	"..\include\decl.h"\
+	"..\include\display.h"\
+	"..\include\dungeon.h"\
+	"..\include\engrave.h"\
+	"..\include\extern.h"\
+	"..\include\file.h"\
+	"..\include\flag.h"\
+	"..\include\global.h"\
+	"..\include\hack.h"\
+	"..\include\macconf.h"\
+	"..\include\micro.h"\
+	"..\include\mkroom.h"\
+	"..\include\monattk.h"\
+	"..\include\mondata.h"\
+	"..\include\monflag.h"\
+	"..\include\monst.h"\
+	"..\include\monsym.h"\
+	"..\include\nhlan.h"\
+	"..\include\ntconf.h"\
+	"..\include\obj.h"\
+	"..\include\objclass.h"\
+	"..\include\onames.h"\
+	"..\include\os2conf.h"\
+	"..\include\pcconf.h"\
+	"..\include\permonst.h"\
+	"..\include\pm.h"\
+	"..\include\prop.h"\
+	"..\include\quest.h"\
+	"..\include\rect.h"\
+	"..\include\region.h"\
+	"..\include\rm.h"\
+	"..\include\skills.h"\
+	"..\include\spell.h"\
+	"..\include\system.h"\
+	"..\include\tech.h"\
+	"..\include\timeout.h"\
+	"..\include\tosconf.h"\
+	"..\include\tradstdc.h"\
+	"..\include\trampoli.h"\
+	"..\include\trap.h"\
+	"..\include\unixconf.h"\
+	"..\include\vision.h"\
+	"..\include\vmsconf.h"\
+	"..\include\wceconf.h"\
+	"..\include\winprocs.h"\
+	"..\include\wintty.h"\
+	"..\include\wintype.h"\
+	"..\include\you.h"\
+	"..\include\youprop.h"\
+	
+
+!ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE ARM) PocketPCRelease"
+
+DEP_CPP_TECH_=\
+	"..\include\align.h"\
+	"..\include\amiconf.h"\
+	"..\include\attrib.h"\
+	"..\include\beconf.h"\
+	"..\include\color.h"\
+	"..\include\config.h"\
+	"..\include\config1.h"\
+	"..\include\coord.h"\
+	"..\include\decl.h"\
+	"..\include\display.h"\
+	"..\include\dungeon.h"\
+	"..\include\engrave.h"\
+	"..\include\extern.h"\
+	"..\include\file.h"\
+	"..\include\flag.h"\
+	"..\include\global.h"\
+	"..\include\hack.h"\
+	"..\include\macconf.h"\
+	"..\include\micro.h"\
+	"..\include\mkroom.h"\
+	"..\include\monattk.h"\
+	"..\include\mondata.h"\
+	"..\include\monflag.h"\
+	"..\include\monst.h"\
+	"..\include\monsym.h"\
+	"..\include\nhlan.h"\
+	"..\include\ntconf.h"\
+	"..\include\obj.h"\
+	"..\include\objclass.h"\
+	"..\include\onames.h"\
+	"..\include\os2conf.h"\
+	"..\include\pcconf.h"\
+	"..\include\permonst.h"\
+	"..\include\pm.h"\
+	"..\include\prop.h"\
+	"..\include\quest.h"\
+	"..\include\rect.h"\
+	"..\include\region.h"\
+	"..\include\rm.h"\
+	"..\include\skills.h"\
+	"..\include\spell.h"\
+	"..\include\system.h"\
+	"..\include\tech.h"\
+	"..\include\timeout.h"\
+	"..\include\tosconf.h"\
+	"..\include\tradstdc.h"\
+	"..\include\trampoli.h"\
+	"..\include\trap.h"\
+	"..\include\unixconf.h"\
+	"..\include\vision.h"\
+	"..\include\vmsconf.h"\
+	"..\include\wceconf.h"\
+	"..\include\winprocs.h"\
+	"..\include\wintty.h"\
+	"..\include\wintype.h"\
+	"..\include\you.h"\
+	"..\include\youprop.h"\
+	
+
+!ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
+
+DEP_CPP_TECH_=\
+	"..\include\align.h"\
+	"..\include\amiconf.h"\
+	"..\include\attrib.h"\
+	"..\include\beconf.h"\
+	"..\include\color.h"\
+	"..\include\config.h"\
+	"..\include\config1.h"\
+	"..\include\coord.h"\
+	"..\include\decl.h"\
+	"..\include\display.h"\
+	"..\include\dungeon.h"\
+	"..\include\engrave.h"\
+	"..\include\extern.h"\
+	"..\include\file.h"\
+	"..\include\flag.h"\
+	"..\include\global.h"\
+	"..\include\hack.h"\
+	"..\include\macconf.h"\
+	"..\include\micro.h"\
+	"..\include\mkroom.h"\
+	"..\include\monattk.h"\
+	"..\include\mondata.h"\
+	"..\include\monflag.h"\
+	"..\include\monst.h"\
+	"..\include\monsym.h"\
+	"..\include\nhlan.h"\
+	"..\include\ntconf.h"\
+	"..\include\obj.h"\
+	"..\include\objclass.h"\
+	"..\include\onames.h"\
+	"..\include\os2conf.h"\
+	"..\include\pcconf.h"\
+	"..\include\permonst.h"\
+	"..\include\pm.h"\
+	"..\include\prop.h"\
+	"..\include\quest.h"\
+	"..\include\rect.h"\
+	"..\include\region.h"\
+	"..\include\rm.h"\
+	"..\include\skills.h"\
+	"..\include\spell.h"\
+	"..\include\system.h"\
+	"..\include\tech.h"\
+	"..\include\timeout.h"\
+	"..\include\tosconf.h"\
+	"..\include\tradstdc.h"\
+	"..\include\trampoli.h"\
+	"..\include\trap.h"\
+	"..\include\unixconf.h"\
+	"..\include\vision.h"\
+	"..\include\vmsconf.h"\
+	"..\include\wceconf.h"\
+	"..\include\winprocs.h"\
+	"..\include\wintty.h"\
+	"..\include\wintype.h"\
+	"..\include\you.h"\
+	"..\include\youprop.h"\
+	
+
+!ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
+
+DEP_CPP_TECH_=\
+	"..\include\align.h"\
+	"..\include\amiconf.h"\
+	"..\include\attrib.h"\
+	"..\include\beconf.h"\
+	"..\include\color.h"\
+	"..\include\config.h"\
+	"..\include\config1.h"\
+	"..\include\coord.h"\
+	"..\include\decl.h"\
+	"..\include\display.h"\
+	"..\include\dungeon.h"\
+	"..\include\engrave.h"\
+	"..\include\extern.h"\
+	"..\include\file.h"\
+	"..\include\flag.h"\
+	"..\include\global.h"\
+	"..\include\hack.h"\
+	"..\include\macconf.h"\
+	"..\include\micro.h"\
+	"..\include\mkroom.h"\
+	"..\include\monattk.h"\
+	"..\include\mondata.h"\
+	"..\include\monflag.h"\
+	"..\include\monst.h"\
+	"..\include\monsym.h"\
+	"..\include\nhlan.h"\
+	"..\include\ntconf.h"\
+	"..\include\obj.h"\
+	"..\include\objclass.h"\
+	"..\include\onames.h"\
+	"..\include\os2conf.h"\
+	"..\include\pcconf.h"\
+	"..\include\permonst.h"\
+	"..\include\pm.h"\
+	"..\include\prop.h"\
+	"..\include\quest.h"\
+	"..\include\rect.h"\
+	"..\include\region.h"\
+	"..\include\rm.h"\
+	"..\include\skills.h"\
+	"..\include\spell.h"\
+	"..\include\system.h"\
+	"..\include\tech.h"\
+	"..\include\timeout.h"\
+	"..\include\tosconf.h"\
+	"..\include\tradstdc.h"\
+	"..\include\trampoli.h"\
+	"..\include\trap.h"\
+	"..\include\unixconf.h"\
+	"..\include\vision.h"\
+	"..\include\vmsconf.h"\
+	"..\include\wceconf.h"\
+	"..\include\winprocs.h"\
+	"..\include\wintty.h"\
+	"..\include\wintype.h"\
+	"..\include\you.h"\
+	"..\include\youprop.h"\
+	
+
+!ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE SH3) PocketPCRelease"
+
+DEP_CPP_TECH_=\
+	"..\include\align.h"\
+	"..\include\amiconf.h"\
+	"..\include\attrib.h"\
+	"..\include\beconf.h"\
+	"..\include\color.h"\
+	"..\include\config.h"\
+	"..\include\config1.h"\
+	"..\include\coord.h"\
+	"..\include\decl.h"\
+	"..\include\display.h"\
+	"..\include\dungeon.h"\
+	"..\include\engrave.h"\
+	"..\include\extern.h"\
+	"..\include\file.h"\
+	"..\include\flag.h"\
+	"..\include\global.h"\
+	"..\include\hack.h"\
+	"..\include\macconf.h"\
+	"..\include\micro.h"\
+	"..\include\mkroom.h"\
+	"..\include\monattk.h"\
+	"..\include\mondata.h"\
+	"..\include\monflag.h"\
+	"..\include\monst.h"\
+	"..\include\monsym.h"\
+	"..\include\nhlan.h"\
+	"..\include\ntconf.h"\
+	"..\include\obj.h"\
+	"..\include\objclass.h"\
+	"..\include\onames.h"\
+	"..\include\os2conf.h"\
+	"..\include\pcconf.h"\
+	"..\include\permonst.h"\
+	"..\include\pm.h"\
+	"..\include\prop.h"\
+	"..\include\quest.h"\
+	"..\include\rect.h"\
+	"..\include\region.h"\
+	"..\include\rm.h"\
+	"..\include\skills.h"\
+	"..\include\spell.h"\
+	"..\include\system.h"\
+	"..\include\tech.h"\
+	"..\include\timeout.h"\
+	"..\include\tosconf.h"\
+	"..\include\tradstdc.h"\
+	"..\include\trampoli.h"\
+	"..\include\trap.h"\
+	"..\include\unixconf.h"\
+	"..\include\vision.h"\
+	"..\include\vmsconf.h"\
+	"..\include\wceconf.h"\
+	"..\include\winprocs.h"\
+	"..\include\wintty.h"\
+	"..\include\wintype.h"\
+	"..\include\you.h"\
+	"..\include\youprop.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\teleport.c
 
 !IF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE MIPS) PocketPCRelease"
@@ -28053,6 +29096,7 @@ DEP_CPP_TELEP=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -28081,6 +29125,7 @@ DEP_CPP_TELEP=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -28113,6 +29158,7 @@ DEP_CPP_TELEP=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -28141,6 +29187,7 @@ DEP_CPP_TELEP=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -28360,6 +29407,7 @@ DEP_CPP_TILE_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -28388,6 +29436,7 @@ DEP_CPP_TILE_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -28420,6 +29469,7 @@ DEP_CPP_TILE_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -28448,6 +29498,7 @@ DEP_CPP_TILE_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -28668,6 +29719,7 @@ DEP_CPP_TIMEO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -28697,6 +29749,7 @@ DEP_CPP_TIMEO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -28729,6 +29782,7 @@ DEP_CPP_TIMEO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -28758,6 +29812,7 @@ DEP_CPP_TIMEO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -28985,6 +30040,7 @@ DEP_CPP_TOPTE=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -29014,6 +30070,7 @@ DEP_CPP_TOPTE=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -29050,6 +30107,7 @@ DEP_CPP_TOPTE=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -29079,6 +30137,7 @@ DEP_CPP_TOPTE=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -29311,6 +30370,7 @@ DEP_CPP_TRACK=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -29339,6 +30399,7 @@ DEP_CPP_TRACK=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -29371,6 +30432,7 @@ DEP_CPP_TRACK=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -29399,6 +30461,7 @@ DEP_CPP_TRACK=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -29618,6 +30681,7 @@ DEP_CPP_TRAP_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -29646,6 +30710,7 @@ DEP_CPP_TRAP_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -29678,6 +30743,7 @@ DEP_CPP_TRAP_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -29706,6 +30772,7 @@ DEP_CPP_TRAP_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -29925,6 +30992,7 @@ DEP_CPP_U_INI=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -29953,6 +31021,7 @@ DEP_CPP_U_INI=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -29985,6 +31054,7 @@ DEP_CPP_U_INI=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -30013,6 +31083,7 @@ DEP_CPP_U_INI=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -30232,6 +31303,7 @@ DEP_CPP_UHITM=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -30260,6 +31332,7 @@ DEP_CPP_UHITM=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -30292,6 +31365,7 @@ DEP_CPP_UHITM=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -30320,6 +31394,7 @@ DEP_CPP_UHITM=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -30540,6 +31615,7 @@ DEP_CPP_VAULT=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -30568,6 +31644,7 @@ DEP_CPP_VAULT=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -30601,6 +31678,7 @@ DEP_CPP_VAULT=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -30629,6 +31707,7 @@ DEP_CPP_VAULT=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -30857,6 +31936,7 @@ DEP_CPP_VERSI=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -30886,6 +31966,7 @@ DEP_CPP_VERSI=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -30922,6 +32003,7 @@ DEP_CPP_VERSI=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -30951,6 +32033,7 @@ DEP_CPP_VERSI=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -31139,6 +32222,7 @@ DEP_CPP_VIS_T=\
 	"..\include\config.h"\
 	"..\include\config1.h"\
 	"..\include\coord.h"\
+	"..\include\file.h"\
 	"..\include\global.h"\
 	"..\include\macconf.h"\
 	"..\include\micro.h"\
@@ -31163,6 +32247,7 @@ DEP_CPP_VIS_T=\
 	"..\include\config.h"\
 	"..\include\config1.h"\
 	"..\include\coord.h"\
+	"..\include\file.h"\
 	"..\include\global.h"\
 	"..\include\macconf.h"\
 	"..\include\micro.h"\
@@ -31311,6 +32396,7 @@ DEP_CPP_VISIO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -31339,6 +32425,7 @@ DEP_CPP_VISIO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -31372,6 +32459,7 @@ DEP_CPP_VISIO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -31400,6 +32488,7 @@ DEP_CPP_VISIO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -31622,6 +32711,7 @@ DEP_CPP_WEAPO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -31650,6 +32740,7 @@ DEP_CPP_WEAPO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -31682,6 +32773,7 @@ DEP_CPP_WEAPO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -31710,6 +32802,7 @@ DEP_CPP_WEAPO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -31929,6 +33022,7 @@ DEP_CPP_WERE_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -31957,6 +33051,7 @@ DEP_CPP_WERE_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -31989,6 +33084,7 @@ DEP_CPP_WERE_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -32017,6 +33113,7 @@ DEP_CPP_WERE_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -32236,6 +33333,7 @@ DEP_CPP_WIELD=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -32264,6 +33362,7 @@ DEP_CPP_WIELD=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -32296,6 +33395,7 @@ DEP_CPP_WIELD=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -32324,6 +33424,7 @@ DEP_CPP_WIELD=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -32546,6 +33647,7 @@ DEP_CPP_WINDO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -32574,6 +33676,7 @@ DEP_CPP_WINDO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -32584,12 +33687,15 @@ DEP_CPP_WINDO=\
 	"..\include\vmsconf.h"\
 	"..\include\wceconf.h"\
 	"..\include\wingem.h"\
+	"..\include\winGL.h"\
 	"..\include\winGnome.h"\
 	"..\include\winprocs.h"\
+	"..\include\winproxy.h"\
 	"..\include\wintty.h"\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	".\ceinc\assert.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -32608,6 +33714,7 @@ DEP_CPP_WINDO=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -32636,6 +33743,7 @@ DEP_CPP_WINDO=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -32646,13 +33754,15 @@ DEP_CPP_WINDO=\
 	"..\include\vmsconf.h"\
 	"..\include\wceconf.h"\
 	"..\include\wingem.h"\
+	"..\include\winGL.h"\
 	"..\include\winGnome.h"\
 	"..\include\winprocs.h"\
+	"..\include\winproxy.h"\
 	"..\include\wintty.h"\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
-	".\winMS.h"\
+	".\ceinc\assert.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -32863,7 +33973,9 @@ DEP_CPP_WIZAR=\
 	"..\include\display.h"\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
+	"..\include\epri.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -32893,6 +34005,7 @@ DEP_CPP_WIZAR=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -32924,7 +34037,9 @@ DEP_CPP_WIZAR=\
 	"..\include\display.h"\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
+	"..\include\epri.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -32954,6 +34069,7 @@ DEP_CPP_WIZAR=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -33176,6 +34292,7 @@ DEP_CPP_WORM_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -33205,6 +34322,7 @@ DEP_CPP_WORM_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -33237,6 +34355,7 @@ DEP_CPP_WORM_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -33266,6 +34385,7 @@ DEP_CPP_WORM_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -33487,6 +34607,7 @@ DEP_CPP_WORN_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -33515,6 +34636,7 @@ DEP_CPP_WORN_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -33547,6 +34669,7 @@ DEP_CPP_WORN_=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -33575,6 +34698,7 @@ DEP_CPP_WORN_=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -33794,6 +34918,7 @@ DEP_CPP_WRITE=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -33822,6 +34947,7 @@ DEP_CPP_WRITE=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -33854,6 +34980,7 @@ DEP_CPP_WRITE=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -33882,6 +35009,7 @@ DEP_CPP_WRITE=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -34101,6 +35229,7 @@ DEP_CPP_ZAP_C=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -34129,6 +35258,7 @@ DEP_CPP_ZAP_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -34161,6 +35291,7 @@ DEP_CPP_ZAP_C=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -34189,6 +35320,7 @@ DEP_CPP_ZAP_C=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -34844,6 +35976,7 @@ DEP_CPP_CELIB=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -34872,6 +36005,7 @@ DEP_CPP_CELIB=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -34904,6 +36038,7 @@ DEP_CPP_CELIB=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -34932,6 +36067,7 @@ DEP_CPP_CELIB=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -35153,6 +36289,7 @@ DEP_CPP_MHASK=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -35181,6 +36318,7 @@ DEP_CPP_MHASK=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -35195,8 +36333,13 @@ DEP_CPP_MHASK=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
+	".\ceinc\assert.h"\
 	".\mhaskyn.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -35215,6 +36358,7 @@ DEP_CPP_MHASK=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -35243,6 +36387,7 @@ DEP_CPP_MHASK=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -35257,8 +36402,13 @@ DEP_CPP_MHASK=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
+	".\ceinc\assert.h"\
 	".\mhaskyn.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -35475,6 +36625,7 @@ DEP_CPP_MHCMD=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -35503,6 +36654,7 @@ DEP_CPP_MHCMD=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -35517,10 +36669,15 @@ DEP_CPP_MHCMD=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
+	".\ceinc\assert.h"\
 	".\mhcmd.h"\
 	".\mhcolor.h"\
 	".\mhinput.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -35539,6 +36696,7 @@ DEP_CPP_MHCMD=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -35567,6 +36725,7 @@ DEP_CPP_MHCMD=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -35581,9 +36740,15 @@ DEP_CPP_MHCMD=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
+	".\ceinc\assert.h"\
 	".\mhcmd.h"\
+	".\mhcolor.h"\
 	".\mhinput.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -35802,6 +36967,7 @@ DEP_CPP_MHCOL=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -35830,6 +36996,7 @@ DEP_CPP_MHCOL=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -35844,8 +37011,12 @@ DEP_CPP_MHCOL=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
 	".\mhcolor.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -35864,6 +37035,7 @@ DEP_CPP_MHCOL=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -35892,6 +37064,7 @@ DEP_CPP_MHCOL=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -35906,8 +37079,12 @@ DEP_CPP_MHCOL=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
 	".\mhcolor.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -36128,6 +37305,7 @@ DEP_CPP_MHDLG=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\func_tab.h"\
 	"..\include\global.h"\
@@ -36157,6 +37335,7 @@ DEP_CPP_MHDLG=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -36171,12 +37350,13 @@ DEP_CPP_MHDLG=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
 	".\mhdlg.h"\
+	".\mhmain.h"\
 	".\winMS.h"\
-	
-NODEP_CPP_MHDLG=\
-	".\ipapi.h"\
-	".\ygshell.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -36195,6 +37375,7 @@ DEP_CPP_MHDLG=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\func_tab.h"\
 	"..\include\global.h"\
@@ -36224,6 +37405,7 @@ DEP_CPP_MHDLG=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -36238,12 +37420,13 @@ DEP_CPP_MHDLG=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
 	".\mhdlg.h"\
+	".\mhmain.h"\
 	".\winMS.h"\
-	
-NODEP_CPP_MHDLG=\
-	".\ipapi.h"\
-	".\ygshell.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -36465,6 +37648,7 @@ DEP_CPP_MHFON=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -36493,6 +37677,7 @@ DEP_CPP_MHFON=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -36507,8 +37692,12 @@ DEP_CPP_MHFON=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
 	".\mhfont.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -36527,6 +37716,7 @@ DEP_CPP_MHFON=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -36555,6 +37745,7 @@ DEP_CPP_MHFON=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -36569,8 +37760,12 @@ DEP_CPP_MHFON=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
 	".\mhfont.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -36786,6 +37981,7 @@ DEP_CPP_MHINP=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -36814,6 +38010,7 @@ DEP_CPP_MHINP=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -36828,8 +38025,13 @@ DEP_CPP_MHINP=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
+	".\ceinc\assert.h"\
 	".\mhinput.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -36848,6 +38050,7 @@ DEP_CPP_MHINP=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -36876,6 +38079,7 @@ DEP_CPP_MHINP=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -36890,8 +38094,13 @@ DEP_CPP_MHINP=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
+	".\ceinc\assert.h"\
 	".\mhinput.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -37120,6 +38329,7 @@ DEP_CPP_MHMAI=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -37149,6 +38359,7 @@ DEP_CPP_MHMAI=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -37163,6 +38374,7 @@ DEP_CPP_MHMAI=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
 	".\mhcmd.h"\
 	".\mhinput.h"\
 	".\mhmain.h"\
@@ -37171,12 +38383,10 @@ DEP_CPP_MHMAI=\
 	".\mhmsg.h"\
 	".\mhmsgwnd.h"\
 	".\mhstatus.h"\
-	".\newres.h"\
 	".\winMS.h"\
-	
-NODEP_CPP_MHMAI=\
-	".\ipapi.h"\
-	".\ygshell.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -37195,6 +38405,7 @@ DEP_CPP_MHMAI=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -37224,6 +38435,7 @@ DEP_CPP_MHMAI=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -37238,6 +38450,7 @@ DEP_CPP_MHMAI=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
 	".\mhcmd.h"\
 	".\mhinput.h"\
 	".\mhmain.h"\
@@ -37246,12 +38459,10 @@ DEP_CPP_MHMAI=\
 	".\mhmsg.h"\
 	".\mhmsgwnd.h"\
 	".\mhstatus.h"\
-	".\newres.h"\
 	".\winMS.h"\
-	
-NODEP_CPP_MHMAI=\
-	".\ipapi.h"\
-	".\ygshell.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -37492,6 +38703,7 @@ DEP_CPP_MHMAP=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -37521,6 +38733,7 @@ DEP_CPP_MHMAP=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -37535,10 +38748,15 @@ DEP_CPP_MHMAP=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
+	".\mhfont.h"\
 	".\mhinput.h"\
 	".\mhmap.h"\
 	".\mhmsg.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -37557,6 +38775,7 @@ DEP_CPP_MHMAP=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -37586,6 +38805,7 @@ DEP_CPP_MHMAP=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -37600,10 +38820,15 @@ DEP_CPP_MHMAP=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
+	".\mhfont.h"\
 	".\mhinput.h"\
 	".\mhmap.h"\
 	".\mhmsg.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -37832,6 +39057,7 @@ DEP_CPP_MHMEN=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -37860,6 +39086,7 @@ DEP_CPP_MHMEN=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -37874,16 +39101,19 @@ DEP_CPP_MHMEN=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
+	".\ceinc\assert.h"\
+	".\mhcmd.h"\
 	".\mhcolor.h"\
 	".\mhfont.h"\
+	".\mhinput.h"\
 	".\mhmain.h"\
 	".\mhmenu.h"\
 	".\mhmsg.h"\
 	".\winMS.h"\
-	
-NODEP_CPP_MHMEN=\
-	".\ipapi.h"\
-	".\ygshell.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -37902,6 +39132,7 @@ DEP_CPP_MHMEN=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -37930,6 +39161,7 @@ DEP_CPP_MHMEN=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -37944,15 +39176,19 @@ DEP_CPP_MHMEN=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
+	".\ceinc\assert.h"\
+	".\mhcmd.h"\
+	".\mhcolor.h"\
 	".\mhfont.h"\
+	".\mhinput.h"\
 	".\mhmain.h"\
 	".\mhmenu.h"\
 	".\mhmsg.h"\
 	".\winMS.h"\
-	
-NODEP_CPP_MHMEN=\
-	".\ipapi.h"\
-	".\ygshell.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -38185,6 +39421,7 @@ DEP_CPP_MHMSG=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -38213,6 +39450,7 @@ DEP_CPP_MHMSG=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -38227,11 +39465,16 @@ DEP_CPP_MHMSG=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
+	".\mhcmd.h"\
 	".\mhcolor.h"\
 	".\mhfont.h"\
 	".\mhmsg.h"\
 	".\mhmsgwnd.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -38250,6 +39493,7 @@ DEP_CPP_MHMSG=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -38278,6 +39522,7 @@ DEP_CPP_MHMSG=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -38292,10 +39537,16 @@ DEP_CPP_MHMSG=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
+	".\mhcmd.h"\
+	".\mhcolor.h"\
 	".\mhfont.h"\
 	".\mhmsg.h"\
 	".\mhmsgwnd.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -38517,6 +39768,7 @@ DEP_CPP_MHRIP=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -38545,6 +39797,7 @@ DEP_CPP_MHRIP=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -38559,9 +39812,13 @@ DEP_CPP_MHRIP=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
 	".\mhrip.h"\
 	".\mhtext.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -38580,6 +39837,7 @@ DEP_CPP_MHRIP=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -38608,6 +39866,7 @@ DEP_CPP_MHRIP=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -38622,9 +39881,13 @@ DEP_CPP_MHRIP=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
 	".\mhrip.h"\
 	".\mhtext.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -38844,6 +40107,7 @@ DEP_CPP_MHSTA=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -38872,6 +40136,7 @@ DEP_CPP_MHSTA=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -38886,11 +40151,15 @@ DEP_CPP_MHSTA=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
 	".\mhcolor.h"\
 	".\mhfont.h"\
 	".\mhmsg.h"\
 	".\mhstatus.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -38909,6 +40178,7 @@ DEP_CPP_MHSTA=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -38937,6 +40207,7 @@ DEP_CPP_MHSTA=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -38951,10 +40222,15 @@ DEP_CPP_MHSTA=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
+	".\mhcolor.h"\
 	".\mhfont.h"\
 	".\mhmsg.h"\
 	".\mhstatus.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -39177,6 +40453,7 @@ DEP_CPP_MHTEX=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -39205,6 +40482,7 @@ DEP_CPP_MHTEX=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -39219,11 +40497,15 @@ DEP_CPP_MHTEX=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
 	".\mhcolor.h"\
 	".\mhfont.h"\
 	".\mhmsg.h"\
 	".\mhtext.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -39242,6 +40524,7 @@ DEP_CPP_MHTEX=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -39270,6 +40553,7 @@ DEP_CPP_MHTEX=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -39284,10 +40568,15 @@ DEP_CPP_MHTEX=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
+	".\mhcolor.h"\
 	".\mhfont.h"\
 	".\mhmsg.h"\
 	".\mhtext.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -39519,6 +40808,7 @@ DEP_CPP_MSWPR=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -39547,6 +40837,7 @@ DEP_CPP_MSWPR=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -39561,7 +40852,9 @@ DEP_CPP_MSWPR=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
 	".\mhaskyn.h"\
+	".\mhcmd.h"\
 	".\mhcolor.h"\
 	".\mhdlg.h"\
 	".\mhfont.h"\
@@ -39575,6 +40868,9 @@ DEP_CPP_MSWPR=\
 	".\mhstatus.h"\
 	".\mhtext.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -39594,6 +40890,7 @@ DEP_CPP_MSWPR=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -39622,6 +40919,7 @@ DEP_CPP_MSWPR=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -39636,9 +40934,14 @@ DEP_CPP_MSWPR=\
 	"..\include\wintype.h"\
 	"..\include\you.h"\
 	"..\include\youprop.h"\
+	"..\sys\wince\newres.h"\
 	".\mhaskyn.h"\
+	".\mhcmd.h"\
+	".\mhcolor.h"\
 	".\mhdlg.h"\
+	".\mhfont.h"\
 	".\mhinput.h"\
+	".\mhmain.h"\
 	".\mhmap.h"\
 	".\mhmenu.h"\
 	".\mhmsg.h"\
@@ -39647,6 +40950,9 @@ DEP_CPP_MSWPR=\
 	".\mhstatus.h"\
 	".\mhtext.h"\
 	".\winMS.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -39898,6 +41204,7 @@ DEP_CPP_WINHA=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -39926,6 +41233,7 @@ DEP_CPP_WINHA=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -39944,11 +41252,9 @@ DEP_CPP_WINHA=\
 	".\mhmain.h"\
 	".\mhmap.h"\
 	".\winMS.h"\
-	
-NODEP_CPP_WINHA=\
-	".\EYBD.H"\
-	".\ipapi.h"\
-	".\ygshell.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCRelease"
@@ -39968,6 +41274,7 @@ DEP_CPP_WINHA=\
 	"..\include\dungeon.h"\
 	"..\include\engrave.h"\
 	"..\include\extern.h"\
+	"..\include\file.h"\
 	"..\include\flag.h"\
 	"..\include\global.h"\
 	"..\include\hack.h"\
@@ -39996,6 +41303,7 @@ DEP_CPP_WINHA=\
 	"..\include\skills.h"\
 	"..\include\spell.h"\
 	"..\include\system.h"\
+	"..\include\tech.h"\
 	"..\include\timeout.h"\
 	"..\include\tosconf.h"\
 	"..\include\tradstdc.h"\
@@ -40014,11 +41322,9 @@ DEP_CPP_WINHA=\
 	".\mhmain.h"\
 	".\mhmap.h"\
 	".\winMS.h"\
-	
-NODEP_CPP_WINHA=\
-	".\EYBD.H"\
-	".\ipapi.h"\
-	".\ygshell.h"\
+	{$(INCLUDE)}"aygshell.h"\
+	{$(INCLUDE)}"KEYBD.H"\
+	{$(INCLUDE)}"sipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "nethack_pocketp_pc - Win32 (WCE x86em) PocketPCDebug"
@@ -40188,4 +41494,3 @@ SOURCE=..\wince\winMS.h
 # End Group
 # End Target
 # End Project
-
