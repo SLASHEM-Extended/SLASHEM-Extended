@@ -1015,7 +1015,7 @@ char *buf;
 	if (buf)
 		Sprintf(buf,
 			"coyote - %s",
-			coynames[rn2(SIZE(coynames)-1)]);
+			coynames[rn2(SIZE(coynames))]);
 	return buf;
 }
 #endif /* OVL2 */
