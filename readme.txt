@@ -398,6 +398,7 @@ ver 0.0.6E4F1 [October XX/2000]
 -fixed bug 119758: Various interactions of moldy corpses and ice.
 -fixed bug 115764: Attempting to eat inedible corpses should not affect conduct.
 -fixed bug 117663: Weight of partly eaten corpses wrongly displayed.
+-fixed bug 117483: Lycanthrope's berserk behaviour doesn't work.
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()

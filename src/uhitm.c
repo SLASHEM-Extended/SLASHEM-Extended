@@ -318,7 +318,6 @@ register struct monst *mtmp;
 	schar tmp;
 	register struct permonst *mdat = mtmp->data;
 	int mhit;
-	boolean malive;
 
 	/* This section of code provides protection against accidentally
 	 * hitting peaceful (like '@') and tame (like 'd') monsters.
@@ -416,10 +415,10 @@ register struct monst *mtmp;
 
 	tmp = find_roll_to_hit(mtmp);
 	
-	malive = hmonas(mtmp, tmp); /* hmonas handles all attacks now */
+	(void) hmonas(mtmp, tmp); /* hmonas handles all attacks now */
 	
 	/* berserk lycanthropes calm down after the enemy is dead */
-	if (!malive) repeat_hit = 0;
+	if (mtmp->mhp <= 0) repeat_hit = 0;
 /*
 	if (Upolyd)
 		(void) hmonas(mtmp, tmp);
