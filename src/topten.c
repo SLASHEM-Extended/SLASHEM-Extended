@@ -991,5 +991,12 @@ create_toptenwin()
 
     return toptenwin;
 }
+
+void
+destroy_toptenwin()
+{
+    destroy_nhwindow(toptenwin);
+    toptenwin = WIN_ERR;
+}
 #endif
 /*topten.c*/

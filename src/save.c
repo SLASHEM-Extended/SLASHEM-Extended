@@ -1006,10 +1006,14 @@ register int fd, mode;
 }
 
 /* also called by prscore(); this probably belongs in dungeon.c... */
+/*
+ * [ALI] Also called by init_dungeons() for GTK's sake. For this purpose,
+ * the previous dungeon must be discarded.
+ */
 void
 free_dungeons()
 {
-#ifdef FREE_ALL_MEMORY
+#if defined(FREE_ALL_MEMORY) || defined(GTK_GRAPHICS)
 	savelevchn(0, FREE_SAVE);
 	save_dungeon(0, FALSE, TRUE);
 #endif

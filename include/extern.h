@@ -1976,6 +1976,7 @@ E void FDECL(prscore, (int,char **));
 E struct obj *FDECL(tt_oname, (struct obj *));
 #ifdef GTK_GRAPHICS
 E winid NDECL(create_toptenwin);
+E void NDECL(destroy_toptenwin);
 #endif
 
 /* ### track.c ### */

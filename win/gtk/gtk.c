@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.27 2001-06-16 18:14:40 j_ali Exp $
+  $Id: gtk.c,v 1.28 2001-09-21 20:24:24 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -594,7 +594,7 @@ game_topten(GtkWidget *widget, gpointer data)
     id = rawprint_win = create_toptenwin();
     prscore(2, argv);
     GTK_display_nhwindow(id, TRUE);
-    GTK_destroy_nhwindow(id);
+    destroy_toptenwin();
     dlb_init();				/* Re-initialise DLB */
     rawprint_win = WIN_ERR;
     keysym = '\0';
@@ -1361,7 +1361,9 @@ init_select_player(boolean init)
 	    free(menu_items[first_dynamic_opt + i].path);
 	    free(menu_items[first_dynamic_opt + i].accelerator);
 	}
+	no_dynamic_opts = 0;
 	free(menu_items);
+	menu_items = NULL;
 	return;
     }
     root = (struct select_node *)alloc(sizeof(struct select_node));

@@ -6,23 +6,11 @@
 #include "dgn_file.h"
 #include "dlb.h"
 
-/* [ALI] This debugging code should be enabled until bug 420942 is fixed.
- * Note that if RANDOM is also defined (true for the GTK/win32 port that
- * the bug was reported on) this will cause srandom() to be called with
- * a new seed. This allows us to reproduce the bug if the first trap is
- * triggered, but does change the way the code works slightly.
- */
-
-#define DEBUG_420942	/* Two entrances to mines */
 #ifdef macintosh
 #define getch() getchar()
 #endif
 
 #ifdef OVL1
-
-#if defined(DEBUG_420942) && defined(RANDOM)
-static unsigned dungeon_seed;
-#endif
 
 #define DUNGEON_AREA    FILE_AREA_UNSHARE
 #define DUNGEON_FILE    "dungeon"
@@ -74,10 +62,6 @@ dumpit()
 	int     i;
 	s_level *x;
 	branch *br;
-
-#if defined(DEBUG_420942) && defined(DEBUG) && defined(RANDOM)
-	fprintf(stderr, "\nSeed %u\n", dungeon_seed);
-#endif
 
 	for(i = 0; i < n_dgns; i++)  {
 	    fprintf(stderr, "\n#%d \"%s\" (%s):\n", i,
@@ -653,23 +637,8 @@ struct level_map {
 	{ "",           (d_level *)0 }
 };
 
-#if defined(DEBUG_420942) && defined(RANDOM)
-void FDECL(init_dungeons1, (unsigned));
-
 void
 init_dungeons()
-{
-	unsigned seed = Rand();
-	init_dungeons1(seed);
-}
-
-void
-init_dungeons1(seed)         /* initialize the "dungeon" structs */
-unsigned seed;
-#else
-void
-init_dungeons()
-#endif
 {
 	dlb     *dgn_file;
 	register int i, cl = 0, cb = 0;
@@ -678,10 +647,10 @@ init_dungeons()
 	struct level_map *lev_map;
 	struct version_info vers_info;
 
-#if defined(DEBUG_420942) && defined(RANDOM)
-	dungeon_seed = seed;
-	srandom(seed);
-#endif
+	/* [ALI] Cope with being called more than once. The GTK interface
+	 * can currently do this, although it really should use popen().
+	 */
+	free_dungeons();
 
 	pd.n_levs = pd.n_brs = 0;
 
@@ -926,26 +895,6 @@ init_dungeons()
 	    /* TO DO: strip "dummy" out all the way here,
 	       so that it's hidden from <ctrl/O> feedback. */
 	}
-#if defined(DEBUG_420942) && defined(RANDOM)
-	{
-	    /* Check for one level with two or more branches.
-	     */
-	    struct branch *b1, *b2;
-#define EQUAL_ENDS(e1,e2)	((e1).dnum == (e2).dnum && \
-				 (e1).dlevel == (e2).dlevel)
-	    for (b1 = branches; b1; b1 = b1->next)
-		for (b2 = b1->next; b2; b2 = b2->next)
-		    if (EQUAL_ENDS(b1->end1, b2->end1) ||
-		      EQUAL_ENDS(b1->end1, b2->end2) ||
-		      EQUAL_ENDS(b1->end2, b2->end1) ||
-		      EQUAL_ENDS(b1->end2, b2->end2)) {
-		    	impossible("Bug 420942 triggered: Please report!\n\n"
-			  "Please send this number (%u) to ali@juiblex.co.uk\n",
-			  dungeon_seed);
-			dumpit();
-		    }
-	}
-#endif
 
 #ifdef DEBUG
 	dumpit();
@@ -1106,26 +1055,12 @@ Is_branchlev(lev)
 d_level *lev;
 {
 	branch *curr;
-	branch *temp = (branch *)0;
+
 	for (curr = branches; curr; curr = curr->next) {
 	    if (on_level(lev, &curr->end1) || on_level(lev, &curr->end2))
-		if (!temp)
-		    temp = curr;
-#ifdef DEBUG_420942
-		else {
-#define DEBUG_CODE(br)	((br)->type | ((br)->end1_up ? 4 : 0) | \
-			(on_level(lev, &(br)->end1) ? 8 : 0) | \
-			((br)->id << 4))
-		    impossible("Bug 420942 triggered: Please report!\n\n"
-		      "level %d, %d: Multiple branches (%d and %d)\n"
-		      "Please send these numbers to ali@juiblex.co.uk\n",
-		      lev->dnum, lev->dlevel,
-		      DEBUG_CODE(temp), DEBUG_CODE(curr));
-#undef DEBUG_CODE
-		}
-#endif	/* DEBUG_420942 */
+		return curr;
 	}
-	return temp;
+	return (branch *) 0;
 }
 
 /* goto the next level (or appropriate dungeon) */
