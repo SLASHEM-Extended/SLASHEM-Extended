@@ -89,6 +89,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 951439: Invisible Corpses and Ressurection
 -fixed bug 941453: Grand slam against monsters needing +n weapons
 -fixed bug 962515: Disarming fire trap doesn't use up water
+-fixed bug 1001167: Is this a Gray Stone bug?
 
 See history.txt for changes made in previous versions.
 

@@ -2039,10 +2039,10 @@ boolean amnesia;
 		}
 		break;
 	    case GEM_CLASS:
-		if (obj->otyp == LUCKSTONE || obj->otyp == LOADSTONE 
-		  		|| obj->otyp == HEALTHSTONE
-		  		|| obj->otyp == TOUCHSTONE)
-		    	downgrade_obj(obj, FLINT, &used);
+		if (amnesia && (obj->otyp == LUCKSTONE ||
+			obj->otyp == LOADSTONE || obj->otyp == HEALTHSTONE ||
+			obj->otyp == TOUCHSTONE))
+		    downgrade_obj(obj, FLINT, &used);
 		break;
 	    case TOOL_CLASS:
 		/* Artifacts aren't downgraded by amnesia */
