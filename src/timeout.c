@@ -463,9 +463,10 @@ unpoly_obj(arg, timeout)
 	genericptr_t arg;
 	long timeout;
 {
-	struct obj *obj;
-	int oldobj;
-	boolean silent = (timeout != monstermoves);     /* unpoly'ed while away */
+	struct obj *obj, *otmp, *otmp2;
+	int oldobj, depthin;
+	boolean silent = (timeout != monstermoves),     /* unpoly'ed while away */
+		explodes;
 
 	obj = (struct obj *) arg;
 	if (!is_hazy(obj)) return;
@@ -476,8 +477,33 @@ unpoly_obj(arg, timeout)
 
 	(void) stop_timer(UNPOLY_OBJ, (genericptr_t) obj);
 
-	(void) poly_obj(obj, oldobj);
+	obj = poly_obj(obj, oldobj);
 
+	if (obj->otyp == WAN_CANCELLATION || Is_mbag(obj)) {
+	    otmp = obj;
+	    depthin = 0;
+	    explodes = FALSE;
+
+	    while (otmp->where == OBJ_CONTAINED) {
+		otmp = otmp->ocontainer;
+		if (otmp->otyp == BAG_OF_HOLDING) {
+		    explodes = mbag_explodes(obj, depthin);
+		    break;
+		}
+		depthin++;
+	    }
+
+	    if (explodes) {
+		otmp2 = otmp;
+		while (otmp2->where == OBJ_CONTAINED) {
+		    otmp2 = otmp2->ocontainer;
+
+		    if (otmp2->otyp == BAG_OF_HOLDING) 
+			otmp = otmp2;
+		}
+		destroy_mbag(otmp, silent);
+	    }
+	}	
 	return;
 }
 #endif /* UNPOLYPILE */

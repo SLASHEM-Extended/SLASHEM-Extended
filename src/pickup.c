@@ -27,7 +27,6 @@ STATIC_DCL int FDECL(count_categories, (struct obj *,int));
 STATIC_DCL long FDECL(carry_count,
 		      (struct obj *,struct obj *,long,BOOLEAN_P,int *,int *));
 STATIC_DCL int FDECL(lift_object, (struct obj *,struct obj *,long *,BOOLEAN_P));
-STATIC_DCL boolean FDECL(mbag_explodes, (struct obj *,int));
 STATIC_PTR int FDECL(in_container,(struct obj *));
 STATIC_PTR int FDECL(ck_bag,(struct obj *));
 STATIC_PTR int FDECL(out_container,(struct obj *));
@@ -1753,7 +1752,7 @@ boolean *prev_loot;
  * Decide whether an object being placed into a magic bag will cause
  * it to explode.  If the object is a bag itself, check recursively.
  */
-STATIC_OVL boolean
+boolean
 mbag_explodes(obj, depthin)
     struct obj *obj;
     int depthin;
@@ -1774,6 +1773,98 @@ mbag_explodes(obj, depthin)
 	    if (mbag_explodes(otmp, depthin+1)) return TRUE;
     }
     return FALSE;
+}
+
+void
+destroy_mbag(bomb, silent)
+struct obj *bomb;
+boolean silent;
+{
+    xchar x,y;
+    boolean underwater;
+    struct monst *mtmp = (struct monst *)0;
+
+    if (get_obj_location(bomb, &x, &y, BURIED_TOO | CONTAINED_TOO)) {
+	switch(bomb->where) {		
+	    case OBJ_MINVENT:
+		mtmp = bomb->ocarry;
+		if (bomb == MON_WEP(mtmp)) {
+		    bomb->owornmask &= ~W_WEP;
+		    MON_NOWEP(mtmp);
+		}
+		if (!silent && canseemon(mtmp))
+		    You("see %s engulfed in an explosion!", mon_nam(mtmp));
+		mtmp->mhp -= d(6,6);
+		if (mtmp->mhp < 1) {
+		    if (!bomb->yours) 
+			monkilled(mtmp, silent ? "" : "explosion", AD_PHYS);
+		    else xkilled(mtmp, !silent);
+		}
+		break;
+	    case OBJ_INVENT:
+		/* This shouldn't be silent! */
+		pline("Something explodes inside your knapsack!");
+		if (bomb == uwep) {
+		    uwepgone();
+		    stop_occupation();
+		} else if (bomb == uswapwep) {
+		    uswapwepgone();
+		    stop_occupation();
+		} else if (bomb == uquiver) {
+		    uqwepgone();
+		    stop_occupation();
+		}
+		losehp(d(6,6), "carrying live explosives", KILLED_BY);
+		break;
+	    case OBJ_FLOOR:
+		underwater = is_pool(x, y);
+		if (!silent) {
+		    if (x == u.ux && y == u.uy) {
+			if (underwater && (Flying || Levitation))
+			    pline_The("water boils beneath you.");
+			else if (underwater && Wwalking)
+			    pline_The("water erupts around you.");
+			else pline("A bag explodes under your %s!",
+			  makeplural(body_part(FOOT)));
+		    } else if (cansee(x, y))
+			You(underwater ?
+			    "see a plume of water shoot up." :
+			    "see a bag explode.");
+		}
+		if (underwater && (Flying || Levitation || Wwalking)) {
+		    if (Wwalking && x == u.ux && y == u.uy) {
+			struct trap trap;
+			trap.ntrap = NULL;
+			trap.tx = x;
+			trap.ty = y;
+			trap.launch.x = -1;
+			trap.launch.y = -1;
+			trap.ttyp = RUST_TRAP;
+			trap.tseen = 0;
+			trap.once = 0;
+			trap.madeby_u = 0;
+			trap.dst.dnum = -1;
+			trap.dst.dlevel = -1;
+			dotrap(&trap, 0);
+		    }
+		    goto free_bomb;
+		}
+		break;
+	    default:	/* Buried, contained, etc. */
+		if (!silent)
+		    You_hear("a muffled explosion.");
+		goto free_bomb;
+		break;
+	}
+    }
+
+free_bomb:
+    if (Has_contents(bomb))
+	delete_contents(bomb);
+
+    obj_extract_self(bomb);
+    obfree(bomb, (struct obj *)0);
+    newsym(x,y);
 }
 
 /* Returns: -1 to stop, 1 item was inserted, 0 item was not inserted. */

@@ -1602,6 +1602,8 @@ E void FDECL(add_valid_menu_class, (int));
 E boolean FDECL(allow_all, (struct obj *));
 E boolean FDECL(allow_category, (struct obj *));
 E boolean FDECL(is_worn_by_type, (struct obj *));
+E boolean FDECL(mbag_explodes, (struct obj *, int));
+E void FDECL(destroy_mbag, (struct obj *, BOOLEAN_P));
 #ifdef USE_TRAMPOLI
 E int FDECL(ck_bag, (struct obj *));
 E int FDECL(in_container, (struct obj *));

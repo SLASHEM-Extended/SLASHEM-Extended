@@ -156,6 +156,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -Proxy: Implement get_no_glyph method for compatibility with nhproxy 0.9.1
 -fixed bug 1110081: in_container() uses obj->quan after deallocatin obj
 -fixed bug 1116877: Dereferencing freed memory when applying bags which explode
+-fixed bug 951483: Wands of cancellation can be held in a bag of holding
 
 See history.txt for changes made in previous versions.
 
