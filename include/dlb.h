@@ -111,7 +111,8 @@ long FDECL(dlb_ftell, (DLB_P));
 #ifndef FILE_AREAS
 # define dlb_fopen	fopen
 #else
-# define dlb_fopen_area fopen_datafile_area
+# define dlb_fopen_area(a,b,c) fopen_datafile_area(a,b,c,FALSE)
+	/* TODO: someone more knowledgable make this better */
 #endif
 # define dlb_fclose	fclose
 # define dlb_fread	fread
