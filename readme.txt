@@ -40,15 +40,31 @@
 
 The development of version 0.0.7 of Slash'EM started with version 0.0.6E5
 (yes, we realise our version numbers are a little odd - it made sense at
-the time!). It is still in alpha development. This means that we are
-concentrating on adding new features to the game rather than fixing bugs.
-You're welcome to log bugs via the offical bug page:
+the time!). This is intended to be the last alpha version. We are asking
+for comments on the new features over the month of June 2003 with a view
+to making any last changes which are needed before releasing the first
+beta version.
+
+If you do have comments to make then please either submit a feature
+request (if you know exactly what it is you think the game should do
+differently) via the offical RFE page:
+
+http://sourceforge.net/tracker/?group_id=9746&atid=359746
+
+If, on the other hand, you know you don't like something but aren't quite
+sure how to improve it then please discuss it on the development forum:
+
+http://sourceforge.net/forum/forum.php?forum_id=30378
+
+(If you don't have web access, then use the slashem-discuss mailing list,
+instead; see below.)
+
+Please log bugs via the offical bug page:
 
 http://sourceforge.net/bugs/?group_id=9746
 
-However, what we're really interested in at the moment is your views on the
-new features. If you're interested in the development of Slash'EM, please
-join the slashem-devel mailing list so that you can take part in discussions
+If you are interested in the development of Slash'EM, please also join
+the slashem-devel mailing list so that you can take part in discussions
 and give us any feedback.
 
 If you'd just like to talk about Slash'EM with other players or chat to
@@ -68,33 +84,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E0 [April 1/2003] [Released by Ali]
--Actioned feature request 575146: Improvements to gypsy fortune messages.
--All situations where a monster flees now generate a message.
--Merged Sam Dennis's more intelligent autocomplete patch
--Merged Roderick Schertler's held status flag patch
--fixed bug 603350: Display layers: floating glyphs missing
--Actioned feature request 520961: Specifying lamplit flag in level files
-	(Pasi Kallinen)
--Merged Pasi Kallinen's whetstone patch
--Merged Malcolm Ryan's Torch patch
--Merged Pasi Kallinen's coloured menus patch
--Actioned feature request 538738: Random placement regions (Pasi Kallinen)
--fixed bug 603180: Armed and unarmed grenades merge (Pasi Kallinen)
--fixed bug 689957: Security breach in slashem -s
--fixed bug 603555: DISPLAY_LAYERS when hero_memory reset
--Merged vanilla 3.4.1 codebase.
--Actioned feature request 595646: Pasi's alternate Medusa and Sokoban.
--Actioned feature request 536690: return pickaxes to 1handed.
--Actioned feature request 494753: Restore probability of PYEC invocation.
--Actioned feature request 422158: so painful to read, etc. from inventory.
--fixed bug 704203: Finishing off drained corpse.
--Actioned feature request 563965: Reduce gypsy wishes.
--Actioned feature request 594639: Monsters which should be bloodless.
--fixed bug 230857: Wrong location given for death.
--Removed test dungeon (A Short but Boring Road).
--Finished implementation of potions of blood and changes to medical kits.
--Merged DOS and UNIX source distributions.
+ver 0.0.7E1 [?] [Released by ?]
 
 See history.txt for changes made in previous versions.
 

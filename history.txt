@@ -29,6 +29,34 @@
 | Section 1: Yesterday's News |
 +-----------------------------+
 
+ver 0.0.7E0 [April 1/2003] [Released by Ali]
+-Actioned feature request 575146: Improvements to gypsy fortune messages.
+-All situations where a monster flees now generate a message.
+-Merged Sam Dennis's more intelligent autocomplete patch
+-Merged Roderick Schertler's held status flag patch
+-fixed bug 603350: Display layers: floating glyphs missing
+-Actioned feature request 520961: Specifying lamplit flag in level files
+	(Pasi Kallinen)
+-Merged Pasi Kallinen's whetstone patch
+-Merged Malcolm Ryan's Torch patch
+-Merged Pasi Kallinen's coloured menus patch
+-Actioned feature request 538738: Random placement regions (Pasi Kallinen)
+-fixed bug 603180: Armed and unarmed grenades merge (Pasi Kallinen)
+-fixed bug 689957: Security breach in slashem -s
+-fixed bug 603555: DISPLAY_LAYERS when hero_memory reset
+-Merged vanilla 3.4.1 codebase.
+-Actioned feature request 595646: Pasi's alternate Medusa and Sokoban.
+-Actioned feature request 536690: return pickaxes to 1handed.
+-Actioned feature request 494753: Restore probability of PYEC invocation.
+-Actioned feature request 422158: so painful to read, etc. from inventory.
+-fixed bug 704203: Finishing off drained corpse.
+-Actioned feature request 563965: Reduce gypsy wishes.
+-Actioned feature request 594639: Monsters which should be bloodless.
+-fixed bug 230857: Wrong location given for death.
+-Removed test dungeon (A Short but Boring Road).
+-Finished implementation of potions of blood and changes to medical kits.
+-Merged DOS and UNIX source distributions.
+
 ver 0.0.6E8 [January 24/2003] [Released by Ali]
 -fixed bug 233901: Gtk-Critical errors from gtk_main_quit.
 -Proxy: Implement proxified GTK interface.
