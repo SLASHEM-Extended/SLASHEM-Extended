@@ -760,7 +760,8 @@ mattacku(mtmp)
 			 *
 			 * RJ
 			 */
-			clone_mon(mtmp, 0, 0);
+			if (!range2)
+			    clone_mon(mtmp, 0, 0);
 			break;
 		case AT_WEAP:
 			if(range2) {

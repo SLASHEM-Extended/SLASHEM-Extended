@@ -98,6 +98,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 1018229: impossible splitbill: no resident shopkeeper??
 -fixed bug 1018447: Game crash when Hero with ball displace displacer beast
 -fixed bug 1020983: Typo in doc/sources.txt (cloack)
+-fixed bug 956891: Breeders are explosive
 
 See history.txt for changes made in previous versions.
 
