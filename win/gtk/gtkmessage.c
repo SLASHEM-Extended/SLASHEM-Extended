@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmessage.c,v 1.4 2000-12-22 14:54:56 j_ali Exp $
+  $Id: gtkmessage.c,v 1.5 2000-12-29 13:55:06 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -57,7 +57,14 @@ nh_message_putstr(const char *str)
 
   sprintf(buf, "\n%s", str);
 
+#ifdef WIN32
+  /* ALI: gimpwin 20001226 looks very bad if you update a text widget without
+   * freezing it (the text is displayed half-scrolled, with lines overlapping
+   * each other). This is not ideal (the text is redrawn each thaw), but it
+   * is an improvement.
+   */
   gtk_text_freeze(t);
+#endif
 
   if(u.uhpmax > 0 && (((double)u.uhp) / u.uhpmax < 0.1 || u.uhp < 5))
     i = MAP_RED;
@@ -70,14 +77,23 @@ nh_message_putstr(const char *str)
     for(i=0 ; i<len ; ++i)
       if(GTK_TEXT_INDEX(t, i) == '\n'){
 	++i;
+#ifndef WIN32	/* Already frozen in WIN32 */
+	gtk_text_freeze(t);
+#endif
 	gtk_text_set_point(t, i);
 	gtk_text_backward_delete(t, i);
 	gtk_text_set_point(t, len - i);
+#ifndef WIN32
+	gtk_text_thaw(t);
+#endif
 	break;
       }
   }
+#ifdef WIN32
+  /* ALI: t->vadj->upper would be more correct, but causes gimpwin to crash */
+  gtk_adjustment_set_value(t->vadj, t->vadj->upper - 1);
   gtk_text_thaw(t);
-  gtk_adjustment_set_value(t->vadj, t->vadj->upper);
+#endif
 
   free(buf);
 }
