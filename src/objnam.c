@@ -2748,6 +2748,7 @@ typfnd:
 	}
 
 	if(cnt > 0 && objects[typ].oc_merge && oclass != SPBOOK_CLASS &&
+		(typ != CORPSE || !is_reviver(&mons[mntmp])) &&
 		(cnt < rnd(6) ||
 #ifdef WIZARD
 		wizard ||
