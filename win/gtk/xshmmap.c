@@ -1,5 +1,5 @@
 /*
-  $Id: xshmmap.c,v 1.8 2003-05-19 12:14:38 j_ali Exp $
+  $Id: xshmmap.c,v 1.9 2003-05-31 11:59:56 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -445,6 +445,7 @@ xshm_map_size(int mode, int width, int height)
 #endif
 	xshm.pixmap = gdk_pixmap_new(xshm.area->window, width, height, -1);
 	xshm.gc = gdk_gc_new(xshm.pixmap);
+	gdk_gc_set_foreground(xshm.gc, &xshm.area->style->bg[GTK_STATE_NORMAL]);
 	gdk_draw_rectangle(xshm.pixmap, xshm.gc, TRUE, 0, 0, width, height);
 	xshm_map_pixmap = xshm.pixmap;
 	/* Area outside new map needs updating; mark it as such */
