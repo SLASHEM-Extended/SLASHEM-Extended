@@ -486,6 +486,7 @@ struct obj *obj;
 {
 	if (obj->quan > 1L) {
 		obj->quan--;
+		obj->owt = weight(obj);
 	} else {
 		obj_extract_self(obj);
 		possibly_unwield(mon);

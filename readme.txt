@@ -400,6 +400,7 @@ ver 0.0.6E4F6 [? ?/2001] [Released by ?]
 -fixed bug 475774: Dipping into potion of acid message.
 -fixed bug 469282: vampire race to vampire chat problem.
 -fixed bug 458134: character does't fall after a dash.
+-fixed bug 482191: m_useup() messes up weight.
 
 ver 0.0.6E4F5 [August 31/2001] [Released by Ali]
 -fixed bug 420517: Yellow dragon scale mail.
