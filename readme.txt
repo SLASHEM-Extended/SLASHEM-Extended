@@ -40,7 +40,7 @@
 
 The development of version 0.0.7 of Slash'EM started with version 0.0.6E5
 (yes, we realise our version numbers are a little odd - it made sense at
-the time!). We are hoping to release the first beta version this Spring.
+the time!). Version 0.0.7E6 is the first beta release.
 
 If you find any bugs then please submit a report via the offical bug page:
 
@@ -67,7 +67,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E6 [?] [Released by ?]
+ver 0.0.7E6 [February 28/2004] [Released by Ali]
 -fixed bug 876092: Wrong filename in message during build process (Clive Crous)
 -fixed bug 876094: Tiles are miscoloured in allegro port (Clive Crous)
 -fixed bug 876096: Tiles are misdrawn/cropped in allegro port (Clive Crous)
@@ -219,7 +219,7 @@ overhead perspective.
 ----------------
 
 o Project administrators: Warren Cheung and J. Ali Harlow
-o Developer: Pekka Rousu
+o Developers: Pekka Rousu and Clive Crous
 o Mac port: Paul Hurtley
 
 4.2 Acknowledgements
