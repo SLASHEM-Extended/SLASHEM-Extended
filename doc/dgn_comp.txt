@@ -31,8 +31,8 @@ GRAMMAR
 
        DESCRIPTION: tag
 
-       where tag is currently one of HELLISH, MAZELIKE, or ROGUE-
-       LIKE.
+       where tag is currently one of HELLISH, MAZELIKE, TOWN,  or
+       ROGUELIKE.
 
        ALIGNMENT  |  LEVALIGN:  [  lawful  |  neutral | chaotic |
        unaligned ]
@@ -40,31 +40,22 @@ GRAMMAR
        gives the  alignment  of  the  dungeon/level  (default  is
        unaligned).
 
-       ENTRY: level
-
-       the  dungeon entry point.  The dungeon connection attaches
-       at this level of the given dungeon.  If the value of level
-       is negative, the entry level is calculated from the bottom
-       of the dungeon, with -1 being the  last  level.   If  this
-       line  is  not  present in a dungeon description, the entry
-       level defaults to 1.
-
        PROTOFILE: name
 
        the prototypical name for dungeon level files in this dun-
-       geon.   For  example,  the  PROTOFILE name for the dungeon
+       geon.  For example, the PROTOFILE  name  for  the  dungeon
        Vlad's Tower is tower.
 
        LEVEL: name bonesmarker @ ( base , rand ) [ %age ]
 
-       where name is the level name, bonesmarker is a letter  for
-       marking  bones  files, ( base , rand ) is the location and
+       where  name is the level name, bonesmarker is a letter for
+       marking bones files, ( base , rand ) is the  location  and
        %age is the generation percentage, as above.
 
-       RNDLEVEL: name bonesmarker @ ( base ,  rand  )  [  %age  ]
+       RNDLEVEL:  name  bonesmarker  @  (  base , rand ) [ %age ]
        rndlevs
 
-       where  name is the level name, bonesmarker is a letter for
+       where name is the level name, bonesmarker is a letter  for
        marking bones files, ( base , rand ) is the location, %age
        is the generation percentage, as above, and rndlevs is the
        number of similar levels available to choose from.
@@ -72,88 +63,94 @@ GRAMMAR
        CHAINLEVEL: name bonesmarker prev_name + ( base , rand ) [
        %age ]
 
-       where  name is the level name, bonesmarker is a letter for
-       marking bones files, prev_name is  the  name  of  a  level
-       defined previously, ( base , rand ) is the offset from the
-       level being chained from, and %age is the generation  per-
-       centage.
-
-       RNDCHAINLEVEL:  name bonesmarker prev_name + ( base , rand
-       ) [ %age ] rndlevs
-
        where name is the level name, bonesmarker is a letter  for
        marking  bones  files,  prev_name  is  the name of a level
        defined previously, ( base , rand ) is the offset from the
-       level  being chained from, %age is the generation percent-
+       level  being chained from, and %age is the generation per-
+       centage.
+
+       RNDCHAINLEVEL: name bonesmarker prev_name + ( base ,  rand
+       ) [ %age ] rndlevs
+
+       where  name is the level name, bonesmarker is a letter for
+       marking bones files, prev_name is  the  name  of  a  level
+       defined previously, ( base , rand ) is the offset from the
+       level being chained from, %age is the generation  percent-
        age, and rndlevs is the number of similar levels available
        to choose from.
 
        LEVELDESC: type
 
-       where  type  is  the level type, (see DESCRIPTION, above).
-       The type is used to override any  pre-set  value  used  to
+       where type is the level type,  (see  DESCRIPTION,  above).
+       The  type  is  used  to override any pre-set value used to
        describe the entire dungeon, for this level only.
 
        BRANCH: name @ ( base , rand ) [ stair | no_up | no_down |
-       portal ] [ up | down ]
+       portal ] [ up | down ] [ level ]
 
-       where name is the name of the dungeon to branch to, and  (
-       base , rand ) is the location of the branch.  The last two
-       optional arguments are the branch type and  branch  direc-
-       tion.  The type of a branch can be a two-way stair connec-
-       tion, a one-way stair connection, or a  magic  portal.   A
-       one-way  stair is described by the types no_up and no_down
-       which specify  which  stair  direction  is  missing.   The
-       default  branch  type is stair.  The direction for a stair
-       can be either up or down; direction is not  applicable  to
-       portals.  The default direction is down.
+       where  name is the name of the dungeon to branch to, and (
+       base , rand ) is the location of  the  branch.   The  last
+       three  optional  arguments  are  the  branch  type, branch
+       direction and target level.  The type of a branch can be a
+       two-way stair connection, a one-way stair connection, or a
+       magic portal.  A one-way stair is described by  the  types
+       no_up  and  no_down which specify which stair direction is
+       missing.  The default branch type is stair.  The direction
+       for  a  stair  can  be either up or down; direction is not
+       applicable to portals.  The  default  direction  is  down.
+       level is the target dungeon entry point.  The dungeon con-
+       nection attaches at this level of the given  dungeon.   If
+       the  value of level is negative, the entry level is calcu-
+       lated from the bottom of the dungeon, with  -1  being  the
+       last  level.   If  this  value is not present in a dungeon
+       description, the entry level defaults to 1.
 
-       CHAINBRANCH:  name  prev_name  + ( base , rand ) [ stair |
-       no_up | no_down | portal ] [ up | down ]
+       CHAINBRANCH: name prev_name + ( base , rand )  [  stair  |
+       no_up | no_down | portal ] [ up | down ] [ level ]
 
-       where name is the  name  of  the  dungeon  to  branch  to,
-       prev_name  is the name of a previously defined level and (
-       base , rand ) is the offset from the level  being  chained
-       from.  The optional branch type and direction are the same
-       as described above.
+       where  name  is  the  name  of  the  dungeon to branch to,
+       prev_name is the name of a previously defined level and  (
+       base  ,  rand ) is the offset from the level being chained
+       from.  The optional branch type, direction and  level  are
+       the same as described above.
 
 GENERIC RULES
-       Each dungeon must have a unique  bonesmarker  ,  and  each
-       special  level  must  have a bonesmarker unique within its
+       Each  dungeon  must  have  a unique bonesmarker , and each
+       special level must have a bonesmarker  unique  within  its
        dungeon (letters may be reused in different dungeons).  If
-       the  bonesmarker  has  the  special value "none", no bones
+       the bonesmarker has the special  value  "none",  no  bones
        files will be created for that level or dungeon.
 
-       The value base may be in the range of 1  to  MAXLEVEL  (as
+       The  value  base  may be in the range of 1 to MAXLEVEL (as
        defined in global.h ).
 
        The value rand may be in the range of -1 to MAXLEVEL.
 
-       If  rand  is  -1  it  will  be  replaced  with  the  value
-       (num_dunlevs(dungeon) - base) during the load process (ie.
-       from here to the end of the dungeon).
+       If rand is -1 it will be replaced with the value (num_dun-
+       levs(dungeon)  -  base)  during the load process (ie. from
+       here to the end of the dungeon).
 
        If rand is 0 the level is located absolutely at base.
 
-       Branches  don't  have  a  probability.  Dungeons do.  If a
-       dungeon fails to be generated during load, all its  levels
+       Branches don't have a probability.   Dungeons  do.   If  a
+       dungeon  fails to be generated during load, all its levels
        and branches are skipped.
 
        No level or branch may be chained from a level with a per-
-       centage generation probability.  This is to  prevent  non-
+       centage  generation  probability.  This is to prevent non-
        resolution during the load.  In addition, no branch may be
        made from a dungeon with a percentage generation probabil-
        ity for the same reason.
 
        As a general rule using the dungeon compiler:
 
-       If  a dungeon has a protofile name associated with it (eg.
+       If a dungeon has a protofile name associated with it  (eg.
        tower) that file will be used.
 
-       If a special level is present, it will override the  above
+       If  a special level is present, it will override the above
        rule and the appropriate file will be loaded.
 
-       If  neither of the above are present, the standard genera-
+       If neither of the above are present, the standard  genera-
        tor will take over and make a "normal" level.
 
        A level alignment, if present, will override the alignment
@@ -204,7 +201,7 @@ EXAMPLE
        within that dungeon.
 
 AUTHOR
-       M. Stephenson (from the level compiler by  Jean-Christophe
+       M.  Stephenson (from the level compiler by Jean-Christophe
        Collet).
 
 SEE ALSO
