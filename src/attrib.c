@@ -685,6 +685,13 @@ int oldlevel, newlevel;
 		lose_weapon_skill(oldlevel - newlevel);
 	}
 
+	/* ALI -- update Warn_of_mon */
+	HWarn_of_mon = HUndead_warning;
+	if (HUndead_warning)
+	    flags.warntype |= M2_UNDEAD;
+	else
+	    flags.warntype &= ~M2_UNDEAD;
+	
 	/* WAC -- adjust techniques */
 	adjtech(oldlevel, newlevel);
 }
