@@ -87,6 +87,7 @@ ver 0.0.7E5 [?] [Released by ?]
 -Improved tile2png to use paletted images where possible
 -Winnt: Add support for png tilesets and build them by default
 -fixed bug 456453: Deep dragon resistances
+-fixed bug 662821: magic candles burn in the candelabrum of invocation
 
 See history.txt for changes made in previous versions.
 
