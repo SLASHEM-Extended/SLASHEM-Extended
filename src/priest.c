@@ -195,7 +195,7 @@ int sx, sy;
 boolean sanctum;   /* is it the seat of the high priest? */
 {
 	struct monst *priest;
-	struct obj *otmp;
+	struct obj *otmp = NULL;
 	int cnt;
 
 	if(MON_AT(sx+1, sy))
