@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.48 2003-12-21 20:23:23 j_ali Exp $
+  $Id: gtk.c,v 1.49 2003-12-28 18:43:40 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1132,12 +1132,15 @@ nh_dir_keysym(GdkEventKey *ev)
  * slave windows and quietly forward the key presses.
  */
 
+#define FOCUS_USE_FOCUS_KEYS	1	/* This window uses focus keys */
+
 static struct focus_hierarchy {
     GtkWindow *master;
     GSList *slaves;
     gint (*handler)(GtkWidget *widget, GdkEventKey *event, gpointer data);
     gpointer data;
     struct focus_hierarchy *next;
+    unsigned long flags;
 } *focus_top = NULL;
 static int focus_game = FALSE;	/* Does any game window have focus? */
 
@@ -1248,6 +1251,14 @@ focus_key_press_early(GtkWidget *widget, GdkEventKey *event, gpointer data)
      * handler doesn't deal with the key (eg., an accelerator) then
      * Gtk+ will call focus_key_press() in due course.
      */
+    if (focus_top && focus_top->master &&
+      !(focus_top->flags & FOCUS_USE_FOCUS_KEYS) &&
+      (event->keyval == GDK_Up || event->keyval == GDK_KP_Up ||
+      event->keyval == GDK_Down || event->keyval == GDK_KP_Down ||
+      event->keyval == GDK_Left || event->keyval == GDK_KP_Left ||
+      event->keyval == GDK_Right || event->keyval == GDK_KP_Right ||
+      event->keyval == GDK_Tab || event->keyval == GDK_ISO_Left_Tab))
+	return focus_key_press(widget, event, data);
     if (event->keyval == GDK_Escape || event->keyval == GDK_KP_0 ||
       event->keyval == GDK_KP_1 || event->keyval == GDK_KP_2 ||
       event->keyval == GDK_KP_3 || event->keyval == GDK_KP_4 ||
@@ -1287,8 +1298,15 @@ focus_set_events(GtkWindow *w)
       GTK_SIGNAL_FUNC(focus_key_press), 0);
 }
 
+/*
+ * Master windows may be configured to use the standard Gtk+ focus keys 
+ * (arrow keys, tab, left tab). If they do not use the focus keys then
+ * the key presses will be passed on to the provided signal function.
+ */
+
 void
-nh_gtk_focus_set_master(GtkWindow *w, GtkSignalFunc func, gpointer data)
+nh_gtk_focus_set_master(GtkWindow *w, GtkSignalFunc func, gpointer data,
+  gboolean use_focus_keys)
 {
     struct focus_hierarchy *fh;
     g_return_if_fail(w != NULL);
@@ -1298,6 +1316,7 @@ nh_gtk_focus_set_master(GtkWindow *w, GtkSignalFunc func, gpointer data)
     fh->handler = (void *)func;
     fh->data = data;
     fh->next = focus_top;
+    fh->flags = use_focus_keys ? FOCUS_USE_FOCUS_KEYS : 0;
     focus_top = fh;
     focus_set_events(w);
 #ifdef DEBUG
@@ -2072,7 +2091,7 @@ GTK_init_nhwindows(char ***capvp)
      */
     main_window = nh_session_window_new("main");
     nh_gtk_focus_set_master(GTK_WINDOW(main_window),
-      GTK_SIGNAL_FUNC(GTK_default_key_press), 0);
+      GTK_SIGNAL_FUNC(GTK_default_key_press), 0, FALSE);
 
     gtk_signal_connect(GTK_OBJECT(main_window), "delete_event",
       GTK_SIGNAL_FUNC(main_window_delete), 0);

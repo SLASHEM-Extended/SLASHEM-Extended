@@ -1,5 +1,5 @@
 /*
-  $Id: gtkyn.c,v 1.11 2003-08-02 16:02:44 j_ali Exp $
+  $Id: gtkyn.c,v 1.12 2003-12-28 18:43:40 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -101,7 +101,7 @@ yn_show_window(gpointer data)
     params.w = window = nh_gtk_window_dialog(FALSE);
     nh_position_popup_dialog(GTK_WIDGET(window));
     nh_gtk_focus_set_master(GTK_WINDOW(window),
-      GTK_SIGNAL_FUNC(yn_key_press), 0);
+      GTK_SIGNAL_FUNC(yn_key_press), 0, TRUE);
     gtk_signal_connect(GTK_OBJECT(window), "destroy",
       GTK_SIGNAL_FUNC(yn_destroy), 0);
 

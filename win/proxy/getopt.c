@@ -1,4 +1,4 @@
-/* $Id: getopt.c,v 1.3 2003-05-17 10:33:25 j_ali Exp $ */
+/* $Id: getopt.c,v 1.4 2003-12-28 18:43:40 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -222,5 +222,7 @@ char *get_option(const char *option)
 	    case MENU_FULL:		return "full";
 	}
     }
+    if (!strcmp(option, "number_pad"))
+	return iflags.num_pad ? iflags.num_pad_mode ? "2" : "1" : "0";
     return "";
 }

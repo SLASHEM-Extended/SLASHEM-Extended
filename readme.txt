@@ -91,6 +91,7 @@ ver 0.0.7E5 [?] [Released by ?]
 -fixed bug 863646: Fails to compile under Gtk 2.0
 -fixed bug 863679: GTK interface fails to build as an internal port
 -Winnt: Use pkg-config in build (for Gtk+ and libpng) based on cc-gtk
+-fixed bug 864193: Using Arrow keys in win32 GTK
 
 See history.txt for changes made in previous versions.
 

@@ -1,9 +1,9 @@
 /*
-  $Id: gtkmisc.c,v 1.11 2003-12-13 12:52:58 j_ali Exp $
+  $Id: gtkmisc.c,v 1.12 2003-12-28 18:43:40 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
-               Copyright (c) Slash'EM Development Team 2000-2002
+               Copyright (c) Slash'EM Development Team 2000-2003
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -117,12 +117,12 @@ default_clicked(GtkWidget *widget, gpointer data)
 		    break;
 	    }
 	}
-	nh_option_cache_invalidate();
 #ifdef GTK_PROXY
 	proxy_cb_doset();
 #else
 	doset();
 #endif
+	nh_option_cache_invalidate();
 	nh_option_set();
     } else
 	gtk_main_quit();
@@ -165,7 +165,8 @@ nh_option_more_confirm(void)
     GtkWidget *button3;
 
     w = nh_gtk_window_dialog(TRUE);
-    nh_gtk_focus_set_master(GTK_WINDOW(w), GTK_SIGNAL_FUNC(mc_key_press), 0);
+    nh_gtk_focus_set_master(GTK_WINDOW(w),
+      GTK_SIGNAL_FUNC(mc_key_press), 0, TRUE);
     hid = gtk_signal_connect(GTK_OBJECT(w), "destroy",
       GTK_SIGNAL_FUNC(default_destroy), &hid);
     nh_position_popup_dialog(GTK_WIDGET(w));
@@ -476,6 +477,7 @@ boolean
 nh_option_cache_get_bool(char *option)
 {
     char *value;
+    int v;
     struct nh_option *no = nh_option_cache_getent(option);
     if (!no)
 	return FALSE;
@@ -486,7 +488,23 @@ nh_option_cache_get_bool(char *option)
 	value = get_option(option);
 #endif
 	no->flags |= NHOF_BOOLEAN;
-	no->value = strcmp(value, "yes") ? boolean_reset : boolean_set;
+	/*
+	 * Some options (eg., number_pad) are booleans under some versions
+	 * of NetHack but have been expanded to have more than one "true"
+	 * value in later versions. As long as gtkhack doesn't need to
+	 * differentiate between the various true values we can simply
+	 * map them to true and false here. This provides full backwards
+	 * compatibility. We assume that "0" means false and non-zero
+	 * values mean various shades of true.
+	 */
+	if (!strcmp(value, "yes"))
+	    no->value = boolean_set;
+	else if (!strcmp(value, "no"))
+	    no->value = boolean_reset;
+	else if (sscanf(value, "%d", &v) == 1)
+	    no->value = v ? boolean_set :  boolean_reset;
+	else
+	    no->value = boolean_reset;
     }
     return no->value == boolean_set;
 }
@@ -972,7 +990,7 @@ nh_option_new()
     w = nh_gtk_window_dialog(FALSE);
     gtk_container_border_width(GTK_CONTAINER(w), NH_PAD);
     nh_gtk_focus_set_master(GTK_WINDOW(w),
-      GTK_SIGNAL_FUNC(default_key_press), 0);
+      GTK_SIGNAL_FUNC(default_key_press), 0, TRUE);
     hid = gtk_signal_connect(GTK_OBJECT(w), "destroy",
       GTK_SIGNAL_FUNC(default_destroy), &hid);
     nh_position_popup_dialog(GTK_WIDGET(w));

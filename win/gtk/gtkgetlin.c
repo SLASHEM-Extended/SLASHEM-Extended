@@ -1,5 +1,5 @@
 /*
-  $Id: gtkgetlin.c,v 1.5 2003-05-24 15:15:15 j_ali Exp $
+  $Id: gtkgetlin.c,v 1.6 2003-12-28 18:43:40 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -86,7 +86,7 @@ GTK_ext_getlin(const char *query)
 #endif
 
     nh_gtk_focus_set_master(GTK_WINDOW(window),
-      GTK_SIGNAL_FUNC(entry_key_press), 0);
+      GTK_SIGNAL_FUNC(entry_key_press), 0, TRUE);
 
     hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
       FALSE, FALSE, NH_PAD);
