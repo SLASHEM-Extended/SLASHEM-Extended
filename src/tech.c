@@ -1196,9 +1196,9 @@ int tech_no;
 		/* WAC can't yank out cursed items */
                 if (num > 0 && (!Fumbling || !rn2(10)) && !obj->cursed) {
 		    int roll;
-		    obj_extract_self(otmp);
+		    obj_extract_self(obj);
 		    possibly_unwield(mtmp, FALSE);
-		    setmnotwielded(mtmp,otmp);
+		    setmnotwielded(mtmp, obj);
 		    roll = rn2(num + 1);
 		    if (roll > 3) roll = 3;
 		    switch (roll) {
