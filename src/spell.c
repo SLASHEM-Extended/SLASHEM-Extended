@@ -34,7 +34,9 @@ static NEARDATA struct obj *book;       /* last/current book being xscribed */
 #define spellid(spell)          spl_book[spell].sp_id
 #define spellname(spell)        OBJ_NAME(objects[spellid(spell)])
 #define spellet(spell)  \
-	((char)((spell < 26) ? ('a' + spell) : ('A' + spell - 26)))
+	((char)((spell < 26) ? ('a' + spell) : \
+	        (spell < 52) ? ('A' + spell - 26) : \
+		(spell < 62) ? ('0' + spell - 52) : 0 ))
 
 static void FDECL(cursed_book, (int));
 static void FDECL(deadbook, (struct obj *));
@@ -105,7 +107,7 @@ static int FDECL(spell_let_to_idx, (CHAR_P));
 /* since the spellbook itself doesn't blow up, don't say just "explodes" */
 static const char explodes[] = "radiates explosive energy";
 
-/* convert a letter into a number in the range 0..51, or -1 if not a letter */
+/* convert an alnum into a number in the range 0..61, or -1 if not an alnum */
 static int
 spell_let_to_idx(ilet)
 char ilet;
@@ -116,6 +118,8 @@ char ilet;
     if (indx >= 0 && indx < 26) return indx;
     indx = ilet - 'A';
     if (indx >= 0 && indx < 26) return indx + 26;
+    indx = ilet - '0';
+    if (indx >= 0 && indx < 10) return indx + 52;
     return -1;
 }
 
@@ -580,7 +584,12 @@ getspell(spell_no)
 	    if (nspells == 1)  Strcpy(lets, "a");
 	    else if (nspells < 27)  Sprintf(lets, "a-%c", 'a' + nspells - 1);
 	    else if (nspells == 27)  Sprintf(lets, "a-z A");
-	    else Sprintf(lets, "a-z A-%c", 'A' + nspells - 27);
+	    else if (nspells < 53)
+		Sprintf(lets, "a-z A-%c", 'A' + nspells - 27);
+	    else if (nspells == 53)  Sprintf(lets, "a-z A-Z 0");
+	    else if (nspells < 62)
+		Sprintf(lets, "a-z A-Z 0-%c", '0' + nspells - 53);
+	    else  Sprintf(lets, "a-z A-Z 0-9");
 
 	    for(;;)  {
 		Sprintf(qbuf, "Cast which spell? [%s ?]", lets);
@@ -1074,8 +1083,8 @@ dovspell()
 	else {
 	    while (dospellmenu("Currently known spells",
 			       SPELLMENU_VIEW, &splnum)) {
-		Sprintf(qbuf, "Reordering spells; swap '%c' with",
-			spellet(splnum));
+		Sprintf(qbuf, "Reordering spells; swap '%s' with",
+			spellname(splnum));
 		if (!dospellmenu(qbuf, splnum, &othnum)) break;
 
 		spl_tmp = spl_book[splnum];
@@ -1112,6 +1121,8 @@ int *spell_no;
 	 * in the window-ports (say via a tab character).
 	 */
 	Sprintf(buf, "%-20s     Level  %-12s Fail", "    Name", "Category");
+	if (flags.menu_style == MENU_TRADITIONAL)
+	    Strcat(buf, "  Key");
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, MENU_UNSELECTED);
 	for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
 	        Sprintf(buf, "%-20s  %2d%s   %-12s %3d%%",
@@ -1119,10 +1130,12 @@ int *spell_no;
 			spellknow(i) ? " " : "*",
 			spelltypemnemonic(spell_skilltype(spellid(i))),
 			100 - percent_success(i));
+		if (flags.menu_style == MENU_TRADITIONAL)
+		    Sprintf(eos(buf), "%4c ", spellet(i) ? spellet(i) : ' ');
 
 		any.a_int = i+1;	/* must be non-zero */
 		add_menu(tmpwin, NO_GLYPH, &any,
-			 spellet(i), 0, ATR_NONE, buf,
+			 0, 0, ATR_NONE, buf,
 			 (i == splaction) ? MENU_SELECTED : MENU_UNSELECTED);
 	      }
 	end_menu(tmpwin, prompt);
