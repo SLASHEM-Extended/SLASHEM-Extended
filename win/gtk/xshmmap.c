@@ -1,5 +1,5 @@
 /*
-  $Id: xshmmap.c,v 1.4 2000-09-20 01:48:58 wacko Exp $
+  $Id: xshmmap.c,v 1.5 2000-09-23 10:15:09 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -183,6 +183,61 @@ x_tile_tmp_draw_rectangle(int ofsx, int ofsy, int c)
 #endif
 }
 
+/*
+ * A more general version of x_tile_tmp_draw(), which draws to any GdkImage
+ * (Note: tmp_img may be an XImage). This is not as efficient as
+ * x_tile_tmp_draw(), but is fine for the use it gets.
+ */
+
+void
+x_tile_gdkimage_draw(GdkImage *dst, int transparency, int srcx, int srcy, int ofsx, int ofsy)
+{
+    int i, j;
+    int width = tmp_img->width;
+    int height = tmp_img->height;
+    guint32 nul_pixel, pixel;
+#ifdef WINGTK_X11
+    nul_pixel = XGetPixel(tile_img, 0, 0);
+#else
+    nul_pixel = gdk_image_get_pixel(tile_img, 0, 0);
+#endif
+
+    if(ofsx < 0){
+	srcx -= ofsx;
+	width += ofsx;
+	ofsx = 0;
+    }
+    if(ofsy < 0){
+	srcy -= ofsy;
+	height += ofsy;
+	ofsy = 0;
+    }
+    if(ofsx > 0){
+	width -= ofsx;
+    }
+
+    if(ofsy > 0){
+	height -= ofsy;
+    }
+
+    if(width <= 0)
+	return;
+
+    if(height <= 0)
+	return;
+
+    for(i=0 ; i < height ; ++i)
+	for(j=0 ; j < width ; ++j){
+#ifdef WINGTK_X11
+	    pixel = XGetPixel(tile_img, srcx + j, srcy + i);
+#else
+	    pixel = gdk_image_get_pixel(tile_img, srcx + j, srcy + i);
+#endif
+	    if (!transparency || pixel != nul_pixel)
+		gdk_image_put_pixel(dst, ofsx + j, ofsy + i, pixel);
+	}
+}
+
 void
 x_tile_tmp_draw(int srcx, int srcy, int ofsx, int ofsy)
 {
@@ -335,25 +390,4 @@ xshm_map_tile_draw(int dstx, int dsty)
 
     XShmSyncXShmImageRegion(map, dstx, dsty, tmp_img->width, tmp_img->height); 
 #endif
-}
-
-GdkPixmap *
-GTK_tmp_to_pixmap()
-{
-    GdkPixmap * ret;
-
-    ret = gdk_pixmap_new ( NULL, tmp_img->width, tmp_img->height, 
-    	(gdk_visual_get_system())->depth);
-    
-#ifdef WINGTK_X11
-    /* FIXME 
-     * Need to add code that takes tmp_img (which is an XSubImage) and draw it onto
-     * ret (which is a GdkPixmap).   Anyone know how to do this?
-     */
-#else   
-    gdk_draw_image(ret, gc, tmp_img, 0, 0, 
-    			0, 0, tmp_img->width, tmp_img->height);
-#endif
-
-    return ret;
 }

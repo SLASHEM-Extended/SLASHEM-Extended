@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.10 2000-09-20 01:48:58 wacko Exp $
+  $Id: gtkmap.c,v 1.11 2000-09-23 10:15:09 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1292,16 +1292,31 @@ GTK_glyph_to_gdkpixmap(int glyph)
 {
     int tile;
     int src_x, src_y;
+    GdkImage *img;
+    GdkPixmap *pix;
+
+    img = gdk_image_new(GDK_IMAGE_FASTEST, gdk_visual_get_system(),
+      Tile->unit_width, Tile->unit_height);
+    if (!img)
+	return NULL;
+    pix = gdk_pixmap_new(NULL, Tile->unit_width, Tile->unit_height, 
+    	gdk_visual_get_system()->depth);
+    if (!pix)
+    {
+	gdk_image_destroy(img);
+	return NULL;
+    }
 
     tile = fix_tile(glyph2tile[glyph]);
     
     src_x = (tile % tiles_per_row) * c_width;
     src_y = (tile / tiles_per_row) * c_height;
 
-    x_tmp_clear();
-    x_tile_tmp_draw(src_x, src_y, 0, 0);
+    x_tile_gdkimage_draw(img, FALSE, src_x, src_y, 0, 0);
+    gdk_draw_image(pix, map_gc, img, 0, 0, 0, 0, img->width, img->height);
+    gdk_image_destroy(img);
 
-    return (GTK_tmp_to_pixmap());
+    return pix;
 }
 
 void

@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.6 2000-09-20 04:21:18 wacko Exp $
+  $Id: winGTK.h,v 1.7 2000-09-23 10:15:08 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -15,6 +15,8 @@
 #else
 #define WINGTK_X11	/* X11 libraries are available for our use */
 #endif
+
+#define WINGTK_MENU_IMAGES	/* Pretty images (tiles) in first column */
 
 #ifdef WINGTK_X11
 #include <gdk/gdkx.h>
@@ -127,7 +129,6 @@ extern void	GTK_raw_print(const char *);
 extern void	GTK_raw_print_bold(const char *);
 
 extern GdkPixmap * GTK_glyph_to_gdkpixmap(int);
-extern GdkPixmap * GTK_tmp_to_pixmap();
 
 extern GtkWidget	*nh_map_new(GtkWidget *);
 extern void		nh_map_destroy(void);
@@ -253,6 +254,7 @@ extern void	xshm_map_draw(GdkWindow *, int src_x, int src_y, int dst_x, int dst_
 extern void	x_tmp_clear();
 extern void	x_tile_init(GdkImage *, TileTab *t);
 extern void	x_tile_destroy();
+extern void	x_tile_gdkimage_draw(GdkImage *dst, int transparency, int srcx, int srcy, int ofsx, int ofsy);
 extern void	x_tile_tmp_draw(int src_x, int src_y, int ofsx, int ofsy);
 extern void	x_tile_tmp_draw_rectangle(int ofsx, int ofsy, int c);
 

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.5 2000-09-20 01:48:58 wacko Exp $
+  $Id: gtkmenu.c,v 1.6 2000-09-23 10:15:09 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -15,6 +15,12 @@
 #include "patchlev.h"
 #else
 #include "patchlevel.h"
+#endif
+
+#ifdef WINGTK_MENU_IMAGES
+#define MENU_COLS	4
+#else
+#define MENU_COLS	3
 #endif
 
 typedef struct _NHMenuItem{
@@ -151,12 +157,13 @@ GTK_start_menu(winid id)
 	  sizeof(NHMenuItem));
     menu_info->new_menu.n_menuitem = 0;
     menu_info->new_menu.c_menuitem = 'a';
-    menu_info->new_menu.clist = GTK_CLIST(gtk_clist_new(3));
+    menu_info->new_menu.clist = GTK_CLIST(gtk_clist_new(MENU_COLS));
 }
 
 static void
 GTK_init_menu_widgets(NHWindow *w)
 {
+     int i;
      GtkWidget *b;
 
      if (w->menu_information->cancelled >= 0)
@@ -237,12 +244,12 @@ GTK_init_menu_widgets(NHWindow *w)
      gtk_clist_set_selection_mode(GTK_CLIST(w->clist), GTK_SELECTION_EXTENDED);
 
      gtk_clist_set_shadow_type(GTK_CLIST(w->clist), GTK_SHADOW_ETCHED_IN);
-     gtk_clist_set_column_auto_resize(GTK_CLIST(w->clist), 0, TRUE);
-     gtk_clist_set_column_auto_resize(GTK_CLIST(w->clist), 1, TRUE);
-     gtk_clist_set_column_auto_resize(GTK_CLIST(w->clist), 2, TRUE);
-     gtk_clist_set_column_auto_resize(GTK_CLIST(w->clist), 3, TRUE);
+     for(i = 0; i < MENU_COLS; i++)
+	 gtk_clist_set_column_auto_resize(GTK_CLIST(w->clist), i, TRUE);
+#ifdef WINGTK_MENU_IMAGES
      if (GTK_CLIST(w->clist)->row_height < nh_tile_height())
 	gtk_clist_set_row_height(GTK_CLIST(w->clist), nh_tile_height());
+#endif
 
      w->scrolled = nh_gtk_new_and_pack(
 	 gtk_vscrollbar_new(GTK_CLIST(w->clist)->vadjustment), w->hbox2,
@@ -298,13 +305,13 @@ GTK_load_menu_clist(NHWindow *w)
     GtkCList *c;
     GtkStyle *s;
     struct menu *menu;
-    gchar *text[3];
+    gchar *text[MENU_COLS];
     
     if (w->menu_information->valid_widgets)
 	c = GTK_CLIST(w->clist);
     else
     {
-	c = GTK_CLIST(gtk_clist_new(4));
+	c = GTK_CLIST(gtk_clist_new(MENU_COLS));
 	w->clist = GTK_WIDGET(c);
     }
     s = gtk_rc_get_style(GTK_WIDGET(w->w));
@@ -315,12 +322,10 @@ GTK_load_menu_clist(NHWindow *w)
     menu = &w->menu_information->curr_menu;
     for(j = 0; ; j++) {
     	
-    	text[0] = NULL;
-    	
-	for(i = 0; i < 3; i++)
-	    if (!gtk_clist_get_text(menu->clist, j, i, &text[i+1]))
+	for(i = 0; i < MENU_COLS; i++)
+	    if (!gtk_clist_get_text(menu->clist, j, i, &text[i]))
 		break;
-	if (i < 3)
+	if (i < MENU_COLS)
 	    break;
 	gtk_clist_append(c, text);
 	if(!menu->nhMenuItem[j].id.a_void){
@@ -328,17 +333,14 @@ GTK_load_menu_clist(NHWindow *w)
 	    if(menu->nhMenuItem[j].attr != 0)
 		gtk_clist_set_background(c, j, s->dark);
 	}
+#ifdef WINGTK_MENU_IMAGES
 	if(menu->nhMenuItem[j].glyph != NO_GLYPH && map_visual){
-/*
- * TODO: Write a function that converts the tiles to GTKPixmaps under X
- * 		in xshmmap.c
- */
-#ifndef WINGTK_X11    
-	    gtk_clist_set_pixmap(c, j, 0, 
-	    		GTK_glyph_to_gdkpixmap(menu->nhMenuItem[j].glyph), NULL);
-#endif
-	    	
+	    GdkPixmap *pixmap;
+	    pixmap = GTK_glyph_to_gdkpixmap(menu->nhMenuItem[j].glyph);
+	    if (pixmap)
+		gtk_clist_set_pixmap(c, j, 0, pixmap, NULL);
 	}
+#endif
     }
     /* Inventory window doesn't really look good if it's completely empty */
     if (w-gtkWindows == WIN_INVEN && !j) {
@@ -346,7 +348,8 @@ GTK_load_menu_clist(NHWindow *w)
 	    text[0] = "Not carrying anything except gold.";
 	else
 	    text[0] = "Not carrying anything.";
-	text[1] = text[2] = text[3] = "";
+	for(i = 1; i < MENU_COLS; i++)
+	    text[i] = "";
 	gtk_clist_append(c, text);
     }
     gtk_clist_thaw(c);
@@ -361,7 +364,7 @@ GTK_add_menu(winid id, int glyph, const ANY_P *identifier,
      NHWindow	*w;
      struct menu *menu;
      char 	buf[2], buf2[2];
-     gchar	*text[3];
+     gchar	*text[MENU_COLS];
 
      if(!str || str[0] == '\0')
 	  return;
@@ -402,17 +405,19 @@ GTK_add_menu(winid id, int glyph, const ANY_P *identifier,
      menu->nhMenuItem[menu->n_menuitem].attr = attr;
      menu->nhMenuItem[menu->n_menuitem].glyph = glyph;
 
+     text[0] = "";
+
      sprintf(buf, "%c", ch);
-     text[0] = buf;
+     text[MENU_COLS-3] = buf;
 
      if(gch){
 	  sprintf(buf2, "%c", gch);
-	  text[1] = buf2;
+	  text[MENU_COLS-2] = buf2;
      }	  
      else
-	  text[1] = "";
+	  text[MENU_COLS-2] = "";
 
-     text[2] = (gchar *)str;
+     text[MENU_COLS-1] = (gchar *)str;
 
      gtk_clist_append(c, text);
      
