@@ -1053,9 +1053,13 @@ hitmu(mtmp, mattk)
 			}
 		    } else if(u.ustuck == mtmp) {
 			exercise(A_STR, FALSE);
-			You("are being %s.",
-			      (mtmp->data == &mons[PM_ROPE_GOLEM])
-			      ? "choked" : "crushed");
+			if (mtmp->data == &mons[PM_ROPE_GOLEM] && Breathless) {
+			    You("are being strangled.");
+			    dmg = (dmg+1) / 2;
+			} else
+			    You("are being %s.",
+				    (mtmp->data == &mons[PM_ROPE_GOLEM])
+				    ? "choked" : "crushed");
 		    }
 		} else {			  /* hand to hand weapon */
 		    if(mattk->aatyp == AT_WEAP && otmp) {

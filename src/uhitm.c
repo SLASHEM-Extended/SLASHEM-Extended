@@ -1841,6 +1841,9 @@ register struct attack *mattk;
 			} else
 			    tmp = rnd(4); /* bless damage */
 		    }
+		} else if(mattk->aatyp == AT_HUGS &&
+			u.umonnum == PM_ROPE_GOLEM) {
+		    if (breathless(mdef->data)) tmp = (tmp + 1) / 2;
 		}
 		break;
 	    case AD_FIRE:
@@ -2845,8 +2848,9 @@ use_weapon:
 			else if (!sticks(mon->data) && !u.uswallow) {
 			    if (mon==u.ustuck) {
 				pline("%s is being %s.", Monnam(mon),
-				    u.umonnum==PM_ROPE_GOLEM ? "choked":
-				    "crushed");
+				    u.umonnum==PM_ROPE_GOLEM ?
+				    breathless(mon->data) ? "strangled" :
+				    "choked" : "crushed");
 				sum[i] = damageum(mon, mattk);
 			    } else if(i >= 2 && sum[i-1] && sum[i-2]) {
 				You("grab %s!", mon_nam(mon));
