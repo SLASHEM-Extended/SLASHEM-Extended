@@ -1,4 +1,4 @@
-# $Id: Makefile.w32,v 1.3 2002-11-02 15:47:03 j_ali Exp $
+# $Id: Makefile.w32,v 1.4 2002-11-23 22:41:59 j_ali Exp $
 # Copyright (c) Slash'EM Development Team 2001-2002
 # NetHack may be freely redistributed.  See license for details.
 #
@@ -27,8 +27,8 @@ tests:	test_ext FORCE
 	- ./test_ext
 	@echo ============================
 
-test_ext:	test_ext.c nhext.o nhxdr.o nhextxdr.o
-	$(CC) $(CFLAGS) -o test_ext test_ext.c nhext.o nhxdr.o nhextxdr.o
+test_ext:	test_ext.c nhext.o nhxdr.o nhextxdr.o nhextio.o
+	$(CC) $(CFLAGS) -o test_ext test_ext.c nhext.o nhxdr.o nhextxdr.o nhextio.o
 
 clean:
 	$(RM) *.o test_ext

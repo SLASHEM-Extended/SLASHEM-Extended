@@ -1,4 +1,4 @@
-/* $Id: nhextio.c,v 1.2 2002-11-02 15:47:03 j_ali Exp $ */
+/* $Id: nhextio.c,v 1.3 2002-11-23 22:41:59 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -7,10 +7,10 @@
 #include <stdlib.h>
 #include <limits.h>
 #include "nhxdr.h"
-#include "proxycom.h"
 
 struct NhExtIO_ {
     unsigned int flags;
+    unsigned int autofill_limit;	/* Zero for no limit */
     nhext_io_func func;
     void *handle;
     unsigned char buffer[1025];		/* Capable of storing n-1 chars */
@@ -35,6 +35,7 @@ NhExtIO *nhext_io_open(nhext_io_func func, void *handle, unsigned int flags)
     if (!io)
 	return NULL;
     io->flags = flags;
+    io->autofill_limit = 0;
     io->func = func;
     io->handle = handle;
     io->rp = io->wp = io->buffer;
@@ -99,6 +100,32 @@ static void nhext_io__getfree(NhExtIO *io, int *nf1, int *nf2)
 	(*nf2)--;
 }
 
+/* If an autofill limit is set, then autofill will be enabled until
+ * that many bytes have been read and then disabled. Set a zero limit
+ * to allow an unlimited number of bytes to be read (the default).
+ * Notes:
+ * 1. When a limit is in place, all calls to filbuf will reduce
+ *    the limit by the number of bytes read regardless of whether the
+ *    call was made internally or by the application.
+ * 2. If there are unread bytes in the buffer at the time this function
+ *    is called then the limit will be adjusted as if they had been read
+ *    after the given limit was set.
+ */
+
+void nhext_io_setautofill_limit(NhExtIO *io, unsigned int limit)
+{
+    int nf1, nf2, nb;
+    nhext_io__getfree(io, &nf1, &nf2);
+    nb = sizeof(io->buffer) - nf1 - nf2 - 1;
+    if (limit > nb) {
+	io->flags &= ~NHEXT_IO_NOAUTOFILL;
+	io->autofill_limit = limit - nb;
+    } else {
+	io->flags |= NHEXT_IO_NOAUTOFILL;
+	io->autofill_limit = 0;
+    }
+}
+
 /*
  * Returns: >0 if buffer now non-empty, else 0 on EOF, <0 on error
  */
@@ -124,8 +151,17 @@ int nhext_io_filbuf(NhExtIO *io)
     if (!nf1)
 	return 1;	/* Buffer is full */
     retval = (*io->func)(io->handle, io->wp, nf1);
-    if (retval > 0)
+    if (retval > 0) {
 	ADVANCE_PTR(io, io->wp, retval);
+	if (!(io->flags & NHEXT_IO_NOAUTOFILL) && io->autofill_limit) {
+	    if (io->autofill_limit > retval)
+		io->autofill_limit -= retval;
+	    else {
+		io->autofill_limit = 0;
+		io->flags |= NHEXT_IO_NOAUTOFILL;
+	    }
+	}
+    }
     return retval;
 }
 
@@ -190,12 +226,21 @@ int nhext_io_read(NhExtIO *io, char *buf, int nb)
     if (nb >= sizeof(io->buffer)) {
 	/* If caller still wants more than we can buffer, read direct */
 	i = (*io->func)(io->handle, buf, nb);
-	if (i <= 0)
+	if (i <= 0) {
 	    /* If we have previously read some data correctly, then return
 	     * this number and leave EOF/ERROR reporting until later.
 	     * Otherwise report EOF as 0 and ERROR as -1
 	     */
 	    return retval ? retval : i < 0 ? -1 : 0;
+	}
+	if (io->autofill_limit) {
+	    if (io->autofill_limit > i)
+		io->autofill_limit -= i;
+	    else {
+		io->autofill_limit = 0;
+		io->flags |= NHEXT_IO_NOAUTOFILL;
+	    }
+	}
 	buf += i;
 	nb -= i;
 	retval += i;
@@ -240,6 +285,8 @@ int nhext_io_fread(void *buffer, int size, int nmemb, NhExtIO *io)
 	 */
 	return -1;
     }
+    if (size <= 0)
+	return -1;
     bf = INT_MAX / size;	/* Blocking factor */
     while(nm) {
 	if (bf > nm)
@@ -266,7 +313,7 @@ int nhext_io_fread(void *buffer, int size, int nmemb, NhExtIO *io)
 	    nbp += nb;
 	    buffer += nb;
 	    if (nbp == size) {
-		nm++;
+		nm--;
 		nbp = 0;
 	    }
 	}

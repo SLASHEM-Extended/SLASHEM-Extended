@@ -1,4 +1,4 @@
-# $Id: Makefile.unx,v 1.6 2002-11-02 15:47:03 j_ali Exp $
+# $Id: Makefile.unx,v 1.7 2002-11-23 22:41:59 j_ali Exp $
 # Copyright (c) Slash'EM Development Team 2001-2002
 # NetHack may be freely redistributed.  See license for details.
 #
@@ -43,8 +43,8 @@ tests:	test_xdr rpcgen-test_xdr test_ext test_io FORCE
 	- ./test_io
 	@echo ============================
 
-test_xdr:	test_xdr.c nhxdr.o nhextxdr.o
-	$(CC) $(CFLAGS) -URPCGEN -o test_xdr test_xdr.c nhxdr.o nhextxdr.o
+test_xdr:	test_xdr.c nhxdr.o nhextxdr.o nhextio.o
+	$(CC) $(CFLAGS) -URPCGEN -o test_xdr test_xdr.c nhxdr.o nhextxdr.o nhextio.c
 
 rpcgen-test_xdr:	test_xdr.c
 	$(CC) $(CFLAGS) -DRPCGEN -o rpcgen-test_xdr test_xdr.c $(RPCLIB)
@@ -55,8 +55,8 @@ rpcgen-nhext.h rpcgen-nhext_xdr.c:	rpcgen-nhext.x
 rpcgen-nhext.x:	ext_protocol.html
 	$(AWK) '/<h3>init<\/h3>/ { init=1; } /^<pre>$$/ { if (init) output=1; next;} /^<\/pre>$$/ { output=0; } { if (output) print }' < ext_protocol.html > rpcgen-nhext.x
 
-test_ext:	test_ext.c nhext.o nhxdr.o nhextxdr.o
-	$(CC) $(CFLAGS) -o test_ext test_ext.c nhext.o nhxdr.o nhextxdr.o
+test_ext:	test_ext.c nhext.o nhxdr.o nhextxdr.o nhextio.o
+	$(CC) $(CFLAGS) -o test_ext test_ext.c nhext.o nhxdr.o nhextxdr.o nhextio.o
 
 test_io:	test_io.c nhextio.o
 	$(CC) $(CFLAGS) -o test_io test_io.c nhextio.o

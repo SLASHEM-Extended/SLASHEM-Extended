@@ -1,4 +1,4 @@
-/* $Id: proxycom.h,v 1.2 2002-11-02 15:47:02 j_ali Exp $ */
+/* $Id: proxycom.h,v 1.3 2002-11-23 22:41:59 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -33,25 +33,6 @@
 #define EXT_BOOLEAN_P(b)	EXT_PARAM_PTR | EXT_PARAM_BOOLEAN, &(b)
 #define EXT_CHAR_P(c)		EXT_PARAM_PTR | EXT_PARAM_CHAR, &(c)
 
-typedef int (*nhext_io_func)(void *handle, void *buf, unsigned int len);
-
-typedef struct NhExtIO_ NhExtIO;
-
-#define NHEXT_IO_RDONLY		1
-#define NHEXT_IO_WRONLY		2
-#define NHEXT_IO_NOAUTOFILL	4
-
-NhExtIO *nhext_io_open(nhext_io_func func, void *handle, unsigned int flags);
-int nhext_io_close(NhExtIO *io);
-unsigned int nhext_io_getmode(NhExtIO *io);
-void nhext_io_setmode(NhExtIO *io, unsigned int flags);
-int nhext_io_filbuf(NhExtIO *io);
-int nhext_io_getc(NhExtIO *io);
-int nhext_io_read(NhExtIO *io, char *buf, int nb);
-int nhext_io_flush(NhExtIO *io);
-int nhext_io_fputc(int c, NhExtIO *io);
-int nhext_io_write(NhExtIO *io, char *buf, int nb);
-
 #ifdef NHXDR_H
 struct nhext_svc {
     unsigned short id;
@@ -59,7 +40,7 @@ struct nhext_svc {
 };
 
 E int FDECL(nhext_subprotocol1_init,
-    (nhext_io_func, void *, nhext_io_func, void *, struct nhext_svc *));
+    (NhExtIO *, NhExtIO *, struct nhext_svc *));
 E void NDECL(nhext_subprotocol1_end);
 E void FDECL(nhext_subprotocol1_end_c, (int));
 E char *FDECL(nhext_subprotocol1_get_failed_packet, (int, int *));

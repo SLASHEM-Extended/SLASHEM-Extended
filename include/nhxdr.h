@@ -1,4 +1,4 @@
-/* $Id: nhxdr.h,v 1.4 2002-11-02 15:47:02 j_ali Exp $ */
+/* $Id: nhxdr.h,v 1.5 2002-11-23 22:41:59 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -38,11 +38,11 @@
 typedef enum { nhext_xdr_false = 0, nhext_xdr_true = 1 } nhext_xdr_bool_t;
 
 enum nhext_xdr_op {
-    NHEXT_XDR_ENCODE, NHEXT_XDR_DECODE, NHEXT_XDR_FREE
+    NHEXT_XDR_ENCODE, NHEXT_XDR_DECODE, NHEXT_XDR_FREE, NHEXT_XDR_COUNT
 };
 
 typedef struct nhext_xdr {
-    unsigned char *x_buf;
+    void *x_data;
     enum nhext_xdr_op x_op;
     nhext_xdr_bool_t (*x_write)(struct nhext_xdr *xdrs, const void *addr,
       int size);
@@ -79,5 +79,25 @@ E nhext_xdr_bool_t FDECL(nhext_xdr_vector, (NhExtXdr *, char *, unsigned int,
   unsigned int, nhext_xdr_bool_t (*)()));
 E nhext_xdr_bool_t FDECL(nhext_xdr_array, (NhExtXdr *, char **, unsigned int *,
   unsigned int, unsigned int, nhext_xdr_bool_t (*)()));
+
+typedef int (*nhext_io_func)(void *handle, void *buf, unsigned int len);
+
+typedef struct NhExtIO_ NhExtIO;
+
+#define NHEXT_IO_RDONLY		1
+#define NHEXT_IO_WRONLY		2
+#define NHEXT_IO_NOAUTOFILL	4
+
+NhExtIO *nhext_io_open(nhext_io_func func, void *handle, unsigned int flags);
+int nhext_io_close(NhExtIO *io);
+unsigned int nhext_io_getmode(NhExtIO *io);
+void nhext_io_setmode(NhExtIO *io, unsigned int flags);
+void nhext_io_setautofill_limit(NhExtIO *io, unsigned int limit);
+int nhext_io_filbuf(NhExtIO *io);
+int nhext_io_getc(NhExtIO *io);
+int nhext_io_read(NhExtIO *io, char *buf, int nb);
+int nhext_io_flush(NhExtIO *io);
+int nhext_io_fputc(int c, NhExtIO *io);
+int nhext_io_write(NhExtIO *io, char *buf, int nb);
 
 #endif /* NHXDR_H */

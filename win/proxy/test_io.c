@@ -1,11 +1,11 @@
-/* $Id: test_io.c,v 1.1 2002-10-09 16:20:35 j_ali Exp $ */
+/* $Id: test_io.c,v 1.2 2002-11-23 22:41:59 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <signal.h>
-#include "proxycom.h"
+#include "nhxdr.h"
 
 /*
  * This module tests the NhExtIO implementation by using it to write

@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.12 2002-11-02 15:47:04 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.13 2002-11-23 22:41:59 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -150,11 +150,12 @@ proxy_player_selection()
 {
     int role, race, gend, align;
     nhext_xdr_bool_t quit;
-    nhext_rpc(EXT_FID_PLAYER_SELECTION,
+    if (!nhext_rpc(EXT_FID_PLAYER_SELECTION,
       4, EXT_INT(flags.initrole), EXT_INT(flags.initrace),
          EXT_INT(flags.initgend), EXT_INT(flags.initalign),
       5, EXT_INT_P(role), EXT_INT_P(race), EXT_INT_P(gend), EXT_INT_P(align),
-         EXT_BOOLEAN_P(quit));
+         EXT_BOOLEAN_P(quit)))
+	quit = 1;
     if (quit)
     {
 	clearlocks();
@@ -171,36 +172,37 @@ void
 proxy_askname()
 {
     char *name = (char *)0;
-    nhext_rpc(EXT_FID_ASKNAME, 0, 1, EXT_STRING_P(name));
-    strncpy(plname, name, sizeof(plname) - 1);
-    plname[sizeof(plname) - 1] = '\0';
+    if (nhext_rpc(EXT_FID_ASKNAME, 0, 1, EXT_STRING_P(name))) {
+	strncpy(plname, name, sizeof(plname) - 1);
+	plname[sizeof(plname) - 1] = '\0';
+    }
     free(name);
 }
 
 void
 proxy_get_nh_event()
 {
-    nhext_rpc(EXT_FID_GET_NH_EVENT, 0, 0);
+    (void)nhext_rpc(EXT_FID_GET_NH_EVENT, 0, 0);
 }
 
 void
 proxy_exit_nhwindows(str)
 const char *str;
 {
-    nhext_rpc(EXT_FID_EXIT_NHWINDOWS, 1, EXT_STRING(str), 0);
+    (void)nhext_rpc(EXT_FID_EXIT_NHWINDOWS, 1, EXT_STRING(str), 0);
 }
 
 void
 proxy_suspend_nhwindows(str)
 const char *str;
 {
-    nhext_rpc(EXT_FID_SUSPEND_NHWINDOWS, 1, EXT_STRING(str), 0);
+    (void)nhext_rpc(EXT_FID_SUSPEND_NHWINDOWS, 1, EXT_STRING(str), 0);
 }
 
 void
 proxy_resume_nhwindows()
 {
-    nhext_rpc(EXT_FID_RESUME_NHWINDOWS, 0, 0);
+    (void)nhext_rpc(EXT_FID_RESUME_NHWINDOWS, 0, 0);
 }
 
 winid
@@ -208,7 +210,8 @@ proxy_create_nhwindow(type)
 int type;
 {
     winid id;
-    nhext_rpc(EXT_FID_CREATE_NHWINDOW, 1, EXT_INT(type), 1, EXT_INT_P(id));
+    if (!nhext_rpc(EXT_FID_CREATE_NHWINDOW, 1, EXT_INT(type), 1, EXT_INT_P(id)))
+	id = -1;
     return id;
 }
 
@@ -216,7 +219,7 @@ void
 proxy_clear_nhwindow(window)
 winid window;
 {
-    nhext_rpc(EXT_FID_CLEAR_NHWINDOW, 1, EXT_INT(window), 0);
+    (void)nhext_rpc(EXT_FID_CLEAR_NHWINDOW, 1, EXT_INT(window), 0);
 }
 
 void
@@ -224,7 +227,7 @@ proxy_display_nhwindow(window, blocking)
 winid window;
 boolean blocking;
 {
-    nhext_rpc(EXT_FID_DISPLAY_NHWINDOW,
+    (void)nhext_rpc(EXT_FID_DISPLAY_NHWINDOW,
       2, EXT_INT(window), EXT_BOOLEAN((nhext_xdr_bool_t)blocking), 0);
 }
 
@@ -232,7 +235,7 @@ void
 proxy_destroy_nhwindow(window)
 winid window;
 {
-    nhext_rpc(EXT_FID_DESTROY_NHWINDOW, 1, EXT_INT(window), 0);
+    (void)nhext_rpc(EXT_FID_DESTROY_NHWINDOW, 1, EXT_INT(window), 0);
     mapid_del_winid(window);
 }
 
@@ -244,7 +247,8 @@ winid window;
 int x, y;
 {
     proxy_curs_on_u = x == u.ux && y == u.uy;
-    nhext_rpc(EXT_FID_CURS, 3, EXT_INT(window), EXT_INT(x), EXT_INT(y), 0);
+    (void)nhext_rpc(EXT_FID_CURS,
+      3, EXT_INT(window), EXT_INT(x), EXT_INT(y), 0);
 }
 
 void
@@ -253,7 +257,7 @@ winid window;
 int attr;
 const char *str;
 {
-    nhext_rpc(EXT_FID_PUTSTR,
+    (void)nhext_rpc(EXT_FID_PUTSTR,
       3, EXT_INT(window), EXT_INT(attr), EXT_STRING(str), 0);
 }
 
@@ -277,7 +281,7 @@ BOOLEAN_P complain;
 	if (complain)  pline("Can't open %s.", fname);
 	return;
     }
-    nhext_rpc(EXT_FID_DISPLAY_FILE,
+    (void)nhext_rpc(EXT_FID_DISPLAY_FILE,
       1, EXT_INT(fh), 0);
     dlbh_fclose(fh);
 }
@@ -286,7 +290,7 @@ void
 proxy_start_menu(window)
 winid window;
 {
-    nhext_rpc(EXT_FID_START_MENU, 1, EXT_INT(window), 0);
+    (void)nhext_rpc(EXT_FID_START_MENU, 1, EXT_INT(window), 0);
     mapid_del_identifiers(window);
 }
 
@@ -303,7 +307,7 @@ BOOLEAN_P preselected;
     int mapping = mapid_map_identifier(window, identifier);
     if (glyph != NO_GLYPH)
 	glyph = glyph2proxy[glyph];
-    nhext_rpc(EXT_FID_ADD_MENU,
+    (void)nhext_rpc(EXT_FID_ADD_MENU,
       8, EXT_INT(window), EXT_INT(glyph), EXT_INT(mapping), EXT_INT(ch),
          EXT_INT(gch), EXT_INT(attr), EXT_STRING(str),
 	 EXT_BOOLEAN(preselected),
@@ -315,7 +319,8 @@ proxy_end_menu(window, prompt)
 winid window;
 const char *prompt;
 {
-    nhext_rpc(EXT_FID_END_MENU, 2, EXT_INT(window), EXT_STRING(prompt), 0);
+    (void)nhext_rpc(EXT_FID_END_MENU,
+      2, EXT_INT(window), EXT_STRING(prompt), 0);
 }
 
 int
@@ -326,9 +331,13 @@ menu_item **menu_list;
 {
     int i;
     struct proxy_select_menu_res ret = {0, 0, (struct proxy_mi *)0};
-    nhext_rpc(EXT_FID_SELECT_MENU,
+    if (!nhext_rpc(EXT_FID_SELECT_MENU,
       2, EXT_INT(window), EXT_INT(how),
-      1, EXT_XDRF(proxy_xdr_select_menu_res, &ret));
+      1, EXT_XDRF(proxy_xdr_select_menu_res, &ret))) {
+	if (ret.selected)
+	    nhext_xdr_free(proxy_xdr_select_menu_res, (char *)&ret);
+	return 0;	/* Nothing selected */
+    }
     *menu_list = (menu_item *) alloc(ret.n * sizeof(menu_item));
     for(i = 0; i < ret.n; i++) {
 	mapid_unmap_identifier(window, ret.selected[i].item,
@@ -347,27 +356,28 @@ int how;
 const char *mesg;
 {
     int ret;
-    nhext_rpc(EXT_FID_MESSAGE_MENU,
-      3, EXT_INT(let), EXT_INT(how), EXT_STRING(mesg), 1, EXT_INT_P(ret));
+    if (!nhext_rpc(EXT_FID_MESSAGE_MENU,
+      3, EXT_INT(let), EXT_INT(how), EXT_STRING(mesg), 1, EXT_INT_P(ret)))
+	ret = -1;
     return (char)ret;
 }
 
 void
 proxy_update_inventory()
 {
-    nhext_rpc(EXT_FID_UPDATE_INVENTORY, 0, 0);
+    (void)nhext_rpc(EXT_FID_UPDATE_INVENTORY, 0, 0);
 }
 
 void
 proxy_mark_synch()
 {
-    nhext_rpc(EXT_FID_MARK_SYNC, 0, 0);
+    (void)nhext_rpc(EXT_FID_MARK_SYNC, 0, 0);
 }
 
 void
 proxy_wait_synch()
 {
-    nhext_rpc(EXT_FID_WAIT_SYNC, 0, 0);
+    (void)nhext_rpc(EXT_FID_WAIT_SYNC, 0, 0);
 }
 
 #ifdef CLIPPING
@@ -375,7 +385,7 @@ void
 proxy_cliparound(x, y)
 int x, y;
 {
-    nhext_rpc(EXT_FID_CLIPAROUND, 2, EXT_INT(x), EXT_INT(y), 0);
+    (void)nhext_rpc(EXT_FID_CLIPAROUND, 2, EXT_INT(x), EXT_INT(y), 0);
 }
 #endif
 
@@ -384,7 +394,7 @@ void
 proxy_update_positionbar(posbar)
 char *posbar;
 {
-    nhext_rpc(EXT_FID_UPDATE_POSITIONBAR, 1, EXT_STRING(posbar), 0);
+    (void)nhext_rpc(EXT_FID_UPDATE_POSITIONBAR, 1, EXT_STRING(posbar), 0);
 }
 #endif
 
@@ -440,7 +450,7 @@ int glyph;
     }
     else
 #endif
-    nhext_rpc(EXT_FID_PRINT_GLYPH,
+    (void)nhext_rpc(EXT_FID_PRINT_GLYPH,
       4, EXT_INT(window), EXT_INT(x), EXT_INT(y), EXT_INT(glyph2proxy[glyph]),
       0);
 }
@@ -483,7 +493,8 @@ int
 proxy_nhgetch()
 {
     int ret;
-    nhext_rpc(EXT_FID_NHGETCH, 0, 1, EXT_INT_P(ret));
+    if (!nhext_rpc(EXT_FID_NHGETCH, 0, 1, EXT_INT_P(ret)))
+	ret = 0;
     return ret;
 }
 
@@ -492,8 +503,9 @@ proxy_nh_poskey(x, y, mod)
 int *x, *y, *mod;
 {
     int ret, lx, ly, lmod;
-    nhext_rpc(EXT_FID_NH_POSKEY, 0,
-      4, EXT_INT_P(ret), EXT_INT_P(lx), EXT_INT_P(ly), EXT_INT_P(lmod));
+    if (!nhext_rpc(EXT_FID_NH_POSKEY, 0,
+      4, EXT_INT_P(ret), EXT_INT_P(lx), EXT_INT_P(ly), EXT_INT_P(lmod)))
+	return proxy_nhgetch();
     *x = lx;
     *y = ly;
     *mod = lmod;
@@ -503,14 +515,15 @@ int *x, *y, *mod;
 void
 proxy_nhbell()
 {
-    nhext_rpc(EXT_FID_NHBELL, 0, 0);
+    (void)nhext_rpc(EXT_FID_NHBELL, 0, 0);
 }
 
 int
 proxy_doprev_message()
 {
     int ret;
-    nhext_rpc(EXT_FID_DOPREV_MESSAGE, 0, 1, EXT_INT_P(ret));
+    if (!nhext_rpc(EXT_FID_DOPREV_MESSAGE, 0, 1, EXT_INT_P(ret)))
+	ret = 0;
     return ret;
 }
 
@@ -520,9 +533,10 @@ const char *query, *resp;
 char def;
 {
     int ret, count;
-    nhext_rpc(EXT_FID_YN_FUNCTION,
+    if (!nhext_rpc(EXT_FID_YN_FUNCTION,
       3, EXT_STRING(query), EXT_STRING(resp), EXT_INT(def),
-      2, EXT_INT_P(ret), EXT_INT_P(count));
+      2, EXT_INT_P(ret), EXT_INT_P(count)))
+	ret = def;
     if (ret == '#')
 	yn_number = count;
     return ret;
@@ -534,9 +548,12 @@ const char *query;
 char *bufp;
 {
     char *reply = (char *)0;
-    nhext_rpc(EXT_FID_GETLIN, 1, EXT_STRING(query), 1, EXT_STRING_P(reply));
-    strncpy(bufp, reply, BUFSZ - 1);
-    bufp[BUFSZ - 1] = '\0';
+    if (nhext_rpc(EXT_FID_GETLIN,
+      1, EXT_STRING(query), 1, EXT_STRING_P(reply))) {
+	strncpy(bufp, reply, BUFSZ - 1);
+	bufp[BUFSZ - 1] = '\0';
+    } else
+	bufp[0] = '\0';
     free(reply);
 }
 
@@ -544,7 +561,8 @@ int
 proxy_get_ext_cmd()
 {
     int extcmd;
-    nhext_rpc(EXT_FID_GET_EXT_CMD, 0, 1, EXT_INT_P(extcmd));
+    if (!nhext_rpc(EXT_FID_GET_EXT_CMD, 0, 1, EXT_INT_P(extcmd)))
+	extcmd = -1;
     return extcmd;
 }
 
@@ -552,13 +570,13 @@ void
 proxy_number_pad(state)
 int state;
 {
-    nhext_rpc(EXT_FID_NUMBER_PAD, 1, EXT_INT(state), 0);
+    (void)nhext_rpc(EXT_FID_NUMBER_PAD, 1, EXT_INT(state), 0);
 }
 
 void
 proxy_delay_output()
 {
-    nhext_rpc(EXT_FID_DELAY_OUTPUT, 0, 0);
+    (void)nhext_rpc(EXT_FID_DELAY_OUTPUT, 0, 0);
 }
 
 #ifdef CHANGE_COLOR
@@ -568,7 +586,7 @@ int color;
 long rgb;
 int reverse;
 {
-    nhext_rpc(EXT_FID_CHANGE_COLOR,
+    (void)nhext_rpc(EXT_FID_CHANGE_COLOR,
       3, EXT_INT(color), EXT_LONG(rgb), EXT_BOOL(reverse), 0);
 }
 
@@ -577,7 +595,7 @@ void
 proxy_change_background(white_or_black)
 int white_or_black;
 {
-    nhext_rpc(EXT_FID_CHANGE_BACKGROUND, 1, EXT_BOOL(white_or_black), 0);
+    (void)nhext_rpc(EXT_FID_CHANGE_BACKGROUND, 1, EXT_BOOL(white_or_black), 0);
 }
 
 short
@@ -586,8 +604,9 @@ winid window;
 char *font;
 {
     int ret;
-    nhext_rpc(EXT_FID_SET_FONT_NAME, 2, EXT_INT(window), EXT_STRING(font),
-      1, EXT_INT_P(ret));
+    if (!nhext_rpc(EXT_FID_SET_FONT_NAME, 2, EXT_INT(window), EXT_STRING(font),
+      1, EXT_INT_P(ret)))
+	ret = -1;
     return (short)ret;
 }
 #endif	/* MAC */
@@ -596,7 +615,10 @@ char *
 proxy_get_color_string()
 {
     char *ret = (char *)0;
-    nhext_rpc(EXT_FID_GET_COLOR_STRING, 0, 1, EXT_STRING_P(ret));
+    if (!nhext_rpc(EXT_FID_GET_COLOR_STRING, 0, 1, EXT_STRING_P(ret))) {
+	free(ret);
+	return (char *)0;
+    }
     return ret;
 }
 #endif	/* CHANGE_COLOR */
@@ -604,13 +626,13 @@ proxy_get_color_string()
 void
 proxy_start_screen()
 {
-    nhext_rpc(EXT_FID_START_SCREEN, 0, 0);
+    (void)nhext_rpc(EXT_FID_START_SCREEN, 0, 0);
 }
 
 void
 proxy_end_screen()
 {
-    nhext_rpc(EXT_FID_END_SCREEN, 0, 0);
+    (void)nhext_rpc(EXT_FID_END_SCREEN, 0, 0);
 }
 
 void
@@ -621,8 +643,9 @@ int how;
     nhext_xdr_bool_t handled;
     char *killed_by;
     killed_by = get_killer_string(how);
-    nhext_rpc(EXT_FID_OUTRIP, 2, EXT_INT(window), EXT_STRING(killed_by),
-      1, EXT_BOOLEAN_P(handled));
+    if (!nhext_rpc(EXT_FID_OUTRIP, 2, EXT_INT(window), EXT_STRING(killed_by),
+      1, EXT_BOOLEAN_P(handled)))
+	handled = 0;
     if (!handled)
 	genl_outrip(window, how);
 }
@@ -636,7 +659,7 @@ const char **values;
     req.reconfig = reconfig;
     req.nv = nv;
     req.values = values;
-    nhext_rpc(EXT_FID_STATUS, 1, EXT_XDRF(proxy_xdr_status_req, &req), 0);
+    (void)nhext_rpc(EXT_FID_STATUS, 1, EXT_XDRF(proxy_xdr_status_req, &req), 0);
 }
 
 void
@@ -656,7 +679,7 @@ int *glyphs;
     for(i = 0; i < ng; i++)
 	req.glyphs[i] =
 	  glyphs[i] == NO_GLYPH ? NO_GLYPH : glyph2proxy[glyphs[i]];
-    nhext_rpc(EXT_FID_PRINT_GLYPH_LAYERED,
+    (void)nhext_rpc(EXT_FID_PRINT_GLYPH_LAYERED,
       1, EXT_XDRF(proxy_xdr_print_glyph_layered_req, &req), 0);
     free(req.glyphs);
 }
@@ -748,22 +771,34 @@ int len;
 static int
 proxy_init()
 {
+    NhExtIO *rd, *wr;
     if (!pipe_create(to_parent, 0))
 	return FALSE;
     if (!pipe_create(to_child, 1)) {
 	pipe_close(to_parent);
 	return FALSE;
     }
-    proxy_connection =
 #ifndef DEBUG
-      nhext_subprotocol1_init(proxy_read, (void *)to_parent[0],
-      proxy_write, (void *)to_child[1], proxy_callbacks);
+    rd = nhext_io_open(proxy_read, (void *)to_parent[0], NHEXT_IO_RDONLY);
+    wr = nhext_io_open(proxy_write, (void *)to_child[1], NHEXT_IO_WRONLY);
 #else
-      nhext_subprotocol1_init(debug_read, (void *)to_parent[0],
-      debug_write, (void *)to_child[1], proxy_callbacks);
+    rd = nhext_io_open(debug_read, (void *)to_parent[0], NHEXT_IO_RDONLY);
+    wr = nhext_io_open(debug_write, (void *)to_child[1], NHEXT_IO_WRONLY);
 #endif
+    if (!rd || !wr) {
+	if (rd)
+	    nhext_io_close(rd);
+	if (wr)
+	    nhext_io_close(wr);
+	pipe_close(to_parent);
+	pipe_close(to_child);
+	return FALSE;
+    }
+    proxy_connection = nhext_subprotocol1_init(rd, wr, proxy_callbacks);
     if (proxy_connection < 0)
     {
+	nhext_io_close(rd);
+	nhext_io_close(wr);
 	pipe_close(to_parent);
 	pipe_close(to_child);
 	return FALSE;
@@ -823,6 +858,7 @@ unsigned int len;
 static int
 proxy_init()
 {
+    NhExtIO *rd, *wr;
     if (pipe(to_child))
 	return FALSE;
     if (pipe(to_parent))
@@ -831,16 +867,29 @@ proxy_init()
 	close(to_child[1]);
 	return FALSE;
     }
-    proxy_connection =
 #ifndef DEBUG
-      nhext_subprotocol1_init(proxy_read, (void *)to_parent[0],
-      proxy_write, (void *)to_child[1], proxy_callbacks);
+    rd = nhext_io_open(proxy_read, (void *)to_parent[0], NHEXT_IO_RDONLY);
+    wr = nhext_io_open(proxy_write, (void *)to_child[1], NHEXT_IO_WRONLY);
 #else
-      nhext_subprotocol1_init(debug_read, (void *)to_parent[0],
-      debug_write, (void *)to_child[1], proxy_callbacks);
+    rd = nhext_io_open(debug_read, (void *)to_parent[0], NHEXT_IO_RDONLY);
+    wr = nhext_io_open(debug_write, (void *)to_child[1], NHEXT_IO_WRONLY);
 #endif
+    if (!rd || !wr) {
+	if (rd)
+	    nhext_io_close(rd);
+	if (wr)
+	    nhext_io_close(wr);
+	close(to_child[0]);
+	close(to_child[1]);
+	close(to_parent[0]);
+	close(to_parent[1]);
+	return FALSE;
+    }
+    proxy_connection = nhext_subprotocol1_init(rd, wr, proxy_callbacks);
     if (proxy_connection < 0)
     {
+	nhext_io_close(rd);
+	nhext_io_close(wr);
 	close(to_child[0]);
 	close(to_child[1]);
 	close(to_parent[0]);
@@ -875,10 +924,21 @@ proxy_init()
 static int
 proxy_init()
 {
-    proxy_connection = nhext_subprotocol1_init(READ_F, READ_H,
-      WRITE_F, WRITE_H, proxy_callbacks);
-    if (proxy_connection < 0)
+    NhExtIO *rd, *wr;
+    rd = nhext_io_open(READ_F, READ_H, NHEXT_IO_RDONLY);
+    if (!rd)
 	return FALSE;
+    wr = nhext_io_open(WRITE_F, WRITE_H, NHEXT_IO_WRONLY);
+    if (!wr) {
+	nhext_io_close(rd);
+	return FALSE;
+    }
+    proxy_connection = nhext_subprotocol1_init(rd, wr, proxy_callbacks);
+    if (proxy_connection < 0) {
+	nhext_io_close(rd);
+	nhext_io_close(wr);
+	return FALSE;
+    }
     return TRUE;
 } 
 

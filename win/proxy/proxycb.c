@@ -1,8 +1,9 @@
-/* $Id: proxycb.c,v 1.10 2002-11-02 15:47:03 j_ali Exp $ */
+/* $Id: proxycb.c,v 1.11 2002-11-23 22:41:59 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "nhxdr.h"
 #include "proxycom.h"
 #include "proxycb.h"
@@ -20,7 +21,7 @@ extern int proxy_svc_connection;
 void
 proxy_cb_display_inventory()
 {
-    nhext_rpc(EXT_CID_DISPLAY_INVENTORY, 0, 0);
+    (void)nhext_rpc(EXT_CID_DISPLAY_INVENTORY, 0, 0);
 }
 
 int
@@ -28,8 +29,9 @@ proxy_cb_dlbh_fopen(name, mode)
 const char *name, *mode;
 {
     int retval;
-    nhext_rpc(EXT_CID_DLBH_FOPEN, 2, EXT_STRING(name), EXT_STRING(mode),
-	1, EXT_INT_P(retval));
+    if (!nhext_rpc(EXT_CID_DLBH_FOPEN, 2, EXT_STRING(name), EXT_STRING(mode),
+      1, EXT_INT_P(retval)))
+	retval = -1;
     return retval;
 }
 
@@ -39,8 +41,11 @@ char *buf;
 int len, fh;
 {
     char *retval, *line = (char *)0;
-    nhext_rpc(EXT_CID_DLBH_FGETS, 2, EXT_INT(len), EXT_INT(fh),
-	1, EXT_STRING_P(line));
+    if (!nhext_rpc(EXT_CID_DLBH_FGETS, 2, EXT_INT(len), EXT_INT(fh),
+      1, EXT_STRING_P(line))) {
+	free(line);
+	return (char *)0;
+    }
     if (*line) {
 	strncpy(buf, line, len - 1);
 	buf[len - 1] = '\0';
@@ -59,8 +64,11 @@ int size, no, fh;
 {
     int retval, offset = 0, nb;
     char *buffer = (char *)0;
-    nhext_rpc(EXT_CID_DLBH_FREAD, 2, EXT_INT(size * no), EXT_INT(fh),
-	2, EXT_INT_P(retval), EXT_BYTES_P(buffer, nb));
+    if (!nhext_rpc(EXT_CID_DLBH_FREAD, 2, EXT_INT(size * no), EXT_INT(fh),
+      2, EXT_INT_P(retval), EXT_BYTES_P(buffer, nb))) {
+	free(buffer);
+	return -1;
+    }
     if (nb)
 	memcpy(buf, buffer, nb);
     free(buffer);
@@ -72,8 +80,10 @@ int size, no, fh;
 	 * discard the remainder unless we have reached end of file.
 	 */
 	offset += nb;
-	nhext_rpc(EXT_CID_DLBH_FREAD, 2, EXT_INT(size * no - offset), EXT_INT(fh),
-	    2, EXT_INT_P(retval), EXT_BYTES_P(buffer, nb));
+	if (!nhext_rpc(EXT_CID_DLBH_FREAD,
+	  2, EXT_INT(size * no - offset), EXT_INT(fh),
+	  2, EXT_INT_P(retval), EXT_BYTES_P(buffer, nb)))
+	    nb = 0;
 	if (nb)
 	    memcpy(buf + offset, buffer, nb);
 	free(buffer);
@@ -86,27 +96,28 @@ proxy_cb_dlbh_fclose(fh)
 int fh;
 {
     int retval;
-    nhext_rpc(EXT_CID_DLBH_FCLOSE, 1, EXT_INT(fh), 1, EXT_INT_P(retval));
+    if (!nhext_rpc(EXT_CID_DLBH_FCLOSE, 1, EXT_INT(fh), 1, EXT_INT_P(retval)))
+	retval = -1;
     return retval;
 }
 
 void
 proxy_cb_flush_screen()
 {
-    nhext_rpc(EXT_CID_FLUSH_SCREEN, 0, 0);
+    (void)nhext_rpc(EXT_CID_FLUSH_SCREEN, 0, 0);
 }
 
 void
 proxy_cb_doredraw()
 {
-    nhext_rpc(EXT_CID_DOREDRAW, 0, 0);
+    (void)nhext_rpc(EXT_CID_DOREDRAW, 0, 0);
 }
 
 void
 proxy_cb_interface_mode(mode)
 unsigned long mode;
 {
-    nhext_rpc(EXT_CID_INTERFACE_MODE, 1, EXT_LONG(mode), 0);
+    (void)nhext_rpc(EXT_CID_INTERFACE_MODE, 1, EXT_LONG(mode), 0);
 }
 
 int
@@ -114,7 +125,9 @@ proxy_cb_parse_options(opts)
 char *opts;
 {
     int retval;
-    nhext_rpc(EXT_CID_PARSE_OPTIONS, 1, EXT_STRING(opts), 1, EXT_INT_P(retval));
+    if (!nhext_rpc(EXT_CID_PARSE_OPTIONS,
+      1, EXT_STRING(opts), 1, EXT_INT_P(retval)))
+	retval = -1;
     return retval;
 }
 
@@ -123,7 +136,15 @@ proxy_cb_get_option(opt)
 char *opt;
 {
     char *retval = (char *)0;
-    nhext_rpc(EXT_CID_GET_OPTION, 1, EXT_STRING(opt), 1, EXT_STRING_P(retval));
+    if (!nhext_rpc(EXT_CID_GET_OPTION,
+      1, EXT_STRING(opt), 1, EXT_STRING_P(retval))) {
+	free(retval);
+	return (char *)0;
+    }
+    if (!retval) {
+	fprintf(stderr, "proxy_cb_get_option: retval is NULL\n");
+	abort();
+    }
     return retval;
 }
 
@@ -133,8 +154,11 @@ proxy_cb_get_player_choices()
     struct proxycb_get_player_choices_res *retval;
     retval=(struct proxycb_get_player_choices_res *)alloc(sizeof(*retval));
     memset(retval, 0, sizeof(*retval));
-    nhext_rpc(EXT_CID_GET_PLAYER_CHOICES, 0, 1,
-      EXT_XDRF(proxycb_xdr_get_player_choices_res, retval));
+    if (!nhext_rpc(EXT_CID_GET_PLAYER_CHOICES, 0, 1,
+      EXT_XDRF(proxycb_xdr_get_player_choices_res, retval))) {
+	free(retval);
+	return (struct proxycb_get_player_choices_res *)0;
+    }
     return retval;
 }
 
@@ -151,28 +175,29 @@ proxy_cb_is_valid_selection(role, race, gender, alignment)
 int role, race, gender, alignment;
 {
     int retval;
-    nhext_rpc(EXT_CID_IS_VALID_SELECTION,
+    if (!nhext_rpc(EXT_CID_IS_VALID_SELECTION,
       4, EXT_INT(role), EXT_INT(race), EXT_INT(gender), EXT_INT(alignment),
-      1, EXT_INT_P(retval));
+      1, EXT_INT_P(retval)))
+	retval = -1;
     return retval;
 }
 
 void
 proxy_cb_quit_game()
 {
-    nhext_rpc(EXT_CID_QUIT_GAME, 0, 0);
+    (void)nhext_rpc(EXT_CID_QUIT_GAME, 0, 0);
 }
 
 void
 proxy_cb_display_score()
 {
-    nhext_rpc(EXT_CID_DISPLAY_SCORE, 0, 0);
+    (void)nhext_rpc(EXT_CID_DISPLAY_SCORE, 0, 0);
 }
 
 void
 proxy_cb_doset()
 {
-    nhext_rpc(EXT_CID_DOSET, 0, 0);
+    (void)nhext_rpc(EXT_CID_DOSET, 0, 0);
 }
 
 struct proxycb_get_extended_commands_res *
@@ -181,8 +206,11 @@ proxy_cb_get_extended_commands()
     struct proxycb_get_extended_commands_res *retval;
     retval=(struct proxycb_get_extended_commands_res *)alloc(sizeof(*retval));
     memset(retval, 0, sizeof(*retval));
-    nhext_rpc(EXT_CID_GET_EXTENDED_COMMANDS, 0, 1,
-      EXT_XDRF(proxycb_xdr_get_extended_commands_res, retval));
+    if (!nhext_rpc(EXT_CID_GET_EXTENDED_COMMANDS, 0, 1,
+      EXT_XDRF(proxycb_xdr_get_extended_commands_res, retval))) {
+	free(retval);
+	return (struct proxycb_get_extended_commands_res *)0;
+    }
     return retval;
 }
 
@@ -199,7 +227,8 @@ proxy_cb_map_menu_cmd(ch)
 int ch;
 {
     int retval;
-    nhext_rpc(EXT_CID_MAP_MENU_CMD, 1, EXT_INT(ch), 1, EXT_INT_P(retval));
+    if (!nhext_rpc(EXT_CID_MAP_MENU_CMD, 1, EXT_INT(ch), 1, EXT_INT_P(retval)))
+	retval = ch;
     return retval;
 }
 
@@ -208,8 +237,9 @@ proxy_cb_get_standard_winid(window)
 char *window;
 {
     int retval;
-    nhext_rpc(EXT_CID_GET_STANDARD_WINID, 1, EXT_STRING(window),
-      1, EXT_INT_P(retval));
+    if (!nhext_rpc(EXT_CID_GET_STANDARD_WINID, 1, EXT_STRING(window),
+      1, EXT_INT_P(retval)))
+	retval = -1;
     return retval;
 }
 
@@ -219,8 +249,11 @@ proxy_cb_get_tilesets()
     struct proxycb_get_tilesets_res *retval;
     retval=(struct proxycb_get_tilesets_res *)alloc(sizeof(*retval));
     memset(retval, 0, sizeof(*retval));
-    nhext_rpc(EXT_CID_GET_TILESETS, 0, 1,
-      EXT_XDRF(proxycb_xdr_get_tilesets_res, retval));
+    if (!nhext_rpc(EXT_CID_GET_TILESETS, 0, 1,
+      EXT_XDRF(proxycb_xdr_get_tilesets_res, retval))) {
+	free(retval);
+	return (struct proxycb_get_tilesets_res *)0;
+    }
     return retval;
 }
 
@@ -238,8 +271,11 @@ proxy_cb_get_glyph_mapping()
     struct proxycb_get_glyph_mapping_res *retval;
     retval=(struct proxycb_get_glyph_mapping_res *)alloc(sizeof(*retval));
     memset(retval, 0, sizeof(*retval));
-    nhext_rpc(EXT_CID_GET_GLYPH_MAPPING, 0, 1,
-      EXT_XDRF(proxycb_xdr_get_glyph_mapping_res, retval));
+    if (!nhext_rpc(EXT_CID_GET_GLYPH_MAPPING, 0, 1,
+      EXT_XDRF(proxycb_xdr_get_glyph_mapping_res, retval))) {
+	free(retval);
+	retval = (struct proxycb_get_glyph_mapping_res *)0;
+    }
     return retval;
 }
 

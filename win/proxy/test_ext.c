@@ -1,5 +1,5 @@
-/* $Id: test_ext.c,v 1.3 2002-11-02 15:47:04 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001 */
+/* $Id: test_ext.c,v 1.4 2002-11-23 22:41:59 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 /*
@@ -351,16 +351,19 @@ struct nhext_svc callbacks[] = {
 void svc_exit(unsigned short id, NhExtXdr *request, NhExtXdr *reply)
 {
     server_exit = 1;
+    nhext_rpc_params(reply, 0);
 }
 
 void svc_test1(unsigned short id, NhExtXdr *request, NhExtXdr *reply)
 {
+    nhext_rpc_params(reply, 0);
 }
 
 void svc_test2(unsigned short id, NhExtXdr *request, NhExtXdr *reply)
 {
     int i;
     nhext_rpc_params(request, 1, EXT_INT_P(i));
+    nhext_rpc_params(reply, 0);
 }
 
 void svc_test3(unsigned short id, NhExtXdr *request, NhExtXdr *reply)
@@ -454,8 +457,14 @@ int server_write(void *handle, void *buf, unsigned int len)
 void server(void)
 {
     int i;
-    server_connection = nhext_subprotocol1_init(server_read, (void *)0,
-      server_write, (void *)1, callbacks);
+    NhExtIO *rd, *wr;
+    rd = nhext_io_open(server_read, (void *)0, NHEXT_IO_RDONLY);
+    wr = nhext_io_open(server_write, (void *)1, NHEXT_IO_WRONLY);
+    if (!rd || !wr) {
+	fprintf(stderr, "C Failed to open I/O streams.\n");
+	exit(1);
+    }
+    server_connection = nhext_subprotocol1_init(rd, wr, callbacks);
     if (server_connection < 0) {
 	fprintf(stderr, "C Failed to initialize sub-protocol1.\n");
 	exit(1);
@@ -466,6 +475,8 @@ void server(void)
 	    impossible("Ignoring packet with zero ID");
     } while (!server_exit);
     nhext_subprotocol1_end_c(server_connection);
+    nhext_io_close(rd);
+    nhext_io_close(wr);
 }
 
 void run_tests(void)
@@ -527,6 +538,7 @@ main(argc, argv)
 int argc;
 char **argv;
 {
+    NhExtIO *rd, *wr;
     if (argc > 1 && !strcmp(argv[1], "-c")) {
 	is_child++;
 	server();
@@ -536,8 +548,13 @@ char **argv;
 	fprintf(stderr, "Failed to start child.\n");
 	exit(1);
     }
-    connection = nhext_subprotocol1_init(debug_read, (void *)to_parent[0],
-      debug_write, (void *)to_child[1], callbacks);
+    rd = nhext_io_open(debug_read, (void *)to_parent[0], NHEXT_IO_RDONLY);
+    wr = nhext_io_open(debug_write, (void *)to_child[1], NHEXT_IO_WRONLY);
+    if (!rd || !wr) {
+	fprintf(stderr, "Failed to open I/O streams.\n");
+	exit(1);
+    }
+    connection = nhext_subprotocol1_init(rd, wr, callbacks);
     if (connection < 0) {
 	fprintf(stderr, "Failed to initialize sub-protocol1.\n");
 	exit(1);
@@ -545,6 +562,8 @@ char **argv;
     run_tests();
     nhext_rpc_c(connection, EXT_FID_EXIT, 0, 0);
     nhext_subprotocol1_end_c(connection);
+    nhext_io_close(rd);
+    nhext_io_close(wr);
     if (!child_wait()) {
 	fprintf(stderr, "Error while waiting for child.\n");
 	exit(1);

@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.10 2002-11-02 15:47:03 j_ali Exp $ */
+/* $Id: callback.c,v 1.11 2002-11-23 22:41:59 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -57,6 +57,7 @@ unsigned short id;
 NhExtXdr *request, *reply;
 {
     display_inventory((char *)0, FALSE);
+    nhext_rpc_params(reply, 0);
 }
 
 #ifndef FILE_AREAS
@@ -222,6 +223,7 @@ NhExtXdr *request, *reply;
 {
     extern int proxy_curs_on_u;
     flush_screen(proxy_curs_on_u);
+    nhext_rpc_params(reply, 0);
 }
 
 static void
@@ -230,6 +232,7 @@ unsigned short id;
 NhExtXdr *request, *reply;
 {
     (void)doredraw();
+    nhext_rpc_params(reply, 0);
 }
 
 static void
@@ -240,6 +243,7 @@ NhExtXdr *request, *reply;
     nhext_rpc_params(request, 1, EXT_LONG_P(proxy_interface_mode));
     bot_set_handler(proxy_interface_mode & EXT_IM_STATUS ?
       proxy_status : (void (*)())0L);
+    nhext_rpc_params(reply, 0);
 }
 
 static void
@@ -357,6 +361,8 @@ NhExtXdr *request, *reply;
 	exit_nhwindows(NULL);
 	terminate(EXIT_SUCCESS);
     }
+    /* Not reached */
+    nhext_rpc_params(reply, 0);
 }
 
 static void
@@ -376,6 +382,7 @@ NhExtXdr *request, *reply;
     destroy_toptenwin();
     dlb_init();                         /* Re-initialise DLB */
     proxy_rawprint_win = WIN_ERR;
+    nhext_rpc_params(reply, 0);
 }
 
 static void
@@ -384,6 +391,7 @@ unsigned short id;
 NhExtXdr *request, *reply;
 {
     doset();
+    nhext_rpc_params(reply, 0);
 }
 
 static void

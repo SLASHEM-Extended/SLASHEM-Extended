@@ -1,4 +1,4 @@
-/* $Id: nhextxdr.c,v 1.5 2002-11-02 15:47:03 j_ali Exp $ */
+/* $Id: nhextxdr.c,v 1.6 2002-11-23 22:41:59 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -7,10 +7,13 @@
 
 /*
  * This module implements the NhExt version of XDR according to RFC 1014.
- * It is functionally equivalent to the code produced by rpcgen, and can
- * be replaced by that on systems which support it. Rpcgen is included in
- * the freely available RPCSRC 4.0 from Sun Microsystems, which can be
- * downloaded in 17 shar files from ftp://bcm.tmc.edu/nfs/
+ * It is backwards compatible with the code produced by rpcgen, and can
+ * be replaced by that for testing purposes on systems which support it.
+ * NetHack uses the extra facilities implemented here and is not therefore
+ * itself compatible with rpcgen.
+ * Rpcgen is included in the freely available RPCSRC 4.0 from Sun
+ * Microsystems, which can be downloaded in 17 shar files from
+ * ftp://bcm.tmc.edu/nfs/
  */
 
 /*
@@ -40,7 +43,8 @@ long *datum;
 	retval = xdrs->x_read(xdrs, buf, 4);
 	*datum =
 	  (long)buf[0] << 24 | (long)buf[1] << 16 | (long)buf[2] << 8 | buf[3];
-    }
+    } else if (xdrs->x_op == NHEXT_XDR_COUNT)
+	xdrs->x_pos += 4;
     return retval;
 }
 
@@ -181,8 +185,7 @@ unsigned int maxlen, ext;
 	retval &= xdrs->x_write(xdrs, *datum, *len);
 	if (*len & 3)
 	    retval &= xdrs->x_write(xdrs, &zero, 4 - (*len & 3));
-    }
-    else if (xdrs->x_op == NHEXT_XDR_DECODE) {
+    } else if (xdrs->x_op == NHEXT_XDR_DECODE) {
 	retval = nhext_xdr_u_int(xdrs, len);
 	if (retval) {
 	    if (*len > maxlen)
@@ -194,10 +197,12 @@ unsigned int maxlen, ext;
 	    }
 	    retval &= xdrs->x_read(xdrs, *datum, NHEXT_XDR_RNDUP(*len));
 	}
-    }
-    else if (xdrs->x_op == NHEXT_XDR_FREE) {
+    } else if (xdrs->x_op == NHEXT_XDR_FREE) {
 	free(*datum);
 	*datum = NULL;
+	retval = TRUE;
+    } else if (xdrs->x_op == NHEXT_XDR_COUNT) {
+	xdrs->x_pos += 4 + NHEXT_XDR_RNDUP(*len);
 	retval = TRUE;
     }
     return retval;
@@ -211,7 +216,7 @@ unsigned int maxsize;
 {
     int retval;
     unsigned int slen;
-    if (xdrs->x_op == NHEXT_XDR_ENCODE)
+    if (xdrs->x_op == NHEXT_XDR_ENCODE || xdrs->x_op == NHEXT_XDR_COUNT)
 	slen = strlen(*datum);
     retval = nhext_xdr_bytestring(xdrs, datum, &slen, maxsize, 1);
     if (retval && xdrs->x_op == NHEXT_XDR_DECODE)
