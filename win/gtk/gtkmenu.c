@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.2 2000-08-30 13:48:51 j_ali Exp $
+  $Id: gtkmenu.c,v 1.3 2000-09-14 12:49:21 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -292,6 +292,7 @@ GTK_load_menu_clist(NHWindow *w)
 {
     int i, j;
     GtkCList *c;
+    GtkStyle *s;
     struct menu *menu;
     gchar *text[3];
     if (w->menu_information->valid_widgets)
@@ -301,6 +302,9 @@ GTK_load_menu_clist(NHWindow *w)
 	c = GTK_CLIST(gtk_clist_new(3));
 	w->clist = GTK_WIDGET(c);
     }
+    s = gtk_rc_get_style(GTK_WIDGET(w->w));
+    if (!s)
+	s = w->clist->style;
     gtk_clist_freeze(c);
     gtk_clist_clear(c);
     menu = &w->menu_information->curr_menu;
@@ -314,8 +318,7 @@ GTK_load_menu_clist(NHWindow *w)
 	if(!menu->nhMenuItem[j].id.a_void){
 	    gtk_clist_set_selectable(c, j, FALSE);
 	    if(menu->nhMenuItem[j].attr != 0)
-		gtk_clist_set_background(c, j,
-		  gtk_rc_get_style(GTK_WIDGET(w->w))->dark);
+		gtk_clist_set_background(c, j, s->dark);
 	}
     }
     /* Inventory window doesn't really look good if it's completely empty */
