@@ -641,7 +641,7 @@ plus:
 			Sprintf(eos(bp), " (%d)", obj->age);		
 #endif
 		} else if (is_grenade(obj)) {
-			if(obj->lamplit) Strcat(bp, " (armed)");
+			if(obj->oarmed) Strcat(bp, " (armed)");
 		}
 		break;
 	case ARMOR_CLASS:
