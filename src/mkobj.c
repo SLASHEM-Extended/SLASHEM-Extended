@@ -953,9 +953,13 @@ register struct obj *obj;
 #undef CEILDIV
 		return wt + cwt;
 	}
-	if (obj->otyp == CORPSE && obj->corpsenm >= LOW_PM)
-		return (int)obj->quan * mons[obj->corpsenm].cwt;
-	else if (obj->oclass == GOLD_CLASS)
+	if (obj->oclass == FOOD_CLASS) {
+	    if (obj->otyp == CORPSE && obj->corpsenm >= LOW_PM)
+		wt = (int)obj->quan * mons[obj->corpsenm].cwt;
+	    else
+		wt = wt ? wt * (int)obj->quan : ((int)obj->quan + 1) >> 1;
+	    return obj->oeaten ? eaten_stat(wt, obj) : wt;
+	} else if (obj->oclass == GOLD_CLASS)
 		return (int)((obj->quan + 50L) / 100L);
 	else if (obj->otyp == HEAVY_IRON_BALL && obj->owt != 0)
 		return((int)(obj->owt));        /* kludge for "very" heavy iron ball */

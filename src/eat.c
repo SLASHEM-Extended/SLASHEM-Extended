@@ -313,9 +313,8 @@ recalc_wt()     /* modify object wt. depending on time spent consuming it */
 	debugpline("Used time = %d, Req'd time = %d",
 		victual.usedtime, victual.reqtime);
 #endif
-	/* weight(piece) = weight of full item */
 	if(victual.usedtime)
-	    piece->owt = eaten_stat(weight(piece), piece);
+	    piece->owt = weight(piece);
 #ifdef DEBUG
 	debugpline("New weight = %d", piece->owt);
 #endif
