@@ -374,11 +374,14 @@ dotechmenu(how, tech_no)
 	menu_item *selected;
 	anything any;
 	char let = 'a';
+	char *prefix;
+	int techs_useable;
 
 	tmpwin = create_nhwindow(NHW_MENU);
 	start_menu(tmpwin);
 	any.a_void = 0;         /* zero out all bits */
 
+	techs_useable = 0;
 
     if (!iflags.menu_tab_sep) {
 		/* find the length of the longest tech */
@@ -397,11 +400,17 @@ dotechmenu(how, tech_no)
     for (i = 0; i < MAXTECH; i++) {
 		if (techid(i) == NO_TECH)
 			continue;
+		if (!techtout(i)) {
+			/* Ready to use */
+			techs_useable++;
+			prefix = "";
+		} else 
+			prefix = "   ";
 #ifdef WIZARD
 		if (wizard) 
 		    if (!iflags.menu_tab_sep)			
-			Sprintf(buf, "%-*s %2d%c%c%c   %s(%i)",
-                    longest, techname(i), techlev(i),
+			Sprintf(buf, "%s%-*s %2d%c%c%c   %s(%i)",
+                    prefix, longest, techname(i), techlev(i),
 		      tech_list[i].t_intrinsic & FROMEXPER ? 'X' : ' ',
 		      tech_list[i].t_intrinsic & FROMRACE ? 'R' : ' ',
 		      tech_list[i].t_intrinsic & FROMOUTSIDE ? 'O' : ' ',
@@ -412,8 +421,8 @@ dotechmenu(how, tech_no)
 		      "Soon",
 		    techtout(i));
 			else
-			Sprintf(buf, "%s\t%2d%c%c%c\t%s(%i)",
-                    techname(i), techlev(i),
+			Sprintf(buf, "%s%s\t%2d%c%c%c\t%s(%i)",
+                    prefix, techname(i), techlev(i),
 		      tech_list[i].t_intrinsic & FROMEXPER ? 'X' : ' ',
 		      tech_list[i].t_intrinsic & FROMRACE ? 'R' : ' ',
 		      tech_list[i].t_intrinsic & FROMOUTSIDE ? 'O' : ' ',
@@ -426,26 +435,31 @@ dotechmenu(how, tech_no)
 		else
 #endif
 		    if (!iflags.menu_tab_sep)			
-                Sprintf(buf, "%-26s %5d   %s",
-                    techname(i), techlev(i),
+                Sprintf(buf, "%s%-*s %5d   %s",
+                    prefix, longest, techname(i), techlev(i),
                       tech_inuse(techid(i)) ? "Active" :
                       can_limitbreak() ? "LIMIT" :
                       !techtout(i) ? "Prepared" : 
 		      techtout(i) > 100 ? "Not Ready" : 
 		      "Soon");
 			else
-                Sprintf(buf, "%s\t%5d\t%s",
-                    techname(i), techlev(i),
+                Sprintf(buf, "%s%s\t%5d\t%s",
+                    prefix, techname(i), techlev(i),
                       tech_inuse(techid(i)) ? "Active" :
                       can_limitbreak() ? "LIMIT" :
                       !techtout(i) ? "Prepared" : 
 		      techtout(i) > 100 ? "Not Ready" : 
 		      "Soon");
-		any.a_int = i+1;        /* must be non-zero */
+
+		any.a_int = (!techtout(i)) ? i+1 : 0;        /* must be non-zero */
 		add_menu(tmpwin, NO_GLYPH, &any,
                          let, 0, ATR_NONE, buf, MENU_UNSELECTED);
 		if (let++ == 'z') let = 'A';
 	}
+
+	if (!techs_useable) 
+		how = PICK_NONE;
+
 	end_menu(tmpwin, how == PICK_ONE ? "Choose a technique" :
 						"Currently known techniques");
 
