@@ -603,7 +603,7 @@ E void FDECL(more_experienced, (int,int));
 #ifndef DEVEL_BRANCH
 E void FDECL(losexp, (const char *));
 #else /* DEVEL_BRANCH */
-E void FDECL(losexp, (const char *, boolean));
+E void FDECL(losexp, (const char *, BOOLEAN_P));
 #endif /* DEVEL_BRANCH */
 E void NDECL(newexplevel);
 E void FDECL(pluslvl, (BOOLEAN_P));
