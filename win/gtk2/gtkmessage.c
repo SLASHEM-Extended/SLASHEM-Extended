@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmessage.c,v 1.4 2003-01-21 17:09:14 j_ali Exp $
+  $Id: gtkmessage.c,v 1.5 2003-01-23 12:40:49 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -18,7 +18,7 @@ static GtkWidget *message_text;
 extern int root_width;
 extern int root_height;
 
-#if GTK_CHECK_VERSION(2,2,0)
+#if GTK_CHECK_VERSION(2,0,0)
 # define USE_TEXTVIEW
 #else	/* GTK_CHECK_VERSION */
 # ifdef WIN32
@@ -43,7 +43,7 @@ nh_message_new()
     GTK_WIDGET_UNSET_FLAGS(message_text, GTK_CAN_FOCUS);
     gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(message_text), GTK_WRAP_WORD);
     gtk_text_buffer_create_tag(
-	    gtk_text_view_get_buffer(GTK_TEXTVIEW(message_text)),
+	    gtk_text_view_get_buffer(GTK_TEXT_VIEW(message_text)),
 	    "warning", "foreground", "red", NULL);
 
     sw = nh_gtk_new_and_add(gtk_scrolled_window_new(NULL, NULL), message_h, "");
@@ -59,14 +59,14 @@ nh_message_putstr(const char *str)
 {
     int	len;
     char *buf;
-    GtkTextIter iter, end_iter;
+    GtkTextIter iter, iter2;
     GtkTextBuffer *t;
 
     if (!message_text)
 	return;
 
-    t = gtk_text_view_get_buffer(GTK_TEXTVIEW(message_text));
-    gtk_text_buffer_get_end_iter(t, &end_iter);
+    t = gtk_text_view_get_buffer(GTK_TEXT_VIEW(message_text));
+    gtk_text_buffer_get_end_iter(t, &iter);
 
     len = strlen(str);
     buf = (char *)alloc(len + 2);
@@ -74,20 +74,23 @@ nh_message_putstr(const char *str)
     sprintf(buf, "\n%s", str);
 
     if (nh_status_in_trouble())
-	gtk_text_buffer_insert_with_tags_by_name(t, &end_iter, buf, len + 1,
+	gtk_text_buffer_insert_with_tags_by_name(t, &iter, buf, len + 1,
 	  "warning", NULL);
     else
-	gtk_text_buffer_insert(t, &end_iter, buf, len + 1);
+	gtk_text_buffer_insert(t, &iter, buf, len + 1);
+    free(buf);
   
     len = gtk_text_buffer_get_char_count(t);
     if (len > NH_TEXT_REMEMBER) {
-	gtk_text_buffer_get_iter_at_offset(t, &iter, NH_TEXT_REMEMBER);
-	gtk_text_buffer_get_iter_at_line(t, &iter,
+	gtk_text_buffer_get_iter_at_offset(t, &iter, len - NH_TEXT_REMEMBER);
+	gtk_text_buffer_get_iter_at_line(t, &iter2,
 		gtk_text_iter_get_line(&iter) + 1);
-	gtk_text_buffer_delete(t, &iter, &end_iter);
+	gtk_text_buffer_get_start_iter(t, &iter);
+	gtk_text_buffer_delete(t, &iter, &iter2);
     }
 
-    free(buf);
+    gtk_text_view_scroll_mark_onscreen(GTK_TEXT_VIEW(message_text),
+	    gtk_text_buffer_get_insert(t));
 }
 
 #else	/* USE_TEXTVIEW */
