@@ -369,6 +369,7 @@ dotechmenu(how, tech_no)
 {
 	winid tmpwin;
 	int i, n;
+	int len, longest;
 	char buf[BUFSZ];
 	menu_item *selected;
 	anything any;
@@ -378,10 +379,18 @@ dotechmenu(how, tech_no)
 	start_menu(tmpwin);
 	any.a_void = 0;         /* zero out all bits */
 
-    if (!iflags.menu_tab_sep)
-	Sprintf(buf, "%-30s Level   Status", "Name");
-	else
-	Sprintf(buf, "Name\tLevel\tStatus");
+
+    if (!iflags.menu_tab_sep) {
+		/* find the length of the longest tech */
+	    for (longest = 0, i = 0; i < MAXTECH; i++) {
+			if (techid(i) == NO_TECH) continue;
+			if ((len = strlen(techname(i))) > longest)
+			    longest = len;
+		}
+
+		Sprintf(buf, "    %-*s Level   Status", longest, "Name");
+	} else
+		Sprintf(buf, "Name\tLevel\tStatus");
 
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, MENU_UNSELECTED);
 
@@ -391,8 +400,8 @@ dotechmenu(how, tech_no)
 #ifdef WIZARD
 		if (wizard) 
 		    if (!iflags.menu_tab_sep)			
-			Sprintf(buf, "%-26s %2d%c%c%c   %s(%i)",
-                    techname(i), techlev(i),
+			Sprintf(buf, "%-*s %2d%c%c%c   %s(%i)",
+                    longest, techname(i), techlev(i),
 		      tech_list[i].t_intrinsic & FROMEXPER ? 'X' : ' ',
 		      tech_list[i].t_intrinsic & FROMRACE ? 'R' : ' ',
 		      tech_list[i].t_intrinsic & FROMOUTSIDE ? 'O' : ' ',
