@@ -457,7 +457,8 @@ init_tiles(wp)
 	goto tiledone;
     }
 
-    fp = fopen_datafile_area(FILE_AREA_SHARE, appResources.tile_file, RDBMODE);
+    fp = fopen_datafile_area(FILE_AREA_SHARE, appResources.tile_file, RDBMODE,
+      FALSE);
     if (!fp) {
 	X11_raw_print("can't open tile file");
 	perror(appResources.tile_file);
