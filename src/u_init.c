@@ -430,7 +430,9 @@ static struct inv_sub { short race_pm, item_otyp, subs_otyp; } inv_subs[] = {
     { PM_HUMAN_WEREWOLF,FOOD_RATION,		TRIPE_RATION	      },
     { PM_HUMAN_WEREWOLF,SILVER_SPEAR,		SPEAR		      },
     { PM_HUMAN_WEREWOLF,SILVER_DAGGER,		DAGGER		      },
+#ifdef FIREARMS
     { PM_HUMAN_WEREWOLF,SILVER_BULLET,		BULLET		      },
+#endif
     { PM_DROW,		DAGGER,			DARK_ELVEN_DAGGER     },
     { PM_DROW,		SHORT_SWORD,		DARK_ELVEN_SHORT_SWORD},
     { PM_DROW,		BOW,			DARK_ELVEN_BOW	      },
