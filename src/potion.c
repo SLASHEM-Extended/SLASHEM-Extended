@@ -1495,7 +1495,7 @@ boolean your_fault;
 		    obj->unpaid = 0;
 		else {
 		    (void)stolen_value(obj, u.ux, u.uy,
-				 (boolean)shkp->mpeaceful, FALSE);
+				 (boolean)shkp->mpeaceful, FALSE, TRUE);
 		    subfrombill(obj, shkp);
 		}
 	}
@@ -2538,7 +2538,7 @@ register struct obj *obj;
 		if (costly_spot(u.ux, u.uy) && objroom == *u.ushops)
 		    bill_dummy_object(obj);
 		else
-		    (void) stolen_value(obj, ox, oy, FALSE, FALSE);
+		    (void) stolen_value(obj, ox, oy, FALSE, FALSE, FALSE);
 		obj->otyp = otyp2;
 		obj->cobj = otmp;
 	    }

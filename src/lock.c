@@ -192,7 +192,8 @@ forcelock()	/* try to force a locked chest */
 		    chest_shatter_msg(otmp);
 		    if (costly)
 		        loss += stolen_value(otmp, u.ux, u.uy,
-					     (boolean)shkp->mpeaceful, TRUE);
+					     (boolean)shkp->mpeaceful, TRUE,
+					     TRUE);
 		    if (otmp->quan == 1L) {
 			obfree(otmp, (struct obj *) 0);
 			continue;
@@ -209,7 +210,7 @@ forcelock()	/* try to force a locked chest */
 
 	    if (costly)
 		loss += stolen_value(xlock.box, u.ux, u.uy,
-					     (boolean)shkp->mpeaceful, TRUE);
+				     (boolean)shkp->mpeaceful, TRUE, TRUE);
 	    if(loss) You("owe %ld %s for objects destroyed.", loss, currency(loss));
 	    delobj(xlock.box);
 	}

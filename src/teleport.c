@@ -1516,7 +1516,7 @@ register struct obj *obj;
 		if (costly_spot(u.ux, u.uy) &&
 			    index(u.urooms, *in_rooms(otx, oty, 0)))
 		    addtobill(obj, FALSE, FALSE, FALSE);
-		else (void)stolen_value(obj, otx, oty, FALSE, FALSE);
+		else (void)stolen_value(obj, otx, oty, FALSE, FALSE, FALSE);
 	    }
 	    newsym(otx, oty);	/* update old location */
 	}

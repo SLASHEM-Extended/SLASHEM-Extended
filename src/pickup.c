@@ -2038,8 +2038,15 @@ struct obj *item;
     if (*u.ushops && (shkp = shop_keeper(*u.ushops)) != 0) {
 	if (held ? (boolean) item->unpaid : costly_spot(u.ux, u.uy))
 	    loss = stolen_value(item, u.ux, u.uy,
-				(boolean)shkp->mpeaceful, TRUE);
+				(boolean)shkp->mpeaceful, TRUE, TRUE);
     }
+    /* [ALI] In Slash'EM we must delete the contents of containers before
+     * we call obj_extract_self() so that any indestructable items can
+     * migrate into the bag of holding. We are also constrained by the
+     * need to wait until after we have calculated any loss.
+     */
+    if (Has_contents(item)) delete_contents(item);
+    obj_extract_self(item);
     obfree(item, (struct obj *) 0);
     return loss;
 }
@@ -2141,33 +2148,13 @@ register int held;
 	 */
 	/* Sometimes toss objects if a cursed magic bag. */
 	if (Is_mbag(obj) && obj->cursed) {
-	for (curr = obj->cobj; curr; curr = otmp) {
-	    otmp = curr->nobj;
+	    for (curr = obj->cobj; curr; curr = otmp) {
+		otmp = curr->nobj;
 		if (!rn2(13) && !evades_destruction(curr)) {
-		if (curr->dknown)
-		    pline("%s to have vanished!", The(aobjnam(curr,"seem")));
-		else
-		    You("%s %s disappear.", Blind ? "notice" : "see",
-							doname(curr));
-		if (*u.ushops && (shkp = shop_keeper(*u.ushops)) != 0) {
-		    if(held) {
-			if(curr->unpaid)
-			    loss += stolen_value(curr, u.ux, u.uy,
-					     (boolean)shkp->mpeaceful, TRUE);
-			lcnt++;
-		    } else if(costly_spot(u.ux, u.uy)) {
-			loss += stolen_value(curr, u.ux, u.uy,
-					     (boolean)shkp->mpeaceful, TRUE);
-			lcnt++;
-		    }
+		    loss += mbag_item_gone(held, curr);
+		    used = 1;
 		}
-		if (Has_contents(curr)) delete_contents(curr);
-		obj_extract_self(curr);
- 		loss += mbag_item_gone(held, curr);
-		obfree(curr, (struct obj *) 0);
-		used = 1;
 	    }
-	}
 	}
 	/* Count the number of contained objects. */
 	for (curr = obj->cobj; curr; curr = curr->nobj)
