@@ -58,8 +58,6 @@ char msgbuf[BUFSZ];
 #define STARVED		6
 
 /* also used to see if you're allowed to eat cats and dogs */
-#define is_cannibal(ptr)    is_were(ptr) || is_demon(ptr)
-
 #define CANNIBAL_ALLOWED() (Role_if(PM_CAVEMAN) || Race_if(PM_ORC) || \
 			    Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_VAMPIRE))
 
@@ -500,9 +498,12 @@ register int pm;
 		You("cannibal!  You will regret this!");
 		HAggravate_monster |= FROMOUTSIDE;
 		change_luck(-rn1(4,2));		/* -5..-2 */
+	    } else if (Role_if(PM_CAVEMAN)) {
+		adjalign(sgn(u.ualign.type));
+		You("honour the dead.");
 	    } else {
-		You("feel evil and fiendish!");
-		u.ualign.record++;
+		adjalign(-sgn(u.ualign.type));
+		You_feel("evil and fiendish!");
 	    }
 	}
 

@@ -102,6 +102,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -Actioned feature request 457867: <verbose armor name> blocks (Lars Huttar).
 -Actioned feature request 459915: displacer beast appearance.
 -Actioned feature request 422908: Flame Sphere+ water blast trap.
+-Actioned feature request 616101: Cannibalism and Cavemen.
 
 See history.txt for changes made in previous versions.
 
