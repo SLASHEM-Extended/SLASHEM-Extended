@@ -139,7 +139,7 @@ int x,y;
 	    		pline("%s explodes in a ball of fire!", Doname2(obj));
 	    	else You_hear("an explosion");
 		explode(bhitpos.x, bhitpos.y, -ZT_SPELL(ZT_FIRE), d(3,8),
-		    EXPL_FIERY, WEAPON_CLASS);
+		    WEAPON_CLASS, EXPL_FIERY);
 	}
 #endif
 
@@ -153,7 +153,7 @@ int x,y;
 			You_hear("an explosion");
 
 		explode(bhitpos.x, bhitpos.y, -ZT_SPELL(ZT_FIRE),
-		    d(2,6), EXPL_FIERY, WEAPON_CLASS);
+		    d(2,6), WEAPON_CLASS, EXPL_FIERY);
 
 		/* D: Exploding bolts will be destroyed */
 		create = 0;
