@@ -292,6 +292,10 @@ struct instance_flags {
 	boolean  showrace;	/* show hero glyph by race rather than by role */
 	boolean  travelcmd;	/* allow travel command */
 	int	 runmode;	/* update screen display during run moves */
+#ifdef WIN32CON
+#define MAX_ALTKEYHANDLER 25
+	char	 altkeyhandler[MAX_ALTKEYHANDLER];
+#endif
 };
 
 /*

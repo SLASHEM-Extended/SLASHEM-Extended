@@ -1,9 +1,9 @@
-#       $Id: Makefile.gcc,v 1.39 2003-10-25 18:06:00 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.40 2003-11-06 00:04:17 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
 #
-#       Slash'EM 0.0.7 Makefile for MinGW 1.0 and above and Gtk+ 2.0 and above
+#       Slash'EM 0.0.7 Makefile for MinGW 2.0 and above and Gtk+ 2.0 and above
 #  
 #       Win32 systems tested:
 #				- Windows 95
@@ -38,7 +38,6 @@
 #       than the default).
 
 # Game Installation Variables
-# NOTE: Make sure GAMEDIR exists before make is started.
 
 GAME = slashem
 # The GNU Make has a problem if you include a drive spec below (unfortunately).
@@ -53,6 +52,7 @@ DDAT  = ../dat
 DUTIL = ../util
 DSRC  = ../src
 DINCL = ../include
+NTSYS = ../sys/winnt
 MW32GTK = /mingw32/gtk2
 
 # Normal dos commands get confused by \\
@@ -327,7 +327,9 @@ ifeq ($(USE_PROXY),Y)
 WINSRC += $(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYCOMSRC)
 WOBJ02 += $(WINPROXYOBJ)
 WOBJ03 += $(PROXYCOMOBJ)
+ifneq ($(USE_MSWIN),Y)
 WOBJ04 += tile.o
+endif
 WOBJ05 += $(PROXYUTLOBJ)
 endif
 
@@ -511,32 +513,32 @@ EPRI_H	   = $(DUNGEON_H)	$(INCL)\align.h	    $(INCL)\epri.h
 ESHK_H	   = $(DUNGEON_H)	$(INCL)\eshk.h
 MONDATA_H  = $(INCL)\align.h	$(INCL)\mondata.h
 MONST_H	   = $(INCL)\align.h	$(INCL)\monst.h
-NHLAN_H     = $(INCL)\nhlan.h
+NHLAN_H    = $(INCL)\nhlan.h
 PERMONST_H = $(INCL)\monattk.h	$(INCL)\monflag.h   $(INCL)\align.h   \
-	    $(INCL)\permonst.h
+	     $(INCL)\permonst.h
 REGION_H   = $(INCL)\region.h
 RM_H	   = $(INCL)\align.h	$(INCL)\rm.h
 SKILLS_H   = $(INCL)\skills.h
 SP_LEV_H   = $(INCL)\align.h	$(INCL)\sp_lev.h
 VAULT_H	   = $(DUNGEON_H)	$(INCL)\vault.h
 YOUPROP_H  = $(PERMONST_H)	$(MONDATA_H)	    $(INCL)\prop.h    \
-	    $(INCL)\pm.h       $(INCL)\youprop.h
+	     $(INCL)\pm.h       $(INCL)\youprop.h
 YOU_H	   = $(MONST_H)		$(YOUPROP_H)	    $(INCL)\align.h   \
 	     $(INCL)\attrib.h	$(INCL)\you.h
 DISPLAY_H  = $(MONDATA_H)	$(INCL)\vision.h    $(INCL)\display.h
 NTCONF_H   = $(INCL)\micro.h	$(INCL)\system.h    $(INCL)\ntconf.h
 CONFIG_H   = $(GLOBAL_H)	$(INCL)\tradstdc.h  $(INCL)\config1.h \
-	    $(INCL)\config.h
+	     $(INCL)\config.h
 DECL_H	   = $(YOU_H)		$(INCL)\spell.h	    $(INCL)\color.h   \
 	     $(INCL)\obj.h	$(INCL)\onames.h    $(INCL)\pm.h      \
-	      $(INCL)\decl.h
+	     $(INCL)\decl.h
 GLOBAL_H   = $(NTCONF_H)	$(INCL)\coord.h	    $(INCL)\global.h
 HACK_H	   = $(CONFIG_H)	$(DUNGEON_H)	    $(DECL_H)	      \
-	       $(DISPLAY_H)	  $(INCL)\monsym.h    $(INCL)\mkroom.h	\
-	      $(INCL)\objclass.h $(INCL)\trap.h	     $(INCL)\flag.h    \
-	      $(RM_H)		 $(INCL)\vision.h    $(INCL)\wintype.h \
-	      $(INCL)\engrave.h	 $(INCL)\rect.h	  \
-	       $(INCL)\trampoli.h $(INCL)\hack.h $(REGION_H)
+	     $(DISPLAY_H)	$(INCL)\monsym.h    $(INCL)\mkroom.h  \
+	     $(INCL)\objclass.h $(INCL)\trap.h	    $(INCL)\flag.h    \
+	     $(RM_H)		$(INCL)\vision.h    $(INCL)\wintype.h \
+	     $(INCL)\engrave.h	$(INCL)\rect.h	    $(INCL)\hack.h    \
+	     $(REGION_H)	$(INCL)\trampoli.h
 DLB_H      = $(INCL)\dlb.h
 
 #ifeq ($(SUPPRESS_GRAPHICS),Y)
@@ -641,11 +643,41 @@ endif
 
 #  The main target.
 
+gamedir.tag:
+	$(subst /,\,@if not exist $(GAMEDIR)/*.* echo creating directory $(GAMEDIR))
+	$(subst /,\,@if not exist $(GAMEDIR)/*.* mkdir $(GAMEDIR))
+	$(subst /,\,@echo directory created > $@)
 
-$(GAMEFILE): utility.tag $(NHALLOCDLL) $(NHALLOCA) $(ALLOBJ) $(GAME).lnk
+$(GAMEFILE): gamedir.tag utility.tag $(NHALLOCDLL) $(NHALLOCA) $(ALLOBJ) \
+		$(GAME).lnk $(GAMEDIR)/nhdefkey.dll $(GAMEDIR)/nh340key.dll \
+		$(GAMEDIR)/nhraykey.dll
 	$(LINK) $(LFLAGS) $(GTKGCCFLAGS) -o$(GAME).exe $(GAME).lnk
 	$(COPY) $(GAME).exe $(GAMEFILE)
 	$(DEL) $(GAME).exe
+
+nhdefkey.o:
+	$(CCOMPILE) $(CFLAGS) -DBUILD_DLL -o$@ $(NTSYS)/nhdefkey.c
+
+$(GAMEDIR)/nhdefkey.dll: nhdefkey.o gamedir.tag
+	@echo Linking $@
+	$(CCOMPILE) -shared -Wl,--export-all-symbols \
+		-Wl,--add-stdcall-alias -o $@ $<
+
+nh340key.o:
+	$(CCOMPILE) $(CFLAGS) -DBUILD_DLL -o$@ $(NTSYS)/nh340key.c
+
+$(GAMEDIR)/nh340key.dll: nh340key.o gamedir.tag
+	@echo Linking $@
+	$(CCOMPILE) -shared -Wl,--export-all-symbols \
+		-Wl,--add-stdcall-alias -o $@ $<
+
+nhraykey.o:
+	$(CCOMPILE) $(CFLAGS) -DBUILD_DLL -o$@ $(NTSYS)/nhraykey.c
+
+$(GAMEDIR)/nhraykey.dll: nhraykey.o gamedir.tag
+	@echo Linking $@
+	$(CCOMPILE) -shared -Wl,--export-all-symbols \
+		-Wl,--add-stdcall-alias -o $@ $<
 
 $(GAME).lnk: $(ALLOBJ)
 	@echo INPUT( $(VOBJ01) )> $@
@@ -707,6 +739,7 @@ clean:
 	-$(DEL) dlb_main.exe
 
 spotless: clean
+	-$(DEL) gamedir.tag
 	-$(DEL) utility.tag
 	-$(DEL) install.tag
 	-$(DEL) dat.tag
@@ -1343,33 +1376,29 @@ $(DAT)\quest.dat: utility.tag  $(DAT)\quest.txt
 $(DAT)\oracles:	     utility.tag    $(DAT)\oracles.txt
 	-makedefs -h
 
-sp_lev.tag: utility.tag     $(DAT)\beholder.des $(DAT)\bigroom.des \
-	$(DAT)\blkmar.des   $(DAT)\castle.des   $(DAT)\grund.des \
-	$(DAT)\dragons.des  $(DAT)\endgame.des \
-	$(DAT)\gehennom.des $(DAT)\giants.des   $(DAT)\guild.des \
-	$(DAT)\knox.des     $(DAT)\kobold-1.des $(DAT)\kobold-2.des \
-	$(DAT)\lich.des     $(DAT)\mall-1.des   $(DAT)\mall-2.des \
-	$(DAT)\medusa.des   $(DAT)\sokoban.des \
-	$(DAT)\mines.des    $(DAT)\mtemple.des  $(DAT)\newmall.des \
-	$(DAT)\nymph.des    $(DAT)\oracle.des   $(DAT)\rats.des \
-	$(DAT)\sea.des      $(DAT)\spiders.des  $(DAT)\stor-1.des \
-	$(DAT)\stor-2.des   $(DAT)\stor-3.des   $(DAT)\tomb.des \
-	$(DAT)\tower.des    $(DAT)\yendor.des \
-	$(DAT)\arch.des     $(DAT)\barb.des 	$(DAT)\caveman.des \
-	$(DAT)\flame.des \
-	$(DAT)\healer.des   $(DAT)\ice.des \
-	$(DAT)\knight.des   $(DAT)\monk.des \
-	$(DAT)\necro.des    $(DAT)\priest.des   $(DAT)\rogue.des \
-	$(DAT)\samurai.des  $(DAT)\tourist.des  $(DAT)\slayer.des \
-	$(DAT)\valkyrie.des $(DAT)\wizard.des   $(DAT)\yeoman.des \
-	$(DAT)\frnknstn.des $(DAT)\nightmar.des $(DAT)\ranger.des 
-
+sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\bigroom.des \
+		$(DAT)\blkmar.des   $(DAT)\castle.des   $(DAT)\grund.des \
+		$(DAT)\dragons.des  $(DAT)\endgame.des  $(DAT)\gehennom.des \
+		$(DAT)\giants.des   $(DAT)\guild.des    $(DAT)\knox.des \
+		$(DAT)\kobold-1.des $(DAT)\kobold-2.des $(DAT)\lich.des \
+		$(DAT)\mall-1.des   $(DAT)\mall-2.des   $(DAT)\medusa.des \
+		$(DAT)\sokoban.des  $(DAT)\mines.des    $(DAT)\mtemple.des \
+		$(DAT)\newmall.des  $(DAT)\nymph.des    $(DAT)\oracle.des \
+		$(DAT)\rats.des     $(DAT)\sea.des      $(DAT)\spiders.des \
+		$(DAT)\stor-1.des   $(DAT)\stor-2.des   $(DAT)\stor-3.des \
+		$(DAT)\tomb.des     $(DAT)\tower.des    $(DAT)\yendor.des \
+		$(DAT)\arch.des     $(DAT)\barb.des 	$(DAT)\caveman.des \
+		$(DAT)\flame.des    $(DAT)\healer.des   $(DAT)\ice.des \
+		$(DAT)\knight.des   $(DAT)\monk.des     $(DAT)\necro.des \
+		$(DAT)\priest.des   $(DAT)\rogue.des    $(DAT)\samurai.des \
+		$(DAT)\tourist.des  $(DAT)\slayer.des   $(DAT)\valkyrie.des \
+		$(DAT)\wizard.des   $(DAT)\yeoman.des   $(DAT)\frnknstn.des \
+		$(DAT)\nightmar.des $(DAT)\ranger.des 
 	lev_comp $(DDAT)/beholder.des
 	lev_comp $(DDAT)/bigroom.des
 	lev_comp $(DDAT)/blkmar.des
 	lev_comp $(DDAT)/castle.des
 	lev_comp $(DDAT)/grund.des
-#	lev_comp $(DDAT)/darkelf.des
 	lev_comp $(DDAT)/dragons.des
 	lev_comp $(DDAT)/endgame.des
 	lev_comp $(DDAT)/gehennom.des
@@ -1400,14 +1429,10 @@ sp_lev.tag: utility.tag     $(DAT)\beholder.des $(DAT)\bigroom.des \
 	lev_comp $(DDAT)/arch.des
 	lev_comp $(DDAT)/barb.des
 	lev_comp $(DDAT)/caveman.des
-#	lev_comp $(DDAT)/dopp.des
-#	lev_comp $(DDAT)/elf.des
 	lev_comp $(DDAT)/flame.des
-#	lev_comp $(DDAT)/gnome.des
 	lev_comp $(DDAT)/healer.des
 	lev_comp $(DDAT)/ice.des
 	lev_comp $(DDAT)/knight.des
-#	lev_comp $(DDAT)/lycn.des
 	lev_comp $(DDAT)/monk.des
 	lev_comp $(DDAT)/necro.des
 	lev_comp $(DDAT)/priest.des
@@ -1418,9 +1443,7 @@ sp_lev.tag: utility.tag     $(DAT)\beholder.des $(DAT)\bigroom.des \
 	lev_comp $(DDAT)/valkyrie.des
 	lev_comp $(DDAT)/wizard.des
 	lev_comp $(DDAT)/yeoman.des
-#	lev_comp $(DDAT)/hobbit.des
 	lev_comp $(DDAT)/frnknstn.des
-#	lev_comp $(DDAT)/dwarf.des
 	lev_comp $(DDAT)/nightmar.des
 	lev_comp $(DDAT)/ranger.des
 	$(COPY) *.lev $(DAT)
@@ -1433,7 +1456,7 @@ $(DAT)\dungeon:	  utility.tag  $(DAT)\dungeon.def
 # DLB stuff
 #
 $(DAT)\nhshare:	dlb_main.exe $(DAT)\data $(DAT)\rumors $(DAT)\dungeon \
-	    $(DAT)\oracles $(DAT)\quest.dat sp_lev.tag
+		$(DAT)\oracles $(DAT)\quest.dat sp_lev.tag
 	$(ECHO) data >$(DAT)\dlb.lst
 	$(ECHO) oracles >>$(DAT)\dlb.lst
 ifeq ($(USE_GUI),Y)
@@ -1472,14 +1495,14 @@ dlb_main.o: $(UTIL)\dlb_main.c $(INCL)\config.h $(DLB_H)
 # NT dependencies
 #
 
-nttty.o: $(HACK_H) $(TILE_H) $(INCL)/win32api.h ../sys/winnt/nttty.c
-	$(CCOMPILE) $(CFLAGS) -o$@ ../sys/winnt/nttty.c
-winnt.o: $(HACK_H) $(INCL)/win32api.h ../sys/winnt/winnt.c
-	$(CCOMPILE) $(CFLAGS) -o$@ ../sys/winnt/winnt.c
-ntsound.o: $(HACK_H) ../sys/winnt/ntsound.c
-	$(CCOMPILE) $(CFLAGS) -o$@ ../sys/winnt/ntsound.c
-mapimail.o: $(HACK_H) $(INCL)/nhlan.h ../sys/winnt/mapimail.c
-	$(CCOMPILE) $(CFLAGS) -DMAPI_VERBOSE -o$@ ../sys/winnt/mapimail.c
+nttty.o: $(HACK_H) $(TILE_H) $(INCL)/win32api.h $(NTSYS)/nttty.c
+	$(CCOMPILE) $(CFLAGS) -o$@ $(NTSYS)/nttty.c
+winnt.o: $(HACK_H) $(INCL)/win32api.h $(NTSYS)/winnt.c
+	$(CCOMPILE) $(CFLAGS) -o$@ $(NTSYS)/winnt.c
+ntsound.o: $(HACK_H) $(NTSYS)/ntsound.c
+	$(CCOMPILE) $(CFLAGS) -o$@ $(NTSYS)/ntsound.c
+mapimail.o: $(HACK_H) $(INCL)/nhlan.h $(NTSYS)/mapimail.c
+	$(CCOMPILE) $(CFLAGS) -DMAPI_VERBOSE -o$@ $(NTSYS)/mapimail.c
 
 #
 # win/win32

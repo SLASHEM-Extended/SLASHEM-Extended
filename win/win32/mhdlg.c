@@ -355,7 +355,7 @@ BOOL CALLBACK PlayerSelectorDlgProc(HWND hWnd, UINT message, WPARAM wParam, LPAR
 			if( plselFinalSelection(hWnd, data->selection) ) {
 				EndDialog(hWnd, wParam); 
 			} else {
-				MessageBox(hWnd, TEXT("Cannot match this role. Try something else."), TEXT("STOP"), MB_OK );
+				NHMessageBox(hWnd, TEXT("Cannot match this role. Try something else."), MB_ICONSTOP | MB_OK );
 			}
 		return TRUE;
 
@@ -455,6 +455,22 @@ void plselInitDialog(HWND hWnd)
 	/* set player name */
 	SetDlgItemText(hWnd, IDC_PLSEL_NAME, NH_A2W(plname, wbuf, sizeof(wbuf)));
 
+	/* check flags for consistency */
+	if( flags.initrole>=0 ) {
+		if (flags.initrace>=0 && !validrace(flags.initrole, flags.initrace)) {
+			flags.initrace = ROLE_NONE;
+		}
+
+		if (flags.initgend>=0 && !validgend(flags.initrole, flags.initrace, flags.initgend)) {
+			flags.initgend = ROLE_NONE;
+		}
+
+		if (flags.initalign>=0 && !validalign(flags.initrole, flags.initrace, flags.initalign)) {
+			flags.initalign = ROLE_NONE;
+		}
+	}
+
+	/* populate select boxes */
 	plselAdjustLists(hWnd, -1);
 
 	/* intialize roles list */
@@ -521,40 +537,40 @@ void  plselAdjustLists(HWND hWnd, int changed_sel)
 
 	/* get current selections */	
 	ind = SendMessage(control_role, CB_GETCURSEL, 0, 0);
-	selrole = initrole = (ind==LB_ERR)? ROLE_NONE : SendMessage(control_role, CB_GETITEMDATA, ind, 0);
+	selrole = initrole = (ind==LB_ERR)? flags.initrole : SendMessage(control_role, CB_GETITEMDATA, ind, 0);
 	if (!IsWindowEnabled(control_role))
-		initrole = ROLE_NONE;
+		initrole = flags.initrole;
 
 	ind = SendMessage(control_race, CB_GETCURSEL, 0, 0);
-	selrace = initrace = (ind==LB_ERR)? ROLE_NONE : SendMessage(control_race, CB_GETITEMDATA, ind, 0);
+	selrace = initrace = (ind==LB_ERR)? flags.initrace : SendMessage(control_race, CB_GETITEMDATA, ind, 0);
 	if (!IsWindowEnabled(control_race))
-		initrace = ROLE_NONE;
+		initrace = flags.initrace;
 
 	ind = SendMessage(control_gender, CB_GETCURSEL, 0, 0);
-	selgend = initgend = (ind==LB_ERR)? ROLE_NONE : SendMessage(control_gender, CB_GETITEMDATA, ind, 0);
+	selgend = initgend = (ind==LB_ERR)? flags.initgend : SendMessage(control_gender, CB_GETITEMDATA, ind, 0);
 	if (!IsWindowEnabled(control_gender))
-		initgend = ROLE_NONE;
+		initgend = flags.initgend;
 
 	ind = SendMessage(control_align, CB_GETCURSEL, 0, 0);
-	selalign = initalign = (ind==LB_ERR)? ROLE_NONE : SendMessage(control_align, CB_GETITEMDATA, ind, 0);
+	selalign = initalign = (ind==LB_ERR)? flags.initalign : SendMessage(control_align, CB_GETITEMDATA, ind, 0);
 	if (!IsWindowEnabled(control_align))
-		initalign = ROLE_NONE;
+		initalign = flags.initalign;
 
 	if (!ok_role(selrole, selrace, selgend, selalign)) {
 		if (changed_sel != IDC_PLSEL_ROLE_LIST) {
-			selrole = ROLE_NONE;
+			selrole = flags.initrole;
 			SendMessage(control_role, CB_SETCURSEL, (WPARAM)-1, (LPARAM)0 );
 		}
 		if (changed_sel != IDC_PLSEL_RACE_LIST) {
-			selrace = ROLE_NONE;
+			selrace = flags.initrace;
 			SendMessage(control_race, CB_SETCURSEL, (WPARAM)-1, (LPARAM)0 );
 		}
 		if (changed_sel != IDC_PLSEL_GENDER_LIST) {
-			selgend = ROLE_NONE;
+			selgend = flags.initgend;
 			SendMessage(control_gender, CB_SETCURSEL, (WPARAM)-1, (LPARAM)0 );
 		}
 		if (changed_sel != IDC_PLSEL_ALIGN_LIST) {
-			selalign = ROLE_NONE;
+			selalign = flags.initalign;
 			SendMessage(control_align, CB_SETCURSEL, (WPARAM)-1, (LPARAM)0 );
 		}
 	}
@@ -649,7 +665,7 @@ int	plselFinalSelection(HWND hWnd, int* selection)
 	if( flags.initrole==ROLE_RANDOM ) {
 		flags.initrole = pick_role(flags.initrace, flags.initgend, flags.initalign, PICK_RANDOM);
 		if (flags.initrole < 0) {
-			MessageBox(hWnd, TEXT("Incompatible role!"), TEXT("STOP"), MB_OK);
+			NHMessageBox(hWnd, TEXT("Incompatible role!"), MB_ICONSTOP | MB_OK);
 			return FALSE;
 		}
 	}
@@ -663,7 +679,7 @@ int	plselFinalSelection(HWND hWnd, int* selection)
 		}
 		
 		if (flags.initrace < 0) {
-			MessageBox(hWnd, TEXT("Incompatible race!"), TEXT("STOP"), MB_OK);
+			NHMessageBox(hWnd, TEXT("Incompatible race!"), MB_ICONSTOP | MB_OK);
 			return FALSE;
 		}
 	}
@@ -679,7 +695,7 @@ int	plselFinalSelection(HWND hWnd, int* selection)
 		}
 		
 		if (flags.initgend < 0) {
-			MessageBox(hWnd, TEXT("Incompatible gender!"), TEXT("STOP"), MB_OK);
+			NHMessageBox(hWnd, TEXT("Incompatible gender!"), MB_ICONSTOP | MB_OK);
 			return FALSE;
 		}
 	}
@@ -692,7 +708,7 @@ int	plselFinalSelection(HWND hWnd, int* selection)
 		if (flags.initalign == ROLE_RANDOM) {
 			flags.initalign = pick_align(flags.initrole, flags.initrace, flags.initgend, PICK_RANDOM);
 		} else {
-			MessageBox(hWnd, TEXT("Incompatible alignment!"), TEXT("STOP"), MB_OK);
+			NHMessageBox(hWnd, TEXT("Incompatible alignment!"), MB_ICONSTOP | MB_OK);
 			return FALSE;
 		}
 	}
