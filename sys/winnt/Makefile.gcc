@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.37 2003-08-29 16:27:24 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.38 2003-09-30 12:43:18 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -1586,6 +1586,7 @@ winval.o: ../win/X11/winval.c $(HACK_H) $(INCL)/winX.h
 gtk.o: ../win/gtk/gtk.c $(INCL)/md5.h $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/func_tab.h \
 		$(INCL)/dlb.h $(INCL)/patchlevel.h $(INCL)/proxycb.h
+		$(INCL)/prxyclnt.h
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtk.c
 gtkgetlin.o: ../win/gtk/gtkgetlin.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h

@@ -1,4 +1,4 @@
-# $Id: Makefile.unx,v 1.4 2003-08-31 12:54:23 j_ali Exp $
+# $Id: Makefile.unx,v 1.5 2003-09-30 12:43:19 j_ali Exp $
 # Copyright (c) Slash'EM Development Team 2002-2003
 # NetHack may be freely redistributed.  See license for details.
 #
@@ -95,7 +95,7 @@ gtkhack.o: gtkhack.c ../../include/winGTK.h ../../include/prxyclnt.h \
 		gtksupport.h
 gtk.o: gtk.c ../../include/md5.h ../../include/winGTK.h ../../include/wintype.h \
 		../../include/func_tab.h ../../include/dlb.h ../../include/patchlevel.h \
-		../../include/proxycb.h
+		../../include/proxycb.h ../../include/prxyclnt.h
 gtkgetlin.o: gtkgetlin.c ../../include/winGTK.h
 gtkstatus.o: gtkstatus.c ../../include/winGTK.h
 gtkmenu.o: gtkmenu.c ../../include/winGTK.h ../../include/patchlevel.h

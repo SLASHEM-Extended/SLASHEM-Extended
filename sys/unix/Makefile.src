@@ -755,7 +755,8 @@ winval.o: ../win/X11/winval.c $(HACK_H) ../include/winX.h
 	$(CC) $(CFLAGS) -c ../win/X11/winval.c
 gtk.o: ../win/gtk/gtk.c ../include/md5.h ../include/winGTK.h $(HACK_H) \
 		../include/nhxdr.h ../include/proxycom.h ../include/func_tab.h \
-		../include/dlb.h ../include/patchlevel.h ../include/proxycb.h
+		../include/dlb.h ../include/patchlevel.h ../include/proxycb.h \
+		../include/prxyclnt.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtk.c
 gtkgetlin.o: ../win/gtk/gtkgetlin.c ../include/winGTK.h $(HACK_H) \
 		../include/nhxdr.h ../include/proxycom.h

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.29 2003-08-31 12:54:24 j_ali Exp $
+  $Id: gtkmap.c,v 1.30 2003-09-30 12:43:19 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -38,7 +38,7 @@ static unsigned char *map_xoffsets;		/* For character mode only */
 static unsigned int map_font_width;		/* Maximum width */
 static enum xshm_map_mode map_mode;
 #ifdef GTK_PROXY
-static int map_n_glyphs;
+int no_glyph;
 static short *map_glyph2colsym = (short *)0;
 #endif
 
@@ -323,16 +323,16 @@ nh_conf_map_font(void)
 	map_xoffsets[i] = 0;
 #ifdef GTK_PROXY
     if (!map_glyph2colsym) {
-	glyph_map = proxy_cb_get_glyph_mapping();
+	glyph_map = nh_proxy_cache_get_glyph_mapping(NULL);
 	if (!glyph_map) {
 	    pline("Cannot get glyph mapping.");
 	    return 0;
 	}
 	glyph2rgbsym = proxy_map_glyph2char(glyph_map);
-	map_n_glyphs = glyph_map->no_glyph;
+	no_glyph = glyph_map->no_glyph;
 	proxy_cb_free_glyph_mapping(glyph_map);
-	map_glyph2colsym = (short *)alloc(map_n_glyphs * sizeof(short));
-	for(i = 0; i < map_n_glyphs; i++)
+	map_glyph2colsym = (short *)alloc(no_glyph * sizeof(short));
+	for(i = 0; i < no_glyph; i++)
 	    map_glyph2colsym[i] = -1;
 	/*
 	 * The algorithm for determining colour closeness used here is
@@ -366,7 +366,7 @@ nh_conf_map_font(void)
 		nh_Luv[i].up = nh_Luv[i].vp = 0;
 	    }
 	}
-	for(i = 0; i < map_n_glyphs; i++) {
+	for(i = 0; i < no_glyph; i++) {
 	    if (map_glyph2colsym[i] == -1) {
 		rgb = RGBSYM_RGB(glyph2rgbsym[i]);
 		r = rgb>>16;
@@ -407,7 +407,7 @@ nh_conf_map_font(void)
 		    }
 		}
 		map_glyph2colsym[i] = best << 8 | RGBSYM_SYM(glyph2rgbsym[i]);
-		for(j = i + 1; j < map_n_glyphs; j++)
+		for(j = i + 1; j < no_glyph; j++)
 		    if (RGBSYM_RGB(glyph2rgbsym[j]) == rgb)
 			map_glyph2colsym[j] =
 			  best << 8 | RGBSYM_SYM(glyph2rgbsym[j]);
@@ -424,7 +424,7 @@ nh_conf_map_font(void)
     map_font_width = min_width = gdk_char_width_wc(map_font, (GdkWChar)sym);
     if (c_width > 0)
 	map_xoffsets[sym] = c_width;
-    for(i = 1; i < map_n_glyphs; i++) {
+    for(i = 1; i < no_glyph; i++) {
 	sym = map_glyph2colsym[i] & 0xFF;
 	width = gdk_char_width_wc(map_font, (GdkWChar)sym);
 	if (width > 0)
@@ -523,8 +523,10 @@ switch_mode:
 	    buf = g_strdup_printf("Selecting %s", tileTab[mode].ident);
 	    progress = nh_gtk_progress_window_new(buf, GTK_WINDOW(main_window));
 	    g_free(buf);
-	    if (tileTab[mode].ident[0])
-		x_tile_init_add_stages(NH_GTK_PROGRESS_WINDOW(progress));
+	    if (tileTab[mode].ident[0]) {
+		Tile = tileTab + mode;
+		x_tile_init_add_stages(Tile, NH_GTK_PROGRESS_WINDOW(progress));
+	    }
 	    gtk_widget_realize(progress);
 	    cursor = gdk_cursor_new_for_display(
 	      gdk_drawable_get_display(progress->window), GDK_WATCH);
@@ -534,7 +536,6 @@ switch_mode:
 	    if (!tileTab[mode].ident[0])
 		map_mode = XSHM_MAP_NONE;
 	    else {
-		Tile = tileTab + mode;
 		map_mode = x_tile_init(Tile, NH_GTK_PROGRESS_WINDOW(progress));
 		while(gtk_events_pending())
 		    gtk_main_iteration();

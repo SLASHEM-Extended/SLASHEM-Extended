@@ -1,5 +1,5 @@
 /*
-  $Id: gtktile.c,v 1.4 2003-09-03 08:36:56 j_ali Exp $
+  $Id: gtktile.c,v 1.5 2003-09-30 12:43:19 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -326,19 +326,19 @@ ceil_sqrt(int c)
 }
 
 static void
-x_tile_load_map_add_stages(NhGtkProgressWindow *w)
+x_tile_generate_map_add_stages(NhGtkProgressWindow *w)
 {
     nh_gtk_progress_window_add_stage(w, "Transferring glyph descriptions");
     nh_gtk_progress_window_add_stage(w, "Transferring tileset descriptions");
     nh_gtk_progress_window_add_stage(w, "Assigning tiles to glyphs");
 }
 
-struct _x_tile_load_map_pulse {
+struct _x_tile_generate_map_pulse {
     unsigned int count, step, length;
     NhGtkProgressWindow *w;
 };
 
-static void x_tile_load_map_pulse(struct _x_tile_load_map_pulse *p)
+static void x_tile_generate_map_pulse(struct _x_tile_generate_map_pulse *p)
 {
     p->count++;
     if (p->count % p->step == 0)
@@ -346,18 +346,67 @@ static void x_tile_load_map_pulse(struct _x_tile_load_map_pulse *p)
 	  p->count/(gdouble)p->length);
 }
 
+struct proxycb_get_glyph_mapping_res *
+nh_proxy_cache_get_glyph_mapping(GtkWidget *w)
+{
+    int retval;
+    char *file;
+    NhExtIO *io;
+    NhExtXdr xdr;
+    struct proxycb_get_glyph_mapping_res *glyph_map = NULL;
+    if (w)
+	nh_gtk_progress_window_stage_pulse(NH_GTK_PROGRESS_WINDOW(w));
+    file = nh_proxy_game_cache_file("glyph_mapping.xdr");
+    io = GTK_io_open(file, NHEXT_IO_RDONLY);
+    if (io) {
+	nhext_xdrio_create(&xdr, io, NHEXT_XDR_DECODE);
+	glyph_map = (void *)calloc(1, sizeof(*glyph_map));
+	retval = !proxycb_xdr_get_glyph_mapping_res(&xdr, glyph_map);
+	nhext_xdr_destroy(&xdr);
+	GTK_io_close(io);
+	if (retval) {
+	    nhext_xdr_free(proxycb_xdr_get_glyph_mapping_res,
+	      (char *)glyph_map);
+	    free(glyph_map);
+	    if (w)
+		nh_gtk_progress_window_stage_pulse(NH_GTK_PROGRESS_WINDOW(w));
+	}
+    }
+    if (!glyph_map) {
+	glyph_map = proxy_cb_get_glyph_mapping();
+	if (!glyph_map) {
+	    free(file);
+	    return NULL;
+	}
+	if (w)
+	    nh_gtk_progress_window_stage_pulse(NH_GTK_PROGRESS_WINDOW(w));
+	io = GTK_io_open(file, NHEXT_IO_WRONLY);
+	if (io) {
+	    nhext_xdrio_create(&xdr, io, NHEXT_XDR_ENCODE);
+	    retval = !proxycb_xdr_get_glyph_mapping_res(&xdr, glyph_map);
+	    retval |= nhext_io_flush(io);
+	    nhext_xdr_destroy(&xdr);
+	    GTK_io_close(io);
+	    if (retval)
+		remove(file);
+	}
+    }
+    free(file);
+    return glyph_map;
+}
+
 static int
-x_tile_load_map(TileTab *t, NhGtkProgressWindow *w)
+x_tile_generate_map(TileTab *t, NhGtkProgressWindow *w)
 {
     struct proxycb_get_glyph_mapping_res *glyph_map;
     struct proxy_tilemap *tile_map;
-    struct _x_tile_load_map_pulse *pulse;
-    nh_gtk_progress_window_stage_pulse(w);
-    glyph_map = proxy_cb_get_glyph_mapping();
+    struct _x_tile_generate_map_pulse *pulse;
+    glyph_map = nh_proxy_cache_get_glyph_mapping(GTK_WIDGET(w));
     if (!glyph_map) {
 	pline("Cannot get glyph mapping.");
 	return 0;
     }
+    no_glyph = glyph_map->no_glyph;
     nh_gtk_progress_window_complete_stage(w);
     tile_map = x_tile_load_tilemap(t, w);
     if (!tile_map) {
@@ -368,18 +417,79 @@ x_tile_load_map(TileTab *t, NhGtkProgressWindow *w)
     total_tiles_used = tile_map->no_tiles;
     tiles_per_row = ceil_sqrt(total_tiles_used);
     tiles_per_col = (total_tiles_used + tiles_per_row - 1) / tiles_per_row;
-    pulse = g_new(struct _x_tile_load_map_pulse, 1);
+    pulse = g_new(struct _x_tile_generate_map_pulse, 1);
     pulse->count = 0;
     pulse->length = proxy_glyph_map_get_length(glyph_map);
     pulse->step = pulse->length >= 100 ? pulse->length / 100 : 1;
     pulse->w = w;
     GTK_glyph2tile = proxy_map_glyph2tile(glyph_map, tile_map,
-      x_tile_load_map_pulse, pulse);
+      x_tile_generate_map_pulse, pulse);
     g_free(pulse);
     proxy_cb_free_glyph_mapping(glyph_map);
     proxy_free_tilemap(tile_map);
     nh_gtk_progress_window_complete_stage(w);
     return 1;
+}
+
+struct {
+    char *file;
+    NhExtIO *io;
+} x_tile_loadmap;
+
+static void
+x_tile_load_map_add_stages(TileTab *t, NhGtkProgressWindow *w)
+{
+    char *md5sum;
+    gchar *name;
+    md5sum = nh_proxy_cache_dlbh_fmd5sum(t->mapfile);
+    name = g_strdup_printf("glyph2tile-%s.xdr", md5sum);
+    x_tile_loadmap.file = nh_proxy_game_cache_file(name);
+    x_tile_loadmap.io = GTK_io_open(x_tile_loadmap.file, NHEXT_IO_RDONLY);
+    if (!x_tile_loadmap.io)
+	x_tile_generate_map_add_stages(w);
+    else
+	nh_gtk_progress_window_add_stage(w, "Transferring tileset mapping");
+    g_free(name);
+    free(md5sum);
+}
+
+static int
+x_tile_load_map(TileTab *t, NhGtkProgressWindow *w)
+{
+    int retval, rv;
+    NhExtXdr xdr;
+    NhExtIO *io;
+    if (x_tile_loadmap.io) {
+	nhext_xdrio_create(&xdr, x_tile_loadmap.io, NHEXT_XDR_DECODE);
+	retval = nhext_xdr_int(&xdr, &total_tiles_used);
+	tiles_per_row = ceil_sqrt(total_tiles_used);
+	tiles_per_col = (total_tiles_used + tiles_per_row - 1) / tiles_per_row;
+	retval &= nhext_xdr_array(&xdr, (char **)&GTK_glyph2tile, &no_glyph,
+	  (unsigned int)-1, sizeof(short), nhext_xdr_short);
+	nhext_xdr_destroy(&xdr);
+	GTK_io_close(x_tile_loadmap.io);
+	if (!retval) {
+	    free(GTK_glyph2tile);
+	    GTK_glyph2tile = NULL;
+	} else
+	    nh_gtk_progress_window_complete_stage(w);
+    }
+    if (!GTK_glyph2tile) {
+	retval = x_tile_generate_map(t, w);
+	if (retval) {
+	    io = GTK_io_open(x_tile_loadmap.file, NHEXT_IO_WRONLY);
+	    nhext_xdrio_create(&xdr, io, NHEXT_XDR_ENCODE);
+	    rv = nhext_xdr_int(&xdr, &total_tiles_used);
+	    rv &= nhext_xdr_array(&xdr, (char **)&GTK_glyph2tile, &no_glyph,
+	      (unsigned int)-1, sizeof(short), nhext_xdr_short);
+	    nhext_xdr_destroy(&xdr);
+	    GTK_io_close(io);
+	    if (!rv)
+		remove(x_tile_loadmap.file);
+	}
+    }
+    free(x_tile_loadmap.file);
+    return retval;
 }
 #endif
 
@@ -504,10 +614,10 @@ x_tile_set_map_mode(TileTab *t, NhGtkProgressWindow *w)
 }
 
 void
-x_tile_init_add_stages(NhGtkProgressWindow *w)
+x_tile_init_add_stages(TileTab *t, NhGtkProgressWindow *w)
 {
 #ifdef GTK_PROXY
-    x_tile_load_map_add_stages(w);
+    x_tile_load_map_add_stages(t, w);
     nh_gtk_progress_window_add_stage(w, "Transferring tileset images");
 #else
     nh_gtk_progress_window_add_stage(w, "Loading tileset images");

@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.43 2003-09-04 19:12:42 j_ali Exp $
+  $Id: gtk.c,v 1.44 2003-09-30 12:43:19 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -26,6 +26,7 @@
 #include "patchlevel.h"
 #endif
 #include "proxycb.h"
+#include "prxyclnt.h"
 
 int GTK_initialized;
 static int display_inventory_needed;
@@ -2692,6 +2693,201 @@ void nh_proxy_cache_mkdir(const char *class, const char *name)
     g_free(path);
 }
 
+static char *nh_proxy_game_cache_subdir = NULL;
+
+/* Take a NhExt sub-protocol 0 value (up to 64 printable ASCII characters
+ * (space to "~") and produce a legal filename.
+ */
+
+char *GTK_regularize(const char *value)
+{
+    /*
+     * Based on win32 (UNIX is more lenient). Illegal characters are replaced
+     * by a two character code starting with "!" (with "!!" representing "!")
+     * as follows:
+     *		/	!f	(forward slash)
+     *		\	!b	(backward slash)
+     *		<	!l	(less than)
+     *		>	!g	(greater than)
+     *		:	!c	(colon)
+     *		"	!q	(quote)
+     *		|	!p	(pipe)
+     */
+    int i, j;
+    char fname[129];
+    for(i = j = 0; value[i]; i++)
+	switch (value[i]) {
+	    case '!':
+		fname[j++] = '!';
+		fname[j++] = '!';
+		break;
+	    case '/':
+		fname[j++] = '!';
+		fname[j++] = 'f';
+		break;
+	    case '\\':
+		fname[j++] = '!';
+		fname[j++] = 'b';
+		break;
+	    case '<':
+		fname[j++] = '!';
+		fname[j++] = 'l';
+		break;
+	    case '>':
+		fname[j++] = '!';
+		fname[j++] = 'g';
+		break;
+	    case ':':
+		fname[j++] = '!';
+		fname[j++] = 'c';
+		break;
+	    case '"':
+		fname[j++] = '!';
+		fname[j++] = 'q';
+		break;
+	    case '|':
+		fname[j++] = '!';
+		fname[j++] = 'p';
+		break;
+	    default:
+		fname[j++] = value[i];
+		break;
+	}
+    fname[j] = '\0';
+    return strdup(fname);
+}
+
+void nh_proxy_game_cache_set_dir(void)
+{
+    char *game, *version, *dir;
+#ifdef WIN32
+    const char sep = '\\';
+#else
+    const char sep = '/';
+#endif
+    if (!nh_proxy_cache_dir)
+	nh_proxy_cache_set_dir(NULL);
+    if (nh_proxy_game_cache_subdir)
+	free(nh_proxy_game_cache_subdir);
+    game = GTK_regularize(win_proxy_clnt_gettag("game"));
+    version = GTK_regularize(win_proxy_clnt_gettag("version"));
+    nh_proxy_game_cache_subdir = g_strdup_printf("%s%c%s", game, sep, version);
+    dir = g_strdup_printf("%s%c%s", nh_proxy_cache_dir, sep, game);
+#ifdef WIN32
+    CreateDirectory(dir, NULL);
+#else
+    mkdir(dir, 0777);
+#endif
+    g_free(dir);
+    dir = g_strdup_printf("%s%c%s", nh_proxy_cache_dir, sep,
+      nh_proxy_game_cache_subdir);
+#ifdef WIN32
+    CreateDirectory(dir, NULL);
+#else
+    mkdir(dir, 0777);
+#endif
+    g_free(dir);
+    free(game);
+    free(version);
+}
+
+char *nh_proxy_game_cache_file(const char *name)
+{
+    if (!nh_proxy_game_cache_subdir)
+	nh_proxy_game_cache_set_dir();
+    return nh_proxy_cache_file(nh_proxy_game_cache_subdir, name);
+}
+
+static int GTK_fp_read(void *handle, void *buf, unsigned int len)
+{
+    int nb;
+    nb = fread(buf, 1, len, (FILE *)handle);
+    return nb >= 0 ? nb : -1;
+}
+
+static int GTK_fp_write(void *handle, void *buf, unsigned int len)
+{
+    int nb;
+    nb = fwrite(buf, 1, len, (FILE *)handle);
+    return nb >= 0 ? nb : -1;
+}
+
+static GHashTable *GTK_io_hash = NULL;
+
+NhExtIO *GTK_io_open(const char *filename, unsigned int flags)
+{
+    FILE *fp;
+    NhExtIO *io;
+    if (!GTK_io_hash) {
+	GTK_io_hash = g_hash_table_new(NULL, NULL);
+	if (!GTK_io_hash)
+	    return NULL;
+    }
+    if (flags & NHEXT_IO_WRONLY) {
+	fp = fopen(filename, "wb");
+	if (fp)
+	    io = nhext_io_open(GTK_fp_write, (void *)fp, flags);
+	else
+	    return NULL;
+    } else {
+	fp = fopen(filename, "rb");
+	if (fp)
+	    io = nhext_io_open(GTK_fp_read, (void *)fp, flags);
+	else
+	    return NULL;
+    }
+    if (!io) {
+	fclose(fp);
+	if (!g_hash_table_size(GTK_io_hash)) {
+	    g_hash_table_destroy(GTK_io_hash);
+	    GTK_io_hash = NULL;
+	}
+    } else
+	g_hash_table_insert(GTK_io_hash, (gpointer)io, (gpointer)fp);
+    return io;
+}
+
+int GTK_io_close(NhExtIO *io)
+{
+    int retval;
+    FILE *fp;
+    if (!GTK_io_hash)
+	return -1;
+    fp = (FILE *)g_hash_table_lookup(GTK_io_hash, io);
+    if (!fp)
+	return -1;
+    retval = nhext_io_close(io);
+    retval |= fclose(fp);
+    g_hash_table_remove(GTK_io_hash, io);
+    if (!g_hash_table_size(GTK_io_hash)) {
+	g_hash_table_destroy(GTK_io_hash);
+	GTK_io_hash = NULL;
+    }
+    return retval;
+}
+
+static GHashTable *GTK_dlbh_md5sum_hash = NULL;
+
+char *
+nh_proxy_cache_dlbh_fmd5sum(const char *name)
+{
+    char *md5sum = NULL;
+    if (!GTK_dlbh_md5sum_hash)
+	GTK_dlbh_md5sum_hash = g_hash_table_new(g_str_hash, g_str_equal);
+    else {
+	md5sum = g_hash_table_lookup(GTK_dlbh_md5sum_hash, name);
+	if (md5sum)
+	    md5sum = strdup(md5sum);
+    }
+    if (!md5sum) {
+	md5sum = proxy_cb_dlbh_fmd5sum(name);
+	if (GTK_dlbh_md5sum_hash)
+	    g_hash_table_insert(GTK_dlbh_md5sum_hash, strdup(name),
+	      strdup(md5sum));
+    }
+    return md5sum;
+}
+
 static int
 GTK_display_file(char *name)
 {
@@ -2703,9 +2899,7 @@ GTK_display_file(char *name)
     proxy_cb_dlbh_fclose(fh);
     return TRUE;
 }
-#endif
 
-#ifdef GTK_PROXY
 #define NH_DLBH_PROXY_FREE		1
 #define NH_DLBH_PROXY_DATACACHED	2
 
@@ -2753,14 +2947,14 @@ static void nh_dlbh_proxy_free(int n)
     g_free(nh_dlbh_nodes);
     nh_dlbh_nodes = NULL;
 }
-#endif
+#endif	/* GTK_PROXY */
 
 int nh_dlbh_fopen(const char *class, const char *name, const char *mode)
 {
 #ifdef GTK_PROXY
     int fh;
     char *md5sum;
-    md5sum = proxy_cb_dlbh_fmd5sum(name);
+    md5sum = nh_proxy_cache_dlbh_fmd5sum(name);
     if (!md5sum)
 	return -1;
     fh = nh_dlbh_proxy_new();

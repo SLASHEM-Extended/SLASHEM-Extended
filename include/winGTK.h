@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.46 2003-09-03 08:36:56 j_ali Exp $
+  $Id: winGTK.h,v 1.47 2003-09-30 12:43:18 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -215,10 +215,16 @@ extern char *nh_option_cache_get(char *option);
 extern boolean nh_option_cache_get_bool(char *option);
 
 #ifdef GTK_PROXY
+extern struct proxycb_get_glyph_mapping_res *
+    nh_proxy_cache_get_glyph_mapping(GtkWidget *progress_window);
+extern char *nh_proxy_cache_dlbh_fmd5sum(const char *name);
 extern void nh_proxy_cache_set_dir(const char *dir);
 extern int nh_proxy_cache_save(struct gtkhackrc *rc);
 extern char *nh_proxy_cache_file(const char *class, const char *name);
 extern void nh_proxy_cache_mkdir(const char *class, const char *name);
+extern char *nh_proxy_game_cache_file(const char *name);
+extern NhExtIO *GTK_io_open(const char *filename, unsigned int flags);
+extern int GTK_io_close(NhExtIO *io);
 #endif
 
 extern int nh_dlbh_fopen(const char *class, const char *name, const char *mode);
@@ -343,6 +349,12 @@ extern TileTab tileTab[];
 extern int no_tileTab;
 extern int stone_tile;
 
+#ifdef GTK_PROXY
+#undef NO_GLYPH
+extern int no_glyph;
+#define NO_GLYPH no_glyph
+#endif
+
 extern GtkWidget *xshm_map_init(enum xshm_map_mode, int width, int height);
 extern void xshm_map_button_handler(GtkSignalFunc func, gpointer data);
 extern void xshm_map_flush();
@@ -357,7 +369,7 @@ extern void xshm_map_draw_drawable(GdkDrawable *src, int src_x, int src_y,
   int dest_x, int dest_y, int width, int height);
 extern GtkAdjustment *xshm_map_get_hadjustment(void);
 extern GtkAdjustment *xshm_map_get_vadjustment(void);
-extern void x_tile_init_add_stages(NhGtkProgressWindow *w);
+extern void x_tile_init_add_stages(TileTab *t, NhGtkProgressWindow *w);
 extern enum xshm_map_mode x_tile_init(TileTab *t, NhGtkProgressWindow *w);
 extern void x_tile_tmp_clear();
 extern int x_tile_render_to_drawable(GdkDrawable *drawable, GdkGC *gc,
