@@ -1022,7 +1022,8 @@ int in_sight;
 		    return 0;
 		}
 #ifdef BLACKMARKET
-	      	else if (Is_blackmarket(&(trap->dst)) && mtmp->mtame) {
+	      	else if (mtmp->mtame &&
+			(Is_blackmarket(&trap->dst) || Is_blackmarket(&u.uz))) {
 	          if (in_sight) {
 		     pline("%s seems to shimmer for a moment.",
 		     Monnam(mtmp));

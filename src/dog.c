@@ -518,9 +518,11 @@ boolean pets_only;      /* true for ascension or final escape */
 			stay_behind = TRUE;
 #ifdef BLACKMARKET                
 		} else if (mtmp->mtame && (ttmp = t_at(u.ux,u.uy)) && 
-		    ttmp->ttyp == MAGIC_PORTAL && Is_blackmarket(&(ttmp->dst))) {
-			pline("%s can't follow you into the Black Market.",
-			      Monnam(mtmp));
+		    ttmp->ttyp == MAGIC_PORTAL &&
+		    (Is_blackmarket(&ttmp->dst) || Is_blackmarket(&u.uz))) {
+			pline("%s can't follow you %s.",
+			      Monnam(mtmp), Is_blackmarket(&u.uz) ?
+			      "through the portal" : "into the Black Market");
 			stay_behind = TRUE;
 #endif /* BLACKMARKET */
 		} else if (mon_has_amulet(mtmp)) {

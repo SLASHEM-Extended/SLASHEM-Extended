@@ -1557,7 +1557,7 @@ arti_invoke(obj)
 
 	    any.a_void = 0;     /* set all bits to zero */
  #ifdef BLACKMARKET           
-	    if (Is_blackmarket(&u.uz)) {
+	    if (Is_blackmarket(&u.uz) && *u.ushops) {
 		You("feel very disoriented for a moment.");
 		break;
 	    }
