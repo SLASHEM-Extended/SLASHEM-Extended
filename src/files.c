@@ -1732,7 +1732,7 @@ const char *filename;
 # endif /* MFLOPPY */
 #endif /* MICRO */
 	if (!no_tilesets) {
-		for(i = 0; def_tilesets[i].name; i++) {
+		for(i = 0; strlen(def_tilesets[i].name); i++) {
 			strcpy(tilesets[i].name, def_tilesets[i].name);
 			strcpy(tilesets[i].file, def_tilesets[i].file);
 			tilesets[i].flags = def_tilesets[i].flags;

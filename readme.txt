@@ -325,7 +325,7 @@ TODO:
 	-it appears to be segfaulting (randomly?)
 -tofix: using the nethack config files.
 
-ver 0.0.6E4F1 [September XX/2000]
+ver 0.0.6E4F1 [October XX/2000]
 -GTK: status window stats columns should never be too small
 -GTK: deactivated the unimplemented Fight command
 -GTK: made the menus able to "tear-off"
@@ -368,6 +368,9 @@ ver 0.0.6E4F1 [September XX/2000]
 -Win32 GTK port uses the new tilesets
 -fixed bug 113618: Can now specify tile sets in configuration file.
 -fixed bug 116500: #monster no longer panics if lycanthrope in normal form.
+-Allegro DOS port verified to use the new tilesets
+-Allegro: scroll_lim read properly from config file
+-fixed default tileset declaration in decl.c
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()

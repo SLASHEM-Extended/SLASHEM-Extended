@@ -490,10 +490,8 @@ alleg_load_cnf()
                         attrib_allegro_intense = string_to_int(bufp);
                 } else if(!strncmpi(buf, "status", 6)) {
                         attrib_allegro_status = string_to_int(bufp);
-#if 0
                 } else if(!strncmpi(buf, "scroll_lim", 10)) {
                         scroll_lim = string_to_int(bufp);
-#endif
                 } else if(!strncmpi(buf, "smoothing", 9)) {
                         smoothing = string_to_int(bufp);
                 } else if(!strncmpi(buf, "fxdelay", 7)) {

@@ -267,17 +267,16 @@ struct tileset def_tilesets[] = {
     { "Colour tiles", "nh16.img", 0 },
 #endif
 #if defined(MSDOS)
-    { "Planer style tiles", "SLASHEM1.tib", 0 }.
-    { "Packed style tiles", "SLASHEM2.tib", 0 }.
-    { "Thin overview tiles", "SLASHEMo.tib", 0 }.
+    { "Planer style tiles", "slashem1.tib", 0 },
 #endif
 #if defined(ALLEG_FX)
-    { "Small tiles", "slam16.bmp", 0 }.
+    { "Small tiles", "slam16.bmp", 0 },
     { "Big tiles", "slam32.bmp", TILESET_TRANSPARENT },
     { "Big 3D tiles", "slam3D.bmp", TILESET_TRANSPARENT | TILESET_PSEUDO3D },
 #endif
-    { (char *)0, (char *)0, 0 }
+    { "", "", 0, }
 };
+
 char tileset[PL_PSIZ] = DUMMY;
 
 char *fqn_prefix[PREFIX_COUNT] = { (char *)0, (char *)0, (char *)0, (char *)0,
