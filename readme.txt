@@ -366,6 +366,7 @@ ver 0.0.6E6 [?] [Released by ?]
 -fixed bug 557603: Vanishing items on display.
 -fixed bug 567591: Shooting through closed door.
 -fixed bug 567598: Firing more shells than exist.
+-fixed bug 562550: Blank graves on priest quest.
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).

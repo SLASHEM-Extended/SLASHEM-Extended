@@ -351,8 +351,8 @@ struct mkroom *sroom;
 			if(!rn2(10))	/* lots of treasure buried with dead */
 			    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST,
 					     sx, sy, TRUE, FALSE);
-			if (!rn2(5) && levl[sx][sy].typ == ROOM)
-				levl[sx][sy].typ = GRAVE;
+			if (!rn2(5))
+			    make_grave(sx, sy, (char *)0);
 			break;
 		    case BEEHIVE:
 			if(!rn2(3))
