@@ -52,8 +52,11 @@
  * We could use the PSN under sys 7 here ...
  * ...but it wouldn't matter...
  */
-#define getpid() 1
-#define getuid() 1
+#ifndef __MWERKS__
+# define getpid() 1
+# define getuid() 1
+#endif
+
 #define index strchr
 #define rindex strrchr
 
@@ -89,6 +92,7 @@ extern void error(const char *,...);
 # define SAVE_TYPE 'SAVE'
 # define PREF_TYPE 'PREF'
 # define DATA_TYPE 'DATA'
+# define LOGF_TYPE 'ttro' /* read-only text */
 # define MAC_CREATOR 'slEm' /* Registered with DTS */
 # define TEXT_CREATOR 'ttxt' /* Something the user can actually edit */
 
