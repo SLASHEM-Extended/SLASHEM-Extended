@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.12 2001-02-17 11:11:18 j_ali Exp $
+  $Id: winGTK.h,v 1.13 2001-02-18 15:55:34 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -201,6 +201,9 @@ struct menu_info_t {
     int		selmode;
     int 	keysym;
     int		valid_widgets;
+#ifdef WINGTK_MENU_IMAGES
+    int		pixmaps;		/* Set if any pixmaps set in clist */
+#endif
 };
 
 typedef struct _NHWindow{

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.13 2001-02-17 16:35:43 j_ali Exp $
+  $Id: gtkmenu.c,v 1.14 2001-02-18 15:55:34 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -247,7 +247,8 @@ GTK_init_menu_widgets(NHWindow *w)
      for(i = 0; i < MENU_COLS; i++)
 	 gtk_clist_set_column_auto_resize(GTK_CLIST(w->clist), i, TRUE);
 #ifdef WINGTK_MENU_IMAGES
-     if (GTK_CLIST(w->clist)->row_height < nh_tile_3dheight())
+     if (w->menu_information->pixmaps &&
+       GTK_CLIST(w->clist)->row_height < nh_tile_3dheight())
 	gtk_clist_set_row_height(GTK_CLIST(w->clist), nh_tile_3dheight());
 #endif
 
@@ -320,6 +321,9 @@ GTK_load_menu_clist(NHWindow *w)
     gtk_clist_freeze(c);
     gtk_clist_clear(c);
     menu = &w->menu_information->curr_menu;
+#ifdef WINGTK_MENU_IMAGES
+    w->menu_information->pixmaps = FALSE;
+#endif
     for(j = 0; ; j++) {
     	
 	for(i = 0; i < MENU_COLS; i++)
@@ -351,6 +355,7 @@ GTK_load_menu_clist(NHWindow *w)
 	    if (pixmap) {
 		gtk_clist_set_pixmap(c, j, 0, pixmap, NULL);
 		gdk_pixmap_unref(pixmap);
+		w->menu_information->pixmaps = TRUE;
 	    }
 	}
 #endif

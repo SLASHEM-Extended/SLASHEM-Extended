@@ -348,6 +348,7 @@ ver 0.0.6E4F3 [February XX/2001]
 -fixed bug 132027: PgUp and PgDown not supported in scrolled menus.
 -fixed bug 132818: Monster detection and hilite_pet.
 -fixed bug 132819: Charged for wrong corpse in shop.
+-fixed bug 132028: Unnecessary vertical spacing in GTK menus.
 
 ver 0.0.6E4F2 [December 30/2000] [Released by Ali]
 -DOS: Allegro window port adapted to display the ground underneath walls
