@@ -80,6 +80,22 @@ To use this code:
    5. Follow all the instructions in ../../sys/unix/Install.unx for
       the remainder of the installation process.
 
+      The following is what I usually do (for Linux) :-
+
+      config.h:
+
+      (0) comment out the NEWS definition.
+      (a) comment out COMPRESS and COMPRESS_EXTENSION.
+      (b) uncomment DLB.
+      (c) change HACKDIR define from "." to match GAMEDIR in the
+          top-level Makefile (e.g. "/usr/local/slashemdir").
+      (d) uncomment out SCORE_ON_BOTL.
+
+      unixconf.h:
+
+      (e) comment out NETWORK and SVR4, and uncomment LINUX.
+      (f) uncomment NO_MAILREADER.
+
 
 [TODO: keyboard & mouse controls.]
 
