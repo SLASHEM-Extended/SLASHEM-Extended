@@ -1269,11 +1269,10 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 		     "%s beheads %s!",
 		     "%s decapitates %s!"
 		};
-		const char *artiname = artilist[otmp->oartifact].name;
 
 		if (youattack && u.uswallow && mdef == u.ustuck)
 			return FALSE;
-		wepdesc = artilist[ART_VORPAL_BLADE].name;
+		wepdesc = artilist[otmp->oartifact].name;
 		if (!youdefend) {
 			if (!has_head(mdef->data) || notonhead || u.uswallow) {
 				if (youattack)
@@ -1312,7 +1311,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				  + FATAL_DAMAGE_MODIFIER;
 			if (Invulnerable) {
 				pline("%s slices into your %s.",
-				      artiname, body_part(NECK));
+				      wepdesc, body_part(NECK));
 				return TRUE;
 			}
 			pline(behead_msg[rn2(SIZE(behead_msg))],
