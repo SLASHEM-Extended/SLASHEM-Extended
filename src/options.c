@@ -3472,6 +3472,8 @@ char *buf;
 		Sprintf(buf, "%s", pl_fruit);
 	else if (!strcmp(optname, "gender"))
 		Sprintf(buf, "%s", rolestring(flags.initgend, genders, adj));
+	else if (!strcmp(optname, "ghoulname")) 
+		Sprintf(buf, "%s", ghoulname[0] ? ghoulname : none);
 	else if (!strcmp(optname, "horsename")) 
 		Sprintf(buf, "%s", horsename[0] ? horsename : none);
 	else if (!strcmp(optname, "map_mode"))
@@ -3634,6 +3636,8 @@ char *buf;
 			iflags.wc_backgrnd_status  ? iflags.wc_backgrnd_status : defbrief,
 			iflags.wc_foregrnd_text    ? iflags.wc_foregrnd_text : defbrief,
 			iflags.wc_backgrnd_text    ? iflags.wc_backgrnd_text : defbrief);
+	else if (!strcmp(optname, "wolfname")) 
+		Sprintf(buf, "%s", wolfname[0] ? wolfname : none);
 #ifdef PREFIXES_IN_USE
 	else {
 	    for (i = 0; i < PREFIX_COUNT; ++i)
