@@ -1,4 +1,4 @@
-@REM  SCCS Id: @(#)nhsetup.bat  3.4     $Date: 2003-03-12 00:43:54 $
+@REM  SCCS Id: @(#)nhsetup.bat  3.4     $Date: 2003-05-18 20:40:54 $
 @REM  Copyright (c) NetHack PC Development Team 1993, 1996, 2002
 @REM  NetHack may be freely redistributed.  See license for details. 
 @REM  Win32 setup batch file, see Install.nt for details
@@ -76,8 +76,11 @@ copy ..\..\win\win32\tile2bmp.dsp  ..\..\build >nul
 copy ..\..\win\win32\tiles.dsp     ..\..\build >nul
 copy ..\..\win\win32\tiles.mak     ..\..\build >nul
 copy ..\..\win\win32\tilemap.dsp   ..\..\build >nul
-copy ..\..\win\win32\uudecode.dsp   ..\..\build >nul
-copy ..\..\win\win32\nethackw.dsp   ..\..\build >nul
+copy ..\..\win\win32\uudecode.dsp  ..\..\build >nul
+copy ..\..\win\win32\nethackw.dsp  ..\..\build >nul
+copy ..\..\win\win32\magtile.dsp   ..\..\build >nul
+copy ..\..\win\win32\txtbg.dsp     ..\..\build >nul
+copy ..\..\win\win32\txtmerge.dsp  ..\..\build >nul
 
 goto :done
 
