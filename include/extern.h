@@ -135,10 +135,8 @@ E void NDECL(max_rank_sz);
 #ifdef SCORE_ON_BOTL
 E long NDECL(botl_score);
 #endif
-E int FDECL(describe_level, (char *, int));
+E int FDECL(describe_level, (char *));
 E const char *FDECL(rank_of, (int,SHORT_P,BOOLEAN_P));
-E void FDECL(bot_set_handler, (void (*)()));
-E void NDECL(bot_reconfig);
 E void NDECL(bot);
 #if 0
 E const char * FDECL(shorten_bot1, (const char *, int));
@@ -277,8 +275,6 @@ E void FDECL(map_object, (struct obj *,int));
 E void FDECL(map_invisible, (XCHAR_P,XCHAR_P));
 E void FDECL(unmap_object, (int,int));
 E void FDECL(map_location, (int,int,int));
-E int FDECL(memory_glyph, (int, int));
-E void FDECL(clear_memory_glyph, (int, int, int));
 E void FDECL(feel_location, (XCHAR_P,XCHAR_P));
 E void FDECL(newsym, (int,int));
 E void FDECL(shieldeff, (XCHAR_P,XCHAR_P));
@@ -449,7 +445,6 @@ E void FDECL(impact_drop, (struct obj *,XCHAR_P,XCHAR_P,XCHAR_P));
 
 /* ### dothrow.c ### */
 
-E struct obj *FDECL(splitoneoff, (struct obj **));
 E int NDECL(dothrow);
 E int NDECL(dofire);
 E void FDECL(hitfloor, (struct obj *));
@@ -1050,7 +1045,7 @@ E void FDECL(restore_waterlevel, (int));
 /* ### mkobj.c ### */
 
 E struct obj *FDECL(mkobj_at, (CHAR_P,int,int,BOOLEAN_P));
-E struct obj *FDECL(mksobj_at, (int, int, int, BOOLEAN_P, BOOLEAN_P));
+E struct obj *FDECL(mksobj_at, (int,int,int,BOOLEAN_P));
 E struct obj *FDECL(mkobj, (CHAR_P,BOOLEAN_P));
 E int NDECL(rndmonnum);
 E struct obj *FDECL(splitobj, (struct obj *,long));
@@ -1278,7 +1273,7 @@ E void FDECL(Delay, (int));
 /* ### mthrowu.c ### */
 
 E int FDECL(thitu, (int,int,struct obj *,const char *));
-E int FDECL(ohitmon, (struct monst *,struct monst *,struct obj *,int,BOOLEAN_P));
+E int FDECL(ohitmon, (struct monst *,struct obj *,int,BOOLEAN_P));
 E void FDECL(thrwmu, (struct monst *));
 E int FDECL(spitmu, (struct monst *,struct attack *));
 E int FDECL(breamu, (struct monst *,struct attack *));
@@ -1913,9 +1908,6 @@ E void FDECL(learntech, (SHORT_P,long,int));
 
 E boolean FDECL(goodpos, (int,int,struct monst *));
 E boolean FDECL(enexto, (coord *,XCHAR_P,XCHAR_P,struct permonst *));
-#ifdef DEVEL_BRANCH
-E int FDECL(epathto, (coord *,int,XCHAR_P,XCHAR_P,struct permonst *));
-#endif
 E void FDECL(teleds, (int,int));
 E boolean NDECL(safe_teleds);
 E boolean FDECL(teleport_pet, (struct monst *,BOOLEAN_P));
@@ -1948,7 +1940,7 @@ E void FDECL(fall_asleep, (int, BOOLEAN_P));
 E void FDECL(set_obj_poly, (struct obj *, struct obj *));
 E void FDECL(unpoly_obj, (genericptr_t, long));
 #endif
-E int FDECL(mon_poly, (struct monst *, BOOLEAN_P, const char *));
+E int FDECL(mon_poly, (struct monst *, BOOLEAN_P));
 E int FDECL(mon_spec_poly, (struct monst *, struct permonst *, long));
 E void FDECL(unpoly_mon, (genericptr_t, long));
 E void FDECL(attach_bomb_blow_timeout, (struct obj *, int, BOOLEAN_P));
@@ -1984,7 +1976,6 @@ E void FDECL(prscore, (int,char **));
 E struct obj *FDECL(tt_oname, (struct obj *));
 #ifdef GTK_GRAPHICS
 E winid NDECL(create_toptenwin);
-E void NDECL(destroy_toptenwin);
 #endif
 
 /* ### track.c ### */
@@ -2304,7 +2295,7 @@ E void FDECL(worm_move, (struct monst *));
 E void FDECL(worm_nomove, (struct monst *));
 E void FDECL(wormgone, (struct monst *));
 E void FDECL(wormhitu, (struct monst *));
-E int FDECL(cutworm, (struct monst *,XCHAR_P,XCHAR_P,struct obj *));
+E void FDECL(cutworm, (struct monst *,XCHAR_P,XCHAR_P,struct obj *));
 E void FDECL(see_wsegs, (struct monst *));
 E void FDECL(save_worm, (int,int));
 E void FDECL(rest_worm, (int));

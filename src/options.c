@@ -211,11 +211,6 @@ static struct Bool_Opt
 	{(char *)0, (boolean *)0, FALSE}
 };
 
-genericptr_t nh_option_get_boolopt()
-{
-    return (genericptr_t)boolopt;
-}
-
 /* compound options, for option_help() and external programs like Amiga
  * frontend */
 #define SET_IN_FILE	0 /* config file option only, not visible in game
@@ -1860,7 +1855,7 @@ goodfruit:
 			 || (boolopt[i].addr) == &flags.showscore
 #endif
 			    )
-			    bot_reconfig();
+			    flags.botl = TRUE;
 
 			else if ((boolopt[i].addr) == &flags.invlet_constant) {
 			    if (flags.invlet_constant) reassign();

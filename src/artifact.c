@@ -561,9 +561,6 @@ touch_artifact(obj,mon)
 
     if(!oart) return 1;
 
-    /* [ALI] Thiefbane has a special affinity with shopkeepers */
-    if (mon->isshk && obj->oartifact == ART_THIEFBANE) return 1;
-
     yours = (mon == &youmonst);
     /* all quest artifacts are self-willed; it this ever changes, `badclass'
        will have to be extended to explicitly include quest artifacts */
@@ -623,7 +620,6 @@ spec_applies(weap, mtmp)
 register const struct artifact *weap;
 struct monst *mtmp;
 {
-	int retval = TRUE;
 	struct permonst *ptr;
 	boolean yours;
 
@@ -633,67 +629,46 @@ struct monst *mtmp;
 	yours = (mtmp == &youmonst);
 	ptr = mtmp->data;
 
-	/* [ALI] Modified to support multiple DBONUS and ATTK flags set.
-	 * Not all combinations are possible because many DBONUS flags
-	 * use mtype and would conflict. Where combinations are possible,
-	 * both checks must pass in order for the special attack to
-	 * apply against mtmp.
-	 */
 	if (weap->spfx & SPFX_DMONS) {
-	    retval &= (ptr == &mons[(int)weap->mtype]);
+	    return (ptr == &mons[(int)weap->mtype]);
 	} else if (weap->spfx & SPFX_DCLAS) {
-	    retval &= (weap->mtype == (unsigned long)ptr->mlet);
+	    return (weap->mtype == (unsigned long)ptr->mlet);
 	} else if (weap->spfx & SPFX_DFLAG1) {
-	    retval &= ((ptr->mflags1 & weap->mtype) != 0L);
+	    return ((ptr->mflags1 & weap->mtype) != 0L);
 	} else if (weap->spfx & SPFX_DFLAG2) {
-	    retval &= ((ptr->mflags2 & weap->mtype) ||
+	    return ((ptr->mflags2 & weap->mtype) ||
 		(yours && !Upolyd && (urace.selfmask & weap->mtype)));
-	}
-	if (weap->spfx & SPFX_DALIGN) {
-	    retval &= yours ? (u.ualign.type != weap->alignment) :
-			      (ptr->maligntyp == A_NONE ||
+	} else if (weap->spfx & SPFX_DALIGN) {
+	    return yours ? (u.ualign.type != weap->alignment) :
+			   (ptr->maligntyp == A_NONE ||
 				sgn(ptr->maligntyp) != weap->alignment);
-	}
-	if (weap->spfx & SPFX_ATTK) {
+	} else if (weap->spfx & SPFX_ATTK) {
 	    struct obj *defending_weapon = (yours ? uwep : MON_WEP(mtmp));
 
 	    if (defending_weapon && defending_weapon->oartifact &&
 		    defends((int)weap->attk.adtyp, defending_weapon))
-		return FALSE;
+			return FALSE;
 	    switch(weap->attk.adtyp) {
 		case AD_FIRE:
-			if (yours ? Fire_resistance : resists_fire(mtmp))
-			    retval = FALSE;
-			break;
+			return !(yours ? Fire_resistance : resists_fire(mtmp));
 		case AD_COLD:
-			if (yours ? Cold_resistance : resists_cold(mtmp))
-			    retval = FALSE;
-			break;
+			return !(yours ? Cold_resistance : resists_cold(mtmp));
 		case AD_ELEC:
-			if (yours ? Shock_resistance : resists_elec(mtmp))
-			    retval = FALSE;
-			break;
+			return !(yours ? Shock_resistance : resists_elec(mtmp));
 		case AD_MAGM:
 		case AD_STUN:
-			if (yours ? Antimagic : (rn2(100) < ptr->mr))
-			    retval = FALSE;
-			break;
+			return !(yours ? Antimagic : (rn2(100) < ptr->mr));
 		case AD_DRST:
-			if (yours ? Poison_resistance : resists_poison(mtmp))
-			    retval = FALSE;
-			break;
+			return !(yours ? Poison_resistance : resists_poison(mtmp));
 		case AD_DRLI:
-			if (yours ? Drain_resistance : resists_drli(mtmp))
-			    retval = FALSE;
-			break;
+			return !(yours ? Drain_resistance : resists_drli(mtmp));
 		case AD_STON:
-			if (yours ? Stone_resistance : resists_ston(mtmp))
-			    retval = FALSE;
-			break;
+			/* KMH, balance patch -- new intrinsic */
+			return !(yours ? Stone_resistance : resists_ston(mtmp));
 		default:        impossible("Weird weapon special attack.");
 	    }
 	}
-	return retval;
+	return(0);
 }
 
 /* return the M2 flags of monster that an artifact's special attacks apply against */
@@ -730,11 +705,7 @@ int tmp;
 	register const struct artifact *weap = get_artifact(otmp);
 
 	if ((spec_dbon_applies = (weap && spec_applies(weap, mon))) != 0)
-	    return weap->attk.damd ? (int)weap->attk.damd :
-		    /* [ALI] Unlike melee weapons, damd == 0 means no
-		     * bonus for launchers.
-		     */
-		    is_launcher(otmp) ? 0 : max(tmp,1);
+	    return weap->attk.damd ? (int)weap->attk.damd : max(tmp,1);
 	return 0;
 }
 
@@ -825,9 +796,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	boolean realizes_damage;
 
 	static const char you[] = "you";
-	char hittee[BUFSIZ];
-
-	strcpy(hittee, youdefend ? you : mon_nam(mdef));
+	const char *hittee = youdefend ? you : mon_nam(mdef);
 
 	/* The following takes care of most of the damage, but not all--
 	 * the exception being for level draining, which is specially
@@ -1059,53 +1028,94 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 		return TRUE;
 	}
 	/* end of Magicbane code */
-
-	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE) {
-	    otmp->dknown = TRUE;
-	    pline_The("twisted blade poisons %s!",
-		    youdefend ? "you" : mon_nam(mdef));
-	    if (youdefend ? Poison_resistance : resists_poison(mdef)) {
-		if (youdefend)
-		    You("are not affected by the poison.");
-		else
-		    pline("%s seems unaffected by the poison.", Monnam(mdef));
-		return TRUE;
-	    }
-	    switch (rnd(10)) {
-		case 1:
-		case 2:
-		case 3:
-		case 4:
-		    *dmgptr += d(1,6) + 2;
-		    break;
-		case 5:
-		case 6:
-		case 7:
-		    *dmgptr += d(2,6) + 4;
-		    break;
-		case 8:
-		case 9:
-		    *dmgptr += d(3,6) + 6;
-		    break;
-		case 10:
-		    pline_The("poison was deadly...");
-		    *dmgptr = FATAL_DAMAGE +
-			    (youdefend ? (Upolyd ? u.mh : u.uhp) : mdef->mhp);
-		    break;
-	    }
-	    return TRUE;
-	}
-
+  /* STEPHEN WHITE'S NEW CODE */
+	   if (otmp->oartifact == ART_SERPENT_S_TONGUE) {
+		if (!youdefend) {
+		      pline("The twisted blade poisons %s!",
+			      mon_nam(mdef));
+		      if(resists_poison(mdef)) {
+			     pline("The %s seems unaffected by the poison.", 
+				     mon_nam(mdef));
+			     otmp->dknown = TRUE;
+			     *dmgptr += 0;
+			     return TRUE;
+		      } else {       
+			     switch (rnd(10)) {
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+					*dmgptr += d(1,6) + 2;
+					otmp->dknown = TRUE;
+					break;
+				case 5:
+				case 6:
+				case 7:
+					*dmgptr += d(2,6) + 4;
+					otmp->dknown = TRUE;
+					break;
+				case 8:
+				case 9:
+					*dmgptr += d(3,6) + 6;
+					otmp->dknown = TRUE;
+					break;
+				case 10:
+					pline("The poison was deadly ...");
+					*dmgptr = mdef->mhp + 1234;
+					otmp->dknown = TRUE;
+					break;
+				}
+				return TRUE;
+		      }
+		} else {
+			 pline("The twisted blade poisons you!");        
+			 if(Poison_resistance) {
+			     pline("You are not affected by the poison.");
+			     otmp->dknown = TRUE;
+			     *dmgptr += 0;
+			     return TRUE;
+		      } else {       
+			     switch (rn2(10)) {
+				case 1:
+				case 2:
+				case 3:
+				case 4:                                        
+					*dmgptr += d(1,6) + 2;
+					otmp->dknown = TRUE;
+					break;
+				case 5:
+				case 6:
+				case 7:
+					*dmgptr += d(2,6) + 4;
+					otmp->dknown = TRUE;
+					break;
+				case 8:
+				case 9:
+					*dmgptr += d(3,6) + 6;
+					otmp->dknown = TRUE;
+					break;
+				case 10:
+					pline("The poison was deadly ...");
+					*dmgptr = u.uhp + 1234;
+					otmp->dknown = TRUE;
+					break;
+				}
+				return TRUE;
+		      }
+		}
+	   }
+    
 	   if (otmp->oartifact == ART_DOOMBLADE && dieroll < 6) {
-		if (youattack)
-		    You("plunge the Doomblade deeply into %s!",
-			    mon_nam(mdef));
-		else
-		    pline("%s plunges the Doomblade deeply into %s!",
-			    Monnam(magr), hittee);
-		*dmgptr += rnd(4) * 5;
-		return TRUE;
+		if (!youdefend) {
+				You("plunge the Doomblade deeply into %s!",
+					mon_nam(mdef));
+				*dmgptr += rnd(4) * 5;
+				return TRUE;
+		} else {
+				pline("%s plunges the Doomblade deeply into you!", mon_nam(mdef));
+				*dmgptr += rnd(4) * 5;
+				return TRUE;
+		       }
 	   }
   /* END OF STEPHEN WHITE'S NEW CODE */
 
@@ -1152,7 +1162,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 						mon_nam(mdef));
 				else if (vis)
 					pline("%s cuts deeply into %s!",
-					      Monnam(magr), hittee);
+					      Monnam(magr), mon_nam(mdef));
 				*dmgptr *= 2;
 				return TRUE;
 			}
@@ -1162,8 +1172,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			otmp->dknown = TRUE;
 			return TRUE;
 		} else {
-			/* Invulnerable player won't be bisected */
-			if (bigmonst(youmonst.data) || Invulnerable) {
+			if (bigmonst(youmonst.data)) {
 				pline("%s cuts deeply into you!",
 					Monnam(magr));
 				*dmgptr *= 2;
@@ -1180,13 +1189,12 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			otmp->dknown = TRUE;
 			return TRUE;
 		}
-	    } else if (dieroll < 3 || otmp->oartifact == ART_VORPAL_BLADE &&
-				      mdef->data == &mons[PM_JABBERWOCK]) {
+	    } else if (otmp->oartifact == ART_VORPAL_BLADE &&
+			(dieroll < 3 || mdef->data == &mons[PM_JABBERWOCK])) {
 		static const char *behead_msg[2] = {
 		     "%s beheads %s!",
 		     "%s decapitates %s!"
 		};
-		const char *artiname = artilist[otmp->oartifact].name;
 
 		if (youattack && u.uswallow && mdef == u.ustuck)
 			return FALSE;
@@ -1203,13 +1211,13 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			}
 			if (noncorporeal(mdef->data) || amorphous(mdef->data)) {
 				pline("%s slices through %s %s.",
-				      artiname,
+				      artilist[ART_VORPAL_BLADE].name,
 				      s_suffix(mon_nam(mdef)), mbodypart(mdef,NECK));
 				return TRUE;
 			}
 			*dmgptr = mdef->mhp + FATAL_DAMAGE;
 			pline(behead_msg[rn2(SIZE(behead_msg))],
-			      artiname,
+			      artilist[ART_VORPAL_BLADE].name,
 			      mon_nam(mdef));
 			otmp->dknown = TRUE;
 			return TRUE;
@@ -1222,23 +1230,17 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			}
 			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) {
 				pline("%s slices through your %s.",
-				      artiname, body_part(NECK));
+				      artilist[ART_VORPAL_BLADE].name, body_part(NECK));
 				return TRUE;
 			}
-			*dmgptr = (Upolyd ? u.mh : u.uhp) + FATAL_DAMAGE;
-
-			if (Invulnerable) {
-				pline("%s slices into your %s.",
-				      artiname, body_part(NECK));
-				return TRUE;
-			}
+  			*dmgptr = (Upolyd ? u.mh : u.uhp) + FATAL_DAMAGE;
 			pline(behead_msg[rn2(SIZE(behead_msg))],
-			      artiname, "you");
+			      artilist[ART_VORPAL_BLADE].name, "you");
 			otmp->dknown = TRUE;
 			/* Should amulets fall off? */
 			return TRUE;
 		}
-	    }
+	    }  /* No default action for other cases of SPFX_BEHEAD (eg. Thiefbane) */
 	}
 	if (spec_ability(otmp, SPFX_DRLI)) {
 		if (!youdefend) {
@@ -1346,7 +1348,6 @@ arti_invoke(obj)
 	    register struct permonst *pm;
 
     int summon_loop;
-    int unseen;
 /*
     int kill_loop;
  */
@@ -1433,54 +1434,35 @@ arti_invoke(obj)
 	case LEV_TELE:
 	    level_tele();
 	    break;
-	/* STEPHEN WHITE'S NEW CODE */       
+ /* STEPHEN WHITE'S NEW CODE */       
 	case LIGHT_AREA:
-	    if (!Blind)
-			pline("%s shines brightly for an instant!", The(xname(obj)));
-	    else
-			pline("%s grows warm for a second!", The(xname(obj)));
+	    if (!Blind) pline("%s shines brightly for an instant!", The(xname(obj)));
+	    else pline("%s grows warm for a second!");
 
 	    litroom(TRUE, obj); /* Light up the room */
 
 	    vision_recalc(0); /*clean up vision*/
-
-		/* WAC - added effect to self, damage is now range dependant */
-		if(is_undead(youmonst.data)) {
-			You("burn in the radiance!");
-			
-			/* This is ground zero.  Not good news ... */
-			u.uhp /= 100;
-
-			if (u.uhp < 1) {
-				u.uhp = 0;
-				killer_format = KILLED_BY;
-				killer = "the Holy Spear of Light";
-				done(DIED);
-			}
-		}
-
+	        
 	    /* Undead and Demonics can't stand the light */
-	    unseen = 0;
-	    for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
-			if (DEADMONSTER(mtmp)) continue;
+	    for (mtmp = fmon; mtmp; mtmp = mtmp2) {
+	    	/* Undead in take 1/2 damage */
+	    	mtmp2 = mtmp->nmon;
 	    	
-			/* Range is 9 paces */
+	    	/* Range is 9 paces */
 	    	if (distu(mtmp->mx,mtmp->my) > 81) continue;
 
-			if (couldsee(mtmp->mx, mtmp->my) &&
-				(is_undead(mtmp->data) || is_demon(mtmp->data)) &&
-				!resist(mtmp, '\0', 0, TELL)) {
-					if (canseemon(mtmp))
-						pline("%s burns in the radiance!", Monnam(mtmp));
-					else
-						unseen++;
-					/* damage now depends on distance, divisor ranges from 10 to 2 */
-					mtmp->mhp /= (10 - (distu(mtmp->mx,mtmp->my)/10));
-					if (mtmp->mhp < 1) mtmp->mhp = 1;
+		if (couldsee(mtmp->mx, mtmp->my) && 
+		     (is_undead(mtmp->data) || is_demon(mtmp->data))) {
+			if (!resist(mtmp, '\0', 0, TELL)) {
+				if (canseemon(mtmp)) 
+					pline("%s burns in the radiance!",Monnam(mtmp));
+				else You("hear cry of intense pain!");
+				mtmp->mhp /= 2;
+				if (mtmp->mhp < 1) mtmp->mhp = 1;
 			}
+		}
 	    }
-	    if (unseen)
-			You("hear %s of intense pain!", unseen > 1 ? "cries" : "a cry");
+
 	    break;
 	case DEATH_GAZE:
 	    if (u.uluck < -9) { /* uh oh... */
@@ -1575,7 +1557,7 @@ arti_invoke(obj)
 
 	    any.a_void = 0;     /* set all bits to zero */
  #ifdef BLACKMARKET           
-	    if (Is_blackmarket(&u.uz) && *u.ushops) {
+	    if (Is_blackmarket(&u.uz)) {
 		You("feel very disoriented for a moment.");
 		break;
 	    }

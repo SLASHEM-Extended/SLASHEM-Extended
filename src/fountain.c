@@ -137,7 +137,7 @@ dofindgem() /* Find a gem in the sparkling waters. */
 {
 	if (!Blind) You("spot a gem in the sparkling waters!");
 	(void) mksobj_at(rnd_class(DILITHIUM_CRYSTAL, LUCKSTONE-1),
-						u.ux, u.uy, FALSE, FALSE);
+						u.ux, u.uy, FALSE);
 	levl[u.ux][u.uy].looted |= F_LOOTED;
 	newsym(u.ux, u.uy);
 	exercise(A_WIS, TRUE);                  /* a discovery! */
@@ -585,9 +585,10 @@ drinksink()
 			      Blind ? "odd" :
 			      hcolor(OBJ_DESCR(objects[otmp->otyp])));
 			otmp->dknown = !(Blind || Hallucination);
+			otmp->quan++; /* Avoid panic upon useup() */
 			otmp->corpsenm = 1; /* kludge for docall() */
-			/* dopotion() deallocs dummy potions */
 			(void) dopotion(otmp);
+			obfree(otmp, (struct obj *)0);
 			break;
 		case 5: if (!(levl[u.ux][u.uy].looted & S_LRING)) {
 			    You("find a ring in the sink!");

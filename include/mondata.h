@@ -120,10 +120,6 @@
 				 is_armed(ptr))
 #define likes_magic(ptr)	(((ptr)->mflags2 & M2_MAGIC) != 0L)
 #define webmaker(ptr)		((ptr) == &mons[PM_CAVE_SPIDER] || \
-				 (ptr) == &mons[PM_RECLUSE_SPIDER] || \
-				 (ptr) == &mons[PM_PHASE_SPIDER] || \
-				 (ptr) == &mons[PM_WERESPIDER] || \
-				 (ptr) == &mons[PM_BARKING_SPIDER] || \
 				 (ptr) == &mons[PM_GIANT_SPIDER])
 #define is_unicorn(ptr)		((ptr)->mlet == S_UNICORN && likes_gems(ptr))	/* KMH */
 #define is_longworm(ptr)	(((ptr) == &mons[PM_BABY_LONG_WORM]) || \
@@ -190,7 +186,6 @@
 				 (ptr) != &mons[PM_STALKER]) ||       \
 				((ptr)->mlet == S_GOLEM &&            \
 				 (ptr) != &mons[PM_FLESH_GOLEM] &&    \
-				 (ptr) != &mons[PM_FRANKENSTEIN_S_MONSTER] && \
 				 (ptr) != &mons[PM_LEATHER_GOLEM]) || \
 				 noncorporeal(ptr))
 #define vegetarian(ptr)		(vegan(ptr) || \
@@ -198,18 +193,5 @@
 				 (ptr) != &mons[PM_BLACK_PUDDING]))
 /* For vampires */
 #define has_blood(ptr)		(!vegetarian(ptr) && \
-				   (ptr)->mlet != S_GOLEM && \
 				   (!is_undead(ptr) || is_vampire(ptr)))
-
-#define befriend_with_obj(ptr, obj) ((obj)->oclass == FOOD_CLASS && ( \
-		is_domestic(ptr) || \
-		/* [Tom] Dorothy wants more pets... */ \
-		(obj)->otyp == CHEESE && ((ptr) == &mons[PM_GIANT_RAT] || \
-		    (ptr) == &mons[PM_SEWER_RAT] || \
-		    (ptr) == &mons[PM_BLACK_RAT] || \
-		    (ptr) == &mons[PM_PACK_RAT]) || \
-		(obj)->otyp == CARROT && ((ptr) == &mons[PM_RABBIT] || \
-		    (ptr) == &mons[PM_RABID_RABBIT]) || \
-		(obj)->otyp == BANANA && (ptr)->mlet == S_YETI))
-
 #endif /* MONDATA_H */

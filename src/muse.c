@@ -1910,13 +1910,14 @@ skipmsg:
 #if 0
 		(void) newcham(mtmp, rndmonst(), vismon);
 #endif
-		(void) mon_poly(mtmp, FALSE, "%s changes!");
+		(void) mon_poly(mtmp, FALSE);
 		
 		if (oseen) makeknown(WAN_POLYMORPH);
 		return 2;
 	case MUSE_POT_POLYMORPH:
 		mquaffmsg(mtmp, otmp);
-		(void) mon_poly(mtmp, FALSE, "%s suddenly mutates!");
+		if (vismon) pline("%s suddenly mutates!", Monnam(mtmp));
+		(void) mon_poly(mtmp, FALSE);
 		if (oseen) makeknown(POT_POLYMORPH);
 		m_useup(mtmp, otmp);
 		return 2;
@@ -1934,7 +1935,7 @@ skipmsg:
 		if (mtmp->wormno) worm_move(mtmp);
 		newsym(trapx, trapy);
 		
-		(void) mon_poly(mtmp, FALSE, "%s changes!");
+		(void) mon_poly(mtmp, FALSE);
 #if 0
 		(void) newcham(mtmp, (struct permonst *)0, vismon);
 #endif

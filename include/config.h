@@ -56,7 +56,7 @@
 /* #define KDE */		/* KDE Interface */
 /* #define GTK_GRAPHICS */	/* GTK Interface */
 /* #define GNOME_GRAPHICS */	/* Gnome interface */
-/* #define PROXY_GRAPHICS */	/* Plug-in interfaces (not yet supported) */
+/* #define PROXY_GRAHICS */	/* Plug-in interfaces (not yet supported) */
 
 /*
  * Define the default window system.  This should be one that is compiled
@@ -121,19 +121,9 @@
 # define GRAPHIC_TOMBSTONE	/* Use graphical tombstone (rip.xpm) */
 # define RADAR			/* Use radar map */
 /* #define GTK_ASKNAME */	/* Prompt for playername */
-/* # define GTK_PROXY */	/* Build for proxy interface */
 # ifndef DEFAULT_WINDOW_SYS
 #  define DEFAULT_WINDOW_SYS "gtk"
 # endif
-#endif
-
-#ifdef PROXY_GRAPHICS
-# define PROXY_INTERNAL		/* Build for internal proxy interface */
-/*
- * The proxy interface shouldn't be used as the default window system.
- * This will cause it to always be initialized with undesirable side
- * effects. Instead, use the windowtype option.  --ALI
- */
 #endif
 
 #ifndef DEFAULT_WINDOW_SYS
@@ -407,7 +397,7 @@ typedef unsigned char	uchar;
 /* #define SCORE_ON_BOTL */	/* added by Gary Erickson (erickson@ucivax) */
 /* #define BORG */            /* Works only under DOS */
 /* #define KEEP_SAVE */       /* Keep savefiles after Restore (wac@intergate.bc.ca)*/
-/* #define CHARON */	/* Charon's boat, enables Cerebus - not implemented */
+/*#define CHARON */          /* Charon's boat, enables Cerebus */
 #define SHOW_DMG        /* WAC made dmg reports optional (wac@intergate.bc.ca)*/
 #define SHOW_WEIGHT     /* [max] added display of object weight when picking up */
                         /* and in inventory (madmax@fly.cc.fer.hr). */
@@ -417,10 +407,6 @@ typedef unsigned char	uchar;
 /* #define SHOUT */ /* JRN -- shouting and petcommands - not implemented */
 
 #define DEVEL_BRANCH	/* Include development code */
-
-#ifdef DEVEL_BRANCH
-#define DISPLAY_LAYERS	/* Improved support for transparent tile sets - ALI */
-#endif
 
 #include "global.h"	/* Define everything else according to choices above */
 

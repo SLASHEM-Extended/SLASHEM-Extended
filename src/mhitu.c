@@ -870,7 +870,7 @@ struct attack *mattk;
                 }
                 return TRUE;
 	/* 50% chance (with a luck bonus) of slipping free with free action */
-	} else if (Free_action && (rnl(10) < 5)) {
+	} else if (Free_action && (rnl(10) < 6)) {
                 pline("%s %s you, but you quickly free yourself!",
                        Monnam(mtmp),
                        (mattk->adtyp == AD_WRAP) ?
@@ -1061,7 +1061,7 @@ hitmu(mtmp, mattk)
                 break;
         case AD_DISE:
                 hitmsg(mtmp, mattk);
-                if (!diseasemu(mdat) || Invulnerable) dmg = 0;
+                if (!diseasemu(mdat)) dmg = 0;
                 break;
         case AD_FIRE:
                 hitmsg(mtmp, mattk);
@@ -1633,9 +1633,6 @@ do_stone:
 		pline("%s reaches out, and you feel fever and chills.",
 			Monnam(mtmp));
 		(void) diseasemu(mdat); /* plus the normal damage */
-		/* No damage if invulnerable; setting dmg zero prevents
-		 * "You are unharmed!" after a sickness inducing attack */
-		if (Invulnerable) dmg = 0;
 		break;
 	    case AD_FAMN:
 		pline("%s reaches out, and your body shrivels.",

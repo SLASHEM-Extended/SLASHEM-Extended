@@ -1728,7 +1728,7 @@ Go forth, and return when you feel ready."
 as %n, had begun to summon horrible elementals from the plane of 
 Water.
 
-"%nC and his hordes of elementals swept down upon %H and stole
+"%nC and his hordes of elementals wept down upon %i and stole
 %o, and seeks to bend it to his will.  
 After many brave wizards were slain by his watery servants, I
 sent forth a summons for you!
@@ -4374,7 +4374,7 @@ Even before your senses adjust, you recognize the kami of
 %H.
 
 But why is the standard of your teki, %n, flying
-above the town?  Why are ninja wandering freely, where are the
+above the town?  Why are ronin wandering freely, where are the
 samurai of your daimyo, %l?
 
 You quickly say a prayer to Izanagi and Izanami and walk towards
@@ -4403,7 +4403,7 @@ the kami of %H before you return again.
 "%nC has hired the Ninja -- be careful."
 %E
 %Cp Sam 00009
-"If %o is not returned, we will all be ninja."
+"If %o is not returned, we will all be ronin."
 %E
 %Cc Sam 00010
 "Ah, %p-san, it is good to see you again.  I need someone who can

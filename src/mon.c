@@ -139,7 +139,7 @@ register struct monst *mtmp;
 		/* dragons is the same as the order of the scales.         */
 		if (!rn2(mtmp->mrevived ? 20 : 3)) {
 		    obj = mksobj_at(GRAY_DRAGON_SCALES +
-				    monsndx(mdat)-PM_GRAY_DRAGON, x, y, FALSE, FALSE);
+				    monsndx(mdat)-PM_GRAY_DRAGON, x, y, FALSE);
 		    obj->spe = 0;
 		    obj->cursed = obj->blessed = FALSE;
 		}
@@ -148,17 +148,17 @@ register struct monst *mtmp;
 	    case PM_WHITE_UNICORN:
 	    case PM_GRAY_UNICORN:
 	    case PM_BLACK_UNICORN:
-		(void) mksobj_at(UNICORN_HORN, x, y, TRUE, FALSE);
+		(void) mksobj_at(UNICORN_HORN, x, y, TRUE);
 		goto default_1;
 	    case PM_LONG_WORM:
-		(void) mksobj_at(WORM_TOOTH, x, y, TRUE, FALSE);
+		(void) mksobj_at(WORM_TOOTH, x, y, TRUE);
 		goto default_1;
 	    case PM_KILLER_TRIPE_RATION:            
-		(void) mksobj_at(TRIPE_RATION, x, y, TRUE, FALSE);
+		(void) mksobj_at(TRIPE_RATION, x, y, TRUE);
 		newsym(x, y);
 		return (struct obj *)0;
 	    case PM_KILLER_FOOD_RATION:
-		(void) mksobj_at(FOOD_RATION, x, y, TRUE, FALSE);
+		(void) mksobj_at(FOOD_RATION, x, y, TRUE);
 		newsym(x, y);
 		return (struct obj *)0;
 	    case PM_VAMPIRE:
@@ -237,17 +237,17 @@ register struct monst *mtmp;
 	    case PM_IRON_GOLEM:
 		num = d(2,6);
 		while (num--)
-			obj = mksobj_at(IRON_CHAIN, x, y, TRUE, FALSE);
+			obj = mksobj_at(IRON_CHAIN, x, y, TRUE);
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_GLASS_GOLEM:
 		num = d(2,4);   /* very low chance of creating all glass gems */
 		while (num--)
-			obj = mksobj_at((LAST_GEM + rnd(9)), x, y, TRUE, FALSE);
+			obj = mksobj_at((LAST_GEM + rnd(9)), x, y, TRUE);
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_CLAY_GOLEM:
-		obj = mksobj_at(ROCK, x, y, FALSE, FALSE);
+		obj = mksobj_at(ROCK, x, y, FALSE);
 		obj->quan = (long)(rn2(20) + 50);
 		obj->owt = weight(obj);
 		mtmp->mnamelth = 0;
@@ -258,20 +258,25 @@ register struct monst *mtmp;
 		break;
 	    case PM_WOOD_GOLEM:
 		num = d(2,4);
-		while(num--)
-			obj = mksobj_at(QUARTERSTAFF, x, y, TRUE, FALSE);
+		while(num--) {
+			obj = mksobj_at(QUARTERSTAFF, x, y, TRUE);
+			if (obj && obj->oartifact) {    /* don't allow this */
+				artifact_exists(obj, ONAME(obj), FALSE);
+				Strcpy(ONAME(obj), "");  obj->onamelth = 0;
+			}
+		}
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_LEATHER_GOLEM:
 		num = d(2,4);
 		while(num--)
-			obj = mksobj_at(LEATHER_ARMOR, x, y, TRUE, FALSE);
+			obj = mksobj_at(LEATHER_ARMOR, x, y, TRUE);
 		mtmp->mnamelth = 0;
 		break;
 		case PM_WAX_GOLEM:
 		num = d(2,4);
 		while (num--)
-			obj = mksobj_at(WAX_CANDLE, x, y, TRUE, FALSE);
+			obj = mksobj_at(WAX_CANDLE, x, y, TRUE);
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_PLASTIC_GOLEM:
@@ -284,7 +289,7 @@ register struct monst *mtmp;
 #else
 				FAKE_AMULET_OF_YENDOR,
 #endif
-					x, y, TRUE, FALSE);
+					x, y, TRUE);
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_GOLD_GOLEM:
@@ -295,7 +300,7 @@ register struct monst *mtmp;
 	    case PM_PAPER_GOLEM:
 		num = d(2,3);
 		while (num--)
-			obj = mksobj_at(SCR_BLANK_PAPER, x, y, TRUE, FALSE);
+			obj = mksobj_at(SCR_BLANK_PAPER, x, y, TRUE);
 		mtmp->mnamelth = 0;
 		break;
 	    default_1:
@@ -675,7 +680,7 @@ meatgold(mtmp)
 			if (!ptr) return 2;              /* it died */
 		    }
 		    /* Left behind a pile? */
-		    if(rnd(25) < 3) (void) mksobj_at(ROCK, mtmp->mx, mtmp->my, TRUE, FALSE);
+		    if(rnd(25) < 3) (void) mksobj_at(ROCK, mtmp->mx, mtmp->my, TRUE);
 		    newsym(mtmp->mx, mtmp->my);
 		    return 1;
 		}
@@ -1491,7 +1496,7 @@ register struct monst *mtmp;
 #endif
 	if(mtmp->iswiz) wizdead();
 	if(mtmp->data->msound == MS_NEMESIS) nemdead();
-	if(memory_is_invisible(mtmp->mx, mtmp->my))
+	if(glyph_is_invisible(levl[mtmp->mx][mtmp->my].glyph))
 	    unmap_object(mtmp->mx, mtmp->my);
 	m_detach(mtmp, mptr);
 }
@@ -1628,11 +1633,11 @@ register struct monst *mdef;
 			otmp->spe = 1;
 		otmp->owt = weight(otmp);
 	} else
-		otmp = mksobj_at(ROCK, x, y, TRUE, FALSE);
+		otmp = mksobj_at(ROCK, x, y, TRUE);
 
 	stackobj(otmp);
 	/* mondead() already does this, but we must do it before the newsym */
-	if(memory_is_invisible(x, y))
+	if(glyph_is_invisible(levl[x][y].glyph))
 	    unmap_object(x, y);
 	if (cansee(x, y)) newsym(x,y);
 	mondead(mdef);
@@ -1802,7 +1807,7 @@ xkilled(mtmp, dest)
 
 #ifdef MAIL
 	if(mdat == &mons[PM_MAIL_DAEMON]) {
-		stackobj(mksobj_at(SCR_MAIL, x, y, FALSE, FALSE));
+		stackobj(mksobj_at(SCR_MAIL, x, y, FALSE));
 		redisp = TRUE;
 	}
 #endif

@@ -236,7 +236,7 @@ moverock()
 	    }
 
 	    /* Move the boulder *after* the message. */
-	    if (memory_is_invisible(rx, ry))
+	    if (glyph_is_invisible(levl[rx][ry].glyph))
 		unmap_object(rx, ry);
 	    movobj(otmp, rx, ry);       /* does newsym(rx,ry) */
 	    if (Blind) {
@@ -721,7 +721,7 @@ domove()
 	     * attack_check(), which still wastes a turn, but prints a
 	     * different message and makes the player remember the monster.		     */
 	    if(flags.nopick &&
-		  (canspotmon(mtmp) || memory_is_invisible(x, y))){
+		  (canspotmon(mtmp) || glyph_is_invisible(levl[x][y].glyph))){
 		if(mtmp->m_ap_type && !Protection_from_shape_changers
 						    && !sensemon(mtmp))
 		    stumble_onto_mimic(mtmp);
@@ -769,14 +769,14 @@ domove()
 	/* specifying 'F' with no monster wastes a turn */
 	if (flags.forcefight ||
 	    /* remembered an 'I' && didn't use a move command */
-	    (memory_is_invisible(x, y) && !flags.nopick)) {
+	    (glyph_is_invisible(levl[x][y].glyph) && !flags.nopick)) {
 		You("attack %s.", Underwater ? "empty water" : "thin air");
 		unmap_object(x, y); /* known empty -- remove 'I' if present */
 		newsym(x, y);
 		nomul(0);
 		return;
 	}
-	if (memory_is_invisible(x, y)) {
+	if (glyph_is_invisible(levl[x][y].glyph)) {
 	    unmap_object(x, y);
 	    newsym(x, y);
 	}
@@ -1170,21 +1170,8 @@ stillinwater:;
 	    /* limit recursive calls through teleds() */
 	    if(is_lava(u.ux,u.uy) && lava_effects())
 		    return;
-	    if (is_pool(u.ux, u.uy)) {
-#ifdef STEED
-		if (u.usteed && !is_flyer(u.usteed->data) &&
-			!is_floater(u.usteed->data) &&
-			!is_clinger(u.usteed->data)) {
-		    dismount_steed(Underwater ?
-			    DISMOUNT_FELL : DISMOUNT_GENERIC);
-		    /* dismount_steed() -> float_down() -> pickup() */
-		    if (!Is_airlevel(&u.uz) && !Is_waterlevel(&u.uz))
-			pick = FALSE;
-		} else
-#endif
-		if (!Wwalking && drown())
+	    if(is_pool(u.ux,u.uy) && !Wwalking && drown())
 		    return;
-	    }
 	}
 	check_special_room(FALSE);
 #ifdef SINKS

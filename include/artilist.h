@@ -52,15 +52,9 @@ A("Firewall",                  ATHAME,
  *	M2_something flags.  In Sting's case it will trigger EWarn_of_mon
  *	for M2_ORC monsters.
  */
-#ifndef DEVEL_BRANCH
 A("Sting",                      ELVEN_DAGGER,
 	(SPFX_WARN|SPFX_DCLAS), 0, M2_ORC,
 	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_CHAOTIC, NON_PM, PM_ELF ),
-#else
-A("Sting",                      ELVEN_DAGGER,
-	(SPFX_WARN|SPFX_DCLAS), 0, M2_ORC,
-	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_LAWFUL, NON_PM, PM_ELF ),
-#endif
 
 A("Giantkiller",                AXE,
 	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_GIANT,
@@ -76,15 +70,9 @@ A("Quick Blade",                ELVEN_SHORT_SWORD,
 	SPFX_RESTR, 0, 0,
 	PHYS(9,2),      NO_DFNS,        NO_CARY,        0, A_LAWFUL, NON_PM, NON_PM ),
 
-#ifndef DEVEL_BRANCH
 A("Orcrist",                    ELVEN_BROADSWORD,
 	SPFX_DFLAG2, 0, M2_ORC,
 	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_CHAOTIC, NON_PM, PM_ELF ),
-#else
-A("Orcrist",                    ELVEN_BROADSWORD,
-	SPFX_DFLAG2, 0, M2_ORC,
-	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_LAWFUL, NON_PM, PM_ELF ),
-#endif
 
 A("Dragonbane",                 BROADSWORD,
 	(SPFX_RESTR|SPFX_DCLAS), 0, S_DRAGON,
@@ -283,19 +271,13 @@ A("Stormbringer",               RUNESWORD,
 	DRLI(5,2),	DRLI(0,0),	NO_CARY,	0, A_CHAOTIC, NON_PM, NON_PM ),
 
 #ifdef BLACKMARKET
-#ifdef DEVEL_BRANCH
-A("Thiefbane",                  LONG_SWORD,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_BEHEAD|SPFX_DCLAS|SPFX_DRLI), 0, S_HUMAN,
-	DRLI(5,1),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, NON_PM, NON_PM ),
-#else
 A("Thiefbane",                  LONG_SWORD,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_BEHEAD|SPFX_DCLAS), 0, S_HUMAN,
 	DRLI(5,1),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, NON_PM, NON_PM ),
-#endif
 #endif /* BLACKMARKET */
 
 A("Deathsword",                   TWO_HANDED_SWORD,
-	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_HUMAN,
+	(SPFX_RESTR|SPFX_DFLAG2), 0, S_HUMAN,
 	PHYS(5,14),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, PM_BARBARIAN, NON_PM ),
 
 A("Bat from Hell",                BASEBALL_BAT,
@@ -439,7 +421,7 @@ A("The One Ring", RIN_INVISIBILITY,
 #endif
 /* STEPHEN WHITE'S NEW CODE */
 A("The Storm Whistle",          MAGIC_WHISTLE,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), (SPFX_WARN|SPFX_TCTRL), 0,
+	(SPFX_NOGEN|SPFX_RESTR), (SPFX_WARN|SPFX_TCTRL), 0,
 	NO_ATTK,        NO_DFNS,        CARY(AD_FIRE),
 	SUMMON_WATER_ELEMENTAL,         A_LAWFUL, PM_ICE_MAGE, NON_PM ),
 
