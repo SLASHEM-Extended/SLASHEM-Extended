@@ -46,14 +46,14 @@
 % input file: Guidebook.mn
 %
 
-% $Revision: 1.13 $ $Date: 2003-05-19 12:14:35 $
+% $Revision: 1.14 $ $Date: 2003-12-01 18:36:53 $
 \DefineString{h0}{{\it SLASH'EM\/} Guidebook}
 \DefineString{h1}{}
 \DefineString{h2}{\%}
 \DefineString{vr}{{\it SLASH'EM\/} 0.0.7}
 \DefineString{f0}{\UseString{vr}}
 \DefineString{f1}{}
-\DefineString{f2}{March 20, 2003}
+\DefineString{f2}{November 21, 2003}
 %.mt
 \title{\LARGE A Guide to the Mazes of Menace:\\
 \Large Guidebook for {\it SLASH'EM\/}}
@@ -70,7 +70,7 @@
 %.hn 1
 \section{Introduction}
 
-
+%.pg
 
 Recently, you have begun to find yourself unfulfilled and distant 
 in your daily occupation.  Strange dreams of prospecting, stealing, 
@@ -950,13 +950,13 @@ The behavior can be varied via the msg\_window option.
 %.lp
 
 \item[\tb{{\rm q}}]
-Quaff (drink) a potion.
+Quaff (drink) something (potion, water, etc).
 %.lp
 
 \item[\tb{{\rm Q}}]
 Select an object for your quiver.  You can then throw this using
-the `{\tt f}' command.  (In {\it NetHack\/} versions prior to 3.3 this was the command to
-quit the game, which has now been moved to `{\tt \#quit}'.)
+the `{\tt f}' command.  (In {\it SLASH'EM\/} versions prior to 0.0.6 this was the command
+to quit the game, which has now been moved to `{\tt \#quit}'.)
 %.lp
 
 \item[\tb{{\rm r}}]
@@ -2810,7 +2810,9 @@ Send padding nulls to the terminal (default off).
 %.lp
 
 \item[\ib{number\_pad}]
-Use the number keys to move instead of [yuhjklbn] (default off).
+Use the number keys to move instead of [yuhjklbn] (default 0 or off).
+(number\_pad:2 invokes the old DOS behaviour where `{\tt 5}' means `{\tt g}', meta-`{\tt 5}'
+means `{\tt G}',  and meta-`{\tt 0}' means `{\tt I}'.)
 %.lp
 
 \item[\ib{objects}]
@@ -3173,6 +3175,10 @@ option) straight through to your terminal (default off).
 {\it SLASH'EM\/} should use this size font for text windows.
 %.lp
 
+\item[\ib{fullscreen}]
+{\it SLASH'EM\/} should try and display on the entire screen rather than in a window.
+%.lp
+
 \item[\ib{hilite\_pet}]
 Visually distinguish pets from similar animals (default off).
 The behavior of this option depends on the type of windowing you use.
@@ -3219,6 +3225,10 @@ when the hero reaches the scroll\_margin.
 is this number of cells away from the edge of the window.
 %.lp
 
+\item[\ib{softkeyboard}]
+Display an onscreen keyboard.  Handhelds are most likely to support this option.
+%.lp
+
 \item[\ib{splash\_screen}]
 {\it SLASH'EM\/} should display an opening splash screen when it starts up (default yes).
 %.lp
@@ -3251,6 +3261,11 @@ the message window.
 \item[\ib{windowcolors}]
 {\it SLASH'EM\/} should display windows with the specified foreground/background
 colors if it can.
+%.lp
+
+\item[\ib{wraptext}]
+{\it SLASH'EM\/} port should wrap long lines of text if they don't fit in 
+the visible area of the window.
 \elist
 \nd %.hn 2
 \subsection*{Platform-specific Customization options}
@@ -3260,6 +3275,13 @@ colors if it can.
 Here are explanations of options that are used by specific platforms or ports 
 to customize and change the port behaviour.
 \blist{}
+%.lp
+
+\item[\ib{altkeyhandler}]
+Select an alternate keystroke handler dll to load (Win32 tty {\it SLASH'EM\/} only).
+The name of the handler is specified without the .dll extension and without any
+path information.
+Cannot be set with the `{\tt O}' command.
 %.lp
 
 \item[\ib{altmeta}]
@@ -3295,6 +3317,16 @@ Cannot be set with the `{\tt O}' command.
 
 \item[\ib{soundcard}]
 (default on, PC {\it SLASH'EM\/} only).
+Cannot be set with the `{\tt O}' command.
+%.lp
+
+\item[\ib{subkeyval}]
+(Win32 tty {\it SLASH'EM\/} only).
+May be used to alter the value of keystrokes that the operating system
+returns to {\it SLASH'EM\/} to help compensate for international keyboard issues.
+OPTIONS=subkeyvalue:171/92
+will return 92 to {\it SLASH'EM}, if 171 was originally going to be returned.
+You can use multiple subkeyvalue statements in the config file if needed.
 Cannot be set with the `{\tt O}' command.
 %.lp
 
@@ -3794,42 +3826,43 @@ in this, the list of Dungeoneers:
 \begin{center}
 \begin{tabular}{ccc}
 %TABLE_START
-    Adam Aronow     & Irina Rempt-Drijfhout  &    Mike Gallop    \\
-    Alex Kompel     &     Izchak Miller      &  Mike Passaretti  \\
-   Andreas Dorn     &     J. Ali Harlow      &  Mike Stephenson  \\
-    Andy Church     &       Janet Walz       &    Norm Meluch    \\
-   Andy Swanson     &    Janne Salmijarvi    &    Olaf Seibert   \\
-   Ari Huttunen     & Jean-Christophe Collet &   Pasi Kallinen   \\
-   Barton House     &     Jochen Erwied      &     Pat Rankin    \\
-Benson I. Margulies &      John Kallen       &    Paul Winner    \\
-     Bill Dyer      &      John Rupley       &  Pierre Martineau \\
- Boudewijn Waijers  &      John S. Bien      &     Ralf Brown    \\
-     Bruce Cox      &       Johnny Lee       &  Richard Addison  \\
-  Bruce Holloway    &       Jon W\{tte       &   Richard Beigel  \\
-  Bruce Mewborne    &    Jonathan Handler    & Richard P. Hughey \\
-   Carl Schelin     &    Joshua Delahunty    &     Rob Menke     \\
-    Chris Russo     &     Keizo Yamamoto     &   Robin Johnson   \\
-    David Cohrs     &       Ken Arnold       & Roderick Schertler\\
-  David Damerell    &      Ken Arromdee      &   Roland McGrath  \\
-   David Gentzel    &       Ken Lorber       &  Ron Van Iwaarden \\
-  David Hairston    &     Ken Washikita      &   Ronnen Miller   \\
-    Dean Luick      &      Kevin Darcy       &     Ross Brown    \\
-     Del Lamb       &       Kevin Hugo       &  Sascha Wostmann  \\
-   Deron Meranda    &      Kevin Sitze       &    Scott Bigham   \\
-   Dion Nicolaas    &    Kevin Smolkowski    &  Scott R. Turner  \\
-  Dylan O'Donnell   &      Kevin Sweet       &  Stephen Spackman \\
-    Eric Backus     &      Lars Huttar       &   Stephen White   \\
- Eric Hendrickson   &      Malcolm Ryan      &    Steve Creps    \\
-   Eric R. Smith    &     Mark Gooderum      &   Steve Linhart   \\
-  Eric S. Raymond   &      Mark Modrall      & Steve VanDevender \\
-   Erik Andersen    &    Marvin Bressler     &    Teemu Suikki   \\
- Frederick Roeber   &      Matthew Day       &     Tim Lennan    \\
-    Gil Neiger      &      Merlyn LeRoy      &   Timo Hakulinen  \\
-    Greg Laskin     &    Michael Allison     &      Tom Almy     \\
-    Greg Olson      &      Michael Feir      &      Tom West     \\
-  Gregg Wonderly    &     Michael Hamel      &   Warren Cheung   \\
-   Hao-yang Wang    &    Michael Sokolov     &  Warwick Allison  \\
-   Helge Hafting    &      Mike Engber       &   Yitzhak Sapir   
+     Adam Aronow      &     Izchak Miller      &  Mike Stephenson  \\
+     Alex Kompel      &     J. Ali Harlow      &    Norm Meluch    \\
+    Andreas Dorn      &       Janet Walz       &    Olaf Seibert   \\
+     Andy Church      &    Janne Salmijarvi    &   Pasi Kallinen   \\
+    Andy Swanson      & Jean-Christophe Collet &     Pat Rankin    \\
+    Ari Huttunen      &     Jochen Erwied      &    Paul Winner    \\
+    Barton House      &      John Kallen       &  Pierre Martineau \\
+ Benson I. Margulies  &      John Rupley       &     Ralf Brown    \\
+      Bill Dyer       &      John S. Bien      &     Ray Chason    \\
+  Boudewijn Waijers   &       Johnny Lee       &  Richard Addison  \\
+      Bruce Cox       &       Jon W\{tte       &   Richard Beigel  \\
+   Bruce Holloway     &    Jonathan Handler    & Richard P. Hughey \\
+   Bruce Mewborne     &    Joshua Delahunty    &     Rob Menke     \\
+    Carl Schelin      &     Keizo Yamamoto     &   Robin Johnson   \\
+     Chris Russo      &       Ken Arnold       & Roderick Schertler\\
+     David Cohrs      &      Ken Arromdee      &   Roland McGrath  \\
+   David Damerell     &       Ken Lorber       &  Ron Van Iwaarden \\
+    David Gentzel     &     Ken Washikita      &   Ronnen Miller   \\
+   David Hairston     &      Kevin Darcy       &     Ross Brown    \\
+     Dean Luick       &       Kevin Hugo       &  Sascha Wostmann  \\
+      Del Lamb        &      Kevin Sitze       &    Scott Bigham   \\
+    Deron Meranda     &    Kevin Smolkowski    &  Scott R. Turner  \\
+    Dion Nicolaas     &      Kevin Sweet       &  Stephen Spackman \\
+   Dylan O'Donnell    &      Lars Huttar       &   Stephen White   \\
+     Eric Backus      &      Malcolm Ryan      &    Steve Creps    \\
+  Eric Hendrickson    &     Mark Gooderum      &   Steve Linhart   \\
+    Eric R. Smith     &      Mark Modrall      & Steve VanDevender \\
+   Eric S. Raymond    &    Marvin Bressler     &    Teemu Suikki   \\
+    Erik Andersen     &      Matthew Day       &     Tim Lennan    \\
+  Frederick Roeber    &      Merlyn LeRoy      &   Timo Hakulinen  \\
+     Gil Neiger       &    Michael Allison     &      Tom Almy     \\
+     Greg Laskin      &      Michael Feir      &      Tom West     \\
+     Greg Olson       &     Michael Hamel      &   Warren Cheung   \\
+   Gregg Wonderly     &    Michael Sokolov     &  Warwick Allison  \\
+    Hao-yang Wang     &      Mike Engber       &   Yitzhak Sapir   \\
+    Helge Hafting     &      Mike Gallop       &                   \\
+Irina Rempt-Drijfhout &    Mike Passaretti     &                   
 %TABLE_END  Do not delete this line.
 \end{tabular}
 \end{center}
