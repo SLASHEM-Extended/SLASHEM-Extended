@@ -1191,6 +1191,9 @@ opentin()               /* called during each move whilst opening a tin */
 	    }
 	    if (which == 0) what = makeplural(what);
 #ifdef EATEN_MEMORY
+	    /* ALI - you already know the type of the tinned meat */
+	    if (tin.tin->known && mvitals[tin.tin->corpsenm].eaten < 255)
+		mvitals[tin.tin->corpsenm].eaten++;
 	    /* WAC - you only recognize if you've eaten this before */
 	    if (!mvitals[tin.tin->corpsenm].eaten && !Hallucination) {
 		if (rn2(2))
@@ -1203,10 +1206,11 @@ opentin()               /* called during each move whilst opening a tin */
 	    pline("It smells like %s%s.", (which == 2) ? "the " : "", what);
 
 	    if (yn("Eat it?") == 'n') {
-#ifndef EATEN_MEMORY
-	    	/* if you haven't eaten it,  you won't know it... */
-		if (!Hallucination) tin.tin->dknown = tin.tin->known = TRUE;
+#ifdef EATEN_MEMORY
+	    	/* ALI - you know the tin iff you recognized the contents */
+		if (mvitals[tin.tin->corpsenm].eaten)
 #endif
+		if (!Hallucination) tin.tin->dknown = tin.tin->known = TRUE;
 		if (flags.verbose) You("discard the open tin.");
 		goto use_me;
 	    }
@@ -1215,9 +1219,6 @@ opentin()               /* called during each move whilst opening a tin */
 	    victual.fullwarn = victual.eating = victual.doreset = FALSE;
 
 #ifdef EATEN_MEMORY
-	    /* ALI - you already know the type of the tinned meat */
-	    if (tin.tin->known && mvitals[tin.tin->corpsenm].eaten < 255)
-		mvitals[tin.tin->corpsenm].eaten++;
 	    /* WAC - you only recognize if you've eaten this before */
 	    You("consume %s %s.", tintxts[r].txt,
 				mvitals[tin.tin->corpsenm].eaten ?
