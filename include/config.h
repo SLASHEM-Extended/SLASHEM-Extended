@@ -165,8 +165,10 @@
 #if defined(GL_GRAPHICS) || defined(SDL_GRAPHICS)
 # define GRAPHIC_TOMBSTONE     /* Use graphical tombstone */
 /* -AJA- workaround for clash with ZLIB headers */
-# define compress    nh_compress
-# define uncompress  nh_uncompress
+# if defined(VANILLA_GLHACK)
+#  define compress    nh_compress
+#  define uncompress  nh_uncompress
+# endif
 #endif
 
 #ifndef DEFAULT_WINDOW_SYS
