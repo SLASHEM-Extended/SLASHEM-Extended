@@ -1,4 +1,4 @@
-/* $Id: gtkhack.c,v 1.3 2003-05-30 08:48:08 j_ali Exp $ */
+/* $Id: gtkhack.c,v 1.4 2003-05-31 08:12:44 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -177,6 +177,49 @@ static void GTK_proxy_clnt_errhandler(const char *error)
 static void GTK_nhext_errhandler(int class, const char *error)
 {
     GTK_proxy_clnt_errhandler(error);
+}
+
+void
+GTK_ext_send_config_file(int fh)
+{
+    FILE *fp;
+    char buffer[512];
+    int nb;
+#ifdef WIN32
+    fp = fopen("defaults.nh", "r");
+#else
+    int i;
+    const char *home, *game;
+    char *buf, *s;
+    home = getenv("HOME");
+    game = win_proxy_clnt_gettag("game");
+    if (home && game) {
+	buf = malloc(strlen(home) + strlen(game) + 5);
+	if (buf) {
+	    /* ~/.@LOWER@rc */
+	    strcpy(buf, home);
+	    s = eos(buf);
+	    *s++ = '/';
+	    *s++ = '.';
+	    /* Convert the ASCII encoded game into lower case */
+	    for(i = 0; game[i]; i++)
+		*s++ = game[i] >= 'A' && game[i] <= 'Z' ?
+		  game[i] | 0x20 : game[i];
+	    *s++ = 'r';
+	    *s++ = 'c';
+	    *s = '\0';
+	}
+	fp = fopen(buf, "r");
+	free(buf);
+    }
+    else
+	return;
+#endif
+    if (fp) {
+	while((nb = fread(buffer, 1, 512, fp)) > 0)
+	    proxy_cb_dlbh_fwrite(buffer, nb, 1, fh);
+	fclose(fp);
+    }
 }
 
 int

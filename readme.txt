@@ -87,7 +87,7 @@ http://www.slashem.org/
 ver 0.0.7E1 [?] [Released by ?]
 -Actioned feature request 414274: Lazy yn_function().
 -GTK: Added profile for saving eg., session data:
-  [UNIX] stored in ~/.gethackrc
+  [UNIX] stored in ~/.gtkhackrc
   [WIN32] stored in registry
 -Actioned feature request 492518: resize inventory window.
 -Actioned feature request 421535: shop keepers are too dumb.
@@ -129,6 +129,7 @@ ver 0.0.7E1 [?] [Released by ?]
 -fixed bug 731418: #twoweaponing?
 -fixed bug 742693: Cannot read engravings without spending a turn.
 -GtkHack: Connections are now stored in profile.
+-GtkHack: Now reads local config file & uploads to proxy server.
 
 See history.txt for changes made in previous versions.
 

@@ -1,4 +1,4 @@
-/* $Id: winproxy.h,v 1.14 2003-05-17 10:33:24 j_ali Exp $ */
+/* $Id: winproxy.h,v 1.15 2003-05-31 08:12:43 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -24,6 +24,8 @@ extern struct window_procs proxy_procs;
 extern unsigned long proxy_interface_mode;
 
 extern short glyph2proxy[MAX_GLYPH];
+
+extern FILE *proxy_config_fp;
 
 /* external declarations */
 E void FDECL(proxy_init_nhwindows, (int *, char **));
@@ -85,6 +87,7 @@ E void NDECL(proxy_end_screen);
 E void FDECL(proxy_outrip, (winid, int));
 E void FDECL(proxy_preference_update, (const char *));
 E void FDECL(proxy_status, (int, int, const char **));
+E FILE *NDECL(proxy_config_file_open);
 
 #undef E
 

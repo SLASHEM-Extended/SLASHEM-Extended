@@ -60,6 +60,7 @@ A.  win/proxy/ext_protocol.html
 
  o Add a new procedure ID to the list using the next unused ID number.
  o Add a new section describing the procedure, its parameters and result.
+ o Bump the version of the protocol, NhExt, if necessary.
  o Note the formal description of parameters and results must follow
    the syntax of Sun's XDR language so that the test procedure laid
    out in win/proxy/Makefile.* will be valid. Formal descriptions must
@@ -68,7 +69,7 @@ A.  win/proxy/ext_protocol.html
  o If you have access to rpcgen then you can use the relevant makefile
    to build rpcgen-nhext_xdr.c and so check your syntax.
 
-B.  include/proxyclnt.h
+B.  include/prxyclnt.h
 
  o Add a new field to the end of struct window_ext_procs to hold a pointer
    to a function which takes the relevant parameters and returns the
@@ -82,6 +83,8 @@ C.  include/proxycom.h
    then define a struct proxy_${name}_req and/or proxy_${name}_res
    and declare an XDR function to handle it (enclose the additions
    inside an #ifdef NHXDR_H ... #endif pair).
+ o If you changed the NhExt protocol version above, then update the
+   values here to match.
 
 D.  win/proxy/compxdr.c
 
@@ -153,6 +156,7 @@ A.  win/proxy/ext_protocol.html
 
  o Add a new callback ID to the list using the next unused ID number.
  o Add a new section describing the callback, its parameters and result.
+ o Bump the version of the protocol, NhExt, if necessary.
  o Note the formal description of parameters and results must follow
    the syntax of Sun's XDR language so that the test procedure laid
    out in win/proxy/Makefile.* will be valid. Formal descriptions must
@@ -174,6 +178,8 @@ C.  include/proxycom.h
    then define a struct proxycb_${name}_req and/or proxycb_${name}_res
    and declare an XDR function to handle it (enclose the additions
    inside an #ifdef NHXDR_H ... #endif pair).
+ o If you changed the NhExt protocol version above, then update the
+   values here to match.
 
 D.  win/proxy/compxdr.c
 

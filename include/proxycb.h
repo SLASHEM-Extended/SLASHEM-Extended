@@ -1,4 +1,4 @@
-/* $Id: proxycb.h,v 1.13 2003-01-18 17:52:08 j_ali Exp $ */
+/* $Id: proxycb.h,v 1.14 2003-05-31 08:12:43 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -9,6 +9,7 @@ extern void NDECL(proxy_cb_display_inventory);
 extern int FDECL(proxy_cb_dlbh_fopen, (const char *, const char *));
 extern char *FDECL(proxy_cb_dlbh_fgets, (char *, int, int));
 extern int FDECL(proxy_cb_dlbh_fread, (char *, int, int, int));
+extern int FDECL(proxy_cb_dlbh_fwrite, (char *, int, int, int));
 extern int FDECL(proxy_cb_dlbh_fclose, (int));
 extern void NDECL(proxy_cb_flush_screen);
 extern void NDECL(proxy_cb_doredraw);

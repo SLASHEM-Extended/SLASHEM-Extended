@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.15 2003-05-17 10:33:25 j_ali Exp $ */
+/* $Id: callback.c,v 1.16 2003-05-31 08:12:44 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -17,6 +17,8 @@ static void FDECL(callback_dlbh_fopen, \
 static void FDECL(callback_dlbh_fgets, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(callback_dlbh_fread, \
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(callback_dlbh_fwrite, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(callback_dlbh_fclose, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
@@ -208,6 +210,24 @@ NhExtXdr *request, *reply;
     nb = dlbh_fread(buf, 1, len, fh);
     nhext_rpc_params(reply, 2,
       EXT_INT(nb < 0), EXT_BYTES(buf, nb >= 0 ? nb : 0));
+}
+
+extern FILE *proxy_config_fp;
+
+static void
+callback_dlbh_fwrite(id, request, reply)
+unsigned short id;
+NhExtXdr *request, *reply;
+{
+    int fh, nb, retval;
+    char *buf = (char *)0;
+    nhext_rpc_params(request, 2, EXT_INT_P(fh), EXT_BYTES_P(buf, nb));
+    if (!fh && proxy_config_fp)
+	retval = fwrite(buf, nb, 1, proxy_config_fp) != 1;
+    else
+	retval = -1;
+    free(buf);
+    nhext_rpc_params(reply, 1, EXT_INT(retval));
 }
 
 static void
@@ -557,6 +577,7 @@ struct nhext_svc proxy_callbacks[] = {
     EXT_CID_DLBH_FOPEN,			callback_dlbh_fopen,
     EXT_CID_DLBH_FGETS,			callback_dlbh_fgets,
     EXT_CID_DLBH_FREAD,			callback_dlbh_fread,
+    EXT_CID_DLBH_FWRITE,		callback_dlbh_fwrite,
     EXT_CID_DLBH_FCLOSE,		callback_dlbh_fclose,
     EXT_CID_FLUSH_SCREEN,		callback_flush_screen,
     EXT_CID_DOREDRAW,			callback_doredraw,

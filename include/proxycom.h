@@ -1,4 +1,4 @@
-/* $Id: proxycom.h,v 1.12 2003-05-17 10:33:24 j_ali Exp $ */
+/* $Id: proxycom.h,v 1.13 2003-05-31 08:12:43 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -116,6 +116,7 @@ E int FDECL(nhext_svc, (struct nhext_svc *));
 #define EXT_FID_PREFERENCE_UPDATE	0x2D
 #define EXT_FID_STATUS			0x2E
 #define EXT_FID_PRINT_GLYPH_LAYERED	0x2F
+#define EXT_FID_SEND_CONFIG_FILE	0x30
 
 #ifdef NHXDR_H
 struct proxy_init_nhwindow_req {
@@ -183,24 +184,25 @@ E nhext_xdr_bool_t FDECL(proxy_xdr_print_glyph_layered_req,
 #define EXT_CID_DLBH_FOPEN		0x02
 #define EXT_CID_DLBH_FGETS		0x03
 #define EXT_CID_DLBH_FREAD		0x04
-#define EXT_CID_DLBH_FCLOSE		0x05
-#define EXT_CID_FLUSH_SCREEN		0x06
-#define EXT_CID_DOREDRAW		0x07
-#define EXT_CID_INTERFACE_MODE		0x08
-#define EXT_CID_PARSE_OPTIONS		0x09
-#define EXT_CID_GET_OPTION		0x0A
-#define EXT_CID_GET_PLAYER_CHOICES	0x0B
-#define EXT_CID_GET_VALID_SELECTIONS	0x0C
-#define EXT_CID_QUIT_GAME		0x0D
-#define EXT_CID_DISPLAY_SCORE		0x0E
-#define EXT_CID_DOSET			0x0F
-#define EXT_CID_GET_EXTENDED_COMMANDS	0x10
-#define EXT_CID_MAP_MENU_CMD		0x11
-#define EXT_CID_GET_STANDARD_WINID	0x12
-#define EXT_CID_GET_TILESETS		0x13
-#define EXT_CID_GET_GLYPH_MAPPING	0x14
-#define EXT_CID_GET_EXTENSIONS		0x15
-#define EXT_CID_SET_OPTION_MOD_STATUS	0x16
+#define EXT_CID_DLBH_FWRITE		0x05
+#define EXT_CID_DLBH_FCLOSE		0x06
+#define EXT_CID_FLUSH_SCREEN		0x07
+#define EXT_CID_DOREDRAW		0x08
+#define EXT_CID_INTERFACE_MODE		0x09
+#define EXT_CID_PARSE_OPTIONS		0x0A
+#define EXT_CID_GET_OPTION		0x0B
+#define EXT_CID_GET_PLAYER_CHOICES	0x0C
+#define EXT_CID_GET_VALID_SELECTIONS	0x0D
+#define EXT_CID_QUIT_GAME		0x0E
+#define EXT_CID_DISPLAY_SCORE		0x0F
+#define EXT_CID_DOSET			0x10
+#define EXT_CID_GET_EXTENDED_COMMANDS	0x11
+#define EXT_CID_MAP_MENU_CMD		0x12
+#define EXT_CID_GET_STANDARD_WINID	0x13
+#define EXT_CID_GET_TILESETS		0x14
+#define EXT_CID_GET_GLYPH_MAPPING	0x15
+#define EXT_CID_GET_EXTENSIONS		0x16
+#define EXT_CID_SET_OPTION_MOD_STATUS	0x17
 
 #ifdef NHXDR_H
 struct proxycb_get_player_choices_res_role {

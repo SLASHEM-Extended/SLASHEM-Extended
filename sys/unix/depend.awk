@@ -40,7 +40,7 @@ FNR == 1	{ output_dep()			#finish previous file
 		  if (incl ~ /\.h$/) {
 		    if (incl ~ /^gn/)	# gnomehack special case
 		      incl = "../win/gnome/" incl
-		    if (incl ~ /^gtk/)	# gtkhack special case
+		    else if (incl ~ /^gtk/)	# gtkhack special case
 		      incl = "../win/gtk/" incl
 		    else
 		      incl = "../include/" incl

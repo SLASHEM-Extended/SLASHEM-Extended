@@ -223,6 +223,7 @@ the IDs.
 <tr><td>preference_update</td><td>0x2D</td></tr>
 <tr><td>status</td><td>0x2E</td></tr>
 <tr><td>print_glyph_layered</td><td>0x2F</td></tr>
+<tr><td>send_config_file</td><td>0x30</td></tr>
 </table>
 
 <p>Plug-in window ports may define non-standard procedures with IDs of 0x8000 and
@@ -1073,6 +1074,19 @@ Glyphs are
 Note: This procedure will only be called if the interface flag
 EXT_IM_DISPLAY_LAYERS is set.
 
+<h3>send_config_file</h3>
+<pre>
+struct send_config_file_req {
+    int handle;
+};
+</pre>
+send_config_file returns no values.
+
+<p>Request that if the window interface has a local config file then it
+should be sent to the game by writing it to the specified handle using
+the dlbh_fwrite callback. The handle will be closed when send_config_file
+returns.
+
 <h2><a name="callbacks">Standard window port call backs</a></h2>
 
 Plug-in window ports may assume that the following call backs are supported.
@@ -1083,24 +1097,25 @@ Plug-in window ports may assume that the following call backs are supported.
 <tr><td>dlbh_fopen</td><td>0x02</td></tr>
 <tr><td>dlbh_fgets</td><td>0x03</td></tr>
 <tr><td>dlbh_fread</td><td>0x04</td></tr>
-<tr><td>dlbh_fclose</td><td>0x05</td></tr>
-<tr><td>flush_screen</td><td>0x06</td></tr>
-<tr><td>doredraw</td><td>0x07</td></tr>
-<tr><td>interface_mode</td><td>0x08</td></tr>
-<tr><td>parse_options</td><td>0x09</td></tr>
-<tr><td>get_option</td><td>0x0A</td></tr>
-<tr><td>get_player_choices</td><td>0x0B</td></tr>
-<tr><td>get_valid_selections</td><td>0x0C</td></tr>
-<tr><td>quit_game</td><td>0x0D</td></tr>
-<tr><td>display_score</td><td>0x0E</td></tr>
-<tr><td>doset</td><td>0x0F</td></tr>
-<tr><td>get_extended_commands</td><td>0x10</td></tr>
-<tr><td>map_menu_cmd</td><td>0x11</td></tr>
-<tr><td>get_standard_winid</td><td>0x12</td></tr>
-<tr><td>get_tilesets</td><td>0x13</td></tr>
-<tr><td>get_glyph_mapping</td><td>0x14</td></tr>
-<tr><td>get_extensions</td><td>0x15</td></tr>
-<tr><td>set_option_mod_status</td><td>0x16</td></tr>
+<tr><td>dlbh_fwrite</td><td>0x05</td></tr>
+<tr><td>dlbh_fclose</td><td>0x06</td></tr>
+<tr><td>flush_screen</td><td>0x07</td></tr>
+<tr><td>doredraw</td><td>0x08</td></tr>
+<tr><td>interface_mode</td><td>0x09</td></tr>
+<tr><td>parse_options</td><td>0x0A</td></tr>
+<tr><td>get_option</td><td>0x0B</td></tr>
+<tr><td>get_player_choices</td><td>0x0C</td></tr>
+<tr><td>get_valid_selections</td><td>0x0D</td></tr>
+<tr><td>quit_game</td><td>0x0E</td></tr>
+<tr><td>display_score</td><td>0x0F</td></tr>
+<tr><td>doset</td><td>0x10</td></tr>
+<tr><td>get_extended_commands</td><td>0x11</td></tr>
+<tr><td>map_menu_cmd</td><td>0x12</td></tr>
+<tr><td>get_standard_winid</td><td>0x13</td></tr>
+<tr><td>get_tilesets</td><td>0x14</td></tr>
+<tr><td>get_glyph_mapping</td><td>0x15</td></tr>
+<tr><td>get_extensions</td><td>0x16</td></tr>
+<tr><td>set_option_mod_status</td><td>0x17</td></tr>
 </table>
 
 <h3>display_inventory</h3>
@@ -1175,6 +1190,22 @@ struct dlbh_fread_res {
 If an error occurs, retval will be non-zero. Any bytes read before the
 error occured will be returned in the buffer. An empty buffer will be
 returned on end of file.
+
+<h3>dlbh_fwrite</h3>
+<pre>
+struct dlbh_fwrite_req {
+    int fh;
+    opaque buffer<>;
+};
+
+struct dlbh_fwrite_res {
+    int retval;
+};
+</pre>
+
+<p>Write buffer to a file previously opened for writing. At present,
+the only means of aquiring a writable handle is via the send_config_file
+procedure. If an error occurs, retval will be non-zero.
 
 <h3>dlbh_fclose</h3>
 <pre>

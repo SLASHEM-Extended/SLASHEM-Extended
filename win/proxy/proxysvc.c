@@ -1,4 +1,4 @@
-/* $Id: proxysvc.c,v 1.21 2003-05-27 09:48:45 j_ali Exp $ */
+/* $Id: proxysvc.c,v 1.22 2003-05-31 08:12:44 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -110,10 +110,12 @@ static void FDECL(proxy_svc_start_screen,
 static void FDECL(proxy_svc_end_screen,
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_outrip, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_update_preferences,
+static void FDECL(proxy_svc_preference_update,
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_status, (unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_print_glyph_layered,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_send_config_file,
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 
 static void
@@ -698,6 +700,17 @@ NhExtXdr *request, *reply;
     nhext_rpc_params(reply, 0);
 }
 
+static void
+proxy_svc_send_config_file(id, request, reply)
+unsigned short id; 
+NhExtXdr *request, *reply;
+{
+    int fh;
+    nhext_rpc_params(request, 1, EXT_INT_P(fh));
+    (*proxy_svc->winext_send_config_file)(fh);
+    nhext_rpc_params(reply, 0);
+}
+
 static struct nhext_svc services[] = {
     EXT_FID_INIT,			proxy_svc_init,
     EXT_FID_INIT_NHWINDOWS,		proxy_svc_init_nhwindows,
@@ -746,6 +759,7 @@ static struct nhext_svc services[] = {
     EXT_FID_PREFERENCE_UPDATE,		proxy_svc_preference_update,
     EXT_FID_STATUS,			proxy_svc_status,
     EXT_FID_PRINT_GLYPH_LAYERED,	proxy_svc_print_glyph_layered,
+    EXT_FID_SEND_CONFIG_FILE,		proxy_svc_send_config_file,
     0,					NULL,
 };
 
@@ -829,16 +843,17 @@ unsigned int len;
 }
 #endif	/* DEBUG */
 
-static int
-win_proxy_clnt_gettag(lp, tag)
-struct nhext_line *lp;
+static struct nhext_line *win_proxy_clnt_subprotocol0_lp;
+
+char *
+win_proxy_clnt_gettag(tag)
 const char *tag;
 {
     int i;
-    for(i = 0; i < lp->n; i++)
-	if (!strcmp(lp->tags[i], tag))
-	    return i;
-    return -1;
+    for(i = 0; i < win_proxy_clnt_subprotocol0_lp->n; i++)
+	if (!strcmp(win_proxy_clnt_subprotocol0_lp->tags[i], tag))
+	    return win_proxy_clnt_subprotocol0_lp->values[i];
+    return (char *)0;
 }
 
 int
@@ -850,7 +865,8 @@ void *read_h, *write_h;
     int major, minor;
     char *s;
     NhExtIO *rd, *wr;
-    struct nhext_line *lp, line;
+    struct nhext_line line;
+    char *standard, *protocols;
 #ifdef DEBUG
     static struct debug_handle dhr, dhw;
     dhr.f = read_f;
@@ -875,8 +891,8 @@ void *read_h, *write_h;
 	nhext_io_close(rd);
 	return FALSE;
     }
-    lp = nhext_subprotocol0_read_line();
-    if (!lp) {
+    win_proxy_clnt_subprotocol0_lp = nhext_subprotocol0_read_line();
+    if (!win_proxy_clnt_subprotocol0_lp) {
 failed:
 	proxy_clnt_error("Failed to start NhExt");
 	/* We leave the NhExtIO streams open and NhExt initialized so
@@ -884,22 +900,22 @@ failed:
 	 */
 	return FALSE;
     }
-    if (strcmp(lp->type, "NhExt") || win_proxy_clnt_gettag(lp, "game") < 0 ||
-      (j = win_proxy_clnt_gettag(lp, "standard")) < 0 ||
-      win_proxy_clnt_gettag(lp, "version") < 0 ||
-      (i = win_proxy_clnt_gettag(lp, "protocols")) < 0) {
-	nhext_subprotocol0_free_line(lp);
+    if (strcmp(win_proxy_clnt_subprotocol0_lp->type, "NhExt") ||
+      !win_proxy_clnt_gettag("game") ||
+      !(standard = win_proxy_clnt_gettag("standard")) ||
+      !win_proxy_clnt_gettag("version") ||
+      !(protocols = win_proxy_clnt_gettag("protocols"))) {
+	nhext_subprotocol0_free_line(win_proxy_clnt_subprotocol0_lp);
 	goto failed;
     }
-    if (sscanf(lp->values[j], "%d.%d", &major, &minor) != 2 ||
+    if (sscanf(standard, "%d.%d", &major, &minor) != 2 ||
 #if (EXT_STANDARD_MAJOR != 0)
       major != EXT_STANDARD_MAJOR || minor < EXT_STANDARD_MINOR) {
 #else
       major != EXT_STANDARD_MAJOR || minor != EXT_STANDARD_MINOR) {
 #endif
-	nhext_subprotocol0_free_line(lp);
-	proxy_clnt_error("Incompatible NhExt standard (%s)",
-	  lp->values[j]);
+	nhext_subprotocol0_free_line(win_proxy_clnt_subprotocol0_lp);
+	proxy_clnt_error("Incompatible NhExt standard (%s)", standard);
 	s = "Error mesg \"Incompatible NhExt standard\"\n";
 	(void)nhext_io_write(wr, s, strlen(s));
 	nhext_end();
@@ -907,9 +923,9 @@ failed:
 	nhext_io_close(rd);
 	return FALSE;
     }
-    s = strchr(lp->values[i], '1');
-    if (!s || s > lp->values[i] && s[-1] != ',' || s[1] && s[1] != ',') {
-	nhext_subprotocol0_free_line(lp);
+    s = strchr(protocols, '1');
+    if (!s || s > protocols && s[-1] != ',' || s[1] && s[1] != ',') {
+	nhext_subprotocol0_free_line(win_proxy_clnt_subprotocol0_lp);
 	proxy_clnt_error("Sub-protocol 1 not supported");
 	s = "Error mesg \"No supported protocols\"\n";
 	(void)nhext_io_write(wr, s, strlen(s));
@@ -918,7 +934,6 @@ failed:
 	nhext_io_close(rd);
 	return FALSE;
     }
-    nhext_subprotocol0_free_line(lp);
     line.type = "Ack";
     line.n = 2;
     line.tags = (char **)alloc(line.n * sizeof(char *));
@@ -931,6 +946,7 @@ failed:
     free(line.tags);
     free(line.values);
     if (!i) {
+	nhext_subprotocol0_free_line(win_proxy_clnt_subprotocol0_lp);
 	proxy_clnt_error("Failed to write NhExt acknowledgement");
 	nhext_end();
 	nhext_io_close(wr);

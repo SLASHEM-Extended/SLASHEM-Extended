@@ -17,6 +17,10 @@
 #include "winGL.h"  /* Sdlgl_parse_options */
 #endif
 
+#ifdef PROXY_GRAPHICS
+#include "winproxy.h" /* proxy_config_open() */
+#endif
+
 #include <ctype.h>
 
 #if !defined(MAC) && !defined(O_WRONLY) && !defined(AZTEC_C)
@@ -2157,8 +2161,16 @@ const char *filename;
 	char	buf[4*BUFSZ];
 	FILE	*fp;
 	int     i;
+#ifdef PROXY_GRAPHICS
+	int	found = FALSE;
 
+	if (!(fp = fopen_config_file(filename)))
+	    goto clnt_process;
+	else
+	    found = TRUE;
+#else
 	if (!(fp = fopen_config_file(filename))) goto post_process;
+#endif
 
 #if defined(MICRO) || defined(WIN32)
 # ifdef MFLOPPY
@@ -2181,6 +2193,31 @@ const char *filename;
 	
 	/* turn off detection of duplicate configfile options */
 	set_duplicate_opt_detection(0);
+
+#ifdef PROXY_GRAPHICS
+clnt_process:
+	/*
+	 * When acting as a proxy server, allow the client to provide
+	 * its own config file which overrides values in our config file.
+	 * Note: We don't want to warn of values being present in both
+	 * files, but we do want to warn of duplicates within each file.
+	 */
+	if (!strncmp(windowprocs.name, "proxy/", 6) &&
+		(fp = proxy_config_file_open())) {
+	    found = TRUE;
+	    set_duplicate_opt_detection(1);
+	    while (fgets(buf, 4*BUFSZ, fp)) {
+		if (!parse_config_line(fp, buf, tmp_ramdisk, tmp_levels)) {
+		    pline("Bad option line:  \"%.50s\"", buf);
+		    wait_synch();
+		}
+	    }
+	    proxy_config_file_close(fp);
+	    set_duplicate_opt_detection(0);
+	}
+
+	if (!found) goto post_process;
+#endif
 
 #if defined(MICRO) && !defined(NOCWD_ASSUMPTIONS)
 	/* should be superseded by fqn_prefix[] */
@@ -2216,8 +2253,8 @@ post_process:
 		if (i == no_tilesets) {
 			pline("Tileset %s not defined.", tileset);
 			tileset[0] = '\0';
-	}
-	else
+		}
+		else
 			strcpy(tileset, tilesets[i].name);
 	}
 	return;

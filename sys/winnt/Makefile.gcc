@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.32 2003-05-19 12:14:37 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.33 2003-05-31 08:12:43 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -1823,7 +1823,7 @@ exper.o: exper.c $(HACK_H)
 explode.o: explode.c $(HACK_H)
 extralev.o: extralev.c $(HACK_H)
 files.o: files.c $(HACK_H) $(INCL)/dlb.h $(INCL)/filename.h \
-		$(INCL)/winGL.h
+		$(INCL)/winGL.h $(INCL)/winproxy.h
 fountain.o: fountain.c $(HACK_H)
 hack.o: hack.c $(HACK_H)
 hacklib.o: hacklib.c $(HACK_H)
