@@ -230,7 +230,7 @@ static void do_money_hp(struct TextWindow *win, int *len)
     add_val(win, st_DEPTH.cur, st_DEPTH.last, 0, 0);
   }
   
-  sprintf(buf, " %c:", oc_syms[GOLD_CLASS]);
+  sprintf(buf, " %c:", oc_syms[COIN_CLASS]);
   add_str(win, buf);
   add_val(win, st_GOLD.cur, st_GOLD.last, 0, 0);
 

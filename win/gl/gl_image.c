@@ -10,6 +10,7 @@
 
 #include "hack.h"
 #include "patchlevel.h"
+#include "dlb.h"
 
 #if defined(GL_GRAPHICS) || defined(SDL_GRAPHICS)
 
@@ -224,7 +225,11 @@ void sdlgl_load_face_dirs(const char *filename, char *face_dirs)
   int mon = 0;
   int ch;
 
-  fp = fopen_datafile(filename, "r", FALSE);
+#ifdef FILE_AREAS
+  fp = fopen_datafile_area(FILE_AREA_SHARE, filename, RDTMODE, FALSE);
+#else
+  fp = fopen_datafile(filename, RDTMODE, FALSE);
+#endif
   if (!fp)
   {
     sdlgl_error("Failed to open file: %s\n", filename);
@@ -444,7 +449,11 @@ unsigned char *sdlgl_load_png_file(const char *filename,
   int row, stride;
 
   /* open the prospective PNG file */
-  fp = fopen_datafile(filename, "rb", FALSE);
+#ifdef FILE_AREAS
+  fp = fopen_datafile_area(FILE_AREA_SHARE, filename, RDBMODE, FALSE);
+#else
+  fp = fopen_datafile(filename, RDBMODE, FALSE);
+#endif
   if (!fp)
   {
     sdlgl_warning("Failed to open file: %s\n", filename);

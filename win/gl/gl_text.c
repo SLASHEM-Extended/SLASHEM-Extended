@@ -634,8 +634,12 @@ void Sdlgl_display_file(const char *fname, BOOLEAN_P complain)
 
   char buf[BUFSZ];
   char *cr;
+#ifdef FILE_AREAS
+  f = dlb_fopen_area(FILE_AREA_SHARE, fname, RDTMODE);
+#else
+  f = dlb_fopen(fname, RDTMODE);
+#endif
 
-  f = dlb_fopen(fname, "r");
   if (!f) 
   {
     if (complain) 
