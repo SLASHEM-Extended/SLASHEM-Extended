@@ -1497,11 +1497,13 @@ STATIC_DCL void NDECL(demonpet);
 STATIC_OVL void
 demonpet()
 {
+	int i;
 	struct permonst *pm;
 	struct monst *dtmp;
 
 	pline("Some hell-p has arrived!");
-	pm = !rn2(6) ? &mons[ndemon(u.ualign.type)] : youmonst.data;
+	i = !rn2(6) ? ndemon(u.ualign.type) : NON_PM;
+	pm = i != NON_PM ? &mons[i] : youmonst.data;
 	if ((dtmp = makemon(pm, u.ux, u.uy, NO_MM_FLAGS)) != 0)
 	    (void)tamedog(dtmp, (struct obj *)0);
 	exercise(A_WIS, TRUE);
