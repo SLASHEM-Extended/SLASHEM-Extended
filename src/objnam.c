@@ -260,7 +260,11 @@ register struct obj *obj;
 	 * and printing the wrong article gives away information.
 	 */
 	if (!nn && ocl->oc_uses_known && ocl->oc_unique) obj->known = 0;
+#ifndef INVISIBLE_OBJECTS
 	if (!Blind) obj->dknown = TRUE;
+#else
+	if (!Blind && (!obj->oinvis || See_invisible)) obj->dknown = TRUE;
+#endif
 	if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER)) obj->bknown = TRUE;
 
 	/* We could put a switch(obj->oclass) here but currently only this one case exists */

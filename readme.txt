@@ -78,6 +78,7 @@ ver 0.0.7E6F3 [?] [Released by ?]
 -fixed bug 951991: Reading spellbooks not safe for wizards
 -fixed bug 914894: "Beautiful" gnome thief seduced female character
 -fixed bug 918178: Double message "You are suddenly very hot/cold!"
+-fixed bug 921810: Invisible books can be read (?!)
 
 See history.txt for changes made in previous versions.
 

@@ -51,6 +51,7 @@ doread()
 	char class_list[SIZE(readable) + 3];
 	char *cp = class_list;
 	struct engr *ep = engr_at(u.ux, u.uy);
+	boolean cant_see = Blind;
 
 	*cp++ = ALL_CLASSES;
 	*cp++ = ALLOW_FLOOROBJ;
@@ -68,11 +69,16 @@ doread()
 	    return 0;
 	}
 
+#ifdef INVISIBLE_OBJECTS
+	if (scroll->oinvis && !See_invisible)
+	    cant_see = TRUE;
+#endif
+
 	/* KMH -- some rings can be read, even while illiterate */
 	if (scroll->oclass == RING_CLASS) {
 	    char *clr = (char *)0;
 
-	    if (Blind) {
+	    if (cant_see) {
 		You("cannot see it!");
 		return 0;
 	    }
@@ -116,12 +122,15 @@ doread()
 
 	/* outrumor has its own blindness check */
 	if(scroll->otyp == FORTUNE_COOKIE) {
+	    long save_Blinded = Blinded;
 	    if(flags.verbose)
 		You("break up the cookie and throw away the pieces.");
+	    Blinded = cant_see;	/* Treat invisible fortunes as if blind */
 	    outrumor(bcsign(scroll), BY_COOKIE);
-	    if (!Blind) u.uconduct.literate++;
-		if (carried(scroll)) useup(scroll);
-		else useupf(scroll, 1L);
+	    Blinded = save_Blinded;
+	    if (!cant_see) u.uconduct.literate++;
+	    if (carried(scroll)) useup(scroll);
+	    else useupf(scroll, 1L);
 	    return(1);
 #ifdef TOURIST
 	} else if (scroll->otyp == T_SHIRT) {
@@ -146,7 +155,7 @@ doread()
 	    char buf[BUFSZ];
 	    int erosion;
 
-	    if (Blind) {
+	    if (cant_see) {
 		You_cant("feel any Braille writing.");
 		return 0;
 	    }
@@ -174,6 +183,17 @@ doread()
 		what = "formula on the scroll";
 	    if (what) {
 		pline("Being blind, you cannot read the %s.", what);
+		return(0);
+	    }
+	} else if (cant_see) {
+	    if (scroll->oclass == SPBOOK_CLASS)
+	    {
+		You_cant("read the mystic runes in the invisible spellbook.");
+		return(0);
+	    }
+	    else if (!scroll->dknown)
+	    {
+		You_cant("read the formula on the invisible scroll.");
 		return(0);
 	    }
 	}
