@@ -799,9 +799,12 @@ static struct def_skill Skill_P[] = {
     { P_DART, P_BASIC },                { P_SHURIKEN, P_BASIC },
     { P_BOOMERANG, P_BASIC },           { P_UNICORN_HORN, P_SKILLED },
 
+    /* [ALI] Depending on the spellbook which priests enter the dungeon with,
+     * one of the maximum skill levels listed here will be raised by one.
+     */
     { P_ATTACK_SPELL, P_BASIC },        { P_HEALING_SPELL, P_EXPERT },
 	{ P_DIVINATION_SPELL, P_EXPERT },   { P_ENCHANTMENT_SPELL, P_BASIC },
-	{ P_PROTECTION_SPELL, P_EXPERT },   { P_BODY_SPELL, P_BASIC },
+	{ P_PROTECTION_SPELL, P_SKILLED },   { P_BODY_SPELL, P_BASIC },
     { P_MATTER_SPELL, P_BASIC },
 
     { P_BARE_HANDED_COMBAT, P_BASIC },  /* the monk is added in slash */ 
@@ -1030,6 +1033,84 @@ register char sym;
 	for (ct = 1; ct < NUM_OBJECTS; ct++)
 		if (objects[ct].oc_class == sym && !objects[ct].oc_magic)
 			knows_object(ct);
+}
+
+/* [ALI] Raise one spell skill by one level. Priorities:
+ * - The skill for the chosen spellbook if not already expert.
+ * - A skill currently at skilled level.
+ * - A skill currently at basic level.
+ * Where more than one skill is possible at a priority level, choose one
+ * at random.
+ *
+ * The idea is that where a role may be given spellbooks in which the
+ * role is normally at basic level, then the Skill array can be tweaked
+ * to reduce one skill from expert to skilled. After choosing the
+ * spellbook we can then dynamically raise one skill which will either be
+ * the one for the spellbook if that is currently basic (and so avoid the
+ * warning message from skill_init) or raise the tweaked skill to expert.
+ *
+ * Currently only used by priests.
+ */
+
+static void
+spellbook_skill_raise(class_skill, spellbook)
+register struct def_skill *class_skill;
+int spellbook;
+{
+    register int i, j;
+    j = spell_skilltype(spellbook);
+    for(i = 0; class_skill[i].skill != P_NONE; i++)
+	if (class_skill[i].skill == j)
+	    break;
+    if (class_skill[i].skill == P_NONE)
+	pline("Warning: No entry for %s in Skill array.",
+	  obj_typename(spellbook));
+    else if (class_skill[i].skmax < P_EXPERT)
+	class_skill[i].skmax++;
+    else
+    {
+	j = 0;
+	for(i = 0; class_skill[i].skill != P_NONE; i++) {
+	    if (class_skill[i].skill >= P_FIRST_SPELL &&
+	      class_skill[i].skill <= P_LAST_SPELL &&
+	      class_skill[i].skmax == P_SKILLED)
+		j++;
+	}
+	if (j) {
+	    j = rn2(j);
+	    for(i = 0; class_skill[i].skill != P_NONE; i++) {
+		if (class_skill[i].skill >= P_FIRST_SPELL &&
+		  class_skill[i].skill <= P_LAST_SPELL &&
+		  class_skill[i].skmax == P_SKILLED)
+		    if (!j--) {
+			class_skill[i].skmax++;
+			break;
+		    }
+	    }
+	}
+	else {
+	    for(i = 0; class_skill[i].skill != P_NONE; i++) {
+		if (class_skill[i].skill >= P_FIRST_SPELL &&
+		  class_skill[i].skill <= P_LAST_SPELL &&
+		  class_skill[i].skmax >= P_BASIC &&
+		  class_skill[i].skmax < P_EXPERT)
+		    j++;
+	    }
+	    if (j) {
+		j = rn2(j);
+		for(i = 0; class_skill[i].skill != P_NONE; i++) {
+		    if (class_skill[i].skill >= P_FIRST_SPELL &&
+		      class_skill[i].skill <= P_LAST_SPELL &&
+		      class_skill[i].skmax >= P_BASIC &&
+		      class_skill[i].skmax < P_EXPERT)
+			if (!j--) {
+			    class_skill[i].skmax++;
+			    break;
+			}
+		}
+	    }
+	}
+    }
 }
 
 void
@@ -1442,6 +1523,7 @@ u_init()
 		if(!rn2(10)) ini_inv(Magicmarker);
 		else if(!rn2(10)) ini_inv(Lamp);
 		knows_object(POT_WATER);
+		spellbook_skill_raise(Skill_P, Priest[P_BOOK].trotyp);
 		skill_init(Skill_P);
 		/* KMH, conduct --
 		 * Some may claim that this isn't agnostic, since they

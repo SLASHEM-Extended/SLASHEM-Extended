@@ -363,6 +363,7 @@ ver 0.0.6E4F2 [December XX/2000]
 -fixed bug 117420: Gauntlets of Power not functioning properly.
 -fixed bug 121595: REINCARNATION defined but not supported.
 -fixed bug 124920: GTK: inv_weight slow update.
+-fixed bug 125228: Priest: attack spells should be at least skilled.
 
 ver 0.0.6E4F1 [November 10/2000] [Released by Ali]
 -GTK: status window stats columns should never be too small
