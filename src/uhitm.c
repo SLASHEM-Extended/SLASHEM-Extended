@@ -3125,7 +3125,7 @@ uchar aatyp;
 	      case AD_DRST:
 	       if (!Strangled && !Breathless) {
 		 pline("You inhale a cloud of spores!");
-		 poisoned("poison", A_STR, "spore cloud", 30);
+		 poisoned("spores", A_STR, "spore cloud", 30);
 	       } else {
 		 pline("A cloud of spores surrounds you!");
 	       }

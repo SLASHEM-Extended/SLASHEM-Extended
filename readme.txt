@@ -82,6 +82,7 @@ ver 0.0.7E6F1 [?] [Released by ?]
 -fixed bug 914897: Wrong AC displayed at start of game
 -fixed bug 911335: Monster polymorph permanent?
 -fixed bug 874318: Partly eaten food more nutrious than untouched food
+-fixed bug 911845: "The poison was poisoned!" (Nico Kist)
 
 See history.txt for changes made in previous versions.
 
@@ -215,7 +216,7 @@ o Mac port: Paul Hurtley
 Thanks to Andrew Apted, who contributed the glHack interface.
 
 Thanks to Kevin Hugo (hugo@cae.wisc.edu), the previous Macintosh
-maintainer and the author of many changes, who has had to move on to 
+maintainer and the author of many changes, who has had to move on to
 other projects.
 
 Thanks to Dirk Schönberger (shoenberger@signsoft.com), who worked on
@@ -223,7 +224,7 @@ the Qt and Linux ports.
 
 Thanks to Ben Olmstead for mirroring the homepage.
 
-Thanks for the support, bug reports and suggestions of 
+Thanks for the support, bug reports and suggestions of
 (in no particular order):
 
 	Pat Rankin, Linley Henzell, 0ystein Kerstad, Jim Miller, pi,
