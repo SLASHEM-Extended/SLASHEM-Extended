@@ -85,6 +85,7 @@ ver 0.0.7E3 [?] [Released by ?]
 -Macintosh: allow logfile to be deleted
 -Macintosh: open Slash'EM when save files are double-clicked
 -Macintosh: windows no longer disappear when Reposition is selected
+-fixed bug 782004: Poor transparency in tiles imported from Mitsuhiro Itakura.
 
 See history.txt for changes made in previous versions.
 

@@ -164,8 +164,10 @@ import()
 	fi
     done
     if test -r ${ex_output}.ppm; then
+	ppmcolormask rgb:47/6c/6c ${ex_output}.ppm > /tmp/et$$.pbm
 	ppmquant -fs -map palette.ppm ${ex_output}.ppm 2> /dev/null | \
-	ppmtoxpm > ${ex_output}.xpm
+	ppmtoxpm -alphamask=/tmp/et$$.pbm > ${ex_output}.xpm
+	rm -f /tmp/et$$.pbm
 	if test "$tileset" = "32"; then
 	    $xpm2txt -w32 -h32 ${ex_output}.xpm /tmp/et$$.txt
 	    sed -f ${ex_output}.sed < /tmp/et$$.txt > /tmp/et$$-2.txt
