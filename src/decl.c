@@ -251,6 +251,35 @@ char toplines[TBUFSZ];
 /* Windowing stuff that's really tty oriented, but present for all ports */
 struct tc_gbl_data tc_gbl_data = { 0,0, 0,0 };	/* AS,AE, LI,CO */
 
+struct tileset tilesets[MAXNOTILESETS];
+int no_tilesets = 0;
+struct tileset def_tilesets[] = {
+#if defined(X11_GRAPHICS) || defined(QT_GRAPHICS) || defined(GTK_GRAPHICS) || \
+    defined(GNOME_GRAPHICS)
+    { "Small tiles", "x11tiles", 0 },
+    { "Big tiles", "x11bigtiles", TILESET_TRANSPARENT },
+#endif
+#if defined(GTK_GRAPHICS)
+    { "Big 3D tiles", "x11big3dtiles", TILESET_TRANSPARENT | TILESET_PSEUDO3D },
+#endif
+#if defined(GEM_GRAPHICS)
+    { "Monochrome tiles", "nh2.img", 0 },
+    { "Colour tiles", "nh16.img", 0 },
+#endif
+#if defined(MSDOS)
+    { "Planer style tiles", "SLASHEM1.tib", 0 }.
+    { "Packed style tiles", "SLASHEM2.tib", 0 }.
+    { "Thin overview tiles", "SLASHEMo.tib", 0 }.
+#endif
+#if defined(ALLEG_FX)
+    { "Small tiles", "slam16.bmp", 0 }.
+    { "Big tiles", "slam32.bmp", TILESET_TRANSPARENT },
+    { "Big 3D tiles", "slam3D.bmp", TILESET_TRANSPARENT | TILESET_PSEUDO3D },
+#endif
+    { (char *)0, (char *)0, 0 }
+};
+char tileset[PL_PSIZ] = DUMMY;
+
 char *fqn_prefix[PREFIX_COUNT] = { (char *)0, (char *)0, (char *)0, (char *)0,
 				(char *)0, (char *)0, (char *)0, (char *)0 };
 

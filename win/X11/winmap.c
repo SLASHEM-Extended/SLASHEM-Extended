@@ -230,6 +230,7 @@ static int tile_width;
 static int tile_height;
 static int tile_count;
 static XImage *tile_image = 0;
+static int tile_index = -1;
 
 /*
  * This structure is used for small bitmaps that are used for annotating
@@ -377,11 +378,20 @@ init_tiles(wp)
     XtGCMask mask;
 
     /* already have tile information */
-    if (tile_pixmap != None) goto tiledone;
+    if (tile_pixmap != None) {
+	XFreePixmap(dpy, tile_pixmap);
+	tile_pixmap = None;
+    }
 
     map_info = wp->map_information;
-    tile_info = map_info->mtype.tile_map =
+    if (map_info->mtype.text_map) {
+	free(map_info->mtype.text_map);
+	map_info->mtype.text_map = 0;
+    }
+    if (!map_info->mtype.tile_map)
+	map_info->mtype.tile_map =
 	    (struct tile_map_info_t *) alloc(sizeof(struct tile_map_info_t));
+    tile_info = map_info->mtype.tile_map;
     (void) memset((genericptr_t) tile_info, 0,
 				sizeof(struct tile_map_info_t));
 
@@ -395,14 +405,15 @@ init_tiles(wp)
 	attributes.closeness = 25000;
 
 #ifndef FILE_AREAS
-	tile_file = appResources.tile_file;
+	tile_file = tilesets[tile_index].file;
 #else
-	tile_file = make_file_name(FILE_AREA_SHARE, appResources.tile_file);
+	tile_file = make_file_name(FILE_AREA_SHARE, tilesets[tile_index].file);
 #endif
 	errorcode=XpmReadFileToImage(dpy,tile_file,&tile_image,0,&attributes);
 
 	if (errorcode == XpmColorFailed) {
-	    Sprintf(buf, "Insufficient colors available to load %s.",appResources.tile_file);
+	    Sprintf(buf, "Insufficient colors available to load %s.",
+	      tilesets[tile_index].file);
 	    X11_raw_print(buf);
 	    X11_raw_print("Try closing other colorful applications and restart.");
 	    X11_raw_print("Attempting to load with inferior colors.");
@@ -415,10 +426,11 @@ init_tiles(wp)
 
 	if (errorcode!=XpmSuccess) {
 	    if (errorcode == XpmColorFailed) {
-		Sprintf(buf, "Insufficient colors available to load %s.",appResources.tile_file);
+		Sprintf(buf, "Insufficient colors available to load %s.",
+		  tilesets[tile_index].file);
 		X11_raw_print(buf);
 	    } else {
-		Sprintf(buf, "Failed to load %s: %s",appResources.tile_file,
+		Sprintf(buf, "Failed to load %s: %s",tilesets[tile_index].file,
 			XpmGetErrorString(errorcode));
 		X11_raw_print(buf);
 	    }
@@ -433,7 +445,7 @@ init_tiles(wp)
 	    Sprintf(buf,
 		"%s appears to have a non-integer tile size.\n"
 		"Its size (%dx%d) should be a multiple of %dx%d",
-		appResources.tile_file,
+		tilesets[tile_index].file,
 		tile_image->width,tile_image->height,
 		tiles_per_row,tiles_per_col);
 	    X11_raw_print(buf);
@@ -457,11 +469,11 @@ init_tiles(wp)
 	goto tiledone;
     }
 
-    fp = fopen_datafile_area(FILE_AREA_SHARE, appResources.tile_file, RDBMODE,
-      FALSE);
+    fp = fopen_datafile_area(FILE_AREA_SHARE, tilesets[tile_index].file,
+      RDBMODE, FALSE);
     if (!fp) {
 	X11_raw_print("can't open tile file");
-	perror(appResources.tile_file);
+	perror(tilesets[tile_index].file);
 	result = FALSE;
 	goto tiledone;
     }
@@ -667,7 +679,7 @@ tiledone:
 	map_info->square_lbearing = 0;
     } else {
 	if (tile_info) free((genericptr_t)tile_info);
-	tile_info = 0;
+	map_info->mtype.tile_map = 0;
     }
 
     return result;
@@ -992,6 +1004,38 @@ clear_map_window(wp)
 {
     struct map_info_t *map_info = wp->map_information;
 
+    /*
+     * Check if tileset has changed.
+     * This can happen if tileset changed via doset() and doredraw() was
+     * called.  --ALI
+     */
+    if (tile_index >= 0 && strcmp(tileset, tilesets[tile_index].name) ||
+      tile_index < 0 && tileset[0]) {
+	int i;
+	for(i = 0; i < no_tilesets; i++)
+	    if (!strcmp(tileset, tilesets[i].name))
+		break;
+	if (i < no_tilesets && tilesets[i].flags & ~TILESET_TRANSPARENT) {
+	    pline("Warning: Can't use tile set \"%s\"; unsupported flag set",
+	      tilesets[i].name);
+	    i = tile_index;
+	    strcpy(tileset, tilesets[tile_index].name);
+	}
+	if (i == no_tilesets)
+	    tile_index = -1;
+	else
+	    tile_index = i;
+	if (tile_index >= 0 && init_tiles(wp)) {
+	    map_info->is_tile = TRUE;
+	    post_process_tiles();
+	} else {
+	    tile_index = -1;
+	    tileset[0] = '\0';
+	    init_text(wp);
+	    map_info->is_tile = FALSE;
+	}
+	set_map_size(wp, COLNO, ROWNO);
+    }
     if (map_info->is_tile) {
 	map_all_stone(map_info);
     } else {
@@ -1444,6 +1488,10 @@ init_text(wp)
     struct map_info_t *map_info = wp->map_information;
     struct text_map_info_t *text_map;
 
+    if (map_info->mtype.tile_map) {
+	free(map_info->mtype.tile_map);
+	map_info->mtype.tile_map = 0;
+    }
     map_info->is_tile = FALSE;
     text_map = map_info->mtype.text_map =
 	(struct text_map_info_t *) alloc(sizeof(struct text_map_info_t));
@@ -1548,10 +1596,50 @@ create_map_window(wp, create_popup, parent)
     (void) memset((genericptr_t) map_info->t_stop, (char) 0,
 			sizeof(map_info->t_stop));
 
+    /* Backwards compatibility */
+    if (appResources.tile_file[0]) {
+	int i;
+	for(i = 0; i < no_tilesets; i++)
+	    if (!strcmp(tilesets[i].file, appResources.tile_file))
+		break;
+	if (i == no_tilesets && no_tilesets < MAXNOTILESETS) {
+	    pline(
+	      "Warning: Adding tiles in file \"%s\" as \"X Default\" tile set",
+	      appResources.tile_file);
+	    strcpy(tilesets[i].name, "X Default");
+	    strcpy(tilesets[i].file, appResources.tile_file);
+	    tilesets[i].flags = 0;
+	    no_tilesets++;
+	    if (!tileset[0]) {
+		strcpy(tileset, tilesets[i].name);
+		tile_index = i;
+	    }
+	}
+	else if (i < no_tilesets && !tileset[0]) {
+	    strcpy(tileset, tilesets[i].name);
+	    tile_index = i;
+	}
+    }
+    if (tile_index < 0 && tileset[0]) {
+	int i;
+	for(i = 0; i < no_tilesets; i++)
+	    if (!strcmp(tilesets[i].name, tileset)) {
+		tile_index = i;
+		break;
+	    }
+    }
+    if (tile_index >= 0 && tilesets[tile_index].flags & ~TILESET_TRANSPARENT) {
+	pline("Warning: Can't use tile set \"%s\"; unsupported flag set",
+	  tilesets[tile_index].name);
+	tile_index = -1;
+	tileset[0] = '\0';
+    }
     /* we probably want to restrict this to the 1st map window only */
-    if (appResources.tile_file[0] && init_tiles(wp)) {
+    if (tile_index >= 0 && init_tiles(wp)) {
 	map_info->is_tile = TRUE;
     } else {
+	tile_index = -1;
+	tileset[0] = '\0';
 	init_text(wp);
 	map_info->is_tile = FALSE;
     }

@@ -387,6 +387,24 @@ E struct tc_gbl_data {	/* also declared in tcap.h */
 #define CO tc_gbl_data.tc_CO
 #endif
 
+#define MAXNOTILESETS		20
+#ifndef TILESET_MAX_FILENAME
+#define TILESET_MAX_FILENAME	256
+#endif
+
+#define TILESET_TRANSPARENT	1
+#define TILESET_PSEUDO3D	2
+
+E struct tileset {
+    char name[PL_PSIZ];
+    char file[TILESET_MAX_FILENAME];
+    unsigned long flags;
+    void *data;				/* For windowing port's use */
+} tilesets[MAXNOTILESETS];
+E int no_tilesets;
+E struct tileset def_tilesets[];
+E char tileset[PL_PSIZ];
+
 /* xxxexplain[] is in drawing.c */
 E const char *monexplain[], *invisexplain, *objexplain[], *oclass_names[];
 

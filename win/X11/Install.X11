@@ -39,8 +39,10 @@ If you want to use the optional tiles (multicolored pictures instead of a
 replacement font), you will need to have the win/share files and change
 the CF_SHARE_DATND setting in the top Makefile to contain the tile files before
 you do your 'make all'. Include x11tiles for the 16x16 tile set and x11bigtiles
-for the 32x32 set. You can generate both and allow the user to select which
-set will be used using the X Resource "SlashEM.tile_file".
+for the 32x32 set. The available tile sets should be defined in the
+configuration file. The tiles option can then be used to select the initial
+tile set or unset to use ASCII characters. See win/x11/slashem.rc and
+the Guidebook for more information.
 
 When using tiles, you have the option of defining USE_XPM in config.h.
 This causes Slash'EM to use the XPM file format for the "x11(big)tiles" file

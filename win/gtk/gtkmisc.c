@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmisc.c,v 1.1 2000-08-15 19:55:16 wacko Exp $
+  $Id: gtkmisc.c,v 1.2 2000-10-14 18:40:38 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -22,8 +22,6 @@ static GtkWidget *entry_fruit;
 static GtkWidget *entry_proxy, *entry_proxy_port;
 static GtkWidget *radio_k, *radio_d, *radio_r;
 static GtkWidget *radio_menu_t, *radio_menu_p, *radio_menu_c, *radio_menu_f;
-static GtkWidget *radio_visual_monji, *radio_visual_tile;
-static GtkWidget *radio_visual_bigtile, *radio_visual_big3dtile;
 
 static struct GTK_Option{
     char      *opt_name;	
@@ -159,6 +157,9 @@ nh_option_set(void)
 	    
 	}
     }
+
+    gtk_toggle_button_set_active(
+      GTK_TOGGLE_BUTTON(tileTab[nh_get_map_visual()].data), TRUE);
 }
 
 static GtkWidget*
@@ -546,6 +547,7 @@ nh_option_visual_new()
   GtkWidget *vbox;
   GtkWidget *hbox;
   GSList    *menu_group = NULL;
+  int       i;
 
   frame = gtk_frame_new("Map visual");
 
@@ -557,55 +559,28 @@ nh_option_visual_new()
       vbox, "", FALSE, FALSE, NH_PAD);
 
   if (!nh_check_map_visual(0)){
-      radio_visual_monji = nh_gtk_new_and_pack(
+      tileTab[0].data = nh_gtk_new_and_pack(
 	  gtk_radio_button_new_with_label(menu_group, "Characters"), hbox, "", 
 	  FALSE, FALSE, NH_PAD);
-      menu_group = gtk_radio_button_group(GTK_RADIO_BUTTON(radio_visual_monji));
+      menu_group = gtk_radio_button_group(GTK_RADIO_BUTTON(tileTab[0].data));
   }
   else
-      radio_visual_monji = NULL;
+      tileTab[0].data = NULL;
 
-  if (!nh_check_map_visual(1)){
-      radio_visual_tile = nh_gtk_new_and_pack(
-	  gtk_radio_button_new_with_label(menu_group, "Tiles"), hbox, "", 
-	  FALSE, FALSE, NH_PAD);
-      menu_group = gtk_radio_button_group(GTK_RADIO_BUTTON(radio_visual_tile));
+  for(i = 1; i <= no_tileTab; i++){
+      if (!nh_check_map_visual(i)){
+	  tileTab[i].data = nh_gtk_new_and_pack(
+	      gtk_radio_button_new_with_label(menu_group, tileTab[i].ident),
+	      hbox, "", FALSE, FALSE, NH_PAD);
+	  menu_group =
+	    gtk_radio_button_group(GTK_RADIO_BUTTON(tileTab[i].data));
+      }
+      else
+	  tileTab[i].data = NULL;
   }
-  else
-      radio_visual_tile = NULL;
 
-  if (!nh_check_map_visual(2)){
-      radio_visual_bigtile = nh_gtk_new_and_pack(
-	  gtk_radio_button_new_with_label(menu_group, "Big tiles"), hbox, "", 
-	  FALSE, FALSE, NH_PAD);
-      menu_group = gtk_radio_button_group(GTK_RADIO_BUTTON(radio_visual_bigtile));
-  }
-  else
-      radio_visual_bigtile = NULL;
-
-  if (!nh_check_map_visual(3)){
-      radio_visual_big3dtile = nh_gtk_new_and_pack(
-	  gtk_radio_button_new_with_label(menu_group, "Big 3D tiles"), hbox, "", 
-	  FALSE, FALSE, NH_PAD);
-      menu_group = gtk_radio_button_group(GTK_RADIO_BUTTON(radio_visual_big3dtile));
-  }
-  else
-      radio_visual_big3dtile = NULL;
-
-  switch(nh_get_map_visual()){
-  case 0:
-      gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(radio_visual_monji), TRUE);
-      break;
-  case 1:
-      gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(radio_visual_tile), TRUE);
-      break;
-  case 2:
-      gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(radio_visual_bigtile), TRUE);
-      break;
-  case 3:
-      gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(radio_visual_big3dtile), TRUE);
-      break;
-  }
+  gtk_toggle_button_set_active(
+    GTK_TOGGLE_BUTTON(tileTab[nh_get_map_visual()].data), TRUE);
 
   return frame;
 }
@@ -647,6 +622,7 @@ nh_option_new()
   GtkWidget *button1;
   GtkWidget *button2;
   GtkWidget *button3;
+  int i;
 
   w = gtk_window_new(GTK_WINDOW_DIALOG);
   gtk_container_border_width(GTK_CONTAINER(w), NH_PAD);
@@ -777,18 +753,13 @@ nh_option_new()
 	      }
 	  }
       }
-      if(radio_visual_monji &&
-        gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_visual_monji)))
-	  nh_set_map_visual(0);
-      else if(radio_visual_tile &&
-        gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_visual_tile)))
-	  nh_set_map_visual(1);
-      else if(radio_visual_bigtile &&
-        gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_visual_bigtile)))
-	  nh_set_map_visual(2);
-      else if(radio_visual_big3dtile &&
-        gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(radio_visual_big3dtile)))
-	  nh_set_map_visual(3);
+      for(i = 0; i <= no_tileTab; i++){
+	  if(tileTab[i].data &&
+	    gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(tileTab[i].data))){
+	      nh_set_map_visual(i);
+	      break;
+	  }
+      }
   }
   nh_status_index_update();
 

@@ -7,11 +7,16 @@
 # compiled with that ability).
 #
 #
+TILESET=name:Small tiles, file:x11tiles
+TILESET=name:Big tiles, file:x11bigtiles, transparent
+#
+#
 OPTIONS=windowtype:x11,toptenwin,hilite_pet,color
 OPTIONS=confirm,male,fixinv,noautopickup,safe_pet,sortpack,tombstone
 OPTIONS=verbose,news,fruit:pineapple
 OPTIONS=dogname:Dhairrhuwyth
 OPTIONS=catname:Ghisteslwchlohm
+#OPTIONS=tiles:Small tiles
 #
 # There are 17 object symbols and various graphics symbols.
 # The descriptions of these symbols can be found in dat/opthelp.

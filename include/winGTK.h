@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.7 2000-09-23 10:15:08 j_ali Exp $
+  $Id: winGTK.h,v 1.8 2000-10-14 18:40:38 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -239,7 +239,11 @@ typedef struct _TileTab{
 
     int transparent:1;
     int spread:1;
+
+    void *data;
 } TileTab;
+extern TileTab tileTab[];
+extern int no_tileTab;
 
 #ifdef WINGTK_X11
 extern void	xshm_init(Display *dpy);

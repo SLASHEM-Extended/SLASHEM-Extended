@@ -4,7 +4,7 @@
 .ds vr "SLASH'EM 0.0.6
 .ds f0 "\*(vr
 .ds f1
-.ds f2 "September 26, 2000
+.ds f2 "October 7, 2000
 .mt
 A Guide to the Mazes of Menace
 (Guidebook for SLASH'EM 0.0.6)
@@ -1630,6 +1630,9 @@ a sequence of decimal numbers giving the character position
 in the current font to be used in displaying each entry.
 Such a sequence can be continued to multiple lines by putting a `\e'
 at the end of each line to be continued.
+Any line starting with ``TILESET='' defines a tile set in the same syntax
+as in SLASHEMOPTIONS (although the options are different). See the
+section on tile sets, below, for more information.
 Any line starting with `#' is treated as a comment.
 .pg
 The default name of the configuration file varies on different
@@ -2027,6 +2030,11 @@ Boldface monsters and ``\fB--More--\fP'' (default off).
 This option may be set to a SLASH'EM version level to suppress
 alert notification messages about feature changes for that 
 and prior versions (ex. ``suppress_alert:0.0.6'').
+.lp tiles
+This option may be set to the name of a tile set to use, or specified
+as ``notiles'' to disable the use of tiles. Not all windowing interfaces
+support this option. The tile set named must also be defined. See the
+section on tile sets for more information on that.
 .lp "time    "
 Show the elapsed game time in turns on bottom line (default off).
 .lp timed_delay
@@ -2082,6 +2090,39 @@ Cannot be set with the `O' command.
 .lp wolfname
 Name your starting wolf (ex. ``wolfname:Beast'').
 Cannot be set with the `O' command.
+.hn 2
+Tile sets
+.pg
+For those windowing ports which support tiles (multicolored pictures
+instead of the traditional characters), tile sets can be defined using
+a line in the configuration file that begins ``TILESET=''. There should
+be one tile set definition line for each available tile set. Once defined,
+tile sets can be slected for initial display (using the tiles option) or
+dynamically selected during the game (for those windowing ports that
+support this).
+.pg
+A ``TILESET'' line has the same syntax as an ``OPTION'' line but with
+the following options available:
+.lp name
+The name of the tile set (for selection). This can be any string of characters
+excluding the comma. It must be specified.
+.lp file
+The name of the file which contains the tile set. This must be specified.
+.lp transparent
+Marks a tile set as being transparent (as opposed to opaque). Transparent
+tile sets allow eg., monsters to be displayed on top of the background.
+Tile sets must be designed to be used in this way in order to achieve
+meaningful results. This option is ignored by windowing ports which do
+not support transparency.
+.lp pseudo3D
+Marks a tile set as being designed for use with Mitsuhiro Itakura's
+pseudo-3D display algorithm. They are assumed to have an offset-X value
+equal to one third of the total tile width and an offset-Y value equal
+to one half of the total tile height. Such tile sets are not compatible
+with standard tile sets and while amusing effects can be created by
+setting this option incorrectly, nothing useful can be achieved. Windowing
+ports that do not support pseudo-3D display will ignore tile sets with
+this option set.
 .hn 2
 Configuring SLASH'EM for Play by the Blind
 .pg

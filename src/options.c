@@ -310,6 +310,8 @@ static struct Comp_Opt
 #endif
 	{ "suppress_alert", "suppress alerts about version-specific features",
 						8, SET_IN_GAME },
+	{ "tileset",  "name of predefined tileset to use",
+						PL_PSIZ, SET_IN_GAME },
 	{ "traps",    "the symbols to use in drawing traps",
 						MAXTCHARS+1, SET_IN_FILE },
 #ifdef MAC
@@ -331,6 +333,17 @@ static struct Comp_Opt
 	{ "wolfname",  "the name of your (first) wolf (e.g., wolfname:Beast)",
 						PL_PSIZ, DISP_IN_GAME },
 	{ (char *)0, (char *)0, 0 }
+};
+
+static struct Bool_Tile_Opt
+{
+	const char *name;
+	unsigned long flag;
+	unsigned long initvalue;
+} booltileopt[] = {
+	{"transparent", TILESET_TRANSPARENT, 0},
+	{"pseudo3D", TILESET_PSEUDO3D, 0},
+	{(char *)0, 0, 0}
 };
 
 #ifdef OPTION_LISTS_ONLY
@@ -418,7 +431,9 @@ STATIC_DCL void FDECL(escapes, (const char *, char *));
 STATIC_DCL int FDECL(boolopt_only_initial, (int));
 STATIC_DCL void FDECL(rejectoption, (const char *));
 STATIC_DCL void FDECL(badoption, (const char *));
+STATIC_OVL void FDECL(badtileoption, (const char *));
 STATIC_DCL char *FDECL(string_for_opt, (char *,BOOLEAN_P));
+STATIC_OVL char *FDECL(string_for_tile_opt, (char *, BOOLEAN_P));
 STATIC_DCL char *FDECL(string_for_env_opt, (const char *, char *,BOOLEAN_P));
 STATIC_DCL void FDECL(bad_negation, (const char *,BOOLEAN_P));
 STATIC_DCL int FDECL(change_inv_order, (char *));
@@ -724,6 +739,14 @@ const char *opts;
 	wait_synch();
 }
 
+STATIC_OVL void
+badtileoption(opts)
+const char *opts;
+{
+	raw_printf("Bad syntax in TILESET in %s: %s.", configfile, opts);
+	wait_synch();
+}
+
 STATIC_OVL char *
 string_for_opt(opts, val_optional)
 char *opts;
@@ -739,6 +762,16 @@ boolean val_optional;
 		if (!val_optional) badoption(opts);
 		return (char *)0;
 	}
+	return colon;
+}
+
+STATIC_OVL char *
+string_for_tile_opt(opts, val_optional)
+char *opts;
+boolean val_optional;
+{
+	char *colon = string_for_opt(opts, TRUE);
+	if (!colon && !val_optional) badtileoption(opts);
 	return colon;
 }
 
@@ -1574,6 +1607,36 @@ goodfruit:
 		else if (op) (void) feature_alert_opts(op,fullname);
 		return;
 	}
+
+	fullname = "tileset";
+	if (match_optname(opts, fullname, 4, TRUE)) {
+		if (negated || (op = string_for_opt(opts, TRUE)) == 0)
+			tileset[0] = '\0';
+		else {
+			/*
+			 * The tileset may not be defined (yet) if we're
+			 * in initial mode, otherwise it must exist.
+			 */
+			if (!initial) {
+				int len = strlen(op);
+				for(i = 0; i < no_tilesets; i++)
+				    if (len == strlen(tilesets[i].name) &&
+				      !strncmpi(tilesets[i].name, op, len))
+					break;
+				if (i == no_tilesets) {
+				    pline("Tileset %s not defined.", op);
+				    return;
+				}
+				else	/* Use canonical case */
+				    strcpy(tileset, tilesets[i].name);
+			}
+			else
+				nmcpy(tileset, op, PL_PSIZ);
+		}
+		if (!initial)
+		    need_redraw = TRUE;
+		return;
+	}
 	
 #ifdef VIDEOSHADES
 	/* videocolors:string */
@@ -1840,6 +1903,103 @@ goodfruit:
 
 	/* out of valid options */
 	badoption(opts);
+}
+
+static void
+parsetilesetopt(opts)
+register char *opts;
+{
+	register char *op;
+	unsigned num;
+	boolean negated;
+	int i;
+	const char *fullname;
+
+	if (strlen(opts) > BUFSZ/2) {
+		badtileoption("option too long");
+		return;
+	}
+
+	/* strip leading and trailing white space */
+	while (isspace((int)*opts)) opts++;
+	op = eos(opts);
+	while (--op >= opts && isspace((int)*op)) *op = '\0';
+
+	if (!*opts) return;
+	negated = FALSE;
+	while ((*opts == '!') || !strncmpi(opts, "no", 2)) {
+		if (*opts == '!') opts++; else opts += 2;
+		negated = !negated;
+	}
+
+	/* compound options */
+
+        fullname = "name";
+	if (match_optname(opts, fullname, 4, TRUE)) {
+		if (negated) bad_negation(fullname, FALSE);
+		else if ((op = string_for_tile_opt(opts, FALSE)) != 0)
+                        nmcpy(tilesets[no_tilesets].name, op, PL_PSIZ);
+		return;
+	}
+
+        fullname = "filename";
+	if (match_optname(opts, fullname, 4, TRUE)) {
+		if (negated) bad_negation(fullname, FALSE);
+		else if ((op = string_for_tile_opt(opts, FALSE)) != 0)
+                        nmcpy(tilesets[no_tilesets].file, op,
+			  TILESET_MAX_FILENAME);
+		return;
+	}
+
+	/* OK, if we still haven't recognized the option, check the boolean
+	 * options list
+	 */
+	for (i = 0; booltileopt[i].name; i++) {
+		if (match_optname(opts, booltileopt[i].name, 3, FALSE)) {
+			if (negated)
+			    tilesets[no_tilesets].flags &= ~booltileopt[i].flag;
+			else
+			    tilesets[no_tilesets].flags |= booltileopt[i].flag;
+			return;
+		}
+	}
+
+	/* out of valid options */
+	badtileoption(opts);
+}
+
+void
+parsetileset(opts)
+register char *opts;
+{
+	register char *op;
+	int i;
+
+	if (no_tilesets >= MAXNOTILESETS) {
+		badtileoption("too many tilesets");
+		return;
+	}
+
+	/* Initial values */
+	tilesets[no_tilesets].name[0] = '\0';
+	tilesets[no_tilesets].file[0] = '\0';
+	tilesets[no_tilesets].flags = 0;
+	for (i = 0; booltileopt[i].name; i++)
+		tilesets[no_tilesets].flags |= booltileopt[i].initvalue;
+
+	while ((op = index(opts, ',')) != 0) {
+		*op++ = 0;
+		parsetilesetopt(opts);
+		opts = op;
+	}
+	parsetilesetopt(opts);
+
+	if (tilesets[no_tilesets].name[0] == '\0' ||
+	  tilesets[no_tilesets].file[0] == '\0') {
+		badtileoption("Incomplete tileset definition.");
+	}
+	else
+		no_tilesets++;
 }
 
 
@@ -2239,7 +2399,9 @@ char *buf;
 			FEATURE_NOTICE_VER_MAJ,
 			FEATURE_NOTICE_VER_MIN,
 			FEATURE_NOTICE_VER_PATCH);
-	} else if (!strcmp(optname, "traps"))
+	} else if (!strcmp(optname, "tileset")) 
+		Sprintf(buf, "%s", tileset[0] ? tileset : none );
+	else if (!strcmp(optname, "traps"))
 		Sprintf(buf, "%s", to_be_done);
 #ifdef MSDOS
 	else if (!strcmp(optname, "video"))

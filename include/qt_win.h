@@ -69,6 +69,7 @@ public:
 	NetHackQtSettings(int width, int height);
 
 	NetHackQtGlyphs& glyphs();
+	void updateTiles();
 	const QFont& normalFont();
 	const QFont& normalFixedFont();
 	const QFont& largeFont();
@@ -237,6 +238,7 @@ public:
 
 	int width() const { return size.width(); }
 	int height() const { return size.height(); }
+	char *tileSet() const { return tilesets[tileset_index].name; }
 	void resize(int w, int h);
 
 	void drawGlyph(QPainter&, int glyph, int pixelx, int pixely);
@@ -246,6 +248,9 @@ private:
 	QImage img;
 	QPixmap pm;
 	QSize size;
+	int tileset_index;
+
+	int loadTiles(const char *file);
 };
 
 class BlackScrollView : public QScrollView {

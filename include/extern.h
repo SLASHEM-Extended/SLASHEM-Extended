@@ -1360,6 +1360,7 @@ E int FDECL(rnd_class, (int,int));
 E boolean FDECL(match_optname, (const char *,const char *,int,BOOLEAN_P));
 E void NDECL(initoptions);
 E void FDECL(parseoptions, (char *,BOOLEAN_P,BOOLEAN_P));
+E void FDECL(parsetileset, (char *));
 E int NDECL(doset);
 E int NDECL(dotogglepickup);
 E void NDECL(option_help);

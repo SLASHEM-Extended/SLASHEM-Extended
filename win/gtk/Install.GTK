@@ -45,17 +45,28 @@ To use this code:
 	If you want to support the other windowing ports, include
 	their $(CNF_SHARE_XXXND) variables also.
 
-	CNF_SHARE_GTKND should normally include both x11tiles and
-	x11bigtiles to allow the user to select which tile set he/she
+	CNF_SHARE_GTKND should normally include all the various flavours
+	of x11tiles to allow the user to select which tile set he/she
 	would prefer at runtime. If you will always be using the same
-	one however, you can remove the other. The GTK interface will
-	default to x11tiles if it exists and x11bigtiles otherwise.
+	one however, you can remove the others.
 
    5. Follow all the instructions in ../../sys/unix/Install.unx for
       the remainder of the installation process.
 
-   6. Look at GAMEDIR/gtkrc (or FILE_AREA_SHARE/gtkrc if using file areas)
+   6. Consider adding the lines below to your .slashemrc (or equivalent
+      if you don't run UNIX), as they are likely to give the best interface
+      for this window port:
+
+        TILESET=name:Small tiles, file:x11tiles
+	TILESET=name:Big tiles, file:x11bigtiles, transparent
+	TILESET=name:Big 3D tiles, file:x11big3dtiles, transparent, pseudo3D
+        OPTIONS=tiles:Big 3D tiles
+
+      Set the tiles option to your preferred tile set. If not set, the
+      GTK port will default to the first valid tile set found.
+
+   7. Look at GAMEDIR/gtkrc (or FILE_AREA_SHARE/gtkrc if using file areas)
       and overide the styles in your local gtkrc (~/.gtkrc by default)
-      if so desired.
+      if so desired. The fontset must consist of fixed width fonts only.
 
 J. Ali Harlow, ali@avrc.city.ac.uk

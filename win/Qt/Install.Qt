@@ -61,8 +61,9 @@ To use this code:
       if you don't run UNIX), as they are likely to give the best interface
       for this window port:
 
+        TILESET=name:Small tiles,file:x11tiles
         OPTIONS=name:player,number_pad,menustyle:partial,!time,showexp
-        OPTIONS=hilite_pet,toptenwin,msghistory:200
+        OPTIONS=hilite_pet,toptenwin,msghistory:200,tiles:Small tiles
 
       The Qt port has support for three extra variables which can also be
       specified. These are:

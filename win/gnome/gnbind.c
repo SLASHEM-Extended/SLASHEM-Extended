@@ -87,14 +87,33 @@ init_nhwindows(int* argcp, char** argv)
 */
 void gnome_init_nhwindows(int* argc, char** argv)
 {
+    int i;
+    char *path;
+
     /* Main window */
     ghack_init_main_window( *argc, argv);
     ghack_init_signals( );
 
 #ifdef HACKDIR
-    //if (ghack_init_glyphs(HACKDIR "/x11bigtiles"))
-    if (ghack_init_glyphs(HACKDIR "/x11tiles"))
-      g_error ("ERROR:  Could not initialize glyphs.\n");
+    for(i = 0; i < no_tilesets; i++)
+	if (!strcmp(tileset, tilesets[i].name))
+	    break;
+    if ((tilesets[i].flags & ~TILESET_TRANSPARENT) != 0) {
+	g_warning("Can't use tile set \"%s\"; unsupported flag set\n", tileset);
+	i = no_tilesets;		/* Use a default tile set */
+    }
+    if (i == no_tilesets) {
+	for(i = 0; i < no_tilesets; i++)
+	    if ((tilesets[i].flags & ~TILESET_TRANSPARENT) == 0)
+		break;
+	if (i == no_tilesets)
+	    g_error("ERROR: No valid tiles found\n");
+    }
+    path = (char *)alloc(strlen(HACKDIR) + strlen(tilesets[i].file) + 2);
+    sprintf(path, HACKDIR "/%s", tilesets[i].file);
+    if (ghack_init_glyphs(path))
+	g_error ("ERROR:  Could not initialize glyphs.\n");
+    free(path);
 #else
 #   error HACKDIR is not defined!
 #endif

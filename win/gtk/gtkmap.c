@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.12 2000-09-27 16:39:23 j_ali Exp $
+  $Id: gtkmap.c,v 1.13 2000-10-14 18:40:38 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -15,6 +15,7 @@
 #else
 #include "patchlevel.h"
 #endif
+#include "decl.h"
 
 /*
   if map_click is true, we do gtk_main_quit() when clicking map
@@ -104,42 +105,10 @@ static GdkGC	 *map_gc;
 *6 = HEIGHT	= 64
  */
 
-static TileTab Big3DTile = {
-    "Big 3D tiles",
-    "x11big3dtiles",
-    -1, -1,		/* tile map width height */
-    -1, -1,		/* unit_width, unit_height */
-    -1, -1,		/* 3d_ofset, 3d_ofsety */
-    TRUE,
-    TRUE,
+TileTab tileTab[MAXNOTILESETS+1] = {
+    { "", "" },		/* dummy */
 };
-
-static TileTab BigTile = {
-    "Big tiles",
-    "x11bigtiles",
-    -1, -1,		/* tile map width height */
-    -1, -1,		/* width, height */
-    -1, -1,
-    TRUE,
-    FALSE,
-};
-
-static TileTab SmallTile = {
-    "Small tiles",
-    "x11tiles",
-    -1, -1,		/* tile map width height */
-    -1, -1,		/* width, height */
-    -1, -1,
-    FALSE,
-    FALSE,
-};
-
-static TileTab *tileTab[] = {
-    NULL,	/* dummy */
-    &SmallTile,
-    &BigTile,
-    &Big3DTile
-};
+int no_tileTab = 0;	/* Not including dummy (index 0) */
 
 static TileTab *Tile;
 int	map_visual = -1;
@@ -217,17 +186,15 @@ static struct tilemap{
 static void	nh_map_init();
 
 /*
-  0: character
-  1: small tile
-  2: big tile		(option)
-  3: big 3d tile	(option)
+  zero: character
+  else: various tiles
  */
 void
 nh_set_map_visual(int mode)
 {
     int saved_vis = map_visual;
 
-    if(mode < 0 || mode >= sizeof(tileTab) / sizeof(tileTab[0]))
+    if(mode < 0 || mode > no_tileTab)
 	panic("Bad visual!\n");
 
     if(saved_vis != mode){
@@ -256,9 +223,9 @@ nh_set_map_visual(int mode)
 	    c_map_height = ROWNO * c_height;
 	}
 	else{
-	    if(!tileTab[mode])
+	    if(!tileTab[mode].ident[0])
 		panic("Disabled visual!\n");
-	    Tile = tileTab[mode];
+	    Tile = tileTab + mode;
 	    nh_map_init();
 
 	    tile_pixmap = gdk_pixmap_create_from_xpm(
@@ -315,8 +282,7 @@ nh_get_map_visual(void)
 int
 nh_check_map_visual(int mode)
 {
-    if(mode < 0 || mode >= sizeof(tileTab) / sizeof(tileTab[0]) ||
-      mode && !tileTab[mode])
+    if(mode < 0 || mode > no_tileTab || mode && !tileTab[mode].ident[0])
 	return -1;
     else
 	return 0;
@@ -444,6 +410,30 @@ nh_map_clear()
 #ifdef RADAR
     GdkRectangle update_rect;
 #endif
+    /*
+     * This flag will be set if we called nh_set_map_visual() which
+     * called us back again.  In this case, ignore the fact that
+     * map_visual needs changing; this is being done.  --ALI
+     */
+    static int setting_visual = FALSE;
+
+    /*
+     * Check if tileset has changed and change map_visual if required.
+     * This can happen if tileset changed via doset() and doredraw() was
+     * called.  --ALI
+     */
+    if (!setting_visual && strcmp(tileset, tileTab[map_visual].ident)){
+	int i;
+	for(i = 0; i <= no_tileTab; i++)
+	    if (!strcmp(tileset, tileTab[i].ident)){
+		setting_visual = TRUE;
+		nh_set_map_visual(i);
+		setting_visual = FALSE;
+		return;		/* done (setting visual clears map) */
+	    }
+	pline("Tileset %s not valid.", tileset);
+	strcpy(tileset, tileTab[map_visual].ident);
+    }
 
     if(map_visual == 0){
 	gdk_draw_rectangle(
@@ -541,22 +531,21 @@ nh_map_destroy()
 static void
 tile_scan(void)
 {
-    int i, ch;
+    int i, v, ch;
     int state;
     FILE *fp;
 
-    for(i=0 ; i < SIZE(tileTab) ; ++i){
-	if(!tileTab[i])
-	    continue;
+    v = 1;	/* Index into tileTab[] array */
+    for(i=0 ; i < no_tilesets ; ++i){
+	if ((tilesets[i].flags & ~(TILESET_TRANSPARENT | TILESET_PSEUDO3D)) != 0)
+	    continue;	/* Unsupported flag set */
 #ifdef FILE_AREAS
-	fp = fopen_datafile_area(FILE_AREA_SHARE, tileTab[i]->file, RDTMODE, FALSE);
+	fp = fopen_datafile_area(FILE_AREA_SHARE, tilesets[i]->file, RDTMODE, FALSE);
 #else
-	fp = fopen_datafile(tileTab[i]->file, RDTMODE, FALSE);
+	fp = fopen_datafile(tilesets[i].file, RDTMODE, FALSE);
 #endif
-	if(!fp){
-	    tileTab[i] = NULL;
+	if(!fp)
 	    continue;
-	}
 	state = 0;
 	do
 	{
@@ -592,33 +581,49 @@ tile_scan(void)
 		    break;
 	    }
 	} while(state < 4);
-	if(state == 5){
-	    tileTab[i] = NULL;
+	if(state == 5)
 	    continue;
-	}
-	if(fscanf(fp, "%d %d", &tileTab[i]->tilemap_width,
-	  &tileTab[i]->tilemap_height) != 2){
-	    tileTab[i] = NULL;
+	tileTab[v].ident = tilesets[i].name;
+	tileTab[v].file = tilesets[i].file;
+	if(fscanf(fp, "%d %d", &tileTab[v].tilemap_width,
+	  &tileTab[v].tilemap_height) != 2)
 	    continue;
-	}
-	tileTab[i]->unit_width = tileTab[i]->tilemap_width / tiles_per_row;
-	tileTab[i]->unit_height = tileTab[i]->tilemap_height / tiles_per_col;
-	if(i == 3){
-	    tileTab[i]->ofsetx_3d = tileTab[i]->unit_width / 3;
-	    tileTab[i]->ofsety_3d = tileTab[i]->unit_height / 2;
+	tileTab[v].unit_width = tileTab[v].tilemap_width / tiles_per_row;
+	tileTab[v].unit_height = tileTab[v].tilemap_height / tiles_per_col;
+	if(tilesets[i].flags & TILESET_PSEUDO3D){
+	    tileTab[v].spread = TRUE;
+	    tileTab[v].ofsetx_3d = tileTab[v].unit_width / 3;
+	    tileTab[v].ofsety_3d = tileTab[v].unit_height / 2;
 	}
 	else{
-	    tileTab[i]->ofsetx_3d = 0;
-	    tileTab[i]->ofsety_3d = 0;
+	    tileTab[v].spread = FALSE;
+	    tileTab[v].ofsetx_3d = 0;
+	    tileTab[v].ofsety_3d = 0;
 	}
+	tileTab[v].transparent = !!(tilesets[i].flags & TILESET_TRANSPARENT);
 	fclose(fp);
-	/*
-	 * [ALI]
-	 *
-	 * Default to the first valid tile set
-	 */
-	if (map_visual < 0)
-	    map_visual = i;
+	v++;
+    }
+    no_tileTab = v - 1;
+    map_visual = -1;
+    for (v = 1; v <= no_tileTab; v++){
+	if (!strcmp(tileset, tileTab[v].ident)){
+	    map_visual = v;
+	    break;
+	}
+    }
+    /*
+     * [ALI]
+     *
+     * Default to the first valid tile set
+     */
+    if (map_visual < 0 && no_tileTab > 0) {
+	if (tileset[0])
+	    pline("Warning: Tile set \"%s\" not supported.", tileset);
+	else
+	    pline("Warning: Can't start in character mode.");
+	map_visual = 1;
+	strcpy(tileset, tileTab[map_visual].ident);
     }
     /*
      * [ALI]
@@ -629,7 +634,7 @@ tile_scan(void)
      */
     if (map_visual < 0)
 	panic("No valid tiles found");
-    Tile = tileTab[map_visual];
+    Tile = tileTab + map_visual;
 }
 
 GtkWidget *
@@ -643,13 +648,11 @@ nh_map_new(GtkWidget *w)
 
     NH_MAP_MAX_WIDTH = -1;
     NH_MAP_MAX_HEIGHT = -1;
-    for(i=1 ; i < sizeof(tileTab) / sizeof(tileTab[0]) ; ++i){
-	if(!tileTab[i])
-	    continue;
+    for(i=1 ; i <= no_tileTab; ++i){
 
-	width = (COLNO + 1) * (tileTab[i]->unit_width - tileTab[i]->ofsetx_3d)
-	    + (ROWNO + 1) * tileTab[i]->ofsetx_3d;
-	height = (ROWNO + 1) * (tileTab[i]->unit_height - tileTab[i]->ofsety_3d);
+	width = (COLNO + 1) * (tileTab[i].unit_width - tileTab[i].ofsetx_3d)
+	    + (ROWNO + 1) * tileTab[i].ofsetx_3d;
+	height = (ROWNO + 1) * (tileTab[i].unit_height - tileTab[i].ofsety_3d);
 
 	if(NH_MAP_MAX_WIDTH < width)
 	    NH_MAP_MAX_WIDTH = width;

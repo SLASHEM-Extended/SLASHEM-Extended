@@ -10,17 +10,16 @@
 #include <ctype.h>
 #include "hack.h"
 
-static gint tileset;
+static gint gn_tileset;
 static GtkWidget* clist;
-const char* tilesets[] = { "Traditional (16x16)", "Big (32x32)", 0 };
 
 static void
 player_sel_key_hit (GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
       int i;
-      for (i = 0; tilesets[i] != 0; ++i) {
-	      if (tilesets[i][0] == toupper(event->keyval)) {
-		      tileset = i;
+      for (i = 0; i < no_tilesets; ++i) {
+	      if (toupper(tilesets[i].name[0]) == toupper(event->keyval)) {
+		      gn_tileset = i;
 		      gtk_clist_select_row( GTK_CLIST (clist), i, 0);
 	      }
       }
@@ -29,7 +28,7 @@ player_sel_key_hit (GtkWidget *widget, GdkEventKey *event, gpointer data)
 static void
 player_sel_row_selected (GtkCList *cList, int row, int col, GdkEvent *event)
 {
-    tileset = row;
+    gn_tileset = row;
 }
 
 void
@@ -68,10 +67,12 @@ ghack_settings_dialog()
     gtk_box_pack_start_defaults (GTK_BOX (GNOME_DIALOG (dialog)->vbox), frame1);
 
     /* Add the tilesets into the list here... */
-    for (i=0; tilesets[i]; i++) {
+    for (i=0; i < no_tilesets; i++) {
 	    gchar accelBuf[BUFSZ];
-	    const char *text[3]={accelBuf, tilesets[i],NULL};
-	    sprintf( accelBuf, "%c ", tolower(tilesets[i][0]));
+	    const char *text[3]={accelBuf, tilesets[i].name,NULL};
+	    if ((tilesets[i].flags & ~TILESET_TRANSPARENT) != 0)
+		continue;		/* Unsupported flag set */
+	    sprintf( accelBuf, "%c ", tolower(tilesets[i].name[0]));
 	    gtk_clist_insert (GTK_CLIST (clist), i, (char**)text);
     }
 
@@ -93,23 +94,24 @@ ghack_settings_dialog()
     if (i != 0 ) {
 	return;
     }
-    switch (tileset) {
-	case 0:
-	    /* They selected traditional */
-	    ghack_free_glyphs();
-	    if (ghack_init_glyphs(HACKDIR "/x11tiles"))
-		      g_error ("ERROR:  Could not initialize glyphs.\n");
+    if (gn_tileset < no_tilesets) {
+	    if (tilesets[gn_tileset].file[0] != '/') {
+		char *path;
+		path = (char *)alloc(strlen(HACKDIR) +
+		  strlen(tilesets[gn_tileset].file) + 2);
+		sprintf(path, HACKDIR "/%s", tilesets[gn_tileset].file);
+		ghack_free_glyphs();
+		if (ghack_init_glyphs(path))
+			  g_error ("ERROR:  Could not initialize glyphs.\n");
+		free(path);
+	    }
+	    else {
+		ghack_free_glyphs();
+		if (ghack_init_glyphs(tilesets[gn_tileset].file))
+			  g_error ("ERROR:  Could not initialize glyphs.\n");
+	    }
 	    ghack_reinit_map_window();
-	    break;
-	case 1:
-	    ghack_free_glyphs();
-	    if (ghack_init_glyphs(HACKDIR "/x11bigtiles"))
-		      g_error ("ERROR:  Could not initialize glyphs.\n");
-	    ghack_reinit_map_window();
-
-	    /* They selected big */
-	    break;
-	default:
+    } else {
 	    /* This shouldn't happen */
 	    g_warning("This shouldn't happen\n");
     }

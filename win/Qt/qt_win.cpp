@@ -381,6 +381,16 @@ bool NetHackQtSettings::ynInMessages()
     return TRUE;
 }
 
+// Check to see if tile set has changed and update tiles if necessary.  --ALI
+void NetHackQtSettings::updateTiles()
+{
+    if (strcmp(theglyphs->tileSet(),tileset)) {
+	delete theglyphs;
+	theglyphs=new NetHackQtGlyphs();
+	resizeTiles();
+    }
+}
+
 
 NetHackQtSettings* qt_settings;
 
@@ -1073,6 +1083,11 @@ void NetHackQtMapWindow::Scroll(int dx, int dy)
 void NetHackQtMapWindow::Clear()
 {
     unsigned short stone=cmap_to_glyph(S_stone);
+
+    /*
+     * Tile set may have changed if tileset option changed via doset().  --ALI
+     */
+    qt_settings->updateTiles();
 
     for (int j=0; j<ROWNO; j++) {
 	for (int i=0; i<COLNO; i++) {
@@ -3479,40 +3494,17 @@ void NetHackQtYnDialog::done(int i)
     qApp->exit_loop();
 }
 
-NetHackQtGlyphs::NetHackQtGlyphs()
+int NetHackQtGlyphs::loadTiles(const char *file)
 {
-#ifndef FILE_AREAS
-    const char* tile_file = "x11tiles";
-#else
-    char* tile_file = make_file_name(FILE_AREA_SHARE, "x11tiles");
-#endif
-
     int tw, th;
-
-    if (!img.load(tile_file)) {
+    const char *tile_file;
 #ifndef FILE_AREAS
-	tile_file = "nhtiles.bmp";
+    tile_file = file;
 #else
-	free(tile_file);
-	tile_file = make_file_name(FILE_AREA_SHARE, "nhtiles.bmp");
+    tile_file = make_file_name(FILE_AREA_SHARE, file);
 #endif
-	if (!img.load(tile_file)) {
-	    QString msg;
-	    msg.sprintf("Cannot load x11tiles or nhtiles.bmp");
-	    QMessageBox::warning(0, "IO Error", msg);
-	} else {
-	    tiles_per_row = 40;
-	    tiles_per_col = (total_tiles_used + 39) / 40;
-	}
-    } else {
-        if (img.height()%tiles_per_col || img.width()%tiles_per_row) {
-            impossible(
-	      "Tile file \"%s\" appears to have a non-integer tile size.\n"
-	      "Its size (%dx%d) should be a multiple of %dx%d",
-               tile_file, img.width(), img.height(),
-	       tiles_per_row, tiles_per_col);
-        }
-    }
+    if (!img.load(tile_file))
+	return 0;
     tw = img.width() / tiles_per_row;
     th = img.height() / tiles_per_col;
 #ifdef FILE_AREAS
@@ -3520,6 +3512,54 @@ NetHackQtGlyphs::NetHackQtGlyphs()
 #endif
 
     resize(tw, th);
+    return 1;
+}
+
+NetHackQtGlyphs::NetHackQtGlyphs()
+{
+    int i;
+    int tw, th;
+    char* tile_file;
+    QString msg;
+
+    // Try user specified tile set first
+    if (tileset[0] == '\0')
+	pline("ASCII mode not supported in Qt port.");
+    else {
+	for(i = 0; i < no_tilesets; i++)
+	    if (!strcmp(tileset, tilesets[i].name))
+		break;
+	tileset_index = i;
+	// We don't really support transparency, but such
+	// tile sets are still useable with the Qt port.
+	if ((tilesets[i].flags & ~TILESET_TRANSPARENT) != 0) {
+	    msg.sprintf("Tile set %s has an unsupported flag set.", tileset);
+	    QMessageBox::warning(0, "IO Error", msg);
+	}
+	else if (i >= no_tilesets)
+	    impossible("Tile set %s not defined?", tileset);
+	else if (loadTiles(tilesets[i].file))
+	    return;
+	else {
+	    msg.sprintf("Failed to load tile set %s.", tileset);
+	    QMessageBox::warning(0, "IO Error", msg);
+	}
+    }
+
+    // Else choose first valid tile set
+    for(i = 0; i < no_tilesets; i++) {
+	if ((tilesets[i].flags & ~TILESET_TRANSPARENT) != 0)
+	    continue;
+	if (loadTiles(tilesets[i].file)) {
+	    tileset_index = i;
+	    strcpy(tileset, tilesets[i].name);
+	    return;
+	}
+    }
+
+    msg.sprintf("Cannot find a valid tile set");
+    QMessageBox::warning(0, "IO Error", msg);
+    panic("No valid tiles found");
 }
 
 void NetHackQtGlyphs::drawGlyph(QPainter& painter, int glyph, int x, int y)

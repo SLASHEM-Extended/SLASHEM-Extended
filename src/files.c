@@ -1444,6 +1444,8 @@ char            *tmp_levels;
 		parseoptions(bufp, TRUE, TRUE);
 		if (plname[0])          /* If a name was given */
 			plnamesuffix(); /* set the character class */
+	} else if (match_varname(buf, "TILESETS", 7)) {
+		parsetileset(bufp);
 #ifdef NOCWD_ASSUMPTIONS
 	} else if (match_varname(buf, "HACKDIR", 4)) {
 		adjust_prefix(bufp, HACKPREFIX);
@@ -1692,6 +1694,7 @@ const char *filename;
 #endif
 	char	buf[4*BUFSZ];
 	FILE    *fp;
+	int     i;
 
 	if (!(fp = fopen_config_file(filename))) return;
 
@@ -1728,6 +1731,27 @@ const char *filename;
 	Strcpy(bones, levels);
 # endif /* MFLOPPY */
 #endif /* MICRO */
+	if (!no_tilesets) {
+		for(i = 0; def_tilesets[i].name; i++) {
+			strcpy(tilesets[i].name, def_tilesets[i].name);
+			strcpy(tilesets[i].file, def_tilesets[i].file);
+			tilesets[i].flags = def_tilesets[i].flags;
+		}
+		no_tilesets = i;
+	}
+	if (tileset[0] != '\0') {
+		int len = strlen(tileset);
+		for(i = 0; i < no_tilesets; i++)
+			if (len == strlen(tilesets[i].name) &&
+			    !strncmpi(tilesets[i].name, tileset, len))
+				break;
+		if (i == no_tilesets) {
+			pline("Tileset %s not defined.", tileset);
+			tileset[0] = '\0';
+		}
+		else
+			strcpy(tileset, tilesets[i].name);
+	}
 	return;
 }
 
