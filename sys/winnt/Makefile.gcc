@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.42 2003-12-11 09:49:08 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.43 2003-12-12 12:36:59 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -261,10 +261,11 @@ WINGTKSRC = ../win/gtk/gtk.c ../win/gtk/gtkgetlin.c ../win/gtk/gtkstatus.c \
 	../win/gtk/gtkmenu.c ../win/gtk/gtkyn.c ../win/gtk/gtkextcmd.c \
 	../win/gtk/gtkmap.c ../win/gtk/gtkmessage.c ../win/gtk/gtkmisc.c \
 	../win/gtk/xshmmap.c ../win/gtk/gtktile.c ../win/gtk/gtkhackrc.c \
-	../win/gtk/gtkprefs.c ../win/gtk/gtkint.c ../win/gtk/gtkext.c
+	../win/gtk/gtkprefs.c ../win/gtk/gtkprogress.c ../win/gtk/gtkint.c \
+	../win/gtk/gtkext.c
 WINGTKOBJ1 = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkextcmd.o \
 	gtkmap.o gtkmessage.o gtkmisc.o xshmmap.o
-WINGTKOBJ2 = gtktile.o gtkhackrc.o gtkprefs.o gtkint.o gtkext.o
+WINGTKOBJ2 = gtktile.o gtkhackrc.o gtkprefs.o gtkprogress.o gtkint.o gtkext.o
 endif
 #
 # Files for a proxy interface.
@@ -1628,10 +1629,10 @@ gtkextcmd.o: ../win/gtk/gtkextcmd.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/proxycb.h \
 		$(INCL)/func_tab.h
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkextcmd.c
-gtkmap.o: ../win/gtk/gtkmap.c $(INCL)/winGTK.h $(HACK_H) \
-		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/dlb.h \
-		$(INCL)/patchlevel.h $(INCL)/proxycb.h \
-		$(INCL)/prxyclnt.h
+gtkmap.o: ../win/gtk/gtkmap.c $(INCL)/winGTK.h $(HACK_H) $(INCL)/nhxdr.h \
+		$(INCL)/proxycom.h $(INCL)/dlb.h $(INCL)/patchlevel.h \
+		$(INCL)/proxycb.h $(INCL)/prxyclnt.h \
+		../win/gtk/gtkprogress.h
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkmap.c
 gtkmessage.o: ../win/gtk/gtkmessage.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h
@@ -1641,7 +1642,8 @@ gtkmisc.o: ../win/gtk/gtkmisc.c $(INCL)/winGTK.h $(HACK_H) \
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkmisc.c
 gtktile.o: ../win/gtk/gtktile.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/dlb.h \
-		$(INCL)/proxycb.h $(INCL)/prxyclnt.h
+		$(INCL)/proxycb.h $(INCL)/prxyclnt.h \
+		../win/gtk/gtkprogress.h
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtktile.c
 xshmmap.o: ../win/gtk/xshmmap.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h
@@ -1652,6 +1654,10 @@ gtkhackrc.o: ../win/gtk/gtkhackrc.c $(INCL)/winGTK.h $(HACK_H) \
 gtkprefs.o: ../win/gtk/gtkprefs.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkprefs.c
+gtkprogress.o: ../win/gtk/gtkprogress.c $(INCL)/winGTK.h $(HACK_H) \
+                $(INCL)/nhxdr.h $(INCL)/proxycom.h \
+		../win/gtk/gtkprogress.h
+	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkprogress.c
 gtkext.o: ../win/gtk/gtkext.c $(INCL)/winGTK.h $(HACK_H) \
 		$(INCL)/nhxdr.h $(INCL)/proxycom.h $(INCL)/prxyclnt.h
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -o$@ ../win/gtk/gtkext.c
