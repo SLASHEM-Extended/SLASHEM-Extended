@@ -327,7 +327,7 @@ TODO:
 -tofix: using the nethack config files.
 -vampires shouldn't be allowed to become Flame Mages
 
-ver 0.0.6E6 [?] [Released by ?]
+ver 0.0.6E6 [September 13/2002] [Released by Ali]
 -Implemented "none" as a possible random place in level compiler.
 -fixed bug 500833: Spellbook learn.
 -fixed bug 456805: Baby dragons don't grow up.
@@ -394,6 +394,7 @@ ver 0.0.6E6 [?] [Released by ?]
 -Added potions of amnesia and Lethe water effects (Darshan Shaligram).
 -Proxy: Add support for mapping between glyphs and tiles.
 -Proxy: Add support for mapping between glyphs and symbols.
+-fixed bug 570743: Plane of water full of spider webs.
 
 ver 0.0.6E5F2 [November 30/2001] [Released by Ali]
 -Implemented NhExt XDR (low level protocol for proxy window).
