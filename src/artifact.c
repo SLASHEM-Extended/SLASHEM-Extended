@@ -821,7 +821,9 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	boolean realizes_damage;
 
 	static const char you[] = "you";
-	const char *hittee = youdefend ? you : mon_nam(mdef);
+	char hittee[BUFSIZ];
+
+	strcpy(hittee, youdefend ? you : mon_nam(mdef));
 
 	/* The following takes care of most of the damage, but not all--
 	 * the exception being for level draining, which is specially
@@ -1131,16 +1133,14 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	   }
     
 	   if (otmp->oartifact == ART_DOOMBLADE && dieroll < 6) {
-		if (!youdefend) {
-				You("plunge the Doomblade deeply into %s!",
-					mon_nam(mdef));
-				*dmgptr += rnd(4) * 5;
-				return TRUE;
-		} else {
-				pline("%s plunges the Doomblade deeply into you!", mon_nam(mdef));
-				*dmgptr += rnd(4) * 5;
-				return TRUE;
-		       }
+		if (youattack)
+		    You("plunge the Doomblade deeply into %s!",
+			    mon_nam(mdef));
+		else
+		    pline("%s plunges the Doomblade deeply into %s!",
+			    Monnam(magr), hittee);
+		*dmgptr += rnd(4) * 5;
+		return TRUE;
 	   }
   /* END OF STEPHEN WHITE'S NEW CODE */
 
@@ -1187,7 +1187,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 						mon_nam(mdef));
 				else if (vis)
 					pline("%s cuts deeply into %s!",
-					      Monnam(magr), mon_nam(mdef));
+					      Monnam(magr), hittee);
 				*dmgptr *= 2;
 				return TRUE;
 			}
