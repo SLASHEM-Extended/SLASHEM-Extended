@@ -1,0 +1,6402 @@
+o = (0, 0, 0)
+M = (255, 255, 255)
+# tile 0 (char 0)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 1 (char 1)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooMMMMMMooo
+  ooMooooooMoo
+  oMooooooooMo
+  MooMMooMMooM
+  MooMMooMMooM
+  MooooooooooM
+  MooooooooooM
+  MooMMMMMMooM
+  MoooMMMMoooM
+  oMooooooooMo
+  ooMooooooMoo
+  oooMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 2 (char 2)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooMMMMMMooo
+  ooMMMMMMMMoo
+  oMMMMMMMMMMo
+  MMMooMMooMMM
+  MMMooMMooMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMooooooMMM
+  MMMMooooMMMM
+  oMMMMMMMMMMo
+  ooMMMMMMMMoo
+  oooMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 3 (char 3)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooMoooMoooo
+  ooMMMoMMMooo
+  oMMMMMMMMMoo
+  oMMMMMMMMMoo
+  oMMMMMMMMMoo
+  oMMMMMMMMMoo
+  ooMMMMMMMooo
+  ooMMMMMMMooo
+  oooMMMMMoooo
+  ooooMMMooooo
+  oooooMoooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 4 (char 4)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMoooooo
+  ooooMMMooooo
+  oooMMMMMoooo
+  ooMMMMMMMooo
+  oMMMMMMMMMoo
+  ooMMMMMMMooo
+  oooMMMMMoooo
+  ooooMMMooooo
+  oooooMoooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 5 (char 5)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMoooooo
+  ooooMMMooooo
+  ooooMMMooooo
+  ooMoMMMoMooo
+  oMMMoMoMMMoo
+  oMMMMMMMMMoo
+  oMMMMMMMMMoo
+  ooMMoMoMMooo
+  ooooMMMooooo
+  ooooMMMooooo
+  oooMMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 6 (char 6)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMoooooo
+  ooooMMMooooo
+  oooMMMMMoooo
+  ooMMMMMMMooo
+  oMMMMMMMMMoo
+  oMMMMMMMMMoo
+  oMMMMMMMMMoo
+  ooMMoMoMMooo
+  ooooMMMooooo
+  ooooMMMooooo
+  oooMMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 7 (char 7)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMMooooo
+  ooooMMMMoooo
+  ooooMMMMoooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 8 (char 8)
+{
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMooMMMMM
+  MMMMooooMMMM
+  MMMMooooMMMM
+  MMMMMooMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+}
+# tile 9 (char 9)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMoooo
+  oooMMooMMooo
+  ooMMoMMoMMoo
+  ooMMoMMoMMoo
+  ooMMoMMoMMoo
+  oooMMooMMooo
+  ooooMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 10 (char 10)
+{
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMooooMMMM
+  MMMooMMooMMM
+  MMooMooMooMM
+  MMooMooMooMM
+  MMooMooMooMM
+  MMMooMMooMMM
+  MMMMooooMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+}
+# tile 11 (char 11)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooooMMMMoo
+  oooooooMMMoo
+  ooooooMMoMoo
+  oooMMMMooooo
+  ooMMoMMooooo
+  oMMoooMMoooo
+  oMMoooMMoooo
+  oMMoooMMoooo
+  ooMMoMMooooo
+  oooMMMoooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 12 (char 12)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMoooo
+  oooMMooMMooo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  oooMMooMMooo
+  ooooMMMMoooo
+  oooooMMooooo
+  oooooMMooooo
+  oooMMMMMMooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 13 (char 13)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMMMMooo
+  oooooMMoMooo
+  oooooMMMMooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooMMMMooooo
+  ooMMMMMooooo
+  oooMMMoooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 14 (char 14)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooMMooooooo
+  oooMMMMooooo
+  oooMMooMMMoo
+  oooMMMooMMoo
+  oooMMoMMMMoo
+  oooMMoooMMoo
+  oooMMoooMMoo
+  oooMMoooMMoo
+  ooMMMoooMMoo
+  oMMMMoooMMoo
+  oMMMooooMMoo
+  oooooooMMMoo
+  ooooooMMMMoo
+  ooooooMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 15 (char 15)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooMMoMMoMMoo
+  oooMMMMMMooo
+  ooooMMMMoooo
+  oooMMooMMooo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  oooMMooMMooo
+  ooooMMMMoooo
+  oooMMMMMMooo
+  ooMMoMMoMMoo
+  oooooMMooooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 16 (char 16)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oMoooooooooo
+  oMMMoooooooo
+  oMMMMMoooooo
+  oMMMMMMooooo
+  oMMMMMMMMooo
+  oMMMMMMMMMoo
+  oMMMMMMMMooo
+  oMMMMMMooooo
+  oMMMMMoooooo
+  oMMMoooooooo
+  oMoooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 17 (char 17)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooMoo
+  oooooooMMMoo
+  oooooMMMMMoo
+  ooooMMMMMMoo
+  ooMMMMMMMMoo
+  oMMMMMMMMMoo
+  ooMMMMMMMMoo
+  ooooMMMMMMoo
+  oooooMMMMMoo
+  oooooooMMMoo
+  oooooooooMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 18 (char 18)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMMooooo
+  ooooMMMMoooo
+  oooMMMMMMooo
+  ooMMMMMMMMoo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooMMMMMMMMoo
+  oooMMMMMMooo
+  ooooMMMMoooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 19 (char 19)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooooooooooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 20 (char 20)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooMMMMMMMoo
+  ooMMoMMoMMoo
+  ooMMoMMoMMoo
+  ooMMoMMoMMoo
+  ooMMoMMoMMoo
+  oooMMMMoMMoo
+  oooooMMoMMoo
+  oooooMMoMMoo
+  oooooMMoMMoo
+  oooooMMoMMoo
+  oooooMMoMMoo
+  oooooMMoMMoo
+  oooooMMoMMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 21 (char 21)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooMMMMMMooo
+  ooMMooooMMoo
+  oMMoooooMMoo
+  oMMooooooooo
+  ooMMoMMMoooo
+  oooMMooMMooo
+  oMMoMMooMMoo
+  oMMooMMoMMoo
+  ooMMooMMoooo
+  oooMMMoMMooo
+  ooooooooMMoo
+  oMMoooooMMoo
+  oMMooooMMooo
+  ooMMMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 22 (char 22)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooMMMMMMMMoo
+  ooMMMMMMMMoo
+  ooMMMMMMMMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 23 (char 23)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMMooooo
+  ooooMMMMoooo
+  oooMMMMMMooo
+  ooMMMMMMMMoo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooMMMMMMMMoo
+  oooMMMMMMooo
+  ooooMMMMoooo
+  oooooMMooooo
+  oooooooooooo
+  ooMMMMMMMMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 24 (char 24)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMMooooo
+  ooooMMMMoooo
+  oooMMMMMMooo
+  ooMMMMMMMMoo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 25 (char 25)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooMMMMMMMMoo
+  oooMMMMMMooo
+  ooooMMMMoooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 26 (char 26)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooooMooooo
+  ooooooMMoooo
+  ooooooMMMooo
+  oMMMMMMMMMoo
+  ooooooMMMooo
+  ooooooMMoooo
+  ooooooMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 27 (char 27)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMooooooo
+  oooMMooooooo
+  ooMMMooooooo
+  oMMMMMMMMMoo
+  ooMMMooooooo
+  oooMMooooooo
+  ooooMooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 28 (char 28)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMMMMMMMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 29 (char 29)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooMoooMoooo
+  ooMMoooMMooo
+  oMMMMMMMMMoo
+  ooMMoooMMooo
+  oooMoooMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 30 (char 30)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMoooooo
+  oooooMoooooo
+  ooooMMMooooo
+  ooooMMMooooo
+  oooMMMMMoooo
+  oooMMMMMoooo
+  oooMMMMMoooo
+  ooMMMMMMMooo
+  ooMMMMMMMooo
+  oMMMMMMMMMoo
+  oMMMMMMMMMoo
+  oMMMMMMMMMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 31 (char 31)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oMMMMMMMMMoo
+  oMMMMMMMMMoo
+  oMMMMMMMMMoo
+  ooMMMMMMMooo
+  ooMMMMMMMooo
+  oooMMMMMoooo
+  oooMMMMMoooo
+  oooMMMMMoooo
+  ooooMMMooooo
+  ooooMMMooooo
+  oooooMoooooo
+  oooooMoooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 32 (char 32)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 33 (char 33)
+{
+  oooooooooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 34 (char 34)
+{
+  oooooooooooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 35 (char 35)
+{
+  oooooooooooo
+  ooooooMMooMM
+  ooooooMMooMM
+  ooooooMMooMM
+  oooooMMooMMo
+  oooMMMMMMMMM
+  oooMMMMMMMMM
+  ooooMMooMMoo
+  ooooMMooMMoo
+  oooMMooMMooo
+  oooMMooMMooo
+  oMMMMMMMMMoo
+  oMMMMMMMMMoo
+  ooMMooMMoooo
+  oMMooMMooooo
+  oMMooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 36 (char 36)
+{
+  oooooooooooo
+  oooooMMooooo
+  oooMMMMMMooo
+  ooMMMMMMMMoo
+  oMMooMMoMMMo
+  oMMooMMooMMo
+  oMMooMMooooo
+  ooMMMMMooooo
+  oooMMMMMMooo
+  oooooMMMMMoo
+  oooooMMooMMo
+  oooooMMooMMo
+  oMMooMMooMMo
+  oMMMMMMMMMoo
+  ooMMMMMMMooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 37 (char 37)
+{
+  oooooooooooo
+  oooooooooooo
+  ooMMMoooMMoo
+  oMooMMooMMoo
+  oMoooMoMMooo
+  oMMooMoMMooo
+  ooMMMoMMoooo
+  ooooooMMoooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooMMoooooo
+  ooooMMoMMMoo
+  oooMMoMooMMo
+  oooMMoMoooMo
+  ooMMooMMooMo
+  ooMMoooMMMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 38 (char 38)
+{
+  oooooooooooo
+  oooooMMMoooo
+  ooooMMMMMooo
+  oooMMoooMMoo
+  oooMMoooMMoo
+  oooMMoooMMoo
+  ooooMMMMMooo
+  oooMMMMooooo
+  ooMMMMMooooo
+  oMMMoMMMoooo
+  oMMoooMMoMMo
+  oMMooooMMMMo
+  oMMooooMMMoo
+  oMMooooMMooo
+  ooMMMMMMMMMo
+  oooMMMMooMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 39 (char 39)
+{
+  oooooooooooo
+  ooooMMoooooo
+  oooMMMMooooo
+  oooMMMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooMMoooooo
+  oooMMooooooo
+  oooMoooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 40 (char 40)
+{
+  oooooooooooo
+  oooooooMMooo
+  ooooooMMoooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooooMMoooo
+  oooooooMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 41 (char 41)
+{
+  oooooooooooo
+  oooMMooooooo
+  ooooMMoooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooooMMoooo
+  ooooooMMoooo
+  ooooooMMoooo
+  ooooooMMoooo
+  ooooooMMoooo
+  ooooooMMoooo
+  ooooooMMoooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooMMoooooo
+  oooMMooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 42 (char 42)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMoooo
+  oooooMMooooo
+  oMMooMMooMMo
+  oMMMoMMoMMMo
+  oooMMooMMooo
+  oooooooooooo
+  oooMMooMMooo
+  oMMMoMMoMMMo
+  oMMooMMooMMo
+  oooooMMooooo
+  ooooMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 43 (char 43)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oMMMMMMMMMMo
+  oMMMMMMMMMMo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 44 (char 44)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMoooooo
+  oooMMMMooooo
+  oooMMMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooMMoooooo
+  oooMMooooooo
+  oooMoooooooo
+  oooooooooooo
+}
+# tile 45 (char 45)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oMMMMMMMMMMo
+  oMMMMMMMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 46 (char 46)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMoooooo
+  oooMMMMooooo
+  oooMMMMooooo
+  ooooMMoooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 47 (char 47)
+{
+  oooooooooooo
+  oooooooooMMo
+  ooooooooMMoo
+  ooooooooMMoo
+  oooooooMMooo
+  oooooooMMooo
+  ooooooMMoooo
+  ooooooMMoooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  oooMMooooooo
+  oooMMooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  oMMooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 48 (char 48)
+{
+  oooooooooooo
+  oooooMMMoooo
+  ooooMMMMMooo
+  oooMoooMMooo
+  oooMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMooo
+  oooMMoooMooo
+  oooMMMMMoooo
+  ooooMMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 49 (char 49)
+{
+  oooooooooooo
+  ooooooMooooo
+  oooooMMooooo
+  ooooMMMooooo
+  oooMMMMooooo
+  ooMMoMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooMMMMMMMMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 50 (char 50)
+{
+  oooooooooooo
+  oooMMMMMoooo
+  ooMMMMMMMooo
+  oMMooooMMMoo
+  oMooooooMMoo
+  ooooooooMMoo
+  ooooooooMMoo
+  ooooooooMMoo
+  oooooooMMooo
+  ooooooMMoooo
+  oooooMMooooo
+  ooooMMoooooo
+  oooMMooooooo
+  ooMMooooooMo
+  oMMMMMMMMMMo
+  oMMMMMMMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 51 (char 51)
+{
+  oooooooooooo
+  ooooMMMMMooo
+  oooMMMMMMMoo
+  ooMoooooMMMo
+  oMoooooooMMo
+  oooooooooMMo
+  ooooooooMMMo
+  oooooMMMMMoo
+  ooooMMMMMMoo
+  ooooooooMMMo
+  oooooooooMMo
+  oooooooooMMo
+  oMoooooooMMo
+  oMMooooooMoo
+  ooMMMMMMMooo
+  oooMMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 52 (char 52)
+{
+  oooooooooooo
+  oooooooMMooo
+  ooooooMMMooo
+  ooooooMMMooo
+  oooooMoMMooo
+  oooooMoMMooo
+  ooooMooMMooo
+  ooooMooMMooo
+  oooMoooMMooo
+  oooMoooMMooo
+  ooMooooMMooo
+  ooMMMMMMMMMo
+  oMMMMMMMMMMo
+  oooooooMMooo
+  oooooooMMooo
+  oooooooMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 53 (char 53)
+{
+  oooooooooooo
+  ooooMMMMMMoo
+  ooooMMMMMMoo
+  oooMoooooooo
+  oooMoooooooo
+  ooMooooooooo
+  ooMMMMMMMooo
+  ooMMoooMMMoo
+  ooooooooMMMo
+  oooooooooMMo
+  oooooooooMMo
+  oooooooooMMo
+  oMoooooooMMo
+  oMMooooooMMo
+  ooMMooooMMoo
+  oooMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 54 (char 54)
+{
+  oooooooooooo
+  oooooMMMoooo
+  ooooMMoooooo
+  oooMMooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  oMMooooooooo
+  oMMooMMMMooo
+  oMMoMMMMMMoo
+  oMMMooooMMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMMoooooMoo
+  ooMMMMMMMooo
+  oooMMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 55 (char 55)
+{
+  oooooooooooo
+  oooMMMMMMMMo
+  ooMMMMMMMMMo
+  oMMooooooMoo
+  oooooooooMoo
+  ooooooooMMoo
+  ooooooooMooo
+  ooooooooMooo
+  oooooooMMooo
+  oooooooMoooo
+  oooooooMoooo
+  ooooooMMoooo
+  ooooooMooooo
+  ooooooMooooo
+  oooooMMooooo
+  oooooMoooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 56 (char 56)
+{
+  oooooooooooo
+  ooooMMMMoooo
+  oooMoooMMooo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  oooMMoooMooo
+  ooooMMoMoooo
+  oooooMMooooo
+  ooooMoMMoooo
+  oooMoooMMooo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  oooMMoooMooo
+  ooooMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 57 (char 57)
+{
+  oooooooooooo
+  ooooMMMMMooo
+  oooMoooMMMoo
+  ooMoooooMMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMMooooMMMo
+  ooMMMMMMoMMo
+  oooMMMMooMMo
+  oooooooooMMo
+  ooooooooMMoo
+  ooooooooMMoo
+  oooooooMMooo
+  oooooMMMoooo
+  ooMMMMoooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 58 (char 58)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMoooooo
+  oooMMMMooooo
+  oooMMMMooooo
+  ooooMMoooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMoooooo
+  oooMMMMooooo
+  oooMMMMooooo
+  ooooMMoooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 59 (char 59)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMoooooo
+  oooMMMMooooo
+  oooMMMMooooo
+  ooooMMoooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMoooooo
+  oooMMMMooooo
+  oooMMMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooMMoooooo
+  oooMMooooooo
+  oooMoooooooo
+  oooooooooooo
+}
+# tile 60 (char 60)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooMMo
+  oooooooMMMoo
+  oooooMMMoooo
+  oooMMMoooooo
+  oMMMoooooooo
+  oMMMoooooooo
+  oooMMMoooooo
+  oooooMMMoooo
+  oooooooMMMoo
+  oooooooooMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 61 (char 61)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oMMMMMMMMMMo
+  oMMMMMMMMMMo
+  oooooooooooo
+  oooooooooooo
+  oMMMMMMMMMMo
+  oMMMMMMMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 62 (char 62)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oMMooooooooo
+  ooMMMooooooo
+  ooooMMMooooo
+  ooooooMMMooo
+  ooooooooMMMo
+  ooooooooMMMo
+  ooooooMMMooo
+  ooooMMMooooo
+  ooMMMooooooo
+  oMMooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 63 (char 63)
+{
+  oooooooooooo
+  ooooMMMMoooo
+  oooMMMMMMooo
+  ooMMMooMMMoo
+  ooMoooooMMoo
+  ooooooooMMoo
+  ooooooooMMoo
+  oooooooMMooo
+  ooooooMMoooo
+  oooooMMooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 64 (char 64)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMMooo
+  ooMMMMMMMMoo
+  ooMMoooooMMo
+  oMMooooooMMo
+  oMMooMMMooMo
+  oMMoMMMMMoMo
+  oMMoMMooMoMo
+  oMMoMMooMoMo
+  oMMooMMMMMMo
+  oMMooooooooo
+  ooMMoooooooo
+  ooMMMMMMMMMo
+  ooooMMMMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 65 (char 65)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooMoMMoooo
+  ooooMoMMoooo
+  ooooMooMoooo
+  oooMoooMMooo
+  oooMoooMMooo
+  oooMooooMooo
+  ooMMMMMMMMoo
+  ooMoooooMMoo
+  ooMooooooMoo
+  oMoooooooMMo
+  oMoooooooMMo
+  MMMoooooMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 66 (char 66)
+{
+  oooooooooooo
+  oooooooooooo
+  MMMMMMMMoooo
+  oMMoooooMooo
+  oMMoooooMMoo
+  oMMoooooMMoo
+  oMMoooooMMoo
+  oMMooooMMooo
+  oMMMMMMMMooo
+  oMMoooooMMoo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMoooooMMoo
+  MMMMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 67 (char 67)
+{
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMMMoo
+  oooMoooooMMo
+  ooMoooooooMo
+  ooMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  ooMooooooooo
+  ooMMooooooMo
+  oooMMooooMoo
+  ooooMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 68 (char 68)
+{
+  oooooooooooo
+  oooooooooooo
+  MMMMMMMMoooo
+  oMMooooMMMoo
+  oMMoooooMMoo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMoo
+  oMMooooMMooo
+  MMMMMMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 69 (char 69)
+{
+  oooooooooooo
+  oooooooooooo
+  oMMMMMMMMMoo
+  ooMMoooooMoo
+  ooMMoooooMoo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMooooMooo
+  ooMMMMMMMooo
+  ooMMooooMooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMooooooMo
+  ooMMooooooMo
+  oMMMMMMMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 70 (char 70)
+{
+  oooooooooooo
+  oooooooooooo
+  oMMMMMMMMMoo
+  ooMMoooooMoo
+  ooMMoooooMoo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMooooMooo
+  ooMMMMMMMooo
+  ooMMooooMooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  oMMMMooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 71 (char 71)
+{
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMMMoo
+  oooMoooooMMo
+  ooMoooooooMo
+  ooMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooMMMMM
+  oMMooooooMMo
+  ooMooooooMMo
+  ooMMoooooMMo
+  oooMMooooMMo
+  ooooMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 72 (char 72)
+{
+  oooooooooooo
+  oooooooooooo
+  MMMMooooMMMM
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMMMMMMMMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  MMMMooooMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 73 (char 73)
+{
+  oooooooooooo
+  oooooooooooo
+  oooMMMMMMooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 74 (char 74)
+{
+  oooooooooooo
+  oooooooooooo
+  oooMMMMMMooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMoooooo
+  ooMMMooooooo
+  ooMMoooooooo
+  oooooooooooo
+}
+# tile 75 (char 75)
+{
+  oooooooooooo
+  oooooooooooo
+  MMMMooooMMMo
+  oMMooooMMooo
+  oMMoooMMoooo
+  oMMooMMooooo
+  oMMoMMoooooo
+  oMMMMooooooo
+  oMMMMooooooo
+  oMMMMMoooooo
+  oMMoMMMooooo
+  oMMooMMMoooo
+  oMMoooMMMooo
+  oMMooooMMMoo
+  oMMoooooMMMo
+  MMMMoooooMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 76 (char 76)
+{
+  oooooooooooo
+  oooooooooooo
+  oMMMMooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMooooooMo
+  ooMMooooooMo
+  oMMMMMMMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 77 (char 77)
+{
+  oooooooooooo
+  oooooooooooo
+  MMMooooooMMM
+  oMMoooooMMMo
+  oMMMooooMMMo
+  oMMMooooMMMo
+  oMMMooooMMMo
+  oMoMMooMoMMo
+  oMoMMooMoMMo
+  oMoMMooMoMMo
+  oMooMMoMoMMo
+  oMooMMMooMMo
+  oMooMMMooMMo
+  oMoooMoooMMo
+  oMoooMoooMMo
+  MMMooMooMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 78 (char 78)
+{
+  oooooooooooo
+  oooooooooooo
+  MMoooooooMMM
+  oMMoooooooMo
+  oMMMooooooMo
+  oMMMMoooooMo
+  oMoMMoooooMo
+  oMooMMooooMo
+  oMoooMMoooMo
+  oMoooMMMooMo
+  oMooooMMooMo
+  oMoooooMMoMo
+  oMooooooMMMo
+  oMooooooMMMo
+  oMoooooooMMo
+  MMMoooooooMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 79 (char 79)
+{
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMoooo
+  oooMoooMMMoo
+  ooMoooooMMoo
+  ooMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  ooMooooooMoo
+  ooMMoooooMoo
+  oooMMoooMooo
+  ooooMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 80 (char 80)
+{
+  oooooooooooo
+  oooooooooooo
+  oMMMMMMMMooo
+  ooMMooooMMoo
+  ooMMoooooMMo
+  ooMMoooooMMo
+  ooMMoooooMMo
+  ooMMooooMMoo
+  ooMMoMMMMooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  oMMMMooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 81 (char 81)
+{
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMoooo
+  oooMoooMMMoo
+  ooMoooooMMoo
+  ooMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  ooMMoooooMoo
+  ooMMMooooMoo
+  oooMMMMMMooo
+  ooooMMMooooo
+  oooMMMMMoooo
+  ooMoooMMMooM
+  oooooooMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 82 (char 82)
+{
+  oooooooooooo
+  oooooooooooo
+  MMMMMMMMoooo
+  oMMooooMMooo
+  oMMoooooMMoo
+  oMMoooooMMoo
+  oMMoooooMMoo
+  oMMoooooMooo
+  oMMMMMMMoooo
+  oMMMMMoooooo
+  oMMoMMMooooo
+  oMMooMMMoooo
+  oMMoooMMMooo
+  oMMooooMMMoo
+  oMMoooooMMMo
+  MMMMoooooMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 83 (char 83)
+{
+  oooooooooooo
+  oooooooooooo
+  oooMMMMMMMMo
+  ooMMoooooMMo
+  oMMoooooooMo
+  oMMoooooooMo
+  oMMMoooooooo
+  ooMMMMoooooo
+  oooMMMMooooo
+  oooooMMMMooo
+  oooooooMMMoo
+  ooooooooMMMo
+  oMoooooooMMo
+  oMoooooooMMo
+  oMMoooooMMoo
+  oMMMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 84 (char 84)
+{
+  oooooooooooo
+  oooooooooooo
+  oMMMMMMMMMMo
+  oMoooMMoooMo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 85 (char 85)
+{
+  oooooooooooo
+  oooooooooooo
+  MMMMoooooMMM
+  oMMoooooooMo
+  oMMoooooooMo
+  oMMoooooooMo
+  oMMoooooooMo
+  oMMoooooooMo
+  oMMoooooooMo
+  oMMoooooooMo
+  oMMoooooooMo
+  oMMoooooooMo
+  oMMoooooooMo
+  oMMMoooooMoo
+  ooMMMMMMMMoo
+  oooMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 86 (char 86)
+{
+  oooooooooooo
+  oooooooooooo
+  MMMoooooMMMo
+  oMMooooooMoo
+  ooMMooooMooo
+  ooMMooooMooo
+  ooMMooooMooo
+  oooMMooMoooo
+  oooMMooMoooo
+  oooMMooMoooo
+  ooooMoMooooo
+  ooooMMMooooo
+  ooooMMMooooo
+  oooooMoooooo
+  oooooMoooooo
+  oooooMoooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 87 (char 87)
+{
+  oooooooooooo
+  oooooooooooo
+  MMMMMMMoMMMM
+  oMMooMMoooMo
+  oMMooMMoooMo
+  oMMooMMoooMo
+  oMMMoMMoooMo
+  oMMMoMMMoMoo
+  ooMMooMMoMoo
+  ooMMoMMMoMoo
+  ooMMMoMMMMoo
+  ooMMMoMMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 88 (char 88)
+{
+  oooooooooooo
+  oooooooooooo
+  MMMMoooooMMM
+  oMMoooooooMo
+  ooMMoooooMoo
+  ooMMMoooMooo
+  oooMMoooMooo
+  ooooMMoMoooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooMoMMoooo
+  oooMoooMMooo
+  oooMoooMMMoo
+  ooMoooooMMoo
+  oMoooooooMMo
+  MMMoooooMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 89 (char 89)
+{
+  oooooooooooo
+  oooooooooooo
+  MMMMoooooMMM
+  oMMoooooooMo
+  ooMMoooooMoo
+  oooMMoooMooo
+  oooMMoooMooo
+  ooooMMoMoooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 90 (char 90)
+{
+  oooooooooooo
+  oooooooooooo
+  ooMMMMMMMMMo
+  ooMoooooMMoo
+  ooooooooMMoo
+  oooooooMMooo
+  oooooooMMooo
+  ooooooMMoooo
+  ooooooMMoooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  oooMMooooooo
+  oooMMoooooMo
+  ooMMMMMMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 91 (char 91)
+{
+  oooooooooooo
+  ooooMMMMMooo
+  ooooMMMMMooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMMMMooo
+  ooooMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 92 (char 92)
+{
+  oooooooooooo
+  oMMooooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  oooMMooooooo
+  oooMMooooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooooMMoooo
+  ooooooMMoooo
+  oooooooMMooo
+  oooooooMMooo
+  ooooooooMMoo
+  ooooooooMMoo
+  oooooooooMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 93 (char 93)
+{
+  oooooooooooo
+  oooMMMMMoooo
+  oooMMMMMoooo
+  ooooooMMoooo
+  ooooooMMoooo
+  ooooooMMoooo
+  ooooooMMoooo
+  ooooooMMoooo
+  ooooooMMoooo
+  ooooooMMoooo
+  ooooooMMoooo
+  ooooooMMoooo
+  ooooooMMoooo
+  ooooooMMoooo
+  oooMMMMMoooo
+  oooMMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 94 (char 94)
+{
+  oooooooooooo
+  oooooMoooooo
+  ooooMMMooooo
+  oooMMoMMoooo
+  ooMMoooMMooo
+  oMMoooooMMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 95 (char 95)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 96 (char 96)
+{
+  oooooooooooo
+  oooooooMoooo
+  ooooooMMoooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMMMooo
+  oooooMMMMooo
+  ooooooMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 97 (char 97)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMMooo
+  oooMMoooMMoo
+  oooMooooMMoo
+  ooooooMMMMoo
+  oooMMMooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMMooMMMoo
+  oooMMMMoMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 98 (char 98)
+{
+  oooooooooooo
+  ooMooooooooo
+  oMMooooooooo
+  MMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooMMMMooo
+  oMMoMMMMMMoo
+  oMMMooooMMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMMoooooMMo
+  oMMMMoooMMoo
+  oMooMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 99 (char 99)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooMMMMMMooo
+  ooMMoooMMMoo
+  ooMoooooMMoo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMMoooooMoo
+  ooMMooooMMoo
+  oooMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 100 (char 100)
+{
+  oooooooooooo
+  oooooooooMMo
+  ooooooooMMMo
+  oooooooooMMo
+  oooooooooMMo
+  oooooooooMMo
+  ooooMMMMoMMo
+  ooMMoooMMMMo
+  ooMoooooMMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMMooooMMMo
+  ooMMMooMoMMo
+  oooMMMMooMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 101 (char 101)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMoooo
+  ooMMooooMMoo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMMMMMMMMMo
+  oMMooooooooo
+  oMMooooooooo
+  ooMMoooooooo
+  oooMMooooMMo
+  ooooMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 102 (char 102)
+{
+  oooooooooooo
+  ooooooMMMooo
+  oooooMooMMoo
+  oooooMooMMoo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooMMMMMMMooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  oooMMMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 103 (char 103)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooMMMMMooMo
+  ooMMoooMMMMo
+  oMMoooooMMoo
+  oMMoooooMMoo
+  oMMoooooMMoo
+  ooMMoooMMooo
+  ooMMMMMMoooo
+  oMMooooooooo
+  oMMMMMMMMMoo
+  ooMMMMMMMMMo
+  ooMooooooMMo
+  oMooooooooMo
+  oMooooooooMo
+  oMMMMMMMMMoo
+  ooMMMMMMMooo
+  oooooooooooo
+}
+# tile 104 (char 104)
+{
+  oooooooooooo
+  oooMoooooooo
+  ooMMoooooooo
+  oMMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoMMMMooo
+  ooMMMooMMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  oMMMMooMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 105 (char 105)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooMMMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 106 (char 106)
+{
+  oooooooooooo
+  oooooooooooo
+  ooooooooMMoo
+  ooooooooMMoo
+  oooooooooooo
+  oooooooooooo
+  ooooooMMMMoo
+  ooooooooMMoo
+  ooooooooMMoo
+  ooooooooMMoo
+  ooooooooMMoo
+  ooooooooMMoo
+  ooooooooMMoo
+  ooooooooMMoo
+  ooooooooMMoo
+  ooooooooMMoo
+  ooMoooooMMoo
+  ooMMooooMMoo
+  ooMMMoooMooo
+  oooMMMMMoooo
+  ooooMMMooooo
+  oooooooooooo
+}
+# tile 107 (char 107)
+{
+  oooooooooooo
+  oMMooooooooo
+  MMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooMMMoo
+  oMMoooMMoooo
+  oMMooMMooooo
+  oMMMMMoooooo
+  oMMMMooooooo
+  oMMMMMoooooo
+  oMMoMMMooooo
+  oMMooMMMoooo
+  oMMoooMMMooo
+  MMMMoooMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 108 (char 108)
+{
+  oooooooooooo
+  oooMMMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 109 (char 109)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  MMoMMMoMMMoo
+  oMMoMMMoMMMo
+  oMMooMMooMMo
+  oMMooMMooMMo
+  oMMooMMooMMo
+  oMMooMMooMMo
+  oMMooMMooMMo
+  oMMooMMooMMo
+  oMMooMMooMMo
+  MMMoMMMMoMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 110 (char 110)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooMooMMMMooo
+  oMMMMooMMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  oMMMMooMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 111 (char 111)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMMooo
+  oooMoooMMMoo
+  ooMoooooMMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMMoooooMoo
+  ooMMMoooMooo
+  oooMMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 112 (char 112)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  MMMoMMMMMooo
+  oMMMoooMMMoo
+  oMMoooooMMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMoo
+  oMMMooooMooo
+  oMMMMMMMoooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  MMMMoooooooo
+  oooooooooooo
+}
+# tile 113 (char 113)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMooMo
+  oooMoooMMMMo
+  ooMoooooMMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMMoooooMMo
+  ooMMMoooMMMo
+  oooMMMMMMMMo
+  oooooooooMMo
+  oooooooooMMo
+  oooooooooMMo
+  oooooooooMMo
+  ooooooooMMMM
+  oooooooooooo
+}
+# tile 114 (char 114)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oMMMooMMMooo
+  ooMMoMooMMoo
+  ooMMMoooMMoo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  oMMMMooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 115 (char 115)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooMMMMMMMoo
+  ooMMooooMMoo
+  ooMMoooooMoo
+  ooMMMooooooo
+  oooMMMMooooo
+  oooooMMMMooo
+  oooooooMMMoo
+  ooMoooooMMoo
+  ooMMooooMMoo
+  ooMMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 116 (char 116)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMoooooo
+  oooooMoooooo
+  ooooMMoooooo
+  oMMMMMMMMMoo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMoooooo
+  ooooMMooooMo
+  ooooMMMooMoo
+  oooooMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 117 (char 117)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oMMMMooMMMMo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMMooMMMoo
+  oooMMMMooMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 118 (char 118)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  MMMMoooooMMM
+  oMMoooooooMo
+  ooMMoooooMoo
+  ooMMoooooMoo
+  oooMMoooMooo
+  oooMMoooMooo
+  ooooMMoMoooo
+  ooooMMoMoooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 119 (char 119)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  MMMMMMMMoMMM
+  oMMooMMoooMo
+  oMMooMMoooMo
+  oMMooMMoooMo
+  ooMMoMMMoMoo
+  ooMMMoMMoMoo
+  ooMMMoMMoMoo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 120 (char 120)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  MMMMMoooMMMM
+  oMMMoooooMoo
+  ooMMMoooMooo
+  oooMMMoMoooo
+  ooooMMMooooo
+  oooooMMMoooo
+  ooooMoMMMooo
+  oooMoooMMMoo
+  ooMoooooMMMo
+  MMMMoooMMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 121 (char 121)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  MMMMooooMMMM
+  oMMoooooooMo
+  ooMMoooooMoo
+  ooMMoooooMoo
+  oooMMoooMooo
+  oooMMoooMooo
+  ooooMMoMoooo
+  ooooMMoMoooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMoooooo
+  ooooMMoooooo
+  ooooMooooooo
+  oMMMMooooooo
+  oMMMoooooooo
+  oooooooooooo
+}
+# tile 122 (char 122)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oMMMMMMMMMMo
+  oMMoooooMMMo
+  oMoooooMMMoo
+  ooooooMMMooo
+  oooooMMMoooo
+  ooooMMMooooo
+  oooMMMoooooo
+  ooMMMoooooMo
+  oMMMoooooMMo
+  oMMMMMMMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 123 (char 123)
+{
+  oooooooooooo
+  ooooooMMMooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooMMoooooo
+  ooMMMooooooo
+  ooooMMoooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooooMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 124 (char 124)
+{
+  oooooooooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooooooooo
+}
+# tile 125 (char 125)
+{
+  oooooooooooo
+  oooMMMoooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooooMMoooo
+  oooooooMMMoo
+  ooooooMMoooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooMMMoooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 126 (char 126)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooMMMooooMo
+  ooMMMMMooMMo
+  oMMooMMMMMoo
+  oMooooMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 127 (char 127)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMoooooo
+  ooooMMMooooo
+  ooooMMMooooo
+  oooMMoMMoooo
+  oooMMoMMoooo
+  ooMMoooMMooo
+  ooMMoooMMooo
+  oMMoooooMMoo
+  oMMMMMMMMMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 128 (char 128)
+{
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMMMoo
+  oooMoooooMMo
+  ooMoooooooMo
+  ooMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  ooMooooooooo
+  ooMMooooooMo
+  oooMMooooMoo
+  ooooMMMMMooo
+  oooooMMooooo
+  ooooooMMoooo
+  oooooooMMooo
+  ooooMMMMoooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 129 (char 129)
+{
+  oooooooooooo
+  oooooooooooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooooooooooo
+  oooooooooooo
+  oMMMMooMMMMo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMMooMMMoo
+  oooMMMMooMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 130 (char 130)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooMMooo
+  ooooooMMoooo
+  oooooMMooooo
+  oooooooooooo
+  ooooMMMMoooo
+  ooMMooooMMoo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMMMMMMMMMo
+  oMMooooooooo
+  oMMooooooooo
+  ooMMoooooooo
+  oooMMooooMMo
+  ooooMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 131 (char 131)
+{
+  oooooooooooo
+  ooooooMooooo
+  oooooMMMoooo
+  ooooMMoMMooo
+  oooMMoooMMoo
+  oooooooooooo
+  ooooMMMMMooo
+  oooMMoooMMoo
+  oooMooooMMoo
+  ooooooMMMMoo
+  oooMMMooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMMooMMMoo
+  oooMMMMoMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 132 (char 132)
+{
+  oooooooooooo
+  oooooooooooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMMooo
+  oooMMoooMMoo
+  oooMooooMMoo
+  ooooooMMMMoo
+  oooMMMooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMMooMMMoo
+  oooMMMMoMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 133 (char 133)
+{
+  oooooooooooo
+  oooooooooooo
+  ooooMMoooooo
+  oooooMMooooo
+  ooooooMMoooo
+  oooooooooooo
+  ooooMMMMMooo
+  oooMMoooMMoo
+  oooMooooMMoo
+  ooooooMMMMoo
+  oooMMMooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMMooMMMoo
+  oooMMMMoMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 134 (char 134)
+{
+  oooooooooooo
+  oooooMMMoooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  oooooMMMoooo
+  oooooooooooo
+  ooooMMMMMooo
+  oooMMoooMMoo
+  oooMooooMMoo
+  ooooooMMMMoo
+  oooMMMooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMMooMMMoo
+  oooMMMMoMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 135 (char 135)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooMMMMMMooo
+  ooMMoooMMMoo
+  ooMoooooMMoo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMMoooooMoo
+  ooMMooooMMoo
+  oooMMMMMMooo
+  oooooMMooooo
+  ooooooMMoooo
+  oooooooMMooo
+  ooooMMMMoooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 136 (char 136)
+{
+  oooooooooooo
+  ooooooMooooo
+  oooooMMMoooo
+  ooooMMoMMooo
+  oooMMoooMMoo
+  oooooooooooo
+  ooooMMMMoooo
+  ooMMooooMMoo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMMMMMMMMMo
+  oMMooooooooo
+  oMMooooooooo
+  ooMMoooooooo
+  oooMMooooMMo
+  ooooMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 137 (char 137)
+{
+  oooooooooooo
+  oooooooooooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMoooo
+  ooMMooooMMoo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMMMMMMMMMo
+  oMMooooooooo
+  oMMooooooooo
+  ooMMoooooooo
+  oooMMooooMMo
+  ooooMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 138 (char 138)
+{
+  oooooooooooo
+  oooooooooooo
+  ooooMMoooooo
+  oooooMMooooo
+  ooooooMMoooo
+  oooooooooooo
+  ooooMMMMoooo
+  ooMMooooMMoo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMMMMMMMMMo
+  oMMooooooooo
+  oMMooooooooo
+  ooMMoooooooo
+  oooMMooooMMo
+  ooooMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 139 (char 139)
+{
+  oooooooooooo
+  oooooooooooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooooooooooo
+  oooooooooooo
+  oooMMMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 140 (char 140)
+{
+  oooooooooooo
+  oooooMoooooo
+  ooooMMMooooo
+  oooMMoMMoooo
+  ooMMoooMMooo
+  oooooooooooo
+  oooMMMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 141 (char 141)
+{
+  oooooooooooo
+  oooooooooooo
+  oooMMooooooo
+  ooooMMoooooo
+  oooooMMooooo
+  oooooooooooo
+  oooMMMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 142 (char 142)
+{
+  oooooooooooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooooooooooo
+  oooooMoooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooMoMMoooo
+  ooooMoMMoooo
+  oooMMooMMooo
+  oooMoooMMooo
+  ooMMMMMMMMoo
+  ooMoooooMMoo
+  oMMooooooMMo
+  oMoooooooMMo
+  MMMoooooMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 143 (char 143)
+{
+  oooooooooooo
+  ooooMMMMoooo
+  oooMMooMMooo
+  ooooMMMMoooo
+  oooooMoooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooooMoMMoooo
+  ooooMoMMoooo
+  oooMMooMMooo
+  oooMoooMMooo
+  ooMMMMMMMMoo
+  ooMoooooMMoo
+  oMMooooooMMo
+  oMoooooooMMo
+  MMMoooooMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 144 (char 144)
+{
+  oooooooooooo
+  ooooooMMoooo
+  oooooMMooooo
+  ooooMooooooo
+  oMMMMMMMMMMo
+  ooMMooooooMo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMooooMooo
+  ooMMMMMMMooo
+  ooMMooooMooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMooooooMo
+  ooMMooooooMo
+  oMMMMMMMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 145 (char 145)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooMMMMoMMMMo
+  oMMooMMoooMM
+  oMoooMMoooMM
+  oooooMMoooMM
+  ooMMMMMMMMMM
+  oMMooMMooooo
+  MMoooMMooooo
+  MMoooMMooooo
+  MMMooMMMooMM
+  oMMMMMoMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 146 (char 146)
+{
+  oooooooooooo
+  oooooooooooo
+  ooooooMMMMMM
+  oooooMMMoooM
+  oooooMMMoooM
+  ooooMoMMoooo
+  ooooMoMMoooo
+  ooooMoMMooMo
+  oooMooMMMMMo
+  oooMooMMooMo
+  ooMMMMMMoooo
+  ooMoooMMoooo
+  ooMoooMMoooo
+  oMooooMMoooM
+  oMooooMMoooM
+  MMMooMMMMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 147 (char 147)
+{
+  oooooooooooo
+  ooooooMooooo
+  oooooMMMoooo
+  ooooMMoMMooo
+  oooMMoooMMoo
+  oooooooooooo
+  ooooMMMMMooo
+  oooMoooMMMoo
+  ooMoooooMMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMMoooooMoo
+  ooMMMoooMooo
+  oooMMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 148 (char 148)
+{
+  oooooooooooo
+  oooooooooooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMMooo
+  oooMoooMMMoo
+  ooMoooooMMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMMoooooMoo
+  ooMMMoooMooo
+  oooMMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 149 (char 149)
+{
+  oooooooooooo
+  oooooooooooo
+  ooooMMoooooo
+  oooooMMooooo
+  ooooooMMoooo
+  oooooooooooo
+  ooooMMMMMooo
+  oooMoooMMMoo
+  ooMoooooMMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMMoooooMoo
+  ooMMMoooMooo
+  oooMMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 150 (char 150)
+{
+  oooooooooooo
+  ooooooMooooo
+  oooooMMMoooo
+  ooooMMoMMooo
+  oooMMoooMMoo
+  oooooooooooo
+  oMMMMooMMMMo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMMooMMMoo
+  oooMMMMooMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 151 (char 151)
+{
+  oooooooooooo
+  oooooooooooo
+  oooMMooooooo
+  ooooMMoooooo
+  oooooMMooooo
+  oooooooooooo
+  oMMMMooMMMMo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMMooMMMoo
+  oooMMMMooMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 152 (char 152)
+{
+  oooooooooooo
+  oooooooooooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooooooooooo
+  oooooooooooo
+  MMMMooooMMMM
+  oMMoooooooMo
+  ooMMoooooMoo
+  ooMMoooooMoo
+  oooMMoooMooo
+  oooMMoooMooo
+  ooooMMoMoooo
+  ooooMMoMoooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMoooooo
+  ooooMMoooooo
+  ooooMooooooo
+  oMMMMooooooo
+  oMMMoooooooo
+  oooooooooooo
+}
+# tile 153 (char 153)
+{
+  oooooooooooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooooooooooo
+  ooooMMMMMooo
+  oooMoooMMMoo
+  ooMoooooMMoo
+  ooMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  ooMooooooMoo
+  ooMMoooooMoo
+  oooMMoooMooo
+  ooooMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 154 (char 154)
+{
+  oooooooooooo
+  oooMMooMMooo
+  oooMMooMMooo
+  MMMoooooooMM
+  oMMoooooooMo
+  oMMoooooooMo
+  oMMoooooooMo
+  oMMoooooooMo
+  oMMoooooooMo
+  oMMoooooooMo
+  oMMoooooooMo
+  oMMoooooooMo
+  oMMoooooooMo
+  oMMMoooooMoo
+  ooMMMMMMMMoo
+  oooMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 155 (char 155)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooMMMMMMooo
+  ooMMoMMoMMoo
+  ooMooMMoMMoo
+  oMMooMMooooo
+  oMMooMMooooo
+  oMMooMMooooo
+  oMMooMMooooo
+  oMMMoMMooMoo
+  ooMMoMMoMMoo
+  oooMMMMMMooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 156 (char 156)
+{
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMMooo
+  oooMMMooMMoo
+  oooMMoooMMoo
+  oooMMooooooo
+  oooMMooooooo
+  oooMMooooooo
+  oMMMMMMooooo
+  oMMMMMMooooo
+  oooMMooooooo
+  oooMMooooooo
+  oooMMooooooo
+  oooMMooooooo
+  ooMMMMMoooMo
+  oMMMMMMMMMMo
+  oMMooooMMMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 157 (char 157)
+{
+  oooooooooooo
+  oooooooooooo
+  oMMooooooMMo
+  oMMooooooMMo
+  ooMMooooMMoo
+  oooMMooMMooo
+  oooMMooMMooo
+  ooooMMMMoooo
+  oooooMMooooo
+  oooMMMMMMooo
+  oooooMMooooo
+  oooMMMMMMooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 158 (char 158)
+{
+  oooooooooooo
+  oooooooooooo
+  oMMMMMMMoooo
+  oMMooooMMooo
+  oMMoooooMMoo
+  oMMoooooMMoo
+  oMMooooMMooo
+  oMMMMMMMoooo
+  oMMooooooooo
+  oMMooMMooooo
+  oMMooMMooooo
+  oMMoMMMMMooo
+  oMMooMMooooo
+  oMMooMMooooo
+  oMMooMMooMMo
+  oMMoooMMMMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 159 (char 159)
+{
+  oooooooooooo
+  oooooooooooo
+  ooooooMMMMoo
+  oooooMMooMMo
+  oooooMMooMMo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  ooMMMMMMMMoo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oMMooMMooooo
+  oMMooMMooooo
+  ooMMMMoooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 160 (char 160)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooMMooo
+  ooooooMMoooo
+  oooooMMooooo
+  oooooooooooo
+  ooooMMMMMooo
+  oooMMoooMMoo
+  oooMooooMMoo
+  ooooooMMMMoo
+  oooMMMooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMMooMMMoo
+  oooMMMMoMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 161 (char 161)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooMMooo
+  ooooooMMoooo
+  oooooMMooooo
+  oooooooooooo
+  oooMMMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 162 (char 162)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooMMooo
+  ooooooMMoooo
+  oooooMMooooo
+  oooooooooooo
+  ooooMMMMMooo
+  oooMoooMMMoo
+  ooMoooooMMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMMoooooMoo
+  ooMMMoooMooo
+  oooMMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 163 (char 163)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooMMooo
+  ooooooMMoooo
+  oooooMMooooo
+  oooooooooooo
+  oMMMMooMMMMo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMMooMMMoo
+  oooMMMMooMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 164 (char 164)
+{
+  oooooooooooo
+  oooMMMoooMoo
+  ooMMMMMMMMoo
+  ooMoooMMMooo
+  oooooooooooo
+  oooooooooooo
+  ooMooMMMMooo
+  oMMMMooMMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  oMMMMooMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 165 (char 165)
+{
+  oooooooooooo
+  oooMMMoooMoo
+  ooMMMMMMMMoo
+  ooMoooMMMooo
+  MMoooooooMMM
+  oMMoooooooMo
+  oMMMooooooMo
+  oMMMMoooooMo
+  oMoMMMooooMo
+  oMooMMMoooMo
+  oMoooMMMooMo
+  oMooooMMMoMo
+  oMoooooMMMMo
+  oMooooooMMMo
+  oMoooooooMMo
+  MMMoooooooMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 166 (char 166)
+{
+  oooooooooooo
+  oooooooooooo
+  oooMMMMMoooo
+  ooMMoooMMooo
+  oooooooMMooo
+  oooooMMMMooo
+  oooMMooMMooo
+  ooMMoooMMooo
+  ooMMoooMMooo
+  ooMMooMMMooo
+  oooMMMoMMMoo
+  oooooooooooo
+  ooMMMMMMMMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 167 (char 167)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooMMMoooo
+  oooMMooMMooo
+  oooMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMooo
+  oooMMooMMooo
+  ooooMMMooooo
+  oooooooooooo
+  ooMMMMMMMMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 168 (char 168)
+{
+  oooooooooooo
+  ooooooMMoooo
+  ooooooMMoooo
+  oooooooooooo
+  oooooooooooo
+  ooooooMMoooo
+  ooooooMMoooo
+  oooooMMooooo
+  ooooMMoooooo
+  oooMMooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooMoo
+  ooMMMooMMMoo
+  oooMMMMMMooo
+  ooooMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 169 (char 169)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooMMMMMMMMoo
+  ooMMMMMMMMoo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 170 (char 170)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooMMMMMMMMoo
+  ooMMMMMMMMoo
+  ooooooooMMoo
+  ooooooooMMoo
+  ooooooooMMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 171 (char 171)
+{
+  oooooooooooo
+  oooooooooooo
+  oooMoooooooo
+  ooMMoooooooo
+  oooMoooooooo
+  oooMoooooMoo
+  oooMooooMooo
+  oooMoooMoooo
+  ooMMMoMooooo
+  oooooMoMMMoo
+  ooooMoMoooMo
+  oooMooooooMo
+  ooMoooooMMoo
+  oMoooooMoooo
+  ooooooMooooo
+  ooooooMMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 172 (char 172)
+{
+  oooooooooooo
+  oooooooooooo
+  oooMoooooooo
+  ooMMoooooooo
+  oooMoooooooo
+  oooMoooooMoo
+  oooMooooMooo
+  oooMoooMoooo
+  ooMMMoMooMoo
+  oooooMooMMoo
+  ooooMooMoMoo
+  oooMooMooMoo
+  ooMooMoooMoo
+  oMoooMMMMMMo
+  oooooooooMoo
+  oooooooooMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 173 (char 173)
+{
+  oooooooooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 174 (char 174)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMMooMMo
+  ooooMMooMMoo
+  oooMMooMMooo
+  ooMMooMMoooo
+  oMMooMMooooo
+  ooMMooMMoooo
+  oooMMooMMooo
+  ooooMMooMMoo
+  oooooMMooMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 175 (char 175)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oMMooMMooooo
+  ooMMooMMoooo
+  oooMMooMMooo
+  ooooMMooMMoo
+  oooooMMooMMo
+  ooooMMooMMoo
+  oooMMooMMooo
+  ooMMooMMoooo
+  oMMooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 176 (char 176)
+{
+  ooooMMooooMM
+  ooooMoooooMo
+  oMMooooMMooo
+  ooMoooooMooo
+  ooooMMooooMM
+  ooooMoooooMo
+  oMMooooMMooo
+  ooMoooooMooo
+  ooooMMooooMM
+  ooooMoooooMo
+  oMMooooMMooo
+  ooMoooooMooo
+  ooooMMooooMM
+  ooooMoooooMo
+  oMMooooMMooo
+  ooMoooooMooo
+  ooooMMooooMM
+  ooooMoooooMo
+  oMMooooMMooo
+  ooMoooooMooo
+  ooooMMooooMM
+  ooooMoooooMo
+}
+# tile 177 (char 177)
+{
+  oMMMoMMMoMMM
+  ooMoooMoooMo
+  MoooMoooMooo
+  MMoMMMoMMMoM
+  MoooMoooMooo
+  ooMoooMoooMo
+  oMMMoMMMoMMM
+  ooMoooMoooMo
+  MoooMoooMooo
+  MMoMMMoMMMoM
+  MoooMoooMooo
+  ooMoooMoooMo
+  oMMMoMMMoMMM
+  ooMoooMoooMo
+  MoooMoooMooo
+  MMoMMMoMMMoM
+  MoooMoooMooo
+  ooMoooMoooMo
+  oMMMoMMMoMMM
+  ooMoooMoooMo
+  MoooMoooMooo
+  MMoMMMoMMMoM
+}
+# tile 178 (char 178)
+{
+  MMMMooMMMMoo
+  MMMMoMMMMMoM
+  MooMMMMooMMM
+  MMoMMMMMoMMM
+  MMMMooMMMMoo
+  MMMMoMMMMMoM
+  MooMMMMooMMM
+  MMoMMMMMoMMM
+  MMMMooMMMMoo
+  MMMMoMMMMMoM
+  MooMMMMooMMM
+  MMoMMMMMoMMM
+  MMMMooMMMMoo
+  MMMMoMMMMMoM
+  MooMMMMooMMM
+  MMoMMMMMoMMM
+  MMMMooMMMMoo
+  MMMMoMMMMMoM
+  MooMMMMooMMM
+  MMoMMMMMoMMM
+  MMMMooMMMMoo
+  MMMMoMMMMMoM
+}
+# tile 179 (char 179)
+{
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+}
+# tile 180 (char 180)
+{
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  MMMMMMMooooo
+  MMMMMMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+}
+# tile 181 (char 181)
+{
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  MMMMMMMooooo
+  MMMMMMMooooo
+  oooooMMooooo
+  MMMMMMMooooo
+  MMMMMMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+}
+# tile 182 (char 182)
+{
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  MMMMMMoMMooo
+  MMMMMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+}
+# tile 183 (char 183)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  MMMMMMMMMooo
+  MMMMMMMMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+}
+# tile 184 (char 184)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  MMMMMMMooooo
+  MMMMMMMooooo
+  oooooMMooooo
+  MMMMMMMooooo
+  MMMMMMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+}
+# tile 185 (char 185)
+{
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  MMMMMMoMMooo
+  MMMMMMoMMooo
+  oooooooMMooo
+  MMMMMMoMMooo
+  MMMMMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+}
+# tile 186 (char 186)
+{
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+}
+# tile 187 (char 187)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  MMMMMMMMMooo
+  MMMMMMMMMooo
+  oooooooMMooo
+  MMMMMMoMMooo
+  MMMMMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+}
+# tile 188 (char 188)
+{
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  MMMMMMoMMooo
+  MMMMMMoMMooo
+  oooooooMMooo
+  MMMMMMMMMooo
+  MMMMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 189 (char 189)
+{
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  MMMMMMMMMooo
+  MMMMMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 190 (char 190)
+{
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  MMMMMMMooooo
+  MMMMMMMooooo
+  oooooMMooooo
+  MMMMMMMooooo
+  MMMMMMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 191 (char 191)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  MMMMMMMooooo
+  MMMMMMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+}
+# tile 192 (char 192)
+{
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMMMMMM
+  oooooMMMMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 193 (char 193)
+{
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 194 (char 194)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+}
+# tile 195 (char 195)
+{
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMMMMMM
+  oooooMMMMMMM
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+}
+# tile 196 (char 196)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 197 (char 197)
+{
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+}
+# tile 198 (char 198)
+{
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMMMMMM
+  oooooMMMMMMM
+  oooooMMooooo
+  oooooMMMMMMM
+  oooooMMMMMMM
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+}
+# tile 199 (char 199)
+{
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMMMM
+  ooooMMoMMMMM
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+}
+# tile 200 (char 200)
+{
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMMMM
+  ooooMMoMMMMM
+  ooooMMoooooo
+  ooooMMMMMMMM
+  ooooMMMMMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 201 (char 201)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMMMMM
+  ooooMMMMMMMM
+  ooooMMoooooo
+  ooooMMoMMMMM
+  ooooMMoMMMMM
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+}
+# tile 202 (char 202)
+{
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  MMMMMMoMMMMM
+  MMMMMMoMMMMM
+  oooooooooooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 203 (char 203)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  oooooooooooo
+  MMMMMMoMMMMM
+  MMMMMMoMMMMM
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+}
+# tile 204 (char 204)
+{
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMMMM
+  ooooMMoMMMMM
+  ooooMMoooooo
+  ooooMMoMMMMM
+  ooooMMoMMMMM
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+}
+# tile 205 (char 205)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  oooooooooooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 206 (char 206)
+{
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  MMMMMMoMMMMM
+  MMMMMMoMMMMM
+  oooooooooooo
+  MMMMMMoMMMMM
+  MMMMMMoMMMMM
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+}
+# tile 207 (char 207)
+{
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  oooooooooooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 208 (char 208)
+{
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 209 (char 209)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  oooooooooooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+}
+# tile 210 (char 210)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+}
+# tile 211 (char 211)
+{
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMMMMMMM
+  ooooMMMMMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 212 (char 212)
+{
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMMMMMM
+  oooooMMMMMMM
+  oooooMMooooo
+  oooooMMMMMMM
+  oooooMMMMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 213 (char 213)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMMMMMMM
+  oooooMMMMMMM
+  oooooMMooooo
+  oooooMMMMMMM
+  oooooMMMMMMM
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+}
+# tile 214 (char 214)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMMMMM
+  ooooMMMMMMMM
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+}
+# tile 215 (char 215)
+{
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+  ooooMMoMMooo
+}
+# tile 216 (char 216)
+{
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  oooooMMooooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+}
+# tile 217 (char 217)
+{
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  MMMMMMMooooo
+  MMMMMMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 218 (char 218)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMMMMMMM
+  oooooMMMMMMM
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+}
+# tile 219 (char 219)
+{
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+}
+# tile 220 (char 220)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+}
+# tile 221 (char 221)
+{
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+  MMMMMMoooooo
+}
+# tile 222 (char 222)
+{
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+  ooooooMMMMMM
+}
+# tile 223 (char 223)
+{
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  MMMMMMMMMMMM
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 224 (char 224)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooMMMoooMMo
+  ooMMoMMoMMoo
+  oMMoooMMMooo
+  oMMoooMMMooo
+  oMMoooMMoooo
+  oMMoooMMoooo
+  oMMoooMMMooo
+  oMMoooMMMooo
+  ooMMoMMoMMoo
+  oooMMMoooMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 225 (char 225)
+{
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMoooo
+  oooMMooMMooo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMoooMMooo
+  ooMMoMMMMooo
+  ooMMoooMMooo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMoooMMooo
+  oMMMoMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 226 (char 226)
+{
+  oooooooooooo
+  oooooooooooo
+  oMMMMMMMMMoo
+  oMMoooooMMoo
+  oMMoooooMMoo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oMMooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 227 (char 227)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooMMo
+  ooMMMMMMMMoo
+  oMoMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  ooMMoooMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 228 (char 228)
+{
+  oooooooooooo
+  oooooooooooo
+  oMMMMMMMMMMo
+  oMMooooooMMo
+  ooMMoooooMMo
+  oooMMooooooo
+  ooooMMoooooo
+  oooooMMooooo
+  ooooooMMoooo
+  ooooooMMoooo
+  oooooMMooooo
+  ooooMMoooooo
+  oooMMooooooo
+  ooMMoooooMMo
+  oMMooooooMMo
+  oMMMMMMMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 229 (char 229)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooMMMMMMMMo
+  ooMMMooMoooo
+  oMMMooooMooo
+  oMMoooooMMoo
+  oMMoooooMMoo
+  oMMoooooMMoo
+  oMMoooooMMoo
+  ooMooooMMMoo
+  oooMooMMMooo
+  ooooMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 230 (char 230)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMMooMMMoo
+  ooMMoMMoMMMo
+  ooMMoooooooo
+  ooMMoooooooo
+  oMMooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 231 (char 231)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooMMMooooMMo
+  oMMoMMooMMoo
+  oMMoMMoMMooo
+  oooooMMMoooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 232 (char 232)
+{
+  oooooooooooo
+  oooooooooooo
+  oMMMMMMMMMMo
+  ooooMMMMoooo
+  oooMMooMMooo
+  ooMMooooMMoo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  ooMMooooMMoo
+  oooMMooMMooo
+  ooooMMMMoooo
+  oMMMMMMMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 233 (char 233)
+{
+  oooooooooooo
+  oooooooooooo
+  ooooMMMooooo
+  oooMMoMMoooo
+  ooMMoooMMooo
+  oMMoooooMMoo
+  oMMoooooMMoo
+  oMMoooooMMoo
+  oMMMMMMMMMoo
+  oMMMMMMMMMoo
+  oMMoooooMMoo
+  oMMoooooMMoo
+  oMMoooooMMoo
+  ooMMoooMMooo
+  oooMMoMMoooo
+  ooooMMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 234 (char 234)
+{
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMoooo
+  oooMMooMMooo
+  ooMMooooMMoo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  oMMooooooMMo
+  ooMMooooMMoo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oMMMMooMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 235 (char 235)
+{
+  oooooooooooo
+  oooooooooooo
+  ooMoooMooooo
+  ooMMoMMooooo
+  oooMMMoooooo
+  oooMMMoooooo
+  ooMMoMMooooo
+  ooMoooMMoooo
+  ooooMMMMMooo
+  oooMMooMMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  oooMMooMMooo
+  ooooMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 236 (char 236)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMoMoo
+  oooMMooMMMoo
+  ooMMoooMMMoo
+  ooMMooMMMMoo
+  ooMMoMMoMMoo
+  ooMMoMMoMMoo
+  ooMMMMooMMoo
+  oooMMooMMooo
+  ooMMMMMMoooo
+  ooMooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 237 (char 237)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooMoo
+  ooooMMMMMMoo
+  oooMMooMMooo
+  ooMMoooMMMoo
+  ooMMooMoMMoo
+  ooMMooMoMMoo
+  ooMMoMooMMoo
+  ooMMoMooMMoo
+  ooMMoMooMMoo
+  ooMMMoooMMoo
+  oooMMooMMooo
+  ooMMMMMMoooo
+  ooMooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 238 (char 238)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMMooo
+  oooMMooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMMMMMoooo
+  ooMMoooooooo
+  ooMMoooooooo
+  ooMMoooooooo
+  oooMMooooooo
+  ooooMMMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 239 (char 239)
+{
+  oooooooooooo
+  oooooooooooo
+  ooooMMMMoooo
+  oooMMooMMooo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 240 (char 240)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oMMMMMMMMMoo
+  oMMMMMMMMMoo
+  oooooooooooo
+  oooooooooooo
+  oMMMMMMMMMoo
+  oMMMMMMMMMoo
+  oooooooooooo
+  oooooooooooo
+  oMMMMMMMMMoo
+  oMMMMMMMMMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 241 (char 241)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oMMMMMMMMMMo
+  oMMMMMMMMMMo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooooooooo
+  oMMMMMMMMMMo
+  oMMMMMMMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 242 (char 242)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oMMooooooooo
+  ooMMMooooooo
+  ooooMMMooooo
+  ooooooMMMooo
+  ooooooooMMMo
+  ooooooMMMooo
+  ooooMMMooooo
+  ooMMMooooooo
+  oMMooooooooo
+  oooooooooooo
+  oMMMMMMMMMMo
+  oMMMMMMMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 243 (char 243)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooMMo
+  oooooooMMMoo
+  oooooMMMoooo
+  oooMMMoooooo
+  oMMMoooooooo
+  oooMMMoooooo
+  oooooMMMoooo
+  oooooooMMMoo
+  oooooooooMMo
+  oooooooooooo
+  oMMMMMMMMMMo
+  oMMMMMMMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 244 (char 244)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooooooMMMMoo
+  oooooMMooMMo
+  oooooMMooMMo
+  oooooMMooMMo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+}
+# tile 245 (char 245)
+{
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oMMooMMooooo
+  oMMooMMooooo
+  oMMooMMooooo
+  ooMMMMoooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 246 (char 246)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oMMMMMMMMMMo
+  oMMMMMMMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 247 (char 247)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooMMMooooMo
+  ooMMMMMooMMo
+  oMMooMMMMMoo
+  oMooooMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooMMMooooMo
+  ooMMMMMooMMo
+  oMMooMMMMMoo
+  oMooooMMMooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 248 (char 248)
+{
+  oooooooooooo
+  ooooMMMMoooo
+  oooMMooMMooo
+  oooMMooMMooo
+  oooMMooMMooo
+  ooooMMMMoooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 249 (char 249)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMMooooo
+  ooooMMMMoooo
+  ooooMMMMoooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 250 (char 250)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 251 (char 251)
+{
+  oooooMMMMMMM
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  oooooMMooooo
+  MMoooMMooooo
+  oMMooMMooooo
+  ooMMoMMooooo
+  oooMMMMooooo
+  ooooMMMooooo
+  oooooMMooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 252 (char 252)
+{
+  oooooooooooo
+  oooooooooooo
+  ooMooMMMoooo
+  oMMMMMMMMooo
+  oMMMMooMMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  ooMMooooMMoo
+  oMMMMooMMMMo
+  oMMMMooMMMMo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 253 (char 253)
+{
+  oooooooooooo
+  ooooMMMMoooo
+  oooMMMMMMooo
+  ooMMoooMMooo
+  ooMooooMMooo
+  ooooooMMoooo
+  oooooMMooooo
+  ooooMMoooooo
+  oooMMooooMoo
+  ooMMMMMMMMoo
+  ooMMMMMMMMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 254 (char 254)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  ooMMMMMMMMoo
+  ooMMMMMMMMoo
+  ooMMMMMMMMoo
+  ooMMMMMMMMoo
+  ooMMMMMMMMoo
+  ooMMMMMMMMoo
+  ooMMMMMMMMoo
+  ooMMMMMMMMoo
+  ooMMMMMMMMoo
+  ooMMMMMMMMoo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
+# tile 255 (char 255)
+{
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+  oooooooooooo
+}
