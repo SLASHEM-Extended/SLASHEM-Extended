@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.20 2003-01-18 17:52:10 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.21 2003-01-21 12:12:14 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -26,6 +26,22 @@
 
 static void proxy_flush_layers();
 static void proxy_print_glyph_layered();
+
+static int proxy_no_mapwins = 0;
+
+static struct proxy_mapwin {
+    int id;
+    int c_rows, c_cols, c_layers;	/* Configured dimensions */
+#ifdef DISPLAY_LAYERS
+    struct gbuf_layer {
+	char start, stop;
+	struct {
+	    char start, stop;
+	    int glyphs[COLNO];
+	} rows[ROWNO];
+    } gbuf_layers[NO_LAYERS];
+#endif
+} *proxy_mapwins;
 
 /* Window to redirect raw output to, if not WIN_ERR */
 
@@ -216,19 +232,63 @@ proxy_create_nhwindow(type)
 int type;
 {
     winid id;
+    int w;
+    if (type == NHW_MAP) {
+	struct proxy_mapwin *new;
+	for(w = 0; w < proxy_no_mapwins; w++)
+	    if (proxy_mapwins[w].id < 0)
+		break;
+	if (w == proxy_no_mapwins) {
+	    if (proxy_mapwins)
+		new = (struct proxy_mapwin *) realloc(proxy_mapwins,
+		  (proxy_no_mapwins + 1) * sizeof(struct proxy_mapwin));
+	    else
+		new = (struct proxy_mapwin *)
+		  malloc(sizeof(struct proxy_mapwin));
+	    if (!new)
+		return -1;
+	    proxy_mapwins = new;
+	    proxy_no_mapwins++;
+	}
+	proxy_mapwins[w].c_rows = 21;
+	proxy_mapwins[w].c_cols = 80;
+	proxy_mapwins[w].c_layers = 1;
+    }
     if (!nhext_rpc(EXT_FID_CREATE_NHWINDOW, 1, EXT_INT(type), 1, EXT_INT_P(id)))
 	id = -1;
+    if (type == NHW_MAP) {
+	proxy_mapwins[w].id = id;
+#ifdef DISPLAY_LAYERS
+	if (id >= 0)
+	    proxy_flush_layers(w, TRUE);
+#endif
+    }
     return id;
+}
+
+static int
+proxy_get_mapwin(window)
+winid window;
+{
+    int w;
+    for(w = 0; w < proxy_no_mapwins; w++)
+	if (proxy_mapwins[w].id == window)
+	    return w;
+    return -1;
 }
 
 void
 proxy_clear_nhwindow(window)
 winid window;
 {
-    if (window == WIN_MAP) {
+    int w = proxy_get_mapwin(window);
+    if (w >= 0) {
 #ifdef DISPLAY_LAYERS
-	proxy_flush_layers(window, TRUE);
+	proxy_flush_layers(w, TRUE);
 #endif
+	proxy_mapwins[w].c_rows = ROWNO;
+	proxy_mapwins[w].c_cols = COLNO;
+	proxy_mapwins[w].c_layers = NO_LAYERS;
 	(void)nhext_rpc(EXT_FID_CLEAR_NHWINDOW, 4, EXT_INT(window),
 	  EXT_INT(ROWNO), EXT_INT(COLNO), EXT_INT(NO_LAYERS), 0);
     } else
@@ -241,9 +301,10 @@ proxy_display_nhwindow(window, blocking)
 winid window;
 boolean blocking;
 {
+    int w = proxy_get_mapwin(window);
 #ifdef DISPLAY_LAYERS
-    if (window == WIN_MAP)
-	proxy_flush_layers(window, FALSE);
+    if (w >= 0)
+	proxy_flush_layers(w, FALSE);
 #endif
     (void)nhext_rpc(EXT_FID_DISPLAY_NHWINDOW,
       2, EXT_INT(window), EXT_BOOLEAN((nhext_xdr_bool_t)blocking), 0);
@@ -253,7 +314,26 @@ void
 proxy_destroy_nhwindow(window)
 winid window;
 {
+    struct proxy_mapwin *new;
+    int w = proxy_get_mapwin(window);
     (void)nhext_rpc(EXT_FID_DESTROY_NHWINDOW, 1, EXT_INT(window), 0);
+    if (w >= 0) {
+	proxy_mapwins[w].id = -1;
+	if (w == proxy_no_mapwins - 1) {
+	    if (proxy_no_mapwins == 1) {
+		free(proxy_mapwins);
+		proxy_mapwins = (struct proxy_mapwin *)0;
+		proxy_no_mapwins = 0;
+	    } else {
+		new = (struct proxy_mapwin *) realloc(proxy_mapwins,
+		  (proxy_no_mapwins - 1) * sizeof(struct proxy_mapwin));
+		if (new) {
+		    proxy_mapwins = new;
+		    proxy_no_mapwins--;
+		}
+	    }
+	}
+    }
     mapid_del_winid(window);
 }
 
@@ -417,21 +497,14 @@ char *posbar;
 #endif
 
 #ifdef DISPLAY_LAYERS
-struct gbuf_layer {
-    char start, stop;
-    struct {
-	char start, stop;
-	int glyphs[COLNO];
-    } rows[ROWNO];
-} gbuf_layers[NO_LAYERS];
-
 static void
-proxy_print_layer(x, y, z, glyph)
+proxy_print_layer(w, x, y, z, glyph)
+int w;
 xchar x, y, z;
 int glyph;
 {
     int g;
-    struct gbuf_layer *l = gbuf_layers + z;
+    struct gbuf_layer *l = proxy_mapwins[w].gbuf_layers + z;
     g = glyph == NO_GLYPH ? NO_GLYPH : glyph2proxy[glyph];
     if (l->rows[y].glyphs[x] != g) {
 	l->rows[y].glyphs[x] = g;
@@ -447,15 +520,27 @@ int glyph;
 }
 
 static void
-proxy_flush_layers(window, clearing)
-winid window;
+proxy_flush_layers(w, clearing)
+int w;
 int clearing;
 {
     int x, y, z;
-    struct gbuf_layer *l = gbuf_layers;
-    if (!clearing)
-	proxy_print_glyph_layered(window, SIZE(gbuf_layers), gbuf_layers);
-    for(z = 0; z < SIZE(gbuf_layers); z++) {
+    struct gbuf_layer *l = proxy_mapwins[w].gbuf_layers;
+    if (!clearing) {
+	if (proxy_mapwins[w].c_rows != ROWNO ||
+	  proxy_mapwins[w].c_cols != COLNO ||
+	  proxy_mapwins[w].c_layers != NO_LAYERS) {
+	    proxy_mapwins[w].c_rows = ROWNO;
+	    proxy_mapwins[w].c_cols = COLNO;
+	    proxy_mapwins[w].c_layers = NO_LAYERS;
+	    (void)nhext_rpc(EXT_FID_CLEAR_NHWINDOW, 4,
+	      EXT_INT(proxy_mapwins[w].id), EXT_INT(ROWNO), EXT_INT(COLNO),
+	      EXT_INT(NO_LAYERS), 0);
+	}
+	proxy_print_glyph_layered(proxy_mapwins[w].id,
+	  SIZE(proxy_mapwins[w].gbuf_layers), proxy_mapwins[w].gbuf_layers);
+    }
+    for(z = 0; z < SIZE(proxy_mapwins[w].gbuf_layers); z++) {
 	l->stop = 0;
 	l->start = ROWNO - 1;
 	for(y = 0; y < ROWNO; y++) {
@@ -476,23 +561,23 @@ winid window;
 xchar x, y;
 int glyph;
 {
+    int w = proxy_get_mapwin(window);
 #ifdef DISPLAY_LAYERS
-    if (proxy_interface_mode & EXT_IM_DISPLAY_LAYERS) {
+    if (w >= 0 && proxy_interface_mode & EXT_IM_DISPLAY_LAYERS) {
 	struct rm *lev = &levl[x][y];
 
 	if (glyph_is_monster(glyph))
-	    proxy_print_layer(x, y, 0, glyph);
+	    proxy_print_layer(w, x, y, 0, glyph);
 	else
-	    proxy_print_layer(x, y, 0,
+	    proxy_print_layer(w, x, y, 0,
 	      lev->mem_invis ? GLYPH_INVISIBLE : NO_GLYPH);
 	if (lev->mem_obj)
-	    if (lev->mem_corpse)
-		proxy_print_layer(x, y, 1, body_to_glyph(lev->mem_obj - 1));
-	    else
-		proxy_print_layer(x, y, 1, objnum_to_glyph(lev->mem_obj - 1));
+	    proxy_print_layer(w, x, y, 1, lev->mem_corpse ?
+	      body_to_glyph(lev->mem_obj - 1) :
+	      objnum_to_glyph(lev->mem_obj - 1));
 	else
-	    proxy_print_layer(x, y, 1, NO_GLYPH);
-	proxy_print_layer(x, y, 2, lev->mem_trap ?
+	    proxy_print_layer(w, x, y, 1, NO_GLYPH);
+	proxy_print_layer(w, x, y, 2, lev->mem_trap ?
 	  cmap_to_glyph(lev->mem_trap - 1 + MAXDCHARS) : NO_GLYPH);
 	switch (lev->mem_bg) {
 	    case S_room:
@@ -500,21 +585,21 @@ int glyph;
 	    case S_litcorr:
 	    case S_air:
 	    case S_water:
-		proxy_print_layer(x, y, 3, NO_GLYPH);
-		proxy_print_layer(x, y, 4, cmap_to_glyph(lev->mem_bg));
+		proxy_print_layer(w, x, y, 3, NO_GLYPH);
+		proxy_print_layer(w, x, y, 4, cmap_to_glyph(lev->mem_bg));
 		break;
 	    default:
-		proxy_print_layer(x, y, 3, cmap_to_glyph(lev->mem_bg));
+		proxy_print_layer(w, x, y, 3, cmap_to_glyph(lev->mem_bg));
 		if (Is_airlevel(&u.uz))
-		    proxy_print_layer(x, y, 4, cmap_to_glyph(S_air));
+		    proxy_print_layer(w, x, y, 4, cmap_to_glyph(S_air));
 		else if (Is_waterlevel(&u.uz))
-		    proxy_print_layer(x, y, 4, cmap_to_glyph(S_water));
+		    proxy_print_layer(w, x, y, 4, cmap_to_glyph(S_water));
 		else if (lev->roomno != NO_ROOM)
-		    proxy_print_layer(x, y, 4, cmap_to_glyph(S_room));
+		    proxy_print_layer(w, x, y, 4, cmap_to_glyph(S_room));
 		else if (lev->waslit || flags.lit_corridor)
-		    proxy_print_layer(x, y, 4, cmap_to_glyph(S_litcorr));
+		    proxy_print_layer(w, x, y, 4, cmap_to_glyph(S_litcorr));
 		else
-		    proxy_print_layer(x, y, 4, cmap_to_glyph(S_corr));
+		    proxy_print_layer(w, x, y, 4, cmap_to_glyph(S_corr));
 		break;
 	}
     }
