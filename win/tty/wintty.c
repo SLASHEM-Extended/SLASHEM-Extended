@@ -51,6 +51,7 @@ struct window_procs tty_procs = {
     WC_MOUSE_SUPPORT|
 #endif
     WC_COLOR|WC_HILITE_PET|WC_INVERSE|WC_EIGHT_BIT_IN,
+    0L,
     tty_init_nhwindows,
     tty_player_selection,
     tty_askname,
@@ -843,7 +844,7 @@ tty_askname()
 		if(c < 'A' || (c > 'Z' && c < 'a') || c > 'z') c = '_';
 #endif
 		if (ct < (int)(sizeof plname) - 1) {
-#if defined(MICRO) || defined(WIN32CON)
+#if defined(MICRO)
 # if defined(MSDOS)
 			if (iflags.grmode) {
 				(void) putchar(c);
