@@ -145,6 +145,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 1076125: Unsuccessful use of medical kits
 -fixed bug 1076123: Vampires can eat white pills
 -fixed bug 994993: when polying, you take off T-shirt after scales merge
+-fixed bug 961914: Deep dragons should resist their own breath
 
 See history.txt for changes made in previous versions.
 
