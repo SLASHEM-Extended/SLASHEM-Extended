@@ -270,10 +270,11 @@ boolean yours; /* is it your fault (for killing monsters) */
 		str = "explosion";
 		generic = TRUE;
 	    }
-	    if (flags.soundok) You_hear("a blast.");
+	    if (flags.soundok)
+		You_hear(is_pool(x, y) ? "a muffled explosion." : "a blast.");
 	}
 
-    	if (dam) for (i=0; i<3; i++) for (j=0; j<3; j++) {
+	    if (dam) for (i=0; i<3; i++) for (j=0; j<3; j++) {
 		if (explmask[i][j] == 2) continue;
 		if (i+x-1 == u.ux && j+y-1 == u.uy)
 			uhurt = (explmask[i][j] == 1) ? 1 : 2;
@@ -663,23 +664,21 @@ int dest;
 {
 	int ztype, expltype;
 	int numdice = 3, dicetype = 6;
+	boolean shop_damage = FALSE;
 	int ox, oy;
 	boolean expl = TRUE, dig_expl = FALSE;
 	
 	switch (otyp) {
 	    case GAS_GRENADE:
-	    	ztype = ZT_SPELL(ZT_POISON_GAS);
+		ztype = ZT_SPELL(ZT_POISON_GAS);
 		expltype = EXPL_NOXIOUS;
-	    	break;
+		break;
 	    case STICK_OF_DYNAMITE:
-	    	ztype = ZT_SPELL(ZT_FIRE);
-		expltype = EXPL_FIERY;
-	    	numdice = 6;
-	    	dig_expl = TRUE;
-	    	break;
+		numdice = 6;
+		dig_expl = TRUE;
 	    case FRAG_GRENADE:
 	    default:
-	    	ztype = ZT_SPELL(ZT_FIRE);
+		ztype = ZT_SPELL(ZT_FIRE);
 		expltype = EXPL_FIERY;
 	    	break;
 	}
@@ -691,13 +690,22 @@ int dest;
 		wake_nearto(x, y, 400);
 	}
 	if (dig_expl) {
-	    	/* Like cartoons - the explosion first, then 
-	    	 * the world deals with the holes produced ;)
-	    	 */
-	    	for (ox = (x-1) ; ox <= (x + 1); ox++)
-	    	    for (oy = (y-1) ; oy <= (y + 1); oy++)
-	    		if(dig_check(BY_OBJECT, FALSE, ox, oy))
-				digactualhole(ox, oy, BY_OBJECT, PIT);
+	    /* Like cartoons - the explosion first, then
+	    * the world deals with the holes produced ;)
+	    */
+	    for (ox = (x-1) ; ox <= (x + 1); ox++)
+		for (oy = (y-1) ; oy <= (y + 1); oy++) {
+		    if (!isok(ox,oy)) continue;
+
+		    if(dig_check(BY_OBJECT, FALSE, ox, oy)) {
+			if (IS_WALL(levl[ox][oy].typ) || IS_DOOR(levl[ox][oy].typ)) {
+			    watch_dig((struct monst *)0, ox, oy, TRUE);
+			    if (*in_rooms(ox,oy,SHOPBASE)) shop_damage = TRUE;
+			}
+			digactualhole(ox, oy, BY_OBJECT, PIT);
+		    }
+		}
+	    if (shop_damage) pay_for_damage("damage", FALSE);
 	}
 }
 

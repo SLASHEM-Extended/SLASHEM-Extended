@@ -1223,6 +1223,12 @@ light_cocktail(obj)
 	struct obj *obj;        /* obj is a potion of oil or a stick of dynamite */
 {
 	char buf[BUFSZ];
+	char *objnam =
+#ifdef FIREARMS
+	    obj->otyp == POT_OIL ? "potion" : "stick";
+#else
+	    "potion";
+#endif
 
 	if (u.uswallow) {
 	    You(no_elbow_room);
@@ -1235,7 +1241,7 @@ light_cocktail(obj)
 	}
 
 	if (obj->lamplit) {
-	    You("snuff the lit %s.", (obj->otyp == POT_OIL ? "potion" : "stick"));
+	    You("snuff the lit %s.", objnam);
 	    end_burn(obj, TRUE);
 	    /*
 	     * Free & add to re-merge potion.  This will average the
@@ -1250,17 +1256,20 @@ light_cocktail(obj)
 	    return;
 	}
 
-	You("light %s %s.%s", shk_your(buf, obj),(obj->otyp == POT_OIL ? "potion" : "stick"),
+	You("light %s %s.%s", shk_your(buf, obj), objnam,
 	    Blind ? "" : "  It gives off a dim light.");
 	if (obj->unpaid && costly_spot(u.ux, u.uy)) {
 	    /* Normally, we shouldn't both partially and fully charge
 	     * for an item, but (Yendorian Fuel) Taxes are inevitable...
 	     */
 	    check_unpaid(obj);
-	    verbalize("That's in addition to the cost of the potion, of course.");
+		verbalize("That's in addition to the cost of the %s, of course.", objnam);
 	    bill_dummy_object(obj);
 	}
 	makeknown(obj->otyp);
+#ifdef FIREARMS
+	if (obj->otyp == STICK_OF_DYNAMITE) obj->yours=TRUE;
+#endif
 
 	if (obj->quan > 1L) {
 	    obj = splitobj(obj, 1L);

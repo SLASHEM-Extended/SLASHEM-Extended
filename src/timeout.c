@@ -670,8 +670,6 @@ long timeout;
 			if (!silent) {
 			    if (canseemon(mtmp))
 				You("see %s engulfed in an explosion!", mon_nam(mtmp));
-			    else if (flags.soundok)
-				You_hear("a blast.");
 			}
 		    	mtmp->mhp -= d(2,5);
 			if(mtmp->mhp < 1) {
@@ -711,9 +709,6 @@ long timeout;
 				You(underwater ?
 				    "see a plume of water shoot up." :
 				    "see a bomb explode.");
-			    else if (flags.soundok)
-				You_hear(underwater ?
-				         "a muffled explosion." : "a blast.");
 			}
 			if (underwater && (Flying || Levitation || Wwalking)) {
 			    if (Wwalking && x == u.ux && y == u.uy) {
@@ -741,7 +736,7 @@ long timeout;
 			goto free_bomb;
 			break;
 		}
-		grenade_explode(bomb->otyp, x, y, bomb->yours, silent ? 2 : 1);
+		grenade_explode(bomb->otyp, x, y, bomb->yours, silent ? 2 : 0);
 	} /* Migrating grenades "blow up in midair" */
 
 free_bomb:
