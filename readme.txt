@@ -353,6 +353,7 @@ ver 0.0.6E4F2 [December XX/2000]
 -extended SHOPTYPE wizard mode control.
 -fixed bug 123490: Drained lichen corpses?
 -fixed bug 125230: Wrong weight displayed for gold in bag of holding.
+-fixed bug 125472: slashem-0.0.6E4F1-1 source RPM fails on RedHat 7.
 
 ver 0.0.6E4F1 [November 10/2000] [Released by Ali]
 -GTK: status window stats columns should never be too small

@@ -5,7 +5,7 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
-#ifndef __GO32__  /* djgpp compiler for msdos */
+#if !defined(__cplusplus) && !defined(__GO32__)  /* djgpp compiler for msdos */
 
 #define E extern
 
@@ -46,7 +46,7 @@ typedef unsigned int	size_t;
 typedef long	off_t;
 #endif
 
-#endif /* __GO32__ */
+#endif /* !__cplusplus && !__GO32__ */
 
 /* You may want to change this to fit your system, as this is almost
  * impossible to get right automatically.
@@ -70,7 +70,7 @@ typedef long	off_t;
 # define SIG_RET_TYPE int (*)()
 #endif
 
-#ifndef __GO32__
+#if !defined(__cplusplus) && !defined(__GO32__)
 
 #if defined(BSD) || defined(ULTRIX) || defined(RANDOM)
 # ifdef random
@@ -544,6 +544,6 @@ E int FDECL(atoi, (const char *));
 
 #undef E
 
-#endif /* __GO32__ */
+#endif /* !__cplusplus && !__GO32__ */
 
 #endif /* SYSTEM_H */

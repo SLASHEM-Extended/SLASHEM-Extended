@@ -3508,7 +3508,7 @@ int NetHackQtGlyphs::loadTiles(const char *file)
     tw = img.width() / tiles_per_row;
     th = img.height() / tiles_per_col;
 #ifdef FILE_AREAS
-    free(tile_file);
+    free((void *)tile_file);
 #endif
 
     resize(tw, th);
