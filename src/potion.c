@@ -2171,21 +2171,24 @@ boolean amnesia;
 int
 upgrade_obj(obj)
 register struct obj *obj;
-/* returns TRUE if something happened (potion should be used up) */
+/* returns 1 if something happened (potion should be used up) 
+ * returns 0 if nothing happened
+ * returns -1 if object exploded (potion should be used up) 
+ */
 {
-	int chg;
-	int otyp = obj->otyp, otyp2;
+	int chg, otyp = obj->otyp, otyp2;
 	xchar ox, oy;
 	long owornmask;
 	struct obj *otmp;
+	boolean explodes;
 
 	/* Check to see if object is valid */
 	if (!obj)
-		return (FALSE);
+		return 0;
 	(void)snuff_lit(obj);
 	if (obj->oartifact)
 		/* WAC -- Could have some funky fx */
-		return (FALSE);
+		return 0;
 
 	switch (obj->otyp)
 	{
@@ -2506,7 +2509,7 @@ register struct obj *obj;
 			break;
 		default:
 			/* This object is not upgradable */
-			return (FALSE);
+			return 0;
 	}
 
 	if ((!carried(obj) || obj->unpaid) &&
@@ -2590,20 +2593,38 @@ register struct obj *obj;
 	    puton_worn_item(obj);
 	}
 
-	return (TRUE);
-}
+	if (obj->otyp == BAG_OF_HOLDING && Has_contents(obj)) {
+	    explodes = FALSE;
 
+	    for (otmp = obj->cobj; otmp; otmp = otmp->nobj)
+		if (mbag_explodes(otmp, 0)) { 
+		    explodes = TRUE;
+		    break;
+		}
+
+            if (explodes) {
+		pline("As you upgrade your bag, you are blasted by a magical explosion!");
+		delete_contents(obj);
+		if (carried(obj))
+		    useup(obj);
+		else
+		    useupf(obj, obj->quan);
+		losehp(d(6,6), "magical explosion", KILLED_BY_AN);
+		return -1;
+	    }
+	}
+	return 1;
+}
 
 int
 dodip()
 {
-	struct obj *potion, *obj;
-	struct obj *singlepotion;
+	struct obj *potion, *obj, *singlepotion;
 	const char *tmp;
 	uchar here;
-	char allowall[2];
+	char allowall[2], qbuf[QBUFSZ], Your_buf[BUFSZ];
 	short mixture;
-	char qbuf[QBUFSZ], Your_buf[BUFSZ];
+	int res;
 
 	allowall[0] = ALL_CLASSES; allowall[1] = '\0';
 	if(!(obj = getobj(allowall, "dip")))
@@ -2730,17 +2751,25 @@ dodip()
 	 * 	 Give out name of new object and allow user to name the potion
 	 */
 	/* KMH, balance patch -- idea by Dylan O'Donnell <dylanw@demon.net> */
-	else if (potion->otyp == POT_GAIN_LEVEL && upgrade_obj(obj)) {
-	    /* The object was upgraded */
-	    pline("Hmm!  You don't recall dipping that into the potion.");
-	    prinv((char *)0, obj, 0L);			
-	    if (!objects[potion->otyp].oc_name_known &&
-		    !objects[potion->otyp].oc_uname)
-		docall(potion);
-	    useup(potion);
-	    update_inventory();
-	    exercise(A_WIS, TRUE);
-	    return(1);	    
+	else if (potion->otyp == POT_GAIN_LEVEL) {
+	    res = upgrade_obj(obj);
+
+	    if (res != 0) {
+
+		if (res == 1) { 
+		     /* The object was upgraded */
+		     pline("Hmm!  You don't recall dipping that into the potion.");
+		     prinv((char *)0, obj, 0L);
+		} /* else potion exploded */
+		if (!objects[potion->otyp].oc_name_known &&
+			!objects[potion->otyp].oc_uname)
+		    docall(potion);
+		useup(potion);
+		update_inventory();
+		exercise(A_WIS, TRUE);
+		return(1);
+	    }
+	    /* no return here, go for Interesting... message */
 	} else if (obj->otyp == POT_POLYMORPH ||
 		potion->otyp == POT_POLYMORPH) {
 	    /* some objects can't be polymorphed */
