@@ -83,6 +83,7 @@ boolean restore;
 			otmp->rknown = 0;
 			otmp->invlet = 0;
 			otmp->no_charge = 0;
+			otmp->was_thrown = 0;
 
 			if (otmp->otyp == SLIME_MOLD) goodfruit(otmp->spe);
 #ifdef MAIL
