@@ -702,14 +702,16 @@ int tech_no;
 		    if(isok(u.ux+i, u.uy+j) && (mtmp = m_at(u.ux+i, u.uy+j))) {
 		    	if (mtmp->mtame != 0 && !mtmp->isspell) {
 		    	    struct permonst *ptr = mtmp->data;
+			    struct monst *mtmp2;
 		    	    int time = techt_inuse(tech_no);
 		    	    int type = little_to_big(monsndx(ptr));
 		    	    
-		    	    ptr = &mons[type];
+		    	    mtmp2 = tamedog(mtmp, (struct obj *) 0);
+			    if (mtmp2)
+				mtmp = mtmp2;
 
-		    	    mtmp = tamedog(mtmp, (struct obj *) 0);
-
-		    	    if (type) {
+		    	    if (type && type != monsndx(ptr)) {
+				ptr = &mons[type];
 		    	    	mon_spec_poly(mtmp, ptr, time);
 		    	    }
 		    	}

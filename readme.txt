@@ -354,6 +354,7 @@ ver 0.0.6E4F1 [September XX/2000]
 -fixed bug 115347: Guidebook incorrect re. reading engravings and conduct.
 -fixed bug 113621: GTK port now supports 3D tileset.
 -fixed bug 113813: Update tileset.
+-fixed bug 115554: Primal roar technique can cause crash.
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()
