@@ -359,7 +359,6 @@ ver 0.0.6E4F2 [December XX/2000]
 -fixed bug 126097: Misleading "You can't polymorph at will yet" message.
 -fixed bug 123491: Extra messages when lycanthropes eat wolfsbane.
 -fixed bug 124968: Vampires, helms of opposite alignment, and prayer.
--fixed bug 124233: gtk/win32: messages are drawn on top of each other.
 -fixed bug 117420: Gauntlets of Power not functioning properly.
 -fixed bug 121595: REINCARNATION defined but not supported.
 -fixed bug 124920: GTK: inv_weight slow update.
