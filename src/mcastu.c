@@ -465,6 +465,16 @@ int spellnum;
 	dmg = 0;
 	break;
     }
+	case MGC_CALL_UNDEAD:
+	{
+		coord mm;   
+		mm.x = u.ux;   
+		mm.y = u.uy;   
+		pline("Undead creatures are called forth from the grave!");   
+		mkundead(&mm, FALSE, NO_MINVENT);   
+	}
+	dmg = 0;   
+	break;   
     case MGC_AGGRAVATION:
 	You_feel("that monsters are aware of your presence.");
 	aggravate();
