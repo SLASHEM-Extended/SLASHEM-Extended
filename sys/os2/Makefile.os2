@@ -29,8 +29,8 @@
 #	which you will have to adapt to your configuration.
 #
 
-#format = omf
-format = a.out
+format = omf
+#format = a.out
 
 .IF $(format) == a.out
 #with_x11 = yes
@@ -47,8 +47,8 @@ CC	= gcc		# GCC
 LINK	= gcc
 .ELSE
 LINK	= link386	# GCC OMF
+LFLAGS = /noig /stack:40000	# GCC OMF
 .END
-
 
 #
 #	Make syntax peculiarities.
@@ -174,7 +174,7 @@ O	!=-s -O -o
 WINX11CFLAGS = -I$(X11ROOT)\include -Zmtd
 WINX11LIB = -lXaw -lXmu -lXext -lXt -lX11 -lXpm -L$(X11ROOT)\lib -lc_app
 WINX11SRC = ..\win\X11\Window.c ..\win\X11\dialogs.c ..\win\X11\winX.c ..\win\X11\winmap.c  ..\win\X11\winmenu.c ..\win\X11\winmesg.c ..\win\X11\winmisc.c ..\win\X11\winstat.c ..\win\X11\wintext.c ..\win\X11\winval.c tile.c
-WINX11VARDAT= x11tiles x11bigtiles x11big3dtiles pet_mark.xbm rip.xpm
+WINX11VARDAT= x11tiles x11bigtiles pet_mark.xbm rip.xpm
 .END
 
 #
@@ -200,14 +200,6 @@ WARN	=#-W -Wimplicit -Wreturn-type -Wunused -Wformat -Wswitch -Wshadow -Wcast-qu
 GCCO	=-Zomf -Zsys
 .ELSE
 GCCO	=
-.END
-
-#
-#	Linker flags. GCC likes a big stack.
-#
-
-.IF $(format) == omf
-LFLAGS = /noig /stack:40000	# GCC OMF
 .END
 
 #
@@ -1761,11 +1753,17 @@ spotless : clean
 	$(RM) $(INCL)\pm.h
 	$(RM) $(INCL)\vis_tab.h
 	$(RM) $(INCL)\filename.h
+	$(RM) $(INCL)\tile.h
+	$(RM) $(INCL)\dgn_comp.h
+	$(RM) $(INCL)\lev_comp.h
 	$(RM) vis_tab.c
 	$(RM) monstr.c
 	$(RM) tile.c
 	$(RM) *.lev
 	$(RM) nethack.ico
+	$(RM) $(UTIL)\???_lex.c
+	$(RM) $(UTIL)\???_yacc.c
+	$(RM) $(UTIL)\???_comp.h
 	$(RM) $(TEMP)\makedefs.exe
 	$(RM) $(TEMP)\lev_comp.exe
 	$(RM) $(TEMP)\dgn_comp.exe
@@ -1787,6 +1785,11 @@ spotless : clean
 	$(RM) $(TEMP)\license
 	$(MAKEB) DATDIR=$(TEMP) removedat
 	$(RM) x11*tiles*
+	$(RM) $(WINSHARE)\???3?-t.txt
+	$(RM) $(WINSHARE)\???3?.txt
+	$(RM) $(WINSHARE)\???big.txt
+	$(RM) $(WINSHARE)\???mag.txt
+
 
 uninstall:
 	$(RM) $(GAMEFILE)
@@ -2102,21 +2105,23 @@ $(TEMP)\tilemap.exe: ..\win\share\tilemap.c $(HACK_H)
 $(NHSRC)\src\tile.c: $(TEMP)\tilemap.exe
 	$(TEMP)\tilemap
 
+$(INCL)\tile.h: $(TEMP)\tilemap.exe
+
 TEXT_IO = $(OBJ)\tiletext.o $(OBJ)\tiletxt.o $(OBJ)\drawing.o $(OBJ)\decl.o $(OBJ)\monst.o $(OBJ)\objects.o
 
-$(TEMP)\txtbg.exe: $(WINSHARE)\txtbg.c $(HACK_H) ..\include\tile.h $(TEXT_IO)
+$(TEMP)\txtbg.exe: $(WINSHARE)\txtbg.c $(HACK_H) $(INCL)\tile.h $(TEXT_IO)
 	$(CC) $(GCCO) $(WARN) -I$(INCL) $(CDFLAGS) $(STDC) $(WINX11CFLAGS) $(LFLAGS) \
  -o $(TEMP)\txtbg.exe $(WINSHARE)\txtbg.c $(TEXT_IO) $(LIBS)
 
-$(TEMP)\txtmerge.exe: $(WINSHARE)\txtmerge.c $(CONFIG_H) ..\include\tile.h $(TEXT_IO)
+$(TEMP)\txtmerge.exe: $(WINSHARE)\txtmerge.c $(CONFIG_H) $(INCL)\tile.h $(TEXT_IO)
 	$(CC) $(GCCO) $(WARN) -I$(INCL) $(CDFLAGS) $(STDC) $(WINX11CFLAGS) $(LFLAGS) \
  -o $(TEMP)\txtmerge.exe $(WINSHARE)\txtmerge.c $(TEXT_IO) $(LIBS)
 
-$(TEMP)\magtile.exe: $(WINSHARE)\magtile.c $(CONFIG_H) ../include/tile.h $(TEXT_IO)
+$(TEMP)\magtile.exe: $(WINSHARE)\magtile.c $(CONFIG_H) $(INCL)\tile.h $(TEXT_IO)
 	$(CC) $(GCCO) $(WARN) -I$(INCL) $(CDFLAGS) $(STDC) $(WINX11CFLAGS) $(LFLAGS) \
  -o $(TEMP)\magtile.exe $(WINSHARE)\magtile.c $(TEXT_IO) $(LIBS)
 
-$(TEMP)\bigtile.exe: $(WINSHARE)\bigtile.c $(CONFIG_H) ../include/tile.h $(TEXT_IO)
+$(TEMP)\bigtile.exe: $(WINSHARE)\bigtile.c $(CONFIG_H) $(INCL)\tile.h $(TEXT_IO)
 	$(CC) $(GCCO) $(WARN) -I$(INCL) $(CDFLAGS) $(STDC) $(WINX11CFLAGS) $(LFLAGS) \
  -o $(TEMP)\bigtile.exe $(WINSHARE)\bigtile.c $(TEXT_IO) $(LIBS)
 
