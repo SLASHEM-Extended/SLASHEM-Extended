@@ -1441,7 +1441,7 @@ register struct obj *obj;
 	    instapetrify(kbuf);
   	}
 	if (is_rider(&mons[corpse->corpsenm])) {
-		(void) revive_corpse(corpse);
+		(void) revive_corpse(corpse, FALSE);
 		verbalize("Yes...  But War does not preserve its enemies...");
 		return;
 	}
