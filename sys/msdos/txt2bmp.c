@@ -346,7 +346,7 @@ char *argv[];
 
 	    	if ((util_mode == 'b' || util_mode == 'c') && !bigtile_bmp) {
 	    	    /* Only make this once */
-	            bigtile_bmp = create_bitmap(tile_x * TILES_PER_COL, tile_y * TILES_PER_ROW);
+	            bigtile_bmp = create_bitmap(tile_x * TILES_PER_ROW, tile_y * TILES_PER_COL);
 	    	}
 
                 while (read_text_tile(pixels)) {

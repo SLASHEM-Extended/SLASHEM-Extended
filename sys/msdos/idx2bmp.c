@@ -159,7 +159,7 @@ char *argv[];
                 	tile_x = tilebmp->w;
                 	tile_y = tilebmp->h;
                 	
-	        	bigtile_bmp = create_bitmap(tile_x * TILES_PER_COL, tile_y * TILES_PER_ROW);
+	        	bigtile_bmp = create_bitmap(tile_x * TILES_PER_ROW, tile_y * TILES_PER_COL);
                 }
                 
 	    	col = (int)(i % TILES_PER_ROW);
