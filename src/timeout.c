@@ -669,7 +669,7 @@ long timeout;
 			}
 			if (!silent) {
 			    if (canseemon(mtmp))
-				You("see %s explode!", mon_nam(mtmp));
+				You("see %s engulfed in an explosion!", mon_nam(mtmp));
 			    else if (flags.soundok)
 				You_hear("a blast.");
 			}
