@@ -1596,33 +1596,65 @@ polyatwill()      /* Polymorph at will for Doppelganger class */
 	}
 
 	if ((Role_if(PM_ICE_MAGE) || Role_if(PM_FLAME_MAGE)) &&
-		((u.uen > EN_BABY_DRAGON && u.ulevel > 6) || scales || scale_mail)) {
+	    (u.ulevel > 6 || scale_mail)) {
+	    /* [ALI]
+	     * I've rewritten the logic here to fix the failure messages,
+	     * but the requirements for polymorphing into the two dragon
+	     * forms remains the same:
+	     *
+	     * Polymorph into adult dragon form if one of:
+	     *
+	     * - Wearing scale mail (no charge).
+	     * - Wearing scales and experience level 7 and
+	     *   energy level 11 or more (charge is 10).
+	     * - Not wearing scales or scale mail and experience level 14 and
+	     *   energy level 16 or more (charge is 15).
+	     *
+	     * Polymorph into baby dragon form if one of:
+	     *
+	     * - Wearing scales and experience level 7 and
+	     *   energy level 10 or less (no charge).
+	     * - Not wearing scales or scale mail and experience level 14 and
+	     *   energy level 11-15 (charge is 10).
+	     * - Not wearing scales or scale mail and experience level 7-13 and
+	     *   energy level 11 or more (charge is 10).
+	     *
+	     * Fail if one of:
+	     *
+	     * - Not wearing scales or scale mail and experience level 7 and
+	     *   energy level 10 or less (not enough energy).
+	     * - Not wearing scale mail and experience level 6 or less
+	     *   (not experienced enough).
+	     */
 	    if (yn("Polymorph to your draconic form?") == 'n') 
-	    	can_polyatwill = TRUE;
-	    
+		can_polyatwill = TRUE;
+	    else if (!scales && !scale_mail && u.uen <= EN_BABY_DRAGON) {
+		You("don't have the energy to polymorph.");
+		return (0);		
 	    /* Check if you can do the adult form */
-	    else if ((u.ulevel > 13 && u.uen > EN_ADULT_DRAGON) || 
-	    	(u.ulevel > 6 && (scales && u.uen > EN_BABY_DRAGON) || scale_mail)) {
+	    } else if (u.ulevel > 13 && u.uen > EN_ADULT_DRAGON || 
+	    	scales && u.uen > EN_BABY_DRAGON || scale_mail) {
 		    /* If you have scales, energy cost is less */
 		    /* If you have scale mail,  there is no cost! */
-	    	    if (!scale_mail) {
+		    if (!scale_mail) {
 			    if (scales) u.uen -= EN_BABY_DRAGON; 
 			    else u.uen -= EN_ADULT_DRAGON;
-	    	    }
-		    
+		    }
+		
 		    /* Get the adult dragon form */
 		    if (Role_if(PM_FLAME_MAGE)) mon = PM_RED_DRAGON;
 		    else mon = PM_WHITE_DRAGON;
 
-		    if (!(mvitals[mon].mvflags & G_GENOD) && scales) {
-		    	merge_with_armor();
+		    if (!(mvitals[mon].mvflags & G_GENOD) &&
+		      (scales || scale_mail)) {
+			merge_with_armor();
 		    }
-		    
+		
 		    polymon(mon); /* Goto adult form */
 		    return(1);
-	    /* Try the baby form */
-	    } else if ((u.ulevel > 6 && ((u.uen > EN_BABY_DRAGON) || scales)) || scale_mail) {
-		    if(!scales && !scale_mail) u.uen -= EN_BABY_DRAGON;
+	    /* Otherwise use the baby form */
+	    } else {
+		    if (!scales) u.uen -= EN_BABY_DRAGON;
 		
 		    if (Role_if(PM_FLAME_MAGE)) mon = PM_BABY_RED_DRAGON;
 		    else mon = PM_BABY_WHITE_DRAGON;
@@ -1633,9 +1665,6 @@ polyatwill()      /* Polymorph at will for Doppelganger class */
 		
 		    polymon(mon); /* Goto baby form */
 		    return(1); 
-	    } else {
-		You("don't have the energy to polymorph.");
-		return (0);		
 	    }
 	}
 	if (Race_if(PM_DOPPELGANGER)) {

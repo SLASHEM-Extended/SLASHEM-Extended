@@ -356,6 +356,7 @@ ver 0.0.6E4F2 [December XX/2000]
 -fixed bug 125472: slashem-0.0.6E4F1-1 source RPM fails on RedHat 7.
 -extended heap monitoring under LINUX
 -plugged some leaks for bug 124143: Win Version - Slowdown/Hangup/Memory leaks?
+-fixed bug 126097: Misleading "You can't polymorph at will yet" message.
 
 ver 0.0.6E4F1 [November 10/2000] [Released by Ali]
 -GTK: status window stats columns should never be too small
