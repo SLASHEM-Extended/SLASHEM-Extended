@@ -902,6 +902,9 @@ int tech_no;
 			if (tmp_invul) Invulnerable = 0;
 		    }
 
+		    /* A little Sokoban guilt... */
+		    if (In_sokoban(&u.uz))
+			change_luck(-1);
 		    You("reform!");
 		    teleds(cc.x, cc.y);
 		    nomul(-1);
