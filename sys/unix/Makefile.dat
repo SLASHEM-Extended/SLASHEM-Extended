@@ -193,7 +193,8 @@ glrip.png:	../util/tile2png ../win/gl/rip.txt
 
 nhtiles.bmp: ../util/tile2bmp ../win/share/monsters.txt ../win/share/objects.txt \
 				../win/share/other.txt
-	../util/tile2bmp $@
+	../util/tile2bmp $@ ../win/share/monsters.txt ../win/share/objects.txt \
+				../win/share/other.txt
 
 SlashEM.ad: ../win/X11/SlashEM.ad
 	cp ../win/X11/SlashEM.ad SlashEM.ad
