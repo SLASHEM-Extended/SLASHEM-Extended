@@ -3628,7 +3628,6 @@ register int dx,dy;
 /*        if(isok(sx,sy) && (lev = &levl[sx][sy])->typ) {*/
 
         if(isok(sx,sy) && (ZAP_POS(lev->typ))) {
-	    mon = m_at(sx, sy);
 
 #ifdef LIGHT_SRC_SPELL
         /*WAC added light sourcing for the zap...*/
@@ -3641,14 +3640,14 @@ register int dx,dy;
             }
 #endif
 	    /*Actual Megablast:right now only mag missile to cone of cold WAC*/
-            if (type >= ZT_MEGA(ZT_FIRST) && type <= ZT_MEGA(ZT_LAST)) {
-                if (away != 1) {
-			/*explode takes care of vision stuff*/
-			explode(sx, sy, type, nd, 0);
-			delay_output(); /* wait a little */
-                }
-	    /* Normale Zap */
-            } else if (cansee(sx,sy)) {
+	    if (is_mega_spell(type) && away != 1) {
+		/*explode takes care of vision stuff*/
+		explode(sx, sy, type, nd, 0);
+		delay_output(); /* wait a little */
+	    }
+	    mon = m_at(sx, sy);
+	    /* Normal Zap */
+	    if (!is_mega_spell(type) && cansee(sx,sy)) {
 		/* reveal/unreveal invisible monsters before tmp_at() */
 		if (mon && !canspotmon(mon))
 		    map_invisible(sx, sy);
@@ -3656,7 +3655,7 @@ register int dx,dy;
 		    unmap_object(sx, sy);
 		    newsym(sx, sy);
 		}
-		if(!is_mega_spell(type) && (ZAP_POS(lev->typ) || cansee(lsx,lsy))) {
+		if(ZAP_POS(lev->typ) || cansee(lsx,lsy)) {
 		    tmp_at(sx,sy);
 		    delay_output(); /* wait a little */
 		}
