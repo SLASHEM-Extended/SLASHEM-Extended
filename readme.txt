@@ -326,7 +326,7 @@ TODO:
 -tofix: using the nethack config files.
 -vampires shouldn't be allowed to become Flame Mages
 
-ver 0.0.6E4F3 [February XX/2001]
+ver 0.0.6E4F3 [February 28/2001] [Released by Ali]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined
 -fixed bug 127211: Pet vampires leave corpses partly eaten.
 -fixed bug 127798: Eating a wraith corpse while polymorphed is buggy.
