@@ -917,8 +917,8 @@ register struct obj *obj;
 		 *      Bag status    Ordinary    Artifact
 		 *      ----------    --------    --------
 		 *      cursed          2x           4x
-		 *      blessed       x/4 + 1     x/6 + 1
-		 *      otherwise     x/2 + 1     x/3 + 1
+		 *      blessed       (x + 3)/4   (x + 5)/6
+		 *      otherwise     (x + 1)/2   (x + 2)/3
 		 *
 		 *  The macro DELTA_CWT in pickup.c also implements these
 		 *  weight equations.
@@ -928,9 +928,11 @@ register struct obj *obj;
 		 *         cursed (not supposed to happen), it will be treated
 		 *         as cursed.
 		 */
+#define CEILDIV(x,y)	(((x)+(y)-1)/(y))	/* ceil(x/y) */
 		if (obj->otyp == BAG_OF_HOLDING)
 			cwt = obj->cursed ? (cwt * (obj->oartifact ? 4 : 2)) :
-				(cwt / (obj->oartifact ? 3 : 2) / (obj->blessed ? 2 : 1) + 1);
+				CEILDIV(cwt, (obj->oartifact ? 3 : 2) * (obj->blessed ? 2 : 1));
+#undef CEILDIV
 		return wt + cwt;
 	}
 	if (obj->otyp == CORPSE && obj->corpsenm >= LOW_PM)

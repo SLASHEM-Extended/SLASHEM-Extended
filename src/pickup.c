@@ -36,14 +36,15 @@ STATIC_DCL boolean FDECL(mon_beside, (int, int));
 #define FOLLOW(curr, flags) \
     (((flags) & BY_NEXTHERE) ? (curr)->nexthere : (curr)->nobj)
 
+#define CEILDIV(x,y)	(((x)+(y)-1)/(y))	/* ceil(x/y) */
 /*
  *  How much the weight of the given container will change when the given
  *  object is removed from it.  This calculation must match the one used
  *  by weight() in mkobj.c.
  */
 #define DELTA_CWT(cont,obj)		\
-    ((cont)->cursed ? (obj)->owt * 2 :	\
-		      1 + ((obj)->owt / ((cont)->blessed ? 4 : 2)))
+    ((cont)->cursed ? (obj)->owt * ((cont)->oartifact ? 4 : 2) :	\
+   CEILDIV((obj)->owt, ((cont)->oartifact ? 3 : 2) * ((cont)->blessed ? 2 : 1)))
 #define GOLD_WT(n)		(((n) + 50L) / 100L)
 /* if you can figure this out, give yourself a hearty pat on the back... */
 #define GOLD_CAPACITY(w,n)	(((w) * -100L) - ((n) + 50L) - 1L)

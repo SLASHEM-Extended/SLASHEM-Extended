@@ -346,6 +346,7 @@ ver 0.0.6E4F2 [December XX/2000]
 -fixed bug 123387: slashem-0.0.6E4F1-1 can't locate tiles for X.
 -fixed bug 124064: gtk/win32 port can't display non-ASCII chars.
 -fixed bug 124069: gtk/win32: Inventory screen non-closeable.
+-fixed bug 123915: Bags of holding can be identified by weight.
 
 ver 0.0.6E4F1 [November 10/2000] [Released by Ali]
 -GTK: status window stats columns should never be too small
