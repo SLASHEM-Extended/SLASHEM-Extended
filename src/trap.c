@@ -1585,7 +1585,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			    deltrap(trap);
 			    newsym(mtmp->mx, mtmp->my);
 			    if (in_sight) 
-				pline("%s is caught in magical explosion.", Monnam(mtmp));
+				pline("%s is caught in a magical explosion.", Monnam(mtmp));
 			    if(thitm(0, mtmp, (struct obj *)0, rnd(10))) {
 				trapkilled = TRUE;
 			    } else {
@@ -1596,6 +1596,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			} else if (!rn2(21)) goto mfiretrap;
 			break;
 		case ANTI_MAGIC:
+			if (in_sight) seetrap(trap);
 		    	if (resists_magm(mtmp)) {
 			    if (in_sight) {
 				shieldeff(mtmp->mx,mtmp->my);

@@ -332,6 +332,8 @@ ver 0.0.6E4F2 [December XX/2000]
 -fixed bug 122999: Can't wish for The Key of Chaos.
 -fixed bug 121596: GTK widget options reverting after "more options".
 -fixed bug 123287: AllegroHack based tileset is out of date.
+-fixed bug 124048: Antimagic traps not displayed when monster triggers them.
+-fixed bug 124049: Missing "a" in magical explosion message.
 
 ver 0.0.6E4F1 [November 10/2000] [Released by Ali]
 -GTK: status window stats columns should never be too small
