@@ -1027,7 +1027,7 @@ topl_resp_key(char ch) {
 
 
 static void
-adjust_window_pos(NhWindow *aWin, short width, short height) {
+adjust_window_pos(NhWindow *aWin, long width, long height) {
 	WindowPtr theWindow = aWin->its_window;
 	Rect scr_r = (*GetGrayRgn())->rgnBBox;
 	const Rect win_ind = {2, 2, 3, 3};
