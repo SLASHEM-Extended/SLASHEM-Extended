@@ -57,16 +57,17 @@ E int NDECL(proxy_get_ext_cmd);
 E void FDECL(proxy_number_pad, (int));
 E void NDECL(proxy_delay_output);
 #ifdef CHANGE_COLOR
-E void FDECL(proxy_change_color,(int, long, int));
+E void FDECL(proxy_change_color, (int, long, int));
 #ifdef MAC
-E void FDECL(proxy_change_background,(int));
+E void FDECL(proxy_change_background, (int));
 E short FDECL(set_proxy_font_name, (winid, char *));
 #endif
 E char * NDECL(proxy_get_color_string);
 #endif
 E void NDECL(proxy_start_screen);
 E void NDECL(proxy_end_screen);
-E void FDECL(proxy_outrip, (winid,int));
+E void FDECL(proxy_outrip, (winid, int));
+E void FDECL(proxy_status, (int, int, const char **));
 
 #ifdef NHXDR_H
 struct nhext_svc {
@@ -158,6 +159,7 @@ E char * FDECL(get_killer_string, (int));
 #define EXT_FID_START_SCREEN		0x2A
 #define EXT_FID_END_SCREEN		0x2B
 #define EXT_FID_OUTRIP			0x2C
+#define EXT_FID_STATUS			0x2D
 
 struct proxy_init_nhwindow_req {
     int argc;
@@ -181,6 +183,12 @@ struct proxy_select_menu_res {
     struct proxy_mi *selected;
 };
 
+struct proxy_status_req {
+    int reconfig;
+    int nv;
+    const char **values;
+};
+
 #ifdef NHXDR_H
 E boolean FDECL(proxy_xdr_init_nhwindow_req,
 		(NhExtXdr *, struct proxy_init_nhwindow_req *));
@@ -188,6 +196,7 @@ E boolean FDECL(proxy_xdr_init_nhwindow_res,
 		(NhExtXdr *, struct proxy_init_nhwindow_res *));
 E boolean FDECL(proxy_xdr_proxy_mi, (NhExtXdr *, struct proxy_mi *));
 E boolean FDECL(proxy_xdr_select_menu_res, (NhExtXdr *, struct proxy_select_menu_res *));
+E boolean FDECL(proxy_xdr_status_req, (NhExtXdr *, struct proxy_status_req *));
 #endif	/* NHXDR_H */
 
 struct window_ext_procs {
@@ -229,13 +238,14 @@ struct window_ext_procs {
     int NDECL((*winext_get_ext_cmd));
     void FDECL((*winext_number_pad), (int));
     void NDECL((*winext_delay_output));
-    void FDECL((*winext_change_color), (int,long,int));
+    void FDECL((*winext_change_color), (int, long, int));
     void FDECL((*winext_change_background), (int));
     int FDECL((*winext_set_font_name), (winid, char *));
     char *NDECL((*winext_get_color_string));
     void NDECL((*winext_start_screen));
     void NDECL((*winext_end_screen));
-    int FDECL((*winext_outrip), (winid,char *));
+    int FDECL((*winext_outrip), (winid, char *));
+    void FDECL((*winext_status), (int, int, const char **));
 };
 
 #undef E

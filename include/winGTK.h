@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.19 2001-12-11 20:43:49 j_ali Exp $
+  $Id: winGTK.h,v 1.20 2002-01-31 22:21:25 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -199,14 +199,22 @@ extern GtkWidget	*nh_message_new(void);
 extern void		nh_message_putstr(const char *);
 
 extern GtkWidget	*nh_status_new(void);
+#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+extern void		GTK_ext_status(int, int, const char **);
+#else
 extern void		nh_status_update(void);
 extern void		nh_status_index_update(void);
+#endif
 
 extern int		nh_keysym(GdkEventKey *ev);
 extern int		nh_dir_keysym(GdkEventKey *ev);
 
 extern void		nh_option_new(void);
+#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+extern void		nh_option_lock(boolean);
+#else
 extern void		nh_option_lock(void);
+#endif
 
 extern int		nh_tile_height();
 extern int		nh_tile_3dheight();
@@ -250,8 +258,15 @@ struct menu_info_t {
 #endif
 };
 
+#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+#define NHWF_DISPLAYED		1
+#endif
+
 typedef struct _NHWindow{
     int		type;
+#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+    unsigned	flags;
+#endif
 
     guint	hid;
     GtkWidget	*w;

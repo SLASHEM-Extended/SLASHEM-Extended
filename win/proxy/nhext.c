@@ -1,4 +1,4 @@
-/* $Id: nhext.c,v 1.4 2001-12-11 20:43:49 j_ali Exp $ */
+/* $Id: nhext.c,v 1.5 2002-01-31 22:21:26 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -98,11 +98,11 @@ int nhext_rpc_vparams(NhExtXdr *xdrs, int no, va_list *app)
 		nhext_xdr_int(xdrs, &param_i);
 		break;
 	    case EXT_PARAM_BOOLEAN:
-		param_b = va_arg(ap, boolean);
+		param_b = va_arg(ap, int);	/* boolean is promoted to int */
 		nhext_xdr_bool(xdrs, &param_b);
 		break;
 	    case EXT_PARAM_CHAR:
-		param_i = va_arg(ap, char);
+		param_i = va_arg(ap, int);	/* char is promoted to int */
 		nhext_xdr_int(xdrs, &param_i);
 		break;
 	    case EXT_PARAM_PTR | EXT_PARAM_INT:

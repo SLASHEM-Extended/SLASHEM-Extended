@@ -1,8 +1,9 @@
 /*
-  $Id: gtk.c,v 1.8 2001-12-22 12:40:52 j_ali Exp $
+  $Id: gtk.c,v 1.9 2002-01-31 22:21:25 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
+               Copyright (c) Slash'EM Development Team 2001-2002
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -19,9 +20,10 @@
 #else
 #include "patchlevel.h"
 #endif
+#include "proxycb.h"
 
 static int	initialized;
-static int	initialized2;
+static int	display_inventory_needed;
 static int	in_topten;
 
 static void	select_player(GtkWidget *w, guint data);
@@ -33,6 +35,9 @@ static void	game_option(GtkWidget *w, gpointer data);
 static void	game_quit(GtkWidget *w, gpointer data);
 static void	game_topten(GtkWidget *w, gpointer data);
 static void	nh_menu_sensitive(char *menu, boolean f);
+
+static int      GTK_display_file(char *name);
+static void	GTK_display_inventory(void);
 
 static void	help_help(GtkWidget *w, gpointer data);
 static void	help_shelp(GtkWidget *w, gpointer data);
@@ -56,7 +61,7 @@ static winid		rawprint_win = WIN_ERR;
 
 GtkAccelGroup *accel_group=NULL;
 
-GtkWidget		*main_window;
+GtkWidget		*main_window, *main_vbox;
 #ifdef RADAR
 static GtkWidget	*main_radar;
 #endif
@@ -112,12 +117,10 @@ GTK_ext_askname() {
     return buf;
 }
 
-static GtkItemFactoryEntry menu_template[] = {
+static GtkItemFactoryEntry mainmenu_items[] = {
     {"/Game",			NULL,		NULL,		0,	"<Branch>"},
     {"/Game/Gtear1",		NULL,		NULL,		0,	"<Tearoff>"},
     {"/Game/Play",		NULL,		NULL,		0,	"<Branch>"},
-    /* Roles are inserted in the place of this NULL element */
-    {NULL,			NULL,		NULL,		0,	NULL},
     {"/Game/Gsep1",		NULL,		NULL,		0,	"<Separator>"},
     {"/Game/Save",		"<shift>S",	key_command,	'S',	NULL},
     {"/Game/Option",		"<shift>O",	game_option,	'O',    NULL},
@@ -546,6 +549,8 @@ void
 main_hook()
 {
     nh_map_check_visibility();
+    if (display_inventory_needed)
+	GTK_display_inventory();
 #ifdef RADAR
     if (!in_topten)
 	nh_radar_update();
@@ -584,10 +589,15 @@ game_topten(GtkWidget *widget, gpointer data)
 static void
 help_license(GtkWidget *widget, gpointer data)
 {
+#ifdef PROXY_GRAPHICS
+    if (!GTK_display_file("$(LICENSE)"))
+	pline("Cannot display license.  Sorry.");
+#else
 #ifndef FILE_AREAS    
     display_file(NH_LICENSE, TRUE);
 #else
     display_file(NH_LICENSE_AREA, NH_LICENSE, TRUE);
+#endif
 #endif
     keysym = '\0';
 }
@@ -603,10 +613,15 @@ help_history(GtkWidget *widget, gpointer data)
 static void
 help_option(GtkWidget *widget, gpointer data)
 {
+#ifdef PROXY_GRAPHICS
+    if (!GTK_display_file("$(OPTIONFILE)"))
+	pline("Cannot display option help.  Sorry.");
+#else
 #ifndef FILE_AREAS    
     display_file(NH_OPTIONFILE, TRUE);
 #else
     display_file(NH_OPTIONAREA, NH_OPTIONFILE, TRUE);
+#endif
 #endif
     keysym = '\0';
 }
@@ -614,10 +629,15 @@ help_option(GtkWidget *widget, gpointer data)
 static void
 help_shelp(GtkWidget *widget, gpointer data)
 {
+#ifdef PROXY_GRAPHICS
+    if (!GTK_display_file("$(SHELP)"))
+	pline("Cannot display short help.  Sorry.");
+#else
 #ifndef FILE_AREAS    
     display_file(NH_SHELP, TRUE);
 #else
     display_file(NH_SHELP_AREA, NH_SHELP, TRUE);
+#endif
 #endif
     keysym = '\0';
 }
@@ -625,10 +645,15 @@ help_shelp(GtkWidget *widget, gpointer data)
 static void
 help_help(GtkWidget *widget, gpointer data)
 {
+#ifdef PROXY_GRAPHICS
+    if (!GTK_display_file("$(HELP)"))
+	pline("Cannot display command help.  Sorry.");
+#else
 #ifndef FILE_AREAS    
     display_file(NH_HELP, TRUE);
 #else
     display_file(NH_HELP_AREA, NH_HELP, TRUE);
+#endif
 #endif
     keysym = '\0';
 }
@@ -687,9 +712,9 @@ ext_command(GtkWidget *widget, gpointer data)
 static void
 quit()
 {
-    if(initialized2)
+    if (program_state.something_worth_saving)
 	done2();
-    else{
+    else {
 	clearlocks();
 	GTK_exit_nhwindows(NULL);
 	terminate(0);
@@ -1058,6 +1083,13 @@ nh_rc(void)
  * menu.
  */
 
+struct {
+    int role;
+    int race;
+    int gend;
+    int align;
+} select_player_flags;		/* Used to pass data to/from select_player */
+
 #define SELECT_KEY_ROLESHIFT	    20
 #define SELECT_KEY_RACESHIFT	    8
 #define SELECT_KEY_GENDSHIFT	    4
@@ -1083,10 +1115,10 @@ nh_rc(void)
 static void
 select_player(GtkWidget *widget, guint data)
 {
-    flags.initrole = SELECT_KEY_ROLENUM(data);
-    flags.initrace = SELECT_KEY_RACENUM(data);
-    flags.initgend = SELECT_KEY_GENDNUM(data);
-    flags.initalign = SELECT_KEY_ALIGNNUM(data);
+    select_player_flags.role = SELECT_KEY_ROLENUM(data);
+    select_player_flags.race = SELECT_KEY_RACENUM(data);
+    select_player_flags.gend = SELECT_KEY_GENDNUM(data);
+    select_player_flags.align = SELECT_KEY_ALIGNNUM(data);
     
     quit_hook();
 }
@@ -1139,8 +1171,8 @@ select_node_option(unsigned long key, int level, int indx)
     {
 	case 0:
 	    /* Role */
-	    if (flags.initrole >= 0)
-		return indx ? -1 : flags.initrole;
+	    if (select_player_flags.role >= 0)
+		return indx ? -1 : select_player_flags.role;
 	    for (i = 0; roles[i].name.m; i++)
 		if (!indx--)
 		    return i;
@@ -1149,9 +1181,9 @@ select_node_option(unsigned long key, int level, int indx)
 	case 1:
 	    /* Race */
 	    rolenum = SELECT_KEY_ROLENUM(key);
-	    if (flags.initrace >= 0 &&
-	      (rolenum < 0 || validrace(rolenum, flags.initrace)))
-		return indx ? -1 : flags.initrace;
+	    if (select_player_flags.race >= 0 &&
+	      (rolenum < 0 || validrace(rolenum, select_player_flags.race)))
+		return indx ? -1 : select_player_flags.race;
 	    for (i = 0; races[i].noun; i++)
 		if (rolenum < 0 || validrace(rolenum, i))
 		    if (!indx--)
@@ -1167,13 +1199,13 @@ select_node_option(unsigned long key, int level, int indx)
 	    {
 		n = ROLE_GENDERS;
 		valid = validgend;
-		i = flags.initgend;
+		i = select_player_flags.gend;
 	    }
 	    else
 	    {
 		n = ROLE_ALIGNS;
 		valid = validalign;
-		i = flags.initalign;
+		i = select_player_flags.align;
 	    }
 	    rolenum = SELECT_KEY_ROLENUM(key);
 	    racenum = SELECT_KEY_RACENUM(key);
@@ -1362,8 +1394,8 @@ select_node_path(unsigned long key, int level, char *leaf)
  * item from each role to a function key. This allows the user to
  * press a function key to start the game in that role. The race,
  * gender and alignment of the character will either be as required
- * by the role, as specified in the flags.initfoo fields or randomly
- * chosen.
+ * by the role, as specified in the select_player_flags.foo fields
+ * or randomly chosen.
  */
 
 static char *
@@ -1538,14 +1570,13 @@ init_select_player(boolean init)
 {
     int num_opts, i;
     struct select_node *root;
-    static int no_dynamic_opts, first_dynamic_opt;
 
     if (!init) {	/* Exit */
-	for (i = 0; i < no_dynamic_opts; i++) {
-	    free(menu_items[first_dynamic_opt + i].path);
-	    free(menu_items[first_dynamic_opt + i].accelerator);
+	for (i = 0; i < nmenu_items; i++) {
+	    free(menu_items[i].path);
+	    free(menu_items[i].accelerator);
 	}
-	no_dynamic_opts = 0;
+	nmenu_items = 0;
 	free(menu_items);
 	menu_items = NULL;
 	return;
@@ -1557,29 +1588,12 @@ init_select_player(boolean init)
     select_node_dump(root, 0);
 #endif
     menu_items = (GtkItemFactoryEntry *)alloc(sizeof(GtkItemFactoryEntry) *
-      (num_opts + SIZE(menu_template) - 1));
-    nmenu_items = 0;
-    for (i = 0; i < SIZE(menu_template); i++) {
-	if (menu_template[i].path)
-	    menu_items[nmenu_items++] = menu_template[i];
-	else {
-	    first_dynamic_opt = nmenu_items;
-	    nmenu_items = select_node_traverse(root, nmenu_items, 0);
-	    no_dynamic_opts = nmenu_items - first_dynamic_opt;
-	}
-    }
-    if (nmenu_items > num_opts + SIZE(menu_template) - 1)
-	panic("GTK: init_select_player: Too many options (%d instead of %d)",
-	  nmenu_items, num_opts + SIZE(menu_template) - 1);
-#ifdef DEBUG
-    else if (nmenu_items < num_opts + SIZE(menu_template) - 1) {
-	impossible("GTK: init_select_player: Too few options (%d instead of %d)",
-	  nmenu_items, num_opts + SIZE(menu_template) - 1);
-	for(i = 0; i < nmenu_items; i++) {
-	    fprintf(stderr, "[%d] %s\n", i, menu_items[i].path);
-	}
-    }
-#endif
+      num_opts);
+    nmenu_items = num_opts;
+    nmenu_items = select_node_traverse(root, 0, 0);
+    if (nmenu_items != num_opts)
+	panic("GTK: init_select_player: Expecting %d options, got %d",
+	  num_opts, nmenu_items);
     select_node_free(root);
     free(root);
 }
@@ -1589,9 +1603,8 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
 {
     char *credit_file;
     int i;
-    GtkWidget 	*main_bar, 
-		*credit_window, *credit_vbox, *credit_credit,
-		*main_vbox, *main_hbox;
+    GtkWidget 	*credit_window, *credit_vbox, *credit_credit, *main_hbox;
+    GtkWidget	*main_bar;
     GtkStyle	*credit_style;
     GdkPixmap	*credit_pixmap;
     GdkBitmap	*credit_mask;
@@ -1599,8 +1612,6 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
 #ifdef UNIX
     uid_t savuid;
 #endif
-    if(initialized2)
-	goto selection;
 
     gtk_set_locale();
     nh_rc();
@@ -1629,8 +1640,6 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
     (void) seteuid(savuid);
 #endif
     
-    init_select_player(TRUE);
-
 /*
   creat credit widget and show
 */
@@ -1720,55 +1729,43 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
 
     main_vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), main_window, "");
 
-    {
-	int nplaymenu_items = sizeof(playmenu_items) / sizeof(playmenu_items[0]);
-	int nhelpmenu_items = sizeof(helpmenu_items) / sizeof(helpmenu_items[0]);
+    accel_group = gtk_accel_group_new();
+#if GTK_CHECK_VERSION(1,3,12)
+    gtk_window_add_accel_group(GTK_WINDOW(main_window), accel_group);
+#else
+    gtk_accel_group_attach(accel_group, G_OBJECT(main_window));
+#endif
 
-	accel_group = gtk_accel_group_new();
-
-	main_item_factory = gtk_item_factory_new(
-	    GTK_TYPE_MENU_BAR, "<main>",
-	    accel_group);
-
-	gtk_item_factory_create_items(
-	    main_item_factory,
-	    nmenu_items, menu_items,
-	    NULL);
-
-	gtk_item_factory_create_items(
-	    main_item_factory,
-	    nplaymenu_items, playmenu_items,
-	    NULL);
-
-	gtk_item_factory_create_items(
-	    main_item_factory,
-	    nhelpmenu_items, helpmenu_items,
-	    NULL);
-
-	gtk_accel_group_attach(accel_group, G_OBJECT(main_window));
-    }
+    main_item_factory = gtk_item_factory_new(
+	GTK_TYPE_MENU_BAR, "<main>",
+	accel_group);
 
     main_bar = nh_gtk_new_and_pack(
 	gtk_item_factory_get_widget(main_item_factory, "<main>"), main_vbox, "",
 	FALSE, FALSE, 0);
-    nh_menu_sensitive("/Game/Save", FALSE);
-/*
-  nh_menu_sensitive("/Game/Option", FALSE);
-*/
-    nh_menu_sensitive("/Move", FALSE);
-    nh_menu_sensitive("/Fight", FALSE);
-    nh_menu_sensitive("/Check", FALSE);
-    nh_menu_sensitive("/Equip", FALSE);
-    nh_menu_sensitive("/You", FALSE);
-    nh_menu_sensitive("/Adventure", FALSE);
-    nh_menu_sensitive("/Action", FALSE);
-    nh_menu_sensitive("/Religion", FALSE);
-    nh_menu_sensitive("/Special", FALSE);
 
     main_hbox = nh_gtk_new_and_pack(
 	gtk_hbox_new(FALSE, 1), main_vbox, "",
 	FALSE, FALSE, 0);
 	
+    gtk_item_factory_create_items(
+	main_item_factory,
+	SIZE(mainmenu_items), mainmenu_items,
+	NULL);
+
+    gtk_item_factory_create_items(
+	main_item_factory,
+	SIZE(playmenu_items), playmenu_items,
+	NULL);
+
+    gtk_item_factory_create_items(
+	main_item_factory,
+	SIZE(helpmenu_items), helpmenu_items,
+	NULL);
+
+    nh_menu_sensitive("/Game/Play", FALSE);
+    nh_option_lock(TRUE);
+
     (void) nh_gtk_new_and_pack(nh_message_new(), main_hbox, "",
 	TRUE, TRUE, 0);
     (void) nh_gtk_new_and_pack(nh_status_new(), main_hbox, "",
@@ -1796,7 +1793,6 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
     gtkWindows[NHW_MAP].type = NHW_MAP;
     gtkWindows[NHW_MAP].w = main_window;	
 
- selection:
     initialized = 1;
 
     gtk_widget_hide(credit_window);
@@ -1871,34 +1867,6 @@ GTK_exit_nhwindows(const char *str)
 	}
     }
 #endif
-}
-
-void
-GTK_init_nhwindows2()
-{
-    if(initialized2)
-	return;
-    nh_menu_sensitive("/Game/Play", FALSE);
-    nh_menu_sensitive("/Game/Save", TRUE);
-/*
-    nh_menu_sensitive("/Game/Option", TRUE);
-*/
-    nh_menu_sensitive("/Game/Save", TRUE);
-    nh_menu_sensitive("/Game/Option", TRUE);
-    nh_menu_sensitive("/Move", TRUE);
-    nh_menu_sensitive("/Fight", TRUE);
-    nh_menu_sensitive("/Check", TRUE);
-    nh_menu_sensitive("/Equip", TRUE);
-    nh_menu_sensitive("/You", TRUE);
-    nh_menu_sensitive("/Adventure", TRUE);
-    nh_menu_sensitive("/Action", TRUE);
-    nh_menu_sensitive("/Religion", TRUE);
-    nh_menu_sensitive("/Special", TRUE);
-
-    nh_option_lock();
-
-    initialized2 = 1;
-    GTK_update_inventory();
 }
 
 winid
@@ -2040,6 +2008,7 @@ GTK_display_nhwindow(winid id, BOOLEAN_P blocking)
 	    if (blocking)
 		gtk_grab_add(w->w);
 #endif
+	    w->flags |= NHWF_DISPLAYED;
 	    gtk_widget_show_all(w->w);
 	    if (!blocking)
 		w->w = NULL;		/* Gtk window now independant */
@@ -2075,8 +2044,6 @@ GTK_putstr(winid id, int attr, const char *str)
 	    nh_message_putstr(str);
 	    break;
 	case NHW_STATUS:
-	    nh_status_update();
-	    break;
 	case NHW_MAP:
 	    panic("bad window");
 	    break;
@@ -2191,6 +2158,20 @@ GTK_nh_poskey(int *x, int *y, int *mod)
     return key;
 }
 
+#ifdef PROXY_GRAPHICS
+static int
+GTK_display_file(char *name)
+{
+    int fh;
+    fh = proxy_cb_dlbh_fopen(name, "r");
+    if (fh < 0)
+	return FALSE;
+    GTK_ext_display_file(fh);
+    proxy_cb_dlbh_fclose(fh);
+    return TRUE;
+}
+#endif
+
 void
 GTK_ext_display_file(int fh)
 {
@@ -2246,7 +2227,11 @@ GTK_ext_display_file(int fh)
 	GTK_OBJECT(button), "clicked",
 	GTK_SIGNAL_FUNC(default_button_press), (gpointer)'\033');
 
-    while(dlbh_fgets(buf, NH_BUFSIZ, fh)){
+#ifndef PROXY_GRAPHICS
+    while(dlbh_fgets(buf, NH_BUFSIZ, fh)) {
+#else
+    while(proxy_cb_dlbh_fgets(buf, NH_BUFSIZ, fh)) {
+#endif
 	char *s;
 	if ((s = index(buf, '\r')) != 0)
 	    memmove(s, s + 1, strlen(s));
@@ -2272,21 +2257,76 @@ GTK_ext_display_file(int fh)
 int
 GTK_ext_player_selection(int *role, int *race, int *gend, int *align)
 {
-    if(!pl_character[0]){
-	gtk_main();
-	pl_character[0] = pl_selection;
-    }
+    select_player_flags.role = *role;
+    select_player_flags.race = *race;
+    select_player_flags.gend = *gend;
+    select_player_flags.align = *align;
+
+    init_select_player(TRUE);
+
+    gtk_item_factory_create_items(
+	main_item_factory,
+	nmenu_items, menu_items,
+	NULL);
+
+    nh_menu_sensitive("/Game/Play", TRUE);
+    nh_menu_sensitive("/Game/Save", FALSE);
+    nh_menu_sensitive("/Move", FALSE);
+    nh_menu_sensitive("/Fight", FALSE);
+    nh_menu_sensitive("/Check", FALSE);
+    nh_menu_sensitive("/Equip", FALSE);
+    nh_menu_sensitive("/You", FALSE);
+    nh_menu_sensitive("/Adventure", FALSE);
+    nh_menu_sensitive("/Action", FALSE);
+    nh_menu_sensitive("/Religion", FALSE);
+    nh_menu_sensitive("/Special", FALSE);
+    nh_option_lock(FALSE);
+
+    gtk_main();
+
+    nh_menu_sensitive("/Game/Play", FALSE);
+    nh_menu_sensitive("/Game/Save", TRUE);
+    nh_menu_sensitive("/Game/Save", TRUE);
+    nh_menu_sensitive("/Move", TRUE);
+    nh_menu_sensitive("/Fight", TRUE);
+    nh_menu_sensitive("/Check", TRUE);
+    nh_menu_sensitive("/Equip", TRUE);
+    nh_menu_sensitive("/You", TRUE);
+    nh_menu_sensitive("/Adventure", TRUE);
+    nh_menu_sensitive("/Action", TRUE);
+    nh_menu_sensitive("/Religion", TRUE);
+    nh_menu_sensitive("/Special", TRUE);
+    nh_option_lock(TRUE);
+
+    *role = select_player_flags.role;
+    *race = select_player_flags.race;
+    *gend = select_player_flags.gend;
+    *align = select_player_flags.align;
+
     return FALSE;		/* User didn't quit */
+}
+
+static void
+GTK_display_inventory(void)
+{
+    display_inventory_needed = FALSE;
+#ifdef PROXY_GRAPHICS
+    proxy_cb_display_inventory();
+#else
+    (void) display_inventory((char *)0, FALSE);
+#endif
 }
 
 void
 GTK_update_inventory(void)
 {
-    if (!initialized2)
-	return;
-    if (flags.perm_invent)
-	(void) display_inventory((char *)0, FALSE);
-    else if (WIN_INVEN != WIN_ERR)
+    if (flags.perm_invent) {
+	if (WIN_INVEN == WIN_ERR ||
+		!(gtkWindows[WIN_INVEN].flags & NHWF_DISPLAYED))
+	    display_inventory_needed = TRUE;
+	else
+	    GTK_display_inventory();
+    } else if (WIN_INVEN != WIN_ERR)
 	GTK_unmap_menu_window(&gtkWindows[WIN_INVEN]);
 }
 

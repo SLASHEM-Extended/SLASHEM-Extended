@@ -1855,7 +1855,7 @@ goodfruit:
 			 || (boolopt[i].addr) == &flags.showscore
 #endif
 			    )
-			    flags.botl = TRUE;
+			    bot_reconfig();
 
 			else if ((boolopt[i].addr) == &flags.invlet_constant) {
 			    if (flags.invlet_constant) reassign();

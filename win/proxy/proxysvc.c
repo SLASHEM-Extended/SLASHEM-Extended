@@ -1,4 +1,4 @@
-/* $Id: proxysvc.c,v 1.3 2001-12-24 07:56:33 j_ali Exp $ */
+/* $Id: proxysvc.c,v 1.4 2002-01-31 22:21:26 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -24,7 +24,7 @@ static struct window_ext_procs *proxy_svc;
  *	proxy_svc_main_quit(void)
  */
 
-static int proxy_svc_connection;
+int proxy_svc_connection;
 
 /*
  * Warning: This uses a gcc extension. The assumption is that we're going to
@@ -93,6 +93,7 @@ static void FDECL(proxy_svc_get_color_string,
 static void FDECL(proxy_svc_start_screen, (unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_end_screen, (unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_outrip, (unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_status, (unsigned short, NhExtXdr *, NhExtXdr *));
 
 static void
 proxy_svc_init(id, request, reply)
@@ -599,6 +600,16 @@ NhExtXdr *request, *reply;
     free(killed_by);
 }
 
+static void
+proxy_svc_status(id, request, reply)
+unsigned short id; 
+NhExtXdr *request, *reply;
+{
+    struct proxy_status_req req = { 0, 0, (const char **)0 };
+    nhext_rpc_params(request, 1, EXT_XDRF(proxy_xdr_status_req, &req));
+    (*proxy_svc->winext_status)(req.reconfig, req.nv, req.values);
+}
+
 static struct nhext_svc services[] = {
     EXT_FID_INIT,			proxy_svc_init,
     EXT_FID_INIT_NHWINDOWS,		proxy_svc_init_nhwindows,
@@ -644,6 +655,7 @@ static struct nhext_svc services[] = {
     EXT_FID_START_SCREEN,		proxy_svc_start_screen,
     EXT_FID_END_SCREEN,			proxy_svc_end_screen,
     EXT_FID_OUTRIP,			proxy_svc_outrip,
+    EXT_FID_STATUS,			proxy_svc_status,
     0,					NULL,
 };
 
@@ -660,15 +672,25 @@ struct window_ext_procs *windowprocs;
     proxy_svc = windowprocs;
 }
 
+extern unsigned long proxy_unread, proxy_svc_unread;
+
 #ifdef WIN32
 static int
 server_read(void *handle, void *buf, unsigned int len)
 {
     DWORD nb;
+    /*
+     * Hack for single process operation - let the game handle the pending
+     * callback.
+     */
+    if (!proxy_svc_unread)
+	win_proxy_iteration();
     if (!ReadFile((HANDLE)handle, buf, len, &nb, NULL))
 	return -1;
-    else
+    else {
+	proxy_svc_unread -= nb;
 	return nb;
+    }
 }
 
 static int
@@ -677,20 +699,36 @@ server_write(void *handle, void *buf, unsigned int len)
     DWORD nb;
     if (!WriteFile((HANDLE)handle, buf, len, &nb, NULL))
 	return -1;
-    else
+    else {
+	proxy_unread += nb;
 	return nb;
+    }
 }
 #else	/* WIN32 */
 static int
 server_read(void *handle, void *buf, unsigned int len)
 {
-    return read((int)handle, buf, len);
+    int nb;
+    /*
+     * Hack for single process operation - let the game handle the pending
+     * callback.
+     */
+    if (!proxy_svc_unread)
+	win_proxy_iteration();
+    nb = read((int)handle, buf, len);
+    if (nb > 0)
+	proxy_svc_unread -= nb;
+    return nb;
 }
 
 static int
 server_write(void *handle, void *buf, unsigned int len)
 {
-    return write((int)handle, buf, len);
+    int nb;
+    nb = write((int)handle, buf, len);
+    if (nb > 0)
+	proxy_unread += nb;
+    return nb;
 }
 #endif	/* WIN32 */
 

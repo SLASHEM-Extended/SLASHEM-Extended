@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.7 2001-12-24 07:56:33 j_ali Exp $
+  $Id: gtkmenu.c,v 1.8 2002-01-31 22:21:26 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -245,7 +245,11 @@ GTK_init_menu_widgets(NHWindow *w)
 			    (gpointer)MENU_INVERT_ALL);
      }
      else
-	 gtk_accel_group_attach(accel_group, G_OBJECT(w->w));
+#if GTK_CHECK_VERSION(1,3,12)
+	gtk_window_add_accel_group(GTK_WINDOW(w->w), accel_group);
+#else
+	gtk_accel_group_attach(accel_group, G_OBJECT(w->w));
+#endif
      w->hbox2 = nh_gtk_new_and_pack(
 	 gtk_hbox_new(FALSE, 0), w->vbox, "",
 	 FALSE, FALSE, NH_PAD);

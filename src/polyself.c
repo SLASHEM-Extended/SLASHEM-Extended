@@ -61,6 +61,7 @@ set_uasmon()
 {
 	set_mon_data(&youmonst, ((u.umonnum == u.umonster) ? 
 					&upermonst : &mons[u.umonnum]), 0);
+	bot_reconfig();
 }
 
 /* make a (new) human out of the player */
@@ -163,8 +164,8 @@ change_sex()
 	} else if (u.umonnum == PM_SUCCUBUS || u.umonnum == PM_INCUBUS) {
 	    /* change monster type to match new sex */
 	    u.umonnum = (u.umonnum == PM_SUCCUBUS) ? PM_INCUBUS : PM_SUCCUBUS;
-	    set_uasmon();
 	}
+	set_uasmon();
 }
 
 STATIC_OVL void

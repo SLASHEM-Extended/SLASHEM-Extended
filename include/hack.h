@@ -274,4 +274,14 @@ extern int third_last_hit;
 /* For those tough guys who get carried away... */
 extern int repeat_hit;
 
+/* Raw status flags */
+#define RAW_STAT_LEVITATION	0x00000001
+#define RAW_STAT_CONFUSION	0x00000002
+#define RAW_STAT_FOODPOIS	0x00000004
+#define RAW_STAT_ILL		0x00000008
+#define RAW_STAT_BLIND		0x00000010
+#define RAW_STAT_STUNNED	0x00000020
+#define RAW_STAT_HALLUCINATION	0x00000040
+#define RAW_STAT_SLIMED		0x00000080
+
 #endif /* HACK_H */

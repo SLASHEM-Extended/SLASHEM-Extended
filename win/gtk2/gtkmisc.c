@@ -1,9 +1,9 @@
 /*
-  $Id: gtkmisc.c,v 1.3 2001-06-16 18:14:41 j_ali Exp $
+  $Id: gtkmisc.c,v 1.4 2002-01-31 22:21:26 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
-               Copyright (c) Slash'EM Development Team 2000-2001
+               Copyright (c) Slash'EM Development Team 2000-2002
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -40,43 +40,44 @@ static struct GTK_Option{
     char      *on;	
     char      *off;	
     boolean   *opt_p;	
+    char      *option;
     boolean   not;
     GSList    *group;
     GtkWidget *radio1;
     GtkWidget *radio2;
 } gtk_option[] = {
-    {"prevent you from attacking your pet", "Yes", "No", &flags.safe_dog},
-    {"ask before hidding peaceful monsters", "Yes", "No", &flags.confirm},
+    {"prevent you from attacking your pet", "Yes", "No", &flags.safe_dog, "safe_pet"},
+    {"ask before hidding peaceful monsters", "Yes", "No", &flags.confirm, "confirm"},
 #ifdef TEXTCOLOR
-    {"display pets in a red square", "Yes", "No", &iflags.hilite_pet},
+    {"display pets in a red square", "Yes", "No", &iflags.hilite_pet, "hilite_pet"},
 #endif
 #ifdef RADAR
-    {"display radar", "Yes", "No", &flags.radar},
+    {"display radar", "Yes", "No", &flags.radar, "radar"},
 #endif
     {NULL,},
-    {"display experience points", "Yes", "No", &flags.showexp},
+    {"display experience points", "Yes", "No", &flags.showexp, "showexp"},
 #ifdef SCORE_ON_BOTL
-    {"display score points", "Yes", "No", &flags.showscore},
+    {"display score points", "Yes", "No", &flags.showscore, "showscore"},
 #endif
-    {"display elapsed game time", "Yes", "No", &flags.time},
+    {"display elapsed game time", "Yes", "No", &flags.time, "time"},
     {NULL,},
-    {"automatically pick up objects", "Yes", "No", &flags.pickup},
+    {"automatically pick up objects", "Yes", "No", &flags.pickup, "autopickup"},
     {NULL,},
-    {"print introductory message", "Yes", "No", &flags.legacy},
+    {"print introductory message", "Yes", "No", &flags.legacy, "legacy"},
 #ifdef NEWS
-    {"print any news", "Yes", "No", &iflags.news},
+    {"print any news", "Yes", "No", &iflags.news, "news"},
 #endif
 #ifdef MAIL
-    {"enable the mail dameon", "Yes", "No", &flags.biff},
+    {"enable the mail dameon", "Yes", "No", &flags.biff, "mail"},
 #endif
     {NULL,},
-    {"space bar as a rest character", "Yes", "No", &flags.rest_on_space},
-    {"print more commentary", "Yes", "No", &flags.verbose},
+    {"space bar as a rest character", "Yes", "No", &flags.rest_on_space, "rest_on_space"},
+    {"print more commentary", "Yes", "No", &flags.verbose, "verbose"},
     {NULL,},
-    {"print tombstone when die", "Yes", "No", &flags.tombstone},
+    {"print tombstone when die", "Yes", "No", &flags.tombstone, "tombstone"},
     {NULL,},
-    {"try to retain the same letter for the same objects", "Yes", "No", &flags.invlet_constant},
-    {"group similar kinds of objects in inventory", "Yes", "No", &flags.sortpack},
+    {"try to retain the same letter for the same objects", "Yes", "No", &flags.invlet_constant, "fixinv"},
+    {"group similar kinds of objects in inventory", "Yes", "No", &flags.sortpack, "sortpack"},
 };
 
 static void	nh_option_set(void);
@@ -289,6 +290,129 @@ nh_option_set(void)
       GTK_TOGGLE_BUTTON(tileTab[nh_get_map_visual()].data), TRUE);
 }
 
+#if 0	/* We'll need this once we've implemented a get option callback */
+
+/* [ALI] We could probably do this better with glib functions */
+
+#define NHOF_DIRTY	1
+#define NHOF_BOOLEAN	2
+
+static char *boolean_set = "yes";	/* Where value points for booleans */
+static char *boolean_reset = "no";
+
+static int nh_option_cache_size;
+static struct nh_option {
+    char *option;
+    char *value;
+    unsigned flags;
+} *nh_option_cache;
+
+static struct nh_option *
+nh_option_cache_getent(char *option)
+{
+    int i;
+    struct nh_option *new;
+    for(i = 0; i < nh_option_cache_size; i++)
+	if (nh_option_cache[i].option &&
+	  !strcmp(option, nh_option_cache[i].option))
+	    return nh_option_cache + i;
+    for(i = 0; i < nh_option_cache_size; i++)
+	if (!nh_option_cache[i].option)
+	    break;
+    if (i == nh_option_cache_size) {
+	new = (struct nh_option *)realloc(nh_option_cache_size + 1,
+	  sizeof(*nh_option_cache));
+	if (!new)
+	    return NULL;
+	i = nh_option_cache_size++;
+    }
+    memset(nh_option_cache + i, sizeof(*nh_option_cache), 0);
+    nh_option_cache[i].option = strdup(option);
+    return nh_option_cache[i].option ? nh_option_cache + i : NULL;
+}
+
+static int
+nh_option_cache_sync(void)
+{
+    int nb = 0;
+    char *buf, *bp;
+    for(i = 0; i < nh_option_cache_size; i++)
+	if (nh_option_cache[i].flags & NHOF_DIRTY) {
+	    nb += strlen(nh_option_cache[i].option);
+	    if (nh_option_cache[i].flags & NHOF_BOOLEAN)
+		nb += nh_option_cache[i].value == boolean_set ? 1 : 2;
+	    else
+		nb += strlen(nh_option_cache[i].value) + 2;
+	}
+    bp = buf = malloc(nb);
+    if (!buf)
+	return FALSE;
+    for(i = 0; i < nh_option_cache_size; i++)
+	if (nh_option_cache[i].flags & NHOF_DIRTY) {
+	    if (bp != buf)
+		*bp++ = ',';
+	    if ((nh_option_cache[i].flags & NHOF_BOOLEAN) &&
+	      nh_option_cache[i].value != boolean_set))
+		*bp++ = '!';
+	    strcpy(bp, nh_option_cache[i].option);
+	    bp = eos(bp);
+	    if (!(nh_option_cache[i].flags & NHOF_BOOLEAN)) {
+		*bp++ = '=';
+		strcpy(bp, nh_option_cache[i].value);
+		bp = eos(bp);
+	    }
+	    nh_option_cache[i].flags &= ~NHOF_DIRTY;
+	}
+    parseoptions(buf, FALSE, FALSE);
+    free(buf);
+    return TRUE;
+}
+
+static void
+nh_option_cache_set(char *option, char *value)
+{
+    struct nh_option *no = nh_option_cache_getent(option);
+    if (no->flags & NHOF_BOOLEAN)
+	panic("Setting value for boolean option %s", option);
+    if (no && (!no->value || strcmp(value, no->value))) {
+	free(no->value);
+	no->value = strdup(value);
+	no->flags |= NHOF_DIRTY;
+    }
+}
+
+static void
+nh_option_cache_set_bool(char *option, boolean value)
+{
+    struct nh_option *no = nh_option_cache_getent(option);
+    if (!(no->flags & NHOF_BOOLEAN) && no->value)
+	panic("Setting boolean value for text option %s", option);
+    if (no && no->value != value ? boolean_set : boolean_reset) {
+	no->value = value ? boolean_set : boolean_reset;
+	no->flags |= NHOF_DIRTY | NHOF_BOOLEAN;
+    }
+}
+
+static char *
+nh_option_cache_get(char *option)
+{
+    struct nh_option *no = nh_option_cache_getent(option);
+    if (!no)
+	return "";
+    if (!no->value) {
+	/* FIXME: We should get the value from the game here */
+	return "";
+    }
+    return no->value;
+}
+
+static boolean
+nh_option_cache_get_bool(char *option)
+{
+    return nh_option_cache_get(option) == boolean_set;
+}
+#endif
+
 static void
 nh_option_get(void)
 {
@@ -336,12 +460,15 @@ nh_option_get(void)
 	flags.menu_style = MENU_FULL;
 
     for(i=0 ; i<sizeof(gtk_option)/sizeof(struct GTK_Option) ; ++i){
+	char buf[BUFSIZ];
 	p = &gtk_option[i];
-	if(p->opt_name){
+	if (p->opt_name) {
 	    if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(p->radio1)))
-		*p->opt_p = !p->not;
-	    else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(p->radio2)))
-		*p->opt_p = !!p->not;
+		parseoptions(p->option, FALSE, FALSE);
+	    else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(p->radio2))) {
+		sprintf(buf, "!%s", p->option);
+		parseoptions(buf, FALSE, FALSE);
+	    }
 	}
     }
 #ifdef NH_MAP_FONT_SELECTOR
@@ -362,7 +489,11 @@ nh_option_get(void)
 	    nh_set_map_visual(i);
 	    break;
 	}
+#ifdef PROXY_GRAPHICS
+    proxy_cb_flush_screen();
+#else
     flush_screen(cursx == u.ux && cursy == u.uy ? 1 : 0);
+#endif
 }
 
 static int
@@ -1022,7 +1153,6 @@ nh_option_new()
 
   if(keysym == '\n')
       nh_option_get();
-  nh_status_index_update();
 
   if(hid > 0){
       gtk_signal_disconnect(GTK_OBJECT(w), hid);
@@ -1032,7 +1162,7 @@ nh_option_new()
 }
 
 void
-nh_option_lock()
+nh_option_lock(boolean lock)
 {
-    option_lock = TRUE;
+    option_lock = lock;
 }

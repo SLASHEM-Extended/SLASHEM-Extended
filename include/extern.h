@@ -135,8 +135,10 @@ E void NDECL(max_rank_sz);
 #ifdef SCORE_ON_BOTL
 E long NDECL(botl_score);
 #endif
-E int FDECL(describe_level, (char *));
+E int FDECL(describe_level, (char *, int));
 E const char *FDECL(rank_of, (int,SHORT_P,BOOLEAN_P));
+E void FDECL(bot_set_handler, (void (*)()));
+E void NDECL(bot_reconfig);
 E void NDECL(bot);
 #if 0
 E const char * FDECL(shorten_bot1, (const char *, int));

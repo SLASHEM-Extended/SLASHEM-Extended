@@ -1,5 +1,5 @@
-/* $Id: winproxy.c,v 1.4 2001-12-24 07:56:33 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001 */
+/* $Id: winproxy.c,v 1.5 2002-01-31 22:21:26 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 /* #define DEBUG */
@@ -222,11 +222,14 @@ winid window;
     mapid_del_winid(window);
 }
 
+int proxy_curs_on_u = FALSE;
+
 void
 proxy_curs(window, x, y)
 winid window;
 int x, y;
 {
+    proxy_curs_on_u = x == u.ux && y == u.uy;
     nhext_rpc(EXT_FID_CURS, 3, EXT_WINID(window), EXT_INT(x), EXT_INT(y), 0);
 }
 
@@ -457,7 +460,11 @@ proxy_getlin(query, bufp)
 const char *query;
 char *bufp;
 {
-    nhext_rpc(EXT_FID_GETLIN, 1, EXT_STRING(query), 1, EXT_STRING_P(bufp));
+    char *reply = (char *)0;
+    nhext_rpc(EXT_FID_GETLIN, 1, EXT_STRING(query), 1, EXT_STRING_P(reply));
+    strncpy(bufp, reply, BUFSZ - 1);
+    bufp[BUFSZ - 1] = '\0';
+    free(reply);
 }
 
 int
@@ -547,14 +554,33 @@ int how;
 	genl_outrip(window, how);
 }
 
-struct nhext_svc proxy_callbacks[] = {
-    0, NULL,
-};
+void
+proxy_status(reconfig, nv, values)
+int reconfig, nv;
+const char **values;
+{
+    struct proxy_status_req req;
+    req.reconfig = reconfig;
+    req.nv = nv;
+    req.values = values;
+    nhext_rpc(EXT_FID_STATUS, 1, EXT_XDRF(proxy_xdr_status_req, &req), 0);
+}
+
+extern struct nhext_svc proxy_callbacks[];
 
 #ifdef DEBUG
 static int FDECL(debug_read, (void *, void *, unsigned int));
 static int FDECL(debug_write, (void *, void *, unsigned int));
 #endif
+
+/*
+ * These counters (which contain the number of unread bytes in each pipe)
+ * allow the proxy interface and the server to detect when they need to
+ * pass control between each other. This mechanism will not be necessary
+ * when they are in seperate processes (and nor would it work).
+ */
+
+unsigned long proxy_unread, proxy_svc_unread;
 
 #ifdef WIN32
 static HANDLE to_parent[2], to_child[2];
@@ -597,11 +623,14 @@ int len;
      * Hack for single process operation - let the server handle the pending
      * call; issue any call backs and write a reply.
      */
-    win_proxy_svr_iteration();
+    if (!proxy_unread)
+	win_proxy_svr_iteration();
     if (!ReadFile((HANDLE)handle, buf, len, &nb, NULL))
 	return -1;
-    else
+    else {
+	proxy_unread -= nb;
 	return nb;
+    }
 }
 
 int proxy_write(handle, buf, len)
@@ -612,8 +641,10 @@ int len;
     DWORD nb;
     if (!WriteFile((HANDLE)handle, buf, len, &nb, NULL))
 	return -1;
-    else
+    else {
+	proxy_svc_unread += nb;
 	return nb;
+    }
 }
 
 static int
@@ -652,13 +683,17 @@ void *handle;
 void *buf;
 unsigned int len;
 {
-    int fd = (int)handle;
+    int fd = (int)handle, nb;
     /*
      * Hack for single process operation - let the server handle the pending
      * call; issue any call backs and write a reply.
      */
-    win_proxy_svr_iteration();
-    return read(fd, buf, len);
+    if (!proxy_unread)
+	win_proxy_svr_iteration();
+    nb = read(fd, buf, len);
+    if (nb > 0)
+	proxy_unread -= nb;
+    return nb;
 }
 
 static int
@@ -667,16 +702,19 @@ void *handle;
 void *buf;
 unsigned int len;
 {
-    int fd = (int)handle;
+    int fd = (int)handle, nb;
     fd_set fds;
     struct timeval tv;
     FD_ZERO(&fds);
     FD_SET(fd,&fds);
     tv.tv_sec = 1;
     tv.tv_usec = 0;
-    if (select(fd+1, NULL, &fds, NULL, &tv))
-	return write(fd, buf, len);
-    else
+    if (select(fd+1, NULL, &fds, NULL, &tv)) {
+	nb = write(fd, buf, len);
+	if (nb > 0)
+	    proxy_svc_unread += nb;
+	return nb;
+    } else
 	return -1;
 }
 
@@ -798,4 +836,14 @@ win_proxy_init()
     if (!proxy_init())
 	panic("Proxy: Failed to initialize");
     nhext_rpc(EXT_FID_INIT, 0, 0);
+}
+
+int
+win_proxy_iteration()
+{
+    int i;
+    i = nhext_svc_c(proxy_connection, proxy_callbacks);
+    if (!i)
+	fprintf(stderr, "proxy: Ignoring packet with zero ID\n");
+    return i;
 }

@@ -54,7 +54,7 @@
 /* #define X11_GRAPHICS */	/* X11 interface */
 /* #define QT_GRAPHICS */	/* Qt Interface */
 /* #define KDE */		/* KDE Interface */
-#define GTK_GRAPHICS 	/* GTK Interface */
+/* #define GTK_GRAPHICS */	/* GTK Interface */
 /* #define GNOME_GRAPHICS */	/* Gnome interface */
 /* #define PROXY_GRAHICS */	/* Plug-in interfaces (not yet supported) */
 

@@ -245,18 +245,19 @@ WINPROXYSRC = ../win/proxy/winproxy.c ../win/proxy/nhext.c \
 	../win/proxy/nhxdr.c ../win/proxy/nhextxdr.c ../win/proxy/compxdr.c
 WINPROXYOBJ = winproxy.o nhext.o nhxdr.o nhextxdr.o compxdr.o nhwin.a
 #
-# Files for the call back interface. These are needed to support window ports
-# that use the external window interface whether linked with the game executable
-# or not. Currently this only includes the GTK2 window interface
-WINCALLBACKSRC = ../win/proxy/dlbh.c ../win/proxy/mapid.c \
+# Files for the proxy utility modules. These are provided for use with window
+# ports that support the proxy interface. The GTK2 window interface needs
+# these files regardless of whether proxy support is enabled or not.
+PROXYUTLSRC = ../win/proxy/dlbh.c ../win/proxy/mapid.c \
 	../win/proxy/riputil.c
-WINCALLBACKOBJ = dlbh.o mapid.o riputil.o
+PROXYUTLOBJ = dlbh.o mapid.o riputil.o
 #
 # Files for the proxy window server interface. These are needed to support
 # external window ports and provide the interface to the game executable.
 # Currently, only the GTK2 window interface supports proxy window servers.
-PROXYSVRSRC = ../win/proxy/proxysvc.c
-PROXYSVROBJ = proxysvc.o
+PROXYSVRSRC = ../win/proxy/proxysvc.c ../win/proxy/proxycb.c \
+	../win/proxy/callback.c
+PROXYSVROBJ = proxysvc.o proxycb.o callback.o
 
 # Use these declarations if you only want to support the TTY windowing system
 WINSRC = $(WINTTYSRC)
@@ -271,9 +272,9 @@ WINOBJ = $(WINTTYOBJ)
 # WINSRC = $(WINTTYSRC) $(WINGTKSRC)
 # WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ)
 # When the proxy interface is finished, it might need something like these
-# WINSRC = $(WINTTYSRC) $(WINGTKSRC) $(WINPROXYSRC) $(WINCALLBACKSRC) \
+# WINSRC = $(WINTTYSRC) $(WINGTKSRC) $(WINPROXYSRC) $(PROXYUTLSRC) \
 #	 $(PROXYSVRSRC)
-# WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ) $(WINPROXYOBJ) $(WINCALLBACKOBJ) \
+# WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ) $(WINPROXYOBJ) $(PROXYUTLOBJ) \
 #	 $(PROXYSVROBJ)
 #
 # You must also change the definition of WINLIB (below) to match these
@@ -410,7 +411,7 @@ SYSCSRC = ../sys/atari/tos.c ../sys/share/pcmain.c ../sys/share/pcsys.c \
 
 # all windowing-system-dependent .c (for dependencies and such)
 WINCSRC = $(WINTTYSRC) $(WINX11SRC) $(WINGTKSRC) $(WINGNOMESRC) $(WINGEMSRC) \
-	$(WINPROXYSRC) $(WINCALLBACKSRC) $(PROXYSVRSRC) tile.c
+	$(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYSVRSRC) tile.c
 # all windowing-system-dependent .cpp (for dependencies and such)
 WINCXXSRC = $(WINQTSRC) $(WINBESRC)
 

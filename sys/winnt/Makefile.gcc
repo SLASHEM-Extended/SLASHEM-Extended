@@ -258,21 +258,22 @@ WINPROXYSRC = ../win/proxy/winproxy.c ../win/proxy/nhext.c \
 WINPROXYOBJ = winproxy.o nhext.o nhxdr.o nhextxdr.o compxdr.o
 endif
 #
-# Files for the call back interface. These are needed to support window ports
-# that use the external window interface whether linked with the game executable
-# or not. Currently this only includes the GTK2 window interface
+# Files for the proxy utility modules. These are provided for use with window
+# ports that support the proxy interface. The GTK2 window interface needs
+# these files regardless of whether proxy support is enabled or not.
 ifeq ($(GTK_TARGET),2.0)
-WINCALLBACKSRC = ../win/proxy/dlbh.c ../win/proxy/mapid.c \
+PROXYUTLSRC = ../win/proxy/dlbh.c ../win/proxy/mapid.c \
 	../win/proxy/riputil.c
-WINCALLBACKOBJ = dlbh.o mapid.o riputil.o
+PROXYUTLOBJ = dlbh.o mapid.o riputil.o
 endif
 #
 # Files for the proxy window server interface. These are needed to support
 # external window ports and provide the interface to the game executable.
 # Currently, only the GTK2 window interface supports proxy window servers.
 ifeq ($(USE_GTK),proxy)
-PROXYSVRSRC = ../win/proxy/proxysvc.c
-PROXYSVROBJ = proxysvc.o
+PROXYSVRSRC = ../win/proxy/proxysvc.c ../win/proxy/proxycb.c \
+	../win/proxy/callback.c
+PROXYSVROBJ = proxysvc.o proxycb.o callback.o
 endif
 
 ifneq ($(USE_GTK),N)
@@ -281,13 +282,13 @@ WINSRC = $(WINTTYSRC) $(WINGTKSRC)
 WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ1) $(WINGTKOBJ2) tile.o
 endif
 ifeq ($(USE_GTK),2.0)
-WINSRC = $(WINTTYSRC) $(WINGTKSRC) $(WINCALLBACKSRC)
-WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ1) $(WINGTKOBJ2) $(WINCALLBACKOBJ) tile.o
+WINSRC = $(WINTTYSRC) $(WINGTKSRC) $(PROXYUTLSRC)
+WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ1) $(WINGTKOBJ2) $(PROXYUTLOBJ) tile.o
 endif
 ifeq ($(USE_GTK),proxy)
-WINSRC = $(WINTTYSRC) $(WINGTKSRC) $(WINCALLBACKSRC) $(WINPROXYSRC) \
+WINSRC = $(WINTTYSRC) $(WINGTKSRC) $(PROXYUTLSRC) $(WINPROXYSRC) \
 	$(PROXYSVRSRC)
-WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ1) $(WINGTKOBJ2) $(WINCALLBACKOBJ) \
+WINOBJ = $(WINTTYOBJ) $(WINGTKOBJ1) $(WINGTKOBJ2) $(PROXYUTLOBJ) \
 	$(WINPROXYOBJ) $(PROXYSVROBJ) tile.o
 endif
 CCOMPILE = $(CC) -fnative-struct
@@ -618,7 +619,7 @@ ifneq ($(USE_GTK),N)
 	@echo INPUT( $(WINGTKOBJ1)  )>> $@
 	@echo INPUT( $(WINGTKOBJ2)  )>> $@
 ifeq ($(GTK_TARGET),2.0)
-	@echo INPUT( $(WINCALLBACKOBJ)  )>> $@
+	@echo INPUT( $(PROXYUTLOBJ)  )>> $@
 endif
 ifeq ($(USE_GTK),proxy)
 	@echo INPUT( $(WINPROXYOBJ)  )>> $@
@@ -1424,11 +1425,11 @@ xshm.o: $(WGTK)/xshm.c ../include/xshm.h
 gtktile.o: $(WGTK)/gtktile.c ../include/winGTK.h ../include/dlb.h
 	$(COPY) $(WGTK)\gtktile.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtktile.c
-gtkint.o: $(WGTK)/gtkint.c ../include/winGTK.h ../include/winproxy.h
+gtkint.o: $(WGTK)/gtkint.c ../include/winGTK.h ../include/winproxy.h \
 		../include/dlb.h ../include/patchlevel.h
 	$(COPY) $(WGTK)\gtkint.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkint.c
-gtkext.o: $(WGTK)/gtkext.c ../include/winGTK.h ../include/winproxy.h
+gtkext.o: $(WGTK)/gtkext.c ../include/winGTK.h ../include/winproxy.h \
 		../include/dlb.h ../include/patchlevel.h
 	$(COPY) $(WGTK)\gtkext.c .
 	$(CCOMPILE) $(CFLAGS) $(WINGTKCFLAGS) -c gtkext.c
@@ -1460,10 +1461,18 @@ mapid.o: ../win/proxy/mapid.c $(HACK_H) ../include/nhxdr.h \
 riputil.o: ../win/proxy/riputil.c $(HACK_H)
 	$(COPY) ..\win\proxy\riputil.c .
 	$(CCOMPILE) $(CFLAGS) -c riputil.c
+callback.o: ../win/proxy/callback.c $(HACK_H) ../include/nhxdr.h \
+		../include/winproxy.h ../include/proxycb.h
+	$(COPY) ..\win\proxy\callback.c .
+	$(CCOMPILE) $(CFLAGS) -c callback.c
 proxysvc.o: ../win/proxy/proxysvc.c $(HACK_H) ../include/nhxdr.h \
 		../include/winproxy.h
 	$(COPY) ..\win\proxy\proxysvc.c .
 	$(CCOMPILE) $(CFLAGS) -c proxysvc.c
+proxycb.o: ../win/proxy/proxycb.c $(HACK_H) ../include/nhxdr.h \
+		../include/winproxy.h ../include/proxycb.h
+	$(COPY) ..\win\proxy\proxycb.c .
+	$(CCOMPILE) $(CFLAGS) -c proxycb.c
 
 # src dependencies
 allmain.o:  $(HACK_H)

@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.5 2001-12-11 20:43:49 j_ali Exp $
+  $Id: gtkmap.c,v 1.6 2002-01-31 22:21:26 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -577,7 +577,11 @@ GtkWidget *
 nh_radar_new()
 {
     radar = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+#if GTK_CHECK_VERSION(1,3,12)
+    gtk_window_add_accel_group(GTK_WINDOW(radar), accel_group);
+#else
     gtk_accel_group_attach(accel_group, G_OBJECT(radar));
+#endif
     gtk_widget_realize(radar);
 
     radar_is_created = 1;

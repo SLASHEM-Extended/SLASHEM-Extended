@@ -1,5 +1,5 @@
 /*
-  $Id: gtkext.c,v 1.1 2001-12-11 20:43:49 j_ali Exp $
+  $Id: gtkext.c,v 1.2 2002-01-31 22:21:26 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -65,6 +65,7 @@ struct window_ext_procs GTK_ext_procs = {
     v_hook, /* start_screen,*/
     v_hook, /* end_screen,*/
     GTK_ext_outrip,
+    GTK_ext_status,
 };
 
 static void
