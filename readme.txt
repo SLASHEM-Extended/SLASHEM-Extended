@@ -79,6 +79,7 @@ ver 0.0.7E6F2 [?] [Released by ?]
 -fixed bug 932791: Permanent inventory window not closed immediately
 -fixed bug 932800: [GTK] Changing hilite_pet from "more options" not immed.
 -fixed bug 932801: [GTK] Changing hilite_pet from options not immed. honoured
+-fixed bug 932816: Disabled radar window appears (but isn't updated) on startup
 
 See history.txt for changes made in previous versions.
 
