@@ -79,6 +79,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 918178: Double message "You are suddenly very hot/cold!"
 -fixed bug 921810: Invisible books can be read (?!)
 -fixed bug 934076: Dipping amnesia into amnesia gives water
+-fixed bug 946306: do_look: bad glyph 3726 at (7, 16)
 
 See history.txt for changes made in previous versions.
 
