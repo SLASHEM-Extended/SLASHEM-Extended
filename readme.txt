@@ -335,6 +335,7 @@ ver 0.0.6E4F4 [? ?/2001] [Released by ?]
 -Subverted setguid check in GTK+ version 1.2.9 and above
 -fixed bug 405091: Contact poison corrodes greased gloves.
 -fixed bug 409695: Bad fruit after polymorph.
+-fixed bug 409699: Falling polymorphed objects cause crash.
 
 ver 0.0.6E4F3 [February 28/2001] [Released by Ali]
 -DOS VGA and Allegro videosystems now compile with REINCARNATION not defined

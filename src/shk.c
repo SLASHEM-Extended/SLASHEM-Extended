@@ -2084,6 +2084,10 @@ STATIC_OVL void
 add_to_billobjs(obj)
     struct obj *obj;
 {
+#ifdef UNPOLYPILE
+    /* You're billed for what you used, not what it might become --ALI */
+    (void) stop_timer(UNPOLY_OBJ, (genericptr_t) obj);
+#endif
     if (obj->where != OBJ_FREE)
 	panic("add_to_billobjs: obj not free");
     if (obj->timed)

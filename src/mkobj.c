@@ -318,6 +318,21 @@ struct obj *otmp;
 	extract_nobj(obj, &fobj);
 	extract_nexthere(obj, &level.objects[obj->ox][obj->oy]);
 	break;
+    case OBJ_MIGRATING:
+	otmp->nobj = obj->nobj;
+	obj->nobj = otmp;
+	extract_nobj(obj, &migrating_objs);
+	break;
+    case OBJ_BURIED:
+	otmp->nobj = obj->nobj;
+	obj->nobj = otmp;
+	extract_nobj(obj, &level.buriedobjlist);
+	break;
+    case OBJ_ONBILL:
+	otmp->nobj = obj->nobj;
+	obj->nobj = otmp;
+	extract_nobj(obj, &billobjs);
+	break;
     default:
 	panic("replace_object: obj position");
 	break;
