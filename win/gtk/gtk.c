@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.45 2003-12-13 12:52:58 j_ali Exp $
+  $Id: gtk.c,v 1.46 2003-12-13 18:28:43 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -3231,15 +3231,25 @@ int nh_dlbh_ftell(int fh)
 #endif
 }
 
+#if GTK_CHECK_VERSION(2,0,0)
+# define USE_TEXTVIEW
+#endif
+
 void
 GTK_ext_display_file(int fh)
 {
     guint hid;
     GtkWidget *w;
+#ifdef USE_TEXTVIEW
+    GtkWidget *scrolledwindow;
+    GtkTextBuffer *buffer;
+#else
     GtkWidget *scrollbar;
+    GtkWidget *hbox2;
+#endif
     GtkWidget *label;
     GtkWidget *vbox;
-    GtkWidget *hbox, *hbox2;
+    GtkWidget *hbox;
     GtkWidget *text;
     GtkWidget *button;
 
@@ -3258,22 +3268,34 @@ GTK_ext_display_file(int fh)
     label = nh_gtk_new_and_pack(gtk_label_new("HELP"), vbox, "",
       FALSE, FALSE, NH_PAD);
 
-    hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
-      FALSE, FALSE, NH_PAD);
-
-    text = nh_gtk_new_and_pack(gtk_text_new(NULL, NULL), hbox, "",
-      FALSE, FALSE, NH_PAD);
-
-    gtk_widget_set_usize(GTK_WIDGET(text), 600, (root_height * 2)/3);
-
-    scrollbar = nh_gtk_new_and_pack(gtk_vscrollbar_new(GTK_TEXT(text)->vadj),
-      hbox, "", FALSE, FALSE, NH_PAD);
-
+#ifdef USE_TEXTVIEW
+    gtk_window_set_default_size(GTK_WINDOW(w), 600, (root_height * 2)/3);
+    scrolledwindow = nh_gtk_new_and_pack(gtk_scrolled_window_new(NULL, NULL),
+      vbox, "", TRUE, TRUE, NH_PAD);
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolledwindow),
+      GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+    text = nh_gtk_new_and_add(gtk_text_view_new(), scrolledwindow, "");
+    GTK_WIDGET_UNSET_FLAGS(text, GTK_CAN_FOCUS);
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(text), GTK_WRAP_WORD);
+    gtk_text_view_set_editable(GTK_TEXT_VIEW(text), FALSE);
+    buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text));
+#else
     hbox2 = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
       FALSE, FALSE, NH_PAD);
 
+    text = nh_gtk_new_and_pack(gtk_text_new(NULL, NULL), hbox2, "",
+      FALSE, FALSE, NH_PAD);
+    gtk_widget_set_usize(GTK_WIDGET(text), 600, (root_height * 2)/3);
+
+    scrollbar = nh_gtk_new_and_pack(gtk_vscrollbar_new(GTK_TEXT(text)->vadj),
+      hbox2, "", FALSE, FALSE, NH_PAD);
+#endif
+
+    hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "",
+      FALSE, FALSE, NH_PAD);
+
     button = nh_gtk_new_and_pack(gtk_button_new_from_stock(GTK_STOCK_CLOSE),
-      hbox2, "", TRUE, FALSE, NH_PAD);
+      hbox, "", TRUE, FALSE, NH_PAD);
     gtk_signal_connect(GTK_OBJECT(button), "clicked",
       GTK_SIGNAL_FUNC(default_button_press), (gpointer)'\033');
 
@@ -3285,7 +3307,11 @@ GTK_ext_display_file(int fh)
 	char *s;
 	if ((s = index(buf, '\r')) != 0)
 	    memmove(s, s + 1, strlen(s));
+#ifdef USE_TEXTVIEW
+	gtk_text_buffer_insert_at_cursor(buffer, buf, strlen(buf));
+#else
 	gtk_text_insert(GTK_TEXT(text), NULL, NULL, NULL, buf, strlen(buf));
+#endif
     }
 
     gtk_widget_show_all(w);
@@ -3295,8 +3321,10 @@ GTK_ext_display_file(int fh)
     if (w) {
 	gtk_signal_disconnect(GTK_OBJECT(w), hid);
 	gtk_widget_destroy(button);
+#ifndef USE_TEXTVIEW
 	gtk_widget_destroy(hbox2);
 	gtk_widget_destroy(scrollbar);
+#endif
 	gtk_widget_destroy(text);
 	gtk_widget_destroy(hbox);
 	gtk_widget_destroy(label);
