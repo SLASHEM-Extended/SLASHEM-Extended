@@ -1126,6 +1126,10 @@ char *str;
    int i, c = NO_COLOR, a = ATR_NONE;
    struct menucoloring *tmp;
    char *tmps, *cs = strchr(str, '=');
+#ifdef POSIX_REGEX
+   int errnum;
+   char errbuf[80];
+#endif
    const char *err = (char *)0;
    
    if (!cs || !str) return FALSE;
@@ -1170,12 +1174,22 @@ char *str;
    
    tmp = (struct menucoloring *)alloc(sizeof(struct menucoloring));
 #ifdef USE_REGEX_MATCH
+# ifdef GNU_REGEX
    tmp->match.translate = 0;
    tmp->match.fastmap = 0;
    tmp->match.buffer = 0;
    tmp->match.allocated = 0;
    tmp->match.regs_allocated = REGS_FIXED;
    err = re_compile_pattern(tmps, strlen(tmps), &tmp->match);
+# else
+#  ifdef POSIX_REGEX
+   errnum = regcomp(&tmp->match, tmps, REG_EXTENDED | REG_NOSUB);
+   if (errnum != 0) {                                                                                                                                                                                                               
+      regerror(errnum, &tmp->match, errbuf, sizeof(errbuf));
+      err = errbuf;
+   }
+#  endif  
+# endif  
 #else
    tmp->match = (char *)alloc(strlen(tmps)+1);
    (void) memcpy((genericptr_t)tmp->match, (genericptr_t)tmps, strlen(tmps)+1);

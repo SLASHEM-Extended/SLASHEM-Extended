@@ -1279,7 +1279,13 @@ int *color, *attr;
    if (iflags.use_menu_color)
      for (tmpmc = menu_colorings; tmpmc; tmpmc = tmpmc->next)
 #ifdef USE_REGEX_MATCH
+# ifdef GNU_REGEX
        if (re_search(&tmpmc->match, str, strlen(str), 0, 9999, 0) >= 0) {
+# else
+#  ifdef POSIX_REGEX
+       if (regexec(&tmpmc->match, str, 0, NULL, 0) == 0) {
+#  endif
+# endif
 #else
        if (pmatch(tmpmc->match, str)) {
 #endif
