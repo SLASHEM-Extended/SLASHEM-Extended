@@ -242,8 +242,9 @@ WINPROXYOBJ = winproxy.o callback.o nhwin.a
 #
 # Common files for proxy window interface and plug-in window interfaces.
 PROXYCOMSRC = ../win/proxy/nhext.c ../win/proxy/nhxdr.c ../win/proxy/md5.c \
-	../win/proxy/nhextxdr.c ../win/proxy/nhextio.c ../win/proxy/compxdr.c
-PROXYCOMOBJ = nhext.o nhxdr.o md5.o nhextxdr.o nhextio.o compxdr.o
+	../win/proxy/nhextxdr.c ../win/proxy/nhextio.c ../win/proxy/nhextnb.c \
+	../win/proxy/compxdr.c
+PROXYCOMOBJ = nhext.o nhxdr.o md5.o nhextxdr.o nhextio.o nhextnb.o compxdr.o
 #
 # Files for the proxy utility modules. These are provided for use with window
 # ports that support the proxy interface. The GTK window interface needs
@@ -346,7 +347,7 @@ WINBELIB = -lbe
 WINGLLIB = `sdl-config --libs` -lGL -lz -lpng
 #
 # libraries for proxy
-WINPROXYLIB =
+WINPROXYLIB = -lpthread
 
 # Use this declaration if you only want to support the TTY windowing system
 WINLIB = $(WINTTYLIB)
@@ -889,7 +890,7 @@ prxychar.o: ../win/proxy/prxychar.c ../include/nhxdr.h ../include/proxycom.h \
 		../include/prxyclnt.h
 	$(CC) $(CFLAGS) -c ../win/proxy/prxychar.c
 prxytile.o: ../win/proxy/prxytile.c ../include/nhxdr.h ../include/proxycom.h \
-		../include/prxyclnt.h
+		../include/prxyclnt.h ../include/proxycb.h
 	$(CC) $(CFLAGS) -c ../win/proxy/prxytile.c
 prxyconn.o: ../win/proxy/prxyconn.c ../include/nhxdr.h ../include/proxycom.h \
 		../include/prxyclnt.h
@@ -902,6 +903,8 @@ nhextxdr.o: ../win/proxy/nhextxdr.c ../include/nhxdr.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhextxdr.c
 nhextio.o: ../win/proxy/nhextio.c ../include/nhxdr.h
 	$(CC) $(CFLAGS) -c ../win/proxy/nhextio.c
+nhextnb.o: ../win/proxy/nhextnb.c ../include/nhxdr.h
+	$(CC) $(CFLAGS) -c ../win/proxy/nhextnb.c
 compxdr.o: ../win/proxy/compxdr.c ../include/nhxdr.h ../include/proxycom.h
 	$(CC) $(CFLAGS) -c ../win/proxy/compxdr.c
 gl_conf.o: ../win/gl/gl_conf.c $(HACK_H) ../include/dlb.h \

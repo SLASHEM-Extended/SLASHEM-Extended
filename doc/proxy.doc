@@ -130,6 +130,16 @@ procedure. You should:
      still return an empty result to the game.
  o Add an entry to the services array as follows:
 	EXT_FID_${NAME},		proxy_svc_${name},
+ o If this is an asynchronous procedure (this is, if it returns no results
+   and there is no need for the remote end to wait for the procedure to
+   complete) then add an entry for the procedure in the async_procedures[]
+   array. If there are already asynchronous procedures with IDs in the
+   same range (1-32, 33-64, ...) then just add the bit corresponding to
+   the new procedure to the mask for that range. If this is the first
+   asynchronous procedure in the range then add a new mask as follows:
+	1 << EXT_FID_$(NAME) - EXT_FID_$(BASE_NAME),
+   where $(BASE_NAME) is the name of the first procedure in the range
+   (whether asynchronous or not).
 
 G.  external window interface(s)
 
@@ -226,7 +236,20 @@ call back. You should:
  o Add an entry to the proxy_callbacks array as follows:
 	EXT_CID_${NAME},		callback_${name},
 
-G.  external window interface(s)
+G.  win/proxy/winproxy.c
+
+If this is an asynchronous callback (this is, if it returns no results
+and there is no need for the remote end to wait for the callback to
+complete) then add an entry for the callback in the async_callbacks[]
+array. If there are already asynchronous callbacks with IDs in the
+same range (1-32, 33-64, ...) then just add the bit corresponding to
+the new callback to the mask for that range. If this is the first
+asynchronous callback in the range then add a new mask as follows:
+	1 << EXT_CID_$(NAME) - EXT_CID_$(BASE_NAME),
+where $(BASE_NAME) is the name of the first callback in the range
+(whether asynchronous or not).
+
+H.  external window interface(s)
 
 Add code to call proxy_cb_${name} to the external window interfaces which
 need the new callback.

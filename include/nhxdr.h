@@ -1,5 +1,5 @@
-/* $Id: nhxdr.h,v 1.6 2002-11-30 19:15:17 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001-2002 */
+/* $Id: nhxdr.h,v 1.7 2003-10-25 18:06:00 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #ifndef NHXDR_H
@@ -51,6 +51,10 @@ typedef struct nhext_xdr {
     unsigned int x_pos, x_size;
 } NhExtXdr;
 
+typedef struct NhExtIO_ NhExtIO;
+typedef int (*nhext_io_func)(void *handle, void *buf, unsigned int len);
+typedef struct NhExtNB_ NhExtNB;
+
 #define E extern
 
 E unsigned int FDECL(nhext_xdr_getpos, (NhExtXdr *));
@@ -58,6 +62,7 @@ E nhext_xdr_bool_t FDECL(nhext_xdr_setpos, (NhExtXdr *, unsigned int));
 E void FDECL(nhext_xdr_free, (nhext_xdr_bool_t (*)(), char *));
 E void FDECL(nhext_xdrmem_create, (NhExtXdr *, char *, unsigned int,
 			enum nhext_xdr_op));
+E void FDECL(nhext_xdrio_create, (NhExtXdr *, NhExtIO *, enum nhext_xdr_op));
 
 #define nhext_xdr_destroy(xdrs)	(*(xdrs)->x_destroy)(xdrs)
 
@@ -80,26 +85,43 @@ E nhext_xdr_bool_t FDECL(nhext_xdr_vector, (NhExtXdr *, char *, unsigned int,
 E nhext_xdr_bool_t FDECL(nhext_xdr_array, (NhExtXdr *, char **, unsigned int *,
   unsigned int, unsigned int, nhext_xdr_bool_t (*)()));
 
-typedef int (*nhext_io_func)(void *handle, void *buf, unsigned int len);
-
-typedef struct NhExtIO_ NhExtIO;
-
 #define NHEXT_IO_RDONLY		1
 #define NHEXT_IO_WRONLY		2
-#define NHEXT_IO_NOAUTOFILL	4
-#define NHEXT_IO_SIMPLEBUFFER	8
+#define NHEXT_IO_NBLOCK		4
+#define NHEXT_IO_NOAUTOFILL	8
+#define NHEXT_IO_LINEBUF	16	/* Only honoured by text based calls */
+#define NHEXT_IO_SIMPLEBUFFER	32
+#define NHEXT_IO_PENDING	64
+
+#if __GNUC__ >= 3 || __GNUC__ == 2 && __GNUC_MINOR__ >= 5
+#define NHEXT__PRINTF(p_fmt, p_arg0) \
+	__attribute__((format(printf, p_fmt, p_arg0)))
+#else
+#define NHEXT__PRINTF(p_fmt, p_arg0)
+#endif
 
 E NhExtIO *FDECL(nhext_io_open, (nhext_io_func, void *, unsigned int));
 E int FDECL(nhext_io_close, (NhExtIO *));
 E unsigned int FDECL(nhext_io_getmode, (NhExtIO *));
 E void FDECL(nhext_io_setmode, (NhExtIO *, unsigned int));
 E void FDECL(nhext_io_setautofill_limit, (NhExtIO *, unsigned int));
-E int FDECL(nhext_io_filbuf, (NhExtIO *));
+E void FDECL(nhext_io_setnbfunc, (NhExtIO *, nhext_io_func));
+E int FDECL(nhext_io_filbuf, (NhExtIO *, int));
 E int FDECL(nhext_io_getc, (NhExtIO *));
 E int FDECL(nhext_io_read, (NhExtIO *, char *, int));
 E char *FDECL(nhext_io_getpacket, (NhExtIO *, int *));
+E int FDECL(nhext_io_willblock, (NhExtIO *));
 E int FDECL(nhext_io_flush, (NhExtIO *));
 E int FDECL(nhext_io_fputc, (int, NhExtIO *));
 E int FDECL(nhext_io_write, (NhExtIO *, char *, int));
+E int FDECL(nhext_io_writet, (NhExtIO *, char *, int));
+#ifdef _STDARG_H
+E int FDECL(nhext_io_vprintf, (NhExtIO *, char *, va_list));
+#endif
+E int FDECL(nhext_io_printf, (NhExtIO *, char *, ...)) NHEXT__PRINTF(2, 3);
+
+E NhExtNB *FDECL(nhext_nb_open, (nhext_io_func, void *));
+E int FDECL(nhext_nb_close, (NhExtNB *));
+E int FDECL(nhext_nb_read, (NhExtNB *, char *, int, int));
 
 #endif /* NHXDR_H */

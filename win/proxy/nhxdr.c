@@ -1,10 +1,11 @@
-/* $Id: nhxdr.c,v 1.5 2002-11-23 22:41:59 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001-2002 */
+/* $Id: nhxdr.c,v 1.6 2003-10-25 18:06:01 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 /* #define DEBUG */
 
 #include <stdlib.h>
+#include <string.h>
 #ifdef DEBUG
 #include <stdio.h>
 #endif

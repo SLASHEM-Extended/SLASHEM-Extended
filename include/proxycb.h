@@ -1,4 +1,4 @@
-/* $Id: proxycb.h,v 1.15 2003-07-05 15:02:54 j_ali Exp $ */
+/* $Id: proxycb.h,v 1.16 2003-10-25 18:06:00 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -46,5 +46,7 @@ extern void FDECL(proxy_cb_free_glyph_mapping,
 extern struct proxycb_get_extensions_res *NDECL(proxy_cb_get_extensions);
 extern void FDECL(proxy_cb_free_extensions,
 		(struct proxycb_get_extensions_res *extensions));
+extern unsigned long *FDECL(proxy_cb_start_async_mode,
+		(int, unsigned long *async_callbacks, int *));
 
 #endif /* PROXYCB_H */

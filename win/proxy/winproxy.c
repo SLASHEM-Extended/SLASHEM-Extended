@@ -1,5 +1,5 @@
-/* $Id: winproxy.c,v 1.28 2003-09-07 16:43:44 prousu Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001-2002 */
+/* $Id: winproxy.c,v 1.29 2003-10-25 18:06:02 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 /* #define DEBUG */
@@ -26,6 +26,8 @@
 
 static void proxy_flush_layers();
 static void proxy_print_glyph_layered();
+
+static int proxy_protocol = 0;
 
 static int proxy_no_mapwins = 0;
 
@@ -353,8 +355,13 @@ winid window;
 int attr;
 const char *str;
 {
-    (void)nhext_rpc(EXT_FID_PUTSTR,
-      3, EXT_INT(window), EXT_INT(attr), EXT_STRING(str), 0);
+    if (window >= 0)
+	(void)nhext_rpc(EXT_FID_PUTSTR,
+	  3, EXT_INT(window), EXT_INT(attr), EXT_STRING(str), 0);
+    else if (attr == ATR_NONE)
+	proxy_raw_print(str);
+    else
+	proxy_raw_print_bold(str);
 }
 
 void
@@ -775,7 +782,7 @@ proxy_get_color_string()
     char *ret = (char *)0;
     if (!nhext_rpc(EXT_FID_GET_COLOR_STRING, 0, 1, EXT_STRING_P(ret))) {
 	free(ret);
-	return (char *)0;
+	return "";
     }
     return ret;
 }
@@ -836,7 +843,7 @@ winid window;
 int nl;
 struct gbuf_layer *layers;
 {
-    int i, j, k, ng = 0;
+    int i, j, k;
     struct proxy_print_glyph_layered_req req;
     req.window = window;
     req.nl = nl;
@@ -903,98 +910,7 @@ extern struct nhext_svc proxy_callbacks[];
 #ifdef DEBUG
 static int FDECL(debug_read, (void *, void *, unsigned int));
 static int FDECL(debug_write, (void *, void *, unsigned int));
-#endif
 
-#ifdef WIN32
-static HANDLE to_parent[2], to_child[2];
-
-/* Create an anonymous pipe with one end inheritable. */
-
-static int pipe_create(HANDLE *handles, int non_inherit)
-{
-    HANDLE h;
-    SECURITY_ATTRIBUTES sa;
-    sa.nLength = sizeof(sa);
-    sa.bInheritHandle = TRUE;
-    sa.lpSecurityDescriptor = NULL;
-    if (!CreatePipe(&handles[0], &handles[1], &sa, 0))
-	return FALSE;
-    if (!DuplicateHandle(GetCurrentProcess(), handles[non_inherit],
-      GetCurrentProcess(), &h, 0, FALSE, DUPLICATE_SAME_ACCESS)) {
-	CloseHandle(handles[0]);
-	CloseHandle(handles[1]);
-	return FALSE;
-    }
-    CloseHandle(handles[non_inherit]);
-    handles[non_inherit] = h;
-    return TRUE;
-}
-
-static void pipe_close(HANDLE *handles)
-{
-    CloseHandle(handles[0]);
-    CloseHandle(handles[1]);
-}
-
-int proxy_read(handle, buf, len)
-void *handle;
-void *buf;
-int len;
-{
-    DWORD nb;
-    if (!ReadFile((HANDLE)handle, buf, len, &nb, NULL))
-	return -1;
-    else
-	return nb;
-}
-
-int proxy_write(handle, buf, len)
-void *handle;
-void *buf;
-int len;
-{
-    DWORD nb;
-    if (!WriteFile((HANDLE)handle, buf, len, &nb, NULL))
-	return -1;
-    else
-	return nb;
-}
-#else	/* WIN32 */
-static int to_parent[2], to_child[2];
-
-static int
-proxy_read(handle, buf, len)
-void *handle;
-void *buf;
-unsigned int len;
-{
-    int fd = (int)handle, nb;
-    nb = read(fd, buf, len);
-    return nb;
-}
-
-static int
-proxy_write(handle, buf, len)
-void *handle;
-void *buf;
-unsigned int len;
-{
-    int fd = (int)handle, nb;
-    fd_set fds;
-    struct timeval tv;
-    FD_ZERO(&fds);
-    FD_SET(fd,&fds);
-    tv.tv_sec = 1;
-    tv.tv_usec = 0;
-    if (select(fd+1, NULL, &fds, NULL, &tv)) {
-	nb = write(fd, buf, len);
-	return nb;
-    } else
-	return -1;
-}
-#endif	/* WIN32 */
-
-#ifdef DEBUG
 #define READ_F	debug_read
 #define WRITE_F	debug_write
 #else
@@ -1010,6 +926,96 @@ unsigned int len;
 #define WRITE_H	((void *)1)
 #endif
 
+#ifdef WIN32
+int proxy_read(handle, buf, len)
+void *handle;
+void *buf;
+int len;
+{
+    DWORD d;
+    if (!ReadFile((HANDLE)handle, buf, len, &d, NULL)) {
+	d = GetLastError();
+	return d == ERROR_HANDLE_EOF || d == ERROR_BROKEN_PIPE ? 0 : -1;
+    } else
+	return d;
+}
+
+int proxy_pipe_read_nb(handle, buf, len)
+void *handle;
+void *buf;
+int len;
+{
+    DWORD nb;
+    if (!PeekNamedPipe((HANDLE)handle, NULL, 0, NULL, &nb, NULL))
+	return -1;
+    if (!nb)
+	return -2;
+    return READ_F(handle, buf, len);
+}
+
+int proxy_write(handle, buf, len)
+void *handle;
+void *buf;
+int len;
+{
+    DWORD nb;
+    if (!WriteFile((HANDLE)handle, buf, len, &nb, NULL))
+	return -1;
+    else
+	return nb;
+}
+#else	/* WIN32 */
+static int
+proxy_read(handle, buf, len)
+void *handle;
+void *buf;
+unsigned int len;
+{
+    int fd = (int)handle, nb;
+    nb = read(fd, buf, len);
+    return nb >= 0 ? nb : -1;
+}
+
+static int
+proxy_read_nb(handle, buf, len)
+void *handle;
+void *buf;
+int len;
+{
+    int fd = (int)handle, retval, nb;
+    fd_set readfds;
+    struct timeval tv = {0};
+    FD_ZERO(&readfds);
+    FD_SET(fd, &readfds);
+    retval = select(fd + 1, &readfds, NULL, NULL, &tv);
+    if (retval < 0)
+	return -1;
+    if (!retval)
+	return -2;
+    return READ_F(handle, buf, len);
+}
+
+static int
+proxy_write(handle, buf, len)
+void *handle;
+void *buf;
+unsigned int len;
+{
+    int fd = (int)handle, nb;
+    fd_set fds;
+    struct timeval tv;
+    FD_ZERO(&fds);
+    FD_SET(fd,&fds);
+    tv.tv_sec = 30;	/* Don't block forever but allow for slow connections */
+    tv.tv_usec = 0;
+    if (select(fd+1, NULL, &fds, NULL, &tv)) {
+	nb = write(fd, buf, len);
+	return nb >= 0 ? nb : -1;
+    } else
+	return -1;
+}
+#endif	/* WIN32 */
+
 static int
 proxy_init()
 {
@@ -1019,7 +1025,21 @@ proxy_init()
     struct nhext_svc *services;
     struct nhext_line *lp = (struct nhext_line *)0, line;
     char standard[8];
+#ifdef UNIX
     rd = nhext_io_open(READ_F, READ_H, NHEXT_IO_RDONLY);
+    if (rd)
+	nhext_io_setnbfunc(rd, proxy_read_nb);
+#else
+# ifdef WIN32
+    void *read_h = READ_H;
+    if (GetFileType((HANDLE)read_h) == FILE_TYPE_PIPE) {
+	rd = nhext_io_open(READ_F, read_h, NHEXT_IO_RDONLY);
+	if (rd)
+	    nhext_io_setnbfunc(rd, proxy_pipe_read_nb);
+    } else
+# endif
+    rd = nhext_io_open(READ_F, READ_H, NHEXT_IO_RDONLY | NHEXT_IO_NBLOCK);
+#endif
     if (!rd) {
 	pline("Proxy: Failed to open read NhExtIO stream");
 	return FALSE;
@@ -1066,7 +1086,7 @@ proxy_init()
     line.tags[2] = "version";
     line.values[2] = VERSION_STRING;
     line.tags[3] = "protocols";
-    line.values[3] = "1";
+    line.values[3] = "1,2";
     i = nhext_subprotocol0_write_line(&line);
     free(line.tags);
     free(line.values);
@@ -1090,10 +1110,19 @@ failed:
 	goto failed;
     }
     for(i = 0; i < lp->n; i++)
-	if (!strcmp(lp->tags[i], "protocol"))
+	if (!strcmp(lp->tags[i], "protocol")) {
+	    if (!strcmp(lp->values[i], "1"))
+		proxy_protocol = 1;
+	    else if (!strcmp(lp->values[i], "2"))
+		proxy_protocol = 2;
+	    else {
+		pline("Proxy: Illegal sub-protocol \"%s\"", lp->values[i]);
+		goto failed;
+	    }
 	    break;
-    if (i == lp->n || strcmp(lp->values[i], "1")) {
-	pline("Proxy: Remote end does not support sub-protocol 1");
+	}
+    if (i == lp->n) {
+	pline("Proxy: Missing protocol in acknowledgment");
 	goto failed;
     }
     for(i = 0; i < lp->n; i++)
@@ -1108,6 +1137,7 @@ failed:
 	Sprintf(name, "proxy/%s", lp->values[i]);
 	windowprocs.name = name;
     }
+    nhext_set_protocol(proxy_protocol);
     return TRUE;
 } 
 
@@ -1172,7 +1202,9 @@ unsigned int len;
 {
     int retval;
     retval = proxy_read(handle, buf, len);
-    if (retval < 0)
+    if (retval == -2)
+	fputs("<- PENDING\n", stderr);
+    else if (retval < 0)
 	fputs("<- ERROR\n", stderr);
     else if (!retval)
 	fputs("<- EOF\n", stderr);
@@ -1213,14 +1245,43 @@ const char *error;
     }
 }
 
+static unsigned long async_callbacks[] = {
+    1 << EXT_CID_DISPLAY_INVENTORY - EXT_CID_DISPLAY_INVENTORY |
+      1 << EXT_CID_FLUSH_SCREEN - EXT_CID_DISPLAY_INVENTORY |
+      1 << EXT_CID_DOREDRAW - EXT_CID_DISPLAY_INVENTORY |
+      1 << EXT_CID_INTERFACE_MODE - EXT_CID_DISPLAY_INVENTORY |
+      1 << EXT_CID_QUIT_GAME - EXT_CID_DISPLAY_INVENTORY |
+      1 << EXT_CID_DISPLAY_SCORE - EXT_CID_DISPLAY_INVENTORY |
+      1 << EXT_CID_DOSET - EXT_CID_DISPLAY_INVENTORY |
+      1 << EXT_CID_SET_OPTION_MOD_STATUS - EXT_CID_DISPLAY_INVENTORY,
+};
+
 void
 win_proxy_init()
 {
+    int retval;
+    struct proxycb_subprot2_init request, result;
     in_proxy_init = TRUE;
     set_glyph_mapping();
     (void)nhext_set_errhandler(win_proxy_errhandler);
-    if (!proxy_init() || !nhext_rpc(EXT_FID_INIT, 0, 0))
+    if (!proxy_init())
 	panic("Proxy: Failed to initialize");
+    if (proxy_protocol == 1)
+	retval = nhext_rpc(EXT_FID_INIT, 0, 0);
+    else {
+	request.n_masks = SIZE(async_callbacks);
+	request.masks = async_callbacks;
+	result.masks = (unsigned long *)0;
+	retval = nhext_rpc(EXT_FID_INIT,
+	  1, EXT_XDRF(proxycb_xdr_subprot2_init, &request),
+	  1, EXT_XDRF(proxycb_xdr_subprot2_init, &result));
+	if (retval) {
+	    nhext_set_async_masks(result.n_masks, result.masks);
+	    free(result.masks);
+	}
+    }
+    if (!retval)
+	panic("Proxy: Failed to initialize window interface");
     in_proxy_init = FALSE;
 }
 

@@ -1,5 +1,5 @@
-/* $Id: compxdr.c,v 1.13 2003-05-17 10:33:25 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001-2002 */
+/* $Id: compxdr.c,v 1.14 2003-10-25 18:06:01 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include <stdlib.h>
@@ -10,6 +10,14 @@
  * This module implements the XDR routines for non-trivial compound types that
  * NhExt needs.
  */
+
+nhext_xdr_bool_t proxycb_xdr_subprot2_init(xdr, datum)
+NhExtXdr *xdr;
+struct proxycb_subprot2_init *datum;
+{
+    return nhext_xdr_array(xdr, (char **)&datum->masks, &datum->n_masks,
+	(unsigned int)-1, sizeof(unsigned long), nhext_xdr_u_long);
+}
 
 nhext_xdr_bool_t proxy_xdr_init_nhwindow_req(xdr, datum)
 NhExtXdr *xdr;

@@ -1,5 +1,5 @@
-# $Id: Makefile.w32,v 1.5 2002-12-24 10:14:21 j_ali Exp $
-# Copyright (c) Slash'EM Development Team 2001-2002
+# $Id: Makefile.w32,v 1.6 2003-10-25 18:06:01 j_ali Exp $
+# Copyright (c) Slash'EM Development Team 2001-2003
 # NetHack may be freely redistributed.  See license for details.
 #
 # This makefile is for maintainer use. It is not needed when building the game.
@@ -21,19 +21,30 @@ all:	tests
 
 FORCE:
 
-tests:	test_ext FORCE
+tests:	test_ext.exe test_io.exe FORCE
 	@echo ""
 	@echo Testing NhExt sub-protocol 1 support routines...
 	@echo ============================
 	- ./test_ext
 	@echo ============================
+	@echo ""
+	@echo Testing NhExt I/O buffering routines...
+	@echo ============================
+	- ./test_io
+	@echo ============================
 
-test_ext:	test_ext.c nhext.o nhxdr.o nhextxdr.o nhextio.o
-	$(CC) $(CFLAGS) -o test_ext test_ext.c nhext.o nhxdr.o nhextxdr.o nhextio.o
+test_ext.exe:	test_ext.c test_com.o nhext.o nhxdr.o nhextxdr.o nhextio.o \
+	nhextnb.o
+	$(CC) $(CFLAGS) -o test_ext test_ext.c test_com.o nhext.o nhxdr.o \
+		nhextxdr.o nhextio.o nhextnb.o
+
+test_io.exe:	test_io.c test_com.o nhextio.o nhextnb.o
+	$(CC) $(CFLAGS) -o test_io test_io.c test_com.o nhextio.o nhextnb.o
 
 clean:
 	-del *.o
-	-del test_ext
+	-del test_ext.exe
+	-del test_io.exe
 
 spotless:	clean
 
@@ -50,6 +61,8 @@ nhxdr.o: nhxdr.c ../../include/nhxdr.h
 nhext.o: nhext.c ../../include/nhxdr.h ../../include/proxycom.h
 nhextxdr.o: nhextxdr.c ../../include/nhxdr.h
 nhextio.o: nhextio.c ../../include/nhxdr.h ../../include/proxycom.h
+nhextnb.o: nhextnb.c ../../include/nhxdr.h ../../include/proxycom.h
+test_com.o: test_com.c test_com.h
 # DEPENDENCIES MUST END AT END OF FILE
 # IF YOU PUT STUFF HERE IT WILL GO AWAY
 # see Makefile.unx

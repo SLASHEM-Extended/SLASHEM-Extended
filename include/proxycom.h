@@ -1,4 +1,4 @@
-/* $Id: proxycom.h,v 1.15 2003-08-02 14:22:26 j_ali Exp $ */
+/* $Id: proxycom.h,v 1.16 2003-10-25 18:06:00 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -9,6 +9,7 @@
 
 #define EXT_STANDARD_MAJOR	1
 #define EXT_STANDARD_MINOR	0
+#define EXT_STANDARD_MICRO	1	/* Not used in the code */
 
 #define EXT_IM_STATUS		0x0001
 #define EXT_IM_DISPLAY_LAYERS	0x0002
@@ -38,10 +39,20 @@
 #define EXT_BOOLEAN_P(b)	EXT_PARAM_PTR | EXT_PARAM_BOOLEAN, &(b)
 #define EXT_CHAR_P(c)		EXT_PARAM_PTR | EXT_PARAM_CHAR, &(c)
 
-#define EXT_ERROR_INTERNAL	0
-#define EXT_ERROR_COMMS		1
-#define EXT_ERROR_NOTSUPPORTED	2
-#define EXT_ERROR_PROTOCOL	3
+#define EXT_SPECIAL_ERROR	0
+
+#define EXT_ERROR_UNSUPPORTED		1
+#define EXT_ERROR_UNAVAILABLE		2
+#define EXT_ERROR_INVALIDENCODING	3
+#define EXT_ERROR_INVALIDPARAMS		4
+#define EXT_ERROR_RESOURCEFAILURE	5
+
+#define EXT_ERROR_GENERIC		0x100
+
+#define EXT_ERROR_INTERNAL		0x101
+#define EXT_ERROR_COMMS			0x102
+#define EXT_ERROR_NOTSUPPORTED		0x103
+#define EXT_ERROR_PROTOCOL		0x104
 
 #ifdef NHXDR_H
 struct nhext_svc {
@@ -58,6 +69,8 @@ struct nhext_line {
 typedef void FDECL((*nhext_errhandler), (int, const char *));
 
 E int FDECL(nhext_init, (NhExtIO *, NhExtIO *, struct nhext_svc *));
+E int FDECL(nhext_set_protocol, (int));
+E int NDECL(nhext_async_mode);
 E void NDECL(nhext_end);
 E int FDECL(nhext_subprotocol0_write_line, (struct nhext_line *));
 E void FDECL(nhext_subprotocol0_free_line, (struct nhext_line *));
@@ -67,6 +80,11 @@ E nhext_errhandler FDECL(nhext_set_errhandler, (nhext_errhandler));
 E int VDECL(nhext_rpc_params, (NhExtXdr *xdrs, int, ...));
 E int VDECL(nhext_rpc, (unsigned short, ...));
 E int FDECL(nhext_svc, (struct nhext_svc *));
+E void FDECL(nhext_set_async_masks, (int, unsigned long *));
+E void FDECL(nhext_set_unsupported, (int));
+E unsigned short NDECL(nhext_rpc_get_next_serial);
+E unsigned short NDECL(nhext_svc_get_serial);
+E void FDECL(nhext_send_error, (unsigned short, unsigned char));
 #endif	/* NHXDR_H */
 
 #define EXT_FID_INIT			0x01
@@ -295,6 +313,12 @@ struct proxycb_get_extensions_res {
 	struct proxycb_get_extensions_res_extension *extensions;
 };
 
+/* This structure is used for both the sub-protocol 2 init request and reply */
+struct proxycb_subprot2_init {
+	int n_masks;
+	unsigned long *masks;
+};
+
 extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_player_choices_res_role,
 		(NhExtXdr *, struct proxycb_get_player_choices_res_role *));
 extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_player_choices_res,
@@ -317,6 +341,8 @@ extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_glyph_mapping_res,
 		(NhExtXdr *, struct proxycb_get_glyph_mapping_res *));
 extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_extensions_res,
 		(NhExtXdr *, struct proxycb_get_extensions_res *));
+extern nhext_xdr_bool_t FDECL(proxycb_xdr_subprot2_init,
+		(NhExtXdr *, struct proxycb_subprot2_init *));
 #endif  /* NHXDR_H */
 
 /* riputil.c */

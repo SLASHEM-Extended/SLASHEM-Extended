@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.38 2003-09-30 12:43:18 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.39 2003-10-25 18:06:00 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -276,8 +276,9 @@ endif
 #
 # Common files for proxy window interface and window servers.
 PROXYCOMSRC = ../win/proxy/nhext.c ../win/proxy/nhxdr.c ../win/proxy/md5.c \
-	../win/proxy/nhextxdr.c ../win/proxy/nhextio.c ../win/proxy/compxdr.c
-PROXYCOMOBJ = nhext.o nhxdr.o md5.o nhextxdr.o nhextio.o compxdr.o
+	../win/proxy/nhextxdr.c ../win/proxy/nhextio.c ../win/proxy/nhextnb.c \
+	../win/proxy/compxdr.c
+PROXYCOMOBJ = nhext.o nhxdr.o md5.o nhextxdr.o nhextio.o nhextnb.o compxdr.o
 # Files for the proxy utility modules. These are provided for use with window
 # ports that support the proxy interface. The GTK window interface needs
 # these files regardless of whether proxy support is enabled or not.
@@ -1720,7 +1721,7 @@ prxychar.o: ../win/proxy/prxychar.c $(INCL)/nhxdr.h $(INCL)/proxycom.h \
 		$(INCL)/prxyclnt.h
 	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/prxychar.c
 prxytile.o: ../win/proxy/prxytile.c $(INCL)/nhxdr.h $(INCL)/proxycom.h \
-		$(INCL)/prxyclnt.h
+		$(INCL)/prxyclnt.h $(INCL)/proxycb.h
 	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/prxytile.c
 prxyconn.o: ../win/proxy/prxyconn.c $(INCL)/nhxdr.h $(INCL)/proxycom.h \
 		$(INCL)/prxyclnt.h
@@ -1733,6 +1734,8 @@ nhextxdr.o: ../win/proxy/nhextxdr.c $(INCL)/nhxdr.h
 	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/nhextxdr.c
 nhextio.o: ../win/proxy/nhextio.c $(INCL)/nhxdr.h
 	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/nhextio.c
+nhextnb.o: ../win/proxy/nhextnb.c $(INCL)/nhxdr.h
+	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/nhextnb.c
 compxdr.o: ../win/proxy/compxdr.c $(INCL)/nhxdr.h $(INCL)/proxycom.h
 	$(CCOMPILE) $(CFLAGS) -o$@ ../win/proxy/compxdr.c
 gl_conf.o: ../win/gl/gl_conf.c $(HACK_H) $(INCL)/dlb.h \

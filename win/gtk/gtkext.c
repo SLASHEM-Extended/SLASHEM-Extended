@@ -1,5 +1,5 @@
 /*
-  $Id: gtkext.c,v 1.3 2003-05-31 08:12:44 j_ali Exp $
+  $Id: gtkext.c,v 1.4 2003-10-25 18:06:01 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -17,8 +17,6 @@
 #include "prxyclnt.h"
 
 static void v_hook();
-static int i_hook();
-static char *s_hook();
 static int GTK_ext_message_menu(int let, int how, const char *mesg);
 
 struct window_ext_procs GTK_ext_procs = {
@@ -26,10 +24,10 @@ struct window_ext_procs GTK_ext_procs = {
     GTK_ext_init_nhwindows,
     GTK_ext_player_selection,
     GTK_ext_askname,
-    GTK_get_nh_event,
+    NULL,	/* get_nh_event */
     GTK_exit_nhwindows,
-    v_hook, /* suspend_nhwindows */
-    v_hook, /* resume_nhwindows */
+    NULL,	/* suspend_nhwindows */
+    NULL,	/* resume_nhwindows */
     GTK_create_nhwindow,
     GTK_ext_clear_nhwindow,
     GTK_display_nhwindow,
@@ -43,28 +41,28 @@ struct window_ext_procs GTK_ext_procs = {
     GTK_ext_select_menu,
     GTK_ext_message_menu,
     GTK_update_inventory,
-    GTK_mark_synch,
-    GTK_wait_synch,
+    NULL,	/* mark_sync */
+    NULL,	/* wait_sync */
     GTK_cliparound,
-    v_hook, /* update_positionbar */
+    NULL,	/* update_positionbar */
     GTK_ext_print_glyph,
     GTK_raw_print,
     GTK_raw_print_bold,
     GTK_nhgetch,
     GTK_nh_poskey,
-    v_hook, /* nhbell */
-    GTK_doprev_message,
+    NULL,	/* nhbell */
+    NULL,	/* doprev_message */
     GTK_ext_yn_function,
     GTK_ext_getlin,
     GTK_get_ext_cmd,
     GTK_number_pad,
     GTK_delay_output,
-    v_hook, /* change_color */
-    v_hook, /* change_background */
-    i_hook, /* set_font_name */
-    s_hook, /* get_color_string */
-    v_hook, /* start_screen,*/
-    v_hook, /* end_screen,*/
+    NULL,	/* change_color */
+    NULL,	/* change_background */
+    NULL,	/* set_font_name */
+    NULL,	/* get_color_string */
+    NULL,	/* start_screen,*/
+    NULL,	/* end_screen,*/
     GTK_ext_outrip,
     GTK_ext_preference_update,
     GTK_ext_status,
@@ -72,28 +70,13 @@ struct window_ext_procs GTK_ext_procs = {
 #ifdef GTKHACK
     GTK_ext_send_config_file,
 #else
-    v_hook, /* send_config_file */
+    v_hook,	/* send_config_file */
 #endif
 };
 
 static void
 v_hook()
 {
-}
-
-static int
-i_hook()
-{
-    return FALSE;
-}
-
-static char *
-s_hook()
-{
-    char *s;
-    s = (char *)alloc(1);
-    *s = '\0';
-    return s;
 }
 
 /*ARGSUSED*/

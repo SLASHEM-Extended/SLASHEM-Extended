@@ -1,11 +1,15 @@
-/* $Id: test_io.c,v 1.2 2002-11-23 22:41:59 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2002 */
+/* $Id: test_io.c,v 1.3 2003-10-25 18:06:02 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <signal.h>
+#include <fcntl.h>
 #include "nhxdr.h"
+#include "test_com.h"
+
+/* #define PRINTF_FP_SUPPORT */		/* Support for %e, %f & %g */
 
 /*
  * This module tests the NhExtIO implementation by using it to write
@@ -14,44 +18,20 @@
  * while still failing if NhExtIO attempts to read data ahead of time.
  */
 
-static int is_child;
-
+#ifdef SIGPIPE
 static void
 sigpipe_handler(int signum)
 {
     fprintf(stderr, "%s: SIGPIPE received\n", is_child ? "child" : "parent");
 }
+#endif
 
 static int
-read_f(void *handle, void *buf, unsigned int len)
+child(NhExtIO *rio, NhExtIO *wio)
 {
-    return read((int)handle, buf, len);
-}
-
-static int
-write_f(void *handle, void *buf, unsigned int len)
-{
-    return write((int)handle, buf, len);
-}
-
-static int
-child(int rfd, int wfd)
-{
-    NhExtIO *rio, *wio;
     int i, j, k, r, nb, exitcode = 1;
     unsigned char buffer[8192];
     unsigned long crc, crc1;		/* AUTODIN-II 32-bit CRC */
-    rio = nhext_io_open(read_f, (void *)rfd,
-      NHEXT_IO_RDONLY | NHEXT_IO_NOAUTOFILL);
-    if (!rio) {
-	perror("child: nhext_io_open(read)");
-	goto done;
-    }
-    wio = nhext_io_open(write_f, (void *)wfd, NHEXT_IO_WRONLY);
-    if (!wio) {
-	perror("child: nhext_io_open(write)");
-	goto done;
-    }
     nb = nhext_io_read(rio, buffer, sizeof(buffer));
     if (nb) {
 	/*
@@ -76,7 +56,7 @@ child(int rfd, int wfd)
 	perror("child: flush(start)");
 	goto done;
     }
-    if (nhext_io_filbuf(rio) < 0) {
+    if (nhext_io_filbuf(rio, TRUE) < 0) {
 	perror("child: filbuf");
 	goto done;
     }
@@ -182,29 +162,14 @@ child(int rfd, int wfd)
     exitcode = 0;
     fprintf(stderr, "No errors found on child side\n");
 done:
-    if (rio)
-	nhext_io_close(rio);
-    if (wio)
-	nhext_io_close(wio);
-    exit(exitcode);
+    return exitcode;
 }
 
 static int
-parent(int rfd, int wfd)
+parent(NhExtIO *rio, NhExtIO *wio)
 {
-    NhExtIO *rio, *wio;
     int c, nb, exitcode = 1;
     unsigned char buffer[32];
-    rio = nhext_io_open(read_f, (void *)rfd, NHEXT_IO_RDONLY);
-    if (!rio) {
-	perror("parent: nhext_io_open(read)");
-	goto done;
-    }
-    wio = nhext_io_open(write_f, (void *)wfd, NHEXT_IO_WRONLY);
-    if (!wio) {
-	perror("parent: nhext_io_open(write)");
-	goto done;
-    }
     nb = nhext_io_read(rio, buffer, sizeof(buffer));
     if (nb <= 0) {
 	if (nb < 0)
@@ -216,8 +181,9 @@ parent(int rfd, int wfd)
     }
     if (nb != 6 || memcmp(buffer, "Start\n", 6)) {
 	fprintf(stderr,
-	  "child: nhext_io_read(start): Expecting Start, got %*.*s\n",
-	  nb,nb,buffer);
+	  "parent: nhext_io_read(start): "
+	  "Expecting Start\\n, got \"%*.*s\" (%d bytes)\n",
+	  nb,nb,buffer,nb);
 	goto done;
     }
     if (nhext_io_write(wio, "ACK\n", 4) != 4) {
@@ -247,7 +213,7 @@ parent(int rfd, int wfd)
 		perror("parent: flush(random)");
 		goto done;
 	    }
-	    nb = nhext_io_filbuf(rio);
+	    nb = nhext_io_filbuf(rio, TRUE);
 	    if (nb < 0) {
 		perror("parent: filbuf");
 		goto done;
@@ -270,11 +236,145 @@ parent(int rfd, int wfd)
     exitcode = 0;
     fprintf(stderr, "No errors found on parent side\n");
 done:
-    if (rio)
-	nhext_io_close(rio);
-    if (wio)
-	nhext_io_close(wio);
-    exit(exitcode);
+    return exitcode;
+}
+
+int fd_write(void *handle, void *buf, unsigned int len)
+{
+    int retval;
+    retval = write((int)handle, buf, len);
+    return retval >= 0 ? retval : -1;
+}
+
+test_printf()
+{
+    NhExtIO *wr;
+    wr = nhext_io_open(fd_write, (void *)1, NHEXT_IO_WRONLY);
+#ifdef PRINTF_FP_SUPPORT
+    printf("Test of %%f output\n"
+           "-----------------\n");
+    printf("printf:\n");
+    printf(">%-8.4lf<\n", 3.1415926);
+    printf(">%8.4lf<\n", -3.1415926);
+    printf(">%8.4lf<\n", 31415926.0);
+    printf(">%8.4lf<\n", 0.00031415926);
+    printf(">%8.4lf<\n", 0.000031415926);
+    nhext_io_printf(wr, "nhext_io_printf:\n");
+    nhext_io_printf(wr, ">%-8.4lf<\n", 3.1415926);
+    nhext_io_printf(wr, ">%8.4lf<\n", -3.1415926);
+    nhext_io_printf(wr, ">%8.4lf<\n", 31415926.0);
+    nhext_io_printf(wr, ">%8.4lf<\n", 0.00031415926);
+    nhext_io_printf(wr, ">%8.4lf<\n", 0.000031415926);
+    nhext_io_flush(wr);
+    printf("\nTest of %%e output\n"
+           "-----------------\n");
+    printf("printf:\n");
+    printf(">%-8.4le<\n", 3.1415926);
+    printf(">%8.4le<\n", -3.1415926);
+    printf(">%8.4le<\n", 31415926.0);
+    printf(">%8.4le<\n", 0.00031415926);
+    printf(">%8.4le<\n", 0.000031415926);
+    nhext_io_printf(wr, "nhext_io_printf:\n");
+    nhext_io_printf(wr, ">%-8.4le<\n", 3.1415926);
+    nhext_io_printf(wr, ">%8.4le<\n", -3.1415926);
+    nhext_io_printf(wr, ">%8.4le<\n", 31415926.0);
+    nhext_io_printf(wr, ">%8.4le<\n", 0.00031415926);
+    nhext_io_printf(wr, ">%8.4le<\n", 0.000031415926);
+    nhext_io_flush(wr);
+    printf("\nTest of %%g output\n"
+           "-----------------\n");
+    printf("printf:\n");
+    printf(">%-8.4lg<\n", 3.1415926);
+    printf(">%8.4lg<\n", -3.1415926);
+    printf(">%8.4lg<\n", 31415926.0);
+    printf(">%8.4lg<\n", 0.00031415926);
+    printf(">%8.4lg<\n", 0.000031415926);
+    nhext_io_printf(wr, "nhext_io_printf:\n");
+    nhext_io_printf(wr, ">%-8.4lg<\n", 3.1415926);
+    nhext_io_printf(wr, ">%8.4lg<\n", -3.1415926);
+    nhext_io_printf(wr, ">%8.4lg<\n", 31415926.0);
+    nhext_io_printf(wr, ">%8.4lg<\n", 0.00031415926);
+    nhext_io_printf(wr, ">%8.4lg<\n", 0.000031415926);
+    nhext_io_flush(wr);
+#endif
+    printf("\nTest of %%d output\n"
+           "-----------------\n");
+    printf("printf:\n");
+    printf(">%-8d<\n", 314159);
+    printf(">%8d<\n", -314159);
+    printf(">%08d<\n", 314159);
+    printf(">%-08d<\n", 314159);
+    printf(">%+08d<\n", 314159);
+    nhext_io_printf(wr, "nhext_io_printf:\n");
+    nhext_io_printf(wr, ">%-8d<\n", 314159);
+    nhext_io_printf(wr, ">%8d<\n", -314159);
+    nhext_io_printf(wr, ">%08d<\n", 314159);
+    nhext_io_printf(wr, ">%-08d<\n", 314159);
+    nhext_io_printf(wr, ">%+08d<\n", 314159);
+    nhext_io_flush(wr);
+    printf("\nTest of %%lu output\n"
+           "-----------------\n");
+    printf("printf:\n");
+    printf(">%-8lu<\n", 314159UL);
+    printf(">%8lu<\n", 314159UL);
+    printf(">%08lu<\n", 314159UL);
+    printf(">%-08lu<\n", 314159UL);
+    printf(">%+08lu<\n", 314159UL);
+    nhext_io_printf(wr, "nhext_io_printf:\n");
+    nhext_io_printf(wr, ">%-8lu<\n", 314159UL);
+    nhext_io_printf(wr, ">%8lu<\n", 314159UL);
+    nhext_io_printf(wr, ">%08lu<\n", 314159UL);
+    nhext_io_printf(wr, ">%-08lu<\n", 314159UL);
+    nhext_io_printf(wr, ">%+08lu<\n", 314159UL);
+    nhext_io_flush(wr);
+    printf("\nTest of %%x output\n"
+           "-----------------\n");
+    printf("printf:\n");
+    printf(">%-8x<\n", 314159U);
+    printf(">%8X<\n", 314159U);
+    printf(">%08x<\n", 314159U);
+    printf(">%#-08X<\n", 314159U);
+    printf(">%#08x<\n", 314159U);
+    nhext_io_printf(wr, "nhext_io_printf:\n");
+    nhext_io_printf(wr, ">%-8x<\n", 314159U);
+    nhext_io_printf(wr, ">%8X<\n", 314159U);
+    nhext_io_printf(wr, ">%08x<\n", 314159U);
+    nhext_io_printf(wr, ">%#-08X<\n", 314159U);
+    nhext_io_printf(wr, ">%#08x<\n", 314159U);
+    nhext_io_flush(wr);
+    printf("\nTest of %%p output\n"
+           "-----------------\n");
+    printf("printf:\n");
+    printf(">%-9p<\n", wr);
+    printf(">%9P<\n", wr);
+    printf(">%09p<\n", wr);
+    printf(">%#-09P<\n", wr);
+    printf(">%#09p<\n", wr);
+    nhext_io_printf(wr, "nhext_io_printf:\n");
+    nhext_io_printf(wr, ">%-9p<\n", wr);
+    nhext_io_printf(wr, ">%9P<\n", wr);
+    nhext_io_printf(wr, ">%09p<\n", wr);
+    nhext_io_printf(wr, ">%#-09P<\n", wr);
+    nhext_io_printf(wr, ">%#09p<\n", wr);
+    nhext_io_flush(wr);
+    printf("\nTest of %%s output\n"
+           "-----------------\n");
+    printf("printf:\n");
+    printf(">%*s<\n", -9, "Hello");
+    printf(">%9s<\n", "Hello");
+    printf(">%09s<\n", "Hello");
+    printf(">%-*s<\n", 9, "Hello");
+    printf(">%9.*s<\n", 4, "Hello");
+    printf(">%s<\n", (char *)0);
+    nhext_io_printf(wr, "nhext_io_printf:\n");
+    nhext_io_printf(wr, ">%*s<\n", -9, "Hello");
+    nhext_io_printf(wr, ">%9s<\n", "Hello");
+    nhext_io_printf(wr, ">%09s<\n", "Hello");
+    nhext_io_printf(wr, ">%-*s<\n", 9, "Hello");
+    nhext_io_printf(wr, ">%9.*s<\n", 4, "Hello");
+    nhext_io_printf(wr, ">%s<\n", (char *)0);
+    nhext_io_flush(wr);
+    nhext_io_close(wr);
 }
 
 int
@@ -282,22 +382,38 @@ main(argc, argv)
 int argc;
 char **argv;
 {
-    int to_child[2], from_child[2];
-    if (pipe(to_child) || pipe(from_child)) {
-	perror("pipe");
+    int retval = 0;
+    NhExtIO *rd, *wr;
+#ifdef SIGPIPE
+    signal(SIGPIPE, sigpipe_handler);
+#endif
+    if (argc > 1 && !strcmp(argv[1], "-c")) {
+	is_child++;
+	rd = nhext_io_open(parent_read, get_parent_readh(),
+	  NHEXT_IO_RDONLY | NHEXT_IO_NOAUTOFILL);
+	wr = nhext_io_open(parent_write, get_parent_writeh(), NHEXT_IO_WRONLY);
+	if (!rd || !wr) {
+	    fprintf(stderr, "C Failed to open I/O streams.\n");
+	    exit(1);
+	}
+	retval = child(rd, wr);
+	nhext_io_close(rd);
+	nhext_io_close(wr);
+	exit(retval);
+    }
+    if (!child_start(argv[0])) {
+	fprintf(stderr, "Failed to start child.\n");
 	exit(1);
     }
-    if (!fork()) {
-	is_child = 1;
-	signal(SIGPIPE, sigpipe_handler);
-	close(to_child[1]);
-	close(from_child[0]);
-	child(to_child[0], from_child[1]);
-    } else {
-	is_child = 0;
-	signal(SIGPIPE, sigpipe_handler);
-	close(to_child[0]);
-	close(from_child[1]);
-	parent(from_child[0], to_child[1]);
+    rd = nhext_io_open(child_read, get_child_readh(), NHEXT_IO_RDONLY);
+    wr = nhext_io_open(child_write, get_child_writeh(), NHEXT_IO_WRONLY);
+    if (!rd || !wr) {
+	fprintf(stderr, "Failed to open I/O streams.\n");
+	exit(1);
     }
+    retval = parent(rd, wr);
+    nhext_io_close(rd);
+    nhext_io_close(wr);
+    test_printf();
+    exit(retval);
 }

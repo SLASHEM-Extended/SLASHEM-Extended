@@ -1,5 +1,5 @@
-# $Id: Makefile.unx,v 1.8 2002-12-24 10:14:21 j_ali Exp $
-# Copyright (c) Slash'EM Development Team 2001-2002
+# $Id: Makefile.unx,v 1.9 2003-10-25 18:06:01 j_ali Exp $
+# Copyright (c) Slash'EM Development Team 2001-2003
 # NetHack may be freely redistributed.  See license for details.
 #
 # This makefile is for maintainer use. It is not needed when building the game.
@@ -17,7 +17,7 @@ CFLAGS = -g -I../../include
 CONFIG_H = ../../src/config.h-t
 HACK_H  = ../../src/hack.h-t
 
-CSRC = nhxdr.c nhext.c nhextxdr.c nhextio.c
+CSRC = nhxdr.c nhext.c nhextxdr.c nhextio.c nhextnb.c test_com.c
 
 all:	tests
 
@@ -43,8 +43,9 @@ tests:	test_xdr rpcgen-test_xdr test_ext test_io FORCE
 	- ./test_io
 	@echo ============================
 
-test_xdr:	test_xdr.c nhxdr.o nhextxdr.o nhextio.o
-	$(CC) $(CFLAGS) -URPCGEN -o test_xdr test_xdr.c nhxdr.o nhextxdr.o nhextio.c
+test_xdr:	test_xdr.c nhxdr.o nhextxdr.o nhextio.o nhextnb.o
+	$(CC) $(CFLAGS) -URPCGEN -o test_xdr test_xdr.c nhxdr.o nhextxdr.o \
+		nhextio.c nhextnb.c
 
 rpcgen-test_xdr:	test_xdr.c
 	$(CC) $(CFLAGS) -DRPCGEN -o rpcgen-test_xdr test_xdr.c $(RPCLIB)
@@ -55,11 +56,13 @@ rpcgen-nhext.h rpcgen-nhext_xdr.c:	rpcgen-nhext.x
 rpcgen-nhext.x:	ext_protocol.html
 	$(AWK) '/<h3>init<\/h3>/ { init=1; } /^<pre>$$/ { if (init) output=1; next;} /^<\/pre>$$/ { output=0; } { if (output) print }' < ext_protocol.html > rpcgen-nhext.x
 
-test_ext:	test_ext.c nhext.o nhxdr.o nhextxdr.o nhextio.o
-	$(CC) $(CFLAGS) -o test_ext test_ext.c nhext.o nhxdr.o nhextxdr.o nhextio.o
+test_ext:	test_ext.c test_com.o nhext.o nhxdr.o nhextxdr.o nhextio.o \
+	nhextnb.o
+	$(CC) $(CFLAGS) -o test_ext test_ext.c test_com.o nhext.o nhxdr.o \
+		nhextxdr.o nhextio.o nhextnb.o
 
-test_io:	test_io.c nhextio.o
-	$(CC) $(CFLAGS) -o test_io test_io.c nhextio.o
+test_io:	test_io.c test_com.o nhextio.o nhextnb.o
+	$(CC) $(CFLAGS) -o test_io test_io.c test_com.o nhextio.o nhextnb.o
 
 clean:
 	$(RM) *.o test_xdr rpcgen-test_xdr test_ext test_io
@@ -100,6 +103,8 @@ nhxdr.o: nhxdr.c ../../include/nhxdr.h
 nhext.o: nhext.c ../../include/nhxdr.h ../../include/proxycom.h
 nhextxdr.o: nhextxdr.c ../../include/nhxdr.h
 nhextio.o: nhextio.c ../../include/nhxdr.h ../../include/proxycom.h
+nhextnb.o: nhextnb.c ../../include/nhxdr.h ../../include/proxycom.h
+test_com.o: test_com.c test_com.h
 # DEPENDENCIES MUST END AT END OF FILE
 # IF YOU PUT STUFF HERE IT WILL GO AWAY
 # see make depend above

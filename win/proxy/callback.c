@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.19 2003-08-22 19:40:57 j_ali Exp $ */
+/* $Id: callback.c,v 1.20 2003-10-25 18:06:01 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -66,7 +66,8 @@ unsigned short id;
 NhExtXdr *request, *reply;
 {
     display_inventory((char *)0, FALSE);
-    nhext_rpc_params(reply, 0);
+    if (!nhext_async_mode())
+	nhext_rpc_params(reply, 0);
 }
 
 /* 
@@ -234,8 +235,8 @@ NhExtXdr *request, *reply;
     int fh, len, nb;
     char *buf;
     nhext_rpc_params(request, 2, EXT_INT_P(len), EXT_INT_P(fh));
-    if (len > 10*1024*1024)
-	len = 10*1024*1024;	/* Avoid pointless resource useage */
+    if (len > 120*1024)
+	len = 120*1024;		/* Sub-protocol 2 limits at 128Kb - 12 bytes */
     buf = (char *)malloc(len);
     if (!buf && len > 512) {
 	len = 512;
@@ -330,7 +331,8 @@ NhExtXdr *request, *reply;
 {
     extern int proxy_curs_on_u;
     flush_screen(proxy_curs_on_u);
-    nhext_rpc_params(reply, 0);
+    if (!nhext_async_mode())
+	nhext_rpc_params(reply, 0);
 }
 
 static void
@@ -339,7 +341,8 @@ unsigned short id;
 NhExtXdr *request, *reply;
 {
     (void)doredraw();
-    nhext_rpc_params(reply, 0);
+    if (!nhext_async_mode())
+	nhext_rpc_params(reply, 0);
 }
 
 static void
@@ -350,7 +353,8 @@ NhExtXdr *request, *reply;
     nhext_rpc_params(request, 1, EXT_LONG_P(proxy_interface_mode));
     bot_set_handler(proxy_interface_mode & EXT_IM_STATUS ?
       proxy_status : (void (*)())0L);
-    nhext_rpc_params(reply, 0);
+    if (!nhext_async_mode())
+	nhext_rpc_params(reply, 0);
 }
 
 static void
@@ -484,7 +488,8 @@ NhExtXdr *request, *reply;
 	terminate(EXIT_SUCCESS);
     }
     /* Not reached */
-    nhext_rpc_params(reply, 0);
+    if (!nhext_async_mode())
+	nhext_rpc_params(reply, 0);
 }
 
 static void
@@ -504,7 +509,8 @@ NhExtXdr *request, *reply;
     destroy_toptenwin();
     dlb_init();                         /* Re-initialise DLB */
     proxy_rawprint_win = WIN_ERR;
-    nhext_rpc_params(reply, 0);
+    if (!nhext_async_mode())
+	nhext_rpc_params(reply, 0);
 }
 
 static void
@@ -513,7 +519,8 @@ unsigned short id;
 NhExtXdr *request, *reply;
 {
     doset();
-    nhext_rpc_params(reply, 0);
+    if (!nhext_async_mode())
+	nhext_rpc_params(reply, 0);
 }
 
 static void
@@ -651,7 +658,8 @@ NhExtXdr *request, *reply;
     nhext_rpc_params(request, 2, EXT_STRING_P(optnam), EXT_INT_P(status));
     set_option_mod_status(optnam, status);
     free(optnam);
-    nhext_rpc_params(reply, 0);
+    if (!nhext_async_mode())
+	nhext_rpc_params(reply, 0);
 }
 
 struct nhext_svc proxy_callbacks[] = {

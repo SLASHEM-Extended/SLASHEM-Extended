@@ -1,5 +1,5 @@
-/* $Id: test_ext.c,v 1.7 2003-01-05 07:41:49 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001-2002 */
+/* $Id: test_ext.c,v 1.8 2003-10-25 18:06:01 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 /*
@@ -8,7 +8,7 @@
  * all of which can be found in nhext.c.
  *
  * Note: This module does not test the implementation of sub-protocol 1
- * itself (which is found in winproxy.c).
+ * itself (which is found in winproxy.c) or the support for sub-protocol 2.
  */
 
 #include <stdio.h>
@@ -17,330 +17,11 @@
 #include "hack.h"
 #include "nhxdr.h"
 #include "proxycom.h"
-
-static int is_child=0;
-
-long *alloc(unsigned int nb)
-{
-    return malloc(nb);
-}
-
-void impossible(const char *fmt,...)
-{
-    int i;
-    va_list args;
-    va_start(args, fmt);
-    fputs("impossible: ", stderr);
-    if (is_child)
-	fputs("C: ", stderr);
-    vfprintf(stderr, fmt, args);
-    putc('\n', stderr);
-    fflush(stderr);
-    va_end(args);
-    if (!is_child) {
-	for(i=0;i<10 && !child_wait0();i++)
-	    sleep(1);
-    }
-    exit(126);
-}
-
-void nhext_error_handler(int class, const char *error)
-{
-    int i;
-    fputs("NhExt error: ", stderr);
-    if (is_child)
-	fputs("C: ", stderr);
-    fputs(error, stderr);
-    putc('\n', stderr);
-    fflush(stderr);
-    if (!is_child) {
-	for(i=0;i<10 && !child_wait0();i++)
-	    sleep(1);
-    }
-    exit(126);
-}
-
-#ifdef WIN32
-#include <windows.h>
-
-static PROCESS_INFORMATION pi;
-static HANDLE to_parent[2], to_child[2];
-
-/* Create an anonymous pipe with one end inheritable. */
-
-static int pipe_create(HANDLE *handles, int non_inherit)
-{
-    HANDLE h;
-    SECURITY_ATTRIBUTES sa;
-    sa.nLength = sizeof(sa);
-    sa.bInheritHandle = TRUE;
-    sa.lpSecurityDescriptor = NULL;
-    if (!CreatePipe(&handles[0], &handles[1], &sa, 0))
-	return FALSE;
-    if (!DuplicateHandle(GetCurrentProcess(), handles[non_inherit],
-      GetCurrentProcess(), &h, 0, FALSE, DUPLICATE_SAME_ACCESS)) {
-	CloseHandle(handles[0]);
-	CloseHandle(handles[1]);
-	return FALSE;
-    }
-    CloseHandle(handles[non_inherit]);
-    handles[non_inherit] = h;
-    return TRUE;
-}
-
-static void pipe_close(HANDLE *handles)
-{
-    CloseHandle(handles[0]);
-    CloseHandle(handles[1]);
-}
-
-int child_start()
-{
-    int fd, retval;
-    HANDLE save_stdin, save_stdout;
-    STARTUPINFO si;
-    if (!pipe_create(to_parent, 0))
-	return FALSE;
-    if (!pipe_create(to_child, 1)) {
-	pipe_close(to_parent);
-	return FALSE;
-    }
-    save_stdin = GetStdHandle(STD_INPUT_HANDLE);
-    save_stdout = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (!SetStdHandle(STD_INPUT_HANDLE, to_child[0])) {
-	pipe_close(to_parent);
-	pipe_close(to_child);
-	return FALSE;
-    }
-    if (!SetStdHandle(STD_OUTPUT_HANDLE, to_parent[1])) {
-	SetStdHandle(STD_INPUT_HANDLE, save_stdin);
-	pipe_close(to_parent);
-	pipe_close(to_child);
-	return FALSE;
-    }
-    ZeroMemory(&si, sizeof(si));
-    si.cb = sizeof(si);
-    ZeroMemory(&pi, sizeof(pi));
-    retval = CreateProcess(NULL,		/* No module name */
-      "test_ext -c",			/* Command line */
-      NULL,				/* Process handle not inheritable */
-      NULL,				/* Thread handle not inheritable */
-      TRUE,				/* Inherits parent's handles */
-#if 0
-      DETACHED_PROCESS,			/* Creation flags */
-#else
-      0,				/* Creation flags */
-#endif
-      NULL,				/* Use parent's environment */
-      NULL,				/* Use parent's starting dir */
-      &si, &pi);
-    SetStdHandle(STD_INPUT_HANDLE, save_stdin);
-    SetStdHandle(STD_OUTPUT_HANDLE, save_stdout);
-    if (!retval) {
-	pipe_close(to_parent);
-	pipe_close(to_child);
-    }
-    else {
-	CloseHandle(to_parent[1]);
-	CloseHandle(to_child[0]);
-    }
-    return retval;
-}
-
-int child_read(handle, buf, len)
-void *handle;
-void *buf;
-int len;
-{
-    DWORD nb;
-    if (!ReadFile((HANDLE)handle, buf, len, &nb, NULL))
-	return -1;
-    else
-	return nb;
-}
-
-int child_write(handle, buf, len)
-void *handle;
-void *buf;
-int len;
-{
-    DWORD nb;
-    if (!WriteFile((HANDLE)handle, buf, len, &nb, NULL))
-	return -1;
-    else
-	return nb;
-}
-
-int child_wait0()
-{
-    return WaitForSingleObject(pi.hProcess, 0) == WAIT_OBJECT_0;
-}
-
-int child_wait()
-{
-    WaitForSingleObject(pi.hProcess, INFINITE);
-    CloseHandle(pi.hProcess);
-    CloseHandle(pi.hThread);
-    pipe_close(to_parent);
-    pipe_close(to_child);
-    return TRUE;
-}
-#else	/* WIN32 */
-static int pid;
-static int to_parent[2], to_child[2];
-
-int child_start()
-{
-    if (pipe(to_child))
-	return FALSE;
-    if (pipe(to_parent)) {
-	close(to_child[0]);
-	close(to_child[1]);
-	return FALSE;
-    }
-    pid = fork();
-    if (pid < 0) {
-	close(to_child[0]);
-	close(to_child[1]);
-	close(to_parent[0]);
-	close(to_parent[1]);
-	return FALSE;
-    }
-    else if (!pid) {
-	close(to_child[1]);
-	close(to_parent[0]);
-	dup2(to_child[0],0);
-	dup2(to_parent[1],1);
-	execl("test_ext", "test_ext", "-c", NULL);
-	_exit(127);
-    }
-    else {
-	close(to_child[0]);
-	close(to_parent[1]);
-    }
-    return TRUE;
-}
-
-int child_read(handle, buf, len)
-void *handle;
-void *buf;
-int len;
-{
-    return read((int)handle, buf, len);
-}
-
-int child_write(handle, buf, len)
-void *handle;
-void *buf;
-int len;
-{
-    return write((int)handle, buf, len);
-}
-
-static int child__wait(options)
-{
-    int status;
-    if (waitpid(pid,&status,options) == pid) {
-	if (!WIFEXITED(status)) {
-	    if (WIFSIGNALED(status))
-		fprintf(stderr, "Child died due to signal %d\n",
-		  WTERMSIG(status));
-	    else
-		fprintf(stderr, "Child died for unknown reason\n");
-	}
-	else if (WEXITSTATUS(status))
-	    fprintf(stderr, "Child exited with code %d\n", WEXITSTATUS(status));
-	return TRUE;
-    } else
-	return FALSE;
-}
-
-int child_wait0()
-{
-    return child__wait(WNOHANG);
-}
-
-int child_wait()
-{
-    close(to_child[1]);
-    close(to_parent[0]);
-    return child__wait(0);
-}
-#endif	/* WIN32 */
-
-int debug_read(handle, buf, len)
-void *handle;
-void *buf;
-unsigned int len;
-{
-    int i, retval;
-    long l;
-    unsigned char *bp = buf;
-    retval = child_read(handle, buf, len);
-    if (retval < 0)
-	fputs("<- ERROR\n", stderr);
-    else {
-	for(i = 0; i < retval; ) {
-	    if ((i & 7) == 0) {
-		if (!i)
-		    fputs("<-", stderr);
-		else
-		    fputs("\n  ", stderr);
-	    }
-	    if (retval - i >= 4) {
-		l = (long)bp[i] << 24 | (long)bp[i+1] << 16 |
-		  (long)bp[i+2] << 8 | bp[i+3];
-		fprintf(stderr, " %08X", l);
-		i += 4;
-	    }
-	    else {
-		fprintf(stderr, " %02X", bp[i]);
-		i++;
-	    }
-	}
-	fputc('\n', stderr);
-    }
-    return retval;
-}
-
-int debug_write(handle, buf, len)
-void *handle;
-void *buf;
-unsigned int len;
-{
-    int i, retval;
-    long l;
-    unsigned char *bp = buf;
-    retval = child_write(handle, buf, len);
-    if (retval < 0)
-	fputs("-> ERROR\n", stderr);
-    else {
-	for(i = 0; i < retval; ) {
-	    if ((i & 7) == 0) {
-		if (!i)
-		    fputs("->", stderr);
-		else
-		    fputs("\n  ", stderr);
-	    }
-	    if (retval - i >= 4) {
-		l = (long)bp[i] << 24 | (long)bp[i+1] << 16 |
-		  (long)bp[i+2] << 8 | bp[i+3];
-		fprintf(stderr, " %08X", l);
-		i += 4;
-	    }
-	    else {
-		fprintf(stderr, " %02X", bp[i]);
-		i++;
-	    }
-	}
-	fputc('\n', stderr);
-    }
-    return retval;
-}
+#include "test_com.h"
 
 volatile server_exit = 0;
 
-#define EXT_FID_EXIT	0xFFFF
+#define EXT_FID_EXIT	0x7FFF
 #define EXT_FID_TEST1	1
 #define EXT_FID_TEST2	2
 #define EXT_FID_TEST3	3
@@ -458,22 +139,12 @@ struct nhext_svc services[] = {
     0,			NULL,
 };
 
-int server_read(void *handle, void *buf, unsigned int len)
-{
-    return read((int)handle, buf, len);
-}
-
-int server_write(void *handle, void *buf, unsigned int len)
-{
-    return write((int)handle, buf, len);
-}
-
 void server(void)
 {
     int i;
     NhExtIO *rd, *wr;
-    rd = nhext_io_open(server_read, (void *)0, NHEXT_IO_RDONLY);
-    wr = nhext_io_open(server_write, (void *)1, NHEXT_IO_WRONLY);
+    rd = nhext_io_open(parent_read, get_parent_readh(), NHEXT_IO_RDONLY);
+    wr = nhext_io_open(parent_write, get_parent_writeh(), NHEXT_IO_WRONLY);
     if (!rd || !wr) {
 	fprintf(stderr, "C Failed to open I/O streams.\n");
 	exit(1);
@@ -481,6 +152,10 @@ void server(void)
     (void)nhext_set_errhandler(nhext_error_handler);
     if (nhext_init(rd, wr, callbacks) < 0) {
 	fprintf(stderr, "C Failed to initialize NhExt.\n");
+	exit(1);
+    }
+    if (nhext_set_protocol(1)) {
+	fprintf(stderr, "C Failed to select protocol 1.\n");
 	exit(1);
     }
     do {
@@ -558,12 +233,12 @@ char **argv;
 	server();
 	exit(0);
     }
-    if (!child_start()) {
+    if (!child_start(argv[0])) {
 	fprintf(stderr, "Failed to start child.\n");
 	exit(1);
     }
-    rd = nhext_io_open(debug_read, (void *)to_parent[0], NHEXT_IO_RDONLY);
-    wr = nhext_io_open(debug_write, (void *)to_child[1], NHEXT_IO_WRONLY);
+    rd = nhext_io_open(debug_read, get_child_readh(), NHEXT_IO_RDONLY);
+    wr = nhext_io_open(debug_write, get_child_writeh(), NHEXT_IO_WRONLY);
     if (!rd || !wr) {
 	fprintf(stderr, "Failed to open I/O streams.\n");
 	exit(1);
@@ -571,6 +246,10 @@ char **argv;
     (void)nhext_set_errhandler(nhext_error_handler);
     if (nhext_init(rd, wr, callbacks) < 0) {
 	fprintf(stderr, "Failed to initialize NhExt.\n");
+	exit(1);
+    }
+    if (nhext_set_protocol(1)) {
+	fprintf(stderr, "Failed to select protocol 1.\n");
 	exit(1);
     }
     run_tests();

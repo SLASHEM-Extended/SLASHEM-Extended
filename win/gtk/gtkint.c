@@ -1,5 +1,5 @@
 /*
-  $Id: gtkint.c,v 1.5 2003-09-07 16:43:44 prousu Exp $
+  $Id: gtkint.c,v 1.6 2003-10-25 18:06:01 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -142,7 +142,7 @@ GTK_client_read(void *handle, void *buf, unsigned int len)
 {
     int nb;
     nb = read((int)handle, buf, len);
-    return nb;
+    return nb >= 0 ? nb : -1;
 }
 
 static int
@@ -150,7 +150,7 @@ GTK_client_write(void *handle, void *buf, unsigned int len)
 {
     int nb;
     nb = write((int)handle, buf, len);
-    return nb;
+    return nb >= 0 ? nb : -1;
 }
 #endif
 

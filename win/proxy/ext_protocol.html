@@ -7,21 +7,20 @@
 <body>
 <h1>NhExt: A protocol for NetHack plug-in window ports</h1>
 
-<p>This document describes NhExt 1.0, a protocol to be used when NetHack
+<p>This document describes NhExt 1.0.1, a protocol to be used when NetHack
 calls a function located inside a plug-in window port and for when that window
 port function in turn calls a function located inside NetHack (a call back).
 The protocol specifies no limit to the depth of recursion which may occur.
 
 <p>NhExt requires a two-way, single duplex, connection between the
 game and the window-port. How that connection is set up is outside the
-scope of the protocol. The protocol is fully synchronous. That is, at
-any time either the game is waiting for input and the window-port is
-either writing data or is not yet ready to write data, or the reverse
-is true.
+scope of the protocol.
 
 <p>NhExt has provision for more than one sub-protocol, to allow for
 future backwards compatibility. Initially, both the game and the
-window port should be in sub-protocol 0.
+window port should be in sub-protocol 0. Sub-protocols 0 and 1 must
+be supported by games; sub-protocol 2 is optional (this is to maintain
+compatibility with NhExt 1.0).
 
 <h1>Sub-protocol 0</h1>
 
@@ -47,18 +46,25 @@ by one space character.
 
 <p>The following tags will <em>always</em> be present:
 <ul>
-<li><strong>standard</strong>. The NhExt standard to which the server compiles.
+<li><strong>standard</strong>. The NhExt standard to which the game complies.
 NhExt standards are always of the form major.minor where major and minor are
-non-negative decimal numbers. When considering compatibility, clients should
-treat all standards earlier than 1.0 as incompatible with each other. From
-NhExt 1.0, servers complying to a later standard will be compatible with clients
-complying with an earlier standard in the same series (having the same major
-number).
+non-negative decimal numbers. Micro revisions (eg., 1.0.1) are fully compatible
+with each other and are therefore not important. Games complying to a later
+standard will be compatible with window ports complying with an earlier
+standard in the same series (having the same major number). Window ports should
+refuse to connect to a game with a major number greater than the standard to
+which they comply; they should connect with full functionality to a game with
+the same major number and with a minor number no lower than the standard to
+which they comply. Window ports may connect to games complying to earlier
+revisions of the standard if they are able to modify their functionality to
+comply with the earlier standard.
 <li><strong>game</strong>. This value can be used to distinguish vanilla
 NetHack (which uses the value "NetHack") from its variants
 (eg., Slash'EM uses the value "SlashEM").
 <li><strong>version</strong>. This is the value of <code>VERSION_STRING</code>.
-<li><strong>protocols</strong>. This is a comma seperated list of protocols that this game supports. There should be no whitespace in the list. Sub-protocol zero is not listed.
+<li><strong>protocols</strong>. This is a comma seperated list of protocols
+that this game supports. There should be no whitespace in the list.
+Sub-protocol zero is not listed.
 </ul>
 
 <p>Window ports should ignore tags they do not recognize.
@@ -115,6 +121,10 @@ Solaris) to generate routines to encode and decode data compatible with
 sub-protocol 1. There is, however, no need to use rpcgen.
 
 <p>I have also plagiarised window.doc mercilessly.
+
+<p>Sub-protocol 1 is fully synchronous.  That is, at any time either the
+game is waiting for input and the window-port is either writing data or
+is not yet ready to write data, or the reverse is true.
 
 <h2>  Window Types and Terminology</h2>
 
@@ -1258,7 +1268,7 @@ struct interface_mode_fclose_req {
 
 <p>Set or reset flags to change the behaviour of the interface as follows:
 <table>
-<tr><th>Flag</th>Status<th>Behaviour</th></tr>
+<tr><th>Flag</th><th>Status</th><th>Behaviour</th></tr>
 <tr><td>EXT_IM_STATUS</td><td>0</td><td>Report status via calls to putstr(WIN_STATUS,...)</td></tr>
 <tr><td></td><td>1</td><td>Report status via calls to status(...)</td></tr>
 <tr><td>EXT_IM_DISPLAY_LAYERS</td><td>0</td><td>Use print_glyph procedure</td></tr>
@@ -1339,7 +1349,7 @@ and alignment which form a valid player selection.
 elements each of which is a mask of the valid genders for this
 combination of role, race, alignment. If there are no valid genders
 then this mask will be zero, otherwise it will be the bitwise-OR of
-(1<<gender) for each gender that is valid.
+<code>(1&lt;&lt;gender)</code> for each gender that is valid.
 
 <p>The array is packed by copying no_gender bits from the next mask
 in the unpacked array into the least significant unused bits of the
@@ -1537,9 +1547,166 @@ struct set_option_mod_status_req {
 };
 </pre>
 
-<p>Return a list of the supported extensions. The first extension listed will
-use no_procedures IDs starting at 0x8000. Subsequent extensions will use IDs
-starting just after the previous extension.
+<h1>Sub-protocol 2</h1>
 
+<p>Sub-protocol 2 has exactly the same procedures and callbacks that are
+documented above for sub-protocol 1 (except <a href="#init2">init</a>),
+but is no longer fully synchronous. This means that some procedures and
+callbacks which have no need to send a reply can be defined as asynchronous.
+This lets the remote end know that no reply will be generated, allowing
+serveral requests to be sent at the same time.
+
+<p>In order to cope with the asychronous nature of the protocol, the header
+is modified slightly from that used in sub-protocol 0 so that the serial
+number to which a reply relates can be sent. This means that there is one
+less bit available and the maximum packet size (including the header) is
+consequently reduced to 128Kb (sub-protocol 1 allows 256Kb).
+
+<p>In sub-protocol 2, the proxy module will initiate a procedure by writing
+an unsigned integer (according to RFC1014) whose value is as follows:
+
+<pre>
+	value = (ID << 16) | (length >> 2);
+</pre>
+where <code>length</code> is the length of the following data (<em>not</em>
+including <code>value</code>) in bytes. It will then write the relevant
+request structure (if a procedure takes no arguments then length will be
+zero and no request structure will be written). Bit 15 will always be zero.
+An <code>ID</code> of 0xffff indicates a <a href="#special">special packet</a>.
+
+<p>The proxy module will then read back an unsigned integer from the plug-in
+window-port and decode it as follows:
+
+<pre>
+	ID = value >> 16;
+	is_reply = value & 0x8000;
+	length = (value & 0x7fff) << 2;
+</pre>
+
+<p>If <code>ID</code> is 0xffff and <code>is_reply</code> is zero, this is a
+<a href="#special">special packet</a>. Otherwise, if <code>is_reply</code> is
+zero, this is a <a href="#callbacks">callback</a>.
+
+<p>If <code>is_reply</code> is non-zero, this is a reply. The ID field contains
+the serial number of the request to which it relates. The first request to
+be sent has a serial number of 1. Each subsequent request has the next serial
+number in sequence, wrapping to 0 after 0xffff. There is no requirement that
+replies must be sent in any particular order.
+
+<h2><a name="special">Special packets</a></h2>
+
+<p>Special packets provide a kind of out-of-band communication stream which
+have no effect on the processing of request and reply packets. They are
+distingushed by a header with the top 17 bits set to 0x1fffe (which corresponds
+to an <code>ID</code> of 0xffff and bit 15 reset). Special packets are
+further decoded as follows:
+
+<pre>
+	type = (value & 0x7f00) >> 8;
+	length = (value & 0xff) << 2;
+</pre>
+
+<h3>Special packet type 0 (error packets)</h3>
+
+<p>Error packets are at least two words long which are decoded as follows:
+
+<pre>
+	serial = word1 >> 16;
+	id = word1 & 0xffff;
+	code = word2 & 0xff;
+</pre>
+
+<p>Other bits are reserved and should be written as zero and ignored on
+read. <code>serial</code> is the serial number of the request to which this
+error relates. <code>id</code> is the ID of that request. <code>code</code>
+is an error code, which is one of the following:
+
+<table>
+<tr><th>Code</th><th>Meaning</th></tr>
+<tr><td>1</td><td>The function is unsupported</td></tr>
+<tr><td>2</td><td>The function is unsupported in this state
+	(eg., directory_update() before game started)</td></tr>
+<tr><td>3</td><td>Invalid paramameter encoding
+	(eg., passing params to a function which takes none)</td></tr>
+<tr><td>4</td><td>Invalid parameters
+	(eg., set_option_mod_status() for an undefined status)</td></tr>
+<tr><td>5</td><td>Resource failure
+	(eg., add_menu() runs out of memory)</td></tr>
+</table>
+
+<p>Other error codes should be treated as a generic error.
+
+<p>On receit of a code 1 error (unsupported function), implementations
+may take it that all further requests with this ID will be ignored
+(other than to generate errors) and drop them at source. Window interfaces
+that would otherwise ignore certain requests from the game should instead
+signal an error to reduce bandwidth. Games are not expected to cope with
+every combination of procedures being signalled as unsupported, but will
+cope with the following procedures being unsupported:
+
+<ul>
+<li>get_nh_event
+<li>suspend_nhwindows and resume_nhwindows (must be both or none)
+<li>update_inventory
+<li>mark_sync
+<li>wait_sync
+<li>cliparound
+<li>update_positionbar
+<li>nhbell
+<li>doprev_message
+<li>number_pad
+<li>delay_output
+<li>change_color
+<li>change_background
+<li>set_font_name
+<li>get_color_string
+<li>start_screen
+<li>end_screen
+</ul>
+
+<p>Window interfaces are not required to be able to cope with any of
+the standard callbacks being signalled as unsupported.
+
+</ul>
+
+<h3>Unrecognized special packets</h3>
+
+<p>Special packets of a type other than those listed here should be ignored.
+
+<h2>Window port procedures specific to sub-protocol 2</h2>
+
+<h3><a name="init2">init</a></h3>
+<pre>
+struct init_req {
+    unsigned long async_callbacks<>;
+};
+
+struct init_res {
+    unsigned long async_procedures<>;
+};
+</pre>
+
+<p>In sub-protocol 2, the init procedure is passed a list of callbacks that
+will not generate a reply and returns a similar list for procedures supported
+by the window interface.
+
+<p>Lists of async callbacks and procedures are encoded as an array of bitmasks
+with one mask per 32 callbacks or procedures starting with IDs 1-32 and going
+up by 32 for each subsequent mask. Within each mask, the least significant bit
+represents the lowest ID within the 32 IDs encoded. Bits are set to denote an
+asychronous callback or procedure and reset to denote a synchronous one.
+Synchronous callbacks and procedures always expect a reply; asynchronous ones
+expect no reply. IDs beyond the end of the array are treated as synchronous.
+
+<p>This procedure will be called once before all other procedures. No callbacks
+may be invoked before the init procedure returns.
+
+<h1>Change history</h1>
+
+<h2>NhExt 1.0.1</h2>
+
+<ul>
+<li>Added sub-protocol 2.
+</ul>
 </body>
 </html>

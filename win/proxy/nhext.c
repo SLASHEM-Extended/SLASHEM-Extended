@@ -1,15 +1,14 @@
-/* $Id: nhext.c,v 1.16 2003-01-05 07:41:49 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001-2002 */
+/* $Id: nhext.c,v 1.17 2003-10-25 18:06:01 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 /* #define DEBUG */
 
 #include <stdlib.h>
-#ifdef DEBUG
 #include <stdio.h>
-#endif
 #include <string.h>
 #include <stdarg.h>
+#include <ctype.h>
 #include "nhxdr.h"
 #include "proxycom.h"
 
@@ -19,9 +18,14 @@
 
 static struct nhext_connection {
     int length;
+    /* In sub-protocol 2, the serial number to
+     * which the last reply read relates
+     */
+    unsigned short serial;
     NhExtXdr *in, *out;
     NhExtIO *rd, *wr;
     struct nhext_svc *callbacks;
+    int protocol;
 } nhext_connection;
 
 int nhext_init(NhExtIO *rd, NhExtIO *wr, struct nhext_svc *cb)
@@ -34,7 +38,21 @@ int nhext_init(NhExtIO *rd, NhExtIO *wr, struct nhext_svc *cb)
     nhext_xdrio_create(nhext_connection.in, rd, NHEXT_XDR_DECODE);
     nhext_xdrio_create(nhext_connection.out, wr, NHEXT_XDR_ENCODE);
     nhext_connection.callbacks = cb;
+    nhext_connection.protocol = 0;
     return 0;
+}
+
+int nhext_set_protocol(int protocol)
+{
+    if (protocol < 1 || protocol > 2)
+	return -1;
+    nhext_connection.protocol = protocol;
+    return 0;
+}
+
+int nhext_async_mode(void)
+{
+    return nhext_connection.protocol > 1;
 }
 
 void nhext_end()
@@ -225,11 +243,12 @@ struct nhext_line *nhext_subprotocol0_read_line()
 	  "[%d] NhExt: Non-empty buffer in nhext_subprotocol0_read_line\n",
 	  getpid());
 #endif
-    if (nhext_io_filbuf(nhext_connection.rd) <= 0) {
+    i = nhext_io_filbuf(nhext_connection.rd, TRUE);
+    if (i <= 0) {
 #ifdef DEBUG
 	fprintf(stderr,
-	  "[%d] EOF/ERROR while trying to read sub-protocol 0 packet\n",
-	  getpid());
+	  "[%d] %s while trying to read sub-protocol 0 packet\n",
+	  getpid(), i == 0 ? "EOF" : i == -2 ? "EWOULDBLOCK" : "ERROR");
 #endif
 	return NULL;
     }
@@ -431,7 +450,7 @@ static int nhext_rpc_vparams1(NhExtXdr *xdrs, int no, va_list *app)
  * Note: nhext_rpc_params() does different things depending on whether
  * the XDR stream is set to encode or decode. In decode mode, the
  * header is assumed to have already been read whereas, in encode mode,
- * nhext_rpc_params() writes the header itself (using an ID of zero).
+ * nhext_rpc_params() writes the reply header itself.
  */
 
 int nhext_rpc_params(NhExtXdr *xdrs, int no, ...)
@@ -440,6 +459,12 @@ int nhext_rpc_params(NhExtXdr *xdrs, int no, ...)
     va_list ap;
     unsigned long value;
     NhExtXdr sink;
+    if (nhext_connection.protocol < 1 || nhext_connection.protocol > 2) {
+	nhext_error(EXT_ERROR_INTERNAL,
+	  "nhext_rpc_params: Unsupported protocol %d",
+	  nhext_connection.protocol);
+	return 0;
+    }
     if (xdrs->x_op == NHEXT_XDR_ENCODE) {
 	sink.x_op = NHEXT_XDR_COUNT;
 	sink.x_pos = 0;
@@ -450,6 +475,10 @@ int nhext_rpc_params(NhExtXdr *xdrs, int no, ...)
 	    nhext_error(EXT_ERROR_INTERNAL, "Codec failed in sink");
 	else {
 	    value = sink.x_pos >> 2;
+	    if (nhext_connection.protocol > 1) {
+		value |= 0x8000;		/* Mark packet as a reply */
+		value |= nhext_svc_get_serial() << 16;
+	    }
 	    retval = nhext_xdr_u_long(xdrs, &value);
 	    if (!retval)
 		nhext_error(EXT_ERROR_COMMS, "Failed to write header");
@@ -463,6 +492,132 @@ int nhext_rpc_params(NhExtXdr *xdrs, int no, ...)
 	nhext_error(EXT_ERROR_COMMS, "Codec failed");
     va_end(ap);
     return retval;
+}
+
+#define NHEXT_FLAG_ASYNC	1
+#define NHEXT_FLAG_UNSUPPORTED	2
+
+static int nhext_n_flags;
+static int *nhext_flags;
+
+static int
+nhext_extend_flags(int n_flags)
+{
+    int *new;
+    if (n_flags <= nhext_n_flags)
+	return 0;
+    if (!nhext_flags)
+	new = (int *)calloc(n_flags, sizeof(int));
+    else
+	new = (int *)realloc(nhext_flags, n_flags * sizeof(int));
+    if (new) {
+	nhext_flags = new;
+	nhext_n_flags = n_flags;
+	return 0;
+    } else
+	return -1;
+}
+
+void
+nhext_set_async_masks(int n,unsigned long *masks)
+{
+    int i;
+    if (nhext_n_flags)
+	for(i = 0; i < nhext_n_flags; i++)
+	    nhext_flags[i] &= ~NHEXT_FLAG_ASYNC;
+    if (n) {
+	for(i = 31; i > 0; i--)
+	    if (masks[n - 1] & 1L << i)
+		break;
+	if (nhext_extend_flags(1 + (n - 1) * 32 + i + 1))
+	    impossible("Memory allocation failure in nhext_set_async_masks");
+#ifdef DEBUG
+	fprintf(stderr, "nhext: Async IDs:");
+#endif
+	for(i = 1; i < nhext_n_flags; i++) {
+	    if (masks[(i - 1) / 32] & 1L << ((i - 1) & 31))
+		nhext_flags[i] |= NHEXT_FLAG_ASYNC;
+#ifdef DEBUG
+	    if (nhext_flags[i] & NHEXT_FLAG_ASYNC)
+		fprintf(stderr, " %x", i);
+#endif
+	}
+#ifdef DEBUG
+	fprintf(stderr, "\n");
+#endif
+    }
+#ifdef DEBUG
+    else
+	fprintf(stderr, "No async IDs\n");
+#endif
+}
+
+void
+nhext_set_unsupported(int id)
+{
+    if (!nhext_extend_flags(id + 1))
+	nhext_flags[id] |= NHEXT_FLAG_UNSUPPORTED;
+}
+
+struct nhext_frame {
+    struct nhext_frame *prev_fp;
+    unsigned short serial;
+    unsigned short length;
+#ifdef DEBUG
+    unsigned short id;
+#endif
+    unsigned char async;
+    void *data;
+};
+
+static unsigned short rpc_serial = 0;
+static struct nhext_frame *nhext_rpc_fp, *nhext_svc_fp;
+
+unsigned short nhext_rpc_get_next_serial(void)
+{
+    return rpc_serial + 1;
+}
+
+unsigned short nhext_svc_get_serial(void)
+{
+    return nhext_svc_fp ? nhext_svc_fp->serial : 0;
+}
+
+static void nhext_store_reply(struct nhext_frame *f)
+{
+    int n, nb;
+    void *data;
+    f->length = nhext_connection.length;
+    if (!f->length) {
+	/* Avoid alloc(0) which may return NULL */
+	f->data = (void *)alloc(1);
+	return;
+    }
+    f->data = (void *)alloc(f->length);
+    nhext_io_setautofill_limit(nhext_connection.rd, f->length);
+    /* Can't use nhext_io_fread() since nhext_connection.length
+     * may be too large for use as a member size.
+     */
+    data = f->data;
+    nb = f->length;
+    while(nb) {
+	n = nhext_io_read(nhext_connection.rd, data, nb);
+	if (n > 0) {
+	    nb -= n;
+	    data += n;
+	} else {
+	    /*
+	     * Issue a comms error here. We will probably
+	     * issue a protocol error (short reply) when
+	     * we come to process the reply, which isn't
+	     * very helpful, but it doesn't seem worth
+	     * the overhead to block it -- ALI.
+	     */
+	    nhext_error(EXT_ERROR_COMMS, "Read from proxy interface failed");
+	    f->length -= nb;
+	    break;
+	}
+    }
 }
 
 /*
@@ -490,7 +645,32 @@ nhext_rpc(unsigned short id, ...)
     unsigned long value, pos;
     int i, retval;
     int no;		/* Number of fields */
-
+    struct nhext_frame frame, *f;
+    NhExtXdr xdrmem, *in;
+    if (nhext_connection.protocol < 1 || nhext_connection.protocol > 2) {
+	nhext_error(EXT_ERROR_INTERNAL, "nhext_rpc: Unsupported protocol %d",
+	  nhext_connection.protocol);
+	return FALSE;
+    }
+    if (nhext_flags && id < nhext_n_flags &&
+      nhext_flags[id] & NHEXT_FLAG_UNSUPPORTED) {
+	return FALSE;
+    }
+    frame.prev_fp = nhext_rpc_fp;
+    nhext_rpc_fp = &frame;
+    frame.serial = ++rpc_serial;
+    frame.data = NULL;
+#ifdef DEBUG
+    frame.id = id;
+    fprintf(stderr, "[%d] nhext_rpc: [%u] call(%X)\n",
+      getpid(), rpc_serial, id);
+    if (frame.prev_fp) {
+	fprintf(stderr, "[%d] nhext_rpc: call stack:\n", getpid());
+	for(f = frame.prev_fp; f; f = f->prev_fp)
+	    fprintf(stderr, "[%d]\t[%u] call(%X)%s\n",
+	      getpid(), f->serial, f->id, f->data ? " (reply stored)" : "");
+    }
+#endif
     sink.x_op = NHEXT_XDR_COUNT;
     sink.x_pos = 0;
     va_start(ap, id);
@@ -498,6 +678,8 @@ nhext_rpc(unsigned short id, ...)
     if (!nhext_rpc_vparams1(&sink, no, &ap)) {
 	nhext_error(EXT_ERROR_INTERNAL, "Codec failed in sink");
 	va_end(ap);
+	--rpc_serial;
+	nhext_rpc_fp = frame.prev_fp;
 	return FALSE;
     }
     va_end(ap);
@@ -510,6 +692,7 @@ nhext_rpc(unsigned short id, ...)
       nhext_io_flush(nhext_connection.wr)) {
 	nhext_error(EXT_ERROR_COMMS, "Write to proxy interface failed");
 	va_end(ap);
+	nhext_rpc_fp = frame.prev_fp;
 	return FALSE;
     }
     if (nhext_xdr_getpos(nhext_connection.out) - pos != sink.x_pos) {
@@ -517,48 +700,164 @@ nhext_rpc(unsigned short id, ...)
 	  "Miscounted length in proxy rpc ID %d (counted %lu, wrote %lu)",
 	  id, sink.x_pos, nhext_xdr_getpos(nhext_connection.out) - pos);
 	va_end(ap);
+	nhext_rpc_fp = frame.prev_fp;
 	return FALSE;
     }
-    do
+    if (nhext_flags && id < nhext_n_flags &&
+      nhext_flags[id] & NHEXT_FLAG_ASYNC) {
+	no = va_arg(ap, int);
+	if (no) {
+	    nhext_error(EXT_ERROR_PROTOCOL,
+	      "Expecting reply from asynchronous procedure %d", id);
+	    va_end(ap);
+	    nhext_rpc_fp = frame.prev_fp;
+	    return FALSE;
+	}
+#ifdef DEBUG
+	fprintf(stderr, "[%d] nhext_rpc: [%lu] %X sent\n",
+	  getpid(), frame.serial, id);
+#endif
+	frame.async = TRUE;
+    } else
+	frame.async = FALSE;
+    for(;;)
     {
+	/* By dealing with incoming packets here, we reduce the chance that
+	 * the remote end will need to buffer replies. We cannot do this,
+	 * however, unless we are certain that we won't block on the read;
+	 * otherwise, we could easily deadlock.
+	 */
+	if (frame.async && nhext_io_willblock(nhext_connection.rd)) {
+	    va_end(ap);
+	    nhext_rpc_fp = frame.prev_fp;
+	    return TRUE;
+	}
 	retval = nhext_svc(nhext_connection.callbacks);
 	if (retval < 0) {
 	    va_end(ap);
+	    nhext_rpc_fp = frame.prev_fp;
 	    return FALSE;
-	}
-    } while(retval);
+	} else if (!retval) {
+	    if (!frame.async && (nhext_connection.protocol <= 1 ||
+	      nhext_connection.serial == frame.serial)) {
+		frame.length = nhext_connection.length;
+		break;
+	    } else {
+		for(f = frame.prev_fp; f; f = f->prev_fp) {
+		    if (nhext_connection.serial == f->serial &&
+		      !f->async && !f->data) {
+			nhext_store_reply(f);
+			break;
+		    }
+		}
+		if (!f) {
+		    nhext_error(EXT_ERROR_PROTOCOL,
+		      "Reply received for unexpected serial %u (%d bytes)",
+		      nhext_connection.serial, nhext_connection.length);
+		    /* Junk the reply and continue to wait */
+		    nhext_io_setautofill_limit(nhext_connection.rd,
+		      nhext_connection.length);
+		    for(i = 0; i < nhext_connection.length; i++)
+			(void)nhext_io_getc(nhext_connection.rd);
+		}
+#ifdef DEBUG
+		else {
+		    long total = 0;
+		    for(f = frame.prev_fp; f; f = f->prev_fp)
+			if (f->data)
+			    total += f->length;
+		    fprintf(stderr,
+		      "[%d] nhext_rpc: %u bytes stored (total %ld)\n",
+		      getpid(), nhext_connection.length, total);
+		}
+#endif
+	    }
+	} else if (frame.data)
+	    break;
+    }
     no = va_arg(ap, int);
     /* External window ports are always allowed to return an empty reply to
      * a request. This indicates that the request is not supported.
      */
-    if (no && !nhext_connection.length) {
+    if (no && !frame.length) {
 	nhext_error(EXT_ERROR_NOTSUPPORTED,
 	  "Procedure %d not supported by remote end", id);
 	va_end(ap);
+	nhext_set_unsupported(id);
+	nhext_rpc_fp = frame.prev_fp;
 	return FALSE;
     }
-    nhext_io_setautofill_limit(nhext_connection.rd, nhext_connection.length);
-    if (!nhext_rpc_vparams1(nhext_connection.in, no, &ap)) {
+    if (frame.data) {
+	in = &xdrmem;
+	nhext_xdrmem_create(in, frame.data, frame.length, NHEXT_XDR_DECODE);
+    } else {
+	in = nhext_connection.in;
+	nhext_io_setautofill_limit(nhext_connection.rd, frame.length);
+    }
+    if (!nhext_rpc_vparams1(in, no, &ap)) {
 	/*
 	 * There are two important causes of nhext_rpc_vparams1() failing.
 	 * Either the packet sent by the remote end is shorter than we
 	 * are expecting or a comms error caused us to fail to read the
 	 * whole packet. We distinguish these by checking if NOAUTOFILL
 	 * is set (in which case we have read the advertised length).
+	 * Note: When processing a stored reply we assume that the error
+	 * must be a protocol error (we have no way of detecting if the
+	 * short reply is due to a previous comms error).
 	 */
-	if (nhext_io_getmode(nhext_connection.rd) & NHEXT_IO_NOAUTOFILL)
+	if (in == &xdrmem ||
+	  nhext_io_getmode(nhext_connection.rd) & NHEXT_IO_NOAUTOFILL)
 	    nhext_error(EXT_ERROR_PROTOCOL,
 	      "Short reply received for protocol %d (received %d)", id,
-	      nhext_connection.length);
+	      frame.length);
 	else
 	    nhext_error(EXT_ERROR_COMMS, "Read from proxy interface failed");
 	va_end(ap);
+	if (in == &xdrmem) {
+	    nhext_xdr_destroy(in);
+	    free(frame.data);
+	}
+	nhext_rpc_fp = frame.prev_fp;
 	return FALSE;
     }
-    if (nhext_io_getc(nhext_connection.rd) >= 0) {
-	/* One or more bytes are still available. This means that the
-	 * whole packet was not used. We output an error and read and
-	 * throw away the excess data.
+    /* If we're in sub-protocol 2, there may well be more bytes available
+     * which form part of the next packet, but nhext_rpc_vparams1 should have
+     * read the whole of this packet. If we're in sub-protocol 1, the tests
+     * can be even more strict - see below. If we're processing a stored
+     * packet, we can check this by looking at the read pointer.
+     * Otherwise, we can check this since NOAUTOFILL will be set if the
+     * advertised length has been consumed.
+     */
+    if (in == &xdrmem ? nhext_xdr_getpos(in) < frame.length :
+      !(nhext_io_getmode(nhext_connection.rd) & NHEXT_IO_NOAUTOFILL)) {
+	/* Output an error and read and throw away the excess data. */
+	if (in == &xdrmem)
+	    i = frame.length - nhext_xdr_getpos(in);
+	else
+	    for(i = 0;; i++) {
+		(void)nhext_io_getc(nhext_connection.rd);
+		if (nhext_io_getmode(nhext_connection.rd) & NHEXT_IO_NOAUTOFILL)
+		    break;
+	    }
+	nhext_error(EXT_ERROR_PROTOCOL,
+	  "Mismatch in RPC ID %d reply length (%d of %d unused)",
+	  id, i, nhext_connection.length);
+	va_end(ap);
+	if (in == &xdrmem) {
+	    nhext_xdr_destroy(in);
+	    free(frame.data);
+	}
+	nhext_rpc_fp = frame.prev_fp;
+	return FALSE;
+    }
+    /* In sub-protocol 1, there should not be any more bytes available. If
+     * there are then either the remote end wrote more data than it advertised
+     * in the header, or it wrote two or more packets.
+     */
+    if (nhext_connection.protocol <= 1 &&
+      nhext_io_getc(nhext_connection.rd) >= 0) {
+	/* One or more bytes are still available. We output an error and
+	 * read and throw away the excess data.
 	 */
 	for(i = 1; nhext_io_getc(nhext_connection.rd) >= 0; i++)
 	    ;
@@ -566,19 +865,35 @@ nhext_rpc(unsigned short id, ...)
 	  "Mismatch in RPC ID %d reply length (%d of %d unused)",
 	  id, i, nhext_connection.length);
 	va_end(ap);
+	if (in == &xdrmem) {
+	    nhext_xdr_destroy(in);
+	    free(frame.data);
+	}
+	nhext_rpc_fp = frame.prev_fp;
 	return FALSE;
     }
     va_end(ap);
+    if (in == &xdrmem) {
+	nhext_xdr_destroy(in);
+	free(frame.data);
+    }
+    nhext_rpc_fp = frame.prev_fp;
+#ifdef DEBUG
+    fprintf(stderr, "[%d] nhext_rpc: [%lu] %X returns\n",
+      getpid(), frame.serial, id);
+#endif
     return TRUE;
 }
 
 /*
  * nhext_svc() is a function to service incoming packets. It reads a packet
  * header from the remote process (either a child or a parent). Service
- * packets (those with non-zero IDs) are dispatched and replied to, reply
+ * packets (those which are not replies) are dispatched and replied to, reply
  * packets are left in the NhExt buffer (except for the header). The length
  * of the packet (as advised in the header) will be stored in the length
- * variable. In both cases, the ID is returned.
+ * variable. In sub-protocol 2, the serial number to which the reply relates
+ * is stored in the serial variable. For service packets, the ID is returned.
+ * For replies, 0 is returned. Special packets are handled and 0xffff returned.
  *
  * nhext_svc() is thus suitable for use in two occasions. In the first, it
  * can be used to dispatch callbacks while waiting for a reply. In this mode
@@ -591,10 +906,18 @@ nhext_rpc(unsigned short id, ...)
 int
 nhext_svc(struct nhext_svc *services)
 {
-    int i, j;
+    struct nhext_frame frame;
+    static unsigned short serial = 0;
+    int i, j, is_reply, is_special, type;
     unsigned short id;
-    unsigned long value;
-    if (nhext_io_getc(nhext_connection.rd) >= 0) {
+    unsigned long value, word2;
+    if (nhext_connection.protocol < 1 || nhext_connection.protocol > 2) {
+	nhext_error(EXT_ERROR_INTERNAL, "nhext_svc: Unsupported protocol %d",
+	  nhext_connection.protocol);
+	return -1;
+    }
+    if (nhext_connection.protocol <= 1 &&
+      nhext_io_getc(nhext_connection.rd) >= 0) {
 	/* One or more bytes are already available. This means that a
 	 * previous packet was not wholly used. We output an error and
 	 * read and throw away the excess data.
@@ -610,9 +933,78 @@ nhext_svc(struct nhext_svc *services)
 	nhext_error(EXT_ERROR_COMMS, "Read from proxy interface failed");
 	return -1;
     }
-    nhext_connection.length = (value & 0xffff) << 2;
     id = value >> 16;
-    if (id) {
+    if (nhext_connection.protocol <= 1) {
+	is_reply = !id;
+	is_special = FALSE;
+	nhext_connection.length = (value & 0xffff) << 2;
+    } else {
+	is_reply = value & 0x8000;
+	is_special = id == 0xffff && !is_reply;
+	if (is_special) {
+	    type = (value & 0x7f00) >> 8;
+	    nhext_connection.length = (value & 0xff) << 2;
+	} else
+	    nhext_connection.length = (value & 0x7fff) << 2;
+    }
+    if (is_reply)
+	nhext_connection.serial = id;
+    else if (is_special) {
+	nhext_io_setautofill_limit(nhext_connection.rd,
+	  nhext_connection.length);
+	if (type == EXT_SPECIAL_ERROR && nhext_connection.length >= 2) {
+	    unsigned short serial;
+	    unsigned char code;
+	    if (!nhext_xdr_u_long(nhext_connection.in, &value) |
+	      !nhext_xdr_u_long(nhext_connection.in, &word2)) {
+		nhext_error(EXT_ERROR_COMMS,
+		  "Read from proxy interface failed");
+		return -1;
+	    }
+	    serial = value >> 16;
+	    id = value & 0xffff;
+	    code = word2 & 0xff;
+	    switch(code) {
+		case EXT_ERROR_UNSUPPORTED:
+#ifdef DEBUG
+		    nhext_error(code,
+		      "Unsupported function %X in RPC serial %X", id, serial);
+#endif
+		    nhext_set_unsupported(id);
+		    break;
+		case EXT_ERROR_UNAVAILABLE:
+		    nhext_error(code,
+		      "Unavailable function %X in RPC serial %X", id, serial);
+		    break;
+		case EXT_ERROR_INVALIDENCODING:
+		    nhext_error(code,
+		      "Decoding error in RPC serial %X (ID %X)", serial, id);
+		    break;
+		case EXT_ERROR_INVALIDPARAMS:
+		    nhext_error(code,
+		      "Invalid parameter(s) in RPC serial %X (ID %X)",
+		      serial, id);
+		    break;
+		case EXT_ERROR_RESOURCEFAILURE:
+		    nhext_error(code,
+		      "Ran out of resources in RPC serial %X (ID %X)",
+		      serial, id);
+		    break;
+		default:
+		    nhext_error(EXT_ERROR_GENERIC,
+		      "Error %X in RPC serial %X (ID %X)", code, serial, id);
+	    }
+	}
+	/* Discard special packets of unknown types and any unprocessed
+	 * remainder of known types.
+	 */
+	while(nhext_io_getc(nhext_connection.rd) >= 0)
+	    ;
+	return 0xffff;
+    } else {
+	frame.prev_fp = nhext_svc_fp;
+	nhext_svc_fp = &frame;
+	frame.serial = ++serial;
 	nhext_io_setautofill_limit(nhext_connection.rd,
 	  nhext_connection.length);
 	for(i = 0; services[i].id; i++) {
@@ -622,7 +1014,8 @@ nhext_svc(struct nhext_svc *services)
 		break;
 	    }
 	}
-	if (nhext_io_getc(nhext_connection.rd) >= 0) {
+	if (nhext_connection.protocol <= 1 &&
+	  nhext_io_getc(nhext_connection.rd) >= 0) {
 	    /* One or more bytes are still available. This means that the
 	     * whole packet was not used. We output an error if we called
 	     * a handler (otherwise the error is not helpful) and, in any
@@ -652,10 +1045,27 @@ nhext_svc(struct nhext_svc *services)
 	      id);
 	    nhext_rpc_params(nhext_connection.out, 0);
 	}
+	nhext_svc_fp = frame.prev_fp;
 	if (nhext_io_flush(nhext_connection.wr)) {
 	    nhext_error(EXT_ERROR_COMMS, "Write to proxy interface failed");
 	    return -1;
 	}
     }
-    return id;
+    return is_reply ? 0 : id;
+}
+
+void
+nhext_send_error(unsigned short id, unsigned char error_code)
+{
+    unsigned short serial = nhext_svc_get_serial();
+    unsigned long hdr, word1, word2;
+    hdr = 0xffff0000 | EXT_SPECIAL_ERROR << 8 | 2;
+    word1 = serial << 16 | id;
+    word2 = error_code;
+    if ((!nhext_xdr_u_long(nhext_connection.out, &hdr) |
+      !nhext_xdr_u_long(nhext_connection.out, &word1) |
+      !nhext_xdr_u_long(nhext_connection.out, &word2)) ||
+      nhext_io_flush(nhext_connection.wr)) {
+	nhext_error(EXT_ERROR_COMMS, "Write to proxy interface failed");
+    }
 }
