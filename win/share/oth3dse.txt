@@ -1,993 +1,1194 @@
-__ = (255, 0, 0)
-_A = (224, 0, 0)
-_B = (192, 0, 0)
-_C = (160, 0, 0)
-_D = (128, 0, 0)
-_E = (96, 0, 0)
-_F = (64, 0, 0)
-_G = (48, 0, 0)
-_H = (32, 0, 0)
-_I = (24, 0, 0)
-_J = (16, 0, 0)
-_K = (128, 64, 64)
-_L = (160, 80, 80)
-_M = (192, 96, 96)
-_N = (224, 112, 112)
-_O = (255, 128, 128)
-_P = (255, 64, 0)
-_Q = (224, 56, 0)
-_R = (192, 48, 0)
-_S = (160, 40, 0)
-_T = (128, 32, 0)
-_U = (96, 24, 0)
-_V = (64, 16, 0)
-_W = (48, 12, 0)
-_X = (32, 32, 0)
-_Y = (24, 24, 0)
-_Z = (16, 16, 0)
-_a = (128, 128, 64)
-_b = (160, 160, 80)
-_c = (192, 192, 96)
-_d = (224, 224, 112)
-_e = (255, 255, 128)
-_f = (255, 128, 0)
-_g = (224, 112, 0)
-_h = (192, 96, 0)
-_i = (160, 80, 0)
-_j = (128, 64, 0)
-_k = (96, 48, 0)
-_l = (64, 32, 0)
-_m = (48, 24, 0)
-_n = (0, 32, 0)
-_o = (0, 24, 0)
-_p = (0, 16, 0)
-_q = (64, 128, 64)
-_r = (80, 160, 80)
-_s = (96, 192, 96)
-_t = (112, 224, 112)
-_u = (128, 255, 128)
-_v = (255, 192, 0)
-_w = (224, 168, 0)
-_x = (192, 144, 0)
-_y = (160, 120, 0)
-_z = (128, 96, 0)
-_0 = (96, 72, 0)
-_1 = (64, 48, 0)
-_2 = (48, 36, 0)
-_3 = (0, 32, 32)
-_4 = (0, 24, 24)
-_5 = (0, 16, 16)
-_6 = (64, 128, 128)
-_7 = (80, 160, 160)
-_8 = (96, 192, 192)
-_9 = (112, 224, 224)
-_$ = (128, 255, 255)
-A_ = (255, 255, 0)
-AA = (224, 224, 0)
-AB = (192, 192, 0)
-AC = (160, 160, 0)
-AD = (128, 128, 0)
-AE = (96, 96, 0)
-AF = (64, 64, 0)
-AG = (48, 48, 0)
-AH = (0, 0, 32)
-AI = (0, 0, 24)
-AJ = (0, 0, 16)
-AK = (64, 64, 128)
-AL = (80, 80, 160)
-AM = (96, 96, 192)
-AN = (112, 112, 224)
-AO = (128, 128, 255)
-AP = (128, 255, 0)
-AQ = (112, 224, 0)
-AR = (96, 192, 0)
-AS = (80, 160, 0)
-AT = (64, 128, 0)
-AU = (48, 96, 0)
-AV = (32, 64, 0)
-AW = (24, 48, 0)
-AX = (32, 0, 32)
-AY = (24, 0, 24)
-AZ = (16, 0, 16)
-Aa = (128, 64, 128)
-Ab = (160, 80, 160)
-Ac = (192, 96, 192)
-Ad = (224, 112, 224)
-Ae = (255, 128, 255)
-Af = (0, 255, 0)
-Ag = (0, 224, 0)
-Ah = (0, 192, 0)
-Ai = (0, 160, 0)
-Aj = (0, 128, 0)
-Ak = (0, 96, 0)
-Al = (0, 64, 0)
-Am = (0, 48, 0)
-An = (96, 48, 48)
-Ao = (64, 32, 32)
-Ap = (48, 24, 24)
-Aq = (128, 96, 96)
-Ar = (160, 120, 120)
-As = (192, 144, 144)
-At = (224, 168, 168)
-Au = (255, 192, 192)
-Av = (0, 255, 128)
-Aw = (0, 224, 112)
-Ax = (0, 192, 96)
-Ay = (0, 160, 80)
-Az = (0, 128, 64)
-A0 = (0, 96, 48)
-A1 = (0, 64, 32)
-A2 = (0, 48, 24)
-A3 = (96, 96, 48)
-A4 = (64, 64, 32)
-A5 = (48, 48, 24)
-A6 = (128, 128, 96)
-A7 = (160, 160, 120)
-A8 = (192, 192, 144)
-A9 = (224, 224, 168)
-A$ = (255, 255, 192)
-B_ = (0, 255, 255)
-BA = (0, 224, 224)
-BB = (0, 192, 192)
-BC = (0, 160, 160)
-BD = (0, 128, 128)
-BE = (0, 96, 96)
-BF = (0, 64, 64)
-BG = (0, 48, 48)
-BH = (48, 96, 48)
-BI = (32, 64, 32)
-BJ = (24, 48, 24)
-BK = (96, 128, 96)
+__ = (71, 108, 108)
+_A = (0, 0, 0)
+_B = (0, 0, 16)
+_C = (0, 0, 32)
+_D = (0, 0, 48)
+_E = (0, 0, 64)
+_F = (0, 0, 96)
+_G = (0, 0, 128)
+_H = (0, 0, 160)
+_I = (0, 0, 192)
+_J = (0, 0, 224)
+_K = (0, 0, 255)
+_L = (0, 16, 0)
+_M = (0, 16, 16)
+_N = (0, 24, 0)
+_O = (0, 24, 24)
+_P = (0, 24, 48)
+_Q = (0, 32, 0)
+_R = (0, 32, 32)
+_S = (0, 32, 64)
+_T = (0, 48, 0)
+_U = (0, 48, 24)
+_V = (0, 48, 48)
+_W = (0, 48, 96)
+_X = (0, 64, 0)
+_Y = (0, 64, 32)
+_Z = (0, 64, 64)
+_a = (0, 64, 128)
+_b = (0, 80, 160)
+_c = (0, 96, 0)
+_d = (0, 96, 48)
+_e = (0, 96, 96)
+_f = (0, 96, 192)
+_g = (0, 112, 224)
+_h = (0, 128, 0)
+_i = (0, 128, 64)
+_j = (0, 128, 128)
+_k = (0, 128, 255)
+_l = (0, 144, 0)
+_m = (0, 160, 0)
+_n = (0, 160, 80)
+_o = (0, 160, 160)
+_p = (0, 182, 255)
+_q = (0, 192, 0)
+_r = (0, 192, 96)
+_s = (0, 192, 192)
+_t = (0, 224, 0)
+_u = (0, 224, 112)
+_v = (0, 224, 224)
+_w = (0, 255, 0)
+_x = (0, 255, 128)
+_y = (0, 255, 255)
+_z = (16, 0, 0)
+_0 = (16, 0, 16)
+_1 = (16, 16, 0)
+_2 = (16, 16, 16)
+_3 = (16, 48, 48)
+_4 = (24, 0, 0)
+_5 = (24, 24, 0)
+_6 = (24, 24, 48)
+_7 = (24, 48, 0)
+_8 = (24, 48, 24)
+_9 = (24, 48, 48)
+_$ = (32, 0, 0)
+A_ = (32, 0, 32)
+AA = (32, 32, 0)
+AB = (32, 32, 32)
+AC = (32, 64, 0)
+AD = (32, 64, 32)
+AE = (32, 64, 64)
+AF = (32, 242, 186)
+AG = (48, 0, 0)
+AH = (48, 0, 48)
+AI = (48, 12, 0)
+AJ = (48, 24, 0)
+AK = (48, 24, 24)
+AL = (48, 36, 0)
+AM = (48, 48, 0)
+AN = (48, 48, 24)
+AO = (48, 48, 48)
+AP = (48, 48, 96)
+AQ = (48, 96, 0)
+AR = (48, 96, 48)
+AS = (48, 96, 96)
+AT = (64, 0, 0)
+AU = (64, 0, 32)
+AV = (64, 0, 64)
+AW = (64, 0, 128)
+AX = (64, 16, 0)
+AY = (64, 32, 0)
+AZ = (64, 32, 32)
+Aa = (64, 32, 64)
+Ab = (64, 48, 0)
+Ac = (64, 64, 0)
+Ad = (64, 64, 32)
+Ae = (64, 64, 64)
+Af = (64, 64, 128)
+Ag = (64, 128, 0)
+Ah = (64, 128, 64)
+Ai = (64, 128, 128)
+Aj = (72, 108, 108)
+Ak = (80, 0, 160)
+Al = (80, 80, 80)
+Am = (80, 80, 160)
+An = (80, 160, 0)
+Ao = (80, 160, 80)
+Ap = (80, 160, 160)
+Aq = (96, 0, 0)
+Ar = (96, 0, 48)
+As = (96, 0, 96)
+At = (96, 0, 192)
+Au = (96, 16, 0)
+Av = (96, 24, 0)
+Aw = (96, 48, 0)
+Ax = (96, 48, 48)
+Ay = (96, 48, 96)
+Az = (96, 72, 0)
+A0 = (96, 96, 0)
+A1 = (96, 96, 48)
+A2 = (96, 96, 96)
+A3 = (96, 96, 128)
+A4 = (96, 96, 192)
+A5 = (96, 128, 96)
+A6 = (96, 128, 128)
+A7 = (96, 192, 0)
+A8 = (96, 192, 96)
+A9 = (96, 192, 192)
+A$ = (96, 144, 178)
+B_ = (104, 84, 31)
+BA = (108, 144, 182)
+BB = (108, 255, 0)
+BC = (112, 0, 224)
+BD = (112, 112, 112)
+BE = (112, 112, 224)
+BF = (112, 160, 160)
+BG = (112, 224, 0)
+BH = (112, 224, 112)
+BI = (112, 224, 224)
+BJ = (117, 105, 88)
+BK = (120, 120, 160)
 BL = (120, 160, 120)
-BM = (144, 192, 144)
-BN = (168, 224, 168)
-BO = (192, 255, 192)
-BP = (0, 128, 255)
-BQ = (0, 112, 224)
-BR = (0, 96, 192)
-BS = (0, 80, 160)
-BT = (0, 64, 128)
-BU = (0, 48, 96)
-BV = (0, 32, 64)
-BW = (0, 24, 48)
-BX = (48, 96, 96)
-BY = (32, 64, 64)
-BZ = (24, 48, 48)
-Ba = (96, 128, 128)
-Bb = (120, 160, 160)
-Bc = (144, 192, 192)
-Bd = (168, 224, 224)
-Be = (192, 255, 255)
-Bf = (0, 0, 255)
-Bg = (0, 0, 224)
-Bh = (0, 0, 192)
-Bi = (0, 0, 160)
-Bj = (0, 0, 128)
-Bk = (0, 0, 96)
-Bl = (0, 0, 64)
-Bm = (0, 0, 48)
-Bn = (48, 48, 96)
-Bo = (32, 32, 64)
-Bp = (24, 24, 48)
-Bq = (96, 96, 128)
-Br = (120, 120, 160)
-Bs = (144, 144, 192)
-Bt = (168, 168, 224)
-Bu = (192, 192, 255)
-Bv = (128, 0, 255)
-Bw = (112, 0, 224)
-Bx = (96, 0, 192)
-By = (80, 0, 160)
-Bz = (64, 0, 128)
-B0 = (48, 0, 96)
-B1 = (32, 0, 64)
-B2 = (24, 0, 48)
-B3 = (96, 48, 96)
-B4 = (64, 32, 64)
-B5 = (48, 24, 48)
-B6 = (128, 96, 128)
-B7 = (160, 120, 160)
-B8 = (192, 144, 192)
-B9 = (224, 168, 224)
-B$ = (255, 192, 255)
-C_ = (255, 0, 255)
-CA = (224, 0, 224)
-CB = (192, 0, 192)
-CC = (160, 0, 160)
-CD = (128, 0, 128)
-CE = (96, 0, 96)
-CF = (64, 0, 64)
-CG = (48, 0, 48)
-CH = (255, 255, 255)
-CI = (224, 224, 224)
-CJ = (192, 192, 192)
-CK = (160, 160, 160)
-CL = (128, 128, 128)
-CM = (96, 96, 96)
-CN = (64, 64, 64)
-CO = (32, 32, 32)
-CP = (255, 0, 128)
-CQ = (224, 0, 112)
-CR = (192, 0, 96)
-CS = (160, 0, 80)
-CT = (128, 0, 64)
-CU = (96, 0, 48)
-CV = (64, 0, 32)
-CW = (48, 0, 24)
-CX = (240, 240, 240)
-CY = (208, 208, 208)
-CZ = (176, 176, 176)
-Ca = (144, 144, 144)
-Cb = (112, 112, 112)
-Cc = (80, 80, 80)
-Cd = (48, 48, 48)
-Ce = (16, 16, 16)
-Cf = (127, 90, 72)
-Cg = (165, 118, 94)
-Ch = (202, 143, 114)
-Ci = (229, 162, 130)
-Cj = (255, 182, 145)
-Ck = (255, 211, 175)
-Cl = (104, 84, 31)
-Cm = (128, 112, 32)
-Cn = (170, 136, 52)
-Co = (192, 160, 64)
-Cp = (242, 196, 77)
-Cq = (248, 224, 96)
-Cr = (252, 252, 153)
-Cs = (117, 105, 88)
-Ct = (145, 135, 110)
-Cu = (171, 154, 129)
-Cv = (224, 192, 160)
-Cw = (208, 168, 80)
-Cx = (0, 0, 0)
-Cy = (0, 0, 0)
-Cz = (0, 0, 0)
-C0 = (0, 0, 0)
-C1 = (0, 0, 0)
-C2 = (0, 0, 0)
-C3 = (0, 0, 0)
-C4 = (0, 0, 0)
-C5 = (0, 0, 0)
-C6 = (0, 0, 0)
-C7 = (0, 0, 0)
-C8 = (0, 0, 0)
-C9 = (0, 0, 0)
-C$ = (71, 108, 108)
-# tile 877 (sub sokoban walls 0)
+BM = (120, 160, 160)
+BN = (128, 0, 0)
+BO = (128, 0, 64)
+BP = (128, 0, 128)
+BQ = (128, 0, 255)
+BR = (128, 32, 0)
+BS = (128, 64, 0)
+BT = (128, 64, 64)
+BU = (128, 64, 128)
+BV = (128, 90, 72)
+BW = (128, 96, 0)
+BX = (128, 96, 96)
+BY = (128, 96, 128)
+BZ = (128, 112, 32)
+Ba = (128, 128, 0)
+Bb = (128, 128, 64)
+Bc = (128, 128, 96)
+Bd = (128, 128, 128)
+Be = (128, 128, 255)
+Bf = (128, 255, 0)
+Bg = (128, 255, 128)
+Bh = (128, 255, 255)
+Bi = (144, 72, 0)
+Bj = (144, 135, 110)
+Bk = (144, 144, 144)
+Bl = (144, 144, 192)
+Bm = (144, 192, 144)
+Bn = (144, 192, 192)
+Bo = (160, 0, 0)
+Bp = (160, 0, 80)
+Bq = (160, 0, 160)
+Br = (160, 40, 0)
+Bs = (160, 80, 0)
+Bt = (160, 80, 80)
+Bu = (160, 80, 160)
+Bv = (160, 120, 0)
+Bw = (160, 120, 120)
+Bx = (160, 120, 160)
+By = (160, 160, 0)
+Bz = (160, 160, 80)
+B0 = (160, 160, 120)
+B1 = (160, 160, 160)
+B2 = (160, 160, 224)
+B3 = (165, 118, 96)
+B4 = (168, 168, 224)
+B5 = (168, 224, 168)
+B6 = (168, 224, 224)
+B7 = (170, 136, 52)
+B8 = (170, 154, 128)
+B9 = (176, 176, 176)
+B$ = (178, 64, 0)
+C_ = (178, 224, 16)
+CA = (182, 72, 0)
+CB = (192, 0, 0)
+CC = (192, 0, 96)
+CD = (192, 0, 192)
+CE = (192, 48, 0)
+CF = (192, 96, 0)
+CG = (192, 96, 96)
+CH = (192, 96, 192)
+CI = (192, 144, 0)
+CJ = (192, 144, 144)
+CK = (192, 144, 192)
+CL = (192, 160, 64)
+CM = (192, 192, 0)
+CN = (192, 192, 96)
+CO = (192, 192, 144)
+CP = (192, 192, 192)
+CQ = (192, 192, 255)
+CR = (192, 255, 192)
+CS = (192, 255, 255)
+CT = (202, 144, 114)
+CU = (208, 168, 80)
+CV = (208, 208, 208)
+CW = (210, 210, 178)
+CX = (218, 218, 182)
+CY = (224, 0, 0)
+CZ = (224, 0, 112)
+Ca = (224, 0, 224)
+Cb = (224, 56, 0)
+Cc = (224, 112, 0)
+Cd = (224, 112, 112)
+Ce = (224, 112, 224)
+Cf = (224, 168, 0)
+Cg = (224, 168, 168)
+Ch = (224, 168, 224)
+Ci = (224, 192, 160)
+Cj = (224, 224, 0)
+Ck = (224, 224, 112)
+Cl = (224, 224, 168)
+Cm = (224, 224, 224)
+Cn = (229, 162, 130)
+Co = (240, 240, 240)
+Cp = (242, 0, 0)
+Cq = (242, 96, 0)
+Cr = (242, 196, 77)
+Cs = (248, 224, 96)
+Ct = (252, 252, 153)
+Cu = (255, 0, 0)
+Cv = (255, 0, 128)
+Cw = (255, 0, 255)
+Cx = (255, 64, 0)
+Cy = (255, 108, 0)
+Cz = (255, 128, 0)
+C0 = (255, 128, 128)
+C1 = (255, 128, 255)
+C2 = (255, 182, 144)
+C3 = (255, 192, 0)
+C4 = (255, 192, 192)
+C5 = (255, 192, 255)
+C6 = (255, 211, 176)
+C7 = (255, 255, 0)
+C8 = (255, 255, 128)
+C9 = (255, 255, 192)
+C$ = (255, 255, 255)
+# tile 19 (floor of a room)
 {
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BfBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BQ_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6BfBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6Bf_6_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6_6_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBP_6_6_6_6_6BPC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6BQ_6BfBPC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBfBP_6_6Bf_6_6BfBPC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBfBP_6_6_6_6BfBP_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBfBP_6_6_6_6BfBP_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBfBP_6_6_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BfBP_6_6_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BfBP_6_6BfBPBQ_6_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6BfBP_6_6BfBPBP_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6BfBP_6BfBPBfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6BfBP_6BfBPBfBPBQ_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6Bf_6BfBPBfBP_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6_6BfBPBfBP_6BfBPBf_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6Bf_6BfBfBP_6_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6_6_6BfBfBP_6_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6_6_6BfBP_6_6_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBP_6_6_6_6_6_6BfBP_6_6_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBP_6_6BP_6_6BfBP_6_6_6_6BfBPBfBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6_6BS_6_6BfBP_6_6Bf_6BfBP_6C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBdBQBQBP_6_6_6_6BfBP_6_6_6_6_6BfBPBfC$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBdBQBQBQBQBQBQBQBQBQBQBP_6_6_6_6BfBP_6_6_6_6_6BfBPC$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBSBQBQBQBQBQBQBSBQBQBQBSBQBQBP_6_6_6BfBP_6BfBQ_6_6_6BfBfC$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBdBQBQBQBQBP_6BQ_6BfBP_6_6_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6_6BfBPBP_6_6_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBSBQBQBQBQBQBQBQBQBQBQBP_6_6BfBPBP_6BQ_6Bf_6_6C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBdBQBQBQBQBQBQBQBSBQBQBQBSBQBQBP_6BfBPBfBP_6_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6BfBPBfBP_6_6_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBPBfBP_6BfBP_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBSBQBQBQBQBQBQBQBQBQBQBQBPBfBP_6BfBP_6_6Bf_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBdBQBQBQBQBQBQBdBQBQBQBdBQBQBQBPBP_6_6BfBP_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBfBP_6_6BfBP_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBSBQBQBf_6_6_6BfBP_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBP_6Bf_6BfBP_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBPBP_6_6_6BfBP_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BPBPBPBPBPBPBPBPBPBPBPBPBPBPBPBP_6_6_6_6BfBP_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBSBQBQBQBQBQBQBQBQBQ_6_6BQ_6BfBPBfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBSBQBQBQ_6_6_6_6BfBPC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6_6BfBPC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBdBQBQBQBQBQBQBQBQBQBQBQBQ_6BS_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBdBQBQBQBQBQBQBQ_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBSBQBQBQBQBSBQBQBQ_6BQ_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBSBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBdBQBQBQBQBQBQ_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBdBQBQBSBQBQBQBQBQBQBQBQBSBQ_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBdBQ_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BSBSBSBSBSBSBSBSBSBSBSBSBSBSBSBSBfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________AEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAE
+  ________________________________AE_VAO_VAO_VABAE_R_R_RAO_VAO_VAO_VAO_VAO_VAO_VAO_R_R_VAO_VAO_V_O
+  ______________________________AEAO_VAEAEAEAE_VAO_R_R_VAEAEAEAEAEAEAEAEAE_VAEAE_O_RAOAEAEAEAB_R__
+  ______________________________AE_VAEAOAEAOAEAE_V_R_RAOAEAEAEAEABAEAEAEAEAEAEAB_RAO_VAEABAEAE_R__
+  ____________________________AEAOAEAEAEAEAEAEAO_V_R_VAB_VAEAEAEAEAEABAEAEAE_V_R_VAEAEAEAE_V_R____
+  ____________________________AE_VAEAEAE_VAEAEAEAO_RABAEAO_VAO_VAEABAE_VAEAB_RABAEAOAEAEAEAO_R____
+  __________________________AEAO_VAEAEAOAE_VAE_V_RAE_V_O_R_R_R_R_R_VAO_O_R_R_R_R_VAO_VAO_V_R______
+  __________________________AEAEAEAEAEAEAEAEAEAO_R_O_RAO_VAO_VAO_R_R_R_RAO_VAO_R_R_R_R_VAO_R______
+  ________________________AEAB_VAEAOAEAEAEAB_R_RAO_VAO_VAEAO_VAO_R_R_VAOAE_VAO_VAO_R_R_R_R________
+  ________________________AEAEAEAE_VAO_VAO_V_RAO_VAEAEAEAEAE_VAO_V_RAOAEAEAEAEAE_VAE_R_R_R________
+  ______________________AE_O_RAO_V_R_R_R_R_R_VAEAEAEAOAE_VAEAEAO_R_VAEAEAEAEAEAEAEAB_R_R__________
+  ______________________AE_R_R_R_R_VAO_VAO_RAOAOAEAE_VAEAEAEAE_V_R_RABAEAEABAEAB_R_R_R_R__________
+  ____________________AEAEABAEABAEAEAB_VAE_O_VAOAEAEAEAEAEAEAO_R_R_RAE_VAB_R_R_R_R_R_R____________
+  ____________________AEAB_VAEAEAEAEAEAEAB_R_VAO_VAEAEAOAEAO_V_R_R_R_R_R_R_R_R_RABAE_R____________
+  __________________AEAEAEAEAEAE_VAEAE_V_R_RAOAEAEAEAEAE_V_R_RAO_VAO_V_R_R_R_RAE_V_O______________
+  __________________AEABAE_VAEAOAEAEAEAOAO_R_RAO_VAO_VAO_R_RAO_VAEAEABAE_R_RAO_VAO_R______________
+  ________________AEAEAEAOAEAEAEAEAE_V_V_R_R_R_R_R_V_R_R_R_VAEAEAE_VAO_V_R_VAEAB_R________________
+  ________________AE_VAEAEAEAEAEAO_VAO_R_RAO_VAO_R_R_R_R_VAOAEAEAOAE_VAO_RAOAEAE_R________________
+  ______________AEAO_VAB_VAE_VAB_R_RAEAB_VAEAEABAE_O_RAOAEAEAEAEAEAO_V_R_VAO_V_R__________________
+  ______________AE_R_R_R_R_R_R_R_RAO_VAEAEAEAEAE_VAO_R_VAEAE_VAEAEAE_R_R_VAEAO_R__________________
+  ____________AEAEABAEABAE_O_R_R_VAEAEAEAOAEAEAE_V_RAOAEAEAOAEAEAB_RAOAOAE_V_R____________________
+  ____________AE_VAB_VAE_VABAE_OAEAOAEAEAEAEAE_VAO_RAB_VAEAE_VAE_V_R_VAE_V_R_R____________________
+  __________AEAOAEAEAEAEAE_V_R_O_VAO_VAO_VAOAE_O_R_RAEABAEAEAEAO_R_R_O_R_R_R______________________
+  __________AE_VAEABAEAEAE_VAO_R_RABAE_R_R_R_R_R_R_R_OAEABAEAE_R_RAO_VAO_R_R______________________
+  ________AEAOAEAEAEAOAEAEAO_V_R_R_R_RABAEAB_VAO_VAO_R_R_VAB_R_VAOAE_VAO_R________________________
+  ________AE_VAEAEAEAEAEAEAEAO_R_R_R_VAO_VAEAE_VAEAO_VAO_R_R_RAOAEAEAE_V_R________________________
+  ______AEAOAE_VAEAEAEAEAE_VAO_RAO_VAEAEAEAEAEAOAEAE_VAO_R_R_VAEAOAEAO_R__________________________
+  ______AE_VAEAE_VAEAEAEAEAO_V_R_VAEAEABAEAEAEAEAEAEAEAO_V_RAOAEAEAE_V_R__________________________
+  ____AEAOAEAEAEAEAE_VAE_VAO_RAO_VAEAEAEAEAEAE_VAEAE_VAO_R_VAOAEAEAO_R____________________________
+  ____AE_VAOAEAEAEAEAEAOAO_V_OAEABAEAEAEAEAEAEAEAE_VAO_R_R_VAEAEAO_V_R____________________________
+  __AEAO_VAO_VAO_VAO_V_V_R_R_R_VAO_VAO_VABAEABAEAB_R_R_R_RAO_V_V_R_R______________________________
+  ___V_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R_R______________________________
 }
-# tile 878 (sub sokoban walls 1)
+# tile 20 (corridor)
 {
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQ_6_6_6_6_6_6BfC$C$C$C$C$
-  C$C$C$BfBdBPBP_6BPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQ_6_6_6_6_6_6BfC$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBP_6BPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBP_6BPBPBPBQ_6_6_6_6_6BfBdC$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBdBPBPBPBPBPBPBPBPBfBdBP_6BPBPBPBPBdBPBPBPBPBPBPBPBQ_6_6_6_6_6Bf_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBdBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBdBPBPBQ_6_6_6_6BfBd_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQ_6_6_6_6Bf_6_6C$C$C$C$C$
-  C$C$C$BfBdBP_6BPBPBPBPBPBdBPBPBPBPBPBPBfBdBPBPBPBPBdBPBPBP_6BPBPBPBPBPBQ_6_6_6BfBd_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQ_6_6_6Bf_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBP_6_6BPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQ_6_6BfBd_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBdBPBPBPBPBPBPBPBPBPBPBfBdBPBPBP_6BPBPBPBPBPBPBPBPBPBPBQ_6_6Bf_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBP_6BPBdBPBPBQ_6BfBd_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBdBPBPBPBPBfBdBPBPBPBPBPBPBdBPBPBPBPBPBPBPBQ_6Bf_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQBfBd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQBf_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BdBdBdBdBdBdBdBdBfBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBfBdBdBdBdBdBdBdBd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BPBPBdBPBP_6BPBPBfBdBPBPBPBPBP_6BPBPBPBPBPBPBPBPBfBdBPBPBdBPBPBPBQ_6_6_6_6_6_6C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBdBPBPBPBPBPBPBPBdBPBPBPBfBdBPBPBPBPBP_6BQ_6_6_6_6_6_6C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBQ_6_6_6_6_6C$C$C$C$C$C$C$
-  C$C$C$BPBP_6BPBPBdBPBPBfBdBPBPBPBPBPBdBPBPBPBP_6BPBPBPBfBdBPBPBPBPBPBPBQ_6_6_6_6_6C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBdBPBPBdBQ_6_6_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBP_6_6BPBPBPBPBfBdBPBPBPBPBPBdBQ_6_6_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBdBdBPBPBPBPBfBdBPBPBP_6BPBPBPBdBPBPBPBPBPBPBfBdBPBPBPBPBPBPBQ_6_6_6C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBP_6BPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBQ_6_6_6C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBdBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBP_6BPBPBQ_6_6C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBP_6BPBPBPBPBfBdBPBPBPBdBPBPBPBP_6BPBPBPBPBPBfBdBPBPBPBPBdBPBQ_6_6C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBdBdBPBfBdBPBPBPBPBPBPBQ_6C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBQ_6C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfC$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________AEAB_VAO_VAO_VAO_VAO_VAO_VAO_VAO_VAO_VAO_VAO_VAO_VAO_VAO_V_OAO_R
+  _________________________________V_M_M_V_OAE_R_R_M_M_R_RABAE_R_R_R_V_R_R_R_R_R_M_M_MABAE_R_R_A_A
+  ______________________________AO_MAO_RAO_R_R_R_R_M_M_M_V_R_RAO_O_R_R_R_R_R_R_R_MAE_O_O_R_O_R_A__
+  _______________________________V_R_V_R_V_RAB_R_R_M_M_M_R_R_V_R_R_RAO_OAE_R_R_R_MAB_MAE_R_R_R_A__
+  ____________________________AO_R_OAO_R_R_R_R_R_R_MAO_V_R_O_RAO_R_R_R_RAB_R_R_MAE_R_OAB_R_R_A____
+  _____________________________V_OAE_R_R_R_O_R_R_R_M_R_R_R_R_R_R_R_R_R_R_R_R_M_R_O_R_R_R_R_R_A____
+  __________________________AO_V_R_RAB_R_R_RAE_O_M_M_R_M_M_M_M_M_M_R_R_M_M_M_M_M_R_R_R_R_R_A______
+  __________________________AE_R_R_R_R_O_O_R_R_R_M_M_MAO_O_R_O_O_M_M_M_OABAE_R_M_M_M_M_R_R_A______
+  ________________________AB_R_RAE_RAE_O_O_R_M_MAEAB_R_R_R_R_R_R_M_MAE_O_R_R_R_R_R_M_M_M_M________
+  ________________________AE_R_R_R_O_R_R_R_R_OAB_R_O_R_R_OAE_R_R_R_M_OAE_RAB_R_O_R_R_M_M_M________
+  ______________________AB_M_M_R_R_M_M_M_M_MAE_RAE_O_RAE_OAB_R_R_MAB_V_R_RAE_R_R_R_R_M_M__________
+  ______________________AE_M_M_M_MAE_R_R_R_MAB_O_RAB_R_R_R_R_R_R_MAE_RAO_R_R_R_R_M_M_M_M__________
+  _____________________V_RAO_VAB_RAB_R_R_R_MAE_O_R_R_O_R_RAE_O_M_M_R_R_R_R_M_M_M_MAE_A____________
+  ____________________AEAB_R_R_RAE_RAE_R_R_M_V_R_RAE_R_R_R_R_R_M_M_M_M_M_M_M_M_M_V_O_A____________
+  __________________ABAE_O_R_R_O_R_OAB_R_M_M_O_R_O_R_R_R_R_M_MAEAB_R_R_M_M_MAO_R_R_A______________
+  ___________________V_R_OAE_R_R_R_O_R_R_R_M_M_R_R_R_R_O_M_OAB_R_R_R_R_R_M_M_V_R_R_A______________
+  ________________AO_RAE_O_O_RAE_O_O_R_R_M_M_M_M_M_O_M_M_MAE_R_RAE_O_R_R_M_RAO_R_A________________
+  _________________V_R_O_R_R_O_R_R_R_R_M_M_RAO_R_M_M_M_OAB_O_O_O_R_R_O_R_MAE_R_R_A________________
+  ______________AO_M_R_R_R_R_R_R_M_MAEAB_R_V_R_R_R_M_M_RAE_OAE_O_R_R_R_M_O_R_R_A__________________
+  _______________V_M_M_M_M_M_M_M_OAB_R_R_R_O_R_R_R_R_OAB_R_O_R_R_R_R_M_M_RAB_R_A__________________
+  ____________AO_M_MAEAB_V_M_M_MAE_RAB_R_O_R_R_R_R_MAE_R_R_R_O_R_R_M_R_R_R_R_A____________________
+  _____________VAEAB_R_R_RAO_R_M_R_R_RAE_R_OAE_R_O_M_O_R_OAE_R_R_R_M_R_R_R_M_M____________________
+  __________AO_R_RAE_OAE_O_R_M_M_R_R_R_R_R_O_O_M_M_M_R_R_R_R_R_O_M_M_M_M_M_M______________________
+  ___________V_RAB_RAB_R_R_O_R_M_M_R_R_R_M_M_M_M_M_M_M_R_R_R_O_M_MAE_R_R_M_M______________________
+  ________AO_V_R_R_R_R_R_R_R_R_M_M_M_MAEAB_VAO_R_R_R_M_M_O_O_MAB_RAB_R_R_A________________________
+  ________AE_R_R_O_O_OAE_R_R_R_M_M_OAB_OAE_R_R_OAE_R_R_R_M_M_M_VAE_R_R_R_A________________________
+  ______AB_R_R_R_R_R_R_R_R_R_R_MAE_R_R_R_O_R_R_R_R_R_R_R_M_MAO_R_R_O_R_A__________________________
+  ______AE_R_R_O_RAEAB_OAE_R_R_MABAE_RAB_R_RAB_R_R_R_R_R_R_M_V_OAE_R_R_A__________________________
+  _____V_R_R_R_R_R_R_R_R_R_R_M_V_R_R_R_R_RAE_R_RAB_R_R_R_M_R_R_O_R_R_A____________________________
+  ____AO_R_R_R_R_O_R_R_R_R_R_M_R_R_RABAE_R_R_OAE_R_R_O_M_M_R_R_O_R_R_A____________________________
+  ___V_M_R_R_R_R_R_R_R_R_M_M_M_R_R_R_R_R_R_R_R_R_O_M_M_M_M_R_R_R_M_M______________________________
+  ___R_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M______________________________
 }
-# tile 879 (sub sokoban walls 2)
+# tile 21 (lit corridor)
 {
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBdBdBdBdBdBdBdBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBPBPBPBPBPBPBPBQ_6_6_6_6_6_6BfC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBPBPBPBPBPBPBPBQ_6_6_6_6_6_6BfC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BPBPBP_6BPBPBPBQ_6_6_6_6_6BfBdC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BPBPBPBPBPBPBPBQ_6_6_6_6_6Bf_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6BPBPBPBPBdBPBPBQ_6_6_6_6BfBd_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6BPBPBPBPBPBPBPBQ_6_6_6_6Bf_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBP_6_6_6BP_6BPBPBPBPBPBQ_6_6_6BfBd_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBP_6_6BPBPBPBPBPBPBPBPBQ_6_6_6Bf_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6_6BSBPBPBPBPBPBPBPBQ_6_6BfBd_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBdBQBQBP_6_6_6BPBPBPBPBPBPBPBQ_6_6Bf_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBdBQBQBQBQBQBQBQBQBQBQBP_6_6_6BPBP_6BPBdBPBPBQ_6BfBd_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBSBQBQBQBQBQBQBSBQBQBQBSBQBQBP_6_6_6BPBPBPBPBPBPBPBQ_6Bf_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBdBQBQBQBQBP_6BQ_6BPBPBPBPBPBPBPBQBfBd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6_6BfBPBPBPBPBPBPBPBQBf_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBSBQBQBQBQBQBQBQBQBQBQBP_6_6BfBfBfBfBfBfBfBfBfBd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBdBQBQBQBQBQBQBQBSBQBQBQBSBQBQBP_6BfBPBdBdBdBdBdBdBdBd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6BfBPBdBPBPBPBPBPBPBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBPBfBP_6BdBPBPBPBPBPBPBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBSBQBQBQBQBQBQBQBQBQBQBQBPBfBP_6BdBPBPBdBPBPBPBQ_6_6_6_6_6_6C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBdBQBQBQBQBQBQBdBQBQBQBdBQBQBQBPBP_6_6BdBPBPBPBPBP_6BQ_6_6_6_6_6_6C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBfBP_6_6BdBPBPBPBPBPBPBQ_6_6_6_6_6C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBSBQBQBf_6_6_6BdBPBPBPBPBPBPBQ_6_6_6_6_6C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBP_6Bf_6BdBPBPBdBPBPBdBQ_6_6_6_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBPBP_6_6_6BdBPBPBPBPBPBdBQ_6_6_6_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BPBPBPBPBPBPBPBPBPBPBPBPBPBPBPBP_6_6_6_6BdBPBPBPBPBPBPBQ_6_6_6C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBSBQBQBQBQBQBQBQBQBQ_6_6BQ_6BdBPBPBPBPBPBPBQ_6_6_6C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBSBQBQBQ_6_6_6_6BdBPBPBP_6BPBPBQ_6_6C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6_6BdBPBPBPBPBdBPBQ_6_6C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBdBQBQBQBQBQBQBQBQBQBQBQBQ_6BS_6_6BdBPBPBPBPBPBPBQ_6C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBdBQBQBQBQBQBQBQ_6_6_6_6BdBPBPBPBPBPBPBQ_6C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBSBQBQBQBQBSBQBQBQ_6BQ_6_6BfBfBfBfBfBfBfBfC$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBSBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBdBQBQBQBQBQBQ_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBdBQBQBSBQBQBQBQBQBQBQBQBSBQ_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBdBQ_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BSBSBSBSBSBSBSBSBSBSBSBSBSBSBSBSBfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________AEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAE
+  ________________________________AE_M_MAE_OAE_R_R_M_M_R_OAEAE_OAE_RABAEAE_R_R_R_M_M_MAEAEAE_R_A_A
+  ______________________________AE_MABAE_V_OABAE_R_M_M_MAEAEAEABAE_R_R_O_VAEAO_R_MAEAEABAE_O_R_A__
+  ______________________________AEAEAE_RAEAEAE_RAE_M_M_MAEAE_VAE_R_RAE_RAO_R_V_R_MAEAEAE_VAE_R_A__
+  ____________________________AEAEAEAEAEAB_V_R_R_R_MAEAEABAEAEAEAE_O_V_RAE_R_R_MABAE_VAOAE_R_A____
+  ____________________________AEABAEAE_VAEAEAO_R_R_M_O_VAEABAE_R_RAOAE_R_RAO_M_RAEAEAE_RABAE_A____
+  __________________________AEAE_RABAE_O_R_VAE_R_M_M_R_M_M_M_M_M_M_R_R_M_M_M_M_MAB_RAE_R_R_A______
+  __________________________AEAE_VAE_RAE_O_R_R_R_M_M_MAE_MAE_O_O_M_M_M_MAEAEAE_M_M_O_M_R_R_A______
+  ________________________AEABAEAB_RAO_R_O_R_M_MAEAEAOAE_RABAE_R_M_MAEAEABAE_RAE_R_M_M_M_M________
+  ________________________AE_R_R_R_R_R_RAE_R_MAEAEAEAE_V_R_V_RAE_R_MAE_VAE_V_R_OAE_R_M_M_M________
+  ______________________AE_M_M_R_R_M_M_M_M_MAEABAEAE_OAEAEAO_O_R_MAEAEAE_RAE_R_R_R_R_M_M__________
+  ______________________AE_M_M_M_MAEAE_R_R_MAEAEAEAEAOAE_R_R_V_R_MAEAEAO_R_VAO_R_M_M_M_M__________
+  ____________________AE_RAEAEAE_RAE_O_R_R_M_VAE_V_R_VAOAEAO_R_M_MAE_RAO_R_M_M_M_MAE_A____________
+  ____________________AEAE_RAE_RAB_OAEAE_R_MAEAO_R_VAO_R_RAE_R_M_M_M_M_M_M_M_M_MAE_R_A____________
+  __________________AEAEAE_VAE_RAEAEAB_R_M_MAEAOAE_V_RAO_R_M_MAEAE_O_R_M_M_MABAE_V_A______________
+  __________________AEAE_OAEAE_RAB_O_R_R_R_M_MAEAO_RAE_O_M_MAEAEAE_OAE_R_M_MAEAOAE_A______________
+  ________________AE_RABAE_OAE_VAE_OAE_R_M_M_M_M_M_O_M_M_MAEAE_OAE_O_RAB_OAE_VAO_A________________
+  ________________AE_RAEAO_VAEAO_R_R_R_M_MAEABAE_M_M_M_MAEAEABAE_VAB_O_R_MAOAE_R_A________________
+  ______________AE_M_RAEAE_R_R_R_M_MAEAE_R_V_RABAE_M_MAE_V_RAEAO_RAE_R_M_R_VAO_A__________________
+  ______________AE_M_M_M_M_M_M_M_OABAEAEAE_OAEAE_VAE_MAOAE_R_RAO_V_R_M_M_VAO_R_A__________________
+  ____________AE_M_MAEAEAE_M_M_MAEAEAE_RAOAEABAE_O_M_V_RAO_VAO_RAO_MAOAE_V_R_A____________________
+  ____________AEAEAEAEAB_RAB_R_MAEAEAO_V_R_VAE_R_O_MAEAE_RAE_R_R_R_M_RAO_R_M_M____________________
+  __________AEAE_RAEAE_V_R_R_M_MAE_V_RAE_R_O_O_M_M_M_OAEAEAEAE_M_M_M_M_M_M_M______________________
+  __________AEAEAE_RAB_R_OAE_R_M_M_RAO_R_M_M_M_M_M_M_MAE_R_R_M_M_MAEAEAE_M_M______________________
+  ________AEAE_RAEAEAE_OAB_R_R_M_M_M_MAEAEAEAE_RAB_R_M_M_O_O_MABAE_VAO_R_A________________________
+  ________AE_RABAE_VAO_V_RAE_R_M_M_MAEAEAB_OAE_RAE_RAE_R_M_M_OAEAOAE_VAE_A________________________
+  ______AEAE_R_RAB_R_R_RAB_R_R_MAEAEAE_RAEAB_VAO_V_R_R_R_M_MAEAE_VAe_R_A__________________________
+  ______AE_OAEAEAE_VAO_RAE_R_R_MAEAO_VAE_R_RAE_R_R_RAE_R_R_M_VAEAO_V_R_A__________________________
+  ____AEAEAEAB_V_RAE_O_R_R_R_MAE_VAE_RAO_OAE_O_RAO_R_RAE_MAEAOAEAE_R_A____________________________
+  ____AE_O_VAEAEAEAB_R_R_RAB_M_RAe_VAO_VAE_R_RAE_RAE_O_M_M_RAE_O_RAO_A____________________________
+  __AE_M_RAO_V_O_R_R_R_R_O_M_MAEAO_RAE_RAEAE_R_R_O_M_M_M_M_R_V_R_M_M______________________________
+  __AE_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M_M______________________________
 }
-# tile 880 (sub sokoban walls 3)
+# tile 218 (sub sokoban walls 0)
 {
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdC$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdC$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPC$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPC$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBP_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBfBP_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBfBP_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBfBP_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBfBP_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BfBP_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BfBP_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6BfBP_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBdBdBdBdBdBdBdBdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6BfBP_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6BfBP_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBP_6BPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6Bf_6BfBPBfBPC$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6_6BfBPBfBPC$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6Bf_6BfBfBP_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6_6_6BfBfBP_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6_6_6BfBP_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBP_6BPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBP_6_6_6_6_6_6BfBP_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBP_6_6BP_6_6BfBP_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6_6BS_6_6BfBP_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBdBQBQBP_6_6_6_6BfBP_6_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBdBQBQBQBQBQBQBQBQBQBQBP_6_6_6_6BfBP_6_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBSBQBQBQBQBQBQBSBQBQBQBSBQBQBP_6_6_6BfBP_6BfBQ_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBQBQBQBQBQBQBdBQBQBQBQBP_6BQ_6BfBP_6_6_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6_6BfBPBP_6_6_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBfBfBfBfBQBQBQBQBQBSBQBQBQBQBQBQBQBQBQBQBP_6_6BfBPBP_6BQ_6Bf_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BdBdBdBdBdBQBdBQBQBQBQBQBQBQBSBQBQBQBSBQBQBP_6BfBPBfBP_6_6_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6BfBPBfBP_6_6_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBPBfBP_6BfBP_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBdBPBPBQBQBQBQBSBQBQBQBQBQBQBQBQBQBQBQBPBfBP_6BfBP_6_6Bf_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBdBQBQBQBQBQBQBdBQBQBQBdBQBQBQBPBP_6_6BfBP_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBfBP_6_6BfBP_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBP_6BPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBSBQBQBf_6_6_6BfBP_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBP_6Bf_6BfBP_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBPBP_6_6_6BfBP_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBdBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBPBPBP_6_6_6_6BfBP_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBSBQBQBQBQBQBQBQBQBQ_6_6BQ_6BfBPBfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBSBQBQBQ_6_6_6_6BfBPC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBP_6BPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6_6BfBPC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBdBQBQBQBQBQBQBQBQBQBQBQBQ_6BS_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBdBQBQBQBQBQBQBQ_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBfBfBfBfBQBQBQBQBQBQBQBSBQBQBQBQBSBQBQBQ_6BQ_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBSBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBdBQBQBQBQBQBQ_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBdBQBQBSBQBQBQBQBQBQBQBQBSBQ_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBdBQ_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BSBSBSBSBSBSBSBSBSBSBSBSBSBSBSBSBfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  __________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAO_K________________
+  ________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_K________________
+  ________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_K________________
+  ______________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_K________________
+  ______________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_K________________
+  ____________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_K________________
+  ____________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_K________________
+  __________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_K________________
+  __________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_K_K________________
+  ________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAi_K________________
+  ________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_gAi_K________________
+  ______________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAiAi_K________________
+  ______________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAi_K_K________________
+  ____________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_KAiAi_K________________
+  ____________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAiAiAi_K________________
+  __________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_kAiAiAiAiAi_k________________
+  __________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAi_gAi_K_k________________
+  ________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_K_kAiAi_KAiAi_K_k________________
+  ________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_K_kAiAiAiAi_K_kAi________________
+  ______________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_K_kAiAiAiAi_K_kAi________________
+  ______________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_K_kAiAiAi_K_kAiAi________________
+  ____________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_K_kAiAiAi_K_kAiAi________________
+  ____________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_K_kAiAi_K_k_gAiAi________________
+  __________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_K_kAiAi_K_k_kAi_K________________
+  __________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_K_kAi_K_k_K_kAiAi________________
+  ________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAi_K_kAi_K_k_K_k_gAi________________
+  ________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_KAi_K_k_K_kAi_K_kAiAi________________
+  ______________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAiAi_K_k_K_kAi_K_k_KAi________________
+  ______________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_KAi_K_K_kAiAi_K_kAiAi________________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAiAiAi_K_K_kAiAi_K_kAiAi________________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAiAiAi_K_kAiAiAi_K_kAiAi________________
+  __________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAO_kAiAiAiAiAiAi_K_kAiAiAi_K_kAiAi________________
+  ________________B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_kAiAi_kAiAi_K_kAiAiAiAi_K_k_K_K________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAiAi_bAiAi_K_kAiAi_KAi_K_kAi__________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_gB6_g_g_kAiAiAiAi_K_kAiAiAiAiAi_K_k_K__________________
+  _________________g_g_g_g_gB6_g_g_g_g_g_g_g_g_g_g_kAiAiAiAi_K_kAiAiAiAiAi_K_k____________________
+  _________________g_g_b_g_g_g_g_g_g_b_g_g_g_b_g_g_kAiAiAi_K_kAi_K_gAiAiAi_K_K____________________
+  _________________g_g_g_g_g_g_g_g_g_g_gB6_g_g_g_g_kAi_gAi_K_kAiAiAiAiAiAi_K______________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAiAi_K_k_kAiAiAiAiAiAi_K______________________
+  _________________g_g_g_g_g_b_g_g_g_g_g_g_g_g_g_g_kAiAi_K_k_kAi_gAi_KAiAi________________________
+  _________________gB6_g_g_g_g_g_g_g_b_g_g_g_b_g_g_kAi_K_k_K_kAiAiAiAiAi_K________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAi_K_k_K_kAiAiAiAiAi__________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_k_K_kAi_K_kAiAiAiAi_K__________________________
+  _________________g_g_g_g_b_g_g_g_g_g_g_g_g_g_g_g_k_K_kAi_K_kAiAi_KAi____________________________
+  _________________gB6_g_g_g_g_g_gB6_g_g_gB6_g_g_g_k_kAiAi_K_kAiAiAi_K____________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_K_kAiAi_K_kAiAiAi______________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_b_g_g_KAiAiAi_K_kAiAi_K______________________________
+  _________________K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_kAi_KAi_K_kAiAi________________________________
+  ________________B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_k_kAiAiAi_K_kAi_K________________________________
+  _________________k_k_k_k_k_k_k_k_k_k_k_k_k_k_k_kAiAiAiAi_K_kAi__________________________________
+  _________________g_g_g_g_g_g_b_g_g_g_g_g_g_g_g_gAiAi_gAi_K_k_K__________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_b_g_g_gAiAiAiAi_K_k____________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAiAi_K_k____________________________________
+  _________________g_g_gB6_g_g_g_g_g_g_g_g_g_g_g_gAi_bAiAi_K______________________________________
+  _________________g_g_g_g_g_g_g_gB6_g_g_g_g_g_g_gAiAiAiAi_K______________________________________
+  _________________g_g_g_g_g_g_g_b_g_g_g_g_b_g_g_gAi_gAiAi________________________________________
+  _________________g_g_b_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAi_K________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAi__________________________________________
+  _________________g_g_g_g_g_g_g_g_gB6_g_g_g_g_g_gAiAi_K__________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAi____________________________________________
+  _________________g_gB6_g_g_b_g_g_g_g_g_g_g_g_b_gAi_K____________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_gB6_gAi______________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAi______________________________________________
+  _________________b_b_b_b_b_b_b_b_b_b_b_b_b_b_b_b_K______________________________________________
 }
-# tile 881 (sub sokoban walls 4)
+# tile 219 (sub sokoban walls 1)
 {
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6CdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6CdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6CdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQ_6_6_6_6_6_6BfC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQ_6_6_6_6_6_6BfC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BP_6BPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBP_6BPBPBPBQ_6_6_6_6_6BfBdC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBfBdBP_6BPBPBPBPBdBPBPBPBPBPBPBPBQ_6_6_6_6_6Bf_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBdBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBdBPBPBQ_6_6_6_6BfBd_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQ_6_6_6_6Bf_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBfBdBPBPBPBPBdBPBPBP_6BPBPBPBPBPBQ_6_6_6BfBd_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQ_6_6_6Bf_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQ_6_6BfBd_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBfBdBPBPBP_6BPBPBPBPBPBPBPBPBPBPBQ_6_6Bf_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBP_6BPBdBPBPBQ_6BfBd_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBdBPBPBPBPBfBdBPBPBPBPBPBPBdBPBPBPBPBPBPBPBQ_6Bf_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQBfBd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQBf_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BdBdBdBdBdBdBdBdBdBdBdBdBdBdBfBdBdBdBdBdBdBdBd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBP_6BPBPBPBPBPBPBPBPBfBdBPBPBdBPBPBPBQ_6_6_6_6_6_6C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBdBPBPBPBPBPBPBPBdBPBPBPBfBdBPBPBPBPBP_6BQ_6_6_6_6_6_6C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBQ_6_6_6_6_6C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBdBPBPBPBP_6BPBPBPBfBdBPBPBPBPBPBPBQ_6_6_6_6_6C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBdBPBPBdBQ_6_6_6_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBPBP_6_6BPBPBPBPBfBdBPBPBPBPBPBdBQ_6_6_6_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBP_6BPBPBPBdBPBPBPBPBPBPBfBdBPBPBPBPBPBPBQ_6_6_6C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBP_6BPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBQ_6_6_6C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBP_6BPBPBQ_6_6C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBdBPBPBPBP_6BPBPBPBPBPBfBdBPBPBPBPBdBPBQ_6_6C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBPBPBPBPBPBdBdBPBfBdBPBPBPBPBPBPBQ_6C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBQ_6C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$BfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfC$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO__________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO__________
+  __________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAi__________
+  __________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAi__________
+  ________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAi__________
+  ________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAi__________
+  ______________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAi__________
+  ______________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAi__________
+  ____________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAi__________
+  ____________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAi__________
+  __________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAi__________
+  __________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAi__________
+  ________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAi__________
+  ________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAi__________
+  ______AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAiAi__________
+  ______AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAiAi__________
+  _______KB6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_gAiAiAiAiAiAiAi__________
+  _______KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_gAiAiAiAiAiAi_K__________
+  _______KB6_k_kAi_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_gAiAiAiAiAiAi_K__________
+  _______KB6_k_k_k_k_k_k_k_k_kAi_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_kAi_k_k_k_gAiAiAiAiAi_KB6__________
+  _______KB6_k_k_k_k_kB6_k_k_k_k_k_k_k_k_KB6_kAi_k_k_k_kB6_k_k_k_k_k_k_k_gAiAiAiAiAi_KAi__________
+  _______KB6_k_k_k_k_k_k_k_k_k_kB6_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_kB6_k_k_gAiAiAiAi_KB6Ai__________
+  _______KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_gAiAiAiAi_KAiAi__________
+  _______KB6_kAi_k_k_k_k_kB6_k_k_k_k_k_k_KB6_k_k_k_kB6_k_k_kAi_k_k_k_k_k_gAiAiAi_KB6AiAi__________
+  _______KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_gAiAiAi_KAiAiAi__________
+  _______KB6_k_k_k_k_kAiAi_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_gAiAi_KB6AiAiAi__________
+  _______KB6_k_k_kB6_k_k_k_k_k_k_k_k_k_k_KB6_k_k_kAi_k_k_k_k_k_k_k_k_k_k_gAiAi_KAiAiAiAi__________
+  _______KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_kAi_kB6_k_k_gAi_KB6AiAiAiAi__________
+  _______KB6_k_k_k_k_k_k_k_k_kB6_k_k_k_k_KB6_k_k_k_k_k_kB6_k_k_k_k_k_k_k_gAi_KAiAiAiAiAi__________
+  _______KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_g_KB6AiAiAiAiAi__________
+  _______KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_g_KAiAiAiAiAiAi__________
+  _______K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KB6AiAiAiAiAiAi__________
+  ______B6B6B6B6B6B6B6B6_KB6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_KB6B6B6B6B6B6B6B6AiAiAiAiAiAiAi__________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_gAiAiAiAiAiAiAi__________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_gAiAiAiAiAiAiAi__________
+  _______k_kB6_k_kAi_k_k_KB6_k_k_k_k_kAi_k_k_k_k_k_k_k_k_KB6_k_kB6_k_k_k_gAiAiAiAiAiAi____________
+  _______k_k_k_k_k_k_k_k_KB6_k_kB6_k_k_k_k_k_k_kB6_k_k_k_KB6_k_k_k_k_kAi_gAiAiAiAiAiAi____________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_gAiAiAiAiAi______________
+  _______k_kAi_k_kB6_k_k_KB6_k_k_k_k_kB6_k_k_k_kAi_k_k_k_KB6_k_k_k_k_k_k_gAiAiAiAiAi______________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_kB6_k_kB6_gAiAiAiAi________________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_kAiAi_k_k_k_k_KB6_k_k_k_k_kB6_gAiAiAiAi________________
+  _______k_kB6B6_k_k_k_k_KB6_k_k_kAi_k_k_kB6_k_k_k_k_k_k_KB6_k_k_k_k_k_k_gAiAiAi__________________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_kAi_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_gAiAiAi__________________
+  _______k_k_k_k_kB6_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_kAi_k_k_gAiAi____________________
+  _______k_k_kAi_k_k_k_k_KB6_k_k_kB6_k_k_k_kAi_k_k_k_k_k_KB6_k_k_k_kB6_k_gAiAi____________________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_kB6B6_k_KB6_k_k_k_k_k_k_gAi______________________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_gAi______________________
+  _______K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
 }
-# tile 882 (sub sokoban walls 5)
+# tile 220 (sub sokoban walls 2)
 {
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BfBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BQ_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6BfBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6Bf_6_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6_6_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBP_6_6_6_6_6BPC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6BQ_6BfBPC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBfBP_6_6Bf_6_6BfBPC$C$C$C$C$C$C$C$
-  C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBfBP_6_6_6_6BfBP_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBfBP_6_6_6_6BfBP_6C$C$C$C$C$C$C$C$
-  C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBfBP_6_6_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BfBP_6_6_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BfBP_6_6BfBPBQ_6_6C$C$C$C$C$C$C$C$
-  C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6BfBP_6_6BfBPBP_6BfC$C$C$C$C$C$C$C$
-  C$C$C$BfBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBP_6_6BfBP_6BfBPBfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBP_6_6_6BfBP_6BfBPBfBPBQ_6C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBP_6BPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBP_6Bf_6BfBPBfBP_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBP_6BPBPBPBPBfBdBPBPBPBPBPBP_6_6_6_6BfBPBfBP_6BfBPBf_6C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBdBPBPBPBPBPBPBPBPBfBdBP_6BPBPBPBP_6_6Bf_6BfBfBP_6_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBdBPBPBPBfBdBPBPBPBPBPBP_6_6_6_6BfBfBP_6_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBP_6_6_6_6BfBP_6_6_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBP_6BPBPBPBPBPBdBPBPBPBPBPBPBfBdBPBPBPBPBdBP_6_6_6_6BfBP_6_6_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBP_6_6BfBP_6_6_6_6BfBPBfBfC$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBP_6_6BPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBS_6_6BfBP_6_6Bf_6BfBP_6C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBdBPBPBPBPBPBPBPBPBPBPBfBdBPBPBP_6BPBP_6_6BfBP_6_6_6_6_6BfBPBfC$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBP_6_6BfBP_6_6_6_6_6BfBPC$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBdBPBPBPBPBfBdBPBPBPBPBPBP_6BfBP_6BfBQ_6_6_6BfBfC$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBP_6BfBP_6_6_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBfBP_6_6_6_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBP_6_6BQ_6Bf_6_6C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BdBdBdBdBdBdBdBdBfBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBP_6_6_6_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBP_6_6_6_6_6_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBP_6_6_6_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBdBPBP_6BPBPBfBdBPBPBPBPBP_6BPBPBPBPBPBPBPBP_6_6_6_6_6Bf_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBdBPBPBPBPBPBPBPBdBPBPBP_6_6_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBP_6_6_6_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBP_6BPBPBdBPBPBfBdBPBPBPBPBPBdBPBPBPBP_6BPBPBP_6_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBP_6_6_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBP_6_6BPBPBPBP_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBdBdBPBPBPBPBfBdBPBPBP_6BPBPBPBdBPBPBPBPBPBP_6_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBP_6BPBPBPBPBPBPBPBPBPBP_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBdBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBP_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBP_6BPBPBPBPBfBdBPBPBPBdBPBPBPBP_6BPBPBPBPBP_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBdBdBP_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBP_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBf_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  __________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO__________
+  ________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO__________
+  ________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAi__________
+  ______________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAi__________
+  ______________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAi__________
+  ____________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAi__________
+  ____________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAi__________
+  __________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAi__________
+  __________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAi__________
+  ________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAi__________
+  ________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAi__________
+  ______________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAi__________
+  ______________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAi__________
+  ____________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAi__________
+  ____________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAiAi__________
+  __________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAiAi__________
+  __________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6B6B6B6B6B6B6B6_gAiAiAiAiAiAiAi__________
+  ________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_k_k_k_k_k_k_k_gAiAiAiAiAiAi_K__________
+  ________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_k_k_k_k_k_k_k_gAiAiAiAiAiAi_K__________
+  ______________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_k_k_kAi_k_k_k_gAiAiAiAiAi_KB6__________
+  ______________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_k_k_k_k_k_k_k_gAiAiAiAiAi_KAi__________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_k_k_k_kB6_k_k_gAiAiAiAi_KB6Ai__________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_k_k_k_k_k_k_k_gAiAiAiAi_KAiAi__________
+  __________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAO_kAiAiAi_kAi_k_k_k_k_k_gAiAiAi_KB6AiAi__________
+  ________________B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_kAiAi_k_k_k_k_k_k_k_k_gAiAiAi_KAiAiAi__________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAiAi_b_k_k_k_k_k_k_k_gAiAi_KB6AiAiAi__________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_gB6_g_g_kAiAiAi_k_k_k_k_k_k_k_gAiAi_KAiAiAiAi__________
+  _________________g_g_g_g_gB6_g_g_g_g_g_g_g_g_g_g_kAiAiAi_k_kAi_kB6_k_k_gAi_KB6AiAiAiAi__________
+  _________________g_g_b_g_g_g_g_g_g_b_g_g_g_b_g_g_kAiAiAi_k_k_k_k_k_k_k_gAi_KAiAiAiAiAi__________
+  _________________g_g_g_g_g_g_g_g_g_g_gB6_g_g_g_g_kAi_gAi_k_k_k_k_k_k_k_g_KB6AiAiAiAiAi__________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAiAi_K_k_k_k_k_k_k_k_g_KAiAiAiAiAiAi__________
+  _________________g_g_g_g_g_b_g_g_g_g_g_g_g_g_g_g_kAiAi_K_K_K_K_K_K_K_K_KB6AiAiAiAiAiAi__________
+  _________________gB6_g_g_g_g_g_g_g_b_g_g_g_b_g_g_kAi_K_kB6B6B6B6B6B6B6B6AiAiAiAiAiAiAi__________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAi_K_kB6_k_k_k_k_k_k_gAiAiAiAiAiAiAi__________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_k_K_kAiB6_k_k_k_k_k_k_gAiAiAiAiAiAiAi__________
+  _________________g_g_g_g_b_g_g_g_g_g_g_g_g_g_g_g_k_K_kAiB6_k_kB6_k_k_k_gAiAiAiAiAiAi____________
+  _________________gB6_g_g_g_g_g_gB6_g_g_gB6_g_g_g_k_kAiAiB6_k_k_k_k_kAi_gAiAiAiAiAiAi____________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_K_kAiAiB6_k_k_k_k_k_k_gAiAiAiAiAi______________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_b_g_g_KAiAiAiB6_k_k_k_k_k_k_gAiAiAiAiAi______________
+  _________________K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_kAi_KAiB6_k_kB6_k_kB6_gAiAiAiAi________________
+  ________________B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_k_kAiAiAiB6_k_k_k_k_kB6_gAiAiAiAi________________
+  _________________k_k_k_k_k_k_k_k_k_k_k_k_k_k_k_kAiAiAiAiB6_k_k_k_k_k_k_gAiAiAi__________________
+  _________________g_g_g_g_g_g_b_g_g_g_g_g_g_g_g_gAiAi_gAiB6_k_k_k_k_k_k_gAiAiAi__________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_b_g_g_gAiAiAiAiB6_k_k_kAi_k_k_gAiAi____________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAiAiB6_k_k_k_kB6_k_gAiAi____________________
+  _________________g_g_gB6_g_g_g_g_g_g_g_g_g_g_g_gAi_bAiAiB6_k_k_k_k_k_k_gAi______________________
+  _________________g_g_g_g_g_g_g_gB6_g_g_g_g_g_g_gAiAiAiAiB6_k_k_k_k_k_k_gAi______________________
+  _________________g_g_g_g_g_g_g_b_g_g_g_g_b_g_g_gAi_gAiAi_K_K_K_K_K_K_K_K________________________
+  _________________g_g_b_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAi_K________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAi__________________________________________
+  _________________g_g_g_g_g_g_g_g_gB6_g_g_g_g_g_gAiAi_K__________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAi____________________________________________
+  _________________g_gB6_g_g_b_g_g_g_g_g_g_g_g_b_gAi_K____________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_gB6_gAi______________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAi______________________________________________
+  _________________b_b_b_b_b_b_b_b_b_b_b_b_b_b_b_b_K______________________________________________
 }
-# tile 883 (sub sokoban walls 6)
+# tile 221 (sub sokoban walls 3)
 {
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6CdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6CdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6CdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBdBdBdBdBdBdBdBdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBdBdBdBdBdBdBdBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBPBPBPBPBPBPBPBQ_6_6_6_6_6_6BfC$C$C$C$C$
-  C$C$C$BfBdBPBP_6BPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBPBPBPBPBPBPBPBQ_6_6_6_6_6_6BfC$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BPBPBP_6BPBPBPBQ_6_6_6_6_6BfBdC$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BPBPBPBPBPBPBPBQ_6_6_6_6_6Bf_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6BPBPBPBPBdBPBPBQ_6_6_6_6BfBd_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6BPBPBPBPBPBPBPBQ_6_6_6_6Bf_6_6C$C$C$C$C$
-  C$C$C$BfBdBP_6BPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBP_6_6_6BP_6BPBPBPBPBPBQ_6_6_6BfBd_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBP_6_6BPBPBPBPBPBPBPBPBQ_6_6_6Bf_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6_6BSBPBPBPBPBPBPBPBQ_6_6BfBd_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBdBQBQBP_6_6_6BPBPBPBPBPBPBPBQ_6_6Bf_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBdBQBQBQBQBQBQBQBQBQBQBP_6_6_6BPBP_6BPBdBPBPBQ_6BfBd_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBSBQBQBQBQBQBQBSBQBQBQBSBQBQBP_6_6_6BPBPBPBPBPBPBPBQ_6Bf_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBQBQBQBQBQBQBdBQBQBQBQBP_6BQ_6BPBPBPBPBPBPBPBQBfBd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6_6BfBPBPBPBPBPBPBPBQBf_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBfBfBfBfBQBQBQBQBQBSBQBQBQBQBQBQBQBQBQBQBP_6_6BfBfBfBfBfBfBfBfBfBd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BdBdBdBdBdBQBdBQBQBQBQBQBQBQBSBQBQBQBSBQBQBP_6BfBPBdBdBdBdBdBdBdBd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6BfBPBdBPBPBPBPBPBPBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBPBfBP_6BdBPBPBPBPBPBPBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BPBPBdBPBPBQBQBQBQBSBQBQBQBQBQBQBQBQBQBQBQBPBfBP_6BdBPBPBdBPBPBPBQ_6_6_6_6_6_6C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBdBQBQBQBQBQBQBdBQBQBQBdBQBQBQBPBP_6_6BdBPBPBPBPBP_6BQ_6_6_6_6_6_6C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBfBP_6_6BdBPBPBPBPBPBPBQ_6_6_6_6_6C$C$C$C$C$C$C$
-  C$C$C$BPBP_6BPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBSBQBQBf_6_6_6BdBPBPBPBPBPBPBQ_6_6_6_6_6C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBP_6Bf_6BdBPBPBdBPBPBdBQ_6_6_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBPBP_6_6_6BdBPBPBPBPBPBdBQ_6_6_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBdBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBPBPBP_6_6_6_6BdBPBPBPBPBPBPBQ_6_6_6C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBSBQBQBQBQBQBQBQBQBQ_6_6BQ_6BdBPBPBPBPBPBPBQ_6_6_6C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBSBQBQBQ_6_6_6_6BdBPBPBP_6BPBPBQ_6_6C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBP_6BPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6_6BdBPBPBPBPBdBPBQ_6_6C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBdBQBQBQBQBQBQBQBQBQBQBQBQ_6BS_6_6BdBPBPBPBPBPBPBQ_6C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBdBQBQBQBQBQBQBQ_6_6_6_6BdBPBPBPBPBPBPBQ_6C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBfBfBfBfBQBQBQBQBQBQBQBSBQBQBQBQBSBQBQBQ_6BQ_6_6BfBfBfBfBfBfBfBfC$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBSBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBdBQBQBQBQBQBQ_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBdBQBQBSBQBQBQBQBQBQBQBQBSBQ_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBdBQ_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BSBSBSBSBSBSBSBSBSBSBSBSBSBSBSBSBfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO__________________________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6__________________________
+  __________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6__________________________
+  __________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k__________________________
+  ________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k__________________________
+  ________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi__________________________
+  ______________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi__________________________
+  ______________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_kAi__________________________
+  ____________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi__________________________
+  ____________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_K_kAiAi__________________________
+  __________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_K_kAiAi__________________________
+  __________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_K_kAiAi__________________________
+  ________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_K_kAiAi__________________________
+  ________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_K_kAiAi__________________________
+  ______AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_K_kAiAi__________________________
+  ______AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_K_kAiAi__________________________
+  _______KB6B6B6B6B6B6B6B6B6AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_K_kAi_K__________________________
+  _______KB6_k_k_k_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAi_K_kAi_K__________________________
+  _______KB6_k_kAi_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_KAi_K_k_K_k__________________________
+  _______KB6_k_k_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAiAi_K_k_K_k__________________________
+  _______KB6_k_k_k_k_kB6AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_KAi_K_K_kAi__________________________
+  _______KB6_k_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAiAiAi_K_K_kAi__________________________
+  _______KB6_k_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAiAiAi_K_kAiAi__________________________
+  _______KB6_kAi_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO_kAiAiAiAiAiAi_K_kAiAi__________________________
+  _______KB6_k_k_kB6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_kAiAi_kAiAi_K_kAiAiAi__________________________
+  _______KB6_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAiAi_bAiAi_K_kAiAi_K__________________________
+  _______KB6_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_gB6_g_g_kAiAiAiAi_K_kAiAiAiAi__________________________
+  _______KB6_k_k_k_g_g_g_g_gB6_g_g_g_g_g_g_g_g_g_g_kAiAiAiAi_K_kAiAiAiAi__________________________
+  _______KB6_k_k_k_g_g_b_g_g_g_g_g_g_b_g_g_g_b_g_g_kAiAiAi_K_kAi_K_gAiAi__________________________
+  _______KB6_k_k_k_g_g_g_g_g_g_g_g_g_g_gB6_g_g_g_g_kAi_gAi_K_kAiAiAiAiAi__________________________
+  _______KB6_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAiAi_K_k_kAiAiAiAiAi__________________________
+  _______K_K_K_K_K_g_g_g_g_g_b_g_g_g_g_g_g_g_g_g_g_kAiAi_K_k_kAi_gAi_KAi__________________________
+  ______B6B6B6B6B6_gB6_g_g_g_g_g_g_g_b_g_g_g_b_g_g_kAi_K_k_K_kAiAiAiAiAi__________________________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAi_K_k_K_kAiAiAiAiAi__________________________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_k_K_kAi_K_kAiAiAiAi_K__________________________
+  _______k_kB6_k_k_g_g_g_g_b_g_g_g_g_g_g_g_g_g_g_g_k_K_kAi_K_kAiAi_KAi____________________________
+  _______k_k_k_k_k_gB6_g_g_g_g_g_gB6_g_g_gB6_g_g_g_k_kAiAi_K_kAiAiAi_K____________________________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_K_kAiAi_K_kAiAiAi______________________________
+  _______k_kAi_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_b_g_g_KAiAiAi_K_kAiAi_K______________________________
+  _______k_k_k_k_k_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_kAi_KAi_K_kAiAi________________________________
+  _______k_k_k_k_kB6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_k_kAiAiAi_K_kAi_K________________________________
+  _______k_kB6B6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_k_k_kAiAiAiAi_K_kAi__________________________________
+  _______k_k_k_k_k_g_g_g_g_g_g_b_g_g_g_g_g_g_g_g_gAiAi_gAi_K_k_K__________________________________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_b_g_g_gAiAiAiAi_K_k____________________________________
+  _______k_k_kAi_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAiAi_K_k____________________________________
+  _______k_k_k_k_k_g_g_gB6_g_g_g_g_g_g_g_g_g_g_g_gAi_bAiAi_K______________________________________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_gB6_g_g_g_g_g_g_gAiAiAiAi_K______________________________________
+  _______K_K_K_K_K_g_g_g_g_g_g_g_b_g_g_g_g_b_g_g_gAi_gAiAi________________________________________
+  _________________g_g_b_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAi_K________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAi__________________________________________
+  _________________g_g_g_g_g_g_g_g_gB6_g_g_g_g_g_gAiAi_K__________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAi____________________________________________
+  _________________g_gB6_g_g_b_g_g_g_g_g_g_g_g_b_gAi_K____________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_gB6_gAi______________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAi______________________________________________
+  _________________b_b_b_b_b_b_b_b_b_b_b_b_b_b_b_b_K______________________________________________
 }
-# tile 884 (sub sokoban walls 7)
+# tile 222 (sub sokoban walls 4)
 {
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6CdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6CdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6CdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQ_6_6_6_6_6_6BfC$C$C$C$C$
-  C$C$C$BfBdBPBP_6BPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQ_6_6_6_6_6_6BfC$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBP_6BPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBP_6BPBPBPBQ_6_6_6_6_6BfBdC$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBdBPBPBPBPBPBPBPBPBfBdBP_6BPBPBPBPBdBPBPBPBPBPBPBPBQ_6_6_6_6_6Bf_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBdBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBdBPBPBQ_6_6_6_6BfBd_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQ_6_6_6_6Bf_6_6C$C$C$C$C$
-  C$C$C$BfBdBP_6BPBPBPBPBPBdBPBPBPBPBPBPBfBdBPBPBPBPBdBPBPBP_6BPBPBPBPBPBQ_6_6_6BfBd_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQ_6_6_6Bf_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBP_6_6BPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQ_6_6BfBd_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBdBPBPBPBPBPBPBPBPBPBPBfBdBPBPBP_6BPBPBPBPBPBPBPBPBPBPBQ_6_6Bf_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBP_6BPBdBPBPBQ_6BfBd_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBdBPBPBPBPBfBdBPBPBPBPBPBPBdBPBPBPBPBPBPBPBQ_6Bf_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQBfBd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBQBf_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BdBdBdBdBdBdBdBdBfBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBfBdBdBdBdBdBdBdBd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BPBPBdBPBP_6BPBPBfBdBPBPBPBPBP_6BPBPBPBPBPBPBPBPBfBdBPBPBdBPBPBPBQ_6_6_6_6_6_6C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBdBPBPBPBPBPBPBPBdBPBPBPBfBdBPBPBPBPBP_6BQ_6_6_6_6_6_6C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBQ_6_6_6_6_6C$C$C$C$C$C$C$
-  C$C$C$BPBP_6BPBPBdBPBPBfBdBPBPBPBPBPBdBPBPBPBP_6BPBPBPBfBdBPBPBPBPBPBPBQ_6_6_6_6_6C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBdBPBPBdBQ_6_6_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBP_6_6BPBPBPBPBfBdBPBPBPBPBPBdBQ_6_6_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBdBdBPBPBPBPBfBdBPBPBP_6BPBPBPBdBPBPBPBPBPBPBfBdBPBPBPBPBPBPBQ_6_6_6C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBP_6BPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBQ_6_6_6C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBdBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBP_6BPBPBQ_6_6C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBP_6BPBPBPBPBfBdBPBPBPBdBPBPBPBP_6BPBPBPBPBPBfBdBPBPBPBPBdBPBQ_6_6C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBdBdBPBfBdBPBPBPBPBPBPBQ_6C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBfBdBPBPBPBPBPBPBQ_6C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfC$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  __________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAO________________
+  ________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6AO________________
+  ________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6AO________________
+  ______________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAO________________
+  ______________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAO________________
+  ____________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAO________________
+  ____________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAO________________
+  __________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAO________________
+  __________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO__________
+  ________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO__________
+  ________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAi__________
+  ______________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAi__________
+  ______________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAi__________
+  ____________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAi__________
+  ____________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAi__________
+  __________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAi__________
+  __________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAi__________
+  ________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAi__________
+  ________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAi__________
+  ______________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAi__________
+  ______________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAi__________
+  ____________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAi__________
+  ____________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAiAi__________
+  __________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAiAi__________
+  __________________________B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_gAiAiAiAiAiAiAi__________
+  ___________________________k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_gAiAiAiAiAiAi_K__________
+  ___________________________k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_gAiAiAiAiAiAi_K__________
+  ___________________________kAi_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_kAi_k_k_k_gAiAiAiAiAi_KB6__________
+  ___________________________k_k_k_k_k_k_KB6_kAi_k_k_k_kB6_k_k_k_k_k_k_k_gAiAiAiAiAi_KAi__________
+  ___________________________k_kB6_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_kB6_k_k_gAiAiAiAi_KB6Ai__________
+  ___________________________k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_gAiAiAiAi_KAiAi__________
+  ___________________________k_k_k_k_k_k_KB6_k_k_k_kB6_k_k_kAi_k_k_k_k_k_gAiAiAi_KB6AiAi__________
+  ___________________________k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_gAiAiAi_KAiAiAi__________
+  ___________________________k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_gAiAi_KB6AiAiAi__________
+  ___________________________k_k_k_k_k_k_KB6_k_k_kAi_k_k_k_k_k_k_k_k_k_k_gAiAi_KAiAiAiAi__________
+  ___________________________k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_kAi_kB6_k_k_gAi_KB6AiAiAiAi__________
+  ___________________________kB6_k_k_k_k_KB6_k_k_k_k_k_kB6_k_k_k_k_k_k_k_gAi_KAiAiAiAiAi__________
+  ___________________________k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_g_KB6AiAiAiAiAi__________
+  ___________________________k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_g_KAiAiAiAiAiAi__________
+  ___________________________K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KB6AiAiAiAiAiAi__________
+  __________________________B6B6B6B6B6B6B6B6B6B6B6B6B6B6_KB6B6B6B6B6B6B6B6AiAiAiAiAiAiAi__________
+  ___________________________k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_gAiAiAiAiAiAiAi__________
+  ___________________________k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_gAiAiAiAiAiAiAi__________
+  ___________________________k_k_k_k_kAi_k_k_k_k_k_k_k_k_KB6_k_kB6_k_k_k_gAiAiAiAiAiAi____________
+  ___________________________k_kB6_k_k_k_k_k_k_kB6_k_k_k_KB6_k_k_k_k_kAi_gAiAiAiAiAiAi____________
+  ___________________________k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_gAiAiAiAiAi______________
+  ___________________________k_k_k_k_kB6_k_k_k_kAi_k_k_k_KB6_k_k_k_k_k_k_gAiAiAiAiAi______________
+  ___________________________k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_kB6_k_kB6_gAiAiAiAi________________
+  ___________________________k_k_k_k_k_k_k_kAiAi_k_k_k_k_KB6_k_k_k_k_kB6_gAiAiAiAi________________
+  ___________________________k_k_kAi_k_k_kB6_k_k_k_k_k_k_KB6_k_k_k_k_k_k_gAiAiAi__________________
+  ___________________________k_k_kAi_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_gAiAiAi__________________
+  ___________________________k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_kAi_k_k_gAiAi____________________
+  ___________________________k_k_kB6_k_k_k_kAi_k_k_k_k_k_KB6_k_k_k_kB6_k_gAiAi____________________
+  ___________________________k_k_k_k_k_k_k_k_k_k_kB6B6_k_KB6_k_k_k_k_k_k_gAi______________________
+  ___________________________k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_gAi______________________
+  ___________________________K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
 }
-# tile 885 (sub sokoban walls 8)
+# tile 223 (sub sokoban walls 5)
 {
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBdBdBdBdBdBdBdBdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBdBdBdBdBdBdBdBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBPBPBPBPBPBPBPBQ_6_6_6_6_6_6BfC$C$C$C$C$
-  C$C$C$BfBdBPBP_6BPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBPBPBPBPBPBPBPBQ_6_6_6_6_6_6BfC$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BPBPBP_6BPBPBPBQ_6_6_6_6_6BfBdC$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BPBPBPBPBPBPBPBQ_6_6_6_6_6Bf_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6BPBPBPBPBdBPBPBQ_6_6_6_6BfBd_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6BPBPBPBPBPBPBPBQ_6_6_6_6Bf_6_6C$C$C$C$C$
-  C$C$C$BfBdBP_6BPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBP_6_6_6BP_6BPBPBPBPBPBQ_6_6_6BfBd_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBP_6_6BPBPBPBPBPBPBPBPBQ_6_6_6Bf_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6_6BSBPBPBPBPBPBPBPBQ_6_6BfBd_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBdBQBQBP_6_6_6BPBPBPBPBPBPBPBQ_6_6Bf_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBdBQBQBQBQBQBQBQBQBQBQBP_6_6_6BPBP_6BPBdBPBPBQ_6BfBd_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBSBQBQBQBQBQBQBSBQBQBQBSBQBQBP_6_6_6BPBPBPBPBPBPBPBQ_6Bf_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBQBQBQBQBQBQBdBQBQBQBQBP_6BQ_6BPBPBPBPBPBPBPBQBfBd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6_6BfBPBPBPBPBPBPBPBQBf_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BfBfBfBfBfBQBQBQBQBQBSBQBQBQBQBQBQBQBQBQBQBP_6_6BfBfBfBfBfBfBfBfBfBd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BdBdBdBdBdBQBdBQBQBQBQBQBQBQBSBQBQBQBSBQBQBP_6BfBPBdBdBdBdBdBdBdBd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6BfBPBdBPBPBPBPBPBPBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBPBfBP_6BdBPBPBPBPBPBPBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$BPBPBdBPBPBQBQBQBQBSBQBQBQBQBQBQBQBQBQBQBQBPBfBP_6BdBPBPBdBPBPBPBQ_6_6_6_6_6_6C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBdBQBQBQBQBQBQBdBQBQBQBdBQBQBQBPBP_6_6BdBPBPBPBPBP_6BQ_6_6_6_6_6_6C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBfBP_6_6BdBPBPBPBPBPBPBQ_6_6_6_6_6C$C$C$C$C$C$C$
-  C$C$C$BPBP_6BPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBSBQBQBf_6_6_6BdBPBPBPBPBPBPBQ_6_6_6_6_6C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBP_6Bf_6BdBPBPBdBPBPBdBQ_6_6_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBPBP_6_6_6BdBPBPBPBPBPBdBQ_6_6_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBdBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBPBPBP_6_6_6_6BdBPBPBPBPBPBPBQ_6_6_6C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBSBQBQBQBQBQBQBQBQBQ_6_6BQ_6BdBPBPBPBPBPBPBQ_6_6_6C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBSBQBQBQ_6_6_6_6BdBPBPBP_6BPBPBQ_6_6C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBP_6BPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6_6BdBPBPBPBPBdBPBQ_6_6C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBdBQBQBQBQBQBQBQBQBQBQBQBQ_6BS_6_6BdBPBPBPBPBPBPBQ_6C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBdBQBQBQBQBQBQBQ_6_6_6_6BdBPBPBPBPBPBPBQ_6C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBfBfBfBfBQBQBQBQBQBQBQBSBQBQBQBQBSBQBQBQ_6BQ_6_6BfBfBfBfBfBfBfBfC$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBSBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBdBQBQBQBQBQBQ_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBdBQBQBSBQBQBQBQBQBQBQBQBSBQ_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBdBQ_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BSBSBSBSBSBSBSBSBSBSBSBSBSBSBSBSBfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  __________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAO_K________________
+  ________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_K________________
+  ________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_K________________
+  ______________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_K________________
+  ______________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_K________________
+  ____________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_K________________
+  ____________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_K________________
+  __________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_K________________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_K_K________________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAi_K________________
+  __________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_gAi_K________________
+  __________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAiAi_K________________
+  ________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAi_K_K________________
+  ________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_KAiAi_K________________
+  ______________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAiAiAi_K________________
+  ______________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_kAiAiAiAiAi_k________________
+  ____________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAi_gAi_K_k________________
+  ____________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_K_kAiAi_KAiAi_K_k________________
+  __________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_K_kAiAiAiAi_K_kAi________________
+  __________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_K_kAiAiAiAi_K_kAi________________
+  ________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_K_kAiAiAi_K_kAiAi________________
+  ________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_K_kAiAiAi_K_kAiAi________________
+  ______AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_K_kAiAi_K_k_gAiAi________________
+  ______AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_K_kAiAi_K_k_kAi_K________________
+  _______KB6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_kAiAi_K_kAi_K_k_K_kAiAi________________
+  _______KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_kAiAiAi_K_kAi_K_k_K_k_gAi________________
+  _______KB6_k_kAi_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_kAi_KAi_K_k_K_kAi_K_kAiAi________________
+  _______KB6_k_k_k_k_k_k_k_k_kAi_k_k_k_k_KB6_k_k_k_k_k_kAiAiAiAi_K_k_K_kAi_K_k_KAi________________
+  _______KB6_k_k_k_k_kB6_k_k_k_k_k_k_k_k_KB6_kAi_k_k_k_kAiAi_KAi_K_K_kAiAi_K_kAiAi________________
+  _______KB6_k_k_k_k_k_k_k_k_k_kB6_k_k_k_KB6_k_k_k_k_k_kAiAiAiAi_K_K_kAiAi_K_kAiAi________________
+  _______KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_kAiAiAiAi_K_kAiAiAi_K_kAiAi________________
+  _______KB6_kAi_k_k_k_k_kB6_k_k_k_k_k_k_KB6_k_k_k_kB6_kAiAiAiAi_K_kAiAiAi_K_kAiAi________________
+  _______KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_kAiAi_K_kAiAiAiAi_K_k_K_K________________
+  _______KB6_k_k_k_k_kAiAi_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_bAiAi_K_kAiAi_KAi_K_kAi__________________
+  _______KB6_k_k_kB6_k_k_k_k_k_k_k_k_k_k_KB6_k_k_kAi_k_kAiAi_K_kAiAiAiAiAi_K_k_K__________________
+  _______KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_kAiAi_K_kAiAiAiAiAi_K_k____________________
+  _______KB6_k_k_k_k_k_k_k_k_kB6_k_k_k_k_KB6_k_k_k_k_k_kAi_K_kAi_K_gAiAiAi_K_K____________________
+  _______KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_kAi_K_kAiAiAiAiAiAi_K______________________
+  _______KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_K_kAiAiAiAiAiAiAi_K______________________
+  _______K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_kAiAi_gAi_KAiAi________________________
+  ______B6B6B6B6B6B6B6B6_KB6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_kAiAiAiAiAiAiAi_K________________________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_kAiAiAiAiAiAiAiAi__________________________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_kAiAiAiAiAiAiAi_K__________________________
+  _______k_kB6_k_kAi_k_k_KB6_k_k_k_k_kAi_k_k_k_k_k_k_k_kAiAiAiAiAi_KAi____________________________
+  _______k_k_k_k_k_k_k_k_KB6_k_kB6_k_k_k_k_k_k_kB6_k_k_kAiAiAiAiAiAi_K____________________________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_kAiAiAiAiAiAi______________________________
+  _______k_kAi_k_kB6_k_k_KB6_k_k_k_k_kB6_k_k_k_kAi_k_k_kAiAiAiAiAi_K______________________________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_kAiAiAiAiAi________________________________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_kAiAi_k_k_k_kAiAiAiAi_K________________________________
+  _______k_kB6B6_k_k_k_k_KB6_k_k_kAi_k_k_kB6_k_k_k_k_k_kAiAiAiAi__________________________________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_kAi_k_k_k_k_k_k_k_k_k_kAiAiAi_K__________________________________
+  _______k_k_k_k_kB6_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_kAiAiAi____________________________________
+  _______k_k_kAi_k_k_k_k_KB6_k_k_kB6_k_k_k_kAi_k_k_k_k_kAiAi_K____________________________________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_kB6B6_kAiAi______________________________________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_kAi_K______________________________________
+  _______K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAi________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
 }
-# tile 886 (sub sokoban walls 9)
+# tile 224 (sub sokoban walls 6)
 {
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BfBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BQ_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6BfBfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6Bf_6_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6_6_6BfC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBP_6_6_6_6_6BPC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6BQ_6BfBPC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBfBP_6_6Bf_6_6BfBPC$C$C$C$C$C$C$C$
-  C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBfBP_6_6_6_6BfBP_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBfBP_6_6_6_6BfBP_6C$C$C$C$C$C$C$C$
-  C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBfBP_6_6_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BfBP_6_6_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BfBP_6_6BfBPBQ_6_6C$C$C$C$C$C$C$C$
-  C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6BfBP_6_6BfBPBP_6BfC$C$C$C$C$C$C$C$
-  C$C$C$BfBdBdBdBdBdBdBdBdBdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6BfBP_6BfBPBfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6BfBP_6BfBPBfBPBQ_6C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBP_6BPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6Bf_6BfBPBfBP_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6_6BfBPBfBP_6BfBPBf_6C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPBdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6Bf_6BfBfBP_6_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6_6_6BfBfBP_6_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6_6_6_6BfBP_6_6_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBP_6BPBPCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBP_6_6_6_6_6_6BfBP_6_6_6BfBP_6_6C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBP_6_6BP_6_6BfBP_6_6_6_6BfBPBfBfC$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6_6BS_6_6BfBP_6_6Bf_6BfBP_6C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBdBQBQBP_6_6_6_6BfBP_6_6_6_6_6BfBPBfC$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBdBQBQBQBQBQBQBQBQBQBQBP_6_6_6_6BfBP_6_6_6_6_6BfBPC$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBSBQBQBQBQBQBQBSBQBQBQBSBQBQBP_6_6_6BfBP_6BfBQ_6_6_6BfBfC$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBQBQBQBQBQBQBdBQBQBQBQBP_6BQ_6BfBP_6_6_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBdBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6_6BfBPBP_6_6_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBfBfBfBfBQBQBQBQBQBSBQBQBQBQBQBQBQBQBQBQBP_6_6BfBPBP_6BQ_6Bf_6_6C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BdBdBdBdBdBQBdBQBQBQBQBQBQBQBSBQBQBQBSBQBQBP_6BfBPBfBP_6_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6BfBPBfBP_6_6_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBPBfBP_6BfBP_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBdBPBPBQBQBQBQBSBQBQBQBQBQBQBQBQBQBQBQBPBfBP_6BfBP_6_6Bf_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBdBQBQBQBQBQBQBdBQBQBQBdBQBQBQBPBP_6_6BfBP_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBfBP_6_6BfBP_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBP_6BPBPBQBQBQBQBQBQBQBQBQBQBQBQBQBSBQBQBf_6_6_6BfBP_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBP_6Bf_6BfBP_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBPBP_6_6_6BfBP_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBdBdBPBPBPBPBPBPBPBPBPBPBPBPBPBPBPBPBP_6_6_6_6BfBP_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBSBQBQBQBQBQBQBQBQBQ_6_6BQ_6BfBPBfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBQBQBQBQBSBQBQBQ_6_6_6_6BfBPC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBP_6BPBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6_6BfBPC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBdBQBQBQBQBQBQBQBQBQBQBQBQ_6BS_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BPBPBPBPBPBQBQBQBQBQBQBQBQBdBQBQBQBQBQBQBQ_6_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$BfBfBfBfBfBQBQBQBQBQBQBQBSBQBQBQBQBSBQBQBQ_6BQ_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBSBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBdBQBQBQBQBQBQ_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBdBQBQBSBQBQBQBQBQBQBQBQBSBQ_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBdBQ_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BSBSBSBSBSBSBSBSBSBSBSBSBSBSBSBSBfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  __________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAO________________
+  ________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6AO________________
+  ________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6AO________________
+  ______________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAO________________
+  ______________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAO________________
+  ____________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAO________________
+  ____________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAO________________
+  __________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAO________________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO__________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO__________
+  __________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAi__________
+  __________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAi__________
+  ________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAi__________
+  ________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAi__________
+  ______________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAi__________
+  ______________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAi__________
+  ____________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAi__________
+  ____________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAi__________
+  __________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAi__________
+  __________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAi__________
+  ________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAi__________
+  ________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAi__________
+  ______AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAiAi__________
+  ______AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAiAi__________
+  _______KB6B6B6B6B6B6B6B6B6AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6B6B6B6B6B6B6B6_gAiAiAiAiAiAiAi__________
+  _______KB6_k_k_k_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_k_k_k_k_k_k_k_gAiAiAiAiAiAi_K__________
+  _______KB6_k_kAi_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_k_k_k_k_k_k_k_gAiAiAiAiAiAi_K__________
+  _______KB6_k_k_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_k_k_kAi_k_k_k_gAiAiAiAiAi_KB6__________
+  _______KB6_k_k_k_k_kB6AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_k_k_k_k_k_k_k_gAiAiAiAiAi_KAi__________
+  _______KB6_k_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_k_k_k_kB6_k_k_gAiAiAiAi_KB6Ai__________
+  _______KB6_k_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_k_k_k_k_k_k_k_gAiAiAiAi_KAiAi__________
+  _______KB6_kAi_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO_kAiAiAi_kAi_k_k_k_k_k_gAiAiAi_KB6AiAi__________
+  _______KB6_k_k_kB6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_kAiAi_k_k_k_k_k_k_k_k_gAiAiAi_KAiAiAi__________
+  _______KB6_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAiAi_b_k_k_k_k_k_k_k_gAiAi_KB6AiAiAi__________
+  _______KB6_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_gB6_g_g_kAiAiAi_k_k_k_k_k_k_k_gAiAi_KAiAiAiAi__________
+  _______KB6_k_k_k_g_g_g_g_gB6_g_g_g_g_g_g_g_g_g_g_kAiAiAi_k_kAi_kB6_k_k_gAi_KB6AiAiAiAi__________
+  _______KB6_k_k_k_g_g_b_g_g_g_g_g_g_b_g_g_g_b_g_g_kAiAiAi_k_k_k_k_k_k_k_gAi_KAiAiAiAiAi__________
+  _______KB6_k_k_k_g_g_g_g_g_g_g_g_g_g_gB6_g_g_g_g_kAi_gAi_k_k_k_k_k_k_k_g_KB6AiAiAiAiAi__________
+  _______KB6_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAiAi_K_k_k_k_k_k_k_k_g_KAiAiAiAiAiAi__________
+  _______K_K_K_K_K_g_g_g_g_g_b_g_g_g_g_g_g_g_g_g_g_kAiAi_K_K_K_K_K_K_K_K_KB6AiAiAiAiAiAi__________
+  ______B6B6B6B6B6_gB6_g_g_g_g_g_g_g_b_g_g_g_b_g_g_kAi_K_kB6B6B6B6B6B6B6B6AiAiAiAiAiAiAi__________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAi_K_kB6_k_k_k_k_k_k_gAiAiAiAiAiAiAi__________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_k_K_kAiB6_k_k_k_k_k_k_gAiAiAiAiAiAiAi__________
+  _______k_kB6_k_k_g_g_g_g_b_g_g_g_g_g_g_g_g_g_g_g_k_K_kAiB6_k_kB6_k_k_k_gAiAiAiAiAiAi____________
+  _______k_k_k_k_k_gB6_g_g_g_g_g_gB6_g_g_gB6_g_g_g_k_kAiAiB6_k_k_k_k_kAi_gAiAiAiAiAiAi____________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_K_kAiAiB6_k_k_k_k_k_k_gAiAiAiAiAi______________
+  _______k_kAi_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_b_g_g_KAiAiAiB6_k_k_k_k_k_k_gAiAiAiAiAi______________
+  _______k_k_k_k_k_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_kAi_KAiB6_k_kB6_k_kB6_gAiAiAiAi________________
+  _______k_k_k_k_kB6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_k_kAiAiAiB6_k_k_k_k_kB6_gAiAiAiAi________________
+  _______k_kB6B6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_k_k_kAiAiAiAiB6_k_k_k_k_k_k_gAiAiAi__________________
+  _______k_k_k_k_k_g_g_g_g_g_g_b_g_g_g_g_g_g_g_g_gAiAi_gAiB6_k_k_k_k_k_k_gAiAiAi__________________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_b_g_g_gAiAiAiAiB6_k_k_kAi_k_k_gAiAi____________________
+  _______k_k_kAi_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAiAiB6_k_k_k_kB6_k_gAiAi____________________
+  _______k_k_k_k_k_g_g_gB6_g_g_g_g_g_g_g_g_g_g_g_gAi_bAiAiB6_k_k_k_k_k_k_gAi______________________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_gB6_g_g_g_g_g_g_gAiAiAiAiB6_k_k_k_k_k_k_gAi______________________
+  _______K_K_K_K_K_g_g_g_g_g_g_g_b_g_g_g_g_b_g_g_gAi_gAiAi_K_K_K_K_K_K_K_K________________________
+  _________________g_g_b_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAi_K________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAi__________________________________________
+  _________________g_g_g_g_g_g_g_g_gB6_g_g_g_g_g_gAiAi_K__________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAi____________________________________________
+  _________________g_gB6_g_g_b_g_g_g_g_g_g_g_g_b_gAi_K____________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_gB6_gAi______________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAi______________________________________________
+  _________________b_b_b_b_b_b_b_b_b_b_b_b_b_b_b_b_K______________________________________________
 }
-# tile 887 (sub sokoban walls 10)
+# tile 225 (sub sokoban walls 7)
 {
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPCdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6CdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6CdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6CdC$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBdBdBdBdBdBdBdBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBPBPBPBPBPBPBPBQ_6_6_6_6_6_6BfC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBPBPBPBPBPBPBPBPBQ_6_6_6_6_6_6BfC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BPBPBP_6BPBPBPBQ_6_6_6_6_6BfBdC$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6BPBPBPBPBPBPBPBQ_6_6_6_6_6Bf_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6BPBPBPBPBdBPBPBQ_6_6_6_6BfBd_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdBdBP_6_6BPBPBPBPBPBPBPBQ_6_6_6_6Bf_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$C$CdCdCdCdCdCdCdCdCdCdCdCdCdCdCdBP_6_6_6BP_6BPBPBPBPBPBQ_6_6_6BfBd_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBP_6_6BPBPBPBPBPBPBPBPBQ_6_6_6Bf_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6_6BSBPBPBPBPBPBPBPBQ_6_6BfBd_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBdBQBQBP_6_6_6BPBPBPBPBPBPBPBQ_6_6Bf_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBdBQBQBQBQBQBQBQBQBQBQBP_6_6_6BPBP_6BPBdBPBPBQ_6BfBd_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBSBQBQBQBQBQBQBSBQBQBQBSBQBQBP_6_6_6BPBPBPBPBPBPBPBQ_6Bf_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBdBQBQBQBQBP_6BQ_6BPBPBPBPBPBPBPBQBfBd_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6_6BfBPBPBPBPBPBPBPBQBf_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBSBQBQBQBQBQBQBQBQBQBQBP_6_6BfBfBfBfBfBfBfBfBfBd_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBdBQBQBQBQBQBQBQBSBQBQBQBSBQBQBP_6BfBPBdBdBdBdBdBdBdBd_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBP_6BfBPBdBPBPBPBPBPBPBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBPBfBP_6BdBPBPBPBPBPBPBQ_6_6_6_6_6_6_6C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBSBQBQBQBQBQBQBQBQBQBQBQBPBfBP_6BdBPBPBdBPBPBPBQ_6_6_6_6_6_6C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBdBQBQBQBQBQBQBdBQBQBQBdBQBQBQBPBP_6_6BdBPBPBPBPBP_6BQ_6_6_6_6_6_6C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBfBP_6_6BdBPBPBPBPBPBPBQ_6_6_6_6_6C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBSBQBQBf_6_6_6BdBPBPBPBPBPBPBQ_6_6_6_6_6C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBfBP_6Bf_6BdBPBPBdBPBPBdBQ_6_6_6_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BdBdBdBdBdBdBdBdBdBdBdBdBdBdBdBPBP_6_6_6BdBPBPBPBPBPBdBQ_6_6_6_6C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BPBPBPBPBPBPBPBPBPBPBPBPBPBPBPBP_6_6_6_6BdBPBPBPBPBPBPBQ_6_6_6C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBSBQBQBQBQBQBQBQBQBQ_6_6BQ_6BdBPBPBPBPBPBPBQ_6_6_6C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBSBQBQBQ_6_6_6_6BdBPBPBP_6BPBPBQ_6_6C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6_6BdBPBPBPBPBdBPBQ_6_6C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBdBQBQBQBQBQBQBQBQBQBQBQBQ_6BS_6_6BdBPBPBPBPBPBPBQ_6C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBdBQBQBQBQBQBQBQ_6_6_6_6BdBPBPBPBPBPBPBQ_6C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBSBQBQBQBQBSBQBQBQ_6BQ_6_6BfBfBfBfBfBfBfBfC$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBSBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBdBQBQBQBQBQBQ_6_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBdBQBQBSBQBQBQBQBQBQBQBQBSBQ_6BfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBdBQ_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BQBQBQBQBQBQBQBQBQBQBQBQBQBQBQBQ_6C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
-  C$C$C$C$C$C$C$C$BSBSBSBSBSBSBSBSBSBSBSBSBSBSBSBSBfC$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$C$
+  __________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAO________________
+  ________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6AO________________
+  ________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6AO________________
+  ______________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAO________________
+  ______________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAO________________
+  ____________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAO________________
+  ____________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAO________________
+  __________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAO________________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO__________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO__________
+  __________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAi__________
+  __________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAi__________
+  ________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAi__________
+  ________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAi__________
+  ______________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAi__________
+  ______________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAi__________
+  ____________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAi__________
+  ____________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAi__________
+  __________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAi__________
+  __________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAi__________
+  ________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAi__________
+  ________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAi__________
+  ______AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAiAi__________
+  ______AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAiAi__________
+  _______KB6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_gAiAiAiAiAiAiAi__________
+  _______KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_gAiAiAiAiAiAi_K__________
+  _______KB6_k_kAi_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_gAiAiAiAiAiAi_K__________
+  _______KB6_k_k_k_k_k_k_k_k_kAi_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_kAi_k_k_k_gAiAiAiAiAi_KB6__________
+  _______KB6_k_k_k_k_kB6_k_k_k_k_k_k_k_k_KB6_kAi_k_k_k_kB6_k_k_k_k_k_k_k_gAiAiAiAiAi_KAi__________
+  _______KB6_k_k_k_k_k_k_k_k_k_kB6_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_kB6_k_k_gAiAiAiAi_KB6Ai__________
+  _______KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_gAiAiAiAi_KAiAi__________
+  _______KB6_kAi_k_k_k_k_kB6_k_k_k_k_k_k_KB6_k_k_k_kB6_k_k_kAi_k_k_k_k_k_gAiAiAi_KB6AiAi__________
+  _______KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_gAiAiAi_KAiAiAi__________
+  _______KB6_k_k_k_k_kAiAi_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_gAiAi_KB6AiAiAi__________
+  _______KB6_k_k_kB6_k_k_k_k_k_k_k_k_k_k_KB6_k_k_kAi_k_k_k_k_k_k_k_k_k_k_gAiAi_KAiAiAiAi__________
+  _______KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_kAi_kB6_k_k_gAi_KB6AiAiAiAi__________
+  _______KB6_k_k_k_k_k_k_k_k_kB6_k_k_k_k_KB6_k_k_k_k_k_kB6_k_k_k_k_k_k_k_gAi_KAiAiAiAiAi__________
+  _______KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_g_KB6AiAiAiAiAi__________
+  _______KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_g_KAiAiAiAiAiAi__________
+  _______K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KB6AiAiAiAiAiAi__________
+  ______B6B6B6B6B6B6B6B6_KB6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_KB6B6B6B6B6B6B6B6AiAiAiAiAiAiAi__________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_gAiAiAiAiAiAiAi__________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_gAiAiAiAiAiAiAi__________
+  _______k_kB6_k_kAi_k_k_KB6_k_k_k_k_kAi_k_k_k_k_k_k_k_k_KB6_k_kB6_k_k_k_gAiAiAiAiAiAi____________
+  _______k_k_k_k_k_k_k_k_KB6_k_kB6_k_k_k_k_k_k_kB6_k_k_k_KB6_k_k_k_k_kAi_gAiAiAiAiAiAi____________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_gAiAiAiAiAi______________
+  _______k_kAi_k_kB6_k_k_KB6_k_k_k_k_kB6_k_k_k_kAi_k_k_k_KB6_k_k_k_k_k_k_gAiAiAiAiAi______________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_kB6_k_kB6_gAiAiAiAi________________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_kAiAi_k_k_k_k_KB6_k_k_k_k_kB6_gAiAiAiAi________________
+  _______k_kB6B6_k_k_k_k_KB6_k_k_kAi_k_k_kB6_k_k_k_k_k_k_KB6_k_k_k_k_k_k_gAiAiAi__________________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_kAi_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_gAiAiAi__________________
+  _______k_k_k_k_kB6_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_kAi_k_k_gAiAi____________________
+  _______k_k_kAi_k_k_k_k_KB6_k_k_kB6_k_k_k_kAi_k_k_k_k_k_KB6_k_k_k_kB6_k_gAiAi____________________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_kB6B6_k_KB6_k_k_k_k_k_k_gAi______________________
+  _______k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_KB6_k_k_k_k_k_k_gAi______________________
+  _______K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+}
+# tile 226 (sub sokoban walls 8)
+{
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ________________________________________________________________________________________________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO__________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO__________
+  __________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAi__________
+  __________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAi__________
+  ________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAi__________
+  ________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAi__________
+  ______________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAi__________
+  ______________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAi__________
+  ____________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAi__________
+  ____________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAi__________
+  __________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAi__________
+  __________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAi__________
+  ________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAi__________
+  ________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAi__________
+  ______AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAiAi__________
+  ______AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAiAi__________
+  _______KB6B6B6B6B6B6B6B6B6AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6B6B6B6B6B6B6B6_gAiAiAiAiAiAiAi__________
+  _______KB6_k_k_k_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_k_k_k_k_k_k_k_gAiAiAiAiAiAi_K__________
+  _______KB6_k_kAi_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_k_k_k_k_k_k_k_gAiAiAiAiAiAi_K__________
+  _______KB6_k_k_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_k_k_kAi_k_k_k_gAiAiAiAiAi_KB6__________
+  _______KB6_k_k_k_k_kB6AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_k_k_k_k_k_k_k_gAiAiAiAiAi_KAi__________
+  _______KB6_k_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_k_k_k_kB6_k_k_gAiAiAiAi_KB6Ai__________
+  _______KB6_k_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_k_k_k_k_k_k_k_gAiAiAiAi_KAiAi__________
+  _______KB6_kAi_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO_kAiAiAi_kAi_k_k_k_k_k_gAiAiAi_KB6AiAi__________
+  _______KB6_k_k_kB6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_kAiAi_k_k_k_k_k_k_k_k_gAiAiAi_KAiAiAi__________
+  _______KB6_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAiAi_b_k_k_k_k_k_k_k_gAiAi_KB6AiAiAi__________
+  _______KB6_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_gB6_g_g_kAiAiAi_k_k_k_k_k_k_k_gAiAi_KAiAiAiAi__________
+  _______KB6_k_k_k_g_g_g_g_gB6_g_g_g_g_g_g_g_g_g_g_kAiAiAi_k_kAi_kB6_k_k_gAi_KB6AiAiAiAi__________
+  _______KB6_k_k_k_g_g_b_g_g_g_g_g_g_b_g_g_g_b_g_g_kAiAiAi_k_k_k_k_k_k_k_gAi_KAiAiAiAiAi__________
+  _______KB6_k_k_k_g_g_g_g_g_g_g_g_g_g_gB6_g_g_g_g_kAi_gAi_k_k_k_k_k_k_k_g_KB6AiAiAiAiAi__________
+  _______KB6_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAiAi_K_k_k_k_k_k_k_k_g_KAiAiAiAiAiAi__________
+  _______K_K_K_K_K_g_g_g_g_g_b_g_g_g_g_g_g_g_g_g_g_kAiAi_K_K_K_K_K_K_K_K_KB6AiAiAiAiAiAi__________
+  ______B6B6B6B6B6_gB6_g_g_g_g_g_g_g_b_g_g_g_b_g_g_kAi_K_kB6B6B6B6B6B6B6B6AiAiAiAiAiAiAi__________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAi_K_kB6_k_k_k_k_k_k_gAiAiAiAiAiAiAi__________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_k_K_kAiB6_k_k_k_k_k_k_gAiAiAiAiAiAiAi__________
+  _______k_kB6_k_k_g_g_g_g_b_g_g_g_g_g_g_g_g_g_g_g_k_K_kAiB6_k_kB6_k_k_k_gAiAiAiAiAiAi____________
+  _______k_k_k_k_k_gB6_g_g_g_g_g_gB6_g_g_gB6_g_g_g_k_kAiAiB6_k_k_k_k_kAi_gAiAiAiAiAiAi____________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_K_kAiAiB6_k_k_k_k_k_k_gAiAiAiAiAi______________
+  _______k_kAi_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_b_g_g_KAiAiAiB6_k_k_k_k_k_k_gAiAiAiAiAi______________
+  _______k_k_k_k_k_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_kAi_KAiB6_k_kB6_k_kB6_gAiAiAiAi________________
+  _______k_k_k_k_kB6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_k_kAiAiAiB6_k_k_k_k_kB6_gAiAiAiAi________________
+  _______k_kB6B6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_k_k_kAiAiAiAiB6_k_k_k_k_k_k_gAiAiAi__________________
+  _______k_k_k_k_k_g_g_g_g_g_g_b_g_g_g_g_g_g_g_g_gAiAi_gAiB6_k_k_k_k_k_k_gAiAiAi__________________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_b_g_g_gAiAiAiAiB6_k_k_kAi_k_k_gAiAi____________________
+  _______k_k_kAi_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAiAiB6_k_k_k_kB6_k_gAiAi____________________
+  _______k_k_k_k_k_g_g_gB6_g_g_g_g_g_g_g_g_g_g_g_gAi_bAiAiB6_k_k_k_k_k_k_gAi______________________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_gB6_g_g_g_g_g_g_gAiAiAiAiB6_k_k_k_k_k_k_gAi______________________
+  _______K_K_K_K_K_g_g_g_g_g_g_g_b_g_g_g_g_b_g_g_gAi_gAiAi_K_K_K_K_K_K_K_K________________________
+  _________________g_g_b_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAi_K________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAi__________________________________________
+  _________________g_g_g_g_g_g_g_g_gB6_g_g_g_g_g_gAiAi_K__________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAi____________________________________________
+  _________________g_gB6_g_g_b_g_g_g_g_g_g_g_g_b_gAi_K____________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_gB6_gAi______________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAi______________________________________________
+  _________________b_b_b_b_b_b_b_b_b_b_b_b_b_b_b_b_K______________________________________________
+}
+# tile 227 (sub sokoban walls 9)
+{
+  __________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAO_K________________
+  ________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_K________________
+  ________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_K________________
+  ______________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_K________________
+  ______________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_K________________
+  ____________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_K________________
+  ____________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_K________________
+  __________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_K________________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_K_K________________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAi_K________________
+  __________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_gAi_K________________
+  __________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAiAi_K________________
+  ________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAi_K_K________________
+  ________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_KAiAi_K________________
+  ______________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAiAiAi_K________________
+  ______________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_kAiAiAiAiAi_k________________
+  ____________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAi_gAi_K_k________________
+  ____________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_K_kAiAi_KAiAi_K_k________________
+  __________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_K_kAiAiAiAi_K_kAi________________
+  __________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_K_kAiAiAiAi_K_kAi________________
+  ________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_K_kAiAiAi_K_kAiAi________________
+  ________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_K_kAiAiAi_K_kAiAi________________
+  ______AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_K_kAiAi_K_k_gAiAi________________
+  ______AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_K_kAiAi_K_k_kAi_K________________
+  _______KB6B6B6B6B6B6B6B6B6AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_K_kAi_K_k_K_kAiAi________________
+  _______KB6_k_k_k_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAi_K_kAi_K_k_K_k_gAi________________
+  _______KB6_k_kAi_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_KAi_K_k_K_kAi_K_kAiAi________________
+  _______KB6_k_k_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAiAi_K_k_K_kAi_K_k_KAi________________
+  _______KB6_k_k_k_k_kB6AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_KAi_K_K_kAiAi_K_kAiAi________________
+  _______KB6_k_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAiAiAi_K_K_kAiAi_K_kAiAi________________
+  _______KB6_k_k_k_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAiAiAi_K_kAiAiAi_K_kAiAi________________
+  _______KB6_kAi_k_kAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO_kAiAiAiAiAiAi_K_kAiAiAi_K_kAiAi________________
+  _______KB6_k_k_kB6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_kAiAi_kAiAi_K_kAiAiAiAi_K_k_K_K________________
+  _______KB6_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAiAi_bAiAi_K_kAiAi_KAi_K_kAi__________________
+  _______KB6_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_gB6_g_g_kAiAiAiAi_K_kAiAiAiAiAi_K_k_K__________________
+  _______KB6_k_k_k_g_g_g_g_gB6_g_g_g_g_g_g_g_g_g_g_kAiAiAiAi_K_kAiAiAiAiAi_K_k____________________
+  _______KB6_k_k_k_g_g_b_g_g_g_g_g_g_b_g_g_g_b_g_g_kAiAiAi_K_kAi_K_gAiAiAi_K_K____________________
+  _______KB6_k_k_k_g_g_g_g_g_g_g_g_g_g_gB6_g_g_g_g_kAi_gAi_K_kAiAiAiAiAiAi_K______________________
+  _______KB6_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAiAi_K_k_kAiAiAiAiAiAi_K______________________
+  _______K_K_K_K_K_g_g_g_g_g_b_g_g_g_g_g_g_g_g_g_g_kAiAi_K_k_kAi_gAi_KAiAi________________________
+  ______B6B6B6B6B6_gB6_g_g_g_g_g_g_g_b_g_g_g_b_g_g_kAi_K_k_K_kAiAiAiAiAi_K________________________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAi_K_k_K_kAiAiAiAiAi__________________________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_k_K_kAi_K_kAiAiAiAi_K__________________________
+  _______k_kB6_k_k_g_g_g_g_b_g_g_g_g_g_g_g_g_g_g_g_k_K_kAi_K_kAiAi_KAi____________________________
+  _______k_k_k_k_k_gB6_g_g_g_g_g_gB6_g_g_gB6_g_g_g_k_kAiAi_K_kAiAiAi_K____________________________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_K_kAiAi_K_kAiAiAi______________________________
+  _______k_kAi_k_k_g_g_g_g_g_g_g_g_g_g_g_g_g_b_g_g_KAiAiAi_K_kAiAi_K______________________________
+  _______k_k_k_k_k_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_kAi_KAi_K_kAiAi________________________________
+  _______k_k_k_k_kB6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_k_kAiAiAi_K_kAi_K________________________________
+  _______k_kB6B6_k_k_k_k_k_k_k_k_k_k_k_k_k_k_k_k_kAiAiAiAi_K_kAi__________________________________
+  _______k_k_k_k_k_g_g_g_g_g_g_b_g_g_g_g_g_g_g_g_gAiAi_gAi_K_k_K__________________________________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_g_g_g_g_g_b_g_g_gAiAiAiAi_K_k____________________________________
+  _______k_k_kAi_k_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAiAi_K_k____________________________________
+  _______k_k_k_k_k_g_g_gB6_g_g_g_g_g_g_g_g_g_g_g_gAi_bAiAi_K______________________________________
+  _______k_k_k_k_k_g_g_g_g_g_g_g_gB6_g_g_g_g_g_g_gAiAiAiAi_K______________________________________
+  _______K_K_K_K_K_g_g_g_g_g_g_g_b_g_g_g_g_b_g_g_gAi_gAiAi________________________________________
+  _________________g_g_b_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAi_K________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAi__________________________________________
+  _________________g_g_g_g_g_g_g_g_gB6_g_g_g_g_g_gAiAi_K__________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAi____________________________________________
+  _________________g_gB6_g_g_b_g_g_g_g_g_g_g_g_b_gAi_K____________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_gB6_gAi______________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAi______________________________________________
+  _________________b_b_b_b_b_b_b_b_b_b_b_b_b_b_b_b_K______________________________________________
+}
+# tile 228 (sub sokoban walls 10)
+{
+  __________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAO________________
+  ________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6AO________________
+  ________________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6AO________________
+  ______________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAO________________
+  ______________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAO________________
+  ____________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAO________________
+  ____________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAO________________
+  __________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAiAO________________
+  __________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO__________
+  ________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO__________
+  ________________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAi__________
+  ______________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAi__________
+  ______________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAi__________
+  ____________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAi__________
+  ____________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAi__________
+  __________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAi__________
+  __________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAi__________
+  ________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAi__________
+  ________________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAi__________
+  ______________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAi__________
+  ______________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAi__________
+  ____________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAi__________
+  ____________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAiAi__________
+  __________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAOAiAiAiAiAiAiAi__________
+  __________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6B6B6B6B6B6B6B6_gAiAiAiAiAiAiAi__________
+  ________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_k_k_k_k_k_k_k_gAiAiAiAiAiAi_K__________
+  ________________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_k_k_k_k_k_k_k_k_gAiAiAiAiAiAi_K__________
+  ______________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_k_k_kAi_k_k_k_gAiAiAiAiAi_KB6__________
+  ______________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAi_k_k_k_k_k_k_k_gAiAiAiAiAi_KAi__________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_k_k_k_kB6_k_k_gAiAiAiAi_KB6Ai__________
+  ____________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOB6_kAiAi_k_k_k_k_k_k_k_gAiAiAiAi_KAiAi__________
+  __________________AOAOAOAOAOAOAOAOAOAOAOAOAOAOAO_kAiAiAi_kAi_k_k_k_k_k_gAiAiAi_KB6AiAi__________
+  ________________B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_kAiAi_k_k_k_k_k_k_k_k_gAiAiAi_KAiAiAi__________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAiAi_b_k_k_k_k_k_k_k_gAiAi_KB6AiAiAi__________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_gB6_g_g_kAiAiAi_k_k_k_k_k_k_k_gAiAi_KAiAiAiAi__________
+  _________________g_g_g_g_gB6_g_g_g_g_g_g_g_g_g_g_kAiAiAi_k_kAi_kB6_k_k_gAi_KB6AiAiAiAi__________
+  _________________g_g_b_g_g_g_g_g_g_b_g_g_g_b_g_g_kAiAiAi_k_k_k_k_k_k_k_gAi_KAiAiAiAiAi__________
+  _________________g_g_g_g_g_g_g_g_g_g_gB6_g_g_g_g_kAi_gAi_k_k_k_k_k_k_k_g_KB6AiAiAiAiAi__________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAiAi_K_k_k_k_k_k_k_k_g_KAiAiAiAiAiAi__________
+  _________________g_g_g_g_g_b_g_g_g_g_g_g_g_g_g_g_kAiAi_K_K_K_K_K_K_K_K_KB6AiAiAiAiAiAi__________
+  _________________gB6_g_g_g_g_g_g_g_b_g_g_g_b_g_g_kAi_K_kB6B6B6B6B6B6B6B6AiAiAiAiAiAiAi__________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_kAi_K_kB6_k_k_k_k_k_k_gAiAiAiAiAiAiAi__________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_k_K_kAiB6_k_k_k_k_k_k_gAiAiAiAiAiAiAi__________
+  _________________g_g_g_g_b_g_g_g_g_g_g_g_g_g_g_g_k_K_kAiB6_k_kB6_k_k_k_gAiAiAiAiAiAi____________
+  _________________gB6_g_g_g_g_g_gB6_g_g_gB6_g_g_g_k_kAiAiB6_k_k_k_k_kAi_gAiAiAiAiAiAi____________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_K_kAiAiB6_k_k_k_k_k_k_gAiAiAiAiAi______________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_b_g_g_KAiAiAiB6_k_k_k_k_k_k_gAiAiAiAiAi______________
+  _________________K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_kAi_KAiB6_k_kB6_k_kB6_gAiAiAiAi________________
+  ________________B6B6B6B6B6B6B6B6B6B6B6B6B6B6B6_k_kAiAiAiB6_k_k_k_k_kB6_gAiAiAiAi________________
+  _________________k_k_k_k_k_k_k_k_k_k_k_k_k_k_k_kAiAiAiAiB6_k_k_k_k_k_k_gAiAiAi__________________
+  _________________g_g_g_g_g_g_b_g_g_g_g_g_g_g_g_gAiAi_gAiB6_k_k_k_k_k_k_gAiAiAi__________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_b_g_g_gAiAiAiAiB6_k_k_kAi_k_k_gAiAi____________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAiAiB6_k_k_k_kB6_k_gAiAi____________________
+  _________________g_g_gB6_g_g_g_g_g_g_g_g_g_g_g_gAi_bAiAiB6_k_k_k_k_k_k_gAi______________________
+  _________________g_g_g_g_g_g_g_gB6_g_g_g_g_g_g_gAiAiAiAiB6_k_k_k_k_k_k_gAi______________________
+  _________________g_g_g_g_g_g_g_b_g_g_g_g_b_g_g_gAi_gAiAi_K_K_K_K_K_K_K_K________________________
+  _________________g_g_b_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAi_K________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAiAi__________________________________________
+  _________________g_g_g_g_g_g_g_g_gB6_g_g_g_g_g_gAiAi_K__________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAiAi____________________________________________
+  _________________g_gB6_g_g_b_g_g_g_g_g_g_g_g_b_gAi_K____________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_gB6_gAi______________________________________________
+  _________________g_g_g_g_g_g_g_g_g_g_g_g_g_g_g_gAi______________________________________________
+  _________________b_b_b_b_b_b_b_b_b_b_b_b_b_b_b_b_K______________________________________________
 }

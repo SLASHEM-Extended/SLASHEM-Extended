@@ -1,4 +1,4 @@
-#	SCCS Id: @(#)Makefile.GCC	      3.4     $Date: 2003-04-25 18:00:38 $
+#	SCCS Id: @(#)Makefile.GCC	      3.4     $Date: 2003-08-29 16:27:24 $
 #	Copyright (c) NetHack PC Development Team 1996-2003.
 #	PC NetHack 3.4 Makefile for djgpp V2
 #
@@ -1020,8 +1020,10 @@ $(WSHR)/othmag.txt:	magtile.exe $(WSHR)/other.txt
 
 $(WSHR)/mon32-t.txt:	txtmerge.exe $(WSHR)/monmag.txt $(WSHR)/mon32mi.txt \
 			$(WSHR)/mon32alg.txt $(WSHR)/mon32al2.txt \
-			$(WSHR)/mon32aw.txt
-	txtmerge $(WSHR)/mon32-t.txt $(WSHR)/monmag.txt -b $(WSHR)/mon32mi.txt \
+			$(WSHR)/mon32aw.txt $(WSHR)/mon32mi.txt \
+			$(WSHR)/palette.txt
+	txtmerge -p $(WSHR)/palette.txt $(WSHR)/mon32-t.txt $(WSHR)/monmag.txt \
+		-b $(WSHR)/mon32mi.txt -b $(WSHR)/mon32se.txt \
 		-bff00ff $(WSHR)/mon32alg.txt \
 		-bff00ff $(WSHR)/mon32al2.txt \
 		-bff00ff $(WSHR)/mon32aw.txt
@@ -1029,16 +1031,16 @@ $(WSHR)/mon32-t.txt:	txtmerge.exe $(WSHR)/monmag.txt $(WSHR)/mon32mi.txt \
 
 $(WSHR)/obj32-t.txt:	txtmerge.exe $(WSHR)/objmag.txt $(WSHR)/obj32mi.txt \
 			$(WSHR)/obj32se.txt $(WSHR)/obj32alg.txt \
-			$(WSHR)/obj32al2.txt
-	txtmerge $(WSHR)/obj32-t.txt $(WSHR)/objmag.txt \
+			$(WSHR)/obj32al2.txt $(WSHR)/palette.txt
+	txtmerge -p $(WSHR)/palette.txt $(WSHR)/obj32-t.txt $(WSHR)/objmag.txt \
 		-b $(WSHR)/obj32mi.txt -b $(WSHR)/obj32se.txt \
 		-bff00ff $(WSHR)/obj32alg.txt \
 		-bff00ff $(WSHR)/obj32al2.txt
 
 $(WSHR)/oth32-t.txt:	txtmerge.exe $(WSHR)/othmag.txt \
 		$(WSHR)/oth32mi.txt $(WSHR)/oth32se.txt \
-		$(WSHR)/oth32fl.txt
-	txtmerge $(WSHR)/oth32-t.txt $(WSHR)/othmag.txt \
+		$(WSHR)/oth32fl.txt $(WSHR)/palette.txt
+	txtmerge -p $(WSHR)/palette.txt $(WSHR)/oth32-t.txt $(WSHR)/othmag.txt \
 		-bff00ff $(WSHR)/oth32alg.txt \
 		-bff00ff $(WSHR)/oth32al2.txt \
 		-b $(WSHR)/oth32mi.txt $(WSHR)/oth32se.txt \
@@ -1063,17 +1065,21 @@ $(WSHR)/objbig.txt:	bigtile.exe $(WSHR)/obj32-t.txt
 $(WSHR)/othbig.txt:	bigtile.exe $(WSHR)/oth32-t.txt
 	bigtile
 
-$(WSHR)/mon3d.txt:	txtmerge.exe $(WSHR)/monbig.txt $(WSHR)/mon3dmi.txt
-	txtmerge ../win/share/mon3d.txt ../win/share/monbig.txt \
-		../win/share/mon3dmi.txt 
+$(WSHR)/mon3d.txt:	txtmerge.exe $(WSHR)/monbig.txt $(WSHR)/mon3dmi.txt \
+			$(WSHR)/palette.txt
+	txtmerge -p $(WSHR)/palette.txt $(WSHR)/mon3d.txt \
+		$(WSHR)/monbig.txt -b $(WSHR)/mon3dmi.txt 
 
-$(WSHR)/obj3d.txt:	txtmerge.exe $(WSHR)/objbig.txt
-	txtmerge ../win/share/obj3d.txt ../win/share/objbig.txt
+$(WSHR)/obj3d.txt:	txtmerge.exe $(WSHR)/objbig.txt $(WSHR)/palette.txt
+	txtmerge -p $(WSHR)/palette.txt $(WSHR)/obj3d.txt \
+		$(WSHR)/objbig.txt
 
-$(WSHR)/oth3d.txt:	txtmerge.exe $(WSHR)/othbig.txt \
-			../win/share/oth3dmi.txt ../win/share/oth-2kmi.txt
-	txtmerge ../win/share/oth3d.txt ../win/share/othbig.txt \
-		../win/share/oth3dmi.txt ../win/share/oth-2kmi.txt
+$(WSHR)/oth3d.txt:	txtmerge.exe $(WSHR)/othbig.txt $(WSHR)/palette.txt \
+			$(WSHR)/oth3dmi.txt $(WSHR)/oth-2kmi.txt \
+			$(WSHR)/oth3dse.txt
+	txtmerge -p $(WSHR)/palette.txt $(WSHR)/oth3d.txt \
+		$(WSHR)/othbig.txt -b $(WSHR)/oth3dmi.txt \
+		-b $(WSHR)/oth-2kmi.txt -b $(WSHR)/oth3dse.txt
 
 # For makefile greppers that want to know what the heck allegfx.h is
 $(INCL)/allegfx.h: txt2bmp.exe

@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.36 2003-08-05 09:49:29 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.37 2003-08-29 16:27:24 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2003
@@ -1231,41 +1231,43 @@ $(WSHR)\othbig.txt:	bigtile.exe ../win/share/mon32-t.txt \
 
 ../win/share/mon32-t.txt:	txtmerge.exe $(WSHR)\monmag.txt \
 		$(WSHR)\mon32mi.txt $(WSHR)\mon32alg.txt \
-		$(WSHR)\mon32aw.txt 
-	txtmerge $(WSHR)\mon32-t.txt $(WSHR)\monmag.txt -b $(WSHR)\mon32mi.txt \
-		-bff00ff $(WSHR)\mon32alg.txt
+		$(WSHR)\mon32aw.txt $(WSHR)\mon32se.txt $(WSHR)\palette.txt
+	txtmerge -p $(WSHR)\palette.txt $(WSHR)\mon32-t.txt $(WSHR)\monmag.txt \
+		-b $(WSHR)\mon32mi.txt -b $(WSHR)\mon32se.txt
 	txtmerge $(WSHR)\mon32-t.txt $(WSHR)\mon32-t.txt \
-		-bff00ff $(WSHR)\mon32aw.txt
+		-bff00ff $(WSHR)\mon32alg.txt -bff00ff $(WSHR)\mon32aw.txt
 
 ../win/share/obj32-t.txt:	txtmerge.exe $(WSHR)\objmag.txt \
 		$(WSHR)\obj32mi.txt $(WSHR)\obj32se.txt \
-		$(WSHR)\obj32alg.txt
-	txtmerge $(WSHR)\obj32-t.txt $(WSHR)\objmag.txt -b $(WSHR)\obj32mi.txt \
-		-b $(WSHR)\obj32se.txt
+		$(WSHR)\obj32alg.txt $(WSHR)\palette.txt
+	txtmerge -p $(WSHR)\palette.txt $(WSHR)\obj32-t.txt $(WSHR)\objmag.txt \
+		-b $(WSHR)\obj32mi.txt
 	txtmerge $(WSHR)\obj32-t.txt $(WSHR)\obj32-t.txt \
-		-bff00ff $(WSHR)\obj32alg.txt
+		-b $(WSHR)\obj32se.txt -bff00ff $(WSHR)\obj32alg.txt
 
 ../win/share/oth32-t.txt:	txtmerge.exe $(WSHR)\othmag.txt \
 		$(WSHR)\oth32mi.txt $(WSHR)\oth32se.txt \
-		$(WSHR)\oth32alg.txt
-	txtmerge $(WSHR)\oth32-t.txt $(WSHR)\othmag.txt -b $(WSHR)\oth32mi.txt \
-		-b $(WSHR)\oth32se.txt
+		$(WSHR)\oth32alg.txt $(WSHR)\palette.txt
+	txtmerge -p $(WSHR)\palette.txt $(WSHR)\oth32-t.txt $(WSHR)\othmag.txt \
+		-b $(WSHR)\oth32mi.txt
 	txtmerge $(WSHR)\oth32-t.txt $(WSHR)\oth32-t.txt \
-		-bff00ff $(WSHR)\oth32alg.txt
+		-b $(WSHR)\oth32se.txt -bff00ff $(WSHR)\oth32alg.txt
 
 ../win/share/mon3d.txt:	txtmerge.exe $(WSHR)\monbig.txt \
-		$(WSHR)\mon3dmi.txt
-	txtmerge $(WSHR)\mon3d.txt $(WSHR)\monbig.txt -b $(WSHR)\mon3dmi.txt
+		$(WSHR)\mon3dmi.txt $(WSHR)\palette.txt
+	txtmerge -p $(WSHR)\palette.txt $(WSHR)\mon3d.txt $(WSHR)\monbig.txt \
+		-b $(WSHR)\mon3dmi.txt
 
 ../win/share/obj3d.txt:	txtmerge.exe $(WSHR)\objbig.txt
 	$(COPY) $(WSHR)\objbig.txt $(WSHR)\obj3d.txt
 
 ../win/share/oth3d.txt:	txtmerge.exe $(WSHR)\othbig.txt \
 		$(WSHR)\oth3dmi.txt $(WSHR)\oth-2kmi.txt \
-		$(WSHR)\oth3dse.txt
-	txtmerge $(WSHR)\oth3d.txt $(WSHR)\othbig.txt -b $(WSHR)\oth3dmi.txt \
-		-b $(WSHR)\oth-2kmi.txt
-	txtmerge $(WSHR)\oth3d.txt $(WSHR)\oth3d.txt -b $(WSHR)\oth3dse.txt
+		$(WSHR)\oth3dse.txt $(WSHR)\palette.txt
+	txtmerge -p $(WSHR)\palette.txt $(WSHR)\oth3d.txt $(WSHR)\othbig.txt \
+		-b $(WSHR)\oth3dmi.txt
+	txtmerge $(WSHR)\oth3d.txt $(WSHR)\oth3d.txt -b $(WSHR)\oth-2kmi.txt \
+		-b $(WSHR)\oth3dse.txt
 
 pet_mark.xbm: ../win/X11/pet_mark.xbm
 	$(COPY) ..\win\X11\pet_mark.xbm pet_mark.xbm

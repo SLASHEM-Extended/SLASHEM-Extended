@@ -34,6 +34,7 @@ txtmerge=../../../util/txtmerge
 #
 # Functions
 #
+set -e
 generate_palette()
 # Usage: generate_palette <input-txt> <output-ppm>
 {
@@ -121,12 +122,12 @@ addtile()
     ad_input=$4
     ad_sed=`echo ${ad_output} | sed 's/\.[^.]*$/.sed/'`
     if test -r $ad_output; then
-	pnmcat -lr $ad_output $ad_input > /tmp/ad$$.pnm
+	pnmcat -lr $ad_output $ad_input > /tmp/ad$$.pnm || exit 1
 	mv /tmp/ad$$.pnm $ad_output
 	ad_count=`echo ${ad_count} + 1 | bc`
     else
 	rm -f ${ad_sed}
-	anytopnm $ad_input > $ad_output
+	anytopnm $ad_input > $ad_output || exit 1
 	ad_count=0
     fi
     # Some special cases for spellbooks that Slash'em has a different
@@ -154,42 +155,82 @@ import()
     else
 	echo "Error: import: tileset unknown \"${tileset}\""
     fi
+    if test "$tileset" = "32"; then
+	ppmmake rgb:47/6c/6c 32 32 > background.ppm
+    else
+	ppmmake rgb:47/6c/6c 48 64 > background.ppm
+    fi
+    rm -f ${ex_output}.ppm ${ex_output}-fs.ppm
+    # We maintain both an undithered and a dithered collection.
+    # The undithered collection is used to filter out tiles which
+    # are simply a magnification of the 16x16 tiles. The dithered
+    # collection are used for the final tile bitmaps.
     cat ${tilemap}-${long}.tile | while read line; do
 	tag=`echo $line | sed 's:.*@\([^@]*\)$:\1:'`
 	name=`echo $line | sed 's:.*@\([^@]*\)@[^@]*$:\1:'`
 	bmp=$input/${key}xxx/$tag.bmp
 	if test -r $bmp; then
 	    bmptoppm $bmp > /tmp/et$$.ppm 2> /dev/null
-	    addtile ${ex_output}.ppm 0 "$name" /tmp/et$$.ppm
+	    ppmcolormask rgb:47/6c/6c /tmp/et$$.ppm > /tmp/et$$.pbm
+	    ppmquant -map palette.ppm /tmp/et$$.ppm 2> /dev/null | \
+	      ppmchange rgb:47/6c/6c rgb:48/6c/6c | \
+	      pnmcomp -alpha=/tmp/et$$.pbm background.ppm > /tmp/et-2$$.ppm
+	    addtile ${ex_output}.ppm 0 "$name" /tmp/et-2$$.ppm
+	    rm -f /tmp/et$$.ppm /tmp/et$$-2.ppm /tmp/et$$.pbm
 	fi
-    done
+    done || exit 1
+    cat ${tilemap}-${long}.tile | while read line; do
+	tag=`echo $line | sed 's:.*@\([^@]*\)$:\1:'`
+	name=`echo $line | sed 's:.*@\([^@]*\)@[^@]*$:\1:'`
+	bmp=$input/${key}xxx/$tag.bmp
+	if test -r $bmp; then
+	    bmptoppm $bmp > /tmp/et$$.ppm 2> /dev/null
+	    ppmcolormask rgb:47/6c/6c /tmp/et$$.ppm > /tmp/et$$.pbm
+	    ppmquant -fs -map palette.ppm /tmp/et$$.ppm 2> /dev/null | \
+	      ppmchange rgb:47/6c/6c rgb:48/6c/6c | \
+	      pnmcomp -alpha=/tmp/et$$.pbm background.ppm > /tmp/et-2$$.ppm
+	    addtile ${ex_output}-fs.ppm 0 "$name" /tmp/et-2$$.ppm
+	    rm -f /tmp/et$$.ppm /tmp/et$$-2.ppm /tmp/et$$.pbm
+	fi
+    done || exit 1
+    rm -f background.ppm
     if test -r ${ex_output}.ppm; then
 	ppmcolormask rgb:47/6c/6c ${ex_output}.ppm > /tmp/et$$.pbm
-	ppmquant -fs -map palette.ppm ${ex_output}.ppm 2> /dev/null | \
-	ppmtoxpm -alphamask=/tmp/et$$.pbm > ${ex_output}.xpm
+	ppmtoxpm -alphamask=/tmp/et$$.pbm ${ex_output}.ppm > ${ex_output}.xpm
+	ppmcolormask rgb:47/6c/6c ${ex_output}-fs.ppm > /tmp/et$$.pbm
+	ppmtoxpm -alphamask=/tmp/et$$.pbm ${ex_output}-fs.ppm \
+	  > ${ex_output}-fs.xpm
 	rm -f /tmp/et$$.pbm
 	if test "$tileset" = "32"; then
 	    $xpm2txt -w32 -h32 ${ex_output}.xpm /tmp/et$$.txt
 	    sed -f ${ex_output}.sed < /tmp/et$$.txt > /tmp/et$$-2.txt
+	    $xpm2txt -w32 -h32 ${ex_output}-fs.xpm /tmp/et$$.txt
+	    sed -f ${ex_output}-fs.sed < /tmp/et$$.txt > /tmp/et$$-3.txt
 	    if test "$short" = "mon" -a -n "${extra_mon}"; then
-		${txtmerge} /tmp/et$$.txt /tmp/et$$-2.txt ${extra_mon}
-		${txtfilt} -p ../palette.txt /tmp/et$$.txt ${ex_output}.txt
+		extra=${extra_mon}
 	    elif test "$short" = "obj" -a -n "${extra_obj}"; then
-		${txtmerge} /tmp/et$$.txt /tmp/et$$-2.txt ${extra_obj}
-		${txtfilt} -p ../palette.txt /tmp/et$$.txt ${ex_output}.txt
+		extra=${extra_obj}
 	    else
-		${txtmerge} /tmp/et$$.txt /tmp/et$$-2.txt
-		${txtfilt} -p ../palette.txt /tmp/et$$.txt ${ex_output}.txt
+		extra=
 	    fi
+	    ${txtmerge} /tmp/et$$.txt /tmp/et$$-2.txt ${extra}
+	    ${txtfilt} -p ../palette.txt /tmp/et$$.txt /tmp/et$$-4.txt
+	    egrep '^# tile [0-9]+ (.*)$' /tmp/et$$-4.txt | \
+	      sed 's/^# tile [0-9][0-9]* (\(.*\))$/\1/' > /tmp/et$$.pat
+	    ${txtmerge} /tmp/et$$.txt /tmp/et$$-3.txt ${extra}
+	    ${txtfilt} -p ../palette.txt -f /tmp/et$$.pat /tmp/et$$.txt \
+	      ${ex_output}.txt
 	else
-	    $xpm2txt -w48 -h64 ${ex_output}.xpm /tmp/et$$.txt
+	    $xpm2txt -w48 -h64 ${ex_output}-fs.xpm /tmp/et$$.txt
 	    sed -f ${ex_output}.sed < /tmp/et$$.txt > ${ex_output}.txt
 	fi
     else
 	echo "Warning: No ${tileset} tiles imported from subset $long"
     fi
     rm -f ${ex_output}.sed /tmp/et$$.txt /tmp/et$$-2.txt /tmp/et$$.ppm
+    rm -f ${ex_output}-fs.sed /tmp/et$$-3.txt /tmp/et$$-4.txt  /tmp/et$$.pat
     rm -f ${ex_output}.ppm ${ex_output}.xpm
+    rm -f ${ex_output}-fs.ppm ${ex_output}-fs.xpm
 }
 set -e
 if test ! -d ${input}/pxxx; then
@@ -205,7 +246,7 @@ if test ! -r palette.ppm; then
 fi
 if test ! \( -r ${tilemap}-monsters.tile -a -r ${tilemap}-objects.tile -a \
   -r ${tilemap}-other.tile \) ; then
-    generate_tilemap $tilemap ${input}/name341.txt
+    generate_tilemap $tilemap ${input}/name.txt
 fi
 if test ! \( -x "${xpm2txt}" -a -x "${txtfilt}" \) ; then
     echo "Error: Can't find tile utils"

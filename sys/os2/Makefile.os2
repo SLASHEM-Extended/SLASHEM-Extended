@@ -2081,19 +2081,26 @@ $(WINSHARE)\oth32.txt:	$(TEMP)\txtbg.exe $(WINSHARE)\oth32-t.txt
 	$(TEMP)\txtbg.exe $(WINSHARE)\oth32-t.txt $(WINSHARE)\oth32.txt
 
 $(WINSHARE)\mon32-t.txt:	$(TEMP)\txtmerge.exe $(WINSHARE)\monmag.txt \
- $(WINSHARE)\mon32mi.txt $(WINSHARE)\mon32alg.txt $(WINSHARE)\mon32aw.txt
-	$(TEMP)\txtmerge.exe $(WINSHARE)\mon32-t.txt $(WINSHARE)\monmag.txt \
- -b $(WINSHARE)\mon32mi.txt -bff00ff $(WINSHARE)\mon32alg.txt -bff00ff $(WINSHARE)\mon32aw.txt
+ $(WINSHARE)\mon32mi.txt $(WINSHARE)\mon32alg.txt $(WINSHARE)\mon32aw.txt \
+ $(WINSHARE)\mon32se.txt $(WINSHARE)\palette.txt
+	$(TEMP)\txtmerge.exe -p $(WINSHARE)\palette.txt \
+ $(WINSHARE)\mon32-t.txt $(WINSHARE)\monmag.txt -b $(WINSHARE)\mon32mi.txt \
+ -b $(WINSHARE)\mon32se.txt -bff00ff $(WINSHARE)\mon32alg.txt \
+ -bff00ff $(WINSHARE)\mon32aw.txt
 
 $(WINSHARE)\obj32-t.txt:	$(TEMP)\txtmerge.exe $(WINSHARE)\objmag.txt \
- $(WINSHARE)\obj32mi.txt $(WINSHARE)\obj32se.txt $(WINSHARE)\obj32alg.txt
-	$(TEMP)\txtmerge.exe $(WINSHARE)\obj32-t.txt $(WINSHARE)\objmag.txt \
- -b $(WINSHARE)\obj32mi.txt -b $(WINSHARE)\obj32se.txt -bff00ff $(WINSHARE)\obj32alg.txt
+ $(WINSHARE)\obj32mi.txt $(WINSHARE)\obj32se.txt $(WINSHARE)\obj32alg.txt \
+ $(WINSHARE)\palette.txt
+	$(TEMP)\txtmerge.exe -p $(WINSHARE)\palette.txt \
+ $(WINSHARE)\obj32-t.txt $(WINSHARE)\objmag.txt -b $(WINSHARE)\obj32mi.txt \
+ -b $(WINSHARE)\obj32se.txt -bff00ff $(WINSHARE)\obj32alg.txt
 
 $(WINSHARE)\oth32-t.txt:	$(TEMP)\txtmerge.exe $(WINSHARE)\othmag.txt \
- $(WINSHARE)\oth32mi.txt $(WINSHARE)\oth32se.txt $(WINSHARE)\oth32alg.txt
-	$(TEMP)\txtmerge.exe $(WINSHARE)\oth32-t.txt $(WINSHARE)\othmag.txt \
- -b $(WINSHARE)\oth32mi.txt -b $(WINSHARE)\oth32se.txt -bff00ff $(WINSHARE)\oth32alg.txt
+ $(WINSHARE)\oth32mi.txt $(WINSHARE)\oth32se.txt $(WINSHARE)\oth32alg.txt \
+ $(WINSHARE)\palette.txt
+	$(TEMP)\txtmerge.exe -p $(WINSHARE)\palette.txt \
+ $(WINSHARE)\oth32-t.txt $(WINSHARE)\othmag.txt -b $(WINSHARE)\oth32mi.txt \
+ -b $(WINSHARE)\oth32se.txt -bff00ff $(WINSHARE)\oth32alg.txt
 
 $(WINSHARE)\monmag.txt: $(TEMP)\magtile.exe $(WINSHARE)\monsters.txt
 	$(TEMP)\magtile.exe
@@ -2104,16 +2111,20 @@ $(WINSHARE)\objmag.txt: $(TEMP)\magtile.exe $(WINSHARE)\objects.txt
 $(WINSHARE)\othmag.txt: $(TEMP)\magtile.exe $(WINSHARE)\other.txt
 	$(TEMP)\magtile.exe
 
-$(WINSHARE)\mon3d.txt:	$(TEMP)\txtmerge.exe $(WINSHARE)\monbig.txt $(WINSHARE)\mon3dmi.txt
-	$(TEMP)\txtmerge.exe $(WINSHARE)\mon3d.txt $(WINSHARE)\monbig.txt -b $(WINSHARE)\mon3dmi.txt
+$(WINSHARE)\mon3d.txt:	$(TEMP)\txtmerge.exe $(WINSHARE)\monbig.txt \
+ $(WINSHARE)\mon3dmi.txt $(WINSHARE)\palette.txt
+	$(TEMP)\txtmerge.exe -p $(WINSHARE)\palette.txt $(WINSHARE)\mon3d.txt \
+ $(WINSHARE)\monbig.txt -b $(WINSHARE)\mon3dmi.txt
 
 $(WINSHARE)\obj3d.txt:	$(TEMP)\txtmerge.exe $(WINSHARE)\objbig.txt
 	cp $(WINSHARE)\objbig.txt $(WINSHARE)\obj3d.txt
 
 $(WINSHARE)\oth3d.txt:	$(TEMP)\txtmerge.exe $(WINSHARE)\othbig.txt \
- $(WINSHARE)\oth3dmi.txt $(WINSHARE)\oth-2kmi.txt $(WINSHARE)\oth3dse.txt
-	$(TEMP)\txtmerge.exe $(WINSHARE)\oth3d.txt $(WINSHARE)\othbig.txt \
- -b $(WINSHARE)\oth3dmi.txt -b $(WINSHARE)\oth-2kmi.txt -b $(WINSHARE)\oth3dse.txt
+ $(WINSHARE)\oth3dmi.txt $(WINSHARE)\oth-2kmi.txt $(WINSHARE)\oth3dse.txt \
+ $(WINSHARE)\palette.txt
+	$(TEMP)\txtmerge.exe -p $(WINSHARE)\palette.txt $(WINSHARE)\oth3d.txt \
+ $(WINSHARE)\othbig.txt -b $(WINSHARE)\oth3dmi.txt -b $(WINSHARE)\oth-2kmi.txt \
+ -b $(WINSHARE)\oth3dse.txt
 
 $(WINSHARE)\monbig.txt: $(TEMP)\bigtile.exe $(WINSHARE)\mon32-t.txt \
  $(WINSHARE)\obj32-t.txt $(WINSHARE)\oth32-t.txt

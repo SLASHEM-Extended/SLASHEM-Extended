@@ -1,278 +1,2496 @@
-__ = (0, 0, 0)
-_A = (0, 182, 255)
-_B = (255, 108, 0)
-_C = (255, 0, 0)
-_D = (0, 0, 255)
-_E = (0, 145, 0)
-_F = (108, 255, 0)
-_G = (255, 255, 0)
-_H = (255, 0, 255)
-_I = (145, 71, 0)
-_J = (182, 71, 0)
-_K = (255, 182, 145)
-_L = (72, 108, 108)
-_M = (255, 255, 255)
-_N = (218, 218, 182)
-_O = (108, 145, 182)
-_P = (128, 96, 0)
-_Q = (128, 255, 128)
-_R = (0, 0, 192)
-_S = (168, 224, 224)
-_T = (96, 48, 48)
-_U = (128, 64, 0)
-_V = (32, 64, 64)
-_W = (0, 112, 224)
-_X = (192, 96, 96)
-_Y = (48, 96, 0)
-_Z = (117, 105, 88)
-_a = (224, 192, 160)
-_b = (168, 168, 224)
-_c = (128, 32, 0)
-_d = (96, 0, 48)
-_e = (64, 128, 128)
-_f = (255, 128, 128)
-_g = (128, 0, 255)
-_h = (0, 64, 32)
-_i = (128, 0, 0)
-_j = (48, 48, 0)
-_k = (96, 192, 0)
-_l = (48, 36, 0)
-_m = (96, 192, 192)
-_n = (0, 32, 32)
-_o = (48, 24, 0)
-_p = (48, 12, 0)
-_q = (128, 112, 32)
-_r = (64, 64, 128)
-_s = (192, 0, 96)
-_t = (48, 0, 0)
-_u = (0, 0, 224)
-_v = (224, 224, 0)
-_w = (0, 128, 64)
-_x = (0, 255, 255)
-_y = (64, 0, 128)
-_z = (96, 96, 0)
-_0 = (0, 255, 0)
-_1 = (255, 0, 128)
-_2 = (96, 96, 192)
-_3 = (96, 72, 0)
-_4 = (104, 84, 31)
-_5 = (224, 168, 0)
-_6 = (0, 64, 64)
-_7 = (96, 48, 0)
-_8 = (248, 224, 96)
-_9 = (224, 224, 112)
-_$ = (202, 143, 114)
-A_ = (24, 48, 48)
-AA = (144, 192, 192)
-AB = (0, 192, 96)
-AC = (0, 32, 64)
-AD = (96, 24, 0)
-AE = (128, 128, 64)
-AF = (24, 24, 48)
-AG = (224, 112, 0)
-AH = (240, 240, 240)
-AI = (0, 48, 24)
-AJ = (128, 255, 255)
-AK = (96, 0, 0)
-AL = (128, 255, 0)
-AM = (0, 0, 64)
-AN = (96, 0, 192)
-AO = (144, 144, 192)
-AP = (255, 192, 255)
-AQ = (0, 24, 24)
-AR = (255, 192, 0)
-AS = (255, 192, 192)
-AT = (224, 224, 224)
-AU = (16, 16, 0)
-AV = (128, 64, 64)
-AW = (224, 56, 0)
-AX = (170, 136, 52)
-AY = (16, 0, 0)
-AZ = (224, 112, 112)
-Aa = (0, 96, 96)
-Ab = (208, 208, 208)
-Ac = (64, 128, 0)
-Ad = (255, 128, 255)
-Ae = (255, 128, 0)
-Af = (224, 168, 224)
-Ag = (224, 0, 0)
-Ah = (128, 0, 64)
-Ai = (192, 192, 255)
-Aj = (192, 192, 0)
-Ak = (0, 48, 96)
-Al = (255, 255, 128)
-Am = (192, 192, 192)
-An = (168, 224, 168)
-Ao = (128, 128, 96)
-Ap = (112, 224, 0)
-Aq = (64, 64, 0)
-Ar = (127, 90, 72)
-As = (224, 112, 224)
-At = (48, 48, 24)
-Au = (255, 64, 0)
-Av = (64, 48, 0)
-Aw = (192, 144, 0)
-Ax = (176, 176, 176)
-Ay = (0, 0, 96)
-Az = (128, 96, 96)
-A0 = (192, 144, 192)
-A1 = (48, 24, 24)
-A2 = (64, 32, 0)
-A3 = (224, 0, 112)
-A4 = (24, 48, 0)
-A5 = (0, 128, 128)
-A6 = (64, 16, 0)
-A7 = (144, 192, 144)
-A8 = (160, 160, 160)
-A9 = (64, 0, 0)
-A$ = (192, 96, 0)
-B_ = (24, 24, 0)
-BA = (192, 96, 192)
-BB = (112, 224, 112)
-BC = (48, 96, 96)
-BD = (0, 16, 16)
-BE = (120, 160, 160)
-BF = (24, 0, 0)
-BG = (0, 0, 16)
-BH = (160, 160, 120)
-BI = (160, 120, 160)
-BJ = (144, 144, 144)
-BK = (0, 64, 128)
-BL = (192, 48, 0)
-BM = (80, 160, 160)
-BN = (224, 0, 224)
-BO = (48, 48, 96)
-BP = (120, 160, 120)
-BQ = (120, 120, 160)
-BR = (96, 192, 96)
-BS = (160, 160, 80)
-BT = (160, 120, 120)
-BU = (160, 80, 160)
-BV = (128, 128, 128)
-BW = (0, 96, 48)
-BX = (64, 64, 32)
-BY = (112, 224, 224)
-BZ = (192, 0, 0)
-Ba = (192, 0, 192)
-Bb = (0, 160, 160)
-Bc = (0, 0, 128)
-Bd = (128, 96, 128)
-Be = (112, 112, 112)
-Bf = (64, 32, 32)
-Bg = (80, 160, 80)
-Bh = (80, 80, 160)
-Bi = (96, 128, 96)
-Bj = (0, 48, 48)
-Bk = (192, 192, 144)
-Bl = (32, 64, 0)
-Bm = (128, 64, 128)
-Bn = (160, 160, 0)
-Bo = (160, 80, 80)
-Bp = (64, 0, 32)
+__ = (71, 108, 108)
+_A = (0, 0, 0)
+_B = (0, 0, 16)
+_C = (0, 0, 32)
+_D = (0, 0, 48)
+_E = (0, 0, 64)
+_F = (0, 0, 96)
+_G = (0, 0, 128)
+_H = (0, 0, 160)
+_I = (0, 0, 192)
+_J = (0, 0, 224)
+_K = (0, 0, 255)
+_L = (0, 16, 0)
+_M = (0, 16, 16)
+_N = (0, 24, 0)
+_O = (0, 24, 24)
+_P = (0, 24, 48)
+_Q = (0, 32, 0)
+_R = (0, 32, 32)
+_S = (0, 32, 64)
+_T = (0, 48, 0)
+_U = (0, 48, 24)
+_V = (0, 48, 48)
+_W = (0, 48, 96)
+_X = (0, 64, 0)
+_Y = (0, 64, 32)
+_Z = (0, 64, 64)
+_a = (0, 64, 128)
+_b = (0, 80, 160)
+_c = (0, 96, 0)
+_d = (0, 96, 48)
+_e = (0, 96, 96)
+_f = (0, 96, 192)
+_g = (0, 112, 224)
+_h = (0, 128, 0)
+_i = (0, 128, 64)
+_j = (0, 128, 128)
+_k = (0, 128, 255)
+_l = (0, 144, 0)
+_m = (0, 160, 0)
+_n = (0, 160, 80)
+_o = (0, 160, 160)
+_p = (0, 182, 255)
+_q = (0, 192, 0)
+_r = (0, 192, 96)
+_s = (0, 192, 192)
+_t = (0, 224, 0)
+_u = (0, 224, 112)
+_v = (0, 224, 224)
+_w = (0, 255, 0)
+_x = (0, 255, 128)
+_y = (0, 255, 255)
+_z = (16, 0, 0)
+_0 = (16, 0, 16)
+_1 = (16, 16, 0)
+_2 = (16, 16, 16)
+_3 = (16, 48, 48)
+_4 = (24, 0, 0)
+_5 = (24, 24, 0)
+_6 = (24, 24, 48)
+_7 = (24, 48, 0)
+_8 = (24, 48, 24)
+_9 = (24, 48, 48)
+_$ = (32, 0, 0)
+A_ = (32, 0, 32)
+AA = (32, 32, 0)
+AB = (32, 32, 32)
+AC = (32, 64, 0)
+AD = (32, 64, 32)
+AE = (32, 64, 64)
+AF = (32, 242, 186)
+AG = (48, 0, 0)
+AH = (48, 0, 48)
+AI = (48, 12, 0)
+AJ = (48, 24, 0)
+AK = (48, 24, 24)
+AL = (48, 36, 0)
+AM = (48, 48, 0)
+AN = (48, 48, 24)
+AO = (48, 48, 48)
+AP = (48, 48, 96)
+AQ = (48, 96, 0)
+AR = (48, 96, 48)
+AS = (48, 96, 96)
+AT = (64, 0, 0)
+AU = (64, 0, 32)
+AV = (64, 0, 64)
+AW = (64, 0, 128)
+AX = (64, 16, 0)
+AY = (64, 32, 0)
+AZ = (64, 32, 32)
+Aa = (64, 32, 64)
+Ab = (64, 48, 0)
+Ac = (64, 64, 0)
+Ad = (64, 64, 32)
+Ae = (64, 64, 64)
+Af = (64, 64, 128)
+Ag = (64, 128, 0)
+Ah = (64, 128, 64)
+Ai = (64, 128, 128)
+Aj = (72, 108, 108)
+Ak = (80, 0, 160)
+Al = (80, 80, 80)
+Am = (80, 80, 160)
+An = (80, 160, 0)
+Ao = (80, 160, 80)
+Ap = (80, 160, 160)
+Aq = (96, 0, 0)
+Ar = (96, 0, 48)
+As = (96, 0, 96)
+At = (96, 0, 192)
+Au = (96, 16, 0)
+Av = (96, 24, 0)
+Aw = (96, 48, 0)
+Ax = (96, 48, 48)
+Ay = (96, 48, 96)
+Az = (96, 72, 0)
+A0 = (96, 96, 0)
+A1 = (96, 96, 48)
+A2 = (96, 96, 96)
+A3 = (96, 96, 128)
+A4 = (96, 96, 192)
+A5 = (96, 128, 96)
+A6 = (96, 128, 128)
+A7 = (96, 192, 0)
+A8 = (96, 192, 96)
+A9 = (96, 192, 192)
+A$ = (96, 144, 178)
+B_ = (104, 84, 31)
+BA = (108, 144, 182)
+BB = (108, 255, 0)
+BC = (112, 0, 224)
+BD = (112, 112, 112)
+BE = (112, 112, 224)
+BF = (112, 160, 160)
+BG = (112, 224, 0)
+BH = (112, 224, 112)
+BI = (112, 224, 224)
+BJ = (117, 105, 88)
+BK = (120, 120, 160)
+BL = (120, 160, 120)
+BM = (120, 160, 160)
+BN = (128, 0, 0)
+BO = (128, 0, 64)
+BP = (128, 0, 128)
+BQ = (128, 0, 255)
+BR = (128, 32, 0)
+BS = (128, 64, 0)
+BT = (128, 64, 64)
+BU = (128, 64, 128)
+BV = (128, 90, 72)
+BW = (128, 96, 0)
+BX = (128, 96, 96)
+BY = (128, 96, 128)
+BZ = (128, 112, 32)
+Ba = (128, 128, 0)
+Bb = (128, 128, 64)
+Bc = (128, 128, 96)
+Bd = (128, 128, 128)
+Be = (128, 128, 255)
+Bf = (128, 255, 0)
+Bg = (128, 255, 128)
+Bh = (128, 255, 255)
+Bi = (144, 72, 0)
+Bj = (144, 135, 110)
+Bk = (144, 144, 144)
+Bl = (144, 144, 192)
+Bm = (144, 192, 144)
+Bn = (144, 192, 192)
+Bo = (160, 0, 0)
+Bp = (160, 0, 80)
 Bq = (160, 0, 160)
-Br = (96, 96, 96)
-Bs = (252, 252, 153)
-Bt = (32, 32, 0)
-Bu = (0, 160, 80)
-Bv = (64, 128, 64)
-Bw = (160, 120, 0)
-Bx = (0, 0, 48)
-By = (0, 80, 160)
-Bz = (192, 144, 144)
-B0 = (0, 224, 0)
-B1 = (80, 160, 0)
-B2 = (112, 112, 224)
-B3 = (80, 80, 80)
-B4 = (32, 0, 0)
-B5 = (128, 0, 128)
-B6 = (80, 0, 160)
-B7 = (96, 48, 96)
-B8 = (242, 196, 77)
-B9 = (208, 168, 80)
-B$ = (255, 255, 192)
-C_ = (0, 192, 0)
-CA = (160, 80, 0)
-CB = (160, 0, 80)
-CC = (0, 192, 192)
-CD = (165, 118, 94)
-CE = (48, 96, 48)
-CF = (64, 64, 64)
-CG = (192, 160, 64)
-CH = (224, 224, 168)
-CI = (0, 160, 0)
-CJ = (96, 0, 96)
-CK = (160, 40, 0)
-CL = (0, 0, 160)
-CM = (0, 224, 112)
-CN = (64, 32, 64)
-CO = (0, 128, 255)
-CP = (0, 128, 0)
-CQ = (96, 128, 128)
-CR = (48, 48, 48)
-CS = (229, 162, 130)
-CT = (32, 64, 32)
-CU = (192, 255, 255)
-CV = (171, 154, 129)
-CW = (160, 0, 0)
-CX = (224, 168, 168)
-CY = (145, 135, 110)
-CZ = (64, 0, 64)
-Ca = (192, 255, 192)
-Cb = (112, 0, 224)
-Cc = (0, 96, 0)
-Cd = (96, 96, 128)
-Ce = (0, 255, 128)
-Cf = (0, 96, 192)
-Cg = (24, 48, 24)
-Ch = (255, 211, 175)
-Ci = (32, 32, 32)
-Cj = (48, 0, 48)
-Ck = (0, 64, 0)
-Cl = (0, 224, 224)
-Cm = (32, 0, 32)
-Cn = (0, 48, 0)
-Co = (192, 192, 96)
-Cp = (16, 16, 16)
-Cq = (128, 128, 255)
-Cr = (0, 32, 0)
-Cs = (128, 128, 0)
-Ct = (16, 0, 16)
-Cu = (0, 24, 0)
-Cv = (96, 96, 48)
-Cw = (0, 16, 0)
+Br = (160, 40, 0)
+Bs = (160, 80, 0)
+Bt = (160, 80, 80)
+Bu = (160, 80, 160)
+Bv = (160, 120, 0)
+Bw = (160, 120, 120)
+Bx = (160, 120, 160)
+By = (160, 160, 0)
+Bz = (160, 160, 80)
+B0 = (160, 160, 120)
+B1 = (160, 160, 160)
+B2 = (160, 160, 224)
+B3 = (165, 118, 96)
+B4 = (168, 168, 224)
+B5 = (168, 224, 168)
+B6 = (168, 224, 224)
+B7 = (170, 136, 52)
+B8 = (170, 154, 128)
+B9 = (176, 176, 176)
+B$ = (178, 64, 0)
+C_ = (178, 224, 16)
+CA = (182, 72, 0)
+CB = (192, 0, 0)
+CC = (192, 0, 96)
+CD = (192, 0, 192)
+CE = (192, 48, 0)
+CF = (192, 96, 0)
+CG = (192, 96, 96)
+CH = (192, 96, 192)
+CI = (192, 144, 0)
+CJ = (192, 144, 144)
+CK = (192, 144, 192)
+CL = (192, 160, 64)
+CM = (192, 192, 0)
+CN = (192, 192, 96)
+CO = (192, 192, 144)
+CP = (192, 192, 192)
+CQ = (192, 192, 255)
+CR = (192, 255, 192)
+CS = (192, 255, 255)
+CT = (202, 144, 114)
+CU = (208, 168, 80)
+CV = (208, 208, 208)
+CW = (210, 210, 178)
+CX = (218, 218, 182)
+CY = (224, 0, 0)
+CZ = (224, 0, 112)
+Ca = (224, 0, 224)
+Cb = (224, 56, 0)
+Cc = (224, 112, 0)
+Cd = (224, 112, 112)
+Ce = (224, 112, 224)
+Cf = (224, 168, 0)
+Cg = (224, 168, 168)
+Ch = (224, 168, 224)
+Ci = (224, 192, 160)
+Cj = (224, 224, 0)
+Ck = (224, 224, 112)
+Cl = (224, 224, 168)
+Cm = (224, 224, 224)
+Cn = (229, 162, 130)
+Co = (240, 240, 240)
+Cp = (242, 0, 0)
+Cq = (242, 96, 0)
+Cr = (242, 196, 77)
+Cs = (248, 224, 96)
+Ct = (252, 252, 153)
+Cu = (255, 0, 0)
+Cv = (255, 0, 128)
+Cw = (255, 0, 255)
+Cx = (255, 64, 0)
+Cy = (255, 108, 0)
+Cz = (255, 128, 0)
+C0 = (255, 128, 128)
+C1 = (255, 128, 255)
+C2 = (255, 182, 144)
+C3 = (255, 192, 0)
+C4 = (255, 192, 192)
+C5 = (255, 192, 255)
+C6 = (255, 211, 176)
+C7 = (255, 255, 0)
+C8 = (255, 255, 128)
+C9 = (255, 255, 192)
+C$ = (255, 255, 255)
+# tile 17 (iron bars)
+{
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  CPCPCJBnBkBdCPCPBkCPCPBkBkBkCPBnCJCPCPBkBkBkCPBnCJCPCPBkBkBkCPBn
+  BkBkBMCJBkBkBkBkBkBkBkBkBkBkBkBkBkBkBkBkBkBkBkBkBkBkBkBkBkBkBkBk
+  BdBdBdBdBkBkBdBdBkBdBkBkBkBkBdBdBkBdBkBdBkBkBdBdBkBdBkBdBkBkBdBd
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  CPCPCJBnBkBdCPCPBkCPCPBkBkBdCPCPBkCPCPBkBkBkCPBnCJCPCPBkBkBkCPBn
+  BkBkBMCJBkBkBkBkBkBkBkCJBkBkBkBkBkBkBkBkBkBkBkBkBkBkBkBkBkBkBkBk
+  BdBdBdBdBkBkBdBdBkBdBdBdBMBkBdBdBkBdBkBkBkBkBdBdBkBdBdBkBkBkBdBd
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  CPCPCJBnBkBdCPCPBkCPCPCJBkBdCPCPBkCPCPBkBkBdCPCPBkCPCPCJBkBdCPCP
+  BkBkBMCJBkBkBkBkBkBkBkBMBkBkBkBkBkBkBkCJBkBkBkBkBkBkBkBMBkBkBkBk
+  BdBdBdBdBkBkBdBdBkBdBdBkBkBkBdBdBkBdBdBdBMBkBdBdBkBdBdBkBkBkBdBd
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  CPCPCJBnBkBdCPCPBkCPCPCJBkBdCPCPBkCPCPCJBkBdCPCPBkCPCPCJBkBdCPCP
+  BkBkBMCJBkBkBkBkBkBkBkBMBkBkBkBkBkBkBkBMBkBkBkBkBkBkBkBMBkBkBkBk
+  BdBdBdBdBkBkBdBdBkBdBdBkBkBkBdBdBkBdBdBkBkBkBdBdBkBdBdBkBkBkBdBd
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+  ______CPBkBd__________CPBkBd__________CPBkBd__________CPBkBd____
+}
+# tile 18 (tree)
+{
+  ________________________________________________________________
+  ________________________________________________________________
+  _____________________l_l_m_m_m_m_l_l_l_l_l_l____________________
+  _____________________l_l_l_mAh_l_h_l_l_m_m_l____________________
+  _____________m_l_l_m_l_l_m_l_l_l_h_l_lAh_m_l_l_l_l_l____________
+  _____________m_mAh_m_l_mAh_l_l_l_h_l_l_m_l_l_l_h_l_l____________
+  _________l_l_m_l_m_l_l_l_m_l_l_h_l_lCA_l_l_l_h_l_l_l_l_l________
+  _________l_l_mAh_m_l_lBi_l_l_h_h_l_lBs_l_h_h_h_l_l_l_l_l________
+  _________l_l_m_l_m_l_lCA_l_l_lAh_mCA_l_l_l_l_l_h_h_l_l_l________
+  _________mAh_mAh_l_l_lCABs_l_m_m_lCA_l_l_l_l_l_h_l_l_l_l________
+  _________l_m_m_m_l_h_l_lCABi_m_l_l_l_l_lCABi_l_h_l_l_l_l________
+  _________l_l_l_l_h_h_l_lB$Bs_l_lBi_l_lCABi_l_l_l_h_l_l_l________
+  _____________l_l_l_l_l_l_lCABiCABs_lCABi_l_l_h_l_l_l____________
+  _____________l_l_m_lCABi_l_lBiBi_l_lBiBi_l_lBs_l_l_l____________
+  ________________Ah_m_lBiBiBiBiBiBiBiBi_l_lBi_l_l________________
+  _________________m_l_l_lBiBiBiBi_lBiBiBiBi_l_l_l________________
+  ____________________________BiCABiBSBiBS________________________
+  ____________________________CABiBiBiBiBi________________________
+  ____________________________CABiBiBS____________________________
+  ____________________________CABiBiBi____________________________
+  ____________________________BiBiBiBS____________________________
+  ____________________________BiBiBiBS____________________________
+  ____________________________CABiBiBS____________________________
+  ____________________________CABiBSBS____________________________
+  ____________________________CABiBiBiBi__________________________
+  ____________________________CABiBiBSBi__________________________
+  ________________________CACABiBiBiBiBiBi________________________
+  ____________________BiBiCABSBiBiBiBiCABiBiCACA__________________
+  ______________CACABiBiBiBiBiBS__BiBi__CABiBiBiBiBi______________
+  ____________CABiBiBiBiBiBSBS____BiBi____CABiBiBiBiBS____________
+  ________________Bi________________Bi______________Bi____________
+  ________________________________________________________________
+}
+# tile 19 (floor of a room)
+{
+  AjAjAiAjAjAjAiAjAjAjAjAjAiAjAjAjAjAjAiAjAjAjAjAjAiAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAEASAEAjAjAjAjAjAjAjAjAjAjAjAjAjAeAEAjAjAjAjAjAE
+  AjAjASAjAjAjAjAjASAEAEAjAjAjAjAjAjASAjAjAjAjAjASAEASASAjAjAjASAE
+  AjAjAjAjAjAjAjAjASASAEAjAjAjAiAjAjAjBDAiAjAjAjAjAEASAjAjAjAjAjAE
+  AjAjAjAjAjAiBDAiAjAlAEAjASAjAjBDAiAjAiAjAjAiAjAjAEAjAjAjAjAjAjAE
+  AjAjAiBDAjAjAjAjAjAjAEASAjASAjASAjAjAlASAjAjAjAEAjASAjBDAiAjAjAE
+  AjAjASAjAiAjAjAjAjAjAEAjASAEAEAEAEAEASASAlAEAEAEAEAEAjASAjAjASAE
+  AjAjAjAiBDAjAjAjAjAjAEAEAEAjAjAjAjAjAEAEASAEAjAjASASAEAEAEASAjAE
+  AjAjAjAjAjAjAiBDASAEASAjASAjASAjASASAjAEAEAjASAjAjASAjAjAEAEAEAS
+  AjAjAjAjASAjAjASAjAEASAjAjAjBDAjAjAjASAjAEAjAjAjAjAjAjASAjASAEAE
+  AjAEAEAjAjAEAEAEAEASASAjAjAiAjAjAjAjAjAjAEAjAjAiAjBDAiAjAjAjAEAS
+  AiAEASAEAEASAjAjAjAEASAjBDAjAjAjAjAiAjAjAEAEAjBDAjASAjAjAEAEAEAE
+  AjAjASAjAjAjAjASAjASAeASAjAjAjAiBDAjBDASAEASAEASAjAjAEAEASAEASAE
+  BDASAjAjAjAjAjAjASAjAEAjASAjBDAjAjAiASAjAEAEASAEAEAEAEAEAEASAjAE
+  AjAjAjAjAiBDAjAjBDASAEAEAjAjAiAjAjAjAjAEAEAjASAjAjAEASAEASASAjAE
+  AjAjAjAjAjAjAiAjAiAjAjAEAEAjASAjAjAjAEAEAjAjAjASASAjAEAEAjASAjAE
+  AjAjAjAjAjAjAjBDAjAjASAEASAEAEAEAjAEASAEAjAjAjBDAjASAjAEAjAjAjAE
+  AjAjAjAjAiBDAiASAjASASAEASAjAjAEAEAEAEASAjAjAiAjAjASAjAEAjAjAjAE
+  AjAjAjAjASAjASAjAEAEAjASAjAjAjAjAjAEASASAjAjAjAjAiAjASAEAjASAjAE
+  AiAEAEAEAEAEAEAEAEASAjAjAjAjAjAjASAjAEAjAjAiAjBDAjAjAEAEAjAjAjAE
+  AjAjAjAjAjAjAEASAEAjAjAjBDAjAiAjAjAjAEASAjAjAjAjAjAjAEAjASAjAjAE
+  AjAjASASASAjASAjAEAjAjAjAiAjAjAjAjAjAEAjAjAjAjAjAjAjAEASAjAjAEAE
+  AjAjASBDAjAjAjAjAEAEAjAjAjAjAjAjASAEAEAEAjAjAjAiAjAjAEAEAEAEASAE
+  AjAjAjASAiBDAjASAjAEAEASASAEAEAEAEAEASAEAEASAjAjAjAEAEAjAjAjAEAE
+  AjAjAjAjBDASAiBDASAjAEASAEAEAjAjAjAjASAjAjAEAEAjAjAEAjASAjAjASAE
+  AjASBDAiAjAiAjAiAjAjAEAEAEAjASAjASAjAjAjASAjAjAEAEAEAjAiAjAjAjAE
+  AjAjAjAjAjBDAjBDAiAjASASAjASAjAjAjAjAjAjAjAjAjASASAEAjAjAjAjAjAE
+  AjAjAiAjAjAjAiAjAjASAjAEASBDAjAjAiBDAiBDAiAjAjAjASAEAjAjAjAjAjAE
+  AjAjAjAjAiBDAiAjAjAjASAEAjASAjAjBDASAjAjAjAjBDASAjAEAjAjAjAiAjAE
+  AjASAjBDAjAjAjAjAjASAjAEASAjAjAjAiAjAiAjAjAiASAjAEAEAjAjAjAjAjAE
+  AjAjASAjAjAjAjAjASAjAEAEASASAjAjAjAjAjAjAjAjASAEAEASAEAjAjASAEAE
+  AjAEAEAEAEAEAEAEAEAEASAEAEAEAEAEAEAEAEAEAEAEAEASAEAEAEAEAEAEASAE
+}
 # tile 20 (corridor)
 {
-  A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_AQA_Bj
-  A_BDBDA_BjA_BjBjBDBDBjBjA_A_BjBjBjA_BjBjBjBjBjBDBDBDA_A_BjBj____
-  A_BDA_BjA_BjBjBjBjBDBDBDA_BjBjA_AQBjBjBjBjBjBjBjBDA_AQBjBjAQBj__
-  A_BjA_BjA_BjA_BjBjBDBDBDBjBjA_BjBjBjA_BjA_BjBjBjBDA_AQA_BjBjBj__
-  A_BjAQA_BjBjBjBjBjBjBDA_A_BjAQBjA_BjBjBjBjA_BjBjBDA_BjBjA_BjBj__
-  A_BjA_BjBjBjAQBjBjBjBDBjBjBjBjBjBjBjBjBjBjBjBjBDBjBjBjAQBjBjBj__
-  A_A_BjBjA_BjBjBjA_BjBDBDBjBDBDBDBDBDBDBjBjBDBDBDBDBDBjBjBjBjBj__
-  A_BjBjBjBjAQAQBjBjBjBDBDBDA_AQBjAQAQBDBDBDBDA_A_BjBDBDBDBDBjBj__
-  A_BjBjA_BjA_BjAQBjBDBDA_A_BjBjBjBjBjBjBDBDA_BjBjBjBjBjBjBDBDBDBD
-  A_BjBjBjBjBjBjBjBjBDA_BjAQBjBjBjA_BjBjBjBDBjA_BjA_BjAQBjBjBDBDBD
-  A_BDBDBjBjBDBDBDBDBDA_BjA_BjBjA_BjA_BjBjBDA_A_BjBjA_BjBjBjBjBDBD
-  A_BDBDBDBDA_BjBjBjBDA_AQBjA_BjBjBjBjBjBjBDA_BjA_BjBjBjBjBDBDBDBD
-  A_BjA_A_A_BjA_BjBjBjBDA_BjBjBjAQBjBjA_BjBDBDBjBjBjBjBDBDBDBDA___
-  A_A_BjBjBjA_BjA_BjBjBDA_BjBjA_BjBjBjBjBjBDBDBDBDBDBDBDBDBDA_Bj__
-  A_A_AQBjBjBjBjAQA_BjBDBDAQBjBjBjBjBjBjBDBDA_A_BjBjBDBDBDA_BjBj__
-  A_BjBjA_BjBjBjAQBjBjBjBDBDBjBjBjBjAQBDBDA_BjBjBjBjBjBDBDA_BjBj__
-  A_BjA_BjAQBjA_BjAQBjBjBDBDBDBDBDAQBDBDBDA_BjBjA_BjBjBjBDBjA_Bj__
-  A_BjBjBjBjBjBjBjBjBjBDBDBjA_BjBDBDBDBDA_AQAQBjBjBjAQBjBDA_BjBj__
-  A_BDBjBjBjBjBjBjBDBDA_A_BjA_BjBjBjBDBDBjA_BjA_BjBjBjBjBDBjBjBj__
-  A_BDBDBDBDBDBDBDBDA_BjBjBjAQBjBjBjBjBDA_BjBjBjBjBjBjBDBDBjA_Bj__
-  A_BDBDA_A_A_BDBDBDA_BjA_BjAQBjBjBjBjBDA_BjBjBjAQBjBjBDBjBjBjBj__
-  A_A_A_BjBjBjA_BjBDBjBjBjA_BjBjA_BjAQBDBjBjBjA_BjBjBjBDBjBjBjBDBD
-  A_BjBjA_BjA_BjBjBDBDBjBjBjBjBjBjAQBDBDBDBjBjBjBjBjAQBDBDBDBDBDBD
-  A_BjA_BjA_BjBjAQBjBDBDBjBjBjBDBDBDBDBDBDBDBjBjBjAQBDBDA_BjBjBDBD
-  A_A_BjBjAQBjBjBjBjBjBDBDBDBDA_A_A_A_BjBjBjBDBDAQAQBDA_BjA_BjBj__
-  A_BjBjAQAQBjA_BjBjBjBDBDBDA_BjA_BjBjBjA_BjBjBjBDBDBDA_A_BjBjBj__
-  A_BjBjBjBjBjBjBjBjBjBjBDA_BjBjBjAQBjBjBjBjBjBjBjBDBDA_BjBjAQBj__
-  A_BjBjAQBjA_A_BjA_BjBjBDA_A_BjA_BjBjA_BjBjBjBjBjBjBDA_BjA_BjBj__
-  A_BjBjBjBjBjBjBjBjBjBjBDA_BjBjBjBjAQA_BjBjA_BjBjBjBDBjBjBjBjBj__
-  A_BjBjBjBjAQBjBjBjBjBjBDBjBjBjA_A_BjBjBjA_BjBjAQBDBDBjBjAQBjBj__
-  A_BDBjBjBjBjBjBjBjBjBDBDBDBjBjBjBjBjBjBjBjBjAQBDBDBDBDBjBjBjBDBD
-  BjBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBD
+  AjASASASAEAEASASASASASASAEASASASASAjASAjAjASAjAjAjASAjAjAjASAjAj
+  ASAjAlASASAEAjASAeAjAlASAEASAeASAEAeAjAjASASAEAjASASAEASAjAjASAS
+  AjAjASAjASAEASASASASASASAeASASASAEASASASAjAeAEASAjAjAEASASAjAjAe
+  AjASAjAjASAEAEASAeAEAEASASAEAEASAEAjAjAjAjASAEAjAjASASAeAjAjASAS
+  AjAjAeASAeASASAjASASAEASAjASASAEAEASASAlASAEAEASASAlASASASASAlAE
+  ASAEAEASASASAlASAjASAEASAlASAEAEAEAeASAEAEAEASAEASAEASAEAEAEAEAE
+  AjASASAjAEAEASASAlASAEAEAEAEAEASAEASASAEASAjAjAEAEASASAjAEASASAS
+  ASAjASAjAjASAEASASAEASASASAEASAEAEASASASAEASAjASASAlASAjAeASAjAS
+  AjAjAjASASAEASAeAEAEASAjASASASASAEASAjAeAEASAeAEASASASAjASASAeAS
+  ASAEAEAEAEAeAjASASAEAeASAlAEASAeAEAjAjASAEAEAEAEAEAeAjASAEASASAS
+  AjASAeASAEASASAjASAEASASAjAEASAEAEASAjAEAEASASASASAEAEAEAEAEAjAS
+  AjASAjASASAEASAEAEAEAEASASAEASAEAEASAjASASASASASASAEASASASASAjAS
+  AjAjAjAjASAEAEASAEASASAeAEASASASAEAEAEAEASAjAlAjASAEASAjAeASAEAE
+  AjASASASAjASAEAjAjASAjASASAEAjAeAEASASASAEAEAEASAEAEASAjAEASAeAS
+  AjAeAjAjAeASASASAjAjASASAEASAjASAEASAjAlASASASAeASAEAEASAEASASAS
+  ASAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAeASASAEAEASASASAEAEAEASASAeAS
+  ASASASASAEAEASAEASASAEAEASASAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAS
+  ASAeASAEASAEAEASAeASAeASASAjAjAEASASASAEAEAjASASASASASASAjASASAj
+  ASASASAEASASAEAEASAEAEAEASAeASAEASAjASASAjAjAjAlAjAEASASAlASASAj
+  AEAEASAeAjASAEASASAjASASAEASAEAEASAjAEAEASAEASASASAEAEAjAjASAjAj
+  ASASASASASAlAEASAjASAjASAEAjASAEAEASAEASAeAEAEAEAEASAEASASAjAjAS
+  ASAlASAEAEAEAEAeASASAeAEASAjASAEAEASAEASAjASAEASAjASASAOASASAeAj
+  ASAjASAEASASASAEAEAEAEAEASASAjAEAEASAEAjASAEAEASASAjAeAEAEAEAEAS
+  AEASAeASASAjASASAEASAS_ZAlASAjAEASAeASASAjASAEAEAeASAEASAjASAjAj
+  ASAjASASAlASASASAeASAjAEASAjASAEASASAEASAlASAEASASAEASASAjASAjAS
+  ASASASAEAjAlASAEASAjASASAEASAEAEASAEAEAEAEAEAeASASASAEASASAjASAj
+  AEAEAEAEASASAEASAEASAeAEAEASASAEAEAEASASASAEASAjASAlASAeASAEAEAS
+  AEASASASAEASAeASASAEAEASASAjAeAEAEASASAjAjAEASASAjASASASASAEAjAj
+  ASAlAjAjASASAjAjASAEASASAjAjASAEASAEAEASAEAEAEASASAEAEASAlAjAjAS
+  ASAjASAjAeAEAjASAjAEAeAjASASAjAEASASASAeASASASASAeASAEASAjASAjAj
+  ASASAjAjASAEASAjASAEASAjAjASASAEAeASASAEAjASAlASAjASAEASAjAjASAj
+  AjAjASAjAjASAjASAjAjASAjASAjAlASASASAeAEASASASAeASASAEAEASAeASAj
 }
-
+# tile 21 (lit corridor)
+{
+  AjAjASAjAEAEAjASAjASAjASAEAjASAjASAjAjAjAjAjAiAjAjAjAjAiAjAjAjAj
+  AjAjAjAjAjAEAjAjAjAjAjAjAEAjASAjAEAjAiBDAiAjAEBDAjAjASAjBDAiAjAj
+  AjAiBDAiAjASAjASAjAjAjAjAjASAjAjAEAjAjAjAjAjAEAiAjAjAEAjAjAjBDAS
+  BDAjAjAjAjAEAEAjASAEAEASAjAEAEAjAEBDAjAiAjAjAEBDAiAjAjAjAiAjAiAj
+  AiAjAjAjASAjAjAjAjAjAEAjAjAjAjAEAEAjAiBDAjAEAEAjAjAjASAjAlAiAjAE
+  AjAEAEAjASAjAjAjBDAiAEAjAjAjAEASAEASAjAEAEAjAjAEAjAEAjAlAEAEAEAE
+  AjAjAjAjAjAEAjAjASAjAEASAEAEASASAEAjASAEAjAjAjAjAEAjAjAjARAjAiAj
+  AiBDAiAjAjAjAEASAjAEAjAjAjAEASAjAEAjAjAjAEAiAjASAjAjAjAjASAjAjAS
+  AjAjAiBDAjAEAjAjAEAEAjAjAjAjAjASAEAjAiAjAEAjAjAEAjASAjAiAjASAjAj
+  AjASAEAEAEAjAjAjAjAEASAjAiAEASAjAEBDAjAjAEAEAEAEAEAjAjAjAEAjAjAS
+  AjAjAjAjAEAjAjAiAjAEAjAjBDAEAjAEASAjAiAjAEAjAjAjAjAEAEAEAEAjAjAj
+  AjAjAjAjAjAEAjAEAEAEAEASAjAEAjAEAEAjAjASAjAjAjAjAjAEAjAjAjAjAjAS
+  AjAiBDAiAjAEAEAjAjAjAjASAEAjAjAjAEAEAjAEAjAjAjAiAjAEAiAjAjASAEAe
+  BDAjAjAjAjAjAjAiAjAjAjAjASAjAjAjAEAjASAjAEAEAEAjAEAEAjBDAEASAjAj
+  AiAjAjAiAjASAjASBDAiBDAjAEAjAjAjAEAjAjAiAjAjAjASAjAEAEAjAEAiAjAS
+  AjAEAEAEAEAEAEAEAEAEAEAEASAEAEAEAEAjAjAjAEAEAjASAjASASAEAjAlAjAS
+  ASAjAjAjAEASAjAjAjAjAEASASAjAjAEASAEAEAEAEAEAEAEAEAEAEAEAEAEAEAj
+  ASAjAjAEAjAEAEASASASAjASAjAjAiAEAjAjAjAEAjBDAiAjAjAjAjAjAiAiAjAj
+  AjASAjAEAjAjAEAEAjAEAEAEAjAjASAEAjAjAjASAiAjAiBDAjASASAjBDASAjAj
+  AEAEASAjAjAiAEAjAiAjAiAjAEAjAEAEAjAjAjAEAjAjAjASAjAEASAjAiBDAiAj
+  AjAjAjAjAjAjAEAjBDAjAjAjASAjAjAEAEAjAEAjASAEAEAEAEAjAEAjAjAjAjBD
+  AjAjAjAEAEAEASASAjASAjAEAjAjAjASAEAjAEAjAjAjAEAjAiAjAjAEAjAjAjAi
+  ASAjAjAEAjAjAjAEAEAEAEAEAjAjAiAEAjASAEAiAjAjAEAjAjAjAjAEAEAEAEAj
+  AjAjASAjAiAjASAjAEAjAjAEAjAiBDAEASAjAjAjAjAjAEAEAjAjAEAjAiAjAiAj
+  ASAjAjASBDAjAjAjASAjAiAEAjAjAjAEAjASAEAjAjAjAEAjASAEAjAjAjBDAiBD
+  AjAjAjAEAjAjAjAEAjBDAjAjAEASAjAEAjAEASAEAEAEASAjAjAjAEAjAiAjAjAj
+  AEAEAEASASAjAEAjAEASAjAEAEAjASAEAEAEAjAjAjAEAiAjAjAjAjASAjAEAEAi
+  AEAjAjASAjASAjAjAjAEAEAjAjAjAjASAEAjAjAjAiAEAjBDAjAjASAjASAjBDAj
+  AjAjAiBDASAjAjAjAiAEAjAjAiBDAjAEAjAEASAjAjAEAEAjAjAEAEAjAjAjAiAj
+  AjAjAjAjAjAEAiBDAjAEAjAjAjAjAiAEAjAiAlASASAjAjASASAjAEAjAiBDAjAj
+  ASBDAiAjAjAEAjAjAiAeAjAjAiAjAjAEAjASAjAEAjAjAjAjAjAjASAjAjAjAiBD
+  AjAiBDAiBDAjAiBDAjAiAjAiAjBDAjASAjASAjAEAjAjAjASAjAjAEAEAjAjAjAj
+}
+# tile 27 (grave)
+{
+  ________________________________________________________________
+  ____________________________CPCVCVCPCP__________________________
+  ________________________CPCPCPCPCPCPCmCVCV______________________
+  ______________________CPCPCPCPCPCPCPCPCPCVCP____________________
+  ______________________CPBkBdCPCPAlCPBdBkCPCV____________________
+  ______________________CPBdCPBkCPBdCPBkCVBdCV____________________
+  ______________________CPBDBkCPCPBkCPBdBdCPCP____________________
+  ______________________CPBdCPBdCPBDCPBdCPCPCV____________________
+  ______________________CPBdCPCPCPBkCPBdCPCPCP____________________
+  ______________________CPCPCPCPCPCPCPCPCPCPCP____________________
+  ______________________CPCPCPCPCPCPCPCPCPCPCP____________________
+  ______________________CPBkCPBkCPCPCPCPCPCPCP____________________
+  ______________________CPCJBnCPCPCPCPCPCPCPCP____________________
+  ______________________AEB_AeAdB_AeB_AOANB_Ae____________________
+  __________________Ae__B_ARB_ADAEB_ARAlADAeAN____________________
+  ______________________AOAlAeAdAOB_AeAOAdB_Ad__Ae________________
+  ____________________AeAlB_ARAOADADADADADADAN____________________
+  ______________________AdAlAOADAdAeAdANAeAdAB____________________
+  ______________________ABADAdANAeB_ARAOB_ARAD____Ae______________
+  __________________Ae__ADB_AeAdARB_Ae_UAOABAD__Ae________________
+  ______________________B_AeB_ADAOAeADAdANADAN____________________
+  ____________________AlAeAlAeAdANADADB_AeANAR____________________
+  ______________________AdADADAdARAOAOARB_ADAdAe__________________
+  ________________Ae____B_AOADAOAeB_AdB_AEAOAd____Ae______________
+  ______________________AeB_AeANAdADABAEARAKAD____________________
+  __________________Ae__ARAhB_ADADANARAdADB_ADAe__________________
+  ______________________AeAaB_AeAOB_AeB_ADAeAO____________________
+  __________________Ae__ARB_AlANARAeBVAEADB_AR____________________
+  __________________________Ae______Ae____Ae______________________
+  ____________________________________Al__________________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 29 (sink)
+{
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________BkBkBMBMBM____BkBkBMBMBM________________________
+  ____________________BM____________BM____________________________
+  __________________CJBFBMBMBMBMBMCJBFBM__________________________
+  ____________C$BMBMBFBMBMBMBkBMBMBFBMBMBMBMBk____________________
+  ________C$CmCmCmCmC$C$C$C$BkBMC$C$C$C$C$C$CmCmBk________________
+  ______C$C$Cm_a_f_f_f_f_f_fCPBM_f_f_f_f_f_f_aCmCoBk______________
+  ____C$C$Cm_a_f_f_f_f_f_f_fBkBM_f_f_f_f_f_f_f_aCmCmBk____________
+  ____C$C$_a_f_f_f_k_k_k_k_kBkBM_k_k_k_k_k_f_f_f_aCmCP____________
+  ____C$C$_a_f_f_k_k_k_k_k_kBh_s_k_k_k_k_k_k_f_f_aCmBk____________
+  ____C$C$_a_f_f_k_k_k_k_k_k_y_s_k_k_k_k_k_k_f_f_aCoBk____________
+  ____C$Cm_a_f_f_k_k_k_k_p_k_k_s_k_p_k_k_k_k_f_f_aCmBk_M_A_A_A____
+  ____C$Cm_a_f_f_k_k_k_k_k_k_k_k_kBE_k_k_k_k_f_f_aCmCJ_A_A_A_A_A__
+  ____C$C$_a_f_f_f_k_k_k_kBE_pBE_k_k_k_k_k_f_f_f_aCmBn_A_A_A_A_A_A
+  ____C$C$_a_f_f_f_f_f_f_f_f_f_f_f_f_f_f_f_f_f_f_aCmBk_A_A_A_A_A_A
+  ____C$C$Cm_a_a_f_f_f_f_f_f_f_f_f_f_f_f_f_f_a_aCmCmBk_z_A_A_A_A_A
+  ____C$C$C$CmCm_a_a_a_a_a_a_a_a_a_a_a_a_a_aCmCmCmCJBn_A_A_A_A_A_A
+  ______C$C$C$C$C$C$C$CmCmCmCmCmCmCmCmCmCmCmCmCmBkBn_z_A_A_A_A_A_A
+  __________C$C$C$C$C$C$C$C$C$C$C$CmCmCmCmCVCPBk_A_A_A_A_A_A_A_A_A
+  ________________C$C$C$C$C$CmCmCmCmCmCmCm_A_A_A_A_A_A_A_A_A_A_A__
+  ______________CPAlCPBkBkBdBdBdBdBdBdBdBDBk_A_A_A_A_A_A_A_A_A____
+  ______________CPCPAlCVBkCPBdBdBdBdBdBJBkBn_z_A_A_A_A_A_A_A______
+  ________________CPCPCPCVBkBkBkBdBdBkBlBk_A_A_A_A_A_A_A_A________
+  __________________CPCPCPCPCVBkCPBkCOBk_M_z_A_A_A_A______________
+  ______________________CPCPCPCPBkBk_B_z_A_A_A____________________
+  ___________________________A_A_A_M_A_A_A________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 30 (toilet)
+{
+  __________________C$C$C$C$C$C$__________________________________
+  ________C$C$C$C$C$C$CXCXCXCXCXC$________________________________
+  ____C$C$CXCXCXCXCXCXCXCXCXCXCXCXC$______________________________
+  ____C$C$CXCXCXCXCXCXCXCXCXC$C$C$C$______________________________
+  ____C$CXC$CXCXCXC$C$C$C$C$CXCXCXCX______________________________
+  ____C$CXC$C$C$C$CXCXCXCXCXCXCXCXCX______________________________
+  ____C$CXC$CXCXBMAECWCXCXCXCXCXCXCX______________________________
+  ____C$CXC$BMBMCXCXCXCXCXCXCXCXCXCX______________________________
+  ____C$CXC$CXCXCXCXCXCXCXCXCXCXCXCX______________________________
+  ____C$CXC$CXCXCXCXCXCXCXCXCXCXCXCX______________________________
+  ______C$C$CXCXCXCXCXCXCXCXCXCXCX________________________________
+  ________C$CXCXCXCXCXCXCXCXCXCXC$C$C$C$__________________________
+  __________CXCXCXCXCXC$C$C$C$C$C$C$C$C$C$_______A_A_A_A_A________
+  ______________CXCXC$C$C$C$C$C$COCOCOCOC$C$_A_A_A_A_A_A_A_A______
+  ______________CXCXC$C$COCOCOCOCOCOCOCOCOC$C$_A_A_A_A_A_A_A_A____
+  ______________CXCXC$C$COCOCOCO_k_kCOCOCOCOC$_A_A_A_A_A_A_A_A____
+  ______________CXCXCXC$C$_k_k_k_k_k_k_kCOCOC$C$_A_A_A_A_A_A______
+  ______________CXCXCXCXC$C$C$_k_k_k_k_k_kCOC$C$_A_A_A____________
+  ________________CXCXCXCXC$C$C$_k_kC$C$C$C$C$C$_A_A_A____________
+  ________________CXCXCXCXCXC$C$C$C$C$C$C$C$C$CX_A_A_A____________
+  __________________CXCXCXCXC$C$C$C$CWCXCXCXCXCX_A_A_A_A__________
+  __________________CXCXCXCXC$CXCXCXCXCXCXCXCXCX_A_A_A_A__________
+  ______________________CXCXC$CXCXCXCXCXCXCXCXCX_A_A_A_A__________
+  ________________________CXCXCXCXCXCXCXCXCXCXCX_A_A_A_A__________
+  ____________________________CXCXCXCXCXCXCXCX_A_A_A_A____________
+  ______________________________CXCXCXCXCXCX_A_A_A_A_A____________
+  ______________________________CXCXCXCXCXCX_A_A_A_A______________
+  ________________________________CXCXCXCX_A_A_A_A________________
+  ___________________________________A_A_A_A_A____________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 31 (fountain)
+{
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________BsAw______________BsBiAwAw________BsCF__Aw______________
+  ________BsCFAw_______KBECFBsBiBiAzBh__BsCFBsBSBiAzAw____________
+  ______BsCFBSAzBSAw_s_s_s_yBhBSBS_yAwAzBsBsBiBiBiAwBSAw__________
+  ____BsCFBsBiAwAw_s_sBsCF_sBh_yBiBiBS_sBh_yBh_yBiAwAwAzAw________
+  ____BsCFBsBiBiAzBSAzCFBsBs_s_sBiBi_s_yBh_g_s_sBsBiAwBSBsCFAw____
+  ____BsBvBsBiBiBiAwAwBs_HBiBi_s_s_s_yBE_IBrBi_s_sBiBiBsCFBsAzAw__
+  __BsBSAwCFBSBiBS_HBE_KAF_K_H_H_sBhBI_I_H_IBiBi_s_HBsCFBsBsBiBS__
+  CFBsBiAwAzBSBiBi_s_s_H_sBhBE_IBh_y_G_G_H_y_H_H_sCFBsBsCFBsBiAwAw
+  BsCFBSAzAwBi_H_s_s_G_G_G_H_s_s_s_s_H_I_H_I_G_H_I_HBsBvBsBiBiAzAw
+  BsBsBiBiBS_I_H_s_I_G_H_I_J_KBI_s_J_s_s_H_H_HBh_G_I_HBsBiBiBSBSAw
+  BsCFBSBiAwAz_H_I_G_J_J_s_s_J_s_yBh_J_J_s_J_J_I_H_G_H_IBiBiBSAz__
+  CFBsBiBSBiAw_H_H_J_J_s_J_J_J_JBh_y_J_J_s_s_J_J_H_G_H_HBsAzAw____
+  BsBvBiBiBi_H_G_J_J_s_J_J_J_J_J_sBh_J_J_J_J_J_s_J_G_ICFBsBiBSAw__
+  __BsBSBiBsBs_I_J_J_s_J_J_J_J_J_y_s_J_J_J_J_J_s_J_G_HBsBiBiAzAw__
+  ______BsCFBiAz_J_J_J_s_J_J_J_J_JBh_J_J_J_J_J_s_J_IBsCFBSBiBiAwBS
+  ____CABvBsBiAwAw_J_J_J_J_s_J_J_J_J_J_J_J_J_sAwAz_HBsBsBiBSBiBiAw
+  ____BsCFBSBiAzBSAw_J_JBsCFBiAw_J_s_s_s_JBsCFAwBSAwCFBsBWBiBSBi__
+  __BsCFBsBiBiAwAwAw_JCFBsBsBSBSAw_J_J_J_JBsBiAzAwAwAz____BiBi____
+  ____BsCFBSBiAzBSAw_JBsCFBsBiAzAwBS_JBsCFBsBiBiAwBSAw____________
+  ______BWBiBiAwAw__CABvBsBiBiAwAzAwAwCFBsBsBiBiBiAzAw____________
+  ________BSBiAzBS__BsCFBsBiBiAwBSAwAzBsCFBsBiBSBiAw______________
+  ____________________BsBsBSBiAzAwAwBSBsCFBsBWBi__________________
+  ______________________CFBWBiAw________BsBsBi____________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 40 (cloud)
+{
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_pBI_p_p_pBIBI_p_p_p_p_p_p_p_p_p_p_p
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_pBhBI_pCQCSCSBI_pBh_p_pBI_p_p_p_p_p_p
+  _p_p_p_p_p_p_p_p_p_p_pBI_pBhCQCQCSCoCoCSCQCmCQCSCQBhCQBI_p_p_p_p
+  _p_p_p_p_p_p_p_p_pBICmBhCQCSCoCoCoCoCmCoCSCSCmCSCQCSCSCQCSBI_p_p
+  _p_p_p_p_p_p_p_pBICSCoCoCoCoCoCoCoCoCoCoCmCoCoCoCoCSCoCmCSCQ_p_p
+  _p_p_p_pBIBIBIBIBICoCoC$C$CoCoCoCoCoCoCoCoCoCoCoCoCoCoCoCmBhBI_p
+  _p_p_p_pCQCSCQCQCoCoC$CoCoCoCoCoCoCoCoCoCoCoCoCoCoCoCoCoCmCQBI_p
+  _p_p_pCSCmCoCoCoCmCmCoC$CoCoCoCoCoCoCoCoCoCoCoCoC$CoCoCoCSCQBI_p
+  _pBICQCSCoCoCoCmCmCmCoCoCoCoCoCoCoCoCoCoC$CoC$CoC$CoCoCoCSCSCQBI
+  _pCmCSCoCoCoCoCmCoCmCoCoCoCmCmCoCoC$CoC$CoCoCoCoCoCoCoCoCmCSCQBI
+  BICmCmCmCmCmCmCmCoCmCmCmCmCmCoCoCoC$CoC$CoC$CoCoC$CoCoCoCmCSCQBI
+  BICQCVCmCVCQCmCmCmCVCmCmCoCoCoCoCoCoCoCoCoCoCoCoCoCoC$CoCSCQBn_p
+  BICRCQCVCPCSCmCmCPCVCmCmCmCoCoCmCmCmCoCoCoCoCmCoCoCoCoCoCoCRCQ_p
+  CmCQCmCVCSCmCmCmCVCmCmCmCoCoCoCmCmCmCmCmCmCmCmCmCmCmCoCoCmCmCmBI
+  CQCVCmCmCmCmCmCmCVCVCmCmCmCmCmCmCmCmCmCmCmCmCmCmCmCmCmCmCmCmCQBI
+  BICPBnCVCPCVCmCmCmCVCVCmCmCmCmCmCmCVCVCVCVCVCVCVCmCmCmCmCmCmCmBI
+  _pBICVCPCVCVCmCmCmCVCVCVCVCVCVCmCVCVCVCVCVCVCVCmCmCoCoCoCoCmCmBI
+  _pBI_pCVCVCmCVCoCoCmCVCVCVCVCVCmCmCmCmCVCVCVCmCmCoCoC$CoCoCmCmBI
+  _p_p_pBICQCVCVCmCmCoCoCoCoCmCmCoCoC$CoCoCmCoCoCoCoC$CoCoCoCoCmCQ
+  _p_p_pCQCSCVCmCoCoCmCoCoCoCoC$CoC$CoC$CoCoCoC$C$CoC$CoC$CoCoCmCS
+  _p_p_pBIBICmCmCmCoCmCmCoCoCoC$CoC$CoCoCoCmCmCoCoC$CoCoC$CoCoCmCQ
+  _p_p_p_pCQCmCVCmCmCmCmCmCmCmCoCmCoCoCoCmCmCmCmCoCoCoCoCoCoCmCoBI
+  _p_p_pBICVCVCmCPCPCPCVCVCPCPCPCVCVCVCmCmCVCmCmCmCmCmCmCmCmCmCmBI
+  _p_p_pCQCmCmCmCmCmCmCVCmCVCVCPCPCPCVCVCVCVCVCVCVCVCVCVCVCmCVCmBn
+  _p_p_pBIBICmCoCoCmCmCmCmCmCVCVCVCVCmCmCmCmCmCmCVCVCVCVCVCVCVCQBI
+  _p_p_pCQBICmCoCoCoCmCmCmCmCmCmCmCmCVCmCmCVCmCVCmCmCmCmCmCQBIBIBI
+  _p_pBICVCQCSCoC$CoCmCoCoCmCmCmCmCmCmCmCmCmCVCVCVCmBnCQCVBIBI_p_p
+  _p_pBIBICmCoCoCoCoCmCmCmCmCVCVCVCVCPBnCVCVCVCVCVCVBhBIBI_p_p_p_p
+  _p_p_p_pBICmCmCmCmCSBnCQCVCQBnBnBI_pBIBIBnCPCQBIBIBe_p_p_p_p_p_p
+  _p_p_p_pBIBeBIBIBIBIBIBIBI_p_p_pA$_p_p_pBIBI_p_p_p_p_p_p_p_p_p_p
+  _p_p_p_p_p_p_p_p_k_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p
+}
+# tile 42 (arrow trap)
+{
+  CBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB________________________BDAiBDAiBDAi________________________CB
+  CB__________________AiBDAiBFBdBFBdBFBdBdAiBD__________________CB
+  CB______________BDAiBdBDBFBdBFBkBFBdBFAiBDBFAiBD______________CB
+  CB__________CuAiCuBFCpBDAiBdAiBdBFBdAiBDBFBdBkBFCpBD__________CB
+  CB________BDBFCuBkCuBdCpBDAiBMBdAiBDBFBdBFAiBdBFCuCuAi________CB
+  CB________AjBFBdCpCuCpCuCuCuCuCuCuCuCuCpCuCuCpCuCuCuCu________CB
+  CB________BDBFCpBDCpBFCuBFBMBdBFBdAiBDBMBkBMBkBFCuCuBD________CB
+  CB________AjCuAiCpBdCuBFBdBdBFBFBdBMAiBdBFBdApBdCuBDAiAE______CB
+  CB________AjAjBDAiBdApBdApBdAiBkBFBDBDBFBdAiBDAiAjAjBDAEAS____CB
+  CB__________AjBDAjAjAiBDAjBFBdBMBdBFAiBDAiBdAjBDAjAjASAEAE____CB
+  CB______________AjAjBDAjAjBDAiBDAiBDAiAjAjAjAjAjAEAEAEAE______CB
+  CB______________AEAEAjAjAjBDAjAjAjAjBDAjAjAjAEASAEAS__________CB
+  CB__________________AEAEAEAiAjAjAjAjAjAEAEASAEAE______________CB
+  CB________________________AeAEAEAEAEAEASAE____________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCB
+}
+# tile 43 (dart trap)
+{
+  CBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB________________________BDAiBDAiBDAi________________________CB
+  CB__________________AiBDAiBFBdBFBdBFBdBdAiBD__________________CB
+  CB______________BDCuBdCuBdBdBFBMBMBdBFAjBdBFAjBd______________CB
+  CB__________AiBDBFCpCuCpCuApBdBDBFBdAiBdAiBdBMBFAiBD__________CB
+  CB________BDBFBMBdBFCuCuCuCuBMBdCpCpCuCuCuBFBDBdBFBdAi________CB
+  CB________AiBDBFBdCuCuCuCuCuCuCpCuCuCuCuCuCuCpCuCpCpBD________CB
+  CB________BDBFBDAiBDCpCuCuCuBdBFCuCuCuCuCuBMBkBFBdBFAi________CB
+  CB________BDAiBDBFCuCuCuCuBFBdBFBdBFBDBFBdBFBDBFBDAiBDAE______CB
+  CB________AjAjAjBDCpBFCuBdApBdBMBdAiBDBFBDBFAjBDAjAjAjASAE____CB
+  CB__________AjAiAjAjAiBDAiBdBFBdBMBMAiBDAiBDAjAiAjAjAEAEAE____CB
+  CB______________AjAjBDAjAjBDAiBDAiBDBDAjAjAiAjBDAEAEASAE______CB
+  CB______________AeAEAjAjAjAjAjAjAjAjAiAjAjAjAEAEASAE__________CB
+  CB__________________ASAEAEBDAjAjAjAjBDAEAEAEASAE______________CB
+  CB________________________ASAEAEAEAEAEASAE____________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCB
+}
+# tile 44 (falling rock trap)
+{
+  CBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCB
+  CB____________________________________________________________CB
+  CB____________________________Cu______________________________CB
+  CB____________________________Cu______________________________CB
+  CB____________________________Cu____Cu________________________CB
+  CB____________________________Cu____Cu________________________CB
+  CB________________________Cu__Cu____Cu________________________CB
+  CB________________________Cu__Cu____Cu________________________CB
+  CB________________________Cu__Cu____Cu________________________CB
+  CB________________________Cu__Cu____Cu________________________CB
+  CB________________________Cu__Cu____Cu________________________CB
+  CB________________________Cu__Cu____Cu________________________CB
+  CB________________________Cu________Cu________________________CB
+  CB________________________Cu__________________________________CB
+  CB______________________________CuCu__________________________CB
+  CB__________________________CuCuCuCuCu________________________CB
+  CB______________________CuCuCuCuCuCuCuCu______________________CB
+  CB______________________CuCuCuCuCuCuCuCu______________________CB
+  CB________________________CuCuCuCuCuCu________________________CB
+  CB________________________CuCuCuCu____________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCB
+}
+# tile 45 (squeaky board)
+{
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  __CFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFBsBs__
+  __CFBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsCFCFBsBsBsCFCF__
+  __CFBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsCFCFCFCFBsBsBsBsBsCFCF__
+  __CFBsBsCFCFCFCFCFCFBsBsBsBsCFCFCFCFCFCFBsBsBsBsBsBsBsBsBsCFCF__
+  __CFCFCFBsBsBsBsBsBsCFCFCFCFBsBsBsBsBsBsCFCFCFCFCFCFCFCFCFCFCF__
+  __CFBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsCFCF__
+  __CFBsBsCFCFCFCFCFCFBsBsBsBsBsBsBsBsBsBsCFCFCFCFCFBsBsBsBsCFCF__
+  __CFCFCFBsBsBsBsBsBsCFCFCFCFCFCFCFCFCFCFBsBsBsBsBsCFCFBsBsCFCF__
+  __CFBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsCFCFCFCFCFCFBsBsCFCFCFCF__
+  __BsBsBsCFCFCFCFCFCFCFBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsCFCF__
+  __BsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsCFCFCFCFCFCFBsBsCFCFCFCF__
+  __BsBsBsCFCFCFCFCFCFCFBsBsBsCFBsBsBsBsBsBsBsBsBsBsBsBsBsBsCFCF__
+  __CFCFCFBsBsBsBsBsBsBsCFCFCFCFCFCFCFCFCFCFCFBsBsBsBsBsBsBsCFCF__
+  __BsBsBsCFCFBsBsCFCFBsBsBsBsBsBsBsBsBsBsBsBsCFCFCFCFCFCFCFCFCF__
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 47 (land mine)
+{
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  _____________________l_l_l_l_l_l_l_l_l_l_l______________________
+  _________________l_l_h_m_l_h_h_h_h_h_l_l_h_l_l_l________________
+  _____________l_l_h_h_l_h_l_hCuCuCu_h_m_h_h_h_h_h_h______________
+  ___________l_h_h_h_h_l_h_lCuCuCuCuCu_l_h_h_h_h_h_h_h____________
+  ___________l_h_h_h_h_l_l_hCBCuCuCuCB_h_h_c_h_h_h_h_h____________
+  ___________l_h_h_h_h_l_h_l_hCBCBCB_h_hAR_h_h_h_h_h_h____________
+  ___________l_l_l_h_h_h_h_h_h_h_h_h_h_h_h_h_h_h_h_h_h_A__________
+  ___________l_h_h_l_l_h_h_h_h_h_h_h_h_h_h_h_h_h_h_h_h_A_A________
+  ___________l_h_h_h_h_h_h_d_h_h_h_h_c_h_h_c_h_h_c_h_h_B_A________
+  _____________h_h_h_h_h_h_h_h_h_h_h_h_h_h_h_h_h_h_h_z_A_A________
+  _______________A_h_h_h_h_h_h_h_h_h_h_hAR_h_h_h_h_B_A_A_A________
+  _________________A_z_h_h_h_h_h_h_h_h_h_h_h_z_B_z_A_A_A__________
+  _____________________A_z_A_z_A_z_B_z_A_A_A_A_A_A_A______________
+  ___________________________A_A_A_A_A_A_A_A_A_A__________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 48 (rolling boulder trap)
+{
+  CBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB__CuCuCuCuCuCuCuCuCuCuCuCuCuCu______CuCuCuCuCuCu____________CB
+  CB________________________________CuCuCuCuCuCuCuCuCuCu________CB
+  CB__________CuCuCuCuCu__________CuCuCuCuCuCuCuCuCuCuCuCu______CB
+  CB____________________________CuCuCuCuCuCuCuCuCuCu__CuCuCu____CB
+  CB____CuCuCuCuCuCuCuCuCuCu__CuCuCuCuCuCuCuCuCuCuCuCuCu__CuCu__CB
+  CB__________________________CuCuCuCuCuCuCuCuCuCu__Cu__CuCuCu__CB
+  CB__________________________CuCuCuCuCuCu__CuCuCuCuCuCuCu__Cu__CB
+  CB__________________________CuCuCuCuCuCuCuCuCuCuCuCu__CuCuCu__CB
+  CB__CuCuCuCuCuCuCuCuCuCu____CuCuCuCuCuCuCuCuCuCuCu__CuCuCuCu__CB
+  CB__________________________CuCuCuCuCuCuCuCu__CuCuCuCuCu__Cu__CB
+  CB__________________________CuCuCuCuCuCuCuCuCuCuCu__CuCuCuCu__CB
+  CB__________________________CuCuCuCuCuCuCuCuCu__CuCu__Cu__Cu__CB
+  CB________CuCuCuCuCuCuCuCu____CuCu__CuCu__CuCuCuCuCuCuCuCuCu__CB
+  CB____________________________CuCuCuCuCuCuCuCu__Cu__CuCuCu____CB
+  CB__________________CuCuCu______CuCuCuCu__CuCuCuCuCuCuCu______CB
+  CB__________________________________CuCuCuCuCuCuCuCuCu________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCB
+}
+# tile 49 (sleeping gas trap)
+{
+  CBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB______________________CuCuCuCuCuCuCu________________________CB
+  CB______________________CuCuCuCuCuCuCu________________________CB
+  CB______________________________CuCu__________________________CB
+  CB____________________________CuCu____________________________CB
+  CB__________________________CuCu______________________________CB
+  CB________________________CuCu________________________________CB
+  CB______________________CuCu__________________________________CB
+  CB______________________CuCuCuCuCuCuCu________________________CB
+  CB______________________CuCuCuCuCuCuCu________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB__________________________________CuCuCuCuCu________________CB
+  CB________________________________________Cu__________________CB
+  CB______________________________________Cu____________________CB
+  CB____________________________________Cu______________________CB
+  CB__________________________________CuCuCuCuCu________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________CuCuCuCu________________________________CB
+  CB________________________Cu__________________________________CB
+  CB______________________Cu____________________________________CB
+  CB____________________CuCuCuCu________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CB____________________________________________________________CB
+  CBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCB
+}
+# tile 50 (rust trap)
+{
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ____CL__________________________________________________________
+  __BzCTBzCLBbCL________________CP________________________________
+  ____CLBbCL__CLBbCL________COCUBbCLBz____________________________
+  ______CL____Bz__BbCLBz____CL__BJ__CL______________CnCNCO________
+  ________BtCU________BzCLBbCL__Aj__Bb_z_A__CLBzCTCNBzCLBb________
+  ______________COCn______CLBbCLBtCLCLCLBbCLBbCLBzCLBtCL__________
+  ____________CTCNBzCLCT__Bt____CL____BtCL_A______________________
+  ________________BtCLBzBzCL____CLBzCUCNBV_A_A_A__________________
+  ____________________CLBtCLBzCTBb__BXBtBb___A_A_____A_A_A________
+  ________________________BzBbBtCLCLCLCLCL___A_A_A_A___A_A_A______
+  ____________________CLCTCLCLCLBbCL____Bb_z___A_A_A_A_A_A_A______
+  ____________________________BtCLBb_____z_A___A_A_A_A___A________
+  __________________________COBnBVAe_______A_A_A_A_A_A_A_A________
+  ____________________________AlBJBlBJ_____A_A_A_A_A_A_A__________
+  ____________________________CUBzBZ_______A_A_A_A_A_A_A_A________
+  ____________________________BzCLBV_____A_A_A_A_A___A_A_A_A_A_A__
+  __________AjAS____________BzCTBzCLBz_A_A_A_A_A_A_A_A___A_A_A_A__
+  ______AiAjAiBDAj____AjAiBKBDBJAlAe_A_A_A_A_A_______________A_A__
+  ____AjBKBdBKAiAi__AjAjBDAiAiAjBJAe_A_A_A________________________
+  ____BKAjAiAiBKBD__ASAfAiAjASBJAlAe_A_AASAS______________________
+  ______AiBKAjBK____AjAjASCKASBJAjAeAjBDAiBD______________________
+  __________BdAi______AlASAjAjAiBJAjBKAjBdAiAj____________________
+  ______________________ASCKAjBdBKAiBKAiBDBKAi____________________
+  ______________________ASAiBKAiAjCPAiBKAiBK______________________
+  ________________________AjAjBdBKAi______________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 59 (web)
+{
+  ________________________________________________________________
+  ________________________________________________________________
+  ____CV__________________________________________________CVCV____
+  ______CVCV__CVCVCV______________CV____________________CV________
+  __________CV______CVCVCVCV______CV__________________CV__________
+  ____________CV____________CVCVCVCVCVCVCVCVCVCVCVCVCVCV__________
+  ____________CV________________CV__________________CV____________
+  ______________CVCVCVCV________CV________________CV__CV__________
+  ______________CVCV____CVCVCVCVCVCVCVCVCVCVCVCVCV____CV__________
+  ______________CV__CVCV________CV__________CVCV______CV__________
+  ____________CV________CV________CV______CV__CV________CV________
+  ____________CV__________CVCVCVCVCV______CV____CV______CV________
+  ____________CV________CVCV______CVCVCVCV______CV______CV________
+  ____________CV____CVCV____CVCV__CV____CVCV______CV____CV________
+  __________CV____CV______CVCV__CVCV__CV__CV______CV______CV______
+  ________CVCVCVCVCVCV__CV____CVCV__CV______CV______CVCV__CV______
+  __________CV__CV____CVCVCVCVCV__CV__CVCV__CV__CVCVCV__CVCVCV____
+  __________CV__CV____CV______CVCV__CV____CVCVCV____CV____CV______
+  __________CV____CV____CV____CV__CVCV________CV__CV______CV______
+  __________CV____CV____CV__CV____CV__CVCV__CV____CV______CV______
+  __________CV____CV______CVCV__CV________CVCV____CV______CV______
+  __________CV____CV__CVCV__CVCVCV______CVCVCV____CV______CV______
+  __________CV______CVCV________CVCVCVCV____CV____CV____CV________
+  __________CV______CV__________CV____________CVCV______CV________
+  __________CV____CVCVCVCVCV____CV______________CV______CV________
+  __________CV____CV________CVCVCVCVCVCVCVCVCVCVCVCV____CV________
+  __________CVCVCV____________CV____________________CV__CV________
+  __________CVCVCVCVCV________CV____________CVCVCVCVCVCVCV________
+  ________CV__________CVCVCVCVCVCVCVCVCVCVCV____________CV________
+  ______CV______________________CV________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 60 (statue trap)
+{
+  ________________________________________________________________
+  ____________________________CBCb________________________________
+  ____________________________CECb________________________________
+  ____________________________CxBr________________________________
+  ____________________________CbCY________________________________
+  ________CYCYCYCYCxCxCYCECYCECBCYCbCuCbCYCECbCbCECbCu____________
+  ________BrCYCBCYCbCuCYCYCbCYCbBrCbCYCuCbCYCECbCuCYCb____________
+  ____________________CbCE____CYCb____CbCu________________________
+  ____________________CECY____CYCu____CBCB________________________
+  ____________________CYCYCE__CYCb__CbCuCb________________________
+  ______________________CECY__CECB__CxCb__________________________
+  ______________________CbCuCECuCBCbCbCb__________________________
+  ________________________CBCxCbCYCECB____________________________
+  ________________________CBCbCuCuCbCY____________________________
+  __________________________CBCbCYCY______________________________
+  __________________________CYCBBrCb______________________________
+  ____________________________CbCB________________________________
+  __________________________CbCYCbCb______________________________
+  __________________________CuCbCBCY______________________________
+  ________________________CbCbCbCYBrCB____________________________
+  ________________________CbCb____CYCE____________________________
+  ______________________CYCBCb____CYCYCb__________________________
+  ______________________CBCY________CECB__________________________
+  ____________________CbCYCu________CYCYCB________________________
+  ____________________CYCY____________CbCb________________________
+  __________________CYBrCB____________CbCBCE______________________
+  __________________CECY________________CbCE______________________
+  ________________CYCECb________________CBCECE____________________
+  ________________CbCY____________________CYCE____________________
+  ______________CbCbCb____________________CBCbCx__________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 61 (magic trap)
+{
+  ________________________________________________________________
+  ________________________________________________________________
+  __________________________CECxCbCbCYCx__________________________
+  ____________________CuCECECbCYCxCECuCbCECxCE____________________
+  __________________CBCbCYCb__CYCbCx____CbCBCxCE__________________
+  ______________CbCBCYCY______CuCbCY________CbCbCECY______________
+  ____________CBCbCu__________CECYCE____________CBCBCY____________
+  __________CECECb__________CYCECYCE______________CYCbCB__________
+  __________CBCx____________CYCYCbCYCb______________CbCE__________
+  ________CBCE______________CbCb__CbCu________________CbCb________
+  ______CbCYCu____________CbCYCY__CbCB________________CECYCb______
+  ______CuCbCbCuCbCuCBCbCYCbCxCbCuCbCuCYCECYBoCbCbCYCECYCYCY______
+  ______CbCuCuCECYCbCuCbCYCbCuCbCYCuCbCYCYCECYCBCbCYCYCbCBCB______
+  ____CuCbCxCxCxCb______CYCuCb______CuCE________CBCYCY____CBCb____
+  ____CxCb__CYCYCbCb____CYCb________CECu____CbCuCECb______CBCE____
+  ____CbCu______CxCuCb__CbCY________CYCBCYCYCbCYCY________CYCY____
+  ____CxCb________CYCuCYCBCu__________CbCBCYCE____________CECb____
+  ____CYCx__________CbCYCb__________CYCYCYCb______________CYCY____
+  ____CbCu____________CbCuCuCb____CBCYBoCY________________CECu____
+  ____CbCY__________CuCYCbCYCYCYCYCbCYCbCYCE______________CbCB____
+  ______CYCb________CYCb____CYCbCYCB____CYCY____________CECB______
+  ______CbCB________CYCE__CYCbCYCbCY____CBCE____________CECE______
+  ______CbCuCb____CYCYCYCYCbCY__CYCBCB__CBCbCE________CYCECY______
+  ________CbCu____CBCECYCbCY______CBCEBoBrCYCB________CBCb________
+  __________CbCb__CYCBCYCY__________CYCBCYCBCb______CECb__________
+  __________CbCECbCBCb__________________CbCECY____CECYCE__________
+  ____________CBCYCbCB____________________CBCbCYCECECb____________
+  ________________CYCYCBBr________________CECbCbCE________________
+  __________________CuCbCBCYCBCbCYCYCYCECBCYCbCY__________________
+  ________________________CECBCYCbCYCYCbCE________________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 62 (anti-magic field)
+{
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________Cx______________________________
+  ______________________________CxCB______________________________
+  ______________________________CbCx______________________________
+  ______________________________CbCY______________________________
+  ______________________________CbCB____________CBCB______________
+  ______________________________CYCE________CECYCbCE______________
+  ______________________________CbCY____CECBCYCx__________________
+  ______________________________CbCbCuCECuCB______________________
+  ______________________________CuCbCBCx__________________________
+  __________________________CuCbCxCb______________________________
+  ______________________CbCbCbCuCYCY______________________________
+  __________________CuCbCYCu____CuCY______________________________
+  ______________CbCbCuCb________CYCb______________________________
+  ______________CxCY____________CYCb______________________________
+  ______________________________CECY______________________________
+  ______________________________CYCY______________________________
+  ______________________________CYCB______________________________
+  ______________________________CbCY______________________________
+  ______________________________CYCB______________________________
+  ______________________________CbCY______________________________
+  ______________________________CYCY______________________________
+  ______________________________BrCB______CYCBCYCbCBCb____________
+  ______________________________CYCE__CECBCYCbCBCbCYCECb__________
+  ______________________________CYCYCbCYCbBr________CYCECb________
+  ______________________________CbCECBCY______________CbCb________
+  ______________________________CECYCY__________________CbCE______
+  ______________________________CYCY______________________Cb______
+  ______________________________Cb________________________Cb______
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 63 (polymorph trap)
+{
+  ________________________________________________________________
+  ________________________________________________________________
+  __________________________CECxCbCbCYCBCE________________________
+  ____________________CuCECECbCYCxCYCbCBCYCBCbCu__________________
+  ____CY____________CBCbCYCb______________BrCBCYCY________________
+  ____CbCY______CbCBCYCY______________________CBCbCYCB____________
+  ____CYCB____CBCbCu____________________________CBCbCECb__________
+  ____CbCY__CECECb__________________________________CbCb__________
+  ____CYCY__CBCx______________________________________CuCb________
+  ____BrCBCBCE__CYCBCYCbCBCb__________________________CbCuCb______
+  ____CYCECYCECBCYCbCBCbCYCECb__________________________CBCb______
+  ____CYCYCbCYCbBr________CYCECb________________________CbCY______
+  ____CbCECBCY______________CbCb__________________________CYCb____
+  ____CECYCY__________________CbCE________________________CuCb____
+  ____CYCY______________________Cb________________________Cx______
+  ____Cb__________________________________________________________
+  __________________________________________________________Cb____
+  ______Cx________________________Cb______________________CYCY____
+  ____CbCu________________________CECb__________________CYCYCE____
+  ____CbCY__________________________CbCb______________CYCBCECb____
+  ______CYCb________________________CbCECY________BrCbCYCbCYCY____
+  ______CbCB__________________________CbCECYCbCBCbCYCBCECYCECY____
+  ______CbCuCb__________________________CbCBCbCYCBCY__CECBCBBr____
+  ________CbCu______________________________________CxCB__CYCY____
+  __________CbCb__________________________________CbCECE__CYCb____
+  __________CbCECbCB____________________________CuCbCB____CBCY____
+  ____________CBCYCbCB______________________CYCYCBCb______CYCb____
+  ________________CYCYCBBr______________CbCYCbCB____________CY____
+  __________________CuCbCBCYCBCbCYCxCYCbCECECu____________________
+  ________________________CECBCYCbCbCxCE__________________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 70 (cmap / thrown boomerang, open left)
+{
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________CyCyCc__________________________________
+  ______________________CyCcB$B$B$_A______________________________
+  ______________________CyB$CuCAB$Bs_A____________________________
+  ______________________CcB$CACuCfB$Bs_A__________________________
+  _______________________ABsB$CfCzCACABs_A________________________
+  _________________________BCACACACuCAB$Bs_A______________________
+  ___________________________ABsCACACuCfCAB$_A____________________
+  _____________________________BB$CACfCzCAB$Bs_A__________________
+  _______________________________ABsCACACuCACABs_A________________
+  _________________________________BBsCACACuCzB$Bs_A______________
+  ___________________________________BB$BsCfCfCACAB$_A____________
+  _____________________________________BCACACACuCACABi_A__________
+  _______________________________________BCyCACACuB$Bi_A_A________
+  ______________________________________CyCqCACuCABsBi_A_A________
+  ____________________________________CyCFCzCfCAB$Bi_B_A_A________
+  __________________________________CyCqCACuCfB$Bi_A_A_A__________
+  ________________________________CyCcB$CuCACABi_B_A_A____________
+  ______________________________CyCqCfCzCABsBi_A_A_A______________
+  ____________________________CyCcB$CuCfCABi_B_A_A________________
+  __________________________CqCqB$CuCACABi_A_A_A__________________
+  ________________________CyCcCzCfCAB$Bi_B_A_A____________________
+  ______________________CyCACACuCfB$Bi_A_A_A______________________
+  ______________________CcB$CuCACABi_A_A_A________________________
+  ______________________CFB$CABsBi_A_A_A__________________________
+  ________________________B$BiBi_A_A_A____________________________
+  ___________________________A_A_A_A______________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 71 (cmap / thrown boomerang, open right)
+{
+  ________________________________________________________________
+  ________________________________________________________________
+  __________________________________CcCyCy________________________
+  _______________________________AB$B$B$CcCy______________________
+  _____________________________ABsB$CACuB$Cy______________________
+  ___________________________AB$CACfCuCAB$Cc______________________
+  _________________________ABsB$CACzCfCAB$_A______________________
+  _______________________ABsCACACuCACABs_A________________________
+  _____________________ABsB$CzCuCACABs_B__________________________
+  ___________________AB$CACACfCfCABs_A____________________________
+  _________________ABsB$CACuCACACA_B______________________________
+  _______________AB$CACfCuCACAB$_B________________________________
+  _____________ABsB$CACfCzCABs_B__________________________________
+  ___________ABiCACACuCACABs_A____________________________________
+  _________A_ABiB$CuCACACy_B______________________________________
+  _________A_ABiBsCACuB$CcCy______________________________________
+  _________A_A_ABiB$CACfCzCcCy____________________________________
+  ___________A_A_BBiCACfCuB$CqCy__________________________________
+  _____________A_A_ABiCACACuB$CFCy________________________________
+  _______________A_A_BBiB$CACfCzCqCy______________________________
+  _________________A_A_ABiCACfCuCACFCy____________________________
+  ___________________A_A_BBiCACACuB$CqCy__________________________
+  _____________________A_A_ABiBsCACfCzCcCy________________________
+  _______________________A_A_ABiCACfCuB$CFCy______________________
+  _________________________A_A_ABiCACACuCACq______________________
+  ___________________________A_A_ABiBsCAB$CF______________________
+  _____________________________A_A_ABiBiB$________________________
+  _______________________________A_A_A_A__________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 179 (warning 0)
+{
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ______________________________CP________________________________
+  ______________________________CP________________________________
+  __________________________CPCP_uCPCP____________________________
+  __________________CPCPCPCPAF_s_uAF_sCPCPCPCP____________________
+  __________CPCPCPCP_s_s_s_s_x_rBG_r_xAF_s_s_sCPCPCPCP____________
+  __________________CPCPCPCWAF_u_rAFAFCPCPCPCP____________________
+  __________________________CPCV_uCPCP____________________________
+  ______________________________CP________________________________
+  ______________________________CP________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 180 (warning 1)
+{
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ______________________________CP________________________________
+  ____________________________CPBGCP______________________________
+  ________________________CPCPBGCjBGCPCP__________________________
+  ______________CPCPCPCPCPC_BGCjCjCjC_BGCPCPCPCPCP________________
+  ____CPCPCPCPCP_qBGAnBGC_BfCjCjCjCjCjC_BGBGBGBG_qCPCPCPCPCP______
+  ______________CPCPCPCPCPBGC_CjCjCjBfC_CPCPBnCPCP________________
+  ________________________CPCPBfCjC_CPCP__________________________
+  ____________________________CPBGCP______________________________
+  ______________________________CP________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 181 (warning 2)
+{
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ______________________________CP________________________________
+  ______________________________CP________________________________
+  ____________________________CPCjCW______________________________
+  ____________________________CVCjCP______________________________
+  __________________________CPCfCzCfCV____________________________
+  ______________________CPCPCfCfCzCfCfCPCP________________________
+  ____________CPCPCPCPCPCjCfCfCfCzCzCfCfCjCPCPCPCPCP______________
+  ____CPCPCPCWCjCjCjCjCjCfCfCzCyCyCzCzCfCfCjCjCjCjCjCPCPCPCP______
+  ____________CVCWCPCVCPCjCfCfCzCzCzCfCfCjCWCVCPCWCV______________
+  ______________________CPCXCfCfCzCfCfCVCP________________________
+  __________________________CPCfCfCfCX____________________________
+  ____________________________CVCjCP______________________________
+  ____________________________CPCjCV______________________________
+  ______________________________CW________________________________
+  ______________________________CP________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 182 (warning 3)
+{
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ______________________________CP________________________________
+  ______________________________CP________________________________
+  ____________________________CPCzCP______________________________
+  ____________________________CPCfCP______________________________
+  ____________________________CPCzCP______________________________
+  __________________________CPCzCpCzCP____________________________
+  __________________________CPCzCpCzCP____________________________
+  ______________________CPCPCzCqCyCqCuCPCP________________________
+  ____________CPCPCPCPCPCzCzCqCyCZCyCyCzCzCPCPCPCPCP______________
+  ____CPCPCPCPCfCzCzCzCzCzCqCyCZCZCvCqCpCzCzCzCzCfCzCPCPCPCP______
+  ____________CPCPCPCPCPCzCzCqCyCZCyCyCzCzCPCPCPCPCP______________
+  ______________________CPCPCzCuCyCqCzCPCP________________________
+  __________________________CPCzCqCuCP____________________________
+  __________________________CPCzCqCzCP____________________________
+  ____________________________CPCzCP______________________________
+  ____________________________CPCfCP______________________________
+  ____________________________CPCzCP______________________________
+  ______________________________CP________________________________
+  ______________________________CP________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 183 (warning 4)
+{
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ______________________________CP________________________________
+  ______________________________CP________________________________
+  ______________________________CP________________________________
+  ____________________________CPCuCP______________________________
+  ____________________________CPCvCP______________________________
+  ____________________________CWCaCP______________________________
+  ____________________CPCP____CPCvCP____CPCP______________________
+  ____________________CPCvCPCWCaCaCaCPCPCvCP______________________
+  ______________________CPCaCvCaCaCvCaCvCV________________________
+  ______________________CVCvCaCvCwCvCaCaCP________________________
+  ____________CPCPCPCPCPCaCaCvCwCwCwCvCaCvCVCPCPCPCP______________
+  ____CPCPCPCPCuCvCaCvCaCvCaCwCwCwCwCwCaCaCaCvCaCvCuCPCPCPCP______
+  ____________CPCPCPCVCPCaCvCaCaCwCaCvCaCvCVCPCPCPCP______________
+  ______________________CWCaCaCvCwCvCaCaCP________________________
+  ______________________CPCvCaCaCaCaCvCaCW________________________
+  ____________________CPCvCPClCaCvCaCVCWCvCP______________________
+  ____________________CPCP____CWCaCW____CPCP______________________
+  ____________________________CVCvCP______________________________
+  ____________________________CPCvCP______________________________
+  ____________________________CPCuCP______________________________
+  ______________________________CP________________________________
+  ______________________________CP________________________________
+  ______________________________CP________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 184 (warning 5)
+{
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ______________________________CP________________________________
+  ______________________________CP________________________________
+  ______________________________CP________________________________
+  ______________________________CP________________________________
+  ____________________________CPCaCP______________________________
+  ________________CP__________CPCaCP__________CP__________________
+  __________________CPCP______CVBQCP______CPCP____________________
+  __________________CPCaCPCP__CPBQCV__CPCPCaCP____________________
+  ____________________CVBQBQCPBQBQBQCPBQBQCP______________________
+  ____________________CPBQBQBQBQ_pBQBQBQBQCV______________________
+  ______________________CPBQ_pBQ_pBQ_pBQCP________________________
+  ____________CPCPCPCPCPBQBQBQ_pBI_pBQBQBQCPCPCPCPCP______________
+  ____CPCPCPCPCaCaBQBQBQBQ_p_pBI_yBI_p_pBQBQCeBQCaCaCPCPCPCP______
+  ____________CPCPCPCPCPBQBQBQ_pBI_pBQBQBQCPCPCPCVCP______________
+  ______________________CPBQ_pBQ_pBQ_pBQCP________________________
+  ____________________CPBQBQBQBQ_pBQBQBQBQCP______________________
+  ____________________CPCaBQCPBQBQBQCPBQCaCP______________________
+  __________________CPBQCVCP__CPBQCP__CPCPBQCV____________________
+  __________________CPCW______CPCaCP______CWCP____________________
+  ________________CP__________CPBQCV__________CP__________________
+  ____________________________CVCaCP______________________________
+  ______________________________CP________________________________
+  ______________________________CP________________________________
+  ______________________________CP________________________________
+  ______________________________CP________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+  ________________________________________________________________
+}
+# tile 196 (sub gehennom walls 0)
+{
+  CYCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCYCB
+  CYAe_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_AAeCB
+  AeCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCYAe
+  CYCuCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCBCB
+  CYCp_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_A_zCYCB
+  CYCu_ABNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCBCB
+  CBCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_A_zCYCYCB
+  CYCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_z_zCBCB
+  CYCp_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYCB
+  CYAe_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zAeCB
+  AeCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYAe
+  CYCuCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCBCB
+  CYCp_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYCB
+  CYCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCBCB
+  CBCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_$CYCYCB
+  CYCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCBCB
+  CYCp_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCYCB
+  CYAe_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zAeCB
+  AeCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCBAe
+  CYCuCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYCB
+  CYCpCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCYCB
+  CYCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCBCB
+  CBCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYCYCB
+  CYCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCYCBCB
+  CYCp_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_A_zCYCB
+  CYAe_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zAeCB
+  AeCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCBAe
+  CYCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYCB
+  CYCpCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYCB
+  CYCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCYCBCB
+  CBCu_zBNBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_A_z_zCYCB
+  CYCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCBCB
+}
+# tile 197 (sub gehennom walls 1)
+{
+  CBCBCBCBAeCBCBCBCBCBCBCBAeCBCBCBCBCBCBCBAeCBCBCBCBCBCBAeCBCBCBCB
+  CBCYCBCYAeCBCYCBCYCBCYCBAeCYCBCYCBCYCBCYAeCBCYCBCYCBCYAeCBCYCBCY
+  CY_z_z_z_z_zCYCB_z_z_z_z_z_z_z_z_z_zCY_A_z_z_z_z_zCY_A_z_z_z_z_z
+  _z_zAq_z_z_z_z_z_zAqBN_z_z_zAqBNAq_z_z_z_z_zBNAq_z_z_z_z_z_zAqBN
+  BNAqBNBNAq_zBNAqBNBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zBNAqBNAqBN
+  AqBNAqBNAqBNAqBNAqAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  BNAqBNAqBNAqBNAqBNBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  AqBNAqBNAqBNAqBNAqAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  BNAqBNAqBNAqBNAqBNBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  AqBNAqBNAqBNAqBNAqAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  BNAqBNAqBNAqBNAqBNBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  AqBNAqBNAqBNAqBNAqAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  BNAqBNAqBNAqBNAqBNBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  AqBNAqBNAqBNAqBNAqAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  BNAqBNAqBNAqBNAqBNBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  AqBNAqBNAqBNAqBNAqAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  BNAqBNAqBNAq_z_zBNAqBN_zAqBNAq_z_z_zBNAqBNAqBNAq_z_zBNAqBNAq_z_z
+  _z_z_ABN_z_z_zCu_z_z_z_z_zBN_z_z_z_z_zAq_z_zBN_z_z_z_z_zBN_z_z_z
+  CuCu_z_z_z_zCuCuCu_z_z_z_z_zCuCuCu_z_z_z_z_z_z_zCuCu_z_z_z_z_zCu
+  CuCuCuCuAeCuCuCuCuCuCuCuAeCuCuCuCuCuCuCuAeCuCuCuCuCuCuCuAeCuCuCu
+  CuCYCuCuAeCuCuCYCuCuCuCuAeCuCuCYCuCuCuCuAeCuCuCYCuCuCuCuAeCuCuCu
+  CBCYCBCYAeCYCBCYCBCYCBCYAeCYCBCYCBCYCBCYAeCYCBCYCBCYCBCYAeCYCBCY
+  CYCYCBCYAeAeCYCBCYCYCYCBAeCYCYCBCYCBCBCYAeCBCYCYCYCBCYCBAeCYCYCB
+  BoCBCBCBAeCBCBCBCBCBCBAeAeBoCBCBCBCBBoCBAeAeCBCBCBBoCBCBAeBoCBCB
+  AeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAe
+  AeCBCBCBCBBoCBCBAeBoCBCBCBCBCBCBAeCBCBCBCBCBCBAqAeCBCBCBCBCBCBCB
+  AeCBBoCBCBCBCBBoAeCBCBCBBoCBCBBoAeCBBoCBCBBoCBCBAeCBBoCBCBCBCBCB
+  AeCBCBCBCBAqCBAeAeCBBoBNAqCBCBCBAeAqCBCBCBCBCBCBAeCBBNCBBoCBAqCB
+  ABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABAB
+  BoBoBNBoABBNBoBoBNBoBoBoABAqBoBNBoBoBoBNABBoBNBoBNBoBNBoABBoBNBo
+  BoBNBoBoABBoBoBNBNAqBoBNABBoBoBoBNBNBNBoABBoBoAqBoBoAqBoABAqBNAq
+  AqBNAqAeABAeAqBNAqBNAqBNABBNAqBNAqBNAqBNABAqBNAqBNAqBNAqABBNAqBN
+}
+# tile 198 (sub gehennom walls 2)
+{
+  CBCBCBCBAeCBCBCBCBCBCBCBAeCBCBCBCBCBCBCBAeCBCBCBCBCBCBCBAeCBCBCB
+  CYCBCBCBAeCYCBCYCBCBCYCBAeCYCBCYCBCYCBCYAeCBCYCBCYCBCBCBAeCYCBCY
+  CYCYCBCY_z_zCY_z_z_z_A_z_z_z_z_zCYCB_z_z_z_z_z_z_z_zCY_z_z_z_z_z
+  CBCu_zCY_z_z_z_ABNAqBNAqBNAq_z_z_z_z_z_zBNAqBN_z_z_z_z_zBNAq_z_z
+  CYCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqAqBNAqBNAq
+  CYCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNBNAqBNAqBN
+  CYCpCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  CYCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  CBCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  CYAe_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  AeCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  CYCuCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  CYCp_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  CuCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  CYCp_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  CYCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  CYCp_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_ABNAq
+  CYAe_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_z_z
+  AeCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_z_z_z
+  CYCuCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCYCB
+  CYCpCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCBCB
+  CYCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCuCBCB
+  CBCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCuCBCB
+  CYCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCBCB
+  CYCp_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCYCB
+  CYAe_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zAeCB
+  AeCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_ACYAe
+  CYCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCBCB
+  CYCpCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCBCB
+  CYCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCuCBCB
+  CBCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCYCB
+  CYCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCBCB
+}
+# tile 199 (sub gehennom walls 3)
+{
+  CBCBCBCBAeCBCBCBCBCBCYCBAeCBCBCBCYCBCBCBAeCBCBCBCBCBCBCBAeCBCBCB
+  CBCYBoCYAeCBCYCBCYCBCYCBAeCYCBCYCBCBCBCYAeCBCYCBCBCBCYCYAeCBCBCB
+  _zCYCY_A_z_z_z_zCY_z_z_z_z_z_z_zCYCB_z_z_z_z_z_z_z_z_z_z_zCYCBCB
+  _z_A_z_zBN_z_z_z_z_z_zAqBNAq_z_z_z_z_z_zBN_zAqBN_z_zBN_z_ACYCBCB
+  BNAqBNAqAqBNAqBNAq_zBNAqBNAqBNAq_z_zBNAqAqBNAqBNAqBNAqBN_z_zCYCB
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqAqBN_ACYCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCYCB
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCBCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqAq_zCYCB
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNBN_zAeCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCBAe
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCYCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCBCB
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCYCBCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqAq_zCYCB
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNBN_zCBCB
+  _zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_A_zCBCB
+  _z_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zAeCB
+  _z_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYAe
+  CYCu_ABNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCYCBCB
+  CYCp_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYCBCYCB
+  CBCYCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCBCY
+  CYCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCYCB
+  CuCu_z_ABNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCBCB
+  CYCp_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCYCYCB
+  CYAe_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_AAeCB
+  AeCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_z_zCYAe
+  CYCuCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_z_zCBCB
+  CYCB_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCYCBCB
+  CYCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCBCB
+  CYCp_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYCY
+  CBCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCBCB
+}
+# tile 200 (sub gehennom walls 4)
+{
+  CYCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  CBAe_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  AeCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  CYCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  CYCpCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  CYCuCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  CYCp_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  CYCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  CBCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  CYAe_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  AeCuCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  CYCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  CYCp_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  CYCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  CBCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  CYCuCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  CYCp_z_zAqBNAqBNAqBNAqBNAqBNAqBNAq_zBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  CYAe_z_zAqBN_z_zBN_z_z_z_zBNAqBN_z_z_zAq_zBN_z_z_z_z_zBN_z_zAqBN
+  AeCuCu_z_z_zCuCu_A_z_zCu_z_z_z_zCuCu_z_z_z_z_zCuCuCu_z_A_zCu_z_z
+  CYCuCuAeAeCuCuCuCuCuCuCuAeCuCuCuCuCuCuCuAeCuCuCuCuCuCuCuAeCuCuCu
+  CuCuCuCYAeCuCuCuCuCYCuCuAeCuCuCuCuCuCYCuAeCuCuCuCuCYCuCuAeCYCuCu
+  CBCYCBCYAeCBCYCYCBCYCBCYAeCYCYCBCYCYCBCYAeCBCYCYCBCYCBCYAeCYCBCY
+  CYCYCBCBAeCYCBCYCBCBCYCBAeCBCYCYCBCBCYCBAeCYCBCYCBCYCBCYAeCBCYCY
+  CBCBCBCBAeCBCBCBCBBoCBCBAeCBBoCBCBCBCBCBAeCBCBCBBoCBCBCBAeCBCBCB
+  AeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAe
+  AeBNCBCBCBBoCBCBAeCBCBCBCBCBCBAeAeBoCBCBCBCBCBCBAeBNCBCBCBBoCBCB
+  AeCBCBCBCBCBCBBoAeCBCBBoCBCBCBCBAeCBCBBoBoBoCBCBAeCBCBCBCBCBCBCB
+  AeAeCBCBBNCBCBBoAeBNCBCBCBCBBoBNAeCBCBCBBoBoBNCBAeCBBoBoBNCBBoCB
+  ABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABAB
+  BNBNBoAqABBoBoBNBoBoBNBoABAqBoBNBoBoBNABABBNBNBoBoBoAqBoABBoBoBo
+  AqBoBoBoABBNBoBoBNBNAqBoABBoBoBoBNBoBoBoABBNBoAqBoBNBoBoABBNBoAq
+  ABAqBNAqABAqBNAqBNAqBNAqABAqAqBNAqBNAqAqABABBNAqBNAqBNAqABBNAqBN
+}
+# tile 201 (sub gehennom walls 5)
+{
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCYCB
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_AAeCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_A_zCYCBAe
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCYCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqAq_zCYCB
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNBN_zCBCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYCYCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCBCB
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCYCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zAeCB
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCBCYAe
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCYCBCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_z_zCYCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCBCB
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCBCB
+  AqBN_zAqBNAqBNAq_z_zBNAqBNAqBN_zAqBNAqBNAqBNAq_zBNAqBNAq_zCYCYCB
+  _zAq_z_z_z_zBN_z_zCu_z_zAqBN_z_z_z_zAqBN_z_z_z_zAqBN_z_z_z_AAeCB
+  _z_zCu_z_z_z_zCu_zCuCu_z_z_z_zCuCu_z_z_z_z_zCuCu_z_zCu_z_zCYCBAe
+  CuCuCuCuAeCuCuCuCuCuCuCuAeCuCuCuCuCuCuCuAeCuCuCuCuCuCuCuAeCuCuCY
+  CYCuCuCuAeCuCYCpCuCYCuCuAeCYCuCuCuCuCuAeAeCuCuCYCuCuCYCuAeCuCYCB
+  CBCYCBCYAeCYCBCYCBCYCBCYAeCBCYCBCYCYCBCYAeCYCBCYCBCYCBCYAeCYCBCY
+  CYCYCBCBAeCYCYCYCBCYCBCYAeCYCYCBCYCBCBCYAeCBCBCYCBCBCYCBAeCYCYCB
+  BoCBCBAeAeCBBoCBBoCBCBAeAeBoCBCBCBCBBoCBAeCBCBCBCBCBCBAeAeBoCBBN
+  AeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAe
+  AeCBCBCBCBCBCBBNAeCBCBCBCBCBCBCBAeAeCBBoCBCBBoCBAeCBCBCBBNCBCBAq
+  AeCBBoCBCBBoCBCBAeCBBoCBCBCBBoAeAeCBBoCBCBCBCBCBAeBoCBCBBoCBCBBN
+  AeBoCBCBCBCBBoAqAeAqCBCBBNCBBoBoAeCBCBBNCBCBBNCBAeAeCBBNCBCBBoAq
+  ABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABAB
+  BoAqBNBNABAqBoBoBNBoBoBoABBNBoBNBoBNBoBoABBoBNBoBoBNBoBoABBoBNBN
+  BoBNBoBoABBoBNBNAqBNBNBoABBoBoBoAqBoBoBNABBNBoBNBoBoBNBNABBNBoAq
+  AqBNAqAeABAqBNAqBNAqBNAqABAeAqBNAqBNAqBNABAeBNAqBNAqBNAqABBNAqBN
+}
+# tile 202 (sub gehennom walls 6)
+{
+  CYCu_z_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCYCBCB
+  CBAe_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCB
+  CY_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_z
+  _zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_z
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  _zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z
+  _z_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_z_z
+  CYCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCYCB
+  CYCp_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_ACYBoCB
+  CYCuCu_$AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCBCYCB
+  CuCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCYCB
+  CYCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYCB
+  CYCp_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCBCB
+  CYAe_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zAeCB
+  AeCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCYAe
+  CYCuCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCBCB
+  CYCBCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYCYCB
+  CYCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zBoCY
+  CYCp_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_$CBCB
+  CYCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCBCB
+}
+# tile 203 (sub gehennom walls 7)
+{
+  CYCY_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCYCB
+  CYCB_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCBCY
+  _z_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_z_z
+  _z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  BNAqBNAq_z_z_zBNAqBNAqBNAqBNAqBN_zAqBNAqBNAqBNAq_z_z_z_z_zAqBNAq
+  Aq_z_z_z_zCu_z_ABN_z_zAqBN_z_z_z_z_z_zBN_z_z_z_z_z_z_z_z_z_z_zBN
+  _z_zCu_z_zCuCu_z_z_zCu_z_z_z_zCuCu_z_z_z_z_zCu_z_zCuCu_z_zCu_z_z
+  CuCuCuCuAeCuCuCuCuCuCuCuAeCuCuCuCuCuCuCuAeCuCuCuCuCuCuCuAeCuCuCu
+  CuCuCYCuAeCYCuCuCuCuCYCuAeCuCuCuCYCuCuCuAeCuCuCYCBCuCuCuAeCuCYCu
+  CYCBCYCBAeCYCBCYCYCBCYCBAeCYCYCBCYCBCYCBAeCYCYCBCYCYCBCYAeCYCBCY
+  CYCYCBCYAeCBCYCBCBCYCBAeAeCBCBCBCYCYCBCYAeCBCBCYCBCYCYCBAeCBCBCY
+  CBCBBoAeAeCBCBCBCBCBCBCBAeCBCBCBBoCBCBCBAeAeCBCBCBCBBoCBAeCBCBCB
+  AeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAeAe
+  AeAeCBCBCBCBCBCBAeCBCBCBAeCBCBCBAeAeCBCBCBCBCBBoAeBNCBCBCBBNCBCB
+  AeCBCBBoCBBoCBBNAeCBBoCBCBBoCBCBAeCBBoCBCBBoCBCBAeCBCBCBCBCBCBCB
+  AeBNCBCBCBCBBoBoAeCBBoCBCBCBCBBNAeCBCBBNBoCBCBBNAeAeCBBNCBCBBNBo
+  ABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABAB
+  BoBoBoABABBNBoBNBoAqBoBNABBoBNBoBoBoBNBNABBoBNBoBoBNBoABABBoBNBo
+  BoAqBoBNABBoBoBoBNBoBoABABBoBoAqBoAqBoBoABBoBoAqBoBoBoBNABBNBoBN
+  AqBNAqBNABBNAqAqBNAqBNAqABAqBNAqBNAqBNAqABAqBNAqBNAqAqBNABAqAqBN
+}
+# tile 204 (sub gehennom walls 8)
+{
+  CBCBCBCBAeCYCBCBCBCBCBCBAeCBCBCBCBCBCYCBAeCBCBCYCBCBCBCBAeCBCBCB
+  CBCBCYCBAeCYCBCYCBCBCBCYAeCBCYBoCYCBCYCBAeCBCYCBCBBoCYCBAeCYCBCY
+  CY_z_A_z_z_z_zCYCB_z_z_z_z_z_z_zCYCB_z_z_z_z_z_z_z_zCY_z_z_z_zCY
+  _z_zAqBNAq_z_z_z_z_z_zAqBN_z_z_z_z_z_z_z_z_z_zAqBN_z_z_z_z_zAq_z
+  BNAqBNAqBNAqBNAqBNAq_$_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  AqBNAqBNBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  BNAqBNAqAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  AqBNAqBNBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  BNAqBNAqAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  AqBNAqBNBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  BNAqBNAqAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  AqBNAqBNBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  BNAqBNAqAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  AqBNAqBNBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  BNAqBNAqAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  AqBNAqBNBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  BNAqBNAqAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  _z_zBNAqBNBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_z
+  _z_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_z_z_z
+  CuCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCYCB
+  CYCp_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCBCB
+  CYCuCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYCYCB
+  CYCp_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYBoCB
+  CBCY_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_z_zCYCB
+  CYCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_A_z_zCBCY
+  CYAe_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zAeCB
+  AeCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_A_zCYAe
+  CYCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCBCB
+  CYCp_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYCB
+  CBCBCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCBCY
+  CuCuCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCYCBCY
+  CYCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCBCB
+}
+# tile 205 (sub gehennom walls 9)
+{
+  CYCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCYCB
+  CBAe_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_AAeCB
+  _z_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCYAe
+  _zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCBCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCYCYCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCBCYCB
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCYCBCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCBCB
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCYCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_AAeCB
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYAe
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zBoCB
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCYCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYCBCB
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCYCBCB
+  BNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_z_zCBCB
+  AqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCYCB
+  _z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zAeCB
+  _z_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCYAe
+  CYCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCBCB
+  CYCBCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCYCB
+  CYCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCBCY
+  CYCp_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYCYCB
+  CuCuCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYBoCB
+  CYCuCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zCYCB
+  CBAe_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_AAeCB
+  AeCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYAe
+  CYCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCBCB
+  CYCB_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCBCB
+  CYCuCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_ACYCBCB
+  CuCuCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCYCYCB
+  CYCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_ACYCB
+}
+# tile 206 (sub gehennom walls 10)
+{
+  CYCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCBCB
+  CYAe_ABNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_zAeCB
+  Ae_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_z_z
+  CYCu_z_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_z
+  CYCBCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  CYCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  CuCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  CuCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  CYCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  CBAe_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  AeCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  CuCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  CYCuCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  CBCYCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  CYCp_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  CuCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq
+  CYCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN
+  CYAe_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z
+  AeCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_z_z
+  CYCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCBCB
+  CuCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCYCYCB
+  CuCuCu_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_ACYCBCY
+  CYCBCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_ACBCB
+  CYCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_zCBCB
+  CYCp_z_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zBN_zCYCB
+  CYAe_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_z_AAeCB
+  AeCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_z_zCYAe
+  CYCu_z_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCYCBCB
+  CYCBCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqAq_zCYCB
+  CYCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_zCYCY
+  CuCu_zBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBN_z_ACYBo
+  CYCu_zAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAqBNAq_z_zCYCB
+}
+# tile 207 (sub knox walls 0)
+{
+  _A_ABiBiBiBiBiBi_A_A_A_A_A_ACyCyBiBi_A_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyCyCyBiBiBi_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyC2C2BiBiBi_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_ACyCyC2C2C2BiBiBiBiBi_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_ACyC2C2C2CyCACABiBiBi_A_A_ABiBiBiBiBiBi_A_A
+  _A_A_ABiBiBiBi_A_A_ACyC2C2C2CyCACACABiBiBiBi_A_A_ABiBiBiBi_A_A_A
+  _A_A_A_A_A_A_A_A_A_AC2CyC2CyCACACABiBiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_A_AC2CyCACACABiBiBiBiBi_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_ABiBi_A_A_A_A_A_ACACyCACyBiBiBiBiBi_A_A_A_A_ABiBi_A_A_A_A
+  _A_A_A_ABiBiBi_A_A_A_A_A_ACACyCyBiBiBi_A_A_A_A_A_A_ABiBiBi_A_A_A
+  _A_A_ACyBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBi_A_A_A
+  _A_ACyBiBiBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_A_A_ACyBi_A_A_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyCyCyBiBiBi_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyC2C2BiBiBi_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_A_ABiBiBiBi_A_A_A_ACyCyC2C2C2BiBiBiBiBi_A_A_A_ABiBiBiBi_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2C2CyCABiBiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2CyCyCACABiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_ABiBi_A_A_A_A_ACyCyCyCyCyCACABiBiBi_A_A_A_A_ABiBi_A_A_A_A
+  _A_A_A_ABiBiBi_A_A_A_A_A_ACyCyCyCACABi_A_A_A_A_A_A_ABiBiBi_A_A_A
+  _A_A_ACyBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBi_A_A_A
+  _A_ACyBiBiBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_A_A_ACyBi_A_A_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyCyCyBiBiBi_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyC2C2BiBiBi_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_A_ABiBiBiBi_A_A_A_ACyCyC2C2C2BiBiBiBiBi_A_A_A_ABiBiBiBi_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2C2CyCABiBiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2CyCACyCABiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_ABiBi_A_A_A_A_ACyCyCyCACACACyBiBiBi_A_A_A_A_ABiBi_A_A_A_A
+  _A_A_A_ABiBiBi_A_A_A_A_A_ACyCACACyCyBi_A_A_A_A_A_A_ABiBiBi_A_A_A
+  _A_A_ACyBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBi_A_A_A
+  _A_ACyCyBiBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyCyBiBiBiBi_A_A
+}
+# tile 208 (sub knox walls 1)
+{
+  _A_ABiBi_A_A_A_A_A_ABiBi_A_A_A_A_A_ACACA_A_A_A_A_A_ABiBi_A_A_A_A
+  _ABiBiBiBi_A_A_A_A_ABiBiBi_A_A_A_A_ACACA_A_A_A_A_A_ABiBiBi_A_A_A
+  BiBiBiBiBi_A_A_A_A_A_A_ABiBi_A_A_ABiBiBiBi_A_A_A_A_A_A_ABiBi_A_A
+  BiBiBiBiBiBi_A_A_A_A_A_ABiBi_A_ABiBiBiBiBiBi_A_A_A_A_A_ABiBi_A_A
+  BiBiBiBiBiBi_A_A_ACyBi_A_A_A_A_ABiBiBiBiBiBi_A_A_ACyBi_A_A_A_A_A
+  BiBiBiBiBi_A_ACyCyCyBiBi_A_A_A_ABiBiBiBiBi_A_ACyCyCyBiBi_A_A_A_A
+  _A_A_A_A_A_A_ACyC2C2BiBiBi_A_A_ABiBiBiBiBi_A_ACyC2C2BiBiBi_A_A_A
+  _A_A_A_A_ACyCyC2C2C2BiBiBiBi_A_A_ABiBi_A_ACyCyC2C2C2BiBiBiBiBi_A
+  _A_A_A_ACyCyC2C2C2CyCABiBiBiBiBiBi_A_A_ACyCyC2C2C2CyCABiBiBiBiBi
+  _A_A_A_ACyCyC2C2CyCyCACABiBiBiBi_A_A_A_ACyCyC2C2CyCyCACABiBiBiBi
+  _A_A_A_A_ACyCyCyCyCyCACABiBiBi_A_A_A_A_A_ACyCyCyCyCyCACABiBiBi_A
+  _A_A_A_A_A_A_ACyCyCyCABiBi_A_A_A_A_A_A_A_A_A_ACyCyCyCABiBi_A_A_A
+  _A_ABiBi_A_A_A_A_A_ABiBi_A_A_A_A_A_ABiBi_A_A_A_A_A_ABiBi_A_A_A_A
+  _A_ABiBiBi_A_A_A_A_ABiBi_A_A_A_A_A_ABiBiBi_A_A_A_A_ABiBi_A_A_A_A
+  CACABiBiBi_A_A_A_ACyBiBiBi_A_A_A_ACABiBiBi_A_A_A_ACyBiBiBi_A_A_A
+  CACABiBiBiBi_A_ACyCyBiBiBiBi_A_ACACABiBiBiBi_A_ACyCyBiBiBiBi_A_A
+  CACABiBiBiBi_A_ACACABiBiBiBi_A_ACACABiBiBiBi_A_ACyCyBiBiBiBi_A_A
+  CACABiBiBiBi_A_ACACABiBiBi_A_A_ACACABiBiBiBi_A_ACyCyBiBiBi_A_A_A
+  CACABiBiBiBi_A_ACyCyBiBiBi_A_A_ACACABiBiBiBi_A_ACACABiBi_A_A_A_A
+  CACABiBiBiBi_A_ACyCyBiBi_A_A_A_ACACABiBiBiBi_A_ACACABiBi_A_A_A_A
+  CyCyBiBiBiBi_A_ACyCyBiBi_A_A_A_ACyCyBiBiBiBi_A_ACACABiBiBi_A_A_A
+  CyCyBiBiBi_A_A_ACyCyBiBiBi_A_A_ACyCyBiBiBiBi_A_ACACABiBiBiBi_A_A
+  CACABiBiBi_A_A_ACyCyBiBiBi_A_A_ACyCyBiBiBiBi_A_ACyCyBiBiBiBi_A_A
+  CACABiBi_A_A_A_ACyCyBiBiBiBi_A_ACyCyBiBiBi_A_A_ACyCyBiBiBiBi_A_A
+  CyCyBiBi_A_A_A_ACyCyBiBiBiBi_A_ACyCyBiBi_A_A_A_ACACABiBiBiBi_A_A
+  CyCyBiBiBi_A_A_ACyCyBiBiBiBi_A_ACyCyBiBi_A_A_A_ACACABiBiBi_A_A_A
+  CACABiBiBi_A_A_ACACABiBiBiBi_A_ACACABiBiBi_A_A_ACyCyBiBi_A_A_A_A
+  CACABiBiBiBi_A_ACACABiBiBiBi_A_ACACABiBiBiBi_A_ACyCyBiBi_A_A_A_A
+  CACABiBiBiBi_A_ACyCyBiBiBiBi_A_ACyCyBiBiBiBi_A_ACyCyBiBiBiBi_A_A
+  CACABiBiBi_A_A_A_ACyBiBiBi_A_A_A_ACyBiBiBi_A_A_A_ACyBiBiBiBi_A_A
+  _A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A
+}
+# tile 209 (sub knox walls 2)
+{
+  _A_A_A_A_A_A_A_A_A_A_A_ACACACyCyBiBiCACA_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_A_ACACACyCyCyBiCABiCA_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_ACACACACACyC2C2CABiCABiCyCyCA_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_ACACACACACyCyC2C2C2CACABiBiBiCyCACACA_A_A_A_A_A_A_A
+  _A_A_A_A_ACACACACACyCyCyC2C2C2CyCACABiBiBiBiCACACACACA_A_A_A_A_A
+  _A_A_A_ACACACACACyCyCyC2C2C2CyCyCACABiBiBiBiBiCACACACACACA_A_A_A
+  _A_A_ACyCACACACACyCyC2C2C2CyCyCyCACABiBiBiBiBiBiCyCACACACA_A_A_A
+  _A_ACyCACACACACyCyCyC2C2CyCyCyCACABiBiBiBiBiBiBiBiCyCACACACA_A_A
+  _A_ACACACACACACyCyCyCyCyCyCACACACABiBiBiBiBiBiBiBiBiCACACyCy_A_A
+  _A_ACACACACyCyCyCyCyCyCyCACACACABiBiBiBiBiBiBiBiBiBiBiCACyCy_A_A
+  _A_ACyCyCyCyCyCyCyCyCyCyCACACA_A_A_ABiBiBiBiBiBiBiBiBiCACACA_A_A
+  _A_ACyCyCyCyCyCyCyCyCyCACA_A_A_A_A_A_ABiBiBiBiBiBiBiBiBiBiCA_A_A
+  _A_ABiBiBiCyCyCyCyCACACACA_A_ACyBi_A_A_ABiBiBiBiBiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiCyCACACA_A_ACyCyCyBiBi_A_A_ABiBiBiBiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyC2C2BiBiBi_A_A_A_ABiBiBiBiBiBiBi_A_A
+  _A_A_ABiBiBiBi_A_A_A_ACyCyC2C2C2BiBiBiBi_A_A_A_A_ABiBiBiBi_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2C2CyCABiBiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2CyCyCACABiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_ABiBi_A_A_A_A_ACyCyCyCyCyCACABiBiBi_A_A_A_A_ABiBi_A_A_A_A
+  _A_A_A_ABiBiBi_A_A_A_A_A_ACyCyCyCACABi_A_A_A_A_A_A_ABiBiBi_A_A_A
+  _A_A_ACyBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBi_A_A_A
+  _A_ACyBiBiBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_A_A_ACyBi_A_A_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyCyCyBiBiBi_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyC2C2BiBiBi_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_A_ABiBiBiBi_A_A_A_ACyCyC2C2C2BiBiBiBiBi_A_A_A_ABiBiBiBi_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2C2CyCABiBiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2CyCACyCABiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_ABiBi_A_A_A_A_ACyCyCyCACACACyBiBiBi_A_A_A_A_ABiBi_A_A_A_A
+  _A_A_A_ABiBiBi_A_A_A_A_A_ACyCACACyCyBi_A_A_A_A_A_A_ABiBiBi_A_A_A
+  _A_A_ACyBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBi_A_A_A
+  _A_ACyCyBiBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyCyBiBiBiBi_A_A
+}
+# tile 210 (sub knox walls 3)
+{
+  _A_A_A_A_A_A_A_A_A_A_A_ACACACyCyBiBiCACA_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_A_ACACACyCyCyBiCACACACA_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_ACACACACACyC2C2CACACACACACACA_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_ACACACACACyCyC2C2C2CACACACACACACACACA_A_A_A_A_A_A_A
+  _A_A_A_A_ACACACACACyCyCyC2C2C2CyCACACABiBiBiCyCACACACA_A_A_A_A_A
+  _A_A_A_ACACACACACyCyCyC2C2C2CyCyCACABiBiBiBiBiCyCACACACACA_A_A_A
+  _A_A_ACyCACACACACyCyC2C2C2CyCyCyCACABiBiBiBiBiBiCACACyCyCA_A_A_A
+  _A_ACyCACACACACyCyCyC2C2CyCyCyCACABiBiBiBiBiBiBiBiCACyCyCACA_A_A
+  _A_ACACACACACACyCyCyCyCyCACACACACABiBiBiBiBiBiBiBiCACACACACA_A_A
+  _A_ACACACACyCyCyCyCyCyCACACACACABiBiBiBiBiBiBiBiBiBiBiCACACA_A_A
+  _A_ACACACACyCyCyCyCyCACACACy_A_A_A_ABiBiBiBiBiBiBiBiBiBiCyCy_A_A
+  _A_ACACACyCyCyCyCyCACACACy_ACy_A_A_A_ABiBiBiBiBiBiBiBiBiBiCy_A_A
+  _A_ABiBiBiCyCyCyCyCACACA_A_A_ACyBi_A_A_ABiBiBiBiBiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiCyCACACA_A_A_ACyCyBiBi_A_A_ABiBiBiBiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyC2C2BiBiBi_A_A_A_ABiBiBiBiBiBiBi_A_A
+  _A_A_ABiBiBiBi_A_A_A_ACyCyC2C2C2BiBiBiBi_A_A_A_A_ABiBiBiBi_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2C2CyCABiBiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2CyCyCACABiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_ABiBi_A_A_A_A_ACyCyCyCyCyCACABiBiBi_A_A_A_A_ABiBi_A_A_A_A
+  _A_A_A_ABiBiBi_A_A_A_A_A_ACyCyCyCACABi_A_A_A_A_A_A_ABiBiBi_A_A_A
+  _A_A_ACyBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBi_A_A_A
+  _A_ACyBiBiBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_A_A_ACyBi_A_A_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyCyCyBiBiBi_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyC2C2BiBiBi_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_A_ABiBiBiBi_A_A_A_ACyCyC2C2C2BiBiBiBiBi_A_A_A_ABiBiBiBi_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2C2CyCABiBiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2CyCACyCABiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_ABiBi_A_A_A_A_ACyCyCyCACACACyBiBiBi_A_A_A_A_ABiBi_A_A_A_A
+  _A_A_A_ABiBiBi_A_A_A_A_A_ACyCACACyCyBi_A_A_A_A_A_A_ABiBiBi_A_A_A
+  _A_A_ACyBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBi_A_A_A
+  _A_ACyCyBiBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyCyBiBiBiBi_A_A
+}
+# tile 211 (sub knox walls 4)
+{
+  _A_A_A_A_A_A_A_A_A_A_A_ACACACyCyCACACyCy_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_A_ACACACyCyCyCACACyCy_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_ACyCACACACyC2C2CACABiBiCACACA_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_ACyCACACACyC2C2C2CACABiBiBiCACACACA_A_A_A_A_A_A_A
+  _A_A_A_A_ACACACACACACACyC2C2C2CyCACACACACABiCyCACACACA_A_A_A_A_A
+  _A_A_ACACACACACACACACyC2C2C2CyCyCACACACABiBiBiCyCACACACACA_A_A_A
+  _A_A_ACACyCyCACACACyC2C2C2CyCyCyCACACABiBiBiBiBiCACACyCyCA_A_A_A
+  _A_ACACACyCyCACACyCyC2C2CyCyCyCACABiBiBiBiBiBiBiBiCACyCyCACA_A_A
+  _A_ACACACACACACyCyCyCyCyCyCACACACABiBiBiBiBiBiBiBiCACACACACA_A_A
+  _A_A_ACACACACyCyCyCyCyCyCACACABiBiBiBiBiBiBiBiBiBiBiCACACACA_A_A
+  _A_A_A_ACyCyCyCyCyCyCy_ACACACABiBiBi_A_ABiBiBiBiBiBi_A_ACyCy_A_A
+  _A_A_A_A_ACyCyCyCy_A_A_A_ACABiBiBi_A_A_A_ABiBiBiBi_ABi_ACyCy_A_A
+  _A_ABiBi_ACyCyCy_A_ABiBi_A_ABiBi_A_ABiBi_A_ABiBi_A_ABiBi_A_A_A_A
+  _A_ABiBiBi_ACyCy_A_ABiBi_A_ABiBi_A_ABiBi_A_ABiBi_A_ABiBiBi_A_A_A
+  CACABiBiBi_A_ACy_ACyBiBiBi_ABi_A_ACABiBiBi_ABi_A_ACyBiBiBi_A_A_A
+  CACABiBiBiBi_A_ACyCyBiBiBiBi_A_ACACABiBiBiBi_A_ACyCyBiBiBiBi_A_A
+  CyCyBiBiBiBi_A_ACACABiBiBiBi_A_ACyCyBiBiBiBi_A_ACyCyBiBiBiBi_A_A
+  CyCyBiBiBiBi_A_ACACABiBiBi_A_A_ACyCyBiBiBiBi_A_ACyCyBiBiBi_A_A_A
+  CACABiBiBiBi_A_ACyCyBiBiBi_A_A_ACACABiBiBiBi_A_ACACABiBi_A_A_A_A
+  CACABiBiBiBi_A_ACyCyBiBi_A_A_A_ACACABiBiBiBi_A_ACACABiBi_A_A_A_A
+  CyCyBiBiBiBi_A_ACyCyBiBi_A_A_A_ACyCyBiBiBiBi_A_ACACABiBiBi_A_A_A
+  CyCyBiBiBi_A_A_ACyCyBiBiBi_A_A_ACyCyBiBiBiBi_A_ACACABiBiBiBi_A_A
+  CACABiBiBi_A_A_ACyCyBiBiBi_A_A_ACyCyBiBiBiBi_A_ACyCyBiBiBiBi_A_A
+  CACABiBi_A_A_A_ACyCyBiBiBiBi_A_ACyCyBiBiBi_A_A_ACyCyBiBiBiBi_A_A
+  CyCyBiBi_A_A_A_ACyCyBiBiBiBi_A_ACyCyBiBi_A_A_A_ACACABiBiBiBi_A_A
+  CyCyBiBiBi_A_A_ACyCyBiBiBiBi_A_ACyCyBiBi_A_A_A_ACACABiBiBi_A_A_A
+  CACABiBiBi_A_A_ACACABiBiBiBi_A_ACACABiBiBi_A_A_ACyCyBiBi_A_A_A_A
+  CACABiBiBiBi_A_ACACABiBiBiBi_A_ACACACABiBiBi_A_ACyCyBiBi_A_A_A_A
+  CACABiBiBiBi_A_ACyCyBiBiBiBi_A_ACACACABiBiBi_A_ACyCyBiBiBiBi_A_A
+  CACABiBiBi_A_A_A_ACyBiBiBi_A_A_A_ACACACABi_A_A_A_ACyBiBiBiBi_A_A
+  _A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A
+}
+# tile 212 (sub knox walls 5)
+{
+  _A_A_A_A_A_A_A_A_A_A_A_ACACACyCyBiBiCACA_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_A_ACACACyCyCyBiCACACACA_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_ACyCACACACyC2C2CACACACACACACA_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_ACyCACACACyC2C2C2CACACACACACACACACA_A_A_A_A_A_A_A
+  _A_A_A_A_ACACACACACACACyC2C2C2CyCACACABiBiBiCyCACACACA_A_A_A_A_A
+  _A_A_ACACACACACACACACyC2C2C2CyCyCACABiBiBiBiBiCyCyCACACACA_A_A_A
+  _A_A_ACACyCyCACACACyC2C2C2CyCyCyCACABiBiBiBiBiCyCyCACACACA_A_A_A
+  _A_ACACACyCyCACACyCyC2C2CyCyCyCACABiBiBiBiBiBiBiBiCyCACACACA_A_A
+  _A_ACACACACACACyCyCyCyCyCyCACACACABiBiBiBiBiBiBiBiBiCACACyCy_A_A
+  _A_A_ACACACACyCyCyCyCyCyCACACABiBiBiBiBiBiBiBiBiBiBiCACACyCy_A_A
+  _A_A_A_ACyCyCyCyCyCyCy_ACACACABiBiBi_A_ABiBiBiBiBiBi_ACACACA_A_A
+  _A_A_A_A_ACyCyCyCy_A_A_A_ACABiBiBi_A_A_A_ABiBiBiBi_ABi_ACACA_A_A
+  _A_ABiBi_ACyCyCy_A_ABiBi_A_ABiBi_A_ABiBi_A_ABiBi_A_ABiBi_A_A_A_A
+  _A_ABiBiBi_ACyCy_A_ABiBi_A_ABiBi_A_ABiBi_A_ABiBi_A_ABiBiBi_A_A_A
+  CACABiBiBi_A_ACy_ACyBiBiBi_ABi_A_ACABiBiBi_ABi_A_ACyBiBiBi_A_A_A
+  CACABiBiBiBi_A_ACyCyBiBiBiBi_A_ACACACABiBiBi_A_ACyCyBiBiBiBi_A_A
+  CyCyBiBiBiBi_A_ACACABiBiBiBi_A_ACACACACABiBi_A_ACyCyBiBiBiBi_A_A
+  CyCyBiBiBiBi_A_ACACABiBiBi_A_A_ACACACACABiBi_A_ACyCyBiBiBi_A_A_A
+  CACABiBiBiBi_A_ACyCyBiBiBi_A_A_ACACACABiBiBi_A_ACACABiBi_A_A_A_A
+  CACABiBiBiBi_A_ACyCyBiBi_A_A_A_ACACABiBiBiBi_A_ACACACABi_A_A_A_A
+  CyCyBiBiBiBi_A_ACyCyBiBi_A_A_A_ACyCyBiBiBiBi_A_ACACACACABi_A_A_A
+  CyCyBiBiBi_A_A_ACyCyBiBiBi_A_A_ACyCyBiBiBiBi_A_ACACACACABiBi_A_A
+  CACABiBiBi_A_A_ACyCyBiBiBi_A_A_ACyCyBiBiBiBi_A_ACyCyBiBiBiBi_A_A
+  CACABiBi_A_A_A_ACyCyBiBiBiBi_A_ACyCyBiBiBi_A_A_ACyCyBiBiBiBi_A_A
+  CyCyBiBi_A_A_A_ACyCyBiBiBiBi_A_ACyCyBiBi_A_A_A_ACACABiBiBiBi_A_A
+  CyCyBiBiBi_A_A_ACyCyBiBiBiBi_A_ACyCyBiBi_A_A_A_ACACABiBiBi_A_A_A
+  CACABiBiBi_A_A_ACACABiBiBiBi_A_ACACABiBiBi_A_A_ACyCyBiBi_A_A_A_A
+  CACABiBiBiBi_A_ACACABiBiBiBi_A_ACACABiBiBiBi_A_ACyCyBiBi_A_A_A_A
+  CACABiBiBiBi_A_ACyCyBiBiBiBi_A_ACyCyBiBiBiBi_A_ACyCyBiBiBiBi_A_A
+  CACABiBiBi_A_A_A_ACyBiBiBi_A_A_A_ACyBiBiBi_A_A_A_ACyBiBiBiBi_A_A
+  _A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A
+}
+# tile 213 (sub knox walls 6)
+{
+  _A_A_A_A_A_A_A_A_A_A_A_ACACACyCyBiBiCACA_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_A_ACACACyCyCyBiCABiCA_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_ACyCACACACyC2C2CABiCABiCyCyCA_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_ACyCACACACyC2C2C2CACABiBiBiCyCACA_A_A_A_A_A_A_A_A
+  _A_A_A_A_ACACACACACACACyC2C2C2CyCACABiBiBiBiCACACyCyCA_A_A_A_A_A
+  _A_A_ACACACACACACACACyC2C2C2CyCyCACABiBiBiBiBiCACyCyCACACA_A_A_A
+  _A_A_ACACyCyCACACACyC2C2C2CyCyCyCACABiBiBiBiBiCACACACACACA_A_A_A
+  _A_ACACACyCyCACACyCyC2C2CyCyCyCACABiBiBiBiBiBiBiCACACACACACA_A_A
+  _A_ACACACACACACyCyCyCyCyCyCACACACABiBiBiBiBiBiBiCACACyCyCACA_A_A
+  _A_ACACACACACyCyCyCyCyCyCACACACABiBiBiBiBiBiBiBiBiCACyCyCyCA_A_A
+  _A_ACACACACyCyCyCyCyCyCyCACACA_A_A_ABiBiBiBiBiBiBiBiBiCyCyCy_A_A
+  _A_ACACACyCyCyCyCyCyCyCACA_A_A_A_A_A_ABiBiBiBiBiBiBiBiBiBiCy_A_A
+  _A_ABiBiBiCyCyCyCyCACACACA_A_ACyBi_A_A_ABiBiBiBiBiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiCyCACACA_A_ACyCyCyBiBi_A_A_ABiBiBiBiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyC2C2BiBiBi_A_A_A_ABiBiBiBiBiBiBi_A_A
+  _A_A_ABiBiBiBi_A_A_A_ACyCyC2C2C2BiBiBiBi_A_A_A_A_ABiBiBiBi_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2C2CyCABiBiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2CyCyCACABiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_ABiBi_A_A_A_A_ACyCyCyCyCyCACABiBiBi_A_A_A_A_ABiBi_A_A_A_A
+  _A_A_A_ABiBiBi_A_A_A_A_A_ACyCyCyCACABi_A_A_A_A_A_A_ABiBiBi_A_A_A
+  _A_A_ACyBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBi_A_A_A
+  _A_ACyBiBiBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_A_A_ACyBi_A_A_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyCyCyBiBiBi_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyC2C2BiBiBi_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_A_ABiBiBiBi_A_A_A_ACyCyC2C2C2BiBiBiBiBi_A_A_A_ABiBiBiBi_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2C2CyCABiBiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2CyCACyCABiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_ABiBi_A_A_A_A_ACyCyCyCACACACyBiBiBi_A_A_A_A_ABiBi_A_A_A_A
+  _A_A_A_ABiBiBi_A_A_A_A_A_ACyCACACyCyBi_A_A_A_A_A_A_ABiBiBi_A_A_A
+  _A_A_ACyBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBi_A_A_A
+  _A_ACyCyBiBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyCyBiBiBiBi_A_A
+}
+# tile 214 (sub knox walls 7)
+{
+  _A_A_A_A_A_A_A_A_A_A_A_ACACACyCyCACACyCy_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_A_ACACACyCyCyCACACyCy_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_ACyCACACACyC2C2CACABiBiCACACA_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_ACyCACACACyC2C2C2CACABiBiBiCACACACA_A_A_A_A_A_A_A
+  _A_A_A_A_ACACACACACACACyC2C2C2CyCACACACACABiCyCACACACA_A_A_A_A_A
+  _A_A_ACACACACACACACACyC2C2C2CyCyCACACACABiBiBiCyCACACACACA_A_A_A
+  _A_A_ACACyCyCACACACyC2C2C2CyCyCyCACACABiBiBiBiBiCACACyCyCA_A_A_A
+  _A_ACACACyCyCACACyCyC2C2CyCyCyCACABiBiBiBiBiBiBiBiCACyCyCACA_A_A
+  _A_ACACACACACACyCyCyCyCyCyCACACACABiBiBiBiBiBiBiBiBiCACACACA_A_A
+  _A_A_ACACACACyCyCyCyCyCyCACACABiBiBiBiBiBiBiBiBiBiBiCACACACA_A_A
+  _A_A_A_ACyCyCyCyCyCyCy_ACACACABiBiBi_A_ABiBiBiBiBiCA_A_ACACA_A_A
+  _A_A_A_A_ACyCyCyCy_A_A_A_ACABiBiBi_A_A_A_ABiBiBiCA_A_A_ACACA_A_A
+  _A_ABiBi_ACyCyCy_A_ABiBi_A_ABiBi_A_ABiBi_A_ABiBi_A_ABiBi_A_A_A_A
+  _A_ABiBiBi_ACyCy_A_ABiBi_A_ABiBi_A_ABiBi_A_ABiBi_A_ABiBiBi_A_A_A
+  CACABiBiBi_A_ACy_ACyBiBiBi_ABi_A_ACABiBiBi_ABi_A_ACyBiBiBi_A_A_A
+  CACACABiBiBi_A_ACyCyBiBiBiBi_A_ACACABiBiBiBi_A_ACyCyBiBiBiBi_A_A
+  CACACACABiBi_A_ACACABiBiBiBi_A_ACyCyBiBiBiBi_A_ACyCyBiBiBiBi_A_A
+  CACACACABiBi_A_ACACABiBiBi_A_A_ACyCyBiBiBiBi_A_ACyCyBiBiBi_A_A_A
+  CACACABiBiBi_A_ACyCyBiBiBi_A_A_ACACABiBiBiBi_A_ACACABiBi_A_A_A_A
+  CACABiBiBiBi_A_ACyCyBiBi_A_A_A_ACACABiBiBiBi_A_ACACABiBi_A_A_A_A
+  CyCyBiBiBiBi_A_ACyCyBiBi_A_A_A_ACyCyBiBiBiBi_A_ACyCyBiBiBi_A_A_A
+  CyCyBiBiBi_A_A_ACyCyBiBiBi_A_A_ACyCyBiBiBiBi_A_ACyCyBiBiBiBi_A_A
+  CACABiBiBi_A_A_ACyCyBiBiBi_A_A_ACyCyBiBiBiBi_A_ACyCyBiBiBiBi_A_A
+  CACABiBi_A_A_A_ACyCyBiBiBiBi_A_ACyCyBiBiBi_A_A_ACyCyBiBiBiBi_A_A
+  CyCyBiBi_A_A_A_ACyCyBiBiBiBi_A_ACyCyBiBi_A_A_A_ACACABiBiBiBi_A_A
+  CyCyBiBiBi_A_A_ACyCyBiBiBiBi_A_ACyCyBiBi_A_A_A_ACACABiBiBi_A_A_A
+  CACABiBiBi_A_A_ACACABiBiBiBi_A_ACACABiBiBi_A_A_ACyCyBiBi_A_A_A_A
+  CACABiBiBiBi_A_ACACABiBiBiBi_A_ACACABiBiBiBi_A_ACyCyBiBi_A_A_A_A
+  CACABiBiBiBi_A_ACyCyBiBiBiBi_A_ACACABiBiBiBi_A_ACyCyBiBiBiBi_A_A
+  CACABiBiBi_A_A_A_ACyBiBiBi_A_A_A_ACABiBiBi_A_A_A_ACyBiBiBiBi_A_A
+  _A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A
+}
+# tile 215 (sub knox walls 8)
+{
+  _A_A_A_A_A_A_A_A_A_A_A_ACACACyCyCACACyCy_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_A_ACACACyCyCyCACACyCy_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_ACyCACACACyC2C2CACABiBiCACACA_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_ACyCACACACyC2C2C2CACABiBiBiCACACACA_A_A_A_A_A_A_A
+  _A_A_A_A_ACACACACACACACyC2C2C2CyCACACACACABiCyCACACACA_A_A_A_A_A
+  _A_A_ACACACACACACACACyC2C2C2CyCyCACACACABiBiBiCyCACACACACA_A_A_A
+  _A_A_ACACyCyCACACACyC2C2C2CyCyCyCACACABiBiBiBiBiCACACyCyCA_A_A_A
+  _A_ACACACyCyCACACyCyC2C2CyCyCyCACABiBiBiBiBiBiBiBiCACyCyCACA_A_A
+  _A_ACACACACACACyCyCyCyCyCyCACACACABiBiBiBiBiBiBiBiCACACACACA_A_A
+  _A_ACACACACACyCyCyCyCyCACACACACABiBiBiBiBiBiBiBiBiBiCACACACA_A_A
+  _A_ACyCyCyCyCyCyCyCyCACACACACA_A_A_ABiBiBiBiBiBiBiBiCACACACA_A_A
+  _A_ACyCyCyCyCyCyCyCACACACA_A_A_A_A_A_ABiBiBiBiBiBiBiBiCACACA_A_A
+  _A_ABiBiBiCyCyCyCACACACy_A_A_ACyBi_A_A_ABiBiBiBiBiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiCyCACACy_A_A_ACyCyBiBi_A_A_ABiBiBiBiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyC2C2BiBiBi_A_A_A_ABiBiBiBiBiBiBi_A_A
+  _A_A_ABiBiBiBi_A_A_A_A_ACyC2C2C2BiBiBiBi_A_A_A_A_ABiBiBiBi_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2C2CyCABiBiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2CyCyCACABiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_ABiBi_A_A_A_A_ACyCyCyCyCyCACABiBiBi_A_A_A_A_ABiBi_A_A_A_A
+  _A_A_A_ABiBiBi_A_A_A_A_A_ACyCyCyCACABi_A_A_A_A_A_A_ABiBiBi_A_A_A
+  _A_A_ACyBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBi_A_A_A
+  _A_ACyBiBiBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_A_A_ACyBi_A_A_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyCyCyBiBiBi_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyC2C2BiBiBi_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_A_ABiBiBiBi_A_A_A_ACyCyC2C2C2BiBiBiBiBi_A_A_A_ABiBiBiBi_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2C2CyCABiBiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2CyCACyCABiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_ABiBi_A_A_A_A_ACyCyCyCACACACyBiBiBi_A_A_A_A_ABiBi_A_A_A_A
+  _A_A_A_ABiBiBi_A_A_A_A_A_ACyCACACyCyBi_A_A_A_A_A_A_ABiBiBi_A_A_A
+  _A_A_ACyBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBi_A_A_A
+  _A_ACyCyBiBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyCyBiBiBiBi_A_A
+}
+# tile 216 (sub knox walls 9)
+{
+  _A_A_A_A_A_A_A_A_A_A_A_ACACACyCyBiBiCACA_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_A_ACACACyCyCyCyBiBiCACA_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_ACyCACACACyC2C2CyBiBiCACACACA_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_ACyCACACACyC2C2C2CyCyBiBiBiCACACACA_A_A_A_A_A_A_A
+  _A_A_A_A_ACACACACACACACyC2C2C2CyCyCABiBiBiBiCyCACACACA_A_A_A_A_A
+  _A_A_ACACACACACACACACyC2C2C2CyCACACABiBiBiBiBiCyCyCACACACA_A_A_A
+  _A_A_ACACyCyCACACACyC2C2C2CyCACACACABiBiBiBiBiCyCyCACACACA_A_A_A
+  _A_ACACACyCyCACACyCyC2C2CyCACACACABiBiBiBiBiBiBiBiCyCACACACA_A_A
+  _A_ACACACACACACyCyCyCyCyCACACACyBiBiBiBiBiBiBiBiBiBiCACACyCy_A_A
+  _A_ACACACACACyCyCyCyCyCACACACyCyBiBiBiBiBiBiBiBiBiBiBiCACyCy_A_A
+  _A_ACyCyCyCyCyCyCyCyCACACACA_A_A_A_ABiBiBiBiBiBiBiBiBiCACACA_A_A
+  _A_ACyCyCyCyCyCyCyCACACACA_A_A_A_A_A_ABiBiBiBiBiBiBiBiBiBiCA_A_A
+  _A_ABiBiBiCyCyCyCACACACy_A_A_ACyBi_A_A_ABiBiBiBiBiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiCyCACACy_A_A_ACyCyBiBi_A_A_ABiBiBiBiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyC2C2BiBiBi_A_A_A_ABiBiBiBiBiBiBi_A_A
+  _A_A_ABiBiBiBi_A_A_A_A_ACyC2C2C2BiBiBiBi_A_A_A_A_ABiBiBiBi_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2C2CyCABiBiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2CyCACACABiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_ABiBi_A_A_A_A_ACyCyCyCyCACACABiBiBi_A_A_A_A_ABiBi_A_A_A_A
+  _A_A_A_ABiBiBi_A_A_A_A_A_ACyCACACACABi_A_A_A_A_A_A_ABiBiBi_A_A_A
+  _A_A_ACyBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBi_A_A_A
+  _A_ACyBiBiBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_A_A_ACyBi_A_A_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyCyCyBiBiBi_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyC2C2BiBiBi_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_A_ABiBiBiBi_A_A_A_ACyCyC2C2C2BiBiBiBiBi_A_A_A_ABiBiBiBi_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2C2CyCABiBiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2CyCACyCABiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_ABiBi_A_A_A_A_ACyCyCyCACACACyBiBiBi_A_A_A_A_ABiBi_A_A_A_A
+  _A_A_A_ABiBiBi_A_A_A_A_A_ACyCACACyCyBi_A_A_A_A_A_A_ABiBiBi_A_A_A
+  _A_A_ACyBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBi_A_A_A
+  _A_ACyCyBiBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyCyBiBiBiBi_A_A
+}
+# tile 217 (sub knox walls 10)
+{
+  _A_A_A_A_A_A_A_A_A_A_A_ACACACyCyBiBiCACA_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_A_ACACACyCyCyCyBiBiCACA_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_ACyCACACACyC2C2CyBiBiCACACACA_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_ACyCACACACyC2C2C2CyCyBiBiBiCACACACA_A_A_A_A_A_A_A
+  _A_A_A_A_ACACACACACACACyC2C2C2CyCyCABiBiBiBiCyCACACACA_A_A_A_A_A
+  _A_A_ACACACACACACACACyC2C2C2CyCACACABiBiBiBiBiCyCyCACACACA_A_A_A
+  _A_A_ACACyCyCACACACyC2C2C2CyCACACACABiBiBiBiBiCyCyCACACACA_A_A_A
+  _A_ACACACyCyCACACyCyC2C2CyCACACACABiBiBiBiBiBiBiBiCyCACACACA_A_A
+  _A_ACACACACACACyCyCyCyCyCACACACyBiBiBiBiBiBiBiBiBiBiCACACyCy_A_A
+  _A_ACACACACACyCyCyCyCyCACACACyCyBiBiBiBiBiBiBiBiBiBiBiCACyCy_A_A
+  _A_ACACACACyCyCyCyCyCACACACA_A_A_A_ABiBiBiBiBiBiBiBiBiCACACA_A_A
+  _A_ACACACyCyCyCyCyCACACACA_A_A_A_A_A_ABiBiBiBiBiBiBiBiBiBiCA_A_A
+  _A_ABiBiBiCyCyCyCACACACy_A_A_ACyBi_A_A_ABiBiBiBiBiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiCyCACACy_A_A_ACyCyBiBi_A_A_ABiBiBiBiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyC2C2BiBiBi_A_A_A_ABiBiBiBiBiBiBi_A_A
+  _A_A_ABiBiBiBi_A_A_A_A_ACyC2C2C2BiBiBiBi_A_A_A_A_ABiBiBiBi_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2C2CyCABiBiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2CyCACACABiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_ABiBi_A_A_A_A_ACyCyCyCyCACACABiBiBi_A_A_A_A_ABiBi_A_A_A_A
+  _A_A_A_ABiBiBi_A_A_A_A_A_ACyCACACACABi_A_A_A_A_A_A_ABiBiBi_A_A_A
+  _A_A_ACyBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBi_A_A_A
+  _A_ACyBiBiBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_A_A_ACyBi_A_A_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyCyCyBiBiBi_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_ABiBiBiBiBiBi_A_A_A_A_ACyC2C2BiBiBi_A_A_A_A_ABiBiBiBiBiBi_A_A
+  _A_A_ABiBiBiBi_A_A_A_ACyCyC2C2C2BiBiBiBiBi_A_A_A_ABiBiBiBi_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2C2CyCABiBiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_ACyCyC2C2CyCACyCABiBiBiBi_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_ABiBi_A_A_A_A_ACyCyCyCACACACyBiBiBi_A_A_A_A_ABiBi_A_A_A_A
+  _A_A_A_ABiBiBi_A_A_A_A_A_ACyCACACyCyBi_A_A_A_A_A_A_ABiBiBi_A_A_A
+  _A_A_ACyBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyBiBiBi_A_A_A
+  _A_ACyCyBiBiBiBi_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_ACyCyBiBiBiBi_A_A
+}
+# tile 218 (sub sokoban walls 0)
+{
+  _A_AC$C$C$C$_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAjC$C$C$C$_p_p_A_A
+  _A_AC$C$C$_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_KAjAjAjC$C$C$_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_KAjAj_K_K_K_KAjAjAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_KAjAj_K_K_K_KAjAjAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_KAjAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAjAj_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAjAj_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_A_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAj_p_p_p_p_p_A_A
+  _A_AAjAj_A_A_A_A_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_A_AAjAj_A_A
+  _A_AAjAjAj_A_A_A_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_A_AAjAj_A_A
+  _A_AAjAjAjAjAj_A_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAjAjAjAjAj_A_A
+  _A_AAjAjAjAjAjAj_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAjAjAjAjAj_A_A
+  _A_A_p_p_K_K_K_K_A_AAjAjAjAj_K_K_K_KAjAj_K_KAjAjAj_p_KAjAjAj_A_A
+  _A_A_p_p_K_K_K_K_A_AAjAjAj_K_K_K_K_KAjAj_K_KAjAj_p_p_K_KAjAj_A_A
+  _A_AC$C$C$C$_p_p_A_AAjAjAj_K_K_K_K_K_K_K_K_KAjAjC$C$C$C$_p_p_A_A
+  _A_AC$C$C$_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAjC$C$C$_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAjAj_K_K_K_K_K_K_K_KAjAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAjAj_K_K_KAjAj_K_KAjAjAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_A_A_AAjAjAjAj_K_KAjAj_K_KAjAjAjAjAj_p_p_p_p_p_A_A
+  _A_AAjAj_A_A_A_A_A_AAjAjAjAj_K_K_K_K_K_K_KAjAjAjAjAj_A_AAjAj_A_A
+  _A_AAjAjAj_A_A_A_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_A_AAjAj_A_A
+  _A_AAjAjAjAjAj_A_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAjAjAjAjAj_A_A
+  _A_AAjAjAjAjAjAj_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAjAjAjAjAj_A_A
+  _A_A_p_p_K_K_K_K_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAj_p_KAjAjAj_A_A
+  _A_A_p_p_K_K_K_K_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAj_p_p_K_KAjAj_A_A
+}
+# tile 219 (sub sokoban walls 1)
+{
+  _A_A_A_A_A_AC$C$_p_p_p_p_A_A_A_A_A_A_A_A_A_AC$C$_p_p_p_p_A_A_A_A
+  _A_A_A_A_A_AC$C$_p_p_p_p_A_A_A_A_A_A_A_A_A_AC$C$_p_p_p_p_A_A_A_A
+  _p_p_p_p_p_pC$C$_p_p_p_p_A_A_AAj_p_p_p_p_p_pC$C$_p_p_p_p_A_A_AAj
+  _p_p_p_p_p_pC$C$_p_p_p_p_A_AAjAj_p_p_p_p_p_pC$C$_p_p_p_p_A_AAjAj
+  _K_p_p_p_p_pAjAjAjAjAjAj_A_AAjAj_K_p_p_p_p_pAjAjAjAjAjAj_A_AAjAj
+  _K_K_p_p_pAjAjAjAjAjAjAj_A_AAjAjAj_K_p_p_pAjAjAjAjAjAjAj_A_AAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  _K_K_KAjAjAjAjAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAjAjAjAjAj_K_K_K_K_K
+  _K_K_K_KAjAjAjAjAjAj_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj_K_K_K_K_K_K
+  _K_K_K_KC$C$_p_p_p_p_K_K_K_K_K_K_K_K_K_KC$C$_p_p_p_p_K_K_K_K_K_K
+  _K_K_K_KC$C$_p_p_p_p_K_K_K_K_K_K_K_K_K_KC$C$_p_p_p_p_K_K_K_K_K_K
+  _p_p_p_pC$C$_p_p_p_p_A_AAjAj_p_p_p_p_p_pC$C$_p_p_p_p_A_AAjAj_p_p
+  _p_p_p_pC$C$_p_p_p_p_A_AAjAj_p_p_p_p_p_pC$C$_p_p_p_p_A_AAjAj_p_p
+  _p_p_p_pAjAjAjAjAjAj_A_AAjAj_K_p_p_p_p_pAjAjAjAjAjAj_A_AAjAj_K_K
+  _p_p_pAjAjAjAjAjAjAj_A_AAjAjAj_K_p_p_pAjAjAjAjAjAjAj_A_AAjAjAj_K
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  _K_K_KAjAjAjAj_p_K_K_K_K_K_K_KAjAjAjAj_p_K_K_K_K_KAjAjAjAj_p_K_K
+  _K_K_K_KAjAj_p_K_K_K_K_K_K_K_K_KAjAj_p_K_K_K_K_K_K_KAjAj_p_K_K_K
+  _K_K_K_KAjAj_K_K_K_K_K_K_K_K_K_KAjAj_K_K_K_K_K_K_K_KAjAj_K_K_K_K
+  _K_K_KAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_K_K_K_K_K_KAjAjAjAj_K_K_K
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAj_p_K_K_K_K_K_K_KAjAjAjAj_p_K_K_K_K_K_K_KAjAjAjAj_p_K_K_K_K
+  AjAj_p_K_K_K_K_K_K_K_K_KAjAj_p_K_K_K_K_K_K_K_K_KAjAj_p_K_K_K_K_K
+  AjAj_K_K_K_K_K_K_K_K_K_KAjAj_K_K_K_K_K_K_K_K_K_KAjAj_K_K_K_K_K_K
+  AjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_K_K_K_K_K
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  _A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A
+}
+# tile 220 (sub sokoban walls 2)
+{
+  _A_A_A_A_A_AC$C$C$C$C$C$C$C$_p_p_p_p_p_p_p_p_p_p_p_p_A_A_A_A_A_A
+  _A_A_A_A_AC$C$C$C$C$C$C$C$C$_p_p_p_p_p_p_p_p_p_p_p_p_A_A_A_A_A_A
+  C$C$C$C$C$C$C$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_K_K_p_p_pAjAjAjAjAjAj
+  C$C$C$C$C$C$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_K_K_K_K_p_pAjAjAjAjAjAj
+  _p_p_p_p_pC$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_KC$C$C$_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_pC$_A_AAjAjAjAj_K_K_K_K_K_KC$C$C$_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAj
+  _p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAj
+  _p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAj
+  _p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAj
+  _p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  _A_A_K_K_KAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj_K_K_K_KAjAjAj
+  _A_A_K_K_K_KAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj_K_K_K_K_K_KAjAj
+  _A_A_p_p_p_p_p_p_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_A_AAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_A_A_AAjAjAj_K_K_K_K_K_K_K_K_KAjAjAj_p_p_p_p_p_A_A
+  _A_AAjAj_A_A_A_A_A_AAjAjAj_K_K_K_K_K_K_K_K_KAjAjAjAj_A_AAjAj_A_A
+  _A_AAjAjAj_A_A_A_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_A_AAjAj_A_A
+  _A_AAjAjAjAjAj_A_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAjAjAjAjAj_A_A
+  _A_AAjAjAjAjAjAj_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAjAjAjAjAj_A_A
+  _A_A_p_p_K_K_K_K_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAj_p_KAjAjAj_A_A
+  _A_A_p_p_K_K_K_K_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAj_p_p_K_KAjAj_A_A
+}
+# tile 221 (sub sokoban walls 3)
+{
+  _A_A_A_A_A_AC$C$C$C$C$C$C$C$_p_p_p_p_p_p_p_p_p_p_p_p_A_A_A_A_A_A
+  _A_A_A_A_AC$C$C$C$C$C$C$C$C$_p_p_p_p_p_p_p_p_p_p_p_p_A_A_A_A_A_A
+  C$C$C$C$C$C$C$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_K_K_p_p_pAjAjAjAjAjAj
+  C$C$C$C$C$C$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_K_K_K_K_p_pAjAjAjAjAjAj
+  _p_p_p_p_pC$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_KC$C$C$_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_pC$_A_AAjAjAjAj_K_K_K_K_K_KC$C$C$_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAj
+  _p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAj
+  _p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAj
+  _p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAj
+  _p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  _A_A_K_K_KAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj_K_K_K_KAjAjAj
+  _A_A_K_K_K_KAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj_K_K_K_K_K_KAjAj
+  _A_A_p_p_p_p_p_p_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_A_AAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_A_A_AAjAjAj_K_K_K_K_K_K_K_K_KAjAjAj_p_p_p_p_p_A_A
+  _A_AAjAj_A_A_A_A_A_AAjAjAj_K_K_K_K_K_K_K_K_KAjAjAjAj_A_AAjAj_A_A
+  _A_AAjAjAj_A_A_A_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_A_AAjAj_A_A
+  _A_AAjAjAjAjAj_A_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAjAjAjAjAj_A_A
+  _A_AAjAjAjAjAjAj_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAjAjAjAjAj_A_A
+  _A_A_p_p_K_K_K_K_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAj_p_KAjAjAj_A_A
+  _A_A_p_p_K_K_K_K_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAj_p_p_K_KAjAj_A_A
+}
+# tile 222 (sub sokoban walls 4)
+{
+  _A_A_A_A_A_AC$C$C$C$C$C$C$C$_p_p_p_p_p_p_p_p_p_p_p_p_A_A_A_A_A_A
+  _A_A_A_A_AC$C$C$C$C$C$C$C$C$_p_p_p_p_p_p_p_p_p_p_p_p_A_A_A_A_A_A
+  C$C$C$C$C$C$C$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_K_K_p_p_pAjAjAjAjAjAj
+  C$C$C$C$C$C$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_K_K_K_K_p_pAjAjAjAjAjAj
+  _p_p_p_p_pC$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_KC$C$C$_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_pC$_A_AAjAjAjAj_K_K_K_K_K_KC$C$C$_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAj
+  _p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAj
+  _p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAj
+  _p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAj
+  _p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  _K_K_KAjAjAjAj_p_K_K_K_K_K_K_KAjAjAjAj_p_K_K_K_K_KAjAjAjAj_p_K_K
+  _K_K_K_KAjAj_p_K_K_K_K_K_K_K_K_KAjAj_p_K_K_K_K_K_K_KAjAj_p_K_K_K
+  _K_K_K_KAjAj_K_K_K_K_K_K_K_K_K_KAjAj_K_K_K_K_K_K_K_KAjAj_K_K_K_K
+  _K_K_KAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_K_K_K_K_K_KAjAjAjAj_K_K_K
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAj_p_K_K_K_K_K_K_KAjAjAjAj_p_K_K_K_K_K_K_KAjAjAjAj_p_K_K_K_K
+  AjAj_p_K_K_K_K_K_K_K_K_KAjAj_p_K_K_K_K_K_K_K_K_KAjAj_p_K_K_K_K_K
+  AjAj_K_K_K_K_K_K_K_K_K_KAjAj_K_K_K_K_K_K_K_K_K_KAjAj_K_K_K_K_K_K
+  AjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_K_K_K_K_K
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  _A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A
+}
+# tile 223 (sub sokoban walls 5)
+{
+  _A_A_A_A_A_AC$C$C$C$C$C$C$C$_p_p_p_p_p_p_p_p_p_p_p_p_A_A_A_A_A_A
+  _A_A_A_A_AC$C$C$C$C$C$C$C$C$_p_p_p_p_p_p_p_p_p_p_p_p_A_A_A_A_A_A
+  C$C$C$C$C$C$C$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_K_K_p_p_pAjAjAjAjAjAj
+  C$C$C$C$C$C$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_K_K_K_K_p_pAjAjAjAjAjAj
+  _p_p_p_p_pC$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_KC$C$C$_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_pC$_A_AAjAjAjAj_K_K_K_K_K_KC$C$C$_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAj
+  _p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAj
+  _p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAj
+  _p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAj
+  _p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  _K_K_KAjAjAjAj_p_K_K_K_K_K_K_KAjAjAjAj_p_K_K_K_K_KAjAjAjAj_p_K_K
+  _K_K_K_KAjAj_p_K_K_K_K_K_K_K_K_KAjAj_p_K_K_K_K_K_K_KAjAj_p_K_K_K
+  _K_K_K_KAjAj_K_K_K_K_K_K_K_K_K_KAjAj_K_K_K_K_K_K_K_KAjAj_K_K_K_K
+  _K_K_KAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_K_K_K_K_K_KAjAjAjAj_K_K_K
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAj_p_K_K_K_K_K_K_KAjAjAjAj_p_K_K_K_K_K_K_KAjAjAjAj_p_K_K_K_K
+  AjAj_p_K_K_K_K_K_K_K_K_KAjAj_p_K_K_K_K_K_K_K_K_KAjAj_p_K_K_K_K_K
+  AjAj_K_K_K_K_K_K_K_K_K_KAjAj_K_K_K_K_K_K_K_K_K_KAjAj_K_K_K_K_K_K
+  AjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_K_K_K_K_K
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  _A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A
+}
+# tile 224 (sub sokoban walls 6)
+{
+  _A_A_A_A_A_AC$C$C$C$C$C$C$C$_p_p_p_p_p_p_p_p_p_p_p_p_A_A_A_A_A_A
+  _A_A_A_A_AC$C$C$C$C$C$C$C$C$_p_p_p_p_p_p_p_p_p_p_p_p_A_A_A_A_A_A
+  C$C$C$C$C$C$C$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_K_K_p_p_pAjAjAjAjAjAj
+  C$C$C$C$C$C$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_K_K_K_K_p_pAjAjAjAjAjAj
+  _p_p_p_p_pC$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_KC$C$C$_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_pC$_A_AAjAjAjAj_K_K_K_K_K_KC$C$C$_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAj
+  _p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAj
+  _p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAj
+  _p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAj
+  _p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  _A_A_K_K_KAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj_K_K_K_KAjAjAj
+  _A_A_K_K_K_KAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj_K_K_K_K_K_KAjAj
+  _A_A_p_p_p_p_p_p_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_A_AAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_A_A_AAjAjAj_K_K_K_K_K_K_K_K_KAjAjAj_p_p_p_p_p_A_A
+  _A_AAjAj_A_A_A_A_A_AAjAjAj_K_K_K_K_K_K_K_K_KAjAjAjAj_A_AAjAj_A_A
+  _A_AAjAjAj_A_A_A_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_A_AAjAj_A_A
+  _A_AAjAjAjAjAj_A_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAjAjAjAjAj_A_A
+  _A_AAjAjAjAjAjAj_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAjAjAjAjAj_A_A
+  _A_A_p_p_K_K_K_K_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAj_p_KAjAjAj_A_A
+  _A_A_p_p_K_K_K_K_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAj_p_p_K_KAjAj_A_A
+}
+# tile 225 (sub sokoban walls 7)
+{
+  _A_A_A_A_A_AC$C$C$C$C$C$C$C$_p_p_p_p_p_p_p_p_p_p_p_p_A_A_A_A_A_A
+  _A_A_A_A_AC$C$C$C$C$C$C$C$C$_p_p_p_p_p_p_p_p_p_p_p_p_A_A_A_A_A_A
+  C$C$C$C$C$C$C$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_K_K_p_p_pAjAjAjAjAjAj
+  C$C$C$C$C$C$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_K_K_K_K_p_pAjAjAjAjAjAj
+  _p_p_p_p_pC$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_KC$C$C$_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_pC$_A_AAjAjAjAj_K_K_K_K_K_KC$C$C$_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAj
+  _p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAj
+  _p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAj
+  _p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAj
+  _p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  _K_K_KAjAjAjAj_p_K_K_K_K_K_K_KAjAjAjAj_p_K_K_K_K_KAjAjAjAj_p_K_K
+  _K_K_K_KAjAj_p_K_K_K_K_K_K_K_K_KAjAj_p_K_K_K_K_K_K_KAjAj_p_K_K_K
+  _K_K_K_KAjAj_K_K_K_K_K_K_K_K_K_KAjAj_K_K_K_K_K_K_K_KAjAj_K_K_K_K
+  _K_K_KAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_K_K_K_K_K_KAjAjAjAj_K_K_K
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAj_p_K_K_K_K_K_K_KAjAjAjAj_p_K_K_K_K_K_K_KAjAjAjAj_p_K_K_K_K
+  AjAj_p_K_K_K_K_K_K_K_K_KAjAj_p_K_K_K_K_K_K_K_K_KAjAj_p_K_K_K_K_K
+  AjAj_K_K_K_K_K_K_K_K_K_KAjAj_K_K_K_K_K_K_K_K_K_KAjAj_K_K_K_K_K_K
+  AjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_K_K_K_K_K
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  _A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A
+  _A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A
+}
+# tile 226 (sub sokoban walls 8)
+{
+  _A_A_A_A_A_AC$C$C$C$C$C$C$C$_p_p_p_p_p_p_p_p_p_p_p_p_A_A_A_A_A_A
+  _A_A_A_A_AC$C$C$C$C$C$C$C$C$_p_p_p_p_p_p_p_p_p_p_p_p_A_A_A_A_A_A
+  C$C$C$C$C$C$C$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_K_K_p_p_pAjAjAjAjAjAj
+  C$C$C$C$C$C$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_K_K_K_K_p_pAjAjAjAjAjAj
+  _p_p_p_p_pC$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_KC$C$C$_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_pC$_A_AAjAjAjAj_K_K_K_K_K_KC$C$C$_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAj
+  _p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAj
+  _p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAj
+  _p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAj
+  _p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  _A_A_K_K_KAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj_K_K_K_KAjAjAj
+  _A_A_K_K_K_KAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj_K_K_K_K_K_KAjAj
+  _A_A_p_p_p_p_p_p_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_A_AAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_A_A_AAjAjAj_K_K_K_K_K_K_K_K_KAjAjAj_p_p_p_p_p_A_A
+  _A_AAjAj_A_A_A_A_A_AAjAjAj_K_K_K_K_K_K_K_K_KAjAjAjAj_A_AAjAj_A_A
+  _A_AAjAjAj_A_A_A_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_A_AAjAj_A_A
+  _A_AAjAjAjAjAj_A_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAjAjAjAjAj_A_A
+  _A_AAjAjAjAjAjAj_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAjAjAjAjAj_A_A
+  _A_A_p_p_K_K_K_K_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAj_p_KAjAjAj_A_A
+  _A_A_p_p_K_K_K_K_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAj_p_p_K_KAjAj_A_A
+}
+# tile 227 (sub sokoban walls 9)
+{
+  _A_A_A_A_A_AC$C$C$C$C$C$C$C$_p_p_p_p_p_p_p_p_p_p_p_p_A_A_A_A_A_A
+  _A_A_A_A_AC$C$C$C$C$C$C$C$C$_p_p_p_p_p_p_p_p_p_p_p_p_A_A_A_A_A_A
+  C$C$C$C$C$C$C$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_K_K_p_p_pAjAjAjAjAjAj
+  C$C$C$C$C$C$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_K_K_K_K_p_pAjAjAjAjAjAj
+  _p_p_p_p_pC$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_KC$C$C$_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_pC$_A_AAjAjAjAj_K_K_K_K_K_KC$C$C$_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAj
+  _p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAj
+  _p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAj
+  _p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAj
+  _p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  _A_A_K_K_KAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj_K_K_K_KAjAjAj
+  _A_A_K_K_K_KAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj_K_K_K_K_K_KAjAj
+  _A_A_p_p_p_p_p_p_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_A_AAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_A_A_AAjAjAj_K_K_K_K_K_K_K_K_KAjAjAj_p_p_p_p_p_A_A
+  _A_AAjAj_A_A_A_A_A_AAjAjAj_K_K_K_K_K_K_K_K_KAjAjAjAj_A_AAjAj_A_A
+  _A_AAjAjAj_A_A_A_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_A_AAjAj_A_A
+  _A_AAjAjAjAjAj_A_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAjAjAjAjAj_A_A
+  _A_AAjAjAjAjAjAj_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAjAjAjAjAj_A_A
+  _A_A_p_p_K_K_K_K_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAj_p_KAjAjAj_A_A
+  _A_A_p_p_K_K_K_K_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAj_p_p_K_KAjAj_A_A
+}
+# tile 228 (sub sokoban walls 10)
+{
+  _A_A_A_A_A_AC$C$C$C$C$C$C$C$_p_p_p_p_p_p_p_p_p_p_p_p_A_A_A_A_A_A
+  _A_A_A_A_AC$C$C$C$C$C$C$C$C$_p_p_p_p_p_p_p_p_p_p_p_p_A_A_A_A_A_A
+  C$C$C$C$C$C$C$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_K_K_p_p_pAjAjAjAjAjAj
+  C$C$C$C$C$C$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_K_K_K_K_p_pAjAjAjAjAjAj
+  _p_p_p_p_pC$C$C$_A_A_AAjAjAjAj_K_K_K_K_K_KC$C$C$_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_pC$_A_AAjAjAjAj_K_K_K_K_K_KC$C$C$_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_p_pAjAjAjAjAjAj
+  _p_p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAjAj
+  _p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAj
+  _p_p_p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAjAjAj
+  _p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAjAj
+  _p_p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAj
+  _p_p_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_K_KAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  AjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj
+  _A_A_K_K_KAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj_K_K_K_KAjAjAj
+  _A_A_K_K_K_KAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAjAj_K_K_K_K_K_KAjAj
+  _A_A_p_p_p_p_p_p_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_A_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_A_AAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_p_A_AAjAj_K_K_K_K_K_K_K_K_K_KAjAj_p_p_p_p_p_p_A_A
+  _A_A_p_p_p_p_p_A_A_AAjAjAj_K_K_K_K_K_K_K_K_KAjAjAj_p_p_p_p_p_A_A
+  _A_AAjAj_A_A_A_A_A_AAjAjAj_K_K_K_K_K_K_K_K_KAjAjAjAj_A_AAjAj_A_A
+  _A_AAjAjAj_A_A_A_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAj_A_AAjAj_A_A
+  _A_AAjAjAjAjAj_A_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAjAjAjAjAj_A_A
+  _A_AAjAjAjAjAjAj_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAjAjAjAjAjAj_A_A
+  _A_A_p_p_K_K_K_K_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAjAj_p_KAjAjAj_A_A
+  _A_A_p_p_K_K_K_K_A_AAjAjAjAj_K_K_K_K_K_K_K_KAjAj_p_p_K_KAjAj_A_A
+}

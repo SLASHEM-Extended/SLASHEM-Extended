@@ -191,20 +191,31 @@ main(argc, argv)
 int argc;
 char **argv;
 {
-    int i, fn;
-    if (argc < 2) {
-	Fprintf(stderr, "usage: txtmerge outfile [[-b<bg>] infile] ...\n");
+    int argn = 1, fn;
+    char *outfile;
+    if (argc > 2 && !strcmp(argv[1], "-p")) {
+	if (!read_text_file_colormap(argv[2])) {
+	    perror(argv[2]);
+	    exit(EXIT_FAILURE);
+	}
+	init_colormap();
+	argn += 2;
+    }
+    if (argc - argn < 1) {
+	Fprintf(stderr,
+	  "usage: txtmerge [-p palette-file] outfile [[-b<bg>] infile] ...\n");
 	exit(EXIT_FAILURE);
     }
+    outfile = argv[argn++];
 
-    for(i = 2, fn = 1; i < argc; i++) {
-	if (argv[i][0] == '-' && argv[i][1] == 'b') {
+    for(fn = 1; argn < argc; argn++) {
+	if (argv[argn][0] == '-' && argv[argn][1] == 'b') {
 	    int r, g, b;
 	    pixel bg = DEFAULT_BACKGROUND;
-	    if (argv[i][2]) {
-		if (sscanf(argv[i] + 2, "%02X%02X%02X", &r, &g, &b) != 3) {
+	    if (argv[argn][2]) {
+		if (sscanf(argv[argn] + 2, "%02X%02X%02X", &r, &g, &b) != 3) {
 		    Fprintf(stderr, "Background %s not understood.\n",
-		      argv[i] + 2);
+		      argv[argn] + 2);
 		}
 		else {
 		    bg.r = (unsigned char) r;
@@ -217,7 +228,7 @@ char **argv;
 	    file_bg.b = bg.b;
 	}
 	else {
-	    if (!fopen_text_file(argv[i], RDTMODE))
+	    if (!fopen_text_file(argv[argn], RDTMODE))
 		exit(EXIT_FAILURE);
 	    if (fn == 1)
 		read_tiles();
@@ -229,7 +240,7 @@ char **argv;
     }
 
     if (fn > 1) {
-	if (!fopen_text_file(argv[1], WRTMODE))
+	if (!fopen_text_file(outfile, WRTMODE))
 	    exit(EXIT_FAILURE);
 	write_tiles();
 	fclose_text_file();

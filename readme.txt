@@ -99,6 +99,7 @@ ver 0.0.7E3 [?] [Released by ?]
 -fixed bug 793144: putting corpses in ice box
 -fixed bug 789310: Lyc Rogues can't two-weapon
 -fixed bug 731767: Tsurugi of Muramasa special attack inoperative
+-Actioned feature request 783244: Add some/all of these new 32x32 tiles.
 
 See history.txt for changes made in previous versions.
 
