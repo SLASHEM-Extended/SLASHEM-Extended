@@ -69,6 +69,7 @@ http://www.slashem.org/
 
 ver 0.0.7E6F4 [?] [Released by ?]
 -Fixed build of proxy tests
+-bugfix : [ 1071688 ] cannot compile on FreeBSD (termcap)
 
 See history.txt for changes made in previous versions.
 
