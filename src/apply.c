@@ -2593,6 +2593,7 @@ wand_explode(obj, hero_broke)
     register struct monst *mon;
     int dmg, damage;
     boolean affects_objects;
+    int where = obj->where;
 
     current_wand = obj;		/* destroy_item might reset this */
     freeinv(obj);		/* hide it from destroy_item instead... */
@@ -2684,12 +2685,16 @@ wand_explode(obj, hero_broke)
     case WAN_CREATE_HORDE: /* More damage than Create monster */
 	        dmg *= 2;
 	        break;
+    case WAN_HEALING:
+    case WAN_EXTRA_HEALING:
+		dmg = 0;
+		break;
     default:
 		break;
     }
 
     /* magical explosion and its visual effect occur before specific effects */
-    explode(obj->ox, obj->oy, ZT_MAGIC_MISSILE, rnd(dmg), WAND_CLASS);
+    explode(obj->ox, obj->oy, ZT_MAGIC_MISSILE, dmg ? rnd(dmg) : 0, WAND_CLASS);
 
     /* this makes it hit us last, so that we can see the action first */
     for (i = 0; i <= 8; i++) {
@@ -2752,8 +2757,13 @@ wand_explode(obj, hero_broke)
     current_wand = 0;
     if (obj) {
 	/* extra charge for _use_ prior to destruction */
-	check_unpaid(obj);
-    delobj(obj);
+	/* [ALI] This is more correct than calling check_unpaid() and avoids
+	 * the problem of check_unpaid() checking that the object is carried
+	 * (which information we discarded above in freeinv(obj)).
+	 */
+	if (obj->unpaid || where != OBJ_INVENT && costly_spot(obj->ox, obj->oy))
+	    bill_dummy_object(obj);
+	delobj(obj);
     }
     nomul(0);
     return 1;
