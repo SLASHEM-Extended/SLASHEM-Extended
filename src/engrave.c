@@ -358,10 +358,7 @@ boolean read_it; /* Read any sensed engraving */
 	    if (sensed && !read_it &&
 			    flags.suppress_alert < FEATURE_NOTICE_VER(0,0,7)) {
 		pline("Use \"r.\" to read it.");
-	    } else if (sensed && read_it && (u.uconduct.literate ||
-			    yn("Read the message?") == 'y')) {
-	    	/* MAR Don't prompt if you're already literate */
-	    	/* WAC -- Hey,  there's a prompt here now so no excuses :) */
+	    } else if (sensed && read_it) {
 		int len;
 	    	char *et;
 	    	unsigned maxelen = BUFSZ - sizeof("You feel the words: \"\". ");

@@ -72,6 +72,7 @@ ver 0.0.7E6F1 [?] [Released by ?]
 -fixed bug 909397: Windows help|about twice crashes
 -New branding for MS-Windows native GUI port
 -fixed bug 907789: "The poisoned runed dagger was poisoned!" (Nico Kist)
+-fixed bug 908187: Excessive prompts when reading graffiti (Nico Kist)
 
 See history.txt for changes made in previous versions.
 
