@@ -73,6 +73,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 950120: crash when wishing for Wallet of Perseus
 -fixed bug 933365: wand of draining does not interrupt ctrl-run
 -fixed bug 933379: weird behaviour with polyself into monsters like migo drone
+-fixed bug 929546: Flaming spheres won't attack acid blobs
 
 See history.txt for changes made in previous versions.
 

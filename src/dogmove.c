@@ -863,7 +863,8 @@ register int after;	/* this is extra fast monster movement */
 			 && (perceives(mtmp->data) || !mtmp2->minvis)) ||
 			(mtmp2->data==&mons[PM_GELATINOUS_CUBE] && rn2(10)) ||
 			(mtmp2->data==&mons[PM_GAS_SPORE] && rn2(16)) ||
-			(max_passive_dmg(mtmp2, mtmp) >= mtmp->mhp) ||
+			(!attacktype(mtmp->data, AT_EXPL) &&
+			 max_passive_dmg(mtmp2, mtmp) >= mtmp->mhp) ||
 			/* WAC -- Minions/Angels no longer attack
 			 * coaligned minions/priests/angels.
 			 */
