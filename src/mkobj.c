@@ -796,6 +796,7 @@ register struct obj *otmp;
 	otmp->cursed = 0;
 	otmp->blessed = 1;
 	if (otmp->otyp == LUCKSTONE
+		|| (otmp->otyp == FEDORA && otmp == uarmh)
 		|| (otmp->oartifact && spec_ability(otmp, SPFX_LUCK)))
 	    set_moreluck();
 	/* KMH, balance patch -- healthstones affect healing */
@@ -833,6 +834,7 @@ register struct obj *otmp;
 	otmp->blessed = 0;
 	otmp->cursed = 1;
 	if (otmp->otyp == LUCKSTONE
+		|| (otmp->otyp == FEDORA && otmp == uarmh)
 		|| (otmp->oartifact && spec_ability(otmp, SPFX_LUCK)))
 	    set_moreluck();
 	/* KMH, balance patch -- healthstones affect healing */
@@ -855,6 +857,7 @@ register struct obj *otmp;
 {
 	otmp->cursed = 0;
 	if (otmp->otyp == LUCKSTONE
+		|| (otmp->otyp == FEDORA && otmp == uarmh)
 		|| (otmp->oartifact && spec_ability(otmp, SPFX_LUCK)))
 	    set_moreluck();
 	/* KMH, balance patch -- healthstones affect healing */
