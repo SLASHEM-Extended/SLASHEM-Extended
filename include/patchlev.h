@@ -20,7 +20,7 @@
  * Incrementing EDITLEVEL can be used to force invalidation of old bones
  * and save files.
  */
-#define EDITLEVEL        4
+#define EDITLEVEL        5
 /*
  * Fix level can be used to distinguish versions between edit levels.
  * Note: Incrementing FIXLEVEL does _not_ invalidate old bones and save files.
