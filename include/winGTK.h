@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.24 2002-07-04 13:09:10 j_ali Exp $
+  $Id: winGTK.h,v 1.25 2002-07-07 14:38:10 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -110,6 +110,8 @@ extern void	GTK_ext_add_menu(winid, int, int, CHAR_P, CHAR_P, int,
 			const char *, BOOLEAN_P);
 extern int	GTK_ext_select_menu(winid, int, struct proxy_mi **);
 extern void	GTK_ext_print_glyph(winid id, int x, int y, int glyph);
+extern void	GTK_ext_print_glyph_layered(winid id, int x, int y,
+			int ng, int *glyphs);
 extern char	GTK_ext_yn_function(const char *, const char *, CHAR_P, int *);
 extern int	GTK_ext_outrip(winid, char *);
 extern char *	GTK_ext_getlin(const char *query);

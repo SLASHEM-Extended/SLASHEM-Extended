@@ -9,6 +9,11 @@
 
 extern struct window_procs proxy_procs;
 
+#define EXT_IM_STATUS			0x0001
+#define EXT_IM_DISPLAY_LAYERS		0x0002
+
+extern unsigned long proxy_interface_mode;
+
 /* external declarations */
 E void FDECL(proxy_init_nhwindows, (int *, char **));
 E void NDECL(proxy_player_selection);
@@ -160,6 +165,7 @@ E char * FDECL(get_killer_string, (int));
 #define EXT_FID_END_SCREEN		0x2B
 #define EXT_FID_OUTRIP			0x2C
 #define EXT_FID_STATUS			0x2D
+#define EXT_FID_PRINT_GLYPH_LAYERED	0x2E
 
 struct proxy_init_nhwindow_req {
     int argc;
@@ -189,6 +195,14 @@ struct proxy_status_req {
     const char **values;
 };
 
+struct proxy_print_glyph_layered_req {
+    int window;
+    int x;
+    int y;
+    int ng;
+    int *glyphs;
+};
+
 #ifdef NHXDR_H
 E boolean FDECL(proxy_xdr_init_nhwindow_req,
 		(NhExtXdr *, struct proxy_init_nhwindow_req *));
@@ -197,6 +211,8 @@ E boolean FDECL(proxy_xdr_init_nhwindow_res,
 E boolean FDECL(proxy_xdr_proxy_mi, (NhExtXdr *, struct proxy_mi *));
 E boolean FDECL(proxy_xdr_select_menu_res, (NhExtXdr *, struct proxy_select_menu_res *));
 E boolean FDECL(proxy_xdr_status_req, (NhExtXdr *, struct proxy_status_req *));
+E boolean FDECL(proxy_xdr_print_glyph_layered_req,
+		(NhExtXdr *, struct proxy_print_glyph_layered_req *));
 #endif	/* NHXDR_H */
 
 struct window_ext_procs {
@@ -246,6 +262,7 @@ struct window_ext_procs {
     void NDECL((*winext_end_screen));
     int FDECL((*winext_outrip), (winid, char *));
     void FDECL((*winext_status), (int, int, const char **));
+    void FDECL((*winext_print_glyph_layered), (winid, int, int, int, int *));
 };
 
 #undef E

@@ -1,4 +1,4 @@
-/* $Id: proxycb.c,v 1.6 2002-06-29 11:37:45 j_ali Exp $ */
+/* $Id: proxycb.c,v 1.7 2002-07-07 14:38:10 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -74,10 +74,10 @@ proxy_cb_doredraw()
 }
 
 void
-proxy_cb_status_mode(mode)
-int mode;
+proxy_cb_interface_mode(mode)
+unsigned long mode;
 {
-    nhext_rpc(EXT_CID_STATUS_MODE, 1, EXT_INT(mode), 0);
+    nhext_rpc(EXT_CID_INTERFACE_MODE, 1, EXT_LONG(mode), 0);
 }
 
 int

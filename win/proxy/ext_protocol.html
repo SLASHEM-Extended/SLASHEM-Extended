@@ -213,6 +213,8 @@ the IDs.
 <tr><td>start_screen</td><td>0x2A</td></tr>
 <tr><td>end_screen</td><td>0x2B</td></tr>
 <tr><td>outrip</td><td>0x2C</td></tr>
+<tr><td>status</td><td>0x2D</td></tr>
+<tr><td>print_glyph_layered</td><td>0x2E</td></tr>
 </table>
 
 <p>Plug-in window ports may define non-standard procedures with IDs of 0x8000 and
@@ -947,6 +949,48 @@ struct outrip_res {
 <p>ALI: I suspect we should pass rather more information to this procedure;
 <code>genl_outrip()</code> uses a <em>lot</em> of global variables.
 
+<h3>status</h3>
+<pre>
+typedef string value<>;
+
+struct proxy_status_req {
+    int reconfig;
+    value values<>;
+};
+</pre>
+
+<h3>print_glyph_layered</h3>
+<pre>
+struct print_glyph_layered_req {
+    int window;
+    int x;
+    int y;
+    int glyphs<>;
+};
+</pre>
+print_glyph_layered returns no values.
+
+<p> Place <var>glyphs</var> at (<var>x</var>,<var>y</var>) on the given window.
+Window interfaces may display layered glyphs using either opacity (lowest present
+glyph is displayed), transparancy (each glyph is represented by an irregular shaped
+image. Glyphs from layers further away may be seen behind the image), translucency
+(glpyhs are represented by images that only partially obscure the underlying image)
+or some other suitable method.
+
+<p>
+Layers are numbered counting away from the viewer. Layers which have no glyph present
+have a value of NO_GLYPH.
+
+<p>
+Glyphs are
+   integers at the interface, mapped to whatever the window-port
+   wants (symbol, font, color, attributes, ...there's
+   a 1-1 map between glyphs and distinct things on the map).
+
+<p>
+Note: This procedure will only be called if the interface flag EXT_IM_DISPLAY_LAYERS
+is set.
+
 <h2>Standard window port call backs</h2>
 
 Plug-in window ports may assume that the following call backs are supported.
@@ -959,7 +1003,7 @@ Plug-in window ports may assume that the following call backs are supported.
 <tr><td>dlbh_fclose</td><td>0x04</td></tr>
 <tr><td>flush_screen</td><td>0x05</td></tr>
 <tr><td>doredraw</td><td>0x06</td></tr>
-<tr><td>status_mode</td><td>0x07</td></tr>
+<tr><td>interface_mode</td><td>0x07</td></tr>
 <tr><td>parse_options</td><td>0x08</td></tr>
 <tr><td>get_option</td><td>0x09</td></tr>
 <tr><td>get_player_choices</td><td>0x0A</td></tr>
@@ -1050,18 +1094,20 @@ doredraw takes no arguments and returns no values.
 
 <p>Redraw the screen.
 
-<h3>status_mode</h3>
+<h3>interface_mode</h3>
 <pre>
-struct status_mode_fclose_req {
-    int mode;
+struct interface_mode_fclose_req {
+    unsigned long mode;
 };
 </pre>
 
-<p>Change the behaviour of status reporting as follows:
+<p>Set or reset flags to change the behaviour of the interface as follows:
 <table>
-<tr><th>Mode</th><th>Behaviour</th></tr>
-<tr><td>0</td><td>Report status via calls to putstr(WIN_STATUS,...)</td></tr>
-<tr><td>1</td><td>Report status via calls to status(...)</td></tr>
+<tr><th>Flag</th>Status<th>Behaviour</th></tr>
+<tr><td>EXT_IM_STATUS</td><td>0</td><td>Report status via calls to putstr(WIN_STATUS,...)</td></tr>
+<tr><td></td><td>1</td><td>Report status via calls to status(...)</td></tr>
+<tr><td>EXT_IM_DISPLAY_LAYERS</td><td>0</td><td>Use print_glyph procedure</td></tr>
+<tr><td></td><td>1</td><td>Use print_glyph_layered procedure<td></tr>
 </table>
 
 <h3>parse_options</h3>

@@ -1,4 +1,4 @@
-/* $Id: proxycb.h,v 1.6 2002-06-29 11:37:45 j_ali Exp $ */
+/* $Id: proxycb.h,v 1.7 2002-07-07 14:38:10 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -11,7 +11,7 @@
 #define EXT_CID_DLBH_FCLOSE		0x04
 #define EXT_CID_FLUSH_SCREEN		0x05
 #define EXT_CID_DOREDRAW		0x06
-#define EXT_CID_STATUS_MODE		0x07
+#define EXT_CID_INTERFACE_MODE		0x07
 #define EXT_CID_PARSE_OPTIONS		0x08
 #define EXT_CID_GET_OPTION		0x09
 #define EXT_CID_GET_PLAYER_CHOICES	0x0A
@@ -50,7 +50,7 @@ extern char *FDECL(proxy_cb_dlbh_fgets, (char *, int, int));
 extern int FDECL(proxy_cb_dlbh_fclose, (int));
 extern void NDECL(proxy_cb_flush_screen);
 extern void NDECL(proxy_cb_doredraw);
-extern void FDECL(proxy_cb_status_mode, (int));
+extern void FDECL(proxy_cb_interface_mode, (unsigned long));
 extern int FDECL(proxy_cb_parse_options, (char *));
 extern char *FDECL(proxy_cb_get_option, (char *));
 extern struct proxycb_get_player_choices_res

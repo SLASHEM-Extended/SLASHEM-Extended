@@ -1,5 +1,5 @@
 /*
-  $Id: gtkstatus.c,v 1.5 2002-07-04 13:09:11 j_ali Exp $
+  $Id: gtkstatus.c,v 1.6 2002-07-07 14:38:10 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -450,12 +450,6 @@ nh_status_new()
 
     for(i = 0; i < SIZE(stat_tab); i++)
 	stat_tab[i].vi = stat_tab[i].dvi = -1;
-
-#ifdef GTK_PROXY
-    proxy_cb_status_mode(1);
-#else
-    bot_set_handler(GTK_ext_status);
-#endif
 
     return handle;
 }

@@ -1,4 +1,4 @@
-/* $Id: winproxy.c,v 1.8 2002-06-23 18:31:23 j_ali Exp $ */
+/* $Id: winproxy.c,v 1.9 2002-07-07 14:38:10 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -18,6 +18,10 @@
 /* Window to redirect raw output to, if not WIN_ERR */
 
 int proxy_rawprint_win = WIN_ERR;
+
+/* Current interface mode */
+
+unsigned long proxy_interface_mode = 0;
 
 /* Interface definition for plug-in windowing ports */
 struct window_procs proxy_procs = {
@@ -383,6 +387,52 @@ winid window;
 xchar x, y;
 int glyph;
 {
+#ifdef DISPLAY_LAYERS
+    if (proxy_interface_mode & EXT_IM_DISPLAY_LAYERS) {
+	struct rm *lev = &levl[x][y];
+	int glyphs[5];
+	void proxy_print_glyph_layered();
+
+	if (glyph_is_monster(glyph))
+	    glyphs[0] = glyph;
+	else
+	    glyphs[0] = lev->mem_invis ? GLYPH_INVISIBLE : NO_GLYPH;
+	if (lev->mem_obj)
+	    if (lev->mem_corpse)
+		glyphs[1] = body_to_glyph(lev->mem_obj - 1);
+	    else
+		glyphs[1] = objnum_to_glyph(lev->mem_obj - 1);
+	else
+	    glyphs[1] = NO_GLYPH;
+	glyphs[2] = lev->mem_trap ?
+	  cmap_to_glyph(lev->mem_trap - 1 + MAXDCHARS) : NO_GLYPH;
+	switch (lev->mem_bg) {
+	    case S_room:
+	    case S_corr:
+	    case S_litcorr:
+	    case S_air:
+	    case S_water:
+		glyphs[3] = NO_GLYPH;
+		glyphs[4] = cmap_to_glyph(lev->mem_bg);
+		break;
+	    default:
+		glyphs[3] = cmap_to_glyph(lev->mem_bg);
+		if (Is_airlevel(&u.uz))
+		    glyphs[4] = cmap_to_glyph(S_air);
+		else if (Is_waterlevel(&u.uz))
+		    glyphs[4] = cmap_to_glyph(S_water);
+		else if (lev->roomno != NO_ROOM)
+		    glyphs[4] = cmap_to_glyph(S_room);
+		else if (lev->waslit || flags.lit_corridor)
+		    glyphs[4] = cmap_to_glyph(S_litcorr);
+		else
+		    glyphs[4] = cmap_to_glyph(S_corr);
+		break;
+	}
+	proxy_print_glyph_layered(window, x, y, 5, glyphs);
+    }
+    else
+#endif
     nhext_rpc(EXT_FID_PRINT_GLYPH,
       4, EXT_WINID(window), EXT_INT(x), EXT_INT(y), EXT_INT(glyph), 0);
 }
@@ -577,6 +627,23 @@ const char **values;
     req.nv = nv;
     req.values = values;
     nhext_rpc(EXT_FID_STATUS, 1, EXT_XDRF(proxy_xdr_status_req, &req), 0);
+}
+
+void
+proxy_print_glyph_layered(window, x, y, ng, glyphs)
+winid window;
+xchar x, y;
+int ng;
+int *glyphs;
+{
+    struct proxy_print_glyph_layered_req req;
+    req.window = window;
+    req.x = x;
+    req.y = y;
+    req.ng = ng;
+    req.glyphs = glyphs;
+    nhext_rpc(EXT_FID_PRINT_GLYPH_LAYERED,
+      1, EXT_XDRF(proxy_xdr_print_glyph_layered_req, &req), 0);
 }
 
 extern struct nhext_svc proxy_callbacks[];

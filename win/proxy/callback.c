@@ -1,4 +1,4 @@
-/* $Id: callback.c,v 1.6 2002-06-29 11:37:45 j_ali Exp $ */
+/* $Id: callback.c,v 1.7 2002-07-07 14:38:10 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -22,7 +22,7 @@ static void FDECL(callback_flush_screen, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(callback_doredraw, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_status_mode, \
+static void FDECL(callback_interface_mode, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(callback_parse_options, \
 			(unsigned short, NhExtXdr *, NhExtXdr *));
@@ -170,13 +170,13 @@ NhExtXdr *request, *reply;
 }
 
 static void
-callback_status_mode(id, request, reply)
+callback_interface_mode(id, request, reply)
 unsigned short id;
 NhExtXdr *request, *reply;
 {
-    int mode;
-    nhext_rpc_params(request, 1, EXT_INT_P(mode));
-    bot_set_handler(mode & 1 ? proxy_status : (void (*)())0L);
+    nhext_rpc_params(request, 1, EXT_LONG_P(proxy_interface_mode));
+    bot_set_handler(proxy_interface_mode & EXT_IM_STATUS ?
+      proxy_status : (void (*)())0L);
 }
 
 static void
@@ -381,7 +381,7 @@ struct nhext_svc proxy_callbacks[] = {
     EXT_CID_DLBH_FCLOSE,		callback_dlbh_fclose,
     EXT_CID_FLUSH_SCREEN,		callback_flush_screen,
     EXT_CID_DOREDRAW,			callback_doredraw,
-    EXT_CID_STATUS_MODE,		callback_status_mode,
+    EXT_CID_INTERFACE_MODE,		callback_interface_mode,
     EXT_CID_PARSE_OPTIONS,		callback_parse_options,
     EXT_CID_GET_OPTION,			callback_get_option,
     EXT_CID_GET_PLAYER_CHOICES,		callback_get_player_choices,

@@ -1,4 +1,4 @@
-/* $Id: proxysvc.c,v 1.5 2002-03-02 19:44:06 j_ali Exp $ */
+/* $Id: proxysvc.c,v 1.6 2002-07-07 14:38:10 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -94,6 +94,8 @@ static void FDECL(proxy_svc_start_screen, (unsigned short, NhExtXdr *, NhExtXdr 
 static void FDECL(proxy_svc_end_screen, (unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_outrip, (unsigned short, NhExtXdr *, NhExtXdr *));
 static void FDECL(proxy_svc_status, (unsigned short, NhExtXdr *, NhExtXdr *));
+static void FDECL(proxy_svc_print_glyph_layered,
+			(unsigned short, NhExtXdr *, NhExtXdr *));
 
 static void
 proxy_svc_init(id, request, reply)
@@ -610,6 +612,19 @@ NhExtXdr *request, *reply;
     (*proxy_svc->winext_status)(req.reconfig, req.nv, req.values);
 }
 
+static void
+proxy_svc_print_glyph_layered(id, request, reply)
+unsigned short id; 
+NhExtXdr *request, *reply;
+{
+    struct proxy_print_glyph_layered_req req = { 0, 0, 0, 0, (int *)0 };
+    nhext_rpc_params(request,
+      1, EXT_XDRF(proxy_xdr_print_glyph_layered_req, &req));
+    (*proxy_svc->winext_print_glyph_layered)(req.window, req.x, req.y,
+      req.ng, req.glyphs);
+    free(req.glyphs);
+}
+
 static struct nhext_svc services[] = {
     EXT_FID_INIT,			proxy_svc_init,
     EXT_FID_INIT_NHWINDOWS,		proxy_svc_init_nhwindows,
@@ -656,6 +671,7 @@ static struct nhext_svc services[] = {
     EXT_FID_END_SCREEN,			proxy_svc_end_screen,
     EXT_FID_OUTRIP,			proxy_svc_outrip,
     EXT_FID_STATUS,			proxy_svc_status,
+    EXT_FID_PRINT_GLYPH_LAYERED,	proxy_svc_print_glyph_layered,
     0,					NULL,
 };
 

@@ -1,4 +1,4 @@
-/* $Id: compxdr.c,v 1.5 2002-06-23 18:31:23 j_ali Exp $ */
+/* $Id: compxdr.c,v 1.6 2002-07-07 14:38:10 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2001-2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -55,6 +55,16 @@ struct proxy_status_req *datum;
     return nhext_xdr_int(xdr, &datum->reconfig) &
       nhext_xdr_array(xdr, (char **)&datum->values, 
       &datum->nv, (unsigned int)-1, sizeof(char *), nhext_xdr_wrapstring);
+}
+
+boolean proxy_xdr_print_glyph_layered_req(xdr, datum)
+NhExtXdr *xdr;
+struct proxy_print_glyph_layered_req *datum;
+{
+    return nhext_xdr_int(xdr, &datum->window) &
+      nhext_xdr_int(xdr, &datum->x) & nhext_xdr_int(xdr, &datum->y) &
+      nhext_xdr_array(xdr, (char **)&datum->glyphs, 
+      &datum->ng, (unsigned int)-1, sizeof(int), nhext_xdr_int);
 }
 
 boolean proxycb_xdr_get_player_choices_res_role(xdr, datum)

@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.17 2002-07-04 13:09:10 j_ali Exp $
+  $Id: gtk.c,v 1.18 2002-07-07 14:38:10 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -251,7 +251,6 @@ static int keysym, keysym1;
 void
 win_GTK_init()
 {
-    ;
 }
 
 /*
@@ -1830,6 +1829,12 @@ GTK_ext_init_nhwindows(int *argc, char **argv)
     gtkWindows[NHW_STATUS].w = main_window;	
     gtkWindows[NHW_MAP].type = NHW_MAP;
     gtkWindows[NHW_MAP].w = main_window;	
+
+#ifdef GTK_PROXY
+    proxy_cb_interface_mode(EXT_IM_STATUS|EXT_IM_DISPLAY_LAYERS);
+#else
+    bot_set_handler(GTK_ext_status);
+#endif
 
     initialized = 1;
 
