@@ -4,7 +4,7 @@
 |                          SLASH'EM ver 0.0.4E1                          |
 |               Super Lotsa Added Stuff Hack - Extended Magic            |
 |                           A Nethack Variant                            |
-| Courtesy of Warren Cheung (wac@intergate.bc.ca) (1997,1998)            |
+| Courtesy of Warren Cheung (wac@dnahelix.org) (1997,1998)               |
 +------------------------------------------------------------------------+
 | Nethack is Copyright (c) Mike Stephenson, Izchak Miller  1991.         |
 | SLASH'EM and NetHack may be freely redistributed.                      |
@@ -2006,7 +2006,7 @@ ver 0.0.2E7 [Dec/20/1997]
                 Only useful with above defined TRUE.  Prompts for quit after
                 save. (save.c, options.c, flag.h, opthelp)
                 NOTE:  This is experimental,  so I wouldn't mind feedback
-                on whether it works.  Mail me! (wac@intergate.bc.ca)
+                on whether it works.  Mail me! (wac@dnahelix.org)
 -Changed some skills for Undead Slayer class (u_init.c)
         -made spear skill Expert rather than Skilled
               Slayer artifact is a spear,  after all

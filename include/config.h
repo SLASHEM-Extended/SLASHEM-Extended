@@ -331,7 +331,7 @@ typedef unsigned char	uchar;
 
 /* dungeon features */
 #define SINKS		/* Kitchen sinks - Janet Walz */
-#define LIGHT_SRC_SPELL /* WAC Light sourced spells (wac@intergate.bc.ca)*/
+#define LIGHT_SRC_SPELL /* WAC Light sourced spells (wac@dnahelix.org)*/
 
 /* dungeon levels */
 #define WALLIFIED_MAZE	/* Fancy mazes - Jean-Christophe Collet */
@@ -394,9 +394,9 @@ typedef unsigned char	uchar;
 #define EXP_ON_BOTL	/* Show experience on bottom line */
 /* #define SCORE_ON_BOTL */	/* added by Gary Erickson (erickson@ucivax) */
 /* #define BORG */            /* Works only under DOS */
-/* #define KEEP_SAVE */       /* Keep savefiles after Restore (wac@intergate.bc.ca)*/
+/* #define KEEP_SAVE */       /* Keep savefiles after Restore (wac@dnahelix.org)*/
 /* #define CHARON */	/* Charon's boat, enables Cerebus - not implemented */
-#define SHOW_DMG        /* WAC made dmg reports optional (wac@intergate.bc.ca)*/
+#define SHOW_DMG        /* WAC made dmg reports optional (wac@dnahelix.org)*/
 #define SHOW_WEIGHT     /* [max] added display of object weight when picking up */
                         /* and in inventory (madmax@fly.cc.fer.hr). */
                         /* Originally added by zaga. */

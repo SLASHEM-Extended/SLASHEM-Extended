@@ -4,7 +4,7 @@
 |                              SLASH'EM                                  |
 |               Super Lotsa Added Stuff Hack - Extended Magic            |
 |                           A Nethack Variant                            |
-| Courtesy of Warren Cheung (wac@intergate.bc.ca) (1997-2000)            |
+| Courtesy of Warren Cheung (wac@dnahelix.org) (1997-2000)               |
 | Last Time the Date was Updated:  August 13, 2000                       |
 +------------------------------------------------------------------------+
 | Nethack is Copyright (c) Mike Stephenson, Izchak Miller  1991.         |

@@ -4,9 +4,9 @@
 |                          SLASH'EM ver 0.0.6E4                          |
 |               Super Lotsa Added Stuff Hack - Extended Magic            |
 |                           A Nethack Variant                            |
-| Courtesy of Warren Cheung (wac@intergate.bc.ca), Kevin Hugo and        |
+| Courtesy of Warren Cheung (wac@dnahelix.org), Kevin Hugo and           |
 |              the efforts and support of countless others               |
-|                                                             (1997-2001)|
+|                                                             (1997-2002)|
 +------------------------------------------------------------------------+
 | Nethack is Copyright 1985-2000                                         |
 |            By Stichting Mathematisch Centrum and M. Stephenson.        |
@@ -1672,7 +1672,7 @@ DUNGEON=032 186 205 201 187 200 188 206 202 203 185 204 \
         Have a Question?  A nasty bug got you down?  The following people
         should be able to lend you a helping hand.
 
-        * Primary Maintainer:  Warren Cheung (wac@intergate.bc.ca)
+        * Primary Maintainer:  Warren Cheung (wac@dnahelix.org)
                 -If it's broken,  it's probably his fault ;B
                 -I compile the Win32 and DOS binaries.
 
@@ -1737,7 +1737,7 @@ and Katrin Veiel.
 +---------------------------+
 |Section 8.0 Other Resources|
 +---------------------------+
-Author:  Warren 'WACko' Cheung (wac@intergate.bc.ca)
+Author:  Warren 'WACko' Cheung (wac@dnahelix.org)
 Homepage:
         http://wac.cjb.net/
 

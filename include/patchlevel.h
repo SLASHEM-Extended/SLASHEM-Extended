@@ -37,7 +37,7 @@
 "         See license for details. Bug reports to hurtley@acm.org"
 #else
 #define COPYRIGHT_BANNER_C \
-"         See license for details. Bug reports to wac@intergate.bc.ca"
+"See license for details. Bug reports to slashem-discuss@lists.sourceforge.net"
 #endif
 
 #if 0
