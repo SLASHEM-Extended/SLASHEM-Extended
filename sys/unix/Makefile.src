@@ -316,13 +316,10 @@ WINOBJ = $(WINTTYOBJ)
 # WINSRC = $(WINTTYSRC) $(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYCOMSRC)
 # WINOBJ = $(WINTTYOBJ) $(WINPROXYOBJ) $(PROXYUTLOBJ) $(PROXYCOMOBJ)
 # Use these declarations if you want to support all standard windowing systems
-WINSRC = $(WINTTYSRC) $(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYCOMSRC) \
-	$(WINX11SRC) $(WINQTSRC) $(WINGTKSRC) $(WINGLSRC) $(WINGNOMESRC)
-
-WINOBJ = $(WINTTYOBJ) $(WINPROXYOBJ) $(PROXYUTLOBJ) $(PROXYCOMOBJ) \
-	$(WINX11OBJ) $(WINQTOBJ) $(WINGTKOBJ) $(WINGLOBJ) $(WINGNOMEOBJ)
-
-
+# WINSRC = $(WINTTYSRC) $(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYCOMSRC) \
+#	$(WINX11SRC) $(WINQTSRC) $(WINGTKSRC) $(WINGLSRC) $(WINGNOMESRC)
+# WINOBJ = $(WINTTYOBJ) $(WINPROXYOBJ) $(PROXYUTLOBJ) $(PROXYCOMOBJ) \
+#	$(WINX11OBJ) $(WINQTOBJ) $(WINGTKOBJ) $(WINGLOBJ) $(WINGNOMEOBJ)
 #
 # You must also change the definition of WINLIB (below) to match these
 
@@ -390,10 +387,9 @@ WINLIB = $(WINTTYLIB)
 # WINLIB = $(WINGLLIB)
 # Use this declaration if you want to support external windowing systems
 # WINLIB = $(WINTTYLIB) $(WINPROXYLIB)
-# Use these declarations if you want to support all standard windowing systems
-WINLIB = $(WINTTYLIB) $(WINPROXYLIB) $(WINGTKLIB) \
-	$(WINX11LIB) $(WINQTLIB) $(WINGNOMELIB) $(WINSDLLIB) $(WINGLLIB) 
-
+# Use this declaration if you want to support all standard windowing systems
+# WINLIB = $(WINTTYLIB) $(WINPROXYLIB) $(WINGTKLIB) \
+#	$(WINX11LIB) $(WINQTLIB) $(WINGNOMELIB) $(WINSDLLIB) $(WINGLLIB) 
 
 # any other strange libraries your system needs (for Sysunix only -- the more
 # specialized targets should already be right)
