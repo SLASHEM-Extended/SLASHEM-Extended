@@ -54,7 +54,11 @@ A("Firewall",                  ATHAME,
  */
 A("Sting",                      ELVEN_DAGGER,
 	(SPFX_WARN|SPFX_DCLAS), 0, M2_ORC,
+#ifndef DEVEL_BRANCH
 	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_CHAOTIC, NON_PM, PM_ELF ),
+#else
+	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_LAWFUL, NON_PM, PM_ELF ),
+#endif
 
 A("Giantkiller",                AXE,
 	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_GIANT,
@@ -72,7 +76,11 @@ A("Quick Blade",                ELVEN_SHORT_SWORD,
 
 A("Orcrist",                    ELVEN_BROADSWORD,
 	SPFX_DFLAG2, 0, M2_ORC,
+#ifndef DEVEL_BRANCH
 	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_CHAOTIC, NON_PM, PM_ELF ),
+#else
+	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_LAWFUL, NON_PM, PM_ELF ),
+#endif
 
 A("Dragonbane",                 BROADSWORD,
 	(SPFX_RESTR|SPFX_DCLAS), 0, S_DRAGON,

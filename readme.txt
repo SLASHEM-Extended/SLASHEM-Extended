@@ -408,6 +408,7 @@ ver 0.0.6E4F6 [? ?/2001] [Released by ?]
 -fixed bug 482201: Eating merged partly eaten food.
 -fixed bug 470817: Problem learning foodtype form tin.
 -fixed bug 482196: weight() for partly eaten objects wrong.
+-fixed bug 470314: Sting and Orcrist should be lawful.
 
 ver 0.0.6E4F5 [August 31/2001] [Released by Ali]
 -fixed bug 420517: Yellow dragon scale mail.
