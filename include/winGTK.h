@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.1 2000-08-15 19:36:37 wacko Exp $
+  $Id: winGTK.h,v 1.2 2000-08-29 11:49:56 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -7,7 +7,13 @@
 
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
+
 #ifndef WIN32
+#define WINGTK_X11	/* X11 libraries are available for our use */
+#endif
+
+#ifdef WINGTK_X11
+#include <gdk/gdkx.h>
 #include <X11/Xlib.h>
 #include <X11/extensions/XShm.h>
 #endif
@@ -189,14 +195,18 @@ typedef struct _TileTab{
     int spread:1;
 } TileTab;
 
+#ifdef WINGTK_X11
 extern void	xshm_init(Display *dpy);
+#else
+extern void	xshm_init(GdkWindow *w);
+#endif
 extern int	xshm_map_init(int width, int height);
 extern void	xshm_map_destroy();
 extern void	xshm_map_clear();
 extern void	xshm_map_tile_draw(int dst_x, int dst_y);
-extern void	xshm_map_draw(Window, int src_x, int src_y, int dst_x, int dst_y, int width, int height);
+extern void	xshm_map_draw(GdkWindow *, int src_x, int src_y, int dst_x, int dst_y, int width, int height);
 extern void	x_tmp_clear();
-extern void	x_tile_init(XImage *, TileTab *t);
+extern void	x_tile_init(GdkImage *, TileTab *t);
 extern void	x_tile_destroy();
 extern void	x_tile_tmp_draw(int src_x, int src_y, int ofsx, int ofsy);
 extern void	x_tile_tmp_draw_rectangle(int ofsx, int ofsy, int c);

@@ -689,7 +689,7 @@ gtkmisc.o: ../win/gtk/gtkmisc.c ../include/winGTK.h $(HACK_H)
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/gtkmisc.c
 xshmmap.o: ../win/gtk/xshmmap.c ../include/winGTK.h $(HACK_H) ../include/xshm.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshmmap.c
-xshm.o: ../win/gtk/xshm.c ../include/xshm.h
+xshm.o: ../win/gtk/xshm.c ../include/winGTK.h $(HACK_H) ../include/xshm.h
 	$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c ../win/gtk/xshm.c
 gnaskstr.o: ../win/gnome/gnaskstr.c ../win/gnome/gnaskstr.h \
 		../win/gnome/gnmain.h

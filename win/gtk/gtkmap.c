@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmap.c,v 1.2 2000-08-23 12:26:58 j_ali Exp $
+  $Id: gtkmap.c,v 1.3 2000-08-29 11:49:56 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -30,9 +30,11 @@ static GtkWidget	*map;
 static GdkPixmap	*map_pixmap;
 static GdkFont		*map_font;
 
+#ifdef WINGTK_X11
 static Display		*display;
 static int		screen;
 static int		scr_depth;
+#endif
 
 static GdkGC		*map_color_gc[N_NH_COLORS];
 
@@ -268,7 +270,7 @@ nh_set_map_visual(int mode)
 		0, 0,
 		NH_TILEMAP_WIDTH, NH_TILEMAP_HEIGHT);
 	    
-	    x_tile_init(GDK_IMAGE_XIMAGE(tile_image), Tile);
+	    x_tile_init(tile_image, Tile);
 	    
 	    gdk_pixmap_unref(tile_pixmap);
 	    gdk_bitmap_unref(tile_mask);
@@ -373,7 +375,7 @@ map_expose_event(GtkWidget *widget, GdkEventExpose *event)
     }
     else
 	xshm_map_draw(
-	    GDK_WINDOW_XWINDOW(widget->window),
+	    widget->window,
 	    event->area.x, event->area.y,
 	    event->area.x, event->area.y,
 	    event->area.width, event->area.height);
@@ -644,9 +646,11 @@ nh_map_new(GtkWidget *w)
 	    NH_MAP_MAX_HEIGHT = height;
     }
 
+#ifdef WINGTK_X11
     display = GDK_DISPLAY();
     screen = DefaultScreen(display);
     scr_depth = DefaultDepth(display, screen);
+#endif
 
     map_scroll = gtk_scrolled_window_new(
 	NULL, NULL);
@@ -667,7 +671,11 @@ nh_map_new(GtkWidget *w)
 			  | GDK_BUTTON_PRESS_MASK);
 
 
+#ifdef WINGTK_X11
     xshm_init(display);
+#else
+    xshm_init(w->window);
+#endif
     shmflg = xshm_map_init(NH_MAP_MAX_WIDTH, NH_MAP_MAX_HEIGHT);
 
 
@@ -708,7 +716,7 @@ nh_map_new(GtkWidget *w)
 	0, 0,
 	NH_TILEMAP_WIDTH, NH_TILEMAP_HEIGHT);
     
-    x_tile_init(GDK_IMAGE_XIMAGE(tile_image), Tile);
+    x_tile_init(tile_image, Tile);
 
     gdk_pixmap_unref(tile_pixmap);
     gdk_bitmap_unref(tile_mask);

@@ -1,5 +1,5 @@
 /*
-  $Id: xshm.c,v 1.1 2000-08-15 19:55:16 wacko Exp $
+  $Id: xshm.c,v 1.2 2000-08-29 11:49:56 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -22,8 +22,10 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 
+#include "winGTK.h"
 #include "xshm.h"
 
+#ifdef WINGTK_X11
 static volatile int	errflg;
 
 static int
@@ -33,7 +35,9 @@ ErrorHandler(Display *dpy, XErrorEvent *event)
 
     return 0;
 }
+#endif
 
+#ifdef WINGTK_X11
 void
 XShmDestroyXShmImage(Display *dpy, XShmImage *xshm)
 {
@@ -46,7 +50,14 @@ XShmDestroyXShmImage(Display *dpy, XShmImage *xshm)
 	free(xshm);
     }
 }
+#else
+void
+XShmDestroyXShmImage(XShmImage *xshm)
+{
+}
+#endif
 
+#ifdef WINGTK_X11
 XShmImage *
 XShmCreateXShmImage(Display *dpy, int width, int height)
 {
@@ -66,17 +77,10 @@ XShmCreateXShmImage(Display *dpy, int width, int height)
     depth = DefaultDepth(dpy, screen);
     visual = DefaultVisual(dpy, screen);
     
-    xshm = (XShmImage *)malloc(sizeof(XShmImage));
+    xshm = (XShmImage *)alloc(sizeof(XShmImage));
 
     if(XShmQueryExtension(dpy) != True)
 	goto no_xshm;
-
-    if(xshm == NULL){
-	fprintf(stderr, "warning: cannot allocate shared memory(size = %d)\n", 
-		xshm->image->bytes_per_line * xshm->image->height);
-
-	return NULL;
-    }
 
     xshm->image = NULL;
     XShmQueryVersion(dpy, &major, &minor, &pixmaps);
@@ -155,7 +159,23 @@ no_xshm:
 
     return xshm;
 }
+#else		/* WINGTK_X11 */
+XShmImage *
+XShmCreateXShmImage(GdkWindow *w, int width, int height)
+{
+    XShmImage	*xshm;
 
+    xshm = (XShmImage *)alloc(sizeof(XShmImage));
+
+    xshm->shmflg = 0;
+    xshm->pixmap = gdk_pixmap_new(w, width, height, -1);
+    xshm->image = gdk_image_get((GdkWindow *)xshm->pixmap, 0, 0, width, height);
+
+    return xshm;
+}
+#endif		/* WINGTK_X11 */
+
+#ifdef WINGTK_X11
 void
 XShmClearXShmImage(Display *dpy, XShmImage *xshm)
 {
@@ -180,7 +200,34 @@ XShmClearXShmImage(Display *dpy, XShmImage *xshm)
 	XFreeGC(dpy, gc);
     }
 }
+#else		/* WINGTK_X11 */
+void
+XShmClearXShmImage(XShmImage *xshm)
+{
+    int		i, j;
+    gint	width, height;
+    GdkGC	*gc;
+    GdkColor	black={0, 0, 0, 0};
 
+    gdk_window_get_size((GdkWindow *)xshm->pixmap, &width, &height);
+
+    /*
+     * How do we efficiently zero a GdkImage?
+     * More to the point perhaps, do we actually need the image?
+     */
+
+    for(i=0;i<width;i++)
+	for(j=0;j<height;j++)
+	    gdk_image_put_pixel(xshm->image, i, j, 0);
+
+    gc = gdk_gc_new((GdkWindow *)xshm->pixmap);
+    gdk_gc_set_foreground(gc, &black);
+    gdk_draw_rectangle(xshm->pixmap, gc, TRUE, 0, 0, width, height);
+    gdk_gc_unref(gc);
+}
+#endif		/* WINGTK_X11 */
+
+#ifdef WINGTK_X11
 void
 XShmSyncXShmImage(Display *dpy, XShmImage *xshm)
 {
@@ -191,7 +238,21 @@ XShmSyncXShmImage(Display *dpy, XShmImage *xshm)
 	    xshm->image->width, xshm->image->height);
     }
 }
+#else
+void
+XShmSyncXShmImage(XShmImage *xshm)
+{
+    gint	width, height;
+    GdkGC	*gc;
 
+    gdk_window_get_size((GdkWindow *)xshm->pixmap, &width, &height);
+    gc = gdk_gc_new((GdkWindow *)xshm->pixmap);
+    gdk_draw_image(xshm->pixmap, gc, xshm->image, 0, 0, 0, 0, width, height);
+    gdk_gc_unref(gc);
+}
+#endif
+
+#ifdef WINGTK_X11
 void
 XShmSyncXShmImageRegion(Display *dpy, XShmImage *xshm, int x, int y, int width, int height)
 {
@@ -202,3 +263,13 @@ XShmSyncXShmImageRegion(Display *dpy, XShmImage *xshm, int x, int y, int width, 
 	    width, height);
     }
 }
+#else		/* WINGTK_X11 */
+void
+XShmSyncXShmImageRegion(XShmImage *xshm, int x, int y, int width, int height)
+{
+    GdkGC	*gc;
+    gc = gdk_gc_new((GdkWindow *)xshm->pixmap);
+    gdk_draw_image(xshm->pixmap, gc, xshm->image, x, y, x, y, width, height);
+    gdk_gc_unref(gc);
+}
+#endif		/* WINGTK_X11 */

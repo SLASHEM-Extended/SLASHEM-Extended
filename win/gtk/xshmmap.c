@@ -1,5 +1,5 @@
 /*
-  $Id: xshmmap.c,v 1.1 2000-08-15 19:55:16 wacko Exp $
+  $Id: xshmmap.c,v 1.2 2000-08-29 11:49:56 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -24,26 +24,49 @@
 
 static XShmImage	*map;
 
+#ifdef WINGTK_X11
 static XImage		*tile_img;
 static XImage		*tmp_img;
+#else
+static GdkImage		*tile_img;
+static GdkImage		*tmp_img;
+#endif
 
 static TileTab		*Tile;
 
+#ifdef WINGTK_X11
 static Display		*dpy;
 static GC		gc;
+#else
+static GdkWindow	*dpy;		/* A (random) window on display */
+static GdkGC		*gc;
+#endif
 
+#ifdef WINGTK_X11
 void
 xshm_init(Display *d)
 {
     dpy = d;
 }
+#else
+void
+xshm_init(GdkWindow *w)
+{
+    dpy = w;
+}
+#endif
 
 int
 xshm_map_init(int width, int height)
 {
+#ifdef WINGTK_X11
     gc = DefaultGC(dpy, DefaultScreen(dpy));
 
     map = XShmCreateXShmImage(dpy, width, height);
+#else
+    map = XShmCreateXShmImage(dpy, width, height);
+    gc = gdk_gc_new(map->pixmap);
+#endif
 
     return map->shmflg;
 }
@@ -51,37 +74,59 @@ xshm_map_init(int width, int height)
 void
 xshm_map_destroy()
 {
+#ifdef WINGTK_X11
     XShmDestroyXShmImage(dpy, map);
+#else
+    XShmDestroyXShmImage(map);
+#endif
 }
 
 void
 xshm_map_clear()
 {
+#ifdef WINGTK_X11
     XShmClearXShmImage(dpy, map);
+#else
+    XShmClearXShmImage(map);
+#endif
 }
 
 void
-xshm_map_draw(Window w, int srcx, int srcy, int dstx, int dsty, int width, int height)
+xshm_map_draw(GdkWindow *w, int srcx, int srcy, int dstx, int dsty, int width, int height)
 {
+#ifdef WINGTK_X11
     XCopyArea(
-	dpy, map->pixmap, w, gc,
+	dpy, map->pixmap, GDK_WINDOW_XWINDOW(w), gc,
 	srcx, srcy,
 	width, height,
 	dstx, dsty);
+#else
+    gdk_draw_pixmap(w, gc, map->pixmap, srcx, srcy, dstx, dsty, width, height);
+#endif
 }
 
 void
 x_tmp_clear()
 {
+#ifdef WINGTK_X11
     memset(tmp_img->data, 0, tmp_img->bytes_per_line * tmp_img->height);
+#else
+    memset(tmp_img->mem, 0, tmp_img->bpl * tmp_img->height);
+#endif
 }
 
 void
-x_tile_init(XImage *img, TileTab *t)
+x_tile_init(GdkImage *img, TileTab *t)
 {
-    tile_img = img;
     Tile = t;
-    tmp_img = XSubImage(img, 0, 0, t->unit_width, t->unit_height);
+#ifdef WINGTK_X11
+    tile_img = GDK_IMAGE_XIMAGE(img);
+    tmp_img = XSubImage(tile_img, 0, 0, t->unit_width, t->unit_height);
+#else
+    tile_img = img;
+    tmp_img = gdk_image_new(GDK_IMAGE_FASTEST, gdk_visual_get_system(),
+      t->unit_width, t->unit_height);
+#endif
 }
 
 void
@@ -100,27 +145,45 @@ x_tile_tmp_draw_rectangle(int ofsx, int ofsy, int c)
     if(ofsy >= 0 && ofsy < height)
 	for(i=0 ; i<width ; ++i)
 	    if(ofsx + i >= 0 && ofsx + i < width)
+#ifdef WINGTK_X11
 		XPutPixel(tmp_img, ofsx + i, ofsy, c);
+#else
+		gdk_image_put_pixel(tmp_img, ofsx + i, ofsy, c);
+#endif
 
     if(ofsy + height - 1 >= 0 && ofsy + height - 1 < height)
 	for(i=0 ; i<width ; ++i)
 	    if(ofsx + i >= 0 && ofsx + i < width)
+#ifdef WINGTK_X11
 		XPutPixel(tmp_img, ofsx + i, ofsy + height - 1, c);
+#else
+		gdk_image_put_pixel(tmp_img, ofsx + i, ofsy + height -1, c);
+#endif
 
     if(ofsx >= 0 && ofsx < width)
 	for(i=0 ; i<height ; ++i)
 	    if(ofsy + i >= 0 && ofsy + i < height)
+#ifdef WINGTK_X11
 		XPutPixel(tmp_img, ofsx, ofsy + i, c);
+#else
+		gdk_image_put_pixel(tmp_img, ofsx, ofsy + i, c);
+#endif
 
     if(ofsx + width - 1 >= 0 && ofsx + width - 1 < width)
 	for(i=0 ; i<height ; ++i)
 	    if(ofsy + i >= 0 && ofsy + i < height)
+#ifdef WINGTK_X11
 		XPutPixel(tmp_img, ofsx + width - 1, ofsy + i, c);
+#else
+		gdk_image_put_pixel(tmp_img, ofsx + width - 1, ofsy + i, c);
+#endif
 }
+
 void
 x_tile_tmp_draw(int srcx, int srcy, int ofsx, int ofsy)
 {
     int i, j;
+#ifdef WINGTK_X11
     char *src, *tmp;
     CARD8 *src8, *tmp8;
     CARD16 *src16, *tmp16;
@@ -140,6 +203,13 @@ x_tile_tmp_draw(int srcx, int srcy, int ofsx, int ofsy)
 	nul_pixel = PIXEL24(tile_img->data);
     else if(tile_img->bits_per_pixel <= 32)
 	nul_pixel = PIXEL32(tile_img->data);
+#else
+    guint32 nul_pixel, pixel;
+    int width = tmp_img->width;
+    int height = tmp_img->height;
+
+    nul_pixel = gdk_image_get_pixel(tile_img, 0, 0);
+#endif
 
     if(ofsx < 0){
 	srcx -= ofsx;
@@ -165,6 +235,7 @@ x_tile_tmp_draw(int srcx, int srcy, int ofsx, int ofsy)
     if(height <= 0)
 	return;
 
+#ifdef WINGTK_X11
     src32 = (CARD32 *)src16 = (CARD16 *)src24 = src8 = src = 
 	tile_img->data +
 	(tile_img->bytes_per_line * srcy) + 
@@ -218,11 +289,20 @@ x_tile_tmp_draw(int srcx, int srcy, int ofsx, int ofsy)
 	    tmp32 += (tmp_img->bytes_per_line / bpp);
 	}
     }
+#else
+    for(i=0 ; i < height ; ++i)
+	for(j=0 ; j < width ; ++j){
+	    pixel = gdk_image_get_pixel(tile_img, srcx + j, srcy + i);
+	    if (!Tile->transparent || pixel != nul_pixel)
+		gdk_image_put_pixel(tmp_img, ofsx + j, ofsy + i, pixel);
+	}
+#endif
 }
 
 void
 xshm_map_tile_draw(int dstx, int dsty)
 {
+#ifdef WINGTK_X11
     int i;
     char *tmp, *dst;
 
@@ -239,11 +319,16 @@ xshm_map_tile_draw(int dstx, int dsty)
 	dst += map->image->bytes_per_line;
     }
 
-    XShmSyncXShmImageRegion(dpy, map, dstx, dsty, tmp_img->width, tmp_img->height); 
+    XShmSyncXShmImageRegion(dpy, map, dstx, dsty,
+      tmp_img->width, tmp_img->height); 
+#else
+    int i, j;
+
+    for(i=0; i < tmp_img->height; ++i)
+	for(j=0; j < tmp_img->width; ++j)
+	    gdk_image_put_pixel(map->image, dstx + j, dsty + i,
+	      gdk_image_get_pixel(tmp_img, j, i));
+
+    XShmSyncXShmImageRegion(map, dstx, dsty, tmp_img->width, tmp_img->height); 
+#endif
 }
-
-
-
-
-
-
