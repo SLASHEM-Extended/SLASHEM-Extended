@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.15 2001-06-16 18:14:40 j_ali Exp $
+  $Id: gtkmenu.c,v 1.16 2001-09-18 12:06:44 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -569,7 +569,8 @@ GTK_select_menu(winid id, int how, MENU_ITEM_P **menu_list)
 	menu_info->cancelled = 0;
 
     /* make new menu the current menu */
-    move_menu(&menu_info->new_menu, &menu_info->curr_menu);
+    if (menu_info->new_menu.n_menuitem)
+	move_menu(&menu_info->new_menu, &menu_info->curr_menu);
 
     if (!menu_info->valid_widgets)
 	GTK_init_menu_widgets(w);
@@ -669,7 +670,7 @@ GTK_select_menu(winid id, int how, MENU_ITEM_P **menu_list)
     GTK_destroy_menu_widgets(w);
     
     if(menu_info->cancelled)
-	return 0;
+	return -1;
     
     for(i=0 ; i<menu_info->curr_menu.n_menuitem ; ++i)
 	if(menu_info->curr_menu.nhMenuItem[i].selected &&
