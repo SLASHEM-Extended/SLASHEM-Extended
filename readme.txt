@@ -72,6 +72,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 947369: Crash when multiple wands explode
 -fixed bug 950120: crash when wishing for Wallet of Perseus
 -fixed bug 933365: wand of draining does not interrupt ctrl-run
+-fixed bug 933379: weird behaviour with polyself into monsters like migo drone
 
 See history.txt for changes made in previous versions.
 
