@@ -72,6 +72,7 @@ ver 0.0.7E6F3 [?] [Released by ?]
 -fixed bug 916544: Wrong weight of corpses on Nightmare level
 -fixed bug 947369: Crash when multiple wands explode
 -fixed bug 950120: crash when wishing for Wallet of Perseus
+-fixed bug 933365: wand of draining does not interrupt ctrl-run
 
 See history.txt for changes made in previous versions.
 
