@@ -519,7 +519,7 @@ int how;
 		      uamul->cursed ? " and disintegrates" : "");
 		/* blessed -> uncursed -> cursed -> gone */
 		if (uamul->cursed)
-		if (uamul) useup(uamul);
+			useup(uamul);
 		else if (uamul->blessed)
 			unbless(uamul);
 		else

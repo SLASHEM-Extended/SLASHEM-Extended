@@ -393,6 +393,7 @@ ver 0.0.6E4F1 [October XX/2000]
 -fixed bug 116587: Molds can have HP above their max HP.
 -fixed bug 117371: Wands of create horde should auto-identify.
 -fixed bug 116266: Grenades carried by monsters set HP to 2d5.
+-fixed bug 117480: Amulets versus stone last forever.
 
 ver 0.0.6E4F0 [September 15/2000]
 -changed some checks in tech.c to use DEADMONSTER()
