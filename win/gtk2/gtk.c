@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.28 2003-01-01 12:13:32 j_ali Exp $
+  $Id: gtk.c,v 1.29 2003-01-02 19:00:46 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -964,6 +964,24 @@ focus_destroy(GtkWidget *widget, gpointer data)
 }
 
 gint
+focus_key_press_early(GtkWidget *widget, GdkEventKey *event, gpointer data)
+{
+    /* Certain keys should be intercepted before passing to the default
+     * Gtk+ handler so that we can guarantee to receive them. For such
+     * keys we call focus_key_press() ourselves thus bypassing the
+     * default handler (should focus_key_press() not handle the event
+     * it will be passed back to the default handler anyway). For other
+     * keys we do nothing and allow the default handler to run. If this
+     * handler doesn't deal with the key (eg., an accelerator) then
+     * Gtk+ will call focus_key_press() in due course.
+     */
+    if (event->keyval == GDK_Escape)
+	return focus_key_press(widget, event, data);
+    else
+	return FALSE;
+}
+
+gint
 focus_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
     if (focus_top)
@@ -985,6 +1003,8 @@ static void focus_set_events(GtkWindow *w)
     gtk_signal_connect(GTK_OBJECT(w), "destroy",
       GTK_SIGNAL_FUNC(focus_destroy), 0);
     gtk_signal_connect(GTK_OBJECT(w), "key_press_event",
+      GTK_SIGNAL_FUNC(focus_key_press_early), 0);
+    gtk_signal_connect_after(GTK_OBJECT(w), "key_press_event",
       GTK_SIGNAL_FUNC(focus_key_press), 0);
 }
 
@@ -2321,6 +2341,7 @@ GTK_ext_display_file(int fh)
 
     gtk_widget_show_all(w);
     main_hook(NULL);
+    (void)nh_key_get();
 
     if (w) {
 	gtk_signal_disconnect(GTK_OBJECT(w), hid);

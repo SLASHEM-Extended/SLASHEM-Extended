@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmisc.c,v 1.9 2002-12-14 16:22:45 j_ali Exp $
+  $Id: gtkmisc.c,v 1.10 2003-01-02 19:00:52 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -94,7 +94,7 @@ default_destroy(GtkWidget *widget, gpointer data)
     *hid = 0;
     keysym = '\033';
     
-    quit_hook();
+    gtk_main_quit();
 
     return FALSE;
 }
@@ -105,7 +105,7 @@ default_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
     keysym = nh_keysym(event);
 
     if(keysym == '\n' || keysym == '\033')
-      quit_hook();
+      gtk_main_quit();
     
     return FALSE;
 }
@@ -139,7 +139,7 @@ default_clicked(GtkWidget *widget, gpointer data)
 	nh_option_set();
     }
     else
-	quit_hook();
+	gtk_main_quit();
 
     return FALSE;
 }
@@ -155,7 +155,7 @@ static gint
 mc_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
     keysym = nh_keysym(event);
-    quit_hook();
+    gtk_main_quit();
     return FALSE;
 }
 
@@ -163,7 +163,7 @@ static gint
 mc_clicked(GtkWidget *widget, gpointer data)
 {
     keysym = (int)data;
-    quit_hook();
+    gtk_main_quit();
     return FALSE;
 }
 
@@ -221,7 +221,7 @@ nh_option_more_confirm(void)
 
     gtk_widget_show_all(w);
     gtk_grab_add(w);
-    main_hook(NULL);
+    gtk_main();
 
     if(hid > 0){
 	gtk_signal_disconnect(GTK_OBJECT(w), hid);
@@ -1225,7 +1225,7 @@ nh_option_new()
 
   gtk_grab_add(w);
 
-  main_hook(NULL);
+  gtk_main();
 
   if(keysym == '\n')
       nh_option_get();
