@@ -378,14 +378,32 @@ dotechmenu(how, tech_no)
 	start_menu(tmpwin);
 	any.a_void = 0;         /* zero out all bits */
 
-        Sprintf(buf, "%-30s Level   Status", "Name");
+    if (!iflags.menu_tab_sep)
+	Sprintf(buf, "%-30s Level   Status", "Name");
+	else
+	Sprintf(buf, "Name\tLevel\tStatus");
+
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, MENU_UNSELECTED);
 
-        for (i = 0; i < MAXTECH; i++) {
+    for (i = 0; i < MAXTECH; i++) {
 		if (techid(i) == NO_TECH)
 			continue;
 #ifdef WIZARD
-		if (wizard) Sprintf(buf, "%-26s %2d%c%c%c   %s(%i)",
+		if (wizard) 
+		    if (!iflags.menu_tab_sep)			
+			Sprintf(buf, "%-26s %2d%c%c%c   %s(%i)",
+                    techname(i), techlev(i),
+		      tech_list[i].t_intrinsic & FROMEXPER ? 'X' : ' ',
+		      tech_list[i].t_intrinsic & FROMRACE ? 'R' : ' ',
+		      tech_list[i].t_intrinsic & FROMOUTSIDE ? 'O' : ' ',
+                      tech_inuse(techid(i)) ? "Active" :
+                      can_limitbreak() ? "LIMIT" :
+                      !techtout(i) ? "Prepared" : 
+		      techtout(i) > 100 ? "Not Ready" : 
+		      "Soon",
+		    techtout(i));
+			else
+			Sprintf(buf, "%s\t%2d%c%c%c\t%s(%i)",
                     techname(i), techlev(i),
 		      tech_list[i].t_intrinsic & FROMEXPER ? 'X' : ' ',
 		      tech_list[i].t_intrinsic & FROMRACE ? 'R' : ' ',
@@ -398,7 +416,16 @@ dotechmenu(how, tech_no)
 		    techtout(i));
 		else
 #endif
+		    if (!iflags.menu_tab_sep)			
                 Sprintf(buf, "%-26s %5d   %s",
+                    techname(i), techlev(i),
+                      tech_inuse(techid(i)) ? "Active" :
+                      can_limitbreak() ? "LIMIT" :
+                      !techtout(i) ? "Prepared" : 
+		      techtout(i) > 100 ? "Not Ready" : 
+		      "Soon");
+			else
+                Sprintf(buf, "%s\t%5d\t%s",
                     techname(i), techlev(i),
                       tech_inuse(techid(i)) ? "Active" :
                       can_limitbreak() ? "LIMIT" :
@@ -410,8 +437,8 @@ dotechmenu(how, tech_no)
                          let, 0, ATR_NONE, buf, MENU_UNSELECTED);
 		if (let++ == 'z') let = 'A';
 	}
-        end_menu(tmpwin, how == PICK_ONE ? "Choose a technique" :
-                                           "Currently known techniques");
+	end_menu(tmpwin, how == PICK_ONE ? "Choose a technique" :
+						"Currently known techniques");
 
 	n = select_menu(tmpwin, how, &selected);
 	destroy_nhwindow(tmpwin);
