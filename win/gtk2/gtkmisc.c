@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmisc.c,v 1.2 2001-04-22 17:21:20 j_ali Exp $
+  $Id: gtkmisc.c,v 1.3 2001-06-16 18:14:41 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -171,10 +171,8 @@ nh_option_more_confirm(void)
     GtkWidget *button2;
     GtkWidget *button3;
 
-    w = nh_gtk_window_dialog();
-    gtk_signal_connect(
-      GTK_OBJECT(w), "key_press_event",
-      GTK_SIGNAL_FUNC(mc_key_press), NULL);
+    w = nh_gtk_window_dialog(TRUE);
+    nh_gtk_focus_set_master(GTK_WINDOW(w), GTK_SIGNAL_FUNC(mc_key_press), 0);
     hid = gtk_signal_connect(
       GTK_OBJECT(w), "destroy",
       GTK_SIGNAL_FUNC(default_destroy), &hid);
@@ -947,11 +945,10 @@ nh_option_new()
   GtkWidget *button2;
   GtkWidget *button3;
 
-  w = nh_gtk_window_dialog();
+  w = nh_gtk_window_dialog(TRUE);
   gtk_container_border_width(GTK_CONTAINER(w), NH_PAD);
-  gtk_signal_connect(
-      GTK_OBJECT(w), "key_press_event",
-      GTK_SIGNAL_FUNC(default_key_press), NULL);
+  nh_gtk_focus_set_master(GTK_WINDOW(w),
+    GTK_SIGNAL_FUNC(default_key_press), 0);
   hid = gtk_signal_connect(
       GTK_OBJECT(w), "destroy",
       GTK_SIGNAL_FUNC(default_destroy), &hid);

@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.26 2001-04-22 17:21:20 j_ali Exp $
+  $Id: gtk.c,v 1.27 2001-06-16 18:14:40 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1769,10 +1769,10 @@ GTK_destroy_nhwindow(winid id)
 /*    int i;*/
     NHWindow *w;
 
-    if(id == NHW_STATUS || id == NHW_MESSAGE || id == NHW_MAP)
-	return;
-
     w = &gtkWindows[id]; 
+
+    if (w->type == NHW_STATUS || w->type == NHW_MESSAGE || w->type == NHW_MAP)
+	return;
 
     if (w->type == NHW_MENU)
 	GTK_destroy_menu_window(w);
@@ -1791,31 +1791,31 @@ GTK_destroy_nhwindow(winid id)
 void
 GTK_display_nhwindow(winid id, BOOLEAN_P blocking)
 {
-    NHWindow *w;
+    NHWindow *w = &gtkWindows[id];
     extern int root_height;
 
-    if(id == NHW_STATUS || id == NHW_MESSAGE){
+    if (w->type == NHW_STATUS || w->type == NHW_MESSAGE) {
     }
-    else if(id == NHW_MAP){	/* flush out */
+    else if (w->type == NHW_MAP) {	/* flush out */
 	nh_map_flush();
     }
     else{
-	w = &gtkWindows[id];
-
 	if(w->clist && w->clist->requisition.height >= (2 * root_height) / 3)
 	    gtk_widget_set_usize(w->clist, -1, (2 * root_height) / 3);
 	gtk_grab_add(w->w);
 	gtk_widget_show_all(w->w);
     }
 
-    if((id != NHW_MESSAGE && blocking) || id == NHW_MENU)
+    if ((w->type != NHW_MESSAGE && blocking) ||
+      w->type == NHW_MENU || w->type == NHW_TEXT) {
 	main_hook();
+    }
 }
 
 void
 GTK_clear_nhwindow(winid id)
 {
-    if(id == NHW_MAP){
+    if (gtkWindows[id].type == NHW_MAP) {
 	nh_map_clear();
     }
     return;
@@ -1835,15 +1835,15 @@ GTK_putstr(winid id, int attr, const char *str)
 
     w = &gtkWindows[id]; 
 
-    if(id == NHW_MESSAGE){
+    if (w->type == NHW_MESSAGE) {
 	nh_message_putstr(str);
 	return;
     }
-    else if(id == NHW_STATUS){
+    else if (w->type == NHW_STATUS) {
 	nh_status_update();
 	return;
     }
-    else if(id <= 3){
+    else if (w->type != NHW_MENU && w->type != NHW_TEXT) {
 	panic("bad window");
 	return;
     }

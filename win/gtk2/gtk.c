@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.3 2001-04-22 17:21:20 j_ali Exp $
+  $Id: gtk.c,v 1.4 2001-06-16 18:14:41 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -32,6 +32,7 @@ static void	ext_command(GtkWidget *w, gpointer data);
 static void	game_option(GtkWidget *w, gpointer data);
 static void	game_quit(GtkWidget *w, gpointer data);
 static void	game_topten(GtkWidget *w, gpointer data);
+static void	nh_menu_sensitive(char *menu, boolean f);
 
 static void	help_help(GtkWidget *w, gpointer data);
 static void	help_shelp(GtkWidget *w, gpointer data);
@@ -314,23 +315,46 @@ win_GTK_init()
 }
 
 /*
- * GTK_WINDOW_DIALOG is depreciated, and removed entirely in GTK+ 1.3.3
+ * Non-modal dialog windows use a partial grab system whereby a number of
+ * events which would normally be passed to other widgets are blocked, but
+ * still allows scrolling etc.
  */
 
-GtkWidget *nh_gtk_window_dialog()
+static gint
+nh_dialog_partial_grab(GtkWidget *widget, gpointer data)
 {
-#if GTK_CHECK_VERSION(1,3,3)
+    boolean enable = !GPOINTER_TO_INT(data);
+    nh_menu_sensitive("/Game", enable);
+    nh_menu_sensitive("/Move", enable);
+    nh_menu_sensitive("/Fight", enable);
+    nh_menu_sensitive("/Check", enable);
+    nh_menu_sensitive("/Equip", enable);
+    nh_menu_sensitive("/You", enable);
+    nh_menu_sensitive("/Adventure", enable);
+    nh_menu_sensitive("/Action", enable);
+    nh_menu_sensitive("/Religion", enable);
+    nh_menu_sensitive("/Special", enable);
+    nh_menu_sensitive("/Help", enable);
+    return 0;
+}
+
+GtkWidget *nh_gtk_window_dialog(boolean is_modal)
+{
     GtkWidget *w;
     w = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     if (w) {
 	gtk_window_set_transient_for(GTK_WINDOW(w), GTK_WINDOW(main_window));
-	gtk_window_set_modal(GTK_WINDOW(w), TRUE);
+	gtk_window_set_modal(GTK_WINDOW(w), is_modal);
+	if (!is_modal) {
+	    nh_dialog_partial_grab(w, GINT_TO_POINTER(1));
+	    gtk_signal_connect(GTK_OBJECT(w), "destroy",
+	      GTK_SIGNAL_FUNC(nh_dialog_partial_grab), 0);
+	}
+#if GTK_CHECK_VERSION(1,3,2)
 	gtk_window_set_destroy_with_parent(GTK_WINDOW(w), TRUE);
+#endif
     }
     return w;
-#else
-    return gtk_window_new(GTK_WINDOW_DIALOG);
-#endif
 }
 
 GtkWidget *
@@ -809,6 +833,187 @@ nh_dir_keysym(GdkEventKey *ev)
     }
 
     return ret;
+}
+
+/*
+ * Our model for focus (where key presses should go) is fairly simple.
+ * As each window is opened that should receive key presses
+ * we start a new layer of the hierarchy. Windows with slave
+ * focus don't accept key presses themselves; instead they forward them
+ * to another window. Such windows are considered to be at the same
+ * level as the window to which they forward key presses (the master).
+ *
+ * We do not allow the user to select which window should have focus.
+ * If an attempt is made we simply over-ride it. On the other hand,
+ * users must be able to give the focus to a seperate application and
+ * to return focus to the game when they choose.
+ *
+ * It is important to give the user as much feedback regarding focus
+ * as possible. Ideally, we would like to keep our internal concept of
+ * focus and the window manager's tied together but this causes a lot
+ * of problems with slave windows (if a slave window receives the focus
+ * and we attempt to pass it to the master window Gdk will raise the
+ * master window at the same time. We can fudge this afterwards but it
+ * looks very bad). As a compromise we allow the focus to remain on
+ * slave windows and quietly forward the key presses.
+ */
+
+static struct focus_hierarchy {
+    GtkWindow *master;
+    GSList *slaves;
+    gint (*handler)(GtkWidget *widget, GdkEventKey *event, gpointer data);
+    gpointer data;
+    struct focus_hierarchy *next;
+} *focus_top = NULL;
+static int focus_game = FALSE;	/* Does any game window have focus? */
+
+#ifdef DEBUG
+static gint focus_dump(void)
+{
+    struct focus_hierarchy *fh;
+    GSList *list;
+    fprintf(stderr,"Focus hierarchy\n");
+    fprintf(stderr,"Master\t\tHandler\t\tSlaves\n");
+    for(fh = focus_top; fh; fh = fh->next) {
+	fprintf(stderr,"%p\t%p\t",fh->master,fh->handler);
+	if (fh->slaves)
+	    for(list = fh->slaves; list; ) {
+		fprintf(stderr,"%p",list->data);
+		list = g_slist_next(list);
+		if (list)
+		    fputs(", ",stderr);
+	    }
+	else
+	    fputs("<none>",stderr);
+	fputc('\n',stderr);
+    }
+}
+#endif
+
+static gint
+focus_out(GtkWidget *widget, GdkEventFocus *event, gpointer data)
+{
+    if (focus_game)
+	focus_game--;
+}
+
+static gint
+focus_in(GtkWidget *widget, GdkEventFocus *event, gpointer data)
+{
+    GtkWindow *w = GTK_WINDOW(widget);
+    focus_game++;
+    if (!focus_top || w == focus_top->master ||
+      g_slist_find(focus_top->slaves, w))
+	return 0;
+    gtk_window_present(focus_top->master);
+    return 1;
+}
+
+static gint
+focus_map(GtkWidget *widget, gpointer data)
+{
+    if (focus_game && focus_top && focus_top->master == GTK_WINDOW(widget))
+	gdk_window_focus(widget->window, gtk_get_current_event_time());
+    return 0;
+}
+
+static gint
+focus_destroy(GtkWidget *widget, gpointer data)
+{
+    GtkWindow *w = GTK_WINDOW(widget);
+    GSList *list;
+    struct focus_hierarchy *fh, *fhl = NULL;
+    for(fh = focus_top; fh; fhl = fh, fh = fh->next) {
+	if (fh->master == w) {
+	    /* Not sure how this could happen in practice, but re-parenting
+	     * any slave windows to the next master in the hierarchy seems
+	     * a resonable sort of thing to do. If there is no next then
+	     * we're probably exiting the game anyway so just drop them.
+	     */
+	    if (fh->slaves)
+		if (fh->next)
+		    fh->next->slaves = g_slist_concat(fh->next->slaves,
+		      fh->slaves);
+		else
+		    g_slist_free(fh->slaves);
+	    if (fhl)
+		fhl->next = fh->next;
+	    else
+		focus_top = fh->next;
+	    free(fh);
+	    break;
+	}
+	else if (list = g_slist_find(fh->slaves, w)) {
+	    fh->slaves = g_slist_remove(fh->slaves, w);
+	    break;
+	}
+    }
+    if (!fh)
+	impossible("Destroying unknown focus window");
+    else
+	gtk_widget_unref(widget);
+}
+
+gint
+focus_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
+{
+    if (focus_top)
+	return focus_top->handler(GTK_WIDGET(focus_top->master), event,
+	  focus_top->data);
+    else
+	return GTK_default_key_press(widget, event, data);
+}
+
+static void focus_set_events(GtkWindow *w)
+{
+    gtk_widget_ref(GTK_WIDGET(w));
+    gtk_signal_connect(GTK_OBJECT(w), "focus_in_event",
+      GTK_SIGNAL_FUNC(focus_in), 0);
+    gtk_signal_connect(GTK_OBJECT(w), "focus_out_event",
+      GTK_SIGNAL_FUNC(focus_out), 0);
+    gtk_signal_connect(GTK_OBJECT(w), "map_event",
+      GTK_SIGNAL_FUNC(focus_map), 0);
+    gtk_signal_connect(GTK_OBJECT(w), "destroy",
+      GTK_SIGNAL_FUNC(focus_destroy), 0);
+    gtk_signal_connect(GTK_OBJECT(w), "key_press_event",
+      GTK_SIGNAL_FUNC(focus_key_press), 0);
+}
+
+void nh_gtk_focus_set_master(GtkWindow *w, GtkSignalFunc func, gpointer data)
+{
+    struct focus_hierarchy *fh;
+    g_return_if_fail(w != NULL);
+    fh = (struct focus_hierarchy *)alloc(sizeof(struct focus_hierarchy));
+    fh->master = w;
+    fh->slaves = NULL;
+    fh->handler = (void *)func;
+    fh->data = data;
+    fh->next = focus_top;
+    focus_top = fh;
+    focus_set_events(w);
+#ifdef DEBUG
+    focus_dump();
+#endif
+}
+
+void nh_gtk_focus_set_slave_for(GtkWindow *w,GtkWindow *slave_for)
+{
+    struct focus_hierarchy *fh;
+    g_return_if_fail(w != NULL);
+    for(fh = focus_top; fh; fh = fh->next) {
+	if (slave_for == fh->master) {
+	    fh->slaves = g_slist_prepend(fh->slaves, w);
+	    break;
+	}
+    }
+    if (!fh) {
+	impossible("Window focus slave for unknown window?");
+	return;
+    }
+    focus_set_events(w);
+#ifdef DEBUG
+    focus_dump();
+#endif
 }
 
 gint
@@ -1538,6 +1743,8 @@ GTK_init_nhwindows(int *argc, char **argv)
   create main widget
 */
     main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    nh_gtk_focus_set_master(GTK_WINDOW(main_window),
+      GTK_SIGNAL_FUNC(GTK_default_key_press), 0);
 
     gtk_window_set_policy(GTK_WINDOW(main_window), TRUE, TRUE, TRUE);
 
@@ -1632,6 +1839,7 @@ GTK_init_nhwindows(int *argc, char **argv)
 
 #ifdef RADAR
     main_radar = nh_radar_new();
+    nh_gtk_focus_set_slave_for(GTK_WINDOW(main_radar), GTK_WINDOW(main_window));
 #endif
     
     (void) nh_gtk_new_and_pack(
@@ -1752,16 +1960,6 @@ GTK_init_nhwindows2()
 
     nh_option_lock();
 
-    gtk_signal_connect(
-	GTK_OBJECT(main_window), "key_press_event",
-	GTK_SIGNAL_FUNC(GTK_default_key_press), NULL);
-
-#ifdef RADAR
-    gtk_signal_connect(
-	GTK_OBJECT(main_radar), "key_press_event",
-	GTK_SIGNAL_FUNC(GTK_default_key_press), NULL);
-#endif
-
     initialized2 = 1;
     GTK_update_inventory();
 }
@@ -1769,10 +1967,11 @@ GTK_init_nhwindows2()
 winid
 GTK_create_nhwindow(int type)
 {
+    int retval=-1;
     winid	id;
     NHWindow	*w;
 
-    switch(type){
+    switch(type) {
 /* 
    these windows have already been created
 */
@@ -1781,7 +1980,7 @@ GTK_create_nhwindow(int type)
     case NHW_MAP:
 	if (gtkWindows[type].type != type)
 	    panic("GTK_create_nhwindow: standard window (%d) not valid",type);
-	return type;
+	retval = type;
 	break;
 /*
   create new window
@@ -1796,73 +1995,130 @@ GTK_create_nhwindow(int type)
 		w->type = type;
 		if (type == NHW_MENU)
 		    GTK_create_menu_window(w);
-		return id;
+		retval = id;
+		break;
 	    }
 	}
-	panic("GTK_create_nhwindow: no free windows!");
+	if (retval < 0)
+	    panic("GTK_create_nhwindow: no free windows!");
 	break;
     default:
 	panic("GTK_create_nhwindow: Unknown type (%d)!", type);
     }
-    return 0;
+    return retval;
 }
 
 void
 GTK_destroy_nhwindow(winid id)
 {
-/*    int i;*/
-    NHWindow *w;
+    NHWindow *w = &gtkWindows[id]; 
 
-    if(id == NHW_STATUS || id == NHW_MESSAGE || id == NHW_MAP)
-	return;
-
-    w = &gtkWindows[id]; 
-
-    if (w->type == NHW_MENU)
-	GTK_destroy_menu_window(w);
-
-    if(w->w){
-	gtk_widget_hide_all(w->w);
-	if(w->hid > 0)
-	    gtk_signal_disconnect(GTK_OBJECT(w->w), w->hid);
-
-	gtk_widget_destroy(w->w);
+    switch (w->type)
+    {
+	case NHW_STATUS:
+	case NHW_MESSAGE:
+	case NHW_MAP:
+	    return;
+	case NHW_MENU:
+	    GTK_destroy_menu_window(w);
+	    break;
+	case NHW_TEXT:
+	    if (w->w) {
+		gtk_widget_hide_all(w->w);
+		if(w->hid > 0)
+		    gtk_signal_disconnect(GTK_OBJECT(w->w), w->hid);
+		gtk_widget_destroy(w->w);
+	    }
+	    break;
     }
+
     memset(w, 0, sizeof(NHWindow));
     w->type = NHW_NONE;
+}
+
+/*
+ * Used for close button on blocking text windows.
+ */
+
+static gint
+blocking_text_clicked(GtkWidget *widget, gpointer data)
+{
+    keysym = '\033';
+    quit_hook();
+    return FALSE;
+}
+
+/*
+ * Used for close button on non-blocking text windows. Don't affect the
+ * game state (eg., by setting keysym) and don't call quit_hook. Instead
+ * all we do is close the window.
+ */
+
+static gint
+text_clicked(GtkWidget *widget, gpointer data)
+{
+    GtkWidget *window;
+    window = GTK_WIDGET(data);
+    gtk_widget_destroy(window);
+    return FALSE;
 }
 
 void
 GTK_display_nhwindow(winid id, BOOLEAN_P blocking)
 {
-    NHWindow *w;
+    NHWindow *w = &gtkWindows[id];
+    int type = w->type;
     extern int root_height;
 
-    if(id == NHW_STATUS || id == NHW_MESSAGE){
+    switch(type) {
+	case NHW_STATUS:
+	case NHW_MESSAGE:
+	    return;	/* We never block on status or message windows */
+	case NHW_MAP:	/* flush out */
+	    nh_map_flush();
+	    break;
+	case NHW_TEXT:
+	    /*
+	     * [ALI] This probably needs some tidying up. Menus will
+	     * already have the relevant signals connected. Text windows
+	     * are postponed until now. This allows us to treat blocking
+	     * and non-blocking windows differently.
+	     */
+	    if (blocking) {
+		w->hid = gtk_signal_connect(GTK_OBJECT(w->w), "destroy",
+		  GTK_SIGNAL_FUNC(default_destroy), &w->w);
+		gtk_signal_connect(GTK_OBJECT(w->button[0]), "clicked",
+		  GTK_SIGNAL_FUNC(blocking_text_clicked), (gpointer)w->w);
+	    } else
+		w->hid = gtk_signal_connect(GTK_OBJECT(w->button[0]),
+		  "clicked", GTK_SIGNAL_FUNC(text_clicked), (gpointer)w->w);
+	    /* Fall through */
+	case NHW_MENU:
+	    if(w->clist &&
+	      w->clist->requisition.height >= (2 * root_height) / 3)
+		gtk_widget_set_usize(w->clist, -1, (2 * root_height) / 3);
+	    if (type == NHW_MENU)
+		blocking = TRUE;	/* Menus always block */
+#if 0
+	    if (blocking)
+		gtk_grab_add(w->w);
+#endif
+	    gtk_widget_show_all(w->w);
+	    if (!blocking)
+		w->w = NULL;		/* Gtk window now independant */
+	    break;
     }
-    else if(id == NHW_MAP){	/* flush out */
-	nh_map_flush();
-    }
-    else{
-	w = &gtkWindows[id];
 
-	if(w->clist && w->clist->requisition.height >= (2 * root_height) / 3)
-	    gtk_widget_set_usize(w->clist, -1, (2 * root_height) / 3);
-	gtk_grab_add(w->w);
-	gtk_widget_show_all(w->w);
-    }
-
-    if((id != NHW_MESSAGE && blocking) || id == NHW_MENU)
+    if (blocking)
 	main_hook();
 }
 
 void
 GTK_clear_nhwindow(winid id)
 {
-    if(id == NHW_MAP){
+    if (gtkWindows[id].type == NHW_MAP) {
 	nh_map_clear();
     }
-    return;
 }
 
 /*
@@ -1875,82 +2131,75 @@ void
 GTK_putstr(winid id, int attr, const char *str)
 {
     const gchar	*text[1];
-    NHWindow	*w;
+    NHWindow *w = &gtkWindows[id]; 
 
-    w = &gtkWindows[id]; 
+    switch (w->type) {
+	case NHW_MESSAGE:
+	    nh_message_putstr(str);
+	    break;
+	case NHW_STATUS:
+	    nh_status_update();
+	    break;
+	case NHW_MAP:
+	    panic("bad window");
+	    break;
+	case NHW_MENU:
+	    /* We don't treat windows of type NHW_MENU any differently from
+	     * NHW_TEXT windows once putstr() has been called and it makes
+	     * it easier if all text windows have type NHW_TEXT.
+	     */
+	    GTK_destroy_menu_window(w);
+	    w->type = NHW_TEXT;
+	    /* Fall through */
+	case NHW_TEXT:
+	    if (!w->w) {
+		w->w = nh_gtk_window_dialog(TRUE);
+		gtk_widget_set_name(GTK_WIDGET(w->w), "fixed font");
+		nh_position_popup_dialog(GTK_WIDGET(w->w));
 
-    if(id == NHW_MESSAGE){
-	nh_message_putstr(str);
-	return;
-    }
-    else if(id == NHW_STATUS){
-	nh_status_update();
-	return;
-    }
-    else if(id <= 3){
-	panic("bad window");
-	return;
-    }
+		nh_gtk_focus_set_slave_for(GTK_WINDOW(w->w),
+		  GTK_WINDOW(main_window));
 
-    if(!w->w){
-	w->w = nh_gtk_window_dialog();
-	gtk_widget_set_name(GTK_WIDGET(w->w), "fixed font");
-	nh_position_popup_dialog(GTK_WIDGET(w->w));
+		w->frame = nh_gtk_new_and_add(
+		  gtk_frame_new(NULL), w->w, "");
 
-	gtk_signal_connect(
-	    GTK_OBJECT(w->w), "key_press_event",
-	    GTK_SIGNAL_FUNC(GTK_default_key_press), NULL);
-	w->hid = gtk_signal_connect(
-	    GTK_OBJECT(w->w), "destroy",
-	    GTK_SIGNAL_FUNC(default_destroy), &w->w);
+		w->vbox = nh_gtk_new_and_add(
+		  gtk_vbox_new(FALSE, 0), w->frame, "");
 
-	w->frame = nh_gtk_new_and_add(
-	    gtk_frame_new(NULL), w->w, "");
+		w->hbox2 = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), w->vbox,
+		  "", FALSE, FALSE, NH_PAD);
 
-	w->vbox = nh_gtk_new_and_add(
-	    gtk_vbox_new(FALSE, 0), w->frame, "");
+		w->clist = nh_gtk_new_and_pack(gtk_clist_new(1), w->hbox2, "",
+		  FALSE, FALSE, NH_PAD);
+		gtk_clist_set_column_auto_resize(GTK_CLIST(w->clist), 0, TRUE);
 
-	w->hbox2 = nh_gtk_new_and_pack(
-	    gtk_hbox_new(FALSE, 0), w->vbox, "",
-	    FALSE, FALSE, NH_PAD);
+		w->adj = (GtkAdjustment *)gtk_adjustment_new(
+		  0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+		gtk_clist_set_vadjustment(GTK_CLIST(w->clist), w->adj);
 
-	w->clist = nh_gtk_new_and_pack(
-	    gtk_clist_new(1), w->hbox2, "",
-	    FALSE, FALSE, NH_PAD);
-	gtk_clist_set_column_auto_resize(GTK_CLIST(w->clist), 0, TRUE);
+		w->scrolled = nh_gtk_new_and_pack(
+		  gtk_vscrollbar_new(GTK_CLIST(w->clist)->vadjustment),
+		  w->hbox2, "", FALSE, FALSE, NH_PAD);
 
-	w->adj = (GtkAdjustment *)gtk_adjustment_new(
-	    0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-	gtk_clist_set_vadjustment(GTK_CLIST(w->clist), w->adj);
+		w->hbox3 = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), w->vbox,
+		  "", FALSE, FALSE, NH_PAD);
 
-	w->scrolled = nh_gtk_new_and_pack(
-	    gtk_vscrollbar_new(GTK_CLIST(w->clist)->vadjustment), w->hbox2,
-	    "", FALSE, FALSE, NH_PAD);
+		w->button[0] = nh_gtk_new_and_pack(
+		  gtk_button_new_with_label("Close"), w->hbox3, "",
+		  TRUE, FALSE, 0);
+	    }
 
-	w->hbox3 = nh_gtk_new_and_pack(
-	    gtk_hbox_new(FALSE, 0), w->vbox, "",
-	    FALSE, FALSE, NH_PAD);
+	    text[0] = str;
+	    gtk_clist_append(GTK_CLIST(w->clist), (gchar **)text);
 
-	w->button[0] = nh_gtk_new_and_pack(
-	    gtk_button_new_with_label("Close"), w->hbox3, "",
-	    TRUE, FALSE, 0);
-	gtk_signal_connect(
-	    GTK_OBJECT(w->button[0]), "clicked",
-	    GTK_SIGNAL_FUNC(default_button_press), (gpointer)'\033');
-    }
-
-    text[0] = str;
-    gtk_clist_append(GTK_CLIST(w->clist), (gchar **)text);
-
-    if(attr != 0){
-	gtk_clist_set_foreground(
-	    GTK_CLIST(w->clist), 
-	    GTK_CLIST(w->clist)->rows - 1,
-	    GTK_WIDGET(w->clist)->style->bg); 
-	gtk_clist_set_background(
-	    GTK_CLIST(w->clist), 
-	    GTK_CLIST(w->clist)->rows - 1,
-	    GTK_WIDGET(w->clist)->style->fg); 
+	    if (attr) {
+		gtk_clist_set_foreground(GTK_CLIST(w->clist), 
+		  GTK_CLIST(w->clist)->rows - 1,
+		  GTK_WIDGET(w->clist)->style->bg); 
+		gtk_clist_set_background(GTK_CLIST(w->clist), 
+		  GTK_CLIST(w->clist)->rows - 1,
+		  GTK_WIDGET(w->clist)->style->fg); 
+	    }
     }
 }
 
@@ -2037,13 +2286,11 @@ GTK_display_file(const char *fname, BOOLEAN_P complain)
 	return;
     }
 
-    w = nh_gtk_window_dialog();
+    w = nh_gtk_window_dialog(TRUE);
     gtk_widget_set_name(GTK_WIDGET(w), "fixed font");
 
     nh_position_popup_dialog(GTK_WIDGET(w));
-    gtk_signal_connect(
-	GTK_OBJECT(w), "key_press_event",
-	GTK_SIGNAL_FUNC(GTK_default_key_press), NULL);
+    nh_gtk_focus_set_slave_for(GTK_WINDOW(w), GTK_WINDOW(main_window));
     hid = gtk_signal_connect(
 	GTK_OBJECT(w), "destroy",
 	GTK_SIGNAL_FUNC(default_destroy), &w);
@@ -2184,7 +2431,7 @@ GTK_outrip(winid id, int how)
     extern const char *killed_by_prefix[];
     char	*rip_file;
 
-    w = nh_gtk_window_dialog();
+    w = nh_gtk_window_dialog(TRUE);
     gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
 
     gtk_widget_set_events(
@@ -2193,9 +2440,7 @@ GTK_outrip(winid id, int how)
     gtk_signal_connect(
 	GTK_OBJECT(w), "button_press_event",
 	GTK_SIGNAL_FUNC(default_button_press), NULL);
-    gtk_signal_connect(
-	GTK_OBJECT(w), "key_press_event",
-	GTK_SIGNAL_FUNC(GTK_default_key_press), NULL);
+    nh_gtk_focus_set_slave_for(GTK_WINDOW(w), GTK_WINDOW(main_window));
     gtk_signal_connect(
 	GTK_OBJECT(w), "destroy",
 	GTK_SIGNAL_FUNC(default_destroy), &w);

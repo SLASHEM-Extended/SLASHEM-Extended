@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.1 2001-04-12 06:19:00 j_ali Exp $
+  $Id: gtkmenu.c,v 1.2 2001-06-16 18:14:41 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -166,10 +166,14 @@ GTK_init_menu_widgets(NHWindow *w)
      int i;
      GtkWidget *b;
 
-     if (w->menu_information->cancelled >= 0)
-	 w->w = nh_gtk_window_dialog();
-     else
+     if (w->menu_information->cancelled >= 0) {
+	 w->w = nh_gtk_window_dialog(TRUE);
+	 nh_gtk_focus_set_master(GTK_WINDOW(w->w),
+	   GTK_SIGNAL_FUNC(menu_key_press), w);
+     } else {
 	 w->w = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	 nh_gtk_focus_set_slave_for(GTK_WINDOW(w->w), GTK_WINDOW(main_window));
+     }
      gtk_widget_set_name(GTK_WIDGET(w->w), "fixed font");
      nh_position_popup_dialog(GTK_WIDGET(w->w));
      w->hid = gtk_signal_connect(
@@ -187,8 +191,6 @@ GTK_init_menu_widgets(NHWindow *w)
 	 FALSE, FALSE, NH_PAD);
 
      if (w->menu_information->cancelled >= 0) {
-	 gtk_signal_connect(GTK_OBJECT(w->w), "key_press_event",
-			    GTK_SIGNAL_FUNC(menu_key_press), w);
 	 b = w->button[0] = nh_gtk_new_and_pack(
 	     gtk_button_new_with_label("ok"), w->hbox, "",
 	     FALSE, FALSE, NH_PAD);
@@ -225,11 +227,7 @@ GTK_init_menu_widgets(NHWindow *w)
 			    (gpointer)MENU_INVERT_ALL);
      }
      else
-     {
-	 gtk_signal_connect(GTK_OBJECT(w->w), "key_press_event",
-			    GTK_SIGNAL_FUNC(GTK_default_key_press), NULL);
 	 gtk_accel_group_attach(accel_group, GTK_OBJECT(w->w));
-     }
      w->hbox2 = nh_gtk_new_and_pack(
 	 gtk_hbox_new(FALSE, 0), w->vbox, "",
 	 FALSE, FALSE, NH_PAD);
@@ -528,8 +526,10 @@ GTK_select_menu(winid id, int how, MENU_ITEM_P **menu_list)
     
     gtk_widget_show_all(w->w);
     
-    if (menu_info->cancelled < 0)
+    if (menu_info->cancelled < 0) {
+	gtk_window_present(GTK_WINDOW(w->w));
 	return 0;
+    }
     gtk_grab_add(w->w);
     gtk_widget_grab_focus(w->clist);
 

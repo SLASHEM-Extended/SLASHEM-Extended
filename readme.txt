@@ -349,6 +349,7 @@ ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -fixed bug 422155: sigil of discharge kills multiple times.
 -fixed bug 423715: Candle of Eternal Flame is buggy.
 -fixed bug 422540: Succubi interaction while unconscious.
+-fixed bug 420941: inventory won't scroll.
 
 ver 0.0.6E4F4 [May 2/2001] [Released by Ali]
 -fixed bug 404825: wands of teleportation that explode/zapped at yourself

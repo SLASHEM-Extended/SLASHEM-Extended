@@ -1,5 +1,5 @@
 /*
-  $Id: gtkmenu.c,v 1.14 2001-02-18 15:55:34 j_ali Exp $
+  $Id: gtkmenu.c,v 1.15 2001-06-16 18:14:40 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -38,6 +38,8 @@ extern GtkAccelGroup	*accel_group;
 static void move_menu(struct menu *src_menu, struct menu *dest_menu);
 static void free_menu(struct menu *m);
 static void GTK_load_menu_clist(NHWindow *w);
+static gint perm_invent_key_press(GtkWidget *widget, GdkEventKey *event,
+  gpointer data);
 
 static gint
 menu_destroy(GtkWidget *widget, gpointer data)
@@ -227,7 +229,7 @@ GTK_init_menu_widgets(NHWindow *w)
      else
      {
 	 gtk_signal_connect(GTK_OBJECT(w->w), "key_press_event",
-			    GTK_SIGNAL_FUNC(GTK_default_key_press), NULL);
+			    GTK_SIGNAL_FUNC(perm_invent_key_press), w);
 	 gtk_accel_group_attach(accel_group, GTK_OBJECT(w->w));
      }
      w->hbox2 = nh_gtk_new_and_pack(
@@ -283,6 +285,14 @@ GTK_init_menu_widgets(NHWindow *w)
 	    w->menu_information->curr_menu.prompt);
     
      w->menu_information->valid_widgets = TRUE;
+
+     /* Find our "ancestor" pointer. This pointer would normally be NULL,
+      * but we set it to point at grab widgets to implement a type of
+      * partial modality. Warning: this is a hack.
+      */
+     for(b = w->w; b->parent; b = b->parent)
+	 ;
+     w->menu_information->ancestor = &b->parent;
 }
 
 static void
@@ -463,6 +473,70 @@ GTK_end_menu(winid id, const char *prompt)
      menu->prompt = prompt;
 }
 
+static gint
+ancestor_destroy(GtkWidget *widget, gpointer data)
+{
+    NHWindow *w = (NHWindow *)data;
+    struct menu_info_t *menu_info = w->menu_information;
+    *(menu_info->ancestor) = NULL;
+    return 0;
+}
+
+static gint
+perm_invent_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
+{
+    NHWindow *w = (NHWindow *)data;
+
+    /*
+     * If we're faking being a descendant of a window it's because that
+     * window has a grab active. In this case all key press events should
+     * be going to the grab widget.
+     */
+    if (w->menu_information && *(w->menu_information->ancestor)) {
+	/* As Gtk+ internal function gtk_propagate_event() */
+	widget = gtk_widget_get_ancestor(*(w->menu_information->ancestor),
+	  GTK_TYPE_WINDOW);
+	if (widget) {
+	    if (GTK_WIDGET_IS_SENSITIVE(widget))
+		gtk_widget_event(widget, (GdkEvent *)event);
+	    return 1;
+	}
+	else
+	    return 0;
+    }
+    else
+	return GTK_default_key_press(widget, event, data);
+}
+
+/*
+ * Call this function after changing the grab to retain the ability to
+ * scroll the permanent inventory window.
+ */
+
+void
+nh_gtk_perm_invent_hack(void)
+{
+    NHWindow *w = &gtkWindows[WIN_INVEN];
+    GtkWidget *grab;
+    if (!w->w)
+	return;			/* Inventory window not open */
+    grab = gtk_grab_get_current();
+    *(w->menu_information->ancestor) = NULL;
+    if (grab && !gtk_widget_is_ancestor(w->w, grab)) {
+	/* If there is a grab in effect the user will not be able to
+	 * scroll the permanent inventory window. The real solution
+	 * is not to use modal windows (see gtk2 for an implementation
+	 * of this) but this is very hard to do in Gtk+ v1.2.x so
+	 * instead we temporarily hack the inventory window to appear
+	 * to be a descendant of the current grab. We automatically
+	 * undo this if the grab window is destroyed.
+	 */
+	*(w->menu_information->ancestor) = grab;
+	gtk_signal_connect(GTK_OBJECT(grab), "destroy",
+	  GTK_SIGNAL_FUNC(ancestor_destroy), w);
+    }
+}
+
 int 
 GTK_select_menu(winid id, int how, MENU_ITEM_P **menu_list)
 {
@@ -528,8 +602,10 @@ GTK_select_menu(winid id, int how, MENU_ITEM_P **menu_list)
     
     gtk_widget_show_all(w->w);
     
-    if (menu_info->cancelled < 0)
+    if (menu_info->cancelled < 0) {
+	gdk_window_raise(w->w->window);
 	return 0;
+    }
     gtk_grab_add(w->w);
     gtk_widget_grab_focus(w->clist);
 

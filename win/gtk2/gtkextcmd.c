@@ -1,5 +1,5 @@
 /*
-  $Id: gtkextcmd.c,v 1.1 2001-04-12 06:19:00 j_ali Exp $
+  $Id: gtkextcmd.c,v 1.2 2001-06-16 18:14:41 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -139,11 +139,10 @@ GTK_get_ext_cmd()
 	return i;
     }
 
-    window = nh_gtk_window_dialog();
+    window = nh_gtk_window_dialog(TRUE);
     nh_position_popup_dialog(GTK_WIDGET(window));
-    gtk_signal_connect_after(
-	GTK_OBJECT(window), "key_press_event",
-	GTK_SIGNAL_FUNC(extcmd_key_press), NULL);
+    nh_gtk_focus_set_master(GTK_WINDOW(window),
+      GTK_SIGNAL_FUNC(extcmd_key_press), 0);
     hid = gtk_signal_connect(
 	GTK_OBJECT(window), "destroy",
 	GTK_SIGNAL_FUNC(extcmd_destroy), &hid);

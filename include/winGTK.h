@@ -1,5 +1,5 @@
 /*
-  $Id: winGTK.h,v 1.16 2001-04-22 17:21:20 j_ali Exp $
+  $Id: winGTK.h,v 1.17 2001-06-16 18:14:40 j_ali Exp $
  */
 
 #ifndef WINGTK_H
@@ -49,7 +49,13 @@
 
 #define	NH_PAD			5
 
-extern GtkWidget *nh_gtk_window_dialog(void);
+#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+extern GtkWidget *nh_gtk_window_dialog(boolean is_modal);
+extern void nh_gtk_focus_set_master(GtkWindow *w, GtkSignalFunc func, gpointer data);
+extern void nh_gtk_focus_set_slave_for(GtkWindow *w, GtkWindow *slave_for);
+#else
+extern void nh_gtk_perm_invent_hack(void);
+#endif
 
 extern GtkWidget *nh_gtk_new(GtkWidget *w, GtkWidget *parent, gchar *lbl);
 
@@ -78,6 +84,7 @@ enum {
     MAP_WHITE
 };
 
+extern GtkWidget *main_window;
 
 #define	NH_BUFSIZ		4096
 #define NH_TEXT_REMEMBER	4096
@@ -165,6 +172,10 @@ extern void		main_hook(void);
 extern void		quit_hook(void);
 extern gint		GTK_default_key_press(GtkWidget *widget,
 			  GdkEventKey *event, gpointer data);
+#if defined(DEVEL_BRANCH) && defined(GTK_V20)
+extern gint		GTK_default_focus_in(GtkWidget *widget,
+			  GdkEventFocus *event, gpointer data);
+#endif
 
 extern GtkWidget	*nh_radar_new(void);
 extern void		nh_radar_update(void);
@@ -217,6 +228,9 @@ struct menu_info_t {
     int		valid_widgets;
 #ifdef WINGTK_MENU_IMAGES
     int		pixmaps;		/* Set if any pixmaps set in clist */
+#endif
+#if !defined(DEVEL_BRANCH) || !defined(GTK_V20)
+    GtkWidget	**ancestor;		/* Hack - see gtkmenu.c */
 #endif
 };
 
