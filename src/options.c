@@ -1126,10 +1126,6 @@ static const struct {
 
 /* parse '"regex_string"=color' and add it to menucoloring */
 boolean
-#ifdef POSIX_REGEX
-   int errnum;
-   char errbuf[80];
-#endif
 add_menu_coloring(str)
 char *str;
 {
@@ -1137,6 +1133,10 @@ char *str;
    struct menucoloring *tmp;
    char *tmps, *cs = strchr(str, '=');
    const char *err = (char *)0;
+#ifdef POSIX_REGEX
+   int errnum;
+   char errbuf[80];
+#endif
    
    if (!cs || !str) return FALSE;
    
@@ -1174,13 +1174,19 @@ char *str;
       while (isspace(*cs)) cs--;
       if (*cs == *tmps) {
 	 *cs = '\0';
-# ifdef GNU_REGEX
 	 tmps++;
       }
    }
    
    tmp = (struct menucoloring *)alloc(sizeof(struct menucoloring));
 #ifdef USE_REGEX_MATCH
+# ifdef GNU_REGEX
+   tmp->match.translate = 0;
+   tmp->match.fastmap = 0;
+   tmp->match.buffer = 0;
+   tmp->match.allocated = 0;
+   tmp->match.regs_allocated = REGS_FIXED;
+   err = re_compile_pattern(tmps, strlen(tmps), &tmp->match);
 # else
 #  ifdef POSIX_REGEX
    errnum = regcomp(&tmp->match, tmps, REG_EXTENDED | REG_NOSUB);
@@ -1190,12 +1196,6 @@ char *str;
    }
 #  endif  
 # endif  
-   tmp->match.translate = 0;
-   tmp->match.fastmap = 0;
-   tmp->match.buffer = 0;
-   tmp->match.allocated = 0;
-   tmp->match.regs_allocated = REGS_FIXED;
-   err = re_compile_pattern(tmps, strlen(tmps), &tmp->match);
 #else
    tmp->match = (char *)alloc(strlen(tmps)+1);
    (void) memcpy((genericptr_t)tmp->match, (genericptr_t)tmps, strlen(tmps)+1);
