@@ -334,6 +334,7 @@ ver 0.0.6E5 [? ?/2001] [Released by ?]
 -fixed bug 225227: Vampires start with food rations.
 -New messages when engraving with wand of draining.
 -Partially implemented first cut of proxy window interface support
+-fixed bug 424479: Dipping into potions of gain level.
 
 ver 0.0.6E4F5 [? ?/2001] [Released by ?]
 -fixed bug 420517: Yellow dragon scale mail.

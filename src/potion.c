@@ -1703,7 +1703,10 @@ register struct obj *obj;
 /* returns TRUE if something happened (potion should be used up) */
 {
 	int chg;
-
+#ifdef DEVEL_BRANCH
+	int otyp = obj->otyp, otyp2;
+	long owornmask;
+#endif
 
 	/* Check to see if object is valid */
 	if (!obj)
@@ -1712,6 +1715,7 @@ register struct obj *obj;
 	if (obj->oartifact)
 		/* WAC -- Could have some funky fx */
 		return (FALSE);
+#ifndef DEVEL_BRANCH
 	if (carried(obj)) {
 		/* Unwear it */
 		if (obj == uarm) Armor_gone();
@@ -1728,6 +1732,7 @@ register struct obj *obj;
 #endif
 		setnotworn(obj);
 	}
+#endif	/* DEVEL_BRANCH */
 
 	switch (obj->otyp)
 	{
@@ -2049,6 +2054,43 @@ register struct obj *obj;
 
 	/* The object was transformed */
 	obj->owt = weight(obj);
+	obj->oclass = objects[obj->otyp].oc_class;
+
+#ifdef DEVEL_BRANCH
+	if (carried(obj)) {
+	    if (obj == uskin) rehumanize();
+	    /* Quietly remove worn item if no longer compatible --ALI */
+	    owornmask = obj->owornmask;
+	    if (owornmask & W_ARM && !is_suit(obj))
+		owornmask &= ~W_ARM;
+	    if (owornmask & W_ARMC && !is_cloak(obj))
+		owornmask &= ~W_ARMC;
+	    if (owornmask & W_ARMH && !is_helmet(obj))
+		owornmask &= ~W_ARMH;
+	    if (owornmask & W_ARMS && !is_shield(obj))
+		owornmask &= ~W_ARMS;
+	    if (owornmask & W_ARMG && !is_gloves(obj))
+		owornmask &= ~W_ARMG;
+	    if (owornmask & W_ARMF && !is_boots(obj))
+		owornmask &= ~W_ARMF;
+#ifdef TOURIST
+	    if (owornmask & W_ARMU && !is_shirt(obj))
+		owornmask &= ~W_ARMU;
+#endif
+	    if (owornmask & W_TOOL && obj->otyp != BLINDFOLD &&
+	      obj->otyp != TOWEL && obj->otyp != LENSES)
+		owornmask &= ~W_TOOL;
+	    otyp2 = obj->otyp;
+	    obj->otyp = otyp;
+	    if (obj->otyp == LEASH && obj->leashmon) o_unleash(obj);
+	    remove_worn_item(obj);
+	    obj->otyp = otyp2;
+	    obj->owornmask = owornmask;
+	    setworn(obj, obj->owornmask);
+	    puton_worn_item(obj);
+	}
+#endif	/* DEVEL_BRANCH */
+
 	return (TRUE);
 }
 
