@@ -81,6 +81,7 @@ ver 0.0.7E6F2 [?] [Released by ?]
 -fixed bug 932801: [GTK] Changing hilite_pet from options not immed. honoured
 -fixed bug 932816: Disabled radar window appears (but isn't updated) on startup
 -fixed bug 932818: [GTK] Can't close main window before starting game
+-fixed bug 932827: [win32] Session windows slowly creep right and down
 
 See history.txt for changes made in previous versions.
 

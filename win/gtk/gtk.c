@@ -1,9 +1,9 @@
 /*
-  $Id: gtk.c,v 1.51 2004-04-10 14:53:10 j_ali Exp $
+  $Id: gtk.c,v 1.52 2004-04-10 15:15:43 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
-               Copyright (c) Slash'EM Development Team 2001-2003
+               Copyright (c) Slash'EM Development Team 2001-2004
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -640,8 +640,31 @@ session_window_configure_event(GtkWidget *widget, GdkEventConfigure *event,
     } else {
 	/* Initial placement */
 #ifdef WIN32
-	session_window_info[i].ox = 0;
-	session_window_info[i].oy = 0;
+	/* Under win32 Gtk+, we appear to get two configure events in
+	 * quick sucession. This is probably a bug in Gtk+ with the
+	 * first configure event representing the default window
+	 * geometry and the second event representing the geometry we
+	 * have requested. We cope with this by ignoring configure
+	 * events if we have requested a geometry and the offset is
+	 * implausible.
+	 */
+	if (session_window_info[i].flags & NH_SESSION_USER_POS) {
+	    int ox, oy;
+	    ox = event->x - session_window_info[i].bounding.x;
+	    oy = event->y - session_window_info[i].bounding.y;
+	    if (ox >= 0 && ox <= 8 && oy >= 0 && oy <= 48) {
+		session_window_info[i].ox = ox;
+		session_window_info[i].oy = oy;
+		session_window_info[i].flags |= NH_SESSION_PLACED;
+	    } else {
+		session_window_info[i].ox = 0;
+		session_window_info[i].oy = 0;
+	    }
+	} else {
+	    session_window_info[i].ox = 0;
+	    session_window_info[i].oy = 0;
+	    session_window_info[i].flags |= NH_SESSION_PLACED;
+	}
 #else
 	if (session_window_info[i].flags & NH_SESSION_USER_POS) {
 	    session_window_info[i].ox =
@@ -666,13 +689,15 @@ session_window_configure_event(GtkWidget *widget, GdkEventConfigure *event,
 		session_window_info[i].oy = event->y - frame.y;
 	    }
 	}
-#endif
 	session_window_info[i].flags |= NH_SESSION_PLACED;
+#endif
     }
-    session_window_info[i].bounding.x = event->x - session_window_info[i].ox;
-    session_window_info[i].bounding.y = event->y - session_window_info[i].oy;
-    session_window_info[i].bounding.width = event->width;
-    session_window_info[i].bounding.height = event->height;
+    if (session_window_info[i].flags & NH_SESSION_PLACED) {
+	session_window_info[i].bounding.x = event->x - session_window_info[i].ox;
+	session_window_info[i].bounding.y = event->y - session_window_info[i].oy;
+	session_window_info[i].bounding.width = event->width;
+	session_window_info[i].bounding.height = event->height;
+    }
 #ifdef DEBUG_SESSION
     session_window_dump(stderr, i, "configure done");
 #endif
