@@ -1121,14 +1121,21 @@ aboutNetHack() {
 		unsigned char aboutStr[32] = "\pSlash'EM 0.0.";
 
 		if (PATCHLEVEL > 10) {
-			aboutStr[++aboutStr[0]] = '0'+PATCHLEVEL/10;
+			aboutStr[++aboutStr[0]] = '0' + PATCHLEVEL / 10;
 		}
 
-		aboutStr[++aboutStr[0]] = '0' + (PATCHLEVEL % 10);
+		aboutStr[++aboutStr[0]] = '0' + PATCHLEVEL % 10;
+		
 		if (EDITLEVEL) {
 			aboutStr[++aboutStr[0]] = 'e';
 			aboutStr[++aboutStr[0]] = '0' + EDITLEVEL;
 		}
+		
+		if (FIXLEVEL) {
+			aboutStr[++aboutStr[0]] = 'f';
+			aboutStr[++aboutStr[0]] = '0' + FIXLEVEL;
+		}
+		
 		aboutStr[++aboutStr[0]] = CHAR_CR;
 
 		ParamText(aboutStr, "\pwww.slashem.org", "\p", "\p");
