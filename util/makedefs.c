@@ -433,6 +433,18 @@ do_rumors()
 	return;
 }
 
+/*
+ * 3.4.1: way back in 3.2.1 `flags.nap' became unconditional but
+ * TIMED_DELAY was erroneously left in VERSION_FEATURES and has
+ * been there up through 3.4.0.  Simply removing it now would
+ * break save file compatibility with 3.4.0 files, so we will
+ * explicitly mask it out during version checks.
+ * This should go away in the next version update.
+ */
+#define IGNORED_FEATURES	( 0L \
+				| (1L << 23)	/* TIMED_DELAY */ \
+				)
+
 static void
 make_version()
 {
@@ -498,9 +510,6 @@ make_version()
 #endif
 #ifdef SCORE_ON_BOTL
 			| (1L << 21)
-#endif
-#ifdef TIMED_DELAY
-			| (1L << 23)
 #endif
 		/* data format [COMPRESS excluded] (27..31) */
 #ifdef ZEROCOMP
@@ -608,6 +617,10 @@ do_date()
 		version.incarnation, ul_sfx);
 	Fprintf(ofp,"#define VERSION_FEATURES 0x%08lx%s\n",
                 version.feature_set, ul_sfx);
+#ifdef IGNORED_FEATURES
+	Fprintf(ofp,"#define IGNORED_FEATURES 0x%08lx%s\n",
+		(unsigned long) IGNORED_FEATURES, ul_sfx);
+#endif
 	Fprintf(ofp,"#define VERSION_SANITY1 0x%08lx%s\n",
                 version.entity_count, ul_sfx);
 	Fprintf(ofp,"#define VERSION_SANITY2 0x%08lx%s\n",
@@ -686,6 +699,9 @@ static const char *build_opts[] = {
 #endif
 #ifdef KOPS
 		"Keystone Kops",
+#endif
+#ifdef HOLD_LOCKFILE_OPEN
+		"exlusive lock on level 0 file",
 #endif
 #ifdef LOGFILE
 		"log file",
@@ -775,7 +791,7 @@ static const char *build_opts[] = {
 #ifdef TERMINFO
 		"terminal info library",
 #else
-# if defined(TERMLIB) || (!defined(MICRO) && defined(TTY_GRAPHICS))
+# if defined(TERMLIB) || ((!defined(MICRO) && !defined(WIN32)) && defined(TTY_GRAPHICS))
 		"terminal capability library",
 # endif
 #endif
@@ -784,6 +800,13 @@ static const char *build_opts[] = {
 #endif
 #ifdef TOURIST
 		"tourists",
+#endif
+#ifdef USER_SOUNDS
+# ifdef USER_SOUNDS_REGEX
+		"user sounds via regular expressions",
+# else
+		"user sounds via pmatch",
+# endif
 #endif
 #ifdef PREFIXES_IN_USE
 		"variable playground",
@@ -1609,6 +1632,9 @@ static void
 do_qt_text(s)
 	char *s;
 {
+	if (!in_msg) {
+	    Fprintf(stderr, TEXT_NOT_IN_MSG, qt_line);
+	}
 	curr_msg->size += strlen(s);
 	return;
 }

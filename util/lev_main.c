@@ -21,6 +21,7 @@
 #ifdef MAC
 # ifdef MAC_MPW
 #  define MPWTOOL
+#  define PREFIX ":dungeon:"	/* place output files here */
 #  include <CursorCtl.h>
 # else
 #  define PREFIX ":lib:"	/* place output files here */
@@ -49,16 +50,10 @@
 # define O_BINARY 0
 #endif
 
-#ifdef MICRO
+#if defined(MICRO) || defined(WIN32)
 # define OMASK FCMASK
 #else
 # define OMASK 0644
-#endif
-
-#ifndef MAC_MPW
-# define NEWLINE 10      /* under Mac MPW C '\n' is 13 so don't use it. */
-#else
-# define NEWLINE 13
 #endif
 
 #define ERR		(-1)
@@ -618,7 +613,7 @@ char *map;
 	/* Second, find the max width of the map */
 	s1 = map;
 	while (s1 && *s1) {
-		s2 = index(s1, NEWLINE);
+		s2 = index(s1, '\n');
 		if (s2) {
 			len = (int) (s2 - s1);
 			s1 = s2 + 1;
@@ -633,7 +628,7 @@ char *map;
 
 	while (map && *map) {
 		tmpmap[max_hig] = (char *) alloc(max_len);
-		s1 = index(map, NEWLINE);
+		s1 = index(map, '\n');
 		if (s1) {
 			len = (int) (s1 - map);
 			s1++;
