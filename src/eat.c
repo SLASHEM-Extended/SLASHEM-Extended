@@ -1310,6 +1310,9 @@ opentin()		/* called during each move whilst opening a tin */
 	    if (!vegetarian(&mons[tin.tin->corpsenm]))
 		violated_vegetarian();
 
+#ifdef EATEN_MEMORY
+	    if (mvitals[tin.tin->corpsenm].eaten)
+#endif
 	    tin.tin->dknown = tin.tin->known = TRUE;
 	    cprefx(tin.tin->corpsenm); cpostfx(tin.tin->corpsenm);
 

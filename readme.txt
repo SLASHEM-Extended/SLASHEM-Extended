@@ -77,6 +77,7 @@ ver 0.0.7E6F1 [?] [Released by ?]
 -fixed bug 908983: "The large kobold turns into it!" (Nico Kist)
 -fixed bug 911457: Macintosh dungeon creation not random
 -fixed bug 912586: Crashes in Grund's Stronghold
+-fixed bug 907565: Unidentified tin auto-ided when eaten
 
 See history.txt for changes made in previous versions.
 
