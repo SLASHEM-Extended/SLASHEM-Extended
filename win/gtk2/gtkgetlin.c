@@ -1,8 +1,9 @@
 /*
-  $Id: gtkgetlin.c,v 1.4 2001-12-11 20:43:49 j_ali Exp $
+  $Id: gtkgetlin.c,v 1.5 2003-01-23 10:27:11 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
+               Copyright (c) Slash'EM Development Team 2000-2003
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -27,10 +28,10 @@ getlin_destroy(GtkWidget *widget, gpointer data)
 static gint
 entry_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
-    if(event->keyval == GDK_Return)
+    if (event->keyval == GDK_Return)
 	gtk_main_quit();
 
-    if(event->keyval == GDK_Escape){
+    if (event->keyval == GDK_Escape) {
 	cancelled = 1;
 	gtk_main_quit();
     }
@@ -65,6 +66,7 @@ GTK_ext_getlin(const char *query)
     GtkWidget *entry;
     GtkWidget *ok;
     GtkWidget *cancel;
+    gulong h;
 
     cancelled = 0;
 
@@ -80,6 +82,10 @@ GTK_ext_getlin(const char *query)
 	gtk_entry_new(), vbox, "",
 	FALSE, FALSE, NH_PAD);
 
+#if GTK_CHECK_VERSION(2,0,0)
+    gtk_entry_set_activates_default(entry, TRUE);
+#endif
+
     nh_gtk_focus_set_master(GTK_WINDOW(window),
       GTK_SIGNAL_FUNC(entry_key_press), 0);
 
@@ -90,6 +96,9 @@ GTK_ext_getlin(const char *query)
     ok = nh_gtk_new_and_pack(
 	gtk_button_new_with_label("OK"), hbox, "",
 	FALSE, FALSE, NH_PAD);
+
+    GTK_WIDGET_SET_FLAGS(ok, GTK_CAN_DEFAULT);
+    gtk_widget_grab_default(ok);
 
     gtk_signal_connect(
 	GTK_OBJECT(ok), "clicked",
@@ -103,7 +112,7 @@ GTK_ext_getlin(const char *query)
 	GTK_OBJECT(cancel), "clicked",
 	GTK_SIGNAL_FUNC(entry_cancel), NULL);
 
-    gtk_signal_connect(
+    h = gtk_signal_connect(
 	GTK_OBJECT(window), "destroy",
 	GTK_SIGNAL_FUNC(getlin_destroy), NULL);
 
@@ -113,17 +122,17 @@ GTK_ext_getlin(const char *query)
 
     gtk_main();
 
-    if(!cancelled) {
+    if (!cancelled) {
 	s = (char *)gtk_entry_get_text(GTK_ENTRY(entry));
 	ret = (char *)alloc(strlen(s) + 1);
 	Strcpy(ret, s);
-    }
-    else {
+    } else {
 	ret = (char *)alloc(1);
 	*ret = '\0';
     }
 
     if (window) {
+	gtk_signal_disconnect(GTK_OBJECT(window), h);
 	gtk_widget_unmap(window);
 	gtk_widget_destroy(window);
     }

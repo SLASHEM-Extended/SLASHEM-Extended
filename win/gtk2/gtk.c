@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.31 2003-01-21 17:09:13 j_ali Exp $
+  $Id: gtk.c,v 1.34 2003-01-24 15:16:38 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -71,6 +71,8 @@ static GtkItemFactory	*main_item_factory;
 
 int			root_width;
 int			root_height;
+
+static int		exiting = 0;
 
 GdkColor	  nh_color[N_NH_COLORS] = {
     /*
@@ -264,6 +266,17 @@ static gint
 nh_dialog_partial_grab(GtkWidget *widget, gpointer data)
 {
     boolean enable = !GPOINTER_TO_INT(data);
+#if GTK_CHECK_VERSION(1,3,12)
+    if (enable)
+	gtk_window_add_accel_group(GTK_WINDOW(main_window), accel_group);
+    else
+	gtk_window_remove_accel_group(GTK_WINDOW(main_window), accel_group);
+#else
+    if (enable)
+	gtk_accel_group_attach(accel_group, G_OBJECT(main_window));
+    else
+	gtk_accel_group_detach(accel_group, G_OBJECT(main_window));
+#endif
     nh_menu_sensitive("/Game", enable);
     nh_menu_sensitive("/Move", enable);
     nh_menu_sensitive("/Fight", enable);
@@ -600,7 +613,7 @@ main_hook(int *watch)
 	nh_radar_update();
 #endif
 
-    while(!nh_key_check() && (!watch || !*watch))
+    while(!exiting && !nh_key_check() && (!watch || !*watch))
 	gtk_main_iteration();
 }
 
@@ -756,6 +769,7 @@ ext_command(GtkWidget *widget, gpointer data)
 static void
 quit()
 {
+    exiting++;
 #ifdef GTK_PROXY
     proxy_cb_quit_game();
 #else
@@ -2208,6 +2222,8 @@ GTK_putstr(winid id, int attr, const char *str)
 		w->button[0] = nh_gtk_new_and_pack(
 		  gtk_button_new_with_label("Close"), w->hbox3, "",
 		  TRUE, FALSE, 0);
+		GTK_WIDGET_SET_FLAGS(w->button[0], GTK_CAN_DEFAULT);
+		gtk_widget_grab_default(w->button[0]);
 	    }
 
 	    text[0] = str;

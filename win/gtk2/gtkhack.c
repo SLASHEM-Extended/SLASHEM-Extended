@@ -1,8 +1,9 @@
-/* $Id: gtkhack.c,v 1.4 2003-01-01 12:13:32 j_ali Exp $ */
+/* $Id: gtkhack.c,v 1.5 2003-01-23 13:57:29 j_ali Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002-2003 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include <stdio.h>
+#include <signal.h>
 #include "winGTK.h"
 #include "prxyclnt.h"
 #include "proxycb.h"
@@ -11,6 +12,7 @@ int
 main(int argc, char **argv)
 {
     char *s;
+    signal(SIGPIPE, SIG_IGN);
     proxy_svc_set_ext_procs(win_GTK_init, &GTK_ext_procs);
     s = g_find_program_in_path("slashem");
     proxy_connect("file", s ? s : "slashem", &argc, argv);

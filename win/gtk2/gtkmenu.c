@@ -1,8 +1,9 @@
 /*
-  $Id: gtkmenu.c,v 1.13 2002-11-02 15:47:03 j_ali Exp $
+  $Id: gtkmenu.c,v 1.14 2003-01-23 10:27:11 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
+               Copyright (c) Slash'EM Development Team 2000-2003
   GTK+ NetHack may be freely redistributed.  See license for details. 
 */
 
@@ -292,6 +293,8 @@ GTK_init_menu_widgets(NHWindow *w, winid inven)
 	 b = w->button[5] = nh_gtk_new_and_pack(
 	     gtk_button_new_with_label("Close"), w->hbox3, "",
 	     TRUE, FALSE, 0);
+	 GTK_WIDGET_SET_FLAGS(b, GTK_CAN_DEFAULT);
+	 gtk_widget_grab_default(b);
 	 gtk_signal_connect(GTK_OBJECT(b), "clicked",
 			    GTK_SIGNAL_FUNC(menu_button_clicked),
 			    (gpointer)'\n');
