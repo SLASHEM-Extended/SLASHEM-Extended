@@ -1,5 +1,5 @@
 /*
-  $Id: gtk.c,v 1.12 2000-09-20 04:21:18 wacko Exp $
+  $Id: gtk.c,v 1.13 2000-09-28 19:04:10 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1892,8 +1892,13 @@ GTK_raw_print(const char *str)
 {
     if(rawprint_win != WIN_ERR)
 	GTK_putstr(rawprint_win, 0, str);
-    else
+    else {
+#ifdef TTY_GRAPHICS
 	tty_raw_print(str);
+#else
+	puts(str); (void) fflush(stdout);
+#endif
+    }
 }
 
 void
@@ -1901,6 +1906,11 @@ GTK_raw_print_bold(const char *str)
 {
     if(rawprint_win != WIN_ERR)
 	GTK_putstr(rawprint_win, ATR_BOLD, str);
-    else
+    else {
+#ifdef TTY_GRAPHICS
 	tty_raw_print_bold(str);
+#else
+	puts(str); (void) fflush(stdout);
+#endif
+    }
 }
