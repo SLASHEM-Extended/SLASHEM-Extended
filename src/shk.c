@@ -4562,7 +4562,11 @@ shk_armor_works(slang, shkp)
 		shk_smooth_charge(&charge, 50, NOBOUND);
 
 		if (shk_offer_price(slang, charge, shkp) == FALSE) return;
+#ifdef DEVEL_BRANCH
+		if (obj->spe+1 > 3) { 
+#else
 		if (obj->spe+1 > 5) { 
+#endif
 			verbalize("I can't enchant this any higher!");
 			charge = 0;
 			break;
@@ -4714,6 +4718,9 @@ shk_charge(slang, shkp)
 			verbalize("...How about loaning me some money?");
 			shkp->mgold += u.ugold;
 			u.ugold = 0;
+#ifdef DEVEL_BRANCH
+			makeknown(obj->otyp);
+#endif
 			bot();
 		}
 		else
@@ -4723,8 +4730,13 @@ shk_charge(slang, shkp)
 			** Premier: recharge() will have given 5-10, say.
 			** Add a few more still.
 			*/
+#ifdef DEVEL_BRANCH
+			if (obj->spe < 16) obj->spe += rn1(5,5);
+			else if (obj->spe < 20) obj->spe += 1;
+#else
 			if (obj->spe < 20) obj->spe += 1;
 		 else   if (obj->spe < 16) obj->spe += rn1(5,5);
+#endif
 		}
 	}
 }

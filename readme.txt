@@ -330,6 +330,7 @@ ver 0.0.6E5 [? ?/2001] [Released by ?]
 -Basic support for Kevin Hugo's aligned keys
 -Basic support for GTK 2.0 (currently as a seperate window port)
 -fixed bug 232030: GTK: Can't start in character mode.
+-fixed bug 417384: Shopkeeper services.
 
 ver 0.0.6E4F4 [? ?/2001] [Released by ?]
 -fixed bug 404825: wands of teleportation that explode/zapped at yourself
