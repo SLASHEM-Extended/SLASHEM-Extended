@@ -19,6 +19,9 @@ static char *tilefiles[] = {	"../win/share/monsters.txt",
 static char *magfiles[] = {	"../win/share/monmag.txt",
 				"../win/share/objmag.txt",
 				"../win/share/othmag.txt"};
+
+static char *file_prefix = "";
+
 static int tilecount;
 static int tilecount_per_file;
 static int filenum;
@@ -98,10 +101,17 @@ char *argv[];
 	char buf[BUFSZ], ttype[BUFSZ];
 	pixel pixels[MAX_TILE_Y][MAX_TILE_X];
 	boolean x;
+	char *filename[600];
+
+	if (argc > 1)
+	  file_prefix = argv[1];
 	
 	while (filenum < 3) {
 		tilecount_per_file = 0;
-		if (!fopen_text_file(tilefiles[filenum], RDTMODE))
+		filename[0]='\0';
+		strcat(filename, file_prefix);
+		strcat(filename, tilefiles[filenum]);
+		if (!fopen_text_file(filename, RDTMODE))
 			exit(EXIT_FAILURE);
 		if (tile_x * 2 > MAX_TILE_X || tile_y * 2 > MAX_TILE_Y) {
 			Fprintf(stderr, "tile size too large\n");
