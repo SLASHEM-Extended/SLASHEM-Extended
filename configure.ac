@@ -227,6 +227,48 @@ NETHACK_DISABLE(yeoman,yeoman,
 	[Yeoman class],YEOMAN)
 NETHACK_ENABLE(zouthern,zouthern,
 	[Zoutherner class],ZOUTHERN)
+NETHACK_DISABLE(redo,redo,
+	[Redo last command],REDO)
+NETHACK_DISABLE(clipping,clipping,
+	[Allow smaller screens],CLIPPING)
+NETHACK_DISABLE(menu-color,menu_color,
+	[TTY graphics menu color],MENU_COLOR)
+NETHACK_DISABLE(elbereth,elbereth,
+	[Engraving the E-word repels monsters],ELBERETH)
+NETHACK_ENABLE(noartifactwish,noartifactwish,
+	[Prevent wishing for special artifacts],NOARTIFACTWISH)
+NETHACK_ENABLE(no-bones,no_bones,
+	[Disable loading and saving bones levels],NO_BONES)
+NETHACK_ENABLE(user-sounds,user_sounds,
+	[Allow user-defined regex mapping from messages to sounds (Qt with NAS only)],
+	USER_SOUNDS)
+NETHACK_DISABLE(exp-on-botl,exp_on_botl,
+	[Show experience on bottom line],EXP_ON_BOTL)
+NETHACK_ENABLE(score-on-botl,score_on_botl,
+	[Show score on bottom line],SCORE_ON_BOTL)
+NETHACK_ENABLE(borg,borg,
+	[Borg player (only under DOS)],BORG)
+NETHACK_ENABLE(keep-save,keep_save,
+	[Keep save files after restore],KEEP_SAVE)
+NETHACK_ENABLE(charon,charon,
+	[Charon's boat, enables Cerebus (not implemented)],CHARON)
+NETHACK_DISABLE(show-dmg,show_dmg,
+	[Display damage reports],SHOW_DMG)
+NETHACK_DISABLE(show-weight,show_weight,
+	[Display object weight],SHOW_WEIGHT)
+NETHACK_DISABLE(other-services,other_services,
+	[Shopkeeper services],OTHER_SERVICES)
+NETHACK_DISABLE(dungeon-growth,dungeon_growth,
+	[Dungeon growth],DUNGEON_GROWTH)
+NETHACK_ENABLE(shout,shout,
+	[Shouting and pet commands (not implemented)],SHOUT)
+NETHACK_DISABLE(display-layers,dispaly_layers,
+	[Support transparent tilesets],DISPLAY_LAYERS)
+NETHACK_ENABLE(goldobj,goldobj,
+	[Gold is kept on object chains (experimental)],GOLDOBJ)
+NETHACK_ENABLE(autopickup-exceptions,autopickup_exceptions,
+	[Exceptions to autopickup (experimental)],AUTOPICKUP_EXCEPTIONS)
+
 
 
 dnl  ----- Back up the existing config.h and unixconf.h if they exist

@@ -883,6 +883,33 @@ Optional Features:
   --enable-tourist        Tourist class (default=yes)
   --enable-yeoman         Yeoman class (default=yes)
   --enable-zouthern       Zoutherner class (default=yes)
+  --enable-redo           Redo last command (default=yes)
+  --enable-clipping       Allow smaller screens (default=yes)
+  --enable-menu-color     TTY graphics menu color (default=yes)
+  --enable-elbereth       Engraving the E-word repels monsters (default=yes)
+  --enable-noartifactwish Prevent wishing for special artifacts (default=yes)
+  --enable-no-bones       Disable loading and saving bones levels
+                          (default=yes)
+  --enable-user-sounds    Allow user-defined regex mapping from messages to
+                          sounds (Qt with NAS only) (default=yes)
+  --enable-exp-on-botl    Show experience on bottom line (default=yes)
+  --enable-score-on-botl  Show score on bottom line (default=yes)
+  --enable-borg           Borg player (only under DOS) (default=yes)
+  --enable-keep-save      Keep save files after restore (default=yes)
+  --enable-charon         Charon's boat, enables Cerebus (not implemented)
+                          (default=yes)
+  --enable-show-dmg       Display damage reports (default=yes)
+  --enable-show-weight    Display object weight (default=yes)
+  --enable-other-services Shopkeeper services (default=yes)
+  --enable-dungeon-growth Dungeon growth (default=yes)
+  --enable-shout          Shouting and pet commands (not implemented)
+                          (default=yes)
+  --enable-display-layers Support transparent tilesets (default=yes)
+  --enable-goldobj        Gold is kept on object chains (experimental)
+                          (default=yes)
+  --enable-autopickup-exceptions
+                          Exceptions to autopickup (experimental)
+                          (default=yes)
 
 Some influential environment variables:
   CC          C compiler
@@ -4517,6 +4544,387 @@ cat >>confdefs.h <<_ACEOF
 _ACEOF
 
    fi
+
+echo "$as_me:$LINENO: checking whether to enable redo" >&5
+echo $ECHO_N "checking whether to enable redo... $ECHO_C" >&6
+   # Check whether --enable-redo or --disable-redo was given.
+if test "${enable_redo+set}" = set; then
+  enableval="$enable_redo"
+  enable_redo="$enableval"
+else
+  enable_redo="yes"
+fi;
+   echo "$as_me:$LINENO: result: $enable_redo" >&5
+echo "${ECHO_T}$enable_redo" >&6
+   if test "$enable_redo" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define REDO
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable clipping" >&5
+echo $ECHO_N "checking whether to enable clipping... $ECHO_C" >&6
+   # Check whether --enable-clipping or --disable-clipping was given.
+if test "${enable_clipping+set}" = set; then
+  enableval="$enable_clipping"
+  enable_clipping="$enableval"
+else
+  enable_clipping="yes"
+fi;
+   echo "$as_me:$LINENO: result: $enable_clipping" >&5
+echo "${ECHO_T}$enable_clipping" >&6
+   if test "$enable_clipping" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define CLIPPING
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable menu-color" >&5
+echo $ECHO_N "checking whether to enable menu-color... $ECHO_C" >&6
+   # Check whether --enable-menu_color or --disable-menu_color was given.
+if test "${enable_menu_color+set}" = set; then
+  enableval="$enable_menu_color"
+  enable_menu_color="$enableval"
+else
+  enable_menu_color="yes"
+fi;
+   echo "$as_me:$LINENO: result: $enable_menu_color" >&5
+echo "${ECHO_T}$enable_menu_color" >&6
+   if test "$enable_menu_color" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define MENU_COLOR
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable elbereth" >&5
+echo $ECHO_N "checking whether to enable elbereth... $ECHO_C" >&6
+   # Check whether --enable-elbereth or --disable-elbereth was given.
+if test "${enable_elbereth+set}" = set; then
+  enableval="$enable_elbereth"
+  enable_elbereth="$enableval"
+else
+  enable_elbereth="yes"
+fi;
+   echo "$as_me:$LINENO: result: $enable_elbereth" >&5
+echo "${ECHO_T}$enable_elbereth" >&6
+   if test "$enable_elbereth" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define ELBERETH
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable noartifactwish" >&5
+echo $ECHO_N "checking whether to enable noartifactwish... $ECHO_C" >&6
+   # Check whether --enable-noartifactwish or --disable-noartifactwish was given.
+if test "${enable_noartifactwish+set}" = set; then
+  enableval="$enable_noartifactwish"
+  enable_noartifactwish="$enableval"
+else
+  enable_noartifactwish="no"
+fi;
+   echo "$as_me:$LINENO: result: $enable_noartifactwish" >&5
+echo "${ECHO_T}$enable_noartifactwish" >&6
+   if test "$enable_noartifactwish" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define NOARTIFACTWISH
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable no-bones" >&5
+echo $ECHO_N "checking whether to enable no-bones... $ECHO_C" >&6
+   # Check whether --enable-no_bones or --disable-no_bones was given.
+if test "${enable_no_bones+set}" = set; then
+  enableval="$enable_no_bones"
+  enable_no_bones="$enableval"
+else
+  enable_no_bones="no"
+fi;
+   echo "$as_me:$LINENO: result: $enable_no_bones" >&5
+echo "${ECHO_T}$enable_no_bones" >&6
+   if test "$enable_no_bones" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define NO_BONES
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable user-sounds" >&5
+echo $ECHO_N "checking whether to enable user-sounds... $ECHO_C" >&6
+   # Check whether --enable-user_sounds or --disable-user_sounds was given.
+if test "${enable_user_sounds+set}" = set; then
+  enableval="$enable_user_sounds"
+  enable_user_sounds="$enableval"
+else
+  enable_user_sounds="no"
+fi;
+   echo "$as_me:$LINENO: result: $enable_user_sounds" >&5
+echo "${ECHO_T}$enable_user_sounds" >&6
+   if test "$enable_user_sounds" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define USER_SOUNDS
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable exp-on-botl" >&5
+echo $ECHO_N "checking whether to enable exp-on-botl... $ECHO_C" >&6
+   # Check whether --enable-exp_on_botl or --disable-exp_on_botl was given.
+if test "${enable_exp_on_botl+set}" = set; then
+  enableval="$enable_exp_on_botl"
+  enable_exp_on_botl="$enableval"
+else
+  enable_exp_on_botl="yes"
+fi;
+   echo "$as_me:$LINENO: result: $enable_exp_on_botl" >&5
+echo "${ECHO_T}$enable_exp_on_botl" >&6
+   if test "$enable_exp_on_botl" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define EXP_ON_BOTL
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable score-on-botl" >&5
+echo $ECHO_N "checking whether to enable score-on-botl... $ECHO_C" >&6
+   # Check whether --enable-score_on_botl or --disable-score_on_botl was given.
+if test "${enable_score_on_botl+set}" = set; then
+  enableval="$enable_score_on_botl"
+  enable_score_on_botl="$enableval"
+else
+  enable_score_on_botl="no"
+fi;
+   echo "$as_me:$LINENO: result: $enable_score_on_botl" >&5
+echo "${ECHO_T}$enable_score_on_botl" >&6
+   if test "$enable_score_on_botl" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define SCORE_ON_BOTL
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable borg" >&5
+echo $ECHO_N "checking whether to enable borg... $ECHO_C" >&6
+   # Check whether --enable-borg or --disable-borg was given.
+if test "${enable_borg+set}" = set; then
+  enableval="$enable_borg"
+  enable_borg="$enableval"
+else
+  enable_borg="no"
+fi;
+   echo "$as_me:$LINENO: result: $enable_borg" >&5
+echo "${ECHO_T}$enable_borg" >&6
+   if test "$enable_borg" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define BORG
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable keep-save" >&5
+echo $ECHO_N "checking whether to enable keep-save... $ECHO_C" >&6
+   # Check whether --enable-keep_save or --disable-keep_save was given.
+if test "${enable_keep_save+set}" = set; then
+  enableval="$enable_keep_save"
+  enable_keep_save="$enableval"
+else
+  enable_keep_save="no"
+fi;
+   echo "$as_me:$LINENO: result: $enable_keep_save" >&5
+echo "${ECHO_T}$enable_keep_save" >&6
+   if test "$enable_keep_save" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define KEEP_SAVE
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable charon" >&5
+echo $ECHO_N "checking whether to enable charon... $ECHO_C" >&6
+   # Check whether --enable-charon or --disable-charon was given.
+if test "${enable_charon+set}" = set; then
+  enableval="$enable_charon"
+  enable_charon="$enableval"
+else
+  enable_charon="no"
+fi;
+   echo "$as_me:$LINENO: result: $enable_charon" >&5
+echo "${ECHO_T}$enable_charon" >&6
+   if test "$enable_charon" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define CHARON
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable show-dmg" >&5
+echo $ECHO_N "checking whether to enable show-dmg... $ECHO_C" >&6
+   # Check whether --enable-show_dmg or --disable-show_dmg was given.
+if test "${enable_show_dmg+set}" = set; then
+  enableval="$enable_show_dmg"
+  enable_show_dmg="$enableval"
+else
+  enable_show_dmg="yes"
+fi;
+   echo "$as_me:$LINENO: result: $enable_show_dmg" >&5
+echo "${ECHO_T}$enable_show_dmg" >&6
+   if test "$enable_show_dmg" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define SHOW_DMG
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable show-weight" >&5
+echo $ECHO_N "checking whether to enable show-weight... $ECHO_C" >&6
+   # Check whether --enable-show_weight or --disable-show_weight was given.
+if test "${enable_show_weight+set}" = set; then
+  enableval="$enable_show_weight"
+  enable_show_weight="$enableval"
+else
+  enable_show_weight="yes"
+fi;
+   echo "$as_me:$LINENO: result: $enable_show_weight" >&5
+echo "${ECHO_T}$enable_show_weight" >&6
+   if test "$enable_show_weight" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define SHOW_WEIGHT
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable other-services" >&5
+echo $ECHO_N "checking whether to enable other-services... $ECHO_C" >&6
+   # Check whether --enable-other_services or --disable-other_services was given.
+if test "${enable_other_services+set}" = set; then
+  enableval="$enable_other_services"
+  enable_other_services="$enableval"
+else
+  enable_other_services="yes"
+fi;
+   echo "$as_me:$LINENO: result: $enable_other_services" >&5
+echo "${ECHO_T}$enable_other_services" >&6
+   if test "$enable_other_services" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define OTHER_SERVICES
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable dungeon-growth" >&5
+echo $ECHO_N "checking whether to enable dungeon-growth... $ECHO_C" >&6
+   # Check whether --enable-dungeon_growth or --disable-dungeon_growth was given.
+if test "${enable_dungeon_growth+set}" = set; then
+  enableval="$enable_dungeon_growth"
+  enable_dungeon_growth="$enableval"
+else
+  enable_dungeon_growth="yes"
+fi;
+   echo "$as_me:$LINENO: result: $enable_dungeon_growth" >&5
+echo "${ECHO_T}$enable_dungeon_growth" >&6
+   if test "$enable_dungeon_growth" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define DUNGEON_GROWTH
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable shout" >&5
+echo $ECHO_N "checking whether to enable shout... $ECHO_C" >&6
+   # Check whether --enable-shout or --disable-shout was given.
+if test "${enable_shout+set}" = set; then
+  enableval="$enable_shout"
+  enable_shout="$enableval"
+else
+  enable_shout="no"
+fi;
+   echo "$as_me:$LINENO: result: $enable_shout" >&5
+echo "${ECHO_T}$enable_shout" >&6
+   if test "$enable_shout" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define SHOUT
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable display-layers" >&5
+echo $ECHO_N "checking whether to enable display-layers... $ECHO_C" >&6
+   # Check whether --enable-dispaly_layers or --disable-dispaly_layers was given.
+if test "${enable_dispaly_layers+set}" = set; then
+  enableval="$enable_dispaly_layers"
+  enable_dispaly_layers="$enableval"
+else
+  enable_dispaly_layers="yes"
+fi;
+   echo "$as_me:$LINENO: result: $enable_dispaly_layers" >&5
+echo "${ECHO_T}$enable_dispaly_layers" >&6
+   if test "$enable_dispaly_layers" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define DISPLAY_LAYERS
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable goldobj" >&5
+echo $ECHO_N "checking whether to enable goldobj... $ECHO_C" >&6
+   # Check whether --enable-goldobj or --disable-goldobj was given.
+if test "${enable_goldobj+set}" = set; then
+  enableval="$enable_goldobj"
+  enable_goldobj="$enableval"
+else
+  enable_goldobj="no"
+fi;
+   echo "$as_me:$LINENO: result: $enable_goldobj" >&5
+echo "${ECHO_T}$enable_goldobj" >&6
+   if test "$enable_goldobj" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define GOLDOBJ
+_ACEOF
+
+   fi
+
+echo "$as_me:$LINENO: checking whether to enable autopickup-exceptions" >&5
+echo $ECHO_N "checking whether to enable autopickup-exceptions... $ECHO_C" >&6
+   # Check whether --enable-autopickup_exceptions or --disable-autopickup_exceptions was given.
+if test "${enable_autopickup_exceptions+set}" = set; then
+  enableval="$enable_autopickup_exceptions"
+  enable_autopickup_exceptions="$enableval"
+else
+  enable_autopickup_exceptions="no"
+fi;
+   echo "$as_me:$LINENO: result: $enable_autopickup_exceptions" >&5
+echo "${ECHO_T}$enable_autopickup_exceptions" >&6
+   if test "$enable_autopickup_exceptions" != "no" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define AUTOPICKUP_EXCEPTIONS
+_ACEOF
+
+   fi
+
 
 
 
