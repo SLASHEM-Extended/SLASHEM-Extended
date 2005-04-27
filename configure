@@ -310,7 +310,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS CC CHGRP CHOWN CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT build build_cpu build_vendor build_os host host_cpu host_vendor host_os target target_cpu target_vendor target_os LEX LEXLIB LEX_OUTPUT_ROOT YACC ac_ct_CHOWN ac_ct_CHGRP WINTTYLIB SDL_CONFIG ac_ct_SDL_CONFIG SDL_CONFIG_CFLAGS SDL_CONFIG_LIBS WINSRC WINOBJ WINLIB CNF_SHARE_DATND CPP EGREP LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS CC CHGRP CHOWN LN_S CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT build build_cpu build_vendor build_os host host_cpu host_vendor host_os target target_cpu target_vendor target_os LEX LEXLIB LEX_OUTPUT_ROOT YACC ac_ct_CHOWN ac_ct_CHGRP WINTTYLIB SDL_CONFIG ac_ct_SDL_CONFIG SDL_CONFIG_CFLAGS SDL_CONFIG_LIBS WINSRC WINOBJ WINLIB CNF_SHARE_DATND CPP EGREP LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -1379,6 +1379,20 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
+
+
+
+
+echo "$as_me:$LINENO: checking whether ln -s works" >&5
+echo $ECHO_N "checking whether ln -s works... $ECHO_C" >&6
+LN_S=$as_ln_s
+if test "$LN_S" = "ln -s"; then
+  echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+else
+  echo "$as_me:$LINENO: result: no, using $LN_S" >&5
+echo "${ECHO_T}no, using $LN_S" >&6
+fi
 
 
 echo "$as_me:$LINENO: checking for valid window system configuration" >&5
@@ -4931,9 +4945,58 @@ _ACEOF
 
 
 
+NETHACK_LINKS=
+if test ${srcdir}/include/file.h -nt include/file.h ; then
+	   NETHACK_LINKS="${LINKS_LIST} include/file.h:include/file.h"
+	fi
+if test ${srcdir}/dat/data.base -nt dat/data.base ; then
+	   NETHACK_LINKS="${LINKS_LIST} dat/data.base:dat/data.base"
+	fi
+if test ${srcdir}/dat/rumors.tru:dat/rumors.tru -nt dat/rumors.tru:dat/rumors.tru ; then
+	   NETHACK_LINKS="${LINKS_LIST} dat/rumors.tru:dat/rumors.tru:dat/rumors.tru:dat/rumors.tru"
+	fi
+if test ${srcdir}/dat/rumors.fal:dat/rumors.fal -nt dat/rumors.fal:dat/rumors.fal ; then
+	   NETHACK_LINKS="${LINKS_LIST} dat/rumors.fal:dat/rumors.fal:dat/rumors.fal:dat/rumors.fal"
+	fi
+if test ${srcdir}/dat/quest.txt:dat/quest.txt -nt dat/quest.txt:dat/quest.txt ; then
+	   NETHACK_LINKS="${LINKS_LIST} dat/quest.txt:dat/quest.txt:dat/quest.txt:dat/quest.txt"
+	fi
+if test ${srcdir}/dat/oracles.txt:dat/oracles.txt -nt dat/oracles.txt:dat/oracles.txt ; then
+	   NETHACK_LINKS="${LINKS_LIST} dat/oracles.txt:dat/oracles.txt:dat/oracles.txt:dat/oracles.txt"
+	fi
+if test ${srcdir}/dat/dungeon.def:dat/dungeon.def -nt dat/dungeon.def:dat/dungeon.def ; then
+	   NETHACK_LINKS="${LINKS_LIST} dat/dungeon.def:dat/dungeon.def:dat/dungeon.def:dat/dungeon.def"
+	fi
+if test ${srcdir}/dat/help:dat/help -nt dat/help:dat/help ; then
+	   NETHACK_LINKS="${LINKS_LIST} dat/help:dat/help:dat/help:dat/help"
+	fi
+if test ${srcdir}/dat/hh:dat/hh -nt dat/hh:dat/hh ; then
+	   NETHACK_LINKS="${LINKS_LIST} dat/hh:dat/hh:dat/hh:dat/hh"
+	fi
+if test ${srcdir}/dat/cmdhelp:dat/cmdhelp -nt dat/cmdhelp:dat/cmdhelp ; then
+	   NETHACK_LINKS="${LINKS_LIST} dat/cmdhelp:dat/cmdhelp:dat/cmdhelp:dat/cmdhelp"
+	fi
+if test ${srcdir}/dat/history:dat/history -nt dat/history:dat/history ; then
+	   NETHACK_LINKS="${LINKS_LIST} dat/history:dat/history:dat/history:dat/history"
+	fi
+if test ${srcdir}/dat/opthelp:dat/opthelp -nt dat/opthelp:dat/opthelp ; then
+	   NETHACK_LINKS="${LINKS_LIST} dat/opthelp:dat/opthelp:dat/opthelp:dat/opthelp"
+	fi
+if test ${srcdir}/dat/wizhelp:dat/wizhelp -nt dat/wizhelp:dat/wizhelp ; then
+	   NETHACK_LINKS="${LINKS_LIST} dat/wizhelp:dat/wizhelp:dat/wizhelp:dat/wizhelp"
+	fi
+if test ${srcdir}/dat/gypsy.txt:dat/gypsy.txt -nt dat/gypsy.txt:dat/gypsy.txt ; then
+	   NETHACK_LINKS="${LINKS_LIST} dat/gypsy.txt:dat/gypsy.txt:dat/gypsy.txt:dat/gypsy.txt"
+	fi
+if test ${srcdir}/win/share/tile_t.h:win/share/tile_t.h -nt win/share/tile_t.h:win/share/tile_t.h ; then
+	   NETHACK_LINKS="${LINKS_LIST} win/share/tile_t.h:win/share/tile_t.h:win/share/tile_t.h:win/share/tile_t.h"
+	fi
+
+          ac_config_links="$ac_config_links ${NETHACK_LINKS}"
+
+
                                                   ac_config_files="$ac_config_files Makefile src/Makefile doc/Makefile dat/Makefile util/Makefile"
 
-                                                                                                                                                      ac_config_links="$ac_config_links include/file.h:include/file.h dat/data.base:dat/data.base dat/rumors.tru:dat/rumors.tru dat/rumors.fal:dat/rumors.fal dat/quest.txt:dat/quest.txt dat/oracles.txt:dat/oracles.txt dat/dungeon.def:dat/dungeon.def dat/help:dat/help dat/hh:dat/hh dat/cmdhelp:dat/cmdhelp dat/history:dat/history dat/opthelp:dat/opthelp dat/wizhelp:dat/wizhelp dat/gypsy.txt:dat/gypsy.txt win/share/tile_t.h:win/share/tile_t.h"
 
                     ac_config_headers="$ac_config_headers include/config.h:include/config.hin include/unixconf.h:include/unixconf.hin"
 
@@ -5480,21 +5543,7 @@ do
   "doc/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/Makefile" ;;
   "dat/Makefile" ) CONFIG_FILES="$CONFIG_FILES dat/Makefile" ;;
   "util/Makefile" ) CONFIG_FILES="$CONFIG_FILES util/Makefile" ;;
-  "include/file.h" ) CONFIG_LINKS="$CONFIG_LINKS include/file.h:include/file.h" ;;
-  "dat/data.base" ) CONFIG_LINKS="$CONFIG_LINKS dat/data.base:dat/data.base" ;;
-  "dat/rumors.tru" ) CONFIG_LINKS="$CONFIG_LINKS dat/rumors.tru:dat/rumors.tru" ;;
-  "dat/rumors.fal" ) CONFIG_LINKS="$CONFIG_LINKS dat/rumors.fal:dat/rumors.fal" ;;
-  "dat/quest.txt" ) CONFIG_LINKS="$CONFIG_LINKS dat/quest.txt:dat/quest.txt" ;;
-  "dat/oracles.txt" ) CONFIG_LINKS="$CONFIG_LINKS dat/oracles.txt:dat/oracles.txt" ;;
-  "dat/dungeon.def" ) CONFIG_LINKS="$CONFIG_LINKS dat/dungeon.def:dat/dungeon.def" ;;
-  "dat/help" ) CONFIG_LINKS="$CONFIG_LINKS dat/help:dat/help" ;;
-  "dat/hh" ) CONFIG_LINKS="$CONFIG_LINKS dat/hh:dat/hh" ;;
-  "dat/cmdhelp" ) CONFIG_LINKS="$CONFIG_LINKS dat/cmdhelp:dat/cmdhelp" ;;
-  "dat/history" ) CONFIG_LINKS="$CONFIG_LINKS dat/history:dat/history" ;;
-  "dat/opthelp" ) CONFIG_LINKS="$CONFIG_LINKS dat/opthelp:dat/opthelp" ;;
-  "dat/wizhelp" ) CONFIG_LINKS="$CONFIG_LINKS dat/wizhelp:dat/wizhelp" ;;
-  "dat/gypsy.txt" ) CONFIG_LINKS="$CONFIG_LINKS dat/gypsy.txt:dat/gypsy.txt" ;;
-  "win/share/tile_t.h" ) CONFIG_LINKS="$CONFIG_LINKS win/share/tile_t.h:win/share/tile_t.h" ;;
+  "${NETHACK_LINKS}" ) CONFIG_LINKS="$CONFIG_LINKS ${NETHACK_LINKS}" ;;
   "include/config.h" ) CONFIG_HEADERS="$CONFIG_HEADERS include/config.h:include/config.hin" ;;
   "include/unixconf.h" ) CONFIG_HEADERS="$CONFIG_HEADERS include/unixconf.h:include/unixconf.hin" ;;
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
@@ -5585,6 +5634,7 @@ s,@LIBS@,$LIBS,;t t
 s,@CC@,$CC,;t t
 s,@CHGRP@,$CHGRP,;t t
 s,@CHOWN@,$CHOWN,;t t
+s,@LN_S@,$LN_S,;t t
 s,@CFLAGS@,$CFLAGS,;t t
 s,@LDFLAGS@,$LDFLAGS,;t t
 s,@CPPFLAGS@,$CPPFLAGS,;t t

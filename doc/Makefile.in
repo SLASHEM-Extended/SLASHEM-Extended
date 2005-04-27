@@ -1,4 +1,5 @@
 #	NetHack Makefile.
+#       @configure_input@
 #       SCCS Id: @(#)Makefile.doc       3.4     1996/03/23
 
 VPATH=@srcdir@

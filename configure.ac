@@ -29,6 +29,14 @@ AC_DEFUN([NETHACK_DISABLE],
    fi
   ])
 
+dnl ---- Update if there is a newer source
+AC_DEFUN([NETHACK_LINKS_ADD],
+	if test ${srcdir}/$1 -nt $1 ; then
+	   NETHACK_LINKS="${LINKS_LIST} $1:$1"
+	fi)
+
+AC_PROG_LN_S
+
 dnl  ----- Check options
 dnl  ----- Window systems
 AC_MSG_CHECKING(for valid window system configuration)
@@ -284,23 +292,28 @@ AC_CONFIG_COMMANDS_PRE([if test -f $srcdir/include/unixconf.h
 			    mv -f $srcdir/include/unixconf.h $srcdir/include/unixconf.bak
 			fi])
 
+NETHACK_LINKS=
+NETHACK_LINKS_ADD([include/file.h])
+NETHACK_LINKS_ADD([dat/data.base])
+NETHACK_LINKS_ADD([dat/rumors.tru:dat/rumors.tru])
+NETHACK_LINKS_ADD([dat/rumors.fal:dat/rumors.fal])
+NETHACK_LINKS_ADD([dat/quest.txt:dat/quest.txt])
+NETHACK_LINKS_ADD([dat/oracles.txt:dat/oracles.txt])
+NETHACK_LINKS_ADD([dat/dungeon.def:dat/dungeon.def])
+NETHACK_LINKS_ADD([dat/help:dat/help])
+NETHACK_LINKS_ADD([dat/hh:dat/hh])
+NETHACK_LINKS_ADD([dat/cmdhelp:dat/cmdhelp])
+NETHACK_LINKS_ADD([dat/history:dat/history])
+NETHACK_LINKS_ADD([dat/opthelp:dat/opthelp])
+NETHACK_LINKS_ADD([dat/wizhelp:dat/wizhelp])
+NETHACK_LINKS_ADD([dat/gypsy.txt:dat/gypsy.txt])
+NETHACK_LINKS_ADD([win/share/tile_t.h:win/share/tile_t.h])
+
+AC_CONFIG_LINKS(${NETHACK_LINKS})
+
 dnl  ----- Process the Makefiles
 AC_CONFIG_FILES([Makefile src/Makefile doc/Makefile dat/Makefile util/Makefile])
-AC_CONFIG_LINKS([include/file.h:include/file.h
-	dat/data.base:dat/data.base
-	dat/rumors.tru:dat/rumors.tru
-	dat/rumors.fal:dat/rumors.fal
-	dat/quest.txt:dat/quest.txt
-	dat/oracles.txt:dat/oracles.txt
-	dat/dungeon.def:dat/dungeon.def
-	dat/help:dat/help
-	dat/hh:dat/hh
-	dat/cmdhelp:dat/cmdhelp
-	dat/history:dat/history
-	dat/opthelp:dat/opthelp
-	dat/wizhelp:dat/wizhelp
-	dat/gypsy.txt:dat/gypsy.txt
-	win/share/tile_t.h:win/share/tile_t.h])
+
 AC_CONFIG_HEADERS([include/config.h:include/config.hin
 	include/unixconf.h:include/unixconf.hin])
 AC_OUTPUT

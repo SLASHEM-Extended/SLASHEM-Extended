@@ -1,6 +1,6 @@
 #	Makefile for NetHack's utility programs.
-#	SCCS Id: @(#)util/Makefile.in	3.4	1997/04/19
-#	Modified by Warren Cheung for autoconf
+#       @configure_input@
+#	SCCS Id: @(#)Makefile.utl	3.4	1997/04/19
 
 VPATH=@srcdir@
 srcdir=@srcdir@
