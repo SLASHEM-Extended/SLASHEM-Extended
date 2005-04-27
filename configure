@@ -4998,7 +4998,10 @@ if test ${srcdir}/win/share/tile_t.h:win/share/tile_t.h -nt win/share/tile_t.h:w
                                                   ac_config_files="$ac_config_files Makefile src/Makefile doc/Makefile dat/Makefile util/Makefile"
 
 
-                    ac_config_headers="$ac_config_headers include/config.h:include/config.hin include/unixconf.h:include/unixconf.hin"
+          ac_config_headers="$ac_config_headers include/config.h:include/config.hin"
+
+          ac_config_headers="$ac_config_headers include/unixconf.h:include/unixconf.hin"
+
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -5544,7 +5547,7 @@ do
   "dat/Makefile" ) CONFIG_FILES="$CONFIG_FILES dat/Makefile" ;;
   "util/Makefile" ) CONFIG_FILES="$CONFIG_FILES util/Makefile" ;;
   "${NETHACK_LINKS}" ) CONFIG_LINKS="$CONFIG_LINKS ${NETHACK_LINKS}" ;;
-  "include/config.h" ) CONFIG_HEADERS="$CONFIG_HEADERS include/config.h:include/config.hin" ;;
+  "include/config.h" ) CONFIG_HEADERS="$CONFIG_HEADERS include/config.h:include/config.hin" ;;
   "include/unixconf.h" ) CONFIG_HEADERS="$CONFIG_HEADERS include/unixconf.h:include/unixconf.hin" ;;
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
 echo "$as_me: error: invalid argument: $ac_config_target" >&2;}

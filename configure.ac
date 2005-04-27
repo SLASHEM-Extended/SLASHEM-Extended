@@ -314,6 +314,7 @@ AC_CONFIG_LINKS(${NETHACK_LINKS})
 dnl  ----- Process the Makefiles
 AC_CONFIG_FILES([Makefile src/Makefile doc/Makefile dat/Makefile util/Makefile])
 
-AC_CONFIG_HEADERS([include/config.h:include/config.hin
-	include/unixconf.h:include/unixconf.hin])
+AC_CONFIG_HEADERS([include/config.h:include/config.hin])
+AC_CONFIG_HEADERS([include/unixconf.h:include/unixconf.hin])
+
 AC_OUTPUT
