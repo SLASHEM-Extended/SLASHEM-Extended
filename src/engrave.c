@@ -944,7 +944,7 @@ doengrave()
 	/* Something has changed the engraving here */
 	if (*buf) {
 	    make_engr_at(u.ux, u.uy, buf, moves, type);
-	    pline_The("engraving now reads: \"%s\".", buf);
+	    pline_The("engraving looks different now.");
 	    ptext = FALSE;
 	}
 
