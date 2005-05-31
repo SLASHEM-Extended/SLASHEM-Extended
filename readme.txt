@@ -161,6 +161,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed incorrect #ifdef resulting in compilation failure on ANSI only DOS builds
 -fixed bug 1193070: Engraving with a wand of draining keeps illiterate
 		    conduct (Nico Kist)
+-fixed bug 924811: Fire vampires leave corpses
 
 See history.txt for changes made in previous versions.
 
