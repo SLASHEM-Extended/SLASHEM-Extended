@@ -140,7 +140,7 @@ struct obj *otmp;
 	struct obj *obj;
 	boolean disguised_mimic = (mtmp->data->mlet == S_MIMIC &&
 				   mtmp->m_ap_type != M_AP_NOTHING);
-
+	int pm_index;
 	int skilldmg = 0;
 
 	if (objects[otyp].oc_class == SPBOOK_CLASS) {
@@ -372,10 +372,16 @@ struct obj *otmp;
 		if (!Blind) makeknown(WAN_SLEEP);
 		break;
 	case SPE_STONE_TO_FLESH:
-		if (monsndx(mtmp->data) == PM_STONE_GOLEM) {
+		if (monsndx(mtmp->data) == PM_STONE_GOLEM)
+		    pm_index = PM_FLESH_GOLEM;
+		else if (monsndx(mtmp->data) == PM_STATUE_GARGOYLE)
+		    pm_index = PM_GARGOYLE;
+		else
+		    pm_index = NON_PM;
+		if (pm_index != NON_PM) {
 		    char *name = Monnam(mtmp);
-		    /* turn into flesh golem */
-		    if (newcham(mtmp, &mons[PM_FLESH_GOLEM], FALSE, FALSE)) {
+		    /* turn into flesh equivalent */
+		    if (newcham(mtmp, &mons[pm_index], FALSE, FALSE)) {
 			if (canseemon(mtmp))
 			    pline("%s turns to flesh!", name);
 		    } else {
