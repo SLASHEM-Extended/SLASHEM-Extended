@@ -162,6 +162,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 1193070: Engraving with a wand of draining keeps illiterate
 		    conduct (Nico Kist)
 -fixed bug 924811: Fire vampires leave corpses
+-fixed bug 1028948: casting stone to flesh on a gargoyle
 
 See history.txt for changes made in previous versions.
 
