@@ -278,7 +278,7 @@ register struct monst *mtmp;
 			  	m_initthrow(mtmp, BULLET, 30);
 			  	m_initthrow(mtmp, BULLET, 30);
 			  }
-			  w1 = rn2(2) ? KNIFE : DAGGER;
+			  w2 = rn2(2) ? KNIFE : DAGGER;
 			  if (rn2(2)) {
 			  	(void) mongets(mtmp, FRAG_GRENADE);
 			  	(void) mongets(mtmp, FRAG_GRENADE);

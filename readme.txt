@@ -74,6 +74,7 @@ ver 0.0.7E7F1 [?] [Released by ?]
 		    conduct (Nico Kist)
 -fixed bug 924811: Fire vampires leave corpses
 -fixed bug 1028948: casting stone to flesh on a gargoyle
+-fixed bug 1213881: Lieutenants lack Firearms
 
 See history.txt for changes made in previous versions.
 
