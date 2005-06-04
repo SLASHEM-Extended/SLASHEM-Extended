@@ -76,6 +76,8 @@ ver 0.0.7E7F1 [?] [Released by ?]
 -fixed bug 1028948: casting stone to flesh on a gargoyle
 -fixed bug 1213881: Lieutenants lack Firearms
 -fixed bug 1212903: Int and Wis stats not correct (in obscure case)
+-fixed bug 1175912: Deity-gifted pets should not attack like aligned unicorns
+		    (Nico Kist)
 
 See history.txt for changes made in previous versions.
 
