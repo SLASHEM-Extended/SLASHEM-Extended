@@ -843,21 +843,24 @@ register int after;	/* this is extra fast monster movement */
 		if ((info[i] & ALLOW_M) && MON_AT(nx, ny)) {
 		    int mstatus;
 		    register struct monst *mtmp2 = m_at(nx,ny);
-			aligntyp align1, align2; /* For priests,  minions */
-			boolean faith1 = TRUE,  faith2 = TRUE;
+		    aligntyp align1, align2; /* For priests, minions etc. */
 
-			if (mtmp->isminion) align1 = EMIN(mtmp)->min_align;
-			else if (mtmp->ispriest) align1 = EPRI(mtmp)->shralign;
-			else faith1 = FALSE;
-			if (mtmp2->isminion) align2 = EMIN(mtmp2)->min_align; /* MAR */
-			else if (mtmp2->ispriest) align2 = EPRI(mtmp2)->shralign; /* MAR */
-			else faith2 = FALSE;
+		    if (mtmp->isminion) align1 = EMIN(mtmp)->min_align;
+		    else if (is_unicorn(mtmp->data))
+			align1 = sgn(mtmp->data->maligntyp);
+		    else if (mtmp->ispriest) align1 = EPRI(mtmp)->shralign;
+		    else align1 = A_NONE;
+		    if (mtmp2->isminion) align2 = EMIN(mtmp2)->min_align;
+		    else if (is_unicorn(mtmp2->data))
+			align2 = sgn(mtmp2->data->maligntyp);
+		    else if (mtmp2->ispriest) align2 = EPRI(mtmp2)->shralign;
+		    else align2 = A_NONE;
 
-			/* Mindless monsters and spelled monsters have no fear of 
-			 * attacking higher level monsters 
-			 */
-			if (((int)mtmp2->m_lev >= (int)mtmp->m_lev+2 && !is_spell && 
-				!mindless(mtmp->data)) ||
+		    /* Mindless monsters and spelled monsters have no fear of 
+		     * attacking higher level monsters 
+		     */
+		    if (((int)mtmp2->m_lev >= (int)mtmp->m_lev+2 && !is_spell && 
+			    !mindless(mtmp->data)) ||
 			(mtmp2->data == &mons[PM_FLOATING_EYE] && rn2(10) &&
 			 mtmp->mcansee && haseyes(mtmp->data) && mtmp2->mcansee
 			 && (perceives(mtmp->data) || !mtmp2->minvis)) ||
@@ -865,10 +868,10 @@ register int after;	/* this is extra fast monster movement */
 			(mtmp2->data==&mons[PM_GAS_SPORE] && rn2(16)) ||
 			(!attacktype(mtmp->data, AT_EXPL) &&
 			 max_passive_dmg(mtmp2, mtmp) >= mtmp->mhp) ||
-			/* WAC -- Minions/Angels no longer attack
-			 * coaligned minions/priests/angels.
+			/* Minions/Angels don't attack
+			 * coaligned minions/priests/angels/unicorns.
 			 */
-			(faith1 && faith2 && (align1 == align2)) ||
+			(align1 == align2 && align1 != A_NONE) ||
 			((mtmp->mhp*4 < mtmp->mhpmax
 			  || mtmp2->data->msound == MS_GUARDIAN
 			  || mtmp2->data->msound == MS_LEADER) &&
