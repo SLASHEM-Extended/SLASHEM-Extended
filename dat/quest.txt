@@ -3700,7 +3700,7 @@ against %n."
 "The undead legions are weakest during the daylight hours."
 %E
 %Cp Und 00033
-"Do not loose faith, %p.  If you do so, %n will grow stronger."
+"Do not lose faith, %p.  If you do so, %n will grow stronger."
 %E
 %Cp Und 00034
 "Wear %o.  It will assist you against the undead."
