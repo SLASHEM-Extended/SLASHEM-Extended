@@ -1008,7 +1008,7 @@ const char *optn;
 	if (!initial) {
 		Sprintf(buf, "%lu.%lu.%lu", FEATURE_NOTICE_VER_MAJ,
 			FEATURE_NOTICE_VER_MIN, FEATURE_NOTICE_VER_PATCH);
-		pline("Feature change alerts disabled for NetHack %s features and prior.",
+		pline("Feature change alerts disabled for Slash'EM %s features and prior.",
 			buf);
 	}
 	return 1;

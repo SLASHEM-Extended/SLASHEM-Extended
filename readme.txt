@@ -167,6 +167,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 1212903: Int and Wis stats not correct (in obscure case)
 -fixed bug 1175912: Deity-gifted pets should not attack like aligned unicorns
 		    (Nico Kist)
+-fixed bug 1205563: suppress_alert still says NetHack
 
 See history.txt for changes made in previous versions.
 
