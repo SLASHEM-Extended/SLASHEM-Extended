@@ -1817,7 +1817,7 @@ domove()
 				|| youmonst.m_ap_type == M_AP_FURNITURE))
 	    youmonst.m_ap_type = M_AP_NOTHING;
 
-	check_leash(u.ux0,u.uy0);
+	check_leash(&youmonst, u.ux0, u.uy0, FALSE);
 
 	if(u.ux0 != u.ux || u.uy0 != u.uy) {
 	    u.umoved = TRUE;

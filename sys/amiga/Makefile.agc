@@ -1015,7 +1015,7 @@ $(O)allmain.o:  $(NHS)allmain.c $(HDEP)
 
 $(O)alloc.o:  $(NHS)alloc.c $(I)config.h
 
-$(O)apply.o:  $(NHS)apply.c $(HDEP) $(I)edog.h
+$(O)apply.o:  $(NHS)apply.c $(HDEP) $(I)edog.h $(I)eleash.h
 	$(CC) $(CFLAGS) $(CFLAGS2) $(OBJSPEC)$@ $(NHS)apply.c
 
 $(O)artifact.o:  $(NHS)artifact.c $(HDEP) $(I)artifact.h $(I)artilist.h

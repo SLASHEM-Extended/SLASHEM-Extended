@@ -3313,7 +3313,7 @@ struct trap *ttmp;
 	    u.umoved = TRUE;
 	    newsym(u.ux0, u.uy0);
 	    vision_recalc(1);
-	    check_leash(u.ux0, u.uy0);
+	    check_leash(&youmonst, u.ux0, u.uy0, FALSE);
 	    if (Punished) move_bc(0, bc, bx, by, cx, cy);
 	    spoteffects(FALSE);	/* dotrap() */
 	    exercise(A_WIS, FALSE);

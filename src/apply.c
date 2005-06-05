@@ -4,6 +4,7 @@
 
 #include "hack.h"
 #include "edog.h"
+#include "eleash.h"
 
 #ifdef OVLB
 
@@ -21,7 +22,7 @@ STATIC_DCL boolean FDECL(its_dead, (int,int,int *));
 STATIC_DCL int FDECL(use_stethoscope, (struct obj *));
 STATIC_DCL void FDECL(use_whistle, (struct obj *));
 STATIC_DCL void FDECL(use_magic_whistle, (struct obj *));
-STATIC_DCL void FDECL(use_leash, (struct obj *));
+STATIC_DCL void FDECL(use_leash, (struct obj **));
 STATIC_DCL int FDECL(use_mirror, (struct obj *));
 STATIC_DCL void FDECL(use_bell, (struct obj **));
 STATIC_DCL void FDECL(use_candelabrum, (struct obj *));
@@ -416,9 +417,10 @@ unleash_all()		/* player is about to die (for bones) */
 
 /* ARGSUSED */
 STATIC_OVL void
-use_leash(obj)
-struct obj *obj;
+use_leash(optr)
+struct obj **optr;
 {
+	struct obj *obj = *optr;
 	coord cc;
 	register struct monst *mtmp;
 	int spotmon;
@@ -482,6 +484,7 @@ struct obj *obj;
 	    return;
 	}
 	if(!obj->leashmon) {
+		struct eleash eleash = {0,};
 		if(mtmp->mleashed) {
 			pline("This %s is already leashed.",
 			      spotmon ? l_monnam(mtmp) : "monster");
@@ -491,6 +494,8 @@ struct obj *obj;
 		    spotmon ? "your " : "", l_monnam(mtmp));
 		mtmp->mleashed = 1;
 		obj->leashmon = (int)mtmp->m_id;
+		*optr = realloc_obj(obj, sizeof(eleash), (genericptr_t) &eleash,
+			obj->onamelth ? strlen(ONAME(obj)) + 1 : 0, ONAME(obj));
 		mtmp->msleeping = 0;
 		return;
 	}
@@ -505,6 +510,8 @@ struct obj *obj;
 		}
 		mtmp->mleashed = 0;
 		obj->leashmon = 0;
+		*optr = realloc_obj(obj, 0, (genericptr_t)0,
+			obj->onamelth ? strlen(ONAME(obj)) + 1 : 0, ONAME(obj));
 		You("remove the leash from %s%s.",
 		    spotmon ? "your " : "", l_monnam(mtmp));
 		/* KMH, balance patch -- this is okay */
@@ -571,61 +578,211 @@ next_to_u()
 #endif /* OVL1 */
 #ifdef OVL0
 
+struct leash_check {
+    struct eleash *eleash;
+    struct monst *pet;
+    boolean you_moving;		/* True if hero is the one moving */
+};
+
+STATIC_OVL boolean
+check_leash_pos(arg, x, y)
+genericptr_t arg;
+int x, y;
+{
+	int i, d, n, lx, ly, xx, yy;
+	struct leash_check *check = (struct leash_check *)arg;
+	struct eleash *eleash = check->eleash;
+
+	if (check->you_moving) {
+	    if (eleash->pathlen == 2) {
+		if (dist2(x, y, check->pet->mx, check->pet->my) > 2) {
+		    eleash->pathlen++;
+		    eleash->path[2] = eleash->path[1];
+		    eleash->path[1] = eleash->path[0];
+		}
+		eleash->path[0].x = x;
+		eleash->path[0].y = y;
+		return TRUE;
+	    } else if (x == eleash->path[1].x && y == eleash->path[1].y) {
+	    	eleash->pathlen--;
+		memmove(eleash->path, eleash->path + 1,
+		  (eleash->pathlen - 1) * sizeof(*eleash->path));
+		return TRUE;
+	    } else {
+		memmove(eleash->path + 1, eleash->path,
+		  eleash->pathlen * sizeof(*eleash->path));
+		eleash->pathlen++;
+		eleash->path[0].x = x;
+		eleash->path[0].y = y;
+	    }
+	} else {
+	    if (eleash->pathlen == 1) {
+		eleash->path[1].x = x;
+		eleash->path[1].y = y;
+		eleash->pathlen = 2;
+		return TRUE;
+	    } else if (eleash->pathlen == 2) {
+		if (distu(x, y) <= 2) {
+		    eleash->path[1].x = x;
+		    eleash->path[1].y = y;
+		    return TRUE;
+		} else {
+		    eleash->path[eleash->pathlen].x = x;
+		    eleash->path[eleash->pathlen].y = y;
+		    eleash->pathlen++;
+		}
+	    } else if (x == eleash->path[eleash->pathlen - 2].x &&
+		    y == eleash->path[eleash->pathlen - 2].y) {
+	    	eleash->pathlen--;
+		return TRUE;
+	    } else {
+		eleash->path[eleash->pathlen].x = x;
+		eleash->path[eleash->pathlen].y = y;
+		eleash->pathlen++;
+	    }
+	}
+	do {
+	    n = 0;
+	    for(i = 1; i < eleash->pathlen - 1; i++) {
+		lx = eleash->path[i-1].x;
+		ly = eleash->path[i-1].y;
+		d = dist2(lx, ly, eleash->path[i+1].x, eleash->path[i+1].y);
+		if (d <= 2) {
+		    eleash->pathlen--;
+		    memmove(eleash->path + i, eleash->path + i + 1,
+		      (eleash->pathlen - i) * sizeof(*eleash->path));
+		    n++;
+		    break;
+		} else {
+		    xx = lx + (eleash->path[i+1].x - lx) / 2;
+		    yy = ly + (eleash->path[i+1].y - ly) / 2;
+		    if (ACCESSIBLE(levl[xx][yy].typ) && !closed_door(xx, yy) &&
+			    (xx!=eleash->path[i].x || yy!=eleash->path[i].y)) {
+			n++;
+			eleash->path[i].x = xx;
+			eleash->path[i].y = yy;
+		    }
+		}
+	    }
+	} while (n);
+	return eleash->pathlen <= ELEASH_PSZ;
+}
+
+STATIC_OVL void
+action_leash(leash, mon, endstop)
+struct obj *leash;
+struct monst *mon;
+boolean endstop;
+{
+	long save_pacifism;
+
+	if (leash->cursed && !breathless(mon->data)) {
+	    if (endstop || (mon->mhp -= rnd(2)) <= 0) {
+		save_pacifism = u.uconduct.killer;
+		Your("leash chokes %s to death!", mon_nam(mon));
+		/* hero might not have intended to kill pet, but
+		   that's the result of his actions; gain experience,
+		   lose pacifism, take alignment and luck hit, make
+		   corpse less likely to remain tame after revival */
+		xkilled(mon, 0);	/* no "you kill it" message */
+		/* life-saving doesn't ordinarily reset this */
+		if (mon->mhp > 0) u.uconduct.killer = save_pacifism;
+	    } else {
+		pline("%s chokes on the leash!", Monnam(mon));
+		/* tameness eventually drops to 1 here (never 0) */
+		if (mon->mtame && rn2(mon->mtame)) mon->mtame--;
+	    }
+	} else if (endstop) {
+	    pline("%s leash snaps loose!", s_suffix(Monnam(mon)));
+	    m_unleash(mon, FALSE);
+	} else {
+	    You("pull on the leash.");
+	    if (mon->data->msound != MS_SILENT)
+		switch (rn2(3)) {
+		case 0:  growl(mon);   break;
+		case 1:  yelp(mon);    break;
+		default: whimper(mon); break;
+		}
+	}
+}
+
+STATIC_OVL void
+check_leashed_pet(leash, pet, you_moving, reset, x, y)
+struct obj *leash;
+struct monst *pet;
+boolean you_moving, reset;
+xchar x, y;
+{
+	struct leash_check check;
+	coord start, dest;
+
+	check.eleash = ELEASH(leash);
+	check.pet = pet;
+	if (reset || !check.eleash->pathlen) {
+	    check.eleash->pathlen = 1;
+	    check.eleash->path[0].x = u.ux;
+	    check.eleash->path[0].y = u.uy;
+	    check.eleash->pathd2 = 0;
+	    check.you_moving = FALSE;
+	    start.x = u.ux;
+	    start.y = u.uy;
+	    dest.x = pet->mx;
+	    dest.y = pet->my;
+	} else {
+	    check.you_moving = you_moving;
+	    start.x = x;
+	    start.y = y;
+	    dest.x = you_moving ? u.ux : pet->mx;
+	    dest.y = you_moving ? u.uy : pet->my;
+	}
+	if (wpathto(&start, &dest, check_leash_pos, (genericptr_t)&check,
+		pet->data, check.eleash->pathlen + ELEASH_PSZ)) {
+	    if (check.eleash->pathlen >= ELEASH_PSZ)
+		action_leash(leash, pet, check.eleash->pathlen > ELEASH_PSZ);
+	} else
+	    action_leash(leash, pet, TRUE);
+}
+
+/*
+ * Check the leash(es) attached to mon (which might be the hero).
+ * Monster's old positon is given in (x, y).
+ * If reset is TRUE then throw away the old path data and
+ * choose a suitable new path (typically after teleport).
+ */
+
 void
-check_leash(x, y)
+check_leash(mon, x, y, reset)
+struct monst *mon;
 register xchar x, y;
+boolean reset;
 {
 	register struct obj *otmp;
 	register struct monst *mtmp;
 
-	for (otmp = invent; otmp; otmp = otmp->nobj) {
-	    if (otmp->otyp != LEASH || otmp->leashmon == 0) continue;
-	    for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
-		if (DEADMONSTER(mtmp)) continue;
-		if ((int)mtmp->m_id == otmp->leashmon) break; 
-	    }
-	    if (!mtmp) {
-		impossible("leash in use isn't attached to anything?");
-		otmp->leashmon = 0;
-		continue;
-	    }
-	    if (dist2(u.ux,u.uy,mtmp->mx,mtmp->my) >
-		    dist2(x,y,mtmp->mx,mtmp->my)) {
-		if (!um_dist(mtmp->mx, mtmp->my, 3)) {
-		    ;	/* still close enough */
-		} else if (otmp->cursed && !breathless(mtmp->data)) {
-		    if (um_dist(mtmp->mx, mtmp->my, 5) ||
-			    (mtmp->mhp -= rnd(2)) <= 0) {
-			long save_pacifism = u.uconduct.killer;
-
-			Your("leash chokes %s to death!", mon_nam(mtmp));
-			/* hero might not have intended to kill pet, but
-			   that's the result of his actions; gain experience,
-			   lose pacifism, take alignment and luck hit, make
-			   corpse less likely to remain tame after revival */
-			xkilled(mtmp, 0);	/* no "you kill it" message */
-			/* life-saving doesn't ordinarily reset this */
-			if (mtmp->mhp > 0) u.uconduct.killer = save_pacifism;
-		    } else {
-			pline("%s chokes on the leash!", Monnam(mtmp));
-			/* tameness eventually drops to 1 here (never 0) */
-			if (mtmp->mtame && rn2(mtmp->mtame)) mtmp->mtame--;
-		    }
-		} else {
-		    if (um_dist(mtmp->mx, mtmp->my, 5)) {
-			pline("%s leash snaps loose!", s_suffix(Monnam(mtmp)));
-			m_unleash(mtmp, FALSE);
-		    } else {
-			You("pull on the leash.");
-			if (mtmp->data->msound != MS_SILENT)
-			    switch (rn2(3)) {
-			    case 0:  growl(mtmp);   break;
-			    case 1:  yelp(mtmp);    break;
-			    default: whimper(mtmp); break;
-			    }
-		    }
+	if (mon == &youmonst)
+	    for (otmp = invent; otmp; otmp = otmp->nobj) {
+		if (otmp->otyp != LEASH || otmp->leashmon == 0) continue;
+		for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+		    if (DEADMONSTER(mtmp)) continue;
+		    if ((int)mtmp->m_id == otmp->leashmon) break; 
 		}
+		if (!mtmp) {
+		    impossible("leash in use isn't attached to anything?");
+		    otmp->leashmon = 0;
+		    continue;
+		}
+		check_leashed_pet(otmp, mtmp, TRUE, reset, x, y);
 	    }
+	else {
+	    for (otmp = invent; otmp; otmp = otmp->nobj)
+		if (otmp->otyp == LEASH && (int)mon->m_id == otmp->leashmon)
+		    break;
+	    if (!otmp) {
+		impossible("leashed monster isn't held by hero?");
+		mon->mleashed = 0;
+		return;
+	    }
+	    check_leashed_pet(otmp, mon, FALSE, reset, x, y);
 	}
 }
 
@@ -3477,7 +3634,7 @@ doapply()
 		use_tinning_kit(obj);
 		break;
 	case LEASH:
-		use_leash(obj);
+		use_leash(&obj);
 		break;
 #ifdef STEED
 	case SADDLE:

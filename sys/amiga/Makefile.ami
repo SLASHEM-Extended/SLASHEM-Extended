@@ -1347,7 +1347,7 @@ $(O)allmain.o:  $(NHS)allmain.c $(HDEP)
 
 $(O)alloc.o:  $(NHS)alloc.c $(I)config.h
 
-$(O)apply.o:  $(NHS)apply.c $(HDEP) $(I)edog.h
+$(O)apply.o:  $(NHS)apply.c $(HDEP) $(I)edog.h $(I)eleash.h
 #SFD_INSTEAD #none
 	$(CC) $(CFLAGS) $(CFLAGS2) $(OBJSPEC)$@ $(NHS)apply.c
 

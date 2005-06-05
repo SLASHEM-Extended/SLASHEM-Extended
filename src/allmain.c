@@ -278,7 +278,7 @@ moveloop()
 			    tele();
 			    if (u.ux != old_ux || u.uy != old_uy) {
 				if (!next_to_u()) {
-				    check_leash(old_ux, old_uy);
+				    check_leash(&youmonst, old_ux, old_uy, TRUE);
 				}
 #ifdef REDO
 				/* clear doagain keystrokes */

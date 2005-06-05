@@ -1172,7 +1172,7 @@ $(O)mapimail.o: $(NTSYS)\mapimail.c   $(HACK_H) $(NHLAN_H)
 
 $(O)allmain.o: $(SRC)\allmain.c $(HACK_H)
 $(O)alloc.o: $(SRC)\alloc.c $(CONFIG_H)
-$(O)apply.o: $(SRC)\apply.c $(HACK_H) $(INCL)\edog.h
+$(O)apply.o: $(SRC)\apply.c $(HACK_H) $(INCL)\edog.h $(INCL)\eleash.h
 $(O)artifact.o: $(SRC)\artifact.c $(HACK_H) $(INCL)\artifact.h $(INCL)\artilist.h
 $(O)attrib.o: $(SRC)\attrib.c $(HACK_H) $(INCL)\artifact.h
 $(O)ball.o: $(SRC)\ball.c $(HACK_H)

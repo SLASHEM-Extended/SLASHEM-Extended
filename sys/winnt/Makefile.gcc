@@ -1,4 +1,4 @@
-#       $Id: Makefile.gcc,v 1.51 2004-12-31 19:22:46 j_ali Exp $
+#       $Id: Makefile.gcc,v 1.52 2005-06-05 16:12:24 j_ali Exp $
 #       Copyright (c) NetHack PC Development Team 1993-2003
 #       Copyright (c) Karl Garrison 1999
 #       Copyright (c) Slash'EM Development Team 1999-2004
@@ -1693,7 +1693,7 @@ monstr.o: monstr.c $(CONFIG_H)
 vis_tab.o: vis_tab.c $(CONFIG_H) $(INCL)/vis_tab.h
 allmain.o: allmain.c $(HACK_H) $(INCL)/patchlevel.h
 alloc.o: alloc.c $(CONFIG_H)
-apply.o: apply.c $(HACK_H) $(INCL)/edog.h
+apply.o: apply.c $(HACK_H) $(INCL)/edog.h $(INCL)/eleash.h
 artifact.o: artifact.c $(HACK_H) $(INCL)/artifact.h $(INCL)/artilist.h
 attrib.o: attrib.c $(HACK_H)
 ball.o: ball.c $(HACK_H)

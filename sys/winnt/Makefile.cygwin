@@ -1090,7 +1090,7 @@ xshm.o: ../win/gtk/xshm.c ../include/xshm.h
 # src dependencies
 allmain.o:  $(HACK_H)
 alloc.o:    $(CONFIG_H)
-apply.o:    $(HACK_H) $(INCL)/edog.h
+apply.o:    $(HACK_H) $(INCL)/edog.h $(INCL)/eleash.h
 artifact.o: $(HACK_H) $(INCL)/artifact.h $(INCL)/artilist.h
 attrib.o:   $(HACK_H) $(INCL)/artifact.h
 ball.o:	    $(HACK_H)

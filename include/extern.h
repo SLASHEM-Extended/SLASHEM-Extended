@@ -39,7 +39,7 @@ E void FDECL(m_unleash, (struct monst *,BOOLEAN_P));
 E void NDECL(unleash_all);
 E boolean NDECL(next_to_u);
 E struct obj *FDECL(get_mleash, (struct monst *));
-E void FDECL(check_leash, (XCHAR_P,XCHAR_P));
+E void FDECL(check_leash, (struct monst *,XCHAR_P,XCHAR_P,BOOLEAN_P));
 E boolean FDECL(um_dist, (XCHAR_P,XCHAR_P,XCHAR_P));
 E boolean FDECL(snuff_candle, (struct obj *));
 E boolean FDECL(snuff_lit, (struct obj *));
@@ -2090,6 +2090,8 @@ E boolean FDECL(goodpos, (int,int,struct monst *,unsigned));
 E boolean FDECL(enexto, (coord *,XCHAR_P,XCHAR_P,struct permonst *));
 E boolean FDECL(enexto_core, (coord *,XCHAR_P,XCHAR_P,struct permonst *,unsigned));
 E int FDECL(epathto, (coord *,int,XCHAR_P,XCHAR_P,struct permonst *));
+E boolean FDECL(wpathto, (coord *, coord *, boolean (*)(genericptr_t, int, int),
+			  genericptr_t, struct permonst *, int));
 E void FDECL(xpathto, (int,XCHAR_P,XCHAR_P,int (*)(genericptr_t,int,int),void *));
 E void FDECL(teleds, (int,int,BOOLEAN_P));
 E boolean FDECL(safe_teleds, (BOOLEAN_P));

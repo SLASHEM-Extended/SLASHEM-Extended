@@ -8,6 +8,7 @@
 #include "edog.h"
 #include "emin.h"
 #include "epri.h"
+#include "eleash.h"
 
 /* #define DEBUG */	/* uncomment to enable debugging */
 
@@ -463,6 +464,10 @@ int after, udist, whappr;
 	dog_has_minvent = (DROPPABLES(mtmp) != 0);
 
 	if (!edog || mtmp->mleashed) {	/* he's not going anywhere... */
+	    /* Note: it would be easy enough for pets to follow tight leashes
+	     * here rather than head straight for the hero, but this seems
+	     * more realistic somehow.
+	     */
 	    gtyp = APPORT;
 	    gx = u.ux;
 	    gy = u.uy;
@@ -1008,6 +1013,8 @@ newdogpos:
 		for (j=MTSZ-1; j>0; j--) mtmp->mtrack[j] = mtmp->mtrack[j-1];
 		mtmp->mtrack[0].x = omx;
 		mtmp->mtrack[0].y = omy;
+		if (mtmp->mleashed)
+		    check_leash(mtmp, omx, omy, FALSE);
 		/* We have to know if the pet's gonna do a combined eat and
 		 * move before moving it, but it can't eat until after being
 		 * moved.  Thus the do_eat flag.
@@ -1043,6 +1050,7 @@ dognext:
 		  return 1;
 		remove_monster(mtmp->mx, mtmp->my);
 		place_monster(mtmp, cc.x, cc.y);
+		check_leash(mtmp, omx, omy, TRUE);
 		newsym(cc.x,cc.y);
 		set_apparxy(mtmp);
 	}

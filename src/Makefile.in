@@ -864,7 +864,7 @@ monstr.o: monstr.c $(CONFIG_H)
 vis_tab.o: vis_tab.c $(CONFIG_H) ../include/vis_tab.h
 allmain.o: allmain.c $(HACK_H) ../include/patchlevel.h
 alloc.o: alloc.c $(CONFIG_H)
-apply.o: apply.c $(HACK_H) ../include/edog.h
+apply.o: apply.c $(HACK_H) ../include/edog.h ../include/eleash.h
 artifact.o: artifact.c $(HACK_H) ../include/artifact.h ../include/artilist.h
 attrib.o: attrib.c $(HACK_H)
 ball.o: ball.c $(HACK_H)
