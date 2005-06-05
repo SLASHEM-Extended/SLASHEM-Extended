@@ -80,6 +80,7 @@ ver 0.0.7E7F1 [?] [Released by ?]
 		    (Nico Kist)
 -fixed bug 1205563: suppress_alert still says NetHack
 -fixed bug 1157414: Do not "loose" faith
+-fixed bug 1197822: necromancer zombie's hp
 
 See history.txt for changes made in previous versions.
 
