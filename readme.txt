@@ -171,6 +171,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 1157414: Do not "loose" faith
 -fixed bug 1021014: leashed pet movement bug
 -fixed bug 1197822: necromancer zombie's hp
+-fixed bug 1185759: Shopkeeper "looks at corpse" through wall
 
 See history.txt for changes made in previous versions.
 
