@@ -6,7 +6,7 @@
 |                           A Nethack Variant                            |
 | Courtesy of the Slash'EM development team with the efforts and support |
 | of countless others, especially the slashem-devel mailing list.        |
-|                                                             (1997-2004)|
+|                                                             (1997-2005)|
 +------------------------------------------------------------------------+
 | Nethack is Copyright 1985-2003                                         |
 |            By Stichting Mathematisch Centrum and M. Stephenson.        |
@@ -172,6 +172,7 @@ ver 0.0.8E0 [?] [Released by ?]
 -fixed bug 1021014: leashed pet movement bug
 -fixed bug 1197822: necromancer zombie's hp
 -fixed bug 1185759: Shopkeeper "looks at corpse" through wall
+-Experimental support for GNU autoconf
 
 See history.txt for changes made in previous versions.
 

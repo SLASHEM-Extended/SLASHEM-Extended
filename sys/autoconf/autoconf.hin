@@ -1,0 +1,213 @@
+/* sys/autoconf/autoconf.hin.  Generated from sys/autoconf/configure.ac by autoheader.  */
+
+/* Exceptions to autopickup (experimental) */
+#undef AUTOPICKUP_EXCEPTIONS
+
+/* Blackmarket */
+#undef BLACKMARKET
+
+/* Borg player (only under DOS) */
+#undef BORG
+
+/* A BSD like system */
+#undef BSD
+
+/* Charon's boat, enables Cerebus (not implemented) */
+#undef CHARON
+
+/* Allow smaller screens */
+#undef CLIPPING
+
+/* Unix on win32 */
+#undef CYGWIN32
+
+/* Support transparent tilesets */
+#undef DISPLAY_LAYERS
+
+/* Dungeon growth */
+#undef DUNGEON_GROWTH
+
+/* Dwarf race */
+#undef DWARF
+
+/* Remember which monsters have been eaten */
+#undef EATEN_MEMORY
+
+/* Engraving the E-word repels monsters */
+#undef ELBERETH
+
+/* Show experience on bottom line */
+#undef EXP_ON_BOTL
+
+/* Guns and Bullets */
+#undef FIREARMS
+
+/* OpenGL graphics */
+#undef GL_GRAPHICS
+
+/* GNU regex is available */
+#undef GNU_REGEX
+
+/* Gold is kept on object chains (experimental) */
+#undef GOLDOBJ
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the `SDL' library (-lSDL). */
+#undef HAVE_LIBSDL
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Invisible objects */
+#undef INVISIBLE_OBJECTS
+
+/* Keep save files after restore */
+#undef KEEP_SAVE
+
+/* Keystone Kops */
+#undef KOPS
+
+/* Dimsabers */
+#undef LIGHTSABERS
+
+/* Spells are light sources */
+#undef LIGHT_SRC_SPELL
+
+/* GNU Linux */
+#undef LINUX
+
+/* TTY graphics menu color */
+#undef MENU_COLOR
+
+/* Prevent wishing for special artifacts */
+#undef NOARTIFACTWISH
+
+/* No void type available */
+#undef NOVOID
+
+/* Disable loading and saving bones levels */
+#undef NO_BONES
+
+/* Shopkeeper services */
+#undef OTHER_SERVICES
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* Posix regex is available */
+#undef POSIX_REGEX
+
+/* proxy graphics */
+#undef PROXY_GRAPHICS
+
+/* Spoon */
+#undef P_SPOON
+
+/* Redo last command */
+#undef REDO
+
+/* Special Rogue-like levels */
+#undef REINCARNATION
+
+/* Show score on bottom line */
+#undef SCORE_ON_BOTL
+
+/* Software SDL graphics */
+#undef SDL_GRAPHICS
+
+/* Succubi/incubi seduction */
+#undef SEDUCE
+
+/* Shouting and pet commands (not implemented) */
+#undef SHOUT
+
+/* Display damage reports */
+#undef SHOW_DMG
+
+/* Display object weight */
+#undef SHOW_WEIGHT
+
+/* Kitchen sinks */
+#undef SINKS
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Ability to ride monsters */
+#undef STEED
+
+/* strncmpi available */
+#undef STRNCMPI
+
+/* A System V like system */
+#undef SYSV
+
+/* Tourist class */
+#undef TOURIST
+
+/* Console output */
+#undef TTY_GRAPHICS
+
+/* Object unpolymorphing */
+#undef UNPOLYPILE
+
+/* Allow user-defined regex mapping from messages to sounds (Qt with NAS only)
+   */
+#undef USER_SOUNDS
+
+/* Use regular expressions */
+#undef USE_REGEX_MATCH
+
+/* Perseus' Wallet */
+#undef WALLET_O_P
+
+/* Fancy mazes */
+#undef WALLIFIED_MAZE
+
+/* X11 graphics */
+#undef X11_GRAPHICS
+
+/* Yeoman class */
+#undef YEOMAN
+
+/* Define to 1 if `lex' declares `yytext' as a `char *' by default, not a
+   `char[]'. */
+#undef YYTEXT_POINTER
+
+/* Zoutherner class */
+#undef ZOUTHERN

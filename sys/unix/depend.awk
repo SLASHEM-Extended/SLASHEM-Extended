@@ -21,6 +21,8 @@
 #	assumed to be the last #include in the file where it occurs.
 # win32api.h gets special handling because it only exists for some ports;
 #	it's assumed to be the last #include in the file where it occurs
+# autoconf.h gets special handling because it usually doesn't exist; it's
+#	assumed to be the last #include in the file where it occurs.
 #
 BEGIN		{ FS = "\""			#for `#include "X"', $2 is X
 		  special[++sp_cnt] = "../include/config.h"
@@ -29,6 +31,7 @@ BEGIN		{ FS = "\""			#for `#include "X"', $2 is X
 		  alt_deps["../include/patchlev.h"] = ""
 		  alt_deps["interp.c"] = " #interp.c"	#comment it out
 		  alt_deps["../include/win32api.h"] = " #../include/win32api.h"
+		  alt_deps["../include/autoconf.h"] = " #../include/autoconf.h"
 		}
 FNR == 1	{ output_dep()			#finish previous file
 		  file = FILENAME		#setup for current file
@@ -36,12 +39,9 @@ FNR == 1	{ output_dep()			#finish previous file
 /^\#[ \t]*include[ \t]+\"/  {			#find `#include "X"'
 		  incl = $2;
 		  #[3.4.0: gnomehack headers currently aren't in include]
-		  #[0.0.7: gtkhack internal headers aren't in include]
 		  if (incl ~ /\.h$/) {
 		    if (incl ~ /^gn/)	# gnomehack special case
 		      incl = "../win/gnome/" incl
-		    else if (incl ~ /^gtk/)	# gtkhack special case
-		      incl = "../win/gtk/" incl
 		    else
 		      incl = "../include/" incl
 		  }
@@ -114,10 +114,8 @@ function format_dep(target, source,		n, i, list)
   if (source ~ /\// && substr(source, 1, 11) != "../include/") {
     if (source ~ /\.cpp$/ )
       print "\t$(CXX) $(CXXFLAGS) -c " source
-    else if (source ~ /^..\/win\/gtk\// )
-      print "\t$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c " source
-    else if (source ~ /^..\/win\/gtk2\// )
-      print "\t$(CC) $(CFLAGS) $(WINGTKCFLAGS) -c " source
+    else if (source ~ /^..\/win\/proxy\// )
+      print "\t$(CC) $(CFLAGS) $(WINPROXYCFLAGS) -c " source
     else if (source ~ /^..\/win\/gl\// )
       print "\t$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c " source
     else if (source ~ /\/gnome\//)    # "../win/gnome/foo.c"

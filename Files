@@ -7,7 +7,7 @@ from or not transferred to your system if you wish.
 .:
 (files in top directory)
 Files           Porting         README.34       history.txt     make_anh.txt
-readme.s6       readme.txt      slamfaq.txt
+readme.s6       readme.txt      slamfaq.txt     configure
 
 dat:
 (files for all versions)
@@ -108,6 +108,12 @@ sys/atari:
 (files for Atari version)
 Install.tos     atarifnt.uue    nethack.mnu     setup.g         tos.c
 unx2atar.sed
+
+sys/autoconf:
+(files for GNU autoconf version)
+Install.ac      Makefile.dat    Makefile.doc    Makefile.src    Makefile.top
+Makefile.utl    bootstrap.sh    configure.ac    autoconf.hin    install-sh
+config.guess    config.sub
 
 sys/be:
 (files for BeOS version)

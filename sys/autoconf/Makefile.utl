@@ -17,7 +17,7 @@ srcdir=@srcdir@
 # execute things like 'foo.o')
 # MAKE = make
 
-CC = @CC@
+CC = @CC@ -DAUTOCONF
 
 # if you are using gcc as your compiler,
 #	uncomment the CC definition below if it's not in your environment

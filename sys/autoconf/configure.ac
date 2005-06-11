@@ -1,39 +1,12 @@
 dnl	SLASHEM autoconf template
-dnl	SCCS Id: @(#)configure.ac	0.1	2005/04/22
-AC_INIT(SLASHEM, 0.1, http://sourceforge.net/bugs/?group_id=9746)
+AC_INIT(SLASHEM, 0.0.8, http://sourceforge.net/bugs/?group_id=9746)
+AC_REVISION($Revision: 1.1 $)
+AC_CONFIG_AUX_DIR(sys/autoconf)
 
 dnl  ----- Precious variables
 AC_ARG_VAR(CC, [C compiler])
 AC_ARG_VAR(CHGRP, [sets GAMEUID (set this to true as a no op)])
 AC_ARG_VAR(CHOWN, [sets GAMEGRP (set this to true as a no op)])
-
-
-dnl  ----- Macros
-AC_DEFUN([NETHACK_ENABLE],
-  [AC_MSG_CHECKING(whether to enable $1)
-   AC_ARG_ENABLE([$2], AC_HELP_STRING([--enable-$1],[$3 (default=yes)]),
-     enable_$2="$enableval",enable_$2="no")
-   AC_MSG_RESULT($enable_$2)
-   if test "$enable_$2" != "no" ; then
-      AC_DEFINE_UNQUOTED([$4], [], [$3])
-   fi
-  ])
-
-AC_DEFUN([NETHACK_DISABLE],
-  [AC_MSG_CHECKING(whether to enable $1)
-   AC_ARG_ENABLE([$2], AC_HELP_STRING([--enable-$1],[$3 (default=yes)]),
-     enable_$2="$enableval",enable_$2="yes")
-   AC_MSG_RESULT($enable_$2)
-   if test "$enable_$2" != "no" ; then
-      AC_DEFINE_UNQUOTED([$4], [], [$3])
-   fi
-  ])
-
-dnl ---- Update if there is a newer source
-AC_DEFUN([NETHACK_LINKS_ADD],
-	if test ${srcdir}/$1 -nt $1 ; then
-	   NETHACK_LINKS="${LINKS_LIST} $1:$1"
-	fi)
 
 AC_PROG_LN_S
 
@@ -44,17 +17,21 @@ AC_ARG_ENABLE(tty-graphics,
 	      AC_HELP_STRING([--enable-tty-graphics],
 			     [use tty-graphics (default=yes)]),
 			     enable_tty_graphics="$enableval",enable_tty_graphics="yes")
+AC_ARG_ENABLE(proxy-graphics, 
+	      AC_HELP_STRING([--enable-proxy-graphics],
+			     [use proxy-graphics (default=auto)]),
+			     enable_proxy_graphics="$enableval",enable_proxy_graphics="auto")
 AC_ARG_ENABLE(x11-graphics, 
 	      AC_HELP_STRING([--enable-x11-graphics],
-			     [use x11-graphics (default=yes)]),
+			     [use x11-graphics (default=no)]),
 			     enable_x11_graphics="$enableval",enable_x11_graphics="no")
 AC_ARG_ENABLE(sdl-graphics, 
 	      AC_HELP_STRING([--enable-sdl-graphics],
-			     [use sdl-graphics (default=yes)]),
+			     [use sdl-graphics (default=no)]),
 			     enable_sdl_graphics="$enableval",enable_sdl_graphics="no")
 AC_ARG_ENABLE(gl-graphics, 
 	      AC_HELP_STRING([--enable-gl-graphics],
-			     [use gl-graphics (enables sdl-graphics) (default=yes)]),
+			     [use gl-graphics (enables sdl-graphics) (default=no)]),
 			     [enable_gl_graphics="$enableval"
 			      if test "$enable_gl_graphics" != "no"
 			      then
@@ -78,13 +55,13 @@ dnl  ----- Check OS
 AC_CANONICAL_TARGET
 dnl  ------ Main unix types
 case $target_os in
-     *bsd* )		AC_DEFINE(BSD);;
-     * )		AC_DEFINE(SYSV,[]);;
+     *bsd* )		AC_DEFINE(BSD,[],[A BSD like system]);;
+     * )		AC_DEFINE(SYSV,[],[A System V like system]);;
 esac
 dnl ------ Common subtypes
 case $target_os in
-     *cygwin* )		AC_DEFINE(CYGWIN32,[]);;
-     *linux* )		AC_DEFINE(LINUX,[]);;
+     *cygwin* )		AC_DEFINE(CYGWIN32,[],[Unix on win32]);;
+     *linux* )		AC_DEFINE(LINUX,[],[GNU Linux]);;
 esac
 
 
@@ -115,11 +92,30 @@ for termlib in ${TERMLIB_VARIANTS}; do
 	        WINSRC="${WINSRC} \$(WINTTYSRC)"
 		WINOBJ="${WINOBJ} \$(WINTTYOBJ)"
 		WINLIB="${WINLIB} \$(WINTTYLIB)"
-		AC_DEFINE(TTY_GRAPHICS, [])
+		AC_DEFINE(TTY_GRAPHICS, [], [Console output])
 		break])
 done
 fi
 AC_SUBST(WINTTYLIB)
+
+if test "$enable_proxy_graphics" != "no"
+then
+	if test "$enable_proxy_graphics" = "yes"
+	then
+	    PKG_CHECK_MODULES(NETHACK_PROXY, nhproxy >= 0.9.0)
+	else
+	    PKG_CHECK_MODULES(NETHACK_PROXY, nhproxy >= 0.9.0, :, :)
+	fi
+	if test -n "$NETHACK_PROXY_LIBS"
+	then
+	    WINSRC="${WINSRC} \$(WINPROXYSRC)"
+	    WINOBJ="${WINOBJ} \$(WINPROXYOBJ)"
+	    WINLIB="${WINLIB} ${NETHACK_PROXY_LIBS}"
+	    CNF_SHARE_DATND="${CNF_SHARE_DATND} \$(CNF_SHARE_PROXYND)"
+	    AC_DEFINE(PROXY_GRAPHICS, [], [proxy graphics])
+	fi
+fi
+AC_SUBST(NETHACK_PROXY_CFLAGS)
 
 if test "$enable_x11_graphics" != "no"
 then
@@ -127,7 +123,7 @@ then
 	WINOBJ="${WINOBJ} \$(WINX11OBJ)"
 	WINLIB="${WINLIB} \$(WINX11LIB)"
 	CNF_SHARE_DATND="${CNF_SHARE_DATND} \$(CNF_SHARE_X11ND)"
-	AC_DEFINE(X11_GRAPHICS, [])
+	AC_DEFINE(X11_GRAPHICS, [], [X11 graphics])
 fi
 
 SDL_CONFIG_CFLAGS=
@@ -149,7 +145,7 @@ dnl CHECK FOR libpng
 	 WINOBJ="${WINOBJ} \$(WINGLOBJ)"
 	 WINLIB="${WINLIB} \$(WINSDLLIB)"
 	 CNF_SHARE_DATND="${CNF_SHARE_DATND} \$(CNF_SHARE_GLND)"
-	 AC_DEFINE(SDL_GRAPHICS, [])
+	 AC_DEFINE(SDL_GRAPHICS, [], [Software SDL graphics])
 	 if test "$enable_gl_graphics" != "no"
 	 then
 		GL_LIB_VARIANTS="GL opengl32"
@@ -157,7 +153,7 @@ dnl CHECK FOR libpng
 		  AC_CHECK_LIB(${gl_lib}, glBegin,
 		  [WINGLLIB="-l${gl_lib}"
 		   WINLIB="${WINLIB} \$(WINGLLIB)"
-		   AC_DEFINE(GL_GRAPHICS, [])
+		   AC_DEFINE(GL_GRAPHICS, [], [OpenGL graphics])
 		   break])
 		done
 	 fi
@@ -180,20 +176,20 @@ AC_CHECK_HEADER(regex.h, [have_regex_h=yes],[have_regex_h=no],/* TEST_REGEX */)
 dnl ------ Check for data types
 if test "$have_regex_h" = "yes"; then
    AC_CHECK_TYPE(struct re_pattern_buffer,
-		 [AC_DEFINE(USE_REGEX_MATCH, [])
-		  AC_DEFINE(GNU_REGEX, [])
+		 [AC_DEFINE(USE_REGEX_MATCH, [], [Use regular expressions])
+		  AC_DEFINE(GNU_REGEX, [], [GNU regex is available])
 		 ],
 		 [AC_CHECK_TYPE(regex_t,
-				[AC_DEFINE(USE_REGEX_MATCH, [])
-				 AC_DEFINE(POSIX_REGEX, [])
+				[AC_DEFINE(USE_REGEX_MATCH, [], [Use regular expressions])
+				 AC_DEFINE(POSIX_REGEX, [], [Posix regex is available])
 				],,)
 		 ])	
 fi
-AC_CHECK_TYPE(void,,AC_DEFINE(NOVOID, []))
+AC_CHECK_TYPE(void,,AC_DEFINE(NOVOID, [], [No void type available]))
 
 
 dnl  ----- Check for library functions
-AC_CHECK_DECL(strncmpi, AC_DEFINE(STRNCMPI, []))
+AC_CHECK_DECL(strncmpi, AC_DEFINE(STRNCMPI, [], [strncmpi available]))
 
 dnl  ----- Check for compile-time options
 NETHACK_DISABLE(sinks,sinks,[Kitchen sinks],SINKS)
@@ -270,27 +266,12 @@ NETHACK_DISABLE(dungeon-growth,dungeon_growth,
 	[Dungeon growth],DUNGEON_GROWTH)
 NETHACK_ENABLE(shout,shout,
 	[Shouting and pet commands (not implemented)],SHOUT)
-NETHACK_DISABLE(display-layers,dispaly_layers,
+NETHACK_DISABLE(display-layers,display_layers,
 	[Support transparent tilesets],DISPLAY_LAYERS)
 NETHACK_ENABLE(goldobj,goldobj,
 	[Gold is kept on object chains (experimental)],GOLDOBJ)
 NETHACK_ENABLE(autopickup-exceptions,autopickup_exceptions,
 	[Exceptions to autopickup (experimental)],AUTOPICKUP_EXCEPTIONS)
-
-
-
-dnl  ----- Back up the existing config.h and unixconf.h if they exist
-AC_CONFIG_COMMANDS_PRE([if test -f $srcdir/include/config.h
-			then
-			    echo moving $srcdir/include/config.h to $srcdir/include/config.bak; \
-			    mv -f $srcdir/include/config.h $srcdir/include/config.bak
-			fi])
-AC_CONFIG_COMMANDS_PRE([if test -f $srcdir/include/unixconf.h
-		        then
-			    echo moving $srcdir/include/unixconf.h $srcdir/include/unixconf.bak; \
-
-			    mv -f $srcdir/include/unixconf.h $srcdir/include/unixconf.bak
-			fi])
 
 NETHACK_LINKS=
 NETHACK_LINKS_ADD([include/file.h])
@@ -312,9 +293,12 @@ NETHACK_LINKS_ADD([win/share/tile_t.h:win/share/tile_t.h])
 AC_CONFIG_LINKS(${NETHACK_LINKS})
 
 dnl  ----- Process the Makefiles
-AC_CONFIG_FILES([Makefile src/Makefile doc/Makefile dat/Makefile util/Makefile])
+AC_CONFIG_FILES([Makefile:sys/autoconf/Makefile.top]
+	[src/Makefile:sys/autoconf/Makefile.src]
+	[doc/Makefile:sys/autoconf/Makefile.doc]
+	[dat/Makefile:sys/autoconf/Makefile.dat]
+	[util/Makefile:sys/autoconf/Makefile.utl])
 
-AC_CONFIG_HEADERS([include/config.h:include/config.hin])
-AC_CONFIG_HEADERS([include/unixconf.h:include/unixconf.hin])
+NETHACK_CONFIG_HEADER([include/autoconf.h:sys/autoconf/autoconf.hin])
 
 AC_OUTPUT

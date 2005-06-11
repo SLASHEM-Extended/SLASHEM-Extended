@@ -5,200 +5,38 @@
 VPATH = @srcdir@
 srcdir = @srcdir@
 
-# newer makes predefine $(MAKE) to 'make' and do smarter processing of
-# recursive make calls if $(MAKE) is used
-# these makes allow $(MAKE) to be overridden by the environment if someone
-# wants to (or has to) use something other than the standard make, so we do
-# not want to unconditionally set $(MAKE) here
-#
-# unfortunately, some older makes do not predefine $(MAKE); if you have one of
-# these, uncomment the following line
-# (you will know that you have one if you get complaints about being unable
-# to find 'makedefs')
-# MAKE = make
-
-# This makefile replaces the previous Makefile.unix, Makefile.xenix,
-# Makefile.3B2, Makefile.att, and Makefile.tos.
-# Set SYSTEM to one of:
-#	'Sysunix'	-- generic UNIX
-#	'Sys3B2'	-- AT&T 3B2, 3B5, etc.
-#	'Sysatt'	-- AT&T UNIXPC, 7300, 3B1
-#	'SysV-AT'	-- Microport 286 UNIX (put -DDUMB in CFLAGS)
-#	'Systos'	-- Atari
-#	'SysBe'		-- BeOS
 SYSTEM = Sysunix
 
-#
-# Make sure that your bourne shell is specified here, as you have to spawn
-# some of the commands (eg. depend) in bourne shell for them to work.
-#
-# For Systos users compiling on the ST, you'll either need a bourne shell
-# clone or you'll need to do make depend, etc. by hand. In either case,
-# the line below probably needs changing
 SHELL=/bin/sh
-# for Atari
-# SHELL=E:/GEMINI2/MUPFEL.TTP
 
-# Normally, the C compiler driver is used for linking:
 LINK=$(CC)
 
-# Pick the SYSSRC and SYSOBJ lines corresponding to your desired operating
-# system.
-#
 # for UNIX systems
 SYSSRC = $(srcdir)/../sys/share/ioctl.c $(srcdir)/../sys/share/unixtty.c $(srcdir)/../sys/unix/unixmain.c \
 	$(srcdir)/../sys/unix/unixunix.c $(srcdir)/../sys/unix/unixres.c
 SYSOBJ = ioctl.o unixmain.o unixtty.o unixunix.o unixres.o
-#
-# for Systos
-# SYSSRC = $(srcdir)/../sys/atari/tos.c $(srcdir)/../sys/share/pcmain.c $(srcdir)/../sys/share/pcsys.c \
-#	$(srcdir)/../sys/share/pctty.c $(srcdir)/../sys/share/pcunix.c
-# SYSOBJ = tos.o pcmain.o pcsys.o pctty.o pcunix.o
-#
-# for BeOS
-#SYSSRC = $(srcdir)/../sys/be/bemain.c $(srcdir)/../sys/share/unixtty.c $(srcdir)/../sys/share/ioctl.c
-#SYSOBJ = bemain.o unixtty.o ioctl.o
 
-
-CC = @CC@
-
-# if you are using gcc as your compiler:
-#	uncomment the CC definition below if it's not in your environment
-#	if you get setcgtty() warnings during execution, you are feeding gcc
-#		a non-ANSI <sys/ioctl.h> -- either run fixincludes on it or use
-#		-traditional in CFLAGS
-# CC = gcc
-#
-#	For Bull DPX/2 systems at B.O.S. 2.0 or higher use the following:
-#
-# CC = gcc -ansi -D_BULL_SOURCE -D_XOPEN_SOURCE -D_POSIX_SOURCE
-#
-#	If you are using GCC 2.2.2 or higher on a DPX/2, just use:
-#
-# CC = gcc -ansi
-#
-#	For HP/UX 10.20 with GCC:
-# CC = gcc -D_POSIX_SOURCE
-#
-#	For cross-compiling, eg. with gcc on Linux (see also CXX further down):
-# CC = arm-linux-gcc
-#
-#
-# if you're debugging and want gcc to check as much as possible, use:
-# CC = gcc -W -Wimplicit -Wreturn-type -Wunused -Wformat -Wswitch -Wshadow -Wcast-qual -Wwrite-strings -DGCC_WARN
-
-# flags may have to be changed as required
-# flags for 286 Xenix:
-# CFLAGS = -Ml2t16 -O -LARGE -I../include -I$(srcdir)/../include
-# LFLAGS = -Ml -F 4000 -SEG 512
-
-# flags for 286 Microport SysV-AT
-# CFLAGS = -DDUMB -Ml -I../include -I$(srcdir)/../include
-# LFLAGS = -Ml
-
-# flags for Atari gcc (3.2.1)
-# CFLAGS = -O -I../include -I$(srcdir)/../include
-# LFLAGS = -s
-# flags for Atari gcc (3.3)
-# CFLAGS = -mshort -O2 -fomit-frame-pointer -I../include -I$(srcdir)/../include
-# LFLAGS = -mshort -s
-
-# flags for AIX 3.1 cc on IBM RS/6000 to define
-# a suitable subset of standard libraries
-# (note that there is more info regarding the "-qchars=signed"
-# switch in file Install.unx note 8)
-# CFLAGS = -D_NO_PROTO -D_XOPEN_SOURCE -O -I../include -I$(srcdir)/../include -qchars=signed
-#
-# Some of our subroutines are complex enough that this is required for full
-# optimization under AIX 3.2 (I don't know about 3.1).
-#
-# CFLAGS = -D_NO_PROTO -D_XOPEN_SOURCE -D_ALL_SOURCE -O -I../include -I$(srcdir)/../include -qchars=signed -qmaxmem=5000
-
-# flags for A/UX 2.01 using native cc or c89
-# gcc predefines AUX so that's not needed there
-# Remember to use -lcurses for WINLIB below !
-# CFLAGS = -ZS -D_POSIX_SOURCE -O -I../include -I$(srcdir)/../include -DAUX
-
-# flags for IRIX 4.0.x using native cc
-# The include files are __STDC__, but have bugs involving const
-# CFLAGS = -O -I../include -I$(srcdir)/../include -D__STDC__ -Dconst= -woff 100,293
-# LFLAGS = -s
-
-# flags for BSD/OS 2.0
-# CFLAGS = -O -I../include -I$(srcdir)/../include -I/usr/X11/include
-# LFLAGS = -L/usr/X11/lib
-
-# flags for Linux
-#   compile normally
-# CFLAGS = -O2 -fomit-frame-pointer -I../include -I$(srcdir)/../include
-# LFLAGS = -L/usr/X11R6/lib
-#   OR compile backwards compatible a.out format
-# CFLAGS = -O2 -b i486-linuxaout -fomit-frame-pointer -I../include -I$(srcdir)/../include
-# LFLAGS = -b i486-linuxaout -L/usr/X11R6/lib
-
-# flags for BeOS
-#   on a Mac/BeBox:
-#CC = mwcc
-#CFLAGS = -r -I../include -I$(srcdir)/../include
-#LINK = mwld
-#LFLAGS = -map nethack.xMAP
-#   on Intel:
-#CFLAGS = -O -I../include -I$(srcdir)/../include
-#LINK = gcc
-#LFLAGS = -Xlinker -soname=_APP_
-
-# flags for debugging:
-# CFLAGS = -g -I../include -I$(srcdir)/../include
+CC = @CC@ -DAUTOCONF
 
 CFLAGS = -O -I../include -I$(srcdir)/../include
 LFLAGS =
 
 # Only used for the Gnome interface.
-# When including the Gnome interface, you need to include gnome specific
-# directories.  The ones given below is the usual spot for linux systems.
-# The paths are for glibconfig.h and gnomesupport.h respectively.
-#
-#GNOMEINC=-I/usr/lib/glib/include -I/usr/lib/gnome-libs/include -I$(srcdir)/../win/gnome
 GNOMEINC=`gnome-config gnome --cflags` -I$(srcdir)/../win/gnome
 
 # QT windowing system
-# Gentoo
-# QTDIR = /usr/qt/2
-# SuSE 6.1
-# QTDIR = /usr/lib/qt
-# RedHat 6.1
-# QTDIR = /usr/lib/qt-2.0.1
-#
 QTLIBDIR=$(QTDIR)/lib
 QTINCDIR=$(QTDIR)/include
 QTBINDIR=$(QTDIR)/bin
-# SuSE 6.1
-# KDELIBDIR=/opt/kde/lib
-# KDEINCDIR=/opt/kde/include
-# RedHat 6.1
 KDELIBDIR=/usr/lib
 KDEINCDIR=/usr/include/kde
-# CFLAGS = -O -I../include -I$(srcdir)/../include
-# LFLAGS = -L/usr/X11/lib -L$(QTLIBDIR) -L$(KDELIBDIR)
 
-# The Qt and Be window systems are written in C++, while the rest of
-# NetHack is standard C.  If using Qt, uncomment the LINK line here to get
-# the C++ libraries linked in.
 CXXFLAGS = $(CFLAGS) -I. -I$(QTINCDIR)
-# Qt is C++, so define the compiler and linker thus required:
 CXX=g++
-#LINK=g++
-#	For cross-compiling, eg. with gcc on Linux (see also CC further up):
-#CXX=arm-linux-g++
-#LINK=arm-linux-gcc
 
 # Proxy windowing system
-WINPROXYCONFIG=pkg-config nhproxy
-WINPROXYCFLAGS=`$(WINPROXYCONFIG) --cflags`
+WINPROXYCFLAGS=@NETHACK_PROXY_CFLAGS@
 
-# Set the WINSRC, WINOBJ, and WINLIB lines to correspond to your desired
-# combination of windowing systems.  Also set windowing systems in config.h.
-#
 # files for a straight tty port using no native windowing system
 WINTTYSRC = $(srcdir)/../win/tty/getline.c $(srcdir)/../win/tty/termcap.c $(srcdir)/../win/tty/topl.c \
 	$(srcdir)/../win/tty/wintty.c 
@@ -264,54 +102,9 @@ SDLGL_CFLAGS = @SDL_CONFIG_CFLAGS@
 
 WINSRC = @WINSRC@
 WINOBJ = @WINOBJ@
-# Use these declarations if you only want to support the TTY windowing system
-# WINSRC = $(WINTTYSRC)
-# WINOBJ = $(WINTTYOBJ)
-# Use these declarations if you want to support the X11 windowing system
-# WINSRC = $(WINTTYSRC) $(WINX11SRC)
-# WINOBJ = $(WINTTYOBJ) $(WINX11OBJ)
-# Use these declarations if you want to support the Qt windowing system
-# WINSRC = $(WINTTYSRC) $(WINQTSRC)
-# WINOBJ = $(WINTTYOBJ) $(WINQTOBJ)
-# Use these declarations to only support the SDL/GL windowing systems
-# WINSRC = $(WINGLSRC)
-# WINOBJ = $(WINGLOBJ)
-# Use these declarations if you want to support external windowing systems
-# WINSRC = $(WINTTYSRC) $(WINPROXYSRC)
-# WINOBJ = $(WINTTYOBJ) $(WINPROXYOBJ)
-# Use these declarations if you want to support all standard windowing systems
-# WINSRC = $(WINTTYSRC) $(WINPROXYSRC) $(WINX11SRC) $(WINQTSRC) $(WINGLSRC) \
-#	$(WINGNOMESRC)
-# WINOBJ = $(WINTTYOBJ) $(WINPROXYOBJ) $(WINX11OBJ) $(WINQTOBJ) $(WINGLOBJ) \
-#	$(WINGNOMEOBJ)
-#
-# You must also change the definition of WINLIB (below) to match these
-
-# on some systems the termcap library is in -ltermcap or -lcurses
-# on 386 Xenix, the -ltermlib tputs() seems not to work; use -lcurses instead
-# Sysatt uses shared library in lieu of this option
-# Systos needs -lcurses16 if you use -mshort
-# AIX 3.1 on RS/6000 likes -lcurses if TERMINFO defined in unixconf.h
-# and -ltermcap otherwise
-# Linux uses -lncurses (newer) or -ltermcap (older)
-# Be uses -ltermcap
-#
-# libraries for tty ports
-# WINTTYLIB = -ltermcap
-# WINTTYLIB = -lcurses
-# WINTTYLIB = -lcurses16
-# WINTTYLIB = -lncurses
-# WINTTYLIB = -ltermlib
 WINTTYLIB = @WINTTYLIB@
-#
-# libraries for X11
-# If USE_XPM is defined in config.h, you will also need -lXpm here.
-# WINX11LIB = @WINX11LIB@
 WINX11LIB = -lXaw -lXmu -lXext -lXt -lX11
-# WINX11LIB = -lXaw -lXmu -lXt -lX11
-# WINX11LIB = -lXaw -lXmu -lXext -lXt -lXpm -lX11 -lm
-# WINX11LIB = -lXaw -lXmu -lXpm -lXext -lXt -lX11 -lSM -lICE -lm # BSD/OS 2.0
-#
+
 # libraries for Qt
 WINQTLIB = -L$(QTLIBDIR) -lqt
 #
@@ -330,71 +123,19 @@ WINBELIB = -lbe
 # libraries for SDL/GL window port
 WINSDLLIB = @SDL_CONFIG_LIBS@ -lz -lpng
 WINGLLIB = -lGL
-#
-# libraries for proxy
-WINPROXYLIB = `$(WINPROXYCONFIG) --libs`
 
 WINLIB = @WINLIB@
-# Use this declaration if you only want to support the TTY windowing system
-# WINLIB = $(WINTTYLIB)
-# Use this declaration if you want to support the X11 windowing system
-# WINLIB = $(WINTTYLIB) $(WINX11LIB)
-# Use this declaration if you want to support the Qt windowing system
-# WINLIB = $(WINTTYLIB) $(WINQTLIB)
-# Use this declaration to only support the SDL/GL windowing system
-# WINLIB = $(WINGLLIB)
-# Use this declaration if you want to support external windowing systems
-# WINLIB = $(WINTTYLIB) $(WINPROXYLIB)
-# Use this declaration if you want to support all standard windowing systems
-# WINLIB = $(WINTTYLIB) $(WINPROXYLIB) $(WINX11LIB) $(WINQTLIB) \
-#	$(WINGNOMELIB) $(WINSDLLIB) $(WINGLLIB) 
 
-# any other strange libraries your system needs (for Sysunix only -- the more
-# specialized targets should already be right)
-#
-# on HP-UX 8.x, the malloc(3x) routines in libmalloc.a seem to align things
-# better than the malloc(3) ones in libc.a
-# LIBS = -lmalloc
-#
-# DPX/2's also use the malloc(3x) routines.  In addition, if you are building
-# for X11, you must include libinet.a.
-# LIBS = -lmalloc -linet
-#
-# Linux NetHack uses some bsd style ioctl functions, thus it is necessary to
-# use the bsd libs.  (Only if still compiling as BSD in unixconf.h; recent
-# versions compile fine using SYSV without this.)
-# LIBS = -lbsd
-#
-# for CYGWIN32 aka cygwin 1.1.1
-# LIBS = -lcygwin
-#
-# Solaris 2.x seems to work with the following
-# LIBS = -lsocket -lnsl
-#
-# IRIX 4.0.x needs -lsun if NIS (YP) is being used for passwd file lookup
-# LIBS = -lsun
-#
 LIBS =
 
 # make NetHack
 GAME     = slashem
-# GAME     = slashem.prg
 
-# if you defined RANDOM in unixconf.h/tosconf.h since your system did not come
-# with a reasonable random number generator
-# RANDOBJ = random.o
 RANDOBJ =
 
 
 # used by `make depend' to reconstruct this Makefile; you shouldn't need this
 AWK	= nawk
-
-# ----------------------------------------
-#
-# Nothing below this line should have to be changed.
-#
-# Other things that have to be reconfigured are in config.h,
-# {unixconf.h, pcconf.h, tosconf.h}, and possibly system.h
 
 MAKEDEFS = ../util/makedefs
 
@@ -450,12 +191,12 @@ CSOURCES = $(HACKCSRC) $(SYSSRC) $(WINCSRC) $(GENCSRC)
 HACKINCL = align.h amiconf.h artifact.h artilist.h attrib.h beconf.h color.h \
 	config.h config1.h coord.h decl.h def_os2.h display.h dlb.h dungeon.h \
 	edog.h emin.h engrave.h epri.h eshk.h extern.h flag.h func_tab.h \
-	global.h hack.h lev.h macconf.h mfndpos.h micro.h mkroom.h \
+	global.h autoconf.h hack.h lev.h macconf.h mfndpos.h micro.h mkroom.h \
 	monattk.h mondata.h monflag.h monst.h monsym.h obj.h objclass.h \
 	os2conf.h patchlevel.h pcconf.h permonst.h prop.h rect.h region.h rm.h \
 	sp_lev.h spell.h system.h tcap.h timeout.h tosconf.h tradstdc.h \
 	trampoli.h trap.h unixconf.h vault.h vision.h vmsconf.h wintty.h \
-	winX.h winprocs.h wintype.h you.h youprop.h 
+	winX.h winprocs.h wintype.h you.h youprop.h
 
 HSOURCES = $(HACKINCL) date.h onames.h pm.h vis_tab.h\
 		lev_comp.h dgn_comp.h dgn_file.h
@@ -655,7 +396,8 @@ $(CONFIG_H): ../include/config.h ../include/config1.h ../include/tradstdc.h \
 		../include/system.h ../include/unixconf.h ../include/os2conf.h \
 		../include/micro.h ../include/pcconf.h ../include/tosconf.h \
 		../include/amiconf.h ../include/macconf.h ../include/beconf.h \
-		../include/wceconf.h ../include/ntconf.h ../include/nhlan.h
+		../include/wceconf.h ../include/ntconf.h ../include/nhlan.h \
+		../include/autoconf.h
 	touch $(CONFIG_H)
 # hack.h timestamp
 $(HACK_H): ../include/hack.h $(CONFIG_H) ../include/align.h \
@@ -786,20 +528,20 @@ gr_rect.o: $(srcdir)/../win/gem/gr_rect.c ../include/gr_rect.h
 	$(CC) $(CFLAGS) -c $(srcdir)/../win/gem/gr_rect.c
 winproxy.o: $(srcdir)/../win/proxy/winproxy.c $(HACK_H) ../include/patchlevel.h \
 		../include/date.h ../include/winproxy.h #../include/win32api.h
-	$(CC) $(CFLAGS) -c $(srcdir)/../win/proxy/winproxy.c
+	$(CC) $(CFLAGS) $(WINPROXYCFLAGS) -c $(srcdir)/../win/proxy/winproxy.c
 callback.o: $(srcdir)/../win/proxy/callback.c $(HACK_H) ../include/func_tab.h \
 		../include/winproxy.h
-	$(CC) $(CFLAGS) -c $(srcdir)/../win/proxy/callback.c
+	$(CC) $(CFLAGS) $(WINPROXYCFLAGS) -c $(srcdir)/../win/proxy/callback.c
 dlbh.o: $(srcdir)/../win/proxy/dlbh.c $(HACK_H) ../include/dlb.h
-	$(CC) $(CFLAGS) -c $(srcdir)/../win/proxy/dlbh.c
+	$(CC) $(CFLAGS) $(WINPROXYCFLAGS) -c $(srcdir)/../win/proxy/dlbh.c
 mapid.o: $(srcdir)/../win/proxy/mapid.c $(HACK_H) ../include/winproxy.h
-	$(CC) $(CFLAGS) -c $(srcdir)/../win/proxy/mapid.c
+	$(CC) $(CFLAGS) $(WINPROXYCFLAGS) -c $(srcdir)/../win/proxy/mapid.c
 riputil.o: $(srcdir)/../win/proxy/riputil.c $(HACK_H)
-	$(CC) $(CFLAGS) -c $(srcdir)/../win/proxy/riputil.c
+	$(CC) $(CFLAGS) $(WINPROXYCFLAGS) -c $(srcdir)/../win/proxy/riputil.c
 getopt.o: $(srcdir)/../win/proxy/getopt.c $(HACK_H)
-	$(CC) $(CFLAGS) -c $(srcdir)/../win/proxy/getopt.c
+	$(CC) $(CFLAGS) $(WINPROXYCFLAGS) -c $(srcdir)/../win/proxy/getopt.c
 glyphmap.o: $(srcdir)/../win/proxy/glyphmap.c $(HACK_H) ../include/winproxy.h
-	$(CC) $(CFLAGS) -c $(srcdir)/../win/proxy/glyphmap.c
+	$(CC) $(CFLAGS) $(WINPROXYCFLAGS) -c $(srcdir)/../win/proxy/glyphmap.c
 gl_conf.o: $(srcdir)/../win/gl/gl_conf.c $(HACK_H) ../include/dlb.h \
 		../include/patchlevel.h ../include/winGL.h
 	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c $(srcdir)/../win/gl/gl_conf.c
@@ -882,7 +624,7 @@ do_name.o: do_name.c $(HACK_H)
 do_wear.o: do_wear.c $(HACK_H)
 dog.o: dog.c $(HACK_H) ../include/edog.h ../include/emin.h ../include/epri.h
 dogmove.o: dogmove.c $(HACK_H) ../include/mfndpos.h ../include/edog.h \
-		../include/emin.h ../include/epri.h
+		../include/emin.h ../include/epri.h ../include/eleash.h
 dokick.o: dokick.c $(HACK_H) ../include/eshk.h
 dothrow.o: dothrow.c $(HACK_H) ../include/edog.h
 drawing.o: drawing.c $(HACK_H) ../include/tcap.h
