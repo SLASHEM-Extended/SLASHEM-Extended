@@ -3114,16 +3114,6 @@ drown()
 		vision_full_recalc = 1;
 		return(FALSE);
 	}
-	else if (Swimming && !Is_waterlevel(&u.uz)) {
-		if (Punished) {
-			unplacebc();
-			placebc();
-		}
-		u.uinwater = 1;
-		under_water(1);
-		vision_full_recalc = 1;
-		return(FALSE);
-	}
 	if ((Teleportation || can_teleport(youmonst.data)) &&
 		    !u.usleep && (Teleport_control || rn2(3) < Luck+2)) {
 		You("attempt a teleport spell.");	/* utcsri!carroll */
