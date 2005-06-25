@@ -4239,14 +4239,7 @@ lava_effects()
     burn_away_slime();
     if (likes_lava(youmonst.data)) return FALSE;
 
-
-    if (Slimed) {
-	pline("The slime boils away!");
-	Slimed = 0;
-    }
-
     if (!Fire_resistance) {
-
 	if(Wwalking) {
 	    dmg = d(6,6);
 	    pline_The("lava here burns you!");
