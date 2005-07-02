@@ -67,7 +67,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E7F1 [?] [Released by ?]
+ver 0.0.7E7F1 [July 2/2005] [Released by Ali]
 -fixed bug 1155634: charm spell or command undead spell invoke genocide
 -fixed incorrect #ifdef resulting in compilation failure on ANSI only DOS builds
 -fixed bug 1193070: Engraving with a wand of draining keeps illiterate
