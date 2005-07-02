@@ -26,9 +26,11 @@ static NEARDATA const char readable[] = {
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
 
-static char *warnings[] = {
+#if 0
+static const char *warnings[] = {
 	"white", "pink", "red", "ruby", "purple", "black"
 };
+#endif
 
 #if 0
 static void FDECL(wand_explode, (struct obj *));
@@ -51,6 +53,8 @@ doread()
 	char class_list[SIZE(readable) + 3];
 	char *cp = class_list;
 	struct engr *ep = engr_at(u.ux, u.uy);
+	boolean cant_see = Blind;
+	struct obj otemp;
 
 	*cp++ = ALL_CLASSES;
 	*cp++ = ALLOW_FLOOROBJ;
@@ -68,11 +72,16 @@ doread()
 	    return 0;
 	}
 
+#ifdef INVISIBLE_OBJECTS
+	if (scroll->oinvis && !See_invisible)
+	    cant_see = TRUE;
+#endif
+
 	/* KMH -- some rings can be read, even while illiterate */
 	if (scroll->oclass == RING_CLASS) {
-	    char *clr = (char *)0;
+	    const char *clr = (char *)0;
 
-	    if (Blind) {
+	    if (cant_see) {
 		You("cannot see it!");
 		return 0;
 	    }
@@ -82,16 +91,16 @@ doread()
 	    }
 	    if (scroll->dknown && objects[scroll->otyp].oc_name_known)
 		switch (scroll->otyp) {
-		    case RIN_WARNING:
 #if 0	/* Not yet supported under 3.3.1 style warning system */
+		    case RIN_WARNING:
 			if (warnlevel >= 100)
 			    clr = "light blue";
 			else if (warnlevel >= SIZE(warnings))
 			    clr = warnings[SIZE(warnings)-1];
 			else
 			    clr = warnings[warnlevel];
-#endif
 			break;
+#endif
 		    case RIN_MOOD:
 			if (u.ualign.record >= DEVOUT)
 			    clr = "green";	/* well-pleased */
@@ -116,12 +125,15 @@ doread()
 
 	/* outrumor has its own blindness check */
 	if(scroll->otyp == FORTUNE_COOKIE) {
+	    long save_Blinded = Blinded;
 	    if(flags.verbose)
 		You("break up the cookie and throw away the pieces.");
+	    Blinded = cant_see;	/* Treat invisible fortunes as if blind */
 	    outrumor(bcsign(scroll), BY_COOKIE);
-	    if (!Blind) u.uconduct.literate++;
-		if (carried(scroll)) useup(scroll);
-		else useupf(scroll, 1L);
+	    Blinded = save_Blinded;
+	    if (!cant_see) u.uconduct.literate++;
+	    if (carried(scroll)) useup(scroll);
+	    else useupf(scroll, 1L);
 	    return(1);
 #ifdef TOURIST
 	} else if (scroll->otyp == T_SHIRT) {
@@ -146,7 +158,7 @@ doread()
 	    char buf[BUFSZ];
 	    int erosion;
 
-	    if (Blind) {
+	    if (cant_see) {
 		You_cant("feel any Braille writing.");
 		return 0;
 	    }
@@ -176,6 +188,17 @@ doread()
 		pline("Being blind, you cannot read the %s.", what);
 		return(0);
 	    }
+	} else if (cant_see) {
+	    if (scroll->oclass == SPBOOK_CLASS)
+	    {
+		You_cant("read the mystic runes in the invisible spellbook.");
+		return(0);
+	    }
+	    else if (!scroll->dknown)
+	    {
+		You_cant("read the formula on the invisible scroll.");
+		return(0);
+	    }
 	}
 
 	/* Actions required to win the game aren't counted towards conduct */
@@ -193,9 +216,6 @@ doread()
 	}
 	scroll->in_use = TRUE;	/* scroll, not spellbook, now being read */
 	if(scroll->otyp != SCR_BLANK_PAPER) {
-		/* KMH, ethics -- why be cruel to beginner classes?
-		 * These are now part of the illiterate challenge.
-		 */
 	  if(Blind)
 	    pline("As you %s the formula on it, the scroll disappears.",
 			is_silent(youmonst.data) ? "cogitate" : "pronounce");
@@ -209,6 +229,20 @@ doread()
 			is_silent(youmonst.data) ? "understand" : "pronounce");
 	  }
 	}
+	/*
+	 * When reading scrolls of teleportation off the floor special
+	 * care needs to be taken so that the scroll is used up before
+	 * a potential level teleport occurs.
+	 */
+	if (scroll->otyp == SCR_TELEPORTATION) {
+	    otemp = *scroll;
+	    otemp.where = OBJ_FREE;
+	    otemp.nobj = (struct obj *)0;
+	    if (carried(scroll)) useup(scroll);
+	    else if (mcarried(scroll)) m_useup(scroll->ocarry, scroll);
+	    else useupf(scroll, 1L);
+	    scroll = &otemp;
+	}
 	if(!seffects(scroll))  {
 		if(!objects[scroll->otyp].oc_name_known) {
 		    if(known) {
@@ -221,7 +255,8 @@ doread()
 			use_skill(spell_skilltype(scroll->otyp), 
 				(scroll->blessed ? 2 : 1));
 		}
-		if(scroll->otyp != SCR_BLANK_PAPER) {
+		if(scroll->otyp != SCR_BLANK_PAPER &&
+		  scroll->otyp != SCR_TELEPORTATION) {
 		    if (carried(scroll)) useup(scroll);
 		    else if (mcarried(scroll)) m_useup(scroll->ocarry, scroll);
 		    else useupf(scroll, 1L);
@@ -1255,21 +1290,22 @@ register struct obj	*sobj;
 			    maybe_tame(mtmp, sobj);
 		    }
 		}
+		break;
 	case SPE_COMMAND_UNDEAD:
-	    if (u.uswallow) {
-		if (is_undead(u.ustuck->data)) maybe_tame(u.ustuck, sobj);
-	    } else {
-		int i, j, bd = confused ? 5 : 1;
-		struct monst *mtmp;
+		if (u.uswallow) {
+		    if (is_undead(u.ustuck->data)) maybe_tame(u.ustuck, sobj);
+		} else {
+		    int i, j, bd = confused ? 5 : 1;
+		    struct monst *mtmp;
 
-		for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
-		    if (!isok(u.ux + i, u.uy + j)) continue;
-		    if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0 &&
-			    is_undead(mtmp->data))
-			maybe_tame(mtmp, sobj);
+		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0 &&
+				is_undead(mtmp->data))
+			    maybe_tame(mtmp, sobj);
+		    }
 		}
 		break;
-	    }
 	case SCR_GENOCIDE:
 		You("have found a scroll of genocide!");
 		known = TRUE;

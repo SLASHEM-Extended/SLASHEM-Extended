@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 
-/* #define ALPHA */	/* if an alpha-test copy */
+#define ALPHA		/* if an alpha-test copy */
 #define BETA		/* if an alpha- or beta-test copy */
 
 /*
@@ -200,6 +200,15 @@ typedef xchar	boolean;		/* 0 or 1 */
 #else
 #include "ntconf.h"
 #endif
+#endif
+
+#ifdef AUTOCONF
+/*
+ * When using GNU autoconf to configure, the switches are output to
+ * autoconf.h which should override the defaults set earlier in
+ * config.h and *conf.h
+ */
+#include "autoconf.h"
 #endif
 
 #ifndef FILE_AREAS

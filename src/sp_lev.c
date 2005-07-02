@@ -165,6 +165,7 @@ rndtrap()
  */
 #define DRY	0x1
 #define WET	0x2
+#define MOLTEN	0x4
 
 STATIC_DCL boolean FDECL(is_ok_location, (SCHAR_P, SCHAR_P, int));
 
@@ -283,7 +284,11 @@ register int humidity;
 		return TRUE;
 	}
 	if (humidity & WET) {
-	    if (is_pool(x,y) || is_lava(x,y))
+	    if (is_pool(x,y))
+		return TRUE;
+	}
+	if (humidity & MOLTEN) {
+	    if (is_lava(x,y))
 		return TRUE;
 	}
 	return FALSE;
@@ -884,10 +889,12 @@ struct mkroom	*croom;
 	    get_room_loc(&x, &y, croom);
 	else {
 	    boolean found;
-	    if (!pm || !is_swimmer(pm))
+	    if (!pm || !is_swimmer(pm) && !likes_lava(pm))
 		found = get_location(&x, &y, DRY);
 	    else if (pm->mlet == S_EEL)
 		found = get_location(&x, &y, WET);
+	    else if (likes_lava(pm))
+		found = get_location(&x, &y, DRY|MOLTEN);
 	    else
 		found = get_location(&x, &y, DRY|WET);
 	    if (!found)
@@ -1054,8 +1061,11 @@ struct mkroom	*croom;
 	}
 
 	/*	corpsenm is "empty" if -1, random if -2, otherwise specific */
-	if (o->corpsenm == NON_PM - 1) otmp->corpsenm = rndmonnum();
-	else if (o->corpsenm != NON_PM) otmp->corpsenm = o->corpsenm;
+	if (o->corpsenm != NON_PM) {
+	    if (o->corpsenm == NON_PM - 1) otmp->corpsenm = rndmonnum();
+	    else otmp->corpsenm = o->corpsenm;
+	    otmp->owt = weight(otmp);
+	}
 
 	if (otmp->otyp == EGG && In_spiders(&u.uz)) {
 	    otmp->corpsenm = PM_GIANT_SPIDER;

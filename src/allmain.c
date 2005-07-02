@@ -31,11 +31,8 @@ moveloop()
     char ch;
     int abort_lev;
 #endif
-    char    c;
     int moveamt = 0, wtcap = 0, change = 0;
     boolean didmove = FALSE, monscanmove = FALSE;
-    int i; /*LSZ/WWA Wizard Patch 7/96 for spell knowledge decrement */
- 
 
     flags.moonphase = phase_of_the_moon();
     if(flags.moonphase == FULL_MOON) {
@@ -70,6 +67,10 @@ moveloop()
 #endif
 
     (void) encumber_msg(); /* in case they auto-picked up something */
+    if (defer_see_monsters) {
+	defer_see_monsters = FALSE;
+	see_monsters();
+    }
 
     u.uz0.dlevel = u.uz.dlevel;
     youmonst.movement = NORMAL_SPEED;	/* give the hero some movement points */
@@ -234,14 +235,13 @@ moveloop()
 			}
 		    }
 
-
-		    if (tech_inuse(T_CHI_HEALING) && (u.uen > 0) 
-		    		&& (u.uhp < u.uhpmax)) {
+		    if (!u.uinvulnerable && u.uen > 0 && u.uhp < u.uhpmax &&
+			    tech_inuse(T_CHI_HEALING)) {
 			u.uen--;
 			u.uhp++;
 			flags.botl = 1;
 		    }
-		    
+
 		    /* moving around while encumbered is hard work */
 		    if (wtcap > MOD_ENCUMBER && u.umoved) {
 			if(!(wtcap < EXT_ENCUMBER ? moves%30 : moves%10)) {
@@ -278,7 +278,7 @@ moveloop()
 			    tele();
 			    if (u.ux != old_ux || u.uy != old_uy) {
 				if (!next_to_u()) {
-				    check_leash(old_ux, old_uy);
+				    check_leash(&youmonst, old_ux, old_uy, TRUE);
 				}
 #ifdef REDO
 				/* clear doagain keystrokes */

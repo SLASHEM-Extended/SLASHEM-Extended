@@ -274,6 +274,14 @@ static struct Comp_Opt
 						SET_IN_GAME },
 	{ "dogname",  "the name of your (first) dog (e.g., dogname:Fang)",
 						PL_PSIZ, DISP_IN_GAME },
+#ifdef DUMP_LOG
+	{ "dumpfile", "where to dump data (e.g., dumpfile:/tmp/dump.nh)",
+#ifdef DUMP_FN
+						PL_PSIZ, DISP_IN_GAME },
+#else
+						PL_PSIZ, SET_IN_GAME },
+#endif
+#endif
 	{ "dungeon",  "the symbols to use in drawing the dungeon map",
 						MAXDCHARS+1, SET_IN_FILE },
 	{ "effects",  "the symbols to use in drawing special effects",
@@ -1000,7 +1008,7 @@ const char *optn;
 	if (!initial) {
 		Sprintf(buf, "%lu.%lu.%lu", FEATURE_NOTICE_VER_MAJ,
 			FEATURE_NOTICE_VER_MIN, FEATURE_NOTICE_VER_PATCH);
-		pline("Feature change alerts disabled for NetHack %s features and prior.",
+		pline("Feature change alerts disabled for Slash'EM %s features and prior.",
 			buf);
 	}
 	return 1;
@@ -1125,6 +1133,10 @@ char *str;
    struct menucoloring *tmp;
    char *tmps, *cs = strchr(str, '=');
    const char *err = (char *)0;
+#ifdef POSIX_REGEX
+   int errnum;
+   char errbuf[80];
+#endif
    
    if (!cs || !str) return FALSE;
    
@@ -1168,12 +1180,22 @@ char *str;
    
    tmp = (struct menucoloring *)alloc(sizeof(struct menucoloring));
 #ifdef USE_REGEX_MATCH
+# ifdef GNU_REGEX
    tmp->match.translate = 0;
    tmp->match.fastmap = 0;
    tmp->match.buffer = 0;
    tmp->match.allocated = 0;
    tmp->match.regs_allocated = REGS_FIXED;
    err = re_compile_pattern(tmps, strlen(tmps), &tmp->match);
+# else
+#  ifdef POSIX_REGEX
+   errnum = regcomp(&tmp->match, tmps, REG_EXTENDED | REG_NOSUB);
+   if (errnum != 0) {                                                                                                                                                                                                               
+      regerror(errnum, &tmp->match, errbuf, sizeof(errbuf));
+      err = errbuf;
+   }
+#  endif  
+# endif  
 #else
    tmp->match = (char *)alloc(strlen(tmps)+1);
    (void) memcpy((genericptr_t)tmp->match, (genericptr_t)tmps, strlen(tmps)+1);
@@ -1321,6 +1343,19 @@ boolean tinitial, tfrom_file;
 			nmcpy(dogname, op, PL_PSIZ);
 		return;
 	}
+
+#ifdef DUMP_LOG
+	fullname = "dumpfile";
+	if (match_optname(opts, fullname, 3, TRUE)) {
+#ifndef DUMP_FN
+		if (negated) bad_negation(fullname, FALSE);
+		else if ((op = string_for_opt(opts, !tfrom_file)) != 0
+			&& strlen(op) > 1)
+			nmcpy(dump_fn, op, PL_PSIZ);
+#endif
+		return;
+       }
+#endif
 
 	fullname = "horsename";
 	if (match_optname(opts, fullname, 5, TRUE)) {
@@ -2563,7 +2598,6 @@ register char *opts;
 {
 	register char *op;
 	boolean negated;
-	int i;
 	const char *fullname;
 
 	if (strlen(opts) > BUFSZ/2) {
@@ -2631,7 +2665,6 @@ parsetilesetopt(opts)
 register char *opts;
 {
 	register char *op;
-	unsigned num;
 	boolean negated;
 	int i;
 	const char *fullname;
@@ -3408,6 +3441,10 @@ char *buf;
 	}
 	else if (!strcmp(optname, "dogname")) 
 		Sprintf(buf, "%s", dogname[0] ? dogname : none );
+#ifdef DUMP_LOG
+	else if (!strcmp(optname, "dumpfile"))
+		Sprintf(buf, "%s", dump_fn[0] ? dump_fn: none );
+#endif
 	else if (!strcmp(optname, "dungeon"))
 		Sprintf(buf, "%s", to_be_done);
 	else if (!strcmp(optname, "effects"))
@@ -3447,6 +3484,8 @@ char *buf;
 		Sprintf(buf, "%s", pl_fruit);
 	else if (!strcmp(optname, "gender"))
 		Sprintf(buf, "%s", rolestring(flags.initgend, genders, adj));
+	else if (!strcmp(optname, "ghoulname")) 
+		Sprintf(buf, "%s", ghoulname[0] ? ghoulname : none);
 	else if (!strcmp(optname, "horsename")) 
 		Sprintf(buf, "%s", horsename[0] ? horsename : none);
 	else if (!strcmp(optname, "map_mode"))
@@ -3609,6 +3648,8 @@ char *buf;
 			iflags.wc_backgrnd_status  ? iflags.wc_backgrnd_status : defbrief,
 			iflags.wc_foregrnd_text    ? iflags.wc_foregrnd_text : defbrief,
 			iflags.wc_backgrnd_text    ? iflags.wc_backgrnd_text : defbrief);
+	else if (!strcmp(optname, "wolfname")) 
+		Sprintf(buf, "%s", wolfname[0] ? wolfname : none);
 #ifdef PREFIXES_IN_USE
 	else {
 	    for (i = 0; i < PREFIX_COUNT; ++i)

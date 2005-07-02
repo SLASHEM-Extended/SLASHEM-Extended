@@ -11,31 +11,13 @@ There is an overhead associated with the NhExt protocol and more
 information needs to be shared (since less can be assumed). This
 takes time to do, especially during startup.
 
-The following configurations currently exist:
-
-A. Plug-in window interfaces
-
-In this configuration the game itself is built with the proxy interface
-as a window interface. Typically just two windowing systems will be
-installed in the main executable - tty and proxy. The tty interface
-should be the default windowing system.
+To support external window interfaces, the game itself is built with
+the proxy interface as a window interface. Typically just two windowing
+systems will be installed in the main executable - tty and proxy.
+The tty interface should be the default windowing system.
 
 Each windowing system which needs to be supported is then supplied
 as a plug-in window interface.
-
-The game and plug-in interface consist of the following systems:
-
-Game:
-	WINPROXY	Game side proxy support
-	PROXYCOM	Common proxy support
-	PROXYUTL	Interfaces between proxy and the game
-	NHWIN		Tile support
-	WINTTY		TTY window interface
-	HACK		The game core
-
-Plug-in interface:
-	WINDOW		The window interface (eg., GTK)
-	NHPROXY		Plug-in side proxy support
 
 To build:
 
@@ -54,8 +36,8 @@ To build:
 
 	   Add the following to WINSRC, WINOBJ, and WINLIB and compile:
 
-	    [WINSRC]   $(WINTTYSRC) $(WINPROXYSRC) $(PROXYUTLSRC) $(PROXYCOMSRC)
-	    [WINOBJ]   $(WINTTYOBJ) $(WINPROXYOBJ) $(PROXYUTLOBJ) $(PROXYCOMOBJ)
+	    [WINSRC]   $(WINTTYSRC) $(WINPROXYSRC)
+	    [WINOBJ]   $(WINTTYOBJ) $(WINPROXYOBJ)
 	    [WINLIB]   $(WINTTYLIB) $(WINPROXYLIB)
 
 	   This will give you an executable supporting both tty and plug-in
@@ -67,10 +49,8 @@ To build:
 
 	   [MS-Windows]
 
-	   Change the definition of USE_GTK and USE_PROXY as follows and
-	   compile:
+	   Change the definition of USE_PROXY as follows and compile:
 
-	    USE_GTK = N
 	    USE_PROXY = Y
 
 	   This will give you an executable supporting both tty and plug-in
@@ -81,13 +61,7 @@ To build:
 	   appropriate documentation in ../../sys/winnt for the remainder of
 	   the installation process.
 
-	5. Build proxy library by "make nhproxy.a" in src
-
-	6. Follow the instructions in ../../win/<port> to build an external
-	   window interface for the relevant windowing systems you want to
-	   make available (and which support external interfaces).
-
-	7. If you want to enable users on remote computers to play games
+	5. If you want to enable users on remote computers to play games
 	   on your computer over the network, then you need to configure
 	   your system for this. The details of this will vary from system
 	   to system, but this is how you do it for systems running xinetd:
@@ -138,13 +112,3 @@ To build:
 
 	   e. Cause xinetd to re-read its configuration files. See the
 	      xinetd manual page for details.
-
-B. Proxified window interfaces
-
-This configuration uses dual processes (which has the advantage of
-allowing the windowing interface to run without elevated privileges -
-necessary for GTK).  It is somewhat simpler than plug-in window
-interfaces but is much less flexible.
-
-To build these interfaces follow the instructions in the directory
-containing the relevant window interface (currently only GTK).

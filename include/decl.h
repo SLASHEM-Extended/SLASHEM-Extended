@@ -207,6 +207,9 @@ E const char *delayed_killer;
 E long done_money;
 #endif
 E char killer_buf[BUFSZ];
+#ifdef DUMP_LOG
+E char dump_fn[];		/* dumpfile name (dump patch) */
+#endif
 E const char *configfile;
 E NEARDATA char plname[PL_NSIZ];
 E NEARDATA char dogname[];
@@ -251,6 +254,7 @@ E NEARDATA boolean stoned;
 E NEARDATA boolean unweapon;
 E NEARDATA boolean mrg_to_wielded;
 E NEARDATA struct obj *current_wand;
+E NEARDATA boolean defer_see_monsters;
 
 E NEARDATA boolean in_steed_dismounting;
 

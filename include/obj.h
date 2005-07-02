@@ -117,9 +117,18 @@ struct obj {
 	/* in order to prevent alignment problems oextra should
 	   be (or follow) a long int */
 	long owornmask;
-	long oextra[1];		/* used for name of ordinary objects - length
-				   is flexible; amount for tmp gold objects */
+	long oextra[1];		/* object dependent info */
 };
+
+/*
+ * Note that oextra[] may correspond to any of a number of types, which
+ * are indicated by some of the other fields.
+ *	otyp		Condition			Attached type
+ *	----		---------			-------------
+ *	corpse,statue	oattached == OATTACHED_MONST	struct monst
+ *	corpse		oattached == OATTACHED_M_ID	unsigned
+ *	leash		leashmon != 0			struct eleash
+ */
 
 #define newobj(xl)	(struct obj *)alloc((unsigned)(xl) + sizeof(struct obj))
 #define ONAME(otmp)	(((char *)(otmp)->oextra) + (otmp)->oxlth)

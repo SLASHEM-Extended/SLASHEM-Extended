@@ -192,7 +192,8 @@ forcelock()	/* try to force a locked chest */
 		    chest_shatter_msg(otmp);
 		    if (costly)
 		        loss += stolen_value(otmp, u.ux, u.uy,
-					     (boolean)shkp->mpeaceful, TRUE);
+					     (boolean)shkp->mpeaceful, TRUE,
+					     TRUE);
 		    if (otmp->quan == 1L) {
 			obfree(otmp, (struct obj *) 0);
 			continue;
@@ -209,7 +210,7 @@ forcelock()	/* try to force a locked chest */
 
 	    if (costly)
 		loss += stolen_value(xlock.box, u.ux, u.uy,
-					     (boolean)shkp->mpeaceful, TRUE);
+				     (boolean)shkp->mpeaceful, TRUE, TRUE);
 	    if(loss) You("owe %ld %s for objects destroyed.", loss, currency(loss));
 	    delobj(xlock.box);
 	}
@@ -281,14 +282,15 @@ reset_pick()
 #ifdef OVLB
 
 int
-pick_lock(pick) /* pick a lock with a given object */
-	register struct	obj	*pick;
+pick_lock(pickp) /* pick a lock with a given object */
+	struct	obj	**pickp;
 {
 	int picktyp, c, ch;
 	coord cc;
 	int key;
 	struct rm	*door;
 	struct obj	*otmp;
+	struct	obj	*pick = *pickp;
 	char qbuf[QBUFSZ];
 
 	picktyp = pick->otyp;
@@ -386,32 +388,33 @@ pick_lock(pick) /* pick a lock with a given object */
 		    }
 #endif
 		    switch(picktyp) {
-	    	/* KMH, balance patch -- blessed unlockers and artifacts don't break */
 #ifdef TOURIST
 			case CREDIT_CARD:
-			    if(!rn2(20) && !pick->blessed &&
-			    		!pick->oartifact) {                            
-					Your("credit card breaks in half!");
-					useup(pick);
-					return(1);
+			    if(!rn2(20) && !pick->blessed && !pick->oartifact) {
+				Your("credit card breaks in half!");
+				useup(pick);
+				*pickp = (struct obj *)0;
+				return(1);
 			    }
 			    ch = ACURR(A_DEX) + 20*Role_if(PM_ROGUE);
 			    break;
 #endif
 			case LOCK_PICK:
 			    if(!rn2(Role_if(PM_ROGUE) ? 40 : 30) &&
-			    		!pick->blessed && !pick->oartifact) {                            
-					You("break your pick!");
-					useup(pick);
-					return(1);
+			    		!pick->blessed && !pick->oartifact) {
+				You("break your pick!");
+				useup(pick);
+				*pickp = (struct obj *)0;
+				return(1);
 			    }
 			    ch = 4*ACURR(A_DEX) + 25*Role_if(PM_ROGUE);
 			    break;
 			case SKELETON_KEY:
-                if(!rn2(15) && !pick->blessed && !pick->oartifact) {
-					Your("key didn't quite fit the lock and snapped!");
-					useup(pick);
-					return(1);
+			    if(!rn2(15) && !pick->blessed && !pick->oartifact) {
+				Your("key didn't quite fit the lock and snapped!");
+				useup(pick);
+				*pickp = (struct obj *)0;
+				return(1);
 			    }
 			    ch = 75 + ACURR(A_DEX);
 			    break;
@@ -487,32 +490,34 @@ pick_lock(pick) /* pick a lock with a given object */
 		    if(c == 'n') return(0);
 
 		    switch(picktyp) {
-	    	/* KMH, balance patch -- blessed unlockers and artifacts don't break */
 #ifdef TOURIST
 			case CREDIT_CARD:
-			    if(!rn2(Role_if(PM_TOURIST) ? 30 : 20) && !pick->blessed &&
-			    		!pick->oartifact) {
-					You("break your card off in the door!");
-					useup(pick);
-					return(0);
+			    if(!rn2(Role_if(PM_TOURIST) ? 30 : 20) &&
+				    !pick->blessed && !pick->oartifact) {
+				You("break your card off in the door!");
+				useup(pick);
+				*pickp = (struct obj *)0;
+				return(0);
 			    }
 			    ch = 2*ACURR(A_DEX) + 20*Role_if(PM_ROGUE);
 			    break;
 #endif
 			case LOCK_PICK:
-			    if(!rn2(Role_if(PM_ROGUE) ? 40 : 30) && !pick->blessed &&
-			    		!pick->oartifact) {
-					You("break your pick!");
-					useup(pick);
-					return(0);
+			    if(!rn2(Role_if(PM_ROGUE) ? 40 : 30) &&
+				    !pick->blessed && !pick->oartifact) {
+				You("break your pick!");
+				useup(pick);
+				*pickp = (struct obj *)0;
+				return(0);
 			    }
 			    ch = 3*ACURR(A_DEX) + 30*Role_if(PM_ROGUE);
 			    break;
 			case SKELETON_KEY:
-				if(!rn2(15) && !pick->blessed && !pick->oartifact) {
-					Your("key wasn't designed for this door and broke!");
-					useup(pick);
-					return(0);
+			    if(!rn2(15) && !pick->blessed && !pick->oartifact) {
+				Your("key wasn't designed for this door and broke!");
+				useup(pick);
+				*pickp = (struct obj *)0;
+				return(0);
 			    }
 			    ch = 70 + ACURR(A_DEX);
 			    break;
@@ -568,7 +573,7 @@ doforce()		/* try to force a chest with your weapon */
 	    uwep->otyp == CREDIT_CARD ||
 #endif
 	    uwep->otyp == SKELETON_KEY) {
-	    	pick_lock(uwep);
+	    	return pick_lock(&uwep);
 	/* not a lightsaber or lockpicking device*/
 	} else if(!uwep ||     /* proper type test */
 	   (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep) &&
@@ -705,7 +710,6 @@ doforce()		/* try to force a chest with your weapon */
 			You("force your %s into a crack and pry.", xname(uwep));
 		    else
 			You("start bashing it with your %s.", xname(uwep));
-		    xlock.box = otmp;
 #ifdef LIGHTSABERS
 		    if (is_lightsaber(uwep))
 			xlock.chance = uwep->spe + 38;

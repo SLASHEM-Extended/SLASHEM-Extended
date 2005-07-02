@@ -1774,7 +1774,7 @@ $(OBJ)\allmain.o  : $(SRC)\$(CB) $(HACK_H)
 	$(SRCCC)
 $(OBJ)\alloc.o    : $(SRC)\$(CB) $(CONFIG_H)
 	$(SRCCC)
-$(OBJ)\apply.o    : $(SRC)\$(CB) $(HACK_H) $(INCL)\edog.h
+$(OBJ)\apply.o    : $(SRC)\$(CB) $(HACK_H) $(INCL)\edog.h $(INCL)\eleash.h
 	$(SRCCC)
 $(OBJ)\artifact.o : $(SRC)\$(CB) $(HACK_H) $(INCL)\artifact.h $(INCL)\artilist.h
 	$(SRCCC)

@@ -463,9 +463,10 @@ unpoly_obj(arg, timeout)
 	genericptr_t arg;
 	long timeout;
 {
-	struct obj *obj;
-	int oldobj;
-	boolean silent = (timeout != monstermoves);     /* unpoly'ed while away */
+	struct obj *obj, *otmp, *otmp2;
+	int oldobj, depthin;
+	boolean silent = (timeout != monstermoves),     /* unpoly'ed while away */
+		explodes;
 
 	obj = (struct obj *) arg;
 	if (!is_hazy(obj)) return;
@@ -476,8 +477,33 @@ unpoly_obj(arg, timeout)
 
 	(void) stop_timer(UNPOLY_OBJ, (genericptr_t) obj);
 
-	(void) poly_obj(obj, oldobj);
+	obj = poly_obj(obj, oldobj);
 
+	if (obj->otyp == WAN_CANCELLATION || Is_mbag(obj)) {
+	    otmp = obj;
+	    depthin = 0;
+	    explodes = FALSE;
+
+	    while (otmp->where == OBJ_CONTAINED) {
+		otmp = otmp->ocontainer;
+		if (otmp->otyp == BAG_OF_HOLDING) {
+		    explodes = mbag_explodes(obj, depthin);
+		    break;
+		}
+		depthin++;
+	    }
+
+	    if (explodes) {
+		otmp2 = otmp;
+		while (otmp2->where == OBJ_CONTAINED) {
+		    otmp2 = otmp2->ocontainer;
+
+		    if (otmp2->otyp == BAG_OF_HOLDING) 
+			otmp = otmp2;
+		}
+		destroy_mbag(otmp, silent);
+	    }
+	}	
 	return;
 }
 #endif /* UNPOLYPILE */
@@ -534,11 +560,11 @@ const char *change_fmt;
  */
 
 int
-mon_spec_poly(mtmp, type, time, polyspot, transform_msg, system_shock,
+mon_spec_poly(mtmp, type, when, polyspot, transform_msg, system_shock,
 	your_fault)
 struct monst *mtmp;
 struct permonst *type;
-long time;
+long when;
 boolean polyspot;
 boolean transform_msg;
 boolean system_shock;
@@ -561,7 +587,7 @@ boolean your_fault;
 	    /* Stop any old timers.   */
 	    (void) stop_timer(UNPOLY_MON, (genericptr_t) mtmp);
 	    /* Lengthen unpolytime - was 500,500  for player */
-	    (void) start_timer(time ? time : rn1(1000, 1000), TIMER_MONSTER,
+	    (void) start_timer(when ? when : rn1(1000, 1000), TIMER_MONSTER,
 		    UNPOLY_MON, (genericptr_t) mtmp);
 	}
 	return i;
@@ -642,7 +668,7 @@ bomb_blow(arg, timeout)
 genericptr_t arg;
 long timeout;
 {
-	struct obj *bomb, *otmp;
+	struct obj *bomb;
 	xchar x,y;
 	boolean silent, underwater;
 	struct monst *mtmp = (struct monst *)0;
@@ -1694,9 +1720,9 @@ cleanup_burn(arg, expire_time)
  */
 
 void 
-burn_faster(obj, time) 
+burn_faster(obj, adj) 
 struct obj *obj;
-long time;
+long adj;
 {
 
   if (!obj->lamplit) {
@@ -1704,7 +1730,7 @@ long time;
     return;
   }
 
-  accelerate_timer(BURN_OBJECT, obj, time);
+  accelerate_timer(BURN_OBJECT, obj, adj);
 }
 
 void
@@ -2188,10 +2214,10 @@ write_timer(fd, timer)
  */
 
 STATIC_OVL void
-accelerate_timer(func_index, arg, time) 
+accelerate_timer(func_index, arg, adj) 
 short func_index;
 genericptr_t arg;
-long time;
+long adj;
 { 
     timer_element *timer;
 
@@ -2200,7 +2226,7 @@ long time;
 
     timer = remove_timer(&timer_base, func_index, arg);    
 
-    for (; time > 0; time--) {
+    for (; adj > 0; adj--) {
       timer->timeout--;
 
       if (timer->timeout <= monstermoves) {
@@ -2211,9 +2237,8 @@ long time;
       }
     }
 
-    if (time == 0) {
+    if (adj == 0)
       insert_timer(timer);
-    }    
 }
 
 /*

@@ -607,10 +607,6 @@ clear_level_structures()
 	level.flags.arboreal = 0;
 	level.flags.is_maze_lev = 0;
 	level.flags.is_cavernous_lev = 0;
-	/* KMH -- more level properties */
-	level.flags.arboreal = 0;
-
-	/* [DS] - Michael Clarke's Lethe flag */
 	level.flags.lethe = 0;
 
 	nroom = 0;

@@ -497,7 +497,7 @@ int
 can_twoweapon()
 {
 	char buf[BUFSZ];
-	char *what;
+	const char *what;
 	boolean disallowed_by_race;
 	boolean disallowed_by_role;
 	struct obj *otmp;

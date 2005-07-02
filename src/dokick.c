@@ -406,7 +406,7 @@ struct obj *obj;
 		You_hear("a muffled %s.", result);
 		if (costly)
 		    loss += stolen_value(otmp, x, y,
-					 (boolean)shkp->mpeaceful, TRUE);
+					 (boolean)shkp->mpeaceful, TRUE, TRUE);
 		if (otmp->quan > 1L)
 		    useup(otmp);
 		else {
@@ -607,7 +607,7 @@ xchar x, y;
 		if(isgold)
 		    costly_gold(x, y, kickobj->quan);
 		else (void)stolen_value(kickobj, x, y,
-					(boolean)shkp->mpeaceful, FALSE);
+					(boolean)shkp->mpeaceful, FALSE, FALSE);
 	    }
 	    return 1;
 	}
@@ -618,7 +618,7 @@ xchar x, y;
 	    if(isgold)
 		costly_gold(x, y, kickobj->quan);
 	    else (void)stolen_value(kickobj, x, y,
-				    (boolean)shkp->mpeaceful, FALSE);
+				    (boolean)shkp->mpeaceful, FALSE, FALSE);
 	}
 
 	if(flooreffects(kickobj,bhitpos.x,bhitpos.y,"fall")) return(1);
@@ -1268,7 +1268,7 @@ xchar x, y, dlev;
 		    price += stolen_value(obj, x, y,
 				(costly_spot(u.ux, u.uy) &&
 				 index(u.urooms, *in_rooms(x, y, SHOPBASE))),
-				TRUE);
+				TRUE, FALSE);
 		    /* set obj->no_charge to 0 */
 		    if (Has_contents(obj))
 			picked_container(obj);	/* does the right thing */
@@ -1380,14 +1380,14 @@ boolean shop_floor_obj;
 	if(unpaid || shop_floor_obj) {
 	    if(unpaid) {
 		subfrombill(otmp, shop_keeper(*u.ushops));
-		(void)stolen_value(otmp, u.ux, u.uy, TRUE, FALSE);
+		(void)stolen_value(otmp, u.ux, u.uy, TRUE, FALSE, FALSE);
 	    } else {
 		ox = otmp->ox;
 		oy = otmp->oy;
 		(void)stolen_value(otmp, ox, oy,
 			  (costly_spot(u.ux, u.uy) &&
 			      index(u.urooms, *in_rooms(ox, oy, SHOPBASE))),
-			  FALSE);
+			  FALSE, FALSE);
 	    }
 	    /* set otmp->no_charge to 0 */
 	    if(container)

@@ -319,8 +319,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,0,7,6
- PRODUCTVERSION 0,0,7,6
+ FILEVERSION 0,0,8,0
+ PRODUCTVERSION 0,0,8,0
  FILEFLAGSMASK 0x1fL
 #ifdef _DEBUG
  FILEFLAGS 0x9L
@@ -336,13 +336,13 @@ BEGIN
         BLOCK "040904b0"
         BEGIN
             VALUE "FileDescription", "Slash'EM for Windows - Native Graphical Interface\0"
-            VALUE "FileVersion", "0.0.7E6\0"
+            VALUE "FileVersion", "0.0.8\0"
             VALUE "InternalName", "SlashEM\0"
             VALUE "LegalCopyright", "Copyright (C) 1985 - 2003.  By Stichting Mathematisch Centrum and M. Stephenson.  See license for details.\0"
             VALUE "OriginalFilename", "slashem.exe\0"
             VALUE "PrivateBuild", "0\0"
             VALUE "ProductName", "SlashEM\0"
-            VALUE "ProductVersion", "0.0.7E6\0"
+            VALUE "ProductVersion", "0.0.8\0"
         END
     END
     BLOCK "VarFileInfo"

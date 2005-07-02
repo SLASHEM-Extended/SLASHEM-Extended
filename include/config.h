@@ -54,7 +54,6 @@
 /* #define X11_GRAPHICS */	/* X11 interface */
 /* #define QT_GRAPHICS */	/* Qt Interface */
 /* #define KDE */		/* KDE Interface */
-/* #define GTK_GRAPHICS */	/* GTK Interface */
 /* #define GNOME_GRAPHICS */	/* Gnome interface */
 /* #define PROXY_GRAPHICS */	/* Plug-in interfaces */
 /* #define MSWIN_GRAPHICS */	/* Windows NT, CE, Graphics */
@@ -120,15 +119,6 @@
 # define GRAPHIC_TOMBSTONE	/* Use graphical tombstone (rip.ppm) */
 # ifndef DEFAULT_WINDOW_SYS
 #  define DEFAULT_WINDOW_SYS "Gnome"
-# endif
-#endif
-
-#ifdef GTK_GRAPHICS
-# define USE_XPM		/* Use XPM format for images (required) */
-# define GRAPHIC_TOMBSTONE	/* Use graphical tombstone (rip.xpm) */
-/* # define GTK_PROXY */	/* Build for proxy interface */
-# ifndef DEFAULT_WINDOW_SYS
-#  define DEFAULT_WINDOW_SYS "gtk"
 # endif
 #endif
 

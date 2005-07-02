@@ -278,6 +278,7 @@ boolean ghostly;
 				mtmp->mhpmax = DEFUNCT_MONSTER;	
 			}
 		}
+		if (mtmp->isshk) restore_shk_bill(fd, mtmp);
 		if(mtmp->minvent) {
 			struct obj *obj;
 			mtmp->minvent = restobjchn(fd, ghostly, FALSE);
@@ -409,6 +410,13 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	migrating_objs = restobjchn(fd, FALSE, FALSE);
 	migrating_mons = restmonchn(fd, FALSE);
 	mread(fd, (genericptr_t) mvitals, sizeof(mvitals));
+
+	/*
+	 * There are some things after this that can have unintended display
+	 * side-effects too early in the game.
+	 * Disable see_monsters() here, re-enable it at the top of moveloop()
+	 */
+	defer_see_monsters = TRUE;
 
 	/* this comes after inventory has been loaded */
 	for(otmp = invent; otmp; otmp = otmp->nobj)
@@ -564,7 +572,6 @@ dorecover(fd)
 register int fd;
 {
 	unsigned int stuckid = 0, steedid = 0;	/* not a register */
-	struct monst *stucktmp, *steedtmp;
 	xchar ltmp;
 	int rtmp;
 	struct obj *otmp;

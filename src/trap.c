@@ -1423,8 +1423,11 @@ int style;
 		if ((mtmp = m_at(bhitpos.x, bhitpos.y)) != 0) {
 			if (otyp == BOULDER && throws_rocks(mtmp->data)) {
 			    if (rn2(3)) {
-				pline("%s snatches the boulder.",
-					Monnam(mtmp));
+				if (cansee(bhitpos.x, bhitpos.y))
+				    pline("%s snatches the boulder.",
+					    Monnam(mtmp));
+				else
+				    You_hear("a rumbling stop abruptly.");
 				singleobj->otrapped = 0;
 				(void) mpickobj(mtmp, singleobj);
 				used_up = TRUE;
@@ -2972,8 +2975,6 @@ STATIC_OVL boolean
 emergency_disrobe(lostsome)
 boolean *lostsome;
 {
-	/* WAC Can drop your purse */
-	struct obj *u_gold = 0;
 	int invc = inv_cnt();
 
 	while (near_capacity() > (Punished ? UNENCUMBERED : SLT_ENCUMBER)) {
@@ -3046,7 +3047,7 @@ drown()
 {
 	boolean inpool_ok = FALSE, crawl_ok;
 	int i, x, y;
-	char *sparkle = level.flags.lethe? "sparkling " : "";
+	const char *sparkle = level.flags.lethe? "sparkling " : "";
 
 	/* happily wading in the same contiguous pool */
 	if (u.uinwater && is_pool(u.ux-u.dx,u.uy-u.dy) &&
@@ -3108,16 +3109,6 @@ drown()
 			placebc();
 		}
 		vision_recalc(2);	/* unsee old position */
-		u.uinwater = 1;
-		under_water(1);
-		vision_full_recalc = 1;
-		return(FALSE);
-	}
-	else if (Swimming && !Is_waterlevel(&u.uz)) {
-		if (Punished) {
-			unplacebc();
-			placebc();
-		}
 		u.uinwater = 1;
 		under_water(1);
 		vision_full_recalc = 1;
@@ -3312,7 +3303,7 @@ struct trap *ttmp;
 	    u.umoved = TRUE;
 	    newsym(u.ux0, u.uy0);
 	    vision_recalc(1);
-	    check_leash(u.ux0, u.uy0);
+	    check_leash(&youmonst, u.ux0, u.uy0, FALSE);
 	    if (Punished) move_bc(0, bc, bx, by, cx, cy);
 	    spoteffects(FALSE);	/* dotrap() */
 	    exercise(A_WIS, FALSE);
@@ -3520,8 +3511,10 @@ struct trap *ttmp;
 	bad_tool = (obj->cursed ||
 				(obj->otyp != POT_WATER));
 	fails = try_disarm(ttmp, bad_tool);
-
 	if (fails < 2) return fails;
+
+	useup(obj);
+	makeknown(POT_WATER);
 	You("manage to extinguish the pilot light!");
 	cnv_trap_obj(POT_OIL, 4 - rnl(4), ttmp);
 	more_experienced(1, 5);
@@ -3963,7 +3956,7 @@ boolean disarm;
 
 			  if(costly)
 			      loss += stolen_value(obj, ox, oy,
-						(boolean)shkp->mpeaceful, TRUE);
+				      (boolean)shkp->mpeaceful, TRUE, TRUE);
 			  delete_contents(obj);
 			  /* we're about to delete all things at this location,
 			   * which could include the ball & chain.
@@ -3983,7 +3976,7 @@ boolean disarm;
 			      if(costly)
 				  loss += stolen_value(otmp, otmp->ox,
 					  otmp->oy, (boolean)shkp->mpeaceful,
-					  TRUE);
+					  TRUE, TRUE);
 			      delobj(otmp);
 			  }
 			  wake_nearby();
@@ -4236,14 +4229,7 @@ lava_effects()
     burn_away_slime();
     if (likes_lava(youmonst.data)) return FALSE;
 
-
-    if (Slimed) {
-	pline("The slime boils away!");
-	Slimed = 0;
-    }
-
     if (!Fire_resistance) {
-
 	if(Wwalking) {
 	    dmg = d(6,6);
 	    pline_The("lava here burns you!");

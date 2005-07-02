@@ -24,7 +24,7 @@ int x, y;
 struct monst *mtmp;
 unsigned gpflags;
 {
-	int badpos = 0, pool;
+	int is_badpos = 0, pool;
 	struct permonst *mdat = NULL;
 	boolean ignorewater = ((gpflags & MM_IGNOREWATER) != 0);
 	struct monst *mtmp2;
@@ -40,7 +40,7 @@ unsigned gpflags;
 			&& (!u.usteed || mtmp != u.usteed)
 #endif
 			)
-	    badpos = 1;
+	    is_badpos = 1;
 
 	if (mtmp) {
 	    mtmp2 = m_at(x,y);
@@ -56,26 +56,27 @@ unsigned gpflags;
 	     * to place the worm segment and the worm's head is at x,y.
 	     */
 	    if (mtmp2 && (mtmp2 != mtmp || mtmp->wormno))
-		badpos = 1;
+		is_badpos = 1;
 
 	    mdat = mtmp->data;
 	    pool = is_pool(x,y);
 	    if (mdat->mlet == S_EEL && !pool && rn2(13) && !ignorewater)
-		badpos = 1;
+		is_badpos = 1;
 
 	    if (pool && !ignorewater) {
 		if (mtmp == &youmonst)
 			return (HLevitation || Flying || Wwalking ||
-					Swimming || Amphibious) ? badpos : -1;
+				    Swimming || Amphibious) ? is_badpos : -1;
 		else	return (is_flyer(mdat) || is_swimmer(mdat) ||
-					is_clinger(mdat)) ? badpos : -1;
+				    is_clinger(mdat)) ? is_badpos : -1;
 	    } else if (is_lava(x,y)) {
 		if (mtmp == &youmonst)
-		    return HLevitation ? badpos : -1;
+		    return HLevitation ? is_badpos : -1;
 		else
-		    return (is_flyer(mdat) || likes_lava(mdat)) ? badpos : -1;
+		    return (is_flyer(mdat) || likes_lava(mdat)) ?
+			    is_badpos : -1;
 	    }
-	    if (passes_walls(mdat) && may_passwall(x,y)) return badpos;
+	    if (passes_walls(mdat) && may_passwall(x,y)) return is_badpos;
 	}
 	if (!ACCESSIBLE(levl[x][y].typ)) {
 		if (!(is_pool(x,y) && ignorewater)) return -1;
@@ -85,7 +86,7 @@ unsigned gpflags;
 	    return mdat && (nohands(mdat) || verysmall(mdat)) ? -1 : 1;
 	if (sobj_at(BOULDER, x, y) && (!mdat || !throws_rocks(mdat)))
 	    return mdat ? -1 : 1;
-	return badpos;
+	return is_badpos;
 }
 
 /*
@@ -210,7 +211,7 @@ full:
 #define EPATHTO_UNSEEN		0x0
 #define EPATHTO_INACCESSIBLE	0x1
 #define EPATHTO_DONE		0x2
-#define EPATHTO_TAIL(n)		(0x3 + ((n) & 1))
+#define EPATHTO_TAIL(n)		(0x3 + ((n) & 7))
 
 #define EPATHTO_XY(x,y)		(((y) + 1) * COLNO + (x))
 #define EPATHTO_Y(xy)		((xy) / COLNO - 1)
@@ -227,7 +228,7 @@ int nc;
 register xchar xx, yy;
 struct permonst *mdat;
 {
-    int i, j, d, xy, x, y, r;
+    int i, j, dir, ndirs, xy, x, y, r;
     int path_len, postype;
     int first_col, last_col;
     int nd, n;
@@ -258,8 +259,9 @@ struct permonst *mdat;
 	    for(i = first_col; i <= last_col; i++)
 		if (map[EPATHTO_XY(i, j)] == EPATHTO_TAIL(path_len)) {
 		    map[EPATHTO_XY(i, j)] = EPATHTO_DONE;
-		    for(d = 0; d < (mdat == &mons[PM_GRID_BUG] ? 4 : 8); d++) {
-			xy = EPATHTO_XY(i, j) + dirs[d];
+		    ndirs = mdat == &mons[PM_GRID_BUG] ? 4 : 8;
+		    for(dir = 0; dir < ndirs; dir++) {
+			xy = EPATHTO_XY(i, j) + dirs[dir];
 			if (map[xy] == EPATHTO_UNSEEN) {
 			    x = EPATHTO_X(xy);
 			    y = EPATHTO_Y(xy);
@@ -332,6 +334,90 @@ struct permonst *mdat;
 }
 
 /*
+ * Walk one of the shortest paths from src_cc to dest_cc that mdat could
+ * take, calling a proc for each location except the starting one. If proc
+ * returns FALSE stop walking and return FALSE. Where two paths of the
+ * same length in terms of positions are possible, prefer orthogonal moves.
+ * Returns: TRUE if an acceptable path was found no longer than max_pathlen.
+ * Note: The caller is responsible for checking that src_cc and dest_cc
+ * are "good" positions, if appropriate.
+ */
+
+boolean
+wpathto(src_cc, dest_cc, step_proc, arg, mdat, max_pathlen)
+coord *src_cc, *dest_cc;
+boolean FDECL((*step_proc), (genericptr_t, int, int));
+genericptr_t arg;
+struct permonst *mdat;
+int max_pathlen;
+{
+    int i, j, dir, ndirs, xy, x, y, n;
+    int path_len, postype;
+    int first_col, last_col;
+    int xx = dest_cc->x, yy = dest_cc->y;
+    int gxy = EPATHTO_XY(src_cc->x, src_cc->y);
+    boolean ok = TRUE;
+    unsigned char *map;
+    static const int dirs[8] =
+      /* N, S, E, W, NW, NE, SE, SW */
+      { -COLNO, COLNO, 1, -1, -COLNO-1, -COLNO+1, COLNO+1, COLNO-1};
+    struct monst fakemon;	/* dummy monster */
+    fakemon.data = mdat;	/* set up for badpos */
+    map = (unsigned char *)alloc(COLNO * (ROWNO + 2));
+    (void) memset((genericptr_t)map, EPATHTO_INACCESSIBLE, COLNO * (ROWNO + 2));
+    for(i = 1; i < COLNO; i++)
+	for(j = 0; j < ROWNO; j++)
+	    map[EPATHTO_XY(i, j)] = EPATHTO_UNSEEN;
+    ndirs = mdat == &mons[PM_GRID_BUG] ? 4 : 8;
+    map[EPATHTO_XY(xx, yy)] = EPATHTO_TAIL(0);
+    for(path_len = 0; path_len <= max_pathlen; path_len++) {
+	first_col = max(1, xx - path_len);
+	last_col = min(COLNO - 1, xx + path_len);
+	for(j = max(0, yy - path_len); j <= min(ROWNO - 1, yy + path_len); j++)
+	    for(i = first_col; i <= last_col; i++)
+		if (map[EPATHTO_XY(i, j)] == EPATHTO_TAIL(path_len)) {
+		    for(dir = 0; dir < ndirs; dir++) {
+			xy = EPATHTO_XY(i, j) + dirs[dir];
+			if (xy == gxy) {
+			    while(path_len && ok) {
+				for(n = dir = 0; dir < ndirs; dir++) {
+				    xy = gxy + dirs[dir];
+				    if (map[xy] == EPATHTO_TAIL(path_len))
+					++n;
+				    if (dir == 3 && n)
+					break;	/* One or more orthogonal */
+				}
+				n = rn2(n);
+				for(dir = 0; dir < ndirs; dir++) {
+				    xy = gxy + dirs[dir];
+				    if (map[xy] == EPATHTO_TAIL(path_len))
+					if (!n--)
+					    break;
+				}
+				ok = step_proc(arg, EPATHTO_X(xy),
+					EPATHTO_Y(xy));
+				gxy = xy;
+				path_len--;
+			    }
+			    if (ok)
+				ok = step_proc(arg, xx, yy);
+			    free((genericptr_t)map);
+			    return ok;
+			} else if (map[xy] == EPATHTO_UNSEEN) {
+			    x = EPATHTO_X(xy);
+			    y = EPATHTO_Y(xy);
+			    postype = badpos(x, y, &fakemon, 0);
+			    map[xy] = postype < 0 ? EPATHTO_INACCESSIBLE :
+				    EPATHTO_TAIL(path_len + 1);
+			}
+		    }
+		}
+    }
+    free((genericptr_t)map);
+    return FALSE;
+}
+
+/*
  * func should return 1 if the location should be counted as inaccessible
  * (path won't continue through this point) or 0 if it is accessible.
  */
@@ -343,7 +429,7 @@ register xchar xx, yy;
 int (*func)(genericptr_t, int, int);
 genericptr_t data;
 {
-    int i, j, d, xy, x, y;
+    int i, j, dir, xy, x, y;
     int path_len, postype;
     int first_col, last_col;
     int nd, n;
@@ -369,8 +455,8 @@ genericptr_t data;
 	    for(i = first_col; i <= last_col; i++)
 		if (map[EPATHTO_XY(i, j)] == EPATHTO_TAIL(path_len)) {
 		    map[EPATHTO_XY(i, j)] = EPATHTO_DONE;
-		    for(d = 0; d < 8; d++) {
-			xy = EPATHTO_XY(i, j) + dirs[d];
+		    for(dir = 0; dir < 8; dir++) {
+			xy = EPATHTO_XY(i, j) + dirs[dir];
 			if (map[xy] == EPATHTO_UNSEEN) {
 			    x = EPATHTO_X(xy);
 			    y = EPATHTO_Y(xy);
@@ -391,8 +477,19 @@ genericptr_t data;
 }
 
 #ifdef DEBUG
+STATIC_OVL boolean
+wiz_debug_wpathto(arg, x, y)
+genericptr_t arg;
+int x, y;
+{
+    int *iptr = (int *)arg;
+    *iptr = ((*iptr) + 1) & 3;
+    show_glyph(x, y, GLYPH_WARNING_OFF + *iptr);
+    return TRUE;
+}
+
 void
-wiz_debug_cmd() /* in this case, run epathto on arbitary monster & goal */
+wiz_debug_cmd() /* in this case, run wpathto on arbitary monster & goal */
 {
     struct permonst *ptr;
     int mndx, i;
@@ -416,7 +513,21 @@ wiz_debug_cmd() /* in this case, run epathto on arbitary monster & goal */
 	cc.y = u.uy;
 	if (getpos(&cc, TRUE, "the goal position") < 0)
 	    return;	/* abort */
+#if 0
 	epathto(epathto_debug_cc, SIZE(epathto_debug_cc), cc.x, cc.y, ptr);
+#else
+	epathto_debug_cc[0].x = u.ux;
+	epathto_debug_cc[0].y = u.uy;
+	i = 0;
+	if (!wpathto(epathto_debug_cc, &cc, wiz_debug_wpathto, &i, ptr,
+	  COLNO * ROWNO))
+	    pline("No path found");
+	else {
+	    flush_screen(TRUE);
+	    display_nhwindow(WIN_MAP, TRUE);
+	    docrt();
+	}
+#endif
 	break;
     }
 }
@@ -1516,7 +1627,7 @@ register struct obj *obj;
 		if (costly_spot(u.ux, u.uy) &&
 			    index(u.urooms, *in_rooms(otx, oty, 0)))
 		    addtobill(obj, FALSE, FALSE, FALSE);
-		else (void)stolen_value(obj, otx, oty, FALSE, FALSE);
+		else (void)stolen_value(obj, otx, oty, FALSE, FALSE, FALSE);
 	    }
 	    newsym(otx, oty);	/* update old location */
 	}

@@ -19,7 +19,9 @@ boolean m_using = FALSE;
  * don't know not to read scrolls, etc....
  */
 
+#if 0
 STATIC_DCL struct permonst *FDECL(muse_newcham_mon, (struct monst *));
+#endif
 STATIC_DCL int FDECL(precheck, (struct monst *,struct obj *));
 STATIC_DCL void FDECL(mzapmsg, (struct monst *,struct obj *,BOOLEAN_P));
 STATIC_DCL void FDECL(mreadmsg, (struct monst *,struct obj *));
@@ -1288,6 +1290,8 @@ register struct obj *otmp;
 				losexp("life drainage", FALSE);
 			if (zap_oseen)
 				makeknown(WAN_DRAINING);
+			stop_occupation();
+			nomul(0);
 			break;
 		} else if (resists_drli(mtmp)) {
 			shieldeff(mtmp->mx, mtmp->my);
@@ -1849,6 +1853,7 @@ struct monst *mtmp;
 #undef nomore
 }
 
+#if 0
 /* type of monster to polymorph into; defaults to one suitable for the
    current level rather than the totally arbitrary choice of newcham() */
 static struct permonst *
@@ -1865,6 +1870,7 @@ struct monst *mon;
 	}
 	return rndmonst();
 }
+#endif
 
 int
 use_misc(mtmp)

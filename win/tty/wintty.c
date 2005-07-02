@@ -167,7 +167,7 @@ STATIC_DCL void FDECL(invert_all, (winid,tty_menu_item *,tty_menu_item *, CHAR_P
 STATIC_DCL void FDECL(process_menu_window, (winid,struct WinDesc *));
 STATIC_DCL void FDECL(process_text_window, (winid,struct WinDesc *));
 STATIC_DCL tty_menu_item *FDECL(reverse, (tty_menu_item *));
-STATIC_DCL const char * FDECL(compress_str, (const char *));
+const char * FDECL(compress_str, (const char *));
 STATIC_DCL void FDECL(tty_putsym, (winid, int, int, CHAR_P));
 static char *FDECL(copy_of, (const char *));
 STATIC_DCL void FDECL(bail, (const char *));	/* __attribute__((noreturn)) */
@@ -1279,7 +1279,13 @@ int *color, *attr;
    if (iflags.use_menu_color)
      for (tmpmc = menu_colorings; tmpmc; tmpmc = tmpmc->next)
 #ifdef USE_REGEX_MATCH
+# ifdef GNU_REGEX
        if (re_search(&tmpmc->match, str, strlen(str), 0, 9999, 0) >= 0) {
+# else
+#  ifdef POSIX_REGEX
+       if (regexec(&tmpmc->match, str, 0, NULL, 0) == 0) {
+#  endif
+# endif
 #else
        if (pmatch(tmpmc->match, str)) {
 #endif
@@ -1902,7 +1908,7 @@ tty_putsym(window, x, y, ch)
 }
 
 
-STATIC_OVL const char*
+const char*
 compress_str(str)
 const char *str;
 {
@@ -1977,14 +1983,16 @@ tty_putstr(window, attr, str)
 	    if(nb && nb > str+2)
 		str = nb - 2;
 	}
-	k = -1;
+	k = 0;
 	/* WAC - attempt to break or shorten line 2 if it's too long */
 	if(cw->cury && (int)strlen(str) >= CO) {
 	    if(cw->cury < (cw->maxrow - 1))
 		for(k = CO - 1; k && str[k] != ' ';)
 		    k--;
-	    else
-			str = shorten_bot2(str, CO);
+	    if(!k || (int)strlen(str + k + 1) >= CO) {
+		str = shorten_bot2(str, CO);
+		k = 0;
+	    }
 	}
 
 	nb = str;
@@ -2002,13 +2010,13 @@ tty_putstr(window, attr, str)
 	    if(*ob) ob++;
 
 	    /* String break? --WAC */
-	    if ((k > 0) && (i == k)) {
+	    if(i == k) {
 		(void) strncpy(&cw->data[cw->cury][j], str, cw->cols - j - 1);
-		cw->data[cw->cury][++k] = '\0';
+		cw->data[cw->cury][min(k+1, cw->cols-1)] = '\0';
 
 		if(*ob || flags.botlx) {
 		    /* last char printed may be in middle of line */
-		    tty_curs(WIN_STATUS, k, cw->cury);
+		    tty_curs(WIN_STATUS, k+1, cw->cury);
 		    cl_end();
 		}
 		nb++;
@@ -2029,7 +2037,7 @@ tty_putstr(window, attr, str)
 	(void) strncpy(&cw->data[cw->cury][j], str, cw->cols - j - 1);
 	cw->data[cw->cury][cw->cols-1] = '\0'; /* null terminate */
 	/* ALI - Clear third line if present and unused */
-	if (cw->cury == 1 && cw->cury < (cw->maxrow - 1) && k < 0)
+	if (cw->cury == 1 && cw->cury < (cw->maxrow - 1))
 	{
 	    cw->data[cw->cury + 1][0] = '\0';
 	    tty_curs(WIN_STATUS, 1, cw->cury + 1);

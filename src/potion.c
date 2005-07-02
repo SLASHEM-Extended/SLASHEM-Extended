@@ -783,13 +783,15 @@ peffects(otmp)
 		break;
 	case POT_ESP:
 	{
-		char *mod = (char *) 0;
-
+		const char *mod;
 
 		/* KMH -- handle cursed, blessed */
 		if (otmp->cursed) {
 			if (HTelepat) mod = "less ";
-			else unkn++;
+			else {
+			    unkn++;
+			    mod = NULL;
+			}
 			HTelepat = 0;
 		} else if (otmp->blessed) {
 			mod = "fully ";
@@ -1116,11 +1118,12 @@ healup_mon(mtmp, nhp, nxtra, curesick, cureblind)
 		mtmp->mhp += nhp;
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = (mtmp->mhpmax += nxtra);
 	}
-	if(cureblind)   ; /* NOT DONE YET */
-	if(curesick)    ; /* NOT DONE YET */
+#if 0
+	if(cureblind) ; /* NOT DONE YET */
+	if(curesick)  ; /* NOT DONE YET */
+#endif 
 	return;
 }
-
 
 void
 strange_feeling(obj,txt)
@@ -1495,7 +1498,7 @@ boolean your_fault;
 		    obj->unpaid = 0;
 		else {
 		    (void)stolen_value(obj, u.ux, u.uy,
-				 (boolean)shkp->mpeaceful, FALSE);
+				 (boolean)shkp->mpeaceful, FALSE, TRUE);
 		    subfrombill(obj, shkp);
 		}
 	}
@@ -1770,7 +1773,7 @@ register struct obj *o1, *o2;
 	/* MRKR: Extra alchemical effects. */
 
 	if (o2->otyp == POT_ACID && o1->oclass == GEM_CLASS) {
-	  char *potion_descr = NULL;
+	  const char *potion_descr;
 
 	  /* Note: you can't create smoky, milky or clear potions */
 
@@ -1785,6 +1788,7 @@ register struct obj *o1, *o2;
 	    break;
 	  case DIAMOND:
 	    /* won't dissolve */
+	    potion_descr = NULL;
 	    break;
 	  case OPAL:
 	    potion_descr = "cloudy";
@@ -1870,6 +1874,7 @@ register struct obj *o1, *o2;
 	  case OBSIDIAN:
 	    potion_descr = "effervescent";
 	    break;
+	  default: potion_descr = NULL;
 	  }
 
 	  if (potion_descr) {
@@ -1920,7 +1925,9 @@ boolean *used;
 {
     pre_downgrade_obj(obj, used);
     obj->otyp = nomagic;
-    obj->spe  = 0;
+    obj->spe = 0;
+    obj->owt = weight(obj);
+    flags.botl = TRUE;
 }
 
 boolean
@@ -1942,7 +1949,7 @@ boolean amnesia;
 	/* (Rusting shop goods ought to be charged for.) */
 	switch (obj->oclass) {
 	    case POTION_CLASS:
-		if (obj->otyp == POT_WATER && amnesia) {
+		if (obj->otyp == POT_WATER) {
 		    if (amnesia) {
 			Your("%s to sparkle.", aobjnam(obj,"start"));
 			obj->odiluted 	= 0;
@@ -1954,13 +1961,13 @@ boolean amnesia;
 		}
 
 		/* Diluting a !ofAmnesia just gives water... */
-		if (obj->otyp == POT_AMNESIA) { 
-			Your("%s flat.", aobjnam(obj,"become"));
+		if (obj->otyp == POT_AMNESIA) {
+			Your("%s flat.", aobjnam(obj, "become"));
 			obj->odiluted = 0;
 			obj->otyp = POT_WATER;
 			used = TRUE;
 			break;
-		} 
+		}
 
 		/* KMH -- Water into acid causes an explosion */
 		if (obj->otyp == POT_ACID) {
@@ -2039,10 +2046,10 @@ boolean amnesia;
 		}
 		break;
 	    case GEM_CLASS:
-		if (obj->otyp == LUCKSTONE || obj->otyp == LOADSTONE 
-		  		|| obj->otyp == HEALTHSTONE
-		  		|| obj->otyp == TOUCHSTONE)
-		    	downgrade_obj(obj, FLINT, &used);
+		if (amnesia && (obj->otyp == LUCKSTONE ||
+			obj->otyp == LOADSTONE || obj->otyp == HEALTHSTONE ||
+			obj->otyp == TOUCHSTONE))
+		    downgrade_obj(obj, FLINT, &used);
 		break;
 	    case TOOL_CLASS:
 		/* Artifacts aren't downgraded by amnesia */
@@ -2108,7 +2115,7 @@ boolean amnesia;
 		/* !ofAmnesia acts as a disenchanter... */
 		if (amnesia && obj->spe > 0) {
 		    pre_downgrade_obj(obj, &used);
-		    if (obj->spe > 0) drain_item(obj);
+		    drain_item(obj);
 		}
 		if (!obj->oerodeproof && is_rustprone(obj) &&
 		    (obj->oeroded < MAX_ERODE) && !rn2(2)) {
@@ -2122,8 +2129,6 @@ boolean amnesia;
 			}
 			used = TRUE;
 		} 
-		if (obj->oerodeproof && amnesia && !rn2(5))
-		    obj->oerodeproof = FALSE;
 		break;
 	}
 	/* !ofAmnesia might strip away fooproofing... */
@@ -2135,12 +2140,17 @@ boolean amnesia;
 	/* !ofAmnesia also strips blessed/cursed status... */
 
 	if (amnesia && (obj->cursed || obj->blessed)) {
-	    	/* Blessed objects are valuable/cursed objects aren't, unless
-		 * they're water */
-		if (obj->blessed || obj->otyp == POT_WATER)
-		    pre_downgrade_obj(obj, &used);
-		uncurse(obj);
-		unbless(obj);
+	    /* Blessed objects are valuable, cursed objects aren't, unless
+	     * they're water.
+	     */
+	    if (obj->blessed || obj->otyp == POT_WATER)
+		pre_downgrade_obj(obj, &used);
+	    else if (!used) {
+		Your("%s for a moment.", aobjnam(obj, "sparkle"));
+		used = TRUE;
+	    }
+	    uncurse(obj);
+	    unbless(obj);
 	}
 
 	if (used) 
@@ -2161,21 +2171,24 @@ boolean amnesia;
 int
 upgrade_obj(obj)
 register struct obj *obj;
-/* returns TRUE if something happened (potion should be used up) */
+/* returns 1 if something happened (potion should be used up) 
+ * returns 0 if nothing happened
+ * returns -1 if object exploded (potion should be used up) 
+ */
 {
-	int chg;
-	int otyp = obj->otyp, otyp2;
+	int chg, otyp = obj->otyp, otyp2;
 	xchar ox, oy;
 	long owornmask;
 	struct obj *otmp;
+	boolean explodes;
 
 	/* Check to see if object is valid */
 	if (!obj)
-		return (FALSE);
+		return 0;
 	(void)snuff_lit(obj);
 	if (obj->oartifact)
 		/* WAC -- Could have some funky fx */
-		return (FALSE);
+		return 0;
 
 	switch (obj->otyp)
 	{
@@ -2496,7 +2509,7 @@ register struct obj *obj;
 			break;
 		default:
 			/* This object is not upgradable */
-			return (FALSE);
+			return 0;
 	}
 
 	if ((!carried(obj) || obj->unpaid) &&
@@ -2535,7 +2548,7 @@ register struct obj *obj;
 		if (costly_spot(u.ux, u.uy) && objroom == *u.ushops)
 		    bill_dummy_object(obj);
 		else
-		    (void) stolen_value(obj, ox, oy, FALSE, FALSE);
+		    (void) stolen_value(obj, ox, oy, FALSE, FALSE, FALSE);
 		obj->otyp = otyp2;
 		obj->cobj = otmp;
 	    }
@@ -2580,22 +2593,38 @@ register struct obj *obj;
 	    puton_worn_item(obj);
 	}
 
-	return (TRUE);
-}
+	if (obj->otyp == BAG_OF_HOLDING && Has_contents(obj)) {
+	    explodes = FALSE;
 
+	    for (otmp = obj->cobj; otmp; otmp = otmp->nobj)
+		if (mbag_explodes(otmp, 0)) { 
+		    explodes = TRUE;
+		    break;
+		}
+
+            if (explodes) {
+		pline("As you upgrade your bag, you are blasted by a magical explosion!");
+		delete_contents(obj);
+		if (carried(obj))
+		    useup(obj);
+		else
+		    useupf(obj, obj->quan);
+		losehp(d(6,6), "magical explosion", KILLED_BY_AN);
+		return -1;
+	    }
+	}
+	return 1;
+}
 
 int
 dodip()
 {
-	struct obj *potion, *obj;
-	struct obj *singlepotion;
-	int oldtyp;
+	struct obj *potion, *obj, *singlepotion;
 	const char *tmp;
 	uchar here;
-	char allowall[2];
+	char allowall[2], qbuf[QBUFSZ], Your_buf[BUFSZ];
 	short mixture;
-	char qbuf[QBUFSZ], Your_buf[BUFSZ];
-
+	int res;
 
 	allowall[0] = ALL_CLASSES; allowall[1] = '\0';
 	if(!(obj = getobj(allowall, "dip")))
@@ -2711,23 +2740,36 @@ dodip()
 			    goto poof;
 		}
 	} else if (potion->otyp == POT_AMNESIA) {
+	    if (potion == obj) {
+		obj->in_use = FALSE;
+		potion = splitobj(obj, 1L);
+		potion->in_use = TRUE;
+	    }
 	    if (get_wet(obj, TRUE)) goto poof;
 	}
 	/* WAC - Finn Theoderson - make polymorph and gain level msgs similar
 	 * 	 Give out name of new object and allow user to name the potion
 	 */
 	/* KMH, balance patch -- idea by Dylan O'Donnell <dylanw@demon.net> */
-	else if (potion->otyp == POT_GAIN_LEVEL && upgrade_obj(obj)) {
-	    /* The object was upgraded */
-	    pline("Hmm!  You don't recall dipping that into the potion.");
-	    prinv((char *)0, obj, 0L);			
-	    if (!objects[potion->otyp].oc_name_known &&
-		    !objects[potion->otyp].oc_uname)
-		docall(potion);
-	    useup(potion);
-	    update_inventory();
-	    exercise(A_WIS, TRUE);
-	    return(1);	    
+	else if (potion->otyp == POT_GAIN_LEVEL) {
+	    res = upgrade_obj(obj);
+
+	    if (res != 0) {
+
+		if (res == 1) { 
+		     /* The object was upgraded */
+		     pline("Hmm!  You don't recall dipping that into the potion.");
+		     prinv((char *)0, obj, 0L);
+		} /* else potion exploded */
+		if (!objects[potion->otyp].oc_name_known &&
+			!objects[potion->otyp].oc_uname)
+		    docall(potion);
+		useup(potion);
+		update_inventory();
+		exercise(A_WIS, TRUE);
+		return(1);
+	    }
+	    /* no return here, go for Interesting... message */
 	} else if (obj->otyp == POT_POLYMORPH ||
 		potion->otyp == POT_POLYMORPH) {
 	    /* some objects can't be polymorphed */

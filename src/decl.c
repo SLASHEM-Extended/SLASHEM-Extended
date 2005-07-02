@@ -122,6 +122,7 @@ NEARDATA dest_area updest = { 0, 0, 0, 0, 0, 0, 0, 0 };
 NEARDATA dest_area dndest = { 0, 0, 0, 0, 0, 0, 0, 0 };
 NEARDATA coord inv_pos = { 0, 0 };
 
+NEARDATA boolean defer_see_monsters = FALSE;
 NEARDATA boolean in_mklev = FALSE;
 NEARDATA boolean stoned = FALSE;	/* done to monsters hit by 'c' */
 NEARDATA boolean unweapon = FALSE;
@@ -228,6 +229,15 @@ NEARDATA struct monst *mydogs = (struct monst *)0;
 NEARDATA struct monst *migrating_mons = (struct monst *)0;
 
 NEARDATA struct mvitals mvitals[NUMMONS];
+
+/* originally from end.c */
+#ifdef DUMP_LOG
+#ifdef DUMP_FN
+char dump_fn[] = DUMP_FN;
+#else
+char dump_fn[PL_PSIZ] = DUMMY;
+#endif
+#endif /* DUMP_LOG */
 
 NEARDATA struct c_color_names c_color_names = {
 	"black", "amber", "golden",

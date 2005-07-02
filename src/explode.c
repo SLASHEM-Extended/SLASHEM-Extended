@@ -6,13 +6,6 @@
 
 #ifdef OVL0
 
-/* Note: Arrays are column first, while the screen is row first */
-static int expl[3][3] = {
-	{ S_explode1, S_explode4, S_explode7 },
-	{ S_explode2, S_explode5, S_explode8 },
-	{ S_explode3, S_explode6, S_explode9 }
-};
-
 /* ExplodeRegions share some commonalities with NhRegions, but not enough to
  * make it worth trying to create a common implementation.
  */
@@ -137,6 +130,66 @@ STATIC_DCL void FDECL(do_explode,
  * they don't supply enough information--was it a player or a monster that
  * did it, and with a wand, spell, or breath weapon?  Object types share both
  * these disadvantages....
+ *
+ * Explosions derived from vanilla NetHack:
+ *
+ * src         nature          olet        expl    Comment
+ * Your wand   MAGIC_MISSILE   WAND        FROSTY  Exploding wands of cold
+ * Your wand   MAGIC_MISSILE   WAND        FIERY   Exploding wands of fire/
+ *                                                 fireball
+ * Your wand   MAGIC_MISSILE   WAND        MAGICAL Other explosive wands
+ * Your spell  FIRE            BURNING_OIL FIERY   Splattered buring oil
+ * Mon's ?     -               MON_EXPLODE NOXIOUS Exploding gas spore
+ * Your spell  FIRE            0           FIERY   Filling a lamp with oil
+ *                                                 when lit
+ * Your spell  FIRE            SCROLL      FIERY   Reading a scroll of fire
+ * Your spell  FIRE            WAND        FIERY   Zap yourself with wand/
+ *                                                 spell of fireball
+ * Your spell  FIRE            0           FIERY   Your fireball
+ *
+ * Slash'EM specific explosions:
+ *
+ * src         nature          olet        expl    Comment
+ * Your spell  FIRE            WEAPON      FIERY   Explosive projectile
+ * Your spell  FIRE            WEAPON      FIERY   Bolts shot by Hellfire
+ * Mon's spell FIRE            FIERY       WEAPON  Explosive projectile (BUG)
+ * Mon's spell FIRE            FIERY       WEAPON  Bolts shot by Hellfire (BUG)
+ * Your spell  MAGIC_MISSILE   WAND        MAGICAL Spirit bomb technique
+ * Mon's spell FIRE            0           FIERY   Monster's fireball
+ *
+ * Sigil of tempest:
+ *
+ * src         nature          olet        expl    Comment
+ * Your spell  MAGIC_MISSILE   0           MAGICAL Hero casts magic missile
+ * Your spell  DEATH           0           MAGICAL Hero casts finger of death
+ * Your spell  FIRE            0           FIERY   Hero casts fireball
+ * Your spell  LIGHTNING       0           FIERY   Hero casts lightning
+ * Your spell  COLD            0           FROSTY  Hero casts cone of cold
+ * Your spell  SLEEP           0           NOXIOUS Hero casts sleep
+ * Your spell  POISON_GAS      0           NOXIOUS Hero casts poison blast
+ * Your spell  ACID            0           NOXIOUS Hero casts acid stream
+ *
+ * Mega spells:
+ *
+ * src         nature          olet        expl    Comment
+ * Your mega   FIRE            0           FIERY   
+ * Your mega   COLD            0           FROSTY  
+ * Your mega   MAGIC_MISSLE    0           MAGICAL 
+ *
+ * Notes:
+ *	Nature is encoded as (abs(type) % 10) and src is determined using the
+ *	following table:
+ *		Types		Src
+ *		-30 - -39	Mon's wand
+ *		-20 - -29	Mon's breath
+ *		-10 - -19	Mon's spell
+ *		 -1 -  -9	Special
+ *		  0 -   9	Your wand
+ *		 10 -  19	Your spell
+ *		 20 -  29	Your breath
+ *		 30 -  39	Your mega
+ *	There is only one special type currently defined:
+ *		-1		Exploding gas spore
  */
 void
 explode(x, y, type, dam, olet, expltype)
@@ -168,7 +221,7 @@ int expltype;
 int dest; /* 0 = normal, 1 = silent, 2 = silent/remote */	
 boolean yours; /* is it your fault (for killing monsters) */
 {
-	int i, j, k, damu = dam;
+	int i, k, damu = dam;
 	boolean starting = 1;
 	boolean visible, any_shield;
 	int uhurt = 0; /* 0=unhurt, 1=items damaged, 2=you and items damaged */
@@ -543,12 +596,11 @@ boolean yours; /* is it your fault (for killing monsters) */
 			    if (str != killer_buf && !generic)
 				Strcpy(killer_buf, str);
 			    killer_format = KILLED_BY_AN;
-			} else if (type >= 0 && olet != SCROLL_CLASS) {
+			} else if (type >= 0 && olet != SCROLL_CLASS && yours) {
 			    killer_format = NO_KILLER_PREFIX;
 			    Sprintf(killer_buf, "caught %sself in %s own %s",
 				    uhim(), uhis(), str);
-			} else if (!strncmpi(str,"tower of flame", 8) ||
-				   !strncmpi(str,"fireball", 8)) {
+			} else if (olet != BURNING_OIL) {
 			    killer_format = KILLED_BY_AN;
 			    Strcpy(killer_buf, str);
 			} else {
@@ -818,14 +870,14 @@ grenade_fiery_callback(data, x, y)
 genericptr_t data;
 int x, y;
 {
-    int accessible = ZAP_POS(levl[x][y].typ);
+    int is_accessible = ZAP_POS(levl[x][y].typ);
     struct grenade_callback *gc = (struct grenade_callback *)data;
-    if (accessible) {
+    if (is_accessible) {
 	add_location_to_explode_region(gc->fiery_area, x, y);
 	grenade_effects((struct obj *)0, x, y,
 		gc->fiery_area, gc->gas_area, gc->dig_area, gc->isyou);
     }
-    return !accessible;
+    return !is_accessible;
 }
 
 STATIC_DCL int
@@ -833,11 +885,11 @@ grenade_gas_callback(data, x, y)
 genericptr_t data;
 int x, y;
 {
-    int accessible = ZAP_POS(levl[x][y].typ);
+    int is_accessible = ZAP_POS(levl[x][y].typ);
     struct grenade_callback *gc = (struct grenade_callback *)data;
-    if (accessible)
+    if (is_accessible)
 	add_location_to_explode_region(gc->gas_area, x, y);
-    return !accessible;
+    return !is_accessible;
 }
 
 STATIC_DCL int
@@ -858,7 +910,7 @@ xchar x, y;
 ExplodeRegion *fiery_area, *gas_area, *dig_area;
 boolean isyou;
 {
-    int i, r, ox, oy;
+    int i, r;
     struct obj *obj, *obj2;
     struct monst *mon;
     /*
@@ -966,12 +1018,11 @@ int x, y;
 boolean isyou;
 int dest;
 {
-    int i, n, ztype;
+    int i, ztype;
     boolean shop_damage = FALSE;
     int ox, oy;
     ExplodeRegion *fiery_area, *gas_area, *dig_area;
     struct trap *trap;
-    struct obj *otmp, *otmp2;
     
     fiery_area = create_explode_region();
     gas_area = create_explode_region();

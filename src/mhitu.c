@@ -185,6 +185,7 @@ register struct attack *mattk;
 		}
 	    }
 	}
+	stop_occupation();
 }
 
 STATIC_OVL void
@@ -214,7 +215,6 @@ struct attack *mattk;
 		   (mattk->aatyp == AT_GAZE) ? "gaze" :
 		   (mattk->aatyp == AT_BITE) ? "bite" : "sting";
 	}
-	stop_occupation();
 }
 
 /* called when your intrinsic speed is taken away */
@@ -760,7 +760,8 @@ mattacku(mtmp)
 			 *
 			 * RJ
 			 */
-			clone_mon(mtmp, 0, 0);
+			if (!range2)
+			    clone_mon(mtmp, 0, 0);
 			break;
 		case AT_WEAP:
 			if(range2) {
@@ -2413,7 +2414,6 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!Blind) pline("%s gazes around, but misses you!",Monnam(mtmp));
 			break;
 		    }
-			if (!Blind) pline("%s gazes directly at you!",Monnam(mtmp));
 		    if (!Blind) pline("%s gazes directly at you!",Monnam(mtmp));
 		    if(Reflecting && m_canseeu(mtmp) && !mtmp->mcan) {
 			if(!Blind) {
@@ -2455,7 +2455,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    	    if (mon_reflects(mtmp,
 		    			"The gaze is reflected away by %s %s!"))
 				break;
-			    pline("%s is killed by it's own gaze of death!",
+			    pline("%s is killed by its own gaze of death!",
 							Monnam(mtmp));
 			}
 			killed(mtmp);

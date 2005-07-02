@@ -2500,7 +2500,15 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    if (tmp == 3) {
 		/* inedible */
 		victual.piece = (struct obj *)0;
-		if (otmp->oeaten == mons[otmp->corpsenm].cnutrit)
+		/*
+		 * The combination of odrained == TRUE and oeaten == cnutrit
+		 * represents the case of starting to drain a corpse but not
+		 * getting any further (eg., loosing consciousness due to
+		 * rotten food). We must preserve this case to avoid corpses
+		 * changing appearance after a failed attempt to eat.
+		 */
+		if (!otmp->odrained &&
+			otmp->oeaten == mons[otmp->corpsenm].cnutrit)
 		    otmp->oeaten = 0;
 		/* ALI, conduct: didn't eat it after all */
 		u.uconduct.food--;

@@ -260,7 +260,11 @@ register struct obj *obj;
 	 * and printing the wrong article gives away information.
 	 */
 	if (!nn && ocl->oc_uses_known && ocl->oc_unique) obj->known = 0;
+#ifndef INVISIBLE_OBJECTS
 	if (!Blind) obj->dknown = TRUE;
+#else
+	if (!Blind && (!obj->oinvis || See_invisible)) obj->dknown = TRUE;
+#endif
 	if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER)) obj->bknown = TRUE;
 
 	/* We could put a switch(obj->oclass) here but currently only this one case exists */
@@ -1483,7 +1487,8 @@ const char *oldstr;
 			!strcmp(spot-7, "shuriken") ||
 			!strcmp(spot-4, "tengu") ||
 			!strcmp(spot-4, "manes"))) ||
-	    (len >= 6 && !strcmp(spot-5, "ki-rin")) ||
+	    (len >= 6 && (!strcmp(spot-5, "ki-rin") ||
+			!strcmp(spot-5, "Nazgul"))) ||
 	    (len >= 7 && !strcmp(spot-6, "gunyoki")))
 		goto bottom;
 
@@ -3031,6 +3036,8 @@ typfnd:
 #endif
 	    ) {
 	    artifact_exists(otmp, ONAME(otmp), FALSE);
+	    if (Has_contents(otmp))
+		delete_contents(otmp);
 	    obfree(otmp, (struct obj *) 0);
 	    otmp = &zeroobj;
 	    pline("For a moment, you feel %s in your %s, but it disappears!",

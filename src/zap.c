@@ -140,7 +140,7 @@ struct obj *otmp;
 	struct obj *obj;
 	boolean disguised_mimic = (mtmp->data->mlet == S_MIMIC &&
 				   mtmp->m_ap_type != M_AP_NOTHING);
-
+	int pm_index;
 	int skilldmg = 0;
 
 	if (objects[otyp].oc_class == SPBOOK_CLASS) {
@@ -372,10 +372,16 @@ struct obj *otmp;
 		if (!Blind) makeknown(WAN_SLEEP);
 		break;
 	case SPE_STONE_TO_FLESH:
-		if (monsndx(mtmp->data) == PM_STONE_GOLEM) {
+		if (monsndx(mtmp->data) == PM_STONE_GOLEM)
+		    pm_index = PM_FLESH_GOLEM;
+		else if (monsndx(mtmp->data) == PM_STATUE_GARGOYLE)
+		    pm_index = PM_GARGOYLE;
+		else
+		    pm_index = NON_PM;
+		if (pm_index != NON_PM) {
 		    char *name = Monnam(mtmp);
-		    /* turn into flesh golem */
-		    if (newcham(mtmp, &mons[PM_FLESH_GOLEM], FALSE, FALSE)) {
+		    /* turn into flesh equivalent */
+		    if (newcham(mtmp, &mons[pm_index], FALSE, FALSE)) {
 			if (canseemon(mtmp))
 			    pline("%s turns to flesh!", name);
 		    } else {
@@ -573,6 +579,9 @@ coord *cc;
 		mtmp2->mfleetim = mtmp->mfleetim;
 		mtmp2->mlstmv = mtmp->mlstmv;
 		mtmp2->m_ap_type = mtmp->m_ap_type;
+#ifdef INVISIBLE_OBJECTS
+		mtmp2->minvis = obj->oinvis;
+#endif
 		/* set these ones explicitly */
 		mtmp2->mavenge = 0;
 		mtmp2->meating = 0;
@@ -597,6 +606,7 @@ coord *cc;
 		mtmp2->mstun = 0;
 		mtmp2->mconf = 0;
 		replmon(mtmp,mtmp2);
+		newsym(mtmp2->mx, mtmp2->my);	/* Might now be invisible */
 	}
 	return mtmp2;
 }
@@ -877,7 +887,8 @@ register struct obj *obj;
 		    Norep("You cancel it, you pay for it!");
 		    bill_dummy_object(obj);
 		} else
-		    (void) stolen_value(obj, obj->ox, obj->oy, FALSE, FALSE);
+		    (void) stolen_value(obj, obj->ox, obj->oy, FALSE, FALSE,
+			    FALSE);
 		break;
 	}
 }
@@ -1155,7 +1166,8 @@ polyuse(objhdr, mat, minwt)
 			addtobill(otmp, FALSE, FALSE, FALSE);
 		else
 			(void)stolen_value(otmp,
-					   otmp->ox, otmp->oy, FALSE, FALSE);
+					   otmp->ox, otmp->oy, FALSE, FALSE,
+					   TRUE);
 	    }
 	    if (otmp->quan < LARGEST_INT)
 		minwt -= (int)otmp->quan;
@@ -1294,8 +1306,8 @@ struct obj *obj;
 		if (*u.ushops)
 			addtobill(obj, FALSE, FALSE, FALSE);
 		else
-			(void)stolen_value(obj,
-					   obj->ox, obj->oy, FALSE, FALSE);
+			(void)stolen_value(obj, obj->ox, obj->oy,
+					   FALSE, FALSE, TRUE);
 	}
 
 	/* zap the object */
@@ -1703,7 +1715,7 @@ poly_obj(obj, id)
 		    if (costly_spot(u.ux, u.uy) && objroom == *u.ushops)
 			bill_dummy_object(obj);
 		    else
-			(void) stolen_value(obj, ox, oy, FALSE, FALSE);
+			(void) stolen_value(obj, ox, oy, FALSE, FALSE, TRUE);
 		}
 	    }
 	}
@@ -4553,19 +4565,40 @@ void
 destroy_item(osym, dmgtyp)
 register int osym, dmgtyp;
 {
-	register struct obj *obj, *obj2;
+	register struct obj *obj;
 	register int dmg, xresist, skip;
 	register long i, cnt, quan;
 	register int dindx;
 	const char *mult;
+	/*
+	 * [ALI] Because destroy_item() can call wand_explode() which can
+	 * call explode() which can call destroy_item() again, we need to
+	 * be able to deal with the possibility of not only the current
+	 * object we are looking at no longer being in the inventory, but
+	 * also the next object (and the one after that, etc.).
+	 * We do this by taking advantage of the fact that objects in the
+	 * inventory destroyed as a result of calling wand_explode() will
+	 * always be destroyed by this same function. This allows us to
+	 * maintain a list of "next" pointers and to adjust these pointers
+	 * as required when we destroy an object that they might be pointing
+	 * at.
+	 */
+	struct destroy_item_frame {
+	    struct obj *next_obj;
+	    struct destroy_item_frame *next_frame;
+	} frame;
+	static struct destroy_item_frame *destroy_item_stack;
 
 	/* this is to deal with gas spores -- they don't really
 	   destroy objects, but this routine is called a lot in
 	   explode.c for them... hmph... */
 	if (dmgtyp == AD_PHYS) return;
 
-	for(obj = invent; obj; obj = obj2) {
-	    obj2 = obj->nobj;
+	frame.next_frame = destroy_item_stack;
+	destroy_item_stack = &frame;
+
+	for(obj = invent; obj; obj = frame.next_obj) {
+	    frame.next_obj = obj->nobj;
 	    if(obj->oclass != osym) continue; /* test only objs of type osym */
 	    if(obj->oartifact) continue; /* don't destroy artifacts */
 	    if(obj->in_use && obj->quan == 1) continue; /* not available */
@@ -4661,6 +4694,16 @@ register int osym, dmgtyp;
 			setnotworn(obj);
 		}
 		if (obj == current_wand) current_wand = 0;	/* destroyed */
+		if (cnt == obj->quan && frame.next_frame) {
+		    /* Before removing an object from the inventory, adjust
+		     * any "next" pointers that would otherwise become invalid.
+		     */
+		    struct destroy_item_frame *fp;
+		    for(fp = frame.next_frame; fp; fp = fp->next_frame) {
+			if (fp->next_obj == obj)
+			    fp->next_obj = frame.next_obj;
+		    }
+		}
 		if(osym == WAND_CLASS && dmgtyp == AD_ELEC) {
 		    /* MAR use a continue since damage and stuff is taken care of
 		     *  in wand_explode */
@@ -4684,6 +4727,7 @@ register int osym, dmgtyp;
 		}
 	    }
 	}
+	destroy_item_stack = frame.next_frame;
 	return;
 }
 

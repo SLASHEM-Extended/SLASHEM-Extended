@@ -396,7 +396,7 @@ Helmet_off()
 	    see_monsters();
 	    return 0;
 	case HELM_OF_BRILLIANCE:
-	    adj_abon(uarmh, -uarmh->spe);
+	    if (!cancelled_don) adj_abon(uarmh, -uarmh->spe);
 	    break;
 	case HELM_OF_OPPOSITE_ALIGNMENT:
 	    u.ualign.type = u.ualignbase[A_CURRENT];

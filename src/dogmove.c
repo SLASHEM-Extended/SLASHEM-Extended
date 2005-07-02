@@ -8,6 +8,7 @@
 #include "edog.h"
 #include "emin.h"
 #include "epri.h"
+#include "eleash.h"
 
 /* #define DEBUG */	/* uncomment to enable debugging */
 
@@ -463,6 +464,10 @@ int after, udist, whappr;
 	dog_has_minvent = (DROPPABLES(mtmp) != 0);
 
 	if (!edog || mtmp->mleashed) {	/* he's not going anywhere... */
+	    /* Note: it would be easy enough for pets to follow tight leashes
+	     * here rather than head straight for the hero, but this seems
+	     * more realistic somehow.
+	     */
 	    gtyp = APPORT;
 	    gx = u.ux;
 	    gy = u.uy;
@@ -843,31 +848,35 @@ register int after;	/* this is extra fast monster movement */
 		if ((info[i] & ALLOW_M) && MON_AT(nx, ny)) {
 		    int mstatus;
 		    register struct monst *mtmp2 = m_at(nx,ny);
-			aligntyp align1, align2; /* For priests,  minions */
-			boolean faith1 = TRUE,  faith2 = TRUE;
+		    aligntyp align1, align2; /* For priests, minions etc. */
 
-			if (mtmp->isminion) align1 = EMIN(mtmp)->min_align;
-			else if (mtmp->ispriest) align1 = EPRI(mtmp)->shralign;
-			else faith1 = FALSE;
-			if (mtmp2->isminion) align2 = EMIN(mtmp2)->min_align; /* MAR */
-			else if (mtmp2->ispriest) align2 = EPRI(mtmp2)->shralign; /* MAR */
-			else faith2 = FALSE;
+		    if (mtmp->isminion) align1 = EMIN(mtmp)->min_align;
+		    else if (is_unicorn(mtmp->data))
+			align1 = sgn(mtmp->data->maligntyp);
+		    else if (mtmp->ispriest) align1 = EPRI(mtmp)->shralign;
+		    else align1 = A_NONE;
+		    if (mtmp2->isminion) align2 = EMIN(mtmp2)->min_align;
+		    else if (is_unicorn(mtmp2->data))
+			align2 = sgn(mtmp2->data->maligntyp);
+		    else if (mtmp2->ispriest) align2 = EPRI(mtmp2)->shralign;
+		    else align2 = A_NONE;
 
-			/* Mindless monsters and spelled monsters have no fear of 
-			 * attacking higher level monsters 
-			 */
-			if (((int)mtmp2->m_lev >= (int)mtmp->m_lev+2 && !is_spell && 
-				!mindless(mtmp->data)) ||
+		    /* Mindless monsters and spelled monsters have no fear of 
+		     * attacking higher level monsters 
+		     */
+		    if (((int)mtmp2->m_lev >= (int)mtmp->m_lev+2 && !is_spell && 
+			    !mindless(mtmp->data)) ||
 			(mtmp2->data == &mons[PM_FLOATING_EYE] && rn2(10) &&
 			 mtmp->mcansee && haseyes(mtmp->data) && mtmp2->mcansee
 			 && (perceives(mtmp->data) || !mtmp2->minvis)) ||
 			(mtmp2->data==&mons[PM_GELATINOUS_CUBE] && rn2(10)) ||
 			(mtmp2->data==&mons[PM_GAS_SPORE] && rn2(16)) ||
-			(max_passive_dmg(mtmp2, mtmp) >= mtmp->mhp) ||
-			/* WAC -- Minions/Angels no longer attack
-			 * coaligned minions/priests/angels.
+			(!attacktype(mtmp->data, AT_EXPL) &&
+			 max_passive_dmg(mtmp2, mtmp) >= mtmp->mhp) ||
+			/* Minions/Angels don't attack
+			 * coaligned minions/priests/angels/unicorns.
 			 */
-			(faith1 && faith2 && (align1 == align2)) ||
+			(align1 == align2 && align1 != A_NONE) ||
 			((mtmp->mhp*4 < mtmp->mhpmax
 			  || mtmp2->data->msound == MS_GUARDIAN
 			  || mtmp2->data->msound == MS_LEADER) &&
@@ -1004,6 +1013,8 @@ newdogpos:
 		for (j=MTSZ-1; j>0; j--) mtmp->mtrack[j] = mtmp->mtrack[j-1];
 		mtmp->mtrack[0].x = omx;
 		mtmp->mtrack[0].y = omy;
+		if (mtmp->mleashed)
+		    check_leash(mtmp, omx, omy, FALSE);
 		/* We have to know if the pet's gonna do a combined eat and
 		 * move before moving it, but it can't eat until after being
 		 * moved.  Thus the do_eat flag.
@@ -1039,6 +1050,7 @@ dognext:
 		  return 1;
 		remove_monster(mtmp->mx, mtmp->my);
 		place_monster(mtmp, cc.x, cc.y);
+		check_leash(mtmp, omx, omy, TRUE);
 		newsym(cc.x,cc.y);
 		set_apparxy(mtmp);
 	}

@@ -1,23 +1,11 @@
-/* $Id: winproxy.h,v 1.15 2003-05-31 08:12:43 j_ali Exp $ */
-/* Copyright (c) Slash'EM Development Team 2001-2003 */
+/* $Id: winproxy.h,v 1.17 2005-02-02 09:42:13 j_ali Exp $ */
+/* Copyright (c) Slash'EM Development Team 2001-2004 */
 /* NetHack may be freely redistributed.  See license for details. */
 
-#ifndef WINEXT_H
-#define WINEXT_H
+#ifndef WINPROXY_H
+#define WINPROXY_H
 
 #define E extern
-
-#ifdef NHXDR_H
-struct proxy_extension {
-    const char *name;
-    const char *version;
-    void FDECL((*init), (unsigned short));
-    int no_procedures;
-    void FDECL((*handler), (unsigned short, NhExtXdr *, NhExtXdr *));
-};
-
-extern struct proxy_extension proxy_extents[];
-#endif
 
 extern struct window_procs proxy_procs;
 
@@ -80,7 +68,7 @@ E void FDECL(proxy_change_color, (int, long, int));
 E void FDECL(proxy_change_background, (int));
 E short FDECL(set_proxy_font_name, (winid, char *));
 #endif
-E char * NDECL(proxy_get_color_string);
+E char *NDECL(proxy_get_color_string);
 #endif
 E void NDECL(proxy_start_screen);
 E void NDECL(proxy_end_screen);
@@ -88,6 +76,31 @@ E void FDECL(proxy_outrip, (winid, int));
 E void FDECL(proxy_preference_update, (const char *));
 E void FDECL(proxy_status, (int, int, const char **));
 E FILE *NDECL(proxy_config_file_open);
+
+/* riputil.c */
+E char *FDECL(get_killer_string, (int));
+
+/* getopt.c */
+E char *FDECL(get_option, (const char *));
+
+/* glyphmap.c */
+E void NDECL(set_glyph_mapping);
+E struct nhproxy_cb_get_glyph_mapping_res *NDECL(get_glyph_mapping);
+E void FDECL(free_glyph_mapping, (struct nhproxy_cb_get_glyph_mapping_res *));
+E int NDECL(get_no_glyph);
+
+/* dlbh.c */
+#ifndef FILE_AREAS
+E int FDECL(dlbh_fopen, (const char *, const char *));
+#else
+E int FDECL(dlbh_fopen_area(const char *, const char *, const char *));
+#endif
+E int FDECL(dlbh_fclose, (int));
+E int FDECL(dlbh_fread, (char *, int, int, int));
+E int FDECL(dlbh_fseek, (int, long, int));
+E char *FDECL(dlbh_fgets, (char *, int, int));
+E int FDECL(dlbh_fgetc, (int));
+E long FDECL(dlbh_ftell, (int));
 
 #undef E
 

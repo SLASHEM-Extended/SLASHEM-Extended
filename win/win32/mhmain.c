@@ -388,17 +388,6 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 				ZeroMemory(kbd_state, sizeof(kbd_state));
 				GetKeyboardState(kbd_state);
 
-				/* left hand alt key */
-				if( STATEON(VK_MENU) ) {
-					unsigned char scancode = (lParam >> 16) & 0xFF;
-					
-					if ((scancode >= SCANLO) && (scancode < (SCANLO + SIZE(scanmap))))
-					{
-						NHEVENT_KBD( M(scanmap[(scancode-SCANLO)]) );
-					}
-					return 0;
-				}
-
 				if( ToAscii( wParam, (lParam>>16)&0xFF, kbd_state, &c, 0) ) {
 					NHEVENT_KBD( c&0xFF );
 					return 0;

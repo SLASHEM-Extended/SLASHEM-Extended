@@ -19,7 +19,12 @@ STATIC_DCL boolean FDECL(taking_off, (const char *));
 STATIC_DCL boolean FDECL(putting_on, (const char *));
 STATIC_PTR int FDECL(ckunpaid,(struct obj *));
 STATIC_PTR int FDECL(ckvalidcat,(struct obj *));
+#ifdef DUMP_LOG
+static char FDECL(display_pickinv,
+		 (const char *,BOOLEAN_P, long *, BOOLEAN_P));
+#else
 static char FDECL(display_pickinv, (const char *,BOOLEAN_P, long *));
+#endif /* DUMP_LOG */
 #ifdef OVLB
 STATIC_DCL boolean FDECL(this_type_only, (struct obj *));
 STATIC_DCL void NDECL(dounpaid);
@@ -446,7 +451,11 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 {
 	char buf[BUFSZ];
 
+#ifndef INVISIBLE_OBJECTS
 	if (!Blind) obj->dknown = 1;	/* maximize mergibility */
+#else
+	if (!Blind && (!obj->oinvis || See_invisible)) obj->dknown = 1;
+#endif
 	if (obj->oartifact) {
 	    /* place_object may change these */
 	    boolean crysknife = (obj->otyp == CRYSKNIFE);
@@ -1222,7 +1231,11 @@ register const char *let,*word;
 		    if (ilet == '?' && !*lets && *altlets)
 			allowed_choices = altlets;
 		    ilet = display_pickinv(allowed_choices, TRUE,
-					   allowcnt ? &ctmp : (long *)0);
+					   allowcnt ? &ctmp : (long *)0
+#ifdef DUMP_LOG
+					   , FALSE
+#endif
+					   );
 		    if(!ilet) continue;
 		    if (allowcnt && ctmp >= 0) {
 			cnt = ctmp;
@@ -1645,7 +1658,11 @@ nextclass:
 		case 'y':
 			tmp = (*fn)(otmp);
 			if(tmp < 0) {
-			    if (otmp != otmpo) {
+			    if (container_gone(fn)) {
+				/* otmp caused magic bag to explode;
+				   both are now gone */
+				otmp = 0;		/* and return */
+			    } else if (otmp && otmp != otmpo) {
 				/* split occurred, merge again */
 				(void) merged(&otmpo, &otmp);
 			    }
@@ -1902,11 +1919,20 @@ find_unpaid(list, last_found)
  * inventory and return a count as well as a letter. If out_cnt is not null,
  * any count returned from the menu selection is placed here.
  */
+#ifdef DUMP_LOG
+static char
+display_pickinv(lets, want_reply, out_cnt, want_dump)
+register const char *lets;
+boolean want_reply;
+long* out_cnt;
+boolean want_dump;
+#else
 static char
 display_pickinv(lets, want_reply, out_cnt)
 register const char *lets;
 boolean want_reply;
 long* out_cnt;
+#endif
 {
 	struct obj *otmp;
 	char ilet, ret;
@@ -1932,6 +1958,10 @@ long* out_cnt;
 	} else
 	    win = WIN_INVEN;
 
+#ifdef DUMP_LOG
+	if (want_dump)   dump("", "Your inventory");
+#endif
+
 	/*
 	Exit early if no inventory -- but keep going if we are doing
 	a permanent inventory update.  We need to keep going so the
@@ -1948,6 +1978,16 @@ long* out_cnt;
 	    pline("Not carrying anything%s.", u.ugold ? " except gold" : "");
 #else
 	    pline("Not carrying anything.");
+#endif
+#ifdef DUMP_LOG
+	    if (want_dump) {
+#ifdef GOLDOBJ
+		dump("  ", "Not carrying anything");
+#else
+		dump("  Not carrying anything",
+		    u.ugold ? " except gold." : ".");
+#endif
+	    }
 #endif
 #ifdef PROXY_GRAPHICS
 	    busy--;
@@ -1969,6 +2009,14 @@ long* out_cnt;
 			  want_reply ? PICK_ONE : PICK_NONE,
 			  xprname(otmp, (char *)0, lets[0], TRUE, 0L, 0L));
 		    if (out_cnt) *out_cnt = -1L;	/* select all */
+#ifdef DUMP_LOG
+		    if (want_dump) {
+			char letbuf[7];
+			sprintf(letbuf, "  %c - ", lets[0]);
+			dump(letbuf,
+			     xprname(otmp, (char *)0, lets[0], TRUE, 0L, 0L));
+		    }
+#endif
 		    break;
 		}
 	    }
@@ -1990,12 +2038,23 @@ nextclass:
 				any.a_void = 0;		/* zero */
 				add_menu(win, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
 				    let_to_name(*invlet, FALSE), MENU_UNSELECTED);
+#ifdef DUMP_LOG
+				if (want_dump)
+				    dump("  ", let_to_name(*invlet, FALSE));
+#endif
 				classcount++;
 			    }
 			    any.a_char = ilet;
 			    add_menu(win, obj_to_glyph(otmp),
 					&any, ilet, 0, ATR_NONE, doname(otmp),
 					MENU_UNSELECTED);
+#ifdef DUMP_LOG
+			    if (want_dump) {
+				char letbuf[7];
+				sprintf(letbuf, "  %c - ", ilet);
+				dump(letbuf, doname(otmp));
+			    }
+#endif
 			}
 		}
 	}
@@ -2017,6 +2076,9 @@ nextclass:
 	    free((genericptr_t)selected);
 	} else
 	    ret = !n ? '\0' : '\033';	/* cancelled */
+#ifdef DUMP_LOG
+	if (want_dump)  dump("", "");
+#endif
 
 #ifdef PROXY_GRAPHICS
 	busy--;
@@ -2036,8 +2098,23 @@ display_inventory(lets, want_reply)
 register const char *lets;
 boolean want_reply;
 {
-	return display_pickinv(lets, want_reply, (long *)0);
+	return display_pickinv(lets, want_reply, (long *)0
+#ifdef DUMP_LOG
+				, FALSE
+#endif
+	);
 }
+
+#ifdef DUMP_LOG
+/* See display_inventory. This is the same thing WITH dumpfile creation */
+char
+dump_inventory(lets, want_reply)
+register const char *lets;
+boolean want_reply;
+{
+  return display_pickinv(lets, want_reply, (long *)0, TRUE);
+}
+#endif
 
 /*
  * Returns the number of unpaid items within the given list.  This includes
@@ -2573,8 +2650,9 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	    obj->obroken != otmp->obroken ||
 	    obj->otrapped != otmp->otrapped ||
 	    obj->lamplit != otmp->lamplit ||
+	    flags.pickup_thrown && obj->was_thrown != otmp->was_thrown ||
 #ifdef INVISIBLE_OBJECTS
-		obj->oinvis != otmp->oinvis ||
+	    obj->oinvis != otmp->oinvis ||
 #endif
 #ifdef UNPOLYPILE
 	    obj->oldtyp != otmp->oldtyp ||
@@ -2836,7 +2914,8 @@ long numused;
 	if(costly_spot(otmp->ox, otmp->oy)) {
 	    if(index(u.urooms, *in_rooms(otmp->ox, otmp->oy, 0)))
 	        addtobill(otmp, FALSE, FALSE, FALSE);
-	    else (void)stolen_value(otmp, otmp->ox, otmp->oy, FALSE, FALSE);
+	    else (void)stolen_value(otmp, otmp->ox, otmp->oy, FALSE, FALSE,
+		    TRUE);
 	}
 	delobj(otmp);
 	if (at_u && u.uundetected && hides_under(youmonst.data))

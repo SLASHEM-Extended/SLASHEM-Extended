@@ -6,7 +6,9 @@
 
 STATIC_DCL boolean FDECL(known_hitum, (struct monst *,int,int *,struct attack *));
 STATIC_DCL void FDECL(steal_it, (struct monst *, struct attack *));
+#if 0
 STATIC_DCL boolean FDECL(hitum, (struct monst *,int,int,struct attack *));
+#endif
 STATIC_DCL boolean FDECL(hmon_hitmon, (struct monst *,struct obj *,int));
 #ifdef STEED
 STATIC_DCL int FDECL(joust, (struct monst *,struct obj *));
@@ -553,12 +555,12 @@ struct attack *uattk;
 			--u.uconduct.weaphit;
 		}
 		if (mon->wormno && *mhit) {
-		    int hit = *mhit;
-		    if (!u.twoweap || (hit & HIT_UWEP)) {
+		    int dohit = *mhit;
+		    if (!u.twoweap || (dohit & HIT_UWEP)) {
 			if (cutworm(mon, x, y, uwep))
-			    hit = 0;	/* Don't try and cut a worm twice */
+			    dohit = 0;	/* Don't try and cut a worm twice */
 		    }
-		    if (u.twoweap && (hit & HIT_USWAPWEP))
+		    if (u.twoweap && (dohit & HIT_USWAPWEP))
 			(void) cutworm(mon, x, y, uswapwep);
 		}
 	    }
@@ -702,7 +704,7 @@ struct monst *mon;
 struct obj *obj;
 int thrown;
 {
-	int tmp, canhitmon = 0, objenchant, mdx, mdy;
+	int tmp, canhitmon = 0, objenchant;
 	struct permonst *mdat = mon->data;
 	int barehand_silver_rings = 0;
 	/* The basic reason we need all these booleans is that we don't want
@@ -1442,51 +1444,37 @@ int thrown;
                 hittxt = TRUE;
             }
         }
-	/* Checks for no_obj instead of !uwep */
-	if (Role_if(PM_MONK) && !Upolyd && !thrown &&
-	    no_obj &&  (!uarm || (uarm &&
-		    (uarm->otyp >= ROBE &&
-		     uarm->otyp <= ROBE_OF_WEAKNESS))) &&
-		     !uarms) {
 
-		/* just so we don't need another variable ... */
-		canhitmon = rnd(100);
-		if (canhitmon < u.ulevel / 8 &&
-				!thick_skinned(mdat)) {
-			if(!Blind)
-			pline("You strike %s extremely hard!",
-				mon_nam(mon));
-			tmp *= 2;
-			hittxt = TRUE;
+	/* Special monk strikes */
+	if (Role_if(PM_MONK) && !Upolyd && !thrown && no_obj &&
+		(!uarm || (uarm && uarm->otyp >= ROBE &&
+		 uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms &&
+		 distu(mon->mx, mon->my) <= 2) {
+	    /* just so we don't need another variable ... */
+	    canhitmon = rnd(100);
+	    if (canhitmon < u.ulevel / 8 && !thick_skinned(mdat)) {
+		if (canspotmon(mon))
+		    You("strike %s extremely hard!", mon_nam(mon));
+		tmp *= 2;
+		hittxt = TRUE;
+	    } else if (canhitmon < u.ulevel / 4 && !thick_skinned(mdat)) {
+		if (canspotmon(mon))
+		    You("strike %s very hard!", mon_nam(mon));
+		tmp += tmp / 2;
+		hittxt = TRUE;
+	    } else if (canhitmon < u.ulevel / 2 && !bigmonst(mon->data) &&
+		    !thick_skinned(mdat)) {
+		if (canspotmon(mon))
+		    pline("%s %s from your powerful strike!", Monnam(mon),
+			  makeplural(stagger(mon->data, "stagger")));
+		/* avoid migrating a dead monster */
+		if (mon->mhp > tmp) {
+		    mhurtle(mon, u.dx, u.dy, 1);
+		    mdat = mon->data; /* in case of a polymorph trap */
+		    if (DEADMONSTER(mon)) already_killed = TRUE;
 		}
-		else if (canhitmon < u.ulevel / 4 &&
-				!thick_skinned(mdat)) {
-			if(!Blind)
-			pline("You strike %s very hard!",
-				mon_nam(mon));
-			tmp += (tmp/2);
-			hittxt = TRUE;
-		}
-		else if (canhitmon < u.ulevel / 2 &&
-			 !bigmonst(mon->data) && !thick_skinned(mdat)) {
-			if(!Blind)
-			pline("%s staggers from your powerful strike!",
-				Monnam(mon));
-			mon->mstun = 1;
-			hittxt = TRUE;
-			if (mon->mcanmove && mon != u.ustuck) {
-			    /* see if the monster has a place to move into */
-			    mdx = mon->mx + u.dx;
-			    mdy = mon->my + u.dy;
-			    if (goodpos(mdx, mdy, mon, 0)) {
-				remove_monster(mon->mx, mon->my);
-				newsym(mon->mx, mon->my);
-				place_monster(mon, mdx, mdy);
-				newsym(mon->mx, mon->my);
-				set_apparxy(mon);
-			    }
-			}
-		} 
+		hittxt = TRUE;
+	    }
 	}
 
 	if (!already_killed) mon->mhp -= tmp;
@@ -2696,7 +2684,10 @@ register struct monst *mon;
 register int tmp;
 {
 	struct attack *mattk, alt_attk;
-	int	i, sum[NATTK], hittmp = 0;
+	int	i, sum[NATTK];
+#if 0
+	int	hittmp = 0;
+#endif
 	int	nsum = 0;
 	int	dhit = 0;
 	int 	mhit = 0; /* Used to pass the attacks used */
@@ -2735,7 +2726,7 @@ use_weapon:
 			mhit = used_uwep ? HIT_USWAPWEP : HIT_UWEP;
 			used_uwep = !used_uwep;
 			if (mhit == HIT_USWAPWEP && !u.twoweap)
-			    break;	/* Skip this attack */
+			    continue;	/* Skip this attack */
 
 			/* WAC if attacking cockatrice/etc, player is smart
 			   if wielding a weapon.  So don't let him
@@ -3022,12 +3013,14 @@ use_weapon:
 int
 passive(mon, mhit, malive, aatyp)
 register struct monst *mon;
-register boolean mhit;
+register int mhit;
 register int malive;
 uchar aatyp;
 {
 	register struct permonst *ptr = mon->data;
 	register int i, tmp;
+	struct obj *target = mhit & HIT_UWEP ? uwep :
+		mhit & HIT_USWAPWEP ? uswapwep : (struct obj *)0;
 /*	char buf[BUFSZ]; */
 
 
@@ -3067,7 +3060,7 @@ uchar aatyp;
 			(void)rust_dmg(uarmf, xname(uarmf), 3, TRUE, &youmonst);
 		} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
 			   aatyp == AT_MAGC || aatyp == AT_TUCH)
-		    passive_obj(mon, (struct obj*)0, &(ptr->mattk[i]));
+		    passive_obj(mon, target, &(ptr->mattk[i]));
 	    }
 	    exercise(A_STR, FALSE);
 	    break;
@@ -3104,7 +3097,7 @@ uchar aatyp;
 			(void)rust_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
 		} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
 			   aatyp == AT_MAGC || aatyp == AT_TUCH)
-		    passive_obj(mon, (struct obj*)0, &(ptr->mattk[i]));
+		    passive_obj(mon, target, &(ptr->mattk[i]));
 	    }
 	    break;
 	  case AD_CORR:
@@ -3114,7 +3107,7 @@ uchar aatyp;
 			(void)rust_dmg(uarmf, xname(uarmf), 3, TRUE, &youmonst);
 		} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
 			   aatyp == AT_MAGC || aatyp == AT_TUCH)
-		    passive_obj(mon, (struct obj*)0, &(ptr->mattk[i]));
+		    passive_obj(mon, target, &(ptr->mattk[i]));
 	    }
 	    break;
 	  case AD_MAGM:
@@ -3222,15 +3215,16 @@ uchar aatyp;
 		break;
 	      case AD_ENCH:	/* KMH -- remove enchantment (disenchanter) */
 		if (mhit) {
-		    struct obj *obj = (struct obj *)0;
+		    struct obj *obj = target;
 
 		    if (aatyp == AT_KICK) {
 			obj = uarmf;
 			if (!obj) break;
 		    } else if (aatyp == AT_BITE || aatyp == AT_BUTT ||
-			(aatyp >= AT_STNG && aatyp < AT_WEAP)) {
-		    break;		/* no object involved */
-		    }
+			       (aatyp >= AT_STNG && aatyp < AT_WEAP)) {
+			break;		/* no object involved */
+		    } else if (!obj && mhit & (HIT_UWEP | HIT_USWAPWEP))
+			obj = uarmg;
 		    passive_obj(mon, obj, &(ptr->mattk[i]));
 	    	}
 	    	break;
@@ -3254,6 +3248,7 @@ struct attack *mattk;		/* null means we find one internally */
 	register struct permonst *ptr = mon->data;
 	register int i;
 
+#if 0
 	/* if caller hasn't specified an object, use uwep, uswapwep or uarmg */
 	if (!obj) {
 	    obj = (u.twoweap && uswapwep && !rn2(2)) ? uswapwep : uwep;
@@ -3261,6 +3256,10 @@ struct attack *mattk;		/* null means we find one internally */
 		obj = uarmg;		/* no weapon? then must be gloves */
 	    if (!obj) return;		/* no object to affect */
 	}
+#else
+	/* In Slash'EM, the caller always specifies the object */
+	if (!obj) return;		/* no object to affect */
+#endif
 
 	/* if caller hasn't specified an attack, find one */
 	if (!mattk) {

@@ -349,7 +349,7 @@ vis_tab.obj :	vis_tab.c $(CONFIG_H) $(INC)vis_tab.h
 #	general code
 allmain.obj :	allmain.c $(HACK_H)
 alloc.obj :	alloc.c $(CONFIG_H)
-apply.obj :	apply.c $(HACK_H) $(INC)edog.h
+apply.obj :	apply.c $(HACK_H) $(INC)edog.h $(INC)eleash.h
 artifact.obj :	artifact.c $(HACK_H) $(INC)artifact.h $(INC)artilist.h
 attrib.obj :	attrib.c $(HACK_H)
 ball.obj :	ball.c $(HACK_H)

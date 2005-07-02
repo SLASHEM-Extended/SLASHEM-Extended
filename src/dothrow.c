@@ -819,7 +819,7 @@ register boolean broken;
 	if(broken) {
 		if (obj->unpaid) {
 		    (void)stolen_value(obj, u.ux, u.uy,
-				       (boolean)shkp->mpeaceful, FALSE);
+				       (boolean)shkp->mpeaceful, FALSE, TRUE);
 		    subfrombill(obj, shkp);
 		}
 		obj->no_charge = 1;
@@ -830,7 +830,7 @@ register boolean broken;
 		/* thrown out of a shop or into a different shop */
 		if (obj->unpaid) {
 		    (void)stolen_value(obj, u.ux, u.uy,
-				       (boolean)shkp->mpeaceful, FALSE);
+				       (boolean)shkp->mpeaceful, FALSE, FALSE);
 		    subfrombill(obj, shkp);
 		}
 	} else {
@@ -1219,8 +1219,6 @@ int thrown;
 		if (obj != uball) (void) mpickobj(u.ustuck,obj);
 	} else {
 		/* the code following might become part of dropy() */
-		int obj_glyph = obj_to_glyph(obj);
-
 		if (obj->oartifact == ART_MJOLLNIR &&
 			Role_if(PM_VALKYRIE) && rn2(100)) {
 		    /* we must be wearing Gauntlets of Power to get here */
@@ -1816,11 +1814,11 @@ xchar x, y;		/* object location (ox, oy may not be right) */
 boolean hero_caused;	/* is this the hero's fault? */
 boolean from_invent;
 {
-	int altarmask;
+	int am;
 	if (IS_ALTAR(levl[x][y].typ))
-	    altarmask = levl[x][y].altarmask & AM_MASK;
+	    am = levl[x][y].altarmask & AM_MASK;
 	else
-	    altarmask = AM_NONE;
+	    am = AM_NONE;
 	switch (obj->oclass == POTION_CLASS ? POT_WATER : obj->otyp) {
 		case MIRROR:
 			if (hero_caused)
@@ -1831,8 +1829,8 @@ boolean from_invent;
 			    splatter_burning_oil(x,y);
 			} else if ((obj->otyp == POT_VAMPIRE_BLOOD ||
 				   obj->otyp == POT_BLOOD) &&
-				   altarmask != AM_CHAOTIC &&
-				   altarmask != AM_NONE) {
+				   am != AM_CHAOTIC &&
+				   am != AM_NONE) {
 			    /* ALI: If blood is spilt on a lawful or
 			     * neutral altar the effect is similar to
 			     * human sacrifice. There's no effect on
@@ -1896,7 +1894,7 @@ boolean from_invent;
 			single breakage.  (ought to be done via ESHK)  */
 		    if (moves != lastmovetime)
 			peaceful_shk = shkp->mpeaceful;
-		    if (stolen_value(obj, x, y, peaceful_shk, FALSE) > 0L &&
+		    if (stolen_value(obj, x, y, peaceful_shk, FALSE, TRUE) > 0L &&
 			(*o_shop != u.ushops[0] || !inside_shop(u.ux, u.uy)) &&
 			moves != lastmovetime) make_angry_shk(shkp, x, y);
 		    lastmovetime = moves;

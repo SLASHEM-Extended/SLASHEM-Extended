@@ -234,18 +234,49 @@ tech_known(tech)
 	}
 	return FALSE;
 }
+
+/* Called to prematurely stop a technique */
+void
+aborttech(tech)
+{
+	int i;
+
+	i = get_tech_no(tech);
+	if (tech_list[i].t_inuse) {
+	    switch (tech_list[i].t_id) {
+		case T_RAGE:
+		    u.uhpmax -= tech_list[i].t_inuse - 1;
+		    if (u.uhpmax < 1)
+			u.uhpmax = 0;
+		    u.uhp -= tech_list[i].t_inuse - 1;
+		    if (u.uhp < 1)
+			u.uhp = 1;
+		    break;
+		case T_POWER_SURGE:
+		    u.uenmax -= tech_list[i].t_inuse - 1;
+		    if (u.uenmax < 1)
+			u.uenmax = 0;
+		    u.uen -= tech_list[i].t_inuse - 1;
+		    if (u.uen < 0)
+			u.uen = 0;
+		    break;
+	    }
+	    tech_list[i].t_inuse = 0;
+	}
+}
+
 /* Called to teach a new tech.  Level is starting tech level */
 void
-learntech(tech, mask, level)
+learntech(tech, mask, tlevel)
 	short tech;
 	long mask;
-	int level;
+	int tlevel;
 {
 	int i;
 	const struct innate_tech *tp;
 
 	i = get_tech_no(tech);
-	if (level > 0) {
+	if (tlevel > 0) {
 	    if (i < 0) {
 		i = get_tech_no(NO_TECH);
 		if (i < 0) {
@@ -253,10 +284,10 @@ learntech(tech, mask, level)
 		    return;
 		}
 	    }
-	    level = u.ulevel ? u.ulevel - level : 0;
+	    tlevel = u.ulevel ? u.ulevel - tlevel : 0;
 	    if (tech_list[i].t_id == NO_TECH) {
 		tech_list[i].t_id = tech;
-		tech_list[i].t_lev = level;
+		tech_list[i].t_lev = tlevel;
 		tech_list[i].t_inuse = 0; /* not in use */
 		tech_list[i].t_intrinsic = 0;
 	    }
@@ -266,34 +297,36 @@ learntech(tech, mask, level)
 	    }
 	    if (mask == FROMOUTSIDE) {
 		tech_list[i].t_intrinsic &= ~OUTSIDE_LEVEL;
-		tech_list[i].t_intrinsic |= level & OUTSIDE_LEVEL;
+		tech_list[i].t_intrinsic |= tlevel & OUTSIDE_LEVEL;
 	    }
-	    if (level < tech_list[i].t_lev)
-		tech_list[i].t_lev = level;
+	    if (tlevel < tech_list[i].t_lev)
+		tech_list[i].t_lev = tlevel;
 	    tech_list[i].t_intrinsic |= mask;
 	    tech_list[i].t_tout = 0; /* Can use immediately*/
 	}
-	else if (level < 0) {
+	else if (tlevel < 0) {
 	    if (i < 0 || !(tech_list[i].t_intrinsic & mask)) {
 		impossible("Tech not known.");
 		return;
 	    }
 	    tech_list[i].t_intrinsic &= ~mask;
 	    if (!(tech_list[i].t_intrinsic & INTRINSIC)) {
+		if (tech_list[i].t_inuse)
+		    aborttech(tech);
 		tech_list[i].t_id = NO_TECH;
 		return;
 	    }
 	    /* Re-calculate lowest t_lev */
 	    if (tech_list[i].t_intrinsic & FROMOUTSIDE)
-		level = tech_list[i].t_intrinsic & OUTSIDE_LEVEL;
+		tlevel = tech_list[i].t_intrinsic & OUTSIDE_LEVEL;
 	    if (tech_list[i].t_intrinsic & FROMEXPER) {
 		for(tp = role_tech(); tp->tech_id; tp++)
 		    if (tp->tech_id == tech)
 			break;
 		if (!tp->tech_id)
 		    impossible("No inate technique for role?");
-		else if (level < 0 || tp->ulevel - tp->tech_lev < level)
-		    level = tp->ulevel - tp->tech_lev;
+		else if (tlevel < 0 || tp->ulevel - tp->tech_lev < tlevel)
+		    tlevel = tp->ulevel - tp->tech_lev;
 	    }
 	    if (tech_list[i].t_intrinsic & FROMRACE) {
 		for(tp = race_tech(); tp->tech_id; tp++)
@@ -301,10 +334,10 @@ learntech(tech, mask, level)
 			break;
 		if (!tp->tech_id)
 		    impossible("No inate technique for race?");
-		else if (level < 0 || tp->ulevel - tp->tech_lev < level)
-		    level = tp->ulevel - tp->tech_lev;
+		else if (tlevel < 0 || tp->ulevel - tp->tech_lev < tlevel)
+		    tlevel = tp->ulevel - tp->tech_lev;
 	    }
-	    tech_list[i].t_lev = level;
+	    tech_list[i].t_lev = tlevel;
 	}
 	else
 	    impossible("Invalid Tech Level!");
@@ -369,15 +402,11 @@ dotechmenu(how, tech_no)
         int *tech_no;
 {
 	winid tmpwin;
-	int i, n;
-	int len, longest;
-	char buf[BUFSZ];
+	int i, n, len, longest, techs_useable, tlevel;
+	char buf[BUFSZ], let = 'a';
+	const char *prefix;
 	menu_item *selected;
 	anything any;
-	char let = 'a';
-	char *prefix;
-	int techs_useable;
-	int level;
 
 	tmpwin = create_nhwindow(NHW_MENU);
 	start_menu(tmpwin);
@@ -401,8 +430,8 @@ dotechmenu(how, tech_no)
 	for (i = 0; i < MAXTECH; i++) {
 	    if (techid(i) == NO_TECH)
 		continue;
-	    level = techlev(i);
-	    if (!techtout(i) && level > 0) {
+	    tlevel = techlev(i);
+	    if (!techtout(i) && tlevel > 0) {
 		/* Ready to use */
 		techs_useable++;
 		prefix = "";
@@ -415,24 +444,24 @@ dotechmenu(how, tech_no)
 	    if (wizard) 
 		if (!iflags.menu_tab_sep)			
 		    Sprintf(buf, "%s%-*s %2d%c%c%c   %s(%i)",
-			    prefix, longest, techname(i), level,
+			    prefix, longest, techname(i), tlevel,
 			    tech_list[i].t_intrinsic & FROMEXPER ? 'X' : ' ',
 			    tech_list[i].t_intrinsic & FROMRACE ? 'R' : ' ',
 			    tech_list[i].t_intrinsic & FROMOUTSIDE ? 'O' : ' ',
 			    tech_inuse(techid(i)) ? "Active" :
-			    level <= 0 ? "Beyond recall" :
+			    tlevel <= 0 ? "Beyond recall" :
 			    can_limitbreak() ? "LIMIT" :
 			    !techtout(i) ? "Prepared" : 
 			    techtout(i) > 100 ? "Not Ready" : "Soon",
 			    techtout(i));
 		else
 		    Sprintf(buf, "%s%s\t%2d%c%c%c\t%s(%i)",
-			    prefix, techname(i), level,
+			    prefix, techname(i), tlevel,
 			    tech_list[i].t_intrinsic & FROMEXPER ? 'X' : ' ',
 			    tech_list[i].t_intrinsic & FROMRACE ? 'R' : ' ',
 			    tech_list[i].t_intrinsic & FROMOUTSIDE ? 'O' : ' ',
 			    tech_inuse(techid(i)) ? "Active" :
-			    level <= 0 ? "Beyond recall" :
+			    tlevel <= 0 ? "Beyond recall" :
 			    can_limitbreak() ? "LIMIT" :
 			    !techtout(i) ? "Prepared" : 
 			    techtout(i) > 100 ? "Not Ready" : "Soon",
@@ -441,17 +470,17 @@ dotechmenu(how, tech_no)
 #endif
 	    if (!iflags.menu_tab_sep)			
 		Sprintf(buf, "%s%-*s %5d   %s",
-			prefix, longest, techname(i), level,
+			prefix, longest, techname(i), tlevel,
 			tech_inuse(techid(i)) ? "Active" :
-			level <= 0 ? "Beyond recall" :
+			tlevel <= 0 ? "Beyond recall" :
 			can_limitbreak() ? "LIMIT" :
 			!techtout(i) ? "Prepared" : 
 			techtout(i) > 100 ? "Not Ready" : "Soon");
 	    else
 		Sprintf(buf, "%s%s\t%5d\t%s",
-			prefix, techname(i), level,
+			prefix, techname(i), tlevel,
 			tech_inuse(techid(i)) ? "Active" :
-			level <= 0 ? "Beyond recall" :
+			tlevel <= 0 ? "Beyond recall" :
 			can_limitbreak() ? "LIMIT" :
 			!techtout(i) ? "Prepared" : 
 			techtout(i) > 100 ? "Not Ready" : "Soon");
@@ -590,20 +619,16 @@ int tech_no;
                 t_timeout = rn1(500,1500);
 		break;
             case T_EVISCERATE:
-		/*only when empty handed, in human form!*/
-		if (Upolyd) {
-		        You("can't do this while polymorphed!");
-		        break;
+		/* only when empty handed, in human form */
+		if (Upolyd || uwep || uarmg) {
+		    You_cant("do this while %s!", Upolyd ? "polymorphed" :
+			    uwep ? "holding a weapon" : "wearing gloves");
+		    return 0;
 		}
-		if (!uwep) {
-		        Your("fingernails extend into claws!");
-		        aggravate();
-                        techt_inuse(tech_no) = d(2,4) + (techlev(tech_no)/5) + 2; /* [max] was d(2,8) */
-                        t_timeout = rn1(1000,1000); /* [max] increased delay */
-		} else {
-		    You("can't do this while holding a weapon!");
-		    return(0);
-		}
+		Your("fingernails extend into claws!");
+		aggravate();
+		techt_inuse(tech_no) = d(2,4) + techlev(tech_no)/5 + 2;
+		t_timeout = rn1(1000,1000);
 		break;
             case T_BERSERK:
 		You("fly into a berserk rage!");
@@ -655,20 +680,27 @@ int tech_no;
 		    You("are in no condition to perform surgery!");
 		    break;
 		}
-		if ((Sick) || (Slimed)) {       /* WAC cure sliming too */
-		    if(carrying(SCALPEL)) {
+		if (Sick || Slimed) {
+		    if (carrying(SCALPEL)) {
 			pline("Using your scalpel (ow!), you cure your infection!");
-			make_sick(0L,(char *)0, TRUE,SICK_ALL);
+			make_sick(0L, (char *)0, TRUE, SICK_ALL);
 			Slimed = 0;
-			if(u.uhp > 6) u.uhp -= 5;
-			else          u.uhp = 1;
+			if (Upolyd) {
+			    u.mh -= 5;
+			    if (u.mh < 1)
+				rehumanize();
+			} else if (u.uhp > 6)
+			    u.uhp -= 5;
+			else
+			    u.uhp = 1;
                         t_timeout = rn1(500,500);
+			flags.botl = TRUE;
 			break;
 		    } else pline("If only you had a scalpel...");
 		}
-		if (u.uhp < u.uhpmax) {
+		if (Upolyd ? u.mh < u.mhmax : u.uhp < u.uhpmax) {
 		    otmp = use_medical_kit(BANDAGE, FALSE,
-			    "bandage your wounds with");
+			    "dress your wounds with");
 		    if (otmp) {
 			check_unpaid(otmp);
 			if (otmp->quan > 1L)
@@ -677,28 +709,32 @@ int tech_no;
 			    obj_extract_self(otmp);
 			    obfree(otmp, (struct obj *)0);
 			}
-			pline("Using %s, you bandage your wounds.", yname(otmp));
-			u.uhp += (techlev(tech_no) * (rnd(2)+1)) + rn1(5,5);
+			pline("Using %s, you dress your wounds.", yname(otmp));
+			healup(techlev(tech_no) * (rnd(2)+1) + rn1(5,5),
+			  0, FALSE, FALSE);
 		    } else {
-			pline("You strap your wounds as best you can.");
-			u.uhp += (techlev(tech_no)) + rn1(5,5);
+			You("strap your wounds as best you can.");
+			healup(techlev(tech_no) + rn1(5,5), 0, FALSE, FALSE);
 		    }
                     t_timeout = rn1(1000,500);
-		    if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		    flags.botl = TRUE;
-		} else pline("You don't need your healing powers!");
+		} else You("don't need your healing powers!");
 		break;
             case T_HEAL_HANDS:
-		if (u.uhp < u.uhpmax || Sick || Slimed) { /*WAC heal sliming */
-			if (Sick) You("lay your hands on the foul sickness...");
-			pline("A warm glow spreads through your body!");
-			if (Slimed) pline_The("slime is removed.");
-			Slimed = 0;
-			if(Sick) make_sick(0L,(char*)0, TRUE, SICK_ALL);
-			else     u.uhp += (techlev(tech_no) * 4);
-			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
-                        t_timeout = 3000;
-		} else pline("Nothing happens...");
+		if (Slimed) {
+		    Your("body is on fire!");
+		    burn_away_slime();
+		    t_timeout = 3000;
+		} else if (Sick) {
+		    You("lay your hands on the foul sickness...");
+		    make_sick(0L, (char*)0, TRUE, SICK_ALL);
+		    t_timeout = 3000;
+		} else if (Upolyd ? u.mh < u.mhmax : u.uhp < u.uhpmax) {
+		    pline("A warm glow spreads through your body!");
+		    healup(techlev(tech_no) * 4, 0, FALSE, FALSE);
+		    t_timeout = 3000;
+		} else
+		    pline(nothing_happens);
 		break;
             case T_KIII:
 		You("scream \"KIIILLL!\"");
@@ -858,7 +894,7 @@ int tech_no;
 		    	if (mtmp->mtame != 0 && !mtmp->isspell) {
 		    	    struct permonst *ptr = mtmp->data;
 			    struct monst *mtmp2;
-		    	    int time = techt_inuse(tech_no);
+		    	    int ttime = techt_inuse(tech_no);
 		    	    int type = little_to_big(monsndx(ptr));
 		    	    
 		    	    mtmp2 = tamedog(mtmp, (struct obj *) 0);
@@ -867,7 +903,7 @@ int tech_no;
 
 		    	    if (type && type != monsndx(ptr)) {
 				ptr = &mons[type];
-		    	    	mon_spec_poly(mtmp, ptr, time, FALSE,
+		    	    	mon_spec_poly(mtmp, ptr, ttime, FALSE,
 					canseemon(mtmp), FALSE, TRUE);
 		    	    }
 		    	}
@@ -878,29 +914,34 @@ int tech_no;
 	    	coord cc;
 	    	int dx, dy, sx, sy, range;
 
+		pline("Where do you want to leap to?");
     		cc.x = sx = u.ux;
 		cc.y = sy = u.uy;
 
 		getpos(&cc, TRUE, "the desired position");
-		if(cc.x == -10) return 0; /* user pressed esc */
+		if (cc.x == -10) return 0; /* user pressed esc */
 
 		dx = cc.x - u.ux;
 		dy = cc.y - u.uy;
 		/* allow diagonals */
-	    	if ((dx && dy) && (dx != dy) && (dx != -dy)) {
-	    		You("can only leap in straight lines!");
-			return (0);
-	    	} else if (distu(cc.x, cc.y) > (19 + techlev(tech_no))) {
-	    		pline("Too far!");
-			return (0);
-		} else if (((mtmp = m_at(cc.x, cc.y)) != 0) ||
-		    (!isok(cc.x, cc.y) ||
-		    ((IS_ROCK(levl[cc.x][cc.y].typ) ||
-		     sobj_at(BOULDER, cc.x, cc.y) || closed_door(cc.x, cc.y))))) {
-			You("cannot flow there!"); /* MAR */
-			return (0);
+	    	if (dx && dy && dx != dy && dx != -dy) {
+		    You("can only leap in straight lines!");
+		    return 0;
+	    	} else if (distu(cc.x, cc.y) > 19 + techlev(tech_no)) {
+		    pline("Too far!");
+		    return 0;
+		} else if (m_at(cc.x, cc.y) || !isok(cc.x, cc.y) ||
+			IS_ROCK(levl[cc.x][cc.y].typ) ||
+			sobj_at(BOULDER, cc.x, cc.y) ||
+			closed_door(cc.x, cc.y)) {
+		    You_cant("flow there!"); /* MAR */
+		    return 0;
 		} else {
 		    You("liquify!");
+		    if (Punished) {
+			You("slip out of the iron chain.");
+			unpunish();
+		    }
 		    if(u.utrap) {
 			switch(u.utraptype) {
 			    case TT_BEARTRAP: 
@@ -1016,37 +1057,42 @@ int tech_no;
 		u_wipe_engr(2);
 		return(0);
 		break;
-            case T_RAISE_ZOMBIES: {
-            	int x,y;
-            	
+            case T_RAISE_ZOMBIES:
             	You("chant the ancient curse...");
-		for (i=0; i<3; i++) for (j=0; j<3; j++) {
-	            x = u.ux + i - 1; y = u.uy + j - 1;
-			if (OBJ_AT(x,y)) {
-				struct obj *obj, *obj2;
+		for(i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
+		    int corpsenm;
 
-				for (obj = level.objects[x][y]; obj; obj = obj2) {
-				    obj2 = obj->nexthere;
+		    if (!isok(u.ux+i, u.uy+j)) continue;
+		    for (obj = level.objects[u.ux+i][u.uy+j]; obj; obj = otmp) {
+			otmp = obj->nexthere;
 
-				    /* Only generate undead */
-				    if (mon_to_zombie(obj->corpsenm) != -1) {
-				    	obj->corpsenm = mon_to_zombie(obj->corpsenm);
-				    	mtmp = revive(obj);
-					if (mtmp) {
-				    	    if (!resist(mtmp, SPBOOK_CLASS, 0, TELL)) {
-			                       mtmp = tamedog(mtmp, (struct obj *) 0);
-			                       You("dominate %s!", mon_nam(mtmp));
-		                            } else setmangry(mtmp);
-					}
-				    }
-				}
+			if (obj->otyp != CORPSE) continue;
+			/* Only generate undead */
+			corpsenm = mon_to_zombie(obj->corpsenm);
+			if (corpsenm != -1 && !cant_create(&corpsenm, TRUE) &&
+			  (!obj->oxlth || obj->oattached != OATTACHED_MONST)) {
+			    /* Maintain approx. proportion of oeaten to cnutrit
+			     * so that the zombie's HP relate roughly to how
+			     * much of the original corpse was left.
+			     */
+			    if (obj->oeaten)
+				obj->oeaten =
+					eaten_stat(mons[corpsenm].cnutrit, obj);
+			    obj->corpsenm = corpsenm;
+			    mtmp = revive(obj);
+			    if (mtmp) {
+				if (!resist(mtmp, SPBOOK_CLASS, 0, TELL)) {
+				   mtmp = tamedog(mtmp, (struct obj *) 0);
+				   You("dominate %s!", mon_nam(mtmp));
+				} else setmangry(mtmp);
+			    }
 			}
+		    }
 		}
 		nomul(-2); /* You need to recover */
 		nomovemsg = 0;
 		t_timeout = rn1(1000,500);
 		break;
-            }
             case T_REVIVE: 
 		if (u.uswallow) {
 		    You(no_elbow_room);
@@ -1547,16 +1593,17 @@ tech_timeout()
 void
 docalm()
 {
-	int i, n = 0;
+	int i, tech, n = 0;
 
-	for (i = 0; i < MAXTECH; i++)
-		if (techid(i) != NO_TECH && techt_inuse(i)) {
-			techt_inuse(i) = 0;
-			n++;
-		}
+	for (i = 0; i < MAXTECH; i++) {
+	    tech = techid(i);
+	    if (tech != NO_TECH && techt_inuse(i)) {
+		aborttech(tech);
+		n++;
+	    }
+	}
 	if (n)
-		You("calm down.");
-	return;
+	    You("calm down.");
 }
 
 static void
@@ -1625,7 +1672,6 @@ int oldlevel, newlevel;
 {
 	const struct   innate_tech  
 		*tech = role_tech(), *rtech = race_tech();
-	short i;
 	long mask = FROMEXPER;
 
 	while (tech || rtech) {
@@ -1802,7 +1848,7 @@ static const struct blitz_tab blitzes[] = {
 static int
 doblitz()
 {
-	int i, j, dx, dy, done = 0, tech_no;
+	int i, j, dx, dy, bdone = 0, tech_no;
 	char buf[BUFSZ];
 	char *bp;
 	int blitz_chain[MAX_CHAIN], blitz_num;
@@ -1867,7 +1913,7 @@ doblitz()
     	/* You can't put two of the same blitz in a row */
     	blitz_num = 0;
     	while(strncmp(bp, ".", 1)) {
-	    done = 0;
+	    bdone = 0;
 	    for (j = 0; blitzes[j].blitz_len; j++) {
 	    	if (blitz_num >= MAX_CHAIN || 
 	    	    blitz_num >= (MIN_CHAIN + (techlev(tech_no) / 10)))
@@ -1899,11 +1945,11 @@ doblitz()
 			bp += blitzes[j].blitz_len;
 			blitz_chain[blitz_num] = j;
 			blitz_num++;
-			done = 1;
+			bdone = 1;
 			break;
 		}
 	    }
-	    if (!done) {
+	    if (!bdone) {
 		You("stumble!");
 		return(1);
 	    }
@@ -2040,7 +2086,7 @@ blitz_pummel()
 static int
 blitz_g_slam()
 {
-	int i = 0, tech_no, tmp;
+	int tech_no, tmp, canhitmon, objenchant;
 	struct monst *mtmp;
 	struct trap *chasm;
 
@@ -2056,27 +2102,49 @@ blitz_g_slam()
 		return (0);
 	}
 	if (!attack(mtmp)) return (0);
-	
+
 	/* Slam the monster into the ground */
 	mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 	if (!mtmp || u.uswallow) return(1);
-	
+
 	You("hurl %s downwards...", mon_nam(mtmp));
 	if (Is_airlevel(&u.uz) || Is_waterlevel(&u.uz)) return(1);
-	
+
+	if (need_four(mtmp)) canhitmon = 4;
+	else if (need_three(mtmp)) canhitmon = 3;
+	else if (need_two(mtmp)) canhitmon = 2;
+	else if (need_one(mtmp)) canhitmon = 1;
+	else canhitmon = 0;
+	if (Upolyd) {
+	    if (hit_as_four(&youmonst))	objenchant = 4;
+	    else if (hit_as_three(&youmonst)) objenchant = 3;
+	    else if (hit_as_two(&youmonst)) objenchant = 2;
+	    else if (hit_as_one(&youmonst)) objenchant = 1;
+	    else if (need_four(&youmonst)) objenchant = 4;
+	    else if (need_three(&youmonst)) objenchant = 3;
+	    else if (need_two(&youmonst)) objenchant = 2;
+	    else if (need_one(&youmonst)) objenchant = 1;
+	    else objenchant = 0;
+	} else
+	    objenchant = u.ulevel / 4;
+
 	tmp = (5 + rnd(6) + (techlev(tech_no) / 5));
 	
-	chasm = maketrap(u.ux + u.dx, u.uy + u.dy,PIT);
+	chasm = maketrap(u.ux + u.dx, u.uy + u.dy, PIT);
 	if (chasm) {
-		chasm->tseen = 1;
-		levl[(u.ux + u.dx)][(u.uy + u.dy)].doormask = 0;
-		pline("%s slams into the ground, creating a crater!", Monnam(mtmp));
-		tmp *= 2;
+	    if (!is_flyer(mtmp->data) && !is_clinger(mtmp->data))
+		mtmp->mtrapped = 1;
+	    chasm->tseen = 1;
+	    levl[u.ux + u.dx][u.uy + u.dy].doormask = 0;
+	    pline("%s slams into the ground, creating a crater!", Monnam(mtmp));
+	    tmp *= 2;
 	}
 
 	mselftouch(mtmp, "Falling, ", TRUE);
-	if (!DEADMONSTER(mtmp))
-	    if ((mtmp->mhp -= tmp) <= 0) {
+	if (!DEADMONSTER(mtmp)) {
+	    if (objenchant < canhitmon)
+		pline("%s doesn't seem to be harmed.", Monnam(mtmp));
+	    else if ((mtmp->mhp -= tmp) <= 0) {
 		if(!cansee(u.ux + u.dx, u.uy + u.dy))
 		    pline("It is destroyed!");
 		else {
@@ -2085,9 +2153,9 @@ blitz_g_slam()
 			    ? x_monnam(mtmp, ARTICLE_THE, "poor",
 				mtmp->mnamelth ? SUPPRESS_SADDLE : 0, FALSE)
 			    : mon_nam(mtmp));
-
 		}
 		xkilled(mtmp,0);
+	    }
 	}
 
 	return(1);

@@ -14,7 +14,7 @@ static const char *artifact_names[] = {
 /* in artifact.c, set up the actual artifact list structure */
 
 #define A(nam,typ,s1,s2,mt,atk,dfn,cry,inv,al,cl,rac,cost) \
- { typ, nam, s1, s2, mt, atk, dfn, cry, inv, al, cl, rac, cost }
+ { typ, nam, s1, s2, mt, atk, dfn, cry, inv, al, cl, rac, cost, 0 }
 
 #define     NO_ATTK	{0,0,0,0}		/* no attack */
 #define     NO_DFNS	{0,0,0,0}		/* no defense */
@@ -179,7 +179,7 @@ A("Disrupter",                  MACE,
 
 /*
  *	Mjollnir will return to the hand of a Valkyrie when thrown
- *	if the wielder is a Valkyrie wearing Gauntlets of Power.
+ *	if the wielder is a Valkyrie with strength of 25 or more.
  */
 A("Mjollnir",                   HEAVY_HAMMER,           /* Mjo:llnir */
 	(SPFX_RESTR|SPFX_ATTK),  0, 0,

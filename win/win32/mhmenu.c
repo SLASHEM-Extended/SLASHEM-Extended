@@ -1138,6 +1138,8 @@ BOOL onListChar(HWND hWnd, HWND hwndList, WORD ch)
 	break;
 
 	default:
+		if ((int)ch < 0 || ch > 255)
+			break;
 		if( strchr(data->menu.gacc, ch) &&
 			!(ch=='0' && data->menu.counting) ) {
 			/* matched a group accelerator */
@@ -1362,7 +1364,7 @@ LRESULT CALLBACK NHMenuListWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARA
 
 		processed = FALSE;
 		if( PeekMessage(&msg, hWnd, WM_CHAR, WM_CHAR, PM_REMOVE) ) {
-			if( onListChar(GetParent(hWnd), hWnd, (char)msg.wParam)==-2 ) {
+			if( onListChar(GetParent(hWnd), hWnd, msg.wParam)==-2 ) {
 				processed = TRUE;
 			}
 		}
