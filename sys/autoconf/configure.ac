@@ -1,6 +1,10 @@
 dnl	SLASHEM autoconf template
 AC_INIT(SLASHEM, 0.0.8, http://sourceforge.net/bugs/?group_id=9746)
-AC_REVISION($Revision: 1.1 $)
+dnl Avoid AC_REVISION() because we check configure into CVS
+dnl and it will cause confusing revision numbers to be included
+dnl in configure if developers forget to check in configure.ac
+dnl before running bootstrap.sh and checking in configure.
+# $Revision: 1.2 $
 AC_CONFIG_AUX_DIR(sys/autoconf)
 
 dnl  ----- Precious variables
@@ -276,19 +280,19 @@ NETHACK_ENABLE(autopickup-exceptions,autopickup_exceptions,
 NETHACK_LINKS=
 NETHACK_LINKS_ADD([include/file.h])
 NETHACK_LINKS_ADD([dat/data.base])
-NETHACK_LINKS_ADD([dat/rumors.tru:dat/rumors.tru])
-NETHACK_LINKS_ADD([dat/rumors.fal:dat/rumors.fal])
-NETHACK_LINKS_ADD([dat/quest.txt:dat/quest.txt])
-NETHACK_LINKS_ADD([dat/oracles.txt:dat/oracles.txt])
-NETHACK_LINKS_ADD([dat/dungeon.def:dat/dungeon.def])
-NETHACK_LINKS_ADD([dat/help:dat/help])
-NETHACK_LINKS_ADD([dat/hh:dat/hh])
-NETHACK_LINKS_ADD([dat/cmdhelp:dat/cmdhelp])
-NETHACK_LINKS_ADD([dat/history:dat/history])
-NETHACK_LINKS_ADD([dat/opthelp:dat/opthelp])
-NETHACK_LINKS_ADD([dat/wizhelp:dat/wizhelp])
-NETHACK_LINKS_ADD([dat/gypsy.txt:dat/gypsy.txt])
-NETHACK_LINKS_ADD([win/share/tile_t.h:win/share/tile_t.h])
+NETHACK_LINKS_ADD([dat/rumors.tru])
+NETHACK_LINKS_ADD([dat/rumors.fal])
+NETHACK_LINKS_ADD([dat/quest.txt])
+NETHACK_LINKS_ADD([dat/oracles.txt])
+NETHACK_LINKS_ADD([dat/dungeon.def])
+NETHACK_LINKS_ADD([dat/help])
+NETHACK_LINKS_ADD([dat/hh])
+NETHACK_LINKS_ADD([dat/cmdhelp])
+NETHACK_LINKS_ADD([dat/history])
+NETHACK_LINKS_ADD([dat/opthelp])
+NETHACK_LINKS_ADD([dat/wizhelp])
+NETHACK_LINKS_ADD([dat/gypsy.txt])
+NETHACK_LINKS_ADD([win/share/tile_t.h])
 
 AC_CONFIG_LINKS(${NETHACK_LINKS})
 

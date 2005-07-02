@@ -1,4 +1,4 @@
-# $Id: acinclude.m4,v 1.1 2005-06-11 15:52:45 j_ali Exp $
+# $Id: acinclude.m4,v 1.2 2005-07-02 18:16:09 j_ali Exp $
 
 AC_DEFUN([NETHACK_ENABLE],
   [AC_MSG_CHECKING(whether to enable $1)
@@ -23,7 +23,7 @@ AC_DEFUN([NETHACK_DISABLE],
 # Update if there is a newer source
 AC_DEFUN([NETHACK_LINKS_ADD],
 	if test ${srcdir}/$1 -nt $1 ; then
-	   NETHACK_LINKS="${LINKS_LIST} $1:$1"
+	   NETHACK_LINKS="${NETHACK_LINKS} $1:$1"
 	fi)
 
 # Autoconf's standard AC_CONFIG_HEADERS() avoids undefining switches because
