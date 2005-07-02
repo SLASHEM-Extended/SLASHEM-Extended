@@ -4,7 +4,7 @@ dnl Avoid AC_REVISION() because we check configure into CVS
 dnl and it will cause confusing revision numbers to be included
 dnl in configure if developers forget to check in configure.ac
 dnl before running bootstrap.sh and checking in configure.
-# $Revision: 1.2 $
+# $Revision: 1.3 $
 AC_CONFIG_AUX_DIR(sys/autoconf)
 
 dnl  ----- Precious variables
@@ -276,6 +276,19 @@ NETHACK_ENABLE(goldobj,goldobj,
 	[Gold is kept on object chains (experimental)],GOLDOBJ)
 NETHACK_ENABLE(autopickup-exceptions,autopickup_exceptions,
 	[Exceptions to autopickup (experimental)],AUTOPICKUP_EXCEPTIONS)
+
+AC_MSG_CHECKING([whether to enable wizmode])
+AC_ARG_ENABLE([wizmode], AC_HELP_STRING([--enable-wizmode=USER],
+	[enable wizard mode for the specified user (default=wizard)]),
+	if test "$enableval" != no; then enable_wizmode=yes; wizard=$enableval;
+	else enable_wizmode=no; fi, enable_wizmode=yes; wizard="wizard")
+if test "$enable_wizmode" != "no" ; then
+	AC_MSG_RESULT([yes (user $wizard)])
+	AC_DEFINE_UNQUOTED([WIZARD], ["$wizard"], [The person allowed to use the -D option])
+else
+	AC_MSG_RESULT([no])
+fi
+
 
 NETHACK_LINKS=
 NETHACK_LINKS_ADD([include/file.h])

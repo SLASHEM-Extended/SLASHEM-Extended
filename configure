@@ -911,6 +911,8 @@ Optional Features:
   --enable-autopickup-exceptions
                           Exceptions to autopickup (experimental)
                           (default=yes)
+  --enable-wizmode=USER   enable wizard mode for the specified user
+                          (default=wizard)
 
 Some influential environment variables:
   CC          C compiler
@@ -1372,7 +1374,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
-# $Revision: 1.6 $
+# $Revision: 1.7 $
 ac_aux_dir=
 for ac_dir in sys/autoconf $srcdir/sys/autoconf; do
   if test -f $ac_dir/install-sh; then
@@ -5171,6 +5173,30 @@ _ACEOF
    fi
 
 
+echo "$as_me:$LINENO: checking whether to enable wizmode" >&5
+echo $ECHO_N "checking whether to enable wizmode... $ECHO_C" >&6
+# Check whether --enable-wizmode or --disable-wizmode was given.
+if test "${enable_wizmode+set}" = set; then
+  enableval="$enable_wizmode"
+  if test "$enableval" != no; then enable_wizmode=yes; wizard=$enableval;
+	else enable_wizmode=no; fi
+else
+  enable_wizmode=yes; wizard="wizard"
+fi;
+if test "$enable_wizmode" != "no" ; then
+	echo "$as_me:$LINENO: result: yes (user $wizard)" >&5
+echo "${ECHO_T}yes (user $wizard)" >&6
+
+cat >>confdefs.h <<_ACEOF
+#define WIZARD "$wizard"
+_ACEOF
+
+else
+	echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+
 NETHACK_LINKS=
 if test ${srcdir}/include/file.h -nt include/file.h ; then
 	   NETHACK_LINKS="${NETHACK_LINKS} include/file.h:include/file.h"
@@ -6346,8 +6372,9 @@ echo "$as_me: error: cannot create directory \"$ac_dir\"" >&2;}
   fi
   # Run the commands associated with the file.
   case $ac_file in
-    include/autoconf.h ) sed 's,^/\* \(#undef .*\) \*/,\1,' < include/autoconf.h \
-        > include/autoconf.new
+    include/autoconf.h ) sed -e 's,^/\* \(#undef .*\) \*/,\1,' \
+        -e 's,#define \([^ ]*\),#undef \1\n&,' \
+        < include/autoconf.h > include/autoconf.new
       mv include/autoconf.new \
         include/autoconf.h ;;
   esac
