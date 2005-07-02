@@ -67,21 +67,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E7F1 [July 2/2005] [Released by Ali]
--fixed bug 1155634: charm spell or command undead spell invoke genocide
--fixed incorrect #ifdef resulting in compilation failure on ANSI only DOS builds
--fixed bug 1193070: Engraving with a wand of draining keeps illiterate
-		    conduct (Nico Kist)
--fixed bug 924811: Fire vampires leave corpses
--fixed bug 1028948: casting stone to flesh on a gargoyle
--fixed bug 1213881: Lieutenants lack Firearms
--fixed bug 1212903: Int and Wis stats not correct (in obscure case)
--fixed bug 1175912: Deity-gifted pets should not attack like aligned unicorns
-		    (Nico Kist)
--fixed bug 1205563: suppress_alert still says NetHack
--fixed bug 1157414: Do not "loose" faith
--fixed bug 1197822: necromancer zombie's hp
--fixed bug 1185759: Shopkeeper "looks at corpse" through wall
+ver 0.0.7E7F2 [?] [Released by ?]
 
 See history.txt for changes made in previous versions.
 
