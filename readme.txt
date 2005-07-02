@@ -65,7 +65,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.8E0 [?] [Released by ?]
+ver 0.0.8E0 [July 2/2005] [Released by Ali]
 -Added dumplog patch (Tom Friedetzky and Jukka Lahtinen)
 -fixed bug 923003: Invisible mirrors can be applied
 -fixed bug 916544: Wrong weight of corpses on Nightmare level
