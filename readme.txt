@@ -68,6 +68,7 @@ http://www.slashem.org/
 -----------
 
 ver 0.0.7E7F2 [?] [Released by ?]
+-fixed bug 1232707: engraving with lightsabers
 
 See history.txt for changes made in previous versions.
 
