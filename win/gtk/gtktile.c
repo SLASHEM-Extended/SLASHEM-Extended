@@ -1,5 +1,5 @@
 /*
-  $Id: gtktile.c,v 1.6 2004-02-27 09:07:03 j_ali Exp $
+  $Id: gtktile.c,v 1.6.2.1 2005-07-16 07:54:11 j_ali Exp $
  */
 /*
   GTK+ NetHack Copyright (c) Issei Numata 1999-2000
@@ -1139,7 +1139,7 @@ nhgtk_image_draw_line(GdkImage *img, long c, int x1, int y1, int x2, int y2)
 	else
 	    for(i = y2 - y1 + 1; i; i--) {
 		*dst = (unsigned long)c;
-		(unsigned char *)dst += bpl;
+		dst = (unsigned long *)((unsigned char *)dst + bpl);
 	    }
     } else if (bpp == sizeof(unsigned short)) {
 	unsigned short *dst;
@@ -1150,7 +1150,7 @@ nhgtk_image_draw_line(GdkImage *img, long c, int x1, int y1, int x2, int y2)
 	else
 	    for(i = y2 - y1 + 1; i; i--) {
 		*dst = (unsigned short)c;
-		(unsigned char *)dst += bpl;
+		dst = (unsigned short *)((unsigned char *)dst + bpl);
 	    }
     } else if (bpp == 1) {
 	unsigned char *dst;
