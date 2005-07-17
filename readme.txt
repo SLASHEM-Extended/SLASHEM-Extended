@@ -70,6 +70,7 @@ http://www.slashem.org/
 ver 0.0.7E7F2 [?] [Released by ?]
 -fixed bug 1232707: engraving with lightsabers
 -fixed bug 1237780: gtk window port fails to build with gcc-4.0
+-fixed bug 1239041: engrave dialog doesn't show lightsabers
 
 See history.txt for changes made in previous versions.
 
