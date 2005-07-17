@@ -70,6 +70,7 @@ ver 0.0.8E0F1 [?] [Released by ?]
 -fixed bug 1231579: Can't specify wizard with GNU autoconf
 -fixed bug 1232707: engraving with lightsabers
 -fixed bug 1239041: engrave dialog doesn't show lightsabers
+-fixed bug 1231766: Food shown in Medical Kits
 
 See history.txt for changes made in previous versions.
 
