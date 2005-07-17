@@ -31,10 +31,19 @@ char oclass;
 
     if (obj->oclass == oclass) return obj;
 
-    if (Has_contents(obj)) {
+    /*
+     * Pills inside medical kits are specially handled (see apply.c).
+     * We don't want them to detect as food because then they will be
+     * shown as pink pills, which are something quite different. In
+     * practice the only other possible contents of medical kits are
+     * bandages and phials, neither of which is detectable by any
+     * means so we can simply avoid looking in medical kits.
+     */
+    if (Has_contents(obj) && obj->otyp != MEDICAL_KIT) {
 	for (otmp = obj->cobj; otmp; otmp = otmp->nobj)
 	    if (otmp->oclass == oclass) return otmp;
-	    else if (Has_contents(otmp) && (temp = o_in(otmp, oclass)))
+	    else if (Has_contents(otmp) && otmp->otyp != MEDICAL_KIT &&
+		    (temp = o_in(otmp, oclass)))
 		return temp;
     }
     return (struct obj *) 0;
