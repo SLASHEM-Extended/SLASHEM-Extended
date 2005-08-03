@@ -71,6 +71,8 @@ ver 0.0.8E0F1 [?] [Released by ?]
 -fixed bug 1232707: engraving with lightsabers
 -fixed bug 1239041: engrave dialog doesn't show lightsabers
 -fixed bug 1231766: Food shown in Medical Kits
+-fixed bug 1238060: grammatical error when burning through a door 
+		    (Benjamin Schieder)
 
 See history.txt for changes made in previous versions.
 
