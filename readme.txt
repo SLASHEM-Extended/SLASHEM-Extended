@@ -73,6 +73,7 @@ ver 0.0.8E0F1 [?] [Released by ?]
 -fixed bug 1231766: Food shown in Medical Kits
 -fixed bug 1238060: grammatical error when burning through a door 
 		    (Benjamin Schieder)
+-fixed bug 1104713: Pet and Frozen food stores can charge
 
 See history.txt for changes made in previous versions.
 
