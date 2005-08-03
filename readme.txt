@@ -75,6 +75,7 @@ ver 0.0.8E0F1 [?] [Released by ?]
 		    (Benjamin Schieder)
 -fixed bug 1104713: Pet and Frozen food stores can charge
 -fixed bug 988827: Monster wearing CoI left invisible corpse
+-fixed bug 934078: Mold "wiggle" out of bag
 
 See history.txt for changes made in previous versions.
 

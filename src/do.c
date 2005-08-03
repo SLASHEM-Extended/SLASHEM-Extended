@@ -1621,7 +1621,7 @@ boolean moldy;
 	   	} else if (container_where == OBJ_INVENT && container) {
 		        char sackname[BUFSZ];
 		        Strcpy(sackname, an(xname(container)));
-	   		pline("%s %s out of %s in your pack!",
+	   		pline("%s %ss out of %s in your pack!",
 	   			Blind ? Something : Amonnam(mtmp),
 				locomotion(mtmp->data,"writhes"),
 	   			sackname);
