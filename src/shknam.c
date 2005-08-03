@@ -347,6 +347,12 @@ const char * const *nlp;
 	    /* special-case minetown lighting shk */
 	    shname = "Izchak";
 	    shk->female = FALSE;
+#ifdef BLACKMARKET
+	} else if (nlp == shkblack) {
+	    /* special-case black marketeer */
+	    shname = "One-eyed Sam";
+	    shk->female = shk->data->mflags2 & M2_MALE ? FALSE : TRUE;
+#endif /* BLACKMARKET */
 	} else {
 	    /* We want variation from game to game, without needing the save
 	       and restore support which would be necessary for randomization;

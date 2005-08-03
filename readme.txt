@@ -77,6 +77,7 @@ ver 0.0.7E7F2 [?] [Released by ?]
 -fixed bug 1104713: Pet and Frozen food stores can charge
 -fixed bug 988827: Monster wearing CoI left invisible corpse
 -fixed bug 934078: Mold "wiggle" out of bag
+-fixed bug 933587: One-Eyed Sam referred to as "it"
 
 See history.txt for changes made in previous versions.
 
