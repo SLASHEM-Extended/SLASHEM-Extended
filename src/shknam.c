@@ -253,7 +253,7 @@ const struct shclass shtypes[] = {
 	 * random shopkeepers)
 	 */
 	/* STEPHEN WHITE'S NEW CODE */
-	{"pet store", TOOL_CLASS, 4, D_SHOP, {
+	{"pet store", FOOD_CLASS, 4, D_SHOP, {
 #ifdef STEED
 	    {67, -FIGURINE}, {5, -LEASH},{10, -TRIPE_RATION}, {5, -SADDLE},
 #else
@@ -261,7 +261,7 @@ const struct shclass shtypes[] = {
 #endif
 	    {10, -TIN_WHISTLE}, {3, -MAGIC_WHISTLE}}, shkpet},
 	/* Robin Johnson -- 4% taken from pet store */
-	{"frozen food store", TOOL_CLASS, 4, D_SHOP,
+	{"frozen food store", FOOD_CLASS, 4, D_SHOP,
 		{{90, -ICE_BOX}, {10, -TIN},
 		/* shopkeeper will pay for corpses, but they aren't generated */
 		/* on the shop floor */
