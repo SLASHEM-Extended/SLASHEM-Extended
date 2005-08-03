@@ -463,7 +463,7 @@ cleanup:
 		if(!did_dig_msg) {
 #ifdef LIGHTSABERS
 		    if (is_lightsaber(uwep)) You("burn steadily through %s.",
-			d_target[dig_target]);
+			the(d_target[dig_target]));
 		    else
 #endif
 		    You("hit the %s with all your might.",
