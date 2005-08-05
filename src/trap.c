@@ -1272,22 +1272,21 @@ struct obj *otmp;
 		case POLY_TRAP: 
 		    if (!resists_magm(mtmp)) {
 			if (!resist(mtmp, WAND_CLASS, 0, NOTELL)) {
-			(void) newcham(mtmp, (struct permonst *)0, FALSE, FALSE);
-			if (!can_saddle(mtmp) || !can_ride(mtmp)) {
+			    (void) mon_spec_poly(mtmp, (struct permonst *)0, 0L, FALSE, FALSE, FALSE, TRUE); 
+			    if (!can_saddle(mtmp) || !can_ride(mtmp)) {
 				dismount_steed(DISMOUNT_POLY);
-			} else {
+			    } else {
 				You("have to adjust yourself in the saddle on %s.",
 					x_monnam(mtmp,
-					 mtmp->mnamelth ? ARTICLE_NONE : ARTICLE_A,
-				 	 (char *)0, SUPPRESS_SADDLE, FALSE));
+					mtmp->mnamelth ? ARTICLE_NONE : ARTICLE_A,
+					(char *)0, SUPPRESS_SADDLE, FALSE));
+			    }
 			}
-				
+			steedhit = TRUE;
 		    }
-		    steedhit = TRUE;
 		    break;
 		default:
 			return 0;
-	    }
 	}
 	if(trapkilled) {
 		dismount_steed(DISMOUNT_POLY);
