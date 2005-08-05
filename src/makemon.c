@@ -2157,6 +2157,7 @@ struct monst *mtmp, *victim;
 	if (mtmp->m_enmax > 50*8) mtmp->m_enmax = 50*8;     /* absolute limit */
 	if (mtmp->m_en > mtmp->m_enmax) mtmp->m_en = mtmp->m_enmax;
 
+	if (mtmp->oldmonnm != monsndx(ptr)) mtmp->oldmonnm = monsndx(ptr);
 	return ptr;
 }
 
