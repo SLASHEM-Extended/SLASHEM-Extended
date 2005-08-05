@@ -78,6 +78,7 @@ ver 0.0.8E0F1 [?] [Released by ?]
 -fixed bug 934078: Mold "wiggle" out of bag
 -fixed bug 933587: One-Eyed Sam referred to as "it"
 -fixed bug 1240794: Pets don't grow up properly
+-fixed bug 1240799: Steed ridden onto poly trap polymorphs permanently
 
 See history.txt for changes made in previous versions.
 
