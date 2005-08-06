@@ -81,6 +81,7 @@ ver 0.0.8E0F1 [?] [Released by ?]
 -fixed bug 1240799: Steed ridden onto poly trap polymorphs permanently
 -fixed bug 1243904: chameleon as statue trap
 -fixed bug 1223226: Some creatures are missing horns
+-fixed bug 1223222: Female Bulls??
 
 See history.txt for changes made in previous versions.
 
