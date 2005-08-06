@@ -298,6 +298,11 @@ num_horns(ptr)
 struct permonst *ptr;
 {
     switch (monsndx(ptr)) {
+    case PM_LAMB:
+    case PM_SHEEP:
+    case PM_GOAT:
+    case PM_COW:
+    case PM_BULL:
     case PM_HORNED_DEVIL:	/* ? "more than one" */
     case PM_MINOTAUR:
     case PM_ASMODEUS:
