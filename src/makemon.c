@@ -241,7 +241,7 @@ register struct monst *mtmp;
 				    BOULDER : CLUB);
 		break;
 	    case S_HUMAN:
-		if(is_mercenary(ptr)
+		if(is_mercenary(ptr) || mm == PM_SHOPKEEPER
 #ifdef YEOMAN
 				|| mm == PM_CHIEF_YEOMAN_WARDER || mm == PM_YEOMAN_WARDER
 #endif

@@ -83,6 +83,7 @@ ver 0.0.7E7F2 [?] [Released by ?]
 -fixed bug 1243904: chameleon as statue trap
 -fixed bug 1223226: Some creatures are missing horns
 -fixed bug 1223222: Female Bulls??
+-fixed bug 1244470: shopkeeper don't have shotgun
 
 See history.txt for changes made in previous versions.
 
