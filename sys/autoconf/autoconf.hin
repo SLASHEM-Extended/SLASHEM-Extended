@@ -6,9 +6,6 @@
 /* Blackmarket */
 #undef BLACKMARKET
 
-/* Borg player (only under DOS) */
-#undef BORG
-
 /* A BSD like system */
 #undef BSD
 
@@ -23,6 +20,9 @@
 
 /* Support transparent tilesets */
 #undef DISPLAY_LAYERS
+
+/* Data librarian */
+#undef DLB
 
 /* Dungeon growth */
 #undef DUNGEON_GROWTH
@@ -153,9 +153,6 @@
 /* Succubi/incubi seduction */
 #undef SEDUCE
 
-/* Shouting and pet commands (not implemented) */
-#undef SHOUT
-
 /* Display damage reports */
 #undef SHOW_DMG
 
@@ -198,6 +195,9 @@
 
 /* Fancy mazes */
 #undef WALLIFIED_MAZE
+
+/* An MS-Windows system */
+#undef WIN32
 
 /* The person allowed to use the -D option */
 #undef WIZARD

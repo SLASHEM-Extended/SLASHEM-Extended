@@ -4,7 +4,7 @@ dnl Avoid AC_REVISION() because we check configure into CVS
 dnl and it will cause confusing revision numbers to be included
 dnl in configure if developers forget to check in configure.ac
 dnl before running bootstrap.sh and checking in configure.
-# $Revision: 1.3 $
+# $Revision: 1.4 $
 AC_CONFIG_AUX_DIR(sys/autoconf)
 
 dnl  ----- Precious variables
@@ -57,8 +57,9 @@ AC_PROG_CC
 
 dnl  ----- Check OS
 AC_CANONICAL_TARGET
-dnl  ------ Main unix types
+dnl  ------ Main OS types
 case $target_os in
+     mingw32 )		AC_DEFINE(WIN32,[],[An MS-Windows system]);;
      *bsd* )		AC_DEFINE(BSD,[],[A BSD like system]);;
      * )		AC_DEFINE(SYSV,[],[A System V like system]);;
 esac
@@ -196,86 +197,56 @@ dnl  ----- Check for library functions
 AC_CHECK_DECL(strncmpi, AC_DEFINE(STRNCMPI, [], [strncmpi available]))
 
 dnl  ----- Check for compile-time options
-NETHACK_DISABLE(sinks,sinks,[Kitchen sinks],SINKS)
-NETHACK_DISABLE(light-src-spell,light_src_spell,
-	[Spells are light sources],LIGHT_SRC_SPELL)
-NETHACK_DISABLE(wallified-maze,wallified_maze,
-	[Fancy mazes],WALLIFIED_MAZE)
-NETHACK_ENABLE(reincarnation,reincarnation,
-	[Special Rogue-like levels],REINCARNATION)
-NETHACK_DISABLE(blackmarket,blackmarket,
-	[Blackmarket],BLACKMARKET)
-NETHACK_DISABLE(kops,kops,
-	[Keystone Kops],KOPS)
-NETHACK_DISABLE(seduce,seduce,
-	[Succubi/incubi seduction],SEDUCE)
-NETHACK_DISABLE(invisible-objects,invisible_objects,
-	[Invisible objects],INVISIBLE_OBJECTS)
-NETHACK_DISABLE(unpolypile,unpolypile,
-	[Object unpolymorphing],UNPOLYPILE)
-NETHACK_DISABLE(wallet-o-p,wallet_o_p,
-	[Perseus' Wallet],WALLET_O_P)
-NETHACK_DISABLE(lightsabers,lightsabers,
-	[Lightsabers],LIGHTSABERS)
-NETHACK_DISABLE(d-saber,d_saber,
-	[Dimsabers],LIGHTSABERS)
-NETHACK_DISABLE(p-spoon,p_spoon,
-	[Spoon],P_SPOON)
-NETHACK_DISABLE(firearms,firearms,
-	[Guns and Bullets],FIREARMS)
-NETHACK_DISABLE(eaten-memory,eaten_memory,
-	[Remember which monsters have been eaten],EATEN_MEMORY)
-NETHACK_DISABLE(steed,steed,
-	[Ability to ride monsters],STEED)
-NETHACK_DISABLE(dwarf,dwarf,
-	[Dwarf race],DWARF)
-NETHACK_DISABLE(tourist,tourist,
-	[Tourist class],TOURIST)
-NETHACK_DISABLE(yeoman,yeoman,
-	[Yeoman class],YEOMAN)
-NETHACK_ENABLE(zouthern,zouthern,
-	[Zoutherner class],ZOUTHERN)
-NETHACK_DISABLE(redo,redo,
-	[Redo last command],REDO)
-NETHACK_DISABLE(clipping,clipping,
-	[Allow smaller screens],CLIPPING)
-NETHACK_DISABLE(menu-color,menu_color,
-	[TTY graphics menu color],MENU_COLOR)
-NETHACK_DISABLE(elbereth,elbereth,
-	[Engraving the E-word repels monsters],ELBERETH)
-NETHACK_ENABLE(noartifactwish,noartifactwish,
-	[Prevent wishing for special artifacts],NOARTIFACTWISH)
-NETHACK_ENABLE(no-bones,no_bones,
-	[Disable loading and saving bones levels],NO_BONES)
-NETHACK_ENABLE(user-sounds,user_sounds,
-	[Allow user-defined regex mapping from messages to sounds (Qt with NAS only)],
-	USER_SOUNDS)
-NETHACK_DISABLE(exp-on-botl,exp_on_botl,
-	[Show experience on bottom line],EXP_ON_BOTL)
-NETHACK_ENABLE(score-on-botl,score_on_botl,
-	[Show score on bottom line],SCORE_ON_BOTL)
-NETHACK_ENABLE(borg,borg,
-	[Borg player (only under DOS)],BORG)
-NETHACK_ENABLE(keep-save,keep_save,
-	[Keep save files after restore],KEEP_SAVE)
-NETHACK_ENABLE(charon,charon,
-	[Charon's boat, enables Cerebus (not implemented)],CHARON)
-NETHACK_DISABLE(show-dmg,show_dmg,
-	[Display damage reports],SHOW_DMG)
-NETHACK_DISABLE(show-weight,show_weight,
-	[Display object weight],SHOW_WEIGHT)
-NETHACK_DISABLE(other-services,other_services,
-	[Shopkeeper services],OTHER_SERVICES)
-NETHACK_DISABLE(dungeon-growth,dungeon_growth,
-	[Dungeon growth],DUNGEON_GROWTH)
-NETHACK_ENABLE(shout,shout,
-	[Shouting and pet commands (not implemented)],SHOUT)
-NETHACK_DISABLE(display-layers,display_layers,
-	[Support transparent tilesets],DISPLAY_LAYERS)
-NETHACK_ENABLE(goldobj,goldobj,
-	[Gold is kept on object chains (experimental)],GOLDOBJ)
-NETHACK_ENABLE(autopickup-exceptions,autopickup_exceptions,
-	[Exceptions to autopickup (experimental)],AUTOPICKUP_EXCEPTIONS)
+# We use auto for data librarian to avoid breaking the rule that autoconf
+# should use the same defaults as the manual configuration, but all platforms
+# that support autoconf also support DLB, so the automatic choice is always yes.
+NETHACK_ARG(data-librarian,[Data librarian],DLB,auto,
+  [enable_data_librarian=yes])
+NETHACK_ARG(sinks,[Kitchen sinks],SINKS,yes)
+NETHACK_ARG(light-src-spell,[Spells are light sources],LIGHT_SRC_SPELL,yes)
+NETHACK_ARG(wallified-maze,[Fancy mazes],WALLIFIED_MAZE,yes)
+NETHACK_ARG(reincarnation,[Special Rogue-like levels],REINCARNATION,no)
+NETHACK_ARG(blackmarket,[Blackmarket],BLACKMARKET,yes)
+NETHACK_ARG(kops,[Keystone Kops],KOPS,yes)
+NETHACK_ARG(seduce,[Succubi/incubi seduction],SEDUCE,yes)
+NETHACK_ARG(invisible-objects,[Invisible objects],INVISIBLE_OBJECTS,yes)
+NETHACK_ARG(unpolypile,[Object unpolymorphing],UNPOLYPILE,yes)
+NETHACK_ARG(wallet-o-p,[Perseus' Wallet],WALLET_O_P,yes)
+NETHACK_ARG(lightsabers,[Lightsabers],LIGHTSABERS,yes)
+NETHACK_ARG(d-saber,[Dimsabers],LIGHTSABERS,yes)
+NETHACK_ARG(p-spoon,[Spoon],P_SPOON,yes)
+NETHACK_ARG(firearms,[Guns and Bullets],FIREARMS,yes)
+NETHACK_ARG(eaten-memory,[Remember which monsters have been eaten],
+  EATEN_MEMORY,yes)
+NETHACK_ARG(steed,[Ability to ride monsters],STEED,yes)
+NETHACK_ARG(dwarf,[Dwarf race],DWARF,yes)
+NETHACK_ARG(tourist,[Tourist class],TOURIST,yes)
+NETHACK_ARG(yeoman,[Yeoman class],YEOMAN,yes)
+NETHACK_ARG(zouthern,[Zoutherner class],ZOUTHERN,no)
+NETHACK_ARG(redo,[Redo last command],REDO,yes)
+NETHACK_ARG(clipping,[Allow smaller screens],CLIPPING,yes)
+NETHACK_ARG(menu-color,[TTY graphics menu color],MENU_COLOR,yes)
+NETHACK_ARG(elbereth,[Engraving the E-word repels monsters],ELBERETH,yes)
+NETHACK_ARG(noartifactwish,[Prevent wishing for special artifacts],
+  NOARTIFACTWISH,no)
+NETHACK_ARG(no-bones,[Disable loading and saving bones levels],NO_BONES,no)
+NETHACK_ARG(user-sounds,
+  [Allow user-defined regex mapping from messages to sounds (Qt with NAS only)],
+  USER_SOUNDS,no)
+NETHACK_ARG(exp-on-botl,[Show experience on bottom line],EXP_ON_BOTL,yes)
+NETHACK_ARG(score-on-botl,[Show score on bottom line],SCORE_ON_BOTL,no)
+#NETHACK_ARG(borg,[Borg player (only under DOS)],BORG,no)
+NETHACK_ARG(keep-save,[Keep save files after restore],KEEP_SAVE,no)
+NETHACK_ARG(charon,[Charon's boat, enables Cerebus (not implemented)],CHARON,no)
+NETHACK_ARG(show-dmg,[Display damage reports],SHOW_DMG,yes)
+NETHACK_ARG(show-weight,[Display object weight],SHOW_WEIGHT,yes)
+NETHACK_ARG(other-services,[Shopkeeper services],OTHER_SERVICES,yes)
+NETHACK_ARG(dungeon-growth,[Dungeon growth],DUNGEON_GROWTH,yes)
+#NETHACK_ARG(shout,[Shouting and pet commands (not implemented)],SHOUT,no)
+NETHACK_ARG(display-layers,[Support transparent tilesets],DISPLAY_LAYERS,yes)
+NETHACK_ARG(goldobj,[Gold is kept on object chains (experimental)],GOLDOBJ,no)
+NETHACK_ARG(autopickup-exceptions,[Exceptions to autopickup (experimental)],
+  AUTOPICKUP_EXCEPTIONS,no)
 
 AC_MSG_CHECKING([whether to enable wizmode])
 AC_ARG_ENABLE([wizmode], AC_HELP_STRING([--enable-wizmode=USER],

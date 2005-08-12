@@ -292,7 +292,7 @@ dlb:	$(DLBOBJS)
 	$(CC) $(LFLAGS) -o dlb $(DLBOBJS) $(LIBS)
 
 dlb_main.o: dlb_main.c $(CONFIG_H) ../include/dlb.h ../include/date.h
-	$(CC) $(CFLAGS) -c dlb_main.c
+	$(CC) $(CFLAGS) -c $(srcdir)/dlb_main.c
 
 
 

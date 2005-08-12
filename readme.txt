@@ -83,6 +83,12 @@ ver 0.0.8E0F1 [?] [Released by ?]
 -fixed bug 1223226: Some creatures are missing horns
 -fixed bug 1223222: Female Bulls??
 -fixed bug 1244470: shopkeeper don't have shotgun
+Autoconf improvements:
+	-support for data librarian,
+	-fix default values in help strings,
+	-more portable use of test and sed,
+	-drop useless borg and shout features,
+	-recognize mingw32 platform for msys (still breaks on other things).
 
 See history.txt for changes made in previous versions.
 
