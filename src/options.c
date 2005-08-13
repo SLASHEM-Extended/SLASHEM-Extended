@@ -380,8 +380,10 @@ static struct Comp_Opt
 #ifdef VIDEOSHADES
 	{ "videocolors", "color mappings for internal screen routines",
 						40, DISP_IN_GAME },
+#ifdef MSDOS
 	{ "videoshades", "gray shades to map to black/gray/white",
 						32, DISP_IN_GAME },
+#endif
 #endif
 #ifdef WIN32CON
 	{"subkeyvalue", "override keystroke value", 7, SET_IN_FILE},
@@ -2174,6 +2176,7 @@ goodfruit:
 			badoption(opts);
 		return;
 	}
+# ifdef MSDOS
 	/* videoshades:string */
 	fullname = "videoshades";
 	if (match_optname(opts, fullname, 6, TRUE)) {
@@ -2188,6 +2191,7 @@ goodfruit:
 			badoption(opts);
 		return;
 	}
+# endif
 #endif /* VIDEOSHADES */
 #ifdef MSDOS
 # ifdef NO_TERMS
@@ -3603,6 +3607,7 @@ char *buf;
 		Sprintf(buf, "%s", to_be_done);
 #endif
 #ifdef VIDEOSHADES
+# ifdef MSDOS
 	else if (!strcmp(optname, "videoshades"))
 		Sprintf(buf, "%s-%s-%s", shade[0],shade[1],shade[2]);
 	else if (!strcmp(optname, "videocolors"))
@@ -3614,6 +3619,18 @@ char *buf;
 			ttycolors[CLR_YELLOW], ttycolors[CLR_BRIGHT_BLUE],
 			ttycolors[CLR_BRIGHT_MAGENTA],
 			ttycolors[CLR_BRIGHT_CYAN]);
+# else
+	else if (!strcmp(optname, "videocolors"))
+		Sprintf(buf, "%d-%d-%d-%d-%d-%d-%d-%d-%d-%d-%d-%d-%d-%d-%d",
+			ttycolors[CLR_RED], ttycolors[CLR_GREEN],
+			ttycolors[CLR_BROWN], ttycolors[CLR_BLUE],
+			ttycolors[CLR_MAGENTA], ttycolors[CLR_CYAN], 
+			ttycolors[CLR_GRAY], ttycolors[CLR_BLACK],
+			ttycolors[CLR_ORANGE], ttycolors[CLR_BRIGHT_GREEN],
+			ttycolors[CLR_YELLOW], ttycolors[CLR_BRIGHT_BLUE],
+			ttycolors[CLR_BRIGHT_MAGENTA], 
+			ttycolors[CLR_BRIGHT_CYAN], ttycolors[CLR_WHITE]);
+# endif /* MSDOS */
 #endif /* VIDEOSHADES */
 	else if (!strcmp(optname, "windowtype"))
 		Sprintf(buf, "%s", windowprocs.name);

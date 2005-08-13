@@ -419,6 +419,7 @@ typedef unsigned char	uchar;
 #endif
 #ifdef TTY_GRAPHICS
 # define MENU_COLOR
+# define VIDEOSHADES
 #endif
 
 #if defined(UNIX)

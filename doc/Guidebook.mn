@@ -1,4 +1,4 @@
-.\" $Revision: 1.15.2.1 $ $Date: 2004-09-18 14:57:25 $
+.\" $Revision: 1.15.2.2 $ $Date: 2005-08-13 11:28:07 $
 .ds h0 "SLASH'EM Guidebook
 .ds h1
 .ds h2 %
@@ -2476,7 +2476,13 @@ Set the color palette for PC systems using NO_TERMS
 The order of colors is red, green, brown, blue, magenta, cyan,
 bright.white, bright.red, bright.green, yellow, bright.blue,
 bright.magenta, and bright.cyan.
-Cannot be set with the `O' command.
+Unix and OS/2 ports compiled with VIDEOSHADES option allow defining 
+three more colors. The order of colors is red, green, brown, blue, 
+magenta, cyan, gray, black, bright.red, bright.green, yellow, 
+bright.blue, bright.magenta, bright.cyan and white.
+MS-Windows and Mac ports don't use this option. In Windows colors can be 
+redefined from window properties.
+Cannot be set with the `O' command. 
 .lp videoshades
 Set the intensity level of the three gray scales available
 (default dark normal light, PC SLASH'EM only).

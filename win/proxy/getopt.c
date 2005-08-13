@@ -1,4 +1,4 @@
-/* $Id: getopt.c,v 1.4 2003-12-28 18:43:40 j_ali Exp $ */
+/* $Id: getopt.c,v 1.4.2.1 2005-08-13 11:28:08 prousu Exp $ */
 /* Copyright (c) Slash'EM Development Team 2002 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -203,6 +203,7 @@ char *get_option(const char *option)
 	}
 	return buf;
     }
+# ifdef MSDOS
     if (!strcmp(option, "videoshades")) {
 	sprintf(buf, "%s-%s-%s",
 		ttycolors[CLR_BLACK] == M_BLACK ? "dark" :
@@ -212,6 +213,7 @@ char *get_option(const char *option)
 		ttycolors[CLR_WHITE] == M_BLACK ? "dark" :
 		ttycolors[CLR_WHITE] == M_GRAY ?  "normal" : "light");
     }
+# endif
 #endif
     if (!strcmp(option, "menustyle")) {
 	switch (flags.menu_style) {
