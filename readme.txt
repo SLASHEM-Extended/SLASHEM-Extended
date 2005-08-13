@@ -89,6 +89,8 @@ Autoconf improvements:
 	-more portable use of test and sed,
 	-drop useless borg and shout features,
 	-recognize mingw32 platform for msys (still breaks on other things).
+-fixed bug 215062: no black color
+		   Extends videocolors option, see Guidebook for details.
 
 See history.txt for changes made in previous versions.
 

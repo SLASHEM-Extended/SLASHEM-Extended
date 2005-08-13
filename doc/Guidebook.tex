@@ -46,7 +46,7 @@
 % input file: Guidebook.mn
 %
 
-% $Revision: 1.17 $ $Date: 2004-09-18 15:00:49 $
+% $Revision: 1.18 $ $Date: 2005-08-13 11:27:03 $
 \DefineString{h0}{{\it SLASH'EM\/} Guidebook}
 \DefineString{h1}{}
 \DefineString{h2}{\%}
@@ -3449,6 +3449,12 @@ Set the color palette for PC systems using NO\_TERMS
 The order of colors is red, green, brown, blue, magenta, cyan,
 bright.white, bright.red, bright.green, yellow, bright.blue,
 bright.magenta, and bright.cyan.
+Unix and OS/2 ports compiled with VIDEOSHADES option allow defining 
+three more colors. The order of colors is red, green, brown, blue, 
+magenta, cyan, gray, black, bright.red, bright.green, yellow, 
+bright.blue, bright.magenta, bright.cyan and white.
+MS-Windows and Mac ports don't use this option. In Windows colors can be 
+redefined from window properties.
 Cannot be set with the `{\tt O}' command.
 %.lp
 
