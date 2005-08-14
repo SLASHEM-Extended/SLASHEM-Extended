@@ -2179,7 +2179,7 @@ goodfruit:
 		return;
 	}
 	
-#ifdef VIDEOSHADES
+#if defined(VIDEOSHADES) && !defined(NO_TERMS)
 	/* videocolors:string */
 	fullname = "videocolors";
 	if (match_optname(opts, fullname, 6, TRUE) ||
