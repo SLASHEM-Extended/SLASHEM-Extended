@@ -1126,16 +1126,22 @@ aboutNetHack() {
 
 		aboutStr[++aboutStr[0]] = '0' + PATCHLEVEL % 10;
 		
-		if (EDITLEVEL) {
-			aboutStr[++aboutStr[0]] = 'e';
+#ifdef FIXLEVEL		
+		if (EDITLEVEL || FIXLEVEL) {
+			aboutStr[++aboutStr[0]] = 'E';
 			aboutStr[++aboutStr[0]] = '0' + EDITLEVEL;
 		}
 		
-#ifdef FIXLEVEL		
 		if (FIXLEVEL) {
-			aboutStr[++aboutStr[0]] = 'f';
+			aboutStr[++aboutStr[0]] = 'F';
 			aboutStr[++aboutStr[0]] = '0' + FIXLEVEL;
 		}
+#else
+		if (EDITLEVEL) {
+			aboutStr[++aboutStr[0]] = 'E';
+			aboutStr[++aboutStr[0]] = '0' + EDITLEVEL;
+		}
+		
 #endif
 		aboutStr[++aboutStr[0]] = CHAR_CR;
 

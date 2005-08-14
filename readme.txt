@@ -91,6 +91,7 @@ Autoconf improvements:
 	-recognize mingw32 platform for msys (still breaks on other things).
 -fixed bug 215062: no black color
 		   Extends videocolors option, see Guidebook for details.
+-Macintosh: fixed calculation of version for About Box
 
 See history.txt for changes made in previous versions.
 
