@@ -196,6 +196,10 @@
  * a fine-grained timer.
  */
 /* #define TIMED_DELAY */	/* usleep() */
+
+# ifdef TEXTCOLOR
+#  define VIDEOSHADES
+# endif
 #endif
 
 /*
