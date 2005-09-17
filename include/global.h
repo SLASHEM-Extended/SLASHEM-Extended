@@ -209,6 +209,12 @@ typedef xchar	boolean;		/* 0 or 1 */
  * config.h and *conf.h
  */
 #include "autoconf.h"
+#if HAVE_STRING_H
+#include <string.h>
+#endif
+#if HAVE_DECL_STRNICMP && !HAVE_DECL_STRNCMPI
+#define strncmpi(a,b,c) strnicmp(a,b,c)
+#endif
 #endif
 
 #ifndef FILE_AREAS

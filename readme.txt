@@ -88,10 +88,19 @@ Autoconf improvements:
 	-fix default values in help strings,
 	-more portable use of test and sed,
 	-drop useless borg and shout features,
-	-recognize mingw32 platform for msys (still breaks on other things).
+	-recognize mingw32 platform for msys,
+	-support aclocal 1.7 (needed for msys development),
+	-basic support for Microsoft Window's native graphics,
+	-better determination of default windowing system,
+	-improved detection of libpng/zlib,
+	-support "make depend".
 -fixed bug 215062: no black color
 		   Extends videocolors option, see Guidebook for details.
 -Macintosh: fixed calculation of version for About Box
+-fixed bug 1258354: msys autoconf fails to detect strncmpi
+-fixed bug 1258355: autoconf Makefile.src assumes UNIX
+-fixed bug 1258357: configure doesn't set TTY_GRAPHICS under mingw32
+-fixed bug 1258358: No autoconf support for key handlers
 
 See history.txt for changes made in previous versions.
 

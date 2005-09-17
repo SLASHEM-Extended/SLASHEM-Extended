@@ -17,6 +17,7 @@ srcdir=@srcdir@
 # execute things like 'foo.o')
 # MAKE = make
 
+EXEEXT = @EXEEXT@
 CC = @CC@ -DAUTOCONF
 
 # if you are using gcc as your compiler,
@@ -95,7 +96,7 @@ CC = @CC@ -DAUTOCONF
 # flags for debugging:
 # CFLAGS = -g -I../include -I$(srcdir)/../include
 
-CFLAGS = -O -I../include -I$(srcdir)/../include
+CFLAGS = -O -I../include -I$(srcdir)/../include @CFLAGS@
 LFLAGS =
 
 LIBS =
@@ -280,8 +281,8 @@ lintdgn:
 
 #	dependencies for recover
 #
-recover: $(RECOVOBJS)
-	$(CC) $(LFLAGS) -o recover $(RECOVOBJS) $(LIBS)
+recover$(EXEEXT): $(RECOVOBJS)
+	$(CC) $(LFLAGS) -o recover$(EXEEXT) $(RECOVOBJS) $(LIBS)
 
 recover.o: recover.c $(CONFIG_H) ../include/date.h
 
@@ -294,6 +295,14 @@ dlb:	$(DLBOBJS)
 dlb_main.o: dlb_main.c $(CONFIG_H) ../include/dlb.h ../include/date.h
 	$(CC) $(CFLAGS) -c $(srcdir)/dlb_main.c
 
+
+#	dependencies for uudecode
+#
+uudecode$(EXEEXT): uudecode.o
+	$(CC) $(LFLAGS) -o $@ uudecode.o
+
+uudecode.o: $(srcdir)/../sys/share/uudecode.c
+	$(CC) $(CFLAGS) -c $(srcdir)/../sys/share/uudecode.c
 
 
 #	dependencies for tile utilities
@@ -332,8 +341,8 @@ tile2x11: tile2x11.o $(TEXT_IO)
 tile2img.ttp: tile2img.o bitmfile.o $(TEXT_IO)
 	$(CC) $(LFLAGS) -o tile2img.ttp tile2img.o bitmfile.o $(TEXT_IO) $(LIBS)
 
-tile2bmp: tile2bmp.o $(TEXT_IO)
-	$(CC) $(LFLAGS) -o tile2bmp tile2bmp.o $(TEXT_IO)
+tile2bmp$(EXEEXT): tile2bmp.o $(TEXT_IO)
+	$(CC) $(LFLAGS) -o $@ tile2bmp.o $(TEXT_IO)
 
 xpm2img.ttp: xpm2img.o bitmfile.o
 	$(CC) $(LFLAGS) -o xpm2img.ttp xpm2img.o bitmfile.o $(LIBS)
@@ -342,7 +351,7 @@ tile2beos: tile2beos.o $(TEXT_IO)
 	$(CC) $(LFLAGS) -o tile2beos tile2beos.o $(TEXT_IO) -lbe
 
 tile2png: tile2png.o $(TEXT_IO)
-	$(CC) $(LFLAGS) -o tile2png tile2png.o $(TEXT_IO) -lz -lpng
+	$(CC) $(LFLAGS) -o tile2png tile2png.o $(TEXT_IO) @NETHACK_LIBPNG_LIBS@
 
 tilemap: $(srcdir)/../win/share/tilemap.c $(HACK_H)
 	$(CC) $(CFLAGS) $(LFLAGS) -o tilemap $(srcdir)/../win/share/tilemap.c $(LIBS)
@@ -441,7 +450,7 @@ spotless: clean
 	-rm -f lev_lex.c lev_yacc.c dgn_lex.c dgn_yacc.c
 	-rm -f ../include/lev_comp.h ../include/dgn_comp.h
 	-rm -f ../include/tile.h
-	-rm -f makedefs lev_comp dgn_comp recover dlb
+	-rm -f makedefs lev_comp dgn_comp recover$(EXEEXT) dlb
 	-rm -f gif2txt xpm2txt txt2ppm tile2x11 tile2img.ttp xpm2img.ttp tilemap
 	-rm -f magtile bigtile txtmerge txtfilt txtbg mapmerge tile2png
 

@@ -18,6 +18,9 @@
 /* Unix on win32 */
 #undef CYGWIN32
 
+/* The default windowing system */
+#undef DEFAULT_WINDOW_SYS
+
 /* Support transparent tilesets */
 #undef DISPLAY_LAYERS
 
@@ -50,6 +53,14 @@
 
 /* Gold is kept on object chains (experimental) */
 #undef GOLDOBJ
+
+/* Define to 1 if you have the declaration of `strncmpi', and to 0 if you
+   don't. */
+#undef HAVE_DECL_STRNCMPI
+
+/* Define to 1 if you have the declaration of `strnicmp', and to 0 if you
+   don't. */
+#undef HAVE_DECL_STRNICMP
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
@@ -101,6 +112,9 @@
 
 /* TTY graphics menu color */
 #undef MENU_COLOR
+
+/* Microsoft Window's native graphics */
+#undef MSWIN_GRAPHICS
 
 /* Prevent wishing for special artifacts */
 #undef NOARTIFACTWISH
@@ -168,7 +182,7 @@
 /* Ability to ride monsters */
 #undef STEED
 
-/* strncmpi available */
+/* Use strncmpi */
 #undef STRNCMPI
 
 /* A System V like system */

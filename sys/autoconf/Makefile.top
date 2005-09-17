@@ -19,7 +19,9 @@ srcdir=@srcdir@
 
 # make NetHack
 PREFIX   = @prefix@
-GAME     = slashem
+EXEEXT	 = @EXEEXT@
+SCRIPT   = slashem
+GAME     = slashem$(EXEEXT)
 # GAME     = slashem.prg
 GAMEUID  = games
 GAMEGRP  = bin
@@ -119,10 +121,7 @@ CNF_SHARE_DAT = $(CNF_SHARE_DATD) $(CNF_SHARE_DATND)
 # will only work if setuid (or setgid) behavior is not desired or required.
 CHOWN = @CHOWN@
 CHGRP = @CHGRP@
-# CHOWN = chown
-# CHGRP = chgrp
-# CHOWN = true
-# CHGRP = true
+CHMOD = @CHMOD@
 
 #
 # end of configuration
@@ -152,7 +151,7 @@ UNSHARE_DAT = $(UNSHARE_DATNODLB) $(UNSHARE_DATDLB)
 $(GAME):
 	( cd src ; $(MAKE) )
 
-all:	$(GAME) recover Guidebook $(CNF_SHARE_DAT) dungeon spec_levs check-dlb
+all:	$(GAME) recover$(EXEEXT) Guidebook $(CNF_SHARE_DAT) dungeon spec_levs check-dlb
 	@echo "Done."
 
 # Note: many of the dependencies below are here to allow parallel make
@@ -192,8 +191,8 @@ dungeon: $(GAME)
 Guidebook.txt:
 	( cd doc; $(MAKE) Guidebook.txt )
 
-nhtiles.bmp: $(GAME)
-	( cd dat ; $(MAKE) nhtiles.bmp )
+tiles.bmp: $(GAME)
+	( cd dat ; $(MAKE) tiles.bmp )
 
 x11tiles: $(GAME)
 	( cd util ; $(MAKE) tile2x11 )
@@ -278,8 +277,8 @@ dlb:
 
 # recover can be used when INSURANCE is defined in include/config.h
 # and the checkpoint option is true
-recover: $(GAME)
-	( cd util ; $(MAKE) recover )
+recover$(EXEEXT): $(GAME)
+	( cd util ; $(MAKE) recover$(EXEEXT) )
 
 dofiles:
 	target=`sed -n					\
@@ -289,27 +288,28 @@ dofiles:
 		-e '}' 					\
 	  	-e '$$s/.*/nodlb/p' < dat/options` ;	\
 	$(MAKE) dofiles-$${target-nodlb}
-	cp src/$(GAME) $(FILE_AREA_UNSHARE)
-	cp util/recover $(FILE_AREA_UNSHARE)
+	(cd src; cp $(GAME) @EXTRA_UNSHARE@ $(FILE_AREA_UNSHARE))
+	@HOST_MSWIN@cp $(srcdir)/sys/winnt/defaults.nh $(FILE_AREA_UNSHARE)
+	cp util/recover$(EXEEXT) $(FILE_AREA_UNSHARE)
 	cp $(srcdir)/dat/license $(srcdir)/doc/Guidebook.txt $(FILE_AREA_DOC)
 #	cp win/Qt/KDE/kslashem.kdelnk $(KDEDIR)/share/applnk/Games
-	-rm -f $(SHELLDIR)/$(GAME)
-	sed -e 's;/usr/games/lib/nethackdir;$(FILE_AREA_UNSHARE);' \
-		-e 's;HACKDIR/nethack;HACKDIR/$(GAME);' \
-		< $(srcdir)/sys/unix/nethack.sh \
-		> $(SHELLDIR)/$(GAME)
+	@HOST_UNIX@-rm -f $(SHELLDIR)/$(SCRIPT)
+	@HOST_UNIX@sed -e 's;/usr/games/lib/nethackdir;$(FILE_AREA_UNSHARE);' \
+	@HOST_UNIX@	-e 's;HACKDIR/nethack;HACKDIR/$(GAME);' \
+	@HOST_UNIX@	< $(srcdir)/sys/unix/nethack.sh \
+	@HOST_UNIX@	> $(SHELLDIR)/$(SCRIPT)
 # set up their permissions
-	-( cd $(FILE_AREA_UNSHARE) ; $(CHOWN) $(GAMEUID) $(GAME) recover ; \
-			$(CHGRP) $(GAMEGRP) $(GAME) recover )
+	-( cd $(FILE_AREA_UNSHARE) ; $(CHOWN) $(GAMEUID) $(GAME) recover$(EXEEXT) ; \
+			$(CHGRP) $(GAMEGRP) $(GAME) recover$(EXEEXT) )
 	chmod $(GAMEPERM) $(FILE_AREA_UNSHARE)/$(GAME)
-	chmod $(EXEPERM) $(FILE_AREA_UNSHARE)/recover
+	chmod $(EXEPERM) $(FILE_AREA_UNSHARE)/recover$(EXEEXT)
 	-( cd $(FILE_AREA_DOC) ; \
 			$(CHOWN) $(GAMEUID) license Guidebook.txt ; \
 			$(CHGRP) $(GAMEGRP) license Guidebook.txt ; \
 			chmod $(FILEPERM) license Guidebook.txt )
-	-$(CHOWN) $(GAMEUID) $(SHELLDIR)/$(GAME)
-	$(CHGRP) $(GAMEGRP) $(SHELLDIR)/$(GAME)
-	chmod $(EXEPERM) $(SHELLDIR)/$(GAME)
+	@HOST_UNIX@-$(CHOWN) $(GAMEUID) $(SHELLDIR)/$(SCRIPT)
+	@HOST_UNIX@$(CHGRP) $(GAMEGRP) $(SHELLDIR)/$(SCRIPT)
+	@HOST_UNIX@chmod $(EXEPERM) $(SHELLDIR)/$(SCRIPT)
 
 dofiles-dlb: check-dlb
 	( cd dat ; cp nhshare $(SHARE_DATNODLB) $(FILE_AREA_SHARE) )
@@ -336,7 +336,7 @@ dofiles-nodlb:
 			$(CHGRP) $(GAMEGRP) $(UNSHARE_DAT) ; \
 			chmod $(FILEPERM) $(UNSHARE_DAT) )
 
-update: $(GAME) recover $(CNF_SHARE_DAT) dungeon spec_levs Guidebook.txt
+update: $(GAME) recover$(EXEEXT) $(CNF_SHARE_DAT) dungeon spec_levs Guidebook.txt
 #	(don't yank the old version out from under people who're playing it)
 	-mv $(FILE_AREA_UNSHARE)/$(GAME) $(FILE_AREA_UNSHARE)/$(GAME).old
 #	quest.dat is also kept open and has the same problems over NFS
@@ -352,7 +352,7 @@ update: $(GAME) recover $(CNF_SHARE_DAT) dungeon spec_levs Guidebook.txt
 # and a reminder
 	@echo You may also want to install the man pages via the doc Makefile.
 
-install: $(GAME) recover $(CNF_SHARE_DAT) dungeon spec_levs Guidebook.txt
+install: $(GAME) recover$(EXEEXT) $(CNF_SHARE_DAT) dungeon spec_levs Guidebook.txt
 # set up the directories
 # not all mkdirs have -p; those that don't will create a -p directory
 	-mkdir -p $(SHELLDIR)

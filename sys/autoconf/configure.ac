@@ -4,67 +4,90 @@ dnl Avoid AC_REVISION() because we check configure into CVS
 dnl and it will cause confusing revision numbers to be included
 dnl in configure if developers forget to check in configure.ac
 dnl before running bootstrap.sh and checking in configure.
-# $Revision: 1.4 $
+# $Revision: 1.5 $
+AC_CONFIG_SRCDIR(slamfaq.txt)
+AC_SUBST(SRCDIR,[../$srcdir/src])
 AC_CONFIG_AUX_DIR(sys/autoconf)
 
 dnl  ----- Precious variables
 AC_ARG_VAR(CC, [C compiler])
 AC_ARG_VAR(CHGRP, [sets GAMEUID (set this to true as a no op)])
 AC_ARG_VAR(CHOWN, [sets GAMEGRP (set this to true as a no op)])
+AC_ARG_VAR(CHMOD, [sets file modes (set this to true as a no op)])
+AC_ARG_VAR(ZLIB_CFLAGS, [Compiler flags to find zlib header files])
+AC_ARG_VAR(ZLIB_LIBS, [Linker flags to find zlib library files])
 
 AC_PROG_LN_S
+AC_PROG_AWK
 
 dnl  ----- Check options
 dnl  ----- Window systems
-AC_MSG_CHECKING(for valid window system configuration)
-AC_ARG_ENABLE(tty-graphics, 
-	      AC_HELP_STRING([--enable-tty-graphics],
-			     [use tty-graphics (default=yes)]),
-			     enable_tty_graphics="$enableval",enable_tty_graphics="yes")
-AC_ARG_ENABLE(proxy-graphics, 
-	      AC_HELP_STRING([--enable-proxy-graphics],
-			     [use proxy-graphics (default=auto)]),
-			     enable_proxy_graphics="$enableval",enable_proxy_graphics="auto")
-AC_ARG_ENABLE(x11-graphics, 
-	      AC_HELP_STRING([--enable-x11-graphics],
-			     [use x11-graphics (default=no)]),
-			     enable_x11_graphics="$enableval",enable_x11_graphics="no")
-AC_ARG_ENABLE(sdl-graphics, 
-	      AC_HELP_STRING([--enable-sdl-graphics],
-			     [use sdl-graphics (default=no)]),
-			     enable_sdl_graphics="$enableval",enable_sdl_graphics="no")
-AC_ARG_ENABLE(gl-graphics, 
-	      AC_HELP_STRING([--enable-gl-graphics],
-			     [use gl-graphics (enables sdl-graphics) (default=no)]),
-			     [enable_gl_graphics="$enableval"
-			      if test "$enable_gl_graphics" != "no"
-			      then
-			      	enable_sdl_graphics="yes"
-			      fi],
-			     enable_gl_graphics="no")
 
-
-dnl  ----- Sanity check - Must choose at least one
-if test "$enable_tty_graphics" = "no" && test "$enable_x11_graphics" = "no"
-then
-	AC_MSG_RESULT([no])
-	AC_MSG_ERROR([need to enable at least one window system])
+NETHACK_WIN_ENABLE(proxy, auto)
+nethack_default_win=""
+# Note: Order is important: The last listed enabled port will be the default.
+NETHACK_WIN_ENABLE(tty, auto)
+NETHACK_WIN_ENABLE(x11, no)
+NETHACK_WIN_ENABLE(sdl, no)
+NETHACK_WIN_ENABLE(gl, no, [use gl-graphics (enables sdl-graphics)])
+if test "$enable_gl_graphics" != no -a "$enable_sdl_graphics" = no; then
+    enable_sdl_graphics="yes"
+    nethack_wins=`echo $nethack_wins | sed 's/^gl/gl sdl/'`
 fi
-AC_MSG_RESULT([yes])
+NETHACK_WIN_ENABLE(mswin, no, [use Microsoft Window's native graphics])
 
 dnl  ----- Figure out a C compiler to use; set @CC@
 AC_PROG_CC
+AC_SUBST(LFLAGS)
 
 dnl  ----- Check OS
-AC_CANONICAL_TARGET
+AC_CANONICAL_HOST
 dnl  ------ Main OS types
-case $target_os in
-     mingw32 )		AC_DEFINE(WIN32,[],[An MS-Windows system]);;
-     *bsd* )		AC_DEFINE(BSD,[],[A BSD like system]);;
-     * )		AC_DEFINE(SYSV,[],[A System V like system]);;
+case $host_os in
+     mingw32 )		AC_DEFINE(WIN32,[],[An MS-Windows system])
+			AC_SUBST(HOST_MSWIN,[])
+			AC_SUBST(HOST_UNIX,[#])
+			SYSTEM="Syswinnt"
+			SYSSRC="\${SYSMSWINSRC}"
+			SYSOBJ="\${SYSMSWINOBJ}"
+			;;
+     *bsd* )		AC_DEFINE(BSD,[],[A BSD like system])
+			AC_SUBST(HOST_MSWIN,[#])
+			AC_SUBST(HOST_UNIX,[])
+			SYSTEM="Sysunix"
+			SYSSRC="\${SYSUNIXSRC}"
+			SYSOBJ="\${SYSUNIXOBJ}"
+			;;
+     * )		AC_DEFINE(SYSV,[],[A System V like system])
+			AC_SUBST(HOST_MSWIN,[#])
+			AC_SUBST(HOST_UNIX,[])
+			SYSTEM="Sysunix"
+			SYSSRC="\${SYSUNIXSRC}"
+			SYSOBJ="\${SYSUNIXOBJ}"
+			;;
 esac
+AC_SUBST(SYSTEM)
+AC_SUBST(SYSSRC)
+AC_SUBST(SYSOBJ)
+
+if test $host_os = mingw32; then
+    AC_MSG_CHECKING([for how to build NetHack key dynamic libraries])
+    if test "$GCC" = yes; then
+	AC_MSG_RESULT([gcc])
+	AC_SUBST(NHKEYDLL_GCC,[])
+    else
+	AC_MSG_RESULT([unknown])
+	if test "$enable_tty_graphics" = yes; then
+	    AC_MSG_ERROR([Don't know how to build NetHack key DLLs with $CC])
+	else
+	    AC_MSG_WARN([Can't enable tty graphics (key dynamic libraries)])
+	    NETHACK_AUTO_WIN_DISABLE(tty)
+	fi
+    fi
+fi
+
 dnl ------ Common subtypes
-case $target_os in
+case $host_os in
      *cygwin* )		AC_DEFINE(CYGWIN32,[],[Unix on win32]);;
      *linux* )		AC_DEFINE(LINUX,[],[GNU Linux]);;
 esac
@@ -75,8 +98,12 @@ AC_PROG_LEX
 AC_PROG_YACC
 AC_CHECK_TOOLS(CHOWN,[chown true])
 AC_CHECK_TOOLS(CHGRP,[chgrp true])
+AC_CHECK_TOOLS(CHMOD,[chmod true])
+AC_CHECK_TOOL(WINDRES,windres,no)
 
 dnl  ----- Check for libraries
+
+NETHACK_CHECK_LIBPNG(NETHACK_LIBPNG, have_libpng=yes, have_libpng=no)
 
 dnl  ----- Select window systems
 
@@ -86,39 +113,66 @@ WINLIB=
 CNF_SHARE_DATND=
 
 WINTTYLIB=
-if test "$enable_tty_graphics" != "no"
-then
-dnl  ----- For TTY, determine the termlib
-dnl  ----- Check for termlib before termcap because Solaris termcap needs libucb.
-TERMLIB_VARIANTS="ncurses curses termlib termcap terminfo"
-for termlib in ${TERMLIB_VARIANTS}; do
-  AC_CHECK_LIB(${termlib}, tgetent,
-	       [WINTTYLIB="-l${termlib}"
-	        WINSRC="${WINSRC} \$(WINTTYSRC)"
-		WINOBJ="${WINOBJ} \$(WINTTYOBJ)"
-		WINLIB="${WINLIB} \$(WINTTYLIB)"
-		AC_DEFINE(TTY_GRAPHICS, [], [Console output])
-		break])
-done
+if test "$enable_tty_graphics" != "no"; then
+    if test $host_os = mingw32; then
+	AC_SUBST(EXTRA_UNSHARE,[nhdefkey.dll nh340key.dll nhraykey.dll])
+	CFLAGS="$CFLAGS -DWIN32CON"
+	WINTTYLIB=""
+	WINSRC="${WINSRC} \$(WINTTYSRC)"
+	WINOBJ="${WINOBJ} \$(WINTTYOBJ)"
+	WINLIB="${WINLIB} \$(WINTTYLIB)"
+	AC_DEFINE(TTY_GRAPHICS, [], [Console output])
+    else
+	# For TTY, determine the termlib
+	# Check for termlib before termcap because Solaris termcap needs libucb.
+	TERMLIB_VARIANTS="ncurses curses termlib termcap terminfo"
+	for termlib in ${TERMLIB_VARIANTS}; do
+	    AC_CHECK_LIB(${termlib}, tgetent,
+	      [WINTTYLIB="-l${termlib}"
+	      WINSRC="${WINSRC} \$(WINTTYSRC)"
+	      WINOBJ="${WINOBJ} \$(WINTTYOBJ)"
+	      WINLIB="${WINLIB} \$(WINTTYLIB)"
+	      AC_DEFINE(TTY_GRAPHICS, [], [Console output])
+	      break])
+	done
+	if test -z "$termlib"; then
+	    if test "$enable_tty_graphics" = yes; then
+		AC_MSG_ERROR([Can't find tgetent (needed for tty graphics)])
+	    else
+		AC_MSG_WARN([Can't enable tty graphics (no tgetent)])
+		NETHACK_AUTO_WIN_DISABLE(tty)
+	    fi
+	fi
+    fi
+fi
+if test "$enable_tty_graphics" = "no" -a $host_os = mingw32; then
+    LFLAGS="$LFLAGS -mwindows"
 fi
 AC_SUBST(WINTTYLIB)
 
-if test "$enable_proxy_graphics" != "no"
-then
-	if test "$enable_proxy_graphics" = "yes"
-	then
+if test "$enable_proxy_graphics" != "no"; then
+    if test "$have_libpng" = "no"; then
+	if test "$enable_proxy_graphics" = "yes"; then
+	    AC_MSG_ERROR([Need libpng for proxy graphics])
+	else
+	    AC_MSG_WARN([Can't enable proxy graphics (no useable libpng)])
+	fi
+    else
+	if test "$enable_proxy_graphics" = "yes"; then
 	    PKG_CHECK_MODULES(NETHACK_PROXY, nhproxy >= 0.9.0)
 	else
 	    PKG_CHECK_MODULES(NETHACK_PROXY, nhproxy >= 0.9.0, :, :)
 	fi
-	if test -n "$NETHACK_PROXY_LIBS"
-	then
+	if test -n "$NETHACK_PROXY_LIBS"; then
+	    CFLAGS="${CFLAGS} ${NETHACK_LIBPNG_CFLAGS}"
+	    LFLAGS="${LFLAGS} ${NETHACK_LIBPNG_LFLAGS}"
 	    WINSRC="${WINSRC} \$(WINPROXYSRC)"
 	    WINOBJ="${WINOBJ} \$(WINPROXYOBJ)"
 	    WINLIB="${WINLIB} ${NETHACK_PROXY_LIBS}"
 	    CNF_SHARE_DATND="${CNF_SHARE_DATND} \$(CNF_SHARE_PROXYND)"
 	    AC_DEFINE(PROXY_GRAPHICS, [], [proxy graphics])
 	fi
+    fi
 fi
 AC_SUBST(NETHACK_PROXY_CFLAGS)
 
@@ -167,15 +221,43 @@ fi
 AC_SUBST(SDL_CONFIG_CFLAGS)
 AC_SUBST(SDL_CONFIG_LIBS)
 
+if test "$enable_mswin_graphics" != "no"; then
+    if test "$WINDRES" = "no"; then
+	AC_MSG_ERROR([Need windres for Microsoft Window's native graphics])
+    fi
+    WINSRC="${WINSRC} \$(WINMSSRC)"
+    WINOBJ="${WINOBJ} \$(WINMSOBJ)"
+    WINLIB="${WINLIB} \$(WINMSLIB)"
+    CNF_SHARE_DATND="${CNF_SHARE_DATND} \$(CNF_SHARE_MSND)"
+    AC_DEFINE(MSWIN_GRAPHICS, [], [Microsoft Window's native graphics])
+fi
+
 
 AC_SUBST(WINSRC)
 AC_SUBST(WINOBJ)
 AC_SUBST(WINLIB)
 AC_SUBST(CNF_SHARE_DATND)
 
+AC_MSG_CHECKING(for valid window system configuration)
+if test -n "$nethack_wins"; then
+    AC_MSG_RESULT([yes])
+    for win in $nethack_wins; do
+	AC_DEFINE_UNQUOTED(DEFAULT_WINDOW_SYS,["$win"],
+	  [The default windowing system])
+	break
+    done
+else
+    AC_MSG_RESULT([no])
+    AC_MSG_ERROR([need to enable at least one window system])
+fi
+
 
 dnl  ----- Check for header files
 AC_HEADER_STDC
+# Due to what may be a bug in autoconf, we have to call AC_CHECK_HEADERS()
+# to get the various HAVE_xxx_H preprocessor variables detected by
+# AC_HEADER_STDC active. These are needed for AC_CHECK_DECLS(), below.
+AC_CHECK_HEADERS([string.h])
 AC_CHECK_HEADER(regex.h, [have_regex_h=yes],[have_regex_h=no],/* TEST_REGEX */)
 
 dnl ------ Check for data types
@@ -194,7 +276,7 @@ AC_CHECK_TYPE(void,,AC_DEFINE(NOVOID, [], [No void type available]))
 
 
 dnl  ----- Check for library functions
-AC_CHECK_DECL(strncmpi, AC_DEFINE(STRNCMPI, [], [strncmpi available]))
+AC_CHECK_DECLS([strncmpi, strnicmp], AC_DEFINE(STRNCMPI, [], [Use strncmpi]))
 
 dnl  ----- Check for compile-time options
 # We use auto for data librarian to avoid breaking the rule that autoconf
@@ -277,6 +359,7 @@ NETHACK_LINKS_ADD([dat/opthelp])
 NETHACK_LINKS_ADD([dat/wizhelp])
 NETHACK_LINKS_ADD([dat/gypsy.txt])
 NETHACK_LINKS_ADD([win/share/tile_t.h])
+NETHACK_LINKS_ADD([include/win32api.h:sys/winnt/win32api.h])
 
 AC_CONFIG_LINKS(${NETHACK_LINKS})
 
@@ -285,7 +368,8 @@ AC_CONFIG_FILES([Makefile:sys/autoconf/Makefile.top]
 	[src/Makefile:sys/autoconf/Makefile.src]
 	[doc/Makefile:sys/autoconf/Makefile.doc]
 	[dat/Makefile:sys/autoconf/Makefile.dat]
-	[util/Makefile:sys/autoconf/Makefile.utl])
+	[util/Makefile:sys/autoconf/Makefile.utl]
+	[sys/autoconf/depend.awk:sys/autoconf/depend.in])
 
 NETHACK_CONFIG_HEADER([include/autoconf.h:sys/autoconf/autoconf.hin])
 

@@ -273,6 +273,7 @@ PACKAGE_VERSION='0.0.8'
 PACKAGE_STRING='SLASHEM 0.0.8'
 PACKAGE_BUGREPORT='http://sourceforge.net/bugs/?group_id=9746'
 
+ac_unique_file="slamfaq.txt"
 # Factoring default headers for most tests.
 ac_includes_default="\
 #include <stdio.h>
@@ -310,7 +311,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS CC CHGRP CHOWN LN_S CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT build build_cpu build_vendor build_os host host_cpu host_vendor host_os target target_cpu target_vendor target_os LEX LEXLIB LEX_OUTPUT_ROOT YACC ac_ct_CHOWN ac_ct_CHGRP WINTTYLIB PKG_CONFIG NETHACK_PROXY_CFLAGS NETHACK_PROXY_LIBS SDL_CONFIG ac_ct_SDL_CONFIG SDL_CONFIG_CFLAGS SDL_CONFIG_LIBS WINSRC WINOBJ WINLIB CNF_SHARE_DATND CPP EGREP LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS SRCDIR CC CHGRP CHOWN CHMOD ZLIB_CFLAGS ZLIB_LIBS LN_S AWK CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT LFLAGS build build_cpu build_vendor build_os host host_cpu host_vendor host_os HOST_MSWIN HOST_UNIX SYSTEM SYSSRC SYSOBJ NHKEYDLL_GCC LEX LEXLIB LEX_OUTPUT_ROOT YACC ac_ct_CHOWN ac_ct_CHGRP ac_ct_CHMOD WINDRES ac_ct_WINDRES PKG_CONFIG NETHACK__LIBPNG_CFLAGS NETHACK__LIBPNG_LIBS NETHACK_LIBPNG_CFLAGS NETHACK_LIBPNG_LIBS EXTRA_UNSHARE WINTTYLIB NETHACK_PROXY_CFLAGS NETHACK_PROXY_LIBS SDL_CONFIG ac_ct_SDL_CONFIG SDL_CONFIG_CFLAGS SDL_CONFIG_LIBS WINSRC WINOBJ WINLIB CNF_SHARE_DATND CPP EGREP LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -763,6 +764,18 @@ ac_env_CHOWN_set=${CHOWN+set}
 ac_env_CHOWN_value=$CHOWN
 ac_cv_env_CHOWN_set=${CHOWN+set}
 ac_cv_env_CHOWN_value=$CHOWN
+ac_env_CHMOD_set=${CHMOD+set}
+ac_env_CHMOD_value=$CHMOD
+ac_cv_env_CHMOD_set=${CHMOD+set}
+ac_cv_env_CHMOD_value=$CHMOD
+ac_env_ZLIB_CFLAGS_set=${ZLIB_CFLAGS+set}
+ac_env_ZLIB_CFLAGS_value=$ZLIB_CFLAGS
+ac_cv_env_ZLIB_CFLAGS_set=${ZLIB_CFLAGS+set}
+ac_cv_env_ZLIB_CFLAGS_value=$ZLIB_CFLAGS
+ac_env_ZLIB_LIBS_set=${ZLIB_LIBS+set}
+ac_env_ZLIB_LIBS_value=$ZLIB_LIBS
+ac_cv_env_ZLIB_LIBS_set=${ZLIB_LIBS+set}
+ac_cv_env_ZLIB_LIBS_value=$ZLIB_LIBS
 ac_env_CFLAGS_set=${CFLAGS+set}
 ac_env_CFLAGS_value=$CFLAGS
 ac_cv_env_CFLAGS_set=${CFLAGS+set}
@@ -843,7 +856,6 @@ _ACEOF
 System types:
   --build=BUILD     configure for building on BUILD [guessed]
   --host=HOST       cross-compile to build programs to run on HOST [BUILD]
-  --target=TARGET   configure for building compilers for TARGET [HOST]
 _ACEOF
 fi
 
@@ -856,11 +868,12 @@ if test -n "$ac_init_help"; then
 Optional Features:
   --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
   --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
-  --enable-tty-graphics   use tty-graphics (default=yes)
   --enable-proxy-graphics use proxy-graphics (default=auto)
+  --enable-tty-graphics   use tty-graphics (default=auto)
   --enable-x11-graphics   use x11-graphics (default=no)
   --enable-sdl-graphics   use sdl-graphics (default=no)
   --enable-gl-graphics    use gl-graphics (enables sdl-graphics) (default=no)
+  --enable-mswin-graphics use Microsoft Window's native graphics (default=no)
   --enable-data-librarian Data librarian (default=auto)
   --enable-sinks          Kitchen sinks (default=yes)
   --enable-light-src-spell
@@ -914,6 +927,9 @@ Some influential environment variables:
   CC          C compiler
   CHGRP       sets GAMEUID (set this to true as a no op)
   CHOWN       sets GAMEGRP (set this to true as a no op)
+  CHMOD       sets file modes (set this to true as a no op)
+  ZLIB_CFLAGS Compiler flags to find zlib header files
+  ZLIB_LIBS   Linker flags to find zlib library files
   CFLAGS      C compiler flags
   LDFLAGS     linker flags, e.g. -L<lib dir> if you have libraries in a
               nonstandard directory <lib dir>
@@ -1370,7 +1386,10 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
-# $Revision: 1.8 $
+# $Revision: 1.9 $
+
+SRCDIR=../$srcdir/src
+
 ac_aux_dir=
 for ac_dir in sys/autoconf $srcdir/sys/autoconf; do
   if test -f $ac_dir/install-sh; then
@@ -1401,6 +1420,9 @@ ac_configure="$SHELL $ac_aux_dir/configure" # This should be Cygnus configure.
 
 
 
+
+
+
 echo "$as_me:$LINENO: checking whether ln -s works" >&5
 echo $ECHO_N "checking whether ln -s works... $ECHO_C" >&6
 LN_S=$as_ln_s
@@ -1412,16 +1434,48 @@ else
 echo "${ECHO_T}no, using $LN_S" >&6
 fi
 
-
-echo "$as_me:$LINENO: checking for valid window system configuration" >&5
-echo $ECHO_N "checking for valid window system configuration... $ECHO_C" >&6
-# Check whether --enable-tty-graphics or --disable-tty-graphics was given.
-if test "${enable_tty_graphics+set}" = set; then
-  enableval="$enable_tty_graphics"
-  enable_tty_graphics="$enableval"
+for ac_prog in gawk mawk nawk awk
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_prog_AWK+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
 else
-  enable_tty_graphics="yes"
-fi;
+  if test -n "$AWK"; then
+  ac_cv_prog_AWK="$AWK" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_prog_AWK="$ac_prog"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+fi
+fi
+AWK=$ac_cv_prog_AWK
+if test -n "$AWK"; then
+  echo "$as_me:$LINENO: result: $AWK" >&5
+echo "${ECHO_T}$AWK" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+  test -n "$AWK" && break
+done
+
+
+
 # Check whether --enable-proxy-graphics or --disable-proxy-graphics was given.
 if test "${enable_proxy_graphics+set}" = set; then
   enableval="$enable_proxy_graphics"
@@ -1429,6 +1483,21 @@ if test "${enable_proxy_graphics+set}" = set; then
 else
   enable_proxy_graphics="auto"
 fi;
+  if test "$enable_proxy_graphics" != "no"; then
+    nethack_wins="proxy $nethack_wins"
+  fi
+nethack_default_win=""
+# Note: Order is important: The last listed enabled port will be the default.
+# Check whether --enable-tty-graphics or --disable-tty-graphics was given.
+if test "${enable_tty_graphics+set}" = set; then
+  enableval="$enable_tty_graphics"
+  enable_tty_graphics="$enableval"
+else
+  enable_tty_graphics="auto"
+fi;
+  if test "$enable_tty_graphics" != "no"; then
+    nethack_wins="tty $nethack_wins"
+  fi
 # Check whether --enable-x11-graphics or --disable-x11-graphics was given.
 if test "${enable_x11_graphics+set}" = set; then
   enableval="$enable_x11_graphics"
@@ -1436,6 +1505,9 @@ if test "${enable_x11_graphics+set}" = set; then
 else
   enable_x11_graphics="no"
 fi;
+  if test "$enable_x11_graphics" != "no"; then
+    nethack_wins="x11 $nethack_wins"
+  fi
 # Check whether --enable-sdl-graphics or --disable-sdl-graphics was given.
 if test "${enable_sdl_graphics+set}" = set; then
   enableval="$enable_sdl_graphics"
@@ -1443,29 +1515,33 @@ if test "${enable_sdl_graphics+set}" = set; then
 else
   enable_sdl_graphics="no"
 fi;
+  if test "$enable_sdl_graphics" != "no"; then
+    nethack_wins="sdl $nethack_wins"
+  fi
 # Check whether --enable-gl-graphics or --disable-gl-graphics was given.
 if test "${enable_gl_graphics+set}" = set; then
   enableval="$enable_gl_graphics"
   enable_gl_graphics="$enableval"
-			      if test "$enable_gl_graphics" != "no"
-			      then
-			      	enable_sdl_graphics="yes"
-			      fi
 else
   enable_gl_graphics="no"
 fi;
-
-
-if test "$enable_tty_graphics" = "no" && test "$enable_x11_graphics" = "no"
-then
-	echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-	{ { echo "$as_me:$LINENO: error: need to enable at least one window system" >&5
-echo "$as_me: error: need to enable at least one window system" >&2;}
-   { (exit 1); exit 1; }; }
+  if test "$enable_gl_graphics" != "no"; then
+    nethack_wins="gl $nethack_wins"
+  fi
+if test "$enable_gl_graphics" != no -a "$enable_sdl_graphics" = no; then
+    enable_sdl_graphics="yes"
+    nethack_wins=`echo $nethack_wins | sed 's/^gl/gl sdl/'`
 fi
-echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6
+# Check whether --enable-mswin-graphics or --disable-mswin-graphics was given.
+if test "${enable_mswin_graphics+set}" = set; then
+  enableval="$enable_mswin_graphics"
+  enable_mswin_graphics="$enableval"
+else
+  enable_mswin_graphics="no"
+fi;
+  if test "$enable_mswin_graphics" != "no"; then
+    nethack_wins="mswin $nethack_wins"
+  fi
 
 ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
@@ -2398,6 +2474,7 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
+
 # Make sure we can run config.sub.
 $ac_config_sub sun4 >/dev/null 2>&1 ||
   { { echo "$as_me:$LINENO: error: cannot run $ac_config_sub" >&5
@@ -2452,52 +2529,73 @@ host_vendor=`echo $ac_cv_host | sed 's/^\([^-]*\)-\([^-]*\)-\(.*\)$/\2/'`
 host_os=`echo $ac_cv_host | sed 's/^\([^-]*\)-\([^-]*\)-\(.*\)$/\3/'`
 
 
-echo "$as_me:$LINENO: checking target system type" >&5
-echo $ECHO_N "checking target system type... $ECHO_C" >&6
-if test "${ac_cv_target+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  ac_cv_target_alias=$target_alias
-test "x$ac_cv_target_alias" = "x" &&
-  ac_cv_target_alias=$ac_cv_host_alias
-ac_cv_target=`$ac_config_sub $ac_cv_target_alias` ||
-  { { echo "$as_me:$LINENO: error: $ac_config_sub $ac_cv_target_alias failed" >&5
-echo "$as_me: error: $ac_config_sub $ac_cv_target_alias failed" >&2;}
-   { (exit 1); exit 1; }; }
-
-fi
-echo "$as_me:$LINENO: result: $ac_cv_target" >&5
-echo "${ECHO_T}$ac_cv_target" >&6
-target=$ac_cv_target
-target_cpu=`echo $ac_cv_target | sed 's/^\([^-]*\)-\([^-]*\)-\(.*\)$/\1/'`
-target_vendor=`echo $ac_cv_target | sed 's/^\([^-]*\)-\([^-]*\)-\(.*\)$/\2/'`
-target_os=`echo $ac_cv_target | sed 's/^\([^-]*\)-\([^-]*\)-\(.*\)$/\3/'`
-
-
-# The aliases save the names the user supplied, while $host etc.
-# will get canonicalized.
-test -n "$target_alias" &&
-  test "$program_prefix$program_suffix$program_transform_name" = \
-    NONENONEs,x,x, &&
-  program_prefix=${target_alias}-
-case $target_os in
+case $host_os in
      mingw32 )
 cat >>confdefs.h <<\_ACEOF
 #define WIN32
 _ACEOF
-;;
+
+
+			HOST_UNIX=#
+
+			SYSTEM="Syswinnt"
+			SYSSRC="\${SYSMSWINSRC}"
+			SYSOBJ="\${SYSMSWINOBJ}"
+			;;
      *bsd* )
 cat >>confdefs.h <<\_ACEOF
 #define BSD
 _ACEOF
-;;
+
+			HOST_MSWIN=#
+
+
+			SYSTEM="Sysunix"
+			SYSSRC="\${SYSUNIXSRC}"
+			SYSOBJ="\${SYSUNIXOBJ}"
+			;;
      * )
 cat >>confdefs.h <<\_ACEOF
 #define SYSV
 _ACEOF
-;;
+
+			HOST_MSWIN=#
+
+
+			SYSTEM="Sysunix"
+			SYSSRC="\${SYSUNIXSRC}"
+			SYSOBJ="\${SYSUNIXOBJ}"
+			;;
 esac
-case $target_os in
+
+
+
+
+if test $host_os = mingw32; then
+    echo "$as_me:$LINENO: checking for how to build NetHack key dynamic libraries" >&5
+echo $ECHO_N "checking for how to build NetHack key dynamic libraries... $ECHO_C" >&6
+    if test "$GCC" = yes; then
+	echo "$as_me:$LINENO: result: gcc" >&5
+echo "${ECHO_T}gcc" >&6
+
+    else
+	echo "$as_me:$LINENO: result: unknown" >&5
+echo "${ECHO_T}unknown" >&6
+	if test "$enable_tty_graphics" = yes; then
+	    { { echo "$as_me:$LINENO: error: Don't know how to build NetHack key DLLs with $CC" >&5
+echo "$as_me: error: Don't know how to build NetHack key DLLs with $CC" >&2;}
+   { (exit 1); exit 1; }; }
+	else
+	    { echo "$as_me:$LINENO: WARNING: Can't enable tty graphics (key dynamic libraries)" >&5
+echo "$as_me: WARNING: Can't enable tty graphics (key dynamic libraries)" >&2;}
+	    enable_tty_graphics="no"
+    nethack_wins=`echo $nethack_wins | sed 's/tty //'`
+
+	fi
+    fi
+fi
+
+case $host_os in
      *cygwin* )
 cat >>confdefs.h <<\_ACEOF
 #define CYGWIN32
@@ -2999,6 +3097,724 @@ done
   CHGRP=$ac_ct_CHGRP
 fi
 
+if test -n "$ac_tool_prefix"; then
+  for ac_prog in chmod true
+  do
+    # Extract the first word of "$ac_tool_prefix$ac_prog", so it can be a program name with args.
+set dummy $ac_tool_prefix$ac_prog; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_prog_CHMOD+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test -n "$CHMOD"; then
+  ac_cv_prog_CHMOD="$CHMOD" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_prog_CHMOD="$ac_tool_prefix$ac_prog"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+fi
+fi
+CHMOD=$ac_cv_prog_CHMOD
+if test -n "$CHMOD"; then
+  echo "$as_me:$LINENO: result: $CHMOD" >&5
+echo "${ECHO_T}$CHMOD" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+    test -n "$CHMOD" && break
+  done
+fi
+if test -z "$CHMOD"; then
+  ac_ct_CHMOD=$CHMOD
+  for ac_prog in chmod true
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_prog_ac_ct_CHMOD+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test -n "$ac_ct_CHMOD"; then
+  ac_cv_prog_ac_ct_CHMOD="$ac_ct_CHMOD" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_prog_ac_ct_CHMOD="$ac_prog"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+fi
+fi
+ac_ct_CHMOD=$ac_cv_prog_ac_ct_CHMOD
+if test -n "$ac_ct_CHMOD"; then
+  echo "$as_me:$LINENO: result: $ac_ct_CHMOD" >&5
+echo "${ECHO_T}$ac_ct_CHMOD" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+  test -n "$ac_ct_CHMOD" && break
+done
+
+  CHMOD=$ac_ct_CHMOD
+fi
+
+if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}windres", so it can be a program name with args.
+set dummy ${ac_tool_prefix}windres; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_prog_WINDRES+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test -n "$WINDRES"; then
+  ac_cv_prog_WINDRES="$WINDRES" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_prog_WINDRES="${ac_tool_prefix}windres"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+fi
+fi
+WINDRES=$ac_cv_prog_WINDRES
+if test -n "$WINDRES"; then
+  echo "$as_me:$LINENO: result: $WINDRES" >&5
+echo "${ECHO_T}$WINDRES" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+fi
+if test -z "$ac_cv_prog_WINDRES"; then
+  ac_ct_WINDRES=$WINDRES
+  # Extract the first word of "windres", so it can be a program name with args.
+set dummy windres; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_prog_ac_ct_WINDRES+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test -n "$ac_ct_WINDRES"; then
+  ac_cv_prog_ac_ct_WINDRES="$ac_ct_WINDRES" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_prog_ac_ct_WINDRES="windres"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+  test -z "$ac_cv_prog_ac_ct_WINDRES" && ac_cv_prog_ac_ct_WINDRES="no"
+fi
+fi
+ac_ct_WINDRES=$ac_cv_prog_ac_ct_WINDRES
+if test -n "$ac_ct_WINDRES"; then
+  echo "$as_me:$LINENO: result: $ac_ct_WINDRES" >&5
+echo "${ECHO_T}$ac_ct_WINDRES" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+  WINDRES=$ac_ct_WINDRES
+else
+  WINDRES="$ac_cv_prog_WINDRES"
+fi
+
+
+
+
+    # Slash'EM may well work with earlier versions,
+    # but 1.2.4 is the earliest tested to date.
+
+  succeeded=no
+
+  if test -z "$PKG_CONFIG"; then
+    # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  case $PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+  test -z "$ac_cv_path_PKG_CONFIG" && ac_cv_path_PKG_CONFIG="no"
+  ;;
+esac
+fi
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+
+if test -n "$PKG_CONFIG"; then
+  echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
+echo "${ECHO_T}$PKG_CONFIG" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+  fi
+
+  if test "$PKG_CONFIG" = "no" ; then
+     echo "*** The pkg-config script could not be found. Make sure it is"
+     echo "*** in your path, or set the PKG_CONFIG environment variable"
+     echo "*** to the full path to pkg-config."
+     echo "*** Or see http://www.freedesktop.org/software/pkgconfig to get pkg-config."
+  else
+     PKG_CONFIG_MIN_VERSION=0.9.0
+     if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
+        echo "$as_me:$LINENO: checking for libpng >= 1.2.4" >&5
+echo $ECHO_N "checking for libpng >= 1.2.4... $ECHO_C" >&6
+
+        if $PKG_CONFIG --exists "libpng >= 1.2.4" ; then
+            echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+            succeeded=yes
+
+            echo "$as_me:$LINENO: checking NETHACK__LIBPNG_CFLAGS" >&5
+echo $ECHO_N "checking NETHACK__LIBPNG_CFLAGS... $ECHO_C" >&6
+            NETHACK__LIBPNG_CFLAGS=`$PKG_CONFIG --cflags "libpng >= 1.2.4"`
+            echo "$as_me:$LINENO: result: $NETHACK__LIBPNG_CFLAGS" >&5
+echo "${ECHO_T}$NETHACK__LIBPNG_CFLAGS" >&6
+
+            echo "$as_me:$LINENO: checking NETHACK__LIBPNG_LIBS" >&5
+echo $ECHO_N "checking NETHACK__LIBPNG_LIBS... $ECHO_C" >&6
+            NETHACK__LIBPNG_LIBS=`$PKG_CONFIG --libs "libpng >= 1.2.4"`
+            echo "$as_me:$LINENO: result: $NETHACK__LIBPNG_LIBS" >&5
+echo "${ECHO_T}$NETHACK__LIBPNG_LIBS" >&6
+        else
+            NETHACK__LIBPNG_CFLAGS=""
+            NETHACK__LIBPNG_LIBS=""
+            ## If we have a custom action on failure, don't print errors, but
+            ## do set a variable so people can do so.
+            NETHACK__LIBPNG_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "libpng >= 1.2.4"`
+
+        fi
+
+
+
+     else
+        echo "*** Your version of pkg-config is too old. You need version $PKG_CONFIG_MIN_VERSION or newer."
+        echo "*** See http://www.freedesktop.org/software/pkgconfig"
+     fi
+  fi
+
+  if test $succeeded = yes; then
+     nethack__succeeded=maybe
+  else
+     nethack__succeeded=no
+  fi
+
+    # Slash'EM doesn't use zlib directly, but libpng does. This should
+    # all be handled in libpng.pc, but isn't in many versions of libpng.
+    if test $nethack__succeeded = maybe; then
+
+    for flag in -lz; do
+
+    case "$flag" in
+	-I*|-L*|-l*)
+	    for flag in $NETHACK__LIBPNG_LIBS; do
+		if test $flag = "$flag"; then
+		    break
+		fi
+	    done
+	    if test $flag = "$flag"; then
+		nethack__libs="$NETHACK__LIBPNG_LIBS"
+	    else
+		case "$flag" in
+		    -L*)nethack__libs="$flag $NETHACK__LIBPNG_LIBS";;
+		    *)  nethack__libs="$NETHACK__LIBPNG_LIBS $flag";;
+		esac
+	    fi
+	    ;;
+	*)  nethack__libs="$NETHACK__LIBPNG_LIBS $flag";;
+    esac
+
+    done
+
+
+    nethack__save_cflags=$CFLAGS
+    nethack__save_libs=$LIBS
+    CFLAGS="$CFLAGS $NETHACK__LIBPNG_CFLAGS"
+    LIBS="$LIBS $nethack__libs"
+    echo "$as_me:$LINENO: checking if libpng is useable with $CFLAGS and $LIBS" >&5
+echo $ECHO_N "checking if libpng is useable with $CFLAGS and $LIBS... $ECHO_C" >&6
+    cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <png.h>
+int
+main ()
+{
+png_structp ptr=
+	    png_create_write_struct(PNG_LIBPNG_VER_STRING,NULL,NULL,NULL);
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
+  (eval $ac_link) 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; } &&
+	 { ac_try='test -s conftest$ac_exeext'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+  NETHACK_LIBPNG_CFLAGS="$NETHACK__LIBPNG_CFLAGS"; NETHACK_LIBPNG_LIBS="$nethack__libs"; echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6; nethack__succeeded=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6;
+fi
+rm -f conftest.err conftest.$ac_objext \
+      conftest$ac_exeext conftest.$ac_ext
+    CFLAGS=$nethack__save_cflags
+    LIBS=$nethack__save_libs
+    fi
+    # If the user has supplied flags, then believe them.
+    if test $nethack__succeeded = maybe -a \
+      \( -n "$ZLIB_CFLAGS" -o -n "$ZLIB_LIBS" \); then
+
+    for flag in $ZLIB_CFLAGS; do
+
+    case "$flag" in
+	-I*|-L*|-l*)
+	    for flag in $NETHACK__LIBPNG_CFLAGS; do
+		if test $flag = "$flag"; then
+		    break
+		fi
+	    done
+	    if test $flag = "$flag"; then
+		nethack__cflags="$NETHACK__LIBPNG_CFLAGS"
+	    else
+		case "$flag" in
+		    -L*)nethack__cflags="$flag $NETHACK__LIBPNG_CFLAGS";;
+		    *)  nethack__cflags="$NETHACK__LIBPNG_CFLAGS $flag";;
+		esac
+	    fi
+	    ;;
+	*)  nethack__cflags="$NETHACK__LIBPNG_CFLAGS $flag";;
+    esac
+
+    done
+
+
+    for flag in $ZLIB_LIBS; do
+
+    case "$flag" in
+	-I*|-L*|-l*)
+	    for flag in $NETHACK__LIBPNG_LIBS; do
+		if test $flag = "$flag"; then
+		    break
+		fi
+	    done
+	    if test $flag = "$flag"; then
+		nethack__libs="$NETHACK__LIBPNG_LIBS"
+	    else
+		case "$flag" in
+		    -L*)nethack__libs="$flag $NETHACK__LIBPNG_LIBS";;
+		    *)  nethack__libs="$NETHACK__LIBPNG_LIBS $flag";;
+		esac
+	    fi
+	    ;;
+	*)  nethack__libs="$NETHACK__LIBPNG_LIBS $flag";;
+    esac
+
+    done
+
+
+    nethack__save_cflags=$CFLAGS
+    nethack__save_libs=$LIBS
+    CFLAGS="$CFLAGS $nethack__cflags"
+    LIBS="$LIBS $nethack__libs"
+    echo "$as_me:$LINENO: checking if libpng is useable with $CFLAGS and $LIBS" >&5
+echo $ECHO_N "checking if libpng is useable with $CFLAGS and $LIBS... $ECHO_C" >&6
+    cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <png.h>
+int
+main ()
+{
+png_structp ptr=
+	    png_create_write_struct(PNG_LIBPNG_VER_STRING,NULL,NULL,NULL);
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
+  (eval $ac_link) 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; } &&
+	 { ac_try='test -s conftest$ac_exeext'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+  NETHACK_LIBPNG_CFLAGS="$nethack__cflags"; NETHACK_LIBPNG_LIBS="$nethack__libs"; echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6; nethack__succeeded=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6;
+fi
+rm -f conftest.err conftest.$ac_objext \
+      conftest$ac_exeext conftest.$ac_ext
+    CFLAGS=$nethack__save_cflags
+    LIBS=$nethack__save_libs
+    fi
+    # Otherwise, try pkg-config.
+    if test $nethack__succeeded = maybe; then
+	echo "$as_me:$LINENO: checking for zlib" >&5
+echo $ECHO_N "checking for zlib... $ECHO_C" >&6
+	if $PKG_CONFIG --exists zlib; then
+	    echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+
+    for flag in `$PKG_CONFIG --cflags zlib`; do
+
+    case "$flag" in
+	-I*|-L*|-l*)
+	    for flag in $NETHACK__LIBPNG_CFLAGS; do
+		if test $flag = "$flag"; then
+		    break
+		fi
+	    done
+	    if test $flag = "$flag"; then
+		nethack__cflags="$NETHACK__LIBPNG_CFLAGS"
+	    else
+		case "$flag" in
+		    -L*)nethack__cflags="$flag $NETHACK__LIBPNG_CFLAGS";;
+		    *)  nethack__cflags="$NETHACK__LIBPNG_CFLAGS $flag";;
+		esac
+	    fi
+	    ;;
+	*)  nethack__cflags="$NETHACK__LIBPNG_CFLAGS $flag";;
+    esac
+
+    done
+
+
+    for flag in `$PKG_CONFIG --libs zlib`; do
+
+    case "$flag" in
+	-I*|-L*|-l*)
+	    for flag in $NETHACK__LIBPNG_LIBS; do
+		if test $flag = "$flag"; then
+		    break
+		fi
+	    done
+	    if test $flag = "$flag"; then
+		nethack__libs="$NETHACK__LIBPNG_LIBS"
+	    else
+		case "$flag" in
+		    -L*)nethack__libs="$flag $NETHACK__LIBPNG_LIBS";;
+		    *)  nethack__libs="$NETHACK__LIBPNG_LIBS $flag";;
+		esac
+	    fi
+	    ;;
+	*)  nethack__libs="$NETHACK__LIBPNG_LIBS $flag";;
+    esac
+
+    done
+
+
+    nethack__save_cflags=$CFLAGS
+    nethack__save_libs=$LIBS
+    CFLAGS="$CFLAGS $nethack__cflags"
+    LIBS="$LIBS $nethack__libs"
+    echo "$as_me:$LINENO: checking if libpng is useable with $CFLAGS and $LIBS" >&5
+echo $ECHO_N "checking if libpng is useable with $CFLAGS and $LIBS... $ECHO_C" >&6
+    cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <png.h>
+int
+main ()
+{
+png_structp ptr=
+	    png_create_write_struct(PNG_LIBPNG_VER_STRING,NULL,NULL,NULL);
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
+  (eval $ac_link) 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; } &&
+	 { ac_try='test -s conftest$ac_exeext'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+  NETHACK_LIBPNG_CFLAGS="$nethack__cflags"; NETHACK_LIBPNG_LIBS="$nethack__libs"; echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6; nethack__succeeded=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6;
+fi
+rm -f conftest.err conftest.$ac_objext \
+      conftest$ac_exeext conftest.$ac_ext
+    CFLAGS=$nethack__save_cflags
+    LIBS=$nethack__save_libs
+	else
+	    echo "$as_me:$LINENO: result: not found by pkg-config" >&5
+echo "${ECHO_T}not found by pkg-config" >&6
+	fi
+    fi
+    # Try the same prefix as libpng since zlib is
+    # likely to be installed in the same place.
+    if test $nethack__succeeded = maybe; then
+        nethack__libpng_prefix=`$PKG_CONFIG --variable=prefix libpng`
+
+    case "-I$nethack__libpng_prefix/include" in
+	-I*|-L*|-l*)
+	    for flag in $NETHACK__LIBPNG_CFLAGS; do
+		if test $flag = "-I$nethack__libpng_prefix/include"; then
+		    break
+		fi
+	    done
+	    if test $flag = "-I$nethack__libpng_prefix/include"; then
+		nethack__cflags="$NETHACK__LIBPNG_CFLAGS"
+	    else
+		case "-I$nethack__libpng_prefix/include" in
+		    -L*)nethack__cflags="-I$nethack__libpng_prefix/include $NETHACK__LIBPNG_CFLAGS";;
+		    *)  nethack__cflags="$NETHACK__LIBPNG_CFLAGS -I$nethack__libpng_prefix/include";;
+		esac
+	    fi
+	    ;;
+	*)  nethack__cflags="$NETHACK__LIBPNG_CFLAGS -I$nethack__libpng_prefix/include";;
+    esac
+
+
+    case "-L$nethack__libpng_prefix/lib" in
+	-I*|-L*|-l*)
+	    for flag in $NETHACK__LIBPNG_LIBS; do
+		if test $flag = "-L$nethack__libpng_prefix/lib"; then
+		    break
+		fi
+	    done
+	    if test $flag = "-L$nethack__libpng_prefix/lib"; then
+		nethack__libs="$NETHACK__LIBPNG_LIBS"
+	    else
+		case "-L$nethack__libpng_prefix/lib" in
+		    -L*)nethack__libs="-L$nethack__libpng_prefix/lib $NETHACK__LIBPNG_LIBS";;
+		    *)  nethack__libs="$NETHACK__LIBPNG_LIBS -L$nethack__libpng_prefix/lib";;
+		esac
+	    fi
+	    ;;
+	*)  nethack__libs="$NETHACK__LIBPNG_LIBS -L$nethack__libpng_prefix/lib";;
+    esac
+
+
+    case "-lz" in
+	-I*|-L*|-l*)
+	    for flag in $nethack__libs; do
+		if test $flag = "-lz"; then
+		    break
+		fi
+	    done
+	    if test $flag = "-lz"; then
+		nethack__libs="$nethack__libs"
+	    else
+		case "-lz" in
+		    -L*)nethack__libs="-lz $nethack__libs";;
+		    *)  nethack__libs="$nethack__libs -lz";;
+		esac
+	    fi
+	    ;;
+	*)  nethack__libs="$nethack__libs -lz";;
+    esac
+
+
+    nethack__save_cflags=$CFLAGS
+    nethack__save_libs=$LIBS
+    CFLAGS="$CFLAGS $nethack__cflags"
+    LIBS="$LIBS $nethack__libs"
+    echo "$as_me:$LINENO: checking if libpng is useable with $CFLAGS and $LIBS" >&5
+echo $ECHO_N "checking if libpng is useable with $CFLAGS and $LIBS... $ECHO_C" >&6
+    cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <png.h>
+int
+main ()
+{
+png_structp ptr=
+	    png_create_write_struct(PNG_LIBPNG_VER_STRING,NULL,NULL,NULL);
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
+  (eval $ac_link) 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; } &&
+	 { ac_try='test -s conftest$ac_exeext'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+  NETHACK_LIBPNG_CFLAGS="$nethack__cflags"; NETHACK_LIBPNG_LIBS="$nethack__libs"; echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6; nethack__succeeded=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6;
+fi
+rm -f conftest.err conftest.$ac_objext \
+      conftest$ac_exeext conftest.$ac_ext
+    CFLAGS=$nethack__save_cflags
+    LIBS=$nethack__save_libs
+    fi
+    if test $nethack__succeeded = yes; then
+	echo "$as_me:$LINENO: checking NETHACK_LIBPNG_CFLAGS" >&5
+echo $ECHO_N "checking NETHACK_LIBPNG_CFLAGS... $ECHO_C" >&6
+	echo "$as_me:$LINENO: result: ${NETHACK_LIBPNG_CFLAGS}" >&5
+echo "${ECHO_T}${NETHACK_LIBPNG_CFLAGS}" >&6
+
+	echo "$as_me:$LINENO: checking NETHACK_LIBPNG_LIBS" >&5
+echo $ECHO_N "checking NETHACK_LIBPNG_LIBS... $ECHO_C" >&6
+	echo "$as_me:$LINENO: result: ${NETHACK_LIBPNG_LIBS}" >&5
+echo "${ECHO_T}${NETHACK_LIBPNG_LIBS}" >&6
+
+	have_libpng=yes
+    else have_libpng=no
+    fi
 
 
 
@@ -3008,11 +3824,26 @@ WINLIB=
 CNF_SHARE_DATND=
 
 WINTTYLIB=
-if test "$enable_tty_graphics" != "no"
-then
-TERMLIB_VARIANTS="ncurses curses termlib termcap terminfo"
-for termlib in ${TERMLIB_VARIANTS}; do
-  as_ac_Lib=`echo "ac_cv_lib_${termlib}''_tgetent" | $as_tr_sh`
+if test "$enable_tty_graphics" != "no"; then
+    if test $host_os = mingw32; then
+	EXTRA_UNSHARE=nhdefkey.dll nh340key.dll nhraykey.dll
+
+	CFLAGS="$CFLAGS -DWIN32CON"
+	WINTTYLIB=""
+	WINSRC="${WINSRC} \$(WINTTYSRC)"
+	WINOBJ="${WINOBJ} \$(WINTTYOBJ)"
+	WINLIB="${WINLIB} \$(WINTTYLIB)"
+
+cat >>confdefs.h <<\_ACEOF
+#define TTY_GRAPHICS
+_ACEOF
+
+    else
+	# For TTY, determine the termlib
+	# Check for termlib before termcap because Solaris termcap needs libucb.
+	TERMLIB_VARIANTS="ncurses curses termlib termcap terminfo"
+	for termlib in ${TERMLIB_VARIANTS}; do
+	    as_ac_Lib=`echo "ac_cv_lib_${termlib}''_tgetent" | $as_tr_sh`
 echo "$as_me:$LINENO: checking for tgetent in -l${termlib}" >&5
 echo $ECHO_N "checking for tgetent in -l${termlib}... $ECHO_C" >&6
 if eval "test \"\${$as_ac_Lib+set}\" = set"; then
@@ -3079,25 +3910,50 @@ echo "$as_me:$LINENO: result: `eval echo '${'$as_ac_Lib'}'`" >&5
 echo "${ECHO_T}`eval echo '${'$as_ac_Lib'}'`" >&6
 if test `eval echo '${'$as_ac_Lib'}'` = yes; then
   WINTTYLIB="-l${termlib}"
-	        WINSRC="${WINSRC} \$(WINTTYSRC)"
-		WINOBJ="${WINOBJ} \$(WINTTYOBJ)"
-		WINLIB="${WINLIB} \$(WINTTYLIB)"
+	      WINSRC="${WINSRC} \$(WINTTYSRC)"
+	      WINOBJ="${WINOBJ} \$(WINTTYOBJ)"
+	      WINLIB="${WINLIB} \$(WINTTYLIB)"
 
 cat >>confdefs.h <<\_ACEOF
 #define TTY_GRAPHICS
 _ACEOF
 
-		break
+	      break
 fi
 
-done
+	done
+	if test -z "$termlib"; then
+	    if test "$enable_tty_graphics" = yes; then
+		{ { echo "$as_me:$LINENO: error: Can't find tgetent (needed for tty graphics)" >&5
+echo "$as_me: error: Can't find tgetent (needed for tty graphics)" >&2;}
+   { (exit 1); exit 1; }; }
+	    else
+		{ echo "$as_me:$LINENO: WARNING: Can't enable tty graphics (no tgetent)" >&5
+echo "$as_me: WARNING: Can't enable tty graphics (no tgetent)" >&2;}
+		enable_tty_graphics="no"
+    nethack_wins=`echo $nethack_wins | sed 's/tty //'`
+
+	    fi
+	fi
+    fi
+fi
+if test "$enable_tty_graphics" = "no" -a $host_os = mingw32; then
+    LFLAGS="$LFLAGS -mwindows"
 fi
 
 
-if test "$enable_proxy_graphics" != "no"
-then
-	if test "$enable_proxy_graphics" = "yes"
-	then
+if test "$enable_proxy_graphics" != "no"; then
+    if test "$have_libpng" = "no"; then
+	if test "$enable_proxy_graphics" = "yes"; then
+	    { { echo "$as_me:$LINENO: error: Need libpng for proxy graphics" >&5
+echo "$as_me: error: Need libpng for proxy graphics" >&2;}
+   { (exit 1); exit 1; }; }
+	else
+	    { echo "$as_me:$LINENO: WARNING: Can't enable proxy graphics (no useable libpng)" >&5
+echo "$as_me: WARNING: Can't enable proxy graphics (no useable libpng)" >&2;}
+	fi
+    else
+	if test "$enable_proxy_graphics" = "yes"; then
 
   succeeded=no
 
@@ -3294,8 +4150,9 @@ echo "${ECHO_T}$NETHACK_PROXY_LIBS" >&6
   fi
 
 	fi
-	if test -n "$NETHACK_PROXY_LIBS"
-	then
+	if test -n "$NETHACK_PROXY_LIBS"; then
+	    CFLAGS="${CFLAGS} ${NETHACK_LIBPNG_CFLAGS}"
+	    LFLAGS="${LFLAGS} ${NETHACK_LIBPNG_LFLAGS}"
 	    WINSRC="${WINSRC} \$(WINPROXYSRC)"
 	    WINOBJ="${WINOBJ} \$(WINPROXYOBJ)"
 	    WINLIB="${WINLIB} ${NETHACK_PROXY_LIBS}"
@@ -3306,6 +4163,7 @@ cat >>confdefs.h <<\_ACEOF
 _ACEOF
 
 	fi
+    fi
 fi
 
 
@@ -3585,11 +4443,49 @@ fi
 
 
 
+if test "$enable_mswin_graphics" != "no"; then
+    if test "$WINDRES" = "no"; then
+	{ { echo "$as_me:$LINENO: error: Need windres for Microsoft Window's native graphics" >&5
+echo "$as_me: error: Need windres for Microsoft Window's native graphics" >&2;}
+   { (exit 1); exit 1; }; }
+    fi
+    WINSRC="${WINSRC} \$(WINMSSRC)"
+    WINOBJ="${WINOBJ} \$(WINMSOBJ)"
+    WINLIB="${WINLIB} \$(WINMSLIB)"
+    CNF_SHARE_DATND="${CNF_SHARE_DATND} \$(CNF_SHARE_MSND)"
+
+cat >>confdefs.h <<\_ACEOF
+#define MSWIN_GRAPHICS
+_ACEOF
+
+fi
 
 
 
 
 
+
+
+echo "$as_me:$LINENO: checking for valid window system configuration" >&5
+echo $ECHO_N "checking for valid window system configuration... $ECHO_C" >&6
+if test -n "$nethack_wins"; then
+    echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+    for win in $nethack_wins; do
+
+cat >>confdefs.h <<_ACEOF
+#define DEFAULT_WINDOW_SYS "$win"
+_ACEOF
+
+	break
+    done
+else
+    echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+    { { echo "$as_me:$LINENO: error: need to enable at least one window system" >&5
+echo "$as_me: error: need to enable at least one window system" >&2;}
+   { (exit 1); exit 1; }; }
+fi
 
 
 ac_ext=c
@@ -4008,64 +4904,10 @@ _ACEOF
 
 fi
 
-echo "$as_me:$LINENO: checking for regex.h" >&5
-echo $ECHO_N "checking for regex.h... $ECHO_C" >&6
-if test "${ac_cv_header_regex_h+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-/* TEST_REGEX */
-
-#include <regex.h>
-_ACEOF
-rm -f conftest.$ac_objext
-if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
-  (eval $ac_compile) 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"
-			 || test ! -s conftest.err'
-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
-  (eval $ac_try) 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; } &&
-	 { ac_try='test -s conftest.$ac_objext'
-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
-  (eval $ac_try) 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; }; then
-  ac_cv_header_regex_h=yes
-else
-  echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-ac_cv_header_regex_h=no
-fi
-rm -f conftest.err conftest.$ac_objext conftest.$ac_ext
-fi
-echo "$as_me:$LINENO: result: $ac_cv_header_regex_h" >&5
-echo "${ECHO_T}$ac_cv_header_regex_h" >&6
-if test $ac_cv_header_regex_h = yes; then
-  have_regex_h=yes
-else
-  have_regex_h=no
-fi
-
-
-
-if test "$have_regex_h" = "yes"; then
-   # On IRIX 5.3, sys/types and inttypes.h are conflicting.
+# Due to what may be a bug in autoconf, we have to call AC_CHECK_HEADERS()
+# to get the various HAVE_xxx_H preprocessor variables detected by
+# AC_HEADER_STDC active. These are needed for AC_CHECK_DECLS(), below.
+# On IRIX 5.3, sys/types and inttypes.h are conflicting.
 
 
 
@@ -4137,7 +4979,214 @@ fi
 done
 
 
-echo "$as_me:$LINENO: checking for struct re_pattern_buffer" >&5
+
+for ac_header in string.h
+do
+as_ac_Header=`echo "ac_cv_header_$ac_header" | $as_tr_sh`
+if eval "test \"\${$as_ac_Header+set}\" = set"; then
+  echo "$as_me:$LINENO: checking for $ac_header" >&5
+echo $ECHO_N "checking for $ac_header... $ECHO_C" >&6
+if eval "test \"\${$as_ac_Header+set}\" = set"; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+fi
+echo "$as_me:$LINENO: result: `eval echo '${'$as_ac_Header'}'`" >&5
+echo "${ECHO_T}`eval echo '${'$as_ac_Header'}'`" >&6
+else
+  # Is the header compilable?
+echo "$as_me:$LINENO: checking $ac_header usability" >&5
+echo $ECHO_N "checking $ac_header usability... $ECHO_C" >&6
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+$ac_includes_default
+#include <$ac_header>
+_ACEOF
+rm -f conftest.$ac_objext
+if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
+  (eval $ac_compile) 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; } &&
+	 { ac_try='test -s conftest.$ac_objext'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+  ac_header_compiler=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+ac_header_compiler=no
+fi
+rm -f conftest.err conftest.$ac_objext conftest.$ac_ext
+echo "$as_me:$LINENO: result: $ac_header_compiler" >&5
+echo "${ECHO_T}$ac_header_compiler" >&6
+
+# Is the header present?
+echo "$as_me:$LINENO: checking $ac_header presence" >&5
+echo $ECHO_N "checking $ac_header presence... $ECHO_C" >&6
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <$ac_header>
+_ACEOF
+if { (eval echo "$as_me:$LINENO: \"$ac_cpp conftest.$ac_ext\"") >&5
+  (eval $ac_cpp conftest.$ac_ext) 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } >/dev/null; then
+  if test -s conftest.err; then
+    ac_cpp_err=$ac_c_preproc_warn_flag
+    ac_cpp_err=$ac_cpp_err$ac_c_werror_flag
+  else
+    ac_cpp_err=
+  fi
+else
+  ac_cpp_err=yes
+fi
+if test -z "$ac_cpp_err"; then
+  ac_header_preproc=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+  ac_header_preproc=no
+fi
+rm -f conftest.err conftest.$ac_ext
+echo "$as_me:$LINENO: result: $ac_header_preproc" >&5
+echo "${ECHO_T}$ac_header_preproc" >&6
+
+# So?  What about this header?
+case $ac_header_compiler:$ac_header_preproc:$ac_c_preproc_warn_flag in
+  yes:no: )
+    { echo "$as_me:$LINENO: WARNING: $ac_header: accepted by the compiler, rejected by the preprocessor!" >&5
+echo "$as_me: WARNING: $ac_header: accepted by the compiler, rejected by the preprocessor!" >&2;}
+    { echo "$as_me:$LINENO: WARNING: $ac_header: proceeding with the compiler's result" >&5
+echo "$as_me: WARNING: $ac_header: proceeding with the compiler's result" >&2;}
+    ac_header_preproc=yes
+    ;;
+  no:yes:* )
+    { echo "$as_me:$LINENO: WARNING: $ac_header: present but cannot be compiled" >&5
+echo "$as_me: WARNING: $ac_header: present but cannot be compiled" >&2;}
+    { echo "$as_me:$LINENO: WARNING: $ac_header:     check for missing prerequisite headers?" >&5
+echo "$as_me: WARNING: $ac_header:     check for missing prerequisite headers?" >&2;}
+    { echo "$as_me:$LINENO: WARNING: $ac_header: see the Autoconf documentation" >&5
+echo "$as_me: WARNING: $ac_header: see the Autoconf documentation" >&2;}
+    { echo "$as_me:$LINENO: WARNING: $ac_header:     section \"Present But Cannot Be Compiled\"" >&5
+echo "$as_me: WARNING: $ac_header:     section \"Present But Cannot Be Compiled\"" >&2;}
+    { echo "$as_me:$LINENO: WARNING: $ac_header: proceeding with the preprocessor's result" >&5
+echo "$as_me: WARNING: $ac_header: proceeding with the preprocessor's result" >&2;}
+    { echo "$as_me:$LINENO: WARNING: $ac_header: in the future, the compiler will take precedence" >&5
+echo "$as_me: WARNING: $ac_header: in the future, the compiler will take precedence" >&2;}
+    (
+      cat <<\_ASBOX
+## --------------------------------------------------------- ##
+## Report this to http://sourceforge.net/bugs/?group_id=9746 ##
+## --------------------------------------------------------- ##
+_ASBOX
+    ) |
+      sed "s/^/$as_me: WARNING:     /" >&2
+    ;;
+esac
+echo "$as_me:$LINENO: checking for $ac_header" >&5
+echo $ECHO_N "checking for $ac_header... $ECHO_C" >&6
+if eval "test \"\${$as_ac_Header+set}\" = set"; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  eval "$as_ac_Header=\$ac_header_preproc"
+fi
+echo "$as_me:$LINENO: result: `eval echo '${'$as_ac_Header'}'`" >&5
+echo "${ECHO_T}`eval echo '${'$as_ac_Header'}'`" >&6
+
+fi
+if test `eval echo '${'$as_ac_Header'}'` = yes; then
+  cat >>confdefs.h <<_ACEOF
+#define `echo "HAVE_$ac_header" | $as_tr_cpp` 1
+_ACEOF
+
+fi
+
+done
+
+echo "$as_me:$LINENO: checking for regex.h" >&5
+echo $ECHO_N "checking for regex.h... $ECHO_C" >&6
+if test "${ac_cv_header_regex_h+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+/* TEST_REGEX */
+
+#include <regex.h>
+_ACEOF
+rm -f conftest.$ac_objext
+if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
+  (eval $ac_compile) 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; } &&
+	 { ac_try='test -s conftest.$ac_objext'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+  ac_cv_header_regex_h=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+ac_cv_header_regex_h=no
+fi
+rm -f conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+echo "$as_me:$LINENO: result: $ac_cv_header_regex_h" >&5
+echo "${ECHO_T}$ac_cv_header_regex_h" >&6
+if test $ac_cv_header_regex_h = yes; then
+  have_regex_h=yes
+else
+  have_regex_h=no
+fi
+
+
+
+if test "$have_regex_h" = "yes"; then
+   echo "$as_me:$LINENO: checking for struct re_pattern_buffer" >&5
 echo $ECHO_N "checking for struct re_pattern_buffer... $ECHO_C" >&6
 if test "${ac_cv_type_struct_re_pattern_buffer+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
@@ -4406,11 +5455,97 @@ echo "$as_me:$LINENO: result: $ac_cv_have_decl_strncmpi" >&5
 echo "${ECHO_T}$ac_cv_have_decl_strncmpi" >&6
 if test $ac_cv_have_decl_strncmpi = yes; then
 
+cat >>confdefs.h <<_ACEOF
+#define HAVE_DECL_STRNCMPI 1
+_ACEOF
+
+
 cat >>confdefs.h <<\_ACEOF
 #define STRNCMPI
 _ACEOF
 
+else
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_DECL_STRNCMPI 0
+_ACEOF
+
+
 fi
+echo "$as_me:$LINENO: checking whether strnicmp is declared" >&5
+echo $ECHO_N "checking whether strnicmp is declared... $ECHO_C" >&6
+if test "${ac_cv_have_decl_strnicmp+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+$ac_includes_default
+int
+main ()
+{
+#ifndef strnicmp
+  char *p = (char *) strnicmp;
+#endif
+
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext
+if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
+  (eval $ac_compile) 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; } &&
+	 { ac_try='test -s conftest.$ac_objext'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+  ac_cv_have_decl_strnicmp=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+ac_cv_have_decl_strnicmp=no
+fi
+rm -f conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+echo "$as_me:$LINENO: result: $ac_cv_have_decl_strnicmp" >&5
+echo "${ECHO_T}$ac_cv_have_decl_strnicmp" >&6
+if test $ac_cv_have_decl_strnicmp = yes; then
+
+cat >>confdefs.h <<_ACEOF
+#define HAVE_DECL_STRNICMP 1
+_ACEOF
+
+
+cat >>confdefs.h <<\_ACEOF
+#define STRNCMPI
+_ACEOF
+
+else
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_DECL_STRNICMP 0
+_ACEOF
+
+
+fi
+
 
 
 # We use auto for data librarian to avoid breaking the rule that autoconf
@@ -5230,11 +6365,14 @@ if test ! -f dat/gypsy.txt -o ${srcdir}/dat/gypsy.txt -nt dat/gypsy.txt ; then
 if test ! -f win/share/tile_t.h -o ${srcdir}/win/share/tile_t.h -nt win/share/tile_t.h ; then
 	   NETHACK_LINKS="${NETHACK_LINKS} win/share/tile_t.h:win/share/tile_t.h"
 	fi
+if test ! -f include/win32api.h -o ${srcdir}/sys/winnt/win32api.h -nt include/win32api.h ; then
+	   NETHACK_LINKS="${NETHACK_LINKS} include/win32api.h:sys/winnt/win32api.h"
+	fi
 
           ac_config_links="$ac_config_links ${NETHACK_LINKS}"
 
 
-                                                  ac_config_files="$ac_config_files Makefile:sys/autoconf/Makefile.top src/Makefile:sys/autoconf/Makefile.src doc/Makefile:sys/autoconf/Makefile.doc dat/Makefile:sys/autoconf/Makefile.dat util/Makefile:sys/autoconf/Makefile.utl"
+                                                            ac_config_files="$ac_config_files Makefile:sys/autoconf/Makefile.top src/Makefile:sys/autoconf/Makefile.src doc/Makefile:sys/autoconf/Makefile.doc dat/Makefile:sys/autoconf/Makefile.dat util/Makefile:sys/autoconf/Makefile.utl sys/autoconf/depend.awk:sys/autoconf/depend.in"
 
 
           ac_config_headers="$ac_config_headers include/autoconf.h:sys/autoconf/autoconf.hin"
@@ -5772,6 +6910,7 @@ do
   "doc/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/Makefile:sys/autoconf/Makefile.doc" ;;
   "dat/Makefile" ) CONFIG_FILES="$CONFIG_FILES dat/Makefile:sys/autoconf/Makefile.dat" ;;
   "util/Makefile" ) CONFIG_FILES="$CONFIG_FILES util/Makefile:sys/autoconf/Makefile.utl" ;;
+  "sys/autoconf/depend.awk" ) CONFIG_FILES="$CONFIG_FILES sys/autoconf/depend.awk:sys/autoconf/depend.in" ;;
   "${NETHACK_LINKS}" ) CONFIG_LINKS="$CONFIG_LINKS ${NETHACK_LINKS}" ;;
   "include/autoconf.h" ) CONFIG_HEADERS="$CONFIG_HEADERS include/autoconf.h:sys/autoconf/autoconf.hin" ;;
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
@@ -5859,16 +6998,22 @@ s,@ECHO_C@,$ECHO_C,;t t
 s,@ECHO_N@,$ECHO_N,;t t
 s,@ECHO_T@,$ECHO_T,;t t
 s,@LIBS@,$LIBS,;t t
+s,@SRCDIR@,$SRCDIR,;t t
 s,@CC@,$CC,;t t
 s,@CHGRP@,$CHGRP,;t t
 s,@CHOWN@,$CHOWN,;t t
+s,@CHMOD@,$CHMOD,;t t
+s,@ZLIB_CFLAGS@,$ZLIB_CFLAGS,;t t
+s,@ZLIB_LIBS@,$ZLIB_LIBS,;t t
 s,@LN_S@,$LN_S,;t t
+s,@AWK@,$AWK,;t t
 s,@CFLAGS@,$CFLAGS,;t t
 s,@LDFLAGS@,$LDFLAGS,;t t
 s,@CPPFLAGS@,$CPPFLAGS,;t t
 s,@ac_ct_CC@,$ac_ct_CC,;t t
 s,@EXEEXT@,$EXEEXT,;t t
 s,@OBJEXT@,$OBJEXT,;t t
+s,@LFLAGS@,$LFLAGS,;t t
 s,@build@,$build,;t t
 s,@build_cpu@,$build_cpu,;t t
 s,@build_vendor@,$build_vendor,;t t
@@ -5877,18 +7022,28 @@ s,@host@,$host,;t t
 s,@host_cpu@,$host_cpu,;t t
 s,@host_vendor@,$host_vendor,;t t
 s,@host_os@,$host_os,;t t
-s,@target@,$target,;t t
-s,@target_cpu@,$target_cpu,;t t
-s,@target_vendor@,$target_vendor,;t t
-s,@target_os@,$target_os,;t t
+s,@HOST_MSWIN@,$HOST_MSWIN,;t t
+s,@HOST_UNIX@,$HOST_UNIX,;t t
+s,@SYSTEM@,$SYSTEM,;t t
+s,@SYSSRC@,$SYSSRC,;t t
+s,@SYSOBJ@,$SYSOBJ,;t t
+s,@NHKEYDLL_GCC@,$NHKEYDLL_GCC,;t t
 s,@LEX@,$LEX,;t t
 s,@LEXLIB@,$LEXLIB,;t t
 s,@LEX_OUTPUT_ROOT@,$LEX_OUTPUT_ROOT,;t t
 s,@YACC@,$YACC,;t t
 s,@ac_ct_CHOWN@,$ac_ct_CHOWN,;t t
 s,@ac_ct_CHGRP@,$ac_ct_CHGRP,;t t
-s,@WINTTYLIB@,$WINTTYLIB,;t t
+s,@ac_ct_CHMOD@,$ac_ct_CHMOD,;t t
+s,@WINDRES@,$WINDRES,;t t
+s,@ac_ct_WINDRES@,$ac_ct_WINDRES,;t t
 s,@PKG_CONFIG@,$PKG_CONFIG,;t t
+s,@NETHACK__LIBPNG_CFLAGS@,$NETHACK__LIBPNG_CFLAGS,;t t
+s,@NETHACK__LIBPNG_LIBS@,$NETHACK__LIBPNG_LIBS,;t t
+s,@NETHACK_LIBPNG_CFLAGS@,$NETHACK_LIBPNG_CFLAGS,;t t
+s,@NETHACK_LIBPNG_LIBS@,$NETHACK_LIBPNG_LIBS,;t t
+s,@EXTRA_UNSHARE@,$EXTRA_UNSHARE,;t t
+s,@WINTTYLIB@,$WINTTYLIB,;t t
 s,@NETHACK_PROXY_CFLAGS@,$NETHACK_PROXY_CFLAGS,;t t
 s,@NETHACK_PROXY_LIBS@,$NETHACK_PROXY_LIBS,;t t
 s,@SDL_CONFIG@,$SDL_CONFIG,;t t
