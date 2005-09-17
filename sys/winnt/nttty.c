@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)nttty.c	3.4	$Date: 2003-12-11 09:49:08 $   */
+/*	SCCS Id: @(#)nttty.c	3.4	$Date: 2005-09-17 15:09:03 $   */
 /* Copyright (c) NetHack PC Development Team 1993    */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -136,7 +136,6 @@ KEYHANDLERNAME pKeyHandlerName;
 #endif
 int ttycolors[CLR_MAX];
 # ifdef TEXTCOLOR
-int ttycolors[CLR_MAX];
 static void NDECL(init_ttycolor);
 # endif
 static void NDECL(really_move_cursor);
