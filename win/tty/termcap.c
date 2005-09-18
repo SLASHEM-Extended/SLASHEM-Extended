@@ -93,6 +93,7 @@ STATIC_DCL void NDECL(init_ttycolor);
 
 #ifdef VIDEOSHADES
 boolean colorflag = FALSE;			/* colors are initialized */
+char ttycolors[CLR_MAX];
 #endif
 
 void
@@ -100,7 +101,6 @@ init_ttycolor()
 {
 #ifdef VIDEOSHADES
 	if (!colorflag) {
-#endif
 		ttycolors[CLR_RED]		= CLR_RED;
 		ttycolors[CLR_GREEN]		= CLR_GREEN;
 		ttycolors[CLR_BROWN]		= CLR_BROWN;
@@ -116,7 +116,6 @@ init_ttycolor()
 		ttycolors[CLR_BRIGHT_MAGENTA]	= CLR_BRIGHT_MAGENTA;
 		ttycolors[CLR_BRIGHT_CYAN]	= CLR_BRIGHT_CYAN;
 		ttycolors[CLR_WHITE]		= CLR_WHITE;
-#ifdef VIDEOSHADES
 	}
 #endif
 }
