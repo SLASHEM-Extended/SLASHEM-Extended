@@ -82,8 +82,8 @@ struct menucoloring {
 };
 #endif
 
-#ifndef MSDOS
-char ttycolors[CLR_MAX];        /* also used/set in options.c */
+#if defined(VIDEOSHADES) && !defined(MSDOS)
+extern char ttycolors[CLR_MAX];
 #endif
 
 #endif /* COLOR_H */

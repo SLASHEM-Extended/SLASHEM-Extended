@@ -426,7 +426,7 @@ extern boolean colors_changed;	/* in tos.c */
 
 #ifdef VIDEOSHADES
 extern char *shade[3];		  /* in sys/msdos/video.c */
-extern char ttycolors[CLR_MAX];	  /* in sys/msdos/video.c */
+extern char ttycolors[CLR_MAX];	  /* in sys/msdos/video.c, win/tty/termcap.c*/
 #endif
 
 static char def_inv_order[MAXOCLASSES] = {
