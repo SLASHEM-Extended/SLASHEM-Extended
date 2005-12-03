@@ -231,7 +231,7 @@ struct obj *obj;
 boolean on, silently;
 {
     int unseen;
-    uchar mask;
+    unsigned long mask;
     struct obj *otmp;
     int which = (int) objects[obj->otyp].oc_oprop;
 
@@ -270,6 +270,9 @@ boolean on, silently;
 	 case JUMPING:
 	 case PROTECTION:
 	    break;
+	 case DRAIN_RES:
+	    mon->mintrinsics |= MR_DRAIN;
+	    break;
 	 default:
 	    if (which <= 8) {	/* 1 thru 8 correspond to MR_xxx mask values */
 		/* FIRE,COLD,SLEEP,DISINT,SHOCK,POISON,ACID,STONE */
@@ -291,6 +294,9 @@ boolean on, silently;
 	    in_mklev = save_in_mklev;
 	    break;
 	  }
+	 case DRAIN_RES:
+	    mask = MR_DRAIN;
+	    goto maybe_loose;
 	 case FIRE_RES:
 	 case COLD_RES:
 	 case SLEEP_RES:
@@ -300,6 +306,7 @@ boolean on, silently;
 	 case ACID_RES:
 	 case STONE_RES:
 	    mask = (uchar) (1 << (which - 1));
+ maybe_loose:
 	    /* If the monster doesn't have this resistance intrinsically,
 	       check whether any other worn item confers it.  Note that
 	       we don't currently check for anything conferred via simply
@@ -310,7 +317,7 @@ boolean on, silently;
 			    (int) objects[otmp->otyp].oc_oprop == which)
 			break;
 		if (!otmp)
-		    mon->mintrinsics &= ~((unsigned short) mask);
+		    mon->mintrinsics &= ~mask;
 	    }
 	    break;
 	 default:

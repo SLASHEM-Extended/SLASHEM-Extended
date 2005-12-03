@@ -90,6 +90,8 @@ ver 0.0.7E7F2 [?] [Released by ?]
 -fixed bug 1179557: Found egg marked (laid by you)
 -fixed bug 1206099: Torches are not extinguished with rust traps
 -fixed bug 1294907: 'Raise Zombies' technique cannot raise dwarf zombies! (Xeno)
+-fixed bug 1355972: Monsters Don't gain Drain resistance due to worn items!
+		    (Xeno)
 
 See history.txt for changes made in previous versions.
 
