@@ -1,5 +1,5 @@
 #	SCCS Id: @(#)nightmar.des	0.0.7	2002/03/13
-#	$Id: nightmar.des,v 1.6 2003-05-08 17:42:14 j_ali Exp $
+#	$Id: nightmar.des,v 1.6.2.1 2005-12-03 16:11:06 j_ali Exp $
 # NetHack may be freely redistributed.  See license for details.
 #
 # Nightmare's Nightmare World
@@ -113,7 +113,7 @@ MONSTER[80%]:'%',"killer tripe ration",place[1],asleep
 MONSTER[80%]:'%',"bad egg",place[1],asleep
 MONSTER[60%]:'%',"bad egg",place[1],asleep
 MONSTER[40%]:'%',"bad egg",place[1],asleep
-OBJECT:'%',"egg",place[1],"giant louse",1
+OBJECT:'%',"egg",place[1],"giant louse",2
 OBJECT[40%]:'%',"egg",place[1],"giant flea",0
 OBJECT[20%]:'%',"mushroom",place[1],cursed,0
 OBJECT[50%]:'%',"tin",place[1],"asphynx meat",0
