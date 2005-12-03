@@ -103,6 +103,7 @@ Autoconf improvements:
 -fixed bug 1258358: No autoconf support for key handlers
 -fixed bug 1244468: different spitting venom when polymorph
 -fixed bug 1179557: Found egg marked (laid by you)
+-fixed bug 1206099: Torches are not extinguished with rust traps
 
 See history.txt for changes made in previous versions.
 

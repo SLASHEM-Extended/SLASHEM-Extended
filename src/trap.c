@@ -838,8 +838,11 @@ unsigned trflags;
 				    body_part(ARM));
 			if (rust_dmg(uarms, "shield", 1, TRUE, &youmonst))
 			    break;
-			if (u.twoweap || (uwep && bimanual(uwep)))
-			    erode_obj(u.twoweap ? uswapwep : uwep, FALSE, TRUE);
+			if (u.twoweap || (uwep && bimanual(uwep))) {
+			    otmp = u.twoweap ? uswapwep : uwep;
+			    if (otmp && !snuff_lit(otmp))
+				erode_obj(otmp, FALSE, TRUE);
+			}
 glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 			/* Not "metal gauntlets" since it gets called
 			 * even if it's leather for the message
@@ -848,7 +851,8 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		    case 2:
 			pline("%s your right %s!", A_gush_of_water_hits,
 				    body_part(ARM));
-			erode_obj(uwep, FALSE, TRUE);
+			if (uwep && !snuff_lit(uwep))
+			    erode_obj(uwep, FALSE, TRUE);
 			goto glovecheck;
 		    default:
 			pline("%s you!", A_gush_of_water_hits);
@@ -1890,7 +1894,8 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			    if (in_sight)
 				pline("%s %s's right %s!", A_gush_of_water_hits,
 				    mon_nam(mtmp), mbodypart(mtmp, ARM));
-			    erode_obj(MON_WEP(mtmp), FALSE, TRUE);
+			    if (MON_WEP(mtmp) && !snuff_lit(MON_WEP(mtmp)))
+				erode_obj(MON_WEP(mtmp), FALSE, TRUE);
 			    goto glovecheck;
 			default:
 			    if (in_sight)
