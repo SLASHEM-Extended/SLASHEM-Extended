@@ -104,6 +104,7 @@ Autoconf improvements:
 -fixed bug 1244468: different spitting venom when polymorph
 -fixed bug 1179557: Found egg marked (laid by you)
 -fixed bug 1206099: Torches are not extinguished with rust traps
+-fixed bug 1294907: 'Raise Zombies' technique cannot raise dwarf zombies! (Xeno)
 
 See history.txt for changes made in previous versions.
 

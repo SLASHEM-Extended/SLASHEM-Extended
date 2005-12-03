@@ -1708,6 +1708,7 @@ int monnum;
 	if ((&mons[monnum])->mlet == S_KOBOLD) return PM_KOBOLD_ZOMBIE;
 	if ((&mons[monnum])->mlet == S_GNOME) return PM_GNOME_ZOMBIE;
 	if (is_orc(&mons[monnum])) return PM_ORC_ZOMBIE;
+	if (is_dwarf(&mons[monnum])) return PM_DWARF_ZOMBIE;
 	if (is_elf(&mons[monnum])) return PM_ELF_ZOMBIE;
 	if (is_human(&mons[monnum])) return PM_HUMAN_ZOMBIE;
 	if (monnum == PM_ETTIN) return PM_ETTIN_ZOMBIE;
