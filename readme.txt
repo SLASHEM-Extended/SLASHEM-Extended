@@ -102,6 +102,7 @@ Autoconf improvements:
 -fixed bug 1258357: configure doesn't set TTY_GRAPHICS under mingw32
 -fixed bug 1258358: No autoconf support for key handlers
 -fixed bug 1244468: different spitting venom when polymorph
+-fixed bug 1179557: Found egg marked (laid by you)
 
 See history.txt for changes made in previous versions.
 

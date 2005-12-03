@@ -836,7 +836,9 @@ ring:
 			    mvitals[obj->corpsenm].mvflags & MV_KNOWS_EGG)) {
 			Strcat(prefix, mons[obj->corpsenm].mname);
 			Strcat(prefix, " ");
-			if (obj->spe)
+			if (obj->spe == 2)
+			    Strcat(bp, " (with your markings)");
+			else if (obj->spe)
 			    Strcat(bp, " (laid by you)");
 		    }
 		}
