@@ -88,6 +88,7 @@ ver 0.0.7E7F2 [?] [Released by ?]
 		   Extends videocolors option, see Guidebook for details.
 -fixed bug 1244468: different spitting venom when polymorph
 -fixed bug 1179557: Found egg marked (laid by you)
+-fixed bug 1206099: Torches are not extinguished with rust traps
 
 See history.txt for changes made in previous versions.
 
