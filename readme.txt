@@ -101,6 +101,7 @@ Autoconf improvements:
 -fixed bug 1258355: autoconf Makefile.src assumes UNIX
 -fixed bug 1258357: configure doesn't set TTY_GRAPHICS under mingw32
 -fixed bug 1258358: No autoconf support for key handlers
+-fixed bug 1244468: different spitting venom when polymorph
 
 See history.txt for changes made in previous versions.
 
