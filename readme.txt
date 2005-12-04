@@ -92,7 +92,6 @@ ver 0.0.7E7F2 [December 4/2005] [Released by Ali]
 -fixed bug 1294907: 'Raise Zombies' technique cannot raise dwarf zombies! (Xeno)
 -fixed bug 1355972: Monsters Don't gain Drain resistance due to worn items!
 		    (Xeno)
--fixed bug 1305851: Pronoun mismatch
 
 See history.txt for changes made in previous versions.
 
