@@ -793,27 +793,23 @@ register struct monst *mon;
 		    if (canseemon(mon)) {
 			char welded_buf[BUFSZ];
 			const char *mon_hand = mbodypart(mon, HAND);
-			char *mon_name = mon_nam(mon);
-			const char *his = strcmp(mon_name, "it") ?
-				mhis(mon) : "its";
 
 			if (bimanual(mw_tmp)) mon_hand = makeplural(mon_hand);
 			Sprintf(welded_buf, "%s welded to %s %s",
 				otense(mw_tmp, "are"),
-				his, mon_hand);
+				mhis(mon), mon_hand);
 
 			if (obj->otyp == PICK_AXE) {
 			    pline("Since %s weapon%s %s,",
-				  s_suffix(mon_name),
+				  s_suffix(mon_nam(mon)),
 				  plur(mw_tmp->quan), welded_buf);
 			    pline("%s cannot wield that %s.",
-				mon_name, xname(obj));
+				mon_nam(mon), xname(obj));
 			} else {
-			    mon_name = upstart(mon_name);
-			    pline("%s tries to wield %s.", mon_name,
+			    pline("%s tries to wield %s.", Monnam(mon),
 				doname(obj));
 			    pline("%s %s %s!",
-				  s_suffix(mon_name),
+				  s_suffix(Monnam(mon)),
 				  xname(mw_tmp), welded_buf);
 			}
 			mw_tmp->bknown = 1;
