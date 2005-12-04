@@ -67,7 +67,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E7F2 [?] [Released by ?]
+ver 0.0.7E7F2 [December 4/2005] [Released by Ali]
 -fixed bug 1232707: engraving with lightsabers
 -fixed bug 1237780: gtk window port fails to build with gcc-4.0
 -fixed bug 1239041: engrave dialog doesn't show lightsabers
@@ -92,6 +92,7 @@ ver 0.0.7E7F2 [?] [Released by ?]
 -fixed bug 1294907: 'Raise Zombies' technique cannot raise dwarf zombies! (Xeno)
 -fixed bug 1355972: Monsters Don't gain Drain resistance due to worn items!
 		    (Xeno)
+-fixed bug 1305851: Pronoun mismatch
 
 See history.txt for changes made in previous versions.
 
