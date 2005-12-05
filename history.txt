@@ -29,6 +29,32 @@
 | Section 1: Yesterday's News |
 +-----------------------------+
 
+ver 0.0.7E7F2 [December 4/2005] [Released by Ali]
+-fixed bug 1232707: engraving with lightsabers
+-fixed bug 1237780: gtk window port fails to build with gcc-4.0
+-fixed bug 1239041: engrave dialog doesn't show lightsabers
+-fixed bug 1231766: Food shown in Medical Kits
+-fixed bug 1238060: grammatical error when burning through a door 
+		    (Benjamin Schieder)
+-fixed bug 1104713: Pet and Frozen food stores can charge
+-fixed bug 988827: Monster wearing CoI left invisible corpse
+-fixed bug 934078: Mold "wiggle" out of bag
+-fixed bug 933587: One-Eyed Sam referred to as "it"
+-fixed bug 1240794: Pets don't grow up properly
+-fixed bug 1240799: Steed ridden onto poly trap polymorphs permanently
+-fixed bug 1243904: chameleon as statue trap
+-fixed bug 1223226: Some creatures are missing horns
+-fixed bug 1223222: Female Bulls??
+-fixed bug 1244470: shopkeeper don't have shotgun
+-fixed bug 215062: no black color
+		   Extends videocolors option, see Guidebook for details.
+-fixed bug 1244468: different spitting venom when polymorph
+-fixed bug 1179557: Found egg marked (laid by you)
+-fixed bug 1206099: Torches are not extinguished with rust traps
+-fixed bug 1294907: 'Raise Zombies' technique cannot raise dwarf zombies! (Xeno)
+-fixed bug 1355972: Monsters Don't gain Drain resistance due to worn items!
+		    (Xeno)
+
 ver 0.0.7E7F1 [July 2/2005] [Released by Ali]
 -fixed bug 1155634: charm spell or command undead spell invoke genocide
 -fixed incorrect #ifdef resulting in compilation failure on ANSI only DOS builds

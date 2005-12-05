@@ -16,10 +16,10 @@
  */
 #define PATCHLEVEL      7
 #define EDITLEVEL	7
-#define FIXLEVEL        2
+#define FIXLEVEL        3
 
 #define COPYRIGHT_BANNER_A \
-"This is SuperLotsoAddedStuffHack-Extended Magic 1997-2005"
+"This is SuperLotsoAddedStuffHack-Extended Magic 1997-2006"
 
 #define COPYRIGHT_BANNER_B \
 "NetHack, Copyright 1985-2003 Stichting Mathematisch Centrum, M. Stephenson."
