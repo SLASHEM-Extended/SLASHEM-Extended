@@ -211,7 +211,9 @@ int *wid, *hgt;
 #endif
 
 #ifdef TEXTCOLOR
+# ifndef MSDOS
 	init_ttycolor();
+# endif
 #endif
 
 #ifdef TERMLIB

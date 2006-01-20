@@ -68,6 +68,7 @@ http://www.slashem.org/
 -----------
 
 ver 0.0.7E7F3 [?] [Released by ?]
+-inserted missing #ifdef resulting in compilation of pure ansi tty version for DOS failure.
 
 See history.txt for changes made in previous versions.
 
