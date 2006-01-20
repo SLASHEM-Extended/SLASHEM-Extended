@@ -107,6 +107,7 @@ Autoconf improvements:
 -fixed bug 1294907: 'Raise Zombies' technique cannot raise dwarf zombies! (Xeno)
 -fixed bug 1355972: Monsters Don't gain Drain resistance due to worn items!
 		    (Xeno)
+-inserted missing #ifdef resulting in compilation of pure ansi tty version for DOS failure.
 
 See history.txt for changes made in previous versions.
 
