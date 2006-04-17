@@ -117,6 +117,7 @@ Autoconf improvements:
 -fixed bug 1355891: Cannot wish for multiple potions of vampire blood
 -fixed bug 1314114: Shopkeepers cant see Shirts through invisible armour
 -fixed bug 1304954: You can Name the Sword of Balance
+-fixed bug 1223533: Typo error in the Install.X11 file
 
 See history.txt for changes made in previous versions.
 
