@@ -108,6 +108,7 @@ Autoconf improvements:
 -fixed bug 1355972: Monsters Don't gain Drain resistance due to worn items!
 		    (Xeno)
 -inserted missing #ifdef resulting in compilation of pure ansi tty version for DOS failure.
+-fixed bug 1461660: Misaligned door
 
 See history.txt for changes made in previous versions.
 
