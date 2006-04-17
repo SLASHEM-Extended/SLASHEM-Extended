@@ -1,5 +1,5 @@
 #	SCCS Id: @(#)data.base	3.4	2003/07/23
-#	    $Id: data.base,v 1.14 2003-12-11 09:49:05 j_ali Exp $
+#	    $Id: data.base,v 1.15 2006-04-17 11:08:21 prousu Exp $
 #   Copyright (c) 1994, 1995, 1996 by the NetHack Development Team
 #   Copyright (c) 1994 by Boudewijn Wayers
 #   Copyright (c) 2002 by the Slash'EM Development Team
@@ -2851,7 +2851,8 @@ lord surt*
 	and harry, and overcome all the gods, and burn all the
 	world with fire.
 			[ The Prose Edda, by Snorri Sturluson ]
-lug*
+lug
+lugh
 	Lugh, or Lug, was the sun god of the Irish Celts.  One of his
 	weapons was a rod-sling which worshippers sometimes saw in
 	the sky as a rainbow.  As a tribal god, he was particularly

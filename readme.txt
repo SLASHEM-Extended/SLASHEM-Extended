@@ -110,6 +110,7 @@ Autoconf improvements:
 -inserted missing #ifdef resulting in compilation of pure ansi tty version for DOS failure.
 -fixed bug 1461660: Misaligned door
 -fixed bug 1449238: #youpoly takes a turn when denied
+-fixed bug 1432473: help for Luggage shows help for Lug/Lugh
 
 See history.txt for changes made in previous versions.
 
