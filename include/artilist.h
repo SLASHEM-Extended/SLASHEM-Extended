@@ -153,7 +153,7 @@ A("Luckblade",                  SHORT_SWORD,
 	PHYS(5,5),      NO_DFNS,        NO_CARY,        0, A_NEUTRAL, NON_PM, PM_GNOME, 1000L ),
 
 A("Sword of Balance",           SILVER_SHORT_SWORD,
-	SPFX_DALIGN, 0, 0,
+	(SPFX_RESTR|SPFX_DALIGN), 0, 0,
 	PHYS(2,5),      NO_DFNS,        NO_CARY,        0, A_NEUTRAL, NON_PM, NON_PM, 5000L ),
 
 A("Frost Brand",                LONG_SWORD,
