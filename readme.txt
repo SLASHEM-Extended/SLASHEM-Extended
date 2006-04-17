@@ -76,6 +76,7 @@ ver 0.0.7E7F3 [?] [Released by ?]
 -fixed bug 1375292: help for wombat shows text for bat
 -fixed bug 1375286: pummel strikes nothing, inside ochre jelly
 -fixed bug 1355891: Cannot wish for multiple potions of vampire blood
+-fixed bug 1314114: Shopkeepers cant see Shirts through invisible armour
 
 See history.txt for changes made in previous versions.
 
