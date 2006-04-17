@@ -1,5 +1,5 @@
 #	SCCS Id: @(#)data.base	3.4	2003/07/23
-#	    $Id: data.base,v 1.14.2.1 2006-04-17 11:07:49 prousu Exp $
+#	    $Id: data.base,v 1.14.2.2 2006-04-17 11:14:04 prousu Exp $
 #   Copyright (c) 1994, 1995, 1996 by the NetHack Development Team
 #   Copyright (c) 1994 by Boudewijn Wayers
 #   Copyright (c) 2002 by the Slash'EM Development Team
@@ -455,8 +455,9 @@ barbarian
 barbed devil
 	Barbed devils lack any real special abilities, though they
 	are quite difficult to kill.
-+~mongbat
-+~vampire bat
+~mongbat
+~vampire bat
+~wombat
 *bat
 	A bat, flitting in the darkness outside, took the wrong turn
 	as it made its nightly rounds and came in through the window
