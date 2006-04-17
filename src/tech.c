@@ -2064,7 +2064,11 @@ blitz_pummel()
 
 	You("let loose a barrage of blows!");
 
-	mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+	if (u.uswallow)
+	    mtmp = u.ustuck;
+	else
+	    mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+
 	if (!mtmp) {
 		You("strike nothing.");
 		return (0);
@@ -2075,7 +2079,12 @@ blitz_pummel()
 	 */
 	for (i = 0; (i < 4); i++) {
 	    if (rn2(70) > (techlev(tech_no) + 30)) break;
-	    mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+
+	    if (u.uswallow)
+		mtmp = u.ustuck;
+	    else
+		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+
 	    if (!mtmp) return (1);
 	    if (!attack(mtmp)) return (1);
 	} 

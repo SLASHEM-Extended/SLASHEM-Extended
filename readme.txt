@@ -113,6 +113,7 @@ Autoconf improvements:
 -fixed bug 1432473: help for Luggage shows help for Lug/Lugh
 -fixed bug 1428520: Poisoned ID'd weapon gives description as well as ID
 -fixed bug 1375292: help for wombat shows text for bat
+-fixed bug 1375286: pummel strikes nothing, inside ochre jelly
 
 See history.txt for changes made in previous versions.
 
