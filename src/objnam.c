@@ -2259,6 +2259,7 @@ boolean from_user;
          && !strstri(bp, "medallion ")
          && !strstri(bp, "stake ")
          && !strstri(bp, "potion ")
+         && !strstri(bp, "potions ")
 	 && !strstri(bp, "finger ")) {
 	    if ((p = strstri(bp, " of ")) != 0
 		&& (mntmp = name_to_mon(p+4)) >= LOW_PM)
