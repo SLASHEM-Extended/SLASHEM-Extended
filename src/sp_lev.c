@@ -2508,13 +2508,19 @@ dlb *fd;
 		typ = tmpdoor.mask == -1 ? rnddoor() : tmpdoor.mask;
 
 		if (get_location(&x, &y, DRY)) {
-		if(levl[x][y].typ != SDOOR)
+		    if(levl[x][y].typ != SDOOR)
 			levl[x][y].typ = DOOR;
-		else {
+		    else {
 			if(typ < D_CLOSED)
 			    typ = D_CLOSED; /* force it to be closed */
-		}
-		levl[x][y].doormask = typ;
+		    }
+		    levl[x][y].doormask = typ;
+
+		    /* Fix random door alignment */
+
+		    if (y > 0 && (IS_WALL(levl[x][y-1].typ) ||
+				levl[x][y-1].horizontal))
+			levl[x][y].horizontal = 0;
 		}
 
 		/* Now the complicated part, list it with each subroom */
