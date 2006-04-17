@@ -37,7 +37,7 @@ an executable supporting both X11 and tty windowing.
 
 If you want to use the optional tiles (multicolored pictures instead of a
 replacement font), you will need to have the win/share files and change
-the CF_SHARE_DATND setting in the top Makefile to contain the tile files before
+the CNF_SHARE_DATND setting in the top Makefile to contain the tile files before
 you do your 'make all'. Include x11tiles for the 16x16 tile set and x11bigtiles
 for the 32x32 set. The available tile sets should be defined in the
 configuration file. The tiles option can then be used to select the initial
@@ -65,7 +65,7 @@ in src/Makefile.
 If you define USE_XPM in config.h, you may also define GRAPHIC_TOMBSTONE
 which causes the closing tombstone to be displayed from the image file
 specified by the "tombstone" X resource (rip.xpm by default).  In this
-case, make sure the top Makefile CF_SHARE_X11ND also contains rip.xpm.
+case, make sure the top Makefile CNF_SHARE_X11ND also contains rip.xpm.
 
 
 Whether or not you install tile support, you can provide support for
