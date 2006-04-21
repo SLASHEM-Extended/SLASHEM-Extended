@@ -3836,9 +3836,10 @@ doapply()
 			  yname(obj));
 		    else {
 			check_unpaid(obj);
-			if (otmp->quan > 1L)
+			if (otmp->quan > 1L) {
 			    otmp->quan--;
-			else {
+			    obj->owt = weight(obj);
+			} else {
 			    obj_extract_self(otmp);
 			    obfree(otmp, (struct obj *)0);
 			}

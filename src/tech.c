@@ -703,9 +703,10 @@ int tech_no;
 			    "dress your wounds with");
 		    if (otmp) {
 			check_unpaid(otmp);
-			if (otmp->quan > 1L)
+			if (otmp->quan > 1L) {
 			    otmp->quan--;
-			else {
+			    otmp->ocontainer->owt = weight(otmp->ocontainer);
+			} else {
 			    obj_extract_self(otmp);
 			    obfree(otmp, (struct obj *)0);
 			}
