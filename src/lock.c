@@ -598,9 +598,13 @@ doforce()		/* try to force a chest with your weapon */
 	picktyp = is_blade(uwep) ? 1 : 0;
 	if(xlock.usedtime && picktyp == xlock.picktyp) {
 	    if (xlock.box) {
-	    You("resume your attempt to force the lock.");
-	    set_occupation(forcelock, "forcing the lock", 0);
-	    return(1);
+		if (!can_reach_floor()) {
+		    pline("Unfortunately, you can no longer reach the lock.");
+		    return 0;
+		}
+		You("resume your attempt to force the lock.");
+		set_occupation(forcelock, "forcing the lock", 0);
+		return(1);
 	    } else if (xlock.door) {
 		You("resume your attempt to force the door.");
 		set_occupation(forcedoor, "forcing the door", 0);
@@ -615,9 +619,27 @@ doforce()		/* try to force a chest with your weapon */
 
 	x = u.ux + u.dx;
 	y = u.uy + u.dy;
-	if (x == u.ux && y == u.uy && !u.dz) {
-	for(otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere)
-	    if(Is_box(otmp)) {
+	if (x == u.ux && y == u.uy) {
+	    if (u.dz < 0) {
+		There("isn't any sort of lock up %s.",
+		      Levitation ? "here" : "there");
+		return 0;
+	    } else if (is_lava(u.ux, u.uy)) {
+		pline("Doing that would probably melt your %s.",
+		      xname(uwep));
+		return 0;
+	    } else if (is_pool(u.ux, u.uy) && !Underwater) {
+		pline_The("water has no lock.");
+		return 0;
+	    }
+
+	    for(otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere)
+		if(Is_box(otmp)) {
+		    if (!can_reach_floor()) {
+			You_cant("reach %s from up here.", the(xname(otmp)));
+		    return 0;
+		    }
+
 		if (otmp->obroken || !otmp->olocked) {
 		    There("is %s here, but its lock is already %s.",
 			  doname(otmp), otmp->obroken ? "broken" : "unlocked");

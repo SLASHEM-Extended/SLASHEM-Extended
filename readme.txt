@@ -81,6 +81,7 @@ ver 0.0.7E7F3 [?] [Released by ?]
 -fixed bug 1223533: Typo error in the Install.X11 file
 -fixed bug 1407275: Wrong weight of medical kits
 -fixed bug 1213658: Death message missing with gas spore explosion when blind
+-fixed bug 1291161: #force command doesn't work on locked box
 
 See history.txt for changes made in previous versions.
 
