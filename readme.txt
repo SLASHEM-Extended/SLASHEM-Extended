@@ -121,6 +121,7 @@ Autoconf improvements:
 -fixed bug 1407275: Wrong weight of medical kits
 -fixed bug 1213658: Death message missing with gas spore explosion when blind
 -fixed bug 1291161: #force command doesn't work on locked box
+-fixed bug 1223632: #force on shop doors
 
 See history.txt for changes made in previous versions.
 

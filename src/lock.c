@@ -27,7 +27,7 @@ boolean
 picking_lock(x, y)
 	int *x, *y;
 {
-	if (occupation == picklock) {
+	if (occupation == picklock || occupation == forcedoor) {
 	    *x = u.ux + u.dx;
 	    *y = u.uy + u.dy;
 	    return TRUE;
@@ -259,9 +259,33 @@ forcedoor()      /* try to break/pry open a door */
 	    xlock.door->doormask = D_BROKEN;
 	else xlock.door->doormask = D_NODOOR;
 	unblock_point(u.ux+u.dx, u.uy+u.dy);
-	if (*in_rooms(u.ux+u.dx, u.uy+u.dy, SHOPBASE))
-	    add_damage(u.ux+u.dx, u.uy+u.dy, 0L);
-	newsym(u.ux+u.dx, u.uy+u.dy);
+	if (*in_rooms(u.ux+u.dx, u.uy+u.dy, SHOPBASE)) {
+	    add_damage(u.ux+u.dx, u.uy+u.dy, 400L);
+	    pay_for_damage("break", FALSE);
+
+	    if (in_town(u.ux+u.dx, u.uy+u.dy)) {
+		struct monst *mtmp;
+		for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+		    if (DEADMONSTER(mtmp)) continue;
+		    if((mtmp->data == &mons[PM_WATCHMAN] ||
+			mtmp->data == &mons[PM_WATCH_CAPTAIN]) &&
+			couldsee(mtmp->mx, mtmp->my) &&
+			mtmp->mpeaceful) {
+			if (canspotmon(mtmp))
+			    pline("%s yells:", Amonnam(mtmp));
+			else
+			    You_hear("someone yell:");
+			verbalize("Halt, thief!  You're under arrest!");
+			(void) angry_guards(FALSE);
+			break;
+		    }
+		}
+	    }
+	}
+	if (Blind)
+	    feel_location(u.ux+u.dx, u.uy+u.dy);    /* we know we broke it */
+	else
+	    newsym(u.ux+u.dx, u.uy+u.dy);
 	
 	exercise(A_STR, TRUE);
 	return((xlock.usedtime = 0));
