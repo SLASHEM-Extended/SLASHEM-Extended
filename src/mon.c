@@ -1728,8 +1728,6 @@ boolean was_swallowed;			/* digestion */
 	/* Gas spores always explode upon death */
 	for(i = 0; i < NATTK; i++) {
 	    if (mdat->mattk[i].aatyp == AT_BOOM) {
-	    	char buf[BUFSZ];
-
 	    	if (mdat->mattk[i].damn)
 	    	    tmp = d((int)mdat->mattk[i].damn,
 	    	    		(int)mdat->mattk[i].damd);
@@ -1759,8 +1757,8 @@ boolean was_swallowed;			/* digestion */
 		    return FALSE;
 		}
 
-	    	Sprintf(buf, "%s explosion", s_suffix(mdat->mname));
-	    	killer = buf;
+	    	Sprintf(killer_buf, "%s explosion", s_suffix(mdat->mname));
+	    	killer = killer_buf;
 	    	killer_format = KILLED_BY_AN;
 	    	explode(mon->mx, mon->my, -1, tmp, MON_EXPLODE, EXPL_NOXIOUS); 
 	    	return (FALSE);
