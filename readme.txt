@@ -119,6 +119,7 @@ Autoconf improvements:
 -fixed bug 1304954: You can Name the Sword of Balance
 -fixed bug 1223533: Typo error in the Install.X11 file
 -fixed bug 1407275: Wrong weight of medical kits
+-fixed bug 1213658: Death message missing with gas spore explosion when blind
 
 See history.txt for changes made in previous versions.
 
