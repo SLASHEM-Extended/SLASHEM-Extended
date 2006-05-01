@@ -1209,7 +1209,7 @@ register const char *let,*word;
 			return(struct obj *)0;
 		    } else if (!allowfloor) {
 			if ((Levitation || Flying))
-				You("cannot reach the floor to to %s while %sing.", word, Levitation ? "float" : "fly");
+				You("cannot reach the floor to %s while %sing.", word, Levitation ? "float" : "fly");
 			else
 				pline("There's nothing here to %s.", word);
 			return(struct obj *)0;
