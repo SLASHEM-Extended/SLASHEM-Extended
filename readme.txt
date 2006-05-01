@@ -126,6 +126,7 @@ Autoconf improvements:
 -fixed bug 943553: Eating off floor while levitating
 -fixed bug 1432411: Knew the colour of a potion thrown on me, when blind
 -fixed bug 1449159: DEFAULT_WINDOW_SYS wrong if only X11 enabled
+-fixed bug 1400802: wax golems don't emit light
 
 See history.txt for changes made in previous versions.
 
