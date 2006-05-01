@@ -83,6 +83,7 @@ ver 0.0.7E7F3 [?] [Released by ?]
 -fixed bug 1213658: Death message missing with gas spore explosion when blind
 -fixed bug 1291161: #force command doesn't work on locked box
 -fixed bug 1223632: #force on shop doors
+-fixed bug 879247: gender & alignment select dont focus on "random" button
 
 See history.txt for changes made in previous versions.
 
