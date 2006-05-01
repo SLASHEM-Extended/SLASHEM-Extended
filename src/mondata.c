@@ -100,7 +100,7 @@ struct monst *mon;
 	return FALSE;
 }
 
-/* TRUE iff monster is resistant to light-induced blindness */
+/* TRUE if monster is resistant to light-induced blindness */
 boolean
 resists_blnd(mon)
 struct monst *mon;
