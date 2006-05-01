@@ -1208,7 +1208,10 @@ register const char *let,*word;
 			pline(silly_thing_to, word);
 			return(struct obj *)0;
 		    } else if (!allowfloor) {
-			pline("There's nothing here to %s.", word);
+			if ((Levitation || Flying))
+				You("cannot reach the floor to to %s while %sing.", word, Levitation ? "float" : "fly");
+			else
+				pline("There's nothing here to %s.", word);
 			return(struct obj *)0;
 		    }
 		    Sprintf(qbuf, "%s what?", word);
