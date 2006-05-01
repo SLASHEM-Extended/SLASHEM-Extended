@@ -124,6 +124,7 @@ Autoconf improvements:
 -fixed bug 1223632: #force on shop doors
 -fixed bug 879247: gender & alignment select dont focus on "random" button
 -fixed bug 943553: Eating off floor while levitating
+-fixed bug 1432411: Knew the colour of a potion thrown on me, when blind
 
 See history.txt for changes made in previous versions.
 
