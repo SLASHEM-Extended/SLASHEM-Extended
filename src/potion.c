@@ -1663,7 +1663,7 @@ register struct obj *obj;
 	    if (kn)
 		makeknown(obj->otyp);
 	    else if (!objects[obj->otyp].oc_name_known &&
-						!objects[obj->otyp].oc_uname)
+						!objects[obj->otyp].oc_uname && !Blind)
 		docall(obj);
 	}
 }
