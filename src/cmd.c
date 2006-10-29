@@ -2345,12 +2345,12 @@ int final;
 
 
 	if (!u.uconduct.celibacy)
-		you_have_X("remained celibate");
+	    you_have_X("remained celibate");
 #ifdef WIZARD
 	else if (wizard) {
-		Sprintf(buf, "broken your vow of celibacy %ld time%s.",
-			u.uconduct.celibacy, u.uconduct.celibacy > 1 ? "s" : "");
-		you_have_X(buf);
+	    Sprintf(buf, "your vow of celibacy %ld time%s",
+		    u.uconduct.celibacy, plur(u.uconduct.celibacy));
+	    enl_msg(You_, "have broken ", "broke ", buf);
 	}
 #endif
 

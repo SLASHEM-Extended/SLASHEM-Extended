@@ -130,6 +130,7 @@ Autoconf improvements:
 -fixed bug 1586216: USE_REGEX_MATCH fails on Solaris 10
 -fixed bug 1586592: Tests for regex types don't include regex.h
 -fixed bug 1569015: Redundant code in percent_success()
+-fixed bug 1583978: Grammer error in broken celibacy message
 
 See history.txt for changes made in previous versions.
 
