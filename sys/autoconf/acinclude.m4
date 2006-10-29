@@ -1,4 +1,4 @@
-# $Id: acinclude.m4,v 1.5 2005-09-17 14:58:33 j_ali Exp $
+# $Id: acinclude.m4,v 1.6 2006-10-29 22:30:54 j_ali Exp $
 
 # Front-end of AC_ARG_ENABLE
 # Usage:
@@ -64,12 +64,12 @@ AC_DEFUN([NETHACK_CONFIG_HEADER],
 AC_DEFUN([NETHACK__ADD_FLAG],[[
     case "$3" in
 	-I*|-L*|-l*)
-	    for flag in $2; do
-		if test $flag = "$3"; then
+	    for nethack__eflag in $2; do
+		if test "$nethack__eflag" = "$3"; then
 		    break
 		fi
 	    done
-	    if test $flag = "$3"; then
+	    if test "$nethack__eflag" = "$3"; then
 		$1="$2"
 	    else
 		case "$3" in
@@ -86,27 +86,87 @@ AC_DEFUN([NETHACK__ADD_FLAG],[[
 # ---------------------------------
 # Front-end to NETHACK__ADD_FLAG. Add compiler flags to a variable.
 AC_DEFUN([NETHACK__ADD_FLAGS],[
-    for flag in $3; do
-	NETHACK__ADD_FLAG([$1], [$2], [$flag])
+    $1="$2"
+    for nethack__flag in $3; do
+	NETHACK__ADD_FLAG([$1], [${$1}], [$nethack__flag])
     done
+])
+
+# NETHACK__TRY_LINK(STUFF, library, cflags, libs, includes, body, action-if,
+#	action-if-not)
+# ---------------------------------
+# Try linking using the given cflags and libs.
+AC_DEFUN([NETHACK__TRY_LINK],[
+    nethack__save_cflags=$CFLAGS
+    nethack__save_libs=$LIBS
+    CFLAGS="$CFLAGS $3"
+    LIBS="$LIBS $4"
+    AC_MSG_CHECKING([if $2 is useable with $CFLAGS and $LIBS])
+    AC_TRY_LINK([$5], [$6],
+      [$1_CFLAGS="$3"; $1_LIBS="$4"; AC_MSG_RESULT([yes]); $7],
+      [AC_MSG_RESULT([no]); $8])
+    CFLAGS=$nethack__save_cflags
+    LIBS=$nethack__save_libs])
+
+# NETHACK__TRY_LIBXAW(STUFF, cflags, libs, action-if, action-if-not)
+# ---------------------------------
+# Try linking with libXaw using the given cflags and libs.
+AC_DEFUN([NETHACK__TRY_LIBXAW], [NETHACK__TRY_LINK([$1], [libXaw], [$2], [$3],
+    [#include <X11/Xaw/List.h>], [XawListUnhighlight((Widget)0);], [$4], [$5])])
+
+# NETHACK_CHECK_LIBXAW(stuff, action-if, action-if-not)
+# ---------------------------------
+# Check if libXaw can be used
+AC_DEFUN([NETHACK_CHECK_LIBXAW],[
+    AC_ARG_VAR([LIBXAW_CFLAGS], [Compiler flags for libXaw, overriding pkg-config])
+    AC_ARG_VAR([LIBXAW_LIBS], [Linker flags for libXaw, overriding pkg-config])
+    # If the user has supplied flags, then believe them.
+    if test -n "$LIBXAW_CFLAGS" -o -n "$LIBXAW_LIBS"; then
+	NETHACK__ADD_FLAGS(nethack__cflags, [$NETHACK__LIBXAW_CFLAGS],
+	  [$LIBXAW_CFLAGS])
+	NETHACK__ADD_FLAGS(nethack__libs, [$NETHACK__LIBXAW_LIBS],
+	  [$LIBXAW_LIBS])
+	NETHACK__TRY_LIBXAW($1, [$nethack__cflags], [$nethack__libs],
+	  [nethack__succeeded=yes], [nethack__succeeded=no])
+    else
+	nethack__succeeded=maybe
+    fi
+    if test $nethack__succeeded = maybe; then
+	PKG_CHECK_EXISTS(xaw8, [nethack__succeeded=yes], [])
+    fi
+    if test $nethack__succeeded = maybe; then
+	PKG_CHECK_EXISTS(xaw7, [nethack__succeeded=yes], [])
+    fi
+    if test $nethack__succeeded = maybe; then
+	PKG_CHECK_EXISTS(xaw6, [nethack__succeeded=yes], [])
+    fi
+    if test $nethack__succeeded = maybe; then
+	NETHACK__ADD_FLAGS(nethack__cflags, [$NETHACK__LIBXAW_CFLAGS],
+	  [-I/usr/X11R6/include])
+	NETHACK__ADD_FLAGS(nethack__libs, [$NETHACK__LIBXAW_LIBS],
+	  [-L/usr/X11R6/lib -lXaw -lXmu -lXext -lXt -lX11])
+	NETHACK__TRY_LIBXAW($1, [$nethack__cflags], [$nethack__libs],
+	  [nethack__succeeded=yes], [nethack__succeeded=no])
+    fi
+    if test $nethack__succeeded = yes; then
+	AC_MSG_CHECKING([$1_CFLAGS])
+	AC_MSG_RESULT([${$1_CFLAGS}])
+	AC_SUBST($1_CFLAGS)
+	AC_MSG_CHECKING([$1_LIBS])
+	AC_MSG_RESULT([${$1_LIBS}])
+	AC_SUBST($1_LIBS)
+	$2
+    m4_ifval([$3],[else $3],[])
+    fi
 ])
 
 # NETHACK__TRY_LIBPNG(STUFF, cflags, libs, action-if, action-if-not)
 # ---------------------------------
 # Try linking with libpng using the given cflags and libs.
-AC_DEFUN([NETHACK__TRY_LIBPNG],[
-    nethack__save_cflags=$CFLAGS
-    nethack__save_libs=$LIBS
-    CFLAGS="$CFLAGS $2"
-    LIBS="$LIBS $3"
-    AC_MSG_CHECKING([if libpng is useable with $CFLAGS and $LIBS])
-    AC_TRY_LINK([#include <png.h>],
-      [png_structp ptr=
-	    png_create_write_struct(PNG_LIBPNG_VER_STRING,NULL,NULL,NULL);],
-      [$1_CFLAGS="$2"; $1_LIBS="$3"; AC_MSG_RESULT([yes]); $4],
-      [AC_MSG_RESULT([no]); $5])
-    CFLAGS=$nethack__save_cflags
-    LIBS=$nethack__save_libs])
+AC_DEFUN([NETHACK__TRY_LIBPNG], [NETHACK__TRY_LINK([$1], [libpng], [$2], [$3],
+    [#include <png.h>], [png_structp ptr=
+      png_create_write_struct(PNG_LIBPNG_VER_STRING,NULL,NULL,NULL);],
+    [$4], [$5])])
 
 # NETHACK_CHECK_LIBPNG(stuff, action-if, action-if-not)
 # ---------------------------------

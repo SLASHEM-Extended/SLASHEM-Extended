@@ -311,7 +311,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS SRCDIR CC CHGRP CHOWN CHMOD ZLIB_CFLAGS ZLIB_LIBS LN_S AWK CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT LFLAGS build build_cpu build_vendor build_os host host_cpu host_vendor host_os HOST_MSWIN HOST_UNIX SYSTEM SYSSRC SYSOBJ NHKEYDLL_GCC LEX LEXLIB LEX_OUTPUT_ROOT YACC ac_ct_CHOWN ac_ct_CHGRP ac_ct_CHMOD WINDRES ac_ct_WINDRES PKG_CONFIG ac_pt_PKG_CONFIG NETHACK__LIBPNG_CFLAGS NETHACK__LIBPNG_LIBS NETHACK_LIBPNG_CFLAGS NETHACK_LIBPNG_LIBS EXTRA_UNSHARE WINTTYLIB NETHACK_PROXY_CFLAGS NETHACK_PROXY_LIBS SDL_CONFIG ac_ct_SDL_CONFIG SDL_CONFIG_CFLAGS SDL_CONFIG_LIBS WINSRC WINOBJ WINLIB CNF_SHARE_DATND CPP EGREP LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS SRCDIR CC CHGRP CHOWN CHMOD ZLIB_CFLAGS ZLIB_LIBS LN_S AWK CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT LFLAGS build build_cpu build_vendor build_os host host_cpu host_vendor host_os PKG_CONFIG ac_pt_PKG_CONFIG LIBXAW_CFLAGS LIBXAW_LIBS HOST_MSWIN HOST_UNIX SYSTEM SYSSRC SYSOBJ NHKEYDLL_GCC LEX LEXLIB LEX_OUTPUT_ROOT YACC ac_ct_CHOWN ac_ct_CHGRP ac_ct_CHMOD WINDRES ac_ct_WINDRES NETHACK__LIBPNG_CFLAGS NETHACK__LIBPNG_LIBS NETHACK_LIBPNG_CFLAGS NETHACK_LIBPNG_LIBS EXTRA_UNSHARE WINTTYLIB NETHACK_PROXY_CFLAGS NETHACK_PROXY_LIBS SDL_CONFIG ac_ct_SDL_CONFIG SDL_CONFIG_CFLAGS SDL_CONFIG_LIBS WINSRC WINOBJ WINLIB CNF_SHARE_DATND CPP EGREP LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -792,6 +792,14 @@ ac_env_PKG_CONFIG_set=${PKG_CONFIG+set}
 ac_env_PKG_CONFIG_value=$PKG_CONFIG
 ac_cv_env_PKG_CONFIG_set=${PKG_CONFIG+set}
 ac_cv_env_PKG_CONFIG_value=$PKG_CONFIG
+ac_env_LIBXAW_CFLAGS_set=${LIBXAW_CFLAGS+set}
+ac_env_LIBXAW_CFLAGS_value=$LIBXAW_CFLAGS
+ac_cv_env_LIBXAW_CFLAGS_set=${LIBXAW_CFLAGS+set}
+ac_cv_env_LIBXAW_CFLAGS_value=$LIBXAW_CFLAGS
+ac_env_LIBXAW_LIBS_set=${LIBXAW_LIBS+set}
+ac_env_LIBXAW_LIBS_value=$LIBXAW_LIBS
+ac_cv_env_LIBXAW_LIBS_set=${LIBXAW_LIBS+set}
+ac_cv_env_LIBXAW_LIBS_value=$LIBXAW_LIBS
 ac_env_NETHACK__LIBPNG_CFLAGS_set=${NETHACK__LIBPNG_CFLAGS+set}
 ac_env_NETHACK__LIBPNG_CFLAGS_value=$NETHACK__LIBPNG_CFLAGS
 ac_cv_env_NETHACK__LIBPNG_CFLAGS_set=${NETHACK__LIBPNG_CFLAGS+set}
@@ -956,6 +964,9 @@ Some influential environment variables:
   CPPFLAGS    C/C++ preprocessor flags, e.g. -I<include dir> if you have
               headers in a nonstandard directory <include dir>
   PKG_CONFIG  path to pkg-config utility
+  LIBXAW_CFLAGS
+              Compiler flags for libXaw, overriding pkg-config
+  LIBXAW_LIBS Linker flags for libXaw, overriding pkg-config
   NETHACK__LIBPNG_CFLAGS
               C compiler flags for NETHACK__LIBPNG, overriding pkg-config
   NETHACK__LIBPNG_LIBS
@@ -1415,7 +1426,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
-# $Revision: 1.10 $
+# $Revision: 1.11 $
 
 SRCDIR=../$srcdir/src
 
@@ -2558,6 +2569,389 @@ host_vendor=`echo $ac_cv_host | sed 's/^\([^-]*\)-\([^-]*\)-\(.*\)$/\2/'`
 host_os=`echo $ac_cv_host | sed 's/^\([^-]*\)-\([^-]*\)-\(.*\)$/\3/'`
 
 
+
+
+
+
+if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+	if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  case $PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+  ;;
+esac
+fi
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+
+if test -n "$PKG_CONFIG"; then
+  echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
+echo "${ECHO_T}$PKG_CONFIG" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+fi
+if test -z "$ac_cv_path_PKG_CONFIG"; then
+  ac_pt_PKG_CONFIG=$PKG_CONFIG
+  # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_path_ac_pt_PKG_CONFIG+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  case $ac_pt_PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+  ;;
+esac
+fi
+ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
+
+if test -n "$ac_pt_PKG_CONFIG"; then
+  echo "$as_me:$LINENO: result: $ac_pt_PKG_CONFIG" >&5
+echo "${ECHO_T}$ac_pt_PKG_CONFIG" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+  PKG_CONFIG=$ac_pt_PKG_CONFIG
+else
+  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
+fi
+
+fi
+if test -n "$PKG_CONFIG"; then
+	_pkg_min_version=0.9.0
+	echo "$as_me:$LINENO: checking pkg-config is at least version $_pkg_min_version" >&5
+echo $ECHO_N "checking pkg-config is at least version $_pkg_min_version... $ECHO_C" >&6
+	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
+		echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+	else
+		echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+		PKG_CONFIG=""
+	fi
+
+fi
+if test "$enable_x11_graphics" != "no"; then
+    # We have to check for libXaw before we define SYSV,
+    # since the X11 include files change their behaviour
+    # depending on whether the compiler defines it or not.
+
+
+
+
+    # If the user has supplied flags, then believe them.
+    if test -n "$LIBXAW_CFLAGS" -o -n "$LIBXAW_LIBS"; then
+
+    nethack__cflags="$NETHACK__LIBXAW_CFLAGS"
+    for nethack__flag in $LIBXAW_CFLAGS; do
+
+    case "$nethack__flag" in
+	-I*|-L*|-l*)
+	    for nethack__eflag in ${nethack__cflags}; do
+		if test "$nethack__eflag" = "$nethack__flag"; then
+		    break
+		fi
+	    done
+	    if test "$nethack__eflag" = "$nethack__flag"; then
+		nethack__cflags="${nethack__cflags}"
+	    else
+		case "$nethack__flag" in
+		    -L*)nethack__cflags="$nethack__flag ${nethack__cflags}";;
+		    *)  nethack__cflags="${nethack__cflags} $nethack__flag";;
+		esac
+	    fi
+	    ;;
+	*)  nethack__cflags="${nethack__cflags} $nethack__flag";;
+    esac
+
+    done
+
+
+    nethack__libs="$NETHACK__LIBXAW_LIBS"
+    for nethack__flag in $LIBXAW_LIBS; do
+
+    case "$nethack__flag" in
+	-I*|-L*|-l*)
+	    for nethack__eflag in ${nethack__libs}; do
+		if test "$nethack__eflag" = "$nethack__flag"; then
+		    break
+		fi
+	    done
+	    if test "$nethack__eflag" = "$nethack__flag"; then
+		nethack__libs="${nethack__libs}"
+	    else
+		case "$nethack__flag" in
+		    -L*)nethack__libs="$nethack__flag ${nethack__libs}";;
+		    *)  nethack__libs="${nethack__libs} $nethack__flag";;
+		esac
+	    fi
+	    ;;
+	*)  nethack__libs="${nethack__libs} $nethack__flag";;
+    esac
+
+    done
+
+
+    nethack__save_cflags=$CFLAGS
+    nethack__save_libs=$LIBS
+    CFLAGS="$CFLAGS $nethack__cflags"
+    LIBS="$LIBS $nethack__libs"
+    echo "$as_me:$LINENO: checking if libXaw is useable with $CFLAGS and $LIBS" >&5
+echo $ECHO_N "checking if libXaw is useable with $CFLAGS and $LIBS... $ECHO_C" >&6
+    cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <X11/Xaw/List.h>
+int
+main ()
+{
+XawListUnhighlight((Widget)0);
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
+  (eval $ac_link) 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; } &&
+	 { ac_try='test -s conftest$ac_exeext'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+  LIBXAW_CFLAGS="$nethack__cflags"; LIBXAW_LIBS="$nethack__libs"; echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6; nethack__succeeded=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6; nethack__succeeded=no
+fi
+rm -f conftest.err conftest.$ac_objext \
+      conftest$ac_exeext conftest.$ac_ext
+    CFLAGS=$nethack__save_cflags
+    LIBS=$nethack__save_libs
+    else
+	nethack__succeeded=maybe
+    fi
+    if test $nethack__succeeded = maybe; then
+	if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"xaw8\"") >&5
+  ($PKG_CONFIG --exists --print-errors "xaw8") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  nethack__succeeded=yes
+fi
+    fi
+    if test $nethack__succeeded = maybe; then
+	if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"xaw7\"") >&5
+  ($PKG_CONFIG --exists --print-errors "xaw7") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  nethack__succeeded=yes
+fi
+    fi
+    if test $nethack__succeeded = maybe; then
+	if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"xaw6\"") >&5
+  ($PKG_CONFIG --exists --print-errors "xaw6") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  nethack__succeeded=yes
+fi
+    fi
+    if test $nethack__succeeded = maybe; then
+
+    nethack__cflags="$NETHACK__LIBXAW_CFLAGS"
+    for nethack__flag in -I/usr/X11R6/include; do
+
+    case "$nethack__flag" in
+	-I*|-L*|-l*)
+	    for nethack__eflag in ${nethack__cflags}; do
+		if test "$nethack__eflag" = "$nethack__flag"; then
+		    break
+		fi
+	    done
+	    if test "$nethack__eflag" = "$nethack__flag"; then
+		nethack__cflags="${nethack__cflags}"
+	    else
+		case "$nethack__flag" in
+		    -L*)nethack__cflags="$nethack__flag ${nethack__cflags}";;
+		    *)  nethack__cflags="${nethack__cflags} $nethack__flag";;
+		esac
+	    fi
+	    ;;
+	*)  nethack__cflags="${nethack__cflags} $nethack__flag";;
+    esac
+
+    done
+
+
+    nethack__libs="$NETHACK__LIBXAW_LIBS"
+    for nethack__flag in -L/usr/X11R6/lib -lXaw -lXmu -lXext -lXt -lX11; do
+
+    case "$nethack__flag" in
+	-I*|-L*|-l*)
+	    for nethack__eflag in ${nethack__libs}; do
+		if test "$nethack__eflag" = "$nethack__flag"; then
+		    break
+		fi
+	    done
+	    if test "$nethack__eflag" = "$nethack__flag"; then
+		nethack__libs="${nethack__libs}"
+	    else
+		case "$nethack__flag" in
+		    -L*)nethack__libs="$nethack__flag ${nethack__libs}";;
+		    *)  nethack__libs="${nethack__libs} $nethack__flag";;
+		esac
+	    fi
+	    ;;
+	*)  nethack__libs="${nethack__libs} $nethack__flag";;
+    esac
+
+    done
+
+
+    nethack__save_cflags=$CFLAGS
+    nethack__save_libs=$LIBS
+    CFLAGS="$CFLAGS $nethack__cflags"
+    LIBS="$LIBS $nethack__libs"
+    echo "$as_me:$LINENO: checking if libXaw is useable with $CFLAGS and $LIBS" >&5
+echo $ECHO_N "checking if libXaw is useable with $CFLAGS and $LIBS... $ECHO_C" >&6
+    cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <X11/Xaw/List.h>
+int
+main ()
+{
+XawListUnhighlight((Widget)0);
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
+  (eval $ac_link) 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; } &&
+	 { ac_try='test -s conftest$ac_exeext'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+  LIBXAW_CFLAGS="$nethack__cflags"; LIBXAW_LIBS="$nethack__libs"; echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6; nethack__succeeded=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6; nethack__succeeded=no
+fi
+rm -f conftest.err conftest.$ac_objext \
+      conftest$ac_exeext conftest.$ac_ext
+    CFLAGS=$nethack__save_cflags
+    LIBS=$nethack__save_libs
+    fi
+    if test $nethack__succeeded = yes; then
+	echo "$as_me:$LINENO: checking LIBXAW_CFLAGS" >&5
+echo $ECHO_N "checking LIBXAW_CFLAGS... $ECHO_C" >&6
+	echo "$as_me:$LINENO: result: ${LIBXAW_CFLAGS}" >&5
+echo "${ECHO_T}${LIBXAW_CFLAGS}" >&6
+
+	echo "$as_me:$LINENO: checking LIBXAW_LIBS" >&5
+echo $ECHO_N "checking LIBXAW_LIBS... $ECHO_C" >&6
+	echo "$as_me:$LINENO: result: ${LIBXAW_LIBS}" >&5
+echo "${ECHO_T}${LIBXAW_LIBS}" >&6
+
+	have_libXaw=yes
+    else have_libXaw=no
+    fi
+
+fi
+
 case $host_os in
      mingw32 )
 cat >>confdefs.h <<\_ACEOF
@@ -2636,7 +3030,6 @@ cat >>confdefs.h <<\_ACEOF
 _ACEOF
 ;;
 esac
-
 
 
 for ac_prog in flex lex
@@ -3295,111 +3688,6 @@ fi
 
 
 
-
-if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
-	if test -n "$ac_tool_prefix"; then
-  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
-set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  case $PKG_CONFIG in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-  ;;
-esac
-fi
-PKG_CONFIG=$ac_cv_path_PKG_CONFIG
-
-if test -n "$PKG_CONFIG"; then
-  echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
-echo "${ECHO_T}$PKG_CONFIG" >&6
-else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-fi
-
-fi
-if test -z "$ac_cv_path_PKG_CONFIG"; then
-  ac_pt_PKG_CONFIG=$PKG_CONFIG
-  # Extract the first word of "pkg-config", so it can be a program name with args.
-set dummy pkg-config; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_path_ac_pt_PKG_CONFIG+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  case $ac_pt_PKG_CONFIG in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-  ;;
-esac
-fi
-ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
-
-if test -n "$ac_pt_PKG_CONFIG"; then
-  echo "$as_me:$LINENO: result: $ac_pt_PKG_CONFIG" >&5
-echo "${ECHO_T}$ac_pt_PKG_CONFIG" >&6
-else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-fi
-
-  PKG_CONFIG=$ac_pt_PKG_CONFIG
-else
-  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
-fi
-
-fi
-if test -n "$PKG_CONFIG"; then
-	_pkg_min_version=0.9.0
-	echo "$as_me:$LINENO: checking pkg-config is at least version $_pkg_min_version" >&5
-echo $ECHO_N "checking pkg-config is at least version $_pkg_min_version... $ECHO_C" >&6
-	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
-		echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6
-	else
-		echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-		PKG_CONFIG=""
-	fi
-
-fi
-
     # Slash'EM may well work with earlier versions,
     # but 1.2.4 is the earliest tested to date.
 
@@ -3475,25 +3763,26 @@ fi
     # all be handled in libpng.pc, but isn't in many versions of libpng.
     if test $nethack__succeeded = maybe; then
 
-    for flag in -lz; do
+    nethack__libs="$NETHACK__LIBPNG_LIBS"
+    for nethack__flag in -lz; do
 
-    case "$flag" in
+    case "$nethack__flag" in
 	-I*|-L*|-l*)
-	    for flag in $NETHACK__LIBPNG_LIBS; do
-		if test $flag = "$flag"; then
+	    for nethack__eflag in ${nethack__libs}; do
+		if test "$nethack__eflag" = "$nethack__flag"; then
 		    break
 		fi
 	    done
-	    if test $flag = "$flag"; then
-		nethack__libs="$NETHACK__LIBPNG_LIBS"
+	    if test "$nethack__eflag" = "$nethack__flag"; then
+		nethack__libs="${nethack__libs}"
 	    else
-		case "$flag" in
-		    -L*)nethack__libs="$flag $NETHACK__LIBPNG_LIBS";;
-		    *)  nethack__libs="$NETHACK__LIBPNG_LIBS $flag";;
+		case "$nethack__flag" in
+		    -L*)nethack__libs="$nethack__flag ${nethack__libs}";;
+		    *)  nethack__libs="${nethack__libs} $nethack__flag";;
 		esac
 	    fi
 	    ;;
-	*)  nethack__libs="$NETHACK__LIBPNG_LIBS $flag";;
+	*)  nethack__libs="${nethack__libs} $nethack__flag";;
     esac
 
     done
@@ -3516,7 +3805,7 @@ int
 main ()
 {
 png_structp ptr=
-	    png_create_write_struct(PNG_LIBPNG_VER_STRING,NULL,NULL,NULL);
+      png_create_write_struct(PNG_LIBPNG_VER_STRING,NULL,NULL,NULL);
   ;
   return 0;
 }
@@ -3561,49 +3850,51 @@ rm -f conftest.err conftest.$ac_objext \
     if test $nethack__succeeded = maybe -a \
       \( -n "$ZLIB_CFLAGS" -o -n "$ZLIB_LIBS" \); then
 
-    for flag in $ZLIB_CFLAGS; do
+    nethack__cflags="$NETHACK__LIBPNG_CFLAGS"
+    for nethack__flag in $ZLIB_CFLAGS; do
 
-    case "$flag" in
+    case "$nethack__flag" in
 	-I*|-L*|-l*)
-	    for flag in $NETHACK__LIBPNG_CFLAGS; do
-		if test $flag = "$flag"; then
+	    for nethack__eflag in ${nethack__cflags}; do
+		if test "$nethack__eflag" = "$nethack__flag"; then
 		    break
 		fi
 	    done
-	    if test $flag = "$flag"; then
-		nethack__cflags="$NETHACK__LIBPNG_CFLAGS"
+	    if test "$nethack__eflag" = "$nethack__flag"; then
+		nethack__cflags="${nethack__cflags}"
 	    else
-		case "$flag" in
-		    -L*)nethack__cflags="$flag $NETHACK__LIBPNG_CFLAGS";;
-		    *)  nethack__cflags="$NETHACK__LIBPNG_CFLAGS $flag";;
+		case "$nethack__flag" in
+		    -L*)nethack__cflags="$nethack__flag ${nethack__cflags}";;
+		    *)  nethack__cflags="${nethack__cflags} $nethack__flag";;
 		esac
 	    fi
 	    ;;
-	*)  nethack__cflags="$NETHACK__LIBPNG_CFLAGS $flag";;
+	*)  nethack__cflags="${nethack__cflags} $nethack__flag";;
     esac
 
     done
 
 
-    for flag in $ZLIB_LIBS; do
+    nethack__libs="$NETHACK__LIBPNG_LIBS"
+    for nethack__flag in $ZLIB_LIBS; do
 
-    case "$flag" in
+    case "$nethack__flag" in
 	-I*|-L*|-l*)
-	    for flag in $NETHACK__LIBPNG_LIBS; do
-		if test $flag = "$flag"; then
+	    for nethack__eflag in ${nethack__libs}; do
+		if test "$nethack__eflag" = "$nethack__flag"; then
 		    break
 		fi
 	    done
-	    if test $flag = "$flag"; then
-		nethack__libs="$NETHACK__LIBPNG_LIBS"
+	    if test "$nethack__eflag" = "$nethack__flag"; then
+		nethack__libs="${nethack__libs}"
 	    else
-		case "$flag" in
-		    -L*)nethack__libs="$flag $NETHACK__LIBPNG_LIBS";;
-		    *)  nethack__libs="$NETHACK__LIBPNG_LIBS $flag";;
+		case "$nethack__flag" in
+		    -L*)nethack__libs="$nethack__flag ${nethack__libs}";;
+		    *)  nethack__libs="${nethack__libs} $nethack__flag";;
 		esac
 	    fi
 	    ;;
-	*)  nethack__libs="$NETHACK__LIBPNG_LIBS $flag";;
+	*)  nethack__libs="${nethack__libs} $nethack__flag";;
     esac
 
     done
@@ -3626,7 +3917,7 @@ int
 main ()
 {
 png_structp ptr=
-	    png_create_write_struct(PNG_LIBPNG_VER_STRING,NULL,NULL,NULL);
+      png_create_write_struct(PNG_LIBPNG_VER_STRING,NULL,NULL,NULL);
   ;
   return 0;
 }
@@ -3675,49 +3966,51 @@ echo $ECHO_N "checking for zlib... $ECHO_C" >&6
 	    echo "$as_me:$LINENO: result: yes" >&5
 echo "${ECHO_T}yes" >&6
 
-    for flag in `$PKG_CONFIG --cflags zlib`; do
+    nethack__cflags="$NETHACK__LIBPNG_CFLAGS"
+    for nethack__flag in `$PKG_CONFIG --cflags zlib`; do
 
-    case "$flag" in
+    case "$nethack__flag" in
 	-I*|-L*|-l*)
-	    for flag in $NETHACK__LIBPNG_CFLAGS; do
-		if test $flag = "$flag"; then
+	    for nethack__eflag in ${nethack__cflags}; do
+		if test "$nethack__eflag" = "$nethack__flag"; then
 		    break
 		fi
 	    done
-	    if test $flag = "$flag"; then
-		nethack__cflags="$NETHACK__LIBPNG_CFLAGS"
+	    if test "$nethack__eflag" = "$nethack__flag"; then
+		nethack__cflags="${nethack__cflags}"
 	    else
-		case "$flag" in
-		    -L*)nethack__cflags="$flag $NETHACK__LIBPNG_CFLAGS";;
-		    *)  nethack__cflags="$NETHACK__LIBPNG_CFLAGS $flag";;
+		case "$nethack__flag" in
+		    -L*)nethack__cflags="$nethack__flag ${nethack__cflags}";;
+		    *)  nethack__cflags="${nethack__cflags} $nethack__flag";;
 		esac
 	    fi
 	    ;;
-	*)  nethack__cflags="$NETHACK__LIBPNG_CFLAGS $flag";;
+	*)  nethack__cflags="${nethack__cflags} $nethack__flag";;
     esac
 
     done
 
 
-    for flag in `$PKG_CONFIG --libs zlib`; do
+    nethack__libs="$NETHACK__LIBPNG_LIBS"
+    for nethack__flag in `$PKG_CONFIG --libs zlib`; do
 
-    case "$flag" in
+    case "$nethack__flag" in
 	-I*|-L*|-l*)
-	    for flag in $NETHACK__LIBPNG_LIBS; do
-		if test $flag = "$flag"; then
+	    for nethack__eflag in ${nethack__libs}; do
+		if test "$nethack__eflag" = "$nethack__flag"; then
 		    break
 		fi
 	    done
-	    if test $flag = "$flag"; then
-		nethack__libs="$NETHACK__LIBPNG_LIBS"
+	    if test "$nethack__eflag" = "$nethack__flag"; then
+		nethack__libs="${nethack__libs}"
 	    else
-		case "$flag" in
-		    -L*)nethack__libs="$flag $NETHACK__LIBPNG_LIBS";;
-		    *)  nethack__libs="$NETHACK__LIBPNG_LIBS $flag";;
+		case "$nethack__flag" in
+		    -L*)nethack__libs="$nethack__flag ${nethack__libs}";;
+		    *)  nethack__libs="${nethack__libs} $nethack__flag";;
 		esac
 	    fi
 	    ;;
-	*)  nethack__libs="$NETHACK__LIBPNG_LIBS $flag";;
+	*)  nethack__libs="${nethack__libs} $nethack__flag";;
     esac
 
     done
@@ -3740,7 +4033,7 @@ int
 main ()
 {
 png_structp ptr=
-	    png_create_write_struct(PNG_LIBPNG_VER_STRING,NULL,NULL,NULL);
+      png_create_write_struct(PNG_LIBPNG_VER_STRING,NULL,NULL,NULL);
   ;
   return 0;
 }
@@ -3792,12 +4085,12 @@ echo "${ECHO_T}not found by pkg-config" >&6
 
     case "-I$nethack__libpng_prefix/include" in
 	-I*|-L*|-l*)
-	    for flag in $NETHACK__LIBPNG_CFLAGS; do
-		if test $flag = "-I$nethack__libpng_prefix/include"; then
+	    for nethack__eflag in $NETHACK__LIBPNG_CFLAGS; do
+		if test "$nethack__eflag" = "-I$nethack__libpng_prefix/include"; then
 		    break
 		fi
 	    done
-	    if test $flag = "-I$nethack__libpng_prefix/include"; then
+	    if test "$nethack__eflag" = "-I$nethack__libpng_prefix/include"; then
 		nethack__cflags="$NETHACK__LIBPNG_CFLAGS"
 	    else
 		case "-I$nethack__libpng_prefix/include" in
@@ -3812,12 +4105,12 @@ echo "${ECHO_T}not found by pkg-config" >&6
 
     case "-L$nethack__libpng_prefix/lib" in
 	-I*|-L*|-l*)
-	    for flag in $NETHACK__LIBPNG_LIBS; do
-		if test $flag = "-L$nethack__libpng_prefix/lib"; then
+	    for nethack__eflag in $NETHACK__LIBPNG_LIBS; do
+		if test "$nethack__eflag" = "-L$nethack__libpng_prefix/lib"; then
 		    break
 		fi
 	    done
-	    if test $flag = "-L$nethack__libpng_prefix/lib"; then
+	    if test "$nethack__eflag" = "-L$nethack__libpng_prefix/lib"; then
 		nethack__libs="$NETHACK__LIBPNG_LIBS"
 	    else
 		case "-L$nethack__libpng_prefix/lib" in
@@ -3832,12 +4125,12 @@ echo "${ECHO_T}not found by pkg-config" >&6
 
     case "-lz" in
 	-I*|-L*|-l*)
-	    for flag in $nethack__libs; do
-		if test $flag = "-lz"; then
+	    for nethack__eflag in $nethack__libs; do
+		if test "$nethack__eflag" = "-lz"; then
 		    break
 		fi
 	    done
-	    if test $flag = "-lz"; then
+	    if test "$nethack__eflag" = "-lz"; then
 		nethack__libs="$nethack__libs"
 	    else
 		case "-lz" in
@@ -3867,7 +4160,7 @@ int
 main ()
 {
 png_structp ptr=
-	    png_create_write_struct(PNG_LIBPNG_VER_STRING,NULL,NULL,NULL);
+      png_create_write_struct(PNG_LIBPNG_VER_STRING,NULL,NULL,NULL);
   ;
   return 0;
 }
@@ -4262,10 +4555,16 @@ fi
 
 if test "$enable_x11_graphics" != "no"
 then
-	WINSRC="${WINSRC} \$(WINX11SRC)"
-	WINOBJ="${WINOBJ} \$(WINX11OBJ)"
-	WINLIB="${WINLIB} \$(WINX11LIB)"
-	CNF_SHARE_DATND="${CNF_SHARE_DATND} \$(CNF_SHARE_X11ND)"
+    if test $have_libXaw != yes; then
+      { { echo "$as_me:$LINENO: error: Need X Athena Widgets Library for X11 graphics" >&5
+echo "$as_me: error: Need X Athena Widgets Library for X11 graphics" >&2;}
+   { (exit 1); exit 1; }; }
+    fi
+    CFLAGS="${CFLAGS} ${LIBXAW_CFLAGS}"
+    WINSRC="${WINSRC} \$(WINX11SRC)"
+    WINOBJ="${WINOBJ} \$(WINX11OBJ)"
+    WINLIB="${WINLIB} ${LIBXAW_LIBS}"
+    CNF_SHARE_DATND="${CNF_SHARE_DATND} \$(CNF_SHARE_X11ND)"
 
 cat >>confdefs.h <<\_ACEOF
 #define X11_GRAPHICS
@@ -7121,6 +7420,10 @@ s,@host@,$host,;t t
 s,@host_cpu@,$host_cpu,;t t
 s,@host_vendor@,$host_vendor,;t t
 s,@host_os@,$host_os,;t t
+s,@PKG_CONFIG@,$PKG_CONFIG,;t t
+s,@ac_pt_PKG_CONFIG@,$ac_pt_PKG_CONFIG,;t t
+s,@LIBXAW_CFLAGS@,$LIBXAW_CFLAGS,;t t
+s,@LIBXAW_LIBS@,$LIBXAW_LIBS,;t t
 s,@HOST_MSWIN@,$HOST_MSWIN,;t t
 s,@HOST_UNIX@,$HOST_UNIX,;t t
 s,@SYSTEM@,$SYSTEM,;t t
@@ -7136,8 +7439,6 @@ s,@ac_ct_CHGRP@,$ac_ct_CHGRP,;t t
 s,@ac_ct_CHMOD@,$ac_ct_CHMOD,;t t
 s,@WINDRES@,$WINDRES,;t t
 s,@ac_ct_WINDRES@,$ac_ct_WINDRES,;t t
-s,@PKG_CONFIG@,$PKG_CONFIG,;t t
-s,@ac_pt_PKG_CONFIG@,$ac_pt_PKG_CONFIG,;t t
 s,@NETHACK__LIBPNG_CFLAGS@,$NETHACK__LIBPNG_CFLAGS,;t t
 s,@NETHACK__LIBPNG_LIBS@,$NETHACK__LIBPNG_LIBS,;t t
 s,@NETHACK_LIBPNG_CFLAGS@,$NETHACK_LIBPNG_CFLAGS,;t t

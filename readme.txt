@@ -131,6 +131,7 @@ Autoconf improvements:
 -fixed bug 1586592: Tests for regex types don't include regex.h
 -fixed bug 1569015: Redundant code in percent_success()
 -fixed bug 1583978: Grammer error in broken celibacy message
+-fixed bug 1375796: X11 link option missing
 
 See history.txt for changes made in previous versions.
 
