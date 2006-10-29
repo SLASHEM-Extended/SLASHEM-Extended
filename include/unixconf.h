@@ -423,8 +423,9 @@
 #endif	/* LINUX */
 #endif	/* GNOME_GRAPHICS */
 
-#if defined(USE_REGEX_MATCH)
-# if defined(__FreeBSD__) || defined(__OpenBSD__)
+#if defined(MENU_COLOR) && defined(USE_REGEX_MATCH)
+# include <regex.h>
+# ifndef RE_NO_GNU_OPS
 #  define POSIX_REGEX
 # else
 #  define GNU_REGEX
