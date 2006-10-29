@@ -89,6 +89,7 @@ ver 0.0.7E7F3 [?] [Released by ?]
 -fixed bug 1449159: DEFAULT_WINDOW_SYS wrong if only X11 enabled
 -fixed bug 1400802: wax golems don't emit light
 -fixed bug 1586216: USE_REGEX_MATCH fails on Solaris 10
+-fixed bug 1583978: Grammer error in broken celibacy message
 
 See history.txt for changes made in previous versions.
 
