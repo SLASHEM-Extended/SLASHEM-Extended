@@ -1344,10 +1344,7 @@ int spell;
 
 	/* Robes are body armour in SLASH'EM */
 	if (uarm && is_metallic(uarm))
-	    splcaster += /*(uarmc && uarmc->otyp == ROBE) ?
-		urole.spelarmr/2 : */urole.spelarmr;
-	else if (uarmc && uarmc->otyp == ROBE)
-	    splcaster -= urole.spelarmr;
+	    splcaster += urole.spelarmr;
 	if (uarms) splcaster += urole.spelshld;
 
 	if (uarmh && is_metallic(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE)
