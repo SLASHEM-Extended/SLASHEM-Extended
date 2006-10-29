@@ -5,12 +5,6 @@
 #ifndef COLOR_H
 #define COLOR_H
 
-#ifdef MENU_COLOR
-# ifdef USE_REGEX_MATCH
-#  include <regex.h>
-# endif  
-#endif
-
 /*
  * The color scheme used is tailored for an IBM PC.  It consists of the
  * standard 8 colors, folowed by their bright counterparts.  There are
