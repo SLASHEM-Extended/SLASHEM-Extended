@@ -311,7 +311,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS SRCDIR CC CHGRP CHOWN CHMOD ZLIB_CFLAGS ZLIB_LIBS LN_S AWK CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT LFLAGS build build_cpu build_vendor build_os host host_cpu host_vendor host_os HOST_MSWIN HOST_UNIX SYSTEM SYSSRC SYSOBJ NHKEYDLL_GCC LEX LEXLIB LEX_OUTPUT_ROOT YACC ac_ct_CHOWN ac_ct_CHGRP ac_ct_CHMOD WINDRES ac_ct_WINDRES PKG_CONFIG NETHACK__LIBPNG_CFLAGS NETHACK__LIBPNG_LIBS NETHACK_LIBPNG_CFLAGS NETHACK_LIBPNG_LIBS EXTRA_UNSHARE WINTTYLIB NETHACK_PROXY_CFLAGS NETHACK_PROXY_LIBS SDL_CONFIG ac_ct_SDL_CONFIG SDL_CONFIG_CFLAGS SDL_CONFIG_LIBS WINSRC WINOBJ WINLIB CNF_SHARE_DATND CPP EGREP LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS SRCDIR CC CHGRP CHOWN CHMOD ZLIB_CFLAGS ZLIB_LIBS LN_S AWK CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT LFLAGS build build_cpu build_vendor build_os host host_cpu host_vendor host_os HOST_MSWIN HOST_UNIX SYSTEM SYSSRC SYSOBJ NHKEYDLL_GCC LEX LEXLIB LEX_OUTPUT_ROOT YACC ac_ct_CHOWN ac_ct_CHGRP ac_ct_CHMOD WINDRES ac_ct_WINDRES PKG_CONFIG ac_pt_PKG_CONFIG NETHACK__LIBPNG_CFLAGS NETHACK__LIBPNG_LIBS NETHACK_LIBPNG_CFLAGS NETHACK_LIBPNG_LIBS EXTRA_UNSHARE WINTTYLIB NETHACK_PROXY_CFLAGS NETHACK_PROXY_LIBS SDL_CONFIG ac_ct_SDL_CONFIG SDL_CONFIG_CFLAGS SDL_CONFIG_LIBS WINSRC WINOBJ WINLIB CNF_SHARE_DATND CPP EGREP LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -788,6 +788,26 @@ ac_env_CPPFLAGS_set=${CPPFLAGS+set}
 ac_env_CPPFLAGS_value=$CPPFLAGS
 ac_cv_env_CPPFLAGS_set=${CPPFLAGS+set}
 ac_cv_env_CPPFLAGS_value=$CPPFLAGS
+ac_env_PKG_CONFIG_set=${PKG_CONFIG+set}
+ac_env_PKG_CONFIG_value=$PKG_CONFIG
+ac_cv_env_PKG_CONFIG_set=${PKG_CONFIG+set}
+ac_cv_env_PKG_CONFIG_value=$PKG_CONFIG
+ac_env_NETHACK__LIBPNG_CFLAGS_set=${NETHACK__LIBPNG_CFLAGS+set}
+ac_env_NETHACK__LIBPNG_CFLAGS_value=$NETHACK__LIBPNG_CFLAGS
+ac_cv_env_NETHACK__LIBPNG_CFLAGS_set=${NETHACK__LIBPNG_CFLAGS+set}
+ac_cv_env_NETHACK__LIBPNG_CFLAGS_value=$NETHACK__LIBPNG_CFLAGS
+ac_env_NETHACK__LIBPNG_LIBS_set=${NETHACK__LIBPNG_LIBS+set}
+ac_env_NETHACK__LIBPNG_LIBS_value=$NETHACK__LIBPNG_LIBS
+ac_cv_env_NETHACK__LIBPNG_LIBS_set=${NETHACK__LIBPNG_LIBS+set}
+ac_cv_env_NETHACK__LIBPNG_LIBS_value=$NETHACK__LIBPNG_LIBS
+ac_env_NETHACK_PROXY_CFLAGS_set=${NETHACK_PROXY_CFLAGS+set}
+ac_env_NETHACK_PROXY_CFLAGS_value=$NETHACK_PROXY_CFLAGS
+ac_cv_env_NETHACK_PROXY_CFLAGS_set=${NETHACK_PROXY_CFLAGS+set}
+ac_cv_env_NETHACK_PROXY_CFLAGS_value=$NETHACK_PROXY_CFLAGS
+ac_env_NETHACK_PROXY_LIBS_set=${NETHACK_PROXY_LIBS+set}
+ac_env_NETHACK_PROXY_LIBS_value=$NETHACK_PROXY_LIBS
+ac_cv_env_NETHACK_PROXY_LIBS_set=${NETHACK_PROXY_LIBS+set}
+ac_cv_env_NETHACK_PROXY_LIBS_value=$NETHACK_PROXY_LIBS
 ac_env_CPP_set=${CPP+set}
 ac_env_CPP_value=$CPP
 ac_cv_env_CPP_set=${CPP+set}
@@ -935,6 +955,15 @@ Some influential environment variables:
               nonstandard directory <lib dir>
   CPPFLAGS    C/C++ preprocessor flags, e.g. -I<include dir> if you have
               headers in a nonstandard directory <include dir>
+  PKG_CONFIG  path to pkg-config utility
+  NETHACK__LIBPNG_CFLAGS
+              C compiler flags for NETHACK__LIBPNG, overriding pkg-config
+  NETHACK__LIBPNG_LIBS
+              linker flags for NETHACK__LIBPNG, overriding pkg-config
+  NETHACK_PROXY_CFLAGS
+              C compiler flags for NETHACK_PROXY, overriding pkg-config
+  NETHACK_PROXY_LIBS
+              linker flags for NETHACK_PROXY, overriding pkg-config
   CPP         C preprocessor
 
 Use these variables to override the choices made by `configure' or to help
@@ -1386,7 +1415,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
-# $Revision: 1.9 $
+# $Revision: 1.10 $
 
 SRCDIR=../$srcdir/src
 
@@ -3266,14 +3295,11 @@ fi
 
 
 
-    # Slash'EM may well work with earlier versions,
-    # but 1.2.4 is the earliest tested to date.
 
-  succeeded=no
-
-  if test -z "$PKG_CONFIG"; then
-    # Extract the first word of "pkg-config", so it can be a program name with args.
-set dummy pkg-config; ac_word=$2
+if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+	if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
 if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
@@ -3298,7 +3324,6 @@ do
 done
 done
 
-  test -z "$ac_cv_path_PKG_CONFIG" && ac_cv_path_PKG_CONFIG="no"
   ;;
 esac
 fi
@@ -3312,58 +3337,140 @@ else
 echo "${ECHO_T}no" >&6
 fi
 
+fi
+if test -z "$ac_cv_path_PKG_CONFIG"; then
+  ac_pt_PKG_CONFIG=$PKG_CONFIG
+  # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_path_ac_pt_PKG_CONFIG+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  case $ac_pt_PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
   fi
+done
+done
 
-  if test "$PKG_CONFIG" = "no" ; then
-     echo "*** The pkg-config script could not be found. Make sure it is"
-     echo "*** in your path, or set the PKG_CONFIG environment variable"
-     echo "*** to the full path to pkg-config."
-     echo "*** Or see http://www.freedesktop.org/software/pkgconfig to get pkg-config."
-  else
-     PKG_CONFIG_MIN_VERSION=0.9.0
-     if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
-        echo "$as_me:$LINENO: checking for libpng >= 1.2.4" >&5
-echo $ECHO_N "checking for libpng >= 1.2.4... $ECHO_C" >&6
+  ;;
+esac
+fi
+ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
 
-        if $PKG_CONFIG --exists "libpng >= 1.2.4" ; then
-            echo "$as_me:$LINENO: result: yes" >&5
+if test -n "$ac_pt_PKG_CONFIG"; then
+  echo "$as_me:$LINENO: result: $ac_pt_PKG_CONFIG" >&5
+echo "${ECHO_T}$ac_pt_PKG_CONFIG" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+  PKG_CONFIG=$ac_pt_PKG_CONFIG
+else
+  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
+fi
+
+fi
+if test -n "$PKG_CONFIG"; then
+	_pkg_min_version=0.9.0
+	echo "$as_me:$LINENO: checking pkg-config is at least version $_pkg_min_version" >&5
+echo $ECHO_N "checking pkg-config is at least version $_pkg_min_version... $ECHO_C" >&6
+	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
+		echo "$as_me:$LINENO: result: yes" >&5
 echo "${ECHO_T}yes" >&6
-            succeeded=yes
+	else
+		echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+		PKG_CONFIG=""
+	fi
 
-            echo "$as_me:$LINENO: checking NETHACK__LIBPNG_CFLAGS" >&5
-echo $ECHO_N "checking NETHACK__LIBPNG_CFLAGS... $ECHO_C" >&6
-            NETHACK__LIBPNG_CFLAGS=`$PKG_CONFIG --cflags "libpng >= 1.2.4"`
-            echo "$as_me:$LINENO: result: $NETHACK__LIBPNG_CFLAGS" >&5
-echo "${ECHO_T}$NETHACK__LIBPNG_CFLAGS" >&6
+fi
 
-            echo "$as_me:$LINENO: checking NETHACK__LIBPNG_LIBS" >&5
-echo $ECHO_N "checking NETHACK__LIBPNG_LIBS... $ECHO_C" >&6
-            NETHACK__LIBPNG_LIBS=`$PKG_CONFIG --libs "libpng >= 1.2.4"`
-            echo "$as_me:$LINENO: result: $NETHACK__LIBPNG_LIBS" >&5
-echo "${ECHO_T}$NETHACK__LIBPNG_LIBS" >&6
+    # Slash'EM may well work with earlier versions,
+    # but 1.2.4 is the earliest tested to date.
+
+pkg_failed=no
+echo "$as_me:$LINENO: checking for NETHACK__LIBPNG" >&5
+echo $ECHO_N "checking for NETHACK__LIBPNG... $ECHO_C" >&6
+
+if test -n "$PKG_CONFIG"; then
+    if test -n "$NETHACK__LIBPNG_CFLAGS"; then
+        pkg_cv_NETHACK__LIBPNG_CFLAGS="$NETHACK__LIBPNG_CFLAGS"
+    else
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libpng >= 1.2.4\"") >&5
+  ($PKG_CONFIG --exists --print-errors "libpng >= 1.2.4") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_NETHACK__LIBPNG_CFLAGS=`$PKG_CONFIG --cflags "libpng >= 1.2.4" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+    fi
+else
+	pkg_failed=untried
+fi
+if test -n "$PKG_CONFIG"; then
+    if test -n "$NETHACK__LIBPNG_LIBS"; then
+        pkg_cv_NETHACK__LIBPNG_LIBS="$NETHACK__LIBPNG_LIBS"
+    else
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libpng >= 1.2.4\"") >&5
+  ($PKG_CONFIG --exists --print-errors "libpng >= 1.2.4") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_NETHACK__LIBPNG_LIBS=`$PKG_CONFIG --libs "libpng >= 1.2.4" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+    fi
+else
+	pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        NETHACK__LIBPNG_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "libpng >= 1.2.4"`
         else
-            NETHACK__LIBPNG_CFLAGS=""
-            NETHACK__LIBPNG_LIBS=""
-            ## If we have a custom action on failure, don't print errors, but
-            ## do set a variable so people can do so.
-            NETHACK__LIBPNG_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "libpng >= 1.2.4"`
-
+	        NETHACK__LIBPNG_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "libpng >= 1.2.4"`
         fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$NETHACK__LIBPNG_PKG_ERRORS" >&5
 
-
-
-     else
-        echo "*** Your version of pkg-config is too old. You need version $PKG_CONFIG_MIN_VERSION or newer."
-        echo "*** See http://www.freedesktop.org/software/pkgconfig"
-     fi
-  fi
-
-  if test $succeeded = yes; then
-     nethack__succeeded=maybe
-  else
-     nethack__succeeded=no
-  fi
-
+	nethack__succeeded=no
+elif test $pkg_failed = untried; then
+	nethack__succeeded=no
+else
+	NETHACK__LIBPNG_CFLAGS=$pkg_cv_NETHACK__LIBPNG_CFLAGS
+	NETHACK__LIBPNG_LIBS=$pkg_cv_NETHACK__LIBPNG_LIBS
+        echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+	nethack__succeeded=maybe
+fi
     # Slash'EM doesn't use zlib directly, but libpng does. This should
     # all be handled in libpng.pc, but isn't in many versions of libpng.
     if test $nethack__succeeded = maybe; then
@@ -3955,200 +4062,186 @@ echo "$as_me: WARNING: Can't enable proxy graphics (no useable libpng)" >&2;}
     else
 	if test "$enable_proxy_graphics" = "yes"; then
 
-  succeeded=no
-
-  if test -z "$PKG_CONFIG"; then
-    # Extract the first word of "pkg-config", so it can be a program name with args.
-set dummy pkg-config; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  case $PKG_CONFIG in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-  test -z "$ac_cv_path_PKG_CONFIG" && ac_cv_path_PKG_CONFIG="no"
-  ;;
-esac
-fi
-PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+pkg_failed=no
+echo "$as_me:$LINENO: checking for NETHACK_PROXY" >&5
+echo $ECHO_N "checking for NETHACK_PROXY... $ECHO_C" >&6
 
 if test -n "$PKG_CONFIG"; then
-  echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
-echo "${ECHO_T}$PKG_CONFIG" >&6
+    if test -n "$NETHACK_PROXY_CFLAGS"; then
+        pkg_cv_NETHACK_PROXY_CFLAGS="$NETHACK_PROXY_CFLAGS"
+    else
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"nhproxy >= 0.9.0\"") >&5
+  ($PKG_CONFIG --exists --print-errors "nhproxy >= 0.9.0") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_NETHACK_PROXY_CFLAGS=`$PKG_CONFIG --cflags "nhproxy >= 0.9.0" 2>/dev/null`
 else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
+  pkg_failed=yes
+fi
+    fi
+else
+	pkg_failed=untried
+fi
+if test -n "$PKG_CONFIG"; then
+    if test -n "$NETHACK_PROXY_LIBS"; then
+        pkg_cv_NETHACK_PROXY_LIBS="$NETHACK_PROXY_LIBS"
+    else
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"nhproxy >= 0.9.0\"") >&5
+  ($PKG_CONFIG --exists --print-errors "nhproxy >= 0.9.0") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_NETHACK_PROXY_LIBS=`$PKG_CONFIG --libs "nhproxy >= 0.9.0" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+    fi
+else
+	pkg_failed=untried
 fi
 
-  fi
 
-  if test "$PKG_CONFIG" = "no" ; then
-     echo "*** The pkg-config script could not be found. Make sure it is"
-     echo "*** in your path, or set the PKG_CONFIG environment variable"
-     echo "*** to the full path to pkg-config."
-     echo "*** Or see http://www.freedesktop.org/software/pkgconfig to get pkg-config."
-  else
-     PKG_CONFIG_MIN_VERSION=0.9.0
-     if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
-        echo "$as_me:$LINENO: checking for nhproxy >= 0.9.0" >&5
-echo $ECHO_N "checking for nhproxy >= 0.9.0... $ECHO_C" >&6
 
-        if $PKG_CONFIG --exists "nhproxy >= 0.9.0" ; then
-            echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6
-            succeeded=yes
+if test $pkg_failed = yes; then
 
-            echo "$as_me:$LINENO: checking NETHACK_PROXY_CFLAGS" >&5
-echo $ECHO_N "checking NETHACK_PROXY_CFLAGS... $ECHO_C" >&6
-            NETHACK_PROXY_CFLAGS=`$PKG_CONFIG --cflags "nhproxy >= 0.9.0"`
-            echo "$as_me:$LINENO: result: $NETHACK_PROXY_CFLAGS" >&5
-echo "${ECHO_T}$NETHACK_PROXY_CFLAGS" >&6
-
-            echo "$as_me:$LINENO: checking NETHACK_PROXY_LIBS" >&5
-echo $ECHO_N "checking NETHACK_PROXY_LIBS... $ECHO_C" >&6
-            NETHACK_PROXY_LIBS=`$PKG_CONFIG --libs "nhproxy >= 0.9.0"`
-            echo "$as_me:$LINENO: result: $NETHACK_PROXY_LIBS" >&5
-echo "${ECHO_T}$NETHACK_PROXY_LIBS" >&6
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        NETHACK_PROXY_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "nhproxy >= 0.9.0"`
         else
-            NETHACK_PROXY_CFLAGS=""
-            NETHACK_PROXY_LIBS=""
-            ## If we have a custom action on failure, don't print errors, but
-            ## do set a variable so people can do so.
-            NETHACK_PROXY_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "nhproxy >= 0.9.0"`
-            echo $NETHACK_PROXY_PKG_ERRORS
+	        NETHACK_PROXY_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "nhproxy >= 0.9.0"`
         fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$NETHACK_PROXY_PKG_ERRORS" >&5
 
+	{ { echo "$as_me:$LINENO: error: Package requirements (nhproxy >= 0.9.0) were not met:
 
+$NETHACK_PROXY_PKG_ERRORS
 
-     else
-        echo "*** Your version of pkg-config is too old. You need version $PKG_CONFIG_MIN_VERSION or newer."
-        echo "*** See http://www.freedesktop.org/software/pkgconfig"
-     fi
-  fi
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
 
-  if test $succeeded = yes; then
-     :
-  else
-     { { echo "$as_me:$LINENO: error: Library requirements (nhproxy >= 0.9.0) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&5
-echo "$as_me: error: Library requirements (nhproxy >= 0.9.0) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&2;}
+Alternatively, you may set the environment variables NETHACK_PROXY_CFLAGS
+and NETHACK_PROXY_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+" >&5
+echo "$as_me: error: Package requirements (nhproxy >= 0.9.0) were not met:
+
+$NETHACK_PROXY_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables NETHACK_PROXY_CFLAGS
+and NETHACK_PROXY_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+" >&2;}
    { (exit 1); exit 1; }; }
-  fi
+elif test $pkg_failed = untried; then
+	{ { echo "$as_me:$LINENO: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
 
+Alternatively, you may set the environment variables NETHACK_PROXY_CFLAGS
+and NETHACK_PROXY_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&5
+echo "$as_me: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables NETHACK_PROXY_CFLAGS
+and NETHACK_PROXY_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&2;}
+   { (exit 1); exit 1; }; }
+else
+	NETHACK_PROXY_CFLAGS=$pkg_cv_NETHACK_PROXY_CFLAGS
+	NETHACK_PROXY_LIBS=$pkg_cv_NETHACK_PROXY_LIBS
+        echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+	:
+fi
 	else
 
-  succeeded=no
-
-  if test -z "$PKG_CONFIG"; then
-    # Extract the first word of "pkg-config", so it can be a program name with args.
-set dummy pkg-config; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  case $PKG_CONFIG in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-  test -z "$ac_cv_path_PKG_CONFIG" && ac_cv_path_PKG_CONFIG="no"
-  ;;
-esac
-fi
-PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+pkg_failed=no
+echo "$as_me:$LINENO: checking for NETHACK_PROXY" >&5
+echo $ECHO_N "checking for NETHACK_PROXY... $ECHO_C" >&6
 
 if test -n "$PKG_CONFIG"; then
-  echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
-echo "${ECHO_T}$PKG_CONFIG" >&6
+    if test -n "$NETHACK_PROXY_CFLAGS"; then
+        pkg_cv_NETHACK_PROXY_CFLAGS="$NETHACK_PROXY_CFLAGS"
+    else
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"nhproxy >= 0.9.0\"") >&5
+  ($PKG_CONFIG --exists --print-errors "nhproxy >= 0.9.0") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_NETHACK_PROXY_CFLAGS=`$PKG_CONFIG --cflags "nhproxy >= 0.9.0" 2>/dev/null`
 else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
+  pkg_failed=yes
+fi
+    fi
+else
+	pkg_failed=untried
+fi
+if test -n "$PKG_CONFIG"; then
+    if test -n "$NETHACK_PROXY_LIBS"; then
+        pkg_cv_NETHACK_PROXY_LIBS="$NETHACK_PROXY_LIBS"
+    else
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"nhproxy >= 0.9.0\"") >&5
+  ($PKG_CONFIG --exists --print-errors "nhproxy >= 0.9.0") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_NETHACK_PROXY_LIBS=`$PKG_CONFIG --libs "nhproxy >= 0.9.0" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+    fi
+else
+	pkg_failed=untried
 fi
 
-  fi
 
-  if test "$PKG_CONFIG" = "no" ; then
-     echo "*** The pkg-config script could not be found. Make sure it is"
-     echo "*** in your path, or set the PKG_CONFIG environment variable"
-     echo "*** to the full path to pkg-config."
-     echo "*** Or see http://www.freedesktop.org/software/pkgconfig to get pkg-config."
-  else
-     PKG_CONFIG_MIN_VERSION=0.9.0
-     if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
-        echo "$as_me:$LINENO: checking for nhproxy >= 0.9.0" >&5
-echo $ECHO_N "checking for nhproxy >= 0.9.0... $ECHO_C" >&6
 
-        if $PKG_CONFIG --exists "nhproxy >= 0.9.0" ; then
-            echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6
-            succeeded=yes
+if test $pkg_failed = yes; then
 
-            echo "$as_me:$LINENO: checking NETHACK_PROXY_CFLAGS" >&5
-echo $ECHO_N "checking NETHACK_PROXY_CFLAGS... $ECHO_C" >&6
-            NETHACK_PROXY_CFLAGS=`$PKG_CONFIG --cflags "nhproxy >= 0.9.0"`
-            echo "$as_me:$LINENO: result: $NETHACK_PROXY_CFLAGS" >&5
-echo "${ECHO_T}$NETHACK_PROXY_CFLAGS" >&6
-
-            echo "$as_me:$LINENO: checking NETHACK_PROXY_LIBS" >&5
-echo $ECHO_N "checking NETHACK_PROXY_LIBS... $ECHO_C" >&6
-            NETHACK_PROXY_LIBS=`$PKG_CONFIG --libs "nhproxy >= 0.9.0"`
-            echo "$as_me:$LINENO: result: $NETHACK_PROXY_LIBS" >&5
-echo "${ECHO_T}$NETHACK_PROXY_LIBS" >&6
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        NETHACK_PROXY_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "nhproxy >= 0.9.0"`
         else
-            NETHACK_PROXY_CFLAGS=""
-            NETHACK_PROXY_LIBS=""
-            ## If we have a custom action on failure, don't print errors, but
-            ## do set a variable so people can do so.
-            NETHACK_PROXY_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "nhproxy >= 0.9.0"`
-
+	        NETHACK_PROXY_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "nhproxy >= 0.9.0"`
         fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$NETHACK_PROXY_PKG_ERRORS" >&5
 
-
-
-     else
-        echo "*** Your version of pkg-config is too old. You need version $PKG_CONFIG_MIN_VERSION or newer."
-        echo "*** See http://www.freedesktop.org/software/pkgconfig"
-     fi
-  fi
-
-  if test $succeeded = yes; then
-     :
-  else
-     :
-  fi
-
+	:
+elif test $pkg_failed = untried; then
+	:
+else
+	NETHACK_PROXY_CFLAGS=$pkg_cv_NETHACK_PROXY_CFLAGS
+	NETHACK_PROXY_LIBS=$pkg_cv_NETHACK_PROXY_LIBS
+        echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+	:
+fi
 	fi
 	if test -n "$NETHACK_PROXY_LIBS"; then
 	    CFLAGS="${CFLAGS} ${NETHACK_LIBPNG_CFLAGS}"
@@ -5186,7 +5279,7 @@ fi
 
 
 if test "$have_regex_h" = "yes"; then
-   echo "$as_me:$LINENO: checking for struct re_pattern_buffer" >&5
+  echo "$as_me:$LINENO: checking for struct re_pattern_buffer" >&5
 echo $ECHO_N "checking for struct re_pattern_buffer... $ECHO_C" >&6
 if test "${ac_cv_type_struct_re_pattern_buffer+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
@@ -5198,6 +5291,9 @@ cat confdefs.h >>conftest.$ac_ext
 cat >>conftest.$ac_ext <<_ACEOF
 /* end confdefs.h.  */
 $ac_includes_default
+	#include <regex.h>
+
+
 int
 main ()
 {
@@ -5267,6 +5363,9 @@ cat confdefs.h >>conftest.$ac_ext
 cat >>conftest.$ac_ext <<_ACEOF
 /* end confdefs.h.  */
 $ac_includes_default
+	#include <regex.h>
+
+
 int
 main ()
 {
@@ -7038,6 +7137,7 @@ s,@ac_ct_CHMOD@,$ac_ct_CHMOD,;t t
 s,@WINDRES@,$WINDRES,;t t
 s,@ac_ct_WINDRES@,$ac_ct_WINDRES,;t t
 s,@PKG_CONFIG@,$PKG_CONFIG,;t t
+s,@ac_pt_PKG_CONFIG@,$ac_pt_PKG_CONFIG,;t t
 s,@NETHACK__LIBPNG_CFLAGS@,$NETHACK__LIBPNG_CFLAGS,;t t
 s,@NETHACK__LIBPNG_LIBS@,$NETHACK__LIBPNG_LIBS,;t t
 s,@NETHACK_LIBPNG_CFLAGS@,$NETHACK_LIBPNG_CFLAGS,;t t

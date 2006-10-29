@@ -4,7 +4,7 @@ dnl Avoid AC_REVISION() because we check configure into CVS
 dnl and it will cause confusing revision numbers to be included
 dnl in configure if developers forget to check in configure.ac
 dnl before running bootstrap.sh and checking in configure.
-# $Revision: 1.5 $
+# $Revision: 1.6 $
 AC_CONFIG_SRCDIR(slamfaq.txt)
 AC_SUBST(SRCDIR,[../$srcdir/src])
 AC_CONFIG_AUX_DIR(sys/autoconf)
@@ -262,15 +262,20 @@ AC_CHECK_HEADER(regex.h, [have_regex_h=yes],[have_regex_h=no],/* TEST_REGEX */)
 
 dnl ------ Check for data types
 if test "$have_regex_h" = "yes"; then
-   AC_CHECK_TYPE(struct re_pattern_buffer,
-		 [AC_DEFINE(USE_REGEX_MATCH, [], [Use regular expressions])
-		  AC_DEFINE(GNU_REGEX, [], [GNU regex is available])
-		 ],
-		 [AC_CHECK_TYPE(regex_t,
-				[AC_DEFINE(USE_REGEX_MATCH, [], [Use regular expressions])
-				 AC_DEFINE(POSIX_REGEX, [], [Posix regex is available])
-				],,)
-		 ])	
+  AC_CHECK_TYPE(struct re_pattern_buffer,
+    [AC_DEFINE(USE_REGEX_MATCH, [], [Use regular expressions])
+     AC_DEFINE(GNU_REGEX, [], [GNU regex is available])
+    ],
+    [AC_CHECK_TYPE(regex_t,
+      [AC_DEFINE(USE_REGEX_MATCH, [], [Use regular expressions])
+	AC_DEFINE(POSIX_REGEX, [], [Posix regex is available])
+      ],,
+      [AC_INCLUDES_DEFAULT([])
+	#include <regex.h>
+      ])
+    ],[AC_INCLUDES_DEFAULT([])
+	#include <regex.h>
+      ])
 fi
 AC_CHECK_TYPE(void,,AC_DEFINE(NOVOID, [], [No void type available]))
 
