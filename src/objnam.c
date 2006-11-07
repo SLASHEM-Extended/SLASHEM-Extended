@@ -2931,7 +2931,7 @@ typfnd:
 
 #ifdef INVISIBLE_OBJECTS
 	if (isinvisible)
-	    otmp->oinvis = isinvisible > 0 && !always_visible(otmp);
+	    obj_set_oinvis(otmp, isinvisible > 0, FALSE);
 #endif
 
 	/* set eroded */

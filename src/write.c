@@ -163,7 +163,7 @@ found:
 	new_obj = mksobj(i, FALSE, FALSE);
 	new_obj->bknown = (paper->bknown && pen->bknown);
 #ifdef INVISIBLE_OBJECTS
-	new_obj->oinvis = paper->oinvis;
+	obj_set_oinvis(new_obj, paper->oinvis, FALSE);
 #endif
 
 	/* shk imposes a flat rate per use, not based on actual charges used */

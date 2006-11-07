@@ -2558,6 +2558,9 @@ E boolean FDECL(obj_resists, (struct obj *,int,int));
 E boolean FDECL(obj_shudders, (struct obj *));
 E void FDECL(do_osshock, (struct obj *));
 E void FDECL(puton_worn_item, (struct obj *));
+#ifdef INVISIBLE_OBJECTS
+E void FDECL(obj_set_oinvis, (struct obj *, BOOLEAN_P, BOOLEAN_P));
+#endif
 E struct obj *FDECL(poly_obj, (struct obj *, int));
 E int FDECL(bhito, (struct obj *,struct obj *));
 E int FDECL(bhitpile, (struct obj *,int (*)(OBJ_P,OBJ_P),int,int));

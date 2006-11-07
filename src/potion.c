@@ -2884,21 +2884,10 @@ dodip()
 #ifdef INVISIBLE_OBJECTS
 	if (!always_visible(obj)) {
 	    if (potion->otyp == POT_INVISIBILITY && !obj->oinvis) {
-		obj->oinvis = TRUE;
-		if (!Blind)
-		    pline(!See_invisible ? "Where did %s go?" :
-			  "Gee!  All of a sudden you can see right through %s.",
-			  the(xname(obj)));
+		obj_set_oinvis(obj, TRUE, TRUE);
 		goto poof;
 	    } else if (potion->otyp == POT_SEE_INVISIBLE && obj->oinvis) {
-		obj->oinvis = FALSE;
-		if (!Blind) {
-		    if (!See_invisible)
-			pline("So that's where %s went!", the(xname(obj)));
-		    else
-			You("can no longer see through %s.",
-				the(xname(obj)));
-		}
+		obj_set_oinvis(obj, FALSE, TRUE);
 		goto poof;
 	    }
 	}

@@ -132,6 +132,7 @@ Autoconf improvements:
 -fixed bug 1569015: Redundant code in percent_success()
 -fixed bug 1583978: Grammer error in broken celibacy message
 -fixed bug 1375796: X11 link option missing
+-fixed bug 1444749: character wearing invisible blindfold can't see
 
 See history.txt for changes made in previous versions.
 
