@@ -133,6 +133,8 @@ Autoconf improvements:
 -fixed bug 1583978: Grammer error in broken celibacy message
 -fixed bug 1375796: X11 link option missing
 -fixed bug 1444749: character wearing invisible blindfold can't see
+-fixed bug 1549137: Technique cutthroat is effective to no-head monster
+		    (Michael DiPietro)
 
 See history.txt for changes made in previous versions.
 
