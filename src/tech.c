@@ -805,39 +805,41 @@ int tech_no;
 		break;
 	    case T_CUTTHROAT:
 		if (!is_blade(uwep)) {
-			You("need a blade to perform cutthroat!");
-			return (0);
+		    You("need a blade to perform cutthroat!");
+		    return 0;
 		}
-	    	if (!getdir((char *)0)) return(0);
+	    	if (!getdir((char *)0)) return 0;
 		if (!u.dx && !u.dy) {
-			/* Hopefully a mistake ;B */
-			pline("Things may be going badly,  but that's extreme.");
-			return(0);
+		    /* Hopefully a mistake ;B */
+		    pline("Things may be going badly, but that's extreme.");
+		    return 0;
 		}
 		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 		if (!mtmp) {
-			You("attack...nothing!");
-			return (0);
+		    You("attack...nothing!");
+		    return 0;
 		} else {
-			int oldhp = mtmp->mhp;
-			
-			if (!attack(mtmp)) return(0);
-			if (!DEADMONSTER(mtmp) && mtmp->mhp < oldhp) {
-				int tmp = 0;
-				if (!has_head(mtmp->data) || u.uswallow) {
-					You("can't perform cutthroat on %s!",mon_nam(mtmp));
-				}
-				if (rn2(5) < (techlev(tech_no)/10 + 1)) {
-					You("sever %s head!", s_suffix(mon_nam(mtmp)));
-					tmp = mtmp->mhp;
-				} else {
-					You("hurt %s badly!", s_suffix(mon_nam(mtmp)));
-					tmp = mtmp->mhp / 2;
-				}
-				tmp += techlev(tech_no);
-				t_timeout = rn1(1000,500);
-				hurtmon(mtmp, tmp);
+		    int oldhp = mtmp->mhp;
+
+		    if (!attack(mtmp)) return 0;
+		    if (!DEADMONSTER(mtmp) && mtmp->mhp < oldhp) {
+			if (!has_head(mtmp->data) || u.uswallow)
+			    You_cant("perform cutthroat on %s!", mon_nam(mtmp));
+			else {
+			    int tmp = 0;
+
+			    if (rn2(5) < (techlev(tech_no)/10 + 1)) {
+				You("sever %s head!", s_suffix(mon_nam(mtmp)));
+				tmp = mtmp->mhp;
+			    } else {
+				You("hurt %s badly!", s_suffix(mon_nam(mtmp)));
+				tmp = mtmp->mhp / 2;
+			    }
+			    tmp += techlev(tech_no);
+			    t_timeout = rn1(1000,500);
+			    hurtmon(mtmp, tmp);
 			}
+		    }
 		}
 		break;
 	    case T_BLESSING:
