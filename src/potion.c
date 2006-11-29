@@ -2751,27 +2751,7 @@ dodip()
 	/* WAC - Finn Theoderson - make polymorph and gain level msgs similar
 	 * 	 Give out name of new object and allow user to name the potion
 	 */
-	/* KMH, balance patch -- idea by Dylan O'Donnell <dylanw@demon.net> */
-	else if (potion->otyp == POT_GAIN_LEVEL) {
-	    res = upgrade_obj(obj);
-
-	    if (res != 0) {
-
-		if (res == 1) { 
-		     /* The object was upgraded */
-		     pline("Hmm!  You don't recall dipping that into the potion.");
-		     prinv((char *)0, obj, 0L);
-		} /* else potion exploded */
-		if (!objects[potion->otyp].oc_name_known &&
-			!objects[potion->otyp].oc_uname)
-		    docall(potion);
-		useup(potion);
-		update_inventory();
-		exercise(A_WIS, TRUE);
-		return(1);
-	    }
-	    /* no return here, go for Interesting... message */
-	} else if (obj->otyp == POT_POLYMORPH ||
+	else if (obj->otyp == POT_POLYMORPH ||
 		potion->otyp == POT_POLYMORPH) {
 	    /* some objects can't be polymorphed */
 	    if (obj->otyp == potion->otyp ||	/* both POT_POLY */
@@ -2975,6 +2955,23 @@ dodip()
 	    makeknown(potion->otyp);
 	    useup(potion);
 	    return 1;
+	} else if (potion->otyp == POT_GAIN_LEVEL) {
+	    res = upgrade_obj(obj);
+	    if (res != 0) {
+		if (res == 1) {
+		    /* The object was upgraded */
+		    pline("Hmm!  You don't recall dipping that into the potion.");
+		    prinv((char *)0, obj, 0L);
+		} /* else potion exploded */
+		if (!objects[potion->otyp].oc_name_known &&
+			!objects[potion->otyp].oc_uname)
+		    docall(potion);
+		useup(potion);
+		update_inventory();
+		exercise(A_WIS, TRUE);
+		return 1;
+	    }
+	    /* no return here, go for Interesting... message */
 	}
 
 	/* KMH, balance patch -- acid affects damage(proofing) */
