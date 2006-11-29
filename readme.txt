@@ -135,6 +135,7 @@ Autoconf improvements:
 -fixed bug 1444749: character wearing invisible blindfold can't see
 -fixed bug 1549137: Technique cutthroat is effective to no-head monster
 		    (Michael DiPietro)
+-fixed bug 1288590: Potion of hallucination cannot be identified by drinking
 
 See history.txt for changes made in previous versions.
 

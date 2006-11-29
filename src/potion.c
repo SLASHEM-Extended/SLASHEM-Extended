@@ -479,6 +479,7 @@ peffects(otmp)
 		break;
 	case POT_HALLUCINATION:
 		if (Hallucination || Halluc_resistance) nothing++;
+		else makeknown(otmp->otyp);
 		(void) make_hallucinated(itimeout_incr(HHallucination,
 					   rn1(200, 600 - 300 * bcsign(otmp))),
 				  TRUE, 0L);
