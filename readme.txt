@@ -93,6 +93,7 @@ ver 0.0.7E7F3 [?] [Released by ?]
 -fixed bug 1549137: Technique cutthroat is effective to no-head monster
 		    (Michael DiPietro)
 -fixed bug 1288590: Potion of hallucination cannot be identified by drinking
+-fixed bug 1482524: alchemy with gain level asymmetric (Michael DiPietro)
 
 See history.txt for changes made in previous versions.
 
