@@ -94,6 +94,7 @@ ver 0.0.7E7F3 [?] [Released by ?]
 		    (Michael DiPietro)
 -fixed bug 1288590: Potion of hallucination cannot be identified by drinking
 -fixed bug 1482524: alchemy with gain level asymmetric (Michael DiPietro)
+-fixed bug 1546379: Fedora & charisma (Michael DiPietro)
 
 See history.txt for changes made in previous versions.
 
