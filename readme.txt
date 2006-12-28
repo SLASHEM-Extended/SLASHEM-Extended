@@ -140,6 +140,7 @@ Autoconf improvements:
 -fixed bug 1546379: Fedora & charisma (Michael DiPietro)
 -Actioned feature request 1504905: Add french translation of manual page
 		    (Rémi Delrue)
+-fixed bug 1380333: Random seed problem (0.0.8)
 
 See history.txt for changes made in previous versions.
 

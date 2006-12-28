@@ -202,21 +202,6 @@ typedef xchar	boolean;		/* 0 or 1 */
 #endif
 #endif
 
-#ifdef AUTOCONF
-/*
- * When using GNU autoconf to configure, the switches are output to
- * autoconf.h which should override the defaults set earlier in
- * config.h and *conf.h
- */
-#include "autoconf.h"
-#if HAVE_STRING_H
-#include <string.h>
-#endif
-#if HAVE_DECL_STRNICMP && !HAVE_DECL_STRNCMPI
-#define strncmpi(a,b,c) strnicmp(a,b,c)
-#endif
-#endif
-
 #ifndef FILE_AREAS
 
 #define fopen_datafile_area(area, filename, mode, use_spfx) \

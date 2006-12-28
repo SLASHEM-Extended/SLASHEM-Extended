@@ -9,6 +9,21 @@
 
 #define E extern
 
+#ifdef AUTOCONF
+/*
+ * When using GNU autoconf to configure, the switches are output to
+ * autoconf.h which should override the defaults set earlier in
+ * config.h and *conf.h
+ */
+#include "autoconf.h"
+#if HAVE_STRING_H
+#include <string.h>
+#endif
+#if HAVE_DECL_STRNICMP && !HAVE_DECL_STRNCMPI
+#define strncmpi(a,b,c) strnicmp(a,b,c)
+#endif
+#endif
+
 /* some old <sys/types.h> may not define off_t and size_t; if your system is
  * one of these, define them by hand below
  */
