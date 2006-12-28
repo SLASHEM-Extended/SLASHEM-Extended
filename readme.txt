@@ -138,6 +138,8 @@ Autoconf improvements:
 -fixed bug 1288590: Potion of hallucination cannot be identified by drinking
 -fixed bug 1482524: alchemy with gain level asymmetric (Michael DiPietro)
 -fixed bug 1546379: Fedora & charisma (Michael DiPietro)
+-Actioned feature request 1504905: Add french translation of manual page
+		    (Rémi Delrue)
 
 See history.txt for changes made in previous versions.
 
@@ -274,7 +276,7 @@ Thanks to Kevin Hugo (hugo@cae.wisc.edu), the previous Macintosh
 maintainer and the author of many changes, who has had to move on to
 other projects.
 
-Thanks to Dirk Sch�nberger (shoenberger@signsoft.com), who worked on
+Thanks to Dirk Schönberger (shoenberger@signsoft.com), who worked on
 the Qt and Linux ports.
 
 Thanks to Ben Olmstead for mirroring the homepage.
