@@ -3055,7 +3055,7 @@ typfnd:
 		/* (do this adjustment before setting up object's weight) */
 		consume_oeaten(otmp, 1);
 	}
-	if (isdrained && otmp->otyp == CORPSE) {
+	if (isdrained && otmp->otyp == CORPSE && mons[otmp->corpsenm].cnutrit) {
 		int amt;
 		otmp->odrained = 1;
 		amt = mons[otmp->corpsenm].cnutrit - drainlevel(otmp);

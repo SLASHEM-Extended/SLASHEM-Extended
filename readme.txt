@@ -98,6 +98,7 @@ ver 0.0.7E7F3 [?] [Released by ?]
 -Actioned feature request 1504905: Add french translation of manual page
 		    (Rémi Delrue)
 -fixed bug 1624174: koala bugs steed
+-fixed bug 1539448: rotten wraith corpses GPF
 
 See history.txt for changes made in previous versions.
 
