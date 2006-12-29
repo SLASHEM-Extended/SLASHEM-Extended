@@ -146,6 +146,7 @@ Autoconf improvements:
 -fixed bug 1521400: Dungeon collapsed returning to full level
 -fixed bug 1211513: Upgraded objects retain names, even artifact names
 -fixed bug 1554633: lichen, grown on a dead pet corpse, inherits pet's name
+-fixed bug 1521471: Medical kit contents can leak
 
 See history.txt for changes made in previous versions.
 

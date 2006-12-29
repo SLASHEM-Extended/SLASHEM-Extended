@@ -913,6 +913,8 @@ meatobj(mtmp)		/* for gelatinous cubes */
 		    mtmp->mhp += objects[otmp->otyp].oc_weight;
 		    if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 		}
+		if (otmp->otyp == MEDICAL_KIT)
+		    delete_contents(otmp);
 		if (Has_contents(otmp)) {
 		    register struct obj *otmp3;
 		    /* contents of eaten containers become engulfed; this
