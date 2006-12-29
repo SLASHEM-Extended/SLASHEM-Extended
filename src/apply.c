@@ -2904,177 +2904,23 @@ struct obj *obj;
 }
 
 
-/* KMH, balance patch -- Distance attacks by pole-weapons */
-/* WAC -- Range limited by skill */
-static int
-use_pole(obj)
-	struct obj *obj;
-{
-	int res = 0, max_range = 8, min_range;
-	coord cc;
-	struct monst *mtmp;
-	struct obj *otmp;
-	boolean fishing;
-
-
-	/* Are you allowed to use the pole? */
-	if (u.uswallow) {
-		pline("There's not enough room here to use that.");
-		return (0);
-	}
-	if (obj != uwep) {
-	    if (!wield_tool(obj, "swing")) return(0);
-	    else res = 1;
-	}
-
-	/* Prompt for a location */
-	pline("Where do you want to hit?");
-	cc.x = u.ux;
-	cc.y = u.uy;
-	getpos(&cc, TRUE, "the spot to hit");
-	if (cc.x == -10) return (0); /* user pressed esc */
-
-#ifdef WEAPON_SKILLS
-	/* WAC -- range depends on skill.  Default is 8 */
-	if (weapon_type(obj) == P_NONE) max_range = 4;
-	else if (P_SKILL(weapon_type(obj)) <= P_BASIC) max_range = 4;
-	else if (P_SKILL(weapon_type(obj)) <= P_SKILLED) max_range = 5;
-#endif
-	
-	min_range = ((obj->otyp == FISHING_POLE) ? 1 : 4);
-
-	if (distu(cc.x, cc.y) > max_range) {
-		pline("Too far!");
-		return (res);
-	} else if (distu(cc.x, cc.y) < min_range) {
-		pline("Too close!");
-		return (res);
-	} else if (!cansee(cc.x, cc.y)) {
-		You("won't hit anything if you can't see that spot.");
-		return (res);
-	}
-
-	/* What is there? */
-	mtmp = m_at(cc.x, cc.y);
-	fishing = (obj->otyp == FISHING_POLE) && is_pool(cc.x, cc.y);
-
-	/* Try a random effect */
-	switch (rnd(6))
-	{
-		case 1:
-			/* Snag yourself */
-			if (obj->otyp == FISHING_POLE) {
-				You("hook yourself!");
-				losehp(rn1(10,10), "a fishing hook", KILLED_BY);
-				return (1);
-			}
-			break;
-		case 2:
-			/* Reel in a fish */
-			if (fishing && mtmp) {
-				if ((bigmonst(mtmp->data) || strongmonst(mtmp->data))
-						&& !rn2(2)) {
-					You("are yanked toward the %s",
-							surface(cc.x, cc.y));
-					hurtle(sgn(cc.x-u.ux), sgn(cc.y-u.uy), 1, TRUE);
-					return (1);
-				} else if (enexto(&cc, u.ux, u.uy, 0)) {
-					You("reel in %s!", mon_nam(mtmp));
-					mtmp->mundetected = 0;
-					rloc_to(mtmp, cc.x, cc.y);
-					return (1);
-				}
-			}
-			break;
-		case 3:
-			/* Snag an existing object */
-			if (obj->otyp == FISHING_POLE &&
-					(otmp = level.objects[cc.x][cc.y]) !=
-					(struct obj *)0) {
-				You("snag an object from the %s!", surface(cc.x, cc.y));
-				pickup_object(otmp, 1, FALSE);
-				/* If pickup fails, leave it alone */
-				newsym(cc.x, cc.y);
-				return (1);
-			}
-			break;
-		case 4:
-			/* Snag some garbage */
-			if (fishing && flags.boot_count < 1 &&
-					(otmp = mksobj(LOW_BOOTS, TRUE, FALSE)) !=
-					(struct obj *)0) {
-				flags.boot_count++;
-				You("snag some garbage from the %s!",
-						surface(cc.x, cc.y));
-				if (pickup_object(otmp, 1, FALSE) <= 0) {
-					obj_extract_self(otmp);
-					place_object(otmp, u.ux, u.uy);
-					newsym(u.ux, u.uy);
-				}
-				return (1);
-			}
-#ifdef SINKS
-			/* Or a rat in the sink/toilet */
-			if (obj->otyp == FISHING_POLE &&
-					!(mvitals[PM_SEWER_RAT].mvflags & G_GONE) &&
-					(IS_SINK(levl[cc.x][cc.y].typ) ||
-					IS_TOILET(levl[cc.x][cc.y].typ))) {
-				mtmp = makemon(&mons[PM_SEWER_RAT],
-						cc.x, cc.y, NO_MM_FLAGS);
-				pline("Eek!  There's %s there!",
-					Blind ? "something squirmy" :
-					a_monnam(mtmp));
-				return (1);
-			}
-#endif
-			break;
-		case 5:
-			/* Catch your dinner */
-			if (fishing &&
-					(otmp = mksobj(CRAM_RATION, TRUE, FALSE)) !=
-					(struct obj *)0) {
-				You("catch tonight's dinner!");
-				if (pickup_object(otmp, 1, FALSE) <= 0) {
-					obj_extract_self(otmp);
-					place_object(otmp, u.ux, u.uy);
-					newsym(u.ux, u.uy);
-				}
-				return (1);
-			}
-			break;
-		default:
-		case 6:
-			/* Untrap */
-			/* FIXME -- needs to deal with non-adjacent traps */
-			break;
-	}
-
-	/* The effect didn't apply.  Attack whatever is there. */
-	if (mtmp) {
-		(void) thitmonst(mtmp, uwep, 1);
-		return (1);
-	}
-
-	pline(nothing_happens);
-	return (1);
-}
-
-
 static const char
 	not_enough_room[] = "There's not enough room here to use that.",
 	where_to_hit[] = "Where do you want to hit?",
 	cant_see_spot[] = "won't hit anything if you can't see that spot.",
 	cant_reach[] = "can't reach that spot from here.";
 
-#if 0
 /* Distance attacks by pole-weapons */
 STATIC_OVL int
 use_pole (obj)
 	struct obj *obj;
 {
-	int res = 0, typ, max_range = 4, min_range = 4;
+	int res = 0, typ, max_range;
+	int min_range = obj->otyp == FISHING_POLE ? 1 : 4;
 	coord cc;
 	struct monst *mtmp;
+	struct obj *otmp;
+	boolean fishing;
 
 
 	/* Are you allowed to use the pole? */
@@ -3086,7 +2932,6 @@ use_pole (obj)
 	    if (!wield_tool(obj, "swing")) return(0);
 	    else res = 1;
 	}
-     /* assert(obj == uwep); */
 
 	/* Prompt for a location */
 	pline(where_to_hit);
@@ -3095,11 +2940,16 @@ use_pole (obj)
 	if (getpos(&cc, TRUE, "the spot to hit") < 0)
 	    return 0;	/* user pressed ESC */
 
+#ifdef WEAPON_SKILLS
 	/* Calculate range */
-	typ = uwep_skill_type();
+	typ = weapon_type(obj);
 	if (typ == P_NONE || P_SKILL(typ) <= P_BASIC) max_range = 4;
-	else if (P_SKILL(typ) == P_SKILLED) max_range = 5;
+	else if (P_SKILL(typ) <= P_SKILLED) max_range = 5;
 	else max_range = 8;
+#else
+	max_range = 8;
+#endif
+
 	if (distu(cc.x, cc.y) > max_range) {
 	    pline("Too far!");
 	    return (res);
@@ -3114,13 +2964,98 @@ use_pole (obj)
 	} else if (!couldsee(cc.x, cc.y)) { /* Eyes of the Overworld */
 	    You(cant_reach);
 	    return res;
-	} else if (!couldsee(cc.x, cc.y)) { /* Eyes of the Overworld */
-	    You(cant_reach);
-	    return res;
 	}
 
-	/* Attack the monster there */
-	if ((mtmp = m_at(cc.x, cc.y)) != (struct monst *)0) {
+	/* What is there? */
+	mtmp = m_at(cc.x, cc.y);
+
+	if (obj->otyp == FISHING_POLE) {
+	    fishing = is_pool(cc.x, cc.y);
+	    /* Try a random effect */
+	    switch (rnd(6))
+	    {
+		case 1:
+		    /* Snag yourself */
+		    You("hook yourself!");
+		    losehp(rn1(10,10), "a fishing hook", KILLED_BY);
+		    return 1;
+		case 2:
+		    /* Reel in a fish */
+		    if (mtmp) {
+			if ((bigmonst(mtmp->data) || strongmonst(mtmp->data))
+				&& !rn2(2)) {
+			    You("are yanked toward the %s", surface(cc.x,cc.y));
+			    hurtle(sgn(cc.x-u.ux), sgn(cc.y-u.uy), 1, TRUE);
+			    return 1;
+			} else if (enexto(&cc, u.ux, u.uy, 0)) {
+			    You("reel in %s!", mon_nam(mtmp));
+			    mtmp->mundetected = 0;
+			    rloc_to(mtmp, cc.x, cc.y);
+			    return 1;
+			}
+		    }
+		    break;
+		case 3:
+		    /* Snag an existing object */
+		    if ((otmp = level.objects[cc.x][cc.y]) != (struct obj *)0) {
+			You("snag an object from the %s!", surface(cc.x, cc.y));
+			pickup_object(otmp, 1, FALSE);
+			/* If pickup fails, leave it alone */
+			newsym(cc.x, cc.y);
+			return 1;
+		    }
+		    break;
+		case 4:
+		    /* Snag some garbage */
+		    if (fishing && flags.boot_count < 1 &&
+			    (otmp = mksobj(LOW_BOOTS, TRUE, FALSE)) !=
+			    (struct obj *)0) {
+			flags.boot_count++;
+			You("snag some garbage from the %s!",
+				surface(cc.x, cc.y));
+			if (pickup_object(otmp, 1, FALSE) <= 0) {
+			    obj_extract_self(otmp);
+			    place_object(otmp, u.ux, u.uy);
+			    newsym(u.ux, u.uy);
+			}
+			return 1;
+		    }
+#ifdef SINKS
+		    /* Or a rat in the sink/toilet */
+		    if (!(mvitals[PM_SEWER_RAT].mvflags & G_GONE) &&
+			    (IS_SINK(levl[cc.x][cc.y].typ) ||
+			    IS_TOILET(levl[cc.x][cc.y].typ))) {
+			mtmp = makemon(&mons[PM_SEWER_RAT], cc.x, cc.y,
+				NO_MM_FLAGS);
+			pline("Eek!  There's %s there!",
+				Blind ? "something squirmy" : a_monnam(mtmp));
+			return 1;
+		    }
+#endif
+		    break;
+		case 5:
+		    /* Catch your dinner */
+		    if (fishing && (otmp = mksobj(CRAM_RATION, TRUE, FALSE)) !=
+			    (struct obj *)0) {
+			You("catch tonight's dinner!");
+			if (pickup_object(otmp, 1, FALSE) <= 0) {
+			    obj_extract_self(otmp);
+			    place_object(otmp, u.ux, u.uy);
+			    newsym(u.ux, u.uy);
+			}
+			return 1;
+		    }
+		    break;
+		default:
+		case 6:
+		    /* Untrap */
+		    /* FIXME -- needs to deal with non-adjacent traps */
+		    break;
+	    }
+	}
+
+	/* The effect didn't apply.  Attack the monster there. */
+	if (mtmp) {
 	    int oldhp = mtmp->mhp;
 
 	    bhitpos = cc;
@@ -3137,7 +3072,6 @@ use_pole (obj)
 	    pline(nothing_happens);
 	return (1);
 }
-#endif
 
 STATIC_OVL int
 use_cream_pie(obj)
