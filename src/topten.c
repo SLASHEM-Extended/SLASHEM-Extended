@@ -256,14 +256,11 @@ writeentry(rfile,tt)
 FILE *rfile;
 struct toptenentry *tt;
 {
-	char *cp = NULL;
-
 #ifdef RECORD_CONDUCT
+	char *cp = eos(tt->death);
+
 	/* Add a trailing " Conduct=%d" to tt->death */
-	if(tt->conduct != 4095) {
-		cp = tt->death + strlen(tt->death);
-		Sprintf(cp, " Conduct=%d", tt->conduct);
-	}
+	Sprintf(cp, " Conduct=%d", tt->conduct);
 #endif
 
 #ifdef NO_SCAN_BRACK
@@ -302,8 +299,7 @@ struct toptenentry *tt;
 
 #ifdef RECORD_CONDUCT
 	/* Return the tt->death line to the original form */
-	if(cp)
-		*cp = '\0';
+	*cp = '\0';
 #endif
 }
 

@@ -104,6 +104,7 @@ ver 0.0.7E7F3 [?] [Released by ?]
 -fixed bug 1554633: lichen, grown on a dead pet corpse, inherits pet's name
 -fixed bug 1521471: Medical kit contents can leak
 -fixed bug 1609542: Reaper + eyes of overworld
+-fixed bug 1503394: Conduct= is not always written to logfile
 
 See history.txt for changes made in previous versions.
 
