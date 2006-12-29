@@ -99,6 +99,7 @@ ver 0.0.7E7F3 [?] [Released by ?]
 		    (Rémi Delrue)
 -fixed bug 1624174: koala bugs steed
 -fixed bug 1539448: rotten wraith corpses GPF
+-fixed bug 1521400: Dungeon collapsed returning to full level
 
 See history.txt for changes made in previous versions.
 

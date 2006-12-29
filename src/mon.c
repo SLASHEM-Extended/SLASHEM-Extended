@@ -1504,6 +1504,7 @@ m_detach(mtmp, mptr)
 struct monst *mtmp;
 struct permonst *mptr;	/* reflects mtmp->data _prior_ to mtmp's death */
 {
+	mon_stop_timers(mtmp);
 	if (mtmp->mleashed) m_unleash(mtmp, FALSE);
 	    /* to prevent an infinite relobj-flooreffects-hmon-killed loop */
 	mtmp->mtrapped = 0;
