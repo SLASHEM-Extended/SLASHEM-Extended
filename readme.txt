@@ -97,6 +97,7 @@ ver 0.0.7E7F3 [?] [Released by ?]
 -fixed bug 1546379: Fedora & charisma (Michael DiPietro)
 -Actioned feature request 1504905: Add french translation of manual page
 		    (Rémi Delrue)
+-fixed bug 1624174: koala bugs steed
 
 See history.txt for changes made in previous versions.
 
