@@ -2149,6 +2149,7 @@ E void NDECL(run_timers);
 E void FDECL(obj_move_timers, (struct obj *, struct obj *));
 E void FDECL(obj_split_timers, (struct obj *, struct obj *));
 E void FDECL(obj_stop_timers, (struct obj *));
+E void FDECL(mon_stop_timers, (struct monst *));
 E boolean FDECL(obj_is_local, (struct obj *));
 E void FDECL(save_timers, (int,int,int));
 E void FDECL(restore_timers, (int,int,BOOLEAN_P,long));

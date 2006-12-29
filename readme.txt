@@ -143,6 +143,7 @@ Autoconf improvements:
 -fixed bug 1380333: Random seed problem (0.0.8)
 -fixed bug 1624174: koala bugs steed
 -fixed bug 1539448: rotten wraith corpses GPF
+-fixed bug 1521400: Dungeon collapsed returning to full level
 
 See history.txt for changes made in previous versions.
 
