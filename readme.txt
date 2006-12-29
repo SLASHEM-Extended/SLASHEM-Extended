@@ -145,6 +145,7 @@ Autoconf improvements:
 -fixed bug 1539448: rotten wraith corpses GPF
 -fixed bug 1521400: Dungeon collapsed returning to full level
 -fixed bug 1211513: Upgraded objects retain names, even artifact names
+-fixed bug 1554633: lichen, grown on a dead pet corpse, inherits pet's name
 
 See history.txt for changes made in previous versions.
 
