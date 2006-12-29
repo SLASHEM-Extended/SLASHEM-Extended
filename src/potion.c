@@ -2182,6 +2182,7 @@ register struct obj *obj;
 	long owornmask;
 	struct obj *otmp;
 	boolean explodes;
+	char buf[BUFSZ];
 
 	/* Check to see if object is valid */
 	if (!obj)
@@ -2511,6 +2512,19 @@ register struct obj *obj;
 		default:
 			/* This object is not upgradable */
 			return 0;
+	}
+
+	if (artifact_name(ONAME(obj), &otyp2) && otyp2 == obj->otyp) {
+	    int n;
+	    char c1, c2;
+
+	    Strcpy(buf, ONAME(obj));
+	    n = rn2((int)strlen(buf));
+	    c1 = lowc(buf[n]);
+	    do c2 = 'a' + rn2('z'-'a'); while (c1 == c2);
+	    buf[n] = (buf[n] == c1) ? c2 : highc(c2);  /* keep same case */
+	    if (oname(obj, buf) != obj)
+		panic("upgrade_obj: unhandled realloc");
 	}
 
 	if ((!carried(obj) || obj->unpaid) &&
