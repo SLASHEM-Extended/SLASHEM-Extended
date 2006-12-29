@@ -1772,6 +1772,8 @@ physical:
 			!(mdef->data->geno & G_UNIQ) &&
 			(magr->mtame || mdef->mtame)) {
 		    if (vis) pline("%s looks calmer.", Monnam(mdef));
+		    if (mdef == u.usteed)
+			dismount_steed(DISMOUNT_THROWN);
 		    mdef->mpeaceful = 1;
 		    mdef->mtame = 0;
 		    tmp = 0;
