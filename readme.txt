@@ -100,6 +100,7 @@ ver 0.0.7E7F3 [?] [Released by ?]
 -fixed bug 1624174: koala bugs steed
 -fixed bug 1539448: rotten wraith corpses GPF
 -fixed bug 1521400: Dungeon collapsed returning to full level
+-fixed bug 1211513: Upgraded objects retain names, even artifact names
 
 See history.txt for changes made in previous versions.
 
