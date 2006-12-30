@@ -6,7 +6,7 @@
 |                           A Nethack Variant                            |
 | Courtesy of the Slash'EM development team with the efforts and support |
 | of countless others, especially the slashem-devel mailing list.        |
-|                                                             (1997-2004)|
+|                                                             (1997-2007)|
 +------------------------------------------------------------------------+
 | Nethack is Copyright 1985-2003                                         |
 |            By Stichting Mathematisch Centrum and M. Stephenson.        |
@@ -28,6 +28,47 @@
 +-----------------------------+
 | Section 1: Yesterday's News |
 +-----------------------------+
+
+ver 0.0.7E7F3 [December 30/2006] [Released by Ali]
+-inserted missing #ifdef resulting in compilation of pure ansi tty version for DOS failure.
+-fixed bug 1461660: Misaligned door
+-fixed bug 1449238: #youpoly takes a turn when denied
+-fixed bug 1432473: help for Luggage shows help for Lug/Lugh
+-fixed bug 1428520: Poisoned ID'd weapon gives description as well as ID
+-fixed bug 1375292: help for wombat shows text for bat
+-fixed bug 1375286: pummel strikes nothing, inside ochre jelly
+-fixed bug 1355891: Cannot wish for multiple potions of vampire blood
+-fixed bug 1314114: Shopkeepers cant see Shirts through invisible armour
+-fixed bug 1304954: You can Name the Sword of Balance
+-fixed bug 1223533: Typo error in the Install.X11 file
+-fixed bug 1407275: Wrong weight of medical kits
+-fixed bug 1213658: Death message missing with gas spore explosion when blind
+-fixed bug 1291161: #force command doesn't work on locked box
+-fixed bug 1223632: #force on shop doors
+-fixed bug 879247: gender & alignment select dont focus on "random" button
+-fixed bug 943553: Eating off floor while levitating
+-fixed bug 1432411: Knew the colour of a potion thrown on me, when blind
+-fixed bug 1449159: DEFAULT_WINDOW_SYS wrong if only X11 enabled
+-fixed bug 1400802: wax golems don't emit light
+-fixed bug 1586216: USE_REGEX_MATCH fails on Solaris 10
+-fixed bug 1583978: Grammer error in broken celibacy message
+-fixed bug 1549137: Technique cutthroat is effective to no-head monster
+		    (Michael DiPietro)
+-fixed bug 1288590: Potion of hallucination cannot be identified by drinking
+-fixed bug 1482524: alchemy with gain level asymmetric (Michael DiPietro)
+-fixed bug 1546379: Fedora & charisma (Michael DiPietro)
+-Actioned feature request 1504905: Add french translation of manual page
+		    (Rémi Delrue)
+-fixed bug 1624174: koala bugs steed
+-fixed bug 1539448: rotten wraith corpses GPF
+-fixed bug 1521400: Dungeon collapsed returning to full level
+-fixed bug 1211513: Upgraded objects retain names, even artifact names
+-fixed bug 1554633: lichen, grown on a dead pet corpse, inherits pet's name
+-fixed bug 1521471: Medical kit contents can leak
+-fixed bug 1609542: Reaper + eyes of overworld
+-fixed bug 1503394: Conduct= is not always written to logfile
+-fixed bug 1558274: Light source weapons not working properly
+-fixed bug 1602002: dmonsfree when using travel command & burdened
 
 ver 0.0.7E7F2 [December 4/2005] [Released by Ali]
 -fixed bug 1232707: engraving with lightsabers
