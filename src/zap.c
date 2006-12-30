@@ -1011,7 +1011,7 @@ register struct obj *obj;
 	unbless(obj);
 	uncurse(obj);
 #ifdef INVISIBLE_OBJECTS
-	if (obj->oinvis) obj->oinvis = 0;
+	obj_set_oinvis(obj, FALSE, FALSE);
 #endif
 	return;
 }
@@ -1342,6 +1342,53 @@ struct obj *obj;
 	    break;
     }
 }
+
+#ifdef INVISIBLE_OBJECTS
+void
+obj_set_oinvis(obj, oinvis, talk)
+struct obj *obj;
+boolean oinvis, talk;
+{
+    boolean was_blind = Blind, sight_changed = FALSE;
+    xchar ox, oy;
+
+    if (always_visible(obj))
+	oinvis = FALSE;
+    if (obj->oinvis != oinvis) {
+	obj->oinvis = oinvis;
+	if (obj->where == OBJ_FLOOR)
+	    newsym(obj->ox, obj->oy);
+	if (Blind && !was_blind) {
+	    sight_changed = TRUE;
+	    /* set ball&chain variables before the hero goes blind */
+	    if (Punished) set_bc(0);
+	} else if (was_blind && !Blind)
+	    sight_changed = TRUE;
+	if (sight_changed) {
+	    /* blindness has just been toggled */
+	    if (Blind_telepat || Infravision) see_monsters();
+	    vision_full_recalc = 1;	/* recalc vision limits */
+	    flags.botl = 1;
+	} else if (talk &&
+		!(get_obj_location(obj, &ox, &oy, 0) && cansee(ox, oy)))
+	    talk = FALSE;		/* No visible effect */
+	if (talk) {
+	    /*
+	     * [ALI] Use the "see through" idiom if hero's sight changed
+	     * (implies object is ublindf), or if they can see invisible.
+	     */
+	    if (!sight_changed && !See_invisible)
+		pline(oinvis ? "Where did %s go?" : "So that's where %s went!",
+		      yname(obj));
+	    else if (oinvis)
+		pline("Gee!  All of a sudden you can see right through %s.",
+		      yname(obj));
+	    else
+		You("can no longer see through %s.", yname(obj));
+	}
+    }
+}
+#endif
 
 /*
  * Polymorph the object to the given object ID.  If the ID is STRANGE_OBJECT
@@ -1859,10 +1906,7 @@ struct obj *obj, *otmp;
 		break;
 	case WAN_MAKE_INVISIBLE:
 #ifdef INVISIBLE_OBJECTS
-		if (!always_visible(obj)) {
-		    obj->oinvis = TRUE;
-		    newsym(obj->ox,obj->oy);	/* make object disappear */
-		}
+		obj_set_oinvis(obj, TRUE, FALSE);
 #endif
 		break;
 	case WAN_UNDEAD_TURNING:

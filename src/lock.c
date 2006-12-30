@@ -27,7 +27,7 @@ boolean
 picking_lock(x, y)
 	int *x, *y;
 {
-	if (occupation == picklock) {
+	if (occupation == picklock || occupation == forcedoor) {
 	    *x = u.ux + u.dx;
 	    *y = u.uy + u.dy;
 	    return TRUE;
@@ -259,9 +259,33 @@ forcedoor()      /* try to break/pry open a door */
 	    xlock.door->doormask = D_BROKEN;
 	else xlock.door->doormask = D_NODOOR;
 	unblock_point(u.ux+u.dx, u.uy+u.dy);
-	if (*in_rooms(u.ux+u.dx, u.uy+u.dy, SHOPBASE))
-	    add_damage(u.ux+u.dx, u.uy+u.dy, 0L);
-	newsym(u.ux+u.dx, u.uy+u.dy);
+	if (*in_rooms(u.ux+u.dx, u.uy+u.dy, SHOPBASE)) {
+	    add_damage(u.ux+u.dx, u.uy+u.dy, 400L);
+	    pay_for_damage("break", FALSE);
+
+	    if (in_town(u.ux+u.dx, u.uy+u.dy)) {
+		struct monst *mtmp;
+		for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+		    if (DEADMONSTER(mtmp)) continue;
+		    if((mtmp->data == &mons[PM_WATCHMAN] ||
+			mtmp->data == &mons[PM_WATCH_CAPTAIN]) &&
+			couldsee(mtmp->mx, mtmp->my) &&
+			mtmp->mpeaceful) {
+			if (canspotmon(mtmp))
+			    pline("%s yells:", Amonnam(mtmp));
+			else
+			    You_hear("someone yell:");
+			verbalize("Halt, thief!  You're under arrest!");
+			(void) angry_guards(FALSE);
+			break;
+		    }
+		}
+	    }
+	}
+	if (Blind)
+	    feel_location(u.ux+u.dx, u.uy+u.dy);    /* we know we broke it */
+	else
+	    newsym(u.ux+u.dx, u.uy+u.dy);
 	
 	exercise(A_STR, TRUE);
 	return((xlock.usedtime = 0));
@@ -598,9 +622,13 @@ doforce()		/* try to force a chest with your weapon */
 	picktyp = is_blade(uwep) ? 1 : 0;
 	if(xlock.usedtime && picktyp == xlock.picktyp) {
 	    if (xlock.box) {
-	    You("resume your attempt to force the lock.");
-	    set_occupation(forcelock, "forcing the lock", 0);
-	    return(1);
+		if (!can_reach_floor()) {
+		    pline("Unfortunately, you can no longer reach the lock.");
+		    return 0;
+		}
+		You("resume your attempt to force the lock.");
+		set_occupation(forcelock, "forcing the lock", 0);
+		return(1);
 	    } else if (xlock.door) {
 		You("resume your attempt to force the door.");
 		set_occupation(forcedoor, "forcing the door", 0);
@@ -615,9 +643,27 @@ doforce()		/* try to force a chest with your weapon */
 
 	x = u.ux + u.dx;
 	y = u.uy + u.dy;
-	if (x == u.ux && y == u.uy && !u.dz) {
-	for(otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere)
-	    if(Is_box(otmp)) {
+	if (x == u.ux && y == u.uy) {
+	    if (u.dz < 0) {
+		There("isn't any sort of lock up %s.",
+		      Levitation ? "here" : "there");
+		return 0;
+	    } else if (is_lava(u.ux, u.uy)) {
+		pline("Doing that would probably melt your %s.",
+		      xname(uwep));
+		return 0;
+	    } else if (is_pool(u.ux, u.uy) && !Underwater) {
+		pline_The("water has no lock.");
+		return 0;
+	    }
+
+	    for(otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere)
+		if(Is_box(otmp)) {
+		    if (!can_reach_floor()) {
+			You_cant("reach %s from up here.", the(xname(otmp)));
+		    return 0;
+		    }
+
 		if (otmp->obroken || !otmp->olocked) {
 		    There("is %s here, but its lock is already %s.",
 			  doname(otmp), otmp->obroken ? "broken" : "unlocked");

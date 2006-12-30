@@ -322,17 +322,14 @@ register boolean mod;
 	    for (a = artilist+1; a->otyp; a++)
 		if (a->otyp == otmp->otyp && !strcmp(a->name, name)) {
 		    register int m = a - artilist;
-/*WAC add code to automatically light up Sunsword/holy spear of light on
-        creation*/
-		    /* For the check so artifact_light recognizes it */
-		    otmp->oartifact = m;
-		    if (!artiexist[m] && mod && (artifact_light(otmp) ||
-						 otmp->otyp == MAGIC_CANDLE)) {
-			begin_burn(otmp, FALSE);
-			/* WAC light source deletion handled in obfree */
-		    }
 		    otmp->oartifact = (char)(mod ? m : 0);
 		    if (mod) {
+			/* Light up Candle of Eternal Flame and
+			 * Holy Spear of Light on creation.
+			 */
+			if (!artiexist[m] && artifact_light(otmp) &&
+			  otmp->oartifact != ART_SUNSWORD)
+			    begin_burn(otmp, FALSE);
 			otmp->quan = 1; /* guarantee only one of this artifact */
 #ifdef UNPOLYPILE	/* Artifacts are immune to unpolypile --ALI */
 			if (is_hazy(otmp)) {
@@ -1561,107 +1558,102 @@ arti_invoke(obj)
 	case LEV_TELE:
 	    level_tele();
 	    break;
-	/* STEPHEN WHITE'S NEW CODE */       
 	case LIGHT_AREA:
 	    if (!Blind)
-			pline("%s shines brightly for an instant!", The(xname(obj)));
+		pline("%s shines brightly for an instant!", The(xname(obj)));
 	    else
-			pline("%s grows warm for a second!", The(xname(obj)));
-
-	    litroom(TRUE, obj); /* Light up the room */
-
-	    vision_recalc(0); /*clean up vision*/
-
-		/* WAC - added effect to self, damage is now range dependant */
-		if(is_undead(youmonst.data)) {
-			You("burn in the radiance!");
-			
-			/* This is ground zero.  Not good news ... */
-			u.uhp /= 100;
-
-			if (u.uhp < 1) {
-				u.uhp = 0;
-				killer_format = KILLED_BY;
-				killer = "the Holy Spear of Light";
-				done(DIED);
-			}
+		pline("%s grows warm for a second!", The(xname(obj)));
+	    litroom(TRUE, obj);
+	    vision_recalc(0);
+	    if (is_undead(youmonst.data)) {
+		You("burn in the radiance!");
+		/* This is ground zero.  Not good news ... */
+		u.uhp /= 100;
+		if (u.uhp < 1) {
+		    u.uhp = 0;
+		    killer_format = KILLED_BY;
+		    killer = "the Holy Spear of Light";
+		    done(DIED);
 		}
-
+	    }
 	    /* Undead and Demonics can't stand the light */
 	    unseen = 0;
 	    for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
-			if (DEADMONSTER(mtmp)) continue;
-	    	
-			/* Range is 9 paces */
-	    	if (distu(mtmp->mx,mtmp->my) > 81) continue;
-
-			if (couldsee(mtmp->mx, mtmp->my) &&
-				(is_undead(mtmp->data) || is_demon(mtmp->data)) &&
-				!resist(mtmp, '\0', 0, TELL)) {
-					if (canseemon(mtmp))
-						pline("%s burns in the radiance!", Monnam(mtmp));
-					else
-						unseen++;
-					/* damage now depends on distance, divisor ranges from 10 to 2 */
-					mtmp->mhp /= (10 - (distu(mtmp->mx,mtmp->my)/10));
-					if (mtmp->mhp < 1) mtmp->mhp = 1;
-			}
+		if (DEADMONSTER(mtmp)) continue;
+	    	if (distu(mtmp->mx, mtmp->my) > 9*9) continue;
+		if (couldsee(mtmp->mx, mtmp->my) &&
+			(is_undead(mtmp->data) || is_demon(mtmp->data)) &&
+			!resist(mtmp, '\0', 0, TELL)) {
+		    if (canseemon(mtmp))
+			pline("%s burns in the radiance!", Monnam(mtmp));
+		    else
+			unseen++;
+		    /* damage depends on distance, divisor ranges from 10 to 2 */
+		    mtmp->mhp /= (10 - (distu(mtmp->mx, mtmp->my) / 10));
+		    if (mtmp->mhp < 1) mtmp->mhp = 1;
+		}
 	    }
 	    if (unseen)
-			You("hear %s of intense pain!", unseen > 1 ? "cries" : "a cry");
+		You_hear("%s of intense pain!", unseen > 1 ? "cries" : "a cry");
 	    break;
 	case DEATH_GAZE:
-	    if (u.uluck < -9) { /* uh oh... */
-			pline("The Eye turns on you!");
-			u.uhp = 0;
-			killer_format = KILLED_BY;
-			killer = "the Eye of the Beholder";
-			done(DIED);
+	    if (u.uluck < -9) {
+		pline_The("Eye turns on you!");
+		u.uhp = 0;
+		killer_format = KILLED_BY;
+		killer = "the Eye of the Beholder";
+		done(DIED);
 	    }
-	    pline("The Eye looks around with its icy gaze!");
-		for (mtmp = fmon; mtmp; mtmp = mtmp2) {
-			mtmp2 = mtmp->nmon;
-			/* The eye is never blind ... */
-			if (couldsee(mtmp->mx, mtmp->my) && !is_undead(mtmp->data)) {
-				pline("%s screams in agony!",Monnam(mtmp));
-				mtmp->mhp /= 3;
-				if (mtmp->mhp < 1) mtmp->mhp = 1;
-			}
+	    pline_The("Eye looks around with its icy gaze!");
+	    for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+		if (DEADMONSTER(mtmp)) continue;
+		/* The eye is never blind ... */
+		if (couldsee(mtmp->mx, mtmp->my) && !is_undead(mtmp->data)) {
+		    pline("%s screams in agony!", Monnam(mtmp));
+		    mtmp->mhp /= 3;
+		    if (mtmp->mhp < 1) mtmp->mhp = 1;
 		}
+	    }
 	    /* Tsk,tsk.. */
 	    adjalign(-3);
 	    u.uluck -= 3;
 	    break;
 	case SUMMON_UNDEAD:
-	    if (u.uluck < -9) { /* uh oh... */
-		u.uhp -= (rn2(20)+5);
-		pline("The Hand claws you with its icy nails!");
+	    if (u.uluck < -9) {
+		u.uhp -= rn2(20) + 5;
+		pline_The("Hand claws you with its icy nails!");
 		if (u.uhp <= 0) {
-		  killer_format = KILLED_BY;
-		  killer="the Hand of Vecna";
-		  done(DIED);
+		    killer_format = KILLED_BY;
+		    killer="the Hand of Vecna";
+		    done(DIED);
 		}
 	    }
 	    summon_loop = rn2(4) + 4;
 	    pline("Creatures from the grave surround you!");
 	    do {
-	      switch (rn2(6)+1) {
-		case 1: mtmp = makemon(mkclass(S_VAMPIRE,0), u.ux, u.uy, NO_MM_FLAGS);
-		   break;
-		case 2:
-		case 3: mtmp = makemon(mkclass(S_ZOMBIE,0), u.ux, u.uy, NO_MM_FLAGS);
-		   break;
-		case 4: mtmp = makemon(mkclass(S_MUMMY,0), u.ux, u.uy, NO_MM_FLAGS);
-		   break;
-		case 5: mtmp = makemon(mkclass(S_GHOST,0), u.ux, u.uy, NO_MM_FLAGS);
-		   break;
-               default: mtmp = makemon(mkclass(S_WRAITH,0), u.ux, u.uy, NO_MM_FLAGS);
-		   break;
-	      }
-	      if ((mtmp2 = tamedog(mtmp, (struct obj *)0)) != 0)
-			mtmp = mtmp2;
-	      mtmp->mtame = 30;
-	      summon_loop--;
+		switch (rn2(6) + 1) {
+		    case 1:
+			pm = mkclass(S_VAMPIRE, 0);
+			break;
+		    case 2:
+		    case 3:
+			pm = mkclass(S_ZOMBIE, 0);
+			break;
+		    case 4:
+			pm = mkclass(S_MUMMY, 0);
+			break;
+		    case 5:
+			pm = mkclass(S_GHOST, 0);
+			break;
+		    default:
+			pm = mkclass(S_WRAITH, 0);
+			break;
+		}
+		mtmp = makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
+	        if ((mtmp2 = tamedog(mtmp, (struct obj *)0)) != 0)
+		    mtmp = mtmp2;
+		mtmp->mtame = 30;
+		summon_loop--;
 	    } while (summon_loop);
 	    /* Tsk,tsk.. */
 	    adjalign(-3);
@@ -1882,8 +1874,9 @@ boolean
 artifact_light(obj)
     struct obj *obj;
 {
-    return get_artifact(obj) && (get_artifact(obj)->inv_prop == LIGHT_AREA
-        || obj->oartifact == ART_CANDLE_OF_ETERNAL_FLAME);
+    return get_artifact(obj) && (obj->oartifact == ART_SUNSWORD ||
+	    obj->oartifact == ART_HOLY_SPEAR_OF_LIGHT ||
+	    obj->oartifact == ART_CANDLE_OF_ETERNAL_FLAME);
 }
 
 /* KMH -- Talking artifacts are finally implemented */

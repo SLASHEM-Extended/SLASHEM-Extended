@@ -2368,11 +2368,12 @@ register struct monst *shkp;	/* if angry, impose a surcharge */
 	}
 #ifdef TOURIST
 	if ((Role_if(PM_TOURIST) && u.ulevel < (MAXULEV/2))
-	    || (uarmu && !uarm && !uarmc))	/* touristy shirt visible */
+	    || ((uarmu && !uarmu->oinvis) && (!uarm || uarm->oinvis) 
+	    && (!uarmc || uarmc->oinvis)))	/* touristy shirt visible */
 		tmp += tmp / 3L;
 	else
 #endif
-	if (uarmh && uarmh->otyp == DUNCE_CAP)
+	if (uarmh && !uarmh->oinvis && uarmh->otyp == DUNCE_CAP)
 		tmp += tmp / 3L;
 
 	if (ACURR(A_CHA) > 18)		tmp /= 2L;
@@ -2522,11 +2523,12 @@ register struct monst *shkp;
 
 #ifdef TOURIST
 	if ((Role_if(PM_TOURIST) && u.ulevel < (MAXULEV/2))
-	    || (uarmu && !uarm && !uarmc))	/* touristy shirt visible */
+	    || ((uarmu && !uarmu->oinvis) && (!uarm || uarm->oinvis) 
+	    && (!uarmc || uarmc->oinvis)))	/* touristy shirt visible */
 		tmp /= 3L;
 	else
 #endif
-	if (uarmh && uarmh->otyp == DUNCE_CAP)
+	if (uarmh && !uarmh->oinvis && uarmh->otyp == DUNCE_CAP)
 		tmp /= 3L;
 	else
 		tmp /= 2L;

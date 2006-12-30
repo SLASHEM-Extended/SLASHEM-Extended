@@ -1648,10 +1648,10 @@ begin_burn(obj, already_lit)
 	if (obj->lamplit && !already_lit) {
 	    xchar x, y;
 
-	    /* [ALI] Support floating light sources (eg., wished for artifacts)
-	     */
-	    (void)get_obj_location(obj, &x, &y, CONTAINED_TOO|BURIED_TOO);
+	    if (get_obj_location(obj, &x, &y, CONTAINED_TOO|BURIED_TOO))
 		new_light_source(x, y, radius, LS_OBJECT, (genericptr_t) obj);
+	    else
+		impossible("begin_burn: can't get obj position");
 	}
 }
 
@@ -1828,6 +1828,10 @@ do_storms()
  *
  *	void obj_stop_timers(struct obj *obj)
  *		Stop all timers attached to obj.
+ *
+ * Monster Specific:
+ *	void mon_stop_timers(struct monst *mon)
+ *		Stop all timers attached to mon.
  */
 
 #ifdef WIZARD
@@ -2118,6 +2122,34 @@ obj_stop_timers(obj)
 	}
     }
     obj->timed = 0;
+}
+
+
+/*
+ * Stop all timers attached to this monster.  We can get away with this because
+ * all monster pointers are unique.
+ */
+void
+mon_stop_timers(mon)
+    struct monst *mon;
+{
+    timer_element *curr, *prev, *next_timer=0;
+
+    for (prev = 0, curr = timer_base; curr; curr = next_timer) {
+	next_timer = curr->next;
+	if (curr->kind == TIMER_MONSTER && curr->arg == (genericptr_t)mon) {
+	    if (prev)
+		prev->next = curr->next;
+	    else
+		timer_base = curr->next;
+	    if (timeout_funcs[curr->func_index].cleanup)
+		(*timeout_funcs[curr->func_index].cleanup)(curr->arg,
+			curr->timeout);
+	    free((genericptr_t) curr);
+	} else {
+	    prev = curr;
+	}
+    }
 }
 
 

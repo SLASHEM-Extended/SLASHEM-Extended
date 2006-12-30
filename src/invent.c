@@ -867,6 +867,9 @@ struct obj *otmp;
 		     otyp != AMULET_OF_YENDOR && otyp != FAKE_AMULET_OF_YENDOR))
 		|| (!strcmp(word, "write with") &&
 		    (otmp->oclass == TOOL_CLASS &&
+#ifdef LIGHTSABERS
+		     (!is_lightsaber(otmp) || !otmp->lamplit) &&
+#endif
 		     otyp != MAGIC_MARKER && otyp != TOWEL))
 		|| (!strcmp(word, "tin") &&
 		    (otyp != CORPSE || !tinnable(otmp)))
@@ -1205,7 +1208,10 @@ register const char *let,*word;
 			pline(silly_thing_to, word);
 			return(struct obj *)0;
 		    } else if (!allowfloor) {
-			pline("There's nothing here to %s.", word);
+			if ((Levitation || Flying))
+				You("cannot reach the floor to %s while %sing.", word, Levitation ? "float" : "fly");
+			else
+				pline("There's nothing here to %s.", word);
 			return(struct obj *)0;
 		    }
 		    Sprintf(qbuf, "%s what?", word);

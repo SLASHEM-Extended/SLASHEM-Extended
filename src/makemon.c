@@ -241,7 +241,7 @@ register struct monst *mtmp;
 				    BOULDER : CLUB);
 		break;
 	    case S_HUMAN:
-		if(is_mercenary(ptr)
+		if(is_mercenary(ptr) || mm == PM_SHOPKEEPER
 #ifdef YEOMAN
 				|| mm == PM_CHIEF_YEOMAN_WARDER || mm == PM_YEOMAN_WARDER
 #endif
@@ -1593,7 +1593,7 @@ register int	mmflags;
 			mtmp->cham = CHAM_ORDINARY;
 		else {
 			mtmp->cham = mcham;
-			(void) newcham(mtmp, rndmonst(), FALSE, FALSE);
+			(void) mon_spec_poly(mtmp, rndmonst(), 0L, FALSE, FALSE, FALSE, FALSE);
 		}
 	} else if (mndx == PM_WIZARD_OF_YENDOR) {
 		mtmp->iswiz = TRUE;
@@ -2157,6 +2157,7 @@ struct monst *mtmp, *victim;
 	if (mtmp->m_enmax > 50*8) mtmp->m_enmax = 50*8;     /* absolute limit */
 	if (mtmp->m_en > mtmp->m_enmax) mtmp->m_en = mtmp->m_enmax;
 
+	if (mtmp->oldmonnm != monsndx(ptr)) mtmp->oldmonnm = monsndx(ptr);
 	return ptr;
 }
 

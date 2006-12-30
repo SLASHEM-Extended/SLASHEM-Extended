@@ -703,9 +703,10 @@ int tech_no;
 			    "dress your wounds with");
 		    if (otmp) {
 			check_unpaid(otmp);
-			if (otmp->quan > 1L)
+			if (otmp->quan > 1L) {
 			    otmp->quan--;
-			else {
+			    otmp->ocontainer->owt = weight(otmp->ocontainer);
+			} else {
 			    obj_extract_self(otmp);
 			    obfree(otmp, (struct obj *)0);
 			}
@@ -804,39 +805,41 @@ int tech_no;
 		break;
 	    case T_CUTTHROAT:
 		if (!is_blade(uwep)) {
-			You("need a blade to perform cutthroat!");
-			return (0);
+		    You("need a blade to perform cutthroat!");
+		    return 0;
 		}
-	    	if (!getdir((char *)0)) return(0);
+	    	if (!getdir((char *)0)) return 0;
 		if (!u.dx && !u.dy) {
-			/* Hopefully a mistake ;B */
-			pline("Things may be going badly,  but that's extreme.");
-			return(0);
+		    /* Hopefully a mistake ;B */
+		    pline("Things may be going badly, but that's extreme.");
+		    return 0;
 		}
 		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 		if (!mtmp) {
-			You("attack...nothing!");
-			return (0);
+		    You("attack...nothing!");
+		    return 0;
 		} else {
-			int oldhp = mtmp->mhp;
-			
-			if (!attack(mtmp)) return(0);
-			if (!DEADMONSTER(mtmp) && mtmp->mhp < oldhp) {
-				int tmp = 0;
-				if (!has_head(mtmp->data) || u.uswallow) {
-					You("can't perform cutthroat on %s!",mon_nam(mtmp));
-				}
-				if (rn2(5) < (techlev(tech_no)/10 + 1)) {
-					You("sever %s head!", s_suffix(mon_nam(mtmp)));
-					tmp = mtmp->mhp;
-				} else {
-					You("hurt %s badly!", s_suffix(mon_nam(mtmp)));
-					tmp = mtmp->mhp / 2;
-				}
-				tmp += techlev(tech_no);
-				t_timeout = rn1(1000,500);
-				hurtmon(mtmp, tmp);
+		    int oldhp = mtmp->mhp;
+
+		    if (!attack(mtmp)) return 0;
+		    if (!DEADMONSTER(mtmp) && mtmp->mhp < oldhp) {
+			if (!has_head(mtmp->data) || u.uswallow)
+			    You_cant("perform cutthroat on %s!", mon_nam(mtmp));
+			else {
+			    int tmp = 0;
+
+			    if (rn2(5) < (techlev(tech_no)/10 + 1)) {
+				You("sever %s head!", s_suffix(mon_nam(mtmp)));
+				tmp = mtmp->mhp;
+			    } else {
+				You("hurt %s badly!", s_suffix(mon_nam(mtmp)));
+				tmp = mtmp->mhp / 2;
+			    }
+			    tmp += techlev(tech_no);
+			    t_timeout = rn1(1000,500);
+			    hurtmon(mtmp, tmp);
 			}
+		    }
 		}
 		break;
 	    case T_BLESSING:
@@ -1708,6 +1711,7 @@ int monnum;
 	if ((&mons[monnum])->mlet == S_KOBOLD) return PM_KOBOLD_ZOMBIE;
 	if ((&mons[monnum])->mlet == S_GNOME) return PM_GNOME_ZOMBIE;
 	if (is_orc(&mons[monnum])) return PM_ORC_ZOMBIE;
+	if (is_dwarf(&mons[monnum])) return PM_DWARF_ZOMBIE;
 	if (is_elf(&mons[monnum])) return PM_ELF_ZOMBIE;
 	if (is_human(&mons[monnum])) return PM_HUMAN_ZOMBIE;
 	if (monnum == PM_ETTIN) return PM_ETTIN_ZOMBIE;
@@ -2063,7 +2067,11 @@ blitz_pummel()
 
 	You("let loose a barrage of blows!");
 
-	mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+	if (u.uswallow)
+	    mtmp = u.ustuck;
+	else
+	    mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+
 	if (!mtmp) {
 		You("strike nothing.");
 		return (0);
@@ -2074,7 +2082,12 @@ blitz_pummel()
 	 */
 	for (i = 0; (i < 4); i++) {
 	    if (rn2(70) > (techlev(tech_no) + 30)) break;
-	    mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+
+	    if (u.uswallow)
+		mtmp = u.ustuck;
+	    else
+		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+
 	    if (!mtmp) return (1);
 	    if (!attack(mtmp)) return (1);
 	} 

@@ -6,9 +6,6 @@
 /* Blackmarket */
 #undef BLACKMARKET
 
-/* Borg player (only under DOS) */
-#undef BORG
-
 /* A BSD like system */
 #undef BSD
 
@@ -21,8 +18,14 @@
 /* Unix on win32 */
 #undef CYGWIN32
 
+/* The default windowing system */
+#undef DEFAULT_WINDOW_SYS
+
 /* Support transparent tilesets */
 #undef DISPLAY_LAYERS
+
+/* Data librarian */
+#undef DLB
 
 /* Dungeon growth */
 #undef DUNGEON_GROWTH
@@ -50,6 +53,14 @@
 
 /* Gold is kept on object chains (experimental) */
 #undef GOLDOBJ
+
+/* Define to 1 if you have the declaration of `strncmpi', and to 0 if you
+   don't. */
+#undef HAVE_DECL_STRNCMPI
+
+/* Define to 1 if you have the declaration of `strnicmp', and to 0 if you
+   don't. */
+#undef HAVE_DECL_STRNICMP
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
@@ -102,6 +113,9 @@
 /* TTY graphics menu color */
 #undef MENU_COLOR
 
+/* Microsoft Window's native graphics */
+#undef MSWIN_GRAPHICS
+
 /* Prevent wishing for special artifacts */
 #undef NOARTIFACTWISH
 
@@ -153,9 +167,6 @@
 /* Succubi/incubi seduction */
 #undef SEDUCE
 
-/* Shouting and pet commands (not implemented) */
-#undef SHOUT
-
 /* Display damage reports */
 #undef SHOW_DMG
 
@@ -171,7 +182,7 @@
 /* Ability to ride monsters */
 #undef STEED
 
-/* strncmpi available */
+/* Use strncmpi */
 #undef STRNCMPI
 
 /* A System V like system */
@@ -198,6 +209,9 @@
 
 /* Fancy mazes */
 #undef WALLIFIED_MAZE
+
+/* An MS-Windows system */
+#undef WIN32
 
 /* The person allowed to use the -D option */
 #undef WIZARD

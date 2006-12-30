@@ -5,21 +5,33 @@
 VPATH = @srcdir@
 srcdir = @srcdir@
 
-SYSTEM = Sysunix
+SYSTEM = @SYSTEM@
+EXEEXT = @EXEEXT@
 
 SHELL=/bin/sh
 
 LINK=$(CC)
 
 # for UNIX systems
-SYSSRC = $(srcdir)/../sys/share/ioctl.c $(srcdir)/../sys/share/unixtty.c $(srcdir)/../sys/unix/unixmain.c \
-	$(srcdir)/../sys/unix/unixunix.c $(srcdir)/../sys/unix/unixres.c
-SYSOBJ = ioctl.o unixmain.o unixtty.o unixunix.o unixres.o
+SYSUNIXSRC = $(srcdir)/../sys/share/ioctl.c $(srcdir)/../sys/share/unixtty.c \
+	$(srcdir)/../sys/unix/unixmain.c $(srcdir)/../sys/unix/unixunix.c \
+	$(srcdir)/../sys/unix/unixres.c
+SYSUNIXOBJ = ioctl.o unixmain.o unixtty.o unixunix.o unixres.o
+# for Microsoft Window systems
+SYSMSWINSRC = $(srcdir)/../sys/winnt/nttty.c $(srcdir)/../sys/winnt/winnt.c \
+	$(srcdir)/../sys/share/pcsys.c $(srcdir)/../sys/share/pcunix.c \
+	$(srcdir)/../sys/share/pcmain.c $(srcdir)/../sys/share/random.c \
+	$(srcdir)/../sys/share/nhlan.c
+SYSMSWINOBJ = nttty.o winnt.o pcsys.o pcunix.o pcmain.o random.o nhlan.o
+#
+SYSSRC=@SYSSRC@
+SYSOBJ=@SYSOBJ@
 
 CC = @CC@ -DAUTOCONF
+WINDRES = @WINDRES@
 
-CFLAGS = -O -I../include -I$(srcdir)/../include
-LFLAGS =
+CFLAGS = -O -I../include -I$(srcdir)/../include @CFLAGS@
+LFLAGS = @LFLAGS@
 
 # Only used for the Gnome interface.
 GNOMEINC=`gnome-config gnome --cflags` -I$(srcdir)/../win/gnome
@@ -99,6 +111,20 @@ WINGLOBJ = gl_conf.o gl_emul.o gl_font.o gl_hardw.o \
     gl_rendu.o gl_role.o gl_softw.o gl_stat.o \
     gl_text.o gl_tile.o gl_unit.o gl_win.o nhwin.a
 SDLGL_CFLAGS = @SDL_CONFIG_CFLAGS@
+#
+# files for a native MS-Windows port
+# (tile.c is included in the defn. for WINCSRC, below)
+WINMSSRC = $(srcdir)/../win/win32/mswproc.c $(srcdir)/../win/win32/winhack.c \
+	 $(srcdir)/../win/win32/mhdlg.c $(srcdir)/../win/win32/mhaskyn.c \
+	 $(srcdir)/../win/win32/mhfont.c $(srcdir)/../win/win32/mhinput.c \
+         $(srcdir)/../win/win32/mhmain.c $(srcdir)/../win/win32/mhmsgwnd.c \
+	 $(srcdir)/../win/win32/mhsplash.c $(srcdir)/../win/win32/mhstatus.c \
+	 $(srcdir)/../win/win32/mhtext.c $(srcdir)/../win/win32/mhmenu.c \
+         $(srcdir)/../win/win32/mhmap.c $(srcdir)/../win/win32/mhrip.c
+WINMSOBJ = mswproc.o winhack.o mhdlg.o mhaskyn.o mhfont.o mhinput.o mhmain.o \
+	mhmsgwnd.o mhsplash.o mhstatus.o mhtext.o mhmenu.o mhmap.o mhrip.o \
+	winres.o
+WINMSCFLAGS=-I$(srcdir)/../win/win32 -D_WIN32_IE=0x0400
 
 WINSRC = @WINSRC@
 WINOBJ = @WINOBJ@
@@ -123,19 +149,22 @@ WINBELIB = -lbe
 # libraries for SDL/GL window port
 WINSDLLIB = @SDL_CONFIG_LIBS@ -lz -lpng
 WINGLLIB = -lGL
+#
+# libraries for native MS-Windows
+WINMSLIB = -lcomctl32 -lgdi32
 
 WINLIB = @WINLIB@
 
 LIBS =
 
 # make NetHack
-GAME     = slashem
+GAME     = slashem$(EXEEXT)
 
 RANDOBJ =
 
 
 # used by `make depend' to reconstruct this Makefile; you shouldn't need this
-AWK	= nawk
+AWK	= @AWK@
 
 MAKEDEFS = ../util/makedefs
 
@@ -145,35 +174,56 @@ HACK_H	= ../src/hack.h-t
 
 # all .c that are part of the main NetHack program and are not operating- or
 # windowing-system specific
-HACKCSRC = allmain.c alloc.c apply.c artifact.c attrib.c ball.c bones.c \
-	   botl.c cmd.c dbridge.c decl.c detect.c dig.c display.c dlb.c do.c \
-	   do_name.c do_wear.c dog.c dogmove.c dokick.c dothrow.c drawing.c \
-	   dungeon.c eat.c end.c engrave.c exper.c explode.c extralev.c \
-	   files.c fountain.c hack.c hacklib.c invent.c light.c lock.c \
-	   mail.c makemon.c mapglyph.c mcastu.c mhitm.c mhitu.c minion.c \
-	   mklev.c mkmap.c \
-	   mkmaze.c mkobj.c mkroom.c mon.c mondata.c monmove.c monst.c \
-	   mplayer.c mthrowu.c muse.c music.c o_init.c objects.c objnam.c \
-	   options.c pager.c pickup.c pline.c polyself.c potion.c pray.c \
-	   priest.c quest.c questpgr.c read.c rect.c region.c restore.c rip.c \
-	   rnd.c role.c rumors.c save.c shk.c shknam.c sit.c sounds.c sp_lev.c \
-	   spell.c steal.c steed.c teleport.c timeout.c topten.c track.c trap.c \
-	   u_init.c uhitm.c vault.c version.c vision.c weapon.c were.c wield.c \
-	   windows.c wizard.c worm.c worn.c write.c zap.c \
-	   gypsy.c tech.c
+HACKCSRC = $(srcdir)/allmain.c $(srcdir)/alloc.c $(srcdir)/apply.c \
+	$(srcdir)/artifact.c $(srcdir)/attrib.c $(srcdir)/ball.c \
+	$(srcdir)/bones.c $(srcdir)/botl.c $(srcdir)/cmd.c $(srcdir)/dbridge.c \
+	$(srcdir)/decl.c $(srcdir)/detect.c $(srcdir)/dig.c $(srcdir)/display.c\
+	$(srcdir)/dlb.c $(srcdir)/do.c $(srcdir)/do_name.c $(srcdir)/do_wear.c \
+	$(srcdir)/dog.c $(srcdir)/dogmove.c $(srcdir)/dokick.c \
+	$(srcdir)/dothrow.c $(srcdir)/drawing.c $(srcdir)/dungeon.c \
+	$(srcdir)/eat.c $(srcdir)/end.c $(srcdir)/engrave.c $(srcdir)/exper.c \
+	$(srcdir)/explode.c $(srcdir)/extralev.c $(srcdir)/files.c \
+	$(srcdir)/fountain.c $(srcdir)/hack.c $(srcdir)/hacklib.c \
+	$(srcdir)/invent.c $(srcdir)/light.c $(srcdir)/lock.c $(srcdir)/mail.c \
+	$(srcdir)/makemon.c $(srcdir)/mapglyph.c $(srcdir)/mcastu.c \
+	$(srcdir)/mhitm.c $(srcdir)/mhitu.c $(srcdir)/minion.c \
+	$(srcdir)/mklev.c $(srcdir)/mkmap.c $(srcdir)/mkmaze.c \
+	$(srcdir)/mkobj.c $(srcdir)/mkroom.c $(srcdir)/mon.c \
+	$(srcdir)/mondata.c $(srcdir)/monmove.c $(srcdir)/monst.c \
+	$(srcdir)/mplayer.c $(srcdir)/mthrowu.c $(srcdir)/muse.c \
+	$(srcdir)/music.c $(srcdir)/o_init.c $(srcdir)/objects.c \
+	$(srcdir)/objnam.c $(srcdir)/options.c $(srcdir)/pager.c \
+	$(srcdir)/pickup.c $(srcdir)/pline.c $(srcdir)/polyself.c \
+	$(srcdir)/potion.c $(srcdir)/pray.c $(srcdir)/priest.c \
+	$(srcdir)/quest.c $(srcdir)/questpgr.c $(srcdir)/read.c \
+	$(srcdir)/rect.c $(srcdir)/region.c $(srcdir)/restore.c $(srcdir)/rip.c\
+	$(srcdir)/rnd.c $(srcdir)/role.c $(srcdir)/rumors.c $(srcdir)/save.c \
+	$(srcdir)/shk.c $(srcdir)/shknam.c $(srcdir)/sit.c $(srcdir)/sounds.c \
+	$(srcdir)/sp_lev.c $(srcdir)/spell.c $(srcdir)/steal.c \
+	$(srcdir)/steed.c $(srcdir)/teleport.c $(srcdir)/timeout.c \
+	$(srcdir)/topten.c $(srcdir)/track.c $(srcdir)/trap.c \
+	$(srcdir)/u_init.c $(srcdir)/uhitm.c $(srcdir)/vault.c \
+	$(srcdir)/version.c $(srcdir)/vision.c $(srcdir)/weapon.c \
+	$(srcdir)/were.c $(srcdir)/wield.c $(srcdir)/windows.c \
+	$(srcdir)/wizard.c $(srcdir)/worm.c $(srcdir)/worn.c $(srcdir)/write.c \
+	$(srcdir)/zap.c $(srcdir)/gypsy.c $(srcdir)/tech.c
 
 # all operating-system-dependent .c (for dependencies and such)
-SYSCSRC = $(srcdir)/../sys/atari/tos.c $(srcdir)/../sys/share/pcmain.c $(srcdir)/../sys/share/pcsys.c \
-	$(srcdir)/../sys/share/pctty.c $(srcdir)/../sys/share/pcunix.c $(srcdir)/../sys/share/random.c \
-	$(srcdir)/../sys/share/ioctl.c $(srcdir)/../sys/share/unixtty.c $(srcdir)/../sys/unix/unixmain.c \
-	$(srcdir)/../sys/unix/unixunix.c $(srcdir)/../sys/unix/unixres.c $(srcdir)/../sys/be/bemain.c
+SYSCSRC = $(srcdir)/../sys/share/nhlan.c $(srcdir)/../sys/share/ioctl.c \
+	$(srcdir)/../sys/share/pcmain.c $(srcdir)/../sys/share/pcsys.c \
+	$(srcdir)/../sys/share/pctty.c $(srcdir)/../sys/share/pcunix.c \
+	$(srcdir)/../sys/share/random.c $(srcdir)/../sys/share/unixtty.c \
+	$(srcdir)/../sys/atari/tos.c $(srcdir)/../sys/be/bemain.c \
+	$(srcdir)/../sys/unix/unixmain.c $(srcdir)/../sys/unix/unixres.c \
+	$(srcdir)/../sys/unix/unixunix.c $(srcdir)/../sys/winnt/nttty.c \
+	$(srcdir)/../sys/winnt/winnt.c
 
 # generated source files (tile.c is handled separately)
 GENCSRC = monstr.c vis_tab.c  #tile.c
 
 # all windowing-system-dependent .c (for dependencies and such)
 WINCSRC = $(WINTTYSRC) $(WINX11SRC) $(WINGNOMESRC) $(WINGEMSRC) \
-	$(WINPROXYSRC) $(WINGLSRC) tile.c
+	$(WINPROXYSRC) $(WINGLSRC) $(WINMSSRC) tile.c
 # all windowing-system-dependent .cpp (for dependencies and such)
 WINCXXSRC = $(WINQTSRC) $(WINBESRC)
 
@@ -231,6 +281,11 @@ Sysunix:	$(HOBJ) Makefile
 	@$(LINK) $(LFLAGS) -o $(GAME) $(HOBJ) $(WINLIB) $(LIBS)
 	@touch Sysunix
 
+Syswinnt:	$(HOBJ) @EXTRA_UNSHARE@ Makefile
+	@echo "Loading ..."
+	@$(LINK) $(LFLAGS) -o $(GAME) $(HOBJ) $(WINLIB) $(LIBS)
+	@touch Syswinnt
+
 Sys3B2:	$(HOBJ) Makefile
 	@echo "Loading ..."
 	@$(LINK) $(LFLAGS) -o $(GAME) $(HOBJ) $(WINLIB) -lmalloc
@@ -278,6 +333,21 @@ DUMB.Setup:	../include/extern.h
 	cp ../include/extern.DUMB ../include/extern.h
 	@touch DUMB.Setup
 
+.SUFFIXES:	.dll .o
+
+.o.dll:
+	@NHKEYDLL_GCC@$(CC) -shared -Wl,--export-all-symbols \
+	@NHKEYDLL_GCC@	-Wl,--add-stdcall-alias -o $@ $<
+
+nhdefkey.o: $(srcdir)/../sys/winnt/nhdefkey.c
+	$(CC) $(CFLAGS) -DBUILD_DLL -c $(srcdir)/../sys/winnt/nhdefkey.c
+
+nh340key.o: $(srcdir)/../sys/winnt/nh340key.c
+	$(CC) $(CFLAGS) -DBUILD_DLL -c $(srcdir)/../sys/winnt/nh340key.c
+
+nhraykey.o: $(srcdir)/../sys/winnt/nhraykey.c
+	$(CC) $(CFLAGS) -DBUILD_DLL -c $(srcdir)/../sys/winnt/nhraykey.c
+
 all:	$(GAME)
 
 #	dependencies for makedefs and its outputs, which the util
@@ -306,6 +376,18 @@ qt_win.moc: ../include/qt_win.h
 
 qttableview.moc: ../include/qttableview.h
 	$(QTDIR)/bin/moc -o qttableview.moc ../include/qttableview.h
+
+# Microsoft Window's native port resources
+../dat/tiles.bmp:
+	(cd ../util; make tile2bmp$(EXEEXT))
+	(cd ../dat; $(MAKE) tiles.bmp)
+
+winres.o: $(srcdir)/../win/win32/winhack.rc ../dat/tiles.bmp
+	(cd ../util; make uudecode$(EXEEXT))
+	(cd ../dat; $(MAKE) mnsel.bmp mnselcnt.bmp mnunsel.bmp rip.bmp)
+	(cd ../dat; $(MAKE) petmark.bmp SlashEM.ico splash.bmp)
+	$(WINDRES) -o$@ --include-dir=../dat -DNODEBUG -i \
+		$(srcdir)/../win/win32/winhack.rc
 
 # NetHack windows library for modules needed by more than one windows
 # interface.
@@ -372,16 +454,15 @@ spotless: clean
 	-rm -f $(srcdir)/../win/gnome/gn_rip.h
 	-rm -f ../include/filename.h
 
-depend: $(srcdir)/../sys/unix/depend.awk \
+depend: ../sys/autoconf/depend.awk \
 		$(SYSCSRC) $(WINCSRC) $(WINCXXSRC) $(GENCSRC) $(HACKCSRC)
-	$(AWK) -f $(srcdir)/../sys/unix/depend.awk ../include/*.h \
-		$(SYSCSRC) $(WINCSRC) $(WINCXXSRC) $(GENCSRC) $(HACKCSRC) >makedep
-	@echo '/^# DO NOT DELETE THIS LINE OR CHANGE ANYTHING BEYOND IT/+2,$$d' >eddep
-	@echo '$$r makedep' >>eddep
-	@echo 'w' >>eddep
 	@cp Makefile Makefile.bak
-	ed - Makefile < eddep
-	@rm -f eddep makedep
+	@sed -n '1,/^# DO NOT DELETE THIS LINE OR CHANGE ANYTHING BEYOND IT/p' \
+		< Makefile.bak > Makefile
+	@echo '' >> Makefile
+	@$(AWK) -f ../sys/autoconf/depend.awk ../include/*.h \
+		$(srcdir)/../include/*.h $(SYSCSRC) $(WINCSRC) $(WINCXXSRC) \
+		$(GENCSRC) $(HACKCSRC) >> Makefile
 	@echo '# DEPENDENCIES MUST END AT END OF FILE' >> Makefile
 	@echo '# IF YOU PUT STUFF HERE IT WILL GO AWAY' >> Makefile
 	@echo '# see make depend above' >> Makefile
@@ -415,8 +496,10 @@ $(HACK_H): ../include/hack.h $(CONFIG_H) ../include/align.h \
 		../include/winprocs.h ../include/wintty.h ../include/trampoli.h
 	touch $(HACK_H)
 #
-tos.o: $(srcdir)/../sys/atari/tos.c $(HACK_H) ../include/tcap.h
-	$(CC) $(CFLAGS) -c $(srcdir)/../sys/atari/tos.c
+nhlan.o: $(srcdir)/../sys/share/nhlan.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/../sys/share/nhlan.c
+ioctl.o: $(srcdir)/../sys/share/ioctl.c $(HACK_H) ../include/tcap.h
+	$(CC) $(CFLAGS) -c $(srcdir)/../sys/share/ioctl.c
 pcmain.o: $(srcdir)/../sys/share/pcmain.c $(HACK_H) ../include/dlb.h \
 		../include/patchlevel.h #../include/win32api.h
 	$(CC) $(CFLAGS) -c $(srcdir)/../sys/share/pcmain.c
@@ -428,18 +511,22 @@ pcunix.o: $(srcdir)/../sys/share/pcunix.c $(HACK_H)
 	$(CC) $(CFLAGS) -c $(srcdir)/../sys/share/pcunix.c
 random.o: $(srcdir)/../sys/share/random.c $(HACK_H)
 	$(CC) $(CFLAGS) -c $(srcdir)/../sys/share/random.c
-ioctl.o: $(srcdir)/../sys/share/ioctl.c $(HACK_H) ../include/tcap.h
-	$(CC) $(CFLAGS) -c $(srcdir)/../sys/share/ioctl.c
 unixtty.o: $(srcdir)/../sys/share/unixtty.c $(HACK_H)
 	$(CC) $(CFLAGS) -c $(srcdir)/../sys/share/unixtty.c
-unixmain.o: $(srcdir)/../sys/unix/unixmain.c $(HACK_H) ../include/dlb.h
-	$(CC) $(CFLAGS) -c $(srcdir)/../sys/unix/unixmain.c
-unixunix.o: $(srcdir)/../sys/unix/unixunix.c $(HACK_H)
-	$(CC) $(CFLAGS) -c $(srcdir)/../sys/unix/unixunix.c
-unixres.o: $(srcdir)/../sys/unix/unixres.c $(CONFIG_H)
-	$(CC) $(CFLAGS) -c $(srcdir)/../sys/unix/unixres.c
+tos.o: $(srcdir)/../sys/atari/tos.c $(HACK_H) ../include/tcap.h
+	$(CC) $(CFLAGS) -c $(srcdir)/../sys/atari/tos.c
 bemain.o: $(srcdir)/../sys/be/bemain.c $(HACK_H) ../include/dlb.h
 	$(CC) $(CFLAGS) -c $(srcdir)/../sys/be/bemain.c
+unixmain.o: $(srcdir)/../sys/unix/unixmain.c $(HACK_H) ../include/dlb.h
+	$(CC) $(CFLAGS) -c $(srcdir)/../sys/unix/unixmain.c
+unixres.o: $(srcdir)/../sys/unix/unixres.c $(CONFIG_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/../sys/unix/unixres.c
+unixunix.o: $(srcdir)/../sys/unix/unixunix.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/../sys/unix/unixunix.c
+nttty.o: $(srcdir)/../sys/winnt/nttty.c $(HACK_H) #../include/win32api.h
+	$(CC) $(CFLAGS) -c $(srcdir)/../sys/winnt/nttty.c
+winnt.o: $(srcdir)/../sys/winnt/winnt.c $(HACK_H) #../include/win32api.h
+	$(CC) $(CFLAGS) -c $(srcdir)/../sys/winnt/winnt.c
 getline.o: $(srcdir)/../win/tty/getline.c $(HACK_H) ../include/func_tab.h
 	$(CC) $(CFLAGS) -c $(srcdir)/../win/tty/getline.c
 termcap.o: $(srcdir)/../win/tty/termcap.c $(HACK_H) ../include/tcap.h
@@ -449,85 +536,95 @@ topl.o: $(srcdir)/../win/tty/topl.c $(HACK_H) ../include/tcap.h
 wintty.o: $(srcdir)/../win/tty/wintty.c $(HACK_H) ../include/dlb.h \
 		../include/patchlevel.h ../include/tcap.h
 	$(CC) $(CFLAGS) -c $(srcdir)/../win/tty/wintty.c
-Window.o: $(srcdir)/../win/X11/Window.c ../include/xwindowp.h ../include/xwindow.h \
-		$(CONFIG_H)
+Window.o: $(srcdir)/../win/X11/Window.c ../include/xwindowp.h \
+		../include/xwindow.h $(CONFIG_H)
 	$(CC) $(CFLAGS) -c $(srcdir)/../win/X11/Window.c
 dialogs.o: $(srcdir)/../win/X11/dialogs.c $(CONFIG_H)
 	$(CC) $(CFLAGS) -c $(srcdir)/../win/X11/dialogs.c
-winX.o: $(srcdir)/../win/X11/winX.c $(HACK_H) ../include/winX.h ../include/dlb.h \
-		../include/patchlevel.h $(srcdir)/../win/X11/nh72icon \
-		$(srcdir)/../win/X11/nh56icon $(srcdir)/../win/X11/nh32icon
+winX.o: $(srcdir)/../win/X11/winX.c $(HACK_H) ../include/winX.h \
+		../include/dlb.h ../include/patchlevel.h ../win/X11/nh72icon \
+		../win/X11/nh56icon ../win/X11/nh32icon
 	$(CC) $(CFLAGS) -c $(srcdir)/../win/X11/winX.c
-winmap.o: $(srcdir)/../win/X11/winmap.c ../include/xwindow.h $(HACK_H) ../include/dlb.h \
-		../include/winX.h ../include/patchlevel.h ../include/tile2x11.h
+winmap.o: $(srcdir)/../win/X11/winmap.c ../include/xwindow.h $(HACK_H) \
+		../include/dlb.h ../include/winX.h ../include/patchlevel.h \
+		../include/tile2x11.h
 	$(CC) $(CFLAGS) -c $(srcdir)/../win/X11/winmap.c
 winmenu.o: $(srcdir)/../win/X11/winmenu.c $(HACK_H) ../include/winX.h
 	$(CC) $(CFLAGS) -c $(srcdir)/../win/X11/winmenu.c
-winmesg.o: $(srcdir)/../win/X11/winmesg.c ../include/xwindow.h $(HACK_H) ../include/winX.h
+winmesg.o: $(srcdir)/../win/X11/winmesg.c ../include/xwindow.h $(HACK_H) \
+		../include/winX.h
 	$(CC) $(CFLAGS) -c $(srcdir)/../win/X11/winmesg.c
 winmisc.o: $(srcdir)/../win/X11/winmisc.c $(HACK_H) ../include/func_tab.h \
 		../include/winX.h
 	$(CC) $(CFLAGS) -c $(srcdir)/../win/X11/winmisc.c
 winstat.o: $(srcdir)/../win/X11/winstat.c $(HACK_H) ../include/winX.h
 	$(CC) $(CFLAGS) -c $(srcdir)/../win/X11/winstat.c
-wintext.o: $(srcdir)/../win/X11/wintext.c $(HACK_H) ../include/winX.h ../include/xwindow.h
+wintext.o: $(srcdir)/../win/X11/wintext.c $(HACK_H) ../include/winX.h \
+		../include/xwindow.h
 	$(CC) $(CFLAGS) -c $(srcdir)/../win/X11/wintext.c
 winval.o: $(srcdir)/../win/X11/winval.c $(HACK_H) ../include/winX.h
 	$(CC) $(CFLAGS) -c $(srcdir)/../win/X11/winval.c
-gnaskstr.o: $(srcdir)/../win/gnome/gnaskstr.c $(srcdir)/../win/gnome/gnaskstr.h \
-		$(srcdir)/../win/gnome/gnmain.h
+gnaskstr.o: $(srcdir)/../win/gnome/gnaskstr.c ../win/gnome/gnaskstr.h \
+		../win/gnome/gnmain.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c $(srcdir)/../win/gnome/gnaskstr.c
-gnbind.o: $(srcdir)/../win/gnome/gnbind.c $(srcdir)/../win/gnome/gnbind.h $(srcdir)/../win/gnome/gnmain.h \
-		$(srcdir)/../win/gnome/gnmenu.h $(srcdir)/../win/gnome/gnaskstr.h \
-		$(srcdir)/../win/gnome/gnyesno.h
+gnbind.o: $(srcdir)/../win/gnome/gnbind.c ../win/gnome/gnbind.h \
+		../win/gnome/gnmain.h ../win/gnome/gnmenu.h \
+		../win/gnome/gnaskstr.h ../win/gnome/gnyesno.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c $(srcdir)/../win/gnome/gnbind.c
-gnglyph.o: $(srcdir)/../win/gnome/gnglyph.c $(srcdir)/../win/gnome/gnglyph.h
+gnglyph.o: $(srcdir)/../win/gnome/gnglyph.c ../win/gnome/gnglyph.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c $(srcdir)/../win/gnome/gnglyph.c
-gnmain.o: $(srcdir)/../win/gnome/gnmain.c $(srcdir)/../win/gnome/gnmain.h $(srcdir)/../win/gnome/gnsignal.h \
-		$(srcdir)/../win/gnome/gnbind.h $(srcdir)/../win/gnome/gnopts.h $(HACK_H) \
-		../include/date.h
+gnmain.o: $(srcdir)/../win/gnome/gnmain.c ../win/gnome/gnmain.h \
+		../win/gnome/gnsignal.h ../win/gnome/gnbind.h \
+		../win/gnome/gnopts.h $(HACK_H) ../include/date.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c $(srcdir)/../win/gnome/gnmain.c
-gnmap.o: $(srcdir)/../win/gnome/gnmap.c $(srcdir)/../win/gnome/gnmap.h $(srcdir)/../win/gnome/gnglyph.h \
-		$(srcdir)/../win/gnome/gnsignal.h $(HACK_H)
+gnmap.o: $(srcdir)/../win/gnome/gnmap.c ../win/gnome/gnmap.h \
+		../win/gnome/gnglyph.h ../win/gnome/gnsignal.h $(HACK_H)
 	$(CC) $(CFLAGS) $(GNOMEINC) -c $(srcdir)/../win/gnome/gnmap.c
-gnmenu.o: $(srcdir)/../win/gnome/gnmenu.c $(srcdir)/../win/gnome/gnmenu.h $(srcdir)/../win/gnome/gnmain.h \
-		$(srcdir)/../win/gnome/gnbind.h ../include/func_tab.h
+gnmenu.o: $(srcdir)/../win/gnome/gnmenu.c ../win/gnome/gnmenu.h \
+		../win/gnome/gnmain.h ../win/gnome/gnbind.h \
+		../include/func_tab.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c $(srcdir)/../win/gnome/gnmenu.c
-gnmesg.o: $(srcdir)/../win/gnome/gnmesg.c $(srcdir)/../win/gnome/gnmesg.h $(srcdir)/../win/gnome/gnsignal.h
+gnmesg.o: $(srcdir)/../win/gnome/gnmesg.c ../win/gnome/gnmesg.h \
+		../win/gnome/gnsignal.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c $(srcdir)/../win/gnome/gnmesg.c
-gnopts.o: $(srcdir)/../win/gnome/gnopts.c $(srcdir)/../win/gnome/gnopts.h $(srcdir)/../win/gnome/gnglyph.h \
-		$(srcdir)/../win/gnome/gnmain.h $(srcdir)/../win/gnome/gnmap.h $(HACK_H)
+gnopts.o: $(srcdir)/../win/gnome/gnopts.c ../win/gnome/gnopts.h \
+		../win/gnome/gnglyph.h ../win/gnome/gnmain.h \
+		../win/gnome/gnmap.h $(HACK_H)
 	$(CC) $(CFLAGS) $(GNOMEINC) -c $(srcdir)/../win/gnome/gnopts.c
-gnplayer.o: $(srcdir)/../win/gnome/gnplayer.c $(srcdir)/../win/gnome/gnplayer.h \
-		$(srcdir)/../win/gnome/gnmain.h $(HACK_H)
+gnplayer.o: $(srcdir)/../win/gnome/gnplayer.c ../win/gnome/gnplayer.h \
+		../win/gnome/gnmain.h $(HACK_H)
 	$(CC) $(CFLAGS) $(GNOMEINC) -c $(srcdir)/../win/gnome/gnplayer.c
-gnsignal.o: $(srcdir)/../win/gnome/gnsignal.c $(srcdir)/../win/gnome/gnsignal.h \
-		$(srcdir)/../win/gnome/gnmain.h
+gnsignal.o: $(srcdir)/../win/gnome/gnsignal.c ../win/gnome/gnsignal.h \
+		../win/gnome/gnmain.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c $(srcdir)/../win/gnome/gnsignal.c
-gnstatus.o: $(srcdir)/../win/gnome/gnstatus.c $(srcdir)/../win/gnome/gnstatus.h \
-		$(srcdir)/../win/gnome/gnsignal.h $(srcdir)/../win/gnome/gn_xpms.h \
-		$(srcdir)/../win/gnome/gnomeprv.h
+gnstatus.o: $(srcdir)/../win/gnome/gnstatus.c ../win/gnome/gnstatus.h \
+		../win/gnome/gnsignal.h ../win/gnome/gn_xpms.h \
+		../win/gnome/gnomeprv.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c $(srcdir)/../win/gnome/gnstatus.c
-gntext.o: $(srcdir)/../win/gnome/gntext.c $(srcdir)/../win/gnome/gntext.h $(srcdir)/../win/gnome/gnmain.h \
-		$(srcdir)/../win/gnome/gn_rip.h
+gntext.o: $(srcdir)/../win/gnome/gntext.c ../win/gnome/gntext.h \
+		../win/gnome/gnmain.h ../win/gnome/gn_rip.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c $(srcdir)/../win/gnome/gntext.c
-gnyesno.o: $(srcdir)/../win/gnome/gnyesno.c $(srcdir)/../win/gnome/gnbind.h $(srcdir)/../win/gnome/gnyesno.h
+gnyesno.o: $(srcdir)/../win/gnome/gnyesno.c ../win/gnome/gnbind.h \
+		../win/gnome/gnyesno.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c $(srcdir)/../win/gnome/gnyesno.c
-gnworn.o: $(srcdir)/../win/gnome/gnworn.c $(srcdir)/../win/gnome/gnworn.h $(srcdir)/../win/gnome/gnglyph.h \
-		$(srcdir)/../win/gnome/gnsignal.h $(srcdir)/../win/gnome/gnomeprv.h
+gnworn.o: $(srcdir)/../win/gnome/gnworn.c ../win/gnome/gnworn.h \
+		../win/gnome/gnglyph.h ../win/gnome/gnsignal.h \
+		../win/gnome/gnomeprv.h
 	$(CC) $(CFLAGS) $(GNOMEINC) -c $(srcdir)/../win/gnome/gnworn.c
-wingem.o: $(srcdir)/../win/gem/wingem.c $(HACK_H) ../include/func_tab.h ../include/dlb.h \
-		../include/patchlevel.h ../include/wingem.h
+wingem.o: $(srcdir)/../win/gem/wingem.c $(HACK_H) ../include/func_tab.h \
+		../include/dlb.h ../include/patchlevel.h ../include/wingem.h
 	$(CC) $(CFLAGS) -c $(srcdir)/../win/gem/wingem.c
-wingem1.o: $(srcdir)/../win/gem/wingem1.c ../include/gem_rsc.h ../include/load_img.h \
-		../include/gr_rect.h ../include/wintype.h ../include/wingem.h
+wingem1.o: $(srcdir)/../win/gem/wingem1.c ../include/gem_rsc.h \
+		../include/load_img.h ../include/gr_rect.h \
+		../include/wintype.h ../include/wingem.h
 	$(CC) $(CFLAGS) -c $(srcdir)/../win/gem/wingem1.c
 load_img.o: $(srcdir)/../win/gem/load_img.c ../include/load_img.h
 	$(CC) $(CFLAGS) -c $(srcdir)/../win/gem/load_img.c
 gr_rect.o: $(srcdir)/../win/gem/gr_rect.c ../include/gr_rect.h
 	$(CC) $(CFLAGS) -c $(srcdir)/../win/gem/gr_rect.c
-winproxy.o: $(srcdir)/../win/proxy/winproxy.c $(HACK_H) ../include/patchlevel.h \
-		../include/date.h ../include/winproxy.h #../include/win32api.h
+winproxy.o: $(srcdir)/../win/proxy/winproxy.c $(HACK_H) \
+		../include/patchlevel.h ../include/date.h \
+		../include/winproxy.h #../include/win32api.h
 	$(CC) $(CFLAGS) $(WINPROXYCFLAGS) -c $(srcdir)/../win/proxy/winproxy.c
 callback.o: $(srcdir)/../win/proxy/callback.c $(HACK_H) ../include/func_tab.h \
 		../include/winproxy.h
@@ -591,6 +688,70 @@ gl_unit.o: $(srcdir)/../win/gl/gl_unit.c $(HACK_H) ../include/winGL.h
 gl_win.o: $(srcdir)/../win/gl/gl_win.c $(HACK_H) ../include/dlb.h \
 		../include/patchlevel.h ../include/winGL.h
 	$(CC) $(CFLAGS) $(SDLGL_CFLAGS) -c $(srcdir)/../win/gl/gl_win.c
+mswproc.o: $(srcdir)/../win/win32/mswproc.c $(HACK_H) ../include/dlb.h \
+		../include/func_tab.h ../win/win32/winMS.h \
+		../win/win32/mhmap.h ../win/win32/mhstatus.h \
+		../win/win32/mhtext.h ../win/win32/mhmsgwnd.h \
+		../win/win32/mhmenu.h ../win/win32/mhsplash.h \
+		../win/win32/mhmsg.h ../win/win32/mhinput.h \
+		../win/win32/mhaskyn.h ../win/win32/mhdlg.h \
+		../win/win32/mhrip.h ../win/win32/mhmain.h \
+		../win/win32/mhfont.h ../win/win32/resource.h
+	$(CC) $(CFLAGS) $(WINMSCFLAGS) -c $(srcdir)/../win/win32/mswproc.c
+winhack.o: $(srcdir)/../win/win32/winhack.c ../win/win32/winMS.h $(HACK_H) \
+		../include/dlb.h ../win/win32/resource.h ../win/win32/mhmain.h \
+		../win/win32/mhmap.h
+	$(CC) $(CFLAGS) $(WINMSCFLAGS) -c $(srcdir)/../win/win32/winhack.c
+mhdlg.o: $(srcdir)/../win/win32/mhdlg.c ../win/win32/winMS.h $(HACK_H) \
+		../include/func_tab.h ../win/win32/resource.h \
+		../win/win32/mhdlg.h
+	$(CC) $(CFLAGS) $(WINMSCFLAGS) -c $(srcdir)/../win/win32/mhdlg.c
+mhaskyn.o: $(srcdir)/../win/win32/mhaskyn.c ../win/win32/winMS.h \
+		../win/win32/mhaskyn.h
+	$(CC) $(CFLAGS) $(WINMSCFLAGS) -c $(srcdir)/../win/win32/mhaskyn.c
+mhfont.o: $(srcdir)/../win/win32/mhfont.c ../win/win32/mhfont.h
+	$(CC) $(CFLAGS) $(WINMSCFLAGS) -c $(srcdir)/../win/win32/mhfont.c
+mhinput.o: $(srcdir)/../win/win32/mhinput.c ../win/win32/winMS.h \
+		../win/win32/mhinput.h
+	$(CC) $(CFLAGS) $(WINMSCFLAGS) -c $(srcdir)/../win/win32/mhinput.c
+mhmain.o: $(srcdir)/../win/win32/mhmain.c ../win/win32/winMS.h \
+		../include/patchlevel.h ../win/win32/resource.h \
+		../win/win32/mhmsg.h ../win/win32/mhinput.h \
+		../win/win32/mhmain.h ../win/win32/mhmenu.h \
+		../win/win32/mhstatus.h ../win/win32/mhmsgwnd.h \
+		../win/win32/mhmap.h
+	$(CC) $(CFLAGS) $(WINMSCFLAGS) -c $(srcdir)/../win/win32/mhmain.c
+mhmsgwnd.o: $(srcdir)/../win/win32/mhmsgwnd.c ../win/win32/winMS.h \
+		../win/win32/mhmsgwnd.h ../win/win32/mhmsg.h \
+		../win/win32/mhfont.h
+	$(CC) $(CFLAGS) $(WINMSCFLAGS) -c $(srcdir)/../win/win32/mhmsgwnd.c
+mhsplash.o: $(srcdir)/../win/win32/mhsplash.c ../win/win32/winMS.h \
+		../win/win32/resource.h ../win/win32/mhsplash.h \
+		../win/win32/mhmsg.h ../win/win32/mhfont.h \
+		../include/patchlevel.h ../include/dlb.h
+	$(CC) $(CFLAGS) $(WINMSCFLAGS) -c $(srcdir)/../win/win32/mhsplash.c
+mhstatus.o: $(srcdir)/../win/win32/mhstatus.c ../win/win32/winMS.h \
+		../win/win32/mhstatus.h ../win/win32/mhmsg.h \
+		../win/win32/mhfont.h
+	$(CC) $(CFLAGS) $(WINMSCFLAGS) -c $(srcdir)/../win/win32/mhstatus.c
+mhtext.o: $(srcdir)/../win/win32/mhtext.c ../win/win32/winMS.h \
+		../win/win32/resource.h ../win/win32/mhtext.h \
+		../win/win32/mhmsg.h ../win/win32/mhfont.h
+	$(CC) $(CFLAGS) $(WINMSCFLAGS) -c $(srcdir)/../win/win32/mhtext.c
+mhmenu.o: $(srcdir)/../win/win32/mhmenu.c ../win/win32/winMS.h \
+		../win/win32/resource.h ../win/win32/mhmenu.h \
+		../win/win32/mhmain.h ../win/win32/mhmsg.h \
+		../win/win32/mhfont.h ../win/win32/mhdlg.h
+	$(CC) $(CFLAGS) $(WINMSCFLAGS) -c $(srcdir)/../win/win32/mhmenu.c
+mhmap.o: $(srcdir)/../win/win32/mhmap.c ../win/win32/winMS.h \
+		../win/win32/resource.h ../win/win32/mhmap.h \
+		../win/win32/mhmsg.h ../win/win32/mhinput.h \
+		../win/win32/mhfont.h ../include/patchlevel.h
+	$(CC) $(CFLAGS) $(WINMSCFLAGS) -c $(srcdir)/../win/win32/mhmap.c
+mhrip.o: $(srcdir)/../win/win32/mhrip.c ../win/win32/winMS.h \
+		../win/win32/resource.h ../win/win32/mhrip.h \
+		../win/win32/mhmsg.h ../win/win32/mhfont.h
+	$(CC) $(CFLAGS) $(WINMSCFLAGS) -c $(srcdir)/../win/win32/mhrip.c
 tile.o: tile.c $(HACK_H)
 qt_win.o: $(srcdir)/../win/Qt/qt_win.cpp $(HACK_H) ../include/func_tab.h \
 		../include/dlb.h ../include/date.h ../include/patchlevel.h \
@@ -604,127 +765,241 @@ qttableview.o: $(srcdir)/../win/Qt/qttableview.cpp ../include/qttableview.h
 	$(CXX) $(CXXFLAGS) -c $(srcdir)/../win/Qt/qttableview.cpp
 monstr.o: monstr.c $(CONFIG_H)
 vis_tab.o: vis_tab.c $(CONFIG_H) ../include/vis_tab.h
-allmain.o: allmain.c $(HACK_H) ../include/patchlevel.h
-alloc.o: alloc.c $(CONFIG_H)
-apply.o: apply.c $(HACK_H) ../include/edog.h ../include/eleash.h
-artifact.o: artifact.c $(HACK_H) ../include/artifact.h ../include/artilist.h
-attrib.o: attrib.c $(HACK_H)
-ball.o: ball.c $(HACK_H)
-bones.o: bones.c $(HACK_H) ../include/lev.h
-botl.o: botl.c $(HACK_H)
-cmd.o: cmd.c $(HACK_H) ../include/func_tab.h
-dbridge.o: dbridge.c $(HACK_H)
-decl.o: decl.c $(HACK_H)
-detect.o: detect.c $(HACK_H) ../include/artifact.h
-dig.o: dig.c $(HACK_H) ../include/edog.h
-display.o: display.c $(HACK_H)
-dlb.o: dlb.c $(CONFIG_H) ../include/dlb.h
-do.o: do.c $(HACK_H) ../include/lev.h
-do_name.o: do_name.c $(HACK_H)
-do_wear.o: do_wear.c $(HACK_H)
-dog.o: dog.c $(HACK_H) ../include/edog.h ../include/emin.h ../include/epri.h
-dogmove.o: dogmove.c $(HACK_H) ../include/mfndpos.h ../include/edog.h \
-		../include/emin.h ../include/epri.h ../include/eleash.h
-dokick.o: dokick.c $(HACK_H) ../include/eshk.h
-dothrow.o: dothrow.c $(HACK_H) ../include/edog.h
-drawing.o: drawing.c $(HACK_H) ../include/tcap.h
-dungeon.o: dungeon.c $(HACK_H) ../include/dgn_file.h ../include/dlb.h
-eat.o: eat.c $(HACK_H)
-end.o: end.c $(HACK_H) ../include/eshk.h ../include/dlb.h
-engrave.o: engrave.c $(HACK_H) ../include/lev.h
-exper.o: exper.c $(HACK_H)
-explode.o: explode.c $(HACK_H)
-extralev.o: extralev.c $(HACK_H)
-files.o: files.c $(HACK_H) ../include/dlb.h ../include/filename.h \
-		../include/winGL.h ../include/winproxy.h
-fountain.o: fountain.c $(HACK_H)
-hack.o: hack.c $(HACK_H)
-hacklib.o: hacklib.c $(HACK_H)
-invent.o: invent.c $(HACK_H)
-light.o: light.c $(HACK_H) ../include/lev.h
-lock.o: lock.c $(HACK_H)
-mail.o: mail.c $(HACK_H) ../include/mail.h
-makemon.o: makemon.c $(HACK_H) ../include/epri.h ../include/emin.h \
-		../include/edog.h
-mapglyph.o: mapglyph.c $(HACK_H)
-mcastu.o: mcastu.c $(HACK_H)
-mhitm.o: mhitm.c $(HACK_H) ../include/artifact.h ../include/edog.h
-mhitu.o: mhitu.c $(HACK_H) ../include/artifact.h ../include/edog.h
-minion.o: minion.c $(HACK_H) ../include/emin.h ../include/epri.h
-mklev.o: mklev.c $(HACK_H)
-mkmap.o: mkmap.c $(HACK_H) ../include/sp_lev.h
-mkmaze.o: mkmaze.c $(HACK_H) ../include/sp_lev.h ../include/lev.h
-mkobj.o: mkobj.c $(HACK_H)
-mkroom.o: mkroom.c $(HACK_H)
-mon.o: mon.c $(HACK_H) ../include/mfndpos.h ../include/edog.h \
-		../include/artifact.h
-mondata.o: mondata.c $(HACK_H) ../include/eshk.h ../include/epri.h
-monmove.o: monmove.c $(HACK_H) ../include/mfndpos.h ../include/artifact.h \
+allmain.o: $(srcdir)/allmain.c $(HACK_H) ../include/patchlevel.h
+	$(CC) $(CFLAGS) -c $(srcdir)/allmain.c
+alloc.o: $(srcdir)/alloc.c $(CONFIG_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/alloc.c
+apply.o: $(srcdir)/apply.c $(HACK_H) ../include/edog.h ../include/eleash.h
+	$(CC) $(CFLAGS) -c $(srcdir)/apply.c
+artifact.o: $(srcdir)/artifact.c $(HACK_H) ../include/artifact.h \
+		../include/artilist.h
+	$(CC) $(CFLAGS) -c $(srcdir)/artifact.c
+attrib.o: $(srcdir)/attrib.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/attrib.c
+ball.o: $(srcdir)/ball.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/ball.c
+bones.o: $(srcdir)/bones.c $(HACK_H) ../include/lev.h
+	$(CC) $(CFLAGS) -c $(srcdir)/bones.c
+botl.o: $(srcdir)/botl.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/botl.c
+cmd.o: $(srcdir)/cmd.c $(HACK_H) ../include/func_tab.h
+	$(CC) $(CFLAGS) -c $(srcdir)/cmd.c
+dbridge.o: $(srcdir)/dbridge.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/dbridge.c
+decl.o: $(srcdir)/decl.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/decl.c
+detect.o: $(srcdir)/detect.c $(HACK_H) ../include/artifact.h
+	$(CC) $(CFLAGS) -c $(srcdir)/detect.c
+dig.o: $(srcdir)/dig.c $(HACK_H) ../include/edog.h
+	$(CC) $(CFLAGS) -c $(srcdir)/dig.c
+display.o: $(srcdir)/display.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/display.c
+dlb.o: $(srcdir)/dlb.c $(CONFIG_H) ../include/dlb.h
+	$(CC) $(CFLAGS) -c $(srcdir)/dlb.c
+do.o: $(srcdir)/do.c $(HACK_H) ../include/lev.h
+	$(CC) $(CFLAGS) -c $(srcdir)/do.c
+do_name.o: $(srcdir)/do_name.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/do_name.c
+do_wear.o: $(srcdir)/do_wear.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/do_wear.c
+dog.o: $(srcdir)/dog.c $(HACK_H) ../include/edog.h ../include/emin.h \
 		../include/epri.h
-monst.o: monst.c $(CONFIG_H) ../include/permonst.h ../include/align.h \
-		../include/monattk.h ../include/monflag.h ../include/monsym.h \
-		../include/dungeon.h ../include/eshk.h ../include/vault.h \
-		../include/epri.h ../include/egyp.h ../include/color.h
-mplayer.o: mplayer.c $(HACK_H)
-mthrowu.o: mthrowu.c $(HACK_H)
-muse.o: muse.c $(HACK_H) ../include/edog.h
-music.o: music.c $(HACK_H) #interp.c
-o_init.o: o_init.c $(HACK_H) ../include/lev.h
-objects.o: objects.c $(CONFIG_H) ../include/obj.h ../include/objclass.h \
-		../include/prop.h ../include/skills.h ../include/color.h
-objnam.o: objnam.c $(HACK_H)
-options.o: options.c $(CONFIG_H) ../include/objclass.h ../include/flag.h \
-		$(HACK_H) ../include/tcap.h ../include/winGL.h \
-		../include/filename.h
-pager.o: pager.c $(HACK_H) ../include/dlb.h
-pickup.o: pickup.c $(HACK_H)
-pline.o: pline.c $(HACK_H) ../include/epri.h ../include/edog.h
-polyself.o: polyself.c $(HACK_H)
-potion.o: potion.c $(HACK_H)
-pray.o: pray.c $(HACK_H) ../include/epri.h
-priest.o: priest.c $(HACK_H) ../include/mfndpos.h ../include/eshk.h \
-		../include/epri.h ../include/emin.h
-quest.o: quest.c $(HACK_H) ../include/qtext.h
-questpgr.o: questpgr.c $(HACK_H) ../include/dlb.h ../include/qtext.h
-read.o: read.c $(HACK_H)
-rect.o: rect.c $(HACK_H)
-region.o: region.c $(HACK_H) ../include/lev.h
-restore.o: restore.c $(HACK_H) ../include/lev.h ../include/tcap.h
-rip.o: rip.c $(HACK_H)
-rnd.o: rnd.c $(HACK_H)
-role.o: role.c $(HACK_H)
-rumors.o: rumors.c $(HACK_H) ../include/lev.h ../include/dlb.h
-save.o: save.c $(HACK_H) ../include/lev.h
-shk.o: shk.c $(HACK_H) ../include/eshk.h
-shknam.o: shknam.c $(HACK_H) ../include/eshk.h
-sit.o: sit.c $(HACK_H) ../include/artifact.h
-sounds.o: sounds.c $(HACK_H) ../include/edog.h
-sp_lev.o: sp_lev.c $(HACK_H) ../include/dlb.h ../include/sp_lev.h
-spell.o: spell.c $(HACK_H) ../include/edog.h
-steal.o: steal.c $(HACK_H)
-steed.o: steed.c $(HACK_H)
-teleport.o: teleport.c $(HACK_H)
-timeout.o: timeout.c $(HACK_H) ../include/lev.h
-topten.o: topten.c $(HACK_H) ../include/dlb.h ../include/patchlevel.h
-track.o: track.c $(HACK_H)
-trap.o: trap.c $(HACK_H)
-u_init.o: u_init.c $(HACK_H)
-uhitm.o: uhitm.c $(HACK_H)
-vault.o: vault.c $(HACK_H) ../include/vault.h
-version.o: version.c $(HACK_H) ../include/date.h ../include/patchlevel.h
-vision.o: vision.c $(HACK_H) ../include/vis_tab.h
-weapon.o: weapon.c $(HACK_H)
-were.o: were.c $(HACK_H)
-wield.o: wield.c $(HACK_H)
-windows.o: windows.c $(HACK_H) ../include/wingem.h ../include/winGnome.h \
+	$(CC) $(CFLAGS) -c $(srcdir)/dog.c
+dogmove.o: $(srcdir)/dogmove.c $(HACK_H) ../include/mfndpos.h \
+		../include/edog.h ../include/emin.h ../include/epri.h \
+		../include/eleash.h
+	$(CC) $(CFLAGS) -c $(srcdir)/dogmove.c
+dokick.o: $(srcdir)/dokick.c $(HACK_H) ../include/eshk.h
+	$(CC) $(CFLAGS) -c $(srcdir)/dokick.c
+dothrow.o: $(srcdir)/dothrow.c $(HACK_H) ../include/edog.h
+	$(CC) $(CFLAGS) -c $(srcdir)/dothrow.c
+drawing.o: $(srcdir)/drawing.c $(HACK_H) ../include/tcap.h
+	$(CC) $(CFLAGS) -c $(srcdir)/drawing.c
+dungeon.o: $(srcdir)/dungeon.c $(HACK_H) ../include/dgn_file.h ../include/dlb.h
+	$(CC) $(CFLAGS) -c $(srcdir)/dungeon.c
+eat.o: $(srcdir)/eat.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/eat.c
+end.o: $(srcdir)/end.c $(HACK_H) ../include/eshk.h ../include/dlb.h
+	$(CC) $(CFLAGS) -c $(srcdir)/end.c
+engrave.o: $(srcdir)/engrave.c $(HACK_H) ../include/lev.h
+	$(CC) $(CFLAGS) -c $(srcdir)/engrave.c
+exper.o: $(srcdir)/exper.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/exper.c
+explode.o: $(srcdir)/explode.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/explode.c
+extralev.o: $(srcdir)/extralev.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/extralev.c
+files.o: $(srcdir)/files.c $(HACK_H) ../include/dlb.h ../include/filename.h \
 		../include/winGL.h ../include/winproxy.h
-wizard.o: wizard.c $(HACK_H) ../include/qtext.h ../include/epri.h
-worm.o: worm.c $(HACK_H) ../include/lev.h
-worn.o: worn.c $(HACK_H)
-write.o: write.c $(HACK_H)
-zap.o: zap.c $(HACK_H)
-gypsy.o: gypsy.c $(HACK_H) ../include/egyp.h ../include/qtext.h
-tech.o: tech.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/files.c
+fountain.o: $(srcdir)/fountain.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/fountain.c
+hack.o: $(srcdir)/hack.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/hack.c
+hacklib.o: $(srcdir)/hacklib.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/hacklib.c
+invent.o: $(srcdir)/invent.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/invent.c
+light.o: $(srcdir)/light.c $(HACK_H) ../include/lev.h
+	$(CC) $(CFLAGS) -c $(srcdir)/light.c
+lock.o: $(srcdir)/lock.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/lock.c
+mail.o: $(srcdir)/mail.c $(HACK_H) ../include/mail.h
+	$(CC) $(CFLAGS) -c $(srcdir)/mail.c
+makemon.o: $(srcdir)/makemon.c $(HACK_H) ../include/epri.h ../include/emin.h \
+		../include/edog.h
+	$(CC) $(CFLAGS) -c $(srcdir)/makemon.c
+mapglyph.o: $(srcdir)/mapglyph.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/mapglyph.c
+mcastu.o: $(srcdir)/mcastu.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/mcastu.c
+mhitm.o: $(srcdir)/mhitm.c $(HACK_H) ../include/artifact.h ../include/edog.h
+	$(CC) $(CFLAGS) -c $(srcdir)/mhitm.c
+mhitu.o: $(srcdir)/mhitu.c $(HACK_H) ../include/artifact.h ../include/edog.h
+	$(CC) $(CFLAGS) -c $(srcdir)/mhitu.c
+minion.o: $(srcdir)/minion.c $(HACK_H) ../include/emin.h ../include/epri.h
+	$(CC) $(CFLAGS) -c $(srcdir)/minion.c
+mklev.o: $(srcdir)/mklev.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/mklev.c
+mkmap.o: $(srcdir)/mkmap.c $(HACK_H) ../include/sp_lev.h
+	$(CC) $(CFLAGS) -c $(srcdir)/mkmap.c
+mkmaze.o: $(srcdir)/mkmaze.c $(HACK_H) ../include/sp_lev.h ../include/lev.h
+	$(CC) $(CFLAGS) -c $(srcdir)/mkmaze.c
+mkobj.o: $(srcdir)/mkobj.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/mkobj.c
+mkroom.o: $(srcdir)/mkroom.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/mkroom.c
+mon.o: $(srcdir)/mon.c $(HACK_H) ../include/mfndpos.h ../include/edog.h \
+		../include/artifact.h
+	$(CC) $(CFLAGS) -c $(srcdir)/mon.c
+mondata.o: $(srcdir)/mondata.c $(HACK_H) ../include/eshk.h ../include/epri.h
+	$(CC) $(CFLAGS) -c $(srcdir)/mondata.c
+monmove.o: $(srcdir)/monmove.c $(HACK_H) ../include/mfndpos.h \
+		../include/artifact.h ../include/epri.h
+	$(CC) $(CFLAGS) -c $(srcdir)/monmove.c
+monst.o: $(srcdir)/monst.c $(CONFIG_H) ../include/permonst.h \
+		../include/align.h ../include/monattk.h ../include/monflag.h \
+		../include/monsym.h ../include/dungeon.h ../include/eshk.h \
+		../include/vault.h ../include/epri.h ../include/egyp.h \
+		../include/color.h
+	$(CC) $(CFLAGS) -c $(srcdir)/monst.c
+mplayer.o: $(srcdir)/mplayer.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/mplayer.c
+mthrowu.o: $(srcdir)/mthrowu.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/mthrowu.c
+muse.o: $(srcdir)/muse.c $(HACK_H) ../include/edog.h
+	$(CC) $(CFLAGS) -c $(srcdir)/muse.c
+music.o: $(srcdir)/music.c $(HACK_H) #interp.c
+	$(CC) $(CFLAGS) -c $(srcdir)/music.c
+o_init.o: $(srcdir)/o_init.c $(HACK_H) ../include/lev.h
+	$(CC) $(CFLAGS) -c $(srcdir)/o_init.c
+objects.o: $(srcdir)/objects.c $(CONFIG_H) ../include/obj.h \
+		../include/objclass.h ../include/prop.h ../include/skills.h \
+		../include/color.h objects.c
+	$(CC) $(CFLAGS) -c $(srcdir)/objects.c
+objnam.o: $(srcdir)/objnam.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/objnam.c
+options.o: $(srcdir)/options.c $(CONFIG_H) ../include/objclass.h \
+		../include/flag.h $(HACK_H) ../include/tcap.h \
+		../include/winGL.h ../include/filename.h
+	$(CC) $(CFLAGS) -c $(srcdir)/options.c
+pager.o: $(srcdir)/pager.c $(HACK_H) ../include/dlb.h
+	$(CC) $(CFLAGS) -c $(srcdir)/pager.c
+pickup.o: $(srcdir)/pickup.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/pickup.c
+pline.o: $(srcdir)/pline.c $(HACK_H) ../include/epri.h ../include/edog.h
+	$(CC) $(CFLAGS) -c $(srcdir)/pline.c
+polyself.o: $(srcdir)/polyself.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/polyself.c
+potion.o: $(srcdir)/potion.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/potion.c
+pray.o: $(srcdir)/pray.c $(HACK_H) ../include/epri.h
+	$(CC) $(CFLAGS) -c $(srcdir)/pray.c
+priest.o: $(srcdir)/priest.c $(HACK_H) ../include/mfndpos.h ../include/eshk.h \
+		../include/epri.h ../include/emin.h
+	$(CC) $(CFLAGS) -c $(srcdir)/priest.c
+quest.o: $(srcdir)/quest.c $(HACK_H) ../include/qtext.h
+	$(CC) $(CFLAGS) -c $(srcdir)/quest.c
+questpgr.o: $(srcdir)/questpgr.c $(HACK_H) ../include/dlb.h ../include/qtext.h
+	$(CC) $(CFLAGS) -c $(srcdir)/questpgr.c
+read.o: $(srcdir)/read.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/read.c
+rect.o: $(srcdir)/rect.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/rect.c
+region.o: $(srcdir)/region.c $(HACK_H) ../include/lev.h
+	$(CC) $(CFLAGS) -c $(srcdir)/region.c
+restore.o: $(srcdir)/restore.c $(HACK_H) ../include/lev.h ../include/tcap.h
+	$(CC) $(CFLAGS) -c $(srcdir)/restore.c
+rip.o: $(srcdir)/rip.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/rip.c
+rnd.o: $(srcdir)/rnd.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/rnd.c
+role.o: $(srcdir)/role.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/role.c
+rumors.o: $(srcdir)/rumors.c $(HACK_H) ../include/lev.h ../include/dlb.h
+	$(CC) $(CFLAGS) -c $(srcdir)/rumors.c
+save.o: $(srcdir)/save.c $(HACK_H) ../include/lev.h
+	$(CC) $(CFLAGS) -c $(srcdir)/save.c
+shk.o: $(srcdir)/shk.c $(HACK_H) ../include/eshk.h
+	$(CC) $(CFLAGS) -c $(srcdir)/shk.c
+shknam.o: $(srcdir)/shknam.c $(HACK_H) ../include/eshk.h
+	$(CC) $(CFLAGS) -c $(srcdir)/shknam.c
+sit.o: $(srcdir)/sit.c $(HACK_H) ../include/artifact.h
+	$(CC) $(CFLAGS) -c $(srcdir)/sit.c
+sounds.o: $(srcdir)/sounds.c $(HACK_H) ../include/edog.h
+	$(CC) $(CFLAGS) -c $(srcdir)/sounds.c
+sp_lev.o: $(srcdir)/sp_lev.c $(HACK_H) ../include/dlb.h ../include/sp_lev.h
+	$(CC) $(CFLAGS) -c $(srcdir)/sp_lev.c
+spell.o: $(srcdir)/spell.c $(HACK_H) ../include/edog.h
+	$(CC) $(CFLAGS) -c $(srcdir)/spell.c
+steal.o: $(srcdir)/steal.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/steal.c
+steed.o: $(srcdir)/steed.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/steed.c
+teleport.o: $(srcdir)/teleport.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/teleport.c
+timeout.o: $(srcdir)/timeout.c $(HACK_H) ../include/lev.h
+	$(CC) $(CFLAGS) -c $(srcdir)/timeout.c
+topten.o: $(srcdir)/topten.c $(HACK_H) ../include/dlb.h ../include/patchlevel.h
+	$(CC) $(CFLAGS) -c $(srcdir)/topten.c
+track.o: $(srcdir)/track.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/track.c
+trap.o: $(srcdir)/trap.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/trap.c
+u_init.o: $(srcdir)/u_init.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/u_init.c
+uhitm.o: $(srcdir)/uhitm.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/uhitm.c
+vault.o: $(srcdir)/vault.c $(HACK_H) ../include/vault.h
+	$(CC) $(CFLAGS) -c $(srcdir)/vault.c
+version.o: $(srcdir)/version.c $(HACK_H) ../include/date.h \
+		../include/patchlevel.h
+	$(CC) $(CFLAGS) -c $(srcdir)/version.c
+vision.o: $(srcdir)/vision.c $(HACK_H) ../include/vis_tab.h
+	$(CC) $(CFLAGS) -c $(srcdir)/vision.c
+weapon.o: $(srcdir)/weapon.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/weapon.c
+were.o: $(srcdir)/were.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/were.c
+wield.o: $(srcdir)/wield.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/wield.c
+windows.o: $(srcdir)/windows.c $(HACK_H) ../include/wingem.h \
+		../include/winGnome.h ../include/winGL.h ../include/winproxy.h
+	$(CC) $(CFLAGS) -c $(srcdir)/windows.c
+wizard.o: $(srcdir)/wizard.c $(HACK_H) ../include/qtext.h ../include/epri.h
+	$(CC) $(CFLAGS) -c $(srcdir)/wizard.c
+worm.o: $(srcdir)/worm.c $(HACK_H) ../include/lev.h
+	$(CC) $(CFLAGS) -c $(srcdir)/worm.c
+worn.o: $(srcdir)/worn.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/worn.c
+write.o: $(srcdir)/write.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/write.c
+zap.o: $(srcdir)/zap.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/zap.c
+gypsy.o: $(srcdir)/gypsy.c $(HACK_H) ../include/egyp.h ../include/qtext.h
+	$(CC) $(CFLAGS) -c $(srcdir)/gypsy.c
+tech.o: $(srcdir)/tech.c $(HACK_H)
+	$(CC) $(CFLAGS) -c $(srcdir)/tech.c
 # DEPENDENCIES MUST END AT END OF FILE
 # IF YOU PUT STUFF HERE IT WILL GO AWAY
 # see make depend above

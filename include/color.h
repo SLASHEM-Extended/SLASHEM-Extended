@@ -5,19 +5,18 @@
 #ifndef COLOR_H
 #define COLOR_H
 
-#ifdef MENU_COLOR
-# ifdef USE_REGEX_MATCH
-#  include <regex.h>
-# endif  
-#endif
-
 /*
  * The color scheme used is tailored for an IBM PC.  It consists of the
  * standard 8 colors, folowed by their bright counterparts.  There are
  * exceptions, these are listed below.  Bright black doesn't mean very
  * much, so it is used as the "default" foreground color of the screen.
  */
-#define CLR_BLACK		0
+
+#ifndef VIDEOSHADES
+# define CLR_BLACK		0
+#else
+# define CLR_BLACK		8
+#endif
 #define CLR_RED			1
 #define CLR_GREEN		2
 #define CLR_BROWN		3 /* on IBM, low-intensity yellow is brown */
@@ -25,7 +24,11 @@
 #define CLR_MAGENTA		5
 #define CLR_CYAN		6
 #define CLR_GRAY		7 /* low-intensity white */
-#define NO_COLOR		8
+#ifndef VIDEOSHADES
+# define NO_COLOR		8
+#else
+# define NO_COLOR		0
+#endif
 #define CLR_ORANGE		9
 #define CLR_BRIGHT_GREEN	10
 #define CLR_YELLOW		11
@@ -71,6 +74,10 @@ struct menucoloring {
    int color, attr;
    struct menucoloring *next;
 };
+#endif
+
+#if defined(VIDEOSHADES) && !defined(MSDOS)
+extern char ttycolors[CLR_MAX];
 #endif
 
 #endif /* COLOR_H */

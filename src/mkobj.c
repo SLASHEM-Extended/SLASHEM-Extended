@@ -171,7 +171,7 @@ struct obj *box;
 		if (!(otmp = mksobj(supplies[rn2(SIZE(supplies))], TRUE, TRUE)))
 		    continue;
 		else
-		    otmp->oinvis = FALSE;
+		    obj_set_oinvis(otmp, FALSE, FALSE);
 	    } else
 	    if (box->otyp == ICE_BOX) {
 		if (!(otmp = mksobj(CORPSE, TRUE, TRUE))) continue;
@@ -417,7 +417,6 @@ boolean artif;
 	otmp->otyp = otyp;
 	otmp->where = OBJ_FREE;
 	otmp->dknown = index(dknowns, let) ? 0 : 1;
-	otmp->oinvis = 0;
 	otmp->olocked = FALSE; /* ->recharged */
 	otmp->altmode = WP_MODE_AUTO;
 	if ((otmp->otyp >= ELVEN_SHIELD && otmp->otyp <= ORCISH_SHIELD) ||
@@ -426,8 +425,8 @@ boolean artif;
 	if (!objects[otmp->otyp].oc_uses_known)
 		otmp->known = 1;
 #ifdef INVISIBLE_OBJECTS
-	otmp->oinvis = !always_visible(otmp) && \
-		(otmp->otyp != BOULDER || !In_sokoban(&u.uz)) && !rn2(1250);
+	obj_set_oinvis(otmp, !rn2(1250) &&
+	  (otmp->otyp != BOULDER || !In_sokoban(&u.uz)), FALSE);
 #endif
 	if (init) switch (let) {
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */                   
@@ -675,14 +674,13 @@ boolean artif;
 #endif
 		}
 		break;
-/* -----------============STEPHEN WHITE'S NEW CODE============----------- */           
 	case WAND_CLASS:
 		if(otmp->otyp == WAN_WISHING) {                 
-			otmp->spe = rnd(3);
+		    otmp->spe = rnd(3);
 #ifdef INVISIBLE_OBJECTS
-			if (Is_stronghold(&u.uz)) otmp->oinvis = 1;
+		    if (Is_stronghold(&u.uz)) obj_set_oinvis(otmp, TRUE, FALSE);
 #endif
-			if(!rn2(2)) otmp->recharged = 1;
+		    if(!rn2(2)) otmp->recharged = 1;
 		} else otmp->spe = rn1(5,
 			(objects[otmp->otyp].oc_dir == NODIR) ? 15 : 8);
 		blessorcurse(otmp, 17);

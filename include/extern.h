@@ -2149,6 +2149,7 @@ E void NDECL(run_timers);
 E void FDECL(obj_move_timers, (struct obj *, struct obj *));
 E void FDECL(obj_split_timers, (struct obj *, struct obj *));
 E void FDECL(obj_stop_timers, (struct obj *));
+E void FDECL(mon_stop_timers, (struct monst *));
 E boolean FDECL(obj_is_local, (struct obj *));
 E void FDECL(save_timers, (int,int,int));
 E void FDECL(restore_timers, (int,int,BOOLEAN_P,long));
@@ -2558,6 +2559,9 @@ E boolean FDECL(obj_resists, (struct obj *,int,int));
 E boolean FDECL(obj_shudders, (struct obj *));
 E void FDECL(do_osshock, (struct obj *));
 E void FDECL(puton_worn_item, (struct obj *));
+#ifdef INVISIBLE_OBJECTS
+E void FDECL(obj_set_oinvis, (struct obj *, BOOLEAN_P, BOOLEAN_P));
+#endif
 E struct obj *FDECL(poly_obj, (struct obj *, int));
 E int FDECL(bhito, (struct obj *,struct obj *));
 E int FDECL(bhitpile, (struct obj *,int (*)(OBJ_P,OBJ_P),int,int));

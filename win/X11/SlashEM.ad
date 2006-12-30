@@ -132,6 +132,30 @@ SlashEM*race_selection*Command.foreground:	red
 SlashEM*race_selection*quit.accelerators: #override\n\
 				<Key>Escape:	set() notify() unset()
 
+SlashEM*gender_selection*random.borderColor: blue
+SlashEM*gender_selection*random.borderWidth: 2
+SlashEM*gender_selection*random.foreground:  blue
+SlashEM*gender_selection*random.accelerators: #override\n\
+				<Key>Return:	set() notify() unset()
+SlashEM*gender_selection*quit.borderColor: blue
+SlashEM*gender_selection*quit.foreground:  blue
+SlashEM*gender_selection*Command.borderColor:  red
+SlashEM*gender_selection*Command.foreground: red
+SlashEM*gender_selection*quit.accelerators: #override\n\
+				<Key>Return:	set() notify() unset()
+
+SlashEM*alignment_selection*random.borderColor:  blue
+SlashEM*alignment_selection*random.borderWidth:  2
+SlashEM*alignment_selection*random.foreground: blue
+SlashEM*alignment_selection*random.accelerators: #override\n\
+				<Key>Return:	set() notify() unset()
+SlashEM*alignment_selection*quit.borderColor:  blue
+SlashEM*alignment_selection*quit.foreground: blue
+SlashEM*alignment_selection*Command.borderColor: red
+SlashEM*alignment_selection*Command.foreground:  red
+SlashEM*alignment_selection*quit.accelerators: #override\n\
+				<Key>Return:	set() notify() unset()
+
 SlashEM*extended_commands*dismiss.borderColor:	blue
 SlashEM*extended_commands*dismiss.foreground:	blue
 SlashEM*extended_commands*help.borderColor:	blue

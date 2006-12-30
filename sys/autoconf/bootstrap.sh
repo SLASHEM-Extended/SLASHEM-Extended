@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: bootstrap.sh,v 1.1 2005-06-11 15:52:45 j_ali Exp $
+# $Id: bootstrap.sh,v 1.2 2005-09-17 14:58:33 j_ali Exp $
 #
 case "$0" in
     */*)	confdir=`echo $0 | sed 's:/[^/]*$::'` ;;
@@ -13,8 +13,10 @@ rm -f autoconf.hin
 aclocal
 # We can't avoid running autotools in multiple directories,
 # but at least we can have only one cache.
-rm -rf ../../autom4te.cache
-mv autom4te.cache ../..
+if [ -d autom4te.cache ]; then		# aclocal v1.7 doesn't create cache
+    rm -rf ../../autom4te.cache
+    mv autom4te.cache ../..
+fi
 # autoheader must be run from topdir since configure.ac refers
 # to sys/autoconf/autoconf.hin
 (cd ../.. && autoheader -I sys/autoconf sys/autoconf/configure.ac)

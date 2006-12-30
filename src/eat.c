@@ -1612,7 +1612,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	    }
 		    
 	    if (!retcode) consume_oeaten(otmp, 2);	/* oeaten >>= 2 */
-	    if (otmp->odrained && otmp->oeaten < drainlevel(otmp))
+	    if (retcode<2 && otmp->odrained && otmp->oeaten < drainlevel(otmp))
 	        otmp->oeaten = drainlevel(otmp);
 	} else if (!is_vampire(youmonst.data)) {
 	    pline("%s%s %s!",

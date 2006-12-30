@@ -1,0 +1,372 @@
+.TH SLASHEM 6 "24 Mars 2002"
+.UC 4
+.SH NOM
+slashem \- Explorez les labyrinthes de la menace
+.SH SYNOPSIS
+.na
+.hy 0
+.B slashem
+[
+.B \-d
+.I dossier
+]
+[
+.B \-n
+]
+[
+.B \-p
+.I profession (classe)
+]
+[
+.B \-r
+.I race
+]
+[
+.B \-g
+.I sexe
+]
+[
+.B \-a
+.I alignement
+]
+[
+.B \-[DX]
+]
+[
+.B \-u
+.I nom du personnage
+]
+[
+.B \-dec
+]
+[
+.B \-ibm
+]
+.PP
+.B slashem
+[
+.B \-d
+.I dossier
+]
+.B \-s
+[
+.B \-v
+]
+[
+.B \-p
+.I profession (classe)
+]
+[
+.B \-r
+.I race
+]
+[
+.B \-g
+.I sexe
+]
+[
+.B \-a
+.I alignement
+]
+[
+.I rang maximum
+]
+[
+.I noms du personnage
+]
+.ad
+.hy 14
+.SH DESCRIPTION
+.PP
+.I SLASH'EM
+est un jeu inspiré de Donjons & Dragons(tm). 
+La sortie standard dans le terminal et la structure des commandes
+ressemblent à celles de rogue.
+C'est une extension de SLASH, qui est une extension de NetHack.
+.PP
+D'autres sorties graphiques sont disponibles si vous utilisez un PC ou une
+interface X11.
+.PP
+Pour commencer, vous n'aurez réellement besoin que de deux commandes.
+La commande
+.B ?
+vous fournira une liste des commandes disponibles (ainsi que d'autres informations)
+et la commande
+.B /
+identifiera les choses que vous voyez à l'écran.
+.PP
+Pour gagner le jeu (au lieu de simplement jouer pour battre les scores des
+autres joueurs) vous devez localiser l'Amulette de Yender qui est quelque part
+en dessous du vingtième niveau du donjon, et l'en faire sortir.
+Personne n'a encore accompli cet exploit\ ; quiconque y parviendrait serait
+probablement inscrit dans l'histoire en tant que héros parmi les héros.
+.PP
+Lorsque le jeu prend fin, que vous soyez mort, sorti des caves, ou que vous
+ayez quitté le jeu,
+.I SLASH'EM
+vous donnera (un fragment de) la liste des meilleurs scores.
+Le score est basé sur beaucoup d'aspects de votre comportement, mais une
+évaluation grossière est obtenue en prenant la quantité d'or que vous avez
+trouvé dans les caves ajoutée à votre expérience multipliée par quatre.
+Des pierres précieuses peuvent vous apporter beaucoup d'or à la sortie.
+Il y a une pénalité de 10% lorsque vous vous suicidez.
+.PP
+La variable d'environnement SLASHEMOPTIONS peut être utilisée pour initialiser
+de nombreuses options à l'exécution.
+La commande ? vous fourni une description de ces option et leur syntaxe.
+Les options
+.B \-dec
+et
+.B \-ibm
+de la ligne de commande sont équivalents aux options
+.B decgraphics
+et
+.B ibmgraphics
+à l'exécution décrites ici, et sont fournie purement pour la convenance
+sur les systèmes qui supportent plusieurs types de terminaux.
+.PP
+La liste d'options pouvant être très longue (particulièrement quand
+on spécifie des caractères graphiques), les options peuvent être incluses
+dans un fichier de configuration.
+Il est par défaut placé dans votre dossier home et nommé .slashemrc sur les
+systèmes Unix. Sur d'autres systèmes, il peut être différent, habituellement
+SLASHEM.cnf. Sous DOS ou Windows, le nom est defaults.nh, alors que sous
+Macintosh ou BeOS, le nom est SlashEM Defaults.
+L'emplacement du fichier de configuration peut être spécifiée en initialisant
+le paramètre SLASHEMOPTIONS par une chaîne de caractères sous la forme d'un\ @
+suivie par l'emplacement du fichier.
+.PP
+L'option
+.B \-u
+.I nom du personnage
+répond à la question «\ Who are you?\ » (qui signifie «\ Comment vous
+appelez-vous\ ?\ »).
+Elle remplace tout nom des options ou du fichier de configuration, USER,
+LOGNAME, ou getlogin(), qui seront autrement triés dans cet ordre.
+Si aucun ne fournit un nom utilisable, il en sera demandé un au joueur.
+Les noms du personnage (en conjonction avec les uids) sont utilisés pour
+identifier les fichiers de sauvegarde, ce qui permet de sauver plusieurs
+parties sous des noms différents.
+En contrepartie, vous devez utiliser le nom approprié pour retrouver une partie.
+.PP
+Un suffixe de 
+.I nom de personnage
+peut être utilisé pour spécifier la profession, la race, l'alignement, et/ou
+le sexe du personnage. La syntaxe complète du suffixe de nom de personnage est
+"nom-ppp-rrr-aaa-sss". "ppp" sont les trois premières lettres de la profession
+(qui peut aussi être spécifiée par une option 
+.B \-p
+.I profession
+séparée). "rrr" sont les trois premières lettres de la race du personnage
+(qui peut aussi être spécifiée par une option
+.B \-r
+.I race
+séparée). "aaa" sont les trois premières lettres de l'alignement du
+personnage, et "sss" sont les trois premières lettres du sexe du personnage
+(ndt\ : dans la version anglaise, "mal" ou "fem").
+Il n'est pas obligatoire de remplir chaque partie du suffixe.
+.PP
+.B \-p
+.I profession
+peut être utilisé pour déterminer la classe du personnage. Vous pouvez
+spécifier le nom masculin ou féminin pour la classe du personnage, ou les
+trois premières lettres de la classe comme abréviation.
+.B "\-p \@"
+signifie qu'une classe aléatoire doit être choisie.
+@ peut nécessiter d'être précédé d'un antislash (\\@) si @ est le
+caractère "kill" pour le terminal (c.f. "stty"), afin d'empêcher la ligne
+d'être supprimée.
+.PP
+Également,
+.B \-r
+.I race
+peut être utilisé pour choisir explicitement la race du personnage,
+.B \-g
+.I sexe
+pour son sexe, et enfin
+.B \-a
+.I alignement
+pour son alignement.
+.PP
+Si vous ne spécifiez pas l'une de ces caractéristiques, vous serez interrogé
+au démarrage du jeu et devrez fournir l'information manquante.
+.PP
+Au lieu de les définir séparément, vous pouvez les ajouter en tant que
+suffixes au nom du personnage :
+.B \-u
+.I nom\-race\-sexe\-alignement
+.PP
+L'option
+.B \-s
+seule affichera la liste de vos scores dans la version actuelle.
+Une option
+.B \-v
+suivant immédiatement rapporte la liste des scores dans toutes les
+versions présentes.
+L'option
+.B \-s
+peut être aussi suivie par des arguments concernant le type du joueur.
+.B \-p
+,
+.B \-r
+,
+.B \-g
+et
+.B \-a
+) affichent
+les scores de types particuliers de joueurs.
+Ces options peuvent aussi êtres suivies par un ou plusieurs noms de personnages
+afin d'afficher les scores des personnages mentionnés, par 'all' pour afficher
+tous les scores, ou par un nombre pour afficher les scores qui le surpassent.
+.PP
+L'option
+.B \-n
+supprime l'affichage de toute news de l'administrateur du jeu.
+.PP
+L'option
+.B \-D
+ou
+.B \-X
+démarrera le jeu dans un mode découverte spécial ou les scores ne seront
+pas pris en compte.
+.B \-D
+va, si le joueur est l'administrateur du jeu, le démarrer en mode déboguage
+(assisté).
+.PP
+L'option
+.B \-d
+, qui doit être le premier argument si elle est utilisée,
+fournit un dossier qui sert au jeu.
+Il remplace la valeur de NETHACKDIR, HACKDIR, ou du dossier spécifié
+par l'administrateur du jeu pendant la compilation (habituellement 
+/usr/local/slashemdir).
+Cette option n'est bien souvent utile qu'à l'administrateur du jeu.
+L'aire de jeu doit contenir plusieurs fichiers auxiliaires comme des fichiers
+d'aide, la liste des meilleurs scores, et un sous-dossier
+.I save
+ou les parties sont sauvegardées.
+.SH AUTEURS
+.PP
+Jay Fenlason (+ Kenny Woodland, Mike Thome et Jon Payne) écrivirent le code
+original, qui ressemblait beaucoup plus à rogue (mais rempli de bogues).
+.PP
+Andries Brouwer a sans interruption déformé leurs sources en un jeu entièrement
+différent.
+.PP
+Mike Stephenson a continué la perversion des sources, ajoutant divers classes
+de personnages tordues, et des pièges sadiques avec l'aide de nombreuses
+personnes étranges qui résident dans cet endroit entre les mondes, Usenet.
+Un certain nombre de ces contributeurs sont immortalisés dans l'historique
+rouleau du déshonneur et dans divers autres endroits.
+.PP
+Le désordre en résultant est à présent nommé NetHack, pour dénoter son
+développement par le Usenet. Andries Brouwer a fait la demande pour cette
+distinction, comme il a éventuellement sorti une nouvelle version du sien.
+.PP
+Tom Proudfoot pris NetHack et le transforma en SLASH -
+SuperLotsaAddedStuffHack (qui signifie « Beaucoup d'ajouts géniaux au 
+code substantiel\ »), ajoutant plus de classes de personnages, de monstres,
+et changeant leur comportement.
+.PP
+Warren Cheung pris SLASH et le transforma en SLASHEM
+- SuperLotsaAddedStuffHack - Extended Magic (qui signifie «\ Beaucoup d'ajouts
+géniaux au code substantiel - magie étendue\ »),  avec plus d'améliorations
+au «\ behemoth gonflé\ » (ndt\ : une obscurité linguistique intraduisible).
+.SH FICHIERS
+.PP
+Tous les fichiers sont dans le dossier du jeu, normalement 
+/usr/local/slashemdir. Si DLB a été défini pendant la compilation, 
+les fichiers de données et les niveaux spéciaux seront dans un gros fichier, 
+normalement nhdat, au lieu d'être séparés en plusieurs fichiers.
+.br
+.DT
+.ta \w'cmdhelp, opthelp, wizhelp\ \ \ 'u
+slashem	Le programme lui-même.
+.br
+data, oracles, rumors	Des fichiers de données utilisés 
+.br
+ 	par SLASH'EM.
+.br
+options, quest.dat	D'autres fichiers de données.
+.br
+help, hh	Les fichiers d'aide.
+.br
+cmdhelp, opthelp, wizhelp	D'autres fichiers d'aide.
+.br
+*.lev	Des niveaux spéciaux prédéfinis.
+.br
+dungeon	Le fichier de contrôle pour les 
+.br
+        niveaux spéciaux.
+.br
+history	Un court historique de SLASH'EM.
+.br
+license	Les règles concernant la redistribution 
+.br
+        du programme.
+.br
+record	La liste des meilleurs scores.
+.br
+logfile	Une liste étendue des parties
+.br
+	jouées.
+.br
+xlock.nnn	La description d'un niveau du donjon.
+.br
+perm	Un fichier de verrouillage pour xlock.dd.
+.br
+bonesDD.nn	Les descriptions des fantômes et des
+.br
+	affaires des aventuriers décédés.
+.br
+save	Un sous dossier contenant les
+.br
+	parties sauvegardées.
+.SH ENVIRONEMENT
+.DT
+.ta \w'HACKPAGER or PAGER\ \ \ 'u
+USER or LOGNAME	Votre nom d'utilisateur.
+.br
+HOME		Votre dossier home.
+.br
+SHELL		Votre shell.
+.br
+TERM		Le type de votre terminal.
+.br
+HACKPAGER or PAGER	Un remplacement pour le pager par défaut.
+.br
+MAIL	Les fichiers de votre boite aux lettres.
+.br
+MAILREADER	Un remplacement pour le lecteur par défaut.
+.br
+	(probablement /bin/mail ou /usr/ucb/mail).
+.br
+NETHACKDIR	Le dossier du jeu.
+.br
+SLASHEMOPTIONS	Une chaîne de caractère prédéfinissant
+.br
+	de nombreuses options à SLASH'EM.
+.br
+
+De plus, SHOPTYPE est utilisé dans le mode déboguage (assisté).
+.SH "VOIR AUSSI"
+.PP
+dgn_comp(6), lev_comp(6), recover(6)
+.SH BOGUES
+.PP
+Probablement infinis.
+
+
+.PP
+Donjon & Dragons est une marque déposée de Wizards of the Coast, Inc.
+
+.SH TRADUCTION
+
+Ce document est une traduction, réalisée par Rémi Delrue le 11 juin 2006.
+
+L'équipe de traduction a fait le maximum pour réaliser une adaptation française de qualité.
+
+La version anglaise la plus à jour de ce document est toujours consultable via la commande : LANGUAGE=en\ man\ slashem
+
+
+ 	  	 

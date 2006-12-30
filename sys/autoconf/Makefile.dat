@@ -5,6 +5,8 @@
 VPATH=@srcdir@
 srcdir=@srcdir@
 
+EXEEXT = @EXEEXT@
+
 # for Atari
 # SHELL=E:/GEMINI2/MUPFEL.TTP
 # UUDECODE=uudecode
@@ -46,8 +48,11 @@ all:	$(VARDAT) spec_levs quest_levs dungeon
 ../util/mapmerge:
 	(cd ../util ; make mapmerge)
 
-../util/tile2bmp:
-	(cd ../util ; make tile2bmp)
+../util/tile2bmp$(EXEEXT):
+	(cd ../util ; make tile2bmp$(EXEEXT))
+
+../util/uudecode$(EXEEXT):
+	(cd ../util ; make uudecode$(EXEEXT))
 
 x11tiles: ../util/tile2x11 $(srcdir)/../win/share/monsters.txt $(srcdir)/../win/share/objects.txt \
 				$(srcdir)/../win/share/other.txt
@@ -195,10 +200,33 @@ glrip.png:	../util/tile2png $(srcdir)/../win/gl/rip.txt
 		../win/share/othbig.txt -b $(srcdir)/../win/share/oth3dmi.txt \
 		-b $(srcdir)/../win/share/oth-2kmi.txt -b $(srcdir)/../win/share/oth3dse.txt
 
-nhtiles.bmp: ../util/tile2bmp $(srcdir)/../win/share/monsters.txt $(srcdir)/../win/share/objects.txt \
-				$(srcdir)/../win/share/other.txt
-	../util/tile2bmp $@ $(srcdir)/../win/share/monsters.txt $(srcdir)/../win/share/objects.txt \
-				$(srcdir)/../win/share/other.txt
+tiles.bmp: ../util/tile2bmp$(EXEEXT) $(srcdir)/../win/share/monsters.txt \
+		$(srcdir)/../win/share/objects.txt \
+		$(srcdir)/../win/share/other.txt
+	../util/tile2bmp $@ $(srcdir)/../win/share/monsters.txt \
+		$(srcdir)/../win/share/objects.txt \
+		$(srcdir)/../win/share/other.txt
+
+mnsel.bmp: ../util/uudecode$(EXEEXT) $(srcdir)/../win/win32/mnsel.uu
+	../util/uudecode $(srcdir)/../win/win32/mnsel.uu
+
+mnselcnt.bmp: ../util/uudecode$(EXEEXT) $(srcdir)/../win/win32/mnselcnt.uu
+	../util/uudecode $(srcdir)/../win/win32/mnselcnt.uu
+
+mnunsel.bmp: ../util/uudecode$(EXEEXT) $(srcdir)/../win/win32/mnunsel.uu
+	../util/uudecode $(srcdir)/../win/win32/mnunsel.uu
+
+rip.bmp: ../util/uudecode$(EXEEXT) $(srcdir)/../win/win32/rip.uu
+	../util/uudecode $(srcdir)/../win/win32/rip.uu
+
+petmark.bmp: ../util/uudecode$(EXEEXT) $(srcdir)/../win/win32/petmark.uu
+	../util/uudecode $(srcdir)/../win/win32/petmark.uu
+
+SlashEM.ico: ../util/uudecode$(EXEEXT) $(srcdir)/../sys/winnt/seico.uu
+	../util/uudecode $(srcdir)/../sys/winnt/seico.uu
+
+splash.bmp: ../util/uudecode$(EXEEXT) $(srcdir)/../win/win32/splash.uu
+	../util/uudecode $(srcdir)/../win/win32/splash.uu
 
 SlashEM.ad: $(srcdir)/../win/X11/SlashEM.ad
 	cp $(srcdir)/../win/X11/SlashEM.ad SlashEM.ad

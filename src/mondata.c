@@ -100,7 +100,7 @@ struct monst *mon;
 	return FALSE;
 }
 
-/* TRUE iff monster is resistant to light-induced blindness */
+/* TRUE if monster is resistant to light-induced blindness */
 boolean
 resists_blnd(mon)
 struct monst *mon;
@@ -298,6 +298,11 @@ num_horns(ptr)
 struct permonst *ptr;
 {
     switch (monsndx(ptr)) {
+    case PM_LAMB:
+    case PM_SHEEP:
+    case PM_GOAT:
+    case PM_COW:
+    case PM_BULL:
     case PM_HORNED_DEVIL:	/* ? "more than one" */
     case PM_MINOTAUR:
     case PM_ASMODEUS:
@@ -526,7 +531,7 @@ int
 pronoun_gender(mtmp)
 register struct monst *mtmp;
 {
-	if (is_neuter(mtmp->data) || !canspotmon(mtmp)) return 2;
+	if (!mtmp->isshk && (is_neuter(mtmp->data) || !canspotmon(mtmp))) return 2;
 	return (humanoid(mtmp->data) || (mtmp->data->geno & G_UNIQ) ||
 		type_is_pname(mtmp->data)) ? (int)mtmp->female : 2;
 }

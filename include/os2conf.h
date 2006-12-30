@@ -43,6 +43,10 @@
 #define MAIL			/* Allows for fake mail daemon to deliver mail */
 #define TIMED_DELAY		/* enable the `timed_delay' run-time option */
 
+#ifdef TEXTCOLOR
+# define VIDEOSHADES
+#endif
+
 /*
  * The remaining code shouldn't need modification.
  */
