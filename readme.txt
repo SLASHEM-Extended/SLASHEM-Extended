@@ -67,7 +67,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.7E7F3 [?] [Released by ?]
+ver 0.0.7E7F3 [December 30/2006] [Released by Ali]
 -inserted missing #ifdef resulting in compilation of pure ansi tty version for DOS failure.
 -fixed bug 1461660: Misaligned door
 -fixed bug 1449238: #youpoly takes a turn when denied
