@@ -1597,57 +1597,63 @@ arti_invoke(obj)
 		You_hear("%s of intense pain!", unseen > 1 ? "cries" : "a cry");
 	    break;
 	case DEATH_GAZE:
-	    if (u.uluck < -9) { /* uh oh... */
-			pline("The Eye turns on you!");
-			u.uhp = 0;
-			killer_format = KILLED_BY;
-			killer = "the Eye of the Beholder";
-			done(DIED);
+	    if (u.uluck < -9) {
+		pline_The("Eye turns on you!");
+		u.uhp = 0;
+		killer_format = KILLED_BY;
+		killer = "the Eye of the Beholder";
+		done(DIED);
 	    }
-	    pline("The Eye looks around with its icy gaze!");
-		for (mtmp = fmon; mtmp; mtmp = mtmp2) {
-			mtmp2 = mtmp->nmon;
-			/* The eye is never blind ... */
-			if (couldsee(mtmp->mx, mtmp->my) && !is_undead(mtmp->data)) {
-				pline("%s screams in agony!",Monnam(mtmp));
-				mtmp->mhp /= 3;
-				if (mtmp->mhp < 1) mtmp->mhp = 1;
-			}
+	    pline_The("Eye looks around with its icy gaze!");
+	    for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+		if (DEADMONSTER(mtmp)) continue;
+		/* The eye is never blind ... */
+		if (couldsee(mtmp->mx, mtmp->my) && !is_undead(mtmp->data)) {
+		    pline("%s screams in agony!", Monnam(mtmp));
+		    mtmp->mhp /= 3;
+		    if (mtmp->mhp < 1) mtmp->mhp = 1;
 		}
+	    }
 	    /* Tsk,tsk.. */
 	    adjalign(-3);
 	    u.uluck -= 3;
 	    break;
 	case SUMMON_UNDEAD:
-	    if (u.uluck < -9) { /* uh oh... */
-		u.uhp -= (rn2(20)+5);
-		pline("The Hand claws you with its icy nails!");
+	    if (u.uluck < -9) {
+		u.uhp -= rn2(20) + 5;
+		pline_The("Hand claws you with its icy nails!");
 		if (u.uhp <= 0) {
-		  killer_format = KILLED_BY;
-		  killer="the Hand of Vecna";
-		  done(DIED);
+		    killer_format = KILLED_BY;
+		    killer="the Hand of Vecna";
+		    done(DIED);
 		}
 	    }
 	    summon_loop = rn2(4) + 4;
 	    pline("Creatures from the grave surround you!");
 	    do {
-	      switch (rn2(6)+1) {
-		case 1: mtmp = makemon(mkclass(S_VAMPIRE,0), u.ux, u.uy, NO_MM_FLAGS);
-		   break;
-		case 2:
-		case 3: mtmp = makemon(mkclass(S_ZOMBIE,0), u.ux, u.uy, NO_MM_FLAGS);
-		   break;
-		case 4: mtmp = makemon(mkclass(S_MUMMY,0), u.ux, u.uy, NO_MM_FLAGS);
-		   break;
-		case 5: mtmp = makemon(mkclass(S_GHOST,0), u.ux, u.uy, NO_MM_FLAGS);
-		   break;
-               default: mtmp = makemon(mkclass(S_WRAITH,0), u.ux, u.uy, NO_MM_FLAGS);
-		   break;
-	      }
-	      if ((mtmp2 = tamedog(mtmp, (struct obj *)0)) != 0)
-			mtmp = mtmp2;
-	      mtmp->mtame = 30;
-	      summon_loop--;
+		switch (rn2(6) + 1) {
+		    case 1:
+			pm = mkclass(S_VAMPIRE, 0);
+			break;
+		    case 2:
+		    case 3:
+			pm = mkclass(S_ZOMBIE, 0);
+			break;
+		    case 4:
+			pm = mkclass(S_MUMMY, 0);
+			break;
+		    case 5:
+			pm = mkclass(S_GHOST, 0);
+			break;
+		    default:
+			pm = mkclass(S_WRAITH, 0);
+			break;
+		}
+		mtmp = makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
+	        if ((mtmp2 = tamedog(mtmp, (struct obj *)0)) != 0)
+		    mtmp = mtmp2;
+		mtmp->mtame = 30;
+		summon_loop--;
 	    } while (summon_loop);
 	    /* Tsk,tsk.. */
 	    adjalign(-3);
