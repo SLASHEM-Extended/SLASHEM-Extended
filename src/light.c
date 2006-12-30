@@ -514,9 +514,7 @@ obj_sheds_light(obj)
     struct obj *obj;
 {
     /* so far, only burning objects shed light */
-    /* WAC - Some artifacts now shed light */
-
-    return (obj_is_burning(obj) || obj_permanent_light(obj));
+    return obj_is_burning(obj);
 }
 
 /* Return TRUE if sheds light AND will be snuffed by end_burn(). */
@@ -532,17 +530,6 @@ obj_is_burning(obj)
 		|| is_lightsaber(obj)
 #endif
 		|| artifact_light(obj)));
-}
-
-/* WAC Return TRUE if object always lights up
- * Currently only artifacts have this property
- */
-boolean
-obj_permanent_light(obj)
-    struct obj *obj;
-{
-    return ((obj->lamplit) &&
-        (artifact_light(obj)));
 }
 
 /* copy the light source(s) attachted to src, and attach it/them to dest */
