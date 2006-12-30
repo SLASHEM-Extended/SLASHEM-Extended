@@ -22,9 +22,8 @@ PREFIX   = @prefix@
 EXEEXT	 = @EXEEXT@
 SCRIPT   = slashem
 GAME     = slashem$(EXEEXT)
-# GAME     = slashem.prg
-GAMEUID  = games
-GAMEGRP  = bin
+GAMEUID  = @OWNER@
+GAMEGRP  = @GROUP@
 
 # Permissions - some places use setgid instead of setuid, for instance
 # See also the option "SECURE" in include/config.h

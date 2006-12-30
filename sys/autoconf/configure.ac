@@ -4,7 +4,7 @@ dnl Avoid AC_REVISION() because we check configure into CVS
 dnl and it will cause confusing revision numbers to be included
 dnl in configure if developers forget to check in configure.ac
 dnl before running bootstrap.sh and checking in configure.
-# $Revision: 1.7 $
+# $Revision: 1.8 $
 AC_CONFIG_SRCDIR(slamfaq.txt)
 AC_SUBST(SRCDIR,[../$srcdir/src])
 AC_CONFIG_AUX_DIR(sys/autoconf)
@@ -362,6 +362,37 @@ else
 	AC_MSG_RESULT([no])
 fi
 
+if test "$CHOWN" != "true"; then
+    AC_MSG_CHECKING([for owner of installed files])
+    AC_ARG_WITH([owner], [AS_HELP_STRING([--with-owner=USER],
+	    [Set the owner of installed files (default=games)])],
+	    [], [with_owner=games])
+    if test "$with_owner" != "no" ; then
+	NETHACK_COMMAND_IFELSE([find . -user "$with_owner" -false],
+		[AC_MSG_RESULT([$with_owner])
+		 AC_SUBST(OWNER,[$with_owner])],
+		[AC_MSG_FAILURE([test for user $with_owner failed])])
+    else
+	CHOWN=true
+	AC_MSG_RESULT([not set])
+    fi
+fi
+
+if test "$CHGRP" != "true"; then
+    AC_MSG_CHECKING([for group of installed files])
+    AC_ARG_WITH([group], [AS_HELP_STRING([--with-group=GROUP],
+	    [Set the group of installed files (default=bin)])],
+	    [], [with_group=bin])
+    if test "$with_group" != "no" ; then
+	NETHACK_COMMAND_IFELSE([find . -group "$with_group" -false],
+		[AC_MSG_RESULT([$with_group])
+		 AC_SUBST(GROUP,[$with_group])],
+		[AC_MSG_FAILURE([test for group $with_group failed])])
+    else
+	CHGRP=true
+	AC_MSG_RESULT([not set])
+    fi
+fi
 
 NETHACK_LINKS=
 NETHACK_LINKS_ADD([include/file.h])

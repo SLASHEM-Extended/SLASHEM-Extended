@@ -151,6 +151,7 @@ Autoconf improvements:
 -fixed bug 1503394: Conduct= is not always written to logfile
 -fixed bug 1558274: Light source weapons not working properly
 -fixed bug 1602002: dmonsfree when using travel command & burdened
+-fixed bug 1586568: Check for user 'games'
 
 See history.txt for changes made in previous versions.
 

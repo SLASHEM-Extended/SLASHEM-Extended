@@ -311,7 +311,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS SRCDIR CC CHGRP CHOWN CHMOD ZLIB_CFLAGS ZLIB_LIBS LN_S AWK CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT LFLAGS build build_cpu build_vendor build_os host host_cpu host_vendor host_os PKG_CONFIG ac_pt_PKG_CONFIG LIBXAW_CFLAGS LIBXAW_LIBS HOST_MSWIN HOST_UNIX SYSTEM SYSSRC SYSOBJ NHKEYDLL_GCC LEX LEXLIB LEX_OUTPUT_ROOT YACC ac_ct_CHOWN ac_ct_CHGRP ac_ct_CHMOD WINDRES ac_ct_WINDRES NETHACK__LIBPNG_CFLAGS NETHACK__LIBPNG_LIBS NETHACK_LIBPNG_CFLAGS NETHACK_LIBPNG_LIBS EXTRA_UNSHARE WINTTYLIB NETHACK_PROXY_CFLAGS NETHACK_PROXY_LIBS SDL_CONFIG ac_ct_SDL_CONFIG SDL_CONFIG_CFLAGS SDL_CONFIG_LIBS WINSRC WINOBJ WINLIB CNF_SHARE_DATND CPP EGREP LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS SRCDIR CC CHGRP CHOWN CHMOD ZLIB_CFLAGS ZLIB_LIBS LN_S AWK CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT LFLAGS build build_cpu build_vendor build_os host host_cpu host_vendor host_os PKG_CONFIG ac_pt_PKG_CONFIG LIBXAW_CFLAGS LIBXAW_LIBS HOST_MSWIN HOST_UNIX SYSTEM SYSSRC SYSOBJ NHKEYDLL_GCC LEX LEXLIB LEX_OUTPUT_ROOT YACC ac_ct_CHOWN ac_ct_CHGRP ac_ct_CHMOD WINDRES ac_ct_WINDRES NETHACK__LIBPNG_CFLAGS NETHACK__LIBPNG_LIBS NETHACK_LIBPNG_CFLAGS NETHACK_LIBPNG_LIBS EXTRA_UNSHARE WINTTYLIB NETHACK_PROXY_CFLAGS NETHACK_PROXY_LIBS SDL_CONFIG ac_ct_SDL_CONFIG SDL_CONFIG_CFLAGS SDL_CONFIG_LIBS WINSRC WINOBJ WINLIB CNF_SHARE_DATND CPP EGREP OWNER GROUP LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -951,6 +951,12 @@ Optional Features:
   --enable-wizmode=USER   enable wizard mode for the specified user
                           (default=wizard)
 
+Optional Packages:
+  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-owner=USER       Set the owner of installed files (default=games)
+  --with-group=GROUP      Set the group of installed files (default=bin)
+
 Some influential environment variables:
   CC          C compiler
   CHGRP       sets GAMEUID (set this to true as a no op)
@@ -1426,7 +1432,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
-# $Revision: 1.11 $
+# $Revision: 1.12 $
 
 SRCDIR=../$srcdir/src
 
@@ -6716,6 +6722,87 @@ else
 echo "${ECHO_T}no" >&6
 fi
 
+if test "$CHOWN" != "true"; then
+    echo "$as_me:$LINENO: checking for owner of installed files" >&5
+echo $ECHO_N "checking for owner of installed files... $ECHO_C" >&6
+
+# Check whether --with-owner or --without-owner was given.
+if test "${with_owner+set}" = set; then
+  withval="$with_owner"
+
+else
+  with_owner=games
+fi;
+    if test "$with_owner" != "no" ; then
+
+    if { ac_try='find . -user "$with_owner" -false'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+  echo "$as_me:$LINENO: result: $with_owner" >&5
+echo "${ECHO_T}$with_owner" >&6
+		 OWNER=$with_owner
+
+else
+  echo "$as_me: program exited with status $ac_status" >&5
+    ( exit $ac_status )
+	    { { echo "$as_me:$LINENO: error: test for user $with_owner failed
+See \`config.log' for more details." >&5
+echo "$as_me: error: test for user $with_owner failed
+See \`config.log' for more details." >&2;}
+   { (exit 1); exit 1; }; }
+
+fi
+
+    else
+	CHOWN=true
+	echo "$as_me:$LINENO: result: not set" >&5
+echo "${ECHO_T}not set" >&6
+    fi
+fi
+
+if test "$CHGRP" != "true"; then
+    echo "$as_me:$LINENO: checking for group of installed files" >&5
+echo $ECHO_N "checking for group of installed files... $ECHO_C" >&6
+
+# Check whether --with-group or --without-group was given.
+if test "${with_group+set}" = set; then
+  withval="$with_group"
+
+else
+  with_group=bin
+fi;
+    if test "$with_group" != "no" ; then
+
+    if { ac_try='find . -group "$with_group" -false'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+  echo "$as_me:$LINENO: result: $with_group" >&5
+echo "${ECHO_T}$with_group" >&6
+		 GROUP=$with_group
+
+else
+  echo "$as_me: program exited with status $ac_status" >&5
+    ( exit $ac_status )
+	    { { echo "$as_me:$LINENO: error: test for group $with_group failed
+See \`config.log' for more details." >&5
+echo "$as_me: error: test for group $with_group failed
+See \`config.log' for more details." >&2;}
+   { (exit 1); exit 1; }; }
+
+fi
+
+    else
+	CHGRP=true
+	echo "$as_me:$LINENO: result: not set" >&5
+echo "${ECHO_T}not set" >&6
+    fi
+fi
 
 NETHACK_LINKS=
 if test ! -f include/file.h -o ${srcdir}/include/file.h -nt include/file.h ; then
@@ -7457,6 +7544,8 @@ s,@WINLIB@,$WINLIB,;t t
 s,@CNF_SHARE_DATND@,$CNF_SHARE_DATND,;t t
 s,@CPP@,$CPP,;t t
 s,@EGREP@,$EGREP,;t t
+s,@OWNER@,$OWNER,;t t
+s,@GROUP@,$GROUP,;t t
 s,@LIBOBJS@,$LIBOBJS,;t t
 s,@LTLIBOBJS@,$LTLIBOBJS,;t t
 CEOF
