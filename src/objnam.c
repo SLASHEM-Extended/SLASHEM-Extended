@@ -2998,7 +2998,9 @@ typfnd:
 		    nname[n] = (nname[n] == c1) ? c2 : highc(c2);  /* keep same case */
 		}
 # endif
+		place_object(otmp, u.ux, u.uy);/* make it viable light source */
 		otmp = oname(otmp, nname);
+		obj_extract_self(otmp);	 /* now release it for caller's use */
 		if (otmp->oartifact) {
 			otmp->quan = 1L;
 			u.uconduct.wisharti++;	/* KMH, conduct */

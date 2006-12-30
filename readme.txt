@@ -105,6 +105,7 @@ ver 0.0.7E7F3 [?] [Released by ?]
 -fixed bug 1521471: Medical kit contents can leak
 -fixed bug 1609542: Reaper + eyes of overworld
 -fixed bug 1503394: Conduct= is not always written to logfile
+-fixed bug 1558274: Light source weapons not working properly
 
 See history.txt for changes made in previous versions.
 

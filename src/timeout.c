@@ -1648,10 +1648,10 @@ begin_burn(obj, already_lit)
 	if (obj->lamplit && !already_lit) {
 	    xchar x, y;
 
-	    /* [ALI] Support floating light sources (eg., wished for artifacts)
-	     */
-	    (void)get_obj_location(obj, &x, &y, CONTAINED_TOO|BURIED_TOO);
+	    if (get_obj_location(obj, &x, &y, CONTAINED_TOO|BURIED_TOO))
 		new_light_source(x, y, radius, LS_OBJECT, (genericptr_t) obj);
+	    else
+		impossible("begin_burn: can't get obj position");
 	}
 }
 
