@@ -29,6 +29,94 @@
 | Section 1: Yesterday's News |
 +-----------------------------+
 
+ver 0.0.8E0F1 [December 30/2006] [Released by Ali]
+-fixed bug 1231549: GNU autoconf vpath support is broken
+-fixed bug 1231579: Can't specify wizard with GNU autoconf
+-fixed bug 1232707: engraving with lightsabers
+-fixed bug 1239041: engrave dialog doesn't show lightsabers
+-fixed bug 1231766: Food shown in Medical Kits
+-fixed bug 1238060: grammatical error when burning through a door 
+		    (Benjamin Schieder)
+-fixed bug 1104713: Pet and Frozen food stores can charge
+-fixed bug 988827: Monster wearing CoI left invisible corpse
+-fixed bug 934078: Mold "wiggle" out of bag
+-fixed bug 933587: One-Eyed Sam referred to as "it"
+-fixed bug 1240794: Pets don't grow up properly
+-fixed bug 1240799: Steed ridden onto poly trap polymorphs permanently
+-fixed bug 1243904: chameleon as statue trap
+-fixed bug 1223226: Some creatures are missing horns
+-fixed bug 1223222: Female Bulls??
+-fixed bug 1244470: shopkeeper don't have shotgun
+Autoconf improvements:
+	-support for data librarian,
+	-fix default values in help strings,
+	-more portable use of test and sed,
+	-drop useless borg and shout features,
+	-recognize mingw32 platform for msys,
+	-support aclocal 1.7 (needed for msys development),
+	-basic support for Microsoft Window's native graphics,
+	-better determination of default windowing system,
+	-improved detection of libpng/zlib,
+	-support "make depend".
+-fixed bug 215062: no black color
+		   Extends videocolors option, see Guidebook for details.
+-Macintosh: fixed calculation of version for About Box
+-fixed bug 1258354: msys autoconf fails to detect strncmpi
+-fixed bug 1258355: autoconf Makefile.src assumes UNIX
+-fixed bug 1258357: configure doesn't set TTY_GRAPHICS under mingw32
+-fixed bug 1258358: No autoconf support for key handlers
+-fixed bug 1244468: different spitting venom when polymorph
+-fixed bug 1179557: Found egg marked (laid by you)
+-fixed bug 1206099: Torches are not extinguished with rust traps
+-fixed bug 1294907: 'Raise Zombies' technique cannot raise dwarf zombies! (Xeno)
+-fixed bug 1355972: Monsters Don't gain Drain resistance due to worn items!
+		    (Xeno)
+-inserted missing #ifdef resulting in compilation of pure ansi tty version for DOS failure.
+-fixed bug 1461660: Misaligned door
+-fixed bug 1449238: #youpoly takes a turn when denied
+-fixed bug 1432473: help for Luggage shows help for Lug/Lugh
+-fixed bug 1428520: Poisoned ID'd weapon gives description as well as ID
+-fixed bug 1375292: help for wombat shows text for bat
+-fixed bug 1375286: pummel strikes nothing, inside ochre jelly
+-fixed bug 1355891: Cannot wish for multiple potions of vampire blood
+-fixed bug 1314114: Shopkeepers cant see Shirts through invisible armour
+-fixed bug 1304954: You can Name the Sword of Balance
+-fixed bug 1223533: Typo error in the Install.X11 file
+-fixed bug 1407275: Wrong weight of medical kits
+-fixed bug 1213658: Death message missing with gas spore explosion when blind
+-fixed bug 1291161: #force command doesn't work on locked box
+-fixed bug 1223632: #force on shop doors
+-fixed bug 879247: gender & alignment select dont focus on "random" button
+-fixed bug 943553: Eating off floor while levitating
+-fixed bug 1432411: Knew the colour of a potion thrown on me, when blind
+-fixed bug 1449159: DEFAULT_WINDOW_SYS wrong if only X11 enabled
+-fixed bug 1400802: wax golems don't emit light
+-fixed bug 1586216: USE_REGEX_MATCH fails on Solaris 10
+-fixed bug 1586592: Tests for regex types don't include regex.h
+-fixed bug 1569015: Redundant code in percent_success()
+-fixed bug 1583978: Grammer error in broken celibacy message
+-fixed bug 1375796: X11 link option missing
+-fixed bug 1444749: character wearing invisible blindfold can't see
+-fixed bug 1549137: Technique cutthroat is effective to no-head monster
+		    (Michael DiPietro)
+-fixed bug 1288590: Potion of hallucination cannot be identified by drinking
+-fixed bug 1482524: alchemy with gain level asymmetric (Michael DiPietro)
+-fixed bug 1546379: Fedora & charisma (Michael DiPietro)
+-Actioned feature request 1504905: Add french translation of manual page
+		    (Rémi Delrue)
+-fixed bug 1380333: Random seed problem (0.0.8)
+-fixed bug 1624174: koala bugs steed
+-fixed bug 1539448: rotten wraith corpses GPF
+-fixed bug 1521400: Dungeon collapsed returning to full level
+-fixed bug 1211513: Upgraded objects retain names, even artifact names
+-fixed bug 1554633: lichen, grown on a dead pet corpse, inherits pet's name
+-fixed bug 1521471: Medical kit contents can leak
+-fixed bug 1609542: Reaper + eyes of overworld
+-fixed bug 1503394: Conduct= is not always written to logfile
+-fixed bug 1558274: Light source weapons not working properly
+-fixed bug 1602002: dmonsfree when using travel command & burdened
+-fixed bug 1586568: Check for user 'games'
+
 ver 0.0.8E0 [July 2/2005] [Released by Ali]
 -Added dumplog patch (Tom Friedetzky and Jukka Lahtinen)
 -fixed bug 923003: Invisible mirrors can be applied
