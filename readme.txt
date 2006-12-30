@@ -65,7 +65,7 @@ http://www.slashem.org/
 1.2 Changes
 -----------
 
-ver 0.0.8E0F1 [?] [Released by ?]
+ver 0.0.8E0F1 [December 30/2006] [Released by Ali]
 -fixed bug 1231549: GNU autoconf vpath support is broken
 -fixed bug 1231579: Can't specify wizard with GNU autoconf
 -fixed bug 1232707: engraving with lightsabers
