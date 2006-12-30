@@ -150,6 +150,7 @@ Autoconf improvements:
 -fixed bug 1609542: Reaper + eyes of overworld
 -fixed bug 1503394: Conduct= is not always written to logfile
 -fixed bug 1558274: Light source weapons not working properly
+-fixed bug 1602002: dmonsfree when using travel command & burdened
 
 See history.txt for changes made in previous versions.
 
