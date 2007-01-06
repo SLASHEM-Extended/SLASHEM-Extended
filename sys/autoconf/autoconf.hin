@@ -15,6 +15,15 @@
 /* Allow smaller screens */
 #undef CLIPPING
 
+/* Compression program */
+#undef COMPRESS
+
+/* Extension of compressed files */
+#undef COMPRESS_EXTENSION
+
+/* Options to pass to the compression program, if any */
+#undef COMPRESS_OPTIONS
+
 /* Unix on win32 */
 #undef CYGWIN32
 
@@ -91,6 +100,9 @@
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
+
+/* Use NetHack's compression routines */
+#undef INTERNAL_COMP
 
 /* Invisible objects */
 #undef INVISIBLE_OBJECTS

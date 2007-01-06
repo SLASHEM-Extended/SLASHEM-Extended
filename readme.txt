@@ -66,6 +66,7 @@ http://www.slashem.org/
 -----------
 
 ver 0.0.8E0F2 [?] [Released by ?]
+-fixed bug 1623835: Compress option required for autoconf
 
 See history.txt for changes made in previous versions.
 

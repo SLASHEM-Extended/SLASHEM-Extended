@@ -4,7 +4,7 @@ dnl Avoid AC_REVISION() because we check configure into CVS
 dnl and it will cause confusing revision numbers to be included
 dnl in configure if developers forget to check in configure.ac
 dnl before running bootstrap.sh and checking in configure.
-# $Revision: 1.8 $
+# $Revision: 1.9 $
 AC_CONFIG_SRCDIR(slamfaq.txt)
 AC_SUBST(SRCDIR,[../$srcdir/src])
 AC_CONFIG_AUX_DIR(sys/autoconf)
@@ -111,6 +111,7 @@ AC_CHECK_TOOLS(CHOWN,[chown true])
 AC_CHECK_TOOLS(CHGRP,[chgrp true])
 AC_CHECK_TOOLS(CHMOD,[chmod true])
 AC_CHECK_TOOL(WINDRES,windres,no)
+NETHACK_PROG_COMPRESS
 
 dnl  ----- Check for libraries
 

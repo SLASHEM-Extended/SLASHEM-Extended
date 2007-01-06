@@ -311,7 +311,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS SRCDIR CC CHGRP CHOWN CHMOD ZLIB_CFLAGS ZLIB_LIBS LN_S AWK CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT LFLAGS build build_cpu build_vendor build_os host host_cpu host_vendor host_os PKG_CONFIG ac_pt_PKG_CONFIG LIBXAW_CFLAGS LIBXAW_LIBS HOST_MSWIN HOST_UNIX SYSTEM SYSSRC SYSOBJ NHKEYDLL_GCC LEX LEXLIB LEX_OUTPUT_ROOT YACC ac_ct_CHOWN ac_ct_CHGRP ac_ct_CHMOD WINDRES ac_ct_WINDRES NETHACK__LIBPNG_CFLAGS NETHACK__LIBPNG_LIBS NETHACK_LIBPNG_CFLAGS NETHACK_LIBPNG_LIBS EXTRA_UNSHARE WINTTYLIB NETHACK_PROXY_CFLAGS NETHACK_PROXY_LIBS SDL_CONFIG ac_ct_SDL_CONFIG SDL_CONFIG_CFLAGS SDL_CONFIG_LIBS WINSRC WINOBJ WINLIB CNF_SHARE_DATND CPP EGREP OWNER GROUP LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS SRCDIR CC CHGRP CHOWN CHMOD ZLIB_CFLAGS ZLIB_LIBS LN_S AWK CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT LFLAGS build build_cpu build_vendor build_os host host_cpu host_vendor host_os PKG_CONFIG ac_pt_PKG_CONFIG LIBXAW_CFLAGS LIBXAW_LIBS HOST_MSWIN HOST_UNIX SYSTEM SYSSRC SYSOBJ NHKEYDLL_GCC LEX LEXLIB LEX_OUTPUT_ROOT YACC ac_ct_CHOWN ac_ct_CHGRP ac_ct_CHMOD WINDRES ac_ct_WINDRES COMPRESS NETHACK__LIBPNG_CFLAGS NETHACK__LIBPNG_LIBS NETHACK_LIBPNG_CFLAGS NETHACK_LIBPNG_LIBS EXTRA_UNSHARE WINTTYLIB NETHACK_PROXY_CFLAGS NETHACK_PROXY_LIBS SDL_CONFIG ac_ct_SDL_CONFIG SDL_CONFIG_CFLAGS SDL_CONFIG_LIBS WINSRC WINOBJ WINLIB CNF_SHARE_DATND CPP EGREP OWNER GROUP LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -954,6 +954,9 @@ Optional Features:
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-compression=PROGRAM
+                          Set the program to compress data files
+                          (default=auto)
   --with-owner=USER       Set the owner of installed files (default=games)
   --with-group=GROUP      Set the group of installed files (default=bin)
 
@@ -1432,7 +1435,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
-# $Revision: 1.12 $
+# $Revision: 1.13 $
 
 SRCDIR=../$srcdir/src
 
@@ -3691,6 +3694,207 @@ else
   WINDRES="$ac_cv_prog_WINDRES"
 fi
 
+
+
+# Check whether --with-compression or --without-compression was given.
+if test "${with_compression+set}" = set; then
+  withval="$with_compression"
+
+else
+  with_compression=auto
+fi;
+    case $with_compression in
+	auto)
+	    for ac_prog in bzip2 gzip compress
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_path_COMPRESS+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  case $COMPRESS in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_COMPRESS="$COMPRESS" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_COMPRESS="$as_dir/$ac_word$ac_exec_ext"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+  ;;
+esac
+fi
+COMPRESS=$ac_cv_path_COMPRESS
+
+if test -n "$COMPRESS"; then
+  echo "$as_me:$LINENO: result: $COMPRESS" >&5
+echo "${ECHO_T}$COMPRESS" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+  test -n "$COMPRESS" && break
+done
+test -n "$COMPRESS" || COMPRESS=":"
+
+	    ;;
+	no)
+	    COMPRESS=":"
+	    ;;
+	*)
+	    set dummy $with_compression
+	    # Extract the first word of "$[2]", so it can be a program name with args.
+set dummy $2; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_path_COMPRESS+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  case $COMPRESS in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_COMPRESS="$COMPRESS" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_COMPRESS="$as_dir/$ac_word$ac_exec_ext"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+  test -z "$ac_cv_path_COMPRESS" && ac_cv_path_COMPRESS=":"
+  ;;
+esac
+fi
+COMPRESS=$ac_cv_path_COMPRESS
+
+if test -n "$COMPRESS"; then
+  echo "$as_me:$LINENO: result: $COMPRESS" >&5
+echo "${ECHO_T}$COMPRESS" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+	    ;;
+    esac
+    echo "$as_me:$LINENO: checking for compression support" >&5
+echo $ECHO_N "checking for compression support... $ECHO_C" >&6
+    if test "$with_compression" = "auto" ; then
+
+cat >>confdefs.h <<_ACEOF
+#define COMPRESS "$COMPRESS"
+_ACEOF
+
+	COMPRESS_OPTIONS=""
+	if test "$COMPRESS" = ":"; then
+
+cat >>confdefs.h <<\_ACEOF
+#define INTERNAL_COMP 1
+_ACEOF
+
+	fi
+    elif test "$with_compression" = "no" ; then
+	COMPRESS=":"
+
+cat >>confdefs.h <<\_ACEOF
+#define INTERNAL_COMP 1
+_ACEOF
+
+    else
+
+cat >>confdefs.h <<_ACEOF
+#define COMPRESS "$COMPRESS"
+_ACEOF
+
+	set dummy $with_compression
+	shift
+	shift
+	if test -n "$1"; then
+
+cat >>confdefs.h <<_ACEOF
+#define COMPRESS_OPTIONS "$@"
+_ACEOF
+
+	fi
+	COMPRESS_OPTIONS="$@"
+    fi
+    if test "$COMPRESS" = ":"; then
+	echo "$as_me:$LINENO: result: internal" >&5
+echo "${ECHO_T}internal" >&6
+    else
+	echo "$as_me:$LINENO: result: $COMPRESS $COMPRESS_OPTIONS" >&5
+echo "${ECHO_T}$COMPRESS $COMPRESS_OPTIONS" >&6
+
+    echo "$as_me:$LINENO: checking for suffix of compressed files" >&5
+echo $ECHO_N "checking for suffix of compressed files... $ECHO_C" >&6
+    rm -f conftest conftest.*
+    echo "Test" > conftest
+    nethack__extension=""
+
+    if { ac_try='$COMPRESS $COMPRESS_OPTIONS conftest'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+
+	for nethack__file in \
+	  `(ls conftest.bz2 conftest.gz conftest.Z conftest.*) 2>/dev/null`; do
+	    case $nethack__file in
+		*)  nethack__extension=`expr "$nethack__file" : '.*\(\..*\)'`
+		    break
+		    ;;
+	    esac
+	done
+	if test -z "$nethack__extension"; then
+	    { { echo "$as_me:$LINENO: error: test failed: cannot find compressed output
+See \`config.log' for more details." >&5
+echo "$as_me: error: test failed: cannot find compressed output
+See \`config.log' for more details." >&2;}
+   { (exit 1); exit 1; }; }
+	fi
+	rm -f conftest conftest.*
+
+cat >>confdefs.h <<_ACEOF
+#define COMPRESS_EXTENSION "$nethack__extension"
+_ACEOF
+
+	echo "$as_me:$LINENO: result: $nethack__extension" >&5
+echo "${ECHO_T}$nethack__extension" >&6
+
+else
+  echo "$as_me: program exited with status $ac_status" >&5
+    ( exit $ac_status )
+	    { { echo "$as_me:$LINENO: error: test failed: cannot compress
+See \`config.log' for more details." >&5
+echo "$as_me: error: test failed: cannot compress
+See \`config.log' for more details." >&2;}
+   { (exit 1); exit 1; }; }
+
+fi
+
+    fi
 
 
 
@@ -7526,6 +7730,7 @@ s,@ac_ct_CHGRP@,$ac_ct_CHGRP,;t t
 s,@ac_ct_CHMOD@,$ac_ct_CHMOD,;t t
 s,@WINDRES@,$WINDRES,;t t
 s,@ac_ct_WINDRES@,$ac_ct_WINDRES,;t t
+s,@COMPRESS@,$COMPRESS,;t t
 s,@NETHACK__LIBPNG_CFLAGS@,$NETHACK__LIBPNG_CFLAGS,;t t
 s,@NETHACK__LIBPNG_LIBS@,$NETHACK__LIBPNG_LIBS,;t t
 s,@NETHACK_LIBPNG_CFLAGS@,$NETHACK_LIBPNG_CFLAGS,;t t

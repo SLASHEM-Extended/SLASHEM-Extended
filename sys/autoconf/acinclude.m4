@@ -1,4 +1,4 @@
-# $Id: acinclude.m4,v 1.7 2006-12-30 12:48:19 j_ali Exp $
+# $Id: acinclude.m4,v 1.8 2007-01-06 16:00:55 j_ali Exp $
 
 # Front-end of AC_ARG_ENABLE
 # Usage:
@@ -241,3 +241,76 @@ AC_DEFUN([NETHACK_COMMAND_IFELSE], [
     [echo "$as_me: program exited with status $ac_status" >&AS_MESSAGE_LOG_FD
     m4_ifvaln([$3], [( exit $ac_status )
 	    $3])])])
+
+# NETHACK_COMPRESS_EXT
+# ---------------------------------
+# Check the extension used for compressed files by the compressor.
+AC_DEFUN([NETHACK_COMPRESS_EXT], [
+    AC_MSG_CHECKING([for suffix of compressed files])
+    rm -f conftest conftest.*
+    echo "Test" > conftest
+    nethack__extension=""
+    NETHACK_COMMAND_IFELSE([$COMPRESS $COMPRESS_OPTIONS conftest], [
+	for nethack__file in \
+	  `(ls conftest.bz2 conftest.gz conftest.Z conftest.*) 2>/dev/null`; do
+	    case $nethack__file in
+		*)  nethack__extension=`expr "$nethack__file" : '.*\(\..*\)'`
+		    break
+		    ;;
+	    esac
+	done
+	if test -z "$nethack__extension"; then
+	    AC_MSG_FAILURE([test failed: cannot find compressed output])
+	fi
+	rm -f conftest conftest.*
+	AC_DEFINE_UNQUOTED(COMPRESS_EXTENSION, ["$nethack__extension"],
+	  [Extension of compressed files])
+	AC_MSG_RESULT([$nethack__extension])
+	], [AC_MSG_FAILURE([test failed: cannot compress])])])
+
+# NETHACK_PROG_COMPRESS
+# ---------------------------------
+# Configure the compress program.
+AC_DEFUN([NETHACK_PROG_COMPRESS], [
+    AC_ARG_WITH([compression], [AS_HELP_STRING([--with-compression=PROGRAM],
+	    [Set the program to compress data files (default=auto)])],
+	    [], [with_compression=auto])
+    case $with_compression in
+	auto)
+	    AC_PATH_PROGS(COMPRESS, [bzip2 gzip compress], [:])
+	    ;;
+	no)
+	    COMPRESS=":"
+	    ;;
+	*)
+	    set dummy $with_compression
+	    AC_PATH_PROG(COMPRESS, [$[2]], [:])
+	    ;;
+    esac
+    AC_MSG_CHECKING([for compression support])
+    if test "$with_compression" = "auto" ; then
+	AC_DEFINE_UNQUOTED(COMPRESS, ["$COMPRESS"], [Compression program])
+	COMPRESS_OPTIONS=""
+	if test "$COMPRESS" = ":"; then
+	    AC_DEFINE(INTERNAL_COMP, [1], [Use NetHack's compression routines])
+	fi
+    elif test "$with_compression" = "no" ; then
+	COMPRESS=":"
+	AC_DEFINE(INTERNAL_COMP, [1], [Use NetHack's compression routines])
+    else
+	AC_DEFINE_UNQUOTED(COMPRESS, ["$COMPRESS"], [Compression program])
+	set dummy $with_compression
+	shift
+	shift
+	if test -n "$[1]"; then
+	    AC_DEFINE_UNQUOTED(COMPRESS_OPTIONS, ["$[@]"],
+	      [Options to pass to the compression program, if any])
+	fi
+	COMPRESS_OPTIONS="$[@]"
+    fi
+    if test "$COMPRESS" = ":"; then
+	AC_MSG_RESULT([internal])
+    else
+	AC_MSG_RESULT([$COMPRESS $COMPRESS_OPTIONS])
+	NETHACK_COMPRESS_EXT
+    fi])
