@@ -2771,7 +2771,10 @@ register boolean ininv, dummy, silent;
 	    }
 
 	    if(obj->no_charge)
+	    {
 		obj->no_charge = 0;
+		return;
+	    }
 
 	} else /* i.e., !container */
 	    add_one_tobill(obj, dummy);
