@@ -2711,7 +2711,7 @@ register boolean ininv, dummy, silent;
 	    if(obj->no_charge)
 	    {
 		obj->no_charge = 0;
-		return;
+		if(!ltmp) return;
 	    }
 
 	} else /* i.e., !container */
