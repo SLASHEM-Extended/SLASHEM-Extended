@@ -116,6 +116,7 @@ Autoconf improvements:
 -fixed bug 1558274: Light source weapons not working properly
 -fixed bug 1602002: dmonsfree when using travel command & burdened
 -fixed bug 1586568: Check for user 'games'
+-fixed bug 1644971: Compilation error with tparm on Mac OSX
 
 ver 0.0.8E0 [July 2/2005] [Released by Ali]
 -Added dumplog patch (Tom Friedetzky and Jukka Lahtinen)
