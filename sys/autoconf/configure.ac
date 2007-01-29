@@ -4,7 +4,7 @@ dnl Avoid AC_REVISION() because we check configure into CVS
 dnl and it will cause confusing revision numbers to be included
 dnl in configure if developers forget to check in configure.ac
 dnl before running bootstrap.sh and checking in configure.
-# $Revision: 1.9 $
+# $Revision: 1.10 $
 AC_CONFIG_SRCDIR(slamfaq.txt)
 AC_SUBST(SRCDIR,[../$srcdir/src])
 AC_CONFIG_AUX_DIR(sys/autoconf)
@@ -369,7 +369,8 @@ if test "$CHOWN" != "true"; then
 	    [Set the owner of installed files (default=games)])],
 	    [], [with_owner=games])
     if test "$with_owner" != "no" ; then
-	NETHACK_COMMAND_IFELSE([find . -user "$with_owner" -false],
+	NETHACK_COMMAND_IFELSE(
+		[find . -user "$with_owner" -prune -print > /dev/null],
 		[AC_MSG_RESULT([$with_owner])
 		 AC_SUBST(OWNER,[$with_owner])],
 		[AC_MSG_FAILURE([test for user $with_owner failed])])
@@ -385,7 +386,8 @@ if test "$CHGRP" != "true"; then
 	    [Set the group of installed files (default=bin)])],
 	    [], [with_group=bin])
     if test "$with_group" != "no" ; then
-	NETHACK_COMMAND_IFELSE([find . -group "$with_group" -false],
+	NETHACK_COMMAND_IFELSE(
+		[find . -group "$with_group" -prune -print > /dev/null],
 		[AC_MSG_RESULT([$with_group])
 		 AC_SUBST(GROUP,[$with_group])],
 		[AC_MSG_FAILURE([test for group $with_group failed])])
