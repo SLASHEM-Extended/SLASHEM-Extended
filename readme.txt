@@ -69,6 +69,8 @@ http://www.slashem.org/
 
 ver 0.0.7E7F4 [?] [Released by ?]
 -fixed bug 1612361: Strange behaviour when selling medical kit
+-fixed bug 1681811: Ring of levitation - "Lev" status changes late
+		    (paranoid_times)
 
 See history.txt for changes made in previous versions.
 

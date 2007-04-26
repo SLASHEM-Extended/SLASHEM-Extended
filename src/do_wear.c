@@ -117,6 +117,7 @@ Boots_on()
 		break;
 	case LEVITATION_BOOTS:
 		if (!oldprop && !HLevitation) {
+			flags.botl = 1;
 			makeknown(uarmf->otyp);
 			float_up();
 			spoteffects(FALSE);
@@ -166,6 +167,7 @@ Boots_off()
 		break;
 	case LEVITATION_BOOTS:
 		if (!oldprop && !HLevitation && !cancelled_don) {
+			flags.botl = 1;
 			(void) float_down(0L, 0L);
 			makeknown(otyp);
 		}
@@ -850,6 +852,7 @@ register struct obj *obj;
 		break;
 	case RIN_LEVITATION:
 		if (!oldprop && !HLevitation) {
+		    flags.botl = 1;
 		    float_up();
 		    makeknown(RIN_LEVITATION);
 		    spoteffects(FALSE);	/* for sinks */
@@ -995,6 +998,7 @@ boolean gone;
 		}
 		break;
 	case RIN_LEVITATION:
+		flags.botl = 1;
 		(void) float_down(0L, 0L);
 		if (!Levitation) makeknown(RIN_LEVITATION);
 		break;
