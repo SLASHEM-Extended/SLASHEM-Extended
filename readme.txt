@@ -69,6 +69,8 @@ ver 0.0.8E0F2 [?] [Released by ?]
 -fixed bug 1623835: Compress option required for autoconf
 -fixed bug 1612361: Strange behaviour when selling medical kit
 -fixed bug 1644965: autoconf check for user 'games' fails on Mac OS X
+-fixed bug 1681811: Ring of levitation - "Lev" status changes late
+		    (paranoid_times)
 
 See history.txt for changes made in previous versions.
 
