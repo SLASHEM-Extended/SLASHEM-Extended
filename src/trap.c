@@ -2261,7 +2261,7 @@ const char *str;
 	if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 	    return;
 	You("turn to stone...");
-	killer_format = KILLED_BY_AN;
+	killer_format = KILLED_BY;
 	killer = str;
 	done(STONING);
 }

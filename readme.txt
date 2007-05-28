@@ -71,6 +71,7 @@ ver 0.0.8E0F2 [?] [Released by ?]
 -fixed bug 1644965: autoconf check for user 'games' fails on Mac OS X
 -fixed bug 1681811: Ring of levitation - "Lev" status changes late
 		    (paranoid_times)
+-fixed bug 1691722: Grammar - "an a basilisk corpse"
 
 See history.txt for changes made in previous versions.
 
