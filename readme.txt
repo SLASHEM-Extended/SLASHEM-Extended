@@ -72,6 +72,8 @@ ver 0.0.7E7F4 [?] [Released by ?]
 -fixed bug 1681811: Ring of levitation - "Lev" status changes late
 		    (paranoid_times)
 -fixed bug 1691722: Grammar - "an a basilisk corpse"
+-fixed bug 1708141: "the" in "the Rat King" uncapitalized when eating corpse
+		    (Kernigh)
 
 See history.txt for changes made in previous versions.
 
