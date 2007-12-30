@@ -21,6 +21,7 @@ STATIC_PTR int NDECL(unfaint);
 
 #ifdef OVLB
 STATIC_DCL const char *FDECL(food_xname, (struct obj *,BOOLEAN_P));
+STATIC_DCL const char *FDECL(Food_xname, (struct obj *,BOOLEAN_P));
 STATIC_DCL void FDECL(choke, (struct obj *));
 STATIC_DCL void NDECL(recalc_wt);
 STATIC_DCL struct obj *FDECL(touchfood, (struct obj *));
@@ -250,6 +251,17 @@ boolean the_pfx;
 	return result;
 }
 
+STATIC_OVL const char *
+Food_xname(food, the_pfx)
+struct obj *food;
+boolean the_pfx;
+{
+	/* food_xname() uses a modifiable buffer, so we can use it too */ 
+	char *buf = (char *)food_xname(food, the_pfx);
+
+	*buf = highc(*buf);
+	return buf;
+}
 
 /* Created by GAN 01/28/87
  * Amended by AKP 09/22/87: if not hard, don't choke, just vomit.
@@ -1615,9 +1627,11 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	    if (retcode<2 && otmp->odrained && otmp->oeaten < drainlevel(otmp))
 	        otmp->oeaten = drainlevel(otmp);
 	} else if (!is_vampire(youmonst.data)) {
+	    boolean pname = type_is_pname(&mons[mnum]);
 	    pline("%s%s %s!",
-		  !uniq ? "This " : !type_is_pname(&mons[mnum]) ? "The " : "",
-		  food_xname(otmp, FALSE),
+		  !uniq ? "This " : !pname ? "The " : "",
+		  uniq && pname ?
+		   Food_xname(otmp, FALSE) : food_xname(otmp, FALSE),
 		  (vegan(&mons[mnum]) ?
 		   (!carnivorous(youmonst.data) && herbivorous(youmonst.data)) :
 		   (carnivorous(youmonst.data) && !herbivorous(youmonst.data)))
