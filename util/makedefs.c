@@ -726,6 +726,9 @@ static const char *build_opts[] = {
 #ifdef AUTOPICKUP_EXCEPTIONS
 		"autopickup_exceptions",
 #endif
+#ifdef AUTO_OPEN
+		"auto open doors",
+#endif
 #ifdef TEXTCOLOR
 		"color",
 #endif

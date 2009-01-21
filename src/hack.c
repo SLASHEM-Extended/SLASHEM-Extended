@@ -16,6 +16,9 @@ STATIC_DCL boolean FDECL(monstinroom, (struct permonst *,int));
 STATIC_DCL void FDECL(move_update, (BOOLEAN_P));
 STATIC_PTR void FDECL(set_litX, (int,int,genericptr_t));
 
+static boolean door_opened;	/* set to true if door was opened during test_move */
+
+
 #define IS_SHOP(x)	(rooms[x].rtype >= SHOPBASE)
 
 #ifdef OVL2
@@ -1153,6 +1156,13 @@ int mode;
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but can't squeeze your possessions through.");
 		    else if (x == ux || y == uy) {
+#ifdef AUTO_OPEN
+			if (iflags.autoopen && !flags.run
+				&& !Confusion && !Stunned && !Fumbling) {
+			    door_opened = flags.move = doopen_indir(x, y);
+			} else
+
+#endif
 			if (Blind || Stunned || Numbed || ACURR(A_DEX) < 10 || Fumbling) {
 			    if (u.usteed) {
 				You_cant("lead %s through that closed door.",
@@ -2052,8 +2062,10 @@ domove()
 	}
 
 	if (!test_move(u.ux, u.uy, x-u.ux, y-u.uy, DO_MOVE)) {
-	    flags.move = 0;
-	    forcenomul(0, 0);
+            if (!door_opened) {
+	        flags.move = 0;
+	        forcenomul(0, 0);
+            }
 	    return;
 	}
 
