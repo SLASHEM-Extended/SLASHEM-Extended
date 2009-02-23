@@ -2065,6 +2065,8 @@ domove()
             if (!door_opened) {
 	        flags.move = 0;
 	        forcenomul(0, 0);
+            } else {
+                door_opened = 0;
             }
 	    return;
 	}
