@@ -9,10 +9,10 @@
 /*#define DEF_GAME_NAME   "NetHack"*/
 
 /* Version */
-/* edit by Amy - version_minor is updated for each release, version_major increases by 1 if minor reaches 100 */
-/* if the changes are minor enough that savegame/bones compatibility is still there, the version number is not increased */
-#define VERSION_MAJOR   0
-#define VERSION_MINOR   97
+/* edit by Amy - version_minor is updated for each release, version_major increases by 1 if savegame compatibility is broken */
+/* if version_major increases, version_minor resets to 0 */
+#define VERSION_MAJOR   98
+#define VERSION_MINOR   0
 /*
  * PATCHLEVEL is updated for each release.
  * edit by Amy - I'm keeping patch, edit and fixlevel to show the game's based on SLASH'EM 0.0.7E7F2.
