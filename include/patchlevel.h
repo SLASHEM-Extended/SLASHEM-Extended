@@ -9,17 +9,14 @@
 /*#define DEF_GAME_NAME   "NetHack"*/
 
 /* Version */
-/* edit by Amy - version_minor is updated for each release, version_major increases by 1 if savegame compatibility is broken */
-/* if version_major increases, version_minor resets to 0 */
-#define VERSION_MAJOR   98
-#define VERSION_MINOR   0
+#define VERSION_MAJOR   0
+#define VERSION_MINOR   98
 /*
  * PATCHLEVEL is updated for each release.
- * edit by Amy - I'm keeping patch, edit and fixlevel to show the game's based on SLASH'EM 0.0.7E7F2.
  */
-#define PATCHLEVEL      7
-#define EDITLEVEL	7
-#define FIXLEVEL        2
+#define PATCHLEVEL      0
+#define EDITLEVEL	0
+#define FIXLEVEL        0
 
 #define COPYRIGHT_BANNER_A \
 "This is SuperLotsoAddedStuffHack-Extended Magic 1997-2005"
@@ -43,7 +40,7 @@
  * PP = patch level, ee = edit level, L = literal suffix "L",
  * with all four numbers specified as two hexadecimal digits.
  */
-#define VERSION_COMPATIBILITY 0x00000702L
+#define VERSION_COMPATIBILITY 0x00620000L
 #endif
 
 /*patchlevel.h*/
