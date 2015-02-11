@@ -17,6 +17,7 @@ STATIC_DCL boolean FDECL(check_map_spot, (int,int,CHAR_P,unsigned));
 STATIC_DCL boolean FDECL(clear_stale_map, (CHAR_P,unsigned));
 STATIC_DCL void FDECL(sense_trap, (struct trap *,XCHAR_P,XCHAR_P,int));
 STATIC_DCL void FDECL(show_map_spot, (int,int));
+STATIC_DCL void FDECL(show_map_spotX, (int,int));
 STATIC_PTR void FDECL(findone,(int,int,genericptr_t));
 STATIC_PTR void FDECL(openone,(int,int,genericptr_t));
 
@@ -333,20 +334,21 @@ register struct obj	*sobj;
 	    docrt();
 	    You("sense a lack of %s nearby.", what);
 	    if (sobj && sobj->blessed) {
-		if (!u.uedibility) Your("%s starts to tingle.", body_part(NOSE));
-		u.uedibility = 1;
+		if (!u.urealedibility) Your("%s starts to tingle.", body_part(NOSE));
+		u.urealedibility += 1;
 	    }
 	} else if (sobj) {
 	    char buf[BUFSZ];
 	    Sprintf(buf, "Your %s twitches%s.", body_part(NOSE),
-			(sobj->blessed && !u.uedibility) ? " then starts to tingle" : "");
-	    if (sobj->blessed && !u.uedibility) {
+			(sobj->blessed && !u.urealedibility) ? " then starts to tingle" : "");
+	    if (sobj->blessed && !u.urealedibility) {
 		boolean savebeginner = flags.beginner;	/* prevent non-delivery of */
 		flags.beginner = FALSE;			/* 	message            */
 		strange_feeling(sobj, buf);
 		flags.beginner = savebeginner;
-		u.uedibility = 1;
+		u.urealedibility += 1;
 	    } else
+		u.urealedibility += 1;
 		strange_feeling(sobj, buf);
 	}
 	return !stale;
@@ -354,8 +356,8 @@ register struct obj	*sobj;
 	known = TRUE;
 	You("%s %s nearby.", sobj ? "smell" : "sense", what);
 	if (sobj && sobj->blessed) {
-		if (!u.uedibility) pline("Your %s starts to tingle.", body_part(NOSE));
-		u.uedibility = 1;
+		if (!u.urealedibility) pline("Your %s starts to tingle.", body_part(NOSE));
+		u.urealedibility += 1;
 	}
     } else {
 	struct obj *temp;
@@ -383,8 +385,8 @@ register struct obj	*sobj;
 	if (sobj) {
 	    if (sobj->blessed) {
 	    	Your("%s %s to tingle and you smell %s.", body_part(NOSE),
-	    		u.uedibility ? "continues" : "starts", what);
-		u.uedibility = 1;
+	    		u.urealedibility ? "continues" : "starts", what);
+		u.urealedibility += 1;
 	    } else
 		Your("%s tingles and you smell %s.", body_part(NOSE), what);
 	}
@@ -414,7 +416,8 @@ int		class;		/* an object class, 0 for all */
     char stuff[BUFSZ];
     int is_cursed = (detector && detector->cursed);
     int do_dknown = (detector && (detector->oclass == POTION_CLASS ||
-				    detector->oclass == SPBOOK_CLASS) &&
+				    detector->oclass == SPBOOK_CLASS ||
+					detector->oartifact ) &&
 			detector->blessed);
     int ct = 0, ctu = 0;
     register struct obj *obj, *otmp = (struct obj *)0;
@@ -565,6 +568,117 @@ int		class;		/* an object class, 0 for all */
 	    gold.oy = mtmp->my;
 	    map_object(&gold, 1);
 	}
+    }
+
+    newsym(u.ux,u.uy);
+    You("detect the %s of %s.", ct ? "presence" : "absence", stuff);
+    display_nhwindow(WIN_MAP, TRUE);
+    /*
+     * What are we going to do when the hero does an object detect while blind
+     * and the detected object covers a known pool?
+     */
+    docrt();	/* this will correctly reset vision */
+
+    u.uinwater = uw;
+    if (Underwater) under_water(2);
+    if (u.uburied) under_ground(2);
+    return 0;
+}
+
+/*
+ * Used for artifact effects.  Returns:
+ *
+ *	1 - nothing was detected
+ *	0 - something was detected
+ */
+int
+artifact_detect(detector)
+struct obj	*detector;	/* object doing the detecting */
+{
+    register int x, y;
+    char stuff[BUFSZ];
+    int is_cursed = (detector && detector->cursed);
+    int do_dknown = (detector && (detector->oclass == POTION_CLASS ||
+				    detector->oclass == SPBOOK_CLASS ||
+					detector->oartifact) &&
+			detector->blessed);
+    int ct = 0;
+    register struct obj *obj, *otmp = (struct obj *)0;
+    register struct monst *mtmp;
+    int uw = u.uinwater;
+
+	if (is_cursed){ /* Possible false negative */
+		strange_feeling(detector, "You feel a lack of something.");
+	    return 1;
+	}
+	
+    if (Hallucination)
+		Strcpy(stuff, something);
+    else
+    	Strcpy(stuff, "artifacts");
+
+    if (do_dknown) for(obj = invent; obj; obj = obj->nobj) do_dknown_of(obj);
+
+    for (obj = fobj; obj; obj = obj->nobj) {
+	if (obj && obj->oartifact) {
+	    if (obj->ox != u.ux || obj->oy != u.uy) ct++;
+	}
+	if (do_dknown) do_dknown_of(obj);
+    }
+
+    for (obj = level.buriedobjlist; obj; obj = obj->nobj) {
+	if (obj && obj->oartifact) {
+	    if (obj->ox != u.ux || obj->oy != u.uy) ct++;
+	}
+	if (do_dknown) do_dknown_of(obj);
+    }
+
+    for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+	if (DEADMONSTER(mtmp)) continue;
+		for (obj = mtmp->minvent; obj; obj = obj->nobj) {
+			if (obj && obj->oartifact) ct++;
+			if (do_dknown) do_dknown_of(obj);
+		}
+	}
+
+    if (!clear_stale_map(ALL_CLASSES, 0) && !ct) {
+		strange_feeling(detector, "You feel a lack of something.");
+	    return 1;
+	}
+
+    cls();
+
+    u.uinwater = 0;
+/*
+ *	Map all buried objects first.
+ */
+    for (obj = level.buriedobjlist; obj; obj = obj->nobj)
+		if (obj && obj->oartifact) {
+			map_object(obj, 1);
+		}
+    /*
+     * If we are mapping all objects, map only the top object of a pile or
+     * the first object in a monster's inventory.  Otherwise, go looking
+     * for a matching object class and display the first one encountered
+     * at each location.
+     *
+     * Objects on the floor override buried objects.
+     */
+    for (x = 1; x < COLNO; x++)
+	for (y = 0; y < ROWNO; y++)
+	    for (obj = level.objects[x][y]; obj; obj = obj->nexthere)
+		if (obj && obj->oartifact) {
+			map_object(obj, 1);
+	break;
+		}
+    /* Objects in the monster's inventory override floor objects. */
+    for (mtmp = fmon ; mtmp ; mtmp = mtmp->nmon) {
+	if (DEADMONSTER(mtmp)) continue;
+	for (obj = mtmp->minvent; obj; obj = obj->nobj)
+	    if (obj && obj->oartifact) {
+			map_object(obj, 1);
+	break;
+	    }
     }
 
     newsym(u.ux,u.uy);
@@ -818,11 +932,11 @@ struct obj *obj;
 	case 1 : pline("%s too much to comprehend!", Tobjnam(obj, "are"));
 	    break;
 	case 2 : pline("%s you!", Tobjnam(obj, "confuse"));
-	    make_confused(HConfusion + rnd(100),FALSE);
+	    make_confused(HConfusion + rnd(50),FALSE);
 	    break;
 	case 3 : if (!resists_blnd(&youmonst)) {
 		pline("%s your vision!", Tobjnam(obj, "damage"));
-		make_blinded(Blinded + rnd(100),FALSE);
+		make_blinded(Blinded + rnd(50),FALSE);
 		if (!Blind) Your(vision_clears);
 	    } else {
 		pline("%s your vision.", Tobjnam(obj, "assault"));
@@ -830,7 +944,7 @@ struct obj *obj;
 	    }
 	    break;
 	case 4 : pline("%s your mind!", Tobjnam(obj, "zap"));
-	    (void) make_hallucinated(HHallucination + rnd(100),FALSE,0L);
+	    (void) make_hallucinated(HHallucination + rnd(50),FALSE,0L);
 	    break;
 	case 5 : pline("%s!", Tobjnam(obj, "explode"));
 	    useup(obj);
@@ -957,6 +1071,41 @@ register int x, y;
     }
 }
 
+STATIC_OVL void
+show_map_spotX(x, y)
+register int x, y;
+{
+    register struct rm *lev;
+
+    if (rn2(7)) return;
+    lev = &levl[x][y];
+
+    lev->seenv = SVALL;
+
+    /* Secret corridors are found, but not secret doors. */
+    if (lev->typ == SCORR) {
+	lev->typ = CORR;
+	unblock_point(x,y);
+    }
+
+    /* if we don't remember an object or trap there, map it */
+#ifdef DISPLAY_LAYERS
+    if (!lev->mem_obj && !lev->mem_trap) {
+#else
+    if (lev->typ == ROOM ?
+	    (glyph_is_cmap(lev->glyph) && !glyph_is_trap(lev->glyph) &&
+		glyph_to_cmap(lev->glyph) != ROOM) :
+	    (!glyph_is_object(lev->glyph) && !glyph_is_trap(lev->glyph))) {
+#endif
+	if (level.flags.hero_memory) {
+	    magic_map_background(x,y,0);
+	    newsym(x,y);			/* show it, if not blocked */
+	} else {
+	    magic_map_background(x,y,1);	/* display it */
+	}
+    }
+}
+
 void
 do_mapping()
 {
@@ -967,6 +1116,25 @@ do_mapping()
     for (zx = 1; zx < COLNO; zx++)
 	for (zy = 0; zy < ROWNO; zy++)
 	    show_map_spot(zx, zy);
+    exercise(A_WIS, TRUE);
+    u.uinwater = uw;
+    if (!level.flags.hero_memory || Underwater) {
+	flush_screen(1);			/* flush temp screen */
+	display_nhwindow(WIN_MAP, TRUE);	/* wait */
+	docrt();
+    }
+}
+
+void
+do_mappingX()
+{
+    register int zx, zy;
+    int uw = u.uinwater;
+
+    u.uinwater = 0;
+    for (zx = 1; zx < COLNO; zx++)
+	for (zy = 0; zy < ROWNO; zy++)
+	    show_map_spotX(zx, zy);
     exercise(A_WIS, TRUE);
     u.uinwater = uw;
     if (!level.flags.hero_memory || Underwater) {
@@ -1026,12 +1194,16 @@ genericptr_t num;
 
 	if(levl[zx][zy].typ == SDOOR) {
 		cvt_sdoor_to_door(&levl[zx][zy]);	/* .typ = DOOR */
+		You("find a secret door!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		magic_map_background(zx, zy, 0);
 		newsym(zx, zy);
 		(*(int*)num)++;
 	} else if(levl[zx][zy].typ == SCORR) {
 		levl[zx][zy].typ = CORR;
 		unblock_point(zx,zy);
+		You("find a secret passage!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		magic_map_background(zx, zy, 0);
 		newsym(zx, zy);
 		(*(int*)num)++;
@@ -1204,6 +1376,8 @@ register int aflag;
 		    uwep->spe : 0;
 	    if (ublindf && ublindf->otyp == LENSES && !Blind)
 		    fund += 2; /* JDS: lenses help searching */
+	    if (uarmh && uarmh->otyp == HELM_OF_DISCOVERY && !Blind)
+		    fund += 1; /* Amy: helm of discovery also helps a bit */
 	    if (fund > 5) fund = 5;
 	    for(x = u.ux-1; x < u.ux+2; x++)
 	      for(y = u.uy-1; y < u.uy+2; y++) {
@@ -1211,8 +1385,10 @@ register int aflag;
 		if(x != u.ux || y != u.uy) {
 		    if (Blind && !aflag) feel_location(x,y);
 		    if(levl[x][y].typ == SDOOR) {
-			if(rnl(7-fund)) continue;
+			if(rnl(7-fund) && rn2(5) ) continue; /* better chance --Amy */
 			cvt_sdoor_to_door(&levl[x][y]);	/* .typ = DOOR */
+			You("find a secret door!");
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			exercise(A_WIS, TRUE);
 			nomul(0);
 			if (Blind && !aflag)
@@ -1220,9 +1396,11 @@ register int aflag;
 			else
 			    newsym(x,y);
 		    } else if(levl[x][y].typ == SCORR) {
-			if(rnl(7-fund)) continue;
+			if(rnl(7-fund) && rn2(5) ) continue; /* better chance --Amy */
 			levl[x][y].typ = CORR;
 			unblock_point(x,y);	/* vision */
+			You("find a secret passage!");
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			exercise(A_WIS, TRUE);
 			nomul(0);
 			newsym(x,y);
@@ -1268,7 +1446,8 @@ register int aflag;
 			    newsym(x,y);
 			}
 
-			if ((trap = t_at(x,y)) && !trap->tseen && !rnl(8)) {
+			/* finding traps is much too hard. Let's increase the chance. --Amy */
+			if ((trap = t_at(x,y)) && !trap->tseen && (!rnl(8-fund) || !rn2(5) ) ) {
 			    nomul(0);
 
 			    if (trap->ttyp == STATUE_TRAP) {
@@ -1291,25 +1470,37 @@ register int aflag;
 void
 sokoban_detect()
 {
-	register int x, y;
+	register int x, y, randa, randb, randc; /* randomly hide some stuff from view because I'm mean :D --Amy */
 	register struct trap *ttmp;
 	register struct obj *obj;
+
+	randa = rn2(20);
+	randb = rn2(10);
+	randc = rn2(10);
 
 	/* Map the background and boulders */
 	for (x = 1; x < COLNO; x++)
 	    for (y = 0; y < ROWNO; y++) {
+
+		if (randa) {
 	    	levl[x][y].seenv = SVALL;
 	    	levl[x][y].waslit = TRUE;
 	    	map_background(x, y, 1);
+		}
+
 	    	for (obj = level.objects[x][y]; obj; obj = obj->nexthere)
-	    	    if (obj->otyp == BOULDER)
+	    	    if ((obj->otyp == BOULDER) && randb)
 	    	    	map_object(obj, 1);
-	    }
+	}
 
 	/* Map the traps */
 	for (ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) {
-	    ttmp->tseen = 1;
-	    map_trap(ttmp, 1);
+
+			/* but only holes and pits --Amy */
+			if ((ttmp->ttyp == HOLE || ttmp->ttyp == PIT) && randc) {
+		    ttmp->tseen = 1;
+		    map_trap(ttmp, 1);
+		}
 	}
 }
 

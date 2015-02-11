@@ -616,7 +616,13 @@ struct level_map {
 	{ "blkmar",     &blackmarket_level },
 #endif /* BLACKMARKET */
 	{ "medusa",	&medusa_level },
+	{ "mtemple",	&mtemple_level },
 	{ "mine_end",   &mineend_level },        
+	{ "nymph",   &nymph_level },        
+	{ "forge",   &forge_level },        
+	{ "hitch",   &hitch_level },        
+	{ "compu",   &compu_level },        
+	{ "key",   &key_level },        
 	{ "oracle",	&oracle_level },
 	{ "orcus",	&orcus_level },
 #ifdef REINCARNATION
@@ -739,7 +745,7 @@ init_dungeons()
 					      dungeons[i-1].num_dunlevs;
 		dungeons[i].dunlev_ureached = 0;
 
-		if (dungeons[i].ledger_start + dungeons[i].num_dunlevs > 127)
+		if (dungeons[i].ledger_start + dungeons[i].num_dunlevs > 255)
 		    panic("init_dungeons: too many levels");
 	    }
 
@@ -882,6 +888,7 @@ init_dungeons()
 	quest_dnum = dname_to_dnum("The Quest");
 	sokoban_dnum = dname_to_dnum("Sokoban");
 	mines_dnum = dname_to_dnum("The Gnomish Mines");
+	sheol_dnum = dname_to_dnum("Sheol");
 	spiders_dnum = dname_to_dnum("The Spider Caves");        
 	tower_dnum = dname_to_dnum("Vlad's Tower");
 /*
@@ -1306,6 +1313,13 @@ d_level	*lev;
 }
 
 boolean
+In_sheol(lev)	/* are you in the sheol dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == sheol_dnum));
+}
+
+boolean
 In_spiders(lev) /* are you in the spider dungeon? */
 d_level *lev;
 {
@@ -1478,16 +1492,60 @@ d_level *lev;
 /* use instead of depth() wherever a degree of difficulty is made
  * dependent on the location in the dungeon (eg. monster creation).
  */
-xchar
+xchar /* xchar means it can only be 127 or lower. If a value >127 is returned, the game destabilizes! */
 level_difficulty()
 {
+	int retvalue;
+
 	if (In_endgame(&u.uz))
-		return((xchar)(depth(&sanctum_level) + u.ulevel/2));
+		retvalue = (100 + (u.ulevel/2) );
+	else if (u.uhave.amulet)
+		retvalue = 100;
+	else if (Race_if(PM_IMPERIAL) || (Inhell && !Race_if(PM_HERETIC) ) || !strncmpi(plname, "Gehenna", 7))
+		retvalue = (depth(&u.uz) + rn2(u.ulevel) + 2 );
 	else
-		if (u.uhave.amulet)
-			return(deepest_lev_reached(FALSE));
-		else
-			return((xchar) depth(&u.uz));
+		retvalue = depth(&u.uz);
+
+	if ( (!rn2(10) || Race_if(PM_GASTLY) ) && (deepest_lev_reached(TRUE) > retvalue) ) retvalue = deepest_lev_reached(TRUE);
+
+	/* later in the game, low-level monsters will be less common */
+	if (moves > 10000 && retvalue < 5) retvalue = 5;
+	if (moves > 20000 && retvalue < 10) retvalue = 10;
+	if (moves > 40000 && retvalue < 15) retvalue = 15;
+	if (moves > 60000 && retvalue < 20) retvalue = 20;
+	if (moves > 80000 && retvalue < 25) retvalue = 25;
+	if (moves > 120000 && retvalue < 30) retvalue = 30;
+	if (moves > 160000 && retvalue < 35) retvalue = 35;
+	if (moves > 200000 && retvalue < 40) retvalue = 40;
+	if (moves > 300000 && retvalue < 50) retvalue = 50;
+	if (moves > 400000 && retvalue < 75) retvalue = 75;
+	if (moves > 500000 && retvalue < 100) retvalue = 100;
+	if (moves > 1000000 && retvalue < 125) retvalue = 125;
+
+	if (retvalue > 126) retvalue = 126; /* fail safe */
+	if (retvalue < 1) retvalue = 1;
+
+	return((xchar) retvalue);
+}
+/* Sadly, we cannot make the sanctum deeper than dlvl 65 thanks to the arbitrary limit of 127 dungeon levels.
+ * And I don't want to remove any branches just to make room for more gehennom levels. So the deepest level
+ * will always be 65, and we'll have to arbitrarily increase the level difficulty for the endgame. --Amy */
+
+xchar /* 127 or lower */
+monster_difficulty()
+{
+
+	int tempval;
+
+	tempval = (level_difficulty() + u.ulevel + 1)>>1;
+	if (tempval < level_difficulty()) tempval = level_difficulty();
+	/* this function is meant to make sure high-level characters don't get stupidly easy monsters at shallow depths,
+	 * yet I also don't want monsters at deep dungeon levels to be of a lower level than they should be. --Amy */
+
+	if (tempval < 1) tempval = 1;
+	if (tempval > 125) tempval = 125; /* to be on the safe side */
+	return((xchar) tempval);
+
 }
 
 /* Take one word and try to match it to a level.
@@ -1605,6 +1663,7 @@ print_branch(win, dnum, lower_bound, upper_bound, bymenu, lchoices)
 		add_menu(win, NO_GLYPH, &any, lchoices->menuletter,
 				0, ATR_NONE, buf, MENU_UNSELECTED);
 		if (lchoices->menuletter == 'z') lchoices->menuletter = 'A';
+		else if (lchoices->menuletter == 'Z') lchoices->menuletter = 'a';
 		else lchoices->menuletter++;
 		lchoices->idx++;
 	    } else
@@ -1686,6 +1745,7 @@ xchar *rdgn;
 		add_menu(win, NO_GLYPH, &any, lchoices.menuletter,
 				0, ATR_NONE, buf, MENU_UNSELECTED);
 		if (lchoices.menuletter == 'z') lchoices.menuletter = 'A';
+		else if (lchoices.menuletter == 'Z') lchoices.menuletter = 'a';
 		else lchoices.menuletter++;
 		lchoices.idx++;
 	    } else

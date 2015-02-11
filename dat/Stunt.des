@@ -1,0 +1,365 @@
+#	SCCS Id: @(#)Yeoman.des	3.4	1998/09/10
+#	Copyright (c) 1998 by Kevin Hugo
+# NetHack may be freely redistributed.  See license for details.
+
+# note by Amy - this is the Topmodel quest, which is supposed to be very hard to beat.
+# It's based on the Yeoman quest, but there are some all-new levels and changes to the existing ones done by me.
+
+
+# The Yeoman quest is located at the "Royal Palace and Fortress
+# of London", commonly known as the Tower of London or the London
+# Tower.  Over a period of nine centuries, it has served as a
+# military garrison, royal residence, fortress, prison, armory,
+# treasury, mint, menagerie, and museum. 
+#
+# This quest is based on the 1671 theft of the crown jewels.
+# It may be useful to note that this is set 500 years after the
+# legend of Robin Hood and 1100 years after the legend of King
+# Arthur (who was killed circa A.D. 537).
+#
+# Much effort has been devoted to make this quest as accurate as
+# possible; however, some inaccuracies remain:
+#   1.  Because NetHack quests must begin at a top level and proceed
+#       downward, this quest is actually presented "upside-down".
+#   2.  In many cases, objects and monsters have been substituted
+#       with the most similar existing thing, to avoid the need
+#       to create specialized objects.
+#   3.  The theft of the Crown Jewels is different than is
+#       presented here.  Colonel Blood worked with three accomplices,
+#       and all were captured alive.  Assistant Keeper of the Jewels
+#       Talbot Edwards was tied up, not killed.  Blood was captured
+#       alive, pardoned, and forced to work for the king as a spy
+#       and informant.
+#	4.	For our convenience, the Bell of Opening represents the
+#		alarm bell of the Bell Tower, stolen by Colonel Blood
+#		to prevent a call to arms.  This never happened in the
+#		real incident.
+#
+# I would especially like to thank Dylan O'Donnell <dylanw@demon.net>
+# for his advice.
+
+### The quest "start" level ###
+#
+#	The outer ward of the tower complex and the surrounding city.
+#	Most of this part of the complex was built by Henry III
+#	(1216-1272).
+#
+#	Here you meet your (besieged) class leader, the Chief Yeoman
+#	Warder, and receive your quest assignment.
+#
+MAZE: "Stu-strt",' '
+FLAGS: noteleport,hardfloor,lethe
+GEOMETRY:center,center
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+......................}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.....
+...............}}}}}}}}}}}}}}--------------------}}.....
+..............}}}-------------...............|  |}}}....
+..............}}}|  |..........---.---.---...|  |}}}....
+..............}}}|  |..---.---.| |-| |-| |--.---|}}}....
+..............}}}|---..| |-| |--           |....|}}}....
+.............}}}}|.....--                 |-....|}}}}...
+.............}}}}|....--|                 |--...|}}}}...
+.....}}.}}}}}}}}}|....|                     |...||}}}...
+....}}}}}}}}}}}}|---..--|                  |-....|}}}...
+...}}------}}}}}|..S....|                  |--...|}}}...
+...}}|....|---}}|..|..---  ----      -----|  |...|}}}...
+...}}|....+..|}}|---..| |--|..|  |-| |....----...|}}}...
+...}}-----|..+.}|..+..---..--S----.---...........|}}}...
+...}}}}}}}----}}|..|...................-+-.---.----}}...
+.....}}}}}}}}}}}-----------------------|.|.+.|.+..|}....
+...........}}}}}}}}}}}}}}}}|.}.|}}}}}}}------------}}...
+}}}}}}.....................--+--.....}}}}}}}}}}}}}}}....
+}}}}}}}}}....................}..........................
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+ENDMAP
+# Specifications for the whole level
+RANDOM_MONSTERS: ''', '''
+REGION:(00,00,55,19),lit,"ordinary"
+NON_DIGGABLE:(00,00,55,19)
+NON_PASSWALL:(00,00,55,19)
+# Tower Hill, the portal arrival zone
+#	This is where public executions were held.
+BRANCH:(01,01,12,07),(0,0,0,0)
+
+# Moat
+#	The water is very filthy and filled with sewage.
+#	It was drained and filled in 1843.
+# Lion's Gate
+#	This is the entrance to the tower complex when approaching from
+#	the city of London (to the west).
+DRAWBRIDGE:(07,09),south,open
+# Lion Tower
+#	Built by Henry III.
+#	This tower held the Royal Menagerie from 1264 to 1834.
+#	It was torn down soon after the menagerie was removed.
+REGION:(06,11,09,12),lit,"ordinary"
+# Middle Tower
+#	Built by Edward I.
+#	This gate is locked in the Ceremony of the Keys.
+DOOR:closed,(10,12)
+MONSTER:'@',"page",(12,12)
+MONSTER:'@',"page",(11,13)
+DOOR:locked,(13,13)
+# Byward Tower (The Tower at the Gate)
+#	Built by Edward I.
+#	Gatehouse to the outer ward.
+DRAWBRIDGE:(15,13),east,open
+MONSTER:'@',"page",(17,13)
+MONSTER:'@',"page",(18,13)
+DOOR:locked,(19,13)
+# The Royal Mint
+#	Coins were engraved and stamped here from the 1100s to 1810.
+#	A theft occurred in 1798.
+#	The mint was later moved to Tower Hill.
+OBJECT:'$',random,(17,10)
+OBJECT:'$',random,(18,10)
+OBJECT:'$',random,(17,11)
+OBJECT:'$',random,(18,11)
+#REGION:(17,10,18,11),lit,"vault",filled
+DOOR:locked,(19,10)
+# Legge's Mount and Brass Mount
+#	Built by Henry VIII.
+#	Cannon towers, at the top corners of the map.
+#	Inaccessable for our purposes.
+# The Iron Gate and its tower (later called Develin Tower)
+#	Built by Edward I.
+#	The eastern gate to the tower complex.
+#	Rarely used because the city did not extend far to the east.
+#
+#	Your quest leader, the Chief Yeoman Warder, is here.
+DRAWBRIDGE:(51,15),west,closed
+MONSTER:'@',"page",(49,15)
+MONSTER:'@',"Stunt Double",(48,15)
+DOOR:open,(47,15)
+# Well Tower
+#	Started by Henry III.
+DOOR:open,(43,15)
+MONSTER:'@',"page",(44,15)
+# Cradle Tower
+#	Built in 1300s.
+#	Once opened directly to the river.
+DOOR:open,(40,14)
+MONSTER:'@',"page",(40,15)
+# Saint Thomas' Tower
+#	Built by Henry III.
+#	Contains a small chapel to Thomas a` Becket.
+MONSTER:'@',"page",(28,16)
+MONSTER:'@',"page",(30,16)
+DRAWBRIDGE:(29,16),north,closed
+# Traitor's Gate
+#	Southern entrance to the tower complex.
+#	Traitors brought by ship on the River Thames came through this
+#	entrance.
+DOOR:open,(29,17)
+# The Tower Wharf
+#	Cargo and prisoners alike were brought up the River Thames (to
+#	the immediate south) and unloaded at the wharf between the river
+#	and the tower complex.
+OBJECT:'(',"large box",(10,17)
+OBJECT:'(',"large box",(18,18)
+OBJECT:'(',"large box",(25,18)
+OBJECT:'(',"large box",(34,17)
+OBJECT:'(',"large box",(46,18)
+# Bloody Tower
+#	Started by Henry III as the Garden Tower.
+#
+#	Renamed to Bloody Tower after York Princes were imprisoned
+#	and murdered there.  (See Shakespeare's Richard III)
+#	Several other prisoners were kept there, including Sir Walter
+#	Rale[i]gh and Sir Thomas Overbury (who was poisoned to death
+#	by Lady Somerset).
+#	
+#	This tower had the only entrance to the inner ward until the 1800s.
+STAIR:(28,12),down
+MONSTER:'@',"page",(28,12)
+MONSTER:'@',"page",(29,12)
+
+
+### Upper filler levels ###
+#
+#	Wilderness Safari
+#	You're facing lots of wild animals here. There's also some traps placed on the rough terrain.
+#
+MAZE: "Stu-fila", ' '
+FLAGS: hardfloor,lethe
+GEOMETRY:center,center
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+.......................................................................
+.......................................................................
+..T....T....T....T....T....T....T....T....T....T....T....T....T....T...
+.......................................................................
+.....T....T....T....T....T....T....T.... .... .... ....  ...   ...    .
+.......................................................................
+.......................................................................
+..}}}}}}...  .    TT    TT}}}}............................}}}}}}}}....}
+..}}}}}}... ...............}}}.................TTTTTTT...}}}}}}}}}....}
+..}}}}}}....................}}}}}}}}}}}}}}}}}}}IIIIIII}}}}}}}}}}}}....}
+..}}}}}}... ...............}}}.................TTTTTTT...}}}}}}}}}....}
+..}}}}}}...  .    TT    TT}}}}............................}}}}}}}}....}
+.......................................  ...... . .........T}}}}}}....}
+.......................................  ....... ......................
+............................................... . .T.T.T.T.T.T.T.T.T.T.
+..........TTTTTTT.                .................                   .
+.....T......T.T... .T.TTTT..T.}TT.................. .}}}}}}}}}}}}}}}}}.
+.....T.....T...T.. .T....T..T........TTTTT......... .}}}}}}}}}}}}}}}}}.
+.....T....T.....T. .T.TT..T...TTT...}}}}}}}........ .}}}}}}}}}}}}}}}}}.
+.....T............ ........T.......}}}}I}}}}....... ............}}}}}}.
+ENDMAP
+# Specifications for the whole level
+STAIR:random,up
+STAIR:random,down
+
+### The quest "locate" level ###
+#
+#	Grand Canyon
+#	The player will probably just fly over everything and be unbreathing, but...
+#	... there's some nasty surprises waiting - item-stealing monsters!
+#	DO NOT, for the love of whatever God your character believes in, allow anything to pull you into the Lethe waters.
+#	Unbreathing may prevent death, but it will not prevent the water from turning your luckstone into a flint stone,
+#	or your blessed +7 silver dragon scale mail into an uncursed +0 silver dragon scale mail.
+#
+#	And what's more, the water tiles also have winds "over" them (but they also work underwater).
+#	Players will take damage if they step on a water square, even if they are flying, levitating or whatever.
+#	The average damage will increase the more often you are hit by this effect. To make matters worse,
+#	the player will also get stunned if they try to step on a water square here.
+#
+MAZE: "Stu-loca",' '
+FLAGS: noteleport,hardfloor,lethe
+GEOMETRY:center,center
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+.....................}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...........
+.....................}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...........
+.....................}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...........
+.....................}}}}}}}}}}}}}}}........}}}}}}}}}}}}}}}}...........
+.....................}}}}}}}}}}}}}}}.}}}}}}.}}}}}}}}}}}}}}}}...........
+.....................}}}}}}}}}}}}}}}.}}}}}}.}}}}}}}}}}}}}}}}...........
+.....................}}}}}}}}}}}}}}}.}}}}}}.}}}}}}}}}}}}}}}}...........
+.....................}}}}}}}}}}......}}}}}}.}}}}}}}}}}}}}}}}...........
+.....................}}}}}}}}}.}}}}}}}}}}}}.}}}}}}}}}}}}}}}}...........
+.....................}}}}}}}}.}}}}}}}}}}}}}.}}}}}}...}}}}}}}...........
+.....................}}}}}}}.}}}}}}}}}}}}}}.}}}}}.}}.}}}}}}}...........
+.....................}}}}}}.}}}}}}}}}}}}}}}.}}}}.}}}.}}}}}}}...........
+...........................}}}}}}}}}}}}}}}}.}}}.}}}}...................
+.....................}}}}}}}}}}}}}}}}}}}}}}.}}.}}}}}}}}}}}}}...........
+.....................}}}}}}}}}}}}}}}}}}}}}}.}.}}}}}}}}}}}}}}...........
+.....................}}}}}}}}}}}}}}}}}}}}}}..}}}}}}}}}}}}}}}...........
+.....................}}}}}}}}}}}}}}}}}}}}}}.}}}}}}}}}}}}}}}}...........
+.....................}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...........
+.....................}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...........
+.....................}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...........
+ENDMAP
+
+STAIR:levregion(01,00,20,20),(0,0,0,0),up
+STAIR:levregion(60,00,70,20),(0,0,0,0),down
+
+
+### Lower fill levels ###
+#
+#	Vertigo Walls
+#	Yes, I know, you might just tunnel thru everything. But your wand of digging doesn't have unlimited charges,
+#	dig spells are expensive, and pick-axes are slow. There are also other things to watch out for here.
+#
+MAZE: "Stu-filb", ' '
+FLAGS: noteleport,hardfloor,lethe
+GEOMETRY:center,center
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+.. ...... ...  .. ..   ... .... ..  .. ... .  . ... ....  .... ... .. .
+..... ... . ..... .......... ... .  ...... .. .. ... ...  ... ... ... .
+.............  .. .   ...... .. ....... . ... ... ... ...... ... .... .
+.. .. ... . ................ ... .  ..... ........ ... .... ... ..... .
+......... ...  .. ..   ... .... ..  .. ... .. . ... ... .. ... ... .. .
+..... ..... ..... .......... ... ......... .. .. ... ...  ... ... ... .
+.. ...... ...  .. .   ...... .. ..  ... . ..  ... ... ...... ... .... .
+..... ... . ................ ... .  ..... ........ ... .... ... ..... .
+.............  .. ..   ... .... ...... ... .  ..... ... .. ... ...... .
+.. .. ... . ..... .......... ... .  ...... .. .  ... ...  ... ...  . ..
+......... ...  .. .   ...... .. ..  ... . ... .  ... ...  ... ...  . ..
+..... ..... ................ ... ........ ......... ... .. ... ...... .
+.. ...... ...  .. ..   ... .... ..  .. ... .. .... ... .... ... ..... .
+..... ... . ..... .......... ... .  ...... .. ... ... ...... ... .... .
+.............  .. .   ...... .. ....... . ..  .. ... ...  ... ... ... .
+.. .. ... . ................ ... .  ..... ..... ... ... .. ... ... .. .
+......... ...  .. ..   ... .... ..  .. ... .  .... ... .... ... ..... .
+..... ..... ..... .......... ... ......... .. ... ... ...... ... .... .
+.. ...... ...  .. .   ...... .. ..  ... . ... .. ... ...  ... ... ... .
+..... ... . ................ ... .  ..... ..... ... ....  .... ... .. .
+ENDMAP
+
+STAIR:levregion(01,00,05,20),(0,0,0,0),up
+STAIR:levregion(72,00,77,20),(0,0,0,0),down
+
+
+### The quest "goal" level ###
+#
+#	Violet Carpet
+#	The activist base. It's filled to the brim with monsters.
+#	You will start outside with lots of room to maneuver, though.
+#
+MAZE: "Stu-goal", '.'
+FLAGS: noteleport,lethe
+GEOMETRY:center,center
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+                 ----  
+----      |----|--..-- 
+|..|      |....||..-....
+|..|------|.--.-|....| 
+--+-.....+..........-- 
+|........|........---  
+--.......|........|    
+|........|..K..K..|    
+--.......|........|    
+|........|........|    
+|\.......|+----------  
+|........|..........-- 
+--.......|-.-.-.-.-..--
+|........+.........-..|
+--.......+.........-....
+|........|-.-.-.-.-..--
+--+-.....|..........-- 
+|..|---|S-S||.--.|---  
+|..|   |...||....|     
+----   |---||----|     
+ENDMAP
+
+NON_DIGGABLE:(00,00,22,19)
+
+STAIR:levregion(69,01,69,18),(0,0,0,0),up
+
+
+# The Sword Room
+#	The Knights of the Bath were inducted on the eve
+#	of the coronation of a new monarch.  They would bathe
+#	in tubs (the sinks) in this room.
+
+# A secret passage that actually has some very annoying creatures in it.
+DOOR:locked,(08,17)
+DOOR:locked,(10,17)
+
+# The banquet hall
+#	After bathing, the Knights of the Bath would feast with
+#	the monarch in this room.
+DOOR:closed,(09,04)
+OBJECT:'[',"leather jacket",(01,10),blessed,+2,"Coat of Style"
+MONSTER:'A',"Ron Weasley",(01,10),hostile
+REGION:(02,05,08,16),unlit,"ordinary"
+# The Chapel of Saint John
+#	Finally, inductees to the Knights of the Bath would
+#	keep an all-night vigil in the chapel, with their armor
+#	laid on the altar.
+REGION:(10,11,21,16),unlit,"ordinary"
+
+
+REGION:(10,04,17,09),unlit,"ordinary"
+
+DOOR:closed,(10,10)
+DOOR:closed,(09,13)
+DOOR:closed,(09,14)
+ALTAR:(18,13),law,altar
+# Prison turrets (now empty)
+DOOR:locked,(02,04)
+DOOR:locked,(02,16)

@@ -120,7 +120,7 @@ placebc()
 	u.bc_order = BCPOS_CHAIN;
     }
 
-    place_object(uchain, u.ux, u.uy);
+    if (!Is_waterlevel(&u.uz)) place_object(uchain, u.ux, u.uy);
 
     u.bglyph = u.cglyph = memory_object(u.ux, u.uy);   /* pick up glyph */
 
@@ -724,7 +724,10 @@ xchar x, y;
 	if (u.ux0 != u.ux || u.uy0 != u.uy) {
 	    spoteffects(TRUE);
 	    if (In_sokoban(&u.uz))
-		change_luck(-1);	/* Sokoban guilt */
+		{change_luck(-1);
+		pline("You cheater!");
+		}
+		/* Sokoban guilt */
 	}
     }
 }

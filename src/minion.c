@@ -29,13 +29,13 @@ struct monst *mon;
 	if (is_dprince(ptr) || (ptr == &mons[PM_WIZARD_OF_YENDOR])) {
 	    dtype = (!rn2(20)) ? dprince(atyp) :
 				 (!rn2(4)) ? dlord(atyp) : ndemon(atyp);
-	    cnt = (!rn2(4) && is_ndemon(&mons[dtype])) ? 2 : 1;
+	    cnt = (!rn2(3) && is_ndemon(&mons[dtype])) ? 3 : 1;
 	} else if (is_dlord(ptr)) {
 	    dtype = (!rn2(50)) ? dprince(atyp) :
 				 (!rn2(20)) ? dlord(atyp) : ndemon(atyp);
 	    cnt = (!rn2(4) && is_ndemon(&mons[dtype])) ? 2 : 1;
 	} else if (is_ndemon(ptr)) {
-	    dtype = (!rn2(20)) ? dlord(atyp) :
+	    dtype = (!rn2(250)) ? dprince(atyp) : (!rn2(20)) ? dlord(atyp) :
 				 (!rn2(6)) ? ndemon(atyp) : monsndx(ptr);
 	    cnt = 1;
 	} else if (is_lminion(mon)) {
@@ -96,7 +96,7 @@ boolean talk;
 	    mnum = lminion();
 	    break;
 	case A_NEUTRAL:
-	    mnum = PM_AIR_ELEMENTAL + rn2(4);
+	    mnum = (rn2(2) ? ntrminion() : PM_AIR_ELEMENTAL + rn2(4));
 	    break;
 	case A_CHAOTIC:
 	case A_NONE:
@@ -163,15 +163,32 @@ register struct monst *mtmp;
 	    if (!tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
 	    return(1);
 	}
-#ifndef GOLDOBJ
+/*#ifndef GOLDOBJ
 	cash = u.ugold;
 #else
 	cash = money_cnt(invent);
-#endif
+#endif*/
+
+	/* This isn't _that_ much better than the old way, but it removes
+	 * the trivial case of people being able to bribe demons with 
+	 * 10 gold pieces to bypass him.  You can still carry lots of gold,
+	 * of course, but at least now you have to lug it with you. */
+
+	cash = rnz(15000);
+
 	demand = (cash * (rnd(80) + 20 * Athome)) /
 	    (100 * (1 + (sgn(u.ualign.type) == sgn(mtmp->data->maligntyp))));
 
-	if (!demand) {		/* you have no gold */
+/*	if (!demand) {		 you have no gold */
+
+	if (
+#ifndef GOLDOBJ
+			u.ugold == 0
+#else
+			money_cnt(invent) == 0
+#endif
+			) {						  /* you have no gold */
+
 	    mtmp->mpeaceful = 0;
 	    set_malign(mtmp);
 	    return 0;
@@ -205,23 +222,25 @@ register struct monst *mtmp;
 int lawful_minion(int difficulty)
 /* this routine returns the # of an appropriate minion,
    given a difficulty rating from 1 to 30 */
+	/* These were way too overpowered. So I mixed in some weaker monsters. --Amy */
 {
    difficulty = difficulty + rn2(5) - 2;
    if (difficulty < 0) difficulty = 0;
    if (difficulty > 30) difficulty = 30;
    difficulty /= 3;
+   if (difficulty >= 1) difficulty = rnd(difficulty);
    switch (difficulty) {
       case 0: return PM_TENGU;
-      case 1: return PM_COUATL;
+      case 1: return (rn2(2) ? PM_TENGU : PM_COUATL);
       case 2: return PM_WHITE_UNICORN;
-      case 3: return PM_MOVANIC_DEVA;
-      case 4: return PM_MONADIC_DEVA;
-      case 5: return PM_KI_RIN;
-      case 6: return PM_ASTRAL_DEVA;
-      case 7: return PM_ARCHON;
-      case 8: return PM_PLANETAR;
-      case 9: return PM_SOLAR;
-      case 10: return PM_SOLAR;
+      case 3: return (rn2(4) ? PM_WHITE_UNICORN : PM_ANGEL);
+      case 4: return (rn2(5) ? PM_WOODLAND_ELF : PM_MOVANIC_DEVA);
+      case 5: return (rn2(6) ? PM_GREEN_ELF : PM_MONADIC_DEVA);
+      case 6: return (rn2(7) ? PM_GREY_ELF : PM_KI_RIN);
+      case 7: return (rn2(8) ? PM_HIGH_ELF : PM_ASTRAL_DEVA);
+      case 8: return (rn2(9) ? PM_ELF_LORD : PM_ARCHON);
+      case 9: return (rn2(10) ? PM_ELVENKING : PM_PLANETAR);
+      case 10: return (rn2(11) ? PM_BIG_WHITE_UNICORN : PM_SOLAR);
 
       default: return PM_TENGU;
    }
@@ -234,6 +253,7 @@ int neutral_minion(int difficulty)
    difficulty = difficulty + rn2(9) - 4;
    if (difficulty < 0) difficulty = 0;
    if (difficulty > 30) difficulty = 30;
+   if (difficulty >= 1) difficulty = rnd(difficulty);
    if (difficulty < 6) return PM_GRAY_UNICORN;
    if (difficulty < 15) return (PM_AIR_ELEMENTAL+rn2(4));
    return (PM_DJINNI /* +rn2(4) */);
@@ -249,10 +269,11 @@ int chaotic_minion(int difficulty)
    /* KMH, balance patch -- avoid using floating-point (not supported by all ports) */
 /*   difficulty = (int)((float)difficulty / 1.5);*/
    difficulty = (difficulty * 2) / 3;
+   if (difficulty >= 1) difficulty = rnd(difficulty);
    switch (difficulty) {
       case 0: return PM_GREMLIN;
-      case 1:
-      case 2: return (PM_DRETCH+rn2(5));
+      case 1: return PM_DRETCH;
+      case 2: return PM_IMP;
       case 3: return PM_BLACK_UNICORN;
       case 4: return PM_BLOOD_IMP;
       case 5: return PM_SPINED_DEVIL;
@@ -305,7 +326,8 @@ struct monst *mtmp;
 		You("give %s %ld %s.", mon_nam(mtmp), offer, currency(offer));
 	}
 	u.ugold -= offer;
-	mtmp->mgold += offer;
+	/* Who knows what the demon lord is doing with the money? You're not getting it back at least... --Amy */
+	/*mtmp->mgold += offer;*/
 #else
 	} else if (offer >= umoney) {
 		You("give %s all your money.", mon_nam(mtmp));
@@ -367,6 +389,22 @@ lminion()
 
 	for (tryct = 0; tryct < 20; tryct++) {
 	    ptr = mkclass(S_ANGEL,0);
+	    if (ptr && !is_lord(ptr))
+		return(monsndx(ptr));
+	}
+
+	return NON_PM;
+}
+
+/* Neutral gods will be more dangerous, with an ability to summon lethe elementals and similar crap. --Amy */
+int
+ntrminion()
+{
+	int	tryct;
+	struct	permonst *ptr;
+
+	for (tryct = 0; tryct < 20; tryct++) {
+	    ptr = mkclass(S_ELEMENTAL,0);
 	    if (ptr && !is_lord(ptr))
 		return(monsndx(ptr));
 	}

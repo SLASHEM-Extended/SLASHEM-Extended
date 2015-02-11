@@ -254,29 +254,44 @@ options:	../util/makedefs
 
 
 spec_levs: ../util/lev_comp \
-	beholder.des bigroom.des blkmar.des castle.des grund.des dragons.des \
-	endgame.des frnknstn.des gehennom.des giants.des guild.des knox.des \
-	kobold-1.des kobold-2.des lich.des mall-1.des mall-2.des medusa.des \
-	mines.des mtemple.des newmall.des nightmar.des nymph.des oracle.des \
-	rats.des sea.des spiders.des stor-1.des stor-2.des stor-3.des tomb.des \
-	tower.des yendor.des sokoban.des
+	beholder.des bigroom.des blkmar.des castle.des compu.des diver.des \
+	dragons.des endgame.des exmall.des forge.des frnknstn.des gehennom.des \
+	giants.des gladia.des grund.des guild.des heck.des hellma.des hitch.des \
+	intpla.des key.des knox.des kobold-1.des kobold-2.des korsair.des \
+	lich.des mall-1.des mall-2.des mall-3.des medusa.des mines.des \
+	mtemple.des newmall.des nightmar.des nymph.des oracle.des pirate.des \
+	rats.des rndmazea.des rndmaze.des scient.des sea.des sheol.des \
+	sokoban.des spiders.des stor-1.des stor-2.des stor-3.des tomb.des \
+	tower.des town.des unheck.des yendor.des
 	../util/lev_comp beholder.des
 	../util/lev_comp bigroom.des
 	../util/lev_comp blkmar.des
 	../util/lev_comp castle.des
-	../util/lev_comp grund.des
+	../util/lev_comp compu.des
+	../util/lev_comp diver.des
 	../util/lev_comp dragons.des
 	../util/lev_comp endgame.des
+	../util/lev_comp exmall.des
+	../util/lev_comp forge.des
 	../util/lev_comp frnknstn.des
 	../util/lev_comp gehennom.des
 	../util/lev_comp giants.des
+	../util/lev_comp gladia.des
+	../util/lev_comp grund.des
 	../util/lev_comp guild.des
+	../util/lev_comp heck.des
+	../util/lev_comp hellma.des
+	../util/lev_comp hitch.des
+	../util/lev_comp intpla.des
+	../util/lev_comp key.des
 	../util/lev_comp knox.des
 	../util/lev_comp kobold-1.des
 	../util/lev_comp kobold-2.des
+	../util/lev_comp korsair.des
 	../util/lev_comp lich.des
 	../util/lev_comp mall-1.des
 	../util/lev_comp mall-2.des
+	../util/lev_comp mall-3.des
 	../util/lev_comp medusa.des
 	../util/lev_comp mines.des
 	../util/lev_comp mtemple.des
@@ -284,8 +299,13 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp nightmar.des
 	../util/lev_comp nymph.des
 	../util/lev_comp oracle.des
+	../util/lev_comp pirate.des
 	../util/lev_comp rats.des
+	../util/lev_comp rndmazea.des
+	../util/lev_comp rndmaze.des
+	../util/lev_comp scient.des
 	../util/lev_comp sea.des
+	../util/lev_comp sheol.des
 	../util/lev_comp sokoban.des
 	../util/lev_comp spiders.des
 	../util/lev_comp stor-1.des
@@ -293,35 +313,115 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp stor-3.des
 	../util/lev_comp tomb.des
 	../util/lev_comp tower.des
+	../util/lev_comp town.des
+	../util/lev_comp unheck.des
 	../util/lev_comp yendor.des
 	touch spec_levs
 
 quest_levs: ../util/lev_comp \
-	Arch.des Barb.des Caveman.des Flame.des Healer.des Ice.des Knight.des \
-	Monk.des Necro.des Priest.des Ranger.des Rogue.des Samurai.des \
-	Tourist.des Slayer.des Valkyrie.des Wizard.des Yeoman.des
+	Abuser.des Acid.des Act.des Altmer.des Amazon.des Arch.des Artist.des \
+	Assassin.des Augurer.des Barb.des Bard.des Binder.des Bleeder.des \
+	Bloodsee.des Bosmer.des Bully.des Caveman.des Cheval.des Convict.des \
+	Cook.des Courier.des Cyborg.des Deatheat.des Doll.des Drunk.des \
+	Dunmer.des Electric.des Elf.des Elfreal.des Firef.des Flame.des \
+	Foxhound.des Gamer.des Gangster.des Geek.des Goff.des Gradu.des \
+	Gunner.des Healer.des Ice.des Jedi.des Jester.des Knight.des Ladies.des \
+	Libra.des Locks.des Lunatic.des Mahou.des Monk.des Music.des Mystic.des \
+	Necro.des Ninja.des Noble.des Offic.des Ordinat.des Otaku.des \
+	Paladin.des Pickpock.des Polit.des Priest.des Psion.des Ranger.des \
+	Rocker.des Rogue.des Sage.des Saiyan.des Samurai.des Scribe.des \
+	Slavemas.des Slayer.des Spacew.des Stunt.des Supermar.des Thalmor.des \
+	Top.des Tourist.des Trans.des Under.des Valkyrie.des Wandkeep.des \
+	Warrior.des Wizard.des Yeoman.des Zooke.des
+	../util/lev_comp Abuser.des
+	../util/lev_comp Acid.des
+	../util/lev_comp Act.des
+	../util/lev_comp Altmer.des
+	../util/lev_comp Amazon.des
 	../util/lev_comp Arch.des
+	../util/lev_comp Artist.des
+	../util/lev_comp Assassin.des
+	../util/lev_comp Augurer.des
 	../util/lev_comp Barb.des
+	../util/lev_comp Bard.des
+	../util/lev_comp Binder.des
+	../util/lev_comp Bleeder.des
+	../util/lev_comp Bloodsee.des
+	../util/lev_comp Bosmer.des
+	../util/lev_comp Bully.des
 	../util/lev_comp Caveman.des
+	../util/lev_comp Cheval.des
+	../util/lev_comp Convict.des
+	../util/lev_comp Cook.des
+	../util/lev_comp Courier.des
+	../util/lev_comp Cyborg.des
+	../util/lev_comp Deatheat.des
+	../util/lev_comp Doll.des
+	../util/lev_comp Drunk.des
+	../util/lev_comp Dunmer.des
+	../util/lev_comp Electric.des
+	../util/lev_comp Elf.des
+	../util/lev_comp Elfreal.des
+	../util/lev_comp Firef.des
 	../util/lev_comp Flame.des
+	../util/lev_comp Foxhound.des
+	../util/lev_comp Gamer.des
+	../util/lev_comp Gangster.des
+	../util/lev_comp Geek.des
+	../util/lev_comp Goff.des
+	../util/lev_comp Gradu.des
+	../util/lev_comp Gunner.des
 	../util/lev_comp Healer.des
 	../util/lev_comp Ice.des
+	../util/lev_comp Jedi.des
+	../util/lev_comp Jester.des
 	../util/lev_comp Knight.des
+	../util/lev_comp Ladies.des
+	../util/lev_comp Libra.des
+	../util/lev_comp Locks.des
+	../util/lev_comp Lunatic.des
+	../util/lev_comp Mahou.des
 	../util/lev_comp Monk.des
+	../util/lev_comp Music.des
+	../util/lev_comp Mystic.des
 	../util/lev_comp Necro.des
+	../util/lev_comp Ninja.des
+	../util/lev_comp Noble.des
+	../util/lev_comp Offic.des
+	../util/lev_comp Ordinat.des
+	../util/lev_comp Otaku.des
+	../util/lev_comp Paladin.des
+	../util/lev_comp Pickpock.des
+	../util/lev_comp Polit.des
 	../util/lev_comp Priest.des
+	../util/lev_comp Psion.des
 	../util/lev_comp Ranger.des
+	../util/lev_comp Rocker.des
 	../util/lev_comp Rogue.des
+	../util/lev_comp Sage.des
+	../util/lev_comp Saiyan.des
 	../util/lev_comp Samurai.des
+	../util/lev_comp Scribe.des
+	../util/lev_comp Slavemas.des
+	../util/lev_comp Slayer.des
+	../util/lev_comp Spacew.des
+	../util/lev_comp Stunt.des
+	../util/lev_comp Supermar.des
+	../util/lev_comp Thalmor.des
+	../util/lev_comp Top.des
 	@if egrep -s tourists options > /dev/null ; then \
 	echo ../util/lev_comp Tourist.des ; ../util/lev_comp Tourist.des ; \
 	else rm -f Tou-goal.lev Tou-fil?.lev Tou-loca.lev Tou-strt.lev ; fi
-	../util/lev_comp Slayer.des
+	../util/lev_comp Trans.des
+	../util/lev_comp Under.des
 	../util/lev_comp Valkyrie.des
+	../util/lev_comp Wandkeep.des
+	../util/lev_comp Warrior.des
 	../util/lev_comp Wizard.des
 	@if egrep -s yeomen options > /dev/null ; then \
 	echo ../util/lev_comp Yeoman.des ; ../util/lev_comp Yeoman.des ; \
 	else rm -f Yeo-goal.lev Yeo-fil?.lev Yeo-loca.lev Yeo-strt.lev ; fi
+	../util/lev_comp Zooke.des
 	touch quest_levs
 
 dungeon: dungeon.def ../util/makedefs ../util/dgn_comp

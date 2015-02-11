@@ -33,9 +33,9 @@ static long final_fpos;
 #define NAMSZ	10
 #define DTHSZ	100
 #define ROLESZ   3
-#define PERSMAX	 3		/* entries per name/uid per char. allowed */
+#define PERSMAX	 10000		/* entries per name/uid per char. allowed */
 #define POINTSMIN	1	/* must be > 0 */
-#define ENTRYMAX	100	/* must be >= 10 */
+#define ENTRYMAX	10000	/* must be >= 10 */
 
 #if !defined(MICRO) && !defined(MAC) && !defined(WIN32)
 #define PERS_IS_UID		/* delete for PERSMAX per name; now per uid */
@@ -147,6 +147,7 @@ encodeconduct(void)
        if(u.uconduct.wishes)          e |= 0x200L;
        if(u.uconduct.wisharti)        e |= 0x400L;
        if(num_genocides())            e |= 0x800L;
+       if(u.uconduct.praydone)        e |= 0x1000L;
 
        return e;
 }
@@ -260,10 +261,10 @@ struct toptenentry *tt;
 
 #ifdef RECORD_CONDUCT
 	/* Add a trailing " Conduct=%d" to tt->death */
-	if(tt->conduct != 4095) {
+	/*if(tt->conduct != 4095) {*/
 		cp = tt->death + strlen(tt->death);
 		Sprintf(cp, " Conduct=%d", tt->conduct);
-	}
+	/*}*/
 #endif
 
 #ifdef NO_SCAN_BRACK
@@ -554,7 +555,9 @@ int how;
 				rank0, ordin(rank0), ENTRYMAX);
 			topten_print(pbuf);
 		    }
+			
 		    topten_print("");
+
 		}
 	}
 	if(rank0 == 0) rank0 = rank1;
@@ -1039,6 +1042,30 @@ classmon(plch, fem)
 	return (PM_HUMAN_MUMMY);
 }
 
+STATIC_OVL int
+undeadclassmon(plch, fem)
+	char *plch;
+	boolean fem;
+{
+	int i;
+
+	/* Look for this role in the role table */
+	for (i = 0; roles[i].name.m; i++)
+	    if (!strncmp(plch, roles[i].filecode, ROLESZ)) {
+		if (fem && roles[i].undeadfemalenum != NON_PM)
+		    return roles[i].undeadfemalenum;
+		else if (roles[i].undeadmalenum != NON_PM)
+		    return roles[i].undeadmalenum;
+		else
+		    return PM_HUMAN;
+	    }
+	/* this might be from a 3.2.x score for former Elf class */
+	if (!strcmp(plch, "E")) return PM_RANGER;
+
+	impossible("What weird role is this? (%s)", plch);
+	return (PM_HUMAN_MUMMY);
+}
+
 /*
  * Get a random player name and class from the high score list,
  * and attach them to an object (for statues or morgue corpses).
@@ -1047,7 +1074,8 @@ struct obj *
 tt_oname(otmp)
 struct obj *otmp;
 {
-	int rank;
+	int rank, rankamount;
+	rankamount = 1000;
 	register int i;
 	register struct toptenentry *tt;
 	FILE *rfile;
@@ -1062,8 +1090,10 @@ struct obj *otmp;
 	}
 
 	tt = &tt_buf;
-	rank = rnd(10);
+
+	rank = rnd(rankamount); /* new code by Amy that allows more randomness - up to 1000 entries can be read now */
 pickentry:
+	rank = rnd(rankamount);
 	for(i = rank; i; i--) {
 	    readentry(rfile, tt);
 	    if(tt->points == 0) break;
@@ -1071,7 +1101,11 @@ pickentry:
 
 	if(tt->points == 0) {
 		if(rank > 1) {
-			rank = 1;
+			rankamount = (rank - 1);
+			if (rankamount < 1) {
+				impossible("Not enough records!");
+				return (struct obj *)0;
+			}
 			rewind(rfile);
 			goto pickentry;
 		}
@@ -1087,6 +1121,97 @@ pickentry:
 
 	(void) fclose(rfile);
 	return otmp;
+}
+
+/*
+ * Get a random player name and class from the high score list,
+ * and attach them to a monster (for ghost summon spell). --Amy
+ */
+void
+tt_mname(mm, revive_corpses, mm_flags)
+coord *mm;
+boolean revive_corpses;
+int mm_flags;
+{
+	struct monst *mtmp;
+	int nonefound;
+
+	int cnt = 1;
+	if (!rn2(2)) cnt = (monster_difficulty() + 1)/10;
+	if (!rn2(5)) cnt += rnz(5);
+	if (cnt < 1) cnt = 1;
+	int mdat;
+	struct obj *otmp;
+	coord cc;
+
+	while (cnt--) {
+
+
+	int rank, rankamount;
+	rankamount = 1000;
+	register int i;
+	register struct toptenentry *tt;
+	FILE *rfile;
+	struct toptenentry tt_buf;
+
+	/*if (!mtmp) { pline("No records!");
+
+	}*/
+
+	rfile = fopen_datafile_area(NH_RECORD_AREA, NH_RECORD, "r", SCOREPREFIX);
+	if (!rfile) {
+		impossible("Cannot open record file!");
+	}
+
+	tt = &tt_buf;
+
+	rank = rnd(rankamount); /* new code by Amy that allows more randomness - up to 1000 entries can be read now */
+pickentry:
+	rank = rnd(rankamount);
+	for(i = rank; i; i--) {
+	    readentry(rfile, tt);
+	    if(tt->points == 0) break; 
+	}
+
+	if(tt->points == 0) {
+		if(rank > 1) {
+			rankamount = (rank - 1);
+			if (rankamount < 1) {
+				impossible("Not enough records!");
+			}
+			rewind(rfile);
+			goto pickentry;
+		}
+
+		/* we should only end up here if there are no entries --Amy */
+	    if (enexto(&cc, mm->x, mm->y, youmonst.data) &&
+		    (!revive_corpses ||
+		     !(otmp = sobj_at(CORPSE, cc.x, cc.y)) ||
+		     !revive(otmp)))
+
+		mtmp = makemon(&mons[PM_UNDEAD_ARCHEOLOGIST + rn2(PM_UNDEAD_WIZARD - PM_UNDEAD_ARCHEOLOGIST + 1)], cc.x, cc.y, mm_flags);
+
+		/*mtmp = (struct monst *) 0;*/
+	} else {
+
+		/*mtmp = undeadclassmon(tt->plrole, (tt->plgend[0] == 'F')) ;*/
+
+	    if (enexto(&cc, mm->x, mm->y, youmonst.data) &&
+		    (!revive_corpses ||
+		     !(otmp = sobj_at(CORPSE, cc.x, cc.y)) ||
+		     !revive(otmp)))
+
+		{
+
+		mtmp = makemon(&mons[undeadclassmon(tt->plrole, (tt->plgend[0] == 'F'))], cc.x, cc.y, mm_flags);
+		christen_monst(mtmp, tt->name);
+		/*mtmp = christen_monst(mtmp, tt->name);*/
+		}
+	}
+
+	(void) fclose(rfile);
+
+	}
 }
 
 #ifdef NO_SCAN_BRACK

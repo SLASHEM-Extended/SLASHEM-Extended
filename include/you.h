@@ -66,6 +66,7 @@ struct u_conduct {		/* number of times... */
 	long	unvegan;	/* ... or any animal byproduct */
 	long	food;		/* ... or any comestible */
 	long	gnostic;	/* used prayer, priest, or altar */
+	long	praydone;	/* used prayer */
 	long	weaphit;	/* hit a monster with a weapon */
 	long	killer;		/* killed a monster yourself */
 	long	literate;	/* read something (other than BotD) */
@@ -90,6 +91,8 @@ struct Role {
 	/*** Indices of important monsters and objects ***/
 	short malenum,		/* index (PM_) as a male (botl.c) */
 	      femalenum,	/* ...or as a female (NON_PM == same) */
+		undeadmalenum,	/* index (PM_) as an undead */
+		undeadfemalenum,	/* mainly for bones files --Amy */
 	      petnum,		/* PM_ of preferred pet (NON_PM == random) */
 	      ldrnum,		/* PM_ of quest leader (questpgr.c) */
 	      guardnum,		/* PM_ of quest guardians (questpgr.c) */
@@ -269,7 +272,11 @@ struct you {
 
 	int	 uhunger;	/* refd only in eat.c and shk.c */
 	unsigned uhs;		/* hunger state - see eat.c */
+	int	weakcheat;	/* for wiseguys who think they can get max strength with a ring of stat lock --Amy */
+	long	stethocheat;	/* prevents stethoscopes from being used for free after restoring */
 
+	boolean ukinghill; /* records if you are carying the pirate treasure (and are therefor king of the hill) */
+	int protean; /* counter for the auto-polypiling power of the*/
 	struct prop uprops[LAST_PROP+1];
 
 	unsigned umconf;
@@ -329,26 +336,55 @@ struct you {
 #define A_ORIGINAL	1
 #define A_CURRENT	0
 	aligntyp ualignbase[CONVERT];	/* for ualign conversion record */
-	schar uluck, moreluck;		/* luck and luck bonus */
-#define Luck	(u.uluck + u.moreluck)
+	schar uluck, moreluck, moreluckpts;		/* luck and luck bonus */
+#define Luck	(!strncmpi(plname, "Dudley", 6) ? -13 : Race_if(PM_SUXXOR) ? -13 : (u.uluck + u.moreluck + Role_if(PM_AUGURER) )) /* credits to the Dudley's Dungeon guys --Amy */
 #define LUCKADD		3	/* added value when carrying luck stone */
 #define LUCKMAX		10	/* on moonlit nights 11 */
 #define LUCKMIN		(-10)
 	schar	uhitinc;		/* KMH -- additional to-hit bonus */
+	int uhitincxtra;
 	long	uhealbonus;		/* KMH -- Healing bonus from healthstones */
 
 	schar	udaminc;		/* Additional damage bonus */
+	int udamincxtra;
 	schar	uac;
 
 	uchar	uspellprot;		/* protection by SPE_PROTECTION */
 	uchar	usptime;		/* #moves until uspellprot-- */
 	uchar	uspmtime;		/* #moves between uspellprot-- */
 
-	int     uhp, uhpmax;
+	int     uhp, uhpmax,uhplast;
 	int	uen, uenmax;		/* magical energy - M. Stephenson */
 	int ugangr;			/* if the gods are angry at you */
 	int ugifts;			/* number of artifacts bestowed */
 	int ublessed, ublesscnt;	/* blessing/duration from #pray */
+	int monstertimeout; 	/* when monster spawns are increasing in frequency */
+	int monstertimefinish; 	/* point in time when monster spawns are at their maximum */
+	int legscratching; 	/* for special AT_KICK attacks */
+	int tensionmonster; 	/* for tension rooms */
+	int tensionmonsteX; 	/* for the chance of getting really bad stuff in tension rooms */
+	int tensionmonsterB; 	/* for mixed tension rooms */
+	int colormonster; 	/* for tension rooms */
+	int colormonsterB; 	/* for tension rooms */
+	int statuetrapname;	/* for mimics pretending to be statues etc. */
+
+	struct permonst *tensionmonsterspec; 	/* for tension rooms */
+	struct permonst *tensionmonsterspecB; 	/* for mixed tension rooms */
+	int next_check; 	/* attrib.c check */
+
+	int urmaxlvl;		/* for asgardian race */
+	int urmaxlvlB;		/* for cyborg role */
+	int urmaxlvlC;		/* for binder role */
+	int urmaxlvlD;		/* for bard role */
+	int uhereticgodinit;
+	int uhereticgodlawful;
+	int uhereticgodneutral;
+	int uhereticgodchaotic;
+	int urealedibility;	/* no longer a boolean --Amy */
+	int wormpolymorph;	/* for worm that walks race */
+
+	int eeveelution;		/* mainly for pokemon role but might be useful for others */
+
 #ifdef NOARTIFACTWISH
 	int usacrifice;                 /* number of sacrifices so far */
 #endif

@@ -17,7 +17,7 @@ struct trap {
 	xchar tx,ty;
 	d_level dst;	/* destination for portals */
 	coord launch;
-	Bitfield(ttyp,5);
+	Bitfield(ttyp,8); /* are you kidding me? You only make room for 32 traps? That's not nearly enough for me! --Amy */
 	Bitfield(tseen,1);
 	Bitfield(once,1);
 	Bitfield(madeby_u,1); /* So monsters may take offence when you trap
@@ -72,6 +72,39 @@ extern struct trap *ftrap;
 #define MAGIC_TRAP	20
 #define ANTI_MAGIC	21
 #define POLY_TRAP	22
-#define TRAPNUM 23
+#define ICE_TRAP	23
+#define SPEAR_TRAP	24
+#define COLLAPSE_TRAP	25
+#define MAGIC_BEAM_TRAP	26
+#define SHIT_TRAP	27
+#define ANIMATION_TRAP	28
+#define GLYPH_OF_WARDING	29
+#define SCYTHING_BLADE	30
+#define BOLT_TRAP	31
+#define ACID_POOL	32
+#define WATER_POOL	33
+#define POISON_GAS_TRAP	34
+#define SLOW_GAS_TRAP	35
+#define SHOCK_TRAP	36
+#define RMB_LOSS_TRAP		37
+#define DISPLAY_TRAP		38
+#define SPELL_LOSS_TRAP		39
+#define YELLOW_SPELL_TRAP		40
+#define AUTO_DESTRUCT_TRAP		41
+#define MEMORY_TRAP		42
+#define INVENTORY_TRAP		43
+#define BLACK_NG_WALL_TRAP		44
+#define MENU_TRAP		45
+#define SPEED_TRAP		46
+#define SUPERSCROLLER_TRAP		47
+#define ACTIVE_SUPERSCROLLER_TRAP		48
+#define SWARM_TRAP		49
+#define AUTOMATIC_SWITCHER		50
+#define UNKNOWN_TRAP		51
+#define HEEL_TRAP		52
+#define VULN_TRAP		53
+#define TRAP_PERCENTS		54
+
+#define TRAPNUM 55
 
 #endif /* TRAP_H */

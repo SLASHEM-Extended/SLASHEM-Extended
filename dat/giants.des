@@ -103,6 +103,7 @@ MONSTER: 'H', random, random, hostile
 MONSTER: 'H', random, random, hostile
 MONSTER: 'H', random, random, hostile
 MONSTER: 'H', "the Largest Giant", (5,11), hostile
+OBJECT:'?',"root password detection",(5,11)
 MONSTER: 'O', random, random, hostile
 MONSTER: 'O', random, random, hostile
 MONSTER: 'O', random, random, hostile

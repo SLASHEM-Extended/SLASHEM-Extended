@@ -32,6 +32,12 @@ register struct monst *mtmp;
 	EDOG(mtmp)->revivals = 0;
 	EDOG(mtmp)->mhpmax_penalty = 0;
 	EDOG(mtmp)->killed_by_u = 0;
+
+	/* if the pet has a weapon, we want it to wield, not drop it! --Amy */
+	if (mtmp->mtame && attacktype(mtmp->data, AT_WEAP)) {
+		mtmp->weapon_check = NEED_HTH_WEAPON;
+		(void) mon_wield_item(mtmp);
+	}
 }
 
 STATIC_OVL int
@@ -43,6 +49,56 @@ pet_type()
 	    return (PM_KITTEN);
 	else if (preferred_pet == 'd')
 	    return (PM_LITTLE_DOG);
+	else if (Role_if(PM_PIRATE))
+		return (rn2(2) ? PM_AIRBORNE_PARROT : PM_MONKEY);
+	else if (Role_if(PM_GOFF))
+		return (rn2(2) ? PM_NINJA_BOY : PM_NINJA_GIRL);
+	else if (Role_if(PM_KORSAIR))
+		switch (rnd(5)) {   
+		case 1: return (PM_LITTLE_DOG);
+		case 2: return (PM_KITTEN);
+		case 3: return (PM_SEWER_RAT);
+		case 4: return (PM_MONKEY);
+		case 5: return (PM_BABY_CROCODILE);
+		}
+	else if (Role_if(PM_LUNATIC))
+		switch (rnd(7)) {   
+		case 1: return (PM_WOLF);
+		case 2: return (PM_JACKAL);
+		case 3: return (PM_SEWER_RAT);
+		case 4: return (PM_PANTHER);
+		case 5: return (PM_TIGER);
+		case 6: return (PM_VIPER);
+		case 7: return (PM_GIANT_SPIDER);
+		}
+	else if (Role_if(PM_CHEVALIER))
+		switch (rnd(11)) {   
+		case 1: return (PM_BABY_YELLOW_DRAGON);
+		case 2: return (PM_BABY_GREEN_DRAGON);
+		case 3: return (PM_BABY_BLUE_DRAGON);
+		case 4: return (PM_BABY_BLACK_DRAGON);
+		case 5: return (PM_BABY_ORANGE_DRAGON);
+		case 6: return (PM_BABY_WHITE_DRAGON);
+		case 7: return (PM_BABY_RED_DRAGON);
+		case 8: return (PM_BABY_DEEP_DRAGON);
+		case 9: return (PM_BABY_SHIMMERING_DRAGON);
+		case 10: return (PM_BABY_SILVER_DRAGON);
+		case 11: return (PM_BABY_GRAY_DRAGON);
+		}
+	else if (Role_if(PM_TRANSVESTITE))
+		return ( !rn2(5) ? PM_ASIAN_GIRL : !rn2(10) ? PM_ESTRELLA_GIRL : rn2(2) ? PM_LITTLE_GIRL : PM_LITTLE_BOY);
+	else if (Role_if(PM_TOPMODEL))
+		switch (rnd(3)) {   
+		case 1: return (PM_DARK_GIRL);
+		case 2: return (PM_REDGUARD_GIRL);
+		case 3: return (PM_THIEVING_GIRL);
+		}
+	else if (Role_if(PM_LADIESMAN))
+		switch (rnd(3)) {   
+		case 1: return (PM_DARK_GIRL);
+		case 2: return (PM_REDGUARD_GIRL);
+		case 3: return (PM_THIEVING_GIRL);
+		}
 	else
 	    return (rn2(2) ? PM_KITTEN : PM_LITTLE_DOG);
 }
@@ -175,12 +231,22 @@ makedog()
 
 	pettype = pet_type();
 	petsym = mons[pettype].mlet;
-	if (pettype == PM_WINTER_WOLF_CUB)
+	if (pettype == PM_WINTER_WOLF_CUB || pettype == PM_WOLF)
 		petname = wolfname;
 	else if (pettype == PM_GHOUL)
 		petname = ghoulname;
-	else if (pettype == PM_PONY)
+	else if (pettype == PM_PONY || pettype == PM_GREEN_NIGHTMARE)
 		petname = horsename;
+#ifdef CONVICT
+	else if (pettype == PM_SEWER_RAT)
+		petname = ratname;
+#endif /* CONVICT */
+	else if (pettype == PM_AGGRESSIVE_LICHEN)
+		petname = lichenname;
+	else if (pettype == PM_PILE_OF_COPPER_COINS)
+		petname = coinsname;
+	else if (pettype == PM_ROTHE)
+		petname = rothename;
 #if 0
 	else if (petsym == S_BAT)
 		petname = batname;
@@ -208,6 +274,74 @@ makedog()
 	    if(Role_if(PM_BARBARIAN)) petname = "Idefix";  /* Obelix */
 	    if(Role_if(PM_RANGER)) petname = "Sirius";     /* Orion's dog */
 	}
+#ifdef CONVICT
+	if (!*petname && pettype == PM_SEWER_RAT) {
+	    if(Role_if(PM_CONVICT)) petname = "Nicodemus"; /* Rats of NIMH */
+    }
+	if (pettype == PM_MONKEY) petname = "Ugga-Ugga";
+	if (pettype == PM_AIRBORNE_PARROT) petname = "Squawks";
+	if (pettype == PM_SPEEDHORSE) petname = "Harley Davidson";
+	if (pettype == PM_BABY_CROCODILE) petname = "Snappy"; /* in Germany it would be called Schnappi */
+	if (pettype == PM_EEVEE) petname = "HUSI";
+
+	if (pettype == PM_GRIMER) petname = "BADEB";
+
+	if (pettype == PM_KICKBOXING_GIRL) petname = "Marija";
+
+	if (pettype == PM_NINJA_BOY) petname = "Cornelia Fuck"; /* My Immortal fanfic */
+	if (pettype == PM_NINJA_GIRL) petname = "Doris Rumbridge";
+
+	if (pettype == PM_DRAGONBALL_KID) petname = "Android Nr. 17"; /* don't know the real name, but it was something like this --Amy */
+
+	if (pettype == PM_GREEN_ELF) petname = "Dray Harp";
+	if (pettype == PM_OFFICER) petname = "Officer O'Brian";
+	if (pettype == PM_SOLDIER) petname = "Lieutenant Surge"; /* Pokemon Yellow */
+	if (pettype == PM_VALKYRIE) petname = "Rue";	/* hunger games */
+	if (pettype == PM_PLATYPUS) petname = "Donald Duck";
+
+	if (pettype == PM_FLOATING_EYE) petname = "Gazing Beholder Orb";
+
+	if (pettype == PM_GOODWIFE) petname = "Patchouli Knowledge";
+
+	if (pettype == PM_EVASIVE_SNIPER) petname = "Tingsi Major";
+
+	if (pettype == PM_PRIEST) petname = "Septimus";
+
+	if (pettype == PM_HUMAN_THIEF) petname = "Wiesbek the Thief"; /* dunno where I originally got that name from --Amy */
+
+	if (pettype == PM_VAMPIRE) petname = "Cheater";
+
+	if (pettype == PM_ANTIMATTER_VORTEX) petname = "Expensive Special Effect";
+
+	if (pettype == PM_DARK_GRUE) petname = "ZORK!";
+
+	if (pettype == PM_CLEFAIRY) petname = "Thief Pokemon";
+
+	if (pettype == PM_PANTHER) petname = "Tomcat Karlo";
+	if (pettype == PM_TIGER) petname = "Simba";
+	if (pettype == PM_VIPER) petname = "Lukas";
+	if (pettype == PM_GIANT_SPIDER) petname = "Andreas";
+	if (pettype == PM_ZUBAT) petname = "Cliff Racer"; /* Morrowind */
+	if (pettype == PM_DANCING_GIRL) petname = "Thaedil"; /* Oblivion, Shivering Esles */
+	if (pettype == PM_THALMOR) petname = "Rulindil"; /* Skyrim */
+	if (pettype == PM_CRUEL_ABUSER) petname = "Ms. Robinson"; /* 50 Shades of Fucked Up */
+
+	if (pettype == PM_ANIMATED_WEDGE_SANDAL) petname = "Larissa"; /* just a common female first name */
+	if (pettype == PM_GOLD_GOLEM) petname = "Midas"; /* the greedy king who unfortunately lost all his gold :( */
+
+	if (pettype == PM_LITTLE_GIRL) petname = "Sarah"; /* just a common female first name */
+	if (pettype == PM_LITTLE_BOY) petname = "Jonas"; /* just a common male first name */
+	if (pettype == PM_ASIAN_GIRL) petname = "Whitney"; /* the Normal-type gym leader in Pokemon Crystal */
+	if (pettype == PM_ESTRELLA_GIRL) petname = "Estrella"; /* uncommon female first name */
+
+	if (pettype == PM_DARK_GIRL) petname = "Everella"; /* taken from a fanfic */
+	if (pettype == PM_REDGUARD_GIRL) petname = "Jasajeen"; /* taken from a fanfic */
+	if (pettype == PM_THIEVING_GIRL) petname = "Esruth"; /* taken from a fanfic */
+
+	if (pettype == PM_ACTIVISTOR) petname = "Helen"; /* yet another common first name */
+
+	if (pettype == PM_BABY_YELLOW_DRAGON || pettype == PM_BABY_GREEN_DRAGON || pettype == PM_BABY_BLUE_DRAGON || pettype == PM_BABY_RED_DRAGON || pettype == PM_BABY_ORANGE_DRAGON || pettype == PM_BABY_WHITE_DRAGON || pettype == PM_BABY_BLACK_DRAGON || pettype == PM_BABY_DEEP_DRAGON || pettype == PM_BABY_SHIMMERING_DRAGON || pettype == PM_BABY_GRAY_DRAGON || pettype == PM_BABY_SILVER_DRAGON) petname = "Odahviing";
+#endif /* CONVICT */
 
 	mtmp = makemon(&mons[pettype], u.ux, u.uy, MM_EDOG);
 
@@ -215,7 +349,7 @@ makedog()
 
 #ifdef STEED
 	/* Horses already wear a saddle */
-	if (pettype == PM_PONY && !!(otmp = mksobj(SADDLE, TRUE, FALSE))) {
+	if ((pettype == PM_PONY || pettype == PM_GREEN_NIGHTMARE || pettype == PM_SPEEDHORSE) && !!(otmp = mksobj(SADDLE, TRUE, FALSE))) {
 	    if (mpickobj(mtmp, otmp))
 		panic("merged saddle?");
 	    mtmp->misc_worn_check |= W_SADDLE;
@@ -453,8 +587,11 @@ boolean with_you;
 void
 mon_catchup_elapsed_time(mtmp, nmv)
 struct monst *mtmp;
+
 long nmv;		/* number of moves */
 {
+	struct edog *edog = EDOG(mtmp);
+
 	int imv = 0;	/* avoid zillions of casts and lint warnings */
 
 #if defined(DEBUG) || defined(BETA)
@@ -497,6 +634,7 @@ long nmv;		/* number of moves */
 	if (imv > mtmp->mspec_used) mtmp->mspec_used = 0;
 	else mtmp->mspec_used -= imv;
 
+
 		   /*                    
 			*      M1_MINDLESS __
 			*      M2_UNDEAD     |
@@ -505,26 +643,33 @@ long nmv;		/* number of moves */
 			*      M1_ANIMAL   --
 			*/
  
-			if (is_animal(mtmp->data) || mindless(mtmp->data) ||
+			if ((is_animal(mtmp->data) || mindless(mtmp->data) ||
 			    is_demon(mtmp->data)  || is_undead(mtmp->data) ||
-			    is_were(mtmp->data)) { 
+			    is_were(mtmp->data)) && (monstermoves + 5000) > edog->hungrytime) { 
 				/* reduce tameness for every 
 				 * 150 moves you are away 
-				 */
-				if (mtmp->mtame > nmv/150) 
-					mtmp->mtame -= nmv/150;
+				 Amy -- edit so that well-satiated pets can be on another level for much longer */
+			/*struct edog *edog = EDOG(mtmp);*/
+
+				if (mtmp->mtame > nmv/1000) /* increased by Amy */
+					mtmp->mtame -= nmv/1000;
 				else mtmp->mtame = 0;
 	}
 	/* check to see if it would have died as a pet; if so, go wild instead
 	 * of dying the next time we call dog_move()
 	 */
 	if (mtmp->mtame && !mtmp->isminion &&
-			(carnivorous(mtmp->data) || herbivorous(mtmp->data))) {
-	    struct edog *edog = EDOG(mtmp);
+			(carnivorous(mtmp->data) || herbivorous(mtmp->data) || metallivorous(mtmp->data) || lithivorous(mtmp->data))) {
 
 	    if ((monstermoves > edog->hungrytime + 500 && mtmp->mhp < 3) ||
-		    (monstermoves > edog->hungrytime + 750))
-		mtmp->mtame = mtmp->mpeaceful = 0;
+		    (monstermoves > edog->hungrytime + 750)) {
+
+	/* let's make a pet with high tameness resistant to becoming hostile. Give them a chance to be peaceful instead. */
+		if (mtmp->mtame >= 1 && rn2(2) && rn2(mtmp->mtame) )
+		mtmp->mtame = 0;
+		else mtmp->mtame = mtmp->mpeaceful = 0;
+
+		}
 	}
 
 	if (!mtmp->mtame && mtmp->mleashed) {
@@ -535,7 +680,7 @@ long nmv;		/* number of moves */
 	}
 
 	/* recover lost hit points */
-	if (!regenerates(mtmp->data)) imv /= 20;
+	if (!regenerates(mtmp->data)) imv /= (Race_if(PM_HAXOR) ? 10 : 20);
 	if (mtmp->mhp + imv >= mtmp->mhpmax)
 	    mtmp->mhp = mtmp->mhpmax;
 	else mtmp->mhp += imv;
@@ -742,7 +887,8 @@ register struct obj *obj;
 		 || is_rider(fptr)))
 		    return TABU;
 	    /* Ghouls only eat old corpses... yum! */
-	    if (mon->data == &mons[PM_GHOUL] || mon->data == &mons[PM_GHAST]) {
+	    if (mon->data == &mons[PM_GHOUL] || mon->data == &mons[PM_GHAST] || mon->data == &mons[PM_GASTLY]
+		|| mon->data == &mons[PM_HAUNTER] || mon->data == &mons[PM_GENGAR]) {
 		return (obj->otyp == CORPSE && obj->corpsenm != PM_ACID_BLOB &&
 		  peek_at_iced_corpse_age(obj) + 5*rn1(20,10) <= monstermoves) ?
 			DOGFOOD : TABU;
@@ -782,6 +928,39 @@ register struct obj *obj;
 		    else
 		    if ((peek_at_iced_corpse_age(obj) + 50L <= monstermoves
 					    && obj->corpsenm != PM_LIZARD
+					    && obj->corpsenm != PM_CAVE_LIZARD
+					    && obj->corpsenm != PM_CHAOS_LIZARD
+					    && obj->corpsenm != PM_LIZARD_EEL
+					    && obj->corpsenm != PM_EEL_LIZARD
+					    && obj->corpsenm != PM_SQUIRREL
+					    && obj->corpsenm != PM_IGUANA
+					    && obj->corpsenm != PM_BIG_IGUANA
+					    && obj->corpsenm != PM_HUGE_LIZARD
+					    && obj->corpsenm != PM_SAND_TIDE
+					    && obj->corpsenm != PM_FBI_AGENT
+					    && obj->corpsenm != PM_OWN_SMOKE
+					    && obj->corpsenm != PM_GRANDPA
+					    && obj->corpsenm != PM_LIZARD_MAN
+					    && obj->corpsenm != PM_KARMIC_LIZARD
+					    && obj->corpsenm != PM_MONSTER_LIZARD
+					    && obj->corpsenm != PM_FIRE_LIZARD
+					    && obj->corpsenm != PM_LIGHTNING_LIZARD
+					    && obj->corpsenm != PM_ICE_LIZARD
+					    && obj->corpsenm != PM_GIANT_LIZARD
+					    && obj->corpsenm != PM_ANTI_STONE_LIZARD
+					    && obj->corpsenm != PM_DEFORMED_LIZARD
+					    && obj->corpsenm != PM_CLINGING_LIZARD
+					    && obj->corpsenm != PM_MIMIC_LIZARD
+					    && obj->corpsenm != PM_HIDDEN_LIZARD
+					    && obj->corpsenm != PM_HELPFUL_SQUIRREL
+					    && obj->corpsenm != PM_RHAUMBUSUN
+					    && obj->corpsenm != PM_BIG_RHAUMBUSUN
+					    && obj->corpsenm != PM_SALAMANDER
+					    && obj->corpsenm != PM_FROST_SALAMANDER
+					    && obj->corpsenm != PM_KOMODO_DRAGON
+					    && obj->corpsenm != PM_PETTY_KOMODO_DRAGON
+					    && obj->corpsenm != PM_GECKO
+					    && obj->corpsenm != PM_GIANT_GECKO
 					    && obj->corpsenm != PM_LICHEN
 					    && mon->data->mlet != S_FUNGUS) ||
 			(acidic(&mons[obj->corpsenm]) && !resists_acid(mon)) ||
@@ -817,8 +996,14 @@ register struct obj *obj;
 		return(TABU);
 		/* KMH -- Taz likes organics, too! */
 	    if ((mon->data == &mons[PM_GELATINOUS_CUBE] ||
+		mon->data == &mons[PM_AMUSING_TYPE] ||
 		mon->data == &mons[PM_SHOGGOTH] ||
 		mon->data == &mons[PM_GIANT_SHOGGOTH] ||
+		mon->data == &mons[PM_TASMANIAN_ZOMBIE] ||
+		mon->data == &mons[PM_MINOCUBE] ||
+		mon->data == &mons[PM_GELATINOUS_DICE] ||
+		mon->data == &mons[PM_GELATINOUS_GLOB] ||
+		mon->data == &mons[PM_GELATINOUS_THIEF] ||
 	    	mon->data == &mons[PM_TASMANIAN_DEVIL]) && is_organic(obj))
 		return(ACCFOOD);
 	    if (metallivorous(mon->data) && is_metallic(obj) && (is_rustprone(obj) || mon->data != &mons[PM_RUST_MONSTER])) {
@@ -826,11 +1011,17 @@ register struct obj *obj;
 		return((is_rustprone(obj) && !obj->oerodeproof) ? DOGFOOD :
 			ACCFOOD);
 	    }
+
+	    if (lithivorous(mon->data) && is_lithic(obj) ) return( DOGFOOD );
+
+		/* Lithivores can eat any lithic object. They really like eating such items, too. */
+
 	    if(!obj->cursed && obj->oclass != BALL_CLASS &&
 						obj->oclass != CHAIN_CLASS)
 		return(APPORT);
 	    /* fall into next case */
 	case ROCK_CLASS:
+	    if (lithivorous(mon->data) && is_lithic(obj) ) return( DOGFOOD );
 	    return(UNDEF);
 	}
 }
@@ -839,24 +1030,36 @@ register struct obj *obj;
 #ifdef OVLB
 
 struct monst *
-tamedog(mtmp, obj)
+tamedog(mtmp, obj, guaranteed)
 register struct monst *mtmp;
 register struct obj *obj;
+boolean guaranteed;
 {
 	register struct monst *mtmp2;
 
 	/* The Wiz, Medusa and the quest nemeses aren't even made peaceful. */
 	if (mtmp->iswiz || mtmp->data == &mons[PM_MEDUSA]
 				|| (mtmp->data->mflags3 & M3_WANTSARTI))
+		{
 		return((struct monst *)0);
-
+		}
 	/* worst case, at least it'll be peaceful. */
 	mtmp->mpeaceful = 1;
 	mtmp->mtraitor  = 0;	/* No longer a traitor */
 	set_malign(mtmp);
 	if(flags.moonphase == FULL_MOON && night() && rn2(6) && obj
 						&& mtmp->data->mlet == S_DOG)
+		{
 		return((struct monst *)0);
+
+		}
+#ifdef CONVICT
+    if (Role_if(PM_CONVICT) && (is_domestic(mtmp->data) && obj)) {
+        /* Domestic animals are wary of the Convict */
+        pline("%s still looks wary of you.", Monnam(mtmp));
+        return((struct monst *)0);
+        }
+#endif
 
 	/* If we cannot tame it, at least it's no longer afraid. */
 	mtmp->mflee = 0;
@@ -887,6 +1090,10 @@ register struct obj *obj;
 			  !big_corpse ? "." : ", or vice versa!");
 		} else if (cansee(mtmp->mx,mtmp->my))
 		    pline("%s.", Tobjnam(obj, "stop"));
+
+		/* since there's no way to say sorry if you accidentally hit your pet, feeding has a similar effect --Amy */
+		if (!rn2(5) && !mtmp->isminion && EDOG(mtmp)->abuse) EDOG(mtmp)->abuse--;
+
 		/* dog_eat expects a floor object */
 		place_object(obj, mtmp->mx, mtmp->my);
 		(void) dog_eat(mtmp, obj, mtmp->mx, mtmp->my, FALSE);
@@ -894,23 +1101,44 @@ register struct obj *obj;
 		   a non-null result suppresses "miss" message for thrown
 		   food and also implies that the object has been deleted */
 		return mtmp;
-	    } else
+	    } else {
+
+		if (mtmp->data != &mons[PM_PETTY_BATTLE_GIRL] && mtmp->data != &mons[PM_ELONA_GIRL] && mtmp->data != &mons[PM_NICE_OLD_LADY] && mtmp->data != &mons[PM_THICK_PROSTITUTE] && mtmp->data != &mons[PM_VIOLET_PROSTITUTE] && mtmp->data != &mons[PM_ELONA_LADY] && mtmp->data != &mons[PM_FRIENDLY_ADVENTURER] && mtmp->data != &mons[PM_PETTY_SWEET_WOMAN] && mtmp->data != &mons[PM_POKEMON] && mtmp->data != &mons[PM_UNDEAD_POKEMON] && mtmp->data != &mons[PM_PETTY_BEARDED_DEVIL] && mtmp->data != &mons[PM_PETTY_NALFESHNEE] && mtmp->data != &mons[PM_PETTY_LAVA_DEMON]
+&& mtmp->data != &mons[PM_PETTY_ACEHACK_HORROR] && mtmp->data != &mons[PM_PETTY_GRUNTHACK_HORROR] && mtmp->data != &mons[PM_PETTY_ANGBAND_HORROR] && mtmp->data != &mons[PM_PETTY_ADOM_HORROR])
+
 		return (struct monst *)0;
+		}
 	}
+
 
 	if (mtmp->mtame || !mtmp->mcanmove ||
 	    /* monsters with conflicting structures cannot be tamed */
 	    mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->isminion ||
 	    /* KMH -- Added gypsy */
 	    mtmp->isgyp ||
-	    is_covetous(mtmp->data) || is_human(mtmp->data) ||
-	    (is_demon(mtmp->data) && !is_demon(youmonst.data)) ||
+	    (is_covetous(mtmp->data) && rn2(50) ) || (is_human(mtmp->data) && rn2(4) ) ||
+	    (is_demon(mtmp->data) && !is_demon(youmonst.data) && !Race_if(PM_HUMANOID_DEVIL) && rn2(10) ) ||
 	    /* Mik -- New flag to indicate which things cannot be tamed... */
 	    cannot_be_tamed(mtmp->data) ||
-	    (obj && dogfood(mtmp, obj) >= MANFOOD)) return (struct monst *)0;
+	    (obj && dogfood(mtmp, obj) >= MANFOOD)) {
+
+
+		/* Attire charm technique and certain other methods set the guaranteed flag,
+		 * which allows players to tame humans and certain other monsters. --Amy */
+
+		if (mtmp->data != &mons[PM_PETTY_BATTLE_GIRL] && mtmp->data != &mons[PM_ELONA_GIRL] && mtmp->data != &mons[PM_NICE_OLD_LADY] && mtmp->data != &mons[PM_THICK_PROSTITUTE] && mtmp->data != &mons[PM_VIOLET_PROSTITUTE] && mtmp->data != &mons[PM_ELONA_LADY] && mtmp->data != &mons[PM_FRIENDLY_ADVENTURER] && mtmp->data != &mons[PM_PETTY_SWEET_WOMAN] && mtmp->data != &mons[PM_POKEMON] && mtmp->data != &mons[PM_UNDEAD_POKEMON] && mtmp->data != &mons[PM_PETTY_BEARDED_DEVIL] && mtmp->data != &mons[PM_SIZZLE] && mtmp->data != &mons[PM_KATNISS] && mtmp->data != &mons[PM_PETTY_NALFESHNEE] && mtmp->data != &mons[PM_PETTY_LAVA_DEMON]
+&& mtmp->data != &mons[PM_PETTY_ACEHACK_HORROR] && mtmp->data != &mons[PM_PETTY_GRUNTHACK_HORROR] && mtmp->data != &mons[PM_PETTY_ANGBAND_HORROR] && mtmp->data != &mons[PM_PETTY_ADOM_HORROR] && !(guaranteed) )
+			return (struct monst *)0;
+		}
+
+	/* failsafe for things that REALLY cannot be tamed --Amy */
+	if (cannot_be_tamed(mtmp->data) || mtmp->mtame || mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->isminion || mtmp->isgyp)
+		return (struct monst *)0;
 
 	if (mtmp->m_id == quest_status.leader_m_id)
+		{
 	    return((struct monst *)0);
+		}
 
 	/* make a new monster which has the pet extension */
 	mtmp2 = newmonst(sizeof(struct edog) + mtmp->mnamelth);
@@ -1052,6 +1280,11 @@ struct monst *mtmp;
 
 	if (mtmp->mtame && !mtmp->isminion)
 	    EDOG(mtmp)->abuse++;
+
+	if (Role_if(PM_CRUEL_ABUSER)) {
+		adjalign(5);
+		pline("You feel empowered."); /* Christian Grey likes to be needlessly cruel */
+	}
 
 	if (!mtmp->mtame && mtmp->mleashed)
 	    m_unleash(mtmp, TRUE);

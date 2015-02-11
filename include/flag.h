@@ -149,6 +149,7 @@ struct flag {
 	int	 pantheon;	/* deity selection for priest character */
 	/* KMH, balance patch */
 	int      boot_count; /* boots from fishing pole */
+	int      cram_count; /* cram rations from fishing pole */
 	char	 inv_order[MAXOCLASSES];
 	char	 pickup_types[MAXOCLASSES];
 #define NUM_DISCLOSURE_OPTIONS         5
@@ -239,6 +240,7 @@ struct instance_flags {
 	boolean lan_mail;	/* mail is initialized */
 	boolean lan_mail_fetched; /* mail is awaiting display */
 #endif
+	boolean death_expl;	/* prompt for explore mode at death */
 /*
  * Window capability support.
  */

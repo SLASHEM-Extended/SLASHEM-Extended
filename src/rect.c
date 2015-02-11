@@ -13,7 +13,7 @@ static boolean FDECL(intersect, (NhRect *,NhRect *,NhRect *));
      * need for room generation.
      */
 
-#define MAXRECT	50
+#define MAXRECT	1000
 #define XLIM	4
 #define YLIM	3
 
@@ -84,6 +84,9 @@ NhRect *r;
 NhRect *
 rnd_rect()
 {
+
+		/*if (wizard && rect_cnt == 0) pline("rect_cnt = 0");*/
+
 	    return rect_cnt > 0 ? &rect[rn2(rect_cnt)] : 0;
 }
 

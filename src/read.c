@@ -42,6 +42,7 @@ static void FDECL(p_glow2,(struct obj *,const char *));
 static void FDECL(randomize,(int *, int));
 static void FDECL(forget_single_object, (int));
 static void FDECL(maybe_tame, (struct monst *,struct obj *));
+static void FDECL(undo_genocide,(void));
 
 STATIC_PTR void FDECL(set_lit, (int,int,genericptr_t));
 
@@ -136,7 +137,8 @@ doread()
 	    else useupf(scroll, 1L);
 	    return(1);
 #ifdef TOURIST
-	} else if (scroll->otyp == T_SHIRT) {
+	} else if (scroll->otyp == T_SHIRT || scroll->otyp == HAWAIIAN_SHIRT || scroll->otyp == STRIPED_SHIRT
+	|| scroll->otyp == VICTORIAN_UNDERWEAR || scroll->otyp == RUFFLED_SHIRT) {
 	    static const char *shirt_msgs[] = { /* Scott Bigham */
     "I explored the Dungeons of Doom and all I got was this lousy T-shirt!",
     "Is that Mjollnir in your pocket or are you just happy to see me?",
@@ -154,6 +156,379 @@ doread()
     "Don't Panic",				/* HHGTTG */
     "Furinkan High School Athletic Dept.",	/* Ranma 1/2 */
     "Hel-LOOO, Nurse!",			/* Animaniacs */
+			"I explored the Dungeons of Doom and all I got was this lousy T-shirt!",
+			"Is that Mjollnir in your pocket or are you just happy to see me?",
+			"It's not the size of your sword, it's how #enhance'd you are with it.",
+			"Madame Elvira's House O' Succubi Lifetime Customer",
+			"Madame Elvira's House O' Succubi Employee of the Month",
+			"Ludios Vault Guards Do It In Small, Dark Rooms",
+			"Yendor Military Soldiers Do It In Large Groups",
+			"I survived Yendor Military Boot Camp",
+			"Ludios Accounting School Intra-Mural Lacrosse Team",
+			"Oracle(TM) Fountains 10th Annual Wet T-Shirt Contest",
+			"Hey, black dragon!  Disintegrate THIS!",
+			"I'm With Stupid -->",
+			"Don't blame me, I voted for Izchak!",
+			"Frodo Lives!",
+			"Actually, I AM a quantum mechanic.",
+			"I beat the Sword Master",			/* Monkey Island */
+			"Don't Panic",				/* HHGTTG */
+			"Furinkan High School Athletic Dept.",	/* Ranma 1/2 */
+			"Hel-LOOO, Nurse!",			/* Animaniacs */
+			
+			/* NAO */
+			"=^.^=",
+			"100% goblin hair - do not wash",
+			"Aim >>> <<< here",
+			"cK -- Cockatrice touches the Kop",
+			"Croesus for President 2008 - Campaign Finance Reform Now (for the other guy)",
+			"Don't ask me, I only adventure here",
+			"Down With Pants!",
+			"Gehennoms Angels",
+			"Glutton For Punishment",
+			"Go Team Ant!",
+			"Got Newt?",
+			"Heading for Godhead",
+			"Hello, my darlings!", /* Charlie Drake */
+			"Hey! Nymphs! Steal This T-Shirt!",
+			"I <3 Dungeon of Doom",
+			"I am a Valkyrie. If you see me running, try to keep up.",
+			"I Am Not a Pack Rat - I Am a Collector",
+			"I bounced off a rubber tree",
+			"If you can read this, I can hit you with my polearm",
+			"I'm Confused!",
+			"I met Carl, the swordmaster of Jambalaya island and all I got was this lousy t-shirt",
+			"I scored with the princess",
+			"I Support Single Succubi",
+			"I want to live forever or die in the attempt.",
+			"Kop Killaz",
+			"Lichen Park",
+			"LOST IN THOUGHT - please send search party",
+			"Meat Is Mordor",
+			"Minetown Better Business Bureau",
+			"Minetown Watch",
+			"Ms. Palm's House of Negotiable Affection -- A Very Reputable House Of Disrepute",
+			"^^  My eyes are up there!  ^^",
+			"Next time you wave at me, use more than one finger, please.",
+			"Objects In This Shirt Are Closer Than They Appear",
+			"Protection Racketeer",
+			"P Happens",
+			"Real men love Crom",
+			"Sokoban Gym -- Get Strong or Die Trying",
+			"Somebody stole my Mojo!",
+			"The Hellhound Gang",
+			"The Werewolves",
+			"They Might Be Storm Giants",
+			"Up with miniskirts!",
+			"Weapons don't kill people, I kill people",
+			"Where's the beef?",
+			"White Zombie",
+			"Worship me",
+			"You laugh because I'm different, I laugh because you're about to die",
+			"You should hear what the voices in my head are saying about you.",
+			"Anhur State University - Home of the Fighting Fire Ants!",
+			"FREE HUGS",
+			"Serial Ascender",
+			"Plunder Island Brimstone Beach Club",
+			"Real Men Are Valkyries",
+			"Young Men's Cavedigging Association",
+			"Occupy Fort Ludios",
+			"I couldn't afford this T-shirt so I stole it!",
+			"End Mercantile Opacity Discrimination Now: Let Invisible Customers Shop!",
+			"Elvira's House O'Succubi, granting the gift of immorality!",
+
+			/* http://www.alt.org/nethack/addmsgs/viewmsgs.php */
+			"That is not dead which can eternal lie, and in successful ascensions even Death may die.",
+			"Yet Another Stupid T-Shirt",
+			"Xorn ate my +7 Stormbringer and +6 Grayswandir",
+			"Overcharge me!",
+			"Mind flayers suck!",
+			"Funny message goes here",
+			"3,14159 26535 89793 23846 26433 83279 50288 41971 69399 37510 58209 74944 59230 78164 06286 20899...",
+			"+<<*giant cave spider silk T-shirt*>>+",
+
+			/* UnNetHack */
+			"I made a NetHack fork and all I got was this lousy T-shirt!",	/* galehar */
+
+			/* UnNetHackPlus */
+			"not food",
+			"ingredients: oxygen 65%, Carbon 18%, Hydrogen 10%, Nitrogen 3%, Calcium 1,5%, Phosphorus 1%",
+			"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+			"I made a UnNetHack fork and all I got was this lousy T-shirt!",	/* see UnNetHack section */
+"I captured the t-shirt factory, anyone who kill every last caveman gets 9 +9 t-shirts",
+"I captured the t-shirt factory, anyone who kill every last caveman gets 9 +9 t-shirts",
+"Kill, Maim, Burn...",
+"$playername IS THE BOSS!",
+"'$playername, I'm watching you, scum!' -- Wizard of Yendor",
+"(This space for sale.)",
+"*insert Monty Python quote here*",
+"*insert pic of uboa here*",
+"+5 sexterity vest",
+"+<<*giant cave spider silk T-shirt*>>+",
+"+Infinity Billion Cool Shirt of Awesomeness",
+"- - - - - - CUT HERE - - - - - -",
+"-----Fill up to here.-----",
+"--More--",
+"-export-a-crypto-system-sig -RSA-3-lines-PERL",
+"/</tits/> /<//tits/>",
+"100% goblin hair - do not wash",
+"3.141592653589792636.......",
+"666 420 Tongue Kiss Your Father",
+"9/11",
+"9/11, I'm In Heaven!",
+"90% cotton, 10% polyester.",
+":-)",
+":-)",
+":-)",
+"<tits> </tits>",
+"=^.^=",
+"@ k a",
+"ARE YOU ASKING FOR A CHALLENGE?!?!?!?",
+"Aberzombie and Fitch",
+"Aim >>> <<< here",
+"All I got was this lousy T-Shirt",
+"Anarchy in the U(nderground) K(ingdom)",
+"Anhur is my homeboy",
+"Aperture Science Torso-Covering Device",
+"Ask Me About Grim Fandango",
+"Ask Me About Loom",
+"Ask Me About Rogue",
+"B.a.r. Equipment",
+"Beauty Is In The Eye Of The Beerholder",
+"Best in Show",
+"Big Daddy",
+"Blue Sun",
+"C:/DOS C:/DOS/RUN RUN/DOS/RUN",
+"CITY NAME SPORTS TEAM",
+"Came back from the demigod bar to watch you puny mortals ascend.",
+"Can you believe that they actually put this on a T-Shirt?",
+"Cockatrices can't touch this",
+"Cool Tapes",
+"Croesus for President 2008 - Campaign Finance Reform Now (for the other guy)",
+"D.A.R.E. - Dungeon Adventure Resistance Education",
+"DX Army",
+"Darmok and Jalad at Tanagra - World Tour '91",
+"David Allen CEO",
+"Deep Throat",
+"DethKlok",
+"Dev Team",
+"Dispater is my homeboy",
+"Don't ask me, I only work here",
+"Don't know where to buy some lighting? Visit Itzchak's at minetown.",
+"Down With Pants!",
+"Dry clean only... good luck",
+"Dubno;withmyheadman",
+"E.Z. Moad",
+"ELBERETH ALREADY!",
+"Elbereth",
+"Elvira's House O'Succubi, granting the gift of immorality!",
+"End Mercantile Opacity Discrimination Now: Let Invisible Customers Shop!",
+"Ever did the cha-cha with a pit viper?",
+"Ever did the waltz with a nymph?",
+"Ever held hands with a cockatrice?",
+"Ever let a water demon spank you?",
+"FREE HUGS",
+"FREE PUG AND NEWT!",
+"Fhtagn!",
+"Flooring inspector.",
+"Frankie Says Relax",
+"Frankie say: Ascend",
+"Free shirt: Limit 1",
+"Funny message goes here",
+"Gamefaqs.com, We have a nethack board.",
+"Gehennoms Angels",
+"Glutton For Punishment",
+"Go Team Ant!",
+"Go team 'a'!",
+"Got Newt?",
+"Got OCD?",
+"Got Potion?",
+"Got pr0n?",
+"Great, you're not illiterate. Now try Elbereth.",
+"Have a heart. Spay or neuter your d or f.",
+"Hawaiian T-Shits Just Suck!",
+"He who dies with the most toys is nonetheless dead.",
+"Heading for Godhead",
+"Hey! Nymphs! Steal This T-Shirt!",
+"Hey, Wizard of Yendor, Demigod This!",
+"Hi, My name is $playername!",
+"Home Taping is Killing Music",
+"How To Keep An Idiot In Suspense - See Other Side",
+"I <3 Dungeon of Doom",
+"I <3 Maud",
+"I Am Not a Pack Rat – I Am a Collector",
+"I Support Single Succubi",
+"I am a Demigod, oh yes...",
+"I am a Valkyrie. If you see me running, try to keep up.",
+"I am a proud brony.",
+"I ascended to demi-godhood, and all I got was this lousy T-Shirt!",
+"I beat anorexia",
+"I bounced off a rubber tree",
+"I can hold my breath for TEN minutes!",
+"I couldn't afford this T-shirt so I stole it!",
+"I do not have the amulet of yendor YET !!!",
+"I don't like your ringtone",
+"I got sick riding the Juiblex Express",
+"I got zapped with a wand of polymorph and all I became was this stupid T-shirt.",
+"I killed the Wizard and all I got was this stupid T-shirt!",
+"I killed the wizard of Yendor, and all i got is this stupid t-shirt.",
+"I met Carl, the swordmaster of Jambalaya island and all I got was this lousy t-shirt",
+"I prepared explosive runes this morning.",
+"I rode the Juiblex Express",
+"I rode the Juiblex Express and became sick",
+"I scored with the princess",
+"I took the red pill!",
+"I want to live forever or die in the attempt.",
+"I went into the Mazes of Menace and all I got was this stupid T-Shirt.",
+"I went to Yendor and all I got was this lousy T-Shirt.",
+"I wish these were magic lamps",
+"I wished for blessed +2 GDSM and all I got was this lousy T-shirt.",
+"I won the nethack.alt.org June Tournament., and all I got was this lousy T-Shiry!",
+"I'm Confused!",
+"I'm back from the demigod bar!",
+"I'm in ur base, killin ur doods",
+"I'm like a superhero with no powers or motivation.",
+"I'm not even supposed to be here today.",
+"I'm not fat, I'm knocked up!",
+"I'm not illiterate.",
+"I'm selling these fine leather jackets",
+"I'm with Stupid -->",
+"I'm with a pet",
+"I'm with stupid ->",
+"I'm with stupid ->",
+"If you can read this, I can hit you with my polearm",
+"If you can read this, you are too close.",
+"If you can read this, you're standing too close.",
+"If you read this, your illiterate conduct is lost.",
+"Im not emo!",
+"Im with stupid -->",
+"Iron Maiden",
+"Ironica",
+"It keeps happening!",
+"Kobolds do it better",
+"Kop Killaz",
+"LOST IN THOUGHT - please send search party",
+"Lichen Park",
+"Linus Torvalds is my homeboy",
+"Loser Pride",
+"Make Love, Not War",
+"Maxim 1: Pillage, then burn",
+"Maybe if this shirt is witty enough, someone will finally love me.",
+"Meat Is Mordor",
+"Medusa is my homegirl",
+"Mind Flayers suck!",
+"Minetown Better Business Bureau",
+"Minetown Watch",
+"Ms. Palm's House of Negotiable Affection -- A Very Reputable House Of Disrepute",
+"My name is shawnz. Take me off and see how fat I am.",
+"My other armor is a blessed +5 gray dragon scale mail.",
+"My other sword is a Vorpal Blade!",
+"My sisters' are bigger",
+"Neferet/Pelias '08",
+"Next time you wave at me, use more than one finger, please.",
+"No Outfit Is Complete Without a Little Cat Fur",
+"No, I will not fix your computer.",
+"No, this is not a blessed +7 silver dragon scale mail. You must be crazy.",
+"Nothing happens.",
+"OPTIONS=marvin,!suck,rngfavor",
+"Objects In This Shirt Are Closer Than They Appear",
+"Occupy Fort Ludios",
+"Only you can prevent forest fires.",
+"Outlook not so good.",
+"Overcharge me!",
+"P Happens",
+"PETA - People Eating Tasty Animals",
+"Pain is vital bodily fluids leaving the body.",
+"Play Paranoid!",
+"Plunder Island Brimstone Beach Club Lifetime Member",
+"Porn Star",
+"Prefectionist.",
+"Protection Racketeer",
+"Queen B",
+"Randomness Happens",
+"Real Men Are Valkyries",
+"Real men love Crom",
+"Real men watch ponies.",
+"Rodney for President!",
+"Rodney in '08. OR ELSE!",
+"Rogues do it from behind!",
+"Rogues do it from behind.",
+"Romanes Eunt Domus",
+"Romani Ite Domum",
+"S.O.B: Succubi Obliging Boytoy",
+"SHOOOOP DA WHOOOOOOOP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+"SPONSORED BY GOLDENPALACE.COM",
+"Save The Rare Endangered Spycrab!",
+"Save collapsing wavefunctions: don't look at me!",
+"Scalding Lake",
+"Seduce Me, Please.",
+"Serial Ascender",
+"Shoot, and I'll move. In a flash.",
+"Smile if you're not wearing underpants.",
+"Sokoban Gym -- Get Strong or Die Trying",
+"Somebody stole my Mojo!",
+"Telepathics Do It Blindly",
+"The Amulet of Yendor has been stolen by Moloch. Are you a bad enough dude to retrieve the Amulet?",
+"The Game",
+"The Hellhound Gang",
+"The Werewolves",
+"The front says: '+5' The back says: 'fireproof'",
+"The front says: 'This message is false.' The back says: 'The message on the front is true.'",
+"The front says: 'Throw daggers!' The back says: 'Because they're sharper than rocks.'",
+"The tengu shuffle is my favorite dance.",
+"There are 10 types of adventurers. Those who understand binary and those who don't.",
+"There's no place like Home 1",
+"They Might Be Ettins",
+"They Might Be H",
+"They Might Be Storm Giants",
+"They say that this is not an actual t-shirt, but more like a halfshirt",
+"This T-Shirt left intentionally blank",
+"This T-shirt sucks.",
+"This T-shirt was made by someone who leaves there stuff in the most places",
+"This is an ironic t-shirt.",
+"This is not a T-Shirt",
+"This is not a shirt.",
+"Torso Awaregness intrinsic",
+"Tourists Be Gone!",
+"Up with miniskirts!",
+"Visit Nicolai's house of magic, a last vestige of civilization in an otherwise uncivilized land.",
+"Weapons don't kill people, I kill people",
+"What happens in Gehennnom stays in Gehennom",
+"Where's the beef?",
+"White Zombie",
+"Winner of the 2006 Wet T-shirt contest!",
+"Woodstock '69",
+"Words on a Shirt",
+"Worship me",
+"Xorn ate my +7 Stormbringer and +6 Grayswandir",
+"Xorns Do It Anywhere",
+"Yet Another Stupid T-Shirt",
+"You feel douchy! You must have a poor sense of fashion..",
+"You feel geeky! You must be leading a sunless lifestyle.",
+"You laugh because I'm different, I laugh because you're about to die",
+"You see here a ye flask.",
+"You should hear what the voices in my head are saying about you.",
+"You're killing me!",
+"Young Men's Cavedigging Association",
+"Your Dad On A Sybian",
+"Your Head A Splode",
+"Your bones itch.",
+"^^ My eyes are up here! ^^",
+"cK -- Cockatrice touches the Kop",
+"d, your dog or a killer?",
+"lol",
+"mde.tv",
+"mde.tv",
+"nWo",
+"noitcelfer fo trihs-T 5+ desselB",
+"only 100 zm for that t-shirt",
+"sloshy",
+"sysadmin",
+"the High Priest of Moloch knows how to accessorize",
+"your an idiot",
+"zorkmid",
+"~~It's Time 2 Throw Down~~",
+
 	    };
 	    char buf[BUFSZ];
 	    int erosion;
@@ -174,11 +549,13 @@ doread()
 	    pline("\"%s\"", buf);
 	    return 1;
 #endif	/* TOURIST */
+	} else if (scroll->otyp == PACK_OF_FLOPPIES) {
+		use_floppies(scroll);
 	} else if (scroll->oclass != SCROLL_CLASS
 		&& scroll->oclass != SPBOOK_CLASS) {
 	    pline(silly_thing_to, "read");
 	    return(0);
-	} else if (Blind) {
+	} else if (Blind && scroll->otyp != SPE_BOOK_OF_THE_DEAD) {
 	    const char *what = 0;
 	    if (scroll->oclass == SPBOOK_CLASS)
 		what = "mystic runes";
@@ -188,7 +565,7 @@ doread()
 		pline("Being blind, you cannot read the %s.", what);
 		return(0);
 	    }
-	} else if (cant_see) {
+	} else if (cant_see && scroll->otyp != SPE_BOOK_OF_THE_DEAD) {
 	    if (scroll->oclass == SPBOOK_CLASS)
 	    {
 		You_cant("read the mystic runes in the invisible spellbook.");
@@ -215,7 +592,13 @@ doread()
 	    return(study_book(scroll));
 	}
 	scroll->in_use = TRUE;	/* scroll, not spellbook, now being read */
-	if(scroll->otyp != SCR_BLANK_PAPER) {
+	if(scroll->oartifact) {
+		if(Blind) {
+			pline("Being blind, you cannot see the %s.", the(xname(scroll)));
+			return 0;
+		}
+		pline("You examine %s.", the(xname(scroll)));
+	} else if(scroll->otyp != SCR_BLANK_PAPER) {
 	  if(Blind)
 	    pline("As you %s the formula on it, the scroll disappears.",
 			is_silent(youmonst.data) ? "cogitate" : "pronounce");
@@ -255,7 +638,7 @@ doread()
 			use_skill(spell_skilltype(scroll->otyp), 
 				(scroll->blessed ? 2 : 1));
 		}
-		if(scroll->otyp != SCR_BLANK_PAPER &&
+		if(scroll->otyp != SCR_BLANK_PAPER && !scroll->oartifact &&
 		  scroll->otyp != SCR_TELEPORTATION) {
 		    if (carried(scroll)) useup(scroll);
 		    else if (mcarried(scroll)) m_useup(scroll->ocarry, scroll);
@@ -333,6 +716,7 @@ struct obj *obj;
 int curse_bless;
 {
 	register int n;
+	/*int enspe;*/
 	boolean is_cursed, is_blessed;
 
 	is_cursed = curse_bless < 0;
@@ -358,8 +742,9 @@ int curse_bless;
 	     *	7 : 100     100
 	     */
 	    n = (int)obj->recharged;
-	    if (n > 0 && (obj->otyp == WAN_WISHING ||
-		    (n * n * n > rn2(7*7*7)))) {	/* recharge_limit */
+	    if (n > 0 && (obj->otyp == WAN_WISHING || obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT ||
+		/* no unlimited recharging of wands of charging --Amy */
+		    ((n * n * n > rn2(7*7*7)) && !rn2( Role_if(PM_WANDKEEPER) ? 10 : 2) ))) {	/* recharge_limit */
 		Your("%s vibrates violently, and explodes!",xname(obj));
 		wand_explode(obj, FALSE);
 		return;
@@ -371,19 +756,24 @@ int curse_bless;
 	    if (is_cursed) {
 		stripspe(obj);
 	    } else {
-		int lim = (obj->otyp == WAN_WISHING) ? 3 :
-			(objects[obj->otyp].oc_dir != NODIR) ? 8 : 15;
+		int lim = (obj->otyp == WAN_WISHING) ? 2 : ( (obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT ) ) ? 3 : (objects[obj->otyp].oc_dir != NODIR) ? (8 + n) : (15 + n);
 
-		n = (lim == 3) ? 3 : rn1(5, lim + 1 - 5);
-		if (!is_blessed) n = rnd(n);
+		n = (lim == 2) ? 2 : (lim == 3) ? 3 : (is_blessed ? rn1(5, lim + 1 - 5) : rnd(lim) ) ;
+		/*if (!is_blessed) {enspe = rnd(n); n = enspe;}*/ /* no longer needed */
 
-		if (obj->spe < n) obj->spe = n;
-		else obj->spe++;
-		if (obj->otyp == WAN_WISHING && obj->spe > 3) {
+		if (obj->spe < n) { obj->spe = rnd(n);
+		if (is_blessed && obj->spe < n && rn2(3) ) obj->spe = n;
+		}
+
+		if (Role_if(PM_WANDKEEPER) && obj->spe < 100) obj->spe += ((obj->otyp == WAN_WISHING) ? 1 : (obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT ) ? rnd(3) : rnd(10));
+
+		/* let's make charging a bit more useful, considering wands spawn with less charges now --Amy */
+		/*else*/ obj->spe += obj->recharged; /* cannot be higher than 1 for wishing/charging anyway */
+		/*if (obj->otyp == WAN_WISHING && obj->spe > 3) {
 		    Your("%s vibrates violently, and explodes!",xname(obj));
 		    wand_explode(obj, FALSE);
 		    return;
-		}
+		}*/
 		if (obj->spe >= lim) p_glow2(obj, NH_BLUE);
 		else p_glow1(obj);
 	    }
@@ -417,7 +807,7 @@ int curse_bless;
 	     *	14 :  63.29   99.32
 	     */
 	    n = (int)obj->recharged;
-	    if (n > 0 && (n * n * n > rn2(7*7*7))) {	/* recharge_limit */
+	    if (n > 0 && rn2(2) && (n * n * n > rn2(7*7*7))) {	/* recharge_limit */
 		Your("%s crumbles to dust!", xname(obj));
 		useup(obj);
 		    return;
@@ -446,8 +836,8 @@ int curse_bless;
 	    int s = is_blessed ? rnd(3) : is_cursed ? -rnd(2) : 1;
 	    boolean is_on = (obj == uleft || obj == uright);
 
-	    /* destruction depends on current state, not adjustment */
-	    if (obj->spe > rn2(7) || obj->spe <= -5) {
+	    /* destruction depends on current state, not adjustment; explosion change lowered by Amy */
+	    if ((obj->spe > rn2(7) || obj->spe <= -5) && rn2(2)) {
 		Your("%s %s momentarily, then %s!",
 		     xname(obj), otense(obj,"pulsate"), otense(obj,"explode"));
 		if (is_on) Ring_gone(obj);
@@ -495,30 +885,27 @@ int curse_bless;
 		    else
 			pline(nothing_happens);
 		} else if (is_blessed) {
-		    n = rn1(16,15);		/* 15..30 */
-		    if (obj->spe + n <= 50)
-			obj->spe = 50;
-		    else if (obj->spe + n <= 75)
-			obj->spe = 75;
-		    else {
+		    n = rnd(30);		/* 15..30 */
+		    if (rn2(2)) n += rnd(30);
+		    if (!rn2(5)) n += rnd(50);
+
 			int chrg = (int)obj->spe;
 			if ((chrg + n) > 127)
 				obj->spe = 127;
 			else
 				obj->spe += n;
-		    }
+
 		    p_glow2(obj, NH_BLUE);
 		} else {
-		    n = rn1(11,10);		/* 10..20 */
-		    if (obj->spe + n <= 50)
-			obj->spe = 50;
-		    else {
+		    n = rnd(20);		/* 10..20 */
+		    if (rn2(2)) n += rnd(30);
+
 			int chrg = (int)obj->spe;
 			if ((chrg + n) > 127)
 				obj->spe = 127;
 			else
 				obj->spe += n;
-		    }
+
 		    p_glow2(obj, NH_WHITE);
 		}
 		break;
@@ -546,6 +933,11 @@ int curse_bless;
 	    case GREEN_LIGHTSABER:
 #ifdef D_SABER
 	    case BLUE_LIGHTSABER:
+#if 0
+	    case VIOLET_LIGHTSABER:
+	    case WHITE_LIGHTSABER:
+	    case YELLOW_LIGHTSABER:
+#endif
 #endif
 	    case RED_LIGHTSABER:
 	    case RED_DOUBLE_LIGHTSABER:
@@ -582,16 +974,17 @@ int curse_bless;
 	    case HORN_OF_PLENTY:
 	    case BAG_OF_TRICKS:
 	    case CAN_OF_GREASE:
+	    case CHEMISTRY_SET:
 		if (is_cursed) stripspe(obj);
 		else if (is_blessed) {
-		    if (obj->spe <= 10)
-			obj->spe += rn1(10, 6);
-		    else obj->spe += rn1(5, 6);
-		    if (obj->spe > 50) obj->spe = 50;
+
+			obj->spe += rnd(10);
+
+		    if (obj->spe > 117) obj->spe = 117;
 		    p_glow2(obj, NH_BLUE);
 		} else {
 		    obj->spe += rnd(5);
-		    if (obj->spe > 50) obj->spe = 50;
+		    if (obj->spe > 117) obj->spe = 117;
 		    p_glow1(obj);
 		}
 		break;
@@ -806,10 +1199,10 @@ int howmuch;
 	forget_traps();
 
 	/* 1 in 3 chance of forgetting some levels */
-	if (!rn2(3)) forget_levels(rn2(25));
+	if (!rn2(3)) forget_levels(rn2(10));
 
 	/* 1 in 3 chance of forgeting some objects */
-	if (!rn2(3)) forget_objects(rn2(25));
+	if (!rn2(3)) forget_objects(rn2(10));
 
 	if (howmuch & ALL_SPELLS) losespells();
 	/*
@@ -841,9 +1234,353 @@ struct obj *sobj;
 	    if (mtmp->isshk)
 		make_happy_shk(mtmp, FALSE);
 	    else if (!resist(mtmp, sobj->oclass, 0, NOTELL))
-		(void) tamedog(mtmp, (struct obj *) 0);
+		(void) tamedog(mtmp, (struct obj *) 0, FALSE);
 	}
 }
+
+/** Remove water tile at x,y. */
+STATIC_PTR void
+undo_flood(x, y, roomcnt)
+int x, y;
+genericptr_t roomcnt;
+{
+	if ((levl[x][y].typ != POOL) &&
+	    (levl[x][y].typ != MOAT) &&
+	    (levl[x][y].typ != WATER) &&
+	    (levl[x][y].typ != FOUNTAIN))
+		return;
+
+	(*(int *)roomcnt)++;
+
+	/* Get rid of a pool at x, y */
+	levl[x][y].typ = ROOM;
+	newsym(x,y);
+}
+
+STATIC_PTR void
+do_flood(x, y, poolcnt)
+int x, y;
+genericptr_t poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+
+	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = POOL;
+		del_engr_at(x, y);
+		water_damage(level.objects[x][y], FALSE, TRUE);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+undo_lavaflood(x, y, roomcnt)
+int x, y;
+genericptr_t roomcnt;
+{
+	if (levl[x][y].typ != LAVAPOOL)
+		return;
+
+	(*(int *)roomcnt)++;
+
+	/* Get rid of a lava pool at x, y */
+	levl[x][y].typ = ROOM;
+	newsym(x,y);
+}
+
+STATIC_PTR void
+do_lavaflood(x, y, poolcnt)
+int x, y;
+genericptr_t poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+
+	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = LAVAPOOL;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+undo_lockflood(x, y, roomcnt)
+int x, y;
+genericptr_t roomcnt;
+{
+	if (levl[x][y].typ != STONE)
+		return;
+
+	(*(int *)roomcnt)++;
+
+	/* Get rid of stone at x, y */
+	levl[x][y].typ = CORR;
+	newsym(x,y);
+}
+
+STATIC_PTR void
+do_lockflood(x, y, poolcnt)
+int x, y;
+genericptr_t poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+
+	if (rn2(3)) doorlockX(x, y);
+
+	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != CORR))
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a wall at x, y */
+		levl[x][y].typ = STONE;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+undo_treeflood(x, y, roomcnt)
+int x, y;
+genericptr_t roomcnt;
+{
+	if (levl[x][y].typ != TREE)
+		return;
+
+	(*(int *)roomcnt)++;
+
+	/* Get rid of a lava pool at x, y */
+	levl[x][y].typ = ROOM;
+	newsym(x,y);
+}
+
+STATIC_PTR void
+do_treeflood(x, y, poolcnt)
+int x, y;
+genericptr_t poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+
+	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR))
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = TREE;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+undo_iceflood(x, y, roomcnt)
+int x, y;
+genericptr_t roomcnt;
+{
+	if (levl[x][y].typ != ICE)
+		return;
+
+	(*(int *)roomcnt)++;
+
+	/* Get rid of a lava pool at x, y */
+	levl[x][y].typ = ROOM;
+	newsym(x,y);
+}
+
+STATIC_PTR void
+do_iceflood(x, y, poolcnt)
+int x, y;
+genericptr_t poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+
+	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR))
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = ICE;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+undo_cloudflood(x, y, roomcnt)
+int x, y;
+genericptr_t roomcnt;
+{
+	if (levl[x][y].typ != CLOUD)
+		return;
+
+	(*(int *)roomcnt)++;
+
+	/* Get rid of a lava pool at x, y */
+	levl[x][y].typ = ROOM;
+	newsym(x,y);
+}
+
+STATIC_PTR void
+do_cloudflood(x, y, poolcnt)
+int x, y;
+genericptr_t poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+
+	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR))
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = CLOUD;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+undo_barflood(x, y, roomcnt)
+int x, y;
+genericptr_t roomcnt;
+{
+	if (levl[x][y].typ != IRONBARS)
+		return;
+
+	(*(int *)roomcnt)++;
+
+	/* Get rid of a lava pool at x, y */
+	levl[x][y].typ = ROOM;
+	newsym(x,y);
+}
+
+STATIC_PTR void
+do_barflood(x, y, poolcnt)
+int x, y;
+genericptr_t poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+
+	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR))
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = IRONBARS;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
 
 int
 seffects(sobj)
@@ -851,7 +1588,7 @@ register struct obj	*sobj;
 {
 	register int cval;
 	register boolean confused = (Confusion != 0);
-	register struct obj *otmp;
+	register struct obj *otmp, *acqo;
 
 	if (objects[sobj->otyp].oc_magic)
 		exercise(A_WIS, TRUE);		/* just for trying */
@@ -868,6 +1605,7 @@ register struct obj	*sobj;
 		break;
 #endif
 	case SPE_ENCHANT_ARMOR:
+		if (confused) break;
 	case SCR_ENCHANT_ARMOR:
 	    {
 		register schar s;
@@ -926,7 +1664,7 @@ register struct obj	*sobj;
 		/* KMH -- catch underflow */
 		s = sobj->cursed ? -otmp->spe : otmp->spe;
 		
-		if (s > (special_armor ? 5 : 3) && rn2(s)) {
+		if (s > (special_armor ? 5 : 3) && rn2(s) && !rn2(3) )  {
 		Your("%s violently %s%s%s for a while, then %s.",
 		     xname(otmp),
 		     otense(otmp, Blind ? "vibrate" : "glow"),
@@ -947,7 +1685,8 @@ register struct obj	*sobj;
 		/* KMH, balance patch -- Restore the NetHack success rate */
 		/* We'll introduce a disenchantment attack later */
 		s = sobj->cursed ? -1 :
-		    otmp->spe >= 9 ? (rn2(otmp->spe) == 0) :
+		/* Come on, the evaporation chance is nasty enough. Let's allow enchanting stuff beyond +9. --Amy */
+		    otmp->spe >= 9 ? /*(rn2(otmp->spe) == 0)*/1 :
 		    sobj->blessed ? rnd(3-otmp->spe/3) : 1;
 /*		s = sobj->cursed ? -rnd(2) :
 		    otmp->spe >= 3 ? (rn2(otmp->spe) == 0) :
@@ -1021,8 +1760,30 @@ register struct obj	*sobj;
 		}
 	    }
 	    break;
-	case SCR_CONFUSE_MONSTER:
+	case SCR_BAD_EFFECT:
+		if(confused) {
+			pline("You feel lucky for some reason!");
+			break;
+		}
+		badeffect();
+	    break;
+
+	case SCR_PROOF_ARMOR: /*scroll added by Amy*/
+	      {
+		otmp = some_armor(&youmonst);
+			if(!otmp) {
+				strange_feeling(sobj,"Some weird things are happening to your equipment!");
+				exercise(A_STR, FALSE);
+				exercise(A_CON, FALSE);
+				return(1);
+			}
+			otmp->oerodeproof = 1;
+			p_glow2(otmp, NH_PURPLE);
+		}
+		break;
 	case SPE_CONFUSE_MONSTER:
+		if (confused) break;
+	case SCR_CONFUSE_MONSTER:
 		if(youmonst.data->mlet != S_HUMAN || sobj->cursed) {
 			if(!HConfusion) You_feel("confused.");
 			make_confused(HConfusion + rnd(100),FALSE);
@@ -1066,8 +1827,9 @@ register struct obj	*sobj;
 		    }
 		}
 		break;
-	case SCR_SCARE_MONSTER:
 	case SPE_CAUSE_FEAR:
+		if (confused) break;
+	case SCR_SCARE_MONSTER:
 	    {	register int ct = 0;
 		register struct monst *mtmp;
 
@@ -1100,12 +1862,14 @@ register struct obj	*sobj;
 		pline("This scroll seems to be blank.");
 	    known = TRUE;
 	    break;
-	/* KMH, balance patch -- removed
+	/* KMH, balance patch -- removed */
 	case SCR_TRAP_DETECTION:
 		if (!sobj->cursed) return(trap_detect(sobj));
-	    break;*/
-	case SCR_REMOVE_CURSE:
+	      break;
+		/*what the hell? */
 	case SPE_REMOVE_CURSE:
+		if (confused) break;
+	case SCR_REMOVE_CURSE:
 	    {	register struct obj *obj;
 		if(confused) {
 		    if (Hallucination)
@@ -1164,17 +1928,20 @@ register struct obj	*sobj;
 		update_inventory();
 		break;
 	    }
-	case SCR_CREATE_MONSTER:
 	case SPE_CREATE_MONSTER:
+		if (confused) break;
+	case SCR_CREATE_MONSTER:
 	    if (create_critters(1 + ((confused || sobj->cursed) ? 12 : 0) +
 				((sobj->blessed || rn2(73)) ? 0 : rnd(4)),
-			confused ? &mons[PM_ACID_BLOB] : (struct permonst *)0))
+			/*confused ? &mons[PM_ACID_BLOB] :*/ (struct permonst *)0)) /* no easy blob fort building --Amy */
 		known = TRUE;
 	    /* no need to flush monsters; we ask for identification only if the
 	     * monsters are not visible
 	     */
 	    break;
 	case SPE_SUMMON_UNDEAD:        
+		if (confused) break;
+	case SCR_SUMMON_UNDEAD:        
 	    {
 		int cnt = 1, oldmulti = multi;
                 struct monst *mtmp;
@@ -1213,9 +1980,9 @@ register struct obj	*sobj;
 		     * this ever becomes a scroll
 		     */
 		    if (mtmp)
-			if (!sobj->cursed && Role_if(PM_NECROMANCER)) {
+			if (!sobj->cursed && (Role_if(PM_NECROMANCER) || Race_if(PM_MUMMY) || Race_if(PM_LICH_WARRIOR)) ) {
 			    if (!resist(mtmp, sobj->oclass, 0, TELL)) {
-				mtmp = tamedog(mtmp, (struct obj *) 0);
+				mtmp = tamedog(mtmp, (struct obj *) 0, FALSE);
 				if (mtmp) You("dominate %s!", mon_nam(mtmp));
 			    }
 			} else setmangry(mtmp);
@@ -1225,7 +1992,7 @@ register struct obj	*sobj;
 		 * Since spell is area affect,  do this after all undead
 		 * are summoned
 		 */
-		if (!Role_if(PM_NECROMANCER) && !(sobj->cursed)) {
+		if (!Role_if(PM_NECROMANCER) && !Race_if(PM_MUMMY) && !Race_if(PM_LICH_WARRIOR) && !(sobj->cursed)) {
 		    if (objects[SPE_COMMAND_UNDEAD].oc_name_known) {
 			int sp_no;
 			for (sp_no = 0; sp_no < MAXSPELL; sp_no++)
@@ -1243,8 +2010,9 @@ register struct obj	*sobj;
 		break;
 	    }
 	case SPE_ENCHANT_WEAPON:
+		if (confused) break;
 	case SCR_ENCHANT_WEAPON:
-		if(uwep && (uwep->oclass == WEAPON_CLASS || is_weptool(uwep))
+		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep))
 			&& confused) {
 		/* oclass check added 10/25/86 GAN */
 			uwep->oerodeproof = !(sobj->cursed);
@@ -1268,7 +2036,8 @@ register struct obj	*sobj;
 		} else return !chwepon(sobj,
 				       sobj->cursed ? -1 :
 				       !uwep ? 1 :
-				       uwep->spe >= 9 ? (rn2(uwep->spe) == 0) :
+		/* Come on, the evaporation chance is nasty enough. Let's allow enchanting stuff beyond +9. --Amy */
+				       uwep->spe >= 9 ? /*(rn2(uwep->spe) == 0)*/1 :
 				       sobj->blessed ? rnd(3-uwep->spe/3) : 1);
 /*		else return !chwepon(sobj,
 				       sobj->cursed ? -rnd(2) :
@@ -1276,8 +2045,102 @@ register struct obj	*sobj;
 				       uwep->spe >= 3 ? (rn2(uwep->spe) == 0) :
 				       sobj->blessed ? rnd(2) : 1);*/
 		break;
+	case SCR_PROOF_WEAPON: /* scroll added by Amy */
+		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep)))
+	      {
+			uwep->oerodeproof = 1;
+			if (Blind) {
+			    uwep->rknown = FALSE;
+			    Your("weapon feels warm for a moment.");
+			} else {
+			    uwep->rknown = TRUE;
+			    Your("%s covered by a %s %s %s!",
+				aobjnam(uwep, "are"),
+				sobj->cursed ? "mottled" : "shimmering",
+				hcolor(sobj->cursed ? NH_PURPLE : NH_GOLDEN),
+				sobj->cursed ? "glow" : "shield");
+			}
+		}
+		break;
+	case SCR_SLEEP:
+		known = TRUE;
+		if(confused) {
+			You("feel awake!");
+			if (sobj->cursed) incr_itimeout(&HSleep_resistance, 10);
+			else if (sobj->blessed) incr_itimeout(&HSleep_resistance, 200);
+			else {incr_itimeout(&HSleep_resistance, 100);}
+		}
+		else {
+			if(Sleep_resistance) You("yawn.");
+			else {You("fall asleep!");
+			if (sobj->cursed) fall_asleep(-50, FALSE);
+			else if (sobj->blessed) fall_asleep(-10, FALSE);
+			else {fall_asleep(-20, FALSE);}
+				}
+		}
+		break;
+	case SCR_TRAP_CREATION:
+		known = TRUE;
+		    You_feel("endangered!!");
+		{
+			int rtrap;
+		    int i, j, bd = confused ? 5 : 1;
+
+		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if ((levl[u.ux + i][u.uy + j].typ != ROOM && levl[u.ux + i][u.uy + j].typ != CORR) || MON_AT(u.ux + i, u.uy + j)) continue;
+				if (t_at(u.ux + i, u.uy + j)) continue;
+
+			      rtrap = rnd(TRAPNUM-1);
+				if (rtrap == HOLE) rtrap = PIT;
+				if (rtrap == MAGIC_PORTAL) rtrap = PIT;
+				if (rtrap == TRAPDOOR && !Can_dig_down(&u.uz)) rtrap = PIT;
+				if (rtrap == LEVEL_TELEP && level.flags.noteleport) rtrap = SQKY_BOARD;
+				if (rtrap == TELEP_TRAP && level.flags.noteleport) rtrap = SQKY_BOARD;
+				if (rtrap == ROLLING_BOULDER_TRAP) rtrap = ROCKTRAP;
+				if (rtrap == NO_TRAP) rtrap = ARROW_TRAP;
+				if (rtrap == RMB_LOSS_TRAP && !Role_if(PM_SPACEWARS_FIGHTER) && rn2(2)) rtrap = ACID_POOL;
+				if (rtrap == DISPLAY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3)) rtrap = GLYPH_OF_WARDING;
+				if (rtrap == SPELL_LOSS_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4)) rtrap = SLOW_GAS_TRAP;
+				if (rtrap == YELLOW_SPELL_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 5)) rtrap = POISON_GAS_TRAP;
+
+				if (rtrap == MENU_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8)) rtrap = FIRE_TRAP;
+				if (rtrap == SPEED_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40)) rtrap = ICE_TRAP;
+				if (rtrap == AUTOMATIC_SWITCHER && rn2(Race_if(PM_HAXOR) ? (Role_if(PM_GRADUATE) ? 125 : Role_if(PM_SPACEWARS_FIGHTER) ? 250 : Role_if(PM_GEEK) ? 250 : 500) : (Role_if(PM_GRADUATE) ? 250 : Role_if(PM_SPACEWARS_FIGHTER) ? 500 : Role_if(PM_GEEK) ? 500 : 1000) )) rtrap = SHOCK_TRAP;
+
+				if (rtrap == AUTO_DESTRUCT_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10)) rtrap = WATER_POOL;
+				if (rtrap == MEMORY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20)) rtrap = SCYTHING_BLADE;
+				if (rtrap == INVENTORY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50)) rtrap = ANIMATION_TRAP;
+				if (rtrap == BLACK_NG_WALL_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 50 : 100)) rtrap = UNKNOWN_TRAP;
+				if (rtrap == SUPERSCROLLER_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 100 : 200)) rtrap = WEB;
+				if (rtrap == ACTIVE_SUPERSCROLLER_TRAP) rtrap = RUST_TRAP;
+
+				(void) maketrap(u.ux + i, u.uy + j, rtrap);
+			}
+		}
+		break;
+	case SCR_TRAP_DISARMING:
+
+
+		known = TRUE;
+		You_feel("out of the danger zone.");
+		{
+			int rtrap;
+			struct trap *ttmp;
+
+		    int i, j, bd = confused ? 5 : 1;
+
+		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+
+				if ((ttmp = t_at(u.ux + i, u.uy + j)) != 0) {
+				    if (ttmp->ttyp == MAGIC_PORTAL) continue;
+					deltrap(ttmp);
+				}
+
+			}
+		}
+		break;
 	case SCR_TAMING:
-	case SPE_CHARM_MONSTER:
 		if (u.uswallow) {
 		    maybe_tame(u.ustuck, sobj);
 		} else {
@@ -1291,7 +2154,321 @@ register struct obj	*sobj;
 		    }
 		}
 		break;
+	case SPE_CHARM_MONSTER: /* gotta nerf that overpowered spell a little --Amy */
+		if (confused) break;
+	
+		if (u.uswallow && !rn2(4) ) {
+		    maybe_tame(u.ustuck, sobj);
+		} else {
+		    int i, j, bd = confused ? 5 : 1;
+		    struct monst *mtmp;
+
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0)
+			    if (!rn2(4) || (Role_if(PM_ACTIVISTOR) && mtmp->data == &mons[PM_TOPMODEL]) ) maybe_tame(mtmp, sobj);
+		    }
+		}
+	break;
+
+	case SCR_LOCKOUT:
+		known = TRUE;
+		if (confused) {
+			/* remove walls from vicinity of player */
+			int maderoom = 0;
+			do_clear_areaX(u.ux, u.uy, 4+2*bcsign(sobj),
+					undo_lockflood, (genericptr_t)&maderoom);
+			if (maderoom) {
+				known = TRUE;
+				You("feel free once again.");
+			}
+		} else {
+			int madepool = 0;
+			int stilldry = -1;
+			int x,y,safe_pos=0;
+				do_clear_areaX(u.ux, u.uy, 5-2*bcsign(sobj), do_lockflood,
+						(genericptr_t)&madepool);
+
+			/* check if there are safe tiles around the player */
+			for (x = u.ux-1; x <= u.ux+1; x++) {
+				for (y = u.uy - 1; y <= u.uy + 1; y++) {
+					if (x != u.ux && y != u.uy &&
+					    goodpos(x, y, &youmonst, 0)) {
+						safe_pos++;
+					}
+				}
+			}
+
+			/* we do not put these on the player's position. */
+			/*if (!madepool && stilldry)
+				break;*/
+			if (madepool)
+				pline(Hallucination ?
+						"It's getting a little bit tight in here!" :
+						"Walls and obstacles shoot up from the ground!" );
+			else pline(Hallucination ?
+						"You hear a grating that reminds you of Chinese water torture!" :
+						"You see dust particles flying around." );
+
+			known = TRUE;
+			break;
+		}
+
+	break;
+
+
+	case SCR_LAVA:
+		known = TRUE;
+		if (confused) {
+			/* remove lava from vicinity of player */
+			int maderoom = 0;
+			do_clear_areaX(u.ux, u.uy, 4+2*bcsign(sobj),
+					undo_lavaflood, (genericptr_t)&maderoom);
+			if (maderoom) {
+				known = TRUE;
+				You("don't feel hot anymore.");
+			}
+		} else {
+			int madepool = 0;
+			int stilldry = -1;
+			int x,y,safe_pos=0;
+				do_clear_areaX(u.ux, u.uy, 5-2*bcsign(sobj), do_lavaflood,
+						(genericptr_t)&madepool);
+
+			/* check if there are safe tiles around the player */
+			for (x = u.ux-1; x <= u.ux+1; x++) {
+				for (y = u.uy - 1; y <= u.uy + 1; y++) {
+					if (x != u.ux && y != u.uy &&
+					    goodpos(x, y, &youmonst, 0)) {
+						safe_pos++;
+					}
+				}
+			}
+
+			/* we do not put these on the player's position. */
+			if (!madepool && stilldry)
+				break;
+			if (madepool)
+				pline(Hallucination ?
+						"Wow, that's, like, TOTALLY HOT, dude!" :
+						"A stream of lava surges through the area!" );
+			known = TRUE;
+			break;
+		}
+
+	break;
+
+	case SCR_GROWTH:
+		known = TRUE;
+		if (confused) {
+			/* remove lava from vicinity of player */
+			int maderoom = 0;
+			do_clear_areaX(u.ux, u.uy, 4+2*bcsign(sobj),
+					undo_treeflood, (genericptr_t)&maderoom);
+			if (maderoom) {
+				known = TRUE;
+				You("feel a lack of greenery.");
+			}
+		} else {
+			int madepool = 0;
+			int stilldry = -1;
+			int x,y,safe_pos=0;
+				do_clear_areaX(u.ux, u.uy, 5-2*bcsign(sobj), do_treeflood,
+						(genericptr_t)&madepool);
+
+			/* check if there are safe tiles around the player */
+			for (x = u.ux-1; x <= u.ux+1; x++) {
+				for (y = u.uy - 1; y <= u.uy + 1; y++) {
+					if (x != u.ux && y != u.uy &&
+					    goodpos(x, y, &youmonst, 0)) {
+						safe_pos++;
+					}
+				}
+			}
+
+			/* we do not put these on the player's position. */
+			if (!madepool && stilldry)
+				break;
+			if (madepool)
+				pline(Hallucination ?
+						"Uh... everything is so... green!?" :
+						"You see trees growing out of the ground!" );
+			known = TRUE;
+			break;
+		}
+
+	break;
+
+	case SCR_ICE:
+		known = TRUE;
+		if (confused) {
+			/* remove lava from vicinity of player */
+			int maderoom = 0;
+			do_clear_areaX(u.ux, u.uy, 4+2*bcsign(sobj),
+					undo_iceflood, (genericptr_t)&maderoom);
+			if (maderoom) {
+				known = TRUE;
+				You("stop feeling cold.");
+			}
+		} else {
+			int madepool = 0;
+			int stilldry = -1;
+			int x,y,safe_pos=0;
+				do_clear_areaX(u.ux, u.uy, 5-2*bcsign(sobj), do_iceflood,
+						(genericptr_t)&madepool);
+
+			/* check if there are safe tiles around the player */
+			for (x = u.ux-1; x <= u.ux+1; x++) {
+				for (y = u.uy - 1; y <= u.uy + 1; y++) {
+					if (x != u.ux && y != u.uy &&
+					    goodpos(x, y, &youmonst, 0)) {
+						safe_pos++;
+					}
+				}
+			}
+
+			/* we do not put these on the player's position. */
+			if (!madepool && stilldry)
+				break;
+			if (madepool)
+				pline(Hallucination ?
+						"Damn, this is giving you the chills!" :
+						"The floor crackles with ice!" );
+			known = TRUE;
+			break;
+		}
+
+	break;
+
+	case SCR_CLOUDS:
+		known = TRUE;
+		if (confused) {
+			/* remove lava from vicinity of player */
+			int maderoom = 0;
+			do_clear_areaX(u.ux, u.uy, 4+2*bcsign(sobj),
+					undo_cloudflood, (genericptr_t)&maderoom);
+			if (maderoom) {
+				known = TRUE;
+				You("feel the fog disappearing.");
+			}
+		} else {
+			int madepool = 0;
+			int stilldry = -1;
+			int x,y,safe_pos=0;
+				do_clear_areaX(u.ux, u.uy, 5-2*bcsign(sobj), do_cloudflood,
+						(genericptr_t)&madepool);
+
+			/* check if there are safe tiles around the player */
+			for (x = u.ux-1; x <= u.ux+1; x++) {
+				for (y = u.uy - 1; y <= u.uy + 1; y++) {
+					if (x != u.ux && y != u.uy &&
+					    goodpos(x, y, &youmonst, 0)) {
+						safe_pos++;
+					}
+				}
+			}
+
+			/* we do not put these on the player's position. */
+			if (!madepool && stilldry)
+				break;
+			if (madepool)
+				pline(Hallucination ?
+						"Wow! Floating clouds..." :
+						"Foggy clouds appear out of thin air!" );
+			known = TRUE;
+			break;
+		}
+
+	break;
+
+	case SCR_BARRHING:
+		known = TRUE;
+		if (confused) {
+			/* remove lava from vicinity of player */
+			int maderoom = 0;
+			do_clear_areaX(u.ux, u.uy, 4+2*bcsign(sobj),
+					undo_barflood, (genericptr_t)&maderoom);
+			if (maderoom) {
+				known = TRUE;
+				You("have a sense of freedom.");
+			}
+		} else {
+			int madepool = 0;
+			int stilldry = -1;
+			int x,y,safe_pos=0;
+				do_clear_areaX(u.ux, u.uy, 5-2*bcsign(sobj), do_barflood,
+						(genericptr_t)&madepool);
+
+			/* check if there are safe tiles around the player */
+			for (x = u.ux-1; x <= u.ux+1; x++) {
+				for (y = u.uy - 1; y <= u.uy + 1; y++) {
+					if (x != u.ux && y != u.uy &&
+					    goodpos(x, y, &youmonst, 0)) {
+						safe_pos++;
+					}
+				}
+			}
+
+			/* we do not put these on the player's position. */
+			if (!madepool && stilldry)
+				break;
+			if (madepool)
+				pline(Hallucination ?
+						"Aw shit, this feels like being in a jail!" :
+						"Iron bars shoot up from the ground!" );
+			known = TRUE;
+			break;
+		}
+
+	break;
+
+	case SCR_FLOOD:
+		known = TRUE;
+		if (confused) {
+			/* remove water from vicinity of player */
+			int maderoom = 0;
+			do_clear_areaX(u.ux, u.uy, 4+2*bcsign(sobj),
+					undo_flood, (genericptr_t)&maderoom);
+			if (maderoom) {
+				known = TRUE;
+				You("are suddenly very dry!");
+			}
+		} else {
+			int madepool = 0;
+			int stilldry = -1;
+			int x,y,safe_pos=0;
+			if (!sobj->cursed)
+				do_clear_areaX(u.ux, u.uy, 5, do_flood,
+						(genericptr_t)&madepool);
+
+			/* check if there are safe tiles around the player */
+			for (x = u.ux-1; x <= u.ux+1; x++) {
+				for (y = u.uy - 1; y <= u.uy + 1; y++) {
+					if (x != u.ux && y != u.uy &&
+					    goodpos(x, y, &youmonst, 0)) {
+						safe_pos++;
+					}
+				}
+			}
+
+			/* cursed and uncursed might put a water tile on
+			 * player's position */
+			if (!sobj->blessed && safe_pos > 0)
+				do_flood(u.ux, u.uy, (genericptr_t)&stilldry);
+			if (!madepool && stilldry)
+				break;
+			if (madepool)
+				pline(Hallucination ?
+						"A totally gnarly wave comes in!" :
+						"A flood surges through the area!" );
+			if (!stilldry && !Wwalking && !Flying && !Levitation)
+				drown();
+			known = TRUE;
+			break;
+		}
+		break;
 	case SPE_COMMAND_UNDEAD:
+		if (confused) break;
 		if (u.uswallow) {
 		    if (is_undead(u.ustuck->data)) maybe_tame(u.ustuck, sobj);
 		} else {
@@ -1317,7 +2494,11 @@ register struct obj	*sobj;
 		litroom(!confused && !sobj->cursed, sobj);
 		break;
 	case SCR_TELEPORTATION:
-		if(confused || sobj->cursed) level_tele();
+		if(confused || sobj->cursed) 
+			{
+		      if (strncmpi(plname, "lostsoul", 8) && strncmpi(plname, "uberlostsoul", 12)) level_tele();
+			else pline("You try to teleport, but fail!");
+			}
 		else {
 			if (sobj->blessed && !Teleport_control) {
 				known = TRUE;
@@ -1332,25 +2513,58 @@ register struct obj	*sobj;
 				known = TRUE;
 		}
 		break;
+	case SCR_TELE_LEVEL:
+	      if (strncmpi(plname, "lostsoul", 8) && strncmpi(plname, "uberlostsoul", 12)) level_tele();
+		else pline("Hmm... that level teleport scroll didn't do anything.");
+		known = TRUE;
+		break;
+	case SCR_WARPING:
+		known = TRUE;
+		if (u.uevent.udemigod) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+
+		if (!strncmpi(plname, "lostsoul", 8) || !strncmpi(plname, "uberlostsoul", 12)) { 
+			pline("You're unable to warp!"); break;}
+
+		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+		/*if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); level_tele(); }
+		else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); level_tele(); }*/
+
+		(void) safe_teleds(FALSE);
+
+		goto_level((&medusa_level), TRUE, FALSE, FALSE);
+		register int newlev = rnd(64);
+		d_level newlevel;
+		get_level(&newlevel, newlev);
+		goto_level(&newlevel, TRUE, FALSE, FALSE);
+
+		break;
 	case SCR_GOLD_DETECTION:
 		if (confused || sobj->cursed) return(trap_detect(sobj));
 		else return(gold_detect(sobj));
-	case SCR_FOOD_DETECTION:
 	case SPE_DETECT_FOOD:
+		if (confused) break;
+	case SCR_FOOD_DETECTION:
 		if (food_detect(sobj))
 			return(1);	/* nothing detected */
 		break;
 	case SPE_IDENTIFY:
+		if (confused) break;
 		cval = rn2(5);
 		goto id;
 	case SCR_IDENTIFY:
 		/* known = TRUE; */
+		if (sobj->cursed) { /* Credits go to TvTropes for creating this joke. The player doesn't actually die. --Amy */
+			pline("You fall below the bottom of the page! You die...");
+			pline("Do you want your possessions identified? DYWYPI? [ynq] (n) _");
+		}
 		if(confused)
 			You("identify this as an identify scroll.");
 		else
 			pline("This is an identify scroll.");
-		if (sobj->blessed || (!sobj->cursed && !rn2(5))) {
-			cval = rn2(5);
+		if (sobj->blessed || (!sobj->cursed && !rn2(3))) {
+			cval = rn2(4);
+			if (sobj->blessed && !rn2(3) && cval) cval += rnz(2);
 			/* Note: if rn2(5)==0, identify all items */
 			if (cval == 1 && sobj->blessed && Luck > 0) ++cval;
 		} else	cval = 1;
@@ -1363,6 +2577,68 @@ register struct obj	*sobj;
 		    identify_pack(cval);
 		}
 		return(1);
+	case SCR_INVENTORY_ID: /* always identifies the player's entire inventory --Amy */
+		makeknown(SCR_INVENTORY_ID);
+		if(confused)
+			You("identify this as an inventory id scroll.");
+		else
+			pline("This is an inventory id scroll.");
+
+		if(!objects[sobj->otyp].oc_name_known) more_experienced(0,10);
+		if (carried(sobj)) useup(sobj);
+		else useupf(sobj, 1L);
+
+		if(invent && !confused) {
+		    identify_pack(0);
+		}
+		return(1);
+	case SCR_STANDARD_ID: /* always identifies exactly one item --Amy */
+		makeknown(SCR_STANDARD_ID);
+		pline("This is a standard identify scroll.");
+
+		if (carried(sobj)) useup(sobj);
+		else useupf(sobj, 1L);
+
+		if(invent) {
+		    identify_pack(1);
+		}
+		return(1);
+	case SCR_HEALING: /* a basic healing item that can be used to - who would have guessed? - cure wounds! --Amy */
+		makeknown(SCR_HEALING);
+		You("feel healthier!");
+			if (!rn2(20)) healup(400 + rnz(u.ulevel), 0, FALSE, FALSE);
+			else if (!rn2(5)) healup(d(6,8) + rnz(u.ulevel), 0, FALSE, FALSE);
+			else healup(d(5,6) + rnz(u.ulevel), 0, FALSE, FALSE);
+		break;
+	case SCR_MANA: /* there was no simple mana potion in this game! --Amy */
+		makeknown(SCR_MANA);
+		You("feel full of mystic power!");
+			if (!rn2(20)) u.uen += (400 + rnz(u.ulevel));
+			else if (!rn2(5)) u.uen += (d(6,8) + rnz(u.ulevel));
+			else u.uen += (d(5,6) + rnz(u.ulevel));
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+		break;
+	case SCR_CURE: /* cures bad effects --Amy */
+		makeknown(SCR_CURE);
+		You("feel revitalized.");
+		if (Stoned) fix_petrification();
+		    if (Slimed) {
+			pline("The slime disappears.");
+			Slimed =0;
+		    }
+		    make_sick(0L, (char *) 0, FALSE, SICK_ALL);
+			make_blinded(0L,FALSE);
+		    make_stunned(0L,TRUE);
+		    make_confused(0L,TRUE);
+		    (void) make_hallucinated(0L,FALSE,0L);
+		    make_numbed(0L,TRUE);
+		    make_feared(0L,TRUE);
+		    make_frozen(0L,TRUE);
+		    make_burned(0L,TRUE);
+
+		break;
+	case SPE_CHARGING:
+		if (confused) break;
 	case SCR_CHARGING:
 		if (confused) {
 		    You_feel("charged up!");
@@ -1374,11 +2650,20 @@ register struct obj	*sobj;
 		    break;
 		}
 		known = TRUE;
-		pline("This is a charging scroll.");
+		pline("You may charge an object."); /* "this is a scroll of charging" is inappropriate for the spell --Amy */
 		otmp = getobj(all_count, "charge");
 		if (!otmp) break;
 		recharge(otmp, sobj->cursed ? -1 : (sobj->blessed ? 1 : 0));
 		break;
+	case SCR_GAIN_MANA:
+		    You_feel("full of mystic power!");
+		    if (u.uen < u.uenmax)
+			u.uen = u.uenmax;
+		    else
+			u.uen = (u.uenmax += d(5,4));
+		    flags.botl = 1;
+		    known = TRUE;
+		    break;
 	case SCR_MAGIC_MAPPING:
 		if (level.flags.nommap) {
 		    Your("mind is filled with crazy lines!");
@@ -1389,7 +2674,7 @@ register struct obj	*sobj;
 		    make_confused(HConfusion + rnd(30), FALSE);
 		    break;
 		}
-		if (sobj->blessed) {
+		if (sobj->blessed && !(sobj->oartifact)) {
 		    register int x, y;
 
 		    for (x = 1; x < COLNO; x++)
@@ -1405,6 +2690,7 @@ register struct obj	*sobj;
 		    make_confused(HConfusion + rnd(30), FALSE);
 		    break;
 		}
+		if(!(sobj->oartifact)){
 		pline("A map coalesces in your mind!");
 		cval = (sobj->cursed && !confused);
 		if(cval) HConfusion = 1;	/* to screw up map */
@@ -1414,6 +2700,17 @@ register struct obj	*sobj;
 		if(cval) {
 		    HConfusion = 0;		/* restore */
 		    pline("Unfortunately, you can't grasp the details.");
+		}
+		}
+		else{ /* sobj is an artifact */
+			if (u.ublesscnt > 0) {pline("The map reveals nothing."); break;}
+			if(sobj->age > monstermoves){
+				pline("The map %s hard to see.", vtense((char *)0,"are"));
+				nomul(rnd(3));
+				sobj->age += (long) d(3,10);
+			} else sobj->age = monstermoves + (long) d(3,10);
+			do_vicinity_map();
+			u.ublesscnt += rnz(300);
 		}
 		break;
 	case SCR_AMNESIA:
@@ -1465,6 +2762,7 @@ register struct obj	*sobj;
 							SCROLL_CLASS, EXPL_FIERY);
 		return(1);
 	case SCR_EARTH:
+
 	    /* TODO: handle steeds */
 	    if (
 #ifdef REINCARNATION
@@ -1478,7 +2776,10 @@ register struct obj	*sobj;
 	    			sobj->blessed ? "around" : "above");
 	    	known = 1;
 	    	if (In_sokoban(&u.uz))
-	    	    change_luck(-1);	/* Sokoban guilt */
+			{change_luck(-1);
+			pline("You cheater!");
+			}
+			/* Sokoban guilt */
 
 	    	/* Loop through the surrounding squares */
 	    	if (!sobj->cursed) for (x = u.ux-1; x <= u.ux+1; x++) {
@@ -1496,6 +2797,17 @@ register struct obj	*sobj;
 	    	    	    otmp2 = mksobj(confused ? ROCK : BOULDER,
 	    	    	    		FALSE, FALSE);
 	    	    	    if (!otmp2) continue;  /* Shouldn't happen */
+
+				if(!rn2(8)) {
+					otmp2->spe = rne(2);
+					if (rn2(2)) otmp2->blessed = rn2(2);
+					 else	blessorcurse(otmp2, 3);
+				} else if(!rn2(10)) {
+					if (rn2(10)) curse(otmp2);
+					 else	blessorcurse(otmp2, 3);
+					otmp2->spe = -rne(2);
+				} else	blessorcurse(otmp2, 10);
+
 	    	    	    otmp2->quan = confused ? rn1(5,2) : 1;
 	    	    	    otmp2->owt = weight(otmp2);
 
@@ -1551,6 +2863,17 @@ register struct obj	*sobj;
 		    otmp2 = mksobj(confused ? ROCK : BOULDER,
 				FALSE, FALSE);
 		    if (!otmp2) break;
+
+			if(!rn2(8)) {
+				otmp2->spe = rne(2);
+				if (rn2(2)) otmp2->blessed = rn2(2);
+				 else	blessorcurse(otmp2, 3);
+			} else if(!rn2(10)) {
+				if (rn2(10)) curse(otmp2);
+				 else	blessorcurse(otmp2, 3);
+				otmp2->spe = -rne(2);
+			} else	blessorcurse(otmp2, 10);
+
 		    otmp2->quan = confused ? rn1(5,2) : 1;
 		    otmp2->owt = weight(otmp2);
 		    if (!amorphous(youmonst.data) &&
@@ -1588,6 +2911,237 @@ register struct obj	*sobj;
 		}
 		punish(sobj);
 		break;
+	case SCR_MASS_MURDER:
+		known = TRUE;
+		You("have found a scroll of mass murder.");
+		do_genocide(sobj->cursed ? 8 : 9);
+		break;
+	case SCR_UNDO_GENOCIDE:
+		known = TRUE;
+		You("have found a scroll of undo genocide.");
+		undo_genocide();
+		break;
+	case SCR_REVERSE_IDENTIFY:
+		known = TRUE;
+		You("have found a scroll of reverse identify.");
+		{
+			int i,j,n;
+			long oldgold;
+			char buf[BUFSZ];
+
+			n = (sobj->blessed) ? rn2(5)+1 : (sobj->cursed) ? 1 : rnd(3);
+			for (i=0;i<n;i++) {
+				for (j=0;j<=5;j++) {
+					if (j >= 5) {
+						pline(thats_enough_tries);
+						goto revid_end;
+					}
+					getlin("What do you want to identify?",buf);
+					if (buf[0] == 0) continue;
+					oldgold = u.ugold;
+					otmp = readobjnam(buf, (struct obj *)0, TRUE);
+					if (u.ugold != oldgold) {
+pline("Don't you date cheat me again! -- Your fault!");
+						/* Make them pay */
+						u.ugold = oldgold / 2;
+						continue;
+					}
+					if (otmp == &zeroobj || otmp == (struct obj *) 0) {
+						pline("That doesn't exist.");
+						continue;
+					}
+					break;
+				}
+				strcpy(buf,xname(otmp));
+				makeknown(otmp->otyp);
+				pline("The %s is a %s.",buf,xname(otmp));
+				/*if (otmp->oartifact) artifact_unexist(otmp);*/
+			}
+		}
+revid_end:
+		break;
+
+	case SCR_WISHING: 
+		known = TRUE;
+		pline("You have found a scroll of wishing!");
+		if (sobj->cursed || (!sobj->blessed && Luck+rn2(5) < 0)) {
+			pline("Unfortuantely, nothing happens.");
+			break;
+		}
+		makewish();
+		break;
+
+	case SCR_ACQUIREMENT: 
+		known = TRUE;
+
+		int acquireditem;
+		acquireditem = 0;
+		pline("You have found a scroll of acquirement!");
+		if (sobj->cursed || (!sobj->blessed && Luck+rn2(5) < 0)) {
+			pline("Unfortuantely, nothing happens.");
+			break;
+		}
+
+		while (acquireditem == 0) { /* ask the player what they want --Amy */
+
+		/* Yeah, I know this is less elegant than DCSS. But hey, it's a scroll of acquirement! */
+
+			if (yn("Do you want to acquire a random item?")=='y') {
+				    acqo = mkobj_at(RANDOM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a weapon?")=='y') {
+				    acqo = mkobj_at(WEAPON_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire an armor?")=='y') {
+				    acqo = mkobj_at(ARMOR_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a ring?")=='y') {
+				    acqo = mkobj_at(RING_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire an amulet?")=='y') {
+				    acqo = mkobj_at(AMULET_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a tool?")=='y') {
+				    acqo = mkobj_at(TOOL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire some food?")=='y') {
+				    acqo = mkobj_at(FOOD_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a potion?")=='y') {
+				    acqo = mkobj_at(POTION_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a scroll?")=='y') {
+				    acqo = mkobj_at(SCROLL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a spellbook?")=='y') {
+				    acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a wand?")=='y') {
+				    acqo = mkobj_at(WAND_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire some coins?")=='y') {
+				    acqo = mkobj_at(COIN_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a gem?")=='y') {
+				    acqo = mkobj_at(GEM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a boulder or statue?")=='y') {
+				    acqo = mkobj_at(ROCK_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a heavy iron ball?")=='y') {
+				    acqo = mkobj_at(BALL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire an iron chain?")=='y') {
+				    acqo = mkobj_at(CHAIN_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a splash of venom?")=='y') {
+				    acqo = mkobj_at(VENOM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+
+		}
+
+		/* special handling to prevent wands of wishing or similarly overpowered items --Amy */
+
+		if (acqo->otyp == GOLD_PIECE) acqo->quan = rnd(1000);
+		if (acqo->otyp == MAGIC_LAMP) { acqo->otyp = OIL_LAMP; acqo->age = 1500L; }
+		if (acqo->otyp == MAGIC_MARKER) acqo->recharged = 1;
+	    while(acqo->otyp == WAN_WISHING || acqo->otyp == WAN_POLYMORPH || acqo->otyp == WAN_ACQUIREMENT)
+		acqo->otyp = rnd_class(WAN_LIGHT, WAN_SOLAR_BEAM);
+	    while (acqo->otyp == SCR_WISHING || acqo->otyp == SCR_ACQUIREMENT || acqo->otyp == SCR_ENTHRONIZATION || acqo->otyp == SCR_FOUNTAIN_BUILDING || acqo->otyp == SCR_SINKING || acqo->otyp == SCR_WC)
+		acqo->otyp = rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER);
+
+		pline("Something appeared on the ground just beneath you!");
+
+		break;
+
+	case SCR_ENTHRONIZATION:
+
+		if (levl[u.ux][u.uy].typ != ROOM) {
+			pline("You feel claustrophobic!");
+			break;
+		}
+		known = TRUE;
+		pline("You build a throne.");
+		levl[u.ux][u.uy].typ = THRONE;
+
+		break;
+
+	case SCR_FOUNTAIN_BUILDING:
+
+		if (levl[u.ux][u.uy].typ != ROOM) {
+			pline("You feel claustrophobic!");
+			break;
+		}
+		known = TRUE;
+		pline("You build a fountain.");
+		levl[u.ux][u.uy].typ = FOUNTAIN;
+
+		break;
+
+	case SCR_SINKING:
+
+		if (levl[u.ux][u.uy].typ != ROOM) {
+			pline("You feel claustrophobic!");
+			break;
+		}
+		known = TRUE;
+		pline("You build a sink.");
+		levl[u.ux][u.uy].typ = SINK;
+
+		break;
+
+	case SCR_WC:
+
+		if (levl[u.ux][u.uy].typ != ROOM) {
+			pline("You feel claustrophobic!");
+			break;
+		}
+		known = TRUE;
+		pline("You build a toilet.");
+		levl[u.ux][u.uy].typ = TOILET;
+
+		break;
+
+	case SCR_CONSECRATION:
+	{
+		aligntyp al,ual;
+		char c;
+		char a;
+		int x,y;
+
+		if (Is_astralevel(&u.uz)) {
+			You("sense the wrath of the gods.");
+			u.ualign.record--;
+			break;
+		}
+		if (levl[u.ux][u.uy].typ != ROOM) {
+			pline("You feel claustrophobic!");
+			break;
+		}
+		known = TRUE;
+		pline("You build an altar.");
+		if (is_demon(youmonst.data)) {
+			al = A_CHAOTIC;
+		} else if (sobj->cursed) {
+			al = A_NONE;
+		} else if (sobj->blessed) {
+			ual = u.ualign.type;
+			a = (ual==A_LAWFUL) ? 'l' : ((ual==A_NEUTRAL) ? 'n' : 'c');
+			c = yn_function("Which alignment do you want to consectrate the altar to?","lncm",a);
+			al = A_NONE;
+			switch (c) {
+				case 'l':
+					al = A_LAWFUL;		break;
+				case 'n':
+					al = A_NEUTRAL;		break;
+				case 'c':
+					al = A_CHAOTIC;		break;
+				case 'm':
+					al = A_NONE;		break;
+			}
+		} else {
+			al = u.ualign.type;
+		}
+		pline("Pronouncing arcane formulas, you consecrate the altar to %s.",(al == A_NONE) ? "Moloch" : align_gname(al));
+		levl[u.ux][u.uy].typ = ALTAR;
+		levl[u.ux][u.uy].altarmask = Align2amask(al);
+		x = (al == ual) ? 1 : ((al == A_NONE) ? -3 : -1);
+		y = -rn2(x * 100);
+		u.ualign.record += x;
+		u.ublesscnt += y;
+		if (u.ublesscnt < 0) u.ublesscnt = 0;
+		pline("You feel %s%scomfortable.",(abs(x)>1) ? "very " : "", (x<0) ? "un" : "");
+	} break;
+
+	case SCR_ROOT_PASSWORD_DETECTION:
+		You("sense the computer's root password.");
+		pline("It is: %s.", sobj->cursed ? "jsdfljfdsh" : (sobj->blessed ? "memalezu" : "xyzzy"));
+		pline("(No warranty implied.)");
+		break;
+
 	case SCR_STINKING_CLOUD: {
 	        coord cc;
 
@@ -1718,10 +3272,23 @@ do_it:
 	    /* hallways remain dark on the rogue level */
 	} else
 #endif
+
+		if (rn2(10)) {
+
 	    do_clear_area(u.ux,u.uy,
 		obj->oartifact ? 12 :
 		(obj && obj->oclass==SCROLL_CLASS && obj->blessed) ? 9 : 5,
 		set_lit, (genericptr_t)(on ? &is_lit : (char *)0));
+
+		}
+		else {
+
+	    do_clear_areaX(u.ux,u.uy,
+		obj->oartifact ? 12 :
+		(obj && obj->oclass==SCROLL_CLASS && obj->blessed) ? 9 : 5,
+		set_lit, (genericptr_t)(on ? &is_lit : (char *)0));
+
+		}
 
 	/*
 	 *  If we are not blind, then force a redraw on all positions in sight
@@ -1735,6 +3302,39 @@ do_it:
 	    /* replace ball&chain */
 	    if (Punished && !on)
 		move_bc(0, 0, uball->ox, uball->oy, uchain->ox, uchain->oy);
+	}
+
+	vision_full_recalc = 1;	/* delayed vision recalculation */
+}
+
+void
+litroomlite(on)
+register boolean on;
+{
+	char is_lit;	/* value is irrelevant; we use its address
+			   as a `not null' flag for set_lit() */
+
+		if (rn2(10)) {
+
+	    do_clear_area(u.ux,u.uy, 7,
+		set_lit, (genericptr_t)(on ? &is_lit : (char *)0));
+		}
+		else {
+
+	    do_clear_areaX(u.ux,u.uy, 7,
+		set_lit, (genericptr_t)(on ? &is_lit : (char *)0));
+		}
+
+
+	/*
+	 *  If we are not blind, then force a redraw on all positions in sight
+	 *  by temporarily blinding the hero.  The vision recalculation will
+	 *  correctly update all previously seen positions *and* correctly
+	 *  set the waslit bit [could be messed up from above].
+	 */
+	if (!Blind) {
+	    vision_recalc(2);
+
 	}
 
 	vision_full_recalc = 1;	/* delayed vision recalculation */
@@ -1855,6 +3455,21 @@ do_class_genocide()
 			/* This check must be first since player monsters might
 			 * have G_GENOD or !G_GENO.
 			 */
+
+ 			    /* Now give the monsters a resistance check, but only against
+ 			       the effects of a blessed scroll... */
+ 
+ 			    int res; /* lethe patch */
+ 
+ 			    res = 35 - u.ulevel + mons[i].mr;
+				if (res >= 90) res = 90; 
+				if (res <= 15) res = 15; 
+
+ 			    pline("Attempting to wipe out all %s.", nam);
+ 
+				if (rnd(100) <= res) pline("The %s resisted genocide.", nam);
+ 			    else {
+
 			    mvitals[i].mvflags |= (G_GENOD|G_NOCORPSE);
 			    reset_rndmonst(i);
 			    kill_genocided_monsters();
@@ -1880,6 +3495,7 @@ do_class_genocide()
 				} else {
 				    if (!feel_dead++) You("die.");
 				    gameover = TRUE;
+				  }
 				}
 			    }
 			} else if (mvitals[i].mvflags & G_GENOD) {
@@ -1895,7 +3511,7 @@ do_class_genocide()
 			   && (mons[i].msound != MS_GUARDIAN ||
 			       quest_info(MS_GUARDIAN) == i)
 			/* non-leader/nemesis/guardian role-specific monster */
-			   && (i != PM_NINJA ||		/* nuisance */
+			   && (i != PM_NINJA_GAIDEN ||		/* nuisance */
 			       Role_if(PM_SAMURAI))) {
 				boolean named, uniq;
 
@@ -1923,6 +3539,7 @@ do_class_genocide()
 #define REALLY 1
 #define PLAYER 2
 #define ONTHRONE 4
+#define MASS_MURDER 8
 void
 do_genocide(how)
 int how;
@@ -1930,12 +3547,14 @@ int how;
 /* 1 = normal genocide */
 /* 3 = forced genocide of player */
 /* 5 (4 | 1) = normal genocide from throne */
+/* x|8 = mass murder; no genocide */
 {
-	char buf[BUFSZ];
+	char buf[BUFSZ],bx[BUFSZ];
 	register int	i, killplayer = 0;
 	register int mndx;
 	register struct permonst *ptr;
 	const char *which;
+	struct monst *mtmp, *mtmp2;
 
 	if (how & PLAYER) {
 		mndx = u.umonster;	/* non-polymorphed mon num */
@@ -1948,8 +3567,8 @@ int how;
 		    pline(thats_enough_tries);
 		    return;
 		}
-		getlin("What monster do you want to genocide? [type the name]",
-			buf);
+		sprintf(bx,"What monster do you want to %s? [type the name]",(how & MASS_MURDER) ? "mass murder" : "genocide");
+		getlin(bx,buf);
 		(void)mungspaces(buf);
 		/* choosing "none" preserves genocideless conduct */
 		if (!strcmpi(buf, "none") || !strcmpi(buf, "nothing")) {
@@ -2009,9 +3628,21 @@ int how;
 	    if ((ptr->geno & G_UNIQ) && ptr != &mons[PM_HIGH_PRIEST])
 		which = !type_is_pname(ptr) ? "the " : "";
 	}
+	/*if (how & MASS_MURDER) {	    kill_genocided_monsters();
+	    reset_rndmonst(mndx);
+	    update_inventory();
+	}*/
 	if (how & REALLY) {
 	    /* setting no-corpse affects wishing and random tin generation */
-	    mvitals[mndx].mvflags |= (G_GENOD | G_NOCORPSE);
+	    if (!(how & MASS_MURDER)) mvitals[mndx].mvflags |= (G_GENOD | G_NOCORPSE);
+
+		if (how & MASS_MURDER) {
+	  	    for(mtmp = fmon; mtmp; mtmp = mtmp2) {
+	  		mtmp2 = mtmp->nmon;
+	  		if(mtmp->data == ptr) 		    mondead(mtmp);
+			}
+		}
+
 	    pline("Wiped out %s%s.", which,
 		  (*which != 'a') ? buf : makeplural(buf));
 
@@ -2072,16 +3703,58 @@ int how;
 	}
 }
 
+void undo_genocide(void)
+{
+	int i;
+	char buf[BUFSZ];
+	int mn;
+
+	for (i=0;i<5;i++) {
+		if (i >= 5) {
+			pline(thats_enough_tries);
+			return;
+		}
+		getlin("Which monster do you want to ungenocide [type the name]",buf);
+		mn = name_to_mon(buf);
+		if (mn == -1) {
+			pline("Such creatures do not exist in this world.");
+			continue;
+		}
+		if (!(/*mons[mn].geno*/mvitals[mn].mvflags & G_GENOD)) {
+
+			pline("This creature has not been genocided.");
+			continue;
+		}
+		if (mn == PM_UNGENOMOLD) {
+
+			pline("For some reason, you cannot ungenocide this species!");
+			continue;
+		}
+
+		/*mons[mn].geno*/mvitals[mn].mvflags &= ~G_GENOD;
+		pline("The race of %s now exist again.",makeplural(buf));
+		break;
+	}
+}
+
 void
 punish(sobj)
 register struct obj	*sobj;
 {
+
+#ifdef CONVICT
+    struct obj *otmp;
+#endif /* CONVICT */
 	/* KMH -- Punishment is still okay when you are riding */
 	/* KMH -- Punishment is still okay when you are riding */
 	You("are being punished for your misbehavior!");
+
+	if (Is_waterlevel(&u.uz)) return; /* otherwise it crashes for some weird reason --Amy */
+
+
 	if(Punished){
 		Your("iron ball gets heavier.");
-		uball->owt += 160 * (1 + sobj->cursed);
+		uball->owt += 300 * (1 + sobj->cursed); /*ball weight increases by 300 now --Amy*/
 		return;
 	}
 	if (amorphous(youmonst.data) || is_whirly(youmonst.data) || unsolid(youmonst.data)) {
@@ -2090,7 +3763,64 @@ register struct obj	*sobj;
 		return;
 	}
 	setworn(mkobj(CHAIN_CLASS, TRUE), W_CHAIN);
+#ifdef CONVICT
+    if (((otmp = carrying(HEAVY_IRON_BALL)) != 0) &&(otmp->oartifact ==
+     ART_IRON_BALL_OF_LIBERATION)) {
+        setworn(otmp, W_BALL);
+        Your("%s chains itself to you!", xname(otmp));
+    } else {
 	setworn(mkobj(BALL_CLASS, TRUE), W_BALL);
+    }
+#else
+	setworn(mkobj(BALL_CLASS, TRUE), W_BALL);
+#endif /* CONVICT */
+	uball->spe = 1;		/* special ball (see save) */
+
+	/*
+	 *  Place ball & chain if not swallowed.  If swallowed, the ball &
+	 *  chain variables will be set at the next call to placebc().
+	 */
+	if (!u.uswallow) {
+	    placebc();
+	    if (Blind) set_bc(1);	/* set up ball and chain variables */
+	    newsym(u.ux,u.uy);		/* see ball&chain if can't see self */
+	}
+}
+
+void
+punishx()
+{
+
+#ifdef CONVICT
+    struct obj *otmp;
+#endif /* CONVICT */
+	/* KMH -- Punishment is still okay when you are riding */
+	You("are being punished for your misbehavior!");
+
+	if (Is_waterlevel(&u.uz)) return; /* otherwise it crashes for some weird reason --Amy */
+
+	if(Punished){
+		Your("iron ball gets heavier.");
+		uball->owt += 300;
+		return;
+	}
+	if (amorphous(youmonst.data) || is_whirly(youmonst.data) || unsolid(youmonst.data)) {
+		pline("A ball and chain appears, then falls away.");
+		dropy(mkobj(BALL_CLASS, TRUE));
+		return;
+	}
+	setworn(mkobj(CHAIN_CLASS, TRUE), W_CHAIN);
+#ifdef CONVICT
+    if (((otmp = carrying(HEAVY_IRON_BALL)) != 0) &&(otmp->oartifact ==
+     ART_IRON_BALL_OF_LIBERATION)) {
+        setworn(otmp, W_BALL);
+        Your("%s chains itself to you!", xname(otmp));
+    } else {
+	setworn(mkobj(BALL_CLASS, TRUE), W_BALL);
+    }
+#else
+	setworn(mkobj(BALL_CLASS, TRUE), W_BALL);
+#endif /* CONVICT */
 	uball->spe = 1;		/* special ball (see save) */
 
 	/*
@@ -2115,6 +3845,8 @@ unpunish()
 	dealloc_obj(savechain);
 	uball->spe = 0;
 	setworn((struct obj *)0, W_BALL);
+	if (!rn2(5)) mkobj_at(CHAIN_CLASS, u.ux, u.uy, FALSE); /* maybe make a chain, since the original one disappeared --Amy */
+
 }
 
 /* some creatures have special data structures that only make sense in their

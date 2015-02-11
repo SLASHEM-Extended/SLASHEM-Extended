@@ -19,6 +19,7 @@ static char *FDECL(You_buf, (int));
 /* Note that these declarations rely on knowledge of the internals
  * of the variable argument handling stuff in "tradstdc.h"
  */
+char * FDECL(replace, (const char *, const char *, const char *));
 
 #if defined(USE_STDARG) || defined(USE_VARARGS)
 static void FDECL(vpline, (const char *, va_list));
@@ -51,10 +52,105 @@ pline VA_DECL(const char *, line)
 /* Do NOT use VA_START and VA_END in here... see above */
 
 	if (!line || !*line) return;
+
+	if (MemoryLoss && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
+
+/* buildfix by EternalEye: sinfo.exiting only exists on win32 */
+#if defined(WIN32)
+&& !program_state.exiting
+#endif
+
+) line = "Warning: Low Local Memory. Freeing description strings.";
+
 	if (index(line, '%')) {
 	    Vsprintf(pbuf,line,VA_ARGS);
 	    line = pbuf;
 	}
+
+/*Intercept direct speach, inpossible() and very short or long Strings here*/
+/* to cut down unnecesary calls to the now slower replace */
+/* other checks like read must be done dynamically because */
+/* they depent on position -CK */
+/* right : Ye read "Here lies ..."
+   wrong : You read "Here lies ..."
+   wrong : Ye read "'er lies ..." */
+        if( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) ) &&(*line!='"')&&(strlen(line)<(BUFSZ-5))
+             &&(!program_state.in_impossible)
+             &&(strlen(line)>9)){
+                /* >9: "You die ..." but not "It hits." */
+		line = replace(line,"You","Ye");
+		line = replace(line,"you","ye");
+		line = replace(line,"His","'is");
+		line = replace(line," his"," 'is");
+		line = replace(line,"Her","'er");
+		line = replace(line," her"," 'er");
+		line = replace(line,"Are","Be");
+		line = replace(line," are"," be");
+		line = replace(line,"Is ","Be");
+		line = replace(line," is "," be ");
+		line = replace(line," is."," be.");
+		line = replace(line," is,"," be,");
+		if (Role_if(PM_KORSAIR)) { /* words beginning with a c will begin with a k for korsairs --Amy */
+		line = replace(line,"C","K");
+		line = replace(line," c"," k");
+		line = replace(line,"(c","(k");
+		}
+		line = replace(line,"Is ","Be ");
+		line = replace(line,"Of ","O' ");
+		line = replace(line," of "," o' ");
+		line = replace(line,"Of.","O'.");
+		line = replace(line," of."," o'.");
+		line = replace(line,"Of,","O',");
+		line = replace(line," of,"," o',");
+		line = replace(line," ear"," lug");
+		line = replace(line,"Ear","Lug");
+		line = replace(line,"eye","deadlight");
+		line = replace(line,"Eye","Deadlight");
+                /* If orkmid isn't contained, save some time -CK */
+                if(strstr(line,"orkmid") )
+                {
+                 line = replace(line,"zorkmids ","doubloons ");
+                 line = replace(line,"Zorkmids ","Doubloons ");
+                 line = replace(line,"zorkmids.","doubloons.");
+                 line = replace(line,"Zorkmids.","Doubloons.");
+                 line = replace(line,"zorkmids,","doubloons,");
+                 line = replace(line,"Zorkmids,","Doubloons,");
+                 line = replace(line,"zorkmids)","doubloons)");
+                 line = replace(line,"Zorkmids)","Doubloons)");
+                 line = replace(line,"zorkmid ","doubloon ");
+                 line = replace(line,"Zorkmid ","Doubloon ");
+                 line = replace(line,"zorkmid.","doubloon.");
+                 line = replace(line,"Zorkmid.","Doubloon.");
+                 line = replace(line,"zorkmid,","doubloon,");
+                 line = replace(line,"Zorkmid,","Doubloon,");
+                 line = replace(line,"zorkmid)","doubloon)");
+                 line = replace(line,"Zorkmid)","Doubloon)");
+                } /* endif orkmid */
+                /* If old coin isn't contained, save some time -CK */
+                if(strstr(line,"old coin") )
+                {
+                 line = replace(line,"gold coins","pieces of eight");
+                 line = replace(line,"Gold coins","Pieces of eight");
+                 line = replace(line,"gold coin","piece of eight");
+                 line = replace(line,"Gold coin","Piece of eight");
+                }
+                /* If old piece isn't contained, save some time -CK */
+                if(strstr(line,"old piece") )
+                {
+                 line = replace(line,"gold pieces.","pieces of eight");
+                 line = replace(line,"Gold pieces.","Pieces of eight");
+                 line = replace(line,"gold pieces,","pieces of eight");
+                 line = replace(line,"Gold pieces,","Pieces of eight");
+                 line = replace(line,"gold pieces ","pieces of eight");
+                 line = replace(line,"Gold pieces ","Pieces of eight");
+                 line = replace(line,"gold piece.","piece of eight");
+                 line = replace(line,"Gold piece.","Piece of eight");
+                 line = replace(line,"gold piece,","piece of eight");
+                 line = replace(line,"Gold piece,","Piece of eight");
+                 line = replace(line,"gold piece ","piece of eight");
+                 line = replace(line,"Gold piece ","Piece of eight");
+                } /* endif old piece */
+        }  /* endif role_if(PM_PIRATE),etc. */
 	if (!iflags.window_inited) {
 	    raw_print(line);
 	    return;
@@ -257,7 +353,7 @@ impossible VA_DECL(const char *, s)
 	    paniclog("impossible", pbuf);
 	}
 	vpline(s,VA_ARGS);
-	pline("Program in disorder - perhaps you'd better #quit.");
+	pline("Program in disorder. Please inform Amy (Bluescreenofdeath at nethackwiki) about this bug.");
 	program_state.in_impossible = 0;
 	VA_END();
 }
@@ -297,8 +393,8 @@ register struct monst *mtmp;
 	    if (wizard) {
 		Sprintf(eos(info), " (%d", mtmp->mtame);
 		if (!mtmp->isminion)
-		    Sprintf(eos(info), "; hungry %ld; apport %d",
-			EDOG(mtmp)->hungrytime, EDOG(mtmp)->apport);
+		    Sprintf(eos(info), "; hungry %ld; apport %d; abuse %d",
+			EDOG(mtmp)->hungrytime, EDOG(mtmp)->apport, EDOG(mtmp)->abuse);
 		Strcat(info, ")");
 	    }
 #endif
@@ -326,6 +422,86 @@ register struct monst *mtmp;
 #ifdef WIZARD
 	    if (wizard)		  Sprintf(eos(info), " (%d)", mtmp->mfleetim);
 #endif
+	}
+	if (mtmp->mtrapped)	  Strcat(info, ", trapped");
+	if (mtmp->mspeed)	  Strcat(info,
+					mtmp->mspeed == MFAST ? ", fast" :
+					mtmp->mspeed == MSLOW ? ", slow" :
+					", ???? speed");
+	if (mtmp->mundetected)	  Strcat(info, ", concealed");
+	if (mtmp->minvis)	  Strcat(info, ", invisible");
+	if (mtmp == u.ustuck)	  Strcat(info,
+			(sticks(youmonst.data)) ? ", held by you" :
+				u.uswallow ? (is_animal(u.ustuck->data) ?
+				", swallowed you" :
+				", engulfed you") :
+				", holding you");
+#ifdef STEED
+	if (mtmp == u.usteed)	  Strcat(info, ", carrying you");
+#endif
+
+	/* avoid "Status of the invisible newt ..., invisible" */
+	/* and unlike a normal mon_nam, use "saddled" even if it has a name */
+	Strcpy(monnambuf, x_monnam(mtmp, ARTICLE_THE, (char *)0,
+	    (SUPPRESS_IT|SUPPRESS_INVISIBLE), FALSE));
+
+	pline("Status of %s (%s):  Level %d  HP %d(%d)  Pw %d(%d)  AC %d%s.",
+		monnambuf,
+		align_str(alignment),
+		mtmp->m_lev,
+		mtmp->mhp,
+		mtmp->mhpmax,
+		mtmp->m_en,
+		mtmp->m_enmax,
+		find_mac(mtmp),
+		info);
+}
+
+void
+mstatuslinebl(mtmp) /*for blessed stethoscope --Amy*/
+register struct monst *mtmp;
+{
+	aligntyp alignment;
+	char info[BUFSZ], monnambuf[BUFSZ];
+
+	if (mtmp->ispriest || mtmp->data == &mons[PM_ALIGNED_PRIEST]
+				|| mtmp->data == &mons[PM_ANGEL])
+		alignment = EPRI(mtmp)->shralign;
+	else
+		alignment = mtmp->data->maligntyp;
+	alignment = (alignment > 0) ? A_LAWFUL :
+		(alignment < 0) ? A_CHAOTIC :
+		A_NEUTRAL;
+
+	info[0] = 0;
+	if (mtmp->mtame) {	  Strcat(info, ", tame");
+		Sprintf(eos(info), " (%d", mtmp->mtame);
+		if (!mtmp->isminion)
+		    Sprintf(eos(info), "; hungry %ld; apport %d",
+			EDOG(mtmp)->hungrytime, EDOG(mtmp)->apport);
+		Strcat(info, ")");
+	}
+	else if (mtmp->mpeaceful) Strcat(info, ", peaceful");
+	else if (mtmp->mtraitor)  Strcat(info, ", traitor");
+	if (mtmp->meating)	  Strcat(info, ", eating");
+	if (mtmp->mcan)		  Strcat(info, ", cancelled");
+	if (mtmp->mconf)	  Strcat(info, ", confused");
+	if (mtmp->mblinded || !mtmp->mcansee)
+				  Strcat(info, ", blind");
+	if (mtmp->mstun)	  Strcat(info, ", stunned");
+	if (mtmp->msleeping)	  Strcat(info, ", asleep");
+#if 0	/* unfortunately mfrozen covers temporary sleep and being busy
+	   (donning armor, for instance) as well as paralysis */
+	else if (mtmp->mfrozen)	  Strcat(info, ", paralyzed");
+#else
+	else if (mtmp->mfrozen || !mtmp->mcanmove)
+				  Strcat(info, ", can't move");
+#endif
+				  /* [arbitrary reason why it isn't moving] */
+	else if (mtmp->mstrategy & STRAT_WAITMASK)
+				  Strcat(info, ", meditating");
+	else if (mtmp->mflee) {	  Strcat(info, ", scared");
+	    Sprintf(eos(info), " (%d)", mtmp->mfleetim);
 	}
 	if (mtmp->mtrapped)	  Strcat(info, ", trapped");
 	if (mtmp->mspeed)	  Strcat(info,
@@ -392,6 +568,10 @@ ustatusline()
 	    }	/* note: "goop" == "glop"; variation is intentional */
 	}
 	if (Stunned)		Strcat(info, ", stunned");
+	if (Numbed)		Strcat(info, ", numbed");
+	if (Feared)		Strcat(info, ", stricken with fear");
+	if (Frozen)		Strcat(info, ", frozen solid");
+	if (Burned)		Strcat(info, ", burned");
 #ifdef STEED
 	if (!u.usteed)
 #endif
@@ -401,7 +581,7 @@ ustatusline()
 		what = makeplural(what);
 				Sprintf(eos(info), ", injured %s", what);
 	}
-	if (Glib)		Sprintf(eos(info), ", slippery %s",
+	if (IsGlib)		Sprintf(eos(info), ", slippery %s",
 					makeplural(body_part(HAND)));
 	if (u.utrap)		Strcat(info, ", trapped");
 	if (Fast)		Strcat(info, Very_fast ?
@@ -439,11 +619,115 @@ ustatusline()
 void
 self_invis_message()
 {
+	if(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) ){
+	pline("%s %s.",
+	    Hallucination ? "Arr, Matey!  Ye" : "Avast!  All of a sudden, ye",
+	    See_invisible ? "can see right through yerself" :
+		"can't see yerself");
+	}
+	else{
 	pline("%s %s.",
 	    Hallucination ? "Far out, man!  You" : "Gee!  All of a sudden, you",
 	    See_invisible ? "can see right through yourself" :
 		"can't see yourself");
+	}
+}
+
+/* replace() from CK */
+
+/*Consecutive calls to replace would result in strings copied onto itselves*/
+/*So we alternate between two buffers*/
+char            replace_buffer[BUFSZ*2]; /* two buffers */
+unsigned int    flipflop=0;              /* which one ? */
+/* flipflop must be unsigned int (not int or boolean) to act as senitel */
+/* If it wrote beyond the end of buffer, flipflop is >1 ... */
+/* ... then you can panic */
+
+char *replace(st, orig, repl)
+const char *st, *orig, *repl;
+{
+        char *buffer;
+	char *ch;
+        char *tmp;
+        int i;  
+
+        /* Direct speach ? (cheapest test, and only once ) */
+        /*"Thou art doomed, scapegrace!" */
+        /*"Who do you think you are, War?" */
+        /*"Hello Dudley. Welcome to Delphi."*/
+        if( (*st)== '"' ) return st;
+
+        /* at most 20 times we replace the word to prevent infinite loops */
+        i=20;
+REPEAT:
+        /*Most calls won't match, so do the match first.*/
+	if (!(ch = strstr(st, orig)))
+		return st;
+
+        /* You read "eyelbereth" */
+        if( (tmp = strstr(st,"read")) && (tmp<ch) ) return st;
+
+        /* A cursed rusty iron chain named Eye Pod */
+        if( (tmp = strstr(st,"named")) && (tmp<ch) ) return st;
+
+        /* A raven called Hugin - Eye of Odin */
+        if( (tmp = strstr(st,"called")) && (tmp<ch) ) return st;
+
+        /* A tiger eye ring (that is called tiger eye in inventory) */
+        if( !strcmp(orig,"eye") && strstr(st,"tiger") ) return st;
+
+        /* The Eye of the Aethiopica, The Eyes of the Overworld */
+        if( !strcmp(orig,"Eye") && (
+            strstr(ch,"Aethiopica") ||
+            strstr(ch,"Overworld")
+          )) return st;
+
+	/* note by Amy - I think the Deadlight of the Aethiopica sounds funny... */
+
+        /* Check if it will fit into the buffer */
+        /* 2 is enough, but 5 is safer */
+        /* Should be rare enough to come late */
+        if( ( strlen(st)+strlen(repl)-strlen(orig)+5 )>BUFSZ ) return st;
+
+/*Quote beginning in the middle of the string */
+/*The voice of Moloch booms out "So, mortal!  You dare desecrate my High Temple!"*/
+/* voice o' Moloch, but not Ye dare */
+/* rare enough, to come last */
+        if( (tmp=strstr(st,"\"")) && (tmp<ch) ) return st;
+
+        /* Don't convert disorder messages into pirate slang ! */
+        /* Nested calls of impossible() call panic(). */
+        if(program_state.in_impossible) return st;
+
+        /* get a buffer */
+        buffer = &replace_buffer[(flipflop^=1)?BUFSZ:0];
+
+        /* If it is the same buffer, something went wrong. */
+        /* This may happen if you work with two strings at the same time */
+        /* and make intersecting calls to replace */
+        if(buffer==st)
+        {
+         /* Assert a disorder if in wizard mode */
+         /* otherwise do it silently */
+         if(wizard)
+           impossible("Intersecting calls to replace() in pline.c !");
+         return st;
+        }
+
+        strncpy(buffer, st, ch-st);  
+	buffer[ch-st] = 0;
+        sprintf(buffer+(ch-st), "%s%s", repl, ch+strlen(orig));
+
+        /* we don't know how much data was destroyed, so assume the worst */
+        if(flipflop>1)
+          panic("Memory leak in replace() !");
+
+        st=buffer;
+        if(i--) goto REPEAT;
+        return st;
 }
 
 #endif /* OVLB */
 /*pline.c*/
+
+

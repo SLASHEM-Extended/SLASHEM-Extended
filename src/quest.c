@@ -189,7 +189,7 @@ struct obj *obj;	/* quest artifact; possibly null if carrying Amulet */
 	    /* should have obtained bell during quest;
 	       if not, suggest returning for it now */
 	    if ((otmp = carrying(BELL_OF_OPENING)) == 0)
-		com_pager(5);
+		/*com_pager(5)*/qt_pager(QT_SILVERBELL); /* have individual messages for certain classes --Amy */
 	}
 	Qstat(got_thanks) = TRUE;
 
@@ -239,7 +239,8 @@ chat_with_leader()
 	    qt_pager(QT_FIRSTLEADER);
 	    Qstat(met_leader) = TRUE;
 	    Qstat(not_ready) = 0;
-	  } else qt_pager(QT_NEXTLEADER);
+	  } else if (Qstat(not_ready) < MAX_QUEST_TRIES - 1) qt_pager(QT_NEXTLEADER);
+		else qt_pager(QT_OTHERLEADER);
 	  /* the quest leader might have passed through the portal into
 	     the regular dungeon; none of the remaining make sense there */
 	  if (!on_level(&u.uz, &qstart_level)) return;
@@ -249,13 +250,16 @@ chat_with_leader()
 	    exercise(A_WIS, TRUE);
 	    expulsion(FALSE);
 	  } else if(is_pure(TRUE) < 0) {
-	    com_pager(QT_BANISHED);
-	    expulsion(TRUE);
+	    /*com_pager(QT_BANISHED);*/
+	    qt_pager(QT_HERETIC); /* gotta have realistic dialogue for all quest leaders! --Amy */
+	    /* expulsion(TRUE); */
+	    /* expulsion(FALSE); */ /* prevent infinite loops for converted heroes */
 	  } else if(is_pure(TRUE) == 0) {
 	    qt_pager(QT_BADALIGN);
 	    if(Qstat(not_ready) == MAX_QUEST_TRIES) {
 	      qt_pager(QT_LASTLEADER);
-	      expulsion(TRUE);
+	      /* expulsion(TRUE); */
+	      expulsion(FALSE);
 	    } else {
 	      Qstat(not_ready)++;
 	      exercise(A_WIS, TRUE);
@@ -283,8 +287,9 @@ leader_speaks(mtmp)
 	if (!on_level(&u.uz, &qstart_level)) return;
 
 	if(Qstat(pissed_off)) {
-	  qt_pager(QT_LASTLEADER);
-	  expulsion(TRUE);
+	  qt_pager(QT_LASTLEADER); /* remove expulsion to prevent infinite loops --Amy */
+	  /* expulsion(TRUE); */ /* since the quest cannot be sealed anymore to prevent the game from */
+	  /* expulsion(FALSE); */ /* becoming unwinnable - whoever had that stupid idea anyway?! */
 	} else chat_with_leader();
 }
 
@@ -301,7 +306,7 @@ nemesis_speaks()
 {
 	if(!Qstat(in_battle)) {
 	  if(u.uhave.questart) qt_pager(QT_NEMWANTSIT);
-	  else if(Qstat(made_goal) == 1 || !Qstat(met_nemesis))
+	  else if(Qstat(made_goal) == 1 || !Qstat(met_nemesis)) 
 	      qt_pager(QT_FIRSTNEMESIS);
 	  else if(Qstat(made_goal) < 4) qt_pager(QT_NEXTNEMESIS);
 	  else if(Qstat(made_goal) < 7) qt_pager(QT_OTHERNEMESIS);

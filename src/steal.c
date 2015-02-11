@@ -58,7 +58,9 @@ register struct monst *mtmp;
 	} else if(u.ugold) {
 	    u.ugold -= (tmp = somegold());
 	    Your("purse feels lighter.");
-	    mtmp->mgold += tmp;
+	    if ( !metallivorous(mtmp->data) && rn2(20) )
+		mtmp->mgold += tmp;
+/* Gold bugs are metallivores, so they're supposed to EAT the gold they steal. --Amy */
 	if (!tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
 	    mtmp->mavenge = 1;
 	    monflee(mtmp, 0, FALSE, FALSE);
@@ -159,7 +161,7 @@ stealarm()
 			    subfrombill(otmp, shop_keeper(*u.ushops));
 			freeinv(otmp);
 			pline("%s steals %s!", Monnam(mtmp), doname(otmp));
-			(void) mpickobj(mtmp,otmp);	/* may free otmp */
+	if (rn2(1000) && !(metallivorous(mtmp->data) && is_metallic(otmp) && !rn2(10) ) && !(lithivorous(mtmp->data) && is_lithic(otmp) && !rn2(10) ) ) (void) mpickobj(mtmp,otmp);	/* may free otmp */
 			/* Implies seduction, "you gladly hand over ..."
 			   so we don't set mavenge bit here. */
 			monflee(mtmp, 0, FALSE, FALSE);
@@ -241,7 +243,7 @@ char *objnambuf;
 
 	if (objnambuf) *objnambuf = '\0';
 	/* the following is true if successful on first of two attacks. */
-	if(!monnear(mtmp, u.ux, u.uy)) return(0);
+	/*if(!monnear(mtmp, u.ux, u.uy)) return(0);*/
 
 	/* food being eaten might already be used up but will not have
 	   been removed from inventory yet; we don't want to steal that,
@@ -303,6 +305,12 @@ nothing_to_steal:
 	else if(otmp == uarmu && uarmc) otmp = uarmc;
 	else if(otmp == uarmu && uarm) otmp = uarm;
 #endif
+
+	if ( (rnd(50) < ACURR(A_CHA)) && (otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL))) {
+		pline("%s tries to take off your %s, but you resist!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), equipname(otmp));
+		return(0);
+	}
+
 gotobj:
 	if(otmp->o_id == stealoid) return(0);
 
@@ -356,13 +364,13 @@ gotobj:
 		    armordelay = objects[otmp->otyp].oc_delay;
 		    /* Stop putting on armor which has been stolen. */
 		    if (donning(otmp) || is_animal(mtmp->data)) {
-			remove_worn_item(otmp, TRUE);
+		      remove_worn_item(otmp, TRUE);
 			break;
 		    } else if (monkey_business) {
 			/* animals usually don't have enough patience
 			   to take off items which require extra time */
 			if (armordelay >= 1 && rn2(10)) goto cant_take;
-			remove_worn_item(otmp, TRUE);
+		      remove_worn_item(otmp, TRUE);
 			break;
 		    } else {
 			int curssv = otmp->cursed;
@@ -391,12 +399,15 @@ gotobj:
 				  equipname(otmp));
 			}
 			else
-			    pline("%s seduces you and %s off your %s.",
+			    {pline("%s seduces you and %s off your %s.",
 				  !seen ? pronoun : Adjmonnam(mtmp,
 				  mtmp->female ? "beautiful" : "handsome"),
 				  curssv ? "helps you to take" :
 				  slowly ? "you start taking" : "you take",
 				  equipname(otmp));
+				if (mtmp->female) (void) adjattrib(A_CHA, -1, FALSE);
+				if (!mtmp->female) (void) adjattrib(A_WIS, -1, FALSE);
+				}
 			named++;
 			/* the following is to set multi for later on */
 			nomul(-armordelay);
@@ -435,8 +446,8 @@ gotobj:
 	pline("%s stole %s.", named ? "It" : Monnam(mtmp), doname(otmp));
 	could_petrify = (otmp->otyp == CORPSE &&
 			 touch_petrifies(&mons[otmp->corpsenm]));
-	(void) mpickobj(mtmp,otmp);	/* may free otmp */
-	if (could_petrify && !(mtmp->misc_worn_check & W_ARMG)) {
+	if (rn2(1000) && !(metallivorous(mtmp->data) && is_metallic(otmp) && !rn2(10) ) && !(lithivorous(mtmp->data) && is_lithic(otmp) && !rn2(10) ) ) (void) mpickobj(mtmp,otmp);	/* may free otmp */
+	if (could_petrify && !(mtmp->misc_worn_check & W_ARMG) && !rn2(4)) {
 	    minstapetrify(mtmp, TRUE);
 	    return -1;
 	}
@@ -625,11 +636,14 @@ boolean is_pet;		/* If true, pet should keep wielded/worn items */
 				continue;
 			}
 		}
-		mdrop_obj(mtmp, otmp, is_pet && flags.verbose);
+
+		/* reduce amount of musable items the player can use --Amy */
+		if (is_musable(otmp) && rn2(2) && !is_pet) delobj(otmp);
+		else mdrop_obj(mtmp, otmp, is_pet && flags.verbose);
 	}
 
 	/* put kept objects back */
-	while ((otmp = keepobj) != (struct obj *)0) {
+	while (otmp && (otmp = keepobj) != (struct obj *)0) {
 	    keepobj = otmp->nobj;
 	    (void) add_to_minv(mtmp, otmp);
 	}

@@ -366,6 +366,7 @@ CONTAINER:'`',"statue",(16,10),"harpy",0
 
 # throneroom
 MONSTER:'o',"Grund the Orc King",(02,10),hostile
+OBJECT:'?',"root password detection",(02,10)
 OBJECT:'/',random,(02,10)
 OBJECT:'"',random,(02,10)
 OBJECT:'[',random,(02,10)
@@ -396,7 +397,7 @@ MONSTER:'M',"orc mummy",(08,15),asleep,hostile
 MONSTER:'Z',"skeleton",(11,01),random
 MONSTER[40%]:'@',"nurse",(12,02),peaceful
 MONSTER[10%]:'@',"gypsy",(12,18),peaceful
-MONSTER:' ',"ghost",(11,19),peaceful
+MONSTER:'8',"ghost",(11,19),peaceful
 OBJECT:'%',"corpse",(11,19),"human",0
 
 # treasury
@@ -867,6 +868,7 @@ CONTAINER:'`',"statue",(16,10),"harpy",0
 
 # throneroom
 MONSTER:'o',"Grund the Orc King",(02,10),hostile
+OBJECT:'?',"root password detection",(02,10)
 OBJECT:'/',random,(02,10)
 OBJECT:'"',random,(02,10)
 OBJECT:'[',random,(02,10)
@@ -897,7 +899,7 @@ MONSTER:'M',"orc mummy",(08,15),asleep,hostile
 MONSTER:'Z',"skeleton",(11,01),random
 MONSTER[40%]:'@',"nurse",(12,02),peaceful
 MONSTER[10%]:'@',"gypsy",(12,18),peaceful
-MONSTER:' ',"ghost",(11,19),peaceful
+MONSTER:'8',"ghost",(11,19),peaceful
 OBJECT:'%',"corpse",(11,19),"human",0
 
 # treasury
@@ -1368,6 +1370,7 @@ CONTAINER:'`',"statue",(16,10),"harpy",0
 
 # throneroom
 MONSTER:'o',"Grund the Orc King",(02,10),hostile
+OBJECT:'?',"root password detection",(02,10)
 OBJECT:'/',random,(02,10)
 OBJECT:'"',random,(02,10)
 OBJECT:'[',random,(02,10)
@@ -1398,7 +1401,7 @@ MONSTER:'M',"orc mummy",(08,15),asleep,hostile
 MONSTER:'Z',"skeleton",(11,01),random
 MONSTER[40%]:'@',"nurse",(12,02),peaceful
 MONSTER[10%]:'@',"gypsy",(12,18),peaceful
-MONSTER:' ',"ghost",(11,19),peaceful
+MONSTER:'8',"ghost",(11,19),peaceful
 OBJECT:'%',"corpse",(11,19),"human",0
 
 # treasury

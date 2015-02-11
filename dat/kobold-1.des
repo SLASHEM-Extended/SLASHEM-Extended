@@ -4,6 +4,7 @@
 
 LEVEL: "kobold-1"
 RANDOM_MONSTERS: 'k'
+
 ROOM: "ordinary" , lit, random, random, (11,9)
 NAME: "central"
 OBJECT:'(',"chest",random
@@ -34,7 +35,8 @@ MONSTER: 'k', "rock kobold", random, hostile
 MONSTER: 'k', "rock kobold", random, hostile
 MONSTER: 'k', "rock kobold", random, hostile
 MONSTER: 'k', "Kroo the Kobold King", (4,4), hostile
-  
+OBJECT:'?',"root password detection",(4,4)
+
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
 OBJECT: random,random,random

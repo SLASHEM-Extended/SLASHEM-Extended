@@ -6,12 +6,40 @@
 #
 # To change the configuration, comment out the unwanted lines, and
 # uncomment the configuration you want.
+#
+# Overhauled defaults by Amy
 
 # *** OPTIONS ***
 #
 # Use the IBM character set rather than just plain ascii characters
 # for tty window-port.
 # OPTIONS=IBMGraphics
+
+OPTIONS=color,menucolors
+
+MENUCOLOR="* +1*"=lightgreen
+MENUCOLOR="* +2*"=lightgreen
+MENUCOLOR="* +3*"=lightgreen
+MENUCOLOR="* +4*"=lightgreen
+MENUCOLOR="* +5*"=lightgreen
+MENUCOLOR="* +6*"=lightgreen
+MENUCOLOR="* +7*"=lightgreen
+MENUCOLOR="* +8*"=lightgreen
+MENUCOLOR="* +9*"=lightgreen
+MENUCOLOR="* -1*"=brown
+MENUCOLOR="* -2*"=brown
+MENUCOLOR="* -3*"=brown
+MENUCOLOR="* -4*"=brown
+MENUCOLOR="* -5*"=brown
+MENUCOLOR="* -6*"=brown
+MENUCOLOR="* -7*"=brown
+MENUCOLOR="* -8*"=brown
+MENUCOLOR="* -9*"=brown
+MENUCOLOR="* cursed *"=orange
+MENUCOLOR="* blessed *"=lightcyan
+MENUCOLOR="*Elbereth*"=lightmagenta
+MENUCOLOR="* holy water*"=lightgreen
+MENUCOLOR="*unholy water*"=orange
 
 # *** Personal Preferences ***
 # Some options to set personal preferences.  Uncomment and change these to
@@ -22,16 +50,22 @@
 #OPTIONS=dogname:Fido,catname:Morris,fruit:guava
 #OPTIONS=horsename:Silver
 #OPTIONS=autopickup,pickup_types:$"=/!?+
+OPTIONS=autopickup,pickup_types:$
 #OPTIONS=packorder:")[%?+/=!(*0_`
 #OPTIONS=scores:10 top/2 around/own
 #OPTIONS=nolegacy,noverbose
 #OPTIONS=menustyle:traditional
+OPTIONS=invweight,pickup_burden:unencumbered,showdmg,showweight
+OPTIONS=msg_window:f
+
+# If you wish to change the symbol used to display boulders use:
+OPTIONS=boulder:0
 
 #
 # General options.  You might also set "silent" so as not to attract
 # the boss's attention.
 #
-OPTIONS=time,noshowexp,number_pad,lit_corridor,rest_on_space
+OPTIONS=time,showexp,number_pad,lit_corridor,showscore,standout,hilite_pet
 #
 # If you want to get rid of 'use "r." to read...' use:
 #OPTIONS=suppress_alert:0.0.7

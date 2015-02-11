@@ -1,0 +1,649 @@
+#	SCCS Id: @(#)Pirate.des	3.4	2002/04/08
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991-2 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#	
+#	Tortuga, The Turtle Island
+#	
+#	The "start" level for the quest.
+#	
+#	Here you meet your (besieged) class leader, Dread Pirate (ret.)
+#	and receive your quest assignment.
+#
+MAZE: "Jes-strt",' '
+FLAGS: noteleport,hardfloor
+
+GEOMETRY:center,center
+#0         1         2   	   3	     4		   5		 6	       7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0                                                                            
+1                                                                            
+2                                                                            
+3               ---- ---- ---- ---- ---- ---- ---- ----    F-F-       -F-F   
+4               -  | |  | |  | |  | |  | |  | |  | |  -    |..F-F-F-F-F..|   
+5               -  | |  | |  | |  | |  | |  | |  | -  |    F.............F   
+6               ---- ---- ---- ---- ---- ---- ---- ----    -|.FFFFFFFFF.F-   
+7                                                           |.F.......F.|    
+8        ----  -----                                        |.F.-F-F-.F.F    
+9        -  -  -   -                                        |.F.F...|---|    
+0        -  |  |   -                                        |.-.|...|...|    
+1        -------   |                                        |.F.F...|---|    
+2           -  -----                              -----     |.F.-F-F-.F.F    
+3           -   |     -----  -----  -----  -----  |   |     |.F.......F.|    
+4           |   |     |   |  |   |  |   |  |   |  |   |    --.FFFFFFFFF.F-   
+5           -----     |   |  |   |  |   |  |   |  |   |    F.............F   
+6                     |   |  |   |  |   |  |   |  |   |    |..F-F-F-F-F..|   
+7                     -----  -----  -----  -----  -----    F-F-       -F-F   
+8                                                                            
+9                                                                            
+0                                                                            
+ENDMAP
+# Monsters on siege duty.
+MONSTER: ';',"femme fatale",random,hostile
+MONSTER: ';',"femme fatale",random,hostile
+MONSTER: ';',"femme fatale",random,hostile
+MONSTER: ';',"femme fatale",random,hostile
+MONSTER: ';',"femme fatale",random,hostile
+MONSTER: ';',"femme fatale",random,hostile
+MONSTER: ';',"femme fatale",random,hostile
+MONSTER: ';',"femme fatale",random,hostile
+MONSTER: ';',"femme fatale",random,hostile
+MONSTER: ';',"femme fatale",random,hostile
+
+OBJECT:')',"crossbow",random
+OBJECT:')',"crossbow bolt",random
+OBJECT:')',"crossbow",random
+OBJECT:')',"crossbow bolt",random
+OBJECT:')',"crossbow",random
+OBJECT:')',"crossbow bolt",random
+OBJECT:')',"crossbow",random
+OBJECT:')',"crossbow bolt",random
+OBJECT:')',"crossbow",random
+OBJECT:')',"crossbow bolt",random
+OBJECT:')',"crossbow",random
+OBJECT:')',"crossbow bolt",random
+OBJECT:')',"crossbow",random
+OBJECT:')',"crossbow bolt",random
+OBJECT:')',"crossbow",random
+OBJECT:')',"crossbow bolt",random
+OBJECT:')',"crossbow",random
+OBJECT:')',"crossbow bolt",random
+OBJECT:')',"knife",random
+OBJECT:')',"knife",random
+OBJECT:')',"knife",random
+OBJECT:')',"knife",random
+OBJECT:')',"knife",random
+OBJECT:')',"spear",random
+OBJECT:')',"spear",random
+
+
+
+GEOMETRY:center,center
+#0         1         2   	   3	     4		   5		 6	       7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0                                                                            
+1                                                                            
+2              ......................................                        
+3            ....---.----.----.----.----.----.--.-.--.-    F-F-       -F-F   
+4           .......|.|  |.|  |.|  |.|  |.|  |.|..|.|....   |  F-F-F-F-F  |   
+5         .........|.|  |.|  |.|  |.|  |.|  |.|..|....|... F             F . 
+6        .......-..-.----.----.----.----.----.-.--.-..-... -| FFFFFFFFF F- . 
+7       ....................................................| F       F |  . 
+8       .-..-..-----....                              ......| F -F-F- F F  . 
+9      ...............                                  ....| F F   |---|  . 
+0     ......|..|.....                                    ...| + |   |   |....
+1      ..-.----....|..                                  ....| F F   |---|  . 
+2       .........---....                          -----.....| F -F-F- F F  . 
+3       ........|.....-----..-----..-----..-----..|   |.....| F       F |  . 
+4        ...|...|.....|   |..|   |..|   |..|...|..|   |... -- FFFFFFFFF F- . 
+5         ..-----.....|   |..|   |..|   |..|...|..|   |... F             F . 
+6           ..........|   |..|   |..|   |..|...|..|   |..  |  F-F-F-F-F  |   
+7            .........-----..-----..-----..-----..-----.   F-F-       -F-F   
+8              .......................................                       
+9                                                                            
+0                                                                            
+ENDMAP
+# Monsters on siege duty.
+MONSTER: ';',"femme fatale",random,hostile
+MONSTER: ';',"femme fatale",random,hostile
+MONSTER: ';',"femme fatale",random,hostile
+MONSTER: ';',"femme fatale",random,hostile
+MONSTER: ';',"crueltrainer",random,hostile
+MONSTER: ';',"crueltrainer",random,hostile
+MONSTER: ';',"crueltrainer",random,hostile
+MONSTER: ';',"crueltrainer",random,hostile
+MONSTER: ';',"crueltrainer",random,hostile
+MONSTER: ';',"crueltrainer",random,hostile
+MONSTER: ';',"crueltrainer",random,hostile
+MONSTER: ';',"crueltrainer",random,hostile
+MONSTER: ';',"crueltrainer",random,hostile
+MONSTER: ';',"crueltrainer",random,hostile
+MONSTER: ';',"crueltrainer",random,hostile
+
+
+GEOMETRY:center,center
+#0         1         2   	   3	     4		   5		 6	       7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+1}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+2}}}}}}}}}}}}}}......................................}}}}}}}}}}}}}}}}}}}}}}}}
+3}}}}}}}}}}}}...+---.----.----.----.----.----.--+-.--+-}}}}F-F-}}}}}}}-F-F}}}
+4}}}}}}}}}}}....+..|.|##|.|##|.|##|.|##|.|##|.|..|.|..+.}}}|..F-F-F-F-F..|}}}
+5}}}}}}}}}......+..|.|##|.|##|.|##|.|##|.|##|.|..|.+..|...}F.............F}.}
+6}}}}}}}}.......-++-.--+-.--+-.--+-.--+-.--+-.-+--.-++-...}-|.FFFFFFFFF.F-}.}
+7}}}}}}}....................................................|.F#######F.|}}.}
+8}}}}}}}.-++-..-----....                              ......|.F#-F+F-#F.F}}.}
+9}}}}}}..+..+..+...+..    .......................  ..   ....|.F#F...|---|}}.}
+0}}}}}...+..|..|...+.    .........................H...   ...|.+#|...+...+....
+1}}}}}}..-+----+...|..  H .......................  ..   ....|.F#F...|---|}}.}
+2}}}}}}}....+..++---....                          -----.....|.F#-F+F-#F.F}}.}
+3}}}}}}}....+...|.....-----..-----..-----..-----..|.|.|.....|.F#######F.|}}.}
+4}}}}}}}}...|...|.....|...|..|...|..|...|..|...|..|.|.|...}--.FFFFFFFFF.F-}.}
+5}}}}}}}}}..-----.....|...|..|...|..|...|..|...|..|+-+|...}F.............F}.}
+6}}}}}}}}}}}..........|...|..|...|..|...|..|...|..S...|..}}|..F-F-F-F-F..|}}}
+7}}}}}}}}}}}}.........-+---..-+---..-+---..-+---..-----.}}}F-F-}}}}}}}-F-F}}}
+8}}}}}}}}}}}}}}.......................................}}}}}}}}}}}}}}}}}}}}}}}
+9}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+0}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+ENDMAP
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+#0         1         2   	   3	     4		   5		 6	       7
+# Dungeon Description
+REGION:(00,00,75,20),lit,"ordinary"
+# Portal arrival point
+BRANCH:(05,00,58,20),(24,09,52,11)
+# Stairs
+STAIR:(65,10),down
+# Doors
+DOOR:closed,(22,06)
+DOOR:closed,(22,06)
+DOOR:closed,(27,06)
+DOOR:closed,(32,06)
+DOOR:closed,(37,06)
+DOOR:closed,(42,06)
+
+DOOR:locked,(67,10)
+DOOR:locked,(71,10)
+
+DOOR:closed,(22,17)
+DOOR:closed,(29,17)
+DOOR:closed,(36,17)
+DOOR:closed,(43,17)
+
+DOOR:locked,(49,16)
+DOOR:locked,(50,15)
+DOOR:locked,(52,15)
+
+# Shops
+REGION:(22,14,24,16),lit,"potion shop"
+OBJECT:'!',"booze",(22,14)
+OBJECT:'!',"booze",(23,14)
+OBJECT:'!',"booze",(24,14)
+OBJECT:'!',"booze",(24,15)
+OBJECT:'!',"booze",(23,15)
+OBJECT:'!',"booze",(22,15)
+OBJECT:'!',"booze",(23,16)
+OBJECT:'!',"booze",(24,16)
+REGION:(29,14,31,16),lit,"weapon shop"
+REGION:(36,14,38,16),lit,"weapon shop"
+REGION:(43,14,45,16),lit,"tool shop"
+MONSTER:'&',"succubus",(50,13),hostile
+OBJECT:'?',"scare monster",(50,14), cursed, 0
+MONSTER:'&',"incubus",(52,13),hostile
+OBJECT:'?',"scare monster",(52,14), cursed, 0
+
+# Dread Pirate (ret.)
+MONSTER:'@',"King Chester",(51,10)
+# The treasure of the Dread Pirate
+OBJECT:'(',"chest",(52,10)
+# Guards for the audience chamber
+MONSTER:'@',"unfortunate victim",(22,05)
+MONSTER:'@',"unfortunate victim",(27,05)
+MONSTER:'@',"unfortunate victim",(32,05)
+MONSTER:'@',"unfortunate victim",(37,05)
+MONSTER:'@',"unfortunate victim",(42,05)
+MONSTER:'@',"unfortunate victim",(27,09)
+MONSTER:'@',"unfortunate victim",(37,11)
+MONSTER:'@',"unfortunate victim",(47,10)
+# Eels and kraken added by Amy.
+MONSTER: ';',"giant eel",random,hostile
+MONSTER: ';',"giant eel",random,hostile
+MONSTER: ';',"giant eel",random,hostile
+MONSTER: ';',"giant eel",random,hostile
+MONSTER: ';',"kraken",random,hostile
+
+#Used Cannon Balls
+OBJECT:'0',"heavy iron ball",(13,15)
+OBJECT:'0',"heavy iron ball",(16,12)
+OBJECT:'0',"heavy iron ball",(21,09)
+OBJECT:'0',"heavy iron ball",(21,16)
+OBJECT:'0',"heavy iron ball",(45,08)
+OBJECT:'0',"heavy iron ball",(51,08)
+OBJECT:'0',"heavy iron ball",(52,08)
+
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,20)
+
+#
+#	Welcome to Shipwreck Island
+#	The "locate" level for the quest.
+#
+#	Here you make landfall on shipwreck island and 
+#	move inland towards the center of the island.
+#
+
+MAZE: "Jes-loca",' '
+FLAGS: lethe
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.............................
+..}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}..............................
+...}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}..............................
+..}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...............................
+.}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...............................
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.........0...................
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.}}}}}}...........................
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.........................
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.....................
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}..}}}}}}}}}}}}}}}}...................
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}..}}}..................
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.....}}}}}..}}}..................
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...........}}}}}}}}}.................
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}..............}}}}}}}}................
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}.................}}}}}}}.........0....
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.................0}}}}}}.............
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}................0..}}}}}.............
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}.....................}}}}}............
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}.....................}}}}}............
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.....................................
+
+ENDMAP
+
+STAIR:(34,15),up
+TELEPORT_REGION:levregion(60,00,64,20),(1,1,61,15),up
+
+OBJECT:'`',"boulder",(46,5)
+OBJECT:'`',"boulder",(46,15)
+OBJECT:'`',"boulder",(45,16)
+OBJECT:'`',"boulder",(61,14)
+
+MONSTER:':',"crocodile",random,hostile
+MONSTER:':',"crocodile",random,hostile
+MONSTER:'D',random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+TRAP:random,random
+TRAP:"hole",(49,19)
+TRAP:"hole",(50,19)
+TRAP:"hole",(51,19)
+TRAP:"hole",(52,19)
+TRAP:"hole",(53,19)
+
+#
+#	Shipwreck Island center
+#	The "goal" level for the quest.
+#
+#	Here you meet Blackbeard's Ghost, your nemesis monster.
+#   You have to defeat Nalzok in combat to gain the artifact 
+#	you have been assigned to retrieve.
+#
+
+MAZE: "Jes-goal", ' '
+FLAGS: lethe
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+}}}}}}}}}}}}}}}}}}}}}}}}}}......................}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}  }}}}}}  }}}}}}  }}}}..   .....  ......  ..}}}}  }}}}}}  }}}}}}  }}}}}
+}}}}  }}}}}}  }}}}}}  }}}}..   .....  ......  ..}}}}  }}}}}}  }}}}}}  }}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}..   .................}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}......................}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}....}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}.  .}}}}}   }}}}}  }}}}}}  }}}}}}  }}}}}   }}}}}}  }}}}}}  }}}}}}}}}}}}}
+}}}.  .}}}}}   }}}}}  }}}}}}  }}}}}}  }}}}}   }}}}}}  }}}}}}  }}}}}}  }}}} 
+}}}....}}}}}   }}}}}}}}}}}}}}}}}}}}}}}}}}}}   }}}}}}}}}}}}}}}}}}}}}}  }}}} 
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}  }}}}}}  }}}}}}  }}}}}   }}}}}}  }}}}}}  }}}}}}}}}}}}}}  }}...........
+}}}}  }}}}}}  }}}}}}  }}}}}   }}}}}}  }}}}}}  }}}}}}}}}}}}}}  }}}}}.  .... 
+}}}}}}}}}}}}}}}}}}}}}}}}}}}   }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.  .... 
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}........
+}}}}}}}}}}}   }}}}}....}}}}}}}}}}}}}}}}}}}}}   }}}}}}}}}}}}}}}}}}}}........
+}}}}  }}}}}   }}}}..  ..}}}}  }}}}}}  }}}}}}   }}}}}  }}}}}}  }}}}}........
+}}}}  }}}}}   }}}...  ...}}}  }}}}}}  }}}}}}   }}}}}  }}}}}}  }}}}}.  .... 
+}}}}}}}}}}}}}}}}..........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}........
+
+ENDMAP
+
+STAIR:(33,01),up
+
+# Objects
+OBJECT:'[',"helm of opposite alignment",(72,15),cursed,+20,"The King's Stolen Crown"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random monsters.
+MONSTER:'@',"Lady Elly",(72,15),hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+#
+
+MAZE: "Jes-fila",' '
+FLAGS: lethe
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.....}}}}}}}}}}}}}}}}}}}}}..
+}}}}}}}}}}}}}}}}}}}}}}---}}}}}}}}}}}}}}}}...|.........}}}}}}}}}}}}}}}}...
+}}}}}}}-----}}}}}}}}|}}}}|}}}}}}}}}}}}}}}..........|...}}}}}}}}}}}}}}}}}..
+}}}}|}}}}..|}}}}}}}}|}}.}}}}}}}}}}}}}}}}}....---..-...}}}}}}}}}}}}}}}}}}}}
+}}}}|}}.....}}}}}}}}}}}}}|}}}}}}}}}}}}}}}}...........}}}}}}}}}}}}}}}}}}}}
+}}}}}}.....|}}}}}}}}--+-}}}}}}}}}}}}}}}}}}}}}.............}}}}}}}}}}}}}}
+}}..|......|}}}}}}}}}}}}}}}}}}}}}.}}}}}}}}}}}}}........................
+}}}.--.--+--}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.............................
+}}}}.............}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.....................
+}}|}}}}}}}}}..........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}......{..}}}
+}}|}}}}}}}}}}}}}}}}|---}}}}.-.}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.......}}
+----}}}}}}}}}}}}}}}|....}}..}}}......}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.....}}}
+|}}}}}..}}}}}}}}}}-..........}}}}}}}}}.................}}}}}}}}}}}}}}}}}}}}
+}}}}}...}}}}}}}}}}}}..............}}}}}}}}..............}}}}}}}}}}}}}}}}}}}
+|}}}......}}}}}}}}}}}}}}}}}}............}}}}...---+--.}}}}}}}}}}}}}}}}}}}}}
+ |}}}....}}}}}}}}}}}}...}}}}}.......}...}}}}}}.|....|...}}}}}}}}}--------}}
+  |}}}..}}}}}}}}}}}}---}}}}}}.....|...}}}}}....|....|...}}}}}}}}.|......|.}
+   }}}}}}}}}}}}}}}}}}}}}}}}}......|.....}}}}}..|....|...}}}}}}}..+......|.}
+    }}}}}}}}}}}}}}}}}}}}}}}}.............}}}}}.------...}}}}}}}..--------.}
+      }}}}}}}}}}}}}}}}}}}}}}}.........}}}}}}}}}}}}}}}}}}}}}}}}}}}........}}
+
+ENDMAP
+
+STAIR:(48,02),up
+STAIR:(33,17),down
+
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+
+OBJECT:'`',"statue",random
+OBJECT:'`',"statue",random
+OBJECT:'`',"statue",random
+
+REGION:(4,2,11,7),unlit,"weapon shop"
+REGION:(65,15,72,18),unlit,"tool shop"
+
+DOOR:closed,(9,7)
+DOOR:closed,(22,5)
+DOOR:closed,(50,14)
+DOOR:closed,(65,17)
+
+REGION:(20,1,25,5),unlit,"temple"
+REGION:(47,14,52,18),unlit,"temple"
+
+ALTAR:(23,03),noncoaligned,shrine
+ALTAR:(49,16),noncoaligned,shrine
+
+OBJECT:')',random,(5,3)
+OBJECT:')',random,(6,3)
+OBJECT:')',random,(7,3)
+OBJECT:')',random,(8,3)
+OBJECT:')',random,(9,3)
+OBJECT:')',random,(10,3)
+OBJECT:')',random,(5,4)
+OBJECT:')',random,(6,4)
+OBJECT:')',random,(7,4)
+OBJECT:')',random,(8,4)
+OBJECT:')',random,(9,4)
+OBJECT:')',random,(10,4)
+OBJECT:')',random,(5,5)
+OBJECT:')',random,(6,5)
+OBJECT:')',random,(7,5)
+OBJECT:')',random,(8,5)
+OBJECT:')',random,(9,5)
+OBJECT:')',random,(10,5)
+
+OBJECT:'(',random,(67,16)
+OBJECT:'(',random,(68,16)
+OBJECT:'(',random,(69,16)
+OBJECT:'(',random,(70,16)
+OBJECT:'(',random,(71,16)
+OBJECT:'(',random,(67,17)
+OBJECT:'(',random,(68,17)
+OBJECT:'(',random,(69,17)
+OBJECT:'(',random,(70,17)
+OBJECT:'(',random,(71,17)
+
+
+MAZE: "Jes-filb",' '
+FLAGS: lethe
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+                           -------
+      -----              ---IIIII---              -----
+   ----III----        ----IIIIIIIII----        ----III----
+  --IIIIIIIII--      --IIIIIIIIIIIIIII--      --IIII}IIII--
+  |IIIIIIIIIII|      |IIIIIIIIIIIIIIIII|      |III}}}}}III|
+  |IIIIIIIIIIIS######SIIIIIIII{IIIIIIII+######+III}}}}}III|
+  |IIIIIIIIIII|      |IIIIIIIIIIIIIIIII|      |III}}}}}III|
+  --IIIIIIIII--      --IIIIIIIIIIIIIII--      --IIII}IIII--
+   ----III----        ----IIIIIIIII----        ----III----
+      --+--              ---IIIII---              --+--
+     ---+---               ---+---                  #
+  ----IIIII----          ----III----                #
+ --IIII}}}IIII--        --IIIIIIIII--               # 
+ |III}}}}}}}III|        |IIIIIIIIIII|            ---+---    
+ |II}}}}}}}}}II|    ####+IIIIIIIIIIIS####       --IIIII--
+ |II}}}}}}}}}II+#####   |IIIIIIIIIII|   #####   |IIIIIII|
+ |II}}}}}}}}}II|        --IIIIIIIII--       ####SIIIIIII|
+ |III}}}}}}}III|         ----III----            |IIIIIII|
+ --IIII}}}IIII--            -----               --IIIII--
+  ----IIIII----                                  -------
+     -------                                    
+ENDMAP
+
+NON_DIGGABLE:(00,00,58,20)
+
+STAIR:(8,5),up
+STAIR:(52,16),down
+
+MONSTER:'@',"aligned priest",(30,14),coaligned,peaceful
+
+DOOR:closed,(14,5)
+DOOR:closed,(21,5)
+DOOR:closed,(39,5)
+DOOR:closed,(46,5)
+DOOR:closed,(8,9)
+DOOR:closed,(8,10)
+DOOR:closed,(30,10)
+DOOR:closed,(52,9)
+DOOR:closed,(15,15)
+DOOR:closed,(24,14)
+DOOR:closed,(36,14)
+DOOR:closed,(48,16)
+
+TRAP:"fire",random
+TRAP:"fire",random
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+MONSTER:'@',"unfortunate victim",random
+
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile
+MONSTER:';',"femme fatale",random,hostile
+MONSTER:';',"crueltrainer",random,hostile

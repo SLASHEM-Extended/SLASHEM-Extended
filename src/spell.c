@@ -36,7 +36,7 @@ static NEARDATA struct obj *book;	/* last/current book being xscribed */
 #define spellet(spell)	\
 	((char)((spell < 26) ? ('a' + spell) : \
 	        (spell < 52) ? ('A' + spell - 26) : \
-		(spell < 62) ? ('0' + spell - 52) : 0 ))
+		(spell < 78) ? ('0' + spell - 52) : 0 ))
 
 STATIC_DCL int FDECL(spell_let_to_idx, (CHAR_P));
 STATIC_DCL boolean FDECL(cursed_book, (struct obj *bp));
@@ -48,9 +48,25 @@ STATIC_DCL boolean FDECL(getspell, (int *));
 STATIC_DCL boolean FDECL(dospellmenu, (const char *,int,int *));
 STATIC_DCL int FDECL(percent_success, (int));
 STATIC_DCL void NDECL(cast_protection);
+STATIC_DCL void NDECL(cast_reflection);
 STATIC_DCL void FDECL(spell_backfire, (int));
 STATIC_DCL const char *FDECL(spelltypemnemonic, (int));
 STATIC_DCL int FDECL(isqrt, (int));
+
+boolean
+spell_known(int sbook_id)
+{
+	int i;
+
+	i = 0;
+	while (spl_book[i].sp_id != NO_SPELL && i < MAXSPELL) {
+		if (spl_book[i].sp_id == sbook_id) return(TRUE);
+		i++;
+	}
+	return(FALSE);
+}
+
+
 
 /* The roles[] table lists the role-specific values for tuning
  * percent_success().
@@ -316,7 +332,7 @@ raise_dead:
 			if (mtmp->mtame < 20)
 			    mtmp->mtame++;
 		    } else
-			(void) tamedog(mtmp, (struct obj *)0);
+			(void) tamedog(mtmp, (struct obj *)0, FALSE);
 		else monflee(mtmp, 0, FALSE, TRUE);
 	    }
 	}
@@ -382,6 +398,7 @@ learn()
 			} else if (spellknow(i) <= MAX_CAN_STUDY) {
 			    Your("knowledge of that spell is keener.");
 			    incrnknow(i);
+				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
 			    book->spestudied++;
 			    if (end_delay) {
 			    	boostknow(i,
@@ -402,6 +419,7 @@ learn()
 			spl_book[i].sp_id = booktype;
 			spl_book[i].sp_lev = objects[booktype].oc_level;
 			incrnknow(i);
+			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
 			book->spestudied++;
 			You("have keen knowledge of the spell.");
 			You(i > 0 ? "add %s to your repertoire." : "learn %s.",
@@ -412,7 +430,7 @@ learn()
 	}
 	if (i == MAXSPELL) impossible("Too many spells memorized!");
 
-	if (book->cursed) {	/* maybe a demon cursed it */
+	if (book->cursed && !Role_if(PM_LIBRARIAN) ) {	/* maybe a demon cursed it */
 	    if (cursed_book(book)) {
 		if (carried(book)) useup(book);
 		else useupf(book, 1L);
@@ -481,7 +499,7 @@ register struct obj *spellbook;
 		spellbook->in_use = TRUE;
 		if (!spellbook->blessed &&
 		    spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
-		    if (spellbook->cursed) {
+		    if (spellbook->cursed && !Role_if(PM_LIBRARIAN) ) {
 			too_hard = TRUE;
 		    } else {
 			/* uncursed - chance to fail */
@@ -507,7 +525,7 @@ register struct obj *spellbook;
 		    }
 		}
 
-		if (too_hard && (spellbook->cursed || !spellbook->spe)) {
+		if (too_hard && ( (spellbook->cursed && !Role_if(PM_LIBRARIAN) ) || !spellbook->spe)) {
 		    boolean gone = cursed_book(spellbook);
 
 		    nomul(delay);			/* study time */
@@ -644,7 +662,7 @@ getspell(spell_no)
 	    else if (nspells < 53)
 		Sprintf(lets, "a-z A-%c", 'A' + nspells - 27);
 	    else if (nspells == 53)  Sprintf(lets, "a-z A-Z 0");
-	    else if (nspells < 62)
+	    else if (nspells < 78)
 		Sprintf(lets, "a-z A-Z 0-%c", '0' + nspells - 53);
 	    else  Sprintf(lets, "a-z A-Z 0-9");
 
@@ -664,7 +682,7 @@ getspell(spell_no)
 		    You("don't know that spell.");
 	    }
 	}
-	return dospellmenu("Choose which spell to cast",
+	return dospellmenu(YellowSpells ? "Your spells are yellow." : "Choose which spell to cast",
 			   SPELLMENU_CAST, spell_no);
 }
 
@@ -762,7 +780,7 @@ cast_protection()
 	    }
 	    u.uspellprot += gain;
 	    u.uspmtime =
-		P_SKILL(spell_skilltype(SPE_PROTECTION)) == P_EXPERT ? 20 : 10;
+		P_SKILL(spell_skilltype(SPE_PROTECTION)) >= P_EXPERT ? 20 : 10;
 	    if (!u.usptime)
 		u.usptime = u.uspmtime;
 	    find_ac();
@@ -770,6 +788,24 @@ cast_protection()
 	    Your("skin feels warm for a moment.");
 	}
 }
+
+STATIC_OVL void
+cast_reflection()
+{
+	if (HReflecting) {
+		if (!Blind)
+			pline("The shimmering globe around you becomes slightly brighter.");
+		else
+			You_feel("slightly more smooth.");
+	} else {
+		if (!Blind)
+			pline("A shimmering globe appears around you!");
+		else
+			You_feel("smooth.");
+	}
+	incr_itimeout(&HReflecting, rn1(10, HReflecting ? 20 : 100));
+}
+
 
 /* attempting to cast a forgotten spell will cause disorientation */
 STATIC_OVL void
@@ -779,7 +815,7 @@ int spell;
     long duration = (long)((spellev(spell) + 1) * 3);	 /* 6..24 */
 
     /* prior to 3.4.1, the only effect was confusion; it still predominates */
-    switch (rn2(10)) {
+    switch (rn2(16)) {
     case 0:
     case 1:
     case 2:
@@ -796,6 +832,18 @@ int spell;
 	    break;
     case 9: make_stunned(duration, FALSE);			/* 10% */
 	    break;
+    case 10: make_numbed(duration, FALSE);			/* 10% */
+	    break;
+    case 11: make_frozen(duration, FALSE);			/* 10% */
+	    break;
+    case 12: make_burned(duration, FALSE);			/* 10% */
+	    break;
+    case 13: make_feared(duration, FALSE);			/* 10% */
+	    break;
+    case 14: make_blinded(duration, FALSE);			/* 10% */
+	    break;
+    case 15: make_hallucinated(duration, FALSE, 0L);			/* 10% */
+	    break;
     }
     return;
 }
@@ -810,6 +858,7 @@ boolean atme;
 	int skill, role_skill;
 	boolean confused = (Confusion != 0);
 	struct obj *pseudo;
+	struct obj *otmp;
 
 	/*
 	 * Find the skill the hero has in a spell type category.
@@ -833,18 +882,25 @@ boolean atme;
 	    Your("knowledge of this spell is growing faint.");
 	}
 	energy = (spellev(spell) * 5);    /* 5 <= energy <= 35 */
+	if (YellowSpells) energy *= 2;
+
+	if (Role_if(PM_MAHOU_SHOUJO) && energy > 1) energy /= 2; /* Casting any sort of magic uses half power for them */
 
 	if (u.uhunger <= 10 && spellid(spell) != SPE_DETECT_FOOD) {
 		You("are too hungry to cast that spell.");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	} else if (ACURR(A_STR) < 4)  {
 		You("lack the strength to cast spells.");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	} else if(check_capacity(
 		"Your concentration falters while carrying so much stuff.")) {
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return (1);
 	} else if (!freehand()) {
 		Your("arms are not free to cast!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);
 	}
 
@@ -852,7 +908,10 @@ boolean atme;
 		You_feel("the amulet draining your energy away.");
 		energy += rnd(2*energy);
 	}
-		if (spellid(spell) != SPE_DETECT_FOOD) {
+
+	/* Casting any sort of magic as a mahou shoujo or naga does not cause hunger */
+
+		if (!Role_if(PM_MAHOU_SHOUJO) && !Race_if(PM_HUMANLIKE_NAGA) && (spellid(spell) != SPE_DETECT_FOOD) ) {
 		hungr = energy * 2;
 
 			/* If hero is a wizard, their current intelligence
@@ -889,7 +948,8 @@ boolean atme;
 			if (hungr > u.uhunger-3)
 				hungr = u.uhunger-3;
 	if (energy > u.uen)  {
-		You("don't have enough energy to cast that spell.");
+		You("don't have enough energy to cast that spell. The required amount was %d.",energy);
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		/* WAC/ALI Experts can override with HP/hunger loss */
 		if ((role_skill >= P_SKILLED) && (yn("Continue?") == 'y')) {
 			energy -= u.uen;
@@ -905,8 +965,9 @@ boolean atme;
 	morehungry(hungr);
 
 	chance = percent_success(spell);
-	if (confused || (rnd(100) > chance)) {
+	if ( (confused && spellid(spell) != SPE_CURE_CONFUSION && rn2(10) ) || (rnd(100) > chance)) {
 		pline("You fail to cast the spell correctly.");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 #ifdef ALLEG_FX
                 if (iflags.usealleg) alleg_aura(u.ux, u.uy, P_ATTACK_SPELL-1);
@@ -918,6 +979,14 @@ boolean atme;
 	}
 
 	u.uen -= energy;
+
+	if (Role_if(PM_MAHOU_SHOUJO)) { /* Casting any sort of magic causes all monsters on a level to 
+      become alert of your location, due to mahou shoujo always announcing their attacks. */
+
+	wake_nearby();
+	verbalize("%s!",spellname(spell) );
+
+	}
 	
 	flags.botl = 1;
 	exercise(A_WIS, TRUE);
@@ -946,6 +1015,7 @@ boolean atme;
 	case SPE_CONE_OF_COLD:
 	case SPE_LIGHTNING:
 	case SPE_ACID_STREAM:
+	case SPE_SOLAR_BEAM:
 	case SPE_POISON_BLAST:
 		if (tech_inuse(T_SIGIL_TEMPEST)) {
 		    weffects(pseudo);
@@ -967,8 +1037,10 @@ boolean atme;
 	case SPE_DETECT_UNSEEN:
 	case SPE_HEALING:
 	case SPE_EXTRA_HEALING:
+	case SPE_FULL_HEALING:
 	case SPE_DRAIN_LIFE:
 	case SPE_STONE_TO_FLESH:
+	case SPE_FINGER:
 		if (!(objects[pseudo->otyp].oc_dir == NODIR)) {
 			if (atme) u.dx = u.dy = u.dz = 0;
 			else if (!getdir((char *)0)) {
@@ -1001,6 +1073,7 @@ boolean atme;
 	case SPE_IDENTIFY:
 	case SPE_COMMAND_UNDEAD:                
 	case SPE_SUMMON_UNDEAD:
+	case SPE_CHARGING:
 		(void) seffects(pseudo);
 		break;
 
@@ -1017,6 +1090,12 @@ boolean atme;
 		    Your("enchantment failed!");
 		break;
 
+	case SPE_ENTRAPPING:
+
+		trap_detect((struct obj *)0);
+		exercise(A_WIS, TRUE);
+
+		break;
 	/* these are all duplicates of potion effects */
 	case SPE_HASTE_SELF:
 	case SPE_DETECT_TREASURE:
@@ -1034,6 +1113,9 @@ boolean atme;
 	case SPE_CURE_BLINDNESS:
 		healup(0, 0, FALSE, TRUE);
 		break;
+	case SPE_CHEMISTRY:
+		You("call upon your chemical knowledge. Nothing happens.");
+		break;
 	case SPE_CURE_SICKNESS:
 		if (Sick) You("are no longer ill.");
 		if (Slimed) {
@@ -1042,6 +1124,15 @@ boolean atme;
 		 /* flags.botl = 1; -- healup() handles this */
 		}
 		healup(0, 0, TRUE, FALSE);
+		break;
+	case SPE_CURE_HALLUCINATION:
+		make_hallucinated(0L,TRUE,0L);
+		break;
+	case SPE_CURE_CONFUSION:
+		make_confused(0L,TRUE);
+		break;
+	case SPE_CURE_STUN:
+		make_stunned(0L,TRUE);
 		break;
 	case SPE_CREATE_FAMILIAR:
 		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
@@ -1065,6 +1156,38 @@ boolean atme;
 		if(!(HPoison_resistance & INTRINSIC)) {
 			You("feel healthy ..... for the moment at least.");
 			incr_itimeout(&HPoison_resistance, rn1(1000, 500) +
+				spell_damage_bonus(spellid(spell))*100);
+		} else pline(nothing_happens);	/* Already have as intrinsic */
+		break;
+	case SPE_ANTI_DISINTEGRATION:
+		if(!(HDisint_resistance & INTRINSIC)) {
+			You("feel quite firm for a while.");
+			incr_itimeout(&HDisint_resistance, rn1(1000, 500) +
+				spell_damage_bonus(spellid(spell))*100);
+		} else pline(nothing_happens);	/* Already have as intrinsic */
+		break;
+	case SPE_BOTOX_RESIST:
+		if(!(HSick_resistance & INTRINSIC)) {
+			You("feel resistant to sickness.");
+			incr_itimeout(&HSick_resistance, rn1(1000, 500) +
+				spell_damage_bonus(spellid(spell))*100);
+		} else pline(nothing_happens);	/* Already have as intrinsic */
+		break;
+	case SPE_GODMODE:
+		incr_itimeout(&Invulnerable, rnd(5 + spell_damage_bonus(spellid(spell)) ) );
+		You_feel("invincible!");
+		break;
+	case SPE_ACIDSHIELD:
+		if(!(HAcid_resistance & INTRINSIC)) {
+			You("are resistant to acid now. Your items, however, are not.");
+			incr_itimeout(&HAcid_resistance, rn1(1000, 500) +
+				spell_damage_bonus(spellid(spell))*100);
+		} else pline(nothing_happens);	/* Already have as intrinsic */
+		break;
+	case SPE_RESIST_PETRIFICATION:
+		if(!(HStone_resistance & INTRINSIC)) {
+			You("feel more limber. Let's eat some cockatrice meat!");
+			incr_itimeout(&HStone_resistance, rn1(200, 100) +
 				spell_damage_bonus(spellid(spell))*100);
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
@@ -1132,11 +1255,81 @@ boolean atme;
 		break;
 	}
 
+	case SPE_SHOCKING_SPHERE:
+	{	register int cnt = 1;
+		struct monst *mtmp;
+
+
+		if (role_skill >= P_SKILLED) cnt += (role_skill - P_BASIC);
+		while(cnt--) {
+			mtmp = make_helper(PM_SHOCKING_SPHERE, u.ux, u.uy);
+			if (!mtmp) continue;
+			mtmp->mtame = 10;
+			mtmp->mhpmax = mtmp->mhp = 1;
+			mtmp->isspell = mtmp->uexp = TRUE;
+		} /* end while... */
+		break;
+	}
+
+	case SPE_ACID_SPHERE:
+	{	register int cnt = 1;
+		struct monst *mtmp;
+
+
+		if (role_skill >= P_SKILLED) cnt += (role_skill - P_BASIC);
+		while(cnt--) {
+			mtmp = make_helper(PM_ACID_SPHERE, u.ux, u.uy);
+			if (!mtmp) continue;
+			mtmp->mtame = 10;
+			mtmp->mhpmax = mtmp->mhp = 1;
+			mtmp->isspell = mtmp->uexp = TRUE;
+		} /* end while... */
+		break;
+	}
+
+
 	/* KMH -- new spells */
 	case SPE_PASSWALL:
 		if (!Passes_walls)
 			You_feel("ethereal.");
 		incr_itimeout(&HPasses_walls, rn1(100, 50));
+		break;
+
+	case SPE_DETECT_FOOT:
+
+		pline("Your nose tingles, and you smell feet!");
+		if (nolimbs(youmonst.data) || slithy(youmonst.data)) {
+			pline("You aren't sure where the feet might be, though.");
+		} else {
+			pline("You see here a %s on the end of your %s.",body_part(FOOT),body_part(LEG));
+		/* Come on sporkhack devteam, this spell could be useful. Let's see if I can make it do something. --Amy */
+			pline("Urgh - your head spins from the vile stench!");
+		    make_confused(HConfusion + d(10,10), FALSE);
+			turn_allmonsters(); /* This even works on Demogorgon. */
+		}
+		break;
+	case SPE_REFLECTION:
+		cast_reflection();
+		break;
+	case SPE_REPAIR_ARMOR:
+		/* removes one level of erosion (both types) for a random piece of armor */
+		otmp = some_armor(&youmonst);
+		if (otmp) {
+			if (greatest_erosion(otmp) > 0) {
+				if (!Blind) {
+					pline("Your %s glows faintly golden for a moment.",xname(otmp));
+				}
+				if (otmp->oeroded > 0) { otmp->oeroded--; }
+				if (otmp->oeroded2 > 0) { otmp->oeroded2--; }
+			} else {
+				if (!Blind) {
+					pline("Your %s glows briefly, but looks as new as ever.",xname(otmp));
+				}
+			}
+		} else {
+			/* the player can probably feel this, so no need for a !Blind check :) */
+			pline("Your embarrassing skin rash clears up slightly.");
+		}
 		break;
 
 	default:
@@ -1150,6 +1343,7 @@ boolean atme;
 
 	/* WAC successful casting increases solidity of knowledge */
 	boostknow(spell,CAST_BOOST);
+	if (Role_if(PM_MAHOU_SHOUJO)) boostknow(spell,CAST_BOOST);
 
 	obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
 	return(1);
@@ -1187,10 +1381,10 @@ dovspell()
 	if (spellid(0) == NO_SPELL)
 	    You("don't know any spells right now.");
 	else {
-	    while (dospellmenu("Currently known spells",
+	    while (dospellmenu(YellowSpells ? "Your spells are yellow." : "Currently known spells",
 			       SPELLMENU_VIEW, &splnum)) {
 		Sprintf(qbuf, "Reordering spells; swap '%s' with",
-			spellname(splnum));
+			SpellLoss ? "spell" : spellname(splnum));
 		if (!dospellmenu(qbuf, splnum, &othnum)) break;
 
 		spl_tmp = spl_book[splnum];
@@ -1227,19 +1421,21 @@ int *spell_no;
 	 * in the window-ports (say via a tab character).
 	 */
 	if (!iflags.menu_tab_sep)
-		Sprintf(buf, "%-20s     Level  %-12s Fail", "    Name", "Category");
+		Sprintf(buf, "%-20s     Level  %-12s Fail  Memory", "    Name", "Category");
 	else
 		Sprintf(buf, "Name\tLevel\tCategory\tFail");
 	if (flags.menu_style == MENU_TRADITIONAL)
 		Strcat(buf, iflags.menu_tab_sep ? "\tKey" : "  Key");
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_BOLD, buf, MENU_UNSELECTED);
-	for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
+	if (!SpellLoss) {for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
 		Sprintf(buf, iflags.menu_tab_sep ?
-			"%s\t%-d%s\t%s\t%-d%%" : "%-20s  %2d%s   %-12s %3d%%",
+			"%s\t%-d%s\t%s\t%-d%%" : "%-20s  %2d%s   %-12s %3d%%"
+			"   %3d%%",
 			spellname(i), spellev(i),
-			spellknow(i) ? " " : "*",
+			(spellknow(i) > 1000) ? " " : (spellknow(i) ? "!" : "*"),
 			spelltypemnemonic(spell_skilltype(spellid(i))),
-			100 - percent_success(i));
+			100 - percent_success(i),
+			(spellknow(i) * 100 + (KEEN-1)) / KEEN);
 		if (flags.menu_style == MENU_TRADITIONAL)
 			Sprintf(eos(buf), iflags.menu_tab_sep ?
 				"\t%c" : "%4c ", spellet(i) ? spellet(i) : ' ');
@@ -1249,6 +1445,17 @@ int *spell_no;
 			 0, 0, ATR_NONE, buf,
 			 (i == splaction) ? MENU_SELECTED : MENU_UNSELECTED);
 	      }
+	}
+	else {for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++)	{		
+				Sprintf(buf, iflags.menu_tab_sep ?
+				"\t%c" : "%4c ", spellet(i) ? spellet(i) : ' ');
+		any.a_int = i+1;	/* must be non-zero */
+		add_menu(tmpwin, NO_GLYPH, &any,
+			 0, 0, ATR_NONE, buf,
+			 (i == splaction) ? MENU_SELECTED : MENU_UNSELECTED);
+	      }
+
+	}
 	end_menu(tmpwin, prompt);
 
 	how = PICK_ONE;
@@ -1311,7 +1518,7 @@ int spell;
 	if (uarm && !(uarm->otyp == ROBE ||
 		      uarm->otyp == ROBE_OF_POWER ||
 		      uarm->otyp == ROBE_OF_PROTECTION)) 
-	    splcaster += 5;
+	    splcaster += 2;
 
 	/* Robes are body armour in SLASH'EM */
 	if (uarm && is_metallic(uarm))
@@ -1334,8 +1541,11 @@ int spell;
 		splcaster += special;
 
 	if (uarm && uarm->otyp == ROBE_OF_POWER) splcaster -= 3;
-	if (splcaster < 5) splcaster = 5;
-	if (splcaster > 20) splcaster = 20;
+
+	if (Role_if(PM_PALADIN)) splcaster -= 3; /* it is assumed some of their power is granted by the Lord of Light himself */
+
+	if (splcaster < 2) splcaster = 2;
+	if (splcaster > 15) splcaster = 15;
 
 	/* Calculate learned ability */
 
@@ -1351,7 +1561,7 @@ int spell;
 	 */
 	skill = P_SKILL(spell_skilltype(spellid(spell)));
 	skill = max(skill,P_UNSKILLED) - 1;	/* unskilled => 0 */
-	difficulty= (spellev(spell)-1) * 4 - ((skill * 6) + (u.ulevel/3) + 1);
+	difficulty= (spellev(spell)-1) * 3 - ((skill * 6) + (u.ulevel/3) + 1);
 
 	if (difficulty > 0) {
 		/* Player is too low level or unskilled. */
@@ -1378,13 +1588,13 @@ int spell;
 	 * to cast a spell.  The penalty is not quite so bad for the
 	 * player's class-specific spell.
 	 */
-	if (uarms && weight(uarms) > (int) objects[SMALL_SHIELD].oc_weight) {
+	/* if (uarms && weight(uarms) > (int) objects[SMALL_SHIELD].oc_weight) {
 		if (spellid(spell) == urole.spelspec) {
 			chance /= 2;
 		} else {
-			chance /= 4;
+			chance /= 3;
 		}
-	}
+	}*/
 
 	/* Finally, chance (based on player intell/wisdom and level) is
 	 * combined with ability (based on player intrinsics and
@@ -1392,11 +1602,11 @@ int spell;
 	 * a player is, intrinsics and encumbrance can prevent casting;
 	 * and no matter how able, learning is always required.
 	 */
-	chance = chance * (20-splcaster) / 15 - splcaster;
+	chance = chance * (25-splcaster) / 10;
 
 	/* Clamp to percentile */
 	if (chance > 100) chance = 100;
-	if (chance < 0) chance = 0;
+	if (chance < 10) chance = 10; /* used to be 0, but that was just stupid in my opinion --Amy */
 
 	return chance;
 }
@@ -1418,6 +1628,7 @@ struct obj *obj;
 	        spl_book[i].sp_id = obj->otyp;
 	        spl_book[i].sp_lev = objects[obj->otyp].oc_level;
 	        incrnknow(i);
+			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
 	        return;
 	    }
 	}
@@ -1438,6 +1649,7 @@ studyspell()
 		} else if (spellknow(spell_no) <= 1000) {
 			Your("focus and reinforce your memory of the spell.");
 			incrnknow(spell_no);
+			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(spell_no);
 			exercise(A_WIS, TRUE);      /* extra study */
 			return (TRUE);
 		} else /* 1000 < spellknow(spell_no) <= 5000 */

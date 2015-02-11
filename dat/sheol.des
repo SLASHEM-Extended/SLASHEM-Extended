@@ -1,0 +1,416 @@
+
+# The fill level for Sheol
+MAZE: "sheolfil",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
+STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
+
+# Golems and random monsters
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+# Some loot
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'"',random,random
+OBJECT:'?',random,random
+OBJECT:'/',random,random
+OBJECT:'=',random,random
+OBJECT:'+',random,random
+OBJECT:'(',random,random
+OBJECT:')',random,random
+
+OBJECT: '/',"fire",random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+# Middle level
+MAZE: "sheolmid",' '
+FLAGS: hardfloor,noteleport
+# INIT_MAP: sheollev
+
+GEOMETRY:center,center
+MAP
+TTTTTCTTICTTTCCTTTTTTTTTTT
+TCFCCCCCICCCCCCTCCCCCCTTTT
+TCCCCCCFICCCCCCCCFICCCC.TT
+ICCCCCCCCCCCCCCFCCIICCCC.T
+I...........CCCCCCCCCICC..
+I............CCCCCCCCFIC..
+I.--------....CCCCCCCCCCC.
+I.|......|....CCCCCCCCCCC.
+I.|......+....CCCCCCCCCCC.
+I.|......|....CCCCCCCCICC.
+I.--------....CCCCCCCCCCC.
+I............CCCCFICICCC..
+I...........CCCCCCIICCCC..
+ICCCCCCCCCCCCCCCCCCCCCCC.T
+TCCCFCCICCCCCCCCCCCFCCC.TT
+TTCTCCCCCCCCCFICCIICCCTTTT
+TTCTTTCTTICCIICTTFCTTTTTTT
+ENDMAP
+
+RANDOM_MONSTERS: 'X','T','L',''','N','x','@','V'
+
+STAIR: (4,8),down
+STAIR: levregion(65, 0, 79, 20), levregion(1, 0, 64, 20), up
+
+DOOR:locked,(9,8)
+
+# Wands of fire
+MONSTER: monster[0], random,(3, 7)
+MONSTER: monster[0], random,(3, 9)
+MONSTER: monster[1], random,(4, 7)
+MONSTER: monster[1], random,(4, 9)
+MONSTER: monster[2], random,(5, 7)
+MONSTER: monster[2], random,(5, 9)
+MONSTER: monster[3], random,(6, 7)
+MONSTER: monster[3], random,(6, 9)
+MONSTER: monster[4], random,(7, 7)
+MONSTER: monster[4], random,(7, 9)
+MONSTER: monster[5], random,(8, 7)
+MONSTER: monster[5], random,(8, 9)
+MONSTER: monster[6], random,(10, 7)
+MONSTER: monster[6], random,(10, 9)
+MONSTER: monster[7], random,(1, 7)
+MONSTER: monster[7], random,(1, 9)
+
+OBJECT:'/',"fire",random
+OBJECT:'/',"fire",random
+
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+
+# Make the island area lit
+REGION:(00,00,25,16),lit,"ordinary"
+
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'"',random,random
+OBJECT:'?',random,random
+OBJECT:'/',random,random
+OBJECT:'=',random,random
+OBJECT:'+',random,random
+OBJECT:'(',random,random
+OBJECT:'(',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+
+MAZEWALK:(00,10),west
+MAZEWALK:(25,06),east
+
+# From http://www.jewishencyclopedia.com/articles/13563-sheol):
+#
+#   "This realm of the dead is in the earth ("eráºitu" = ; comp. 
+#   Job, x. 21, 22), the gateway being in the west. It is the 
+#   "land without return." It is a dark place filled with dust (see 
+#   Sheol, Biblical Data); but it contains a palace for the divine ruler 
+#   of this shadow-realm (comp. Job xviii. 13, 14). Seven gates guard 
+#   successively the approach to this land, at the first of which is a 
+#   watchman. A stream of water flows through Sheol (comp. Enoch, 
+#   xvii. 6, xxii. 9; Luke xvi. 24; Ps. xviii. 5; II Sam. xxii. 5)."
+
+# So supposedly there should be a palace of some kind we'll have it be two
+# levels.
+
+# The second-to-end level
+MAZE: "palace_f",' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+      |..................-----------   -----------...........|          
+      |.......-.....-....--........-----........--.....-.....|          
+      |......| |...| |...I+........|.\.|........+I....| |....|          
+      |...FF..-.....-....-----------...-----------.....-.....|-----------   
+      |...F..............+.......III...III.......+...........S..........|   
+      |...F..............+.......III...III.......+...........|---------.|   
+      |...FF..-.....-...------------...------------....-.....|        |.|   
+      |......| |...| |..|          |...|          |...| |....|---     |.|   
+      |.......-.....-...---------- |...| ----------....-....---C|     |.|   
+      |..................--......---+++---......IC--.......--CCC|     |.|   
+      --------------------...---...........---..ICC---...---CCCC|     |.|   
+     --CCCIIIIIIIIIIIIIIII...| |.---.{.---.| |..IICCC-----CCCCCC|     |.|   
+    --CCCCCIIIIIIIIIIIIIIII..---.| |...| |.---...IICCCCCCIIICIII|     |.|   
+   --CCCCCIIIIIIIIIIIIIIIII......---.{.---........IICCCIII.III..-------+----
+  --CCCCCCIIIIIIIIIIIIIIII.........................IIIII........FFII..III...
+ -------------IIIIIIIIIII............{.....................T..T.FFII........
+             -------IIIII.......................................FFII........
+                   ---IIII.....----.....--------IIII............FFII........
+                     -----------  ---.---      ----IIIII...T..T.FFII........
+                                               -------III.......FFII........
+ENDMAP
+
+STAIR: (37,18),up
+STAIR: (7,2,60,7), (10,2,56,7),down
+
+TELEPORT_REGION:(00,14,63,18),(0,0,0,0)
+
+# Golems in loot rooms
+MONSTER: ''', "crystal ice golem", (34,2)
+MONSTER: ''', "crystal ice golem", (40,2)
+
+# Freezers!
+MONSTER: 'P', "blue slime", random
+MONSTER: 'P', "blue slime", random
+MONSTER: 'P', "blue slime", random
+
+# Chillbugs in wings
+MONSTER: 'x', "chillbug", (16, 4)
+MONSTER: 'x', "chillbug", (17, 4)
+MONSTER: 'x', "chillbug", (16, 5)
+MONSTER: 'x', "chillbug", (17, 5)
+
+MONSTER: 'x', "chillbug", (58, 4)
+MONSTER: 'x', "chillbug", (57, 4)
+MONSTER: 'x', "chillbug", (58, 5)
+MONSTER: 'x', "chillbug", (57, 5)
+
+# Lots of defenders around the level
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+# Non diggable walls, like duh
+NON_DIGGABLE:(00,00,75,19)
+
+# Front doors
+DOOR:locked,(36,9)
+DOOR:locked,(37,9)
+DOOR:locked,(38,9)
+
+# Left side
+DOOR:locked,(26,2)
+DOOR:locked,(25,4)
+DOOR:locked,(25,5)
+
+# Right side
+DOOR:locked,(48,2)
+DOOR:locked,(49,4)
+DOOR:locked,(49,5)
+
+# Secret passageway door
+DOOR:locked,(71,13)
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+# The outsides are (somewhat) lit
+REGION:(28,9,46,18),lit,"ordinary"
+
+OBJECT:'(',"chest",(34,2)
+OBJECT:'(',"chest",(40,2)
+OBJECT:'?',random,(34,1)
+OBJECT:'?',random,(40,1)
+OBJECT:'?',random,(33,1)
+OBJECT:'?',random,(33,2)
+OBJECT:'?',random,(41,1)
+OBJECT:'?',random,(41,2)
+OBJECT:'!',random,(32,1)
+OBJECT:'!',random,(32,2)
+OBJECT:'!',random,(31,1)
+OBJECT:'!',random,(31,2)
+OBJECT:'!',random,(30,1)
+OBJECT:'!',random,(30,2)
+OBJECT:'!',random,(29,1)
+OBJECT:'!',random,(29,2)
+OBJECT:'!',random,(28,1)
+OBJECT:'!',random,(28,2)
+OBJECT:'"',random,(27,1)
+OBJECT:'"',random,(27,2)
+
+OBJECT:'?',random,(42,1)
+OBJECT:'?',random,(42,2)
+OBJECT:'?',random,(43,1)
+OBJECT:'?',random,(43,2)
+OBJECT:'?',random,(44,1)
+OBJECT:'?',random,(44,2)
+OBJECT:'?',random,(45,1)
+OBJECT:'?',random,(45,2)
+OBJECT:'!',random,(46,1)
+OBJECT:'!',random,(46,2)
+OBJECT:'!',random,(47,1)
+OBJECT:'!',random,(47,2)
+
+# Other random loot
+OBJECT:'+',random,random
+OBJECT:'+',random,random
+OBJECT:'=',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+OBJECT:'/',random,random
+
+
+# Bottom level of Sheol
+MAZE: "palace_e",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+         --------------------------------------------------             
+        --..........................................IIIIII-----         
+        |.....--........--......................IIIII....IIIII----      
+        |....|  |......|  |.....-............IIII............IIII---    
+      ---....|  |......|  |....| |..--.T...III.....T...T...T....III---  
+      |.......--...T....--...T..-...--...III......................III-- 
+   ----.................................II..........................II--    
+   |...............{.........{.........II....................\.......II-    
+   ----.................................II..........................II--    
+      |.......--...T....--...T..-...--...III......................III-- 
+      ---....|  |......|  |....| |..--.T...III.....T...T...T....III---  
+        |....|  |......|  |.....-............IIII............IIII---    
+        |.....--........--......................IIIII....IIIII----      
+        --..........................................IIIIII-----         
+         --------------------------------------------------             
+ENDMAP
+
+STAIR: (4,7),up
+
+NON_DIGGABLE:(00,00,75,14)
+
+MONSTER: 'H', "Father Dagon",(61,9)
+MONSTER: 'H', "Mother Hydra",(61,9)
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+# Random chests
+OBJECT:'(',"chest",(62,8)
+OBJECT:'(',"chest",(62,10)
+OBJECT:'(',"chest",(64,8)
+OBJECT:'(',"chest",(64,10)
+
+OBJECT:'(',"magic marker",random
+
+# Some serious slimy fun, these should freeze the player in place
+# while the Executioner slices them into little pieces.
+MONSTER: 'P', "blue slime", random
+MONSTER: 'P', "blue slime", random
+MONSTER: 'P', "blue slime", random
+MONSTER: 'P', "blue slime", random
+MONSTER: 'P', "blue slime", random
+MONSTER: 'P', "blue slime", random
+MONSTER: 'P', "blue slime", random
+MONSTER: 'P', "blue slime", random
+MONSTER: 'N', "white naga", random
+MONSTER: 'N', "white naga", random
+MONSTER: 'N', "white naga", random
+MONSTER: 'N', "white naga", random
+MONSTER: ''', "crystal ice golem", random
+MONSTER: ''', "crystal ice golem", random
+MONSTER: ''', "ice golem", random
+MONSTER: ''', "ice golem", random
+MONSTER: 'A', "black Angel", random
+MONSTER: 'A', "black Angel", random
+MONSTER: 'A', "black Angel", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random

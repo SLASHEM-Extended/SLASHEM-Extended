@@ -68,7 +68,7 @@ long mask;
 	    for(wp = worn; wp->w_mask; wp++) if(wp->w_mask & mask) {
 		oobj = *(wp->w_obj);
 		if(oobj && !(oobj->owornmask & wp->w_mask))
-			impossible("Setworn: mask = %ld.", wp->w_mask);
+			pline("Setworn: mask = %ld.", wp->w_mask);
 		if(oobj) {
 		    if (u.twoweap && (oobj->owornmask & (W_WEP|W_SWAPWEP))) {
 			if (uswapwep)
@@ -389,13 +389,14 @@ boolean creation;
 	 * except for the additional restriction on intelligence.  (Players
 	 * are always intelligent, even if polymorphed).
 	 */
-	if (verysmall(mon->data) || nohands(mon->data) || is_animal(mon->data))
-		return;
+	/*if (verysmall(mon->data) || nohands(mon->data) || is_animal(mon->data))
+		return;*/
 	/* give mummies a chance to wear their wrappings
 	 * and let skeletons wear their initial armor */
-	if (mindless(mon->data) && (!creation ||
+	/* well screw it, just let mindless creatures wear everything! --Amy */
+	/*if (mindless(mon->data) && (!creation ||
 	    (mon->data->mlet != S_MUMMY && mon->data != &mons[PM_SKELETON])))
-		return;
+		return;*/
 
 	m_dowear_type(mon, W_AMUL, creation, FALSE);
 #ifdef TOURIST
@@ -445,7 +446,7 @@ boolean racialexception;
 	    switch(flag) {
 		case W_AMUL:
 		    if (obj->oclass != AMULET_CLASS ||
-			    (obj->otyp != AMULET_OF_LIFE_SAVING &&
+			    (obj->otyp != AMULET_OF_LIFE_SAVING && obj->otyp != AMULET_OF_DATA_STORAGE &&
 				obj->otyp != AMULET_OF_REFLECTION))
 			continue;
 		    best = obj;
@@ -455,6 +456,18 @@ boolean racialexception;
 		    if (!is_shirt(obj)) continue;
 		    break;
 #endif
+		case W_RING:
+		    if (obj->otyp != RIN_TIMELY_BACKUP) continue;
+		    best = obj;
+		    goto outer_break; /* no such thing as better rings */
+		case W_RINGL:
+		    if (obj->otyp != RIN_TIMELY_BACKUP) continue;
+		    best = obj;
+		    goto outer_break; /* no such thing as better rings */
+		case W_RINGR:
+		    if (obj->otyp != RIN_TIMELY_BACKUP) continue;
+		    best = obj;
+		    goto outer_break; /* no such thing as better rings */
 		case W_ARMC:
 		    if (!is_cloak(obj)) continue;
 		    break;

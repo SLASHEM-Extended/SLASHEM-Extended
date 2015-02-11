@@ -1,0 +1,363 @@
+#	SCCS Id: @(#)Monk.des	3.4	2002/04/08
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991-2 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, the Grand Master
+#	and receive your quest assignment.
+#
+MAZE: "Sai-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+............................................................................
+............................................................................
+............................................................................
+....................------------------------------------....................
+....................|................|.....|.....|.....|....................
+....................|..------------..|--+-----+-----+--|....................
+....................|..|..........|..|.................|....................
+....................|..|..........|..|+---+---+-----+--|....................
+..................---..|..........|......|...|...|.....|....................
+..................+....|..........+......|...|...|.....|....................
+..................+....|..........+......|...|...|.....|....................
+..................---..|..........|......|...|...|.....|....................
+....................|..|..........|..|+-----+---+---+--|....................
+....................|..|..........|..|.................|....................
+....................|..------------..|--+-----+-----+--|....................
+....................|................|.....|.....|.....|....................
+....................------------------------------------....................
+............................................................................
+............................................................................
+............................................................................
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+REGION:(24,06,33,13),lit,"temple"
+# Portal arrival point
+BRANCH:(05,04,05,04),(0,0,0,0)
+# Stairs
+STAIR:(52,09),down
+# Doors
+DOOR:locked,(18,09)
+DOOR:locked,(18,10)
+DOOR:closed,(34,09)
+DOOR:closed,(34,10)
+DOOR:closed,(40,05)
+DOOR:closed,(46,05)
+DOOR:closed,(52,05)
+DOOR:locked,(38,07)
+DOOR:closed,(42,07)
+DOOR:closed,(46,07)
+DOOR:closed,(52,07)
+DOOR:locked,(38,12)
+DOOR:closed,(44,12)
+DOOR:closed,(48,12)
+DOOR:closed,(52,12)
+DOOR:closed,(40,14)
+DOOR:closed,(46,14)
+DOOR:closed,(52,14)
+# Unattended Altar - unaligned due to conflict - player must align it.
+ALTAR:(28,09),noalign,altar
+# The Grand Master
+MONSTER:'@',"Master Roshi",(28,10)
+# No treasure chest!
+# guards for the audience chamber
+MONSTER:'@',"roshi",(32,07)
+MONSTER:'@',"roshi",(32,08)
+MONSTER:'@',"roshi",(32,11)
+MONSTER:'@',"roshi",(32,12)
+MONSTER:'@',"roshi",(33,07)
+MONSTER:'@',"roshi",(33,08)
+MONSTER:'@',"roshi",(33,11)
+MONSTER:'@',"roshi",(33,12)
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# Random traps
+TRAP:"dart",(20,09)
+TRAP:"dart",(20,10)
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Monsters on siege duty.
+MONSTER: '@',"kamehameha fighter",(37,01),hostile
+MONSTER: '@',"kamehameha fighter",(37,18),hostile
+MONSTER: '@',"kamehameha fighter",(03,03),hostile
+MONSTER: '@',"kamehameha fighter",(65,04),hostile
+MONSTER: '@',"kamehameha fighter",(12,11),hostile
+MONSTER: '@',"kamehameha fighter",(60,12),hostile
+MONSTER: '@',"kamehameha fighter",(14,08),hostile
+MONSTER: '@',"kamehameha fighter",(55,00),hostile
+MONSTER: '@',"super saiyan",(18,18),hostile
+MONSTER: '@',"super saiyan",(59,10),hostile
+MONSTER: '@',"super saiyan",(13,09),hostile
+MONSTER: '@',"super saiyan",(01,17),hostile
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to locate the Monastery of the Earth-Lord to
+#	go further towards your assigned quest.
+#
+
+MAZE: "Sai-loca",' '
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+RANDOM_MONSTERS: 'D','w'
+
+# Stairs
+STAIR:random,up
+STAIR:random,down
+
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'D', random, random, hostile
+MONSTER: 'w', random, random, hostile
+MONSTER: 'w', random, random, hostile
+MONSTER: 'w', random, random, hostile
+MONSTER: 'w', random, random, hostile
+MONSTER: 'w', "rot worm", random, hostile
+MONSTER: 'w', "rot worm", random, hostile
+MONSTER: 'w', "rot worm", random, hostile
+MONSTER: 'w', "rot worm", random, hostile
+MONSTER: 'w', "rot worm", random, hostile
+
+OBJECT: '%', "egg", random
+OBJECT: '%', "egg", random
+OBJECT: '%', "egg", random
+OBJECT: '%', "egg", random
+OBJECT: '%', "egg", random
+OBJECT: '%', "egg", random
+OBJECT: '%', "egg", random
+
+OBJECT: '%', "pill", random
+
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"super saiyan",random,hostile
+MONSTER: '@',"super saiyan",random,hostile
+MONSTER: '@',"super saiyan",random,hostile
+MONSTER: '@',"super saiyan",random,hostile
+MONSTER: '@',"super saiyan",random,hostile
+MONSTER: '@',"super saiyan",random,hostile
+MONSTER: '@',"super saiyan",random,hostile
+MONSTER: '@',"super saiyan",random,hostile
+MONSTER: '@',"super saiyan",random,hostile
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Master Kaen, your nemesis monster.  You have to
+#	defeat Master Kaen in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Sai-goal", ' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#0         1         2   	   3	     4		   5		 6	       7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+1}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+2}}}}}}}}}}}}}}......................................}}}}}}}}}}}}}}}}}}}}}}}}
+3}}}}}}}}}}}}...+---.----.----.----.----.----.--+-.--+-}}}}F-F-}}}}}}}-F-F}}}
+4}}}}}}}}}}}....+..|.|##|.|##|.|##|.|##|.|##|.|..|.|..+.}}}|..F-F-F-F-F..|}}}
+5}}}}}}}}}......+..|.|##|.|##|.|##|.|##|.|##|.|..|.+..|...}F.............F}.}
+6}}}}}}}}.......-++-.--+-.--+-.--+-.--+-.--+-.-+--.-++-...}-|.FFFFFFFFF.F-}.}
+7}}}}}}}....................................................|.F#######F.|}}.}
+8}}}}}}}.-++-..-----....                              ......|.F#-F+F-#F.F}}.}
+9}}}}}}..+..+..+...+..    .......................  ..   ....|.F#F...|---|}}.}
+0}}}}}...+..|..|...+.    .........................H...   ...|.+#|...+...+....
+1}}}}}}..-+----+...|..  H .......................  ..   ....|.F#F...|---|}}.}
+2}}}}}}}....+..++---....                          -----.....|.F#-F+F-#F.F}}.}
+3}}}}}}}....+...|.....-----..-----..-----..-----..|.|.|.....|.F#######F.|}}.}
+4}}}}}}}}...|...|.....|...|..|...|..|...|..|...|..|.|.|...}--.FFFFFFFFF.F-}.}
+5}}}}}}}}}..-----.....|...|..|...|..|...|..|...|..|+-+|...}F.............F}.}
+6}}}}}}}}}}}..........|...|..|...|..|...|..|...|..S...|..}}|..F-F-F-F-F..|}}}
+7}}}}}}}}}}}}.........-+---..-+---..-+---..-+---..-----.}}}F-F-}}}}}}}-F-F}}}
+8}}}}}}}}}}}}}}.......................................}}}}}}}}}}}}}}}}}}}}}}}
+9}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+0}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+ENDMAP
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+#0         1         2   	   3	     4		   5		 6	       7
+
+# Stairs
+STAIR:random,up
+# Objects
+OBJECT:'(',"pick-axe",(65,10),blessed,0,"Modified Z-Sword"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'@',"Dark Goku",(65,10),hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"kamehameha fighter",random,hostile
+MONSTER: '@',"super saiyan",random,hostile
+MONSTER: '@',"super saiyan",random,hostile
+MONSTER: '@',"super saiyan",random,hostile
+MONSTER: '@',"super saiyan",random,hostile
+MONSTER: '@',"super saiyan",random,hostile
+MONSTER: '@',"super saiyan",random,hostile
+MONSTER: '@',"super saiyan",random,hostile
+MONSTER: '@',"super saiyan",random,hostile
+MONSTER: '@',"super saiyan",random,hostile
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "fila" is the upper filler, between the
+#	start and locate levels, and "filb" the lower between the locate
+#	and goal levels.
+#
+
+LEVEL: "Sai-fila"
+#
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: '@', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: '@', random, random, hostile
+MONSTER: '@', "kamehameha fighter", random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: '@', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: '@', "super saiyan", random,hostile
+MONSTER: '@', "kamehameha fighter", random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: '@', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: '@', "kamehameha fighter", random,hostile
+
+RANDOM_CORRIDORS
+
+LEVEL: "Sai-filb"
+#
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: '@', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: '@', random, random, hostile
+MONSTER: '@', "kamehameha fighter", random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: '@', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: '@', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: '@', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: '@', "kamehameha fighter", random,hostile
+
+RANDOM_CORRIDORS
+

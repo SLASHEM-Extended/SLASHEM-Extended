@@ -9,7 +9,10 @@
 
 /* Monsters that might be ridden */
 static NEARDATA const char steeds[] = {
-	S_QUADRUPED, S_UNICORN, S_ANGEL, S_CENTAUR, S_DRAGON, S_JABBERWOCK, '\0'
+	S_QUADRUPED, S_UNICORN, S_ANGEL, S_DEMON, S_CENTAUR, S_DRAGON, S_JABBERWOCK, S_COCKATRICE, S_HUMANOID, S_NYMPH,
+S_SPIDER, S_ZOUTHERN, S_BAT, S_GIANT, S_KOP, S_LICH, S_MUMMY, S_NAGA, S_VAMPIRE, S_WRAITH, S_YETI, S_ZOMBIE, S_GOLEM, 
+S_HUMAN, S_EEL, S_LIZARD, S_BAD_FOOD, S_BAD_COINS,  '\0' 
+/* added demons and some other stuff --Amy */
 };
 
 STATIC_DCL boolean FDECL(landing_spot, (coord *, int, int));
@@ -28,12 +31,13 @@ boolean
 can_saddle(mtmp)
 	struct monst *mtmp;
 {
-	struct permonst *ptr = mtmp->data;
+	return 1; /*just remove all those annoying restrictions and allow everything to be saddled --Amy*/
+	/*struct permonst *ptr = mtmp->data;
 
 	return (index(steeds, ptr->mlet) && (ptr->msize >= MZ_MEDIUM) &&
 			(!humanoid(ptr) || ptr->mlet == S_CENTAUR) &&
 			!amorphous(ptr) && !noncorporeal(ptr) &&
-			!is_whirly(ptr) && !unsolid(ptr));
+			!is_whirly(ptr) && !unsolid(ptr));*/
 }
 
 
@@ -48,9 +52,18 @@ use_saddle(otmp)
 
 
 	/* Can you use it? */
-	if (nohands(youmonst.data)) {
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 		You("have no hands!");	/* not `body_part(HAND)' */
-		return 0;
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		if (yn("Try to use the saddle with another part of your body instead?") == 'y') {
+			if (rn2(3)) { 			make_blinded(Blinded + rnd(50),TRUE);
+			pline("You got something in your face!");
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		    return 1;}
+		}
+		else {return(0);}
+
 	} else if (!freehand()) {
 		You("have no free %s.", body_part(HAND));
 		return 0;
@@ -91,7 +104,7 @@ use_saddle(otmp)
 	if (ptr == &mons[PM_INCUBUS] || ptr == &mons[PM_SUCCUBUS]) {
 	    pline("Shame on you!");
 	    exercise(A_WIS, FALSE);
-	    return 1;
+	    /*return 1;*/ /* removed that stupid restriction --Amy */
 	}
 	if (mtmp->isminion || mtmp->isshk || mtmp->ispriest ||
 			mtmp->isgd || mtmp->iswiz) {
@@ -107,8 +120,10 @@ use_saddle(otmp)
 	chance = ACURR(A_DEX) + ACURR(A_CHA)/2 + 2*mtmp->mtame;
 	chance += u.ulevel * (mtmp->mtame ? 20 : 5);
 	if (!mtmp->mtame) chance -= 10*mtmp->m_lev;
-	if (Role_if(PM_KNIGHT))
+	if (Role_if(PM_KNIGHT) || Role_if(PM_CHEVALIER))
 	    chance += 20;
+	if (Role_if(PM_TRANSVESTITE) || Role_if(PM_TOPMODEL))
+	    chance += 50;
 	switch (P_SKILL(P_RIDING)) {
 	case P_ISRESTRICTED:
 	case P_UNSKILLED:
@@ -117,11 +132,15 @@ use_saddle(otmp)
 	case P_BASIC:
 	    break;
 	case P_SKILLED:
-	    chance += 15;	break;
+	    chance += 25;	break;
 	case P_EXPERT:
-	    chance += 30;	break;
+	    chance += 50;	break;
+	case P_MASTER:
+	    chance += 75;	break;
+	case P_GRAND_MASTER:
+	    chance += 100;	break;
 	}
-	if (Confusion || Fumbling || Glib)
+	if (Confusion || Fumbling || IsGlib)
 	    chance -= 20;
 	else if (uarmg &&
 		(s = OBJ_DESCR(objects[uarmg->otyp])) != (char *)0 &&
@@ -161,10 +180,11 @@ boolean
 can_ride(mtmp)
 	struct monst *mtmp;
 {
-	return (mtmp->mtame && humanoid(youmonst.data) &&
+	return (mtmp->mtame /*&& humanoid(youmonst.data) &&
 			!verysmall(youmonst.data) && !bigmonst(youmonst.data) &&
-			(!Underwater || is_swimmer(mtmp->data)));
+			(!Underwater || is_swimmer(mtmp->data)) */);
 }
+/* Removed a lot of annoying restrictions that don't serve any purpose anyway other than annoying the player. --Amy */
 
 
 int
@@ -205,7 +225,7 @@ mount_steed(mtmp, force)
 	/* Is the player in the right form? */
 	if (Hallucination && !force) {
 	    pline("Maybe you should find a designated driver.");
-	    return (FALSE);
+	    /*return (FALSE); well, if the horse is saddled, a hallucinating player should be able to ride it --Amy*/
 	}
 	/* While riding Wounded_legs refers to the steed's,
 	 * not the hero's legs.
@@ -227,10 +247,17 @@ mount_steed(mtmp, force)
 	    return (FALSE);
 	}
 
-	if (Upolyd && (!humanoid(youmonst.data) || verysmall(youmonst.data) ||
+	if (Upolyd && !Race_if(PM_TRANSFORMER) && (!humanoid(youmonst.data) || verysmall(youmonst.data) ||
 			bigmonst(youmonst.data) || slithy(youmonst.data))) {
 	    You("won't fit on a saddle.");
-	    return (FALSE);
+
+		if (yn("But you can try to get on your steed anyway. Do it?") == 'y') {
+			if (rn2(3)) { losehp(rn1(10,20), "trying an illegal ride", NO_KILLER_PREFIX);
+			pline("Ouch! You slip and hurt yourself a lot!");
+		    /*return 1;*/}
+		}
+		else {return(FALSE);}
+
 	}
 	if(!force && (near_capacity() > SLT_ENCUMBER)) {
 	    You_cant("do that while carrying so much stuff.");
@@ -281,7 +308,7 @@ mount_steed(mtmp, force)
 	    return (FALSE);
 	}
 
-	if (!force && !Role_if(PM_KNIGHT) && !(--mtmp->mtame)) {
+	if (!force && !Role_if(PM_KNIGHT) && !Role_if(PM_CHEVALIER) && !(--mtmp->mtame)) {
 	    /* no longer tame */
 	    newsym(mtmp->mx, mtmp->my);
 	    pline("%s resists%s!", Monnam(mtmp),
@@ -311,8 +338,8 @@ mount_steed(mtmp, force)
 			mon_nam(mtmp));
 	    return (FALSE);
 	}
-	if (!force && (Confusion || Fumbling || Glib || Wounded_legs ||
-		otmp->cursed || (u.ulevel+mtmp->mtame < rnd(MAXULEV/2+5)))) {
+	if (!force && (Confusion || Fumbling || IsGlib || Wounded_legs ||
+		otmp->cursed || (u.ulevel+mtmp->mtame < rnd(MAXULEV/2+5) && ( (!Role_if(PM_KNIGHT) || !rn2(5)) && (!Role_if(PM_CHEVALIER) || !rn2(5)) && (!Role_if(PM_YEOMAN) || !rn2(5)) && ((!Role_if(PM_TRANSVESTITE) && !Role_if(PM_TOPMODEL)) || !rn2(5)) ) ) )) {
 	    if (Levitation) {
 		pline("%s slips away from you.", Monnam(mtmp));
 		return FALSE;
@@ -352,7 +379,8 @@ exercise_steed()
 		return;
 
 	/* It takes many turns of riding to exercise skill */
-	if (u.urideturns++ >= 100) {
+	/* but not THAT godawfully many - used to be 100, now it's 33 --Amy */
+	if (u.urideturns++ >= 33) {
 	    u.urideturns = 0;
 	    use_skill(P_RIDING, 1);
 	}
@@ -377,7 +405,7 @@ int forceit;
     struct trap *t;
 
     /* avoid known traps (i == 0) and boulders, but allow them as a backup */
-    if (reason != DISMOUNT_BYCHOICE || Stunned || Confusion || Fumbling) i = 1;
+    if (reason != DISMOUNT_BYCHOICE || Stunned || Numbed || Feared || Confusion || Fumbling) i = 1;
     for (; !found && i < 2; ++i) {
 	for (x = u.ux-1; x <= u.ux+1; x++)
 	    for (y = u.uy-1; y <= u.uy+1; y++) {
@@ -552,13 +580,13 @@ dismount_steed(reason)
 							surface(u.ux, u.uy));
 			if (!is_swimmer(mdat) && !amphibious(mdat)) {
 			    killed(mtmp);
-			    adjalign(-1);
+			    adjalign(-5);
 			}
 		    } else if (is_lava(u.ux, u.uy)) {
 			pline("%s is pulled into the lava!", Monnam(mtmp));
 			if (!likes_lava(mdat)) {
 			    killed(mtmp);
-			    adjalign(-1);
+			    adjalign(-5);
 			}
 		    }
 		}
@@ -600,7 +628,7 @@ dismount_steed(reason)
 	    /* Otherwise, kill the steed */
 	    } else {
 		killed(mtmp);
-		adjalign(-1);
+		adjalign(-5);
 	    }
 	}
 

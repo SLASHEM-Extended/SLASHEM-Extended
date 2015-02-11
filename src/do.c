@@ -6,6 +6,8 @@
 
 #include "hack.h"
 #include "lev.h"
+#include "quest.h"
+#include "qtext.h"
 
 #ifdef SINKS
 # ifdef OVLB
@@ -16,6 +18,7 @@ STATIC_DCL void FDECL(dosinkring, (struct obj *));
 
 STATIC_PTR int FDECL(drop, (struct obj *));
 STATIC_PTR int NDECL(wipeoff);
+STATIC_PTR void NDECL(lose_comp_objects);
 
 #ifdef OVL0
 STATIC_DCL int FDECL(menu_drop, (int));
@@ -51,6 +54,30 @@ dodrop()
 
 #endif /* OVLB */
 #ifdef OVL0
+
+STATIC_PTR void
+lose_comp_objects()
+{
+	struct obj *otmp,*on;
+	int x;
+
+	x = 0;
+	for (otmp=invent;otmp;) {
+		on = otmp->nobj;
+		if (otmp->otyp == RIN_TIMELY_BACKUP 
+		||  otmp->otyp == SCR_ROOT_PASSWORD_DETECTION
+		||  otmp->otyp == AMULET_OF_DATA_STORAGE
+		||  otmp->otyp == WAN_BUGGING ) {
+			pline("%s%s vanish%s!",(x++) ? "" : "All of a sudden, ",doname(otmp),(otmp->quan > 1) ? "" : "es");
+			setnotworn(otmp);
+			freeinv(otmp);
+			obfree(otmp, (struct obj *) 0);
+		}
+		otmp = on;
+	}
+}
+
+
 
 /* Called when a boulder is dropped, thrown, or pushed.  If it ends up
  * in a pool, it either fills the pool up or sinks away.  In either case,
@@ -144,7 +171,7 @@ const char *verb;
 	struct monst *mtmp;
 
 	if (obj->where != OBJ_FREE)
-	    panic("flooreffects: obj not free");
+	    panic("flooreffects: obj not free, %d", obj->where);
 
 	/* make sure things like water_damage() have no pointers to follow */
 	obj->nobj = obj->nexthere = (struct obj *)0;
@@ -243,6 +270,11 @@ void
 doaltarobj(obj)  /* obj is an object dropped on an altar */
 	register struct obj *obj;
 {
+	if (!rn2(100) && (!Is_astralevel(&u.uz)) ) {levl[u.ux][u.uy].typ = ROOM;
+	pline_The("altar suddenly vanishes!"); /* Yes, we're preventing altar abuse here, or trying to, at least. --Amy */
+	newsym(u.ux,u.uy);
+	return;}
+
 	if (Blind)
 		return;
 
@@ -376,9 +408,21 @@ giveback:
 		case RIN_REGENERATION:
 		    pline_The("sink looks as good as new.");
 		    break;
+	      case RIN_SICKNESS_RESISTANCE:
+		    pline("The sink looks clean and neat for a moment.");
+		    break;
+	      case RIN_DISARMING:
+		    pline("The water flow pauses for a moment.");
+		    break;
+	      case RIN_NUMBNESS:
+		    pline("The water flow stutters for a moment.");
+		    break;
 		case RIN_INVISIBILITY:
 		    You("don't see anything happen to the sink.");
 		    break;
+	    case RIN_TIMELY_BACKUP:
+		pline("The sink seems undestroyable.");
+		break;
 		case RIN_FREE_ACTION:
 		    You("see the ring slide right down the drain!");
 		    break;
@@ -393,6 +437,9 @@ giveback:
 		    break;
 		case RIN_COLD_RESISTANCE:
 		pline_The("cold water faucet flashes brightly for a moment.");
+		    break;
+		case RIN_FEAR_RESISTANCE:
+		pline_The("water seems to flow more steadily.");
 		    break;
 		case RIN_PROTECTION_FROM_SHAPE_CHAN:
 		    pline_The("sink looks nothing like a fountain.");
@@ -521,7 +568,7 @@ register struct obj *obj;
 	    if((obj->oclass == RING_CLASS || obj->otyp == MEAT_RING) &&
 			IS_SINK(levl[u.ux][u.uy].typ)) {
 		dosinkring(obj);
-		return(1);
+		return(/*1*/0);
 	    }
 #endif
 	    if (!can_reach_floor()) {
@@ -534,13 +581,15 @@ register struct obj *obj;
 		freeinv(obj);
 #endif
 		hitfloor(obj);
-		return(1);
+		return(/*1*/0);
 	    }
 	    if (!IS_ALTAR(levl[u.ux][u.uy].typ) && flags.verbose)
 		You("drop %s.", doname(obj));
 	}
 	dropx(obj);
-	return(1);
+	return(/*1*/0);
+	/* Dropping things should no longer consume a turn now. --Amy */
+
 }
 
 /* Called in several places - may produce output */
@@ -589,6 +638,9 @@ register struct obj *obj;
 		    could_grow = (obj->corpsenm == PM_WRAITH);
 		    could_heal = (obj->corpsenm == PM_NURSE);
 		}
+		if (obj->otyp == EGG) {
+		    could_petrify = touch_petrifies(&mons[obj->corpsenm]);
+		}
 		(void) mpickobj(u.ustuck,obj);
 		if (is_animal(u.ustuck->data)) {
 		    if (could_poly || could_slime) {
@@ -597,7 +649,7 @@ register struct obj *obj;
 				       &mons[PM_GREEN_SLIME],
 				       FALSE, could_slime);
 			delobj(obj);	/* corpse is digested */
-		    } else if (could_petrify) {
+		    } else if (could_petrify && !rn2(4)) {
 			minstapetrify(u.ustuck, TRUE);
 			/* Don't leave a cockatrice corpse in a statue */
 			if (!u.uswallow) delobj(obj);
@@ -640,7 +692,7 @@ struct obj *obj;
 	case CRYSKNIFE:
 	    /* KMH -- Fixed crysknives have only 10% chance of reverting */
 	    /* only changes when not held by player or monster */
-	    if (!obj->oerodeproof || !rn2(10)) {
+	    if ((!obj->oerodeproof || !rn2(10)) && !obj->oartifact) {
 		obj->otyp = WORM_TOOTH;
 		obj->oerodeproof = 0;
 	    }
@@ -822,7 +874,13 @@ dodown()
 	    }
 	    floating_above(stairs_down ? "stairs" : ladder_down ?
 			   "ladder" : surface(u.ux, u.uy));
-	    return (0);   /* didn't move */
+
+		if ( (stairs_down || ladder_down) && yn("You can force yourself down, but this will hurt you. Do it?") == 'y') {
+			pline("You drain your life-force to squeeze down the stairs.");
+		    losexp("levitating down a narrow set of stairs", TRUE);
+		    losexp("levitating down a narrow set of stairs", TRUE);
+		}
+		else {return(0);} /* didn't move */
 	}
 	if (!stairs_down && !ladder_down) {
 		if (!(trap = t_at(u.ux,u.uy)) ||
@@ -1005,6 +1063,15 @@ boolean at_stairs, falling, portal;
 	boolean new = FALSE;	/* made a new level? */
 	struct monst *mtmp;
 	char whynot[BUFSZ];
+	coord dd;
+
+	/* for special spawn routines... --Amy */
+	int randsp;
+	int randmnst;
+	struct permonst *randmonstforspawn;
+	int monstercolor;
+	int randmnsx;
+	int i;
 
 	if (dunlev(newlevel) > dunlevs_in_dungeon(newlevel))
 		newlevel->dlevel = dunlevs_in_dungeon(newlevel);
@@ -1064,10 +1131,11 @@ boolean at_stairs, falling, portal;
 	/* Prevent the player from going past the first quest level unless
 	 * (s)he has been given the go-ahead by the leader.
 	 */
-	if (on_level(&u.uz, &qstart_level) && !newdungeon && !ok_to_quest()) {
-		pline("A mysterious force prevents you from descending.");
-		return;
-	}
+	/*if (on_level(&u.uz, &qstart_level) && !newdungeon && !ok_to_quest()) {
+	*	pline("A mysterious force prevents you from descending.");
+	*	return;
+	}*/
+	/* commented out, hopefully preventing you from making the game unwinnable by mistake --Amy */
 
 	if (on_level(newlevel, &u.uz)) return;		/* this can happen */
 
@@ -1143,14 +1211,247 @@ boolean at_stairs, falling, portal;
 		}
 		mklev();
 		new = TRUE;	/* made the level */
+
+		/* very rarely, spawn a group of typed monsters --Amy */
+
+		if (!rn2(3000)) {
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			randmnst = (rn2(187) + 1);
+			randmnsx = (rn2(100) + 1);
+
+				if (wizard || !rn2(10)) pline("The air around here seems charged with tension!");
+
+			for (i = 0; i < randsp; i++) {
+			/* This function will fill the map with a random amount of monsters of one class. --Amy */
+
+			if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+			if (randmnst < 6)
+		 	    (void) makemon(mkclass(S_ANT,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 9)
+		 	    (void) makemon(mkclass(S_BLOB,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 11)
+		 	    (void) makemon(mkclass(S_COCKATRICE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 15)
+		 	    (void) makemon(mkclass(S_DOG,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 18)
+		 	    (void) makemon(mkclass(S_EYE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 22)
+		 	    (void) makemon(mkclass(S_FELINE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 24)
+		 	    (void) makemon(mkclass(S_GREMLIN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 29)
+		 	    (void) makemon(mkclass(S_HUMANOID,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 33)
+		 	    (void) makemon(mkclass(S_IMP,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 36)
+		 	    (void) makemon(mkclass(S_JELLY,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 41)
+		 	    (void) makemon(mkclass(S_KOBOLD,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 44)
+		 	    (void) makemon(mkclass(S_LEPRECHAUN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 47)
+		 	    (void) makemon(mkclass(S_MIMIC,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 50)
+		 	    (void) makemon(mkclass(S_NYMPH,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 54)
+		 	    (void) makemon(mkclass(S_ORC,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 55)
+		 	    (void) makemon(mkclass(S_PIERCER,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 58)
+		 	    (void) makemon(mkclass(S_QUADRUPED,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 62)
+		 	    (void) makemon(mkclass(S_RODENT,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 65)
+		 	    (void) makemon(mkclass(S_SPIDER,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 66)
+		 	    (void) makemon(mkclass(S_TRAPPER,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 69)
+		 	    (void) makemon(mkclass(S_UNICORN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 71)
+		 	    (void) makemon(mkclass(S_VORTEX,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 73)
+		 	    (void) makemon(mkclass(S_WORM,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 75)
+		 	    (void) makemon(mkclass(S_XAN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 76)
+		 	    (void) makemon(mkclass(S_LIGHT,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 77)
+		 	    (void) makemon(mkclass(S_ZOUTHERN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 78)
+		 	    (void) makemon(mkclass(S_ANGEL,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 81)
+		 	    (void) makemon(mkclass(S_BAT,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 83)
+		 	    (void) makemon(mkclass(S_CENTAUR,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 86)
+		 	    (void) makemon(mkclass(S_DRAGON,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 89)
+		 	    (void) makemon(mkclass(S_ELEMENTAL,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 94)
+		 	    (void) makemon(mkclass(S_FUNGUS,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 99)
+		 	    (void) makemon(mkclass(S_GNOME,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 102)
+		 	    (void) makemon(mkclass(S_GIANT,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 103)
+		 	    (void) makemon(mkclass(S_JABBERWOCK,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 104)
+		 	    (void) makemon(mkclass(S_KOP,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 105)
+		 	    (void) makemon(mkclass(S_LICH,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 108)
+		 	    (void) makemon(mkclass(S_MUMMY,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 110)
+		 	    (void) makemon(mkclass(S_NAGA,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 113)
+		 	    (void) makemon(mkclass(S_OGRE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 115)
+		 	    (void) makemon(mkclass(S_PUDDING,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 116)
+		 	    (void) makemon(mkclass(S_QUANTMECH,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 118)
+		 	    (void) makemon(mkclass(S_RUSTMONST,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 121)
+		 	    (void) makemon(mkclass(S_SNAKE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 123)
+		 	    (void) makemon(mkclass(S_TROLL,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 124)
+		 	    (void) makemon(mkclass(S_UMBER,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 125)
+		 	    (void) makemon(mkclass(S_VAMPIRE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 127)
+		 	    (void) makemon(mkclass(S_WRAITH,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 128)
+		 	    (void) makemon(mkclass(S_XORN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 130)
+		 	    (void) makemon(mkclass(S_YETI,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 135)
+		 	    (void) makemon(mkclass(S_ZOMBIE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 145)
+		 	    (void) makemon(mkclass(S_HUMAN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 147)
+		 	    (void) makemon(mkclass(S_GHOST,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 149)
+		 	    (void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 152)
+		 	    (void) makemon(mkclass(S_DEMON,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 155)
+		 	    (void) makemon(mkclass(S_EEL,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 160)
+		 	    (void) makemon(mkclass(S_LIZARD,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 162)
+		 	    (void) makemon(mkclass(S_BAD_FOOD,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 165)
+		 	    (void) makemon(mkclass(S_BAD_COINS,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 166) {
+				if (randmnsx < 96)
+		 	    (void) makemon(mkclass(S_HUMAN,0), 0, 0, NO_MM_FLAGS);
+				else
+		 	    (void) makemon(mkclass(S_NEMESE,0), 0, 0, NO_MM_FLAGS);
+				}
+			else if (randmnst < 171)
+		 	    (void) makemon(mkclass(S_GRUE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 176)
+		 	    (void) makemon(mkclass(S_WALLMONST,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 180)
+		 	    (void) makemon(mkclass(S_RUBMONST,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 181) {
+				if (randmnsx < 99)
+		 	    (void) makemon(mkclass(S_HUMAN,0), 0, 0, NO_MM_FLAGS);
+				else
+		 	    (void) makemon(mkclass(S_ARCHFIEND,0), 0, 0, NO_MM_FLAGS);
+				}
+			else if (randmnst < 186)
+		 	    (void) makemon(mkclass(S_TURRET,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 187)
+		 	    (void) makemon(mkclass(S_FLYFISH,0), 0, 0, NO_MM_FLAGS);
+			else
+		 	    (void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
+
+			}
+		}
+
+		if (!rn2(3000)) {
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			randmonstforspawn = rndmonst();
+
+			if (wizard || !rn2(10)) pline("It seems there might be lots of monsters around here...");
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(randmonstforspawn, 0, 0, NO_MM_FLAGS);
+			}
+
+		}
+
+		if (!rn2(3000)) {
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			monstercolor = rnd(15);
+			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
+
+			if (wizard || !rn2(10)) pline("You feel that a certain color might be prominent around here...");
+
+			for (i = 0; i < randsp; i++) {
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(colormon(monstercolor), 0, 0, NO_MM_FLAGS);
+			}
+
+		}
+
+		/* some levels are populated with a few undead player monsters --Amy */
+		if (on_level(&u.uz, &earth_level))
+			create_umplayers(rn1(2, 1), TRUE);
+		if (on_level(&u.uz, &water_level))
+			create_umplayers(rn1(2, 1), TRUE);
+		if (on_level(&u.uz, &air_level))
+			create_umplayers(rn1(2, 1), TRUE);
+		if (on_level(&u.uz, &fire_level))
+			create_umplayers(rn1(2, 1), TRUE);
+		if (on_level(&u.uz, &sanctum_level))
+			create_umplayers(rn1(2, 1), TRUE);
+		if (on_level(&u.uz, &valley_level))
+			create_umplayers(rn1(6, 5), TRUE); /* valley of the dead has more undead --Amy */
+
+		if (Race_if(PM_HAXOR) && on_level(&u.uz, &earth_level))
+			create_umplayers(rn1(2, 1), TRUE);
+		if (Race_if(PM_HAXOR) && on_level(&u.uz, &water_level))
+			create_umplayers(rn1(2, 1), TRUE);
+		if (Race_if(PM_HAXOR) && on_level(&u.uz, &air_level))
+			create_umplayers(rn1(2, 1), TRUE);
+		if (Race_if(PM_HAXOR) && on_level(&u.uz, &fire_level))
+			create_umplayers(rn1(2, 1), TRUE);
+		if (Race_if(PM_HAXOR) && on_level(&u.uz, &sanctum_level))
+			create_umplayers(rn1(2, 1), TRUE);
+		if (Race_if(PM_HAXOR) && on_level(&u.uz, &valley_level))
+			create_umplayers(rn1(6, 5), TRUE); /* valley of the dead has more undead --Amy */
+
 	} else {
 		/* returning to previously visited level; reload it */
 		fd = open_levelfile(new_ledger, whynot);
 		if (fd < 0) {
 			pline("%s", whynot);
 			pline("Probably someone removed it.");
-			killer = whynot;
-			done(TRICKED);
+			/*killer = whynot;
+			done(TRICKED);*/
 			/* we'll reach here if running in wizard mode */
 			error("Cannot continue this game.");
 		}
@@ -1213,7 +1514,14 @@ boolean at_stairs, falling, portal;
 		    You("fly down along the %s.",
 			at_ladder ? "ladder" : "stairs");
 		else if (u.dz &&
+#ifdef CONVICT
+		    (near_capacity() > UNENCUMBERED || (Punished &&
+		    ((uwep != uball) || ((P_SKILL(P_FLAIL) < P_BASIC))
+            || !Role_if(PM_CONVICT)))
+		     || Fumbling)) {
+#else
 		    (near_capacity() > UNENCUMBERED || Punished || Fumbling)) {
+#endif /* CONVICT */
 		    You("fall down the %s.", at_ladder ? "ladder" : "stairs");
 		    if (Punished) {
 			drag_down();
@@ -1382,10 +1690,12 @@ boolean at_stairs, falling, portal;
 	if (!In_quest(&u.uz0) && at_dgn_entrance("The Quest") &&
 		!(u.uevent.qexpelled || u.uevent.qcompleted || quest_status.leader_is_dead)) {
 
+		/* come on, this shouldn't be the same for every role! --Amy */
+
 		if (u.uevent.qcalled) {
-			com_pager(Role_if(PM_ROGUE) ? 4 : 3);
+			/*com_pager(Role_if(PM_ROGUE) ? 4 : 3)*/qt_pager(QT_NEXTQLEVEL);
 		} else {
-			com_pager(2);
+			/*com_pager(2)*/qt_pager(QT_FIRSTQLEVEL);
 			u.uevent.qcalled = TRUE;
 		}
 	}
@@ -1400,6 +1710,8 @@ boolean at_stairs, falling, portal;
 
 	if (on_level(&u.uz, &astral_level))
 	    final_level();
+
+
 	else
 	    onquest();
 	assign_level(&u.uz0, &u.uz); /* reset u.uz0 */
@@ -1427,6 +1739,14 @@ final_level()
 
 	/* create some player-monsters */
 	create_mplayers(rn1(4, 3), TRUE);
+	create_umplayers(rn1(2, 1), TRUE);
+	if (!rn2(5)) create_mplayers(rn1(4, 3), TRUE);
+	if (!rn2(5)) create_umplayers(rn1(2, 1), TRUE);
+
+	if (Race_if(PM_HAXOR)) create_mplayers(rn1(4, 3), TRUE);
+	if (Race_if(PM_HAXOR)) create_umplayers(rn1(2, 1), TRUE);
+	if (Race_if(PM_HAXOR) && !rn2(5)) create_mplayers(rn1(4, 3), TRUE);
+	if (Race_if(PM_HAXOR) && !rn2(5)) create_umplayers(rn1(2, 1), TRUE);
 
 	/* create a guardian angel next to player, if worthy */
 	if (Conflict) {
@@ -1678,9 +1998,18 @@ long timeout;
 
     /* Weight towards non-motile fungi.
      */
-    pmtype = pm_mkclass(S_FUNGUS, 0);
-    if ((pmtype != -1) && (mons[pmtype].mmove)) pmtype = pm_mkclass(S_FUNGUS, 0);
+    if (rn2(20)) pmtype = pm_mkclass(S_FUNGUS, 0);
+    else if (rn2(2)) pmtype = pm_mkclass(S_JELLY, 0); /*jellies, blobs and puddings should be possible --Amy*/
+    else if (rn2(2)) pmtype = pm_mkclass(S_BLOB, 0);
+    else pmtype = pm_mkclass(S_PUDDING, 0);
 
+    if ((pmtype != -1) && (mons[pmtype].mmove)) 
+	{
+	    if (rn2(20)) pmtype = pm_mkclass(S_FUNGUS, 0);
+	    else if (rn2(2)) pmtype = pm_mkclass(S_JELLY, 0); /*jellies, blobs and puddings should be possible --Amy*/
+	    else if (rn2(2)) pmtype = pm_mkclass(S_BLOB, 0);
+	    else pmtype = pm_mkclass(S_PUDDING, 0);
+	}
     /* [ALI] Molds don't grow in adverse conditions.  If it ever
      * becomes possible for molds to grow in containers we should
      * check for iceboxes here as well.
@@ -1771,6 +2100,13 @@ wipeoff()
 int
 dowipe()
 {
+
+	if (MenuBug) {
+	pline("The wipe command is currently unavailable!");
+	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	return 0;
+	}
+
 	if(u.ucreamed)  {
 		static NEARDATA char buf[39];
 

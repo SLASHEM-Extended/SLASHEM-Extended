@@ -136,7 +136,7 @@ struct obj *obj;
 	     * eat.c.  (This also applies to pets eating gold.)
 	     */
 	    mtmp->meating = obj->owt/20 + 1;
-	    nutrit = 5*objects[obj->otyp].oc_nutrition;
+	    nutrit = 25*(objects[obj->otyp].oc_nutrition + 1); /* factor increased --Amy */
 	}
 	return nutrit;
 }
@@ -274,7 +274,7 @@ register struct monst *mtmp;
 register struct edog *edog;
 {
 	if (monstermoves > edog->hungrytime + 500) {
-	    if (!carnivorous(mtmp->data) && !herbivorous(mtmp->data)) {
+	    if (!carnivorous(mtmp->data) && !herbivorous(mtmp->data) && !metallivorous(mtmp->data) && !lithivorous(mtmp->data)) {
 		edog->hungrytime = monstermoves + 500;
 		/* but not too high; it might polymorph */
 	    } else if (!edog->mhpmax_penalty) {
@@ -323,7 +323,7 @@ register struct edog *edog;
 int udist;
 {
 	/* KMH, balance patch -- quantity picked up should depend on dog's level */
-	int dogquan = 10 * mtmp->m_lev;
+	int dogquan = /*10*/5 * mtmp->m_lev; /* halved by Amy */
 	register int omx, omy;
 	struct obj *obj;
 /*
@@ -636,7 +636,7 @@ register struct monst *mtmp;
 
     if (udist < 4 && has_edog && !mtmp->isspell && !rn2(3)
 		    && can_betray(mtmp->data)
-		    && !mindless(mtmp->data)
+		    /*&& !mindless(mtmp->data)*/ /* mindless creatures may still decide to attack randomly --Amy */
 		    && mtmp->mhp >= u.uhp	/* Pet is buff enough */
 		    && rn2(22) > mtmp->mtame	/* Roll against tameness */
 		    && rn2(edog->abuse + 2)) {
@@ -714,6 +714,9 @@ register int after;	/* this is extra fast monster movement */
 
 	/* Intelligent pets may rebel (apart from minions, spell beings) */
 	if (!rn2(850) && betrayed(mtmp)) return 1;
+
+	/* If you abused your pet, it will _very_ slowly time out. --Amy */
+	if (!rn2(10000) && has_edog && edog->abuse) edog->abuse--;
 
 	nix = omx;	/* set before newdogpos */
 	niy = omy;
@@ -875,7 +878,8 @@ register int after;	/* this is extra fast monster movement */
 			((mtmp->mhp*4 < mtmp->mhpmax
 			  || mtmp2->data->msound == MS_GUARDIAN
 			  || mtmp2->data->msound == MS_LEADER) &&
-			 mtmp2->mpeaceful && !Conflict) ||
+	/* the activistor quest shouldn't be trivialized by bringing a high-level pet or using charm monster. --Amy */
+			 mtmp2->mpeaceful && !Conflict) || mtmp2->data == &mons[PM_TOPMODEL] ||
 			   (touch_petrifies(mtmp2->data) &&
 				!resists_ston(mtmp)))
 			continue;

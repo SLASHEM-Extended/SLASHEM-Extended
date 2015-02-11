@@ -23,29 +23,52 @@ register struct obj *otmp;
 		return(2);
 /*		break; */
 # endif
+	case SCR_STANDARD_ID:
+		return(5);
+	case SCR_HEALING:
 	case SCR_LIGHT:
 	case SCR_GOLD_DETECTION:
 	case SCR_FOOD_DETECTION:
+	case SCR_TRAP_DETECTION:
 	case SCR_MAGIC_MAPPING:
 	case SCR_AMNESIA:
 	case SCR_FIRE:
+	case SCR_SLEEP:
 	case SCR_EARTH:
+	case SCR_ROOT_PASSWORD_DETECTION:
 		return(8);
 /*		break; */
+	case SCR_MANA:
 	case SCR_DESTROY_ARMOR:
+	case SCR_BAD_EFFECT:
 	case SCR_CREATE_MONSTER:
+	case SCR_SUMMON_UNDEAD:
 	case SCR_PUNISHMENT:
+	case SCR_PROOF_ARMOR:
+	case SCR_PROOF_WEAPON:
 		return(10);
 /*		break; */
 	case SCR_CONFUSE_MONSTER:
 		return(12);
 /*		break; */
 	case SCR_IDENTIFY:
+	case SCR_REVERSE_IDENTIFY:
 	case SCR_SCARE_MONSTER:
 		return(14);
 /*		break; */
 	case SCR_TAMING:
 	case SCR_TELEPORTATION:
+	case SCR_FLOOD:
+	case SCR_LAVA:
+	case SCR_BARRHING:
+	case SCR_GROWTH:
+	case SCR_ICE:
+	case SCR_CLOUDS:
+	case SCR_TELE_LEVEL:
+	case SCR_WARPING:
+	case SCR_MASS_MURDER:
+	case SCR_TRAP_CREATION:
+	case SCR_UNDO_GENOCIDE:
 		return(20);
 /*		break; */
 	/* KMH, balance patch -- more useful scrolls cost more */
@@ -57,11 +80,27 @@ register struct obj *otmp;
 		return(24);
 /*		break; */
 	case SCR_GENOCIDE:
+	case SCR_CURE:
+	case SCR_TRAP_DISARMING:
 		return(30);
 /*		break; */
+	case SCR_GAIN_MANA:
+	case SCR_LOCKOUT:
+		return(40);
+/*		break; */
+	case SCR_CONSECRATION:
+	case SCR_INVENTORY_ID:
+		return(50);
+/*		break; */
 	case SCR_BLANK_PAPER:
+	case SCR_WISHING:
+	case SCR_ACQUIREMENT:
+	case SCR_ENTHRONIZATION:
+	case SCR_FOUNTAIN_BUILDING:
+	case SCR_SINKING:
+	case SCR_WC:
 	default:
-		impossible("You can't write such a weird scroll!");
+		/*impossible*/pline("You can't write such a weird scroll!");
 	}
 	return(1000);
 }
@@ -82,10 +121,10 @@ register struct obj *pen;
 	boolean by_descr = FALSE;
 	const char *typeword;
 
-	if (nohands(youmonst.data)) {
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	    You("need hands to be able to write!");
 	    return 0;
-	} else if (Glib) {
+	} else if (IsGlib) {
 	    pline("%s from your %s.",
 		  Tobjnam(pen, "slip"), makeplural(body_part(FINGER)));
 	    dropx(pen);
@@ -149,6 +188,9 @@ found:
 	} else if (i == SPE_BOOK_OF_THE_DEAD) {
 		pline("No mere dungeon adventurer could write that.");
 		return 1;
+	} else if (i == SCR_WISHING || i == SCR_ACQUIREMENT || i == SCR_ENTHRONIZATION || i == SCR_FOUNTAIN_BUILDING || i == SCR_SINKING || i == SCR_WC) {
+		pline("This scroll refuses to be written.");
+		return 1;
 	} else if (by_descr && paper->oclass == SPBOOK_CLASS &&
 		    !objects[i].oc_name_known) {
 		/* can't write unknown spellbooks by description */
@@ -203,7 +245,7 @@ found:
 	/* can't write if we don't know it - unless we're lucky */
 	if(!(objects[new_obj->otyp].oc_name_known) &&
 	   !(objects[new_obj->otyp].oc_uname) &&
-	   (rnl(Role_if(PM_WIZARD) ? 3 : 15))) {
+	   (rnl(Role_if(PM_WIZARD) ? 3 : Role_if(PM_SAGE) ? 2 : 15))) {
 		You("%s to write that!", by_descr ? "fail" : "don't know how");
 		/* scrolls disappear, spellbooks don't */
 		if (paper->oclass == SPBOOK_CLASS) {
@@ -234,6 +276,7 @@ found:
 	}
 	new_obj->blessed = (curseval > 0);
 	new_obj->cursed = (curseval < 0);
+	new_obj->selfmade = TRUE;
 #ifdef MAIL
 	if (new_obj->otyp == SCR_MAIL) new_obj->spe = 1;
 #endif

@@ -9,6 +9,7 @@
  *	has_dnstairs() -- return TRUE if given room has a down staircase
  *	has_upstairs() -- return TRUE if given room has an up staircase
  *	courtmon() -- generate a court monster
+ *	douglas_adams_mon() -- create a Douglas-Adams_Monster
  *	save_rooms() -- save rooms into file fd
  *	rest_rooms() -- restore rooms from file fd
  */
@@ -22,8 +23,19 @@ STATIC_DCL void NDECL(mkshop), FDECL(mkzoo,(int)), NDECL(mkswamp);
 STATIC_DCL void NDECL(mktemple);
 STATIC_DCL coord * FDECL(shrine_pos, (int));
 STATIC_DCL struct permonst * NDECL(morguemon);
+STATIC_DCL struct permonst * NDECL(douglas_adams_mon);
+STATIC_DCL struct permonst * NDECL(tenshallmon);
+STATIC_DCL struct permonst * NDECL(tenshallmonB);
 STATIC_DCL struct permonst * NDECL(squadmon);
 STATIC_DCL struct permonst * NDECL(fungus);
+
+/*STATIC_DCL struct permonst * FDECL(colormon, (int));*/
+
+STATIC_DCL void NDECL(mktraproom);
+STATIC_DCL void NDECL(mkpoolroom);
+STATIC_DCL void NDECL(mkstatueroom);
+STATIC_DCL void NDECL(mkinsideroom);
+STATIC_DCL void NDECL(mkriverroom);
 STATIC_DCL void FDECL(save_room, (int,struct mkroom *));
 STATIC_DCL void FDECL(rest_room, (int,struct mkroom *));
 #endif /* OVLB */
@@ -58,6 +70,7 @@ int	roomtype;
 	case BARRACKS:	mkzoo(BARRACKS); break;
 	case REALZOO:   mkzoo(REALZOO); break;
 	case BADFOODSHOP: mkzoo(BADFOODSHOP); break;
+	case DOUGROOM:	mkzoo(DOUGROOM); break;
 	case DRAGONLAIR: mkzoo(DRAGONLAIR); break;
 	case GIANTCOURT: mkzoo(GIANTCOURT); break;
 	case SWAMP:	mkswamp(); break;
@@ -68,6 +81,25 @@ int	roomtype;
 	case LEMUREPIT: mkzoo(LEMUREPIT); break;
 	case MIGOHIVE:  mkzoo(MIGOHIVE); break;
 	case FUNGUSFARM: mkzoo(FUNGUSFARM); break;
+	case CLINIC: mkzoo(CLINIC); break;
+	case TERRORHALL: mkzoo(TERRORHALL); break;
+	case TENSHALL: mkzoo(TENSHALL); break;
+	case ELEMHALL: mkzoo(ELEMHALL); break;
+	case ANGELHALL: mkzoo(ANGELHALL); break;
+	case MIMICHALL: mkzoo(MIMICHALL); break;
+	case NYMPHHALL: mkzoo(NYMPHHALL); break;
+	case TROLLHALL: mkzoo(TROLLHALL); break;
+	case HUMANHALL: mkzoo(HUMANHALL); break;
+	case GOLEMHALL: mkzoo(GOLEMHALL); break;
+	case SPIDERHALL: mkzoo(SPIDERHALL); break;
+	case COINHALL: mkzoo(COINHALL); break;
+	case GRUEROOM: mkzoo(GRUEROOM); break;
+	case TRAPROOM:  mktraproom(); break;
+	case POOLROOM:  mkpoolroom(); break;
+	case STATUEROOM:  mkstatueroom(); break;
+	case INSIDEROOM: mkinsideroom(); break;
+	case RIVERROOM: mkriverroom(); break;
+	case ARMORY: mkzoo(ARMORY); break;
 	default:	impossible("Tried to make a room of type %d.", roomtype);
     }
 }
@@ -125,6 +157,10 @@ mkshop()
 				mkzoo(COCKNEST);
 				return;
 			}
+			if(*ep == 'r' || *ep == 'R'){
+				mkzoo(ARMORY);
+				return;
+			}
 			if(*ep == 'l' || *ep == 'L'){
 				mkzoo(LEPREHALL);
 				return;
@@ -135,6 +171,10 @@ mkshop()
 			}
 			if(*ep == '}'){
 				mkswamp();
+				return;
+			}
+			if (*ep == 'd' || *ep == 'D') {
+				mkzoo(DOUGROOM);
 				return;
 			}
 			j = -1;
@@ -184,8 +224,8 @@ mkshop()
 	    /* big rooms cannot be wand or book shops,
 	     * - so make them general stores
 	     */
-	    if(isbig(sroom) && (shtypes[i].symb == WAND_CLASS
-				|| shtypes[i].symb == SPBOOK_CLASS)) i = 0;
+	    /*if(isbig(sroom) && (shtypes[i].symb == WAND_CLASS
+				|| shtypes[i].symb == SPBOOK_CLASS)) i = 0;*/
 	}
 	sroom->rtype = SHOPBASE + i;
 
@@ -252,10 +292,14 @@ fill_zoo(sroom)
 struct mkroom *sroom;
 {
 	struct monst *mon;
+	struct monst *randomon;
+
 	register int sx,sy,i;
 	int sh, tx, ty, goldlim, type = sroom->rtype;
 	int rmno = (sroom - rooms) + ROOMOFFSET;
 	coord mm;
+
+	int moreorless;
 
 #ifdef GCC_WARN
 	tx = ty = goldlim = 0;
@@ -295,59 +339,113 @@ struct mkroom *sroom;
 		break;
 	    case ZOO:
 	    case LEPREHALL:
+		case COINHALL:
 		goldlim = 500 * level_difficulty();
 		break;
+		case CLINIC:
+		case MIMICHALL:
+		case ELEMHALL:
+		case TERRORHALL:
+		case ANGELHALL:
+		case SPIDERHALL:
+		case HUMANHALL:
+		case GOLEMHALL:
+		case TROLLHALL:
+		case NYMPHHALL:
+		case GRUEROOM:
+		    break;
+		case TENSHALL:
+			u.tensionmonster = (rn2(187) + 1);
+			u.tensionmonsteX = (rn2(100) + 1);
+			u.tensionmonsterB = 0;
+			u.tensionmonsterspec = 0;
+			u.tensionmonsterspecB = 0;
+			u.colormonster = 0;
+			u.colormonsterB = 0;
+			if (!rn2(10)) {u.colormonster = rnd(15);
+				if (!rn2(4)) u.colormonsterB = rnd(15);
+
+				if (u.colormonster == CLR_BLUE) { u.colormonster = 0; u.colormonsterB = 0;}
+				if (u.colormonsterB == CLR_BLUE) u.colormonsterB = 0;
+			}
+
+			if (!rn2(4)) u.tensionmonsterB = (rn2(187) + 1);
+			if (!rn2(10)) {u.tensionmonsterspec = rndmonst();
+				if (!rn2(4)) u.tensionmonsterspecB = rndmonst();
+			}
+			break;
 	    case DRAGONLAIR:
 		goldlim = 1500 * level_difficulty();
 		break;
 	}
+
+	moreorless = (rnd(Race_if(PM_HAXOR) ? 20 : Race_if(PM_SUXXOR) ? 5 : 10) + 1);
+
 	for(sx = sroom->lx; sx <= sroom->hx; sx++)
 	    for(sy = sroom->ly; sy <= sroom->hy; sy++) {
 		if(sroom->irregular) {
 		    if ((int) levl[sx][sy].roomno != rmno ||
-			  levl[sx][sy].edge ||
+			  levl[sx][sy].edge /*||
 			  (sroom->doorct &&
-			   distmin(sx, sy, doors[sh].x, doors[sh].y) <= 1))
+			   distmin(sx, sy, doors[sh].x, doors[sh].y) <= 1)*/)
 			continue;
-		} else if(!SPACE_POS(levl[sx][sy].typ) ||
+		} else if(!SPACE_POS(levl[sx][sy].typ) /*||
 			  (sroom->doorct &&
 			   ((sx == sroom->lx && doors[sh].x == sx-1) ||
 			    (sx == sroom->hx && doors[sh].x == sx+1) ||
 			    (sy == sroom->ly && doors[sh].y == sy-1) ||
-			    (sy == sroom->hy && doors[sh].y == sy+1))))
+			    (sy == sroom->hy && doors[sh].y == sy+1)))*/)
 		    continue;
 		/* don't place monster on explicitly placed throne */
 		if(type == COURT && IS_THRONE(levl[sx][sy].typ))
 		    continue;
-		mon = makemon(
-		    (type == COURT) ? courtmon() :
+               /* armories don't contain as many monsters */
+		if ( (type != ARMORY && rn2(moreorless) ) || rn2(2)) mon = makemon(
+		    (type == COURT) ? (rn2(5) ? courtmon() : mkclass(S_ORC,0) ) :
 		    (type == BARRACKS) ? squadmon() :
+			(type == CLINIC) ? &mons[PM_NURSE] :
+			(type == TERRORHALL) ? mkclass(S_UMBER,0) :
+			(type == TENSHALL) ? (u.tensionmonsterspecB ? (rn2(2) ? u.tensionmonsterspecB : u.tensionmonsterspec ) : u.tensionmonsterspec ? u.tensionmonsterspec : u.colormonsterB ? (rn2(2) ? colormon(u.colormonsterB) : colormon(u.colormonster) ) : u.colormonster ? colormon(u.colormonster) : u.tensionmonsterB ? (rn2(2) ? tenshallmon() : tenshallmonB() ) : tenshallmon()) :
+			(type == ELEMHALL) ? mkclass(S_ELEMENTAL,0) :
+			(type == ANGELHALL) ? mkclass(S_ANGEL,0) :
+			(type == MIMICHALL) ? mkclass(S_MIMIC,0) :
+			(type == NYMPHHALL) ? mkclass(S_NYMPH,0) :
+			(type == TROLLHALL) ? mkclass(S_TROLL,0) :
+			(type == SPIDERHALL) ? mkclass(S_SPIDER,0) :
+			(type == HUMANHALL) ? mkclass(S_HUMAN,0) :
+			(type == GOLEMHALL) ? mkclass(S_GOLEM,0) :
+			(type == COINHALL) ? mkclass(S_BAD_COINS,0) :
+			(type == GRUEROOM) ? mkclass(S_GRUE,0) :
 		    (type == MORGUE) ? morguemon() :
-		    (type == FUNGUSFARM) ? fungus() :
+		    (type == FUNGUSFARM) ? (rn2(2) ? fungus() : mkclass(S_FUNGUS,0)) :
 		    (type == BEEHIVE) ?
 			(sx == tx && sy == ty ? &mons[PM_QUEEN_BEE] :
 			 &mons[PM_KILLER_BEE]) :
-		    (type == LEPREHALL) ? &mons[PM_LEPRECHAUN] :
+		    (type == DOUGROOM) ? douglas_adams_mon() : 
+		    (type == LEPREHALL) ? /*&mons[PM_LEPRECHAUN]*/mkclass(S_LEPRECHAUN,0) :
 		    (type == COCKNEST) ? 
-		    	(rn2(4) ? &mons[PM_COCKATRICE] :
-		    	 &mons[PM_CHICKATRICE]) :
-		    (type == ANTHOLE) ? antholemon() :
+		    	/*(rn2(4) ? &mons[PM_COCKATRICE] :
+		    	 &mons[PM_CHICKATRICE])*/mkclass(S_COCKATRICE,0) :
+                   (type == ARMORY) ? (rn2(10) ? mkclass(S_RUSTMONST,0) :
+			mkclass(S_PUDDING,0) ) :
+		    (type == ANTHOLE) ? /*antholemon()*/mkclass(S_ANT,0) :
 		    (type == DRAGONLAIR) ? mkclass(S_DRAGON,0) :
 		    (type == LEMUREPIT)? 
-		    	(!rn2(10)? &mons[PM_HORNED_DEVIL] : 
+		    	(!rn2(20)? &mons[PM_HORNED_DEVIL] : !rn2(20) ? mkclass(S_DEMON,0) : rn2(2) ? mkclass(S_IMP,0) :
 			           &mons[PM_LEMURE]) :
 		    (type == MIGOHIVE)?
 		      (sx == tx && sy == ty? &mons[PM_MIGO_QUEEN] :
 	              (rn2(2)? &mons[PM_MIGO_DRONE] : &mons[PM_MIGO_WARRIOR])) :
 		    (type == BADFOODSHOP) ? mkclass(S_BAD_FOOD,0) :
-		    (type == REALZOO) ? realzoomon() :
+		    (type == REALZOO) ? (rn2(5) ? realzoomon() : mkclass(S_QUADRUPED,0) ) :
 		    (type == GIANTCOURT) ? mkclass(S_GIANT,0) :
 		    (struct permonst *) 0,
 		   sx, sy, NO_MM_FLAGS);
-
+               else mon = ((struct monst *)0);
+/* some rooms can spawn new monster variants now --Amy */
 		if(mon) {
-			mon->msleeping = 1;
-			if (type==COURT && mon->mpeaceful) {
+			if (rn2(10)) mon->msleeping = 1; /*random chance of them not being asleep --Amy*/
+			if (/*type==COURT && */mon->mpeaceful) { /*enemies in these rooms will always be hostile now --Amy*/
 				mon->mpeaceful = 0;
 				set_malign(mon);
 			}
@@ -370,7 +468,19 @@ struct mkroom *sroom;
 		    case MORGUE:
 			if(!rn2(5))
 			    (void) mk_tt_object(CORPSE, sx, sy);
-			if(!rn2(10))	/* lots of treasure buried with dead */
+			if(!rn2(5) && (level_difficulty() > 10+rnd(200) )) { /* real player ghosts --Amy */
+				coord mmm;
+				mmm.x = sx;   
+				mmm.y = sy;
+			    (void) tt_mname(&mmm, FALSE, 0);
+				}
+			if(Race_if(PM_HAXOR) && !rn2(5) && (level_difficulty() > 10+rnd(200) )) { /* real player ghosts --Amy */
+				coord mmm;
+				mmm.x = sx;   
+				mmm.y = sy;
+			    (void) tt_mname(&mmm, FALSE, 0);
+				}
+			if(!rn2(Race_if(PM_HAXOR) ? 5 : 10))	/* lots of treasure buried with dead */
 			    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST,
 					     sx, sy, TRUE, FALSE);
 			if (!rn2(5))
@@ -406,11 +516,23 @@ struct mkroom *sroom;
 			}
 			break;
 		    case BARRACKS:
-			if(!rn2(20))	/* the payroll and some loot */
+			if(!rn2(Race_if(PM_HAXOR) ? 10 : 20))	/* the payroll and some loot */
 			    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST,
 					     sx, sy, TRUE, FALSE);
 			if (!rn2(5))
 			    make_grave(sx, sy, (char *)0);
+			break;
+		    case CLINIC:
+			if(!rn2(10))
+			    (void) mksobj_at(ICE_BOX,sx,sy,TRUE,FALSE);
+			break;
+		    case GOLEMHALL:
+			if(!rn2(Race_if(PM_HAXOR) ? 10 : 20))
+			    (void) mkobj_at(CHAIN_CLASS, sx, sy, FALSE);
+			break;
+		    case SPIDERHALL:
+			if(!rn2(3))
+			    (void) mksobj_at(EGG,sx,sy,TRUE,FALSE);
 			break;
 		    case COCKNEST:
 			if(!rn2(3)) {
@@ -424,9 +546,32 @@ struct mkroom *sroom;
 			    }
 			}
 			break;
+		    case ARMORY:
+			{
+				struct obj *otmp;
+				if (!rn2(5)) { /* sorry Patrick, but the quantity of those items needs to be lower. --Amy */
+					if (rn2(2))
+						otmp = mkobj_at(WEAPON_CLASS, sx, sy, FALSE);
+					else
+						otmp = mkobj_at(ARMOR_CLASS, sx, sy, FALSE);
+					otmp->spe = 0;
+					if (is_rustprone(otmp)) otmp->oeroded = rn2(4);
+					else if (is_rottable(otmp)) otmp->oeroded2 = rn2(4);
+				}
+			}
+			break;
 		    case ANTHOLE:
 			if(!rn2(3))
 			    (void) mkobj_at(FOOD_CLASS, sx, sy, FALSE);
+			break;
+		    case ANGELHALL:
+			if(!rn2(10))
+			    (void) mkobj_at(GEM_CLASS, sx, sy, FALSE);
+			break;
+		    case MIMICHALL:
+		    case HUMANHALL:
+			if(!rn2(3))
+			    (void) mkobj_at(RANDOM_CLASS, sx, sy, FALSE);
 			break;
 		}
 	    }
@@ -460,6 +605,9 @@ struct mkroom *sroom;
 	      case BEEHIVE:
 		  level.flags.has_beehive = 1;
 		  break;
+	      case DOUGROOM:
+		  level.flags.has_zoo = 1;
+		  break;
 	      case LEMUREPIT:
 		  level.flags.has_lemurepit = 1;
 		  break;
@@ -469,6 +617,60 @@ struct mkroom *sroom;
 	      case FUNGUSFARM:
 		  level.flags.has_fungusfarm = 1;
 		  break;
+            case CLINIC:
+              level.flags.has_clinic = 1;
+              break;
+            case TERRORHALL:
+              level.flags.has_terrorhall = 1;
+              break;
+            case INSIDEROOM:
+              level.flags.has_insideroom = 1;
+              break;
+            case RIVERROOM:
+              level.flags.has_riverroom = 1;
+              break;
+            case TENSHALL:
+              level.flags.has_tenshall = 1;
+              break;
+            case ELEMHALL:
+              level.flags.has_elemhall = 1;
+              break;
+            case ANGELHALL:
+              level.flags.has_angelhall = 1;
+              break;
+            case MIMICHALL:
+              level.flags.has_mimichall = 1;
+              break;
+            case NYMPHHALL:
+              level.flags.has_nymphhall = 1;
+              break;
+            case SPIDERHALL:
+              level.flags.has_spiderhall = 1;
+              break;
+            case TROLLHALL:
+              level.flags.has_trollhall = 1;
+              break;
+            case COINHALL:
+              level.flags.has_coinhall = 1;
+              break;
+            case HUMANHALL:
+              level.flags.has_humanhall = 1;
+              break;
+            case GOLEMHALL:
+              level.flags.has_golemhall = 1;
+              break;
+            case TRAPROOM:
+              level.flags.has_traproom = 1;
+              break;
+            case GRUEROOM:
+              level.flags.has_grueroom = 1;
+              break;
+            case POOLROOM:
+              level.flags.has_poolroom = 1;
+              break;
+            case STATUEROOM:
+              level.flags.has_statueroom = 1;
+              break;
 	}
 }
 
@@ -479,10 +681,66 @@ coord *mm;
 boolean revive_corpses;
 int mm_flags;
 {
-	int cnt = (level_difficulty() + 1)/10 + rnd(5);
+	int cnt = 1;
+	if (!rn2(2)) cnt = (level_difficulty() + 1)/10;
+	if (!rn2(5)) cnt += rnz(5);
+	if (cnt < 1) cnt = 1;
 	struct permonst *mdat;
 	struct obj *otmp;
 	coord cc;
+
+	while (cnt--) {
+	    mdat = morguemon();
+	    if (enexto(&cc, mm->x, mm->y, mdat) &&
+		    (!revive_corpses ||
+		     !(otmp = sobj_at(CORPSE, cc.x, cc.y)) ||
+		     !revive(otmp)))
+		(void) makemon(mdat, cc.x, cc.y, mm_flags);
+	}
+	level.flags.graveyard = TRUE;	/* reduced chance for undead corpse */
+}
+
+/*void
+mkundeadboo(mm, revive_corpses, mm_flags)
+coord *mm;
+boolean revive_corpses;
+int mm_flags;
+{
+	struct monst *nmonst;
+
+	int cnt = 1;
+	if (!rn2(2)) cnt = (level_difficulty() + 1)/10;
+	if (!rn2(5)) cnt += rnz(5);
+	if (cnt < 1) cnt = 1;
+	int mdat;
+	struct obj *otmp;
+	coord cc;
+
+	while (cnt--) {
+	    mdat = PM_UNDEAD_ARCHEOLOGIST + rn2(PM_UNDEAD_WIZARD - PM_UNDEAD_ARCHEOLOGIST + 1);
+	    if (enexto(&cc, mm->x, mm->y, youmonst.data) &&
+		    (!revive_corpses ||
+		     !(otmp = sobj_at(CORPSE, cc.x, cc.y)) ||
+		     !revive(otmp)))
+
+		nmonst = makemon(&mons[mdat], cc.x, cc.y, mm_flags);
+		tt_mname(nmonst);
+	}
+}*/
+
+/* make a swarm of undead around mm but less, for zap.c WAN_SUMMON_UNDEAD */
+void
+mkundeadX(mm, revive_corpses, mm_flags)
+coord *mm;
+boolean revive_corpses;
+int mm_flags;
+{
+	int cnt = 1;
+	struct permonst *mdat;
+	struct obj *otmp;
+	coord cc;
+
+	if (!rn2(10)) cnt += rnz(2);
 
 	while (cnt--) {
 	    mdat = morguemon();
@@ -503,12 +761,12 @@ morguemon()
 	if(hd > 10 && i < 10)
 		return((Inhell || In_endgame(&u.uz)) ? mkclass(S_DEMON,0) :
 						       &mons[ndemon(A_NONE)]);
-	if(hd > 8 && i > 85)
+	if(hd > 8 && i > 90)
 		return(mkclass(S_VAMPIRE,0));
 
-	return((i < 20) ? &mons[PM_GHOST]
-			: (i < 40) ? &mons[PM_WRAITH] : mkclass(S_ZOMBIE,0));
-}
+	return((i < 25) ? &mons[PM_GHOST]
+			: (i < 30) ? mkclass(S_GHOST,0) : (i < 40) ? mkclass(S_WRAITH,0) : (i < 70) ? mkclass(S_MUMMY,0) : (i < 71) ? mkclass(S_LICH,0) : mkclass(S_ZOMBIE,0));
+} /* added mummies, enabled all of S_wraith type monsters --Amy */
 
 struct permonst *
 antholemon()
@@ -577,12 +835,14 @@ mkswamp()	/* Michiel Huisjes & Fred de Wilde */
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
 		if(!OBJ_AT(sx, sy) &&
-		   !MON_AT(sx, sy) && !t_at(sx,sy) && !nexttodoor(sx,sy)) {
+		   !MON_AT(sx, sy) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
 		    if((sx+sy)%2) {
 			levl[sx][sy].typ = POOL;
 			if(!eelct || !rn2(4)) {
 			    /* mkclass() won't do, as we might get kraken */
-			    (void) makemon(rn2(5) ? &mons[PM_GIANT_EEL]
+/* comment by Amy - low-level players shouldn't move close to water anyway, so I will totally spawn everything here! */
+			    (void) makemon(rn2(3) ? mkclass(S_EEL,0)
+						  : rn2(5) ? &mons[PM_GIANT_EEL]
 						  : rn2(2) ? &mons[PM_PIRANHA]
 						  : &mons[PM_ELECTRIC_EEL],
 						sx, sy, NO_MM_FLAGS);
@@ -779,7 +1039,7 @@ schar type;
 struct permonst *
 courtmon()
 {
-	int     i = rn2(60) + rn2(3*level_difficulty());
+	int     i = rnz(60) + rnz(3*level_difficulty());
 	if (i > 200)            return(mkclass(S_DRAGON,0));
 	else if (i > 130)       return(mkclass(S_GIANT,0));
 	else if (i > 85)	return(mkclass(S_TROLL,0));
@@ -789,6 +1049,194 @@ courtmon()
 	else if (i > 30)	return(&mons[PM_HOBGOBLIN]);
 	else if (i > 15)	return(mkclass(S_GNOME,0));
 	else			return(mkclass(S_KOBOLD,0));
+}
+
+struct permonst *
+colormon(color)
+{
+
+	register struct permonst *ptr;
+	register int ct = 0;
+
+	if (color == NO_COLOR) color = CLR_BLACK;
+
+	ptr = rndmonst();
+
+	do {
+
+		ptr = rndmonst();
+		ct++;
+
+	} while (ptr->mcolor != color && ct < 200);
+
+	return ptr;
+
+}
+
+struct permonst *
+tenshallmon()
+{
+	if (u.tensionmonster < 6) return (mkclass(S_ANT,0));
+	else if (u.tensionmonster < 9) return (mkclass(S_BLOB,0));
+	else if (u.tensionmonster < 11) return (mkclass(S_COCKATRICE,0));
+	else if (u.tensionmonster < 15) return (mkclass(S_DOG,0));
+	else if (u.tensionmonster < 18) return (mkclass(S_EYE,0));
+	else if (u.tensionmonster < 22) return (mkclass(S_FELINE,0));
+	else if (u.tensionmonster < 24) return (mkclass(S_GREMLIN,0));
+	else if (u.tensionmonster < 29) return (mkclass(S_HUMANOID,0));
+	else if (u.tensionmonster < 33) return (mkclass(S_IMP,0));
+	else if (u.tensionmonster < 36) return (mkclass(S_JELLY,0));
+	else if (u.tensionmonster < 41) return (mkclass(S_KOBOLD,0));
+	else if (u.tensionmonster < 44) return (mkclass(S_LEPRECHAUN,0));
+	else if (u.tensionmonster < 47) return (mkclass(S_MIMIC,0));
+	else if (u.tensionmonster < 50) return (mkclass(S_NYMPH,0));
+	else if (u.tensionmonster < 54) return (mkclass(S_ORC,0));
+	else if (u.tensionmonster < 55) return (mkclass(S_PIERCER,0));
+	else if (u.tensionmonster < 58) return (mkclass(S_QUADRUPED,0));
+	else if (u.tensionmonster < 62) return (mkclass(S_RODENT,0));
+	else if (u.tensionmonster < 65) return (mkclass(S_SPIDER,0));
+	else if (u.tensionmonster < 66) return (mkclass(S_TRAPPER,0));
+	else if (u.tensionmonster < 69) return (mkclass(S_UNICORN,0));
+	else if (u.tensionmonster < 71) return (mkclass(S_VORTEX,0));
+	else if (u.tensionmonster < 73) return (mkclass(S_WORM,0));
+	else if (u.tensionmonster < 75) return (mkclass(S_XAN,0));
+	else if (u.tensionmonster < 76) return (mkclass(S_LIGHT,0));
+	else if (u.tensionmonster < 77) return (mkclass(S_ZOUTHERN,0));
+	else if (u.tensionmonster < 78) return (mkclass(S_ANGEL,0));
+	else if (u.tensionmonster < 81) return (mkclass(S_BAT,0));
+	else if (u.tensionmonster < 83) return (mkclass(S_CENTAUR,0));
+	else if (u.tensionmonster < 86) return (mkclass(S_DRAGON,0));
+	else if (u.tensionmonster < 89) return (mkclass(S_ELEMENTAL,0));
+	else if (u.tensionmonster < 94) return (mkclass(S_FUNGUS,0));
+	else if (u.tensionmonster < 99) return (mkclass(S_GNOME,0));
+	else if (u.tensionmonster < 102) return (mkclass(S_GIANT,0));
+	else if (u.tensionmonster < 103) return (mkclass(S_JABBERWOCK,0));
+	else if (u.tensionmonster < 104) return (mkclass(S_KOP,0));
+	else if (u.tensionmonster < 105) return (mkclass(S_LICH,0));
+	else if (u.tensionmonster < 108) return (mkclass(S_MUMMY,0));
+	else if (u.tensionmonster < 110) return (mkclass(S_NAGA,0));
+	else if (u.tensionmonster < 113) return (mkclass(S_OGRE,0));
+	else if (u.tensionmonster < 115) return (mkclass(S_PUDDING,0));
+	else if (u.tensionmonster < 116) return (mkclass(S_QUANTMECH,0));
+	else if (u.tensionmonster < 118) return (mkclass(S_RUSTMONST,0));
+	else if (u.tensionmonster < 121) return (mkclass(S_SNAKE,0));
+	else if (u.tensionmonster < 123) return (mkclass(S_TROLL,0));
+	else if (u.tensionmonster < 124) return (mkclass(S_UMBER,0));
+	else if (u.tensionmonster < 125) return (mkclass(S_VAMPIRE,0));
+	else if (u.tensionmonster < 127) return (mkclass(S_WRAITH,0));
+	else if (u.tensionmonster < 128) return (mkclass(S_XORN,0));
+	else if (u.tensionmonster < 130) return (mkclass(S_YETI,0));
+	else if (u.tensionmonster < 135) return (mkclass(S_ZOMBIE,0));
+	else if (u.tensionmonster < 145) return (mkclass(S_HUMAN,0));
+	else if (u.tensionmonster < 147) return (mkclass(S_GHOST,0));
+	else if (u.tensionmonster < 149) return (mkclass(S_GOLEM,0));
+	else if (u.tensionmonster < 152) return (mkclass(S_DEMON,0));
+	else if (u.tensionmonster < 155) return (mkclass(S_EEL,0));
+	else if (u.tensionmonster < 160) return (mkclass(S_LIZARD,0));
+	else if (u.tensionmonster < 162) return (mkclass(S_BAD_FOOD,0));
+	else if (u.tensionmonster < 165) return (mkclass(S_BAD_COINS,0));
+	else if (u.tensionmonster < 166) {if (u.tensionmonsteX < 95) return (mkclass(S_HUMAN,0));
+		else return (mkclass(S_NEMESE,0));
+	}
+	else if (u.tensionmonster < 171) return (mkclass(S_GRUE,0));
+	else if (u.tensionmonster < 176) return (mkclass(S_WALLMONST,0));
+	else if (u.tensionmonster < 180) return (mkclass(S_RUBMONST,0));
+	else if (u.tensionmonster < 181) {if (u.tensionmonsteX < 99) return (mkclass(S_HUMAN,0));
+		else return (mkclass(S_ARCHFIEND,0));
+	}
+	else if (u.tensionmonster < 186) return (mkclass(S_TURRET,0));
+	else if (u.tensionmonster < 187) return (mkclass(S_FLYFISH,0));
+	else return ((struct permonst*)0);
+}
+
+struct permonst *
+tenshallmonB()
+{
+	if (u.tensionmonsterB < 6) return (mkclass(S_ANT,0));
+	else if (u.tensionmonsterB < 9) return (mkclass(S_BLOB,0));
+	else if (u.tensionmonsterB < 11) return (mkclass(S_COCKATRICE,0));
+	else if (u.tensionmonsterB < 15) return (mkclass(S_DOG,0));
+	else if (u.tensionmonsterB < 18) return (mkclass(S_EYE,0));
+	else if (u.tensionmonsterB < 22) return (mkclass(S_FELINE,0));
+	else if (u.tensionmonsterB < 24) return (mkclass(S_GREMLIN,0));
+	else if (u.tensionmonsterB < 29) return (mkclass(S_HUMANOID,0));
+	else if (u.tensionmonsterB < 33) return (mkclass(S_IMP,0));
+	else if (u.tensionmonsterB < 36) return (mkclass(S_JELLY,0));
+	else if (u.tensionmonsterB < 41) return (mkclass(S_KOBOLD,0));
+	else if (u.tensionmonsterB < 44) return (mkclass(S_LEPRECHAUN,0));
+	else if (u.tensionmonsterB < 47) return (mkclass(S_MIMIC,0));
+	else if (u.tensionmonsterB < 50) return (mkclass(S_NYMPH,0));
+	else if (u.tensionmonsterB < 54) return (mkclass(S_ORC,0));
+	else if (u.tensionmonsterB < 55) return (mkclass(S_PIERCER,0));
+	else if (u.tensionmonsterB < 58) return (mkclass(S_QUADRUPED,0));
+	else if (u.tensionmonsterB < 62) return (mkclass(S_RODENT,0));
+	else if (u.tensionmonsterB < 65) return (mkclass(S_SPIDER,0));
+	else if (u.tensionmonsterB < 66) return (mkclass(S_TRAPPER,0));
+	else if (u.tensionmonsterB < 69) return (mkclass(S_UNICORN,0));
+	else if (u.tensionmonsterB < 71) return (mkclass(S_VORTEX,0));
+	else if (u.tensionmonsterB < 73) return (mkclass(S_WORM,0));
+	else if (u.tensionmonsterB < 75) return (mkclass(S_XAN,0));
+	else if (u.tensionmonsterB < 76) return (mkclass(S_LIGHT,0));
+	else if (u.tensionmonsterB < 77) return (mkclass(S_ZOUTHERN,0));
+	else if (u.tensionmonsterB < 78) return (mkclass(S_ANGEL,0));
+	else if (u.tensionmonsterB < 81) return (mkclass(S_BAT,0));
+	else if (u.tensionmonsterB < 83) return (mkclass(S_CENTAUR,0));
+	else if (u.tensionmonsterB < 86) return (mkclass(S_DRAGON,0));
+	else if (u.tensionmonsterB < 89) return (mkclass(S_ELEMENTAL,0));
+	else if (u.tensionmonsterB < 94) return (mkclass(S_FUNGUS,0));
+	else if (u.tensionmonsterB < 99) return (mkclass(S_GNOME,0));
+	else if (u.tensionmonsterB < 102) return (mkclass(S_GIANT,0));
+	else if (u.tensionmonsterB < 103) return (mkclass(S_JABBERWOCK,0));
+	else if (u.tensionmonsterB < 104) return (mkclass(S_KOP,0));
+	else if (u.tensionmonsterB < 105) return (mkclass(S_LICH,0));
+	else if (u.tensionmonsterB < 108) return (mkclass(S_MUMMY,0));
+	else if (u.tensionmonsterB < 110) return (mkclass(S_NAGA,0));
+	else if (u.tensionmonsterB < 113) return (mkclass(S_OGRE,0));
+	else if (u.tensionmonsterB < 115) return (mkclass(S_PUDDING,0));
+	else if (u.tensionmonsterB < 116) return (mkclass(S_QUANTMECH,0));
+	else if (u.tensionmonsterB < 118) return (mkclass(S_RUSTMONST,0));
+	else if (u.tensionmonsterB < 121) return (mkclass(S_SNAKE,0));
+	else if (u.tensionmonsterB < 123) return (mkclass(S_TROLL,0));
+	else if (u.tensionmonsterB < 124) return (mkclass(S_UMBER,0));
+	else if (u.tensionmonsterB < 125) return (mkclass(S_VAMPIRE,0));
+	else if (u.tensionmonsterB < 127) return (mkclass(S_WRAITH,0));
+	else if (u.tensionmonsterB < 128) return (mkclass(S_XORN,0));
+	else if (u.tensionmonsterB < 130) return (mkclass(S_YETI,0));
+	else if (u.tensionmonsterB < 135) return (mkclass(S_ZOMBIE,0));
+	else if (u.tensionmonsterB < 145) return (mkclass(S_HUMAN,0));
+	else if (u.tensionmonsterB < 147) return (mkclass(S_GHOST,0));
+	else if (u.tensionmonsterB < 149) return (mkclass(S_GOLEM,0));
+	else if (u.tensionmonsterB < 152) return (mkclass(S_DEMON,0));
+	else if (u.tensionmonsterB < 155) return (mkclass(S_EEL,0));
+	else if (u.tensionmonsterB < 160) return (mkclass(S_LIZARD,0));
+	else if (u.tensionmonsterB < 162) return (mkclass(S_BAD_FOOD,0));
+	else if (u.tensionmonsterB < 165) return (mkclass(S_BAD_COINS,0));
+	else if (u.tensionmonsterB < 166) {if (u.tensionmonsteX < 95) return (mkclass(S_HUMAN,0));
+		else return (mkclass(S_NEMESE,0));
+	}
+	else if (u.tensionmonsterB < 171) return (mkclass(S_GRUE,0));
+	else if (u.tensionmonsterB < 176) return (mkclass(S_WALLMONST,0));
+	else if (u.tensionmonsterB < 180) return (mkclass(S_RUBMONST,0));
+	else if (u.tensionmonsterB < 181) {if (u.tensionmonsteX < 99) return (mkclass(S_HUMAN,0));
+		else return (mkclass(S_ARCHFIEND,0));
+	}
+	else if (u.tensionmonsterB < 186) return (mkclass(S_TURRET,0));
+	else if (u.tensionmonsterB < 187) return (mkclass(S_FLYFISH,0));
+	else return ((struct permonst*)0);
+}
+
+struct permonst *
+douglas_adams_mon()
+{
+	int     i = rn2(60);
+	if (i > 55) return(&mons[PM_RAVENOUS_BUGBLATTER_BEAST_OF_TRAAL]);
+	else if (i > 54)        return(&mons[PM_MARVIN]);
+	else if (i > 46)        return(&mons[PM_CREEPING___]);
+	else if (i > 26)        return(&mons[PM_MICROSCOPIC_SPACE_FLEET]);
+	else if (i > 20)        return(&mons[PM_VOGON]);
+	else if (i > 19)        return(&mons[PM_VOGON_LORD]);
+	else if (i > 2)        return(&mons[PM_BABELFISH]);
+	else                    return(&mons[PM_ALGOLIAN_SUNTIGER]);
 }
 
 struct permonst *
@@ -860,6 +1308,208 @@ struct mkroom *r;
 /*
  * save_rooms : Save all the rooms on disk!
  */
+
+void
+mktraproom()
+{
+    struct mkroom *sroom;
+
+	register int sx,sy = 0;
+	int rtrap;
+	int randomnes = 0;
+
+    if(!(sroom = pick_room(TRUE))) return;
+
+    sroom->rtype = TRAPROOM;
+	rtrap = rnd(TRAPNUM-1);
+
+	if (rtrap == HOLE) rtrap = PIT;
+	if (rtrap == MAGIC_PORTAL) rtrap = PIT;
+	if (rtrap == TRAPDOOR && !Can_dig_down(&u.uz)) rtrap = PIT;
+	if (rtrap == LEVEL_TELEP && level.flags.noteleport) rtrap = SQKY_BOARD;
+	if (rtrap == TELEP_TRAP && level.flags.noteleport) rtrap = SQKY_BOARD;
+	if (rtrap == ROLLING_BOULDER_TRAP) rtrap = ROCKTRAP;
+	if (rtrap == NO_TRAP) rtrap = ARROW_TRAP;
+	if (rtrap == RMB_LOSS_TRAP && !Role_if(PM_SPACEWARS_FIGHTER) && rn2(2)) rtrap = ACID_POOL;
+	if (rtrap == DISPLAY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3)) rtrap = GLYPH_OF_WARDING;
+	if (rtrap == SPELL_LOSS_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4)) rtrap = SLOW_GAS_TRAP;
+	if (rtrap == YELLOW_SPELL_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 5)) rtrap = POISON_GAS_TRAP;
+
+	if (rtrap == MENU_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8)) rtrap = FIRE_TRAP;
+	if (rtrap == SPEED_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40)) rtrap = ICE_TRAP;
+	if (rtrap == AUTOMATIC_SWITCHER && rn2(Race_if(PM_HAXOR) ? (Role_if(PM_GRADUATE) ? 125 : Role_if(PM_SPACEWARS_FIGHTER) ? 250 : Role_if(PM_GEEK) ? 250 : 500) : (Role_if(PM_GRADUATE) ? 250 : Role_if(PM_SPACEWARS_FIGHTER) ? 500 : Role_if(PM_GEEK) ? 500 : 1000) )) rtrap = SHOCK_TRAP;
+
+	if (rtrap == AUTO_DESTRUCT_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10)) rtrap = WATER_POOL;
+	if (rtrap == MEMORY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20)) rtrap = SCYTHING_BLADE;
+	if (rtrap == INVENTORY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50)) rtrap = ANIMATION_TRAP;
+	if (rtrap == BLACK_NG_WALL_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 50 : 100)) rtrap = UNKNOWN_TRAP;
+	if (rtrap == SUPERSCROLLER_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 100 : 200)) rtrap = WEB;
+	if (rtrap == ACTIVE_SUPERSCROLLER_TRAP) rtrap = RUST_TRAP;
+
+	if (!rn2(4)) randomnes = 1;
+
+		for(sx = sroom->lx; sx <= sroom->hx; sx++)
+		for(sy = sroom->ly; sy <= sroom->hy; sy++)
+		if(!OBJ_AT(sx, sy) &&
+		   !MON_AT(sx, sy) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
+		    if(rn2(5)) 
+				(void) maketrap(sx, sy, rtrap);
+			if (randomnes == 1) { rtrap = rnd(TRAPNUM-1);
+
+			if (rtrap == HOLE) rtrap = PIT;
+			if (rtrap == MAGIC_PORTAL) rtrap = PIT;
+			if (rtrap == TRAPDOOR && !Can_dig_down(&u.uz)) rtrap = PIT;
+			if (rtrap == LEVEL_TELEP && level.flags.noteleport) rtrap = SQKY_BOARD;
+			if (rtrap == TELEP_TRAP && level.flags.noteleport) rtrap = SQKY_BOARD;
+			if (rtrap == ROLLING_BOULDER_TRAP) rtrap = ROCKTRAP;
+			if (rtrap == NO_TRAP) rtrap = ARROW_TRAP;
+			if (rtrap == RMB_LOSS_TRAP && !Role_if(PM_SPACEWARS_FIGHTER) && rn2(2)) rtrap = ACID_POOL;
+			if (rtrap == DISPLAY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3)) rtrap = GLYPH_OF_WARDING;
+			if (rtrap == SPELL_LOSS_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4)) rtrap = SLOW_GAS_TRAP;
+			if (rtrap == YELLOW_SPELL_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 5)) rtrap = POISON_GAS_TRAP;
+
+			if (rtrap == MENU_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8)) rtrap = FIRE_TRAP;
+			if (rtrap == SPEED_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40)) rtrap = ICE_TRAP;
+			if (rtrap == AUTOMATIC_SWITCHER && rn2(Race_if(PM_HAXOR) ? (Role_if(PM_GRADUATE) ? 125 : Role_if(PM_SPACEWARS_FIGHTER) ? 250 : Role_if(PM_GEEK) ? 250 : 500) : (Role_if(PM_GRADUATE) ? 250 : Role_if(PM_SPACEWARS_FIGHTER) ? 500 : Role_if(PM_GEEK) ? 500 : 1000) )) rtrap = SHOCK_TRAP;
+
+			if (rtrap == AUTO_DESTRUCT_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10)) rtrap = WATER_POOL;
+			if (rtrap == MEMORY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20)) rtrap = SCYTHING_BLADE;
+			if (rtrap == INVENTORY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50)) rtrap = ANIMATION_TRAP;
+			if (rtrap == BLACK_NG_WALL_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 50 : 100)) rtrap = UNKNOWN_TRAP;
+			if (rtrap == SUPERSCROLLER_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 100 : 200)) rtrap = WEB;
+			if (rtrap == ACTIVE_SUPERSCROLLER_TRAP) rtrap = RUST_TRAP;
+
+			}
+		}
+
+}
+
+void
+mkpoolroom()
+{
+    struct mkroom *sroom;
+    schar typ;
+	register int sx,sy = 0;
+
+    if (!(sroom = pick_room(TRUE))) return;
+
+	if(sroom->rtype != OROOM || has_upstairs(sroom) || has_dnstairs(sroom)) return;
+
+    sroom->rtype = POOLROOM;
+    typ = !rn2(3) ? POOL : !rn2(4) ? ICE : !rn2(5) ? CLOUD : !rn2(8) ? AIR : !rn2(10) ? STONE : !rn2(10) ? TREE : !rn2(15) ? IRONBARS : !rn2(120) ? FOUNTAIN : !rn2(250) ? THRONE : !rn2(60) ? SINK : !rn2(40) ? TOILET : !rn2(20) ? GRAVE : !rn2(500) ? ALTAR : LAVAPOOL;
+
+		for(sx = sroom->lx; sx <= sroom->hx; sx++)
+		for(sy = sroom->ly; sy <= sroom->hy; sy++)
+		if(!OBJ_AT(sx, sy) &&
+		   !MON_AT(sx, sy) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
+		    if(rn2(5)) 
+			levl[sx][sy].typ = typ;
+		}
+
+	level.flags.has_poolroom = 1;
+
+}
+
+void
+mkinsideroom()
+{
+    struct mkroom *sroom;
+    schar typ, typ2;
+	register int sx,sy = 0;
+
+    if (!(sroom = pick_room(TRUE))) return;
+
+	if(sroom->rtype != OROOM || has_upstairs(sroom) || has_dnstairs(sroom)) return;
+
+    sroom->rtype = INSIDEROOM;
+
+
+		for(sx = sroom->lx; sx <= sroom->hx; sx++)
+		for(sy = sroom->ly; sy <= sroom->hy; sy++)
+		if(!OBJ_AT(sx, sy) &&
+		   !MON_AT(sx, sy) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
+
+    typ = !rn2(5) ? POOL : !rn2(5) ? ICE : !rn2(7) ? CLOUD : !rn2(8) ? AIR : !rn2(8) ? STONE : !rn2(8) ? TREE : !rn2(10) ? IRONBARS : !rn2(20) ? FOUNTAIN : !rn2(50) ? THRONE : !rn2(16) ? SINK : !rn2(12) ? TOILET : !rn2(6) ? GRAVE : !rn2(100) ? ALTAR : LAVAPOOL;
+
+	typ2 = !rn2(4) ? TRAP_PERCENTS : !rn2(6) ? UNKNOWN_TRAP : !rn2(8) ? RMB_LOSS_TRAP : !rn2(7) ? DISPLAY_TRAP : !rn2(6) ? SPELL_LOSS_TRAP : !rn2(5) ? YELLOW_SPELL_TRAP : !rn2(5) ? MENU_TRAP : !rn2(4) ? AUTO_DESTRUCT_TRAP : !rn2(3) ? MEMORY_TRAP : !rn2(3) ? INVENTORY_TRAP : !rn2(2) ? SPEED_TRAP : !rn2(2) ? BLACK_NG_WALL_TRAP : rn2(50) ? SUPERSCROLLER_TRAP : AUTOMATIC_SWITCHER;
+
+
+		    if(rn2(3)) 
+			levl[sx][sy].typ = typ;
+			else if (!rn2(10))			(void) maketrap(sx, sy, typ2);
+
+			if (!rn2(1000)) 	(void) mksobj_at(SWITCHER, sx, sy, TRUE, FALSE);
+		}
+
+	level.flags.has_insideroom = 1;
+
+}
+
+void
+mkriverroom()
+{
+    struct mkroom *sroom;
+    schar typ;
+	register int sx,sy = 0;
+
+    if (!(sroom = pick_room(TRUE))) return;
+
+	if(sroom->rtype != OROOM || has_upstairs(sroom) || has_dnstairs(sroom)) return;
+
+    sroom->rtype = RIVERROOM;
+
+		for(sx = sroom->lx; sx <= sroom->hx; sx++)
+		for(sy = sroom->ly; sy <= sroom->hy; sy++)
+		if(!OBJ_AT(sx, sy) &&
+		   !MON_AT(sx, sy) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
+
+	    typ = !rn2(3) ? POOL : !rn2(10) ? ICE : !rn2(10) ? FOUNTAIN : !rn2(3) ? STONE : !rn2(8) ? TREE : ROOM;
+
+		levl[sx][sy].typ = typ;
+		}
+
+	level.flags.has_riverroom = 1;
+
+}
+
+void
+mkstatueroom()
+{
+    struct mkroom *sroom;
+    schar typ;
+	register int sx,sy,i = 0;
+
+    if (!(sroom = pick_room(TRUE))) return;
+
+	if(sroom->rtype != OROOM || has_upstairs(sroom) || has_dnstairs(sroom)) return;
+
+    sroom->rtype = STATUEROOM;
+
+		for(sx = sroom->lx; sx <= sroom->hx; sx++)
+		for(sy = sroom->ly; sy <= sroom->hy; sy++)
+		if(!OBJ_AT(sx, sy) &&
+		   !MON_AT(sx, sy) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
+		    if(rn2(2)) 
+				(void) maketrap(sx, sy, (rn2(10) ? STATUE_TRAP : ANIMATION_TRAP) );
+		}
+
+		for(sx = sroom->lx; sx <= sroom->hx; sx++)
+		for(sy = sroom->ly; sy <= sroom->hy; sy++)
+		    if(rn2(2)) 
+			{
+			    struct obj *sobj = mksobj_at(STATUE, sx, sy, TRUE, FALSE);
+
+			    if (sobj) {
+				for (i = rn2(5); i; i--)
+				    (void) add_to_container(sobj,
+						mkobj(RANDOM_CLASS, FALSE));
+				sobj->owt = weight(sobj);
+			    }
+			}
+
+	level.flags.has_statueroom = 1;
+
+}
 
 void
 save_rooms(fd)

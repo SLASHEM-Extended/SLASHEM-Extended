@@ -250,7 +250,7 @@ mattackm(magr, mdef)
     pa = magr->data;  pd = mdef->data;
 
     /* Grid bugs cannot attack at an angle. */
-    if (pa == &mons[PM_GRID_BUG] && magr->mx != mdef->mx
+    if ((pa == &mons[PM_GRID_BUG] || pa == &mons[PM_GRID_XORN])&& magr->mx != mdef->mx
 						&& magr->my != mdef->my)
 	return(MM_MISS);
 
@@ -317,8 +317,8 @@ mattackm(magr, mdef)
 		 * is partly for balance reasons and partly because the
 		 * amount of code required to implement it is prohibitive.
 		 */
-		strike = 0;
-		attk = 0;
+		/*strike = 0;
+		attk = 0;*/
 		if (canseemon(magr) && couldsee(magr->mx, magr->my)) {
 		    char buf[BUFSZ];
 		    Strcpy(buf, Monnam(magr));
@@ -329,6 +329,8 @@ mattackm(magr, mdef)
 			pline("%s points and curses at something.", buf);
 		} else if (flags.soundok)
 		    Norep("You hear a mumbled curse.");
+
+		goto meleeattack;
 		break;
 
 	    case AT_WEAP:
@@ -362,7 +364,11 @@ mattackm(magr, mdef)
 	    case AT_STNG:
 	    case AT_TUCH:
 	    case AT_BUTT:
+	    case AT_LASH:
+	    case AT_TRAM:
+	    case AT_SCRA:
 	    case AT_TENT:
+meleeattack:
 		/* Nymph that teleported away on first attack? */
 		if (distmin(magr->mx,magr->my,mdef->mx,mdef->my) > 1)
 		    return MM_MISS;
@@ -379,9 +385,9 @@ mattackm(magr, mdef)
 		strike = (tmp > dieroll);
 		if (strike) {
 		    res[i] = hitmm(magr, mdef, mattk);
-		    if((mdef->data == &mons[PM_BLACK_PUDDING] || mdef->data == &mons[PM_BROWN_PUDDING])
+		    if((mdef->data == &mons[PM_BLACK_PUDDING] || mdef->data == &mons[PM_BLACK_PIERCER] || mdef->data == &mons[PM_BROWN_PUDDING])
 		       && otmp && objects[otmp->otyp].oc_material == IRON
-		       && mdef->mhp > 1 && !mdef->mcan)
+		       && mdef->mhp > 1 && !mdef->mcan && !rn2(100) ) /* slowing pudding farming to a crawl --Amy */
 		    {
 			if (clone_mon(mdef, 0, 0)) {
 			    if (vis) {
@@ -412,6 +418,8 @@ mattackm(magr, mdef)
 		break;
 
 	    case AT_EXPL:
+		if (!magr->mtame && rn2(20)) break; /* we want the things to explode at YOU! Since monsters are immune to quite some attack types anyway, and the exploding lights would just suicide without causing any effect. --Amy */
+
 		res[i] = explmm(magr, mdef, mattk);
 		if (res[i] == MM_MISS) { /* cancelled--no attack */
 		    strike = 0;
@@ -474,7 +482,7 @@ struct monst *magr, *mdef;
 struct attack *mattk;
 {
     /* if new breath types are added, change AD_ACID to max type */
-    int typ = mattk->adtyp == AD_RBRE ? rnd(AD_ACID) : mattk->adtyp;
+    int typ = mattk->adtyp == AD_RBRE ? rnd(AD_LITE) : mattk->adtyp;
     int mhp;
 
     if (linedup(mdef->mx, mdef->my, magr->mx, magr->my)) {
@@ -486,11 +494,11 @@ struct attack *mattk;
 		    You_hear("a cough.");
 	    }
 	} else if (!magr->mspec_used && rn2(3)) {
-	    if (typ >= AD_MAGM && typ <= AD_ACID) {
+	    if (typ >= AD_MAGM && typ <= AD_LITE) {
 		if (canseemon(magr))
 		    pline("%s breathes %s!", Monnam(magr), breathwep[typ-1]);
 		mhp = mdef->mhp;
-		buzz((int)(-20 - (typ-1)), (int)mattk->damn,
+		buzz((int)(-20 - (typ-1)), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ),
 			magr->mx, magr->my, sgn(tbx), sgn(tby));
 		nomul(0);
 		/* breath runs out sometimes. */
@@ -665,9 +673,14 @@ struct monst *magr, *mdef;
 	case PM_RANGER:
 		multishot++;
 		break;
+	case PM_ELPH:
+		multishot++;
+		if (obj->otyp == ELVEN_ARROW && mwep && mwep->otyp == ELVEN_BOW) multishot++;
+		break;
 	case PM_ROGUE:
 		if (skill == P_DAGGER) multishot++;
 		break;
+	case PM_NINJA_GAIDEN:
 	case PM_NINJA:
 	case PM_SAMURAI:
 		if (obj->otyp == YA && mwep &&
@@ -766,6 +779,15 @@ hitmm(magr, mdef, mattk)
 				break;
 			case AT_BUTT:
 				Sprintf(buf,"%s butts", magr_name);
+				break;
+			case AT_LASH:
+				Sprintf(buf,"%s lashes", magr_name);
+				break;
+			case AT_TRAM:
+				Sprintf(buf,"%s tramples over", magr_name);
+				break;
+			case AT_SCRA:
+				Sprintf(buf,"%s scratches", magr_name);
 				break;
 			case AT_TUCH:
 				Sprintf(buf,"%s touches", magr_name);
@@ -959,7 +981,7 @@ mdamagem(magr, mdef, mattk)
 	int canhitmon, objenchant;        
         boolean nohit = FALSE;
 
-	if (touch_petrifies(pd) && !resists_ston(magr)) {
+	if (touch_petrifies(pd) && !rn2(4) && !resists_ston(magr)) {
 	    long protector = attk_protection((int)mattk->aatyp),
 		 wornitems = magr->misc_worn_check;
 
@@ -1010,14 +1032,19 @@ mdamagem(magr, mdef, mattk)
 	if (hit_as_three(magr))  objenchant = 3;
 	if (hit_as_four(magr))   objenchant = 4;
 
-	if (objenchant < canhitmon) nohit = TRUE;
+	if (objenchant < canhitmon && !rn2(3)) nohit = TRUE;
 
 	/* cancellation factor is the same as when attacking the hero */
 	armpro = magic_negation(mdef);
+	if (mdef->data->mr >= 49) armpro++; /* highly magic resistant monsters should have magic cancellation --Amy */
+	if (mdef->data->mr >= 69) armpro++;
+	if (mdef->data->mr >= 99) armpro++;
 	cancelled = magr->mcan || !((rn2(3) >= armpro) || !rn2(50));
 
 	switch(mattk->adtyp) {
 	    case AD_DGST:
+
+          if (!rnd(25)) { /* since this is an instakill, greatly lower the chance of it connecting --Amy */
 		if (nohit) nohit = FALSE;                
 		/* eating a Rider or its corpse is fatal */
 		if (is_rider(mdef->data)) {
@@ -1063,6 +1090,7 @@ mdamagem(magr, mdef, mattk)
 		    if (nutrit > 1) nutrit /= 2;
 		    EDOG(magr)->hungrytime += nutrit;
 		}
+          }
 		break;
 	    case AD_STUN:
 		if (magr->mcan) break;
@@ -1086,8 +1114,8 @@ physical:
 			    touch_petrifies(&mons[otmp->corpsenm]) && nohit)
 			nohit = FALSE;
 		} else if(nohit) break;                
-		if (mattk->aatyp == AT_KICK && thick_skinned(pd)) {
-		    tmp = 0;
+		if (mattk->aatyp == AT_KICK && thick_skinned(pd) && tmp) {
+		    tmp = 1;
 		} else if(mattk->aatyp == AT_WEAP) {
 		    if(otmp) {
 			if (otmp->otyp == CORPSE &&
@@ -1150,14 +1178,14 @@ physical:
 			  tmp++;
 			  if (resists_cold(mdef)) tmp += rnd(3);
 
-			  if (!rn2(2) && burnarmor(mdef)) {
-			    if (!rn2(3))
+			  if (!rn2(33)) burnarmor(mdef);
+			    if (!rn2(33))
 			      (void)destroy_mitem(mdef, POTION_CLASS, AD_FIRE);
-			    if (!rn2(3))
+			    if (!rn2(33))
 			      (void)destroy_mitem(mdef, SCROLL_CLASS, AD_FIRE);
-			    if (!rn2(5))
+			    if (!rn2(50))
 			      (void)destroy_mitem(mdef, SPBOOK_CLASS, AD_FIRE);
-			  }
+
 			}
 
                         /* WAC Weres get seared */
@@ -1167,7 +1195,7 @@ physical:
                                 if (vis) pline("The silver sears %s!", mon_nam(mdef));
                         }
                         /* Stakes do extra dmg agains vamps */
-                        if (otmp && otmp->otyp == WOODEN_STAKE && is_vampire(pd)) {
+                        if (otmp && (otmp->otyp == WOODEN_STAKE || otmp->oartifact == ART_VAMPIRE_KILLER) && is_vampire(pd)) {
                                 if(otmp->oartifact == ART_STAKE_OF_VAN_HELSING) {
                                         if (!rn2(10)) {
                                                 if (vis) {
@@ -1187,7 +1215,15 @@ physical:
                                                 }
                                                 tmp += rnd(6) + 2;
                                         }
-                                } else {
+                                }else if (otmp->oartifact == ART_VAMPIRE_KILLER) {
+                                        if (vis) {
+                                                Strcpy(buf, Monnam(magr));
+                                                pline("%s whips %s good!",
+                                                        buf, mon_nam(mdef));
+                                        }
+                                        tmp += rnd(6);
+                                }
+					 else {
                                         if (vis) {
                                                 Strcpy(buf, Monnam(magr));
                                                 pline("%s drives the stake into %s.",
@@ -1236,8 +1272,8 @@ physical:
 			return (MM_DEF_DIED | (grow_up(magr,mdef) ?
 							0 : MM_AGR_DIED));
 		}
-		tmp += destroy_mitem(mdef, SCROLL_CLASS, AD_FIRE);
-		tmp += destroy_mitem(mdef, SPBOOK_CLASS, AD_FIRE);
+		if (!rn2(33)) tmp += destroy_mitem(mdef, SCROLL_CLASS, AD_FIRE);
+		if (!rn2(33)) tmp += destroy_mitem(mdef, SPBOOK_CLASS, AD_FIRE);
 		if (resists_fire(mdef)) {
 		    if (vis)
 			pline_The("fire doesn't seem to burn %s!",
@@ -1247,7 +1283,7 @@ physical:
 		    tmp = 0;
 		}
 		/* only potions damage resistant players in destroy_item */
-		tmp += destroy_mitem(mdef, POTION_CLASS, AD_FIRE);
+		if (!rn2(33)) tmp += destroy_mitem(mdef, POTION_CLASS, AD_FIRE);
 		break;
 	    case AD_COLD:
 		if (nohit) break;
@@ -1265,7 +1301,7 @@ physical:
 		    golemeffects(mdef, AD_COLD, tmp);
 		    tmp = 0;
 		}
-		tmp += destroy_mitem(mdef, POTION_CLASS, AD_COLD);
+		if (!rn2(33)) tmp += destroy_mitem(mdef, POTION_CLASS, AD_COLD);
 		break;
 	    case AD_ELEC:
 		if (nohit) break;
@@ -1275,7 +1311,7 @@ physical:
 		    break;
 		}
 		if (vis) pline("%s gets zapped!", Monnam(mdef));
-		tmp += destroy_mitem(mdef, WAND_CLASS, AD_ELEC);
+		if (!rn2(33)) tmp += destroy_mitem(mdef, WAND_CLASS, AD_ELEC);
 		if (resists_elec(mdef)) {
 		    if (vis) pline_The("zap doesn't shock %s!", mon_nam(mdef));
 		    shieldeff(mdef->mx, mdef->my);
@@ -1283,7 +1319,7 @@ physical:
 		    tmp = 0;
 		}
 		/* only rings damage resistant players in destroy_item */
-		tmp += destroy_mitem(mdef, RING_CLASS, AD_ELEC);
+		if (!rn2(33)) tmp += destroy_mitem(mdef, RING_CLASS, AD_ELEC);
 		break;
 	    case AD_ACID:
 		if (nohit) break;
@@ -1349,7 +1385,7 @@ physical:
 			mon_to_stone(magr);
 			break;
 		    }
-		    if (!resists_ston(magr)) {
+		    if (!resists_ston(magr) && !rn2(4) ) {
 			if (vis) pline("%s turns to stone!", Monnam(magr));
 			monstone(magr);
 			if (magr->mhp > 0) return 0;
@@ -1366,7 +1402,7 @@ physical:
 			tmp = 0;
 			break;
 		}
-		if (!resists_ston(mdef)) {
+		if (!resists_ston(mdef) && !rn2(4) ) {
 			if (vis) pline("%s turns to stone!", Monnam(mdef));
 			monstone(mdef);
  post_stone:		if (mdef->mhp > 0) return 0;
@@ -1684,7 +1720,7 @@ physical:
 			    pline_The("poison doesn't seem to affect %s.",
 				mon_nam(mdef));
 		    } else {
-			if (rn2(10)) tmp += rn1(10,6);
+			if (rn2(100)) tmp += rn1(10,6);
 			else {
 			    if (vis) pline_The("poison was deadly...");
 			    tmp = mdef->mhp;
@@ -1722,9 +1758,9 @@ physical:
 		    pline("%s last thought fades away...",
 			          s_suffix(Monnam(mdef)));
 		break;
-	    case AD_SLIM:
-		if (cancelled) break;   /* physical damage only */
-		if (!rn2(4) && !flaming(mdef->data) &&
+	    case AD_SLIM: /* no easy sliming Death or Famine --Amy */
+		if (cancelled || (rn2(100) < mdef->data->mr) ) break;   /* physical damage only */
+		if (!rn2(400) && !flaming(mdef->data) &&
 				mdef->data != &mons[PM_GREEN_SLIME]) {
 		    if (newcham(mdef, &mons[PM_GREEN_SLIME], FALSE, vis)) {
 			mdef->oldmonnm = PM_GREEN_SLIME;
@@ -1746,7 +1782,7 @@ physical:
 		break;
 	    case AD_POLY:
 		if (!magr->mcan && tmp < mdef->mhp) {
-		    if (resists_magm(mdef)) {
+		    if (resists_magm(mdef) || (rn2(100) < mdef->data->mr) ) { /* no easy taming Death or Famine! --Amy */
 			/* magic resistance protects from polymorph traps, so
 			 * make it guard against involuntary polymorph attacks
 			 * too... */
@@ -1777,13 +1813,13 @@ physical:
 		    tmp = 0;
 		}
 		break;
-	    default:	tmp = 0;
-			break;
+	    default:	/*tmp = 0;*/ 
+			break; /* necessary change to make pets more viable --Amy */
 	}
 	if(!tmp) return(MM_MISS);
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (objenchant < canhitmon && vis) {
+	if (objenchant < canhitmon && vis && nohit) {
 			Strcpy(buf, Monnam(magr));
 			pline("%s doesn't seem to harm %s.", buf,
 								mon_nam(mdef));
@@ -2005,7 +2041,7 @@ int mdead;
 	    case AD_PLYS: /* Floating eye */
 		if (tmp > 127) tmp = 127;
 		if (mddat == &mons[PM_FLOATING_EYE]) {
-		    if (!rn2(4)) tmp = 127;
+		    /*if (!rn2(4)) tmp = 127;*/
 		    if (magr->mcansee && haseyes(madat) && mdef->mcansee &&
 			(perceives(madat) || !mdef->minvis)) {
 			Sprintf(buf, "%s gaze is reflected by %%s %%s.",
@@ -2043,7 +2079,7 @@ int mdead;
 		    pline("%s is suddenly very cold!", Monnam(magr));
 		mdef->mhp += tmp / 2;
 		if (mdef->mhpmax < mdef->mhp) mdef->mhpmax = mdef->mhp;
-		if (mdef->mhpmax > ((int) (mdef->m_lev+1) * 8))
+		if (mdef->mhpmax > ((int) (mdef->m_lev+1) * 8) && !rn2(50) ) /* split much less often --Amy */
 		    (void)split_mon(mdef, magr);
 		break;
 	    case AD_STUN:
@@ -2079,7 +2115,7 @@ int mdead;
 		if(canseemon(magr))
 		    pline("%s is jolted with electricity!", Monnam(magr));
 		break;
-	    default: tmp = 0;
+	    default: /*tmp = 0;*/
 		break;
 	}
 	else tmp = 0;
@@ -2129,6 +2165,9 @@ int aatyp;
 	break;
     case AT_BITE:
     case AT_STNG:
+    case AT_LASH:
+    case AT_TRAM:
+    case AT_SCRA:
     case AT_ENGL:
     case AT_TENT:
     default:

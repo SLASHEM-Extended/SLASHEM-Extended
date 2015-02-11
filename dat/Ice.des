@@ -203,7 +203,7 @@ TRAP:random,random
 # KMH, balance patch 2 -- all quests now have an altar
 ALTAR:(17,08),noalign,altar
 # Random monsters.
-MONSTER:'@',"Earth Mage",(17,08)
+MONSTER:'@',"Earth Mage",(17,08),hostile
 MONSTER:'E',"earth elemental",random,hostile
 MONSTER:'E',"earth elemental",random,hostile
 MONSTER:'E',"earth elemental",random,hostile
@@ -241,13 +241,13 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 #
-MONSTER: 'E', "earth elemental", random
-MONSTER: 'E', "earth elemental", random
-MONSTER: 'E', "earth elemental", random
-MONSTER: 'E', "earth elemental", random
-MONSTER: 'E', "earth elemental", random
-MONSTER: 'E', "earth elemental", random
-MONSTER: 'E', "earth elemental", random
+MONSTER: 'E', "earth elemental", random,hostile
+MONSTER: 'E', "earth elemental", random,hostile
+MONSTER: 'E', "earth elemental", random,hostile
+MONSTER: 'E', "earth elemental", random,hostile
+MONSTER: 'E', "earth elemental", random,hostile
+MONSTER: 'E', "earth elemental", random,hostile
+MONSTER: 'E', "earth elemental", random,hostile
 MONSTER: 'X', "xorn", random, hostile
 MONSTER: 'X', "xorn", random, hostile
 MONSTER: 'X', "xorn", random, hostile
@@ -273,13 +273,13 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 #
-MONSTER: 'E', "earth elemental", random
-MONSTER: 'E', "earth elemental", random
-MONSTER: 'E', "earth elemental", random
-MONSTER: 'E', "earth elemental", random
-MONSTER: 'E', "earth elemental", random
-MONSTER: 'E', "earth elemental", random
-MONSTER: 'E', "earth elemental", random
+MONSTER: 'E', "earth elemental", random,hostile
+MONSTER: 'E', "earth elemental", random,hostile
+MONSTER: 'E', "earth elemental", random,hostile
+MONSTER: 'E', "earth elemental", random,hostile
+MONSTER: 'E', "earth elemental", random,hostile
+MONSTER: 'E', "earth elemental", random,hostile
+MONSTER: 'E', "earth elemental", random,hostile
 MONSTER: 'X', "xorn", random, hostile
 MONSTER: 'X', "xorn", random, hostile
 #

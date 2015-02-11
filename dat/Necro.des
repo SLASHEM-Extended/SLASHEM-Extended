@@ -283,7 +283,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:'&',"Maugneshaagar",(16,11)
+MONSTER:'&',"Maugneshaagar",(16,11),hostile
 MONSTER:'B',"mongbat",random,hostile
 MONSTER:'B',"mongbat",random,hostile
 MONSTER:'B',"mongbat",random,hostile
@@ -339,23 +339,23 @@ OBJECT: random,random,random
 MONSTER: 'i', random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-OBJECT: random,random,random
-MONSTER: 'i', random, random, hostile
-
-ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-TRAP: random, random
-OBJECT: random,random,random
-MONSTER: 'B', "mongbat", random
-MONSTER: 'B', "mongbat", random
-
-ROOM: "ordinary" , random, random, random, random
 STAIR: random, down
 OBJECT: random, random, random
 TRAP: random, random
 MONSTER: 'i', random, random, hostile
-MONSTER: 'B', "mongbat", random
+MONSTER: 'B', "mongbat", random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: 'i', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: 'B', "mongbat", random,hostile
+MONSTER: 'B', "mongbat", random,hostile
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
@@ -366,7 +366,7 @@ MONSTER: 'i', random, random, hostile
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-MONSTER: 'B', "mongbat", random
+MONSTER: 'B', "mongbat", random,hostile
 
 RANDOM_CORRIDORS
 
@@ -380,22 +380,22 @@ OBJECT: random,random,random
 MONSTER: 'i', random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-OBJECT: random,random,random
-MONSTER: 'i', random, random, hostile
-
-ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-TRAP: random, random
-OBJECT: random,random,random
-MONSTER: 'i', random, random, hostile
-
-ROOM: "ordinary" , random, random, random, random
 STAIR: random, down
 OBJECT: random, random, random
 TRAP: random, random
 MONSTER: 'i', random, random, hostile
-MONSTER: 'B', "mongbat", random
+MONSTER: 'B', "mongbat", random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: 'i', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: 'i', random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
@@ -406,6 +406,6 @@ MONSTER: 'i', random, random, hostile
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-MONSTER: 'B', "mongbat", random
+MONSTER: 'B', "mongbat", random,hostile
 
 RANDOM_CORRIDORS

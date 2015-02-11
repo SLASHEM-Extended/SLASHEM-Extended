@@ -86,18 +86,18 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Monsters on siege duty.
-MONSTER: 'M',"human mummy",(37,01)
-MONSTER: 'M',"human mummy",(37,18)
-MONSTER: 'M',"human mummy",(03,03)
-MONSTER: 'M',"human mummy",(65,04)
-MONSTER: 'M',"human mummy",(12,11)
-MONSTER: 'M',"human mummy",(60,12)
-MONSTER: 'M',"human mummy",(14,08)
-MONSTER: 'M',"human mummy",(55,00)
-MONSTER: 'M',"human mummy",(18,18)
-MONSTER: 'M',"human mummy",(59,10)
-MONSTER: 'M',"human mummy",(13,09)
-MONSTER: 'M',"human mummy",(01,17)
+MONSTER: 'M',"human mummy",(37,01),hostile
+MONSTER: 'M',"human mummy",(37,18),hostile
+MONSTER: 'M',"human mummy",(03,03),hostile
+MONSTER: 'M',"human mummy",(65,04),hostile
+MONSTER: 'M',"human mummy",(12,11),hostile
+MONSTER: 'M',"human mummy",(60,12),hostile
+MONSTER: 'M',"human mummy",(14,08),hostile
+MONSTER: 'M',"human mummy",(55,00),hostile
+MONSTER: 'M',"human mummy",(18,18),hostile
+MONSTER: 'M',"human mummy",(59,10),hostile
+MONSTER: 'M',"human mummy",(13,09),hostile
+MONSTER: 'M',"human mummy",(01,17),hostile
  
 #
 #       The "locate" level for the quest.
@@ -231,22 +231,22 @@ TRAP:"fire",random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:'V',"Count Dracula",(13,05)
-MONSTER:'M',"human mummy",random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',random,random
-MONSTER:'M',random,random
-MONSTER:'V',"vampire",random
-MONSTER:'V',"vampire",random
-MONSTER:'V',"vampire",random
-MONSTER:'V',"vampire",random
-MONSTER:'V',random,random
-MONSTER:'V',random,random
-MONSTER:'V',random,random
+MONSTER:'V',"Count Dracula",(13,05),hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',random,random,hostile
+MONSTER:'M',random,random,hostile
+MONSTER:'V',"vampire",random,hostile
+MONSTER:'V',"vampire",random,hostile
+MONSTER:'V',"vampire",random,hostile
+MONSTER:'V',"vampire",random,hostile
+MONSTER:'V',random,random,hostile
+MONSTER:'V',random,random,hostile
+MONSTER:'V',random,random,hostile
 
 #
 #       The "fill" levels for the quest.
@@ -264,21 +264,8 @@ RANDOM_MONSTERS: 'Z', 'W', 'V', 'M'
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
 OBJECT: random,random,random
-MONSTER: 'V', "vampire", random
-MONSTER: 'M', "human mummy", random
-
-ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-OBJECT: random,random,random
-MONSTER: 'V', "vampire", random
-MONSTER: 'M', "human mummy", random
-
-ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-TRAP: random, random
-OBJECT: random,random,random
-MONSTER: 'V', "vampire", random
-MONSTER: 'M', "human mummy", random
+MONSTER: 'V', "vampire", random,hostile
+MONSTER: 'M', "human mummy", random,hostile
 
 ROOM: "morgue" , random, random, random, random
 STAIR: random, down
@@ -287,10 +274,23 @@ TRAP: random, random
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: 'V', "vampire", random,hostile
+MONSTER: 'M', "human mummy", random,hostile
+
+ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-MONSTER: 'V', "vampire", random
-MONSTER: 'M', "human mummy", random
+OBJECT: random,random,random
+MONSTER: 'V', "vampire", random,hostile
+MONSTER: 'M', "human mummy", random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'V', "vampire", random,hostile
+MONSTER: 'M', "human mummy", random,hostile
 
 ROOM: "morgue" , random, random, random, random
 OBJECT: random, random, random
@@ -305,20 +305,8 @@ RANDOM_MONSTERS: 'Z', 'W', 'V', 'M'
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
 OBJECT: random,random,random
-MONSTER: 'M', "human mummy", random
-MONSTER: 'V', "vampire", random
-
-ROOM: "morgue" , random, random, random, random
-OBJECT: random, random, random
-OBJECT: random, random, random
-OBJECT: random,random,random
-
-ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-TRAP: random, random
-OBJECT: random,random,random
-MONSTER: 'M', "human mummy", random
-MONSTER: 'V', "vampire", random
+MONSTER: 'M', "human mummy", random,hostile
+MONSTER: 'V', "vampire", random,hostile
 
 ROOM: "morgue" , random, random, random, random
 STAIR: random, down
@@ -326,12 +314,24 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 TRAP: random, random
 
+ROOM: "morgue" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: 'M', "human mummy", random,hostile
+MONSTER: 'V', "vampire", random,hostile
+
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-MONSTER: 'M', "human mummy", random
-MONSTER: 'V', "vampire", random
+MONSTER: 'M', "human mummy", random,hostile
+MONSTER: 'V', "vampire", random,hostile
 
 ROOM: "morgue" , random, random, random, random
 OBJECT: random, random, random

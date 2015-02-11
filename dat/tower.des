@@ -22,6 +22,7 @@ ENDMAP
 LADDER:(11,05),down
 # The lord and his court
 MONSTER:'V',"Vlad the Impaler",(07,05)
+OBJECT:'?',"root password detection",(07,05)
 MONSTER:'V',random,(03,09)
 MONSTER:'V',random,(07,09)
 MONSTER:'V',random,(11,09)

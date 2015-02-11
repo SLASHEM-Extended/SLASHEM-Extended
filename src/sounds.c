@@ -75,7 +75,7 @@ dosounds()
 		"the splashing of a naiad.",
 		"a soda fountain!",
 	};
-	You_hear(fountain_msg[rn2(3)+hallu]);
+	You_hear(fountain_msg[rn2(3+hallu)]);
     }
 #ifdef SINK
     if (level.flags.nsinks && !rn2(300)) {
@@ -84,7 +84,7 @@ dosounds()
 		"a gurgling noise.",
 		"dishes being washed!",
 	};
-	You_hear(sink_msg[rn2(2)+hallu]);
+	You_hear(sink_msg[rn2(2+hallu)]);
     }
 #endif
     if (level.flags.has_court && !rn2(200)) {
@@ -101,7 +101,7 @@ dosounds()
 		!is_animal(mtmp->data) &&
 		mon_in_room(mtmp, COURT)) {
 		/* finding one is enough, at least for now */
-		int which = rn2(3)+hallu;
+		int which = rn2(3+hallu);
 
 		if (which != 2) You_hear(throne_msg[which]);
 		else		pline(throne_msg[2], uhis());
@@ -110,12 +110,13 @@ dosounds()
 	}
     }
     if (level.flags.has_swamp && !rn2(200)) {
-	static const char * const swamp_msg[3] = {
+	static const char * const swamp_msg[4] = {
 		"hear mosquitoes!",
 		"smell marsh gas!",	/* so it's a smell...*/
 		"hear Donald Duck!",
+		"inhale a vile stench that reminds you of what kissing a frog is probably like!",
 	};
-	You(swamp_msg[rn2(2)+hallu]);
+	You(swamp_msg[rn2(2+hallu*2)]);
 	return;
     }
     if (level.flags.spooky && !rn2(200)) {
@@ -145,7 +146,7 @@ dosounds()
 		"hear someone praising your valor!",
 		"hear someone singing: \"Jingle bells, jingle bells...\"",
 	};
-	You(spooky_msg[rn2(15)+hallu*9]);
+	You(spooky_msg[rn2(15+hallu*9)]);
 	return;
     }
     if (level.flags.has_vault && !rn2(200)) {
@@ -155,7 +156,7 @@ dosounds()
 	    return;
 	}
 	if(gd_sound())
-	    switch (rn2(2)+hallu) {
+	    switch (rn2(2+hallu)) {
 		case 1: {
 		    boolean gold_in_vault = FALSE;
 
@@ -173,20 +174,23 @@ dosounds()
 			 (ROOM_INDEX(sroom) + ROOMOFFSET))
 #endif /* AZTEC_C_WORKAROUND */
 		    {
-			if (gold_in_vault)
+			if (gold_in_vault && !level.flags.vault_is_aquarium)
 			    You_hear(!hallu ? "someone counting money." :
 				"the quarterback calling the play.");
+			else if (gold_in_vault && level.flags.vault_is_aquarium)
+			    You_hear(!hallu ? "soft splashing." :
+				"a swimmer divebomb into the water.");
 			else
-			    You_hear("someone searching.");
+			    You_hear(level.flags.vault_is_aquarium ? "frenzied splashing." : "someone searching.");
 			break;
 		    }
 		    /* fall into... (yes, even for hallucination) */
 		}
 		case 0:
-		    You_hear("the footsteps of a guard on patrol.");
+		    You_hear(level.flags.vault_is_aquarium ? "gently lapping water." : "the footsteps of a guard on patrol.");
 		    break;
 		case 2:
-		    You_hear("Ebenezer Scrooge!");
+		    You_hear(level.flags.vault_is_aquarium ? "the bubbling of an oxygen filter." : "Ebenezer Scrooge!");
 		    break;
 	    }
 	return;
@@ -196,7 +200,7 @@ dosounds()
 	    if (DEADMONSTER(mtmp)) continue;
 	    if ((mtmp->data->mlet == S_ANT && is_flyer(mtmp->data)) &&
 		mon_in_room(mtmp, BEEHIVE)) {
-		switch (rn2(2)+hallu) {
+		switch (rn2(2+hallu*2)) {
 		    case 0:
 			You_hear("a low buzzing.");
 			break;
@@ -206,6 +210,9 @@ dosounds()
 		    case 2:
 			You_hear("bees in your %sbonnet!",
 			    uarmh ? "" : "(nonexistent) ");
+			break;
+		    case 3:
+			pline("You suddenly see King Zing chasing after you! RUN, Rambi, RUN!!!");
 			break;
 		}
 		return;
@@ -217,7 +224,7 @@ dosounds()
 	    if (DEADMONSTER(mtmp)) continue;
 	    if (is_undead(mtmp->data) &&
 		mon_in_room(mtmp, MORGUE)) {
-		switch (rn2(2)+hallu) {
+		switch (rn2(2+hallu*2)) {
 		    case 0:
 			You("suddenly realize it is unnaturally quiet.");
 			break;
@@ -228,6 +235,9 @@ dosounds()
 		    case 2:
 			pline_The("%s on your %s seems to stand up.",
 				body_part(HAIR), body_part(HEAD));
+			break;
+		    case 3:
+			pline("An enormous ghost suddenly appears before you!");
 			break;
 		}
 		return;
@@ -253,11 +263,173 @@ dosounds()
 		mon_in_room(mtmp, BARRACKS) &&
 		/* sleeping implies not-yet-disturbed (usually) */
 		(mtmp->msleeping || ++count > 5)) {
-		You_hear(barracks_msg[rn2(3)+hallu]);
+		You_hear(barracks_msg[rn2(3+hallu)]);
 		return;
 	    }
 	}
     }
+	    if (level.flags.has_clinic && !rn2(200)) {
+		static const char *hospital_msg[4] = {
+			"hear something about streptococus.",
+			"smell chloroform nearby.",
+			"hear someone cursing viruses.",
+			"seem to hear Doctor Frankenstein.",
+		};
+		You(hospital_msg[rn2(3+hallu)]);
+		return;
+	    }
+	    if (level.flags.has_nymphhall && !rn2(200)) {
+		static const char *nymphhall_msg[4] = {
+			"hear leaves rustling.",
+			"hear a female voice singing a song.",
+			"catch a glimpse of sunlight.",
+			"seem mesmerized.",
+		};
+		You(nymphhall_msg[rn2(3+hallu)]);
+		return;
+	    }
+	    if (level.flags.has_spiderhall && !rn2(200)) {
+		static const char *spiderhall_msg[5] = {
+			"hear mandibles clicking.",
+			"notice webs everywhere.",
+			"notice little openings in the floor.",
+			"trip over a broken spider egg.",
+			"see a giant tarantula squittering around!",
+		};
+		You(spiderhall_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+	    if (level.flags.has_trollhall && !rn2(200)) {
+		static const char *trollhall_msg[5] = {
+			"hear a grunting noise.",
+			"notice a horrible smell.",
+			"hear loud footsteps going up and down the halls.",
+			"trip over a stinking pile of shit!",
+			"suddenly see a huge monster appearing right in front of you!",
+		};
+		You(trollhall_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+	    if (level.flags.has_humanhall && !rn2(200)) {
+		static const char *humanhall_msg[6] = {
+			"listen to a conversation.",
+			"hear people talking.",
+			"hear someone drawing a weapon.",
+			"sense that you are not alone...",
+			"hear a glass of wine breaking!",
+			"listen to a radio broadcast: For the next five days, the dungeon's estimated temperature high is 96 degrees. Now, is that in Fahrenheit or Kelvin?",
+		};
+		You(humanhall_msg[rn2(3+hallu*3)]);
+		return;
+	    }
+	    if (level.flags.has_golemhall && !rn2(200)) {
+		static const char *golemhall_msg[5] = {
+			"hear rattling noises.",
+			"think you saw an object move on its own.",
+			"feel that something weird may be just around the corner.",
+			"hear the deafening noise of a metal object breaking apart!",
+			"see a warmech appearing before you! If this were a Pokemon game, it would say: A wild WARMECH appeared!",
+		};
+		You(golemhall_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+	    if (level.flags.has_coinhall && !rn2(200)) {
+		static const char *coinhall_msg[4] = {
+			"notice the sound of clinging coins.",
+			"feel that, somewhere down here, there might be a whole lot of gold.",
+			"hear metal banging against a wall.",
+			"hear Scrooge McDuck taking a bath in his money!",
+		};
+		You(coinhall_msg[rn2(3+hallu)]);
+		return;
+	    }
+	    if (level.flags.has_angelhall && !rn2(200)) {
+		static const char *angelhall_msg[4] = {
+			"hear the sound of wispy wings.",
+			"can barely hear a whispering voice.",
+			"sense a glow of radiance.",
+			"think you just heard God speaking to you!",
+		};
+		You(angelhall_msg[rn2(3+hallu)]);
+		return;
+	    }
+	    if (level.flags.has_elemhall && !rn2(200)) {
+		static const char *elemhall_msg[5] = {
+			"suddenly feel a wave of heat.",
+			"notice some heaps of earth.",
+			"sense a strong gust of wind.",
+			"hear a wave of water.",
+			"get the impression that the laws of Nature itself are conspiring against you!",
+		};
+		You(elemhall_msg[rn2(4+hallu)]);
+		return;
+	    }
+	    if (level.flags.has_terrorhall && !rn2(200)) {
+		static const char *terrorhall_msg[5] = {
+			"feel weirded out.",
+			"sense something strange about this place.",
+			"think you just saw something move.",
+			"think you're seeing white rabbits!",
+			"feel totally down, like you're on a bad trip!",
+		};
+		You(terrorhall_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_insideroom && !rn2(200)) {
+		static const char *insideroom_msg[19] = {
+			"have a weird feeling of chills and excitement.",
+			"sense that something isn't right here...",
+			"shudder in expectation.",
+			"see an error message pop up: NETHACK.EXE caused a General Protection Fault at address 000D:001D.",
+			"see an error message pop up: Warning: Low Local Memory. Freeing description strings.",
+			"see an error message pop up: nt|| - Not a valid save file",
+			"see an error message pop up: APPLICATION ERROR - integer divide by 0",
+			"see an error message pop up: Runtime error! Program: NETHACK.EXE. R6025 - pure virtual function call",
+			"see an error message pop up: Buffer overrun detected! Program: NETHACK.EXE. A buffer overrun has been detected which has corrupted the program's internal state. The program cannot safely continue execution and must now be terminated.",
+			"see an error message pop up: Runtime error! Program: NETHACK.EXE. This application has requested the Runtime to terminate it in an unusual way. Please contact the application's support team for more information.",
+			"see an error message pop up: Not enough memory to create inventory window",
+			"see an error message pop up: Error: Nethack will only run in Protect mode",
+			"see an error message pop up: Oops... Suddenly, the dungeon collapses. NETHACK.EXE has stopped working. Unsaved data may have been lost.",
+			"see an error message pop up: ERROR: SIGNAL 11 WAS RAISED",
+			"see an error message pop up: UNHANDLED EXCEPTION: ACCESS_VIOLATION (C0000005)",
+			"see an error message pop up: An error has occurred in your application. If you choose Close, your application will be terminated. If you choose Ignore, you should save your work in a new file.",
+			"see an error message pop up: Do you want your possessions identified? DYWYPI?",
+			"see an error message pop up: Windows Subsystem service has stopped unexpectedly.",
+			"see an error message pop up: nv4_disp.dll device driver is stuck in an infinite loop.",
+		};
+		You(insideroom_msg[rn2(3+hallu*16)]);
+		return;
+	    }
+
+	    if (level.flags.has_riverroom && !rn2(200)) {
+		static const char *riverroom_msg[5] = {
+			"hear the trickle of water.",
+			"sense a watery smell mixed with grass.",
+			"listen to an unusual ambient sound.",
+			"hear a fountain crash through solid rock with a mighty roar!",
+			"admire the beautiful mountains around here. Strange, how can mountains be in an underground dungeon?",
+		};
+		You(riverroom_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_tenshall && !rn2(200)) {
+		static const char *tenshall_msg[10] = {
+			"feel a certain tension.",
+			"feel a certain tension. This message was stolen from ADOM.",
+			"sense a certain tension.",
+			"suddenly see nightmarish images with Thomas Biskup in your mind!", /* ADOM creator */
+			"sense a certain tension. Perhaps you should head for the nearest toilet...",
+			"sense a certain tension. That dreaded Dungeon Master probably filled the next room with arch-liches, disenchanters and master mind flayers.",
+			"sense a certain tension. That dreaded Dungeon Master probably filled the next room with black dragons, green slimes and invisible cockatrices.",
+			"sense a certain tension. That dreaded Dungeon Master probably filled the next room with luck suckers, Mothers-in-Law and questing beasts.",
+			"fear that a fucking crash bug is going to eat your savegame file!", /* yes, Adom does that sometimes */
+			"fear that some anti-cheat mechanism is going to curse all of your items even though you clearly didn't cheat at all!", /* and yes, that's another annoying fact of Adom that makes me glad I'm playing Nethack instead --Amy */
+		};
+		You(tenshall_msg[rn2(3+hallu*7)]);
+		return;
+	    }
     if (level.flags.has_zoo && !rn2(200)) {
 	static const char * const zoo_msg[3] = {
 		"a sound reminiscent of an elephant stepping on a peanut.",
@@ -268,7 +440,7 @@ dosounds()
 	    if (DEADMONSTER(mtmp)) continue;
 	    if ((mtmp->msleeping || is_animal(mtmp->data)) &&
 		    mon_in_room(mtmp, ZOO)) {
-		You_hear(zoo_msg[rn2(2)+hallu]);
+		You_hear(zoo_msg[rn2(2+hallu)]);
 		return;
 	    }
 	}
@@ -286,7 +458,7 @@ dosounds()
 		    "the chime of a cash register.",
 		    "Neiman and Marcus arguing!",
 	    };
-	    You_hear(shop_msg[rn2(2)+hallu]);
+	    You_hear(shop_msg[rn2(2+hallu)]);
 	}
 	return;
     }
@@ -306,19 +478,20 @@ dosounds()
 	    };
 	    /* KMH -- Give funny messages on Groundhog Day */
 	    if (flags.groundhogday) hallu = 1;
-	    You_hear(ora_msg[rn2(3)+hallu*2]);
+	    You_hear(ora_msg[rn2(3+hallu*2)]);
 	}
 	return;
     }
 #ifdef BLACKMARKET
     if (!Is_blackmarket(&u.uz) && at_dgn_entrance("One-eyed Sam's Market") &&
         !rn2(200)) {
-      static const char *blkmar_msg[3] = {
+      static const char *blkmar_msg[4] = {
         "You hear someone complaining about the prices.",
         "Somebody whispers: \"Food rations? Only 900 zorkmids.\"",
         "You feel like searching for more gold.",
+        "Somebody whispers: \"Dawg, I got quality shit around here.\"",
       };
-      pline(blkmar_msg[rn2(2)+hallu]);
+      pline(blkmar_msg[rn2(2+hallu*2)]);
     }
 #endif /* BLACKMARKET */
 }
@@ -328,7 +501,17 @@ dosounds()
 
 static const char * const h_sounds[] = {
     "beep", "boing", "sing", "belche", "creak", "cough", "rattle",
-    "ululate", "pop", "jingle", "sniffle", "tinkle", "eep"
+    "ululate", "pop", "jingle", "sniffle", "tinkle", "eep",
+	"clatter", "hum", "sizzle", "twitter", "wheeze", "rustle",
+	"honk", "lisp", "yodel", "coo", "burp", "moo", "boom",
+	"murmur", "oink", "quack", "rumble", "twang", "bellow",
+	"toot", "gargle", "hoot", "warble", "crackle", "hiss",
+	"growl", "roar", "buzz", "squeal", "screech", "neigh",
+	"wail", "commotion", "squaark", "scream", "yowl", "yelp",
+	"snarl", "squeal", "screak", "whimper", "whine", "howl",
+	"yip", "bark", "purr", "meow", "mew", "drone", "whinnie",
+	"whicker", "gurgle", "burble", "shriek", "baaaa", "cluck"
+
 };
 
 /* make the sounds of a pet in any level of distress */
@@ -479,7 +662,7 @@ beg(mtmp)
 register struct monst *mtmp;
 {
     if (mtmp->msleeping || !mtmp->mcanmove ||
-	    !(carnivorous(mtmp->data) || herbivorous(mtmp->data)))
+	    !(carnivorous(mtmp->data) || herbivorous(mtmp->data) || metallivorous(mtmp->data) || lithivorous(mtmp->data)))
 	return;
 
     /* presumably nearness and soundok checks have already been made */
@@ -652,7 +835,7 @@ register struct monst *mtmp;
 	    pline_msg = mtmp->mpeaceful ? "snarls." : "growls!";
 	    break;
 	case MS_ROAR:
-	    pline_msg = mtmp->mpeaceful ? "snarls." : "roars!";
+	    pline_msg = (ptr == &mons[PM_SYSTEM_FAILURE]) ? "says in a monotone voice: 'Pieteikumu kluda.'" : mtmp->mpeaceful ? "snarls." : "roars!";
 	    break;
 	case MS_SQEEK:
 	    pline_msg = "squeaks.";
@@ -832,6 +1015,38 @@ register struct monst *mtmp;
 		    verbl_msg = "Aloha.";
 		    break;
 #endif
+		case PM_DEATH_EATER:
+	    pline_msg = "talks about hunting muggles.";
+		    break;
+		case PM_GANGSTER:
+	    pline_msg = "talks about doing a drive-by.";
+		    break;
+		case PM_GEEK:
+		    verbl_msg = "Enematzu memalezu!";
+		    break;
+		case PM_POKEMON:
+		    verbl_msg = "Little strawberry me baby!";
+		    break;
+		case PM_TRANSVESTITE:
+		    verbl_msg = "Look at my heels! Do you think they're beautiful?";
+		    break;
+		case PM_TOPMODEL:
+		    verbl_msg = "I'm the chosen one who is going to win the ANTM show!";
+		    break;
+		case PM_ACTIVISTOR:
+		case PM_ACTIVIST:
+		    verbl_msg = "We're here to bring peace to the world.";
+		    break;
+		case PM_BLEEDER:
+		    verbl_msg = "*sigh* If only I could make this bleeding stop...";
+		    break;
+		case PM_COURIER:
+	    pline_msg = "talks about some random guy named Benny.";
+		    break;
+		case PM_ROCKER:
+	    pline_msg = "talks about groovy music.";
+		    break;
+
 		default:
 		    pline_msg = "discusses dungeon exploration.";
 		    break;
@@ -875,6 +1090,29 @@ register struct monst *mtmp;
 	    break;
 #endif
 	case MS_BRIBE:
+#ifdef CONVICT        
+        if (monsndx(ptr) == PM_PRISON_GUARD) {
+            long gdemand = 500 * u.ulevel;
+            long goffer = 0;
+
+    	    if (!mtmp->mpeaceful && !mtmp->mtame) {
+                pline("%s demands %ld %s to avoid re-arrest.",
+                 Amonnam(mtmp), gdemand, currency(gdemand));
+                if ((goffer = bribe(mtmp)) >= gdemand) {
+                    verbl_msg = "Good.  Now beat it, scum!";
+            	    mtmp->mpeaceful = 1;
+            	    set_malign(mtmp);
+                    break;
+                } else {
+                    pline("I said %ld!", gdemand);
+                    mtmp->mspec_used = 1000;
+                    break;
+                }
+            } else {
+                verbl_msg = "Out of my way, scum!"; /* still a jerk */
+            }
+        } else
+#endif /* CONVICT */
 	    if (mtmp->mpeaceful && !mtmp->mtame) {
 		(void) demon_talk(mtmp);
 		break;
@@ -895,7 +1133,7 @@ register struct monst *mtmp;
 	    pline_msg = "seems to mutter a cantrip.";
 	    break;
 	case MS_NURSE:
-	    if (uwep && (uwep->oclass == WEAPON_CLASS || is_weptool(uwep))
+	    if (uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep))
 		|| (u.twoweap && uswapwep && (uswapwep->oclass == WEAPON_CLASS
 		|| is_weptool(uswapwep))))
 		verbl_msg = "Put that weapon away before you hurt someone!";
@@ -939,6 +1177,157 @@ register struct monst *mtmp;
 		pline_msg = "is busy reading a copy of Sandman #8.";
 	    else verbl_msg = "Who do you think you are, War?";
 	    break;
+	case MS_DOUGLAS_ADAMS:
+            {
+	   	 static const char *da_msgs[] = {
+			"42",
+			"It's a nice day today!",
+			"Have a Pan Galactic Gargle Blaster?",
+			"Time is relative. Lunchtime doubly so.",
+			"This is some strange usage of the word 'safe' that I wasn't aware of.",
+		};
+		if (mtmp->data == &mons[PM_MARVIN]) {
+			verbalize("Life, loathe it or ignore it, you cannot like it.");
+		} else if (mtmp->data == &mons[PM_DEEP_THOUGHT]) {
+			verbalize("6*9 = 42");
+		} else if (mtmp->data == &mons[PM_EDDIE]) {
+			verbalize("I'm feeling just great, guys!");
+		} else {
+			verbalize(da_msgs[rn2(SIZE(da_msgs))]);
+		}
+	    }
+	    break;
+	case MS_PUPIL:
+
+		{
+		static const char *pupil_msgs[] = {
+			"Today no homework ... *please*",
+			"six times nine is ... um ... uh ... ... forty-two",
+			"you ... Strange word",	/* You're not expected to understand this ... */
+			"Bugger off!",
+			"*uck off!",
+			"What are the newest news about the Super Information Highway?",
+			"What do you want?",
+			"Do the world a favour---jump out of the 20th story of the Uni-Center!",
+		};
+
+		verbalize(pupil_msgs[rn2(SIZE(pupil_msgs))]);
+		}
+		break;
+
+	case MS_WHORE:
+
+		{
+		static const char *whore_msgs[] = { /* These are obviously inspired by the GTA series --Amy */
+			"Come to Momma.",
+			"I'm gonna call my pimp.",
+			"You picked the wrong bitch.",
+			"You're just another sorry ass!",
+			"Hey, this is my first night!",
+			"You know, I used to be a marine before the OP.", /* Vice City */
+			"Cocksucker!",
+			"I'll kick your nuts flat!", /* yes the PC can be female, but who cares? */
+			"I'm no slut, I just need the money!",
+			"I'll be sitting on you in a second.",
+			"You think I can't mess you up?",
+			"Die in a pool of your own blood.",
+			"Get ready for an ass-kicking.",
+			"You want me to whoop you?",
+			"You want some? I'll give you some!",
+			"Enjoy this stiletto.",
+			"If I don't kill you, my parents will.",
+			"I know kickboxing.",
+			"I'm a black belt in karate.",
+			"My hands are lethal weapons.",
+			"I'll kick your teeth in.",
+			"Would you really hit a woman?",
+			"I've killed hundreds of pigs like you!",
+			"I'm gonna open up a can of whoopass on you now!",
+			"Girls can fight too!",
+			"Beating on girls, right?",
+			"I have no problem kicking you in the nuts.",
+			"I'll slap you silly.",
+			"My pimp will take care of you.",
+			"You're messing with an angry bitch!",
+			"Another asshole with a problem!",
+			"You think cause I'm a girl I can't fight?",
+			"You call that 'fighting'?",
+			"I'm gonna stomp your balls!",
+			"I'm a lady but I can fight.",
+			"I'm an innocent virgin!",
+			"You just made me break a nail!",
+			"I'm expecting an apology!",
+			"You insult my womanhood.",
+			"You disgust me.",
+		};
+
+		if (!mtmp->mpeaceful) verbalize(whore_msgs[rn2(SIZE(whore_msgs))]);
+		}
+		break;
+
+	case MS_TEACHER:
+		{
+	   	 static const char *teacher_msgs[] = {
+			"No chance! Every day you'll get homework!",
+			"Is it really true? Does really _everybody_ have the homework?",
+			"That usage of the word 'goes' does harm to my ears!",
+			"Your attitude is really unacceptable!",
+			"The \"Stigel-Brauerei\" was founded 1492. Well, in that year was that affair with that guy, Columbus, but that really isn't important.",
+			"Why are you going? I'm only 20 minutes late!",
+			"Where's your problem? I'll be happy to help you",
+			"You didn't understand? Then let's begin again ... (*sigh*)",
+			"No homework yet? - This can be changed!",
+			"Overbecks - das Ueberbier",
+			"How about dehydrating carbonhydrates today?",
+			"Back when I was a pupil, the following thing happened ...",
+			"Back when I was studying chemistry, the following thing happened ...",
+			"... dann ist die Scheisse am dampfen",
+			"NIKI forever!",
+			"Pascal forever!",
+			"Yes ... I know that everything is easier in C, but I simply love Pascal ...",
+			"You have Str:0 (at most), so bugger off!",
+			"Do it - who cares about the odd broken bone?",
+			"You are sick because you were running for 30 minutes? So run another hour!",
+			"Shall I help you? (takes the whip)",
+			"We'll do that diagonally. *grin* (wipes sweat off head)",
+			"*grin*",
+			"You know, (*grin*) we'll have to do something now! (*grin*)",
+			"How about a pupil experiment - cut off your ears?",
+			"Yet another pupil experiment: the consequences of KCN ingested.",
+			"Don't expect to get away without homework!",
+			"No homework in the holidays? You must have something to do, after all!",
+			"The low level of you all is really beyond acception!",
+			"There was endless work in the supervision and administration of the farm ...",
+			/* it's really a shame that I can't think of more messages for him */
+			"I expect you to do your homework _regularly_ and _carefully_!",
+			"The level of work is really very low nowadays!",
+			"In _our_ times pupils were real pupils and teachers were real teachers!",
+			"Back when pupils where real pupils and teachers were real teachers, everything was better!",
+		};
+
+		verbalize(teacher_msgs[rn2(SIZE(teacher_msgs))]);
+
+		}
+		break;
+
+	case MS_PRINCIPAL:
+
+		{
+		static const char *principal_msgs[] = {
+		"What's up?",
+		"I really feel sick - there are so many things to do!",
+		"Help me, I faint!",
+		"We'll do that in groups of one person!",
+		};
+
+		verbalize(principal_msgs[rn2(SIZE(principal_msgs))]);
+		}
+		break;
+
+	case MS_SMITH:
+		verbalize("I'm working. Please don't disturb me again!");
+		break;
+
     }
 
     if (pline_msg) pline("%s %s", Monnam(mtmp), pline_msg);
@@ -950,6 +1339,13 @@ register struct monst *mtmp;
 int
 dotalk()
 {
+
+	if (MenuBug) {
+	pline("The chat command is currently unavailable!");
+	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	return 0;
+	}
+
     int result;
     boolean save_soundok = flags.soundok;
     flags.soundok = 1;	/* always allow sounds while chatting */
@@ -967,18 +1363,22 @@ dochat()
 
     if (is_silent(youmonst.data)) {
 	pline("As %s, you cannot speak.", an(youmonst.data->mname));
+	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return(0);
     }
     if (Strangled) {
 	You_cant("speak.  You're choking!");
+	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return(0);
     }
     if (u.uswallow) {
 	pline("They won't hear you out there.");
+	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return(0);
     }
     if (Underwater) {
 	Your("speech is unintelligible underwater.");
+	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return(0);
     }
 
@@ -1048,6 +1448,108 @@ dochat()
 	pline("%s is eating noisily.", Monnam(mtmp));
 	return (0);
     }
+
+#ifdef CONVICT
+    if (Role_if(PM_CONVICT) && is_rat(mtmp->data) && !mtmp->mpeaceful &&
+     !mtmp->mtame) {
+        You("attempt to soothe the %s with chittering sounds.",
+         l_monnam(mtmp));
+        if (rnl(10) < 2) {
+            (void) tamedog(mtmp, (struct obj *) 0, FALSE);
+        } else {
+            if (rnl(10) > 8) {
+                pline("%s unfortunately ignores your overtures.",
+                 Monnam(mtmp));
+                return 0;
+            }
+            mtmp->mpeaceful = 1;
+            set_malign(mtmp);
+        }
+        return 0;
+    }
+#endif /* CONVICT */
+
+    if ( (Role_if(PM_FEAT_MASTER) || Race_if(PM_VORTEX)) && mtmp->data->mlet == S_VORTEX && !mtmp->mtame && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
+
+		if (yn("Tame the vortex?") == 'y') {
+
+	      pline("You attempt to tame %s.",mon_nam(mtmp) );
+
+		(void) tamedog(mtmp, (struct obj *) 0, FALSE);
+
+	        return 1;
+		}
+	}
+
+    if (Race_if(PM_KOP) && mtmp->data->mlet == S_KOP && mtmp->mpeaceful && !mtmp->mtame && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) && u.uhunger > 100 ) {
+
+		if (yn("Recruit this officer of the law?") == 'y') {
+
+	      pline("You convince %s to join your cause.",mon_nam(mtmp) );
+		morehungry(100);
+
+		(void) tamedog(mtmp, (struct obj *) 0, TRUE);
+
+	        return 1;
+		}
+	}
+
+    if (Role_if(PM_LADIESMAN) && !flags.female && (mtmp->data->mlet == S_NYMPH || mtmp->mnum == PM_NURSE || mtmp->mnum == PM_SUCCUBUS) && !mtmp->mtame && !mtmp->mpeaceful && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
+
+		if (yn("Seduce this pretty lady?") == 'y') {
+
+	      pline("You attempt to seduce %s.",mon_nam(mtmp) );
+
+            mtmp->mpeaceful = 1; /* they will always become at least peaceful. --Amy */
+            set_malign(mtmp);
+
+		if (mtmp->m_lev < rnd(50) && rn2(u.ulevel + 2) && rn2(3) ) /* higher level monsters are less likely to be affected --Amy*/
+
+		(void) tamedog(mtmp, (struct obj *) 0, TRUE);
+
+	        return 1;
+		}
+	}
+
+    if (Race_if(PM_IMPERIAL) && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) && !mtmp->mpeaceful &&
+     !mtmp->mtame && u.uhunger > 100) {
+
+		if (yn("Use the Emperor's Voice?") == 'y') {
+
+	      verbalize("%s", !rn2(3) ? "By the power of His Holiness Titus Medes, I beseech thee - stop thine combat actions!" : !rn2(2) ? "Long live Martin Septim! Thou shall surrender lest I smite thee!" : "The Emperor will spare thy life if thou stoppest fighting!");
+		morehungry(100);
+
+		if (mtmp->m_lev < rnd(50) && rn2(u.ulevel + 2) && rn2(3) ) { /* higher level monsters are less likely to be affected --Amy*/
+
+            mtmp->mpeaceful = 1;
+            set_malign(mtmp);
+		pline("%s is convinced by your sermon, and no longer views you as an enemy!",l_monnam(mtmp));
+		}
+
+        return 1;
+
+		}
+    }
+
+    if (Race_if(PM_MUMMY) && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) &&
+     !mtmp->mtame && is_undead(mtmp->data) && u.uhunger > 500) {
+
+		if (yn("Try to tame this undead monster?") == 'y') {
+
+	      pline("You frantically chant at %s.",mon_nam(mtmp) );
+		morehungry(500);
+
+		if (mtmp->m_lev < rnd(100) && rn2(u.ulevel + 2) && rn2(3)) { /* higher level monsters are less likely to be affected --Amy*/
+
+	    /*maybe_tame(mtmp, sobj);*/
+		(void) tamedog(mtmp, (struct obj *) 0, FALSE);
+		}
+
+        return 1;
+
+		}
+    }
+
 
     return domonnoise(mtmp);
 }

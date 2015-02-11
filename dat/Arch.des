@@ -84,9 +84,9 @@ MONSTER:'@',"student",(28,11)
 MONSTER:'@',"watchman",(50,06)
 MONSTER:'@',"watchman",(50,14)
 # Eels in the moat
-MONSTER:';',"giant eel",(20,10)
-MONSTER:';',"giant eel",(45,04)
-MONSTER:';',"giant eel",(33,16)
+MONSTER:';',"giant eel",(20,10),hostile
+MONSTER:';',"giant eel",(45,04),hostile
+MONSTER:';',"giant eel",(33,16),hostile
 # Non diggable walls
 NON_DIGGABLE:(00,00,75,19)
 # Random traps
@@ -97,18 +97,18 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Monsters on siege duty.
-MONSTER: 'S',random,(60,09)
-MONSTER: 'M',random,(60,10)
-MONSTER: 'S',random,(60,11)
-MONSTER: 'S',random,(60,12)
-MONSTER: 'M',random,(60,13)
-MONSTER: 'S',random,(61,10)
-MONSTER: 'S',random,(61,11)
-MONSTER: 'S',random,(61,12)
-MONSTER: 'S',random,(30,03)
-MONSTER: 'M',random,(20,17)
-MONSTER: 'S',random,(67,02)
-MONSTER: 'S',random,(10,19)
+MONSTER: 'S',random,(60,09),hostile
+MONSTER: 'M',random,(60,10),hostile
+MONSTER: 'S',random,(60,11),hostile
+MONSTER: 'S',random,(60,12),hostile
+MONSTER: 'M',random,(60,13),hostile
+MONSTER: 'S',random,(61,10),hostile
+MONSTER: 'S',random,(61,11),hostile
+MONSTER: 'S',random,(61,12),hostile
+MONSTER: 'S',random,(30,03),hostile
+MONSTER: 'M',random,(20,17),hostile
+MONSTER: 'S',random,(67,02),hostile
+MONSTER: 'S',random,(10,19),hostile
 
 #
 #	The "locate" level for the quest.
@@ -229,33 +229,33 @@ TRAP:"dart",random
 TRAP:"rolling boulder",(32,10)
 TRAP:"rolling boulder",(40,16)
 # Random monsters.
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'M',random,random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',random,random
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'M',random,random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',random,random,hostile
 
 #
 #	The "goal" level for the quest.
@@ -345,34 +345,34 @@ TRAP:random,random
 TRAP:random,random
 TRAP:"rolling boulder",(46,14)
 # Random monsters.
-MONSTER:'&',"Minion of Huhetotl",(50,14)
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'S',random,random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',"human mummy",random
-MONSTER:'M',random,random
+MONSTER:'&',"Minion of Huhetotl",(50,14),hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',"human mummy",random,hostile
+MONSTER:'M',random,random,hostile
 
 #
 #	The "fill" levels for the quest.
@@ -388,36 +388,36 @@ LEVEL: "Arc-fila"
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
 OBJECT: random,random,random
-MONSTER: 'S', random, random
-
-ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-OBJECT: random,random,random
-MONSTER: 'S', random, random
-
-ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-TRAP: random, random
-OBJECT: random,random,random
-MONSTER: 'S', random, random
+MONSTER: 'S', random, random,hostile
 
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, down
 OBJECT: random, random, random
 TRAP: random, random
-MONSTER: 'S', random, random
-MONSTER: 'M', "human mummy", random
+MONSTER: 'S', random, random,hostile
+MONSTER: 'M', "human mummy", random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: 'S', random, random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: 'S', random, random,hostile
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-MONSTER: 'S', random, random
+MONSTER: 'S', random, random,hostile
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-MONSTER: 'S', random, random
+MONSTER: 'S', random, random,hostile
 
 RANDOM_CORRIDORS
 
@@ -426,35 +426,35 @@ LEVEL: "Arc-filb"
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
 OBJECT: random,random,random
-MONSTER: 'M', random, random
-
-ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-OBJECT: random,random,random
-MONSTER: 'M', random, random
-
-ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-TRAP: random, random
-OBJECT: random,random,random
-MONSTER: 'M', random, random
+MONSTER: 'M', random, random,hostile
 
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, down
 OBJECT: random, random, random
 TRAP: random, random
-MONSTER: 'S', random, random
-MONSTER: 'M', "human mummy", random
+MONSTER: 'S', random, random,hostile
+MONSTER: 'M', "human mummy", random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: 'M', random, random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: 'M', random, random,hostile
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-MONSTER: 'S', random, random
+MONSTER: 'S', random, random,hostile
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-MONSTER: 'S', random, random
+MONSTER: 'S', random, random,hostile
 
 RANDOM_CORRIDORS

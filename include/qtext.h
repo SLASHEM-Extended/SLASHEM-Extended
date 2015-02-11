@@ -5,7 +5,7 @@
 #ifndef QTEXT_H
 #define QTEXT_H
 
-#define N_HDR	32		/* Maximum number of categories */
+#define N_HDR	127		/* Maximum number of categories */
 				/* (i.e., num roles + 1) */
 #define LEN_HDR 3		/* Maximum length of a category name */
 
@@ -18,7 +18,7 @@ struct qtmsg {
 
 #ifdef MAKEDEFS_C	/***** MAKEDEFS *****/
 
-#define N_MSG	100		/* arbitrary */
+#define N_MSG	10000		/* arbitrary */
 
 struct msghdr {
 	int	n_msg;
@@ -96,16 +96,23 @@ struct	qtlists {
 #define QT_POSTHANKS	90
 #define QT_HASAMULET	91
 
+#define QT_HERETIC	95	/* you converted */
+
+#define QT_FIRSTQLEVEL	100	/* ...ic transporter for the first time */
+#define QT_NEXTQLEVEL	101	/* again sense the leader pleading for help */
+#define QT_SILVERBELL	102	/* you have the artifact but not the bell, and returned to the leader */
+
+
 /*
  *	Message defines for common text used in maledictions.
  */
 #define COMMON_ID	"-"	/* common message id value */
 
-#define QT_ANGELIC	10
-#define QTN_ANGELIC	10
+#define QT_ANGELIC	1000
+#define QTN_ANGELIC	253
 
-#define QT_DEMONIC	30
-#define QTN_DEMONIC	20
+#define QT_DEMONIC	2000
+#define QTN_DEMONIC	285
 
 #define QT_BANISHED	60
 

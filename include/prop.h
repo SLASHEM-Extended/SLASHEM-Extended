@@ -73,7 +73,62 @@
 #define INFRAVISION		64
 #define WARN_OF_MON		65
 #define DETECT_MONSTERS		66
-#define LAST_PROP		(DETECT_MONSTERS)
+#define NUMBED			67
+#define FEARED			68
+#define FEAR_RES			69
+#define FROZEN			70
+#define BURNED			71
+#define RMB_LOST			72
+#define DISPLAY_LOST		73
+#define SPELLS_LOST		74
+#define YELLOW_SPELLS		75
+#define AUTO_DESTRUCT		76
+#define MEMORY_LOST		77
+#define INVENTORY_LOST		78
+#define BLACK_NG_WALLS		79
+#define MENU_LOST			80
+#define SPEED_BUG		81
+#define SUPERSCROLLER_ACTIVE		82
+
+#define DEAC_FIRE_RES	83
+#define DEAC_COLD_RES	84
+#define DEAC_SLEEP_RES	85
+#define DEAC_DISINT_RES	86
+#define DEAC_SHOCK_RES	87
+#define DEAC_POISON_RES	88
+#define DEAC_DRAIN_RES	89
+#define DEAC_SICK_RES	90
+#define DEAC_ANTIMAGIC	91
+#define DEAC_ACID_RES	92
+#define DEAC_STONE_RES	93
+#define DEAC_FEAR_RES	94
+#define DEAC_SEE_INVIS	95
+#define DEAC_TELEPAT	96
+#define DEAC_WARNING	97
+#define DEAC_SEARCHING	98
+#define DEAC_CLAIRVOYANT	99
+#define DEAC_INFRAVISION	100
+#define DEAC_DETECT_MONSTERS	101
+#define DEAC_INVIS	102
+#define DEAC_DISPLACED	103
+#define DEAC_STEALTH	104
+#define DEAC_JUMPING	105
+#define DEAC_TELEPORT_CONTROL	106
+#define DEAC_FLYING	107
+#define DEAC_MAGICAL_BREATHING	108
+#define DEAC_PASSES_WALLS	109
+#define DEAC_SLOW_DIGESTION	110
+#define DEAC_HALF_SPDAM	111
+#define DEAC_HALF_PHDAM	112
+#define DEAC_REGENERATION	113
+#define DEAC_ENERGY_REGENERATION	114
+#define DEAC_POLYMORPH_CONTROL	115
+#define DEAC_FAST	116
+#define DEAC_REFLECTING	117
+#define DEAC_FREE_ACTION	118
+
+#define SECOND_CHANCE		119
+#define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/
 /* Definitions were moved here from obj.h and you.h */

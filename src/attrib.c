@@ -28,39 +28,216 @@ const struct innate {
 	const char *gainstr, *losestr;
 }	arc_abil[] = { {	 1, &(HStealth), "", "" },
 		     {   1, &(HFast), "", "" },
-		     {  10, &(HSearching), "perceptive", "" },
+		     {  10, &(HSearching), "perceptive", "unaware" },
+		     {	 0, 0, 0, 0 } },
+
+	pic_abil[] = { {	 1, &(HStealth), "", "" },
+		     {   6, &(HFast), "quick", "slow" },
+		     {  8, &(HSearching), "perceptive", "unaware" },
 		     {	 0, 0, 0, 0 } },
 
 	bar_abil[] = { {	 1, &(HPoison_resistance), "", "" },
 		     {   7, &(HFast), "quick", "slow" },
-		     {  15, &(HStealth), "stealthy", "" },
+		     {  15, &(HStealth), "stealthy", "noisy" },
+		     {	 0, 0, 0, 0 } },
+
+	ass_abil[] = { {	 1, &(HStealth), "", "" },
+		     {   10, &(HFast), "quick", "slow" },
+		     {	15, &(HWarning), "sensitive", "careless" },
+		     {	 0, 0, 0, 0 } },
+
+	ama_abil[] = { {	 1, &(HStealth), "", "" },
+		     {   7, &(HFast), "quick", "slow" },
+		     {  10, &(HSwimming), "ready to swim","afraid of the water" },
+		     {	 0, 0, 0, 0 } },
+
+	sup_abil[] = { {	 1, &(HTeleportation), "", "" },
+			{	3, &(HSleep_resistance), "awake", "tired" },
+		     {	8, &(HWarning), "sensitive", "careless" },
+		     {   22, &(HTeleport_control), "controlled", "helpless" },
+		     {	 0, 0, 0, 0 } },
+
+	cou_abil[] = { {	 1, &(HHunger), "", "" },
+		     {   1, &(HAggravate_monster), "", "" },
+		     {  1, &(HConflict), "", "" },
+		     {	 0, 0, 0, 0 } },
+
+	brd_abil[] = { {	5, &(HSleep_resistance), "awake", "tired" },
+		     {	 10, &(HStealth), "stealthy", "noisy" },
+		     {	 0, 0, 0, 0 } },
+
+	gam_abil[] = { {	3, &(HSleep_resistance), "awake", "tired" },
+		     {	 13, &(HSlow_digestion), "a certain satiation", "the need to eat more" },
 		     {	 0, 0, 0, 0 } },
 
 	cav_abil[] = { {	 7, &(HFast), "quick", "slow" },
-		     {	15, &(HWarning), "sensitive", "" },
+		     {	15, &(HWarning), "sensitive", "careless" },
+		     {	 0, 0, 0, 0 } },
+
+#ifdef CONVICT
+	con_abil[] = { {   1, &(HSick_resistance), "", "" },
+	         {	 7, &(HPoison_resistance), "healthy", "less healthy" },
+		     {  20, &(HSearching), "perceptive", "unaware" },
+		     {	 0, 0, 0, 0 } },
+#endif	/* CONVICT */
+
+	bul_abil[] = { {   1, &(HAggravate_monster), "", "" },
+	         {	 7, &(HPoison_resistance), "healthy", "less healthy" },
+		     {	 0, 0, 0, 0 } },
+
+	mah_abil[] = { {   1, &(HAggravate_monster), "", "" },
+			{	1, &(HAntimagic), "", "" },
+			{   7, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
+			{  15, &(HTeleport_control), "controlled","uncontrolled" },
+		       {   15, &(HPolymorph_control), "your choices improve", "choiceless" },
+		     {	 0, 0, 0, 0 } },
+
+	sla_abil[] = { {   1, &(HAggravate_monster), "", "" },
+		     {  1, &(HCold_resistance), "", "" },
+			{	5, &(HSleep_resistance), "awake", "tired" },
+		     {   15, &(HTeleport_control), "controlled", "helpless" },
 		     {	 0, 0, 0, 0 } },
 
 	fla_abil[] = { {   1, &(HFire_resistance), "", "" },
 		     {  13, &(HCold_resistance), "warm", "cooler" },
 		     {   0, 0, 0, 0 } },
 
+	blo_abil[] = { {   1, &(HWarning), "", "" },
+			{  8, &(HSearching), "perceptive", "unaware" },
+		     {	 12, &(HStealth), "stealthy", "noisy" },
+		     {  15, &(HFire_resistance), "cool", "warmer" },
+		     {   0, 0, 0, 0 } },
+
+	scr_abil[] = { {   1, &(HFire_resistance), "", "" },
+			{	5, &(HSleep_resistance), "awake", "tired" },
+		     {   14, &(HTeleport_control), "controlled", "helpless" },
+		     {  16, &(HCold_resistance), "warm", "cooler" },
+		     {   0, 0, 0, 0 } },
+
+	coo_abil[] = { {   1, &(HFire_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	lad_abil[] = { {   1, &(HSleep_resistance), "", "" },
+			{  4, &(HSearching), "perceptive", "unaware" },
+			{   7, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
+		     {   0, 0, 0, 0 } },
+
+	jes_abil[] = { {	 5, &(HStealth), "stealthy", "noisy" },
+		     {   7, &(HFast), "quick", "slow" },
+		     {	10, &(HWarning), "sensitive", "careless" },
+			{  12, &(HSearching), "perceptive", "unaware" },
+		     {   0, 0, 0, 0 } },
+
+	art_abil[] = { {   7, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
+		       {   20, &(HPolymorph_control), "your choices improve", "choiceless" },
+		     {   0, 0, 0, 0 } },
+
+	gun_abil[] = { {   1, &(HPoison_resistance), "", "" },
+		     {  1, &(HStealth), "", "" },
+		     {  5, &(HFire_resistance), "cool", "warmer" },
+		       {   7, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
+		     {  10, &(HCold_resistance), "warm", "cooler" },
+		     {   0, 0, 0, 0 } },
+
+	stu_abil[] = { {  2, &(HSleep_resistance), "awake", "tired" },
+		     {   5, &(HFast), "quick", "slow" },
+		     {   14, &(HFree_action), "freed", "a loss of freedom" },
+		     {   0, 0, 0, 0 } },
+
+	dol_abil[] = { {   1, &(HPoison_resistance), "", "" },
+		     {	3, &(HWarning), "sensitive", "careless" },
+		     {   0, 0, 0, 0 } },
+
+	sag_abil[] = { {  10, &(HSearching), "perceptive", "unaware" },
+		     {	17, &(HWarning), "sensitive", "careless" },
+		     {	 0, 0, 0, 0 } },
+
+	ota_abil[] = { {	8, &(HWarning), "sensitive", "careless" },
+			{  16, &(HSearching), "perceptive", "unaware" },
+		     {	 0, 0, 0, 0 } },
+
+	aug_abil[] = { {   1, &(HTelepat), "", "" },
+		     {   1, &(HStealth), "", "" },
+		     {	12, &(HWarning), "sensitive", "careless" },
+		     {   0, 0, 0, 0 } },
+
+	fir_abil[] = { {   1, &(HFire_resistance), "", "" },
+		     {  10, &(HSearching), "perceptive", "unaware" },
+		     {   0, 0, 0, 0 } },
+
+	nin_abil[] = { {   1, &(HStealth), "", ""  },
+		     {   3, &(HInvis), "hidden", "more visible" },
+		     {   0, 0, 0, 0 } },
+
+	off_abil[] = { {   1, &(HSearching), "", "" },
+		     {  10, &(HWarning), "sensitive", "careless" },
+		     {   0, 0, 0, 0 } },
+
+	aci_abil[] = { {   1, &(HAcid_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	loc_abil[] = { {   1, &(HSearching), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	unt_abil[] = { {   1, &(HPoison_resistance), "", "" },
+		     {   7, &(HCold_resistance), "warm", "cooler" },
+		     {   0, 0, 0, 0 } },
+
+	gee_abil[] = { {   1, &(HPoison_resistance), "", "" },
+		     {   1, &(HShock_resistance), "", "" },
+		     {   8, &(HTeleport_control), "controlled", "helpless" },
+		     {  15, &(HWarning), "sensitive", "careless" },
+		     {   0, 0, 0, 0, } },
+
+	gra_abil[] = { {   1, &(HAggravate_monster), "", "" },
+		     {   1, &(HFast), "", "" },
+		     {   1, &(HSleep_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
+
 	hea_abil[] = { {	 1, &(HPoison_resistance), "", "" },
-		     {	15, &(HWarning), "sensitive", "" },
+		     {	15, &(HWarning), "sensitive", "careless" },
+		     {	 0, 0, 0, 0 } },
+
+	dru_abil[] = { {	 1, &(HPoison_resistance), "", "" },
+		     {	 0, 0, 0, 0 } },
+
+	sci_abil[] = { {	 1, &(HAcid_resistance), "", "" },
+		     {	 0, 0, 0, 0 } },
+
+	mus_abil[] = { {	 7, &(HStealth), "stealthy", "noisy" },
 		     {	 0, 0, 0, 0 } },
 
 	ice_abil[] = { {   1, &(HCold_resistance), "", "" },
 		     {  13, &(HFire_resistance), "cool", "warmer" },
 		     {   0, 0, 0, 0 } },
 
+	ele_abil[] = { {   1, &(HShock_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	zoo_abil[] = { {   1, &(HWarning), "", "" },
+		     {  10, &(HPoison_resistance), "hardy", "less healthy" },
+		     {   0, 0, 0, 0 } },
+
+#ifdef JEDI
+	jed_abil[] = { {   1, &(HStealth), "", ""},
+		       {   3, &(HTelepat), "disturbances in the force", "your grip on the force lessen" },
+		       {   5, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
+		       {   7, &(HFast), "quick", "slow" },
+		       { 0, 0, 0, 0 } },
+#endif
+			
 	kni_abil[] = { {	 7, &(HFast), "quick", "slow" },
+		     {	 0, 0, 0, 0 } },
+
+	war_abil[] = { {	 7, &(HFast), "quick", "slow" },
 		     {	 0, 0, 0, 0 } },
 
 	mon_abil[] = { {   1, &(HFast), "", "" },
 		     {   1, &(HSleep_resistance), "", "" },
 		     {   1, &(HSee_invisible), "", "" },
-		     {   3, &(HPoison_resistance), "healthy", "" },
-		     {   5, &(HStealth), "stealthy", "" },
-		     {   7, &(HWarning), "sensitive", "" },
+		     {   3, &(HPoison_resistance), "healthy", "less healthy" },
+		     {   5, &(HStealth), "stealthy", "noisy" },
+		     {   7, &(HWarning), "sensitive", "careless" },
 		     {   9, &(HSearching), "perceptive", "unaware" },
 #if 0
 		     {  11, &(HFire_resistance), "cool", "warmer" },
@@ -71,30 +248,93 @@ const struct innate {
 		     {  17, &(HTeleport_control), "controlled","uncontrolled" },
 		     {   0, 0, 0, 0 } },
 
-	nec_abil[] = { {   1, &(HDrain_resistance), "", "" },
-		     {   1, &(HSick_resistance), "", "" },
-		     {   3, &(HUndead_warning), "sensitive", "" },
+	psi_abil[] = { {   1, &(HTelepat), "", "" },
+		     {   1, &(HClairvoyant), "","" },
+		     {   3, &(HSee_invisible), "your vision sharpen", "your vision blur" },
+		     {   5, &(ETelepat), "aware", "unaware" },
+		     {  10, &(HDetect_monsters), "connected","detached" },
+		     {  15, &(HFlying), "weightless", "grounded" },
+		     {  20, &(HPasses_walls), "ethereal","mundane" },
 		     {   0, 0, 0, 0 } },
 
-	pri_abil[] = { {	15, &(HWarning), "sensitive", "" },
+	fox_abil[] = { {   1, &(ETelepat), "", "" },
+		     {   1, &(HClairvoyant), "","" },
+		     {   1, &(HStealth), "","" },
+		     {   5, &(HSearching), "perceptive", "unaware" },
+		     {   10, &(HFast), "quick", "slow" },
+		     {   15, &(HWarning), "sensitive", "careless" },
+		     {   0, 0, 0, 0 } },
+
+	nec_abil[] = { {   1, &(HDrain_resistance), "", "" },
+		     {   1, &(HSick_resistance), "", "" },
+		     {   3, &(HUndead_warning), "sensitive", "careless" },
+		     {   0, 0, 0, 0 } },
+
+	pok_abil[] = { {   1, &(HDisint_resistance), "", "" },
+		     {   4, &(HWarning), "sensitive", "careless" },
+		     {   7, &(HSearching), "perceptive", "unaware" },
+		     {   10, &(HDrain_resistance), "more resistant to drain life", "less resistant to drain life" },
+		     {   13, &(HFast), "quick", "slow" },
+		     {   16, &(HSleep_resistance), "awake", "tired" },
+		     {   19, &(HAcid_resistance), "warded", "endangered" },
+		     {   22, &(HTelepat), "telepathic", "nontelepathic" },
+		     {   25, &(HSick_resistance), "resistant", "non-resistant" },
+		     {   28, &(HTeleport_control), "controlled", "uncontrolled" },
+		     {   30, &(HFlying), "airborne", "stalled" },
+		     {   0, 0, 0, 0 } },
+
+	pir_abil[] = {	{1, &(HSwimming), "", ""  },
+			 {	7, &(HStealth), "stealthy", "noisy"  },	/* with cat-like tread ... */
+		     {  11, &(HFast), "quick", "slow" },
+		     {	 0, 0, 0, 0 } },
+
+	gof_abil[] = {	{1, &(HDrain_resistance), "", ""  },
+		     {   1, &(HInfravision), "", "" },
+		     {  10, &(HReflecting), "reflexive", "nonreflexive" },
+		     {	 0, 0, 0, 0 } },
+
+	gla_abil[] = {	{3, &(HFast), "quick", "slow"  },
+			 {	6, &(HStealth), "stealthy", "noisy"  },	/* with cat-like tread ... */
+		     {  10, &(HAggravate_monster), "noisy", "quiet" },
+		     {  15, &(HWarning), "sensitive", "careless" },
+		     {	 0, 0, 0, 0 } },
+	kor_abil[] = {	{2, &(HSearching), "perceptive", "unaware"  },
+			 {	7, &(HStealth), "stealthy", "noisy"  },	/* with cat-like tread ... */
+		     {	 0, 0, 0, 0 } },
+	div_abil[] = {	{15, &(HMagical_breathing), "aquatic", "hydrophobic"  },
+		     {	 0, 0, 0, 0 } },
+
+
+	lun_abil[] = { {   1, &(HPoison_resistance), "", "" },
+		     {   1, &(HRegeneration), "", "" },
+		     {   7, &(HStealth), "stealthy", "noisy" },
+		     {   0, 0, 0, 0 } },
+
+			 
+	pri_abil[] = { {	15, &(HWarning), "sensitive", "careless" },
 		     {  20, &(HFire_resistance), "cool", "warmer" },
 		     {	 0, 0, 0, 0 } },
 
 	ran_abil[] = { {   1, &(HSearching), "", "" },
-		     {	 7, &(HStealth), "stealthy", "" },
-		     {	15, &(HSee_invisible), "", "" },
+		     {	 7, &(HStealth), "stealthy", "noisy" },
+		     {	15, &(HSee_invisible), "your vision sharpen", "your vision blur" },
 		     {	 0, 0, 0, 0 } },
 
+	elp_abil[] = { {   1, &(HSearching), "", "" },
+		     {	4, &(HSleep_resistance), "awake", "tired" },
+		     {	 7, &(HStealth), "stealthy", "noisy" },
+		     {	15, &(HSee_invisible), "your vision sharpen", "your vision blur" },
+		     {	 0, 0, 0, 0 } },
 	rog_abil[] = { {	 1, &(HStealth), "", ""  },
-		     {  10, &(HSearching), "perceptive", "" },
+		     {  10, &(HSearching), "perceptive", "unaware" },
 		     {	 0, 0, 0, 0 } },
 
 	sam_abil[] = { {	 1, &(HFast), "", "" },
-		     {  15, &(HStealth), "stealthy", "" },
+		     {  15, &(HStealth), "stealthy", "noisy" },
 		     {	 0, 0, 0, 0 } },
 
-	tou_abil[] = { {	10, &(HSearching), "perceptive", "" },
-		     {	20, &(HPoison_resistance), "hardy", "" },
+	tou_abil[] = { {	10, &(HSearching), "perceptive", "unaware" },
+		     {	20, &(HPoison_resistance), "hardy", "less healthy" },
 		     {	 0, 0, 0, 0 } },
 
 	und_abil[] = { {   1, &(HStealth), "", "" },
@@ -105,9 +345,25 @@ const struct innate {
 		     {   9, &(HPoison_resistance), "hardy", "less healthy" },
 		     {   0, 0, 0, 0 } },
 
+	pal_abil[] = { {   1, &(HFast), "", "" },
+		     {   1, &(HUndead_warning), "", "" },
+		     {   5, &(HPoison_resistance), "hardy", "less healthy" },
+		     {	10, &(HSleep_resistance), "awake", "tired" },
+		     {   0, 0, 0, 0 } },
+
 	val_abil[] = { {	 1, &(HCold_resistance), "", "" },
 		     {	 1, &(HStealth), "", "" },
 		     {   7, &(HFast), "quick", "slow" },
+		     {	 0, 0, 0, 0 } },
+
+	wan_abil[] = { {	 1, &(HCold_resistance), "", "" },
+		     {   1, &(HFire_resistance), "", "" },
+		     {   1, &(HShock_resistance), "", "" },
+		     {   1, &(HSleep_resistance), "", "" },
+			{	10, &(HWarning), "sensitive", "careless" },
+			{   10, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
+			{  20, &(HTeleport_control), "controlled","uncontrolled" },
+		       {   20, &(HPolymorph_control), "your choices improve", "choiceless" },
 		     {	 0, 0, 0, 0 } },
 
 #ifdef YEOMAN
@@ -117,9 +373,31 @@ const struct innate {
 		     {   0, 0, 0, 0 } },
 #endif
 
-	wiz_abil[] = { {	15, &(HWarning), "sensitive", "" },
+	wiz_abil[] = { {	15, &(HWarning), "sensitive", "careless" },
 		     {  17, &(HTeleport_control), "controlled","uncontrolled" },
 		     {	 0, 0, 0, 0 } },
+
+	alt_abil[] = { {   3, &(HUndead_warning), "sensitive", "careless" },
+			{	7, &(HWarning), "sensitive", "careless" },
+			{  15, &(HTeleport_control), "controlled","uncontrolled" },
+		       {   25, &(HPolymorph_control), "your choices improve", "choiceless" },
+		     {  30, &(HReflecting), "reflexive", "nonreflexive" },
+		     {	 0, 0, 0, 0 } },
+
+	dun_abil[] = { {	1, &(HFire_resistance), "", "" },
+		     {	 0, 0, 0, 0 } },
+
+	bos_abil[] = { {	1, &(HPoison_resistance), "", "" },
+		     {  7, &(HStealth), "stealthy", "noisy" },
+		     {	 0, 0, 0, 0 } },
+
+	tha_abil[] = { {	4, &(HSleep_resistance), "awake", "tired" },
+		     {   10, &(HAggravate_monster), "intolerable", "more acceptable" },
+		     {	 0, 0, 0, 0 } },
+
+	ord_abil[] = { {   5, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
+		     {   10, &(HUndead_warning), "sensitive", "careless" },
+		       { 0, 0, 0, 0 } },
 
 	/* Intrinsics conferred by race */
 	dop_abil[] = {/* {   1, &(HPolymorph), "", "" },*/
@@ -128,32 +406,167 @@ const struct innate {
 
 #ifdef DWARF
 	dwa_abil[] = { { 1, &(HSearching), "", "" },
-/*			{  10, &(HFire_resistance), "cool", "warmer" },*/
+			{  10, &(HFire_resistance), "cool", "warmer" },
 			{   0, 0, 0, 0 } },
 #endif
 
 	elf_abil[] = { {	4, &(HSleep_resistance), "awake", "tired" },
 		     {	 0, 0, 0, 0 } },
 
-	gno_abil[] = { {   5, &(HStealth), "stealthy", "" },
-/*		     {   9, &(HFast), "quick", "slow" },
-		     {   11, &(HSearching), "perceptive", "unaware" },*/
+	inc_abil[] = { {	1, &(HAntimagic), "", "" },
+		     {	 0, 0, 0, 0 } },
+
+	clk_abil[] = { {	1, &(HPoison_resistance), "", "" },
+		     {	 1, &(HSick_resistance), "", "" },
+		     {	 1, &(HStone_resistance), "", "" },
+		     {	 5, &(HShock_resistance), "shock resistant", "less shock resistant" },
+		     {	 10, &(HCold_resistance), "cold resistant", "less cold resistant" },
+		     {	 15, &(HFire_resistance), "heat resistant", "less heat resistant" },
+		     {	 0, 0, 0, 0 } },
+
+	vor_abil[] = { {	1, &(HFlying), "", "" },
+			{1, &(HMagical_breathing), "", ""  },
+		     {   1, &(HSleep_resistance), "", "" },
+		     {   1, &(HPoison_resistance), "", "" },
+		     {   1, &(HStone_resistance), "", "" },
+		     {	 0, 0, 0, 0 } },
+
+	alb_abil[] = { {   1, &(HAntimagic), "", "" },
+		     {   3, &(HUndead_warning), "sensitive", "careless" },
+		     {   10, &(HSee_invisible), "your vision sharpen", "your vision blur" },
+			{  12, &(HStealth), "stealthy", "noisy" },
+			{15, &(HMagical_breathing), "aquatic", "hydrophobic"  },
+		     {	 25, &(HEnergy_regeneration), "charged with mana", "a loss of mana" },
+		     {   0, 0, 0, 0 } },
+
+	ang_abil[] = { {   1, &(HAntimagic), "", "" },
+		     {   1, &(HFlying), "", "" },
+		     {   1, &(HCold_resistance), "", "" },
+		     {   1, &(HShock_resistance), "", "" },
+		     {   1, &(HSleep_resistance), "", "" },
+		     {   1, &(HPoison_resistance), "", "" },
+		     {   1, &(HSee_invisible), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	dev_abil[] = { {   1, &(HFire_resistance), "", "" },
+		     {   1, &(HPoison_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	fen_abil[] = { {   1, &(HSearching), "", "" },
+			{   5, &(HStealth), "stealthy", "noisy" },
+		     {   7, &(HFast), "quick", "slow" },
+		     {	 10, &(HFire_resistance), "heat resistant", "less heat resistant" },
+		     {  15, &(HSwimming), "ready to swim","afraid of the water" },
+		     {   0, 0, 0, 0 } },
+
+	nor_abil[] = { {   1, &(HCold_resistance), "", "" },
+		     {	 15, &(HShock_resistance), "shock resistant", "less shock resistant" },
+		     {   0, 0, 0, 0 } },
+
+
+	gno_abil[] = { {   5, &(HStealth), "stealthy", "noisy" },
+		     {   9, &(HFast), "quick", "slow" },
+		     {   11, &(HSearching), "perceptive", "unaware" },
 		     {   0, 0, 0, 0 } },
 
 	hob_abil[] = { {  1, &(HStealth), "", "" },
 		     {   7, &(HFast), "quick", "slow" },
 		     {   0, 0, 0, 0 } },
 
+	bat_abil[] = { {  1, &(HFlying), "", "" },
+		     {  1, &(HDrain_resistance), "", "" },
+		     {  1, &(HFear_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
 
-	lyc_abil[] = { /*{   1, &(HPoison_resistance), "", "" },*/
+	nym_abil[] = { {  1, &(HTeleportation), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	gig_abil[] = { {  10, &(HFire_resistance), "cool", "warmer" },
+		     {   15, &(HCold_resistance), "warm", "cooler" },
+		     {  20, &(HShock_resistance), "insulated", "conductive" },
+		     {   0, 0, 0, 0 } },
+
+	bre_abil[] = { {  1, &(HFire_resistance), "", "" },
+		     {   1, &(HCold_resistance), "", "" },
+		     {  1, &(HShock_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	red_abil[] = { {  1, &(HSick_resistance), "", "" },
+		     {   1, &(HPoison_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	kob_abil[] = { {  1, &(HPoison_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	sna_abil[] = { {  1, &(HPoison_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	ill_abil[] = { {  1, &(HTelepat), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	spi_abil[] = { {  1, &(HPoison_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	ins_abil[] = { {  1, &(HPoison_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	tro_abil[] = { {  1, &(HSick_resistance), "", "" },
 		     {   1, &(HRegeneration), "", "" },
-/*		     {   7, &(HStealth), "stealthy", "" },*/
+		     {   0, 0, 0, 0 } },
+
+	ung_abil[] = { {  1, &(HSearching), "", "" },
+		     {   1, &(HWarning), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	gas_abil[] = { {  1, &(HSick_resistance), "", "" },
+		     {   1, &(HCold_resistance), "", "" },
+		     {   1, &(HSleep_resistance), "", "" },
+		     {   1, &(HPoison_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	mum_abil[] = { {  1, &(HSick_resistance), "", "" },
+		     {   1, &(HCold_resistance), "", "" },
+		     {   1, &(HSleep_resistance), "", "" },
+		     {   1, &(HPoison_resistance), "", "" },
+		     {   1, &(HUndead_warning), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	wra_abil[] = { {  1, &(HSick_resistance), "", "" },
+		     {   1, &(HCold_resistance), "", "" },
+		     {   1, &(HSleep_resistance), "", "" },
+		     {   1, &(HPoison_resistance), "", "" },
+		     {   1, &(HStone_resistance), "", "" },
+		     {   1, &(HUndead_warning), "", "" },
+		     {   1, &(HFlying), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	lic_abil[] = { {  1, &(HSick_resistance), "", "" },
+		     {   1, &(HCold_resistance), "", "" },
+		     {   1, &(HSleep_resistance), "", "" },
+		     {   1, &(HPoison_resistance), "", "" },
+		     {   1, &(HUndead_warning), "", "" },
+		     {   1, &(HRegeneration), "", "" },
+		     {   1, &(HTeleportation), "", "" },
+		     {   1, &(HTeleport_control), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	esp_abil[] = { {  1, &(HSick_resistance), "", "" },
+		     {   1, &(HCold_resistance), "", "" },
+		     {   1, &(HSleep_resistance), "", "" },
+		     {   1, &(HPoison_resistance), "", "" },
+		     {   1, &(HDisint_resistance), "", "" },
+		     {   1, &(HUndead_warning), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	lyc_abil[] = { {   1, &(HPoison_resistance), "", "" },
+		     {   1, &(HRegeneration), "", "" },
+		     {   7, &(HStealth), "stealthy", "noisy" },
 		     {   0, 0, 0, 0 } },
 
 	orc_abil[] = { {	1, &(HPoison_resistance), "", "" },
 		     {	 0, 0, 0, 0 } };
 
-static long next_check = 600L;	/* arbitrary first setting */
+/*static long next_check = 600L;*/	/* arbitrary first setting */
 STATIC_DCL void NDECL(exerper);
 STATIC_DCL void FDECL(postadjabil, (long *));
 
@@ -239,6 +652,9 @@ losestr(num)	/* may kill you; cause may be poison or monster like 'a' */
 {
 	int ustr = ABASE(A_STR) - num;
 
+	if (num > 0) pline("%d points of your strength got sapped!",num);
+	if (num < 0) pline("%d points of your strength got restored!",-num);
+
 	while(ustr < 3) {
 	    ++ustr;
 	    --num;
@@ -272,12 +688,14 @@ boolean parameter; /* So I can't think up of a good name.  So sue me. --KAA */
 	for (otmp = invent; otmp; otmp = otmp->nobj)
 	    if (confers_luck(otmp)) {
 		if (otmp->cursed) bonchance -= otmp->quan;
-		else if (otmp->blessed) bonchance += otmp->quan;
+		else if (otmp->blessed) {bonchance += otmp->quan; bonchance += otmp->quan;}
 		else if (parameter) bonchance += otmp->quan;
 	    }
 
 	/* STEPHEN WHITE'S NEW CODE */
 	if (uarmh && uarmh->otyp == FEDORA && !uarmh->cursed) bonchance += 2;
+
+	u.moreluckpts = bonchance;
 	
 	return sgn((int)bonchance);
 }
@@ -289,7 +707,8 @@ set_moreluck()
 	int luckbon = stone_luck(TRUE);
 
 	if (!luckbon && !carrying(LUCKSTONE)) u.moreluck = 0;
-	else if (luckbon >= 0) u.moreluck = LUCKADD;
+	else if (luckbon >= 0 && u.moreluckpts <= 3) u.moreluck = u.moreluckpts; /* not always give a flat +3 --Amy */
+	else if (luckbon >= 0 && u.moreluckpts > 3) u.moreluck = LUCKADD;
 	else u.moreluck = -LUCKADD;
 }
 
@@ -302,6 +721,7 @@ recalc_health()
 
 
 	u.uhealbonus = 0;
+
 	for(otmp = invent; otmp; otmp=otmp->nobj)
 	    if (otmp->otyp == HEALTHSTONE)
 	    	u.uhealbonus += otmp->quan *
@@ -348,7 +768,8 @@ boolean	inc_or_dec;
 	if (i == A_INT || i == A_CHA) return;	/* can't exercise these */
 
 	/* no physical exercise while polymorphed; the body's temporary */
-	if (Upolyd && i != A_WIS) return;
+	/* edit by Amy - let ungenomolds have some fun. */
+	/*if (Upolyd && i != A_WIS) return;*/
 
 	if(abs(AEXE(i)) < AVAL) {
 		/*
@@ -360,7 +781,10 @@ boolean	inc_or_dec;
 		 *
 		 *	Note: *YES* ACURR is the right one to use.
 		 */
-		AEXE(i) += (inc_or_dec) ? (rn2(19) > ACURR(i)) : -rn2(2);
+
+		/* note by Amy - it's stupid if you can only lose your attribute points if they're greater than 18. */
+
+		AEXE(i) += (inc_or_dec) ? ( (rn2(19) > ACURR(i) ) || !rn2(10) ) : -rn2(2);
 #ifdef DEBUG
 		pline("%s, %s AEXE = %d",
 			(i == A_STR) ? "Str" : (i == A_WIS) ? "Wis" :
@@ -386,7 +810,7 @@ exerper()
 	if(!(moves % 10)) {
 		/* Hunger Checks */
 
-		int hs = (u.uhunger > 1000) ? SATIATED :
+		int hs = (u.uhunger > 1500) ? SATIATED :
 			 (u.uhunger > 150) ? NOT_HUNGRY :
 			 (u.uhunger > 50) ? HUNGRY :
 			 (u.uhunger > 0) ? WEAK : FAINTING;
@@ -398,14 +822,20 @@ exerper()
 		    case SATIATED:	exercise(A_DEX, FALSE);
 					if (Role_if(PM_MONK))
 					    exercise(A_WIS, FALSE);
+					if (Role_if(PM_TOPMODEL)) { /* They strongly dislike being full --Amy */
+					    exercise(A_WIS, FALSE); exercise(A_STR, FALSE); exercise(A_CON, FALSE); exercise(A_DEX, FALSE); }
 					break;
 		    case NOT_HUNGRY:	exercise(A_CON, TRUE); break;
-		    case WEAK:		exercise(A_STR, FALSE);
+		    case HUNGRY:	if (Role_if(PM_TOPMODEL)) exercise(A_WIS, TRUE); break;
+		    case WEAK:		if (!Role_if(PM_TOPMODEL)) exercise(A_STR, FALSE);
 					if (Role_if(PM_MONK))	/* fasting */
 					    exercise(A_WIS, TRUE);
-					break;
+					if (Role_if(PM_TOPMODEL)) {
+					    exercise(A_WIS, TRUE); exercise(A_STR, TRUE);
+}					break;
 		    case FAINTING:
-		    case FAINTED:	exercise(A_CON, FALSE); break;
+		    case FAINTED:	 if (Role_if(PM_TOPMODEL)) { exercise(A_WIS, TRUE); exercise(A_STR, TRUE); exercise(A_DEX, TRUE);		}					
+					if (!Role_if(PM_TOPMODEL)) exercise(A_CON, FALSE); break;
 		}
 
 		/* Encumberance Checks */
@@ -433,7 +863,8 @@ exerper()
 		if (HRegeneration)			exercise(A_STR, TRUE);
 
 		if(Sick || Vomiting)     exercise(A_CON, FALSE);
-		if(Confusion || Hallucination)		exercise(A_WIS, FALSE);
+		if(Confusion || Hallucination || (Feared && !rn2(3)) )		exercise(A_WIS, FALSE);
+		if( (Numbed && !rn2(3)) || Frozen || (Burned && !rn2(2)) )		exercise(A_CON, FALSE);
 		if((Wounded_legs 
 #ifdef STEED
 		    && !u.usteed
@@ -451,11 +882,11 @@ exerchk()
 	exerper();
 
 #ifdef DEBUG
-	if(moves >= next_check)
+	if(moves >= u.next_check)
 		pline("exerchk: ready to test. multi = %d.", multi);
 #endif
 	/*	Are we ready for a test?	*/
-	if(moves >= next_check && !multi) {
+	if(moves >= u.next_check && !multi) {
 #ifdef DEBUG
 	    pline("exerchk: testing.");
 #endif
@@ -474,8 +905,9 @@ exerchk()
 	     */
 	    for(i = 0; i < A_MAX; AEXE(i++) /= 2) {
 
-		if(Upolyd && i != A_WIS) continue;
-		if(ABASE(i) >= 18 || !AEXE(i)) continue;
+		/*if(Upolyd && i != A_WIS) continue;*/
+		if(/*ABASE(i) >= 18 ||*/ !AEXE(i)) continue;
+		if(ABASE(i) >= 18 && sgn(AEXE(i)) >= 1) continue; /* can still abuse stats if they're above 18 --Amy */
 		if(i == A_INT || i == A_CHA) continue;/* can't exercise these */
 
 #ifdef DEBUG
@@ -489,8 +921,14 @@ exerchk()
 		 *	You don't *always* gain by exercising.
 		 *	[MRS 92/10/28 - Treat Wisdom specially for balance.]
 		 */
-		if(rn2(AVAL) > ((i != A_WIS) ? abs(AEXE(i)*2/3) : abs(AEXE(i))))
+		if(sgn(AEXE(i)) >= 1 && rn2(AVAL) > ((i != A_WIS) ? abs(AEXE(i)*2/3) : abs(AEXE(i))))
 		    continue;
+		/* different formula for abuse --Amy */
+		if(sgn(AEXE(i)) <= 0 && rn2(50) > ((i != A_WIS) ? abs(AEXE(i)*2/3) : abs(AEXE(i))))
+		    continue;
+		if(sgn(AEXE(i)) <= 0 && !rn2(AVAL) )
+		    continue;
+
 		mod_val = sgn(AEXE(i));
 
 #ifdef DEBUG
@@ -523,9 +961,9 @@ exerchk()
 		    }
 		}
 	    }
-	    next_check += rn1(2000,2000);
+	    u.next_check += (Race_if(PM_HAXOR) ? rnz(1000) : rnz(2000) ) ;
 #ifdef DEBUG
-	    pline("exerchk: next check at %ld.", next_check);
+	    pline("exerchk: next check at %ld.", u.next_check);
 #endif
 	}
 }
@@ -534,7 +972,7 @@ exerchk()
 void
 reset_attribute_clock()
 {
-	if (moves > 600L) next_check = moves + rn1(50,800);
+	/*if (moves > 600L) next_check = moves + rn1(50,800);*/
 }
 
 
@@ -627,23 +1065,82 @@ int oldlevel, newlevel;
 	switch (Role_switch) {
 	case PM_ARCHEOLOGIST:   abil = arc_abil;	break;
 	case PM_BARBARIAN:      abil = bar_abil;	break;
+	case PM_COURIER:      abil = cou_abil;	break;
+	case PM_MAHOU_SHOUJO:      abil = mah_abil;	break;
+	case PM_PICKPOCKET:      abil = pic_abil;	break;
+	case PM_JESTER:      abil = jes_abil;	break;
+	case PM_LADIESMAN:      abil = lad_abil;	break;
+	case PM_BLOODSEEKER:      abil = blo_abil;	break;
+	case PM_SLAVE_MASTER:      abil = sla_abil;	break;
+	case PM_SUPERMARKET_CASHIER:      abil = sup_abil;	break;
+	case PM_BARD:           abil = brd_abil;	break;
+	case PM_BULLY:           abil = bul_abil;	break;
+	case PM_ASSASSIN:           abil = ass_abil;	break;
+	case PM_WANDKEEPER:           abil = wan_abil;	break;
+	case PM_PALADIN:           abil = pal_abil;	break;
+	case PM_INTEL_SCRIBE:           abil = scr_abil;	break;
+	case PM_FOXHOUND_AGENT:           abil = fox_abil;	break;
+	case PM_FEAT_MASTER:           abil = stu_abil;	break;
+	case PM_DOLL_MISTRESS:           abil = dol_abil;	break;
+	case PM_GAMER:           abil = gam_abil;	break;
 	case PM_CAVEMAN:        abil = cav_abil;	break;
+#ifdef CONVICT
+	case PM_CONVICT:        abil = con_abil;	break;
+#endif	/* CONVICT */
 	case PM_FLAME_MAGE:	abil = fla_abil;	break;
+	case PM_COOK:	abil = coo_abil;	break;
+	case PM_FIREFIGHTER:	abil = fir_abil;	break;
+	case PM_ACID_MAGE:	abil = aci_abil;	break;
+	case PM_GEEK:	abil = gee_abil;	break;
+	case PM_GRADUATE:	abil = gra_abil;	break;
+	case PM_POKEMON:	abil = pok_abil;	break;
 	case PM_HEALER:         abil = hea_abil;	break;
+	case PM_ELECTRIC_MAGE:	abil = ele_abil;	break;
 	case PM_ICE_MAGE:	abil = ice_abil;	break;
+#ifdef JEDI
+	case PM_JEDI:		abil = jed_abil;	break;
+#endif
 	case PM_KNIGHT:         abil = kni_abil;	break;
+	case PM_WARRIOR:         abil = war_abil;	break;
+	case PM_AUGURER:         abil = aug_abil;	break;
+	case PM_ARTIST:         abil = art_abil;	break;
+	case PM_OTAKU:         abil = ota_abil;	break;
+	case PM_GUNNER:         abil = gun_abil;	break;
+	case PM_SAGE:         abil = sag_abil;	break;
 	case PM_MONK:           abil = mon_abil;	break;
+	case PM_MUSICIAN:           abil = mus_abil;	break;
+	case PM_PSION:           abil = psi_abil;	break;
+	case PM_SCIENTIST:           abil = sci_abil;	break;
 	case PM_NECROMANCER:	abil = nec_abil;	break;
+	case PM_PIRATE:         abil = pir_abil;	break;
+	case PM_NINJA:		abil = nin_abil;	break;
+	case PM_KORSAIR:         abil = kor_abil;	break;
+	case PM_GLADIATOR:         abil = gla_abil;	break;
+	case PM_GOFF:         abil = gof_abil;	break;
+	case PM_AMAZON:         abil = ama_abil;	break;
+	case PM_ALTMER:         abil = alt_abil;	break;
+	case PM_BOSMER:         abil = bos_abil;	break;
+	case PM_DUNMER:         abil = dun_abil;	break;
+	case PM_ORDINATOR:         abil = ord_abil;	break;
+	case PM_THALMOR:         abil = tha_abil;	break;
+	case PM_DIVER:         abil = div_abil;	break;
+	case PM_DRUNK:         abil = dru_abil;	break;
+	case PM_LUNATIC:         abil = lun_abil;	break;
 	case PM_PRIEST:         abil = pri_abil;	break;
 	case PM_RANGER:         abil = ran_abil;	break;
+	case PM_ELPH:         abil = elp_abil;	break;
+	case PM_LOCKSMITH:         abil = loc_abil;	break;
 	case PM_ROGUE:          abil = rog_abil;	break;
 	case PM_SAMURAI:        abil = sam_abil;	break;
 #ifdef TOURIST
 	case PM_TOURIST:        abil = tou_abil;	break;
 #endif
 	case PM_UNDEAD_SLAYER:	abil = und_abil;	break;
+	case PM_UNDERTAKER:	abil = unt_abil;	break;
 	case PM_VALKYRIE:       abil = val_abil;	break;
+	case PM_OFFICER:       abil = off_abil;	break;
 	case PM_WIZARD:         abil = wiz_abil;	break;
+	case PM_ZOOKEEPER:         abil = zoo_abil;	break;
 #ifdef YEOMAN
 	case PM_YEOMAN:		abil = yeo_abil;	break;
 #endif
@@ -657,10 +1154,35 @@ int oldlevel, newlevel;
 #endif
 	case PM_DROW:
 	case PM_ELF:            rabil = elf_abil;	break;
+	case PM_INCANTIFIER:            rabil = inc_abil;	break;
+	case PM_CLOCKWORK_AUTOMATON:            rabil = clk_abil;	break;
+	case PM_KOBOLT:            rabil = kob_abil;	break;
+	case PM_BRETON:            rabil = bre_abil;	break;
+	case PM_REDGUARD:            rabil = red_abil;	break;
+	case PM_TROLLOR:            rabil = tro_abil;	break;
+	case PM_SNAKEMAN:            rabil = sna_abil;	break;
+	case PM_ILLITHID:            rabil = ill_abil;	break;
+	case PM_SPIDERMAN:            rabil = spi_abil;	break;
+	case PM_INSECTOID:            rabil = ins_abil;	break;
+	case PM_UNGENOMOLD:            rabil = ung_abil;	break;
+	case PM_GASTLY:            rabil = gas_abil;	break;
+	case PM_MUMMY:            rabil = mum_abil;	break;
+	case PM_HUMAN_WRAITH:            rabil = wra_abil;	break;
+	case PM_LICH_WARRIOR:            rabil = lic_abil;	break;
+	case PM_SPIRIT:            rabil = esp_abil;	break;
+	case PM_GIGANT:            rabil = gig_abil;	break;
+	case PM_NYMPH:            rabil = nym_abil;	break;
 	case PM_GNOME:		rabil = gno_abil;	break;
+	case PM_BATMAN:		rabil = bat_abil;	break;
 	case PM_HOBBIT:		rabil = hob_abil;	break;
 	case PM_ORC:            rabil = orc_abil;	break;
 	case PM_HUMAN_WEREWOLF:	rabil = lyc_abil;	break;
+	case PM_FENEK:	rabil = fen_abil;	break;
+	case PM_NORD:	rabil = nor_abil;	break;
+	case PM_ALBAE:	rabil = alb_abil;	break;
+	case PM_VORTEX:	rabil = vor_abil;	break;
+	case PM_HUMANOID_ANGEL:	rabil = ang_abil;	break;
+	case PM_HUMANOID_DEVIL:	rabil = dev_abil;	break;
 	case PM_HUMAN:
 	case PM_VAMPIRE:
 	default:                rabil = 0;		break;
@@ -714,12 +1236,12 @@ int oldlevel, newlevel;
 	}
 
 	/* ALI -- update Warn_of_mon */
-	HWarn_of_mon = HUndead_warning;
+	HWarn_of_mon = (HUndead_warning);
 	if (HUndead_warning)
 	    flags.warntype |= M2_UNDEAD;
 	else
 	    flags.warntype &= ~M2_UNDEAD;
-	
+
 	/* WAC -- adjust techniques */
 	adjtech(oldlevel, newlevel);
 }
@@ -755,11 +1277,15 @@ newhp()
 
 	if (ACURR(A_CON) <= 3) conplus = -2;
 	else if (ACURR(A_CON) <= 6) conplus = -1;
-	else if (ACURR(A_CON) <= 14) conplus = 0;
-	else if (ACURR(A_CON) <= 16) conplus = 1;
-	else if (ACURR(A_CON) == 17) conplus = 2;
-	else if (ACURR(A_CON) == 18) conplus = 3;
-	else conplus = 4;
+	else if (ACURR(A_CON) <= 9) conplus = 0;
+	else if (ACURR(A_CON) <= 12) conplus = 1;
+	else if (ACURR(A_CON) <= 14) conplus = 2;
+	else if (ACURR(A_CON) <= 16) conplus = 3;
+	else if (ACURR(A_CON) == 17) conplus = 4;
+	else if (ACURR(A_CON) <= 19) conplus = 5;
+	else if (ACURR(A_CON) <= 21) conplus = 6;
+	else if (ACURR(A_CON) <= 24) conplus = 7;
+	else conplus = 8;
 	
 	hp += conplus;
 	return((hp <= 0) ? 1 : hp);
@@ -769,6 +1295,7 @@ newhp()
 #ifdef OVL0
 
 /* STEPHEN WHITE'S NEW CODE */   
+/* quite some changes by Amy to make sure you can't easily boost strength to very high values */
 schar
 acurr(x)
 int x;
@@ -776,15 +1303,17 @@ int x;
 	register int tmp = (u.abon.a[x] + u.atemp.a[x] + u.acurr.a[x]);
 
 	if (x == A_STR) {
+
+
                 /* WAC twiddle so that wearing rings and gauntlets have
                         a bonus */
                 /* robe of weakness and gauntlets of power will cancel */
-                int base = u.acurr.a[x];
-                int bonus = tmp - base;
-                boolean nobonus = (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER
-                        && uarm && uarm->otyp == ROBE_OF_WEAKNESS);
+                /*int base = u.acurr.a[x];
+                int bonus = tmp - base;*/
+                /*boolean nobonus = (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER
+                        && uarm && uarm->otyp == ROBE_OF_WEAKNESS);*/
 
-                if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER && !nobonus) {
+                /*if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER && !nobonus) {
                         if ((uarmg->spe > 7)
                              || ((118 + bonus + uarmg->spe) > 125)
                              || ((tmp + uarmg->spe) > 125))
@@ -793,18 +1322,27 @@ int x;
                         else return(118 + uarmg->spe + bonus);
                 } else if (uarm && uarm->otyp == ROBE_OF_WEAKNESS && !nobonus)
                         return(3 + bonus);
-		else return((tmp >= 125) ? 125 : (tmp <= 3) ? 3 : tmp);
+		else*/
+
+		if (Race_if(PM_HUMAN_MONKEY) && tmp < 4) tmp = 4;
+
+		if (Upolyd && strongmonst(youmonst.data) ) tmp += 3;
+
+			 return((tmp >= 125) ? 125 : (tmp <= 3) ? 3 : tmp);
 	} else if (x == A_CHA) {
-		if (tmp < 18 && (youmonst.data->mlet == S_NYMPH ||
+		/*if (tmp < 18 && (youmonst.data->mlet == S_NYMPH ||
 		    u.umonnum == PM_SUCCUBUS || u.umonnum == PM_INCUBUS))
-		    tmp = 18;
+		    tmp = 18;*/
+		if (youmonst.data->mlet == S_NYMPH || u.umonnum == PM_SUCCUBUS || u.umonnum == PM_INCUBUS) tmp += 3;
 		if (uarmh && uarmh->otyp == FEDORA) tmp += 1;        
 		return((tmp >= 25) ? 25 : (tmp <= 3) ? 3 : tmp);
 	} else if (x == A_INT || x == A_WIS) {
 		/* yes, this may raise int/wis if player is sufficiently
 		 * stupid.  there are lower levels of cognition than "dunce".
 		 */
-		if (uarmh && uarmh->otyp == DUNCE_CAP) return(6);
+		if (x == A_INT && Race_if(PM_HUMAN_MONKEY) && tmp > 9) tmp = 9;
+
+		if (uarmh && uarmh->otyp == DUNCE_CAP) return(Role_if(PM_JESTER) ? 9 : 6);
 	}
 #ifdef WIN32_BUG
 	return(x=((tmp >= 25) ? 25 : (tmp <= 3) ? 3 : tmp));
@@ -846,6 +1384,10 @@ register int n;
 			if(u.ualign.record > ALIGNLIM)
 				u.ualign.record = ALIGNLIM;
 		}
+
+	if (Race_if(PM_UNALIGNMENT_THING) && n < 0) pline("You lost %d alignment points; your new value is %d.", abs(n), u.ualign.record);
+	if (Race_if(PM_UNALIGNMENT_THING) && n > 0) pline("You gained %d alignment points; your new value is %d.", n, u.ualign.record);
+
 }
 
 #endif /* OVL2 */

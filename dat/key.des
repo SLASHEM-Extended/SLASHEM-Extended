@@ -1,0 +1,76 @@
+# This is where you might get the Key Of Access
+# The level is somewhat inspired by the Rogue Quest.
+
+MAZE: "key", ' '
+# we cannot use noteleport - this would prevent the nymphs and leprechauns
+# from teleporting, too.
+FLAGS: nommap
+GEOMETRY: center,center
+#         1         2         3         4         5         6         7 
+# 23456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|..S...+}....S.......|}|.|L.....IIIPPPCCCAAAAAAAAA.....S...................|
+|---...|}....|..|-S--|}|.|L..............AAAAAAAAA.....|-----------------|.|
+|......|}.|..|-S-....S}|.|L.....IIIP......AAAAAAAA.....|.................|.|
+|---S---}.|..|II|..---}|.|L.....IIIPPP...AAAAAAAAA.....|.|-------------|.|.|
+|}}}.}}}}.|..|CC|..|}}}|.|L.....IIIPPPCCCAAAAAAAAA.....|.|.............|.|.|
+|.........|..|AA|..|}|-|.|L.....IIIPPPCCCAAAAAAAAA.....|.|.|---------|.|.|.|
+|----------------S--}|...|L.....IIIPPPCCCA...AAAAA.....|.|.|.........|.|.|.|
+|}}}}}}}}}}}}}}}}}.}}|...|L.....IIIPPPCCCAA..AAAAA.....|.|.|.|-----|.|.|.|.|
+|-----------------.--|...|L.....IIIPPPCCCAAAAAAAAA.....|.|.|.|.....|.|.|.|.|
+|................|.|.....|L.....IIIPPPCCCAAAAAAAAA.....|.|.|.|.....|.|.|.|.|
+|.|..|..|..|.....S.|.....|L.....IIIP..CCCAAA....AA.....|.|.|.|S----|.|.|.|.|
+|.|--|--|--|-----|-|.....|L.....IIIP.PCCCAA....AAA.....|.|.|.|.......|.|.|.|
+|........................|L.....IIIPPPCCCAAAAAAAAA.....|.|.|.|-------|.|.|.|
+|-----------------------.|L.....IIIPPPCCCAAAAAAAAA.....|.|.|...........|.|.|
+|...S..................S.|L.....IIIPPPCCCA....AAAA.....|.|.------------|.|.|
+|...---------------------|L.....IIIPPPCCCAAAAAAAAA.....|.|...............|.|
+|........................|L.....IIIPPPCCCAAAAA.........|.|---------------|.|
+|........................S......IIIPPPCCCAAAAAAAAA.....|...................|
+|--------------------------------------------------------------------------|
+ENDMAP
+
+RANDOM_MONSTERS: 'l', 'n'
+REGION:(00,00,75,19),unlit,"ordinary"
+NON_DIGGABLE:(00,00,75,19)
+
+STAIR:(01,01),up
+STAIR:(01,06),down		
+
+DOOR:locked,(03,01)
+DOOR:open,(07,01)
+DOOR:locked,(04,04)
+DOOR:locked,(13,01)
+DOOR:locked,(15,03)
+DOOR:locked,(21,03)
+DOOR:locked,(17,07)
+DOOR:locked,(17,11)
+DOOR:locked,(25,18)
+DOOR:locked,(18,02)
+DOOR:locked,(04,15)
+DOOR:locked,(23,15)
+DOOR:locked,(62,11)
+DOOR:locked,(62,11)
+
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',"nymph queen",(64,09),hostile,awake
+
+TRAP:"board",(62,12)
+TRAP:"board",(63,12)
+

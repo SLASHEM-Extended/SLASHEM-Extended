@@ -45,6 +45,7 @@ NON_PASSWALL:(11,10,27,12)
 NON_PASSWALL:(21,00,27,10)
 # The wizard and his guards
 MONSTER:'@',"Wizard of Yendor",(16,05),asleep
+OBJECT:'?',"root password detection",(16,05)
 MONSTER:'d',"hell hound",(15,05)
 MONSTER:'V',"vampire lord",(17,05)
 # The local treasure

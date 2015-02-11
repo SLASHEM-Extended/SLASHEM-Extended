@@ -250,18 +250,20 @@ boolean initial;
 
 	/* Put in the walls... */
 	{
-	    int wallchoice = rn2(20);
+	    int wallchoice = rn2(100);
 
-	    if (wallchoice < 4)
+	    if (wallchoice < 89)
 		wallify_stone(x1, y1, x2, y2);
-	    else if (wallchoice < 6)
+	    else if (wallchoice < 90)
 		wallify_special(x1, y1, x2, y2, CLOUD);
-	    else if (wallchoice < 10)
+	    else if (wallchoice < 92)
 		wallify_special(x1, y1, x2, y2, MOAT);
-	    else if (wallchoice < 14)
+	    else if (wallchoice < 94)
 		wallify_special(x1, y1, x2, y2, ICE);
-	    else if (wallchoice < 17)
+	    else if (wallchoice < 96)
 		wallify_special(x1, y1, x2, y2, LAVAPOOL);
+	    else if (wallchoice < 97)
+		wallify_special(x1, y1, x2, y2, TREE);
 	    else
 		wallify_special(x1, y1, x2, y2, IRONBARS);
 	}
@@ -351,7 +353,7 @@ place_lregion(lx, ly, hx, hy, nlx, nly, nhx, nhy, rtype, lev)
 	    if (put_lregion_here(x,y,nlx,nly,nhx,nhy,rtype,oneshot,lev))
 		return;
 
-    impossible("Couldn't place lregion type %d!", rtype);
+    /*impossible*/pline("Couldn't place lregion type %d!", rtype);
 }
 
 STATIC_OVL boolean
@@ -573,6 +575,184 @@ fixup_special()
     num_lregions = 0;
 }
 
+STATIC_OVL void
+makeriverY(x1,y1,x2,y2,lava,rndom)
+int x1,y1,x2,y2;
+boolean lava,rndom;
+{
+    int cx,cy;
+    int dx, dy;
+    int chance;
+    int count = 0;
+    int trynmbr = 0;
+    int rndomizat = 0;
+    if (rndom) rndomizat = (rn2(5) ? 0 : 1);
+    if (rndom) trynmbr = rnd(20);
+
+    cx = x1;
+    cy = y1;
+
+    while (count++ < 2000) {
+	int rnum = levl[cx][cy].roomno - ROOMOFFSET;
+	chance = 0;
+	/*if (rnum >= 0 && rooms[rnum].rtype != OROOM) chance = 0;
+	else*/ if (levl[cx][cy].typ == CORR) chance = 15;
+	else if (levl[cx][cy].typ == ROOM) chance = 30;
+	else if (IS_ROCK(levl[cx][cy].typ)) chance = 100;
+	if (rndomizat) trynmbr = rnd(20);
+
+	if (rn2(100) < chance && !t_at(cx,cy)) {
+	    if (lava) {
+		if (rndom) { 
+
+			if (trynmbr == 1) levl[cx][cy].typ = POOL;
+			else if (trynmbr == 2) levl[cx][cy].typ = TREE;
+			else if (trynmbr == 3) levl[cx][cy].typ = IRONBARS;
+			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
+			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
+			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
+			else levl[cx][cy].typ = LAVAPOOL;
+		}
+		else {levl[cx][cy].typ = LAVAPOOL;
+		levl[cx][cy].lit = 1;
+		}
+	    } else	if (rndom) { 
+
+			if (trynmbr == 1) levl[cx][cy].typ = LAVAPOOL;
+			else if (trynmbr == 2) levl[cx][cy].typ = TREE;
+			else if (trynmbr == 3) levl[cx][cy].typ = IRONBARS;
+			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
+			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
+			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
+			else levl[cx][cy].typ = POOL;
+		}
+		else 
+		levl[cx][cy].typ = !rn2(3) ? POOL : MOAT;
+	}
+
+	if (cx == x2 && cy == y2) break;
+
+	if (cx < x2 && !rn2(3)) dx = 1;
+	else if (cx > x2 && !rn2(3)) dx = -1;
+	else dx = 0;
+
+	if (cy < y2 && !rn2(3)) dy = 1;
+	else if (cy > y2 && !rn2(3)) dy = -1;
+	else dy = 0;
+
+	switch (rn2(16)) {
+	default: break;
+	case 1: dx--; dy--; break;
+	case 2: dx++; dy--; break;
+	case 3: dx--; dy++; break;
+	case 4: dx++; dy++; break;
+	case 5: dy--; break;
+	case 6: dy++; break;
+	case 7: dx--; break;
+	case 8: dx++; break;
+	}
+
+	if (dx < -1) dx = -1;
+	else if (dx > 1) dx = 1;
+	if (dy < -1) dy = -1;
+	else if (dy > 1) dy = 1;
+
+	cx += dx;
+	cy += dy;
+
+	if (cx < 0) cx = 0;
+	else if (cx >= COLNO) cx = COLNO-1;
+	if (cy < 0) cy = 0;
+	else if (cy >= ROWNO) cy = ROWNO-1;
+
+    }
+}
+
+STATIC_OVL void
+makerandriverY(lava,rndom)
+boolean lava,rndom;
+
+{
+    int cx,cy;
+    int chance;
+    int count = 0;
+    int ammount = rnz(10 + rnd(40) + rnz(5) + (rn2(5) ? 0 : 50) + (rn2(25) ? 0 : 200) );
+    int trynmbr = 0;
+    int rndomizat = 0;
+    if (rndom) rndomizat = (rn2(3) ? 0 : 1);
+    if (rndom) trynmbr = rnd(12);
+
+    while (count++ < ammount) {
+
+      cx = rn2(COLNO);
+      cy = rn2(ROWNO);
+
+	chance = 0;
+	if (levl[cx][cy].typ == CORR) chance = 15;
+	else if (levl[cx][cy].typ == ROOM) chance = 30;
+	else if (IS_ROCK(levl[cx][cy].typ)) chance = 100;
+	if (rndomizat) trynmbr = rnd(12);
+
+	if (rn2(100) < chance && !t_at(cx,cy)) {
+	    if (lava) {
+		if (rndom) { 
+
+			if (trynmbr == 1) levl[cx][cy].typ = POOL;
+			else if (trynmbr == 2) levl[cx][cy].typ = TREE;
+			else if (trynmbr == 3) levl[cx][cy].typ = IRONBARS;
+			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
+			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
+			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
+			else levl[cx][cy].typ = LAVAPOOL;
+		}
+		else {levl[cx][cy].typ = LAVAPOOL;
+		levl[cx][cy].lit = 1;
+		}
+	    } else	if (rndom) { 
+
+			if (trynmbr == 1) levl[cx][cy].typ = LAVAPOOL;
+			else if (trynmbr == 2) levl[cx][cy].typ = TREE;
+			else if (trynmbr == 3) levl[cx][cy].typ = IRONBARS;
+			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
+			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
+			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
+			else levl[cx][cy].typ = POOL;
+		}
+		else 
+		levl[cx][cy].typ = !rn2(3) ? POOL : MOAT;
+	}
+
+	}
+}
+
+STATIC_OVL void
+mkriversY()
+{
+    int nriv = rn2(3) + 1;
+    boolean lava = rn2(100) < depth(&u.uz);
+	boolean rndom = (rn2(5) ? 0 : 1);
+    while (nriv--) {
+	if (rn2(2)) makeriverY(0, rn2(ROWNO), COLNO-1, rn2(ROWNO), lava, rndom);
+	else makeriverY(rn2(COLNO), 0, rn2(COLNO), ROWNO-1, lava, rndom);
+    }
+}
+
+STATIC_OVL void
+mkrandriversY()
+{
+    boolean lava = rn2(100) < depth(&u.uz);
+	boolean rndom = (rn2(3) ? 0 : 1);
+	if (rn2(2)) makerandriverY(lava, rndom);
+	else makerandriverY(lava, rndom);
+}
+
+/*
+ * Select a random coordinate in the maze.
+ *
+ * We want a place not 'touched' by the loader.  That is, a place in
+ * the maze outside every part of the special level.
+ */
+
 void
 makemaz(s)
 register const char *s;
@@ -634,10 +814,11 @@ register const char *s;
 		dmonsfree();
 		return;	/* no mazification right now */
 	    }
-	    impossible("Couldn't load \"%s\" - making a maze.", protofile);
+	    /* impossible("Couldn't load \"%s\" - making a maze.", protofile); */
+	    pline("Couldn't load \"%s\" - making a maze.", protofile);
 	}
 
-	level.flags.is_maze_lev = TRUE;
+	if (rn2(2)) level.flags.is_maze_lev = TRUE;
 
 #ifndef WALLIFIED_MAZE
 	for(x = 2; x < x_maze_max; x++)
@@ -709,18 +890,26 @@ register const char *s;
 	/* place branch stair or portal */
 	place_branch(Is_branchlev(&u.uz), 0, 0);
 
-	for(x = rn1(8,11); x; x--) {
+	for(x = rn1(8,16); x; x--) {
 		mazexy(&mm);
-		(void) mkobj_at(rn2(2) ? GEM_CLASS : 0, mm.x, mm.y, TRUE);
+		(void) mkobj_at(!rn2(3) ? GEM_CLASS : 0, mm.x, mm.y, TRUE);
 	}
+	for (x = rn1(2,10); x; x--) 	{ 
+		mazexy(&mm);
+			    char buf[BUFSZ];
+				const char *mesg = random_engraving(buf);
+			    make_engr_at(mm.x, mm.y, mesg, 0L, MARK);
+			}
 	for(x = rn1(10,2); x; x--) {
 		mazexy(&mm);
 		(void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE);
 	}
+	if (depth(&u.uz) > depth(&medusa_level)) {
 	for (x = rn2(3); x; x--) {
 		mazexy(&mm);
 		(void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
-	}
+		}
+	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	for(x = rn1(5,7); x; x--) {
 		mazexy(&mm);
 		(void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
@@ -731,6 +920,58 @@ register const char *s;
 	}
 	for(x = rn1(6,7); x; x--)
 		mktrap(0,1,(struct mkroom *) 0, (coord*) 0);
+
+	if (Race_if(PM_HAXOR)) {
+	for(x = rn1(8,16); x; x--) {
+		mazexy(&mm);
+		(void) mkobj_at(!rn2(3) ? GEM_CLASS : 0, mm.x, mm.y, TRUE);
+	}
+	for (x = rn1(2,10); x; x--) 	{ 
+		mazexy(&mm);
+			    char buf[BUFSZ];
+				const char *mesg = random_engraving(buf);
+			    make_engr_at(mm.x, mm.y, mesg, 0L, MARK);
+			}
+	for(x = rn1(10,2); x; x--) {
+		mazexy(&mm);
+		(void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE);
+	}
+	if (depth(&u.uz) > depth(&medusa_level)) {
+	for (x = rn2(3); x; x--) {
+		mazexy(&mm);
+		(void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
+		}
+	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
+	for(x = rn1(5,7); x; x--) {
+		mazexy(&mm);
+		(void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
+	}
+	for(x = rn1(6,7); x; x--) {
+		mazexy(&mm);
+		(void) mkgold(0L,mm.x,mm.y);
+	}
+	for(x = rn1(6,7); x; x--)
+		mktrap(0,1,(struct mkroom *) 0, (coord*) 0);
+
+	}
+
+	/* make rivers if possible --Amy */
+	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversY();
+	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversY();
+
+	if (Race_if(PM_HAXOR)) {
+		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversY();
+		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversY();
+	}
+
+	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
+	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
+
+	if (Race_if(PM_HAXOR)) {
+		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
+		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
+	}
+
 }
 
 #ifdef MICRO

@@ -161,13 +161,162 @@ register boolean special;
 		    if (rn2(2)) armor = rnd_class(PLATE_MAIL, CHAIN_MAIL);
 		    if (helm == HELM_OF_BRILLIANCE) helm = STRANGE_OBJECT;
 		    break;
+		case PM_BLEEDER:
+			weapon = KNIFE;
+		    break;
+		case PM_BINDER:
+			weapon = RANSEUR;
+			armor = ELVEN_MITHRIL_COAT;
+			cloak = LEATHER_CLOAK;
+		    break;
 		case PM_CAVEMAN:
 		case PM_CAVEWOMAN:
 		    if (rn2(4)) weapon = MACE;
 		    else if (rn2(2)) weapon = CLUB;
 		    if (helm == HELM_OF_BRILLIANCE) helm = STRANGE_OBJECT;
 		    break;
+		case PM_CONVICT:
+		    weapon = HEAVY_IRON_BALL;
+		    break;
+		case PM_GEEK:
+		    weapon = ELECTRIC_SWORD;
+		    break;
+		case PM_GRADUATE:
+		    weapon = FLY_SWATTER;
+		    break;
+		case PM_GANGSTER:
+		    weapon = SCOURGE;
+		    break;
+		case PM_PIRATE:
+		    weapon = SCIMITAR;
+		    break;
+		case PM_DRUNK:
+		    weapon = RUBBER_HOSE;
+		    break;
+		case PM_OFFICER:
+		    weapon = CLUB;
+		    break;
+		case PM_KORSAIR:
+		    weapon = SCIMITAR;
+		    break;
+		case PM_DIVER:
+		    weapon = TRIDENT;
+		    break;
+		case PM_BARD:
+		    weapon = WAR_HAMMER;
+		    break;
+		case PM_GLADIATOR:
+		    weapon = SILVER_SABER;
+		    break;
+		case PM_GOFF:
+		    weapon = QUARTERSTAFF;
+		    break;
+		case PM_AMAZON:
+		    weapon = JAVELIN;
+		    break;
+		case PM_ALTMER:
+		    weapon = QUARTERSTAFF;
+		    break;
+		case PM_BOSMER:
+		    weapon = ELVEN_DAGGER;
+		    break;
+		case PM_INTEL_SCRIBE:
+		    weapon = DAGGER;
+		    break;
+		case PM_DUNMER:
+		    weapon = DARK_ELVEN_DAGGER;
+		    break;
+		case PM_THALMOR:
+		    weapon = ELVEN_BROADSWORD;
+		    break;
+		case PM_ORDINATOR:
+		    weapon = TSURUGI;
+		    break;
+		case PM_ARTIST:
+		    weapon = MALLET;
+		    break;
+		case PM_GAMER:
+		    weapon = CLUB;
+		    break;
+		case PM_LIBRARIAN:
+		    weapon = KNIFE;
+		    break;
+		case PM_COOK:
+		    weapon = KNIFE;
+		    break;
+		case PM_JESTER:
+		    weapon = HEAVY_IRON_BALL;
+		    break;
+		case PM_CRUEL_ABUSER:
+		    weapon = KNOUT;
+		    break;
+		case PM_SUPERMARKET_CASHIER:
+		    weapon = KNIFE;
+		    break;
+		case PM_LADIESMAN:
+		    weapon = KNIFE;
+		    break;
+		case PM_GUNNER:
+		    weapon = KNIFE;
+		    break;
+		case PM_WANDKEEPER:
+		    weapon = KNIFE;
+		    break;
+		case PM_FOXHOUND_AGENT:
+		    weapon = KNIFE;
+		    break;
+		case PM_FEAT_MASTER:
+		    weapon = FLAIL;
+		    break;
+		case PM_MAHOU_SHOUJO:
+		    weapon = WEDGED_LITTLE_GIRL_SANDAL;
+		    break;
+		case PM_BLOODSEEKER:
+		    weapon = SHORT_SWORD;
+		    break;
+		case PM_SAIYAN:
+		    weapon = BROADSWORD;
+		    break;
+		case PM_DOLL_MISTRESS:
+		    weapon = CRYSKNIFE;
+		    break;
+		case PM_MYSTIC:
+		    weapon = TORPEDO;
+		    break;
+		case PM_ASSASSIN:
+		    weapon = GREAT_DAGGER;
+		    break;
+		case PM_BULLY:
+		    weapon = KNIFE;
+		    break;
+		case PM_PICKPOCKET:
+		    weapon = STILETTO;
+		    break;
+		case PM_OTAKU:
+		    weapon = KATANA;
+		    break;
+		case PM_PALADIN:
+		    weapon = LONG_SWORD;
+		    break;
+		case PM_SAGE:
+		    weapon = SILVER_MACE;
+		    break;
+		case PM_SLAVE_MASTER:
+		    weapon = STEEL_WHIP;
+		    break;
+		case PM_NOBLEMAN:
+		case PM_NOBLEWOMAN:
+		    weapon = RAPIER;
+		    break;
+		case PM_POKEMON:
+		case PM_MUSICIAN:
+		    weapon = CLUB;
+		    break;
+		case PM_DEATH_EATER:
+		    weapon = QUARTERSTAFF;
+		    break;
 		case PM_HEALER:
+		case PM_SCIENTIST:
 		    if (rn2(4)) weapon = QUARTERSTAFF;
 		    else if (rn2(2)) weapon = rn2(2) ? UNICORN_HORN : SCALPEL;
 		    if (rn2(4)) helm = rn2(2) ? HELM_OF_BRILLIANCE : HELM_OF_TELEPATHY;
@@ -180,11 +329,42 @@ register boolean special;
 		    if (rn2(4)) weapon = LONG_SWORD;
 		    if (rn2(2)) armor = rnd_class(PLATE_MAIL, CHAIN_MAIL);
 		    break;
+		case PM_WARRIOR:
+		    if (rn2(4)) weapon = MACE;
+		    if (rn2(2)) armor = rnd_class(PLATE_MAIL, CHAIN_MAIL);
 		case PM_MONK:
+		case PM_PSION:
 		    weapon = STRANGE_OBJECT;
 		    armor = STRANGE_OBJECT;
 		    cloak = ROBE;
 		    if (rn2(2)) shield = STRANGE_OBJECT;
+		    break;
+		case PM_CHEVALIER:
+		    weapon = TRIDENT;
+		    break;
+		case PM_AUGURER:
+		    weapon = STRANGE_OBJECT;
+		    break;
+		case PM_POLITICIAN:
+		    weapon = STRANGE_OBJECT;
+		    break;
+		case PM_UNDERTAKER:
+		    weapon = SCALPEL;
+		    break;
+		case PM_ZOOKEEPER:
+		    weapon = BULLWHIP;
+		    break;
+		case PM_FIREFIGHTER:
+		    weapon = AXE;
+		    break;
+		case PM_LOCKSMITH:
+		    weapon = DAGGER;
+		    break;
+		case PM_NINJA:
+		    weapon = KATANA;
+		    break;
+		case PM_SPACEWARS_FIGHTER:
+		    weapon = BLUE_LIGHTSABER;
 		    break;
 		case PM_PRIEST:
 		case PM_PRIESTESS:
@@ -196,6 +376,27 @@ register boolean special;
 		    break;
 		case PM_RANGER:
 		    if (rn2(2)) weapon = ELVEN_DAGGER;
+		    break;
+		case PM_ELPH:
+		    weapon = ELVEN_DAGGER;
+		    break;
+		case PM_COURIER:
+		    weapon = KNIFE;
+		    break;
+		case PM_ZYBORG:
+		    weapon = RED_LIGHTSABER;
+		    break;
+		case PM_LUNATIC:
+		    weapon = STEEL_WHIP;
+		    break;
+		case PM_TRANSVESTITE:
+		    weapon = SEXY_LEATHER_PUMP;
+		    break;
+		case PM_TOPMODEL:
+		    weapon = KNIFE;
+		    break;
+		case PM_ACTIVISTOR:
+		    weapon = FLY_SWATTER;
 		    break;
 		case PM_ROGUE:
 		    weapon = SHORT_SWORD;
@@ -209,6 +410,9 @@ register boolean special;
 		    /* Defaults are just fine */
 		    break;
 #endif
+		case PM_ROCKER:
+			weapon = HEAVY_HAMMER;
+
 		case PM_UNDEAD_SLAYER:
 		    if (rn2(2)) weapon = SILVER_SPEAR;
 		    if (rn2(2)) armor = rnd_class(PLATE_MAIL, CHAIN_MAIL);
@@ -218,7 +422,9 @@ register boolean special;
 		    if (rn2(2)) armor = rnd_class(PLATE_MAIL, CHAIN_MAIL);
 		    break;
 		case PM_FLAME_MAGE:
+		case PM_ACID_MAGE:
 		case PM_ICE_MAGE:
+		case PM_ELECTRIC_MAGE:
 		case PM_NECROMANCER:
 		case PM_WIZARD:
 		    if (rn2(4)) weapon = rn2(2) ? QUARTERSTAFF : ATHAME;
@@ -230,6 +436,20 @@ register boolean special;
 		    if (rn2(4)) helm = HELM_OF_BRILLIANCE;
 		    shield = STRANGE_OBJECT;
 		    break;
+#ifdef JEDI
+		case PM_JEDI:
+		case PM_PADAWAN:
+		    switch(rnd(3)){
+		      case 1: weapon = RED_LIGHTSABER; break;
+		      case 2: weapon = BLUE_LIGHTSABER; break;
+		      case 3: weapon = GREEN_LIGHTSABER; break;
+		    }
+		    cloak = STRANGE_OBJECT;
+		    armor = rn2(2) ? ROBE : ROBE_OF_POWER;
+		    helm = STRANGE_OBJECT;
+		    shield = STRANGE_OBJECT;
+		    break;
+#endif
 		default: impossible("bad mplayer monster");
 		    weapon = 0;
 		    break;
@@ -283,14 +503,20 @@ register boolean special;
 #endif
 	    }
 	    quan = rnd(3);
-	    while(quan--)
+	    while(quan--) {
 		(void)mongets(mtmp, rnd_offensive_item(mtmp));
+		if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		}
 	    quan = rnd(3);
-	    while(quan--)
+	    while(quan--) {
 		(void)mongets(mtmp, rnd_defensive_item(mtmp));
+	      if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		}
 	    quan = rnd(3);
-	    while(quan--)
+	    while(quan--) {
 		(void)mongets(mtmp, rnd_misc_item(mtmp));
+		if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		}
 	}
 
 	return(mtmp);
@@ -333,17 +559,48 @@ boolean special;
 }
 
 void
+create_umplayers(num, special)
+register int num;
+boolean special;
+{
+	int pm, x, y;
+	struct monst fakemon;
+
+	while(num) {
+		int tryct = 0;
+
+		/* roll for character class */
+		pm = PM_UNDEAD_ARCHEOLOGIST + rn2(PM_UNDEAD_WIZARD - PM_UNDEAD_ARCHEOLOGIST + 1);
+		fakemon.data = &mons[pm];
+
+		/* roll for an available location */
+		do {
+		    x = rn1(COLNO-4, 2);
+		    y = rnd(ROWNO-2);
+		} while(!goodpos(x, y, &fakemon, 0) && tryct++ <= 50);
+
+		/* if pos not found in 50 tries, don't bother to continue */
+		if(tryct > 50) return;
+
+		(void) makemon(&mons[pm], (xchar)x, (xchar)y, NO_MM_FLAGS);
+		num--;
+	}
+}
+
+void
 mplayer_talk(mtmp)
 register struct monst *mtmp;
 {
-	static const char *same_class_msg[3] = {
+	static const char *same_class_msg[4] = {
 		"I can't win, and neither will you!",
 		"You don't deserve to win!",
 		"Mine should be the honor, not yours!",
-	},		  *other_class_msg[3] = {
+		"Just give me that amulet so I can ascend, or I'll take it by force!",
+	},		  *other_class_msg[4] = {
 		"The low-life wants to talk, eh?",
 		"Fight, scum!",
 		"Here is what I have to say!",
+		"If I had the Vorpal Blade, I would decapitate you on the spot!",
 	};
 
 	if(mtmp->mpeaceful) return; /* will drop to humanoid talk */
@@ -351,7 +608,7 @@ register struct monst *mtmp;
 	pline("Talk? -- %s",
 		(mtmp->data == &mons[urole.malenum] ||
 		mtmp->data == &mons[urole.femalenum]) ?
-		same_class_msg[rn2(3)] : other_class_msg[rn2(3)]);
+		same_class_msg[rn2(4)] : other_class_msg[rn2(4)]);
 }
 
 /*mplayer.c*/

@@ -250,6 +250,17 @@ fnd:
 	    mongone(guard);
 	    return;
 	}
+#ifdef CONVICT
+    if((Role_if(PM_CONVICT) || Race_if(PM_ALBAE)) && !Upolyd) {
+        setmangry(guard);
+        verbalize("I saw your pic on the wanted poster!");
+		if (!MON_WEP(guard)) {
+		    guard->weapon_check = NEED_HTH_WEAPON;
+		    (void) mon_wield_item(guard);
+        }
+        return;
+    }
+#endif /* CONVICT */
 	if (Strangled || is_silent(youmonst.data) || multi < 0) {
 	    /* [we ought to record whether this this message has already
 	       been given in order to vary it upon repeat visits, but

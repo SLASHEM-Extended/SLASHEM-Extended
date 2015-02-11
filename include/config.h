@@ -398,6 +398,9 @@ typedef unsigned char	uchar;
 #define UNPOLYPILE	/* WAC -- Items can unpolymorph */
 #define WALLET_O_P      /* Perseus' Wallet, and all related code (tsanth@iname.com)*/
 #define LIGHTSABERS
+#define JEDI
+#define NWAR
+#define CONVICT		/* Convict player with heavy iron ball */
 #ifdef LIGHTSABERS
 # define D_SABER	/* Enable WEAPON(dimsaber), and all related code (tsanth@iname.com)*/
 #endif

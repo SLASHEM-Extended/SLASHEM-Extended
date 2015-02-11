@@ -130,6 +130,7 @@ STATIC_DCL boolean FDECL(can_practice, (int)); /* WAC for Practicing */
 #ifdef OVL1
 
 STATIC_DCL char *FDECL(skill_level_name, (int,char *));
+STATIC_DCL char *FDECL(skill_level_name_max, (int,char *));
 STATIC_DCL void FDECL(skill_advance, (int));
 
 #endif	/* OVL1 */
@@ -155,7 +156,7 @@ struct monst *mon;
 {
 	int	tmp = 0;
 	struct permonst *ptr = mon->data;
-	boolean Is_weapon = (otmp->oclass == WEAPON_CLASS || is_weptool(otmp));
+	boolean Is_weapon = (otmp->oclass == WEAPON_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || is_weptool(otmp));
 
 	if (Is_weapon)
 		tmp += otmp->spe;
@@ -184,6 +185,11 @@ struct monst *mon;
 	if (otmp->otyp == TRIDENT && is_swimmer(ptr)) {
 	   if (is_pool(mon->mx, mon->my)) tmp += 4;
 	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 2;
+	}
+
+	if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr)) {
+	   if (is_pool(mon->mx, mon->my)) tmp += 10;
+	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 5;
 	}
 
 	/* pick-axe used against xorns and earth elementals */
@@ -238,7 +244,7 @@ struct monst *mon;
 {
 	int tmp = 0, otyp = otmp->otyp;
 	struct permonst *ptr = mon->data;
-	boolean Is_weapon = (otmp->oclass == WEAPON_CLASS || is_weptool(otmp));
+	boolean Is_weapon = (otmp->oclass == WEAPON_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || is_weptool(otmp));
 
 	if (otyp == CREAM_PIE) return 0;
 
@@ -253,13 +259,18 @@ struct monst *mon;
 	    switch (otyp) {
 		case IRON_CHAIN:
 		case CROSSBOW_BOLT:
+		case DROVEN_BOLT:
 		case MORNING_STAR:
+		case JAGGED_STAR:
+		case DEVIL_STAR:
 		case PARTISAN:
 		case RUNESWORD:
 		case ELVEN_BROADSWORD:
 		case BROADSWORD:	tmp++; break;
 
 		case FLAIL:
+		case KNOUT:
+		case OBSID:
 		case RANSEUR:
 		case VOULGE:		tmp += rnd(4); break;
 
@@ -267,18 +278,30 @@ struct monst *mon;
 		case HALBERD:
 		case SPETUM:		tmp += rnd(6); break;
 
+		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6);
+ 						break;
+
 		case BATTLE_AXE:
 		case BARDICHE:
+		case STYGIAN_PIKE:
 		case TRIDENT:		tmp += d(2,4); break;
 
 		case TSURUGI:
 		case DWARVISH_MATTOCK:
 		case TWO_HANDED_SWORD:	tmp += d(2,6); break;
 
+		case SCIMITAR:
+			if(otmp->oartifact == ART_REAVER) tmp += d(1,8); break;
+
 #ifdef LIGHTSABERS
 		case GREEN_LIGHTSABER:  tmp +=13; break;
 #ifdef D_SABER
 		case BLUE_LIGHTSABER:   tmp +=12; break;
+#if 0
+		case VIOLET_LIGHTSABER:
+		case WHITE_LIGHTSABER:
+		case YELLOW_LIGHTSABER:
+#endif
 #endif
 		case RED_DOUBLE_LIGHTSABER: 
 					if (otmp->altmode) tmp += rnd(11);
@@ -292,11 +315,17 @@ struct monst *mon;
 	    switch (otyp) {
 		case IRON_CHAIN:
 		case CROSSBOW_BOLT:
+		case DROVEN_BOLT:
 		case MACE:
 		case SILVER_MACE:
+		case FLANGED_MACE:
 		case WAR_HAMMER:
+		case MALLET:
 		case FLAIL:
+		case KNOUT:
+		case OBSID:
 		case SPETUM:
+		case STYGIAN_PIKE:
 		case TRIDENT:		tmp++; break;
 
 		case BATTLE_AXE:
@@ -305,6 +334,8 @@ struct monst *mon;
 		case GUISARME:
 		case LUCERN_HAMMER:
 		case MORNING_STAR:
+		case JAGGED_STAR:
+		case DEVIL_STAR:
 		case RANSEUR:
 		case BROADSWORD:
 		case ELVEN_BROADSWORD:
@@ -315,6 +346,11 @@ struct monst *mon;
 		case GREEN_LIGHTSABER:  tmp +=9; break;
 #ifdef D_SABER
 		case BLUE_LIGHTSABER:   tmp +=8; break;
+#if 0
+		case VIOLET_LIGHTSABER:
+		case WHITE_LIGHTSABER:
+		case YELLOW_LIGHTSABER:
+#endif
 #endif
 		case RED_DOUBLE_LIGHTSABER:
 					if (otmp->altmode) tmp += rnd(9);
@@ -323,6 +359,10 @@ struct monst *mon;
 #endif
 
 		case ACID_VENOM:	tmp += rnd(6); break;
+		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); 
+					break;
+		case SCIMITAR:
+			if(otmp->oartifact == ART_REAVER) tmp += d(1,8); break;
 	    }
 	}
 	if (Is_weapon) {
@@ -331,20 +371,20 @@ struct monst *mon;
 		if (tmp < 0) tmp = 0;
 	}
 
-	if (objects[otyp].oc_material <= LEATHER && thick_skinned(ptr))
+	if (objects[otyp].oc_material <= LEATHER && thick_skinned(ptr) && tmp > 0)
 		/* thick skinned/scaled creatures don't feel it */
-		tmp = 0;
+		tmp = 1;
 	if (ptr == &mons[PM_SHADE] && objects[otyp].oc_material != SILVER)
 		tmp = 0;
 
-	/* "very heavy iron ball"; weight increase is in increments of 160 */
+	/* "very heavy iron ball"; weight increase is in increments of 300 */
 	if (otyp == HEAVY_IRON_BALL && tmp > 0) {
 	    int wt = (int)objects[HEAVY_IRON_BALL].oc_weight;
 
 	    if ((int)otmp->owt > wt) {
-		wt = ((int)otmp->owt - wt) / 160;
+		wt = ((int)otmp->owt - wt) / 300;
 		tmp += rnd(4 * wt);
-		if (tmp > 25) tmp = 25;	/* objects[].oc_wldam */
+		if (tmp > 100) tmp = 100;	/* objects[].oc_wldam */
 	    }
 	}
 
@@ -401,6 +441,7 @@ struct monst *mon;
 		tmp -= greatest_erosion(otmp);
 		if (tmp < 1) tmp = 1;
 	}
+	if (tmp > 127) tmp = 127; /* sanity check --Amy */
 
 	return(tmp);
 }
@@ -443,9 +484,9 @@ static NEARDATA const int rwep[] =
 #ifdef FIREARMS
 	FRAG_GRENADE, GAS_GRENADE, ROCKET, SILVER_BULLET, BULLET, SHOTGUN_SHELL,
 #endif
-	DWARVISH_SPEAR, SILVER_SPEAR, ELVEN_SPEAR, SPEAR, ORCISH_SPEAR,
-	JAVELIN, SHURIKEN, YA, SILVER_ARROW, ELVEN_ARROW, DARK_ELVEN_ARROW, 
-	ARROW, ORCISH_ARROW, CROSSBOW_BOLT, SILVER_DAGGER, ELVEN_DAGGER, 
+	TORPEDO, SPIRIT_THROWER, DWARVISH_SPEAR, SILVER_SPEAR, ELVEN_SPEAR, SPEAR, ORCISH_SPEAR,
+	JAVELIN, SHURIKEN, DROVEN_ARROW, YA, SILVER_ARROW, ELVEN_ARROW, DARK_ELVEN_ARROW, 
+	ARROW, ORCISH_ARROW, DROVEN_BOLT, CROSSBOW_BOLT, SILVER_DAGGER, ELVEN_DAGGER, 
 	DARK_ELVEN_DAGGER, DAGGER, ORCISH_DAGGER, KNIFE, FLINT, ROCK, 
 	LOADSTONE, LUCKSTONE, DART,
 	/* BOOMERANG, */ CREAM_PIE
@@ -516,8 +557,10 @@ register struct monst *mtmp;
 	    if (rwep[i] == DART && !likes_gems(mtmp->data) &&
 		    m_carrying(mtmp, SLING)) {		/* propellor */
 		for (otmp = mtmp->minvent; otmp; otmp = otmp->nobj)
-		    if (otmp->oclass == GEM_CLASS &&
-			    (otmp->otyp != LOADSTONE || !otmp->cursed)) {
+		    if (otmp->oclass == GEM_CLASS /*&&
+			    (otmp->otyp != LOADSTONE || !otmp->cursed)*/) {
+			/* I'll allow monsters to fire loadstones even if they are cursed.
+			 * Yes, monsters are cheating bastards. --Amy */
 			propellor = m_carrying(mtmp, SLING);
 			return otmp;
 		    }
@@ -538,7 +581,8 @@ register struct monst *mtmp;
 			 *   if (!propellor) ...
 			 */
 		case P_BOW:
-		  propellor = (oselect(mtmp, YUMI));
+		  propellor = (oselect(mtmp, DROVEN_BOW));
+		  if (!propellor) propellor = (oselect(mtmp, YUMI));
 		  if (!propellor) propellor = (oselect(mtmp, ELVEN_BOW));
 		  /* WAC added dark elven bow */
 		  if (!propellor) propellor = (oselect(mtmp, DARK_ELVEN_BOW));
@@ -549,7 +593,8 @@ register struct monst *mtmp;
 		  propellor = (oselect(mtmp, SLING));
 		  break;
 		case P_CROSSBOW:
-		  propellor = (oselect(mtmp, CROSSBOW));
+		  propellor = (oselect(mtmp, DROVEN_CROSSBOW));
+		  if (!propellor) propellor = (oselect(mtmp, CROSSBOW));
 #ifdef FIREARMS
 		case P_FIREARM:
 		  if ((objects[rwep[i]].w_ammotyp) == WP_BULLET) {
@@ -608,24 +653,34 @@ register struct monst *mtmp;
 /* WAC -- removed polearms */
 static const NEARDATA short hwep[] = {
 	  CORPSE,  /* cockatrice corpse */
-	  TSURUGI, RUNESWORD, HEAVY_HAMMER, 
-	  DWARVISH_MATTOCK, 
+	EXTREMELY_HEAVY_IRON_BALL, REALLY_HEAVY_IRON_BALL, QUITE_HEAVY_IRON_BALL, HEAVY_IRON_BALL,
+	NUNCHIAKU, SCOURGE, ROTATING_CHAIN, IRON_CHAIN,
+	  TSURUGI, STYGIAN_PIKE, RUNESWORD, MALLET, HEAVY_HAMMER, 
+	  WOODEN_GETA, LACQUERED_DANCING_SHOE, HIGH_HEELED_SANDAL, SEXY_LEATHER_PUMP, SPIKED_BATTLE_BOOT, TORPEDO,
+	  DWARVISH_MATTOCK, BENT_SABLE, 
 #ifdef LIGHTSABERS
 	  RED_DOUBLE_LIGHTSABER, RED_LIGHTSABER,
 #ifdef D_SABER
 	  BLUE_LIGHTSABER,
+#if 0
+		case VIOLET_LIGHTSABER:
+		case WHITE_LIGHTSABER:
+		case YELLOW_LIGHTSABER:
+#endif
 #endif
 	  GREEN_LIGHTSABER,
 #endif
-	  TWO_HANDED_SWORD, BATTLE_AXE,
-	  KATANA, UNICORN_HORN, CRYSKNIFE, TRIDENT, LONG_SWORD,
-	  ELVEN_BROADSWORD, BROADSWORD, SCIMITAR, SILVER_SABER,
+	  WEDGED_LITTLE_GIRL_SANDAL, SOFT_GIRL_SNEAKER, STURDY_PLATEAU_BOOT_FOR_GIRLS, HUGGING_BOOT, BLOCK_HEELED_COMBAT_BOOT,
+	  TWO_HANDED_SWORD, DEVIL_STAR, BATTLE_AXE, GOLDEN_SABER, BATTLE_STAFF,
+	  KATANA, UNICORN_HORN, CRYSKNIFE, ELECTRIC_SWORD, TRIDENT, LONG_SWORD, OBSID, SPIRIT_THROWER,
+	  ELVEN_BROADSWORD, BROADSWORD, SCIMITAR, SILVER_SABER, FLANGED_MACE, JAGGED_STAR, STEEL_WHIP,
 	  SILVER_SHORT_SWORD, SILVER_LONG_SWORD, SILVER_MACE,
   	  MORNING_STAR, DARK_ELVEN_SHORT_SWORD, ELVEN_SHORT_SWORD, 
-  	  DWARVISH_SHORT_SWORD, SHORT_SWORD,
+  	  DWARVISH_SHORT_SWORD, SHORT_SWORD, METAL_CLUB, KNOUT, 
 	  ORCISH_SHORT_SWORD, MACE, AXE, DWARVISH_SPEAR, SILVER_SPEAR,
-	  ELVEN_SPEAR, SPEAR, ORCISH_SPEAR, FLAIL, BULLWHIP, QUARTERSTAFF,
+	  ELVEN_SPEAR, SPEAR, ORCISH_SPEAR, FLAIL, BULLWHIP, QUARTERSTAFF, INSECT_SQUASHER, BASEBALL_BAT,
 	  JAVELIN, AKLYS, CLUB, PICK_AXE, FLY_SWATTER, 
+
 #ifdef KOPS
 	  RUBBER_HOSE,
 #endif /* KOPS */
@@ -645,7 +700,8 @@ register struct monst *mtmp;
 
 	/* prefer artifacts to everything else */
 	for(otmp=mtmp->minvent; otmp; otmp = otmp->nobj) {
-		if (otmp->oclass == WEAPON_CLASS
+		if (
+		(otmp->oclass == WEAPON_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS)
 			&& otmp->oartifact && touch_artifact(otmp,mtmp)
 			&& ((strong && !wearing_shield)
 			    || !objects[otmp->otyp].oc_bimanual))
@@ -729,6 +785,8 @@ boolean polyspot;
 
 /* Let a monster try to wield a weapon, based on mon->weapon_check.
  * Returns 1 if the monster took time to do it, 0 if it did not.
+ * Thanks to a bug with saving and restoring, I allow monsters to wield weapons
+ * without wasting a turn. --Amy
  */
 int
 mon_wield_item(mon)
@@ -815,7 +873,7 @@ register struct monst *mon;
 			mw_tmp->bknown = 1;
 		    }
 		    mon->weapon_check = NO_WEAPON_WANTED;
-		    return 1;
+		    return /*1*/0;
 		}
 		mon->mw = obj;		/* wield obj */
 		setmnotwielded(mon, mw_tmp);
@@ -842,7 +900,7 @@ register struct monst *mon;
 		if (is_lightsaber(obj))
 		    mon_ignite_lightsaber(obj, mon);
 #endif
-		return 1;
+		return /*1*/0;
 	}
 	mon->weapon_check = NEED_WEAPON;
 	return 0;
@@ -857,6 +915,12 @@ struct monst * mon;
 	/* No obj or not lightsaber */
 	if (!obj || !is_lightsaber(obj)) return;
 
+#ifdef JEDI
+	// for some reason, the lightsaber prototype is created with
+	// age == 0
+	if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE)
+		obj->age = 300L;
+#endif
 	/* WAC - Check lightsaber is on */
 	if (!obj->lamplit) {
 	    if (obj->cursed && !rn2(2)) {
@@ -897,37 +961,53 @@ abon()		/* attack bonus for strength & dexterity */
 
 	if (Upolyd) return(adj_lev(&mons[u.umonnum]) - 3);
 	/* [Tom] lowered these a little */        
-	if (str < 6) sbon = -2;
-	else if (str < 8) sbon = -1;
-	else if (str < 17) sbon = 0;
-	else if (str <= STR18(50)) sbon = 1;	/* up to 18/50 */
-	else if (str < STR18(100)) sbon = 1;
-	else if (str == STR18(100)) sbon = 2;  /* 18/00 */
-	else if (str == STR19(19)) sbon = 2;  /* 19 */
-	else if (str == STR19(20)) sbon = 3;  /* 20 */
-	else if (str == STR19(21)) sbon = 3;  /* 21 */
-	else if (str == STR19(22)) sbon = 4;  /* 22 */
-	else if (str == STR19(23)) sbon = 4;  /* 23 */
-	else if (str == STR19(24)) sbon = 5;  /* 24 */
-	else sbon = 5;
+	if (str < 6) sbon = -1;
+	else if (str < 8) sbon = 0;
+	else if (str < 17) sbon = 1;
+	else if (str <= STR18(50)) sbon = 2;	/* up to 18/50 */
+	else if (str < STR18(100)) sbon = 2;
+	else if (str == STR18(100)) sbon = 3;  /* 18/00 */
+	else if (str == STR19(19)) sbon = 3;  /* 19 */
+	else if (str == STR19(20)) sbon = 4;  /* 20 */
+	else if (str == STR19(21)) sbon = 4;  /* 21 */
+	else if (str == STR19(22)) sbon = 5;  /* 22 */
+	else if (str == STR19(23)) sbon = 5;  /* 23 */
+	else if (str == STR19(24)) sbon = 6;  /* 24 */
+	else sbon = 7;
   
-	if (dex < 5) sbon -= 2;
-	else if (dex < 7) sbon -= 1;
-	else if (dex < 15) sbon += 0;
-	else if (dex == 15) sbon += 1;  /* 15 */
-	else if (dex == 16) sbon += 1;  /* 16 */
-	else if (dex == 17) sbon += 1;  /* 17 */
-	else if (dex == 18) sbon += 2;  /* 18 */
-	else if (dex == 19) sbon += 2;  /* 19 */
-	else if (dex == 20) sbon += 2;  /* 20 */
-	else if (dex == 21) sbon += 3;  /* 21 */
-	else if (dex == 22) sbon += 3;  /* 22 */
-	else if (dex == 23) sbon += 3;  /* 23 */
-	else if (dex == 24) sbon += 4;  /* 24 */
-	else sbon += 5;
+	if (dex < 5) sbon -= 1;
+	else if (dex < 7) sbon += 0;
+	else if (dex < 10) sbon += 1;
+	else if (dex < 12) sbon += 2;
+	else if (dex < 15) sbon += 3;
+	else if (dex == 15) sbon += 3;  /* 15 */
+	else if (dex == 16) sbon += 4;  /* 16 */
+	else if (dex == 17) sbon += 4;  /* 17 */
+	else if (dex == 18) sbon += 5;  /* 18 */
+	else if (dex == 19) sbon += 5;  /* 19 */
+	else if (dex == 20) sbon += 6;  /* 20 */
+	else if (dex == 21) sbon += 6;  /* 21 */
+	else if (dex == 22) sbon += 7;  /* 22 */
+	else if (dex == 23) sbon += 7;  /* 23 */
+	else if (dex == 24) sbon += 8;  /* 24 */
+	else sbon += 9;
 
 /* Game tuning kludge: make it a bit easier for a low level character to hit */
 	sbon += (u.ulevel < 3) ? 1 : 0;
+
+/* and harder for high level characters because they often hit automatically anyway */
+
+	if (!Upolyd) {
+	if (u.ulevel > 10) sbon -= 1;
+	if (u.ulevel > 13) sbon -= 1;
+	if (u.ulevel > 16) sbon -= 1;
+	if (u.ulevel > 19) sbon -= 1;
+	if (u.ulevel > 22) sbon -= 1;
+	if (u.ulevel > 24) sbon -= 1;
+	if (u.ulevel > 26) sbon -= 1;
+	if (u.ulevel > 28) sbon -= 1;
+	}
+
 	return(sbon);
 }
 
@@ -942,19 +1022,23 @@ dbon()		/* damage bonus for strength */
 
 	if (Upolyd) return(0);
 	/* [Tom] I lowered this a little */
-	if (str < 6) return(-1);
-	else if (str < 16) return(0);
-	else if (str < 18) return(1);
-	else if (str == 18) return(2);		/* up to 18 */
-	else if (str < STR18(100)) return(3);          /* up to 18/99 */
-	else if (str == STR18(100)) return(4);         /* 18/00 */
-	else if (str == STR19(19)) return(5);         /* 19 */
-	else if (str == STR19(20)) return(6);         /* 20 */
+	if (str < 5) return(-2);
+	else if (str < 8) return(-1);
+	else if (str < 10) return(0);
+	else if (str < 14) return(1);
+	else if (str < 18) return(2);
+	else if (str == 18) return(3);		/* up to 18 */
+	else if (str < STR18(30)) return(4);          /* up to 18/99 */
+	else if (str < STR18(66)) return(4);          /* up to 18/99 */
+	else if (str < STR18(100)) return(5);          /* up to 18/99 */
+	else if (str == STR18(100)) return(6);         /* 18/00 */
+	else if (str == STR19(19)) return(7);         /* 19 */
+	else if (str == STR19(20)) return(7);         /* 20 */
 	else if (str == STR19(21)) return(7);         /* 21 */
 	else if (str == STR19(22)) return(8);         /* 22 */
-	else if (str == STR19(23)) return(9);         /* 23 */
-	else if (str == STR19(24)) return(10);        /* 24 */
-	else return(11);
+	else if (str == STR19(23)) return(8);         /* 23 */
+	else if (str == STR19(24)) return(8);        /* 24 */
+	else return(9);
 }
 
 /* copy the skill level name into the given buffer */
@@ -973,14 +1057,43 @@ char *buf;
 	case P_MASTER:	     ptr = "Master";    break;
 	case P_GRAND_MASTER: 
             if (skill <= P_LAST_WEAPON)
-                    ptr = "Wizard" ;
+                    ptr = "Legendary" ;
             else if (skill <= P_LAST_SPELL)
-                    ptr = "Legendary";
+                    ptr = "Wizard";
 	    else if (skill <= P_LAST_H_TO_H) 
 	    	    ptr = "Grand Master"; 
 	    else ptr = "Unprecedented";
 	    break;
 	default:	     ptr = "Unknown";	break;
+    }
+    Strcpy(buf, ptr);
+    return buf;
+}
+
+/* copy the max skill level name into the given buffer */
+STATIC_OVL char *
+skill_level_name_max(skill, buf)
+int skill;
+char *buf;
+{
+    const char *ptr;
+
+    switch (P_MAX_SKILL(skill)) {
+	case P_UNSKILLED:    ptr = "(max Unskilled)"; break;
+	case P_BASIC:	     ptr = "(max Basic)";     break;
+	case P_SKILLED:	     ptr = "(max Skilled)";   break;
+	case P_EXPERT:	     ptr = "(max Expert)";    break;
+	case P_MASTER:	     ptr = "(max Master)";    break;
+	case P_GRAND_MASTER: 
+            if (skill <= P_LAST_WEAPON)
+                    ptr = "(max Legendary)" ;
+            else if (skill <= P_LAST_SPELL)
+                    ptr = "(max Wizard)";
+	    else if (skill <= P_LAST_H_TO_H) 
+	    	    ptr = "(max Grand Master)"; 
+	    else ptr = "(max Unprecedented)";
+	    break;
+	default:	     ptr = "(max Unknown)";	break;
     }
     Strcpy(buf, ptr);
     return buf;
@@ -994,16 +1107,17 @@ int skill;
     int tmp = P_SKILL(skill);
 
       /* WAC if you're over your class max,  it's twice as costly */      
-      if (tmp >= P_MAX_SKILL(skill)) tmp *=2;
+      /*if (tmp >= P_MAX_SKILL(skill)) tmp *=2;*/
       if (tmp < 0) tmp = 0; /* for Restricted skills */
+      if (tmp > 1) tmp = 1; /* for basic or higher --Amy*/
   
     /* The more difficult the training, the more slots it takes.
      *	unskilled -> basic	1
      *	basic -> skilled	2
      *	skilled -> expert	3
      */
-    if (skill <= P_LAST_SPELL)
-	return tmp;
+    /*if (skill <= P_LAST_SPELL)*/
+	return tmp; /*just always take one slot, regardless of skill level --Amy*/
 
       /* Fewer slots used up for unarmed or martial, miscellaneous skills
      *	unskilled -> basic	1
@@ -1012,7 +1126,7 @@ int skill;
      *	expert -> master	2
      *	master -> grand master	3
      */
-    return (tmp + 1) / 2;
+    /*return (tmp + 1) / 2;*/
 }
 
 /* return true if this skill can be advanced */
@@ -1092,6 +1206,361 @@ int skill;
     	learntech(T_DISARM, FROMOUTSIDE, 1);
     	You("learn how to perform disarm!");
     }
+
+	if (Role_if(PM_BINDER)) {
+
+		if (P_SKILL(skill) == P_SKILLED) switch (skill) {
+
+		case P_DAGGER:
+			    HFire_resistance |= FROMOUTSIDE; pline("Got fire resistance!"); break;
+		break;
+		case P_KNIFE:
+			    HCold_resistance |= FROMOUTSIDE; pline("Got cold resistance!"); break;
+		break;
+		case P_AXE:
+			    HShock_resistance |= FROMOUTSIDE; pline("Got shock resistance!"); break;
+		break;
+		case P_PICK_AXE:
+			    HPoison_resistance |= FROMOUTSIDE; pline("Got poison resistance!"); break;
+		break;
+		case P_SHORT_SWORD:
+			    HCold_resistance |= FROMOUTSIDE; pline("Got cold resistance!"); break;
+		break;
+		case P_BROAD_SWORD:
+			    HInvis |= FROMOUTSIDE; pline("Got invisibility!"); break;
+		break;
+		case P_LONG_SWORD:
+			    HShock_resistance |= FROMOUTSIDE; pline("Got shock resistance!"); break;
+		break;
+		case P_TWO_HANDED_SWORD:
+			    HPoison_resistance |= FROMOUTSIDE; pline("Got poison resistance!"); break;
+		break;
+		case P_SCIMITAR:
+			    HFire_resistance |= FROMOUTSIDE; pline("Got fire resistance!"); break;
+		break;
+		case P_SABER:
+			    HSleep_resistance |= FROMOUTSIDE; pline("Got sleep resistance!"); break;
+		break;
+		case P_CLUB:
+			    HCold_resistance |= FROMOUTSIDE; pline("Got cold resistance!"); break;
+		break;
+		case P_PADDLE:
+			    HSick_resistance |= FROMOUTSIDE; pline("Got sickness resistance!"); break;
+		break;
+		case P_MACE:
+			    HFire_resistance |= FROMOUTSIDE; pline("Got fire resistance!"); break;
+		break;
+		case P_MORNING_STAR:
+			    HPoison_resistance |= FROMOUTSIDE; pline("Got poison resistance!"); break;
+		break;
+		case P_FLAIL:
+			    HDisint_resistance |= FROMOUTSIDE; pline("Got disintegration resistance!"); break;
+		break;
+		case P_HAMMER:
+			    HStealth |= FROMOUTSIDE; pline("Got stealth!"); break;
+		break;
+		case P_QUARTERSTAFF:
+			    HFast |= FROMOUTSIDE; pline("Got speed!"); break;
+		break;
+		case P_POLEARMS:
+			    HShock_resistance |= FROMOUTSIDE; pline("Got shock resistance!"); break;
+		break;
+		case P_SPEAR:
+			    HSleep_resistance |= FROMOUTSIDE; pline("Got sleep resistance!"); break;
+		break;
+		case P_JAVELIN:
+			    HSearching |= FROMOUTSIDE; pline("Got searching!"); break;
+		break;
+		case P_TRIDENT:
+			    HSee_invisible |= FROMOUTSIDE; pline("Got see invisible!"); break;
+		break;
+		case P_LANCE:
+			    HSwimming |= FROMOUTSIDE; pline("Got swimming!"); break;
+		break;
+		case P_BOW:
+			    HPoison_resistance |= FROMOUTSIDE; pline("Got poison resistance!"); break;
+		break;
+		case P_SLING:
+			    HWarning |= FROMOUTSIDE; pline("Got warning!"); break;
+		break;
+		case P_FIREARM:
+			    HDrain_resistance |= FROMOUTSIDE; pline("Got drain resistance!"); break;
+		break;
+		case P_CROSSBOW:
+			    HAcid_resistance |= FROMOUTSIDE; pline("Got acid resistance!"); break;
+		break;
+		case P_DART:
+			    HSearching |= FROMOUTSIDE; pline("Got searching!"); break;
+		break;
+		case P_SHURIKEN:
+			    HSlow_digestion |= FROMOUTSIDE; pline("Got slow digestion!"); break;
+		break;
+		case P_BOOMERANG:
+			    HFast |= FROMOUTSIDE; pline("Got speed!"); break;
+		break;
+		case P_WHIP:
+			    HSee_invisible |= FROMOUTSIDE; pline("Got see invisible!"); break;
+		break;
+		case P_UNICORN_HORN:
+			    HStealth |= FROMOUTSIDE; pline("Got stealth!"); break;
+		break;
+		case P_LIGHTSABER:
+			    HTelepat |= FROMOUTSIDE; pline("Got telepathy!"); break;
+		break;
+		case P_ATTACK_SPELL:
+			    HMagical_breathing |= FROMOUTSIDE; pline("Got unbreathing!"); break;
+		break;
+		case P_HEALING_SPELL:
+			    HSlow_digestion |= FROMOUTSIDE; pline("Got slow digestion!"); break;
+		break;
+		case P_DIVINATION_SPELL:
+			    HSwimming |= FROMOUTSIDE; pline("Got swimming!"); break;
+		break;
+		case P_ENCHANTMENT_SPELL:
+			    HWarning |= FROMOUTSIDE; pline("Got warning!"); break;
+		break;
+		case P_PROTECTION_SPELL:
+			    HPolymorph_control |= FROMOUTSIDE; pline("Got polymorph control!"); break;
+		break;
+		case P_BODY_SPELL:
+			    HFlying |= FROMOUTSIDE; pline("Got flying!"); break;
+		break;
+		case P_MATTER_SPELL:
+			    HTeleport_control |= FROMOUTSIDE; pline("Got teleport control!"); break;
+		break;
+		case P_BARE_HANDED_COMBAT:
+			    HTeleportation |= FROMOUTSIDE; pline("Got teleportitis!"); break;
+		break;
+		case P_TWO_WEAPON_COMBAT:
+			    HRegeneration |= FROMOUTSIDE; pline("Got regeneration!"); break;
+		break;
+		case P_RIDING:
+			    HAcid_resistance |= FROMOUTSIDE; pline("Got acid resistance!"); break;
+		break;
+
+		default: break;
+
+		}
+
+		if (P_SKILL(skill) == P_EXPERT) switch (skill) {
+
+		case P_DAGGER:
+				if (!tech_known(T_REINFORCE)) {    	learntech(T_REINFORCE, FROMOUTSIDE, 1);
+			    	You("learn how to perform reinforce memory!");
+				}
+		break;
+		case P_KNIFE:
+				if (!tech_known(T_CUTTHROAT)) {    	learntech(T_CUTTHROAT, FROMOUTSIDE, 1);
+			    	You("learn how to perform cutthroat!");
+				}
+		break;
+		case P_AXE:
+				if (!tech_known(T_BERSERK)) {    	learntech(T_BERSERK, FROMOUTSIDE, 1);
+			    	You("learn how to perform berserk!");
+				}
+		break;
+		case P_PICK_AXE:
+				if (!tech_known(T_TINKER)) {    	learntech(T_TINKER, FROMOUTSIDE, 1);
+			    	You("learn how to perform tinker!");
+				}
+		break;
+		case P_SHORT_SWORD:
+				if (!tech_known(T_WARD_ELEC)) {    	learntech(T_WARD_ELEC, FROMOUTSIDE, 1);
+			    	You("learn how to perform ward against electricity!");
+				}
+		break;
+		case P_LONG_SWORD:
+				if (!tech_known(T_RESEARCH)) {    	learntech(T_RESEARCH, FROMOUTSIDE, 1);
+			    	You("learn how to perform research!");
+				}
+		break;
+		case P_BROAD_SWORD:
+				if (!tech_known(T_BOOZE)) {    	learntech(T_BOOZE, FROMOUTSIDE, 1);
+			    	You("learn how to perform booze!");
+				}
+		break;
+		case P_TWO_HANDED_SWORD:
+				if (!tech_known(T_HEAL_HANDS)) {    	learntech(T_HEAL_HANDS, FROMOUTSIDE, 1);
+			    	You("learn how to perform healing hands!");
+				}
+		break;
+		case P_SCIMITAR:
+				if (!tech_known(T_DRAW_BLOOD)) {    	learntech(T_DRAW_BLOOD, FROMOUTSIDE, 1);
+			    	You("learn how to perform draw blood!");
+				}
+		break;
+		case P_SABER:
+				if (!tech_known(T_KIII)) {    	learntech(T_KIII, FROMOUTSIDE, 1);
+			    	You("learn how to perform kiii!");
+				}
+		break;
+		case P_CLUB:
+				if (!tech_known(T_EVISCERATE)) {    	learntech(T_EVISCERATE, FROMOUTSIDE, 1);
+			    	You("learn how to perform eviscerate!");
+				}
+		break;
+		case P_PADDLE:
+				if (!tech_known(T_RAISE_ZOMBIES)) {    	learntech(T_RAISE_ZOMBIES, FROMOUTSIDE, 1);
+			    	You("learn how to perform raise zombies!");
+				}
+		break;
+		case P_MACE:
+				if (!tech_known(T_WARD_COLD)) {    	learntech(T_WARD_COLD, FROMOUTSIDE, 1);
+			    	You("learn how to perform ward against cold!");
+				}
+		break;
+		case P_MORNING_STAR:
+				if (!tech_known(T_TELEKINESIS)) {    	learntech(T_TELEKINESIS, FROMOUTSIDE, 1);
+			    	You("learn how to perform telekinesis!");
+				}
+		break;
+		case P_FLAIL:
+				if (!tech_known(T_BLINK)) {    	learntech(T_BLINK, FROMOUTSIDE, 1);
+			    	You("learn how to perform blink!");
+				}
+		break;
+		case P_HAMMER:
+				if (!tech_known(T_LIQUID_LEAP)) {    	learntech(T_LIQUID_LEAP, FROMOUTSIDE, 1);
+			    	You("learn how to perform liquid leap!");
+				}
+		break;
+		case P_QUARTERSTAFF:
+				if (!tech_known(T_CRIT_STRIKE)) {    	learntech(T_CRIT_STRIKE, FROMOUTSIDE, 1);
+			    	You("learn how to perform critical strike!");
+				}
+		break;
+		case P_POLEARMS:
+				if (!tech_known(T_TURN_UNDEAD)) {    	learntech(T_TURN_UNDEAD, FROMOUTSIDE, 1);
+			    	You("learn how to perform turn undead!");
+				}
+		break;
+		case P_SPEAR:
+				if (!tech_known(T_PRACTICE)) {    	learntech(T_PRACTICE, FROMOUTSIDE, 1);
+			    	You("learn how to perform weapon practice!");
+				}
+		break;
+		case P_JAVELIN:
+				if (!tech_known(T_DRAW_ENERGY)) {    	learntech(T_DRAW_ENERGY, FROMOUTSIDE, 1);
+			    	You("learn how to perform draw energy!");
+				}
+		break;
+		case P_TRIDENT:
+				if (!tech_known(T_POWER_SURGE)) {    	learntech(T_POWER_SURGE, FROMOUTSIDE, 1);
+			    	You("learn how to perform power surge!");
+				}
+		break;
+		case P_LANCE:
+				if (!tech_known(T_REVIVE)) {    	learntech(T_REVIVE, FROMOUTSIDE, 1);
+			    	You("learn how to perform revivification!");
+				}
+		break;
+		case P_BOW:
+				if (!tech_known(T_FLURRY)) {    	learntech(T_FLURRY, FROMOUTSIDE, 1);
+			    	You("learn how to perform missile flurry!");
+				}
+		break;
+		case P_SLING:
+				if (!tech_known(T_VANISH)) {    	learntech(T_VANISH, FROMOUTSIDE, 1);
+			    	You("learn how to perform vanish!");
+				}
+		break;
+		case P_FIREARM:
+				if (!tech_known(T_CREATE_AMMO)) {    	learntech(T_CREATE_AMMO, FROMOUTSIDE, 1);
+			    	You("learn how to perform create ammo!");
+				}
+		break;
+		case P_CROSSBOW:
+				if (!tech_known(T_SIGIL_TEMPEST)) {    	learntech(T_SIGIL_TEMPEST, FROMOUTSIDE, 1);
+			    	You("learn how to perform sigil of tempest!");
+				}
+		break;
+		case P_DART:
+				if (!tech_known(T_WARD_FIRE)) {    	learntech(T_WARD_FIRE, FROMOUTSIDE, 1);
+			    	You("learn how to perform ward against fire!");
+				}
+		break;
+		case P_SHURIKEN:
+				if (!tech_known(T_SIGIL_CONTROL)) {    	learntech(T_SIGIL_CONTROL, FROMOUTSIDE, 1);
+			    	You("learn how to perform sigil of control!");
+				}
+		break;
+		case P_BOOMERANG:
+				if (!tech_known(T_SIGIL_DISCHARGE)) {    	learntech(T_SIGIL_DISCHARGE, FROMOUTSIDE, 1);
+			    	You("learn how to perform sigil of discharge!");
+				}
+		break;
+		case P_WHIP:
+				if (!tech_known(T_POKE_BALL)) {    	learntech(T_POKE_BALL, FROMOUTSIDE, 1);
+			    	You("learn how to perform poke ball!");
+				}
+		break;
+		case P_UNICORN_HORN:
+				if (!tech_known(T_PRIMAL_ROAR)) {    	learntech(T_PRIMAL_ROAR, FROMOUTSIDE, 1);
+			    	You("learn how to perform primal roar!");
+				}
+		break;
+		case P_LIGHTSABER:
+				if (!tech_known(T_CHARGE_SABER)) {    	learntech(T_CHARGE_SABER, FROMOUTSIDE, 1);
+			    	You("learn how to perform charge saber!");
+				}
+		break;
+		case P_ATTACK_SPELL:
+				if (!tech_known(T_EGG_BOMB)) {    	learntech(T_EGG_BOMB, FROMOUTSIDE, 1);
+			    	You("learn how to perform egg bomb!");
+				}
+		break;
+		case P_HEALING_SPELL:
+				if (!tech_known(T_SURGERY)) {    	learntech(T_SURGERY, FROMOUTSIDE, 1);
+			    	You("learn how to perform surgery!");
+				}
+		break;
+		case P_DIVINATION_SPELL:
+				if (!tech_known(T_ATTIRE_CHARM)) {    	learntech(T_ATTIRE_CHARM, FROMOUTSIDE, 1);
+			    	You("learn how to perform attire charm!");
+				}
+		break;
+		case P_ENCHANTMENT_SPELL:
+				if (!tech_known(T_BLESSING)) {    	learntech(T_BLESSING, FROMOUTSIDE, 1);
+			    	You("learn how to perform blessing!");
+				}
+		break;
+		case P_PROTECTION_SPELL:
+				if (!tech_known(T_SUMMON_TEAM_ANT)) {    	learntech(T_SUMMON_TEAM_ANT, FROMOUTSIDE, 1);
+			    	You("learn how to perform summon team ant!");
+				}
+		break;
+		case P_BODY_SPELL:
+				if (!tech_known(T_RAGE)) {    	learntech(T_RAGE, FROMOUTSIDE, 1);
+			    	You("learn how to perform rage eruption!");
+				}
+		break;
+		case P_MATTER_SPELL:
+				if (!tech_known(T_WORLD_FALL)) {    	learntech(T_WORLD_FALL, FROMOUTSIDE, 1);
+			    	You("learn how to perform world fall!");
+				}
+		break;
+		case P_BARE_HANDED_COMBAT:
+				if (!tech_known(T_DAZZLE)) {    	learntech(T_DAZZLE, FROMOUTSIDE, 1);
+			    	You("learn how to perform dazzle!");
+				}
+		break;
+		case P_TWO_WEAPON_COMBAT:
+				if (!tech_known(T_JEDI_JUMP)) {    	learntech(T_JEDI_JUMP, FROMOUTSIDE, 1);
+			    	You("learn how to perform jedi jump!");
+				}
+		break;
+		case P_RIDING:
+				if (!tech_known(T_CALM_STEED)) {    	learntech(T_CALM_STEED, FROMOUTSIDE, 1);
+			    	You("learn how to perform calm steed!");
+				}
+		break;
+
+		default: break;
+
+		}
+
+	}
+
 }
 
 const static struct skill_range {
@@ -1116,7 +1585,7 @@ enhance_weapon_skill()
 {
     int pass, i, n, len, longest,
 	to_advance, eventually_advance, maxxed_cnt;
-    char buf[BUFSZ], sklnambuf[BUFSZ];
+    char buf[BUFSZ], sklnambuf[BUFSZ], sklnambuftwo[BUFSZ];
     const char *prefix;
     menu_item *selected;
     anything any;
@@ -1205,27 +1674,28 @@ enhance_weapon_skill()
 		    prefix = (to_advance + eventually_advance +
 				maxxed_cnt > 0) ? "    " : "";
 		(void) skill_level_name(i, sklnambuf);
+		(void) skill_level_name_max(i, sklnambuftwo); /* show maximum to be more user friendly --Amy */
 #ifdef WIZARD
 		if (wizard) {
 		    if (!iflags.menu_tab_sep)
-			Sprintf(buf, " %s%-*s %-12s %4d(%4d)",
-			    prefix, longest, P_NAME(i), sklnambuf,
+			Sprintf(buf, " %s%-*s %-12s %-12s %4d(%4d)",
+			    prefix, longest, P_NAME(i), sklnambuf, sklnambuftwo,
 			    P_ADVANCE(i),
 			    practice_needed_to_advance(P_SKILL(i), i));
 		    else
-			Sprintf(buf, " %s%s\t%s\t%5d(%4d)",
-			    prefix, P_NAME(i), sklnambuf,
+			Sprintf(buf, " %s%s\t%s\t%s\t%5d(%4d)",
+			    prefix, P_NAME(i), sklnambuf, sklnambuftwo,
 			    P_ADVANCE(i),
 			    practice_needed_to_advance(P_SKILL(i), i));
 		 } else
 #endif
 		{
 		    if (!iflags.menu_tab_sep)
-			Sprintf(buf, " %s %-*s [%s]",
-			    prefix, longest, P_NAME(i), sklnambuf);
+			Sprintf(buf, " %s %-*s %s %s",
+			    prefix, longest, P_NAME(i), sklnambuf, sklnambuftwo);
 		    else
-			Sprintf(buf, " %s%s\t[%s]",
-			    prefix, P_NAME(i), sklnambuf);
+			Sprintf(buf, " %s%s\t%s\t%s",
+			    prefix, P_NAME(i), sklnambuf, sklnambuftwo);
 		}
 		any.a_int = can_advance(i, speedy) ? i+1 : 0;
 		add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE,
@@ -1234,11 +1704,11 @@ enhance_weapon_skill()
 
 	    Strcpy(buf, (to_advance > 0) ? "Pick a skill to advance:" :
 					   "Current skills:");
-#ifdef WIZARD
-	    if (wizard && !speedy)
+/*#ifdef WIZARD*/
+/*	    if (wizard && !speedy)*/
 		Sprintf(eos(buf), "  (%d slot%s available)",
 			u.weapon_slots, plur(u.weapon_slots));
-#endif
+/*#endif*/
 	    end_menu(win, buf);
 	    n = select_menu(win, to_advance ? PICK_ONE : PICK_NONE, &selected);
 	    destroy_nhwindow(win);
@@ -1363,6 +1833,10 @@ struct obj *obj;
 		/* Not using a weapon */
 	    return (martial_bonus() ? P_MARTIAL_ARTS :
 				P_BARE_HANDED_COMBAT);
+#ifdef CONVICT
+    if ( ((obj->oclass == BALL_CLASS) || (obj->oclass == CHAIN_CLASS)) /*&& Role_if(PM_CONVICT)*/)
+        return objects[obj->otyp].oc_skill;
+#endif /* CONVICT */
 	if (obj->oclass != WEAPON_CLASS && obj->oclass != TOOL_CLASS &&
 	    obj->oclass != GEM_CLASS)
 		/* Not a weapon, weapon-tool, or ammo */
@@ -1455,12 +1929,17 @@ struct obj *weapon;
 		    case P_UNSKILLED:   bonus -= 2; break;
 		    case P_BASIC:       bonus -= 1; break;
 		    case P_SKILLED:     break;
-		    case P_EXPERT:      break;
-		    case P_MASTER:	bonus += 1; break;
-		    case P_GRAND_MASTER:	bonus += 2; break;
+		    case P_EXPERT:      bonus += 2; break;
+		    case P_MASTER:	bonus += 4; break;
+		    case P_GRAND_MASTER:	bonus += 6; break;
 		}
 		if (type == P_LANCE) bonus++;
 	}
+#endif
+#ifdef JEDI
+	/* Jedi are trained in lightsabers, no to-hit penalty for them */
+	if (Role_if(PM_JEDI) && is_lightsaber(weapon))
+		bonus-=objects[weapon->otyp].oc_hitbon;
 #endif
 
     return bonus;
@@ -1535,12 +2014,70 @@ struct obj *weapon;
 		switch (P_SKILL(P_RIDING)) {
 		    case P_ISRESTRICTED:
 		    case P_UNSKILLED:   break;
-		    case P_BASIC:       break;
-		    case P_SKILLED:     bonus += 1; break;
-		    case P_EXPERT:      bonus += 2; break;
+		    case P_BASIC:       bonus += 1; break;
+		    case P_SKILLED:     bonus += 3; break;
+		    case P_EXPERT:      bonus += 5; break;
+		    case P_MASTER:      bonus += 7; break;
+		    case P_GRAND_MASTER:      bonus += 10; break;
 		}
 	}
 #endif
+
+#ifdef JEDI
+	/* Jedi are simply better */
+	if (Role_if(PM_JEDI) && weapon && is_lightsaber(weapon)){
+		switch (P_SKILL(type)){
+			case P_GRAND_MASTER: bonus +=10; break; /* fall through removed by Amy */
+			case P_MASTER: bonus +=7; break; /* fall through removed by Amy */
+			case P_EXPERT: bonus +=4; break; /* fall through removed by Amy */
+			case P_SKILLED: bonus +=2; break;
+			case P_BASIC: bonus += 1; break;
+			case P_UNSKILLED: break;
+			default: impossible("unknown lightsaber skill for a jedi"); break;
+		}
+	}
+#endif
+
+	/* Ogres are supposed to have a use for that weak starting club of theirs after all --Amy */
+	if (Race_if(PM_OGRO) && weapon && weapon_type(weapon) == P_CLUB){
+
+		bonus += 2;
+	}
+
+	/* Navi are highly proficient with spears --Amy */
+	if (Race_if(PM_NAVI) && weapon && weapon_type(weapon) == P_SPEAR){
+
+		bonus += 3;
+	}
+
+	/* rubber hoses for jesters */
+	if (Role_if(PM_JESTER) && weapon && weapon->otyp == RUBBER_HOSE){
+
+		bonus += 3;
+	}
+	/* Transvestites can whack enemies using heels --Amy */
+	if (Role_if(PM_TRANSVESTITE) && weapon && weapon_type(weapon) == P_HAMMER){
+
+
+
+		bonus += 2;
+    if (u.ulevel >= 15) bonus += 1;
+    if (u.ulevel >= 30) bonus += 1;
+	}
+
+	/* boomerang damage bonus for Batman */
+	if (Race_if(PM_BATMAN) && weapon && weapon_type(weapon) == P_BOOMERANG){
+
+		bonus += 2;
+    if (u.ulevel >= 15) bonus += 2;
+    if (u.ulevel >= 30) bonus += 2;
+	}
+
+	/* add a little damage bonus for higher-level characters so the stronger monsters aren't too overpowered --Amy */
+
+    if (u.ulevel >= 10) bonus += 1;
+    if (u.ulevel >= 20) bonus += 1;
+    if (u.ulevel >= 30) bonus += 1;
 
     return bonus;
 }
@@ -1645,17 +2182,20 @@ const struct def_skill *class_skill;
 	}
 
 	/* Set skill for all objects in inventory to be basic */
-	for (obj = invent; obj; obj = obj->nobj) {
+	if(!Role_if(PM_BINDER) && !Role_if(PM_POLITICIAN)) for (obj = invent; obj; obj = obj->nobj) {
 	    skill = get_obj_skill(obj);
 	    if (skill != P_NONE) {
 		P_SKILL(skill) = P_BASIC;
 		/* KMH -- If you came into the dungeon with it, you should at least be skilled */
-		if (P_MAX_SKILL(skill) < P_SKILLED) {
-			pline("Warning: %s should be at least skilled.  Fixing...", P_NAME(skill));
-			P_MAX_SKILL(skill) = P_SKILLED;
+		if (P_MAX_SKILL(skill) < P_EXPERT) { /* edit by Amy: let's make it expert. */
+			if (wizard) pline("Warning: %s should be at least expert.  Fixing...", P_NAME(skill));
+			P_MAX_SKILL(skill) = P_EXPERT;
 		}
 	    }
 	}
+
+	/* Batman obviously has legendary boomerang abilities --Amy */
+	if (Race_if(PM_BATMAN)) P_MAX_SKILL(P_BOOMERANG) = P_GRAND_MASTER;
 
 #if 0  /* This should all be handled above now... */
 	/* set skills for magic */

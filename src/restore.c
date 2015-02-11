@@ -390,6 +390,113 @@ unsigned int *stuckid, *steedid;	/* STEED */
 #ifdef CLIPPING
 	cliparound(u.ux, u.uy);
 #endif
+	/* reload random monster*/
+
+	mread(fd, (genericptr_t) &mons[PM_NITROHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_SPEEDHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_DNETHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NETHACKBRASS_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_INTERHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NHTNG_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_UNNETHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_UNNETHACKPLUS_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ANGBAND_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ADOM_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_PETTY_ANGBAND_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_PETTY_ADOM_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_SPORKHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_MAIDENHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_YASD_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NETHACKFOUR_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_DEVTEAM_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_SLASHEM_HORROR], sizeof(struct permonst));	
+	mread(fd, (genericptr_t) &mons[PM_NETHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ROGUE_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_GRUNTHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ACEHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_PETTY_GRUNTHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_PETROGRAPHY_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_STONE_COLD_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_AK_THIEF_IS_DEAD_], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_UN_IN_PROTECT_MODE], sizeof(struct permonst));
+
+	mread(fd, (genericptr_t) &mons[PM_BROWN_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_RED_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BLACK_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_CYAN_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_GRAY_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_WHITE_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_GREEN_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_MAGENTA_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_YELLOW_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ORANGE_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BRIGHT_CYAN_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BRIGHT_MAGENTA_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BRIGHT_BLUE_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BRIGHT_GREEN_MISSINGNO], sizeof(struct permonst));
+
+	mread(fd, (genericptr_t) &mons[PM_PETTY_ACEHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_YEENOGHU], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_MULTICOLOR_GRUE], sizeof(struct permonst));
+
+	mread(fd, (genericptr_t) &mons[PM_MYSTIC_EYE], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_UNKNOWN_MIMIC], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_SHINING_PIERCER], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_SHINING_PENETRATOR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_SHINING_SMASHER], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_SIZZLING_VORTEX], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_MOLD], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_FUNGUS], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_MOLD], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_FUNGUS], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ONG_SEPHIRAH], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_KRONG_SEPHIRAH], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ZAKRONG_SEPHIRAH], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_SPECIAL_TROLL], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_TEETHFISH], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_RAZORFIN_FISH], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_UNKNOWN_TURRET], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_RAINBOW_MODE_DRAGON], sizeof(struct permonst));
+
+	mread(fd, (genericptr_t) &mons[PM_SHADOW_WARRIOR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ROBOT], sizeof(struct permonst));
+
+	mread(fd, (genericptr_t) &mons[PM_ADULT_TATZELWORM], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ADULT_AMPHITERE], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ADULT_DRAKEN], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ADULT_LINDWORM], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ADULT_SARKANY], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ADULT_SIRRUSH], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ADULT_LEVIATHAN], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ADULT_WYVERN], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ADULT_GLOWING_DRAGON], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ADULT_GUIVRE], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BABY_TATZELWORM], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BABY_AMPHITERE], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BABY_DRAKEN], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BABY_LINDWORM], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BABY_SARKANY], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BABY_SIRRUSH], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BABY_LEVIATHAN], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BABY_WYVERN], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BABY_GLOWING_DRAGON], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BABY_GUIVRE], sizeof(struct permonst));
+
+	mread(fd, (genericptr_t) &mons[PM_PUPURIN], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_SAPUSAUR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_TSUBOTSUBO], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ODDOSHISHI], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_OKUTAN], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_RATICLAW], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_PSYBUR], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_HARISEN], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_SUIKUN], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_HOUOU], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_LOCUSTOD], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_FORETOSU], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_CHARCOLT], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_MILLENUM], sizeof(struct permonst));
+
 	if(u.uhp <= 0 && (!Upolyd || u.mh <= 0)) {
 	    u.ux = u.uy = 0;	/* affects pline() [hence You()] */
 	    You("were not healthy enough to survive restoration.");
@@ -682,10 +789,12 @@ register int fd;
 	 * Side effect of this is that you don't see this message until after the
 	 * all the levels are loaded
 	 */
-	You("return to level %d in %s%s.",
+	if (!DisplayLoss) {You("return to level %d in %s%s.",
 		depth(&u.uz), dungeons[u.uz.dnum].dname,
 		flags.debug ? " while in debug mode" :
 		flags.explore ? " while in explore mode" : "");
+	}
+	if (DisplayLoss) pline("You return to the game with your underwear intact, but can't remember exactly where you are.");
 
 #ifdef MFLOPPY
 	gameDiskPrompt();
@@ -728,8 +837,10 @@ char *reason;
 	pline("Strange, this map is not as I remember it.");
 	pline("Somebody is trying some trickery here...");
 	pline("This game is void.");
-	killer = reason;
-	done(TRICKED);
+	pline("Or it would have been, but apparently something else can cause this too,");
+	pline("so I'm letting it slide. --Amy");
+	/*killer = reason;
+	done(TRICKED);*/
 }
 
 void

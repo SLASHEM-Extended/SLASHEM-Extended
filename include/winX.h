@@ -53,7 +53,7 @@ struct text_map_info_t {
 };
 
 struct tile_map_info_t {
-    unsigned short glyphs[ROWNO][COLNO];	/* Saved glyph numbers. */
+    unsigned /*short*/long glyphs[ROWNO][COLNO];	/* Saved glyph numbers. */
     GC	white_gc;
     GC	black_gc;
 };

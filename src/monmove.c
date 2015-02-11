@@ -56,6 +56,15 @@ register struct monst *mtmp;
 	if(mtmp->mpeaceful && in_town(u.ux+u.dx, u.uy+u.dy) &&
 	   mtmp->mcansee && m_canseeu(mtmp) && !rn2(3)) {
 
+#ifdef CONVICT
+		if((Role_if(PM_CONVICT) || Race_if(PM_ALBAE)) && !Upolyd) {
+            verbalize("%s yells: Hey!  You are the one from the wanted poster!",
+             Amonnam(mtmp));
+            (void) angry_guards(!(flags.soundok));
+            stop_occupation();
+            return;
+        }
+#endif /* CONVICT */
 	    if(picking_lock(&x, &y) && IS_DOOR(levl[x][y].typ) &&
 	       (levl[x][y].doormask & D_LOCKED)) {
 
@@ -113,8 +122,8 @@ register struct monst *mtmp;
 	     */
 	    if (spec_ability(uwep, SPFX_WARN) && spec_dbon(uwep, mtmp, 1))
 		warnlevel = 100;
-	    else if ((int) (mtmp->m_lev / 4) > warnlevel)
-		warnlevel = (mtmp->m_lev / 4);
+	    else if ((int) (mtmp->m_lev / 6) > warnlevel)
+		warnlevel = (mtmp->m_lev / 6);
 	/* STEPHEN WHITE'S NEW CODE */
 	} else if(Undead_warning && !rd && !mtmp->mpeaceful &&
 		  (dd = distu(mtmp->mx,mtmp->my)) < distu(x,y) &&
@@ -168,16 +177,34 @@ onscary(x, y, mtmp)
 int x, y;
 struct monst *mtmp;
 {
+	int resist_percentage;
+	int scresist_percentage;
+	boolean mresists;
+	boolean scmresists;
+
+
 	if (mtmp->isshk || mtmp->isgd || mtmp->iswiz || !mtmp->mcansee ||
-			mtmp->mpeaceful || mtmp->data->mlet == S_HUMAN ||
-	    is_lminion(mtmp) || mtmp->data == &mons[PM_ANGEL] ||
-	    mtmp->data == &mons[PM_CTHULHU] ||
-	    is_rider(mtmp->data) || mtmp->data == &mons[PM_MINOTAUR])
+			mtmp->mpeaceful || (mtmp->data->mlet == S_HUMAN && (rn2(5) || mtmp->data->geno & G_UNIQ )) || (mtmp->data->mlet == S_DEMON && (rn2(3) || mtmp->data->geno & G_UNIQ )) ||
+			(mtmp->data->mlet == S_NEMESE && (rn2(10) || mtmp->data->geno & G_UNIQ )) || (mtmp->data->mlet == S_ARCHFIEND && (rn2(25) || mtmp->data->geno & G_UNIQ )) || mtmp->data->mlet == S_RUBMONST ||
+	    is_lminion(mtmp) || (mtmp->data->mlet == S_ANGEL && (rn2(20) || mtmp->data->geno & G_UNIQ )) || (mtmp->data->mlet == S_JELLY && (rn2(3) || mtmp->data->geno & G_UNIQ )) ||
+	    mtmp->data == &mons[PM_CTHULHU] || (mtmp->data->mlet == S_LIGHT && (rn2(2) || mtmp->data->geno & G_UNIQ )) || (mtmp->data->mlet == S_FUNGUS && (rn2(10) || mtmp->data->geno & G_UNIQ )) ||
+	    is_rider(mtmp->data) || (mtmp->data == &mons[PM_MINOTAUR] && (rn2(5) || mtmp->data->geno & G_UNIQ )) ||
+		 mtmp->mnum == quest_info(MS_NEMESIS) || mtmp->mnum == PM_VLAD_THE_IMPALER)
 		return(FALSE);
 
-	return (boolean)(sobj_at(SCR_SCARE_MONSTER, x, y)
+	/* the smallest monsters always respect Elbereth;
+	 * more powerful things less so */
+	/* also nerfed scare monster scrolls a bit */
+
+	resist_percentage = (int)(mtmp->m_lev * 1.5);
+	scresist_percentage = (int)(mtmp->m_lev * 0.5);
+
+	mresists = rn2(100) < resist_percentage;
+	scmresists = rn2(100) < resist_percentage;
+
+	return (boolean)((sobj_at(SCR_SCARE_MONSTER, x, y) && !scmresists)
 #ifdef ELBERETH
-			 || sengr_at("Elbereth", x, y)
+			 || (sengr_at("Elbereth", x, y) && !mresists)
 #endif
 			 || (is_vampire(mtmp->data)
 			     && IS_ALTAR(levl[x][y].typ)));
@@ -192,10 +219,17 @@ mon_regen(mon, digest_meal)
 struct monst *mon;
 boolean digest_meal;
 {
+
+	int regenrate; /* A level 30 pet large cat would otherwise regenerate waaaaaay too slowly. --Amy */
+
+	regenrate = (20 - (mon->m_lev / 3));
+	if (regenrate < 6) regenrate = 6;
+	if (Race_if(PM_HAXOR)) regenrate /= 2;
+
 	if (mon->mhp < mon->mhpmax && !is_golem(mon->data) &&
-	    (moves % 20 == 0 || regenerates(mon->data))) mon->mhp++;
+	    (moves % /*20*/regenrate == 0 || regenerates(mon->data))) mon->mhp++;
 	if (mon->m_en < mon->m_enmax && 
-	    (moves % 20 == 0 || (rn2(mon->m_lev + 5) > 15))) {
+	    (moves % /*20*/regenrate == 0 || (rn2(mon->m_lev + 5) > 15))) {
 	    	mon->m_en += rn1((mon->m_lev % 10 + 1),1);
 	    	if (mon->m_en > mon->m_enmax) mon->m_en = mon->m_enmax;
 	}
@@ -275,9 +309,17 @@ boolean fleemsg;
 		if (fleetime == 1) fleetime++;
 		mtmp->mfleetim = min(fleetime, 127);
 	    }
-	    if (!mtmp->mflee && fleemsg && canseemon(mtmp) && !mtmp->mfrozen)
-		pline("%s turns to flee!", (Monnam(mtmp)));
-	    mtmp->mflee = 1;
+	    if (!mtmp->mflee && fleemsg && canseemon(mtmp) && !mtmp->mfrozen) {
+		if (rn2(3)) {
+		  pline("%s turns to flee!", (Monnam(mtmp)));
+		  mtmp->mflee = 1;
+		}
+		else {
+		  pline("%s is startled for a moment.", (Monnam(mtmp)));}
+		};
+
+		/* pline("%s turns to flee!", (Monnam(mtmp))); */
+	    /*mtmp->mflee = 1;*/
 	}
 }
 
@@ -306,9 +348,12 @@ int *inrange, *nearby, *scared;
 		seescaryx = u.ux;
 		seescaryy = u.uy;
 	}
-	*scared = (*nearby && (onscary(seescaryx, seescaryy, mtmp) ||
-			       (!mtmp->mpeaceful &&
+	*scared = (*nearby && (onscary(seescaryx, seescaryy, mtmp) && (rnd(20) > 1) ||
+			       (!mtmp->mpeaceful && (rnd(3) > 1) &&
 				    in_your_sanctuary(mtmp, 0, 0))));
+	/* note by Amy: I always felt permanent Elbereths were waaaaaaaay too strong.
+	It's much more interesting if Elbereth has a chance to fail, too.
+	After all, where's the challenge in burning an Elbereth, then whacking at soldier ants for two hours straight? */
 
 	if(*scared) {
 		if (rn2(7))
@@ -409,7 +454,7 @@ register struct monst *mtmp;
 
 	/* Monsters that want to acquire things */
 	/* may teleport, so do it before inrange is set */
-	if(is_covetous(mdat)) (void) tactics(mtmp);
+	if(is_covetous(mdat) && !rn2(10)) (void) tactics(mtmp);
 
 	/* check distance and scariness of attacks */
 	distfleeck(mtmp,&inrange,&nearby,&scared);
@@ -424,6 +469,9 @@ register struct monst *mtmp;
 
 	/* Demonic Blackmail! */
 	if(nearby && mdat->msound == MS_BRIBE &&
+#ifdef CONVICT
+       (monsndx(mdat) != PM_PRISON_GUARD) &&
+#endif /* CONVICT */
 	   mtmp->mpeaceful && !mtmp->mtame && !u.uswallow) {
 		if (mtmp->mux != u.ux || mtmp->muy != u.uy) {
 			pline("%s whispers at thin air.",
@@ -442,12 +490,32 @@ register struct monst *mtmp;
 		} else if(demon_talk(mtmp)) return(1);	/* you paid it off */
 	}
 
+#ifdef CONVICT
+	/* Prison guard extortion */
+    if(nearby && (monsndx(mdat) == PM_PRISON_GUARD) && !mtmp->mpeaceful
+	 && !mtmp->mtame && !u.uswallow && (!mtmp->mspec_used)) {
+        long gdemand = 500 * u.ulevel;
+        long goffer = 0;
+
+        pline("%s demands %ld %s to avoid re-arrest.", Amonnam(mtmp),
+         gdemand, currency(gdemand));
+        if ((goffer = bribe(mtmp)) >= gdemand) {
+            verbalize("Good.  Now beat it, scum!");
+            mtmp->mpeaceful = 1;
+            set_malign(mtmp);
+        } else {
+            pline("I said %ld!", gdemand);
+            mtmp->mspec_used = 1000;
+        }
+    }
+#endif /* CONVICT */
+
 	/* the watch will look around and see if you are up to no good :-) */
-	if (mdat == &mons[PM_WATCHMAN] || mdat == &mons[PM_WATCH_CAPTAIN])
+	if (mdat == &mons[PM_WATCHMAN] || mdat == &mons[PM_WATCH_CAPTAIN] || mdat == &mons[PM_WATCH_LEADER] || mdat == &mons[PM_WATCH_LIEUTENANT])
 		watch_on_duty(mtmp);
 
 	/* [DS] Cthulhu also uses psychic blasts */
-	else if ((is_mind_flayer(mdat) || mdat == &mons[PM_CTHULHU]) 
+	else if ((is_mind_flayer(mdat) || mdat == &mons[PM_CTHULHU] || mdat == &mons[PM_FLYING_ASSHOLE] ) 
 			&& !rn2(20)) {
 		struct monst *m2, *nmon = (struct monst *)0;
 
@@ -472,7 +540,7 @@ register struct monst *mtmp;
 				dmg = (mdat == &mons[PM_CTHULHU])?
 					rn1(10, 10) :
 					rn1(4, 4);
-				if (Half_spell_damage) dmg = (dmg+1) / 2;
+				if (Half_spell_damage && rn2(2) ) dmg = (dmg+1) / 2;
 				losehp(dmg, "psychic blast", KILLED_BY_AN);
 			}
 		}
@@ -617,9 +685,138 @@ toofar:
 	if (!mtmp->msleeping && mtmp->mcanmove && nearby)
 	    quest_talk(mtmp);
 	/* extra emotional attack for vile monsters */
+	/* Come on, monsters can still cuss at you if you can't see them. Seriously, what the heck. --Amy */
 	    if(inrange && mtmp->data->msound == MS_CUSS && !mtmp->mpeaceful &&
-		couldsee(mtmp->mx, mtmp->my) && !mtmp->minvis && !rn2(5))
+		/*couldsee(mtmp->mx, mtmp->my) && !mtmp->minvis &&*/ !rn2(5))
 	    cuss(mtmp);
+
+	    if(inrange && mtmp->data->msound == MS_PUPIL && !mtmp->mpeaceful &&
+		/*couldsee(mtmp->mx, mtmp->my) && !mtmp->minvis &&*/ !rn2(5))
+
+		{
+		static const char *pupil_msgs[] = {
+			"Today no homework ... *please*",
+			"six times nine is ... um ... uh ... ... forty-two",
+			"you ... Strange word",	/* You're not expected to understand this ... */
+			"Bugger off!",
+			"*uck off!",
+			"What are the newest news about the Super Information Highway?",
+			"What do you want?",
+			"Do the world a favour---jump out of the 20th story of the Uni-Center!",
+		};
+
+		verbalize(pupil_msgs[rn2(SIZE(pupil_msgs))]);
+		}
+
+	    if(inrange && mtmp->data->msound == MS_WHORE && !mtmp->mpeaceful &&
+		/*couldsee(mtmp->mx, mtmp->my) && !mtmp->minvis &&*/ !rn2(5))
+
+		{
+		static const char *whore_msgs[] = { /* These are obviously inspired by the GTA series --Amy */
+			"Come to Momma.",
+			"I'm gonna call my pimp.",
+			"You picked the wrong bitch.",
+			"You're just another sorry ass!",
+			"Hey, this is my first night!",
+			"You know, I used to be a marine before the OP.", /* Vice City */
+			"Cocksucker!",
+			"I'll kick your nuts flat!", /* yes the PC can be female, but who cares? */
+			"I'm no slut, I just need the money!",
+			"I'll be sitting on you in a second.",
+			"You think I can't mess you up?",
+			"Die in a pool of your own blood.",
+			"Get ready for an ass-kicking.",
+			"You want me to whoop you?",
+			"You want some? I'll give you some!",
+			"Enjoy this stiletto.",
+			"If I don't kill you, my parents will.",
+			"I know kickboxing.",
+			"I'm a black belt in karate.",
+			"My hands are lethal weapons.",
+			"I'll kick your teeth in.",
+			"Would you really hit a woman?",
+			"I've killed hundreds of pigs like you!",
+			"I'm gonna open up a can of whoopass on you now!",
+			"Girls can fight too!",
+			"Beating on girls, right?",
+			"I have no problem kicking you in the nuts.",
+			"I'll slap you silly.",
+			"My pimp will take care of you.",
+			"You're messing with an angry bitch!",
+			"Another asshole with a problem!",
+			"You think cause I'm a girl I can't fight?",
+			"You call that 'fighting'?",
+			"I'm gonna stomp your balls!",
+			"I'm a lady but I can fight.",
+			"I'm an innocent virgin!",
+			"You just made me break a nail!",
+			"I'm expecting an apology!",
+			"You insult my womanhood.",
+			"You disgust me.",
+		};
+
+		verbalize(whore_msgs[rn2(SIZE(whore_msgs))]);
+		}
+
+	    if(inrange && mtmp->data->msound == MS_PRINCIPAL && !mtmp->mpeaceful &&
+		/*couldsee(mtmp->mx, mtmp->my) && !mtmp->minvis &&*/ !rn2(5))
+
+		{
+		static const char *principal_msgs[] = {
+		"What's up?",
+		"I really feel sick - there are so many things to do!",
+		"Help me, I faint!",
+		"We'll do that in groups of one person!",
+		};
+
+		verbalize(principal_msgs[rn2(SIZE(principal_msgs))]);
+		}
+
+	    if(inrange && mtmp->data->msound == MS_TEACHER && !mtmp->mpeaceful &&
+		/*couldsee(mtmp->mx, mtmp->my) && !mtmp->minvis &&*/ !rn2(5))
+
+		{
+	   	 static const char *teacher_msgs[] = {
+			"No chance! Every day you'll get homework!",
+			"Is it really true? Does really _everybody_ have the homework?",
+			"That usage of the word 'goes' does harm to my ears!",
+			"Your attitude is really unacceptable!",
+			"The \"Stigel-Brauerei\" was founded 1492. Well, in that year was that affair with that guy, Columbus, but that really isn't important.",
+			"Why are you going? I'm only 20 minutes late!",
+			"Where's your problem? I'll be happy to help you",
+			"You didn't understand? Then let's begin again ... (*sigh*)",
+			"No homework yet? - This can be changed!",
+			"Overbecks - das Ueberbier",
+			"How about dehydrating carbonhydrates today?",
+			"Back when I was a pupil, the following thing happened ...",
+			"Back when I was studying chemistry, the following thing happened ...",
+			"... dann ist die Scheisse am dampfen",
+			"NIKI forever!",
+			"Pascal forever!",
+			"Yes ... I know that everything is easier in C, but I simply love Pascal ...",
+			"You have Str:0 (at most), so bugger off!",
+			"Do it - who cares about the odd broken bone?",
+			"You are sick because you were running for 30 minutes? So run another hour!",
+			"Shall I help you? (takes the whip)",
+			"We'll do that diagonally. *grin* (wipes sweat off head)",
+			"*grin*",
+			"You know, (*grin*) we'll have to do something now! (*grin*)",
+			"How about a pupil experiment - cut off your ears?",
+			"Yet another pupil experiment: the consequences of KCN ingested.",
+			"Don't expect to get away without homework!",
+			"No homework in the holidays? You must have something to do, after all!",
+			"The low level of you all is really beyond acception!",
+			"There was endless work in the supervision and administration of the farm ...",
+			/* it's really a shame that I can't think of more messages for him */
+			"I expect you to do your homework _regularly_ and _carefully_!",
+			"The level of work is really very low nowadays!",
+			"In _our_ times pupils were real pupils and teachers were real teachers!",
+			"Back when pupils where real pupils and teachers were real teachers, everything was better!",
+		};
+
+		verbalize(teacher_msgs[rn2(SIZE(teacher_msgs))]);
+
+		}
 
 	return(tmp == 2);
 }
@@ -670,6 +867,8 @@ register int after;
 	long flag;
 	int  omx = mtmp->mx, omy = mtmp->my;
 	struct obj *mw_tmp;
+
+	if (mtmp->data->mlet == S_TURRET || mtmp->data == &mons[PM_BUS] || mtmp->data == &mons[PM_EMPIRE_STATE_BUILDING] || mtmp->data == &mons[PM_DIVISION_THIEF] || mtmp->data == &mons[PM_DIVISION_JEDI] || mtmp->data == &mons[PM_CAR_DRIVING_SUPERTHIEF] || mtmp->data == &mons[PM_SUPERTHIEF] || mtmp->data == &mons[PM_HUGE_OGRE_THIEF] || mtmp->data == &mons[PM_SUPERJEDI] || mtmp->data == &mons[PM_CRITICALLY_INJURED_JEDI] || mtmp->data == &mons[PM_CRITICALLY_INJURED_THIEF] || mtmp->data == &mons[PM_TRAILER] || mtmp->data == &mons[PM_DEMONIC_ENTITY] || mtmp->data == &mons[PM_LAVA_GAZER] || mtmp->data == &mons[PM_ATHENA_BLOCKER] || mtmp->data == &mons[PM_ATHENA_BASHER] || mtmp->data == &mons[PM_ATHENA_GUARDIAN] || mtmp->data == &mons[PM_ATHENA_PROTECTOR] || mtmp->data == &mons[PM_ATHENA_GIANT] || mtmp->data == &mons[PM_DEATH_SPECTRE] || mtmp->data == &mons[PM_STYGIAN_WATCHER] || mtmp->data == &mons[PM_RIVER_STALKER] || mtmp->data == &mons[PM_WAR_ASSHOLE] || mtmp->data == &mons[PM_TRAPPED_SOUL] || mtmp->data == &mons[PM_WATER_WATCHER] ) return(0); /* stationary turrets --Amy */
 
 	if(mtmp->mtrapped) {
 	    int i = mintrap(mtmp);
@@ -728,7 +927,7 @@ register int after;
 	}
 
 	/* and the acquisitive monsters get special treatment */
-	if(is_covetous(ptr)) {
+	if(is_covetous(ptr) && !rn2(10)) {
 	    xchar tx = STRAT_GOALX(mtmp->mstrategy),
 		  ty = STRAT_GOALY(mtmp->mstrategy);
 	    struct monst *intruder = m_at(tx, ty);
@@ -764,7 +963,7 @@ register int after;
 #endif
 
 	/* teleport if that lies in our nature */
-	if(ptr == &mons[PM_TENGU] && !rn2(5) && !mtmp->mcan &&
+	if( (ptr == &mons[PM_TENGU] || ptr == &mons[PM_BLINK] || ptr == &mons[PM_KING_OF_PORN] || ptr == &mons[PM_MAGNET_ELEMENTAL] || ptr == &mons[PM_PHASE_KNIGHT] || ptr == &mons[PM_TELEPORTING_DEMON] || ptr == &mons[PM_BEAMING_UFO_PART] || ptr == &mons[PM_BEAMER]) && !rn2(25) && !mtmp->mcan &&
 	   !tele_restrict(mtmp)) {
 	    if(mtmp->mhp < 7 || mtmp->mpeaceful || rn2(2))
 		(void) rloc(mtmp, FALSE);
@@ -792,6 +991,9 @@ not_special:
 				      (dist2(omx, omy, gx, gy) <= 36));
 
 		if (!mtmp->mcansee ||
+		/* monsters no longer automatically know where you are. That was just incredibly annoying. --Amy */
+		( (!Aggravate_monster || !rn2(5)) && !should_see && distu(mtmp->mx,mtmp->my) > 10 && (Stealth ? (can_track(ptr) ? rn2(4) : rn2(5) ) : (can_track(ptr) ? rn2(2) : rn2(3) ) ) ) ||
+			 ( (!Aggravate_monster || !rn2(5)) && is_wanderer(mtmp->data) ? (Stealth ? !rn2(3) : !rn2(5) ) : (Stealth ? !rn2(5) : !rn2(8) ) ) ||
 		    (should_see && Invis && !perceives(ptr) && rn2(11)) ||
 		    (youmonst.m_ap_type == M_AP_OBJECT && youmonst.mappearance == STRANGE_OBJECT) || u.uundetected ||
 		    (youmonst.m_ap_type == M_AP_OBJECT && youmonst.mappearance == GOLD_PIECE && !likes_gold(ptr)) ||
@@ -800,14 +1002,14 @@ not_special:
 		      ptr->mlet == S_LIGHT) && !rn2(3)))
 			appr = 0;
 
-		if(monsndx(ptr) == PM_LEPRECHAUN && (appr == 1) &&
+/*		if(monsndx(ptr) == PM_LEPRECHAUN && (appr == 1) &&
 #ifndef GOLDOBJ
 		   (mtmp->mgold > u.ugold))
 #else
 		   ( (lepgold = findgold(mtmp->minvent)) && 
                    (lepgold->quan > ((ygold = findgold(invent)) ? ygold->quan : 0L)) ))
 #endif
-			appr = -1;
+			appr = -1;*/ /* commented out - they should still be attacking you --Amy */
 
 		if (!should_see && can_track(ptr)) {
 			register coord *cp;
@@ -841,8 +1043,8 @@ not_special:
 		/* look for gold or jewels nearby */
 		likegold = (likes_gold(ptr) && pctload < 95);
 		likegems = (likes_gems(ptr) && pctload < 85);
-		uses_items = (!mindless(ptr) && !is_animal(ptr)
-			&& pctload < 75);
+		uses_items = (/*!mindless(ptr) && !is_animal(ptr)
+			&& */pctload < 75); /* I just decided that "mindless" isn't the same as "stupid". --Amy */
 		likeobjs = (likes_objs(ptr) && pctload < 75);
 		likemagic = (likes_magic(ptr) && pctload < 85);
 		likerock = (throws_rocks(ptr) && pctload < 50 && !In_sokoban(&u.uz));
@@ -920,10 +1122,10 @@ not_special:
 			    lmy = max(0, omy-minr);
 			    gx = otmp->ox;
 			    gy = otmp->oy;
-			    if (gx == omx && gy == omy) {
-				mmoved = 3; /* actually unnecessary */
+			    /*if (gx == omx && gy == omy) {
+				mmoved = 3; actually unnecessary
 				goto postmov;
-			    }
+			    }*/
 			}
 		    }
 		}
@@ -964,7 +1166,9 @@ not_special:
 	if (can_tunnel) flag |= ALLOW_DIG;
 	if (is_human(ptr) || ptr == &mons[PM_MINOTAUR]) flag |= ALLOW_SSM;
 	if (is_undead(ptr) && ptr->mlet != S_GHOST) flag |= NOGARLIC;
-	if (throws_rocks(ptr)) flag |= ALLOW_ROCK;
+	if (throws_rocks(ptr) || passes_walls(ptr) || amorphous(ptr) || is_whirly(ptr) || ptr->mlet == S_NEMESE || ptr->mlet == S_ARCHFIEND || ptr->msound == MS_NEMESIS || ptr->geno & G_UNIQ ||
+				verysmall(ptr) || slithy(ptr) || ptr == &mons[PM_BLACK_MARKETEER]) flag |= ALLOW_ROCK;
+/* Boulder forts will be a lot less effective at holding dangerous monsters at bay. --Amy */
 	if (can_open) flag |= OPENDOOR;
 	if (can_unlock) flag |= UNLOCKDOOR;
 	if (doorbuster) flag |= BUSTDOOR;
@@ -983,11 +1187,16 @@ not_special:
 	    /* allow monsters be shortsighted on some levels for balance */
 	    if(!mtmp->mpeaceful && level.flags.shortsighted &&
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
+
+		/* special coding for "homing" giant wasps from the hunger games --Amy */
+		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_REFUGE_UHLERT]) && !mtmp->mpeaceful) appr = 1;
+
 	    if (is_unicorn(ptr) && level.flags.noteleport) {
 		/* on noteleport levels, perhaps we cannot avoid hero */
 		for(i = 0; i < cnt; i++)
 		    if(!(info[i] & NOTONL)) avoid=TRUE;
 	    }
+		if (avoid_player(ptr)) avoid=TRUE; /* making this into a monster flag --Amy */
 
 	    for(i=0; i < cnt; i++) {
 		if (avoid && (info[i] & NOTONL)) continue;
@@ -1101,7 +1310,7 @@ not_special:
 	    /* Place a segment at the old position. */
 	    if (mtmp->wormno) worm_move(mtmp);
 	} else {
-	    if(is_unicorn(ptr) && rn2(2) && !tele_restrict(mtmp)) {
+	    if(is_unicorn(ptr) && ptr != &mons[PM_YOUNG_UNICORN] && rn2(2) && !tele_restrict(mtmp)) {
 		(void) rloc(mtmp, FALSE);
 		return(1);
 	    }
@@ -1127,7 +1336,7 @@ postmov:
 		    struct rm *here = &levl[mtmp->mx][mtmp->my];
 		    boolean btrapped = (here->doormask & D_TRAPPED);
 
-		    if(here->doormask & (D_LOCKED|D_CLOSED) && amorphous(ptr)) {
+		    if(here->doormask & (D_LOCKED|D_CLOSED) && (amorphous(ptr)  ) ) {
 			if (flags.verbose && canseemon(mtmp))
 			    pline("%s %s under the door.", Monnam(mtmp),
 				  (ptr == &mons[PM_FOG_CLOUD] ||
@@ -1150,7 +1359,7 @@ postmov:
 			    /* newsym(mtmp->mx, mtmp->my); */
 			    unblock_point(mtmp->mx,mtmp->my); /* vision */
 			}
-		    } else if (here->doormask == D_CLOSED && can_open) {
+		    } else if (here->doormask == D_CLOSED && (can_open ) ) {
 			if(btrapped) {
 			    here->doormask = D_NODOOR;
 			    newsym(mtmp->mx, mtmp->my);
@@ -1231,8 +1440,8 @@ postmov:
 		    /* look for gold or jewels nearby */
 		    likegold = (likes_gold(ptr) && pctload < 95);
 		    likegems = (likes_gems(ptr) && pctload < 85);
-		    uses_items = (!mindless(ptr) && !is_animal(ptr)
-				  && pctload < 75);
+		    uses_items = (/*!mindless(ptr) && !is_animal(ptr)
+				  && */pctload < 75);
 		    likeobjs = (likes_objs(ptr) && pctload < 75);
 		    likemagic = (likes_magic(ptr) && pctload < 85);
 		    likerock = (throws_rocks(ptr) && pctload < 50 &&
@@ -1245,15 +1454,21 @@ postmov:
 		    if (meatmetal(mtmp) == 2) return 2;	/* it died */
 		}
 
+		/* or a lithic object */
+		if (lithivorous(ptr)) {
+		    if (meatlithic(mtmp) == 2) return 2;	/* it died */
+		}
+
 		if(g_at(mtmp->mx,mtmp->my) && likegold) mpickgold(mtmp);
 
 		/* Maybe a cube ate just about anything */
 		/* KMH -- Taz likes organics, too! */
-		if (ptr == &mons[PM_GELATINOUS_CUBE] ||
-			ptr == &mons[PM_TASMANIAN_DEVIL]) {
+		if (ptr == &mons[PM_GELATINOUS_CUBE] || ptr == &mons[PM_GELATINOUS_GLOB] || ptr == &mons[PM_AMUSING_TYPE] || ptr == &mons[PM_MINOCUBE] || ptr == &mons[PM_GELATINOUS_DICE] || ptr == &mons[PM_TASMANIAN_ZOMBIE]
+		|| ptr == &mons[PM_GELATINOUS_THIEF] ||	ptr == &mons[PM_TASMANIAN_DEVIL]) {
 		    if (meatobj(mtmp) == 2) return 2;	/* it died */
 		}
-		if (ptr == &mons[PM_GHOUL] || ptr == &mons[PM_GHAST]) meatcorpse(mtmp);
+		if (ptr == &mons[PM_GHOUL] || ptr == &mons[PM_GHAST] || ptr == &mons[PM_GASTLY]
+		|| ptr == &mons[PM_HAUNTER] || ptr == &mons[PM_GENGAR] || ptr == &mons[PM_CORPULENT_DOG] || ptr == &mons[PM_SPIT_DEMON] || ptr == &mons[PM_THESTRAL] || ptr == &mons[PM_THICK_POTATO] || ptr == &mons[PM_BLACK_MUZZLE] || ptr == &mons[PM_CORPSE_SPITTER] || ptr == &mons[PM_MUZZLE_FIEND] || ptr == &mons[PM_MAW_FIEND] || ptr == &mons[PM_ROCKET_MUZZLE]) meatcorpse(mtmp);
 
 		if(!*in_rooms(mtmp->mx, mtmp->my, SHOPBASE) || !rn2(25)) {
 		    boolean picked = FALSE;
@@ -1263,7 +1478,7 @@ postmov:
 		    if(likerock) picked |= mpickstuff(mtmp, boulder_class);
 		    if(likegems) picked |= mpickstuff(mtmp, gem_class);
 		    if(uses_items) picked |= mpickstuff(mtmp, (char *)0);
-		    if(picked) mmoved = 3;
+		    /*if(picked) mmoved = 3;*/
 		}
 
 		if(mtmp->minvis) {
@@ -1272,7 +1487,7 @@ postmov:
 		}
 	    }
 
-	    if(hides_under(ptr) || ptr->mlet == S_EEL) {
+	    if(hides_under(ptr) || (ptr->mlet == S_EEL && !(ptr == &mons[PM_DEFORMED_FISH]) ) ) {
 		/* Always set--or reset--mundetected if it's already hidden
 		   (just in case the object it was hiding under went away);
 		   usually set mundetected unless monster can't move.  */

@@ -1,0 +1,738 @@
+#       SCCS Id: @(#)Slayer.des 3.4     1992/09/22
+#       Copyright (c) 1989 by Jean-Christophe Collet
+#       Copyright (c) 1991-2 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#       The "start" level for the quest.
+#
+#       Here you meet your (besieged) class leader, Van Helsing
+#       and receive your quest assignment.
+#
+MAZE: "Wan-strt",' '
+FLAGS: noteleport
+GEOMETRY:center,center
+MAP
+-----------------------------
+|.............|.............|
+|....|...|....F.............|
+|...|..|..|...F.............|
+|..|..........F.............|
+|.......|..|..F.............|
+|.|....|....|.F.............|
+|..|..|.......F.............|
+|..........|..F.............|
+|...|..|..|...F.............|
+|....|...|....F.............|
+|.............|.............|
+|-.-FFFFFFFFF---FFFFFFFFF-+-|
+|...........................|
+|...........................|
+-----------------------------
+ENDMAP
+
+# Portal arrival point
+BRANCH:(13,11,13,11),(0,0,0,0)
+# Stairs
+STAIR:(15,11), down
+
+# High Priest
+MONSTER:'@',"Master Caster",(17,09)
+# The treasure of Van Helsing
+OBJECT:'(',"chest",(17,09)
+# knight guards for the audience chamber
+MONSTER:'@',"exterminator",(18,09)
+MONSTER:'@',"exterminator",(16,09)
+MONSTER:'@',"exterminator",(17,08)
+MONSTER:'@',"exterminator",(17,10)
+MONSTER:'@',"exterminator",(16,08)
+MONSTER:'@',"exterminator",(16,10)
+MONSTER:'@',"exterminator",(18,08)
+MONSTER:'@',"exterminator",(18,10)
+# Non diggable walls
+NON_DIGGABLE:(00,00,28,15)
+REGION:(00,00,28,15),unlit,"ordinary"
+
+DOOR:locked,(26,12)
+OBJECT:'`',"boulder",(2,2)
+OBJECT:'`',"boulder",(7,2)
+OBJECT:'`',"boulder",(2,3)
+OBJECT:'`',"boulder",(6,3)
+OBJECT:'`',"boulder",(8,3)
+OBJECT:'`',"boulder",(2,4)
+OBJECT:'`',"boulder",(5,4)
+OBJECT:'`',"boulder",(9,4)
+OBJECT:'`',"boulder",(4,5)
+OBJECT:'`',"boulder",(10,5)
+OBJECT:'`',"boulder",(1,6)
+OBJECT:'`',"boulder",(4,6)
+OBJECT:'`',"boulder",(10,6)
+OBJECT:'`',"boulder",(13,6)
+OBJECT:'`',"boulder",(4,7)
+OBJECT:'`',"boulder",(10,7)
+OBJECT:'`',"boulder",(5,8)
+OBJECT:'`',"boulder",(9,8)
+OBJECT:'`',"boulder",(12,8)
+OBJECT:'`',"boulder",(6,9)
+OBJECT:'`',"boulder",(8,9)
+OBJECT:'`',"boulder",(12,9)
+OBJECT:'`',"boulder",(7,10)
+OBJECT:'`',"boulder",(12,10)
+TRAP:"hole",(3,13)
+TRAP:"hole",(4,13)
+TRAP:"hole",(5,13)
+TRAP:"hole",(6,13)
+TRAP:"hole",(7,13)
+TRAP:"hole",(8,13)
+TRAP:"hole",(9,13)
+TRAP:"hole",(10,13)
+TRAP:"hole",(11,13)
+TRAP:"hole",(12,13)
+TRAP:"hole",(16,13)
+TRAP:"hole",(17,13)
+TRAP:"hole",(18,13)
+TRAP:"hole",(19,13)
+TRAP:"hole",(20,13)
+TRAP:"hole",(21,13)
+TRAP:"hole",(22,13)
+TRAP:"hole",(23,13)
+TRAP:"hole",(24,13)
+TRAP:"hole",(25,13)
+TRAP:"hole",(3,14)
+TRAP:"hole",(4,14)
+TRAP:"hole",(5,14)
+TRAP:"hole",(6,14)
+TRAP:"hole",(7,14)
+TRAP:"hole",(8,14)
+TRAP:"hole",(9,14)
+TRAP:"hole",(10,14)
+TRAP:"hole",(18,14)
+TRAP:"hole",(19,14)
+TRAP:"hole",(20,14)
+TRAP:"hole",(21,14)
+TRAP:"hole",(22,14)
+TRAP:"hole",(23,14)
+TRAP:"hole",(24,14)
+TRAP:"hole",(25,14)
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+# Monsters on siege duty.
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+ 
+MONSTER:'m',random, random
+MONSTER:'m',random, random
+MONSTER:'m',random, random
+MONSTER:'m',random, random
+MONSTER:'m',random, random
+
+#
+#       The "locate" level for the quest.
+#
+#       Here you have to locate the Crypt of Vlad to go
+#       further towards your assigned quest.
+#
+
+MAZE: "Wan-loca",' '
+FLAGS: noteleport
+# This is a kludge to init the level as a lit field.
+GEOMETRY:center,center
+MAP
+--------------------------
+|........................|
+|.......|---------------.|
+-------.------         |.|
+ |...........|         |.|
+ |...........|         |.|
+--------.-----         |.|
+|............|         |.|
+|............|         |.|
+-----.--------   ------|.|
+ |..........|  --|.....|.|
+ |..........|  |.+.....|.|
+ |.........|-  |-|.....|.|
+-------.----   |.+.....+.|
+|........|     |-|.....|--
+|........|     |.+.....|  
+|...|-----     --|.....|  
+-----            -------  
+ENDMAP
+
+# Stairs
+STAIR:(01,01),up
+STAIR:(16,13),down
+# Non diggable walls
+NON_DIGGABLE:(00,00,25,17)
+NON_PASSWALL:(00,00,25,17)
+
+# Boulders
+OBJECT:'`',"boulder",(03,05)
+OBJECT:'`',"boulder",(05,05)
+OBJECT:'`',"boulder",(07,05)
+OBJECT:'`',"boulder",(09,05)
+OBJECT:'`',"boulder",(11,05)
+#
+OBJECT:'`',"boulder",(04,07)
+OBJECT:'`',"boulder",(04,08)
+OBJECT:'`',"boulder",(06,07)
+OBJECT:'`',"boulder",(09,07)
+OBJECT:'`',"boulder",(11,07)
+#
+OBJECT:'`',"boulder",(03,12)
+OBJECT:'`',"boulder",(04,10)
+OBJECT:'`',"boulder",(05,12)
+OBJECT:'`',"boulder",(06,10)
+OBJECT:'`',"boulder",(07,11)
+OBJECT:'`',"boulder",(08,10)
+OBJECT:'`',"boulder",(09,12)
+#
+OBJECT:'`',"boulder",(03,14)
+
+# Traps
+TRAP:"hole",(08,01)
+TRAP:"hole",(09,01)
+TRAP:"hole",(10,01)
+TRAP:"hole",(11,01)
+TRAP:"hole",(12,01)
+TRAP:"hole",(13,01)
+TRAP:"hole",(14,01)
+TRAP:"hole",(15,01)
+TRAP:"hole",(16,01)
+TRAP:"hole",(17,01)
+TRAP:"hole",(18,01)
+TRAP:"hole",(19,01)
+TRAP:"hole",(20,01)
+TRAP:"hole",(21,01)
+TRAP:"hole",(22,01)
+TRAP:"hole",(23,01)
+
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+ 
+MONSTER:'m',random, random
+MONSTER:'m',random, random
+MONSTER:'m',random, random
+MONSTER:'m',random, random
+MONSTER:'m',random, random
+
+#
+#       The "goal" level for the quest.
+#
+#       Here you meet Count Dracula your nemesis monster.  You have to
+#       defeat Count Dracula in combat to gain the artifact you have
+#       been assigned to retrieve.
+#
+
+MAZE: "Wan-goal", ' '
+FLAGS:noteleport,hardfloor,nommap,shortsighted,spooky
+GEOMETRY:center,center
+MAP
+  T.    T.T                    CC     CC    #######H#H                      
+ T.... ......   ...T  LLL    CCCCCC  CCCC   #       H   #################H. 
+   .T...TTTT.. ..T.. LL LL  CCCCCC   C CCC  # --+---+-- #                   
+  ..TTTTT. TT...T..  LL    CCCCCCCC    CCC  # -...-...- #                   
+ T.TTTT.TTTTTTTTT.  CCLL  CCCCCCCCCC CCCCC  # +...+...+ #                   
+ ... TT. T T T .T.. CCCLLLCCCCCCCCCCCCCCC   # -...-...- #      .     .      
+  .TTTTTTTTTTTTTTT.  CCCCLLLCCCCCCCCCCC     # --+---+-- #                   
+  .T T T T TT. T T.. CCCCCCLL-S-CCCCCC  C   #     -...- #                   
+ ..TTTTTTTTTTTTTTTT.  CCCCLL--.--CCCCC CCC  #H### +...+ #   .  H- - -H  .   
+T.TT TTT T\T T . T.. CCCCLLL-.{.-CCCC  CC   #   # -...- #      -.}}}.-      
+ .TTTT.TTTTTTTTTTT.  CCLLLLL--.--CCCC CCC   # .H# --+-- #       }.}.}       
+..TT T T T T T TT.. CCLLCCCLL---LCCCCCCC    #   # -...- #      -}}.}}-      
+.TTTTTTT.TTTTT.T..  LLL CCCCLLLLLLCCCCCCCC  ##### +...+ #       }.}.}       
+.T T . TTT . TTT.. LL   CCCCCCLCCLLLCCCCC         -...- #      -.}}}.-      
+.TTTTTTTTTTTTTTTT.  L. CCCCCCLLCCCCLLLCCC --+---+---+-- #   .  H- - -H  .   
+.TT. T T T T T TT..     CCCLLLCCCCCCCLLC  -...-...-...- #                   
+ .TTTTTTTTTTTT..TT.. . CCLLLCCCCCCCCCCLC  +...+...+...+H#                   
+ ...TT T .TT TTTTTT... LLLCCCCCCCCC CCLC  -...-...-...- H      .     .      
+  T..TTTTTT....T.TT. .LL  CCCCCCCC   LLCC --+---+---+--                     
+    ....TT..  .....  LL    CCCCCC   LL CC               #H                  
+       ....     T.  LL       CC     L   CH###############                   
+ENDMAP
+GEOMETRY:center,center
+MAP
+  T.    T.T                    CC     CC    #######H#H                      
+ T.... ......   ...T  LLL    CCCCCC  CCCC   #       H   #################H. 
+   .T...TTTT.. ..T.. LL LL  CCCCCC   C CCC  # --+---+-- #                   
+  ..TTTTT. TT...T..  LL    CCCCCCCC    CCC  # -...-...- #                   
+ T.TTTT.TTTTTTTTT.  CCLL  CCCCCCCCCC CCCCC  # +...+...+ #                   
+ ... TT. T T T .T.. CCCLLLCCCCCCCCCCCCCCC   # -...-...- #      .     .      
+  .TTTTTTTTTTTTTTT.  CCCCLLLCCCCCCCCCCC     # --+---+-- #                   
+  .T T T T TT. T T.. CCCCCCLL-S-CCCCCC  C   #     -...- #                   
+ ..TTTTTTTTTTTTTTTT.  CCCCLL--.--CCCCC CCC  #H### +...+ #   .  H- - -H  .   
+T.TT TTT T\T T . T.. CCCCLLL-.{.-CCCC  CC   #   # -...- #      -.}}}.-      
+ .TTTT.TTTTTTTTTTT.  CCLLLLL--.--CCCC CCC   # .H# --+-- #       }.}.}       
+..TT T T T T T TT.. CCLLCCCLL---LCCCCCCC    #   # -...- #      -}}.}}-      
+.TTTTTTT.TTTTT.T..  LLL CCCCLLLLLLCCCCCCCC  ##### +...+ #       }.}.}       
+.T T . TTT . TTT.. LL   CCCCCCLCCLLLCCCCC         -...- #      -.}}}.-      
+.TTTTTTTTTTTTTTTT.  L. CCCCCCLLCCCCLLLCCC --+---+---+-- #   .  H- - -H  .   
+.TT. T T T T T TT..     CCCLLLCCCCCCCLLC  -...-...-...- #                   
+ .TTTTTTTTTTTT..TT.. . CCLLLCCCCCCCCCCLC  +...+...+...+H#                   
+ ...TT T .TT TTTTTT... LLLCCCCCCCCC CCLC  -...-...-...- H      .     .      
+  T..TTTTTT....T.TT. .LL  CCCCCCCC   LLCC --+---+---+--                     
+    ....TT..  .....  LL    CCCCCC   LL CC               #H                  
+       ....     T.  LL       CC     L   CH###############                   
+ENDMAP
+
+RANDOM_PLACES:(48,04),(52,04),(52,08),(52,12),(44,16),(52,16)
+
+# Stairs
+STAIR:(48,16),up
+# Objects
+OBJECT:')',"insect squasher",(10,09),blessed,+10,"Charged USB Stick"
+
+TELEPORT_REGION:(47,15,49,17),(00,00,00,00)
+NON_DIGGABLE:(00,00,75,20)
+
+NON_PASSWALL:(43,00,43,12)
+NON_PASSWALL:(40,13,49,13)
+NON_PASSWALL:(49,07,49,12)
+NON_PASSWALL:(45,07,48,07)
+NON_PASSWALL:(45,01,45,06)
+NON_PASSWALL:(46,01,54,01)
+NON_PASSWALL:(55,00,55,19)
+NON_PASSWALL:(42,19,54,19)
+NON_PASSWALL:(41,13,41,20)
+
+NON_PASSWALL:(64,08,68,08)
+NON_PASSWALL:(64,14,68,14)
+NON_PASSWALL:(63,09,63,13)
+NON_PASSWALL:(69,09,69,13)
+
+MAZEWALK:(74,01),south
+MAZEWALK:(10,09),south
+
+# entrance
+REGION:(47,15,49,17),lit,"ordinary"
+ENGRAVING:(48,16),engrave,"Beware of Dreams come true!"
+MONSTER:'i',random,(49,15),hostile
+TRAP:"sleep gas",(48,15)
+TRAP:"sleep gas",(47,16)
+TRAP:"sleep gas",(49,16)
+TRAP:"sleep gas",(48,17)
+
+# false treasure
+MONSTER:'$',random,place[0],asleep
+MONSTER:'$',random,place[0],asleep
+MONSTER:'$',random,place[0],asleep
+MONSTER:'$',random,place[0],asleep
+MONSTER:'$',random,place[0],asleep
+MONSTER:'$',random,place[0],asleep
+MONSTER:'$',random,place[0],asleep
+MONSTER:'$',random,place[0],asleep
+MONSTER:'$',random,place[0],asleep
+
+# bad food
+MONSTER:'%',random,place[1],asleep
+MONSTER:'%',random,place[1],asleep
+MONSTER:'%',random,place[1],asleep
+MONSTER:'%',random,place[1],asleep
+MONSTER:'%',random,place[1],asleep
+MONSTER:'%',random,place[1],asleep
+MONSTER:'%',random,place[1],asleep
+MONSTER:'%',random,place[1],asleep
+MONSTER:'%',random,place[1],asleep
+OBJECT:'%',"egg",place[1],"giant louse",2
+OBJECT:'%',"egg",place[1],"giant flea",0
+OBJECT:'%',"mushroom",place[1],cursed,0
+OBJECT:'%',"tin",place[1],"asphynx meat",0
+OBJECT:'%',"tin",place[1],"green slime meat",0
+
+# junk
+OBJECT[40%]:'!',"sickness",place[2],cursed,0
+OBJECT[40%]:'!',"sleeping",place[2],cursed,0
+OBJECT[40%]:'!',"confusion",place[2],cursed,0
+OBJECT[40%]:'!',"hallucination",place[2],cursed,0
+OBJECT[40%]:'!',"blindness",place[2],cursed,0
+OBJECT[40%]:'!',"polymorph",place[2],cursed,0
+OBJECT[40%]:'!',"sickness",place[2],cursed,0
+OBJECT[40%]:'!',"acid",place[2],cursed,0
+OBJECT[40%]:'!',"paralysis",place[2],cursed,0
+OBJECT[40%]:'!',"polymorph",place[2],cursed,0
+OBJECT[40%]:'/',"draining",place[2],cursed,0
+OBJECT[60%]:'/',"opening",place[2],cursed,0
+OBJECT[80%]:'/',"nothing",place[2],cursed,0
+OBJECT[60%]:'/',"secret door detection",place[2],cursed,0
+OBJECT[40%]:'[',"fumble boots",place[2],cursed,-2
+OBJECT[40%]:'[',"gauntlets of fumbling",place[2],cursed,-4
+OBJECT[40%]:'[',"poisonous cloak",place[2],cursed,-1
+OBJECT[40%]:'[',"robe of weakness",place[2],cursed,0
+OBJECT[40%]:')',"fly swatter",place[2],cursed,-2,"Bugshmasher"
+OBJECT[40%]:')',"worm tooth",place[2],cursed,-4,"Storm Brand"
+OBJECT[40%]:')',"short sword",place[2],cursed,-3,"Chaosbane"
+OBJECT[40%]:'"',"amulet of strangulation",place[2],cursed,0,"life saving"
+OBJECT[40%]:'=',"sleeping",place[2],cursed,0,"slow digestion"
+OBJECT[40%]:'=',"hunger",place[2],cursed,0,"free action"
+OBJECT[40%]:'=',"increase accuracy",place[2],blessed,-9,"polymorph control"
+OBJECT[40%]:'(',"oil lamp",place[2],cursed,0
+MONSTER:'@',random,place[2],hostile
+MONSTER:'@',random,place[2],hostile
+MONSTER:'@',random,place[2],peaceful
+MONSTER:'@',random,place[2],asleep
+MONSTER:'@',random,place[2],hostile
+MONSTER:'@',random,place[2],peaceful
+MONSTER:'@',random,place[2],hostile
+MONSTER:'@',random,place[2],hostile
+MONSTER:'@',random,place[2],peaceful
+
+# such a waste...
+OBJECT:'(',"tinning kit",place[3],cursed,0
+OBJECT:'%',"corpse",place[3],"black dragon",0
+OBJECT:'%',"corpse",place[3],"deep dragon",0
+OBJECT:'%',"corpse",place[3],"red dragon",0
+OBJECT:'%',"corpse",place[3],"orange dragon",0
+OBJECT:'%',"corpse",place[3],"yellow dragon",0
+OBJECT:'%',"corpse",place[3],"green dragon",0
+OBJECT:'%',"corpse",place[3],"blue dragon",0
+OBJECT:'%',"corpse",place[3],"shimmering dragon",0
+OBJECT:'%',"corpse",place[3],"gray dragon",0
+OBJECT:'%',"corpse",place[3],"white dragon",0
+MONSTER:'w',random,place[3],hostile
+MONSTER:'w',random,place[3],hostile
+MONSTER:'w',random,place[3],hostile
+MONSTER:'w',random,place[3],hostile
+MONSTER:'w',random,place[3],hostile
+MONSTER:'w',random,place[3],hostile
+MONSTER:'w',random,place[3],hostile
+MONSTER:'w',random,place[3],hostile
+MONSTER:'s',random,place[3],asleep
+
+# snake pit
+TRAP:"spiked pit",place[4]
+MONSTER:'S',random,place[4],hostile
+MONSTER:'S',random,place[4],asleep
+MONSTER:'S',random,place[4],hostile
+MONSTER:'S',random,place[4],hostile
+MONSTER:'S',random,place[4],asleep
+MONSTER:'S',random,place[4],hostile
+MONSTER:'S',random,place[4],asleep
+MONSTER:'s',random,place[4],asleep
+MONSTER:'s',random,place[4],hostile
+
+# no temple 
+ALTAR:place[5],coaligned,altar
+MONSTER:'@',"aligned priest",place[5],coaligned,peaceful
+
+# boulder path
+OBJECT:'`',"boulder",(44,0)
+TRAP:"rolling boulder",(44,01)
+TRAP:"rolling boulder",(44,07)
+OBJECT:'/',"striking",(46,10),uncursed,2
+OBJECT:')',"runesword",(46,10),cursed,-8
+MONSTER:'8',random,(47,00),hostile
+MONSTER:'8',random,(50,00),hostile
+
+# maze 
+MONSTER:'w',random,(63,05),hostile
+MONSTER:'w',random,(69,05),hostile
+MONSTER:'w',random,(60,08),hostile
+MONSTER:'w',random,(72,08),hostile
+MONSTER:'w',random,(60,14),hostile
+MONSTER:'w',random,(72,14),hostile
+MONSTER:'w',random,(63,17),hostile
+MONSTER:'w',random,(69,17),hostile
+
+MONSTER:'8',random,(63,05),hostile
+MONSTER:'8',random,(69,17),hostile
+
+# room
+REGION:(64,09,68,13),unlit,"swamp"
+OBJECT:'[',"gray dragon scales",(66,11),cursed,-9
+CONTAINER:'`',"statue",(66,11),"arch-lich",0
+TRAP:"statue",(66,11)
+OBJECT:'/',"fireball",contained
+OBJECT:'/',"create horde",contained,uncursed,1
+OBJECT:'/',"speed monster",contained,uncursed,1
+OBJECT:'/',"make invisible",contained,uncursed,1
+OBJECT:'%',"corpse",contained,"cockatrice",0
+OBJECT:'[',"leather gloves",contained,cursed,-1
+
+MONSTER:';',random,(66,10),hostile
+MONSTER:';',random,(66,12),hostile
+MONSTER:';',random,(65,11),hostile
+MONSTER:';',random,(67,11),hostile
+MONSTER:';',random,(64,11),hostile
+MONSTER:';',random,(68,11),hostile
+
+# cloud
+MONSTER:'E',random,(23,07),hostile
+MONSTER:'E',random,(24,08),hostile
+MONSTER:'E',random,(32,15),hostile
+MONSTER:'E',random,(33,16),hostile
+MONSTER:'E',random,(40,08),hostile
+MONSTER:'E',random,(39,09),hostile
+MONSTER:'E',random,(31,02),hostile
+MONSTER:'E',random,(32,03),hostile
+MONSTER:'E',random,(40,03),hostile
+MONSTER:'E',random,(39,04),hostile
+MONSTER:'E',random,(33,07),hostile
+MONSTER:'E',random,(34,08),hostile
+MONSTER:'E',random,(25,13),hostile
+MONSTER:'E',random,(26,14),hostile
+
+MONSTER:'g',"gremlin",(38,12),"Clown",hostile
+
+MONSTER:'h',"mind flayer",(29,09),"Ginger",hostile
+MONSTER:'h',"mind flayer",(30,09),"Victoria",hostile
+MONSTER:'h',"mind flayer",(31,09),"Emma",hostile
+MONSTER:'h',"master mind flayer",(30,08),"Mel C.",hostile
+MONSTER:'h',"master mind flayer",(30,10),"Mel B.",hostile
+CONTAINER:'(',"chest",(30,09)
+OBJECT[20%]:'"',"amulet of flying",contained
+OBJECT[30%]:'/',"cold",contained,uncursed,+16
+OBJECT[10%]:'/',"digging",contained
+
+# forest
+MONSTER:'@',"Plaster Blaster",(10,09),hostile,asleep
+MONSTER:'n',random,(10,09),asleep
+MONSTER:'n',random,(10,09),hostile
+MONSTER:'n',random,(10,09),asleep
+MONSTER:'n',random,(10,09),hostile
+MONSTER:'n',random,(10,09),asleep
+MONSTER:'n',random,(10,09),hostile
+MONSTER:'u',random,(10,09),hostile
+MONSTER:'u',random,(10,09),hostile
+MONSTER:'u',random,(10,09),hostile
+MONSTER:'n',random,(10,09),hostile
+MONSTER:'n',random,(10,09),asleep
+MONSTER:'n',random,(10,09),asleep
+MONSTER:'n',random,(10,09),hostile
+MONSTER:'n',random,(10,09),asleep
+MONSTER:'n',random,(10,09),hostile
+MONSTER:'n',random,(10,09),asleep
+MONSTER:'n',random,(10,09),hostile
+
+# all around
+
+# Monsters
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+# Traps
+TRAP:"sleep gas",random
+TRAP:"sleep gas",random
+TRAP:"sleep gas",random
+TRAP:"sleep gas",random
+TRAP:"sleep gas",random
+TRAP:"sleep gas",random
+TRAP:"sleep gas",random
+TRAP:"sleep gas",random
+TRAP:"sleep gas",random
+TRAP:"sleep gas",random
+TRAP:"sleep gas",random
+TRAP:"sleep gas",random
+TRAP:"anti magic",random
+TRAP:"anti magic",random
+TRAP:"anti magic",random
+TRAP:"anti magic",random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+# Engravings
+ENGRAVING:random,random,"You can feel eyes on your back."
+ENGRAVING:random,random,"I can see you..."
+
+# doors
+DOOR:locked,(30,07)
+
+DOOR:locked,(48,02)
+DOOR:locked,(52,02)
+DOOR:locked,(46,04)
+DOOR:locked,(50,04)
+DOOR:locked,(54,04)
+DOOR:locked,(48,06)
+DOOR:locked,(52,06)
+DOOR:locked,(50,08)
+DOOR:locked,(54,08)
+DOOR:locked,(52,10)
+DOOR:locked,(50,12)
+DOOR:locked,(54,12)
+DOOR:locked,(44,14)
+DOOR:locked,(48,14)
+DOOR:locked,(52,14)
+DOOR:locked,(42,16)
+DOOR:locked,(46,16)
+DOOR:locked,(50,16)
+DOOR:locked,(54,16)
+DOOR:locked,(44,18)
+DOOR:locked,(48,18)
+DOOR:locked,(52,18)
+
+
+#
+#       The "fill" levels for the quest.
+#
+#       These levels are used to fill out any levels not occupied by specific
+#       levels as defined above. "filla" is the upper filler, between the
+#       start and locate levels, and "fillb" the lower between the locate
+#       and goal levels.
+#
+
+LEVEL: "Wan-fila"
+# Random Monsters
+RANDOM_MONSTERS: 'Z', 'W', 'V', 'M'
+#
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: random,random, random,hostile
+MONSTER: random,random, random,hostile
+
+ROOM: "morgue" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "tenshall" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: random,random, random,hostile
+MONSTER: random,random, random,hostile
+
+ROOM: "humanhall" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: random,random, random,hostile
+MONSTER: random,random, random,hostile
+
+ROOM: "leprehall" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random,random, random,hostile
+MONSTER: random,random, random,hostile
+
+ROOM: "morgue" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+RANDOM_CORRIDORS
+
+LEVEL: "Wan-filb"
+# Random Monsters
+RANDOM_MONSTERS: 'Z', 'W', 'V', 'M'
+#
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: random,random, random,hostile
+MONSTER: random,random, random,hostile
+MONSTER: random,random, random,hostile
+MONSTER: random,random, random,hostile
+
+ROOM: "morgue" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "morgue" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+
+ROOM: "tenshall" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: random,random, random,hostile
+MONSTER: random,random, random,hostile
+MONSTER: random,random, random,hostile
+MONSTER: random,random, random,hostile
+
+ROOM: "terrorhall" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random,random, random,hostile
+MONSTER: random,random, random,hostile
+MONSTER: random,random, random,hostile
+MONSTER: random,random, random,hostile
+
+ROOM: "morgue" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "angelhall" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "nymphhall" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+RANDOM_CORRIDORS

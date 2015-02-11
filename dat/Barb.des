@@ -75,9 +75,9 @@ NON_DIGGABLE:(00,00,75,19)
 # One trap to keep the ogres at bay.
 TRAP:"spiked pit",(37,07)
 # Eels in the river
-MONSTER:';',"giant eel",(36,01)
-MONSTER:';',"giant eel",(37,09)
-MONSTER:';',"giant eel",(39,15)
+MONSTER:';',"giant eel",(36,01),hostile
+MONSTER:';',"giant eel",(37,09),hostile
+MONSTER:';',"giant eel",(39,15),hostile
 # Monsters on siege duty.
 MONSTER:'O',"ogre",(40,08),hostile
 MONSTER:'O',"ogre",(41,06),hostile

@@ -49,14 +49,14 @@ MONSTER:'@',"Norn",(35,10)
 # The treasure of the Norn
 OBJECT:'(',"chest",(36,10)
 # valkyrie guards for the audience chamber
-MONSTER:'@',"warrior",(27,08)
-MONSTER:'@',"warrior",(27,09)
-MONSTER:'@',"warrior",(27,11)
-MONSTER:'@',"warrior",(27,12)
-MONSTER:'@',"warrior",(42,08)
-MONSTER:'@',"warrior",(42,09)
-MONSTER:'@',"warrior",(42,11)
-MONSTER:'@',"warrior",(42,12)
+MONSTER:'@',"super warrior",(27,08)
+MONSTER:'@',"super warrior",(27,09)
+MONSTER:'@',"super warrior",(27,11)
+MONSTER:'@',"super warrior",(27,12)
+MONSTER:'@',"super warrior",(42,08)
+MONSTER:'@',"super warrior",(42,09)
+MONSTER:'@',"super warrior",(42,11)
+MONSTER:'@',"super warrior",(42,12)
 # Non diggable walls
 NON_DIGGABLE:(26,07,43,13)
 # Random traps
@@ -67,16 +67,16 @@ TRAP:"fire",random
 TRAP:"fire",random
 TRAP:"fire",random
 # Monsters on siege duty.
-MONSTER: 'a',"fire ant",(04,12)
-MONSTER: 'a',"fire ant",(08,08)
-MONSTER: 'a',"fire ant",(14,04)
-MONSTER: 'a',"fire ant",(17,11)
-MONSTER: 'a',"fire ant",(24,10)
-MONSTER: 'a',"fire ant",(45,10)
-MONSTER: 'a',"fire ant",(54,02)
-MONSTER: 'a',"fire ant",(55,07)
-MONSTER: 'a',"fire ant",(58,14)
-MONSTER: 'a',"fire ant",(63,17)
+MONSTER: 'a',"fire ant",(04,12),hostile
+MONSTER: 'a',"fire ant",(08,08),hostile
+MONSTER: 'a',"fire ant",(14,04),hostile
+MONSTER: 'a',"fire ant",(17,11),hostile
+MONSTER: 'a',"fire ant",(24,10),hostile
+MONSTER: 'a',"fire ant",(45,10),hostile
+MONSTER: 'a',"fire ant",(54,02),hostile
+MONSTER: 'a',"fire ant",(55,07),hostile
+MONSTER: 'a',"fire ant",(58,14),hostile
+MONSTER: 'a',"fire ant",(63,17),hostile
 MONSTER: 'H',"fire giant",(18,01),hostile
 MONSTER: 'H',"fire giant",(10,16),hostile
 
@@ -137,24 +137,24 @@ TRAP:"fire",random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',random,random
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',random,random,hostile
 MONSTER:'H',random,random,hostile
 MONSTER:'H',"fire giant",random,hostile
 MONSTER:'H',"fire giant",random,hostile
@@ -233,13 +233,13 @@ TRAP:"board",random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:'H',"Lord Surtur",(17,08)
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',"fire ant",random
-MONSTER:'a',random,random
-MONSTER:'a',random,random
+MONSTER:'H',"Lord Surtur",(17,08),hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',"fire ant",random,hostile
+MONSTER:'a',random,random,hostile
+MONSTER:'a',random,random,hostile
 MONSTER:'H',"fire giant",(10,06),hostile
 MONSTER:'H',"fire giant",(10,07),hostile
 MONSTER:'H',"fire giant",(10,08),hostile
@@ -280,12 +280,12 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 #
-MONSTER: 'a', "fire ant", random
-MONSTER: 'a', "fire ant", random
-MONSTER: 'a', "fire ant", random
-MONSTER: 'a', "fire ant", random
-MONSTER: 'a', "fire ant", random
-MONSTER: 'a', random, random
+MONSTER: 'a', "fire ant", random,hostile
+MONSTER: 'a', "fire ant", random,hostile
+MONSTER: 'a', "fire ant", random,hostile
+MONSTER: 'a', "fire ant", random,hostile
+MONSTER: 'a', "fire ant", random,hostile
+MONSTER: 'a', random, random,hostile
 MONSTER: 'H', "fire giant", random, hostile
 #
 TRAP: random, random
@@ -315,10 +315,10 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 #
-MONSTER: 'a', "fire ant", random
-MONSTER: 'a', "fire ant", random
-MONSTER: 'a', "fire ant", random
-MONSTER: 'a', random, random
+MONSTER: 'a', "fire ant", random,hostile
+MONSTER: 'a', "fire ant", random,hostile
+MONSTER: 'a', "fire ant", random,hostile
+MONSTER: 'a', random, random,hostile
 MONSTER: 'H', "fire giant", random, hostile
 MONSTER: 'H', "fire giant", random, hostile
 MONSTER: 'H', "fire giant", random, hostile

@@ -284,6 +284,9 @@ boolean yours; /* is it your fault (for killing monsters) */
 		case 7: str = "splash of acid";
 			adtyp = AD_ACID;
 			break;
+		case 8: str = "pure energy irradiation";
+			adtyp = AD_LITE;
+			break;
 		default: impossible("explosion base type %d?", type); return;
 	}
 
@@ -303,6 +306,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 		if (xi == u.ux && yi == u.uy) {
 		    switch(adtyp) {
 			case AD_PHYS:                        
+			case AD_LITE:                        
 				break;
 			case AD_MAGM:
 				explmask = !!Antimagic;
@@ -341,6 +345,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 		if (mtmp) {
 		    switch(adtyp) {
 			case AD_PHYS:                        
+			case AD_LITE:                        
 				break;
 			case AD_MAGM:
 				explmask |= resists_magm(mtmp);
@@ -496,11 +501,11 @@ boolean yours; /* is it your fault (for killing monsters) */
 		    pline("%s is caught in the %s!", Monnam(mtmp), str);
 		}
 
-		idamres += destroy_mitem(mtmp, SCROLL_CLASS, (int) adtyp);
-		idamres += destroy_mitem(mtmp, SPBOOK_CLASS, (int) adtyp);
-		idamnonres += destroy_mitem(mtmp, POTION_CLASS, (int) adtyp);
-		idamnonres += destroy_mitem(mtmp, WAND_CLASS, (int) adtyp);
-		idamnonres += destroy_mitem(mtmp, RING_CLASS, (int) adtyp);
+		if (!rn2(33)) idamres += destroy_mitem(mtmp, SCROLL_CLASS, (int) adtyp);
+		if (!rn2(33)) idamres += destroy_mitem(mtmp, SPBOOK_CLASS, (int) adtyp);
+		if (!rn2(33)) idamnonres += destroy_mitem(mtmp, POTION_CLASS, (int) adtyp);
+		if (!rn2(33)) idamnonres += destroy_mitem(mtmp, WAND_CLASS, (int) adtyp);
+		if (!rn2(33)) idamnonres += destroy_mitem(mtmp, RING_CLASS, (int) adtyp);
 
 		if (area->locations[i].shielded) {
 			golemeffects(mtmp, (int) adtyp, dam + idamres);
@@ -557,17 +562,26 @@ boolean yours; /* is it your fault (for killing monsters) */
 			You("are caught in the %s!", str);
 		/* do property damage first, in case we end up leaving bones */
 		if (adtyp == AD_FIRE) burn_away_slime();
+
+		/* player may get lucky and take less damage --Amy */
+		if (!rn2(3) && damu >= 1) {damu = damu / 2; if (damu < 1) damu = 1;}
+		if (!rn2(10) && damu >= 1 && u.ulevel >= 10) {damu = damu / 3; if (damu < 1) damu = 1;}
+		if (!rn2(20) && damu >= 1 && u.ulevel >= 20) {damu = damu / 5; if (damu < 1) damu = 1;}
+		if (!rn2(50) && damu >= 1 && u.ulevel >= 30) {damu = damu / 10; if (damu < 1) damu= 1;}
+
+		if (Role_if(PM_BLEEDER)) damu = damu * 2; /* bleeders are harder than hard mode */
+
 		if (Invulnerable) {
 		    damu = 0;
 		    You("are unharmed!");
-		} else if (Half_physical_damage && adtyp == AD_PHYS)
+		} else if (Half_physical_damage && adtyp == AD_PHYS && rn2(2) )
 		    damu = (damu+1) / 2;
-		if (adtyp == AD_FIRE) (void) burnarmor(&youmonst);
-		destroy_item(SCROLL_CLASS, (int) adtyp);
-		destroy_item(SPBOOK_CLASS, (int) adtyp);
-		destroy_item(POTION_CLASS, (int) adtyp);
-		destroy_item(RING_CLASS, (int) adtyp);
-		destroy_item(WAND_CLASS, (int) adtyp);
+		if (adtyp == AD_FIRE) {if (!rn2(33)) (void) burnarmor(&youmonst);}
+		    if (!rn2(15)) /* new calculations --Amy */	destroy_item(SCROLL_CLASS, (int) adtyp);
+		    if (!rn2(15)) /* new calculations --Amy */	destroy_item(SPBOOK_CLASS, (int) adtyp);
+		    if (!rn2(15)) /* new calculations --Amy */	destroy_item(POTION_CLASS, (int) adtyp);
+		    if (!rn2(15)) /* new calculations --Amy */	destroy_item(RING_CLASS, (int) adtyp);
+		    if (!rn2(15)) /* new calculations --Amy */	destroy_item(WAND_CLASS, (int) adtyp);
 
 		ugolemeffects((int) adtyp, damu);
 
@@ -852,8 +866,8 @@ int n, p;
 	delquan = (obj)->quan; \
 	no_fiery += (obj)->quan * 2; \
 	no_dig += (obj)->quan; \
-    } else if (is_bullet(obj)) \
-	delquan = (obj)->quan; \
+    } else if (is_bullet(obj) && (!obj->blessed || !rn2(3)) ) /* have some chance to resist --Amy */\ 
+	delquan = dp((obj)->quan, 2); \
     else \
 	delquan = 0
 

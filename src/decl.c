@@ -180,12 +180,16 @@ const int zapcolors[NUM_ZAP] = {
     CLR_WHITE,		/* 5 - lightning */
     CLR_YELLOW,		/* 6 - poison gas */
     CLR_GREEN,		/* 7 - acid */
+    CLR_BRIGHT_CYAN,		/* 8 - solar beam */
 };
 #endif /* text color */
 
-const int shield_static[SHIELD_COUNT] = {
-    S_ss1, S_ss2, S_ss3, S_ss2, S_ss1, S_ss2, S_ss4,	/* 7 per row */
+/* const int shield_static[SHIELD_COUNT] = {
+    S_ss1, S_ss2, S_ss3, S_ss2, S_ss1, S_ss2, S_ss4,	7 per row
     S_ss1, S_ss2, S_ss3, S_ss2, S_ss1, S_ss2, S_ss4,
+    S_ss1, S_ss2, S_ss3, S_ss2, S_ss1, S_ss2, S_ss4,
+}; */
+const int shield_static[SHIELD_COUNT] = {
     S_ss1, S_ss2, S_ss3, S_ss2, S_ss1, S_ss2, S_ss4,
 };
 
@@ -213,7 +217,13 @@ NEARDATA char dogname[PL_PSIZ] = DUMMY;
 NEARDATA char catname[PL_PSIZ] = DUMMY;
 NEARDATA char ghoulname[PL_PSIZ] = DUMMY;
 NEARDATA char horsename[PL_PSIZ] = DUMMY;
+#ifdef CONVICT
+NEARDATA char ratname[PL_PSIZ] = DUMMY;
+#endif /* CONVICT */
 NEARDATA char wolfname[PL_PSIZ] = DUMMY;
+NEARDATA char lichenname[PL_PSIZ] = DUMMY;
+NEARDATA char coinsname[PL_PSIZ] = DUMMY;
+NEARDATA char rothename[PL_PSIZ] = DUMMY;
 #if 0
 NEARDATA char batname[PL_PSIZ] = DUMMY;
 NEARDATA char snakename[PL_PSIZ] = DUMMY;

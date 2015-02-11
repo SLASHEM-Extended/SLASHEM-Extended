@@ -1094,6 +1094,7 @@ restore_saved_game()
 	if (!uptodate(fd, SAVEF)) {
 #endif
 	    (void) close(fd),  fd = -1;
+	if (yn("Delete the old file?") == 'y') /* Damn you, sadistic programmers who delete stuff without asking! --Amy */
 	    (void) delete_savefile();
 	}
 	return fd;
@@ -1990,6 +1991,16 @@ char		*tmp_levels;
 	    (void) strncpy(dogname, bufp, PL_PSIZ-1);
 	} else if (match_varname(buf, "CATNAME", 3)) {
 	    (void) strncpy(catname, bufp, PL_PSIZ-1);
+#ifdef CONVICT
+	} else if (match_varname(buf, "RATNAME", 3)) {
+	    (void) strncpy(ratname, bufp, PL_PSIZ-1);
+#endif /* CONVICT */
+	} else if (match_varname(buf, "LICHENNAME", 3)) {
+	    (void) strncpy(lichenname, bufp, PL_PSIZ-1);
+	} else if (match_varname(buf, "COINSNAME", 3)) {
+	    (void) strncpy(coinsname, bufp, PL_PSIZ-1);
+	} else if (match_varname(buf, "ROTHENAME", 3)) {
+	    (void) strncpy(rothename, bufp, PL_PSIZ-1);
 	} else if (match_varname(buf, "WOLFNAME", 3)) {
             (void) strncpy(wolfname, bufp, PL_PSIZ-1);
 	} else if (match_varname(buf, "GHOULNAME", 3)) {

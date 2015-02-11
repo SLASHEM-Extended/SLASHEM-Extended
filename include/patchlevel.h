@@ -5,14 +5,17 @@
 /*The name of the compiled game- should be same as stuff in makefile*/
 /*for makedefs*/
 /* KMH -- Made it mixed case, from which upper & lower case versions are made */
-#define DEF_GAME_NAME   "SlashEM"
+#define DEF_GAME_NAME   "SlashEM Extended"
 /*#define DEF_GAME_NAME   "NetHack"*/
 
 /* Version */
+/* edit by Amy - version_minor is updated for each release, version_major increases by 1 if minor reaches 100 */
+/* if the changes are minor enough that savegame/bones compatibility is still there, the version number is not increased */
 #define VERSION_MAJOR   0
-#define VERSION_MINOR   0
+#define VERSION_MINOR   97
 /*
  * PATCHLEVEL is updated for each release.
+ * edit by Amy - I'm keeping patch, edit and fixlevel to show the game's based on SLASH'EM 0.0.7E7F2.
  */
 #define PATCHLEVEL      7
 #define EDITLEVEL	7
@@ -25,7 +28,10 @@
 "NetHack, Copyright 1985-2003 Stichting Mathematisch Centrum, M. Stephenson."
 
 #define COPYRIGHT_BANNER_C \
-"See license for details. Bug reports to slashem-discuss@lists.sourceforge.net"
+"Slash'EM Extended version by Amy (user Bluescreenofdeath at Nethackwiki)."
+
+#define COPYRIGHT_BANNER_D \
+"See license for details. Bug reports to Bluescreenofdeath's user talk page."
 
 #if 1
 /*

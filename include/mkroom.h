@@ -17,6 +17,7 @@ struct mkroom {
 	boolean irregular;	/* true if room is non-rectangular */
 	struct mkroom *sbrooms[MAX_SUBROOMS];  /* Subrooms pointers */
 	struct monst *resident; /* priest/shopkeeper/guard for this room */
+	schar colouur; /* random color */
 };
 
 struct shclass {
@@ -74,8 +75,28 @@ extern NEARDATA struct door doors[DOORMAX];
 #define LEMUREPIT       18      /* lemures */
 #define MIGOHIVE        19      /* Mi-Go */
 #define FUNGUSFARM      20      /* molds, puddings, and slime */
+#define CLINIC      21      /* nurses */
+#define TERRORHALL      22      /* hulks */
+#define ELEMHALL      23      /* elementals */
+#define ANGELHALL      24      /* angels */
+#define MIMICHALL      25      /* mimics */
+#define NYMPHHALL      26      /* nymphs */
+#define SPIDERHALL      27      /* spiders */
+#define TROLLHALL      28      /* trolls */
+#define HUMANHALL      29      /* humans */
+#define GOLEMHALL      30      /* golems */
+#define COINHALL      31      /* bad coins */
+#define DOUGROOM	32	/* Adams, creeping 42's etc. */
+#define ARMORY	33	/* from Unnethack */
+#define TENSHALL	34	/* ADOM idea */
+#define TRAPROOM	35	/* from Sporkhack */
+#define POOLROOM	36	/* from Sporkhack */
+#define GRUEROOM	37	/* Zork reference */
+#define STATUEROOM	38	/* statues and statue traps */
+#define INSIDEROOM	39	/* very weird room */
+#define RIVERROOM	40	/* underground rivers in a room */
 
-#define SHOPBASE        21      	/* everything above this is a shop */
+#define SHOPBASE        41     	/* everything above this is a shop */
 #define ARMORSHOP       (SHOPBASE+ 1)   /* specific shop defines for level compiler */
 #define SCROLLSHOP      (SHOPBASE+ 2)
 #define POTIONSHOP      (SHOPBASE+ 3)
@@ -87,7 +108,16 @@ extern NEARDATA struct door doors[DOORMAX];
 #define PETSHOP         (SHOPBASE+ 9)		/* Stephen White */
 #define TINSHOP         (SHOPBASE+10)		/* Robin Johnson */
 #define BOOKSHOP        (SHOPBASE+11)
-#define UNIQUESHOP      (SHOPBASE+12)      /* shops here & above not randomly gen'd. */
+#define USELESSSHOP     (SHOPBASE+12)
+#define GUNSHOP         (SHOPBASE+13)
+#define BANGSHOP        (SHOPBASE+14)
+#define AMMOSHOP        (SHOPBASE+15)
+#define LITENSHOP       (SHOPBASE+16)
+#define BOULDSHOP       (SHOPBASE+17)
+#define ROCKSSHOP       (SHOPBASE+18)
+#define WIERDSHOP       (SHOPBASE+19)
+#define ZORKSHOP       (SHOPBASE+20)
+#define UNIQUESHOP      (SHOPBASE+21)      /* shops here & above not randomly gen'd. */
 #define CANDLESHOP      (UNIQUESHOP)
 #ifdef BLACKMARKET
 #define BLACKSHOP       (UNIQUESHOP+1)

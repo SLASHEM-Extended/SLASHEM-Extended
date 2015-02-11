@@ -32,55 +32,75 @@ struct icp {
 /* [Tom] tried to fix this back up a little... */
 /* KMH, balance patch -- changed again */
 const struct icp mkobjprobs[] = {
-{10, WEAPON_CLASS},
-{10, ARMOR_CLASS},
-{20, FOOD_CLASS},
-{10, TOOL_CLASS},
-{ 8, GEM_CLASS},
-{15, POTION_CLASS},
-{15, SCROLL_CLASS},
-{ 4, SPBOOK_CLASS},
-{ 4, WAND_CLASS},
-{ 4, RING_CLASS}
+{130, WEAPON_CLASS},
+{ 80, ARMOR_CLASS},
+{160, FOOD_CLASS},
+{ 70, TOOL_CLASS},
+{ 30, GEM_CLASS},
+{160, POTION_CLASS},
+{160, SCROLL_CLASS},
+{ 35, SPBOOK_CLASS},
+{ 60, WAND_CLASS},
+{ 40, RING_CLASS},
+{ 10, AMULET_CLASS},
+{ 52, COIN_CLASS},
+{  1, VENOM_CLASS},
+{ 10, ROCK_CLASS},
+{  1, BALL_CLASS},
+{  1, CHAIN_CLASS}
+
 /* KMH -- amulets now appear later in the game */
 /*{ 0, AMULET_CLASS}*/
 };
 
 const struct icp boxiprobs[] = {
-{15, GEM_CLASS},
-{10, FOOD_CLASS},
-{20, POTION_CLASS},
-{20, SCROLL_CLASS},
-{12, SPBOOK_CLASS},
-{ 7, COIN_CLASS},
-{ 7, WAND_CLASS},
-{ 6, RING_CLASS},
-{ 3, AMULET_CLASS}
+{ 80, WEAPON_CLASS},
+{ 50, ARMOR_CLASS},
+{ 20, GEM_CLASS},
+{ 55, TOOL_CLASS},
+{160, FOOD_CLASS},
+{160, POTION_CLASS},
+{160, SCROLL_CLASS},
+{ 60, SPBOOK_CLASS},
+{ 97, COIN_CLASS},
+{ 65, WAND_CLASS},
+{ 50, RING_CLASS},
+{ 30, AMULET_CLASS},
+{  1, VENOM_CLASS},
+{ 10, ROCK_CLASS},
+{  1, BALL_CLASS},
+{  1, CHAIN_CLASS}
 };
 
 #ifdef REINCARNATION
 const struct icp rogueprobs[] = {
-{12, WEAPON_CLASS},
-{12, ARMOR_CLASS},
-{22, FOOD_CLASS},
-{22, POTION_CLASS},
-{22, SCROLL_CLASS},
-{ 5, WAND_CLASS},
-{ 5, RING_CLASS}
+{120, WEAPON_CLASS},
+{120, ARMOR_CLASS},
+{220, FOOD_CLASS},
+{220, POTION_CLASS},
+{220, SCROLL_CLASS},
+{ 50, WAND_CLASS},
+{ 50, RING_CLASS}
 };
 #endif
 
 const struct icp hellprobs[] = {
-{15, WEAPON_CLASS},
-{15, ARMOR_CLASS},
-{16, FOOD_CLASS},
-{14, TOOL_CLASS},
-{12, GEM_CLASS},
-{ 2, POTION_CLASS},
-{ 2, SCROLL_CLASS},
-{10, WAND_CLASS},
-{10, RING_CLASS},
-{ 4, AMULET_CLASS}
+{130, WEAPON_CLASS},
+{ 70, ARMOR_CLASS},
+{150, FOOD_CLASS},
+{ 70, TOOL_CLASS},
+{ 40, GEM_CLASS},
+{100, POTION_CLASS},
+{100, SCROLL_CLASS},
+{ 90, WAND_CLASS},
+{ 50, RING_CLASS},
+{ 40, AMULET_CLASS},
+{ 45, SPBOOK_CLASS},
+{102, COIN_CLASS},
+{  1, VENOM_CLASS},
+{ 10, ROCK_CLASS},
+{  1, BALL_CLASS},
+{  1, CHAIN_CLASS}
 };
 
 struct obj *
@@ -124,7 +144,7 @@ boolean artif;
 				    Inhell ? (const struct icp *)hellprobs :
 				    (const struct icp *)mkobjprobs;
 
-		for(tprob = rnd(100);
+		for(tprob = rnd(1000);
 		    (tprob -= iprobs->iprob) > 0;
 		    iprobs++);
 		oclass = iprobs->iclass;
@@ -133,8 +153,10 @@ boolean artif;
 	i = bases[(int)oclass];
 	while((prob -= objects[i].oc_prob) > 0) i++;
 
-	if(objects[i].oc_class != oclass || !OBJ_NAME(objects[i]))
+	if(objects[i].oc_class != oclass)
 		panic("probtype error, oclass=%d i=%d", (int) oclass, i);
+	if(!OBJ_NAME(objects[i]))
+		panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
 
 	return(mksobj(i, TRUE, artif));
 }
@@ -149,19 +171,20 @@ struct obj *box;
 	box->cobj = (struct obj *) 0;
 
 	switch (box->otyp) {
-	case MEDICAL_KIT:	n = 60;
+	case MEDICAL_KIT:	n = (Race_if(PM_HAXOR) ? 120 : 60);
 				/* Initial inventory, no empty medical kits */
 				if (moves <= 1 && !in_mklev) minn = 1;
 				break;
-	case ICE_BOX:		n = 20; break;
-	case CHEST:		n = 5; break;
-	case LARGE_BOX:		n = 3; break;
+	case ICE_BOX:		n = (Race_if(PM_HAXOR) ? 40 : 20); break;
+	case CHEST:		n = (Race_if(PM_HAXOR) ? 10 : 5); break;
+	case LARGE_BOX:		n = (Race_if(PM_HAXOR) ? 6 : 3); break;
 	case SACK:
 	case OILSKIN_SACK:
 				/* initial inventory: sack starts out empty */
 				if (moves <= 1 && !in_mklev) { n = 0; break; }
 				/*else FALLTHRU*/
-	case BAG_OF_HOLDING:	n = 1; break;
+	case BAG_OF_HOLDING:	n = (Race_if(PM_HAXOR) ? 2 : 1); break;
+	case BAG_OF_DIGESTION:		/* makes sense, doesn't it ? */
 	default:		n = 0; break;
 	}
 
@@ -188,14 +211,14 @@ struct obj *box;
 		register int tprob;
 		const struct icp *iprobs = boxiprobs;
 
-		for (tprob = rnd(100); (tprob -= iprobs->iprob) > 0; iprobs++)
+		for (tprob = rnd(1000); (tprob -= iprobs->iprob) > 0; iprobs++)
 		    ;
 		if (!(otmp = mkobj(iprobs->iclass, TRUE))) continue;
 
 		/* handle a couple of special cases */
 		if (otmp->oclass == COIN_CLASS) {
 		    /* 2.5 x level's usual amount; weight adjusted below */
-		    otmp->quan = (long)(rnd(level_difficulty()+5) * rnd(100));
+		    otmp->quan = (long)(rnd(level_difficulty()+5) * rnd(10));
 		    otmp->owt = weight(otmp);
 		} else while (otmp->otyp == ROCK) {
 		    otmp->otyp = rnd_class(DILITHIUM_CRYSTAL, LOADSTONE);
@@ -417,6 +440,7 @@ boolean artif;
 	otmp->otyp = otyp;
 	otmp->where = OBJ_FREE;
 	otmp->dknown = index(dknowns, let) ? 0 : 1;
+ 	otmp->selfmade = FALSE;
 	otmp->oinvis = 0;
 	otmp->olocked = FALSE; /* ->recharged */
 	otmp->altmode = WP_MODE_AUTO;
@@ -433,13 +457,21 @@ boolean artif;
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */                   
 	case WEAPON_CLASS:
 		/* KMH, balance patch -- new macros */
-		otmp->quan = is_multigen(otmp) ? (long) rn1(6,6) : 1L;
-		if(!rn2(11)) {
-			otmp->spe = rne(3);
-			otmp->blessed = rn2(2);
-		} else if(!rn2(10)) {
-			curse(otmp);
-			otmp->spe = -rne(3);
+		otmp->quan = is_multigen(otmp) ? (long) rn1(12,12) : 1L;
+		if (otmp->otyp == BULLET) otmp->quan += rnd(50);
+		if (otmp->otyp == SILVER_BULLET) otmp->quan += rnd(50);
+		if (otmp->otyp == SHOTGUN_SHELL) otmp->quan += rnd(20);
+		if (otmp->otyp == ROCKET) otmp->quan += rnd(5);
+		if (otmp->otyp == CROSSBOW_BOLT || otmp->otyp == DROVEN_BOLT) otmp->quan += rnd(10);
+		if (otmp->otyp == SHURIKEN) otmp->quan += rnd(100);
+		if(!rn2(Race_if(PM_HAXOR) ? 4 : 8)) {
+			otmp->spe = rne(2);
+			if (rn2(2)) otmp->blessed = rn2(2);
+			 else	blessorcurse(otmp, 3);
+		} else if(!rn2(Race_if(PM_HAXOR) ? 5 : 10)) {
+			if (rn2(10)) curse(otmp);
+			 else	blessorcurse(otmp, 3);
+			otmp->spe = -rne(2);
 		} else	blessorcurse(otmp, 10);
 		if (is_poisonable(otmp) && !rn2(100))
 			otmp->opoisoned = 1;
@@ -467,21 +499,23 @@ boolean artif;
 			otmp->corpsenm = PM_HUMAN;
 		}
 		/* timer set below */
+		blessorcurse(otmp, 8);
 		break;
 	    case EGG:
 		otmp->corpsenm = NON_PM;	/* generic egg */
-		if (!rn2(3)) for (tryct = 200; tryct > 0; --tryct) {
-		    mndx = can_be_hatched(rndmonnum());
+		if (rn2(3)) for (tryct = 500; tryct > 0; --tryct) { /* Uncommon egg types may be possible. --Amy */
+		    mndx = (rn2(100) ? can_be_hatched(rndmonnum()) : rndmonnum() );
 		    if (mndx != NON_PM && !dead_species(mndx, TRUE)) {
 			otmp->corpsenm = mndx;		/* typed egg */
 			attach_egg_hatch_timeout(otmp);
 			break;
 		    }
 		}
+		blessorcurse(otmp, 8);
 		break;
 	    case TIN:
 		otmp->corpsenm = NON_PM;	/* empty (so far) */
-		if (!rn2(6))
+		if (!rn2(20)) /* a lot more rare now --Amy */
 		    otmp->spe = 1;		/* spinach */
 		else for (tryct = 200; tryct > 0; --tryct) {
 		    mndx = undead_to_corpse(rndmonnum());
@@ -495,24 +529,49 @@ boolean artif;
 		break;
 	    case SLIME_MOLD:
 		otmp->spe = current_fruit;
+		otmp->quan = (long) rnd(15);
+		blessorcurse(otmp, 10);
 		break;
+	    case APPLE:
+	    case CARROT:
+	    case PEAR:
+	    case ASIAN_PEAR:
+	    case BANANA:
+	    case LEMON:
+	    case ORANGE:
+	    case MELON:
 	    case KELP_FROND:
-		otmp->quan = (long) rnd(2);
+		otmp->quan = (long) rnd(5);
+		blessorcurse(otmp, 10);
 		break;
 	    }
-	    if (otmp->otyp == CORPSE || otmp->otyp == MEAT_RING ||
-		otmp->otyp == KELP_FROND) break;
+	    /*if (otmp->otyp == CORPSE || otmp->otyp == MEAT_RING || otmp->otyp == APPLE || otmp->otyp == CARROT ||
+		otmp->otyp == KELP_FROND || otmp->otyp == PEAR || otmp->otyp == ASIAN_PEAR || otmp->otyp == BANANA
+	|| otmp->otyp == ORANGE || otmp->otyp == MELON || otmp->otyp == SLIME_MOLD)*/
+		blessorcurse(otmp, 10);
+		 break;
 	    /* fall into next case */
 
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */
 	case GEM_CLASS:
 		/* KMH, balance patch -- healthstone replaces rotting/health */
 		if (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE)
-			curse(otmp);
+			{ curse(otmp); break;}
 		else if (otmp->otyp == ROCK) otmp->quan = (long) rn1(6,6);
+		else if (otmp->otyp == FLINT && rn2(2) ) otmp->quan = (long) rn1(4,4);
+	/* Finding single flint stones is just useless. Let sling users have some fun! --Amy */
 		else if ((otmp->otyp != LUCKSTONE) && (otmp->otyp != HEALTHSTONE) &&
 				!rn2(6)) otmp->quan = 2L;
 		else otmp->quan = 1L;
+		if(!rn2(Race_if(PM_HAXOR) ? 4 : 8)) {
+			otmp->spe = rne(2);
+			if (rn2(2)) otmp->blessed = rn2(2);
+			 else	blessorcurse(otmp, 3);
+		} else if(!rn2(Race_if(PM_HAXOR) ? 5 : 10)) {
+			if (rn2(10)) curse(otmp);
+			 else	blessorcurse(otmp, 3);
+			otmp->spe = -rne(2);
+		} else	blessorcurse(otmp, 10);
 		break;
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */
 	case TOOL_CLASS:
@@ -522,6 +581,7 @@ boolean artif;
 			otmp->spe = 1;
 					otmp->age = 20L * /* 400 or 200 */
 					      (long)objects[otmp->otyp].oc_cost;
+					if (Race_if(PM_HAXOR)) otmp->age *= 2;
 					otmp->lamplit = 0;
 					otmp->quan = 1L +
 					      (long)(rn2(2) ? rn2(7) : 0);
@@ -529,6 +589,7 @@ boolean artif;
 					break;
 	        case TORCH:	        otmp->spe = 0;
 					otmp->age = (long) rn1(300,600);
+					if (Race_if(PM_HAXOR)) otmp->age *= 2;
 					otmp->lamplit = 0;
 					otmp->quan = rnd(3);
 					blessorcurse(otmp, 5);
@@ -537,6 +598,7 @@ boolean artif;
 		case OIL_LAMP:
 			otmp->spe = 1;
 					otmp->age = (long) rn1(500,1000);
+					if (Race_if(PM_HAXOR)) otmp->age *= 2;
 					otmp->lamplit = 0;
 					blessorcurse(otmp, 5);
 					break;
@@ -552,10 +614,16 @@ boolean artif;
 		case GREEN_LIGHTSABER:
 #ifdef D_SABER
 		case BLUE_LIGHTSABER:
+#if 0
+		case VIOLET_LIGHTSABER:
+		case WHITE_LIGHTSABER:
+		case YELLOW_LIGHTSABER:
+#endif
 #endif
 		case RED_LIGHTSABER:
 					otmp->lamplit = 0;
 					otmp->age = (long) rn1(500,1000);
+					if (Race_if(PM_HAXOR)) otmp->age *= 2;
 					blessorcurse(otmp, 2);
 					break;
 #endif
@@ -569,16 +637,18 @@ boolean artif;
 		case BAG_OF_HOLDING:
 		case MEDICAL_KIT:
 			mkbox_cnts(otmp);
+		blessorcurse(otmp, 8);
 					break;
 #ifdef TOURIST
 		case EXPENSIVE_CAMERA:
 #endif
 		case TINNING_KIT:
 		case MAGIC_MARKER:
-			otmp->spe = rn1(70,30);
+			otmp->spe = rnd(Race_if(PM_HAXOR) ? 120 : 100);
+			blessorcurse(otmp, 5);
 					break;
 		case CAN_OF_GREASE:
-			otmp->spe = rn1(25,10);
+			otmp->spe = rnd(Race_if(PM_HAXOR) ? 70 : 35);
 					blessorcurse(otmp, 10);
 					break;
 		/* KMH, balance patch -- removed to prevent abuse
@@ -596,18 +666,22 @@ boolean artif;
 					break;
 		case HORN_OF_PLENTY:
 		case BAG_OF_TRICKS:
-			otmp->spe = rn1(20,10);
+			otmp->spe = rnd(30);
+			blessorcurse(otmp, 5);
 					break;
+ 		case CHEMISTRY_SET:	otmp->spe = rnd(Race_if(PM_HAXOR) ? 40 : 20);
+ 					blessorcurse(otmp,4);
+ 					break;
 		case FIGURINE:	{	int tryct2 = 0;
 					do
 					    otmp->corpsenm = rndmonnum();
-					while(is_human(&mons[otmp->corpsenm])
-						&& tryct2++ < 30);
+					while(is_human(&mons[otmp->corpsenm]) && !rn2(5)
+						&& tryct2++ < 30); /* come on, human figurines should be possible! --Amy */
 					blessorcurse(otmp, 4);
 					break;
 				}
 		case BELL_OF_OPENING:
-			otmp->spe = 3;
+			otmp->spe = (Race_if(PM_HAXOR) ? 6 : 3);
 					break;
 		case MAGIC_FLUTE:
 		case MAGIC_HARP:
@@ -617,20 +691,46 @@ boolean artif;
 		/* KMH, balance patch -- removed
 		case PAN_PIPE_OF_SUMMONING:
 		case PAN_PIPE_OF_THE_SEWERS: */
-			otmp->spe = rn1(5,10);
+			otmp->spe = rnd(Race_if(PM_HAXOR) ? 30 : 15);
+			blessorcurse(otmp, 10);
 					break;
+		default: /* all the other tools --Amy */
+		if(!rn2(Race_if(PM_HAXOR) ? 4 : 8)) {
+			otmp->spe = rne(2);
+			if (rn2(2)) otmp->blessed = rn2(2);
+			 else	blessorcurse(otmp, 3);
+		} else if(!rn2(Race_if(PM_HAXOR) ? 5 : 10)) {
+			if (rn2(10)) curse(otmp);
+			 else	blessorcurse(otmp, 3);
+			otmp->spe = -rne(2);
+		} else	blessorcurse(otmp, 10);
+		break;
 	    }
 	    break;
 	case AMULET_CLASS:
 		if (otmp->otyp == AMULET_OF_YENDOR) flags.made_amulet = TRUE;
 		if(rn2(10) && (otmp->otyp == AMULET_OF_STRANGULATION ||
 		   otmp->otyp == AMULET_OF_CHANGE ||
+		   otmp->otyp == AMULET_OF_FUMBLING ||
+		   otmp->otyp == AMULET_OF_HUNGER ||
+		   otmp->otyp == AMULET_OF_BLINDNESS ||
 		   otmp->otyp == AMULET_OF_RESTFUL_SLEEP)) {
 			curse(otmp);
 		} else	blessorcurse(otmp, 10);
 	case VENOM_CLASS:
+		blessorcurse(otmp, 10);
+		break;
 	case CHAIN_CLASS:
 	case BALL_CLASS:
+		if(!rn2(Race_if(PM_HAXOR) ? 4 : 8)) {
+			otmp->spe = rne(2);
+			if (rn2(2)) otmp->blessed = rn2(2);
+			 else	blessorcurse(otmp, 3);
+		} else if(!rn2(Race_if(PM_HAXOR) ? 5 : 10)) {
+			if (rn2(10)) curse(otmp);
+			 else	blessorcurse(otmp, 3);
+			otmp->spe = -rne(2);
+		} else	blessorcurse(otmp, 10);
 		break;
 	case POTION_CLASS:
 		if (otmp->otyp == POT_OIL)
@@ -644,22 +744,28 @@ boolean artif;
 		break;
 	case SPBOOK_CLASS:
 		/* WAC charged books are easier to read */
-		if (otmp->otyp != SPE_BOOK_OF_THE_DEAD) otmp->spe = rn1(3,2); 
+		if (otmp->otyp != SPE_BOOK_OF_THE_DEAD) otmp->spe = rnd(Race_if(PM_HAXOR) ? 10 : 5); 
 		blessorcurse(otmp, 17);
 		break;
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */           
 	case ARMOR_CLASS:
 		if(rn2(10) && (otmp->otyp == FUMBLE_BOOTS ||
 		   otmp->otyp == LEVITATION_BOOTS ||
+		   otmp->otyp == ZIPPER_BOOTS ||
+		   otmp->otyp == BOOTS_OF_MOLASSES ||
+		   otmp->otyp == HIPPIE_HEELS ||
+		   otmp->otyp == CLOAK_OF_CONFUSION ||
 		   otmp->otyp == HELM_OF_OPPOSITE_ALIGNMENT ||
 		   otmp->otyp == GAUNTLETS_OF_FUMBLING ||
 		   otmp->otyp == ROBE_OF_WEAKNESS ||
-		   !rn2(11))) {
-			curse(otmp);
-			otmp->spe = -rne(3);
-		} else if(!rn2(10)) {
-			otmp->blessed = rn2(2);
-			otmp->spe = rne(3);
+		   !rn2(Race_if(PM_HAXOR) ? 5 : 11))) {
+			if (rn2(10)) curse(otmp);
+			 else	blessorcurse(otmp, 3);
+			otmp->spe = -rne(2);
+		} else if(!rn2(Race_if(PM_HAXOR) ? 5 : 8)) {
+			if (rn2(2)) otmp->blessed = rn2(2);
+			 else	blessorcurse(otmp, 3);
+			otmp->spe = rne(2);
 		} else	blessorcurse(otmp, 10);
 		if (artif && !rn2(40))                
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -678,30 +784,40 @@ boolean artif;
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */           
 	case WAND_CLASS:
 		if(otmp->otyp == WAN_WISHING) {                 
-			otmp->spe = rnd(3);
+			if (rn2(50)) otmp->spe = rnd(Race_if(PM_HAXOR) ? 3 : 2);
+			else otmp->spe = rnd(Race_if(PM_HAXOR) ? 4 : 3); /* if you get really lucky... --Amy */
 #ifdef INVISIBLE_OBJECTS
 			if (Is_stronghold(&u.uz)) otmp->oinvis = 1;
 #endif
+			otmp->recharged = 0;
 			if(!rn2(2)) otmp->recharged = 1;
-		} else otmp->spe = rn1(5,
-			(objects[otmp->otyp].oc_dir == NODIR) ? 15 : 8);
+		} else if(otmp->otyp == WAN_ACQUIREMENT) {                 
+			if (rn2(20)) otmp->spe = rnd(Race_if(PM_HAXOR) ? 6 : 5);
+			else otmp->spe = rnd(Race_if(PM_HAXOR) ? 10 : 8); /* sometimes you may get lucky --Amy */
+			otmp->recharged = 0;
+			if(!rn2(3)) otmp->recharged = 1;
+
+		} else if (rn2(10) && !Race_if(PM_HAXOR)) otmp->spe = rnd( (objects[otmp->otyp].oc_dir == NODIR) ? 15 : 8);
+			else otmp->spe = rnd( (objects[otmp->otyp].oc_dir == NODIR) ? 30 : 16); /* low chance for extra charges --Amy */
+		if (rn2(2)) otmp->spe -= rnd(3); /* allow random useless wands to spawn --Amy */
 		blessorcurse(otmp, 17);
-		otmp->recharged = 0; /* used to control recharging */
+		if (otmp->otyp != WAN_WISHING && otmp->otyp != WAN_ACQUIREMENT) otmp->recharged = 0; /* used to control recharging */
+		if (!rn2(10)) otmp->recharged = rnd(7); /* allow recharged wands to spawn --Amy */
 		break;
 	case RING_CLASS:
 		if(objects[otmp->otyp].oc_charged) {
 		    blessorcurse(otmp, 3);
 		    if(rn2(10)) {
 			if(rn2(10) && bcsign(otmp))
-			    otmp->spe = bcsign(otmp) * rne(3);
-			else otmp->spe = rn2(2) ? rne(3) : -rne(3);
+			    otmp->spe = bcsign(otmp) * rne(2);
+			else otmp->spe = rn2(2) ? rne(2) : -rne(2);
 		    }
 		    /* make useless +0 rings much less common */
 		    if (otmp->spe == 0) {
 /*                     otmp->spe = rn2(4) - rn2(3); */
 		       /* wow! +8! */
-		       if (rn2(2)) otmp->spe = rne(8)+1;
-		       else otmp->spe = -(rne(8)+1);
+		       if (rn2(3)) otmp->spe = rne(2)+1;
+		       else otmp->spe = -(rne(2)+1);
 		    }
 		    /* negative rings are usually cursed */
 		    if (otmp->spe < 0 && rn2(5)) curse(otmp);
@@ -709,6 +825,8 @@ boolean artif;
 			  otmp->otyp == RIN_POLYMORPH ||
 			  otmp->otyp == RIN_AGGRAVATE_MONSTER ||
 			  otmp->otyp == RIN_SLEEPING ||
+			  otmp->otyp == RIN_DISARMING ||
+			  otmp->otyp == RIN_NUMBNESS ||
 			  otmp->otyp == RIN_HUNGER || !rn2(9))) {
 			curse(otmp);
 		}
@@ -723,6 +841,7 @@ boolean artif;
 			    (void) add_to_container(otmp,
 						    mkobj(SPBOOK_CLASS,FALSE));
 		}
+	      blessorcurse(otmp, 7);
 		break;
 	case COIN_CLASS:
 		break;	/* do nothing */
@@ -731,6 +850,9 @@ boolean artif;
 						objects[otmp->otyp].oc_class);
 		return (struct obj *)0;
 	}
+
+	/* For a curser, every item has an 80% chance of being cursed if it would have been noncursed. --Amy */
+	if (Race_if(PM_CURSER) && rn2(5)) curse(otmp);
 
 	/* Some things must get done (timers) even if init = 0 */
 	switch (otmp->otyp) {
@@ -766,7 +888,7 @@ start_corpse_timeout(body)
 #define ROT_AGE (250L)		/* age when corpses rot away */
 
 	/* lizards and lichen don't rot or revive */
-	if (body->corpsenm == PM_LIZARD || body->corpsenm == PM_LICHEN) return;
+	if (body->corpsenm == PM_LIZARD || body->corpsenm == PM_CAVE_LIZARD || body->corpsenm == PM_CHAOS_LIZARD || body->corpsenm == PM_LIZARD_EEL || body->corpsenm == PM_EEL_LIZARD || body->corpsenm == PM_HIDDEN_LIZARD || body->corpsenm == PM_DEFORMED_LIZARD || body->corpsenm == PM_MIMIC_LIZARD || body->corpsenm == PM_CLINGING_LIZARD || body->corpsenm == PM_LIZARD_MAN || body->corpsenm == PM_ANTI_STONE_LIZARD || body->corpsenm == PM_LICHEN || body->corpsenm == PM_GECKO || body->corpsenm == PM_GIANT_GECKO || body->corpsenm == PM_SQUIRREL || body->corpsenm == PM_IGUANA || body->corpsenm == PM_BIG_IGUANA || body->corpsenm == PM_HUGE_LIZARD || body->corpsenm == PM_SAND_TIDE || body->corpsenm == PM_FBI_AGENT || body->corpsenm == PM_OWN_SMOKE || body->corpsenm == PM_GRANDPA || body->corpsenm == PM_KARMIC_LIZARD || body->corpsenm == PM_MONSTER_LIZARD || body->corpsenm == PM_FIRE_LIZARD || body->corpsenm == PM_LIGHTNING_LIZARD || body->corpsenm == PM_ICE_LIZARD || body->corpsenm == PM_GIANT_LIZARD || body->corpsenm == PM_KATNISS || body->corpsenm == PM_HELPFUL_SQUIRREL || body->corpsenm == PM_RHAUMBUSUN || body->corpsenm == PM_BIG_RHAUMBUSUN || body->corpsenm == PM_SALAMANDER || body->corpsenm == PM_FROST_SALAMANDER || body->corpsenm == PM_KOMODO_DRAGON || body->corpsenm == PM_PETTY_KOMODO_DRAGON) return;
 
 	action = ROT_CORPSE;		/* default action: rot away */
 	rot_adjust = in_mklev ? 25 : 10;	/* give some variation */
@@ -794,7 +916,7 @@ start_corpse_timeout(body)
 			when = age;
 			break;
 		    }
-	} else if (mons[body->corpsenm].mlet == S_FUNGUS) {
+	} else if (mons[body->corpsenm].mlet == S_FUNGUS || body->corpsenm == PM_ROT_WALKER || body->corpsenm == PM_RED_DEATH || body->corpsenm == PM_BONE_DEMON || body->corpsenm == PM_LITCH_DEMON || body->corpsenm == PM_UNDEAD_BALROG || body->corpsenm == PM_ROT_CONVERTER || body->corpsenm == PM_RUST_CONVERTER || body->corpsenm == PM_REANIMATED_HORDE || body->corpsenm == PM_PROWLING_DEAD_POTATO || body->corpsenm == PM_UNHOLY_CORPSE || body->corpsenm == PM_DEFILED_WARRIOR ) {
 		/* Fungi come back with a vengeance - if you don't eat it or
 		 * destroy it,  any live cells will quickly use the dead ones
 		 * as food and come back.
@@ -814,7 +936,7 @@ start_corpse_timeout(body)
 		long age;
 		for (age = TAINT_AGE + 1; age <= ROT_AGE; age++)
 		    if (!rn2(MOLDY_CHANCE)) {    /* "revives" as a random s_fungus */
-			action = MOLDY_CORPSE;
+			action = (!rn2(100) ? REVIVE_MON : MOLDY_CORPSE); /* or rarely the monster revives itself --Amy */
 			when = age;
 			break;
 		    }
@@ -916,7 +1038,7 @@ register int chance;
 	if(otmp->blessed || otmp->cursed) return;
 
 	if(!rn2(chance)) {
-	    if(!rn2(2)) {
+	    if(!rn2(3)) {
 		curse(otmp);
 	    } else {
 		bless(otmp);
@@ -1000,7 +1122,7 @@ register struct obj *obj;
 	} else if (obj->oclass == FOOD_CLASS && obj->oeaten) {
 		return eaten_stat((int)obj->quan * wt, obj);
 	} else if (obj->oclass == COIN_CLASS)
-		return (int)((obj->quan + 50L) / 100L);
+		return (int)((obj->quan + 50L) / /*100*/10000L); /* gold weight fix --Amy */
 	else if (obj->otyp == HEAVY_IRON_BALL && obj->owt != 0)
 		return((int)(obj->owt));	/* kludge for "very" heavy iron ball */
 	return(wt ? wt*(int)obj->quan : ((int)obj->quan + 1)>>1);
@@ -1025,7 +1147,7 @@ int x, y;
     register struct obj *gold = g_at(x,y);
 
     if (amount <= 0L)
-	amount = (long)(1 + rnd(level_difficulty()+2) * rnd(30));
+	amount = (long)(1 + rnd(level_difficulty()+2) * rnd(5));
     if (gold) {
 	gold->quan += amount;
     } else {
@@ -1044,6 +1166,40 @@ int x, y;
 
 #define special_corpse(num)  (((num) == PM_LIZARD)		\
 				|| ((num) == PM_LICHEN)		\
+				|| ((num) == PM_LIZARD_EEL)		\
+				|| ((num) == PM_LIZARD_MAN)		\
+				|| ((num) == PM_EEL_LIZARD)		\
+				|| ((num) == PM_SQUIRREL)		\
+				|| ((num) == PM_HUGE_LIZARD)		\
+				|| ((num) == PM_SAND_TIDE)		\
+				|| ((num) == PM_FBI_AGENT)		\
+				|| ((num) == PM_OWN_SMOKE)		\
+				|| ((num) == PM_GRANDPA)		\
+				|| ((num) == PM_KARMIC_LIZARD)		\
+				|| ((num) == PM_MONSTER_LIZARD)		\
+				|| ((num) == PM_FIRE_LIZARD)		\
+				|| ((num) == PM_LIGHTNING_LIZARD)		\
+				|| ((num) == PM_ICE_LIZARD)		\
+				|| ((num) == PM_GIANT_LIZARD)		\
+				|| ((num) == PM_KATNISS)		\
+				|| ((num) == PM_IGUANA)		\
+				|| ((num) == PM_CAVE_LIZARD)		\
+				|| ((num) == PM_CHAOS_LIZARD)		\
+				|| ((num) == PM_HIDDEN_LIZARD)		\
+				|| ((num) == PM_MIMIC_LIZARD)		\
+				|| ((num) == PM_DEFORMED_LIZARD)		\
+				|| ((num) == PM_CLINGING_LIZARD)		\
+				|| ((num) == PM_GECKO)		\
+				|| ((num) == PM_GIANT_GECKO)		\
+				|| ((num) == PM_BIG_IGUANA)		\
+				|| ((num) == PM_HELPFUL_SQUIRREL)		\
+				|| ((num) == PM_RHAUMBUSUN)		\
+				|| ((num) == PM_BIG_RHAUMBUSUN)		\
+				|| ((num) == PM_ANTI_STONE_LIZARD)		\
+				|| ((num) == PM_SALAMANDER)		\
+				|| ((num) == PM_FROST_SALAMANDER)		\
+				|| ((num) == PM_KOMODO_DRAGON)		\
+				|| ((num) == PM_PETTY_KOMODO_DRAGON)		\
 				|| (is_rider(&mons[num]))	\
 				|| (mons[num].mlet == S_FUNGUS) \
 				|| (mons[num].mlet == S_TROLL))

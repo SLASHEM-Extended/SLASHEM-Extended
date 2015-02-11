@@ -39,11 +39,29 @@ register boolean clumsy;
 	if (uarmf && uarmf->otyp == KICKING_BOOTS)
 	    dmg += 5;
 
+	if (uarmf && uarmf->otyp == WEDGE_SANDALS && Race_if(PM_NAVI) )
+	    dmg += 5;
+
+	if (uarmf && uarmf->otyp == WEDGE_SANDALS)
+	    dmg += 2;
+
+	if (uarmf && uarmf->otyp == COMBAT_STILETTOS)
+	    dmg += 5;
+
+	if (uarmf && uarmf->otyp == LEATHER_PEEP_TOES)
+	    dmg += 4;
+
+	if (uarmf && uarmf->otyp == HIPPIE_HEELS)
+	    dmg += 7;
+
+	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1)
+		dmg += uarmf->spe;
+
 	/* excessive wt affects dex, so it affects dmg */
 	if (clumsy) dmg /= 2;
 
 	/* kicking a dragon or an elephant will not harm it */
-	if (thick_skinned(mon->data)) dmg = 0;
+	if (thick_skinned(mon->data) && dmg) dmg = 1;
 
 	/* attacking a shade is useless */
 	if (mon->data == &mons[PM_SHADE])
@@ -77,7 +95,7 @@ register boolean clumsy;
 		/* convert potential damage to actual damage */
 		dmg = rnd(dmg);
 		if (martial()) {
-		    if (dmg > 1) kick_skill = P_MARTIAL_ARTS;
+		    if (dmg > /*1*/0) kick_skill = P_MARTIAL_ARTS; /* fix by Amy */
 		    dmg += rn2(ACURR(A_DEX)/2 + 1);
 		    dmg += weapon_dam_bonus((struct obj *)0);
 		}
@@ -197,7 +215,7 @@ register xchar x, y;
 		objenchant = uarmf->spe;
 	else objenchant = 0;
 
-	if (objenchant < canhitmon && !Upolyd) {
+	if (objenchant < canhitmon && !Upolyd && !rn2(3)) {
 		Your("attack doesn't seem to harm %s.",
 			mon_nam(mon));
 		(void) passive(mon, FALSE, 1, TRUE);
@@ -291,7 +309,7 @@ register struct obj *gold;
 		if (cansee(mtmp->mx, mtmp->my))
 		    pline("%s catches the gold.", Monnam(mtmp));
 #ifndef GOLDOBJ
-		mtmp->mgold += gold->quan;
+		if (!mtmp->isshk || rn2(2)) mtmp->mgold += gold->quan;
 #endif
 		if (mtmp->isshk) {
 			long robbed = ESHK(mtmp)->robbed;
@@ -310,7 +328,7 @@ register struct obj *gold;
 				if(!robbed)
 					make_happy_shk(mtmp, FALSE);
 			} else {
-				if(mtmp->mpeaceful) {
+				if(mtmp->mpeaceful && rn2(2) ) { /* randomly cheat the player --Amy */
 #ifndef GOLDOBJ
 				    ESHK(mtmp)->credit += gold->quan;
 #else
@@ -319,6 +337,8 @@ register struct obj *gold;
 				    You("have %ld %s in credit.",
 					ESHK(mtmp)->credit,
 					currency(ESHK(mtmp)->credit));
+				} else if (mtmp->mpeaceful) {
+					verbalize("I'll take that. Hahaha!");
 				} else verbalize("Thanks, scum!");
 			}
 		} else if (mtmp->ispriest) {
@@ -337,6 +357,12 @@ register struct obj *gold;
 			   goldreqd = 500L;
 			else if (mtmp->data == &mons[PM_CAPTAIN])
 			   goldreqd = 750L;
+			else if (mtmp->data == &mons[PM_GENERAL])
+			   goldreqd = 1000L;
+#ifdef CONVICT
+			else if (mtmp->data == &mons[PM_PRISON_GUARD])
+			   goldreqd = 200L;
+#endif /* CONVICT */
 
 			if (goldreqd) {
 #ifndef GOLDOBJ
@@ -347,6 +373,9 @@ register struct obj *gold;
 				(money_cnt(invent) + u.ulevel*rn2(5))/ACURR(A_CHA))
 #endif
 			    mtmp->mpeaceful = TRUE;
+
+	/* politicians have a chance of taming soldiers with a bribe; the tamedog code handles the actual success rate */
+				if (Role_if(PM_POLITICIAN)) 	(void) tamedog(mtmp, (struct obj *) 0, FALSE);
 			}
 		     }
 		     if (mtmp->mpeaceful)
@@ -467,13 +496,16 @@ xchar x, y;
 	    You("kick the %s with your bare %s.",
 		corpse_xname(kickobj, TRUE), makeplural(body_part(FOOT)));
 	    if (!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
-		You("turn to stone...");
+		
+		/*You("turn to stone...");
 		killer_format = KILLED_BY;
-		/* KMH -- otmp should be kickobj */
 		Sprintf(kbuf, "kicking %s without boots",
 			an(killer_cxname(kickobj, TRUE)));
 		killer = kbuf;
-		done(STONING);
+		done(STONING);	*/
+		if (!Stoned) Stoned = 7;
+		delayed_killer = killer_cxname(kickobj,TRUE);
+
 	    }
 	}
 
@@ -664,15 +696,25 @@ dokick()
 	boolean no_kick = FALSE;
 	char buf[BUFSZ];
 
-	if (nolimbs(youmonst.data) || slithy(youmonst.data)) {
+	if (!Race_if(PM_TRANSFORMER) && (nolimbs(youmonst.data) || slithy(youmonst.data))) {
 		You("have no legs to kick with.");
-		no_kick = TRUE;
-	} else if (verysmall(youmonst.data)) {
+		if (yn("Try a full-body tackle instead?") == 'y') {
+			if (rn2(3)) {set_wounded_legs(LEFT_SIDE, rnd(60-ACURR(A_DEX)));
+			pline("Argh! That didn't work!");
+		    return 1;}
+		}
+		else {no_kick = TRUE;}
+	} else if (verysmall(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 		You("are too small to do any kicking.");
-		no_kick = TRUE;
+		if (yn("Try it anyway?") == 'y') {
+			if (rn2(3)) {set_wounded_legs(LEFT_SIDE, rnd(60-ACURR(A_DEX)));
+			pline("You hurt your muscles!");
+		    return 1;}
+		}
+		else {no_kick = TRUE;}
 #ifdef STEED
 	} else if (u.usteed) {
-		if (yn_function("Kick your steed?", ynchars, 'y') == 'y') {
+		if (yn_function("Kick your steed?", ynchars, 'n') == 'y') {
 		    You("kick %s.", mon_nam(u.usteed));
 		    kick_steed();
 		    return 1;
@@ -726,6 +768,12 @@ dokick()
 
 	x = u.ux + u.dx;
 	y = u.uy + u.dy;
+
+	if(!isok(x, y)) { /* gotta fix that unneccessary segfault for once and for all! --Amy */
+
+	pline(Hallucination ? "You get a great rebound effect!" : "Your kick hits an invisible barrier.");
+	return(1);
+	}
 
 	/* KMH -- Kicking boots always succeed */
 	if (uarmf && uarmf->otyp == KICKING_BOOTS)
@@ -825,7 +873,7 @@ dokick()
 
 	if(!IS_DOOR(maploc->typ)) {
 		if(maploc->typ == SDOOR) {
-		    if(!Levitation && rn2(30) < avrg_attrib) {
+		    if(!Levitation && ((rn2(25) < avrg_attrib ) || !rn2(5) ) ) {
 			cvt_sdoor_to_door(maploc);	/* ->typ = DOOR */
 			pline("Crash!  %s a secret door!",
 			      /* don't "kick open" when it's locked
@@ -850,7 +898,7 @@ dokick()
 		    } else goto ouch;
 		}
 		if(maploc->typ == SCORR) {
-		    if(!Levitation && rn2(30) < avrg_attrib) {
+		    if(!Levitation && ((rn2(25) < avrg_attrib ) || !rn2(5) ) ) {
 			pline("Crash!  You kick open a secret passage!");
 			exercise(A_DEX, TRUE);
 			maploc->typ = CORR;
@@ -883,7 +931,8 @@ dokick()
 			if(i > 6) i = 6;
 			while(i--)
 			    (void) mksobj_at(rnd_class(DILITHIUM_CRYSTAL,
-					LUCKSTONE-1), x, y, FALSE, TRUE);
+					LUCKSTONE-1), x, y, TRUE, TRUE);
+
 			if (Blind)
 			    You("kick %s loose!", something);
 			else {
@@ -1121,8 +1170,8 @@ dumb:
 		if (in_town(x, y))
 		  for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		    if (DEADMONSTER(mtmp)) continue;
-		    if((mtmp->data == &mons[PM_WATCHMAN] ||
-			mtmp->data == &mons[PM_WATCH_CAPTAIN]) &&
+		    if((mtmp->data == &mons[PM_WATCHMAN] || mtmp->data == &mons[PM_WATCH_LIEUTENANT] ||
+			mtmp->data == &mons[PM_WATCH_CAPTAIN] || mtmp->data == &mons[PM_WATCH_LEADER]) &&
 			couldsee(mtmp->mx, mtmp->my) &&
 			mtmp->mpeaceful) {
 			if (canspotmon(mtmp))
@@ -1141,8 +1190,8 @@ dumb:
 	    if (in_town(x, y))
 		for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		    if (DEADMONSTER(mtmp)) continue;
-		    if ((mtmp->data == &mons[PM_WATCHMAN] ||
-				mtmp->data == &mons[PM_WATCH_CAPTAIN]) &&
+		    if ((mtmp->data == &mons[PM_WATCHMAN] || mtmp->data == &mons[PM_WATCH_LIEUTENANT] ||
+				mtmp->data == &mons[PM_WATCH_CAPTAIN] || mtmp->data == &mons[PM_WATCH_LEADER]) &&
 			    mtmp->mpeaceful && couldsee(mtmp->mx, mtmp->my)) {
 			if (canspotmon(mtmp))
 			    pline("%s yells:", Amonnam(mtmp));

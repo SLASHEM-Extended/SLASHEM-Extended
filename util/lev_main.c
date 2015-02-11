@@ -7,6 +7,9 @@
  * and some useful functions needed by yacc
  */
 
+/* IMPORTANT!!! If this file is changed, the changed version should be
+ * both in src and util, otherwise the level compiler might not recognize new stuff! --Amy */
+
 #define LEVEL_COMPILER	1	/* Enable definition of internal structures */
 
 #include "hack.h"
@@ -135,6 +138,38 @@ static struct {
 	{ "magic",	MAGIC_TRAP },
 	{ "anti magic",	ANTI_MAGIC },
 	{ "polymorph",	POLY_TRAP },
+	{ "ice",	ICE_TRAP },
+	{ "spear", SPEAR_TRAP },
+	{ "collapse",   COLLAPSE_TRAP },
+	{ "magic beam", MAGIC_BEAM_TRAP },
+	{ "shit trap", SHIT_TRAP },
+	{ "animation trap", ANIMATION_TRAP },
+	{ "glyph of warding", GLYPH_OF_WARDING },
+	{ "blade trap", SCYTHING_BLADE },
+	{ "bolt trap", BOLT_TRAP },
+	{ "acidpool", ACID_POOL },
+	{ "waterpool", WATER_POOL },
+	{ "poison gas", POISON_GAS_TRAP },
+	{ "slow gas", SLOW_GAS_TRAP },
+	{ "shock", SHOCK_TRAP },
+	{ "rmb loss", RMB_LOSS_TRAP },
+	{ "display", DISPLAY_TRAP },
+	{ "spell loss", SPELL_LOSS_TRAP },
+	{ "yellow spell", YELLOW_SPELL_TRAP },
+	{ "auto destruct", AUTO_DESTRUCT_TRAP },
+	{ "memory", MEMORY_TRAP },
+	{ "inventory", INVENTORY_TRAP },
+	{ "black ng wall", BLACK_NG_WALL_TRAP },
+	{ "menu", MENU_TRAP },
+	{ "speed", SPEED_TRAP },
+	{ "superscroller", SUPERSCROLLER_TRAP },
+	{ "active superscroller", ACTIVE_SUPERSCROLLER_TRAP },
+	{ "swarm", SWARM_TRAP },
+	{ "switcher", AUTOMATIC_SWITCHER },
+	{ "unknown trap", UNKNOWN_TRAP },
+	{ "heel trap", HEEL_TRAP },
+	{ "vulnerability trap", VULN_TRAP },
+	{ "trap percents", TRAP_PERCENTS },
 	{ 0, 0 }
 };
 
@@ -164,6 +199,26 @@ static struct {
 	{ "lemurepit",   LEMUREPIT },
 	{ "migohive",    MIGOHIVE },
 	{ "fungusfarm",  FUNGUSFARM },
+	{ "clinic",  CLINIC },
+	{ "terrorhall",  TERRORHALL },
+	{ "elemhall",  ELEMHALL },
+	{ "angelhall",  ANGELHALL },
+	{ "mimichall",  MIMICHALL },
+	{ "nymphhall",  NYMPHHALL },
+	{ "spiderhall",  SPIDERHALL },
+	{ "trollhall",  TROLLHALL },
+	{ "humanhall",  HUMANHALL },
+	{ "golemhall",  GOLEMHALL },
+	{ "coinhall",  COINHALL },
+	{ "dougroom",  DOUGROOM },
+	{ "armory",  ARMORY },
+	{ "tenshall",  TENSHALL },
+	{ "traproom",  TRAPROOM },
+	{ "poolroom",  POOLROOM },
+	{ "grueroom",  GRUEROOM },
+	{ "statueroom",  STATUEROOM },
+	{ "insideroom",  INSIDEROOM },
+	{ "riverroom",  RIVERROOM },
 	{ "shop",	 SHOPBASE },
 	{ "armor shop",	 ARMORSHOP },
 	{ "scroll shop", SCROLLSHOP },
@@ -176,6 +231,14 @@ static struct {
 	{ "pet shop",    PETSHOP },	/* Stephen White */
 	{ "tin shop",    TINSHOP }, /* Robin Johnson */
 	{ "book shop",	 BOOKSHOP },
+	{ "fresh food shop",	 USELESSSHOP },
+	{ "gun shop",	 GUNSHOP },
+	{ "banging shop",	 BANGSHOP },
+	{ "ammo shop",	 AMMOSHOP },
+	{ "lightning shop",	 LITENSHOP },
+	{ "boulder shop",	 BOULDSHOP },
+	{ "rock shop",	 ROCKSSHOP },
+	{ "wierd shop",	 WIERDSHOP },
 	{ "candle shop", CANDLESHOP },
 #ifdef BLACKMARKET
 	{ "black market", BLACKSHOP },
@@ -275,6 +338,7 @@ char **argv;
 				":dat:caves.des",
 				":dat:dragons.des",
 				":dat:endgame.des",
+				":dat:exmall.des",
 				":dat:frnknstn.des",
 				":dat:gehennom.des",
 				":dat:giants.des",
@@ -285,6 +349,7 @@ char **argv;
 				":dat:lich.des",
 				":dat:mall-1.des",
 				":dat:mall-2.des",
+				":dat:mall-3.des",
 				":dat:medusa.des",
 				":dat:mtemple.des",
 				":dat:mines.des",

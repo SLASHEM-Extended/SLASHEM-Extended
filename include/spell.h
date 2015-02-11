@@ -28,8 +28,9 @@ struct spell {
 #define ZT_LIGHTNING            (AD_ELEC-1)
 #define ZT_POISON_GAS           (AD_DRST-1)
 #define ZT_ACID                 (AD_ACID-1)
+#define ZT_LITE                 (AD_LITE-1)
 
-#define ZT_LAST                 (ZT_ACID) /*For checking of spells of a type*/
+#define ZT_LAST                 (ZT_LITE) /*For checking of spells of a type*/
 #define ZT_FIRST                (ZT_MAGIC_MISSILE)
 /* 8 and 9 are currently unassigned */
 

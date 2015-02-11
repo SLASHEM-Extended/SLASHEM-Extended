@@ -19,7 +19,7 @@
 #define ON		1
 #define OFF		0
 #define BOLT_LIM    6	/* from this distance ranged attacks will be made */
-#define MAX_CARR_CAP	1000	/* so that boulders can be heavier */
+#define MAX_CARR_CAP	4000	/* so that boulders can be heavier */
 #define DUMMY { 0 }
 
 /* symbolic names for capacity levels */
@@ -351,6 +351,10 @@ extern int repeat_hit;
 #define RAW_STAT_STUNNED	0x00000020
 #define RAW_STAT_HALLUCINATION	0x00000040
 #define RAW_STAT_SLIMED		0x00000080
+#define RAW_STAT_NUMBED		0x00000100
+#define RAW_STAT_FROZEN		0x00000200
+#define RAW_STAT_BURNED		0x00000400
+#define RAW_STAT_FEARED		0x00000800
 
 /* The function argument to qsort() requires a particular
  * calling convention under WINCE which is not the default

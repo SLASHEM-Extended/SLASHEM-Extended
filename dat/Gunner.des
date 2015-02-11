@@ -1,0 +1,337 @@
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, Robert the Lifer
+#	and receive your quest assignment.
+#
+MAZE:"Gun-strt",' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:left,top
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+|--------------------------------------------------------|-----------------|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|................K|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|---.---.---.---.---.---.---.---.---.---.---.---.---.---.|.................|
+|..........................................................................|
+|..........................................................................|
+|....|.---.---.---.---.---.---.---.---.---.---.---.---.--------------..----|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|....|---------------------------------------------------|.................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|....|--.---.---.---.---.---.---.---.---.---.---.---.---.|-----------------|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|.----.---.---.---.---.---.---.---.---.---.---.---.---.--|.................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|--------------------------------------------------------|-----------------|
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:(64,08),down
+# Portal arrival point
+BRANCH:(71,03,71,03),(0,0,0,0)
+# Altar
+ALTAR:(70,16),chaos,shrine
+# Robert the Lifer
+MONSTER:'@',"Top Gunner",(74,18)
+# fellow prisoners
+MONSTER:'@',"super warrior",random
+MONSTER:'@',"super warrior",random
+MONSTER:'@',"super warrior",random
+MONSTER:'@',"super warrior",random
+MONSTER:'@',"super warrior",random
+MONSTER:'@',"super warrior",random
+# Corrupt guards
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+# Good `ol mimics
+MONSTER:'B',"fearow", (74,05),hostile
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to find the exit from the Royal Dungeons
+#	to go further towards your assigned quest.
+#
+
+MAZE:"Gun-loca",' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:left,top
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+---------------                                              ---------------
+|.....F.......| #################################            |............K|
+|.....F.......+##              #                #############+.............|
+|.....F.......|                #                #            |.............|
+|.....+.......|                #                #            |.............|
+|.....F.......|                #                #            |.............|
+|.....F.......|              ###                #            |.............|
+|.....F.......|             ##                  #            |FFFFFFFFFFFFF|
+|--------------     #########                   #            |......|......|
+                    #      |S-------|           #            |......|......|
+                    #      |........|      ######            |-------------|
+    #################      |........|      #    H                           
+    #                      |........+#######    #                           
+    #                      |----S---|           #            |----------|   
+ |--+-------|                   #               #####        |..........|   
+ |..........|                   #               #   #        |..........|   
+ |..........|                   #     |------|  #   #########+..........|   
+ |..........|                   ######S......+###            |..........|   
+ |----------|                         |......|               |----------|   
+                                      |------|                              
+ENDMAP
+# Dungeon Description
+REGION:(01,01,13,07),lit,"ordinary"
+REGION:(02,15,11,17),lit,"ordinary"
+REGION:(62,01,74,09),lit,"ordinary"
+REGION:(62,14,71,17),lit,"tenshall",filled
+REGION:(28,10,35,12),lit,"migohive",filled
+REGION:(39,17,44,18),lit,"nymphhall",filled
+# Stairs
+STAIR:(02,03),up
+STAIR:(39,17),down
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+DOOR:locked,(04,14)
+DOOR:locked,(06,04)
+DOOR:open,(14,02)
+DOOR:closed,(61,16)
+DOOR:closed,(45,17)
+DOOR:locked,(36,12)
+DOOR:closed,(61,02)
+# Police station kops
+MONSTER: '8',"spectre",(62,01),hostile
+MONSTER: '8',"spectre",(65,01),hostile
+MONSTER: '8',"spectre",(66,01),hostile
+MONSTER: '8',"spectre",(74,02),hostile
+MONSTER: '8',"spectre",(63,03),hostile
+MONSTER: '8',"spectre",(72,03),hostile
+MONSTER: '8',"spectre",(71,04),hostile
+MONSTER: '8',"spectre",(68,05),hostile
+MONSTER: '8',"spectre",(64,06),hostile
+# Iron golem in supply room
+MONSTER: 'B',"fearow",(11,17),asleep,hostile
+# Supply room junk
+
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Warden Arianna, your nemesis monster.  You have to
+#	defeat Warden Arianna in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE:"Gun-goal",' '
+FLAGS:hardfloor
+GEOMETRY:left,top
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+---------------------------------------------------------
+|...|        |............................|             |
+|...|       --............................|             |
+|...|       |.............................|             |
+|...|      --.............................|             |
+|...|      |..............................|             |
+|...|     --...................L..........|             |
+|...|     |....................L..........|             |
+|...|    --...................L.L.........|             |
+|...|    |..............L.L.L.L.L.L.L.L...|             |
+|...|-----................L..L...L..L.....|             |
+|...........................L.L.L.L.......|             |
+|...........................L.L.L.L.......|             |
+|..........................L.L...L.L......|             |
+|.........................................|-------------|
+|.........................................|.............|
+|.........................................S.............|
+|.........................................|.............|
+|.........................................|.............|
+---------------------------------------------------------
+ENDMAP
+# Dungeon Description
+REGION:(00,00,56,19),lit,"ordinary"
+# Stairs
+STAIR:(02,02),up
+# Non diggable walls
+NON_DIGGABLE:(00,00,56,19)
+# Random traps
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Lava demons
+MONSTER: '8',"spectre",(30,05),hostile,awake
+MONSTER: '8',"spectre",(23,09),hostile,awake
+MONSTER: '8',"spectre",(39,09),hostile,awake
+MONSTER: '8',"spectre",(36,14),hostile,awake
+MONSTER: '8',"spectre",(26,14),hostile,awake
+# Elite guard
+MONSTER: 'B',"fearow",(04,13),hostile
+# Objects
+OBJECT:'[',"leather armor",(31,10),blessed,+3,"Carbon Nanotube Suit"
+OBJECT:'(',"chest",(55,18),blessed,2
+# Warden Arianna
+MONSTER:'@',"Yet Another Gun Nut",(31,10),hostile
+
+#
+#       The "fill" levels for the quest.
+#
+#       These levels are used to fill out any levels not occupied by specific
+#       levels as defined above. "filla" is the upper filler, between the
+#       start and locate levels, and "fillb" the lower between the locate
+#       and goal levels.
+#
+
+MAZE:"Gun-fila",' '
+FLAGS:hardfloor
+GEOMETRY:left,top
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|....................---------.......................---------.............|
+|....................F...|...|.......................F...|...|.............|
+|....................|...|...F.......................|...|...F.............|
+|....|---|---|.......|---|---|.......|---|---|.......|---|---|.............|
+|....F...|...|.......F...|...|.......F...|...|.......F...|...|.............|
+|....|...|...F.......|...|...F.......|...|...F.......|...|...F.............|
+|....|---|---|.......|---|---|.......|---|---|.......|---|---|.............|
+|....F...|...|.......F...|...|.......F...|...|.......F...|...|.............|
+|....|...|...F.......|...|...F.......|...|...F.......|...|...F.............|
+|....|---|---|.......|---|---|.......|---|---|.......|---|---|.............|
+|........|...|.......F...|...|.......F...|...|.......F...|...|.............|
+|....|...|...F.......|...|...F.......|...|...F.......|...|...F.............|
+|....|---|---|.......|---|---|.......|---|---|.......|---|---|.............|
+|....F...|...|.......F...|...|.......F...|...|.......F...|...|.............|
+|....|...|...F.......|...|...........|...|...F.......|...|...F.............|
+|....|---|---|.......|---|---|.......|---|---|.......|---|---|.............|
+|........|...|.......................F...|...|.............................|
+|....|...|...F.......................|...|...F.............................|
+|--------------------------------------------------------------------------|
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:(74,03),up
+STAIR:(03,17),down
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# "Regular" prisoners
+MONSTER:'8',"spectre",(59,02),hostile
+MONSTER:'8',"spectre",(55,08),hostile
+MONSTER:'8',"spectre",(43,14),hostile
+MONSTER:'8',"spectre",(38,05),hostile
+MONSTER:'8',"spectre",(27,02),hostile
+MONSTER:'8',"spectre",(23,08),hostile
+MONSTER:'8',"spectre",(11,14),hostile
+MONSTER:'8',"spectre",(06,05),hostile
+# Undead prisoners
+# Bugs and snakes
+# Corrupt guards
+MONSTER:'B',"fearow",random,hostile
+MONSTER:'B',"fearow",random,hostile
+MONSTER:'B',"fearow",random,hostile
+MONSTER:'B',"fearow",random,hostile
+# Random traps
+TRAP:"web",random
+TRAP:"web",random
+TRAP:"web",random
+TRAP:"web",random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Prison debris
+
+
+MAZE:"Gun-filb",' '
+FLAGS:hardfloor
+INIT_MAP: '.' , ' ', true, true, unlit, true
+MESSAGE: "This cave looks awful..."
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+# Peaceful miners
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+# Earth creatures
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+# Other nasties
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+MONSTER:'8',"spectre",random,hostile
+# Tools and corpses
+OBJECT: '%', "corpse", random
+OBJECT: '%', "corpse", random
+OBJECT: '%', "corpse", random
+OBJECT: '%', "corpse", random
+# Natural cavern hazards
+TRAP: "pit", random
+TRAP: "pit", random
+TRAP: "pit", random
+TRAP: "pit", random
+TRAP: "pit", random
+TRAP: "pit", random
+TRAP: "falling rock", random
+TRAP: "falling rock", random
+TRAP: "falling rock", random
+TRAP: "falling rock", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random

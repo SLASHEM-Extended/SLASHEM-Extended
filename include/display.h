@@ -25,7 +25,8 @@
  * monsters that are hiding or mimicing other monsters.
  */
 #define tp_sensemon(mon) (	/* The hero can always sense a monster IF:  */\
-    (!mindless((mon)->data)) &&	/* 1. the monster has a brain to sense AND  */\
+      (mon)->mhp % 3 != 0 && /* 0. the monster passes a 66 percent chance check to be visible (addition by Amy) AND */\
+	(!mindless((mon)->data)) &&	/* 1. the monster has a brain to sense AND  */\
       ((Blind && Blind_telepat) ||	/* 2a. hero is blind and telepathic OR	    */\
 				/* 2b. hero is using a telepathy inducing   */\
 				/*	 object and in range		    */\
@@ -33,16 +34,17 @@
 	(distu((mon)->mx, (mon)->my) <= (BOLT_LIM * BOLT_LIM))))		      \
 )
 
-#define sensemon(mon) (tp_sensemon(mon) || Detect_monsters || MATCH_WARN_OF_MON(mon))
+#define sensemon(mon) (tp_sensemon(mon) || Detect_monsters || MATCH_WARN_OF_MON(mon) || (Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) || (Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) || (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && is_undead(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) || (Role_if(PM_PALADIN) && is_demon(mon->data) ) || (Race_if(PM_VORTEX) && unsolid(mon->data) ) || (Race_if(PM_VORTEX) && nolimbs(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && is_covetous(mon->data) ) )
 
 /*
  * mon_warning() is used to warn of any dangerous monsters in your
  * vicinity, and a glyph representing the warning level is displayed.
  */
 
-#define mon_warning(mon) (Warning && !(mon)->mpeaceful && 				\
+/* Only 50 percent of monsters are visible to warning. --Amy */
+#define mon_warning(mon) ((mon)->mhp % 2 != 0 && Warning && !(mon)->mpeaceful && 				\
 			 (distu((mon)->mx, (mon)->my) < 100) &&				\
-			 (((int) ((mon)->m_lev / 4)) >= flags.warnlevel))
+			 (((int) ((mon)->m_lev / 6)) >= flags.warnlevel))
 
 /*
  * mon_visible()
@@ -198,7 +200,8 @@
 
 
 /* Total number of cmap indices in the sheild_static[] array. */
-#define SHIELD_COUNT 21
+/* #define SHIELD_COUNT 21 */
+#define SHIELD_COUNT 7
 
 /*
  * display_self()
@@ -273,7 +276,7 @@
  *
  * The following are offsets used to convert to and from a glyph.
  */
-#define NUM_ZAP 8	/* number of zap beam types */
+#define NUM_ZAP 9	/* number of zap beam types */
 
 #define GLYPH_MON_OFF		0
 #define GLYPH_PET_OFF		(NUMMONS	+ GLYPH_MON_OFF)

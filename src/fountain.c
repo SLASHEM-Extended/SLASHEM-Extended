@@ -113,7 +113,7 @@ genericptr_t poolcnt;
 	if (((x+y)%2) || (x == u.ux && y == u.uy) ||
 	    (rn2(1 + distmin(u.ux, u.uy, x, y)))  ||
 	    (levl[x][y].typ != ROOM) ||
-	    (sobj_at(BOULDER, x, y)) || nexttodoor(x, y))
+	    (sobj_at(BOULDER, x, y)) /*|| nexttodoor(x, y)*/)
 		return;
 
 	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
@@ -140,7 +140,7 @@ dofindgem() /* Find a gem in the sparkling waters. */
 	if (!Blind) You("spot a gem in the sparkling waters!");
 	else You_feel("a gem here!");
 	(void) mksobj_at(rnd_class(DILITHIUM_CRYSTAL, LUCKSTONE-1),
-			 u.ux, u.uy, FALSE, FALSE);
+			 u.ux, u.uy, TRUE, FALSE);
 	SET_FOUNTAIN_LOOTED(u.ux,u.uy);
 	newsym(u.ux, u.uy);
 	exercise(A_WIS, TRUE);			/* a discovery! */
@@ -159,8 +159,8 @@ boolean isyou;
 			/* Warn about future fountain use. */
 			for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 			    if (DEADMONSTER(mtmp)) continue;
-			    if ((mtmp->data == &mons[PM_WATCHMAN] ||
-				mtmp->data == &mons[PM_WATCH_CAPTAIN]) &&
+			    if ((mtmp->data == &mons[PM_WATCHMAN] ||  mtmp->data == &mons[PM_WATCH_LIEUTENANT] ||
+				mtmp->data == &mons[PM_WATCH_CAPTAIN] || mtmp->data == &mons[PM_WATCH_LEADER]) &&
 			       couldsee(mtmp->mx, mtmp->my) &&
 			       mtmp->mpeaceful) {
 				pline("%s yells:", Amonnam(mtmp));

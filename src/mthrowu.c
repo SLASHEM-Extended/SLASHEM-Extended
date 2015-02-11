@@ -28,8 +28,12 @@ NEARDATA const char *breathwep[] = {
 				"lightning",
 				"poison gas",
 				"acid",
-				"strange breath #8",
+				"light",
 				"strange breath #9"
+};
+
+NEARDATA const char *hallubreathwep[] = {"fragments", "fire", "frost", "sleep gas", "a disintegration blast", "lightning", "poison gas", "acid", "light", "strange breath #9", "sizzle", "nexus", "slaying", "vomit", "nausea", "repetition", "nether", "chaos", "confusion", "smoke", "--More-- You have died. DYWYPI?", "darkness", "sound", "gravity", "vibration", "penetration", "spitballs", "fart gas", "stinking gas", "slow gas", "rainbows", "air", "balloons", "nitrogen", "chloroform", "prussic acid", "ozone", "spill", "litter", "garbage", "trash", "heat", "cold", "ice", "water", "earth", "hell", "sky", "astral", "stars", "asterisks", "exclamation marks!!!", "feathers", "springs", "fog", "dew", "snow", "drugs", "rock'n'roll", "smog", "sludge", "waste", "temperature", "humidity", "vortices", "clouds"
+
 };
 
 /* hero is hit by something other than a monster */
@@ -61,10 +65,23 @@ const char *name;	/* if null, then format `obj' */
 			    (obj && obj->quan > 1L) ? name : an(name);
 	is_acid = (obj && obj->otyp == ACID_VENOM);
 
-	if(u.uac + tlev <= rnd(20)) {
+	if((u.uac + tlev <= rnd(20)) && !rn2(3)) {
 		if(Blind || !flags.verbose) pline("It misses.");
 		else You("are almost hit by %s.", onm);
 		return(0);
+	} else if ( u.uac < 0 && rn2(2) && (rnd(50) < (-(u.uac))) )    {
+		/* more negative AC means a higher chance to deflect projectiles with armor --Amy */
+		if(Blind || !flags.verbose) pline("Your armor deflects a projectile.");
+		else You("deflect %s with your armor.", onm);
+		return(0);
+#ifdef JEDI
+	} else if (Role_if(PM_JEDI) && uwep && is_lightsaber(uwep) &&
+		uwep->lamplit && P_SKILL(weapon_type(uwep)) >= P_SKILLED &&
+		rn2(5)){ /* dodge four of five missiles, even when blind
+			 see "A new hope" for blindness reference */
+		You("dodge %s with %s.", onm, yname(uwep));
+		return(0);
+#endif
 	} else {
 		if(Blind || !flags.verbose) You("are hit!");
 		else You("are hit by %s%s", onm, exclam(dam));
@@ -75,11 +92,27 @@ const char *name;	/* if null, then format `obj' */
 			pline_The("silver sears your flesh!");
 			exercise(A_CON, FALSE);
 		}
-		if (is_acid && Acid_resistance)
+		if (is_acid && Acid_resistance) {
 			pline("It doesn't seem to hurt you.");
+			if (Stoned) fix_petrification();
+		}
 		else {
-			if (is_acid) pline("It burns!");
-			if (Half_physical_damage) dam = (dam+1) / 2;
+			if (is_acid) {pline("It burns!");
+				if (Stoned) fix_petrification();
+				}
+			if (Half_physical_damage && rn2(2) ) dam = (dam+1) / 2;
+
+			if (dam && u.uac < /*-1*/0) { /* AC protects against this damage now, at least a bit --Amy */
+				int tempval;
+				tempval = rnd(-(u.uac)/5+1);
+				if (tempval < 1)  tempval = 1;
+				if (tempval > 20) tempval = 20;
+				dam -= tempval;
+				if (dam < 1) dam = 1;
+			}
+
+			if (dam >= 2 && u.ulevel > rnd(100)) dam = (dam+1) / 2;
+
 			losehp(dam, knm, kprefix);
 			exercise(A_STR, FALSE);
 		}
@@ -247,7 +280,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 		    if (vis) pline_The("poison doesn't seem to affect %s.",
 				   mon_nam(mtmp));
 		} else {
-		    if (rn2(30)) {
+		    if (rn2(150)) {
 			damage += rnd(6);
 		    } else {
 			if (vis) pline_The("poison was deadly...");
@@ -490,11 +523,15 @@ m_throw(mon, x, y, dx, dy, range, obj)
 				      (num_eyes == 1) ? "s" : "");
 			}
 		    }
+		    if (hitu && singleobj->otyp == FAERIE_FLOSS_RHING) {
+			    losexp("a sweet ring of faerie floss", TRUE);
+		    } /* This ignores level-drain resistance (not a bug). --Amy */
+
 		    if (hitu && singleobj->otyp == EGG) {
 			if (!Stone_resistance
 			    && !(poly_when_stoned(youmonst.data) &&
 				 polymon(PM_STONE_GOLEM))) {
-			    Stoned = 5;
+			    Stoned = 7;
 			    killer = (char *) 0;
 			}
 		    }
@@ -634,8 +671,8 @@ struct monst *mtmp;
 
 	/* Multishot calculations */
 	multishot = 1;
-	if ((ammo_and_launcher(otmp, mwep) || skill == P_DAGGER ||
-		skill == -P_DART || skill == -P_SHURIKEN) && !mtmp->mconf) {
+	if ((ammo_and_launcher(otmp, mwep) || skill == P_DAGGER || skill == P_KNIFE || skill == P_BOOMERANG ||
+		skill == -P_DART || skill == -P_SHURIKEN || skill == P_SPEAR || skill == P_JAVELIN) && !mtmp->mconf) {
 	    /* Assumes lords are skilled, princes are expert */
 	    if (is_prince(mtmp->data)) multishot += 2;
 	    else if (is_lord(mtmp->data)) multishot++;
@@ -657,12 +694,24 @@ struct monst *mtmp;
 
 	    switch (monsndx(mtmp->data)) {
 	    case PM_RANGER:
+	    case PM_ROCKER:
+	    case PM_GATLING_ARCHER:
 		    multishot++;
+		    break;
+	    case PM_PELLET_ARCHER:
+	    case PM_ECM_ARCHER:
+		    multishot++;
+		    multishot++;
+		    break;
+	    case PM_ELPH:
+		    multishot++;
+		    if (otmp->otyp == ELVEN_ARROW && mwep && mwep->otyp == ELVEN_BOW) multishot++;
 		    break;
 	    case PM_ROGUE:
 		    if (skill == P_DAGGER) multishot++;
 		    break;
 	    case PM_NINJA:
+	    case PM_NINJA_GAIDEN:
 	    case PM_SAMURAI:
 		    if (otmp->otyp == YA && mwep &&
 			mwep->otyp == YUMI) multishot++;
@@ -744,8 +793,14 @@ register struct attack *mattk;
 		    case AD_DRST:
 			otmp = mksobj(BLINDING_VENOM, TRUE, FALSE);
 			break;
+		    case AD_DRLI:
+			otmp = mksobj(FAERIE_FLOSS_RHING, TRUE, FALSE);
+			break;
+		    case AD_TCKL:
+			otmp = mksobj(TAIL_SPIKES, TRUE, FALSE);
+			break;
 		    default:
-			impossible("bad attack type in spitmu");
+			pline("bad attack type in spitmu");
 				/* fall through */
 		    case AD_ACID:
 			otmp = mksobj(ACID_VENOM, TRUE, FALSE);
@@ -772,7 +827,9 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 	register struct attack  *mattk;
 {
 	/* if new breath types are added, change AD_ACID to max type */
-	int typ = (mattk->adtyp == AD_RBRE) ? rnd(AD_ACID) : mattk->adtyp ;
+	int typ = (mattk->adtyp == AD_RBRE) ? rnd(AD_LITE) : mattk->adtyp ;
+
+	if (typ < AD_MAGM || typ > AD_LITE) typ = rnd(AD_LITE); /* for shambling horrors etc. --Amy */
 
 	if(lined_up(mtmp)) {
 
@@ -787,12 +844,13 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 	    }
 	    if(!mtmp->mspec_used && rn2(3)) {
 
-		if((typ >= AD_MAGM) && (typ <= AD_ACID)) {
+		if((typ >= AD_MAGM) && (typ <= AD_LITE)) {
 
 		    if(canseemon(mtmp))
 			pline("%s breathes %s!", Monnam(mtmp),
-			      breathwep[typ-1]);
-		    buzz((int) (-20 - (typ-1)), (int)mattk->damn,
+			      Hallucination ? hallubreathwep[rn2(SIZE(hallubreathwep))] : breathwep[typ-1]);
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		    buzz((int) (-20 - (typ-1)), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ),
 			 mtmp->mx, mtmp->my, sgn(tbx), sgn(tby));
 		    nomul(0);
 		    /* breath runs out sometimes. Also, give monster some
@@ -802,7 +860,7 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 			mtmp->mspec_used = 10+rn2(20);
 		    if(typ == AD_SLEE && !Sleep_resistance)
 			mtmp->mspec_used += rnd(20);
-		} else impossible("Breath weapon %d used", typ-1);
+		} else pline("Breath weapon %d used", typ-1);
 	    }
 	}
 	return(1);
@@ -817,16 +875,17 @@ register struct attack  *mattk;
 xchar ax, ay;
 {
 	/* if new breath types are added, change AD_ACID to max type */
-	int typ = (mattk->adtyp == AD_RBRE) ? rnd(AD_ACID) : mattk->adtyp ;
+	int typ = (mattk->adtyp == AD_RBRE) ? rnd(AD_LITE) : mattk->adtyp ;
 
 
-	if((typ >= AD_MAGM) && (typ <= AD_ACID)) {
+	if((typ >= AD_MAGM) && (typ <= AD_LITE)) {
 		if(canseemon(mtmp))
 			pline("%s breathes %s!", Monnam(mtmp),
-				breathwep[typ-1]);
+				Hallucination ? hallubreathwep[rn2(SIZE(hallubreathwep))] : breathwep[typ-1]);
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		/* Do the door first - monster is ON TOP so call direct */
 		zap_over_floor(mtmp->mx, mtmp->my, (int) (-20 - (typ-1)), NULL);
-		buzz((int) (-20 - (typ-1)), (int)mattk->damn, 
+		buzz((int) (-20 - (typ-1)), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ), 
 				mtmp->mx, mtmp->my, ax, ay);
 		nomul(0);
 		/* breath runs out sometimes. */
@@ -964,3 +1023,4 @@ int whodidit;	/* 1==hero, 0=other, -1==just check whether it'll pass thru */
 #endif /* OVL0 */
 
 /*mthrowu.c*/
+

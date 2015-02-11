@@ -74,8 +74,8 @@ const char *fmt, *arg;
 	boolean was_blind = !!Blind;
 
 	if (Upolyd) {
-		u.acurr = u.macurr;	/* restore old attribs */
-		u.amax = u.mamax;
+		/*u.acurr = u.macurr;*/	/* restore old attribs */
+		/*u.amax = u.mamax;*/ /* decided to take this out --Amy */
 		u.umonnum = u.umonster;
 		flags.female = u.mfemale;
 	}
@@ -181,8 +181,12 @@ newman()
 	u.ulevel = u.ulevel + rn1(5, -2);
 	if (u.ulevel > 127 || u.ulevel < 1) { /* level went below 0? */
 	    u.ulevel = oldlvl; /* restore old level in case they lifesave */
-	    goto dead;
+	    if (!Race_if(PM_UNGENOMOLD) && !Race_if(PM_MOULD) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_MISSINGNO)) goto dead;
 	}
+	/* Moulds, including ungenomolds, are resistant to bad polymorphs but have uncurable polymorphitis. --Amy
+	   They cannot suffer from system shock either. Since ungenomolds automatically genocide their own race
+	   upon starting the game, their first polymorph _needs_ to be into a species other than ungenomold. */
+
 	if (u.ulevel > MAXULEV) u.ulevel = MAXULEV;
 	/* If your level goes down, your peak level goes down by
 	   the same amount so that you can't simply use blessed
@@ -242,7 +246,7 @@ newman()
 		if (u.uenmax <= u.ulevel) u.uenmax = u.ulevel;
 	}
 	if (u.uhp <= 0 || u.uhpmax <= 0) {
-		if (Polymorph_control) {
+		if (Polymorph_control || Race_if(PM_MOULD) || Race_if(PM_DEATHMOLD) || Race_if(PM_MISSINGNO) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_UNGENOMOLD) ) {
 		    if (u.uhp <= 0) u.uhp = 1;
 		    if (u.uhpmax <= 0) u.uhpmax = 1;
 		} else {
@@ -261,7 +265,7 @@ dead: /* we come directly here if their experience level went to 0 or less */
 		(urace.individual.m) ? urace.individual.m : urace.noun);
 	if (Slimed) {
 		Your("body transforms, but there is still slime on you.");
-		Slimed = 10L;
+		Slimed = 100L;
 	}
 	flags.botl = 1;
 	vision_full_recalc = 1;
@@ -289,7 +293,8 @@ boolean forcecontrol;
 
 	if(!Polymorph_control && !forcecontrol && !draconian && !iswere &&
 			!isvamp && !Race_if(PM_DOPPELGANGER)) {
-		if (rn2(12) > ACURR(A_CON)) {
+		if ( (rn2(12) > ACURR(A_CON) || !rn2(50)) && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_MOULD) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WORM_THAT_WALKS) ) {
+
 		You(shudder_for_moment);
 		losehp(rnd(30), "system shock", KILLED_BY_AN);
 		exercise(A_CON, FALSE);
@@ -298,7 +303,9 @@ boolean forcecontrol;
 	}
 	old_light = Upolyd ? emits_light(youmonst.data) : 0;
 
-	if (Polymorph_control || forcecontrol) {
+	if (Race_if(PM_MISSINGNO)) mntmp = (NUMMONS + rnz(rnd(5000)));
+	else if (Race_if(PM_DEATHMOLD)) mntmp = (PM_WHITE_MISSINGNO + rn2(14) );
+	else if ((Polymorph_control || forcecontrol) && rn2(5)) {
 		do {
 			getlin("Become what kind of monster? [type the name]",
 				buf);
@@ -353,9 +360,9 @@ boolean forcecontrol;
 		if (draconian &&
 		    (mntmp == armor_to_dragon(uarm->otyp) || tries == 5))
 		    goto do_merge;
-	} else if (draconian || iswere || isvamp) {
+	} else if ( !u.wormpolymorph && ((draconian && rn2(5))  || iswere || isvamp)) { /* chance to poly into something else --Amy */
 		/* special changes that don't require polyok() */
-		if (draconian) {
+		if (draconian /*&& rn2(5)*/ ) {
 		    do_merge:
 			mntmp = armor_to_dragon(uarm->otyp);
 
@@ -376,16 +383,20 @@ boolean forcecontrol;
 		}
 		/* if polymon fails, "you feel" message has been given
 		   so don't follow up with another polymon or newman */
-		if (mntmp == PM_HUMAN) newman();	/* werecritter */
+		if (mntmp == PM_HUMAN && !Race_if(PM_UNGENOMOLD)) newman();	/* werecritter */
 		else (void) polymon(mntmp);
 		goto made_change;    /* maybe not, but this is right anyway */
 	}
-	if (mntmp < LOW_PM) {
+	if (u.wormpolymorph) mntmp = u.wormpolymorph;
+
+	if (!u.wormpolymorph && !Race_if(PM_MISSINGNO) && !Race_if(PM_DEATHMOLD) && mntmp < LOW_PM) {
 		tries = 0;
 		do {
 			/* randomly pick an "ordinary" monster */
 			mntmp = rn1(SPECIAL_PM - LOW_PM, LOW_PM);
-		} while((!polyok(&mons[mntmp]) || is_placeholder(&mons[mntmp]))
+		} while((!polyok(&mons[mntmp]) || is_placeholder(&mons[mntmp]) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) && (Race_if(PM_UNGENOMOLD) || Race_if(PM_MOULD) || Race_if(PM_WORM_THAT_WALKS) ) ) || ( is_eel(&mons[mntmp]) && rn2(20) && (Race_if(PM_UNGENOMOLD) || Race_if(PM_MOULD) || Race_if(PM_WORM_THAT_WALKS)) ) )
+	/* Polymorphing into a nonmoving monster can really ruin your day as an ungenomold character, so the chances
+	 * of ending up as one are greatly reduced now. Eels are sucky polymorph forms too. --Amy */
 				&& tries++ < 200);
 	}
 
@@ -393,18 +404,21 @@ boolean forcecontrol;
 	 * we deliberately chose something illegal to force newman().
 	 */
         /* WAC Doppelgangers go through a 1/20 check rather than 1/5 */
-        if (!polyok(&mons[mntmp]) ||
+        if ( !u.wormpolymorph && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_MISSINGNO) && !Race_if(PM_DEATHMOLD) && (!polyok(&mons[mntmp]) ||
         		(Race_if(PM_DOPPELGANGER) ? (
         			((u.ulevel < mons[mntmp].mlevel)
 #ifdef EATEN_MEMORY
         			 || !mvitals[mntmp].eaten
 #endif
-        			 ) && !rn2(20)) : 
-				   !rn2(5)) || your_race(&mons[mntmp]))
+        			 ) && !rn2(20)) : (Race_if(PM_MOULD) || Race_if(PM_WORM_THAT_WALKS)) ? !rn2(20) :
+				   !rn2(5)) || (your_race(&mons[mntmp]) && !Race_if(PM_MOULD) && !Race_if(PM_TRANSFORMER) && !Race_if(PM_WORM_THAT_WALKS) && rn2(5) ) ) ) /* polymorphitis races can always polymorph into everything, others can sometimes poly into their own race --Amy */
 		newman();
-	else if(!polymon(mntmp)) return;
+	else if(!polymon(mntmp)) { u.wormpolymorph = 0; return; }
 
 	if (!uarmg) selftouch("No longer petrify-resistant, you");
+
+	/* now that the polymorph has happened (or not), reset worm that walks variable */
+	u.wormpolymorph = 0;
 
  made_change:
 	new_light = Upolyd ? emits_light(youmonst.data) : 0;
@@ -430,6 +444,13 @@ int	mntmp;
 		was_blind = !!Blind, dochange = FALSE;
 	boolean could_pass_walls = Passes_walls;
 	int mlvl;
+
+	if (mntmp < LOW_PM) { /* for some reason, this seems to happen sometimes. Dunno why. --Amy */
+
+		pline("Uh-oh... that polymorph didn't seem to work.");
+		return(0);
+
+	}
 
 	if (mvitals[mntmp].mvflags & G_GENOD) {	/* allow G_EXTINCT */
 		You_feel("rather %s-ish.",mons[mntmp].mname);
@@ -461,15 +482,15 @@ int	mntmp;
 
 	if (!Upolyd) {
 		/* Human to monster; save human stats */
-		u.macurr = u.acurr;
-		u.mamax = u.amax;
+		/*u.macurr = u.acurr;
+		u.mamax = u.amax;*/ /* edit by Amy - this was just stupid. Let the stats be interchangeable between forms! */
 		u.mfemale = flags.female;
 	} else {
 		/* Monster to monster; restore human stats, to be
 		 * immediately changed to provide stats for the new monster
 		 */
-		u.acurr = u.macurr;
-		u.amax = u.mamax;
+		/*u.acurr = u.macurr;
+		u.amax = u.mamax;*/ /* see above - I really don't understand why polymorph forms would have their own attribute scores. I want my freaking xorn wizard form to get a benefit from eating cockatrice corpses after all! Dammit! --Amy */
 		flags.female = u.mfemale;
 	}
 
@@ -487,6 +508,8 @@ int	mntmp;
 	} else if (!is_neuter(&mons[mntmp]) && mntmp != u.ulycn) {
 		if(!rn2(10)) dochange = TRUE;
 	}
+
+	if (!Race_if(PM_MISSINGNO)) {
 	if (dochange) {
 		flags.female = !flags.female;
 		You("%s %s%s!",
@@ -500,6 +523,8 @@ int	mntmp;
 		else
 			You_feel("like a new %s!", mons[mntmp].mname);
 	}
+	} else pline("You transform!");
+
 	if (Stoned && poly_when_stoned(&mons[mntmp])) {
 		/* poly_when_stoned already checked stone golem genocide */
 		You("turn to stone!");
@@ -508,14 +533,14 @@ int	mntmp;
 		delayed_killer = 0;
 	}
 
-	u.mtimedone = rn1(500, 500);
+	u.mtimedone = /*rn1(500, 500)*/rnz(1000);
 	u.umonnum = mntmp;
 	set_uasmon();
 
 	/* New stats for monster, to last only as long as polymorphed.
 	 * Currently only strength gets changed.
 	 */
-	if(strongmonst(&mons[mntmp])) ABASE(A_STR) = AMAX(A_STR) = STR18(100);
+	/*if(strongmonst(&mons[mntmp])) ABASE(A_STR) = AMAX(A_STR) = STR18(100);*/
 
 	if (Stone_resistance && Stoned) { /* parnes@eniac.seas.upenn.edu */
 		Stoned = 0;
@@ -547,6 +572,8 @@ int	mntmp;
 	mlvl = ((mntmp == u.ulycn) ? u.ulevel : (int)mons[mntmp].mlevel);
 	if (youmonst.data->mlet == S_DRAGON && mntmp >= PM_GRAY_DRAGON) {
 		u.mhmax = In_endgame(&u.uz) ? (8*mlvl) : (4*mlvl + d(mlvl,4));
+	} else if (mntmp == PM_CRITICALLY_INJURED_THIEF || mntmp == PM_CRITICALLY_INJURED_JEDI) {
+		u.mhmax = 1;
 	} else if (is_golem(youmonst.data)) {
 		u.mhmax = golemhp(mntmp);
 	} else {
@@ -554,9 +581,12 @@ int	mntmp;
 		else u.mhmax = d(mlvl, 8);
 		if (is_home_elemental(&mons[mntmp])) u.mhmax *= 3;
 	}
+	u.mhmax += rnz(u.ulevel);
+	u.mhmax += rnz(u.ulevel);
+	u.mhmax += rnz(ACURR(A_CON));
 	u.mh = u.mhmax;
 
-	if (u.ulevel < mlvl) {
+	if (u.ulevel < mlvl && !Race_if(PM_MOULD) && !Race_if(PM_DEATHMOLD)) {
 	/* Low level characters can't become high level monsters for long */
 #ifdef DUMB
 		/* DRS/NS 2.2.6 messes up -- Peter Kendell */
@@ -567,6 +597,19 @@ int	mntmp;
 		u.mtimedone = u.mtimedone * u.ulevel / mlvl;
 #endif
 	}
+
+	/* Moulds suck way too much. Let's allow them to stay polymorphed for a longer time. --Amy */
+	/* Worms too. Their polymorph time depends on the monster's level though. */
+
+	if ( (u.ulevel * 2) < mlvl && (Race_if(PM_MOULD) || Race_if(PM_DEATHMOLD) || Race_if(PM_MISSINGNO) || Race_if(PM_WORM_THAT_WALKS) ) ) {
+
+	u.mtimedone = u.mtimedone + (rnz((u.ulevel * 2) + 1));
+
+	u.mtimedone = u.mtimedone * 2;
+	}
+
+	if (Race_if(PM_HAXOR)) u.mtimedone *= 2;
+
 
 #ifdef EATEN_MEMORY
 	/* WAC Doppelgangers can stay much longer in a form they know well */
@@ -693,21 +736,26 @@ STATIC_OVL void
 break_armor()
 {
     register struct obj *otmp;
-    boolean controlled_change = (Race_if(PM_DOPPELGANGER) || 
+    boolean controlled_change = (Race_if(PM_DOPPELGANGER) || Role_if(PM_LUNATIC) || Role_if(PM_AK_THIEF_IS_DEAD_) || 
     		(Race_if(PM_HUMAN_WEREWOLF) && u.umonnum == PM_WEREWOLF));
 
-    if (breakarm(youmonst.data)) {
+    if (breakarm(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	if ((otmp = uarm) != 0) {
 	    if(otmp->oartifact) {
 		if (donning(otmp)) cancel_don();
 		Your("armor falls off!");
 		(void) Armor_gone();
 		dropx(otmp); /*WAC Drop instead of destroy*/
-	    } else if (controlled_change && !otmp->cursed) {
+	    } else if ((controlled_change/* && !otmp->cursed*/) || (youmonst.data->msize == MZ_MEDIUM && rn2(20)/* && !otmp->cursed*/) || (youmonst.data->msize == MZ_LARGE && rn2(5)/* && !otmp->cursed*/) || (youmonst.data->msize == MZ_HUGE && rn2(3)/* && !otmp->cursed*/) || (youmonst.data->msize > MZ_HUGE && rn2(2)/* && !otmp->cursed*/) ) {
 		if (donning(otmp)) cancel_don();
+
+		if (!otmp->cursed) {
 		You("quickly remove your armor as you start to change.");
 		(void) Armor_gone();
 		dropx(otmp); /*WAC Drop instead of destroy*/
+
+		}
+
 	    } else {
 		if (donning(otmp)) cancel_don();
 		You("break out of your armor!");
@@ -716,16 +764,21 @@ break_armor()
 		useup(otmp);
 	}
 	}
-	if ((otmp = uarmc) != 0) {
+	if (!Race_if(PM_TRANSFORMER) && (otmp = uarmc) != 0) {
 	    if(otmp->oartifact) {
 		Your("%s falls off!", cloak_simple_name(otmp));
 		(void) Cloak_off();
 		dropx(otmp);
-	    } else if (controlled_change && !otmp->cursed) {
+	    } else if ((controlled_change/* && !otmp->cursed*/) || (youmonst.data->msize == MZ_MEDIUM && rn2(20)/* && !otmp->cursed*/) || (youmonst.data->msize == MZ_LARGE && rn2(5)/* && !otmp->cursed*/) || (youmonst.data->msize == MZ_HUGE && rn2(3)/* && !otmp->cursed*/) || (youmonst.data->msize > MZ_HUGE && rn2(2)/* && !otmp->cursed*/) ) {
+
+		if (!otmp->cursed) {
+
 		You("remove your %s before you transform.",
 			cloak_simple_name(otmp));
 		(void) Cloak_off();
 		dropx(otmp);
+		}
+
 	    } else {
 		Your("%s tears apart!", cloak_simple_name(otmp));
 		(void) Cloak_off();
@@ -733,18 +786,23 @@ break_armor()
 	    }
 	}
 #ifdef TOURIST
-	if ((otmp = uarmu) != 0) {
-	    if (controlled_change && !otmp->cursed && !uskin) {
+	if (!Race_if(PM_TRANSFORMER) && (otmp = uarmu) != 0) {
+	    if ((controlled_change/* && !otmp->cursed*/ && !uskin) || (youmonst.data->msize == MZ_MEDIUM && rn2(20)/* && !otmp->cursed*/ && !uskin) || (youmonst.data->msize == MZ_LARGE && rn2(5) /*&& !otmp->cursed*/ && !uskin) || (youmonst.data->msize == MZ_HUGE && rn2(3) /*&& !otmp->cursed*/ && !uskin) || (youmonst.data->msize > MZ_HUGE && rn2(2) /*&& !otmp->cursed*/ && !uskin) ) {
+
+		if (!otmp->cursed) {
+
 		You("take off your shirt just before it starts to rip.");
 		setworn((struct obj *)0, otmp->owornmask & W_ARMU);
 		dropx(otmp);
+		}
+
 	    } else {                
 		Your("shirt rips to shreds!");
 		useup(uarmu);
 	    }
 	}
 #endif
-    } else if (sliparm(youmonst.data)) {
+    } else if (sliparm(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	if (((otmp = uarm) != 0) && (racial_exception(&youmonst, otmp) < 1)) {
 		if (donning(otmp)) cancel_don();
 		Your("armor falls around you!");
@@ -768,7 +826,7 @@ break_armor()
 	}
 #endif
     }
-    if (has_horns(youmonst.data)) {
+    if (has_horns(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	if ((otmp = uarmh) != 0) {
 	    if (is_flimsy(otmp) && !donning(otmp)) {
 		char hornbuf[BUFSZ], yourbuf[BUFSZ];
@@ -785,7 +843,19 @@ break_armor()
 	    }
 	}
     }
-    if (nohands(youmonst.data) || verysmall(youmonst.data)) {
+#ifdef JEDI
+    if ((otmp = uarmh) != 0 && !Race_if(PM_TRANSFORMER) && (youmonst.data == &mons[PM_MIND_FLAYER] ||
+	youmonst.data == &mons[PM_MASTER_MIND_FLAYER])){
+	    if (!otmp->cursed){
+	      pline_The("%s is pushed from your head by your tentacles.", xname(otmp));
+	      (void) Helmet_off();
+	    } else {
+	      Your("tentacles break through %s.", the(xname(otmp)));
+	      useup(uarmh);
+	    }
+    }
+#endif
+    if (!Race_if(PM_TRANSFORMER) && (nohands(youmonst.data) || verysmall(youmonst.data))) {
 	if ((otmp = uarmg) != 0) {
 	    if (donning(otmp)) cancel_don();
 	    /* Drop weapon along with gloves */
@@ -806,8 +876,8 @@ break_armor()
 	    dropx(otmp);
 	}
     }
-    if (nohands(youmonst.data) || verysmall(youmonst.data) ||
-		slithy(youmonst.data) || youmonst.data->mlet == S_CENTAUR) {
+    if (!Race_if(PM_TRANSFORMER) && (nohands(youmonst.data) || verysmall(youmonst.data) ||
+		slithy(youmonst.data) || youmonst.data->mlet == S_CENTAUR)) {
 	if ((otmp = uarmf) != 0) {
 	    if (donning(otmp)) cancel_don();
 	    if (is_whirly(youmonst.data))
@@ -832,7 +902,7 @@ int alone;
 	 * future it might not be so if there are monsters which cannot
 	 * wear gloves but can wield weapons
 	 */
-	if (!alone || cantwield(youmonst.data)) {
+	if (!Race_if(PM_TRANSFORMER) && (!alone || cantwield(youmonst.data))) {
 	    struct obj *wep = uwep;
 
 	    if (alone) You("find you must drop your weapon%s!",
@@ -909,10 +979,12 @@ dogaze()
 
 	if (Blind) {
 		You("can't see a thing!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
 	if (u.uen < 20) {
-		You("lack the energy to use your special gaze!");
+		You("lack the energy to use your special gaze! Gaze attacks cost 20 mana!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
 	pline("Where do you wish to look?");
@@ -944,13 +1016,16 @@ dogaze()
 
 	You("gaze at %s...", mon_nam(mtmp));
 
-	if ((mtmp->data==&mons[PM_MEDUSA]) && !mtmp->mcan) {
+	if ((mtmp->data==&mons[PM_MEDUSA]) && !mtmp->mcan && !Stone_resistance) {
 		pline("Gazing at the awake Medusa is not a very good idea.");
 		/* as if gazing at a sleeping anything is fruitful... */
-		You("turn to stone...");
+		/*You("turn to stone...");
 		killer_format = KILLED_BY;
 		killer = "deliberately gazing at Medusa's hideous countenance";
-		done(STONING);
+		done(STONING);*/
+		You("start turning to stone...");
+		if (!Stoned) Stoned = 7;
+		delayed_killer = "gazing at Medusa";
 	} else if (!mtmp->mcansee || mtmp->msleeping) {
 	    pline("But nothing happens.");
 	    return (1);
@@ -980,19 +1055,28 @@ dobreathe()
 
 	if (Strangled) {
 	    You_cant("breathe.  Sorry.");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return(0);
 	}
 
 	/* WAC -- no more belching.  Use up energy instead */
 	if (Race_if(PM_DOPPELGANGER)
 		|| (Role_if(PM_FLAME_MAGE) && u.umonnum == PM_RED_DRAGON)
+		|| (Role_if(PM_ACID_MAGE) && u.umonnum == PM_YELLOW_DRAGON)
+		|| (Role_if(PM_ELECTRIC_MAGE) && u.umonnum == PM_BLUE_DRAGON)
 		|| (Role_if(PM_ICE_MAGE) && u.umonnum == PM_WHITE_DRAGON))
-	    energy = 10;
-	else
 	    energy = 15;
+	else
+	    energy = 20; /* a bit more expensive --Amy */
+
+	/* and make instakill breath attacks even more expensive to tone down abuse potential */
+	mattk = attacktype_fordmg(youmonst.data, AT_BREA, AD_ANY);
+	if (mattk->adtyp == AD_DISN) energy = 100;
+	else if (mattk->adtyp == AD_RBRE) energy = 30; /* can randomly be a disintegration beam */
 
 	if (u.uen < energy) {
-	    You("don't have enough energy to breathe!");
+	    You("don't have enough energy to breathe! You need at least %d mana!",energy);
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return(0);
 	}
 
@@ -1008,8 +1092,8 @@ dobreathe()
 	    /* Extra handling for AD_RBRE - player might poly into a crystal
 	     * golem. */
 	    uchar adtyp;
-	    adtyp = mattk->adtyp == AD_RBRE ? rnd(AD_ACID) : mattk->adtyp;
-	    buzz((int) (20 + adtyp - 1), (int)mattk->damn,
+	    adtyp = mattk->adtyp == AD_RBRE ? rnd(AD_LITE) : mattk->adtyp;
+	    buzz((int) (20 + adtyp - 1), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ),
 		u.ux, u.uy, u.dx, u.dy);
 	}
 	return(1);
@@ -1032,7 +1116,7 @@ dospit()
 		    otmp = mksobj(BLINDING_VENOM, TRUE, FALSE);
 		    break;
 		default:
-		    impossible("bad attack type in do_spit");
+		    pline("bad attack type in do_spit");
 		    /* fall through */
 		case AD_ACID:
 		    otmp = mksobj(ACID_VENOM, TRUE, FALSE);
@@ -1142,13 +1226,47 @@ dospinweb()
 		case BEAR_TRAP:
 		case ROCKTRAP:
 		case FIRE_TRAP:
+		case ICE_TRAP:
+		case SPEAR_TRAP:
+		case MAGIC_BEAM_TRAP:
+		case COLLAPSE_TRAP:
+		case SHIT_TRAP:
+		case ANIMATION_TRAP:
+		case GLYPH_OF_WARDING:
 		case LANDMINE:
 		case SLP_GAS_TRAP:
 		case RUST_TRAP:
 		case MAGIC_TRAP:
 		case ANTI_MAGIC:
 		case POLY_TRAP:
+		case SCYTHING_BLADE:
+		case BOLT_TRAP:
+		case ACID_POOL:
+		case WATER_POOL:
+		case POISON_GAS_TRAP:
+		case SLOW_GAS_TRAP:
+		case SHOCK_TRAP:
+		case HEEL_TRAP:
+		case VULN_TRAP:
 			You("have triggered a trap!");
+			dotrap(ttmp, 0);
+			return(1);
+		case RMB_LOSS_TRAP:
+		case SUPERSCROLLER_TRAP:
+		case ACTIVE_SUPERSCROLLER_TRAP:
+		case MENU_TRAP:
+		case SPEED_TRAP:
+		case SWARM_TRAP:
+		case AUTOMATIC_SWITCHER:
+		case DISPLAY_TRAP:
+		case SPELL_LOSS_TRAP:
+		case YELLOW_SPELL_TRAP:
+		case AUTO_DESTRUCT_TRAP:
+		case MEMORY_TRAP:
+		case INVENTORY_TRAP:
+		case BLACK_NG_WALL_TRAP:
+		case UNKNOWN_TRAP:
+		case TRAP_PERCENTS:
 			dotrap(ttmp, 0);
 			return(1);
 		default:
@@ -1175,11 +1293,31 @@ int
 dosummon()
 {
 	int placeholder;
-	if (u.uen < 10) {
-	    You("lack the energy to send forth a call for help!");
+	int somanymana;
+	somanymana = 10;
+
+	if (u.ulycn == PM_WERESOLDIERANT) somanymana = 15;
+	if (u.ulycn == PM_WEREWOLF) somanymana = 20;
+	if (u.ulycn == PM_WEREPIRANHA) somanymana = 20;
+	if (u.ulycn == PM_WEREEEL) somanymana = 25;
+	if (u.ulycn == PM_WEREKRAKEN) somanymana = 45;
+	if (u.ulycn == PM_WEREFLYFISH) somanymana = 45;
+	if (u.ulycn == PM_WEREPANTHER) somanymana = 30;
+	if (u.ulycn == PM_WERETIGER) somanymana = 30;
+	if (u.ulycn == PM_WERESNAKE) somanymana = 20;
+	if (u.ulycn == PM_WERECOW) somanymana = 20;
+	if (u.ulycn == PM_WEREBEAR) somanymana = 75;
+	if (u.ulycn == PM_WEREVORTEX) somanymana = 50;
+	if (u.ulycn == PM_WEREGIANT) somanymana = 50;
+	if (u.ulycn == PM_WEREGHOST) somanymana = 30;
+	if (u.ulycn == PM_WERECOCKATRICE) somanymana = 60;
+	if (u.ulycn == PM_WEREMINDFLAYER) somanymana = 150;
+	
+	if (u.uen < somanymana) {
+	    You("lack the energy to send forth a call for help! You need at least %d!",somanymana);
 	    return(0);
 	}
-	u.uen -= 10;
+	u.uen -= somanymana;
 	flags.botl = 1;
 
 	You("call upon your brethren for help!");
@@ -1218,7 +1356,7 @@ dogaze()
 	    return 0;
 	}
 	if (u.uen < 15) {
-	    You("lack the energy to use your special gaze!");
+	    You("lack the energy to use your special gaze! You need at least 15 points of mana!");
 	    return(0);
 	}
 	u.uen -= 15;
@@ -1270,11 +1408,11 @@ dogaze()
 			    pline_The("fire doesn't burn %s!", mon_nam(mtmp));
 			    dmg = 0;
 			}
-			if((int) u.ulevel > rn2(20))
+			if(!rn2(33))
 			    (void) destroy_mitem(mtmp, SCROLL_CLASS, AD_FIRE);
-			if((int) u.ulevel > rn2(20))
+			if(!rn2(33))
 			    (void) destroy_mitem(mtmp, POTION_CLASS, AD_FIRE);
-			if((int) u.ulevel > rn2(25))
+			if(!rn2(33))
 			    (void) destroy_mitem(mtmp, SPBOOK_CLASS, AD_FIRE);
 			if (dmg && !DEADMONSTER(mtmp)) mtmp->mhp -= dmg;
 			if (mtmp->mhp <= 0) killed(mtmp);
@@ -1307,10 +1445,13 @@ dogaze()
 			 "Gazing at the awake %s is not a very good idea.",
 			    l_monnam(mtmp));
 			/* as if gazing at a sleeping anything is fruitful... */
-			You("turn to stone...");
+			/*You("turn to stone...");
 			killer_format = KILLED_BY;
 			killer = "deliberately meeting Medusa's gaze";
-			done(STONING);
+			done(STONING);*/
+			You("start turning to stone...");
+			if (!Stoned) Stoned = 7;
+			delayed_killer = "deliberately meeting Medusa's gaze";
 		    }
 		}
 	    }
@@ -1346,7 +1487,7 @@ domindblast()
 	struct monst *mtmp, *nmon;
 
 	if (u.uen < 10) {
-	    You("concentrate but lack the energy to maintain doing so.");
+	    You("concentrate but lack the energy to maintain doing so. Wimp, you don't even have 10 mana to spare?!");
 	    return(0);
 	}
 	u.uen -= 10;
@@ -1599,6 +1740,15 @@ int atyp;
 	    case GREEN_DRAGON_SCALE_MAIL:
 	    case GREEN_DRAGON_SCALES:
 		return PM_GREEN_DRAGON;
+	    case GOLDEN_DRAGON_SCALE_MAIL:
+	    case GOLDEN_DRAGON_SCALES:
+		return PM_GOLDEN_DRAGON;
+	    case STONE_DRAGON_SCALE_MAIL:
+	    case STONE_DRAGON_SCALES:
+		return PM_STONE_DRAGON;
+	    case CYAN_DRAGON_SCALE_MAIL:
+	    case CYAN_DRAGON_SCALES:
+		return PM_CYAN_DRAGON;
 	    case YELLOW_DRAGON_SCALE_MAIL:
 	    case YELLOW_DRAGON_SCALES:
 		return PM_YELLOW_DRAGON;
@@ -1640,10 +1790,18 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 
 	boolean scales = ((uarm && uarm->otyp == RED_DRAGON_SCALES
 				&& Role_if(PM_FLAME_MAGE)) ||
+				(uarm && uarm->otyp == BLUE_DRAGON_SCALES
+				&& Role_if(PM_ELECTRIC_MAGE)) ||
+				(uarm && uarm->otyp == YELLOW_DRAGON_SCALES
+				&& Role_if(PM_ACID_MAGE)) ||
 			  (uarm && uarm->otyp == WHITE_DRAGON_SCALES
 				&& Role_if(PM_ICE_MAGE)));
 	boolean scale_mail = ((uarm && uarm->otyp == RED_DRAGON_SCALE_MAIL   
 				&& Role_if(PM_FLAME_MAGE)) ||
+				(uarm && uarm->otyp == BLUE_DRAGON_SCALE_MAIL   
+				&& Role_if(PM_ELECTRIC_MAGE)) ||
+				(uarm && uarm->otyp == YELLOW_DRAGON_SCALE_MAIL   
+				&& Role_if(PM_ACID_MAGE)) ||
 			  (uarm && uarm->otyp == WHITE_DRAGON_SCALE_MAIL 
 				&& Role_if(PM_ICE_MAGE)));
 
@@ -1662,13 +1820,17 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 	if (Upolyd && (Race_if(PM_DOPPELGANGER) ||
 			(Role_if(PM_FLAME_MAGE) && (u.umonnum == PM_RED_DRAGON || 
 				u.umonnum == PM_BABY_RED_DRAGON)) ||
+			(Role_if(PM_ACID_MAGE) && (u.umonnum == PM_YELLOW_DRAGON || 
+				u.umonnum == PM_BABY_YELLOW_DRAGON)) ||
+			(Role_if(PM_ELECTRIC_MAGE) && (u.umonnum == PM_BLUE_DRAGON || 
+				u.umonnum == PM_BABY_BLUE_DRAGON)) ||
 			(Role_if(PM_ICE_MAGE) && (u.umonnum == PM_WHITE_DRAGON || 
 				u.umonnum == PM_BABY_WHITE_DRAGON)))) {
 	    rehumanize();
 	    return 1;	    
 	}
 
-	if ((Role_if(PM_ICE_MAGE) || Role_if(PM_FLAME_MAGE)) &&
+	if ((Role_if(PM_ICE_MAGE) || Role_if(PM_FLAME_MAGE) || Role_if(PM_ACID_MAGE) || Role_if(PM_ELECTRIC_MAGE)) &&
 	    (u.ulevel > 6 || scale_mail)) {
 	    /* [ALI]
 	     * I've rewritten the logic here to fix the failure messages,
@@ -1707,7 +1869,7 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 	    if (yn("Transform into your draconic form?") == 'n') 
 		can_polyatwill = TRUE;
 	    else if (!scales && !scale_mail && u.uen <= EN_BABY_DRAGON) {
-		You("don't have the energy to polymorph.");
+		You("don't have the energy to polymorph. You need at least %d!",EN_BABY_DRAGON);
 		return 0;		
 	    } else {
 		/* Check if you can do the adult form */
@@ -1720,15 +1882,15 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 			else u.uen -= EN_ADULT_DRAGON;
 		    }
 
-		    draconic.mon = Role_if(PM_FLAME_MAGE) ?
-			    PM_RED_DRAGON : PM_WHITE_DRAGON;
+		    draconic.mon = Role_if(PM_ACID_MAGE) ? PM_YELLOW_DRAGON : Role_if(PM_FLAME_MAGE) ?
+			    PM_RED_DRAGON : Role_if(PM_ICE_MAGE) ? PM_WHITE_DRAGON : PM_BLUE_DRAGON;
 		    draconic.merge = scales || scale_mail;
 		/* Otherwise use the baby form */
 		} else {
 		    if (!scales) u.uen -= EN_BABY_DRAGON;
 
-		    draconic.mon = Role_if(PM_FLAME_MAGE) ?
-			    PM_BABY_RED_DRAGON : PM_BABY_WHITE_DRAGON;
+		    draconic.mon = Role_if(PM_ACID_MAGE) ? PM_BABY_YELLOW_DRAGON : Role_if(PM_FLAME_MAGE) ?
+			    PM_BABY_RED_DRAGON : Role_if(PM_ICE_MAGE) ? PM_BABY_WHITE_DRAGON : PM_BABY_BLUE_DRAGON;
 		    draconic.merge = scales;
 		}
 		draconic.reqtime = 2;
@@ -1740,11 +1902,13 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 		return 1;
 	    }
 	}
-	if (Race_if(PM_DOPPELGANGER)) {
+	/* Moulds and ungenomolds _must_ be able to polymorph at will. Otherwise they would just suck. --Amy */
+
+	if (Race_if(PM_DOPPELGANGER) || Race_if(PM_MOULD) || Race_if(PM_DEATHMOLD) || Race_if(PM_UNGENOMOLD)) {
 	    if (yn("Polymorph at will?") == 'n')	    
 	    	can_polyatwill = TRUE;
 	    else if (u.uen < EN_DOPP) {
-		You("don't have the energy to polymorph!");
+		You("don't have the energy to polymorph! You need at least %d!",EN_DOPP);
 		return 0;
 	    } else {
 		u.uen -= EN_DOPP;
@@ -1762,7 +1926,7 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 		}
 		return 1;	
 	    }
-	} else if (Race_if(PM_HUMAN_WEREWOLF) &&
+	} else if ( (Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Role_if(PM_LUNATIC) ) &&
 		(!Upolyd || u.umonnum == u.ulycn)) {
 	    if (yn("Change form?") == 'n')
 	    	can_polyatwill = TRUE;
@@ -1773,7 +1937,7 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 	    	You("can't invoke the change at will yet.");
 		return 0;		
 	    } else if (u.uen < EN_WERE) {
-		You("don't have the energy to change form!");
+		You("don't have the energy to change form! You need at least %d!",EN_WERE);
 		return 0;
 	    } else {
 	    	/* Committed to the change now */
@@ -1792,8 +1956,7 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 	    }
 	} else if (!can_polyatwill) {
 	    pline("You can't polymorph at will%s.", 
-		    ((Role_if(PM_FLAME_MAGE) || Role_if(PM_ICE_MAGE) || 
-		      Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_DOPPELGANGER)) ?
+		    ((Role_if(PM_FLAME_MAGE) || Role_if(PM_ELECTRIC_MAGE) || Role_if(PM_LUNATIC) || Role_if(PM_ACID_MAGE) || Role_if(PM_ICE_MAGE) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Race_if(PM_DOPPELGANGER)) ?
 		    " yet" : ""));
 	    return 0;
 	}

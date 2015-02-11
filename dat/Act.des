@@ -1,0 +1,375 @@
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, Robert the Lifer
+#	and receive your quest assignment.
+#
+MAZE:"Act-strt",' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:left,top
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+|--------------------------------------------------------|-----------------|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|................K|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|---.---.---.---.---.---.---.---.---.---.---.---.---.---.|.................|
+|..........................................................................|
+|..........................................................................|
+|....|.---.---.---.---.---.---.---.---.---.---.---.---.--------------..----|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|....|---------------------------------------------------|.................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|....|--.---.---.---.---.---.---.---.---.---.---.---.---.|-----------------|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|.----.---.---.---.---.---.---.---.---.---.---.---.---.--|.................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|--------------------------------------------------------|-----------------|
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:(64,08),down
+# Portal arrival point
+BRANCH:(71,03,71,03),(0,0,0,0)
+# Altar
+#ALTAR:(70,16),chaos,shrine
+# Robert the Lifer
+MONSTER:'@',"Activist Speaker",(74,18)
+# fellow prisoners
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+# Corrupt guards
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+# Good `ol mimics
+MONSTER:'m',"giant mimic", random, hostile
+# Random traps
+TRAP:"web",random
+TRAP:"web",random
+TRAP:"web",random
+TRAP:"web",random
+# Prison debris
+OBJECT: '+', "charm monster", (74,18)
+OBJECT: '+', "teleport away", (74,18)
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to find the exit from the Royal Dungeons
+#	to go further towards your assigned quest.
+#
+
+MAZE:"Act-loca",' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:left,top
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+---------------                                              ---------------
+|.....F.......| #################################            |............K|
+|.....F.......+##    |...|     #                #############+.............|
+|.....F.......|      |...|     #                #      |.....|.............|
+|.....+.......|      |---|     #      |----|    #      |.....|.............|
+|.....F.......|                #      |....|    #      |.....|.............|
+|.....F.......|              ###      |....|    #   |--|.....|.............|
+|.....F.......|             ##        |....|    #   |........|FFF.FFFFF.FFF|
+|--------------     #########         |....|    #   |........|......|......|
+                    #      |S-------| |....#    #   |--|.....|......|......|
+-----               #      |........| |----######      |.....|-------------|
+|...#################      |........|      #    H      |........|           
+|...#          |....|      |........+#######    #      |........|           
+|...#          |....|      |----S---|           #      |.....|----------|   
+-|--+-------|  |....|           #               #####  |.....|..........|   
+ |..........|  |....|     |-----#               #   #  |.....|..........|   
+ |..........|  |....|     |.....#     |------|  #   #########+..........|   
+ |..........|  |----|     |.....######S......+###            |..........|   
+ |----------|             |-----|     |......|               |----------|   
+                                      |------|                              
+ENDMAP
+# Dungeon Description
+REGION:(01,01,13,07),lit,"ordinary"
+REGION:(02,15,11,17),lit,"ordinary"
+REGION:(62,01,74,09),lit,"ordinary"
+REGION:(62,14,71,17),lit,"golemhall"
+REGION:(28,10,35,12),lit,"humanhall"
+REGION:(39,17,44,18),lit,"ordinary"
+# Stairs
+STAIR:(02,03),up
+STAIR:(39,17),down
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+DOOR:locked,(04,14)
+DOOR:locked,(06,04)
+DOOR:open,(14,02)
+DOOR:closed,(61,16)
+DOOR:closed,(45,17)
+DOOR:locked,(36,12)
+DOOR:closed,(61,02)
+# Police station kops
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+# Iron golem in supply room
+MONSTER: random,random,random,hostile
+# Supply room junk
+
+MONSTER:'@',"topmodel",random,hostile,"Tonilia"
+MONSTER:'@',"topmodel",random,hostile,"Claire"
+MONSTER:'@',"topmodel",random,hostile,"Maricia"
+MONSTER:'@',"topmodel",random,hostile,"Sontaire"
+MONSTER:'@',"topmodel",random,hostile,"Trycja"
+MONSTER:'@',"topmodel",random,hostile,"Svantje"
+MONSTER:'@',"topmodel",random,hostile,"Jynnifyr"
+MONSTER:'@',"topmodel",random,hostile,"Betti"
+MONSTER:'@',"topmodel",random,hostile,"Jora"
+MONSTER:'@',"topmodel",random,hostile,"Verene"
+MONSTER:'@',"topmodel",random,hostile,"Lamy"
+MONSTER:'@',"topmodel",random,hostile,"Yasni"
+MONSTER:'@',"topmodel",random,hostile,"Krista"
+MONSTER:'@',"topmodel",random,hostile,"Noko"
+MONSTER:'@',"topmodel",random,hostile,"Fridrika"
+MONSTER:'@',"topmodel",random,hostile,"Great Jaguar Claw"
+MONSTER:'@',"topmodel",random,hostile,"Irya"
+MONSTER:'@',"topmodel",random,hostile,"Madeleine"
+MONSTER:'@',"topmodel",random,hostile,"Anita"
+MONSTER:'@',"topmodel",random,hostile,"Nina"
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Warden Arianna, your nemesis monster.  You have to
+#	defeat Warden Arianna in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE:"Act-goal",' '
+FLAGS:hardfloor
+GEOMETRY:left,top
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+---------------------------------------------------------       ............
+|...|........S............................|.............|       .   F      .
+|...|.......--...............................................   .....S....S.
+|...|.......|.............................|.............|   ..        ....
+|...|---S----.............................|.............|   ...       ....
+|...|......|..............................|.............|   ....      ....
+|...|.....--...................L..........|.............|   .....      SS
+|...|.....|....................L..........|.............|   ......  LLLLLLLL
+|...|....--...................L.L.........|.............|   ....... L .... L
+|...|....|..............L.L.L.L.L.L.L.L...|.............|   ........L......L
+|...|-----................L..L...L..L...................|   ........L......L
+|...........................L.L.L.L.......|.............|   ....... L .... L
+|...........................L.L.L.L.......|.............|   ......  LLLLLLLL
+|..........................L.L...L.L......|.............|   .....      SS
+|.........................................|-------------|   ....      ....
+|.........................................|.............|   ...       ....
+|.........................................S.............|   ..        ....
+|.........................................|..................   .....S....S.
+|.........................................|.............|       .   F      .
+---------------------------------------------------------       ............
+ENDMAP
+# Dungeon Description
+
+RANDOM_PLACES:(71,03),(71,09),(71,16)
+
+REGION:(00,00,56,19),unlit,"ordinary"
+
+REGION:(70,02,73,05),lit,"golemhall"
+REGION:(70,08,73,11),lit,"humanhall"
+REGION:(70,14,73,17),lit,"golemhall"
+
+# Stairs
+STAIR:(02,02),up
+# Non diggable walls
+NON_DIGGABLE:(00,00,56,19)
+# Random traps
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+# Lava demons
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+# Elite guard
+MONSTER: random,random,random,hostile
+# Objects
+OBJECT:')',"fly swatter",place[0],blessed,0,"Activist Stick"
+# Warden Arianna
+MONSTER:'8',"Imelda's Ghost",place[0],hostile
+
+MONSTER:'@',"topmodel",random,hostile,"Kersey"
+MONSTER:'@',"topmodel",random,hostile,"Lissie"
+MONSTER:'@',"topmodel",random,hostile,"Celina"
+MONSTER:'@',"topmodel",random,hostile,"Rungud"
+MONSTER:'@',"topmodel",random,hostile,"Viktorija"
+MONSTER:'@',"topmodel",random,hostile,"Hannya"
+MONSTER:'@',"topmodel",random,hostile,"Natalyana"
+MONSTER:'@',"topmodel",random,hostile,"Mirri"
+MONSTER:'@',"topmodel",random,hostile,"Katia"
+MONSTER:'@',"topmodel",random,hostile,"Eleanor"
+MONSTER:'@',"topmodel",random,hostile,"Melissa"
+MONSTER:'@',"topmodel",random,hostile,"Esruth"
+MONSTER:'@',"topmodel",random,hostile,"Jasajeen"
+MONSTER:'@',"topmodel",random,hostile,"Everella"
+MONSTER:'@',"topmodel",random,hostile,"Kirja"
+MONSTER:'@',"topmodel",random,hostile,"Inge"
+MONSTER:'@',"topmodel",random,hostile,"Manola"
+MONSTER:'@',"topmodel",random,hostile,"Nicoletta"
+MONSTER:'@',"topmodel",random,hostile,"Nellina"
+MONSTER:'@',"topmodel",random,hostile,"Natascha"
+MONSTER:'@',"topmodel",random,hostile,"Xeni"
+MONSTER:'@',"topmodel",random,hostile,"Mariya"
+
+#
+#       The "fill" levels for the quest.
+#
+#       These levels are used to fill out any levels not occupied by specific
+#       levels as defined above. "filla" is the upper filler, between the
+#       start and locate levels, and "fillb" the lower between the locate
+#       and goal levels.
+#
+
+MAZE:"Act-fila",' '
+FLAGS:hardfloor
+GEOMETRY:left,top
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|....................---------.......................---------.............|
+|........................|...|...........................|...|.............|
+|....................|...|...........................|...|.................|
+|....|---|---|.......|---|---|.......|---|---|.......|---|---|.............|
+|........|...|...........|...|...........|...|...........|...|.............|
+|....|...|...........|...|...........|...|...........|...|.................|
+|....|---|---|.......|---|---|.......|---|---|.......|---|---|.............|
+|........|...|...........|...|...........|...|...........|...|.............|
+|....|...|...........|...|...........|...|...........|...|.................|
+|....|---|---|.......|---|---|.......|---|---|.......|---|---|.............|
+|........|...|...........|...|...........|...|...........|...|.............|
+|....|...|...........|...|...........|...|...........|...|.................|
+|....|---|---|.......|---|---|.......|---|---|.......|---|---|.............|
+|........|...|...........|...|...........|...|...........|...|.............|
+|....|...|...........|...|...........|...|...........|...|.................|
+|....|---|---|.......|---|---|.......|---|---|.......|---|---|.............|
+|........|...|...........................|...|.............................|
+|....|...|...........................|...|.................................|
+|--------------------------------------------------------------------------|
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:(74,03),up
+STAIR:(03,17),down
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# "Regular" prisoners
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+# Undead prisoners
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+# Bugs and snakes
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+# Corrupt guards
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+# Random traps
+TRAP:"web",random
+TRAP:"web",random
+TRAP:"web",random
+TRAP:"web",random
+# Prison debris
+
+
+MAZE:"Act-filb",' '
+FLAGS:hardfloor
+INIT_MAP: '.' , ' ', true, true, unlit, true
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+# Peaceful miners
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+# Earth creatures
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+# Other nasties
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+# Tools and corpses
+#OBJECT: '(', "pick-axe", random
+#OBJECT: '(', "brass lantern", random
+#OBJECT: '(', random, random
+#OBJECT: '%', "corpse", random, "miner", 0
+#OBJECT: '%', "corpse", random, "miner", 0
+#OBJECT: '%', "corpse", random, "miner", 0
+#OBJECT: '%', "corpse", random, "miner", 0
+# Natural cavern hazards
+TRAP: "pit", random
+TRAP: "pit", random
+TRAP: "pit", random
+TRAP: "pit", random
+TRAP: "pit", random
+TRAP: "pit", random
+TRAP: "falling rock", random
+TRAP: "falling rock", random
+TRAP: "falling rock", random
+TRAP: "falling rock", random
+TRAP: "web", random
+TRAP: "web", random
+

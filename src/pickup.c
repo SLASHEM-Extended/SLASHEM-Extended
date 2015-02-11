@@ -27,6 +27,7 @@ STATIC_DCL int FDECL(count_categories, (struct obj *,int));
 STATIC_DCL long FDECL(carry_count,
 		      (struct obj *,struct obj *,long,BOOLEAN_P,int *,int *));
 STATIC_DCL int FDECL(lift_object, (struct obj *,struct obj *,long *,BOOLEAN_P));
+STATIC_PTR int FDECL(in_container_,(struct obj *,BOOLEAN_P));
 STATIC_PTR int FDECL(in_container,(struct obj *));
 STATIC_PTR int FDECL(ck_bag,(struct obj *));
 STATIC_PTR int FDECL(out_container,(struct obj *));
@@ -37,6 +38,7 @@ STATIC_DCL int FDECL(in_or_out_menu, (const char *,struct obj *, BOOLEAN_P, BOOL
 STATIC_DCL int FDECL(container_at, (int, int, BOOLEAN_P));
 STATIC_DCL boolean FDECL(able_to_loot, (int, int));
 STATIC_DCL boolean FDECL(mon_beside, (int, int));
+STATIC_DCL int FDECL(dump_container, (struct obj*, BOOLEAN_P));
 
 /* define for query_objlist() and autopickup() */
 #define FOLLOW(curr, flags) \
@@ -437,12 +439,24 @@ int what;		/* should be a long */
 		    check_here(FALSE);
 		    return (0);
 		}
-		if (notake(youmonst.data)) {
-		    if (!autopickup)
+		if (notake(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
+		    if (!autopickup) {
 			You("are physically incapable of picking anything up.");
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+			if (yn("But maybe you can reach the items anyway. Try it?") == 'y') {
+				if (rn2(3)) { 	make_hallucinated(HHallucination + rnd(50),FALSE,0L);
+				pline("Oh wow! Is that your own shiny reflection you just saw?");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			    return 1;}
+			}
+			else {return(0);}
+
+
+			}
 		    else
-			check_here(FALSE);
-		    return (0);
+			{ check_here(FALSE);
+		    return (0); }
 		}
 
 		/* if there's anything here, stop running */
@@ -453,10 +467,14 @@ int what;		/* should be a long */
 	if (!u.uswallow) {
 		objchain = level.objects[u.ux][u.uy];
 		traverse_how = BY_NEXTHERE;
-	} else {
+	} else {pline("You can't take items out of a monster's interior!"); 
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	return (0); /* otherwise the player could snatch worn amulets of life saving or similar stuff! --Amy */
+
+	}			/*{
 		objchain = u.ustuck->minvent;
-		traverse_how = 0;	/* nobj */
-	}
+		traverse_how = 0;*/	/* nobj */
+	/*}*/
 	/*
 	 * Start the actual pickup process.  This is split into two main
 	 * sections, the newer menu and the older "traditional" methods.
@@ -598,7 +616,10 @@ end_query:
 		/* see whether there's anything else here, after auto-pickup is done */
 		if (autopickup) check_here(n_picked > 0);
 	}
-	return (n_tried > 0);
+
+	/* Picking up stuff no longer consumes turns. --Amy */
+
+	return /*(n_tried > */0/*)*/;
 }
 
 #ifdef AUTOPICKUP_EXCEPTIONS
@@ -708,6 +729,11 @@ boolean FDECL((*allow), (OBJ_P));/* allow function */
 	anything any;
 	boolean printed_type_name;
 
+	if (InventoryLoss && !program_state.gameover) {pline("Not enough memory to create inventory window");
+ 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
+	}	
+
 	*pick_list = (menu_item *) 0;
 	if (!olist) return 0;
 
@@ -742,7 +768,7 @@ boolean FDECL((*allow), (OBJ_P));/* allow function */
 	do {
 	    printed_type_name = FALSE;
 	    for (curr = olist; curr; curr = FOLLOW(curr, qflags)) {
-		if ((qflags & FEEL_COCKATRICE) && curr->otyp == CORPSE &&
+		if ((qflags & FEEL_COCKATRICE) && (curr->otyp == CORPSE || curr->otyp == EGG) &&
 		     will_feel_cockatrice(curr, FALSE)) {
 			destroy_nhwindow(win);	/* stop the menu and revert */
 			(void) look_here(0, FALSE);
@@ -1170,14 +1196,17 @@ boolean telekinesis;
     *cnt_p = carry_count(obj, container, *cnt_p, telekinesis, &old_wt, &new_wt);
     if (*cnt_p < 1L) {
 	result = -1;	/* nothing lifted */
-#ifndef GOLDOBJ
+
+/* Trying to allow the player to pick up as much as they want. --Amy */
+
+/* #ifndef GOLDOBJ
     } else if (obj->oclass != COIN_CLASS && inv_cnt() >= 52 &&
 		!merge_choice(invent, obj)) {
 #else
     } else if (inv_cnt() >= 52 && !merge_choice(invent, obj)) {
 #endif
 	Your("knapsack cannot accommodate any more items.");
-	result = -1;	/* nothing lifted */
+	result = -1;*/	/* nothing lifted */
     } else {
 	result = 1;
 	prev_encumbr = near_capacity();
@@ -1337,6 +1366,21 @@ boolean telekinesis;	/* not picking it up directly by hand */
 		exercise(A_WIS, FALSE);
 		return -1;
 	    }
+	} else if (obj->otyp == EGG) {
+	    if ( (touch_petrifies(&mons[obj->corpsenm])) && !uarmg
+				&& !Stone_resistance && !telekinesis) {
+		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+		    display_nhwindow(WIN_MESSAGE, FALSE);
+		else {
+			char kbuf[BUFSZ];
+
+			Strcpy(kbuf, an(corpse_xname(obj, TRUE)));
+			pline("Touching %s is a fatal mistake.", kbuf);
+			Strcpy(kbuf, an(killer_cxname(obj, TRUE)));
+			instapetrify(kbuf);
+		    return -1;
+		}
+	    }
 	} else  if (obj->otyp == SCR_SCARE_MONSTER) {
 	    if (obj->blessed) obj->blessed = 0;
 	    else if (!obj->spe && !obj->cursed) obj->spe = 1;
@@ -1485,18 +1529,23 @@ int x, y;
 		else
 #endif
 			You("cannot reach the %s.", surface(x, y));
+
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return FALSE;
 	} else if (is_pool(x, y) || is_lava(x, y)) {
 		/* at present, can't loot in water even when Underwater */
 		You("cannot loot things that are deep in the %s.",
 		    is_lava(x, y) ? "lava" : "water");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return FALSE;
-	} else if (nolimbs(youmonst.data)) {
+	} else if (nolimbs(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 		pline("Without limbs, you cannot loot anything.");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return FALSE;
 	} else if (!freehand()) {
 		pline("Without a free %s, you cannot loot anything.",
 			body_part(HAND));
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return FALSE;
 	}
 	return TRUE;
@@ -1520,6 +1569,13 @@ int x, y;
 int
 doloot()	/* loot a container on the floor or loot saddle from mon. */
 {
+
+	if (MenuBug) {
+	pline("The loot command is currently unavailable!");
+	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	return 0;
+	}
+
     struct obj *cobj, *nobj;
     register int c = -1;
     int timepassed = 0;
@@ -1535,9 +1591,17 @@ doloot()	/* loot a container on the floor or loot saddle from mon. */
 	/* "Can't do that while carrying so much stuff." */
 	return 0;
     }
-    if (nohands(youmonst.data)) {
+    if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
 	You("have no hands!");	/* not `body_part(HAND)' */
-	return 0;
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		if (yn("Try to loot it with another part of your body instead?") == 'y') {
+			if (rn2(3)) { 			make_blinded(Blinded + rnd(50),TRUE);
+			pline("Off - you just blinded yourself!");
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		    return 1;}
+		}
+		else {return(0);}
     }
     cc.x = u.ux; cc.y = u.uy;
 
@@ -1569,7 +1633,7 @@ lootcont:
 		    You("carefully open the bag...");
 		    pline("It develops a huge set of teeth and bites you!");
 		    tmp = rnd(10);
-		    if (Half_physical_damage) tmp = (tmp+1) / 2;
+		    if (Half_physical_damage && rn2(2) ) tmp = (tmp+1) / 2;
 		    losehp(tmp, "carnivorous bag", KILLED_BY_AN);
 		    makeknown(BAG_OF_TRICKS);
 		    timepassed = 1;
@@ -1624,6 +1688,15 @@ gotit:
 		    } else {
 			dropx(goldob);
 		    }
+
+			    if (!rn2(5) && IS_THRONE(levl[u.ux][u.uy].typ)) { /* reduce player's farming ability */
+				/* may have teleported */
+				levl[u.ux][u.uy].typ = ROOM;
+				pline_The("throne vanishes in a puff of logic.");
+				newsym(u.ux,u.uy);
+			    }
+			return 1; /* this is supposed to take time! --Amy */
+
 		}
 	    } else {
 		dropx(goldob);
@@ -1713,7 +1786,7 @@ boolean *prev_loot;
 	Sprintf(qbuf, "Do you want to remove the saddle from %s?",
 		x_monnam(mtmp, ARTICLE_THE, (char *)0, SUPPRESS_SADDLE, FALSE));
 	if ((c = yn_function(qbuf, ynqchars, 'n')) == 'y') {
-		if (nolimbs(youmonst.data)) {
+		if (nolimbs(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 		    You_cant("do that without limbs."); /* not body_part(HAND) */
 		    return (0);
 		}
@@ -1867,10 +1940,22 @@ free_bomb:
     newsym(x,y);
 }
 
+int put_into_container(struct obj *container, struct obj *obj)
+{
+	struct obj *t;
+
+	t = current_container;
+	current_container = container;
+	in_container_(obj,FALSE);
+	current_container = t;
+}
+
+
 /* Returns: -1 to stop, 1 item was inserted, 0 item was not inserted. */
 STATIC_PTR int
-in_container(obj)
+in_container_(obj,invobj)
 register struct obj *obj;
+boolean invobj;
 {
 	boolean floor_container = !carried(current_container);
 	boolean was_unpaid = FALSE;
@@ -1938,6 +2023,23 @@ register struct obj *obj;
 	    }
 	}
 
+	if (obj->otyp == EGG) {
+	    if ( (touch_petrifies(&mons[obj->corpsenm])) && !uarmg
+		 && !Stone_resistance) {
+		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+		    display_nhwindow(WIN_MESSAGE, FALSE);
+		else {
+		    char kbuf[BUFSZ];
+
+		    Strcpy(kbuf, an(corpse_xname(obj, TRUE)));
+		    pline("Touching %s is a fatal mistake.", kbuf);
+		    Strcpy(kbuf, an(killer_cxname(obj, TRUE)));
+		    instapetrify(kbuf);
+		    return -1;
+		}
+	    }
+	}
+
 	/* boxes, boulders, and big statues can't fit into any container */
 	if (obj->otyp == ICE_BOX || Is_box(obj) || obj->otyp == BOULDER ||
 		(obj->otyp == STATUE && bigmonst(&mons[obj->corpsenm]))) {
@@ -1953,7 +2055,7 @@ register struct obj *obj;
 		return 0;
 	}
 
-	freeinv(obj);
+	if (invobj) freeinv(obj);
 
 	if (obj_is_burning(obj))	/* this used to be part of freeinv() */
 		(void) snuff_lit(obj);
@@ -1994,7 +2096,8 @@ register struct obj *obj;
 		}
 		/* did not actually insert obj yet */
 		if (was_unpaid) addtobill(obj, FALSE, FALSE, TRUE);
-		if (Has_contents(obj))
+
+/*		if (Has_contents(obj))
 		    delete_contents(obj);
 		obfree(obj, (struct obj *)0);
 		delete_contents(current_container);
@@ -2003,7 +2106,13 @@ register struct obj *obj;
 		else if (obj_here(current_container, u.ux, u.uy))
 			useupf(current_container, current_container->quan);
 		else
-			panic("in_container:  bag not found.");
+			panic("in_container:  bag not found."); */
+
+		/* dump it out onto the floor so the scatterage can take effect */
+		if (dump_container(current_container, TRUE)) {
+			pline("The contents fly everywhere!");
+		}
+		scatter(u.ux,u.uy,10,VIS_EFFECTS|MAY_HIT|MAY_DESTROY|MAY_FRACTURE,0);
 
 		losehp(d(6,6),"magical explosion", KILLED_BY_AN);
 		current_container = 0;	/* baggone = TRUE; */
@@ -2011,7 +2120,7 @@ register struct obj *obj;
 
 	if (current_container) {
 	    Strcpy(buf, the(xname(current_container)));
-	    You("put %s into %s.", doname(obj), buf);
+	    if (invobj) You("put %s into %s.", doname(obj), buf);
 
 	    /* gold in container always needs to be added to credit */
 	    if (floor_container && obj->oclass == COIN_CLASS)
@@ -2029,11 +2138,20 @@ register struct obj *obj;
 }
 
 STATIC_PTR int
+in_container(obj)
+register struct obj *obj;
+{
+	in_container_(obj,TRUE);
+}
+
+
+STATIC_PTR int
 ck_bag(obj)
 struct obj *obj;
 {
 	return current_container && obj != current_container;
 }
+
 
 /* Returns: -1 to stop, 1 item was removed, 0 item was not removed. */
 STATIC_PTR int
@@ -2055,6 +2173,23 @@ register struct obj *obj;
 	if(obj->oartifact && !touch_artifact(obj,&youmonst)) return 0;
 
 	if (obj->otyp == CORPSE) {
+	    if ( (touch_petrifies(&mons[obj->corpsenm])) && !uarmg
+		 && !Stone_resistance) {
+		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+		    display_nhwindow(WIN_MESSAGE, FALSE);
+		else {
+		    char kbuf[BUFSZ];
+
+		    Strcpy(kbuf, an(corpse_xname(obj, TRUE)));
+		    pline("Touching %s is a fatal mistake.", kbuf);
+		    Strcpy(kbuf, an(killer_cxname(obj, TRUE)));
+		    instapetrify(kbuf);
+		    return -1;
+		}
+	    }
+	}
+
+	if (obj->otyp == EGG) {
 	    if ( (touch_petrifies(&mons[obj->corpsenm])) && !uarmg
 		 && !Stone_resistance) {
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
@@ -2216,9 +2351,22 @@ int held;
 	    menu_on_request;
 
 	emptymsg[0] = '\0';
-	if (nohands(youmonst.data)) {
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
 		You("have no hands!");	/* not `body_part(HAND)' */
-		return 0;
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		if (yn("Try to open the container with another part of your body instead?") == 'y') {
+			if (rn2(3)) { 			
+				pline("You feel a wrenching sensation.");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				flags.soundok = 0;
+				nomul(-rnd(10));
+				nomovemsg = "You are conscious again.";
+				afternmv = Hear_again;
+		    return 1;}
+		}
+		else {return(0);}
+
 	} else if (!freehand()) {
 		You("have no free %s.", body_part(HAND));
 		return 0;
@@ -2251,11 +2399,20 @@ int held;
 	 * it very hard to combine the count and vanish loops so we do
 	 * them seperately.
 	 */
-	/* Sometimes toss objects if a cursed magic bag. */
+	/* Sometimes toss objects if a cursed magic bag or a bag of digestion */
 	if (Is_mbag(obj) && obj->cursed) {
 	    for (curr = obj->cobj; curr; curr = otmp) {
 		otmp = curr->nobj;
 		if (!rn2(13) && !evades_destruction(curr)) {
+		    loss += mbag_item_gone(held, curr);
+		    used = 1;
+		}
+	    }
+	}
+	if (obj->otyp == BAG_OF_DIGESTION && !rn2(obj->blessed ? 20 : (obj->cursed ? 2 : 10))) {
+	    for (curr = obj->cobj; curr; curr = otmp) {
+		otmp = curr->nobj;
+		if (!evades_destruction(curr)) {
 		    loss += mbag_item_gone(held, curr);
 		    used = 1;
 		}
@@ -2571,4 +2728,59 @@ boolean outokay, inokay;
     return n;
 }
 
+/* Dumps out a container, possibly as the prelude/result of an explosion.
+ * destroy_after trashes the container afterwards; try not to use it :P
+ *
+ * Player is assumed to not be handling the contents directly.
+ *
+ * Returns 1 if at least one object was present, 0 if empty.
+ */ 
+int
+dump_container(container, destroy_after)
+struct obj* container;
+BOOLEAN_P destroy_after;
+{
+	struct obj* otmp,*otmp2;
+	int ret = 0;
+
+	/* sanity check */
+	if (!container) { return 0; }
+
+	for (otmp = container->cobj; otmp; otmp = otmp2)
+	{
+		ret = 1;
+		otmp2 = otmp->nobj;
+		obj_extract_self(otmp);
+		container->owt = weight(container);
+
+		/* we do need to start the timer on these */
+		if (container->otyp == ICE_BOX && !age_is_relative(otmp)) {
+			otmp->age = monstermoves - otmp->age;
+			if (otmp->otyp == CORPSE) {
+				start_corpse_timeout(otmp);
+			}
+		}
+		place_object(otmp,u.ux,u.uy);
+
+		if (otmp->otyp == GOLD_PIECE) {
+#ifndef GOLDOBJ
+			dealloc_obj(otmp);
+#endif
+			bot();	/* update character's gold piece count immediately */
+		}
+	}
+
+	if (destroy_after) {
+		if (container->where == OBJ_INVENT) {
+			useup(container);
+		} else if (obj_here(container, u.ux, u.uy)) {
+			useupf(container, container->quan);
+		}
+	}
+
+	return ret;
+}
+
+
 /*pickup.c*/
+

@@ -18,6 +18,15 @@ STATIC_DCL boolean FDECL(help_menu, (int *));
 #ifdef PORT_HELP
 extern void NDECL(port_help);
 #endif
+STATIC_DCL char * FDECL(get_description_of_monster_type, (struct permonst *, char *));
+STATIC_DCL char * FDECL(get_generation_description_of_monster_type, (struct permonst *, char *));
+STATIC_DCL char * FDECL(get_resistance_description_of_monster_type, (struct permonst *, char *));
+STATIC_DCL char * FDECL(get_flag_description_of_monster_type, (struct permonst *, char *));
+STATIC_DCL char * FDECL(get_speed_description_of_monster_type, (struct permonst *, char *));
+STATIC_DCL int FDECL(generate_list_of_resistances, (char *, /*uchar*/unsigned long));
+STATIC_DCL void FDECL(append_newline_to_pline_string, (char * buf));
+
+extern const int monstr[];
 
 /* Returns "true" for characters that could represent a monster's stomach. */
 STATIC_OVL boolean
@@ -82,6 +91,10 @@ lookat(x, y, buf, monbuf)
 	/* file lookup can't distinguish between "gnomish wizard" monster
 	   and correspondingly named player character, always picking the
 	   former; force it to find the general "wizard" entry instead */
+
+	/* show the damn information for your polymorph form! --Amy */
+	pm = (Upolyd ? &mons[u.umonnum] : rn2(2) ? &mons[urole.malenum] : &mons[urace.malenum] );
+
 	if (Role_if(PM_WIZARD) && Race_if(PM_GNOME) && !Upolyd)
 	    pm = &mons[PM_WIZARD];
 
@@ -236,7 +249,39 @@ lookat(x, y, buf, monbuf)
 			Strcat(monbuf, "monster detection");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
-		    if (MATCH_WARN_OF_MON(mtmp)) {
+		    if (Role_if(PM_ACTIVISTOR) && mtmp->data == &mons[PM_TOPMODEL] ) {
+			Strcat(monbuf, "warned of topmodels");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (Role_if(PM_ACTIVISTOR) && type_is_pname(mtmp->data) && uwep && is_quest_artifact(uwep) ) {
+			Strcat(monbuf, "warned of unique monsters");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mtmp->data)) {
+			Strcat(monbuf, "warned of poisonous monsters");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mtmp->data)) {
+			Strcat(monbuf, "warned of monsters that are the same race as you");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && is_covetous(mtmp->data)) {
+			Strcat(monbuf, "warned of covetous monsters");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (Role_if(PM_PALADIN) && is_demon(mtmp->data)) {
+			Strcat(monbuf, "warned of demons");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (Race_if(PM_VORTEX) && unsolid(mtmp->data)) {
+			Strcat(monbuf, "warned of unsolid creatures");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (Race_if(PM_VORTEX) && nolimbs(mtmp->data)) {
+			Strcat(monbuf, "warned of creatures without limbs");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (MATCH_WARN_OF_MON(mtmp) || (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && is_undead(mtmp->data) )) {
 		    	char wbuf[BUFSZ];
 			if (Hallucination)
 				Strcat(monbuf, "paranoid delusion");
@@ -281,7 +326,7 @@ lookat(x, y, buf, monbuf)
 	int tnum = what_trap(glyph_to_trap(glyph));
 	Strcpy(buf, defsyms[trap_to_defsym(tnum)].explanation);
     } else if(!glyph_is_cmap(glyph)) {
-	Strcpy(buf,"dark part of a room");
+	Strcpy(buf,"unexplored area");
     } else switch(glyph_to_cmap(glyph)) {
     case S_altar:
 	if(!In_endgame(&u.uz))
@@ -540,8 +585,9 @@ do_look(quick)
 	    if (flags.verbose)
 		pline("Please move the cursor to %s.",
 		       what_is_an_unknown_object);
-	    else
-		pline("Pick an object.");
+	    else {
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		pline("Pick an object."); }
 
 	    ans = getpos(&cc, quick, what_is_an_unknown_object);
 	    if (ans < 0 || cc.x < 0) {
@@ -648,7 +694,7 @@ do_look(quick)
 	    }
 	}
 
-#define is_cmap_trap(i) ((i) >= S_arrow_trap && (i) <= S_polymorph_trap)
+#define is_cmap_trap(i) ((i) >= S_arrow_trap && (i) <= /*S_polymorph_trap*/S_trap_percents)
 #define is_cmap_drawbridge(i) ((i) >= S_vodbridge && (i) <= S_hcdbridge)
 
 	/* Now check for graphics symbols */
@@ -656,7 +702,7 @@ do_look(quick)
 	    x_str = defsyms[i].explanation;
 	    if (sym == (from_screen ? showsyms[i] : defsyms[i].sym) && *x_str) {
 		/* avoid "an air", "a water", or "a floor of a room" */
-		int article = (i == S_room) ? 2 :		/* 2=>"the" */
+		int article = ((i == S_room)||(i == S_darkroom)) ? 2 :		/* 2=>"the" */
 			      !(strcmp(x_str, "air") == 0 ||	/* 1=>"an"  */
 				strcmp(x_str, "water") == 0);	/* 0=>(none)*/
 
@@ -690,7 +736,7 @@ do_look(quick)
 	}
 
 	/* Now check for warning symbols */
-	for (i = 1; i < WARNCOUNT; i++) {
+	for (i = /*1*/0; i < WARNCOUNT; i++) { /* fixed annoying bug --Amy */
 	    x_str = def_warnsyms[i].explanation;
 	    if (sym == (from_screen ? warnsyms[i] : def_warnsyms[i].sym)) {
 		if (!found) {
@@ -762,12 +808,27 @@ do_look(quick)
 		    }
 		}
 #endif
+
+		if(pm != (struct permonst *) 0) {
+			append_newline_to_pline_string(out_str);
+			temp_buf[0]='\0';
+			get_description_of_monster_type(pm, temp_buf);
+			(void)strncat(out_str, temp_buf, BUFSZ-strlen(out_str)-1);
+		}
+
 	    }
 	}
 
 	/* Finally, print out our explanation. */
-	if (found) {
+	if (found && !RMBLoss) {
+
 	    pline("%s", out_str);
+	/*winid datawin = create_nhwindow(NHW_MENU);
+	    putstr(datawin, 0, out_str);
+
+	display_nhwindow(datawin, TRUE);
+	destroy_nhwindow(datawin);*/
+
 	    /* check the data file for information about this thing */
 	    if (found == 1 && ans != LOOK_QUICK && ans != LOOK_ONCE &&
 			(ans == LOOK_VERBOSE || (flags.help && !quick))) {
@@ -778,13 +839,623 @@ do_look(quick)
 		checkfile(temp_buf, pm, FALSE, (boolean)(ans == LOOK_VERBOSE));
 	    }
 	} else {
-	    pline("I've never heard of such things.");
+	    if (!RMBLoss) pline("I've never heard of such things.");
 	}
 
     } while (from_screen && !quick && ans != LOOK_ONCE);
 
     flags.verbose = save_verbose;
     return 0;
+}
+
+int
+plined_length(char * buf)
+{
+	int i = 0;
+	int current_line = 0;
+	int current_word = 0;
+	int total = 0;
+	do {
+		boolean not_a_whitespace = (buf[i] != ' ' && buf[i] != '\0');
+		boolean space_after_space = (i>0 && buf[i-1] == ' ' && buf[i] == ' ');
+		//otherwise - end a word
+		if (not_a_whitespace) {
+			current_word++;
+		} else if (space_after_space) {
+			total++;
+			current_line++;
+			if (current_line == CO - 1) {
+				current_line = 0;
+			}
+		} else {
+			int available_space = CO - current_line - 1;
+			if (current_word == 0) {
+				//end of string, previous character was space
+			} else if (buf[i] == ' ' && current_word < available_space) {
+				//space after word will fit into current line
+				total += current_word + 1;
+				current_line += current_word + 1;
+			} else if (current_word <= available_space) {
+				//word will fit into line without space
+				total += current_word;
+				current_line = 0; //new line
+			} else if (buf[i] == ' ' && current_word < CO - 1 ) {
+				//word will fit into next line with a space
+				total += current_word + 1 + available_space;
+				current_line = current_word + 1;
+			} else if (current_word < CO) {
+				//word will fit into next line without space
+				total += current_word + available_space;
+				current_line = 0;
+			} else {
+				//word will take entire next line and more of the next one. Or maybe even multiple lines.
+				if (current_line == 0) {
+					total += current_word;
+				} else {
+					total += current_word + available_space;
+				}
+				current_line = current_word % (CO-1);
+				if (buf[i] == ' ' && current_line > 0) {
+					total++;
+					current_line = (current_line+1) % (CO-1);
+				}
+			}
+			current_word = 0;
+		}
+		i++;
+	} while (buf[i-1] != '\0');
+	return total;
+}
+
+void
+append_newline_to_pline_string(char * buf)
+{
+	int length = plined_length(buf);
+	int line_length = CO - 1;
+	int addditional_required = (line_length - (length % line_length)) % line_length;
+	boolean trailing_space = FALSE;
+	if (addditional_required == 0 && buf[strlen(buf)-1] != ' ') {
+		trailing_space = TRUE;
+	}
+	#ifdef USE_TILES
+		trailing_space = TRUE;
+	#endif
+	if(trailing_space) {
+		strcat(buf, " ");
+	}
+	#ifdef USE_TILES
+		/* there is limited amount of lines available for message and wide text field. Adding enters would make text hard to read */
+		return;
+	#endif
+	while(addditional_required--) {
+		strcat(buf, " ");
+	}
+}
+
+int
+append(char * buf, int condition, char * text, boolean many)
+{
+	if (condition) {
+		if (buf != NULL) {
+			if (many) {
+				(void)strcat(buf, ", ");
+			}
+			(void)strcat(buf, text);
+		}
+		return many+1;
+	}
+	return many;
+}
+
+int
+generate_list_of_resistances(char * temp_buf, /*uchar*/unsigned long flags)
+{
+	int many = 0;
+	many = append(temp_buf, (flags & MR_FIRE), "fire", many);
+	many = append(temp_buf, (flags & MR_COLD), "cold", many);
+	many = append(temp_buf, (flags & MR_SLEEP), "sleep", many);
+	many = append(temp_buf, (flags & MR_DISINT), "disintegration", many);
+	many = append(temp_buf, (flags & MR_ELEC), "electricity", many);
+	many = append(temp_buf, (flags & MR_POISON), "poison", many);
+	many = append(temp_buf, (flags & MR_ACID), "acid", many);
+	many = append(temp_buf, (flags & MR_STONE), "petrification", many);
+	many = append(temp_buf, (flags & MR_DRAIN), "level drain", many);
+	many = append(temp_buf, (flags & MR_DEATH), "death magic", many);
+	many = append(temp_buf, (flags & MR_PLUSONE), "needs +1 weapon to hit", many);
+	many = append(temp_buf, (flags & MR_PLUSTWO), "needs +2 weapon to hit", many);
+	many = append(temp_buf, (flags & MR_PLUSTHREE), "needs +3 weapon to hit", many);
+	many = append(temp_buf, (flags & MR_PLUSFOUR), "needs +4 weapon to hit", many);
+	many = append(temp_buf, (flags & MR_HITASONE), "hits as a +1 weapon", many);
+	many = append(temp_buf, (flags & MR_HITASTWO), "hits as a +2 weapon", many);
+	many = append(temp_buf, (flags & MR_HITASTHREE), "hits as a +3 weapon", many);
+	many = append(temp_buf, (flags & MR_HITASFOUR), "hits as a +4 weapon", many);
+	return many;
+}
+
+char *
+get_generation_description_of_monster_type(struct permonst * ptr, char * temp_buf)
+{
+	int many = 0;
+	if ((ptr->geno & G_NOGEN) == 0) {
+		strcat(temp_buf, "Normally appears ");
+		many = append(temp_buf, ((ptr->geno & G_NOHELL) == 0) && ((ptr->geno & G_HELL) == 0), "everywhere", many);
+		many = append(temp_buf, (ptr->geno & G_NOHELL), "outside Gehennon", many);
+		many = append(temp_buf, (ptr->geno & G_HELL), "in Gehennon", many);
+	} else {
+		many = append(temp_buf, (ptr->geno & G_NOGEN), "Special generation", many);
+	}
+	many = append(temp_buf, (ptr->geno & G_UNIQ), "unique", many);
+	many = 0;
+	many = append(temp_buf, (ptr->geno & G_SGROUP), " in groups", many);
+	many = append(temp_buf, (ptr->geno & G_LGROUP), " in large groups", many);
+	many = append(temp_buf, (ptr->geno & G_VLGROUP), " in very large groups", many);
+	if ((ptr->geno & G_NOGEN) == 0) {
+		char frequency[BUFSZ] = "";
+		Sprintf(frequency, ", with frequency %d.", (ptr->geno & G_FREQ));
+		strcat(temp_buf, frequency);
+	} else {
+		strcat(temp_buf, ".");
+	}
+	return temp_buf;
+}
+
+char *
+get_resistance_description_of_monster_type(struct permonst * ptr, char * description)
+{
+	char temp_buf[BUFSZ] = "";
+	temp_buf[0] = '\0';
+	int count = generate_list_of_resistances(temp_buf, ptr->mresists);
+	if(count == 0) {
+		strcat(description, " No resistances.");
+	} else {
+		strcat(description, " Resists ");
+		strcat(description, temp_buf);
+		strcat(description, ".");
+	}
+
+	temp_buf[0] = '\0';
+	count = generate_list_of_resistances(temp_buf, ptr->mconveys);
+	if ((ptr->geno & G_NOCORPSE) != 0) {
+		strcat(description, " Leaves no corpse.");
+	} else if (count == 0) {
+		strcat(description, " No conveyed resistances.");
+	} else {
+		strcat(description, " Conveys ");
+		strcat(description, temp_buf);
+		if (count == 1) {
+			strcat(description, " resistance.");
+		} else {
+			strcat(description, " resistances.");
+		}
+	}
+
+	return description;
+}
+
+char *
+get_flag_description_of_monster_type(struct permonst * ptr, char * description)
+{
+	char temp_buf[BUFSZ] = "";
+	char size[BUFSZ] = "";
+	char adjectives[BUFSZ] = "";
+	char special_adjectives[BUFSZ] = "";
+	char noun[BUFSZ] = "";
+
+	if (verysmall(ptr)) {
+		strcat(size, "small");
+	} else if (bigmonst(ptr)) {
+		strcat(size, "big");
+	}
+
+	int adjective_counter = 0;
+	adjective_counter = append(adjectives, (ptr->geno & G_GENO), "genocidable", adjective_counter);
+	adjective_counter = append(adjectives, !(ptr->geno & G_GENO), "not genocidable", adjective_counter);
+	adjective_counter = append(adjectives, (breathless(ptr)), "breathless", adjective_counter);
+	adjective_counter = append(adjectives, (amphibious(ptr)), "amphibious", adjective_counter);
+	adjective_counter = append(adjectives, (passes_walls(ptr)), "phasing", adjective_counter);
+	adjective_counter = append(adjectives, (amorphous(ptr)), "amorphous", adjective_counter);
+	adjective_counter = append(adjectives, (noncorporeal(ptr)), "noncorporeal", adjective_counter);
+	adjective_counter = append(adjectives, (unsolid(ptr)), "unsolid", adjective_counter);
+	adjective_counter = append(adjectives, (acidic(ptr)), "acidic", adjective_counter);
+	adjective_counter = append(adjectives, (carnivorous(ptr)), "carnivorous", adjective_counter);
+	adjective_counter = append(adjectives, (herbivorous(ptr)), "herbivorous", adjective_counter);
+	adjective_counter = append(adjectives, (metallivorous(ptr)), "metallivorous", adjective_counter);
+	adjective_counter = append(adjectives, (lithivorous(ptr)), "lithivorous", adjective_counter);
+	adjective_counter = append(adjectives, (poisonous(ptr)), "poisonous", adjective_counter);
+	adjective_counter = append(adjectives, (regenerates(ptr)), "regenerating", adjective_counter);
+	adjective_counter = append(adjectives, (can_teleport(ptr)), "teleporting", adjective_counter);
+	adjective_counter = append(adjectives, (is_reviver(ptr)), "reviving", adjective_counter);
+	adjective_counter = append(adjectives, (pm_invisible(ptr)), "invisible", adjective_counter);
+	adjective_counter = append(adjectives, (thick_skinned(ptr)), "thick-skinned", adjective_counter);
+	adjective_counter = append(adjectives, (hides_under(ptr)), "concealing", adjective_counter);
+	adjective_counter = append(adjectives, (nonliving(ptr) && !is_undead(ptr)), "nonliving", adjective_counter);
+
+	append(special_adjectives, (is_undead(ptr)), "undead", 0);
+	append(special_adjectives, (is_demon(ptr)), "demon", 0);
+
+	int many = 0;
+	many = append(noun, (is_hider(ptr)), "hider", many);
+	many = append(noun, (is_swimmer(ptr)), "swimmer", many);
+	many = append(noun, (is_flyer(ptr)), "flyer", many);
+	many = append(noun, (is_floater(ptr)), "floater", many);
+	many = append(noun, (is_clinger(ptr)), "clinger", many);
+	if (tunnels(ptr)) {
+		if (needspick(ptr)) {
+			many = append(noun, TRUE, "miner", many);
+		} else {
+			many = append(noun, TRUE, "digger", many);
+		}
+	}
+	
+	// <size><adjectives><special_adjectives><noun>
+	if (strlen(size) > 0) {
+		if (adjective_counter <= 1 && (strlen(special_adjectives) > 0 || strlen(noun) > 0)) {
+			/* huge undead */
+			/* small noncorporeal miner */
+			strcat(temp_buf, size);
+			strcat(temp_buf, " ");
+		} else if (adjective_counter >= 1) {
+			/* small, genocideable, amphibious swimmer */
+			/* big, poisonous, invisible miner */
+			/* big, poisonous, invisible hider, swimmer, flyer*/
+			/* huge */
+			/* small, noncorporeal */
+			/* big, poisonous, invisible */
+			/* big, poisonous, invisible*/
+			strcat(temp_buf, size);
+			strcat(temp_buf, ", ");
+		} else if (adjective_counter == 0){
+			/* small swimmer */
+			/* big miner */
+			/* big swimmer, flyer*/
+			/* huge */
+			/* small undead digger */
+			strcat(temp_buf, size);
+			strcat(temp_buf, " ");
+		} else {
+			impossible("impossible happened in get_flag_description_of_monster_type");
+		}
+	}
+	if(strlen(adjectives) > 0) {
+		strcat(temp_buf, adjectives);
+		strcat(temp_buf, " ");
+	}
+	if(strlen(special_adjectives) > 0) {
+		strcat(temp_buf, special_adjectives);
+		strcat(temp_buf, " ");
+	}
+	if(strlen(noun) > 0) {
+		strcat(temp_buf, noun);
+		strcat(temp_buf, " ");
+	}
+	if (strlen(temp_buf) > 0) {
+		upstart(temp_buf);
+		temp_buf[strlen(temp_buf)-1] = '.'; //replaces last space
+		strcat(description, " ");
+		strcat(description, temp_buf);
+	}
+	if (perceives(ptr)) {
+		strcat(description, " See invisible.");
+	}
+	if (control_teleport(ptr)) {
+		strcat(description, " Controls teleport.");
+	}
+	if (your_race(ptr)) {
+		strcat(description, " Is the same race as you.");
+	}
+	if (touch_petrifies(ptr)) {
+		strcat(description, " It can turn you to stone if you touch it.");
+	}
+	if (eating_is_fatal(ptr)) {
+		strcat(description, " Eating its corpse is instantly fatal.");
+	}
+	if (is_mind_flayer(ptr)) {
+		strcat(description, " Is a mind flayer.");
+	}
+	if (ptr->msound == MS_NEMESIS) {
+		strcat(description, " Is a nemesis (immune to death rays).");
+	}
+	if (dmgtype(ptr, AD_MAGM) || ptr == &mons[PM_BABY_GRAY_DRAGON] || ptr == &mons[PM_YOUNG_GRAY_DRAGON] || ptr == &mons[PM_YOUNG_ADULT_GRAY_DRAGON] ||
+		dmgtype(ptr, AD_RBRE) ) {
+		strcat(description, " Magic resistant.");
+	}
+	if (is_giant(ptr)) {
+		strcat(description, " Is a giant.");
+	}
+	if (is_male(ptr)) {
+		strcat(description, " This monster is always male.");
+	}
+	if (is_female(ptr)) {
+		strcat(description, " This monster is always female.");
+	}
+	if (is_neuter(ptr)) {
+		strcat(description, " This monster is of neuter gender.");
+	}
+	if (hates_silver(ptr)) {
+		strcat(description, " Silver weapons do extra damage to it.");
+	}
+	if (vegan(ptr)) {
+		strcat(description, " May be eaten by vegans.");
+	} else if (vegetarian(ptr)) {
+		strcat(description, " May be eaten by vegetarians.");
+	}
+	/*
+	Unfortunately keepdogs function is quite mysterious
+		- Cthulhu and Orcus never follow (M2_STALK and STRAT_WAITFORU flag)
+		- Vlad follows (M2_STALK and STRAT_WAITFORU flag)*/
+	if (ptr->mflags2 & M2_STALK) {
+		strcat(description, " Follows you to other levels.");
+	}
+
+	if (is_covetous(ptr)) {
+		strcat(description, " Covetous.");
+	}
+	if (infravision(ptr)) {
+		strcat(description, " Has infravision.");
+	}
+	if (infravisible(ptr)) {
+		strcat(description, " Can be seen with infravision.");
+	}
+	if (throws_rocks(ptr)) {
+		strcat(description, " Can pick up and throw rocks.");
+	}
+	if (can_betray(ptr)) {
+		strcat(description, " Can spontaneously betray you if tame.");
+	}
+	if (cannot_be_tamed(ptr)) {
+		strcat(description, " Can't be tamed.");
+	}
+	if (avoid_player(ptr)) {
+		strcat(description, " Tries to avoid moving right next to you.");
+	}
+	if (is_domestic(ptr)) {
+		strcat(description, " Can be tamed by throwing a certain kind of food.");
+	}
+	if (is_petty(ptr)) {
+		strcat(description, " Can be tamed by throwing kelp frond or a poke ball.");
+	}
+	if (is_pokemon(ptr)) {
+		strcat(description, " Is a pokemon (more likely to be caught in a poke ball).");
+	}
+	if (is_mplayer(ptr)) {
+		strcat(description, " Is a playable role and thus likely to be well-armed.");
+	}
+	if (is_umplayer(ptr)) {
+		strcat(description, " Is an undead player character. Be very careful.");
+	}
+
+	
+	if (polyok(ptr)) {
+		strcat(description, " Is a valid polymorph form.");
+	} else if (monpolyok(ptr)) {
+		strcat(description, " Is a valid polymorph form for monsters only.");
+	} else {
+		strcat(description, " Is not a valid polymorph form.");
+	}
+	return description;
+}
+
+char *
+get_speed_description_of_monster_type(struct permonst * ptr, char * description)
+{
+	if(ptr->mmove > 35) {
+		sprintf(description, "Extremely fast (%d). ", ptr->mmove);
+	} else if(ptr->mmove > 19) {
+		sprintf(description, "Very fast (%d). ", ptr->mmove);
+	} else if(ptr->mmove > 12) {
+		sprintf(description, "Fast (%d). ", ptr->mmove);
+	} else if(ptr->mmove == 12) {
+		sprintf(description, "Normal speed (%d). ", ptr->mmove);
+	} else if(ptr->mmove > 8) {
+		sprintf(description, "Slow (%d). ", ptr->mmove);
+	} else if(ptr->mmove > 3) {
+		sprintf(description, "Very slow (%d). ", ptr->mmove);
+	} else if(ptr->mmove > 0) {
+		sprintf(description, "Almost immobile (%d). ", ptr->mmove);
+	} else {
+		sprintf(description, "Sessile (%d). ", ptr->mmove);
+	}
+
+	if (is_nonmoving(ptr)) sprintf(description, "Can't move around. Speed %d. ", ptr->mmove);
+
+	return description;
+}
+
+char *
+get_description_of_attack_type(uchar id)
+{
+	switch(id){
+		case AT_ANY: return "fake attack; dmgtype_fromattack wildcard";
+		case AT_NONE: return "passive";
+		case AT_CLAW: return "claw (punch, hit, etc.)";
+		case AT_BITE: return "bite";
+		case AT_KICK: return "kick";
+		case AT_BUTT: return "head butt";
+		case AT_TUCH: return "touches";
+		case AT_STNG: return "sting";
+		case AT_HUGS: return "crushing bearhug";
+		case AT_SPIT: return "spits substance";
+		case AT_ENGL: return "engulf";
+		case AT_BREA: return "breath";
+		case AT_EXPL: return "explodes - proximity";
+		case AT_BOOM: return "explodes when killed";
+		case AT_GAZE: return "gaze";
+		case AT_TENT: return "tentacles";
+		case AT_SCRA: return "scratch";
+		case AT_LASH: return "lash";
+		case AT_TRAM: return "trample";
+		case AT_WEAP: return "uses weapon";
+		case AT_MAGC: return "uses magic spell(s)";
+		case AT_MULTIPLY: return "multiplies";
+		default: impossible("bug in get_description_of_attack_type(%d)", id); return "<MISSING DECRIPTION, THIS IS A BUG>";
+	}
+}
+
+char *
+get_description_of_damage_type(uchar id)
+{
+	switch(id){
+		case AD_ANY: return "fake damage; attacktype_fordmg wildcard";
+		case AD_PHYS: return "ordinary physical";
+		case AD_MAGM: return "magic missiles";
+		case AD_FIRE: return "fire damage";
+		case AD_COLD: return "frost damage";
+		case AD_SLEE: return "sleep";
+		case AD_DISN: return "disintegration";
+		case AD_ELEC: return "shock damage";
+		case AD_DRST: return "drains strength";
+		case AD_ACID: return "acid damage";
+		case AD_SPC2: return "for extension of buzz()";
+		case AD_BLND: return "blinds";
+		case AD_STUN: return "stuns";
+		case AD_SLOW: return "slows";
+		case AD_PLYS: return "paralyses";
+		case AD_DRLI: return "drains life levels";
+		case AD_DREN: return "drains magic energy";
+		case AD_LEGS: return "damages legs";
+		case AD_STON: return "petrifies";
+		case AD_STCK: return "sticks to you";
+		case AD_SGLD: return "steals gold";
+		case AD_SITM: return "steals item";
+		case AD_SEDU: return "seduces and steals multiple items";
+		case AD_TLPT: return "teleports you";
+		case AD_RUST: return "rusts items";
+		case AD_CONF: return "confuses";
+		case AD_DGST: return "digestion";
+		case AD_HEAL: return "heals wounds";
+		case AD_WRAP: return "wraps around";
+		case AD_WERE: return "confers lycanthropy";
+		case AD_DRDX: return "drains dexterity";
+		case AD_DRCO: return "drains constitution";
+		case AD_DRIN: return "drains intelligence";
+		case AD_DISE: return "confers diseases";
+		case AD_DCAY: return "decays organics";
+		case AD_SSEX: return "foocubus seduction";
+		case AD_HALU: return "causes hallucination";
+		case AD_DETH: return "unique Death attack";
+		case AD_PEST: return "unique Pestilence attack";
+		case AD_FAMN: return "unique Famine attack";
+		case AD_SLIM: return "turns you into green slime";
+		case AD_ENCH: return "remove enchantment";
+		case AD_CORR: return "corrode armor";
+		case AD_CLRC: return "random clerical spell";
+		case AD_SPEL: return "random magic spell";
+		case AD_RBRE: return "random effect";
+		case AD_SAMU: return "hits, may steal Amulet";
+		case AD_CURS: return "random curse";
+		case AD_LITE: return "light";
+		case AD_CALM: return "calms";
+		case AD_POLY: return "polymorphs you";
+		case AD_TCKL: return "tickles you";
+		case AD_NGRA: return "removes engravings";
+		case AD_GLIB: return "disarms you";
+		case AD_DARK: return "causes darkness around you";
+		case AD_WTHR: return "withers items";
+		case AD_LUCK: return "drains luck";
+		case AD_NUMB: return "numbness";
+		case AD_FRZE: return "freezes you solid";
+		case AD_BURN: return "burns you";
+		case AD_FEAR: return "causes fear";
+		case AD_DISP: return "pushes you away";
+		case AD_ENDS: return "placeholder attack";
+		default: impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";
+	}
+}
+
+char *
+get_description_of_attack(struct attack *mattk, char * main_temp_buf)
+{
+	if(!(mattk->damn + mattk->damd + mattk->aatyp + mattk->adtyp)) {
+		main_temp_buf[0]='\0';
+		return main_temp_buf;
+	}
+	
+	char temp_buf[BUFSZ] = "";
+	if(mattk->damn + mattk->damd) {
+		sprintf(main_temp_buf, "%dd%d", mattk->damn, mattk->damd);
+		#ifndef USE_TILES
+			strcat(main_temp_buf, ",");
+		#endif
+		strcat(main_temp_buf, " ");
+	} else {
+		main_temp_buf[0] = '\0';
+	}
+	#ifndef USE_TILES
+		while (strlen(main_temp_buf) < 6) {
+			strcat(main_temp_buf, " ");
+		}
+	#endif
+	sprintf(temp_buf, "%s - %s", get_description_of_attack_type(mattk->aatyp), get_description_of_damage_type(mattk->adtyp));
+	strcat(main_temp_buf, temp_buf);
+	#ifdef USE_TILES
+		strcat(main_temp_buf, "; ");
+	#endif
+	return main_temp_buf;
+}
+
+char *
+get_description_of_monster_type(struct permonst * ptr, char * description)
+{
+	/*int monsternumber;*/
+/*
+	pline("%d<><><>", plined_length("12345678901234567890123456789012345678901234567890123456789012345678901234567890"));//0 passed
+	pline("%d<><><>", plined_length("1234567890123456789012345678901234567890123456789012345678901234567890123456789"));
+*/
+	char temp_buf[BUFSZ] = "";
+	char main_temp_buf[BUFSZ] = "";
+
+	temp_buf[0]='\0';
+	sprintf(temp_buf, "Accessing Pokedex entry for %s... ", ptr->mname);
+	strcat(description, temp_buf);
+	append_newline_to_pline_string(description);
+	strcat(description, " ");
+	append_newline_to_pline_string(description);
+	strcat(description, "Base statistics of this monster type:");
+	append_newline_to_pline_string(description);
+
+	/*monsternumber = monsndx(ptr);*/
+	sprintf(temp_buf, "Base level = %d, difficulty = %d, AC = %d, magic resistance = %d, alignment %d. ", ptr->mlevel, monstr[monsndx(ptr)], ptr->ac, ptr->mr, ptr->maligntyp);
+	strcat(description, temp_buf);
+	temp_buf[0]='\0';
+	strcat(description, get_speed_description_of_monster_type(ptr, temp_buf));
+
+	temp_buf[0]='\0';
+	strcat(description, get_generation_description_of_monster_type(ptr, temp_buf));
+	temp_buf[0]='\0';
+	strcat(description, get_resistance_description_of_monster_type(ptr, temp_buf));
+	temp_buf[0]='\0';
+	strcat(description, get_flag_description_of_monster_type(ptr, temp_buf));
+
+	append_newline_to_pline_string(description);
+	strcat(description, "Attacks:");
+	append_newline_to_pline_string(description);
+	struct attack *mattk;
+	struct attack alt_attk;
+	int sum[NATTK];
+	int i;
+	for(i = 0; i < NATTK; i++) {
+		sum[i] = 0;
+		mattk = getmattk(ptr, i, sum, &alt_attk);
+		main_temp_buf[0]='\0';
+		get_description_of_attack(mattk, temp_buf);
+		if(temp_buf[0] == '\0') {
+			if (i == 0) {
+				#ifndef USE_TILES
+					strcat(description, "    ");
+				#endif
+				strcat(description, "none");
+				append_newline_to_pline_string(description);
+			}
+			break;
+		}
+		#ifndef USE_TILES
+			strcat(main_temp_buf, "    ");
+		#endif
+		strcat(main_temp_buf, temp_buf);
+		append_newline_to_pline_string(main_temp_buf);
+		strcat(description, main_temp_buf);
+	}
+	return description;
 }
 
 
