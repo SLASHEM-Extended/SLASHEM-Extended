@@ -23,7 +23,7 @@
 
 #include <ctype.h>
 
-#if !defined(MAC) && !defined(O_WRONLY) && !defined(AZTEC_C)
+#if (!defined(MAC) && !defined(O_WRONLY) && !defined(AZTEC_C)) || defined(USE_FCNTL)
 #include <fcntl.h>
 #endif
 
@@ -178,7 +178,9 @@ STATIC_DCL void FDECL(redirect, (const char *,const char *,const char *,
 STATIC_DCL void FDECL(docompress_file, (const char *,const char *,BOOLEAN_P));
 #endif
 #ifndef FILE_AREAS
+#ifndef USE_FCNTL 
 STATIC_DCL char *FDECL(make_lockname, (const char *,char *));
+#endif
 #endif
 STATIC_DCL FILE *FDECL(fopen_config_file, (const char *));
 STATIC_DCL int FDECL(get_uchars, (FILE *,char *,char *,uchar *,BOOLEAN_P,int,const char *));
@@ -1428,12 +1430,16 @@ const char *filearea, *filename;
 
 static int nesting = 0;
 
-#ifdef NO_FILE_LINKS	/* implies UNIX */
+#if defined(NO_FILE_LINKS) || defined(USE_FCNTL) 	/* implies UNIX */
 static int lockfd;	/* for lock_file() to pass to unlock_file() */
+#endif
+#ifdef USE_FCNTL
+struct flock sflock; /* for unlocking, same as above */
 #endif
 
 #define HUP	if (!program_state.done_hup)
 
+#ifndef USE_FCNTL
 STATIC_OVL char *
 make_lockname(filename, lockname)
 const char *filename;
@@ -1467,6 +1473,7 @@ char *lockname;
 # endif  /* UNIX || VMS || AMIGA || WIN32 || MSDOS */
 #endif
 }
+#endif /* !USE_FCNTL */
 
 
 /* lock a file */
@@ -1479,8 +1486,10 @@ int retryct;
 #if defined(MAC_MPW) || defined(__MWERKS__)
 # pragma unused(filename, retryct)
 #endif
+#ifndef USE_FCNTL
 	char locknambuf[BUFSZ];
 	const char *lockname;
+#endif
 
 	nesting++;
 	if (nesting > 1) {
@@ -1488,18 +1497,51 @@ int retryct;
 	    return TRUE;
 	}
 
+#ifndef USE_FCNTL
 	lockname = make_lockname(filename, locknambuf);
-	filename = fqname(filename, whichprefix, 0);
 #ifndef NO_FILE_LINKS	/* LOCKDIR should be subsumed by LOCKPREFIX */
 	lockname = fqname(lockname, LOCKPREFIX, 2);
 #endif
+#endif
+	filename = fqname(filename, whichprefix, 0);
+
+#ifdef USE_FCNTL
+	lockfd = open(filename,O_RDWR);
+	if (lockfd == -1) {
+		HUP raw_printf("Cannot open file %s. This is a program bug.",
+			filename);
+	}
+	sflock.l_type = F_WRLCK;
+	sflock.l_whence = SEEK_SET;
+	sflock.l_start = 0;
+	sflock.l_len = 0;
+#endif
 
 #if defined(UNIX) || defined(VMS)
+# ifdef USE_FCNTL
+	while (fcntl(lockfd,F_SETLK,&sflock) == -1) {
+# else 
 # ifdef NO_FILE_LINKS
 	while ((lockfd = open(lockname, O_RDWR|O_CREAT|O_EXCL, 0666)) == -1) {
 # else
 	while (link(filename, lockname) == -1) {
 # endif
+# endif 
+
+#ifdef USE_FCNTL
+		if (retryct--) {
+			HUP raw_printf(
+				"Waiting for release of fcntl lock on %s. (%d retries left).",
+				filename, retryct);
+			sleep(1);
+		} else {
+		    HUP (void) raw_print("I give up.  Sorry.");
+		    HUP raw_printf("Some other process has an unnatural grip on %s.",
+					filename);
+		    nesting--;
+		    return FALSE;
+		}
+#else
 	    register int errnosv = errno;
 
 	    switch (errnosv) {	/* George Barbanis */
@@ -1545,11 +1587,12 @@ int retryct;
 		nesting--;
 		return FALSE;
 	    }
+#endif /* USE_FCNTL */
 
 	}
 #endif  /* UNIX || VMS */
 
-#if defined(AMIGA) || defined(WIN32) || defined(MSDOS)
+#if (defined(AMIGA) || defined(WIN32) || defined(MSDOS)) && !defined(USE_FCNTL)
 # ifdef AMIGA
 #define OPENFAILURE(fd) (!fd)
     lockptr = 0;
@@ -1596,10 +1639,19 @@ void
 unlock_file(filename)
 const char *filename;
 {
+#ifndef USE_FCNTL
 	char locknambuf[BUFSZ];
 	const char *lockname;
+#endif
 
 	if (nesting == 1) {
+#ifdef USE_FCNTL
+		sflock.l_type = F_UNLCK;
+		if (fcntl(lockfd,F_SETLK,&sflock) == -1) {
+			HUP raw_printf("Can't remove fcntl lock on %s.", filename);
+			(void) close(lockfd);
+		}
+# else
 		lockname = make_lockname(filename, locknambuf);
 #ifndef NO_FILE_LINKS	/* LOCKDIR should be subsumed by LOCKPREFIX */
 		lockname = fqname(lockname, LOCKPREFIX, 2);
@@ -1619,6 +1671,7 @@ const char *filename;
 		DeleteFile(lockname);
 		lockptr = 0;
 #endif /* AMIGA || WIN32 || MSDOS */
+#endif /* USE_FCNTL */
 	}
 
 	nesting--;
