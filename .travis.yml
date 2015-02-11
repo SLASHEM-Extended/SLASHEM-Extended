@@ -1,0 +1,6 @@
+language: c
+script: sys/travis/build.sh 
+notifications:
+  irc:
+    channels: "chat.freenode.net#acehack.de"
+    skip_join: true
