@@ -260,7 +260,6 @@
 # endif
 #endif
 
-#define MAILCKFREQ	50
 #endif	/* MAIL */
 
 
