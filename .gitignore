@@ -43,12 +43,13 @@ src/Makefile
 util/Makefile
 
 # documentation for distribution
-doc/Guidebook.txt
-doc/slashem.txt 
-doc/lev_comp.txt
-doc/dgn_comp.txt
-doc/recover.txt
-doc/dlb.txt
+# this needs to be tracked, because some build systems don't generate it
+#doc/Guidebook.txt
+#doc/slashem.txt
+#doc/lev_comp.txt
+#doc/dgn_comp.txt
+#doc/recover.txt
+#doc/dlb.txt
 
 # windows-specific stuff
 compile.bat
