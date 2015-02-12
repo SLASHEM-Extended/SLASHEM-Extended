@@ -10,13 +10,13 @@
 
 /* Version */
 #define VERSION_MAJOR   0
-#define VERSION_MINOR   98
+#define VERSION_MINOR   9
 /*
  * PATCHLEVEL is updated for each release.
  */
-#define PATCHLEVEL      0
+#define PATCHLEVEL      8
 #define EDITLEVEL	0
-#define FIXLEVEL        0
+/* #define FIXLEVEL        0 */
 
 #define COPYRIGHT_BANNER_A \
 "This is SuperLotsoAddedStuffHack-Extended Magic 1997-2005"
@@ -40,7 +40,7 @@
  * PP = patch level, ee = edit level, L = literal suffix "L",
  * with all four numbers specified as two hexadecimal digits.
  */
-#define VERSION_COMPATIBILITY 0x00620000L
+#define VERSION_COMPATIBILITY 0x00090800L
 #endif
 
 /*patchlevel.h*/
