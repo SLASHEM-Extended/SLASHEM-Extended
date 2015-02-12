@@ -1272,3 +1272,85 @@ They say that you can play as a mummy, which allows you to chat to undead monste
 They say that choosing the Kop race will cause some monsters to start out tame and allow you to tame kops by chatting to them.
 They say that Slash'EM Extended now has a GIT repository.
 They say that you can play Slash'EM Extended online on the Acehack server.
+They say that attacking a huge ogre thief is a very bad idea.
+They say that division thieves and division jedis have deadly passive attacks.
+They say that car-driving superthieves like to warp to another dungeon level after robbing you blind.
+They say that there is a Unix Slash'EM Extended version.
+They say that if items and dungeon features are suddenly invisible, a switcher might help you.
+Sometimes, your bottom status line might disappear. This can be fixed with a switcher.
+Getting "low local memory" warnings? Wish for a switcher and apply it, that should help!
+A certain rare item can rescue you if your spells become yellow and your display starts acting messy.
+If everything on the screen becomes monochrome, you're really in for it. If you can't fix it in time, you die.
+Sometimes, things around you just disappear randomly. This is called the "superscroller" effect.
+If you have the "superscroller" effect, search every square for the active superscroller effect and untrap it.
+If you get the message "Not enough memory to create inventory window", you'll need autopickup to pick up things.
+There is a trap that displays random rumor messages if you trigger it.
+Sometimes your spellcasting menu doesn't show anything, but there is an item that can fix this.
+Are your multi-turn actions constantly being interrupted with no monsters nearby? Wish for a switcher to fix it!
+You might sometimes be unable to use certain commands. If you die while having that effect active, you can come back to life.
+Sometimes your movement speed will become all shaky; a switcher can help with that problem.
+You might encounter vulnerability traps that disable your intrinsics and extrinsics.
+The heel trap can be untrapped to get an item.
+Acid pools and water pools are traps that don't affect levitating or flying characters.
+Blade traps do more damage to creatures that have a head. This includes you.
+You can untrap glyphs of warding, but failure to do so can have a variety of negative effects.
+The animation trap only triggers once, and if it does, it spawns one or more monsters for you to fight.
+Don't step into a heap of shit if you don't have to; it will corrode your footwear and do quite some acid damage.
+The magic beam trap was introduced in Sporkhack and ported over to Slash'EM Extended.
+Watch out for ceiling collapse traps! They bury you under a shower of rocks, dealing great damage.
+If you encounter a monster that is kicking your ass, don't keep fighting but run away!
+If you encounter a monster that is faster than you, try engraving Elbereth...
+If you encounter a monster that shouldn't be at the current depth, don't fight it!
+Seeing an aedil or gorgon fly on dlvl1 probably means there's a polymorph trap somewhere.
+If your XL2 character encounters a god of starcraft universe on DLVL4, RUN!!!
+Don't fight that room filled with 20 trolls as a level 2 character unless you have a wand of death or something like that.
+Digging down as a spirit archeologist is fun. But keep in mind that nymphs can steal your pick-axe.
+Yes, that lich race sure is powerful. But wait until you get to the ascension run...
+Think the spirit race is overpowered? They move quite a bit slower and can't eat corpses to boot.
+The clockwork automaton race gets extra attacks per turn but can't eat at all.
+As a clockwork automaton, potions of oil provide quite a bit of nutrition.
+Unlike dnethack, Slash'EM Extended incantifiers are actually pretty straightforward.
+You can play as a dragon, which allows you to tame other dragons by throwing food at them.
+The feat master role and vortex race can tame vortices by chatting to them.
+Playing as a dragon is great - you start with a set of dragon scales!
+They say that you should play as a Missingno only if you're doing it offline.
+They say that playing as a Missingno on a public server is an exercise in frustration.
+They say that a Missingno has about a 1 in 1000 chance to crash out of the game on every turn.
+You can play as a wraith, which gives you access to lots of great intrinsics.
+Playing as a wraith has some disadvantages, especially if you switch weapons and armor a lot.
+For a worm that walks, the saying "you are what you eat" is actually meant in the literal sense.
+Annoyed that your worm that walks can't find good corpses to polymorph into? Eat other food for a random chance to polymorph into something good!
+The transformer race can wield items and perform other actions even when polymorphed into a form without hands.
+As a transformer, you start with uncurable polymorphitis and no protection against unsuccessful polymorphs.
+There's a race called "ak Thief is dead!" which suffers from a special form of lycanthropy.
+You can be an angel, but if you are, all useful intrinsics are lost if you stray at all.
+Play as a devil if you wanna be able to tame other devils with your charm monster spell!
+Deathmolds will randomly polymorph into some weird forms. They can polymorph at will, too.
+If you're a poisoner, your weapons act like they're permanently poisoned.
+If you're a poisoner, you can never be poison resistant, so be careful!
+As an immunizer, you're immune to effects that temporarily disable your in/extrinsics.
+As an immunizer, whenever a monster spawns you may lose some alignment record points.
+The unalignment thing is a really crappy race that you shouldn't play unless you're a masochist.
+Leprechauns are a teleportitis race.
+Be a veela! You'll always know how much damage you're doing, and humans usually spawn peaceful!
+Any character role can recognize cursed and blessed items if they are of the veela race.
+Careful, the veela race may be very powerful but they must adhere to the knight's code of conduct.
+If you choose "vortex" at the race selection screen, you can recognize certain types of monsters.
+You can be Batman if you want, but doing so means you may not kill monsters of the other gender unless they're non-humanoid.
+As a racial centaur, you can tame any wild animal simply by throwing food at it.
+Centaurs can't pass through narrow crevices and trash their unicorn horns more often.
+Here's a protip! Any role that is combined with the naga race gets hungerless casting!
+Don't play the suxxor race; as the name suggests, it sucks.
+Monkeys aren't too terribly bright, but they might have some special strength.
+If you don't know what an item does, select its letter in the inventory screen.
+Whenever you see a monster that you didn't see before, stop to take a look at its stats.
+If the status line announces a monster you don't recognize, don't blindly walk up to it!
+Slash'EM Extended likes to create underground rivers and other terrain obstacles that you have to get past.
+Don't worry about stepping into lava or water - there's a confirmation prompt unless you are stunned or confused.
+Beware, flying fish lie in wait on lava tiles to drown and instakill you unless you're fire resistant!
+The "Numb" status effect causes you to randomly lose turns.
+If you are hit by the "Fear" status effect, your attacks miss much more often.
+Having the "Freeze" condition means you'll move at half speed.
+If something freezes you, a possible way to cure that condition is to get burned.
+Wanna know what "Burn" on the status line means? It means you don't regenerate HP or Pw over time!
+A method to get rid of burns is to allow something to freeze you.
