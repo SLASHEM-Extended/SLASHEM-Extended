@@ -142,7 +142,7 @@ boolean talk;
 	if (!xtime && old) {
 		if (talk)
 		    pline("%s",
-			Hallucination ? "ready to rumble again!" : "You're no longer afraid.");
+			Hallucination ? "You're ready to rumble again!" : "You're no longer afraid.");
 	}
 
 	if (xtime && old) {
