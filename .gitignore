@@ -1,3 +1,4 @@
+# unix-y stuff, kinda
 *.o
 dat/*.lev
 dat/data
@@ -11,7 +12,6 @@ dat/quest.dat
 dat/quest_levs
 dat/rumors
 dat/spec_levs
-doc/Guidebook.txt
 include/date.h
 include/dgn_comp.h
 include/filename.h
@@ -34,11 +34,23 @@ util/lev_lex.c
 util/lev_yacc.c
 util/makedefs
 util/recover
+
+# the build system itself
 Makefile
 dat/Makefile
 doc/Makefile
 src/Makefile
 util/Makefile
+
+# documentation for distribution
+doc/Guidebook.txt
+doc/slashem.txt 
+doc/lev_comp.txt
+doc/dgn_comp.txt
+doc/recover.txt
+doc/dlb.txt
+
+# windows-specific stuff
 compile.bat
 binary/*
 build/*
