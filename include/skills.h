@@ -104,8 +104,8 @@
 
 #define practice_needed_to_advance(level,skill) \
    (P_SKILL(skill) == P_ISRESTRICTED ? 500 : \
-    P_SKILL(skill) >= P_MAX_SKILL(skill) ? (level)*(level)*200 : \
-    (level)*(level)*20)
+    P_SKILL(skill) >= P_MAX_SKILL(skill) ? (level)*(level)*(level)*200 : \
+    (level)*(level)*(level)*20)
 
 /* The hero's skill in various weapons. */
 struct skills {

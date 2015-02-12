@@ -200,8 +200,8 @@ TRAP:"rolling boulder",(44,01)
 TRAP:"rolling boulder",(44,07)
 OBJECT:'/',"striking",(46,10),uncursed,2
 OBJECT:')',"runesword",(46,10),cursed,0
-MONSTER[60%]:' ',"ghost",(47,00),hostile
-MONSTER[60%]:' ',"ghost",(50,00),hostile
+MONSTER[60%]:'8',"ghost",(47,00),hostile
+MONSTER[60%]:'8',"ghost",(50,00),hostile
 
 # maze 
 MONSTER[60%]:'w',"rot worm",(63,05),hostile
@@ -213,8 +213,8 @@ MONSTER[60%]:'w',"rot worm",(72,14),hostile
 MONSTER[60%]:'w',"rot worm",(63,17),hostile
 MONSTER[60%]:'w',"rot worm",(69,17),hostile
 
-MONSTER[50%]:' ',"shade",(63,05),hostile
-MONSTER[50%]:' ',"shade",(69,17),hostile
+MONSTER[50%]:'8',"shade",(63,05),hostile
+MONSTER[50%]:'8',"shade",(69,17),hostile
 
 # room
 REGION:(64,09,68,13),unlit,"swamp"
@@ -302,14 +302,14 @@ MONSTER[50%]:'y',"black light",random,hostile
 MONSTER[50%]:'y',"black light",random,hostile
 MONSTER[50%]:'y',"black light",random,hostile
 MONSTER[50%]:'y',"black light",random,hostile
-MONSTER:' ',"shadow",random,hostile
-MONSTER:' ',"shadow",random,hostile
-MONSTER:' ',"shadow",random,hostile
-MONSTER:' ',"shadow",random,hostile
-MONSTER[40%]:' ',"shadow",random,hostile
-MONSTER[40%]:' ',"shadow",random,hostile
-MONSTER[40%]:' ',"shadow",random,hostile
-MONSTER[40%]:' ',"shadow",random,hostile
+MONSTER:'8',"shadow",random,hostile
+MONSTER:'8',"shadow",random,hostile
+MONSTER:'8',"shadow",random,hostile
+MONSTER:'8',"shadow",random,hostile
+MONSTER[40%]:'8',"shadow",random,hostile
+MONSTER[40%]:'8',"shadow",random,hostile
+MONSTER[40%]:'8',"shadow",random,hostile
+MONSTER[40%]:'8',"shadow",random,hostile
 
 # Traps
 TRAP:"sleep gas",random

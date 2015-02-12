@@ -1438,34 +1438,109 @@ $(DAT)\quest.dat: utility.tag  $(DAT)\quest.txt
 $(DAT)\oracles:	     utility.tag    $(DAT)\oracles.txt
 	-makedefs -h
 
-sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\bigroom.des \
-		$(DAT)\blkmar.des   $(DAT)\castle.des   $(DAT)\grund.des \
-		$(DAT)\dragons.des  $(DAT)\endgame.des  $(DAT)\gehennom.des \
-		$(DAT)\giants.des   $(DAT)\guild.des    $(DAT)\knox.des \
-		$(DAT)\kobold-1.des $(DAT)\kobold-2.des $(DAT)\lich.des \
-		$(DAT)\mall-1.des   $(DAT)\mall-2.des   $(DAT)\medusa.des \
-		$(DAT)\sokoban.des  $(DAT)\mines.des    $(DAT)\mtemple.des \
-		$(DAT)\newmall.des  $(DAT)\nymph.des    $(DAT)\oracle.des \
-		$(DAT)\rats.des     $(DAT)\sea.des      $(DAT)\spiders.des \
-		$(DAT)\stor-1.des   $(DAT)\stor-2.des   $(DAT)\stor-3.des \
-		$(DAT)\tomb.des     $(DAT)\tower.des    $(DAT)\yendor.des \
-		$(DAT)\arch.des     $(DAT)\barb.des 	$(DAT)\caveman.des \
-		$(DAT)\flame.des    $(DAT)\healer.des   $(DAT)\ice.des \
-		$(DAT)\knight.des   $(DAT)\monk.des     $(DAT)\necro.des \
-		$(DAT)\priest.des   $(DAT)\rogue.des    $(DAT)\samurai.des \
-		$(DAT)\tourist.des  $(DAT)\slayer.des   $(DAT)\valkyrie.des \
-		$(DAT)\wizard.des   $(DAT)\yeoman.des   $(DAT)\frnknstn.des \
-		$(DAT)\nightmar.des $(DAT)\ranger.des 
+sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\bigroom.des \
+		$(DAT)\blkmar.des   $(DAT)\castle.des   $(DAT)\bleeder.des   $(DAT)\grund.des \
+		$(DAT)\dragons.des  $(DAT)\endgame.des  $(DAT)\exmall.des  $(DAT)\gehennom.des \
+		$(DAT)\giants.des   $(DAT)\guild.des    $(DAT)\intpla.des    $(DAT)\knox.des \
+		$(DAT)\kobold-1.des $(DAT)\kobold-2.des $(DAT)\unheck.des $(DAT)\lich.des \
+		$(DAT)\mall-1.des   $(DAT)\mall-2.des   $(DAT)\geek.des   $(DAT)\scient.des   $(DAT)\medusa.des \
+		$(DAT)\sokoban.des  $(DAT)\heck.des    $(DAT)\mines.des    $(DAT)\mtemple.des \
+		$(DAT)\newmall.des  $(DAT)\nymph.des    $(DAT)\hellma.des    $(DAT)\oracle.des \
+		$(DAT)\rats.des     $(DAT)\rndmaze.des  $(DAT)\rndmazea.des     $(DAT)\sea.des      $(DAT)\spiders.des \
+		$(DAT)\stor-1.des   $(DAT)\stor-2.des   $(DAT)\act.des   $(DAT)\stor-3.des \
+		$(DAT)\tomb.des     $(DAT)\tower.des    $(DAT)\warrior.des    $(DAT)\yendor.des \
+		$(DAT)\arch.des     $(DAT)\barb.des 	$(DAT)\binder.des 	$(DAT)\caveman.des \
+		$(DAT)\flame.des    $(DAT)\healer.des   $(DAT)\jedi.des   $(DAT)\ice.des \
+		$(DAT)\elfreal.des  $(DAT)\knight.des   $(DAT)\monk.des     $(DAT)\psion.des     $(DAT)\necro.des \
+		$(DAT)\acid.des   $(DAT)\spacew.des   $(DAT)\top.des   $(DAT)\rocker.des \
+		$(DAT)\priest.des   $(DAT)\rogue.des    $(DAT)\town.des   $(DAT)\samurai.des \
+		$(DAT)\tourist.des  $(DAT)\slayer.des   $(DAT)\noble.des 	$(DAT)\valkyrie.des \
+		$(DAT)\electric.des  $(DAT)\courier.des   $(DAT)\cheval.des 	$(DAT)\trans.des \
+		$(DAT)\elf.des  $(DAT)\cyborg.des   $(DAT)\gangster.des   $(DAT)\deatheat.des \
+		$(DAT)\wizard.des   $(DAT)\sheol.des   $(DAT)\yeoman.des   $(DAT)\frnknstn.des \
+		$(DAT)\forge.des    $(DAT)\hitch.des   $(DAT)\compu.des    $(DAT)\key.des \
+		$(DAT)\korsair.des    $(DAT)\diver.des   $(DAT)\lunatic.des   $(DAT)\gladia.des \
+		$(DAT)\nightmar.des $(DAT)\ranger.des 	$(DAT)\pirate.des 	$(DAT)\convict.des \
+		$(DAT)\altmer.des $(DAT)\bosmer.des 	$(DAT)\dunmer.des 	$(DAT)\ordinat.des 	$(DAT)\thalmor.des \
+		$(DAT)\drunk.des    $(DAT)\firef.des   $(DAT)\locks.des   $(DAT)\music.des \
+		$(DAT)\ninja.des $(DAT)\offic.des 	$(DAT)\under.des 	$(DAT)\zooke.des \
+		$(DAT)\abuser.des $(DAT)\saiyan.des 	$(DAT)\polit.des 	$(DAT)\cook.des \
+		$(DAT)\augurer.des $(DAT)\sage.des 	$(DAT)\libra.des 	$(DAT)\gunner.des \
+		$(DAT)\otaku.des $(DAT)\artist.des 	$(DAT)\gamer.des 	$(DAT)\doll.des \
+		$(DAT)\stunt.des $(DAT)\foxhound.des 	$(DAT)\scribe.des 	$(DAT)\paladin.des \
+		$(DAT)\wandkeep.des $(DAT)\assassin.des 	$(DAT)\bully.des 	$(DAT)\supermar.des \
+		$(DAT)\slavemas.des $(DAT)\mystic.des 	$(DAT)\bloodsee.des 	$(DAT)\ladies.des \
+		$(DAT)\jester.des $(DAT)\pickpock.des 	$(DAT)\mahou.des \
+		$(DAT)\bard.des $(DAT)\amazon.des $(DAT)\goff.des 
+
+	lev_comp $(DDAT)/abuser.des
+	lev_comp $(DDAT)/saiyan.des
+	lev_comp $(DDAT)/polit.des
+	lev_comp $(DDAT)/cook.des
+	lev_comp $(DDAT)/augurer.des
+	lev_comp $(DDAT)/sage.des
+	lev_comp $(DDAT)/libra.des
+	lev_comp $(DDAT)/gunner.des
+	lev_comp $(DDAT)/otaku.des
+	lev_comp $(DDAT)/artist.des
+	lev_comp $(DDAT)/gamer.des
+	lev_comp $(DDAT)/doll.des
+	lev_comp $(DDAT)/stunt.des
+	lev_comp $(DDAT)/foxhound.des
+	lev_comp $(DDAT)/scribe.des
+	lev_comp $(DDAT)/paladin.des
+	lev_comp $(DDAT)/wandkeep.des
+	lev_comp $(DDAT)/assassin.des
+	lev_comp $(DDAT)/bully.des
+	lev_comp $(DDAT)/supermar.des
+	lev_comp $(DDAT)/slavemas.des
+	lev_comp $(DDAT)/mystic.des
+	lev_comp $(DDAT)/bloodsee.des
+	lev_comp $(DDAT)/ladies.des
+	lev_comp $(DDAT)/jester.des
+	lev_comp $(DDAT)/pickpock.des
+	lev_comp $(DDAT)/mahou.des
+
+	lev_comp $(DDAT)/bard.des
+	lev_comp $(DDAT)/amazon.des
+	lev_comp $(DDAT)/altmer.des
+	lev_comp $(DDAT)/bosmer.des
+	lev_comp $(DDAT)/dunmer.des
+	lev_comp $(DDAT)/ordinat.des
+	lev_comp $(DDAT)/thalmor.des
+	lev_comp $(DDAT)/goff.des
+	lev_comp $(DDAT)/drunk.des
+	lev_comp $(DDAT)/firef.des
+	lev_comp $(DDAT)/locks.des
+	lev_comp $(DDAT)/music.des
+	lev_comp $(DDAT)/ninja.des
+	lev_comp $(DDAT)/offic.des
+	lev_comp $(DDAT)/under.des
+	lev_comp $(DDAT)/zooke.des
+	lev_comp $(DDAT)/gradu.des
 	lev_comp $(DDAT)/beholder.des
 	lev_comp $(DDAT)/bigroom.des
 	lev_comp $(DDAT)/blkmar.des
+	lev_comp $(DDAT)/bleeder.des
 	lev_comp $(DDAT)/castle.des
+	lev_comp $(DDAT)/compu.des
+	lev_comp $(DDAT)/convict.des
+	lev_comp $(DDAT)/lunatic.des
+	lev_comp $(DDAT)/spacew.des
 	lev_comp $(DDAT)/grund.des
 	lev_comp $(DDAT)/dragons.des
 	lev_comp $(DDAT)/endgame.des
+	lev_comp $(DDAT)/exmall.des
+	lev_comp $(DDAT)/forge.des
 	lev_comp $(DDAT)/gehennom.des
 	lev_comp $(DDAT)/giants.des
 	lev_comp $(DDAT)/guild.des
+	lev_comp $(DDAT)/heck.des
+	lev_comp $(DDAT)/unheck.des
+	lev_comp $(DDAT)/hellma.des
+	lev_comp $(DDAT)/hitch.des
+	lev_comp $(DDAT)/intpla.des
+	lev_comp $(DDAT)/key.des
 	lev_comp $(DDAT)/knox.des
 	lev_comp $(DDAT)/kobold-1.des
 	lev_comp $(DDAT)/kobold-2.des
@@ -1478,9 +1553,27 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\bigroom.des \
 	lev_comp $(DDAT)/mtemple.des
 	lev_comp $(DDAT)/newmall.des
 	lev_comp $(DDAT)/nymph.des
+	lev_comp $(DDAT)/noble.des
+	lev_comp $(DDAT)/electric.des
+	lev_comp $(DDAT)/acid.des
+	lev_comp $(DDAT)/rocker.des
+	lev_comp $(DDAT)/cheval.des
+	lev_comp $(DDAT)/trans.des
+	lev_comp $(DDAT)/top.des
+	lev_comp $(DDAT)/act.des
+	lev_comp $(DDAT)/courier.des
+	lev_comp $(DDAT)/cyborg.des
 	lev_comp $(DDAT)/oracle.des
+	lev_comp $(DDAT)/pirate.des
+	lev_comp $(DDAT)/korsair.des
+	lev_comp $(DDAT)/diver.des
+	lev_comp $(DDAT)/gladia.des
 	lev_comp $(DDAT)/rats.des
+	lev_comp $(DDAT)/town.des
+	lev_comp $(DDAT)/rndmaze.des
+	lev_comp $(DDAT)/rndmazea.des
 	lev_comp $(DDAT)/sea.des
+	lev_comp $(DDAT)/sheol.des
 	lev_comp $(DDAT)/spiders.des
 	lev_comp $(DDAT)/stor-1.des
 	lev_comp $(DDAT)/stor-2.des
@@ -1490,12 +1583,17 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\bigroom.des \
 	lev_comp $(DDAT)/yendor.des
 	lev_comp $(DDAT)/arch.des
 	lev_comp $(DDAT)/barb.des
+	lev_comp $(DDAT)/binder.des
 	lev_comp $(DDAT)/caveman.des
 	lev_comp $(DDAT)/flame.des
+	lev_comp $(DDAT)/geek.des
+	lev_comp $(DDAT)/scient.des
 	lev_comp $(DDAT)/healer.des
 	lev_comp $(DDAT)/ice.des
+	lev_comp $(DDAT)/jedi.des
 	lev_comp $(DDAT)/knight.des
 	lev_comp $(DDAT)/monk.des
+	lev_comp $(DDAT)/psion.des
 	lev_comp $(DDAT)/necro.des
 	lev_comp $(DDAT)/priest.des
 	lev_comp $(DDAT)/rogue.des
@@ -1503,8 +1601,13 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\bigroom.des \
 	lev_comp $(DDAT)/tourist.des
 	lev_comp $(DDAT)/slayer.des
 	lev_comp $(DDAT)/valkyrie.des
+	lev_comp $(DDAT)/warrior.des
 	lev_comp $(DDAT)/wizard.des
 	lev_comp $(DDAT)/yeoman.des
+	lev_comp $(DDAT)/elf.des
+	lev_comp $(DDAT)/elfreal.des
+	lev_comp $(DDAT)/gangster.des
+	lev_comp $(DDAT)/deatheat.des
 	lev_comp $(DDAT)/frnknstn.des
 	lev_comp $(DDAT)/nightmar.des
 	lev_comp $(DDAT)/ranger.des

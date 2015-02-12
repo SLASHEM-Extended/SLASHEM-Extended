@@ -48,13 +48,14 @@ MONSTER: 'r', "sewer rat", random, hostile
 MONSTER: 'r', "sewer rat", random, hostile
 MONSTER: 'r', "rabid rat", random, hostile
 MONSTER: 'r', "the Rat King", (8,8), hostile
+OBJECT:'?',"root password detection",(8,8)
   
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
 OBJECT: random,random,random
-MONSTER: 'r', "giant rat", random, hostile
-MONSTER: 'r', "giant rat", random, hostile
-MONSTER: 'r', "giant rat", random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, down
@@ -66,22 +67,22 @@ MONSTER: 'r', "rabid rat", random, hostile
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
-MONSTER: 'r', "giant rat", random, hostile
-MONSTER: 'r', "giant rat", random, hostile
-MONSTER: 'r', "giant rat", random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-MONSTER: 'r', "giant rat", random, hostile
-MONSTER: 'r', "giant rat", random, hostile
-MONSTER: 'r', "giant rat", random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-MONSTER: 'r', "giant rat", random, hostile
-MONSTER: 'r', "giant rat", random, hostile
-MONSTER: 'r', "giant rat", random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
 
 RANDOM_CORRIDORS

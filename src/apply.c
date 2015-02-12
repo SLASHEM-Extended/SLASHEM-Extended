@@ -194,6 +194,23 @@ int rx, ry, *resp;
 	    }
 	    return TRUE;
 	}
+	/* listening to eggs is a little fishy, but so is stethoscopes detecting alignment
+	 * The overcomplex wording is because all the monster-naming functions operate
+	 * on actual instances of the monsters, and we're dealing with just an index
+	 * so we can avoid things like "a owlbear", etc. */
+	if (otmp = sobj_at(EGG,rx,ry)) {
+		if (Hallucination || !rn2(20) ) { /* Let's make it fail sometimes. --Amy */
+			pline("You listen to the egg and guess... %s?",rndmonnam());
+		} else {
+			if (stale_egg(otmp) || otmp->corpsenm == NON_PM || rn2(2) ) {
+				pline("The egg doesn't make much noise at all.");
+			} else {
+				pline("You listen to the egg and guess... %s?",mons[otmp->corpsenm].mname);
+			}
+		}
+		return TRUE;
+	}
+
 	return FALSE;
 }
 
@@ -215,8 +232,16 @@ use_stethoscope(obj)
 	boolean interference = (u.uswallow && is_whirly(u.ustuck->data) &&
 				!rn2(Role_if(PM_HEALER) ? 10 : 3));
 
-	if (nohands(youmonst.data)) {	/* should also check for no ears and/or deaf */
+	if (!rn2(100)) {
+	    useup(obj);
+	    pline("Your stethoscope breaks!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return;
+		}
+
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {	/* should also check for no ears and/or deaf */
 		You("have no hands!");	/* not `body_part(HAND)' */
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	} else if (!freehand()) {
 		You("have no free %s.", body_part(HAND));
@@ -228,6 +253,7 @@ use_stethoscope(obj)
 	      (youmonst.movement == last_used_movement);
 	last_used_move = moves;
 	last_used_movement = youmonst.movement;
+	if (u.stethocheat == moves) res = 1; /* just restored the game and trying to cheat? Nice try. --Amy */
 
 #ifdef STEED
 	if (u.usteed && u.dz > 0) {
@@ -235,7 +261,13 @@ use_stethoscope(obj)
 			pline("%s interferes.", Monnam(u.ustuck));
 			mstatusline(u.ustuck);
 		} else
+
+			if (obj->blessed)
+			mstatuslinebl(u.usteed); /* make blessed one better than uncursed --Amy */
+			else
 			mstatusline(u.usteed);
+
+
 		return res;
 	} else
 #endif
@@ -274,6 +306,16 @@ use_stethoscope(obj)
 		return 0;
 	}
 	if ((mtmp = m_at(rx,ry)) != 0) {
+
+		if (mtmp->mnum == PM_DARK_GOKU || mtmp->mnum == PM_FRIEZA) { /* idea by Bug Sniper */
+	    useup(obj);
+	    pline("Your stethoscope breaks, and you scream in terror!");
+		wake_nearby();
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return;
+		}
+
+
 		mstatusline(mtmp);
 		if (mtmp->mundetected) {
 			mtmp->mundetected = 0;
@@ -1157,6 +1199,12 @@ struct obj *obj;
 		end_burn(obj, TRUE);
 		return;
 	}
+#ifdef JEDI
+	// for some reason, the lightsaber prototype is created with
+	// age == 0
+	if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE)
+		obj->age = 300L;
+#endif
 	/* magic lamps with an spe == 0 (wished for) cannot be lit */
 	if ((!Is_candle(obj) && obj->age == 0)
 			|| (obj->otyp == MAGIC_LAMP && obj->spe == 0)) {
@@ -1333,6 +1381,12 @@ static NEARDATA const char cuddly[] = { TOOL_CLASS, GEM_CLASS, 0 };
 int
 dorub()
 {
+	if (MenuBug) {
+	pline("The rub command is currently unavailable!");
+	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	return 0;
+	}
+
 	struct obj *obj = getobj(cuddly, "rub");
 
 	if (obj && obj->oclass == GEM_CLASS) {
@@ -1341,6 +1395,7 @@ dorub()
 		return 1;
 	    } else {
 		pline("Sorry, I don't know how to use that.");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	    }
 	}
@@ -1382,43 +1437,56 @@ int magic; /* 0=Physical, otherwise skill level */
 {
 	coord cc;
 
-	if (!magic && (nolimbs(youmonst.data) || slithy(youmonst.data))) {
+	if (!magic && !Race_if(PM_TRANSFORMER) && (nolimbs(youmonst.data) || slithy(youmonst.data))) {
 		/* normally (nolimbs || slithy) implies !Jumping,
 		   but that isn't necessarily the case for knights */
 		You_cant("jump; you have no legs!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	} else if (!magic && !Jumping) {
 		You_cant("jump very far.");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
+	} else if (!magic && u.uen < 10) { /* No longer completely free. --Amy */
+		You("don't have enough energy to jump! You need at least 10 points of mana!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	} else if (u.uswallow) {
 		if (magic) {
 			You("bounce around a little.");
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return 1;
 		} else {
 		pline("You've got to be kidding!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 		}
 		return 0;
 	} else if (u.uinwater) {
 		if (magic) {
 			You("swish around a little.");
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return 1;
 		} else {
 		pline("This calls for swimming, not jumping!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 		}
 		return 0;
 	} else if (u.ustuck) {
 		if (u.ustuck->mtame && !Conflict && !u.ustuck->mconf) {
 		    You("pull free from %s.", mon_nam(u.ustuck));
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		    setustuck(0);
 		    return 1;
 		}
 		if (magic) {
 			You("writhe a little in the grasp of %s!", mon_nam(u.ustuck));
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return 1;
 		} else {
 		You("cannot escape from %s!", mon_nam(u.ustuck));
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 		}
 
@@ -1426,16 +1494,20 @@ int magic; /* 0=Physical, otherwise skill level */
 	} else if (Levitation || Is_airlevel(&u.uz) || Is_waterlevel(&u.uz)) {
 		if (magic) {
 			You("flail around a little.");
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return 1;
 		} else {
 		You("don't have enough traction to jump.");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 		}
 	} else if (!magic && near_capacity() > UNENCUMBERED) {
 		You("are carrying too much to jump!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	} else if (!magic && (u.uhunger <= 100 || ACURR(A_STR) < 6)) {
 		You("lack the strength to jump!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	} else if (Wounded_legs) {
  		long wl = (EWounded_legs & BOTH_SIDES);
@@ -1451,11 +1523,13 @@ int magic; /* 0=Physical, otherwise skill level */
 		     (wl == LEFT_SIDE) ? "left " :
 			(wl == RIGHT_SIDE) ? "right " : "",
 		     bp, (wl == BOTH_SIDES) ? "are" : "is");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
 #ifdef STEED
 	else if (u.usteed && u.utrap) {
 		pline("%s is stuck in a trap.", Monnam(u.usteed));
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);
 	}
 #endif
@@ -1534,12 +1608,25 @@ int magic; /* 0=Physical, otherwise skill level */
 
 	    /* A little Sokoban guilt... */
 	    if (In_sokoban(&u.uz))
-		change_luck(-1);
+		{change_luck(-1);
+		pline("You cheater!");
+		}
 
 	    teleds(cc.x, cc.y, TRUE);
+
+	if ( (sobj_at(ORCISH_SHORT_SWORD,cc.x,cc.y) || sobj_at(SHORT_SWORD,cc.x,cc.y) || sobj_at(SILVER_SHORT_SWORD,cc.x,cc.y) || sobj_at(DWARVISH_SHORT_SWORD,cc.x,cc.y)  || sobj_at(ELVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(DARK_ELVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(BROADSWORD,cc.x,cc.y)  || sobj_at(RUNESWORD,cc.x,cc.y)  || sobj_at(ELVEN_BROADSWORD,cc.x,cc.y)  || sobj_at(LONG_SWORD,cc.x,cc.y)  || sobj_at(SILVER_LONG_SWORD,cc.x,cc.y)  || sobj_at(KATANA,cc.x,cc.y)  || sobj_at(ELECTRIC_SWORD,cc.x,cc.y)  || sobj_at(TWO_HANDED_SWORD,cc.x,cc.y)  || sobj_at(TSURUGI,cc.x,cc.y)  || sobj_at(SCIMITAR,cc.x,cc.y)  || sobj_at(BENT_SABLE,cc.x,cc.y)  || sobj_at(RAPIER,cc.x,cc.y)  || sobj_at(SILVER_SABER,cc.x,cc.y)  || sobj_at(GOLDEN_SABER,cc.x,cc.y) ) && !strncmpi(plname, "IWBTG", 5) ) {
+
+		killer = "a sharp-edged sword";		/* the thing that killed you */
+		killer_format = KILLED_BY;
+		pline("YOU JUMPED INTO A SWORD, YOU RETARD!");
+		done(DIED);
+
+	}
+
 	    nomul(-1);
 	    nomovemsg = "";
 	    morehungry(rnd(25));
+	    if (!magic) u.uen -= 10;
 	    return 1;
 	}
 }
@@ -1619,6 +1706,7 @@ register struct obj *obj;
 	    	mvitals[corpse->corpsenm].eaten++;
 #endif    
 	    can->spe = -1;  /* Mark tinned tins. No spinach allowed... */
+	    can->selfmade = TRUE;
 	    if (carried(corpse)) {
 		if (corpse->unpaid)
 		    verbalize(you_buy_it);
@@ -1643,15 +1731,22 @@ struct obj *obj;
 #define PROP_COUNT 6		/* number of properties we're dealing with */
 #define ATTR_COUNT (A_MAX*3)	/* number of attribute points we might fix */
 	int idx, val, val_limit,
-	    trouble_count, unfixable_trbl, did_prop, did_attr;
+	    trouble_count, unfixable_trbl, did_prop, did_attr, did_atno;
 	int trouble_list[PROP_COUNT + ATTR_COUNT];
 	int chance;	/* KMH */
+
+	/* higher chance for vaporizing the horn as a centaur --Amy */
+	if (!rn2(Race_if(PM_HUMANOID_CENTAUR) ? 10 : 100)) {
+	    useup(obj);
+	    pline("The horn suddenly turns to dust.");
+		return;
+		}
 
 	if (obj && obj->cursed) {
 	    long lcount = (long) rnd(100);
 
-	    switch (rn2(6)) {
-	    case 0: make_sick(Sick ? Sick/3L + 1L : (long)rn1(ACURR(A_CON),20),
+	    switch (rn2(10)) {
+	    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
 			xname(obj), TRUE, SICK_NONVOMITABLE);
 		    break;
 	    case 1: make_blinded(Blinded + lcount, TRUE);
@@ -1663,9 +1758,17 @@ struct obj *obj;
 		    break;
 	    case 3: make_stunned(HStun + lcount, TRUE);
 		    break;
-	    case 4: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+	    case 4: make_numbed(HNumbed + lcount, TRUE);
 		    break;
-	    case 5: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
+	    case 5: make_frozen(HFrozen + lcount, TRUE);
+		    break;
+	    case 6: make_burned(HBurned + lcount, TRUE);
+		    break;
+	    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+		    break;
+	    case 8: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
+		    break;
+	    case 9: make_feared(HFeared + lcount, TRUE);
 		    break;
 	    }
 	    return;
@@ -1679,19 +1782,27 @@ struct obj *obj;
 #define prop_trouble(X) trouble_list[trouble_count++] = prop2trbl(X)
 #define attr_trouble(Y) trouble_list[trouble_count++] = attr2trbl(Y)
 
-	trouble_count = unfixable_trbl = did_prop = did_attr = 0;
+	trouble_count = unfixable_trbl = did_prop = did_attr = did_atno = 0;
 
 	/* collect property troubles */
 	if (Sick) prop_trouble(SICK);
+
+
 	if (Blinded > (long)u.ucreamed) prop_trouble(BLINDED);
 	if (HHallucination) prop_trouble(HALLUC);
 	if (Vomiting) prop_trouble(VOMITING);
 	if (HConfusion) prop_trouble(CONFUSION);
-	if (HStun) prop_trouble(STUNNED);
+	if (HStun) prop_trouble(STUNNED); /* trying to prevent players from fixing everything */
+	if (HNumbed) prop_trouble(NUMBED);
+	if (HFrozen) prop_trouble(FROZEN);
+	if (HBurned) prop_trouble(BURNED);
+	if (HFeared) prop_trouble(FEARED);
 
 	unfixable_trbl = unfixable_trouble_count(TRUE);
 
 	/* collect attribute troubles */
+
+
 	for (idx = 0; idx < A_MAX; idx++) {
 	    val_limit = AMAX(idx);
 	    /* don't recover strength lost from hunger */
@@ -1703,7 +1814,7 @@ struct obj *obj;
 		attr_trouble(idx);
 	    /* keep track of unfixed trouble, for message adjustment below */
 	    unfixable_trbl += (AMAX(idx) - val_limit);
-	}
+	}  
 
 	if (trouble_count == 0) {
 	    pline(nothing_happens);
@@ -1737,16 +1848,19 @@ struct obj *obj;
 	 */
 	val_limit = (obj && obj->blessed) ? trouble_count : 1;
 	if (obj && obj->spe > 0)
-		chance = (obj->spe < 6) ? obj->spe+3 : 9;
+		chance = (obj->spe < 13) ? obj->spe+6 : 18;
 	else
-		chance = 3;
+		chance = 6;
 #endif
+
+	if (Race_if(PM_HUMANOID_CENTAUR)) chance += 6; /* to offset the fact that it vanishes more often for them */
+	if (chance > 18) chance = 18;
 
 	/* fix [some of] the troubles */
 	for (val = 0; val < val_limit; val++) {
 	    idx = trouble_list[val];
 
-		if (rn2(10) < chance)	/* KMH */
+		if (rn2(20) < chance)	/* KMH */
 	    switch (idx) {
 	    case prop2trbl(SICK):
 		make_sick(0L, (char *) 0, TRUE, SICK_ALL);
@@ -1772,10 +1886,30 @@ struct obj *obj;
 		make_stunned(0L, TRUE);
 		did_prop++;
 		break;
+	    case prop2trbl(NUMBED):
+		make_numbed(0L, TRUE);
+		did_prop++;
+		break;
+	    case prop2trbl(FEARED):
+		make_feared(0L, TRUE);
+		did_prop++;
+		break;
+	    case prop2trbl(FROZEN):
+		make_frozen(0L, TRUE);
+		did_prop++;
+		break;
+	    case prop2trbl(BURNED):
+		make_burned(0L, TRUE);
+		did_prop++;
+		break;
 	    default:
 		if (idx >= 0 && idx < A_MAX) {
-		    ABASE(idx) += 1;
-		    did_attr++;
+		    if (rn2(3))
+		    { ABASE(idx) += 1;
+		    did_attr++;}
+                else
+		    { did_atno++;
+                AMAX(idx) -= 1;}
 		} else
 		    panic("use_unicorn_horn: bad trouble? (%d)", idx);
 		break;
@@ -1786,10 +1920,12 @@ struct obj *obj;
 	    pline("This makes you feel %s!",
 		  (did_prop + did_attr) == (trouble_count + unfixable_trbl) ?
 		  "great" : "better");
+	else if (did_atno)
+	    pline("Damn! It didn't work!");
 	else if (!did_prop)
 	    pline("Nothing seems to happen.");
 
-	flags.botl = (did_attr || did_prop);
+	flags.botl = (did_attr || did_prop || did_atno);
 #undef PROP_COUNT
 #undef ATTR_COUNT
 #undef prop2trbl
@@ -2079,6 +2215,10 @@ set_whetstone()
 	    if (Fumbling) adj--;
 	    if (Confusion) adj--;
 	    if (Stunned) adj--;
+	    if (Numbed) adj--;
+	    if (Feared) adj--;
+	    if (Frozen) adj--;
+	    if (Burned) adj--;
 	    if (Hallucination) adj--;
 	    if (adj > 0)
 		whetstoneinfo.time_needed -= adj;
@@ -2132,11 +2272,11 @@ struct obj *stone, *obj;
 		(uswapwep && u.twoweap && welded(uswapwep) && (uswapwep != obj))) {
 	    You("need both hands free.");
 	} else
-	if (nohands(youmonst.data)) {
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	    You("can't handle %s with your %s.",
 		an(xname(stone)), makeplural(body_part(HAND)));
 	} else
-	if (verysmall(youmonst.data)) {
+	if (verysmall(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	    You("are too small to use %s effectively.", an(xname(stone)));
 	} else
 #ifdef GOLDOBJ
@@ -2371,7 +2511,7 @@ struct obj *otmp;
 	char buf[BUFSZ];
 	const char *occutext = "setting the trap";
 
-	if (nohands(youmonst.data))
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER))
 	    what = "without hands";
 	else if (Stunned)
 	    what = "while stunned";
@@ -2575,7 +2715,7 @@ struct obj *obj;
 	flags.botl = 1;
 	return 1;
 
-    } else if ((Fumbling || Glib) && !rn2(5)) {
+    } else if ((Fumbling || IsGlib) && !rn2(5)) {
 	pline_The("bullwhip slips out of your %s.", body_part(HAND));
 	dropx(obj);
 
@@ -3091,7 +3231,7 @@ do_break_wand(obj)
 				the_wand, ysimple_name(obj), "the wand"));
     if (yn(confirm) == 'n' ) return 0;
 
-    if (nohands(youmonst.data)) {
+    if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
 	You_cant("break %s without hands!", the_wand);
 	return 0;
     } else if (ACURR(A_STR) < 10) {
@@ -3157,16 +3297,33 @@ wand_explode(obj, hero_broke)
 
     switch (obj->otyp) {
     case WAN_WISHING:
+    case WAN_ACQUIREMENT:
     case WAN_NOTHING:
     case WAN_LOCKING:
     case WAN_PROBING:
     case WAN_ENLIGHTENMENT:
+    case WAN_ENTRAPPING:
+    case WAN_MAGIC_MAPPING:
+    case WAN_DARKNESS:
+    case WAN_TRAP_CREATION:
+    case WAN_BAD_EFFECT:
+    case WAN_OBJECTION:
+    case WAN_DETECT_MONSTERS:
+    case WAN_IDENTIFY:
+    case WAN_REMOVE_CURSE:
+    case WAN_PUNISHMENT:
     case WAN_OPENING:
+    case WAN_WONDER:
+    case WAN_BUGGING:
+    case WAN_CLONE_MONSTER:
+    case WAN_SUMMON_UNDEAD:
     case WAN_SECRET_DOOR_DETECTION:
+    case WAN_TRAP_DISARMING:
 	pline(nothing_else_happens);
 	goto discard_broken_wand;
     case WAN_DEATH:
     case WAN_LIGHTNING:
+    case WAN_CHARGING:
 	dmg *= 4;
 	goto wanexpl;
     case WAN_COLD:
@@ -3196,6 +3353,7 @@ wand_explode(obj, hero_broke)
     case WAN_CANCELLATION:
     case WAN_POLYMORPH:
     case WAN_UNDEAD_TURNING:
+    case WAN_WIND:
     case WAN_DRAINING:	/* KMH */
 	affects_objects = TRUE;
 	break;
@@ -3221,11 +3379,34 @@ wand_explode(obj, hero_broke)
 		}
 	affects_objects = TRUE;
 	break;
+    case WAN_BANISHMENT:
+
+	    if ((obj->spe > 2) && rn2(obj->spe - 2) && !level.flags.noteleport &&
+		    !u.uswallow && !On_stairs(u.ux, u.uy) && (!IS_FURNITURE(levl[u.ux][u.uy].typ) &&
+		    !IS_ROCK(levl[u.ux][u.uy].typ) &&
+		    !closed_door(u.ux, u.uy) && !t_at(u.ux, u.uy))) {
+
+			struct trap *ttmp;
+
+			ttmp = maketrap(u.ux, u.uy, LEVEL_TELEP);
+			if (ttmp) {
+				ttmp->madeby_u = 1;
+				newsym(u.ux, u.uy); /* if our hero happens to be invisible */
+				if (*in_rooms(u.ux,u.uy,SHOPBASE)) {
+					/* shopkeeper will remove it */
+					add_damage(u.ux, u.uy, 0L);             
+				}
+			}
+		}
+	affects_objects = TRUE;
+	break;
+
     case WAN_CREATE_HORDE: /* More damage than Create monster */
 	        dmg *= 2;
 	        break;
     case WAN_HEALING:
     case WAN_EXTRA_HEALING:
+    case WAN_FULL_HEALING:
 		dmg = 0;
 		break;
     default:
@@ -3331,6 +3512,159 @@ char class;
 	Strcat(cl, tmp);
 }
 
+void use_floppies(struct obj *obj)
+{
+	char *softwares[] = {
+		"Microsoft Windows 3.1",
+		"Bill Gates",
+		"Leisure Suit Larry V",
+		"LINUX 1.00",
+		"your NetHack patches",
+		"nothing of importance"
+	};
+	int x;
+
+	if (!Role_if(PM_GEEK) && !Role_if(PM_GRADUATE) ) {
+		pline("If only you knew what the heck this is ... ");
+		return;
+	}
+
+	pline("Due to years of experience with computers, you can read the");
+	pline("disks' contents by merely looking at the magnetic surface ...");
+
+	if (Blind) {
+		pline("Yet, without seeing, not even you can read anyting.");
+		return;
+	}
+
+	if (obj->oartifact == ART_NETHACK_SOURCES) {
+		com_pager(9999);
+	} else {
+		x = rn2(sizeof(softwares) / sizeof(softwares[0]));
+		pline("You see %s on the disk",softwares[x]);
+		if (x == 0) {		/* Windows */
+			pline("You shriek in pain!");
+			make_confused(HConfusion+rn2(50)+50,TRUE);
+		} else if (x == 1) {	/* Bill Gates */
+			pline("You feel horrible!");
+			/* nothing happens (yet ...) */
+		}
+	}
+}
+
+static int
+potion_charge_cost(struct obj *pot)
+{
+	int cost;
+
+	/*cost = objects[pot->otyp].oc_cost / 150;*/ cost = 2;
+	switch (pot->otyp) {
+	case POT_EXTRA_HEALING: cost += 1; break;
+	case POT_ESP: cost += 1; break;
+	case POT_GAIN_ENERGY: cost += 1; break;
+	case POT_GAIN_HEALTH: cost += 3; break;
+	case POT_INVISIBILITY: cost += 1; break;
+	case POT_SEE_INVISIBLE: cost += 1; break;
+	case POT_FULL_HEALING: cost += 3; break;
+	case POT_SPEED: cost += 1; break;
+	case POT_RECOVERY: cost += 1; break;
+	case POT_GAIN_ABILITY: cost += 1; break;
+	case POT_GAIN_LEVEL: cost += 2; break;
+	case POT_CYANIDE: cost += 2; break;
+	case POT_INVULNERABILITY: cost += 8; break;
+	case POT_EXTREME_POWER: cost += 2; break;
+	case POT_HEROISM: cost += 18; break;
+	default: break;
+	}
+	if (cost < 1) cost = 1;
+	return(cost);
+}
+
+static void
+use_chemistry_set(struct obj *chemset)
+{
+	struct obj *bottle;
+	static char bottles[] = { TOOL_CLASS, 0 };
+	char namebuf[BUFSZ],potbuf[BUFSZ];
+	struct obj *new_obj;
+	int cost;
+	char c;
+
+	/* We will allow the player to make a potion occasionally, even if they don't know the spell. --Amy */
+
+	if (!spell_known(SPE_CHEMISTRY) && (rn2(3)) ) {
+		pline("Huh? You don't understand anything about such stuff!");
+		if (chemset->spe > 0) chemset->spe -= 1;
+		return;
+
+	/* if spe == 0, the potion will always blast the player anyway. */
+
+	}
+	makeknown(CHEMISTRY_SET);
+
+	bottle = getobj(bottles,"hold the resulting potion in");
+	if (!bottle) return;
+	if (bottle->otyp != BOTTLE) {
+		pline("Exactly how are you going to do this?");
+		return;
+	}
+
+	getlin("What potion do you want to make?",namebuf);
+	if (!namebuf[0] || namebuf[0] == '\033') return;
+
+	potbuf[0] = 0;
+	if (strncmp(namebuf,"potion of",9) != 0) {
+		strcpy(potbuf,"potion of ");
+	}
+	strcat(potbuf,namebuf);
+	new_obj = readobjnam(potbuf, (struct obj *)0, TRUE);
+
+	if (!new_obj || new_obj->oclass != POTION_CLASS) {
+		goto blast_him;
+	}
+	if (!(objects[new_obj->otyp].oc_name_known) && 
+	    !(objects[new_obj->otyp].oc_uname)) {
+		You("don't know how to make such a potion!");
+		c =yn_function("Do you want to give it a try anyway?","yn",'n');
+		if (c != 'y') {	
+			obfree(new_obj,(struct obj *) 0);
+			return;
+		}
+		if (rnl(5)) {
+			useup(bottle);
+			goto blast_him;
+		}
+	}
+	new_obj->selfmade = TRUE;
+	new_obj->cursed = bottle->cursed || chemset->cursed;
+	new_obj->blessed = bottle->blessed || chemset->blessed;
+	if (new_obj->blessed && new_obj->cursed) {
+		new_obj->blessed = new_obj->cursed = FALSE;
+	}
+	cost = potion_charge_cost(new_obj);
+	if (cost > chemset->spe) {
+		pline("There is too little material left in your chemistry set!");
+		goto blast_him;
+	}
+	chemset->spe -= cost;
+	useup(bottle);
+
+	if (!chemset->blessed && !rn2(chemset->cursed ? 2 : 10)) {
+blast_him:
+		pline("You seem to have made a mistake!");
+		pline("The bottle explodes!");
+		losehp(rnd(chemset->cursed ? 25 : 10),"alchemic blast",KILLED_BY_AN);
+		obfree(new_obj,(struct obj *) 0);
+		return;
+	}
+
+	if (!(objects[new_obj->otyp].oc_name_known)) makeknown(new_obj->otyp);
+	hold_another_object(new_obj,"Oops! Where did you put that potion?",(const char *) 0,(const char *) 0);
+	You("have done it!");
+}
+
+
+
 int
 doapply()
 {
@@ -3374,10 +3708,16 @@ doapply()
 		res = use_cream_pie(obj);
 		break;
 	case BULLWHIP:
-		res = use_whip(obj);
+		if (uwep && uwep == obj) res = use_whip(obj);
+		else {pline("You must wield this item first if you want to apply it!"); 
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			wield_tool(obj, "lash"); }
 		break;
 	case GRAPPLING_HOOK:
-		res = use_grapple(obj);
+		if (uwep && uwep == obj) res = use_grapple(obj);
+		else {pline("You must wield this item first if you want to apply it!"); 
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			wield_tool(obj, "cast"); }
 		break;
 	case LARGE_BOX:
 	case CHEST:
@@ -3385,6 +3725,7 @@ doapply()
 	case SACK:
 	case BAG_OF_HOLDING:
 	case OILSKIN_SACK:
+	case BAG_OF_DIGESTION:
 		res = use_container(&obj, 1);
 		break;
 	case BAG_OF_TRICKS:
@@ -3402,10 +3743,16 @@ doapply()
 		break;
 	case PICK_AXE:
 	case DWARVISH_MATTOCK: /* KMH, balance patch -- the mattock is a pick, too */
-		res = use_pick_axe(obj);
+		if (uwep && uwep == obj) res = use_pick_axe(obj);
+		else {pline("You must wield this item first if you want to apply it!"); 
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			wield_tool(obj, "swing"); }
 		break;
 	case FISHING_POLE:
-		res = use_pole(obj);
+		if (uwep && uwep == obj) res = use_pole(obj);
+		else {pline("You must wield this item first if you want to apply it!"); 
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			wield_tool(obj, "swing"); }
 		break;
 	case TINNING_KIT:
 		use_tinning_kit(obj);
@@ -3473,10 +3820,16 @@ doapply()
 	case GREEN_LIGHTSABER:
 #ifdef D_SABER
   	case BLUE_LIGHTSABER:
+#if 0
+	case VIOLET_LIGHTSABER:
+	case WHITE_LIGHTSABER:
+	case YELLOW_LIGHTSABER:
+#endif
 #endif
 	case RED_LIGHTSABER:
 	case RED_DOUBLE_LIGHTSABER:
-		if (uwep != obj && !wield_tool(obj, (const char *)0)) break;
+		if (!(uswapwep == obj && u.twoweap))
+		  if (uwep != obj && !wield_tool(obj, (const char *)0)) break;
 		/* Fall through - activate via use_lamp */
 #endif
 	case OIL_LAMP:
@@ -3636,6 +3989,10 @@ doapply()
 			    else if (Vomiting) make_vomiting(0L, TRUE);
 			    else if (HConfusion) make_confused(0L, TRUE);
 			    else if (HStun) make_stunned(0L, TRUE);
+			    else if (HNumbed) make_numbed(0L, TRUE);
+			    else if (HFrozen) make_frozen(0L, TRUE);
+			    else if (HBurned) make_burned(0L, TRUE);
+			    else if (HFeared) make_feared(0L, TRUE);
 			    else if (u.uhp < u.uhpmax) {
 				u.uhp += rn1(10,10);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -3645,7 +4002,7 @@ doapply()
 			} else if (!rn2(3))
 			    pline("Nothing seems to happen.");
 			else if (!Sick)
-			    make_sick(rn1(10,10), "bad pill", TRUE,
+			    make_sick(rn1(15,15), "bad pill", TRUE,
 			      SICK_VOMITABLE);
 			else {
 			    You("seem to have made your condition worse!");
@@ -3701,6 +4058,7 @@ doapply()
 	case TOUCHSTONE:
 	case HEALTHSTONE:
 	case WHETSTONE:
+	case SALT_CHUNK:
 		use_stone(obj);
 		break;
 #ifdef FIREARMS
@@ -3738,16 +4096,114 @@ doapply()
 		light_cocktail(obj);
 		break;
 #endif
+
+	case HITCHHIKER_S_GUIDE_TO_THE_GALA:
+		if (HHallucination) {
+			pline("You carelessly push the buttons. On the screen is a text ... ");
+			outrumor(-1,42);	/* always false */
+		} else {
+			pline("So many knobs to turn! So many buttons to press!");
+			make_confused(HConfusion+rn2(10),TRUE);
+		}
+		break;
+
+	case RELAY:
+		if (obj->oartifact == ART_BURNED_MOTH_RELAY) {	
+			pline("There's a little badly burned moth in that relay!");
+			makeknown(RELAY);
+			if (Role_if(PM_GEEK) || Role_if(PM_GRADUATE)) {
+				You("feel remembered of %s.",Hallucination ? "when the net was flat" : "the old times");
+				break;
+			}
+		}	/* fall through */
+
+		
+	case DIODE:
+	case TRANSISTOR:
+	case IC:
+		pline("You don't understand anything about electronics !!!");
+		break;
+
+	case SWITCHER:
+
+		pline("You carefully pull the switch...");
+		if (!Blind) pline("The red status light goes out while the green light starts shining brightly!");
+		pline("The switcher dissolves in your hands...");
+
+		if (obj->cursed && rn2(2)) {
+
+		delobj(obj);
+		break; /* do not call delobj twice or the game will destabilize! */
+
+		}
+
+		delobj(obj);
+
+
+		RMBLoss = 0L;
+		DisplayLoss = 0L;
+		SpellLoss = 0L;
+		YellowSpells = 0L;
+		AutoDestruct = 0L;
+		MemoryLoss = 0L;
+		InventoryLoss = 0L;
+		BlackNgWalls = 0L;
+		MenuBug = 0L;
+		SpeedBug = 0L;
+		Superscroller = 0L;
+
+		break;
+	case GOD_O_METER:
+
+		if (!rn2(20)) {
+		    useup(obj);
+		    pline("Your god-o-meter explodes!");
+			if (!Race_if(PM_HAXOR)) u.ublesscnt += rn2(20);
+			else u.ublesscnt += rn2(10);
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			return;
+			}
+
+		if (Blind) {
+			pline("Being blind, you cannot see it.");
+		} else if (!obj->blessed) {
+			You("feel uncomfortable.");
+			if (!Race_if(PM_HAXOR)) u.ublesscnt += rn2((obj->cursed) ? 200 : 100);
+			else u.ublesscnt += rn2((obj->cursed) ? 100 : 50);
+		} else {
+			You("see a%s flash from the device.",(u.ublesscnt>0) ? " black" : "n amber");
+			if (wizard || (!rn2(10)) ) {
+				Your("prayer timeout is %i.",u.ublesscnt);
+			}
+		}
+		break;
+
+	case PACK_OF_FLOPPIES:
+		use_floppies(obj);
+		break;
+
+	case CHEMISTRY_SET:
+		use_chemistry_set(obj);
+		break;
+
 	default:
 		/* KMH, balance patch -- polearms can strike at a distance */
+
 		if (is_pole(obj)) {
-			res = use_pole(obj);
+			if (uwep && uwep == obj) res = use_pole(obj);
+			else {pline("You must wield this item first if you want to apply it!"); 
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				wield_tool(obj, "swing"); }
 			break;
-		} else if (is_pick(obj) || is_axe(obj)) {
-			res = use_pick_axe(obj);
+		} else if (is_pick(obj) || is_axe(obj) || is_antibar(obj) ) {
+			if (uwep && uwep == obj) res = use_pick_axe(obj);
+			else {pline("You must wield this item first if you want to apply it!"); 
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				wield_tool(obj, "swing"); }
 			break;
 		}
 		pline("Sorry, I don't know how to use that.");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	xit:
 		nomul(0);
 		return 0;
@@ -3781,6 +4237,10 @@ unfixable_trouble_count(is_horn)
 	   doesn't make you feel bad */
 	if (!is_horn) {
 	    if (Confusion) unfixable_trbl++;
+	    if (Numbed) unfixable_trbl++;
+	    if (Feared) unfixable_trbl++;
+	    if (Frozen) unfixable_trbl++;
+	    if (Burned) unfixable_trbl++;
 	    if (Sick) unfixable_trbl++;
 	    if (HHallucination) unfixable_trbl++;
 	    if (Vomiting) unfixable_trbl++;

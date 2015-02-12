@@ -14,12 +14,15 @@
 #		points, then you should list the dungeon with the _least_
 #		number of choices for its branch level _first_.
 
+# Lots of changes, additions etc. by Amy.
+
 ### The Dungeons of Doom ###
 # The main dungeon is from 42 to 47 levels deep...
 # [Tom] stretched it out to make it a little more interesting, and
 # have more "normal" levels, because the special ones were more
 # frequent than normal ones!
-DUNGEON:        "The Dungeons of Doom" "D" (42, 5)
+# fixed so it always has 40 levels due to that annoying hardcoded dungeon level limit --Amy
+DUNGEON:        "The Dungeons of Doom" "D" (40, 0)
 ALIGNMENT:      unaligned
 
 
@@ -36,30 +39,22 @@ BRANCH:		"The Gnomish Mines" @ (2, 3)
 #   There shouldn't be any other special levels down to the Oracle.
 #   This allows a weak character to plunge to the Oracle, then return
 #   to the Mines.
-RNDLEVEL:	"mall" "T" @ (5, 2) 75 2
+RNDLEVEL:	"mall" "T" @ (5, 2) 75 3
 LEVALIGN:	lawful
 LEVELDESC:	town
 #
 #   Oracle on levels 7 to 9.
-LEVEL:		"oracle" "O" @ (7, 3)
+LEVEL:		"oracle" "O" @ (7, 3) 70
 LEVALIGN:	neutral
-CHAINBRANCH:	"Sokoban" "oracle" + (1, 0) up -1
+BRANCH:	"Sokoban" @ (8, 2) up -1
+BRANCH:	"Town" @ (10, 3) up -1
 
 
 # Levels between the Oracle and the Quest.
 #   There's no guarantee that all will be created.
-LEVEL:		"rats" "R" @ (10, 2) 50
-RNDLEVEL:	"kobold" "K" @ (11, 2) 50 2
+LEVEL:		"rats" "R" @ (10, 2) 20
+RNDLEVEL:	"kobold" "K" @ (11, 2) 20 2
 BRANCH: 	"Grund's Stronghold" @ (12, 2)
-
-
-# The quests, on levels 15 to 19.
-#   These levels should not be shared with other special levels
-#   or branches, else the quests may not be generated!
-BRANCH:	"The Quest" @ (15, 5) portal
-BRANCH:	"Lawful Quest" @ (15, 5) portal
-BRANCH:	"Neutral Quest" @ (15, 5) portal
-BRANCH:	"Chaotic Quest" @ (15, 5) portal
 
 
 # The rogue level (if required), on levels 15 to 19. The portal to one
@@ -68,24 +63,54 @@ BRANCH:	"Chaotic Quest" @ (15, 5) portal
 %REINCARNATION LEVEL: "rogue" "R" @ (15, 5)
 
 
+# The quests, on levels 15 to 39 (changed by Amy, used to be 15 to 19).
+#   These levels should not be shared with other special levels
+#   or branches, else the quests may not be generated!
+#   But usually the game is smart enough to not place a branch on a level that already has a branch.
+BRANCH:	"The Quest" @ (15, 25) portal
+BRANCH:	"Lawful Quest" @ (15, 25) portal
+BRANCH:	"Neutral Quest" @ (15, 25) portal
+BRANCH:	"Chaotic Quest" @ (15, 25) portal
+
+
 # Post-quest levels
 #   Now all the branches... stretching all along the dungeon
 #   Put the branches with the least number of choices first
-BRANCH: 	"The Wyrm Caves" @ (20, 2)
-BRANCH: 	"One-eyed Sam's Market" @ (22, 2) portal
-BRANCH: 	"The Lost Tomb" @ (21, 4)
-BRANCH:		"The Spider Caves" @ (26, 4)
-BRANCH:		"The Sunless Sea" @ (28, 4)
-BRANCH: 	"The Temple of Moloch" @ (32, 4)
-BRANCH: 	"The Giant Caverns" @ (32, 4)
+BRANCH: 	"The Temple of Moloch" @ (29, 11)
+BRANCH: 	"The Giant Caverns" @ (29, 11)
+BRANCH:		"The Sunless Sea" @ (27, 13)
+BRANCH:		"The Spider Caves" @ (26, 14)
+BRANCH: 	"One-eyed Sam's Market" @ (22, 18) portal
+BRANCH: 	"The Lost Tomb" @ (21, 19)
+BRANCH: 	"The Wyrm Caves" @ (20, 20)
+
 #   And the levels...
-LEVEL:		"nymph" "N" @ (23, 2) 45
-RNDLEVEL:	"bigrm" "B" @ (20, 7) 15 5
+LEVEL:		"nymph" "N" @ (23, 17) 25
+RNDLEVEL:	"bigrm" "B" @ (20, 20) 75 23
+RNDLEVEL:	"exmall" "Y" @ (25, 15) 75 6
+LEVALIGN:		chaotic
+LEVELDESC:	town
 #   Storage room (treasure) on levels 19-26, 66% of the time
 #   "Unused 'cause they suck"?
-RNDLEVEL:	"stor" "S" @ (19, 8) 66 3
+RNDLEVEL:	"stor" "S" @ (19, 21) 30 3
 #   Rounding out the bottom levels
-LEVEL:		"guild" "G" @ (26, 6) 50
+LEVEL:		"guild" "G" @ (26, 14) 10
+
+
+
+
+LEVEL:		"rndmaze" "Z" @ (5, 35) 30
+LEVEL:		"rndmazea" "Q" @ (5, 35) 30
+RNDLEVEL:	"intpla" "J" @ (5, 35) 30 5
+LEVEL:		"makemais" "C" @ (5, 35) 30
+LEVEL:		"makemase" "D" @ (5, 35) 30
+RNDLEVEL:          "unhck" "X" @ (5, 35) 30 87
+RNDLEVEL:          "unhck" "X" @ (5, 35) 30 87
+RNDLEVEL:          "unhck" "X" @ (5, 35) 30 87
+LEVEL:          "forge" "F" @ (5, 35) 20
+LEVEL:          "hitch" "H" @ (5, 35) 5
+LEVEL:		"compu" "P" @ (5, 35) 10 
+LEVEL:		"key" "L" @ (5, 35) 10
 
 
 # The famous Fort Ludios...
@@ -93,9 +118,9 @@ BRANCH:			"Fort Ludios" @ (23, 4) portal
 
 
 # Medusa and the castle.  There should be nothing in between.
-RNDLEVEL:		"medusa" "none" @ (-5, 4) 4
+RNDLEVEL:		"medusa" "none" @ (-5, 4) 7
 LEVALIGN:		chaotic
-LEVEL:			"castle" "none" @ (-1, 0)
+RNDLEVEL:			"castle" "none" @ (-1, 0) 7
 CHAINBRANCH:	"Gehennom" "castle" + (0, 0) no_down
 
 
@@ -122,34 +147,43 @@ BRANCH:			"The Elemental Planes" @ (1, 0) no_down up -2
 # [Tom] tried to remove most of the non-unique levels (i.e. lame mazes)
 # also tried to organize it a little -- demons before the wizard, devils
 # after.
+# made the Gehennom longer again and tried to apply the heck patch --Amy
 
-DUNGEON:        "Gehennom" "G" (17, 0)
+DUNGEON:        "Gehennom" "G" (25, 0)
 DESCRIPTION:    mazelike
 DESCRIPTION:    hellish
 ALIGNMENT:      noalign
 LEVEL:          "valley" "V" @ (1, 0)
 LEVEL:          "sanctum" "none" @ (-1, 0)
 # Tower before wiz, please
-BRANCH:         "Vlad's Tower" @ (3, 10) up -1
+BRANCH:         "Vlad's Tower" @ (3, 17) up -1
 # Dr. Frankenstein's Lab
-BRANCH:         "Frankenstein's Lab" @ (3, 10) up
-# The demon levels
-LEVEL:          "juiblex" "J" @ (2, 5)
-LEVEL:          "yeenoghu" "E" @ (2, 5)
-LEVEL:          "orcus" "O" @ (2, 5)
-LEVEL:          "demogorg" "D" @ (2, 5)
+BRANCH:         "Frankenstein's Lab" @ (3, 17) up
 # Half-way down
-LEVEL:          "wizard1" "none" @ (7, 0)
+LEVEL:          "wizard1" "none" @ (10, 0)
 CHAINLEVEL:     "wizard2" "X" "wizard1" + (1, 0)
 CHAINLEVEL:     "wizard3" "Y" "wizard1" + (2, 0)
+LEVEL:          "fakewiz1" "F" @ (15, 8)
+LEVEL:          "fakewiz2" "G" @ (15, 8)
+# The demon levels
+LEVEL:          "juiblex" "J" @ (2, 22) 95
+LEVEL:          "yeenoghu" "E" @ (2, 22) 95
+LEVEL:          "orcus" "O" @ (2, 22) 95
+LEVEL:          "demogorg" "D" @ (2, 22) 95
 # The devil levels
-LEVEL:          "baalz" "B" @ (10, 6)
-LEVEL:          "geryon" "R" @ (10, 6)
-LEVEL:          "dispater" "S" @ (10, 6)
-LEVEL:          "asmodeus" "A" @ (10, 6)
-LEVEL:          "fakewiz1" "F" @ (10, 6)
-LEVEL:          "fakewiz2" "G" @ (10, 6)
+LEVEL:          "baalz" "B" @ (2, 22) 95
+LEVEL:          "geryon" "R" @ (2, 22) 95
+LEVEL:          "dispater" "S" @ (2, 22) 95
+LEVEL:          "asmodeus" "A" @ (2, 22) 95
+RNDLEVEL:	"hellma" "H" @ (2, 22) 75 6
+BRANCH:         "Sheol" @ (3, 20) down
 
+RNDLEVEL:          "heck" "Q" @ (2, 22) 90 87
+RNDLEVEL:          "heck" "Q" @ (2, 22) 90 87
+RNDLEVEL:          "heck" "Q" @ (2, 22) 90 87
+RNDLEVEL:          "heck" "Q" @ (2, 22) 90 87
+RNDLEVEL:          "heck" "Q" @ (2, 22) 90 87
+RNDLEVEL:		"school" "C" @ (2, 22) 20 5
 
 ### Gnomish Mines ###
 # (The Mines of the Gnomes of Zurich.)
@@ -157,10 +191,10 @@ LEVEL:          "fakewiz2" "G" @ (10, 6)
 DUNGEON:	"The Gnomish Mines" "M" (8, 2)
 ALIGNMENT:	lawful
 DESCRIPTION:	mazelike
-RNDLEVEL:	"minetn" "T" @ (3, 2) 7
+RNDLEVEL:	"minetn" "T" @ (3, 2) 98 9
 LEVELDESC:	town
-RNDLEVEL:	"minend" "E" @ (-2, 0) 3
-LEVEL:		"mineking" "M" @ (-1, 0)
+RNDLEVEL:	"minend" "E" @ (-2, 0) 95 3
+LEVEL:		"mineking" "M" @ (-1, 0) 90
 
 
 ### The Quest Dungeon ###
@@ -169,9 +203,9 @@ LEVEL:		"mineking" "M" @ (-1, 0)
 #   Special "x-fila" and "x-filb" levels must be defined in the levels
 #   description file.  It will be used for all levels not defined explicitly
 #   below.
-DUNGEON:    "The Quest" "Q" (5, 2)
+DUNGEON:    "The Quest" "Q" (7, 1)
 LEVEL:  	"x-strt" "none" @ (1, 1)
-LEVEL:  	"x-loca" "L" @ (3, 1)
+LEVEL:  	"x-loca" "L" @ (3, 3)
 LEVEL:  	"x-goal" "none" @ (-1, 0)
 
 
@@ -197,17 +231,28 @@ LEVEL:			"lich" "none" @ (1, 0)
 DUNGEON:		"Sokoban" "none" (4, 0)
 DESCRIPTION:    mazelike
 ALIGNMENT:      neutral
-RNDLEVEL:		"soko1" "none" @ (1, 0) 4
-RNDLEVEL:		"soko2" "none" @ (2, 0) 7
-RNDLEVEL:		"soko3" "none" @ (3, 0) 7
-RNDLEVEL:		"soko4" "none" @ (4, 0) 5
+RNDLEVEL:		"soko1" "none" @ (1, 0) 95 34
+RNDLEVEL:		"soko2" "none" @ (2, 0) 95 30
+RNDLEVEL:		"soko3" "none" @ (3, 0) 95 14
+RNDLEVEL:		"soko4" "none" @ (4, 0) 95 13
 
+#
+#   The city of Angband
+#
+DUNGEON:	"Town" "A" (5, 0)
+LEVALIGN:       lawful
+RNDLEVEL:       "town" "T" @ (1, 0) 98 2
+RNDLEVEL:          "unhck" "X" @ (2, 0) 5 87
+RNDLEVEL:	"bigrm" "B" @ (3, 0) 5 21
+RNDLEVEL:	"intpla" "J" @ (4, 0) 5 5
+LEVEL:		"schoolX" "C" @ (5, 0) 5
+LEVELDESC:      town
 
 ### Grund's Stronghold ###
 DUNGEON:        "Grund's Stronghold" "Z" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
-RNDLEVEL:       "grund" "Z" @ (1, 0) 3
+RNDLEVEL:       "grund" "Z" @ (1, 0) 40 3
 
 ### Fort Ludios ###
 # (The Central Vault of Croesus.)
@@ -215,49 +260,49 @@ RNDLEVEL:       "grund" "Z" @ (1, 0) 3
 DUNGEON:        "Fort Ludios" "K" (1, 0)
 DESCRIPTION:    mazelike
 ALIGNMENT:      unaligned
-LEVEL:          "knox" "K" @ (-1, 0)
+LEVEL:          "knox" "K" @ (-1, 0) 50
 
 ### The Wyrm Caves ###
 DUNGEON:        "The Wyrm Caves" "D" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
-LEVEL:          "dragons" "D" @ (1, 0)
+LEVEL:          "dragons" "D" @ (1, 0) 30
 
 ### The Black Market ###
 DUNGEON:        "One-eyed Sam's Market" "D" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
-LEVEL:          "blkmar" "D" @ (1, 0)
+LEVEL:          "blkmar" "D" @ (1, 0) 20
 
 ### The Lost Tomb ###
 DUNGEON:        "The Lost Tomb" "L" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
-LEVEL:          "tomb" "L" @ (1, 0)
+LEVEL:          "tomb" "L" @ (1, 0) 15
 
 ### The Spider Caves ###
 DUNGEON:        "The Spider Caves" "S" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
-LEVEL:          "spiders" "S" @ (1, 0)
+LEVEL:          "spiders" "S" @ (1, 0) 20
 
 ### The Sunless Sea ###
 DUNGEON:        "The Sunless Sea" "none" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
-LEVEL:          "sea" "none" @ (1, 0)
+LEVEL:          "sea" "none" @ (1, 0) 20
 
 ### The Temple of Moloch ###
 DUNGEON:        "The Temple of Moloch" "none" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
-LEVEL:          "mtemple" "none" @ (1, 0)
+LEVEL:          "mtemple" "none" @ (1, 0) 25
 
 ### The Giant Caverns ###
 DUNGEON:        "The Giant Caverns" "H" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
-LEVEL:          "cav2fill" "H" @ (1, 0)
+LEVEL:          "cav2fill" "H" @ (1, 0) 10
 
 ### Vlad's Tower ###
 #   It has been removed from Gehennom, and it is surrounded by stone.
@@ -271,7 +316,18 @@ ALIGNMENT:      chaotic
 DUNGEON:        "Frankenstein's Lab" "none" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
-LEVEL:          "frnknstn" "none" @ (1, 0)
+LEVEL:          "frnknstn" "none" @ (1, 0) 50
+
+
+DUNGEON:        "Sheol" "V" (6, 2)
+ALIGNMENT:      noalign
+DESCRIPTION:    hellish
+LEVEL:          "sheolfil" "A" @ (1, 0) 95
+LEVEL:          "sheolmid" "H" @ (2, 0) 95
+LEVEL:          "sheolfil" "B" @ (3, 0) 95
+LEVEL:          "sheolfil" "C" @ (4, 0) 95
+LEVEL:          "palace_f" "P" @ (-2, 0) 95
+LEVEL:          "palace_e" "U" @ (-1, 0) 95
 
 
 ### The Endgame levels ###

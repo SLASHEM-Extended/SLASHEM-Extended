@@ -220,9 +220,9 @@ static const char *shkpet[] = {
  * a new shop type.
  */
 const struct shclass shtypes[] = {
-	{"general store", RANDOM_CLASS, 24,
+	{"general store", RANDOM_CLASS, 23,
 	    D_SHOP, {{100, RANDOM_CLASS}, {0, 0}, {0, 0}}, shkgeneral},
-	{"used armor dealership", ARMOR_CLASS, 20,
+	{"used armor dealership", ARMOR_CLASS, 17,
 	    D_SHOP, {{90, ARMOR_CLASS}, {10, WEAPON_CLASS}, {0, 0}},
 	     shkarmors},
 	{"second-hand bookstore", SCROLL_CLASS, 4, D_SHOP,
@@ -230,23 +230,23 @@ const struct shclass shtypes[] = {
 	{"liquor emporium", POTION_CLASS, 4, D_SHOP,
 	    {{100, POTION_CLASS}, {0, 0}, {0, 0}}, shkliquors},
 #ifdef FIREARMS	/* KMH -- no longer "antique" */
-	{"weapons outlet", WEAPON_CLASS, 20, D_SHOP, {
+	{"weapons outlet", WEAPON_CLASS, 17, D_SHOP, {
 	    {80, WEAPON_CLASS}, {6, -BULLET}, {3, -BULLET}, {1, -SILVER_BULLET},
 #else
-	{"antique weapons outlet", WEAPON_CLASS, 20, D_SHOP, {
+	{"antique weapons outlet", WEAPON_CLASS, 17, D_SHOP, {
 	    {90, WEAPON_CLASS},
 #endif
 	    {10, ARMOR_CLASS}, {0, 0}}, shkweapons},
 	{"delicatessen", FOOD_CLASS, 4, D_SHOP,
 	    {{83, FOOD_CLASS}, {5, -POT_FRUIT_JUICE}, {4, -POT_BOOZE},
 	     {5, -POT_WATER}, {3, -ICE_BOX}}, shkfoods},
-	{"jewelers", RING_CLASS, 4, D_SHOP,
+	{"jewelers", RING_CLASS, 3, D_SHOP,
 	    {{85, RING_CLASS}, {10, GEM_CLASS}, {5, AMULET_CLASS}, {0, 0}},
 	    shkrings},
 	{"quality apparel and accessories", WAND_CLASS, 4, D_SHOP,
 	    {{90, WAND_CLASS}, {5, -LEATHER_GLOVES}, {5, -ELVEN_CLOAK}, {0, 0}},
 	     shkwands},
-	{"hardware store", TOOL_CLASS, 4, D_SHOP,
+	{"hardware store", TOOL_CLASS, 3, D_SHOP,
 	    {{100, TOOL_CLASS}, {0, 0}}, shktools},
 	/* Actually shktools is ignored; the code specifically chooses a
 	 * random implementor name (along with candle shops having
@@ -268,6 +268,42 @@ const struct shclass shtypes[] = {
 		{0, -CORPSE}, {0, 0}}, shkfoods},
 	{"rare books", SPBOOK_CLASS, 4, D_SHOP,
 	    {{90, SPBOOK_CLASS}, {10, SCROLL_CLASS}, {0, 0}}, shkbooks},
+	{"fresh food store", FOOD_CLASS, 1, D_SHOP,
+		{{90, -CORPSE}, {5, -TIN}, {5, FOOD_CLASS}, {0, 0}}, shkfoods},
+#ifdef FIREARMS	/* KMH -- no longer "antique" */
+
+	{"gun shop", WEAPON_CLASS, 1, D_SHOP, {
+{16, -PISTOL}, {17, -SUBMACHINE_GUN}, {17, -HEAVY_MACHINE_GUN}, {16, -RIFLE}, {17, -ASSAULT_RIFLE}, {17, -SNIPER_RIFLE},
+          {0, 0}}, shkweapons},
+
+	{"banging shop", WEAPON_CLASS, 1, D_SHOP, {
+ {25, -SHOTGUN}, {25, -AUTO_SHOTGUN}, {25, -ROCKET_LAUNCHER}, {25, -GRENADE_LAUNCHER},          {0, 0}}, shkweapons},
+
+	{"ammo shop", WEAPON_CLASS, 1, D_SHOP, {
+{15, -BULLET}, {15, -SILVER_BULLET}, {14, -SHOTGUN_SHELL}, {14, -ROCKET}, {14, -FRAG_GRENADE}, {14, -GAS_GRENADE}, {14, -STICK_OF_DYNAMITE} }, shkweapons},
+
+
+#else
+	{"crappy weapons outlet", WEAPON_CLASS, 3, D_SHOP, {
+	    {90, WEAPON_CLASS}, {10, ARMOR_CLASS}, {0, 0}}, shkweapons},
+#endif
+
+	{"lightning store", TOOL_CLASS, 1, D_SHOP,
+	    {{25, -WAX_CANDLE}, {35, -TALLOW_CANDLE}, {5, -TORCH}, {11, -BRASS_LANTERN},
+	    {16, -OIL_LAMP}, {3, -MAGIC_LAMP}, {5, -MAGIC_CANDLE}}, shktools},
+
+	{"one-stop mining shop", RANDOM_CLASS, 1, D_SHOP, {
+	    {100, ROCK_CLASS}, {0, 0}}, shktools},
+
+	{"rock-solid store", RANDOM_CLASS, 1, D_SHOP, {
+	    {14, -LUCKSTONE}, {14, -HEALTHSTONE}, {14, -TOUCHSTONE}, {14, -LOADSTONE}, {14, -WHETSTONE}, {15, -FLINT}, {15, -ROCK}, {0, 0}}, shktools},
+
+	{"weirdo shop", RANDOM_CLASS, 1, D_SHOP, {
+	    {33, CHAIN_CLASS}, {33, BALL_CLASS}, {34, VENOM_CLASS}, {0, 0}}, shktools},
+
+	{"zorkmid store", RANDOM_CLASS, 1,
+	    D_SHOP, {{100, COIN_CLASS}, {0, 0}, {0, 0}}, shkgeneral},
+
 	/* Shops below this point are "unique".  That is they must all have a
 	 * probability of zero.  They are only created via the special level
 	 * loader.
@@ -328,6 +364,17 @@ int sx, sy;
 	    else
 		(void) mkobj_at(atype, sx, sy, TRUE);
 	}
+
+	if (Race_if(PM_HAXOR) && (rn2(100) >= depth(&u.uz)) ) {
+
+	    atype = get_shop_item(shp - shtypes);
+	    if (atype < 0)
+		(void) mksobj_at(-atype, sx, sy, TRUE, TRUE);
+	    else
+		(void) mkobj_at(atype, sx, sy, TRUE);
+
+	}
+
 }
 
 /* extract a shopkeeper name for the given shop type */
@@ -612,7 +659,7 @@ register struct mkroom *sroom;
 		      (sx == sroom->hx && doors[sh].x == sx+1) ||
 		      (sy == sroom->ly && doors[sh].y == sy-1) ||
 		      (sy == sroom->hy && doors[sh].y == sy+1)) continue;
-	    mkshobj_at(shp, sx, sy);
+	    if (rn2(10)) mkshobj_at(shp, sx, sy);
 	}
 
     /*
@@ -708,12 +755,15 @@ register int sh;
 	  blkmar_gen[typ]++;*/
 
 /* prevent wishing abuse */
-	  if (typ==WAN_WISHING) {
+	  if (typ==WAN_WISHING || typ==WAN_ACQUIREMENT) {
 	    otmp->spe = 0;
 	    otmp->recharged = 1;
 	  }
 	  if (typ==MAGIC_LAMP) {
 	    otmp->spe = 0;
+	  }
+	  if (typ==SCR_WISHING || typ==SCR_ACQUIREMENT || typ==SCR_ENTHRONIZATION || typ==SCR_FOUNTAIN_BUILDING || typ==SCR_SINKING || typ==SCR_WC) {
+	    typ = SCR_BLANK_PAPER;
 	  }
 
 	  break;
@@ -758,9 +808,9 @@ struct monst *shk;
 	else if (!rn2(4)) ESHK(shk)->services |= SHK_ID_PREMIUM;
 	else ESHK(shk)->services |= SHK_ID_BASIC;
 
-	if (!rn2(3)) ESHK(shk)->services |= SHK_UNCURSE;
+	if (!rn2(2)) ESHK(shk)->services |= SHK_UNCURSE;
 
-	if (!rn2(3) && shk_class_match(WEAPON_CLASS, shk))
+	if (!rn2(2) && shk_class_match(WEAPON_CLASS, shk))
 		ESHK(shk)->services |= SHK_APPRAISE;
 
 	if ((shk_class_match(WEAPON_CLASS, shk) == SHK_MATCH) ||
@@ -769,10 +819,10 @@ struct monst *shk;
 	(shk_class_match(TOOL_CLASS, shk) == SHK_MATCH) ||
 	(shk_class_match(SPBOOK_CLASS, shk) == SHK_MATCH) ||
 	(shk_class_match(RING_CLASS, shk) == SHK_MATCH)) {
-		if (!rn2(4/*5*/)) ESHK(shk)->services |= SHK_SPECIAL_A;
-		if (!rn2(4/*5*/)) ESHK(shk)->services |= SHK_SPECIAL_B;
+		if (!rn2(3/*5*/)) ESHK(shk)->services |= SHK_SPECIAL_A;
+		if (!rn2(3/*5*/)) ESHK(shk)->services |= SHK_SPECIAL_B;
 	}
-	if (!rn2(4/*5*/) && (shk_class_match(WEAPON_CLASS, shk) == SHK_MATCH))
+	if (!rn2(3/*5*/) && (shk_class_match(WEAPON_CLASS, shk) == SHK_MATCH))
 	 ESHK(shk)->services |= SHK_SPECIAL_C;
 
 	return;

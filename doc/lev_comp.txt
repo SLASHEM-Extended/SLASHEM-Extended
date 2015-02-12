@@ -1,4 +1,4 @@
-LEV_COMP(6)                                           LEV_COMP(6)
+LEV_COMP(6)                                                        LEV_COMP(6)
 
 
 
@@ -11,20 +11,18 @@ SYNOPSIS
        If no arguments are given, it reads standard input.
 
 DESCRIPTION
-       Lev_comp  is  a special level compiler for NetHack version
-       3.2 and higher.  It takes description files  as  arguments
-       and  produces level files that can be loaded by NetHack at
-       runtime.
+       Lev_comp  is  a  special  level  compiler  for  NetHack version 3.2 and
+       higher.  It takes description files as  arguments  and  produces  level
+       files that can be loaded by NetHack at runtime.
 
-       The purpose of this tool is to provide NetHack administra-
-       tors  and  implementors  with  a convenient way for adding
-       special levels to the game, or  modifying  existing  ones,
-       without having to recompile the entire world.
+       The  purpose  of  this  tool  is  to provide NetHack administrators and
+       implementors with a convenient way for adding  special  levels  to  the
+       game,  or  modifying  existing  ones,  without  having to recompile the
+       entire world.
 
-       The  -w  option causes lev_comp to perform extra checks on
-       the level and display extra warnings, however these  warn-
-       ings  are  sometimes superfluous, so they are not normally
-       displayed.
+       The -w option causes lev_comp to perform extra checks on the level  and
+       display  extra warnings, however these warnings are sometimes superflu‐
+       ous, so they are not normally displayed.
 
 
 GRAMMAR
@@ -485,26 +483,23 @@ GRAMMAR
        NOTE:
        Lines beginning with '#' are considered comments.
 
-       Each region in a special level may use  either  single  or
-       multiple random placement list commands but these commands
-       should not be mixed within a region. Single random  place-
-       ment  list  commands  are "RANDOM_PLACES:" and "place[n]";
-       multiple  random  placement  list   commands   are   "RAN-
-       DOM_PLACES[l]:"  and  "place[l][n]". Where multiple random
-       placement  lists  are  used  they  must  be  specified  in
-       increasing  order  with  no  gaps.  The  first  number  in
-       "place[l][n]" specifies the list  number  and  the  second
-       number  the  index into the shuffled list. Lists may be of
-       varying lengths and are shuffled independently.
+       Each region in a special level may use either single or multiple random
+       placement list commands but these commands should not be mixed within a
+       region. Single random placement list commands are "RANDOM_PLACES:"  and
+       "place[n]";   multiple   random   placement  list  commands  are  "RAN‐
+       DOM_PLACES[l]:" and  "place[l][n]".  Where  multiple  random  placement
+       lists are used they must be specified in increasing order with no gaps.
+       The first number in "place[l][n]" specifies the  list  number  and  the
+       second number the index into the shuffled list. Lists may be of varying
+       lengths and are shuffled independently.
 
-       The contents of a "MAP" description of a maze is a rectan-
-       gle  showing  the  exact level map that should be used for
-       the given part of a maze.  Each character in the map  cor-
-       responds  to a location on the screen.  Different location
-       types are denoted using different ASCII  characters.   The
-       following  characters  are recognized.  To give an idea of
-       how these are used, see the EXAMPLE, below.   The  maximum
-       size of a map is normally 76 columns by 21 rows.
+       The contents of a "MAP" description of a maze is  a  rectangle  showing
+       the  exact  level map that should be used for the given part of a maze.
+       Each character in the map corresponds to  a  location  on  the  screen.
+       Different  location types are denoted using different ASCII characters.
+       The following characters are recognized.  To give an idea of how  these
+       are  used,  see  the EXAMPLE, below.  The maximum size of a map is nor‐
+       mally 76 columns by 21 rows.
 
        '-'     horizontal wall
        '|'     vertical wall
@@ -530,8 +525,7 @@ GRAMMAR
        ' '     stone
 
 EXAMPLE
-       Here  is  an  example of a description file (a very simple
-       one):
+       Here is an example of a description file (a very simple one):
 
        MAZE : "fortress", random
        GEOMETRY : center , center
@@ -567,18 +561,17 @@ EXAMPLE
        NON_DIGGABLE: (0,0,8,8)
        TELEPORT_REGION: levregion(0,0,79,20), (0,0,8,8)
 
-       This example will produce a file named "fortress" that can
-       be  integrated into one of the numerous mazes of the game.
+       This example will produce a file named "fortress"  that  can  be  inte‐
+       grated into one of the numerous mazes of the game.
 
-       Note especially the final, TELEPORT_REGION  specification.
-       This  says  that  level  teleports  or  other non-stairway
-       arrivals on this level can  land  anywhere  on  the  level
-       except  the  area  of  the map.  This shows the use of the
-       ``levregion'' prefix allowed in certain region  specifica-
-       tions.   Normally,  regions  apply only to the most recent
-       MAP specification, but when prefixed  with  ``levregion'',
-       one  can refer to any area of the level, regardless of the
-       placement of the current MAP in the level.
+       Note  especially  the  final, TELEPORT_REGION specification.  This says
+       that level teleports or other non-stairway arrivals on this  level  can
+       land  anywhere on the level except the area of the map.  This shows the
+       use of the ``levregion'' prefix allowed in  certain  region  specifica‐
+       tions.   Normally, regions apply only to the most recent MAP specifica‐
+       tion, but when prefixed with ``levregion'', one can refer to  any  area
+       of  the  level,  regardless  of the placement of the current MAP in the
+       level.
 
 AUTHOR
        Jean-Christophe Collet, David Cohrs.
@@ -587,9 +580,9 @@ SEE ALSO
        dgn_comp(6), nethack(6)
 
 BUGS
-       Probably infinite.  Most importantly,  still  needs  addi-
-       tional bounds checking.
+       Probably infinite.  Most importantly,  still  needs  additional  bounds
+       checking.
 
 
 
-                           16 May 1996                LEV_COMP(6)
+4th Berkeley Distribution         16 May 1996                      LEV_COMP(6)

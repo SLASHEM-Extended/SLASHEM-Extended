@@ -1,0 +1,327 @@
+#	SCCS Id: @(#)Elf.des	3.2	91/12/24
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, Earendil/Elwing
+#	and receive your quest assignment.
+#
+MAZE: "Blo-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:half-left,center
+MAP
+  --- --- ---  
+  |.| |.| |.|  
+---S---S---S---
+|.......+.+...|
+---+-+---.-----
+  |....\|.+.|  
+---+-+---.-----
+|.......+.+...|
+---S---S---S---
+  |.| |.| |.|  
+  --- --- ---  
+ENDMAP
+
+DOOR:locked,(08,03)
+DOOR:locked,(10,03)
+DOOR:locked,(03,04)
+DOOR:locked,(05,04)
+DOOR:locked,(10,05)
+DOOR:locked,(08,07)
+DOOR:locked,(10,07)
+DOOR:locked,(03,06)
+DOOR:locked,(05,06)
+
+STAIR:(11,05),down
+
+#BRANCH:(74,10,74,10),(0,0,0,0)
+# Stairs
+STAIR:random,down
+# Portal arrival point
+
+# Earendil/Elwing
+MONSTER:'V',"Vlad the Skewerer",(07,05)
+# The treasure of Earendil/Elwing
+OBJECT:'(',"chest",random
+# elf guards for the audience chamber
+MONSTER:'@',"chieftain",random
+MONSTER:'@',"chieftain",random
+MONSTER:'@',"chieftain",random
+MONSTER:'@',"chieftain",random
+MONSTER:'@',"chieftain",random
+MONSTER:'@',"chieftain",random
+MONSTER:'@',"chieftain",random
+MONSTER:'@',"chieftain",random
+
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+# We have to protect the tower against outside attacks
+NON_DIGGABLE:(00,00,14,10)
+# and force the use of the aligned doors
+NON_PASSWALL:(00,00,14,10)
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to infiltrate the Goblins' Cave to go
+#	further towards your assigned quest.
+#
+
+MAZE: "Blo-loca",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:half-left,center
+MAP
+  --- --- ---  
+  |.| |.| |.|  
+---S---S---S---
+|.S.........S.|
+---.------+----
+  |......|..|  
+--------.------
+|.S......+..S.|
+---S---S---S---
+  |.| |.| |.|  
+  --- --- ---  
+ENDMAP
+
+STAIR:(11,05),up
+STAIR:(03,07),down
+DOOR:locked,(10,04)
+DOOR:locked,(09,07)
+
+# Monsters
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+# Walls in the tower are non diggable
+NON_DIGGABLE:(00,00,14,10)
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet The Goblin King your nemesis monster.  You have to
+#	defeat The Goblin King in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Blo-goal", ' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:half-left,center
+MAP
+    --- --- ---  
+    |.| |.| |.|    
+  ---S---S---S---
+  |.S.........S.|  
+-----.........-----
+|...|.........+...|
+|.---.........---.|
+|.|.S.........S.|.|
+|.---S---S---S---.|
+|...|.|.|.|.|.|...|
+---.---.---.---.---
+  |.............|  
+  ---------------  
+ENDMAP
+RANDOM_PLACES:(05,01),(09,01),(13,01),(03,03),(15,03),
+	      (03,07),(15,07),(05,09),(09,09),(13,09)
+
+# Stairs
+STAIR:(05,07),up
+
+# Objects
+OBJECT:')',"runesword",place[0],blessed,+2,"Rupturer"
+OBJECT:'(',"chest",random
+MONSTER:'&',"mailer daemon",place[0],hostile
+
+
+
+# Monsters
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Blo-fila" , 'P'
+INIT_MAP: '.' , ' ' , true , true , random , true
+GEOMETRY:center,center
+MAP
+.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
+---------------------------------------------------------------------------
+.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L
+---------------------------------------------------------------------------
+.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
+ENDMAP
+
+MAZEWALK:(0,4),east
+MAZEWALK:(0,0),east
+MAZEWALK:(0,8),east
+
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+#
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+
+MAZE: "Blo-filb" , ' '
+INIT_MAP: '.' , ' ' , true , true , random , true
+GEOMETRY:half-left,center
+MAP
+.............
+.....}}}.....
+....}}}}}....
+.....}}}.....
+.............
+ENDMAP
+MAZEWALK:(6,4),south
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+#
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile

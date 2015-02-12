@@ -266,3 +266,17 @@ Notes:
     packaging on the host.
 
     For recover, you just want the target binary to install on the target.
+
+16. (this addition inserted by Amy) You might need the following:
+    "libncurses5-dev bison flex" for ubuntu
+    In "../win/tty/termcap.c" change line 962 to this:
+    extern char *tparm(NCURSES_CONST char *, ...);
+    In "Makefile.src" comment out WINTTYLIB = -ltermlib
+    and uncomment WINTTYLIB = -lncurses
+    In include/config.h comment out these lines:
+    # define COMPRESS "/usr/bin/compress" /* Lempel-Ziv compression */
+    # define COMPRESS_EXTENSION ".Z"	     /* compress's extension */
+    and instead add:
+    # define COMPRESS "/bin/gzip" /* FSF gzip compression */
+    # define COMPRESS_EXTENSION ".gz" /* normal gzip extension */
+    There has been a report that the game was compiled successfully this way.

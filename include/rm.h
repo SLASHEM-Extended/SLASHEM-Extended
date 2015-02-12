@@ -80,6 +80,7 @@
 #define IS_STWALL(typ)	((typ) <= DBWALL)	/* STONE <= (typ) <= DBWALL */
 #define IS_ROCK(typ)	((typ) < POOL)		/* absolutely nonaccessible */
 #define IS_DOOR(typ)	((typ) == DOOR)
+#define IS_IRONBAR(typ)	((typ) == IRONBARS)
 #define IS_TREE(typ)	((typ) == TREE || \
 			(level.flags.arboreal && (typ) == STONE))
 #define ACCESSIBLE(typ) ((typ) >= DOOR)		/* good position */
@@ -127,95 +128,130 @@
 #define S_bars		17	/* Added by KMH */
 #define S_tree		18	/* Added by KMH */
 #define S_room		19
-#define S_corr		20
-#define S_litcorr	21
-#define S_upstair	22
-#define S_dnstair	23
-#define S_upladder	24
-#define S_dnladder	25
-#define S_altar		26
-#define S_grave		27
-#define S_throne	28
-#define S_sink		29
-#define S_toilet	30
-#define S_fountain	31
-#define S_pool		32
-#define S_ice		33
-#define S_lava		34
-#define S_vodbridge	35
-#define S_hodbridge	36
-#define S_vcdbridge	37	/* closed drawbridge, vertical wall */
-#define S_hcdbridge	38	/* closed drawbridge, horizontal wall */
-#define S_air		39
-#define S_cloud		40
-#define S_water		41
+#define S_darkroom		20
+#define S_corr		21
+#define S_litcorr	22
+#define S_upstair	23
+#define S_dnstair	24
+#define S_upladder	25
+#define S_dnladder	26
+#define S_altar		27
+#define S_grave		28
+#define S_throne	29
+#define S_sink		30
+#define S_toilet	31
+#define S_fountain	32
+#define S_pool		33
+#define S_ice		34
+#define S_lava		35
+#define S_vodbridge	36
+#define S_hodbridge	37
+#define S_vcdbridge	38	/* closed drawbridge, vertical wall */
+#define S_hcdbridge	39	/* closed drawbridge, horizontal wall */
+#define S_air		40
+#define S_cloud		41
+#define S_dungwall		42
+#define S_water		43
+
 
 /* end dungeon characters, begin traps */
 
-#define S_arrow_trap		42
-#define S_dart_trap		43
-#define S_falling_rock_trap	44
-#define S_squeaky_board		45
-#define S_bear_trap		46
-#define S_land_mine		47
-#define S_rolling_boulder_trap	48
-#define S_sleeping_gas_trap	49
-#define S_rust_trap		50
-#define S_fire_trap		51
-#define S_pit			52
-#define S_spiked_pit		53
-#define S_hole			54
-#define S_trap_door		55
-#define S_teleportation_trap	56
-#define S_level_teleporter	57
-#define S_magic_portal		58
-#define S_web			59
-#define S_statue_trap		60
-#define S_magic_trap		61
-#define S_anti_magic_trap	62
-#define S_polymorph_trap	63
+#define S_arrow_trap		44
+#define S_dart_trap		45
+#define S_falling_rock_trap	46
+#define S_squeaky_board		47
+#define S_bear_trap		48
+#define S_land_mine		49
+#define S_rolling_boulder_trap	50
+#define S_sleeping_gas_trap	51
+#define S_rust_trap		52
+#define S_fire_trap		53
+#define S_pit			54
+#define S_spiked_pit		55
+#define S_hole			56
+#define S_trap_door		57
+#define S_teleportation_trap	58
+#define S_level_teleporter	59
+#define S_magic_portal		60
+#define S_web			61
+#define S_statue_trap		62
+#define S_magic_trap		63
+#define S_anti_magic_trap	64
+#define S_polymorph_trap	65
+#define S_ice_trap		66
+#define S_spear_trap		67
+#define S_falling_rocks_trap		68
+#define S_magic_beam_trap		69
+#define S_pile_of_shit		70
+#define S_animation_trap		71
+#define S_glyph_of_warding		72
+#define S_scything_blade		73
+#define S_bolt_trap		74
+#define S_acid_pool		75
+#define S_water_pool		76
+#define S_poison_gas_trap		77
+#define S_slow_gas_trap		78
+#define S_shock_trap		79
+#define S_rmb_loss_trap		80
+#define S_display_trap		81
+#define S_spell_loss_trap		82
+#define S_yellow_spell_trap		83
+#define S_auto_destruct_trap		84
+#define S_memory_trap		85
+#define S_inventory_trap		86
+#define S_black_ng_wall_trap		87
+#define S_menu_trap		88
+#define S_speed_trap		89
+#define S_superscroller_trap		90
+#define S_active_superscroller_trap		91
+#define S_swarm_trap		92
+#define S_automatic_switcher		93
+#define S_unknown_trap		94
+#define S_heel_trap		95
+#define S_vuln_trap		96
+#define S_trap_percents		97
 
 /* end traps, begin special effects */
 
-#define S_vbeam		64	/* The 4 zap beam symbols.  Do NOT separate. */
-#define S_hbeam		65	/* To change order or add, see function     */
-#define S_lslant	66	/* zapdir_to_glyph() in display.c.	    */
-#define S_rslant	67
-#define S_digbeam	68	/* dig beam symbol */
-#define S_flashbeam	69	/* camera flash symbol */
-#define S_boomleft	70	/* thrown boomerang, open left, e.g ')'    */
-#define S_boomright	71	/* thrown boomerand, open right, e.g. '('  */
-#define S_ss1		72	/* 4 magic shield glyphs */
-#define S_ss2		73
-#define S_ss3		74
-#define S_ss4		75
+#define S_vbeam		98	/* The 4 zap beam symbols.  Do NOT separate. */
+#define S_hbeam		99	/* To change order or add, see function     */
+#define S_lslant	100	/* zapdir_to_glyph() in display.c.	    */
+#define S_rslant	101
+#define S_digbeam	102	/* dig beam symbol */
+#define S_flashbeam	103	/* camera flash symbol */
+#define S_boomleft	104	/* thrown boomerang, open left, e.g ')'    */
+#define S_boomright	105	/* thrown boomerand, open right, e.g. '('  */
+#define S_ss1		106	/* 4 magic shield glyphs */
+#define S_ss2		107
+#define S_ss3		108
+#define S_ss4		109
 
 /* The 8 swallow symbols.  Do NOT separate.  To change order or add, see */
 /* the function swallow_to_glyph() in display.c.			 */
-#define S_sw_tl		76	/* swallow top left [1]			*/
-#define S_sw_tc		77	/* swallow top center [2]	Order:	*/
-#define S_sw_tr		78	/* swallow top right [3]		*/
-#define S_sw_ml		79	/* swallow middle left [4]	1 2 3	*/
-#define S_sw_mr		80	/* swallow middle right [6]	4 5 6	*/
-#define S_sw_bl		81	/* swallow bottom left [7]	7 8 9	*/
-#define S_sw_bc		82	/* swallow bottom center [8]		*/
-#define S_sw_br		83	/* swallow bottom right [9]		*/
+#define S_sw_tl		110	/* swallow top left [1]			*/
+#define S_sw_tc		111	/* swallow top center [2]	Order:	*/
+#define S_sw_tr		112	/* swallow top right [3]		*/
+#define S_sw_ml		113	/* swallow middle left [4]	1 2 3	*/
+#define S_sw_mr		114	/* swallow middle right [6]	4 5 6	*/
+#define S_sw_bl		115	/* swallow bottom left [7]	7 8 9	*/
+#define S_sw_bc		116	/* swallow bottom center [8]		*/
+#define S_sw_br		117	/* swallow bottom right [9]		*/
 
-#define S_explode1	84	/* explosion top left			*/
-#define S_explode2	85	/* explosion top center			*/
-#define S_explode3	86	/* explosion top right		 Ex.	*/
-#define S_explode4	87	/* explosion middle left		*/
-#define S_explode5	88	/* explosion middle center	 /-\	*/
-#define S_explode6	89	/* explosion middle right	 |@|	*/
-#define S_explode7	90	/* explosion bottom left	 \-/	*/
-#define S_explode8	91	/* explosion bottom center		*/
-#define S_explode9	92	/* explosion bottom right		*/
+#define S_explode1	118	/* explosion top left			*/
+#define S_explode2	119	/* explosion top center			*/
+#define S_explode3	120	/* explosion top right		 Ex.	*/
+#define S_explode4	121	/* explosion middle left		*/
+#define S_explode5	122	/* explosion middle center	 /-\	*/
+#define S_explode6	123	/* explosion middle right	 |@|	*/
+#define S_explode7	124	/* explosion bottom left	 \-/	*/
+#define S_explode8	125	/* explosion bottom center		*/
+#define S_explode9	126	/* explosion bottom right		*/
   
 /* end effects */
   
-#define MAXPCHARS	93	/* maximum number of mapped characters */
-#define MAXDCHARS	42	/* maximum of mapped dungeon characters */
-#define MAXTCHARS	22	/* maximum of mapped trap characters */
+#define MAXPCHARS	127	/* maximum number of mapped characters */
+#define MAXDCHARS	44	/* maximum of mapped dungeon characters */
+#define MAXTCHARS	54	/* maximum of mapped trap characters */
 #define MAXECHARS       29      /* maximum of mapped effects characters */
 #define MAXEXPCHARS	9	/* number of explosion characters */
 
@@ -337,8 +373,8 @@ extern const struct symdef def_warnsyms[WARNCOUNT];
 struct rm {
 #ifdef DISPLAY_LAYERS
 	Bitfield(mem_bg,6);	/* Remembered background */
-	Bitfield(mem_trap,5);	/* Remembered trap */
-	Bitfield(mem_obj,10);	/* Remembered object/corpse */
+	Bitfield(mem_trap,8);	/* Remembered trap */
+	Bitfield(mem_obj,18);	/* Remembered object/corpse */
 	Bitfield(mem_corpse,1);	/* Set if mem_obj refers to a corpse */
 	Bitfield(mem_invis,1);	/* Set if invisible monster remembered */
 	Bitfield(mem_spare,9);
@@ -468,6 +504,27 @@ struct levelflags {
 	Bitfield(has_lemurepit, 1);
 	Bitfield(has_migohive, 1);
 	Bitfield(has_fungusfarm, 1);
+	Bitfield(has_clinic, 1);
+	Bitfield(has_terrorhall, 1);
+	Bitfield(has_elemhall, 1);
+	Bitfield(has_angelhall, 1);
+	Bitfield(has_mimichall, 1);
+	Bitfield(has_nymphhall, 1);
+	Bitfield(has_spiderhall, 1);
+	Bitfield(has_trollhall, 1);
+	Bitfield(has_humanhall, 1);
+	Bitfield(has_golemhall, 1);
+	Bitfield(has_coinhall, 1);
+
+	Bitfield(has_tenshall, 1);
+
+	Bitfield(has_traproom, 1);
+	Bitfield(has_poolroom, 1);
+	Bitfield(has_grueroom, 1);
+
+	Bitfield(has_statueroom, 1);
+	Bitfield(has_insideroom, 1);
+	Bitfield(has_riverroom, 1);
 
 	Bitfield(has_swamp, 1);
 	Bitfield(noteleport,1);
@@ -480,6 +537,8 @@ struct levelflags {
 
 	Bitfield(is_cavernous_lev,1);
 	Bitfield(arboreal, 1);		/* Trees replace rock */
+	/* and where it is written "ad aquarium"... */
+	Bitfield(vault_is_aquarium,1);
 	Bitfield(spooky,1);		/* Spooky sounds (Tina Hall) */
 	Bitfield(lethe, 1);			/* All water on level causes amnesia */
 };

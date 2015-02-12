@@ -341,7 +341,8 @@ fortune (mtmp)
 			if (gypsy_offer(mtmp, 5000L,
 					"teleport you to a level of your choosing")) {
 				incr_itimeout(&HTeleport_control, 1);
-				level_tele();
+				    if (strncmpi(plname, "lostsoul", 8) && strncmpi(plname, "uberlostsoul", 12)) level_tele();
+				else pline("But unfortunately you aren't allowed to level teleport.");
 			}
 			break;
 		case 6: /* Strength */
@@ -397,6 +398,7 @@ fortune (mtmp)
 			/* fortune_lev(mtmp, &vlad_level); */
 			break;
 		case 15: /* the Star */
+			if (rn2(3)) break; /* greatly reduce player's farming ability --Amy */
 			otyp = birthstones[getmonth()];
 			makeknown(otyp);
 			if ((otmp = mksobj(otyp, TRUE, FALSE)) != (struct obj *)0) {
@@ -413,12 +415,15 @@ fortune (mtmp)
 			/* Reset the old moonphase */
 			if (flags.moonphase == FULL_MOON)
 				change_luck(-1);
+			if (flags.moonphase == NEW_MOON)
+				adjalign(+3); 
 
 			/* Set the new moonphase */
 			flags.moonphase = phase_of_the_moon();
 			switch (flags.moonphase) {
 				case NEW_MOON:
 					pline("Be careful!  New moon tonight.");
+					adjalign(-3); 
 					break;
 				case 1:	case 2:	case 3:
 					pline_The("moon is waxing tonight.");
@@ -449,7 +454,7 @@ fortune (mtmp)
 			/* fortune_lev(mtmp, &quest_level); */
 			break;
 		case 19: /* Infinity */
-			if (mtmp->mcan) {
+			if (mtmp->mcan || rn2(5) ) { /* tone down abuse potential --Amy */
 				verbalize("I wish I wasn't here!");
 				mongone(mtmp);
 			} else if (gypsy_offer(mtmp, 10000L, "grant you a wish")) {
@@ -523,7 +528,7 @@ monte (mtmp)
 /*	pline("luck = %d; delta = %d", u.umonteluck, delta);*/
 
 	/* Did we win? */
-	if (u.umonteluck <= rn2(MONTE_MAX)) {
+	if (u.umonteluck <= rn2(MONTE_MAX) && rn2(2) ) { /* no longer automatically win --Amy */
 		if (u.umonteluck == 0)
 			verbalize("You win!  Wasn't that easy?");
 		else

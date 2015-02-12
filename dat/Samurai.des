@@ -74,19 +74,19 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Monsters on siege duty.
-MONSTER: '@',"ninja",(64,00),hostile
-MONSTER: 'd',"wolf",(65,01)
-MONSTER: '@',"ninja",(67,02),hostile
-MONSTER: '@',"ninja",(69,05),hostile
-MONSTER: '@',"ninja",(69,06),hostile
-MONSTER: 'd',"wolf",(69,07)
-MONSTER: '@',"ninja",(70,06),hostile
-MONSTER: '@',"ninja",(70,07),hostile
-MONSTER: '@',"ninja",(72,01),hostile
-MONSTER: 'd',"wolf",(75,09)
-MONSTER: '@',"ninja",(73,05),hostile
-MONSTER: '@',"ninja",(68,02),hostile
-MONSTER:'E',"stalker",random
+MONSTER: '@',"ninja gaiden",(64,00),hostile
+MONSTER: 'd',"wolf",(65,01),hostile
+MONSTER: '@',"ninja gaiden",(67,02),hostile
+MONSTER: '@',"ninja gaiden",(69,05),hostile
+MONSTER: '@',"ninja gaiden",(69,06),hostile
+MONSTER: 'd',"wolf",(69,07),hostile
+MONSTER: '@',"ninja gaiden",(70,06),hostile
+MONSTER: '@',"ninja gaiden",(70,07),hostile
+MONSTER: '@',"ninja gaiden",(72,01),hostile
+MONSTER: 'd',"wolf",(75,09),hostile
+MONSTER: '@',"ninja gaiden",(73,05),hostile
+MONSTER: '@',"ninja gaiden",(68,02),hostile
+MONSTER:'E',"stalker",random,hostile
 
 #
 #	The "locate" level for the quest.
@@ -196,33 +196,33 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:'@',"ninja",(15,05),hostile
-MONSTER:'@',"ninja",(16,05),hostile
-MONSTER:'d',"wolf",(17,05)
-MONSTER:'d',"wolf",(18,05)
-MONSTER:'@',"ninja",(19,05),hostile
-MONSTER:'d',"wolf",(15,14)
-MONSTER:'d',"wolf",(16,14)
-MONSTER:'@',"ninja",(17,14),hostile
-MONSTER:'@',"ninja",(18,14),hostile
-MONSTER:'d',"wolf",(56,05)
-MONSTER:'@',"ninja",(57,05),hostile
-MONSTER:'d',"wolf",(58,05)
-MONSTER:'d',"wolf",(59,05)
-MONSTER:'@',"ninja",(56,14),hostile
-MONSTER:'d',"wolf",(57,14)
-MONSTER:'@',"ninja",(58,14),hostile
-MONSTER:'d',random,(59,14)
-MONSTER:'d',"wolf",(60,14)
-MONSTER:'E',"stalker",random
-MONSTER:'E',"stalker",random
-MONSTER:'E',"stalker",random
-MONSTER:'E',"stalker",random
-MONSTER:'E',"stalker",random
-MONSTER:'E',"stalker",random
-MONSTER:'E',"stalker",random
-MONSTER:'E',"stalker",random
-MONSTER:'E',"stalker",random
+MONSTER:'@',"ninja gaiden",(15,05),hostile
+MONSTER:'@',"ninja gaiden",(16,05),hostile
+MONSTER:'d',"wolf",(17,05),hostile
+MONSTER:'d',"wolf",(18,05),hostile
+MONSTER:'@',"ninja gaiden",(19,05),hostile
+MONSTER:'d',"wolf",(15,14),hostile
+MONSTER:'d',"wolf",(16,14),hostile
+MONSTER:'@',"ninja gaiden",(17,14),hostile
+MONSTER:'@',"ninja gaiden",(18,14),hostile
+MONSTER:'d',"wolf",(56,05),hostile
+MONSTER:'@',"ninja gaiden",(57,05),hostile
+MONSTER:'d',"wolf",(58,05),hostile
+MONSTER:'d',"wolf",(59,05),hostile
+MONSTER:'@',"ninja gaiden",(56,14),hostile
+MONSTER:'d',"wolf",(57,14),hostile
+MONSTER:'@',"ninja gaiden",(58,14),hostile
+MONSTER:'d',random,(59,14),hostile
+MONSTER:'d',"wolf",(60,14),hostile
+MONSTER:'E',"stalker",random,hostile
+MONSTER:'E',"stalker",random,hostile
+MONSTER:'E',"stalker",random,hostile
+MONSTER:'E',"stalker",random,hostile
+MONSTER:'E',"stalker",random,hostile
+MONSTER:'E',"stalker",random,hostile
+MONSTER:'E',"stalker",random,hostile
+MONSTER:'E',"stalker",random,hostile
+MONSTER:'E',"stalker",random,hostile
 #	"guards" for the central courtyard.
 MONSTER:'@',"samurai",(30,05),hostile
 MONSTER:'@',"samurai",(31,05),hostile
@@ -304,32 +304,32 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:'@',"Ashikaga Takauji",(22,10)
+MONSTER:'@',"Ashikaga Takauji",(22,10),hostile
 MONSTER:'@',"samurai",random,hostile
 MONSTER:'@',"samurai",random,hostile
 MONSTER:'@',"samurai",random,hostile
 MONSTER:'@',"samurai",random,hostile
 MONSTER:'@',"samurai",random,hostile
-MONSTER:'@',"ninja",random,hostile
-MONSTER:'@',"ninja",random,hostile
-MONSTER:'@',"ninja",random,hostile
-MONSTER:'@',"ninja",random,hostile
-MONSTER:'@',"ninja",random,hostile
-MONSTER:'d',"wolf",random
-MONSTER:'d',"wolf",random
-MONSTER:'d',"wolf",random
-MONSTER:'d',"wolf",random
-MONSTER:'d',random,random
-MONSTER:'d',random,random
-MONSTER:'E',"stalker",random
-MONSTER:'E',"stalker",random
-MONSTER:'E',"stalker",random
-MONSTER:'E',"stalker",random
-MONSTER:'E',"stalker",random
-MONSTER:'E',"stalker",random
-MONSTER:'E',"stalker",random
-MONSTER:'E',"stalker",random
-MONSTER:'E',"stalker",random
+MONSTER:'@',"ninja gaiden",random,hostile
+MONSTER:'@',"ninja gaiden",random,hostile
+MONSTER:'@',"ninja gaiden",random,hostile
+MONSTER:'@',"ninja gaiden",random,hostile
+MONSTER:'@',"ninja gaiden",random,hostile
+MONSTER:'d',"wolf",random,hostile
+MONSTER:'d',"wolf",random,hostile
+MONSTER:'d',"wolf",random,hostile
+MONSTER:'d',"wolf",random,hostile
+MONSTER:'d',random,random,hostile
+MONSTER:'d',random,random,hostile
+MONSTER:'E',"stalker",random,hostile
+MONSTER:'E',"stalker",random,hostile
+MONSTER:'E',"stalker",random,hostile
+MONSTER:'E',"stalker",random,hostile
+MONSTER:'E',"stalker",random,hostile
+MONSTER:'E',"stalker",random,hostile
+MONSTER:'E',"stalker",random,hostile
+MONSTER:'E',"stalker",random,hostile
+MONSTER:'E',"stalker",random,hostile
 
 
 #
@@ -358,13 +358,13 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 #
-MONSTER: 'd', random, random
-MONSTER: 'd', "wolf", random
-MONSTER: 'd', "wolf", random
-MONSTER: 'd', "wolf", random
-MONSTER: 'd', "wolf", random
-MONSTER: 'd', "wolf", random
-MONSTER: 'E', "stalker", random
+MONSTER: 'd', random, random,hostile
+MONSTER: 'd', "wolf", random,hostile
+MONSTER: 'd', "wolf", random,hostile
+MONSTER: 'd', "wolf", random,hostile
+MONSTER: 'd', "wolf", random,hostile
+MONSTER: 'd', "wolf", random,hostile
+MONSTER: 'E', "stalker", random,hostile
 #
 TRAP: random, random
 TRAP: random, random
@@ -411,14 +411,14 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 #
-MONSTER: 'd', random, random
-MONSTER: 'd', "wolf", random
-MONSTER: 'd', "wolf", random
-MONSTER: 'd', "wolf", random
-MONSTER: 'd', "wolf", random
-MONSTER: 'E', "stalker", random
-MONSTER: 'E', "stalker", random
-MONSTER: 'E', "stalker", random
+MONSTER: 'd', random, random,hostile
+MONSTER: 'd', "wolf", random,hostile
+MONSTER: 'd', "wolf", random,hostile
+MONSTER: 'd', "wolf", random,hostile
+MONSTER: 'd', "wolf", random,hostile
+MONSTER: 'E', "stalker", random,hostile
+MONSTER: 'E', "stalker", random,hostile
+MONSTER: 'E', "stalker", random,hostile
 #
 TRAP: random, random
 TRAP: random, random

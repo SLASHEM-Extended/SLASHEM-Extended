@@ -34,6 +34,8 @@ static const char *rip_txt[] = {
 "                  |                  |", /* . */
 "                  |                  |", /* . */
 "                  |                  |", /* . */
+"                  |                  |", /* . */
+"                  |                  |", /* . */
 "                  |       1001       |", /* Real year of death */
 "                 *|     *  *  *      | *",
 "        _________)/\\\\_//(\\/(/\\)/\\//\\/|_)_______",
@@ -54,6 +56,8 @@ static const char *rip_txt[] = {
 "         |                  |            |  Izchak Miller   |",
 "         |                  |            |   1935 - 1994    |",
 "         |                  |            |                  |",
+"         |                  |            |                  |",
+"         |                  |            |                  |",
 "         |                  |            |     Ascended     |",
 "         |       1001       |            |                  |",
 "      *  |     *  *  *      | *        * |      *  *  *     | *",
@@ -62,13 +66,14 @@ static const char *rip_txt[] = {
 };
 #define STONE_LINE_CENT 19	/* char[] element of center of stone face */
 #endif	/* NH320_DEDICATION */
-#define STONE_LINE_LEN 16	/* # chars that fit on one line
+#define STONE_LINE_LEN 18	/* # chars that fit on one line
 				 * (note 1 ' ' border)
 				 */
 #define NAME_LINE 6		/* *char[] line # for player name */
 #define GOLD_LINE 7		/* *char[] line # for amount of gold */
 #define DEATH_LINE 8		/* *char[] line # for death description */
-#define YEAR_LINE 12		/* *char[] line # for year */
+/* "killed by a hallucinogen-distorted ravenous bugblatter beast of traal, while helpless" --Amy */
+#define YEAR_LINE 14		/* *char[] line # for year */
 
 static char **rip;
 

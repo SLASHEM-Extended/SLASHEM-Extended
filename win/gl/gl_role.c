@@ -312,6 +312,7 @@ static int select_auto_pick(int *pick4u)
       sdlgl_puts(win, COPYRIGHT_BANNER_A "\n");
       sdlgl_puts(win, COPYRIGHT_BANNER_B "\n");
       sdlgl_puts(win, COPYRIGHT_BANNER_C "\n");
+      sdlgl_puts(win, COPYRIGHT_BANNER_D "\n");
       sdlgl_puts(win, "\n");
     }
     

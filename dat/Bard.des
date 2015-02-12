@@ -1,0 +1,322 @@
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader
+#	and receive your quest assignment.
+#
+MAZE: "Brd-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+.......................................................}}........T..........
+.....T..............................................T...}}.............T....
+...........------------------------......................}}.................
+...........|......|.......|.......|..--...--.............}}.................
+...........|......|.......S...{...|..--...--.....T......}}..................
+..T........|---S--|.......|.......|.....................}}..................
+...........|......|.......--......|.......--.......T....}}......T...........
+....T.T....|......|........|.....--.......--...........}}...................
+...........|......--.......|.....|.....................}.............}}}..T.
+...T.......|.......+.......|.....+........--..........}}........T...}}.}}}..
+....T......|.\.....+.......|.....+........--.......T..}}............}...}}..
+...........|......--.......|.....|.....................}}....T.....}}....}..
+......T....|......|........|.....--.......--...T..T.....}}........T}..T...}.
+..T........|......|.......--......|.......--.........T...}}}}....}}.......}.
+...........|---S--|.......|.......|.........................}}...}........}.
+...........|......|.......S...{...|..--...--....T............}}.T}}....T.T}.
+...........|......|.......|.......|..--...--..................}...}.......}.
+.......T...------------------------........................T..}}.}}T.....}..
+.....................T.....................T...................}}}......}}..
+..................................................T...................}}}...
+..T..................................................................}}....T
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,20),lit,"ordinary"
+# Stairs
+STAIR:(01,08),down
+# Portal arrival point
+BRANCH:(73,02,73,02),(0,0,0,0)
+# Doors
+DOOR:closed,(15,05)
+DOOR:closed,(15,14)
+DOOR:locked,(26,04)
+DOOR:locked,(26,15)
+DOOR:locked,(19,09)
+DOOR:locked,(19,10)
+DOOR:locked,(33,09)
+DOOR:locked,(33,10)
+# Class leader
+MONSTER:'@',"Pindar",(13,10)
+OBJECT:'(',"chest",(13,10)
+# Other treasures
+OBJECT[33%]:'(',"chest",(14,04)
+OBJECT[33%]:'(',"chest",(14,15)
+# Statues
+OBJECT:'`',"statue",(35,07), "human", 2
+OBJECT:'`',"statue",(35,12), "human", 2
+OBJECT:'`',"statue",(22,05), "human", 2
+OBJECT:'`',"statue",(22,14), "human", 2
+# Rhymers for the audience chamber
+MONSTER:'@',"rhymer",(12,07)
+MONSTER:'@',"rhymer",(13,07)
+MONSTER:'@',"rhymer",(14,07)
+MONSTER:'@',"rhymer",(15,07)
+MONSTER:'@',"rhymer",(12,13)
+MONSTER:'@',"rhymer",(13,13)
+MONSTER:'@',"rhymer",(14,13)
+MONSTER:'@',"rhymer",(15,13)
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,20)
+TRAP:random,random
+# Nymphs next of river
+MONSTER: 'n',random,(62,07),hostile
+MONSTER: 'n',random,(67,10),hostile
+MONSTER: 'n',random,(64,16),hostile
+MONSTER: 'n',random,(64,10),hostile
+MONSTER: 'n',random,(68,02),hostile
+MONSTER: 'n',random,(71,07),hostile
+MONSTER: 'n',random,(72,15),hostile
+# Wild animals tamed by the nemesis.
+MONSTER: ';',"piranha",random,hostile
+MONSTER: 'd',random,random,hostile
+MONSTER: 'f',random,random,hostile
+MONSTER: 'S',random,random,hostile
+MONSTER: 'r',random,random,hostile
+MONSTER: 'u',random,random,hostile
+MONSTER: 'B',random,random,hostile
+
+
+
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to reach the flowery island of Anthemoessa
+#	and descend into the Old Ruins to find your quest nemesis.
+#
+
+MAZE: "Brd-loca",' '
+FLAGS: hardfloor
+GEOMETRY:center,center
+MAP
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}.....}}}}}}}}}}}}}}}}..........}}}}}}}}}}}}}}}}}}}}}}}...
+}}}}}}}}}}}}}}}}}....T................................}}}}}}}}}}}}}}}}}.....
+}}}}}}}}}}}}}}}}}...................................T...}}}}}}}}}..}}}}}.T..
+}}}}}}}}}}}}}.......----......--.....--......T........}}}}}}}}}....}}.}}....
+}}}}}}}}}}}.........|................-...............}}}}}}}}}}}}}}}}}}}....
+}}}}}}}}}}..........|......|......|................}}}}}}}}}}}}}}}}}}}......
+}}.}}}}}}...........|......+......+..-.............}.}}}}}}}}}}.}}}}}}......
+}}}}}}}}}.......T...|......+......+................}}}}}}}}}}}}.}}}}}}......
+}}}}}.}}............|......|......|........T......}}}}.}}..}}}.}}}}}}}}...T.
+}}}}}}}}}}..........|......|......|..--..........}}}}}}}}..}}.}}}}}}}}}.....
+}}}}}}}}}...........---------------..--..........}}}}}}}}}}}}}}}}}}}}}}}}}..
+}}}}}}}}}.......................................}}}}}}}}}}}}}}}}}}}}}}}}}...
+}}}}}}}}................................}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}..
+}}}}}}}}.....T.......................}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}....................}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}..}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}..}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,20),lit,"ordinary"
+# Doors
+#DOOR:locked,(28,11)
+# Stairs
+STAIR:(74,08),up
+STAIR:(24,10),down
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# some boulders and stones for the ruins.
+OBJECT:'`',"boulder",(38,07)
+OBJECT:'`',"boulder",(37,10)
+OBJECT:'*',"rock",(38,10)
+OBJECT:'`',"boulder",(26,06)
+OBJECT:'*',"rock",(28,06)
+OBJECT:'*',"rock",(29,06)
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER: ';',"piranha",random,hostile
+MONSTER: ';',"piranha",random,hostile
+MONSTER: ';',"piranha",random,hostile
+MONSTER: 'd',random,random,hostile
+MONSTER: 'd',random,random,hostile
+MONSTER: 'f',random,random,hostile
+MONSTER: 'f',random,random,hostile
+MONSTER: 'S',random,random,hostile
+MONSTER: 'S',random,random,hostile
+MONSTER: 'r',random,random,hostile
+MONSTER: 'u',random,random,hostile
+MONSTER: 'B',random,random,hostile
+MONSTER: 'B',random,random,hostile
+
+
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet your nemesis.  You have to
+#	defeat her in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Brd-goal", ' '
+GEOMETRY:center,center
+MAP
+----------------------------------------------------------------------------
+|..........................................................................|
+|...........................---...---.........---...---....................|
+|...........................|.|...|.|.........|.|...|......................|
+|...........................---...---.........---...-......................|
+|..........................................................................|
+|.....................---...........................---....................|
+|.....................|.|...........................|.|....................|
+|.....................---...........................--.....................|
+|..........................................................................|
+|.....................---...........................---....................|
+|.....................|.|...........................|.|....................|
+|.....................---...........................---....................|
+|..........................................................................|
+|.....................---...---...---...---.........---....................|
+|.....................|.|...|.|...|.|...|.|...|.....|.|....................|
+|.....................---...---...---...---...---...---....................|
+|..........................................................................|
+|..........................................................................|
+----------------------------------------------------------------------------
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),unlit,"ordinary"
+REGION:(22,02,54,16),lit,"ordinary"
+# Stairs
+STAIR:(69,06),up
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# Objects
+OBJECT:'(',"wooden harp",(38,10),blessed,0,"The Lyre of Orpheus"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# ruins
+OBJECT:'`',"boulder",(22,02)
+OBJECT:'`',"boulder",(23,02)
+OBJECT:'`',"boulder",(24,03)
+OBJECT:'*',"rock",(25,02)
+OBJECT:'`',"boulder",(25,04)
+OBJECT:'`',"boulder",(40,02)
+OBJECT:'`',"boulder",(41,02)
+OBJECT:'`',"boulder",(43,03)
+OBJECT:'*',"rock",(40,02)
+OBJECT:'*',"rock",(39,02)
+OBJECT:'`',"boulder",(41,04)
+OBJECT:'`',"boulder",(53,03)
+OBJECT:'`',"boulder",(54,08)
+# Quest nemesis
+MONSTER:'n',"Aglaope",(38,10),asleep
+# Monsters
+MONSTER:'s',random,(33,06),hostile
+MONSTER:'S',random,(33,08),hostile
+MONSTER:'r',random,(33,10),hostile
+MONSTER:'d',random,(33,12),hostile
+MONSTER:'f',random,(33,14),hostile
+MONSTER:'f',random,(43,06),hostile
+MONSTER:'d',random,(43,08),hostile
+MONSTER:'r',random,(43,10),hostile
+MONSTER:'S',random,(43,12),hostile
+MONSTER:'s',random,(43,14),hostile
+
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Brd-fila" , ' '
+INIT_MAP: '.' , 'T' , true , true , random , true
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+#
+MONSTER: 'S', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 'u', random, random, hostile
+MONSTER: 'd', random, random, hostile
+MONSTER: 'f', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 'S', random, random, hostile
+
+
+LEVEL: "Brd-filb"
+#
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: 'S', random, random
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'S', random, random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: 'r', random, random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: 's', random, random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'S', random, random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 's', random, random
+
+RANDOM_CORRIDORS

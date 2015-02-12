@@ -259,7 +259,7 @@ struct permonst *mdat;
 	    for(i = first_col; i <= last_col; i++)
 		if (map[EPATHTO_XY(i, j)] == EPATHTO_TAIL(path_len)) {
 		    map[EPATHTO_XY(i, j)] = EPATHTO_DONE;
-		    ndirs = mdat == &mons[PM_GRID_BUG] ? 4 : 8;
+		    ndirs = (mdat == &mons[PM_GRID_BUG] || mdat == &mons[PM_GRID_XORN]) ? 4 : 8;
 		    for(dir = 0; dir < ndirs; dir++) {
 			xy = EPATHTO_XY(i, j) + dirs[dir];
 			if (map[xy] == EPATHTO_UNSEEN) {
@@ -691,9 +691,9 @@ tele()
 	    You_feel("disoriented for a moment.");
 	    return;
 	}
-	if ((Teleport_control && !Stunned)
+	if ((Teleport_control && !Stunned && rn2(20)) /* low chance for tele control to fail --Amy */
 #ifdef WIZARD
-			    || wizard
+			    || (wizard && yn_function("Invoke wizard-mode teleport control?", ynchars, 'y') == 'y')
 #endif
 					) {
 	    if (unconscious()) {
@@ -725,6 +725,31 @@ tele()
 	(void) safe_teleds(FALSE);
 }
 
+void
+teleX()
+{
+	/* Disable teleportation in stronghold && Vlad's Tower */
+	if (level.flags.noteleport) {
+		    pline("A mysterious force prevents you from teleporting!");
+		    return;
+	}
+
+	/* don't show trap if "Sorry..." */
+	if (!Blinded) make_blinded(0L,FALSE);
+
+	if
+        (u.uhave.amulet || On_W_tower_level(&u.uz)
+#ifdef STEED
+	|| (u.usteed && mon_has_amulet(u.usteed))
+#endif
+	)
+	{
+	    You_feel("disoriented for a moment.");
+	    return;
+	}
+	(void) safe_teleds(FALSE);
+}
+
 int
 dotele()
 {
@@ -752,7 +777,7 @@ dotele()
 	    boolean castit = FALSE;
 	    register int sp_no = 0, energy = 0;
 
-	    if (!Teleportation || (u.ulevel < (Role_if(PM_WIZARD) ? 8 : 12)
+	    if (!Teleportation || (u.ulevel < (Race_if(PM_LICH_WARRIOR) ? 1 : Role_if(PM_WIZARD) ? 8 : 12)
 					&& !can_teleport(youmonst.data))) {
 		/* Try to use teleport away spell. */
 		if (objects[SPE_TELEPORT_AWAY].oc_name_known && !Confusion)
@@ -781,7 +806,7 @@ dotele()
 #endif
 			You("lack the strength %s.",
 			    castit ? "for a teleport spell" : "to teleport");
-			return 1;
+			return /*1*/0;
 #ifdef WIZARD
 		}
 #endif
@@ -795,9 +820,9 @@ dotele()
 		else
 #endif
 		{
-			You("lack the energy %s.",
-			    castit ? "for a teleport spell" : "to teleport");
-			return 1;
+			You("lack the energy %s. You need at least %d.",
+			    castit ? "for a teleport spell" : "to teleport", energy);
+			return /*1*/0;
 		}
 	    }
 
@@ -853,9 +878,9 @@ level_tele()
 	    You_feel("very disoriented for a moment.");
 	    return;
 	}
-	if ((Teleport_control && !Stunned)
+	if ((Teleport_control && !Stunned && rn2(10)) /* Teleport control might not always work. --Amy */
 #ifdef WIZARD
-	   || wizard
+	   || (wizard && yn_function("Invoke wizard-mode teleport control?", ynchars, 'y') == 'y')
 #endif
 		) {
 	    char qbuf[BUFSZ];
@@ -873,14 +898,14 @@ level_tele()
 		getlin(qbuf, buf);
 		if (!strcmp(buf,"\033")) {	/* cancelled */
 		    if (Confusion && rnl(5)) {
-			pline("Oops...");
+			pline("Uh-oh..."); /* don't make player jump out of their seat with a fake panic message! --Amy */
 			goto random_levtport;
 		    }
 		    return;
 		} else if (!strcmp(buf,"*")) {
 		    goto random_levtport;
 		} else if (Confusion && rnl(5)) {
-		    pline("Oops...");
+		    pline("Uh-oh...");
 		    goto random_levtport;
 		}
 #ifdef WIZARD
@@ -916,7 +941,9 @@ level_tele()
 
 		    /* if you're using wizard mode, you shouldn't really need
 		     * the game to interpret things like `mine town level' */
+
 		    if (wizard && (slev = find_level(buf))) {
+
 			schedule_goto(&slev->dlevel, FALSE, FALSE, 0,
 				      (char *)0, (char *)0);
 			return;
@@ -1140,6 +1167,12 @@ register struct trap *ttmp;
 	}
 
 	target_level = ttmp->dst;
+
+	if (In_endgame(&u.uz) && Punished && Is_firelevel(&u.uz) ) {
+	    You_feel("the iron ball preventing you from proceeding...");
+	    return;
+	}
+
 	schedule_goto(&target_level, FALSE, FALSE, 1,
 		      "You feel dizzy for a moment, but the sensation passes.",
 		      (char *)0);
@@ -1156,11 +1189,20 @@ struct trap *trap;
 	} else if (!next_to_u()) {
 		You(shudder_for_moment);
 	} else if (trap->once) {
+		You("%s onto a vault teleporter!",
+		      Levitation ? (const char *)"float" :
+				  locomotion(youmonst.data, "step"));
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		deltrap(trap);
 		newsym(u.ux,u.uy);	/* get rid of trap symbol */
 		vault_tele();
-	} else
+	} else {
+		You("%s onto a teleport trap!",
+		      Levitation ? (const char *)"float" :
+				  locomotion(youmonst.data, "step"));
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		tele();
+		}
 }
 
 void
@@ -1183,7 +1225,8 @@ struct trap *trap;
 	    You("are momentarily disoriented.");
 	deltrap(trap);
 	newsym(u.ux,u.uy);	/* get rid of trap symbol */
-	level_tele();
+      if (strncmpi(plname, "lostsoul", 8) && strncmpi(plname, "uberlostsoul", 12)) level_tele();
+	else pline("The trap doesn't seem to have any effect on you.");
 }
 
 /* check whether monster can arrive at location <x,y> via Tport (or fall) */
@@ -1588,6 +1631,39 @@ random_teleport_level()
 	return nlev;
 }
 
+/* Banishment level decision */
+int
+random_banish_level()
+{
+	int nlev, max_depth, min_depth, cur_depth = (int)depth(&u.uz);
+;
+
+	if (Is_knox(&u.uz) ||
+#ifdef BLACKMARKET
+		Is_blackmarket(&u.uz) ||
+#endif
+		Is_aligned_quest(&u.uz))
+	    return cur_depth;
+
+	min_depth = In_quest(&u.uz) ? dungeons[u.uz.dnum].depth_start : 1;
+	max_depth = dunlevs_in_dungeon(&u.uz) +
+		(dungeons[u.uz.dnum].depth_start - 1);
+	/* can't reach the Sanctum, no matter if invocation or not */
+	if (Inhell) max_depth -= 1;
+
+	/* Get a random value relative to the current dungeon */
+
+	nlev = rn2(max_depth - min_depth) + min_depth;
+
+	if (nlev > max_depth) nlev = max_depth;
+
+	if (nlev < min_depth) nlev = min_depth;
+
+	return nlev;
+}
+
+
+
 /* you teleport a monster (via wand, spell, or poly'd q.mechanic attack);
    return false iff the attempt fails */
 boolean
@@ -1642,3 +1718,76 @@ boolean give_feedback;
 	return TRUE;
 }
 /*teleport.c*/
+
+boolean
+u_teleport_monB(mtmp, give_feedback)
+struct monst *mtmp;
+boolean give_feedback;
+{
+
+			int nlev;
+			d_level flev;
+
+			if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
+			   pline("%s seems very disoriented for a moment.", Monnam(mtmp));
+			    return 2;
+			}
+			nlev = random_banish_level();
+			if (nlev == depth(&u.uz)) {
+			    pline("%s shudders for a moment.", Monnam(mtmp));
+			    return 2;
+			}
+			get_level(&flev, nlev);
+			migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM,
+				(coord *)0);
+
+	return TRUE;
+}
+/*teleport.c*/
+
+/* A function that pushes the player around, mainly to be used by ranged attackers so they can get a shot. --Amy */
+void
+pushplayer()
+{
+		coord ccc;
+		int direction, pushwidth, trycnt;
+	    register struct obj *otmp;
+		trycnt = 0;
+
+newtry:
+		direction = rnd(8);
+		pushwidth = rnd(2);
+		if (!rn2(2)) pushwidth += rnd(2);
+		ccc.x = u.ux;
+		ccc.y = u.uy;
+
+		while (pushwidth--) {
+		if (direction == 1 || direction == 5) ccc.x += 1; 
+		else if (direction == 2 || direction == 6) ccc.x -= 1; 
+		else if (direction == 3 || direction == 7) ccc.y += 1; 
+		else if (direction == 4 || direction == 8) ccc.y -= 1; 
+
+		if (direction == 5) ccc.y += 1;
+		else if (direction == 6) ccc.y -= 1;
+		else if (direction == 7) ccc.x -= 1;
+		else if (direction == 8) ccc.x += 1;
+
+		if (!isok(ccc.x, ccc.y)) break; /* otherwise the game could segfault! */
+
+		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD &&
+			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0 ) break;
+		}
+
+		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD &&
+			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0) {
+		if (trycnt < 50) {trycnt++; goto newtry;}
+		return; /* more than 50 tries */
+		}
+
+		if (!isok(ccc.x, ccc.y)) return; /* otherwise the game could segfault! */
+
+		pline("You're pushed back!");
+		u_on_newpos(ccc.x, ccc.y);
+		doredraw();
+		return;
+}

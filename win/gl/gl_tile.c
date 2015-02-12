@@ -147,7 +147,7 @@ void sdlgl_start_logo(void)
 {
   const char *pos;
   const char *copyright_str = COPYRIGHT_BANNER_A "\n" 
-      COPYRIGHT_BANNER_B "\n" COPYRIGHT_BANNER_C;
+      COPYRIGHT_BANNER_B "\n" COPYRIGHT_BANNER_C "\n"  COPYRIGHT_BANNER_D;
 
   int x, y;
   int w1, h1, w2, h2;

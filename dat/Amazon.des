@@ -1,0 +1,655 @@
+#	SCCS Id: @(#)Spacew.des	3.4	1998/09/10
+#	Copyright (c) 2014 by Amy Bluescreenofdeath
+# NetHack may be freely redistributed.  See license for details.
+
+
+# Based on some obscure old roguelike game that nobody knows.
+# It's called "Castle of the Winds".
+# Also partly based on the Yeoman quest. Everything else is my own quest design. --Amy
+
+
+### The quest "start" level ###
+#
+#	The Hamlet was the starting town in CoW.
+#	This is not an exact reproduction of it, but it comes quite close.
+#
+MAZE: "Ama-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT|                     
+T----------TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT|                     
+T|........+.....................TTTTTTTTTTTTTTTTTTTTTT|                     
+T|........|TTTTTTTTTT.TTTTTTTTT.TTTTTTTTTTTTTT....TTTT|                     
+T|........|TTTTTTTTTT.TTTTTTTT....-------TTTTT....TTTT|                     
+T|........|TTTTTTTTTT.TTTTTTTT....|.....|TTTTT....TTTT|                     
+T|........|TTTTTTTTTT.TTTTTTTT....|.....|TTTTT....TTTT|                     
+T----------TTTTTTTTTT.TTTTTTTT....--+----TTTTT........|                     
+TTTTTTTTTTTTTTTTTTTTT.TTTTTT-----.....................|                     
+TTTTTTTTTTTTTTTTTT.......TTT|...|....................||.                    
+TTTTTTTTTTTTTTTTTT.TTTTT.TTT|...+.....................|                     
+TTTTTTTTTTTTTTTTTT.TTTTT.TTT-----.....................|                     
+TTTTTTTTTTTTTTTTTT.TTTTT.TTTTTTTTT.....---+-TTT.......|                     
+T----------TTTTTTT.TTTT-+-TTTTTTTT.....|...|TTT...TTTT|                     
+T|........+........TTTT|.|TTTTTTTT.....|...|TTT...TTTT|                     
+T|-S------|TTTTTTTTTTTT---TTTTTTTTTTTT.|...|TTT...TTTT|                     
+T|..|..S..|TTTTTTTTTTTTTTTTTTTTTTTTTTT.|...|TTTTTTTTTT|                     
+T|..|..|..|TTTTTTTTTTTTTTTTTTTTTTTTTTT.|...|TTTTTTTTTT|                     
+T----------TTTTTTTTTTTTTTTTTTTTTTTTTTTT-----TTTTTTTTTT|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT|                     
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+# Specifications for the whole level
+
+REGION:(00,00,75,19),lit,"ordinary"
+
+DOOR:closed,(36,07)
+REGION:(35,05,39,06),lit,"shop"
+
+DOOR:closed,(42,12)
+REGION:(40,13,42,17),lit,"shop"
+
+DOOR:closed,(32,10)
+REGION:(29,09,31,10),lit,"shop"
+
+DOOR:closed,(10,02)
+REGION:(02,02,09,06),lit,"shop"
+
+BRANCH:(37,09,37,09),(0,0,0,0)
+
+DRAWBRIDGE:(53,09),east,closed
+
+DOOR:closed,(24,13)
+DOOR:closed,(10,14)
+
+OBJECT:')',"pistol",(24,14)
+OBJECT:')',"bullet",(24,14)
+OBJECT:')',"bow",(40,10)
+OBJECT:')',"arrow",(40,10)
+OBJECT:')',"javelin",(47,03)
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+
+OBJECT:')',"elven bow",(02,14)
+OBJECT:')',"elven arrow",(02,14)
+
+OBJECT:')',"spirit thrower",(02,17)
+OBJECT:')',"torpedo",(05,17)
+OBJECT:')',"submachine gun",(08,17)
+OBJECT:')',"bullet",(08,17)
+
+FOUNTAIN: (36, 09)
+
+# The one who pillages the hamlet in CoW.
+
+# Let's just allow the hunters to randomly roam the level.
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"Cato",(50,09)
+
+# No random starting monsters. This won't stop the game from spawning some if the player lingers around, of course.
+
+STAIR:(55,09),down
+
+### Upper filler levels ###
+#
+#	The Underground River
+#	This terrain formation must have been a glitch, since it got taken out in a CoW patch.
+#	Shame, the underground river was actually a damn great feature...
+#	Digging will probably be necessary on this level.
+#
+MAZE: "Ama-fila", 'T'
+FLAGS: lethe
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+
+   P  ..TP   P  ..TP   P  ..TP   P  ..TP   P  ..TP   P  ..TP   P  ..TP
+  .T. PP    .T. PP    .T. PP    .T. PP    .T. PP    .T. PP    .T. PP    
+ ...PP...  ...PP...  ...PP...  ...PP...  ...PP...  ...PP...  ...PP...
+     .II       .II       .II       .II       .II       .II       .II
+.II.  IPI .II.  IPI .II.  IPI .II.  IPI .II.  IPI .II.  IPI .II.  IPI
+ ..PPI.P.  ..PPI.P.  ..PPI.P.  ..PPI.P.  ..PPI.P.  ..PPI.P.  ..PPI.P.
+ ......... ......... ......... ......... ......... ......... ......... 
+     .         .         .         .         .         .         .    
+     .         .         .         .         .         .         .    
+     .         .         .         .         .         .         .    
+   P  ..TP   P  ..TP   P  ..TP   P  ..TP   P  ..TP   P  ..TP   P  ..TP
+  .T. PP    .T. PP    .T. PP    .T. PP    .T. PP    .T. PP    .T. PP    
+ ...PP...  ...PP...  ...PP...  ...PP...  ...PP...  ...PP...  ...PP...
+     .II       .II       .II       .II       .II       .II       .II
+.II.  IPI .II.  IPI .II.  IPI .II.  IPI .II.  IPI .II.  IPI .II.  IPI
+ ..PPI.P.  ..PPI.P.  ..PPI.P.  ..PPI.P.  ..PPI.P.  ..PPI.P.  ..PPI.P.
+ ......... ......... ......... ......... ......... ......... ......... 
+
+
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+# Specifications for the whole level
+
+STAIR:random,up
+STAIR:random,down
+
+FOUNTAIN: (01, 03)
+FOUNTAIN: (04, 02)
+FOUNTAIN: (06, 01)
+FOUNTAIN: (01, 06)
+FOUNTAIN: (03, 05)
+FOUNTAIN: (05, 04)
+FOUNTAIN: (08, 03)
+FOUNTAIN: (08, 06)
+
+FOUNTAIN: (11, 03)
+FOUNTAIN: (14, 02)
+FOUNTAIN: (16, 01)
+FOUNTAIN: (11, 06)
+FOUNTAIN: (13, 05)
+FOUNTAIN: (15, 04)
+FOUNTAIN: (18, 03)
+FOUNTAIN: (18, 06)
+
+FOUNTAIN: (21, 03)
+FOUNTAIN: (24, 02)
+FOUNTAIN: (26, 01)
+FOUNTAIN: (21, 06)
+FOUNTAIN: (23, 05)
+FOUNTAIN: (25, 04)
+FOUNTAIN: (28, 03)
+FOUNTAIN: (28, 06)
+
+FOUNTAIN: (31, 03)
+FOUNTAIN: (34, 02)
+FOUNTAIN: (36, 01)
+FOUNTAIN: (31, 06)
+FOUNTAIN: (33, 05)
+FOUNTAIN: (35, 04)
+FOUNTAIN: (38, 03)
+FOUNTAIN: (38, 06)
+
+FOUNTAIN: (41, 03)
+FOUNTAIN: (44, 02)
+FOUNTAIN: (46, 01)
+FOUNTAIN: (41, 06)
+FOUNTAIN: (43, 05)
+FOUNTAIN: (45, 04)
+FOUNTAIN: (48, 03)
+FOUNTAIN: (48, 06)
+
+FOUNTAIN: (51, 03)
+FOUNTAIN: (54, 02)
+FOUNTAIN: (56, 01)
+FOUNTAIN: (51, 06)
+FOUNTAIN: (53, 05)
+FOUNTAIN: (55, 04)
+FOUNTAIN: (58, 03)
+FOUNTAIN: (58, 06)
+
+FOUNTAIN: (61, 03)
+FOUNTAIN: (64, 02)
+FOUNTAIN: (66, 01)
+FOUNTAIN: (61, 06)
+FOUNTAIN: (63, 05)
+FOUNTAIN: (65, 04)
+FOUNTAIN: (68, 03)
+FOUNTAIN: (68, 06)
+
+FOUNTAIN: (01, 13)
+FOUNTAIN: (04, 12)
+FOUNTAIN: (06, 11)
+FOUNTAIN: (01, 16)
+FOUNTAIN: (03, 15)
+FOUNTAIN: (05, 14)
+FOUNTAIN: (08, 13)
+FOUNTAIN: (08, 16)
+
+FOUNTAIN: (11, 13)
+FOUNTAIN: (14, 12)
+FOUNTAIN: (16, 11)
+FOUNTAIN: (11, 16)
+FOUNTAIN: (13, 15)
+FOUNTAIN: (15, 14)
+FOUNTAIN: (18, 13)
+FOUNTAIN: (18, 16)
+
+FOUNTAIN: (21, 13)
+FOUNTAIN: (24, 12)
+FOUNTAIN: (26, 11)
+FOUNTAIN: (21, 16)
+FOUNTAIN: (23, 15)
+FOUNTAIN: (25, 14)
+FOUNTAIN: (28, 13)
+FOUNTAIN: (28, 16)
+
+FOUNTAIN: (31, 13)
+FOUNTAIN: (34, 12)
+FOUNTAIN: (36, 11)
+FOUNTAIN: (31, 16)
+FOUNTAIN: (33, 15)
+FOUNTAIN: (35, 14)
+FOUNTAIN: (38, 13)
+FOUNTAIN: (38, 16)
+
+FOUNTAIN: (41, 13)
+FOUNTAIN: (44, 12)
+FOUNTAIN: (46, 11)
+FOUNTAIN: (41, 16)
+FOUNTAIN: (43, 15)
+FOUNTAIN: (45, 14)
+FOUNTAIN: (48, 13)
+FOUNTAIN: (48, 16)
+
+FOUNTAIN: (51, 13)
+FOUNTAIN: (54, 12)
+FOUNTAIN: (56, 11)
+FOUNTAIN: (51, 16)
+FOUNTAIN: (53, 15)
+FOUNTAIN: (55, 14)
+FOUNTAIN: (58, 13)
+FOUNTAIN: (58, 16)
+
+FOUNTAIN: (61, 13)
+FOUNTAIN: (64, 12)
+FOUNTAIN: (66, 11)
+FOUNTAIN: (61, 16)
+FOUNTAIN: (63, 15)
+FOUNTAIN: (65, 14)
+FOUNTAIN: (68, 13)
+FOUNTAIN: (68, 16)
+
+# Random monsters
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+MONSTER:'@',"valkyrie",random,peaceful,"Primrose"
+MONSTER:'@',"tribute",random,hostile,"Clove"
+# Traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+
+### The quest "locate" level ###
+#
+#	Fleeing hamlet - lots of trees everywhere
+#	To make it harder to traverse this level, we'll make it no-teleport.
+#	Digging will be allowed though.
+#
+MAZE: "Ama-loca",' '
+FLAGS: noteleport
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+.TTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTT.TTTT.TTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTT.
+T.TTTTTTTTTTTTTTTTT.T.TTTTTTTTTTTTTT.TT.TTTTTTTTTTTTTT.T.TTTTTTTTTTTTTTTTT.T
+TT.TTTTTTTTTTTTTTT.TTT.TTTTTTTTTTTTTT..TTTTTTTTTTTTTT.TTT.TTTTTTTTTTTTTTT.TT
+TTT.TTTTTTTTTTTTT.TTTTT.TTTTTTTTTTTTT..TTTTTTTTTTTTT.TTTTT.TTTTTTTTTTTTT.TTT
+TTTT.TTTTTTTTTTT.TTTTTTT.TTTTTTTTTTT.TT.TTTTTTTTTTT.TTTTTTT.TTTTTTTTTTT.TTTT
+TTTTT.TTTTTTTTT.TTTTTTTTT.TTTTTTTTT.TTTT.TTTTTTTTT.TTTTTTTTT.TTTTTTTTT.TTTTT
+TTTTTT.TTTTTTT.TTTTTTTTTTT.TTTTTTT.TTTTTT.TTTTTTT.TTTTTTTTTTT.TTTTTTT.TTTTTT
+TTTTTTT.TTTTT.TTTTTTTTTTTTT.TTTTT.TTTTTTTT.TTTTT.TTTTTTTTTTTTT.TTTTT.TTTTTTT
+TTTTTTTT.TTT.TTTTTTTTTTTTTTT.TTT.TT.TTTTTT..TTT.T.TTTTTTTTTTTTT.TTT.TTTTTTTT
+TTTTTTTTT.T.TTTTTTTTTTTTTTTTT.T.TTTTTTTTTTTT.T.TTTTTTTTTTTTTTTTT.T.TTTTTTTTT
+TTTTTTTTTT.TTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTT.TTTTTTTTTT
+TTTTTTTTT.T.TTTTTTTTTTTTTTTTT.T.TTTTTTTTTTTT.T.TTTTTTTTTTTTTTTTT.T.TTTTTTTTT
+TTTTTTTT.TTT.TTTTTTTTTTTTTTT.TTT.TT.TTTTTT..TTT.T.TTTTTTTTTTTTT.TTT.TTTTTTTT
+TTTTTTT.TTTTT.TTTTTTTTTTTTT.TTTTT.TTTTTTTT.TTTTT.TTTTTTTTTTTTT.TTTTT.TTTTTTT
+TTTTTT.TTTTTTT.TTTTTTTTTTT.TTTTTTT.TTTTTT.TTTTTTT.TTTTTTTTTTT.TTTTTTT.TTTTTT
+TTTTT.TTTTTTTTT.TTTTTTTTT.TTTTTTTTT.TTTT.TTTTTTTTT.TTTTTTTTT.TTTTTTTTT.TTTTT
+TTTT.TTTTTTTTTTT.TTTTTTT.TTTTTTTTTTT.TT.TTTTTTTTTTT.TTTTTTT.TTTTTTTTTTT.TTTT
+TTT.TTTTTTTTTTTTT.TTTTT.TTTTTTTTTTTTT..TTTTTTTTTTTTT.TTTTT.TTTTTTTTTTTTT.TTT
+TT.TTTTTTTTTTTTTTT.TTT.TTTTTTTTTTTTTT..TTTTTTTTTTTTTT.TTT.TTTTTTTTTTTTTTT.TT
+T.TTTTTTTTTTTTTTTTT.T.TTTTTTTTTTTTTT.TT.TTTTTTTTTTTTTT.T.TTTTTTTTTTTTTTTTT.T
+.TTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTT.TTTT.TTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTT.
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+# Specifications for the whole level
+RANDOM_PLACES:(28,08),(35,08),(42,08),(49,08),(28,12),(35,12),(42,12),(49,12)
+
+
+STAIR:(0,0),up
+STAIR:(75,20),down
+
+OBJECT:')',"torpedo",(35,08)
+OBJECT:')',"runesword",(35,12)
+
+MONSTER:'@',"valkyrie",random,peaceful,"Gale"
+MONSTER:'@',"tribute",random,hostile,"Cinna"
+MONSTER:'@',"tribute",random,hostile,"Foxface"
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+### Lower fill levels ###
+#
+#	Statue Halls
+#	A big, relatively open level with loads of statues everywhere.
+#
+MAZE: "Ama-filb", 'T'
+GEOMETRY:center,center
+#1234567890123456789012345678901234567890123456789012345678901234567890123
+MAP
+.                           TTTTTTTTTTTTTTTTTT                           .
+                    TTTTTTTTT................TTTTTTTTT                    
+              TTTTTTT................................TTTTTTT              
+         TTTTTT.........TTTTTTTTT........TTTTTTTTT.........TTTTTT         
+      TTTT........TTTTTTT       T........T       TTTTTTT........TTTT      
+    TTT......TTTTTT             T........T             TTTTTT......TTT    
+  TTT.....TTTT            TTTTTTT........TTTTTTT            TTTT.....TTT  
+TTT.....TTT       TTTTTTTTT....................TTTTTTTTT       TTT.....TTT
+T.......T    TTTTTT....................................TTTTTT    T.......T
+T.......T    T..............................................T    T.......T
+T.......T    TTTTTT....................................TTTTTT    T.......T
+TTT.....TTT       TTTTTTTTT....................TTTTTTTTT       TTT.....TTT
+  TTT.....TTTT            TTTTTTT........TTTTTTT            TTTT.....TTT  
+    TTT......TTTTTT             T........T             TTTTTT......TTT    
+      TTTT........TTTTTTT       T........T       TTTTTTT........TTTT      
+         TTTTTT.........TTTTTTTTT........TTTTTTTTT.........TTTTTT         
+              TTTTTTT................................TTTTTTT              
+                    TTTTTTTTT................TTTTTTTTT                    
+.                           TTTTTTTTTTTTTTTTTT                           .
+ENDMAP
+# Specifications for the whole level
+
+STAIR:random,up
+STAIR:random,down
+
+MONSTER:'@',"valkyrie",random,peaceful,"Haymitch"
+MONSTER:'@',"tribute",random,hostile,"Finnick"
+MONSTER:'@',"tribute",random,hostile,"Johanna"
+
+MONSTER:'a',"tracker jacker",(00,00)
+MONSTER:'a',"tracker jacker",(73,00)
+MONSTER:'a',"tracker jacker",(00,18)
+MONSTER:'a',"tracker jacker",(73,18)
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+
+### The quest "goal" level ###
+#
+#	Inside Part
+#
+#	Accessible in CoW if you do some hex editing. It used to be prone to crashing the game though.
+#	I considered making it crash on purpose here, but changed my mind. Hooray for S'Em Extended players! :-) --Amy
+#
+#	Here, the layout is based partly on the Yeoman goal level, but only the upper half of it.
+#
+#	Of course you also meet Arabella, your nemesis monster. Her friends may be there, too.
+#
+MAZE: "Ama-goal", 'T'
+FLAGS: lethe
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+                 TTTT                     TTTT                     TTTT    
+TTTT            TT..TT   TTTT            TT..TT   TTTT            TT..TT   
+T..T            T..T.T   T..T            T..T.T   T..T            T..T.T   
+T..TTTTTTTTTTTTTT....T   T..TTTTTTTTTTTTTT....T   T..TTTTTTTTTTTTTT....T   
+TT.T................TT   TT.T................TT   TT.T................TT   
+ T.......T........TTT     T.......T........TTT     T.......T........TTT    
+ T.......T........T       T.......T........T       T.......T........T      
+ T.......T..K..K..T       T.......T..K..K..T       T.......T..K..K..T      
+
+TFLLFLCL..FLF.CLF.FLFC}}.TFLLFLCL..FLF.CLF.FLFC}}.TFLLFLCL..FLF.CLF.FLFC}}.
+F}CLI .TT}I.I ..FI..C TF F}CLI .TT}I.I ..FI..C TF F}CLI .TT}I.I ..FI..C TF 
+}.TI.TCL.CL.F}C}. L.}} F}}.TI.TCL.CL.F}C}. L.}} F}}.TI.TCL.CL.F}C}. L.}} F}
+ F}. F. FLLFCLF}. T.F}I.C F}. F. FLLFCLF}. T.F}I.C F}. F. FLLFCLF}. T.F}I.C
+I} ..CLI.TF}.L..F }. CL}.I} ..CLI.TF}.L..F }. CL}.I} ..CLI.TF}.L..F }. CL}.
+F. FLC}. FL. F. FFC .FFC.F. FLC}. FL. F. FFC .FFC.F. FLC}. FL. F. FFC .FFC.
+..L.CT.C.TI..}.. L} L.}C ..L.CT.C.TI..}.. L} L.}C ..L.CT.C.TI..}.. L} L.}C 
+.C. FLF FF F.  F.}FL.F.IF.C. FLF FF F.  F.}FL.F.IF.C. FLF FF F.  F.}FL.F.IF
+F TI.C TI.F. TI. F F.F.F}F TI.C TI.F. TI. F F.F.F}F TI.C TI.F. TI. F F.F.F}
+}FL.C }.F.CLF.FLFC}}. FI.}FL.C }.F.CLF.FLFC}}. FI.}FL.C }.F.CLF.FLFC}}. FI.
+. .FC}F.IF}. ..FC}. F. FI. .FC}F.IF}. ..FC}. F. FI. .FC}F.IF}. ..FC}. F. FI
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+
+# Specifications for the whole level
+
+RANDOM_PLACES:(11,17),(36,17),(61,17),(11,14),(36,14),(61,14)
+
+STAIR:(19,01),up
+
+OBJECT:')',"bow",place[0],blessed,0,"Gunbow"
+MONSTER:'@',"Peeta",place[0],hostile
+
+# Sub-bosses
+MONSTER:'@',"tribute",random,hostile,"Marvel"
+MONSTER:'@',"tribute",random,hostile,"Glimmer"
+MONSTER:'@',"tribute master",random,hostile,"Thresh"
+
+# maybe you get an aide to help you out
+MONSTER:'@',"Katniss",(18,01)
+
+# Random monsters
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+# Traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+

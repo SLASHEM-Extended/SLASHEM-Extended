@@ -10,10 +10,11 @@ typedef schar	aligntyp;	/* basic alignment type */
 typedef struct	align {		/* alignment & record */
 	aligntyp	type;
 	int		record;
+	int		sins; //records trasgressions that should lower the max record.
 } align;
 
 /* bounds for "record" -- respect initial alignments of 10 */
-#define ALIGNLIM	(10L + (moves/200L))
+#define ALIGNLIM	(10L + (moves/200L) - u.ualign.sins)
 
 #define A_NONE	      (-128)	/* the value range of type */
 

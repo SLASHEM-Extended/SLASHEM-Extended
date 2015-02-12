@@ -65,9 +65,9 @@ MONSTER:'@',"apprentice",(27,11)
 MONSTER:'@',"apprentice",(19,09)
 MONSTER:'@',"apprentice",(20,09)
 # Eels in the pond
-MONSTER:';',"giant eel",(62,14)
-MONSTER:';',"giant eel",(69,15)
-MONSTER:';',"giant eel",(67,17)
+MONSTER:';',"giant eel",(62,14),hostile
+MONSTER:';',"giant eel",(69,15),hostile
+MONSTER:';',"giant eel",(67,17),hostile
 # Non diggable walls
 NON_DIGGABLE:(00,00,75,19)
 # Random traps
@@ -208,13 +208,13 @@ MONSTER:'i',random,random,hostile
 MONSTER:'i',random,random,hostile
 MONSTER:'i',random,random,hostile
 MONSTER:'i',random,random,hostile
-MONSTER:'B',"vampire bat",random
-MONSTER:'B',"vampire bat",random
-MONSTER:'B',"vampire bat",random
-MONSTER:'B',"vampire bat",random
-MONSTER:'B',"vampire bat",random
-MONSTER:'B',"vampire bat",random
-MONSTER:'B',"vampire bat",random
+MONSTER:'B',"vampire bat",random,hostile
+MONSTER:'B',"vampire bat",random,hostile
+MONSTER:'B',"vampire bat",random,hostile
+MONSTER:'B',"vampire bat",random,hostile
+MONSTER:'B',"vampire bat",random,hostile
+MONSTER:'B',"vampire bat",random,hostile
+MONSTER:'B',"vampire bat",random,hostile
 MONSTER:'i',random,random,hostile
 
 #
@@ -314,7 +314,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:'@',"Dark One",(16,11)
+MONSTER:'@',"Dark One",(16,11),hostile
 MONSTER:'B',random,random,hostile
 MONSTER:'B',random,random,hostile
 MONSTER:'B',random,random,hostile
@@ -333,14 +333,14 @@ MONSTER:'i',random,random,hostile
 MONSTER:'i',random,random,hostile
 MONSTER:'i',random,random,hostile
 MONSTER:'i',random,random,hostile
-MONSTER:'B',"vampire bat",random
-MONSTER:'B',"vampire bat",random
-MONSTER:'B',"vampire bat",random
-MONSTER:'B',"vampire bat",random
-MONSTER:'B',"vampire bat",random
-MONSTER:'B',"vampire bat",random
-MONSTER:'B',"vampire bat",random
-MONSTER:'B',"vampire bat",random
+MONSTER:'B',"vampire bat",random,hostile
+MONSTER:'B',"vampire bat",random,hostile
+MONSTER:'B',"vampire bat",random,hostile
+MONSTER:'B',"vampire bat",random,hostile
+MONSTER:'B',"vampire bat",random,hostile
+MONSTER:'B',"vampire bat",random,hostile
+MONSTER:'B',"vampire bat",random,hostile
+MONSTER:'B',"vampire bat",random,hostile
 MONSTER:'i',random,random,hostile
 # Captive Monsters in the dungeon
 MONSTER:'@',"rogue",(35,06),peaceful,"Pug"
@@ -369,23 +369,23 @@ OBJECT: random,random,random
 MONSTER: 'i', random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-OBJECT: random,random,random
-MONSTER: 'i', random, random, hostile
-
-ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-TRAP: random, random
-OBJECT: random,random,random
-MONSTER: 'B', "vampire bat", random
-MONSTER: 'B', "vampire bat", random
-
-ROOM: "ordinary" , random, random, random, random
 STAIR: random, down
 OBJECT: random, random, random
 TRAP: random, random
 MONSTER: 'i', random, random, hostile
-MONSTER: 'B', "vampire bat", random
+MONSTER: 'B', "vampire bat", random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: 'i', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: 'B', "vampire bat", random,hostile
+MONSTER: 'B', "vampire bat", random,hostile
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
@@ -396,7 +396,7 @@ MONSTER: 'i', random, random, hostile
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-MONSTER: 'B', "vampire bat", random
+MONSTER: 'B', "vampire bat", random,hostile
 
 RANDOM_CORRIDORS
 
@@ -408,6 +408,13 @@ OBJECT: random,random,random
 MONSTER: 'X', random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'i', random, random, hostile
+MONSTER: 'B', "vampire bat", random,hostile
+
+ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 OBJECT: random,random,random
 MONSTER: 'i', random, random, hostile
@@ -419,13 +426,6 @@ OBJECT: random,random,random
 MONSTER: 'X', random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
-STAIR: random, down
-OBJECT: random, random, random
-TRAP: random, random
-MONSTER: 'i', random, random, hostile
-MONSTER: 'B', "vampire bat", random
-
-ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 TRAP: random, random
@@ -434,6 +434,6 @@ MONSTER: 'i', random, random, hostile
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-MONSTER: 'B', "vampire bat", random
+MONSTER: 'B', "vampire bat", random,hostile
 
 RANDOM_CORRIDORS

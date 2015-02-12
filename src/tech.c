@@ -17,6 +17,9 @@ static int FDECL(techeffects, (int));
 static void FDECL(hurtmon, (struct monst *,int));
 static int FDECL(mon_to_zombie, (int));
 STATIC_PTR int NDECL(tinker);
+#ifdef JEDI
+STATIC_PTR int NDECL(charge_saber);
+#endif
 STATIC_PTR int NDECL(draw_energy);
 static const struct innate_tech * NDECL(role_tech);
 static const struct innate_tech * NDECL(race_tech);
@@ -28,6 +31,7 @@ static int NDECL(blitz_g_slam);
 static int NDECL(blitz_dash);
 static int NDECL(blitz_power_surge);
 static int NDECL(blitz_spirit_bomb);
+static void FDECL(maybe_tameX, (struct monst *));
 
 static NEARDATA schar delay;            /* moves left for tinker/energy draw */
 static NEARDATA const char revivables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
@@ -80,6 +84,20 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"power surge",
 	"spirit bomb",
 	"draw blood",
+	"world fall",
+	"create ammo",
+	"poke ball",
+	"attire charm",
+	"summon team ant",
+	"appraisal",
+	"egg bomb",
+	"booze",
+	"invoke deity",
+#ifdef JEDI
+	"jedi jump",
+	"charge saber",
+	"telekinesis",
+#endif
 	""
 };
 
@@ -87,13 +105,129 @@ static const struct innate_tech
 	/* Roles */
 	arc_tech[] = { {   1, T_RESEARCH, 1},
 		       {   0, 0, 0} },
+	ass_tech[] = { {   1, T_CUTTHROAT, 1},
+		       {   0, 0, 0} },
+	lad_tech[] = { {   1, T_ATTIRE_CHARM, 1},
+		       {   0, 0, 0} },
+	jes_tech[] = { {   30, T_EGG_BOMB, 1},
+		       {   0, 0, 0} },
+	stu_tech[] = { {   1, T_LIQUID_LEAP, 1},
+		       {   1, T_JEDI_JUMP, 1},
+		       {   0, 0, 0} },
+	gun_tech[] = { {   1, T_CREATE_AMMO, 1},
+		       {   1, T_SURGERY, 1},
+		       {   0, 0, 0} },
+	lib_tech[] = { {   1, T_RESEARCH, 1},
+		       {   0, 0, 0} },
+	dol_tech[] = { {   1, T_ATTIRE_CHARM, 1},
+		       {   7, T_RESEARCH, 1},
+		       {   10, T_POKE_BALL, 1},
+		       {   0, 0, 0} },
+	ama_tech[] = { {   1, T_FLURRY, 1},
+		       {   1, T_PRACTICE, 1},
+		       {   5, T_CRIT_STRIKE, 1},
+		       {   15, T_VANISH, 1},
+		       {   25, T_ATTIRE_CHARM, 1},
+		       {   0, 0, 0} },
+
+	bos_tech[] = { {   1, T_FLURRY, 1},
+		       {   5, T_VANISH, 1},
+		       {   15, T_BLINK, 1},
+		       {   30, T_TELEKINESIS, 1},
+		       {   0, 0, 0} },
+
+	ord_tech[] = { {   1, T_PRACTICE, 1},
+		       {   1, T_TURN_UNDEAD, 1},
+		       {   10, T_TINKER, 1},
+		       {   0, 0, 0} },
+
+	dun_tech[] = { {   1, T_CUTTHROAT, 1},
+		       {   10, T_CRIT_STRIKE, 1},
+		       {   20, T_RAISE_ZOMBIES, 1},
+		       {   0, 0, 0} },
+
+	alt_tech[] = { {   1, T_BLESSING, 1},
+		       {   1, T_SIGIL_CONTROL, 1},
+		       {   1, T_SIGIL_TEMPEST, 1},
+		       {   1, T_SIGIL_DISCHARGE, 1},
+		       {   1, T_DRAW_ENERGY, 1},
+		       {   1, T_POWER_SURGE, 1},
+		       {   10, T_E_FIST, 1},
+		       {   10, T_CHI_STRIKE, 1},
+		       {   20, T_BLITZ, 1},
+		       {   25, T_REVIVE, 1},
+		       {   0, 0, 0} },
+
+	tha_tech[] = { {   5, T_DAZZLE, 1},
+		       {   10, T_WARD_FIRE, 1},
+		       {   10, T_DRAW_ENERGY, 1},
+			 {   15, T_LIQUID_LEAP, 1},
+			 {   15, T_WARD_ELEC, 1},
+			 {   20, T_WARD_COLD, 1},
+		       {   20, T_POWER_SURGE, 1},
+		       {   0, 0, 0} },
+
+	gof_tech[] = { {   1, T_DRAW_BLOOD, 1},
+		       {   1, T_CALM_STEED, 1},
+		       {   1, T_DAZZLE, 1},
+		       {   1, T_TURN_UNDEAD, 1},
+		       {   1, T_CREATE_AMMO, 1},
+		       {   1, T_ATTIRE_CHARM, 1},
+		       {   5, T_VANISH, 1},
+		       {   10, T_FLURRY, 1},
+		       {   15, T_REVIVE, 1},
+		       {   20, T_RAISE_ZOMBIES, 1},
+		       {   25, T_BOOZE, 1},
+		       {   30, T_TELEKINESIS, 1},
+		       {   0, 0, 0} },
+	dru_tech[] = { {   1, T_BOOZE, 1},
+		       {   0, 0, 0} },
 	bar_tech[] = { {   1, T_BERSERK, 1},
 		       {   0, 0, 0} },
+	ble_tech[] = { {   1, T_SURGERY, 1},
+		       {   1, T_HEAL_HANDS, 1},
+		       {   1, T_DRAW_BLOOD, 1},
+		       {   10, T_CHI_HEALING, 1},
+		       {   20, T_REVIVE, 1},
+		       {   0, 0, 0} },
+	spa_tech[] = { {   1, T_REINFORCE, 1},
+			 {   5, T_RESEARCH, 1},
+		       {  8, T_WARD_FIRE, 1},
+		       {  10, T_CHARGE_SABER, 1},
+		       {  11, T_WARD_COLD, 1},
+		       {  14, T_WARD_ELEC, 1},
+		       {  20, T_DRAW_ENERGY, 1},
+		       {   0, 0, 0} },
+	gan_tech[] = { {   1, T_CREATE_AMMO, 1},
+		       {   0, 0, 0} },
+	roc_tech[] = { {   1, T_EGG_BOMB, 1},
+		       {   1, T_FLURRY, 1},
+		       {   0, 0, 0} },
+	dea_tech[] = { {   1, T_WORLD_FALL, 1},
+		       {   0, 0, 0} },
 	cav_tech[] = { {   1, T_PRIMAL_ROAR, 1},
+		       {   0, 0, 0} },
+	brd_tech[] = { {   1, T_PRIMAL_ROAR, 1},
+		       {  10, T_BOOZE, 1},
+		       {  20, T_RAGE, 1},
+		       {   0, 0, 0} },
+	aci_tech[] = { {   1, T_REINFORCE, 1},
+		       {   3, T_POWER_SURGE, 1},
+		       {   5, T_DRAW_ENERGY, 1},
+		       {   7, T_SIGIL_CONTROL, 1},
+		       {  10, T_SIGIL_TEMPEST, 1},
+		       {  20, T_SIGIL_DISCHARGE, 1},
 		       {   0, 0, 0} },
 	fla_tech[] = { {   1, T_REINFORCE, 1},
 		       {   3, T_POWER_SURGE, 1},
 		       {   5, T_DRAW_ENERGY, 1},
+		       {  10, T_SIGIL_TEMPEST, 1},
+		       {  20, T_SIGIL_DISCHARGE, 1},
+		       {   0, 0, 0} },
+	ele_tech[] = { {   1, T_REINFORCE, 1},
+		       {   3, T_POWER_SURGE, 1},
+		       {   5, T_DRAW_ENERGY, 1},
+		       {   7, T_SIGIL_CONTROL, 1},
 		       {  10, T_SIGIL_TEMPEST, 1},
 		       {  20, T_SIGIL_DISCHARGE, 1},
 		       {   0, 0, 0} },
@@ -106,9 +240,31 @@ static const struct innate_tech
 		       {  12, T_POWER_SURGE, 1},
 		       {  20, T_SIGIL_DISCHARGE, 1},
 		       {   0, 0, 0} },
+#ifdef JEDI
+	jed_tech[] = { {   1, T_JEDI_JUMP, 1},
+		       {   5, T_CHARGE_SABER, 1},
+		       {   8, T_TELEKINESIS, 1},
+		       {   0, 0, 0,} },
+#endif
 	kni_tech[] = { {   1, T_TURN_UNDEAD, 1},
 		       {   1, T_HEAL_HANDS, 1},
 		       {   0, 0, 0} },
+
+	pal_tech[] = { {   1, T_TURN_UNDEAD, 1},
+		       {   1, T_HEAL_HANDS, 1},
+		       {   0, 0, 0} },
+
+	wan_tech[] = { {   30, T_WORLD_FALL, 1},
+		       {   0, 0, 0} },
+
+	sci_tech[] = { {   1, T_RESEARCH, 1},
+		       {   1, T_TINKER, 1},
+		       {   10, T_SURGERY, 1},
+		       {   20, T_SUMMON_TEAM_ANT, 1},
+		       {   25, T_DRAW_ENERGY, 1},
+		       {   30, T_EGG_BOMB, 1},
+		       {   0, 0, 0} },
+
 	mon_tech[] = { {   1, T_PUMMEL, 1},
 		       {   1, T_DASH, 1},
 		       {   1, T_BLITZ, 1},
@@ -123,6 +279,68 @@ static const struct innate_tech
 		       {  17, T_SPIRIT_BOMB, 1},
 		       {  20, T_POWER_SURGE, 1},
 		       {   0, 0, 0} },
+
+	sup_tech[] = { {   18, T_PUMMEL, 1},
+		       {   18, T_DASH, 1},
+		       {   18, T_BLITZ, 1},
+		       {   18, T_CHI_STRIKE, 1},
+	  	       {   18, T_CHI_HEALING, 1},
+	  	       {   18, T_E_FIST, 1},
+		       {  18, T_G_SLAM, 1},
+		       {  18, T_SPIRIT_BOMB, 1},
+		       {   0, 0, 0} },
+
+	sai_tech[] = { {   1, T_PUMMEL, 1},
+		       {   1, T_DASH, 1},
+		       {   1, T_BLITZ, 1},
+		       {   2, T_CHI_STRIKE, 1},
+	  	       {   4, T_CHI_HEALING, 1},
+	  	       {   6, T_E_FIST, 1},
+		       {   8, T_DRAW_ENERGY, 1},
+		       {  10, T_G_SLAM, 1},
+		       {  11, T_WARD_FIRE, 1},
+		       {  13, T_WARD_COLD, 1},
+		       {  15, T_WARD_ELEC, 1},
+		       {  17, T_SPIRIT_BOMB, 1},
+		       {  20, T_POWER_SURGE, 1},
+		       {   0, 0, 0} },
+
+	psi_tech[] = { {   1, T_PUMMEL, 1},
+		       {   1, T_DASH, 1},
+		       {   2, T_CHI_STRIKE, 1},
+	  	       {   4, T_CHI_HEALING, 1},
+	  	       {   6, T_E_FIST, 1},
+		       {   8, T_DRAW_ENERGY, 1},
+		       {   8, T_TELEKINESIS, 1},
+		       {  10, T_G_SLAM, 1},
+		       {  11, T_WARD_FIRE, 1},
+		       {  13, T_WARD_COLD, 1},
+		       {  15, T_WARD_ELEC, 1},
+		       {  15, T_ATTIRE_CHARM, 1},
+		       {  17, T_SPIRIT_BOMB, 1},
+		       {  20, T_POWER_SURGE, 1},
+		       {   0, 0, 0} },
+	pok_tech[] = { {   1, T_POKE_BALL, 1},
+		       {   2, T_PUMMEL, 1},
+		       {   4, T_DASH, 1},
+		       {  5, T_WARD_FIRE, 1},
+		       {   8, T_BLITZ, 1},
+		       {  9, T_WARD_COLD, 1},
+		       {  10, T_RAISE_ZOMBIES, 1},
+		       {  13, T_WARD_ELEC, 1},
+	  	       {   15, T_CREATE_AMMO, 1},
+	  	       {   16, T_E_FIST, 1},
+	  	       {   17, T_EGG_BOMB, 1},
+	  	       {   18, T_WORLD_FALL, 1},
+		       {   20, T_DRAW_ENERGY, 1},
+		       {   22, T_RESEARCH, 1},
+		       {  25, T_G_SLAM, 1},
+		       {  26, T_SUMMON_TEAM_ANT, 1},
+		       {  27, T_BLESSING, 1},
+		       {  28, T_REVIVE, 1},
+		       {  29, T_SPIRIT_BOMB, 1},
+		       {  30, T_POWER_SURGE, 1},
+		       {   0, 0, 0} },
 	nec_tech[] = { {   1, T_REINFORCE, 1},
 		       {   1, T_RAISE_ZOMBIES, 1},
 		       {  10, T_POWER_SURGE, 1},
@@ -131,7 +349,15 @@ static const struct innate_tech
 	pri_tech[] = { {   1, T_TURN_UNDEAD, 1},
 		       {   1, T_BLESSING, 1},
 		       {   0, 0, 0} },
+	che_tech[] = { {   1, T_TURN_UNDEAD, 1},
+		       {   1, T_BLESSING, 1},
+		       {   1, T_HEAL_HANDS, 1},
+		       {   0, 0, 0} },
 	ran_tech[] = { {   1, T_FLURRY, 1},
+		       {   0, 0, 0} },
+	aug_tech[] = { {   1, T_TELEKINESIS, 1},
+		       {   0, 0, 0} },
+	elp_tech[] = { {   1, T_FLURRY, 1},
 		       {   0, 0, 0} },
 	rog_tech[] = { {   1, T_CRIT_STRIKE, 1},
 		       {  15, T_CUTTHROAT, 1},
@@ -140,10 +366,27 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	tou_tech[] = { /* Put Tech here */
 		       {   0, 0, 0} },
+	tra_tech[] = { {   1, T_ATTIRE_CHARM, 1},
+		       {   0, 0, 0} },
+	act_tech[] = { {   1, T_REINFORCE, 1},
+		       {  5, T_VANISH, 1},
+		       {  10, T_DAZZLE, 1},
+		       {   0, 0, 0} },
+	top_tech[] = { {   1, T_ATTIRE_CHARM, 1},
+		       {  10, T_CREATE_AMMO, 1},
+		       {  20, T_LIQUID_LEAP, 1},
+		       {   0, 0, 0} },
 	und_tech[] = { {   1, T_TURN_UNDEAD, 1},
 		       {   1, T_PRACTICE, 1},
 		       {   0, 0, 0} },
+	unt_tech[] = { {   1, T_TURN_UNDEAD, 1},
+		       {   0, 0, 0} },
 	val_tech[] = { {   1, T_PRACTICE, 1},
+		       {   0, 0, 0} },
+	lun_tech[] = { {   1, T_EVISCERATE, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {  10, T_BERSERK, 1},
 		       {   0, 0, 0} },
 #ifdef YEOMAN
 	yeo_tech[] = {
@@ -160,22 +403,140 @@ static const struct innate_tech
 		       {  20, T_SIGIL_DISCHARGE, 1},
 		       {   0, 0, 0} },		       
 	/* Races */
+	arg_tech[] = { {   1, T_HEAL_HANDS, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   0, 0, 0} },
 	dop_tech[] = { {   1, T_LIQUID_LEAP, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
 	dwa_tech[] = { {   1, T_RAGE, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   0, 0, 0} },
+	cur_tech[] = { /* Put Tech here */
+		       {   1, T_BLESSING, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
 	elf_tech[] = { /* Put Tech here */
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
 	gno_tech[] = { {   1, T_VANISH, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
 		       {   7, T_TINKER, 1},
 		       {   0, 0, 0} },
+	clk_tech[] = { {   1, T_FLURRY, 1},
+		       {   1, T_VANISH, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_BOOZE, 1},
+		       {   5, T_TINKER, 1},
+		       {   7, T_SIGIL_DISCHARGE, 1},
+		       {   10, T_BLINK, 1},
+		       {   12, T_DRAW_ENERGY, 1},
+		       {   15, T_SIGIL_TEMPEST, 1},
+		       {   23, T_SIGIL_CONTROL, 1},
+		       {   0, 0, 0} },
+	ogr_tech[] = { {   1, T_FLURRY, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   10, T_BERSERK, 1},
+		       {   15, T_PRIMAL_ROAR, 1},
+		       {   20, T_CRIT_STRIKE, 1},
+		       {   0, 0, 0} },
+	ung_tech[] = { {   1, T_WORLD_FALL, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_POKE_BALL, 1},
+		       {   1, T_RESEARCH, 1},
+		       {   1, T_PRACTICE, 1},
+		       {   1, T_CALM_STEED, 1},
+		       {   1, T_TURN_UNDEAD, 1},
+		       {   1, T_BLESSING, 1},
+		       {   1, T_DRAW_BLOOD, 1},
+		       {   1, T_SURGERY, 1},
+		       {   0, 0, 0} },
 	hob_tech[] = { {   1, T_BLINK, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   0, 0, 0} },
+
+	fen_tech[] = { {   1, T_EVISCERATE, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   10, T_VANISH, 1},
+		       {   0, 0, 0} },
+
+	alb_tech[] = { {   1, T_DAZZLE, 1},
+		       {   1, T_PRACTICE, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   5, T_CHARGE_SABER, 1},
+		       {   10, T_CRIT_STRIKE, 1},
+		       {   15, T_TELEKINESIS, 1},
+		       {   20, T_BLINK, 1},
+		       {   25, T_JEDI_JUMP, 1},
+		       {   0, 0, 0} },
+
+	nor_tech[] = { {   1, T_BERSERK, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   10, T_RAGE, 1},
+		       {   0, 0, 0} },
+
+	ins_tech[] = { {   1, T_SUMMON_TEAM_ANT, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   0, 0, 0} },
+	kob_tech[] = { {   10, T_TINKER, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   0, 0, 0} },
+	kha_tech[] = { {   1, T_EVISCERATE, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   0, 0, 0} },
+	hmo_tech[] = { {   1, T_BERSERK, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
 	lyc_tech[] = { {   1, T_EVISCERATE, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
 		       {  10, T_BERSERK, 1},
 		       {   0, 0, 0} },
 	vam_tech[] = { {   1, T_DAZZLE, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_DRAW_BLOOD, 1},
+		       {   0, 0, 0} },
+	ang_tech[] = { {   1, T_DAZZLE, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_TURN_UNDEAD, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   0, 0, 0} },
+	mum_tech[] = { {   1, T_RAISE_ZOMBIES, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   0, 0, 0} },
+	vor_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_VANISH, 1},
+		       {   10, T_TELEKINESIS, 1},
+		       {   15, T_EGG_BOMB, 1},
+		       {   20, T_WORLD_FALL, 1},
+		       {   0, 0, 0} },
+	bat_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_PRACTICE, 1},
+		       {   1, T_DRAW_BLOOD, 1},
+		       {   0, 0, 0} },
+	def_tech[] = { {   1, T_APPRAISAL, 1}, /* everyone is supposed to get this --Amy */
+		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} };
 	/* Orc */
 
@@ -452,7 +813,9 @@ dotechmenu(how, tech_no)
 			    tlevel <= 0 ? "Beyond recall" :
 			    can_limitbreak() ? "LIMIT" :
 			    !techtout(i) ? "Prepared" : 
-			    techtout(i) > 100 ? "Not Ready" : "Soon",
+			    techtout(i) > 10000 ? "Huge timeout" :
+			    techtout(i) > 1000 ? "Not Ready" :
+			    techtout(i) > 100 ? "Reloading" : "Soon",
 			    techtout(i));
 		else
 		    Sprintf(buf, "%s%s\t%2d%c%c%c\t%s(%i)",
@@ -464,7 +827,9 @@ dotechmenu(how, tech_no)
 			    tlevel <= 0 ? "Beyond recall" :
 			    can_limitbreak() ? "LIMIT" :
 			    !techtout(i) ? "Prepared" : 
-			    techtout(i) > 100 ? "Not Ready" : "Soon",
+			    techtout(i) > 10000 ? "Huge timeout" :
+			    techtout(i) > 1000 ? "Not Ready" :
+			    techtout(i) > 100 ? "Reloading" : "Soon",
 			    techtout(i));
 	    else
 #endif
@@ -475,7 +840,9 @@ dotechmenu(how, tech_no)
 			tlevel <= 0 ? "Beyond recall" :
 			can_limitbreak() ? "LIMIT" :
 			!techtout(i) ? "Prepared" : 
-			techtout(i) > 100 ? "Not Ready" : "Soon");
+			techtout(i) > 10000 ? "Huge timeout" :
+			techtout(i) > 1000 ? "Not Ready" :
+			techtout(i) > 100 ? "Reloading" : "Soon");
 	    else
 		Sprintf(buf, "%s%s\t%5d\t%s",
 			prefix, techname(i), tlevel,
@@ -483,7 +850,9 @@ dotechmenu(how, tech_no)
 			tlevel <= 0 ? "Beyond recall" :
 			can_limitbreak() ? "LIMIT" :
 			!techtout(i) ? "Prepared" : 
-			techtout(i) > 100 ? "Not Ready" : "Soon");
+			techtout(i) > 10000 ? "Huge timeout" :
+			techtout(i) > 1000 ? "Not Ready" :
+			techtout(i) > 100 ? "Reloading" : "Soon");
 
 	    add_menu(tmpwin, NO_GLYPH, &any,
 		    techtout(i) ? 0 : let, 0, ATR_NONE, buf, MENU_UNSELECTED);
@@ -606,7 +975,7 @@ int tech_no;
 		    return(0);
 		} else if((ACURR(A_INT) + ACURR(A_WIS)) < rnd(60)) {
 			pline("Nothing in your pack looks familiar.");
-                    t_timeout = rn1(500,500);
+                    t_timeout = rnz(1000);
 		    break;
 		} else if(invent) {
 			You("examine your possessions.");
@@ -616,7 +985,7 @@ int tech_no;
 		    You("are already quite familiar with the contents of your pack.");
 		    break;
 		}
-                t_timeout = rn1(500,1500);
+                t_timeout = rnz(2000);
 		break;
             case T_EVISCERATE:
 		/* only when empty handed, in human form */
@@ -628,14 +997,14 @@ int tech_no;
 		Your("fingernails extend into claws!");
 		aggravate();
 		techt_inuse(tech_no) = d(2,4) + techlev(tech_no)/5 + 2;
-		t_timeout = rn1(1000,1000);
+		t_timeout = rnz(2000);
 		break;
             case T_BERSERK:
 		You("fly into a berserk rage!");
 		techt_inuse(tech_no) = d(2,8) +
                		(techlev(tech_no)/5) + 2;
 		incr_itimeout(&HFast, techt_inuse(tech_no));
-		t_timeout = rn1(1000,500);
+		t_timeout = rnz(1500);
 		break;
             case T_REINFORCE:
 		/* WAC spell-users can study their known spells*/
@@ -644,7 +1013,7 @@ int tech_no;
 		    break;
                	} else {
 		    You("concentrate...");
-		    if (studyspell()) t_timeout = rn1(1000,500); /*in spell.c*/
+		    if (studyspell()) t_timeout = rnz(1500); /*in spell.c*/
 		}
                break;
             case T_FLURRY:
@@ -652,7 +1021,68 @@ int tech_no;
 			uarmg ? "gloved" : "bare",      /* Del Lamb */
 			makeplural(body_part(HAND)));
                 techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/6 + 1)) + 2;
-                t_timeout = rn1(1000,500);
+                t_timeout = rnz(1500);
+		break;
+            case T_INVOKE_DEITY: /* ask for healing if your alignment record is positive --Amy */
+
+			if (u.ualign.record < 0) {
+
+				if ( (Inhell && !Race_if(PM_HERETIC) ) || !strncmpi(plname, "Gehenna", 7) ) {
+					pline("%s is inaccessible, and Moloch decides to smite you!",u_gname() );
+					u.ublesscnt += rnz(-u.ualign.record);
+					losehp(rnz(-u.ualign.record), "annoying Moloch", KILLED_BY);
+				} else {
+					pline("%s smites you for your sins!",u_gname() );
+					u.ublesscnt += rnz(-u.ualign.record);
+					losehp(rnz(-u.ualign.record), "disturbing their deity", KILLED_BY);
+				}
+/* If your deity feels annoyed, they will damage you and increase your prayer timeout. They won't get angry though. */
+			} 
+
+			else if (Race_if(PM_IMPERIAL)) {
+				pline("%s hates you and decides you need to be punished!",u_gname() );
+				u.ublesscnt += rnz(monster_difficulty() + 1 );
+				losehp(rnz(monster_difficulty() + 1 ), "being a pesky heretic", KILLED_BY);
+/* Imperials cannot use this technique successfully. */
+			} 
+
+			else if ( (Inhell && !Race_if(PM_HERETIC) ) || !strncmpi(plname, "Gehenna", 7) ) {
+				pline("%s is inaccessible, and Moloch decides to smite you!",u_gname() );
+				u.ublesscnt += rnz(monster_difficulty() + 1 );
+				losehp(rnz(monster_difficulty() + 1 ), "trying to contact their deity in Gehennom", KILLED_BY);
+/* Trying to invoke a deity in Gehennom is never a good idea... */
+			} 
+
+			else if (u.ualign.record > 0) {
+				pline("%s commends your efforts and grants you a boon.",u_gname() );
+				u.ublesscnt -= rnz(u.ualign.record + techlev(tech_no) );
+				if(u.ublesscnt < 0) u.ublesscnt = 0;
+				healup( rnz(u.ualign.record + techlev(tech_no)) , 0, FALSE, FALSE);
+/* If your deity is pleased with you, heal some damage and decrease your prayer timeout. */
+			}
+
+			else { /* alignment record exactly 0, do nothing */
+				pline("%s ignores your pleadings.",u_gname() );
+			}
+
+			u.uconduct.gnostic++;	/* you just tried to access your god */
+                t_timeout = rnz(3000);
+		break;
+            case T_APPRAISAL:
+			if(!uwep) {
+		    You("are not wielding anything!");
+		    return(0);
+		} else if (weapon_type(uwep) == P_NONE) {
+                        You("examine %s.", doname(uwep));
+                                uwep->known = TRUE;
+                                You("discover it is %s",doname(uwep));
+                t_timeout = rnz(2000);
+		} else {
+                        You("examine %s.", doname(uwep));
+                                uwep->known = TRUE;
+                                You("discover it is %s",doname(uwep));
+                t_timeout = rnz(200);
+		}
 		break;
             case T_PRACTICE:
                 if(!uwep || (weapon_type(uwep) == P_NONE)) {
@@ -673,7 +1103,7 @@ int tech_no;
                 /*WAC Added practicing code - in weapon.c*/
                     practice_weapon();
 		}
-                t_timeout = rn1(500,500);
+                t_timeout = rnz(1000);
 		break;
             case T_SURGERY:
 		if (Hallucination || Stunned || Confusion) {
@@ -693,7 +1123,7 @@ int tech_no;
 			    u.uhp -= 5;
 			else
 			    u.uhp = 1;
-                        t_timeout = rn1(500,500);
+                        t_timeout = rnz(1000);
 			flags.botl = TRUE;
 			break;
 		    } else pline("If only you had a scalpel...");
@@ -717,7 +1147,7 @@ int tech_no;
 			You("strap your wounds as best you can.");
 			healup(techlev(tech_no) + rn1(5,5), 0, FALSE, FALSE);
 		    }
-                    t_timeout = rn1(1000,500);
+                    t_timeout = rnz(1500);
 		    flags.botl = TRUE;
 		} else You("don't need your healing powers!");
 		break;
@@ -725,15 +1155,15 @@ int tech_no;
 		if (Slimed) {
 		    Your("body is on fire!");
 		    burn_away_slime();
-		    t_timeout = 3000;
+		    t_timeout = rnz(3000);
 		} else if (Sick) {
 		    You("lay your hands on the foul sickness...");
 		    make_sick(0L, (char*)0, TRUE, SICK_ALL);
-		    t_timeout = 3000;
+		    t_timeout = rnz(3000);
 		} else if (Upolyd ? u.mh < u.mhmax : u.uhp < u.uhpmax) {
 		    pline("A warm glow spreads through your body!");
 		    healup(techlev(tech_no) * 4, 0, FALSE, FALSE);
-		    t_timeout = 3000;
+		    t_timeout = rnz(3000);
 		} else
 		    pline(nothing_happens);
 		break;
@@ -741,14 +1171,30 @@ int tech_no;
 		You("scream \"KIIILLL!\"");
 		aggravate();
                 techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/6 + 1)) + 2;
-                t_timeout = rn1(1000,500);
+                t_timeout = rnz(1500);
 		break;
 #ifdef STEED
 	    case T_CALM_STEED:
+
+		if (u.usteed) pline("You calm your steed.");
+		int calmedX;
+		calmedX = 0;
+
                 if (u.usteed) {
+
+
                         pline("%s gets tamer.", Monnam(u.usteed));
-                        tamedog(u.usteed, (struct obj *) 0);
-                        t_timeout = rn1(1000,500);
+                        tamedog(u.usteed, (struct obj *) 0, FALSE);
+
+				while (calmedX == 0) { /* remove the stupid bug that caused this tech to do nothing --Amy */
+
+				if (u.usteed->mtame < 20) u.usteed->mtame++;
+
+				if (techlev(tech_no) < rnd(50)) calmedX++; /* high level tech has high chance of extra tameness */
+
+				}
+
+                        t_timeout = rnz(1500);
                 } else
                         Your("technique is only effective when riding a monster.");
                 break;
@@ -765,7 +1211,7 @@ int tech_no;
 		incr_itimeout(&HInvis, techt_inuse(tech_no));
 		incr_itimeout(&HFast, techt_inuse(tech_no));
 		newsym(u.ux,u.uy);      /* update position */
-		t_timeout = rn1(1000,500);
+		t_timeout = rnz(1500);
 		break;
 	    case T_CRIT_STRIKE:
 		if (!getdir((char *)0)) return(0);
@@ -798,7 +1244,7 @@ int tech_no;
 			    tmp /= 2;
 			}
 			tmp += techlev(tech_no);
-			t_timeout = rn1(1000, 500);
+			t_timeout = rnz(1500);
 			hurtmon(mtmp, tmp);
 		    }
 		}
@@ -873,7 +1319,7 @@ int tech_no;
 			obj->bknown=1;
 			pline("The aura fades.");
 		}
-		t_timeout = rn1(1000,500);
+		t_timeout = rnz(1500);
 		break;
 	    case T_E_FIST: 
 	    	blitz_e_fist();
@@ -882,7 +1328,7 @@ int tech_no;
                 You("focus the powers of the elements into your %s", str);
                 techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/3 + 1)) + d(1,4) + 2;
 #endif
-		t_timeout = rn1(1000,500);
+		t_timeout = rnz(1500);
 	    	break;
 	    case T_PRIMAL_ROAR:	    	
 	    	You("let out a bloodcurdling roar!");
@@ -900,7 +1346,7 @@ int tech_no;
 		    	    int ttime = techt_inuse(tech_no);
 		    	    int type = little_to_big(monsndx(ptr));
 		    	    
-		    	    mtmp2 = tamedog(mtmp, (struct obj *) 0);
+		    	    mtmp2 = tamedog(mtmp, (struct obj *) 0, TRUE);
 			    if (mtmp2)
 				mtmp = mtmp2;
 
@@ -911,7 +1357,7 @@ int tech_no;
 		    	    }
 		    	}
 		    }
-		t_timeout = rn1(1000,500);
+		t_timeout = rnz(1500);
 	    	break;
 	    case T_LIQUID_LEAP: {
 	    	coord cc;
@@ -941,6 +1387,7 @@ int tech_no;
 		    return 0;
 		} else {
 		    You("liquify!");
+		if (Stoned) fix_petrification(); /* basically, you become an acid beam, and while I have absolutely no idea why acid would fix petrification in the first place, at least I'll make it consistent throughout the game. --Amy */
 		    if (Punished) {
 			You("slip out of the iron chain.");
 			unpunish();
@@ -1006,20 +1453,22 @@ int tech_no;
 
 		    /* A little Sokoban guilt... */
 		    if (In_sokoban(&u.uz))
-			change_luck(-1);
+			{change_luck(-1);
+			pline("You cheater!");
+			}
 		    You("reform!");
 		    teleds(cc.x, cc.y, FALSE);
 		    nomul(-1);
 		    nomovemsg = "";
 	    	}
-		t_timeout = rn1(1000,500);
+		t_timeout = rnz(1500);
 	    	break;
 	    }
             case T_SIGIL_TEMPEST: 
 		/* Have enough power? */
-		num = 50 - techlev(tech_no)/5;
+		num = 50 - techlev(tech_no);
 		if (u.uen < num) {
-			You("don't have enough power to invoke the sigil!");
+			You("don't have enough power to invoke the sigil! You need at least %d!",num);
 			return (0);
 		}
 		u.uen -= num;
@@ -1032,9 +1481,9 @@ int tech_no;
 		break;
             case T_SIGIL_CONTROL:
 		/* Have enough power? */
-		num = 30 - techlev(tech_no)/5;
+		num = 30 - techlev(tech_no)/2;
 		if (u.uen < num) {
-			You("don't have enough power to invoke the sigil!");
+			You("don't have enough power to invoke the sigil! You need at least %d!",num);
 			return (0);
 		}
 		u.uen -= num;
@@ -1047,9 +1496,9 @@ int tech_no;
 		break;
             case T_SIGIL_DISCHARGE:
 		/* Have enough power? */
-		num = 100 - techlev(tech_no)/5;
+		num = 100 - techlev(tech_no)*2;
 		if (u.uen < num) {
-			You("don't have enough power to invoke the sigil!");
+			You("don't have enough power to invoke the sigil! You need at least %d!",num);
 			return (0);
 		}
 		u.uen -= num;
@@ -1085,7 +1534,7 @@ int tech_no;
 			    mtmp = revive(obj);
 			    if (mtmp) {
 				if (!resist(mtmp, SPBOOK_CLASS, 0, TELL)) {
-				   mtmp = tamedog(mtmp, (struct obj *) 0);
+				   mtmp = tamedog(mtmp, (struct obj *) 0, FALSE);
 				   You("dominate %s!", mon_nam(mtmp));
 				} else setmangry(mtmp);
 			    }
@@ -1094,7 +1543,7 @@ int tech_no;
 		}
 		nomul(-2); /* You need to recover */
 		nomovemsg = 0;
-		t_timeout = rn1(1000,500);
+		t_timeout = rnz(1500);
 		break;
             case T_REVIVE: 
 		if (u.uswallow) {
@@ -1119,11 +1568,11 @@ int tech_no;
 		    if (mtmp->isshk)
 			make_happy_shk(mtmp, FALSE);
 		    else if (!resist(mtmp, SPBOOK_CLASS, 0, NOTELL))
-			(void) tamedog(mtmp, (struct obj *) 0);
+			(void) tamedog(mtmp, (struct obj *) 0, FALSE);
 		}
             	if (Upolyd) u.mh -= num;
             	else u.uhp -= num;
-		t_timeout = rn1(1000,500);
+		t_timeout = rnz(1500);
             	break;
 	    case T_WARD_FIRE:
 		/* Already have it intrinsically? */
@@ -1132,7 +1581,7 @@ int tech_no;
 		You("invoke the ward against flame!");
 		HFire_resistance += rn1(100,50);
 		HFire_resistance += techlev(tech_no);
-		t_timeout = rn1(1000,500);
+		t_timeout = rnz(1500);
 
 	    	break;
 	    case T_WARD_COLD:
@@ -1142,7 +1591,7 @@ int tech_no;
 		You("invoke the ward against ice!");
 		HCold_resistance += rn1(100,50);
 		HCold_resistance += techlev(tech_no);
-		t_timeout = rn1(1000,500);
+		t_timeout = rnz(1500);
 
 	    	break;
 	    case T_WARD_ELEC:
@@ -1152,7 +1601,7 @@ int tech_no;
 		You("invoke the ward against lightning!");
 		HShock_resistance += rn1(100,50);
 		HShock_resistance += techlev(tech_no);
-		t_timeout = rn1(1000,500);
+		t_timeout = rnz(1500);
 
 	    	break;
 	    case T_TINKER:
@@ -1180,16 +1629,16 @@ int tech_no;
 	    	techt_inuse(tech_no) = num + 1;
 		u.uhpmax += num;
 		u.uhp += num;
-		t_timeout = rn1(1000,500);
+		t_timeout = rnz(1500);
 		break;	    
 	    case T_BLINK:
 	    	You("feel the flow of time slow down.");
                 techt_inuse(tech_no) = rnd(techlev(tech_no) + 1) + 2;
-		t_timeout = rn1(1000,500);
+		t_timeout = rnz(1500);
 	    	break;
             case T_CHI_STRIKE:
             	if (!blitz_chi_strike()) return(0);
-                t_timeout = rn1(1000,500);
+                t_timeout = rnz(1500);
 		break;
             case T_DRAW_ENERGY:
             	if (u.uen == u.uenmax) {
@@ -1200,16 +1649,16 @@ int tech_no;
                 You("begin drawing energy from your surroundings!");
 		delay=-15;
 		set_occupation(draw_energy, "drawing energy", 0);                
-                t_timeout = rn1(1000,500);
+                t_timeout = rnz(1500);
 		break;
             case T_CHI_HEALING:
             	if (u.uen < 1) {
-            		You("are too weak to attempt this!");
+            		You("are too weak to attempt this! You need at least one point of mana!");
             		return(0);
             	}
 		You("direct your internal energy to restoring your body!");
                 techt_inuse(tech_no) = techlev(tech_no)*2 + 4;
-                t_timeout = rn1(1000,500);
+                t_timeout = rnz(1500);
 		break;	
 	    case T_DISARM:
 	    	if (P_SKILL(weapon_type(uwep)) == P_NONE) {
@@ -1375,7 +1824,7 @@ int tech_no;
 		} else {
                        pline("%s breaks the stare!", Monnam(mtmp));
 		}
-               	t_timeout = rn1(50,25);
+               	t_timeout = rnz(75);
 	    	break;
 	    case T_BLITZ:
 	    	if (uwep || (u.twoweap && uswapwep)) {
@@ -1387,7 +1836,7 @@ int tech_no;
 	    	}
 	    	if (!doblitz()) return (0);		
 		
-                t_timeout = rn1(1000,500);
+                t_timeout = rnz(1500);
 	    	break;
             case T_PUMMEL:
 	    	if (uwep || (u.twoweap && uswapwep)) {
@@ -1403,7 +1852,7 @@ int tech_no;
 			return(0);
 		}
             	if (!blitz_pummel()) return(0);
-                t_timeout = rn1(1000,500);
+                t_timeout = rnz(1500);
 		break;
             case T_G_SLAM:
 	    	if (uwep || (u.twoweap && uswapwep)) {
@@ -1419,7 +1868,7 @@ int tech_no;
 			return(0);
 		}
             	if (!blitz_g_slam()) return(0);
-                t_timeout = rn1(1000,500);
+                t_timeout = rnz(1500);
 		break;
             case T_DASH:
 		if (!getdir((char *)0)) return(0);
@@ -1428,11 +1877,11 @@ int tech_no;
 			return(0);
 		}
             	if (!blitz_dash()) return(0);
-                t_timeout = rn1(50, 25);
+                t_timeout = rnz(75);
 		break;
             case T_POWER_SURGE:
             	if (!blitz_power_surge()) return(0);
-		t_timeout = rn1(1000,500);
+		t_timeout = rnz(1500);
 		break;            	
             case T_SPIRIT_BOMB:
 	    	if (uwep || (u.twoweap && uswapwep)) {
@@ -1444,19 +1893,23 @@ int tech_no;
 	    	}
 		if (!getdir((char *)0)) return(0);
             	if (!blitz_spirit_bomb()) return(0);
-		t_timeout = rn1(1000,500);
+		t_timeout = rnz(1500);
 		break;            	
 	    case T_DRAW_BLOOD:
-		if (!maybe_polyd(is_vampire(youmonst.data),
-		  Race_if(PM_VAMPIRE))) {
+		/*if (!maybe_polyd(is_vampire(youmonst.data),
+		  Race_if(PM_VAMPIRE)) && !Race_if(PM_UNGENOMOLD) ) {*/
 		    /* ALI
 		     * Otherwise we get problems with what we create:
 		     * potions of vampire blood would no longer be
 		     * appropriate.
+		     * Note by Amy: Ungenomolds will be able to use this anyway. They may polymorph into a vampire,
+		     * which would make the potions useful for them. Even if they don't, they can still dilute them.
+		     * another note by Amy: who cares? If they can't use it in their current form, too bad. It's still
+		     * better than simply disabling the tech altogether.
 		     */
-		    You("must be in your natural form to draw blood.");
+		    /*You("must be in your natural form to draw blood.");
 		    return(0);
-		}
+		}*/
 		obj = use_medical_kit(PHIAL, TRUE, "draw blood with");
 		if (!obj)
 		    return 0;
@@ -1481,14 +1934,352 @@ int tech_no;
 		(void) hold_another_object(otmp,
 			"You fill, but have to drop, %s!", doname(otmp),
 			(const char *)0);
-		t_timeout = rn1(1000, 500);
+		t_timeout = rnz(1500);
 		break;
+#ifdef JEDI
+	    case T_JEDI_JUMP:
+		if (u.uen < 25){
+			You("can't channel the force around you. Jedi jumps require 25 points of mana!");
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			return(0);
+		}
+		if (!jump((techlev(tech_no)/5)+1)) return 0;
+		u.uen -= 25;
+		t_timeout = rnz(50);
+		break;
+	    case T_POKE_BALL:
+
+		if (u.uswallow) {
+		    You("don't have enough free space to throw the ball!");
+			return 0;
+		}
+
+		int i, j, caught, catchrate;
+		struct monst *mtmp;
+		register struct monst *mtmp2;
+		caught = 0;
+		pline("%s used Poke Ball!", plname);
+
+		    for (i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ( ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) && mtmp->mtame == 0 
+			&& mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) && caught == 0)
+
+				/* using the M3_PETTY attribute now --Amy */
+
+			{
+
+				if (is_petty(mtmp->data))
+
+				{
+			      /*maybe_tameX(mtmp);*/
+				(void) tamedog(mtmp, (struct obj *) 0, TRUE);
+				pline("Gotcha! %s was caught!", mon_nam(mtmp));
+				caught++;
+				t_timeout = rnz(1000);
+				}
+
+			else if ( (mtmp->m_lev > (2 * techlev(tech_no)) || rn2(4) ) && mtmp->m_lev > techlev(tech_no) && caught == 0 && (!is_pokemon(mtmp->data) || rn2(2) ) )
+				{
+				pline("You missed the Pokemon!");
+				}
+
+			else if (caught == 0) /* other monster that can be caught */
+
+				{
+				/* If catchrate is a higher numeric value, the chance of catching the monster is lower. */
+
+				catchrate = (60 + mtmp->m_lev - techlev(tech_no));
+				if (!rn2(4)) catchrate -= techlev(tech_no);
+				if (is_pokemon(mtmp->data)) catchrate = (catchrate / 2);
+				if (catchrate < 3) catchrate = 3;
+				if (rnd(100) < catchrate) pline("Oh, no! The Pokemon broke free!");
+				else if (rnd(100) < catchrate) pline("Aww! It appeared to be caught!");
+				else if (rnd(100) < catchrate) pline("Arrgh! Almost had it!");
+				else if (rnd(100) < catchrate) pline("Shit! It was so close too!");
+				else {
+				      /*maybe_tameX(mtmp);*/
+					(void) tamedog(mtmp, (struct obj *) 0, TRUE);
+					pline("Gotcha! %s was caught!", mon_nam(mtmp));
+					caught++;
+					t_timeout = rnz(1000);
+
+					}
+				}
+
+			} /* monster is catchable loop */
+		    } /* for loop */
+
+		if (caught == 0) pline("The ball expodes in midair!");
+/* This is an intentional typo, derived from another roguelike. Do you know which one it is? --Amy*/
+
+		t_timeout = rnz(1000);
+		break;
+	    case T_SUMMON_TEAM_ANT:
+
+		    pline("Go Team Ant!");
+
+		int caughtY;
+		caughtY = 0;
+
+		while (caughtY == 0) {
+		/*mtmp = make_helper(S_ANT, u.ux, u.uy); */
+ 	      mtmp = makemon(mkclass(S_ANT,0), u.ux, u.uy, NO_MM_FLAGS);
+		if (!mtmp) break;
+		/*mtmp->mtame = 10;*/
+	      /*maybe_tameX(mtmp);*/
+		(void) tamedog(mtmp, (struct obj *) 0, TRUE);
+		if (techlev(tech_no) < rnd(50)) caughtY++;
+		}
+
+		/* A high level Insectoid character can create quite the army of insects sometimes. --Amy */
+
+		t_timeout = rnz(1000);
+		break;
+	    case T_ATTIRE_CHARM:
+
+		if (u.uswallow) {
+		    pline("The monster can't see its inside anyway!");
+			return 0;
+		}
+
+		if (!uarmf || (uarmf && uarmf->otyp != WEDGE_SANDALS && uarmf->otyp != FEMININE_PUMPS && uarmf->otyp != LEATHER_PEEP_TOES && uarmf->otyp != COMBAT_STILETTOS && uarmf->otyp != HIPPIE_HEELS) ) {
+		    pline("You must be wearing high heels for that.");
+			return 0;
+		}
+
+		int k, l, caughtX;
+		struct monst *mtmp3;
+		register struct monst *mtmp4;
+		caughtX = 0;
+		pline("You strike a sexy pose with your heels!");
+
+		    for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
+			if (!isok(u.ux + k, u.uy + l)) continue;
+			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->isshk == 0 && mtmp3->isgd 			== 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
+&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_GUARD]
+			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(mtmp3->data->geno & G_UNIQ) && caughtX == 0)
+
+				/* gotta write a huge function for this now --Amy */
+
+			{
+
+				if ( humanoid(mtmp3->data) || mtmp3->data->mlet == S_HUMAN) {
+			      /*maybe_tameX(mtmp3);*/
+				(void) tamedog(mtmp3, (struct obj *) 0, TRUE);
+				pline("%s is charmed, and wants to be your friend!", mon_nam(mtmp3));
+				if (techlev(tech_no) < rnd(100)) caughtX++;
+				t_timeout = rnz(2000);
+				}
+
+			else pline("%s is too stupid to fully appreciate you!", mon_nam(mtmp3));
+
+			} /* monster is catchable loop */
+		    } /* for loop */
+
+		t_timeout = rnz(2000);
+		break;
+	    case T_WORLD_FALL:
+
+		You("scream \"EYGOORTS-TOGAAL, JEZEHH!\"");
+/* Actually, it's "To win the game you must kill me, John Romero" recorded backwards.
+   When I was little, I always thought it said "Eygoorts-togaal, jezehh". --Amy */
+				{
+			    register struct monst *mtmp, *mtmp2;
+
+				num = 0;
+
+			    for (mtmp = fmon; mtmp; mtmp = mtmp2) {
+				mtmp2 = mtmp->nmon;
+				if ( ((mtmp->m_lev < techlev(tech_no)) || (!rn2(4) && mtmp->m_lev < (2 * techlev(tech_no)))) && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) { mondead(mtmp);
+						num++;
+						}
+			    }
+	pline("Eliminated %d monster%s.", num, plur(num));
+			}
+
+		t_timeout = rnz(10000);
+		break;
+	    case T_CREATE_AMMO:
+
+	    You("make some ammo for your gun.");
+		for (i = 0; i <= techlev(tech_no); i++) {
+
+		if ( inv_cnt() < 52 && (otmp = mksobj(BULLET, TRUE, FALSE)) != (struct obj *)0) {
+				if (pickup_object(otmp, 1, FALSE) <= 0) {
+					obj_extract_self(otmp);
+					place_object(otmp, u.ux, u.uy);
+					newsym(u.ux, u.uy); }
+		};
+		}
+
+	      t_timeout = rnz(500);
+	      break;
+
+	    case T_EGG_BOMB:
+
+	    You("create some stoning grenades.");
+
+		int caughtZ;
+		caughtZ = 0;
+		struct obj *uegg;
+
+		while (caughtZ == 0) {
+
+			uegg = mksobj(EGG, FALSE, FALSE);
+			uegg->spe = 0;
+			uegg->quan = 1;
+			uegg->owt = weight(uegg);
+			uegg->corpsenm = egg_type_from_parent(PM_COCKATRICE, FALSE);
+			uegg->known = uegg->dknown = 1;
+			attach_egg_hatch_timeout(uegg);
+			kill_egg(uegg); /* make sure they're stale --Amy */
+			dropy(uegg);
+			stackobj(uegg);
+			if (techlev(tech_no) < rnd(100)) caughtZ++;
+
+		}
+
+	      t_timeout = rnz(2000);
+	      break;
+
+	    case T_BOOZE:
+
+	    You("procure some refreshing drinks.");
+
+	    make_confused(HConfusion + d(3,8), FALSE);
+		healup(Role_if(PM_DRUNK) ? rnz(20 + u.ulevel) : 1, 0, FALSE, FALSE);
+		u.uhunger += 20;
+		if (Race_if(PM_CLOCKWORK_AUTOMATON)) u.uhunger += 200;
+		if (Role_if(PM_DRUNK)) u.uhunger += 100;
+		newuhs(FALSE);
+		exercise(A_WIS, FALSE);
+
+		int caughtW;
+		caughtW = 0;
+		struct obj *udrink;
+
+		while (caughtW == 0) {
+
+			udrink = mksobj(POT_BOOZE, TRUE, FALSE);
+			udrink ->known = udrink ->dknown = 1;
+			dropy(udrink);
+			stackobj(udrink);
+			if (techlev(tech_no) < rnd(40)) caughtW++;
+
+		}
+
+	      t_timeout = rnz(2000);
+	      break;
+
+	    case T_TELEKINESIS:
+	      {
+		coord cc;
+		struct trap *ttrap;
+		cc.x=u.ux;
+		cc.y=u.uy;
+		pline("Where do you want to apply telekinesis?");
+		if (getpos(&cc, TRUE, "apply telekinesis where") < 0)
+			return(0);
+		if (!cansee(cc.x, cc.y)){
+			You("can't see what's there!");
+			return(0);
+		}
+		if ((ttrap=t_at(cc.x, cc.y)) && ttrap->tseen &&
+			yn("Handle the trap here?") == 'y'){
+		  if (yn("Disarm the trap?") == 'y'){
+		    techt_inuse(tech_no) = 1;
+		    /* copied from trap.c */
+		switch(ttrap->ttyp) {
+			case BEAR_TRAP:
+			case WEB:
+				t_timeout = rnz(250);
+				return disarm_holdingtrap(ttrap);
+			case LANDMINE:
+				t_timeout = rnz(250);
+				return disarm_landmine(ttrap);
+			case SQKY_BOARD:
+				t_timeout = rnz(250);
+				return disarm_squeaky_board(ttrap);
+			case DART_TRAP:
+				t_timeout = rnz(250);
+				return disarm_shooting_trap(ttrap, DART);
+			case ARROW_TRAP:
+				t_timeout = rnz(250);
+				return disarm_shooting_trap(ttrap, ARROW);
+			case RUST_TRAP:
+				t_timeout = rnz(250);
+				return disarm_rust_trap(ttrap);
+			case FIRE_TRAP:
+				t_timeout = rnz(250);
+				return disarm_fire_trap(ttrap);
+			default:
+				You("cannot disable %s trap.", (u.dx || u.dy) ? "that" : "this");
+				return 1;
+		    }
+		  } else if(yn("Spring this trap?")=='y') {
+		    switch(ttrap->ttyp) {
+		      case LANDMINE: 
+			You("trigger the landmine.");
+			pline("KABLAAAM!");
+			blow_up_landmine(ttrap);
+			fill_pit(cc.x, cc.y);
+			newsym(cc.x, cc.y);
+		        t_timeout = rnz(250);
+			break;
+		      case ROLLING_BOULDER_TRAP:
+		      {
+			int style = ROLL | (ttrap->tseen ? LAUNCH_KNOWN : 0);
+			You("trigger the trap!");
+			if(!launch_obj(BOULDER, ttrap->launch.x, ttrap->launch.y, ttrap->launch2.x, ttrap->launch2.y, style)){
+			  deltrap(ttrap);
+			  newsym(cc.x, cc.y);
+			  pline("But no boulder was released.");
+		        }
+		        t_timeout = rnz(250);
+		      }
+		      default:
+		        You("can't spring this trap.");
+			return(0);
+		    }
+		  }
+		} else if ((otmp = level.objects[cc.x][cc.y]) != 0) {
+		  char buf[BUFSZ];
+		  sprintf(buf, "Pick up %s?", the(xname(otmp)));
+		  if (yn(buf) == 'n')
+			return(0);
+		  You("pick up an object from the %s.", surface(cc.x,cc.y));
+		  (void) pickup_object(otmp, 1L, TRUE);
+		  newsym(cc.x, cc.y);
+		  t_timeout = rnz(250);
+		} else {
+		  You("can't do anything there");
+			return(0);
+		}
+		break;
+	      }
+	    case T_CHARGE_SABER:
+	      if (!uwep || !is_lightsaber(uwep)){
+		      You("are not holding a lightsaber!");
+			return(0);
+	      }
+	      if (u.uen < 5){
+		      You("lack the concentration to charge %s. You need at least 5 points of mana!", the(xname(uwep)));
+			return(0);
+	      }
+	      You("start charging %s.", the(xname(uwep)));
+	      delay=-10;
+	      set_occupation(charge_saber, "charging", 0);
+	      t_timeout = rnz(500);
+	      break;
+#endif
 	    default:
 	    	pline ("Error!  No such effect (%i)", tech_no);
-		break;
+		return(0);
         }
         if (!can_limitbreak())
 	    techtout(tech_no) = (t_timeout * (100 - techlev(tech_no))/100);
+		if (Race_if(PM_HAXOR) && techtout(tech_no) > 1) techtout(tech_no) /= 2;
 
 	/*By default,  action should take a turn*/
 	return(1);
@@ -1514,6 +2305,14 @@ int tech_id;
         }
 	return (0);
 }
+
+static void
+maybe_tameX(mtmp)
+struct monst *mtmp;
+{
+	(void) tamedog(mtmp, (struct obj *) 0, TRUE);
+}
+
 
 void
 tech_timeout()
@@ -1589,6 +2388,7 @@ tech_timeout()
 	        }
 	    } 
 
+	    if (techtout(i) == 1) pline("Your %s technique is ready to be used!", techname(i));
 	    if (techtout(i) > 0) techtout(i)--;
         }
 }
@@ -1626,22 +2426,63 @@ role_tech()
 {
 	switch (Role_switch) {
 		case PM_ARCHEOLOGIST:	return (arc_tech);
+		case PM_GOFF:	return (gof_tech);
+		case PM_AMAZON:	return (ama_tech);
+		case PM_ALTMER:	return (alt_tech);
+		case PM_BOSMER:	return (bos_tech);
+		case PM_DUNMER:	return (dun_tech);
+		case PM_ORDINATOR:	return (ord_tech);
+		case PM_THALMOR:	return (tha_tech);
+		case PM_DRUNK:	return (dru_tech);
 		case PM_BARBARIAN:	return (bar_tech);
+		case PM_BLEEDER:	return (ble_tech);
 		case PM_CAVEMAN:	return (cav_tech);
+		case PM_BARD:	return (brd_tech);
 		case PM_FLAME_MAGE:	return (fla_tech);
+		case PM_ACID_MAGE:	return (aci_tech);
+		case PM_TRANSVESTITE:	return (tra_tech);
+		case PM_TOPMODEL:	return (top_tech);
+		case PM_LUNATIC:	return (lun_tech);
+		case PM_ACTIVISTOR:	return (act_tech);
+		case PM_ELECTRIC_MAGE:	return (ele_tech);
 		case PM_HEALER:		return (hea_tech);
 		case PM_ICE_MAGE:	return (ice_tech);
+#ifdef JEDI
+		case PM_JEDI:		return (jed_tech);
+#endif
 		case PM_KNIGHT:		return (kni_tech);
 		case PM_MONK: 		return (mon_tech);
+		case PM_JESTER: 		return (jes_tech);
+		case PM_LADIESMAN: 		return (lad_tech);
+		case PM_SUPERMARKET_CASHIER: 		return (sup_tech);
+		case PM_WANDKEEPER: 		return (wan_tech);
+		case PM_PALADIN: 		return (pal_tech);
+		case PM_FEAT_MASTER: 		return (stu_tech);
+		case PM_DOLL_MISTRESS: 		return (dol_tech);
+		case PM_GUNNER: 		return (gun_tech);
+		case PM_LIBRARIAN: 		return (lib_tech);
+		case PM_AUGURER: 		return (aug_tech);
+		case PM_SAIYAN: 		return (sai_tech);
+		case PM_PSION: 		return (psi_tech);
+		case PM_SCIENTIST: 		return (sci_tech);
+		case PM_DEATH_EATER: 		return (dea_tech);
+		case PM_POKEMON: 		return (pok_tech);
+		case PM_GANGSTER: 		return (gan_tech);
+		case PM_ROCKER: 		return (roc_tech);
 		case PM_NECROMANCER:	return (nec_tech);
 		case PM_PRIEST:		return (pri_tech);
+		case PM_CHEVALIER:		return (che_tech);
+		case PM_ASSASSIN:		return (ass_tech);
 		case PM_RANGER:		return (ran_tech);
+		case PM_ELPH:		return (elp_tech);
+		case PM_SPACEWARS_FIGHTER:		return (spa_tech);
 		case PM_ROGUE:		return (rog_tech);
 		case PM_SAMURAI:	return (sam_tech);
 #ifdef TOURIST        
 		case PM_TOURIST:	return (tou_tech);
 #endif        
 		case PM_UNDEAD_SLAYER:	return (und_tech);
+		case PM_UNDERTAKER:	return (unt_tech);
 		case PM_VALKYRIE:	return (val_tech);
 		case PM_WIZARD:		return (wiz_tech);
 #ifdef YEOMAN
@@ -1661,11 +2502,28 @@ race_tech()
 #endif
 		case PM_ELF:
 		case PM_DROW:		return (elf_tech);
+		case PM_CURSER:		return (cur_tech);
+		case PM_CLOCKWORK_AUTOMATON:		return (clk_tech);
+
+		case PM_FENEK:		return (fen_tech);
+		case PM_NORD:		return (nor_tech);
+		case PM_ALBAE:		return (alb_tech);
+		case PM_VORTEX:		return (vor_tech);
 		case PM_GNOME:		return (gno_tech);
+		case PM_KOBOLT:		return (kob_tech);
+		case PM_OGRO:		return (ogr_tech);
+		case PM_BATMAN:		return (bat_tech);
+		case PM_UNGENOMOLD:		return (ung_tech);
+		case PM_ARGONIAN:		return (arg_tech);
+		case PM_INSECTOID:		return (ins_tech);
+		case PM_MUMMY:		return (mum_tech);
+		case PM_KHAJIIT:	return (kha_tech);
 		case PM_HOBBIT:		return (hob_tech);
 		case PM_HUMAN_WEREWOLF:	return (lyc_tech);
+		case PM_HUMAN_MONKEY:	return (hmo_tech);
 		case PM_VAMPIRE:	return (vam_tech);
-		default: 		return ((struct innate_tech *) 0);
+		case PM_HUMANOID_ANGEL:	return (ang_tech);
+		default: 		/*return ((struct innate_tech *) 0)*/return (def_tech);
 	}
 }
 
@@ -1723,6 +2581,35 @@ int monnum;
 	else return PM_GHOUL;
 }
 
+#ifdef JEDI
+STATIC_PTR int
+charge_saber()
+{
+	int i, tlevel;
+	if(delay) {
+		delay++;
+		return(1);
+	}
+	for (i = 0; i < MAXTECH; i++) {
+	    if (techid(i) == NO_TECH)
+		continue;
+	    if (techid(i) != T_CHARGE_SABER)
+		continue;
+	    tlevel = techlev(i);
+	}
+	if (tlevel >= 10 && !rn2(5)){
+		You("manage to channel the force perfectly!");
+		uwep->age+=1500; // Jackpot!
+	} else
+		You("channel the force into %s.", the(xname(uwep)));
+
+	// yes no return above, it's a bonus :)
+	uwep->age+=u.uen*((techlev(T_CHARGE_SABER)/rnd(10))+51); /* improved results by Amy */
+	u.uen=0;
+	flags.botl=1;
+	return(0);
+}
+#endif
 
 /*WAC tinker code*/
 STATIC_PTR int
@@ -1864,7 +2751,8 @@ doblitz()
 	}
 	
 	if (u.uen < 10) {
-		You("are too weak to attempt this!");
+		You("are too weak to attempt this! You need at least 10 points of mana!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
             	return(0);
 	}
 
@@ -2027,7 +2915,7 @@ blitz_chi_strike()
 	}
 
 	if (u.uen < 1) {
-		You("are too weak to attempt this!");
+		You("are too weak to attempt this! You need at least one point of mana!");
             	return(0);
 	}
 	You("feel energy surge through your hands!");
@@ -2231,7 +3119,7 @@ blitz_spirit_bomb()
 	You("gather your energy...");
 	
 	if (u.uen < 10) {
-		pline("But it fizzles out.");
+		pline("But it fizzles out because you have less than 10 points of mana.");
 		u.uen = 0;
 	}
 

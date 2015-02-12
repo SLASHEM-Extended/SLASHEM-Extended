@@ -4,9 +4,9 @@
 
 #include "hack.h"
 
-#ifdef OVL1
+/*#ifdef OVL1
 STATIC_DCL void NDECL(maybe_wail);
-#endif /*OVL1*/
+#endif*/ /*OVL1*/
 STATIC_DCL int NDECL(moverock);
 STATIC_DCL int FDECL(still_chewing,(XCHAR_P,XCHAR_P));
 #ifdef SINKS
@@ -16,6 +16,7 @@ STATIC_DCL boolean FDECL(findtravelpath, (BOOLEAN_P));
 STATIC_DCL boolean FDECL(monstinroom, (struct permonst *,int));
 
 STATIC_DCL void FDECL(move_update, (BOOLEAN_P));
+STATIC_PTR void FDECL(set_litX, (int,int,genericptr_t));
 
 #define IS_SHOP(x)	(rooms[x].rtype >= SHOPBASE)
 
@@ -404,7 +405,7 @@ moverock()
 	    /* Give them a chance to climb over it? */
 	    return -1;
 	}
-	if (verysmall(youmonst.data)
+	if (verysmall(youmonst.data) && !Race_if(PM_TRANSFORMER) 
 #ifdef STEED
 		 && !u.usteed
 #endif
@@ -432,8 +433,11 @@ moverock()
 	    	goto cannot_push;
 	    }
 
-	    if (revive_nasty(rx, ry, "You sense movement on the other side."))
+	    if (revive_nasty(rx, ry, "You sense movement on the other side.")) {
+		pline("The boulder vanishes!");
+		delobj(otmp); /* prevent easy Death farming --Amy */
 		return (-1);
+		}
 
 	    if (mtmp && !noncorporeal(mtmp->data) &&
 		    (!mtmp->mtrapped ||
@@ -608,8 +612,14 @@ moverock()
 		    pline("However, you can easily %s.",
 			(flags.pickup && !In_sokoban(&u.uz))
 			    ? "pick it up" : "push it aside");
+		if (yn("Do it?") != 'y')
+		return (-1);
+
 		    if (In_sokoban(&u.uz))
-			change_luck(-1);	/* Sokoban guilt */
+			{change_luck(-1);
+			pline("You cheater!");
+			}
+			/* Sokoban guilt */
 		    break;
 		}
 		break;
@@ -619,14 +629,22 @@ moverock()
 #ifdef STEED
 		!u.usteed &&
 #endif	    
-		(((!invent || inv_weight() <= -850) &&
+		(((!invent || inv_weight() <= -1500) &&
 		 (!u.dx || !u.dy || (IS_ROCK(levl[u.ux][sy].typ)
 				     && IS_ROCK(levl[sx][u.uy].typ))))
 		|| verysmall(youmonst.data))) {
-		pline("However, you can squeeze yourself into a small opening.");
+
+		if (yn("However, you can squeeze yourself into a small opening. Do it?") != 'y')
+		return (-1);
+		else {
 		if (In_sokoban(&u.uz))
-		    change_luck(-1);	/* Sokoban guilt */
+			{change_luck(-1);
+			pline("You cheater!");
+			}
+			/* Sokoban guilt */
 		break;
+		}
+
 	    } else
 		return (-1);
 	}
@@ -941,7 +959,7 @@ int mode;
 		    else if (tunnels(youmonst.data) && !needspick(youmonst.data))
 			You("hurt your teeth on the re-enforced door.");
 		    else if (x == u.ux || y == u.uy) {
-			if (Blind || Stunned || ACURR(A_DEX) < 10 || Fumbling) {                            pline("Ouch!  You bump into a heavy door.");
+			if (Blind || Stunned || Numbed || ACURR(A_DEX) < 10 || Fumbling) {                            pline("Ouch!  You bump into a heavy door.");
 			    exercise(A_DEX, FALSE);
 			} else pline("That door is closed.");
 		    }
@@ -960,7 +978,7 @@ int mode;
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but can't squeeze your possessions through.");
 		    else if (x == ux || y == uy) {
-			if (Blind || Stunned || ACURR(A_DEX) < 10 || Fumbling) {
+			if (Blind || Stunned || Numbed || ACURR(A_DEX) < 10 || Fumbling) {
 #ifdef STEED
 			    if (u.usteed) {
 				You_cant("lead %s through that closed door.",
@@ -999,13 +1017,16 @@ int mode;
 		You("cannot pass that way.");
 	    return FALSE;
 	}
-	if (bigmonst(youmonst.data)) {
+	if ( (bigmonst(youmonst.data) && !Race_if(PM_TRANSFORMER) ) || (!Upolyd && Race_if(PM_HUMANOID_CENTAUR) ) ) {
 	    if (mode == DO_MOVE)
 		Your("body is too large to fit through.");
 	    return FALSE;
 	}
-	if (invent && (inv_weight() + weight_cap() > 600)) {
+	if (invent && (inv_weight() + weight_cap() > 5000)) {
 	    if (mode == DO_MOVE)
+#ifdef CONVICT
+        if (!Passes_walls)
+#endif /* CONVICT */
 		You("are carrying too much to get through.");
 	    return FALSE;
 	}
@@ -1123,7 +1144,7 @@ boolean guess;
 		int y = travelstepy[set][i];
 		static int ordered[] = { 0, 2, 4, 6, 1, 3, 5, 7 };
 		/* no diagonal movement for grid bugs */
-		int dirmax = u.umonnum == PM_GRID_BUG ? 4 : 8;
+		int dirmax = (u.umonnum == PM_GRID_BUG || u.umonnum == PM_GRID_XORN )? 4 : 8;
 
 		for (dir = 0; dir < dirmax; ++dir) {
 		    int nx = x+xdir[ordered[dir]];
@@ -1223,6 +1244,70 @@ found:
     return FALSE;
 }
 
+boolean
+ask_about_trap(int x, int y)
+{
+
+	struct trap *traphere = t_at(x, y);
+	if (/* is_pool(x, y) || is_lava(x, y) || */ (traphere && traphere->tseen) && !Confusion && !Stunned)  {
+
+		/* who the heck included this? Maybe the player doesn't really want to use the portal at all! --Amy */
+		/*if (traphere->ttyp == MAGIC_PORTAL) {
+			return FALSE;
+		}*/
+
+		if (Role_if(PM_TOPMODEL) && Is_qlocate(&u.uz)) /* traps on this level do wind damage */
+			return TRUE;
+
+		if (Levitation || Flying) {
+			if (!In_sokoban(&u.uz) && traphere->ttyp == PIT) {
+				return FALSE;
+			}
+			if (!In_sokoban(&u.uz) && traphere->ttyp == SPIKED_PIT) {
+				return FALSE;
+			}
+			if (!In_sokoban(&u.uz) && traphere->ttyp == HOLE) {
+				return FALSE;
+			}
+			if (traphere->ttyp == BEAR_TRAP) {
+				return FALSE;
+			}
+			if (traphere->ttyp == ACID_POOL) {
+				return FALSE;
+			}
+			if (traphere->ttyp == WATER_POOL) {
+				return FALSE;
+			}
+			if (traphere->ttyp == SQKY_BOARD) {
+				return FALSE;
+			}
+		}
+		return TRUE;
+	}
+	return FALSE;
+}
+
+boolean
+ask_about_water(int x, int y)
+{
+	if (is_pool(u.ux, u.uy)) return FALSE;
+
+	if (is_pool(x, y) && !Levitation && !Flying && !Confusion && !Stunned && levl[x][y].seenv) return TRUE; 
+
+	if (is_pool(x, y) && !Confusion && !Stunned && levl[x][y].seenv && Role_if(PM_TOPMODEL) && Is_qlocate(&u.uz) ) return TRUE; 
+
+	return FALSE;
+}
+
+boolean
+ask_about_lava(int x, int y)
+{
+	if (is_lava(u.ux, u.uy)) return FALSE;
+
+	if (is_lava(x, y) && !Levitation && !Flying && !Confusion && !Stunned && levl[x][y].seenv) return TRUE; 
+	return FALSE;
+}
+
 void
 domove()
 {
@@ -1265,7 +1350,7 @@ domove()
 		u.uy = y = u.ustuck->my;
 		mtmp = u.ustuck;
 	} else {
-		if (Is_airlevel(&u.uz) && rn2(4) &&
+		if (Is_airlevel(&u.uz) && rn2(2) && /* was rn2(4) - let's make it a bit easier --Amy */
 			!Levitation && !Flying) {
 		    switch(rn2(3)) {
 		    case 0:
@@ -1311,7 +1396,7 @@ domove()
 		    return;
 		}
 #endif
-		if(Stunned || (Confusion && !rn2(5))
+		if( (Stunned && !rn2(2)) || (Confusion && !rn2(8)) /* toned down so it's less crippling --Amy */
 #ifdef STEED
 			|| (u.usteed && u.usteed->mconf)
 #endif	
@@ -1466,8 +1551,8 @@ domove()
 		/* new displacer beast thingie -- by [Tom] */
 		/* sometimes, instead of attacking, you displace it. */
 		/* Good joke, huh? */
-		if (mtmp->data == &mons[PM_DISPLACER_BEAST] && !rn2(2))
-		    displacer = TRUE;
+		if ( (mtmp->data == &mons[PM_DISPLACER_BEAST] || mtmp->data == &mons[PM_JUMPING_CHAMPION] || mtmp->data->mlet == S_GRUE) && !rn2(2))
+		    displacer = TRUE; /* grues can also displace the player to make them more annoying --Amy */
 		else
 		/* try to attack; note that it might evade */
 		/* also, we don't attack tame when _safepet_ */
@@ -1508,7 +1593,10 @@ domove()
 		return;
 	} else
 #endif
-	if(!youmonst.data->mmove) {
+	if( is_nonmoving(youmonst.data) ) {
+	/* This catches the moveamt code in hack.c, preventing you from moving as a red mold
+	 * even if you do get some movement points. It's mainly meant to prevent you from being unable to do anything
+	 * until you get knocked out of red mold form, so you can at least sit around and maybe throw some daggers. --Amy */
 		You("are rooted %s.",
 		    Levitation || Is_airlevel(&u.uz) || Is_waterlevel(&u.uz) ?
 		    "in place" : "to the ground");
@@ -1634,7 +1722,10 @@ domove()
 #endif
 			Norep("You are %s.", predicament);
 		    }
-		    if((u.dx && u.dy) || !rn2(5)) u.utrap--;
+		    if((u.dx && u.dy) || !rn2(5)) {
+				u.utrap--;
+				 if (u.utrap == 0) pline("You pull free from the trap."); 
+				else pline("You try to get out of the trap.");}
 		}
 		return;
 	}
@@ -1643,6 +1734,49 @@ domove()
 	    flags.move = 0;
 	    nomul(0);
 	    return;
+	}
+
+	/* warn player before walking into known traps */
+	if (ask_about_trap(x, y)) {
+		char qbuf[BUFSZ];
+		trap = t_at(x, y);
+		Sprintf(qbuf,"Do you really want to %s into that %s?", 
+				locomotion(youmonst.data, "step"),
+				defsyms[trap_to_defsym(trap->ttyp)].explanation);
+		if (yn(qbuf) != 'y') {
+			nomul(0);
+			flags.move = 0;
+			return;
+		}
+	}
+
+	if (ask_about_water(x, y)) {
+
+		if (Role_if(PM_TOPMODEL) && Is_qlocate(&u.uz) ) {
+		if (yn("There is a strong wind above the water. It seems dangerous. Really step there?") != 'y') {
+			nomul(0);
+			flags.move = 0;
+			return;
+			}
+		}
+
+		else {
+		if (yn("This is a water tile that can cause you to drown. Really step on it?") != 'y') {
+			nomul(0);
+			flags.move = 0;
+			return;
+			}
+		}
+
+	}
+
+	if (ask_about_lava(x, y)) {
+
+		if (yn("This is a lava tile that can burn you to a crisp. Really step on it?") != 'y') {
+			nomul(0);
+			flags.move = 0;
+			return;
+		}
 	}
 
 	} else if (!test_move(u.ux, u.uy, x-u.ux, y-u.uy, TEST_MOVE)) {
@@ -1746,7 +1880,7 @@ domove()
 	    } else if (u.ux0 != x && u.uy0 != y &&
 		       bad_rock(mtmp, x, u.uy0) &&
 		       bad_rock(mtmp, u.ux0, y) &&
-		       (bigmonst(mtmp->data) || (curr_mon_load(mtmp) > 600))) {
+		       (bigmonst(mtmp->data) || (curr_mon_load(mtmp) > 5000))) {
 		/* can't swap places when pet won't fit thru the opening */
 		u.ux = u.ux0,  u.uy = u.uy0;	/* didn't move after all */
 		You("stop.  %s won't fit through.", upstart(y_monnam(mtmp)));
@@ -1769,7 +1903,7 @@ domove()
 		case 3:		/* changed levels */
 		    /* there's already been a trap message, reinforce it */
 		    abuse_dog(mtmp);
-		    adjalign(-3);
+		    adjalign(-10);
 		    break;
 		case 2:
 		    /* it may have drowned or died.  that's no way to
@@ -1778,7 +1912,7 @@ domove()
 		    if (rn2(4)) {
 			You_feel("guilty about losing your pet like this.");
 			u.ugangr++;
-			adjalign(-15);
+			adjalign(-50);
 		    }
 
 		    /* you killed your pet by direct action.
@@ -1892,6 +2026,28 @@ boolean pick;
 {
 	register struct monst *mtmp;
 
+	if  (is_pool(u.ux, u.uy) && Role_if(PM_TOPMODEL) && Is_qlocate(&u.uz) ) {
+
+	/* strong winds over the Grand Canyon. Please don't ask me how they can continue working underwater. :-) --Amy */
+
+		pline("There are scathing winds here! Your skin is scraped off!");
+		losehp(rnz(u.legscratching), "scathing winds", KILLED_BY);
+
+		You("tumble...");
+		make_stunned(HStun + rnz(u.legscratching), FALSE);
+
+		u.legscratching++;
+	}
+
+	if (t_at(u.ux, u.uy) && Role_if(PM_TOPMODEL) && Is_qlocate(&u.uz) ) {
+
+	/* every trap on the Grand Canyon level also has a lesser wind effect. --Amy */
+
+		pline("You are enclosed in a whirlwind!");
+		losehp(rnd(u.legscratching + 2), "whirlwinds", KILLED_BY);
+
+	}
+
 	if(u.uinwater) {
 		int was_underwater;
 
@@ -1970,7 +2126,7 @@ stillinwater:;
 			    ;
 			else if(uarmh && is_metallic(uarmh))
 			    pline("Its blow glances off your helmet.");
-			else if (u.uac + 3 <= rnd(20))
+			else if (u.uac + 3 <= rnd(20) && rn2(3) ) /* ac no longer gives complete protection --Amy */
 			    You("are almost hit by %s!",
 				x_monnam(mtmp, ARTICLE_A, "falling", 0, TRUE));
 			else {
@@ -1978,7 +2134,7 @@ stillinwater:;
 			    You("are hit by %s!",
 				x_monnam(mtmp, ARTICLE_A, "falling", 0, TRUE));
 			    dmg = d(4,6);
-			    if(Half_physical_damage) dmg = (dmg+1) / 2;
+			    if(Half_physical_damage && rn2(2) ) dmg = (dmg+1) / 2;
 			    mdamageu(mtmp, dmg);
 			}
 			break;
@@ -2082,6 +2238,74 @@ register int typewanted;
 	return(ptr);
 }
 
+char *
+in_roomscolouur(x, y, typewanted)
+register xchar x, y;
+register int typewanted;
+{
+	static char buf[5];
+	char rno, *ptr = &buf[4];
+	int typefound, min_x, min_y, max_x, max_y_offset, step;
+	register struct rm *lev;
+
+#define goodtypeX(rno) (!typewanted || \
+	     ((typefound = rooms[rno - ROOMOFFSET].colouur) == typewanted)) \
+
+	switch (rno = levl[x][y].roomno) {
+		case NO_ROOM:
+			return(ptr);
+		case SHARED:
+			step = 2;
+			break;
+		case SHARED_PLUS:
+			step = 1;
+			break;
+		default:			/* i.e. a regular room # */
+			if (goodtypeX(rno))
+				*(--ptr) = rno;
+			return(ptr);
+	}
+
+	min_x = x - 1;
+	max_x = x + 1;
+	if (x < 1)
+		min_x += step;
+	else
+	if (x >= COLNO)
+		max_x -= step;
+
+	min_y = y - 1;
+	max_y_offset = 2;
+	if (min_y < 0) {
+		min_y += step;
+		max_y_offset -= step;
+	} else
+	if ((min_y + max_y_offset) >= ROWNO)
+		max_y_offset -= step;
+
+	for (x = min_x; x <= max_x; x += step) {
+		lev = &levl[x][min_y];
+		y = 0;
+		if (((rno = lev[y].roomno) >= ROOMOFFSET) &&
+		    !index(ptr, rno) && goodtypeX(rno))
+			*(--ptr) = rno;
+		y += step;
+		if (y > max_y_offset)
+			continue;
+		if (((rno = lev[y].roomno) >= ROOMOFFSET) &&
+		    !index(ptr, rno) && goodtypeX(rno))
+			*(--ptr) = rno;
+		y += step;
+		if (y > max_y_offset)
+			continue;
+		if (((rno = lev[y].roomno) >= ROOMOFFSET) &&
+		    !index(ptr, rno) && goodtypeX(rno))
+			*(--ptr) = rno;
+	}
+	return(ptr);
+
+}
+
 /* is (x,y) in a town? */
 boolean
 in_town(x, y)
@@ -2175,71 +2399,169 @@ register boolean newlev;
 	    /* vault.c insists that a vault remain a VAULT,
 	     * and temples should remain TEMPLEs,
 	     * but everything else gives a message only the first time */
+		/* edit by Amy - removed that stupidity. Why the heck would a swamp turn into an ordinary room??? 
+		 * Besides, I _like_ ambient level messages! They can be anything from soothing to terrifying!
+		 * There's no reason to get rid of them if you enter a room, and it's OK to get a message every time, too. */
 	    switch (rt) {
 		case ZOO:
 		    pline("Welcome to David's treasure zoo!");
+		    wake_nearby();
 		    break;
 		case SWAMP:
 		    pline("It %s rather %s down here.",
 			  Blind ? "feels" : "looks",
 			  Blind ? "humid" : "muddy");
+		    wake_nearby();
 		    break;
 		case COURT:
 		    You("enter an opulent throne room!");
+		    wake_nearby();
 		    break;
 		case REALZOO:
 		    You("enter a smelly zoo!");
+		    wake_nearby();
 		    break;
 		case GIANTCOURT:
 		    You("enter a giant throne room!");
+		    wake_nearby();
 		    break;
 		case DRAGONLAIR:
 		    You("enter a dragon lair...");
+		    wake_nearby();
 		    break;
 		case BADFOODSHOP:
 		    You("enter an abandoned store...");
+		    wake_nearby();
 		    break;
 		case LEPREHALL:
 		    You("enter a leprechaun hall!");
+		    wake_nearby();
 		    break;
 		case MORGUE:
 		    if(midnight()) {
 			const char *run = locomotion(youmonst.data, "Run");
 			pline("%s away!  %s away!", run, run);
 		    } else
-			You("have an uncanny feeling...");
+			{ You("have an uncanny feeling..."); }
+		    wake_nearby();
 		    break;
 		case BEEHIVE:
 		    You("enter a giant beehive!");
+		    wake_nearby();
 		    break;
 		case LEMUREPIT:
 		    You("enter a pit of screaming lemures!");
+		    wake_nearby();
 		    break;
 		case MIGOHIVE:
 		    You("enter a strange hive!");
+		    wake_nearby();
 		    break;
 		case FUNGUSFARM:
 		    You("enter a room full of fungi!");
+		    wake_nearby();
 		    break;
 		case COCKNEST:
 		    You("enter a disgusting nest!");
+		    wake_nearby();
 		    break;
 		case ANTHOLE:
 		    You("enter an anthole!");
+		    wake_nearby();
 		    break;
+            case CLINIC:
+                You("enter a modern hospital.");
+		    wake_nearby();
+                break;
+            case ANGELHALL:
+                You("enter a radiating hall of Angels!");
+		    wake_nearby();
+                break;
+	      case TERRORHALL:
+                You("enter a terrifying hall.");
+		    wake_nearby();
+                break;
+	      case TENSHALL:
+                You("enter a killer room! This is actually an ADOM tension room.");
+		    wake_nearby();
+                break;
+	      case ELEMHALL:
+                You("enter a room full of elementals!");
+		    wake_nearby();
+                break;
+	      case NYMPHHALL:
+                You("enter a beautiful garden!");
+		    wake_nearby();
+                break;
+            case ARMORY:
+                You("enter a dilapidated armory.");
+		    wake_nearby();
+                break;
+	      case COINHALL:
+                You("enter a room filled with money!");
+		    wake_nearby();
+                break;
+	      case TROLLHALL:
+                You("enter a room full of stinking trolls...");
+		    wake_nearby();
+                break;
+	      case HUMANHALL:
+                You("encounter a living room!");
+		    wake_nearby();
+                break;
+	      case SPIDERHALL:
+                You("stumble into a nest of spiders...");
+		    wake_nearby();
+                break;
+	      case GOLEMHALL:
+                You("enter a room full of golems!");
+		    wake_nearby();
+                break;
+	      case TRAPROOM:
+                if (wizard) You("enter a trapped room!");
+                break;
+	      case POOLROOM:
+                if (wizard) You("enter a pool room!");
+                break;
+	      case STATUEROOM:
+                if (wizard) You("enter a statue room!");
+                break;
+	      case INSIDEROOM:
+                You("enter a weird-looking room...");
+		    wake_nearby();
+                break;
+	      case RIVERROOM:
+                You("encounter an underground river!");
+		    wake_nearby();
+                break;
+	      case GRUEROOM:
+                pline("It is pitch black. You are likely to be eaten by a grue.");
+
+	    do_clear_areaX(u.ux,u.uy,		/* extra darkness --Amy */
+		15, set_litX, (genericptr_t)((char *)0));
+		/* IMHO grue rooms may remove light every time you enter them. --Amy */
+		    wake_nearby();
+                break;
 		case BARRACKS:
 		    if(monstinroom(&mons[PM_SOLDIER], roomno) ||
 			monstinroom(&mons[PM_SERGEANT], roomno) ||
 			monstinroom(&mons[PM_LIEUTENANT], roomno) ||
-			monstinroom(&mons[PM_CAPTAIN], roomno))
+			monstinroom(&mons[PM_CAPTAIN], roomno) ||
+			monstinroom(&mons[PM_GENERAL], roomno))
 			You("enter a military barracks!");
 		    else
-			You("enter an abandoned barracks.");
+			{ You("enter an abandoned barracks."); }
+		    wake_nearby();
 		    break;
 		case DELPHI:
 		    if(monstinroom(&mons[PM_ORACLE], roomno))
 			verbalize("%s, %s, welcome to Delphi!",
 					Hello((struct monst *) 0), plname);
+		    wake_nearby();
+		    break;
+		case DOUGROOM:
+		    You("feel 42.");
+		    wake_nearby();
 		    break;
 		case TEMPLE:
 		    intemple(roomno + ROOMOFFSET);
@@ -2249,10 +2571,10 @@ register boolean newlev;
 	    }
 
 	    if (rt != 0) {
-		rooms[roomno].rtype = OROOM;
-		if (!search_special(rt)) {
+		/*rooms[roomno].rtype = OROOM;*/
+		/*if (!search_special(rt)) {*/
 			/* No more room of that type */
-			switch(rt) {
+			/*switch(rt) {
 			    case COURT:
 			    case GIANTCOURT:
 				level.flags.has_court = 0;
@@ -2270,6 +2592,60 @@ register boolean newlev;
 			    case BARRACKS:
 				level.flags.has_barracks = 0;
 				break;
+                      case CLINIC:
+                        level.flags.has_clinic = 0;
+                        break;
+                      case MIMICHALL:
+                        level.flags.has_mimichall = 0;
+                        break;
+                      case ANGELHALL:
+                        level.flags.has_angelhall = 0;
+                        break;
+                      case TERRORHALL:
+                        level.flags.has_terrorhall = 0;
+                        break;
+                      case TENSHALL:
+                        level.flags.has_tenshall = 0;
+                        break;
+                      case ELEMHALL:
+                        level.flags.has_elemhall = 0;
+                        break;
+                      case NYMPHHALL:
+                        level.flags.has_nymphhall = 0;
+                        break;
+                      case GOLEMHALL:
+                        level.flags.has_golemhall = 0;
+                        break;
+                      case TRAPROOM:
+                        level.flags.has_traproom = 0;
+                        break;
+                      case GRUEROOM:
+                        level.flags.has_grueroom = 0;
+                        break;
+                      case POOLROOM:
+                        level.flags.has_poolroom = 0;
+                        break;
+                      case STATUEROOM:
+                        level.flags.has_statueroom = 0;
+                        break;
+                      case INSIDEROOM:
+                        level.flags.has_insideroom = 0;
+                        break;
+                      case RIVERROOM:
+                        level.flags.has_riverroom = 0;
+                        break;
+                      case HUMANHALL:
+                        level.flags.has_humanhall = 0;
+                        break;
+                      case COINHALL:
+                        level.flags.has_coinhall = 0;
+                        break;
+                      case TROLLHALL:
+                        level.flags.has_trollhall = 0;
+                        break;
+                      case SPIDERHALL:
+                        level.flags.has_spiderhall = 0;
+                        break;
 			    case TEMPLE:
 				level.flags.has_temple = 0;
 				break;
@@ -2286,7 +2662,7 @@ register boolean newlev;
 				level.flags.has_fungusfarm = 0;
 				break;
 			}
-		}
+		}*/
 		if(rt==COURT || rt==SWAMP || rt==MORGUE || rt==ZOO)
 		    for(mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 			if (!DEADMONSTER(mtmp) && !Stealth && !rn2(3)) mtmp->msleeping = 0;
@@ -2317,7 +2693,7 @@ dopickup()
 		} else
 		    You("don't %s anything in here to pick up.",
 			  Blind ? "feel" : "see");
-		return(1);
+		return(0);
 	    } else {
 	    	int tmpcount = -count;
 		return loot_mon(u.ustuck, &tmpcount, (boolean *)0);
@@ -2391,7 +2767,7 @@ lookaround()
 
     /* Grid bugs stop if trying to move diagonal, even if blind.  Maybe */
     /* they polymorphed while in the middle of a long move. */
-    if (u.umonnum == PM_GRID_BUG && u.dx && u.dy) {
+    if ((u.umonnum == PM_GRID_BUG || u.umonnum == PM_GRID_XORN)&& u.dx && u.dy) {
 	nomul(0);
 	return;
     }
@@ -2400,7 +2776,7 @@ lookaround()
     for(x = u.ux-1; x <= u.ux+1; x++) for(y = u.uy-1; y <= u.uy+1; y++) {
 	if(!isok(x,y)) continue;
 
-	if(u.umonnum == PM_GRID_BUG && x != u.ux && y != u.uy) continue;
+	if((u.umonnum == PM_GRID_BUG || u.umonnum == PM_GRID_XORN)&& x != u.ux && y != u.uy) continue;
 
 	if(x == u.ux && y == u.uy) continue;
 
@@ -2532,7 +2908,7 @@ monster_nearby()
 	return(0);
 }
 
-STATIC_OVL void
+/*STATIC_OVL*/ void
 maybe_wail()
 {
     static short powers[] = { TELEPORT, SEE_INVIS, POISON_RES, COLD_RES,
@@ -2542,11 +2918,11 @@ maybe_wail()
     if (moves <= wailmsg + 50) return;
 
     wailmsg = moves;
-    if (Role_if(PM_WIZARD) || Race_if(PM_ELF) || Role_if(PM_VALKYRIE)) {
+    if (Role_if(PM_WIZARD) || Role_if(PM_CONVICT) || Role_if(PM_COURIER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Race_if(PM_ELF) || Race_if(PM_ASGARDIAN) || Race_if(PM_HAXOR) || Race_if(PM_HERETIC) || Race_if(PM_ALBAE) || Role_if(PM_VALKYRIE)) {
 	const char *who;
 	int i, powercnt;
 
-	who = (Role_if(PM_WIZARD) || Role_if(PM_VALKYRIE)) ?
+	who = (!rn2(10)) ? urace.noun :(Role_if(PM_WIZARD) || Role_if(PM_CONVICT) || Role_if(PM_COURIER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Race_if(PM_ASGARDIAN) || Race_if(PM_HAXOR) || Race_if(PM_HERETIC) || Race_if(PM_ALBAE) || Role_if(PM_VALKYRIE)) ?
 		urole.name.m : "Elf";
 	if (u.uhp == 1) {
 	    pline("%s is about to die.", who);
@@ -2607,11 +2983,12 @@ showdmg(n)
 		switch (Role_switch) {
 			case PM_BARBARIAN: case PM_MONK: lev = 10; break;
 			case PM_CAVEMAN: case PM_VALKYRIE: lev = 12; break;
-			case PM_SAMURAI: case PM_KNIGHT: lev = 14; break;
+			case PM_SAMURAI: case PM_KNIGHT: case PM_CHEVALIER: lev = 14; break;
 			default: lev = 17; break;
 	}
 		switch (Race_switch) {
 			case PM_GNOME: if (lev > 14) lev = 14; break;
+			case PM_VEELA: if (lev > 1) lev = 1; break;
     }
 #ifdef WIZARD
 		if (wizard) lev = 1;
@@ -2630,6 +3007,25 @@ register int n;
 register const char *knam;
 int k_format; /* WAC k_format is an int */
 {
+	if (!strncmpi(plname, "IWBTG", 5)) {
+		killer_format = k_format;
+		killer = knam;		/* the thing that killed you */
+		You("explode in a fountain of red pixels!");
+		pline("GAME OVER - press R to try again");
+		done(DIED);
+
+	}
+
+	/* let's allow the player to deflect some damage if he's lucky (higher chance with good constitution). --Amy */
+	if (rn2(ABASE(A_CON))) {
+	if (!rn2(3) && n >= 1) {n = n / 2; if (n < 1) n = 1;}
+	if (!rn2(10) && n >= 1 && u.ulevel >= 10) {n = n / 3; if (n < 1) n = 1;}
+	if (!rn2(20) && n >= 1 && u.ulevel >= 20) {n = n / 5; if (n < 1) n = 1;}
+	if (!rn2(50) && n >= 1 && u.ulevel >= 30) {n = n / 10; if (n < 1) n = 1;}
+	}
+
+	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */
+
 	/* [max] Invulnerable no dmg */
 	if (Invulnerable) {
 		n = 0;
@@ -2638,6 +3034,8 @@ int k_format; /* WAC k_format is an int */
 		 * via u.uhp < 1
 		 */
 	}        
+
+
 #ifdef SHOW_DMG                
 	else if (flags.showdmg && n > 0) pline("[%d pts.]", n); /* WAC see damage */
 #endif
@@ -2651,6 +3049,7 @@ int k_format; /* WAC k_format is an int */
 		    maybe_wail();
 		return;
 	} else {
+	u.uhplast = u.uhp;
 	u.uhp -= n;
 	if(u.uhp > u.uhpmax)
 		u.uhpmax = u.uhp;	/* perhaps n was negative */
@@ -2673,17 +3072,21 @@ weight_cap()
 {
 	register long carrcap;
 
-	carrcap = 25*(ACURRSTR + ACURR(A_CON)) + 50;
+	carrcap = 50*(ACURRSTR + ACURR(A_CON)) + 50 + 50*(u.ulevel);
 	if (Upolyd) {
 		/* consistent with can_carry() in mon.c */
 		if (youmonst.data->mlet == S_NYMPH)
 			carrcap = MAX_CARR_CAP;
 		else if (!youmonst.data->cwt)
-			carrcap = (carrcap * (long)youmonst.data->msize) / MZ_HUMAN;
+			carrcap = ((carrcap * (long)youmonst.data->msize) / MZ_HUMAN) + 50*(u.ulevel);
 		else if (!strongmonst(youmonst.data)
 			|| (strongmonst(youmonst.data) && (youmonst.data->cwt > WT_HUMAN)))
-			carrcap = (carrcap * (long)youmonst.data->cwt / WT_HUMAN);
+			carrcap = ((carrcap * (long)youmonst.data->cwt / WT_HUMAN)) + 50*(u.ulevel);
+	if (carrcap < 500) carrcap = 500;
 	}
+
+	if (Race_if(PM_HAXOR)) carrcap *= 2;
+	if (Race_if(PM_HUMANOID_CENTAUR)) carrcap /= 2;
 
 	if (Levitation || Is_airlevel(&u.uz)    /* pugh@cornell */
 #ifdef STEED
@@ -2694,8 +3097,8 @@ weight_cap()
 	else {
 		if(carrcap > MAX_CARR_CAP) carrcap = MAX_CARR_CAP;
 		if (!Flying) {
-			if(EWounded_legs & LEFT_SIDE) carrcap -= 100;
-			if(EWounded_legs & RIGHT_SIDE) carrcap -= 100;
+			if(EWounded_legs & LEFT_SIDE) carrcap -= 250;
+			if(EWounded_legs & RIGHT_SIDE) carrcap -= 250;
 		}
 		if (carrcap < 0) carrcap = 0;
 	}
@@ -2717,15 +3120,16 @@ inv_weight()
 	   of invent for easier manipulation by askchain & co, but it's also
 	   retained in u.ugold in order to keep the status line accurate; we
 	   mustn't add its weight in twice under that circumstance */
+	/* tried to make gold lighter --Amy */
 	wt = (otmp && otmp->oclass == COIN_CLASS) ? 0 :
-		(int)((u.ugold + 50L) / 100L);
+		(int)((u.ugold + 50L) / /*100L*/10000L);
 #endif
 	while (otmp) {
 #ifndef GOLDOBJ
 		if (otmp->otyp != BOULDER || !throws_rocks(youmonst.data))
 #else
 		if (otmp->oclass == COIN_CLASS)
-			wt += (int)(((long)otmp->quan + 50L) / 100L);
+			wt += (int)(((long)otmp->quan + 50L) / /*100L*/10000L);
 		else if (otmp->otyp != BOULDER || !throws_rocks(youmonst.data))
 #endif
 			wt += otmp->owt;
@@ -2815,3 +3219,16 @@ struct obj *otmp;
 #endif /* OVLB */
 
 /*hack.c*/
+
+STATIC_PTR void
+set_litX(x,y,val)
+int x, y;
+genericptr_t val;
+{
+	if (val)
+	    levl[x][y].lit = 1;
+	else {
+	    levl[x][y].lit = 0;
+	    snuff_light_source(x, y);
+	}
+}

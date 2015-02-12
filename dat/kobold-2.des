@@ -25,6 +25,7 @@ MAP
 |--------------------------------------------------------------
 ENDMAP
 RANDOM_MONSTERS: 'k'
+
 #ROOM: "ordinary" , lit, random, random, (11,9)
 DOOR: closed,(1,7)
 DOOR: closed,(2,15)
@@ -148,6 +149,7 @@ MONSTER: 'k', random, (21,13), hostile
 MONSTER: 'k', "swamp kobold", (15,14), hostile
 MONSTER: 'k', "swamp kobold", (17,14), hostile
 MONSTER: 'k', "Kroo the Kobold King", (18,14), hostile
+OBJECT:'?',"root password detection",(18,14)
 MONSTER: 'k', "rock kobold", (20,14), hostile
 MONSTER: 'k', "kobold shaman", (15,15), hostile
 MONSTER: 'k', "kobold shaman", (16,15), hostile

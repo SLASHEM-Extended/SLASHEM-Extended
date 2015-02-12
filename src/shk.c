@@ -2,6 +2,9 @@
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
+/* Note by Amy: All "shkp->mgold + (value)" routines have a chance to fail to make credit cloning harder. */
+/* The same applies to all actions that give credit (see also dokick.c). */
+
 #include "hack.h"
 #include "eshk.h"
 
@@ -359,6 +362,9 @@ register boolean nearshop;
 	nokops = ((mvitals[PM_KEYSTONE_KOP].mvflags & G_GONE) &&
 		  (mvitals[PM_KOP_SERGEANT].mvflags & G_GONE) &&
 		  (mvitals[PM_KOP_LIEUTENANT].mvflags & G_GONE) &&
+		  (mvitals[PM_KOP_KOMMISSIONER].mvflags & G_GONE) &&
+		  (mvitals[PM_KOP_KCHIEF].mvflags & G_GONE) &&
+		  (mvitals[PM_KOP_KATCHER].mvflags & G_GONE) &&
 		  (mvitals[PM_KOP_KAPTAIN].mvflags & G_GONE));
 
 #ifdef BLACKMARKET
@@ -372,13 +378,15 @@ register boolean nearshop;
       }
 #endif /* defined(BLACKMARKET) */
  
-	if(!angry_guards(!flags.soundok) && nokops) {
+	/* Let's just assume not all K are genocided. --Amy */
+
+	/*if(!angry_guards(!flags.soundok) && nokops) {
 	    if(flags.verbose && flags.soundok)
 		pline("But no one seems to respond to it.");
 	    return;
 	}
 
-	if(nokops) return;
+	if(nokops) return;*/
 
 	{
 	    coord mm;
@@ -590,6 +598,7 @@ struct monst *shkp;
 	if (!Role_if(PM_ROGUE)) {     /* stealing is unlawful */
 	    adjalign(-sgn(u.ualign.type));
 	    You("feel like an evil rogue.");
+		if(u.ualign.type < 0) u.ualign.sins++;
 	}
 
 	hot_pursuit(shkp);
@@ -667,6 +676,14 @@ register char *enterstring;
 	}
 #endif /* BLACKMARKET */
 
+#ifdef CONVICT
+	/* Visible striped prison shirt */
+	if ((uarmu && (uarmu->otyp == STRIPED_SHIRT)) && !uarm && !uarmc) {
+	    eshkp->pbanned = TRUE;
+	}
+	if (Race_if(PM_ALBAE) && !Upolyd) eshkp->pbanned = TRUE;
+#endif /* CONVICT */
+
 	rt = rooms[*enterstring - ROOMOFFSET].rtype;
 
 	if (ANGRY(shkp)) {
@@ -677,6 +694,9 @@ register char *enterstring;
 	} else if (eshkp->robbed) {
 	    pline("%s mutters imprecations against shoplifters.", shkname(shkp));
 	} else {
+#ifdef CONVICT
+        if (!eshkp->pbanned || inside_shop(u.ux, u.uy))
+#endif /* CONVICT */
 	    verbalize("%s, %s!  Welcome%s to %s %s!",
 		      Hello(shkp), plname,
 		      eshkp->visitct++ ? " again" : "",
@@ -718,6 +738,11 @@ register char *enterstring;
 		verbalize(NOTANGRY(shkp) ?
 			  "Will you please leave %s outside?" :
 			  "Leave %s outside.", y_monnam(u.usteed));
+		should_block = TRUE;
+#endif
+#ifdef CONVICT
+	    } else if (eshkp->pbanned && !(Is_blackmarket(&u.uz)) ) {
+	    verbalize("I don't sell to your kind here.");
 		should_block = TRUE;
 #endif
 	    } else {
@@ -1111,7 +1136,7 @@ register struct monst *shkp;
 
 #ifndef GOLDOBJ
 	u.ugold -= balance;
-	shkp->mgold += balance;
+	if (rn2(2)) shkp->mgold += balance;
 #else
 	if (balance > 0) money2mon(shkp, balance);
 	else if (balance < 0) money2u(shkp, -balance);
@@ -1137,11 +1162,11 @@ register boolean killkops;
 	(void) mnearto(shkp, x, y, TRUE);
 	level.flags.has_shop = 1;
 	if (killkops) {
-#ifdef KOPS
+/*#ifdef KOPS
 		kops_gone(TRUE);
 #else
 		You_feel("vaguely apprehensive.");
-#endif
+#endif*/
 		pacify_guards();
 	}
 	after_shk_move(shkp);
@@ -1255,9 +1280,9 @@ register boolean silentkops;
 		pline("%s calms down.", Monnam(shkp));
 
 	if(!angry_shk_exists()) {
-#ifdef KOPS
+/*#ifdef KOPS
 		kops_gone(silentkops);
-#endif
+#endif*/
 		pacify_guards();
 	}
 }
@@ -1340,6 +1365,13 @@ register struct monst *shkp;
 int
 dopay()
 {
+
+	if (MenuBug) {
+	pline("The pay command is currently unavailable!");
+	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	return 0;
+	}
+
 	register struct eshk *eshkp;
 	register struct monst *shkp;
 	struct monst *nxtm, *resident;
@@ -1652,7 +1684,7 @@ proceed:
 		    } else if (!eshkp->credit) {
 #ifndef GOLDOBJ
 			u.ugold -= dtmp;
- 			shkp->mgold += dtmp;
+ 			if (rn2(2)) shkp->mgold += dtmp;
 #else
                         money2mon(shkp, dtmp);
 #endif
@@ -1665,7 +1697,7 @@ proceed:
 			eshkp->credit = 0L;
 #ifndef GOLDOBJ
 			u.ugold -= dtmp;
-			shkp->mgold += dtmp;
+			if (rn2(2)) shkp->mgold += dtmp;
 #else
                         money2mon(shkp, dtmp);
 #endif
@@ -1791,7 +1823,11 @@ shk_other_services()
 	if (yn("Do you wish to try our other services?") != 'y' ) return;
 
 	/* Init your name */
-	if (!is_human(youmonst.data))
+	if (Role_if(PM_CONVICT))
+		slang = "scumbag";
+	else if (Race_if(PM_ALBAE))
+		slang = "murderer";
+	else if (!is_human(youmonst.data))
 		slang = "ugly";
 	else
 		slang = (flags.female) ? "lady" : "buddy";
@@ -1829,7 +1865,7 @@ shk_other_services()
 	         "Uncurse", MENU_UNSELECTED);
   
   	/* Weapon appraisals.  Weapon & general stores can do this. */
-	if ((ESHK(shkp)->services & (SHK_UNCURSE)) &&
+	if ((ESHK(shkp)->services & (SHK_APPRAISE)) &&
 			(shk_class_match(WEAPON_CLASS, shkp))) {
 		any.a_int = 3;
 		add_menu(tmpwin, NO_GLYPH, &any , 'a', 0, ATR_NONE,
@@ -2053,6 +2089,9 @@ int croaked;	/* -1: escaped dungeon; 0: quit; 1: died */
 		else {
 		    numsk++;
 		    taken |= inherits(mtmp, numsk, croaked);
+#ifdef CONVICT
+		    ESHK(mtmp)->pbanned = FALSE; /* Un-ban for bones levels */
+#endif /* CONVICT */
 		}
 	    }
 	}
@@ -2127,7 +2166,7 @@ int croaked;
 		if (loss > u.ugold || !loss || roomno == eshkp->shoproom) {
 			eshkp->robbed -= u.ugold;
 			if (eshkp->robbed < 0L) eshkp->robbed = 0L;
-			shkp->mgold += u.ugold;
+			if (rn2(2)) shkp->mgold += u.ugold;
 			u.ugold = 0L;
 #else
 		if (loss > umoney || !loss || roomno == eshkp->shoproom) {
@@ -2143,7 +2182,7 @@ int croaked;
 			set_repo_loc(eshkp);
 		} else {
 #ifndef GOLDOBJ
-			shkp->mgold += loss;
+			if (rn2(2)) shkp->mgold += loss;
 			u.ugold -= loss;
 #else
                         money2mon(shkp, loss);
@@ -2336,6 +2375,8 @@ register struct monst *shkp;	/* if angry, impose a surcharge */
 	if (uarmh && !uarmh->oinvis && uarmh->otyp == DUNCE_CAP)
 		tmp += tmp / 3L;
 
+	if (Role_if(PM_OTAKU)) tmp += tmp / 3L; /* bad at making deals */
+
 	if (ACURR(A_CHA) > 18)		tmp /= 2L;
 	else if (ACURR(A_CHA) > 17)	tmp -= tmp / 3L;
 	else if (ACURR(A_CHA) > 15)	tmp -= tmp / 4L;
@@ -2364,9 +2405,9 @@ register struct monst *shkp;	/* if angry, impose a surcharge */
 	      obj->oclass==SPBOOK_CLASS  || obj->oclass==WAND_CLASS     ||
 	      obj->otyp==LUCKSTONE       || obj->otyp==LOADSTONE        || 
 	      obj->otyp==HEALTHSTONE || objects[obj->otyp].oc_magic) {
-	    tmp *= 50;
+	    tmp *= (Role_if(PM_CONVICT) ? 10 : 50);
 	  } else {
-	    tmp *= 25;
+	    tmp *= (Role_if(PM_CONVICT) ? 5 : 25);
 	  }
 	}
 #endif /* BLACKMARKET */
@@ -2493,6 +2534,8 @@ register struct monst *shkp;
 	else
 		tmp /= 2L;
 
+	if (Role_if(PM_OTAKU)) tmp /= 3L; /* bad at making deals */
+
 	/* shopkeeper may notice if the player isn't very knowledgeable -
 	   especially when gem prices are concerned */
 	if (!obj->dknown || !objects[obj->otyp].oc_name_known) {
@@ -2506,6 +2549,9 @@ register struct monst *shkp;
 		} else if (tmp > 1L && !rn2(4))
 			tmp -= tmp / 4L;
 	}
+ 	if (obj->otyp == IC && obj->cursed) tmp /= 20L;	
+	if (obj->otyp == IC && !obj->cursed) tmp /= 10L;
+
 	return tmp;
 }
 
@@ -2727,6 +2773,7 @@ speak:
 	    }
 	    Strcpy(buf, "\"For you, ");
 	    if (ANGRY(shkp)) Strcat(buf, "scum ");
+	    else if (Role_if(PM_CONVICT) || Race_if(PM_ALBAE) ) Strcat(buf, "criminal ");
 	    else {
 		static const char *honored[5] = {
 		  "good", "honored", "most gracious", "esteemed",
@@ -3094,13 +3141,13 @@ xchar x, y;
 		} else {
 		    long delta = gltmp - eshkp->debit;
 
-		    eshkp->credit += delta;
+		    if (rn2(2)) eshkp->credit += delta; /* make the shopkeeper devious --Amy */
 		    if(eshkp->debit) {
 			eshkp->debit = 0L;
 			eshkp->loan = 0L;
 			Your("debt is paid off.");
 		    }
-		    pline("%ld %s %s added to your credit.",
+		    if (eshkp->credit) pline("%ld %s %s added to your credit.",
 				delta, currency(delta), delta > 1L ? "are" : "is");
 		}
 		if(offer) goto move_on;
@@ -3165,7 +3212,8 @@ move_on:
 			"relinquish %s and acquire %ld zorkmid%s in %scredit.",
 			    tmpcr,
 			    (eshkp->credit > 0L) ? "additional " : "");
-		    eshkp->credit += tmpcr;
+		    if (rn2(2)) eshkp->credit += tmpcr; /* fail sometimes --Amy */
+			else verbalize("What? You want credit? Well, sucks to be you, but I ain't giving you any!");
 		    subfrombill(obj, shkp);
 		} else {
 		    if (c == 'q') sell_response = 'n';
@@ -3693,7 +3741,7 @@ register struct monst *shkp;
 	    remove_damage(shkp, FALSE);
 
 	if((udist = distu(omx,omy)) < 3 &&
-	   (shkp->data != &mons[PM_GRID_BUG] || (omx==u.ux || omy==u.uy))) {
+	   ((shkp->data != &mons[PM_GRID_BUG] && shkp->data != &mons[PM_GRID_XORN] ) || (omx==u.ux || omy==u.uy))) {
 		if(ANGRY(shkp) ||
 		   (Conflict && !resist(shkp, RING_CLASS, 0, 0))) {
 			if(Displaced)
@@ -3771,6 +3819,9 @@ register struct monst *shkp;
 		    uondoor = (u.ux == eshkp->shd.x && u.uy == eshkp->shd.y);
 		    if(uondoor) {
 			badinv = (carrying(PICK_AXE) || carrying(DWARVISH_MATTOCK) ||
+#ifdef CONVICT
+            eshkp->pbanned ||
+#endif /* CONVICT */
 				  (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) ||
 				  sobj_at(DWARVISH_MATTOCK, u.ux, u.uy))));
 			if(satdoor && badinv)
@@ -3843,7 +3894,7 @@ register int fall;
 	lang = 2;
 
     if(!inhishop(shkp)) {
-	if (Role_if(PM_KNIGHT)) {
+	if (Role_if(PM_KNIGHT) || Role_if(PM_CHEVALIER) || Role_if(PM_PALADIN)) {
 	    You_feel("like a common thief.");
 	    adjalign(-sgn(u.ualign.type));
 	}
@@ -3862,7 +3913,7 @@ register int fall;
 		verbalize("%s, do not damage the floor here!",
 			flags.female ? "Madam" : "Sir");
 	}
-	if (Role_if(PM_KNIGHT)) {
+	if (Role_if(PM_KNIGHT) || Role_if(PM_CHEVALIER) || Role_if(PM_PALADIN)) {
 	    You_feel("like a common thief.");
 	    adjalign(-sgn(u.ualign.type));
 	}
@@ -3918,12 +3969,13 @@ register int fall;
 #ifdef KOPS
 /* modified by M. Campostrini (campo@sunthpi3.difi.unipi.it) */
 /* to allow for multiple choices of kops */
+/* modified even more by Amy to allow for even greater choice */
 STATIC_OVL void
 makekops(mm)
 coord *mm;
 {
-	int kop_cnt[5];        
-	int kop_pm[5];
+	int kop_cnt[6];        
+	int kop_pm[7];
 	int ik, cnt;
 	coord *mc;
   
@@ -3931,7 +3983,9 @@ coord *mm;
 	kop_pm[1] = PM_KOP_SERGEANT;
 	kop_pm[2] = PM_KOP_LIEUTENANT;
 	kop_pm[3] = PM_KOP_KAPTAIN;
-	kop_pm[4] = 0;
+	kop_pm[4] = PM_KOP_KOMMISSIONER;
+	kop_pm[5] = PM_KOP_KCHIEF;
+	kop_pm[6] = 0;
   
 	cnt = abs(depth(&u.uz)) + rnd(5);
   
@@ -3942,23 +3996,251 @@ coord *mm;
 	  kop_pm[2] = PM_LIEUTENANT;
 	  kop_pm[3] = PM_CAPTAIN;
 	  kop_pm[4] = 0;
-  
-	  cnt = 7 + rnd(10);
+	  kop_pm[5] = 0;
+  	  kop_pm[6] = 0;
+    
+	  cnt = 7 + rnd(5);
 	}
 #endif /* BLACKMARKET */
  
 	kop_cnt[0] = cnt;
 	kop_cnt[1] = (cnt / 3) + 1;   /* at least one sarge */
-	kop_cnt[2] = (cnt / 6);       /* maybe a lieutenant */
-	kop_cnt[3] = (cnt / 9);       /* and maybe a kaptain */
- 
+	kop_cnt[2] = (cnt / 5) + 1;       /* maybe a lieutenant */
+	kop_cnt[3] = (cnt / 8) + 1;       /* and maybe a kaptain */
+	kop_cnt[4] = (cnt / 12) + 1;       /* and maybe a kaptain */
+ 	kop_cnt[5] = (cnt / 16) + 1;       /* and maybe a kaptain */
+  
 	mc = (coord *)alloc(cnt * sizeof(coord));
 	for (ik=0; kop_pm[ik]; ik++) {
-	  if (!(mvitals[kop_pm[ik]].mvflags & G_GONE)) {
+	  /*if (!(mvitals[kop_pm[ik]].mvflags & G_GONE)) {*/
 	    cnt = epathto(mc, kop_cnt[ik], mm->x, mm->y, &mons[kop_pm[ik]]);
 	    while(--cnt >= 0)
-		(void) makemon(&mons[kop_pm[ik]], mc[cnt].x, mc[cnt].y, NO_MM_FLAGS);
-	}
+		switch (rnd(303)) {
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+		case 10:
+		(void) makemon(&mons[PM_ANGRY_WATCHMAN], mc[cnt].x, mc[cnt].y, MM_ANGRY);
+		case 11:
+		case 12:
+		case 13:
+		case 14:
+		case 15:
+		case 16:
+		case 17:
+		case 18:
+		case 19:
+		case 20:
+		case 21:
+		case 22:
+		case 23:
+		case 24:
+		case 25:
+		case 26:
+		case 27:
+		case 28:
+		case 29:
+		case 30:
+		(void) makemon(&mons[PM_SOLDIER], mc[cnt].x, mc[cnt].y, MM_ANGRY);
+		case 31:
+		case 32:
+		case 33:
+		case 34:
+		case 35:
+		case 36:
+		case 37:
+		case 38:
+		case 39:
+		case 40:
+		case 41:
+		case 42:
+		case 43:
+		case 44:
+		case 45:
+		case 46:
+		case 47:
+		case 48:
+		case 49:
+		case 50:
+		case 51:
+		case 52:
+		case 53:
+		case 54:
+		case 55:
+		case 56:
+		case 57:
+		case 58:
+		case 59:
+		case 60:
+		case 61:
+		case 62:
+		case 63:
+		case 64:
+		case 65:
+		case 66:
+		case 67:
+		case 68:
+		case 69:
+		case 70:
+		case 71:
+		case 72:
+		case 73:
+		case 74:
+		case 75:
+		case 76:
+		case 77:
+		case 78:
+		case 79:
+		case 80:
+		case 81:
+		case 82:
+		case 83:
+		case 84:
+		case 85:
+		case 86:
+		case 87:
+		case 88:
+		case 89:
+		case 90:
+		case 91:
+		case 92:
+		case 93:
+		case 94:
+		case 95:
+		case 96:
+		case 97:
+		case 98:
+		case 99:
+		case 100:
+		(void) makemon(&mons[PM_KEYSTONE_KOP], mc[cnt].x, mc[cnt].y, MM_ANGRY);
+		case 101:
+		case 102:
+		case 103:
+		case 104:
+		case 105:
+		case 106:
+		(void) makemon(&mons[PM_ANGRY_WATCH_CAPTAIN], mc[cnt].x, mc[cnt].y, MM_ANGRY);
+		case 107:
+		case 108:
+		case 109:
+		case 110:
+		case 111:
+		case 112:
+		case 113:
+		case 114:
+		case 115:
+		case 116:
+		(void) makemon(&mons[PM_SERGEANT], mc[cnt].x, mc[cnt].y, MM_ANGRY);
+		case 117:
+		case 118:
+		case 119:
+		case 120:
+		case 121:
+		case 122:
+		case 123:
+		case 124:
+		case 125:
+		case 126:
+		case 127:
+		case 128:
+		case 129:
+		case 130:
+		case 131:
+		case 132:
+		case 133:
+		case 134:
+		case 135:
+		case 136:
+		case 137:
+		case 138:
+		case 139:
+		case 140:
+		case 141:
+		case 142:
+		case 143:
+		case 144:
+		case 145:
+		case 146:
+		case 147:
+		case 148:
+		case 149:
+		case 150:
+		(void) makemon(&mons[PM_KOP_SERGEANT], mc[cnt].x, mc[cnt].y, MM_ANGRY);
+		case 151:
+		case 152:
+		case 153:
+		(void) makemon(&mons[PM_ANGRY_WATCH_LIEUTENANT], mc[cnt].x, mc[cnt].y, MM_ANGRY);
+		case 154:
+		case 155:
+		case 156:
+		case 157:
+		case 158:
+		(void) makemon(&mons[PM_LIEUTENANT], mc[cnt].x, mc[cnt].y, MM_ANGRY);
+		case 159:
+		case 160:
+		case 161:
+		case 162:
+		case 163:
+		case 164:
+		case 165:
+		case 166:
+		case 167:
+		case 168:
+		case 169:
+		case 170:
+		case 171:
+		case 172:
+		case 173:
+		case 174:
+		case 175:
+		case 176:
+		case 177:
+		case 178:
+		case 179:
+		case 180:
+		(void) makemon(&mons[PM_KOP_LIEUTENANT], mc[cnt].x, mc[cnt].y, MM_ANGRY);
+		case 181:
+		case 182:
+		case 183:
+		(void) makemon(&mons[PM_CAPTAIN], mc[cnt].x, mc[cnt].y, MM_ANGRY);
+		case 184:
+		case 185:
+		case 186:
+		case 187:
+		case 188:
+		case 189:
+		case 190:
+		case 191:
+		(void) makemon(&mons[PM_KOP_KAPTAIN], mc[cnt].x, mc[cnt].y, MM_ANGRY);
+		case 192:
+		(void) makemon(&mons[PM_GENERAL], mc[cnt].x, mc[cnt].y, MM_ANGRY);
+		case 193:
+		case 194:
+		case 195:
+		case 196:
+		case 197:
+		(void) makemon(&mons[PM_KOP_KOMMISSIONER], mc[cnt].x, mc[cnt].y, MM_ANGRY);
+		case 198:
+		case 199:
+		case 200:
+		(void) makemon(&mons[PM_KOP_KCHIEF], mc[cnt].x, mc[cnt].y, MM_ANGRY);
+		case 201:
+		(void) makemon(&mons[PM_ARCH_LICH], mc[cnt].x, mc[cnt].y, MM_ANGRY);
+		case 202:
+		(void) makemon(&mons[PM_ANGRY_WATCH_LEADER], mc[cnt].x, mc[cnt].y, MM_ANGRY);
+		case 203:
+		(void) makemon(&mons[PM_KOP_KATCHER], mc[cnt].x, mc[cnt].y, MM_ANGRY);
+		default: /* can spawn sephirahs and similar things --Amy */
+		(void) makemon(mkclass(S_KOP,0), mc[cnt].x, mc[cnt].y, MM_ANGRY);
+		} /* switch */
+
+	/*}*/
 	}
 	free((genericptr_t)mc);
 }
@@ -4104,7 +4386,7 @@ getcad:
 		cost_of_damage = check_credit(cost_of_damage, shkp);
 #ifndef GOLDOBJ
 		u.ugold -= cost_of_damage;
-		shkp->mgold += cost_of_damage;
+		if (rn2(2)) shkp->mgold += cost_of_damage;
 #else
                 money2mon(shkp, cost_of_damage);
 #endif
@@ -4324,7 +4606,7 @@ struct monst *shkp;
 
 #ifdef KOPS
 STATIC_OVL void
-kops_gone(silent)
+kops_gone(silent) /* will no longer be called --Amy */
 register boolean silent;
 {
 	register int cnt = 0;
@@ -4746,7 +5028,7 @@ shk_identify(slang, shkp)
 	if (obj->oartifact) charge = charge * 3 / 2;
 	
 	/* Smooth out the charge a bit (lower bound only) */
-	shk_smooth_charge(&charge, 25, 750);
+	shk_smooth_charge(&charge, 25, NOBOUND);
 	
 	/* Go ahead? */
 	if (shk_offer_price(slang, charge, shkp) == FALSE) return;
@@ -4814,14 +5096,14 @@ shk_uncurse(slang, shkp)
 	if (obj->oartifact) charge = charge * 3 / 2;
 
 	/* Smooth out the charge a bit */
-	shk_smooth_charge(&charge, 50, 250);
+	shk_smooth_charge(&charge, 50, NOBOUND);
 
 	/* Go ahead? */
 	if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
 	/* Shopkeeper responses */
 	/* KMH -- fixed bknown, curse(), bless(), uncurse() */
-	if (!obj->bknown && !Role_if(PM_PRIEST) && !Role_if(PM_NECROMANCER) &&
+	if (!obj->bknown && !Role_if(PM_PRIEST) && !Role_if(PM_NECROMANCER) && !Role_if(PM_CHEVALIER) &&
 	    !no_cheat)
 	{
 		/* Not identified! */
@@ -4887,7 +5169,7 @@ shk_appraisal(slang, shkp)
 	charge = get_cost(obj, shop_keeper(/* roomno= */*u.ushops)) / 3;
 
 	/* Smooth out the charge a bit */
-	shk_smooth_charge(&charge, 5, 50);
+	shk_smooth_charge(&charge, 5, NOBOUND);
 
 	/* If not identified, complain. */
 	/* KMH -- Why should it matter? */
@@ -5050,7 +5332,7 @@ struct monst *shkp;
 	    if (obj->oartifact) charge = charge * 3 / 2;
 
 	    /* Smooth out the charge a bit */
-	    shk_smooth_charge(&charge, 200, 1500);
+	    shk_smooth_charge(&charge, 200, NOBOUND);
 
 	    if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
@@ -5072,7 +5354,8 @@ struct monst *shkp;
 	    ** Gets to the point where you need to rob fort ludios
 	    ** in order to get it to +5!!
 	    */
-	    charge = (obj->spe+1) * (obj->spe+1) * 625;
+	    charge = (obj->spe+1) * (obj->spe+1) * 625 * (obj->spe+1 > 5 ? (obj->spe+1) : 1);
+		/* removed upper limit, but enchanting stuff beyond the former limit is much more expensive --Amy */
 
 	    if (obj->spe < 0) charge = 100;
 
@@ -5083,11 +5366,11 @@ struct monst *shkp;
 	    shk_smooth_charge(&charge, 50, NOBOUND);
 
 	    if (shk_offer_price(slang, charge, shkp) == FALSE) return;
-	    if (obj->spe+1 > 5) { 
+	    /*if (obj->spe+1 > 5) { 
 		verbalize("I can't enchant this any higher!");
 		charge = 0;
 		break;
-	    }
+	    }*/
 	    /* Have some fun! */
 	    if (Confusion)
 		Your("%s unexpectedly!", aobjnam(obj, "vibrate"));
@@ -5175,7 +5458,7 @@ shk_armor_works(slang, shkp)
 		if (obj->oartifact) charge = charge * 3 / 2;
 		
 		/* Smooth out the charge a bit */
-		shk_smooth_charge(&charge, 100, 1000);
+		shk_smooth_charge(&charge, 100, NOBOUND);
 
 		if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
@@ -5194,7 +5477,8 @@ shk_armor_works(slang, shkp)
 		verbalize("Nobody will ever hit on you again.");
  
 		/* Higher enchantment levels cost more. */
-		charge = (obj->spe+1) * (obj->spe+1) * 500;
+		charge = (obj->spe+1) * (obj->spe+1) * 500 * (obj->spe+1 > 3 ? (obj->spe+1) : 1);
+		/* removed upper limit, but enchanting stuff beyond the former limit is much more expensive --Amy */
 						
 		if (obj->spe < 0) charge = 100;                
 
@@ -5205,11 +5489,11 @@ shk_armor_works(slang, shkp)
 		shk_smooth_charge(&charge, 50, NOBOUND);
 
 		if (shk_offer_price(slang, charge, shkp) == FALSE) return;
-		if (obj->spe+1 > 3) { 
+		/*if (obj->spe+1 > 3) { 
 			verbalize("I can't enchant this any higher!");
 			charge = 0;
 			break;
-			}
+			}*/
 		 /* Have some fun! */
 		if (Hallucination) Your("%s looks dented.", xname(obj));
 		
@@ -5302,10 +5586,10 @@ shk_charge(slang, shkp)
 		charge = 1000;
 
 	/* Wands of wishing should be hard to get recharged */
-	if (/*obj->oclass == WAND_CLASS &&*/ obj->otyp == WAN_WISHING)
+	if (/*obj->oclass == WAND_CLASS &&*/ obj->otyp == WAN_WISHING || obj->otyp == WAN_ACQUIREMENT)
 		charge *= 3;
 	else /* Smooth out the charge a bit */
-		shk_smooth_charge(&charge, 100, 1000);
+		shk_smooth_charge(&charge, 100, NOBOUND);
 
 	/* Go for it? */
 	if (shk_offer_price(slang, charge, shkp) == FALSE) return;
@@ -5345,7 +5629,7 @@ shk_charge(slang, shkp)
 	if (obj->oclass == WAND_CLASS)
 	{
 		/* Wand of wishing? */
-		if (obj->otyp == WAN_WISHING)
+		if (obj->otyp == WAN_WISHING || obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT)
 		{
 			/* Premier gives you ONE more charge */
 			/* KMH -- Okay, but that's pretty generous */
@@ -5355,7 +5639,7 @@ shk_charge(slang, shkp)
 			verbalize("Since you'll have everything you always wanted,");
 			verbalize("...How about loaning me some money?");
 #ifndef GOLDOBJ
-			shkp->mgold += u.ugold;
+			if (rn2(2)) shkp->mgold += u.ugold;
 			u.ugold = 0;
 #else
 			money2mon(shkp, money_cnt(invent));
@@ -5363,15 +5647,15 @@ shk_charge(slang, shkp)
 			makeknown(obj->otyp);
 			bot();
 		}
-		else
-		{
+		else if (type == 'p')
+		{ 
 			/*
 			** Basic: recharge() will have given 1 charge.
 			** Premier: recharge() will have given 5-10, say.
-			** Add a few more still.
+			** Add a few more still. Note by Amy: but only if the player uses premier charging.
 			*/
-			if (obj->spe < 16) obj->spe += rn1(5,5);
-			else if (obj->spe < 20) obj->spe += 1;
+			if (obj->spe < 120) obj->spe += rnd(5);
+			/*else if (obj->spe < 20) obj->spe += 1;*/
 		}
 	}
 }
@@ -5436,7 +5720,7 @@ shk_offer_price(slang, charge, shkp)
 
 #ifndef GOLDOBJ
 	u.ugold -= charge;
-	shkp->mgold += charge;
+	if (rn2(2)) shkp->mgold += charge;
 #else
 	money2mon(shkp, charge);
 #endif

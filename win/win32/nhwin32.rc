@@ -126,6 +126,8 @@ BEGIN
                     IDD_ABOUT3, 8, 35, 224, 8
     LTEXT           COPYRIGHT_BANNER_C,
                     IDD_ABOUT4, 7, 43, 223, 8
+    LTEXT           COPYRIGHT_BANNER_D,
+                    IDD_ABOUT4, 7, 51, 223, 8
     CTEXT           "NetHack 3.2 for Windows", 105, 8, 63, 214, 8
     CTEXT           "Initial MS Windows port by Bill Dyer 1992", IDD_ABOUT5, 8, 78, 
                     215, 8

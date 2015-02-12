@@ -55,8 +55,9 @@ STATIC_DCL int FDECL(ready_weapon, (struct obj *, BOOLEAN_P));
 /* probably should be renamed */
 #define erodeable_wep(optr)	((optr)->oclass == WEAPON_CLASS \
 				|| is_weptool(optr) \
-				|| (optr)->otyp == HEAVY_IRON_BALL \
-				|| (optr)->otyp == IRON_CHAIN)
+				|| (optr)->oclass == BALL_CLASS \
+				|| (optr)->oclass == GEM_CLASS \
+				|| (optr)->oclass == CHAIN_CLASS)
 
 /* used by welded(), and also while wielding */
 #define will_weld(optr)		((optr)->cursed \
@@ -148,10 +149,24 @@ boolean put_away;
 		mons[wep->corpsenm].mname, makeplural(body_part(HAND)));
 	    Sprintf(kbuf, "%s corpse", an(mons[wep->corpsenm].mname));
 	    instapetrify(kbuf);
+	} else if (!uarmg && !Stone_resistance && wep->otyp == EGG
+				&& touch_petrifies(&mons[wep->corpsenm])) {
+	    /* Prevent wielding cockatrice when not wearing gloves --KAA */
+	    char kbuf[BUFSZ];
+
+	    You("wield the %s egg in your bare %s.",
+		mons[wep->corpsenm].mname, makeplural(body_part(HAND)));
+	    Sprintf(kbuf, "%s corpse", an(mons[wep->corpsenm].mname));
+	    instapetrify(kbuf);
 	} else if (uarms && bimanual(wep))
 	    You("cannot wield a two-handed %s while wearing a shield.",
 		is_sword(wep) ? "sword" :
 		    wep->otyp == BATTLE_AXE ? "axe" : "weapon");
+
+	else if (bimanual(wep) && Race_if(PM_LICH_WARRIOR) && !Upolyd )
+	    pline("As a lich, you cannot wield a two-handed weapon.");
+	/* Yes I know, a lich barbarian will start out wielding that axe. --Amy */
+
 	else if (wep->oartifact && !touch_artifact(wep, &youmonst)) {
 	    res++;	/* takes a turn even though it doesn't get wielded */
 	} else if (tech_inuse(T_EVISCERATE)) {
@@ -259,9 +274,37 @@ dowield()
 
 	/* May we attempt this? */
 	multi = 0;
-	if (cantwield(youmonst.data)) {
-		pline("Don't be ridiculous!");
-		return(0);
+	if (cantwield(youmonst.data) && !Race_if(PM_TRANSFORMER) && !Race_if(PM_HUMAN_WRAITH) ) {
+		pline("Don't be ridiculous! Your current form cannot realistically wield a weapon!");
+
+		if (yn("Try anyway?") == 'y') {
+			if (rn2(3)) { 		make_confused(HConfusion + rnd(40),FALSE);
+			pline("Uhh... that didn't seem to work.");
+		    return 1;}
+		}
+		else {return(0);}
+
+	}
+
+	if (Race_if(PM_HUMAN_WRAITH) && (u.uhpmax < 2 || u.uhp < 2) ) {pline("You don't have enough health to wield weapons!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
+	}
+
+	if (Race_if(PM_HUMAN_WRAITH)) {
+
+		if (yn("Wielding a weapon as a wraith will permanently damage your health. Do it anyway?") == 'y') {
+
+			u.uhp -= 1;
+			u.uhpmax -= 1;
+			if (Upolyd) {
+				u.mh -= 1;
+			u.mhmax -= 1;
+			}
+
+		}
+		else return 0;
+
 	}
 
 	/* Prompt for a new weapon */
@@ -282,8 +325,13 @@ dowield()
 	/* Handle no object, or object in other slot */
 	if (wep == &zeroobj)
 		wep = (struct obj *) 0;
-	else if (wep == uswapwep)
+	else if (wep == uswapwep && !Race_if(PM_HUMAN_WRAITH) )
 		return (doswapweapon());
+	else if (wep == uswapwep && Race_if(PM_HUMAN_WRAITH) ) {
+
+		pline("You now have no secondary weapon readied.");
+		setuswapwep((struct obj *) 0, FALSE);
+	}
 	else if (wep == uquiver)
 		setuqwep((struct obj *) 0);
 	else if (wep->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL
@@ -301,6 +349,7 @@ dowield()
 	if (flags.pushweapon && oldwep && uwep != oldwep)
 		setuswapwep(oldwep, TRUE);
 	untwoweapon();
+	(void)doredraw();
 
 	return (result);
 }
@@ -314,10 +363,39 @@ doswapweapon()
 
 	/* May we attempt this? */
 	multi = 0;
-	if (cantwield(youmonst.data)) {
-		pline("Don't be ridiculous!");
-		return(0);
+	if (cantwield(youmonst.data) && !Race_if(PM_TRANSFORMER) && !Race_if(PM_HUMAN_WRAITH) ) {
+
+		pline("Don't be ridiculous! Your current form cannot realistically wield a weapon!");
+
+		if (yn("Try anyway?") == 'y') {
+			if (rn2(3)) { 		make_confused(HConfusion + rnd(40),FALSE);
+			pline("Uhh... that didn't seem to work.");
+		    return 1;}
+		}
+		else {return(0);}
 	}
+
+	if (Race_if(PM_HUMAN_WRAITH) && (u.uhpmax < 2 || u.uhp < 2) ) {pline("You don't have enough health to wield weapons!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
+	}
+
+	if (Race_if(PM_HUMAN_WRAITH)) {
+
+		if (yn("Wielding a weapon as a wraith will permanently damage your health. Do it anyway?") == 'y') {
+
+			u.uhp -= 1;
+			u.uhpmax -= 1;
+			if (Upolyd) {
+				u.mh -= 1;
+			u.mhmax -= 1;
+			}
+
+		}
+		else return 0;
+
+	}
+
 	if (welded(uwep)) {
 		weldmsg(uwep);
 		return (0);
@@ -348,6 +426,7 @@ doswapweapon()
 
 	if (u.twoweap && !can_twoweapon())
 		untwoweapon();
+	(void)doredraw();
 
 	return (result);
 }
@@ -447,6 +526,7 @@ const char *verb;	/* "rub",&c */
 	You_cant("%s %s %s while wearing %s.",
 		 verb, shk_your(yourbuf, obj), what,
 		 more_than_1 ? "them" : "it");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return FALSE;
     }
     if (welded(uwep)) {
@@ -461,16 +541,26 @@ const char *verb;	/* "rub",&c */
 	} else {
 	    You_cant("do that.");
 	}
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return FALSE;
     }
-    if (cantwield(youmonst.data)) {
+    if (cantwield(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	You_cant("hold %s strongly enough.", more_than_1 ? "them" : "it");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return FALSE;
     }
     /* check shield */
+
+	if (bimanual(obj) && Race_if(PM_LICH_WARRIOR) && !Upolyd ) {
+	    pline("As a lich, you cannot wield a two-handed weapon.");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return FALSE;
+	}
+
     if (uarms && bimanual(obj)) {
 	You("cannot %s a two-handed %s while wearing a shield.",
 	    verb, (obj->oclass == WEAPON_CLASS) ? "weapon" : "tool");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return FALSE;
     }
     if (uquiver == obj) setuqwep((struct obj *)0);
@@ -503,11 +593,11 @@ can_twoweapon()
 	boolean disallowed_by_role;
 	struct obj *otmp;
 
-#define NOT_WEAPON(obj) (obj && !is_weptool(obj) && obj->oclass != WEAPON_CLASS)
+#define NOT_WEAPON(obj) (obj && !is_weptool(obj) && obj->oclass != WEAPON_CLASS && obj->oclass != BALL_CLASS && obj->oclass != GEM_CLASS && obj->oclass != CHAIN_CLASS)
 	if (!could_twoweap(youmonst.data) && (uwep || uswapwep)) {
 	    what = uwep && uswapwep ? "two weapons" : "more than one weapon";
-	    if (cantwield(youmonst.data))
-		pline("Don't be ridiculous!");
+	    if (cantwield(youmonst.data) && !Race_if(PM_TRANSFORMER) )
+		pline("Don't be ridiculous! Your current form has enough trouble wielding ONE weapon!");
 	    else if (Upolyd)
 		You_cant("use %s in your current form.", what);
 	    else {
@@ -525,8 +615,8 @@ can_twoweapon()
 		pline("%s aren't able to use %s at once.",
 			makeplural(upstart(buf)), what);
 	    }
-	} else if (cantwield(youmonst.data))
-	    pline("Don't be ridiculous!");
+	} else if (cantwield(youmonst.data) && !Race_if(PM_TRANSFORMER) )
+	    pline("Don't be ridiculous! Your current form has enough trouble wielding ONE weapon!");
 	else if (youmonst.data->mattk[1].aatyp != AT_WEAP &&
 		youmonst.data->mattk[1].aatyp != AT_CLAW) {
 	    if (Upolyd)
@@ -567,8 +657,17 @@ can_twoweapon()
 		    mons[uswapwep->corpsenm].mname, body_part(HAND));
 	    Sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
 	    instapetrify(kbuf);
-        } else if (uswapwep && (Glib || uswapwep->cursed)) {
-	    if (!Glib)
+        } 	else if (!uarmg && !Stone_resistance && 
+		(uswapwep && uswapwep->otyp == EGG &&                   
+                (touch_petrifies(&mons[uswapwep->corpsenm])))) {
+	    char kbuf[BUFSZ];
+
+	    You("wield the %s egg with your bare %s.",
+		    mons[uswapwep->corpsenm].mname, body_part(HAND));
+	    Sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
+	    instapetrify(kbuf);
+        } else if (uswapwep && (IsGlib || uswapwep->cursed)) {
+	    if (!IsGlib)
 		uswapwep->bknown = TRUE;
 	    drop_uswapwep();
 	} else
@@ -649,6 +748,7 @@ uwepgone()
 		setworn((struct obj *)0, W_WEP);
 		unweapon = TRUE;
 		update_inventory();
+		(void)doredraw();
 	}
 }
 
@@ -714,7 +814,7 @@ boolean fade_scrolls;
 	if (target->greased) {
 	    grease_protect(target,(char *)0,victim);
 	} else if (target->oclass == SCROLL_CLASS) {
-	    if(fade_scrolls && target->otyp != SCR_BLANK_PAPER
+	    if(fade_scrolls && target->otyp != SCR_BLANK_PAPER && !target->oartifact && target->otyp != SCR_HEALING && target->otyp != SCR_STANDARD_ID && target->otyp != SCR_MANA && target->otyp != SCR_CURE
 #ifdef MAIL
 	    && target->otyp != SCR_MAIL
 #endif
@@ -762,8 +862,28 @@ boolean fade_scrolls;
 		target->oeroded2++;
 	    else
 		target->oeroded++;
-	} else {
-	    if (flags.verbose) {
+	} else if (!target->oartifact) {
+
+		    if (victim == &youmonst) {
+			pline("One of your items got vaporized!"),
+			remove_worn_item(target, FALSE);
+			if (target == uball) unpunish();
+			useupall(target);
+			uwepgone();
+			update_inventory();
+		    }
+
+			/* the following code always crashes the game, unfortunately... --Amy */
+			/*else {
+
+			lethe_damage(target, TRUE, FALSE);*/
+
+			/*pline("An item got vaporized!"),
+					delobj(target);
+					update_inventory();*/
+
+
+/*	    if (flags.verbose) {
 		if (victim == &youmonst)
 		    Your("%s completely %s.",
 			aobjnam(target, Blind ? "feel" : "look"),
@@ -776,7 +896,8 @@ boolean fade_scrolls;
 		    pline_The("%s completely %s.",
 			aobjnam(target, "look"),
 			acid_dmg ? "corroded" : "rusty");
-	    }
+	    } */
+
 	}
 }
 
@@ -789,7 +910,7 @@ register int amount;
 	const char *xtime;
 	int otyp = STRANGE_OBJECT;
 
-	if(!uwep || (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep))) {
+	if(!uwep || (uwep->oclass != WEAPON_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != GEM_CLASS && uwep->oclass != CHAIN_CLASS && !is_weptool(uwep))) {
 		char buf[BUFSZ];
 
 		Sprintf(buf, "Your %s %s.", makeplural(body_part(HAND)),
@@ -811,7 +932,7 @@ register int amount;
 	}
 
 	if(uwep->otyp == CRYSKNIFE && amount < 0) {
-		uwep->otyp = WORM_TOOTH;
+		if (!uwep->oartifact) uwep->otyp = WORM_TOOTH;
 		uwep->oerodeproof = 0;
 		Your("weapon seems duller now.");
 		if (otyp != STRANGE_OBJECT && otmp->bknown) makeknown(otyp);
@@ -825,7 +946,7 @@ register int amount;
 	}
 	/* there is a (soft) upper and lower limit to uwep->spe */
 	if(((uwep->spe > 5 && amount >= 0) || (uwep->spe < -5 && amount < 0))
-								&& rn2(3)) {
+								&& rn2(3) && !rn2(3) ) {
 	    if (!Blind)
 	    Your("%s %s for a while and then %s.",
 		 aobjnam(uwep, "violently glow"), color,
@@ -904,6 +1025,16 @@ boolean put_away;
 	You("extinguish %s before putting it away.", yname(obj));
 	end_burn(obj, TRUE);
     }
+#ifdef JEDI
+    else if (put_away && is_lightsaber(obj) && obj->lamplit &&
+	!artifact_light(obj)){
+	    char yourbuf[BUFSZ];
+	    You("deactivate %s %s before putting it away.", shk_your(yourbuf, obj), xname(obj));
+	    end_burn(obj, TRUE);
+    }
+#endif
+
+	(void)doredraw();
 }
 
 /*wield.c*/

@@ -53,6 +53,14 @@
 #define MS_CHICKEN	42	/* chicken */
 #define MS_COW		43	/* cows and bulls */
 #define MS_PARROT	44	/* parrots */
+#define MS_WHORE	45	/* sexy prostitute talking to you */
+/* MS_DOUGLAS_ADAMS used to be 42, however I fear the DevTeam eventually 
+** reaching that number.  - sk */
+#define MS_DOUGLAS_ADAMS 95	/* "42"; "Nice day"; etc. */
+#define MS_PUPIL 	96
+#define MS_TEACHER	97
+#define MS_PRINCIPAL	98
+#define MS_SMITH	99
 
 
 #define MR_FIRE         0x01    /* resists fire */
@@ -169,25 +177,33 @@
 #define M2_MAGIC	0x80000000L	/* picks up magic items */
 #endif
 
-#define M3_WANTSAMUL	0x0001		/* would like to steal the amulet */
-#define M3_WANTSBELL	0x0002		/* wants the bell */
-#define M3_WANTSBOOK	0x0004		/* wants the book */
-#define M3_WANTSCAND	0x0008		/* wants the candelabrum */
-#define M3_WANTSARTI	0x0010		/* wants the quest artifact */
-#define M3_WANTSALL	0x001f		/* wants any major artifact */
-#define M3_WAITFORU	0x0040		/* waits to see you or get attacked */
-#define M3_CLOSE	0x0080		/* lets you close unless attacked */
+#define M3_WANTSAMUL	0x0001L		/* would like to steal the amulet */
+#define M3_WANTSBELL	0x0002L		/* wants the bell */
+#define M3_WANTSBOOK	0x0004L		/* wants the book */
+#define M3_WANTSCAND	0x0008L		/* wants the candelabrum */
+#define M3_WANTSARTI	0x0010L		/* wants the quest artifact */
+#define M3_WANTSALL	0x001fL		/* wants any major artifact */
+#define M3_WAITFORU	0x0040L		/* waits to see you or get attacked */
+#define M3_CLOSE		0x0080L		/* lets you close unless attacked */
 
-#define M3_COVETOUS	0x001f		/* wants something */
-#define M3_WAITMASK	0x00c0		/* waiting... */
+#define M3_COVETOUS	0x001fL		/* wants something */
+#define M3_WAITMASK	0x00c0L		/* waiting... */
 
 /* Infravision is currently implemented for players only */
-#define M3_INFRAVISION	0x0100		/* has infravision */
-#define M3_INFRAVISIBLE 0x0200		/* visible by infravision */
+#define M3_INFRAVISION	0x0100L		/* has infravision */
+#define M3_INFRAVISIBLE 0x0200L		/* visible by infravision */
 
 /* [DS] Lethe */
 #define M3_TRAITOR	0x0400L			/* Capable of treachery */
-#define M3_NOTAME	0x0800L			/* Cannot be tamed */
+#define M3_NOTAME		0x0800L			/* Cannot be tamed */
+
+/* more stuff --Amy */
+#define M3_AVOIDER	0x1000L			/* Avoids player */
+#define M3_LITHIVORE	0x2000L			/* can eat bone, glass, gems and minerals */
+#define M3_PETTY		0x4000L			/* kelp frond and poke ball can tame them */
+#define M3_POKEMON	0x8000L			/* poke ball has an increased chance of catching one of these */
+
+/*#define M3_NOPLRPOLY	0x00010000L*/			/* monsters may poly into it, players can't */
 
 
 #define MZ_TINY		0		/* < 2' */
@@ -212,16 +228,16 @@
 
 
 /* for mons[].geno (constant during game) */
-#define G_VLGROUP	0x2000		/* appear in very large groups normally */
-#define G_UNIQ		0x1000		/* generated only once */
-#define G_NOHELL	0x0800		/* not generated in "hell" */
-#define G_HELL		0x0400		/* generated only in "hell" */
-#define G_NOGEN		0x0200		/* generated only specially */
-#define G_SGROUP	0x0080		/* appear in small groups normally */
-#define G_LGROUP	0x0040		/* appear in large groups normally */
-#define G_GENO		0x0020		/* can be genocided */
-#define G_NOCORPSE	0x0010		/* no corpse left ever */
-#define G_FREQ		0x0007		/* creation frequency mask */
+#define G_VLGROUP	0x8000		/* appear in very large groups normally */
+#define G_UNIQ		0x4000		/* generated only once */
+#define G_NOHELL	0x2000		/* not generated in "hell" */
+#define G_HELL		0x1000		/* generated only in "hell" */
+#define G_NOGEN		0x0800		/* generated only specially */
+#define G_SGROUP	0x0400		/* appear in small groups normally */
+#define G_LGROUP	0x0200		/* appear in large groups normally */
+#define G_GENO		0x0100		/* can be genocided */
+#define G_NOCORPSE	0x0080		/* no corpse left ever */
+#define G_FREQ		0x007f		/* creation frequency mask */
 
 /* for mvitals[].mvflags (variant during game), along with G_NOCORPSE */
 #define G_KNOWN		0x0004		/* have been encountered */

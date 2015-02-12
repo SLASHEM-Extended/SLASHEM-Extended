@@ -9,6 +9,8 @@
 # Players are supposed to sacrifice the Amulet of Yendor on the appropriate
 # shrine.
 
+# Arch-newts on every plane except astral --Amy
+
 MAZE:"earth",' '
 FLAGS: noteleport,hardfloor,shortsighted
 MESSAGE: "Well done, mortal!"
@@ -121,6 +123,8 @@ MONSTER:'T',"rock troll",(02,17)
 MONSTER:'E',"earth elemental",(04,17),hostile
 MONSTER:'E',"earth elemental",(04,18),hostile
 
+MONSTER[50%]:':',"arch-newt",random,hostile
+
 OBJECT:'`',"boulder",random
 
 
@@ -224,9 +228,12 @@ MONSTER:'v',"steam vortex",random,hostile
 MONSTER:'v',"steam vortex",random,hostile
 MONSTER:'v',"steam vortex",random,hostile
 
+MONSTER[50%]:':',"arch-newt",random,hostile
 
 MAZE:"fire",' '
 FLAGS: noteleport,hardfloor,shortsighted
+MESSAGE: "It's hot down here..."
+MESSAGE: "So this is what the Gehenna *should* look like, instead of those boring mazes..."
 GEOMETRY:center,center
 # The player lands, upon arrival, in the
 # lower-right.  The location of the
@@ -369,6 +376,8 @@ MONSTER:'v',"steam vortex",random
 MONSTER:':',"salamander",random,hostile
 MONSTER:':',"salamander",random,hostile
 
+MONSTER[50%]:':',"arch-newt",random,hostile
+
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random
@@ -472,6 +481,7 @@ MONSTER:'E',"water elemental",random,hostile
 MONSTER:'E',"water elemental",random,hostile
 MONSTER:'E',"water elemental",random,hostile
 
+MONSTER[50%]:':',"arch-newt",random,hostile
 
 MAZE:"astral",' '
 FLAGS: noteleport,hardfloor,nommap,shortsighted
@@ -614,3 +624,16 @@ MONSTER:'V',random,random,hostile
 MONSTER:'D',random,random,hostile
 MONSTER:'D',random,random,hostile
 MONSTER:'D',random,random,hostile
+# 10 arch-lichens on Astral. DIE!
+MONSTER:'F',"arch-lichen",random,hostile
+MONSTER[90%]:'F',"arch-lichen",random,hostile
+MONSTER[80%]:'F',"arch-lichen",random,hostile
+MONSTER[70%]:'F',"arch-lichen",random,hostile
+MONSTER[60%]:'F',"arch-lichen",random,hostile
+MONSTER[50%]:'F',"arch-lichen",random,hostile
+MONSTER[40%]:'F',"arch-lichen",random,hostile
+MONSTER[30%]:'F',"arch-lichen",random,hostile
+MONSTER[20%]:'F',"arch-lichen",random,hostile
+MONSTER[10%]:'F',"arch-lichen",random,hostile
+
+MONSTER[50%]:'.',"%s-$$$-NIX",random,hostile

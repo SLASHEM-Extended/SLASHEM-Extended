@@ -52,9 +52,9 @@ STATIC_DCL void FDECL(set_botl_warn, (int));
  * -- or somewhat over 160 characters
  */
 #if COLNO <= 170
-#define MAXCO 190
+#define MAXCO 240
 #else
-#define MAXCO (COLNO+20)
+#define MAXCO (COLNO+70)
 #endif
 
 #ifndef OVLB
@@ -216,14 +216,17 @@ botl_player()
     Sprintf(nb = eos(player)," the ");
 
 	if (Upolyd) {
+
 	(void) strncpy(mbot, mons[u.umonnum].mname, SIZE(mbot) - 1);
-	mbot[SIZE(mbot) - 1] = 0;
+
+	mbot[/*SIZE(mbot) - 1*/80] = 0;
 		while(mbot[k] != 0) {
 		    if ((k == 0 || (k > 0 && mbot[k-1] == ' ')) &&
 					'a' <= mbot[k] && mbot[k] <= 'z')
 			mbot[k] += 'A' - 'a';
 		    k++;
 		}
+
 	Sprintf(eos(nb), mbot);
 	} else
 	Sprintf(eos(nb), rank());
@@ -257,18 +260,22 @@ bot1()
 	Sprintf(nb = eos(newbot1),"  ");
 	i = mrank_sz + 15;
 	j = (nb + 2) - newbot1; /* aka strlen(newbot1) but less computation */
-	if((i - j) > 0)
-		Sprintf(nb = eos(nb),"%*s", i-j, " ");  /* pad with spaces */
+	/*if((i - j) > 0)
+		Sprintf(nb = eos(nb),"%*s", i-j, " ");   pad with spaces */
         
-	Sprintf(nb = eos(nb), "St:%s ", botl_strength());
+	Sprintf(nb = eos(nb), "St%s ", botl_strength());
 	Sprintf(nb = eos(nb),
-		"Dx:%-1d Co:%-1d In:%-1d Wi:%-1d Ch:%-1d",
+		"Dx%-1d Co%-1d In%-1d Wi%-1d Ch%-1d ",
 		ACURR(A_DEX), ACURR(A_CON), ACURR(A_INT), ACURR(A_WIS), ACURR(A_CHA));
-	Sprintf(nb = eos(nb), (u.ualign.type == A_CHAOTIC) ? "  Chaotic" :
-			(u.ualign.type == A_NEUTRAL) ? "  Neutral" : "  Lawful");
+	Sprintf(nb = eos(nb), urole.filecode); /* fully disclosing what character you're playing */
+	Sprintf(nb = eos(nb), urace.filecode); /* abbreviated so the line doesn't roll over --Amy */
+	Sprintf(nb = eos(nb), flags.female ? "Fem" : "Mal"); /* allowing you to always know what you are */
+	Sprintf(nb = eos(nb), (u.ualign.type == A_CHAOTIC) ? "Cha " :
+			(u.ualign.type == A_NEUTRAL) ? "Neu " : "Law ");
+
 #ifdef SCORE_ON_BOTL
 	if (flags.showscore)
-	    Sprintf(nb = eos(nb), " S:%ld", botl_score());
+	    Sprintf(nb = eos(nb), " S%ld", botl_score());
 #endif
 	curs(WIN_STATUS, 1, 0);
 	putstr(WIN_STATUS, 0, newbot1);
@@ -283,19 +290,65 @@ int verbose;
 	int ret = 1;
 
 	/* TODO:	Add in dungeon name */
+	/* done by Amy */
 	if (Is_knox(&u.uz))
 		Sprintf(buf, "%s ", dungeons[u.uz.dnum].dname);
 	else if (In_quest(&u.uz))
-		Sprintf(buf, "Home %d ", dunlev(&u.uz));
-	else if (In_endgame(&u.uz))
-		Sprintf(buf,
-			Is_astralevel(&u.uz) ? "Astral Plane " : "End Game ");
+		Sprintf(buf, "Quest %d ", dunlev(&u.uz)); /* used to be called home --Amy */
+	else if (Is_astralevel(&u.uz)) /* why the heck is there a "l" missing in "astra_l_level"? */
+		Sprintf(buf, "Astral Plane ");
+	else if (Is_earthlevel(&u.uz))
+		Sprintf(buf, "Earth Plane ");
+	else if (Is_firelevel(&u.uz))
+		Sprintf(buf, "Fire Plane ");
+	else if (Is_waterlevel(&u.uz))
+		Sprintf(buf, "Water Plane ");
+	else if (Is_airlevel(&u.uz))
+		Sprintf(buf, "Air Plane ");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market"))
+		Sprintf(buf, "Blackmarket:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Sokoban"))
+		Sprintf(buf, "Sokoban:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Gehennom"))
+		Sprintf(buf, "Gehennom:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Gnomish Mines"))
+		Sprintf(buf, "Mines:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Town"))
+		Sprintf(buf, "Town:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold"))
+		Sprintf(buf, "Stronghold:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest"))
+		Sprintf(buf, "Nightmare:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest"))
+		Sprintf(buf, "Beholder:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest"))
+		Sprintf(buf, "Vecna:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch"))
+		Sprintf(buf, "Temple:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns"))
+		Sprintf(buf, "Giants:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea"))
+		Sprintf(buf, "Sea:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves"))
+		Sprintf(buf, "Spider:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb"))
+		Sprintf(buf, "Lost Tomb:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves"))
+		Sprintf(buf, "Wyrm Caves:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios"))
+		Sprintf(buf, "Ludios:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Vlad's Tower"))
+		Sprintf(buf, "Vlad Tower:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab"))
+		Sprintf(buf, "Lab:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Sheol"))
+		Sprintf(buf, "Sheol:%d ", depth(&u.uz));
 	else {
 		if (verbose)
 			Sprintf(buf, "%s, level %d ",
 				dungeons[u.uz.dnum].dname, depth(&u.uz));
 		else
-		Sprintf(buf, "Dlvl:%-2d ", depth(&u.uz));
+		Sprintf(buf, "Dlvl:%d ", depth(&u.uz));
 		ret = 0;
 	}
 	return ret;
@@ -320,6 +373,52 @@ int verbose;
 
 static int bot2_abbrev = 0;	/* Line 2 abbreviation level (max 4) */
 
+/* armor that sufficiently covers the body might be able to block magic */
+int
+magic_negationX(mon)
+struct monst *mon;
+{
+	struct obj *armor;
+	int armpro = 0;
+
+	armor = (mon == &youmonst) ? uarm : which_armor(mon, W_ARM);
+	if (armor && armpro < objects[armor->otyp].a_can)
+	    armpro = objects[armor->otyp].a_can;
+	armor = (mon == &youmonst) ? uarmc : which_armor(mon, W_ARMC);
+	if (armor && armpro < objects[armor->otyp].a_can)
+	    armpro = objects[armor->otyp].a_can;
+	armor = (mon == &youmonst) ? uarmh : which_armor(mon, W_ARMH);
+	if (armor && armpro < objects[armor->otyp].a_can)
+	    armpro = objects[armor->otyp].a_can;
+
+	/* armor types for shirt, gloves, shoes, and shield don't currently
+	   provide any magic cancellation but we might as well be complete */
+#ifdef TOURIST
+	armor = (mon == &youmonst) ? uarmu : which_armor(mon, W_ARMU);
+	if (armor && armpro < objects[armor->otyp].a_can)
+	    armpro = objects[armor->otyp].a_can;
+#endif
+	armor = (mon == &youmonst) ? uarmg : which_armor(mon, W_ARMG);
+	if (armor && armpro < objects[armor->otyp].a_can)
+	    armpro = objects[armor->otyp].a_can;
+	armor = (mon == &youmonst) ? uarmf : which_armor(mon, W_ARMF);
+	if (armor && armpro < objects[armor->otyp].a_can)
+	    armpro = objects[armor->otyp].a_can;
+	armor = (mon == &youmonst) ? uarms : which_armor(mon, W_ARMS);
+	if (armor && armpro < objects[armor->otyp].a_can)
+	    armpro = objects[armor->otyp].a_can;
+
+#ifdef STEED
+	/* this one is really a stretch... */
+	armor = (mon == &youmonst) ? 0 : which_armor(mon, W_SADDLE);
+	if (armor && armpro < objects[armor->otyp].a_can)
+	    armpro = objects[armor->otyp].a_can;
+#endif
+
+	return armpro;
+}
+
+
 STATIC_OVL void
 bot2str(char *newbot2)
 {
@@ -333,13 +432,13 @@ bot2str(char *newbot2)
 	hp = Upolyd ? u.mh : u.uhp;
 	hpmax = Upolyd ? u.mhmax : u.uhpmax;
 
-	if(hp < 0) hp = 0;
+	/*if(hp < 0) hp = 0;*/ /* show by how much you have been overkilled --Amy */
 	if (bot2_abbrev < 4)
 		(void) describe_level(newbot2, FALSE);
 	else
 		newbot2[0] = '\0';
 	if (bot2_abbrev < 1)
-		Sprintf(nb = eos(newbot2), "%c:%-2ld ",
+		Sprintf(nb = eos(newbot2), "%c%d ",
 		  oc_syms[COIN_CLASS],
 #ifndef GOLDOBJ
 		u.ugold
@@ -349,27 +448,27 @@ bot2str(char *newbot2)
 		  );
 	else
 		nb = newbot2;
-	Sprintf(nb = eos(nb), "HP:%d(%d) Pw:%d(%d) AC:%-2d",
-		hp, hpmax, u.uen, u.uenmax, u.uac);
+	Sprintf(nb = eos(nb), "HP%d(%d) Pw%d(%d) AC%d MC%d Mov%d",
+		hp, hpmax, u.uen, u.uenmax, u.uac, magic_negationX(&youmonst), youmonst.data->mmove); /* show magic cancellation --Amy */
 
 	if (Upolyd)
-		Sprintf(nb = eos(nb), " HD:%d", ((u.ulycn == u.umonnum) ? 
+		Sprintf(nb = eos(nb), " HD%d", ((u.ulycn == u.umonnum) ? 
 						u.ulevel : mons[u.umonnum].mlevel));
 #ifdef EXP_ON_BOTL
-	else if(flags.showexp && bot2_abbrev < 3)
-		Sprintf(nb = eos(nb), " Xp:%u/%-1ld", u.ulevel,u.uexp);
+	/*else*/ if(flags.showexp && bot2_abbrev < 3) /* show this when polymorphed, too --Amy */
+		Sprintf(nb = eos(nb), " Xp%u/%-1ld", u.ulevel,u.uexp);
 #endif
 	else
-		Sprintf(nb = eos(nb), " Exp:%u", u.ulevel);
+		Sprintf(nb = eos(nb), " Exp%u", u.ulevel);
 
 #ifdef SHOW_WEIGHT
 	if (flags.showweight && bot2_abbrev < 3)
-		Sprintf(nb = eos(nb), "  Wt:%ld/%ld", (long)(inv_weight()+weight_cap()),
+		Sprintf(nb = eos(nb), " Wt%ld/%ld", (long)(inv_weight()+weight_cap()),
 				(long)weight_cap());
 #endif
 
 	if(flags.time && bot2_abbrev < 3)
-	        Sprintf(nb = eos(nb), "  T:%ld ", moves);
+	        Sprintf(nb = eos(nb), " T%ld ", moves);
 
 #ifdef ALLEG_FX
         if(iflags.usealleg && botl_warn && !Hallucination)
@@ -394,7 +493,7 @@ bot2str(char *newbot2)
 /* WAC further Up
 #ifdef SCORE_ON_BOTL
 	if (flags.showscore)
-                Sprintf(nb,"%c:%-2ld  Score:%ld", oc_syms[COIN_CLASS],
+                Sprintf(nb,"%c%d Score%ld", oc_syms[COIN_CLASS],
                    u.ugold, botl_score());
 #endif
 */
@@ -412,12 +511,26 @@ bot2str(char *newbot2)
 
 	if(Blind)
 		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Bnd" : " Blind");
+	if(sengr_at("Elbereth", u.ux, u.uy))
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Elb" : " Elbereth");
+	/* Yes I know, this should have a "is the player blind?" check. But I'm lenient. --Amy */
+
+	if(Feared)
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Fea" : " Fear");
+	if(Numbed)
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Nmb" : " Numb");
+	if(Frozen)
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Frz" : " Freeze");
+	if(Burned)
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Brn" : " Burn");
 	if(Stunned)
 		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Stn" : " Stun");
 	if(Hallucination)
 		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Hal" : " Hallu");
 	if(Slimed)
 		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Slm" : " Slime");
+	if(Stoned)
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Sto" : " Stone");
 	if(u.ustuck && !u.uswallow && !sticks(youmonst.data))
 		Sprintf(nb = eos(nb), " Held");
 	if(cap > UNENCUMBERED)
@@ -566,6 +679,10 @@ boolean reconfig;
 	(Sick && (u.usick_type & SICK_NONVOMITABLE) ? RAW_STAT_ILL : 0) |
 	(Blind ? RAW_STAT_BLIND : 0) |
 	(Stunned ? RAW_STAT_STUNNED : 0) |
+	(Numbed ? RAW_STAT_NUMBED : 0) |
+	(Feared ? RAW_STAT_FEARED : 0) |
+	(Frozen ? RAW_STAT_FROZEN : 0) |
+	(Burned ? RAW_STAT_BURNED : 0) |
 	(Hallucination ? RAW_STAT_HALLUCINATION : 0) |
 	(Slimed ? RAW_STAT_SLIMED : 0)), flgs);
     (*raw_handler)(reconfig, rv - botl_raw_values, botl_raw_values);
@@ -589,6 +706,7 @@ void (*handler)();
 void
 bot()
 {
+
 	/*
 	 * ALI: Cope with the fact that u_init may not have been
 	 * called yet. This happens if the player selection menus
@@ -601,8 +719,8 @@ bot()
 	if (raw_handler)
 		bot_raw(FALSE);
 	else {
-	bot1();
-	bot2();
+	if (!DisplayLoss) bot1();
+	if (!DisplayLoss) bot2();
 	}
 	flags.botl = flags.botlx = 0;
 }

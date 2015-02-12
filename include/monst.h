@@ -41,7 +41,7 @@ struct monst {
 	struct monst *nmon;
 	struct permonst *data;
 	unsigned m_id;
-	short mnum;		/* permanent monster index number */
+	/*short*/long mnum;		/* permanent monster index number */
 	short movement;		/* movement points (derived from permonst definition and added effects */
 	uchar m_lev;		/* adjusted difficulty level of monster */
 	aligntyp malign;	/* alignment of this monster, relative to the
@@ -69,13 +69,17 @@ struct monst {
 	Bitfield(minvis,1);	/* currently invisible */
 	Bitfield(invis_blkd,1); /* invisibility blocked */
 	Bitfield(perminvis,1);	/* intrinsic minvis value */
-	Bitfield(cham,3);	/* shape-changer */
+	Bitfield(cham,5);	/* shape-changer */
 /* note: lychanthropes are handled elsewhere */
 #define CHAM_ORDINARY		0	/* not a shapechanger */
 #define CHAM_CHAMELEON		1	/* animal */
 #define CHAM_DOPPELGANGER	2	/* demi-human */
-#define CHAM_SANDESTIN		3	/* demon */
-#define CHAM_MAX_INDX		CHAM_SANDESTIN
+#define CHAM_DOPPLEZON	3	/* valkyrie */
+#define CHAM_SANDESTIN		4	/* demon */
+#define CHAM_MISSINGNO		5	/* pokemon */
+#define CHAM_TRANSFORMER		6	/* humanlike */
+#define CHAM_GIANT_CHAMELEON		7	/* animal */
+#define CHAM_MAX_INDX		CHAM_GIANT_CHAMELEON
 	Bitfield(mundetected,1);	/* not seen in present hiding place */
 				/* implies one of M1_CONCEAL or M1_HIDE,
 				 * but not mimic (that is, snake, spider,

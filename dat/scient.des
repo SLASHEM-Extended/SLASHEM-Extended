@@ -1,0 +1,353 @@
+# Geek.des
+# The Geek quest
+# 03/19/94 by Sebastian Klein
+
+# --- start level ---
+
+MAZE: "Sci-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY: center,center
+
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+MAP
+............................................................................
+............................................................................
+..........................|-------------------------|.......................
+..........................|.........................|.......................
+..........................|-------------+-----------|.......................
+............................................................................
+............................................................................
+............................................................................
+..........................|-------------------------|-|.....................
+..........................|.........................|.|.....................
+..........................|.........................|.|.....................
+..........................|.........................|.|.....................
+..........................|.........................+.+.....................
+..........................|.........................|.|.....................
+..........................|.........................|.|.....................
+..........................|.........................|.|.....................
+..........................|-------------------------|-|.....................
+............................................................................
+............................................................................
+............................................................................
+ENDMAP
+
+REGION:(00,00,75,19),lit,"ordinary"
+
+BRANCH:(60,18,60,18),(0,0,0,0)
+
+STAIR:(27,03),down
+
+DOOR:locked,(40,04)
+DOOR:locked,(54,12)
+DOOR:locked,(52,12)
+
+MONSTER:'@',"Gordon Freeman",(38,12)
+
+MONSTER:'@',"hacker",(37,11)
+MONSTER:'@',"hacker",(38,11)
+MONSTER:'@',"hacker",(39,11)
+MONSTER:'@',"hacker",(37,12)
+MONSTER:'@',"hacker",(39,12)
+MONSTER:'@',"hacker",(37,13)
+MONSTER:'@',"hacker",(38,13)
+MONSTER:'@',"hacker",(39,13)
+
+# For the textwork care has to be exercised that there are no
+# rock moles, dwarves with pick-axes etc. to break the walls.
+
+# "May the force be with you"
+MONSTER:'M',random,(27,03),hostile
+MONSTER:'a',random,(28,03),hostile
+MONSTER:'y',random,(29,03),hostile
+MONSTER:':',random,(30,03),hostile
+MONSTER:'t',random,(31,03),hostile
+MONSTER:'h',"hobbit",(32,03),hostile
+MONSTER:'e',random,(33,03),hostile
+MONSTER:':',random,(34,03),hostile
+MONSTER:'f',random,(35,03),hostile
+MONSTER:'o',random,(36,03),hostile
+MONSTER:'r',"sewer rat",(37,03),hostile
+MONSTER:'c',random,(38,03),hostile
+MONSTER:'e',random,(39,03),hostile
+MONSTER:':',random,(40,03),hostile
+MONSTER:'b',random,(41,03),hostile
+MONSTER:'e',random,(42,03),hostile
+MONSTER:':',random,(43,03),hostile
+MONSTER:'w',random,(44,03),hostile
+MONSTER:'i',random,(45,03),hostile
+MONSTER:'t',random,(46,03),hostile
+MONSTER:'h',"hobbit",(47,03),hostile
+MONSTER:':',random,(48,03),hostile
+MONSTER:'y',random,(49,03),hostile
+MONSTER:'o',random,(50,03),hostile
+MONSTER:'u',"young unicorn",(51,03),hostile
+
+# "WELCOME"
+MONSTER:'W',"wraith",(53,09),hostile
+MONSTER:'E',random,(53,10),hostile
+MONSTER:'L',"baby lich",(53,11) ,hostile
+MONSTER:'C',random,(53,12),hostile
+MONSTER:'O',random,(53,12),hostile
+MONSTER:'M',random,(53,13),hostile
+MONSTER:'E',random,(53,14),hostile
+
+# To ensure that the player can see the artwork 
+OBJECT:'"',"amulet of ESP",random
+OBJECT:'(',"blindfold",random
+
+OBJECT:'!',"Jolt Cola",random
+OBJECT:'!',"Jolt Cola",random
+OBJECT:'/',"digging",random
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+# --- locate level ---
+
+# looks harmless but *IS* tough!!!
+
+MAZE: "Sci-loca",' '
+FLAGS: hardfloor
+GEOMETRY: center,center
+
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+MAP
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+.....--------------------------|............|--------------------------.....
+...............................|............|...............................
+...-------------------------|..|............|..|-------------------------...
+............................|..|............|..|............................
+.---------------------|--|..|..|............|..|..|--|---------------------.
+......................|..|..|..|............|..|..|..|......................
+.---------------------|--|..|..|............|..|..|--|---------------------.
+............................|..|............|..|............................
+...-------------------------|..|............|..|-------------------------...
+...............................|............|...............................
+.....--------------------------|............|--------------------------.....
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+ENDMAP
+
+RANDOM_PLACES: (24,09), (27,09), (30,09), (45,09), (48,09), (51,09)
+
+REGION:(00,00,75,19),lit,"ordinary"
+
+# the niches 
+STAIR:place[0],down
+OBJECT:'"',"amulet of life saving",place[1]
+OBJECT:'"',"amulet of strangulation",place[2]
+MONSTER:'m',"giant mimic",place[3], m_feature "staircase down"
+MONSTER:'m',"giant mimic",place[4], m_feature "staircase down"
+TRAP:"polymorph",place[5]
+
+STAIR:random,up
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+# --- the goal level ---
+
+MAZE: "Sci-goal", ' '
+GEOMETRY:center,center
+
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+MAP
+............................................................................
+.-------------------------------------------------------------------------|.
+..........................................................................|.
+....|-----------------------------------------------------------------|...|.
+....|.................................................................|...|.
+....|...|---------------------------------------------------------|...|...|.
+....|...|...+.....................................................|...|...|.
+....|...|...|.....................................................|...|...|.
+....|...|...|.....................................................|...|...|.
+....|...|...|........................\............................|...|...|.
+....|...|...|.....................................................|...|...|.
+....|...|...|.....................................................|...|...|.
+....|...|...|.....................................................|...|...|.
+....|...|...|-----------------------------------------------------|...|...|.
+....|...|.............................................................|...|.
+....|...|-------------------------------------------------------------|...|.
+....|.....................................................................|.
+....|---------------------------------------------------------------------|.
+............................................................................
+............................................................................
+ENDMAP
+
+REGION:(0,0,75,19),lit,"ordinary"
+
+STAIR:(75,19),up
+
+DOOR:locked,(12,06)
+
+# that's what's this all about :-)
+OBJECT:')',"scalpel",(37,09),blessed,0,"Operational Scalpel"
+MONSTER:'b',"Nihilanth",(37,09),hostile
+
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+OBJECT:'(',"pack of floppies",random
+OBJECT:'(',"pack of floppies",random
+OBJECT:'(',"pack of floppies",random
+OBJECT:'(',"pack of floppies",random
+OBJECT:'(',"pack of floppies",random
+OBJECT:'(',"pack of floppies",random
+OBJECT:'(',"pack of floppies",random
+OBJECT:'(',"pack of floppies",random
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+# --- fill a ---
+
+LEVEL: "Sci-fila"
+
+ROOM: "ordinary", random, random, random, random
+STAIR: random,up
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+STAIR: random,down
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+RANDOM_CORRIDORS
+
+
+# --- fill b ---
+
+LEVEL: "Sci-filb"
+
+ROOM: "ordinary", random, random, random, random
+STAIR: random,up
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+STAIR: random,down
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+RANDOM_CORRIDORS

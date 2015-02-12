@@ -1,0 +1,357 @@
+#	SCCS Id: @(#)Knight.des	3.4	1995/04/16
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991,92 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, the Old Gypsy woman
+#	and receive your quest assignment.
+#
+MAZE: "Roc-strt",'.'
+FLAGS: noteleport,hardfloor
+INIT_MAP: '.' , 'P' , false , true , lit , false
+GEOMETRY:center,center
+#0         1         2         3
+#0123456789012345678901234567890
+MAP
+0PP...........PPPPPPPPPPPPPPPPPP
+1P..PPP............P-----P.PPPPP
+2P..PPPPPPPPPPPPPPPP|...|PPP..PP
+3....P-----.......|--...--|P..PP
+4....P|...|.|-----|.......|P...P
+5....P--|+--|.....+...\...|P...P
+6....PPP|...+.....|.......|P....
+7......P|.-----+--|--...--|P....
+8......P|.|.........|...|PPP....
+9......P|.|.........--S--PP.....
+0P.....P|.|..........|.|PPP.....
+1P.....P|.|----++----|-|PPP.....
+2P...PPP|.|............|PPP.....
+3PP..P--|+-----++-----+|--P....P
+4PP..P|...|PPPP..PPPP|...|P....P
+5PPPPP-----PPPPPPPPPP-----P...PP
+6PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+ENDMAP
+#0123456789012345678901234567890
+#0         1         2         3
+# Dungeon Description
+REGION:(00,00,30,16),lit,"ordinary"
+# Portal arrival point
+BRANCH:(00,00,30,16),(06,02,24,14)
+# Stairs
+STAIR:(21,10),down
+# Doors
+# Outside Doors
+DOOR:locked,(14,13)
+DOOR:locked,(15,13)
+# Inside Doors
+DOOR:closed,(14,11)
+DOOR:closed,(15,11)
+DOOR:closed,(08,13)
+DOOR:closed,(21,13)
+DOOR:closed,(14,07)
+DOOR:closed,(11,06)
+DOOR:closed,(08,05)
+DOOR:closed,(17,05)
+
+# Fortuneteller
+MONSTER:'@',"Rockin Roller",(12,05)
+# Your treasure chest
+OBJECT:'(',"chest",(22,05)
+# knight guards for the watchrooms
+MONSTER:'@',"attendant",(07,04),peaceful
+MONSTER:'@',"attendant",(07,14),peaceful
+MONSTER:'@',"attendant",(22,14),peaceful
+MONSTER:'@',"attendant",(16,06),peaceful
+# servant guards for the audience chamber
+MONSTER:'@',"attendant",(13,06)
+MONSTER:'@',"attendant",(16,05)
+MONSTER:'@',"attendant",(14,09)
+MONSTER:'@',"attendant",(17,12)
+MONSTER:'@',"attendant",(08,12)
+MONSTER:'@',"attendant",(21,03)
+# Non diggable walls
+NON_DIGGABLE:(00,00,30,16)
+
+# Monsters on siege duty.
+MONSTER: 'r',"huge rock mole",(01,01),hostile
+MONSTER: 'r',"huge rock mole",(01,01),hostile
+MONSTER: 'r',"huge rock mole",(01,01),hostile
+MONSTER: 'r',"huge rock mole",(01,01),hostile
+MONSTER: 'r',"huge rock mole",(01,09),hostile
+MONSTER: 'r',"huge rock mole",(03,08),hostile
+MONSTER: 'r',"huge rock mole",(10,00),hostile
+MONSTER: 'r',"huge rock mole",(02,12),hostile
+MONSTER: 'r',"huge rock mole",(03,14),hostile
+
+MONSTER: 'D',"stone dragon",(27,02),hostile
+MONSTER: 'D',"stone dragon",(28,09),hostile
+MONSTER: 'D',"stone dragon",(29,11),hostile
+
+# Sorry guys and girls, but this level just screams for some water monsters, so I will add some. --Amy
+MONSTER: ';',"giant eel",random,hostile
+MONSTER: ';',"giant eel",random,hostile
+MONSTER: ';',"giant eel",random,hostile
+MONSTER: ';',"giant eel",random,hostile
+MONSTER: ';',"giant eel",random,hostile
+MONSTER: ';',"giant eel",random,hostile
+MONSTER: ';',"giant eel",random,hostile
+MONSTER: ';',"giant eel",random,hostile
+MONSTER: ';',"giant eel",random,hostile
+MONSTER: ';',"giant eel",random,hostile
+MONSTER: ';',"giant eel",random,hostile
+MONSTER: ';',"giant eel",random,hostile
+MONSTER: ';',"kraken",random,hostile
+MONSTER: ';',"kraken",random,hostile
+MONSTER: ';',"kraken",random,hostile
+MONSTER: ';',"electric eel",random,hostile
+MONSTER: ';',"electric eel",random,hostile
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to find your way to the Isle of Glass to go
+#	further towards your assigned quest.
+#
+
+MAZE: "Roc-loca",' '
+INIT_MAP: '#' , ' ', true, true, lit, true
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+#
+MONSTER: 'r',"huge rock mole",random,hostile
+MONSTER: 'r',"huge rock mole",random,hostile
+MONSTER: 'r',"huge rock mole",random,hostile
+MONSTER: 'r',"huge rock mole",random,hostile
+MONSTER: 'r',"huge rock mole",random,hostile
+MONSTER: 'D',"stone dragon",random,hostile
+MONSTER: 'D',"stone dragon",random,hostile
+MONSTER: 'D',"stone dragon",random,hostile
+MONSTER: 'D',"stone dragon",random,hostile
+MONSTER: 'D',"stone dragon",random,hostile
+MONSTER: 'D',"stone dragon",random,hostile
+MONSTER: 'D',"stone dragon",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal drummer",random,hostile
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet your nemesis, the Reble Ringleader.  
+#	You have to defeat her party in combat to regain 
+#	the artifact you have come to retrieve.
+#
+
+MAZE: "Roc-goal", ' '
+FLAGS: shortsighted,hardfloor
+INIT_MAP: '#' , ' ' , false , true , lit , false
+GEOMETRY:center,center
+#0         1         2         3         4         
+#01234567890123456789012345678901234567890123456789
+MAP
+0##################################################
+1#-----##-----##-----##-------#T#T#T#T#T#T#T#T#T#T#
+2#|###|##|###|##|###|##|#####|#####################
+3#---+-##--+--##--+--##|#####|#T#T#T#T#T#T#T#T#T#T#
+4######################|#####|#####################
+5#|-|##################|#####|#T#T#T#T#|---------|#
+6#|#|##################---+---#########|#########|#
+7#|#+##################################+#########|#
+8#|#|##################################|#########|#
+9#|-|##################################|---------|#
+0#####################|-|########################F#
+1#--+-################+#|##############F#########F#
+2#|##|#--+--##--+--###|#|##############F#########F#
+3#|##|#|###|##|###|###|#|##############F#########F#
+4#----#-----##-----###|-|##############FFFFFFFFFFF#
+5##################################################
+ENDMAP
+#01234567890123456789012345678901234567890123456789
+#0         1         2         3         4         
+# Dungeon Description
+REGION:(00,00,49,15),lit,"ordinary"
+# Stairs
+STAIR:(30,14),up
+# Doors
+# Outside Doors
+DOOR:closed,(04,03)
+DOOR:closed,(03,07)
+DOOR:closed,(03,11)
+DOOR:closed,(10,03)
+DOOR:closed,(08,12)
+DOOR:closed,(17,03)
+DOOR:closed,(15,12)
+DOOR:closed,(21,11)
+DOOR:locked,(25,06)
+DOOR:closed,(38,07)
+
+# Church
+REGION:(39,06,47,08),lit,"temple"
+ALTAR:(46,07),noncoaligned,shrine
+REGION:(39,10,47,13),lit,"morgue"
+
+# Objects
+# Notes: This will be replaced when the object is created
+OBJECT:')',"sling",(25,03),blessed,0,"Rocker Sling"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random monsters.
+MONSTER:'@',"Death Metal Orchestra Leader",(25,03),hostile
+MONSTER:'@',"death metal drummer",(24,03),hostile
+MONSTER:'@',"death metal freak",(26,03),hostile
+MONSTER:'@',"death metal freak",(25,02),hostile
+MONSTER:'u',"speedhorse",random,hostile
+MONSTER:'u',"speedhorse",random,hostile
+MONSTER:'u',"speedhorse",random,hostile
+MONSTER:'u',"speedhorse",random,hostile
+MONSTER:'u',"speedhorse",random,hostile
+MONSTER:'u',"speedhorse",random,hostile
+MONSTER:'u',"speedhorse",random,hostile
+MONSTER:'u',"speedhorse",random,hostile
+MONSTER:'u',"speedhorse",random,hostile
+MONSTER:'u',"speedhorse",random,hostile
+MONSTER:'u',"speedhorse",random,hostile
+MONSTER:'u',"speedhorse",random,hostile
+MONSTER:'u',"speedhorse",random,hostile
+MONSTER:'u',"speedhorse",random,hostile
+MONSTER:'u',"speedhorse",random,hostile
+MONSTER:'u',"speedhorse",random,hostile
+MONSTER:'u',"arcane horse",random,hostile
+MONSTER:'u',"arcane horse",random,hostile
+MONSTER:'u',"arcane horse",random,hostile
+MONSTER:'u',"arcane horse",random,hostile
+MONSTER:'u',"arcane horse",random,hostile
+MONSTER:'u',"arcane horse",random,hostile
+MONSTER:'u',"arcane horse",random,hostile
+MONSTER:'u',"celestial horse",random,hostile
+MONSTER:'u',"celestial horse",random,hostile
+MONSTER:'u',"celestial horse",random,hostile
+MONSTER:'u',"celestial horse",random,hostile
+MONSTER:'u',"celestial horse",random,hostile
+MONSTER:'u',"celestial horse",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal drummer",random,hostile
+MONSTER:'@',"death metal drummer",random,hostile
+MONSTER:'@',"death metal drummer",random,hostile
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "fila" is the upper filler, between the
+#	start and locate levels, and "filb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Roc-fila" , ' '
+FLAGS: shortsighted,hardfloor
+INIT_MAP: '#' , ' ', true, true, lit, true
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+#
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal drummer",random,hostile
+MONSTER:'r',"huge rock mole",random,hostile
+MONSTER:'r',"huge rock mole",random,hostile
+MONSTER:'r',"huge rock mole",random,hostile
+MONSTER:'r',"huge rock mole",random,hostile
+MONSTER:'r',"huge rock mole",random,hostile
+MONSTER:'D',"stone dragon",random,hostile
+MONSTER:'D',"stone dragon",random,hostile
+
+MAZE: "Roc-filb" , ' '
+FLAGS: shortsighted,hardfloor
+INIT_MAP: '#' , ' ', true, true, lit, true
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+#
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal freak",random,hostile
+MONSTER:'@',"death metal drummer",random,hostile
+MONSTER:'r',"huge rock mole",random,hostile
+MONSTER:'r',"huge rock mole",random,hostile
+MONSTER:'r',"huge rock mole",random,hostile
+MONSTER:'r',"huge rock mole",random,hostile
+MONSTER:'r',"huge rock mole",random,hostile
+MONSTER:'D',"stone dragon",random,hostile
+MONSTER:'D',"stone dragon",random,hostile

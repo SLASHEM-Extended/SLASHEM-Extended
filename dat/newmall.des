@@ -24,6 +24,8 @@ MONSTER: random, random, random
 MONSTER: random, random, random
 MONSTER: random, random, random
 MONSTER: random, random, random
+MONSTER: 'n', random, random
+MONSTER: 'n', random, random
 
 SUBROOM: "tool shop" , lit, (2,2), (6,4), "town"
 CHANCE: 20
@@ -73,6 +75,7 @@ ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
 STAIR: random, down
 MONSTER: random, random, random
+MONSTER: 'n', random, random
 
 ROOM: "ordinary" , random, random, random, random
 MONSTER: random, random, random

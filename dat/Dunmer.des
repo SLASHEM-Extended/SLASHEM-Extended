@@ -1,0 +1,489 @@
+#	SCCS Id: @(#)Elf.des	3.2	91/12/24
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, Earendil/Elwing
+#	and receive your quest assignment.
+#
+LEVEL: "Dun-strt"
+FLAGS: noteleport,hardfloor
+
+
+# Stairs
+# Portal arrival point
+
+
+ROOM: "ordinary" , lit, (3,3), (center,center), (31,15)
+NAME: "town"
+
+FOUNTAIN: (13, 7)
+FOUNTAIN: (20, 7)
+#
+#	The Town Watch.
+#
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Earendil/Elwing
+MONSTER:'@',"Vivec",(14,6)
+# The treasure of Earendil/Elwing
+OBJECT:'(',"chest",(14,6)
+# elf guards for the audience chamber
+MONSTER:'@',"Highest elf",(14,07)
+MONSTER:'@',"Highest elf",(14,05)
+MONSTER:'@',"Highest elf",(13,05)
+MONSTER:'@',"Highest elf",(13,07)
+MONSTER:'@',"Highest elf",(13,06)
+MONSTER:'@',"Highest elf",(15,06)
+MONSTER:'@',"Highest elf",(15,07)
+MONSTER:'@',"Highest elf",(15,05)
+
+SUBROOM: "shop" , lit, (2,2), (3,4), "town"
+CHANCE: 90
+DOOR: false, closed, south, random
+
+SUBROOM: "tool shop", lit, (2,9), (3,4), "town"
+CHANCE: 90
+DOOR: false, closed, north, random
+
+SUBROOM: "ordinary", unlit, (6,2), (3,4), "town"
+DOOR: false, closed, south, random
+
+SUBROOM: "ordinary", lit, (6,9), (3,4), "town"
+DOOR: false, closed, north, random
+
+SUBROOM: "food shop", lit, (10,2), (2,3), "town"
+CHANCE: 90
+DOOR: false, closed, south, random
+
+SUBROOM: "candle shop", lit, (22,2), (3,3), "town"
+DOOR: false, closed, south, random
+
+SUBROOM: "ordinary", unlit, (10,10), (2,3), "town"
+DOOR: false, locked, east, random
+MONSTER: random, random, random, hostile
+
+SUBROOM: "ordinary", lit, (19,2),  (2,3), "town"
+DOOR: false, locked, west, random
+MONSTER: random, random, random, hostile
+
+SUBROOM: "temple", lit, (15,9), (4,4), "town"
+DOOR: false, closed, north, random
+ALTAR:(02,02),align[0],shrine
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+
+SUBROOM: "ordinary", lit, (22,10), (2,3), "town"
+DOOR: false, locked, west, random
+
+SUBROOM: "ordinary", lit, (26,2), (3,3), "town"
+DOOR: false, closed, south, random
+MONSTER: random, random, random, hostile
+
+SUBROOM: "ordinary", unlit, (25,10), (4,3), "town"
+DOOR: false, closed, north, random
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+TRAP: random, random
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+#BRANCH:(00,00,75,19),(0,0,0,0)
+
+ROOM: "ordinary" , random, random, random, random
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+TRAP: random, random
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+
+RANDOM_CORRIDORS
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to infiltrate the Goblins' Cave to go
+#	further towards your assigned quest.
+#
+
+MAZE: "Dun-loca",' '
+FLAGS: hardfloor
+GEOMETRY:center,center
+MAP
+
+                   #                      #                  #
+                  ##                    #####          #######
+                  #                         #          #     #
+    ###############  ###           ######   #      #####     ########
+    #             ####             #        #      #
+    #          ####      #####################    ##  -----------      ###
+  #########    #  ########         #         #     #  |....\....|      #
+         #     #              ######       ###     #  |.........|   ####
+        ##     #              #           ## #######  |.........|  ##  #
+        #      ####   #       ########    #  #     #  -----+-----      #
+               #      #########      #    #  #             #           #
+          #######          #  #  #####       ###############       #####
+          #  #       ########    #        #    #       #           #   #
+             #       #        ######     #########    ##############
+                     #     ####  #       #       #           #
+                           #                                 #
+ENDMAP
+
+STAIR:random,up
+STAIR:random,down
+
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet The Goblin King your nemesis monster.  You have to
+#	defeat The Goblin King in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Dun-goal", ' '
+FLAGS: hardfloor
+GEOMETRY:center,center
+MAP
+----------------------------------------------------------------------------
+|...S.|..|.....|  |.....-|      |................|   |...............| |...|
+|---|.|.--.---.|  |......--- ----..........-----.-----....---........---.-.|
+|   |.|.|..| |.| --........| |.............|   |.......---| |-...........--|
+|   |...S..| |.| |.......-----.......------|   |--------..---......------- |
+|----------- |.| |-......| |....|...-- |...-----................----       |
+|.....S....---.| |.......| |....|...|  |..............-----------          |
+|.....|.|......| |.....--- |......---  |....---.......|                    |
+|.....|.|------| |....--   --....-- |-------- ----....---------------      |
+|.....|--......---BBB-|     |...--  |.......|    |..................|      |
+|..........||........-|    --...|   |.......|    |...||.............|      |
+|.....|...-||-........------....|   |.......---- |...||.............--     |
+|.....|--......---...........--------..........| |.......---------...--    |
+|.....| |------| |--.......--|   |..B......----- -----....| |.|  |....---  |
+|.....| |......--| ------..| |----..B......|       |.--------.-- |-.....---|
+|------ |........|  |.|....| |.....----BBBB---------...........---.........|
+|       |........|  |...|..| |.....|  |-.............--------...........---|
+|       --.....-----------.| |....-----.....----------     |.........----  |
+|        |..|..B...........| |.|..........|.|              |.|........|    |
+----------------------------------------------------------------------------
+ENDMAP
+# Dungeon Description
+
+# The Morgues
+REGION:(19,01,24,08),unlit,"morgue",filled,true
+REGION:(09,14,16,18),unlit,"morgue",filled,true
+REGION:(37,09,43,14),unlit,"morgue",filled,true
+
+# Stairs
+STAIR:(66,17),up
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+
+# Secret Doors
+DOOR:locked,(04,01)
+DOOR:locked,(08,04)
+DOOR:locked,(06,06)
+
+# Objects
+OBJECT:')',"elven broadsword",(03,10),blessed,0,"N'wah Killer"
+OBJECT:'(',"chest",(03,10)
+MONSTER:'&',"Dagoth Ur",(03,10),hostile
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Dun-fila" , ' '
+FLAGS:noteleport
+INIT_MAP:'.','}',true,true,unlit,false
+# guarantee at least one open spot to ensure successful stair placement
+GEOMETRY:left,bottom
+MAP
+}}}}}}}}
+}}...}}}
+}}}...}}
+}}}}.}}}
+}}}}}}}}
+ENDMAP
+OBJECT:'`',"boulder",random
+GEOMETRY:right,top
+MAP
+}}}}}}}}
+}}}}.}}}
+}}}...}}
+}}...}}}
+}}}}}}}}
+ENDMAP
+OBJECT:'`',"boulder",random
+# lair
+GEOMETRY:center,center
+MAP
+..}}}}}.}}}}}.}}}}}.}}}}}.}}}}}.}}}}}.}}}}}.}}}}}..
+.}}}.}}}}}..}}}..}}}}}..}}}..}}}}}..}}}..}}}}}.}}}.
+}}}...}}..}}.}.}}.}}.}}}...}}}.}}}..}}}..}}}}...}}}
+.}}}.}}.}}}.}}.}}.}}...}}.}}.....}}.....}....}.}}}.
+..}}}..}}}.}}.}}.}}..}}.....}}.}}}.}}.}}}}}}}}}}}..
+.}}}..}}}}}.}}.}}.}}...}}}}}.....}}.}}}}}}.....}}}.
+}}}..}}...}}..}}.}}}.}}}...}}}.}}}.}.}}}}..P.P..}}}
+}}.}}}}...}}}}}.}...}}}..P..}}}.}.}}}.}}}}.....}}}}
+}.}}}}.}}.}..}.}}}}}}}..P.P..}}}.}}}.}}..}}...}}}}.
+.}}}}.}}}}....}}}}}.}}}..P..}}}.}}}}.}}..}}...}}}.}
+}}}}..}}.}}..}}}}...}}}}...}}}.}}}}}.}}}}.}}}}}}.}}
+}}}...}}...}}}..}}}}}}}}}}}}.....}}}}.}}...}..}.}}}
+.}}}..}}.}}}}....}}..}}}..}}.....}}}}.}}}.}....}}}.
+..}}}.}}}}..}}..}}..}}..}}..}}.}}}..}.}..}}}..}}}..
+.}}}.}}}}....}}}}..}}....}}}}}}}...}}}....}}}}.}}}.
+}}}...}}}....}}}..}}}....}}}..}}...}}}....}}}...}}}
+.}}}.}}}}}..}}}..}}}}}..}}}..}}}}}..}}}..}}}}}.}}}.
+..}}}}}.}}}}}.}}}}}.}}}}}.}}}}}.}}}}}.}}}}}.}}}}}..
+ENDMAP
+
+#
+STAIR:levregion(01,00,11,20),(0,0,50,17),down
+STAIR:levregion(69,00,79,20),(0,0,50,17),up
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+#
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+
+MAZE: "Dun-filb" , ' '
+FLAGS: noteleport
+GEOMETRY:right,center
+# A ghost town
+MAP
+.|....|....|....|..............|....|........
+.|....|....|....|..............|....|........
+.|....|....|....|--...-+-------|.............
+.|....|....|....|..............+.............
+.|.........|....|..............|....|........
+.--+-...-+----+--....-------...--------.+----
+.....................|.....|.................
+.....................|.....|.................
+.--+----....-+---....|.....|...----------+---
+.|....|....|....|....---+---...|......|......
+.|.........|....|..............|......|......
+.----...---------.....-----....+......|......
+.|........................|....|......|......
+.----------+-...--+--|....|....----------+---
+.|....|..............|....+....|.............
+.|....+.......|......|....|....|.............
+.|....|.......|......|....|....|.............
+ENDMAP
+MAZEWALK:(00,06),west
+#
+STAIR: random, up
+STAIR: random, down
+#
+# Wall "ruins"
+OBJECT:'`',"boulder",(19,02)
+OBJECT:'`',"boulder",(20,02)
+OBJECT:'`',"boulder",(21,02)
+OBJECT:'`',"boulder",(36,02)
+OBJECT:'`',"boulder",(36,03)
+OBJECT:'`',"boulder",(06,04)
+OBJECT:'`',"boulder",(05,05)
+OBJECT:'`',"boulder",(06,05)
+OBJECT:'`',"boulder",(07,05)
+OBJECT:'`',"boulder",(39,05)
+OBJECT:'`',"boulder",(08,08)
+OBJECT:'`',"boulder",(09,08)
+OBJECT:'`',"boulder",(10,08)
+OBJECT:'`',"boulder",(11,08)
+OBJECT:'`',"boulder",(06,10)
+OBJECT:'`',"boulder",(05,11)
+OBJECT:'`',"boulder",(06,11)
+OBJECT:'`',"boulder",(07,11)
+OBJECT:'`',"boulder",(21,11)
+OBJECT:'`',"boulder",(21,12)
+OBJECT:'`',"boulder",(13,13)
+OBJECT:'`',"boulder",(14,13)
+OBJECT:'`',"boulder",(15,13)
+OBJECT:'`',"boulder",(14,14)
+# Doors
+DOOR:closed,(23,02)
+DOOR:open,(31,03)
+DOOR:nodoor,(03,05)
+DOOR:closed,(09,05)
+DOOR:closed,(14,05)
+DOOR:closed,(40,05)
+DOOR:open,(03,08)
+DOOR:nodoor,(13,08)
+DOOR:open,(41,08)
+DOOR:closed,(24,09)
+DOOR:closed,(31,11)
+DOOR:open,(11,13)
+DOOR:closed,(18,13)
+DOOR:closed,(41,13)
+DOOR:open,(26,14)
+DOOR:closed,(06,15)
+# Special rooms
+ALTAR:(24,07),noalign,sanctum
+REGION:(22,12,25,16),unlit,"morgue"
+REGION:(32,09,37,12),lit,"shop"
+REGION:(12,00,15,04),lit,"shop"
+# Some traps.
+TRAP:"spiked pit", random
+TRAP:"sleep gas", random
+TRAP:"anti magic", random
+TRAP:"fire", random
+TRAP:"fire", random
+TRAP:"fire", random
+TRAP:"magic", random
+TRAP:"magic", random
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+#
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile

@@ -61,7 +61,13 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     d_level	d_wiz3_level;
     d_level	d_juiblex_level;
     d_level	d_orcus_level;
+    d_level	d_nymph_level;
+    d_level	d_forge_level;
+    d_level	d_hitch_level;
+    d_level	d_compu_level;
+    d_level	d_key_level;
     d_level	d_baalzebub_level;	/* unused */
+    d_level	d_mtemple_level;	/* unused */
     d_level     d_demogorgon_level;      /* unused */
     d_level     d_dispater_level;      /* unused */
     d_level     d_geryon_level;      /* unused */
@@ -77,6 +83,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     xchar	d_tower_dnum;
     xchar	d_sokoban_dnum;
     xchar	d_mines_dnum, d_quest_dnum;
+    xchar	d_sheol_dnum;
     xchar       d_spiders_dnum;
     d_level	d_lawful_quest_level;
     d_level	d_neutral_quest_level;
@@ -103,6 +110,12 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define juiblex_level		(dungeon_topology.d_juiblex_level)
 #define orcus_level		(dungeon_topology.d_orcus_level)
 #define baalzebub_level		(dungeon_topology.d_baalzebub_level)
+#define mtemple_level		(dungeon_topology.d_mtemple_level)
+#define nymph_level		(dungeon_topology.d_nymph_level)
+#define forge_level		(dungeon_topology.d_forge_level)
+#define hitch_level		(dungeon_topology.d_hitch_level)
+#define compu_level		(dungeon_topology.d_compu_level)
+#define key_level		(dungeon_topology.d_key_level)
 #define yeenoghu_level          (dungeon_topology.d_yeenoghu_level)
 #define geryon_level            (dungeon_topology.d_geryon_level)
 #define dispater_level          (dungeon_topology.d_dispater_level)
@@ -118,6 +131,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define tower_dnum		(dungeon_topology.d_tower_dnum)
 #define sokoban_dnum		(dungeon_topology.d_sokoban_dnum)
 #define mines_dnum		(dungeon_topology.d_mines_dnum)
+#define sheol_dnum		(dungeon_topology.d_sheol_dnum)
 #define quest_dnum		(dungeon_topology.d_quest_dnum)
 #define qstart_level		(dungeon_topology.d_qstart_level)
 #define qlocate_level		(dungeon_topology.d_qlocate_level)
@@ -213,6 +227,12 @@ E NEARDATA char dogname[];
 E NEARDATA char catname[];
 E NEARDATA char ghoulname[];
 E NEARDATA char horsename[];
+#ifdef CONVICT
+E NEARDATA char ratname[];
+#endif /* CONVICT */
+E NEARDATA char coinsname[];
+E NEARDATA char lichenname[];
+E NEARDATA char rothename[];
 E NEARDATA char wolfname[];
 #if 0
 E NEARDATA char batname[];
@@ -480,6 +500,10 @@ struct autopickup_exception {
 	struct autopickup_exception *next;
 };
 #endif /* AUTOPICKUP_EXCEPTIONS */
+
+#ifdef SIMPLE_MAIL
+E int mailckfreq;
+#endif
 
 #undef E
 

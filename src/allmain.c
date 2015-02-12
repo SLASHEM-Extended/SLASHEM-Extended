@@ -31,8 +31,29 @@ moveloop()
     char ch;
     int abort_lev;
 #endif
+	struct obj *pobj; /* buildfix by EternalEye: pobj is used on all platforms */
+
+	int regenrate; /* A level 30 player polymorphed into a large cat would otherwise regenerate waaaaaay too slowly. --Amy */
+
     int moveamt = 0, wtcap = 0, change = 0;
+	int randsp;
+	int randmnst;
+	struct permonst *randmonstforspawn;
+	int monstercolor;
+	int randmnsx;
+	int i;
+	coord cc;
     boolean didmove = FALSE, monscanmove = FALSE;
+    /* don't make it obvious when monsters will start speeding up */
+    int monclock;
+    int xtraclock;
+    /*int timeout_start = rnz(10000)+rnz(15000);*/
+    /*int clock_base = rnz(10000)+rnz(20000)+timeout_start;*/
+	int timeout_start = u.monstertimeout;
+	int clock_base = u.monstertimefinish; /* values set in u_init */
+    int past_clock;
+	/*u.monstertimeout = timeout_start;*/
+	/*u.monstertimefinish = clock_base;*/
 
     flags.moonphase = phase_of_the_moon();
     if(flags.moonphase == FULL_MOON) {
@@ -40,11 +61,17 @@ moveloop()
 	change_luck(1);
     } else if(flags.moonphase == NEW_MOON) {
 	pline("Be careful!  New moon tonight.");
+	adjalign(-3); 
+    } else if(flags.moonphase >= 1 && flags.moonphase <= 3) {
+	pline("The moon is waxing tonight.");
+    } else if(flags.moonphase >= 5 && flags.moonphase <= 7) {
+	pline("The moon is waning tonight.");
     }
     flags.friday13 = friday_13th();
     if (flags.friday13) {
 	pline("Watch out!  Bad things can happen on Friday the 13th.");
 	change_luck(-1);
+	adjalign(-10); 
     }
     /* KMH -- February 2 */
     flags.groundhogday = groundhog_day();
@@ -107,9 +134,287 @@ moveloop()
 		    for (mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 			mtmp->movement += mcalcmove(mtmp);
 
-		    if(!rn2(u.uevent.udemigod ? 25 :
-			    (depth(&u.uz) > depth(&stronghold_level)) ? 50 : 70))
+			 /* Vanilla generates a critter every 70-ish turns.
+			  * The rate accelerates to every 50 or so below the Castle,
+			  * and 'round every 25 turns once you've done the Invocation.
+			  *
+			  * We will push it even further.  Monsters post-Invocation
+			  * will almost always appear on the stairs (if present), and 
+			  * much more frequently; this, along with the extra intervene()
+			  * calls, should certainly make it seem like you're wading back
+			  * through the teeming hordes.
+			  *
+			  * Aside from that, a more general clock should be put on things;
+			  * after about 30,000 turns, the frequency rate of appearance
+			  * and (TODO) difficulty of monsters generated will slowly increase until
+			  * it reaches the point it will be at as if you were post-Invocation.
+			  *
+			  * 80,000 turns should be adequate as a target mark for this effect;
+			  * if you haven't ascended in 80,000 turns, you're intentionally
+			  * fiddling around somewhere and will certainly be strong enough
+			  * to handle anything that comes your way, so this won't be 
+			  * dropping newbies off the edge of the planet.  -- DSR 12/2/07
+			  */
+
+			monclock = 70;
+			if (u.uevent.udemigod) {
+				monclock = 15;
+			} else {
+				if (depth(&u.uz) > depth(&stronghold_level)) {
+					monclock = 50;
+				}
+				past_clock = moves - timeout_start;
+				if (past_clock > 0) {
+					monclock -= past_clock*55/clock_base;
+				}
+			}
+			/* make sure we don't fall off the bottom */
+			if (monclock < 15) { monclock = 15; }
+			if (Race_if(PM_HAXOR) || Race_if(PM_LICH_WARRIOR) ) monclock /= 2;
+			if (Race_if(PM_SUXXOR)) monclock *= 2;
+
+			/* TODO: adj difficulty in makemon */
+			if (!rn2(monclock)) {
+				if (u.uevent.udemigod && xupstair && rn2(10)) {
+					(void) makemon((struct permonst *)0, xupstair, yupstair, MM_ADJACENTOK);
+				} else {
+					(void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
+				}
+			}
+
+			xtraclock = 15000;
+			if (u.uevent.udemigod) {
+				xtraclock = 4500;
+			} else {
+				if (depth(&u.uz) > depth(&stronghold_level)) {
+					xtraclock = 10500;
+				}
+				past_clock = moves - timeout_start;
+				if (past_clock > 0) {
+					xtraclock -= past_clock*10500/clock_base;
+				}
+			}
+			/* make sure we don't fall off the bottom */
+			if (xtraclock < 4500) { xtraclock = 4500; }
+			if (Race_if(PM_HAXOR) || Race_if(PM_LICH_WARRIOR) ) xtraclock /= 2;
+			if (Race_if(PM_SUXXOR)) xtraclock *= 2;
+
+			/* new group spawn system by Amy */
+			if (!rn2(xtraclock) && !rn2(2) ) {
+
+				randsp = (rn2(14) + 2);
+				if (!rn2(10)) randsp *= 2;
+				if (!rn2(100)) randsp *= 3;
+				if (!rn2(1000)) randsp *= 5;
+				if (!rn2(10000)) randsp *= 10;
+				randmnst = (rn2(187) + 1);
+				randmnsx = (rn2(100) + 1);
+
+				if (wizard || !rn2(10)) pline("You suddenly feel a surge of tension!");
+
+			for (i = 0; i < randsp; i++) {
+			/* This function will fill the map with a random amount of monsters of one class. --Amy */
+
+			if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+			if (randmnst < 6)
+		 	    (void) makemon(mkclass(S_ANT,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 9)
+		 	    (void) makemon(mkclass(S_BLOB,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 11)
+		 	    (void) makemon(mkclass(S_COCKATRICE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 15)
+		 	    (void) makemon(mkclass(S_DOG,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 18)
+		 	    (void) makemon(mkclass(S_EYE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 22)
+		 	    (void) makemon(mkclass(S_FELINE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 24)
+		 	    (void) makemon(mkclass(S_GREMLIN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 29)
+		 	    (void) makemon(mkclass(S_HUMANOID,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 33)
+		 	    (void) makemon(mkclass(S_IMP,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 36)
+		 	    (void) makemon(mkclass(S_JELLY,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 41)
+		 	    (void) makemon(mkclass(S_KOBOLD,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 44)
+		 	    (void) makemon(mkclass(S_LEPRECHAUN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 47)
+		 	    (void) makemon(mkclass(S_MIMIC,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 50)
+		 	    (void) makemon(mkclass(S_NYMPH,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 54)
+		 	    (void) makemon(mkclass(S_ORC,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 55)
+		 	    (void) makemon(mkclass(S_PIERCER,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 58)
+		 	    (void) makemon(mkclass(S_QUADRUPED,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 62)
+		 	    (void) makemon(mkclass(S_RODENT,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 65)
+		 	    (void) makemon(mkclass(S_SPIDER,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 66)
+		 	    (void) makemon(mkclass(S_TRAPPER,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 69)
+		 	    (void) makemon(mkclass(S_UNICORN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 71)
+		 	    (void) makemon(mkclass(S_VORTEX,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 73)
+		 	    (void) makemon(mkclass(S_WORM,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 75)
+		 	    (void) makemon(mkclass(S_XAN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 76)
+		 	    (void) makemon(mkclass(S_LIGHT,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 77)
+		 	    (void) makemon(mkclass(S_ZOUTHERN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 78)
+		 	    (void) makemon(mkclass(S_ANGEL,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 81)
+		 	    (void) makemon(mkclass(S_BAT,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 83)
+		 	    (void) makemon(mkclass(S_CENTAUR,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 86)
+		 	    (void) makemon(mkclass(S_DRAGON,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 89)
+		 	    (void) makemon(mkclass(S_ELEMENTAL,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 94)
+		 	    (void) makemon(mkclass(S_FUNGUS,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 99)
+		 	    (void) makemon(mkclass(S_GNOME,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 102)
+		 	    (void) makemon(mkclass(S_GIANT,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 103)
+		 	    (void) makemon(mkclass(S_JABBERWOCK,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 104)
+		 	    (void) makemon(mkclass(S_KOP,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 105)
+		 	    (void) makemon(mkclass(S_LICH,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 108)
+		 	    (void) makemon(mkclass(S_MUMMY,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 110)
+		 	    (void) makemon(mkclass(S_NAGA,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 113)
+		 	    (void) makemon(mkclass(S_OGRE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 115)
+		 	    (void) makemon(mkclass(S_PUDDING,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 116)
+		 	    (void) makemon(mkclass(S_QUANTMECH,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 118)
+		 	    (void) makemon(mkclass(S_RUSTMONST,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 121)
+		 	    (void) makemon(mkclass(S_SNAKE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 123)
+		 	    (void) makemon(mkclass(S_TROLL,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 124)
+		 	    (void) makemon(mkclass(S_UMBER,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 125)
+		 	    (void) makemon(mkclass(S_VAMPIRE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 127)
+		 	    (void) makemon(mkclass(S_WRAITH,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 128)
+		 	    (void) makemon(mkclass(S_XORN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 130)
+		 	    (void) makemon(mkclass(S_YETI,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 135)
+		 	    (void) makemon(mkclass(S_ZOMBIE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 145)
+		 	    (void) makemon(mkclass(S_HUMAN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 147)
+		 	    (void) makemon(mkclass(S_GHOST,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 149)
+		 	    (void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 152)
+		 	    (void) makemon(mkclass(S_DEMON,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 155)
+		 	    (void) makemon(mkclass(S_EEL,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 160)
+		 	    (void) makemon(mkclass(S_LIZARD,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 162)
+		 	    (void) makemon(mkclass(S_BAD_FOOD,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 165)
+		 	    (void) makemon(mkclass(S_BAD_COINS,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 166) {
+				if (randmnsx < 96)
+		 	    (void) makemon(mkclass(S_HUMAN,0), 0, 0, NO_MM_FLAGS);
+				else
+		 	    (void) makemon(mkclass(S_NEMESE,0), 0, 0, NO_MM_FLAGS);
+				}
+			else if (randmnst < 171)
+		 	    (void) makemon(mkclass(S_GRUE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 176)
+		 	    (void) makemon(mkclass(S_WALLMONST,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 180)
+		 	    (void) makemon(mkclass(S_RUBMONST,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 181) {
+				if (randmnsx < 99)
+		 	    (void) makemon(mkclass(S_HUMAN,0), 0, 0, NO_MM_FLAGS);
+				else
+		 	    (void) makemon(mkclass(S_ARCHFIEND,0), 0, 0, NO_MM_FLAGS);
+				}
+			else if (randmnst < 186)
+		 	    (void) makemon(mkclass(S_TURRET,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 187)
+		 	    (void) makemon(mkclass(S_FLYFISH,0), 0, 0, NO_MM_FLAGS);
+			else
+		 	    (void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
+
+				}
+			}
+
+			if (!rn2(xtraclock) && !rn2(2) ) { /* group of one single monster species --Amy */
+
+				randsp = (rn2(14) + 2);
+				if (!rn2(10)) randsp *= 2;
+				if (!rn2(100)) randsp *= 3;
+				if (!rn2(1000)) randsp *= 5;
+				if (!rn2(10000)) randsp *= 10;
+				randmonstforspawn = rndmonst();
+
+				if (wizard || !rn2(10)) pline("You feel the arrival of monsters!");
+
+				for (i = 0; i < randsp; i++) {
+
+					if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+					(void) makemon(randmonstforspawn, 0, 0, NO_MM_FLAGS);
+				}
+
+			}
+
+			if (!rn2(xtraclock) && !rn2(2) ) { /* group of colored monster species --Amy */
+
+				randsp = (rn2(14) + 2);
+				if (!rn2(10)) randsp *= 2;
+				if (!rn2(100)) randsp *= 3;
+				if (!rn2(1000)) randsp *= 5;
+				if (!rn2(10000)) randsp *= 10;
+				monstercolor = rnd(15);
+				do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
+
+				if (wizard || !rn2(10)) pline("You feel a colorful sensation!");
+
+				for (i = 0; i < randsp; i++) {
+
+					if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+					(void) makemon(colormon(monstercolor), 0, 0, NO_MM_FLAGS);
+				}
+			}
+
+			if (uarmf && uarmf->otyp == ZIPPER_BOOTS && !EWounded_legs) EWounded_legs = 1;
+
+			/* small chance of scaring yourself if you stand on Elbereth, even if you engraved it --Amy */
+			if (sengr_at("Elbereth", u.ux, u.uy) && !rn2(100) && !Blind ) {
+				pline("As you see the Elder Sign written on the %s at your %s, you suddenly panic!",surface(u.ux,u.uy), makeplural(body_part(FOOT)) );
+				make_feared(HFeared + rnd(10 + (monster_difficulty()) ),TRUE);
+				}
+
+		    if(!rn2(u.uevent.udemigod ? 125 :
+			    (depth(&u.uz) > depth(&stronghold_level)) ? 250 : 340))
 			(void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
+	/* still keeping the old monstermaking routine up, but drastically reducing their spawn rate. --Amy */
 
 		    /* calculate how much time passed. */
 #ifdef STEED
@@ -120,15 +425,58 @@ moveloop()
 #endif
 		    {
 			moveamt = youmonst.data->mmove;
+			if (youmonst.data->mmove == 0 && !rn2(2)) moveamt += 1; /* be lenient if an ungenomold player is unlucky 		 * enough to poly into a red mold or something like that. Otherwise they would simply die with no chance.
+		 * see hack.c code that still prevents movement if polymorphed into something sessile.
+		 * Also, you're still slower than a lichen (speed 1), so this should be ok. */
 
-			if (Very_fast) {	/* speed boots or potion */
+			if (Race_if(PM_ASGARDIAN) && !rn2(20) && moveamt > 1) /* Asgardians are slower sometimes, this is intentional. --Amy */
+				moveamt /= 2;
+
+			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too. */
+				moveamt /= 2;
+
+		/* The new numbed and frozen properties seem to dislike rn2 calls for some reason.
+		 * So I need to make a subloop to prevent numbed or frozen players from being completely immobile. */
+
+			if (Numbed && moveamt > 1) {
+				if ( (youmonst.data->mmove > 1 || !rn2(2)) && !rn2(10))
+				moveamt = 0; /* numbed characters sometimes miss turns --Amy */
+			}
+			if (Frozen && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2; /* frozen characters move at half speed --Amy */
+			}
+
+			if (SpeedBug && moveamt > 1) { /* speed bug messes up the player's speed --Amy */
+				if (rn2(5)) moveamt *= rnd(5);
+				moveamt /= rnd(6);
+				if (!rn2(5)) moveamt /= 2;
+			}
+
+			/* speed bug reverses speed effects --Amy */
+			if (Very_fast && SpeedBug && rn2(4) && rn2(4) && moveamt > 1 ) {	/* speed boots or potion */
+			    /* average movement is 0.5625 times normal */
+
+				moveamt /= 2;
+
+			} else if (Fast && SpeedBug && !rn2(4) && moveamt > 1 ) {
+			    /* average movement is 0.75 times normal */
+
+				moveamt /= 2;
+			}
+
+			if (moveamt < 0) moveamt == 0;
+
+			if (Very_fast && !SpeedBug) {	/* speed boots or potion */
 			    /* average movement is 1.67 times normal */
 			    moveamt += NORMAL_SPEED / 2;
 			    if (rn2(3) == 0) moveamt += NORMAL_SPEED / 2;
-			} else if (Fast) {
+			} else if (Fast && !SpeedBug) {
 			    /* average movement is 1.33 times normal */
 			    if (rn2(3) != 0) moveamt += NORMAL_SPEED / 2;
 			}
+
+
 			if (tech_inuse(T_BLINK)) { /* TECH: Blinking! */
 			    /* Case    Average  Variance
 			     * -------------------------
@@ -144,12 +492,12 @@ moveloop()
 			}
 		    }
 
-		    switch (wtcap) {
+		    switch (wtcap) { /* tweaked so the player is slowed down less --Amy */
 			case UNENCUMBERED: break;
-			case SLT_ENCUMBER: moveamt -= (moveamt / 4); break;
-			case MOD_ENCUMBER: moveamt -= (moveamt / 2); break;
-			case HVY_ENCUMBER: moveamt -= ((moveamt * 3) / 4); break;
-			case EXT_ENCUMBER: moveamt -= ((moveamt * 7) / 8); break;
+			case SLT_ENCUMBER: moveamt -= (moveamt / 5); break;
+			case MOD_ENCUMBER: moveamt -= (moveamt / 3); break;
+			case HVY_ENCUMBER: moveamt -= (moveamt / 2); break;
+			case EXT_ENCUMBER: moveamt -= ((moveamt * 3) / 4); break;
 			default: break;
 		    }
 
@@ -164,8 +512,36 @@ moveloop()
 		    /* once-per-turn things go here */
 		    /********************************/
 
+		if (!rn2(100)) u.statuetrapname = rn2(NUMMONS);
+
+		if (AutoDestruct) stop_occupation();
+
+		if ((u.uhave.amulet || Clairvoyant) &&
+		    !In_endgame(&u.uz) && !BClairvoyant &&
+		    !(moves % 15) && !rn2(2))
+			do_vicinity_map();
+	
+		if(u.utrap && u.utraptype == TT_LAVA) {
+		    if(!is_lava(u.ux,u.uy))
+			u.utrap = 0;
+		    else if (!u.uinvulnerable) {
+			u.utrap -= 1<<8;
+			if(u.utrap < 1<<8) {
+			    killer_format = KILLED_BY;
+			    killer = "molten lava";
+			    You("sink below the surface and die.");
+			    done(DISSOLVED);
+			} else if(didmove && !u.umoved) {
+			    /*Norep*/pline("You sink deeper into the lava.");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			    u.utrap += rnd(4);
+			}
+		    }
+		}
+
+
 		    if (flags.bypasses) clear_bypasses();
-		    if(Glib) glibr();
+		    if(IsGlib) glibr();
 		    nh_timeout();
 		    run_regions();
 
@@ -177,6 +553,21 @@ moveloop()
 		    
 		    if(flags.time && !flags.run)
 			flags.botl = 1;
+
+			if(u.ukinghill){
+				if(u.protean > 0) u.protean--;
+				else{
+					for(pobj = invent; pobj; pobj=pobj->nobj)
+						if(pobj->oartifact == ART_TREASURY_OF_PROTEUS)
+							break;
+					if(!pobj) pline("Treasury not actually in inventory??");
+					else if(pobj->cobj){
+						arti_poly_contents(pobj);
+					}
+					u.protean = rnz(100)+d(3,10);
+					update_inventory();
+				}
+			}
 
 		    /* One possible result of prayer is healing.  Whether or
 		     * not you get healed depends on your current hit points.
@@ -195,12 +586,18 @@ moveloop()
 			} else if (u.mh < 1)
 			    rehumanize();
 		    } else if (Upolyd && u.mh < u.mhmax) {
+
+			/* faster regeneration --Amy */
+			regenrate = (20 - (u.ulevel / 3));
+			if (regenrate < 6) regenrate = 6;
+			if (Race_if(PM_HAXOR)) regenrate /= 2;
+
 			if (u.mh < 1)
 			    rehumanize();
 			else if (Regeneration ||
-				    (wtcap < MOD_ENCUMBER && !(moves%20))) {
+				    (wtcap < MOD_ENCUMBER && !(moves%/*20*/regenrate))) {
 			    flags.botl = 1;
-			    u.mh++;
+			    if (!Burned) u.mh++;
 			}
 		    } else if (u.uhp < u.uhpmax &&
 			 (wtcap < MOD_ENCUMBER || !u.umoved || Regeneration)) {
@@ -211,29 +608,52 @@ moveloop()
  * +2 blessed) for the basis of regeneration calculations.
  */
 
- 			int efflev = u.ulevel + u.uhealbonus;
- 			int effcon = ACURR(A_CON) + u.uhealbonus;
+
+ 			int efflev = u.ulevel + (u.uhealbonus);
+ 			int effcon = ACURR(A_CON) + (u.uhealbonus);
+			if (P_SKILL(P_RIDING) == P_SKILLED) efflev += 2;
+			if (P_SKILL(P_RIDING) == P_EXPERT) efflev += 5;
+			if (P_SKILL(P_RIDING) == P_MASTER) efflev += 7;
+			if (P_SKILL(P_RIDING) == P_GRAND_MASTER) efflev += 10;
+			if (P_SKILL(P_RIDING) == P_SKILLED) effcon += 2;
+			if (P_SKILL(P_RIDING) == P_EXPERT) effcon += 5;
+			if (P_SKILL(P_RIDING) == P_MASTER) effcon += 7;
+			if (P_SKILL(P_RIDING) == P_GRAND_MASTER) effcon += 10;
+	/* Yeah I know this makes no sense at all, but it improves the usefulness of the riding skill. --Amy */
 			int heal = 1;
 
 
-			if (efflev > 9 && !(moves % 3)) {
+			if ( efflev > 9 && !(moves % 3)) {
 			    if (effcon <= 12) {
 				heal = 1;
 			    } else {
-				heal = rnd(effcon);
+				heal = rnd(effcon / 5) + 1;
   				if (heal > efflev-9) heal = efflev-9;
 			    }
 			    flags.botl = 1;
-			    u.uhp += heal;
+			    if (!Burned) u.uhp += heal;
 			    if(u.uhp > u.uhpmax)
 				u.uhp = u.uhpmax;
 			} else if (Regeneration ||
 			     (efflev <= 9 &&
 			      !(moves % ((MAXULEV+12) / (u.ulevel+2) + 1)))) {
 			    flags.botl = 1;
-			    u.uhp++;
+			    if (!Burned) u.uhp++;
 			}
 		    }
+
+			if (!Burned && Race_if(PM_HAXOR) && !rn2(20) ) {
+				u.uhp += rnd(5 + (u.ulevel / 5));
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			}
+			if (!Burned && Race_if(PM_HAXOR) && Upolyd && !rn2(20) ) {
+				u.mh += rnd(5 + (u.ulevel / 5));
+				if (u.mh > u.mhmax) u.mh = u.mhmax;
+			}
+			if (!Burned && Race_if(PM_HAXOR) && !rn2(20) ) {
+				u.uen += rnd(5 + (u.ulevel / 5));
+				if (u.uen > u.uenmax) u.uen = u.uenmax;
+			}
 
 		    if (!u.uinvulnerable && u.uen > 0 && u.uhp < u.uhpmax &&
 			    tech_inuse(T_CHI_HEALING)) {
@@ -259,7 +679,9 @@ moveloop()
 
 		    
 		    /* KMH -- OK to regenerate if you don't move */
-		    if ((u.uen < u.uenmax) && (Energy_regeneration ||
+		    if (!Burned && (u.uen < u.uenmax) && 
+				((Energy_regeneration && !rn2(5)) || /* greatly nerfed overpowered wizard artifact --Amy */
+				(Role_if(PM_ALTMER) && !rn2(5)) || /* altmer have extra mana regeneration --Amy */
 				((wtcap < MOD_ENCUMBER || !flags.mv) &&
 				(!(moves%((MAXULEV + 15 - u.ulevel) *                                    
 				(Role_if(PM_WIZARD) ? 3 : 4) / 6)))))) {
@@ -272,10 +694,258 @@ moveloop()
 			flags.botl = 1;
 		    }
 
+		/* leveling up will give a small boost to mana regeneration now --Amy */
+		    if ( !Burned && u.uen < u.uenmax && ( 
+			(u.ulevel >= 5 && !rn2(200)) ||
+			(u.ulevel >= 10 && !rn2(100)) ||
+			(u.ulevel >= 15 && !rn2(50)) ||
+			(u.ulevel >= 20 && !rn2(30)) ||
+			(u.ulevel >= 25 && !rn2(20)) ||
+			(u.ulevel >= 30 && !rn2(10))
+			)
+			)
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			/* Having a spell school at skilled will improve mana regeneration.
+			 * Having a spell school at expert will improve it by even more. --Amy */
+
+			if (!Burned && P_SKILL(P_ATTACK_SPELL) == P_SKILLED && !rn2(200))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_ATTACK_SPELL) == P_EXPERT && !rn2(100))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_ATTACK_SPELL) == P_MASTER && !rn2(50))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_ATTACK_SPELL) == P_GRAND_MASTER && !rn2(25))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_DIVINATION_SPELL) == P_SKILLED && !rn2(200))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_DIVINATION_SPELL) == P_EXPERT && !rn2(100))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_DIVINATION_SPELL) == P_MASTER && !rn2(50))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_DIVINATION_SPELL) == P_GRAND_MASTER && !rn2(25))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_MATTER_SPELL) == P_SKILLED && !rn2(200))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_MATTER_SPELL) == P_EXPERT && !rn2(100))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_MATTER_SPELL) == P_MASTER && !rn2(50))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_MATTER_SPELL) == P_GRAND_MASTER && !rn2(25))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_BODY_SPELL) == P_SKILLED && !rn2(200))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_BODY_SPELL) == P_EXPERT && !rn2(100))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_BODY_SPELL) == P_MASTER && !rn2(50))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_BODY_SPELL) == P_GRAND_MASTER && !rn2(25))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_PROTECTION_SPELL) == P_SKILLED && !rn2(200))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_PROTECTION_SPELL) == P_EXPERT && !rn2(100))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_PROTECTION_SPELL) == P_MASTER && !rn2(50))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_PROTECTION_SPELL) == P_GRAND_MASTER && !rn2(25))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_ENCHANTMENT_SPELL) == P_SKILLED && !rn2(200))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_ENCHANTMENT_SPELL) == P_EXPERT && !rn2(100))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_ENCHANTMENT_SPELL) == P_MASTER && !rn2(50))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_ENCHANTMENT_SPELL) == P_GRAND_MASTER && !rn2(25))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_HEALING_SPELL) == P_SKILLED && !rn2(200))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_HEALING_SPELL) == P_EXPERT && !rn2(100))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_HEALING_SPELL) == P_MASTER && !rn2(50))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && P_SKILL(P_HEALING_SPELL) == P_GRAND_MASTER && !rn2(25))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			/* Spooky faux error messages on the Spacewars Fighter goal level --Amy */
+			if (Role_if(PM_SPACEWARS_FIGHTER) && !rn2(200) && Is_nemesis(&u.uz) ) {
+			pline("Warning: Low Local Memory. Freeing description strings.");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline(" ");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (!rn2(25)) pline("nt|| - Not a valid save file");
+			else if (!rn2(25)) pline("NETHACK.EXE caused a General Protection Fault at address 000D:001D.");
+			else if (!rn2(25)) pline("APPLICATION ERROR - integer divide by 0");
+			else if (!rn2(25)) {pline("Runtime error! Program: NETHACK.EXE");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				pline("R6025 - pure virtual function call");
+			}
+			else if (!rn2(25)) {pline("Buffer overrun detected! Program: NETHACK.EXE");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				pline("A buffer overrun has been detected which has corrupted the program's internal state.");
+				pline("The program cannot safely continue execution and must now be terminated.");
+			}
+			else if (!rn2(25)) {pline("Runtime error! Program: NETHACK.EXE");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				pline("This application has requested the Runtime to terminate it in an unusual way.");
+				pline("Please contact the application's support team for more information.");
+			}
+			else if (!rn2(25)) pline("Not enough memory to create inventory window");
+			else if (!rn2(25)) pline("Error: Nethack will only run in Protect mode");
+			else if (!rn2(25)) {pline("Oops...");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				pline("Suddenly, the dungeon collapses.");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				pline("NETHACK.EXE has stopped working. Unsaved data may have been lost.");
+			}
+			else if (!rn2(25)) pline("ERROR: SIGNAL 11 WAS RAISED");
+			else if (!rn2(25)) pline("UNHANDLED EXCEPTION: ACCESS_VIOLATION (C0000005)");
+			else if (!rn2(25)) pline("An error has occurred in your application. If you choose Close, your application will be terminated. If you choose Ignore, you should save your work in a new file.");
+			else if (!rn2(25)) pline("Do you want your possessions identified? DYWYPI?");
+			else if (!rn2(25)) pline("Windows Subsystem service has stopped unexpectedly.");
+			else if (!rn2(25)) pline("nv4_disp.dll device driver is stuck in an infinite loop.");
+
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			}
+
 		    if(!u.uinvulnerable) {
-			if(Teleportation && !rn2(85)) {
+			if(Teleportation && (Race_if(PM_HAXOR) ? !rn2(150) : !rn2(250)) ) {
 			    xchar old_ux = u.ux, old_uy = u.uy;
+				You("suddenly get teleported!");
 			    tele();
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			    if (u.ux != old_ux || u.uy != old_uy) {
 				if (!next_to_u()) {
 				    check_leash(old_ux, old_uy);
@@ -291,10 +961,13 @@ moveloop()
 			if ((change == 1 && !Polymorph) ||
 			    (change == 2 && u.ulycn == NON_PM))
 			    change = 0;
-			if(Polymorph && !rn2(100))
+			if(Polymorph && (Race_if(PM_HAXOR) ? !rn2(500) : !rn2(1000)) )
+			    change = 1;
+	/* let's allow the moulds to stop sucking so much. Make them polymorph more often. --Amy */
+			else if(Polymorph && !rn2(200) && !Upolyd && (Race_if(PM_MOULD) || Race_if(PM_DEATHMOLD)) )
 			    change = 1;
 			else if (u.ulycn >= LOW_PM && !Upolyd &&
-				 !rn2(80 - (20 * night())))
+				 !rn2(1200 - (200 * night())))
 			    change = 2;
 			if (change && !Unchanging) {
 			    if (multi >= 0) {
@@ -405,28 +1078,6 @@ moveloop()
 		display_nhwindow(WIN_MAP, FALSE);
 #endif
 	    continue;
-	}
-
-	if ((u.uhave.amulet || Clairvoyant) &&
-	    !In_endgame(&u.uz) && !BClairvoyant &&
-	    !(moves % 15) && !rn2(2))
-		do_vicinity_map();
-
-	if(u.utrap && u.utraptype == TT_LAVA) {
-	    if(!is_lava(u.ux,u.uy))
-		u.utrap = 0;
-	    else if (!u.uinvulnerable) {
-		u.utrap -= 1<<8;
-		if(u.utrap < 1<<8) {
-		    killer_format = KILLED_BY;
-		    killer = "molten lava";
-		    You("sink below the surface and die.");
-		    done(DISSOLVED);
-		} else if(didmove && !u.umoved) {
-		    Norep("You sink deeper into the lava.");
-		    u.utrap += rnd(4);
-		}
-	    }
 	}
 
 #ifdef WIZARD
@@ -591,9 +1242,29 @@ newgame()
 
 	docrt();
 
+	/* Yes I know, nymphs usually remove iron balls. The playable nymph race doesn't, since I don't want them
+	   to be totally overpowered - I mean, they start with teleportitis *and* can get teleport control! --Amy */
+#ifdef CONVICT
+       if (Role_if(PM_CONVICT) || Race_if(PM_NYMPH) ) {
+              setworn(mkobj(CHAIN_CLASS, TRUE), W_CHAIN);
+              setworn(mkobj(BALL_CLASS, TRUE), W_BALL);
+              uball->spe = 1;
+              placebc();
+              newsym(u.ux,u.uy);
+       }
+#endif /* CONVICT */
+
 	if (flags.legacy) {
 		flush_screen(1);
+#ifdef CONVICT
+        if (Role_if(PM_CONVICT)) {
+		    com_pager(199);
+        } else {
+		    com_pager(1);
+        }
+#else
 		com_pager(1);
+#endif /* CONVICT */
 	}
 #ifdef INSURANCE
 	save_currentstate();
@@ -642,6 +1313,164 @@ boolean new_game;	/* false => restoring an old game */
 	  Hello((struct monst *) 0), plname, buf, urace.adj,
 	  (currentgend && urole.name.f) ? urole.name.f : urole.name.m, 
 	  DEF_GAME_NAME);
+
+	if (Race_if(PM_MISSINGNO)) pline("WARNING: As a Missingno, you will experience frequent game crashes of various kinds. Please save your game often, especially after killing a difficult monster or finding a rare item. Also, back up your savegames - some of those random crashes can prevent the emergency savegame files from being loaded! --Amy");
+
+	if ((Role_if(PM_ACTIVISTOR) || Role_if(PM_MYSTIC)) && new_game) {
+
+		int ammount;
+		ammount = 0;
+
+		while (ammount < 5) {
+
+		switch (rnd(50)) {
+
+		case 1: 
+		case 2: 
+		case 3: 
+		    HFire_resistance |= FROMOUTSIDE; break;
+		case 4: 
+		case 5: 
+		case 6: 
+		    HCold_resistance |= FROMOUTSIDE; break;
+		case 7: 
+		case 8: 
+		case 9: 
+		    HSleep_resistance |= FROMOUTSIDE; break;
+		case 10: 
+		case 11: 
+		    HDisint_resistance |= FROMOUTSIDE; break;
+		case 12: 
+		case 13: 
+		case 14: 
+		    HShock_resistance |= FROMOUTSIDE; break;
+		case 15: 
+		case 16: 
+		case 17: 
+		    HPoison_resistance |= FROMOUTSIDE; break;
+		case 18: 
+		    HDrain_resistance |= FROMOUTSIDE; break;
+		case 19: 
+		    HSick_resistance |= FROMOUTSIDE; break;
+		case 20: 
+		    HAcid_resistance |= FROMOUTSIDE; break;
+		case 21: 
+		case 22: 
+		    HHunger |= FROMOUTSIDE; break;
+		case 23: 
+		case 24: 
+		    HSee_invisible |= FROMOUTSIDE; break;
+		case 25: 
+		    HTelepat |= FROMOUTSIDE; break;
+		case 26: 
+		case 27: 
+		    HWarning |= FROMOUTSIDE; break;
+		case 28: 
+		case 29: 
+		    HSearching |= FROMOUTSIDE; break;
+		case 30: 
+		case 31: 
+		    HStealth |= FROMOUTSIDE; break;
+		case 32: 
+		case 33: 
+		    HAggravate_monster |= FROMOUTSIDE; break;
+		case 34: 
+		    HConflict |= FROMOUTSIDE; break;
+		case 35: 
+		case 36: 
+		    HTeleportation |= FROMOUTSIDE; break;
+		case 37: 
+		    HTeleport_control |= FROMOUTSIDE; break;
+		case 38: 
+		    HFlying |= FROMOUTSIDE; break;
+		case 39: 
+		    HSwimming |= FROMOUTSIDE; break;
+		case 40: 
+		    HMagical_breathing |= FROMOUTSIDE; break;
+		case 41: 
+		    HSlow_digestion |= FROMOUTSIDE; break;
+		case 42: 
+		case 43: 
+		    HRegeneration |= FROMOUTSIDE; break;
+		case 44: 
+		    HPolymorph |= FROMOUTSIDE; break;
+		case 45: 
+		    HPolymorph_control |= FROMOUTSIDE; break;
+		case 46: 
+		case 47: 
+		    HFast |= FROMOUTSIDE; break;
+		case 48: 
+		    HInvis |= FROMOUTSIDE; break;
+		default:
+			break;
+			}
+		ammount++;
+
+		}
+	}
+
+	if (!strncmpi(plname, "lostsoul", 8) && new_game) { 
+	goto_level(&medusa_level, TRUE, FALSE, FALSE); /* inspired by Tome, an Angband mod --Amy */
+	pline("These are the halls of Mandos... err, Medusa. Good luck making your way back up!");
+	}
+
+	if (!strncmpi(plname, "uberlostsoul", 12) && new_game) { 
+
+	goto_level((&sanctum_level - 1), TRUE, FALSE, FALSE);
+	pline("These are the halls of Mandos... err, Gehennom. Looks nice, huh?");
+
+			        register int newlev = 64;
+				d_level newlevel;
+				get_level(&newlevel, newlev);
+				goto_level(&newlevel, TRUE, FALSE, FALSE);
+				pline("Enjoy your stay, and try to get out if you can.");
+
+
+	}
+
+	if (Role_if(PM_TRANSVESTITE) && new_game && flags.female) {
+		    makeknown(AMULET_OF_CHANGE);
+		    You("don't feel like being female!");
+			change_sex();
+		    flags.botl = 1;
+
+	}
+
+	if (Role_if(PM_LADIESMAN) && new_game && flags.female) {
+		    makeknown(AMULET_OF_CHANGE);
+		    You("don't feel like being female!");
+			change_sex();
+		    flags.botl = 1;
+
+	}
+
+	if (Role_if(PM_TOPMODEL) && new_game && !flags.female) {
+		    makeknown(AMULET_OF_CHANGE);
+		    You("don't feel like being male!");
+			change_sex();
+		    flags.botl = 1;
+
+	}
+
+	if (Role_if(PM_DOLL_MISTRESS) && new_game && !flags.female) {
+		    makeknown(AMULET_OF_CHANGE);
+		    You("don't feel like being male!");
+			change_sex();
+		    flags.botl = 1;
+
+	}
+
+	if (Race_if(PM_UNGENOMOLD) && new_game) {
+		  makeknown(SCR_GENOCIDE);
+	    polyself(FALSE);
+		mvitals[PM_UNGENOMOLD].mvflags |= (G_GENOD|G_NOCORPSE);
+	    pline("Wiped out all ungenomolds.");
+ 		You_feel("dead inside.");
+
+	}
+
+	u.stethocheat = moves;
+
 }
 
 #ifdef POSITIONBAR

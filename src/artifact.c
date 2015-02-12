@@ -110,10 +110,10 @@ init_artifacts1()
 
 	if (skill > P_NONE && P_SKILL(skill) < P_UNSKILLED)
 	    P_SKILL(skill) = P_UNSKILLED;
-	if (skill > P_NONE && P_MAX_SKILL(skill) < P_SKILLED) {
-	    pline("Warning: %s should be at least skilled.  Fixing...",
+	if (skill > P_NONE && P_MAX_SKILL(skill) < P_EXPERT) { /* expert instead of skilled --Amy */
+	    if (wizard) pline("Warning: %s should be at least expert.  Fixing...",
 		    artilist[urole.gift1arti].name);
-		P_MAX_SKILL(skill) = P_SKILLED;
+		P_MAX_SKILL(skill) = P_EXPERT;
 	}
     }
     if (urole.gift2arti &&
@@ -123,10 +123,10 @@ init_artifacts1()
 
 	if (skill > P_NONE && P_SKILL(skill) < P_UNSKILLED)
 	    P_SKILL(skill) = P_UNSKILLED;
-	if (skill > P_NONE && P_MAX_SKILL(skill) < P_SKILLED) {
-	    pline("Warning: %s should be at least skilled.  Fixing...",
+	if (skill > P_NONE && P_MAX_SKILL(skill) < P_EXPERT) {
+	    if (wizard) pline("Warning: %s should be at least expert.  Fixing...",
 		    artilist[urole.gift1arti].name);
-	    P_MAX_SKILL(skill) = P_SKILLED;
+	    P_MAX_SKILL(skill) = P_EXPERT;
 	}
     }
 #endif 
@@ -139,7 +139,7 @@ init_artifacts1()
 	if (skill > P_NONE && P_SKILL(skill) < P_UNSKILLED)
 	    P_SKILL(skill) = P_UNSKILLED;
 	if (skill > P_NONE && P_MAX_SKILL(skill) < P_EXPERT) {
-	    pline("Warning: %s should be at least expert.  Fixing...",
+	    if (wizard) pline("Warning: %s should be at least expert.  Fixing...",
 		    artilist[urole.questarti].name);
 	    P_MAX_SKILL(skill) = P_EXPERT;
 	}
@@ -245,6 +245,7 @@ aligntyp alignment;	/* target alignment, or A_NONE */
 		    continue;
 		if (by_align && Role_if(a->role))
 		    goto make_artif;	/* 'a' points to the desired one */
+		else if(by_align && Role_if(PM_PIRATE)) continue; /* pirates are not gifted artifacts */
 		else
 		    eligible[n++] = m;
 	    }
@@ -420,7 +421,7 @@ register const char *name;
 		   Bug fix:  don't name multiple elven daggers "Sting".
 		 */
 	for (a = artilist+1; a->otyp; a++) {
-	    if (a->otyp != otmp->otyp) continue;
+	    /*if (a->otyp != otmp->otyp) continue;*/ /* artifact naming bug --Amy */
 	    aname = a->name;
 	    if (!strncmpi(aname, "the ", 4)) aname += 4;
 	    if (!strcmp(aname, name))
@@ -589,6 +590,15 @@ long wp_mask;
 	    if (on) EHalf_physical_damage |= wp_mask;
 	    else EHalf_physical_damage &= ~wp_mask;
 	}
+	if (spfx & SPFX_PROTEC) {
+	    if (on) {
+		u.ublessed += 2;
+		HProtection |= FROMOUTSIDE;
+	    } else {
+	    	u.ublessed -= 2;
+		if (u.ublessed <= 0) HProtection &= ~FROMOUTSIDE;
+	    }
+	}
 	if (spfx & SPFX_XRAY) {
 	    /* this assumes that no one else is using xray_range */
 	    if (on) u.xray_range = 3;
@@ -677,6 +687,19 @@ touch_artifact(obj,mon)
 	if (yours) pline("%s your grasp!", Tobjnam(obj, "evade"));
 	return 0;
     }
+#ifdef CONVICT
+    /* This is a kludge, but I'm not sure where else to put it */
+    if (oart == &artilist[ART_IRON_BALL_OF_LIBERATION]) {
+	if (Role_if(PM_CONVICT) && (!obj->oerodeproof)) {
+	    obj->oerodeproof = TRUE;
+	    obj->owt = 900; /* Magically lightened, but still heavy */
+	}
+
+	if (Punished && (obj != uball)) {
+	    unpunish(); /* Remove a mundane heavy iron ball */
+	}
+    }
+#endif /* CONVICT */
 
     return 1;
 }
@@ -757,6 +780,8 @@ struct monst *mtmp;
 		case AD_STON:
 			if (yours ? Stone_resistance : resists_ston(mtmp))
 			    retval = FALSE;
+			break;
+		case AD_PHYS:
 			break;
 		default:	impossible("Weird weapon special attack.");
 	    }
@@ -1141,9 +1166,9 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			(mdef->data == &mons[PM_WATER_ELEMENTAL]) ?
 			"vaporizes part of" : "burns",
 			hittee, !spec_dbon_applies ? '.' : '!');
-	    if (!rn2(4)) (void) destroy_mitem(mdef, POTION_CLASS, AD_FIRE);
-	    if (!rn2(4)) (void) destroy_mitem(mdef, SCROLL_CLASS, AD_FIRE);
-	    if (!rn2(7)) (void) destroy_mitem(mdef, SPBOOK_CLASS, AD_FIRE);
+	    if (!rn2(50)) (void) destroy_mitem(mdef, POTION_CLASS, AD_FIRE);
+	    if (!rn2(50)) (void) destroy_mitem(mdef, SCROLL_CLASS, AD_FIRE);
+	    if (!rn2(75)) (void) destroy_mitem(mdef, SPBOOK_CLASS, AD_FIRE);
 	    if (youdefend && Slimed) burn_away_slime();
 	    return realizes_damage;
 	}
@@ -1152,7 +1177,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 		pline_The("ice-cold blade %s %s%c",
 			!spec_dbon_applies ? "hits" : "freezes",
 			hittee, !spec_dbon_applies ? '.' : '!');
-	    if (!rn2(4)) (void) destroy_mitem(mdef, POTION_CLASS, AD_COLD);
+	    if (!rn2(100)) (void) destroy_mitem(mdef, POTION_CLASS, AD_COLD);
 	    return realizes_damage;
 	}
 	if (attacks(AD_ELEC, otmp)) {
@@ -1160,8 +1185,8 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 		pline_The("massive hammer hits%s %s%c",
 			  !spec_dbon_applies ? "" : "!  Lightning strikes",
 			  hittee, !spec_dbon_applies ? '.' : '!');
-	    if (!rn2(5)) (void) destroy_mitem(mdef, RING_CLASS, AD_ELEC);
-	    if (!rn2(5)) (void) destroy_mitem(mdef, WAND_CLASS, AD_ELEC);
+	    if (!rn2(150)) (void) destroy_mitem(mdef, RING_CLASS, AD_ELEC);
+	    if (!rn2(150)) (void) destroy_mitem(mdef, WAND_CLASS, AD_ELEC);
 	    return realizes_damage;
 	}
 	if (attacks(AD_MAGM, otmp)) {
@@ -1186,6 +1211,98 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	       is handled below so avoid early exit if SPFX_BEHEAD set
 	       and the defender is vulnerable */
 	    return FALSE;
+	}
+
+	if(otmp->oartifact == ART_REAVER){
+	 if(youattack){
+	  if(mdef->minvent && (Role_if(PM_PIRATE) || !rn2(10) ) ){
+		struct obj *otmp2, **minvent_ptr;
+		long unwornmask;
+
+		if((otmp2 = mdef->minvent) != 0) {
+			/* take the object away from the monster */
+			obj_extract_self(otmp2);
+			if ((unwornmask = otmp2->owornmask) != 0L) {
+				mdef->misc_worn_check &= ~unwornmask;
+				if (otmp2->owornmask & W_WEP) {
+					setmnotwielded(mdef,otmp2);
+					MON_NOWEP(mdef);
+				}
+				otmp2->owornmask = 0L;
+				update_mon_intrinsics(mdef, otmp2, FALSE, FALSE);
+			}
+			/* give the object to the character */
+			otmp2 = (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) ) ? 
+				hold_another_object(otmp2, "Ye snatched but dropped %s.",
+						   doname(otmp2), "Ye steal: ") :
+				hold_another_object(otmp2, "You snatched but dropped %s.",
+						   doname(otmp2), "You steal: ");
+			if (otmp2->otyp == CORPSE &&
+				touch_petrifies(&mons[otmp2->corpsenm]) && !uarmg) {
+				char kbuf[BUFSZ];
+
+				Sprintf(kbuf, "stolen %s corpse", mons[otmp2->corpsenm].mname);
+				instapetrify(kbuf);
+			}
+			/* more take-away handling, after theft message */
+			if (unwornmask & W_WEP) {		/* stole wielded weapon */
+				possibly_unwield(mdef, FALSE);
+			} else if (unwornmask & W_ARMG) {	/* stole worn gloves */
+				mselftouch(mdef, (const char *)0, TRUE);
+				if (mdef->mhp <= 0)	/* it's now a statue */
+					return 1; /* monster is dead */
+			}
+		}
+	  }
+	 }
+	 else if(youdefend){
+		char buf[BUFSZ];
+		buf[0] = '\0';
+		steal(magr, buf/*, TRUE*/);
+	 }
+	 else{
+		struct obj *obj;
+		/* find an object to steal, non-cursed if magr is tame */
+		for (obj = mdef->minvent; obj; obj = obj->nobj)
+		    if (!magr->mtame || !obj->cursed)
+				break;
+
+		if (obj) {
+			char buf[BUFSZ], onambuf[BUFSZ], mdefnambuf[BUFSZ];
+
+			/* make a special x_monnam() call that never omits
+			   the saddle, and save it for later messages */
+			Strcpy(mdefnambuf, x_monnam(mdef, ARTICLE_THE, (char *)0, 0, FALSE));
+#ifdef STEED
+			if (u.usteed == mdef &&
+					obj == which_armor(mdef, W_SADDLE))
+				/* "You can no longer ride <steed>." */
+				dismount_steed(DISMOUNT_POLY);
+#endif
+			obj_extract_self(obj);
+			if (obj->owornmask) {
+				mdef->misc_worn_check &= ~obj->owornmask;
+				if (obj->owornmask & W_WEP)
+				    setmnotwielded(mdef,obj);
+				obj->owornmask = 0L;
+				update_mon_intrinsics(mdef, obj, FALSE, FALSE);
+			}
+			/* add_to_minv() might free obj [if it merges] */
+			if (vis)
+				Strcpy(onambuf, doname(obj));
+			(void) add_to_minv(magr, obj);
+			if (vis) {
+				Strcpy(buf, Monnam(magr));
+				pline("%s steals %s from %s!", buf,
+				    onambuf, mdefnambuf);
+			}
+			possibly_unwield(mdef, FALSE);
+			mdef->mstrategy &= ~STRAT_WAITFORU;
+			mselftouch(mdef, (const char *)0, FALSE);
+			if (mdef->mhp <= 0)
+				return 1;
+		}
+	 }
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
@@ -1217,10 +1334,13 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 		    *dmgptr += d(3,6) + 6;
 		    break;
 		case 10:
+			if (!rn2(20)) {
 		    pline_The("poison was deadly...");
 		    *dmgptr = 2 *
 			    (youdefend ? Upolyd ? u.mh : u.uhp : mdef->mhp) +
 			    FATAL_DAMAGE_MODIFIER;
+			}
+			else { *dmgptr += d(4,6) + 6; }
 		    break;
 	    }
 	    return TRUE;
@@ -1263,7 +1383,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	/* We really want "on a natural 20" but Nethack does it in */
 	/* reverse from AD&D. */
 	if (spec_ability(otmp, SPFX_BEHEAD)) {
-	    if (otmp->oartifact == ART_TSURUGI_OF_MURAMASA && dieroll < 3) {
+	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
 		wepdesc = "The razor-sharp blade";
 		/* not really beheading, but so close, why add another SPFX */
 		if (youattack && u.uswallow && mdef == u.ustuck) {
@@ -1309,7 +1429,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			otmp->dknown = TRUE;
 			return TRUE;
 		}
-	    } else if (dieroll < 3 || otmp->oartifact == ART_VORPAL_BLADE &&
+	    } else if (dieroll < 2 || otmp->oartifact == ART_VORPAL_BLADE &&
 				      mdef->data == &mons[PM_JABBERWOCK]) {
 		static const char * const behead_msg[2] = {
 		     "%s beheads %s!",
@@ -1342,7 +1462,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			otmp->dknown = TRUE;
 			return TRUE;
 		} else {
-			if (!has_head(youmonst.data)) {
+			if (!has_head(youmonst.data) || Role_if(PM_COURIER)) {
 				pline("Somehow, %s misses you wildly.",
 				      magr ? mon_nam(magr) : wepdesc);
 				*dmgptr = 0;
@@ -1492,7 +1612,7 @@ arti_invoke(obj)
 	    obj->age += (long) d(3,10);
 	    return 1;
 	}
-	obj->age = monstermoves + rnz(100);
+	obj->age = monstermoves + rnz(1000);
 
 	switch(oart->inv_prop) {
 	case TAMING: {
@@ -1503,6 +1623,14 @@ arti_invoke(obj)
 	    (void) seffects(&pseudo);
 	    break;
 	  }
+	case IDENTIFY: {
+		struct obj *pseudo = mksobj(SPE_IDENTIFY, FALSE, FALSE);
+		pseudo->blessed = pseudo->cursed = 0;
+		pseudo->quan = 42L;		/* do not let useup get it */
+		(void) seffects(pseudo);
+		obfree(pseudo, (struct obj *) 0);
+		break;
+	    }
 	case HEALING: {
 	    int healamt = (u.uhpmax + 1 - u.uhp) / 2;
 	    long creamed = (long)u.ucreamed;
@@ -1556,7 +1684,13 @@ arti_invoke(obj)
 	    break;
 	  }
 	case LEV_TELE:
-	    level_tele();
+	      if (strncmpi(plname, "lostsoul", 8) && strncmpi(plname, "uberlostsoul", 12)) level_tele();
+		else pline("You are disallowed to use this ability.");
+	    break;
+	case DRAGON_BREATH:
+	    getdir(NULL);
+	    buzz(20+AD_FIRE-1,6,u.ux,u.uy,u.dx,u.dy);
+	/*       ^^^^^^^^^^^^ - see zap.c / ZT_* defines */
 	    break;
 	case LIGHT_AREA:
 	    if (!Blind)
@@ -1650,7 +1784,7 @@ arti_invoke(obj)
 			break;
 		}
 		mtmp = makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
-	        if ((mtmp2 = tamedog(mtmp, (struct obj *)0)) != 0)
+	        if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0)
 		    mtmp = mtmp2;
 		mtmp->mtame = 30;
 		summon_loop--;
@@ -1669,7 +1803,7 @@ arti_invoke(obj)
    
 	    pline("You summon an elemental.");
    
-	    if ((mtmp2 = tamedog(mtmp, (struct obj *)0)) != 0)
+	    if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE) ) != 0)
 			mtmp = mtmp2;
 	    mtmp->mtame = 30;
 	    break;
@@ -1679,14 +1813,16 @@ arti_invoke(obj)
    
 	    pline("You summon an elemental.");
 	    
-	    if ((mtmp2 = tamedog(mtmp, (struct obj *)0)) != 0)
+	    if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE) ) != 0)
 			mtmp = mtmp2;
 	    mtmp->mtame = 30;
 	    break;
 	case OBJ_DETECTION:
 		(void)object_detect(obj, 0);
 		break;
-	case CREATE_PORTAL: {
+	case CREATE_PORTAL: 
+		if (!strncmpi(plname, "lostsoul", 8) || !strncmpi(plname, "uberlostsoul", 12)) break;
+				{
 	    int i, num_ok_dungeons, last_ok_dungeon = 0;
 	    d_level newlev;
 	    extern int n_dgns; /* from dungeon.c */
@@ -1769,6 +1905,39 @@ arti_invoke(obj)
 	    otmp = hold_another_object(otmp, "Suddenly %s out.",
 				       aobjnam(otmp, "fall"), (const char *)0);
 	    break;
+	case OBJECT_DET:
+		object_detect(obj, 0);
+		artifact_detect(obj);
+		break;
+#ifdef CONVICT
+	case PHASING:   /* Walk through walls and stone like a xorn */
+        if (Passes_walls) goto nothing_special;
+	    if (oart == &artilist[ART_IRON_BALL_OF_LIBERATION]) {
+		if (Punished && (obj != uball)) {
+		    unpunish(); /* Remove a mundane heavy iron ball */
+		}
+		
+		if (!Punished) {
+		    setworn(mkobj(CHAIN_CLASS, TRUE), W_CHAIN);
+		    setworn(obj, W_BALL);
+		    uball->spe = 1;
+		    if (!u.uswallow) {
+			placebc();
+			if (Blind) set_bc(1);	/* set up ball and chain variables */
+			newsym(u.ux,u.uy);		/* see ball&chain if can't see self */
+		    }
+		    Your("%s chains itself to you!", xname(obj));
+		}
+	    }
+        if (!Hallucination) {    
+            Your("body begins to feel less solid.");
+        } else {
+            You_feel("one with the spirit world.");
+        }
+        incr_itimeout(&Phasing, (50 + rnd(100)));
+        obj->age += Phasing; /* Time begins after phasing ends */
+        break;
+#endif /* CONVICT */
 	  }
 	}
     } else {
@@ -1787,7 +1956,7 @@ arti_invoke(obj)
 	} else if(!on) {
 	    /* when turning off property, determine downtime */
 	    /* arbitrary for now until we can tune this -dlc */
-	    obj->age = monstermoves + rnz(100);
+	    obj->age = monstermoves + rnz(1000);
 	}
 
 	if ((eprop & ~W_ARTI) || iprop) {
@@ -1923,6 +2092,61 @@ struct obj *otmp;
 	else
 	    return (100L * (long)objects[otmp->otyp].oc_cost);
 }
+
+static const char *random_seasound[] = {
+	"distant waves",
+	"distant surf",
+	"the distant sea",
+	"the call of the ocean",
+	"waves against the shore",
+	"flowing water",
+	"the sighing of waves",
+	"quarrelling gulls",
+	"the song of the deep",
+	"rumbling in the deeps",
+	"the singing of Eidothea",
+	"the laughter of the protean nymphs",
+	"rushing tides",
+	"the elusive sea change",
+	"the silence of the sea",
+	"the passage of the albatross",
+	"dancing raindrops",
+	"coins rolling on the seabed",
+	"treasure galleons crumbling in the depths",
+	"waves lapping against a hull"
+};
+
+/* Polymorph obj contents */
+void
+arti_poly_contents(obj)
+    struct obj *obj;
+{
+    struct obj *dobj = 0;  /*object to be deleted*/
+    struct obj *otmp;
+	You_hear("%s.",random_seasound[rn2(SIZE(random_seasound))]);
+	for (otmp = obj->cobj; otmp; otmp = otmp->nobj){
+		if (dobj) {
+			delobj(dobj);
+			dobj = 0;
+		}
+		if(!obj_resists(otmp, 5, 95)){
+			/* KMH, conduct */
+			u.uconduct.polypiles++;
+			/* any saved lock context will be dangerously obsolete */
+			if (Is_box(otmp)) (void) boxlock(otmp, obj);
+
+			if (obj_shudders(otmp)) {
+				dobj = otmp;
+			}
+			else otmp = poly_obj(otmp, STRANGE_OBJECT);
+		}
+	}
+	if (dobj) {
+		delobj(dobj);
+		dobj = 0;
+	}
+}
+
 
 #endif /* OVLB */
 

@@ -1,4 +1,4 @@
-# SCCS Id: @(#)gehennom.des	3.4	1996/11/09
+#SCCS Id: @(#)gehennom.des	3.4	1996/11/09
 #       Copyright (c) 1989 by Jean-Christophe Collet
 #       Copyright (c) 1992 by M. Stephenson and Izchak Miller
 # NetHack may be freely redistributed.  See license for details.
@@ -127,12 +127,12 @@ TRAP:"magic", random
 
 # Random monsters.
 # The ghosts.
-MONSTER:' ',"ghost",random
-MONSTER:' ',"ghost",random
-MONSTER:' ',"ghost",random
-MONSTER:' ',"ghost",random
-MONSTER:' ',"ghost",random
-MONSTER:' ',"ghost",random
+MONSTER:'8',"ghost",random
+MONSTER:'8',"ghost",random
+MONSTER:'8',"ghost",random
+MONSTER:'8',"ghost",random
+MONSTER:'8',"ghost",random
+MONSTER:'8',"ghost",random
 # Add a few bats for atmosphere.
 MONSTER:'B',"vampire bat",random
 MONSTER:'B',"vampire bat",random
@@ -216,6 +216,7 @@ MONSTER:'m',"giant mimic",place[2],m_feature "fountain"
 MONSTER:'m',"giant mimic",place[3],m_feature "fountain"
 # The demon of the swamp
 MONSTER:'&',"Juiblex",(25,08)
+OBJECT:'?',"root password detection",(25,08)
 # And a couple demons
 MONSTER:'i',"lemure",(43,08)
 MONSTER:'i',"lemure",(44,08)
@@ -370,10 +371,11 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 # The resident nasty
 MONSTER:'&',"Orcus",(33,15)
+OBJECT:'?',"root password detection",(33,15)
 # And its preferred companions
 MONSTER:'Z',"human zombie",(32,15)
-MONSTER:' ',"shade",(32,14)
-MONSTER:' ',"shade",(32,16)
+MONSTER:'8',"shade",(32,14)
+MONSTER:'8',"shade",(32,16)
 MONSTER:'V',"vampire",(35,16)
 MONSTER:'V',"vampire",(35,14)
 MONSTER:'V',"vampire lord",(36,14)
@@ -384,10 +386,10 @@ MONSTER:'Z',"skeleton",random
 MONSTER:'Z',"skeleton",random
 MONSTER:'Z',"skeleton",random
 MONSTER:'Z',"skeleton",random
-MONSTER:' ',"shade",random
-MONSTER:' ',"shade",random
-MONSTER:' ',"shade",random
-MONSTER:' ',"shade",random
+MONSTER:'8',"shade",random
+MONSTER:'8',"shade",random
+MONSTER:'8',"shade",random
+MONSTER:'8',"shade",random
 MONSTER:'Z',"giant zombie",random
 MONSTER:'Z',"giant zombie",random
 MONSTER:'Z',"giant zombie",random
@@ -445,6 +447,7 @@ NON_DIGGABLE:(00,00,20,11)
 REGION:(01,01,20,10),unlit,"ordinary"
 # The fellow in residence
 MONSTER:'&',"Asmodeus",(12,07)
+OBJECT:'?',"root password detection",(12,07)
 # Some random weapons and armor.
 OBJECT:'[',random,random
 OBJECT:'[',random,random
@@ -465,7 +468,7 @@ TRAP:"fire", random
 TRAP:"magic", random
 TRAP:"magic", random
 # Random monsters.
-MONSTER:' ',"ghost",(11,07)
+MONSTER:'8',"ghost",(11,07)
 MONSTER:'&',"horned devil",(10,05)
 MONSTER:'L',random,random
 # Some Vampires for good measure
@@ -521,6 +524,7 @@ MAZEWALK:(00,06),west
 STAIR:(44,06),down
 # The fellow in residence
 MONSTER:'&',"Baalzebub",(35,06)
+OBJECT:'?',"root password detection",(35,06)
 # Some random weapons and armor.
 OBJECT:'[',random,random
 OBJECT:'[',random,random
@@ -541,7 +545,7 @@ TRAP:"fire", random
 TRAP:"magic", random
 TRAP:"magic", random
 # Random monsters.
-MONSTER:' ',"ghost",(37,07)
+MONSTER:'8',"ghost",(37,07)
 MONSTER:'&',"horned devil",(32,05)
 MONSTER:'&',"barbed devil",(38,07)
 MONSTER:'L',random,random
@@ -579,6 +583,7 @@ MAZEWALK:(00,06),west
 STAIR:(44,06),down
 # The fellow in residence
 MONSTER:'&',"Yeenoghu",(35,06)
+OBJECT:'?',"root password detection",(35,06)
 # Some random weapons and armor.
 OBJECT:'[',random,random
 OBJECT:'[',random,random
@@ -659,6 +664,7 @@ MAZEWALK:(00,06),west
 STAIR:(44,06),down
 # The fellow in residence
 MONSTER:'&',"Geryon",(35,06)
+OBJECT:'?',"root password detection",(35,06)
 # Some random weapons and armor.
 OBJECT:'[',random,random
 OBJECT:'[',random,random
@@ -725,6 +731,7 @@ MAZEWALK:(00,06),west
 STAIR:(44,06),down
 # The fellow in residence
 MONSTER:'&',"Demogorgon",(06,06)
+OBJECT:'?',"root password detection",(06,06)
 # Some random weapons and armor.
 OBJECT:'*',random,random
 OBJECT:'!',random,random
@@ -804,6 +811,7 @@ MAZEWALK:(00,06),west
 STAIR:(44,06),down
 # The fellow in residence
 MONSTER:'&',"Dispater",(18,06)
+OBJECT:'?',"root password detection",(18,06)
 # Some random weapons and armor.
 OBJECT:'[',random,random
 OBJECT:'[',random,random
@@ -1009,6 +1017,8 @@ MONSTER:'&',"erinys",(10,04),hostile
 MONSTER:'&',"marilith",(15,04),hostile
 MONSTER:'&',"nalfeshnee",(27,08),hostile
 # Moloch's horde
+MONSTER:'&',"Cthulhu",(18,09),asleep,hostile
+OBJECT:'?',"root password detection",(18,09)
 MONSTER:'@',"aligned priest",(20,03),noalign,hostile
 MONSTER:'@',"aligned priest",(15,04),noalign,hostile
 MONSTER:'@',"aligned priest",(11,05),noalign,hostile
@@ -1024,4 +1034,2528 @@ MONSTER:'L',random,random
 MONSTER:'V',random,random
 MONSTER:'V',random,random
 MONSTER:'V',random,random
+# An arch-lichen in the Sanctum undead-priest restway. Evil!
+MONSTER[50%]:'F',"arch-lichen",(35,6),hostile
+
+MONSTER[10%]:'.',"%s-$$$-NIX",random,hostile
+
+MONSTER[50%]:':',"arch-newt",(19,09),hostile
 STAIR:(63,15),up
+
+#
+# ... and finally: a school
+# It is probably no coincidence that it is in hell :-)
+#
+# I had to comment out many pupils - weird things seem to happen when
+# there are more than 127 monsters (lev_comp bug/feature ?)
+
+MAZE: "school-1", ' '
+MESSAGE: "You feel reminded of your days of learning ..."
+GEOMETRY: center,center
+
+#         1         2         3         4         5         6         7
+# 23456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+|--|        |-------|-----|-----|-----|-----|-----|-----|-----|-----|------|
+|..+########+.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|--|        |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+            |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+     #######+.......|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+---|
+     #      |..............................................................|
+     #      |..............................................................|
+     #      |.......|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+---|
+|----+----| |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|.........| |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|.........| |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|.........| |.......|-----|-----|-----|-----|-----|-----|-----|-----|------|
+|.........| |..............................................................|
+|.........| |..............................................................|
+|.........| |.......|--+----------------------------+--|--+----------------|
+|.........| |.......|..................................|...................|
+|.........| |.......|..................................+...................|
+|.........| |.......|..................................|...............\...|
+|.........| |.......|..................................|...................|
+|---------| |--------------------------------------------------------------|
+ENDMAP
+
+# the antechamber
+REGION:(01,01,02,01),unlit,"ordinary"
+# the actual school
+REGION:(13,01,74,18),lit,"ordinary"
+# the gym
+REGION:(01,09,09,18),lit,"ordinary"
+
+# Stairs: up in the antechamber, down behind the principal's throne
+STAIR:(01,01),up
+STAIR:(72,17),down
+
+# main doors
+DOOR:locked,(12,01)
+DOOR:locked,(12,04)
+# the classes
+DOOR:locked,(23,04)
+DOOR:locked,(29,04)
+DOOR:locked,(35,04)
+DOOR:locked,(41,04)
+DOOR:locked,(47,04)
+DOOR:locked,(53,04)
+DOOR:locked,(59,04)
+DOOR:locked,(65,04)
+DOOR:locked,(71,04)
+DOOR:locked,(23,07)
+DOOR:locked,(29,07)
+DOOR:locked,(35,07)
+DOOR:locked,(41,07)
+DOOR:locked,(47,07)
+DOOR:locked,(53,07)
+DOOR:locked,(59,07)
+DOOR:locked,(65,07)
+DOOR:locked,(71,07)
+# the Teacher's Room
+DOOR:locked,(23,14)
+DOOR:locked,(52,14)
+# the Principal's Office
+DOOR:locked,(58,14)
+DOOR:locked,(55,16)
+# the Gym
+DOOR:locked,(05,08)
+
+# Engravings: the classes and other rooms
+ENGRAVING:(23,05),burn,"C101"
+ENGRAVING:(29,05),burn,"C102"
+ENGRAVING:(35,05),burn,"C103"
+ENGRAVING:(41,05),burn,"C104"
+ENGRAVING:(47,05),burn,"C105"
+ENGRAVING:(53,05),burn,"C106"
+ENGRAVING:(59,05),burn,"C107"
+ENGRAVING:(65,05),burn,"C108"
+ENGRAVING:(71,05),burn,"C109"
+ENGRAVING:(23,06),burn,"C201"
+ENGRAVING:(29,06),burn,"C202"
+ENGRAVING:(35,06),burn,"C203"
+ENGRAVING:(41,06),burn,"C204"
+ENGRAVING:(47,06),burn,"Library"
+ENGRAVING:(53,06),burn,"B111 (Biology)"
+ENGRAVING:(59,06),burn,"B115 (Chemical Storage)"
+ENGRAVING:(65,06),burn,"B116 (Chemistry)"
+ENGRAVING:(71,06),burn,"C311 (Computers)"
+ENGRAVING:(23,13),burn,"Teacher's Room"
+ENGRAVING:(52,13),burn,"Teacher's Room"
+ENGRAVING:(58,13),burn,"Principal's Office"
+ENGRAVING:(05,07),burn,"Abandon all hope, ye who enter here!"
+ENGRAVING:(11,01),burn,"KILLER HIGH SCHOOL"
+
+# Room C101, in memorial of my old kind but tough English teacher 
+# Mr. Baumert
+MONSTER:'@',"teacher",(23,03),"Mr. Baumert",peaceful
+MONSTER:'@',"pupil",(21,01)
+MONSTER:'@',"pupil",(22,01)
+MONSTER:'@',"pupil",(23,01)
+MONSTER:'@',"pupil",(24,01)
+# MONSTER:'@',"pupil",(25,01)
+# MONSTER:'@',"pupil",(21,02)
+# MONSTER:'@',"pupil",(22,02)
+# MONSTER:'@',"pupil",(23,02)
+# MONSTER:'@',"pupil",(24,02)
+# MONSTER:'@',"pupil",(25,02)
+# MONSTER:'@',"pupil",(21,03)
+# MONSTER:'@',"pupil",(22,03)
+# MONSTER:'@',"pupil",(24,03)
+# MONSTER:'@',"pupil",(25,03)
+
+# Room C102, Mr. Gier. I have always loved his blasts of sleep.
+MONSTER:'@',"teacher",(29,03),"Mr. Gier",hostile
+MONSTER:'@',"pupil",(27,01)
+MONSTER:'@',"pupil",(28,01)
+MONSTER:'@',"pupil",(29,01)
+MONSTER:'@',"pupil",(30,01)
+MONSTER:'@',"pupil",(31,01)
+# MONSTER:'@',"pupil",(27,02)
+# MONSTER:'@',"pupil",(28,02)
+# MONSTER:'@',"pupil",(29,02)
+# MONSTER:'@',"pupil",(30,02)
+# MONSTER:'@',"pupil",(31,02)
+# MONSTER:'@',"pupil",(27,03)
+# MONSTER:'@',"pupil",(28,03)
+# MONSTER:'@',"pupil",(30,03)
+# MONSTER:'@',"pupil",(31,03)
+
+# Room C103. Mrs. Dickler. Her capabilities in explaining maths 
+# were always of use.
+MONSTER:'@',"teacher",(35,03),"Mrs. Dickler"
+MONSTER:'@',"pupil",(33,01)
+MONSTER:'@',"pupil",(34,01)
+MONSTER:'@',"pupil",(35,01)
+MONSTER:'@',"pupil",(36,01)
+# MONSTER:'@',"pupil",(37,01)
+# MONSTER:'@',"pupil",(33,02)
+# MONSTER:'@',"pupil",(34,02)
+# MONSTER:'@',"pupil",(35,02)
+# MONSTER:'@',"pupil",(36,02)
+# MONSTER:'@',"pupil",(37,02)
+# MONSTER:'@',"pupil",(33,03)
+# MONSTER:'@',"pupil",(34,03)
+# MONSTER:'@',"pupil",(36,03)
+# MONSTER:'@',"pupil",(37,03)
+
+# Room C104. Mrs. Wessel. Thank you for being so kind ...
+MONSTER:'@',"teacher",(41,03),"Mrs. Wessel"
+MONSTER:'@',"pupil",(39,01)
+MONSTER:'@',"pupil",(40,01)
+MONSTER:'@',"pupil",(41,01)
+MONSTER:'@',"pupil",(42,01)
+# MONSTER:'@',"pupil",(43,01)
+# MONSTER:'@',"pupil",(39,02)
+# MONSTER:'@',"pupil",(40,02)
+# MONSTER:'@',"pupil",(41,02)
+# MONSTER:'@',"pupil",(42,02)
+# MONSTER:'@',"pupil",(43,02)
+# MONSTER:'@',"pupil",(39,03)
+# MONSTER:'@',"pupil",(40,03)
+# MONSTER:'@',"pupil",(42,03)
+# MONSTER:'@',"pupil",(43,03)
+
+# C105. Mr. Koerfgen - I have always loved your acid blasts
+# Guess why there are so many corpses here :-)
+MONSTER:'@',"teacher",(47,03),"Mr. Koerfgen",hostile
+OBJECT:'/',"acid",(47,03)
+MONSTER:'@',"pupil",(45,01)
+OBJECT:'%',"corpse",(46,01),"pupil",0
+MONSTER:'@',"pupil",(47,01)
+OBJECT:'%',"corpse",(48,01),"pupil",0
+MONSTER:'@',"pupil",(49,01)
+OBJECT:'%',"corpse",(45,02),"pupil",0
+# MONSTER:'@',"pupil",(46,02)
+OBJECT:'%',"corpse",(47,02),"pupil",0
+# MONSTER:'@',"pupil",(48,02)
+OBJECT:'%',"corpse",(49,02),"pupil",0
+# MONSTER:'@',"pupil",(45,03)
+OBJECT:'%',"corpse",(46,03),"pupil",0
+# MONSTER:'@',"pupil",(48,03)
+OBJECT:'%',"corpse",(49,03),"pupil",0
+
+# C106 is the residence of Mr. Schuster.
+MONSTER:'@',"teacher",(53,03),"Mr. Schuster"
+MONSTER:'@',"pupil",(51,01)
+MONSTER:'@',"pupil",(52,01)
+MONSTER:'@',"pupil",(53,01)
+MONSTER:'@',"pupil",(54,01)
+MONSTER:'@',"pupil",(55,01)
+# MONSTER:'@',"pupil",(51,02)
+# MONSTER:'@',"pupil",(52,02)
+# MONSTER:'@',"pupil",(53,02)
+# MONSTER:'@',"pupil",(54,02)
+# MONSTER:'@',"pupil",(55,02)
+# MONSTER:'@',"pupil",(51,03)
+# MONSTER:'@',"pupil",(52,03)
+# MONSTER:'@',"pupil",(54,03)
+# MONSTER:'@',"pupil",(55,03)
+
+# The room C107 is dedicated to the memorial of Mr. Marre who 
+# perhaps was the most amusing and kind teacher known to mankind ...
+MONSTER:'@',"teacher",(53,03),"Mr. Marre",peaceful
+MONSTER:'@',"pupil",(51,01)
+MONSTER:'@',"pupil",(52,01)
+MONSTER:'@',"pupil",(53,01)
+MONSTER:'@',"pupil",(54,01)
+MONSTER:'@',"pupil",(55,01)
+MONSTER:'@',"pupil",(51,02)
+MONSTER:'@',"pupil",(52,02)
+# MONSTER:'@',"pupil",(53,02)
+# MONSTER:'@',"pupil",(54,02)
+# MONSTER:'@',"pupil",(55,02)
+# MONSTER:'@',"pupil",(51,03)
+# MONSTER:'@',"pupil",(52,03)
+# MONSTER:'@',"pupil",(54,03)
+# MONSTER:'@',"pupil",(55,03)
+
+# Room C108 is the torture chamber of another funny chemistry teacher,
+# Mr. Ennen
+MONSTER:'@',"teacher",(65,03),"Mr. Ennen"
+MONSTER:'@',"pupil",(63,01)
+MONSTER:'@',"pupil",(64,01)
+MONSTER:'@',"pupil",(65,01)
+MONSTER:'@',"pupil",(66,01)
+MONSTER:'@',"pupil",(67,01)
+MONSTER:'@',"pupil",(63,02)
+# MONSTER:'@',"pupil",(64,02)
+# MONSTER:'@',"pupil",(65,02)
+# MONSTER:'@',"pupil",(66,02)
+# MONSTER:'@',"pupil",(67,02)
+# MONSTER:'@',"pupil",(63,03)
+# MONSTER:'@',"pupil",(64,03)
+# MONSTER:'@',"pupil",(66,03)
+# MONSTER:'@',"pupil",(67,03)
+
+# Room C109 is dedicated to Mr. Lewald, our former principal who was
+# so kind to all - perhaps too kind ...
+# Should me make him a principal in MONSTER: or not?
+MONSTER:'@',"teacher",(71,03),"Mr. Lewald"
+MONSTER:'@',"pupil",(69,01)
+MONSTER:'@',"pupil",(70,01)
+MONSTER:'@',"pupil",(71,01)
+MONSTER:'@',"pupil",(72,01)
+MONSTER:'@',"pupil",(73,01)
+# MONSTER:'@',"pupil",(74,01)
+# MONSTER:'@',"pupil",(69,02)
+# MONSTER:'@',"pupil",(70,02)
+# MONSTER:'@',"pupil",(71,02)
+# MONSTER:'@',"pupil",(72,02)
+# MONSTER:'@',"pupil",(73,02)
+# MONSTER:'@',"pupil",(74,02)
+# MONSTER:'@',"pupil",(69,03)
+# MONSTER:'@',"pupil",(70,03)
+# MONSTER:'@',"pupil",(72,03)
+# MONSTER:'@',"pupil",(73,03)
+# MONSTER:'@',"pupil",(74,03)
+
+# Room C201 - Mr. Bitterberg
+# Mr. Bitterberg, should you ever read this, I congratulate you for finally
+# being convinced to use The One True Operating System, UNIX, and The One
+# True Computer Game, Nethack.
+MONSTER:'@',"teacher",(23,08),"Mr. Bitterberg"
+MONSTER:'@',"pupil",(21,08)
+MONSTER:'@',"pupil",(22,08)
+MONSTER:'@',"pupil",(24,08)
+# MONSTER:'@',"pupil",(25,08)
+# MONSTER:'@',"pupil",(21,09)
+# MONSTER:'@',"pupil",(22,09)
+# MONSTER:'@',"pupil",(23,09)
+# MONSTER:'@',"pupil",(24,09)
+# MONSTER:'@',"pupil",(25,09)
+# MONSTER:'@',"pupil",(21,10)
+# MONSTER:'@',"pupil",(22,10)
+# MONSTER:'@',"pupil",(23,10)
+# MONSTER:'@',"pupil",(24,10)
+# MONSTER:'@',"pupil",(25,10)
+
+# Room C202 - Mr. Ellerhold
+# He teaches Music, yet he is the most demanding teacher of the whole
+# school, much to the dislike of the pupils (and that's the reason
+# why there are so few pupils left).
+MONSTER:'@',"teacher",(29,08),"Mr. Ellerhold"
+MONSTER:'@',"pupil",(27,08)
+MONSTER:'@',"pupil",(28,08)
+
+# Room C203 - Mr. Hartstone
+# He is very funny, in fact he is the teacher most entertaining to listen
+# to ...
+MONSTER:'@',"teacher",(35,08),"Mr. Hartstone",peaceful
+MONSTER:'@',"pupil",(33,08)
+MONSTER:'@',"pupil",(34,08)
+MONSTER:'@',"pupil",(36,08)
+MONSTER:'@',"pupil",(37,08)
+MONSTER:'@',"pupil",(33,09)
+MONSTER:'@',"pupil",(34,09)
+# MONSTER:'@',"pupil",(35,09)
+# MONSTER:'@',"pupil",(36,09)
+# MONSTER:'@',"pupil",(37,09)
+# MONSTER:'@',"pupil",(33,10)
+# MONSTER:'@',"pupil",(34,10)
+# MONSTER:'@',"pupil",(35,10)
+# MONSTER:'@',"pupil",(36,10)
+# MONSTER:'@',"pupil",(37,10)
+
+# Room C204 - Mrs. Ludwig. She is one (perhaps the only) exception to
+# the rule regarding PE teachers stated below ...
+MONSTER:'@',"teacher",(41,08),"Mrs. Ludwig",peaceful
+MONSTER:'@',"pupil",(39,08)
+MONSTER:'@',"pupil",(40,08)
+MONSTER:'@',"pupil",(42,08)
+MONSTER:'@',"pupil",(43,08)
+MONSTER:'@',"pupil",(39,09)
+MONSTER:'@',"pupil",(40,09)
+# MONSTER:'@',"pupil",(41,09)
+# MONSTER:'@',"pupil",(42,09)
+# MONSTER:'@',"pupil",(43,09)
+# MONSTER:'@',"pupil",(39,10)
+# MONSTER:'@',"pupil",(40,10)
+# MONSTER:'@',"pupil",(41,10)
+# MONSTER:'@',"pupil",(42,10)
+# MONSTER:'@',"pupil",(43,10)
+
+# The library, also the residence of Mrs. Meurer 
+MONSTER:'@',"teacher",(47,08),"Mrs. Meurer"
+OBJECT:'?',random,(45,08)
+OBJECT:'?',random,(46,08)
+OBJECT:'+',random,(47,08)
+OBJECT:'?',random,(48,08)
+OBJECT:'?',random,(49,08)
+OBJECT:'?',random,(45,09)
+OBJECT:'?',random,(46,09)
+OBJECT:'+',random,(47,09)
+OBJECT:'?',random,(48,09)
+OBJECT:'?',random,(49,09)
+OBJECT:'?',random,(45,10)
+OBJECT:'?',random,(46,10)
+OBJECT:'+',random,(47,10)
+OBJECT:'?',random,(48,10)
+OBJECT:'?',random,(49,10)
+
+# The biology room (B111), occupied by Mr. Overbeck, who always was
+# kind and always had time for a joke
+# Mr. Overbeck is not peaceful - so let's have fun with polymorph ...
+MONSTER:'@',"teacher",(53,08),"Mr. Overbeck"
+OBJECT:'/',"polymorph",(53,08)
+# He has a wand of polymorph and always was *very* generous in its usage ...
+# the following are the (former) pupils.
+MONSTER:random,random,(51,08)
+MONSTER:random,random,(52,08)
+MONSTER:random,random,(54,08)
+MONSTER:random,random,(55,08)
+MONSTER:random,random,(51,09)
+MONSTER:random,random,(52,09)
+MONSTER:random,random,(53,09)
+# MONSTER:random,random,(54,09)
+# MONSTER:random,random,(55,09)
+# MONSTER:random,random,(51,10)
+# MONSTER:random,random,(52,10)
+# MONSTER:random,random,(53,10)
+# MONSTER:random,random,(54,10)
+# MONSTER:random,random,(55,10)
+
+# The chemical storage (B115)
+OBJECT:'!',random,(57,08)
+OBJECT:'!',random,(58,08)
+OBJECT:'!',random,(59,08)
+OBJECT:'!',random,(60,08)
+OBJECT:'!',random,(61,08)
+OBJECT:'!',random,(57,09)
+OBJECT:'!',random,(58,09)
+OBJECT:'!',random,(59,09)
+OBJECT:'!',random,(60,09)
+OBJECT:'!',random,(61,09)
+OBJECT:'!',random,(57,10)
+OBJECT:'!',random,(58,10)
+OBJECT:'!',random,(59,10)
+OBJECT:'!',random,(60,10)
+OBJECT:'!',random,(61,10)
+
+# The chemistry room (B116) is occupied by Mr. Klomp, the teacher I believe to
+# be most balanced between teaching, kindness and humour.
+MONSTER:'@',"teacher",(65,08),"Mr. Klomp",peaceful
+MONSTER:'@',"pupil",(63,08)
+MONSTER:'@',"pupil",(64,08)
+MONSTER:'@',"pupil",(66,08)
+MONSTER:'@',"pupil",(67,08)
+MONSTER:'@',"pupil",(63,09)
+MONSTER:'@',"pupil",(64,09)
+MONSTER:'@',"pupil",(65,09)
+# MONSTER:'@',"pupil",(66,09)
+# MONSTER:'@',"pupil",(67,09)
+# MONSTER:'@',"pupil",(63,10)
+# MONSTER:'@',"pupil",(64,10)
+# MONSTER:'@',"pupil",(65,10)
+# MONSTER:'@',"pupil",(66,10)
+# MONSTER:'@',"pupil",(67,10)
+
+# The computer room (C311), and, with it, Mr. Alers
+MONSTER:'@',"teacher",(71,08),"Mr. Alers",peaceful
+MONSTER:'@',"pupil",(69,08)
+MONSTER:'@',"pupil",(70,08)
+MONSTER:'@',"pupil",(72,08)
+MONSTER:'@',"pupil",(73,08)
+MONSTER:'@',"pupil",(74,08)
+MONSTER:'@',"pupil",(69,09)
+MONSTER:'@',"pupil",(70,09)
+MONSTER:'@',"pupil",(71,09)
+MONSTER:'@',"pupil",(72,09)
+# MONSTER:'@',"pupil",(73,09)
+# MONSTER:'@',"pupil",(74,09)
+# MONSTER:'@',"pupil",(69,10)
+# MONSTER:'@',"pupil",(70,10)
+# MONSTER:'@',"pupil",(71,10)
+# MONSTER:'@',"pupil",(72,10)
+# MONSTER:'@',"pupil",(73,10)
+# MONSTER:'@',"pupil",(74,08)
+OBJECT:'(',"pack of floppies",(69,08)
+OBJECT:'(',"pack of floppies",(70,08)
+OBJECT:'(',"pack of floppies",(71,08)
+OBJECT:'(',"pack of floppies",(72,08)
+OBJECT:'(',"pack of floppies",(73,08)
+OBJECT:'(',"pack of floppies",(74,08)
+OBJECT:'(',"pack of floppies",(69,09)
+OBJECT:'(',"pack of floppies",(70,09)
+OBJECT:'(',"pack of floppies",(71,09)
+OBJECT:'(',"pack of floppies",(72,09)
+OBJECT:'(',"pack of floppies",(73,09)
+OBJECT:'(',"pack of floppies",(74,09)
+OBJECT:'(',"pack of floppies",(69,10)
+OBJECT:'(',"pack of floppies",(70,10)
+OBJECT:'(',"pack of floppies",(71,10)
+OBJECT:'(',"pack of floppies",(72,10)
+OBJECT:'(',"pack of floppies",(73,10)
+OBJECT:'(',"pack of floppies",(74,10)
+
+# the Teacher's Room
+MONSTER:'@',"teacher",(30,16),"Mr. Biciste"
+
+# the Principal
+MONSTER:'@',"principal",(71,17),"Mr. Gemein"
+MONSTER:'@',"teacher",(70,17),"Mr. Haas"
+
+# the Gym
+# it contains such crap as Mr. Geis and Mrs. Haastert
+# Remember the old rule that all PE teachers are sadists.
+# (with very few exceptions)
+MONSTER:'@',"teacher",(02,12),"Mr. Geis"
+MONSTER:'@',"teacher",(08,15),"Mrs. Haastert"
+MONSTER:'@',"pupil",(01,09)
+MONSTER:'@',"pupil",(02,10)
+MONSTER:'@',"pupil",(03,11)
+MONSTER:'@',"pupil",(04,12)
+MONSTER:'@',"pupil",(05,13)
+MONSTER:'@',"pupil",(06,14)
+MONSTER:'@',"pupil",(07,15)
+MONSTER:'@',"pupil",(08,16)
+MONSTER:'@',"pupil",(09,17)
+# MONSTER:'@',"pupil",(01,18)
+# MONSTER:'@',"pupil",(02,09)
+# MONSTER:'@',"pupil",(01,10)
+# MONSTER:'@',"pupil",(01,11)
+# MONSTER:'@',"pupil",(01,12)
+# MONSTER:'@',"pupil",(01,13)
+# This is the ultimate fate of those addicted to sports ...
+MONSTER:'Z',"human zombie",(01,14)
+MONSTER:'Z',"human zombie",(01,15)
+MONSTER:'Z',"human zombie",(01,16)
+MONSTER:'Z',"human zombie",(01,17)
+MONSTER:'Z',"skeleton",(01,18)
+
+MAZE: "school-2", ' '
+MESSAGE: "You feel reminded of your days of learning ..."
+GEOMETRY: center,center
+
+#         1         2         3         4         5         6         7
+# 23456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+|--|        |-------|-----|-----|-----|-----|-----|-----|-----|-----|------|
+|..+########+.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|--|        |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+            |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+     #######+.......|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+---|
+     #      |..............................................................|
+     #      |..............................................................|
+     #      |.......|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+---|
+|----+----| |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|.........| |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|.........| |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|.........| |.......|-----|-----|-----|-----|-----|-----|-----|-----|------|
+|.........| |..............................................................|
+|.........| |..............................................................|
+|.........| |.......|--+----------------------------+--|--+----------------|
+|.........| |.......|..................................|...................|
+|.........| |.......|..................................+...................|
+|.........| |.......|..................................|...............\...|
+|.........| |.......|..................................|...................|
+|---------| |--------------------------------------------------------------|
+ENDMAP
+
+# the antechamber
+REGION:(01,01,02,01),unlit,"ordinary"
+# the actual school
+REGION:(13,01,74,18),lit,"ordinary"
+# the gym
+REGION:(01,09,09,18),lit,"ordinary"
+
+# Stairs: up in the antechamber, down behind the principal's throne
+STAIR:(01,01),up
+STAIR:(72,17),down
+
+# main doors
+DOOR:locked,(12,01)
+DOOR:locked,(12,04)
+# the classes
+DOOR:locked,(23,04)
+DOOR:locked,(29,04)
+DOOR:locked,(35,04)
+DOOR:locked,(41,04)
+DOOR:locked,(47,04)
+DOOR:locked,(53,04)
+DOOR:locked,(59,04)
+DOOR:locked,(65,04)
+DOOR:locked,(71,04)
+DOOR:locked,(23,07)
+DOOR:locked,(29,07)
+DOOR:locked,(35,07)
+DOOR:locked,(41,07)
+DOOR:locked,(47,07)
+DOOR:locked,(53,07)
+DOOR:locked,(59,07)
+DOOR:locked,(65,07)
+DOOR:locked,(71,07)
+# the Teacher's Room
+DOOR:locked,(23,14)
+DOOR:locked,(52,14)
+# the Principal's Office
+DOOR:locked,(58,14)
+DOOR:locked,(55,16)
+# the Gym
+DOOR:locked,(05,08)
+
+# Engravings: the classes and other rooms
+ENGRAVING:(23,05),burn,"C101"
+ENGRAVING:(29,05),burn,"C102"
+ENGRAVING:(35,05),burn,"C103"
+ENGRAVING:(41,05),burn,"C104"
+ENGRAVING:(47,05),burn,"C105"
+ENGRAVING:(53,05),burn,"C106"
+ENGRAVING:(59,05),burn,"C107"
+ENGRAVING:(65,05),burn,"C108"
+ENGRAVING:(71,05),burn,"C109"
+ENGRAVING:(23,06),burn,"C201"
+ENGRAVING:(29,06),burn,"C202"
+ENGRAVING:(35,06),burn,"C203"
+ENGRAVING:(41,06),burn,"C204"
+ENGRAVING:(47,06),burn,"Library"
+ENGRAVING:(53,06),burn,"B111 (Biology)"
+ENGRAVING:(59,06),burn,"B115 (Chemical Storage)"
+ENGRAVING:(65,06),burn,"B116 (Chemistry)"
+ENGRAVING:(71,06),burn,"C311 (Computers)"
+ENGRAVING:(23,13),burn,"Teacher's Room"
+ENGRAVING:(52,13),burn,"Teacher's Room"
+ENGRAVING:(58,13),burn,"Principal's Office"
+ENGRAVING:(05,07),burn,"Abandon all hope, ye who enter here!"
+ENGRAVING:(11,01),burn,"KILLER HIGH SCHOOL"
+
+# Room C101, in memorial of my old kind but tough English teacher 
+# Mr. Baumert
+MONSTER:'@',"teacher",(23,03),"Mr. Baumert",peaceful
+MONSTER:'@',"pupil",(21,01)
+MONSTER:'@',"pupil",(22,01)
+MONSTER:'@',"pupil",(23,01)
+MONSTER:'@',"pupil",(24,01)
+# MONSTER:'@',"pupil",(25,01)
+# MONSTER:'@',"pupil",(21,02)
+# MONSTER:'@',"pupil",(22,02)
+# MONSTER:'@',"pupil",(23,02)
+# MONSTER:'@',"pupil",(24,02)
+# MONSTER:'@',"pupil",(25,02)
+# MONSTER:'@',"pupil",(21,03)
+# MONSTER:'@',"pupil",(22,03)
+# MONSTER:'@',"pupil",(24,03)
+# MONSTER:'@',"pupil",(25,03)
+
+# Room C102, Mr. Gier. I have always loved his blasts of sleep.
+MONSTER:'@',"teacher",(29,03),"Mr. Gier",hostile
+MONSTER:'@',"pupil",(27,01)
+MONSTER:'@',"pupil",(28,01)
+MONSTER:'@',"pupil",(29,01)
+MONSTER:'@',"pupil",(30,01)
+MONSTER:'@',"pupil",(31,01)
+# MONSTER:'@',"pupil",(27,02)
+# MONSTER:'@',"pupil",(28,02)
+# MONSTER:'@',"pupil",(29,02)
+# MONSTER:'@',"pupil",(30,02)
+# MONSTER:'@',"pupil",(31,02)
+# MONSTER:'@',"pupil",(27,03)
+# MONSTER:'@',"pupil",(28,03)
+# MONSTER:'@',"pupil",(30,03)
+# MONSTER:'@',"pupil",(31,03)
+
+# Room C103. Mrs. Dickler. Her capabilities in explaining maths 
+# were always of use.
+MONSTER:'@',"teacher",(35,03),"Mrs. Dickler"
+MONSTER:'@',"pupil",(33,01)
+MONSTER:'@',"pupil",(34,01)
+MONSTER:'@',"pupil",(35,01)
+MONSTER:'@',"pupil",(36,01)
+# MONSTER:'@',"pupil",(37,01)
+# MONSTER:'@',"pupil",(33,02)
+# MONSTER:'@',"pupil",(34,02)
+# MONSTER:'@',"pupil",(35,02)
+# MONSTER:'@',"pupil",(36,02)
+# MONSTER:'@',"pupil",(37,02)
+# MONSTER:'@',"pupil",(33,03)
+# MONSTER:'@',"pupil",(34,03)
+# MONSTER:'@',"pupil",(36,03)
+# MONSTER:'@',"pupil",(37,03)
+
+# Room C104. Mrs. Wessel. Thank you for being so kind ...
+MONSTER:'@',"teacher",(41,03),"Mrs. Wessel"
+MONSTER:'@',"pupil",(39,01)
+MONSTER:'@',"pupil",(40,01)
+MONSTER:'@',"pupil",(41,01)
+MONSTER:'@',"pupil",(42,01)
+# MONSTER:'@',"pupil",(43,01)
+# MONSTER:'@',"pupil",(39,02)
+# MONSTER:'@',"pupil",(40,02)
+# MONSTER:'@',"pupil",(41,02)
+# MONSTER:'@',"pupil",(42,02)
+# MONSTER:'@',"pupil",(43,02)
+# MONSTER:'@',"pupil",(39,03)
+# MONSTER:'@',"pupil",(40,03)
+# MONSTER:'@',"pupil",(42,03)
+# MONSTER:'@',"pupil",(43,03)
+
+# C105. Mr. Koerfgen - I have always loved your acid blasts
+# Guess why there are so many corpses here :-)
+MONSTER:'@',"teacher",(47,03),"Mr. Koerfgen",hostile
+OBJECT:'/',"acid",(47,03)
+MONSTER:'@',"pupil",(45,01)
+OBJECT:'%',"corpse",(46,01),"pupil",0
+MONSTER:'@',"pupil",(47,01)
+OBJECT:'%',"corpse",(48,01),"pupil",0
+MONSTER:'@',"pupil",(49,01)
+OBJECT:'%',"corpse",(45,02),"pupil",0
+# MONSTER:'@',"pupil",(46,02)
+OBJECT:'%',"corpse",(47,02),"pupil",0
+# MONSTER:'@',"pupil",(48,02)
+OBJECT:'%',"corpse",(49,02),"pupil",0
+# MONSTER:'@',"pupil",(45,03)
+OBJECT:'%',"corpse",(46,03),"pupil",0
+# MONSTER:'@',"pupil",(48,03)
+OBJECT:'%',"corpse",(49,03),"pupil",0
+
+# C106 is the residence of Mr. Schuster.
+MONSTER:'@',"teacher",(53,03),"Mr. Schuster"
+MONSTER:'@',"pupil",(51,01)
+MONSTER:'@',"pupil",(52,01)
+MONSTER:'@',"pupil",(53,01)
+MONSTER:'@',"pupil",(54,01)
+MONSTER:'@',"pupil",(55,01)
+# MONSTER:'@',"pupil",(51,02)
+# MONSTER:'@',"pupil",(52,02)
+# MONSTER:'@',"pupil",(53,02)
+# MONSTER:'@',"pupil",(54,02)
+# MONSTER:'@',"pupil",(55,02)
+# MONSTER:'@',"pupil",(51,03)
+# MONSTER:'@',"pupil",(52,03)
+# MONSTER:'@',"pupil",(54,03)
+# MONSTER:'@',"pupil",(55,03)
+
+# The room C107 is dedicated to the memorial of Mr. Marre who 
+# perhaps was the most amusing and kind teacher known to mankind ...
+MONSTER:'@',"teacher",(53,03),"Mr. Marre",peaceful
+MONSTER:'@',"pupil",(51,01)
+MONSTER:'@',"pupil",(52,01)
+MONSTER:'@',"pupil",(53,01)
+MONSTER:'@',"pupil",(54,01)
+MONSTER:'@',"pupil",(55,01)
+MONSTER:'@',"pupil",(51,02)
+MONSTER:'@',"pupil",(52,02)
+# MONSTER:'@',"pupil",(53,02)
+# MONSTER:'@',"pupil",(54,02)
+# MONSTER:'@',"pupil",(55,02)
+# MONSTER:'@',"pupil",(51,03)
+# MONSTER:'@',"pupil",(52,03)
+# MONSTER:'@',"pupil",(54,03)
+# MONSTER:'@',"pupil",(55,03)
+
+# Room C108 is the torture chamber of another funny chemistry teacher,
+# Mr. Ennen
+MONSTER:'@',"teacher",(65,03),"Mr. Ennen"
+MONSTER:'@',"pupil",(63,01)
+MONSTER:'@',"pupil",(64,01)
+MONSTER:'@',"pupil",(65,01)
+MONSTER:'@',"pupil",(66,01)
+MONSTER:'@',"pupil",(67,01)
+MONSTER:'@',"pupil",(63,02)
+# MONSTER:'@',"pupil",(64,02)
+# MONSTER:'@',"pupil",(65,02)
+# MONSTER:'@',"pupil",(66,02)
+# MONSTER:'@',"pupil",(67,02)
+# MONSTER:'@',"pupil",(63,03)
+# MONSTER:'@',"pupil",(64,03)
+# MONSTER:'@',"pupil",(66,03)
+# MONSTER:'@',"pupil",(67,03)
+
+# Room C109 is dedicated to Mr. Lewald, our former principal who was
+# so kind to all - perhaps too kind ...
+# Should me make him a principal in MONSTER: or not?
+MONSTER:'@',"teacher",(71,03),"Mr. Lewald"
+MONSTER:'@',"pupil",(69,01)
+MONSTER:'@',"pupil",(70,01)
+MONSTER:'@',"pupil",(71,01)
+MONSTER:'@',"pupil",(72,01)
+MONSTER:'@',"pupil",(73,01)
+# MONSTER:'@',"pupil",(74,01)
+# MONSTER:'@',"pupil",(69,02)
+# MONSTER:'@',"pupil",(70,02)
+# MONSTER:'@',"pupil",(71,02)
+# MONSTER:'@',"pupil",(72,02)
+# MONSTER:'@',"pupil",(73,02)
+# MONSTER:'@',"pupil",(74,02)
+# MONSTER:'@',"pupil",(69,03)
+# MONSTER:'@',"pupil",(70,03)
+# MONSTER:'@',"pupil",(72,03)
+# MONSTER:'@',"pupil",(73,03)
+# MONSTER:'@',"pupil",(74,03)
+
+# Room C201 - Mr. Bitterberg
+# Mr. Bitterberg, should you ever read this, I congratulate you for finally
+# being convinced to use The One True Operating System, UNIX, and The One
+# True Computer Game, Nethack.
+MONSTER:'@',"teacher",(23,08),"Mr. Bitterberg"
+MONSTER:'@',"pupil",(21,08)
+MONSTER:'@',"pupil",(22,08)
+MONSTER:'@',"pupil",(24,08)
+# MONSTER:'@',"pupil",(25,08)
+# MONSTER:'@',"pupil",(21,09)
+# MONSTER:'@',"pupil",(22,09)
+# MONSTER:'@',"pupil",(23,09)
+# MONSTER:'@',"pupil",(24,09)
+# MONSTER:'@',"pupil",(25,09)
+# MONSTER:'@',"pupil",(21,10)
+# MONSTER:'@',"pupil",(22,10)
+# MONSTER:'@',"pupil",(23,10)
+# MONSTER:'@',"pupil",(24,10)
+# MONSTER:'@',"pupil",(25,10)
+
+# Room C202 - Mr. Ellerhold
+# He teaches Music, yet he is the most demanding teacher of the whole
+# school, much to the dislike of the pupils (and that's the reason
+# why there are so few pupils left).
+MONSTER:'@',"teacher",(29,08),"Mr. Ellerhold"
+MONSTER:'@',"pupil",(27,08)
+MONSTER:'@',"pupil",(28,08)
+
+# Room C203 - Mr. Hartstone
+# He is very funny, in fact he is the teacher most entertaining to listen
+# to ...
+MONSTER:'@',"teacher",(35,08),"Mr. Hartstone",peaceful
+MONSTER:'@',"pupil",(33,08)
+MONSTER:'@',"pupil",(34,08)
+MONSTER:'@',"pupil",(36,08)
+MONSTER:'@',"pupil",(37,08)
+MONSTER:'@',"pupil",(33,09)
+MONSTER:'@',"pupil",(34,09)
+# MONSTER:'@',"pupil",(35,09)
+# MONSTER:'@',"pupil",(36,09)
+# MONSTER:'@',"pupil",(37,09)
+# MONSTER:'@',"pupil",(33,10)
+# MONSTER:'@',"pupil",(34,10)
+# MONSTER:'@',"pupil",(35,10)
+# MONSTER:'@',"pupil",(36,10)
+# MONSTER:'@',"pupil",(37,10)
+
+# Room C204 - Mrs. Ludwig. She is one (perhaps the only) exception to
+# the rule regarding PE teachers stated below ...
+MONSTER:'@',"teacher",(41,08),"Mrs. Ludwig",peaceful
+MONSTER:'@',"pupil",(39,08)
+MONSTER:'@',"pupil",(40,08)
+MONSTER:'@',"pupil",(42,08)
+MONSTER:'@',"pupil",(43,08)
+MONSTER:'@',"pupil",(39,09)
+MONSTER:'@',"pupil",(40,09)
+# MONSTER:'@',"pupil",(41,09)
+# MONSTER:'@',"pupil",(42,09)
+# MONSTER:'@',"pupil",(43,09)
+# MONSTER:'@',"pupil",(39,10)
+# MONSTER:'@',"pupil",(40,10)
+# MONSTER:'@',"pupil",(41,10)
+# MONSTER:'@',"pupil",(42,10)
+# MONSTER:'@',"pupil",(43,10)
+
+# The library, also the residence of Mrs. Meurer 
+MONSTER:'@',"teacher",(47,08),"Mrs. Meurer"
+OBJECT:'?',random,(45,08)
+OBJECT:'?',random,(46,08)
+OBJECT:'+',random,(47,08)
+OBJECT:'?',random,(48,08)
+OBJECT:'?',random,(49,08)
+OBJECT:'?',random,(45,09)
+OBJECT:'?',random,(46,09)
+OBJECT:'+',random,(47,09)
+OBJECT:'?',random,(48,09)
+OBJECT:'?',random,(49,09)
+OBJECT:'?',random,(45,10)
+OBJECT:'?',random,(46,10)
+OBJECT:'+',random,(47,10)
+OBJECT:'?',random,(48,10)
+OBJECT:'?',random,(49,10)
+
+# The biology room (B111), occupied by Mr. Overbeck, who always was
+# kind and always had time for a joke
+# Mr. Overbeck is not peaceful - so let's have fun with polymorph ...
+MONSTER:'@',"teacher",(53,08),"Mr. Overbeck"
+OBJECT:'/',"polymorph",(53,08)
+# He has a wand of polymorph and always was *very* generous in its usage ...
+# the following are the (former) pupils.
+MONSTER:random,random,(51,08)
+MONSTER:random,random,(52,08)
+MONSTER:random,random,(54,08)
+MONSTER:random,random,(55,08)
+MONSTER:random,random,(51,09)
+MONSTER:random,random,(52,09)
+MONSTER:random,random,(53,09)
+# MONSTER:random,random,(54,09)
+# MONSTER:random,random,(55,09)
+# MONSTER:random,random,(51,10)
+# MONSTER:random,random,(52,10)
+# MONSTER:random,random,(53,10)
+# MONSTER:random,random,(54,10)
+# MONSTER:random,random,(55,10)
+
+# The chemical storage (B115)
+OBJECT:'!',random,(57,08)
+OBJECT:'!',random,(58,08)
+OBJECT:'!',random,(59,08)
+OBJECT:'!',random,(60,08)
+OBJECT:'!',random,(61,08)
+OBJECT:'!',random,(57,09)
+OBJECT:'!',random,(58,09)
+OBJECT:'!',random,(59,09)
+OBJECT:'!',random,(60,09)
+OBJECT:'!',random,(61,09)
+OBJECT:'!',random,(57,10)
+OBJECT:'!',random,(58,10)
+OBJECT:'!',random,(59,10)
+OBJECT:'!',random,(60,10)
+OBJECT:'!',random,(61,10)
+
+# The chemistry room (B116) is occupied by Mr. Klomp, the teacher I believe to
+# be most balanced between teaching, kindness and humour.
+MONSTER:'@',"teacher",(65,08),"Mr. Klomp",peaceful
+MONSTER:'@',"pupil",(63,08)
+MONSTER:'@',"pupil",(64,08)
+MONSTER:'@',"pupil",(66,08)
+MONSTER:'@',"pupil",(67,08)
+MONSTER:'@',"pupil",(63,09)
+MONSTER:'@',"pupil",(64,09)
+MONSTER:'@',"pupil",(65,09)
+# MONSTER:'@',"pupil",(66,09)
+# MONSTER:'@',"pupil",(67,09)
+# MONSTER:'@',"pupil",(63,10)
+# MONSTER:'@',"pupil",(64,10)
+# MONSTER:'@',"pupil",(65,10)
+# MONSTER:'@',"pupil",(66,10)
+# MONSTER:'@',"pupil",(67,10)
+
+# The computer room (C311), and, with it, Mr. Alers
+MONSTER:'@',"teacher",(71,08),"Mr. Alers",peaceful
+MONSTER:'@',"pupil",(69,08)
+MONSTER:'@',"pupil",(70,08)
+MONSTER:'@',"pupil",(72,08)
+MONSTER:'@',"pupil",(73,08)
+MONSTER:'@',"pupil",(74,08)
+MONSTER:'@',"pupil",(69,09)
+MONSTER:'@',"pupil",(70,09)
+MONSTER:'@',"pupil",(71,09)
+MONSTER:'@',"pupil",(72,09)
+# MONSTER:'@',"pupil",(73,09)
+# MONSTER:'@',"pupil",(74,09)
+# MONSTER:'@',"pupil",(69,10)
+# MONSTER:'@',"pupil",(70,10)
+# MONSTER:'@',"pupil",(71,10)
+# MONSTER:'@',"pupil",(72,10)
+# MONSTER:'@',"pupil",(73,10)
+# MONSTER:'@',"pupil",(74,08)
+OBJECT:'(',"pack of floppies",(69,08)
+OBJECT:'(',"pack of floppies",(70,08)
+OBJECT:'(',"pack of floppies",(71,08)
+OBJECT:'(',"pack of floppies",(72,08)
+OBJECT:'(',"pack of floppies",(73,08)
+OBJECT:'(',"pack of floppies",(74,08)
+OBJECT:'(',"pack of floppies",(69,09)
+OBJECT:'(',"pack of floppies",(70,09)
+OBJECT:'(',"pack of floppies",(71,09)
+OBJECT:'(',"pack of floppies",(72,09)
+OBJECT:'(',"pack of floppies",(73,09)
+OBJECT:'(',"pack of floppies",(74,09)
+OBJECT:'(',"pack of floppies",(69,10)
+OBJECT:'(',"pack of floppies",(70,10)
+OBJECT:'(',"pack of floppies",(71,10)
+OBJECT:'(',"pack of floppies",(72,10)
+OBJECT:'(',"pack of floppies",(73,10)
+OBJECT:'(',"pack of floppies",(74,10)
+
+# the Teacher's Room
+MONSTER:'@',"teacher",(30,16),"Mr. Biciste"
+
+# the Principal
+MONSTER:'@',"principal",(71,17),"Mr. Gemein"
+MONSTER:'@',"teacher",(70,17),"Mr. Haas"
+
+# the Gym
+# it contains such crap as Mr. Geis and Mrs. Haastert
+# Remember the old rule that all PE teachers are sadists.
+# (with very few exceptions)
+MONSTER:'@',"teacher",(02,12),"Mr. Geis"
+MONSTER:'@',"teacher",(08,15),"Mrs. Haastert"
+MONSTER:'@',"pupil",(01,09)
+MONSTER:'@',"pupil",(02,10)
+MONSTER:'@',"pupil",(03,11)
+MONSTER:'@',"pupil",(04,12)
+MONSTER:'@',"pupil",(05,13)
+MONSTER:'@',"pupil",(06,14)
+MONSTER:'@',"pupil",(07,15)
+MONSTER:'@',"pupil",(08,16)
+MONSTER:'@',"pupil",(09,17)
+# MONSTER:'@',"pupil",(01,18)
+# MONSTER:'@',"pupil",(02,09)
+# MONSTER:'@',"pupil",(01,10)
+# MONSTER:'@',"pupil",(01,11)
+# MONSTER:'@',"pupil",(01,12)
+# MONSTER:'@',"pupil",(01,13)
+# This is the ultimate fate of those addicted to sports ...
+MONSTER:'Z',"human zombie",(01,14)
+MONSTER:'Z',"human zombie",(01,15)
+MONSTER:'Z',"human zombie",(01,16)
+MONSTER:'Z',"human zombie",(01,17)
+MONSTER:'Z',"skeleton",(01,18)
+
+MAZE: "school-3", ' '
+MESSAGE: "You feel reminded of your days of learning ..."
+GEOMETRY: center,center
+
+#         1         2         3         4         5         6         7
+# 23456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+|--|        |-------|-----|-----|-----|-----|-----|-----|-----|-----|------|
+|..+########+.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|--|        |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+            |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+     #######+.......|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+---|
+     #      |..............................................................|
+     #      |..............................................................|
+     #      |.......|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+---|
+|----+----| |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|.........| |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|.........| |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|.........| |.......|-----|-----|-----|-----|-----|-----|-----|-----|------|
+|.........| |..............................................................|
+|.........| |..............................................................|
+|.........| |.......|--+----------------------------+--|--+----------------|
+|.........| |.......|..................................|...................|
+|.........| |.......|..................................+...................|
+|.........| |.......|..................................|...............\...|
+|.........| |.......|..................................|...................|
+|---------| |--------------------------------------------------------------|
+ENDMAP
+
+# the antechamber
+REGION:(01,01,02,01),unlit,"ordinary"
+# the actual school
+REGION:(13,01,74,18),lit,"ordinary"
+# the gym
+REGION:(01,09,09,18),lit,"ordinary"
+
+# Stairs: up in the antechamber, down behind the principal's throne
+STAIR:(01,01),up
+STAIR:(72,17),down
+
+# main doors
+DOOR:locked,(12,01)
+DOOR:locked,(12,04)
+# the classes
+DOOR:locked,(23,04)
+DOOR:locked,(29,04)
+DOOR:locked,(35,04)
+DOOR:locked,(41,04)
+DOOR:locked,(47,04)
+DOOR:locked,(53,04)
+DOOR:locked,(59,04)
+DOOR:locked,(65,04)
+DOOR:locked,(71,04)
+DOOR:locked,(23,07)
+DOOR:locked,(29,07)
+DOOR:locked,(35,07)
+DOOR:locked,(41,07)
+DOOR:locked,(47,07)
+DOOR:locked,(53,07)
+DOOR:locked,(59,07)
+DOOR:locked,(65,07)
+DOOR:locked,(71,07)
+# the Teacher's Room
+DOOR:locked,(23,14)
+DOOR:locked,(52,14)
+# the Principal's Office
+DOOR:locked,(58,14)
+DOOR:locked,(55,16)
+# the Gym
+DOOR:locked,(05,08)
+
+# Engravings: the classes and other rooms
+ENGRAVING:(23,05),burn,"C101"
+ENGRAVING:(29,05),burn,"C102"
+ENGRAVING:(35,05),burn,"C103"
+ENGRAVING:(41,05),burn,"C104"
+ENGRAVING:(47,05),burn,"C105"
+ENGRAVING:(53,05),burn,"C106"
+ENGRAVING:(59,05),burn,"C107"
+ENGRAVING:(65,05),burn,"C108"
+ENGRAVING:(71,05),burn,"C109"
+ENGRAVING:(23,06),burn,"C201"
+ENGRAVING:(29,06),burn,"C202"
+ENGRAVING:(35,06),burn,"C203"
+ENGRAVING:(41,06),burn,"C204"
+ENGRAVING:(47,06),burn,"Library"
+ENGRAVING:(53,06),burn,"B111 (Biology)"
+ENGRAVING:(59,06),burn,"B115 (Chemical Storage)"
+ENGRAVING:(65,06),burn,"B116 (Chemistry)"
+ENGRAVING:(71,06),burn,"C311 (Computers)"
+ENGRAVING:(23,13),burn,"Teacher's Room"
+ENGRAVING:(52,13),burn,"Teacher's Room"
+ENGRAVING:(58,13),burn,"Principal's Office"
+ENGRAVING:(05,07),burn,"Abandon all hope, ye who enter here!"
+ENGRAVING:(11,01),burn,"KILLER HIGH SCHOOL"
+
+# Room C101, in memorial of my old kind but tough English teacher 
+# Mr. Baumert
+MONSTER:'@',"teacher",(23,03),"Mr. Baumert",peaceful
+MONSTER:'@',"pupil",(21,01)
+MONSTER:'@',"pupil",(22,01)
+MONSTER:'@',"pupil",(23,01)
+MONSTER:'@',"pupil",(24,01)
+# MONSTER:'@',"pupil",(25,01)
+# MONSTER:'@',"pupil",(21,02)
+# MONSTER:'@',"pupil",(22,02)
+# MONSTER:'@',"pupil",(23,02)
+# MONSTER:'@',"pupil",(24,02)
+# MONSTER:'@',"pupil",(25,02)
+# MONSTER:'@',"pupil",(21,03)
+# MONSTER:'@',"pupil",(22,03)
+# MONSTER:'@',"pupil",(24,03)
+# MONSTER:'@',"pupil",(25,03)
+
+# Room C102, Mr. Gier. I have always loved his blasts of sleep.
+MONSTER:'@',"teacher",(29,03),"Mr. Gier",hostile
+MONSTER:'@',"pupil",(27,01)
+MONSTER:'@',"pupil",(28,01)
+MONSTER:'@',"pupil",(29,01)
+MONSTER:'@',"pupil",(30,01)
+MONSTER:'@',"pupil",(31,01)
+# MONSTER:'@',"pupil",(27,02)
+# MONSTER:'@',"pupil",(28,02)
+# MONSTER:'@',"pupil",(29,02)
+# MONSTER:'@',"pupil",(30,02)
+# MONSTER:'@',"pupil",(31,02)
+# MONSTER:'@',"pupil",(27,03)
+# MONSTER:'@',"pupil",(28,03)
+# MONSTER:'@',"pupil",(30,03)
+# MONSTER:'@',"pupil",(31,03)
+
+# Room C103. Mrs. Dickler. Her capabilities in explaining maths 
+# were always of use.
+MONSTER:'@',"teacher",(35,03),"Mrs. Dickler"
+MONSTER:'@',"pupil",(33,01)
+MONSTER:'@',"pupil",(34,01)
+MONSTER:'@',"pupil",(35,01)
+MONSTER:'@',"pupil",(36,01)
+# MONSTER:'@',"pupil",(37,01)
+# MONSTER:'@',"pupil",(33,02)
+# MONSTER:'@',"pupil",(34,02)
+# MONSTER:'@',"pupil",(35,02)
+# MONSTER:'@',"pupil",(36,02)
+# MONSTER:'@',"pupil",(37,02)
+# MONSTER:'@',"pupil",(33,03)
+# MONSTER:'@',"pupil",(34,03)
+# MONSTER:'@',"pupil",(36,03)
+# MONSTER:'@',"pupil",(37,03)
+
+# Room C104. Mrs. Wessel. Thank you for being so kind ...
+MONSTER:'@',"teacher",(41,03),"Mrs. Wessel"
+MONSTER:'@',"pupil",(39,01)
+MONSTER:'@',"pupil",(40,01)
+MONSTER:'@',"pupil",(41,01)
+MONSTER:'@',"pupil",(42,01)
+# MONSTER:'@',"pupil",(43,01)
+# MONSTER:'@',"pupil",(39,02)
+# MONSTER:'@',"pupil",(40,02)
+# MONSTER:'@',"pupil",(41,02)
+# MONSTER:'@',"pupil",(42,02)
+# MONSTER:'@',"pupil",(43,02)
+# MONSTER:'@',"pupil",(39,03)
+# MONSTER:'@',"pupil",(40,03)
+# MONSTER:'@',"pupil",(42,03)
+# MONSTER:'@',"pupil",(43,03)
+
+# C105. Mr. Koerfgen - I have always loved your acid blasts
+# Guess why there are so many corpses here :-)
+MONSTER:'@',"teacher",(47,03),"Mr. Koerfgen",hostile
+OBJECT:'/',"acid",(47,03)
+MONSTER:'@',"pupil",(45,01)
+OBJECT:'%',"corpse",(46,01),"pupil",0
+MONSTER:'@',"pupil",(47,01)
+OBJECT:'%',"corpse",(48,01),"pupil",0
+MONSTER:'@',"pupil",(49,01)
+OBJECT:'%',"corpse",(45,02),"pupil",0
+# MONSTER:'@',"pupil",(46,02)
+OBJECT:'%',"corpse",(47,02),"pupil",0
+# MONSTER:'@',"pupil",(48,02)
+OBJECT:'%',"corpse",(49,02),"pupil",0
+# MONSTER:'@',"pupil",(45,03)
+OBJECT:'%',"corpse",(46,03),"pupil",0
+# MONSTER:'@',"pupil",(48,03)
+OBJECT:'%',"corpse",(49,03),"pupil",0
+
+# C106 is the residence of Mr. Schuster.
+MONSTER:'@',"teacher",(53,03),"Mr. Schuster"
+MONSTER:'@',"pupil",(51,01)
+MONSTER:'@',"pupil",(52,01)
+MONSTER:'@',"pupil",(53,01)
+MONSTER:'@',"pupil",(54,01)
+MONSTER:'@',"pupil",(55,01)
+# MONSTER:'@',"pupil",(51,02)
+# MONSTER:'@',"pupil",(52,02)
+# MONSTER:'@',"pupil",(53,02)
+# MONSTER:'@',"pupil",(54,02)
+# MONSTER:'@',"pupil",(55,02)
+# MONSTER:'@',"pupil",(51,03)
+# MONSTER:'@',"pupil",(52,03)
+# MONSTER:'@',"pupil",(54,03)
+# MONSTER:'@',"pupil",(55,03)
+
+# The room C107 is dedicated to the memorial of Mr. Marre who 
+# perhaps was the most amusing and kind teacher known to mankind ...
+MONSTER:'@',"teacher",(53,03),"Mr. Marre",peaceful
+MONSTER:'@',"pupil",(51,01)
+MONSTER:'@',"pupil",(52,01)
+MONSTER:'@',"pupil",(53,01)
+MONSTER:'@',"pupil",(54,01)
+MONSTER:'@',"pupil",(55,01)
+MONSTER:'@',"pupil",(51,02)
+MONSTER:'@',"pupil",(52,02)
+# MONSTER:'@',"pupil",(53,02)
+# MONSTER:'@',"pupil",(54,02)
+# MONSTER:'@',"pupil",(55,02)
+# MONSTER:'@',"pupil",(51,03)
+# MONSTER:'@',"pupil",(52,03)
+# MONSTER:'@',"pupil",(54,03)
+# MONSTER:'@',"pupil",(55,03)
+
+# Room C108 is the torture chamber of another funny chemistry teacher,
+# Mr. Ennen
+MONSTER:'@',"teacher",(65,03),"Mr. Ennen"
+MONSTER:'@',"pupil",(63,01)
+MONSTER:'@',"pupil",(64,01)
+MONSTER:'@',"pupil",(65,01)
+MONSTER:'@',"pupil",(66,01)
+MONSTER:'@',"pupil",(67,01)
+MONSTER:'@',"pupil",(63,02)
+# MONSTER:'@',"pupil",(64,02)
+# MONSTER:'@',"pupil",(65,02)
+# MONSTER:'@',"pupil",(66,02)
+# MONSTER:'@',"pupil",(67,02)
+# MONSTER:'@',"pupil",(63,03)
+# MONSTER:'@',"pupil",(64,03)
+# MONSTER:'@',"pupil",(66,03)
+# MONSTER:'@',"pupil",(67,03)
+
+# Room C109 is dedicated to Mr. Lewald, our former principal who was
+# so kind to all - perhaps too kind ...
+# Should me make him a principal in MONSTER: or not?
+MONSTER:'@',"teacher",(71,03),"Mr. Lewald"
+MONSTER:'@',"pupil",(69,01)
+MONSTER:'@',"pupil",(70,01)
+MONSTER:'@',"pupil",(71,01)
+MONSTER:'@',"pupil",(72,01)
+MONSTER:'@',"pupil",(73,01)
+# MONSTER:'@',"pupil",(74,01)
+# MONSTER:'@',"pupil",(69,02)
+# MONSTER:'@',"pupil",(70,02)
+# MONSTER:'@',"pupil",(71,02)
+# MONSTER:'@',"pupil",(72,02)
+# MONSTER:'@',"pupil",(73,02)
+# MONSTER:'@',"pupil",(74,02)
+# MONSTER:'@',"pupil",(69,03)
+# MONSTER:'@',"pupil",(70,03)
+# MONSTER:'@',"pupil",(72,03)
+# MONSTER:'@',"pupil",(73,03)
+# MONSTER:'@',"pupil",(74,03)
+
+# Room C201 - Mr. Bitterberg
+# Mr. Bitterberg, should you ever read this, I congratulate you for finally
+# being convinced to use The One True Operating System, UNIX, and The One
+# True Computer Game, Nethack.
+MONSTER:'@',"teacher",(23,08),"Mr. Bitterberg"
+MONSTER:'@',"pupil",(21,08)
+MONSTER:'@',"pupil",(22,08)
+MONSTER:'@',"pupil",(24,08)
+# MONSTER:'@',"pupil",(25,08)
+# MONSTER:'@',"pupil",(21,09)
+# MONSTER:'@',"pupil",(22,09)
+# MONSTER:'@',"pupil",(23,09)
+# MONSTER:'@',"pupil",(24,09)
+# MONSTER:'@',"pupil",(25,09)
+# MONSTER:'@',"pupil",(21,10)
+# MONSTER:'@',"pupil",(22,10)
+# MONSTER:'@',"pupil",(23,10)
+# MONSTER:'@',"pupil",(24,10)
+# MONSTER:'@',"pupil",(25,10)
+
+# Room C202 - Mr. Ellerhold
+# He teaches Music, yet he is the most demanding teacher of the whole
+# school, much to the dislike of the pupils (and that's the reason
+# why there are so few pupils left).
+MONSTER:'@',"teacher",(29,08),"Mr. Ellerhold"
+MONSTER:'@',"pupil",(27,08)
+MONSTER:'@',"pupil",(28,08)
+
+# Room C203 - Mr. Hartstone
+# He is very funny, in fact he is the teacher most entertaining to listen
+# to ...
+MONSTER:'@',"teacher",(35,08),"Mr. Hartstone",peaceful
+MONSTER:'@',"pupil",(33,08)
+MONSTER:'@',"pupil",(34,08)
+MONSTER:'@',"pupil",(36,08)
+MONSTER:'@',"pupil",(37,08)
+MONSTER:'@',"pupil",(33,09)
+MONSTER:'@',"pupil",(34,09)
+# MONSTER:'@',"pupil",(35,09)
+# MONSTER:'@',"pupil",(36,09)
+# MONSTER:'@',"pupil",(37,09)
+# MONSTER:'@',"pupil",(33,10)
+# MONSTER:'@',"pupil",(34,10)
+# MONSTER:'@',"pupil",(35,10)
+# MONSTER:'@',"pupil",(36,10)
+# MONSTER:'@',"pupil",(37,10)
+
+# Room C204 - Mrs. Ludwig. She is one (perhaps the only) exception to
+# the rule regarding PE teachers stated below ...
+MONSTER:'@',"teacher",(41,08),"Mrs. Ludwig",peaceful
+MONSTER:'@',"pupil",(39,08)
+MONSTER:'@',"pupil",(40,08)
+MONSTER:'@',"pupil",(42,08)
+MONSTER:'@',"pupil",(43,08)
+MONSTER:'@',"pupil",(39,09)
+MONSTER:'@',"pupil",(40,09)
+# MONSTER:'@',"pupil",(41,09)
+# MONSTER:'@',"pupil",(42,09)
+# MONSTER:'@',"pupil",(43,09)
+# MONSTER:'@',"pupil",(39,10)
+# MONSTER:'@',"pupil",(40,10)
+# MONSTER:'@',"pupil",(41,10)
+# MONSTER:'@',"pupil",(42,10)
+# MONSTER:'@',"pupil",(43,10)
+
+# The library, also the residence of Mrs. Meurer 
+MONSTER:'@',"teacher",(47,08),"Mrs. Meurer"
+OBJECT:'?',random,(45,08)
+OBJECT:'?',random,(46,08)
+OBJECT:'+',random,(47,08)
+OBJECT:'?',random,(48,08)
+OBJECT:'?',random,(49,08)
+OBJECT:'?',random,(45,09)
+OBJECT:'?',random,(46,09)
+OBJECT:'+',random,(47,09)
+OBJECT:'?',random,(48,09)
+OBJECT:'?',random,(49,09)
+OBJECT:'?',random,(45,10)
+OBJECT:'?',random,(46,10)
+OBJECT:'+',random,(47,10)
+OBJECT:'?',random,(48,10)
+OBJECT:'?',random,(49,10)
+
+# The biology room (B111), occupied by Mr. Overbeck, who always was
+# kind and always had time for a joke
+# Mr. Overbeck is not peaceful - so let's have fun with polymorph ...
+MONSTER:'@',"teacher",(53,08),"Mr. Overbeck"
+OBJECT:'/',"polymorph",(53,08)
+# He has a wand of polymorph and always was *very* generous in its usage ...
+# the following are the (former) pupils.
+MONSTER:random,random,(51,08)
+MONSTER:random,random,(52,08)
+MONSTER:random,random,(54,08)
+MONSTER:random,random,(55,08)
+MONSTER:random,random,(51,09)
+MONSTER:random,random,(52,09)
+MONSTER:random,random,(53,09)
+# MONSTER:random,random,(54,09)
+# MONSTER:random,random,(55,09)
+# MONSTER:random,random,(51,10)
+# MONSTER:random,random,(52,10)
+# MONSTER:random,random,(53,10)
+# MONSTER:random,random,(54,10)
+# MONSTER:random,random,(55,10)
+
+# The chemical storage (B115)
+OBJECT:'!',random,(57,08)
+OBJECT:'!',random,(58,08)
+OBJECT:'!',random,(59,08)
+OBJECT:'!',random,(60,08)
+OBJECT:'!',random,(61,08)
+OBJECT:'!',random,(57,09)
+OBJECT:'!',random,(58,09)
+OBJECT:'!',random,(59,09)
+OBJECT:'!',random,(60,09)
+OBJECT:'!',random,(61,09)
+OBJECT:'!',random,(57,10)
+OBJECT:'!',random,(58,10)
+OBJECT:'!',random,(59,10)
+OBJECT:'!',random,(60,10)
+OBJECT:'!',random,(61,10)
+
+# The chemistry room (B116) is occupied by Mr. Klomp, the teacher I believe to
+# be most balanced between teaching, kindness and humour.
+MONSTER:'@',"teacher",(65,08),"Mr. Klomp",peaceful
+MONSTER:'@',"pupil",(63,08)
+MONSTER:'@',"pupil",(64,08)
+MONSTER:'@',"pupil",(66,08)
+MONSTER:'@',"pupil",(67,08)
+MONSTER:'@',"pupil",(63,09)
+MONSTER:'@',"pupil",(64,09)
+MONSTER:'@',"pupil",(65,09)
+# MONSTER:'@',"pupil",(66,09)
+# MONSTER:'@',"pupil",(67,09)
+# MONSTER:'@',"pupil",(63,10)
+# MONSTER:'@',"pupil",(64,10)
+# MONSTER:'@',"pupil",(65,10)
+# MONSTER:'@',"pupil",(66,10)
+# MONSTER:'@',"pupil",(67,10)
+
+# The computer room (C311), and, with it, Mr. Alers
+MONSTER:'@',"teacher",(71,08),"Mr. Alers",peaceful
+MONSTER:'@',"pupil",(69,08)
+MONSTER:'@',"pupil",(70,08)
+MONSTER:'@',"pupil",(72,08)
+MONSTER:'@',"pupil",(73,08)
+MONSTER:'@',"pupil",(74,08)
+MONSTER:'@',"pupil",(69,09)
+MONSTER:'@',"pupil",(70,09)
+MONSTER:'@',"pupil",(71,09)
+MONSTER:'@',"pupil",(72,09)
+# MONSTER:'@',"pupil",(73,09)
+# MONSTER:'@',"pupil",(74,09)
+# MONSTER:'@',"pupil",(69,10)
+# MONSTER:'@',"pupil",(70,10)
+# MONSTER:'@',"pupil",(71,10)
+# MONSTER:'@',"pupil",(72,10)
+# MONSTER:'@',"pupil",(73,10)
+# MONSTER:'@',"pupil",(74,08)
+OBJECT:'(',"pack of floppies",(69,08)
+OBJECT:'(',"pack of floppies",(70,08)
+OBJECT:'(',"pack of floppies",(71,08)
+OBJECT:'(',"pack of floppies",(72,08)
+OBJECT:'(',"pack of floppies",(73,08)
+OBJECT:'(',"pack of floppies",(74,08)
+OBJECT:'(',"pack of floppies",(69,09)
+OBJECT:'(',"pack of floppies",(70,09)
+OBJECT:'(',"pack of floppies",(71,09)
+OBJECT:'(',"pack of floppies",(72,09)
+OBJECT:'(',"pack of floppies",(73,09)
+OBJECT:'(',"pack of floppies",(74,09)
+OBJECT:'(',"pack of floppies",(69,10)
+OBJECT:'(',"pack of floppies",(70,10)
+OBJECT:'(',"pack of floppies",(71,10)
+OBJECT:'(',"pack of floppies",(72,10)
+OBJECT:'(',"pack of floppies",(73,10)
+OBJECT:'(',"pack of floppies",(74,10)
+
+# the Teacher's Room
+MONSTER:'@',"teacher",(30,16),"Mr. Biciste"
+
+# the Principal
+MONSTER:'@',"principal",(71,17),"Mr. Gemein"
+MONSTER:'@',"teacher",(70,17),"Mr. Haas"
+
+# the Gym
+# it contains such crap as Mr. Geis and Mrs. Haastert
+# Remember the old rule that all PE teachers are sadists.
+# (with very few exceptions)
+MONSTER:'@',"teacher",(02,12),"Mr. Geis"
+MONSTER:'@',"teacher",(08,15),"Mrs. Haastert"
+MONSTER:'@',"pupil",(01,09)
+MONSTER:'@',"pupil",(02,10)
+MONSTER:'@',"pupil",(03,11)
+MONSTER:'@',"pupil",(04,12)
+MONSTER:'@',"pupil",(05,13)
+MONSTER:'@',"pupil",(06,14)
+MONSTER:'@',"pupil",(07,15)
+MONSTER:'@',"pupil",(08,16)
+MONSTER:'@',"pupil",(09,17)
+# MONSTER:'@',"pupil",(01,18)
+# MONSTER:'@',"pupil",(02,09)
+# MONSTER:'@',"pupil",(01,10)
+# MONSTER:'@',"pupil",(01,11)
+# MONSTER:'@',"pupil",(01,12)
+# MONSTER:'@',"pupil",(01,13)
+# This is the ultimate fate of those addicted to sports ...
+MONSTER:'Z',"human zombie",(01,14)
+MONSTER:'Z',"human zombie",(01,15)
+MONSTER:'Z',"human zombie",(01,16)
+MONSTER:'Z',"human zombie",(01,17)
+MONSTER:'Z',"skeleton",(01,18)
+
+MAZE: "school-4", ' '
+MESSAGE: "You feel reminded of your days of learning ..."
+GEOMETRY: center,center
+
+#         1         2         3         4         5         6         7
+# 23456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+|--|        |-------|-----|-----|-----|-----|-----|-----|-----|-----|------|
+|..+########+.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|--|        |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+            |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+     #######+.......|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+---|
+     #      |..............................................................|
+     #      |..............................................................|
+     #      |.......|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+---|
+|----+----| |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|.........| |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|.........| |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|.........| |.......|-----|-----|-----|-----|-----|-----|-----|-----|------|
+|.........| |..............................................................|
+|.........| |..............................................................|
+|.........| |.......|--+----------------------------+--|--+----------------|
+|.........| |.......|..................................|...................|
+|.........| |.......|..................................+...................|
+|.........| |.......|..................................|...............\...|
+|.........| |.......|..................................|...................|
+|---------| |--------------------------------------------------------------|
+ENDMAP
+
+# the antechamber
+REGION:(01,01,02,01),unlit,"ordinary"
+# the actual school
+REGION:(13,01,74,18),lit,"ordinary"
+# the gym
+REGION:(01,09,09,18),lit,"ordinary"
+
+# Stairs: up in the antechamber, down behind the principal's throne
+STAIR:(01,01),up
+STAIR:(72,17),down
+
+# main doors
+DOOR:locked,(12,01)
+DOOR:locked,(12,04)
+# the classes
+DOOR:locked,(23,04)
+DOOR:locked,(29,04)
+DOOR:locked,(35,04)
+DOOR:locked,(41,04)
+DOOR:locked,(47,04)
+DOOR:locked,(53,04)
+DOOR:locked,(59,04)
+DOOR:locked,(65,04)
+DOOR:locked,(71,04)
+DOOR:locked,(23,07)
+DOOR:locked,(29,07)
+DOOR:locked,(35,07)
+DOOR:locked,(41,07)
+DOOR:locked,(47,07)
+DOOR:locked,(53,07)
+DOOR:locked,(59,07)
+DOOR:locked,(65,07)
+DOOR:locked,(71,07)
+# the Teacher's Room
+DOOR:locked,(23,14)
+DOOR:locked,(52,14)
+# the Principal's Office
+DOOR:locked,(58,14)
+DOOR:locked,(55,16)
+# the Gym
+DOOR:locked,(05,08)
+
+# Engravings: the classes and other rooms
+ENGRAVING:(23,05),burn,"C101"
+ENGRAVING:(29,05),burn,"C102"
+ENGRAVING:(35,05),burn,"C103"
+ENGRAVING:(41,05),burn,"C104"
+ENGRAVING:(47,05),burn,"C105"
+ENGRAVING:(53,05),burn,"C106"
+ENGRAVING:(59,05),burn,"C107"
+ENGRAVING:(65,05),burn,"C108"
+ENGRAVING:(71,05),burn,"C109"
+ENGRAVING:(23,06),burn,"C201"
+ENGRAVING:(29,06),burn,"C202"
+ENGRAVING:(35,06),burn,"C203"
+ENGRAVING:(41,06),burn,"C204"
+ENGRAVING:(47,06),burn,"Library"
+ENGRAVING:(53,06),burn,"B111 (Biology)"
+ENGRAVING:(59,06),burn,"B115 (Chemical Storage)"
+ENGRAVING:(65,06),burn,"B116 (Chemistry)"
+ENGRAVING:(71,06),burn,"C311 (Computers)"
+ENGRAVING:(23,13),burn,"Teacher's Room"
+ENGRAVING:(52,13),burn,"Teacher's Room"
+ENGRAVING:(58,13),burn,"Principal's Office"
+ENGRAVING:(05,07),burn,"Abandon all hope, ye who enter here!"
+ENGRAVING:(11,01),burn,"KILLER HIGH SCHOOL"
+
+# Room C101, in memorial of my old kind but tough English teacher 
+# Mr. Baumert
+MONSTER:'@',"teacher",(23,03),"Mr. Baumert",peaceful
+MONSTER:'@',"pupil",(21,01)
+MONSTER:'@',"pupil",(22,01)
+MONSTER:'@',"pupil",(23,01)
+MONSTER:'@',"pupil",(24,01)
+# MONSTER:'@',"pupil",(25,01)
+# MONSTER:'@',"pupil",(21,02)
+# MONSTER:'@',"pupil",(22,02)
+# MONSTER:'@',"pupil",(23,02)
+# MONSTER:'@',"pupil",(24,02)
+# MONSTER:'@',"pupil",(25,02)
+# MONSTER:'@',"pupil",(21,03)
+# MONSTER:'@',"pupil",(22,03)
+# MONSTER:'@',"pupil",(24,03)
+# MONSTER:'@',"pupil",(25,03)
+
+# Room C102, Mr. Gier. I have always loved his blasts of sleep.
+MONSTER:'@',"teacher",(29,03),"Mr. Gier",hostile
+MONSTER:'@',"pupil",(27,01)
+MONSTER:'@',"pupil",(28,01)
+MONSTER:'@',"pupil",(29,01)
+MONSTER:'@',"pupil",(30,01)
+MONSTER:'@',"pupil",(31,01)
+# MONSTER:'@',"pupil",(27,02)
+# MONSTER:'@',"pupil",(28,02)
+# MONSTER:'@',"pupil",(29,02)
+# MONSTER:'@',"pupil",(30,02)
+# MONSTER:'@',"pupil",(31,02)
+# MONSTER:'@',"pupil",(27,03)
+# MONSTER:'@',"pupil",(28,03)
+# MONSTER:'@',"pupil",(30,03)
+# MONSTER:'@',"pupil",(31,03)
+
+# Room C103. Mrs. Dickler. Her capabilities in explaining maths 
+# were always of use.
+MONSTER:'@',"teacher",(35,03),"Mrs. Dickler"
+MONSTER:'@',"pupil",(33,01)
+MONSTER:'@',"pupil",(34,01)
+MONSTER:'@',"pupil",(35,01)
+MONSTER:'@',"pupil",(36,01)
+# MONSTER:'@',"pupil",(37,01)
+# MONSTER:'@',"pupil",(33,02)
+# MONSTER:'@',"pupil",(34,02)
+# MONSTER:'@',"pupil",(35,02)
+# MONSTER:'@',"pupil",(36,02)
+# MONSTER:'@',"pupil",(37,02)
+# MONSTER:'@',"pupil",(33,03)
+# MONSTER:'@',"pupil",(34,03)
+# MONSTER:'@',"pupil",(36,03)
+# MONSTER:'@',"pupil",(37,03)
+
+# Room C104. Mrs. Wessel. Thank you for being so kind ...
+MONSTER:'@',"teacher",(41,03),"Mrs. Wessel"
+MONSTER:'@',"pupil",(39,01)
+MONSTER:'@',"pupil",(40,01)
+MONSTER:'@',"pupil",(41,01)
+MONSTER:'@',"pupil",(42,01)
+# MONSTER:'@',"pupil",(43,01)
+# MONSTER:'@',"pupil",(39,02)
+# MONSTER:'@',"pupil",(40,02)
+# MONSTER:'@',"pupil",(41,02)
+# MONSTER:'@',"pupil",(42,02)
+# MONSTER:'@',"pupil",(43,02)
+# MONSTER:'@',"pupil",(39,03)
+# MONSTER:'@',"pupil",(40,03)
+# MONSTER:'@',"pupil",(42,03)
+# MONSTER:'@',"pupil",(43,03)
+
+# C105. Mr. Koerfgen - I have always loved your acid blasts
+# Guess why there are so many corpses here :-)
+MONSTER:'@',"teacher",(47,03),"Mr. Koerfgen",hostile
+OBJECT:'/',"acid",(47,03)
+MONSTER:'@',"pupil",(45,01)
+OBJECT:'%',"corpse",(46,01),"pupil",0
+MONSTER:'@',"pupil",(47,01)
+OBJECT:'%',"corpse",(48,01),"pupil",0
+MONSTER:'@',"pupil",(49,01)
+OBJECT:'%',"corpse",(45,02),"pupil",0
+# MONSTER:'@',"pupil",(46,02)
+OBJECT:'%',"corpse",(47,02),"pupil",0
+# MONSTER:'@',"pupil",(48,02)
+OBJECT:'%',"corpse",(49,02),"pupil",0
+# MONSTER:'@',"pupil",(45,03)
+OBJECT:'%',"corpse",(46,03),"pupil",0
+# MONSTER:'@',"pupil",(48,03)
+OBJECT:'%',"corpse",(49,03),"pupil",0
+
+# C106 is the residence of Mr. Schuster.
+MONSTER:'@',"teacher",(53,03),"Mr. Schuster"
+MONSTER:'@',"pupil",(51,01)
+MONSTER:'@',"pupil",(52,01)
+MONSTER:'@',"pupil",(53,01)
+MONSTER:'@',"pupil",(54,01)
+MONSTER:'@',"pupil",(55,01)
+# MONSTER:'@',"pupil",(51,02)
+# MONSTER:'@',"pupil",(52,02)
+# MONSTER:'@',"pupil",(53,02)
+# MONSTER:'@',"pupil",(54,02)
+# MONSTER:'@',"pupil",(55,02)
+# MONSTER:'@',"pupil",(51,03)
+# MONSTER:'@',"pupil",(52,03)
+# MONSTER:'@',"pupil",(54,03)
+# MONSTER:'@',"pupil",(55,03)
+
+# The room C107 is dedicated to the memorial of Mr. Marre who 
+# perhaps was the most amusing and kind teacher known to mankind ...
+MONSTER:'@',"teacher",(53,03),"Mr. Marre",peaceful
+MONSTER:'@',"pupil",(51,01)
+MONSTER:'@',"pupil",(52,01)
+MONSTER:'@',"pupil",(53,01)
+MONSTER:'@',"pupil",(54,01)
+MONSTER:'@',"pupil",(55,01)
+MONSTER:'@',"pupil",(51,02)
+MONSTER:'@',"pupil",(52,02)
+# MONSTER:'@',"pupil",(53,02)
+# MONSTER:'@',"pupil",(54,02)
+# MONSTER:'@',"pupil",(55,02)
+# MONSTER:'@',"pupil",(51,03)
+# MONSTER:'@',"pupil",(52,03)
+# MONSTER:'@',"pupil",(54,03)
+# MONSTER:'@',"pupil",(55,03)
+
+# Room C108 is the torture chamber of another funny chemistry teacher,
+# Mr. Ennen
+MONSTER:'@',"teacher",(65,03),"Mr. Ennen"
+MONSTER:'@',"pupil",(63,01)
+MONSTER:'@',"pupil",(64,01)
+MONSTER:'@',"pupil",(65,01)
+MONSTER:'@',"pupil",(66,01)
+MONSTER:'@',"pupil",(67,01)
+MONSTER:'@',"pupil",(63,02)
+# MONSTER:'@',"pupil",(64,02)
+# MONSTER:'@',"pupil",(65,02)
+# MONSTER:'@',"pupil",(66,02)
+# MONSTER:'@',"pupil",(67,02)
+# MONSTER:'@',"pupil",(63,03)
+# MONSTER:'@',"pupil",(64,03)
+# MONSTER:'@',"pupil",(66,03)
+# MONSTER:'@',"pupil",(67,03)
+
+# Room C109 is dedicated to Mr. Lewald, our former principal who was
+# so kind to all - perhaps too kind ...
+# Should me make him a principal in MONSTER: or not?
+MONSTER:'@',"teacher",(71,03),"Mr. Lewald"
+MONSTER:'@',"pupil",(69,01)
+MONSTER:'@',"pupil",(70,01)
+MONSTER:'@',"pupil",(71,01)
+MONSTER:'@',"pupil",(72,01)
+MONSTER:'@',"pupil",(73,01)
+# MONSTER:'@',"pupil",(74,01)
+# MONSTER:'@',"pupil",(69,02)
+# MONSTER:'@',"pupil",(70,02)
+# MONSTER:'@',"pupil",(71,02)
+# MONSTER:'@',"pupil",(72,02)
+# MONSTER:'@',"pupil",(73,02)
+# MONSTER:'@',"pupil",(74,02)
+# MONSTER:'@',"pupil",(69,03)
+# MONSTER:'@',"pupil",(70,03)
+# MONSTER:'@',"pupil",(72,03)
+# MONSTER:'@',"pupil",(73,03)
+# MONSTER:'@',"pupil",(74,03)
+
+# Room C201 - Mr. Bitterberg
+# Mr. Bitterberg, should you ever read this, I congratulate you for finally
+# being convinced to use The One True Operating System, UNIX, and The One
+# True Computer Game, Nethack.
+MONSTER:'@',"teacher",(23,08),"Mr. Bitterberg"
+MONSTER:'@',"pupil",(21,08)
+MONSTER:'@',"pupil",(22,08)
+MONSTER:'@',"pupil",(24,08)
+# MONSTER:'@',"pupil",(25,08)
+# MONSTER:'@',"pupil",(21,09)
+# MONSTER:'@',"pupil",(22,09)
+# MONSTER:'@',"pupil",(23,09)
+# MONSTER:'@',"pupil",(24,09)
+# MONSTER:'@',"pupil",(25,09)
+# MONSTER:'@',"pupil",(21,10)
+# MONSTER:'@',"pupil",(22,10)
+# MONSTER:'@',"pupil",(23,10)
+# MONSTER:'@',"pupil",(24,10)
+# MONSTER:'@',"pupil",(25,10)
+
+# Room C202 - Mr. Ellerhold
+# He teaches Music, yet he is the most demanding teacher of the whole
+# school, much to the dislike of the pupils (and that's the reason
+# why there are so few pupils left).
+MONSTER:'@',"teacher",(29,08),"Mr. Ellerhold"
+MONSTER:'@',"pupil",(27,08)
+MONSTER:'@',"pupil",(28,08)
+
+# Room C203 - Mr. Hartstone
+# He is very funny, in fact he is the teacher most entertaining to listen
+# to ...
+MONSTER:'@',"teacher",(35,08),"Mr. Hartstone",peaceful
+MONSTER:'@',"pupil",(33,08)
+MONSTER:'@',"pupil",(34,08)
+MONSTER:'@',"pupil",(36,08)
+MONSTER:'@',"pupil",(37,08)
+MONSTER:'@',"pupil",(33,09)
+MONSTER:'@',"pupil",(34,09)
+# MONSTER:'@',"pupil",(35,09)
+# MONSTER:'@',"pupil",(36,09)
+# MONSTER:'@',"pupil",(37,09)
+# MONSTER:'@',"pupil",(33,10)
+# MONSTER:'@',"pupil",(34,10)
+# MONSTER:'@',"pupil",(35,10)
+# MONSTER:'@',"pupil",(36,10)
+# MONSTER:'@',"pupil",(37,10)
+
+# Room C204 - Mrs. Ludwig. She is one (perhaps the only) exception to
+# the rule regarding PE teachers stated below ...
+MONSTER:'@',"teacher",(41,08),"Mrs. Ludwig",peaceful
+MONSTER:'@',"pupil",(39,08)
+MONSTER:'@',"pupil",(40,08)
+MONSTER:'@',"pupil",(42,08)
+MONSTER:'@',"pupil",(43,08)
+MONSTER:'@',"pupil",(39,09)
+MONSTER:'@',"pupil",(40,09)
+# MONSTER:'@',"pupil",(41,09)
+# MONSTER:'@',"pupil",(42,09)
+# MONSTER:'@',"pupil",(43,09)
+# MONSTER:'@',"pupil",(39,10)
+# MONSTER:'@',"pupil",(40,10)
+# MONSTER:'@',"pupil",(41,10)
+# MONSTER:'@',"pupil",(42,10)
+# MONSTER:'@',"pupil",(43,10)
+
+# The library, also the residence of Mrs. Meurer 
+MONSTER:'@',"teacher",(47,08),"Mrs. Meurer"
+OBJECT:'?',random,(45,08)
+OBJECT:'?',random,(46,08)
+OBJECT:'+',random,(47,08)
+OBJECT:'?',random,(48,08)
+OBJECT:'?',random,(49,08)
+OBJECT:'?',random,(45,09)
+OBJECT:'?',random,(46,09)
+OBJECT:'+',random,(47,09)
+OBJECT:'?',random,(48,09)
+OBJECT:'?',random,(49,09)
+OBJECT:'?',random,(45,10)
+OBJECT:'?',random,(46,10)
+OBJECT:'+',random,(47,10)
+OBJECT:'?',random,(48,10)
+OBJECT:'?',random,(49,10)
+
+# The biology room (B111), occupied by Mr. Overbeck, who always was
+# kind and always had time for a joke
+# Mr. Overbeck is not peaceful - so let's have fun with polymorph ...
+MONSTER:'@',"teacher",(53,08),"Mr. Overbeck"
+OBJECT:'/',"polymorph",(53,08)
+# He has a wand of polymorph and always was *very* generous in its usage ...
+# the following are the (former) pupils.
+MONSTER:random,random,(51,08)
+MONSTER:random,random,(52,08)
+MONSTER:random,random,(54,08)
+MONSTER:random,random,(55,08)
+MONSTER:random,random,(51,09)
+MONSTER:random,random,(52,09)
+MONSTER:random,random,(53,09)
+# MONSTER:random,random,(54,09)
+# MONSTER:random,random,(55,09)
+# MONSTER:random,random,(51,10)
+# MONSTER:random,random,(52,10)
+# MONSTER:random,random,(53,10)
+# MONSTER:random,random,(54,10)
+# MONSTER:random,random,(55,10)
+
+# The chemical storage (B115)
+OBJECT:'!',random,(57,08)
+OBJECT:'!',random,(58,08)
+OBJECT:'!',random,(59,08)
+OBJECT:'!',random,(60,08)
+OBJECT:'!',random,(61,08)
+OBJECT:'!',random,(57,09)
+OBJECT:'!',random,(58,09)
+OBJECT:'!',random,(59,09)
+OBJECT:'!',random,(60,09)
+OBJECT:'!',random,(61,09)
+OBJECT:'!',random,(57,10)
+OBJECT:'!',random,(58,10)
+OBJECT:'!',random,(59,10)
+OBJECT:'!',random,(60,10)
+OBJECT:'!',random,(61,10)
+
+# The chemistry room (B116) is occupied by Mr. Klomp, the teacher I believe to
+# be most balanced between teaching, kindness and humour.
+MONSTER:'@',"teacher",(65,08),"Mr. Klomp",peaceful
+MONSTER:'@',"pupil",(63,08)
+MONSTER:'@',"pupil",(64,08)
+MONSTER:'@',"pupil",(66,08)
+MONSTER:'@',"pupil",(67,08)
+MONSTER:'@',"pupil",(63,09)
+MONSTER:'@',"pupil",(64,09)
+MONSTER:'@',"pupil",(65,09)
+# MONSTER:'@',"pupil",(66,09)
+# MONSTER:'@',"pupil",(67,09)
+# MONSTER:'@',"pupil",(63,10)
+# MONSTER:'@',"pupil",(64,10)
+# MONSTER:'@',"pupil",(65,10)
+# MONSTER:'@',"pupil",(66,10)
+# MONSTER:'@',"pupil",(67,10)
+
+# The computer room (C311), and, with it, Mr. Alers
+MONSTER:'@',"teacher",(71,08),"Mr. Alers",peaceful
+MONSTER:'@',"pupil",(69,08)
+MONSTER:'@',"pupil",(70,08)
+MONSTER:'@',"pupil",(72,08)
+MONSTER:'@',"pupil",(73,08)
+MONSTER:'@',"pupil",(74,08)
+MONSTER:'@',"pupil",(69,09)
+MONSTER:'@',"pupil",(70,09)
+MONSTER:'@',"pupil",(71,09)
+MONSTER:'@',"pupil",(72,09)
+# MONSTER:'@',"pupil",(73,09)
+# MONSTER:'@',"pupil",(74,09)
+# MONSTER:'@',"pupil",(69,10)
+# MONSTER:'@',"pupil",(70,10)
+# MONSTER:'@',"pupil",(71,10)
+# MONSTER:'@',"pupil",(72,10)
+# MONSTER:'@',"pupil",(73,10)
+# MONSTER:'@',"pupil",(74,08)
+OBJECT:'(',"pack of floppies",(69,08)
+OBJECT:'(',"pack of floppies",(70,08)
+OBJECT:'(',"pack of floppies",(71,08)
+OBJECT:'(',"pack of floppies",(72,08)
+OBJECT:'(',"pack of floppies",(73,08)
+OBJECT:'(',"pack of floppies",(74,08)
+OBJECT:'(',"pack of floppies",(69,09)
+OBJECT:'(',"pack of floppies",(70,09)
+OBJECT:'(',"pack of floppies",(71,09)
+OBJECT:'(',"pack of floppies",(72,09)
+OBJECT:'(',"pack of floppies",(73,09)
+OBJECT:'(',"pack of floppies",(74,09)
+OBJECT:'(',"pack of floppies",(69,10)
+OBJECT:'(',"pack of floppies",(70,10)
+OBJECT:'(',"pack of floppies",(71,10)
+OBJECT:'(',"pack of floppies",(72,10)
+OBJECT:'(',"pack of floppies",(73,10)
+OBJECT:'(',"pack of floppies",(74,10)
+
+# the Teacher's Room
+MONSTER:'@',"teacher",(30,16),"Mr. Biciste"
+
+# the Principal
+MONSTER:'@',"principal",(71,17),"Mr. Gemein"
+MONSTER:'@',"teacher",(70,17),"Mr. Haas"
+
+# the Gym
+# it contains such crap as Mr. Geis and Mrs. Haastert
+# Remember the old rule that all PE teachers are sadists.
+# (with very few exceptions)
+MONSTER:'@',"teacher",(02,12),"Mr. Geis"
+MONSTER:'@',"teacher",(08,15),"Mrs. Haastert"
+MONSTER:'@',"pupil",(01,09)
+MONSTER:'@',"pupil",(02,10)
+MONSTER:'@',"pupil",(03,11)
+MONSTER:'@',"pupil",(04,12)
+MONSTER:'@',"pupil",(05,13)
+MONSTER:'@',"pupil",(06,14)
+MONSTER:'@',"pupil",(07,15)
+MONSTER:'@',"pupil",(08,16)
+MONSTER:'@',"pupil",(09,17)
+# MONSTER:'@',"pupil",(01,18)
+# MONSTER:'@',"pupil",(02,09)
+# MONSTER:'@',"pupil",(01,10)
+# MONSTER:'@',"pupil",(01,11)
+# MONSTER:'@',"pupil",(01,12)
+# MONSTER:'@',"pupil",(01,13)
+# This is the ultimate fate of those addicted to sports ...
+MONSTER:'Z',"human zombie",(01,14)
+MONSTER:'Z',"human zombie",(01,15)
+MONSTER:'Z',"human zombie",(01,16)
+MONSTER:'Z',"human zombie",(01,17)
+MONSTER:'Z',"skeleton",(01,18)
+
+#
+# The guild of disgruntled adventurers.
+#
+
+LEVEL: "school-5"
+MESSAGE: "You feel an eerie presence ..."
+
+ROOM: "ordinary", lit, random, random, (15,10)
+NAME: "central"
+# stuff for them to use on you...
+OBJECT: '?',random,random
+OBJECT: '?',random,random
+OBJECT: '?',random,random
+OBJECT: '?',random,random
+OBJECT: '/',random,random
+OBJECT: '/',random,random
+OBJECT: '!',random,random
+OBJECT: '!',random,random
+OBJECT: '!',random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+MONSTER: '@', "undead archeologist", random, hostile
+MONSTER: '@', "undead barbarian", random, hostile
+MONSTER: '@', "undead caveman", random, hostile
+MONSTER: '@', "undead cavewoman", random, hostile
+MONSTER: '@', "undead convict", random, hostile
+MONSTER: 'Z', "human zombie", random, hostile
+MONSTER: 'M', "elf mummy", random, hostile
+MONSTER: '@', "undead flame mage", random, hostile
+MONSTER: '@', "undead geek", random, hostile
+MONSTER: '@', "undead healer", random, hostile
+MONSTER: '@', "undead ice mage", random, hostile
+MONSTER: '@', "undead jedi", random, hostile
+MONSTER: '@', "undead padawan", random, hostile
+MONSTER: '@', "undead knight", random, hostile
+MONSTER: '@', "undead monk", random, hostile
+MONSTER: '@', "undead necromancer", random, hostile
+MONSTER: '@', "undead priest", random, hostile
+MONSTER: '@', "undead priestess", random, hostile
+MONSTER: '@', "undead rogue", random, hostile
+MONSTER: '@', "undead samurai", random, hostile
+MONSTER: '@', "undead tourist", random, hostile
+MONSTER: '@', "non-undead slayer", random, hostile
+MONSTER: '@', "undead valkyrie", random, hostile
+MONSTER: '@', "undead warrior", random, hostile
+MONSTER: '@', "undead wizard", random, hostile
+MONSTER: '@', "undead gangster", random, hostile
+MONSTER: '@', "undead pokemon", random, hostile
+MONSTER: '@', "undead death eater", random, hostile
+MONSTER: '@', "undead pirate", random, hostile
+MONSTER: '@', "undead nobleman", random, hostile
+MONSTER: '@', "undead noblewoman", random, hostile
+MONSTER: '@', "undead electric mage", random, hostile
+MONSTER: '@', "undead transvestite", random, hostile
+MONSTER: '@', "undead courier", random, hostile
+MONSTER: '@', "undead chevalier", random, hostile
+MONSTER: '@', "undead zyborg", random, hostile
+MONSTER: '@', "undead rocker", random, hostile
+MONSTER: '@', "undead acid mage", random, hostile
+MONSTER: '@', "undead spacewars fighter", random, hostile
+MONSTER: '@', "undead elph", random, hostile
+MONSTER: '@', "undead binder", random, hostile
+MONSTER: '@', "undead diver", random, hostile
+MONSTER: '@', "undead scientist", random, hostile
+MONSTER: '@', "undead korsair", random, hostile
+MONSTER: '@', "undead topmodel", random, hostile
+MONSTER: '@', "undead bleeder", random, hostile
+MONSTER: '@', "undead gladiator", random, hostile
+MONSTER: '@', "undead psion", random, hostile
+MONSTER: '@', "undead activistor", random, hostile
+MONSTER: '@', "undead lunatic", random, hostile
+MONSTER: '@', "undead bard", random, hostile
+MONSTER: '@', "undead drunk", random, hostile
+MONSTER: '@', "undead firefighter", random, hostile
+MONSTER: '@', "undead goff", random, hostile
+MONSTER: '@', "undead graduate", random, hostile
+MONSTER: '@', "undead locksmith", random, hostile
+MONSTER: '@', "undead musician", random, hostile
+MONSTER: '@', "undead ninja", random, hostile
+MONSTER: '@', "undead officer", random, hostile
+MONSTER: '@', "undead undertaker", random, hostile
+MONSTER: '@', "undead zookeeper", random, hostile
+MONSTER: '@', "undead amazon", random, hostile
+MONSTER: '@', "undead altmer", random, hostile
+MONSTER: '@', "undead bosmer", random, hostile
+MONSTER: '@', "undead dunmer", random, hostile
+MONSTER: '@', "undead thalmor", random, hostile
+MONSTER: '@', "undead ordinator", random, hostile
+MONSTER: '@', "undead cruel abuser", random, hostile
+MONSTER: '@', "undead saiyan", random, hostile
+MONSTER: '@', "undead politician", random, hostile
+MONSTER: '@', "undead librarian", random, hostile
+MONSTER: '@', "undead cook", random, hostile
+MONSTER: '@', "undead augurer", random, hostile
+MONSTER: '@', "undead sage", random, hostile
+MONSTER: '@', "undead gunner", random, hostile
+MONSTER: '@', "undead otaku", random, hostile
+MONSTER: '@', "undead artist", random, hostile
+MONSTER: '@', "undead gamer", random, hostile
+MONSTER: '@', "undead doll mistress", random, hostile
+MONSTER: '@', "undead feat master", random, hostile
+MONSTER: '@', "undead foxhound agent", random, hostile
+MONSTER: '@', "undead intel scribe", random, hostile
+MONSTER: '@', "undead paladin", random, hostile
+MONSTER: '@', "undead wandkeeper", random, hostile
+MONSTER: '@', "undead assassin", random, hostile
+MONSTER: '@', "undead bully", random, hostile
+MONSTER: '@', "undead supermarket cashier", random, hostile
+MONSTER: '@', "undead slave master", random, hostile
+MONSTER: '@', "undead mystic", random, hostile
+MONSTER: '@', "undead bloodseeker", random, hostile
+MONSTER: '@', "undead ladiesman", random, hostile
+MONSTER: '@', "undead jester", random, hostile
+MONSTER: '@', "undead pickpocket", random, hostile
+MONSTER: '@', "undead mahou shoujo", random, hostile
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+
+ROOM: "morgue" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+RANDOM_CORRIDORS
+
+MAZE: "schoolX", ' '
+MESSAGE: "You feel reminded of your days of learning ..."
+GEOMETRY: center,center
+
+#         1         2         3         4         5         6         7
+# 23456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+|--|        |-------|-----|-----|-----|-----|-----|-----|-----|-----|------|
+|..+########+.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|--|        |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+            |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+     #######+.......|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+---|
+     #      |..............................................................|
+     #      |..............................................................|
+     #      |.......|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+--|--+---|
+|----+----| |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|.........| |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|.........| |.......|.....|.....|.....|.....|.....|.....|.....|.....|......|
+|.........| |.......|-----|-----|-----|-----|-----|-----|-----|-----|------|
+|.........| |..............................................................|
+|.........| |..............................................................|
+|.........| |.......|--+----------------------------+--|--+----------------|
+|.........| |.......|..................................|...................|
+|.........| |.......|..................................+...................|
+|.........| |.......|..................................|...............\...|
+|.........| |.......|..................................|...................|
+|---------| |--------------------------------------------------------------|
+ENDMAP
+
+# the antechamber
+REGION:(01,01,02,01),unlit,"ordinary"
+# the actual school
+REGION:(13,01,74,18),lit,"ordinary"
+# the gym
+REGION:(01,09,09,18),lit,"ordinary"
+
+# Stairs: up in the antechamber, down behind the principal's throne
+STAIR:(01,01),up
+STAIR:(72,17),down
+
+# main doors
+DOOR:locked,(12,01)
+DOOR:locked,(12,04)
+# the classes
+DOOR:locked,(23,04)
+DOOR:locked,(29,04)
+DOOR:locked,(35,04)
+DOOR:locked,(41,04)
+DOOR:locked,(47,04)
+DOOR:locked,(53,04)
+DOOR:locked,(59,04)
+DOOR:locked,(65,04)
+DOOR:locked,(71,04)
+DOOR:locked,(23,07)
+DOOR:locked,(29,07)
+DOOR:locked,(35,07)
+DOOR:locked,(41,07)
+DOOR:locked,(47,07)
+DOOR:locked,(53,07)
+DOOR:locked,(59,07)
+DOOR:locked,(65,07)
+DOOR:locked,(71,07)
+# the Teacher's Room
+DOOR:locked,(23,14)
+DOOR:locked,(52,14)
+# the Principal's Office
+DOOR:locked,(58,14)
+DOOR:locked,(55,16)
+# the Gym
+DOOR:locked,(05,08)
+
+# Engravings: the classes and other rooms
+ENGRAVING:(23,05),burn,"C101"
+ENGRAVING:(29,05),burn,"C102"
+ENGRAVING:(35,05),burn,"C103"
+ENGRAVING:(41,05),burn,"C104"
+ENGRAVING:(47,05),burn,"C105"
+ENGRAVING:(53,05),burn,"C106"
+ENGRAVING:(59,05),burn,"C107"
+ENGRAVING:(65,05),burn,"C108"
+ENGRAVING:(71,05),burn,"C109"
+ENGRAVING:(23,06),burn,"C201"
+ENGRAVING:(29,06),burn,"C202"
+ENGRAVING:(35,06),burn,"C203"
+ENGRAVING:(41,06),burn,"C204"
+ENGRAVING:(47,06),burn,"Library"
+ENGRAVING:(53,06),burn,"B111 (Biology)"
+ENGRAVING:(59,06),burn,"B115 (Chemical Storage)"
+ENGRAVING:(65,06),burn,"B116 (Chemistry)"
+ENGRAVING:(71,06),burn,"C311 (Computers)"
+ENGRAVING:(23,13),burn,"Teacher's Room"
+ENGRAVING:(52,13),burn,"Teacher's Room"
+ENGRAVING:(58,13),burn,"Principal's Office"
+ENGRAVING:(05,07),burn,"Abandon all hope, ye who enter here!"
+ENGRAVING:(11,01),burn,"KILLER HIGH SCHOOL"
+
+# Room C101, in memorial of my old kind but tough English teacher 
+# Mr. Baumert
+MONSTER:'@',"teacher",(23,03),"Mr. Baumert",peaceful
+MONSTER:'@',"pupil",(21,01)
+MONSTER:'@',"pupil",(22,01)
+MONSTER:'@',"pupil",(23,01)
+MONSTER:'@',"pupil",(24,01)
+# MONSTER:'@',"pupil",(25,01)
+# MONSTER:'@',"pupil",(21,02)
+# MONSTER:'@',"pupil",(22,02)
+# MONSTER:'@',"pupil",(23,02)
+# MONSTER:'@',"pupil",(24,02)
+# MONSTER:'@',"pupil",(25,02)
+# MONSTER:'@',"pupil",(21,03)
+# MONSTER:'@',"pupil",(22,03)
+# MONSTER:'@',"pupil",(24,03)
+# MONSTER:'@',"pupil",(25,03)
+
+# Room C102, Mr. Gier. I have always loved his blasts of sleep.
+MONSTER:'@',"teacher",(29,03),"Mr. Gier",hostile
+MONSTER:'@',"pupil",(27,01)
+MONSTER:'@',"pupil",(28,01)
+MONSTER:'@',"pupil",(29,01)
+MONSTER:'@',"pupil",(30,01)
+MONSTER:'@',"pupil",(31,01)
+# MONSTER:'@',"pupil",(27,02)
+# MONSTER:'@',"pupil",(28,02)
+# MONSTER:'@',"pupil",(29,02)
+# MONSTER:'@',"pupil",(30,02)
+# MONSTER:'@',"pupil",(31,02)
+# MONSTER:'@',"pupil",(27,03)
+# MONSTER:'@',"pupil",(28,03)
+# MONSTER:'@',"pupil",(30,03)
+# MONSTER:'@',"pupil",(31,03)
+
+# Room C103. Mrs. Dickler. Her capabilities in explaining maths 
+# were always of use.
+MONSTER:'@',"teacher",(35,03),"Mrs. Dickler"
+MONSTER:'@',"pupil",(33,01)
+MONSTER:'@',"pupil",(34,01)
+MONSTER:'@',"pupil",(35,01)
+MONSTER:'@',"pupil",(36,01)
+# MONSTER:'@',"pupil",(37,01)
+# MONSTER:'@',"pupil",(33,02)
+# MONSTER:'@',"pupil",(34,02)
+# MONSTER:'@',"pupil",(35,02)
+# MONSTER:'@',"pupil",(36,02)
+# MONSTER:'@',"pupil",(37,02)
+# MONSTER:'@',"pupil",(33,03)
+# MONSTER:'@',"pupil",(34,03)
+# MONSTER:'@',"pupil",(36,03)
+# MONSTER:'@',"pupil",(37,03)
+
+# Room C104. Mrs. Wessel. Thank you for being so kind ...
+MONSTER:'@',"teacher",(41,03),"Mrs. Wessel"
+MONSTER:'@',"pupil",(39,01)
+MONSTER:'@',"pupil",(40,01)
+MONSTER:'@',"pupil",(41,01)
+MONSTER:'@',"pupil",(42,01)
+# MONSTER:'@',"pupil",(43,01)
+# MONSTER:'@',"pupil",(39,02)
+# MONSTER:'@',"pupil",(40,02)
+# MONSTER:'@',"pupil",(41,02)
+# MONSTER:'@',"pupil",(42,02)
+# MONSTER:'@',"pupil",(43,02)
+# MONSTER:'@',"pupil",(39,03)
+# MONSTER:'@',"pupil",(40,03)
+# MONSTER:'@',"pupil",(42,03)
+# MONSTER:'@',"pupil",(43,03)
+
+# C105. Mr. Koerfgen - I have always loved your acid blasts
+# Guess why there are so many corpses here :-)
+MONSTER:'@',"teacher",(47,03),"Mr. Koerfgen",hostile
+OBJECT:'/',"acid",(47,03)
+MONSTER:'@',"pupil",(45,01)
+OBJECT:'%',"corpse",(46,01),"pupil",0
+MONSTER:'@',"pupil",(47,01)
+OBJECT:'%',"corpse",(48,01),"pupil",0
+MONSTER:'@',"pupil",(49,01)
+OBJECT:'%',"corpse",(45,02),"pupil",0
+# MONSTER:'@',"pupil",(46,02)
+OBJECT:'%',"corpse",(47,02),"pupil",0
+# MONSTER:'@',"pupil",(48,02)
+OBJECT:'%',"corpse",(49,02),"pupil",0
+# MONSTER:'@',"pupil",(45,03)
+OBJECT:'%',"corpse",(46,03),"pupil",0
+# MONSTER:'@',"pupil",(48,03)
+OBJECT:'%',"corpse",(49,03),"pupil",0
+
+# C106 is the residence of Mr. Schuster.
+MONSTER:'@',"teacher",(53,03),"Mr. Schuster"
+MONSTER:'@',"pupil",(51,01)
+MONSTER:'@',"pupil",(52,01)
+MONSTER:'@',"pupil",(53,01)
+MONSTER:'@',"pupil",(54,01)
+MONSTER:'@',"pupil",(55,01)
+# MONSTER:'@',"pupil",(51,02)
+# MONSTER:'@',"pupil",(52,02)
+# MONSTER:'@',"pupil",(53,02)
+# MONSTER:'@',"pupil",(54,02)
+# MONSTER:'@',"pupil",(55,02)
+# MONSTER:'@',"pupil",(51,03)
+# MONSTER:'@',"pupil",(52,03)
+# MONSTER:'@',"pupil",(54,03)
+# MONSTER:'@',"pupil",(55,03)
+
+# The room C107 is dedicated to the memorial of Mr. Marre who 
+# perhaps was the most amusing and kind teacher known to mankind ...
+MONSTER:'@',"teacher",(53,03),"Mr. Marre",peaceful
+MONSTER:'@',"pupil",(51,01)
+MONSTER:'@',"pupil",(52,01)
+MONSTER:'@',"pupil",(53,01)
+MONSTER:'@',"pupil",(54,01)
+MONSTER:'@',"pupil",(55,01)
+MONSTER:'@',"pupil",(51,02)
+MONSTER:'@',"pupil",(52,02)
+# MONSTER:'@',"pupil",(53,02)
+# MONSTER:'@',"pupil",(54,02)
+# MONSTER:'@',"pupil",(55,02)
+# MONSTER:'@',"pupil",(51,03)
+# MONSTER:'@',"pupil",(52,03)
+# MONSTER:'@',"pupil",(54,03)
+# MONSTER:'@',"pupil",(55,03)
+
+# Room C108 is the torture chamber of another funny chemistry teacher,
+# Mr. Ennen
+MONSTER:'@',"teacher",(65,03),"Mr. Ennen"
+MONSTER:'@',"pupil",(63,01)
+MONSTER:'@',"pupil",(64,01)
+MONSTER:'@',"pupil",(65,01)
+MONSTER:'@',"pupil",(66,01)
+MONSTER:'@',"pupil",(67,01)
+MONSTER:'@',"pupil",(63,02)
+# MONSTER:'@',"pupil",(64,02)
+# MONSTER:'@',"pupil",(65,02)
+# MONSTER:'@',"pupil",(66,02)
+# MONSTER:'@',"pupil",(67,02)
+# MONSTER:'@',"pupil",(63,03)
+# MONSTER:'@',"pupil",(64,03)
+# MONSTER:'@',"pupil",(66,03)
+# MONSTER:'@',"pupil",(67,03)
+
+# Room C109 is dedicated to Mr. Lewald, our former principal who was
+# so kind to all - perhaps too kind ...
+# Should me make him a principal in MONSTER: or not?
+MONSTER:'@',"teacher",(71,03),"Mr. Lewald"
+MONSTER:'@',"pupil",(69,01)
+MONSTER:'@',"pupil",(70,01)
+MONSTER:'@',"pupil",(71,01)
+MONSTER:'@',"pupil",(72,01)
+MONSTER:'@',"pupil",(73,01)
+# MONSTER:'@',"pupil",(74,01)
+# MONSTER:'@',"pupil",(69,02)
+# MONSTER:'@',"pupil",(70,02)
+# MONSTER:'@',"pupil",(71,02)
+# MONSTER:'@',"pupil",(72,02)
+# MONSTER:'@',"pupil",(73,02)
+# MONSTER:'@',"pupil",(74,02)
+# MONSTER:'@',"pupil",(69,03)
+# MONSTER:'@',"pupil",(70,03)
+# MONSTER:'@',"pupil",(72,03)
+# MONSTER:'@',"pupil",(73,03)
+# MONSTER:'@',"pupil",(74,03)
+
+# Room C201 - Mr. Bitterberg
+# Mr. Bitterberg, should you ever read this, I congratulate you for finally
+# being convinced to use The One True Operating System, UNIX, and The One
+# True Computer Game, Nethack.
+MONSTER:'@',"teacher",(23,08),"Mr. Bitterberg"
+MONSTER:'@',"pupil",(21,08)
+MONSTER:'@',"pupil",(22,08)
+MONSTER:'@',"pupil",(24,08)
+# MONSTER:'@',"pupil",(25,08)
+# MONSTER:'@',"pupil",(21,09)
+# MONSTER:'@',"pupil",(22,09)
+# MONSTER:'@',"pupil",(23,09)
+# MONSTER:'@',"pupil",(24,09)
+# MONSTER:'@',"pupil",(25,09)
+# MONSTER:'@',"pupil",(21,10)
+# MONSTER:'@',"pupil",(22,10)
+# MONSTER:'@',"pupil",(23,10)
+# MONSTER:'@',"pupil",(24,10)
+# MONSTER:'@',"pupil",(25,10)
+
+# Room C202 - Mr. Ellerhold
+# He teaches Music, yet he is the most demanding teacher of the whole
+# school, much to the dislike of the pupils (and that's the reason
+# why there are so few pupils left).
+MONSTER:'@',"teacher",(29,08),"Mr. Ellerhold"
+MONSTER:'@',"pupil",(27,08)
+MONSTER:'@',"pupil",(28,08)
+
+# Room C203 - Mr. Hartstone
+# He is very funny, in fact he is the teacher most entertaining to listen
+# to ...
+MONSTER:'@',"teacher",(35,08),"Mr. Hartstone",peaceful
+MONSTER:'@',"pupil",(33,08)
+MONSTER:'@',"pupil",(34,08)
+MONSTER:'@',"pupil",(36,08)
+MONSTER:'@',"pupil",(37,08)
+MONSTER:'@',"pupil",(33,09)
+MONSTER:'@',"pupil",(34,09)
+# MONSTER:'@',"pupil",(35,09)
+# MONSTER:'@',"pupil",(36,09)
+# MONSTER:'@',"pupil",(37,09)
+# MONSTER:'@',"pupil",(33,10)
+# MONSTER:'@',"pupil",(34,10)
+# MONSTER:'@',"pupil",(35,10)
+# MONSTER:'@',"pupil",(36,10)
+# MONSTER:'@',"pupil",(37,10)
+
+# Room C204 - Mrs. Ludwig. She is one (perhaps the only) exception to
+# the rule regarding PE teachers stated below ...
+MONSTER:'@',"teacher",(41,08),"Mrs. Ludwig",peaceful
+MONSTER:'@',"pupil",(39,08)
+MONSTER:'@',"pupil",(40,08)
+MONSTER:'@',"pupil",(42,08)
+MONSTER:'@',"pupil",(43,08)
+MONSTER:'@',"pupil",(39,09)
+MONSTER:'@',"pupil",(40,09)
+# MONSTER:'@',"pupil",(41,09)
+# MONSTER:'@',"pupil",(42,09)
+# MONSTER:'@',"pupil",(43,09)
+# MONSTER:'@',"pupil",(39,10)
+# MONSTER:'@',"pupil",(40,10)
+# MONSTER:'@',"pupil",(41,10)
+# MONSTER:'@',"pupil",(42,10)
+# MONSTER:'@',"pupil",(43,10)
+
+# The library, also the residence of Mrs. Meurer 
+MONSTER:'@',"teacher",(47,08),"Mrs. Meurer"
+OBJECT:'?',random,(45,08)
+OBJECT:'?',random,(46,08)
+OBJECT:'+',random,(47,08)
+OBJECT:'?',random,(48,08)
+OBJECT:'?',random,(49,08)
+OBJECT:'?',random,(45,09)
+OBJECT:'?',random,(46,09)
+OBJECT:'+',random,(47,09)
+OBJECT:'?',random,(48,09)
+OBJECT:'?',random,(49,09)
+OBJECT:'?',random,(45,10)
+OBJECT:'?',random,(46,10)
+OBJECT:'+',random,(47,10)
+OBJECT:'?',random,(48,10)
+OBJECT:'?',random,(49,10)
+
+# The biology room (B111), occupied by Mr. Overbeck, who always was
+# kind and always had time for a joke
+# Mr. Overbeck is not peaceful - so let's have fun with polymorph ...
+MONSTER:'@',"teacher",(53,08),"Mr. Overbeck"
+OBJECT:'/',"polymorph",(53,08)
+# He has a wand of polymorph and always was *very* generous in its usage ...
+# the following are the (former) pupils.
+MONSTER:random,random,(51,08)
+MONSTER:random,random,(52,08)
+MONSTER:random,random,(54,08)
+MONSTER:random,random,(55,08)
+MONSTER:random,random,(51,09)
+MONSTER:random,random,(52,09)
+MONSTER:random,random,(53,09)
+# MONSTER:random,random,(54,09)
+# MONSTER:random,random,(55,09)
+# MONSTER:random,random,(51,10)
+# MONSTER:random,random,(52,10)
+# MONSTER:random,random,(53,10)
+# MONSTER:random,random,(54,10)
+# MONSTER:random,random,(55,10)
+
+# The chemical storage (B115)
+OBJECT:'!',random,(57,08)
+OBJECT:'!',random,(58,08)
+OBJECT:'!',random,(59,08)
+OBJECT:'!',random,(60,08)
+OBJECT:'!',random,(61,08)
+OBJECT:'!',random,(57,09)
+OBJECT:'!',random,(58,09)
+OBJECT:'!',random,(59,09)
+OBJECT:'!',random,(60,09)
+OBJECT:'!',random,(61,09)
+OBJECT:'!',random,(57,10)
+OBJECT:'!',random,(58,10)
+OBJECT:'!',random,(59,10)
+OBJECT:'!',random,(60,10)
+OBJECT:'!',random,(61,10)
+
+# The chemistry room (B116) is occupied by Mr. Klomp, the teacher I believe to
+# be most balanced between teaching, kindness and humour.
+MONSTER:'@',"teacher",(65,08),"Mr. Klomp",peaceful
+MONSTER:'@',"pupil",(63,08)
+MONSTER:'@',"pupil",(64,08)
+MONSTER:'@',"pupil",(66,08)
+MONSTER:'@',"pupil",(67,08)
+MONSTER:'@',"pupil",(63,09)
+MONSTER:'@',"pupil",(64,09)
+MONSTER:'@',"pupil",(65,09)
+# MONSTER:'@',"pupil",(66,09)
+# MONSTER:'@',"pupil",(67,09)
+# MONSTER:'@',"pupil",(63,10)
+# MONSTER:'@',"pupil",(64,10)
+# MONSTER:'@',"pupil",(65,10)
+# MONSTER:'@',"pupil",(66,10)
+# MONSTER:'@',"pupil",(67,10)
+
+# The computer room (C311), and, with it, Mr. Alers
+MONSTER:'@',"teacher",(71,08),"Mr. Alers",peaceful
+MONSTER:'@',"pupil",(69,08)
+MONSTER:'@',"pupil",(70,08)
+MONSTER:'@',"pupil",(72,08)
+MONSTER:'@',"pupil",(73,08)
+MONSTER:'@',"pupil",(74,08)
+MONSTER:'@',"pupil",(69,09)
+MONSTER:'@',"pupil",(70,09)
+MONSTER:'@',"pupil",(71,09)
+MONSTER:'@',"pupil",(72,09)
+# MONSTER:'@',"pupil",(73,09)
+# MONSTER:'@',"pupil",(74,09)
+# MONSTER:'@',"pupil",(69,10)
+# MONSTER:'@',"pupil",(70,10)
+# MONSTER:'@',"pupil",(71,10)
+# MONSTER:'@',"pupil",(72,10)
+# MONSTER:'@',"pupil",(73,10)
+# MONSTER:'@',"pupil",(74,08)
+OBJECT:'(',"pack of floppies",(69,08)
+OBJECT:'(',"pack of floppies",(70,08)
+OBJECT:'(',"pack of floppies",(71,08)
+OBJECT:'(',"pack of floppies",(72,08)
+OBJECT:'(',"pack of floppies",(73,08)
+OBJECT:'(',"pack of floppies",(74,08)
+OBJECT:'(',"pack of floppies",(69,09)
+OBJECT:'(',"pack of floppies",(70,09)
+OBJECT:'(',"pack of floppies",(71,09)
+OBJECT:'(',"pack of floppies",(72,09)
+OBJECT:'(',"pack of floppies",(73,09)
+OBJECT:'(',"pack of floppies",(74,09)
+OBJECT:'(',"pack of floppies",(69,10)
+OBJECT:'(',"pack of floppies",(70,10)
+OBJECT:'(',"pack of floppies",(71,10)
+OBJECT:'(',"pack of floppies",(72,10)
+OBJECT:'(',"pack of floppies",(73,10)
+OBJECT:'(',"pack of floppies",(74,10)
+
+# the Teacher's Room
+MONSTER:'@',"teacher",(30,16),"Mr. Biciste"
+
+# the Principal
+MONSTER:'@',"principal",(71,17),"Mr. Gemein"
+MONSTER:'@',"teacher",(70,17),"Mr. Haas"
+
+# the Gym
+# it contains such crap as Mr. Geis and Mrs. Haastert
+# Remember the old rule that all PE teachers are sadists.
+# (with very few exceptions)
+MONSTER:'@',"teacher",(02,12),"Mr. Geis"
+MONSTER:'@',"teacher",(08,15),"Mrs. Haastert"
+MONSTER:'@',"pupil",(01,09)
+MONSTER:'@',"pupil",(02,10)
+MONSTER:'@',"pupil",(03,11)
+MONSTER:'@',"pupil",(04,12)
+MONSTER:'@',"pupil",(05,13)
+MONSTER:'@',"pupil",(06,14)
+MONSTER:'@',"pupil",(07,15)
+MONSTER:'@',"pupil",(08,16)
+MONSTER:'@',"pupil",(09,17)
+# MONSTER:'@',"pupil",(01,18)
+# MONSTER:'@',"pupil",(02,09)
+# MONSTER:'@',"pupil",(01,10)
+# MONSTER:'@',"pupil",(01,11)
+# MONSTER:'@',"pupil",(01,12)
+# MONSTER:'@',"pupil",(01,13)
+# This is the ultimate fate of those addicted to sports ...
+MONSTER:'Z',"human zombie",(01,14)
+MONSTER:'Z',"human zombie",(01,15)
+MONSTER:'Z',"human zombie",(01,16)
+MONSTER:'Z',"human zombie",(01,17)
+MONSTER:'Z',"skeleton",(01,18)

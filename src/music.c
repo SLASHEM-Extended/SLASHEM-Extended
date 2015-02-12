@@ -193,7 +193,7 @@ int distance;
 
 	if (u.uswallow) {
 	    if (!resist(u.ustuck, TOOL_CLASS, 0, NOTELL))
-		(void) tamedog(u.ustuck, (struct obj *) 0);
+		(void) tamedog(u.ustuck, (struct obj *) 0, FALSE);
 	} else {
 	    for (mtmp = fmon; mtmp; mtmp = mtmp2) {
 		mtmp2 = mtmp->nmon;
@@ -201,7 +201,7 @@ int distance;
 
 		if (distu(mtmp->mx, mtmp->my) <= distance) {
 		    if (!resist(mtmp, TOOL_CLASS, 0, NOTELL))
-			(void) tamedog(mtmp, (struct obj *) 0);
+			(void) tamedog(mtmp, (struct obj *) 0, FALSE);
 		}
 	    }
 	}
@@ -221,6 +221,8 @@ int force;
 	struct obj *otmp;
 	struct trap *chasm;
 	int start_x, start_y, end_x, end_y;
+
+	pline("Magnitude %d!",force);
 
 	start_x = u.ux - (force * 2);
 	start_y = u.uy - (force * 2);
@@ -485,7 +487,7 @@ struct obj *instr;
 		cnt += rn2(4) + 3;
 		while(cnt--) {
 		mtmp = makemon(&mons[PM_SEWER_RAT], u.ux, u.uy, NO_MM_FLAGS);
-		(void) tamedog(mtmp, (struct obj *) 0);
+		(void) tamedog(mtmp, (struct obj *) 0, FALSE);
 		}
 	     }
 		break;
@@ -584,7 +586,7 @@ struct obj *instr;
 				close_drawbridge(x,y);
 			    else
 				open_drawbridge(x,y);
-			    return 0;
+			    return /*0*/1; /*annoying bug fixed now --Amy*/
 			}
 	    } else if(flags.soundok) {
 		if (u.uevent.uheard_tune < 1) u.uevent.uheard_tune = 1;

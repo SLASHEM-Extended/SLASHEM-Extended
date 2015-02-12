@@ -1,0 +1,100 @@
+#       SCCS Id: @(#)mall-3.des  3.4     1993/02/23
+#       Copyright (c) 1989 by Jean-Christophe Collet
+#       Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+
+LEVEL: "mall-3"
+MESSAGE: "You hear the sounds of civilization."
+ROOM: "ordinary" , lit, random, random, (48,15)
+NAME: "town"
+FOUNTAIN: (20, 7)
+#
+#       The Town Watch.
+#
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: 'n', random, random
+MONSTER: 'n', random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+SUBROOM: "tool shop" , lit, (2,2), (6,4), "town"
+CHANCE: 20
+DOOR: false, closed, south, random
+
+SUBROOM: "food shop", lit, (2,9), (6,4), "town"
+CHANCE: 20
+DOOR: false, closed, north, random
+
+SUBROOM: "scroll shop", unlit, (9,2), (6,4), "town"
+CHANCE: 20
+DOOR: false, closed, south, random
+
+SUBROOM: "potion shop", lit, (9,9), (6,4), "town"
+CHANCE: 20
+DOOR: false, closed, north, random
+
+SUBROOM: "ring shop", lit, (16,2), (4,3), "town"
+CHANCE: 20
+DOOR: false, closed, south, random
+
+SUBROOM: "candle shop", lit, (23,2), (6,3), "town"
+CHANCE: 20
+DOOR: false, closed, south, random
+
+SUBROOM: "book shop", lit, (16,10), (4,3), "town"
+CHANCE: 20
+DOOR: false, closed, east, random
+
+SUBROOM: "shop", lit, (23,9), (10,4), "town"
+CHANCE: 20
+DOOR: false, closed, north, random
+
+SUBROOM: "wand shop", lit, (33,2), (3,3), "town"
+CHANCE: 20
+DOOR: false, closed, west, random
+
+SUBROOM: "weapon shop", lit, (39,2), (7,4), "town"
+CHANCE: 20
+DOOR: false, closed, south, random
+
+SUBROOM: "armor shop", unlit, (38,10), (7,3), "town"
+CHANCE: 20
+DOOR: false, closed, north, random
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+STAIR: random, down
+MONSTER: random, random, random
+MONSTER: 'n', random, random
+
+ROOM: "ordinary" , random, random, random, random
+MONSTER: random, random, random
+
+ROOM: "ordinary" , random, random, random, random
+
+ROOM: "ordinary" , random, random, random, random
+MONSTER: random, random, random
+
+RANDOM_CORRIDORS

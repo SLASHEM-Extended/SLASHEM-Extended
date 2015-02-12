@@ -1,0 +1,632 @@
+#	SCCS Id: @(#)Yeoman.des	3.4	1998/09/10
+#	Copyright (c) 1998 by Kevin Hugo
+# NetHack may be freely redistributed.  See license for details.
+
+
+# The Yeoman quest is located at the "Royal Palace and Fortress
+# of London", commonly known as the Tower of London or the London
+# Tower.  Over a period of nine centuries, it has served as a
+# military garrison, royal residence, fortress, prison, armory,
+# treasury, mint, menagerie, and museum. 
+#
+# This quest is based on the 1671 theft of the crown jewels.
+# It may be useful to note that this is set 500 years after the
+# legend of Robin Hood and 1100 years after the legend of King
+# Arthur (who was killed circa A.D. 537).
+#
+# Much effort has been devoted to make this quest as accurate as
+# possible; however, some inaccuracies remain:
+#   1.  Because NetHack quests must begin at a top level and proceed
+#       downward, this quest is actually presented "upside-down".
+#   2.  In many cases, objects and monsters have been substituted
+#       with the most similar existing thing, to avoid the need
+#       to create specialized objects.
+#   3.  The theft of the Crown Jewels is different than is
+#       presented here.  Colonel Blood worked with three accomplices,
+#       and all were captured alive.  Assistant Keeper of the Jewels
+#       Talbot Edwards was tied up, not killed.  Blood was captured
+#       alive, pardoned, and forced to work for the king as a spy
+#       and informant.
+#	4.	For our convenience, the Bell of Opening represents the
+#		alarm bell of the Bell Tower, stolen by Colonel Blood
+#		to prevent a call to arms.  This never happened in the
+#		real incident.
+#
+# I would especially like to thank Dylan O'Donnell <dylanw@demon.net>
+# for his advice.
+
+
+### The quest "start" level ###
+#
+#	The outer ward of the tower complex and the surrounding city.
+#	Most of this part of the complex was built by Henry III
+#	(1216-1272).
+#
+#	Here you meet your (besieged) class leader, the Chief Yeoman
+#	Warder, and receive your quest assignment.
+#
+MAZE: "Pol-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+......................}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.....
+...............}}}}}}}}}}}}}}--------------------}}.....
+..............}}}-------------...............|  |}}}....
+..............}}}|  |..........---.---.---...|  |}}}....
+..............}}}|  |..---.---.| |-| |-| |--.---|}}}....
+..............}}}|---..| |-| |--           |....|}}}....
+.............}}}}|.....--                 |-....|}}}}...
+.............}}}}|....--|                 |--...|}}}}...
+.....}}.}}}}}}}}}|....|                     |...||}}}...
+....}}}}}}}}}}}}|---..--|                  |-....|}}}...
+...}}------}}}}}|..S....|                  |--...|}}}...
+...}}|....|---}}|..|..---  ----      -----|  |...|}}}...
+...}}|....+..|}}|---..| |--|..|  |-| |....----...|}}}...
+...}}-----|..+.}|..+..---..--S----.---...........|}}}...
+...}}}}}}}----}}|..|...................-+-.---.----}}...
+.....}}}}}}}}}}}-----------------------|.|.+.|.+..|}....
+...........}}}}}}}}}}}}}}}}|.}.|}}}}}}}------------}}...
+}}}}}}.....................--+--.....}}}}}}}}}}}}}}}....
+}}}}}}}}}....................}..........................
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+ENDMAP
+# Specifications for the whole level
+RANDOM_MONSTERS: 'G', 'C'
+REGION:(00,00,55,19),lit,"ordinary"
+NON_DIGGABLE:(00,00,55,19)
+NON_PASSWALL:(00,00,55,19)
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"board",random
+TRAP:"board",random
+# Tower Hill, the portal arrival zone
+#	This is where public executions were held.
+BRANCH:(01,01,12,07),(0,0,0,0)
+MONSTER:random,random,(16,00),hostile
+MONSTER:random,random,(01,08),hostile
+MONSTER:random,random,(21,00),hostile
+MONSTER:random,random,(02,12),hostile
+MONSTER:random,random,(13,04),hostile
+MONSTER:random,random,(03,09),hostile
+MONSTER:random,random,(18,00),hostile
+MONSTER:random,random,(14,00),hostile
+MONSTER:random,random,(19,00),hostile
+MONSTER:random,random,(00,10),hostile
+MONSTER:random,random,(02,11),hostile
+MONSTER:random,random,(13,01),hostile
+MONSTER:random,random,(01,10),hostile
+# Moat
+#	The water is very filthy and filled with sewage.
+#	It was drained and filled in 1843.
+# Lion's Gate
+#	This is the entrance to the tower complex when approaching from
+#	the city of London (to the west).
+DRAWBRIDGE:(07,09),south,open
+# Lion Tower
+#	Built by Henry III.
+#	This tower held the Royal Menagerie from 1264 to 1834.
+#	It was torn down soon after the menagerie was removed.
+REGION:(06,11,09,12),lit,"zoo",filled
+# Middle Tower
+#	Built by Edward I.
+#	This gate is locked in the Ceremony of the Keys.
+DOOR:closed,(10,12)
+MONSTER:'@',"Yeoman Warder",(12,12)
+MONSTER:'@',"Yeoman Warder",(11,13)
+DOOR:locked,(13,13)
+# Byward Tower (The Tower at the Gate)
+#	Built by Edward I.
+#	Gatehouse to the outer ward.
+DRAWBRIDGE:(15,13),east,open
+MONSTER:'@',"Yeoman Warder",(17,13)
+MONSTER:'@',"Yeoman Warder",(18,13)
+DOOR:locked,(19,13)
+# The Royal Mint
+#	Coins were engraved and stamped here from the 1100s to 1810.
+#	A theft occurred in 1798.
+#	The mint was later moved to Tower Hill.
+OBJECT:'$',random,(17,10)
+OBJECT:'$',random,(18,10)
+OBJECT:'$',random,(17,11)
+OBJECT:'$',random,(18,11)
+#REGION:(17,10,18,11),lit,"vault",filled
+DOOR:locked,(19,10)
+# Legge's Mount and Brass Mount
+#	Built by Henry VIII.
+#	Cannon towers, at the top corners of the map.
+#	Inaccessable for our purposes.
+# The Iron Gate and its tower (later called Develin Tower)
+#	Built by Edward I.
+#	The eastern gate to the tower complex.
+#	Rarely used because the city did not extend far to the east.
+#
+#	Your quest leader, the Chief Yeoman Warder, is here.
+DRAWBRIDGE:(51,15),west,closed
+MONSTER:'@',"Yeoman Warder",(49,15)
+MONSTER:'@',"The Queen",(48,15)
+DOOR:locked,(47,15)
+# Well Tower
+#	Started by Henry III.
+DOOR:closed,(43,15)
+MONSTER:'@',"Yeoman Warder",(44,15)
+# Cradle Tower
+#	Built in 1300s.
+#	Once opened directly to the river.
+DOOR:closed,(40,14)
+MONSTER:'@',"Yeoman Warder",(40,15)
+# Saint Thomas' Tower
+#	Built by Henry III.
+#	Contains a small chapel to Thomas a` Becket.
+MONSTER:'@',"Yeoman Warder",(28,16)
+MONSTER:'@',"Yeoman Warder",(30,16)
+DRAWBRIDGE:(29,16),north,closed
+# Traitor's Gate
+#	Southern entrance to the tower complex.
+#	Traitors brought by ship on the River Thames came through this
+#	entrance.
+DOOR:open,(29,17)
+# The Tower Wharf
+#	Cargo and prisoners alike were brought up the River Thames (to
+#	the immediate south) and unloaded at the wharf between the river
+#	and the tower complex.
+OBJECT:'(',"large box",(10,17)
+OBJECT:'(',"large box",(18,18)
+OBJECT:'(',"large box",(25,18)
+OBJECT:'(',"large box",(34,17)
+OBJECT:'(',"large box",(46,18)
+# Bloody Tower
+#	Started by Henry III as the Garden Tower.
+#
+#	Renamed to Bloody Tower after York Princes were imprisoned
+#	and murdered there.  (See Shakespeare's Richard III)
+#	Several other prisoners were kept there, including Sir Walter
+#	Rale[i]gh and Sir Thomas Overbury (who was poisoned to death
+#	by Lady Somerset).
+#	
+#	This tower had the only entrance to the inner ward until the 1800s.
+STAIR:(28,12),down
+MONSTER:'@',"Yeoman Warder",(28,12)
+MONSTER:'@',"Yeoman Warder",(29,12)
+
+
+### Upper filler levels ###
+#
+#	Bloody Tower
+#	This floor plan is speculative, and may not reflect the actual
+#	layout.
+#
+MAZE: "Pol-fila", ' '
+GEOMETRY:center,center
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+---------------------
+|......S.....S......|
+|.--------+--------.|
+|.|....|.....|....|.|
+|.+....|.....|....+.|
+|.|....|.....|....|.|
+|S|---------------|S|
+|.|....|.....|....|.|
+|.+....|.....|....+.|
+|.|....|.....|....|.|
+|.--------+--------.|
+|......|.....S......|
+---------------------
+ENDMAP
+# Specifications for the whole level
+RANDOM_MONSTERS: 'C', 'G'
+REGION:(00,00,20,12),lit,"ordinary"
+NON_DIGGABLE:(00,00,20,12)
+STAIR:(05,08),up
+STAIR:(10,08),down
+# Doors
+DOOR:closed,(02,08)
+DOOR:locked,(01,06)
+DOOR:closed,(02,04)
+DOOR:locked,(07,01)
+DOOR:closed,(10,02)
+DOOR:locked,(13,01)
+DOOR:closed,(18,04)
+DOOR:locked,(19,06)
+DOOR:closed,(18,08)
+DOOR:locked,(13,11)
+DOOR:closed,(10,10)
+# Objects
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+# Random monsters
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+# Traps
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"board",random
+TRAP:"board",random
+
+
+### The quest "locate" level ###
+#
+#	The inner ward of the tower complex
+#
+MAZE: "Pol-loca",' '
+FLAGS: hardfloor
+GEOMETRY:center,center
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+                ----   ----   ----   
+         ----   |..|   |..|   |..|   
+  ----   |..|   |..|   |..|   |..|   
+  |..|   |..|----+------+------+--   
+  |..|-----+-.....|....|.+....|.|    
+  --+-......|.....|....+.|....|.|--- 
+   |.|......|.....------.------.|..| 
+---|.---+----...................+..| 
+|..|.............--------.......|--- 
+|..+.............|...+..|........|   
+---|--...........|...|--|........|---
+   |.|...........S...|  |........+..|
+   |.+...........--------........|..|
+------+---.......................|---
+|..+.....|-+--+--+--------------.|   
+|..|-----|..|...|..............|+--  
+----     |..|...|-------+------|..|  
+         ---|...|      |..|    |..|  
+            -----      |..|    ----  
+                       ----          
+ENDMAP
+# Specifications for the whole level
+RANDOM_MONSTERS: 'C', 'G'
+REGION:(00,00,36,19),lit,"ordinary"
+NON_DIGGABLE:(00,00,36,19)
+# Bloody Tower
+#	See historical comments above.
+STAIR:(10,16),up
+DOOR:open,(11,14)
+# Lieutenant's Lodgings (Queen's House)
+#	A large hall built in 1530 as the lodgings for the
+#	Lieutenant of the Tower.  The Lieutenant is a military officer
+#	who is responsible for the defense and maintenance of the
+#	Tower.  He serves under the Constable of the Tower, and oversees
+#	the Chief Yeoman Warder.
+#
+#	Anne Boleyn was tried and imprisoned in this house.  Ironically,
+#	her daughter, Elizabeth I, dined in this house during her
+#	later incarceration.  After Elizabeth became queen, the house
+#	was renamed the Queen's House.
+#
+#	Guido "Guy" Fawkes was interrogated here for his Gunpowder
+#	Plot in 1605.  Rudolph Hess was also interrogated here during
+#	World War II.
+#
+#	William Penn is currently being held here.  He should be kept
+#	alive at all costs, since he will later found the American
+#	colony of Pennsylvania!
+DOOR:locked,(06,13)
+MONSTER:'@',"watch captain",(04,14),peaceful
+MONSTER:'@',"watchman",(05,14),peaceful
+MONSTER:'@',"watchman",(06,14),peaceful
+MONSTER:'@',"watchman",(07,14),peaceful
+MONSTER:'@',"prisoner",(08,14),"William Penn",peaceful
+# Bell Tower
+#	Planned by Richard I "The Lionhearted", completed in 1200s.
+#	Elizabeth I was held here during her imprisonment.
+#
+#	This tower contains the warning bell that calls the garrison
+#	to arms.
+#	...So that's where the Bell of Opening is from!
+ENGRAVING:(02,14),burn,"In case of trouble, ring bell."
+DOOR:closed,(03,14)
+# Gentleman Gaoler's (Jailer's) Lodgings
+#	This is the home of the Gentleman Gaoler, who oversees the
+#	incarceration of prisoners.  Lady Jane Grey was also imprisoned
+#	here.
+DOOR:locked,(05,12)
+MONSTER:'@',"watchman",(04,11),peaceful
+MONSTER:'@',"watch captain",(04,12),peaceful
+# Beauchamp Tower
+#	Built by Edward I.
+#	A prison named after victim Thomas Beauchamp.
+MONSTER:'@',"prisoner",(01,08),peaceful
+MONSTER:'@',"prisoner",(02,09),peaceful
+DOOR:locked,(03,09)
+# Tower Green
+#	Many prisoners were beheaded on this grassy knoll.
+OBJECT:')',"axe",(10,09)
+# Devereux Tower (Robyn the Devylls Tower)
+#	Probably built by Henry III.
+#	Another prison, named after prisoner Robert Devereux.
+MONSTER:'@',"prisoner",(04,03),peaceful
+MONSTER:'@',"prisoner",(03,04),peaceful
+DOOR:locked,(04,05)
+# Chapel of St. Peter ad Vincula
+#	First built by Henry I; rebuilt several times.
+#	Many victims of execution were buried in this chapel.
+DOOR:open,(08,07)
+REGION:(06,05,11,06),unlit,"morgue"
+# Flint Tower
+#	Built by Henry III.
+#	Yet another prison -- and considered the worst.
+MONSTER:'@',"prisoner",(10,02),peaceful
+MONSTER:'@',"prisoner",(11,03),peaceful
+DOOR:locked,(11,04)
+# Bowyer Tower
+#	Built by Henry III.
+#	Home and workshop of the king's bow maker.
+#
+#	The Tower Fire of 1841 would begin here.
+OBJECT:')',"silver arrow",(17,01)
+OBJECT:')',"arrow",(17,01)
+OBJECT:')',"silver arrow",(18,01)
+OBJECT:')',"arrow",(18,01)
+OBJECT:')',"silver arrow",(17,02)
+OBJECT:')',"arrow",(18,02)
+OBJECT:')',"silver arrow",(17,02)
+OBJECT:')',"bow",(18,02)
+DOOR:closed,(17,03)
+# Storehouses
+#	These later burned down in the Tower Fire of 1841.
+#	Afterwards, the Waterloo Barracks were built on the site.
+#	Those barracks have been the home of the crown jewels
+#	since 1967.
+DOOR:closed,(23,05)
+REGION:(19,04,22,05),lit,"shop"
+DOOR:closed,(25,04)
+REGION:(26,04,29,05),lit,"shop"
+# Brick Tower
+#	Built by Henry III.
+#	Sir Walter Ralegh was held here at one time.
+DOOR:closed,(24,03)
+# Martin Tower
+#	Built by Henry III.
+#	This is where the crown jewels were kept at the time of
+#	Colonel Blood's attempted theft in 1671.  Talbot Edwards
+#	was the Assistant Keeper of the Jewels.
+DOOR:open,(31,03)
+OBJECT:'%',"corpse",(31,02),uncursed,"watchman",0,"Talbot Edwards"
+# Constable Tower
+#	Built by Henry III.
+#	This is the home of the Constable of the Tower, a lord
+#	(NOT a policeman!) who oversees all operations at the tower
+#	complex.  This was a position of privelege appointed by the
+#	monarch.
+DOOR:locked,(32,07)
+MONSTER:'@',"watch captain",(33,06),peaceful
+# Broad Arrow Tower
+#	Built by Henry III.
+#	Roman Catholic priests were imprisoned here in the 1500s.
+DOOR:closed,(33,11)
+# Salt Tower (Julius Caesar's Tower)
+#	Site of an ancient Roman fortress.
+#	Prison for Jesuits.
+DOOR:closed,(32,15)
+# Royal apartments
+#	Built by Henry III.
+#	This corner of the inner ward contained apartment houses
+#	and gardens for the royal family, the royal court, and
+#	the vast staff of servants.  Many of the buildings were
+#	ordered demolished by Oliver Cromwell during his rule as
+#	Lord Protector (1653-1658), in an attempt to remove all
+#	symbols of the monarchy.  Only a few buildings survived,
+#	and the royal family no longer used it as a residence.
+DOOR:closed,(17,14)
+# Lanthorn Tower
+#	Site of the ancient Roman wall.
+#	Part of the royal residence built by Henry III.
+#	Abandoned at the time of the theft of the crown jewels.
+DOOR:closed,(24,16)
+# Wakefield Tower (Hall Tower, Record Tower)
+#	Originally built by Henry III in 1221 as the dining hall
+#	of the royal residence.
+#	After 1360, the records of the kingdom were kept here.
+#	The tower was renamed for William de Wakefield, King's
+#	Clerk to Edward III.
+REGION:(13,15,15,17),lit,"book shop"
+DOOR:open,(14,14)
+# White Tower (the Keep)
+#	The oldest and largest building of the tower complex.
+#	Built by William I "the Conquerer" in 1078 as a military
+#	garrison, to keep control over the inhabitants of London.
+#	Used as the royal residence from 1140 to the reign of
+#	Henry III.  The walls were painted white by Henry III to
+#	make it appear more forbidding.  This building was
+#	converted into a museum in the 1600s.
+DOOR:locked,(17,11)
+DOOR:closed,(21,09)
+STAIR:(23,09),down
+
+
+### Lower fill levels ###
+#
+#	The White Tower
+#	See historical comments above.
+#
+MAZE: "Pol-filb", ' '
+GEOMETRY:center,center
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+                 ----  
+----            --..-- 
+|..|            |..-.| 
+|..|------------|.-..| 
+--+-.....+..........-- 
+ |.......|........---  
+ |.......|........|    
+ |.......|........|    
+ |.......|........|    
+ |.......|........|    
+ |.......|+----------  
+ |.......|..........-- 
+ |.......|---------..--
+ |.......|        --..|
+ |.......|        --..|
+ |.......|---------..--
+--+-.....+..........-- 
+|..|-----------------  
+|..|                   
+----                   
+ENDMAP
+# Specifications for the whole level
+RANDOM_MONSTERS: 'C', 'G'
+REGION:(00,00,22,19),lit,"ordinary"
+NON_DIGGABLE:(00,00,22,19)
+STAIR:(19,01),up
+STAIR:(20,02),down
+# Barracks
+REGION:(10,04,17,09),lit,"barracks",filled
+# Council chamber
+DOOR:closed,(09,04)
+DOOR:closed,(09,16)
+# Chapel gallery
+DOOR:closed,(10,10)
+# Prison turrets (now empty)
+DOOR:locked,(02,04)
+DOOR:locked,(02,16)
+# Objects
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+# Random monsters
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+# Traps
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"board",random
+TRAP:"board",random
+
+
+### The quest "goal" level ###
+#
+#	More of the White Tower
+#
+#	Here you meet Colonel Blood, your nemesis monster.  You have
+#	to defeat him in combat to gain the artifact you have been
+#	assigned to retrieve.
+#
+MAZE: "Pol-goal", ' '
+FLAGS: noteleport
+GEOMETRY:center,center
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+                 ----  
+----            --..-- 
+|..|            |..-.| 
+|..|------------|....| 
+--+-.....+..........-- 
+ |.......|........---  
+ |.......|........|    
+ |.......|..K..K..|    
+ |.......|........|    
+ |.......|........|    
+ |.\.....|+----------  
+ |.......|..........-- 
+ |.......|-.-.-.-.-..--
+ |.......+.........-..|
+ |.......+.........-..|
+ |.......|-.-.-.-.-..--
+--+-.....|..........-- 
+|..|-----------------  
+|..|                   
+----                   
+ENDMAP
+# Specifications for the whole level
+RANDOM_MONSTERS: 'C', 'G'
+REGION:(00,00,22,19),lit,"ordinary"
+NON_DIGGABLE:(00,00,22,19)
+STAIR:(19,01),up
+# The Sword Room
+#	The Knights of the Bath were inducted on the eve
+#	of the coronation of a new monarch.  They would bathe
+#	in tubs (the sinks) in this room.
+MONSTER:'@',"knight",(12,07),asleep,peaceful
+OBJECT:')',"broadsword",(12,08)
+MONSTER:'@',"knight",(15,07),asleep,peaceful
+OBJECT:')',"long sword",(15,08)
+# The banquet hall
+#	After bathing, the Knights of the Bath would feast with
+#	the monarch in this room.
+DOOR:closed,(09,04)
+REGION:(02,05,08,16),lit,"throne",unfilled
+OBJECT:'[',"T-shirt",(03,10),blessed,+3,"Prime Minister's Tuxedo"
+MONSTER:'@',"BNP Leader",(03,10),hostile
+OBJECT:'%',random,(04,06)
+OBJECT:'%',random,(07,07)
+OBJECT:'%',random,(05,09)
+OBJECT:'%',random,(03,12)
+OBJECT:'%',random,(05,15)
+OBJECT:'%',random,(07,13)
+# The Chapel of Saint John
+#	Finally, inductees to the Knights of the Bath would
+#	keep an all-night vigil in the chapel, with their armor
+#	laid on the altar.
+REGION:(10,11,21,16),unlit,"temple",filled,true
+DOOR:closed,(10,10)
+DOOR:closed,(09,13)
+DOOR:closed,(09,14)
+ALTAR:(18,13),law,altar
+OBJECT:'[',"chain mail",(18,13)
+OBJECT:'[',"plate mail",(18,13)
+#OBJECT:'(',"tallow candle",(10,11),lit
+#OBJECT:'(',"tallow candle",(19,11),lit
+#OBJECT:'(',"tallow candle",(10,16),lit
+#OBJECT:'(',"tallow candle",(19,16),lit
+# Prison turrets (now empty)
+DOOR:locked,(02,04)
+DOOR:locked,(02,16)
+# Random monsters
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+# Traps
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"board",random
+TRAP:"board",random
+
+

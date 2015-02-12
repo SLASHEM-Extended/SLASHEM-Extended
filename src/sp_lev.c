@@ -45,6 +45,8 @@ STATIC_DCL void FDECL(create_corridor, (corridor *));
 STATIC_DCL boolean FDECL(create_subroom, (struct mkroom *, XCHAR_P, XCHAR_P,
 					XCHAR_P, XCHAR_P, XCHAR_P, XCHAR_P));
 
+STATIC_DCL void FDECL(mkfeature,(int,int));
+
 #define LEFT	1
 #define H_LEFT	2
 #define CENTER	3
@@ -97,6 +99,208 @@ lev_region *lregions = 0;
 int num_lregions = 0;
 lev_init init_lev;
 
+/* Make a random dungeon feature --Amy */
+STATIC_OVL void
+mkfeature(x,y)
+register int x, y;
+{
+
+	int whatisit;
+	aligntyp al;
+	register int tryct = 0;
+	register struct obj *otmp;
+
+	if (occupied(x, y)) return;
+	if (rn2(20)) return;
+
+	whatisit = rnd(200);
+
+	switch (whatisit) {
+
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+	levl[x][y].typ = FOUNTAIN; break;
+	case 6:
+	case 7:
+	case 8:
+	case 9:
+	case 10:
+	case 11:
+	case 12:
+	case 13:
+	case 14:
+	case 15:
+	case 16:
+	case 17:
+	case 18:
+	case 19:
+	case 20:
+	case 21:
+	case 22:
+	case 23:
+	case 24:
+	case 25:
+	case 26:
+	case 27:
+	case 28:
+	case 29:
+	case 30:
+	levl[x][y].typ = CLOUD; break;
+
+	case 31:
+	case 32:
+	case 33:
+	case 34:
+	case 35:
+	case 36:
+	case 37:
+	case 38:
+	case 39:
+	case 40:
+	case 41:
+	case 42:
+	case 43:
+	case 44:
+	case 45:
+	case 46:
+	case 47:
+	case 48:
+	case 49:
+	case 50:
+	levl[x][y].typ = ICE; break;
+
+	case 51:
+	case 52:
+	case 53:
+	case 54:
+	case 55:
+	case 56:
+	case 57:
+	case 58:
+	case 59:
+	case 60:
+	case 61:
+	case 62:
+	case 63:
+	case 64:
+	case 65:
+	case 66:
+	case 67:
+	case 68:
+	case 69:
+	case 70:
+	levl[x][y].typ = POOL; break;
+
+	case 71:
+	case 72:
+	case 73:
+	case 74:
+	case 75:
+	case 76:
+	case 77:
+	case 78:
+	case 79:
+	case 80:
+	levl[x][y].typ = LAVAPOOL; break;
+
+	case 81:
+	case 82:
+	case 83:
+	case 84:
+	case 85:
+	case 86:
+	case 87:
+	case 88:
+	case 89:
+	case 90:
+	levl[x][y].typ = IRONBARS; break;
+
+	case 91:
+	case 92:
+	case 93:
+	case 94:
+	case 95:
+	case 96:
+	case 97:
+	case 98:
+	case 99:
+	case 100:
+	case 101:
+	case 102:
+	case 103:
+	case 104:
+	case 105:
+	case 106:
+	case 107:
+	case 108:
+	case 109:
+	case 110:
+	levl[x][y].typ = TREE; break;
+
+	case 111:
+	case 112:
+	case 113:
+	case 114:
+	case 115:
+	case 116:
+	case 117:
+	case 118:
+	case 119:
+	case 120:
+	case 121:
+	case 122:
+	case 123:
+	case 124:
+	case 125:
+	case 126:
+	case 127:
+	case 128:
+	case 129:
+	case 130:
+	make_grave(x, y, (char *) 0);
+	/* Possibly fill it with objects */
+	if (!rn2(3)) (void) mkgold(0L, x, y);
+	for (tryct = rn2(5); tryct; tryct--) {
+	    otmp = mkobj(RANDOM_CLASS, TRUE);
+	    if (!otmp) return;
+	    curse(otmp);
+	    otmp->ox = x;
+	    otmp->oy = y;
+	    add_to_buried(otmp);
+	}
+
+	case 131:
+	case 132:
+	case 133:
+	case 134:
+	case 135:
+	levl[x][y].typ = TOILET; break;
+
+	case 136:
+	case 137:
+	case 138:
+	case 139:
+	case 140:
+	levl[x][y].typ = SINK; break;
+
+	case 141:
+	levl[x][y].typ = THRONE; break;
+
+	case 142:
+	levl[x][y].typ = ALTAR;
+	al = rn2((int)A_LAWFUL+2) - 1;
+	if (!rn2(10)) levl[x][y].altarmask = Align2amask( al );
+	else levl[x][y].altarmask = Align2amask( A_NONE );
+	 break;
+	default:
+	levl[x][y].typ = STONE; break;
+	}
+
+}
+
 /*
  * Make walls of the area (x1, y1, x2, y2) non diggable/non passwall-able
  */
@@ -137,16 +341,44 @@ rndtrap()
 	    rtrap = rnd(TRAPNUM-1);
 	    switch (rtrap) {
 	     case HOLE:		/* no random holes on special levels */
-	     case MAGIC_PORTAL:	rtrap = NO_TRAP;
+	     case MAGIC_PORTAL:	rtrap = ROCKTRAP;
 				break;
-	     case TRAPDOOR:	if (!Can_dig_down(&u.uz)) rtrap = NO_TRAP;
+	     case TRAPDOOR:	if (!Can_dig_down(&u.uz)) rtrap = ROCKTRAP;
 				break;
-	     case LEVEL_TELEP:
-	     case TELEP_TRAP:	if (level.flags.noteleport) rtrap = NO_TRAP;
+	     case LEVEL_TELEP:	if (level.flags.noteleport) rtrap = ANTI_MAGIC;
+				break;
+	     case TELEP_TRAP:	if (level.flags.noteleport) rtrap = SQKY_BOARD;
 				break;
 	     case ROLLING_BOULDER_TRAP:
-	     case ROCKTRAP:	if (In_endgame(&u.uz)) rtrap = NO_TRAP;
+	     case ROCKTRAP:	if (In_endgame(&u.uz)) rtrap = WEB;
 				break;
+
+	     case MENU_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8)) rtrap = FIRE_TRAP;
+	     case SPEED_TRAP: 
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40)) rtrap = ICE_TRAP;
+	     case AUTOMATIC_SWITCHER:
+			if (rn2(Race_if(PM_HAXOR) ? (Role_if(PM_GRADUATE) ? 125 : Role_if(PM_SPACEWARS_FIGHTER) ? 250 : Role_if(PM_GEEK) ? 250 : 500) : (Role_if(PM_GRADUATE) ? 250 : Role_if(PM_SPACEWARS_FIGHTER) ? 500 : Role_if(PM_GEEK) ? 500 : 1000) )) rtrap = SHOCK_TRAP;
+	     case RMB_LOSS_TRAP:
+			if (!Role_if(PM_SPACEWARS_FIGHTER) && rn2(2)) rtrap = ACID_POOL; break;
+	     case DISPLAY_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3)) rtrap = GLYPH_OF_WARDING; break;
+	     case SPELL_LOSS_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4)) rtrap = SLOW_GAS_TRAP; break;
+	     case YELLOW_SPELL_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 5)) rtrap = POISON_GAS_TRAP; break;
+	     case AUTO_DESTRUCT_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10)) rtrap = WATER_POOL; break;
+	     case MEMORY_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20)) rtrap = SCYTHING_BLADE; break;
+	     case INVENTORY_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50)) rtrap = ANIMATION_TRAP; break;
+	     case BLACK_NG_WALL_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 50 : 100)) rtrap = UNKNOWN_TRAP; break;
+	     case SUPERSCROLLER_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 100 : 200)) rtrap = WEB; break;
+	     case ACTIVE_SUPERSCROLLER_TRAP: rtrap = RUST_TRAP; break;
+
 	    }
 	} while (rtrap == NO_TRAP);
 	return rtrap;
@@ -488,9 +720,26 @@ xchar	rtype, rlit;
 			else {
 				dx = 2 + rn2((hx-lx > 28) ? 12 : 8);
 				dy = 2 + rn2(4);
-				if(dx*dy > 50)
-				    dy = 50/dx;
+
+				if (!rn2(10) && trycnt < 200) dx += rnd(20);
+				if (!rn2(10) && trycnt < 200) dy += rnd(6);
+
+
+				/*if(dx*dy > 50)
+				    dy = 50/dx;*/
 			}
+
+				/*if (wizard && trycnt == 500) pline("try count 500 a");*/
+
+				if ((trycnt > 500) && (dx > 10)) dx = 10;
+				if ((trycnt > 1000) && (dx > 6)) dx = 6;
+				if ((trycnt > 2000) && (dx > 4)) dx = 4;
+				if ((trycnt > 3000) && (dx > 2)) dx = 2;
+				if ((trycnt > 500) && (dy > 6)) dy = 6;
+				if ((trycnt > 1000) && (dy > 4)) dy = 4;
+				if ((trycnt > 2000) && (dy > 3)) dy = 3;
+				if ((trycnt > 3000) && (dy > 2)) dy = 2;
+
 			xborder = (lx > 0 && hx < COLNO -1) ? 2*xlim : xlim+1;
 			yborder = (ly > 0 && hy < ROWNO -1) ? 2*ylim : ylim+1;
 			if(hx-lx < dx + 3 + xborder ||
@@ -526,7 +775,23 @@ xchar	rtype, rlit;
 			if (wtmp < 0 || htmp < 0) { /* Size is RANDOM */
 				wtmp = rn1(15, 3);
 				htmp = rn1(8, 2);
+
+				if (!rn2(10) && trycnt < 200) wtmp += rnd(20);
+				if (!rn2(10) && trycnt < 200) htmp += rnd(6);
+
 			}
+
+				/*if (wizard && trycnt == 501) pline("try count 500 b");*/
+
+				if (trycnt > 500 && wtmp > 10) wtmp = 10;
+				if (trycnt > 1000 && wtmp > 6) wtmp = 6;
+				if (trycnt > 2000 && wtmp > 4) wtmp = 4;
+				if (trycnt > 3000 && wtmp > 2) wtmp = 2;
+				if (trycnt > 500 && htmp > 6) htmp = 6;
+				if (trycnt > 1000 && htmp > 4) htmp = 4;
+				if (trycnt > 2000 && htmp > 3) htmp = 3;
+				if (trycnt > 3000 && htmp > 2) htmp = 2;
+
 			if (xaltmp == -1) /* Horizontal alignment is RANDOM */
 			    xaltmp = rnd(3);
 			if (yaltmp == -1) /* Vertical alignment is RANDOM */
@@ -573,7 +838,8 @@ xchar	rtype, rlit;
 			r2.hy = yabs + htmp + rndpos;
 			r1 = get_rect(&r2);
 		}
-	} while (++trycnt <= 100 && !r1);
+
+	} while (++trycnt <= 5000 && !r1);
 	if (!r1) {	/* creation of room failed ? */
 		return FALSE;
 	}
@@ -765,7 +1031,13 @@ create_secret_door(croom, walls)
 	}
     }
 
-    impossible("couldn't create secret door on any walls 0x%x", walls);
+      sy = croom->hy+1;
+	sx = croom->hx+1;
+    levl[sx][sy].typ = SDOOR;
+    levl[sx][sy].doormask = D_CLOSED;
+    add_door(sx,sy,croom);
+    return;
+    /* impossible("couldn't create secret door on any walls 0x%x", walls); */
 }
 
 /*
@@ -851,6 +1123,10 @@ struct mkroom	*croom;
 	    if (flags.female && Role_if(PM_ELF) /*&& !u.uelf_drow*/ && m->id == PM_EARENDIL)
 		m->id = PM_ELWING;
 #endif
+
+	    if (flags.female && Role_if(PM_ELPH) && m->id == PM_EARENDIL) /* elf role re-enabled by Amy */
+		m->id = PM_ELWING;
+
 	    /* in the Gnome Mines, make the gnomes & dwarves into            
 	       orcs, ogres, & zombies (because gnomes & dwarves are friendly...
 	       the mines would be hella easy otherwise) */
@@ -892,7 +1168,7 @@ struct mkroom	*croom;
 	    if (!pm || !is_swimmer(pm) && !likes_lava(pm))
 		found = get_location(&x, &y, DRY);
 	    else if (pm->mlet == S_EEL)
-		found = get_location(&x, &y, WET);
+		found = get_location(&x, &y, DRY|WET);
 	    else if (likes_lava(pm))
 		found = get_location(&x, &y, DRY|MOLTEN);
 	    else
@@ -1427,8 +1703,23 @@ schar ftyp, btyp;
 	    if(crm->typ == btyp) {
 		if(ftyp != CORR || rn2(100)) {
 			crm->typ = ftyp;
-			if(nxcor && !rn2(50))
+
+			if(/*nxcor && */!rn2(Race_if(PM_HAXOR) ? 38 : 75))
 				(void) mksobj_at(BOULDER, xx, yy, TRUE, FALSE);
+			else if(/*nxcor &&*/ !rn2(Race_if(PM_HAXOR) ? 20 : 40))
+				(void) mkobj_at(0, xx, yy, TRUE);
+			else if(/*nxcor &&*/ !rn2(Race_if(PM_HAXOR) ? 50 : 100)){ 
+			    char buf[BUFSZ];
+				const char *mesg = random_engraving(buf);
+			    make_engr_at(xx, yy, mesg, 0L, MARK);
+			}
+			/* else (mktrap(0,1,(struct mkroom *) 0, (coord*) 0) ) ;*/
+		    else if(/*nxcor &&*/ !rn2(Race_if(PM_HAXOR) ? 150 : 300)) 
+				(void) maketrap(xx, yy, rndtrap());
+		    else if(/*nxcor &&*/ !rn2(Race_if(PM_HAXOR) ? 100 : 200)) 
+				(void) makemon((struct permonst *)0, xx, yy, NO_MM_FLAGS);
+		    else if(/*nxcor &&*/ !rn2(Race_if(PM_HAXOR) ? 10 : 20)) 
+				(void) mkfeature(xx, yy);
 		} else {
 			crm->typ = SCORR;
 		}
@@ -1598,15 +1889,52 @@ boolean prefilled;
 		    for (x=croom->lx;x<=croom->hx;x++)
 			for (y=croom->ly;y<=croom->hy;y++)
 			    (void) mkgold((long)rn1(abs(depth(&u.uz))*100, 51), x, y);
+			if (!rn2(5)) { /* sporkhack code */
+				/* it's an aquarium!  :) */
+				level.flags.vault_is_aquarium = TRUE;
+				create_feature(0,0,croom,POOL);
+				create_feature(1,1,croom,POOL);
+				if (!rn2(3)) {
+					(void)makemon(mkclass(S_EEL,0),croom->lx,croom->ly,NO_MM_FLAGS);
+				}
+				if (!rn2(3)) {
+					(void)makemon(mkclass(S_EEL,0),croom->hx,croom->hy,NO_MM_FLAGS);
+				}
+			}
 		    break;
 		case COURT:
 		case ZOO:
+		case REALZOO:
+		case GIANTCOURT:
 		case BEEHIVE:
+		case BADFOODSHOP:
 		case LEMUREPIT:
 		case MIGOHIVE:
 		case FUNGUSFARM:
 		case MORGUE:
+		case DRAGONLAIR:
+		case ANTHOLE:
+		case COCKNEST:
+		case LEPREHALL:
 		case BARRACKS:
+		case HUMANHALL:
+		case MIMICHALL:
+		case CLINIC:
+		case TERRORHALL:
+		case ELEMHALL:
+		case ANGELHALL:
+		case NYMPHHALL:
+		case SPIDERHALL:
+		case TROLLHALL:
+		case GOLEMHALL:
+		case COINHALL:
+		case ARMORY:
+		case TENSHALL:
+		/*case TRAPROOM:*/
+		/*case POOLROOM:*/
+		case GRUEROOM:
+		/*case STATUEROOM:*/
+		case DOUGROOM:
 		    fill_zoo(croom);
 		    break;
 	    }
@@ -1616,6 +1944,7 @@ boolean prefilled;
 		level.flags.has_vault = TRUE;
 		break;
 	    case ZOO:
+	    case DOUGROOM:
 		level.flags.has_zoo = TRUE;
 		break;
 	    case COURT:
@@ -1635,6 +1964,60 @@ boolean prefilled;
 		break;
 	    case FUNGUSFARM:
 		level.flags.has_fungusfarm = TRUE;
+		break;
+	    case CLINIC:
+		level.flags.has_clinic = TRUE;
+		break;
+	    case MIMICHALL:
+		level.flags.has_mimichall = TRUE;
+		break;
+	    case ANGELHALL:
+		level.flags.has_angelhall = TRUE;
+		break;
+	    case ELEMHALL:
+		level.flags.has_elemhall = TRUE;
+		break;
+	    case NYMPHHALL:
+		level.flags.has_nymphhall = TRUE;
+		break;
+	    case GOLEMHALL:
+		level.flags.has_golemhall = TRUE;
+		break;
+	    case GRUEROOM:
+		level.flags.has_grueroom = TRUE;
+		break;
+	    case POOLROOM:
+		level.flags.has_poolroom = TRUE;
+		break;
+	    case STATUEROOM:
+		level.flags.has_statueroom = TRUE;
+		break;
+	    case INSIDEROOM:
+		level.flags.has_insideroom = TRUE;
+		break;
+	    case RIVERROOM:
+		level.flags.has_riverroom = TRUE;
+		break;
+	    case TRAPROOM:
+		level.flags.has_traproom = TRUE;
+		break;
+	    case COINHALL:
+		level.flags.has_coinhall = TRUE;
+		break;
+	    case SPIDERHALL:
+		level.flags.has_spiderhall = TRUE;
+		break;
+	    case TROLLHALL:
+		level.flags.has_trollhall = TRUE;
+		break;
+	    case HUMANHALL:
+		level.flags.has_humanhall = TRUE;
+		break;
+	    case TERRORHALL:
+		level.flags.has_terrorhall = TRUE;
+		break;
+	    case TENSHALL:
+		level.flags.has_tenshall = TRUE;
 		break;
 	    case BARRACKS:
 		level.flags.has_barracks = TRUE;
@@ -1936,6 +2319,184 @@ engraving *e;
 	e->engr.str[size] = '\0';
 }
 
+STATIC_OVL void
+makeriverX(x1,y1,x2,y2,lava,rndom)
+int x1,y1,x2,y2;
+boolean lava,rndom;
+{
+    int cx,cy;
+    int dx, dy;
+    int chance;
+    int count = 0;
+    int trynmbr = 0;
+    int rndomizat = 0;
+    if (rndom) rndomizat = (rn2(5) ? 0 : 1);
+    if (rndom) trynmbr = rnd(20);
+
+    cx = x1;
+    cy = y1;
+
+    while (count++ < 2000) {
+	int rnum = levl[cx][cy].roomno - ROOMOFFSET;
+	chance = 0;
+	/*if (rnum >= 0 && rooms[rnum].rtype != OROOM) chance = 0;
+	else */if (levl[cx][cy].typ == CORR) chance = 15;
+	else if (levl[cx][cy].typ == ROOM) chance = 30;
+	else if (IS_ROCK(levl[cx][cy].typ)) chance = 100;
+	if (rndomizat) trynmbr = rnd(20);
+
+	if (rn2(100) < chance && !t_at(cx,cy)) {
+	    if (lava) {
+		if (rndom) { 
+
+			if (trynmbr == 1) levl[cx][cy].typ = POOL;
+			else if (trynmbr == 2) levl[cx][cy].typ = TREE;
+			else if (trynmbr == 3) levl[cx][cy].typ = IRONBARS;
+			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
+			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
+			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
+			else levl[cx][cy].typ = LAVAPOOL;
+		}
+		else {levl[cx][cy].typ = LAVAPOOL;
+		levl[cx][cy].lit = 1;
+		}
+	    } else	if (rndom) { 
+
+			if (trynmbr == 1) levl[cx][cy].typ = LAVAPOOL;
+			else if (trynmbr == 2) levl[cx][cy].typ = TREE;
+			else if (trynmbr == 3) levl[cx][cy].typ = IRONBARS;
+			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
+			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
+			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
+			else levl[cx][cy].typ = POOL;
+		}
+		else 
+		levl[cx][cy].typ = !rn2(3) ? POOL : MOAT;
+	}
+
+	if (cx == x2 && cy == y2) break;
+
+	if (cx < x2 && !rn2(3)) dx = 1;
+	else if (cx > x2 && !rn2(3)) dx = -1;
+	else dx = 0;
+
+	if (cy < y2 && !rn2(3)) dy = 1;
+	else if (cy > y2 && !rn2(3)) dy = -1;
+	else dy = 0;
+
+	switch (rn2(16)) {
+	default: break;
+	case 1: dx--; dy--; break;
+	case 2: dx++; dy--; break;
+	case 3: dx--; dy++; break;
+	case 4: dx++; dy++; break;
+	case 5: dy--; break;
+	case 6: dy++; break;
+	case 7: dx--; break;
+	case 8: dx++; break;
+	}
+
+	if (dx < -1) dx = -1;
+	else if (dx > 1) dx = 1;
+	if (dy < -1) dy = -1;
+	else if (dy > 1) dy = 1;
+
+	cx += dx;
+	cy += dy;
+
+	if (cx < 0) cx = 0;
+	else if (cx >= COLNO) cx = COLNO-1;
+	if (cy < 0) cy = 0;
+	else if (cy >= ROWNO) cy = ROWNO-1;
+
+    }
+}
+
+STATIC_OVL void
+makerandriverX(lava,rndom)
+boolean lava,rndom;
+
+{
+    int cx,cy;
+    int chance;
+    int count = 0;
+    int ammount = rnz(10 + rnd(40) + rnz(5) + (rn2(5) ? 0 : 50) + (rn2(25) ? 0 : 200) );
+    int trynmbr = 0;
+    int rndomizat = 0;
+    if (rndom) rndomizat = (rn2(3) ? 0 : 1);
+    if (rndom) trynmbr = rnd(12);
+
+    while (count++ < ammount) {
+
+      cx = rn2(COLNO);
+      cy = rn2(ROWNO);
+
+	chance = 0;
+	if (levl[cx][cy].typ == CORR) chance = 15;
+	else if (levl[cx][cy].typ == ROOM) chance = 30;
+	else if (IS_ROCK(levl[cx][cy].typ)) chance = 100;
+	if (rndomizat) trynmbr = rnd(12);
+
+	if (rn2(100) < chance && !t_at(cx,cy)) {
+	    if (lava) {
+		if (rndom) { 
+
+			if (trynmbr == 1) levl[cx][cy].typ = POOL;
+			else if (trynmbr == 2) levl[cx][cy].typ = TREE;
+			else if (trynmbr == 3) levl[cx][cy].typ = IRONBARS;
+			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
+			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
+			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
+			else levl[cx][cy].typ = LAVAPOOL;
+		}
+		else {levl[cx][cy].typ = LAVAPOOL;
+		levl[cx][cy].lit = 1;
+		}
+	    } else	if (rndom) { 
+
+			if (trynmbr == 1) levl[cx][cy].typ = LAVAPOOL;
+			else if (trynmbr == 2) levl[cx][cy].typ = TREE;
+			else if (trynmbr == 3) levl[cx][cy].typ = IRONBARS;
+			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
+			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
+			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
+			else levl[cx][cy].typ = POOL;
+		}
+		else 
+		levl[cx][cy].typ = !rn2(3) ? POOL : MOAT;
+	}
+
+	}
+}
+
+STATIC_OVL void
+mkriversX()
+{
+    int nriv = rn2(3) + 1;
+    boolean lava = rn2(100) < depth(&u.uz);
+	boolean rndom = (rn2(5) ? 0 : 1);
+    while (nriv--) {
+	if (rn2(2)) makeriverX(0, rn2(ROWNO), COLNO-1, rn2(ROWNO), lava, rndom);
+	else makeriverX(rn2(COLNO), 0, rn2(COLNO), ROWNO-1, lava, rndom);
+    }
+}
+
+STATIC_OVL void
+mkrandriversX()
+{
+    boolean lava = rn2(100) < depth(&u.uz);
+	boolean rndom = (rn2(3) ? 0 : 1);
+	if (rn2(2)) makerandriverX(lava, rndom);
+	else makerandriverX(lava, rndom);
+}
+
+/*
+ * Select a random coordinate in the maze.
+ *
+ * We want a place not 'touched' by the loader.  That is, a place in
+ * the maze outside every part of the special level.
+ */
+
 STATIC_OVL boolean
 load_rooms(fd)
 dlb *fd;
@@ -2156,15 +2717,26 @@ dlb *fd;
 		create_corridor(&tmpcor);
 	}
 
+	/* make rivers if possible --Amy */
+	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
+	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
+
+	if (Race_if(PM_HAXOR)) {
+		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
+		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
+	}
+
+	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+
+	if (Race_if(PM_HAXOR)) {
+		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+	}
+
 	return TRUE;
 }
 
-/*
- * Select a random coordinate in the maze.
- *
- * We want a place not 'touched' by the loader.  That is, a place in
- * the maze outside every part of the special level.
- */
 
 STATIC_OVL void
 maze1xy(m, humidity)
@@ -2754,7 +3326,8 @@ dlb *fd;
 
 	    walkfrom(x, y);
     }
-    wallification(1, 0, COLNO-1, ROWNO-1, FALSE);
+    /* wallification(1, 0, COLNO-1, ROWNO-1, FALSE); */
+    wallification(1, 0, COLNO-1, ROWNO-1, TRUE);
 
     /*
      * If there's a significant portion of maze unused by the special level,
@@ -2780,9 +3353,16 @@ dlb *fd;
 		    maze1xy(&mm, DRY);
 		    (void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE);
 	    }
-	    for (x = rn2(2); x; x--) {
+	    for (x = rn2(20); x; x--) 	{ 
+		    maze1xy(&mm, DRY);
+			    char buf[BUFSZ];
+				const char *mesg = random_engraving(buf);
+			    make_engr_at(mm.x, mm.y, mesg, 0L, MARK);
+			}
+	    for (x = rn2(2); x; x--) { if (depth(&u.uz) > depth(&medusa_level)) {
 		maze1xy(&mm, DRY);
 		(void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
+		} /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	    }
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
 		    maze1xy(&mm, WET|DRY);
@@ -2803,7 +3383,68 @@ dlb *fd;
 			    trytrap = rndtrap();
 		    (void) maketrap(mm.x, mm.y, trytrap);
 	    }
+
+		if (Race_if(PM_HAXOR)) {
+	    for(x = rnd((int) (20 * mapfact) / 100); x; x--) {
+		    maze1xy(&mm, DRY);
+		    (void) mkobj_at(rn2(2) ? GEM_CLASS : RANDOM_CLASS,
+							mm.x, mm.y, TRUE);
+	    }
+	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
+		    maze1xy(&mm, DRY);
+		    (void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE);
+	    }
+	    for (x = rn2(20); x; x--) 	{ 
+		    maze1xy(&mm, DRY);
+			    char buf[BUFSZ];
+				const char *mesg = random_engraving(buf);
+			    make_engr_at(mm.x, mm.y, mesg, 0L, MARK);
+			}
+	    for (x = rn2(2); x; x--) { if (depth(&u.uz) > depth(&medusa_level)) {
+		maze1xy(&mm, DRY);
+		(void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
+		} /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
+	    }
+	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
+		    maze1xy(&mm, WET|DRY);
+		    (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
+	    }
+	    for(x = rn2((int) (15 * mapfact) / 100); x; x--) {
+		    maze1xy(&mm, DRY);
+		    (void) mkgold(0L,mm.x,mm.y);
+	    }
+	    for(x = rn2((int) (15 * mapfact) / 100); x; x--) {
+		    int trytrap;
+
+		    maze1xy(&mm, DRY);
+		    trytrap = rndtrap();
+		    if (sobj_at(BOULDER, mm.x, mm.y))
+			while (trytrap == PIT || trytrap == SPIKED_PIT ||
+				trytrap == TRAPDOOR || trytrap == HOLE)
+			    trytrap = rndtrap();
+		    (void) maketrap(mm.x, mm.y, trytrap);
+	    }
+		}
+
     }
+
+	/* make rivers if possible --Amy */
+	if (!rn2(50) && !In_endgame(&u.uz) ) mkriversX();
+	if (!rn2(250) && !In_endgame(&u.uz) ) mkriversX();
+
+	if (Race_if(PM_HAXOR)) {
+		if (!rn2(50) && !In_endgame(&u.uz) ) mkriversX();
+		if (!rn2(250) && !In_endgame(&u.uz) ) mkriversX();
+	}
+
+	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+
+	if (Race_if(PM_HAXOR)) {
+		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+	}
+
     return TRUE;
 }
 
@@ -2843,5 +3484,8 @@ const char *name;
 	(void)dlb_fclose(fd);
 	return result;
 }
+
+
+
 
 /*sp_lev.c*/

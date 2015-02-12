@@ -5,18 +5,18 @@
 /*The name of the compiled game- should be same as stuff in makefile*/
 /*for makedefs*/
 /* KMH -- Made it mixed case, from which upper & lower case versions are made */
-#define DEF_GAME_NAME   "SlashEM"
+#define DEF_GAME_NAME   "SlashEMExtended"
 /*#define DEF_GAME_NAME   "NetHack"*/
 
 /* Version */
 #define VERSION_MAJOR   0
-#define VERSION_MINOR   0
+#define VERSION_MINOR   9
 /*
  * PATCHLEVEL is updated for each release.
  */
-#define PATCHLEVEL      7
-#define EDITLEVEL	7
-#define FIXLEVEL        4
+#define PATCHLEVEL      8
+#define EDITLEVEL	1
+/* #define FIXLEVEL        0 */
 
 #define COPYRIGHT_BANNER_A \
 "This is SuperLotsoAddedStuffHack-Extended Magic 1997-2007"
@@ -25,7 +25,10 @@
 "NetHack, Copyright 1985-2003 Stichting Mathematisch Centrum, M. Stephenson."
 
 #define COPYRIGHT_BANNER_C \
-"See license for details. Bug reports to slashem-discuss@lists.sourceforge.net"
+"Slash'EM Extended version by Amy (user Bluescreenofdeath at Nethackwiki)."
+
+#define COPYRIGHT_BANNER_D \
+"See license for details. Bug reports to Bluescreenofdeath's user talk page."
 
 #if 1
 /*
@@ -37,7 +40,7 @@
  * PP = patch level, ee = edit level, L = literal suffix "L",
  * with all four numbers specified as two hexadecimal digits.
  */
-#define VERSION_COMPATIBILITY 0x00000702L
+#define VERSION_COMPATIBILITY 0x00090801L
 #endif
 
 /*patchlevel.h*/

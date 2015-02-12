@@ -100,7 +100,7 @@ picklock()	/* try to open/close a lock */
 	    }
 	}
 
-	if (xlock.usedtime++ >= 50 || nohands(youmonst.data)) {
+	if (xlock.usedtime++ >= 50 || (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) {
 	    You("give up your attempt at %s.", lock_action());
 	    exercise(A_DEX, TRUE);	/* even if you don't succeed */
 	    return((xlock.usedtime = 0));
@@ -139,7 +139,7 @@ forcelock()	/* try to force a locked chest */
 	if((xlock.box->ox != u.ux) || (xlock.box->oy != u.uy))
 		return((xlock.usedtime = 0));		/* you or it moved */
 
-	if (xlock.usedtime++ >= 50 || !uwep || nohands(youmonst.data)) {
+	if (xlock.usedtime++ >= 50 || !uwep || (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) {
 	    You("give up your attempt to force the lock.");
 	    if(xlock.usedtime >= 50)		/* you made the effort */
 	      exercise((xlock.picktyp) ? A_DEX : A_STR, TRUE);
@@ -238,7 +238,7 @@ forcedoor()      /* try to break/pry open a door */
 		return((xlock.usedtime = 0));
 	}
 	
-	if (xlock.usedtime++ >= 50 || nohands(youmonst.data)) {
+	if (xlock.usedtime++ >= 50 || (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) {
 	    You("give up your attempt at %s the door.",
 	    	(xlock.picktyp == 2 ? "melting" : xlock.picktyp == 1 ? 
 	    		"prying open" : "breaking down"));
@@ -323,7 +323,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 	if (xlock.usedtime && picktyp == xlock.picktyp) {
 	    static char no_longer[] = "Unfortunately, you can no longer %s %s.";
 
-	    if (nohands(youmonst.data)) {
+	    if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
 		const char *what = (picktyp == LOCK_PICK) ? "pick" : "key";
 #ifdef TOURIST
 		if (picktyp == CREDIT_CARD) what = "card";
@@ -343,8 +343,9 @@ pick_lock(pickp) /* pick a lock with a given object */
 	    }
 	}
 
-	if(nohands(youmonst.data)) {
+	if(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
 		You_cant("hold %s -- you have no hands!", doname(pick));
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
 
@@ -414,7 +415,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 		    switch(picktyp) {
 #ifdef TOURIST
 			case CREDIT_CARD:
-			    if(!rn2(20) && !pick->blessed && !pick->oartifact) {
+			    if(!rn2(20) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("credit card breaks in half!");
 				useup(pick);
 				*pickp = (struct obj *)0;
@@ -425,7 +426,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 #endif
 			case LOCK_PICK:
 			    if(!rn2(Role_if(PM_ROGUE) ? 40 : 30) &&
-			    		!pick->blessed && !pick->oartifact) {
+			    		(!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your pick!");
 				useup(pick);
 				*pickp = (struct obj *)0;
@@ -434,7 +435,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    ch = 4*ACURR(A_DEX) + 25*Role_if(PM_ROGUE);
 			    break;
 			case SKELETON_KEY:
-			    if(!rn2(15) && !pick->blessed && !pick->oartifact) {
+			    if(!rn2(15) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("key didn't quite fit the lock and snapped!");
 				useup(pick);
 				*pickp = (struct obj *)0;
@@ -517,7 +518,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 #ifdef TOURIST
 			case CREDIT_CARD:
 			    if(!rn2(Role_if(PM_TOURIST) ? 30 : 20) &&
-				    !pick->blessed && !pick->oartifact) {
+				    (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your card off in the door!");
 				useup(pick);
 				*pickp = (struct obj *)0;
@@ -528,7 +529,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 #endif
 			case LOCK_PICK:
 			    if(!rn2(Role_if(PM_ROGUE) ? 40 : 30) &&
-				    !pick->blessed && !pick->oartifact) {
+				    (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your pick!");
 				useup(pick);
 				*pickp = (struct obj *)0;
@@ -537,7 +538,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    ch = 3*ACURR(A_DEX) + 30*Role_if(PM_ROGUE);
 			    break;
 			case SKELETON_KEY:
-			    if(!rn2(15) && !pick->blessed && !pick->oartifact) {
+			    if(!rn2(15) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("key wasn't designed for this door and broke!");
 				useup(pick);
 				*pickp = (struct obj *)0;
@@ -559,6 +560,14 @@ pick_lock(pickp) /* pick a lock with a given object */
 			}
 			else ch = -1;		/* -1 == 0% chance */
 		    }
+
+			/* artifact keys shouldn't be overpowered --Amy */
+
+		    if (!key && pick->oartifact) {
+			    Your("key doesn't seem to fit.");
+			    return(0);
+		    }
+
 	    }
 	}
 	flags.move = 0;
@@ -572,6 +581,13 @@ pick_lock(pickp) /* pick a lock with a given object */
 int
 doforce()		/* try to force a chest with your weapon */
 {
+
+	if (MenuBug) {
+	pline("The force command is currently unavailable!");
+	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	return 0;
+	}
+
 	register struct obj *otmp;
 	register int x, y, c, picktyp;
 	struct rm       *door;
@@ -579,16 +595,19 @@ doforce()		/* try to force a chest with your weapon */
 
 	if (!uwep) { /* Might want to make this so you use your shoulder */
 	    You_cant("force anything without a weapon.");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	     return(0);
 	}
 
 	if (u.utrap && u.utraptype == TT_WEB) {
 	    You("are entangled in a web!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return(0);
 #ifdef LIGHTSABERS
 	} else if (uwep && is_lightsaber(uwep)) {
 	    if (!uwep->lamplit) {
 		Your("lightsaber is deactivated!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	    }
 #endif
@@ -611,6 +630,7 @@ doforce()		/* try to force a chest with your weapon */
 	  ) {
 	    You_cant("force anything without a %sweapon.",
 		  (uwep) ? "proper " : "");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return(0);
 	}
 
@@ -712,13 +732,19 @@ doforce()		/* try to force a chest with your weapon */
 			&& mtmp->m_ap_type != M_AP_OBJECT) {
 
 		if (mtmp->isshk || mtmp->data == &mons[PM_ORACLE])		
+#ifdef JEDI
+		  if (Role_if(PM_JEDI))
+		    verbalize("Your puny Jedi tricks won't work on me!"); /* Return of the Jedi */
+		  else
+#endif
+
 		    verbalize("What do you think you are, a Jedi?"); /* Phantom Menace */
 		else
 		    pline("I don't think %s would appreciate that.", mon_nam(mtmp));
 		return(0);
 	    }
 	    /* Lightsabers dig through doors and walls via dig.c */
-	    if (is_pick(uwep) ||
+	    if (is_pick(uwep) || is_antibar(uwep) ||
 #ifdef LIGHTSABERS
 		    is_lightsaber(uwep) ||
 #endif
@@ -781,13 +807,22 @@ doopen()		/* try to open a door */
 	register struct rm *door;
 	struct monst *mtmp;
 
-	if (nohands(youmonst.data)) {
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
 	    You_cant("open anything -- you have no hands!");
-	    return 0;
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		if (yn("Try to open it with another part of your body instead?") == 'y') {
+			if (rn2(3)) { 			make_blinded(Blinded + rnd(50),TRUE);
+			pline("Off - you just blinded yourself!");
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		    return 1;}
+		}
+		else {return(0);}
 	}
 
 	if (u.utrap && u.utraptype == TT_PIT) {
 	    You_cant("reach over the edge of the pit.");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return 0;
 	}
 
@@ -831,7 +866,7 @@ doopen()		/* try to open a door */
 	    return(0);
 	}
 
-	if(verysmall(youmonst.data)) {
+	if(verysmall(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	    pline("You're too small to pull the door open.");
 	    return(0);
 	}
@@ -880,6 +915,25 @@ objhere:	pline("%s's in the way.", Something);
 	return(FALSE);
 }
 
+STATIC_OVL
+boolean
+obstructedX(x,y)
+register int x, y;
+{
+	register struct monst *mtmp = m_at(x, y);
+
+	if(mtmp && mtmp->m_ap_type != M_AP_FURNITURE) {
+		if (mtmp->m_ap_type == M_AP_OBJECT) goto objhere;
+		if (!canspotmon(mtmp))
+		    map_invisible(mtmp->mx, mtmp->my);
+		return(TRUE);
+	}
+	if (OBJ_AT(x, y)) {
+objhere:	return(TRUE);
+	}
+	return(FALSE);
+}
+
 int
 doclose()		/* try to close a door */
 {
@@ -887,9 +941,17 @@ doclose()		/* try to close a door */
 	register struct rm *door;
 	struct monst *mtmp;
 
-	if (nohands(youmonst.data)) {
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
 	    You_cant("close anything -- you have no hands!");
-	    return 0;
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		if (yn("Try to close it with another part of your body instead?") == 'y') {
+			if (rn2(3)) { 			make_blinded(Blinded + rnd(50),TRUE);
+			pline("Something got in your face! You can't see!");
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		    return 1;}
+		}
+		else {return(0);}
 	}
 
 	if (u.utrap && u.utraptype == TT_PIT) {
@@ -945,7 +1007,7 @@ doclose()		/* try to close a door */
 	}
 
 	if(door->doormask == D_ISOPEN) {
-	    if(verysmall(youmonst.data)
+	    if(verysmall(youmonst.data) && !Race_if(PM_TRANSFORMER) 
 #ifdef STEED
 		&& !u.usteed
 #endif
@@ -1007,6 +1069,51 @@ register struct obj *obj, *otmp;	/* obj *is* a box */
 	    if (xlock.box == obj)
 		reset_pick();
 	    break;
+	}
+	return res;
+}
+
+boolean
+doorlockX(x,y)
+int x, y;
+
+{
+	register struct rm *door = &levl[x][y];
+	boolean res = TRUE;
+	int loudness = 0;
+	const char *msg = (const char *)0;
+	const char *dustcloud = "A cloud of dust";
+	const char *quickly_dissipates = "quickly dissipates";
+	int key = artifact_door(x, y);		/* ALI - Artifact doors */
+
+	if (levl[x][y].typ != SDOOR && levl[x][y].typ != DOOR) return FALSE;
+
+	    if (obstructedX(x,y)) return FALSE;
+	    /* Don't allow doors to close over traps.  This is for pits */
+	    /* & trap doors, but is it ever OK for anything else? */
+	    if (t_at(x,y)) {
+		/* maketrap() clears doormask, so it should be NODOOR */
+		return FALSE;
+	    }
+
+	    block_point(x, y);
+	    if (key)
+		door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);
+	    else
+	    door->doormask = D_LOCKED | (door->doormask & D_TRAPPED);
+	    newsym(x,y);
+
+	if (msg && cansee(x,y)) pline(msg);
+	if (loudness > 0) {
+	    /* door was destroyed */
+	    wake_nearto(x, y, loudness);
+	    if (*in_rooms(x, y, SHOPBASE)) add_damage(x, y, 0L);
+	}
+
+	if (res && picking_at(x, y)) {
+	    /* maybe unseen monster zaps door you're unlocking */
+	    stop_occupation();
+	    reset_pick();
 	}
 	return res;
 }
@@ -1124,6 +1231,7 @@ int x, y;
 	    break;
 	case WAN_STRIKING:
 	case SPE_FORCE_BOLT:
+	case WAN_WIND:
 	    if (!key && door->doormask & (D_LOCKED | D_CLOSED)) {
 		if (door->doormask & D_TRAPPED) {
 		    if (MON_AT(x, y))

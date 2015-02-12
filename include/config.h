@@ -401,6 +401,9 @@ typedef unsigned char	uchar;
 #define UNPOLYPILE	/* WAC -- Items can unpolymorph */
 #define WALLET_O_P      /* Perseus' Wallet, and all related code (tsanth@iname.com)*/
 #define LIGHTSABERS
+#define JEDI
+#define NWAR
+#define CONVICT		/* Convict player with heavy iron ball */
 #ifdef LIGHTSABERS
 # define D_SABER	/* Enable WEAPON(dimsaber), and all related code (tsanth@iname.com)*/
 #endif
@@ -488,6 +491,8 @@ typedef unsigned char	uchar;
 
 /*#define GOLDOBJ */	/* Gold is kept on obj chains - Helge Hafting */
 /*#define AUTOPICKUP_EXCEPTIONS */ /* exceptions to autopickup */
+
+/*#define SIMPLE_MAIL */ /* dgamelaunch simple mail */
 
 /* End of Section 5 */
 

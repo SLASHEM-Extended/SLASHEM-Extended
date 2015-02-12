@@ -42,6 +42,7 @@ static NEARDATA const long takeoff_order[] = { WORN_BLINDF, W_WEP,
 	WORN_BOOTS, W_SWAPWEP, W_QUIVER, 0L };
 
 STATIC_DCL void FDECL(on_msg, (struct obj *));
+STATIC_DCL void FDECL(on_msgdel, (struct obj *));
 STATIC_DCL void FDECL(Ring_off_or_gone, (struct obj *, BOOLEAN_P));
 STATIC_PTR int FDECL(select_off, (struct obj *));
 STATIC_DCL struct obj *NDECL(do_takeoff);
@@ -75,6 +76,22 @@ register struct obj *otmp;
 	}
 }
 
+STATIC_OVL void
+on_msgdel(otmp)
+register struct obj *otmp;
+{
+	if (flags.verbose) {
+	    char how[BUFSZ];
+
+	    how[0] = '\0';
+	    if (otmp->otyp == TOWEL)
+		Sprintf(how, " around your %s", body_part(HEAD));
+	    You("are putting on %s%s.",
+		obj_is_pname(otmp) ? the(xname(otmp)) : an(xname(otmp)),
+		how);
+	}
+}
+
 /*
  * The Type_on() functions should be called *after* setworn().
  * The Type_off() functions call setworn() themselves.
@@ -87,11 +104,35 @@ Boots_on()
 	u.uprops[objects[uarmf->otyp].oc_oprop].extrinsic & ~WORN_BOOTS;
 
     switch(uarmf->otyp) {
+#ifdef JEDI
+	case PLASTEEL_BOOTS:
+#endif
 	case LOW_BOOTS:
 	case IRON_SHOES:
 	case HIGH_BOOTS:
+	case GNOMISH_BOOTS:
+	case WEDGE_SANDALS:
+	case FEMININE_PUMPS:
+	case DANCING_SHOES:
+	case SWEET_MOCASSINS:
+	case SOFT_SNEAKERS:
+	case LEATHER_PEEP_TOES:
+	case COMBAT_STILETTOS:
 	case JUMPING_BOOTS:
+	case FLYING_BOOTS:
 	case KICKING_BOOTS:
+		break;
+	case BOOTS_OF_MOLASSES:
+		pline("These boots feel a little cold...");
+		break;
+	case ZIPPER_BOOTS:
+		pline("While putting on this pair of boots, their zippers try to scratch your legs!");
+		losehp(rnd(20), "foolishly putting on a zipper boot", KILLED_BY);
+		break;
+	case HIPPIE_HEELS:
+		if (flags.female) pline("You're dressed like a '69 whore!");
+		else pline("You're dressed like a frickin' hardrocker!");
+	    if (!uarmf->cursed) {curse(uarmf); pline("The highly erotic boots weld themselves to your feet!");}
 		break;
 	case WATER_WALKING_BOOTS:
 		if (u.uinwater) spoteffects(TRUE);
@@ -165,6 +206,9 @@ Boots_off()
 		if (!oldprop && !(HFumbling & ~TIMEOUT))
 			HFumbling = EFumbling = 0;
 		break;
+	case FLYING_BOOTS:
+		(void) float_down(0L, 0L);
+		break;
 	case LEVITATION_BOOTS:
 		if (!oldprop && !HLevitation && !cancelled_don) {
 			flags.botl = 1;
@@ -172,12 +216,35 @@ Boots_off()
 			makeknown(otyp);
 		}
 		break;
+	case ZIPPER_BOOTS:
+		pline("While taking off this pair of boots, you scratch open your legs at their zippers!");
+		losehp(rnd(20), "foolishly taking off a zipper boot", KILLED_BY);
+		    set_wounded_legs(LEFT_SIDE, rn1(35, 41));
+		    set_wounded_legs(RIGHT_SIDE, rn1(35, 41));
+		break;
 	case LOW_BOOTS:
 	case IRON_SHOES:
+	case GNOMISH_BOOTS:
+	case BOOTS_OF_MOLASSES:
+	case WEDGE_SANDALS:
+	case FEMININE_PUMPS:
+	case DANCING_SHOES:
+	case SWEET_MOCASSINS:
+	case SOFT_SNEAKERS:
+	case LEATHER_PEEP_TOES:
+	case COMBAT_STILETTOS:
 	case HIGH_BOOTS:
 	case JUMPING_BOOTS:
 	case KICKING_BOOTS:
+#ifdef JEDI
+	case PLASTEEL_BOOTS:
+#endif
 		break;
+	case HIPPIE_HEELS:
+
+		pline("You decide you had enough of those hallucination-inducing boots.");
+		break;
+
 	default: impossible(unknown_type, c_boots, otyp);
     }
     cancelled_don = FALSE;
@@ -199,8 +266,15 @@ Cloak_on()
 	case ORCISH_CLOAK:
 	case DWARVISH_CLOAK:
 	case CLOAK_OF_MAGIC_RESISTANCE:
+	case CLOAK_OF_REFLECTION:
 	case ROBE:
 	case LEATHER_CLOAK:
+	case CLOAK_OF_WARMTH:
+	case CLOAK_OF_GROUNDING:
+	case CLOAK_OF_QUENCHING:
+	case CLOAK_OF_CONFUSION:
+	case MANACLOAK:
+	case PLASTEEL_CLOAK:
 	/* KMH, balance patch -- removed
 	case CLOAK_OF_DRAIN_RESISTANCE: */               
 		break;
@@ -264,11 +338,18 @@ Cloak_off()
 	case DWARVISH_CLOAK:
 	case CLOAK_OF_PROTECTION:
 	case CLOAK_OF_MAGIC_RESISTANCE:
+	case CLOAK_OF_REFLECTION:
 	case CLOAK_OF_DISPLACEMENT:
+	case CLOAK_OF_CONFUSION:
+	case MANACLOAK:
 	case POISONOUS_CLOAK:
 	case OILSKIN_CLOAK:
 	case ROBE:
+	case PLASTEEL_CLOAK:
 	case LEATHER_CLOAK:
+	case CLOAK_OF_WARMTH:
+	case CLOAK_OF_GROUNDING:
+	case CLOAK_OF_QUENCHING:
 	/* KMH, balance patch -- removed
 	case CLOAK_OF_DRAIN_RESISTANCE: */
 		break;
@@ -312,14 +393,20 @@ Helmet_on()
 		set_moreluck();
 		flags.botl = 1;
 		break;
+#ifdef JEDI
+	case PLASTEEL_HELM:
+#endif
 	case HELMET:
+	case HELM_OF_STEEL:
 	case DENTED_POT:
 	case ELVEN_LEATHER_HELM:
+	case GNOMISH_HELM:
 	case DWARVISH_IRON_HELM:
 	case ORCISH_HELM:
 	/* KMH, balance patch -- removed
 	case FIRE_HELMET: */
 	case HELM_OF_TELEPATHY:
+	case HELM_OF_DISCOVERY:
 		break;
 	case HELM_OF_BRILLIANCE:
 		adj_abon(uarmh, uarmh->spe);
@@ -377,13 +464,19 @@ Helmet_off()
 	    set_moreluck();
 	    flags.botl = 1;
 	    return 0;
+#ifdef JEDI
+	case PLASTEEL_HELM:
+#endif
 	case HELMET:
+	case HELM_OF_STEEL:
 	case DENTED_POT:
 	case ELVEN_LEATHER_HELM:
+	case GNOMISH_HELM:
 	case DWARVISH_IRON_HELM:
 	case ORCISH_HELM:
 	/* KMH, balance patch -- removed
 	case FIRE_HELMET: */
+	case HELM_OF_DISCOVERY:
 	    break;
 	case DUNCE_CAP:
 	    flags.botl = 1;
@@ -421,7 +514,12 @@ Gloves_on()
 	u.uprops[objects[uarmg->otyp].oc_oprop].extrinsic & ~WORN_GLOVES;
 
     switch(uarmg->otyp) {
+#ifdef JEDI
+	case PLASTEEL_GLOVES:
+#endif
 	case LEATHER_GLOVES:
+	case GAUNTLETS_OF_STEEL:
+	case GAUNTLETS_OF_TYPING:
 		break;
 	case GAUNTLETS_OF_SWIMMING:
 		if (u.uinwater) {
@@ -434,8 +532,9 @@ Gloves_on()
 			incr_itimeout(&HFumbling, rnd(20));
 		break;
 	case GAUNTLETS_OF_POWER:
-		makeknown(uarmg->otyp);
-		flags.botl = 1; /* taken care of in attrib.c */
+		/*makeknown(uarmg->otyp);*/
+		/*flags.botl = 1;*/ /* taken care of in attrib.c */
+		adj_abon(uarmg, uarmg->spe);
 		break;
 	case GAUNTLETS_OF_DEXTERITY:
 		adj_abon(uarmg, uarmg->spe);
@@ -454,7 +553,12 @@ Gloves_off()
     takeoff_mask &= ~W_ARMG;
 
     switch(uarmg->otyp) {
+#ifdef JEDI
+	case PLASTEEL_GLOVES:
+#endif
 	case LEATHER_GLOVES:
+	case GAUNTLETS_OF_STEEL:
+	case GAUNTLETS_OF_TYPING:
 	    break;
 	case GAUNTLETS_OF_SWIMMING:
 	    if (u.uinwater) {
@@ -467,8 +571,9 @@ Gloves_off()
 		HFumbling = EFumbling = 0;
 	    break;
 	case GAUNTLETS_OF_POWER:
-	    makeknown(uarmg->otyp);
-	    flags.botl = 1; /* taken care of in attrib.c */
+	    /*makeknown(uarmg->otyp);*/
+	    /*flags.botl = 1;*/ /* taken care of in attrib.c */
+	    if (!cancelled_don) adj_abon(uarmg, -uarmg->spe);
 	    break;
 	case GAUNTLETS_OF_DEXTERITY:
 	    if (!cancelled_don) adj_abon(uarmg, -uarmg->spe);
@@ -518,7 +623,14 @@ Shield_on()
 	case ORCISH_SHIELD:
 	case DWARVISH_ROUNDSHIELD:
 	case LARGE_SHIELD:
+	case STEEL_SHIELD:
 	case SHIELD_OF_REFLECTION:
+	case FLAME_SHIELD:
+	case ICE_SHIELD:
+	case LIGHTNING_SHIELD:
+	case VENOM_SHIELD:
+	case SHIELD_OF_LIGHT:
+	case SHIELD_OF_MOBILITY:
 		break;
 	default: impossible(unknown_type, c_shield, uarms->otyp);
     }
@@ -538,7 +650,14 @@ Shield_off()
 	case ORCISH_SHIELD:
 	case DWARVISH_ROUNDSHIELD:
 	case LARGE_SHIELD:
+	case STEEL_SHIELD:
 	case SHIELD_OF_REFLECTION:
+	case FLAME_SHIELD:
+	case ICE_SHIELD:
+	case LIGHTNING_SHIELD:
+	case VENOM_SHIELD:
+	case SHIELD_OF_LIGHT:
+	case SHIELD_OF_MOBILITY:
 		break;
 	default: impossible(unknown_type, c_shield, uarms->otyp);
     }
@@ -559,6 +678,30 @@ Shirt_on()
 	default: impossible(unknown_type, c_shirt, uarmu->otyp);
     }
 */
+
+	/* Cursed underwear/shirt may lifesave a player. It is therefore a good idea to curse them. --Amy
+	   Nobles and activistors will be able to voluntarily make them cursed. */
+
+	if(uarmu->otyp == VICTORIAN_UNDERWEAR){
+
+		if ((Role_if(PM_NOBLEMAN) || Role_if(PM_NOBLEWOMAN) || Role_if(PM_ACTIVISTOR)) && !uarmu->cursed ) {if (yn_function("Do you want your sexy underwear to stick?", ynchars, 'n') == 'y') { curse(uarmu);
+			pline("Your fleecy underwear gently welds itself to your curved body!");
+			}
+		}
+
+		pline("The %s shapes your figure, but it isn't very practical to fight in.",
+				OBJ_NAME(objects[uarmu->otyp]));
+	}
+
+	if(uarmu->otyp == RUFFLED_SHIRT){
+
+		if ((Role_if(PM_NOBLEMAN) || Role_if(PM_NOBLEWOMAN) || Role_if(PM_ACTIVISTOR)) && !uarmu->cursed ) {if (yn_function("Do you want your noble shirt to stick?", ynchars, 'n') == 'y') { curse(uarmu);
+			pline("Your shirt tickles comfortably on your smooth skin!");
+			}
+		}
+
+	}
+
     return 0;
 }
 
@@ -620,6 +763,9 @@ Armor_gone()
 void
 Amulet_on()
 {
+    long oldprop =
+	u.uprops[objects[uamul->otyp].oc_oprop].extrinsic & ~WORN_AMUL;
+
     switch(uamul->otyp) {
 	case AMULET_OF_ESP:
 #if 0	/* OBSOLETE */
@@ -629,17 +775,26 @@ Amulet_on()
 	case AMULET_VERSUS_POISON:
 	case AMULET_OF_DRAIN_RESISTANCE:
 	case AMULET_OF_REFLECTION:
+	case AMULET_OF_DEPETRIFY:
 	case AMULET_OF_MAGICAL_BREATHING:
 	/* KMH, balance patch -- removed
 	case AMULET_OF_REGENERATION:
 	case AMULET_OF_CONFLICT:*/
 	case FAKE_AMULET_OF_YENDOR:
+	case AMULET_OF_SECOND_CHANCE:
 		break;
+	case AMULET_OF_UNDEAD_WARNING:
+		break;
+
 	case AMULET_OF_UNCHANGING:
 		if (Slimed) {
 		    Slimed = 0;
 		    flags.botl = 1;
 		}
+		break;
+	case AMULET_OF_FUMBLING:
+		if (!oldprop && !(HFumbling & ~TIMEOUT))
+			incr_itimeout(&HFumbling, rnd(20));
 		break;
 	case AMULET_OF_CHANGE:
 	    {
@@ -680,6 +835,7 @@ Amulet_on()
 		Strangled = 6;
 		break;
 	case AMULET_OF_RESTFUL_SLEEP:
+		if Race_if(PM_KOBOLT) break;
 		if(uamul->blessed) {
 			char buf[BUFSZ];
 			int sleeptime;
@@ -694,9 +850,12 @@ Amulet_on()
 				nomul(-sleeptime);
 				u.usleep = 1;
 				nomovemsg = "You wake up from your refreshing nap.";
-		HSleeping = rnd(100);
+		HSleeping = rnd(1000);
 			}                
-		} else HSleeping = rnd(100);
+		} else HSleeping = rnd(1000);
+		break;
+	case AMULET_OF_DATA_STORAGE:
+		You("feel full of knowledge.");
 		break;
 	case AMULET_OF_YENDOR:
 		break;
@@ -718,6 +877,8 @@ Amulet_on()
 void
 Amulet_off()
 {
+    int otyp = uamul->otyp;
+    long oldprop = u.uprops[objects[otyp].oc_oprop].extrinsic & ~WORN_AMUL;
     takeoff_mask &= ~W_AMUL;
 
     switch(uamul->otyp) {
@@ -738,9 +899,18 @@ Amulet_off()
 	/* KMH, balance patch -- added */
 	case AMULET_VERSUS_STONE:
 	case AMULET_OF_REFLECTION:
+	case AMULET_OF_SECOND_CHANCE:
+	case AMULET_OF_DEPETRIFY:
 	case AMULET_OF_CHANGE:
 	case AMULET_OF_UNCHANGING:
 	case FAKE_AMULET_OF_YENDOR:
+		break;
+	case AMULET_OF_UNDEAD_WARNING:
+		break;
+
+	case AMULET_OF_FUMBLING:
+		if (!oldprop && !(HFumbling & ~TIMEOUT))
+			HFumbling = EFumbling = 0;
 		break;
 	case AMULET_OF_MAGICAL_BREATHING:
 		if (Underwater) {
@@ -763,9 +933,12 @@ Amulet_off()
 		break;
 	case AMULET_OF_RESTFUL_SLEEP:
 		setworn((struct obj *)0, W_AMUL);
-		if (!ESleeping)
+		if (!ESleeping && !Race_if(PM_KOBOLT))
 			HSleeping = 0;
 		return;
+	case AMULET_OF_DATA_STORAGE:
+		You("feel intellectually poor.");
+		break;
 	/* KMH, balance patch -- added */
 	case AMULET_OF_FLYING:
 		setworn((struct obj *)0, W_AMUL);
@@ -803,6 +976,7 @@ register struct obj *obj;
 	case RIN_POISON_RESISTANCE:
 	case RIN_FIRE_RESISTANCE:
 	case RIN_COLD_RESISTANCE:
+	case RIN_FEAR_RESISTANCE:
 	case RIN_SHOCK_RESISTANCE:
 	case RIN_CONFLICT:
 	case RIN_TELEPORT_CONTROL:
@@ -818,7 +992,8 @@ register struct obj *obj;
 	case MEAT_RING:
 		break;
 	case RIN_SLEEPING:        
-		HSleeping = rnd(100);
+		if Race_if(PM_KOBOLT) break;
+		HSleeping = rnd(1000);
 		break;
 #if 0
 	case RIN_INDIGESTION:
@@ -842,6 +1017,9 @@ register struct obj *obj;
 		    pline("Suddenly you are transparent, but there!");
 		    makeknown(RIN_SEE_INVISIBLE);
 		}
+		break;
+	case RIN_TIMELY_BACKUP:
+		You("feel absolutely safe.");
 		break;
 	case RIN_INVISIBILITY:
 		if (!oldprop && !HInvis && !BInvis && !Blind) {
@@ -946,6 +1124,7 @@ boolean gone;
 	case RIN_POISON_RESISTANCE:
 	case RIN_FIRE_RESISTANCE:
 	case RIN_COLD_RESISTANCE:
+	case RIN_FEAR_RESISTANCE:
 	case RIN_SHOCK_RESISTANCE:
 	case RIN_CONFLICT:
 	case RIN_TELEPORT_CONTROL:
@@ -961,7 +1140,7 @@ boolean gone;
 	case MEAT_RING:
 		break;
 	case RIN_SLEEPING:
-		if (!ESleeping)
+		if (!ESleeping && !Race_if(PM_KOBOLT))
 			HSleeping = 0;
 		break;
 #if 0
@@ -970,6 +1149,9 @@ boolean gone;
 			HIndigestion = 0;
 		break;
 #endif
+	case RIN_TIMELY_BACKUP:
+		You("feel unsafe.");
+		break;
 	case RIN_WARNING:
 		see_monsters();
 		break;
@@ -1241,7 +1423,7 @@ dotakeoff()
 			  "  Use 'R' command to remove accessories." : "");
 		return 0;
 	}
-	if (armorpieces > 1)
+	if (armorpieces > 0)
 		otmp = getobj(clothes, "take off");
 	if (otmp == 0) return(0);
 	if (!(otmp->owornmask & W_ARMOR)) {
@@ -1291,7 +1473,7 @@ doremring()
 		      "  Use 'T' command to take off armor." : "");
 		return(0);
 	}
-	if (Accessories != 1) otmp = getobj(accessories, "remove");
+	if (Accessories > 0) otmp = getobj(accessories, "remove");
 	if(!otmp) return(0);
 	if(!(otmp->owornmask & (W_RING | W_AMUL | W_TOOL))) {
 		You("are not wearing that.");
@@ -1359,6 +1541,10 @@ register struct obj *otmp;
 		else if (is_boots(otmp)) {
 			nomovemsg = "You finish taking off your boots.";
 			afternmv = Boots_off;
+		     }
+		else if (otmp->otyp == VICTORIAN_UNDERWEAR) {
+			nomovemsg = "You finish taking off your impractical underwear.";
+			afternmv = Shirt_off;
 		     }
 		else {
 			nomovemsg = "You finish taking off your suit.";
@@ -1429,12 +1615,23 @@ boolean noisy;
 	    is_shirt(otmp) ? c_shirt :
 #endif
 	    is_suit(otmp) ? c_suit : 0;
-    if (which && cantweararm(youmonst.data) &&
+    if (which && cantweararm(youmonst.data) && !Race_if(PM_TRANSFORMER)  &&
 	    /* same exception for cloaks as used in m_dowear() */
 	    (which != c_cloak || youmonst.data->msize != MZ_SMALL) &&
 	    (racial_exception(&youmonst, otmp) < 1)) {
-	if (noisy) pline_The("%s will not fit on your body.", which);
-	return 0;
+	if (noisy) { pline_The("%s will not fit on your body.", which);
+
+		if (yn("Try to put it on anyway?") == 'y') {
+			if (rn2(2)) { 	u.ublesscnt += rnz(5);
+			pline("Feeling uncomfortable, you decide to stop trying.");
+		    return 0;}
+			}
+
+		else {return(0);}
+
+		}
+
+
     } else if (otmp->owornmask & W_ARMOR) {
 	if (noisy) already_wearing(c_that_);
 	return 0;
@@ -1456,12 +1653,33 @@ boolean noisy;
 	if (uarmh) {
 	    if (noisy) already_wearing(an(c_helmet));
 	    err++;
-	} else if (Upolyd && has_horns(youmonst.data) && !is_flimsy(otmp)) {
+	} else if (Upolyd && has_horns(youmonst.data) && !Race_if(PM_TRANSFORMER) && !is_flimsy(otmp)) {
 	    /* (flimsy exception matches polyself handling) */
 	    if (noisy)
 		pline_The("%s won't fit over your horn%s.",
 			  c_helmet, plur(num_horns(youmonst.data)));
 	    err++;
+	} else if (Role_if(PM_COURIER)) {
+	    if (noisy)
+		pline("You have no head!");
+	    err++;
+	/* Actually, you got shot in the head by Benny, so you aren't technically without a head. But for the sake of it,
+	   let's pretend the courier actually doesn't have one. By the way, Benny is the "some random guy" quest nemesis
+	   in the courier quest, since all Fallout New Vegas NPCs are undistinguishable clones of each other. --Amy */
+
+	} else if (Race_if(PM_ILLITHID)) {
+	    if (noisy)
+		pline("Your tentacles prevent that action!");
+	    err++;
+
+#ifdef JEDI
+	} else if (Upolyd && (youmonst.data == &mons[PM_MIND_FLAYER] ||
+			      youmonst.data == &mons[PM_MASTER_MIND_FLAYER]) &&
+			otmp->otyp == PLASTEEL_HELM){
+		if (noisy)
+			pline_The("%s won't fit over your tentacles.", xname(otmp));
+		err++;
+#endif
 	} else
 	    *mask = W_ARMH;
     } else if (is_shield(otmp)) {
@@ -1489,7 +1707,7 @@ boolean noisy;
 	if (uarmf) {
 	    if (noisy) already_wearing(c_boots);
 	    err++;
-	} else if (Upolyd && slithy(youmonst.data)) {
+	} else if (Upolyd && slithy(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	    if (noisy) You("have no feet...");	/* not body_part(FOOT) */
 	    err++;
 	} else if (Upolyd && youmonst.data->mlet == S_CENTAUR) {
@@ -1577,9 +1795,37 @@ dowear()
 
 	/* cantweararm checks for suits of armor */
 	/* verysmall or nohands checks for shields, gloves, etc... */
-	if ((verysmall(youmonst.data) || nohands(youmonst.data))) {
-		pline("Don't even bother.");
-		return(0);
+	if (!Race_if(PM_TRANSFORMER) && !Race_if(PM_HUMAN_WRAITH) && (verysmall(youmonst.data) || nohands(youmonst.data))) {
+		pline("Don't even bother. Your current form can't realistically wear armor!");
+
+		if (yn("But you may try to wear something anyway. Do it?") == 'y') {
+			if (rn2(3)) { 		make_stunned(HStun + rnd(40),FALSE);
+			pline("Damn! You just stagger around aimlessly!");
+		    return 1;}
+		}
+		else {return(0);}
+
+	}
+
+	if (Race_if(PM_HUMAN_WRAITH) && (u.uhpmax < 2 || u.uhp < 2) ) {pline("You don't have enough health to wear armor!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
+	}
+
+	if (Race_if(PM_HUMAN_WRAITH)) {
+
+		if (yn("Putting on armor as a wraith will permanently damage your health. Do it anyway?") == 'y') {
+
+			u.uhp -= 1;
+			u.uhpmax -= 1;
+			if (Upolyd) {
+				u.mh -= 1;
+			u.mhmax -= 1;
+			}
+
+		}
+		else return 0;
+
 	}
 
 	otmp = getobj(clothes, "wear");
@@ -1617,9 +1863,16 @@ dowear()
 		if(is_helmet(otmp)) afternmv = Helmet_on;
 		if(is_gloves(otmp)) afternmv = Gloves_on;
 		if(otmp == uarm) afternmv = Armor_on;
+		if(is_cloak(otmp)) afternmv = Cloak_on;
+		if (is_shield(otmp)) afternmv = Shield_on;
+		if (is_shirt(otmp)) afternmv = Shirt_on;
 		nomovemsg = "You finish your dressing maneuver.";
+		on_msgdel(otmp); /* the game is supposed to tell you what exactly you are wearing! --Amy */
 	} else {
 		if(is_cloak(otmp)) (void) Cloak_on();
+		if(is_boots(otmp)) (void) Boots_on();
+		if(is_gloves(otmp)) (void) Gloves_on();
+		if(otmp == uarm) (void) Armor_on();
 		if (is_shield(otmp)) (void) Shield_on();
 #ifdef TOURIST
 		if (is_shirt(otmp)) (void) Shirt_on();
@@ -1661,7 +1914,7 @@ doputon()
 	if(otmp == uquiver)
 		setuqwep((struct obj *) 0);
 	if(otmp->oclass == RING_CLASS || otmp->otyp == MEAT_RING) {
-		if(nolimbs(youmonst.data)) {
+		if(nolimbs(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 			You("cannot make the ring stick to your body.");
 			return(0);
 		}
@@ -1751,6 +2004,13 @@ doputon()
 		}
 		if (otmp->oartifact && !touch_artifact(otmp, &youmonst))
 		    return 1;
+#ifdef JEDI
+		if (uarmh && uarmh->otyp == PLASTEEL_HELM){
+			pline("The %s covers your whole face. You need to remove it first.", xname(uarmh));
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			return 1;
+		}
+#endif
 		Blindf_on(otmp);
 		return(1);
 	}
@@ -1807,11 +2067,29 @@ find_ac()
             else uac -= (u.ulevel / 2) + 2;
 	}
 	if (Race_if(PM_DOPPELGANGER) && !uarm) uac -= (u.ulevel / 4) + 1;
-	if (Race_if(PM_HUMAN_WEREWOLF) && !uarm) uac -= (u.ulevel / 4) + 1;
+	if (Race_if(PM_HAXOR)) uac -= 2;
+	if ((Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Role_if(PM_LUNATIC)) && !uarm) uac -= (u.ulevel / 4) + 1;
+
+	if (Race_if(PM_HUMAN_WRAITH)) uac -= u.ulevel;
 
 	/* Harlow - make sure it doesn't wrap around ;) */
 	uac = (uac < UAC_MIN ? UAC_MIN : (uac > UAC_LIM ? UAC_LIM : uac));
 	
+	/*Corsets suck*/
+	if(uarmu && uarmu->otyp == VICTORIAN_UNDERWEAR){
+		uac += 2; //flat penalty. Something in the code "corrects" ac values >10, this is a kludge.
+	}
+
+	/* A higher-level player will have a small AC boost to compensate for monsters being more dangerous. --Amy */
+    if (u.ulevel >= 5) uac -= 1;
+    if (u.ulevel >= 10) uac -= 1;
+    if (u.ulevel >= 15) uac -= 1;
+    if (u.ulevel >= 20) uac -= 1;
+    if (u.ulevel >= 25) uac -= 1;
+    if (u.ulevel >= 30) uac -= 1;
+
+	/* After all, a couatl or archon can still hit a -40 AC player without any problems... */
+
 	if(uac != u.uac){
 		u.uac = uac;
 		flags.botl = 1;
@@ -1970,7 +2248,7 @@ register struct obj *otmp;
 
 	/* special ring checks */
 	if (otmp == uright || otmp == uleft) {
-	    if (nolimbs(youmonst.data)) {
+	    if (nolimbs(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 		pline_The("ring is stuck.");
 		return 0;
 	    }
@@ -1995,7 +2273,7 @@ register struct obj *otmp;
 		    c_gloves, is_sword(uwep) ? c_sword : c_weapon);
 		uwep->bknown = TRUE;
 		return 0;
-	    } else if (Glib) {
+	    } else if (IsGlib) {
 		You_cant("take off the slippery %s with your slippery %s.",
 			 c_gloves, makeplural(body_part(FINGER)));
 		return 0;
@@ -2369,6 +2647,13 @@ register schar delta;
 		if (delta) {
 			makeknown(uarmg->otyp);
 			ABON(A_DEX) += (delta);
+		}
+		flags.botl = 1;
+	}
+	if (uarmg && uarmg == otmp && otmp->otyp == GAUNTLETS_OF_POWER) {
+		if (delta) {
+			makeknown(uarmg->otyp);
+			ABON(A_STR) += (delta);
 		}
 		flags.botl = 1;
 	}

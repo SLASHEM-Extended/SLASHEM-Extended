@@ -819,7 +819,7 @@ extern int sdlgl_map_win;
 #define MIN_HISTORY  10
 #define MAX_HISTORY  200   /* max history saved on message window */
 
-typedef unsigned short glyphidx_t;
+typedef unsigned /*short*/long glyphidx_t;
 
 struct GlyphPair
 {

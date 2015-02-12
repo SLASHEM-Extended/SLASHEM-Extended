@@ -3,7 +3,7 @@
 #
 
 LEVEL: "lich"
-#MESSAGE: "You feel deathly cold."
+MESSAGE: "You feel deathly cold."
 RANDOM_MONSTERS: 'L','W','V'
 
 ROOM: "ordinary" , unlit, random, random, (05,05)

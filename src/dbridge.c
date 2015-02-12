@@ -754,6 +754,14 @@ int x,y;
 
 	lev1 = &levl[x][y];
 	if (lev1->typ != DRAWBRIDGE_DOWN) return;
+	if (m_at(x,y) && bigmonst(m_at(x,y)->data)) {
+		pline("A monster blocks the drawbridge with its weight.");
+		return; /* Sorry Patric, but I decided "big" monsters are supposed to big enough so they resist crushing. */
+	}
+	if (rn2(3)==0) {
+		pline("The mechanism seems to have something stuck in it and won't close.");
+		return; /* And the odds of this happening may well be higher to further stop the player's exploits. --Amy */
+	}
 	x2 = x; y2 = y;
 	get_wall_for_db(&x2,&y2);
 	if (cansee(x,y) || cansee(x2,y2))

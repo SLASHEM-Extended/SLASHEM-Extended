@@ -381,6 +381,9 @@ aggravate()
 {
 	register struct monst *mtmp;
 
+	incr_itimeout(&HAggravate_monster, rnd( (monster_difficulty() + 1) * 5));
+	/* gotta make sure aggravate monster actually does something after all! --Amy */
+
 	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 	    if (!DEADMONSTER(mtmp)) {
 		mtmp->msleeping = 0;
@@ -434,8 +437,10 @@ nasty(mcast)
 	msummon((struct monst *) 0);	/* summons like WoY */
 	count++;
     } else {
-	tmp = (u.ulevel > 3) ? u.ulevel/3 : 1; /* just in case -- rph */
+	tmp = (u.ulevel > 6) ? u.ulevel /6 : 1; /* just in case -- rph */
 	/* if we don't have a casting monster, the nasties appear around you */
+	if (rnd(20) > 19) { tmp = (tmp * (rnd(5))); } /* now, summoning storms are generally less nasty */
+	if (rnd(40) > 39) { tmp = (tmp * (rnd(7))); } /* but occasionally they will summon a gigantic horde of stuff! --Amy */
 	bypos.x = u.ux;
 	bypos.y = u.uy;
 	for(i = rnd(tmp); i > 0; --i)
@@ -453,11 +458,12 @@ nasty(mcast)
 		if (mcast &&
 		    !enexto(&bypos, mcast->mux, mcast->muy, &mons[makeindex]))
 		    continue;
-		if ((mtmp = makemon(&mons[makeindex],
+		/* if ((mtmp = makemon(&mons[makeindex],
 				    bypos.x, bypos.y, NO_MM_FLAGS)) != 0) {
 		    mtmp->msleeping = mtmp->mpeaceful = mtmp->mtame = 0;
 		    set_malign(mtmp);
-		} else /* GENOD? */
+		} else GENOD? */
+/* changing summon nasties so it can summon everything --Amy */
 		    mtmp = makemon((struct permonst *)0,
 					bypos.x, bypos.y, NO_MM_FLAGS);
 		if(mtmp && (mtmp->data->maligntyp == 0 ||
@@ -556,45 +562,87 @@ wizdead()
 
 const char * const random_insult[] = {
 	"antic",
+	"ass-fucker",
+	"asshole",
+	"assmunch",
+	"bitch",
 	"blackguard",
 	"caitiff",
 	"chucklehead",
 	"coistrel",
+	"coward",
 	"craven",
+	"crazy person",
 	"cretin",
+	"crone",
+	"crybaby",
+	"cunt",
 	"cur",
 	"dastard",
 	"demon fodder",
 	"dimwit",
+	"dirtbag",
 	"dolt",
+	"emo",
+	"faggot",
+	"failure",
 	"fool",
 	"footpad",
+	"fucktard",
+	"gay fag",
+	"idiot",
+	"ignoramus",
 	"imbecile",
 	"knave",
+	"lamer",
+	"loser",
+	"maggot",
 	"maledict",
 	"miscreant",
+	"mother-fucker",
 	"niddering",
+	"pervert",
+	"piece of shit",
+	"pig",
 	"poltroon",
+	"prep",
+	"pudding farmer",
 	"rattlepate",
 	"reprobate",
+	"retard",
 	"scapegrace",
+	"shitbag",
+	"simpleton",
+	"startscummer",
+	"stinker",
+	"sucker",
+	"useless creature",
 	"varlet",
 	"villein",	/* (sic.) */
+	"weakling",
+	"whiner",
+	"wimp",
 	"wittol",
 	"worm",
+	"worthless human being",
 	"wretch",
 };
 
 const char * const random_malediction[] = {
+	"Hast thou written thine last wish? Thou",
 	"Hell shall soon claim thy remains,",
 	"I chortle at thee, thou pathetic",
+	"I will eat thee alive,",
 	"Prepare to die, thou",
 	"Resistance is useless,",
 	"Surrender or die, thou",
 	"There shall be no mercy, thou",
+	"Thine carcass shalt burn,",
+	"This is thine end,",
 	"Thou shalt repent of thy cunning,",
 	"Thou art as a flea to me,",
 	"Thou art doomed,",
+	"Thou standest no chance,",
 	"Thy fate is sealed,",
 	"Verily, thou shalt be one dead"
 };
@@ -624,7 +672,7 @@ register struct monst	*mtmp;
 		    verbalize("%s %s!",
 			  random_malediction[rn2(SIZE(random_malediction))],
 			  random_insult[rn2(SIZE(random_insult))]);
-	} else if(is_lminion(mtmp)) {
+	} else if(/*is_lminion(mtmp)*/mtmp->data->mlet == S_ANGEL || mtmp->mnum == PM_CHRISTMAS_CHILD || mtmp->mnum == PM_HELLS_ANGEL) /* give angelic maledictions to all angels --Amy */ {
 		com_pager(rn2(QTN_ANGELIC - 1 + (Hallucination ? 1 : 0)) +
 			      QT_ANGELIC);
 	} else {

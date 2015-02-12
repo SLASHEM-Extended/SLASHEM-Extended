@@ -6,6 +6,9 @@
 #include "lev.h"	/* for checking save modes */
 
 STATIC_DCL void NDECL(stoned_dialogue);
+#ifdef CONVICT
+STATIC_DCL void NDECL(phasing_dialogue);
+#endif /* CONVICT */
 STATIC_DCL void NDECL(vomiting_dialogue);
 STATIC_DCL void NDECL(choke_dialogue);
 STATIC_DCL void NDECL(slime_dialogue);
@@ -20,7 +23,9 @@ STATIC_DCL void FDECL(cleanup_burn, (genericptr_t,long));
 
 /* He is being petrified - dialogue by inmet!tower */
 static NEARDATA const char * const stoned_texts[] = {
-	"You are slowing down.",		/* 5 */
+	"You are slowing down.",		/* 7 */
+	"You are feeling a dangerous process in your body.",		/* 6 */
+	"You are struggling to keep your movements.",		/* 5 */
 	"Your limbs are stiffening.",		/* 4 */
 	"Your limbs have turned to stone.",	/* 3 */
 	"You have turned to stone.",		/* 2 */
@@ -34,14 +39,37 @@ stoned_dialogue()
 
 	if (i > 0L && i <= SIZE(stoned_texts))
 		pline(stoned_texts[SIZE(stoned_texts) - i]);
-	if (i == 5L)
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (i == 7L)
 		HFast = 0L;
-	if (i == 3L) {
+	if (i == 1L) {
 		nomul(-3);
 		nomovemsg = 0;
 	}
 	exercise(A_DEX, FALSE);
 }
+
+#ifdef CONVICT
+STATIC_OVL void
+phasing_dialogue()
+{
+    if (Phasing == 15) {
+        if (!Hallucination) {
+            Your("body is beginning to feel more solid.");
+        } else {
+            You_feel("more distant from the spirit world.");
+        }
+        stop_occupation();
+    } else if (Phasing == 1) {
+        if (!Hallucination) {
+            Your("body is solid again.");
+        } else {
+            You_feel("totally separated from the spirit world.");
+        }
+        stop_occupation();
+    }
+}
+#endif /* CONVICT */
 
 
 /* He is getting sicker and sicker prior to vomiting */
@@ -103,11 +131,14 @@ choke_dialogue()
 		pline(choke_texts2[SIZE(choke_texts2) - i], body_part(NECK));
 	    else {
 		const char *str = choke_texts[SIZE(choke_texts)-i];
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
-		if (index(str, '%'))
+		if (index(str, '%')) {
 		    pline(str, hcolor(NH_BLUE));
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */ }
 		else
 		    pline(str);
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    }
 	}
 	exercise(A_STR, FALSE);
@@ -124,7 +155,7 @@ static NEARDATA const char * const slime_texts[] = {
 STATIC_OVL void
 slime_dialogue()
 {
-	register long i = (Slimed & TIMEOUT) / 2L;
+	register long i = (Slimed & TIMEOUT) / 20L;
 
 	if (((Slimed & TIMEOUT) % 2L) && i >= 0L
 		&& i < SIZE(slime_texts)) {
@@ -134,10 +165,13 @@ slime_dialogue()
 		if (i == 4L) {	/* "you are turning green" */
 		    if (!Blind)	/* [what if you're already green?] */
 			pline(str, hcolor(NH_GREEN));
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		} else
 		    pline(str, an(Hallucination ? rndmonnam() : "green slime"));
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    } else
 		pline(str);
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	}
 	if (i == 3L) {	/* limbs becoming oozy */
 	    HFast = 0L;	/* lose intrinsic speed */
@@ -155,6 +189,13 @@ burn_away_slime()
 	    Slimed = 0L;
 	    flags.botl = 1;
 	}
+
+	if (Frozen) { /* Fire also cures freezing. --Amy */
+		pline_The("heat melts the ice surrounding you!");
+		make_frozen(0L, FALSE);
+		flags.botl = 1;
+	}
+
 	return;
 }
 
@@ -175,6 +216,38 @@ nh_timeout()
 
 	if (flags.friday13) baseluck -= 1;
 
+	if (u.legscratching > 1 && !Role_if(PM_BLEEDER) && moves % 1000 == 0) u.legscratching--; /* always time out once per 1000 turns --Amy */
+
+	if (!rn2(1000) && Role_if(PM_ACTIVISTOR) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
+		You_hear("maniacal laughter!");
+	    attrcurse();
+	}
+
+	/* Nymph race randomly gets punished --Amy */
+	if (!rn2(2000) && Race_if(PM_NYMPH)) {
+			punishx();
+	}
+
+	/* special bleeder handling --Amy */
+	if (!rn2(200) && Role_if(PM_BLEEDER)) {
+		You("are losing blood!");
+		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
+	}
+
+	if (!rn2(1000) && Role_if(PM_BLEEDER)) {
+		You("are losing lots of blood!");
+		u.uhp -= 1;
+		u.uhpmax -= 1;
+		u.uen -= 1;
+		u.uenmax -= 1;
+		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
+	}
+
+	if (!rn2(3000) && Role_if(PM_BLEEDER)) {
+		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
+		u.legscratching++;
+	}
+
 	if (u.uluck != baseluck &&
 		moves % (u.uhave.amulet || u.ugangr ? 300 : 600) == 0) {
 	/* Cursed luckstones stop bad luck from timing out; blessed luckstones
@@ -185,22 +258,25 @@ nh_timeout()
 	    register int time_luck = stone_luck(FALSE);
 	    boolean nostone = !carrying(LUCKSTONE) && !stone_luck(TRUE);
 
-	    if(u.uluck > baseluck && (nostone || time_luck < 0))
+	    if(u.uluck > baseluck && (nostone || time_luck < 0 || !rn2(10) )) /* now luck will also time out if you do have a luckstone; it just times out more slowly --Amy */
 		u.uluck--;
-	    else if(u.uluck < baseluck && (nostone || time_luck > 0))
+	    else if(u.uluck < baseluck && (nostone || time_luck > 0 || !rn2(10) ))
 		u.uluck++;
 	}
 
 	/* WAC -- check for timeout of specials */
 	tech_timeout();
 
+#ifdef CONVICT
+    if(Phasing) phasing_dialogue();
+#endif /* CONVICT */
 	if(u.uinvulnerable) return; /* things past this point could kill you */
 	if(Stoned) stoned_dialogue();
 	if(Slimed) slime_dialogue();
 	if(Vomiting) vomiting_dialogue();
 	if(Strangled) choke_dialogue();
 	if(u.mtimedone && !--u.mtimedone) {
-		if (Unchanging)
+		if (Unchanging || Race_if(PM_UNGENOMOLD) )
 			u.mtimedone = rnd(100*youmonst.data->mlevel + 1);
 		else
 			rehumanize();
@@ -257,6 +333,13 @@ nh_timeout()
 			make_vomiting(0L, TRUE);
 			break;
 		case SICK:
+
+			if (Role_if(PM_COOK) && rn2(2)) {
+			u.usick_type = 0;
+			pline("You survived the poisoning!");
+			break;
+			}
+
 			You("die from your illness.");
 			killer_format = KILLED_BY_AN;
 			killer = u.usick_cause;
@@ -293,6 +376,10 @@ nh_timeout()
 			if (!Shock_resistance)
 				You("feel a little static cling.");
 			break;
+		case AGGRAVATE_MONSTER:
+			if (!Aggravate_monster)
+				You("feel less aggravated.");
+			break;
 		case POISON_RES:
 			if (!Poison_resistance)
 				You("feel a little less healthy.");
@@ -300,6 +387,18 @@ nh_timeout()
 		case DISINT_RES:
 			if (!Disint_resistance)
 				You("feel a little less firm.");
+			break;
+		case ACID_RES:
+			if (!Acid_resistance)
+				You("feel more vulnerable to acid.");
+			break;
+		case STONE_RES:
+			if (!Stone_resistance)
+				You("feel a little less limber.");
+			break;
+		case SICK_RES:
+			if (!Sick_resistance)
+				You("feel worried about getting sick.");
 			break;
 		case TELEPORT:
 			if (!Teleportation)
@@ -325,6 +424,12 @@ nh_timeout()
 			if (!Invulnerable)
 				You("are no longer invulnerable.");
 			break;
+		case REFLECTING:
+			if (!Blind)
+				pline("The shimmering globe around you flickers and vanishes.");
+			else
+				pline("You don't feel very smooth anymore.");
+			break;
 		case CONFUSION:
 			HConfusion = 1; /* So make_confused works properly */
 			make_confused(0L, TRUE);
@@ -333,6 +438,26 @@ nh_timeout()
 		case STUNNED:
 			HStun = 1;
 			make_stunned(0L, TRUE);
+			stop_occupation();
+			break;
+		case NUMBED:
+			HNumbed = 1;
+			make_numbed(0L, TRUE);
+			stop_occupation();
+			break;
+		case FEARED:
+			HFeared = 1;
+			make_feared(0L, TRUE);
+			stop_occupation();
+			break;
+		case FROZEN:
+			HFrozen = 1;
+			make_frozen(0L, TRUE);
+			stop_occupation();
+			break;
+		case BURNED:
+			HBurned = 1;
+			make_burned(0L, TRUE);
 			stop_occupation();
 			break;
 		case BLINDED:
@@ -366,16 +491,24 @@ nh_timeout()
 			break;
 		case SLEEPING:
 			if (unconscious() || Sleep_resistance)
-				HSleeping += rnd(100);
+				HSleeping += rnd(1000);
 			else if (Sleeping) {
 				You("fall asleep.");
 				sleeptime = rnd(20);
 				fall_asleep(-sleeptime, TRUE);
-				HSleeping += sleeptime + rnd(100);
+				HSleeping += sleeptime + rnd(1000);
 			}
 			break;
 		case LEVITATION:
 			(void) float_down(I_SPECIAL|TIMEOUT, 0L);
+			break;
+		case BLACK_NG_WALLS:
+
+			pline(Hallucination ? "Rien ne va plus... You seem to remember this slogan being printed on all official Pokemon games' box covers. It's like 'Rien ne va plus' is the official Pokemon slogan!" : "Rien ne va plus...");
+			/* Of course it's actually the Roulette slogan. --Amy */
+
+			if (Upolyd) losehp(u.mhmax, "failing to defeat Blacky in time", KILLED_BY);
+			losehp(u.uhpmax, "failing to defeat Blacky in time", KILLED_BY);
 			break;
 		case STRANGLED:
 			killer_format = KILLED_BY;
@@ -407,6 +540,116 @@ nh_timeout()
 		case DETECT_MONSTERS:
 			see_monsters();
 			break;
+
+		case DEAC_FIRE_RES:
+			pline("You are no longer prevented from having fire resistance.");
+			break;
+		case DEAC_COLD_RES:
+			pline("You are no longer prevented from having cold resistance.");
+			break;
+		case DEAC_SLEEP_RES:
+			pline("You are no longer prevented from having sleep resistance.");
+			break;
+		case DEAC_DISINT_RES:
+			pline("You are no longer prevented from having disintegration resistance.");
+			break;
+		case DEAC_SHOCK_RES:
+			pline("You are no longer prevented from having shock resistance.");
+			break;
+		case DEAC_POISON_RES:
+			pline("You are no longer prevented from having poison resistance.");
+			break;
+		case DEAC_DRAIN_RES:
+			pline("You are no longer prevented from having drain resistance.");
+			break;
+		case DEAC_SICK_RES:
+			pline("You are no longer prevented from having sickness resistance.");
+			break;
+		case DEAC_ANTIMAGIC:
+			pline("You are no longer prevented from having magic resistance.");
+			break;
+		case DEAC_ACID_RES:
+			pline("You are no longer prevented from having acid resistance.");
+			break;
+		case DEAC_STONE_RES:
+			pline("You are no longer prevented from having petrification resistance.");
+			break;
+		case DEAC_FEAR_RES:
+			pline("You are no longer prevented from having fear resistance.");
+			break;
+		case DEAC_SEE_INVIS:
+			pline("You are no longer prevented from having see invisible.");
+			break;
+		case DEAC_TELEPAT:
+			pline("You are no longer prevented from having telepathy.");
+			break;
+		case DEAC_WARNING:
+			pline("You are no longer prevented from having warning.");
+			break;
+		case DEAC_SEARCHING:
+			pline("You are no longer prevented from having automatic searching.");
+			break;
+		case DEAC_CLAIRVOYANT:
+			pline("You are no longer prevented from having clairvoyance.");
+			break;
+		case DEAC_INFRAVISION:
+			pline("You are no longer prevented from having infravision.");
+			break;
+		case DEAC_DETECT_MONSTERS:
+			pline("You are no longer prevented from having detect monsters.");
+			break;
+		case DEAC_INVIS:
+			pline("You are no longer prevented from having invisibility.");
+			break;
+		case DEAC_DISPLACED:
+			pline("You are no longer prevented from having displacement.");
+			break;
+		case DEAC_STEALTH:
+			pline("You are no longer prevented from having stealth.");
+			break;
+		case DEAC_JUMPING:
+			pline("You are no longer prevented from having jumping.");
+			break;
+		case DEAC_TELEPORT_CONTROL:
+			pline("You are no longer prevented from having teleport control.");
+			break;
+		case DEAC_FLYING:
+			pline("You are no longer prevented from having flying.");
+			break;
+		case DEAC_MAGICAL_BREATHING:
+			pline("You are no longer prevented from having magical breathing.");
+			break;
+		case DEAC_PASSES_WALLS:
+			pline("You are no longer prevented from having phasing.");
+			break;
+		case DEAC_SLOW_DIGESTION:
+			pline("You are no longer prevented from having slow digestion.");
+			break;
+		case DEAC_HALF_SPDAM:
+			pline("You are no longer prevented from having half spell damage.");
+			break;
+		case DEAC_HALF_PHDAM:
+			pline("You are no longer prevented from having half physical damage.");
+			break;
+		case DEAC_REGENERATION:
+			pline("You are no longer prevented from having regeneration.");
+			break;
+		case DEAC_ENERGY_REGENERATION:
+			pline("You are no longer prevented from having energy regeneration.");
+			break;
+		case DEAC_POLYMORPH_CONTROL:
+			pline("You are no longer prevented from having polymorph control.");
+			break;
+		case DEAC_FAST:
+			pline("You are no longer prevented from having speed.");
+			break;
+		case DEAC_REFLECTING:
+			pline("You are no longer prevented from having reflection.");
+			break;
+		case DEAC_FREE_ACTION:
+			pline("You are no longer prevented from having free action.");
+			break;
+
 		}
 	}
 
@@ -452,7 +695,7 @@ struct obj *obj, *old;
 	if (obj->oldtyp == obj->otyp)
 	    obj->oldtyp = STRANGE_OBJECT;
 	else
-	    (void) start_timer(rn1(500,500), TIMER_OBJECT,
+	    (void) start_timer(/*rn1(500,500)*/rnz(1000), TIMER_OBJECT,
 			UNPOLY_OBJ, (genericptr_t) obj);
 	return;
 }
@@ -577,6 +820,7 @@ boolean your_fault;
 	    /* Uhoh.  !i == newcham wasn't able to make the polymorph...*/
 	    if (transform_msg) pline("%s shudders.", Monnam(mtmp));
 	    if (i) mtmp->mhp -= rnd(30);
+	    if (!rn2(200)) mtmp->mhp = 0; /* chance that the monster doesn't survive the polymorph --Amy */
 	    if (!i || (mtmp->mhp <= 0)) {
 		if (your_fault) xkilled(mtmp, 3);
 		else mondead(mtmp);
@@ -587,7 +831,42 @@ boolean your_fault;
 	    /* Stop any old timers.   */
 	    (void) stop_timer(UNPOLY_MON, (genericptr_t) mtmp);
 	    /* Lengthen unpolytime - was 500,500  for player */
-	    (void) start_timer(when ? when : rn1(1000, 1000), TIMER_MONSTER,
+	    (void) start_timer(when ? when : /*rn1(1000, 1000)*/rnz(2000), TIMER_MONSTER,
+		    UNPOLY_MON, (genericptr_t) mtmp);
+	}
+	return i;
+}
+
+int
+mon_spec_polyX(mtmp, type, when, polyspot, transform_msg, system_shock,
+	your_fault)
+struct monst *mtmp;
+struct permonst *type;
+long when;
+boolean polyspot;
+boolean transform_msg;
+boolean system_shock;
+boolean your_fault;
+{
+	int i;
+
+	i = newcham(mtmp, type, polyspot, transform_msg);
+	if (system_shock && (!i || !rn2(25))) {
+	    /* Uhoh.  !i == newcham wasn't able to make the polymorph...*/
+	    if (transform_msg) pline("%s shudders.", Monnam(mtmp));
+	    if (i) mtmp->mhp -= rnd(30);
+	    if (!rn2(200)) mtmp->mhp = 0; /* chance that the monster doesn't survive the polymorph --Amy */
+	    if (!i || (mtmp->mhp <= 0)) {
+		if (your_fault) xkilled(mtmp, 3);
+		else mondead(mtmp);
+		i = -1;
+	    }
+	}
+	if (i > 0) {
+	    /* Stop any old timers.   */
+	    (void) stop_timer(UNPOLY_MON, (genericptr_t) mtmp);
+	    /* Lengthen unpolytime - was 500,500  for player */
+	    (void) start_timer(when ? when : /*rn1(1000, 1000)*/999999, TIMER_MONSTER,
 		    UNPOLY_MON, (genericptr_t) mtmp);
 	}
 	return i;
@@ -836,7 +1115,7 @@ long timeout;
 		       while it's in your inventory */
 		    if ((yours && !silent) ||
 			(carried(egg) && mon->data->mlet == S_DRAGON)) {
-			if ((mon2 = tamedog(mon, (struct obj *)0)) != 0) {
+			if ((mon2 = tamedog(mon, (struct obj *)0, FALSE)) != 0) {
 			    mon = mon2;
 			    if (carried(egg) && mon->data->mlet != S_DRAGON)
 				mon->mtame = 20;
@@ -1415,6 +1694,11 @@ long timeout;
 	    case GREEN_LIGHTSABER: 
 #ifdef D_SABER
 	    case BLUE_LIGHTSABER:
+#if 0
+	    case VIOLET_LIGHTSABER:
+	    case WHITE_LIGHTSABER:
+	    case YELLOW_LIGHTSABER:
+#endif
 #endif
 	    case RED_LIGHTSABER:
 	        /* Callback is checked every 5 turns - 
@@ -1570,10 +1854,21 @@ begin_burn(obj, already_lit)
 	    case RED_LIGHTSABER:
 #ifdef D_SABER
 	    case BLUE_LIGHTSABER:
+#if 0
+	    case VIOLET_LIGHTSABER:
+	    case WHITE_LIGHTSABER:
+	    case YELLOW_LIGHTSABER:
+#endif
 #endif
 	    case GREEN_LIGHTSABER:
 	    	turns = 1;
     	    	radius = 1;
+#ifdef JEDI
+		if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE){
+			do_timer = FALSE;
+			obj->lamplit = 1;
+		}
+#endif
 		break;
 #endif
 	    case POT_OIL:
@@ -1670,6 +1965,9 @@ end_burn(obj, timer_attached)
 	}
 
 	if (obj->otyp == MAGIC_LAMP || obj->otyp == MAGIC_CANDLE ||
+#ifdef JEDI
+		obj->oartifact == ART_LIGHTSABER_PROTOTYPE ||
+#endif
 		artifact_light(obj))
 	    timer_attached = FALSE;
 
@@ -2124,7 +2422,6 @@ obj_stop_timers(obj)
     obj->timed = 0;
 }
 
-
 /*
  * Stop all timers attached to this monster.  We can get away with this because
  * all monster pointers are unique.
@@ -2289,7 +2586,7 @@ obj_is_local(obj)
 	case OBJ_CONTAINED:	return obj_is_local(obj->ocontainer);
 	case OBJ_MINVENT:	return mon_is_local(obj->ocarry);
     }
-    panic("obj_is_local");
+    panic("obj_is_local: %s, %d", cxname(obj), obj->where); /* improvement by Patric Mueller */
     return FALSE;
 }
 
@@ -2461,7 +2758,7 @@ relink_timers(ghostly)
 		} else
 		    nid = (unsigned) curr->arg;
 		curr->arg = (genericptr_t) find_oid(nid);
-		if (!curr->arg) panic("cant find o_id %d", nid);
+		if (!curr->arg) impossible("cant find o_id %d", nid);
 		curr->needs_fixup = 0;
 	    } else if (curr->kind == TIMER_MONSTER) {
 /*                panic("relink_timers: no monster timer implemented");*/

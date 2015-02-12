@@ -300,8 +300,8 @@ class NetHackQtMapWindow : public QWidget, public NetHackQtWindow {
 	Q_OBJECT
 private:
 	NetHackQtClickBuffer& clicksink;
-	unsigned short glyph[ROWNO][COLNO];
-	unsigned short& Glyph(int x, int y) { return glyph[y][x]; }
+	unsigned /*short*/long glyph[ROWNO][COLNO];
+	unsigned /*short*/long& Glyph(int x, int y) { return glyph[y][x]; }
 	QPoint cursor;
 	BlackScrollView viewport;
 	QPixmap pet_annotation;

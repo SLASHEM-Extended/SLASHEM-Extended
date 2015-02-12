@@ -260,7 +260,6 @@
 # endif
 #endif
 
-#define MAILCKFREQ	50
 #endif	/* MAIL */
 
 
@@ -276,6 +275,12 @@
 
 #define FCMASK	0660	/* file creation mask */
 
+/* fcntl(2) is a POSIX-portable call for manipulating file descriptors.
+ * Comment out the USE_FCNTL if for some reason you have a strange
+ * os/filesystem combination for which fcntl(2) does not work. */
+#ifdef POSIX_TYPES
+# define USE_FCNTL
+#endif
 
 /*
  * The remainder of the file should not need to be changed.

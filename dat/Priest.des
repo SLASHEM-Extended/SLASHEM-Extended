@@ -84,18 +84,18 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Monsters on siege duty.
-MONSTER: 'Z',"human zombie",(37,01)
-MONSTER: 'Z',"human zombie",(37,18)
-MONSTER: 'Z',"human zombie",(03,03)
-MONSTER: 'Z',"human zombie",(65,04)
-MONSTER: 'Z',"human zombie",(12,11)
-MONSTER: 'Z',"human zombie",(60,12)
-MONSTER: 'Z',"human zombie",(14,08)
-MONSTER: 'Z',"human zombie",(55,00)
-MONSTER: 'Z',"human zombie",(18,18)
-MONSTER: 'Z',"human zombie",(59,10)
-MONSTER: 'Z',"human zombie",(13,09)
-MONSTER: 'Z',"human zombie",(01,17)
+MONSTER: 'Z',"human zombie",(37,01),hostile
+MONSTER: 'Z',"human zombie",(37,18),hostile
+MONSTER: 'Z',"human zombie",(03,03),hostile
+MONSTER: 'Z',"human zombie",(65,04),hostile
+MONSTER: 'Z',"human zombie",(12,11),hostile
+MONSTER: 'Z',"human zombie",(60,12),hostile
+MONSTER: 'Z',"human zombie",(14,08),hostile
+MONSTER: 'Z',"human zombie",(55,00),hostile
+MONSTER: 'Z',"human zombie",(18,18),hostile
+MONSTER: 'Z',"human zombie",(59,10),hostile
+MONSTER: 'Z',"human zombie",(13,09),hostile
+MONSTER: 'Z',"human zombie",(01,17),hostile
 
 #
 #	The "locate" level for the quest.
@@ -225,34 +225,34 @@ TRAP:"fire",random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:'&',"Nalzok",place[0]
-MONSTER:'Z',"human zombie",random
-MONSTER:'Z',"human zombie",random
-MONSTER:'Z',"human zombie",random
-MONSTER:'Z',"human zombie",random
-MONSTER:'Z',"human zombie",random
-MONSTER:'Z',"human zombie",random
-MONSTER:'Z',"human zombie",random
-MONSTER:'Z',"human zombie",random
-MONSTER:'Z',"human zombie",random
-MONSTER:'Z',"human zombie",random
-MONSTER:'Z',"human zombie",random
-MONSTER:'Z',"human zombie",random
-MONSTER:'Z',"human zombie",random
-MONSTER:'Z',"human zombie",random
-MONSTER:'Z',"human zombie",random
-MONSTER:'Z',"human zombie",random
-MONSTER:'Z',random,random
-MONSTER:'Z',random,random
-MONSTER:'W',"wraith",random
-MONSTER:'W',"wraith",random
-MONSTER:'W',"wraith",random
-MONSTER:'W',"wraith",random
-MONSTER:'W',"wraith",random
-MONSTER:'W',"wraith",random
-MONSTER:'W',"wraith",random
-MONSTER:'W',"wraith",random
-MONSTER:'W',random,random
+MONSTER:'&',"Nalzok",place[0],hostile
+MONSTER:'Z',"human zombie",random,hostile
+MONSTER:'Z',"human zombie",random,hostile
+MONSTER:'Z',"human zombie",random,hostile
+MONSTER:'Z',"human zombie",random,hostile
+MONSTER:'Z',"human zombie",random,hostile
+MONSTER:'Z',"human zombie",random,hostile
+MONSTER:'Z',"human zombie",random,hostile
+MONSTER:'Z',"human zombie",random,hostile
+MONSTER:'Z',"human zombie",random,hostile
+MONSTER:'Z',"human zombie",random,hostile
+MONSTER:'Z',"human zombie",random,hostile
+MONSTER:'Z',"human zombie",random,hostile
+MONSTER:'Z',"human zombie",random,hostile
+MONSTER:'Z',"human zombie",random,hostile
+MONSTER:'Z',"human zombie",random,hostile
+MONSTER:'Z',"human zombie",random,hostile
+MONSTER:'Z',random,random,hostile
+MONSTER:'Z',random,random,hostile
+MONSTER:'W',"wraith",random,hostile
+MONSTER:'W',"wraith",random,hostile
+MONSTER:'W',"wraith",random,hostile
+MONSTER:'W',"wraith",random,hostile
+MONSTER:'W',"wraith",random,hostile
+MONSTER:'W',"wraith",random,hostile
+MONSTER:'W',"wraith",random,hostile
+MONSTER:'W',"wraith",random,hostile
+MONSTER:'W',random,random,hostile
 
 #
 #	The "fill" levels for the quest.
@@ -268,17 +268,7 @@ LEVEL: "Pri-fila"
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
 OBJECT: random,random,random
-MONSTER: 'Z', "human zombie", random
-
-ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-OBJECT: random,random,random
-
-ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-TRAP: random, random
-OBJECT: random,random,random
-MONSTER: 'Z', "human zombie", random
+MONSTER: 'Z', "human zombie", random,hostile
 
 ROOM: "morgue" , random, random, random, random
 STAIR: random, down
@@ -287,9 +277,19 @@ TRAP: random, random
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
+OBJECT: random,random,random
+
+ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-MONSTER: 'W', "wraith", random
+OBJECT: random,random,random
+MONSTER: 'Z', "human zombie", random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'W', "wraith", random,hostile
 
 ROOM: "morgue" , random, random, random, random
 OBJECT: random, random, random
@@ -302,20 +302,8 @@ LEVEL: "Pri-filb"
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
 OBJECT: random,random,random
-MONSTER: 'Z', "human zombie", random
-MONSTER: 'W', "wraith", random
-
-ROOM: "morgue" , random, random, random, random
-OBJECT: random, random, random
-OBJECT: random, random, random
-OBJECT: random,random,random
-
-ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-TRAP: random, random
-OBJECT: random,random,random
-MONSTER: 'Z', "human zombie", random
-MONSTER: 'W', "wraith", random
+MONSTER: 'Z', "human zombie", random,hostile
+MONSTER: 'W', "wraith", random,hostile
 
 ROOM: "morgue" , random, random, random, random
 STAIR: random, down
@@ -323,12 +311,24 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 TRAP: random, random
 
+ROOM: "morgue" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: 'Z', "human zombie", random,hostile
+MONSTER: 'W', "wraith", random,hostile
+
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-MONSTER: 'Z', "human zombie", random
-MONSTER: 'W', "wraith", random
+MONSTER: 'Z', "human zombie", random,hostile
+MONSTER: 'W', "wraith", random,hostile
 
 ROOM: "morgue" , random, random, random, random
 OBJECT: random, random, random

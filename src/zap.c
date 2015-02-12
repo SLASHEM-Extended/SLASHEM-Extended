@@ -14,6 +14,7 @@
 #ifdef OVLB
 static NEARDATA boolean obj_zapped;
 static NEARDATA int poly_zapped;
+static NEARDATA boolean wan_wonder;
 #endif
 
 extern boolean notonhead;	/* for long worms */
@@ -53,6 +54,8 @@ extern const char * const flash_types[];
 #else
 STATIC_VAR const char are_blinded_by_the_flash[] = "are blinded by the flash!";
 
+static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+
 const char * const flash_types[] = {	/* also used in buzzmu(mcastu.c) */
 	"magic missile",	/* Wands must be 0-9 */
 	"bolt of fire",
@@ -60,9 +63,9 @@ const char * const flash_types[] = {	/* also used in buzzmu(mcastu.c) */
 	"sleep ray",
 	"death ray",
 	"bolt of lightning",
-	"",
-	"",
-	"",
+	"poison ray",
+	"acid ray",
+	"solar beam",
 	"",
 
 	"magic missile",	/* Spell equivalents must be 10-19 */
@@ -73,7 +76,7 @@ const char * const flash_types[] = {	/* also used in buzzmu(mcastu.c) */
 	"bolt of lightning",    /* New spell & used for retribution */
 	"blast of poison gas",  /*WAC New spells acid + poison*/
 	"stream of acid",
-	"",
+	"solar beam",
 	"",
 
 	"blast of missiles",	/* Dragon breath equivalents 20-29*/
@@ -84,18 +87,18 @@ const char * const flash_types[] = {	/* also used in buzzmu(mcastu.c) */
 	"blast of lightning",
 	"blast of poison gas",
 	"blast of acid",
-	"",
+	"solar beam",
 	"",
 
 	"magical blast",        /* Megaspell equivalents must be 30-39 */
 	"fireball",             /*Should be same as explosion names*/
 	"ball of cold",
-	"",
-	"",
+	"sleep ball",
+	"death field",
 	"ball lightning",
 	"poison gas cloud",
 	"splash of acid",
-	"",
+	"pure irradiation",
 	""
 };
 
@@ -109,18 +112,18 @@ const char *yell_types[] = {    /*10 different beam types*/
 		/* Demeter - when she is without her daughter Persephone
 		 * 	she caused winter
 		 */
-	"The rest of Hypnos", /* Sleep */ 
+	"The rest of Hypnos!", /* Sleep */ 
 		/* Hypnos - Greek god of sleep */
-	"The wrath of Kali", /* Disint */
+	"The wrath of Kali!", /* Disint */
 		/* Kali is the Hindu god of dissolution and destruction */
 	"From the forge of Vulcan!", /* Lightning*/ 
 		/* Vulcan forged Zeus' lightning bolts [Greek] */
-	"From the Fangs of Jormungand", /* Poison gas */ 
+	"From the Fangs of Jormungand!", /* Poison gas */ 
 		/* Serpent of Viking Mythology.  Poisons the skies/seas during 
 		 * Ragnarok 
 		 */
 	"The anger of the Mad Chemist!", /* Acid */
-	"",
+	"Feel the power of the Sun itself!",
 	""
 };
 
@@ -136,6 +139,7 @@ struct obj *otmp;
 	boolean reveal_invis = FALSE;
 	boolean dbldam = Role_if(PM_KNIGHT) && u.uhave.questart;
 	int dmg, otyp = otmp->otyp;
+	int hurtlex,hurtley;
 	const char *zap_type_text = "spell";
 	struct obj *obj;
 	boolean disguised_mimic = (mtmp->data->mlet == S_MIMIC &&
@@ -161,13 +165,17 @@ struct obj *otmp;
 		if (resists_magm(mtmp)) {	/* match effect on player */
 			shieldeff(mtmp->mx, mtmp->my);
 			break;	/* skip makeknown */
-		} else if (u.uswallow || rnd(20) < 10 + find_mac(mtmp)) {
-			dmg = d(2,12);
+		} else if (u.uswallow || rnd(20) < 10 + find_mac(mtmp) + rnz(u.ulevel) ) {
+			dmg = d(2,12) + rnz(u.ulevel);
 			if(dbldam) dmg *= 2;
 			dmg += skilldmg;
 			hit(zap_type_text, mtmp, exclam(dmg));
 			(void) resist(mtmp, otmp->oclass, dmg, TELL);
 		} else miss(zap_type_text, mtmp);
+		makeknown(otyp);
+		break;
+	case WAN_CLONE_MONSTER:
+		clone_mon(mtmp, 0, 0);
 		makeknown(otyp);
 		break;
 	case WAN_SLOW_MONSTER:
@@ -184,6 +192,7 @@ struct obj *otmp;
 		}
 		break;
 	case WAN_SPEED_MONSTER:
+	case WAN_HASTE_MONSTER:
 		if (!resist(mtmp, otmp->oclass, 0, NOTELL)) {
 			mon_adjust_speed(mtmp, 1, otmp);
 			m_dowear(mtmp, FALSE); /* might want speed boots */
@@ -243,6 +252,10 @@ struct obj *otmp;
 	case SPE_TELEPORT_AWAY:
 		reveal_invis = !u_teleport_mon(mtmp, TRUE);
 		break;
+	case WAN_BANISHMENT:
+		if (u.uevent.udemigod) { reveal_invis = !u_teleport_mon(mtmp, TRUE); break; }
+		reveal_invis = !u_teleport_monB(mtmp, TRUE);
+		break;
 	case WAN_MAKE_INVISIBLE:
 	    {
 		int oldinvis = mtmp->minvis;
@@ -275,6 +288,7 @@ struct obj *otmp;
 	case WAN_PROBING:
 		reveal_invis = TRUE;
 		wake = FALSE;
+	case SPE_FINGER:
 		probe_monster(mtmp);
 		makeknown(otyp);
 		break;
@@ -301,8 +315,10 @@ struct obj *otmp;
 		break;
 	case WAN_HEALING:
 	case WAN_EXTRA_HEALING:
+	case WAN_FULL_HEALING:
 	case SPE_HEALING:
 	case SPE_EXTRA_HEALING:
+	case SPE_FULL_HEALING:
 		reveal_invis = TRUE;
 	    if (mtmp->data != &mons[PM_PESTILENCE]) {
 		wake = FALSE;		/* wakeup() makes the target angry */
@@ -311,9 +327,10 @@ struct obj *otmp;
 		   * effective than uncursed wands. This behaviour dates
 		   * right back to Slash v3 (and probably to v1).
 		   */
-		  otyp == WAN_HEALING ?  d(5,2) + 5 * !!bcsign(otmp) :
-		  otyp == WAN_EXTRA_HEALING ?  d(5,4) + 10 * !!bcsign(otmp) :
-		  otyp == SPE_HEALING ? rnd(10) +4 : d(3,8)+6;
+		  otyp == WAN_HEALING ?  d(5,2) + rnz(u.ulevel) + 5 * !!bcsign(otmp) :
+		  otyp == WAN_EXTRA_HEALING ?  d(5,4) + rnz(u.ulevel) + 10 * !!bcsign(otmp) :
+		  otyp == WAN_FULL_HEALING ?  d(5,8) + rnz(u.ulevel) + 20 * !!bcsign(otmp) :
+		  otyp == SPE_HEALING ? rnd(10) +4 + rnz(u.ulevel) : d(3,8)+6 + rnz(u.ulevel);
 		if (mtmp->mhp > mtmp->mhpmax) {
 		    if (otmp->oclass == WAND_CLASS)
 			mtmp->mhpmax++;
@@ -413,6 +430,17 @@ struct obj *otmp;
 					pline("%s suddenly seems weaker!", Monnam(mtmp));
 			}
 		}
+		makeknown(otyp);
+		break;
+	case WAN_WIND: /* from Sporkhack */
+		/* Actually distance, not damage */
+		dmg = rnd(2) + (bigmonst(mtmp->data) ? 0 : rnd(3));	
+		hurtlex = sgn(mtmp->mx - u.ux);
+		hurtley = sgn(mtmp->my - u.uy);
+		if (hurtlex) { hurtley = rnd(3)-2; }
+		else if (hurtley) { hurtlex = rnd(3)-2; }
+		pline("%s is blown around!",Monnam(mtmp));
+		mhurtle(mtmp,hurtlex,hurtley,dmg);
 		makeknown(otyp);
 		break;
 	default:
@@ -661,6 +689,18 @@ register struct obj *obj;
 		int montype = obj->corpsenm;
 		xchar x, y;
 
+		if (montype == PM_UNFORTUNATE_VICTIM) { /* very bad! */
+
+			pline("You get a strong feeling that the gods don't like your actions...");
+			change_luck(-5);
+			u.ualign.sins += 10; 
+			adjalign(-50);
+			u.ugangr++; u.ugangr++; u.ugangr++;
+			prayer_done();
+
+
+		}
+
 		if (obj->where == OBJ_CONTAINED) {
 			/* deal with corpses in [possibly nested] containers */
 			struct monst *carrier;
@@ -769,7 +809,7 @@ register struct obj *obj;
 			if (recorporealization) {
 				/* If mtmp is revivification of former tame ghost*/
 				if (savetame) {
-				    struct monst *mtmp2 = tamedog(mtmp, (struct obj *)0);
+				    struct monst *mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE);
 				    if (mtmp2) {
 					mtmp2->mtame = savetame;
 					mtmp = mtmp2;
@@ -960,6 +1000,12 @@ register struct obj *obj;
 				flags.botl = 1;
 			}
 			break;
+		case GAUNTLETS_OF_POWER:
+			if ((obj->owornmask & W_ARMG) && (obj == uarmg)) {
+				ABON(A_STR) -= obj->spe;
+				flags.botl = 1;
+			}
+			break;
 		/* case RIN_PROTECTION:  not needed */
 	}
 	if (objects[obj->otyp].oc_magic
@@ -977,6 +1023,11 @@ register struct obj *obj;
 	    }
 	    switch (obj->oclass) {
 	      case SCROLL_CLASS:
+		if (obj->otyp == SCR_HEALING ||
+#ifdef MAIL
+obj->otyp == SCR_MAIL || 
+#endif
+obj->otyp == SCR_CURE || obj->otyp == SCR_MANA || obj->otyp == SCR_STANDARD_ID) break;
 		costly_cancel(obj);
 		obj->otyp = SCR_BLANK_PAPER;
 		obj->spe = 0;
@@ -1080,6 +1131,12 @@ register struct obj *obj;
 	    	flags.botl = 1;
 	    }
 	    break;
+	case GAUNTLETS_OF_POWER:
+	    if ((obj->owornmask & W_ARMG) && (obj == uarmg)) {
+	    	ABON(A_STR)--;
+	    	flags.botl = 1;
+	    }
+	    break;
 	case RIN_PROTECTION:
 	    flags.botl = 1;
 	    break;
@@ -1157,6 +1214,7 @@ polyuse(objhdr, mat, minwt)
 #ifdef MAIL
 	if (otmp->otyp == SCR_MAIL) continue;
 #endif
+	if (otmp->otyp == SCR_HEALING || otmp->otyp == SCR_STANDARD_ID || otmp->otyp == SCR_MANA || otmp->otyp == SCR_CURE) continue;
 
 	if (((int) objects[otmp->otyp].oc_material == mat) ==
 		(rn2(minwt + 1) != 0)) {
@@ -1282,6 +1340,8 @@ struct obj *obj;
 #ifdef MAIL
 	if (obj->otyp == SCR_MAIL) return;
 #endif
+	if (obj->otyp == SCR_HEALING || obj->otyp == SCR_STANDARD_ID || obj->otyp == SCR_MANA || obj->otyp == SCR_CURE) return;
+
 	obj_zapped = TRUE;
 
 	if(poly_zapped < 0) {
@@ -1374,7 +1434,10 @@ poly_obj(obj, id)
 	    return obj;
 
 	if (obj->otyp == BOULDER && In_sokoban(&u.uz))
-	    change_luck(-1);    /* Sokoban guilt */
+		{change_luck(-1);
+		pline("You cheater!");
+		}
+	    /* Sokoban guilt */
 #ifdef WIZARD
 	otmp = (struct obj *)0;
 	if (id == STRANGE_OBJECT && wizard && Polymorph_control) {
@@ -1433,6 +1496,36 @@ poly_obj(obj, id)
 #endif
 	}
 #endif
+
+	if (obj->otyp == SCR_HEALING) {
+		otmp->otyp = SCR_HEALING;
+#ifdef UNPOLYPILE
+		unpoly = FALSE;	/* WAC -- no change! */
+#endif
+	}
+
+	if (obj->otyp == SCR_STANDARD_ID) {
+		otmp->otyp = SCR_STANDARD_ID;
+#ifdef UNPOLYPILE
+		unpoly = FALSE;	/* WAC -- no change! */
+#endif
+	}
+	
+	if (obj->otyp == SCR_MANA) {
+		otmp->otyp = SCR_MANA;
+#ifdef UNPOLYPILE
+		unpoly = FALSE;	/* WAC -- no change! */
+#endif
+	}
+	
+	if (obj->otyp == SCR_CURE) {
+		otmp->otyp = SCR_CURE;
+#ifdef UNPOLYPILE
+		unpoly = FALSE;	/* WAC -- no change! */
+#endif
+	}
+	
+
 
 	/* avoid abusing eggs laid by you */
 	if (obj->otyp == EGG && obj->spe) {
@@ -1530,8 +1623,8 @@ poly_obj(obj, id)
 	    break;
 
 	case WAND_CLASS:
-	    while(otmp->otyp == WAN_WISHING || otmp->otyp == WAN_POLYMORPH)
-		otmp->otyp = rnd_class(WAN_LIGHT, WAN_FIREBALL);
+	    while(otmp->otyp == WAN_WISHING || otmp->otyp == WAN_POLYMORPH || otmp->otyp == WAN_ACQUIREMENT)
+		otmp->otyp = rnd_class(WAN_LIGHT, WAN_SOLAR_BEAM);
 	    /* altering the object tends to degrade its quality
 	       (analogous to spellbook `read count' handling) */
 	    if ((int)otmp->recharged < rn2(7))	/* recharge_limit */
@@ -1541,6 +1634,11 @@ poly_obj(obj, id)
 	case POTION_CLASS:
 	    while (otmp->otyp == POT_POLYMORPH)
 		otmp->otyp = rnd_class(POT_GAIN_ABILITY, POT_WATER);
+	    break;
+
+	case SCROLL_CLASS:
+	    while (otmp->otyp == SCR_WISHING || otmp->otyp == SCR_ACQUIREMENT || otmp->otyp == SCR_ENTHRONIZATION || otmp->otyp == SCR_FOUNTAIN_BUILDING || otmp->otyp == SCR_SINKING || otmp->otyp == SCR_WC)
+		otmp->otyp = rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER);
 	    break;
 
 	case SPBOOK_CLASS:
@@ -1854,6 +1952,7 @@ struct obj *obj, *otmp;
 		(void) drain_item(obj);
 		break;
 	case WAN_TELEPORTATION:
+	case WAN_BANISHMENT:
 	case SPE_TELEPORT_AWAY:
 		rloco(obj);
 		break;
@@ -1887,11 +1986,16 @@ struct obj *obj, *otmp;
 	case WAN_SLOW_MONSTER:		/* no effect on objects */
 	case SPE_SLOW_MONSTER:
 	case WAN_SPEED_MONSTER:
+	case WAN_HASTE_MONSTER:
 	case WAN_NOTHING:
 	case SPE_HEALING:
 	case SPE_EXTRA_HEALING:
+	case SPE_FULL_HEALING:
 	case WAN_HEALING:
 	case WAN_EXTRA_HEALING:
+	case WAN_CLONE_MONSTER:
+	case WAN_FULL_HEALING:
+	case SPE_FINGER:
 	case WAN_FEAR:
 	case WAN_FIREBALL:
 		res = 0;
@@ -1994,6 +2098,13 @@ smell:
 		}
 		newsym(refresh_x, refresh_y);
 		break;
+	case WAN_WIND:
+		refresh_x = obj->ox;
+		refresh_y = obj->oy;
+		scatter(obj->ox,obj->oy,4,VIS_EFFECTS|MAY_HIT|MAY_DESTROY|MAY_FRACTURE,(struct obj*)0);
+		newsym(refresh_x,refresh_y);
+		makeknown(otmp->otyp);
+		break;
 	default:
 		impossible("What an interesting effect (%d)", otmp->otyp);
 		break;
@@ -2063,9 +2174,58 @@ void
 zapnodir(obj)
 register struct obj *obj;
 {
+	register int i;
+	register struct obj *otmp, *acqo;
 	boolean known = FALSE;
 
 	switch(obj->otyp) {
+		case WAN_TRAP_CREATION:
+		known = TRUE;
+		    You_feel("endangered!!");
+		{
+			int rtrap;
+		    int i, j, bd = 1;
+
+		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if ((levl[u.ux + i][u.uy + j].typ != ROOM && levl[u.ux + i][u.uy + j].typ != CORR) || MON_AT(u.ux + i, u.uy + j)) continue;
+				if (t_at(u.ux + i, u.uy + j)) continue;
+
+			      rtrap = rnd(TRAPNUM-1);
+				if (rtrap == HOLE) rtrap = PIT;
+				if (rtrap == MAGIC_PORTAL) rtrap = PIT;
+				if (rtrap == TRAPDOOR && !Can_dig_down(&u.uz)) rtrap = PIT;
+				if (rtrap == LEVEL_TELEP && level.flags.noteleport) rtrap = SQKY_BOARD;
+				if (rtrap == TELEP_TRAP && level.flags.noteleport) rtrap = SQKY_BOARD;
+				if (rtrap == ROLLING_BOULDER_TRAP) rtrap = ROCKTRAP;
+				if (rtrap == NO_TRAP) rtrap = ARROW_TRAP;
+				if (rtrap == RMB_LOSS_TRAP && !Role_if(PM_SPACEWARS_FIGHTER) && rn2(2)) rtrap = ACID_POOL;
+				if (rtrap == DISPLAY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3)) rtrap = GLYPH_OF_WARDING;
+				if (rtrap == SPELL_LOSS_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4)) rtrap = SLOW_GAS_TRAP;
+				if (rtrap == YELLOW_SPELL_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 5)) rtrap = POISON_GAS_TRAP;
+
+				if (rtrap == MENU_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8)) rtrap = FIRE_TRAP;
+				if (rtrap == SPEED_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40)) rtrap = ICE_TRAP;
+				if (rtrap == AUTOMATIC_SWITCHER && rn2(Race_if(PM_HAXOR) ? (Role_if(PM_GRADUATE) ? 125 : Role_if(PM_SPACEWARS_FIGHTER) ? 250 : Role_if(PM_GEEK) ? 250 : 500) : (Role_if(PM_GRADUATE) ? 250 : Role_if(PM_SPACEWARS_FIGHTER) ? 500 : Role_if(PM_GEEK) ? 500 : 1000) )) rtrap = SHOCK_TRAP;
+
+				if (rtrap == AUTO_DESTRUCT_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10)) rtrap = WATER_POOL;
+				if (rtrap == MEMORY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20)) rtrap = SCYTHING_BLADE;
+				if (rtrap == INVENTORY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50)) rtrap = ANIMATION_TRAP;
+				if (rtrap == BLACK_NG_WALL_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 50 : 100)) rtrap = UNKNOWN_TRAP;
+				if (rtrap == SUPERSCROLLER_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 100 : 200)) rtrap = WEB;
+				if (rtrap == ACTIVE_SUPERSCROLLER_TRAP) rtrap = RUST_TRAP;
+
+				(void) maketrap(u.ux + i, u.uy + j, rtrap);
+			}
+		}
+		break;
+
+		case WAN_BAD_EFFECT:
+
+			badeffect();
+
+		break;
+
 		case WAN_LIGHT:
 		case SPE_LIGHT:
 			litroom(TRUE,obj);
@@ -2076,9 +2236,38 @@ register struct obj *obj;
 			if(!findit()) return;
 			if (!Blind) known = TRUE;
 			break;
+		case WAN_TRAP_DISARMING:
+
+			known = TRUE;
+			You_feel("out of the danger zone.");
+			{
+				int rtrap;
+				struct trap *ttmp;
+	
+			    int i, j, bd = 1;
+	
+			      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+	
+					if ((ttmp = t_at(u.ux + i, u.uy + j)) != 0) {
+					    if (ttmp->ttyp == MAGIC_PORTAL) continue;
+						deltrap(ttmp);
+					}
+	
+				}
+			}
+
+			break;
 		case WAN_CREATE_MONSTER:
 			known = create_critters(rn2(23) ? 1 : rn1(7,2),
 					(struct permonst *)0);
+			break;
+		case WAN_SUMMON_UNDEAD:
+			known = TRUE;
+			coord mm;   
+			mm.x = u.ux;   
+			mm.y = u.uy;   
+			pline("You summon some undead creatures!");   
+			mkundeadX(&mm, FALSE, NO_MINVENT);   
 			break;
 		case WAN_CREATE_HORDE:
 			known = create_critters(rn1(7,6), (struct permonst *)0);
@@ -2091,6 +2280,69 @@ register struct obj *obj;
 			}
 			makewish();
 			break;
+		case WAN_ACQUIREMENT:
+			known = TRUE;
+			int acquireditem;
+			acquireditem = 0;
+			if(Luck + rn2(5) < 0) {
+				pline("Unfortunately, nothing happens.");
+				break;
+			}
+
+			while (acquireditem == 0) { /* ask the player what they want --Amy */
+
+			/* Yeah, I know this is less elegant than DCSS. But hey, it's a wand of acquirement! */
+
+				if (yn("Do you want to acquire a random item?")=='y') {
+					    acqo = mkobj_at(RANDOM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				else if (yn("Do you want to acquire a weapon?")=='y') {
+					    acqo = mkobj_at(WEAPON_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				else if (yn("Do you want to acquire an armor?")=='y') {
+					    acqo = mkobj_at(ARMOR_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				else if (yn("Do you want to acquire a ring?")=='y') {
+					    acqo = mkobj_at(RING_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				else if (yn("Do you want to acquire an amulet?")=='y') {
+					    acqo = mkobj_at(AMULET_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				else if (yn("Do you want to acquire a tool?")=='y') {
+					    acqo = mkobj_at(TOOL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				else if (yn("Do you want to acquire some food?")=='y') {
+					    acqo = mkobj_at(FOOD_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				else if (yn("Do you want to acquire a potion?")=='y') {
+					    acqo = mkobj_at(POTION_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				else if (yn("Do you want to acquire a scroll?")=='y') {
+					    acqo = mkobj_at(SCROLL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				else if (yn("Do you want to acquire a spellbook?")=='y') {
+					    acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				else if (yn("Do you want to acquire a wand?")=='y') {
+					    acqo = mkobj_at(WAND_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				else if (yn("Do you want to acquire some coins?")=='y') {
+					    acqo = mkobj_at(COIN_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				else if (yn("Do you want to acquire a gem?")=='y') {
+					    acqo = mkobj_at(GEM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				else if (yn("Do you want to acquire a boulder or statue?")=='y') {
+					    acqo = mkobj_at(ROCK_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				else if (yn("Do you want to acquire a heavy iron ball?")=='y') {
+					    acqo = mkobj_at(BALL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				else if (yn("Do you want to acquire an iron chain?")=='y') {
+					    acqo = mkobj_at(CHAIN_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				else if (yn("Do you want to acquire a splash of venom?")=='y') {
+					    acqo = mkobj_at(VENOM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+	
+			}
+	
+			/* special handling to prevent wands of wishing or similarly overpowered items --Amy */
+	
+			if (acqo->otyp == GOLD_PIECE) acqo->quan = rnd(1000);
+			if (acqo->otyp == MAGIC_LAMP) { acqo->otyp = OIL_LAMP; acqo->age = 1500L; }
+			if (acqo->otyp == MAGIC_MARKER) acqo->recharged = 1;
+		    while(acqo->otyp == WAN_WISHING || acqo->otyp == WAN_POLYMORPH || acqo->otyp == WAN_ACQUIREMENT)
+			acqo->otyp = rnd_class(WAN_LIGHT, WAN_SOLAR_BEAM);
+		    while (acqo->otyp == SCR_WISHING || acqo->otyp == SCR_ACQUIREMENT || acqo->otyp == SCR_ENTHRONIZATION || acqo->otyp == SCR_FOUNTAIN_BUILDING || acqo->otyp == SCR_SINKING || acqo->otyp == SCR_WC)
+			acqo->otyp = rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER);
+	
+			pline("Something appeared on the ground just beneath you!");
+
+			break;
 		case WAN_ENLIGHTENMENT:
 			known = TRUE;
 			You_feel("self-knowledgeable...");
@@ -2099,6 +2351,179 @@ register struct obj *obj;
 			pline_The("feeling subsides.");
 			exercise(A_WIS, TRUE);
 			break;
+		case WAN_DETECT_MONSTERS:
+			known = TRUE;
+			    int x, y;
+	
+			    /* after a while, repeated uses become less effective */
+			    if (HDetect_monsters >= 300L)
+				i = 10;
+			    else
+				i = rn1(20,11);
+			    incr_itimeout(&HDetect_monsters, i);
+			    for (x = 1; x < COLNO; x++) {
+				for (y = 0; y < ROWNO; y++) {
+				    if (memory_is_invisible(x, y)) {
+					unmap_object(x, y);
+					newsym(x,y);
+				    }
+				}
+			    }
+			    see_monsters();
+
+			exercise(A_WIS, TRUE);
+			break;
+		case WAN_OBJECTION:
+			known = TRUE;
+			object_detect((struct obj *)0, 0);
+			exercise(A_WIS, TRUE);
+			break;
+		case WAN_DARKNESS:
+			if (!Blind) known = TRUE;
+			litroom(FALSE,obj);
+			break;
+		case WAN_MAGIC_MAPPING:
+			known = TRUE;
+			pline("You grasp some bits from the current map!");
+			do_mappingX();
+			break;
+		case WAN_ENTRAPPING:
+			known = TRUE;
+			trap_detect((struct obj *)0);
+			exercise(A_WIS, TRUE);
+			break;
+		case WAN_IDENTIFY:
+			known = TRUE;
+			You_feel("insightful!");
+			if (invent) {
+			    /* rn2(5) agrees w/seffects() */
+			    identify_pack(rn2(5));
+			}
+			exercise(A_WIS, TRUE);
+			break;
+		case WAN_REMOVE_CURSE:
+			known = TRUE;
+			You_feel("like someone is helping you!");
+			register struct obj *obj;
+
+			for(obj = invent; obj ; obj = obj->nobj)
+				if (!rn2(5) && obj->cursed)	uncurse(obj);
+
+			break;
+		case WAN_PUNISHMENT:
+			known = TRUE;
+			You_feel("someone is punishing you for your misbehavior!");
+			punishx();
+			break;
+		case WAN_CHARGING:
+			known = TRUE;
+			pline("This is a charging wand.");
+			otmp = getobj(all_count, "charge");
+			if (!otmp) break;
+			recharge(otmp, 1);
+			break;
+		case WAN_WONDER: /* supposed to have a random effect, may be implemented in future */
+
+			known = TRUE;
+			switch(rnd(21)) {
+			case 1 : 
+				litroomlite(TRUE);
+				break;
+			case 2 : 
+				if(!findit()) return;
+				break;
+			case 3 : 
+				create_critters(rn2(23) ? 1 : rn1(7,2), (struct permonst *)0);
+				break;
+			case 4 : 
+				create_critters(rn1(7,6), (struct permonst *)0);
+				break;
+			case 5 : 
+				pline("Multicolored sparks fly from the wand.");
+				if (!rn2(1000)) makewish();
+		/* since there is a 1% chance of the wand exploding, this _should_ be okay --Amy */
+				break;
+			case 6 : 
+				pline("Nothing happens.");
+				break;
+			case 7 : 
+				You_feel("self-knowledgeable...");
+				display_nhwindow(WIN_MESSAGE, FALSE);
+				enlightenment(FALSE);
+				pline_The("feeling subsides.");
+				exercise(A_WIS, TRUE);
+				break;
+			case 8 : 
+			    { int x, y;
+	
+			    /* after a while, repeated uses become less effective */
+			    if (HDetect_monsters >= 300L)
+				i = 10;
+			    else
+				i = rn1(20,11);
+			    incr_itimeout(&HDetect_monsters, i);
+			    for (x = 1; x < COLNO; x++) {
+				for (y = 0; y < ROWNO; y++) {
+				    if (memory_is_invisible(x, y)) {
+					unmap_object(x, y);
+					newsym(x,y);
+				    }
+				}
+			    }
+			    see_monsters();
+
+				exercise(A_WIS, TRUE);
+				break;
+				}
+			case 9 : 
+				object_detect((struct obj *)0, 0);
+				exercise(A_WIS, TRUE);
+				break;
+			case 10 : 
+				trap_detect((struct obj *)0);
+				exercise(A_WIS, TRUE);
+				break;
+			case 11 : 
+				You_feel("insightful!");
+				if (invent) {
+				    /* rn2(5) agrees w/seffects() */
+				    identify_pack(rn2(5));
+				}
+				exercise(A_WIS, TRUE);
+				break;
+			case 12 : 
+				You_feel("like someone is helping you!");
+				register struct obj *obj;
+	
+				for(obj = invent; obj ; obj = obj->nobj)
+					if (!rn2(5) && obj->cursed)	uncurse(obj);
+	
+				break;
+			case 13 : 
+				You_feel("someone is punishing you for your misbehavior!");
+				punishx();
+				break;
+			case 14 : 
+			case 15 : 
+			case 16 : 
+			case 17 : 
+			case 18 : 
+			case 19 : 
+			case 20 : 
+			default:
+				pline("Nothing happens.");
+				break;
+			}
+			break;
+		case WAN_BUGGING:
+			known = TRUE; 
+			{int i;
+
+			i = rn2(6) + 1;
+			while (i--) {
+				(void) makemon(&mons[rn2(3) ? PM_BUG : PM_HEISENBUG], u.ux,u.uy, NO_MM_FLAGS);
+					}
+			} break;
 	}
 	if (known && !objects[obj->otyp].oc_name_known) {
 		makeknown(obj->otyp);
@@ -2136,9 +2561,16 @@ dozap()
 	check_unpaid(obj);
 
 	/* zappable addition done by GAN 11/03/86 */
-	if(!zappable(obj)) pline(nothing_happens);
+	if(!zappable(obj)) {pline(nothing_happens);
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	}
 	else if(obj->cursed && !rn2(5)) {
 		/* WAC made this rn2(5) from rn2(100)*/
+		backfire(obj);  /* the wand blows up in your face! */
+		exercise(A_STR, FALSE);
+		return(1);
+	}
+	else if(obj->otyp == WAN_WONDER && !rn2(100)) {
 		backfire(obj);  /* the wand blows up in your face! */
 		exercise(A_STR, FALSE);
 		return(1);
@@ -2244,6 +2676,7 @@ int min, range, skilldmg;
 	    break;
 	case ZT_FIRE:
 	case ZT_LIGHTNING:
+	case ZT_LITE:
 	    expl_type = EXPL_FIERY;
 	    break;
 	case ZT_COLD:
@@ -2293,7 +2726,7 @@ boolean ordinary;
 		case WAN_STRIKING:
 		    makeknown(WAN_STRIKING);
 		case SPE_FORCE_BOLT:
-		    if(Antimagic) {
+		    if(Antimagic && rn2(20)) {
 			shieldeff(u.ux, u.uy);
 			pline("Boing!");
 		    } else {
@@ -2312,17 +2745,52 @@ boolean ordinary;
 		    break;
 		case SPE_ACID_STREAM:
         	    /* KMH, balance patch -- new intrinsic */
-        	    if (Acid_resistance) {
+        	    if (Acid_resistance && rn2(20)) {
 			damage = 0;
         	    } else {
 			pline_The("acid burns!");
 			damage = d(12,6);
 			exercise(A_STR, FALSE);
         	    }
+
+		if (Stoned) fix_petrification();
+
         	    if (!rn2(u.twoweap ? 3 : 6)) erode_obj(uwep, TRUE, TRUE);
         	    if (u.twoweap && !rn2(3)) erode_obj(uswapwep, TRUE, TRUE);
         	    if (!rn2(6)) erode_armor(&youmonst, TRUE);
         	    break;
+		case WAN_ACID:
+		    makeknown(WAN_ACID);
+		if (Stoned) fix_petrification();
+		    if (Acid_resistance && rn2(20)) {
+			shieldeff(u.ux,u.uy);
+			pline("Ugh!");
+		    } else {
+			pline("The acid burns!");
+			damage = d(8,6);
+		   }
+		   break;
+		case SPE_SOLAR_BEAM:
+			You("irradiate yourself!");
+			damage = d(12,8);
+        	    break;
+		case WAN_SOLAR_BEAM:
+		    makeknown(WAN_SOLAR_BEAM);
+			You("irradiate yourself!");
+			damage = d(8,8);
+		   break;
+		case WAN_CLONE_MONSTER:
+		    makeknown(WAN_CLONE_MONSTER);
+			You("try to clone yourself!");
+			cloneu();
+		   break;
+		case WAN_WIND:
+			 /* This is not usually a bright idea. */
+			 You("are caught up in the winds!");
+			 scatter(u.ux,u.uy,4,VIS_EFFECTS|MAY_HIT|MAY_DESTROY|MAY_FRACTURE,(struct obj*)0);
+			 hurtle(rnd(3)-2,rnd(3)-2,rnd(3)+2,FALSE);
+			 exercise(A_WIS,FALSE);
+			 break;
 		case WAN_LIGHTNING:
 		    makeknown(WAN_LIGHTNING);
 		/*WAC Added Spell Lightning*/
@@ -2336,11 +2804,11 @@ boolean ordinary;
 			You("zap yourself, but seem unharmed.");
 			ugolemeffects(AD_ELEC, d(12,6));
 		    }
-		    destroy_item(WAND_CLASS, AD_ELEC);
-		    destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
 		    if (!resists_blnd(&youmonst)) {
 			    You(are_blinded_by_the_flash);
-			    make_blinded((long)rnd(100),FALSE);
+			    make_blinded((long)rnd(40),FALSE);
 			    if (!Blind) Your(vision_clears);
 		    }
 		    break;
@@ -2368,10 +2836,16 @@ boolean ordinary;
 			Slimed = 0;
 		    }
 		    burn_away_slime();
-		    (void) burnarmor(&youmonst);
-		    destroy_item(SCROLL_CLASS, AD_FIRE);
+		    if (!rn2(33)) (void) burnarmor(&youmonst);
+		    /*destroy_item(SCROLL_CLASS, AD_FIRE);
 		    destroy_item(POTION_CLASS, AD_FIRE);
-		    destroy_item(SPBOOK_CLASS, AD_FIRE);
+		    destroy_item(SPBOOK_CLASS, AD_FIRE);*/
+		    if (!rn2(33)) /* new calculations --Amy */
+		      destroy_item(POTION_CLASS, AD_FIRE);
+		    if (!rn2(33))
+		      destroy_item(SCROLL_CLASS, AD_FIRE);
+		    if (!rn2(50))
+		      destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    break;
 
 
@@ -2387,14 +2861,14 @@ boolean ordinary;
 			You("imitate a popsicle!");
 			damage = d(12,6);
 		    }
-		    destroy_item(POTION_CLASS, AD_COLD);
+		    if (!rn2(33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
 
 		    break;
 
 		case WAN_MAGIC_MISSILE:
 		    makeknown(WAN_MAGIC_MISSILE);
 		case SPE_MAGIC_MISSILE:
-		    if(Antimagic) {
+		    if(Antimagic && rn2(20)) {
 			shieldeff(u.ux, u.uy);
 			pline_The("missiles bounce!");
 		    } else {
@@ -2416,7 +2890,7 @@ boolean ordinary;
 		case WAN_DRAINING:	/* KMH */
 			makeknown(obj->otyp);
 		case SPE_DRAIN_LIFE:
-			if (!Drain_resistance) {
+			if (!Drain_resistance || !rn2(20) ) {
 				losexp("life drainage", FALSE);
 			} else {
 				shieldeff(u.ux, u.uy);
@@ -2460,35 +2934,71 @@ boolean ordinary;
 		    /* Note that this is _not_ very fast */
 		    HFast |= FROMOUTSIDE;
 		    break;
+		case WAN_HASTE_MONSTER:
+
+		makeknown(WAN_HASTE_MONSTER);
+
+		if(Wounded_legs
+#ifdef STEED
+		   && !u.usteed	/* heal_legs() would heal steeds legs */
+#endif
+						) {
+			heal_legs();
+			break;
+		}
+
+		if (!Very_fast)
+			You("are suddenly moving %sfaster.",
+				Fast ? "" : "much ");
+		else {
+			Your("%s get new energy.",
+				makeplural(body_part(LEG)));
+		}
+		exercise(A_DEX, TRUE);
+		incr_itimeout(&HFast, rn1(10, 50));
+
+		break;
 		case WAN_HEALING:
 		   You("begin to feel better.");
-		   healup(d(5,6),0,0,0);
+		   healup( d(5,6) + rnz(u.ulevel),0,0,0);
 		   exercise(A_STR, TRUE);
 		   makeknown(WAN_HEALING);
 		break;
 		case WAN_EXTRA_HEALING:
 		   You("feel much better.");
-		   healup(d(6,8),0,0,0);
+		   healup(d(6,8) + rnz(u.ulevel),0,0,0);
 		   make_hallucinated(0L,TRUE,0L);
 		   exercise(A_STR, TRUE);
 		   exercise(A_CON, TRUE);
 		   makeknown(WAN_EXTRA_HEALING);
+		case WAN_FULL_HEALING:
+		   You("feel restored to health.");
+		   healup(d(10,20) + rnz(u.ulevel),0,0,0);
+		   make_hallucinated(0L,TRUE,0L);
+		   exercise(A_STR, TRUE);
+		   exercise(A_CON, TRUE);
+		   makeknown(WAN_FULL_HEALING);
 		break;
 
 		case WAN_FEAR:
 			You("suddenly panic!");
-			if(!HConfusion)
-				make_confused(HConfusion + rnd(10),FALSE);
+			make_feared(HFeared + rnd(50 + (monster_difficulty() * 5) ),TRUE);
 			break;
 
 		case WAN_SLEEP:
 		    makeknown(WAN_SLEEP);
 		case SPE_SLEEP:
 		    if(Sleep_resistance) {
+			if (!rn2(20)) {
+			pline("You feel a little drowsy.");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			fall_asleep(-rnd(5), TRUE);}
+			else {
 			shieldeff(u.ux, u.uy);
-			You("don't feel sleepy!");
+			You("don't feel sleepy!");}
 		    } else {
 			pline_The("sleep ray hits you!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			fall_asleep(-rnd(50), TRUE);
 		    }
 		    break;
@@ -2504,6 +3014,26 @@ boolean ordinary;
 		case SPE_TELEPORT_AWAY:
 		    tele();
 			makeknown(obj->otyp);
+		    break;
+		case WAN_BANISHMENT:
+			makeknown(obj->otyp);
+			if (u.uevent.udemigod) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (!strncmpi(plname, "lostsoul", 8) || !strncmpi(plname, "uberlostsoul", 12)) {
+			 pline("For some reason you resist the banishment!"); break;}
+
+			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+		/*if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); level_tele(); }
+		else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); level_tele(); }*/
+
+			(void) safe_teleds(FALSE);
+
+			goto_level((&medusa_level), TRUE, FALSE, FALSE);
+			register int newlev = rnd(64);
+			d_level newlevel;
+			get_level(&newlevel, newlev);
+			goto_level(&newlevel, TRUE, FALSE, FALSE);
+
 		    break;
 		case WAN_DEATH:
 		case SPE_FINGER_OF_DEATH:
@@ -2541,12 +3071,17 @@ boolean ordinary;
 
 		case SPE_HEALING:
 		case SPE_EXTRA_HEALING:
-		    healup(obj->otyp == SPE_HEALING ? rnd(10) + 4 : d(3,8)+6,
+		    healup(obj->otyp == SPE_HEALING ? rnd(10) + 4 + rnz(u.ulevel) : d(3,8)+6 + rnz(u.ulevel),
 			   0, FALSE, FALSE);
 		    You_feel("%sbetter.",
 			obj->otyp == SPE_EXTRA_HEALING ? "much " : "");
 		    break;
 
+		case SPE_FULL_HEALING:
+		    healup(d(10,10) + rnz(u.ulevel),
+			   0, FALSE, FALSE);
+		    You_feel("restored to health.");
+		    break;
 		case WAN_LIGHT:	/* (broken wand) */
 		 /* assert( !ordinary ); */
 		    damage = d(obj->spe, 25);
@@ -2580,6 +3115,7 @@ boolean ordinary;
 			obj->dknown = 1;
 		    /* note: `obj' reused; doesn't point at wand anymore */
 		    makeknown(WAN_PROBING);
+		case SPE_FINGER:
 		    ustatusline();
 		    break;
 		case SPE_STONE_TO_FLESH:
@@ -2650,6 +3186,26 @@ struct obj *obj;	/* wand or spell */
 		    steedhit = TRUE;
 		    break;
 
+		case WAN_BANISHMENT:
+			makeknown(obj->otyp);
+			if (u.uevent.udemigod) { pline("You shudder for a moment."); break;}
+			if (!strncmpi(plname, "lostsoul", 8) || !strncmpi(plname, "uberlostsoul", 12)) {
+			pline("For some reason you resist the banishment!"); break;}
+
+			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+			/*if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); level_tele(); }
+			else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); level_tele(); }*/
+			(void) safe_teleds(FALSE);
+
+			goto_level((&medusa_level), TRUE, FALSE, FALSE);
+			register int newlev = rnd(64);
+			d_level newlevel;
+			get_level(&newlevel, newlev);
+			goto_level(&newlevel, TRUE, FALSE, FALSE);
+
+			break;
+
 		/* Default processing via bhitm() for these */
 		case SPE_CURE_SICKNESS:
 		case WAN_MAKE_INVISIBLE:
@@ -2662,14 +3218,18 @@ struct obj *obj;	/* wand or spell */
 		case WAN_SLOW_MONSTER:
 		case SPE_SLOW_MONSTER:
 		case WAN_SPEED_MONSTER:
+		case WAN_HASTE_MONSTER:
 		case SPE_HEALING:
 		case SPE_EXTRA_HEALING:
+		case SPE_FULL_HEALING:
 		case WAN_HEALING:
 		case WAN_EXTRA_HEALING:
+		case WAN_FULL_HEALING:
 		case WAN_DRAINING:
 		case SPE_DRAIN_LIFE:
 		case WAN_OPENING:
 		case SPE_KNOCK:
+		case WAN_WIND:
 		    (void) bhitm(u.usteed, obj);
 		    steedhit = TRUE;
 		    break;
@@ -2734,6 +3294,7 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 	    /* Indicate to the hero that something happened */
 	    if (did_cancel && !self_cancel && youdefend)
 		You_feel("a strange sense of loss.");
+	    attrcurse(); /* remove some random intrinsic as well --Amy */
 	}
 
 	/* now handle special cases */
@@ -2818,6 +3379,7 @@ struct obj *obj;	/* wand or spell */
 	    break;
 	case WAN_STRIKING:
 	case SPE_FORCE_BOLT:
+	case WAN_WIND:
 	    striking = TRUE;
 	    /*FALLTHRU*/
 	case WAN_LOCKING:
@@ -2840,6 +3402,17 @@ struct obj *obj;	/* wand or spell */
 		losehp(rnd((uarmh && is_metallic(uarmh)) ? 2 : 6),
 		       "falling rock", KILLED_BY_AN);
 		if ((otmp = mksobj_at(ROCK, x, y, FALSE, FALSE)) != 0) {
+
+			if(!rn2(8)) {
+				otmp->spe = rne(2);
+				if (rn2(2)) otmp->blessed = rn2(2);
+				 else	blessorcurse(otmp, 3);
+			} else if(!rn2(10)) {
+				if (rn2(10)) curse(otmp);
+				 else	blessorcurse(otmp, 3);
+				otmp->spe = -rne(2);
+			} else	blessorcurse(otmp, 10);
+
 		    (void)xname(otmp);	/* set dknown, maybe bknown */
 		    stackobj(otmp);
 		}
@@ -2903,6 +3476,7 @@ struct obj *obj;	/* wand or spell */
 		case WAN_CANCELLATION:
 		case SPE_CANCELLATION:
 		case WAN_MAKE_INVISIBLE:
+		case WAN_BANISHMENT:
 		    del_engr(e);
 		    break;
 		case WAN_TELEPORTATION:
@@ -2920,6 +3494,7 @@ struct obj *obj;	/* wand or spell */
 		    break;
 		case WAN_STRIKING:
 		case SPE_FORCE_BOLT:
+		case WAN_WIND:
 		    wipe_engr_at(x, y, d(2,4));
 		    break;
 		default:
@@ -2943,7 +3518,7 @@ struct obj *obj;
 	boolean disclose = FALSE, was_unkn = !objects[otyp].oc_name_known;
 	int skilldmg = 0; /*WAC - Skills damage bonus*/
 
-	if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_ACID_STREAM)
+	if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_SOLAR_BEAM)
 		skilldmg = spell_damage_bonus(obj->otyp);
 
 
@@ -2957,6 +3532,10 @@ struct obj *obj;
 	if (objects[otyp].oc_dir == IMMEDIATE) {
 	    obj_zapped = FALSE;
 
+		if (obj->otyp == WAN_WIND) {
+			pline("Winds swirl around you!");
+			makeknown(obj->otyp);
+		}
 	    if (u.uswallow) {
 		(void) bhitm(u.ustuck, obj);
 		/* [how about `bhitpile(u.ustuck->minvent)' effect?] */
@@ -2978,20 +3557,20 @@ struct obj *obj;
 	    if (otyp == WAN_DIGGING || otyp == SPE_DIG)
 		zap_dig();
 /*		else if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_FINGER_OF_DEATH)*/
-		else if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_ACID_STREAM)
+		else if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_SOLAR_BEAM)
 			/* WAC --
 			 * Include effect for Mega Large Fireball/Cones of Cold.
 			 * Include effect for Lightning cast.
 			 * Include Yell...atmospheric.
 			 * Added slight delay before fireworks. */
 
-			if (((otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_CONE_OF_COLD)
-		            || (otyp >= SPE_LIGHTNING && otyp <= SPE_ACID_STREAM))
+			if (((otyp >= SPE_MAGIC_MISSILE /*&& otyp <= SPE_CONE_OF_COLD)
+		            || (otyp >= SPE_LIGHTNING*/ && otyp <= SPE_SOLAR_BEAM))
 		            && (tech_inuse(T_SIGIL_TEMPEST))) {
 				/* sigil of tempest */                     
 				throwstorm(obj, skilldmg, 2 , 2);
-			} else if (((otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_CONE_OF_COLD)
-		            || (otyp >= SPE_LIGHTNING && otyp <= SPE_ACID_STREAM))
+			} else if (((otyp >= SPE_MAGIC_MISSILE /*&& otyp <= SPE_CONE_OF_COLD)
+		            || (otyp >= SPE_LIGHTNING*/ && otyp <= SPE_SOLAR_BEAM))
 					/*WAC - use sigil of discharge */
 		            && (tech_inuse(T_SIGIL_DISCHARGE))) {
 				You("yell \"%s\"",yell_types[otyp - SPE_MAGIC_MISSILE]);
@@ -3003,11 +3582,13 @@ struct obj *obj;
 					u.ulevel / 2 + 1 + skilldmg,
 		     u.ux, u.uy, u.dx, u.dy);
 
-	    else if (otyp >= WAN_MAGIC_MISSILE && otyp <= WAN_FIREBALL)
+	    else if (otyp >= WAN_MAGIC_MISSILE && otyp <= WAN_SOLAR_BEAM)
         {
 		buzz(otyp - WAN_MAGIC_MISSILE,
-		     (otyp == WAN_MAGIC_MISSILE) ? 2 : 6,
+		     (otyp == WAN_MAGIC_MISSILE) ? 2 + (rnz(u.ulevel) / 10) : (otyp == WAN_SOLAR_BEAM) ? 8 + (rnz(u.ulevel) / 4) : 6 + (rnz(u.ulevel) / 5),
 		     u.ux, u.uy, u.dx, u.dy);
+			/*} else if (obj->otyp == WAN_ACID) {
+			    buzz(ZT_ACID,6,u.ux,u.uy,u.dx,u.dy); */ /* obsolete --Amy */
         }
 
 	    else
@@ -3048,6 +3629,8 @@ register int booktype;
 		case P_BASIC:       break;
 		case P_SKILLED:     tmp +=  1; break;
 		case P_EXPERT:      tmp +=  2; break;
+		case P_MASTER:      tmp +=  3; break;
+		case P_GRAND_MASTER:      tmp +=  4; break;
 	}
 
     return tmp;
@@ -3070,6 +3653,8 @@ int skill;
 	case P_BASIC:       hit_bon =  0; break;
 	case P_SKILLED:     hit_bon =  2; break;
 	case P_EXPERT:      hit_bon =  3; break;
+	case P_MASTER:      hit_bon =  5; break;
+	case P_GRAND_MASTER:      hit_bon =  7; break;
     }
 
     if (dex < 4)
@@ -3234,6 +3819,7 @@ struct obj **obj_p;			/* object tossed/used */
 			break;
 		    case WAN_STRIKING:
 		    case SPE_FORCE_BOLT:
+			 case WAN_WIND:
 			if (typ != DRAWBRIDGE_UP)
 			    destroy_drawbridge(x,y);
 			makeknown(obj->otyp);
@@ -3316,6 +3902,7 @@ struct obj **obj_p;			/* object tossed/used */
 		case SPE_KNOCK:
 		case SPE_WIZARD_LOCK:
 		case SPE_FORCE_BOLT:
+		case WAN_WIND:
 		    if (doorlock(obj, bhitpos.x, bhitpos.y)) {
 			if (cansee(bhitpos.x, bhitpos.y) ||
 			    (obj->otyp == WAN_STRIKING))
@@ -3501,11 +4088,10 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 		if (resists_cold(mon)) tmp += 7;
 		if (spellcaster)
 		    skilldmg = spell_damage_bonus(SPE_FIREBALL);
-		if (burnarmor(mon)) {
-		    if (!rn2(3)) (void)destroy_mitem(mon, POTION_CLASS, AD_FIRE);
-		    if (!rn2(3)) (void)destroy_mitem(mon, SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(5)) (void)destroy_mitem(mon, SPBOOK_CLASS, AD_FIRE);
-		}
+		if (!rn2(33)) (burnarmor(mon));
+	    if (!rn2(33)) (void)destroy_mitem(mon, POTION_CLASS, AD_FIRE);
+	    if (!rn2(33)) (void)destroy_mitem(mon, SCROLL_CLASS, AD_FIRE);
+	    if (!rn2(50)) (void)destroy_mitem(mon, SPBOOK_CLASS, AD_FIRE);
 		break;
 	case ZT_COLD:
 		if (resists_cold(mon)) {
@@ -3516,7 +4102,7 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 		if (resists_fire(mon)) tmp += d(nd, 3);
 		if (spellcaster)
 		    skilldmg = spell_damage_bonus(SPE_CONE_OF_COLD);
-		if (!rn2(3)) (void)destroy_mitem(mon, POTION_CLASS, AD_COLD);
+		if (!rn2(75)) (void)destroy_mitem(mon, POTION_CLASS, AD_COLD);
 		break;
 	case ZT_SLEEP:
 		tmp = 0;
@@ -3527,13 +4113,13 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 		if(abs(type) != ZT_BREATH(ZT_DEATH)) {	/* death */
 		    if(mon->data == &mons[PM_DEATH]) {
 			mon->mhpmax += mon->mhpmax/2;
-			if (mon->mhpmax >= MAGIC_COOKIE)
-			    mon->mhpmax = MAGIC_COOKIE - 1;
+			if (mon->mhpmax >= /*MAGIC_COOKIE*/50000)
+			    mon->mhpmax = /*MAGIC_COOKIE - 1*/49999;
 			mon->mhp = mon->mhpmax;
 			break;
 		    }
 		    if (nonliving(mon->data) || is_demon(mon->data) ||
-			    resists_death(mon) ||
+			    resists_death(mon) || mon->data->msound == MS_NEMESIS ||
 			    resists_magm(mon)) {	/* similar to player */
 			sho_shieldeff = TRUE;
 			break;
@@ -3547,12 +4133,15 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 		    } else if (mon->misc_worn_check & W_ARMS) {
 			/* destroy shield; victim survives */
 			*ootmp = which_armor(mon, W_ARMS);
+		    } else if (mon->misc_worn_check & W_ARMC) {
+			/* destroy shield; victim survives */
+			*ootmp = which_armor(mon, W_ARMC);
 		    } else if (mon->misc_worn_check & W_ARM) {
-			/* destroy body armor, also cloak if present */
+			/* destroy shield; victim survives */
 			*ootmp = which_armor(mon, W_ARM);
-			if ((otmp2 = which_armor(mon, W_ARMC)) != 0)
-			    m_useup(mon, otmp2);
-			break;
+		    } else if (mon->misc_worn_check & W_ARMU) {
+			/* destroy shield; victim survives */
+			*ootmp = which_armor(mon, W_ARMU);
 		    } else {
 			/* no body armor, victim dies; destroy cloak
 			   and shirt now in case target gets life-saved */
@@ -3586,9 +4175,9 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 				mon->mblinded = 127;
 			else mon->mblinded += rnd_tmp;
 		}
-		if (!rn2(3)) (void)destroy_mitem(mon, WAND_CLASS, AD_ELEC);
+		if (!rn2(100)) (void)destroy_mitem(mon, WAND_CLASS, AD_ELEC);
 		/* not actually possible yet */
-		if (!rn2(3)) (void)destroy_mitem(mon, RING_CLASS, AD_ELEC);
+		if (!rn2(100)) (void)destroy_mitem(mon, RING_CLASS, AD_ELEC);
 		break;
 	case ZT_POISON_GAS:
 		if (resists_poison(mon)) {
@@ -3605,6 +4194,13 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 		tmp = d(nd,6);
 		if (!rn2(6)) erode_obj(MON_WEP(mon), TRUE, TRUE);
 		if (!rn2(6)) erode_armor(mon, TRUE);
+		break;
+	case ZT_LITE:
+		tmp = d(nd,8);
+		if (is_vampire(mon->data)) {
+		tmp *= 2; /* vampires take more damage from sunlight --Amy */
+		pline("The light ray sears %s's pale skin!",mon_nam(mon));
+		}
 		break;
 	}
 	if (sho_shieldeff) shieldeff(mon->mx, mon->my);
@@ -3651,7 +4247,7 @@ xchar sx, sy;
 
 	switch (abs(type) % 10) {
 	case ZT_MAGIC_MISSILE:
-	    if (Antimagic) {
+	    if (Antimagic && rn2(20)) {
 		shieldeff(sx, sy);
 		pline_The("missiles bounce off!");
 	    } else {
@@ -3660,7 +4256,7 @@ xchar sx, sy;
 	    }
 	    break;
 	case ZT_FIRE:
-	    if (Fire_resistance) {
+	    if (Fire_resistance && rn2(20)) {
 		shieldeff(sx, sy);
 		You("don't feel hot!");
 		ugolemeffects(AD_FIRE, d(nd, 6));
@@ -3672,76 +4268,87 @@ xchar sx, sy;
 		Slimed = 0;
 	    }
 	    burn_away_slime();
-	    if (burnarmor(&youmonst)) {	/* "body hit" */
-		if (!rn2(3)) destroy_item(POTION_CLASS, AD_FIRE);
-		if (!rn2(3)) destroy_item(SCROLL_CLASS, AD_FIRE);
-		if (!rn2(5)) destroy_item(SPBOOK_CLASS, AD_FIRE);
-	    }
+	    if (!rn2(33)) (burnarmor(&youmonst));	/* "body hit" */
+		if (!rn2(33)) destroy_item(POTION_CLASS, AD_FIRE);
+		if (!rn2(33)) destroy_item(SCROLL_CLASS, AD_FIRE);
+		if (!rn2(50)) destroy_item(SPBOOK_CLASS, AD_FIRE);
 	    break;
 	case ZT_COLD:
-	    if (Cold_resistance) {
+	    if (Cold_resistance && rn2(20)) {
 		shieldeff(sx, sy);
 		You("don't feel cold.");
 		ugolemeffects(AD_COLD, d(nd, 6));
 	    } else {
 		dam = d(nd, 6);
 	    }
-	    if (!rn2(3)) destroy_item(POTION_CLASS, AD_COLD);
+	    if (!rn2(75)) destroy_item(POTION_CLASS, AD_COLD);
 	    break;
 	case ZT_SLEEP:
-	    if (Sleep_resistance) {
+	    if (Sleep_resistance && rn2(20)) {
 		shieldeff(u.ux, u.uy);
 		You("don't feel sleepy.");
 	    } else {
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		fall_asleep(-d(nd,25), TRUE); /* sleep ray */
 	    }
 	    break;
 	case ZT_DEATH:
 	    if (abs(type) == ZT_BREATH(ZT_DEATH)) {
-		if (Disint_resistance) {
+		if (Disint_resistance && rn2(100)) {
 		    You("are not disintegrated.");
 		    break;
+            } else if (Invulnerable) {
+                pline("You are unharmed!");
+                break;
 		} else if (uarms) {
 		    /* destroy shield; other possessions are safe */
 		    (void) destroy_arm(uarms);
 		    break;
+		} else if (uarmc) {
+		    /* destroy cloak; other possessions are safe */
+		    (void) destroy_arm(uarmc);
+		    break;
 		} else if (uarm) {
-		    /* destroy suit; if present, cloak goes too */
-		    if (uarmc) (void) destroy_arm(uarmc);
+		    /* destroy suit */
 		    (void) destroy_arm(uarm);
 		    break;
-		}
-		/* no shield or suit, you're dead; wipe out cloak
-		   and/or shirt in case of life-saving or bones */
-		if (uarmc) (void) destroy_arm(uarmc);
 #ifdef TOURIST
-		if (uarmu) (void) destroy_arm(uarmu);
+		} else if (uarmu) {
+		    /* destroy shirt */
+		    (void) destroy_arm(uarmu);
+		    break;
 #endif
-                if (Invulnerable) {
-                        pline("You are unharmed!");
-                        break;
-                }
+		}
 	    } else if (nonliving(youmonst.data) || is_demon(youmonst.data)) {
 		shieldeff(sx, sy);
 		You("seem unaffected.");
 		break;
-	    } else if (Antimagic) {
-		shieldeff(sx, sy);
-		You("aren't affected.");
-		break;
+	    } else if (Antimagic) { /* Sorry people, but being magic resistant no longer makes you immune. --Amy */
+	            dam = d(2,4);
+			u.uhpmax -= dam/2;
+	            pline("You resist the attack, but it hurts!");
+            break;
             } else if (Invulnerable) {
                 dam = 0;
                 pline("You are unharmed!");
                 break;
 	    }
+
+		if (!rn2(20) || abs(type) == ZT_BREATH(ZT_DEATH) ) {
 	    killer_format = KILLED_BY_AN;
 	    killer = fltxt;
 	    /* when killed by disintegration breath, don't leave corpse */
 	    u.ugrave_arise = (type == -ZT_BREATH(ZT_DEATH)) ? -3 : NON_PM;
 	    done(DIED);
 	    return; /* lifesaved */
+		}
+		else
+                dam = d(4,6);
+			u.uhpmax -= dam/2;
+                pline("This hurts a lot!");
+		break;
 	case ZT_LIGHTNING:
-	    if (Shock_resistance) {
+	    if (Shock_resistance && rn2(20)) {
 		shieldeff(sx, sy);
 		You("aren't affected.");
 		ugolemeffects(AD_ELEC, d(nd, 6));
@@ -3749,15 +4356,18 @@ xchar sx, sy;
 		dam = d(nd, 6);
 		exercise(A_CON, FALSE);
 	    }
-	    if (!rn2(3)) destroy_item(WAND_CLASS, AD_ELEC);
-	    if (!rn2(3)) destroy_item(RING_CLASS, AD_ELEC);
+	    if (!rn2(100)) destroy_item(WAND_CLASS, AD_ELEC);
+	    if (!rn2(100)) destroy_item(RING_CLASS, AD_ELEC);
 	    break;
 	case ZT_POISON_GAS:
 	    poisoned("blast", A_DEX, "poisoned blast", 15);
 	    break;
 	case ZT_ACID:
+
+		if (Stoned) fix_petrification();
+
 		/* KMH, balance patch -- new intrinsic */
-	    if (Acid_resistance) {
+	    if (Acid_resistance && rn2(20)) {
 		dam = 0;
 	    } else {
 		pline_The("acid burns!");
@@ -3769,11 +4379,29 @@ xchar sx, sy;
 	    if (u.twoweap && !rn2(3)) erode_obj(uswapwep, TRUE, TRUE);
 	    if (!rn2(6)) erode_armor(&youmonst, TRUE);
 	    break;
+	case ZT_LITE:
+
+		pline_The("irradiation hurts like hell!");
+		dam = d(nd,8);
+		if (maybe_polyd(is_vampire(youmonst.data), Race_if(PM_VAMPIRE)) || Role_if(PM_GOFF) ) {
+		dam *= 2; /* vampires are susceptible to sunlight --Amy */
+		pline("Your pale skin is seared by the light ray!");
+		}
+
+	    break;
 	}
 
-	if (Half_spell_damage && dam &&
+	if (Half_spell_damage && rn2(2) && dam &&
 	   type < 0 && (type > -20 || type < -29)) /* !Breath */
 	    dam = (dam + 1) / 2;
+
+	if (rn2(5) && dam && /* Enemies with wands are deadly enough already. Let's nerf them a bit. --Amy */
+	   type < 0 && (type > -20 || type < -29)) /* !Breath */
+	    dam = (dam + 1) / 2;
+	if (!rn2(5) && dam && 
+	   type < 0 && (type > -20 || type < -29)) /* !Breath */
+	    dam = (dam + 2) / 3;
+
 	/* when killed by disintegration breath, don't leave corpse */
 	u.ugrave_arise = (type == -ZT_BREATH(ZT_DEATH)) ? -3 : -1;
 	losehp(dam, fltxt, KILLED_BY_AN);
@@ -3807,7 +4435,7 @@ boolean u_caused;
 		scrquan = obj->quan;	/* number present */
 		delquan = 0;		/* number to destroy */
 		for (i = scrquan; i > 0; i--)
-		    if (!rn2(3)) delquan++;
+		    if (!rn2(33)) delquan++;
 		if (delquan) {
 		    /* save name before potential delobj() */
 		    if (give_feedback) {
@@ -4132,7 +4760,7 @@ register int dx,dy;
 	    if (zap_hit((int) u.uac, 0)) {
 		range -= 2;
 		pline("%s hits you!", The(fltxt));
-		if (Reflecting && abs(type) != ZT_SPELL(ZT_FIRE)) {
+		if (Reflecting && rn2(20) && abs(type) != ZT_SPELL(ZT_FIRE)) {
 		    if (!Blind) {
 		    	(void) ureflects("But %s reflects from your %s!", "it");
 		    } else
@@ -4156,7 +4784,7 @@ register int dx,dy;
 	    }
 	    if (abstype == ZT_LIGHTNING && !resists_blnd(&youmonst)) {
 		You(are_blinded_by_the_flash);
-		make_blinded((long)d(nd,50),FALSE);
+		make_blinded((long)d(nd,5),FALSE);
 		if (!Blind) Your(vision_clears);
 	    }
 	    stop_occupation();
@@ -4243,7 +4871,7 @@ register int dx,dy;
 
     /*WAC Player/Monster fireball*/
     if (abs(type) == ZT_SPELL(ZT_FIRE))
-	explode(sx, sy, type, d(12,6), 0, EXPL_FIERY);
+	explode(sx, sy, type, d(/*12*/nd,6), 0, EXPL_FIERY);
     if (shopdamage)
 	pay_for_damage(abstype == ZT_FIRE ?  "burn away" :
 		       abstype == ZT_COLD ?  "shatter" :
@@ -4490,6 +5118,7 @@ boolean *shopdamage;
 		    setmangry(mon);
 		    if(mon->ispriest && *in_rooms(mon->mx, mon->my, TEMPLE))
 			ghod_hitsu(mon);
+
 		    if(mon->isshk && !*u.ushops)
 			hot_pursuit(mon);
 		}
@@ -4506,16 +5135,29 @@ register struct obj *obj;		   /* no texts here! */
 {
 	/* A little Sokoban guilt... */
 	if (obj->otyp == BOULDER && In_sokoban(&u.uz) && !flags.mon_moving)
-	    change_luck(-1);
+		{change_luck(-1);
+		pline("You cheater!");
+		}
 
 	obj->otyp = ROCK;
 	obj->quan = (long) rn1(60, 7);
 	obj->owt = weight(obj);
 	obj->oclass = GEM_CLASS;
-	obj->known = FALSE;
+	obj->known = /*FALSE*/TRUE;
 	obj->onamelth = 0;		/* no names */
 	obj->oxlth = 0;			/* no extra data */
 	obj->oattached = OATTACHED_NOTHING;
+
+	if(!rn2(8)) {
+		obj->spe = rne(2);
+		if (rn2(2)) obj->blessed = rn2(2);
+		 else	blessorcurse(obj, 3);
+	} else if(!rn2(10)) {
+		if (rn2(10)) curse(obj);
+		 else	blessorcurse(obj, 3);
+		obj->spe = -rne(2);
+	} else	blessorcurse(obj, 10);
+
 	if (obj->where == OBJ_FLOOR) {
 		obj_extract_self(obj);		/* move rocks back on top */
 		place_object(obj, obj->ox, obj->oy);
@@ -4545,8 +5187,14 @@ register struct obj *obj;
 	}
 	if (Role_if(PM_ARCHEOLOGIST) && !flags.mon_moving && (obj->spe & STATUE_HISTORIC)) {
 	    You_feel("guilty about damaging such a historic statue.");
-	    adjalign(-1);
+	    adjalign(-10);
 	}
+
+	if (Role_if(PM_ARTIST) && !flags.mon_moving) { /* Breaking statues really hurts an Artist's alignment */
+	    You_feel("guilty about damaging such a beautiful statue.");
+	    adjalign(-10);
+	}
+
 	obj->spe = 0;
 	fracture_rock(obj);
 	return TRUE;
@@ -4618,6 +5266,8 @@ register int osym, dmgtyp;
 		case AD_FIRE:
 		    xresist = (Fire_resistance && obj->oclass != POTION_CLASS);
 
+			if (osym==SCROLL_CLASS && obj->oartifact)
+			skip++;
 		    if (obj->otyp == SCR_FIRE || obj->otyp == SPE_FIREBALL)
 			skip++;
 		    if (obj->otyp == SPE_BOOK_OF_THE_DEAD) {
@@ -4675,7 +5325,7 @@ register int osym, dmgtyp;
 	    if(!skip) {
 		if (obj->in_use) --quan; /* one will be used up elsewhere */
 		for(i = cnt = 0L; i < quan; i++)
-		    if(!rn2(3)) cnt++;
+		    if(!rn2(10)) cnt++;
 
 		if(!cnt) continue;
 		if(cnt == quan)	mult = "Your";
@@ -4764,6 +5414,8 @@ int osym, dmgtyp;
 		    } else skip++;
 		    break;
 		case AD_FIRE:
+			if (osym==SCROLL_CLASS && obj->oartifact)
+				skip++;
 		    if (obj->otyp == SCR_FIRE || obj->otyp == SPE_FIREBALL)
 			skip++;
 		    if (obj->otyp == SPE_BOOK_OF_THE_DEAD) {
@@ -4816,7 +5468,7 @@ int osym, dmgtyp;
 	    }
 	    if(!skip) {
 		for(i = cnt = 0L; i < quan; i++)
-		    if(!rn2(3)) cnt++;
+		    if(!rn2(10)) cnt++;
 
 		if(!cnt) continue;
 		if (vis) pline("%s %s %s!",

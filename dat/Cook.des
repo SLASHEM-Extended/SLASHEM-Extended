@@ -1,0 +1,336 @@
+#	SCCS Id: @(#)Elf.des	3.2	91/12/24
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, Earendil/Elwing
+#	and receive your quest assignment.
+#
+MAZE: "Coo-strt",' '
+INIT_MAP: '.' , ' ' , true , true , random , true
+GEOMETRY:center,center
+MAP
+.- - - - - -...- 
+------.....-...--
+ -.........-...- 
+--.....-...-S----
+ -.....-........
+---.--S-...------
+ ..........-...- 
+------.....-...--
+ -...-.....S...S 
+--...--S--.-...--
+ -.......-.-...- 
+--.......-.------
+ -.......- - - - 
+ENDMAP
+MAZEWALK:(0,0),west
+
+#BRANCH:(74,10,74,10),(0,0,0,0)
+# Stairs
+STAIR:random,down
+# Portal arrival point
+
+# Earendil/Elwing
+MONSTER:'@',"King K. Rool",random
+# The treasure of Earendil/Elwing
+OBJECT:'(',"chest",random
+# elf guards for the audience chamber
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to infiltrate the Goblins' Cave to go
+#	further towards your assigned quest.
+#
+
+MAZE: "Coo-loca",' '
+INIT_MAP: '.' , ' ' , true , true , random , true
+GEOMETRY:right,center
+MAP
+.......................................
+.................................---...
+...........................---...---...
+.....................---...---.........
+...............---...---...............
+.........---...---.....................
+...---...---...........................
+...---.................................
+.......................................
+...---.................................
+...---...---...........................
+.........---...---.....................
+...............---...---...............
+.....................---...---.........
+...........................---...---...
+.................................---...
+.......................................
+ENDMAP
+
+MAZEWALK:(0,8),west
+
+
+# Stairs
+STAIR:random,down
+STAIR:random,up  
+
+# Monsters
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet The Goblin King your nemesis monster.  You have to
+#	defeat The Goblin King in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Coo-goal", ' '
+FLAGS: hardfloor,noteleport,nommap
+INIT_MAP: '.' , ' ' , true , true , random , true
+GEOMETRY:center,center
+MAP
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+------------------------------------------------------------------.--------
+...........................................................................
+--------.------------------------------------------------------------------
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ENDMAP
+NON_DIGGABLE:(0,1,74,3)
+GEOMETRY:center,center
+MAP
+...-.
+--.--
+ -.- 
+--.--
+ -.- 
+--.--
+ -.- 
+--.--
+.....
+--.--
+ -.- 
+--.--
+ -.- 
+--.--
+ -.- 
+--.--
+.-...
+ENDMAP
+NON_DIGGABLE:(1,0,3,16)
+NON_DIGGABLE:(0,7,4,9)
+MAZEWALK:(0,0),west
+MAZEWALK:(4,0),east
+MAZEWALK:(0,16),west
+MAZEWALK:(4,16),east
+
+# Stairs
+STAIR:random,up
+
+# Objects
+OBJECT:')',"knife",random,blessed,+5,"Kitchen Cutter"
+OBJECT:'(',"chest",random
+MONSTER:'Y',"Donkey Kong",random,hostile
+
+
+
+# Monsters
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Coo-fila" , 'P'
+INIT_MAP: '.' , ' ' , true , true , random , true
+GEOMETRY:center,center
+MAP
+.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
+---------------------------------------------------------------------------
+.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L
+---------------------------------------------------------------------------
+.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
+ENDMAP
+
+MAZEWALK:(0,4),east
+MAZEWALK:(0,0),east
+MAZEWALK:(0,8),east
+
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+#
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+
+MAZE: "Coo-filb" , ' '
+INIT_MAP: '.' , ' ' , true , true , random , true
+GEOMETRY:half-left,center
+MAP
+.............
+.....}}}.....
+....}}}}}....
+.....}}}.....
+.............
+ENDMAP
+MAZEWALK:(6,4),south
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+#
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile

@@ -79,12 +79,23 @@ d_level *dlev;
 	for(j = 0; j < 9-lev/3; j++)
 		objects[first+j].oc_prob = 0;
 	first += j;
-	if (first > LAST_GEM || objects[first].oc_class != GEM_CLASS ||
-	    OBJ_NAME(objects[first]) == (char *)0) {
+	if (first > LAST_GEM) {
 		raw_printf("Not enough gems? - first=%d j=%d LAST_GEM=%d",
 			first, j, LAST_GEM);
 		wait_synch();
 	    }
+	if (objects[first].oc_class != GEM_CLASS) {
+		raw_printf("something is not a gem? - first=%d j=%d LAST_GEM=%d",
+			first, j, LAST_GEM);
+		wait_synch();
+	    }
+
+	if (OBJ_NAME(objects[first]) == (char *)0) {
+		raw_printf("gem with bugged description? - first=%d j=%d LAST_GEM=%d",
+			first, j, LAST_GEM);
+		wait_synch();
+	    }
+
 	for (j = first; j <= LAST_GEM; j++)
 		/* KMH, balance patch -- valuable gems now sum to 171 */
 		objects[j].oc_prob = (171+j-first)/(LAST_GEM+1-first);

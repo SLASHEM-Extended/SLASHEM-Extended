@@ -207,7 +207,7 @@ TRAP:random,random
 # KMH, balance patch 2 -- all quests now have an altar
 ALTAR:(17,08),noalign,altar
 # Random monsters.
-MONSTER:'@',"Water Mage",(17,08)
+MONSTER:'@',"Water Mage",(17,08),hostile
 MONSTER:'E',"water elemental",random,hostile
 MONSTER:'E',"water elemental",random,hostile
 MONSTER:'E',"water elemental",random,hostile
@@ -248,13 +248,13 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 #
-MONSTER: 'E', "water elemental", random
-MONSTER: 'E', "water elemental", random
-MONSTER: 'E', "water elemental", random
-MONSTER: 'E', "water elemental", random
-MONSTER: 'E', "water elemental", random
-MONSTER: 'E', "water elemental", random
-MONSTER: 'E', "water elemental", random
+MONSTER: 'E', "water elemental", random,hostile
+MONSTER: 'E', "water elemental", random,hostile
+MONSTER: 'E', "water elemental", random,hostile
+MONSTER: 'E', "water elemental", random,hostile
+MONSTER: 'E', "water elemental", random,hostile
+MONSTER: 'E', "water elemental", random,hostile
+MONSTER: 'E', "water elemental", random,hostile
 MONSTER: 'R', "rust monster", random, hostile
 MONSTER: 'R', "rust monster", random, hostile
 MONSTER: 'R', "rust monster", random, hostile
@@ -280,13 +280,13 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 #
-MONSTER: 'E', "water elemental", random
-MONSTER: 'E', "water elemental", random
-MONSTER: 'E', "water elemental", random
-MONSTER: 'E', "water elemental", random
-MONSTER: 'E', "water elemental", random
-MONSTER: 'E', "water elemental", random
-MONSTER: 'E', "water elemental", random
+MONSTER: 'E', "water elemental", random,hostile
+MONSTER: 'E', "water elemental", random,hostile
+MONSTER: 'E', "water elemental", random,hostile
+MONSTER: 'E', "water elemental", random,hostile
+MONSTER: 'E', "water elemental", random,hostile
+MONSTER: 'E', "water elemental", random,hostile
+MONSTER: 'E', "water elemental", random,hostile
 MONSTER: 'R', "rust monster", random, hostile
 MONSTER: 'R', "rust monster", random, hostile
 #

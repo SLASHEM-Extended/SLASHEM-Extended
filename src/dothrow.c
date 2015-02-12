@@ -76,7 +76,11 @@ int thrown;
 {
 	struct obj *otmp;
 	struct obj *launcher;
-	int multishot = 1;
+	int multishot = (Race_if(PM_CLOCKWORK_AUTOMATON) && !Upolyd) ? 3 : Race_if(PM_HAXOR) ? rnd(2) : 1;
+	if ((long)multishot > obj->quan && (long)multishot > 1) multishot = (int)obj->quan;
+
+	    if ((shotlimit > 0) && (multishot > shotlimit)) multishot = shotlimit;
+
 	schar skill;
 	long wep_mask;
 	boolean twoweap;
@@ -150,6 +154,13 @@ int thrown;
 		Sprintf(killer_buf, "%s corpse", an(mons[obj->corpsenm].mname));
 		instapetrify(killer_buf);
 	}
+	if (!uarmg && !Stone_resistance && (obj->otyp == EGG &&
+		    touch_petrifies(&mons[obj->corpsenm]))) {
+		You("throw the %s egg with your bare %s.",
+		    mons[obj->corpsenm].mname, body_part(HAND));
+		Sprintf(killer_buf, "%s egg", an(mons[obj->corpsenm].mname));
+		instapetrify(killer_buf);
+	}
 	if (welded(obj)) {
 		weldmsg(obj);
 		return 1;
@@ -158,14 +169,16 @@ int thrown;
 	/* Multishot calculations
 	 */
 	skill = objects[obj->otyp].oc_skill;
-	if ((ammo_and_launcher(obj, uwep) || skill == P_DAGGER ||
-			skill == -P_DART || skill == -P_SHURIKEN) &&
+	if ((ammo_and_launcher(obj, uwep) || skill == P_DAGGER || skill == P_KNIFE || skill == P_BOOMERANG ||
+			skill == -P_DART || skill == -P_SHURIKEN || skill == P_SPEAR || skill == P_JAVELIN) &&
 		!(Confusion || Stunned)) {
 	    /* Bonus if the player is proficient in this weapon... */
 	    switch (P_SKILL(weapon_type(obj))) {
 	    default:	break; /* No bonus */
 	    case P_SKILLED:	multishot++; break;
 	    case P_EXPERT:	multishot += 2; break;
+	    case P_MASTER:	multishot += 3; break; /* this might be implemented --Amy */
+	    case P_GRAND_MASTER:	multishot += 4; break;
 	    }
 	    
 	    /* ...or is using a good weapon... */
@@ -186,6 +199,17 @@ int thrown;
 		break;
 	    case PM_ROGUE:
 		if (skill == P_DAGGER) multishot++;
+		break;
+	    case PM_ROCKER:
+		if (skill == P_SLING) {multishot++;
+		if (P_SKILL(weapon_type(obj)) >= P_SKILLED) multishot++;
+		if (P_SKILL(weapon_type(obj)) >= P_EXPERT) multishot++;
+		}
+		break;
+	    case PM_ELPH: /* elf role --Amy */
+		multishot++;
+		if (obj->otyp == ELVEN_ARROW && launcher &&
+				launcher->otyp == ELVEN_BOW) multishot++;
 		break;
 	    case PM_SAMURAI:
 		if (obj->otyp == YA && launcher && launcher->otyp == YUMI) multishot++;
@@ -214,7 +238,7 @@ int thrown;
 	    else multishot = 1;
 	       
 	    /* Tech: Flurry */
-	    if (objects[obj->otyp].oc_skill == -P_BOW && tech_inuse(T_FLURRY)) {
+	    if ( (objects[obj->otyp].oc_skill == -P_BOW || objects[obj->otyp].oc_skill == -P_CROSSBOW || objects[obj->otyp].oc_skill == -P_SLING) && tech_inuse(T_FLURRY)) {
 		multishot += 1; /* Let'em rip! */
 
 		/* more than usual == volley */
@@ -306,9 +330,17 @@ dothrow()
 	 * and took 3 turns.  Now it means ``t(shoot at most 3 missiles)''.
 	 */
 
-	if (notake(youmonst.data)) {
+	if (notake(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	    You("are physically incapable of throwing anything.");
-	    return 0;
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		if (yn("But you can try to throw anyway. Okay?") == 'y') {
+			if (rn2(3)) { 		morehungry(10);
+			pline("The darn thing doesn't seem to fly very far.");
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		    return 1;}
+		}
+		else {return(0);}
 	}
 
 	if(check_capacity((char *)0)) return(0);
@@ -404,9 +436,17 @@ dofire()
 {
 	int result, shotlimit;
 
-	if (notake(youmonst.data)) {
+	if (notake(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	    You("are physically incapable of doing that.");
-	    return 0;
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		if (yn("But you can try to fire anyway. Okay?") == 'y') {
+			if (rn2(3)) { 		morehungry(10);
+			pline("The darn thing doesn't seem to fly very far.");
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		    return 1;}
+		}
+		else {return(0);}
 	}
 
 	if(check_capacity((char *)0)) return(0);
@@ -622,7 +662,7 @@ hurtle_step(arg, x, y)
 	}
 	if ((u.ux - x) && (u.uy - y) &&
 		bad_rock(&youmonst,u.ux,y) && bad_rock(&youmonst,x,u.uy)) {
-	    boolean too_much = (invent && (inv_weight() + weight_cap() > 600));
+	    boolean too_much = (invent && (inv_weight() + weight_cap() > 5000));
 	    /* Move at a diagonal. */
 	    if (bigmonst(youmonst.data) || too_much) {
 		You("%sget forcefully wedged into a crevice.",
@@ -763,7 +803,10 @@ hurtle(dx, dy, range, verbose)
 	m_shot.n = m_shot.i;	/* make current shot be the last */
     }
     if (In_sokoban(&u.uz))
-	change_luck(-1);	/* Sokoban guilt */
+	{change_luck(-1);
+	pline("You cheater!");
+	}
+	/* Sokoban guilt */
     uc.x = u.ux;
     uc.y = u.uy;
     /* this setting of cc is only correct if dx and dy are [-1,0,1] only */
@@ -926,7 +969,7 @@ boolean hitsroof;
 	if (dmg > 1 && less_damage) dmg = 1;
 	if (dmg > 0) dmg += u.udaminc;
 	if (dmg < 0) dmg = 0;	/* beware negative rings of increase damage */
-	if (Half_physical_damage) dmg = (dmg + 1) / 2;
+	if (Half_physical_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 
 	if (uarmh) {
 	    if (less_damage && dmg < (Upolyd ? u.mh : u.uhp)) {
@@ -938,12 +981,14 @@ boolean hitsroof;
 	} else if (obj->otyp == CORPSE && touch_petrifies(&mons[obj->corpsenm])) {
 	    if (!Stone_resistance &&
 		    !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
- petrify:
-		killer_format = KILLED_BY;
-		killer = "elementary physics";	/* "what goes up..." */
+		petrify:
+		/* killer_format = KILLED_BY;
+		killer = "elementary physics";	
 		You("turn to stone.");
-		if (obj) dropy(obj);	/* bypass most of hitfloor() */
-		done(STONING);
+		if (obj) dropy(obj);	
+		done(STONING); */
+		if (!Stoned) Stoned = 7;
+		delayed_killer = "elementary physics";
 		return obj ? TRUE : FALSE;
 	    }
 	}
@@ -996,7 +1041,7 @@ int thrown;
 	register int range, urange;
 	struct obj *launcher = (struct obj*) 0;
 	boolean impaired = (Confusion || Stunned || Blind ||
-			   Hallucination || Fumbling);
+			   Hallucination || Fumbling || Frozen || Burned || Numbed || Feared);
 
 	if (thrown == 1) launcher = uwep;
 	else if (thrown == 2) launcher = uswapwep;
@@ -1059,6 +1104,19 @@ int thrown;
             else setuqwep(obj);*/
 		return;
 	    }
+#ifdef JEDI
+	    if (u.dz < 0 && Role_if(PM_JEDI) &&
+		    is_lightsaber(obj) && obj->lamplit && !impaired &&
+		    P_SKILL(weapon_type(obj)) >= P_SKILLED) {
+		pline("%s the %s and returns to your hand!",
+		      Tobjnam(obj, "hit"), ceiling(u.ux,u.uy));
+		obj = addinv(obj);
+		(void) encumber_msg();
+		setuwep(obj, TRUE);
+		u.twoweap = twoweap;
+		return;
+	    }
+#endif
 #ifdef FIREARMS
 	    /* [ALI]
 	     * Grenades are armed but are then processed by toss_up/hitfloor
@@ -1116,7 +1174,7 @@ int thrown;
 		 * actually possible
 		 */
 		if (obj->otyp == HEAVY_IRON_BALL)
-			range = urange - (int)(obj->owt/100);
+			range = urange - (int)(obj->owt/300); /* thanks to the ball's weight being 1200 now */
 		else
 			range = urange - (int)(obj->owt/40);
 		if (obj == uball) {
@@ -1219,9 +1277,23 @@ int thrown;
 		if (obj != uball) (void) mpickobj(u.ustuck,obj);
 	} else {
 		/* the code following might become part of dropy() */
+#ifndef JEDI
 		if (obj->oartifact == ART_MJOLLNIR &&
 			Role_if(PM_VALKYRIE) && rn2(100)) {
 		    /* we must be wearing Gauntlets of Power to get here */
+#else
+		if ((obj->oartifact == ART_MJOLLNIR &&
+			Role_if(PM_VALKYRIE) && rn2(100)) ||
+		    (is_lightsaber(obj) && obj->lamplit && Role_if(PM_JEDI) &&
+		     P_SKILL(weapon_type(obj)) >= P_SKILLED)){
+		    /* we must be wearing Gauntlets of Power to get here */
+		    /* or a Jedi with a lightsaber */
+		    if (Role_if(PM_JEDI) && u.uen < 5){
+			You("don't have enough force to call %s. You need at least 5 points of mana!", the(xname(obj)));
+		    } else {
+		      if (Role_if(PM_JEDI))
+			u.uen -= 5;
+#endif
 		    sho_obj_return_to_u(obj);	    /* display its flight */
 
 		    if (!impaired && rn2(100)) {
@@ -1259,6 +1331,9 @@ int thrown;
 		    }
 		    thrownobj = (struct obj*)0;
 		    return;
+#ifdef JEDI
+		    }
+#endif
 		}
 
 		if (!IS_SOFT(levl[bhitpos.x][bhitpos.y].typ) &&
@@ -1338,7 +1413,7 @@ boolean mon_notices;
 	    tmp += 6;
 	    break;
 	default:
-	    if (obj->oclass == WEAPON_CLASS || is_weptool(obj) ||
+	    if (obj->oclass == WEAPON_CLASS || obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS || is_weptool(obj) ||
 		    obj->oclass == GEM_CLASS)
 		tmp += hitval(obj, mon);
 	    break;
@@ -1433,8 +1508,8 @@ int thrown;
 	    case GAUNTLETS_OF_SWIMMING:            
 	    case GAUNTLETS_OF_DEXTERITY:
 		break;
-	    default:
-		impossible("Unknown type of gloves (%d)", uarmg->otyp);
+	    default: /* why do we need this impossible message anyway? --Amy */
+		/*impossible("Unknown type of gloves (%d)", uarmg->otyp);*/
 		break;
 	    }
 	}
@@ -1485,7 +1560,7 @@ int thrown;
 	    return(0);
 	}
 
-	if (obj->oclass == WEAPON_CLASS || is_weptool(obj) ||
+	if (obj->oclass == WEAPON_CLASS || obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS || is_weptool(obj) ||
 		obj->oclass == GEM_CLASS) {
 	    if (is_ammo(obj)) {
 		if (!ammo_and_launcher(obj, launcher)) {
@@ -1500,15 +1575,17 @@ int thrown;
 		     * Polymorphing won't make you a bow expert.
 		     */
 		    if ((Race_if(PM_ELF) || Race_if(PM_DROW) ||
-		    		Role_if(PM_SAMURAI)) &&
+		    		Role_if(PM_SAMURAI) || Role_if(PM_ELPH)) &&
 				(!Upolyd || your_race(youmonst.data)) &&
 				objects[launcher->otyp].oc_skill == P_BOW) {
 			tmp++;
 			if (Race_if(PM_ELF) && launcher->otyp == ELVEN_BOW)
 			tmp++;
-			else if (Race_if(PM_DROW) && launcher->otyp == DARK_ELVEN_BOW)
+			/*else */if (Race_if(PM_DROW) && launcher->otyp == DARK_ELVEN_BOW)
 			    tmp++;
-			else if (Role_if(PM_SAMURAI) && launcher->otyp == YUMI)
+			/*else */if (Role_if(PM_ELPH) && launcher->otyp == ELVEN_BOW)
+			tmp++;
+			/*else */if (Role_if(PM_SAMURAI) && launcher->otyp == YUMI)
 			    tmp++;
 		    }
 		}
@@ -1549,6 +1626,11 @@ int thrown;
 		 */
 		if (((objects[otyp].oc_skill < P_NONE && 
 			objects[otyp].oc_skill > -P_BOOMERANG) ||
+			( objects[otyp].oc_skill == P_DAGGER && !obj->oartifact) ||
+			( objects[otyp].oc_skill == P_KNIFE && !obj->oartifact) ||
+			( objects[otyp].oc_skill == P_SPEAR && !obj->oartifact) ||
+
+/* low chance for daggers, knives and spears to disappear --Amy */
 			(obj->oclass == GEM_CLASS && 
 			!objects[otyp].oc_magic))
 # ifdef P_SPOON
@@ -1566,8 +1648,14 @@ int thrown;
 		    chance = 3 + greatest_erosion(obj) - obj->spe;
 		    if (chance > 1)
 			broken = rn2(chance);
-		    else
-			broken = !rn2(4);
+		    else /* continue to survive longer with better enchantment --Amy */
+			broken = !rn2(/*4*/ 2 + obj->spe - greatest_erosion(obj) );
+		    if ( objects[otyp].oc_skill == P_DAGGER )
+			broken = !rn2(20);
+		    if ( objects[otyp].oc_skill == P_SPEAR )
+			broken = !rn2(100);
+		    if ( objects[otyp].oc_skill == P_KNIFE )
+			broken = !rn2(50);
 		    if (obj->blessed && !rnl(4))
 			broken = 0;
 
@@ -1626,19 +1714,19 @@ int thrown;
 	    }
 
 	} else if ((otyp == EGG || otyp == CREAM_PIE ||
-		    otyp == BLINDING_VENOM || otyp == ACID_VENOM) &&
-		(guaranteed_hit || ACURR(A_DEX) > rnd(25))) {
+		    otyp == BLINDING_VENOM || otyp == FAERIE_FLOSS_RHING || otyp == ACID_VENOM || otyp == TAIL_SPIKES) &&
+		(guaranteed_hit || ACURR(A_DEX) > rnd(25) || tmp >= rnd(20) )) { /* F this stupidity. Sorry. --Amy */
 	    (void) hmon(mon, obj, thrown?thrown:3);
 	    return 1;	/* hmon used it up */
 
 	} else if (obj->oclass == POTION_CLASS &&
-		(guaranteed_hit || ACURR(A_DEX) > rnd(25))) {
+		(guaranteed_hit || ACURR(A_DEX) > rnd(25) || tmp >= rnd(20) )) { /* The damn things missed way too often. */
 	    potionhit(mon, obj, TRUE);
 	    return 1;
 
 	} else if (befriend_with_obj(mon->data, obj) ||
 		   (mon->mtame && dogfood(mon, obj) <= ACCFOOD)) {
-	    if (tamedog(mon, obj))
+	    if (tamedog(mon, obj, FALSE))
 		return 1;           	/* obj is gone */
 	    else {
 		/* not tmiss(), which angers non-tame monsters */
@@ -1649,7 +1737,7 @@ int thrown;
 	} else if (guaranteed_hit) {
 	    /* this assumes that guaranteed_hit is due to swallowing */
 	    wakeup(mon);
-	    if (obj->otyp == CORPSE && touch_petrifies(&mons[obj->corpsenm])) {
+	    if (obj->otyp == CORPSE && touch_petrifies(&mons[obj->corpsenm]) && !rn2(4)) {
 		if (is_animal(u.ustuck->data)) {
 			minstapetrify(u.ustuck, TRUE);
 			/* Don't leave a cockatrice corpse available in a statue */
@@ -1687,15 +1775,17 @@ register struct obj *obj;
 	mon->mpeaceful = 1;
 	mon->mavenge = 0;
 
+	/* Luck boosts used to be way too high. Thus I lowered them. --Amy */
+
 	/* object properly identified */
 	if(obj->dknown && objects[obj->otyp].oc_name_known) {
 		if(is_gem) {
 			if(is_buddy) {
 				Strcat(buf,addluck);
-				change_luck(5);
+				if (!rn2(3)) change_luck(rnd(4) );
 			} else {
 				Strcat(buf,maybeluck);
-				change_luck(rn2(7)-3);
+				if (!rn2(5)) change_luck(rnd(2) );
 			}
 		} else {
 			Strcat(buf,nogood);
@@ -1706,10 +1796,10 @@ register struct obj *obj;
 		if(is_gem) {
 			if(is_buddy) {
 				Strcat(buf,addluck);
-				change_luck(2);
+				if (!rn2(3)) change_luck(rnd(2) );
 			} else {
 				Strcat(buf,maybeluck);
-				change_luck(rn2(3)-1);
+				if (!rn2(5)) change_luck(rnd(2) );
 			}
 		} else {
 			Strcat(buf,nogood);
@@ -1720,10 +1810,10 @@ register struct obj *obj;
 		if(is_gem) {
 			if(is_buddy) {
 				Strcat(buf,addluck);
-				change_luck(1);
+				if (!rn2(3)) change_luck(1);
 			} else {
 				Strcat(buf,maybeluck);
-				change_luck(rn2(3)-1);
+				if (!rn2(5)) change_luck(1);
 			}
 		} else {
 			Strcat(buf,noluck);
@@ -1925,7 +2015,9 @@ struct obj *obj;
 		case CREAM_PIE:
 		case MELON:
 		case ACID_VENOM:
+		case TAIL_SPIKES:
 		case BLINDING_VENOM:
+		case FAERIE_FLOSS_RHING:
 			return 1;
 		default:
 			return 0;
@@ -1943,7 +2035,8 @@ boolean in_view;
 	switch (obj->oclass == POTION_CLASS ? POT_WATER : obj->otyp) {
 		default: /* glass or crystal wand */
 		    if (obj->oclass != WAND_CLASS)
-			impossible("breaking odd object?");
+			/*impossible("breaking odd object?");*/
+			pline("An odd object broke!"); /*quartz rings for example*/
 		case CRYSTAL_PLATE_MAIL:
 		case LENSES:
 		case MIRROR:
@@ -1968,7 +2061,9 @@ boolean in_view;
 			if (in_view) pline("What a mess!");
 			break;
 		case ACID_VENOM:
+		case TAIL_SPIKES:
 		case BLINDING_VENOM:
+		case FAERIE_FLOSS_RHING:
 			pline("Splash!");
 			break;
 	}

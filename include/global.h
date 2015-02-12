@@ -389,9 +389,10 @@ struct version_info {
 #define MAX_SUBROOMS	24	/* max # of subrooms in a given room */
 #define DOORMAX		120	/* max number of doors per level */
 
-#define BUFSZ		256	/* for getlin buffers */
-#define QBUFSZ		128	/* for building question text */
-#define TBUFSZ		300	/* toplines[] buffer max msg: 3 81char names */
+#define BUFSZ		/*256*/2048	/* for getlin buffers */
+#define ENGBUFSZ		256 /* for engravings */
+#define QBUFSZ		/*128*/2048	/* for building question text */
+#define TBUFSZ		/*300*/2048	/* toplines[] buffer max msg: 3 81char names */
 				/* plus longest prefix plus a few extra words */
 
 #define PL_NSIZ		32	/* name of player, ghost, shopkeeper */
@@ -400,8 +401,8 @@ struct version_info {
 #define PL_PSIZ		63	/* player-given names for pets, other
 				 * monsters, objects */
 
-#define MAXDUNGEON	32	/* current maximum number of dungeons */
-#define MAXLEVEL	50	/* max number of levels in one dungeon */
+#define MAXDUNGEON	200	/* current maximum number of dungeons */
+#define MAXLEVEL	200	/* max number of levels in one dungeon */
 #define MAXSTAIRS	1	/* max # of special stairways in a dungeon */
 #define ALIGNWEIGHT	10	/* generation weight of alignment */
 

@@ -60,6 +60,13 @@ char *argv[];
 #endif
 	boolean exact_username;
 
+#ifdef SIMPLE_MAIL
+	char *e_simple = NULL;
+	/* figure this out early */
+	e_simple = nh_getenv("SIMPLEMAIL");
+	iflags.simplemail = (e_simple ? 1 : 0);
+#endif
+
 	hname = argv[0];
 	hackpid = getpid();
 	(void) umask(0777 & ~FCMASK);

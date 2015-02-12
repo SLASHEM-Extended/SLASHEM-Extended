@@ -77,19 +77,19 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Monsters on siege duty.
-MONSTER: 'r',"rabid rat",random
-MONSTER: 'r',"rabid rat",random
-MONSTER: 'r',"rabid rat",random
-MONSTER: 'r',"rabid rat",random
-MONSTER: 'r',"rabid rat",random
-MONSTER: 'r',"rabid rat",random
-MONSTER: 'r',"rabid rat",random
-MONSTER: 'r',"rabid rat",random
-MONSTER: 'r',"rabid rat",random
-MONSTER: 'r',"rabid rat",random
-MONSTER: ';',"giant eel",random
-MONSTER: ';',"shark",random
-MONSTER: ';', random, random
+MONSTER: 'r',"rabid rat",random,hostile
+MONSTER: 'r',"rabid rat",random,hostile
+MONSTER: 'r',"rabid rat",random,hostile
+MONSTER: 'r',"rabid rat",random,hostile
+MONSTER: 'r',"rabid rat",random,hostile
+MONSTER: 'r',"rabid rat",random,hostile
+MONSTER: 'r',"rabid rat",random,hostile
+MONSTER: 'r',"rabid rat",random,hostile
+MONSTER: 'r',"rabid rat",random,hostile
+MONSTER: 'r',"rabid rat",random,hostile
+MONSTER: ';',"giant eel",random,hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';', random, random,hostile
 MONSTER: 'D',random,random,hostile
 MONSTER: 'D',random,random,hostile
 MONSTER: 'D',random,random,hostile
@@ -163,25 +163,25 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:'r',"rabid rat",random
-MONSTER:'r',"rabid rat",random
-MONSTER:'r',"rabid rat",random
-MONSTER:'r',"rabid rat",random
-MONSTER:'r',"rabid rat",random
-MONSTER:'r',"rabid rat",random
-MONSTER:'r',"rabid rat",random
-MONSTER:'r',"rabid rat",random
+MONSTER:'r',"rabid rat",random,hostile
+MONSTER:'r',"rabid rat",random,hostile
+MONSTER:'r',"rabid rat",random,hostile
+MONSTER:'r',"rabid rat",random,hostile
+MONSTER:'r',"rabid rat",random,hostile
+MONSTER:'r',"rabid rat",random,hostile
+MONSTER:'r',"rabid rat",random,hostile
+MONSTER:'r',"rabid rat",random,hostile
 MONSTER:'r',random,random,hostile
-MONSTER:';',"giant eel",random
-MONSTER:';',"giant eel",random
-MONSTER:';',"giant eel",random
-MONSTER:';',"giant eel",random
-MONSTER:';',"giant eel",random
-MONSTER:';',"electric eel",random
-MONSTER:';',"electric eel",random
-MONSTER:';',"kraken",random
-MONSTER:';',"shark",random
-MONSTER:';',"shark",random
+MONSTER:';',"giant eel",random,hostile
+MONSTER:';',"giant eel",random,hostile
+MONSTER:';',"giant eel",random,hostile
+MONSTER:';',"giant eel",random,hostile
+MONSTER:';',"giant eel",random,hostile
+MONSTER:';',"electric eel",random,hostile
+MONSTER:';',"electric eel",random,hostile
+MONSTER:';',"kraken",random,hostile
+MONSTER:';',"shark",random,hostile
+MONSTER:';',"shark",random,hostile
 MONSTER:';',random, random,hostile
 MONSTER:';',random, random,hostile
 MONSTER: 'D',random,random,hostile
@@ -257,21 +257,21 @@ TRAP:random,random
 TRAP:random,random
 # Random monsters.
 MONSTER:'H',"Cyclops",(20,06),hostile
-MONSTER:'r',"rabid rat",random
-MONSTER:'r',"rabid rat",random
-MONSTER:'r',"rabid rat",random
+MONSTER:'r',"rabid rat",random,hostile
+MONSTER:'r',"rabid rat",random,hostile
+MONSTER:'r',"rabid rat",random,hostile
 MONSTER:'r',random,random,hostile
 MONSTER:'r',random,random,hostile
-MONSTER:';',"giant eel",random
-MONSTER:';',"giant eel",random
-MONSTER:';',"giant eel",random
-MONSTER:';',"giant eel",random
-MONSTER:';',"giant eel",random
-MONSTER:';',"giant eel",random
-MONSTER:';',"electric eel",random
-MONSTER:';',"electric eel",random
-MONSTER:';',"shark",random
-MONSTER:';',"shark",random
+MONSTER:';',"giant eel",random,hostile
+MONSTER:';',"giant eel",random,hostile
+MONSTER:';',"giant eel",random,hostile
+MONSTER:';',"giant eel",random,hostile
+MONSTER:';',"giant eel",random,hostile
+MONSTER:';',"giant eel",random,hostile
+MONSTER:';',"electric eel",random,hostile
+MONSTER:';',"electric eel",random,hostile
+MONSTER:';',"shark",random,hostile
+MONSTER:';',"shark",random,hostile
 MONSTER:';',random,random,hostile
 MONSTER: 'D',random,random,hostile
 MONSTER: 'D',random,random,hostile
@@ -314,12 +314,12 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 #
-MONSTER: 'r', "rabid rat", random
+MONSTER: 'r', "rabid rat", random,hostile
 MONSTER: 'r', random, random,hostile
 MONSTER: 'r', random, random,hostile
-MONSTER: ';', "giant eel", random
-MONSTER: ';', "giant eel", random
-MONSTER: ';', "electric eel", random
+MONSTER: ';', "giant eel", random,hostile
+MONSTER: ';', "giant eel", random,hostile
+MONSTER: ';', "electric eel", random,hostile
 MONSTER: 'D',random,random,hostile
 MONSTER: 'D',random,random,hostile
 MONSTER: 'D',random,random,hostile
@@ -352,17 +352,17 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 #
-MONSTER: 'r', "rabid rat", random
-MONSTER: 'r', "rabid rat", random
+MONSTER: 'r', "rabid rat", random,hostile
+MONSTER: 'r', "rabid rat", random,hostile
 MONSTER: 'r', random, random,hostile
 MONSTER: 'r', random, random,hostile
-MONSTER: ';', "giant eel", random
-MONSTER: ';', "giant eel", random
-MONSTER: ';', "giant eel", random
-MONSTER: ';', "giant eel", random
-MONSTER: ';', "giant eel", random
-MONSTER: ';', "electric eel", random
-MONSTER: ';', "electric eel", random
+MONSTER: ';', "giant eel", random,hostile
+MONSTER: ';', "giant eel", random,hostile
+MONSTER: ';', "giant eel", random,hostile
+MONSTER: ';', "giant eel", random,hostile
+MONSTER: ';', "giant eel", random,hostile
+MONSTER: ';', "electric eel", random,hostile
+MONSTER: ';', "electric eel", random,hostile
 MONSTER: 'D',random,random,hostile
 MONSTER: 'D',random,random,hostile
 MONSTER: 'D',random,random,hostile

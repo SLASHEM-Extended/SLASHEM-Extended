@@ -182,7 +182,7 @@ magic_map_background(x, y, show)
     if (!cansee(x,y) && !lev->waslit) {
 	/* Floor spaces are dark if unlit.  Corridors are dark if unlit. */
 	if (lev->typ == ROOM && cmap == S_room)
-	    cmap = S_stone;
+	    cmap = S_darkroom;
 	else if (lev->typ == CORR && cmap == S_litcorr)
 	    cmap = S_corr;
     }
@@ -269,6 +269,8 @@ map_object(obj, show)
     register int x = obj->ox, y = obj->oy;
     register int glyph = obj_to_glyph(obj);
 
+	/*pline("object type %d",obj->otyp);*/
+
     if (level.flags.hero_memory)
 #ifdef DISPLAY_LAYERS
 	if ((levl[x][y].mem_corpse = glyph_is_body(glyph)))
@@ -278,6 +280,7 @@ map_object(obj, show)
 #else
 	levl[x][y].glyph = glyph;
 #endif
+
     if (show) show_glyph(x, y, glyph);
 }
 
@@ -337,7 +340,7 @@ unmap_object(x, y)
 	/* turn remembered dark room squares dark */
 	if (!lev->waslit && lev->glyph == cmap_to_glyph(S_room) &&
 							    lev->typ == ROOM)
-	    lev->glyph = cmap_to_glyph(S_stone);
+	    lev->glyph = cmap_to_glyph(S_darkroom);
     } else
 	levl[x][y].glyph = cmap_to_glyph(S_stone);	/* default val */
 #endif
@@ -456,7 +459,7 @@ display_monster(x, y, mon, sightflags, worm_tail)
 {
     register boolean mon_mimic = (mon->m_ap_type != M_AP_NOTHING);
     register int sensed = mon_mimic &&
-	(Protection_from_shape_changers || sensemon(mon));
+	( (Protection_from_shape_changers && !(mon->data == &mons[PM_DEFORMED_FISH] || mon->data == &mons[PM_KEYSTONE_INSPECTOR] || mon->data == &mons[PM_INSPECTOR_SERGEANT] || mon->data == &mons[PM_MAIDENHACK_HORROR] || mon->data == &mons[PM_YASD_HORROR] || mon->data == &mons[PM_GRATING_CHICKEN] || mon->data == &mons[PM_DEFORMED_LIZARD] || mon->data == &mons[PM_INSPECTOR_LIEUTENANT] || mon->data == &mons[PM_INSPECTOR_KAPTAIN] || mon->data == &mons[PM_INSPECTOR_KOMMISSIONER] || mon->data == &mons[PM_INSPECTOR_KCHIEF] || mon->data == &mons[PM_INSPECTOR_KATCHER] || mon->data == &mons[PM_OLOG_HAI_MIMIC] || mon->data == &mons[PM_OLOG_HAI_PERMAMIMIC] || mon->data == &mons[PM_VESTY] || mon->data == &mons[PM_CAMO_RUBBER] || mon->data == &mons[PM_WIPER_RUBBER] || mon->data == &mons[PM_DRONING_UFO_PART] || mon->data == &mons[PM_GNOSIS_SEPHIRAH] || mon->data == &mons[PM_HIDDEN_MOLD] || mon->data == &mons[PM_SECLUDED_MOLD] || mon->data == &mons[PM_HIDDEN_FUNGUS] || mon->data == &mons[PM_SECLUDED_FUNGUS] || mon->data == &mons[PM_HALLUCINATION_IMAGE] || mon->data == &mons[PM_MARSUPILAMI] || mon->data == &mons[PM_MAELSTROM]) ) || sensemon(mon));
     /*
      * We must do the mimic check first.  If the mimic is mimicing something,
      * and the location is in sight, we have to change the hero's memory
@@ -551,14 +554,15 @@ display_warning(mon)
     register struct monst *mon;
 {
     int x = mon->mx, y = mon->my;
-    int wl = (int) (mon->m_lev / 4);
+    int wl = (int) (mon->m_lev / 6);
     int glyph;
 
     if (mon_warning(mon)) {
         if (wl > WARNCOUNT - 1) wl = WARNCOUNT - 1;
 	/* 3.4.1: this really ought to be rn2(WARNCOUNT), but value "0"
-	   isn't handled correctly by the what_is routine so avoid it */
-	if (Hallucination) wl = rn1(WARNCOUNT-1,1);
+	   isn't handled correctly by the what_is routine so avoid it 
+	if (Hallucination) wl = rn1(WARNCOUNT-1,1);*/
+	if (Hallucination) wl = rn2(WARNCOUNT); /* seems the error was a 1 in pager.c where it's supposed to be a 0 --Amy */
         glyph = warning_to_glyph(wl);
     } else if (MATCH_WARN_OF_MON(mon)) {
 	glyph = mon_to_glyph(mon);
@@ -651,24 +655,29 @@ feel_location(x, y)
 		if (lev->typ != ROOM && lev->seenv) {
 		    map_background(x, y, 1);
 		} else {
+
 #ifdef DISPLAY_LAYERS
-		    lev->mem_bg = lev->waslit ? S_room : S_stone;
+		    /*lev->mem_bg = lev->waslit ? S_room : S_stone;*/
+			lev->mem_bg = (!lev->waslit) ? S_darkroom : S_room;
 #else
-		    lev->glyph = lev->waslit ? cmap_to_glyph(S_room) :
-					       cmap_to_glyph(S_stone);
+		    lev->glyph = (!lev->waslit) ? cmap_to_glyph(S_darkroom) : cmap_to_glyph(S_room);
+		    /*lev->glyph = lev->waslit ? cmap_to_glyph(S_room) :
+					       cmap_to_glyph(S_stone);*/
 #endif
 		    show_glyph(x, y, memory_glyph(x, y));
 		}
 #ifdef DISPLAY_LAYERS
-	    } else if ((lev->mem_bg >= S_stone && lev->mem_bg < S_room) ||
+	    } else if ((lev->mem_bg >= S_stone && lev->mem_bg < S_darkroom) ||
 		       memory_is_invisible(x, y)) {
-		lev->mem_bg = lev->waslit ? S_room : S_stone;
+		lev->mem_bg = (!lev->waslit ? S_darkroom : S_room); 
 #else
 	    } else if ((lev->glyph >= cmap_to_glyph(S_stone) &&
-			lev->glyph < cmap_to_glyph(S_room)) ||
+			lev->glyph < cmap_to_glyph(S_darkroom)) ||
 		       glyph_is_invisible(levl[x][y].glyph)) {
-		lev->glyph = lev->waslit ? cmap_to_glyph(S_room) :
-					   cmap_to_glyph(S_stone);
+		lev->glyph = (!cansee(x,y) && !lev->waslit) ? cmap_to_glyph(S_darkroom) :
+					   cmap_to_glyph(S_room);
+		/*lev->glyph = lev->waslit ? cmap_to_glyph(S_room) :
+					   cmap_to_glyph(S_stone);*/
 #endif
 		show_glyph(x, y, memory_glyph(x, y));
 	    }
@@ -714,7 +723,7 @@ feel_location(x, y)
 	/* Floor spaces are dark if unlit.  Corridors are dark if unlit. */
 #ifdef DISPLAY_LAYERS
 	if (lev->typ == ROOM && lev->mem_bg == S_room && !lev->waslit) {
-	    lev->mem_bg = S_stone;
+	    lev->mem_bg = S_darkroom;
 	    show_glyph(x,y, memory_glyph(x, y));
 	} else if (lev->typ == CORR &&
 		    lev->mem_bg == S_litcorr && !lev->waslit) {
@@ -724,7 +733,7 @@ feel_location(x, y)
 #else
 	if (lev->typ == ROOM &&
 		    lev->glyph == cmap_to_glyph(S_room) && !lev->waslit)
-	    show_glyph(x,y, lev->glyph = cmap_to_glyph(S_stone));
+	    show_glyph(x,y, lev->glyph = cmap_to_glyph(S_darkroom));
 	else if (lev->typ == CORR &&
 		    lev->glyph == cmap_to_glyph(S_litcorr) && !lev->waslit)
 	    show_glyph(x,y, lev->glyph = cmap_to_glyph(S_corr));
@@ -752,6 +761,7 @@ newsym(x,y)
     register xchar worm_tail;
 
     if (in_mklev) return;
+	if (Superscroller && rn2(10) ) { show_glyph(x, y, cmap_to_glyph(S_stone)); return;}
 
     /* only permit updating the hero when swallowed */
     if (u.uswallow) {
@@ -801,7 +811,7 @@ newsym(x,y)
 	    worm_tail = is_worm_tail(mon);
 	    see_it = mon && (worm_tail
 		? (!mon->minvis || See_invisible)
-		: (mon_visible(mon)) || tp_sensemon(mon) || MATCH_WARN_OF_MON(mon));
+		: (mon_visible(mon)) || tp_sensemon(mon) || MATCH_WARN_OF_MON(mon) || (Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) || (Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) || (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && is_undead(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) || (Role_if(PM_PALADIN) && is_demon(mon->data) ) || (Race_if(PM_VORTEX) && unsolid(mon->data) ) || (Race_if(PM_VORTEX) && nolimbs(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && is_covetous(mon->data) ) );
 	    if (mon && (see_it || (!worm_tail && Detect_monsters))) {
 		if (mon->mtrapped) {
 		    struct trap *trap = t_at(x, y);
@@ -834,8 +844,7 @@ newsym(x,y)
 	    if (senseself()) display_self();
 	}
 	else if ((mon = m_at(x,y))
-		&& ((see_it = (tp_sensemon(mon) || MATCH_WARN_OF_MON(mon)
-		    		|| (see_with_infrared(mon) && mon_visible(mon))))
+		&& ((see_it = (tp_sensemon(mon) || MATCH_WARN_OF_MON(mon) || (Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) || (Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) 	|| (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && is_undead(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) || (Role_if(PM_PALADIN) && is_demon(mon->data) ) || (Race_if(PM_VORTEX) && unsolid(mon->data) ) || (Race_if(PM_VORTEX) && nolimbs(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && is_covetous(mon->data) ) 	    		|| (see_with_infrared(mon) && mon_visible(mon))))
 		    || Detect_monsters)
 		&& !is_worm_tail(mon)) {
 	    /* Monsters are printed every time. */
@@ -875,14 +884,14 @@ newsym(x,y)
 		lev->mem_bg = S_corr;
 		show_glyph(x, y, memory_glyph(x, y));
 	    } else if (lev->mem_bg == S_room && lev->typ == ROOM) {
-		lev->mem_bg = S_stone;
+		lev->mem_bg = S_darkroom;
 		show_glyph(x, y, memory_glyph(x, y));
 	    }
 #else	/* DISPLAY_LAYERS */
 	    if (lev->glyph == cmap_to_glyph(S_litcorr) && lev->typ == CORR)
 		show_glyph(x, y, lev->glyph = cmap_to_glyph(S_corr));
 	    else if (lev->glyph == cmap_to_glyph(S_room) && lev->typ == ROOM)
-		show_glyph(x, y, lev->glyph = cmap_to_glyph(S_stone));
+		show_glyph(x, y, lev->glyph = cmap_to_glyph(S_darkroom));
 #endif	/* DISPLAY_LAYERS */
 	    else
 		goto show_mem;
@@ -1450,6 +1459,9 @@ show_glyph(x,y,glyph)
 	return;
     }
 
+	if (RMBLoss && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 12) ) && !(glyph >= (GLYPH_CMAP_OFF + 19) && glyph < (GLYPH_CMAP_OFF + 23) ) )
+	return;
+
     if (glyph >= MAX_GLYPH) {
 	impossible("show_glyph:  bad glyph %d [max %d] at (%d,%d).",
 					glyph, MAX_GLYPH, x, y);
@@ -1522,6 +1534,9 @@ row_refresh(start,stop,y)
 void
 cls()
 {
+
+	if (YellowSpells) return;
+
     display_nhwindow(WIN_MESSAGE, FALSE); /* flush messages */
     flags.botlx = 1;		/* force update of botl window */
     clear_nhwindow(WIN_MAP);	/* clear physical screen */
@@ -1594,9 +1609,9 @@ back_to_cmap(x,y)
     /* KMH -- support arboreal levels */
 	case SCORR:
 	case STONE:
-	    idx = level.flags.arboreal ? S_tree : S_stone;
+	    idx = level.flags.arboreal ? S_tree : /*S_stone*/S_dungwall;
 	    break;
-	case ROOM:		idx = S_room;	  break;
+	case ROOM:		idx = (!cansee(x,y) && !ptr->waslit) ? S_darkroom : S_room;	  break;
 	case CORR:
 	    idx = (ptr->waslit || flags.lit_corridor) ? S_litcorr : S_corr;
 	    break;
@@ -1612,7 +1627,7 @@ back_to_cmap(x,y)
 	case TLWALL:
 	case TRWALL:
 	case SDOOR:
-	    idx = ptr->seenv ? wall_angle(ptr) : S_stone;
+	    idx = ptr->seenv ? wall_angle(ptr) : /*S_stone*/S_dungwall;
 	    break;
 	case IRONBARS:		idx = S_bars;     break;
 	case DOOR:
@@ -1654,11 +1669,11 @@ back_to_cmap(x,y)
 	    case DB_MOAT:  idx = S_pool; break;
 	    case DB_LAVA:  idx = S_lava; break;
 	    case DB_ICE:   idx = S_ice;  break;
-	    case DB_FLOOR: idx = S_room; break;
+	    case DB_FLOOR: idx = (!cansee(x,y) && !ptr->waslit) ? S_darkroom : S_room; break;
 	    default:
 		impossible("Strange db-under: %d",
 			   ptr->drawbridgemask & DB_UNDER);
-		idx = S_room; /* something is better than nothing */
+		idx = (!cansee(x,y) && !ptr->waslit) ? S_darkroom : S_room; /* something is better than nothing */
 		break;
 	    }
 	    break;
@@ -1667,7 +1682,7 @@ back_to_cmap(x,y)
 	    break;
 	default:
 	    impossible("back_to_glyph:  unknown level type [ = %d ]",ptr->typ);
-	    idx = S_room;
+	    idx = (!cansee(x,y) && !ptr->waslit) ? S_darkroom : S_room;
 	    break;
     }
     return idx;
@@ -2236,17 +2251,17 @@ do_twall:
 		/* fall through */
 	case VWALL:
 		switch (lev->wall_info & WM_MASK) {
-		    case 0: idx = seenv ? S_vwall : S_stone; break;
+		    case 0: idx = seenv ? S_vwall : /*S_stone*/S_dungwall; break;
 		    case 1: idx = seenv & (SV1|SV2|SV3|SV4|SV5) ? S_vwall :
-								  S_stone;
+								  /*S_stone*/S_dungwall;
 			    break;
 		    case 2: idx = seenv & (SV0|SV1|SV5|SV6|SV7) ? S_vwall :
-								  S_stone;
+								  /*S_stone*/S_dungwall;
 			    break;
 		    default:
 			impossible("wall_angle: unknown vwall mode %d",
 				lev->wall_info & WM_MASK);
-			idx = S_stone;
+			idx = /*S_stone*/S_dungwall;
 			break;
 		}
 		break;
@@ -2254,17 +2269,17 @@ do_twall:
 	case HWALL:
 horiz:
 		switch (lev->wall_info & WM_MASK) {
-		    case 0: idx = seenv ? S_hwall : S_stone; break;
+		    case 0: idx = seenv ? S_hwall : /*S_stone*/S_dungwall; break;
 		    case 1: idx = seenv & (SV3|SV4|SV5|SV6|SV7) ? S_hwall :
-								  S_stone;
+								  /*S_stone*/S_dungwall;
 			    break;
 		    case 2: idx = seenv & (SV0|SV1|SV2|SV3|SV7) ? S_hwall :
-								  S_stone;
+								  /*S_stone*/S_dungwall;
 			    break;
 		    default:
 			impossible("wall_angle: unknown hwall mode %d",
 				lev->wall_info & WM_MASK);
-			idx = S_stone;
+			idx = /*S_stone*/S_dungwall;
 			break;
 		}
 		break;
@@ -2272,12 +2287,12 @@ horiz:
 #define set_corner(idx, lev, which, outer, inner, name)	\
     switch ((lev)->wall_info & WM_MASK) {				    \
 	case 0:		 idx = which; break;				    \
-	case WM_C_OUTER: idx = seenv &  (outer) ? which : S_stone; break;   \
-	case WM_C_INNER: idx = seenv & ~(inner) ? which : S_stone; break;   \
+	case WM_C_OUTER: idx = seenv &  (outer) ? which : /*S_stone*/S_dungwall; break;   \
+	case WM_C_INNER: idx = seenv & ~(inner) ? which : /*S_stone*/S_dungwall; break;   \
 	default:							    \
 	    impossible("wall_angle: unknown %s mode %d", name,		    \
 		(lev)->wall_info & WM_MASK);				    \
-	    idx = S_stone;						    \
+	    idx = /*S_stone*/S_dungwall;						    \
 	    break;							    \
     }
 
@@ -2338,7 +2353,7 @@ horiz:
 			row = cross_matrix[C_br];
 do_crwall:
 			if (seenv == SV4)
-			    idx = S_stone;
+			    idx = /*S_stone*/S_dungwall;
 			else {
 			    seenv = seenv & ~SV4;	/* strip SV4 */
 			    if (seenv == SV0) {
@@ -2377,7 +2392,7 @@ do_crwall:
 			else if ( only(seenv, SV5|SV6|SV7) )
 			    idx = S_trcorn;
 			else if ( only(seenv, SV0|SV4) )
-			    idx = S_stone;
+			    idx = /*S_stone*/S_dungwall;
 			else
 			    idx = S_crwall;
 			break;
@@ -2388,21 +2403,21 @@ do_crwall:
 			else if ( only(seenv, SV3|SV4|SV5) )
 			    idx = S_tlcorn;
 			else if ( only(seenv, SV2|SV6) )
-			    idx = S_stone;
+			    idx = /*S_stone*/S_dungwall;
 			else
 			    idx = S_crwall;
 			break;
 
 		    default:
 			impossible("wall_angle: unknown crosswall mode");
-			idx = S_stone;
+			idx = /*S_stone*/S_dungwall;
 			break;
 		}
 		break;
 
 	default:
 	    impossible("wall_angle: unexpected wall type %d", lev->typ);
-	    idx = S_stone;
+	    idx = /*S_stone*/S_dungwall;
     }
     return idx;
 }

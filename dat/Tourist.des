@@ -70,29 +70,29 @@ DOOR:open,(16,17)
 DOOR:locked,(35,07)
 DOOR:locked,(36,07)
 # Monsters on siege duty.
-MONSTER: 's',"giant spider",random
-MONSTER: 's',"giant spider",random
-MONSTER: 's',"giant spider",random
-MONSTER: 's',"giant spider",random
-MONSTER: 's',"giant spider",random
-MONSTER: 's',"giant spider",random
-MONSTER: 's',"giant spider",random
-MONSTER: 's',"giant spider",random
-MONSTER: 's',"giant spider",random
-MONSTER: 's',"giant spider",random
-MONSTER: 's',"giant spider",random
-MONSTER: 's',"giant spider",random
-MONSTER: 's',random,random
-MONSTER: 's',random,random
-MONSTER: 'C',"forest centaur",random
-MONSTER: 'C',"forest centaur",random
-MONSTER: 'C',"forest centaur",random
-MONSTER: 'C',"forest centaur",random
-MONSTER: 'C',"forest centaur",random
-MONSTER: 'C',"forest centaur",random
-MONSTER: 'C',"forest centaur",random
-MONSTER: 'C',"forest centaur",random
-MONSTER: 'C',random,random
+MONSTER: 's',"giant spider",random,hostile
+MONSTER: 's',"giant spider",random,hostile
+MONSTER: 's',"giant spider",random,hostile
+MONSTER: 's',"giant spider",random,hostile
+MONSTER: 's',"giant spider",random,hostile
+MONSTER: 's',"giant spider",random,hostile
+MONSTER: 's',"giant spider",random,hostile
+MONSTER: 's',"giant spider",random,hostile
+MONSTER: 's',"giant spider",random,hostile
+MONSTER: 's',"giant spider",random,hostile
+MONSTER: 's',"giant spider",random,hostile
+MONSTER: 's',"giant spider",random,hostile
+MONSTER: 's',random,random,hostile
+MONSTER: 's',random,random,hostile
+MONSTER: 'C',"forest centaur",random,hostile
+MONSTER: 'C',"forest centaur",random,hostile
+MONSTER: 'C',"forest centaur",random,hostile
+MONSTER: 'C',"forest centaur",random,hostile
+MONSTER: 'C',"forest centaur",random,hostile
+MONSTER: 'C',"forest centaur",random,hostile
+MONSTER: 'C',"forest centaur",random,hostile
+MONSTER: 'C',"forest centaur",random,hostile
+MONSTER: 'C',random,random,hostile
 # Twoflower
 MONSTER:'@',"Twoflower",(64,03)
 # The treasure of Twoflower
@@ -113,11 +113,11 @@ MONSTER:'@',"guide",(66,04)
 MONSTER:'@',"watchman",(35,08)
 MONSTER:'@',"watchman",(36,08)
 # river monsters
-MONSTER:';',"giant eel",(62,12)
-MONSTER:';',"piranha",(47,10)
-MONSTER:';',"piranha",(29,11)
-MONSTER:';',"kraken",(34,09)
-MONSTER:';',"kraken",(37,09)
+MONSTER:';',"giant eel",(62,12),hostile
+MONSTER:';',"piranha",(47,10),hostile
+MONSTER:';',"piranha",(29,11),hostile
+MONSTER:';',"kraken",(34,09),hostile
+MONSTER:';',"kraken",(37,09),hostile
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -270,24 +270,24 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',random,random
-MONSTER:'s',random,random
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',random,random,hostile
+MONSTER:'s',random,random,hostile
 
 #
 #	The "goal" level for the quest.
@@ -408,31 +408,31 @@ TRAP:random,random
 TRAP:random,random
 # Random monsters.
 MONSTER:'@',"Master of Thieves",(04,01),hostile
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',"giant spider",random
-MONSTER:'s',random,random
-MONSTER:'s',random,random
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',"giant spider",random,hostile
+MONSTER:'s',random,random,hostile
+MONSTER:'s',random,random,hostile
 # ladies of the evening
-MONSTER:'&',"succubus",(02,08)
-MONSTER:'&',"succubus",(08,08)
-MONSTER:'&',"incubus",(02,14)
-MONSTER:'&',"incubus",(08,14)
-MONSTER:'&',"incubus",(02,17)
-MONSTER:'&',"incubus",(08,17)
+MONSTER:'&',"succubus",(02,08),hostile
+MONSTER:'&',"succubus",(08,08),hostile
+MONSTER:'&',"incubus",(02,14),hostile
+MONSTER:'&',"incubus",(08,14),hostile
+MONSTER:'&',"incubus",(02,17),hostile
+MONSTER:'&',"incubus",(08,17),hostile
 # Police station (with drunken prisoners)
 MONSTER:'K',"Kop Kaptain",(24,09),hostile
 MONSTER:'K',"Kop Lieutenant",(20,09),hostile
@@ -516,4 +516,4 @@ MONSTER: '@', "captain", random, hostile
 MONSTER: 'H', random, random, hostile
 MONSTER: 'H', random, random, hostile
 MONSTER: 'C', random, random, hostile
-MONSTER: 's', random, random
+MONSTER: 's', random, random,hostile

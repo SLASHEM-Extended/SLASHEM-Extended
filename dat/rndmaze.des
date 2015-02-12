@@ -1,0 +1,20 @@
+#       SCCS Id: @(#)mall-2.des  3.4     1993/02/23
+#       Copyright (c) 1989 by Jean-Christophe Collet
+#       Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+
+MAZE: "rndmaze" , random
+GEOMETRY:center,center
+MAP
+...
+...
+...
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,2,2),up
+STAIR:levregion(01,00,79,20),(0,0,2,2),down
+#
+
+MAZEWALK:(00,01),west
+MAZEWALK:(02,01),east

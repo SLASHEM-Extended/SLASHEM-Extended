@@ -127,6 +127,12 @@ boolean restore;
 			    otmp->onamelth = 0;
 			    *ONAME(otmp) = '\0';
 			}
+#ifdef JEDI
+			else if (is_lightsaber(otmp)){
+				if (otmp->lamplit)
+					end_burn(otmp, FALSE);
+			}
+#endif
 		}
 	}
 }
@@ -150,13 +156,23 @@ struct obj *cont;
 
 		if(otmp->otyp == SLIME_MOLD) goodfruit(otmp->spe);
 
+		/* Getting a bag filled with 10 pages of crap is incredibly imbalanced. --Amy */
+		if (Has_contents(otmp)) delete_contents(otmp);
+		/* At least now the late player will have to keep their stuff out in the open,
+		 * which makes the items likely to be cursed. See below for an additional change... */
+
 		if(rn2(5)) curse(otmp);
+
+		/* still blessed? Roll for a chance to make it uncursed. --Amy */
+		if(rn2(5) && otmp->blessed) unbless(otmp);
+
 		if (mtmp)
 			(void) add_to_minv(mtmp, otmp);
 		else if (cont)
 			(void) add_to_container(cont, otmp);
 		else
 			place_object(otmp, u.ux, u.uy);
+		if (rn2(2)) delobj(otmp); /* prevent bones finders from getting everything --Amy */
 	}
 #ifndef GOLDOBJ
 	if(u.ugold) {
@@ -249,7 +265,7 @@ struct obj *corpse;
 	    if (DEADMONSTER(mtmp)) continue;
 	    mptr = mtmp->data;
 	    if (mtmp->iswiz || mptr == &mons[PM_MEDUSA] ||
-		    mptr->msound == MS_NEMESIS || mptr->msound == MS_LEADER ||
+		    (mptr->msound == MS_NEMESIS &&  mptr->mlet != S_NEMESE) || mptr->msound == MS_LEADER ||
 		    mptr == &mons[PM_VLAD_THE_IMPALER] ||
 		    mptr == &mons[PM_NIGHTMARE] ||
 		    mptr == &mons[PM_BEHOLDER] || mptr == &mons[PM_VECNA] ||
@@ -301,17 +317,46 @@ struct obj *corpse;
 		drop_upon_death((struct monst *)0, otmp);
 		if (!otmp) return;	/* couldn't make statue */
 		mtmp = (struct monst *)0;
-	} else if (u.ugrave_arise < LOW_PM) {
+	} else if (Frozen) { /* no player ghost if the player exploded into tiny ice cubes --Amy */
+
 		/* drop everything */
 		drop_upon_death((struct monst *)0, (struct obj *)0);
+		mtmp = (struct monst *)0;
+
+	} else if (u.ugrave_arise < LOW_PM) {
 		/* trick makemon() into allowing monster creation
 		 * on your location
 		 */
 		in_mklev = TRUE;
-		mtmp = makemon(&mons[PM_GHOST], u.ux, u.uy, MM_NONAME);
+
+		/* Come on, the ghost is just too weak. Let's try to make DCSS-styled player "ghosts". --Amy */
+
+		if (!rn2(5)) mtmp = makemon(&mons[PM_GHOST], u.ux, u.uy, MM_NONAME);
+
+		else if (u.ulevel >= 10 && !rn2(5)) { /* dangerous undead version --Amy */
+
+		if (flags.female && urole.undeadfemalenum != NON_PM) mtmp = makemon(&mons[urole.undeadfemalenum], u.ux, u.uy, MM_NONAME);
+		else mtmp = makemon(&mons[urole.undeadmalenum], u.ux, u.uy, MM_NONAME);
+
+		}
+
+		else if (flags.female && urole.femalenum != NON_PM) mtmp = makemon(&mons[urole.femalenum], u.ux, u.uy, MM_NONAME);
+		else mtmp = makemon(&mons[urole.malenum], u.ux, u.uy, MM_NONAME);
+
+
 		in_mklev = FALSE;
-		if (!mtmp) return;
+
+		if (!mtmp) {
+		/* drop everything */
+			drop_upon_death((struct monst *)0, (struct obj *)0);
+			return;
+		}
+
 		mtmp = christen_monst(mtmp, plname);
+
+		drop_upon_death(mtmp, (struct obj *)0);
+		m_dowear(mtmp, TRUE);
+
 		if (corpse)
 			(void) obj_attach_mid(corpse, mtmp->m_id); 
 	} else {

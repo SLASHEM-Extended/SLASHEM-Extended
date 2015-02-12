@@ -66,6 +66,8 @@ extern char *attk_dname(Attk);
 #define AT_TUCH		5		/* touches */
 #define AT_STNG		6		/* sting */
 #define AT_HUGS		7		/* crushing bearhug */
+#define AT_SCRA		8		/* similar to claw */
+#define AT_LASH		9		/* whirl around and hit */
 #define AT_SPIT		10		/* spits substance - ranged */
 #define AT_ENGL		11		/* engulf (swallow or by a cloud) */
 #define AT_BREA		12		/* breath - ranged */
@@ -73,6 +75,8 @@ extern char *attk_dname(Attk);
 #define AT_BOOM     14      /* explodes upon hit */
 #define AT_GAZE     15      /* gaze - ranged */
 #define AT_TENT     16      /* tentacles */
+#define AT_TRAM     17      /* trample */
+#define AT_MULTIPLY	18	/* RJ - multiplies (yes, it's an attack) */
 
 #define AT_WEAP		64		/* Hand-to-hand weapon (monster or character) */
 #define AT_THRO		65		/* Thrown object */
@@ -132,6 +136,22 @@ extern char *attk_dname(Attk);
 #define AD_PEST		38		/* for Pestilence only */
 #define AD_FAMN		39		/* for Famine only */
 #define AD_SLIM		40		/* turns you into green slime */
+#define AD_CALM		41	/* KMH -- calms its enemies (koala) */
+#define AD_ENCH		42	/* KMH -- remove enchantment */
+#define AD_POLY		43	/* RJ -- polymorphs (genetic engineer) */
+#define AD_CORR		44	/* corrode armor (black pudding) */
+#define AD_TCKL		45	/* Tickle (Nightgaunts) */
+#define AD_NGRA		46	/* supposed to remove an existing engraving underneath the player (Elbereth) */
+#define AD_GLIB		47	/* disarm the player by damaging their hands */
+#define AD_DARK		48	/* acts similar to cursed scroll of light, making an area unlit */
+#define AD_WTHR		49	/* withers items */
+#define AD_LUCK		50	/* reduces luck */
+#define AD_NUMB		51	/* causes numbness */
+#define AD_FRZE		52	/* freezes you solid */
+#define AD_DISP		53	/* moves you to a random nearby empty location */
+#define AD_BURN		54	/* burns you */
+#define AD_FEAR		55	/* causes fear */
+#define AD_ENDS		56	/* placeholder */
 
 #define AD_CLRC		240		/* random clerical spell */
 #define AD_SPEL		241		/* random magic spell */

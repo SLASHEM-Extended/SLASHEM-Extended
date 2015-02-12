@@ -33,6 +33,7 @@
 #define SPFX_DALIGN 0x1000000L	/* attack bonus on non-aligned monsters  */
 #define SPFX_XRAY   0x2000000L	/* gives X-RAY vision to player */
 #define SPFX_REFLECT 0x4000000L /* Reflection */
+#define SPFX_PROTEC 0x8000000L	/* protects you if worn (+2 to AC) */
 
 #define SPFX_DBONUS 0x1F00000L	/* attack bonus mask */
 
@@ -69,5 +70,9 @@ struct artifact {
 #define SUMMON_FIRE_ELEMENTAL           (LAST_PROP+14)
 #define SUMMON_WATER_ELEMENTAL          (LAST_PROP+15)
 #define OBJ_DETECTION	(LAST_PROP+16)
-
+#define PHASING		(LAST_PROP+17) /* convict role */
+#define IDENTIFY	(LAST_PROP+18)
+#define DRAGON_BREATH	(LAST_PROP+19)
+#define OBJECT_DET	(LAST_PROP+20)
+ 
 #endif /* ARTIFACT_H */

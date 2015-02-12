@@ -95,31 +95,31 @@
           them  to  move  quickly  and sneak up on the local nasties.  They
           start equipped with the tools for a proper scientific expedition.
 
-               Barbarians  are  warriors out of the hinterland, hardened to
+               Barbarians are warriors out of the hinterland,  hardened  to
           battle.   They  begin  their  quests  with  naught  but  uncommon
           strength, a trusty hauberk, and a great two-handed sword.
 
-               Cavemen  and  Cavewomen start with exceptional strength but,
+               Cavemen and Cavewomen start with exceptional  strength  but,
           unfortunately, with neolithic weapons.
 
-               Flame Mages have managed to harness mystical  energies  into
-          the  control  of  the element of fire.  Notwithstanding their pet
-          hell hounds,  woe be unto anyone who  stands  in  the  way  of  a
+               Flame  Mages  have managed to harness mystical energies into
+          the control of the element of fire.   Notwithstanding  their  pet
+          hell  hounds,   woe  be  unto  anyone  who stands in the way of a
           skilled mage casting a fireball.
 
-               Healers  are wise in medicine and apothecary.  They know the
-          herbs and simples that can restore  vitality,  ease  pain,  anes-
+               Healers are wise in medicine and apothecary.  They know  the
+          herbs  and  simples  that  can restore vitality, ease pain, anes-
           thetize, and neutralize poisons; and with their instruments, they
-          can divine a being's state of health or sickness.  Their  medical
+          can  divine a being's state of health or sickness.  Their medical
           practice earns them quite reasonable amounts of money, with which
           they enter the dungeon.
 
-               Ice Mages command the forces of cold.  An  experienced  Mage
-          can  summon  great blizzards yet remain unaffected by the turmoil
+               Ice  Mages  command the forces of cold.  An experienced Mage
+          can summon great blizzards yet remain unaffected by  the  turmoil
           of the elements.
 
-               Knights are distinguished  from  the  common  skirmisher  by
-          their  devotion  to  the ideals of chivalry and by the surpassing
+               Knights  are  distinguished  from  the  common skirmisher by
+          their devotion to the ideals of chivalry and  by  the  surpassing
           excellence of their armor.
 
                Monks are ascetics, who by rigorous practice of physical and
@@ -136,17 +136,17 @@
 
 
 
-          without weapons as with.  They wear no armor but make up  for  it
+          without  weapons  as with.  They wear no armor but make up for it
           with increased mobility.
 
-               Necromancers  have  delved  into  the darkest of the magical
-          lore, and mastered some of the  most  forbidden  of  the  magical
+               Necromancers have delved into the  darkest  of  the  magical
+          lore,  and  mastered  some  of  the most forbidden of the magical
           lore.  Many have fallen to the armies of the undead that they are
           capable of bringing forth and controlling.
 
-               Priests and Priestesses are clerics militant, crusaders  ad-
-          vancing  the  cause  of  righteousness with arms, armor, and arts
-          thaumaturgic.  Their ability to commune with deities  via  prayer
+               Priests  and Priestesses are clerics militant, crusaders ad-
+          vancing the cause of righteousness with  arms,  armor,  and  arts
+          thaumaturgic.   Their  ability to commune with deities via prayer
           occasionally extricates them from peril, but can also put them in
           it.
 
@@ -154,42 +154,42 @@
           out of place in a dungeon.  They are, however, experts in archery
           as well as tracking and stealthy movement.
 
-               Rogues are agile and stealthy  thieves,  with  knowledge  of
-          locks,  traps,  and  poisons.  They specialize in surprise, which
+               Rogues  are  agile  and  stealthy thieves, with knowledge of
+          locks, traps, and poisons.  They specialize  in  surprise,  which
           they employ to great advantage.
 
-               Samurai are the elite warriors of feudal Nippon.   They  are
-          heavily  armored  but  quick, and wear the dai-sho, two swords of
+               Samurai  are  the elite warriors of feudal Nippon.  They are
+          heavily armored but quick, and wear the dai-sho,  two  swords  of
           the deadliest keenness.
 
-               Tourists start out with lots of gold (suitable for  shopping
-          with),  a  credit card, lots of food, some maps, and an expensive
+               Tourists  start out with lots of gold (suitable for shopping
+          with), a credit card, lots of food, some maps, and  an  expensive
           camera.  Most monsters don't like being photographed.
 
-               Undead Slayers are specialists,  trained to hunt the  undead
-          as  well  as  other incarnations of evil.  They are well aware of
-          the weaknesses of their foes and come prepared.  Few denizens  of
-          darkness  ever  encounter such warriors of light and live to tell
+               Undead  Slayers are specialists,  trained to hunt the undead
+          as well as other incarnations of evil.  They are  well  aware  of
+          the  weaknesses of their foes and come prepared.  Few denizens of
+          darkness ever encounter such warriors of light and live  to  tell
           of it.
 
-               Valkyries are hardy warrior women.  Their upbringing in  the
-          harsh  Northlands  makes  them strong, inures them to extremes of
+               Valkyries  are hardy warrior women.  Their upbringing in the
+          harsh Northlands makes them strong, inures them  to  extremes  of
           cold, and instills in them stealth and cunning.
 
-               Wizards start out with a knowledge of magic, a selection  of
-          magical  items,  and a particular affinity for dweomercraft.  Al-
+               Wizards  start out with a knowledge of magic, a selection of
+          magical items, and a particular affinity for  dweomercraft.   Al-
           though seemingly weak and easy to overcome at first sight, an ex-
           perienced Wizard is a deadly foe.
 
                Yeomen are sturdy fighters. They are famed for their ability
           to stand doing nothing for hours. It is said that this is because
-          they  are  none  too bright. Yeomen can both take a lot of damage
+          they are none too bright. Yeomen can both take a  lot  of  damage
           and inflict it on others.
 
                You may also choose the race of your character:
 
-               Doppelgangers have the anviable ability to  change  form  at
-          will,   at  a  cost  of some mystic energy (mana),  although what
+               Doppelgangers  have  the  anviable ability to change form at
+          will,  at a cost of some mystic  energy  (mana),   although  what
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -205,57 +205,57 @@
           they become may be a bit of a surprise,  even for them.
 
                Dwarves are smaller than humans or elves, but are stocky and
-          solid  individuals.   Dwarves'  most notable trait is their great
-          expertise in mining and metalwork.  Dwarvish armor is said to  be
+          solid individuals.  Dwarves' most notable trait  is  their  great
+          expertise  in mining and metalwork.  Dwarvish armor is said to be
           second in quality not even to the mithril armor of the Elves.
 
-               Elves  and Drows are agile, quick, and perceptive; very lit-
-          tle of what goes on will escape an Elf.   The  quality  of  Elven
+               Elves and Drows are agile, quick, and perceptive; very  lit-
+          tle  of  what  goes  on will escape an Elf.  The quality of Elven
           craftsmanship often gives them an advantage in arms and armor.
 
-               Gnomes  are  smaller  than but generally similar to dwarves.
-          Gnomes are known to be expert miners, and it is known that a  se-
-          cret  underground  mine  complex built by this race exists within
+               Gnomes are smaller than but generally  similar  to  dwarves.
+          Gnomes  are known to be expert miners, and it is known that a se-
+          cret underground mine complex built by this  race  exists  within
           the Mazes of Menace, filled with both riches and danger.
 
                Hobbits are quick of hearing and sharp-eyed, and though they
-          are  inclined  to be fat and do not hurry unnecessarily, they are
-          nonetheless nimble and deft in their movements. A love of  learn-
-          ing  (other  than  genealogical  lore)  is far from general among
+          are inclined to be fat and do not hurry unnecessarily,  they  are
+          nonetheless  nimble and deft in their movements. A love of learn-
+          ing (other than genealogical lore)  is  far  from  general  among
           them. Hobbits are difficult to daunt, or to kill, and at need can
           still handle arms.
 
                Humans are by far the most common race of the surface world,
-          and are thus the norm by which other races  are  often  compared.
-          Although  they have no special abilities, they can succeed in any
+          and  are  thus  the norm by which other races are often compared.
+          Although they have no special abilities, they can succeed in  any
           role.
 
-               Lycanthropes are wild beasts who draw  their  strength  from
-          the  phases of the moon,  and can transform into wolves when they
-          channel their magical energies.  Even unarmed,  a Lycanthrope  is
-          a  savage fighter,  as many scarred by their deadly claws can at-
+               Lycanthropes  are  wild  beasts who draw their strength from
+          the phases of the moon,  and can transform into wolves when  they
+          channel  their magical energies.  Even unarmed,  a Lycanthrope is
+          a savage fighter,  as many scarred by their deadly claws can  at-
           test.
 
-               Orcs are a cruel and barbaric race that  hate  every  living
-          thing  (including other orcs).  Above all others, Orcs hate Elves
-          with a passion unequalled, and will go out of their way  to  kill
-          one  at  any opportunity.  The armor and weapons fashioned by the
+               Orcs  are  a  cruel and barbaric race that hate every living
+          thing (including other orcs).  Above all others, Orcs hate  Elves
+          with  a  passion unequalled, and will go out of their way to kill
+          one at any opportunity.  The armor and weapons fashioned  by  the
           Orcs are typically of inferior quality.
 
                Vampires strike fear into the heart of many. Their super-hu-
           man strength, notorious dexterity and resiliance make them diffi-
-          cult to defeat while their almost hypnotic charm makes them  dan-
-          gerous  opponents.  Even  their own Gods treat vampires with some
+          cult  to defeat while their almost hypnotic charm makes them dan-
+          gerous opponents. Even their own Gods treat  vampires  with  some
           distaste.
 
           3.  What do all those things on the screen mean?
 
-               On the screen is kept a map of where you have been and  what
-          you  have  seen on the current dungeon level; as you explore more
+               On  the screen is kept a map of where you have been and what
+          you have seen on the current dungeon level; as you  explore  more
           of the level, it appears on the screen in front of you.
 
-               When SLASH'EM's ancestor rogue first  appeared,  its  screen
-          orientation  was  almost  unique  among  computer  fantasy games.
+               When  SLASH'EM's  ancestor  rogue first appeared, its screen
+          orientation was  almost  unique  among  computer  fantasy  games.
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -268,45 +268,45 @@
 
 
 
-          Since then, screen orientation has become the  norm  rather  than
-          the  exception;  SLASH'EM  continues this fine tradition.  Unlike
-          text adventure games that accept commands in pseudo-English  sen-
-          tences  and  explain  the results in words, SLASH'EM commands are
-          all one or two keystrokes and the results are  displayed  graphi-
-          cally  on  the  screen.   A minimum screen size of 24 lines by 80
-          columns is recommended; if the screen is  larger,  only  a  21x80
+          Since  then,  screen  orientation has become the norm rather than
+          the exception; SLASH'EM continues this  fine  tradition.   Unlike
+          text  adventure games that accept commands in pseudo-English sen-
+          tences and explain the results in words,  SLASH'EM  commands  are
+          all  one  or two keystrokes and the results are displayed graphi-
+          cally on the screen.  A minimum screen size of  24  lines  by  80
+          columns  is  recommended;  if  the screen is larger, only a 21x80
           section will be used for the map.
 
-               SLASH'EM  can  even be played by blind players, with the as-
+               SLASH'EM can even be played by blind players, with  the  as-
           sistance of Braille readers or speech synthesisers.  Instructions
           for configuring SLASH'EM for the blind are included later in this
           document.
 
-               SLASH'EM generates a new dungeon every  time  you  play  it;
-          even  the authors still find it an entertaining and exciting game
+               SLASH'EM  generates  a  new  dungeon every time you play it;
+          even the authors still find it an entertaining and exciting  game
           despite having won several times.
 
-               SLASH'EM offers a variety of display options.   The  options
-          available  to  you  will vary from port to port, depending on the
-          capabilities of your hardware and software, and  whether  various
+               SLASH'EM  offers  a variety of display options.  The options
+          available to you will vary from port to port,  depending  on  the
+          capabilities  of  your hardware and software, and whether various
           compile-time options were enabled when your executable was creat-
           ed.  The three possible display options are: a monochrome charac-
-          ter  interface,  a color character interface, and a graphical in-
+          ter interface, a color character interface, and a  graphical  in-
           terface using small pictures called tiles.  The two character in-
           terfaces allow fonts with other characters to be substituted, but
-          the default assignments use standard ASCII characters  to  repre-
+          the  default  assignments use standard ASCII characters to repre-
           sent everything.  There is no difference between the various dis-
           play options with respect to game play.  Because we cannot repro-
           duce the tiles or colors in the Guidebook, and because it is com-
-          mon to all ports, we will use the default ASCII  characters  from
-          the  monochrome  character  display  when referring to things you
+          mon  to  all ports, we will use the default ASCII characters from
+          the monochrome character display when  referring  to  things  you
           might see on the screen during your game.
 
-               In order to understand what is going on in  SLASH'EM,  first
-          you  must understand what SLASH'EM is doing with the screen.  The
+               In  order  to understand what is going on in SLASH'EM, first
+          you must understand what SLASH'EM is doing with the screen.   The
           SLASH'EM screen replaces the ``You see ...'' descriptions of text
-          adventure  games.  Figure 1 is a sample of what a SLASH'EM screen
-          might look like.  The way the screen looks  for  you  depends  on
+          adventure games.  Figure 1 is a sample of what a SLASH'EM  screen
+          might  look  like.   The  way the screen looks for you depends on
           your platform.
 
           --------------------------------------------------------------------
@@ -343,9 +343,9 @@
 
           3.1.  The status lines (bottom)
 
-               The  bottom  two lines of the screen contain several cryptic
-          pieces of information describing your current status.  If  either
-          status  line  becomes  longer  than  the width of the screen, you
+               The bottom two lines of the screen contain  several  cryptic
+          pieces  of information describing your current status.  If either
+          status line becomes longer than the  width  of  the  screen,  you
           might not see all of it.  Here are explanations of what the vari-
           ous status items mean (though your configuration may not have all
           the status items listed below):
@@ -355,27 +355,27 @@
                experience level, see below).
 
           Strength
-               A  measure of your character's strength; one of your six ba-
-               sic attributes.  A human character's  attributes  can  range
-               from  3  to 18 inclusive; non-humans may exceed these limits
+               A measure of your character's strength; one of your six  ba-
+               sic  attributes.   A  human character's attributes can range
+               from 3 to 18 inclusive; non-humans may exceed  these  limits
                (occasionally you may get super-strengths of the form 18/xx,
-               and  magic  can  also  cause attributes to exceed the normal
-               limits).  The higher your strength, the  stronger  you  are.
+               and magic can also cause attributes  to  exceed  the  normal
+               limits).   The  higher  your strength, the stronger you are.
                Strength  affects  how  successfully  you  perform  physical
-               tasks, how much damage you do in combat, and how  much  loot
+               tasks,  how  much damage you do in combat, and how much loot
                you can carry.
 
           Dexterity
-               Dexterity  affects  your  chances to hit in combat, to avoid
-               traps, and do other tasks requiring agility or  manipulation
+               Dexterity affects your chances to hit in  combat,  to  avoid
+               traps,  and do other tasks requiring agility or manipulation
                of objects.
 
           Constitution
-               Constitution  affects  your ability to recover from injuries
+               Constitution affects your ability to recover  from  injuries
                and other strains on your stamina.
 
           Intelligence
-               Intelligence affects your ability to cast  spells  and  read
+               Intelligence  affects  your  ability to cast spells and read
                spellbooks.
 
           Wisdom
@@ -384,7 +384,7 @@
 
           Charisma
                Charisma affects how certain creatures react toward you.  In
-               particular,  it can affect the prices shopkeepers offer you.
+               particular, it can affect the prices shopkeepers offer you.
 
           Alignment
                Lawful, Neutral, or Chaotic.  Often, Lawful is taken as good
@@ -564,28 +564,28 @@
                nasty and vicious.  Sometimes, however, they can be helpful.
 
           I    This marks the last known location of an invisible or other-
-               wise  unseen  monster.   Note  that  the  monster could have
+               wise unseen monster.   Note  that  the  monster  could  have
                moved.  The 'F' and 'm' commands may be useful here.
 
-               You need not memorize all these symbols;  you  can  ask  the
-          game  what  any  symbol  represents with the `/' command (see the
+               You  need  not  memorize  all these symbols; you can ask the
+          game what any symbol represents with the  `/'  command  (see  the
           next section for more info).
 
 
           4.  Commands
 
-               Commands are initiated by  typing  one  or  two  characters.
-          Some  commands, like ``search'', do not require that any more in-
+               Commands  are  initiated  by  typing  one or two characters.
+          Some commands, like ``search'', do not require that any more  in-
           formation be collected by SLASH'EM.  Other commands might require
-          additional  information, for example a direction, or an object to
+          additional information, for example a direction, or an object  to
           be used.  For those commands that require additional information,
           SLASH'EM will present you with either a menu of choices or with a
-          command line prompt requesting information.  Which you  are  pre-
+          command  line  prompt requesting information.  Which you are pre-
           sented with will depend chiefly on how you have set the menustyle
           option.
 
-               For example, a common question, in the form  ``What  do  you
-          want  to use? [a-zA-Z ?*]'', asks you to choose an object you are
+               For  example,  a  common question, in the form ``What do you
+          want to use? [a-zA-Z ?*]'', asks you to choose an object you  are
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -598,60 +598,60 @@
 
 
 
-          carrying.  Here, ``a-zA-Z'' are the  inventory  letters  of  your
-          possible  choices.   Typing  `?'  gives  you an inventory list of
-          these items, so you can see what each letter refers to.  In  this
-          example,  there  is  also a `*' indicating that you may choose an
-          object not on the list, if you wanted to use something  unexpect-
+          carrying.   Here,  ``a-zA-Z''  are  the inventory letters of your
+          possible choices.  Typing `?' gives  you  an  inventory  list  of
+          these  items, so you can see what each letter refers to.  In this
+          example, there is also a `*' indicating that you  may  choose  an
+          object  not on the list, if you wanted to use something unexpect-
           ed.  Typing a `*' lists your entire inventory, so you can see the
-          inventory letters of every object you're carrying.   Finally,  if
+          inventory  letters  of every object you're carrying.  Finally, if
           you change your mind and decide you don't want to do this command
           after all, you can press the ESC key to abort the command.
 
                Some commands allow you to choose an object that you are not
-          currently  carrying. Such commands have an extra option available
-          as in ``What do you want to drink? [fgh or  ?*,.]''.  Typing  `,'
-          gives  you  a  list  of the applicable objects on the floor, from
-          which you may make your choice.  For commands where it is  possi-
-          ble  to  choose  your current location rather than an object, the
+          currently carrying. Such commands have an extra option  available
+          as  in  ``What  do you want to drink? [fgh or ?*,.]''. Typing `,'
+          gives you a list of the applicable objects  on  the  floor,  from
+          which  you may make your choice.  For commands where it is possi-
+          ble to choose your current location rather than  an  object,  the
           `.' option will be displayed. This can be used to read an engrav-
           ing or drink from a dungeon feature.
 
-               You  can  put  a  number before some commands to repeat them
-          that many times; for example, ``10s'' will search ten times.   If
+               You can put a number before some  commands  to  repeat  them
+          that  many times; for example, ``10s'' will search ten times.  If
           you have the number_pad option set, you must type `n' to prefix a
-          count, so the example above  would  be  typed  ``n10s''  instead.
-          Commands  for  which  counts make no sense ignore them.  In addi-
-          tion, movement commands can be prefixed for greater control  (see
+          count,  so  the  example  above  would be typed ``n10s'' instead.
+          Commands for which counts make no sense ignore  them.   In  addi-
+          tion,  movement commands can be prefixed for greater control (see
           below).  To cancel a count or a prefix, press the ESC key.
 
-               The  list  of commands is rather long, but it can be read at
-          any time during the game through the `?' command, which  accesses
-          a  menu  of  helpful  texts.  As well,  there is now a menusystem
+               The list of commands is rather long, but it can be  read  at
+          any  time during the game through the `?' command, which accesses
+          a menu of helpful texts.  As well,  there  is  now  a  menusystem
           available through the '`' command for those who would rather page
-          through  menus than hunt and peck for keys. Here are the commands
+          through menus than hunt and peck for keys. Here are the  commands
           for your reference:
 
           ESC  Cancel the current operation (where applicable) or skip mes-
-               sages.  If the menu_on_esc option is set, then this key will
-               access the menusystem when  pressed  while  the  program  is
+               sages. If the menu_on_esc option is set, then this key  will
+               access  the  menusystem  when  pressed  while the program is
                waiting for a command.
 
           ?    Help menu:  display one of several help texts available.
 
           `    Main menu:  access the menusystem.
 
-          /    Tell  what a symbol represents.  You may choose to specify a
+          /    Tell what a symbol represents.  You may choose to specify  a
                location or type a symbol (or even a whole word) to explain.
                Specifying a location is done by moving the cursor to a par-
-               ticular spot on the map and then pressing one of  `.',  `,',
-               `;',  or `:'.  `.' will explain the symbol at the chosen lo-
+               ticular  spot  on the map and then pressing one of `.', `,',
+               `;', or `:'.  `.' will explain the symbol at the chosen  lo-
                cation, conditionally check for ``More info?'' depending up-
                on whether the help option is on, and then you will be asked
-               to pick another location; `,' will explain  the  symbol  but
-               skip  any  additional  information; `;' will skip additional
-               info and also not bother asking you to choose another  loca-
-               tion  to  examine;  `:'  will  show additional info, if any,
+               to  pick  another  location; `,' will explain the symbol but
+               skip any additional information; `;'  will  skip  additional
+               info  and also not bother asking you to choose another loca-
+               tion to examine; `:' will  show  additional  info,  if  any,
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -664,26 +664,26 @@
 
 
 
-               without asking for confirmation.  When picking  a  location,
-               pressing  the ESC key will terminate this command, or press-
+               without  asking  for confirmation.  When picking a location,
+               pressing the ESC key will terminate this command, or  press-
                ing `?'  will give a brief reminder about how it works.
 
-               Specifying a name rather than a location  always  gives  any
+               Specifying  a  name  rather than a location always gives any
           additional information available about that name.
 
           &    Tell what a command does.
 
-          <    Go  up  to  the previous level (if you are on a staircase or
+          <    Go up to the previous level (if you are on  a  staircase  or
                ladder).
 
           >    Go down to the next level (if you are on a staircase or lad-
                der).
 
           [yuhjklbn]
-               Go  one  step in the direction indicated (see Figure 2).  If
-               you sense or remember a monster there, you  will  fight  the
-               monster  instead.   Only  these  one-step  movement commands
-               cause  you  to  fight  monsters;  the  others  (below)   are
+               Go one step in the direction indicated (see Figure  2).   If
+               you  sense  or  remember a monster there, you will fight the
+               monster instead.   Only  these  one-step  movement  commands
+               cause   you  to  fight  monsters;  the  others  (below)  are
                ``safe.''
 
                                     y  k  u          7  8  9
@@ -697,15 +697,15 @@
 
 
           [YUHJKLBN]
-               Go  in that direction until you hit a wall or run into some-
+               Go in that direction until you hit a wall or run into  some-
                thing.
 
           m[yuhjklbn]
-               Prefix:  move without picking up objects or  fighting  (even
+               Prefix:   move  without picking up objects or fighting (even
                if you remember a monster there)
 
           F[yuhjklbn]
-               Prefix:   fight  a  monster  (even  if you only guess one is
+               Prefix:  fight a monster (even if  you  only  guess  one  is
                there)
 
           M[yuhjklbn]
@@ -715,7 +715,7 @@
                Prefix:  move until something interesting is found.
 
           G[yuhjklbn] or <CONTROL->[yuhjklbn]
-               Prefix:  same as `g', but forking of corridors is  not  con-
+               Prefix:   same  as `g', but forking of corridors is not con-
                sidered interesting.
 
 
@@ -731,12 +731,12 @@
 
 
           _    Travel to a map location via a shortest-path algorithm.  The
-               shortest path is computed over map locations the hero  knows
-               about  (e.g.  seen or previously traversed).  If there is no
-               known path, a guess is made instead.  Stops on most  of  the
-               same  conditions  as the `G' command, but without picking up
-               objects, similar to the `M' command.  For ports  with  mouse
-               support,  the  command  is  also  invoked when a mouse-click
+               shortest  path is computed over map locations the hero knows
+               about (e.g. seen or previously traversed).  If there  is  no
+               known  path,  a guess is made instead.  Stops on most of the
+               same conditions as the `G' command, but without  picking  up
+               objects,  similar  to the `M' command.  For ports with mouse
+               support, the command is  also  invoked  when  a  mouse-click
                takes place on a location other than the current position.
 
           .    Rest, do nothing for one turn.
@@ -744,7 +744,7 @@
           a    Apply (use) a tool (pick-axe, key, lamp...).
 
           A    Remove one or more worn items, such as armor.  Use `T' (take
-               off)  to take off only one piece of armor or `R' (remove) to
+               off) to take off only one piece of armor or `R' (remove)  to
                take off only one accessory.
 
           ^A   Redo the previous command.
@@ -757,13 +757,13 @@
 
           ^C   Panic button.  Quit the game.
 
-          d    Drop something.  Ex. ``d7a'' means drop seven items  of  ob-
+          d    Drop  something.   Ex. ``d7a'' means drop seven items of ob-
                ject a.
 
           D    Drop several things.  In answer to the question ``What kinds
-               of things do you want to drop? [!%= BUCXaium]''  you  should
-               type  zero  or  more object symbols possibly followed by `a'
-               and/or `i' and/or `u' and/or `m'.  In addition, one or  more
+               of  things  do you want to drop? [!%= BUCXaium]'' you should
+               type zero or more object symbols possibly  followed  by  `a'
+               and/or  `i' and/or `u' and/or `m'.  In addition, one or more
                of the blessed/uncursed/cursed groups may be typed.
 
                     DB  - drop all objects known to be blessed.
@@ -778,12 +778,12 @@
 
           ^D   Kick something (usually a door).
 
-          e    Eat  food.  Vampires  cannot  eat as such. However, they can
-               gain nutrition by draining blood from  fresh  corpses  using
+          e    Eat food. Vampires cannot eat as  such.  However,  they  can
+               gain  nutrition  by  draining blood from fresh corpses using
                this command.
 
-          E    Engrave   a  message  on  the  floor.   Engraving  the  word
-               ``Elbereth'' will cause most  monsters  to  not  attack  you
+          E    Engrave  a  message  on  the  floor.   Engraving  the   word
+               ``Elbereth''  will  cause  most  monsters  to not attack you
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -796,14 +796,14 @@
 
 
 
-               hand-to-hand  (but if you attack, you will rub it out); this
-               is often useful to give yourself a breather.  (This  feature
-               may  be  compiled out of the game, so your version might not
+               hand-to-hand (but if you attack, you will rub it out);  this
+               is  often useful to give yourself a breather.  (This feature
+               may be compiled out of the game, so your version  might  not
                have it.)
 
                     E- - write in the dust with your fingers.
 
-          f    Fire one of the objects placed in your quiver.  You may  se-
+          f    Fire  one of the objects placed in your quiver.  You may se-
                lect ammunition with a previous `Q' command, or let the com-
                puter pick something appropriate if autoquiver is true.
 
@@ -818,29 +818,29 @@
 
           o    Open a door.
 
-          O    Set options.  A menu showing the current option values  will
-               be  displayed.  You can change most values simply by select-
-               ing the menu entry for the given option (ie, by  typing  its
-               letter  or  clicking  upon it, depending on your user inter-
-               face).  For the  non-boolean  choices,  a  further  menu  or
+          O    Set  options.  A menu showing the current option values will
+               be displayed.  You can change most values simply by  select-
+               ing  the  menu entry for the given option (ie, by typing its
+               letter or clicking upon it, depending on  your  user  inter-
+               face).   For  the  non-boolean  choices,  a  further menu or
                prompt will appear once you've closed this menu.  The avail-
-               able options are listed later in  this  Guidebook.   Options
-               are  usually  set  before  the game rather than with the `O'
+               able  options  are  listed later in this Guidebook.  Options
+               are usually set before the game rather  than  with  the  `O'
                command; see the section on options below.
 
           p    Pay your shopping bill/Shopkeeper services.
 
           P    Put on a ring or other accessory (amulet, blindfold).
 
-          ^P   Repeat previous message.   Subsequent  ^P's  repeat  earlier
+          ^P   Repeat  previous  message.   Subsequent  ^P's repeat earlier
                messages.  The behavior can be varied via the msg_window op-
                tion.
 
           q    Quaff (drink) something (potion, water, etc).
 
-          Q    Select an object for your quiver.  You can then  throw  this
+          Q    Select  an  object for your quiver.  You can then throw this
                using the `f' command.  (In SLASH'EM versions prior to 0.0.6
-               this was the command to quit the game, which  has  now  been
+               this  was  the  command to quit the game, which has now been
                moved to `#quit'.)
 
           r    Read a scroll or spellbook.
@@ -862,10 +862,10 @@
 
 
 
-          s    Search  for  secret  doors and traps around you.  It usually
+          s    Search for secret doors and traps around  you.   It  usually
                takes several tries to find something.
 
-          S    Save (and suspend) the game.  The game will be restored  au-
+          S    Save  (and suspend) the game.  The game will be restored au-
                tomatically the next time you play.
 
           t    Throw an object or shoot a projectile.
@@ -885,8 +885,8 @@
           W    Wear armor.
 
           x    Exchange your wielded weapon with the item in your alternate
-               weapon slot.  The latter is used as  your  secondary  weapon
-               when  engaging  in  two-weapon  combat.  Note that if one of
+               weapon  slot.   The  latter is used as your secondary weapon
+               when engaging in two-weapon combat.  Note  that  if  one  of
                these slots is empty, the exchange still takes place.
 
           X    Enter explore (discovery) mode, explained in its own section
@@ -897,7 +897,7 @@
 
           ^Y   Polymorph yourself, if you have the ability.
 
-          z    Zap a wand.  To aim at yourself, use `.' for the  direction.
+          z    Zap a wand.  To aim at yourself, use `.' for the direction.
 
           Z    Zap  (cast)  a  spell.  To cast at yourself, use `.' for the
                direction.
@@ -1330,13 +1330,13 @@
 
           * The price of a given item can vary due to a variety of factors.
 
-          * A  shopkeeper treats the spot immediately inside the door as if
+          * A shopkeeper treats the spot immediately inside the door as  if
             it were outside the shop.
 
           * While the shopkeeper watches you like a hawk, he will generally
             ignore any other customers.
 
-          * If  a  shop  is "closed for inventory", it will not open of its
+          * If a shop is "closed for inventory", it will not  open  of  its
             own accord.
 
           * Shops do not get restocked with new items, regardless of inven-
@@ -1370,13 +1370,13 @@
           business unless you attack them.  Some of them are very dangerous
           when angered.  Remember:  discretion is the better part of valor.
 
-               If you can't see a monster (if it is invisible,  or  if  you
-          are  blinded), the symbol `I' will be shown when you learn of its
-          presence.  If you attempt to walk into it, you will try to  fight
-          it  just  like a monster that you can see; of course, if the mon-
+               If  you  can't  see a monster (if it is invisible, or if you
+          are blinded), the symbol `I' will be shown when you learn of  its
+          presence.   If you attempt to walk into it, you will try to fight
+          it just like a monster that you can see; of course, if  the  mon-
           ster has moved, you will attack empty air.  If you guess that the
-          monster  has  moved  and you don't wish to fight, you can use the
-          `m' command to move without fighting; likewise, if you don't  re-
+          monster has moved and you don't wish to fight, you  can  use  the
+          `m'  command to move without fighting; likewise, if you don't re-
           member a monster but want to try fighting anyway, you can use the
 
 
@@ -1394,51 +1394,51 @@
 
           6.2.  Your pet
 
-               You start the game with a little dog (`d'), cat (`f'),  hell
-          hound  pup  ('d'),  winter  wolf  cub ('d'), ghoul ('Z'), or pony
-          (`u'), which follows you about the dungeon  and  fights  monsters
-          with  you.   With the exception of ghouls, your pet needs food to
-          survive.  It usually feeds itself  on  fresh  carrion  and  other
-          meats.   If  you're worried about it or want to train it, you can
+               You  start the game with a little dog (`d'), cat (`f'), hell
+          hound pup ('d'), winter wolf cub  ('d'),  ghoul  ('Z'),  or  pony
+          (`u'),  which  follows  you about the dungeon and fights monsters
+          with you.  With the exception of ghouls, your pet needs  food  to
+          survive.   It  usually  feeds  itself  on fresh carrion and other
+          meats.  If you're worried about it or want to train it,  you  can
           feed it, too, by throwing it food.  A properly trained pet can be
           very useful under certain circumstances.
 
-               Your  pet  also  gains experience from killing monsters, and
-          can grow over time, gaining hit points  and  doing  more  damage.
-          Initially,  your  pet  may  even be better at killing things than
+               Your pet also gains experience from  killing  monsters,  and
+          can  grow  over  time,  gaining hit points and doing more damage.
+          Initially, your pet may even be better  at  killing  things  than
           you, which makes pets useful for low-level characters.
 
-               Your pet will follow you up and down  staircases  if  it  is
-          next  to  you when you move.  Otherwise your pet will be stranded
-          and may become wild.  Similarly, when you trigger  certain  types
-          of  traps  which  alter  your location (for instance, a trap door
-          which drops you to a lower dungeon level), any adjacent pet  will
+               Your  pet  will  follow  you up and down staircases if it is
+          next to you when you move.  Otherwise your pet will  be  stranded
+          and  may  become wild.  Similarly, when you trigger certain types
+          of traps which alter your location (for  instance,  a  trap  door
+          which  drops you to a lower dungeon level), any adjacent pet will
           accompany you and any non-adjacent pet will be left behind.  Your
-          pet may trigger such traps itself; you will not be carried  along
+          pet  may trigger such traps itself; you will not be carried along
           with it even if adjacent at the time.
 
           6.3.  Steeds
 
-               Some  types of creatures in the dungeon can actually be rid-
+               Some types of creatures in the dungeon can actually be  rid-
           den if you have the right equipment and skill.  Convincing a wild
-          beast  to  let  you  saddle  it up is difficult to say the least.
-          Many a dungeoneer has had to resort to magic and wizardry in  or-
+          beast to let you saddle it up is  difficult  to  say  the  least.
+          Many  a dungeoneer has had to resort to magic and wizardry in or-
           der to forge the alliance.  Once you do have the beast under your
-          control however, you can easily climb in and out  of  the  saddle
+          control  however,  you  can easily climb in and out of the saddle
           with the `#ride' command.  Lead the beast around the dungeon when
           riding, in the same manner as you would move yourself.  It is the
           beast that you will see displayed on the map.
 
-               Riding  skill is managed by the `#enhance' command.  See the
+               Riding skill is managed by the `#enhance' command.  See  the
           section on Weapon proficiency for more information about that.
 
           6.4.  Bones levels
 
-               You may encounter the shades and corpses of other  adventur-
+               You  may encounter the shades and corpses of other adventur-
           ers (or even former incarnations of yourself!) and their personal
-          effects.  Ghosts are hard to  kill,  but  easy  to  avoid,  since
-          they're  slow and do little damage.  You can plunder the deceased
-          adventurer's possessions; however, they are likely to be  cursed.
+          effects.   Ghosts  are  hard  to  kill,  but easy to avoid, since
+          they're slow and do little damage.  You can plunder the  deceased
+          adventurer's  possessions; however, they are likely to be cursed.
           Beware of whatever killed the former player; it is probably still
           lurking around, gloating over its last victory.
 
@@ -1459,53 +1459,53 @@
           7.  Objects
 
                When you find something in the dungeon, it is common to want
-          to  pick  it up.  In SLASH'EM, this is accomplished automatically
-          by walking over the object (unless you turn  off  the  autopickup
-          option  (see below), or move with the `m' prefix (see above)), or
+          to pick it up.  In SLASH'EM, this is  accomplished  automatically
+          by  walking  over  the object (unless you turn off the autopickup
+          option (see below), or move with the `m' prefix (see above)),  or
           manually by using the `,' command.
 
                If you're carrying too many items, SLASH'EM will tell you so
-          and  you  won't  be able to pick up anything more.  Otherwise, it
-          will add the object(s) to your pack and tell you  what  you  just
+          and you won't be able to pick up anything  more.   Otherwise,  it
+          will  add  the  object(s) to your pack and tell you what you just
           picked up.
 
-               As  you add items to your inventory, you also add the weight
-          of that object to your load.  The amount that you can  carry  de-
-          pends  on  your strength and your constitution.  The stronger you
+               As you add items to your inventory, you also add the  weight
+          of  that  object to your load.  The amount that you can carry de-
+          pends on your strength and your constitution.  The  stronger  you
           are, the less the additional load will affect you.  There comes a
-          point,  though, when the weight of all of that stuff you are car-
-          rying around with you through  the  dungeon  will  encumber  you.
-          Your  reactions  will get slower and you'll burn calories faster,
-          requiring food more frequently  to  cope  with  it.   Eventually,
-          you'll  be  so overloaded that you'll either have to discard some
+          point, though, when the weight of all of that stuff you are  car-
+          rying  around  with  you  through  the dungeon will encumber you.
+          Your reactions will get slower and you'll burn  calories  faster,
+          requiring  food  more  frequently  to  cope with it.  Eventually,
+          you'll be so overloaded that you'll either have to  discard  some
           of what you're carrying or collapse under its weight.
 
-               SLASH'EM will tell you how badly you have  loaded  yourself.
-          The  symbols  `Burdened', `Stressed', `Strained', `Overtaxed' and
+               SLASH'EM  will  tell you how badly you have loaded yourself.
+          The symbols `Burdened', `Stressed', `Strained',  `Overtaxed'  and
           `Overloaded' are displayed on the bottom line display to indicate
           your condition.
 
                When you pick up an object, it is assigned an inventory let-
-          ter.  Many commands that operate on objects must ask you to  find
-          out  which  object  you  want  to use.  When SLASH'EM asks you to
+          ter.   Many commands that operate on objects must ask you to find
+          out which object you want to use.   When  SLASH'EM  asks  you  to
           choose a particular object you are carrying, you are usually pre-
-          sented  with a list of inventory letters to choose from (see Com-
+          sented with a list of inventory letters to choose from (see  Com-
           mands, above).
 
-               Some objects, such as weapons,  are  easily  differentiated.
-          Others,  like  scrolls  and potions, are given descriptions which
-          vary according to type.  During a game, any two objects with  the
-          same  description  are  the same type.  However, the descriptions
+               Some  objects,  such  as weapons, are easily differentiated.
+          Others, like scrolls and potions, are  given  descriptions  which
+          vary  according to type.  During a game, any two objects with the
+          same description are the same type.   However,  the  descriptions
           will vary from game to game.
 
                When you use one of these objects, if its effect is obvious,
-          SLASH'EM  will  remember what it is for you.  If its effect isn't
-          extremely obvious, you will be asked what you want to  call  this
-          type  of object so you will recognize it later.  You can also use
-          the ``#name'' command for the same purpose at any time,  to  name
-          all  objects  of  a particular type or just an individual object.
+          SLASH'EM will remember what it is for you.  If its  effect  isn't
+          extremely  obvious,  you will be asked what you want to call this
+          type of object so you will recognize it later.  You can also  use
+          the  ``#name''  command for the same purpose at any time, to name
+          all objects of a particular type or just  an  individual  object.
           When you use ``#name'' on an object which has already been named,
-          specifying  a  space  as the value will remove the prior name in-
+          specifying a space as the value will remove the  prior  name  in-
           stead of assigning a new one.
 
 
@@ -1524,58 +1524,58 @@
 
           7.1.  Curses and Blessings
 
-               Any object that you find may be cursed, even if  the  object
+               Any  object  that you find may be cursed, even if the object
           is otherwise helpful.  The most common effect of a curse is being
-          stuck with (and to) the item.  Cursed weapons weld themselves  to
-          your  hand  when wielded, so you cannot unwield them.  Any cursed
-          item you wear is not removable by ordinary means.   In  addition,
-          cursed  arms and armor usually, but not always, bear negative en-
+          stuck  with (and to) the item.  Cursed weapons weld themselves to
+          your hand when wielded, so you cannot unwield them.   Any  cursed
+          item  you  wear is not removable by ordinary means.  In addition,
+          cursed arms and armor usually, but not always, bear negative  en-
           chantments that make them less effective in combat.  Other cursed
           objects may act poorly or detrimentally in other ways.
 
-               Objects  can  also  be  blessed.  Blessed items usually work
-          better or more beneficially than normal uncursed items.  For  ex-
+               Objects can also be blessed.   Blessed  items  usually  work
+          better  or more beneficially than normal uncursed items.  For ex-
           ample, a blessed weapon will do more damage against demons.
 
                There are magical means of bestowing or removing curses upon
-          objects, so even if you are stuck with one, you  can  still  have
-          the  curse  lifted and the item removed.  Priests and Priestesses
-          have an innate sensitivity to this property  in  any  object,  so
-          they  can  more  easily avoid cursed objects than other character
+          objects,  so  even  if you are stuck with one, you can still have
+          the curse lifted and the item removed.  Priests  and  Priestesses
+          have  an  innate  sensitivity  to this property in any object, so
+          they can more easily avoid cursed objects  than  other  character
           roles.
 
-               An item with unknown status will be reported in your  inven-
+               An  item with unknown status will be reported in your inven-
           tory with no prefix.  An item which you know the state of will be
-          distinguished in your inventory  by  the  presence  of  the  word
+          distinguished  in  your  inventory  by  the  presence of the word
           ``cursed'', ``uncursed'' or ``blessed'' in the description of the
           item.
 
           7.2.  Weapons (`)')
 
-               Given a chance, most monsters in the Mazes  of  Menace  will
-          gratuitously  try to kill you.  You need weapons for self-defense
-          (killing them first).  Without a weapon,  you  do  only  1-2  hit
-          points  of damage (plus bonuses, if any).  Monk characters are an
+               Given  a  chance,  most monsters in the Mazes of Menace will
+          gratuitously try to kill you.  You need weapons for  self-defense
+          (killing  them  first).   Without  a  weapon, you do only 1-2 hit
+          points of damage (plus bonuses, if any).  Monk characters are  an
           exception; they normally do much more damage with bare hands than
           they do with weapons.
 
                There are wielded weapons, like maces and swords, and thrown
-          weapons, like arrows and spears.  To hit monsters with a  weapon,
-          you  must wield it and attack them, or throw it at them.  You can
+          weapons,  like arrows and spears.  To hit monsters with a weapon,
+          you must wield it and attack them, or throw it at them.  You  can
           simply elect to throw a spear.
 
-               To shoot an arrow, you should first wield a bow, then  throw
-          the  arrow.  An alternative method would be wield a bow and place
-          the arrows in your Quiver, after which you fire  the  ammunition.
-          Rangers  and  the  like  may find that having a bow as their sec-
-          ondary weapon is a useful combination. In order  to  use  a  sec-
-          ondary  weapon to fire ammunition however, it must first be moved
-          to the primary weapon slot. The ``x'' command  is  available  for
+               To  shoot an arrow, you should first wield a bow, then throw
+          the arrow.  An alternative method would be wield a bow and  place
+          the  arrows  in your Quiver, after which you fire the ammunition.
+          Rangers and the like may find that having a  bow  as  their  sec-
+          ondary  weapon  is  a  useful combination. In order to use a sec-
+          ondary weapon to fire ammunition however, it must first be  moved
+          to  the  primary  weapon slot. The ``x'' command is available for
           this use.  Crossbows shoot crossbow bolts.  Slings hurl rocks and
           (other) stones (like gems).
 
                Enchanted weapons have a ``plus'' (or ``to hit enhancement''
-          which  can  be  either  positive  or  negative) that adds to your
+          which can be either positive  or  negative)  that  adds  to  your
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -1588,59 +1588,59 @@
 
 
 
-          chance to hit and the damage you do to a monster.  The  only  way
+          chance  to  hit and the damage you do to a monster.  The only way
           to determine a weapon's enchantment is to have it magically iden-
-          tified somehow.  Most weapons are subject to some type of  damage
+          tified  somehow.  Most weapons are subject to some type of damage
           like rust.  Such ``erosion'' damage can be repaired.
 
-               The  chance  that an attack will successfully hit a monster,
-          and the amount of damage such a hit will do,  depends  upon  many
-          factors.   Among them are: type of weapon, quality of weapon (en-
+               The chance that an attack will successfully hit  a  monster,
+          and  the  amount  of damage such a hit will do, depends upon many
+          factors.  Among them are: type of weapon, quality of weapon  (en-
           chantment and/or erosion), experience level, strength, dexterity,
-          encumbrance,  and  proficiency  (see below).  The monster's armor
-          class - a general defense rating, not necessarily due to  wearing
-          of  armor - is a factor too; also, some monsters are particularly
+          encumbrance, and proficiency (see below).   The  monster's  armor
+          class  - a general defense rating, not necessarily due to wearing
+          of armor - is a factor too; also, some monsters are  particularly
           vulnerable to certain types of weapons.
 
-               Many weapons can be wielded in one hand; some  require  both
-          hands.   When  wielding  a  two-handed weapon, you can not wear a
-          shield, and vice versa.  When wielding a one-handed  weapon,  you
-          can  have  another  weapon ready to use by setting things up with
-          the `x' command, which exchanges  your  primary  (the  one  being
-          wielded)  and  alternate weapons.  And if you have proficiency in
-          the ``two weapon combat'' skill, you may wield both  weapons  si-
-          multaneously  as  primary and secondary; use the `#twoweapon' ex-
-          tended command to engage or disengage that.  Only some  types  of
-          characters  (barbarians,  for  instance) have the necessary skill
-          available.  Even with that skill, using two weapons at  once  in-
+               Many  weapons  can be wielded in one hand; some require both
+          hands.  When wielding a two-handed weapon, you  can  not  wear  a
+          shield,  and  vice versa.  When wielding a one-handed weapon, you
+          can have another weapon ready to use by setting  things  up  with
+          the  `x'  command,  which  exchanges  your primary (the one being
+          wielded) and alternate weapons.  And if you have  proficiency  in
+          the  ``two  weapon combat'' skill, you may wield both weapons si-
+          multaneously as primary and secondary; use the  `#twoweapon'  ex-
+          tended  command  to engage or disengage that.  Only some types of
+          characters (barbarians, for instance) have  the  necessary  skill
+          available.   Even  with that skill, using two weapons at once in-
           curs a penalty in the chance to hit your target compared to using
           just one weapon at a time.
 
-               There might be times when you'd rather not wield any  weapon
-          at  all.  To accomplish that, wield `-', or else use the `A' com-
-          mand which allows you to unwield the current weapon  in  addition
+               There  might be times when you'd rather not wield any weapon
+          at all.  To accomplish that, wield `-', or else use the `A'  com-
+          mand  which  allows you to unwield the current weapon in addition
           to taking off other worn items.
 
-               Those  of you in the audience who are AD&D players, be aware
+               Those of you in the audience who are AD&D players, be  aware
           that each weapon which existed in AD&D does roughly the same dam-
-          age  to  monsters  in SLASH'EM.  Some of the more obscure weapons
+          age to monsters in SLASH'EM.  Some of the  more  obscure  weapons
           (such as the aklys, lucern hammer, and bec-de-corbin) are defined
           in an appendix to Unearthed Arcana, an AD&D supplement.
 
-               The  commands  to  use weapons are `w' (wield), `t' (throw),
-          `f' (fire, an alternative way of  throwing),  `Q'  (quiver),  `x'
+               The commands to use weapons are `w'  (wield),  `t'  (throw),
+          `f'  (fire,  an  alternative  way of throwing), `Q' (quiver), `x'
           (exchange), `#twoweapon', and `#enhance' (see below).
 
           7.2.1.  Throwing and shooting
 
-               You  can  throw just about anything via the `t' command.  It
-          will prompt for the item to throw; picking `?' will  list  things
-          in  your  inventory  which are considered likely to be thrown, or
+               You can throw just about anything via the `t'  command.   It
+          will  prompt  for the item to throw; picking `?' will list things
+          in your inventory which are considered likely to  be  thrown,  or
           picking `*' will list your entire inventory.  After you've chosen
-          what  to  throw, you will be prompted for a direction rather than
-          for a specific target.  The distance something can be thrown  de-
+          what to throw, you will be prompted for a direction  rather  than
+          for  a specific target.  The distance something can be thrown de-
           pends mainly on the type of object and your strength.  Arrows can
-          be thrown by hand, but can be thrown much  farther  and  will  be
+          be  thrown  by  hand,  but can be thrown much farther and will be
           more likely to hit when thrown while you are wielding a bow.
 
 
@@ -1654,28 +1654,28 @@
 
 
 
-               You  can  simplify  the  throwing operation by using the `Q'
-          command to select your preferred ``missile'', then using the  `f'
-          command  to  throw  it.   You'll  be  prompted for a direction as
-          above, but you don't have to specify which  item  to  throw  each
+               You can simplify the throwing operation  by  using  the  `Q'
+          command  to select your preferred ``missile'', then using the `f'
+          command to throw it.  You'll  be  prompted  for  a  direction  as
+          above,  but  you  don't  have to specify which item to throw each
           time you use `f'.  There is also an option, autoquiver, which has
-          SLASH'EM choose another item to automatically  fill  your  quiver
+          SLASH'EM  choose  another  item to automatically fill your quiver
           when the inventory slot used for `Q' runs out.
 
-               Some  characters have the ability to fire a volley of multi-
-          ple items in a single turn.  Knowing how to load  several  rounds
+               Some characters have the ability to fire a volley of  multi-
+          ple  items  in a single turn.  Knowing how to load several rounds
           of ammunition at once -- or hold several missiles in your hand --
-          and still hit a target is not an easy task.   Rangers  are  among
-          those  who are adept at this task, as are those with a high level
-          of proficiency in the relevant weapon  skill  (in  bow  skill  if
-          you're  wielding one to shoot arrows, in crossbow skill if you're
+          and  still  hit  a target is not an easy task.  Rangers are among
+          those who are adept at this task, as are those with a high  level
+          of  proficiency  in  the  relevant  weapon skill (in bow skill if
+          you're wielding one to shoot arrows, in crossbow skill if  you're
           wielding one to shoot bolts, or in sling skill if you're wielding
           one to shoot stones).  The number of items that the character has
-          a chance to fire varies from turn to turn.   You  can  explicitly
-          limit  the  number  of shots by using a numeric prefix before the
-          `t' or `f' command.  For example, ``2f''  (or  ``n2f''  if  using
+          a  chance  to  fire varies from turn to turn.  You can explicitly
+          limit the number of shots by using a numeric  prefix  before  the
+          `t'  or  `f'  command.   For example, ``2f'' (or ``n2f'' if using
           number_pad mode) would ensure that at most 2 arrows are shot even
-          if you could have fired 3.  If you specify a larger  number  than
+          if  you  could have fired 3.  If you specify a larger number than
           would have been shot (``4f'' in this example), you'll just end up
           shooting the same number (3, here) as if no limit had been speci-
           fied.  Once the volley is in motion, all of the items will travel
@@ -1685,29 +1685,29 @@
           7.2.2.  Weapon proficiency
 
                You will have varying degrees of skill in the weapons avail-
-          able.  Weapon proficiency, or weapon skills, affect how well  you
-          can  use  particular  types of weapons, and you'll be able to im-
-          prove your skills as you progress through a  game,  depending  on
+          able.   Weapon proficiency, or weapon skills, affect how well you
+          can use particular types of weapons, and you'll be  able  to  im-
+          prove  your  skills  as you progress through a game, depending on
           your role, your experience level, and use of the weapons.
 
-               For  the  purposes of proficiency, weapons have been divided
-          up  into  various  groups  such  as  daggers,  broadswords,   and
-          polearms.   Each  role has a limit on what level of proficiency a
-          character can achieve for each group.  For instance, wizards  can
-          become  highly  skilled in daggers or staves but not in swords or
+               For the purposes of proficiency, weapons have  been  divided
+          up   into  various  groups  such  as  daggers,  broadswords,  and
+          polearms.  Each role has a limit on what level of  proficiency  a
+          character  can achieve for each group.  For instance, wizards can
+          become highly skilled in daggers or staves but not in  swords  or
           bows.
 
-               The `#enhance' extended command is used  to  review  current
-          weapons  proficiency (also spell proficiency) and to choose which
+               The  `#enhance'  extended  command is used to review current
+          weapons proficiency (also spell proficiency) and to choose  which
           skill(s) to improve when you've used one or more skills enough to
           become eligible to do so.  The skill rankings are ``none'' (some-
-          times also referred to as ``restricted'', because  you  won't  be
-          able  to  advance),  ``unskilled'',  ``basic'',  ``skilled'', and
+          times  also  referred  to as ``restricted'', because you won't be
+          able to  advance),  ``unskilled'',  ``basic'',  ``skilled'',  and
           ``expert''.  Restricted skills simply will not appear in the list
-          shown  by  `#enhance'.   (Divine  intervention might unrestrict a
+          shown by `#enhance'.  (Divine  intervention  might  unrestrict  a
           particular skill, in which case it will start at unskilled and be
-          limited  to basic.)  Some characters can enhance their barehanded
-          combat or martial arts  skill  beyond  expert  to  ``master''  or
+          limited to basic.)  Some characters can enhance their  barehanded
+          combat  or  martial  arts  skill  beyond  expert to ``master'' or
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -1724,28 +1724,28 @@
 
                Use of a weapon in which you're restricted or unskilled will
           incur a modest penalty in the chance to hit a monster and also in
-          the  amount of damage done when you do hit; at basic level, there
-          is no penalty or bonus; at skilled level, you  receive  a  modest
-          bonus  in  the chance to hit and amount of damage done; at expert
-          level, the bonus is higher.  A successful hit  has  a  chance  to
-          boost  your  training towards the next skill level (unless you've
-          already reached the limit for this skill).   Once  such  training
-          reaches  the  threshold  for that next level, you'll be told that
-          you feel more confident in your skills.  At that  point  you  can
-          use  `#enhance'  to increase one or more skills.  Such skills are
-          not increased automatically because there is a limit to your  to-
-          tal  overall  skills, so you need to actively choose which skills
+          the amount of damage done when you do hit; at basic level,  there
+          is  no  penalty  or bonus; at skilled level, you receive a modest
+          bonus in the chance to hit and amount of damage done;  at  expert
+          level,  the  bonus  is  higher.  A successful hit has a chance to
+          boost your training towards the next skill level  (unless  you've
+          already  reached  the  limit for this skill).  Once such training
+          reaches the threshold for that next level, you'll  be  told  that
+          you  feel  more  confident in your skills.  At that point you can
+          use `#enhance' to increase one or more skills.  Such  skills  are
+          not  increased automatically because there is a limit to your to-
+          tal overall skills, so you need to actively choose  which  skills
           to enhance and which to ignore.
 
           7.3.  Armor (`[')
 
                Lots of unfriendly things lurk about; you need armor to pro-
           tect yourself from their blows.  Some types of armor offer better
-          protection than others.  Your armor class is a  measure  of  this
+          protection  than  others.   Your armor class is a measure of this
           protection.  Armor class (AC) is measured as in AD&D, with 10 be-
-          ing the equivalent of no armor, and lower numbers meaning  better
-          armor.   Each  suit  of armor which exists in AD&D gives the same
-          protection in SLASH'EM.  Here is an (incomplete) list of the  ar-
+          ing  the equivalent of no armor, and lower numbers meaning better
+          armor.  Each suit of armor which exists in AD&D  gives  the  same
+          protection  in SLASH'EM.  Here is an (incomplete) list of the ar-
           mor classes provided by various suits of armor:
 
                              dragon scale mail         1
@@ -1767,13 +1767,13 @@
                              no armor                 10
 
                You can also wear other pieces of armor (ex. helmets, boots,
-          shields, cloaks) to lower your armor class even further, but  you
-          can  only  wear one item of each category (one suit of armor, one
+          shields,  cloaks) to lower your armor class even further, but you
+          can only wear one item of each category (one suit of  armor,  one
           cloak, one helmet, one shield, and so on) at a time.
 
-               If a piece of armor is enchanted, its armor protection  will
-          be  better  (or  worse)  than normal, and its ``plus'' (or minus)
-          will subtract from your armor class.  For  example,  a  +1  chain
+               If  a piece of armor is enchanted, its armor protection will
+          be better (or worse) than normal, and  its  ``plus''  (or  minus)
+          will  subtract  from  your  armor class.  For example, a +1 chain
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -1786,9 +1786,9 @@
 
 
 
-          mail  would  give  you  better protection than normal chain mail,
+          mail would give you better protection  than  normal  chain  mail,
           lowering your armor class one unit further to 4.  When you put on
-          a  piece  of  armor, you immediately find out the armor class and
+          a piece of armor, you immediately find out the  armor  class  and
           any ``plusses'' it provides.  Cursed pieces of armor usually have
           negative enchantments (minuses) in addition to being unremovable.
 
@@ -1918,19 +1918,19 @@
 
 
 
-               The command to use a wand is `z' (zap).  To break  one,  use
+               The  command  to use a wand is `z' (zap).  To break one, use
           the `a' (apply) command.
 
           7.8.  Rings (`=')
 
-               Rings  are very useful items, since they are relatively per-
-          manent magic, unlike the usually  fleeting  effects  of  potions,
+               Rings are very useful items, since they are relatively  per-
+          manent  magic,  unlike  the  usually fleeting effects of potions,
           scrolls, and wands.
 
-               Putting  on  a  ring activates its magic.  You can wear only
+               Putting on a ring activates its magic.  You  can  wear  only
           two rings, one on each ring finger.
 
-               Most rings also cause you to grow hungry more  rapidly,  the
+               Most  rings  also cause you to grow hungry more rapidly, the
           rate varying with the type of ring.
 
                The commands to use rings are `P' (put on) and `R' (remove).
@@ -2265,27 +2265,27 @@
 
           9.3.  Using a configuration file
 
-               Any  line  in  the  configuration  file starting with `#' is
-          treated as a comment.  Any line in the configuration file  start-
-          ing  with ``OPTIONS='' may be filled out with options in the same
-          syntax as in  SLASHEMOPTIONS.   Any  line  starting  with  ``DUN-
-          GEON='',  ``EFFECTS='',  ``MONSTERS='', ``OBJECTS='', ``TRAPS='',
-          or ``BOULDER='' is taken as defining the  corresponding  dungeon,
+               Any line in the configuration  file  starting  with  `#'  is
+          treated  as a comment.  Any line in the configuration file start-
+          ing with ``OPTIONS='' may be filled out with options in the  same
+          syntax  as  in  SLASHEMOPTIONS.   Any  line  starting with ``DUN-
+          GEON='', ``EFFECTS='', ``MONSTERS='',  ``OBJECTS='',  ``TRAPS='',
+          or  ``BOULDER=''  is taken as defining the corresponding dungeon,
           effects, monsters, objects traps or boulder option in a different
-          syntax, a sequence of decimal numbers giving the character  posi-
-          tion  in the current font to be used in displaying each entry.  A
-          zero in any entry in such a sequence leaves the display  of  that
-          entry  unchanged;  this feature is not available using the option
-          syntax.  Such a sequence can be continued to  multiple  lines  by
-          putting  a `\' at the end of each line to be continued.  Any line
-          starting with ``TILESET='' defines a tile set in the same  syntax
-          as  in  SLASHEMOPTIONS  (although the options are different). See
+          syntax,  a sequence of decimal numbers giving the character posi-
+          tion in the current font to be used in displaying each entry.   A
+          zero  in  any entry in such a sequence leaves the display of that
+          entry unchanged; this feature is not available using  the  option
+          syntax.   Such  a  sequence can be continued to multiple lines by
+          putting a `\' at the end of each line to be continued.  Any  line
+          starting  with ``TILESET='' defines a tile set in the same syntax
+          as in SLASHEMOPTIONS (although the options  are  different).  See
           the section on tile sets, below, for more information.
 
                If your copy of the game included the compile time AUTOPICK-
-          UP_EXCEPTIONS  option,  then  any  line starting with ``AUTOPICK-
-          UP_EXCEPTION='' is taken as defining an exception  to  the  pick-
-          up_types  option.  There is a section of this Guidebook that dis-
+          UP_EXCEPTIONS option, then any  line  starting  with  ``AUTOPICK-
+          UP_EXCEPTION=''  is  taken  as defining an exception to the pick-
+          up_types option.  There is a section of this Guidebook that  dis-
           cusses that.
 
                The default name of the configuration file varies on differ-
@@ -2300,8 +2300,8 @@
           options listed may be inactive in your dungeon.
 
           align
-               Your starting  alignment  (align:lawful,  align:neutral,  or
-               align:chaotic).  You may specify just the first letter.  The
+            Your  starting  alignment  (align:lawful,   align:neutral,   or
+            align:chaotic).   You  may  specify just the first letter.  The
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -2314,7 +2314,7 @@
 
 
 
-            default  is  to randomly pick an appropriate alignment.  Cannot
+            default is to randomly pick an appropriate  alignment.   Cannot
             be set with the `O' command.
 
           autodig
@@ -2322,51 +2322,51 @@
             into a place that can be dug (default false).
 
           autopickup
-            Automatically  pick up things onto which you move (default on).
+            Automatically pick up things onto which you move (default  on).
             See pickup_types to refine the behavior.
 
           autoquiver
-               This  option  controls what happens when you attempt the `f'
-            (fire)  command  with an empty quiver.  When true, the computer
-            will fill your quiver with some suitable weapon.  Note that  it
-            will  not take into account the blessed/cursed status, enchant-
+            This  option  controls  what  happens  when you attempt the `f'
+            (fire) command with an empty quiver.  When true,  the  computer
+            will  fill your quiver with some suitable weapon.  Note that it
+            will not take into account the blessed/cursed status,  enchant-
             ment, damage, or quality of the weapon; you are free to manual-
             ly fill your quiver with the `Q' command instead.  If no weapon
             is found or the option is false, the `t' (throw) command is ex-
             ecuted instead.  (default false)
 
           boulder
-               Set the character used to display boulders (default is  rock
-               class symbol).
+            Set the character used to display  boulders  (default  is  rock
+            class symbol).
 
           catname
             Name your starting cat (ex. ``catname:Morris'').  Cannot be set
             with the `O' command.
 
           character
-            Pick  your  type of character (ex. ``character:Monk''); synonym
+            Pick your type of character (ex.  ``character:Monk'');  synonym
             for ``role''.  See ``name'' for an alternate method of specify-
-            ing  your role.  Normally only the first letter of the value is
+            ing your role.  Normally only the first letter of the value  is
             examined; the string ``random'' is an exception.
 
           checkpoint
-            Save game state after each level change, for possible  recovery
+            Save  game state after each level change, for possible recovery
             after program crash (default on).
 
           checkspace
-               Check free disk space before writing files to disk  (default
-            on).  You may have to turn this off if you have more than 2  GB
+            Check free disk space before writing  files  to  disk  (default
+            on).   You may have to turn this off if you have more than 2 GB
             free space on the partition used for your save and level files.
             Only applies when MFLOPPY was defined during compilation.
 
           cmdassist
-               Have the game provide some additional command assistance for
-               new players if it detects some anticipated mistakes (default
-               on).
+            Have  the  game  provide some additional command assistance for
+            new players if it detects some  anticipated  mistakes  (default
+            on).
 
           confirm
-               Have user confirm attacks on pets,  shopkeepers,  and  other
-               peaceable creatures (default on).
+            Have  user  confirm  attacks  on  pets,  shopkeepers, and other
+            peaceable creatures (default on).
 
 
 
@@ -2381,59 +2381,59 @@
 
 
           DECgraphics
-            Use  a  predefined  selection  of  characters  from the DEC VT-
-            xxx/DEC Rainbow/ANSI line-drawing character set to display  the
+            Use a predefined selection  of  characters  from  the  DEC  VT-
+            xxx/DEC  Rainbow/ANSI line-drawing character set to display the
             dungeon/effects/traps instead of having to define a full graph-
             ics set yourself (default off).  This option also sets up prop-
-            er  handling  of graphics characters for such terminals, so you
+            er handling of graphics characters for such terminals,  so  you
             should specify it when appropriate even if you override the se-
             lections with your own graphics strings.
 
           disclose
-               Controls options for disclosing various information when the
+            Controls options for disclosing various  information  when  the
             game ends (defaults to all possibilities being disclosed).  The
             possibilities are:
 
-                    i - disclose your inventory.
-                    a - disclose your attributes.
-                    v - summarize monsters that have been vanquished.
-                    g - list monster species that have been genocided.
-                    c - display your conduct.
+                 i - disclose your inventory.
+                 a - disclose your attributes.
+                 v - summarize monsters that have been vanquished.
+                 g - list monster species that have been genocided.
+                 c - display your conduct.
 
-               Each disclosure possibility can optionally be preceded by  a
-            prefix which let you refine how it behaves. Here are the  valid
+            Each disclosure possibility can optionally  be  preceded  by  a
+            prefix  which let you refine how it behaves. Here are the valid
             prefixes:
 
-                    y - prompt you and default to yes on the prompt.
-                    n - prompt you and default to no on the prompt.
-                    - disclose it without prompting.
-                    - - do not disclose it and do not prompt.
+                 y - prompt you and default to yes on the prompt.
+                 n - prompt you and default to no on the prompt.
+                 - disclose it without prompting.
+                 - - do not disclose it and do not prompt.
 
             (ex. ``disclose:yi na +v -g -c'') The example sets inventory to
-            prompt and default to yes, attributes to prompt and default  to
-            no,  vanquished to disclose without prompting, genocided to not
-            disclose and not to prompt, conduct to not disclose and not  to
-            prompt.   Note  that  the vanquished monsters list includes all
+            prompt  and default to yes, attributes to prompt and default to
+            no, vanquished to disclose without prompting, genocided to  not
+            disclose  and not to prompt, conduct to not disclose and not to
+            prompt.  Note that the vanquished monsters  list  includes  all
             monsters killed by traps and each other as well as by you.
 
           dogname
-            Name your starting dog (ex. ``dogname:Fang'').  Cannot  be  set
+            Name  your  starting dog (ex. ``dogname:Fang'').  Cannot be set
             with the `O' command.
 
           dungeon
-               Set the graphics symbols for displaying the dungeon (default
-            `` |--------||.-|++##.##<><>_|\\##{}.}..## #}'').  The  dungeon
-            option  should be followed by a string of 1-42 characters to be
-            used instead of the default map-drawing characters.   The  dun-
+            Set the graphics symbols for displaying  the  dungeon  (default
+            `` |--------||.-|++##.##<><>_|\\##{}.}..## #}'').   The dungeon
+            option should be followed by a string of 1-42 characters to  be
+            used  instead  of the default map-drawing characters.  The dun-
             geon map will use the characters you specify instead of the de-
-            fault symbols, and default symbols for any you do not  specify.
-            Remember  that  you may need to escape some of these characters
+            fault  symbols, and default symbols for any you do not specify.
+            Remember that you may need to escape some of  these  characters
             on a command line if they are special to your shell.
 
-            Note that SLASH'EM escape-processes this option string in  con-
-            ventional  C  fashion.  This means that `\' is a prefix to take
+            Note  that SLASH'EM escape-processes this option string in con-
+            ventional C fashion.  This means that `\' is a prefix  to  take
             the following character literally.  Thus `\' needs to be repre-
-            sented  as  `\\'.  The special escape form `\m' switches on the
+            sented as `\\'.  The special escape form `\m' switches  on  the
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -2446,42 +2446,42 @@
 
 
 
-            meta bit in the following character, and the `^' prefix  causes
+            meta  bit in the following character, and the `^' prefix causes
             the following character to be treated as a control character.
 
-            The  order of the symbols is:  solid rock, vertical wall, hori-
-            zontal wall, upper left corner, upper right corner, lower  left
+            The order of the symbols is:  solid rock, vertical wall,  hori-
+            zontal  wall, upper left corner, upper right corner, lower left
             corner, lower right corner, cross wall, upward T wall, downward
-            T wall, leftward T wall, rightward T wall,  no  door,  vertical
+            T  wall,  leftward  T wall, rightward T wall, no door, vertical
             open door, horizontal open door, vertical closed door, horizon-
-            tal closed door, iron bars, tree, floor of a room, dark  corri-
-            dor,  lit  corridor,  stairs up, stairs down, ladder up, ladder
-            down, altar, grave, throne,  kitchen  sink,  toilet,  fountain,
-            pool  or moat, ice, lava, vertical lowered drawbridge, horizon-
-            tal lowered drawbridge, vertical raised drawbridge,  horizontal
+            tal  closed door, iron bars, tree, floor of a room, dark corri-
+            dor, lit corridor, stairs up, stairs down,  ladder  up,  ladder
+            down,  altar,  grave,  throne,  kitchen sink, toilet, fountain,
+            pool or moat, ice, lava, vertical lowered drawbridge,  horizon-
+            tal  lowered drawbridge, vertical raised drawbridge, horizontal
             raised drawbridge, air, cloud, under water.
 
-               You might want to use `+' for the corners and T walls for  a
+            You might want to use `+' for the corners and  T  walls  for  a
             more aesthetic, boxier display.  Note that in the next release,
             new symbols may be added, or the present ones rearranged.
 
-               Cannot be set with the `O' command.
+            Cannot be set with the `O' command.
 
           effects
-               Set the graphics symbols for displaying special effects (de-
-               fault
-               ``|-\\/*!)(0#@*/-\\||\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-/'').
+            Set the graphics symbols for displaying  special  effects  (de-
+            fault
+            ``|-\\/*!)(0#@*/-\\||\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-//-\\| |\\-/'').
             The effects option should be followed by a string of 1-83 char-
-            acters  to be used instead of the default special-effects char-
+            acters to be used instead of the default special-effects  char-
             acters.  This string is subjected to the same processing as the
             dungeon option.
 
-            The  order  of the symbols is:  vertical beam, horizontal beam,
-            left slant, right slant, digging beam, camera flash beam,  left
+            The order of the symbols is:  vertical beam,  horizontal  beam,
+            left  slant, right slant, digging beam, camera flash beam, left
             boomerang, right boomerang, four glyphs giving the sequence for
-            magic resistance displays, the  eight  surrounding  glyphs  for
-            swallowed  display,  nine  glyphs each for magical, fire, cold,
-            death, lightning, poison and  acid  explosions.   An  explosion
+            magic  resistance  displays,  the  eight surrounding glyphs for
+            swallowed display, nine glyphs each for  magical,  fire,  cold,
+            death,  lightning,  poison  and  acid explosions.  An explosion
             consists of three rows (top, middle, and bottom) of three char-
             acters.  The explosion is centered in the center of this 3 by 3
             array.
@@ -2489,17 +2489,17 @@
             Note that in the next release, new symbols may be added, or the
             present ones rearranged.
 
-               Cannot be set with the `O' command.
+            Cannot be set with the `O' command.
 
           extmenu
-               Changes the extended commands interface to pop-up a menu  of
+            Changes  the  extended  commands  interface to pop-up a menu of
             available commands.  It is keystroke compatible with the tradi-
-            tional interface except that it does not require that  you  hit
-            Enter.  It  is  implemented only by the tty port (default off),
+            tional  interface  except that it does not require that you hit
+            Enter. It is implemented only by the tty  port  (default  off),
             when the game has been compiled to support tty graphics.
 
           female
-            An obsolete synonym for ``gender:female''.  Cannot be set  with
+            An  obsolete synonym for ``gender:female''.  Cannot be set with
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -2515,24 +2515,24 @@
             the `O' command.
 
           fixinv
-               An object's inventory letter sticks to it when it's  dropped
-               (default on).  If this is off, dropping an object shifts all
-               the remaining inventory letters.
+            An object's inventory letter sticks to  it  when  it's  dropped
+            (default  on).   If  this is off, dropping an object shifts all
+            the remaining inventory letters.
 
           fruit
             Name a fruit after something you enjoy eating (ex. ``fruit:man-
-            go'') (default ``slime mold'').  Basically a  nostalgic  whimsy
-            that  SLASH'EM  uses from time to time.  You should set this to
-            something you find more appetizing than  slime  mold.   Apples,
-            oranges,  pears, bananas, and melons already exist in SLASH'EM,
+            go'')  (default  ``slime mold'').  Basically a nostalgic whimsy
+            that SLASH'EM uses from time to time.  You should set  this  to
+            something  you  find  more appetizing than slime mold.  Apples,
+            oranges, pears, bananas, and melons already exist in  SLASH'EM,
             so don't use those.
 
           gender
-            Your starting gender (gender:male or gender:female).   You  may
-            specify  just  the first letter.  Although you can still denote
-            your gender using the  ``male''  and  ``female''  options,  the
+            Your  starting  gender (gender:male or gender:female).  You may
+            specify just the first letter.  Although you can  still  denote
+            your  gender  using  the  ``male''  and ``female'' options, the
             ``gender'' option will take precedence.  The default is to ran-
-            domly pick an appropriate gender.  Cannot be set with  the  `O'
+            domly  pick  an appropriate gender.  Cannot be set with the `O'
             command.
 
           ghoulname
@@ -2540,31 +2540,31 @@
             set with the `O' command.
 
           help
-            If more information is available for an object looked  at  with
-            the  `/' command, ask if you want to see it (default on). Turn-
-            ing help off makes just looking at  things  faster,  since  you
-            aren't  interrupted with the ``More info?'' prompt, but it also
+            If  more  information is available for an object looked at with
+            the `/' command, ask if you want to see it (default on).  Turn-
+            ing  help  off  makes  just looking at things faster, since you
+            aren't interrupted with the ``More info?'' prompt, but it  also
             means that you might miss some interesting and/or important in-
             formation.
 
           horsename
-            Name  your  starting horse (ex. ``horsename:Trigger'').  Cannot
+            Name your starting horse (ex.  ``horsename:Trigger'').   Cannot
             be set with the `O' command.
 
           IBMgraphics
-            Use a predefined selection of IBM extended ASCII characters  to
+            Use  a predefined selection of IBM extended ASCII characters to
             display the dungeon/effects/traps instead of having to define a
-            full graphics set yourself (default  off).   This  option  also
-            sets  up proper handling of graphics characters for such termi-
-            nals, so you should specify it when  appropriate  even  if  you
+            full  graphics  set  yourself  (default off).  This option also
+            sets up proper handling of graphics characters for such  termi-
+            nals,  so  you  should  specify it when appropriate even if you
             override the selections with your own graphics strings.
 
           ignintr
-               Ignore interrupt signals, including breaks (default off).
+            Ignore interrupt signals, including breaks (default off).
 
           invweight
-               Display the weights of items in your inventory (and at other
-               times) in braces (default off).
+            Display the weights of items in your inventory  (and  at  other
+            times) in braces (default off).
 
 
 
@@ -2579,9 +2579,9 @@
 
 
           keep_savefile
-               Keeps the save file after restore.  SLASH'EM usually deletes
+            Keeps  the  save  file after restore.  SLASH'EM usually deletes
             your savefile after you restore,  making death permanent.  This
-            option can allow you to restore from the  last  save.  (default
+            option  can  allow  you to restore from the last save. (default
             off).
 
           legacy
@@ -2589,44 +2589,44 @@
             on).
 
           lit_corridor
-               Show corridor squares seen by night vision or a light source
-               held by your character as lit (default off).
+            Show  corridor  squares  seen by night vision or a light source
+            held by your character as lit (default off).
 
           lootabc
-            Use  the old `a', `b', and `c' keyboard shortcuts when looting,
+            Use the old `a', `b', and `c' keyboard shortcuts when  looting,
             rather than the mnemonics `o', `i', and `b' (default off).
 
           mail
-               Enable mail delivery during the game (default on).
+            Enable mail delivery during the game (default on).
 
           male
-               An obsolete synonym for ``gender:male''.  Cannot be set with
-               the `O' command.
+            An  obsolete  synonym  for ``gender:male''.  Cannot be set with
+            the `O' command.
 
           menustyle
             Controls the interface used when you need to choose various ob-
-            jects (in response to the Drop  command,  for  instance).   The
-            value  specified  should be the first letter of one of the fol-
-            lowing:  traditional, combination, partial,  or  full.   Tradi-
-            tional  was  the only interface available for earlier versions;
-            it consists of a prompt for object class  characters,  followed
-            by  an  object-by-object  prompt for all items matching the se-
-            lected object class(es).  Combination starts with a prompt  for
-            object  class(es)  of  interest,  but  then  displays a menu of
-            matching objects rather  than  prompting  one-by-one.   Partial
-            skips  the  object  class  filtering and immediately displays a
-            menu of all objects.  Full displays a menu  of  object  classes
+            jects  (in  response  to  the Drop command, for instance).  The
+            value specified should be the first letter of one of  the  fol-
+            lowing:   traditional,  combination,  partial, or full.  Tradi-
+            tional was the only interface available for  earlier  versions;
+            it  consists  of a prompt for object class characters, followed
+            by an object-by-object prompt for all items  matching  the  se-
+            lected  object class(es).  Combination starts with a prompt for
+            object class(es) of interest,  but  then  displays  a  menu  of
+            matching  objects  rather  than  prompting one-by-one.  Partial
+            skips the object class filtering  and  immediately  displays  a
+            menu  of  all  objects.  Full displays a menu of object classes
             rather than a character prompt, and then a menu of matching ob-
             jects for selection.
 
           menu_deselect_all
-               Menu  character accelerator to deselect all items in a menu.
+            Menu  character  accelerator  to  deselect all items in a menu.
             Implemented by the Amiga, Gem, X11, GTK and tty ports.  Default
             '-'.
 
           menu_deselect_page
-            Menu character accelerator to deselect all items on  this  page
-            of  a  menu.  Implemented by the Amiga, Gem and tty ports.  De-
+            Menu  character  accelerator to deselect all items on this page
+            of a menu.  Implemented by the Amiga, Gem and tty  ports.   De-
             fault '\'.
 
           menu_first_page
@@ -2645,26 +2645,26 @@
 
 
           menu_headings
-            Controls  how  the  headings in a menu are highlighted.  Values
+            Controls how the headings in a menu  are  highlighted.   Values
             are 'bold', 'inverse', or 'underline'.  Not all ports can actu-
             ally display all three types.
 
           menu_invert_all
-            Menu  character accelerator to invert all items in a menu.  Im-
-            plemented by the Amiga, Gem, X11, GTK and tty  ports.   Default
+            Menu character accelerator to invert all items in a menu.   Im-
+            plemented  by  the Amiga, Gem, X11, GTK and tty ports.  Default
             '@'.
 
           menu_invert_page
-            Menu  character accelerator to invert all items on this page of
-            a menu.  Implemented by the Amiga, Gem and tty ports.   Default
+            Menu character accelerator to invert all items on this page  of
+            a  menu.  Implemented by the Amiga, Gem and tty ports.  Default
             '~'.
 
           menu_last_page
-            Menu  character accelerator to jump to the last page in a menu.
+            Menu character accelerator to jump to the last page in a  menu.
             Implemented by the Amiga, Gem and tty ports.  Default '|'.
 
           menu_next_page
-            Menu character accelerator to goto the next menu page.   Imple-
+            Menu  character accelerator to goto the next menu page.  Imple-
             mented by the Amiga, Gem and tty ports.  Default '>'.
 
           menu_on_esc
@@ -2676,28 +2676,28 @@
             plemented by the Amiga, Gem and tty ports.  Default '<'.
 
           menu_search
-            Menu  character  accelerator to search for a menu item.  Imple-
+            Menu character accelerator to search for a menu  item.   Imple-
             mented by the Amiga, Gem and X11 ports.  Default ':'.
 
           menu_select_all
-            Menu character accelerator to select all items in a menu.   Im-
-            plemented  by  the Amiga, Gem, X11, GTK and tty ports.  Default
+            Menu  character accelerator to select all items in a menu.  Im-
+            plemented by the Amiga, Gem, X11, GTK and tty  ports.   Default
             '.'.
 
           menu_select_page
-            Menu character accelerator to select all items on this page  of
-            a  menu.  Implemented by the Amiga, Gem and tty ports.  Default
+            Menu  character accelerator to select all items on this page of
+            a menu.  Implemented by the Amiga, Gem and tty ports.   Default
             ','.
 
           monsters
-               Set  the characters used to display monster classes (default
-               ``abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTU-
-               VWXYZ@ '&;:~]'').  This string is subjected to the same pro-
+            Set  the  characters  used  to display monster classes (default
+            ``abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTU-
+            VWXYZ@ '&;:~]'').   This  string  is subjected to the same pro-
             cessing as the dungeon option.  The order of the symbols is ant
-            or other insect, blob, cockatrice, dog or other canine, eye  or
-            sphere,  feline,  gremlin, humanoid, imp or minor demon, jelly,
-            kobold, leprechaun, mimic, nymph, orc, piercer, quadruped,  ro-
-            dent,  arachnid or centipede, trapper or lurker above, horse or
+            or  other insect, blob, cockatrice, dog or other canine, eye or
+            sphere, feline, gremlin, humanoid, imp or minor  demon,  jelly,
+            kobold,  leprechaun, mimic, nymph, orc, piercer, quadruped, ro-
+            dent, arachnid or centipede, trapper or lurker above, horse  or
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -2710,60 +2710,60 @@
 
 
 
-            unicorn, vortex, worm, xan or other mythical/fantastic  insect,
-            light,  Zouthern  aminal,  angelic being, bat or bird, centaur,
-            dragon, elemental, fungus or mold, gnome, giant  humanoid,  in-
-            visible  monster,  jabberwock, Keystone Kop, lich, mummy, naga,
-            ogre, pudding or ooze, quantum mechanic, rust  monster,  snake,
-            troll,  umber  hulk,  vampire,  wraith, xorn, apelike creature,
-            zombie, human, ghost, golem, demon, sea monster,  lizard,  long
+            unicorn,  vortex, worm, xan or other mythical/fantastic insect,
+            light, Zouthern aminal, angelic being, bat  or  bird,  centaur,
+            dragon,  elemental,  fungus or mold, gnome, giant humanoid, in-
+            visible monster, jabberwock, Keystone Kop, lich,  mummy,  naga,
+            ogre,  pudding  or ooze, quantum mechanic, rust monster, snake,
+            troll, umber hulk, vampire,  wraith,  xorn,  apelike  creature,
+            zombie,  human,  ghost, golem, demon, sea monster, lizard, long
             worm tail, and mimic.  Cannot be set with the `O' command.
 
           msghistory
-               The number of top line messages to save (and recall with ^P)
-               (default 20).  Cannot be set with the `O' command.
+            The number of top line messages to save (and  recall  with  ^P)
+            (default 20).  Cannot be set with the `O' command.
 
           msg_window
-            Allows you to change the way recalled messages  are  displayed.
-            (It  is currently implemented for tty only.)  The possible val-
+            Allows  you  to change the way recalled messages are displayed.
+            (It is currently implemented for tty only.)  The possible  val-
             ues are:
 
-                    s - single message (default, this was the behavior before 3.4.0).
-                    c - combination, two messages as `single', then as `full'.
-                    f - full window, oldest message first.
-                    r - full window, newest message first.
+                 s - single message (default, this was the behavior before 3.4.0).
+                 c - combination, two messages as `single', then as `full'.
+                 f - full window, oldest message first.
+                 r - full window, newest message first.
 
-               For backward compatibility, no value needs to  be  specified
-               (which  defaults to `full'), or it can be negated (which de-
-               faults to `single').
+            For  backward  compatibility,  no  value  needs to be specified
+            (which defaults to `full'), or it can  be  negated  (which  de-
+            faults to `single').
 
           name
-               Set your character's name (defaults to your user name).  You
-            can  also set your character's role by appending a dash and one
+            Set  your  character's  name (defaults to your user name).  You
+            can also set your character's role by appending a dash and  one
             or more letters of the role (that is, by suffixing one of -A -B
-            -C  -F  -H -I -K -M -N -P -Ra -Ro -S -T -U -V -W -Y).  If -@ is
+            -C -F -H -I -K -M -N -P -Ra -Ro -S -T -U -V -W -Y).  If  -@  is
             used for the role, then a random one will be automatically cho-
             sen.  Cannot be set with the `O' command.
 
           news
-               Read the SLASH'EM news file, if present (default on).  Since
-               the news is shown at the beginning of the game,  there's  no
-               point in setting this with the `O' command.
+            Read the SLASH'EM news file, if present  (default  on).   Since
+            the  news  is  shown  at  the beginning of the game, there's no
+            point in setting this with the `O' command.
 
           null
-               Send padding nulls to the terminal (default off).
+            Send padding nulls to the terminal (default off).
 
           number_pad
             Use the number keys to move instead of [yuhjklbn] (default 0 or
-            off).  (number_pad:2 invokes the old  DOS  behavior  where  `5'
+            off).   (number_pad:2  invokes  the  old DOS behavior where `5'
             means `g', meta-`5' means `G',  and meta-`0' means `I'.)
 
           objects
-               Set the characters used to display object  classes  (default
-            ``])[="(%!?+/$*`0_.'').  This string is subjected to  the  same
-            processing  as the dungeon option.  The order of the symbols is
-            illegal-object (should never be  seen),  weapon,  armor,  ring,
-            amulet,  tool, food, potion, scroll, spellbook, wand, gold, gem
+            Set the characters used  to  display  object  classes  (default
+            ``])[="(%!?+/$*`0_.'').   This  string is subjected to the same
+            processing as the dungeon option.  The order of the symbols  is
+            illegal-object  (should  never  be  seen), weapon, armor, ring,
+            amulet, tool, food, potion, scroll, spellbook, wand, gold,  gem
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -2776,60 +2776,60 @@
 
 
 
-            or rock, boulder or statue, iron ball, chain, and venom.   Can-
+            or  rock, boulder or statue, iron ball, chain, and venom.  Can-
             not be set with the `O' command.
 
           packorder
-               Specify  the  order  to  list  object  types   in   (default
-               ``")[%?+!=/(*`0_'').   The  value of this option should be a
-               string containing the symbols for the various object  types.
-               Any omitted types are filled in at the end from the previous
-               order.
+            Specify  the  order  to   list   object   types   in   (default
+            ``")[%?+!=/(*`0_'').   The  value  of  this  option should be a
+            string containing the symbols for  the  various  object  types.
+            Any  omitted  types  are filled in at the end from the previous
+            order.
 
           perm_invent
-               If true, always display your current inventory in a  window.
-            This only makes sense for windowing system interfaces that  im-
+            If true, always display your current  inventory  in  a  window.
+            This  only makes sense for windowing system interfaces that im-
             plement this feature.
 
           pettype
-               Specify the type of your initial pet, if you are  playing  a
-            character class that uses multiple types of pets; or choose  to
-            have  no  initial  pet  at  all.   Possible values are ``cat'',
-               ``dog'' and ``none''.  Cannot be set with the `O' command.
+            Specify the type of your initial pet,  if  you  are  playing  a
+            character  class that uses multiple types of pets; or choose to
+            have no initial pet  at  all.   Possible  values  are  ``cat'',
+            ``dog'' and ``none''.  Cannot be set with the `O' command.
 
           pickup_burden
-               When  you pick up an item that would exceed this encumbrance
-            level  (Unburdened, Burdened, streSsed, straiNed, overTaxed, or
-            overLoaded), you will be asked if you want to  continue.   (De-
+            When  you  pick  up  an item that would exceed this encumbrance
+            level (Unburdened, Burdened, streSsed, straiNed, overTaxed,  or
+            overLoaded),  you  will be asked if you want to continue.  (De-
             fault `S').
 
           pickup_thrown
-               If this boolean option is true and autopickup is on, try  to
-               pick  up things that you threw, even if they aren't in pick-
-               up_types.  Default is on.
+            If this boolean option is true and autopickup  is  on,  try  to
+            pick  up  things  that  you threw, even if they aren't in pick-
+            up_types.  Default is on.
 
           pickup_types
             Specify the object types to be picked up when autopickup is on.
             Default is all types.  If your copy of the game has the experi-
-            mental  compile time option AUTOPICKUP_EXCEPTIONS included, you
-            may be able  to  use  autopickup_exception  configuration  file
+            mental compile time option AUTOPICKUP_EXCEPTIONS included,  you
+            may  be  able  to  use  autopickup_exception configuration file
             lines to further refine autopickup behavior.
 
           prayconfirm
-               Prompt for confirmation before praying (default on).
+            Prompt for confirmation before praying (default on).
 
           pushweapon
-            Using  the  `w' (wield) command when already wielding something
-            pushes the old item into your alternate  weapon  slot  (default
+            Using the `w' (wield) command when already  wielding  something
+            pushes  the  old  item into your alternate weapon slot (default
             off).
 
           race
-            Selects  your  race  (for example, ``race:human'').  Default is
-               random.  Cannot be set with the `O' command.
+            Selects your race (for example,  ``race:human'').   Default  is
+            random.  Cannot be set with the `O' command.
 
           rest_on_space
-               Make the space bar a synonym for the `.' (rest) command (de-
-               fault off).
+            Make  the  space  bar a synonym for the `.' (rest) command (de-
+            fault off).
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -2844,30 +2844,30 @@
 
           role
             Pick your type of character (ex. ``role:Samurai''); synonym for
-            ``character''.  See ``name'' for an alternate method of  speci-
-            fying  your  role.  Normally only the first letter of the value
-            is examined; `r' is an exception  with  ``Rogue'',  ``Ranger'',
+            ``character''.   See ``name'' for an alternate method of speci-
+            fying your role.  Normally only the first letter of  the  value
+            is  examined;  `r'  is an exception with ``Rogue'', ``Ranger'',
             and ``random'' values.
 
           runmode
-            Controls  the amount of screen updating for the map window when
-            engaged in multi-turn movement (running via shift+direction  or
-            control+direction  and  so  forth, or via the travel command or
+            Controls the amount of screen updating for the map window  when
+            engaged  in multi-turn movement (running via shift+direction or
+            control+direction and so forth, or via the  travel  command  or
             mouse click).  The possible values are:
 
-                    teleport - update the map after movement has finished;
-                    run - update the map after every seven or so steps;
-                    walk - update the map after each step;
-                    crawl - like walk, but pause briefly after each step.
+                 teleport - update the map after movement has finished;
+                 run - update the map after every seven or so steps;
+                 walk - update the map after each step;
+                 crawl - like walk, but pause briefly after each step.
 
             This option only affects the game's screen display, not the ac-
-            tual  results  of moving.  The default is `run'; versions prior
-            to 3.4.1 used `teleport' only.  Whether or not  the  effect  is
+            tual results of moving.  The default is `run';  versions  prior
+            to  3.4.1  used  `teleport' only.  Whether or not the effect is
             noticeable will depend upon the window port used or on the type
             of terminal.
 
           safe_pet
-            Prevent you from (knowingly) attacking your pets (default  on).
+            Prevent you from (knowingly) attacking your pets (default on).
 
           scores
             Control  what  parts of the score list you are shown at the end
@@ -2880,7 +2880,7 @@
             off).
 
           showrace
-               Display yourself as the glyph for your race, rather than the
+            Display  yourself  as  the glyph for your race, rather than the
             glyph for your role (default off).  Note that this setting  af-
             fects  only the appearance of the display, not the way the game
             treats you.
@@ -2895,7 +2895,7 @@
             enough to quantify their damage.
 
           showweight
-               Show total weight in inventory on bottom line (default off).
+            Show total weight in inventory on bottom line (default off).
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -2927,7 +2927,7 @@
             hit by an attack to which it is resistant (default on).
 
           standout
-               Boldface monsters and ``--More--'' (default off).
+            Boldface monsters and ``--More--'' (default off).
 
           suppress_alert
             This  option may be set to a SLASH'EM version level to suppress
@@ -2935,15 +2935,15 @@
             prior versions (ex. ``suppress_alert:0.0.6'').
 
           tiles
-               This option may be set to the name of a tile set to use,  or
+            This  option  may  be  set to the name of a tile set to use, or
             specified as ``notiles'' to disable the use of tiles.  Not  all
             windowing  interfaces  support  this option. The tile set named
             must also be defined. See the section on tile sets for more in-
             formation on that.
 
           time
-               Show the elapsed game time in turns on bottom line  (default
-               off).
+            Show  the  elapsed  game  time in turns on bottom line (default
+            off).
 
           timed_delay
             When pausing momentarily for display effect, such as  with  ex-
@@ -2953,7 +2953,7 @@
             delay.  The default is on if configured into the program.)
 
           tombstone
-               Draw a tombstone graphic upon your death (default on).
+            Draw a tombstone graphic upon your death (default on).
 
           toptenwin
             Put the ending display in a SLASH'EM window instead of on  std-
@@ -2975,20 +2975,20 @@
 
 
           traps
-               Set  the  graphics  symbols  for  displaying  traps (default
+            Set  the  graphics  symbols  for  displaying   traps   (default
             ``^^^^^^^^^^^^^^^^^"^^^^'').   The  traps option should be fol-
             lowed by a string of 1-22 characters to be used instead of  the
             default traps characters.  This string is subjected to the same
             processing as the dungeon option.
 
-               The  order of the symbols is: arrow trap, dart trap, falling
+            The order of the symbols is: arrow  trap,  dart  trap,  falling
             rock trap, squeaky board, bear trap, land mine, rolling boulder
             trap, sleeping gas trap, rust trap, fire trap, pit, spiked pit,
             hole,  trap  door,  teleportation trap, level teleporter, magic
             portal, web, statue trap, magic trap, anti-magic  field,  poly-
             morph trap.
 
-               Cannot be set with the `O' command.
+            Cannot be set with the `O' command.
 
           travel
             Allow the travel command (default on).  Turning this option off
@@ -2996,26 +2996,26 @@
             make inadvertent mouse clicks on the map window.
 
           verbose
-               Provide more commentary during the game (default on).
+            Provide more commentary during the game (default on).
 
           windowtype
-               Select which windowing system to use,  such  as  ``tty''  or
+            Select  which  windowing  system  to  use,  such  as ``tty'' or
             ``X11'' (default depends on version).  Cannot be set  with  the
             `O' command.
 
           wolfname
-               Name your starting wolf (ex. ``wolfname:Beast'').  Cannot be
-               set with the `O' command.
+            Name  your  starting  wolf (ex. ``wolfname:Beast'').  Cannot be
+            set with the `O' command.
 
           9.5.  Tile sets
 
-               For  those windowing ports which support tiles (multicolored
+               For those windowing ports which support tiles  (multicolored
           pictures instead of the traditional characters), tile sets can be
-          defined  using  a  line  in  the  configuration  file that begins
-          ``TILESET=''. There should be one tile set  definition  line  for
-          each  available tile set. Once defined, tile sets can be selected
-          for initial display (using the tiles option) or  dynamically  se-
-          lected  during  the  game (for those windowing ports that support
+          defined using a  line  in  the  configuration  file  that  begins
+          ``TILESET=''.  There  should  be one tile set definition line for
+          each available tile set. Once defined, tile sets can be  selected
+          for  initial  display (using the tiles option) or dynamically se-
+          lected during the game (for those windowing  ports  that  support
           this).
 
                A ``TILESET'' line has the same syntax as an ``OPTION'' line
@@ -3026,7 +3026,7 @@
             string of characters excluding the comma. It must be specified.
 
           file
-            The name of the file which contains the tile set. This must  be
+            The  name of the file which contains the tile set. This must be
             specified.
 
 
@@ -3041,22 +3041,22 @@
 
 
           transparent
-            Marks  a  tile set as being transparent (as opposed to opaque).
-            Transparent tile sets allow eg., monsters to  be  displayed  on
-            top  of  the background.  Tile sets must be designed to be used
+            Marks a tile set as being transparent (as opposed  to  opaque).
+            Transparent  tile  sets  allow eg., monsters to be displayed on
+            top of the background.  Tile sets must be designed to  be  used
             in this way in order to achieve meaningful results. This option
-            is  ignored by windowing ports which do not support transparen-
+            is ignored by windowing ports which do not support  transparen-
             cy.
 
           pseudo3D
-               Marks  a  tile  set as being designed for use with Mitsuhiro
+            Marks  a  tile  set  as  being  designed for use with Mitsuhiro
             Itakura's pseudo-3D display algorithm. They are assumed to have
-            an offset-X value equal to one third of the  total  tile  width
-            and  an  offset-Y  value  equal  to  one half of the total tile
-            height. Such tile sets are not compatible  with  standard  tile
-            sets  and  while amusing effects can be created by setting this
-            option incorrectly, nothing useful can be  achieved.  Windowing
-            ports  that  do  not support pseudo-3D display will ignore tile
+            an  offset-X  value  equal to one third of the total tile width
+            and an offset-Y value equal to  one  half  of  the  total  tile
+            height.  Such  tile  sets are not compatible with standard tile
+            sets and while amusing effects can be created by  setting  this
+            option  incorrectly,  nothing useful can be achieved. Windowing
+            ports that do not support pseudo-3D display  will  ignore  tile
             sets with this option set.
 
           9.6.  Window Port Customization options
@@ -3075,23 +3075,23 @@
           mand.
 
           align_message
-            Where  to align or place the message window (top, bottom, left,
+            Where to align or place the message window (top, bottom,  left,
             or right)
 
           align_status
-            Where to align or place the status window (top,  bottom,  left,
+            Where  to  align or place the status window (top, bottom, left,
             or right).
 
           ascii_map
-               SLASH'EM should display an ascii character map if it can.
+            SLASH'EM should display an ascii character map if it can.
 
           color
             SLASH'EM should display color if it can for different monsters,
             objects, and dungeon features
 
           eight_bit_tty
-            SLASH'EM should pass eight-bit character values  (for  example,
-            specified  with the traps option) straight through to your ter-
+            SLASH'EM  should  pass eight-bit character values (for example,
+            specified with the traps option) straight through to your  ter-
             minal (default off).
 
 
@@ -3107,7 +3107,7 @@
 
 
           font_map
-            SLASH'EM should use a font by the chosen name for the map  win-
+            SLASH'EM  should use a font by the chosen name for the map win-
             dow.
 
           font_menu
@@ -3118,46 +3118,46 @@
             window.
 
           font_status
-               SLASH'EM should use a font by the chosen name for the status
-               window.
+            SLASH'EM  should  use  a font by the chosen name for the status
+            window.
 
           font_text
             SLASH'EM should use a font by the chosen name for text windows.
 
           font_size_map
-               SLASH'EM should use this size font for the map window.
+            SLASH'EM should use this size font for the map window.
 
           font_size_menu
-               SLASH'EM should use this size font for menu windows.
+            SLASH'EM should use this size font for menu windows.
 
           font_size_message
-               SLASH'EM should use this size font for the message window.
+            SLASH'EM should use this size font for the message window.
 
           font_size_status
-               SLASH'EM should use this size font for the status window.
+            SLASH'EM should use this size font for the status window.
 
           font_size_text
-               SLASH'EM should use this size font for text windows.
+            SLASH'EM should use this size font for text windows.
 
           fullscreen
-               SLASH'EM should try and display on the entire screen  rather
-               than in a window.
+            SLASH'EM should try and display on  the  entire  screen  rather
+            than in a window.
 
           hilite_pet
-            Visually distinguish pets from similar animals  (default  off).
-            The  behavior  of  this option depends on the type of windowing
+            Visually  distinguish  pets from similar animals (default off).
+            The behavior of this option depends on the  type  of  windowing
             you use.  In text windowing, text highlighting or inverse video
-            is  often  used;  with tiles, generally displays a heart symbol
+            is often used; with tiles, generally displays  a  heart  symbol
             near pets or a red box around the pet.
 
           large_font
-               SLASH'EM should use a large font.
+            SLASH'EM should use a large font.
 
           map_mode
-               SLASH'EM should display the map in the manner specified.
+            SLASH'EM should display the map in the manner specified.
 
           mouse_support
-               Allow use of the mouse for input and travel.
+            Allow use of the mouse for input and travel.
 
 
 
@@ -3177,13 +3177,13 @@
             ter selection.
 
           popup_dialog
-               SLASH'EM should pop up dialog boxes for input.
+            SLASH'EM should pop up dialog boxes for input.
 
           preload_tiles
             SLASH'EM should preload tiles into memory.  For example, in the
-            protected mode MSDOS version, control whether  tiles  get  pre-
-            loaded  into  RAM  at the start of the game.  Doing so enhances
-            performance of the tile graphics, but uses  more  memory.  (de-
+            protected  mode  MSDOS  version, control whether tiles get pre-
+            loaded into RAM at the start of the game.   Doing  so  enhances
+            performance  of  the  tile graphics, but uses more memory. (de-
             fault on).  Cannot be set with the `O' command.
 
           scroll_amount
@@ -3191,37 +3191,37 @@
             the hero reaches the scroll_margin.
 
           scroll_margin
-            SLASH'EM should scroll the display when the hero or  cursor  is
+            SLASH'EM  should  scroll the display when the hero or cursor is
             this number of cells away from the edge of the window.
 
           softkeyboard
-               Display an onscreen keyboard.  Handhelds are most likely  to
-               support this option.
+            Display an onscreen keyboard.  Handhelds  are  most  likely  to
+            support this option.
 
           splash_screen
             SLASH'EM should display an opening splash screen when it starts
             up (default yes).
 
           tiled_map
-               SLASH'EM should display a tiled map if it can.
+            SLASH'EM should display a tiled map if it can.
 
           tile_file
-               Specify the name of an alternative tile file to override the
-               default.
+            Specify the name of an alternative tile file  to  override  the
+            default.
 
           tile_height
-               Specify  the preferred height of each tile in a tile capable
-               port.
+            Specify  the  preferred  height  of each tile in a tile capable
+            port.
 
           tile_width
             Specify the preferred width of each tile in a tile capable port
 
           use_inverse
-               SLASH'EM  should display inverse when the game specifies it.
+            SLASH'EM should display inverse when the game specifies it.
 
           vary_msgcount
-               SLASH'EM should display this number of messages at a time in
-               the message window.
+            SLASH'EM should display this number of messages at  a  time  in
+            the message window.
 
           windowcolors
             SLASH'EM  should  display  windows  with  the  specified  fore-
@@ -3248,13 +3248,13 @@
           platforms or ports to customize and change the port behavior.
 
           altkeyhandler
-               Select an alternate keystroke handler dll to load (Win32 tty
+            Select an alternate keystroke handler dll to  load  (Win32  tty
             SLASH'EM  only).   The name of the handler is specified without
             the .dll extension and without any path information.  Cannot be
             set with the `O' command.
 
           altmeta
-               (default on, AMIGA SLASH'EM only).
+            (default on, AMIGA SLASH'EM only).
 
           BIOS
             Use BIOS calls to update the screen display quickly and to read
@@ -3263,13 +3263,13 @@
             PC, and ST SLASH'EM only).
 
           flush
-               (default off, AMIGA SLASH'EM only).
+            (default off, AMIGA SLASH'EM only).
 
           MACgraphics
-               (default on, Mac SLASH'EM only).
+            (default on, Mac SLASH'EM only).
 
           page_wait
-               (default on, Mac SLASH'EM only).
+            (default on, Mac SLASH'EM only).
 
           rawio
             Force raw (non-cbreak) mode for faster output and more  bullet-
@@ -3279,8 +3279,8 @@
             with the `O' command.
 
           soundcard
-               (default on, PC SLASH'EM only).  Cannot be set with the  `O'
-               command.
+            (default on, PC SLASH'EM only).  Cannot be  set  with  the  `O'
+            command.
 
           subkeyvalue
             (Win32  tty  SLASH'EM only).  May be used to alter the value of
@@ -3305,42 +3305,47 @@
 
 
           video
-               Set the video mode used (PC SLASH'EM only).  Values are `au-
+            Set  the  video  mode used (PC SLASH'EM only).  Values are `au-
             todetect', `default', or `vga'.  Setting `vga' (or `autodetect'
             with  vga  hardware  present)  will  cause  the game to display
             tiles.  Cannot be set with the `O' command.
 
           videocolors
-               Set the color palette for PC systems using NO_TERMS (default
+            Set the color palette for PC systems  using  NO_TERMS  (default
             4-2-6-1-5-3-15-12-10-14-9-13-11, (PC SLASH'EM only).  The order
             of  colors  is  red,  green,  brown,   blue,   magenta,   cyan,
-               bright.white, bright.red, bright.green, yellow, bright.blue,
-               bright.magenta, and bright.cyan.  Cannot be set with the `O'
-               command.
+            bright.white,  bright.red,  bright.green,  yellow, bright.blue,
+            bright.magenta, and bright.cyan.  Unix and OS/2 ports  compiled
+            with  VIDEOSHADES  option allow defining three more colors. The
+            order of colors is red,  green,  brown,  blue,  magenta,  cyan,
+            gray,  black,  bright.red,  bright.green,  yellow, bright.blue,
+            bright.magenta, bright.cyan  and  white.   MS-Windows  and  Mac
+            ports don't use this option. In Windows colors can be redefined
+            from window properties.  Cannot be set with the `O' command.
 
           videoshades
             Set the intensity level of the three gray scales available (de-
-            fault dark normal light, PC SLASH'EM only).  If the  game  dis-
-            play  is difficult to read, try adjusting these scales; if this
-            does not correct the problem, try !color.  Cannot be  set  with
+            fault  dark  normal light, PC SLASH'EM only).  If the game dis-
+            play is difficult to read, try adjusting these scales; if  this
+            does  not  correct the problem, try !color.  Cannot be set with
             the `O' command.
 
           9.8.  Configuring autopickup exceptions
 
-               There  is  an  experimental  compile  time option called AU-
-          TOPICKUP_EXCEPTIONS.  If your copy of the  game  was  built  with
-          that  option  defined, you can further refine the behavior of the
-          autopickup option beyond what  is  available  through  the  pick-
+               There is an experimental  compile  time  option  called  AU-
+          TOPICKUP_EXCEPTIONS.   If  your  copy  of the game was built with
+          that option defined, you can further refine the behavior  of  the
+          autopickup  option  beyond  what  is  available through the pick-
           up_types option.
 
-               By  placing autopickup_exception lines in your configuration
-          file, you can define patterns to be  checked  when  the  game  is
+               By placing autopickup_exception lines in your  configuration
+          file,  you  can  define  patterns  to be checked when the game is
           about to autopickup something.
 
           autopickup_exception
-            Sets  an  exception  to the pickup_types option.  The autopick-
-            up_exception option should be followed  by  a  string  of  1-80
-            characters  to be used as a pattern to match against the singu-
+            Sets an exception to the pickup_types  option.   The  autopick-
+            up_exception  option  should  be  followed  by a string of 1-80
+            characters to be used as a pattern to match against the  singu-
             lar form of the description of an object at your location.
 
                You may use the following special characters in a pattern:
@@ -3348,16 +3353,11 @@
                  *--- matches 0 or more characters.
                  ?--- matches any single character.
 
-               In addition, some characters are treated specially  if  they
+               In  addition,  some characters are treated specially if they
           occur as the first character in the string pattern, specifically:
 
                < - always pickup an object that matches the pattern that follows.
                > - never pickup an object that matches the pattern that follows.
-
-               Can be set with the `O' command, but the setting is not pre-
-          served across saves and restores.
-
-
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3369,6 +3369,9 @@
           SLASH'EM Guidebook                                             52
 
 
+
+               Can be set with the `O' command, but the setting is not pre-
+          served across saves and restores.
 
                Here's a couple of examples of autopickup_exceptions:
 
@@ -3393,17 +3396,17 @@
           user sounds to messages:
 
           SOUNDDIR
-               The directory that houses the sound files to be played.
+            The directory that houses the sound files to be played.
 
           SOUND
-               An  entry that maps a sound file to a user-specified message
-               pattern.  Each SOUND entry is broken down into the following
-               parts:
+            An  entry  that  maps  a sound file to a user-specified message
+            pattern.  Each SOUND entry is broken down  into  the  following
+            parts:
 
-                    MESG       - message window mapping (the only one supported in 3.4).
-                    pattern    - the pattern to match.
-                    sound file - the sound file to play.
-                    volume     - the volume to be set while playing the sound file.
+                 MESG       - message window mapping (the only one supported in 3.4).
+                 pattern    - the pattern to match.
+                 sound file - the sound file to play.
+                 volume     - the volume to be set while playing the sound file.
 
                The  exact  format  for  the  pattern depends on whether the
           platform is built to use ``regular  expressions''  or  SLASH'EM's
@@ -3421,9 +3424,6 @@
                  *--- matches 0 or more characters.
                  ?--- matches any single character.
 
-               Here's an example of a sound mapping using SLASH'EM's inter-
-          nal pattern matching facility:
-
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3435,6 +3435,9 @@
           SLASH'EM Guidebook                                             53
 
 
+
+               Here's an example of a sound mapping using SLASH'EM's inter-
+          nal pattern matching facility:
 
                    SOUND=MESG "*chime of a cash register*" "gong.wav" 50
 
@@ -3474,22 +3477,19 @@
           make the game accessible are:
 
           IBMgraphics
-               Disable IBMgraphics by commenting out this option.
+            Disable IBMgraphics by commenting out this option.
 
           menustyle:traditional
-               This will assist in the interface to speech synthesizers.
+            This will assist in the interface to speech synthesizers.
 
           number_pad
-               A lot of speech access programs use the number-pad to review
+            A lot of speech access programs use the  number-pad  to  review
             the screen.  If this is the case, disable the number_pad option
             and use the traditional Rogue-like commands.
 
           Character graphics
             Comment out all character graphics sets found near  the  bottom
-            of  the defaults.nh file.  Most of these replace SLASH'EM's de-
-            fault representation of the dungeon using standard ASCII  char-
-            acters  with  fancier  characters from extended character sets,
-            and these fancier characters can annoy screen-readers.
+            of  the  defaults.nh  file.   Most  of these replace SLASH'EM's
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3502,43 +3502,47 @@
 
 
 
+            default representation of  the  dungeon  using  standard  ASCII
+            characters  with  fancier  characters  from  extended character
+            sets, and these fancier characters can annoy screen-readers.
+
           10.  Scoring
 
-               SLASH'EM  maintains  a  list of the top scores or scorers on
+               SLASH'EM maintains a list of the top scores  or  scorers  on
           your machine, depending on how it is set up.  In the latter case,
-          each  account  on the machine can post only one non-winning score
-          on this list.  If you score higher  than  someone  else  on  this
-          list,  or better your previous score, you will be inserted in the
-          proper place under your current name.  How many scores  are  kept
+          each account on the machine can post only one  non-winning  score
+          on  this  list.   If  you  score higher than someone else on this
+          list, or better your previous score, you will be inserted in  the
+          proper  place  under your current name.  How many scores are kept
           can also be set up when SLASH'EM is compiled.
 
-               Your  score  is  chiefly  based upon how much experience you
+               Your score is chiefly based upon  how  much  experience  you
           gained, how much loot you accumulated, how deep you explored, and
           how the game ended.  If you quit the game, you escape with all of
-          your gold intact.  If, however, you get killed in  the  Mazes  of
+          your  gold  intact.   If, however, you get killed in the Mazes of
           Menace, the guild will only hear about 90% of your gold when your
-          corpse is discovered (adventurers  have  been  known  to  collect
-          finder's  fees).   So, consider whether you want to take one last
-          hit at that monster and possibly live,  or  quit  and  stop  with
-          whatever  you  have.  If you quit, you keep all your gold, but if
+          corpse  is  discovered  (adventurers  have  been known to collect
+          finder's fees).  So, consider whether you want to take  one  last
+          hit  at  that  monster  and  possibly live, or quit and stop with
+          whatever you have.  If you quit, you keep all your gold,  but  if
           you swing and live, you might find more.
 
-               If you just want to see what the current  top  players/games
+               If  you  just want to see what the current top players/games
           list is, you can type slashem -s all on most versions.
 
 
           11.  Explore mode
 
-               SLASH'EM  is an intricate and difficult game.  Novices might
+               SLASH'EM is an intricate and difficult game.  Novices  might
           falter in fear, aware of their ignorance of the means to survive.
-          Well,  fear  not.   Your  dungeon may come equipped with an ``ex-
-          plore'' or ``discovery'' mode that enables you to keep  old  save
-          files  and  cheat death, at the paltry cost of not getting on the
+          Well, fear not.  Your dungeon may come  equipped  with  an  ``ex-
+          plore''  or  ``discovery'' mode that enables you to keep old save
+          files and cheat death, at the paltry cost of not getting  on  the
           high score list.
 
-               There are two ways of enabling  explore  mode.   One  is  to
+               There  are  two  ways  of  enabling explore mode.  One is to
           start the game with the -X switch.  The other is to issue the `X'
-          command while already playing the game.  The  other  benefits  of
+          command  while  already  playing the game.  The other benefits of
           explore mode are left for the trepid reader to discover.
 
 
@@ -3551,11 +3555,7 @@
           Further Exploration of the Dungeons of Doom, by Ken Arromdee.
 
                SLASH'EM is the product  of  literally  dozens  of  people's
-          work.   Main events in the course of the game development are de-
-          scribed below:
-
-
-
+          work.   Main  events  in  the  course of the game development are
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3568,25 +3568,28 @@
 
 
 
-               Jay  Fenlason  wrote the original Hack, with help from Kenny
+          described below:
+
+
+               Jay Fenlason wrote the original Hack, with help  from  Kenny
           Woodland, Mike Thome and Jon Payne.
 
                Andries Brouwer did a major re-write, transforming Hack into
-          a  very  different  game, and published (at least) three versions
+          a very different game, and published (at  least)  three  versions
           (1.0.1, 1.0.2, and 1.0.3) for UNIX machines to the Usenet.
 
-               Don G. Kneller ported Hack 1.0.3 to Microsoft C and  MS-DOS,
-          producing  PC  HACK 1.01e, added support for DEC Rainbow graphics
-          in version 1.03g, and went on to produce at least four more  ver-
+               Don  G. Kneller ported Hack 1.0.3 to Microsoft C and MS-DOS,
+          producing PC HACK 1.01e, added support for DEC  Rainbow  graphics
+          in  version 1.03g, and went on to produce at least four more ver-
           sions (3.0, 3.2, 3.51, and 3.6).
 
-               R.  Black  ported  PC  HACK  3.51 to Lattice C and the Atari
+               R. Black ported PC HACK 3.51 to  Lattice  C  and  the  Atari
           520/1040ST, producing ST Hack 1.03.
 
                Mike Stephenson merged these various versions back together,
-          incorporating  many  of  the added features, and produced NetHack
-          1.4.  He then coordinated a cast of thousands  in  enhancing  and
-          debugging  NetHack 1.4 and released NetHack versions 2.2 and 2.3.
+          incorporating many of the added features,  and  produced  NetHack
+          1.4.   He  then  coordinated a cast of thousands in enhancing and
+          debugging NetHack 1.4 and released NetHack versions 2.2 and 2.3.
 
                Later, Mike coordinated a major rewrite of the game, heading
           a team which included Ken Arromdee, Jean-Christophe Collet, Steve
@@ -3619,9 +3622,6 @@
           They re-structured the game's design, and re-wrote major parts of
           the  code.   They added multiple dungeons, a new display, special
           individual character quests, a new endgame  and  many  other  new
-          features, and produced NetHack 3.1.
-
-
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3633,6 +3633,8 @@
           SLASH'EM Guidebook                                             56
 
 
+
+          features, and produced NetHack 3.1.
 
                Ken  Lorber,  Gregg  Wonderly and Greg Olson, with help from
           Richard Addison, Mike Passaretti,  and  Olaf  Seibert,  developed
@@ -3686,8 +3688,6 @@
           the interval between the release of 3.1.3 and  3.2,  one  of  the
           founding  members of the development team, Dr. Izchak Miller, was
           diagnosed with cancer and passed away.  That release of the  game
-          was dedicated to him by the development and porting teams.
-
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3700,6 +3700,8 @@
 
 
 
+          was dedicated to him by the development and porting teams.
+
                Larry Stewart-Zerba set along a different track - to enhance
           the spellcasting abilities of the Wizard.   Thus, in April  1996,
           he  released  version  0.1 of the Wizard Patch.  By July,  he was
@@ -3709,14 +3711,14 @@
 
                Warwick Allison also ported NetHack to use the Qt interface.
 
-               SLASH  V6  was picked up by Enrico Horn, who managed to syn-
-          chronize it with the 3.2 source.  The new  SLASH  4.1.2  was  re-
-          leased  as  far back as November 1996 went through at least 4 ed-
-          itlevels (E5, E6, E7) with  the  latest  version  being  4.1.2E8,
+               SLASH V6 was picked up by Enrico Horn, who managed  to  syn-
+          chronize  it  with  the  3.2 source.  The new SLASH 4.1.2 was re-
+          leased as far back as November 1996 went through at least  4  ed-
+          itlevels  (E5,  E6,  E7)  with  the latest version being 4.1.2E8,
           synchronized with Nethack 3.2.2 and the Blackmarket option avail-
           able,  released in June 1997.
 
-               Nathan La began the arduous task of drawing  tiles  for  the
+               Nathan  La  began  the arduous task of drawing tiles for the
           SLASH monsters.
 
                Kentaro Shirakata ported SLASH 4.1.2E8 to Unix.
@@ -3725,8 +3727,8 @@
 
                Romain Dolbeau ported SLASH 4.1.2E8 to Macintosh.
 
-               Warren  Cheung combined SLASH 4.1.2 and Wizard Patch to cre-
-          ate SLASH'EM 0.1 in November 1997.  Several  revisions  including
+               Warren Cheung combined SLASH 4.1.2 and Wizard Patch to  cre-
+          ate  SLASH'EM  0.1 in November 1997.  Several revisions including
           new  spells  and  other  additions  led  eventually  to  SLASH'EM
           0.0.5E7F1. Steven Uy generously made additional modifications.
 
@@ -3735,25 +3737,23 @@
 
                Lief Clennon ported SLASH'EM to OS/2 EMX.
 
-               Kevin  Hugo  ported  SLASH'EM  to  Macintosh,  and also con-
-          tributed additional changes and improvements.
+               Kevin Hugo ported SLASH'EM to Macintosh,  and also  contrib-
+          uted additional changes and improvements.
 
                Robin Johnson finished the arduous task of drawing tiles for
-          the  SLASH'EM monsters.  He also contributed many more new tiles.
+          the SLASH'EM monsters.  He also contributed many more new tiles.
 
                Kevin later joined the DevTeam and incorporated the best  of
           these ideas in NetHack 3.3.
 
                JNetHack  (the  Japanese version of NetHack) has been around
           since at least 1994, developed by Issei Numata  and  others.  The
-          GTK  interface was written for this variant and released in 1999.
+          GTK interface was written for this variant and released in 1999.
 
-               Mitsuhiro Itakura headed a team which began the  process  of
+               Mitsuhiro  Itakura  headed a team which began the process of
           redrawing the NetHack tiles in 8-bit color at 32x32 pixels.
 
-               The final update to 3.2 was the bug fix release 3.2.3, which
-          was released simultaneously with 3.3.0 in December 1999  just  in
-          time for the Year 2000.
+
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3766,60 +3766,60 @@
 
 
 
+               The final update to 3.2 was the bug fix release 3.2.3, which
+          was  released  simultaneously with 3.3.0 in December 1999 just in
+          time for the Year 2000.
+
                The 3.3 development team, consisting of Michael Allison, Ken
-          Arromdee, David Cohrs, Jessie Collet, Steve Creps,  Kevin  Darcy,
-          Timo  Hakulinen,  Kevin  Hugo,  Steve  Linhart,  Ken Lorber, Dean
-          Luick, Pat Rankin, Eric Smith, Mike Stephenson, Janet  Walz,  and
-          Paul  Winner, released 3.3.0 in December 1999 and 3.3.1 in August
+          Arromdee,  David  Cohrs, Jessie Collet, Steve Creps, Kevin Darcy,
+          Timo Hakulinen, Kevin  Hugo,  Steve  Linhart,  Ken  Lorber,  Dean
+          Luick,  Pat  Rankin, Eric Smith, Mike Stephenson, Janet Walz, and
+          Paul Winner, released 3.3.0 in December 1999 and 3.3.1 in  August
           of 2000.
 
                Version 3.3 offered many firsts. It was the first version to
-          separate  race and profession. The Elf class was removed in pref-
+          separate race and profession. The Elf class was removed in  pref-
           erence to an elf race, and the races of dwarves, gnomes, and orcs
-          made  their  first  appearance in the game alongside the familiar
-          human race.  Monk and Ranger roles joined Archeologists,  Barbar-
-          ians,   Cavemen,  Healers,  Knights,  Priests,  Rogues,  Samurai,
-          Tourists, Valkyries and of course,  Wizards.   It  was  also  the
-          first  version  to  allow  you to ride a steed, and was the first
-          version to have a publicly available  web-site  listing  all  the
-          bugs  that  had been discovered.  Despite that constantly growing
-          bug list, 3.3 proved stable enough to last for more than  a  year
+          made their first appearance in the game  alongside  the  familiar
+          human  race.  Monk and Ranger roles joined Archeologists, Barbar-
+          ians,  Cavemen,  Healers,  Knights,  Priests,  Rogues,   Samurai,
+          Tourists,  Valkyries  and  of  course,  Wizards.  It was also the
+          first version to allow you to ride a steed,  and  was  the  first
+          version  to  have  a  publicly available web-site listing all the
+          bugs that had been discovered.  Despite that  constantly  growing
+          bug  list,  3.3 proved stable enough to last for more than a year
           and a half.
 
-               The  3.4 development team initially consisted of Michael Al-
-          lison, Ken Arromdee, David Cohrs, Jessie Collet, Kevin Hugo,  Ken
-          Lorber,  Dean Luick, Pat Rankin, Mike Stephenson, Janet Walz, and
-          Paul Winner, with  Warwick Allison joining just  before  the  re-
+               The 3.4 development team initially consisted of Michael  Al-
+          lison,  Ken Arromdee, David Cohrs, Jessie Collet, Kevin Hugo, Ken
+          Lorber, Dean Luick, Pat Rankin, Mike Stephenson, Janet Walz,  and
+          Paul  Winner,  with   Warwick Allison joining just before the re-
           lease of NetHack 3.4.0 in March 2002.
 
-               As  with version 3.3, various people contributed to the game
+               As with version 3.3, various people contributed to the  game
           as a whole as well as supporting ports on the different platforms
           that NetHack runs on:
 
                Pat Rankin maintained 3.4 for VMS.
 
-               Michael  Allison maintained NetHack 3.4 for the MS-DOS plat-
+               Michael Allison maintained NetHack 3.4 for the MS-DOS  plat-
           form.  Paul Winner and Yitzhak Sapir provided encouragement.
 
-               Dean Luick, Mark Modrall, and Kevin Hugo maintained and  en-
+               Dean  Luick, Mark Modrall, and Kevin Hugo maintained and en-
           hanced the Macintosh port of 3.4.
 
-               Michael  Allison,  David  Cohrs, Alex Kompel, Dion Nicolaas,
-          and Yitzhak Sapir maintained and enhanced 3.4 for  the  Microsoft
+               Michael Allison, David Cohrs, Alex  Kompel,  Dion  Nicolaas,
+          and  Yitzhak  Sapir maintained and enhanced 3.4 for the Microsoft
           Windows platform.  Alex Kompel contributed a new graphical inter-
-          face for the Windows port.  Alex Kompel also contributed  a  Win-
-          dows  CE  port  for  3.4.1.   Ron Van Iwaarden maintained 3.4 for
+          face  for  the Windows port.  Alex Kompel also contributed a Win-
+          dows CE port for 3.4.1.  Ron  Van  Iwaarden  maintained  3.4  for
           OS/2.
 
-               Janne Salmijarvi and Teemu Suikki  maintained  and  enhanced
-          the  Amiga  port of 3.4 after Janne Salmijarvi resurrected it for
+               Janne  Salmijarvi  and  Teemu Suikki maintained and enhanced
+          the Amiga port of 3.4 after Janne Salmijarvi resurrected  it  for
           3.3.1.
 
-               Christian ``Marvin'' Bressler maintained 3.4 for  the  Atari
-          after he resurrected it for 3.3.1.
 
-               There  is  a  NetHack  web  site maintained by Ken Lorber at
-          http://www.nethack.org/.
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3832,30 +3832,30 @@
 
 
 
+               Christian  ``Marvin''  Bressler maintained 3.4 for the Atari
+          after he resurrected it for 3.3.1.
+
+               There is a NetHack web site  maintained  by  Ken  Lorber  at
+          http://www.nethack.org/.
+
                Warren Cheung combined SLASH'EM 0.0.5E7F1 and NetHack 3.3 to
-          create  SLASH'EM  0.0.6 and continues to maintain the DOS and Mi-
+          create SLASH'EM 0.0.6 and continues to maintain the DOS  and  Mi-
           crosoft Windows ports.
 
-               J. Ali Harlow incorporated the GTK interface  and  Mitsuhiro
-          Itakura's  32x32  tileset  into  SLASH'EM 0.0.6 and maintains the
-          UNIX port of SLASH'EM.  Peter Makholm maintains the Debian  pack-
+               J.  Ali  Harlow incorporated the GTK interface and Mitsuhiro
+          Itakura's 32x32 tileset into SLASH'EM  0.0.6  and  maintains  the
+          UNIX  port of SLASH'EM.  Peter Makholm maintains the Debian pack-
           age.
 
                Paul Hurtley maintains the MAC port of SLASH'EM.
 
-                  - - - - - - - - - -
+               - - - - - - - - - -
 
-               From  time  to  time,  some depraved individual out there in
-          netland sends a particularly intriguing modification to help  out
-          with  the  game.   The Gods of the Dungeon sometimes make note of
-          the names of the worst of these miscreants in this, the  list  of
+               From time to time, some depraved  individual  out  there  in
+          netland  sends a particularly intriguing modification to help out
+          with the game.  The Gods of the Dungeon sometimes  make  note  of
+          the  names  of the worst of these miscreants in this, the list of
           Dungeoneers:
-
-
-
-
-
-
 
 
 
@@ -3936,7 +3936,7 @@
                    Helge Hafting            Mike Gallop
                Irina Rempt-Drijfhout      Mike Passaretti
 
-          Brand  and  product names are trademarks or registered trademarks
+          Brand and product names are trademarks or  registered  trademarks
           of their respective holders.
 
 

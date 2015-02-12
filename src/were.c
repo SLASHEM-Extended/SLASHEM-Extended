@@ -59,6 +59,42 @@ int pm;
 	    case PM_HUMAN_WERESNAKE:  return(PM_WERESNAKE);
 	    case PM_WERESPIDER:       return(PM_HUMAN_WERESPIDER);
 	    case PM_HUMAN_WERESPIDER: return(PM_WERESPIDER);
+	    case PM_WERELICHEN:       return(PM_HUMAN_WERELICHEN);
+	    case PM_HUMAN_WERELICHEN: return(PM_WERELICHEN);
+	    case PM_WEREVORTEX:       return(PM_HUMAN_WEREVORTEX);
+	    case PM_HUMAN_WEREVORTEX: return(PM_WEREVORTEX);
+	    case PM_WEREPIERCER:       return(PM_HUMAN_WEREPIERCER);
+	    case PM_HUMAN_WEREPIERCER: return(PM_WEREPIERCER);
+	    case PM_WEREPENETRATOR:       return(PM_HUMAN_WEREPENETRATOR);
+	    case PM_HUMAN_WEREPENETRATOR: return(PM_WEREPENETRATOR);
+	    case PM_WERESMASHER:       return(PM_HUMAN_WERESMASHER);
+	    case PM_HUMAN_WERESMASHER: return(PM_WERESMASHER);
+	    case PM_WERENYMPH:       return(PM_HUMAN_WERENYMPH);
+	    case PM_HUMAN_WERENYMPH: return(PM_WERENYMPH);
+	    case PM_WERECOW:       return(PM_HUMAN_WERECOW);
+	    case PM_HUMAN_WERECOW: return(PM_WERECOW);
+	    case PM_WEREBEAR:       return(PM_HUMAN_WEREBEAR);
+	    case PM_HUMAN_WEREBEAR: return(PM_WEREBEAR);
+	    case PM_WERESOLDIERANT:       return(PM_HUMAN_WERESOLDIERANT);
+	    case PM_HUMAN_WERESOLDIERANT: return(PM_WERESOLDIERANT);
+	    case PM_WERECOCKATRICE:       return(PM_HUMAN_WERECOCKATRICE);
+	    case PM_HUMAN_WERECOCKATRICE: return(PM_WERECOCKATRICE);
+	    case PM_WEREMINDFLAYER:       return(PM_HUMAN_WEREMINDFLAYER);
+	    case PM_HUMAN_WEREMINDFLAYER: return(PM_WEREMINDFLAYER);
+	    case PM_WEREMIMIC:       return(PM_HUMAN_WEREMIMIC);
+	    case PM_HUMAN_WEREMIMIC: return(PM_WEREMIMIC);
+	    case PM_WEREGIANT:        return(PM_HUMAN_WEREGIANT);
+	    case PM_HUMAN_WEREGIANT:  return(PM_WEREGIANT);
+	    case PM_WEREGHOST:        return(PM_HUMAN_WEREGHOST);
+	    case PM_HUMAN_WEREGHOST:  return(PM_WEREGHOST);
+	    case PM_WEREPIRANHA:       return(PM_HUMAN_WEREPIRANHA);
+	    case PM_HUMAN_WEREPIRANHA: return(PM_WEREPIRANHA);
+	    case PM_WEREEEL:       return(PM_HUMAN_WEREEEL);
+	    case PM_HUMAN_WEREEEL: return(PM_WEREEEL);
+	    case PM_WEREFLYFISH:       return(PM_HUMAN_WEREFLYFISH);
+	    case PM_HUMAN_WEREFLYFISH: return(PM_WEREFLYFISH);
+	    case PM_WEREKRAKEN:       return(PM_HUMAN_WEREKRAKEN);
+	    case PM_HUMAN_WEREKRAKEN: return(PM_WEREKRAKEN);
 	    default:		      return(0);
 	}
 }
@@ -154,6 +190,96 @@ char *genbuf;
 			typ = rn2(5) ? PM_CAVE_SPIDER : PM_RECLUSE_SPIDER ;
 			if (genbuf) Strcpy(genbuf, "spider");
 			break;
+		case PM_WEREGHOST:
+		case PM_HUMAN_WEREGHOST:
+			typ = rn2(5) ? PM_GHOST : PM_BOO ;
+			if (genbuf) Strcpy(genbuf, "spiritual");
+			break;
+		case PM_WEREGIANT:
+		case PM_HUMAN_WEREGIANT:
+			typ = rn2(5) ? PM_GIANT : PM_HILL_GIANT ;
+			if (genbuf) Strcpy(genbuf, "giant");
+			break;
+		case PM_WERELICHEN:
+		case PM_HUMAN_WERELICHEN:
+			typ = rn2(5) ? PM_AGGRESSIVE_LICHEN : PM_POISON_LICHEN ;
+			if (genbuf) Strcpy(genbuf, "fungus");
+			break;
+		case PM_WEREVORTEX:
+		case PM_HUMAN_WEREVORTEX:
+			typ = rn2(5) ? PM_ENERGY_VORTEX : PM_STEAM_VORTEX ;
+			if (genbuf) Strcpy(genbuf, "vortex");
+			break;
+		case PM_WERECOW:
+		case PM_HUMAN_WERECOW:
+			typ = rn2(5) ? PM_COW : PM_BULL ;
+			if (genbuf) Strcpy(genbuf, "bovine");
+			break;
+		case PM_WEREBEAR:
+		case PM_HUMAN_WEREBEAR:
+			typ = rn2(5) ? PM_BROWN_BEAR : PM_CAVE_BEAR ;
+			if (genbuf) Strcpy(genbuf, "ursa major");
+			break;
+		case PM_WEREPIERCER:
+		case PM_HUMAN_WEREPIERCER:
+			typ = rn2(5) ? PM_ROCK_PIERCER : PM_IRON_PIERCER ;
+			if (genbuf) Strcpy(genbuf, "piercer");
+			break;
+		case PM_WEREPENETRATOR:
+		case PM_HUMAN_WEREPENETRATOR:
+			typ = rn2(5) ? PM_ROCK_PENETRATOR : PM_IRON_PENETRATOR ;
+			if (genbuf) Strcpy(genbuf, "penetrator");
+			break;
+		case PM_WERESMASHER:
+		case PM_HUMAN_WERESMASHER:
+			typ = rn2(5) ? PM_ROCK_SMASHER : PM_IRON_SMASHER ;
+			if (genbuf) Strcpy(genbuf, "smasher");
+			break;
+		case PM_WERENYMPH:
+		case PM_HUMAN_WERENYMPH:
+			typ = rn2(5) ? PM_WOOD_NYMPH : PM_WATER_NYMPH ;
+			if (genbuf) Strcpy(genbuf, "nymph");
+			break;
+		case PM_WEREMIMIC:
+		case PM_HUMAN_WEREMIMIC:
+			typ = rn2(5) ? PM_LARGE_MIMIC : PM_GIANT_MIMIC ;
+			if (genbuf) Strcpy(genbuf, "mimic");
+			break;
+		case PM_WEREMINDFLAYER:
+		case PM_HUMAN_WEREMINDFLAYER:
+			typ = rn2(5) ? PM_MIND_FLAYER : PM_MASTER_MIND_FLAYER ;
+			if (genbuf) Strcpy(genbuf, "mind flayer");
+			break;
+		case PM_WERECOCKATRICE:
+		case PM_HUMAN_WERECOCKATRICE:
+			typ = rn2(5) ? PM_CHICKATRICE : PM_COCKATRICE ;
+			if (genbuf) Strcpy(genbuf, "cockatrice");
+			break;
+		case PM_WERESOLDIERANT:
+		case PM_HUMAN_WERESOLDIERANT:
+			typ = rn2(5) ? PM_SOLDIER_ANT : PM_GIANT_RED_ANT ;
+			if (genbuf) Strcpy(genbuf, "ant");
+			break;
+		case PM_WEREPIRANHA:
+		case PM_HUMAN_WEREPIRANHA:
+			typ = rn2(5) ? PM_PIRANHA : PM_BLOODTHIRSTY_PIRANHA ;
+			if (genbuf) Strcpy(genbuf, "piranha");
+			break;
+		case PM_WEREEEL:
+		case PM_HUMAN_WEREEEL:
+			typ = rn2(5) ? PM_GIANT_EEL : PM_ELECTRIC_EEL ;
+			if (genbuf) Strcpy(genbuf, "eel");
+			break;
+		case PM_WEREFLYFISH:
+		case PM_HUMAN_WEREFLYFISH:
+			typ = rn2(5) ? PM_FLYING_RIBBON_FISH : PM_FLYING_SKELETON_FISH ;
+			if (genbuf) Strcpy(genbuf, "flying fish");
+			break;
+		case PM_WEREKRAKEN:
+		case PM_HUMAN_WEREKRAKEN:
+			typ = rn2(5) ? PM_KRAKEN : PM_HENTAI_OCTOPUS ;
+			if (genbuf) Strcpy(genbuf, "kraken");
+			break;
 		default:
 			continue;
 	    }
@@ -163,7 +289,7 @@ char *genbuf;
 		if (canseemon(mtmp)) *visible += 1;
 	    }
 	    if (yours && mtmp)
-		(void) tamedog(mtmp, (struct obj *) 0);
+		(void) tamedog(mtmp, (struct obj *) 0, TRUE);
 	}
 	return total;
 }
@@ -174,7 +300,7 @@ you_were()
 	char qbuf[QBUFSZ];
 
 	if (Unchanging || (u.umonnum == u.ulycn)) return;
-	if (Polymorph_control) {
+	if (Polymorph_control && rn2(5) ) {
 	    /* `+4' => skip "were" prefix to get name of beast */
 	    Sprintf(qbuf, "Do you want to change into %s? ",
 		    an(mons[u.ulycn].mname+4));
@@ -190,7 +316,7 @@ boolean purify;
 	boolean in_wereform = (u.umonnum == u.ulycn);
 
 	if (purify) {
-	    if (Race_if(PM_HUMAN_WEREWOLF)) {
+	    if (Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_LUNATIC) || Role_if(PM_AK_THIEF_IS_DEAD_) ) {
 		/* An attempt to purify you has been made! */
 		if (in_wereform && Unchanging) {
 		    killer_format = NO_KILLER_PREFIX;

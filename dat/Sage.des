@@ -1,0 +1,818 @@
+#	SCCS Id: @(#)Wizard.des	3.4	1992/07/11
+#	Copyright (c) 1992 by David Cohrs
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, Neferet the Green
+#	and receive your quest assignment.
+#
+MAZE: "Sag-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+............................................................................
+.....................C....CC.C........................C.....................
+..........CCC.....................CCC.......................................
+........CC........-----------.......C.C...C...C....C........................
+.......C.....---------------------...C..C..C..C.............................
+......C..C...------....\....------....C.....C...............................
+........C...||....|.........|....||.........................................
+.......C....||....|.........+....||.........................................
+.......C...||---+--.........|....|||........................................
+......C....||...............|--S--||........................................
+...........||--+--|++----|---|..|.SS..........C......C......................
+........C..||.....|..|...|...|--|.||..CC..C.....C..........C................
+.......C...||.....|..|.--|.|.|....||.................C..C...................
+.....C......||....|..|.....|.|.--||..C..C..........C...........}}}..........
+......C.C...||....|..-----.|.....||...C.C.C..............C....}}}}}}........
+.........C...------........|------....C..C.....C..CC.C......}}}}}}}}}}}.....
+.........CC..---------------------...C.C..C.....CCCCC.C.......}}}}}}}}......
+.........C........-----------..........C.C.......CCC.........}}}}}}}}}......
+..........C.C.........................C............C...........}}}}}........
+......................CCC.C.................................................
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+REGION:(35,00,49,03),unlit,"ordinary"
+REGION:(43,12,49,16),unlit,"ordinary"
+REGION:(19,11,33,15),unlit,"ordinary",unfilled,true
+REGION:(30,10,31,10),unlit,"ordinary"
+# Stairs
+STAIR:(30,10),down
+# Portal arrival point
+BRANCH:(63,06,63,06),(0,0,0,0)
+# Doors
+DOOR:closed,(31,09)
+DOOR:closed,(16,08)
+DOOR:closed,(28,07)
+DOOR:locked,(34,10)
+DOOR:locked,(35,10)
+DOOR:closed,(15,10)
+DOOR:locked,(19,10)
+DOOR:locked,(20,10)
+# Neferet the Green, the quest leader
+MONSTER:'@',"Ancient Sage",(23,05)
+# The treasure of the quest leader
+OBJECT:'(',"chest",(24,05)
+# apprentice guards for the audience chamber
+MONSTER:'@',"apprentice",(30,07)
+MONSTER:'@',"apprentice",(24,06)
+MONSTER:'@',"apprentice",(15,06)
+MONSTER:'@',"apprentice",(15,12)
+MONSTER:'@',"apprentice",(26,11)
+MONSTER:'@',"apprentice",(27,11)
+MONSTER:'@',"apprentice",(19,09)
+MONSTER:'@',"apprentice",(20,09)
+# Eels in the pond
+MONSTER:';',"giant eel",(62,14),hostile
+MONSTER:';',"giant eel",(69,15),hostile
+MONSTER:';',"giant eel",(67,17),hostile
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Monsters on siege duty.
+MONSTER: random,random,(60,09),hostile
+MONSTER: random,random,(60,10),hostile
+MONSTER: random,random,(60,11),hostile
+MONSTER: random,random,(60,12),hostile
+MONSTER: random,random,(60,13),hostile
+MONSTER: random,random,(61,10),hostile
+MONSTER: random,random,(61,11),hostile
+MONSTER: random,random,(61,12),hostile
+MONSTER: random,random,(35,03),hostile
+MONSTER: random,random,(35,17),hostile
+MONSTER: random,random,(36,17),hostile
+MONSTER: random,random,(34,16),hostile
+MONSTER: random,random,(34,17),hostile
+MONSTER: random,random,(67,02),hostile
+MONSTER: random,random,(10,19),hostile
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to find the Entrance to the Tower of Darkness to go
+#	further towards your assigned quest.
+#
+
+MAZE: "Sag-loca",' '
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+|--------------------------------------    -------------------|  ----|
+|....|...|.|...|......|.|......|......|----|............+.....S##+...|
+|S---|...|.+...|......|.+......|......|....|.|---+------|.....|  |...|
+|....|...+.|...|......+.|......|......|....+.|..|.......|.....|  |---|
+|....|...|.|...|......|.|......|......|....|.|..--|.....|.....S#### 
+|--+------+------------+----------+---------.+....|.....---+--|   #  
+|.......................|.....|..............|....|.....|.....|   ### 
+|+--------------------|.|.....+.|---+-----S------------+|.....|     # 
+|.......+.+.....|.....|.|.....|.|......|  #           |.|.....|     # 
+|.---+---.|----.+.....|.|.....|.|......|  ##          |.+.....|     # 
+|.|.....|.|...|.|.....|.-------.|------|   #          |.|.....|  #### 
+|.|.....|.+...|+|-----|.|...|...|....|     ###        |+------|  #   
+|.|-----|.|...|.......|.|...|.|-|....|     ###        |.......| |+--|
+|.|.....|.|...|.......|.|...|.+K|....|                |.......| |...|
+|.|.....|.----|...\...|.--+--.-----+------------------|.......| |...|
+|.+.....|.....+.......+..............S................S.......| |---|
+|--------------------------------------------------------------
+ENDMAP
+STAIR:random,up
+STAIR:random,down
+
+DOOR: closed,(1,7)
+DOOR: closed,(2,15)
+DOOR: closed,(3,5)
+DOOR: closed,(5,9)
+DOOR: closed,(8,8)
+DOOR: closed,(9,3)
+DOOR: closed,(10,5)
+DOOR: closed,(10,11)
+DOOR: closed,(10,8)
+DOOR: closed,(11,2)
+DOOR: closed,(14,15)
+DOOR: closed,(15,11)
+DOOR: closed,(16,9)
+DOOR: closed,(22,15)
+DOOR: closed,(22,3)
+DOOR: closed,(23,5)
+DOOR: closed,(24,2)
+DOOR: closed,(26,14)
+DOOR: closed,(30,7)
+DOOR: closed,(30,13)
+DOOR: closed,(34,5)
+DOOR: closed,(35,14)
+DOOR: closed,(36,7)
+DOOR: closed,(43,3)
+DOOR: closed,(45,5)
+DOOR: closed,(49,2)
+DOOR: closed,(55,7)
+DOOR: closed,(55,11)
+DOOR: closed,(56,1)
+DOOR: closed,(56,9)
+DOOR: closed,(59,5)
+TRAP: random,random
+TRAP: random,random
+TRAP: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+MONSTER: random,random, (43,11), hostile, asleep
+OBJECT:'(',"chest",(45,12)
+GOLD: random,(45,12)
+GOLD: random,(45,12)
+GOLD: random,(45,12)
+OBJECT: '*',random,(45,12)
+OBJECT: '/',random,(45,12)
+OBJECT: '*',random,(45,12)
+MONSTER: random,random, (65,13), hostile, asleep
+OBJECT:'(',"chest",(65,13)
+GOLD: random,(65,13)
+GOLD: random,(65,13)
+OBJECT: '*',random,(65,13)
+OBJECT: '*',random,(65,13)
+OBJECT: '*',random,(65,13)
+MONSTER: random,random, (67,1), hostile, asleep
+GOLD: random,(68,2)
+GOLD: random,(68,2)
+GOLD: random,(68,2)
+OBJECT: '*',random,(68,2)
+OBJECT: '*',random,(68,2)
+OBJECT: '*',random,(68,2)
+OBJECT:'(',"chest",(68,2)
+OBJECT:'(',"chest",(2,1)
+OBJECT:'(',"chest",(3,1)
+OBJECT:'(',"chest",(4,1)
+OBJECT:'(',"chest",(18,14)
+OBJECT: ')',random,(18,14)
+OBJECT: ')',random,(18,14)
+OBJECT: '/',random,(18,14)
+OBJECT: '[',random,(18,14)
+OBJECT: '[',random,(18,14)
+OBJECT: '!',random,(18,14)
+OBJECT: '!',random,(18,14)
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, random, hostile
+MONSTER: random,random, (15,12), hostile
+MONSTER: random,random, (17,12), hostile
+MONSTER: random,random, (19,12), hostile
+MONSTER: random,random, (20,12), hostile
+MONSTER: random,random, (21,12), hostile
+MONSTER: random,random, (16,13), hostile
+MONSTER: random,random, (18,13), hostile
+MONSTER: random,random, (19,13), hostile
+MONSTER: random,random, (21,13), hostile
+MONSTER: random,random, (15,14), hostile
+MONSTER: random,random, (17,14), hostile
+MONSTER: random,random, (18,14), hostile
+OBJECT:'?',"root password detection",(18,14)
+MONSTER: random,random, (20,14), hostile
+MONSTER: random,random, (15,15), hostile
+MONSTER: random,random, (16,15), hostile
+MONSTER: random,random, (20,15), hostile
+MONSTER: random,random, (21,15), hostile
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet the Dark One, your nemesis monster.  You have to
+#	defeat the Dark One in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Sag-goal", ' '
+GEOMETRY:center,center
+MAP
+                                                                            
+                                                                            
+                                                                            
+                   -------------                 -------------              
+                   |...........|                 |...........|              
+            -------|...........-------------------...........|              
+            |......S...........|..|..|..|..|..|..|...........|              
+            |......|...........|..|..|..|..|..|..|...........|              
+            |......|...........-F+-F+-F+-F+-F+-F+-...........|              
+            --S----|...........S.................+...........|              
+            |......|...........-F+-F+-F+-F+-F+-F+-...........|              
+            |......|...........|..|..|..|..|..|..|...........|              
+            |......|...........|..|..|..|..|..|..|...........|              
+            -------|...........-------------------...........|              
+                   |...........|                 |...........|              
+                   -------------                 -------------              
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+ENDMAP
+# Dungeon Description
+REGION:(13,10,18,12),unlit,"temple"
+REGION:(13,06,18,08),lit,"ordinary"
+REGION:(20,04,30,14),unlit,"ordinary"
+REGION:(32,06,33,07),unlit,"ordinary"
+REGION:(35,06,36,07),unlit,"ordinary"
+REGION:(38,06,39,07),unlit,"ordinary"
+REGION:(41,06,42,07),unlit,"ordinary"
+REGION:(44,06,45,07),unlit,"ordinary"
+REGION:(47,06,48,07),unlit,"ordinary"
+REGION:(32,09,48,09),unlit,"ordinary"
+REGION:(32,11,33,12),unlit,"ordinary"
+REGION:(35,11,36,12),unlit,"ordinary"
+REGION:(38,11,39,12),unlit,"ordinary"
+REGION:(41,11,42,12),unlit,"ordinary"
+REGION:(44,11,45,12),unlit,"ordinary"
+REGION:(47,11,48,12),unlit,"ordinary"
+REGION:(50,04,60,14),lit,"ordinary"
+# Doors
+DOOR:locked,(19,06)
+DOOR:locked,(14,09)
+DOOR:locked,(31,09)
+DOOR:locked,(33,08)
+DOOR:locked,(36,08)
+DOOR:locked,(39,08)
+DOOR:locked,(42,08)
+DOOR:locked,(45,08)
+DOOR:locked,(48,08)
+DOOR:locked,(33,10)
+DOOR:locked,(36,10)
+DOOR:locked,(39,10)
+DOOR:locked,(42,10)
+DOOR:locked,(45,10)
+DOOR:locked,(48,10)
+DOOR:locked,(49,09)
+# Stairs
+STAIR:(55,05),up
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# The altar.  This is not a shrine.
+ALTAR:(16,11),noncoaligned,altar
+# Objects
+OBJECT:')',"battle staff",(16,11),blessed,0,"Shillelagh"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'@',"Rodney's Twin",(16,11),hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+# Captive Monsters in the dungeon
+MONSTER:'@',"rogue",(35,06),hostile,"Pug"
+MONSTER:'Y',"owlbear",(47,06),hostile,asleep
+MONSTER:'@',"wizard",(32,11),hostile,asleep,"Newt"
+MONSTER:'@',"Grey-elf",(44,11),hostile
+MONSTER:'H',"hill giant",(47,11),hostile,asleep
+MONSTER:'G',"gnomish wizard",(38,06),hostile
+MONSTER:'@',"prisoner",(35,11),hostile
+MONSTER:'@',"prisoner",(41,11),hostile,asleep
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Sag-fila",' '
+FLAGS:noteleport,hardfloor,nommap,shortsighted
+INIT_MAP:' ',' ',false,false,lit,false
+GEOMETRY:right,center
+#12345678901234567890123456789012
+#0   i    1    i    2    i    3
+MAP
+........           .....         
+........         .........       
+.........      .............     
+.........     ......-F-......    
+..........   .....---.---.....   
+..........   ....--- . ---....   
+........... ....-----------....  
+........... ...--- - - - ---...  
+...............-------------.... 
+..............-- - - - - - --... 
+..............F..---------..F... 
+..............-- - - -.- - --... 
+...............-------------.... 
+........... ...--- - - - ---...  
+........... ....-----------....  
+..........   ....--- . ---....   
+..........   .....---.---.....   
+.........     ......-F-......    
+.........      .............     
+........         .........       
+........           .....         
+ENDMAP
+RANDOM_PLACES:(21,03),(14,10),(28,10),(21,17)
+DOOR:locked,place[0]
+STAIR:(18,07,24,13),(00,00,00,00),up
+MAZEWALK:(22,11),east
+
+REGION:(00,00,32,20),lit,"ordinary"
+REGION:(15,04,27,16),unlit,"ordinary"
+REGION:(15,04,16,05),lit,"ordinary"
+REGION:(26,04,27,05),lit,"ordinary"
+REGION:(15,15,16,16),lit,"ordinary"
+REGION:(26,15,27,16),lit,"ordinary"
+NON_DIGGABLE:(00,00,17,20)
+NON_DIGGABLE:(25,00,32,20)
+NON_DIGGABLE:(18,00,24,06)
+NON_DIGGABLE:(18,14,24,20)
+
+TRAP:"statue",(11,10)
+CONTAINER:'`',"statue",(11,10),"winged gargoyle",0
+
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+GEOMETRY:left,center
+#12345678901234567890123456789012345678901
+#0   i    1    i    2    i    3    i    4
+MAP
+-----------------------------------------}
+-...SH.----..-----...---..--------.+.-..-}
+-...----..F..-..-....-.+..+.--..--.-.-..F}
+-...--....--+-.---..--.----.-...--.-.-..-}
+--S--......S#-.---..+..----.+....+.-.-.--}
+-##-.......---.---F----------....---.-..F}
+-#--.......-...---.-----..-----.----.-..-}
+##-.......--.----...+.-...-------..+.-..F}
+H--......---.-..-..--.--...---..-.--.-..-}
+H-......----S-S---..F.+..-.F....+.--.-..F}
+HS\........S...S.-------+---....----.-..-}
+H-......----S-S----..---..--+-.-----.-..F}
+H--......---.-..-....----....----..+.-..-}
+##-.......--.----.....+.--F----...--.-..F}
+-#--.......-...---...--.-..--...----.-..-}
+-##-.......---.---F----.--..+.---..+.-..F}
+--S--......S#-.---..---...+--F---+--.-.--}
+-...--....--+-.--....--------.-...--.-..-}
+-...----..F..-..-....+..-...+....---.-..F}
+-...SH.----..------.---...---....---.S..-}
+-----------------------------------------}
+ENDMAP
+RANDOM_PLACES:(16,02),(16,08),(16,12),(16,18),(31,07)
+
+REGION:(00,00,39,20),unlit,"ordinary"
+REGION:(41,00,41,20),lit,"ordinary"
+NON_DIGGABLE:(00,00,37,20)
+
+DRAWBRIDGE:(41,10),west,closed
+
+STAIR:random,down
+
+DOOR:locked,place[0]
+DOOR:locked,place[1]
+
+DOOR:random,(35,01)
+DOOR:random,(23,02)
+DOOR:random,(26,02)
+DOOR:random,(20,04)
+DOOR:random,(28,04)
+DOOR:random,(33,04)
+DOOR:random,(20,07)
+DOOR:random,(35,07)
+DOOR:random,(22,09)
+DOOR:random,(32,09)
+DOOR:random,(24,10)
+DOOR:random,(28,11)
+DOOR:random,(35,12)
+DOOR:random,(22,13)
+DOOR:random,(28,15)
+DOOR:random,(35,15)
+DOOR:random,(26,16)
+DOOR:random,(33,16)
+DOOR:random,(21,18)
+DOOR:random,(28,18)
+
+DOOR:locked,(02,04)
+DOOR:locked,(02,16)
+
+DOOR:locked,(12,03)
+DOOR:locked,(12,17)
+
+DOOR:locked,(11,04)
+DOOR:locked,(11,16)
+
+DOOR:locked,(01,10)
+DOOR:locked,(04,01)
+DOOR:locked,(04,19)
+
+DOOR:locked,(11,10)
+DOOR:locked,(12,09)
+DOOR:locked,(12,11)
+DOOR:locked,(14,09)
+DOOR:locked,(14,11)
+DOOR:locked,(15,10)
+
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MAZE: "Sag-filb",' '
+
+FLAGS:noteleport,hardfloor,nommap,shortsighted
+INIT_MAP:' ',' ',false,false,lit,false
+GEOMETRY:right,center
+#12345678901234567890123456789012
+#0   i    1    i    2    i    3
+MAP
+........           .....         
+........         .........       
+.........      .............     
+.........     ......-F-......    
+..........   .....---.---.....   
+..........   ....--- . ---....   
+........... ....-----------....  
+........... ...--- - - - ---...  
+...............-------------.... 
+..............-- - - - - - --... 
+..............F..---------..F... 
+..............-- - - -.- - --... 
+...............-------------.... 
+........... ...--- - - - ---...  
+........... ....-----------....  
+..........   ....--- . ---....   
+..........   .....---.---.....   
+.........     ......-F-......    
+.........      .............     
+........         .........       
+........           .....         
+ENDMAP
+RANDOM_PLACES:(21,03),(14,10),(28,10),(21,17)
+DOOR:locked,place[0]
+STAIR:(18,07,24,13),(00,00,00,00),up
+MAZEWALK:(22,11),east
+
+REGION:(00,00,32,20),lit,"ordinary"
+REGION:(15,04,27,16),unlit,"ordinary"
+REGION:(15,04,16,05),lit,"ordinary"
+REGION:(26,04,27,05),lit,"ordinary"
+REGION:(15,15,16,16),lit,"ordinary"
+REGION:(26,15,27,16),lit,"ordinary"
+NON_DIGGABLE:(00,00,17,20)
+NON_DIGGABLE:(25,00,32,20)
+NON_DIGGABLE:(18,00,24,06)
+NON_DIGGABLE:(18,14,24,20)
+
+TRAP:"statue",(11,10)
+CONTAINER:'`',"statue",(11,10),"winged gargoyle",0
+
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+GEOMETRY:left,center
+#12345678901234567890123456789012345678901
+#0   i    1    i    2    i    3    i    4
+MAP
+-----------------------------------------}
+-...SH.----..-----...---..--------.+.-..-}
+-...----..F..-..-....-.+..+.--..--.-.-..F}
+-...--....--+-.---..--.----.-...--.-.-..-}
+--S--......S#-.---..+..----.+....+.-.-.--}
+-##-.......---.---F----------....---.-..F}
+-#--.......-...---.-----..-----.----.-..-}
+##-.......--.----...+.-...-------..+.-..F}
+H--......---.-..-..--.--...---..-.--.-..-}
+H-......----S-S---..F.+..-.F....+.--.-..F}
+HS\........S...S.-------+---....----.-..-}
+H-......----S-S----..---..--+-.-----.-..F}
+H--......---.-..-....----....----..+.-..-}
+##-.......--.----.....+.--F----...--.-..F}
+-#--.......-...---...--.-..--...----.-..-}
+-##-.......---.---F----.--..+.---..+.-..F}
+--S--......S#-.---..---...+--F---+--.-.--}
+-...--....--+-.--....--------.-...--.-..-}
+-...----..F..-..-....+..-...+....---.-..F}
+-...SH.----..------.---...---....---.S..-}
+-----------------------------------------}
+ENDMAP
+RANDOM_PLACES:(16,02),(16,08),(16,12),(16,18),(31,07)
+
+REGION:(00,00,39,20),unlit,"ordinary"
+REGION:(41,00,41,20),lit,"ordinary"
+NON_DIGGABLE:(00,00,37,20)
+
+DRAWBRIDGE:(41,10),west,closed
+
+STAIR:random,down
+
+DOOR:locked,place[0]
+DOOR:locked,place[1]
+
+DOOR:random,(35,01)
+DOOR:random,(23,02)
+DOOR:random,(26,02)
+DOOR:random,(20,04)
+DOOR:random,(28,04)
+DOOR:random,(33,04)
+DOOR:random,(20,07)
+DOOR:random,(35,07)
+DOOR:random,(22,09)
+DOOR:random,(32,09)
+DOOR:random,(24,10)
+DOOR:random,(28,11)
+DOOR:random,(35,12)
+DOOR:random,(22,13)
+DOOR:random,(28,15)
+DOOR:random,(35,15)
+DOOR:random,(26,16)
+DOOR:random,(33,16)
+DOOR:random,(21,18)
+DOOR:random,(28,18)
+
+DOOR:locked,(02,04)
+DOOR:locked,(02,16)
+
+DOOR:locked,(12,03)
+DOOR:locked,(12,17)
+
+DOOR:locked,(11,04)
+DOOR:locked,(11,16)
+
+DOOR:locked,(01,10)
+DOOR:locked,(04,01)
+DOOR:locked,(04,19)
+
+DOOR:locked,(11,10)
+DOOR:locked,(12,09)
+DOOR:locked,(12,11)
+DOOR:locked,(14,09)
+DOOR:locked,(14,11)
+DOOR:locked,(15,10)
+
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random

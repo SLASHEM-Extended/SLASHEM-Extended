@@ -320,6 +320,7 @@ char** argv;
     tty_putstr(BASE_WINDOW, 0, COPYRIGHT_BANNER_A);
     tty_putstr(BASE_WINDOW, 0, COPYRIGHT_BANNER_B);
     tty_putstr(BASE_WINDOW, 0, COPYRIGHT_BANNER_C);
+    tty_putstr(BASE_WINDOW, 0, COPYRIGHT_BANNER_D);
     tty_putstr(BASE_WINDOW, 0, "");
     tty_display_nhwindow(BASE_WINDOW, FALSE);
 }

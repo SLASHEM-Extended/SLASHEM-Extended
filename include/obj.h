@@ -24,9 +24,9 @@ struct obj {
 	struct obj *cobj;	/* contents list for containers */
 	unsigned o_id;
 	xchar ox,oy;
-	short otyp;		/* object class number */
+	/*short*/long otyp;		/* object class number */
 #ifdef UNPOLYPILE
-	short oldtyp;	/* WAC for unpolymorph */
+	/*short*/long oldtyp;	/* WAC for unpolymorph */
 #endif
 	unsigned owt;
 	long quan;		/* number of items */
@@ -43,7 +43,7 @@ struct obj {
 #define STATUE_FEMALE   0x04
 	char	oclass;		/* object class */
 	char	invlet;		/* designation in inventory */
-	char	oartifact;	/* artifact array index */
+	/*char*/long	oartifact;	/* artifact array index */
 	schar 	altmode; 	/* alternate modes - eg. SMG, double Lightsaber */
 				/* WP_MODEs are in decreasing speed */
 #define WP_MODE_AUTO	0	/* Max firing speed */
@@ -113,7 +113,8 @@ struct obj {
 	long age;		/* creation date */
 
 	uchar onamelth;		/* length of name (following oxlth) */
-	short oxlth;		/* length of following data */
+	Bitfield(selfmade,1);	/* made with chemistry set or magic marker */
+	/*short*/long oxlth;		/* length of following data */
 	/* in order to prevent alignment problems oextra should
 	   be (or follow) a long int */
 	long owornmask;
@@ -208,6 +209,8 @@ struct obj {
 #define is_pick(otmp)	(((otmp)->oclass == WEAPON_CLASS || \
 			 (otmp)->oclass == TOOL_CLASS) && \
 			 objects[(otmp)->otyp].oc_skill == P_PICK_AXE)
+#define is_antibar(otmp)	((otmp)->otyp == ELECTRIC_SWORD || (otmp)->otyp == GOLDEN_SABER  || (otmp)->otyp == METAL_CLUB  || (otmp)->otyp == DEVIL_STAR  || (otmp)->otyp == OBSID  || (otmp)->otyp == MALLET  || (otmp)->otyp == WEDGED_LITTLE_GIRL_SANDAL  || (otmp)->otyp == HUGGING_BOOT || (otmp)->otyp == BLOCK_HEELED_COMBAT_BOOT  || (otmp)->otyp == HIGH_HEELED_SANDAL  || (otmp)->otyp == SEXY_LEATHER_PUMP  || (otmp)->otyp == TORPEDO  || (otmp)->otyp == STEEL_WHIP  )
+
 #define ammo_and_launcher(otmp,ltmp) \
 			(is_ammo(otmp) && (ltmp) && \
 			objects[(otmp)->otyp].oc_skill == -objects[(ltmp)->otyp].oc_skill && \
@@ -259,6 +262,83 @@ struct obj {
 				|| (otmp)->otyp == DWARVISH_CLOAK\
 				|| (otmp)->otyp == DWARVISH_ROUNDSHIELD)
 #define is_gnomish_armor(otmp)	(FALSE)
+
+#define is_musable(otmp)	((otmp)->otyp == SCR_TELEPORTATION\
+|| (otmp)->otyp == POT_HEALING\
+|| (otmp)->otyp == POT_EXTRA_HEALING\
+|| (otmp)->otyp == WAN_DIGGING\
+|| (otmp)->otyp == WAN_CREATE_MONSTER\
+|| (otmp)->otyp == SCR_CREATE_MONSTER\
+|| (otmp)->otyp == WAN_TELEPORTATION\
+|| (otmp)->otyp == BUGLE\
+|| (otmp)->otyp == UNICORN_HORN\
+|| (otmp)->otyp == POT_FULL_HEALING\
+|| (otmp)->otyp == WAN_HEALING\
+|| (otmp)->otyp == WAN_EXTRA_HEALING\
+|| (otmp)->otyp == WAN_CREATE_HORDE\
+|| (otmp)->otyp == POT_VAMPIRE_BLOOD\
+|| (otmp)->otyp == WAN_FULL_HEALING\
+|| (otmp)->otyp == SCR_TELE_LEVEL\
+|| (otmp)->otyp == SCR_ROOT_PASSWORD_DETECTION\
+|| (otmp)->otyp == RIN_TIMELY_BACKUP\
+|| (otmp)->otyp == SCR_SUMMON_UNDEAD\
+|| (otmp)->otyp == WAN_SUMMON_UNDEAD\
+|| (otmp)->otyp == SCR_HEALING\
+|| (otmp)->otyp == SCR_WARPING\
+|| (otmp)->otyp == WAN_DEATH\
+|| (otmp)->otyp == WAN_SLEEP\
+|| (otmp)->otyp == WAN_FIREBALL\
+|| (otmp)->otyp == WAN_FIRE\
+|| (otmp)->otyp == WAN_COLD\
+|| (otmp)->otyp == WAN_LIGHTNING\
+|| (otmp)->otyp == WAN_MAGIC_MISSILE\
+|| (otmp)->otyp == WAN_STRIKING\
+|| (otmp)->otyp == SCR_FIRE\
+|| (otmp)->otyp == POT_PARALYSIS\
+|| (otmp)->otyp == POT_BLINDNESS\
+|| (otmp)->otyp == POT_CONFUSION\
+|| (otmp)->otyp == POT_SLEEPING\
+|| (otmp)->otyp == POT_ACID\
+|| (otmp)->otyp == FROST_HORN\
+|| (otmp)->otyp == FIRE_HORN\
+|| (otmp)->otyp == WAN_DRAINING\
+|| (otmp)->otyp == SCR_EARTH\
+|| (otmp)->otyp == POT_AMNESIA\
+|| (otmp)->otyp == WAN_CANCELLATION\
+|| (otmp)->otyp == POT_CYANIDE\
+|| (otmp)->otyp == POT_RADIUM\
+|| (otmp)->otyp == WAN_ACID\
+|| (otmp)->otyp == SCR_TRAP_CREATION\
+|| (otmp)->otyp == WAN_TRAP_CREATION\
+|| (otmp)->otyp == SCR_FLOOD\
+|| (otmp)->otyp == SCR_LAVA\
+|| (otmp)->otyp == SCR_GROWTH\
+|| (otmp)->otyp == SCR_ICE\
+|| (otmp)->otyp == SCR_CLOUDS\
+|| (otmp)->otyp == SCR_BARRHING\
+|| (otmp)->otyp == WAN_SOLAR_BEAM\
+|| (otmp)->otyp == SCR_LOCKOUT\
+|| (otmp)->otyp == WAN_BANISHMENT\
+|| (otmp)->otyp == POT_HALLUCINATION\
+|| (otmp)->otyp == POT_ICE\
+|| (otmp)->otyp == POT_STUNNING\
+|| (otmp)->otyp == POT_NUMBNESS\
+|| (otmp)->otyp == SCR_BAD_EFFECT\
+|| (otmp)->otyp == WAN_BAD_EFFECT\
+|| (otmp)->otyp == POT_FIRE\
+|| (otmp)->otyp == WAN_SLOW_MONSTER\
+|| (otmp)->otyp == WAN_FEAR\
+|| (otmp)->otyp == POT_FEAR\
+|| (otmp)->otyp == POT_GAIN_LEVEL\
+|| (otmp)->otyp == WAN_MAKE_INVISIBLE\
+|| (otmp)->otyp == POT_INVISIBILITY\
+|| (otmp)->otyp == WAN_POLYMORPH\
+|| (otmp)->otyp == POT_SPEED\
+|| (otmp)->otyp == WAN_SPEED_MONSTER\
+|| (otmp)->otyp == BULLWHIP\
+|| (otmp)->otyp == POT_POLYMORPH\
+|| (otmp)->otyp == WAN_CLONE_MONSTER\
+|| (otmp)->otyp == WAN_HASTE_MONSTER)
 
 				
 /* Eggs and other food */
@@ -358,6 +438,7 @@ struct obj {
 				 (obj)->otyp == FLINT     || \
 				 (obj)->otyp == TOUCHSTONE || \
 				 (obj)->otyp == HEALTHSTONE || \
+				 (obj)->otyp == SALT_CHUNK || \
 				 (obj)->otyp == WHETSTONE)
 
 /* misc */
