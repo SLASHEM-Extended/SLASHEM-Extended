@@ -5,7 +5,7 @@
 /*The name of the compiled game- should be same as stuff in makefile*/
 /*for makedefs*/
 /* KMH -- Made it mixed case, from which upper & lower case versions are made */
-#define DEF_GAME_NAME   "SlashEM Extended"
+#define DEF_GAME_NAME   "SlashEMExtended"
 /*#define DEF_GAME_NAME   "NetHack"*/
 
 /* Version */
