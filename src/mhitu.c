@@ -738,9 +738,10 @@ mattacku(mtmp)
 		/* Might be attacking your image around the corner, or
 		 * invisible, or you might be blind....
 		 */
-	
+
+	/* you can attack land-based monsters while underwater, so why should YOU be protected from THEIR attacks??? --Amy */
 	if(!ranged) nomul(0);
-	if(mtmp->mhp <= 0 || (Underwater && !is_swimmer(mtmp->data)))
+	if(mtmp->mhp <= 0 /*|| (Underwater && !is_swimmer(mtmp->data))*/)
 	    return(0);
 
 	/* If swallowed, can only be affected by u.ustuck */
