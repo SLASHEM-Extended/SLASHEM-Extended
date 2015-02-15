@@ -458,7 +458,11 @@ make_version()
 	version.incarnation = ((unsigned long)VERSION_MAJOR << 24) |
 				((unsigned long)VERSION_MINOR << 16) |
 				((unsigned long)PATCHLEVEL << 8) |
+#ifdef EDITLEVEL
 				((unsigned long)EDITLEVEL);
+#else
+				((unsigned long)0);
+#endif
 	/*
 	 * encoded feature list
 	 * Note:  if any of these magic numbers are changed or reassigned,
@@ -671,6 +675,8 @@ build_savebones_compat_string()
 {
 #ifdef VERSION_COMPATIBILITY
 	unsigned long uver = VERSION_COMPATIBILITY;
+#else
+	unsigned long uver = 0;
 #endif
 	char editsuffix[20], ueditsuffix[20];
 	/* Add edit level suffices if either EDITLEVEL is defined, or
