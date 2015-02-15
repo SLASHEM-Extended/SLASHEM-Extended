@@ -15,8 +15,10 @@
  * PATCHLEVEL is updated for each release.
  */
 #define PATCHLEVEL      9
+/*
 #define EDITLEVEL	0
 #define FIXLEVEL        0
+*/
 
 #define COPYRIGHT_BANNER_A \
 "This is SuperLotsoAddedStuffHack-Extended Magic Extended 1997-2015"
@@ -30,7 +32,7 @@
 #define COPYRIGHT_BANNER_D \
 "See license for details. Bug reports to Bluescreenofdeath's user talk page."
 
-#if 1
+#if 0
 /*
  * If two or more successive releases have compatible data files, define
  * this with the version number of the oldest such release so that the
@@ -40,7 +42,7 @@
  * PP = patch level, ee = edit level, L = literal suffix "L",
  * with all four numbers specified as two hexadecimal digits.
  */
-#define VERSION_COMPATIBILITY 0x00090800L
+#define VERSION_COMPATIBILITY 0x00000000L
 #endif
 
 /*patchlevel.h*/
