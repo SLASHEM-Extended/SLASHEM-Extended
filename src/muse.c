@@ -1134,8 +1134,8 @@ mon_tele:
 		mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);
 		if (mon && canspotmon(mon) && oseen)
 		    makeknown(WAN_CREATE_MONSTER);
-		return 2;
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
 	    }
 
 	case MUSE_SCR_CREATE_MONSTER:
@@ -2726,7 +2726,6 @@ struct monst *mtmp;
 	    	    	}
 		    }
 		}
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);
 		/* Attack the player */
 		if (distmin(mmx, mmy, u.ux, u.uy) == 1 && !otmp->cursed) {
 		    int dmg;
@@ -2774,6 +2773,8 @@ struct monst *mtmp;
 		    if (dmg) losehp(dmg, "scroll of earth", KILLED_BY_AN);
 		}
 	    xxx_noobj:
+
+		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);
 
 		return (mtmp->mhp <= 0) ? 1 : 2;
 	    }
@@ -3200,9 +3201,11 @@ skipmsg:
 		if (otmp->otyp == POT_INVISIBILITY) {
 		    if (otmp->cursed) you_aggravate(mtmp);
 		    if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);
+			return 2;
 		}
 		if (otmp->otyp == WAN_MAKE_INVISIBLE) {
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+			return 2;
 		}
 		return 2;
 	case MUSE_WAN_SPEED_MONSTER:
