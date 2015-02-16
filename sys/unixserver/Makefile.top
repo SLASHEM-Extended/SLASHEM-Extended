@@ -2,6 +2,7 @@
 #	SCCS Id: @(#)Makefile.top	3.4	1995/01/05
 
 export VCS_DESCRIPTION := git $(shell git rev-parse --short HEAD)
+VERSION := $(shell util/version.sh)
 
 # newer makes predefine $(MAKE) to 'make' and do smarter processing of
 # recursive make calls if $(MAKE) is used
@@ -42,7 +43,7 @@ VARDIRPERM  = 0755
 # These must agree with the definitions in unixconf.h
 
 # Defs. for non file areas support.
-GAMEDIR  = $(PREFIX)/local/slashemdir
+GAMEDIR = $(PREFIX)/slex-$(VERSION)
 VARDIR = $(GAMEDIR)
 FILE_AREA_VAR = $(VARDIR)
 FILE_AREA_SAVE = $(VARDIR)/save
@@ -51,6 +52,7 @@ FILE_AREA_UNSHARE = $(GAMEDIR)
 FILE_AREA_DOC = $(GAMEDIR)
 FILE_AREA_BONES = $(FILE_AREA_VAR)
 FILE_AREA_LEVL = $(FILE_AREA_VAR)
+MASTERDIR = $(PREFIX)/slexdir
 
 # Defs. compatible with Linux's FSSTND 1.2
 # FILE_AREA_VAR = /var/lib/games/slashem
@@ -374,6 +376,12 @@ install: $(GAME) recover $(CNF_SHARE_DAT) dungeon spec_levs Guidebook.txt
 # and a reminder
 	@echo You may also want to reinstall the man pages via the doc Makefile.
 
+slave:
+	mkdir -p $(GAMEDIR) $(VARDIR) $(VARDIR)/save
+	-$(CHOWN) $(GAMEUID) $(GAMEDIR) $(VARDIR) $(VARDIR)/save
+	$(CHGRP) $(GAMEGRP) $(GAMEDIR) $(VARDIR) $(VARDIR)/save
+	chmod $(DIRPERM) $(GAMEDIR) $(VARDIR) $(VARDIR)/save
+	ln $(MASTERDIR)/* $(VARDIR)
 
 # 'make clean' removes all the .o files, but leaves around all the executables
 # and compiled data files
