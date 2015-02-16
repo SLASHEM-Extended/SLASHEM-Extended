@@ -1274,7 +1274,7 @@ meatcorpse(mtmp)
 			pline("%s eats %s!", Monnam(mtmp),
 				distant_name(otmp,doname));
 		    else if (flags.soundok && flags.verbose)
-			You("hear an awful gobbling noise!");
+			You(Hallucination ? "hear an alien's noises!" : "hear an awful gobbling noise!");
 		    mtmp->meating = 2;
 		    delobj(otmp);
 
@@ -2557,7 +2557,7 @@ int how;
 	    mondied(mdef);
 
 	if (be_sad && mdef->mhp <= 0)
-	    You("have a sad feeling for a moment, then it passes.");
+	    You(Hallucination ? "are feeling totally down for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
 }
 
 
@@ -2586,7 +2586,7 @@ mon_xkilled(mdef, fltxt, how)
 		xkilled(mdef,0);
 
 	if (be_sad && mdef->mhp <= 0)
-		You("have a sad feeling for a moment, then it passes.");
+	    You(Hallucination ? "are feeling totally down for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
 }
 
 
@@ -2843,7 +2843,7 @@ cleanup:
 
 	if ( Role_if(PM_LADIESMAN) && !flags.female && mtmp->female && humanoid(mtmp->data) ) {
 
-	    You("feel very bad for killing a defenseless woman.");
+	    You(Hallucination ? "feel very bad for killing your future wife." : "feel very bad for killing a defenseless woman.");
 	    adjalign(-25);
 		u.ualign.sins += 1; 
 		change_luck(-1);
@@ -2853,7 +2853,7 @@ cleanup:
 	/* Batman may not kill women, but you can be a female batman and it would be unfair to only punish males. --Amy */
 	if ( Race_if(PM_BATMAN) && ((!flags.female && mtmp->female) || (flags.female && !mtmp->female)) && humanoid(mtmp->data)) {
 
-	    You("feel very bad for killing a defenseless %s.", flags.female ? "man" : "woman");
+	    Hallucination ? You("feel very bad for killing your future %s.", flags.female ? "husband" : "wife") : You("feel very bad for killing a defenseless %s.", flags.female ? "man" : "woman");
 	    adjalign(-25);
 		u.ualign.sins += 1; 
 		change_luck(-1);
@@ -2867,7 +2867,7 @@ cleanup:
 		if (always_peaceful(mdat)) { /* being penalized for killing maia, imperials etc. was just stupid. --Amy */
 		HTelepat &= ~INTRINSIC;
 		change_luck( u.ualign.type == A_LAWFUL ? -2 : -1); /* lower penalty for neutrals --Amy */
-		You("murderer!");
+		You(Hallucination ? "killed someone you weren't supposed to - whoops!" : "murderer!");
 
 		if (Role_if(PM_PALADIN)) { /* more severe murderer penalties */
 			u.ualign.sins += 5; 

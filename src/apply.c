@@ -99,7 +99,7 @@ use_towel(obj)
 		You("have no free %s!", body_part(HAND));
 		return 0;
 	} else if (obj->owornmask) {
-		You("cannot use it while you're wearing it!");
+		You(Hallucination ? "cannot get that sticky thing off!" : "cannot use it while you're wearing it!");
 		return 0;
 	} else if (obj->cursed) {
 		long old;
@@ -348,7 +348,7 @@ use_stethoscope(obj)
 	}
 
 	if (!its_dead(rx, ry, &res))
-	    You("hear nothing special.");	/* not You_hear()  */
+	    You(Hallucination ? "hear something special." : "hear nothing special.");	/* not You_hear()  */
 	return res;
 }
 
@@ -369,7 +369,7 @@ struct obj *obj;
 	register struct monst *mtmp, *nextmon;
 
 	if(obj->cursed && !rn2(2)) {
-		You("produce a high-pitched humming noise.");
+		You(Hallucination ? "produce a grating, annoying sound." : "produce a high-pitched humming noise.");
 		wake_nearby();
 	} else {
 		int pet_cnt = 0;
@@ -466,7 +466,7 @@ struct obj *obj;
 	int spotmon;
 
 	if(!obj->leashmon && number_leashed() >= MAXLEASHED) {
-		You("cannot leash any more pets.");
+		You(Hallucination ? "futilely try to leash that bitch but it slips away!" : "cannot leash any more pets.");
 		return;
 	}
 
@@ -715,8 +715,10 @@ struct obj *obj;
 			You(look_str, hcolor((char *)0));
 		    else if (Sick)
 			You(look_str, "peaked");
-		    else if (u.uhs >= WEAK)
+		    else if (u.uhs >= WEAK && !Role_if(PM_TOPMODEL) )
 			You(look_str, "undernourished");
+		    else if (u.uhs >= WEAK && Role_if(PM_TOPMODEL) )
+			You(look_str, "beautiful and skinny");
 		    else You("look as %s as ever.",
 				ACURR(A_CHA) > 14 ?
 				(poly_gender()==1 ? "beautiful" : "handsome") :
@@ -953,7 +955,7 @@ register struct obj *obj;
 	const char *s = (obj->spe != 1) ? "candles" : "candle";
 
 	if(Underwater) {
-		You("cannot make fire under water.");
+		You(Hallucination ? "don't even know what this thing is good for." : "cannot make fire under water.");
 		return;
 	}
 	if(obj->lamplit) {
@@ -1320,7 +1322,7 @@ light_cocktail(obj)
 	}
 
 	if(Underwater) {
-		You("can't light this underwater!");
+		You(Hallucination ? "fumble around with the fuse but nothing happens." : "can't light this underwater!");
 		return;
 	}
 
@@ -1550,10 +1552,10 @@ int magic; /* 0=Physical, otherwise skill level */
 		pline(Hallucination ? "Now that would be a world-class jump." : "Too far!");
 		return 0;
 	} else if (!cansee(cc.x, cc.y)) {
-		You("cannot see where to land!");
+		You(Hallucination ? "are too afraid of grues that might lurk over there!" : "cannot see where to land!");
 		return 0;
 	} else if (!isok(cc.x, cc.y)) {
-		You("cannot jump there!");
+		You(Hallucination ? "see a cactus over there! Better not jump into it..." : "cannot jump there!");
 		return 0;
 	} else {
 	    coord uc;
@@ -1654,7 +1656,7 @@ register struct obj *obj;
 	 * moves, we've got to deal with decaying corpses...
 	 */
 	if (obj->spe <= 0) {
-		You("seem to be out of tins.");
+		You(Hallucination ? "can't seem to generate anything. Weird..." : "seem to be out of tins.");
 		return;
 	}
 	if (!(corpse = getobj((const char *)tinnables, "tin"))) return;

@@ -315,7 +315,7 @@ register struct obj *food;
 			return;
 	} else if ((Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_PALADIN) || Role_if(PM_TOPMODEL) || Role_if(PM_GOFF)) {
 			adjalign(-3);		/* gluttony is unchivalrous */
-		You("feel like a glutton!");        
+		You(Hallucination ? "feel that your belly's gonna burst!" : "feel like a glutton!");
 	}
 
 	if (Race_if(PM_VEELA)) badeffect();
@@ -400,12 +400,12 @@ register struct obj *food;
 		/* ALI - nor does other non-food nutrition (eg., life-blood) */
 		if (!food || food->otyp == AMULET_OF_STRANGULATION) {
 			nomovemsg = "You recover your composure.";
-			You("choke over it.");
+			You(Hallucination ? "spew bits of puke everywhere." : "choke over it.");
 			morehungry(100);	/* remove a bit of nutrition so you don't choke again instantly --Amy */
 			nomul(-2);
 			return;
 		}
-		You("stuff yourself and then vomit voluminously.");
+		You(Hallucination ? "vomit all over the place. Shit, now your clothes are a huge mess!" : "stuff yourself and then vomit voluminously.");
 		if (Role_if(PM_TOPMODEL) || Role_if(PM_GOFF)) {adjalign(-20);	/* overeating doesn't befit a topmodel */
 		pline(Hallucination ? "Uaargh - maybe you should order some smaller meals next time?" : "Bleeargh! You feel very bad for trying to overeat."); }
 		morehungry(1000);	/* you just got *very* sick! */
@@ -1934,7 +1934,7 @@ gluttonous()
 	/* only happens if you were satiated, extra check by Amy to make that conduct mean more */
 	if ((u.uhs == SATIATED) && ((Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_PALADIN) || Role_if(PM_TOPMODEL) || Role_if(PM_GOFF)) ) {
 			adjalign(-3);		/* gluttony is unchivalrous */
-		You("feel like a glutton!");        
+		You(Hallucination ? "feel that your belly's gonna burst!" : "feel like a glutton!");
 	}
 
 	if (Race_if(PM_VEELA)) badeffect();
@@ -2131,7 +2131,7 @@ opentin()		/* called during each move whilst opening a tin */
 					/* perhaps it was stolen? */
 		return(0);		/* %% probably we should use tinoid */
 	if(tin.usedtime++ >= 50) {
-		You("give up your attempt to open the tin.");
+		You(Hallucination ? "get bored while playing with that dildo-like thing." : "give up your attempt to open the tin.");
 		return(0);
 	}
 	if(tin.usedtime < tin.reqtime)
@@ -2142,7 +2142,7 @@ opentin()		/* called during each move whilst opening a tin */
 		costly_tin("destroyed");
 		goto use_me;
 	}
-	You("succeed in opening the tin.");
+	You(Hallucination ? "open it! Now let's see the contents, maybe it's some acid?" : "succeed in opening the tin.");
 	if(tin.tin->spe != 1) {
 	    if (tin.tin->corpsenm == NON_PM) {
 		pline(Hallucination ? "Nothing in there, might as well throw it in the trash can." : "It turns out to be empty.");
@@ -3940,23 +3940,25 @@ boolean incr;
 			if(!is_fainted() && multi >= 0 /* %% */) {
 				/* stop what you're doing, then faint */
 				stop_occupation();
-				You("faint from lack of food.");
+				You(Hallucination ? "pass out due to those damn munchies." : Role_if(PM_TOPMODEL) ? "enter a state of trance." : "faint from lack of food.");
 
 	/* warn player if starvation will happen soon, that is, less than 200 nutrition remaining --Amy */
-			if(u.uhunger < -(int)(800 + 50*ACURR(A_CON))) You("are close to starvation.");
-
+			if(u.uhunger < -(int)(800 + 50*ACURR(A_CON))) { You(Hallucination ? "sense the Grim Reaper approaching." : Role_if(PM_TOPMODEL) ? "sense that you're getting closer to your deity." : "are close to starvation.");
+		if (Role_if(PM_TOPMODEL)) adjalign(5);
+		}
 				flags.soundok = 0;
 				nomul(-3+(u.uhunger/200));
 				nomovemsg = "You regain consciousness.";
 				afternmv = unfaint;
 				newhs = FAINTED;
+				if (Role_if(PM_TOPMODEL)) adjalign(1);
 			}
 		} else
 		if(u.uhunger < -(int)(1000 + 50*ACURR(A_CON))) {
 			u.uhs = STARVED;
 			flags.botl = 1;
 			bot();
-			You("die from starvation.");
+			You(Hallucination ? "are taken away by the grim reaper..." : Role_if(PM_TOPMODEL) ? "meet your deity at last." : "die from starvation.");
 			killer_format = KILLED_BY;
 			killer = "starvation";
 			done(STARVING);
@@ -4012,7 +4014,7 @@ boolean incr;
 		flags.botl = 1;
 		bot();
 		if ((Upolyd ? u.mh : u.uhp) < 1) {
-			You("die from hunger and exhaustion.");
+			You(Hallucination ? "pass away like a filthy bum." : Role_if(PM_TOPMODEL) ? "are embraced by the shadowy figure of your deity..." : "die from hunger and exhaustion.");
 			killer_format = KILLED_BY;
 			killer = "exhaustion";
 			done(STARVING);

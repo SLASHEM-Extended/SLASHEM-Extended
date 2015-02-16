@@ -529,10 +529,10 @@ moveloop()
 			if(u.utrap < 1<<8) {
 			    killer_format = KILLED_BY;
 			    killer = "molten lava";
-			    You("sink below the surface and die.");
+			    You(Hallucination ? "dissolve completely, warping to another plane of existence." : "sink below the surface and die.");
 			    done(DISSOLVED);
 			} else if(didmove && !u.umoved) {
-			    /*Norep*/pline("You sink deeper into the lava.");
+			    /*Norep*/pline(Hallucination ? "Your body is dissolving... maybe the Grim Reaper is waiting for you?" : "You sink deeper into the lava.");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			    u.utrap += rnd(4);
 			}
@@ -670,7 +670,7 @@ moveloop()
 			    } else if (!Upolyd && u.uhp > 1) {
 				u.uhp--;
 			    } else {
-				You("pass out from exertion!");
+				You(Hallucination ? "are too trippy to stand on two legs, so you fall down." : "pass out from exertion!");
 				exercise(A_CON, FALSE);
 				fall_asleep(-10, FALSE);
 			    }
@@ -943,7 +943,7 @@ moveloop()
 		    if(!u.uinvulnerable) {
 			if(Teleportation && (Race_if(PM_HAXOR) ? !rn2(150) : !rn2(250)) ) {
 			    xchar old_ux = u.ux, old_uy = u.uy;
-				You("suddenly get teleported!");
+				You(Hallucination ? "open a warp gate!" : "suddenly get teleported!");
 			    tele();
 				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			    if (u.ux != old_ux || u.uy != old_uy) {

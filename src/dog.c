@@ -162,7 +162,7 @@ boolean quietly;
 		mtmp->mtame = 0;	/* not tame after all */
 		if (chance == 2) { /* hostile (cursed figurine) */
 		    if (!quietly)
-		       You("get a bad feeling about this.");
+		       You(Hallucination ? "shiver." : "get a bad feeling about this.");
 		    mtmp->mpeaceful = 0;
 		    set_malign(mtmp);
 		}

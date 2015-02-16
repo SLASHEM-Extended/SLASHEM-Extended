@@ -522,7 +522,7 @@ register struct monst *mtmp;
 		if (canseemon(mtmp))
 			pline("%s concentrates.", Monnam(mtmp));
 		if (distu(mtmp->mx, mtmp->my) > BOLT_LIM * BOLT_LIM) {
-			You("sense a faint wave of psychic energy.");
+			You(Hallucination ? "sense a fantastic wave of psychic energy." : "sense a faint wave of psychic energy.");
 			goto toofar;
 		}
 		pline("A wave of psychic energy pours over you!");
