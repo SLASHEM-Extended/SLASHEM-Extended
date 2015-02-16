@@ -560,6 +560,8 @@ give_up:	/* Quit */
 	tty_display_nhwindow(BASE_WINDOW, FALSE);
 }
 
+#define LETTERS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 STATIC_OVL int
 tty_role_select(pbuf, plbuf)
 char * pbuf;
@@ -595,7 +597,7 @@ char * plbuf;
 			} else 
 				Strcpy(rolenamebuf, roles[i].name.m);
 		}	
-		add_menu(win, NO_GLYPH, &any, 0,
+		add_menu(win, NO_GLYPH, &any, LETTERS[i % strlen(LETTERS)],
 			    0, ATR_NONE, an(rolenamebuf), MENU_UNSELECTED);
 	    }
 	}
@@ -664,7 +666,7 @@ char * plbuf;
 		if (ok_race(flags.initrole, i, flags.initgend,
 						flags.initalign)) {
 		    any.a_int = i+1;	/* must be non-zero */
-		    add_menu(win, NO_GLYPH, &any, 0,
+		    add_menu(win, NO_GLYPH, &any, LETTERS[i % strlen(LETTERS)],
 			0, ATR_NONE, races[i].noun, MENU_UNSELECTED);
 		}
 	    any.a_int = pick_race(flags.initrole, flags.initgend,
