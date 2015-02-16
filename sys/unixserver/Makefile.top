@@ -20,7 +20,7 @@ VERSION := $(shell util/version.sh)
 PREFIX   = /srv/acehack
 GAME     = slashem
 # GAME     = slashem.prg
-GAMEUID  = acehack
+export GAMEUID = acehack
 GAMEGRP  = acehack
 
 # Permissions - some places use setgid instead of setuid, for instance
