@@ -329,7 +329,7 @@ void
 tty_player_selection()
 {
 	int i, k, n;
-	char pick4u = 'n', thisch, lastch = 0;
+	char pick4u = 'n';
 	char pbuf[QBUFSZ], plbuf[QBUFSZ];
 	winid win;
 	anything any;
@@ -470,7 +470,7 @@ give_up:	/* Quit */
 				add_menu(win, NO_GLYPH, &any , '*', 0, ATR_NONE,
 						"Random", MENU_UNSELECTED);
 				any.a_int = i+1;	/* must be non-zero */
-				add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
+				add_menu(win, NO_GLYPH, &any , '!', 0, ATR_NONE,
 						"Quit", MENU_UNSELECTED);
 				Sprintf(pbuf, "Pick the gender of your %s", plbuf);
 				end_menu(win, pbuf);
@@ -541,7 +541,7 @@ give_up:	/* Quit */
 				add_menu(win, NO_GLYPH, &any , '*', 0, ATR_NONE,
 						"Random", MENU_UNSELECTED);
 				any.a_int = i+1;	/* must be non-zero */
-				add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
+				add_menu(win, NO_GLYPH, &any , '!', 0, ATR_NONE,
 						"Quit", MENU_UNSELECTED);
 				Sprintf(pbuf, "Pick the alignment of your %s", plbuf);
 				end_menu(win, pbuf);
@@ -566,7 +566,6 @@ char * pbuf;
 char * plbuf;
 {
 	int i, n;
-	char thisch, lastch = 0;
     char rolenamebuf[QBUFSZ];
 	winid win;
 	anything any;
@@ -583,8 +582,6 @@ char * plbuf;
 	    if (ok_role(i, flags.initrace, flags.initgend,
 						flags.initalign)) {
 		any.a_int = i+1;	/* must be non-zero */
-		thisch = lowc(roles[i].name.m[0]);
-		if (thisch == lastch) thisch = highc(thisch);
 		if (flags.initgend != ROLE_NONE && flags.initgend != ROLE_RANDOM) {
 			if (flags.initgend == 1  && roles[i].name.f)
 				Strcpy(rolenamebuf, roles[i].name.f);
@@ -598,9 +595,8 @@ char * plbuf;
 			} else 
 				Strcpy(rolenamebuf, roles[i].name.m);
 		}	
-		add_menu(win, NO_GLYPH, &any, thisch,
+		add_menu(win, NO_GLYPH, &any, 0,
 			    0, ATR_NONE, an(rolenamebuf), MENU_UNSELECTED);
-		lastch = thisch;
 	    }
 	}
 	any.a_int = pick_role(flags.initrace, flags.initgend,
@@ -610,7 +606,7 @@ char * plbuf;
 	add_menu(win, NO_GLYPH, &any , '*', 0, ATR_NONE,
 			"Random", MENU_UNSELECTED);
 	any.a_int = i+1;	/* must be non-zero */
-	add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
+	add_menu(win, NO_GLYPH, &any , '!', 0, ATR_NONE,
 			"Quit", MENU_UNSELECTED);
 	Sprintf(pbuf, "Pick a role for your %s", plbuf);
 	end_menu(win, pbuf);
@@ -634,7 +630,6 @@ char * pbuf;
 char * plbuf;
 {
 	int i, k, n;
-	char thisch, lastch;
 	winid win;
 	anything any;
 	menu_item *selected = 0;
@@ -669,11 +664,8 @@ char * plbuf;
 		if (ok_race(flags.initrole, i, flags.initgend,
 						flags.initalign)) {
 		    any.a_int = i+1;	/* must be non-zero */
-		    thisch = lowc(races[i].noun[0]);
-		    if (thisch == lastch) thisch = highc(thisch);
-		    add_menu(win, NO_GLYPH, &any, thisch,
+		    add_menu(win, NO_GLYPH, &any, 0,
 			0, ATR_NONE, races[i].noun, MENU_UNSELECTED);
-		    lastch = thisch;
 		}
 	    any.a_int = pick_race(flags.initrole, flags.initgend,
 					flags.initalign, PICK_RANDOM)+1;
@@ -682,7 +674,7 @@ char * plbuf;
 	    add_menu(win, NO_GLYPH, &any , '*', 0, ATR_NONE,
 			    "Random", MENU_UNSELECTED);
 	    any.a_int = i+1;	/* must be non-zero */
-	    add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
+	    add_menu(win, NO_GLYPH, &any , '!', 0, ATR_NONE,
 			    "Quit", MENU_UNSELECTED);
 	    Sprintf(pbuf, "Pick the race of your %s", plbuf);
 	    end_menu(win, pbuf);
