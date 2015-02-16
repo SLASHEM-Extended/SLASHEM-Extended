@@ -677,6 +677,26 @@ struct monst *mtmp;
 	    if (is_prince(mtmp->data)) multishot += 2;
 	    else if (is_lord(mtmp->data)) multishot++;
 
+		/* strong, nasty or high-level monsters can also shoot more --Amy */
+		if (strongmonst(mtmp->data) && !rn2(3)) multishot++;
+		if (strongmonst(mtmp->data) && !rn2(9)) multishot++;
+		if (strongmonst(mtmp->data) && !rn2(27)) multishot++;
+
+		if (extra_nasty(mtmp->data) && !rn2(2)) multishot++;
+		if (extra_nasty(mtmp->data) && !rn2(4)) multishot++;
+		if (extra_nasty(mtmp->data) && !rn2(8)) multishot++;
+
+		if (mtmp->m_lev >= 10 && mtmp->m_lev < 20) multishot += 1;
+		if (mtmp->m_lev >= 20 && mtmp->m_lev < 30) multishot += 2;
+		if (mtmp->m_lev >= 30 && mtmp->m_lev < 40) multishot += 3;
+		if (mtmp->m_lev >= 40 && mtmp->m_lev < 50) multishot += 4;
+		if (mtmp->m_lev >= 50 && mtmp->m_lev < 60) multishot += 5;
+		if (mtmp->m_lev >= 60 && mtmp->m_lev < 70) multishot += 6;
+		if (mtmp->m_lev >= 70 && mtmp->m_lev < 80) multishot += 7;
+		if (mtmp->m_lev >= 80 && mtmp->m_lev < 90) multishot += 8;
+		if (mtmp->m_lev >= 90 && mtmp->m_lev < 100) multishot += 9;
+		if (mtmp->m_lev >= 100) multishot += 10;
+
 	    /*  Elven Craftsmanship makes for light,  quick bows */
 	    if (otmp->otyp == ELVEN_ARROW && !otmp->cursed)
 		multishot++;
@@ -700,6 +720,8 @@ struct monst *mtmp;
 		    break;
 	    case PM_PELLET_ARCHER:
 	    case PM_ECM_ARCHER:
+	    case PM_SHOTGUN_HORROR:
+	    case PM_SHOTGUN_TERROR:
 		    multishot++;
 		    multishot++;
 		    break;
