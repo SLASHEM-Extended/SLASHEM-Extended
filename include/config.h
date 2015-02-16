@@ -514,8 +514,6 @@ typedef unsigned char	uchar;
 /*#define GOLDOBJ */	/* Gold is kept on obj chains - Helge Hafting */
 #define AUTOPICKUP_EXCEPTIONS /* exceptions to autopickup */
 
-/*#define SIMPLE_MAIL */ /* dgamelaunch simple mail */
-
 /* End of Section 5 */
 
 #include "global.h"	/* Define everything else according to choices above */
