@@ -501,6 +501,8 @@ long wp_mask;
 	    mask = &EDisint_resistance;
 	else if (dtyp == AD_DRST)
 	    mask = &EPoison_resistance;
+	else if (dtyp == AD_DRLI) 
+	    mask = &EDrain_resistance; 
 
 	if (mask && wp_mask == W_ART && !on) {
 	    /* find out if some other artifact also confers this intrinsic */
