@@ -31,9 +31,9 @@ PSCMD = groff -Wall -Tps
 # GUIDECMD = cat Guidebook.txt
 # GUIDECMD = type Guidebook.txt
 # The following work better with groff-1.18, eg on Linux
-# GUIDECMD = tbl tmac.n Guidebook.mn | nroff -c -Tascii | $(COLCMD)
+GUIDECMD = tbl tmac.n Guidebook.mn | nroff -c -Tascii | $(COLCMD)
 # GUIDECMD = tbl tmac.n Guidebook.mn | groff -Wall -mtty-char -Tascii -P-u -P-b 
-GUIDECMD = tbl tmac.n Guidebook.mn | nroff | $(COLCMD)
+# GUIDECMD = tbl tmac.n Guidebook.mn | nroff | $(COLCMD)
 
 # the basic guidebook
 Guidebook:	Guidebook.mn
