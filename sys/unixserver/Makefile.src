@@ -145,7 +145,7 @@ SYSOBJ = ioctl.o unixmain.o unixtty.o unixunix.o unixres.o
 # CFLAGS = -g -I../include
 
 CFLAGS = -g -O2
-CFLAGS += -I../include
+CFLAGS += -DNO_EXPLORE_MODE -I../include
 LFLAGS =
 
 # Only used for the Gnome interface.
