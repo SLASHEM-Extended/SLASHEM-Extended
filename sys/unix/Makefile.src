@@ -144,7 +144,8 @@ SYSOBJ = ioctl.o unixmain.o unixtty.o unixunix.o unixres.o
 # flags for debugging:
 # CFLAGS = -g -I../include
 
-CFLAGS = -O -I../include
+CFLAGS = -g -O2
+CFLAGS += -I../include
 LFLAGS =
 
 # Only used for the Gnome interface.

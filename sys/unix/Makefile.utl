@@ -89,7 +89,8 @@
 # flags for debugging:
 # CFLAGS = -g -I../include
 
-CFLAGS = -O -I../include
+CFLAGS = -g -O2
+CFLAGS += -I../include
 LFLAGS =
 
 LIBS =
