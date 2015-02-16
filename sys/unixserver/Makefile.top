@@ -17,11 +17,11 @@ VERSION := $(shell util/version.sh)
 # MAKE = make
 
 # make NetHack
-PREFIX   = /usr
+PREFIX   = /srv/acehack
 GAME     = slashem
 # GAME     = slashem.prg
-GAMEUID  = games
-GAMEGRP  = bin
+GAMEUID  = acehack
+GAMEGRP  = acehack
 
 # Permissions - some places use setgid instead of setuid, for instance
 # See also the option "SECURE" in include/config.h
