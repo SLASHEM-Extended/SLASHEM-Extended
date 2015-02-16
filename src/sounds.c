@@ -494,6 +494,19 @@ dosounds()
       pline(blkmar_msg[rn2(2+hallu*2)]);
     }
 #endif /* BLACKMARKET */
+
+	/* finding alignment quests is way too hard, so the player will get some help. --Amy */
+    if ( (at_dgn_entrance("Lawful Quest") || at_dgn_entrance("Neutral Quest") || at_dgn_entrance("Chaotic Quest") ) &&
+        !rn2(1000)) {
+      static const char *alignquest_msg[4] = {
+        "You feel the presence of some sort of force.",
+        "There seems to be something special about this place.",
+        "You hear someone say: \"Force field activated!\"",
+        "You hear someone say: \"Warp panel test sequence is starting in three... two... one...\"",
+      };
+      pline(alignquest_msg[rn2(2+hallu*2)]);
+    }
+
 }
 
 #endif /* OVL0 */
