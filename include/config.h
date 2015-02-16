@@ -231,15 +231,15 @@
 
 #ifdef UNIX
 /* path and file name extension for compression program */
-# define COMPRESS "/usr/bin/compress" /* Lempel-Ziv compression */
-# define COMPRESS_EXTENSION ".Z"	     /* compress's extension */
+/* # define COMPRESS "/usr/bin/compress" */ /* Lempel-Ziv compression */
+/* # define COMPRESS_EXTENSION ".Z" */	     /* compress's extension */
 
 /* An example of one alternative you might want to use: */
 /* # define COMPRESS "/usr/local/bin/gzip" */   /* FSF gzip compression */
 /* # define COMPRESS_EXTENSION ".gz" */	     /* normal gzip extension */
 
-/* # define COMPRESS "/usr/bin/bzip2"	*//* bzip2 compression */
-/* # define COMPRESS_EXTENSION ".bz2"	*//* bzip2 extension */
+# define COMPRESS "/bin/bzip2"		/* bzip2 compression */
+# define COMPRESS_EXTENSION ".bz2"	/* bzip2 extension */
 #endif
 #ifndef COMPRESS
 # define INTERNAL_COMP	/* control use of NetHack's compression routines */
