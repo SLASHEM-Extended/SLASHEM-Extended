@@ -774,6 +774,8 @@ E boolean FDECL(invocation_pos, (XCHAR_P,XCHAR_P));
 E boolean FDECL(test_move, (int, int, int, int, int));
 E void NDECL(domove);
 E void NDECL(invocation_message);
+E void FDECL(wounds_message,(struct monst *)); 
+E char *FDECL(mon_wounds,(struct monst *)); 
 E void FDECL(spoteffects, (BOOLEAN_P));
 E char *FDECL(in_rooms, (XCHAR_P,XCHAR_P,int));
 E char *FDECL(in_roomscolouur, (XCHAR_P,XCHAR_P,int));

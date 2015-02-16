@@ -174,6 +174,10 @@ lookat(x, y, buf, monbuf)
 		    (mtmp->mtame && accurate) ? "tame " :
 		    (mtmp->mpeaceful && accurate) ? "peaceful " : "",
 		    name);
+	    if (mon_wounds(mtmp)) { 
+		Strcat(buf, ", "); 
+		Strcat(buf, mon_wounds(mtmp)); 
+	    }
 	    if (u.ustuck == mtmp)
 		Strcat(buf, (Upolyd && sticks(youmonst.data)) ?
 			", being held" : ", holding you");

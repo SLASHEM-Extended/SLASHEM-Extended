@@ -4726,6 +4726,7 @@ register int dx,dy;
 			if (!otmp) {
 			    /* normal non-fatal hit */
 			    hit(fltxt, mon, exclam(tmp));
+				wounds_message(mon);
 			    if (mblamed && mblamed != mon &&
 				    !DEADMONSTER(mblamed) &&
 				    mon->movement >= NORMAL_SPEED && rn2(4)) {
@@ -5523,6 +5524,7 @@ int damage, tell;
 		if(m_using) monkilled(mtmp, "", AD_RBRE);
 		else killed(mtmp);
 	    }
+	    else wounds_message(mtmp);
 	}
 	return(resisted);
 }
