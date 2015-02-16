@@ -51,7 +51,6 @@ FILE_AREA_UNSHARE = $(GAMEDIR)
 FILE_AREA_DOC = $(GAMEDIR)
 FILE_AREA_BONES = $(FILE_AREA_VAR)
 FILE_AREA_LEVL = $(FILE_AREA_VAR)
-SHELLDIR = $(PREFIX)/local/bin
 
 # Defs. compatible with Linux's FSSTND 1.2
 # FILE_AREA_VAR = /var/lib/games/slashem
@@ -298,11 +297,6 @@ dofiles:
 	cp util/recover $(FILE_AREA_UNSHARE)
 	cp dat/license doc/Guidebook.txt $(FILE_AREA_DOC)
 #	cp win/Qt/KDE/kslashem.kdelnk $(KDEDIR)/share/applnk/Games
-	-rm -f $(SHELLDIR)/$(GAME)
-	sed -e 's;/usr/games/lib/nethackdir;$(FILE_AREA_UNSHARE);' \
-		-e 's;HACKDIR/nethack;HACKDIR/$(GAME);' \
-		< sys/unix/nethack.sh \
-		> $(SHELLDIR)/$(GAME)
 # set up their permissions
 	-( cd $(FILE_AREA_UNSHARE) ; $(CHOWN) $(GAMEUID) $(GAME) recover ; \
 			$(CHGRP) $(GAMEGRP) $(GAME) recover )
@@ -312,9 +306,6 @@ dofiles:
 			$(CHOWN) $(GAMEUID) license Guidebook.txt ; \
 			$(CHGRP) $(GAMEGRP) license Guidebook.txt ; \
 			chmod $(FILEPERM) license Guidebook.txt )
-	-$(CHOWN) $(GAMEUID) $(SHELLDIR)/$(GAME)
-	$(CHGRP) $(GAMEGRP) $(SHELLDIR)/$(GAME)
-	chmod $(EXEPERM) $(SHELLDIR)/$(GAME)
 
 dofiles-dlb: check-dlb
 	( cd dat ; cp nhshare $(SHARE_DATNODLB) $(FILE_AREA_SHARE) )
@@ -360,7 +351,6 @@ update: $(GAME) recover $(CNF_SHARE_DAT) dungeon spec_levs Guidebook.txt
 install: $(GAME) recover $(CNF_SHARE_DAT) dungeon spec_levs Guidebook.txt
 # set up the directories
 # not all mkdirs have -p; those that don't will create a -p directory
-	-mkdir -p $(SHELLDIR)
 	-rm -rf $(FILE_AREA_VAR) $(FILE_AREA_BONES) $(FILE_AREA_SAVE)
 	-rm -rf $(FILE_AREA_LEVL) $(FILE_AREA_SHARE) $(FILE_AREA_UNSHARE)
 	-rm -rf $(FILE_AREA_DOC)
