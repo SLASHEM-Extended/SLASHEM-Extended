@@ -407,7 +407,7 @@ register struct obj *food;
 		}
 		You("stuff yourself and then vomit voluminously.");
 		if (Role_if(PM_TOPMODEL) || Role_if(PM_GOFF)) {adjalign(-20);	/* overeating doesn't befit a topmodel */
-		pline("Bleeargh! You feel very bad for trying to overeat."); }
+		pline(Hallucination ? "Uaargh - maybe you should order some smaller meals next time?" : "Bleeargh! You feel very bad for trying to overeat."); }
 		morehungry(1000);	/* you just got *very* sick! */
 		nomovemsg = 0;
 		vomit();
@@ -607,7 +607,7 @@ boolean message;
 	/* Bleeders who can drain corpses will benefit from doing so */
 	if(victual.piece->otyp == CORPSE && victual.piece->odrained && Role_if(PM_BLEEDER) ) {
 
-		pline("That blood really hit the spot!");
+		pline(Hallucination ? "It tastes like sweet, delicious nectar!" : "That blood really hit the spot!");
 		healup(d(8,8) + rnz(u.ulevel), 0, TRUE, TRUE);
 		exercise(A_CON, TRUE);
 
@@ -1774,7 +1774,7 @@ register int pm;
 	    case PM_OLOG_HAI_GORGON:
 	    case PM_MEDUSA_S_PET_FISH:
 		gainstr((struct obj *)0, 0);
-		pline("You feel stronger!");
+		pline(Hallucination ? "You feel like ripping out some trees!" : "You feel stronger!");
 		break;
 
 		/* non-mind flayers that emit mental blasts sometimes give INT boosts, too --Amy */
@@ -1796,13 +1796,13 @@ register int pm;
 
 		if (ABASE(A_INT) < ATTRMAX(A_INT)) {
 			if (!rn2(5)) {
-				pline("Yum! That was real brain food!");
+				pline(Hallucination ? "Hmm, is that what human brain tastes like?" : "Yum! That was real brain food!");
 				(void) adjattrib(A_INT, 1, FALSE);
 				break;	/* don't give them telepathy, too */
 			}
 		}
 		else {
-			pline("For some reason, that tasted bland.");
+			pline(Hallucination ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
 		}
 		}
 
@@ -1833,13 +1833,13 @@ register int pm;
 #endif
 		if (ABASE(A_INT) < ATTRMAX(A_INT)) {
 			if (!rn2(2)) {
-				pline("Yum! That was real brain food!");
+				pline(Hallucination ? "Hmm, is that what human brain tastes like?" : "Yum! That was real brain food!");
 				(void) adjattrib(A_INT, 1, FALSE);
 				break;	/* don't give them telepathy, too */
 			}
 		}
 		else {
-			pline("For some reason, that tasted bland.");
+			pline(Hallucination ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
 		}
 		}
 		/* fall through to default case */
@@ -1856,7 +1856,7 @@ register int pm;
 			pline ("Oh wow!  Great stuff!");
 			make_hallucinated(HHallucination + rnz(200),FALSE,0L);
 		}
-		if(is_giant(ptr) && !rn2(4)) {gainstr((struct obj *)0, 0); pline("You feel stronger!");}
+		if(is_giant(ptr) && !rn2(4)) {gainstr((struct obj *)0, 0); pline(Hallucination ? "You feel like ripping out some trees!" : "You feel stronger!"); }
 
 		/* Check the monster for all of the intrinsics.  If this
 		 * monster can give more than one, pick one to try to give
@@ -2145,7 +2145,7 @@ opentin()		/* called during each move whilst opening a tin */
 	You("succeed in opening the tin.");
 	if(tin.tin->spe != 1) {
 	    if (tin.tin->corpsenm == NON_PM) {
-		pline("It turns out to be empty.");
+		pline(Hallucination ? "Nothing in there, might as well throw it in the trash can." : "It turns out to be empty.");
 		tin.tin->dknown = tin.tin->known = TRUE;
 		costly_tin((const char*)0);
 		goto use_me;
@@ -2252,7 +2252,7 @@ opentin()		/* called during each move whilst opening a tin */
 		pline("It contains some decaying%s%s substance.",
 			Blind ? "" : " ", Blind ? "" : hcolor(NH_GREEN));
 	    else
-		pline("It contains spinach.");
+		pline(Hallucination ? "It contains potato tack or something like that." : "It contains spinach.");
 
 	    if (yn("Eat it?") == 'n') {
 		if (!Hallucination && !tin.tin->cursed)
@@ -2293,7 +2293,7 @@ start_tin(otmp)		/* called when starting to open a tin */
 		You("cannot handle the tin properly to open it.");
 		return;
 	} else if (otmp->blessed) {
-		pline_The("tin opens like magic!");
+		pline_The(Hallucination ? "tin is opened by the little man sitting inside!" : "tin opens like magic!");
 		tmp = 1;
 	} else if(uwep) {
 		switch(uwep->otyp) {
@@ -2321,7 +2321,7 @@ start_tin(otmp)		/* called when starting to open a tin */
 			aobjnam(uwep, (char *)0));
 	} else {
 no_opener:
-		pline("It is not so easy to open this tin.");
+		pline(Hallucination ? "Using your fingernails, you try to open this tin." : "It is not so easy to open this tin.");
 		if(IsGlib) {
 			pline_The("tin slips from your %s.",
 			      makeplural(body_part(FINGER)));
@@ -2468,7 +2468,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	    /* oeaten is set up by touchfood */
 	    if (otmp->odrained ? otmp->oeaten <= drainlevel(otmp) :
 	      otmp->oeaten < mons[otmp->corpsenm].cnutrit) {
-	    	pline("There is no blood left in this corpse!");
+	    	pline(Hallucination ? "No juice left - gotta get a new bottle from your cellar!" : "There is no blood left in this corpse!");
 	    	return 3;
 	    } else if (rotted <= 0 &&
 	      (peek_at_iced_corpse_age(otmp) + 5) >= monstermoves) {
@@ -2485,7 +2485,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	    	pline("You drain the blood from %s.", buf);
 		otmp->odrained = 1;
 	    } else {
-	    	pline("The blood in this corpse has coagulated!");
+	    	pline(Hallucination ? "You try to suck, but it just tastes very disgusting!" : "The blood in this corpse has coagulated!");
 	    	return 3;
 	    }
 	}
@@ -2507,7 +2507,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 		      !vegetarian(&mons[mnum]) ? "meat" : "protoplasm",
 		      cannibal ? ", cannibal" : "");
 		if (Sick_resistance) {
-			pline("It doesn't seem at all sickening, though...");
+			pline(Hallucination ? "Interesting taste, though..." : "It doesn't seem at all sickening, though...");
 		} else {
 			char buf[BUFSZ];
 			long sick_time;
@@ -2532,7 +2532,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	} else if (youmonst.data == &mons[PM_GHOUL] || 
 	youmonst.data == &mons[PM_GASTLY] || youmonst.data == &mons[PM_HAUNTER] || youmonst.data == &mons[PM_GENGAR] || 
 		   youmonst.data == &mons[PM_GHAST] || (Race_if(PM_GASTLY) && !Upolyd) ) {
-		pline ("This corpse is too fresh!");
+		pline (Hallucination ? "You can't seem to find any manky bits!" : "This corpse is too fresh!");
 		return 3;
 	} else if (acidic(&mons[mnum]) && !Acid_resistance) {
 		tp++;
@@ -2540,7 +2540,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 		losehp(rnd(15), "acidic corpse", KILLED_BY_AN);
 	} else if (poisonous(&mons[mnum]) && rn2(5)) {
 		tp++;
-		pline("Ecch - that must have been poisonous!");
+		pline(Hallucination ? "Feels like your face is turning green!" : "Ecch - that must have been poisonous!");
 		if(!Poison_resistance) {
 			if (!rn2(3)) losestr(rnd(2)); /* tone down strength loss, since you have to eat many more poisonous */
 			if (!rn2(60)) losestr(rnd(2)); /* corpses in order to get poison resistance --Amy */
@@ -2811,7 +2811,7 @@ struct obj *otmp;
 		} else
 #endif
 		if (otmp->otyp == EGG && stale_egg(otmp)) {
-		    pline("Ugh.  Rotten egg.");	/* perhaps others like it */
+		    pline(Hallucination ? "Uaaah! That tasted like hydrogen sulfide!" : "Ugh.  Rotten egg.");	/* perhaps others like it */
 #ifdef CONVICT
 		if (Role_if(PM_CONVICT) && (rn2(8) > u.ulevel)) {
 		    You_feel("a slight stomach ache.");	/* prisoners are used to bad food */
@@ -3053,7 +3053,7 @@ eatspecial() /* called after eating non-food */
 	}
 	if ((otmp->otyp == FLINT) && !otmp->cursed)
 	{
-		pline("Yabba-dabba delicious!");
+		pline(Hallucination ? "Whoops, what's that grating sound? Was that a piece of your tooth?" : "Yabba-dabba delicious!");
 		exercise(A_CON, TRUE);
 	}
 
@@ -3237,7 +3237,7 @@ register struct obj *otmp;
 
 		/* eating your own eggs is bad luck --Amy */
 		if (otmp->spe && otmp->corpsenm >= LOW_PM) {
-				pline("How are your children, you sorry excuse for a parent?");
+				pline(Hallucination ? "Great taste, like what chewing your own nails is like!" : "How are your children, you sorry excuse for a parent?");
 			    change_luck(-2);
 		}
 
@@ -3413,7 +3413,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	
 	boolean dont_start = FALSE;
 	if (Strangled) {
-		pline("If you can't breathe air, how can you consume solids?");
+		pline(Hallucination ? "You just can't seem to get it down your throat - is it too big?!" : "If you can't breathe air, how can you consume solids?");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
@@ -3540,7 +3540,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		(void) rottenfood(otmp);
 
 	    if (otmp->oclass == WEAPON_CLASS && otmp->opoisoned) {
-		pline("Ecch - that must have been poisonous!");
+		pline(Hallucination ? "Urgh - that tastes like cactus juice with full-length thorns in it!" : "Ecch - that must have been poisonous!");
 		if(!Poison_resistance) {
 		    losestr(rnd(4));
 		    losehp(rnd(15), xname(otmp), KILLED_BY_AN);
@@ -3824,7 +3824,7 @@ register int num;
 	     */
 	    if (u.uhunger >= 2500) {
 		if (!victual.eating || (victual.eating && !victual.fullwarn)) {
-		    pline("You're having a hard time getting all of it down.");
+		    pline(Hallucination ? "You feel like taking the All-You-Can-Eat challenge." : "You're having a hard time getting all of it down.");
 		    nomovemsg = "You're finally finished.";
 		    if (!victual.eating)
 			multi = -2;

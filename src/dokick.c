@@ -193,7 +193,7 @@ register xchar x, y;
 
 	if(Levitation && !rn2(3) && verysmall(mon->data) &&
 	   !is_flyer(mon->data)) {
-		pline("Floating in the air, you miss wildly!");
+		pline(Hallucination ? "Your legs seem to have a mind of their own!" : "Floating in the air, you miss wildly!");
 		exercise(A_DEX, FALSE);
 		(void) passive(mon, FALSE, 1, AT_KICK);
 		return;
@@ -1093,7 +1093,7 @@ dokick()
 		    if(!IS_STWALL(maploc->typ) && maploc->ladder == LA_DOWN)
 			goto dumb;
 ouch:
-		    pline("Ouch!  That hurts!");
+		    pline(Hallucination ? "You stumped your little toe - ouch!" : "Ouch!  That hurts!");
 		    exercise(A_DEX, FALSE);
 		    exercise(A_STR, FALSE);
 		    if (Blind) feel_location(x,y); /* we know we hit it */
@@ -1122,7 +1122,7 @@ dumb:
 			You("kick at empty space.");
 			if (Blind) feel_location(x,y);
 		} else {
-			pline("Dumb move!  You strain a muscle.");
+			pline(Hallucination ? "Argh... this feels like overdoing sports!" : "Dumb move!  You strain a muscle.");
 			exercise(A_STR, FALSE);
 			set_wounded_legs(RIGHT_SIDE, 5 + rnd(5));
 		}

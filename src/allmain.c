@@ -210,7 +210,7 @@ moveloop()
 				randmnst = (rn2(187) + 1);
 				randmnsx = (rn2(100) + 1);
 
-				if (wizard || !rn2(10)) pline("You suddenly feel a surge of tension!");
+				if (wizard || !rn2(10)) pline(Hallucination ? "You fear that you'll get a segmentation fault on your next turn!" : "You suddenly feel a surge of tension!");
 
 			for (i = 0; i < randsp; i++) {
 			/* This function will fill the map with a random amount of monsters of one class. --Amy */
@@ -372,7 +372,7 @@ moveloop()
 				if (!rn2(10000)) randsp *= 10;
 				randmonstforspawn = rndmonst();
 
-				if (wizard || !rn2(10)) pline("You feel the arrival of monsters!");
+				if (wizard || !rn2(10)) pline(Hallucination ? "Someone hacked into the game data files to prevent you from ascending!" : "You feel the arrival of monsters!");
 
 				for (i = 0; i < randsp; i++) {
 
@@ -393,7 +393,7 @@ moveloop()
 				monstercolor = rnd(15);
 				do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 
-				if (wizard || !rn2(10)) pline("You feel a colorful sensation!");
+				if (wizard || !rn2(10)) pline(Hallucination ? "The colors, the colors!" : "You feel a colorful sensation!");
 
 				for (i = 0; i < randsp; i++) {
 

@@ -610,7 +610,7 @@ int spellnum;
 	break;
     case MGC_CREATE_POOL:
 	if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR) {
-	    pline("A pool appears beneath you!");
+	    pline(Hallucination ? "Huh - the ground suddenly turned into a swimming pool!" : "A pool appears beneath you!");
 	    levl[u.ux][u.uy].typ = POOL;
 	    del_engr_at(u.ux, u.uy);
 	    water_damage(level.objects[u.ux][u.uy], FALSE, TRUE);
@@ -623,7 +623,7 @@ int spellnum;
 
     case MGC_MEGALOAD:
 	if ((otmp = mksobj(LOADSTONE, TRUE, FALSE)) != (struct obj *)0) {
-	pline("You feel burdened");
+	pline(Hallucination ? "Aww, something's killing your good feelings!" : "You feel burdened");
 	if (pickup_object(otmp, 1, FALSE) <= 0) {
 	obj_extract_self(otmp);
 	place_object(otmp, u.ux, u.uy);
@@ -634,7 +634,7 @@ int spellnum;
 	break;
 
     case MGC_LEVITATE:
-	pline("You float up!");
+	pline(Hallucination ? "Wow... you're suddenly walking on air!" : "You float up!");
 	HLevitation &= ~I_SPECIAL;
 	incr_itimeout(&HLevitation, rnz(50));
 
@@ -643,12 +643,12 @@ int spellnum;
 
     case MGC_CLONE_WIZ:
 	if (mtmp->iswiz && (flags.no_of_wizards == 1 || !rn2(20)) ) { /* let's have a small chance of triple trouble --Amy */
-	    if (flags.no_of_wizards == 1) pline("Double Trouble...");
-	    else pline("Triple Trouble...");
+	    if (flags.no_of_wizards == 1) pline(Hallucination ? "Doublevision!" : "Double Trouble...");
+	    else pline(Hallucination ? "Triplevision!" : "Triple Trouble...");
 	    clonewiz();
 	    dmg = 0;
 	} else
-	    pline("For a moment you saw another Wizard, but it disappeared.");
+	    pline(Hallucination ? "For a moment you had triplevision, but seeing double is funny enough." : "For a moment you saw another Wizard, but it disappeared.");
 	break;
     case MGC_SUMMON_MONS:
     {
@@ -1230,7 +1230,7 @@ int spellnum;
 	case 31:
 	case 32:
 	case 33:
-	      pline("Your hands start trembling!"); /* disarm */
+	      pline(Hallucination ? "You suddenly feel like you're on cold turkey!" : "Your hands start trembling!"); /* disarm */
 		int glibberX;
 		glibberX = (rnz(1 + mtmp->m_lev));
 		    incr_itimeout(&Glib, glibberX);
@@ -1244,7 +1244,7 @@ int spellnum;
 		dmg = 0;
 		break;
 	case 37:
-	      pline("You feel out of luck!"); /* dementor force */
+	      pline(Hallucination ? "You feel like you just got dumped by your girlfriend!" : "You feel out of luck!"); /* dementor force */
 			change_luck(-1);
 			if (!rn2(10)) change_luck(-5);
 			adjalign(-10);

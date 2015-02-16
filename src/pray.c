@@ -302,7 +302,7 @@ register int trouble;
 		    delayed_killer = 0;
 		    break;
 	    case TROUBLE_SLIMED:
-		    pline_The("slime disappears.");
+		    Hallucination ? pline("The rancid goo is gone! Yay!") : pline_The("slime disappears.");
 		    Slimed = 0;
 		    flags.botl = 1;
 		    delayed_killer = 0;
@@ -1423,7 +1423,7 @@ dosacrifice()
 	for(orac = fmon; orac; orac = orac->nmon)
 	    if (orac->data == &mons[PM_ORACLE]) break;
 	if (!orac || distu(orac->mx, orac->my) > 2 || !mon_visible(orac)) {
-	    pline("I see no one next to you to take a sacrifice.");
+	    pline(Hallucination ? "You hold your hands up in the air. Nobody seems to notice though." : "I see no one next to you to take a sacrifice.");
 	    return 0;
 	}
     }
@@ -1836,7 +1836,7 @@ verbalize("In return for thy service, I grant thee the gift of Immortality!");
 	if (Role_if(PM_POLITICIAN) && !rn2(5)) {
 
 	u.ugold += rnz(100);
-	pline("Your budget is extended!");
+	pline(Hallucination ? "Bribe money! Yay!" : "Your budget is extended!");
 
 	}
 

@@ -2087,7 +2087,7 @@ boolean pick;
 
 	/* strong winds over the Grand Canyon. Please don't ask me how they can continue working underwater. :-) --Amy */
 
-		pline("There are scathing winds here! Your skin is scraped off!");
+		pline(Hallucination ? "This whirl is like the eye of a hurricane, but it tickles!" : "There are scathing winds here! Your skin is scraped off!");
 		losehp(rnz(u.legscratching), "scathing winds", KILLED_BY);
 
 		You("tumble...");
@@ -2100,7 +2100,7 @@ boolean pick;
 
 	/* every trap on the Grand Canyon level also has a lesser wind effect. --Amy */
 
-		pline("You are enclosed in a whirlwind!");
+		pline(Hallucination ? "A twister... or is that a tornado?" : "You are enclosed in a whirlwind!");
 		losehp(rnd(u.legscratching + 2), "whirlwinds", KILLED_BY);
 
 	}
@@ -2461,7 +2461,7 @@ register boolean newlev;
 		 * There's no reason to get rid of them if you enter a room, and it's OK to get a message every time, too. */
 	    switch (rt) {
 		case ZOO:
-		    pline("Welcome to David's treasure zoo!");
+		    pline(Hallucination ? "Welcome to our Theme Park!" : "Welcome to David's treasure zoo!");
 		    wake_nearby();
 		    break;
 		case SWAMP:
@@ -2471,27 +2471,27 @@ register boolean newlev;
 		    wake_nearby();
 		    break;
 		case COURT:
-		    You("enter an opulent throne room!");
+		    You(Hallucination ? "enter the Queen's chambers!" : "enter an opulent throne room!");
 		    wake_nearby();
 		    break;
 		case REALZOO:
-		    You("enter a smelly zoo!");
+		    You(Hallucination ? "feel that some extinct species might still live here!" : "enter a smelly zoo!");
 		    wake_nearby();
 		    break;
 		case GIANTCOURT:
-		    You("enter a giant throne room!");
+		    You(Hallucination ? "enter a real huge hall!" : "enter a giant throne room!");
 		    wake_nearby();
 		    break;
 		case DRAGONLAIR:
-		    You("enter a dragon lair...");
+		    You(Hallucination ? "enter a fairy lair!" : "enter a dragon lair...");
 		    wake_nearby();
 		    break;
 		case BADFOODSHOP:
-		    You("enter an abandoned store...");
+		    You(Hallucination ? "enter some sort of market! Perhaps you can buy some weed here?" : "enter an abandoned store...");
 		    wake_nearby();
 		    break;
 		case LEPREHALL:
-		    You("enter a leprechaun hall!");
+		    You(Hallucination ? "encounter a Stonehenge replica!" : "enter a leprechaun hall!");
 		    wake_nearby();
 		    break;
 		case MORGUE:
@@ -2503,75 +2503,75 @@ register boolean newlev;
 		    wake_nearby();
 		    break;
 		case BEEHIVE:
-		    You("enter a giant beehive!");
+		    You(Hallucination ? "enter a tracker jacker nest! RUN AWAY!!!" : "enter a giant beehive!");
 		    wake_nearby();
 		    break;
 		case LEMUREPIT:
-		    You("enter a pit of screaming lemures!");
+		    You(Hallucination ? "enter the Devil's Lair!" : "enter a pit of screaming lemures!");
 		    wake_nearby();
 		    break;
 		case MIGOHIVE:
-		    You("enter a strange hive!");
+		    You(Hallucination ? "enter some futuristic alien structure!" : "enter a strange hive!");
 		    wake_nearby();
 		    break;
 		case FUNGUSFARM:
-		    You("enter a room full of fungi!");
+		    You(Hallucination ? "enter a sticky, slimy room..." : "enter a room full of fungi!");
 		    wake_nearby();
 		    break;
 		case COCKNEST:
-		    You("enter a disgusting nest!");
+		    You(Hallucination ? "sense the well-known smell of weed as you enter this room!" : "enter a disgusting nest!");
 		    wake_nearby();
 		    break;
 		case ANTHOLE:
-		    You("enter an anthole!");
+		    You(Hallucination ? "enter a room filled with bugs!" : "enter an anthole!");
 		    wake_nearby();
 		    break;
             case CLINIC:
-                You("enter a modern hospital.");
+                You(Hallucination ? "feel reminded of 'Emergency Room' as you enter this area!" : "enter a modern hospital.");
 		    wake_nearby();
                 break;
             case ANGELHALL:
-                You("enter a radiating hall of Angels!");
+                You(Hallucination ? "see the gods as you enter! WOW! So that's what they look like..." : "enter a radiating hall of Angels!");
 		    wake_nearby();
                 break;
 	      case TERRORHALL:
-                You("enter a terrifying hall.");
+                You(Hallucination ? "feel like you just got detected by a tripwire!" : "enter a terrifying hall.");
 		    wake_nearby();
                 break;
 	      case TENSHALL:
-                You("enter a killer room! This is actually an ADOM tension room.");
+                You(Hallucination ? "have died. Do you want your possessions identified? [ynq] (n) _" : "enter a killer room! This is actually an ADOM tension room.");
 		    wake_nearby();
                 break;
 	      case ELEMHALL:
-                You("enter a room full of elementals!");
+                You(Hallucination ? "get a vision of Mother Nature as you enter!" : "enter a room full of elementals!");
 		    wake_nearby();
                 break;
 	      case NYMPHHALL:
-                You("enter a beautiful garden!");
+                You(Hallucination ? "see a picture on the wall of this room. It shows the most beautiful woman you ever saw..." : "enter a beautiful garden!");
 		    wake_nearby();
                 break;
             case ARMORY:
-                You("enter a dilapidated armory.");
+                You(Hallucination ? "enter some old weapon storage chamber! Let's see what weapons are left!" : "enter a dilapidated armory.");
 		    wake_nearby();
                 break;
 	      case COINHALL:
-                You("enter a room filled with money!");
+                You(Hallucination ? "enter a room full of treasure, and it's all going to be yours! YEAH!" : "enter a room filled with money!");
 		    wake_nearby();
                 break;
 	      case TROLLHALL:
-                You("enter a room full of stinking trolls...");
+                You(Hallucination ? "feel that this room smells like a public toilet!" : "enter a room full of stinking trolls...");
 		    wake_nearby();
                 break;
 	      case HUMANHALL:
-                You("encounter a living room!");
+                You(Hallucination ? "encounter a party room! Let's invite some hot girls!" : "encounter a living room!");
 		    wake_nearby();
                 break;
 	      case SPIDERHALL:
-                You("stumble into a nest of spiders...");
+                You(Hallucination ? "notice spiders of all forms and sizes in this room sitting everywhere!" : "stumble into a nest of spiders...");
 		    wake_nearby();
                 break;
 	      case GOLEMHALL:
-                You("enter a room full of golems!");
+                You(Hallucination ? "encounter some warmeches!" : "enter a room full of golems!");
 		    wake_nearby();
                 break;
 	      case TRAPROOM:
@@ -2584,15 +2584,15 @@ register boolean newlev;
                 if (wizard) You("enter a statue room!");
                 break;
 	      case INSIDEROOM:
-                You("enter a weird-looking room...");
+                You(Hallucination ? "enter a normal-looking room." : "enter a weird-looking room...");
 		    wake_nearby();
                 break;
 	      case RIVERROOM:
-                You("encounter an underground river!");
+                You(Hallucination ? "encounter an underground mountain! Wait, what? This makes no sense!" : "encounter an underground river!");
 		    wake_nearby();
                 break;
 	      case GRUEROOM:
-                pline("It is pitch black. You are likely to be eaten by a grue.");
+                pline(Hallucination ? "It is radiant bright. You are likely to be eaten by the sun." : "It is pitch black. You are likely to be eaten by a grue.");
 
 	    do_clear_areaX(u.ux,u.uy,		/* extra darkness --Amy */
 		15, set_litX, (genericptr_t)((char *)0));

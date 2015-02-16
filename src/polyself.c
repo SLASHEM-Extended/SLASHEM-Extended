@@ -700,10 +700,10 @@ int	mntmp;
 	    spoteffects(TRUE);
 	if (Passes_walls && u.utrap && u.utraptype == TT_INFLOOR) {
 	    u.utrap = 0;
-	    pline_The("rock seems to no longer trap you.");
+	    Hallucination ? pline("You get on an astral trip.") : pline_The("rock seems to no longer trap you.");
 	} else if (likes_lava(youmonst.data) && u.utrap && u.utraptype == TT_LAVA) {
 	    u.utrap = 0;
-	    pline_The("lava now feels soothing.");
+	    Hallucination ? pline("Fire all around you - how comfy!") : pline_The("lava now feels soothing.");
 	}
 	if (amorphous(youmonst.data) || is_whirly(youmonst.data) || unsolid(youmonst.data)) {
 	    if (Punished) {

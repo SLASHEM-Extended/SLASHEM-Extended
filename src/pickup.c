@@ -467,7 +467,7 @@ int what;		/* should be a long */
 	if (!u.uswallow) {
 		objchain = level.objects[u.ux][u.uy];
 		traverse_how = BY_NEXTHERE;
-	} else {pline("You can't take items out of a monster's interior!"); 
+	} else {pline(Hallucination ? "There's something embedded here, but you can't dislodge it..." : "You can't take items out of a monster's interior!"); 
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return (0); /* otherwise the player could snatch worn amulets of life saving or similar stuff! --Amy */
 
@@ -1968,7 +1968,7 @@ boolean invobj;
 		You("must be kidding.");
 		return 0;
 	} else if (obj == current_container) {
-		pline("That would be an interesting topological exercise.");
+		pline(Hallucination ? "You try folding it with some ikebana technique but to no avail." : "That would be an interesting topological exercise.");
 		return 0;
 	} else if (obj->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL)) {
 		Norep("You cannot %s %s you are wearing.",
@@ -1978,7 +1978,7 @@ boolean invobj;
 		obj->bknown = 1;
 	      pline_The("stone%s won't leave your person.", plur(obj->quan));
 		return 0;
-	} else if (obj->otyp == AMULET_OF_YENDOR ||
+	} else if (obj->otyp == AMULET_OF_YENDOR || obj->otyp == FAKE_AMULET_OF_YENDOR ||
 		   obj->otyp == CANDELABRUM_OF_INVOCATION ||
 		   obj->otyp == BELL_OF_OPENING ||
 		   obj->otyp == SPE_BOOK_OF_THE_DEAD) {

@@ -875,7 +875,7 @@ dodown()
 	    floating_above(stairs_down ? "stairs" : ladder_down ?
 			   "ladder" : surface(u.ux, u.uy));
 
-		if ( (stairs_down || ladder_down) && yn("You can force yourself down, but this will hurt you. Do it?") == 'y') {
+		if ( (stairs_down || ladder_down) && yn("You can force yourself down, but this will hurt and drain you. Do it?") == 'y') {
 			pline("You drain your life-force to squeeze down the stairs.");
 		    losexp("levitating down a narrow set of stairs", TRUE);
 		    losexp("levitating down a narrow set of stairs", TRUE);
@@ -1224,7 +1224,7 @@ boolean at_stairs, falling, portal;
 			randmnst = (rn2(187) + 1);
 			randmnsx = (rn2(100) + 1);
 
-				if (wizard || !rn2(10)) pline("The air around here seems charged with tension!");
+				if (wizard || !rn2(10)) pline(Hallucination ? "Crash bugs probably abound here, the dungeon is likely to collapse soon..." : "The air around here seems charged with tension!");
 
 			for (i = 0; i < randsp; i++) {
 			/* This function will fill the map with a random amount of monsters of one class. --Amy */
@@ -1386,7 +1386,7 @@ boolean at_stairs, falling, portal;
 			if (!rn2(10000)) randsp *= 10;
 			randmonstforspawn = rndmonst();
 
-			if (wizard || !rn2(10)) pline("It seems there might be lots of monsters around here...");
+			if (wizard || !rn2(10)) pline(Hallucination ? "Very unstable architecture here, it seems..." : "It seems there might be lots of monsters around here...");
 
 			for (i = 0; i < randsp; i++) {
 
@@ -1407,7 +1407,7 @@ boolean at_stairs, falling, portal;
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 
-			if (wizard || !rn2(10)) pline("You feel that a certain color might be prominent around here...");
+			if (wizard || !rn2(10)) pline(Hallucination ? "Uh... wow, what a strong color flash of rainbows!" : "You feel that a certain color might be prominent around here...");
 
 			for (i = 0; i < randsp; i++) {
 				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;

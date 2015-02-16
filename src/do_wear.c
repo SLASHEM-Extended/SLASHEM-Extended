@@ -123,10 +123,10 @@ Boots_on()
 	case KICKING_BOOTS:
 		break;
 	case BOOTS_OF_MOLASSES:
-		pline("These boots feel a little cold...");
+		pline(Hallucination ? "Icy legs, how cool!" : "These boots feel a little cold...");
 		break;
 	case ZIPPER_BOOTS:
-		pline("While putting on this pair of boots, their zippers try to scratch your legs!");
+		pline(Hallucination ? "Lovely fleecy caressing feelings stream into your legs!" : "While putting on this pair of boots, their zippers try to scratch your legs!");
 		losehp(rnd(20), "foolishly putting on a zipper boot", KILLED_BY);
 		break;
 	case HIPPIE_HEELS:
@@ -217,7 +217,7 @@ Boots_off()
 		}
 		break;
 	case ZIPPER_BOOTS:
-		pline("While taking off this pair of boots, you scratch open your legs at their zippers!");
+		pline(Hallucination ? "You get the feeling that something soft just slid along the full length of your legs!" : "While taking off this pair of boots, you scratch open your legs at their zippers!");
 		losehp(rnd(20), "foolishly taking off a zipper boot", KILLED_BY);
 		    set_wounded_legs(LEFT_SIDE, rn1(35, 41));
 		    set_wounded_legs(RIGHT_SIDE, rn1(35, 41));
@@ -303,7 +303,7 @@ Cloak_on()
 		break;
 	case POISONOUS_CLOAK:
 		if (Poison_resistance)
-			pline("This cloak feels a little itchy.");
+			pline(Hallucination ? "Very tight, like a latex shirt!" : "This cloak feels a little itchy.");
 		else {
 		    makeknown(uarmc->otyp);
 		    poisoned("cloak",A_STR,"poisonous cloak",3);
@@ -523,7 +523,7 @@ Gloves_on()
 		break;
 	case GAUNTLETS_OF_SWIMMING:
 		if (u.uinwater) {
-		   pline("Hey! You can swim!");
+		   pline(Hallucination ? "Suddenly, you're floating! Whee!" : "Hey! You can swim!");
 		   spoteffects(TRUE);
 		}
 		break;

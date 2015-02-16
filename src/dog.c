@@ -125,7 +125,7 @@ boolean quietly;
 		    if (!quietly)
 			/* have just been given "You <do something with>
 			   the figurine and it transforms." message */
-			pline("... into a pile of dust.");
+			pline(Hallucination ? "... into a pile of garbage. Even you know that that's of no use." : "... into a pile of dust.");
 		    break;	/* mtmp is null */
 		}
 	    } else if (!rn2(3)) {
@@ -1283,7 +1283,7 @@ struct monst *mtmp;
 
 	if (Role_if(PM_CRUEL_ABUSER)) {
 		adjalign(5);
-		pline("You feel empowered."); /* Christian Grey likes to be needlessly cruel */
+		pline(Hallucination ? "Let's whip that bitch some more!" : "You feel empowered."); /* Christian Grey likes to be needlessly cruel */
 	}
 
 	if (!mtmp->mtame && mtmp->mleashed)

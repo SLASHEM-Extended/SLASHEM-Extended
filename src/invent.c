@@ -2631,7 +2631,7 @@ boolean picked_some;
 		if (dfeature && !drift && !strcmp(dfeature, surface(u.ux,u.uy)))
 			dfeature = 0;		/* ice already identifed */
 		if (!can_reach_floor()) {
-			pline("But you can't reach it!");
+			pline(Hallucination ? "But it seems the stuff actively tries to evade your grasp!" : "But you can't reach it!");
 			return(0);
 		}
 	}

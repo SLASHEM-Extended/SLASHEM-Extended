@@ -406,7 +406,7 @@ dosit()
 		struct obj *uegg;
 
 		if (!flags.female) {
-			pline("Males can't lay eggs!");
+			pline(Hallucination ? "You try to lay an egg, but instead you... okay let's not go there." : "Males can't lay eggs!");
 			return 0;
 		}
 

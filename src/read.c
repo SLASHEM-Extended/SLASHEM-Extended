@@ -87,7 +87,7 @@ doread()
 		return 0;
 	    }
 	    if (scroll->where != OBJ_INVENT || !(scroll->owornmask & W_RING)) {
-		pline("Perhaps you should put it on first.");
+		pline(Hallucination ? "The writing is so small, you'd need to take a closer look..." : "Perhaps you should put it on first.");
 		return 0;
 	    }
 	    if (scroll->dknown && objects[scroll->otyp].oc_name_known)

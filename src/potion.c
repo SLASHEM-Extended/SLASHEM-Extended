@@ -240,7 +240,7 @@ int type;
 		if (talk) You_feel("somewhat better.");
 		set_itimeout(&Sick, Sick * 2); /* approximation */
 	    } else {
-		if (talk) pline("What a relief!");
+		if (talk) pline(Hallucination ? "That cured your overdose!" : "What a relief!");
 		Sick = 0L;		/* set_itimeout(&Sick, 0L) */
 	    }
 	    flags.botl = TRUE;
@@ -894,7 +894,7 @@ badeffect()
 		case 179:
 		case 180:
 
-			pline("You have a feeling of separation.");
+			pline(Hallucination ? "You feel sinful... but do you really care?" : "You have a feeling of separation.");
 			u.ublesscnt += rnz(Race_if(PM_HAXOR) ? 150 : 300);
 
 		break;
@@ -1172,7 +1172,7 @@ dodrink()
 	char *qp = quaffables;
 
 	if (Strangled) {
-		pline("If you can't breathe air, how can you drink liquid?");
+		pline(Hallucination ? "You don't wanna do booze right now." : "If you can't breathe air, how can you drink liquid?");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
@@ -1210,7 +1210,7 @@ dodrink()
 		return 1;
 	    }
 #endif
-	    pline("Do you know what lives in this water!");
+	    pline(Hallucination ? "This water seems especially clean. In fact, it's the cleanest water you've ever seen." : "Do you know what lives in this water!");
 	    return 1;
 	}
 	if(!otmp) return(0);
@@ -1539,7 +1539,7 @@ peffects(otmp)
 		else incr_itimeout(&HInvis, rn1(15,31));
 		newsym(u.ux,u.uy);	/* update position */
 		if(otmp->cursed) {
-		    pline("For some reason, you feel your presence is known.");
+		    pline(Hallucination ? "Somehow, you get the feeling there's a stalker waiting for you around the corner." : "For some reason, you feel your presence is known.");
 		    aggravate();
 		}
 		break;
@@ -2007,7 +2007,7 @@ peffects(otmp)
 
 		if (Role_if(PM_BLEEDER) && !otmp->cursed) {
 
-		pline("Your tortured body experiences a strange sense of joy as your lips touch the warm red liquid.");
+		pline(Hallucination ? "It's the essence of life itself! Damn, you absolutely need more of this stuff! Where's a dealer when you need one?" : "Your tortured body experiences a strange sense of joy as your lips touch the warm red liquid.");
 		if (otmp->otyp == POT_VAMPIRE_BLOOD) u.uhpmax += 1;
 		u.uhp = u.uhpmax;
 
@@ -2062,12 +2062,12 @@ peffects(otmp)
 	case POT_CYANIDE:
 		make_sick(Sick ? Sick/2L + 1L : 20, "cyanide potion", TRUE, SICK_VOMITABLE);
 		losestr(rnd(10));
-		pline("CN(-) + HCl <==> HCN + Cl(-) ");
+		pline(Hallucination ? "This tastes a little bitter; maybe it's some sort of medicine?" : "CN(-) + HCl <==> HCN + Cl(-) ");
 			losehp(d(otmp->cursed ? 4 : 2, otmp->blessed ? 8 : 16),
 					"drinking cyanide", KILLED_BY_AN);
 		break;
 	case POT_RADIUM:
-		pline("This was radioactive radium!");
+		pline(Hallucination ? "For some reason, that potion tastes... orange. Yes, the color orange, not the fruit." : "This was radioactive radium!");
 		make_sick(Sick ? Sick/2L + 1L : 50,"radium potion", TRUE, SICK_VOMITABLE);
 		break;
 	case POT_JOLT_COLA:
@@ -3904,7 +3904,7 @@ dodip()
 	if(!(potion = getobj(beverages, "dip into")))
 		return(0);
 	if (potion == obj && potion->quan == 1L) {
-		pline("That is a potion bottle, not a Klein bottle!");
+		pline(Hallucination ? "The liquid inside that potion wobbles around. It's funny." : "That is a potion bottle, not a Klein bottle!");
 		return 0;
 	}
 
@@ -4405,7 +4405,7 @@ dodip()
 		return(1);
 	}
 
-	pline("Interesting...");
+	pline(Hallucination ? "Colorful..." : "Interesting...");
 	return(1);
 }
 
