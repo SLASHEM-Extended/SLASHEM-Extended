@@ -572,8 +572,12 @@ int how;
 #endif /* LOGFILE */
 
 #ifdef XLOGFILE
+#ifdef FILE_AREAS
+         if(lock_file_area(LOGAREA, XLOGFILE, 10)) {
+#else
          if(lock_file(XLOGFILE, SCOREPREFIX, 10)) {
-             if(!(xlfile = fopen_datafile(XLOGFILE, "a", SCOREPREFIX))) {
+#endif
+             if(!(xlfile = fopen_datafile_area(LOGAREA, XLOGFILE, "a", SCOREPREFIX))) {
                   HUP raw_print("Cannot open extended log file!");
              } else {
                   write_xlentry(xlfile, t0);
