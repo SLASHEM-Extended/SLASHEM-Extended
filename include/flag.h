@@ -308,6 +308,9 @@ struct instance_flags {
 #define MAX_ALTKEYHANDLER 25
 	char	 altkeyhandler[MAX_ALTKEYHANDLER];
 #endif
+#ifdef REALTIME_ON_BOTL
+  boolean  showrealtime; /* show actual elapsed time */
+#endif
 };
 
 /*

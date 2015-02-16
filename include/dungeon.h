@@ -142,6 +142,10 @@ typedef struct branch {
 #ifdef BLACKMARKET
 #define Is_blackmarket(x)       (on_level(x, &blackmarket_level))
 #endif /* BLACKMARKET */
+#ifdef RECORD_ACHIEVE
+#define Is_mineend_level(x)     (on_level(x, &mineend_level))
+#define Is_sokoend_level(x)     (on_level(x, &sokoend_level))
+#endif
 
 #define In_sokoban(x)		((x)->dnum == sokoban_dnum)
 #define Inhell			In_hell(&u.uz)	/* now gehennom */

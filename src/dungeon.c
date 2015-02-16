@@ -637,6 +637,10 @@ struct level_map {
 	{ "nightmar",	&lawful_quest_level },
 	{ "beholder",	&neutral_quest_level },
 	{ "lich",	&chaotic_quest_level },
+#ifdef RECORD_ACHIEVE
+        { "minend",     &mineend_level },
+        { "soko1",      &sokoend_level },
+#endif
 	{ X_START,	&qstart_level },
 	{ X_LOCATE,	&qlocate_level },
 	{ X_GOAL,	&nemesis_level },

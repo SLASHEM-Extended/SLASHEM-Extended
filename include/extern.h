@@ -25,6 +25,9 @@ E void NDECL(stop_occupation);
 E void NDECL(display_gamewindows);
 E void NDECL(newgame);
 E void FDECL(welcome, (BOOLEAN_P));
+#if defined(RECORD_REALTIME) || defined(REALTIME_ON_BOTL)
+E time_t NDECL(get_realtime);
+#endif
 
 /* ### apply.c ### */
 

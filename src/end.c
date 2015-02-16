@@ -789,6 +789,12 @@ die:
 	   it's gone prior to inventory disclosure and creation of bones data */
 	inven_inuse(TRUE);
 
+#ifdef RECORD_REALTIME
+        /* Update the realtime counter to reflect the playtime of the current
+         * game. */
+        realtime_data.realtime = get_realtime();
+#endif /* RECORD_REALTIME */
+
 	/* Sometimes you die on the first move.  Life's not fair.
 	 * On those rare occasions you get hosed immediately, go out
 	 * smiling... :-)  -3.

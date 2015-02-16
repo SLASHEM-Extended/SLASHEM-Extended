@@ -307,15 +307,27 @@ struct obj *obj;
 	} else if (obj->otyp == AMULET_OF_YENDOR) {
 		if (u.uhave.amulet) impossible("already have amulet?");
 		u.uhave.amulet = 1;
+#ifdef RECORD_ACHIEVE
+                achieve.get_amulet = 1;
+#endif
 	} else if (obj->otyp == CANDELABRUM_OF_INVOCATION) {
 		if (u.uhave.menorah) impossible("already have candelabrum?");
 		u.uhave.menorah = 1;
+#ifdef RECORD_ACHIEVE
+                achieve.get_candelabrum = 1;
+#endif
 	} else if (obj->otyp == BELL_OF_OPENING) {
 		if (u.uhave.bell) impossible("already have silver bell?");
 		u.uhave.bell = 1;
+#ifdef RECORD_ACHIEVE
+                achieve.get_bell = 1;
+#endif
 	} else if (obj->otyp == SPE_BOOK_OF_THE_DEAD) {
 		if (u.uhave.book) impossible("already have the book?");
 		u.uhave.book = 1;
+#ifdef RECORD_ACHIEVE
+                achieve.get_book = 1;
+#endif
 	} else if (obj->oartifact) {
 		if (is_quest_artifact(obj)) {
 		    if (u.uhave.questart)
@@ -329,6 +341,19 @@ struct obj *obj;
 		set_artifact_intrinsic(obj, 1, W_ART);
 	
 	}
+
+#ifdef RECORD_ACHIEVE
+        if(obj->otyp == LUCKSTONE && obj->record_achieve_special) {
+                achieve.get_luckstone = 1;
+                obj->record_achieve_special = 0;
+        } else if((obj->otyp == AMULET_OF_REFLECTION ||
+                   obj->otyp == BAG_OF_HOLDING) &&
+                  obj->record_achieve_special) {
+                achieve.finish_sokoban = 1;
+                obj->record_achieve_special = 0;
+        }
+#endif /* RECORD_ACHIEVE */
+
 }
 
 /*

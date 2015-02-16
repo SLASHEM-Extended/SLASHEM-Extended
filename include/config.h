@@ -210,6 +210,7 @@
 #endif
 
 #define LOGFILE "logfile"	/* larger file for debugging purposes */
+#define XLOGFILE "xlogfile" /* even larger logfile */
 #define LOGAREA FILE_AREA_VAR
 #define NEWS "news"		/* the file containing the latest hack news */
 #define NEWS_AREA FILE_AREA_SHARE
@@ -344,7 +345,26 @@ typedef signed char	schar;
 typedef unsigned char	uchar;
 #endif
 
-#define RECORD_CONDUCT /* Record conduct challenges in logfile */
+#define RECORD_CONDUCT /* Record conduct challenges in logfile and xlogfile */
+
+/* #define REALTIME_ON_BOTL */  /* Show elapsed time on bottom line.  Note:
+                                 * this breaks savefile compatibility. */
+
+/* The options in this section require the extended logfile support */
+#ifdef XLOGFILE
+#define RECORD_TURNS    /* Record turns elapsed in logfile */
+/* #define RECORD_ACHIEVE */  /* Record certain notable achievements in the
+                         * logfile.  Note: this breaks savefile compatibility
+                         * due to the addition of the u_achieve struct. */
+/* #define RECORD_REALTIME */ /* Record the amount of actual playing time (in
+                         * seconds) in the record file.  Note: this breaks
+                         * savefile compatibility. */
+#define RECORD_START_END_TIME /* Record to-the-second starting and ending
+                               * times; stored as 32-bit values obtained
+                               * from time(2) (seconds since the Epoch.) */
+#define RECORD_GENDER0   /* Record initial gender in logfile */
+#define RECORD_ALIGN0   /* Record initial alignment in logfile */
+#endif
 
 /*
  * Various structures have the option of using bitfields to save space.

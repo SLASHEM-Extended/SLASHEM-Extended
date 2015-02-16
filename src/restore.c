@@ -574,6 +574,15 @@ unsigned int *stuckid, *steedid;	/* STEED */
 
 	restnames(fd);
 	restore_waterlevel(fd);
+
+#ifdef RECORD_ACHIEVE
+        mread(fd, (genericptr_t) &achieve, sizeof achieve);
+#endif
+#if defined(RECORD_REALTIME) || defined(REALTIME_ON_BOTL)
+        mread(fd, (genericptr_t) &realtime_data.realtime, 
+                  sizeof realtime_data.realtime);
+#endif
+  
 	/* must come after all mons & objs are restored */
 	relink_timers(FALSE);
 	relink_light_sources(FALSE);
@@ -824,6 +833,17 @@ register int fd;
 	restoring = FALSE;
 	clear_nhwindow(WIN_MESSAGE);
 	program_state.something_worth_saving++;	/* useful data now exists */
+
+#if defined(RECORD_REALTIME) || defined(REALTIME_ON_BOTL)
+
+/* Start the timer here (realtime has already been set) */
+#if defined(BSD) && !defined(POSIX_TYPES)
+        (void) time((long *)&realtime_data.restoretime);
+#else
+        (void) time(&realtime_data.restoretime);
+#endif
+
+#endif /* RECORD_REALTIME || REALTIME_ON_BOTL */
 
 	/* Success! */
 	welcome(FALSE);

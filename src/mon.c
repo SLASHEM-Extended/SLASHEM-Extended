@@ -2315,6 +2315,11 @@ register struct monst *mtmp;
 
 	}
 
+#ifdef RECORD_ACHIEVE
+        if(mtmp->data == &mons[PM_MEDUSA])
+            achieve.killed_medusa = 1;
+#endif
+
 	if(memory_is_invisible(mtmp->mx, mtmp->my))
 	    unmap_object(mtmp->mx, mtmp->my);
 	m_detach(mtmp, mptr);

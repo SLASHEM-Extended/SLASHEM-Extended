@@ -470,6 +470,14 @@ bot2str(char *newbot2)
 	if(flags.time && bot2_abbrev < 3)
 	        Sprintf(nb = eos(nb), " T%ld ", moves);
 
+#ifdef REALTIME_ON_BOTL
+  if(iflags.showrealtime) {
+    time_t currenttime = get_realtime();
+    Sprintf(nb = eos(nb), " %d:%2.2d", currenttime / 3600, 
+                                       (currenttime % 3600) / 60);
+  }
+#endif
+
 #ifdef ALLEG_FX
         if(iflags.usealleg && botl_warn && !Hallucination)
         {

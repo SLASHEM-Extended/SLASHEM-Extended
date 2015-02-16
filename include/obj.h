@@ -109,6 +109,11 @@ struct obj {
 #define leashmon  corpsenm	/* gets m_id of attached pet */
 #define spestudied corpsenm	/* # of times a spellbook has been studied */
 #define fromsink  corpsenm	/* a potion from a sink */
+
+#ifdef RECORD_ACHIEVE
+#define record_achieve_special corpsenm
+#endif
+
 	unsigned oeaten;	/* nutrition left in food, if partly eaten */
 	long age;		/* creation date */
 
