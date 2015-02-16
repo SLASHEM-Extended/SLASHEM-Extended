@@ -359,6 +359,7 @@ tactics(mtmp)
 				     doname(otmp) : distant_name(otmp, doname));
 			    obj_extract_self(otmp);
 			    (void) mpickobj(mtmp, otmp);
+				m_dowear(mtmp, FALSE); /* thanks 5lo --Amy */
 			    return(1);
 			} else return(0);
 		    } else {
