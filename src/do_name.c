@@ -297,7 +297,7 @@ register struct obj *obj;
 {
 	char buf[BUFSZ], qbuf[QBUFSZ];
 	const char *aname;
-	short objtyp;
+	/*short*/int objtyp;
 
 	Sprintf(qbuf, "What do you want to name %s %s?",
 		is_plural(obj) ? "these" : "this", xname(obj));

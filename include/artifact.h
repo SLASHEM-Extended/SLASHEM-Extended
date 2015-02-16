@@ -38,7 +38,7 @@
 #define SPFX_DBONUS 0x1F00000L	/* attack bonus mask */
 
 struct artifact {
-	short	    otyp;
+	/*short*/int	    otyp;
 	const char  *name;
 	unsigned long spfx;	/* special effect from wielding/wearing */
 	unsigned long cspfx;	/* special effect just from carrying obj */

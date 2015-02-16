@@ -43,7 +43,7 @@ struct obj {
 #define STATUE_FEMALE   0x04
 	char	oclass;		/* object class */
 	char	invlet;		/* designation in inventory */
-	/*char*/long	oartifact;	/* artifact array index */
+	/*char*/int	oartifact;	/* artifact array index */
 	schar 	altmode; 	/* alternate modes - eg. SMG, double Lightsaber */
 				/* WP_MODEs are in decreasing speed */
 #define WP_MODE_AUTO	0	/* Max firing speed */

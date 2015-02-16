@@ -546,7 +546,7 @@ winid endwin;
     char pbuf[BUFSZ];
     struct obj *otmp;
     long value, points;
-    short dummy;	/* object type returned by artifact_name() */
+    /*short*/int dummy;	/* object type returned by artifact_name() */
 
     for (otmp = list; otmp; otmp = otmp->nobj) {
 	if (otmp->oartifact ||
