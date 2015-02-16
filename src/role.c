@@ -2758,7 +2758,7 @@ const struct Race races[] = {
 },
 {	"drow", "droven", "drovenkind", "Dro",
 	{0, 0},
-	PM_DROW, NON_PM, PM_ELF_MUMMY, PM_ELF_ZOMBIE,
+	PM_DROW, NON_PM, PM_DROW_MUMMY, PM_DROW_ZOMBIE,
 	MH_ELF | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
 	MH_ELF, MH_ELF, MH_ORC,
 	/*  Str    Int Wis Dex Con Cha */
@@ -2924,7 +2924,7 @@ const struct Race races[] = {
 },
 {	"ogro", "ogrotic", "ogrohood", "Ogr",
 	{0, 0},
-	PM_OGRO, NON_PM, PM_KOBOLD_MUMMY, PM_KOBOLD_ZOMBIE,
+	PM_OGRO, NON_PM, PM_OGRE_MUMMY, PM_OGRE_ZOMBIE,
 	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
 	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
 	MH_HUMAN, 0, 0,
