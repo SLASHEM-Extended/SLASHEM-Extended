@@ -3323,6 +3323,9 @@ static const struct def_skill Skill_Unt[] = {
     { P_TWO_HANDED_SWORD, P_EXPERT },	{ P_SCIMITAR, P_EXPERT },
     { P_SPEAR, P_EXPERT },              { P_JAVELIN, P_EXPERT },
     { P_BOW, P_EXPERT },			        { P_SLING, P_EXPERT },
+
+    { P_PICK_AXE, P_MASTER }, /* thanks 5lo for reminding me that undertakers are supposed to have that skill --Amy */
+
 #ifdef FIREARMS
     { P_FIREARM, P_EXPERT },
 #endif
