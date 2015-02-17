@@ -147,6 +147,7 @@ SYSOBJ = ioctl.o unixmain.o unixtty.o unixunix.o unixres.o
 CFLAGS = -g -O2
 CFLAGS += -DNO_EXPLORE_MODE -I../include
 CFLAGS += -D'WIZARD="$(GAMEUID)"'
+CFLAGS += -DNO_SUSPEND
 LFLAGS =
 
 # Only used for the Gnome interface.
