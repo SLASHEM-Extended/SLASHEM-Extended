@@ -2873,7 +2873,7 @@ boolean ordinary;
 			pline_The("missiles bounce!");
 		    } else {
 			damage = d(4,6);
-			pline("Idiot!  You've shot yourself!");
+			pline(Role_if(PM_PIRATE) ? "Bilge!  Ye've shot yourself!" : Role_if(PM_KORSAIR) ? "Bilge!  Ye've shot yourself!" : "Idiot!  You've shot yourself!");
 		    }
 		    break;
 		case WAN_POLYMORPH:
@@ -5537,7 +5537,7 @@ makewish()
 	int tries = 0;
 
 	nothing = zeroobj;  /* lint suppression; only its address matters */
-	if (flags.verbose) You("may wish for an object.");
+	if (flags.verbose) { (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) ? pline("Shiver me timbers! Ye may wish for an object!") : You("may wish for an object."); }
 retry:
 	getlin("For what do you wish?", buf);
 	if(buf[0] == '\033') buf[0] = 0;

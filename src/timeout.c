@@ -493,7 +493,8 @@ nh_timeout()
 			if (unconscious() || Sleep_resistance)
 				HSleeping += rnd(1000);
 			else if (Sleeping) {
-				You("fall asleep.");
+				if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) pline("Ye take a caulk.");
+				else You("fall asleep.");
 				sleeptime = rnd(20);
 				fall_asleep(-sleeptime, TRUE);
 				HSleeping += sleeptime + rnd(1000);

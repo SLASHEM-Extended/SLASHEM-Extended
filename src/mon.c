@@ -2562,7 +2562,7 @@ int how;
 	    mondied(mdef);
 
 	if (be_sad && mdef->mhp <= 0)
-	    You(Hallucination ? "are feeling totally down for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
+	    You(Hallucination ? "are feeling totally down for a moment, then it passes." : (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) ? "hang the jib for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
 }
 
 
@@ -2591,7 +2591,7 @@ mon_xkilled(mdef, fltxt, how)
 		xkilled(mdef,0);
 
 	if (be_sad && mdef->mhp <= 0)
-	    You(Hallucination ? "are feeling totally down for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
+	    You(Hallucination ? "are feeling totally down for a moment, then it passes." : (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) ? "hang the jib for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
 }
 
 
@@ -2929,7 +2929,7 @@ cleanup:
 	} else if (mtmp->mtame) {
 		adjalign(-50);	/* bad!! */
 		/* your god is mighty displeased... */
-		if (!Hallucination) You_hear("the rumble of distant thunder...");
+		if (!Hallucination) {(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) ? pline("Batten down the hatches!") : You_hear("the rumble of distant thunder...");}
 		else You_hear("the studio audience applaud!");
 	} else if (mtmp->mpeaceful) {
 		adjalign(-15);

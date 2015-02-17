@@ -152,7 +152,7 @@ boolean talk;
 	}
 	if (xtime && !old) {
 		if (talk) {
-			pline(Hallucination ? "Suddenly you fear the dungeon around you is going to collapse. Quick! Where is the nearest exit?" : "You are stricken with fear!");
+			pline(Hallucination ? "Suddenly you fear the dungeon around you is going to collapse. Quick! Where is the nearest exit?" : (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) ? "Ye're lily livered." : "You are stricken with fear!");
 		}
 	}
 	if ((!xtime && old) || (xtime && !old)) flags.botl = TRUE;
@@ -222,7 +222,7 @@ int type;
 	    if (Sick_resistance) return;
 	    if (!old) {
 		/* newly sick */
-		You_feel("deathly sick.");
+		You_feel(Role_if(PM_PIRATE) ? "poxy." : Role_if(PM_KORSAIR) ? "poxy." : "deathly sick.");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    } else {
 		/* already sick */
@@ -1487,7 +1487,9 @@ peffects(otmp)
 		break;
 	case POT_BOOZE:
 		unkn++;
-		pline("Ooph!  This tastes like %s%s!",
+
+		if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) pline("Ye splice the mainbrace.");
+		else pline("Ooph!  This tastes like %s%s!",
 		      otmp->odiluted ? "watered down " : "",
 		      Hallucination ? "dandelion wine" : "liquid fire");
 		if (!otmp->blessed)
@@ -1500,7 +1502,7 @@ peffects(otmp)
 		newuhs(FALSE);
 		exercise(A_WIS, FALSE);
 		if(otmp->cursed) {
-			You("pass out.");
+			You(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) ? "are loaded to the gunwhales." : "pass out.");
 			multi = -rnd(15);
 			nomovemsg = "You awake with a headache.";
 		}
@@ -1691,7 +1693,9 @@ peffects(otmp)
 		    if (Hallucination) {
 			pline("What a trippy feeling!");
 			unkn++;
-		    } else
+		    } else if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR))
+			pline("Blimey! Ye're one sheet to the wind!");
+			else 
 			pline("Huh, What?  Where am I?");
 		} else	nothing++;
 		make_confused(itimeout_incr(HConfusion,
