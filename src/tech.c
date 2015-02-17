@@ -894,7 +894,7 @@ dotech()
 {
 	int tech_no;
 
-	if (gettech(&tech_no))
+	if (gettech(&tech_no)) {
 
 		switch (techid(tech_no)) {
 
@@ -1116,6 +1116,8 @@ dotech()
 		}
 
 	    if (yn("Use this technique?") == 'y') return techeffects(tech_no);
+	}
+
 	return 0;
 }
 
