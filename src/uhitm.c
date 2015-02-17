@@ -1497,7 +1497,7 @@ int thrown;
 		/* If you throw using a propellor, you don't get a strength
 		 * bonus but you do get an increase-damage bonus.
 		 */
-		if(!thrown || !obj || !uwep || !ammo_and_launcher(obj, launcher))
+		if(!thrown || !obj || !uwep || !ammo_and_launcher(obj, launcher) || uslinging() )
 		    tmp += dbon();
 	}
 
