@@ -1,7 +1,7 @@
 #	NetHack Makefile.
 #	SCCS Id: @(#)Makefile.top	3.4	1995/01/05
 
-export VCS_DESCRIPTION := $(shell git describe)
+export VCS_DESCRIPTION := $(shell git describe --always)
 VERSION := $(shell util/version.sh)
 
 # newer makes predefine $(MAKE) to 'make' and do smarter processing of
