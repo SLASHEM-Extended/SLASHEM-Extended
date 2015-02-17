@@ -274,7 +274,9 @@ title.img:
 gtkrc:	win/gtk/GTKRC
 	cp win/gtk/GTKRC dat/gtkrc
 
-check-dlb: options
+# little kludge to make sure this runs after everything else, in make all
+# there's much worse, in these makefiles
+check-dlb: options $(CNF_SHARE_DATD) dungeon spec_levs
 	@if egrep -s librarian dat/options ; then $(MAKE) dlb ; else true ; fi
 
 dlb: dat/nhshare dat/nhushare

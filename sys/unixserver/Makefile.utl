@@ -112,15 +112,6 @@ LEX      = lex
 # YACC     = byacc
 # LEX      = flex
  
-# these are the names of the output files from YACC/LEX. Under MS-DOS
-# and similar systems, they may differ
-YTABC = y.tab.c
-YTABH = y.tab.h
-LEXYYC = lex.yy.c
-# YTABC = y_tab.c
-# YTABH = y_tab.h
-# LEXYYC = lexyy.c
-
 
 
 # ----------------------------------------
@@ -141,13 +132,13 @@ UTILSRCS = $(MAKESRC) panic.c $(SPLEVSRC) $(DGNCOMPSRC) $(RECOVSRC) $(DLBSRC)
 
 # files that define all monsters and objects
 CMONOBJ = ../src/monst.c ../src/objects.c
-OMONOBJ = $(OBJDIR)/monst.o $(OBJDIR)/objects.o
+OMONOBJ = $(OBJDIR)/monst_util.o $(OBJDIR)/objects_util.o
 # files that provide access to NetHack's names
 CNAMING = ../src/drawing.c ../src/decl.c $(CMONOBJ)
-ONAMING = $(OBJDIR)/drawing.o $(OBJDIR)/decl.o $(OMONOBJ)
+ONAMING = $(OBJDIR)/drawing_util.o $(OBJDIR)/decl_util.o $(OMONOBJ)
 # dynamic memory allocation
 CALLOC = ../src/alloc.c panic.c
-OALLOC = $(OBJDIR)/alloc.o panic.o
+OALLOC = $(OBJDIR)/alloc_util.o panic.o
 
 # object files for makedefs
 MAKEOBJS = makedefs.o $(OMONOBJ) $(OALLOC)
@@ -162,7 +153,7 @@ DGNCOMPOBJS = dgn_yacc.o dgn_lex.o dgn_main.o $(OALLOC)
 RECOVOBJS = recover.o
 
 # object files for the data librarian
-DLBOBJS = dlb_main.o $(OBJDIR)/dlb.o $(OALLOC)
+DLBOBJS = dlb_main.o $(OBJDIR)/dlb_util.o $(OALLOC)
 
 # flags for creating distribution versions of sys/share/*_lex.c, using
 # a more portable flex skeleton, which is not included in the distribution.
@@ -231,13 +222,13 @@ lev_lex.o:   lev_lex.c $(HACK_H) ../include/lev_comp.h ../include/sp_lev.h
 ../include/lev_comp.h: lev_yacc.c
 
 lev_yacc.c: lev_comp.y
-	$(YACC) $(YACCDIST) -d lev_comp.y
-	mv $(YTABC) lev_yacc.c
-	mv $(YTABH) ../include/lev_comp.h
+	$(YACC) $(YACCDIST) -b lev -d lev_comp.y
+	mv lev.tab.c lev_yacc.c
+	mv lev.tab.h ../include/lev_comp.h
 
 lev_lex.c: lev_comp.l
-	$(LEX) $(FLEXDIST) lev_comp.l
-	mv $(LEXYYC) lev_lex.c
+	$(LEX) $(FLEXDIST) -t lev_comp.l > lev_lex.yy.c
+	mv lev_lex.yy.c lev_lex.c
 
 # with all of extern.h's functions to complain about, we drown in
 # 'defined but not used' without -u
@@ -262,13 +253,13 @@ dgn_lex.o:   dgn_lex.c $(CONFIG.H) ../include/dgn_comp.h ../include/dgn_file.h
 ../include/dgn_comp.h: dgn_yacc.c
 
 dgn_yacc.c: dgn_comp.y
-	$(YACC) $(YACCDIST) -d dgn_comp.y
-	mv $(YTABC) dgn_yacc.c
-	mv $(YTABH) ../include/dgn_comp.h
+	$(YACC) $(YACCDIST) -b dgn -d dgn_comp.y
+	mv dgn.tab.c dgn_yacc.c
+	mv dgn.tab.h ../include/dgn_comp.h
 
 dgn_lex.c: dgn_comp.l
-	$(LEX) $(FLEXDIST) dgn_comp.l
-	mv $(LEXYYC) dgn_lex.c
+	$(LEX) $(FLEXDIST) -t dgn_comp.l > dgn_lex.yy.c
+	mv dgn_lex.yy.c dgn_lex.c
 
 # with all of extern.h's functions to complain about, we drown in
 # 'defined but not used' without -u
@@ -410,17 +401,17 @@ tile2png.o: ../win/share/tile2png.c $(HACK_H) ../include/tile.h
 
 # make sure object files from src are available when needed
 #
-$(OBJDIR)/alloc.o: ../src/alloc.c $(CONFIG_H)
+$(OBJDIR)/alloc_util.o: ../src/alloc.c $(CONFIG_H)
 	$(CC) $(CFLAGS) -c ../src/alloc.c -o $@
-$(OBJDIR)/drawing.o: ../src/drawing.c $(CONFIG_H)
+$(OBJDIR)/drawing_util.o: ../src/drawing.c $(CONFIG_H)
 	$(CC) $(CFLAGS) -c ../src/drawing.c -o $@
-$(OBJDIR)/decl.o: ../src/decl.c $(CONFIG_H)
+$(OBJDIR)/decl_util.o: ../src/decl.c $(CONFIG_H)
 	$(CC) $(CFLAGS) -c ../src/decl.c -o $@
-$(OBJDIR)/monst.o: ../src/monst.c $(CONFIG_H)
+$(OBJDIR)/monst_util.o: ../src/monst.c $(CONFIG_H)
 	$(CC) $(CFLAGS) -c ../src/monst.c -o $@
-$(OBJDIR)/objects.o: ../src/objects.c $(CONFIG_H)
+$(OBJDIR)/objects_util.o: ../src/objects.c $(CONFIG_H)
 	$(CC) $(CFLAGS) -c ../src/objects.c -o $@
-$(OBJDIR)/dlb.o: ../src/dlb.c $(HACK_H) ../include/dlb.h
+$(OBJDIR)/dlb_util.o: ../src/dlb.c $(HACK_H) ../include/dlb.h
 	$(CC) $(CFLAGS) -c ../src/dlb.c -o $@
 
 # make sure hack.h dependencies get transitive information
