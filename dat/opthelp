@@ -92,6 +92,9 @@ timed_delay    on unix and VMS, use a timer instead of sending    [TRUE]
 Boolean options if KEEP_SAVE was set at compile time:
 keep_savefile  keep save file after restore                       [FALSE]
 
+Boolean option if QWERTZ was set at compile time:
+qwertz_layout  swap the y and z keys                              [FALSE]
+
 Boolean option if USE_TILES was set at compile time (MSDOS protected mode only):
 preload_tiles  control whether tiles get pre-loaded into RAM at the
                start of the game.  Doing so enhances performance

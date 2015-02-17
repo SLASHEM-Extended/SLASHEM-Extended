@@ -99,7 +99,13 @@ struct linfo level_info[MAXLINFO];
 NEARDATA struct sinfo program_state;
 
 /* 'rogue'-like direction commands (cmd.c) */
+#ifdef QWERTZ
+const char qykbd_dir[] = "hykulnjb><";       /* qwerty layout */
+const char qzkbd_dir[] = "hzkulnjb><";       /* qwertz layout */
+char const *sdir=qykbd_dir;
+#else
 const char sdir[] = "hykulnjb><";
+#endif
 const char ndir[] = "47896321><";	/* number pad mode */
 const schar xdir[10] = { -1,-1, 0, 1, 1, 1, 0,-1, 0, 0 };
 const schar ydir[10] = {  0,-1,-1,-1, 0, 1, 1, 1, 0, 0 };

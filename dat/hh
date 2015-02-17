@@ -8,6 +8,8 @@ b j n   1 2 3           g<dir>:   run in direction <dir> until something
  <  up                  ^<dir>:     considered interesting (the ^ in this
                                     case means the Control key, not a caret)
  >  down                m<dir>:   move without picking up objects
+                With the qwertz_layout option, the y and z keys are swapped
+                (this requires option QWERTZ to be set at compile-time).
                 If the number_pad option is set, the number keys move instead.
                 Depending on the platform, Shift number (on the numberpad),
                 Meta number, or Alt number will invoke the YUHJKLBN commands.
@@ -21,6 +23,7 @@ General commands:
 S       save    save the game (to be continued later)
 !       sh      escape to some SHELL (if allowed)
 ^Z      suspend suspend the game (independent of your current suspend char)
+                (^Y if option qwertz_layout is set)
 O       options set options
 /       whatis  tell what a map symbol represents
 \       known   display list of what's been discovered
@@ -69,8 +72,8 @@ w       wield   wield a weapon  (w-  wield nothing)
 W       wear    put on some armor
 x       exchange swap weapon slots               
 X       spells  list the spells you know
-z       zap     zap a wand
-Z       Zap     cast a spell
+z       zap     zap a wand (y if option qwertz_layout is set)
+Z       Zap     cast a spell (Y if option qwertz_layout is set)
 <       up      go up the stairs
 >       down    go down the stairs
 ^       trap_id identify a previously found trap

@@ -62,6 +62,8 @@ b j n   1 2 3           g<dir>:   run in direction <dir> until something
                                     case means the Control key, not a caret)
  >  down                m<dir>:   move without picking up objects
                         F<dir>:   fight even if you don't sense a monster
+                With the qwertz_layout option, the y and z keys are swapped
+                (this requires option QWERTZ to be set at compile-time).
                 If the number_pad option is set, the number keys move instead.
                 Depending on the platform, Shift number (on the numberpad),
                 Meta number, or Alt number will invoke the YUHJKLBN commands.
@@ -151,10 +153,10 @@ Commands:
         x       Switch weapon slots.
         X       List the spells you know (same as '+').
         ^X      Show your attributes.
-	^Y	polymorph (if possible)
-        z       Zap a wand.
-        Z       Cast a spell.
-        ^Z      Suspend the game.
+        ^Y      polymorph (if possible) (^Z if qwertz_layout is set)
+        z       Zap a wand. (y if qwertz_layout is set)
+        Z       Cast a spell. (Y if qwertz_layout is set)
+        ^Z      Suspend the game. (^Y if qwertz_layout is set)
         :       Look at what is here.
         ;       Look at what is somewhere else.
         ,       Pick up some things.

@@ -3313,9 +3313,18 @@ register char *cmd;
 	} else {
 	    register const struct func_tab *tlist;
 	    int res, NDECL((*func));
+#ifdef QWERTZ
+            unsigned char cmdchar = *cmd & 0xff;
+#endif
 	    for (tlist = cmdlist; tlist->f_char; tlist++) {
-		if ((*cmd & 0xff) != (tlist->f_char & 0xff)) continue;
+#ifdef QWERTZ
+                if (C(cmdchar) == C('y') && iflags.qwertz_layout == TRUE)
+                    cmdchar += 'z' - 'y';
 
+                if (cmdchar != (tlist->f_char & 0xff)) continue;
+#else
+		if ((*cmd & 0xff) != (tlist->f_char & 0xff)) continue;
+#endif
 		if (u.uburied && !tlist->can_if_buried) {
 		    You_cant("do that while you are buried!");
 		    res = 0;

@@ -2823,13 +2823,13 @@
             pushes  the  old  item into your alternate weapon slot (default
             off).
 
+          qwertz_layout
+            If QWERTZ was set in config.h at compile-time this  option  can
+            be  used to swap the y and z keys. This is useful for some key-
+            board layouts.
+
           race
             Selects your race (for example,  ``race:human'').   Default  is
-            random.  Cannot be set with the `O' command.
-
-          rest_on_space
-            Make  the  space  bar a synonym for the `.' (rest) command (de-
-            fault off).
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -2841,6 +2841,12 @@
           SLASH'EM Guidebook                                             44
 
 
+
+            random.  Cannot be set with the `O' command.
+
+          rest_on_space
+            Make  the  space  bar a synonym for the `.' (rest) command (de-
+            fault off).
 
           role
             Pick your type of character (ex. ``role:Samurai''); synonym for
@@ -2889,13 +2895,7 @@
             Show your approximate accumulated score on bottom line (default
             off).
 
-          showdmg
-            Show damage inflicted/damage received (default off).  Inflicted
-            damage is only shown to characters who have become  experienced
-            enough to quantify their damage.
 
-          showweight
-            Show total weight in inventory on bottom line (default off).
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -2907,6 +2907,14 @@
           SLASH'EM Guidebook                                             45
 
 
+
+          showdmg
+            Show damage inflicted/damage received (default off).  Inflicted
+            damage is only shown to characters who have become  experienced
+            enough to quantify their damage.
+
+          showweight
+            Show total weight in inventory on bottom line (default off).
 
           silent
             Suppress terminal beeps (default on).
@@ -2955,14 +2963,6 @@
           tombstone
             Draw a tombstone graphic upon your death (default on).
 
-          toptenwin
-            Put the ending display in a SLASH'EM window instead of on  std-
-            out  (default  off).   Setting this option makes the score list
-            visible when a windowing version of SLASH'EM is started without
-            a  parent window, but it no longer leaves the score list around
-            after game end on a terminal or emulating window.
-
-
 
           SLASH'EM 0.0.7                                  December 10, 2003
 
@@ -2973,6 +2973,13 @@
           SLASH'EM Guidebook                                             46
 
 
+
+          toptenwin
+            Put the ending display in a SLASH'EM window instead of on  std-
+            out  (default  off).   Setting this option makes the score list
+            visible when a windowing version of SLASH'EM is started without
+            a  parent window, but it no longer leaves the score list around
+            after game end on a terminal or emulating window.
 
           traps
             Set  the  graphics  symbols  for  displaying   traps   (default
@@ -3021,13 +3028,6 @@
                A ``TILESET'' line has the same syntax as an ``OPTION'' line
           but with the following options available:
 
-          name
-            The name of the tile set  (for  selection).  This  can  be  any
-            string of characters excluding the comma. It must be specified.
-
-          file
-            The  name of the file which contains the tile set. This must be
-            specified.
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3039,6 +3039,14 @@
           SLASH'EM Guidebook                                             47
 
 
+
+          name
+            The name of the tile set  (for  selection).  This  can  be  any
+            string of characters excluding the comma. It must be specified.
+
+          file
+            The  name of the file which contains the tile set. This must be
+            specified.
 
           transparent
             Marks a tile set as being transparent (as opposed  to  opaque).
@@ -3085,14 +3093,6 @@
           ascii_map
             SLASH'EM should display an ascii character map if it can.
 
-          color
-            SLASH'EM should display color if it can for different monsters,
-            objects, and dungeon features
-
-          eight_bit_tty
-            SLASH'EM  should  pass eight-bit character values (for example,
-            specified with the traps option) straight through to your  ter-
-            minal (default off).
 
 
 
@@ -3105,6 +3105,15 @@
           SLASH'EM Guidebook                                             48
 
 
+
+          color
+            SLASH'EM should display color if it can for different monsters,
+            objects, and dungeon features
+
+          eight_bit_tty
+            SLASH'EM  should  pass eight-bit character values (for example,
+            specified with the traps option) straight through to your  ter-
+            minal (default off).
 
           font_map
             SLASH'EM  should use a font by the chosen name for the map win-
@@ -3150,15 +3159,6 @@
             is often used; with tiles, generally displays  a  heart  symbol
             near pets or a red box around the pet.
 
-          large_font
-            SLASH'EM should use a large font.
-
-          map_mode
-            SLASH'EM should display the map in the manner specified.
-
-          mouse_support
-            Allow use of the mouse for input and travel.
-
 
 
 
@@ -3171,6 +3171,15 @@
           SLASH'EM Guidebook                                             49
 
 
+
+          large_font
+            SLASH'EM should use a large font.
+
+          map_mode
+            SLASH'EM should display the map in the manner specified.
+
+          mouse_support
+            Allow use of the mouse for input and travel.
 
           player_selection
             SLASH'EM should pop up dialog boxes, or use prompts for charac-
@@ -3216,16 +3225,7 @@
           tile_width
             Specify the preferred width of each tile in a tile capable port
 
-          use_inverse
-            SLASH'EM should display inverse when the game specifies it.
 
-          vary_msgcount
-            SLASH'EM should display this number of messages at  a  time  in
-            the message window.
-
-          windowcolors
-            SLASH'EM  should  display  windows  with  the  specified  fore-
-            ground/background colors if it can.
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3237,6 +3237,17 @@
           SLASH'EM Guidebook                                             50
 
 
+
+          use_inverse
+            SLASH'EM should display inverse when the game specifies it.
+
+          vary_msgcount
+            SLASH'EM should display this number of messages at  a  time  in
+            the message window.
+
+          windowcolors
+            SLASH'EM  should  display  windows  with  the  specified  fore-
+            ground/background colors if it can.
 
           wraptext
             SLASH'EM port should wrap long lines of text if they don't  fit
@@ -3282,17 +3293,6 @@
             (default on, PC SLASH'EM only).  Cannot be  set  with  the  `O'
             command.
 
-          subkeyvalue
-            (Win32  tty  SLASH'EM only).  May be used to alter the value of
-            keystrokes that the operating system  returns  to  SLASH'EM  to
-            help   compensate   for  international  keyboard  issues.   OP-
-            TIONS=subkeyvalue:171/92 will return 92 to SLASH'EM, if 171 was
-            originally  going to be returned.  You can use multiple subkey-
-            value statements in the config file if needed.  Cannot  be  set
-            with the `O' command.
-
-
-
 
           SLASH'EM 0.0.7                                  December 10, 2003
 
@@ -3303,6 +3303,15 @@
           SLASH'EM Guidebook                                             51
 
 
+
+          subkeyvalue
+            (Win32  tty  SLASH'EM only).  May be used to alter the value of
+            keystrokes that the operating system  returns  to  SLASH'EM  to
+            help   compensate   for  international  keyboard  issues.   OP-
+            TIONS=subkeyvalue:171/92 will return 92 to SLASH'EM, if 171 was
+            originally  going to be returned.  You can use multiple subkey-
+            value statements in the config file if needed.  Cannot  be  set
+            with the `O' command.
 
           video
             Set  the  video  mode used (PC SLASH'EM only).  Values are `au-
@@ -3348,16 +3357,7 @@
             characters to be used as a pattern to match against the  singu-
             lar form of the description of an object at your location.
 
-               You may use the following special characters in a pattern:
 
-                 *--- matches 0 or more characters.
-                 ?--- matches any single character.
-
-               In  addition,  some characters are treated specially if they
-          occur as the first character in the string pattern, specifically:
-
-               < - always pickup an object that matches the pattern that follows.
-               > - never pickup an object that matches the pattern that follows.
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3369,6 +3369,17 @@
           SLASH'EM Guidebook                                             52
 
 
+
+               You may use the following special characters in a pattern:
+
+                 *--- matches 0 or more characters.
+                 ?--- matches any single character.
+
+               In  addition,  some characters are treated specially if they
+          occur as the first character in the string pattern, specifically:
+
+               < - always pickup an object that matches the pattern that follows.
+               > - never pickup an object that matches the pattern that follows.
 
                Can be set with the `O' command, but the setting is not pre-
           served across saves and restores.
@@ -3413,17 +3424,6 @@
           own  internal  pattern  matching  facility. The ``regular expres-
           sions'' matching can be much more sophisticated than the internal
           SLASH'EM  pattern  matching,  but requires 3rd party libraries on
-          some platforms.  There are plenty of references  available  else-
-          where  for  explaining  ``regular  expressions''.  You can verify
-          which pattern matching is used by your  port  with  the  #version
-          command.
-
-               SLASH'EM's  internal  pattern matching routine uses the fol-
-          lowing special characters in its pattern matching:
-
-                 *--- matches 0 or more characters.
-                 ?--- matches any single character.
-
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3435,6 +3435,17 @@
           SLASH'EM Guidebook                                             53
 
 
+
+          some platforms.  There are plenty of references  available  else-
+          where  for  explaining  ``regular  expressions''.  You can verify
+          which pattern matching is used by your  port  with  the  #version
+          command.
+
+               SLASH'EM's  internal  pattern matching routine uses the fol-
+          lowing special characters in its pattern matching:
+
+                 *--- matches 0 or more characters.
+                 ?--- matches any single character.
 
                Here's an example of a sound mapping using SLASH'EM's inter-
           nal pattern matching facility:
@@ -3479,17 +3490,6 @@
           IBMgraphics
             Disable IBMgraphics by commenting out this option.
 
-          menustyle:traditional
-            This will assist in the interface to speech synthesizers.
-
-          number_pad
-            A lot of speech access programs use the  number-pad  to  review
-            the screen.  If this is the case, disable the number_pad option
-            and use the traditional Rogue-like commands.
-
-          Character graphics
-            Comment out all character graphics sets found near  the  bottom
-            of  the  defaults.nh  file.   Most  of these replace SLASH'EM's
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3502,9 +3502,20 @@
 
 
 
-            default representation of  the  dungeon  using  standard  ASCII
-            characters  with  fancier  characters  from  extended character
-            sets, and these fancier characters can annoy screen-readers.
+          menustyle:traditional
+            This will assist in the interface to speech synthesizers.
+
+          number_pad
+            A lot of speech access programs use the  number-pad  to  review
+            the screen.  If this is the case, disable the number_pad option
+            and use the traditional Rogue-like commands.
+
+          Character graphics
+            Comment out all character graphics sets found near  the  bottom
+            of  the defaults.nh file.  Most of these replace SLASH'EM's de-
+            fault representation of the dungeon using standard ASCII  char-
+            acters  with  fancier  characters from extended character sets,
+            and these fancier characters can annoy screen-readers.
 
           10.  Scoring
 
@@ -3546,17 +3557,6 @@
           explore mode are left for the trepid reader to discover.
 
 
-          12.  Credits
-
-               The original hack game was  modeled  on  the  Berkeley  UNIX
-          rogue  game.   Large  portions  of  this  paper  were shamelessly
-          cribbed from A Guide to the Dungeons of Doom, by Michael  C.  Toy
-          and  Kenneth  C.  R. C. Arnold.  Small portions were adapted from
-          Further Exploration of the Dungeons of Doom, by Ken Arromdee.
-
-               SLASH'EM is the product  of  literally  dozens  of  people's
-          work.   Main  events  in  the  course of the game development are
-
 
           SLASH'EM 0.0.7                                  December 10, 2003
 
@@ -3568,7 +3568,17 @@
 
 
 
-          described below:
+          12.  Credits
+
+               The original hack game was  modeled  on  the  Berkeley  UNIX
+          rogue  game.   Large  portions  of  this  paper  were shamelessly
+          cribbed from A Guide to the Dungeons of Doom, by Michael  C.  Toy
+          and  Kenneth  C.  R. C. Arnold.  Small portions were adapted from
+          Further Exploration of the Dungeons of Doom, by Ken Arromdee.
+
+               SLASH'EM is the product  of  literally  dozens  of  people's
+          work.   Main events in the course of the game development are de-
+          scribed below:
 
 
                Jay Fenlason wrote the original Hack, with help  from  Kenny
@@ -3612,16 +3622,6 @@
           NetHack, two adventurous souls undertook their  own  modification
           to  the  sacred NetHack formula. Tom Proudfoot and Yuval released
           Nethack++,  which was rapidly renamed Nethack--,   contained  new
-          monsters,  items and other miscellaneous modifications.
-
-               Headed  by  Mike Stephenson and coordinated by Izchak Miller
-          and Janet Walz, the development team which now included  Ken  Ar-
-          romdee,  David  Cohrs,  Jean-Christophe Collet, Kevin Darcy, Matt
-          Day, Timo Hakulinen, Steve Linhart, Dean Luick, Pat Rankin,  Eric
-          Raymond,  and  Eric  Smith  undertook  a radical revision of 3.0.
-          They re-structured the game's design, and re-wrote major parts of
-          the  code.   They added multiple dungeons, a new display, special
-          individual character quests, a new endgame  and  many  other  new
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3634,6 +3634,16 @@
 
 
 
+          monsters,  items and other miscellaneous modifications.
+
+               Headed  by  Mike Stephenson and coordinated by Izchak Miller
+          and Janet Walz, the development team which now included  Ken  Ar-
+          romdee,  David  Cohrs,  Jean-Christophe Collet, Kevin Darcy, Matt
+          Day, Timo Hakulinen, Steve Linhart, Dean Luick, Pat Rankin,  Eric
+          Raymond,  and  Eric  Smith  undertook  a radical revision of 3.0.
+          They re-structured the game's design, and re-wrote major parts of
+          the  code.   They added multiple dungeons, a new display, special
+          individual character quests, a new endgame  and  many  other  new
           features, and produced NetHack 3.1.
 
                Ken  Lorber,  Gregg  Wonderly and Greg Olson, with help from
@@ -3678,16 +3688,6 @@
                The 3.2 development team, comprised of Michael Allison,  Ken
           Arromdee,  David  Cohrs, Jessie Collet, Steve Creps, Kevin Darcy,
           Timo Hakulinen, Steve  Linhart,  Dean  Luick,  Pat  Rankin,  Eric
-          Smith,  Mike  Stephenson,  Janet  Walz, and Paul Winner, released
-          version 3.2 in April of 1996.
-
-               Version 3.2 marked the tenth anniversary of the formation of
-          the  development team.  In a testament to their dedication to the
-          game, all thirteen members of the original development  team  re-
-          mained  on the team at the start of work on that release.  During
-          the interval between the release of 3.1.3 and  3.2,  one  of  the
-          founding  members of the development team, Dr. Izchak Miller, was
-          diagnosed with cancer and passed away.  That release of the  game
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3700,6 +3700,16 @@
 
 
 
+          Smith,  Mike  Stephenson,  Janet  Walz, and Paul Winner, released
+          version 3.2 in April of 1996.
+
+               Version 3.2 marked the tenth anniversary of the formation of
+          the  development team.  In a testament to their dedication to the
+          game, all thirteen members of the original development  team  re-
+          mained  on the team at the start of work on that release.  During
+          the interval between the release of 3.1.3 and  3.2,  one  of  the
+          founding  members of the development team, Dr. Izchak Miller, was
+          diagnosed with cancer and passed away.  That release of the  game
           was dedicated to him by the development and porting teams.
 
                Larry Stewart-Zerba set along a different track - to enhance
@@ -3743,16 +3753,6 @@
                Robin Johnson finished the arduous task of drawing tiles for
           the SLASH'EM monsters.  He also contributed many more new tiles.
 
-               Kevin later joined the DevTeam and incorporated the best  of
-          these ideas in NetHack 3.3.
-
-               JNetHack  (the  Japanese version of NetHack) has been around
-          since at least 1994, developed by Issei Numata  and  others.  The
-          GTK interface was written for this variant and released in 1999.
-
-               Mitsuhiro  Itakura  headed a team which began the process of
-          redrawing the NetHack tiles in 8-bit color at 32x32 pixels.
-
 
 
 
@@ -3765,6 +3765,16 @@
           SLASH'EM Guidebook                                             58
 
 
+
+               Kevin later joined the DevTeam and incorporated the best  of
+          these ideas in NetHack 3.3.
+
+               JNetHack  (the  Japanese version of NetHack) has been around
+          since at least 1994, developed by Issei Numata  and  others.  The
+          GTK interface was written for this variant and released in 1999.
+
+               Mitsuhiro  Itakura  headed a team which began the process of
+          redrawing the NetHack tiles in 8-bit color at 32x32 pixels.
 
                The final update to 3.2 was the bug fix release 3.2.3, which
           was  released  simultaneously with 3.3.0 in December 1999 just in
@@ -3810,16 +3820,6 @@
 
                Michael Allison, David Cohrs, Alex  Kompel,  Dion  Nicolaas,
           and  Yitzhak  Sapir maintained and enhanced 3.4 for the Microsoft
-          Windows platform.  Alex Kompel contributed a new graphical inter-
-          face  for  the Windows port.  Alex Kompel also contributed a Win-
-          dows CE port for 3.4.1.  Ron  Van  Iwaarden  maintained  3.4  for
-          OS/2.
-
-               Janne  Salmijarvi  and  Teemu Suikki maintained and enhanced
-          the Amiga port of 3.4 after Janne Salmijarvi resurrected  it  for
-          3.3.1.
-
-
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3831,6 +3831,15 @@
           SLASH'EM Guidebook                                             59
 
 
+
+          Windows platform.  Alex Kompel contributed a new graphical inter-
+          face  for  the Windows port.  Alex Kompel also contributed a Win-
+          dows CE port for 3.4.1.  Ron  Van  Iwaarden  maintained  3.4  for
+          OS/2.
+
+               Janne  Salmijarvi  and  Teemu Suikki maintained and enhanced
+          the Amiga port of 3.4 after Janne Salmijarvi resurrected  it  for
+          3.3.1.
 
                Christian  ``Marvin''  Bressler maintained 3.4 for the Atari
           after he resurrected it for 3.3.1.
@@ -3856,15 +3865,6 @@
           with the game.  The Gods of the Dungeon sometimes  make  note  of
           the  names  of the worst of these miscreants in this, the list of
           Dungeoneers:
-
-
-
-
-
-
-
-
-
 
 
 

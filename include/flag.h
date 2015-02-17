@@ -194,6 +194,9 @@ struct instance_flags {
 	uchar	bouldersym;	/* symbol for boulder display */
 	boolean	travel1;	/* first travel step */
 	coord	travelcc;	/* coordinates for travel_cache */
+#ifdef QWERTZ
+	boolean  qwertz_layout; /* swap y/z for this key layout */
+#endif
 #ifdef SIMPLE_MAIL
 	boolean simplemail;	/* simple mail format $NAME:$MESSAGE */
 #endif

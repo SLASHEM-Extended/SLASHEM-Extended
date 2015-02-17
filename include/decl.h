@@ -256,7 +256,12 @@ E const char *nomovemsg;
 E const char nul[];
 E char lock[];
 
+#ifdef QWERTZ
+E const char qykbd_dir[], qzkbd_dir[], ndir[];
+E char const *sdir;
+#else
 E const char sdir[], ndir[];
+#endif
 E const schar xdir[], ydir[], zdir[];
 
 E NEARDATA schar tbx, tby;		/* set in mthrowu.c */

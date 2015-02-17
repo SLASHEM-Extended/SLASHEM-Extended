@@ -184,6 +184,9 @@ static struct Bool_Opt
 	{"prayconfirm", &flags.prayconfirm, TRUE, SET_IN_GAME},
 	{"preload_tiles", &iflags.wc_preload_tiles, TRUE, DISP_IN_GAME},	/*WC*/
 	{"pushweapon", &flags.pushweapon, FALSE, SET_IN_GAME},
+#ifdef QWERTZ
+        {"qwertz_layout", &iflags.qwertz_layout, FALSE, SET_IN_GAME},
+#endif
 	{"radar", (boolean *)0, FALSE, SET_IN_FILE},	/* OBSOLETE */
 #if defined(MICRO) && !defined(AMIGA)
 	{"rawio", &iflags.rawio, FALSE, DISP_IN_GAME},
@@ -1449,6 +1452,18 @@ boolean tinitial, tfrom_file;
 		} else badoption(opts);
 		return;
 	}
+
+#ifdef QWERTZ
+        fullname = "qwertz_layout";
+        if (match_optname(opts, fullname, 6, FALSE)) {
+                if (negated)
+                        sdir=qykbd_dir;
+                else
+                        sdir=qzkbd_dir;
+                iflags.qwertz_layout=!negated;
+                return;
+        }
+#endif
 
 	fullname = "runmode";
 	if (match_optname(opts, fullname, 4, TRUE)) {

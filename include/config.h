@@ -446,6 +446,7 @@ typedef unsigned char	uchar;
 #ifdef TTY_GRAPHICS
 # define MENU_COLOR
 #endif
+#define QWERTZ		/* qwertz_layout */
 
 #if defined(UNIX)
 #define USE_REGEX_MATCH
