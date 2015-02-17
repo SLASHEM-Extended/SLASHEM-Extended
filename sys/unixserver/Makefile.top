@@ -152,7 +152,7 @@ UNSHARE_DATDLB = dungeon $(SPEC_LEVS) $(QUEST_LEVS)
 SHARE_DAT = $(SHARE_DATNODLB) $(SHARE_DATDLB)
 UNSHARE_DAT = $(UNSHARE_DATNODLB) $(UNSHARE_DATDLB)
 
-all:	$(GAME) recover Guidebook $(CNF_SHARE_DAT) dungeon spec_levs check-dlb
+all:	$(GAME) recover Guidebook.txt $(CNF_SHARE_DAT) dungeon spec_levs check-dlb
 	@echo "Done."
 
 $(GAME):
