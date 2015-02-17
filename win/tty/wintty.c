@@ -2707,7 +2707,7 @@ tty_print_glyph(window, x, y, glyph)
 #ifdef TEXTCOLOR 
     if (!reverse_on && (special & (MG_STAIRS|MG_OBJPILE))) { 
 	    if ((special & MG_STAIRS)) 
-		    term_start_bgcolor(CLR_RED); 
+		    term_start_bgcolor(CLR_ORANGE); /* Amy edit - I want the color to be bright and easily recognizable. */
 	    else 
 		    term_start_bgcolor(CLR_BRIGHT_BLUE); /* Amy edit - dark blue is almost invisible! */
     } 
