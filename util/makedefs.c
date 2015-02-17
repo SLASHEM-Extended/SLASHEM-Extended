@@ -589,7 +589,7 @@ const char *build_date;
     Strcat(subbuf, " Beta");
 #endif
 
-    if (getenv("VCS_DESCRIPTION"))
+    if (getenv("VCS_DESCRIPTION") && getenv("VCS_DESCRIPTION")[0])
         Sprintf(outbuf, "%s %s%s Version %s (%s) - last build %s.",
                 PORT_ID, DEF_GAME_NAME, subbuf, version_string(versbuf),
                 getenv("VCS_DESCRIPTION"), build_date);
