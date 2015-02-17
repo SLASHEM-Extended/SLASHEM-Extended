@@ -895,7 +895,227 @@ dotech()
 	int tech_no;
 
 	if (gettech(&tech_no))
-	    return techeffects(tech_no);
+
+		switch (techid(tech_no)) {
+
+		case T_RESEARCH:
+			pline("This technique sometimes allow you to identify some of your items. Higher intelligence and wisdom increase the chance of success, higher technique levels increase the average amount of stuff identified.");
+			break;
+
+		case T_EVISCERATE:
+			pline("You can only use this technique while bare-handed and not polymorphed. If you do, your unarmed attacks do more damage for a while; the technique's level determines the duration of this effect.");
+			break;
+
+		case T_BERSERK:
+			pline("This technique allows you to do stronger attacks for a while; the technique's level determines the duration of this effect.");
+			break;
+
+		case T_REINFORCE:
+			pline("Using this technique allows you to reinforce your memory of an almost-forgotten spell.");
+			break;
+
+		case T_FLURRY:
+			pline("A technique that can be used to get a multishot bonus with bows and certain other weapons, the duration of which depends on the technique's level.");
+			break;
+
+		case T_INVOKE_DEITY:
+			pline("Invoke your deity for healing. If successful, some or all of your hit point damage will be restored, but there may be negative outcomes depending on certain circumstances.");
+			break;
+
+		case T_APPRAISAL:
+			pline("This technique allows you to determine the enchantment value of your currently wielded weapon. If you use it while wielding a non-weapon (e.g. a wand), the timeout of this technique will be much longer.");
+			break;
+
+		case T_PRACTICE:
+			pline("With this technique, you can practice with your currently wielded weapon, sometimes determining the enchantment value. Also, it gets you closer to increasing your skill level, but monsters may interrupt you.");
+			break;
+
+		case T_SURGERY:
+			pline("A technique that can be used to cure a variety of afflictions, but you should have either a scalpel or a medical kit filled with bandages for it to work.");
+			break;
+
+		case T_HEAL_HANDS:
+			pline("Using this technique can cure sliming or sickness, or heal a techlevel-dependant amount of hit points.");
+			break;
+
+		case T_KIII:
+			pline("If you use this technique, your melee attacks do much more damage for a period of time, the length of which depends on the technique's level.");
+			break;
+
+		case T_CALM_STEED:
+			pline("You need to be riding in order to use this technique. If you do, your steed's tameness will increase; higher technique levels increase the average amount of tameness points gained.");
+			break;
+
+		case T_TURN_UNDEAD:
+			pline("Turn undead is the act of causing nearby undead creatures to flee; weak undead might even be killed outright by this effect.");
+			break;
+
+		case T_VANISH:
+			pline("By using this technique, you will become invisible and fast for some time. Higher technique levels give a longer effect.");
+			break;
+
+		case T_CRIT_STRIKE:
+			pline("This technique allows you to perform a powerful attack against a monster close by, the strength of which depends on the technique's level.");
+			break;
+
+		case T_CUTTHROAT:
+			pline("You need a blade to use this technique. Doing so allows you to severely hurt an adjacent non-headless monster; high technique levels sometimes even allow you to instakill the monster.");
+			break;
+
+		case T_BLESSING:
+			pline("Using this technique allows you to uncurse a cursed item or bless an uncursed one.");
+			break;
+
+		case T_E_FIST:
+			pline("This technique enhances your melee attacks with elemental powers for a techlevel-dependant amount of turns.");
+			break;
+
+		case T_PRIMAL_ROAR:
+			pline("A technique that temporarily promotes your pets to their grown-up form, but after a techlevel-dependent time they will revert.");
+			break;
+
+		case T_LIQUID_LEAP:
+			pline("This allows you to jump in a direction of your choice, passing through monsters, iron bars and similar stuff. The technique's level affects the damage done to monsters you jump through.");
+			break;
+
+		case T_SIGIL_TEMPEST:
+			pline("This technique costs quite some mana, but if used, your ray spells will create 3x3 explosions around you as long as the technique is in effect. The duration increases with the technique's level. Combine it with sigil of control to control the explosions.");
+			break;
+
+		case T_SIGIL_CONTROL:
+			pline("This technique costs quite some mana, but if used, you can control the direction of your ray spells' rebounds for a while. The duration increases with the technique's level.");
+			break;
+
+		case T_SIGIL_DISCHARGE:
+			pline("This technique costs quite some mana, but if used, your ray spells will create huge explosions that can hit lots of monsters in a single shot as long as it's active. The duration increases with the technique's level.");
+			break;
+
+		case T_RAISE_ZOMBIES:
+			pline("This technique searches the squares adjacent to you for corpses, trying to make tame zombies out of them.");
+			break;
+
+		case T_REVIVE:
+			pline("Allows you to revive a corpse from the floor or your inventory, but at the cost of health. This cost is reduced by increasing the technique's level.");
+			break;
+
+		case T_WARD_FIRE:
+			pline("Using this technique makes you resistant to fire for a while (longer with higher technique levels).");
+			break;
+
+		case T_WARD_COLD:
+			pline("Using this technique makes you resistant to cold for a while (longer with higher technique levels).");
+			break;
+
+		case T_WARD_ELEC:
+			pline("Using this technique makes you resistant to shock for a while (longer with higher technique levels).");
+			break;
+
+		case T_TINKER:
+			pline("You must hold an item in your hand that can be upgraded if you want to use this technique effectively. Also, it takes a very long time to upgrade an object; the duration is decreased slightly if the technique's level is lower, but monsters are still likely to interrupt you.");
+			break;
+
+		case T_RAGE:
+			pline("Temporarily increases your maximum hit points by a techlevel-dependant amount, but your HP will slowly bleed out until they reach their previous value, so be careful.");
+			break;
+
+		case T_BLINK:
+			pline("Using this technique allows you to move super-fast for a period of time, the length of which increases with the technique's level.");
+			break;
+
+		case T_CHI_STRIKE:
+			pline("A technique that uses your mana in order to enhance your melee attacks.");
+			break;
+
+		case T_DRAW_ENERGY:
+			pline("Draws energy (mana) from your surroundings for 15 turns; if altars, thrones or similar stuff are on the squares adjacent to you, the effect will be stronger. However, if a monster interrupts you, you'll get nothing at all.");
+			break;
+
+		case T_CHI_HEALING:
+			pline("Your mana will be converted to health for a period of time if you use this technique.");
+			break;
+
+		case T_DISARM:
+			pline("Tries to disarm a monster; you need to be holding a weapon you're at least skilled with, though.");
+			break;
+
+		case T_DAZZLE:
+			pline("A technique that can stun a monster and cause it to flee; it is much more likely to succeed if the target monster's level is lower than the technique's level.");
+			break;
+
+		case T_BLITZ:
+			pline("Allows you to input several successive commands that will be converted into moves. You can always do at least 2 moves; 3 at techlevel 10 or higher, 4 at techlevel 20 or higher, and 5 at techlevel 30.");
+			break;
+
+		case T_PUMMEL:
+			pline("This technique can be used to rapidly strike an adjacent monster using your fists.");
+			break;
+
+		case T_G_SLAM:
+			pline("A technique that can be used to slam an adjacent monster into the ground, creating a pit and doing lots of damage.");
+			break;
+
+		case T_DASH:
+			pline("You can use this technique to move by several squares in a single turn, but only in a straight line.");
+			break;
+
+		case T_POWER_SURGE:
+			pline("A very powerful technique that temporarily increases your maximum mana to a very high amount, but it slowly bleeds off to its original value.");
+			break;
+
+		case T_SPIRIT_BOMB:
+			pline("This technique allows you to do a 'kamehameha' attack against a monster, causing it to explode while also damaging other monsters nearby. You can't hit yourself or your pets with this attack either.");
+			break;
+
+		case T_DRAW_BLOOD:
+			pline("A nearly useless technique that will use a medical kit to drain your experience for a single potion of blood.");
+			break;
+
+		case T_JEDI_JUMP:
+			pline("Uses mana to jump. Higher technique levels allow you to jump farther.");
+			break;
+
+		case T_POKE_BALL:
+			pline("This technique allows you to throw a poke ball, trying to catch any adjacent non-unique monster. Higher technique levels give a greater chance of success and sometimes allow you to catch several monsters in a single turn. Actual pokemon are more likely to be caught, and 'petty' monsters are guaranteed to be caught.");
+			break;
+
+		case T_SUMMON_TEAM_ANT:
+			pline("A technique that summons tame Team Ant members (monsters represented by the letter a). Higher technique levels are more likely to summon several of them at once.");
+			break;
+
+		case T_ATTIRE_CHARM:
+			pline("With this technique, you can attempt to tame adjacent intelligent human(oid) monsters, but you need to be wearing high heels for it to work. A higher level of this technique sometimes tames several monsters at once.");
+			break;
+
+		case T_WORLD_FALL:
+			pline("A very powerful technique that will instakill all non-unique monsters on the current dungeon level whose monster level is lower than the technique's level. Sometimes it will also kill higher-level monsters.");
+			break;
+
+		case T_CREATE_AMMO:
+			pline("Creates a techlevel-dependant amount of bullets. Make sure you got enough room in your inventory first!");
+			break;
+
+		case T_EGG_BOMB:
+			pline("This technique creates stoning grenades at your feet. Higher techlevels create more of them at once on average.");
+			break;
+
+		case T_BOOZE:
+			pline("Using this technique is very similar to quaffing a potion of booze, but it will also create some potions of booze out of thin air. The technique's level determines the average amount of potions created.");
+			break;
+
+		case T_TELEKINESIS:
+			pline("A technique that can be used to interact with dungeon features from far away.");
+			break;
+
+		case T_CHARGE_SABER:
+			pline("This technique will use up all of your current mana and convert it into lightsaber energy. If the techlevel is at least 10, you can also win the jackpot. However, monsters may interrupt you, preventing your lightsaber from actually being charged.");
+			break;
+
+		default:
+			pline("This technique doesn't have a description yet, but it might get one in future. --Amy");
+			break;
+		}
+
+	    if (yn("Use this technique?") == 'y') return techeffects(tech_no);
 	return 0;
 }
 
