@@ -152,11 +152,11 @@ UNSHARE_DATDLB = dungeon $(SPEC_LEVS) $(QUEST_LEVS)
 SHARE_DAT = $(SHARE_DATNODLB) $(SHARE_DATDLB)
 UNSHARE_DAT = $(UNSHARE_DATNODLB) $(UNSHARE_DATDLB)
 
-$(GAME):
-	( cd src ; $(MAKE) )
-
 all:	$(GAME) recover Guidebook $(CNF_SHARE_DAT) dungeon spec_levs check-dlb
 	@echo "Done."
+
+$(GAME):
+	( cd src ; $(MAKE) )
 
 # Note: many of the dependencies below are here to allow parallel make
 # to generate valid output
