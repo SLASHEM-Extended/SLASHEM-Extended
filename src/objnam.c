@@ -206,6 +206,8 @@ register int otyp;
 
 	if (Role_if(PM_SAMURAI) && Alternate_item_name(otyp,Japanese_items))
 		actualn = Alternate_item_name(otyp,Japanese_items);
+	if (Role_if(PM_NINJA) && Alternate_item_name(otyp,Japanese_items))
+		actualn = Alternate_item_name(otyp,Japanese_items);
 	if (Role_if(PM_OTAKU) && Alternate_item_name(otyp,Japanese_items))
 		actualn = Alternate_item_name(otyp,Japanese_items);
 	if ( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) ) && Alternate_item_name(otyp,Pirate_items))
@@ -357,6 +359,8 @@ register struct obj *obj;
 
 	buf = nextobuf() + PREFIX;	/* leave room for "17 -3 " */
 	if (Role_if(PM_SAMURAI) && Alternate_item_name(typ,Japanese_items))
+		actualn = Alternate_item_name(typ,Japanese_items);
+	if (Role_if(PM_NINJA) && Alternate_item_name(typ,Japanese_items))
 		actualn = Alternate_item_name(typ,Japanese_items);
 	if (Role_if(PM_OTAKU) && Alternate_item_name(typ,Japanese_items))
 		actualn = Alternate_item_name(typ,Japanese_items);
