@@ -135,6 +135,8 @@ KEYHANDLERNAME pKeyHandlerName;
 #define CLR_MAX 16
 #endif
 int ttycolors[CLR_MAX];
+#define ttybgcolors(c) (ttycolors[c] << 4) 
+/* assumes BACKGROUND_xxx = FOREGROUND_xxx << 4 */
 # ifdef TEXTCOLOR
 int ttycolors[CLR_MAX];
 static void NDECL(init_ttycolor);
@@ -812,6 +814,29 @@ term_start_color(int color)
 #endif
 	attr = (foreground | background);
 }
+
+void
+term_start_bgcolor(int color) 
+{ 
+#ifdef TEXTCOLOR 
+	background = ttybgcolors(color); 
+	/* avoid same foreground and background color */ 
+	if (foreground == (background >> 4)) 
+		foreground = DEFTEXTCOLOR; 
+#else 
+	background = 0; 
+#endif 
+	attr = (foreground | background); 
+} 
+ 
+void
+term_end_bgcolor() 
+{ 
+#ifdef TEXTCOLOR 
+	background = 0; 
+#endif 
+	attr = (foreground | background); 
+} 
 
 void
 term_end_color(void)

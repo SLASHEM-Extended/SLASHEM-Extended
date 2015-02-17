@@ -608,6 +608,7 @@ unsigned *ospecial;
 		if (BlackNgWalls) color = CLR_BLACK;
 		if (Hallucination) color = rn2(15);
     } else if ((offset = (glyph - GLYPH_OBJ_OFF)) >= 0) {	/* object */
+	if (On_stairs(x,y) && levl[x][y].seenv) special |= MG_STAIRS;
 	if (offset == BOULDER && iflags.bouldersym) ch = iflags.bouldersym;
 	else ch = oc_syms[(int)objects[offset].oc_class];
 #ifdef ROGUE_COLOR
@@ -620,6 +621,10 @@ unsigned *ospecial;
 	} else
 #endif
 	    obj_color(offset);
+		if (offset != BOULDER && 
+		level.objects[x][y] && 
+		level.objects[x][y]->nexthere) 
+		special |= MG_OBJPILE;
     } else if ((offset = (glyph - GLYPH_RIDDEN_OFF)) >= 0) {	/* mon ridden */
 	ch = monsyms[(int)mons[offset].mlet];
 #ifdef ROGUE_COLOR
@@ -633,6 +638,7 @@ unsigned *ospecial;
 	    mon_color(offset);
 	    special |= MG_RIDDEN;
     } else if ((offset = (glyph - GLYPH_BODY_OFF)) >= 0) {	/* a corpse */
+	if (On_stairs(x,y) && levl[x][y].seenv) special |= MG_STAIRS;
 	ch = oc_syms[(int)objects[CORPSE].oc_class];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS && iflags.use_color)
@@ -641,6 +647,10 @@ unsigned *ospecial;
 #endif
 	    mon_color(offset);
 	    special |= MG_CORPSE;
+		if (offset != BOULDER && 
+		level.objects[x][y] && 
+		level.objects[x][y]->nexthere) 
+		special |= MG_OBJPILE;
     } else if ((offset = (glyph - GLYPH_DETECT_OFF)) >= 0) {	/* mon detect */
 	ch = monsyms[(int)mons[offset].mlet];
 #ifdef ROGUE_COLOR
