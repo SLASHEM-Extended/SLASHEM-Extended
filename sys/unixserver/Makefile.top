@@ -277,15 +277,15 @@ gtkrc:	win/gtk/GTKRC
 check-dlb: options
 	@if egrep -s librarian dat/options ; then $(MAKE) dlb ; else true ; fi
 
-dlb: util/dlb dat/nhshare dat/nhushare
+dlb: dat/nhshare dat/nhushare
 
 util/dlb:
 	( cd util ; $(MAKE) dlb )
 
-dat/nhshare: $(addprefix dat/,$(SHARE_DATDLB))
+dat/nhshare: util/dlb $(addprefix dat/,$(SHARE_DATDLB))
 	( cd dat ; ../util/dlb cf nhshare $(SHARE_DATDLB) )
 
-dat/nhushare: $(addprefix dat/,$(UNSHARE_DATDLB))
+dat/nhushare: util/dlb $(addprefix dat/,$(UNSHARE_DATDLB))
 	( cd dat ; ../util/dlb cf nhushare $(UNSHARE_DATDLB) )
 
 # recover can be used when INSURANCE is defined in include/config.h
