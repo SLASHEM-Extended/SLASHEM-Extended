@@ -317,6 +317,13 @@ boolean forcecontrol;
 			 * want if they specified a human.... */
 			else if (!polyok(&mons[mntmp]) && !your_race(&mons[mntmp]))
 				You("cannot polymorph into that.");
+
+			/* taking on high-level forms sometimes fails, especially if your level is low --Amy */
+			else if (!forcecontrol && (rnd(50 - u.ulevel + mons[mntmp].mlevel) > 40 )) {
+
+				mntmp = LOW_PM - 1; break; /* polymorph failed */
+			}
+
 			else break;
 		} while(++tries < 5);
 		if (tries==5) pline(thats_enough_tries);
@@ -324,7 +331,7 @@ boolean forcecontrol;
 		if (draconian &&
 		    (mntmp == armor_to_dragon(uarm->otyp) || tries == 5))
 		    goto do_merge;
-	} else if (Race_if(PM_DOPPELGANGER)) {
+	} else if (Race_if(PM_DOPPELGANGER) && rn2(5)) {
 		/* Not an experienced Doppelganger yet */
 		do {
 			/* Slightly different wording */
@@ -343,6 +350,13 @@ boolean forcecontrol;
 				You("attempt an unfamiliar polymorph.");
 				if ((rn2(5) + u.ulevel) < mons[mntmp].mlevel)
 				    mntmp = LOW_PM - 1; /* Didn't work for sure */
+
+				/* lower chance of success even if the form isn't too high-level --Amy */
+				else if (!forcecontrol && (rnd(50 - u.ulevel + mons[mntmp].mlevel) > 40 )) {
+	
+					mntmp = LOW_PM - 1; break; /* polymorph failed */
+				}
+
 				/* Either way, give it a shot */
 				break;
 			}
@@ -352,6 +366,13 @@ boolean forcecontrol;
 				break;
 			}
 #endif
+
+			/* even if you've eaten it, the polymorph can still fail --Amy */
+			else if (!forcecontrol && (rnd(50 - u.ulevel + mons[mntmp].mlevel) > 40 )) {
+
+				mntmp = LOW_PM - 1; break; /* polymorph failed */
+			}
+
 
 			else break;
 		} while(++tries < 5);
