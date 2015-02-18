@@ -170,8 +170,11 @@ YACCDIST =
 
 #	dependencies for makedefs
 #
+# This is to prevent an obscure race condition due to multiple makedefs
+# compilations at the same time, launched from src/Makefile
+MAKEDEFSTMP := $(shell mktemp makedefs.tmp.XXX)
 makedefs:	$(MAKEOBJS)
-	$(CC) $(LFLAGS) -o makedefs $(MAKEOBJS)
+	( $(CC) $(LFLAGS) -o $(MAKEDEFSTMP) $(MAKEOBJS) && mv $(MAKEDEFSTMP) makedefs )
 
 makedefs.o: makedefs.c $(CONFIG_H) ../include/permonst.h \
 		../include/objclass.h ../include/monsym.h \
@@ -428,6 +431,7 @@ clean:
 
 spotless: clean
 	-rm -f lev_lex.c lev_yacc.c dgn_lex.c dgn_yacc.c
+	-rm -f makedefs.tmp.*
 	-rm -f ../include/lev_comp.h ../include/dgn_comp.h
 	-rm -f ../include/tile.h
 	-rm -f makedefs lev_comp dgn_comp recover dlb
