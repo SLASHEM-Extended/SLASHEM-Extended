@@ -442,21 +442,21 @@ register int x, y, typ;
 		else if (!rn2(7)) {
 				for (sessileattempts = 0; sessileattempts < 20; sessileattempts++) {
 					sessilemnum = pm_mkclass(S_FUNGUS, 0);
-					if (sessilemnum != -1 && !mons[sessilemnum].mmove) sessileattempts = 20;
+					if (sessilemnum != -1 && is_nonmoving(&mons[sessilemnum]) ) sessileattempts = 20;
 					}
 		if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], x, y, NO_MM_FLAGS); /* hidden beneath a fungus */
 		}
 		else if (!rn2(10)) {
 				for (sessileattempts = 0; sessileattempts < 10; sessileattempts++) {
 					sessilemnum = pm_mkclass(S_JELLY, 0);
-					if (sessilemnum != -1 && !mons[sessilemnum].mmove) sessileattempts = 20;
+					if (sessilemnum != -1 && is_nonmoving(&mons[sessilemnum]) ) sessileattempts = 20;
 					}
 		if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], x, y, NO_MM_FLAGS); /* hidden beneath a jelly */
 		}
 		else if (!rn2(15)) {
 				for (sessileattempts = 0; sessileattempts < 100; sessileattempts++) {
 					sessilemnum = rndmonnum();
-					if (sessilemnum != -1 && !mons[sessilemnum].mmove) sessileattempts = 20;
+					if (sessilemnum != -1 && is_nonmoving(&mons[sessilemnum]) ) sessileattempts = 20;
 					}
 		if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], x, y, NO_MM_FLAGS); /* hidden beneath a monster */
 		}

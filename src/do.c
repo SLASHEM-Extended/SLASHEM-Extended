@@ -2007,7 +2007,7 @@ long timeout;
     else if (rn2(2)) pmtype = pm_mkclass(S_BLOB, 0);
     else pmtype = pm_mkclass(S_PUDDING, 0);
 
-    if ((pmtype != -1) && (mons[pmtype].mmove)) 
+    if ((pmtype != -1) && (!is_nonmoving(&mons[pmtype]) ) ) 
 	{
 	    if (rn2(20)) pmtype = pm_mkclass(S_FUNGUS, 0);
 	    else if (rn2(2)) pmtype = pm_mkclass(S_JELLY, 0); /*jellies, blobs and puddings should be possible --Amy*/
