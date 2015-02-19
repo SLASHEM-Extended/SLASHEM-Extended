@@ -94,7 +94,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     d_level     d_blackmarket_level;
 #endif /* BLACKMARKET */
 #ifdef RECORD_ACHIEVE
-    d_level     d_mineend_level;
+    /*d_level     d_mineend_level;*/ /* already added above */
     d_level     d_sokoend_level;
 #endif
 } dungeon_topology;
