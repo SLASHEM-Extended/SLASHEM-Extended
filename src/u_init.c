@@ -1242,6 +1242,16 @@ static struct trobj AlwaysStartItemD[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj AngbandItem[] = {
+	{ SCR_IDENTIFY, 0, SCROLL_CLASS, 2, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj AngbandItemB[] = {
+	{ SCR_TELEPORTATION, 0, SCROLL_CLASS, 2, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj UberLostSoulItemA[] = {
 	{ TALLOW_CANDLE, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -4936,6 +4946,14 @@ u_init()
 		ini_inv(WraithItem);
 
 	   break;
+
+	case PM_ANGBANDER:
+
+		ini_inv(AngbandItem);
+		ini_inv(AngbandItemB);
+
+	   break;
+
 	case PM_ORC:
 	    /* compensate for generally inferior equipment */
 	    if (!no_extra_food && !Role_if(PM_WIZARD) &&

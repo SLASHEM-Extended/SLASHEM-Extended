@@ -94,7 +94,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     d_level     d_blackmarket_level;
 #endif /* BLACKMARKET */
 #ifdef RECORD_ACHIEVE
-    d_level     d_mineend_level;
+    /*d_level     d_mineend_level;*/ /* already added above */
     d_level     d_sokoend_level;
 #endif
 } dungeon_topology;
@@ -538,6 +538,22 @@ struct u_achieve {
                                       * end of the mines. */
         Bitfield(finish_sokoban,1);  /* You obtained the sokoban prize. */
         Bitfield(killed_medusa,1);   /* You defeated Medusa. */
+
+        Bitfield(killed_nightmare,1);   /* You defeated Nightmare. */
+        Bitfield(killed_vecna,1);   /* You defeated Vecna. */
+        Bitfield(killed_beholder,1);   /* You defeated the Beholder. */
+        Bitfield(killed_ruggo,1);   /* You defeated Ruggo the Gnome King. */
+        Bitfield(killed_kroo,1);   /* You defeated Kroo the Kobold King. */
+        Bitfield(killed_grund,1);   /* You defeated Grund the Orc King. */
+        Bitfield(killed_largestgiant,1);   /* You defeated the Largest Giant. */
+        Bitfield(killed_shelob,1);   /* You defeated Shelob. */
+        Bitfield(killed_girtab,1);   /* You defeated Girtab. */
+        Bitfield(killed_aphrodite,1);   /* You defeated Aphrodite. */
+        Bitfield(killed_frankenstein,1);   /* You defeated Doctor Frankenstein. */
+        Bitfield(killed_croesus,1);   /* You defeated Croesus. */
+        Bitfield(killed_dagon,1);   /* You defeated Father Dagon. */
+        Bitfield(killed_hydra,1);   /* You defeated Mother Hydra. */
+
 };
 
 E struct u_achieve achieve;

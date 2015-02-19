@@ -315,6 +315,8 @@
 
 #define touch_petrifies(ptr)	(ptr == &mons[PM_COCKATRICE] || \
 				 ptr == &mons[PM_PETTY_COCKATRICE] || \
+				 ptr == &mons[PM_DOMESTIC_COCKATRICE] || \
+				 ptr == &mons[PM_ARMED_COCKATRICE] || \
 				 ptr == &mons[PM_HIDDEN_COCKATRICE] || \
 				 ptr == &mons[PM_BASILISK] || \
 				 ptr == &mons[PM_CHICKATRICE] || \

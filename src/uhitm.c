@@ -2939,7 +2939,7 @@ register struct attack *mattk;
 			You("shudder momentarily...");
 			break;
 		    }
-		    You("die...");
+		    You(Race_if(PM_ANGBANDER) ? "have died." : "die...");
 		    killer_format = KILLED_BY;
 		    killer = "a reflected gaze of death";
 		    done(DIED);

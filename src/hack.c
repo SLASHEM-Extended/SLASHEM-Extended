@@ -3117,7 +3117,7 @@ int k_format; /* WAC k_format is an int */
 	if(u.uhp < 1) {
 		killer_format = k_format;
 		killer = knam;		/* the thing that killed you */
-		You("die...");
+		You(Race_if(PM_ANGBANDER) ? "have died." : "die...");
 		done(DIED);
 	} else if (n > 0 && u.uhp*10 < u.uhpmax) {
 		maybe_wail();

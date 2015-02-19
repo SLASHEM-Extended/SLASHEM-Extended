@@ -435,6 +435,9 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too. */
 				moveamt /= 2;
 
+			if (Race_if(PM_ARMED_COCKATRICE) && !Upolyd && !rn2(4) && moveamt > 1) /* Cockatrices even more. */
+				moveamt /= 2;
+
 		/* The new numbed and frozen properties seem to dislike rn2 calls for some reason.
 		 * So I need to make a subloop to prevent numbed or frozen players from being completely immobile. */
 

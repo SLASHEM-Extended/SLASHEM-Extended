@@ -4476,7 +4476,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    } else if (Antimagic) {
 			You("shudder momentarily...");
 		    } else {
-			You("die...");
+			You(Race_if(PM_ANGBANDER) ? "have died." : "die...");
 			killer_format = KILLED_BY_AN;
 			killer = "gaze of death";
 			done(DIED);

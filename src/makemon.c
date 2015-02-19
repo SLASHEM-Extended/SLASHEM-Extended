@@ -1192,6 +1192,12 @@ register struct monst *mtmp;
 		     mkmonmoney(mtmp, (long) d(mtmp->m_lev, 15));
 #endif
 		   break;
+
+		   case PM_HEMI_DOPPELGANGER:
+
+			(void)mongets(mtmp, WAN_POLYMORPH);
+		   break;
+
 		   case PM_GEEK:
 		   case PM_UNDEAD_GEEK:
 		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
@@ -9048,6 +9054,8 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_CENTAUR && Race_if(PM_HUMANOID_CENTAUR) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_DRAGON && Race_if(PM_HUMANLIKE_DRAGON) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_NAGA && Race_if(PM_HUMANLIKE_NAGA) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
+
+	if (!always_hostile(ptr) && Race_if(PM_ANGBANDER) && !Role_if(PM_CONVICT) && rn2(2)) return TRUE;
 
 	if (is_undead(ptr) && !mindless(ptr) && Race_if(PM_HUMAN_WRAITH) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (is_undead(ptr) && mindless(ptr) && Race_if(PM_HUMAN_WRAITH) && !Role_if(PM_CONVICT) && rn2(4)) return TRUE;

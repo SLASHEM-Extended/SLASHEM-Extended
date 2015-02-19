@@ -434,7 +434,7 @@ register struct obj *food;
 			You("choke over it.");
 			killer = "quick snack";
 		}
-		You("die...");
+		You(Race_if(PM_ANGBANDER) ? "have died." : "die...");
 		done(CHOKING);
 	}
 }
@@ -719,6 +719,7 @@ register int pm;
 	    case PM_KITTEN:
 	    case PM_HOUSECAT:
 	    case PM_LARGE_CAT:
+	    case PM_DOMESTIC_COCKATRICE:
 		if (!CANNIBAL_ALLOWED()) {
 		    You_feel("that %s the %s%s was a bad idea.",
 		      victual.eating ? "eating" : "biting",
@@ -1765,6 +1766,7 @@ register int pm;
 		}
 		break;
 	    case PM_GENETIC_ENGINEER: /* Robin Johnson -- special msg */
+	    case PM_ARMED_COCKATRICE:
 		if (!Unchanging) {
 		    You("undergo a freakish metamorphosis!");
 		    polyself(FALSE);
@@ -2214,7 +2216,24 @@ opentin()		/* called during each move whilst opening a tin */
 	    if (!vegetarian(&mons[tin.tin->corpsenm]))
 		violated_vegetarian();
 
+		if (Race_if(PM_ARMED_COCKATRICE) && !Upolyd && rn2(2) ) {
 
+			if (rn2(2)) {
+				pline("Ulch - that food was petrified! You're unable to swallow it.");
+				badeffect();
+			} else pline("The food turns to stone as you try to eat it!");
+
+			    costly_tin((const char*)0);
+			goto use_me;
+
+		}
+
+		if (Race_if(PM_ARMED_COCKATRICE) && !Upolyd && rn2(2) ) {
+
+			pline("Ulch - that food was petrified!");
+			badeffect();
+
+		}
 
 #ifdef EATEN_MEMORY
 	    if (mvitals[tin.tin->corpsenm].eaten)
@@ -2448,7 +2467,27 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	/* KMH, conduct */
 	if (!vegan(&mons[mnum])) u.uconduct.unvegan++;
 	if (!vegetarian(&mons[mnum])) violated_vegetarian();
-		gluttonous();
+	gluttonous();
+
+	if (Race_if(PM_ARMED_COCKATRICE) && !Upolyd && rn2(2) ) {
+
+		if (rn2(2)) {
+			pline("Ulch - that food was petrified! You're unable to swallow it.");
+			badeffect();
+		} else pline("The food turns to stone as you try to eat it!");
+
+		if (carried(otmp)) useup(otmp);
+		else useupf(otmp, 1L);
+
+		return 2;
+	}
+
+	if (Race_if(PM_ARMED_COCKATRICE) && !Upolyd && rn2(2) ) {
+
+		pline("Ulch - that food was petrified!");
+		badeffect();
+
+	}
 
 	if (mnum != PM_LIZARD && mnum != PM_CAVE_LIZARD && mnum != PM_CHAOS_LIZARD && mnum != PM_LIZARD_EEL && mnum != PM_LIZARD_MAN && mnum != PM_EEL_LIZARD && mnum != PM_HIDDEN_LIZARD && mnum != PM_DEFORMED_LIZARD && mnum != PM_CLINGING_LIZARD && mnum != PM_MIMIC_LIZARD && mnum != PM_ANTI_STONE_LIZARD &&mnum != PM_LICHEN && mnum != PM_SQUIRREL && mnum != PM_IGUANA && mnum != PM_GECKO && mnum != PM_GIANT_GECKO && mnum != PM_BIG_IGUANA && mnum != PM_HUGE_LIZARD && mnum != PM_SAND_TIDE && mnum != PM_FBI_AGENT && mnum != PM_KARMIC_LIZARD && mnum != PM_MONSTER_LIZARD && mnum != PM_OWN_SMOKE && mnum != PM_GRANDPA && mnum != PM_FIRE_LIZARD && mnum != PM_ICE_LIZARD && mnum != PM_LIGHTNING_LIZARD && mnum != PM_GIANT_LIZARD && mnum != PM_HELPFUL_SQUIRREL && mnum != PM_RHAUMBUSUN && mnum != PM_BIG_RHAUMBUSUN && mnum != PM_SALAMANDER && mnum != PM_FROST_SALAMANDER && mnum != PM_KOMODO_DRAGON && mnum != PM_PETTY_KOMODO_DRAGON) {
 		long age = peek_at_iced_corpse_age(otmp);
@@ -3513,6 +3552,25 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 				&& !objects[otmp->otyp].oc_uname)
 			docall(otmp);
 		return (1);
+	}
+
+	if (Race_if(PM_ARMED_COCKATRICE) && !Upolyd && (otmp->otyp != TIN) && rn2(2) ) {
+
+		if (rn2(2)) {
+			pline("Ulch - that food was petrified! You're unable to swallow it.");
+			badeffect();
+		} else pline("The food turns to stone as you try to eat it!");
+
+		if (carried(otmp)) useup(otmp);
+		else useupf(otmp, 1L);
+		return 1;
+	}
+
+	if (Race_if(PM_ARMED_COCKATRICE) && !Upolyd && (otmp->otyp != TIN) && rn2(2) ) {
+
+		pline("Ulch - that food was petrified!");
+		badeffect();
+
 	}
 
 	if (otmp->oclass != FOOD_CLASS) {

@@ -239,7 +239,7 @@ newman()
 	Sick = 0;
 	Stoned = 0;
 	delayed_killer = 0;
-	if (Race_if(PM_DOPPELGANGER)) {        
+	if (Race_if(PM_DOPPELGANGER) || Race_if(PM_HEMI_DOPPELGANGER)) {
 		if (u.uhp <= 10) u.uhp = 10;
 		if (u.uhpmax <= 10) u.uhpmax = 10;
 		if (u.uen <= u.ulevel) u.uen = u.ulevel;
@@ -292,7 +292,7 @@ boolean forcecontrol;
 		 really weak people (it was out of 20) */
 
 	if(!Polymorph_control && !forcecontrol && !draconian && !iswere &&
-			!isvamp && !Race_if(PM_DOPPELGANGER)) {
+			!isvamp && !Race_if(PM_DOPPELGANGER) && !Race_if(PM_HEMI_DOPPELGANGER)) {
 		if ( (rn2(12) > ACURR(A_CON) || !rn2(50)) && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_MOULD) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WORM_THAT_WALKS) ) {
 
 		You(shudder_for_moment);
@@ -331,7 +331,7 @@ boolean forcecontrol;
 		if (draconian &&
 		    (mntmp == armor_to_dragon(uarm->otyp) || tries == 5))
 		    goto do_merge;
-	} else if (Race_if(PM_DOPPELGANGER) && rn2(5)) {
+	} else if ((Race_if(PM_DOPPELGANGER) || Race_if(PM_HEMI_DOPPELGANGER)) && rn2(5)) {
 		/* Not an experienced Doppelganger yet */
 		do {
 			/* Slightly different wording */
@@ -426,7 +426,7 @@ boolean forcecontrol;
 	 */
         /* WAC Doppelgangers go through a 1/20 check rather than 1/5 */
         if ( !u.wormpolymorph && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_MISSINGNO) && !Race_if(PM_DEATHMOLD) && (!polyok(&mons[mntmp]) ||
-        		(Race_if(PM_DOPPELGANGER) ? (
+			((Race_if(PM_DOPPELGANGER) || Race_if(PM_HEMI_DOPPELGANGER)) ? (
         			((u.ulevel < mons[mntmp].mlevel)
 #ifdef EATEN_MEMORY
         			 || !mvitals[mntmp].eaten
@@ -634,7 +634,7 @@ int	mntmp;
 
 #ifdef EATEN_MEMORY
 	/* WAC Doppelgangers can stay much longer in a form they know well */
-	if (Race_if(PM_DOPPELGANGER) && mvitals[mntmp].eaten) {
+	if ((Race_if(PM_DOPPELGANGER) || Race_if(PM_HEMI_DOPPELGANGER)) && mvitals[mntmp].eaten) {
 		u.mtimedone *= 2;
 		u.mtimedone += mvitals[mntmp].eaten;
 	}
@@ -757,8 +757,7 @@ STATIC_OVL void
 break_armor()
 {
     register struct obj *otmp;
-    boolean controlled_change = (Race_if(PM_DOPPELGANGER) || Role_if(PM_LUNATIC) || Role_if(PM_AK_THIEF_IS_DEAD_) || 
-    		(Race_if(PM_HUMAN_WEREWOLF) && u.umonnum == PM_WEREWOLF));
+    boolean controlled_change = (Race_if(PM_DOPPELGANGER) || Race_if(PM_HEMI_DOPPELGANGER) || Role_if(PM_LUNATIC) || Role_if(PM_AK_THIEF_IS_DEAD_) || (Race_if(PM_HUMAN_WEREWOLF) && u.umonnum == PM_WEREWOLF));
 
     if (breakarm(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	if ((otmp = uarm) != 0) {
@@ -970,10 +969,11 @@ rehumanize()
 	    done(DIED);
 	}
 	
-	if (forced || (!Race_if(PM_DOPPELGANGER) && (rn2(20) > ACURR(A_CON)))) { 
+	if (forced || /*(!Race_if(PM_DOPPELGANGER) && */(rn2(20) > ACURR(A_CON)))/*)*/ {
 	/* Exhaustion for "forced" rehumaization & must pass con chack for 
     	 * non-doppelgangers 
     	 * Don't penalize doppelgangers/polymorph running out */
+	/* Amy edit - why give so many boosts to the already overpowered doppelgangers??? */
     	 
    	/* WAC Polymorph Exhaustion 1/2 HP to prevent abuse */
 	    u.uhp = (u.uhp/2) + 1;
@@ -1081,7 +1081,7 @@ dobreathe()
 	}
 
 	/* WAC -- no more belching.  Use up energy instead */
-	if (Race_if(PM_DOPPELGANGER)
+	if (Race_if(PM_DOPPELGANGER) || Race_if(PM_HEMI_DOPPELGANGER)
 		|| (Role_if(PM_FLAME_MAGE) && u.umonnum == PM_RED_DRAGON)
 		|| (Role_if(PM_ACID_MAGE) && u.umonnum == PM_YELLOW_DRAGON)
 		|| (Role_if(PM_ELECTRIC_MAGE) && u.umonnum == PM_BLUE_DRAGON)
@@ -1922,7 +1922,7 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 	}
 	/* Moulds and ungenomolds _must_ be able to polymorph at will. Otherwise they would just suck. --Amy */
 
-	if (Race_if(PM_DOPPELGANGER) || Race_if(PM_MOULD) || Race_if(PM_DEATHMOLD) || Race_if(PM_UNGENOMOLD)) {
+	if (Race_if(PM_DOPPELGANGER) || Race_if(PM_HEMI_DOPPELGANGER) || Race_if(PM_MOULD) || Race_if(PM_DEATHMOLD) || Race_if(PM_UNGENOMOLD)) {
 	    if (yn("Polymorph at will?") == 'n')	    
 		return 0;
 	    else if (u.uen < EN_DOPP) {
@@ -1973,7 +1973,7 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 	    }
 	} else {
 	    pline("You can't polymorph at will%s.", 
-		    ((Role_if(PM_FLAME_MAGE) || Role_if(PM_ELECTRIC_MAGE) || Role_if(PM_LUNATIC) || Role_if(PM_ACID_MAGE) || Role_if(PM_ICE_MAGE) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Race_if(PM_DOPPELGANGER)) ?
+		    ((Role_if(PM_FLAME_MAGE) || Role_if(PM_ELECTRIC_MAGE) || Role_if(PM_LUNATIC) || Role_if(PM_ACID_MAGE) || Role_if(PM_ICE_MAGE) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Race_if(PM_DOPPELGANGER) || Race_if(PM_HEMI_DOPPELGANGER)) ?
 		    " yet" : ""));
 	    return 0;
 	}
@@ -1990,7 +1990,7 @@ merge_with_armor()
 	 * Should check that monster being morphed into is not genocided
 	 * see do_merge above for correct use
 	 */
-	if (Race_if(PM_DOPPELGANGER) && !uarm->cursed && uarmu &&
+	if ((Race_if(PM_DOPPELGANGER) || Race_if(PM_HEMI_DOPPELGANGER)) && !uarm->cursed && uarmu &&
 	  !uarmu->cursed) {
 	    struct obj *otmp = uarmu;
 	    You("quickly remove your shirt as you start to change.");

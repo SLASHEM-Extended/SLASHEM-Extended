@@ -869,9 +869,39 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 
 		if((typ >= AD_MAGM) && (typ <= AD_LITE)) {
 
+			/* angband has the infamous "it breathes" deaths --Amy */
+
+			if (Race_if(PM_ANGBANDER) && rn2(2) && (rnd( (int)mattk->damn * 10) > u.uhp )) {
+
+			pline("It breathes");
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline("You have died.");
+
+			killer_format = KILLED_BY_AN;
+			killer = "fatal breath attack";
+			done(DIED);
+
+			return(0);
+			}
+
+			if (Race_if(PM_ANGBANDER) && rn2(2) && (rnd( (int)mattk->damd * 10) > u.uhp )) {
+
+			pline("It breathes");
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			pline("You have died.");
+
+			killer_format = KILLED_BY_AN;
+			killer = "fatal breath attack";
+			done(DIED);
+
+			return(0);
+			}
+
 		    if(canseemon(mtmp))
 			pline("%s breathes %s!", Monnam(mtmp),
 			      Hallucination ? hallubreathwep[rn2(SIZE(hallubreathwep))] : breathwep[typ-1]);
+		    else if (flags.soundok) pline("You hear an exhaling sound.");
+
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		    buzz((int) (-20 - (typ-1)), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ),
 			 mtmp->mx, mtmp->my, sgn(tbx), sgn(tby));
