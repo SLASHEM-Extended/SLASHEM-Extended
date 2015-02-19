@@ -498,6 +498,10 @@ const struct innate {
 	kob_abil[] = { {  1, &(HPoison_resistance), "", "" },
 		     {   0, 0, 0, 0 } },
 
+	coc_abil[] = { {  1, &(HPoison_resistance), "", "" },
+		     {   1, &(HStone_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
+
 	sna_abil[] = { {  1, &(HPoison_resistance), "", "" },
 		     {   0, 0, 0, 0 } },
 
@@ -1178,6 +1182,7 @@ int oldlevel, newlevel;
 	case PM_ORC:            rabil = orc_abil;	break;
 	case PM_HUMAN_WEREWOLF:	rabil = lyc_abil;	break;
 	case PM_FENEK:	rabil = fen_abil;	break;
+	case PM_ARMED_COCKATRICE:	rabil = coc_abil;	break;
 	case PM_NORD:	rabil = nor_abil;	break;
 	case PM_ALBAE:	rabil = alb_abil;	break;
 	case PM_VORTEX:	rabil = vor_abil;	break;

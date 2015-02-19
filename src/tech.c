@@ -407,6 +407,10 @@ static const struct innate_tech
 		       {   1, T_APPRAISAL, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
+	coc_tech[] = { {   1, T_EGG_BOMB, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   0, 0, 0} },
 	dop_tech[] = { {   1, T_LIQUID_LEAP, 1},
 		       {   1, T_APPRAISAL, 1},
 		       {   1, T_INVOKE_DEITY, 1},
@@ -2737,6 +2741,7 @@ race_tech()
 		case PM_BATMAN:		return (bat_tech);
 		case PM_UNGENOMOLD:		return (ung_tech);
 		case PM_ARGONIAN:		return (arg_tech);
+		case PM_ARMED_COCKATRICE:		return (coc_tech);
 		case PM_INSECTOID:		return (ins_tech);
 		case PM_MUMMY:		return (mum_tech);
 		case PM_KHAJIIT:	return (kha_tech);
