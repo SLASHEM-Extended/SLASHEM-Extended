@@ -172,7 +172,7 @@ YACCDIST =
 #
 # This is to prevent an obscure race condition due to multiple makedefs
 # compilations at the same time, launched from src/Makefile
-MAKEDEFSTMP := $(shell mktemp makedefs.tmp.XXX)
+MAKEDEFSTMP := $(shell mktemp -u makedefs.tmp.XXXXXX)
 makedefs:	$(MAKEOBJS)
 	( $(CC) $(LFLAGS) -o $(MAKEDEFSTMP) $(MAKEOBJS) && mv $(MAKEDEFSTMP) makedefs )
 
