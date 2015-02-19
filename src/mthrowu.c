@@ -778,6 +778,7 @@ struct monst *mtmp;
 #endif
 	    m_shot.o = otmp->otyp;
 	} else {
+	    if (flags.soundok) pline("You hear a flinging sound."); /* at least tell the player that something's happening --Amy */
 	    m_shot.o = STRANGE_OBJECT;	/* don't give multishot feedback */
 	}
 
