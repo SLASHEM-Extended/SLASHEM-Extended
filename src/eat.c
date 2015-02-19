@@ -434,7 +434,7 @@ register struct obj *food;
 			You("choke over it.");
 			killer = "quick snack";
 		}
-		You("die...");
+		You(Race_if(PM_ANGBANDER) ? "have died." : "die...");
 		done(CHOKING);
 	}
 }

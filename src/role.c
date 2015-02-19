@@ -2766,6 +2766,19 @@ const struct Race races[] = {
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
 },
+{	"angbander", "angbander", "angband followship", "Agb",
+	{0, 0},
+	PM_ANGBANDER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, MH_ELF, MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 3,  3, 0 },	/* Hit points */
+	{  3, 0,  3, 0,  3, 0 }		/* Energy */
+},
 {	"angel", "angelic", "angelhood", "Ang",
 	{0, 0},
 	PM_HUMANOID_ANGEL, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,

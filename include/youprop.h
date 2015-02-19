@@ -438,7 +438,7 @@
 				  youmonst.data == &mons[PM_OLD_SILVER_DRAGON] ||\
 				  youmonst.data == &mons[PM_VERY_OLD_SILVER_DRAGON] ||\
 				  youmonst.data == &mons[PM_ANCIENT_SILVER_DRAGON] ||\
-				  youmonst.data == &mons[PM_DIAMOND_GOLEM])) && !NoReflecting)
+				  youmonst.data == &mons[PM_DIAMOND_GOLEM])) && !NoReflecting && !Race_if(PM_ANGBANDER) )
 #define NoReflecting	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_REFLECTING].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HFree_action	u.uprops[FREE_ACTION].intrinsic

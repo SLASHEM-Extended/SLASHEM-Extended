@@ -2733,6 +2733,10 @@ xkilled(mtmp, dest)
 		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON]) && !rn2(20)) otmp = mksobj_at(ORANGE, x, y, TRUE, FALSE);
 		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON]) && !rn2(20)) otmp = mksobj_at(LEMON, x, y, TRUE, FALSE);
 
+
+		if (!rn2(100) && Race_if(PM_ANGBANDER) ) otmp = mksobj_at(SCR_TELEPORTATION, x, y, TRUE, FALSE);
+		if (!rn2(100) && Race_if(PM_ANGBANDER) ) otmp = mksobj_at(SCR_IDENTIFY, x, y, TRUE, FALSE);
+
 		if (!rn2(500)) otmp = mksobj_at(SCR_CURE, x, y, TRUE, FALSE);
 		if (!rn2(100)) otmp = mksobj_at(SCR_MANA, x, y, TRUE, FALSE);
 		if (!rn2(100)) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE);
