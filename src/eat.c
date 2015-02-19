@@ -1807,6 +1807,7 @@ register int pm;
 			pline(Hallucination ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
 		}
 		}
+		break;
 
 		/* WAC all mind flayers as per mondata.h have to be here */
 	    case PM_HUMAN_WEREMINDFLAYER:
