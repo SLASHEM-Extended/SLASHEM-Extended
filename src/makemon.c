@@ -1192,6 +1192,12 @@ register struct monst *mtmp;
 		     mkmonmoney(mtmp, (long) d(mtmp->m_lev, 15));
 #endif
 		   break;
+
+		   case PM_HEMI_DOPPELGANGER:
+
+			(void)mongets(mtmp, WAN_POLYMORPH);
+		   break;
+
 		   case PM_GEEK:
 		   case PM_UNDEAD_GEEK:
 		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));

@@ -3045,6 +3045,18 @@ const struct Race races[] = {
 	{  4, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
 },
+{	"hemi-doppelganger", "hemi-doppelganger", "hemi-doppelganger-kind", "Hem",
+	{0, 0},
+	PM_HEMI_DOPPELGANGER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, MH_WERE, MH_ELF|MH_GNOME|MH_DWARF,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  0, 0,  0, 1,  1, 0 },	/* Hit points */
+	{  7, 0,  5, 0,  5, 0 }		/* Energy */
+},
 {	"heretic", "heretic", "hereticism", "Her",
 	{0, 0},
 	PM_HERETIC, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
