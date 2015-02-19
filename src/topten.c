@@ -1044,18 +1044,32 @@ encodeachieve(void)
 
   r = 0;
 
-  if(achieve.get_bell)           r |= 1L << 0;
-  if(achieve.enter_gehennom)     r |= 1L << 1;
-  if(achieve.get_candelabrum)    r |= 1L << 2;
-  if(achieve.get_book)           r |= 1L << 3;
-  if(achieve.perform_invocation) r |= 1L << 4;
-  if(achieve.get_amulet)         r |= 1L << 5;
-  if(In_endgame(&u.uz))          r |= 1L << 6;
-  if(Is_astralevel(&u.uz))       r |= 1L << 7;
-  if(achieve.ascended)           r |= 1L << 8;
-  if(achieve.get_luckstone)      r |= 1L << 9;
-  if(achieve.finish_sokoban)     r |= 1L << 10;
-  if(achieve.killed_medusa)      r |= 1L << 11;
+  if(achieve.get_bell)            r |= 1L << 0;
+  if(achieve.enter_gehennom)      r |= 1L << 1;
+  if(achieve.get_candelabrum)     r |= 1L << 2;
+  if(achieve.get_book)            r |= 1L << 3;
+  if(achieve.perform_invocation)  r |= 1L << 4;
+  if(achieve.get_amulet)          r |= 1L << 5;
+  if(In_endgame(&u.uz))           r |= 1L << 6;
+  if(Is_astralevel(&u.uz))        r |= 1L << 7;
+  if(achieve.ascended)            r |= 1L << 8;
+  if(achieve.get_luckstone)       r |= 1L << 9;
+  if(achieve.finish_sokoban)      r |= 1L << 10;
+  if(achieve.killed_medusa)       r |= 1L << 11;
+  if(achieve.killed_nightmare)    r |= 1L << 12;
+  if(achieve.killed_vecna)        r |= 1L << 13;
+  if(achieve.killed_beholder)     r |= 1L << 14;
+  if(achieve.killed_ruggo)        r |= 1L << 15;
+  if(achieve.killed_kroo)         r |= 1L << 16;
+  if(achieve.killed_grund)        r |= 1L << 17;
+  if(achieve.killed_largestgiant) r |= 1L << 18;
+  if(achieve.killed_shelob)       r |= 1L << 19;
+  if(achieve.killed_girtab)       r |= 1L << 20;
+  if(achieve.killed_aphrodite)    r |= 1L << 21;
+  if(achieve.killed_frankenstein) r |= 1L << 22;
+  if(achieve.killed_croesus)      r |= 1L << 23;
+  if(achieve.killed_dagon)        r |= 1L << 24;
+  if(achieve.killed_hydra)        r |= 1L << 25;
 
   return r;
 }

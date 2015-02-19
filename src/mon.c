@@ -2318,6 +2318,34 @@ register struct monst *mtmp;
 #ifdef RECORD_ACHIEVE
         if(mtmp->data == &mons[PM_MEDUSA])
             achieve.killed_medusa = 1;
+        if(mtmp->data == &mons[PM_NIGHTMARE])
+            achieve.killed_nightmare = 1;
+        if(mtmp->data == &mons[PM_VECNA])
+            achieve.killed_vecna = 1;
+        if(mtmp->data == &mons[PM_BEHOLDER])
+            achieve.killed_beholder = 1;
+        if(mtmp->data == &mons[PM_RUGGO_THE_GNOME_KING])
+            achieve.killed_ruggo = 1;
+        if(mtmp->data == &mons[PM_KROO_THE_KOBOLD_KING])
+            achieve.killed_kroo = 1;
+        if(mtmp->data == &mons[PM_GRUND_THE_ORC_KING])
+            achieve.killed_grund = 1;
+        if(mtmp->data == &mons[PM_THE_LARGEST_GIANT])
+            achieve.killed_largestgiant = 1;
+        if(mtmp->data == &mons[PM_SHELOB])
+            achieve.killed_shelob = 1;
+        if(mtmp->data == &mons[PM_GIRTAB])
+            achieve.killed_girtab = 1;
+        if(mtmp->data == &mons[PM_APHRODITE])
+            achieve.killed_aphrodite = 1;
+        if(mtmp->data == &mons[PM_DOCTOR_FRANKENSTEIN])
+            achieve.killed_frankenstein = 1;
+        if(mtmp->data == &mons[PM_CROESUS])
+            achieve.killed_croesus = 1;
+        if(mtmp->data == &mons[PM_FATHER_DAGON])
+            achieve.killed_dagon = 1;
+        if(mtmp->data == &mons[PM_MOTHER_HYDRA])
+            achieve.killed_hydra = 1;
 #endif
 
 	if(memory_is_invisible(mtmp->mx, mtmp->my))
