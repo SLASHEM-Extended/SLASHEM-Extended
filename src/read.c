@@ -1917,6 +1917,7 @@ register struct obj	*sobj;
 			}
 			if (sobj->blessed || wornmask ||
 			     obj->otyp == LOADSTONE ||
+			     obj->otyp == LUCKSTONE ||
 			     obj->otyp == HEALTHSTONE ||
 			     (obj->otyp == LEASH && obj->leashmon)) {
 			    if(confused) blessorcurse(obj, 2);

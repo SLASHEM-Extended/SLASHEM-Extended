@@ -5094,7 +5094,7 @@ boolean *lostsome;
 		     * in removing them + loadstone and other cursed stuff
 		     * for obvious reasons.
 		     */
-		    if (!((obj->otyp == LOADSTONE && obj->cursed) ||
+		    if (!(( (obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE) && obj->cursed) ||
 			  obj == uamul || obj == uleft || obj == uright ||
 			  obj == ublindf || obj == uarm || obj == uarmc ||
 			  obj == uarmg || obj == uarmf ||

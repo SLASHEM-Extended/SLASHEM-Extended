@@ -930,11 +930,11 @@ int alone;
 			   	u.twoweap ? "s" : "");
 	    otmp2 = u.twoweap ? uswapwep : 0;
 	    uwepgone();
-	    if (!wep->cursed || wep->otyp != LOADSTONE)
+	    if (!wep->cursed || (wep->otyp != LOADSTONE && wep->otyp != LUCKSTONE && wep->otyp != HEALTHSTONE) )
 		dropx(otmp);
 	    if (otmp2 != 0) {
 		uswapwepgone();
-		if (!otmp2->cursed || otmp2->otyp != LOADSTONE)
+		if (!otmp2->cursed || (otmp2->otyp != LOADSTONE && otmp2->otyp != LUCKSTONE && otmp2->otyp != HEALTHSTONE) )
 		    dropx(otmp2);
 	    }
 	    untwoweapon();

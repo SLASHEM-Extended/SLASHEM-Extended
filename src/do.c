@@ -497,7 +497,7 @@ register const char *word;
 		return(FALSE);
 	}
 	/* KMH, balance patch -- removed stone of rotting */        
-	if (obj->otyp == LOADSTONE && obj->cursed) {
+	if ( (obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE) && obj->cursed) {
 		/* getobj() kludge sets corpsenm to user's specified count
 		   when refusing to split a stack of cursed loadstones */
 		if (*word) {
@@ -792,7 +792,7 @@ int retry;
 		if (cnt < otmp->quan) {
 		    if (welded(otmp)) {
 			;	/* don't split */
-		    } else if (otmp->otyp == LOADSTONE && otmp->cursed) {
+		    } else if ( (otmp->otyp == LOADSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == HEALTHSTONE) && otmp->cursed) {
 			/* same kludge as getobj(), for canletgo()'s use */
 			otmp->corpsenm = (int) cnt;	/* don't split */
 		    } else {

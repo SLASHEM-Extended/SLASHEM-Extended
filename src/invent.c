@@ -522,7 +522,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 
 	    obj = addinv(obj);
 	    if (inv_cnt() > 52
-		    || ((obj->otyp != LOADSTONE || !obj->cursed)
+		    || (( (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE) || !obj->cursed)
 			&& near_capacity() > prev_encumbr)) {
 		if (drop_fmt) pline(drop_fmt, drop_arg);
 		/* undo any merge which took place */
@@ -609,7 +609,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 		}
 
 	    if ( inv_cnt() > 52
-		    || ((obj->otyp != LOADSTONE || !obj->cursed)
+		    || (( (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE) || !obj->cursed)
 			&& near_capacity() > prev_encumbr)) {
 		if (drop_fmt) pline(drop_fmt, drop_arg);
 		/* undo any merge which took place */
@@ -1490,7 +1490,7 @@ register const char *let,*word;
 	    if(cnt == 0) return (struct obj *)0;
 	    if(cnt != otmp->quan) {
 		/* don't split a stack of cursed loadstones */
-		if (otmp->otyp == LOADSTONE && otmp->cursed)
+		if ( (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == LUCKSTONE) && otmp->cursed)
 		    /* kludge for canletgo()'s can't-drop-this message */
 		    otmp->corpsenm = (int) cnt;
 		else
@@ -1831,7 +1831,7 @@ nextclass:
 		    else {
 			sym = 'y';
 			if (yn_number < otmp->quan && !welded(otmp) &&
-			    (!otmp->cursed || otmp->otyp != LOADSTONE)) {
+			    (!otmp->cursed || (otmp->otyp != LOADSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != HEALTHSTONE) )) {
 			    otmp = splitobj(otmp, yn_number);
 			}
 		    }

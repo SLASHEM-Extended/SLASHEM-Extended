@@ -1405,7 +1405,7 @@ boolean telekinesis;	/* not picking it up directly by hand */
         /* Whats left of the special case for gold :-) */
 	if (obj->oclass == COIN_CLASS) flags.botl = 1;
 #endif
-	if (obj->quan != count && obj->otyp != LOADSTONE)
+	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE)
 	    obj = splitobj(obj, count);
 
 	obj = pick_obj(obj);
@@ -1974,7 +1974,7 @@ boolean invobj;
 		Norep("You cannot %s %s you are wearing.",
 			Icebox ? "refrigerate" : "stash", something);
 		return 0;
-	} else if ((obj->otyp == LOADSTONE) && obj->cursed) {
+	} else if ((obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE) && obj->cursed) {
 		obj->bknown = 1;
 	      pline_The("stone%s won't leave your person.", plur(obj->quan));
 		return 0;
@@ -2210,7 +2210,7 @@ register struct obj *obj;
 	if ((res = lift_object(obj, current_container, &count, FALSE)) <= 0)
 	    return res;
 
-	if (obj->quan != count && obj->otyp != LOADSTONE)
+	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE)
 	    obj = splitobj(obj, count);
 
 	/* Remove the object from the list. */
