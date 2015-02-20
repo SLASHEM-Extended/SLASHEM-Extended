@@ -1,6 +1,5 @@
 # unix-y stuff, kinda
 *.o
-*.d
 dat/*.lev
 dat/data
 dat/dungeon
