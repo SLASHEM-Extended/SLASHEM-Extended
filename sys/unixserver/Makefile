@@ -63,6 +63,8 @@ DEPENDS := $(wildcard src/*.c) $(wildcard win/tty/*.c) $(wildcard sys/unix/*.c)
 DEPENDS += sys/share/ioctl.c sys/share/unixtty.c
 DEPENDS += $(wildcard util/*.c)
 DEPENDS := $(DEPENDS:.c=.d)
+DEPENDS += util/lev_yacc.d util/lev_lex.d util/dgn_yacc.d util/dgn_lex.d
+DEPENDS += src/vis_tab.d src/monstr.d src/recover.d
 DEPENDS += $(patsubst %.des,%.d,$(wildcard dat/*.des))
 
 include $(DEPENDS)
@@ -161,6 +163,8 @@ util/dlb: util/dlb_main.o src/dlb.o src/alloc.o util/panic.o
 
 src/recover.o: util/recover.c util/recover.o
 	$(CC) $(CFLAGS) -DNO_MAIN $(CPPFLAGS) $(TARGET_ARCH) -c -o $@ $<
+src/recover.d: util/recover.c
+	$(CC) $(CFLAGS) $(TARGET_ARCH) -MM -MG -MF $@ -MT $(@:.d=.o) $<
 
 clean:
 	rm -f src/*.o util/*.o sys/unix/*.o sys/share/*.o win/tty/*.o
