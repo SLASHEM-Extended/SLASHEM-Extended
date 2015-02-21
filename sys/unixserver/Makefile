@@ -133,7 +133,7 @@ DAT_AUTO = data options oracles quest.dat rumors dungeon.pdf dungeon
 
 dat/data: dat/data.base util/makedefs
 	( cd util ; ./makedefs -d )
-dat/options: include/date.h
+dat/options: include/date.h # util/makedefs
 #	( cd util ; ./makedefs -v )
 dat/oracles: dat/oracles.txt util/makedefs
 	( cd util ; ./makedefs -h )
@@ -156,11 +156,11 @@ $(AUTO_H): %: include/%
 .git/HEAD:
 include/date.h: util/makedefs .git/HEAD
 	( cd util ; ./makedefs -v )
-include/dgn_comp.h: util/dgn_yacc.c
+include/dgn_comp.h: util/dgn_yacc.c # util/dgn_comp.y
 #	bison --output=util/dgn_yacc.c --defines=include/dgn_comp.h util/dgn_comp.y
 include/filename.h: util/makedefs
 	( cd util ; ./makedefs -f )
-include/lev_comp.h: util/lev_yacc.c
+include/lev_comp.h: util/lev_yacc.c # util/lev_comp.y
 #	bison --output=util/lev_yacc.c --defines=include/lev_comp.h util/lev_comp.y
 include/onames.h: util/makedefs
 	( cd util ; ./makedefs -o )
@@ -173,7 +173,7 @@ SRC_AUTO_C = monstr.c vis_tab.c
 
 src/monstr.c: util/makedefs
 	( cd util ; ./makedefs -m )
-src/vis_tab.c: include/vis_tab.h
+src/vis_tab.c: include/vis_tab.h # util/makedefs
 #	( cd util ; ./makedefs -z )
 
 UTIL_AUTO_C = dgn_lex.c dgn_yacc.c lev_lex.c lev_yacc.c
