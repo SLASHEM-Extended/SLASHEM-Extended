@@ -9,26 +9,23 @@ CHOWN = chown $(GAMEUID):$(GAMEGID)
 GAMEDIR = /srv/acehack/slex-$(VERSION)
 MASTERDIR = /srv/acehack/slexdir
 
-PLAYGROUND_FILES = perm record logfile xlogfile
-
 GAMEPERM = 0755
 FILEPERM = 0644
 EXEPERM  = 0755
 DIRPERM  = 0755
 
 CFLAGS = -g -O2
-CFLAGS += -Iinclude
-CFLAGS += -DNO_EXPLORE_MODE
-CFLAGS += -D'WIZARD="$(GAMEUID)"'
-CFLAGS += -DNO_SUSPEND
-CFLAGS += -DDLB
+CPPFLAGS += -Iinclude
+CPPFLAGS += -DNO_EXPLORE_MODE
+CPPFLAGS += -D'WIZARD="$(GAMEUID)"'
+CPPFLAGS += -DNO_SUSPEND
+CPPFLAGS += -DDLB
 
-CPPFLAGS += -MMD
+all: src/$(GAME) util/recover dat/nhshare dat/nhushare
 
-all: src/$(GAME) util/recover dat/nhshare dat/nhushare \
-  dat/license doc/Guidebook.txt
+PLAYGROUND_FILES = perm record logfile xlogfile
 
-install: all
+install: all dat/license doc/Guidebook.txt
 	-rm $(GAMEDIR)/$(GAME) $(GAMEDIR)/nhshare $(GAMEDIR)/nhushare
 	mkdir -p $(GAMEDIR) $(GAMEDIR)/save
 	$(CHOWN) $(GAMEDIR) $(GAMEDIR)/save
@@ -49,25 +46,7 @@ install: all
 	  chmod $(FILEPERM) nhshare nhushare license Guidebook.txt )
 	mv $(GAMEDIR)/$(GAME).new $(GAMEDIR)/$(GAME)
 
-AUTOHEADERS = onames.h pm.h vis_tab.h filename.h date.h lev_comp.h dgn_comp.h
-
-$(AUTOHEADERS): %: include/%
-
-dat/%.d: dat/%.des
-	( cd dat ; ./leveldepend.sh $(<F) > $(@F) )
-
-%.d: %.c
-	$(CC) $(CFLAGS) $(TARGET_ARCH) -MM -MG -MF $@ -MT $(@:.d=.o) $<
-
-DEPENDS := $(wildcard src/*.c) $(wildcard win/tty/*.c) $(wildcard sys/unix/*.c)
-DEPENDS += sys/share/ioctl.c sys/share/unixtty.c
-DEPENDS += $(wildcard util/*.c)
-DEPENDS := $(DEPENDS:.c=.d)
-DEPENDS += util/lev_yacc.d util/lev_lex.d util/dgn_yacc.d util/dgn_lex.d
-DEPENDS += src/vis_tab.d src/monstr.d src/recover.d
-DEPENDS += $(patsubst %.des,%.d,$(wildcard dat/*.des))
-
-include $(DEPENDS)
+##### BINARIES #####
 
 SYSUNIXOBJ = unixmain.o unixres.o unixunix.o
 SYSSHAREOBJ = ioctl.o unixtty.o
@@ -88,98 +67,155 @@ SRCOBJ = allmain.o alloc.o apply.o artifact.o attrib.o ball.o bones.o	\
  vis_tab.o vision.o weapon.o were.o wield.o windows.o wizard.o worm.o	\
  worn.o write.o zap.o
 
-src/$(GAME): LDLIBS += -lncurses
-src/$(GAME): $(addprefix src/,$(SRCOBJ)) \
-             $(addprefix sys/unix/,$(SYSUNIXOBJ)) \
-             $(addprefix sys/share/,$(SYSSHAREOBJ)) \
-             $(addprefix win/tty/,$(WINTTYOBJ))
+GAME_O = $(addprefix src/,$(SRCOBJ))			\
+         $(addprefix sys/unix/,$(SYSUNIXOBJ))		\
+         $(addprefix sys/share/,$(SYSSHAREOBJ))		\
+         $(addprefix win/tty/,$(WINTTYOBJ))
+
+src/$(GAME): $(GAME_O)
+	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -lncurses -o $@
+
+RECOVER_O = util/recover.o
+
+util/recover: $(RECOVER_O)
 	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
-NHSHARE = data oracles options quest.dat rumors help hh	\
-          cmdhelp history opthelp wizhelp gypsy.txt
+LEV_COMP_O = util/lev_main.o util/lev_yacc.o util/lev_lex.o	\
+             src/alloc.o util/panic.o src/drawing.o src/decl.o	\
+             src/monst.o src/objects.o
+
+util/lev_comp: $(LEV_COMP_O)
+	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+DGN_COMP_O = util/dgn_main.o util/dgn_yacc.o util/dgn_lex.o	\
+             src/alloc.o util/panic.o
+
+util/dgn_comp: $(DGN_COMP_O)
+	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+MAKEDEFS_O = util/makedefs.o src/monst.o src/objects.o src/alloc.o	\
+             util/panic.o
+
+util/makedefs: $(MAKEDEFS_O)
+	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+DLB_O = util/dlb_main.o src/dlb.o src/alloc.o util/panic.o
+
+util/dlb: $(DLB_O)
+	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+ALL_O = $(GAME_O) $(RECOVER_O) $(LEV_COMP_O) $(DGN_COMP_O)	\
+        $(MAKEDEFS_O) $(DLB_O)
+
+##### AUTOMATIC DEPENDENCIES #####
+
+%.o: CPPFLAGS += -MMD -MP
+
+%.d: %.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -MM -MG -MP -MF $@ -MT $(@:.d=.o) $(TARGET_ARCH) $<
+
+dat/%.d: dat/%.des
+	( cd dat ; ./leveldepend.sh $(<F) > $(@F) )
+
+ALL_D = $(patsubst %.o,%.d,$(ALL_O))
+LEV_D = $(patsubst %.des,%.d,$(wildcard dat/*.des))
+
+# LEV_D will also populate SPECIAL_LEVELS
+include $(ALL_D) $(LEV_D)
+
+##### DATA FILES #####
+
+NHSHARE = cmdhelp data gypsy.txt help hh history opthelp options	\
+          oracles quest.dat rumors wizhelp
+NHUSHARE = dungeon $(SPECIAL_LEVELS)
 
 dat/nhshare: util/dlb $(addprefix dat/,$(NHSHARE))
 	( cd dat ; ../util/dlb cf nhshare $(NHSHARE) )
+dat/nhushare: util/dlb $(addprefix dat/,$(NHUSHARE))
+	( cd dat ; ../util/dlb cf nhushare $(NHUSHARE) )
 
-dat/nhushare: util/dlb dat/dungeon $(addprefix dat/,$(SPECIAL_LEVELS))
-	( cd dat ; ../util/dlb cf nhushare dungeon $(SPECIAL_LEVELS) )
+DAT_AUTO = data options oracles quest.dat rumors dungeon.pdf dungeon
 
-util/makedefs: util/makedefs.o src/monst.o src/objects.o src/alloc.o \
- util/panic.o
+dat/data: dat/data.base util/makedefs
+	( cd util ; ./makedefs -d )
+dat/options: include/date.h
+#	( cd util ; ./makedefs -v )
+dat/oracles: dat/oracles.txt util/makedefs
+	( cd util ; ./makedefs -h )
+dat/quest.dat: dat/quest.txt util/makedefs
+	( cd util ; ./makedefs -q )
+dat/rumors: dat/rumors.tru dat/rumors.fal util/makedefs
+	( cd util ; ./makedefs -r )
 
+dat/dungeon.pdf: dat/dungeon.def util/makedefs
+	( cd util ; ./makedefs -e )
+dat/dungeon: dat/dungeon.pdf util/dgn_comp
+	( cd dat ; ../util/dgn_comp dungeon.pdf )
+
+##### AUTOGENERATED CODE #####
+
+AUTO_H = date.h dgn_comp.h filename.h lev_comp.h onames.h pm.h vis_tab.h
+
+$(AUTO_H): %: include/%
+
+.git/HEAD:
+include/date.h: util/makedefs .git/HEAD
+	( cd util ; ./makedefs -v )
+include/dgn_comp.h: util/dgn_yacc.c
+#	bison --output=util/dgn_yacc.c --defines=include/dgn_comp.h util/dgn_comp.y
+include/filename.h: util/makedefs
+	( cd util ; ./makedefs -f )
+include/lev_comp.h: util/lev_yacc.c
+#	bison --output=util/lev_yacc.c --defines=include/lev_comp.h util/lev_comp.y
 include/onames.h: util/makedefs
 	( cd util ; ./makedefs -o )
 include/pm.h: util/makedefs
 	( cd util ; ./makedefs -p )
+include/vis_tab.h: src/vis_tab.c
+#	( cd util ; ./makedefs -z )
+
+SRC_AUTO_C = monstr.c vis_tab.c
+
 src/monstr.c: util/makedefs
 	( cd util ; ./makedefs -m )
-src/vis_tab.c: include/vis_tab.h
-include/vis_tab.h: util/makedefs
+src/vis_tab.c: util/makedefs
 	( cd util ; ./makedefs -z )
 
-include/filename.h: util/makedefs
-	( cd util ; ./makedefs -f )
-dat/options: include/date.h
-include/date.h: util/makedefs .git/HEAD
-	( cd util ; ./makedefs -v )
-.git/HEAD:
+UTIL_AUTO_C = dgn_lex.c dgn_yacc.c lev_lex.c lev_yacc.c
 
-dat/data: dat/data.base util/makedefs
-	( cd util ; ./makedefs -d )
-dat/rumors: dat/rumors.tru dat/rumors.fal util/makedefs
-	( cd util ; ./makedefs -r )
-dat/quest.dat: dat/quest.txt util/makedefs
-	( cd util ; ./makedefs -q )
-dat/oracles: dat/oracles.txt util/makedefs
-	( cd util ; ./makedefs -h )
-dat/dungeon.pdf: dat/dungeon.def util/makedefs
-	( cd util ; ./makedefs -e )
-
-dat/dungeon: dat/dungeon.pdf util/dgn_comp
-	( cd dat ; ../util/dgn_comp dungeon.pdf )
-
-util/lev_comp: util/lev_main.o util/lev_yacc.o util/lev_lex.o src/alloc.o \
-  util/panic.o src/drawing.o src/decl.o src/monst.o src/objects.o
-	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
-include/lev_comp.h: util/lev_yacc.c
-util/lev_yacc.c: util/lev_comp.y
-	bison -y --output=util/lev_yacc.c --defines=include/lev_comp.h \
-	      util/lev_comp.y
-util/lev_lex.c: util/lev_comp.l
-	flex -o util/lev_lex.c util/lev_comp.l
-
-util/dgn_comp: util/dgn_main.o util/dgn_yacc.o util/dgn_lex.o src/alloc.o \
-  util/panic.o
-	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
-include/dgn_comp.h: util/dgn_yacc.c
-util/dgn_yacc.c: util/dgn_comp.y
-	bison -y --output=util/dgn_yacc.c --defines=include/dgn_comp.h \
-	      util/dgn_comp.y
 util/dgn_lex.c: util/dgn_comp.l
 	flex -o util/dgn_lex.c util/dgn_comp.l
+util/dgn_yacc.c: util/dgn_comp.y
+	bison --output=util/dgn_yacc.c --defines=include/dgn_comp.h util/dgn_comp.y
 
-util/dlb: util/dlb_main.o src/dlb.o src/alloc.o util/panic.o
-	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+util/lev_lex.c: util/lev_comp.l
+	flex -o util/lev_lex.c util/lev_comp.l
+util/lev_yacc.c: util/lev_comp.y
+	bison --output=util/lev_yacc.c --defines=include/lev_comp.h util/lev_comp.y
+
+##### SPECIAL CASES #####
 
 src/recover.o: util/recover.c util/recover.o
-	$(CC) $(CFLAGS) -DNO_MAIN $(CPPFLAGS) $(TARGET_ARCH) -c -o $@ $<
+	$(CC) $(CFLAGS) $(CPPFLAGS) -DNO_MAIN $(TARGET_ARCH) -c -o $@ $<
 src/recover.d: util/recover.c
-	$(CC) $(CFLAGS) $(TARGET_ARCH) -MM -MG -MF $@ -MT $(@:.d=.o) $<
+	$(CC) $(CFLAGS) $(CPPFLAGS) -MM -MG -MF $@ -MT $(@:.d=.o) $(TARGET_ARCH) $<
+
+##### CLEANING UP #####
 
 clean:
-	rm -f src/*.o util/*.o sys/unix/*.o sys/share/*.o win/tty/*.o
-	rm -f dat/*.lev
-	( cd dat ; \
-	  rm -f data dungeon dungeon.pdf nhshare nhushare \
-                options oracles quest.dat rumors )
-	( cd include ; \
-	  rm -f date.h dgn_comp.h filename.h lev_comp.h \
-                onames.h pm.h vis_tab.h )
-	rm -f src/monstr.c src/slashem src/vis_tab.c
-	( cd util ; \
-	  rm -f dgn_comp dgn_lex.c dgn_yacc.c dlb \
-	        lev_comp lev_lex.c lev_yacc.c makedefs recover )
+	rm -f src/$(GAME) util/recover util/lev_comp
+	rm -f util/dgn_comp util/makedefs util/dlb
+
+	rm -f $(ALL_O)
+
+	rm -f dat/nhshare dat/nhushare
+	rm -f $(addprefix dat/,$(DAT_AUTO))
+	rm -f $(addprefix dat/,$(SPECIAL_LEVELS))
+
+	rm -f $(addprefix include/,$(AUTO_H))
+	rm -f $(addprefix src/,$(SRC_AUTO_C))
+	rm -f $(addprefix util/,$(UTIL_AUTO_C))
 
 spotless: clean
-	rm -f src/*.d util/*.d sys/unix/*.d sys/share/*.d win/tty/*.d
+	rm -f $(ALL_D)
 	rm -f dat/*.d
