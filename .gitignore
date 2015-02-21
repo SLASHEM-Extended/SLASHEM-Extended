@@ -26,10 +26,12 @@ src/monstr.c
 src/slashem
 src/vis_tab.c
 util/dgn_comp
+util/dgn_comp.c
 util/dgn_lex.c
 util/dgn_yacc.c
 util/dlb
 util/lev_comp
+util/lev_comp.c
 util/lev_lex.c
 util/lev_yacc.c
 util/makedefs

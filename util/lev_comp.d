@@ -1,4 +1,4 @@
-util/lev_yacc.o: util/lev_yacc.c include/hack.h include/config.h \
+util/lev_comp.o: util/lev_comp.c include/hack.h include/config.h \
  include/config1.h include/tradstdc.h include/global.h include/coord.h \
  include/unixconf.h include/system.h include/align.h include/dungeon.h \
  include/monsym.h include/mkroom.h include/objclass.h include/youprop.h \
