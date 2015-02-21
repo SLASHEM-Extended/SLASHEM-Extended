@@ -71,36 +71,30 @@ GAME_O = $(addprefix src/,$(SRCOBJ))			\
          $(addprefix sys/unix/,$(SYSUNIXOBJ))		\
          $(addprefix sys/share/,$(SYSSHAREOBJ))		\
          $(addprefix win/tty/,$(WINTTYOBJ))
-
 src/$(GAME): $(GAME_O)
 	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -lncurses -o $@
 
 RECOVER_O = util/recover.o
-
 util/recover: $(RECOVER_O)
 	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
-LEV_COMP_O = util/lev_main.o util/lev_yacc.o util/lev_lex.o	\
-             src/alloc.o util/panic.o src/drawing.o src/decl.o	\
-             src/monst.o src/objects.o
-
-util/lev_comp: $(LEV_COMP_O)
-	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
-
-DGN_COMP_O = util/dgn_main.o util/dgn_yacc.o util/dgn_lex.o	\
-             src/alloc.o util/panic.o
-
-util/dgn_comp: $(DGN_COMP_O)
-	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
-
-MAKEDEFS_O = util/makedefs.o src/monst.o src/objects.o src/alloc.o	\
+MAKEDEFS_O = util/makedefs.o src/alloc.o src/monst.o src/objects.o	\
              util/panic.o
-
 util/makedefs: $(MAKEDEFS_O)
 	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
-DLB_O = util/dlb_main.o src/dlb.o src/alloc.o util/panic.o
+DGN_COMP_O = util/dgn_main.o util/dgn_lex.o util/dgn_yacc.o	\
+             src/alloc.o util/panic.o
+util/dgn_comp: $(DGN_COMP_O)
+	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
+LEV_COMP_O = util/lev_main.o util/lev_lex.o util/lev_yacc.o	\
+             src/alloc.o src/decl.o src/drawing.o src/monst.o	\
+             src/objects.o util/panic.o
+util/lev_comp: $(LEV_COMP_O)
+	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+DLB_O = util/dlb_main.o src/alloc.o src/dlb.o util/panic.o
 util/dlb: $(DLB_O)
 	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
@@ -128,7 +122,6 @@ include $(ALL_D) $(LEV_D)
 NHSHARE = cmdhelp data gypsy.txt help hh history opthelp options	\
           oracles quest.dat rumors wizhelp
 NHUSHARE = dungeon $(SPECIAL_LEVELS)
-
 dat/nhshare: util/dlb $(addprefix dat/,$(NHSHARE))
 	( cd dat ; ../util/dlb cf nhshare $(NHSHARE) )
 dat/nhushare: util/dlb $(addprefix dat/,$(NHUSHARE))
@@ -171,15 +164,15 @@ include/onames.h: util/makedefs
 	( cd util ; ./makedefs -o )
 include/pm.h: util/makedefs
 	( cd util ; ./makedefs -p )
-include/vis_tab.h: src/vis_tab.c
-#	( cd util ; ./makedefs -z )
+include/vis_tab.h: util/makedefs
+	( cd util ; ./makedefs -z )
 
 SRC_AUTO_C = monstr.c vis_tab.c
 
 src/monstr.c: util/makedefs
 	( cd util ; ./makedefs -m )
-src/vis_tab.c: util/makedefs
-	( cd util ; ./makedefs -z )
+src/vis_tab.c: include/vis_tab.h
+#	( cd util ; ./makedefs -z )
 
 UTIL_AUTO_C = dgn_lex.c dgn_yacc.c lev_lex.c lev_yacc.c
 
@@ -195,16 +188,18 @@ util/lev_yacc.c: util/lev_comp.y
 
 ##### SPECIAL CASES #####
 
+# shorthand for "depend on the same things util/recover.o depends on"
 src/recover.o: util/recover.c util/recover.o
 	$(CC) $(CFLAGS) $(CPPFLAGS) -DNO_MAIN $(TARGET_ARCH) -c -o $@ $<
+
 src/recover.d: util/recover.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -MM -MG -MF $@ -MT $(@:.d=.o) $(TARGET_ARCH) $<
 
 ##### CLEANING UP #####
 
 clean:
-	rm -f src/$(GAME) util/recover util/lev_comp
-	rm -f util/dgn_comp util/makedefs util/dlb
+	rm -f src/$(GAME) util/recover util/makedefs
+	rm -f util/dgn_comp util/lev_comp util/dlb
 
 	rm -f $(ALL_O)
 
@@ -218,4 +213,4 @@ clean:
 
 spotless: clean
 	rm -f $(ALL_D)
-	rm -f dat/*.d
+	rm -f $(LEV_D)
