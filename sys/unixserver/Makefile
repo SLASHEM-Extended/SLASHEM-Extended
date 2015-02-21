@@ -22,7 +22,7 @@ CPPFLAGS += -DNO_SUSPEND
 CPPFLAGS += -DDLB
 
 .PHONY: all
-all: src/$(GAME) util/recover dat/nhshare dat/nhushare
+all: sys/unix/unixmain util/recover dat/nhshare dat/nhushare
 
 PLAYGROUND_FILES = perm record logfile xlogfile
 
@@ -37,7 +37,7 @@ install: all dat/license doc/Guidebook.txt
 	  touch $(PLAYGROUND_FILES) ; \
 	  $(CHOWN) $(PLAYGROUND_FILES) ; \
 	  chmod $(FILEPERM) $(PLAYGROUND_FILES) )
-	cp src/$(GAME) $(GAMEDIR)/$(GAME).new
+	cp sys/unix/unixmain $(GAMEDIR)/$(GAME).new
 	cp util/recover dat/nhshare dat/nhushare \
            dat/license doc/Guidebook.txt $(GAMEDIR)
 	( cd $(GAMEDIR) ; \
@@ -69,10 +69,10 @@ SRCOBJ = allmain.o alloc.o apply.o artifact.o attrib.o ball.o bones.o	\
  vis_tab.o vision.o weapon.o were.o wield.o windows.o wizard.o worm.o	\
  worn.o write.o zap.o
 
-GAME_O = $(SRCOBJ:%=src/%) $(SYSUNIXOBJ:%=sys/unix/%)		\
-         $(SYSSHAREOBJ:%=sys/share/%) $(WINTTYOBJ:%=win/tty/%)
-src/$(GAME): $(GAME_O)
-	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -lncurses -o $@
+GAME_O = $(SYSUNIXOBJ:%=sys/unix/%) $(SYSSHAREOBJ:%=sys/share/%)	\
+         $(WINTTYOBJ:%=win/tty/%) $(SRCOBJ:%=src/%)
+sys/unix/unixmain: LDLIBS += -lncurses
+sys/unix/unixmain: $(GAME_O)
 
 RECOVER_O = util/recover.o
 util/recover: $(RECOVER_O)
@@ -190,7 +190,7 @@ src/recover.o: CPPFLAGS += -DNO_MAIN
 
 .PHONY: clean
 clean:
-	rm -f src/$(GAME) util/recover util/makedefs
+	rm -f sys/unix/unixmain util/recover util/makedefs
 	rm -f util/dgn_comp util/lev_comp util/dlb
 
 	rm -f $(ALL_O)
