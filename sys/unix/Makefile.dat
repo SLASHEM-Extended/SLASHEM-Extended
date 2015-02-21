@@ -254,21 +254,21 @@ options:	../util/makedefs
 
 
 spec_levs: ../util/lev_comp \
-	beholder.des bigroom.des blkmar.des castle.des compu.des diver.des \
-	dragons.des endgame.des exmall.des forge.des frnknstn.des gehennom.des \
-	giants.des gladia.des grund.des guild.des heck.des hellma.des hitch.des \
-	intpla.des key.des knox.des kobold-1.des kobold-2.des korsair.des \
-	lich.des mall-1.des mall-2.des mall-3.des medusa.des mines.des \
-	mtemple.des newmall.des nightmar.des nymph.des oracle.des pirate.des \
-	rats.des rndmazea.des rndmaze.des scient.des sea.des sheol.des \
-	sokoban.des spiders.des stor-1.des stor-2.des stor-3.des tomb.des \
-	tower.des town.des unheck.des yendor.des
+	beholder.des bigroom.des blkmar.des castle.des compu.des	\
+	dragons.des endgame.des exmall.des forge.des frnknstn.des	\
+	gehennom.des giants.des grund.des guild.des heck.des		\
+	hellma.des hitch.des intpla.des key.des knox.des kobold-1.des	\
+	kobold-2.des lich.des mall-1.des mall-2.des mall-3.des		\
+	medusa.des mines.des mtemple.des newmall.des nightmar.des	\
+	nymph.des oracle.des rats.des rndmaze.des rndmazea.des		\
+	sea.des sheol.des sokoban.des spiders.des stor-1.des		\
+	stor-2.des stor-3.des tomb.des tower.des town.des unheck.des	\
+	yendor.des
 	../util/lev_comp beholder.des
 	../util/lev_comp bigroom.des
 	../util/lev_comp blkmar.des
 	../util/lev_comp castle.des
 	../util/lev_comp compu.des
-	../util/lev_comp diver.des
 	../util/lev_comp dragons.des
 	../util/lev_comp endgame.des
 	../util/lev_comp exmall.des
@@ -276,7 +276,6 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp frnknstn.des
 	../util/lev_comp gehennom.des
 	../util/lev_comp giants.des
-	../util/lev_comp gladia.des
 	../util/lev_comp grund.des
 	../util/lev_comp guild.des
 	../util/lev_comp heck.des
@@ -287,7 +286,6 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp knox.des
 	../util/lev_comp kobold-1.des
 	../util/lev_comp kobold-2.des
-	../util/lev_comp korsair.des
 	../util/lev_comp lich.des
 	../util/lev_comp mall-1.des
 	../util/lev_comp mall-2.des
@@ -299,11 +297,9 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp nightmar.des
 	../util/lev_comp nymph.des
 	../util/lev_comp oracle.des
-	../util/lev_comp pirate.des
 	../util/lev_comp rats.des
-	../util/lev_comp rndmazea.des
 	../util/lev_comp rndmaze.des
-	../util/lev_comp scient.des
+	../util/lev_comp rndmazea.des
 	../util/lev_comp sea.des
 	../util/lev_comp sheol.des
 	../util/lev_comp sokoban.des
@@ -319,20 +315,24 @@ spec_levs: ../util/lev_comp \
 	touch spec_levs
 
 quest_levs: ../util/lev_comp \
-	Abuser.des Acid.des Act.des Altmer.des Amazon.des Arch.des Artist.des \
-	Assassin.des Augurer.des Barb.des Bard.des Binder.des Bleeder.des \
-	Bloodsee.des Bosmer.des Bully.des Caveman.des Cheval.des Convict.des \
-	Cook.des Courier.des Cyborg.des Deatheat.des Doll.des Drunk.des \
-	Dunmer.des Electric.des Elf.des Elfreal.des Firef.des Flame.des \
-	Foxhound.des Gamer.des Gangster.des Geek.des Goff.des Gradu.des \
-	Gunner.des Healer.des Ice.des Jedi.des Jester.des Knight.des Ladies.des \
-	Libra.des Locks.des Lunatic.des Mahou.des Monk.des Music.des Mystic.des \
-	Necro.des Ninja.des Noble.des Offic.des Ordinat.des Otaku.des \
-	Paladin.des Pickpock.des Polit.des Priest.des Psion.des Ranger.des \
-	Rocker.des Rogue.des Sage.des Saiyan.des Samurai.des Scribe.des \
-	Slavemas.des Slayer.des Spacew.des Stunt.des Supermar.des Thalmor.des \
-	Top.des Tourist.des Trans.des Under.des Valkyrie.des Wandkeep.des \
-	Warrior.des Wizard.des Yeoman.des Zooke.des
+	Abuser.des Acid.des Act.des Altmer.des Amazon.des Arch.des	\
+	Artist.des Assassin.des Augurer.des Barb.des Bard.des		\
+	Binder.des Bleeder.des Bloodsee.des Bosmer.des Bully.des	\
+	Caveman.des Cheval.des Convict.des Cook.des Courier.des		\
+	Cyborg.des Deatheat.des Diver.des Doll.des Drunk.des		\
+	Dunmer.des Electric.des Elf.des Elfreal.des Firef.des		\
+	Flame.des Foxhound.des Gamer.des Gangster.des Geek.des		\
+	Gladia.des Goff.des Gradu.des Gunner.des Healer.des Ice.des	\
+	Jedi.des Jester.des Knight.des Korsair.des Ladies.des		\
+	Libra.des Locks.des Lunatic.des Mahou.des Monk.des Music.des	\
+	Mystic.des Necro.des Ninja.des Noble.des Offic.des		\
+	Ordinat.des Otaku.des Paladin.des Pickpock.des Pirate.des	\
+	Polit.des Priest.des Psion.des Ranger.des Rocker.des		\
+	Rogue.des Sage.des Saiyan.des Samurai.des Scient.des		\
+	Scribe.des Slavemas.des Slayer.des Spacew.des Stunt.des		\
+	Supermar.des Thalmor.des Top.des Tourist.des Trans.des		\
+	Under.des Valkyrie.des Wandkeep.des Warrior.des Wizard.des	\
+	Yeoman.des Zooke.des
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
 	../util/lev_comp Act.des
@@ -356,6 +356,7 @@ quest_levs: ../util/lev_comp \
 	../util/lev_comp Courier.des
 	../util/lev_comp Cyborg.des
 	../util/lev_comp Deatheat.des
+	../util/lev_comp Diver.des
 	../util/lev_comp Doll.des
 	../util/lev_comp Drunk.des
 	../util/lev_comp Dunmer.des
@@ -368,6 +369,7 @@ quest_levs: ../util/lev_comp \
 	../util/lev_comp Gamer.des
 	../util/lev_comp Gangster.des
 	../util/lev_comp Geek.des
+	../util/lev_comp Gladia.des
 	../util/lev_comp Goff.des
 	../util/lev_comp Gradu.des
 	../util/lev_comp Gunner.des
@@ -376,6 +378,7 @@ quest_levs: ../util/lev_comp \
 	../util/lev_comp Jedi.des
 	../util/lev_comp Jester.des
 	../util/lev_comp Knight.des
+	../util/lev_comp Korsair.des
 	../util/lev_comp Ladies.des
 	../util/lev_comp Libra.des
 	../util/lev_comp Locks.des
@@ -392,6 +395,7 @@ quest_levs: ../util/lev_comp \
 	../util/lev_comp Otaku.des
 	../util/lev_comp Paladin.des
 	../util/lev_comp Pickpock.des
+	../util/lev_comp Pirate.des
 	../util/lev_comp Polit.des
 	../util/lev_comp Priest.des
 	../util/lev_comp Psion.des
@@ -401,6 +405,7 @@ quest_levs: ../util/lev_comp \
 	../util/lev_comp Sage.des
 	../util/lev_comp Saiyan.des
 	../util/lev_comp Samurai.des
+	../util/lev_comp Scient.des
 	../util/lev_comp Scribe.des
 	../util/lev_comp Slavemas.des
 	../util/lev_comp Slayer.des
