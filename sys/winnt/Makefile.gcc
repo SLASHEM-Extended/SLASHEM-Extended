@@ -1040,8 +1040,8 @@ lev_yacc.c:  $(UTIL)\lev_comp.y
 	$(DEL) $(YTABC)
 	$(DEL) $(YTABH)
 
-lev_$(LEX).c:  $(UTIL)\lev_comp.l
-	$(LEX) $(DUTIL)/lev_comp.l
+lev_$(LEX).c:  $(UTIL)\lev_lex.l
+	$(LEX) $(DUTIL)/lev_lex.l
 	$(COPY) $(LEXYYC) $@
 	$(DEL) $(LEXYYC)
 else
@@ -1101,8 +1101,8 @@ dgn_yacc.c: $(UTIL)\dgn_comp.y
 	$(DEL) $(YTABC)
 	$(DEL) $(YTABH)
 
-dgn_$(LEX).c:  $(UTIL)\dgn_comp.l
-	$(LEX) $(DUTIL)/dgn_comp.l
+dgn_$(LEX).c:  $(UTIL)\dgn_lex.l
+	$(LEX) $(DUTIL)/dgn_lex.l
 	$(COPY) $(LEXYYC) $@
 	$(DEL) $(LEXYYC)
 
@@ -1652,8 +1652,8 @@ dlb_main.exe: $(DLBOBJS)
 	$(COPY) $@ $(DAT)\dlb_main.exe
 
 
-dlb_main.o: $(UTIL)\dlb_main.c $(INCL)\config.h $(DLB_H)
-	$(COPY) $(UTIL)\dlb_main.c .
+dlb_main.o: $(UTIL)\dlb.c $(INCL)\config.h $(DLB_H)
+	$(COPY) $(UTIL)\dlb.c dlb_main.c
 	$(CCOMPILE) $(CFLAGS) -odlb_main.o dlb_main.c
 
 #
