@@ -32,7 +32,7 @@ install: all dat/license doc/Guidebook.txt
 	mkdir -p $(GAMEDIR) $(GAMEDIR)/save
 	$(CHOWN) $(GAMEDIR) $(GAMEDIR)/save
 	chmod $(DIRPERM) $(GAMEDIR) $(GAMEDIR)/save
-	-ln $(addprefix $(MASTERDIR)/,$(PLAYGROUND_FILES)) $(GAMEDIR)
+	-ln $(PLAYGROUND_FILES:%=$(MASTERDIR)/%) $(GAMEDIR)
 	( cd $(GAMEDIR) ; \
 	  touch $(PLAYGROUND_FILES) ; \
 	  $(CHOWN) $(PLAYGROUND_FILES) ; \
@@ -69,10 +69,8 @@ SRCOBJ = allmain.o alloc.o apply.o artifact.o attrib.o ball.o bones.o	\
  vis_tab.o vision.o weapon.o were.o wield.o windows.o wizard.o worm.o	\
  worn.o write.o zap.o
 
-GAME_O = $(addprefix src/,$(SRCOBJ))			\
-         $(addprefix sys/unix/,$(SYSUNIXOBJ))		\
-         $(addprefix sys/share/,$(SYSSHAREOBJ))		\
-         $(addprefix win/tty/,$(WINTTYOBJ))
+GAME_O = $(SRCOBJ:%=src/%) $(SYSUNIXOBJ:%=sys/unix/%)		\
+         $(SYSSHAREOBJ:%=sys/share/%) $(WINTTYOBJ:%=win/tty/%)
 src/$(GAME): $(GAME_O)
 	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -lncurses -o $@
 
@@ -108,20 +106,22 @@ ALL_O = $(GAME_O) $(RECOVER_O) $(LEV_COMP_O) $(DGN_COMP_O)	\
 dat/%.d: dat/%.des
 	( cd dat ; ./leveldepend.sh $(<F) > $(@F) )
 
-ALL_D = $(patsubst %.o,%.d,$(ALL_O))
-LEV_D = $(patsubst %.des,%.d,$(wildcard dat/*.des))
+ALL_D = $(ALL_O:%.o=%.d) $(patsubst %.des,%.d,$(wildcard dat/*.des))
 
-# LEV_D will also populate SPECIAL_LEVELS
-include $(ALL_D) $(LEV_D)
+# this will also populate SPECIAL_LEVELS
+include $(ALL_D)
 
 ##### DATA FILES #####
 
+# FIXME: this is somewhat of a kludge, we should figure out which .levs
+# are needed instead, but stuff like RNDLEVEL will make it really awkward,
+# so we pretend every level in SPECIAL_LEVELS is needed instead
 NHSHARE = cmdhelp data gypsy.txt help hh history opthelp options	\
           oracles quest.dat rumors wizhelp
 NHUSHARE = dungeon $(SPECIAL_LEVELS)
-dat/nhshare: util/dlb $(addprefix dat/,$(NHSHARE))
+dat/nhshare: util/dlb $(NHSHARE:%=dat/%)
 	( cd dat ; ../util/dlb cf nhshare $(NHSHARE) )
-dat/nhushare: util/dlb $(addprefix dat/,$(NHUSHARE))
+dat/nhushare: util/dlb $(NHUSHARE:%=dat/%)
 	( cd dat ; ../util/dlb cf nhushare $(NHUSHARE) )
 
 DAT_AUTO = data options oracles quest.dat rumors dungeon.pdf dungeon
@@ -174,18 +174,16 @@ UTIL_AUTO_C = dgn_comp.c dgn_lex.c lev_comp.c lev_lex.c
 
 YACC_COMPS = dgn_comp lev_comp
 
-$(foreach comp,$(YACC_COMPS),include/$(comp).h): include/%.h: util/%.c
-$(foreach comp,$(YACC_COMPS),util/$(comp).c): util/%.c: util/%.y
+$(YACC_COMPS:%=include/%.h): include/%.h: util/%.c
+$(YACC_COMPS:%=util/%.c): util/%.c: util/%.y
 	bison $(YFLAGS) --output=util/$*.c --defines=include/$*.h $<
 
 ##### SPECIAL CASES #####
 
-# shorthand for "depend on the same things util/recover.o depends on"
-src/recover.o: util/recover.c util/recover.o
-	$(CC) $(CFLAGS) $(CPPFLAGS) -DNO_MAIN $(TARGET_ARCH) -c -o $@ $<
-
-src/recover.d: util/recover.c
-	$(CC) $(CFLAGS) $(CPPFLAGS) -DNO_MAIN -MM -MG -MF $@ -MT $(@:.d=.o) $(TARGET_ARCH) $<
+src/recover.c: util/recover.c
+	ln -sf ../util/recover.c src/recover.c
+src/recover.d: CPPFLAGS += -DNO_MAIN
+src/recover.o: CPPFLAGS += -DNO_MAIN
 
 ##### CLEANING UP #####
 
@@ -197,14 +195,14 @@ clean:
 	rm -f $(ALL_O)
 
 	rm -f dat/nhshare dat/nhushare
-	rm -f $(addprefix dat/,$(DAT_AUTO))
-	rm -f $(addprefix dat/,$(SPECIAL_LEVELS))
+	rm -f $(DAT_AUTO:%=dat/%)
+	rm -f $(SPECIAL_LEVELS:%=dat/%)
 
-	rm -f $(addprefix include/,$(AUTO_H))
-	rm -f $(addprefix src/,$(SRC_AUTO_C))
-	rm -f $(addprefix util/,$(UTIL_AUTO_C))
+	rm -f $(AUTO_H:%=include/%)
+	rm -f $(SRC_AUTO_C:%=src/%)
+	rm -f $(UTIL_AUTO_C:%=util/%)
+	rm -f src/recover.c
 
-.PHONY: spotless
-spotless: clean
+.PHONY: cleandeps
+cleandeps: clean
 	rm -f $(ALL_D)
-	rm -f $(LEV_D)
