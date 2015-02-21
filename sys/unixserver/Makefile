@@ -96,26 +96,27 @@ util/dlb: $(DLB_O)
 ALL_O = $(GAME_O) $(RECOVER_O) $(LEV_COMP_O) $(DGN_COMP_O)	\
         $(MAKEDEFS_O) $(DLB_O)
 
-##### AUTOMATIC DEPENDENCIES #####
+##### AUTOMATIC C DEPENDENCIES #####
 
 %.o: CPPFLAGS += -MMD -MP
 
 %.d: %.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -MM -MG -MP -MF $@ -MT $*.o $(TARGET_ARCH) $<
 
-dat/%.d: dat/%.des
-	( cd dat ; ./leveldepend.sh $(<F) > $(@F) )
-
-ALL_D = $(ALL_O:%.o=%.d) $(patsubst %.des,%.d,$(wildcard dat/*.des))
-
-# this will also populate SPECIAL_LEVELS
+ALL_D = $(ALL_O:%.o=%.d)
 include $(ALL_D)
 
 ##### DATA FILES #####
 
-# FIXME: this is somewhat of a kludge, we should figure out which .levs
-# are needed instead, but stuff like RNDLEVEL will make it really awkward,
-# so we pretend every level in SPECIAL_LEVELS is needed instead
+dat/%.d: dat/%.des
+	( cd dat ; ./leveldepend.sh $(<F) > $(@F) )
+
+DAT_DES := $(wildcard dat/*.des)
+
+DAT_D = $(DAT_DES:%.des=%.d)
+# this populates SPECIAL_LEVELS
+include $(DAT_D)
+
 NHSHARE = cmdhelp data gypsy.txt help hh history opthelp options	\
           oracles quest.dat rumors wizhelp
 NHUSHARE = dungeon $(SPECIAL_LEVELS)
@@ -206,3 +207,4 @@ clean:
 .PHONY: cleandeps
 cleandeps: clean
 	rm -f $(ALL_D)
+	rm -f $(DAT_D)
