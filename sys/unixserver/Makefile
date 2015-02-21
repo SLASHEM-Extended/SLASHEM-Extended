@@ -21,10 +21,12 @@ CPPFLAGS += -D'WIZARD="$(GAMEUID)"'
 CPPFLAGS += -DNO_SUSPEND
 CPPFLAGS += -DDLB
 
+.PHONY: all
 all: src/$(GAME) util/recover dat/nhshare dat/nhushare
 
 PLAYGROUND_FILES = perm record logfile xlogfile
 
+.PHONY: install
 install: all dat/license doc/Guidebook.txt
 	-rm $(GAMEDIR)/$(GAME) $(GAMEDIR)/nhshare $(GAMEDIR)/nhushare
 	mkdir -p $(GAMEDIR) $(GAMEDIR)/save
@@ -197,6 +199,7 @@ src/recover.d: util/recover.c
 
 ##### CLEANING UP #####
 
+.PHONY: clean
 clean:
 	rm -f src/$(GAME) util/recover util/makedefs
 	rm -f util/dgn_comp util/lev_comp util/dlb
@@ -211,6 +214,7 @@ clean:
 	rm -f $(addprefix src/,$(SRC_AUTO_C))
 	rm -f $(addprefix util/,$(UTIL_AUTO_C))
 
+.PHONY: spotless
 spotless: clean
 	rm -f $(ALL_D)
 	rm -f $(LEV_D)
