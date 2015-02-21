@@ -111,9 +111,34 @@ include $(ALL_D)
 dat/%.d: dat/%.des
 	( cd dat ; ./leveldepend.sh $(<F) > $(@F) )
 
-DAT_DES := $(wildcard dat/*.des)
+QUEST_DES = Abuser.des Acid.des Act.des Altmer.des Amazon.des		\
+ Arch.des Artist.des Assassin.des Augurer.des Barb.des Bard.des		\
+ Binder.des Bleeder.des Bloodsee.des Bosmer.des Bully.des Caveman.des	\
+ Cheval.des Convict.des Cook.des Courier.des Cyborg.des Deatheat.des	\
+ Doll.des Drunk.des Dunmer.des Electric.des Elf.des Elfreal.des		\
+ Firef.des Flame.des Foxhound.des Gamer.des Gangster.des Geek.des	\
+ Goff.des Gradu.des Gunner.des Healer.des Ice.des Jedi.des Jester.des	\
+ Knight.des Ladies.des Libra.des Locks.des Lunatic.des Mahou.des	\
+ Monk.des Music.des Mystic.des Necro.des Ninja.des Noble.des		\
+ Offic.des Ordinat.des Otaku.des Paladin.des Pickpock.des Polit.des	\
+ Priest.des Psion.des Ranger.des Rocker.des Rogue.des Sage.des		\
+ Saiyan.des Samurai.des Scribe.des Slavemas.des Slayer.des Spacew.des	\
+ Stunt.des Supermar.des Thalmor.des Top.des Tourist.des Trans.des	\
+ Under.des Valkyrie.des Wandkeep.des Warrior.des Wizard.des		\
+ Yeoman.des Zooke.des
 
-DAT_D = $(DAT_DES:%.des=%.d)
+SPEC_DES = beholder.des bigroom.des blkmar.des castle.des compu.des	\
+ diver.des dragons.des endgame.des exmall.des forge.des frnknstn.des	\
+ gehennom.des giants.des gladia.des grund.des guild.des heck.des	\
+ hellma.des hitch.des intpla.des key.des knox.des kobold-1.des		\
+ kobold-2.des korsair.des lich.des mall-1.des mall-2.des mall-3.des	\
+ medusa.des mines.des mtemple.des newmall.des nightmar.des nymph.des	\
+ oracle.des pirate.des rats.des rndmaze.des rndmazea.des scient.des	\
+ sea.des sheol.des sokoban.des spiders.des stor-1.des stor-2.des	\
+ stor-3.des tomb.des tower.des town.des unheck.des yendor.des
+
+DAT_D = $(QUEST_DES:%.des=dat/%.d) $(SPEC_DES:%.des=dat/%.d)
+
 # this populates SPECIAL_LEVELS
 include $(DAT_D)
 
