@@ -26,6 +26,8 @@ CPPFLAGS += -DNO_EXPLORE_MODE
 CPPFLAGS += -DNO_SUSPEND
 CPPFLAGS += -DDLB
 
+.DELETE_ON_ERROR:
+
 .PHONY: all
 all: src/$(GAME) util/recover dat/nhshare dat/nhushare
 
