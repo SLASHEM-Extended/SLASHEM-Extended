@@ -93,13 +93,13 @@ util/dlb: $(DLB_O)
 	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
 AUTO_BIN += util/dlb
 
-DGN_COMP_O = util/dgn_yacc.o util/dgn_main.o util/dgn_lex.o	\
+DGN_COMP_O = util/dgn_main.o util/dgn_lex.o util/dgn_yacc.o	\
              src/alloc.o util/panic.o
 util/dgn_comp: $(DGN_COMP_O)
 	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
 AUTO_BIN += util/dgn_comp
 
-LEV_COMP_O = util/lev_yacc.o util/lev_main.o util/lev_lex.o	\
+LEV_COMP_O = util/lev_main.o util/lev_lex.o util/lev_yacc.o	\
              src/alloc.o src/decl.o src/drawing.o src/monst.o	\
              src/objects.o util/panic.o
 util/lev_comp: $(LEV_COMP_O)
@@ -139,10 +139,11 @@ SPEC_DES = beholder.des bigroom.des blkmar.des castle.des compu.des	\
  unheck.des yendor.des
 
 ALL_DES = $(QUEST_DES) $(SPEC_DES)
+ALL_TAG = $(ALL_DES:%.des=dat/%.tag)
 
-$(ALL_DES:%.des=dat/%.tag): dat/%.tag: dat/%.des util/lev_comp
+$(ALL_TAG): dat/%.tag: dat/%.des util/lev_comp
 	cd dat && ../util/lev_comp $(<F) && touch $(@F)
-AUTO_DAT += $(ALL_DES:%.des=dat/%.tag)
+AUTO_DAT += $(ALL_TAG)
 
 DAT_NHSHARE = cmdhelp data gypsy.txt help hh history opthelp options	\
               oracles quest.dat rumors wizhelp
@@ -151,7 +152,7 @@ dat/nhshare: util/dlb $(DAT_NHSHARE:%=dat/%)
 AUTO_DAT += dat/nhshare
 
 DAT_NHUSHARE = dungeon
-dat/nhushare: util/dlb $(DAT_NHUSHARE:%=dat/%) $(ALL_DES:%.des=dat/%.tag)
+dat/nhushare: util/dlb $(DAT_NHUSHARE:%=dat/%) $(ALL_TAG)
 	cd dat && ../util/dlb cf nhushare $(DAT_NHUSHARE) *.lev
 AUTO_DAT += dat/nhushare
 
