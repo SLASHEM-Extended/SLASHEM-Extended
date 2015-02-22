@@ -132,7 +132,7 @@ MAKESRC = makedefs.c
 SPLEVSRC = lev_yacc.c lev_lex.c lev_main.c
 DGNCOMPSRC = dgn_yacc.c dgn_lex.c dgn_main.c
 RECOVSRC = recover.c
-DLBSRC = dlb.c
+DLBSRC = dlb_main.c
 UTILSRCS = $(MAKESRC) panic.c $(SPLEVSRC) $(DGNCOMPSRC) $(RECOVSRC) $(DLBSRC)
 
 # files that define all monsters and objects
@@ -158,7 +158,7 @@ DGNCOMPOBJS = dgn_yacc.o dgn_lex.o dgn_main.o $(OALLOC)
 RECOVOBJS = recover.o
 
 # object files for the data librarian
-DLBOBJS = dlb.o $(OBJDIR)/dlb.o $(OALLOC)
+DLBOBJS = dlb_main.o $(OBJDIR)/dlb.o $(OALLOC)
 
 # flags for creating distribution versions of sys/share/*_lex.c, using
 # a more portable flex skeleton, which is not included in the distribution.
@@ -231,8 +231,8 @@ lev_yacc.c: lev_comp.y
 	mv $(YTABC) lev_yacc.c
 	mv $(YTABH) ../include/lev_comp.h
 
-lev_lex.c: lev_lex.l
-	$(LEX) $(FLEXDIST) lev_lex.l
+lev_lex.c: lev_comp.l
+	$(LEX) $(FLEXDIST) lev_comp.l
 	mv $(LEXYYC) lev_lex.c
 
 # with all of extern.h's functions to complain about, we drown in
@@ -262,8 +262,8 @@ dgn_yacc.c: dgn_comp.y
 	mv $(YTABC) dgn_yacc.c
 	mv $(YTABH) ../include/dgn_comp.h
 
-dgn_lex.c: dgn_lex.l
-	$(LEX) $(FLEXDIST) dgn_lex.l
+dgn_lex.c: dgn_comp.l
+	$(LEX) $(FLEXDIST) dgn_comp.l
 	mv $(LEXYYC) dgn_lex.c
 
 # with all of extern.h's functions to complain about, we drown in
@@ -285,8 +285,8 @@ recover.o: recover.c $(CONFIG_H) ../include/date.h
 dlb:	$(DLBOBJS)
 	$(CC) $(LFLAGS) -o dlb $(DLBOBJS) $(LIBS)
 
-dlb.o: dlb.c $(CONFIG_H) ../include/dlb.h ../include/date.h
-	$(CC) $(CFLAGS) -c dlb.c
+dlb_main.o: dlb_main.c $(CONFIG_H) ../include/dlb.h ../include/date.h
+	$(CC) $(CFLAGS) -c dlb_main.c
 
 
 
