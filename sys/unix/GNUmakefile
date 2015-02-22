@@ -6,6 +6,9 @@ GAMEUID = acehack
 GAMEGID = acehack
 CHOWN = chown $(GAMEUID):$(GAMEGID)
 
+BISON = bison
+FLEX = flex
+
 GAMEDIR = /srv/acehack/slex-$(VERSION)
 MASTERDIR = /srv/acehack/slexdir
 
@@ -196,12 +199,12 @@ AUTO_C += src/monstr.c
 
 include/dgn_comp.h include/lev_comp.h: include/%_comp.h: util/%_yacc.c
 util/dgn_yacc.c util/lev_yacc.c: util/%_yacc.c: util/%_comp.y
-	bison $(YFLAGS) --output=util/$*_yacc.c --defines=include/$*_comp.h $<
+	$(BISON) --output=util/$*_yacc.c --defines=include/$*_comp.h $<
 AUTO_H += include/dgn_comp.h include/lev_comp.h
 AUTO_C += util/dgn_yacc.c util/lev_yacc.c
 
 util/dgn_lex.c util/lev_lex.c: util/%_lex.c: util/%_comp.l
-	flex $(LFLAGS) -o $@ $<
+	$(FLEX) -o $@ $<
 AUTO_C += util/dgn_lex.c util/lev_lex.c
 
 ##### AUTOMATIC DEPENDENCY GENERATION #####
