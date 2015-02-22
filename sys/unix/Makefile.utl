@@ -131,7 +131,7 @@ HACK_H	 = ../src/hack.h-t
 MAKESRC = makedefs.c
 SPLEVSRC = lev_yacc.c lev_lex.c lev_main.c
 DGNCOMPSRC = dgn_yacc.c dgn_lex.c dgn_main.c
-RECOVSRC = recover.c
+RECOVSRC = recover_main.c
 DLBSRC = dlb_main.c
 UTILSRCS = $(MAKESRC) panic.c $(SPLEVSRC) $(DGNCOMPSRC) $(RECOVSRC) $(DLBSRC)
 
@@ -155,7 +155,7 @@ SPLEVOBJS = lev_yacc.o lev_lex.o lev_main.o $(OALLOC) $(ONAMING)
 DGNCOMPOBJS = dgn_yacc.o dgn_lex.o dgn_main.o $(OALLOC)
 
 # object files for recovery utility
-RECOVOBJS = recover.o
+RECOVOBJS = recover_main.o $(OBJDIR)/recover.o
 
 # object files for the data librarian
 DLBOBJS = dlb_main.o $(OBJDIR)/dlb.o $(OALLOC)
@@ -277,8 +277,7 @@ lintdgn:
 recover: $(RECOVOBJS)
 	$(CC) $(LFLAGS) -o recover $(RECOVOBJS) $(LIBS)
 
-recover.o: recover.c $(CONFIG_H) ../include/date.h
-
+recover_main.o: recover_main.c
 
 #	dependencies for dlb
 #
@@ -418,6 +417,8 @@ $(OBJDIR)/objects.o: ../src/objects.c $(CONFIG_H)
 	$(CC) $(CFLAGS) -c ../src/objects.c -o $@
 $(OBJDIR)/dlb.o: ../src/dlb.c $(HACK_H) ../include/dlb.h
 	$(CC) $(CFLAGS) -c ../src/dlb.c -o $@
+$(OBJDIR)/recover.o: ../src/recover.c $(CONFIG_H) ../include/date.h
+	$(CC) $(CFLAGS) -c ../src/recover.c -o $@
 
 # make sure hack.h dependencies get transitive information
 $(HACK_H): $(CONFIG_H)

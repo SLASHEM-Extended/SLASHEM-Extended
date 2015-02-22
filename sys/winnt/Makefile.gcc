@@ -432,7 +432,7 @@ SPLEVOBJS   = lev_yacc.o  lev_$(LEX).o	lev_main.o  alloc.o	\
 DGNCOMPOBJS = dgn_yacc.o  dgn_$(LEX).o	dgn_main.o  alloc.o	 \
 		panic.o $(NHALLOCOBJ)
 
-RECOVOBJS   = recover.o
+RECOVOBJS   = recover.o recover_main.o
 
 
 #  Tile related object files.
@@ -804,7 +804,7 @@ spotless: clean
 	-$(DEL) vis_tab.c
 	-$(DEL) $(SRC)\panic.c
 	-$(DEL) $(SRC)\makedefs.c
-	-$(DEL) $(SRC)\recover.c
+	-$(DEL) $(SRC)\recover_main.c
 	-$(DEL) $(SRC)\lev_main.c
 	-$(DEL) $(SRC)\dlb_main.c
 	-$(DEL) $(SRC)\dgn_main.c
@@ -1125,10 +1125,13 @@ endif
 #
 
 recover.exe:   $(RECOVOBJS)
-	$(LINK) $(LFLAGS) -mconsole -orecover.exe recover.o
+	$(LINK) $(LFLAGS) -mconsole -orecover.exe recover.o recover_main.o
 
-recover.c:  $(UTIL)\recover.c
-	$(COPY) $(UTIL)\recover.c .
+recover_main.c:  $(UTIL)\recover_main.c
+	$(COPY) $(UTIL)\recover_main.c .
+
+recover_main.o: recover_main.c
+	$(CCOMPILE) $(CFLAGS) -o$@ recover_main.c
 
 recover.o:   $(CONFIG_H) recover.c
 	$(CCOMPILE) $(CFLAGS) -o$@ recover.c

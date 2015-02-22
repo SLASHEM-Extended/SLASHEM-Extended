@@ -77,7 +77,7 @@ src/$(GAME): $(GAME_O)
 	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -lncurses -o $@
 AUTO_BIN += src/$(GAME)
 
-RECOVER_O = util/recover.o
+RECOVER_O = util/recover_main.o src/recover.o
 util/recover: $(RECOVER_O)
 	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
 AUTO_BIN += util/recover
@@ -218,20 +218,11 @@ util/lev_yacc.o: include/onames.h include/pm.h
 util/dgn_lex.o: include/dgn_comp.h
 util/lev_lex.o: include/lev_comp.h include/onames.h include/pm.h
 
-
 %.d:
 	$(CC) $(CFLAGS) $(CPPFLAGS) -MM -MP -MG -MF $@ -MT $*.o $*.c
 
 ALL_D = $(ALL_O:%.o=%.d)
 -include $(ALL_D)
-
-##### SPECIAL CASES #####
-
-src/recover.d src/recover.o: CPPFLAGS += -DNO_MAIN
-src/recover.d:
-	$(CC) $(CFLAGS) $(CPPFLAGS) -MM -MP -MG -MF src/recover.d -MT src/recover.o util/recover.c
-src/recover.o: util/recover.c
-	$(COMPILE.c) $(OUTPUT_OPTION) $<
 
 ##### CLEANING UP #####
 

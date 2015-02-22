@@ -88,7 +88,7 @@ src/makefile.bcc
 src/makefile.gcc
 src/nhlan.c
 src/panic.c
-src/recover.c
+src/recover_main.c
 src/recover.exe
 src/slashem.lnk
 src/sp_lev.tag

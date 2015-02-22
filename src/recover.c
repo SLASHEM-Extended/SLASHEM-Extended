@@ -21,6 +21,7 @@ extern int FDECL(vms_creat, (const char *,unsigned));
 extern int FDECL(vms_open, (const char *,int,unsigned));
 #endif	/* VMS */
 
+int FDECL(recover_main, (int, char *[]));
 int FDECL(restore_savefile, (char *, const char *));
 static void FDECL(set_levelfile_name, (int));
 static int FDECL(open_levelfile, (int, const char *));
@@ -60,9 +61,8 @@ extern unsigned _stklen = STKSIZ;
 char savename[SAVESIZE]; /* holds relative path of save file from playground */
 
 
-#ifndef NO_MAIN
 int
-main(argc, argv)
+recover_main(argc, argv)
 int argc;
 char *argv[];
 {
@@ -142,7 +142,6 @@ char *argv[];
 	/*NOTREACHED*/
 	return 0;
 }
-#endif /* !NO_MAIN */
 
 static char lock[256];
 

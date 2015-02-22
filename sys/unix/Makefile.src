@@ -755,8 +755,8 @@ topl.o: ../win/tty/topl.c $(HACK_H) ../include/tcap.h
 wintty.o: ../win/tty/wintty.c $(HACK_H) ../include/dlb.h \
 		../include/patchlevel.h ../include/tcap.h
 	$(CC) $(CFLAGS) -c ../win/tty/wintty.c
-recover.o: ../util/recover.c $(HACK_H)
-	$(CC) $(CFLAGS) -DNO_MAIN -c ../util/recover.c
+recover.o: recover.c $(CONFIG_H) ../include/date.h
+	$(CC) $(CFLAGS) -c recover.c
 Window.o: ../win/X11/Window.c ../include/xwindowp.h ../include/xwindow.h \
 		$(CONFIG_H)
 	$(CC) $(CFLAGS) -c ../win/X11/Window.c
