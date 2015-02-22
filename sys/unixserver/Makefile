@@ -135,7 +135,7 @@ ALL_DES = $(QUEST_DES) $(SPEC_DES)
 dat/ushare/: util/lev_comp dat/dungeon $(ALL_DES:%=dat/%)
 	mkdir -p dat/ushare
 	cd dat/ushare && \
-	for des in $(filter %.des,$(if $(find util/lev_comp,$?),$@,$?)) ; do \
+	for des in $(filter %.des,$(if $(findstring util/lev_comp,$?),$^,$?)) ; do \
 	    ../../util/lev_comp ../../$$des || exit ; \
 	done
 	cp -u dat/dungeon dat/ushare/
