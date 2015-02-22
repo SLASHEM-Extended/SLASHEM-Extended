@@ -71,8 +71,8 @@ SRCOBJ = allmain.o alloc.o apply.o artifact.o attrib.o ball.o bones.o	\
 
 GAME_O = $(SYSUNIXOBJ:%=sys/unix/%) $(SYSSHAREOBJ:%=sys/share/%)	\
          $(WINTTYOBJ:%=win/tty/%) $(SRCOBJ:%=src/%)
-sys/unix/unixmain: LDLIBS += -lncurses
 sys/unix/unixmain: $(GAME_O)
+	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -lncurses -o $@
 AUTO_BIN += sys/unix/unixmain
 
 RECOVER_O = util/recover.o
