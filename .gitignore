@@ -2,12 +2,12 @@
 *.o
 *.d
 dat/*.lev
+dat/*.tag
 dat/data
 dat/dungeon
 dat/dungeon.pdf
 dat/nhshare
 dat/nhushare
-dat/ushare/
 dat/options
 dat/oracles
 dat/quest.dat
