@@ -246,6 +246,6 @@ clean:
 	rm -f $(AUTO_H)
 	rm -f $(AUTO_C)
 
-.PHONY: spotless
-spotless: clean
+.PHONY: cleandeps
+cleandeps: clean
 	rm -f $(ALL_D)
