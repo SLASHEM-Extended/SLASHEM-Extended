@@ -188,6 +188,7 @@ src/monstr.c: util/makedefs
 	cd util && ./makedefs -m  # src/monstr.c
 AUTO_C += src/monstr.c
 
+YACC_COMPS = dgn_comp lev_comp
 $(YACC_COMPS:%=include/%.h): include/%.h: util/%.c
 $(YACC_COMPS:%=util/%.c): util/%.c: util/%.y
 	bison $(YFLAGS) --output=util/$*.c --defines=include/$*.h $<
