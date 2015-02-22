@@ -181,8 +181,8 @@ AUTO_HEADERS = date.h dgn_comp.h filename.h lev_comp.h onames.h pm.h
 $(AUTO_HEADERS): %.h: include/%.h
 
 # compile every time if we don't have git
-.git/HEAD:
-include/date.h: util/makedefs .git/HEAD
+.git/index:
+include/date.h: util/makedefs .git/index
 	cd util && ./makedefs -v  # include/date.h dat/options
 include/filename.h: util/makedefs
 	cd util && ./makedefs -f  # include/filename.h
