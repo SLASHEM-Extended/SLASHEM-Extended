@@ -227,11 +227,11 @@ ALL_D = $(ALL_O:%.o=%.d)
 
 ##### SPECIAL CASES #####
 
-# not to be deleted in "make clean"
-src/recover.c: util/recover.c
-	cp -u util/recover.c src/recover.c
-src/recover.d: CPPFLAGS += -DNO_MAIN
-src/recover.o: CPPFLAGS += -DNO_MAIN
+src/recover.d src/recover.o: CPPFLAGS += -DNO_MAIN
+src/recover.d: | util/recover.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -MM -MP -MG -MF src/recover.d -MT src/recover.o $(TARGET_ARCH) util/recover.c
+src/recover.o: util/recover.c
+	$(COMPILE.c) $(OUTPUT_OPTION) $<
 
 ##### CLEANING UP #####
 
@@ -249,4 +249,3 @@ clean:
 .PHONY: spotless
 spotless: clean
 	rm -f $(ALL_D)
-	rm -f src/recover.c
