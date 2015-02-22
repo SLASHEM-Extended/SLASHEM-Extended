@@ -1,4 +1,4 @@
-export VCS_DESCRIPTION := $(shell git describe --always)
+export VCS_DESCRIPTION := $(shell git describe --always 2>/dev/null)
 VERSION := $(shell util/version.sh)
 
 GAME = slashem
@@ -180,9 +180,7 @@ AUTO_DAT += dat/dungeon dat/dungeon.pdf
 AUTO_HEADERS = date.h dgn_comp.h filename.h lev_comp.h onames.h pm.h
 $(AUTO_HEADERS): %.h: include/%.h
 
-# compile every time if we don't have git
-.git/index:
-include/date.h: util/makedefs .git/index
+include/date.h: util/makedefs $(if $(VCS_DESCRIPTION),.git/index)
 	cd util && ./makedefs -v  # include/date.h dat/options
 include/filename.h: util/makedefs
 	cd util && ./makedefs -f  # include/filename.h
