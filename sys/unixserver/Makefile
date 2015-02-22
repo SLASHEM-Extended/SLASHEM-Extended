@@ -182,21 +182,22 @@ include/onames.h: util/makedefs
 	cd util && ./makedefs -o  # include/onames.h
 include/pm.h: util/makedefs
 	cd util && ./makedefs -p  # include/pm.h
-AUTO_SRC += include/date.h include/filename.h include/onames.h include/pm.h
+AUTO_H += include/date.h include/filename.h include/onames.h include/pm.h
 
 src/monstr.c: util/makedefs
 	cd util && ./makedefs -m  # src/monstr.c
-AUTO_SRC += src/monstr.c
+AUTO_C += src/monstr.c
 
 $(YACC_COMPS:%=include/%.h): include/%.h: util/%.c
 $(YACC_COMPS:%=util/%.c): util/%.c: util/%.y
 	bison $(YFLAGS) --output=util/$*.c --defines=include/$*.h $<
-AUTO_SRC += $(YACC_COMPS:%=include/%.h) $(YACC_COMPS:%=util/%.c)
+AUTO_H += $(YACC_COMPS:%=include/%.h)
+AUTO_C += $(YACC_COMPS:%=util/%.c)
 
 LEX_COMPS = dgn_lex lev_lex
 $(LEX_COMPS:%=util/%.c): util/%.c: util/%.l
 	flex $(LFLAGS) -o $@ $<
-AUTO_SRC += $(LEX_COMPS:%=util/%.c)
+AUTO_C += $(LEX_COMPS:%=util/%.c)
 
 ##### AUTOMATIC DEPENDENCY GENERATION #####
 
@@ -232,7 +233,8 @@ clean:
 	rm -f $(AUTO_DAT)
 	rm -f dat/*.lev
 
-	rm -f $(AUTO_SRC)
+	rm -f $(AUTO_H)
+	rm -f $(AUTO_C)
 
 .PHONY: spotless
 spotless: clean
