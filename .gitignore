@@ -46,7 +46,7 @@ dat/Makefile
 doc/Makefile
 src/Makefile
 util/Makefile
-/depend
+/GNUmakefile
 
 # documentation for distribution
 # this needs to be tracked, because some build systems don't generate it
