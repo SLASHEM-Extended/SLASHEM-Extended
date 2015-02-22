@@ -98,11 +98,6 @@ ALL_O = $(GAME_O) $(RECOVER_O) $(LEV_COMP_O) $(DGN_COMP_O)	\
 
 ##### DATA FILES #####
 
-DAT_NHSHARE = cmdhelp data gypsy.txt help hh history opthelp options	\
-              oracles quest.dat rumors wizhelp
-dat/nhshare: util/dlb $(DAT_NHSHARE:%=dat/%)
-	cd dat && ../util/dlb cf nhshare $(DAT_NHSHARE)
-
 QUEST_DES = Abuser.des Acid.des Act.des Altmer.des Amazon.des		\
  Arch.des Artist.des Assassin.des Augurer.des Barb.des Bard.des		\
  Binder.des Bleeder.des Bloodsee.des Bosmer.des Bully.des Caveman.des	\
@@ -132,17 +127,18 @@ SPEC_DES = beholder.des bigroom.des blkmar.des castle.des compu.des	\
 
 ALL_DES = $(QUEST_DES) $(SPEC_DES)
 
-dat/ushare/: util/lev_comp dat/dungeon $(ALL_DES:%=dat/%)
-	mkdir -p dat/ushare
-	cd dat/ushare && \
-	for des in $(filter %.des,$(if $(findstring util/lev_comp,$?),$^,$?)) ; do \
-	    ../../util/lev_comp ../../$$des || exit ; \
-	done
-	cp -u dat/dungeon dat/ushare/
-	touch dat/ushare/
+$(ALL_DES:%.des=dat/%.tag): dat/%.tag: dat/%.des util/lev_comp
+	cd dat && ../util/lev_comp $(<F)
+	touch $@
 
-dat/nhushare: util/dlb dat/ushare/
-	cd dat/ushare && ../../util/dlb cf ../nhushare *
+DAT_NHSHARE = cmdhelp data gypsy.txt help hh history opthelp options	\
+              oracles quest.dat rumors wizhelp
+dat/nhshare: util/dlb $(DAT_NHSHARE:%=dat/%)
+	cd dat && ../util/dlb cf nhshare $(DAT_NHSHARE)
+
+DAT_NHUSHARE = dungeon
+dat/nhushare: util/dlb $(DAT_NHUSHARE:%=dat/%) $(ALL_DES:%.des=dat/%.tag)
+	cd dat && ../util/dlb cf nhushare $(DAT_NHUSHARE) *.lev
 
 DAT_AUTO = data options oracles quest.dat rumors dungeon.pdf dungeon
 
@@ -229,7 +225,7 @@ clean:
 
 	rm -f dat/nhshare dat/nhushare
 	rm -f $(DAT_AUTO:%=dat/%)
-	rm -rf dat/ushare/
+	rm -f dat/*.lev dat/*.tag
 
 	rm -f $(AUTO_HEADERS:%=include/%)
 	rm -f $(AUTO_C)
