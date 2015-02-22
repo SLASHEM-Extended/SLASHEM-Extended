@@ -1443,7 +1443,7 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 		$(DAT)\dragons.des  $(DAT)\endgame.des  $(DAT)\exmall.des  $(DAT)\gehennom.des \
 		$(DAT)\giants.des   $(DAT)\guild.des    $(DAT)\intpla.des    $(DAT)\knox.des \
 		$(DAT)\kobold-1.des $(DAT)\kobold-2.des $(DAT)\unheck.des $(DAT)\lich.des \
-		$(DAT)\mall-1.des   $(DAT)\mall-2.des   $(DAT)\geek.des   $(DAT)\scient.des   $(DAT)\medusa.des \
+		$(DAT)\mall-1.des   $(DAT)\mall-2.des   $(DAT)\mall-3.des $(DAT)\geek.des   $(DAT)\scient.des   $(DAT)\medusa.des \
 		$(DAT)\sokoban.des  $(DAT)\heck.des    $(DAT)\mines.des    $(DAT)\mtemple.des \
 		$(DAT)\newmall.des  $(DAT)\nymph.des    $(DAT)\hellma.des    $(DAT)\oracle.des \
 		$(DAT)\rats.des     $(DAT)\rndmaze.des  $(DAT)\rndmazea.des     $(DAT)\sea.des      $(DAT)\spiders.des \
@@ -1547,6 +1547,7 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 	lev_comp $(DDAT)/lich.des
 	lev_comp $(DDAT)/mall-1.des
 	lev_comp $(DDAT)/mall-2.des
+	lev_comp $(DDAT)/mall-3.des
 	lev_comp $(DDAT)/medusa.des
 	lev_comp $(DDAT)/sokoban.des
 	lev_comp $(DDAT)/mines.des
