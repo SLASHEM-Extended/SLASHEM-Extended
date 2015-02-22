@@ -20,11 +20,13 @@ DIRPERM  = 0755
 WIZARD = $(GAMEUID)
 
 CFLAGS = -g -O2
+
 CPPFLAGS += -Iinclude
+CPPFLAGS += -DDLB
+
 CPPFLAGS += -D'WIZARD="$(WIZARD)"'
 CPPFLAGS += -DNO_EXPLORE_MODE
 CPPFLAGS += -DNO_SUSPEND
-CPPFLAGS += -DDLB
 
 .DELETE_ON_ERROR:
 
@@ -79,36 +81,36 @@ SRCOBJ = allmain.o alloc.o apply.o artifact.o attrib.o ball.o bones.o	\
 GAME_O = $(SYSUNIXOBJ:%=sys/unix/%) $(SYSSHAREOBJ:%=sys/share/%)	\
          $(WINTTYOBJ:%=win/tty/%) $(SRCOBJ:%=src/%)
 src/$(GAME): $(GAME_O)
-	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -lncurses -o $@
+	$(CC) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -lncurses -o $@
 AUTO_BIN += src/$(GAME)
 
 RECOVER_O = util/recover_main.o src/recover.o
 util/recover: $(RECOVER_O)
-	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+	$(CC) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@
 AUTO_BIN += util/recover
 
 MAKEDEFS_O = util/makedefs.o src/alloc.o src/monst.o src/objects.o	\
              util/panic.o
 util/makedefs: $(MAKEDEFS_O)
-	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+	$(CC) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@
 AUTO_BIN += util/makedefs
 
 DLB_O = util/dlb_main.o src/alloc.o src/dlb.o util/panic.o
 util/dlb: $(DLB_O)
-	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+	$(CC) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@
 AUTO_BIN += util/dlb
 
 DGN_COMP_O = util/dgn_main.o util/dgn_lex.o util/dgn_yacc.o	\
              src/alloc.o util/panic.o
 util/dgn_comp: $(DGN_COMP_O)
-	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+	$(CC) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@
 AUTO_BIN += util/dgn_comp
 
 LEV_COMP_O = util/lev_main.o util/lev_lex.o util/lev_yacc.o	\
              src/alloc.o src/decl.o src/drawing.o src/monst.o	\
              src/objects.o util/panic.o
 util/lev_comp: $(LEV_COMP_O)
-	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+	$(CC) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@
 AUTO_BIN += util/lev_comp
 
 ALL_O = $(GAME_O) $(RECOVER_O) $(LEV_COMP_O) $(DGN_COMP_O)	\
