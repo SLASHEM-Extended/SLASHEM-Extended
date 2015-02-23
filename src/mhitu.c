@@ -4609,7 +4609,12 @@ register int n;
 	}
 
 #ifdef SHOW_DMG
-	if (flags.showdmg) pline("[%d pts.]", n);
+	if (flags.showdmg) {
+
+		pline("[-%d -> %d]", n, (Upolyd ? (u.mh - n) : (u.uhp - n) ) );  /* WAC see damage */
+		if (!Upolyd && (( (u.uhp - n) * 5) < u.uhpmax)) pline(Race_if(PM_ANGBANDER) ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
+
+	}
 #endif
 	flags.botl = 1; /* This needs to be AFTER the pline for botl to be 
 	 		 * updated correctly -- Kelly Bailey

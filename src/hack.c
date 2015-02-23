@@ -3094,7 +3094,13 @@ int k_format; /* WAC k_format is an int */
 
 
 #ifdef SHOW_DMG                
-	else if (flags.showdmg && n > 0) pline("[%d pts.]", n); /* WAC see damage */
+	else if (flags.showdmg && n > 0) { 
+
+		pline("[-%d -> %d]", n, (Upolyd ? (u.mh - n) : (u.uhp - n) ) );  /* WAC see damage */
+		if (!Upolyd && (( (u.uhp - n) * 5) < u.uhpmax)) pline(Race_if(PM_ANGBANDER) ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
+
+
+	}
 #endif
 
 	if (Upolyd) {
