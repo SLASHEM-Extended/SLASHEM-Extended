@@ -3775,16 +3775,16 @@ use_weapon:
 				sum[i] |= HIT_FATAL;
 			break;
 		case AT_CLAW:
-			if (!cantwield(youmonst.data) &&
+			/*if (!cantwield(youmonst.data) &&
 				u.umonnum != PM_MARILITH)
-			    goto use_weapon;
+			    goto use_weapon;*/
 #ifdef SEDUCE
 #if 0	/* Shouldn't matter where the first AT_CLAW is anymore
 			/* succubi/incubi are humanoid, but their _second_
 			 * attack is AT_CLAW, not their first...
 			 */
-			if (i==1 && uwep && (u.umonnum == PM_SUCCUBUS ||
-				u.umonnum == PM_INCUBUS)) goto use_weapon;
+			/*if (i==1 && uwep && (u.umonnum == PM_SUCCUBUS ||
+				u.umonnum == PM_INCUBUS)) goto use_weapon;*/
 #endif
 #endif
 		case AT_BITE:
@@ -3802,7 +3802,8 @@ use_weapon:
 		case AT_TRAM:
 		case AT_SCRA:
 		case AT_TENT:
-			if (i==0 && uwep && (youmonst.data->mlet==S_LICH)) goto use_weapon;
+		case AT_MAGC:
+			/*if (i==0 && uwep && (youmonst.data->mlet==S_LICH)) goto use_weapon;*/
 			if ((uwep || u.twoweap && uswapwep) &&
 				(touch_petrifies(mon->data) ||
 				 mon->data == &mons[PM_MEDUSA]))
@@ -3847,6 +3848,8 @@ use_weapon:
 				    You("scratch %s.", mon_nam(mon));
 			    else if (mattk->aatyp == AT_TUCH)
 				    You("touch %s.", mon_nam(mon));
+			    else if (mattk->aatyp == AT_MAGC)
+				    You("curse at %s.", mon_nam(mon));
 			    else if (mattk->aatyp == AT_TENT)
 				    Your("tentacles suck %s.", mon_nam(mon));
 			    else You("hit %s.", mon_nam(mon));
@@ -3907,14 +3910,14 @@ use_weapon:
 				missum(mon, tmp, dieroll, mattk);
 			break;
 
-		case AT_MAGC:
+		/*case AT_MAGC:*/
 			/* No check for uwep; if wielding nothing we want to
 			 * do the normal 1-2 points bare hand damage...
 			 */
-			if (i == 0 && (youmonst.data->mlet==S_KOBOLD
+			/*if (i == 0 && (youmonst.data->mlet==S_KOBOLD
 				|| youmonst.data->mlet==S_ORC
 				|| youmonst.data->mlet==S_GNOME
-				)) goto use_weapon;
+				)) goto use_weapon;*/
 
 		case AT_NONE:
 		case AT_BOOM:
