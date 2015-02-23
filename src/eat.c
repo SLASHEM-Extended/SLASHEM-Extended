@@ -131,7 +131,7 @@ register struct obj *obj;
 		return TRUE;
 
 	/* KMH -- Taz likes organics, too! */
-	if ((u.umonnum == PM_GELATINOUS_CUBE || u.umonnum == PM_GELATINOUS_GLOB || u.umonnum == PM_AMUSING_TYPE || u.umonnum == PM_MINOCUBE || u.umonnum == PM_GELATINOUS_DICE || u.umonnum == PM_GELATINOUS_THIEF || u.umonnum == PM_TASMANIAN_ZOMBIE ||
+	if ((u.umonnum == PM_GELATINOUS_CUBE || u.umonnum == PM_GELATINOUS_GLOB || u.umonnum == PM_OOZE_ELEMENTAL || u.umonnum == PM_AMUSING_TYPE || u.umonnum == PM_MINOCUBE || u.umonnum == PM_GELATINOUS_DICE || u.umonnum == PM_GELATINOUS_THIEF || u.umonnum == PM_TASMANIAN_ZOMBIE ||
 			u.umonnum == PM_TASMANIAN_DEVIL) && is_organic(obj) &&
 		/* [g.cubes can eat containers and retain all contents
 		    as engulfed items, but poly'd player can't do that] */
@@ -728,6 +728,8 @@ register int pm;
 		}
 		break;
 	    case PM_LIZARD:
+	    case PM_ROCK_LIZARD:
+	    case PM_NIGHT_LIZARD:
 	    case PM_LIZARD_MAN:
 	    case PM_CAVE_LIZARD:
 	    case PM_CHAOS_LIZARD:
@@ -839,6 +841,8 @@ struct monst *mon;
 {
     switch(monsndx(mon->data)) {
 	case PM_LIZARD:
+	case PM_ROCK_LIZARD:
+	case PM_NIGHT_LIZARD:
 	case PM_LIZARD_MAN:
 	case PM_CAVE_LIZARD:
 	case PM_CHAOS_LIZARD:
@@ -1260,6 +1264,14 @@ register int pm;
 			}
 		}
 		break;
+
+	    case PM_DRACOLISK:
+		if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
+			pline("You feel more %s!", flags.female ? "pretty" : "attractive");
+			(void) adjattrib(A_CHA, 1, FALSE);
+			}
+		break;
+
 	    case PM_NEWT:
 	    case PM_GRAY_NEWT:
 	    case PM_ARCH_NEWT:
@@ -1289,6 +1301,7 @@ register int pm;
 		break;
 	    case PM_WRAITH:
 	    case PM_TURBO_CHICKEN:
+	    case PM_GREATER_BASILISK:
 	    case PM_CENTAURTRICE:
 		switch(rnd(10)) {                
 		case 1:
@@ -1563,6 +1576,10 @@ register int pm;
 		make_stunned(HStun + 30,FALSE);
 		break;
 	    case PM_BURNING_MIMIC:
+	    case PM_SCROLL_MIMIC:
+	    case PM_RING_MIMIC:
+	    case PM_POTION_MIMIC:
+	    case PM_CHEST_MIMIC:
 	    case PM_UNKNOWN_MIMIC:
 	    case PM_BULLY_MIMIC:
 	    case PM_UNDEAD_MIMIC:
@@ -1688,6 +1705,8 @@ register int pm;
 	    case PM_LIZARD_MAN:
 			lesshungry(180); /* fall thru */
 	    case PM_LIZARD:
+	    case PM_ROCK_LIZARD:
+	    case PM_NIGHT_LIZARD:
 	    case PM_KARMIC_LIZARD:
 	    case PM_CAVE_LIZARD:
 	    case PM_LIZARD_EEL:
@@ -2156,7 +2175,7 @@ opentin()		/* called during each move whilst opening a tin */
 	    r = tin.tin->cursed ? ROTTEN_TIN :	/* always rotten if cursed */
 		    (tin.tin->spe == -1) ? /* HOMEMADE_TIN*/ rn2(TTSZ-1) :  /* player made it */
 			rn2(TTSZ-1);		/* else take your pick */
-	    if (r == ROTTEN_TIN && (tin.tin->corpsenm == PM_LIZARD || tin.tin->corpsenm == PM_LIZARD_MAN || tin.tin->corpsenm == PM_CAVE_LIZARD || tin.tin->corpsenm == PM_CHAOS_LIZARD || tin.tin->corpsenm == PM_LIZARD_EEL || tin.tin->corpsenm == PM_EEL_LIZARD || tin.tin->corpsenm == PM_SQUIRREL || tin.tin->corpsenm == PM_IGUANA || tin.tin->corpsenm == PM_GECKO || tin.tin->corpsenm == PM_GIANT_GECKO || tin.tin->corpsenm == PM_BIG_IGUANA || tin.tin->corpsenm == PM_HUGE_LIZARD || tin.tin->corpsenm == PM_SAND_TIDE || tin.tin->corpsenm == PM_FBI_AGENT || tin.tin->corpsenm == PM_KARMIC_LIZARD || tin.tin->corpsenm == PM_MONSTER_LIZARD || tin.tin->corpsenm == PM_OWN_SMOKE || tin.tin->corpsenm == PM_GRANDPA || tin.tin->corpsenm == PM_FIRE_LIZARD || tin.tin->corpsenm == PM_LIGHTNING_LIZARD || tin.tin->corpsenm == PM_ICE_LIZARD || tin.tin->corpsenm == PM_GIANT_LIZARD || tin.tin->corpsenm == PM_HIDDEN_LIZARD || tin.tin->corpsenm == PM_MIMIC_LIZARD || tin.tin->corpsenm == PM_CLINGING_LIZARD || tin.tin->corpsenm == PM_DEFORMED_LIZARD || tin.tin->corpsenm == PM_ANTI_STONE_LIZARD || tin.tin->corpsenm == PM_HELPFUL_SQUIRREL || tin.tin->corpsenm == PM_RHAUMBUSUN || tin.tin->corpsenm == PM_BIG_RHAUMBUSUN || tin.tin->corpsenm == PM_SALAMANDER || tin.tin->corpsenm == PM_FROST_SALAMANDER || tin.tin->corpsenm == PM_KOMODO_DRAGON || tin.tin->corpsenm == PM_PETTY_KOMODO_DRAGON || 
+	    if (r == ROTTEN_TIN && (tin.tin->corpsenm == PM_LIZARD || tin.tin->corpsenm == PM_LIZARD_MAN || tin.tin->corpsenm == PM_CAVE_LIZARD || tin.tin->corpsenm == PM_CHAOS_LIZARD || tin.tin->corpsenm == PM_LIZARD_EEL || tin.tin->corpsenm == PM_EEL_LIZARD || tin.tin->corpsenm == PM_SQUIRREL || tin.tin->corpsenm == PM_IGUANA || tin.tin->corpsenm == PM_GECKO || tin.tin->corpsenm == PM_GIANT_GECKO || tin.tin->corpsenm == PM_BIG_IGUANA || tin.tin->corpsenm == PM_HUGE_LIZARD || tin.tin->corpsenm == PM_SAND_TIDE || tin.tin->corpsenm == PM_FBI_AGENT || tin.tin->corpsenm == PM_KARMIC_LIZARD || tin.tin->corpsenm == PM_MONSTER_LIZARD || tin.tin->corpsenm == PM_OWN_SMOKE || tin.tin->corpsenm == PM_GRANDPA || tin.tin->corpsenm == PM_FIRE_LIZARD || tin.tin->corpsenm == PM_LIGHTNING_LIZARD || tin.tin->corpsenm == PM_ICE_LIZARD || tin.tin->corpsenm == PM_GIANT_LIZARD || tin.tin->corpsenm == PM_HIDDEN_LIZARD || tin.tin->corpsenm == PM_MIMIC_LIZARD || tin.tin->corpsenm == PM_CLINGING_LIZARD || tin.tin->corpsenm == PM_DEFORMED_LIZARD || tin.tin->corpsenm == PM_ROCK_LIZARD || tin.tin->corpsenm == PM_NIGHT_LIZARD || tin.tin->corpsenm == PM_ANTI_STONE_LIZARD || tin.tin->corpsenm == PM_HELPFUL_SQUIRREL || tin.tin->corpsenm == PM_RHAUMBUSUN || tin.tin->corpsenm == PM_BIG_RHAUMBUSUN || tin.tin->corpsenm == PM_SALAMANDER || tin.tin->corpsenm == PM_FROST_SALAMANDER || tin.tin->corpsenm == PM_KOMODO_DRAGON || tin.tin->corpsenm == PM_PETTY_KOMODO_DRAGON || 
 			tin.tin->corpsenm == PM_LICHEN))
 		r = HOMEMADE_TIN;		/* lizards don't rot */
 	    else if (tin.tin->spe == -1 && !tin.tin->blessed && !rn2(7))
@@ -2490,7 +2509,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 
 	}
 
-	if (mnum != PM_LIZARD && mnum != PM_CAVE_LIZARD && mnum != PM_CHAOS_LIZARD && mnum != PM_LIZARD_EEL && mnum != PM_LIZARD_MAN && mnum != PM_EEL_LIZARD && mnum != PM_HIDDEN_LIZARD && mnum != PM_DEFORMED_LIZARD && mnum != PM_CLINGING_LIZARD && mnum != PM_MIMIC_LIZARD && mnum != PM_ANTI_STONE_LIZARD &&mnum != PM_LICHEN && mnum != PM_SQUIRREL && mnum != PM_IGUANA && mnum != PM_GECKO && mnum != PM_GIANT_GECKO && mnum != PM_BIG_IGUANA && mnum != PM_HUGE_LIZARD && mnum != PM_SAND_TIDE && mnum != PM_FBI_AGENT && mnum != PM_KARMIC_LIZARD && mnum != PM_MONSTER_LIZARD && mnum != PM_OWN_SMOKE && mnum != PM_GRANDPA && mnum != PM_FIRE_LIZARD && mnum != PM_ICE_LIZARD && mnum != PM_LIGHTNING_LIZARD && mnum != PM_GIANT_LIZARD && mnum != PM_HELPFUL_SQUIRREL && mnum != PM_RHAUMBUSUN && mnum != PM_BIG_RHAUMBUSUN && mnum != PM_SALAMANDER && mnum != PM_FROST_SALAMANDER && mnum != PM_KOMODO_DRAGON && mnum != PM_PETTY_KOMODO_DRAGON) {
+	if (mnum != PM_LIZARD && mnum != PM_CAVE_LIZARD && mnum != PM_CHAOS_LIZARD && mnum != PM_LIZARD_EEL && mnum != PM_LIZARD_MAN && mnum != PM_EEL_LIZARD && mnum != PM_HIDDEN_LIZARD && mnum != PM_DEFORMED_LIZARD && mnum != PM_CLINGING_LIZARD && mnum != PM_MIMIC_LIZARD && mnum != PM_ROCK_LIZARD && mnum != PM_NIGHT_LIZARD && mnum != PM_ANTI_STONE_LIZARD &&mnum != PM_LICHEN && mnum != PM_SQUIRREL && mnum != PM_IGUANA && mnum != PM_GECKO && mnum != PM_GIANT_GECKO && mnum != PM_BIG_IGUANA && mnum != PM_HUGE_LIZARD && mnum != PM_SAND_TIDE && mnum != PM_FBI_AGENT && mnum != PM_KARMIC_LIZARD && mnum != PM_MONSTER_LIZARD && mnum != PM_OWN_SMOKE && mnum != PM_GRANDPA && mnum != PM_FIRE_LIZARD && mnum != PM_ICE_LIZARD && mnum != PM_LIGHTNING_LIZARD && mnum != PM_GIANT_LIZARD && mnum != PM_HELPFUL_SQUIRREL && mnum != PM_RHAUMBUSUN && mnum != PM_BIG_RHAUMBUSUN && mnum != PM_SALAMANDER && mnum != PM_FROST_SALAMANDER && mnum != PM_KOMODO_DRAGON && mnum != PM_PETTY_KOMODO_DRAGON) {
 		long age = peek_at_iced_corpse_age(otmp);
 
 		rotted = (monstermoves - age)/(10L + rn2(20));
@@ -2598,7 +2617,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	victual.reqtime = 3 + (mons[mnum].cwt >> 6);
 	if (otmp->odrained) victual.reqtime = rounddiv(victual.reqtime, 5);
 
-	if (!tp && mnum != PM_LIZARD && mnum != PM_CAVE_LIZARD && mnum != PM_CHAOS_LIZARD && mnum != PM_LIZARD_EEL && mnum != PM_LIZARD_MAN && mnum != PM_EEL_LIZARD && mnum != PM_HIDDEN_LIZARD && mnum != PM_DEFORMED_LIZARD && mnum != PM_MIMIC_LIZARD  && mnum != PM_CLINGING_LIZARD && mnum != PM_ANTI_STONE_LIZARD && mnum != PM_LICHEN && mnum != PM_SQUIRREL && mnum != PM_GECKO && mnum != PM_GIANT_GECKO && mnum != PM_IGUANA && mnum != PM_BIG_IGUANA && mnum != PM_HUGE_LIZARD && mnum != PM_SAND_TIDE && mnum != PM_FBI_AGENT && mnum != PM_KARMIC_LIZARD && mnum != PM_MONSTER_LIZARD && mnum != PM_OWN_SMOKE && mnum != PM_GRANDPA && mnum != PM_FIRE_LIZARD && mnum != PM_ICE_LIZARD && mnum != PM_LIGHTNING_LIZARD && mnum != PM_GIANT_LIZARD && mnum != PM_HELPFUL_SQUIRREL && mnum != PM_RHAUMBUSUN && mnum != PM_BIG_RHAUMBUSUN && mnum != PM_SALAMANDER && mnum != PM_FROST_SALAMANDER && mnum != PM_KOMODO_DRAGON && mnum != PM_PETTY_KOMODO_DRAGON &&
+	if (!tp && mnum != PM_LIZARD && mnum != PM_CAVE_LIZARD && mnum != PM_CHAOS_LIZARD && mnum != PM_LIZARD_EEL && mnum != PM_LIZARD_MAN && mnum != PM_EEL_LIZARD && mnum != PM_ROCK_LIZARD && mnum != PM_NIGHT_LIZARD && mnum != PM_HIDDEN_LIZARD && mnum != PM_DEFORMED_LIZARD && mnum != PM_MIMIC_LIZARD  && mnum != PM_CLINGING_LIZARD && mnum != PM_ANTI_STONE_LIZARD && mnum != PM_LICHEN && mnum != PM_SQUIRREL && mnum != PM_GECKO && mnum != PM_GIANT_GECKO && mnum != PM_IGUANA && mnum != PM_BIG_IGUANA && mnum != PM_HUGE_LIZARD && mnum != PM_SAND_TIDE && mnum != PM_FBI_AGENT && mnum != PM_KARMIC_LIZARD && mnum != PM_MONSTER_LIZARD && mnum != PM_OWN_SMOKE && mnum != PM_GRANDPA && mnum != PM_FIRE_LIZARD && mnum != PM_ICE_LIZARD && mnum != PM_LIGHTNING_LIZARD && mnum != PM_GIANT_LIZARD && mnum != PM_HELPFUL_SQUIRREL && mnum != PM_RHAUMBUSUN && mnum != PM_BIG_RHAUMBUSUN && mnum != PM_SALAMANDER && mnum != PM_FROST_SALAMANDER && mnum != PM_KOMODO_DRAGON && mnum != PM_PETTY_KOMODO_DRAGON &&
 			(otmp->orotten || otmp->cursed || (!rn2(7) && !otmp->blessed)  )) {
 /* Come on, blessed food being equally susceptible to rotting is just stupid. --Amy */
 	    if (rottenfood(otmp)) {
@@ -3346,7 +3365,7 @@ struct obj *otmp;
                	if (eating_is_fatal(&mons[mnum])) /* not is_rider - we want to catch a certain 'b' too --Amy */
                     stoneorslime = TRUE; 
 
-		if (cadaver && mnum != PM_LIZARD && mnum != PM_CAVE_LIZARD && mnum != PM_CHAOS_LIZARD && mnum != PM_LIZARD_EEL && mnum != PM_LIZARD_MAN && mnum != PM_EEL_LIZARD && mnum != PM_HIDDEN_LIZARD && mnum != PM_DEFORMED_LIZARD && mnum != PM_CLINGING_LIZARD && mnum != PM_MIMIC_LIZARD && mnum != PM_ANTI_STONE_LIZARD && mnum != PM_LICHEN && mnum != PM_SQUIRREL && mnum != PM_GECKO && mnum != PM_GIANT_GECKO && mnum != PM_IGUANA && mnum != PM_BIG_IGUANA && mnum != PM_HUGE_LIZARD && mnum != PM_SAND_TIDE && mnum != PM_FBI_AGENT && mnum != PM_KARMIC_LIZARD && mnum != PM_MONSTER_LIZARD && mnum != PM_OWN_SMOKE && mnum != PM_GRANDPA && mnum != PM_FIRE_LIZARD && mnum != PM_LIGHTNING_LIZARD && mnum != PM_ICE_LIZARD && mnum != PM_GIANT_LIZARD && mnum != PM_HELPFUL_SQUIRREL && mnum != PM_RHAUMBUSUN && mnum != PM_BIG_RHAUMBUSUN && mnum != PM_SALAMANDER && mnum != PM_FROST_SALAMANDER && mnum != PM_KOMODO_DRAGON && mnum != PM_PETTY_KOMODO_DRAGON) {
+		if (cadaver && mnum != PM_LIZARD && mnum != PM_CAVE_LIZARD && mnum != PM_CHAOS_LIZARD && mnum != PM_LIZARD_EEL && mnum != PM_LIZARD_MAN && mnum != PM_EEL_LIZARD && mnum != PM_HIDDEN_LIZARD && mnum != PM_DEFORMED_LIZARD && mnum != PM_CLINGING_LIZARD && mnum != PM_MIMIC_LIZARD && mnum != PM_ROCK_LIZARD && mnum != PM_NIGHT_LIZARD && mnum != PM_ANTI_STONE_LIZARD && mnum != PM_LICHEN && mnum != PM_SQUIRREL && mnum != PM_GECKO && mnum != PM_GIANT_GECKO && mnum != PM_IGUANA && mnum != PM_BIG_IGUANA && mnum != PM_HUGE_LIZARD && mnum != PM_SAND_TIDE && mnum != PM_FBI_AGENT && mnum != PM_KARMIC_LIZARD && mnum != PM_MONSTER_LIZARD && mnum != PM_OWN_SMOKE && mnum != PM_GRANDPA && mnum != PM_FIRE_LIZARD && mnum != PM_LIGHTNING_LIZARD && mnum != PM_ICE_LIZARD && mnum != PM_GIANT_LIZARD && mnum != PM_HELPFUL_SQUIRREL && mnum != PM_RHAUMBUSUN && mnum != PM_BIG_RHAUMBUSUN && mnum != PM_SALAMANDER && mnum != PM_FROST_SALAMANDER && mnum != PM_KOMODO_DRAGON && mnum != PM_PETTY_KOMODO_DRAGON) {
 			long age = peek_at_iced_corpse_age(otmp);
 			/* worst case rather than random
 			   in this calculation to force prompt */

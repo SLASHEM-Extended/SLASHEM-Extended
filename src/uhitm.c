@@ -3965,7 +3965,10 @@ use_weapon:
 		case AT_MULTIPLY:
 			/* Not a #monster ability -- this is something that the
 			 * player must figure out -RJ */
-			if (!rn2(20)) cloneu(); /* greatly lowered chance --Amy */
+			if (!rn2(20)) {
+				pline("You multiply!");
+				cloneu(); /* greatly lowered chance --Amy */
+			}
 			break;
 
 		default: /* Strange... */

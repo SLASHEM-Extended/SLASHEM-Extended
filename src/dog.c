@@ -948,6 +948,8 @@ register struct obj *obj;
 					    && obj->corpsenm != PM_ICE_LIZARD
 					    && obj->corpsenm != PM_GIANT_LIZARD
 					    && obj->corpsenm != PM_ANTI_STONE_LIZARD
+					    && obj->corpsenm != PM_ROCK_LIZARD
+					    && obj->corpsenm != PM_NIGHT_LIZARD
 					    && obj->corpsenm != PM_DEFORMED_LIZARD
 					    && obj->corpsenm != PM_CLINGING_LIZARD
 					    && obj->corpsenm != PM_MIMIC_LIZARD
@@ -1003,6 +1005,7 @@ register struct obj *obj;
 		mon->data == &mons[PM_MINOCUBE] ||
 		mon->data == &mons[PM_GELATINOUS_DICE] ||
 		mon->data == &mons[PM_GELATINOUS_GLOB] ||
+		mon->data == &mons[PM_OOZE_ELEMENTAL] ||
 		mon->data == &mons[PM_GELATINOUS_THIEF] ||
 	    	mon->data == &mons[PM_TASMANIAN_DEVIL]) && is_organic(obj))
 		return(ACCFOOD);

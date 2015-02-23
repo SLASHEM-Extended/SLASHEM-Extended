@@ -377,6 +377,9 @@ register struct monst *mtmp;
 		obj->age -= 100;		/* this is an *OLD* corpse */
 		break;
 	    case PM_WIGHT:
+	    case PM_FOREST_WIGHT:
+	    case PM_GRAVE_WIGHT:
+	    case PM_EMPEROR_WIGHT:
 	    case PM_MEANIE:
 	    case PM_CAR_THIEF:
 	    case PM_WATER_WIGHT:
@@ -1450,6 +1453,8 @@ mpickstuff(mtmp, str)
 			otmp->corpsenm != PM_EEL_LIZARD &&
 			otmp->corpsenm != PM_ANTI_STONE_LIZARD &&
 			otmp->corpsenm != PM_HUGE_LIZARD &&
+			otmp->corpsenm != PM_ROCK_LIZARD &&
+			otmp->corpsenm != PM_NIGHT_LIZARD &&
 			otmp->corpsenm != PM_SAND_TIDE &&
 			otmp->corpsenm != PM_FBI_AGENT &&
 			otmp->corpsenm != PM_OWN_SMOKE &&
@@ -2428,7 +2433,7 @@ boolean was_swallowed;			/* digestion */
 	if (LEVEL_SPECIFIC_NOCORPSE(mdat))
 		return FALSE;
 
-	if (bigmonst(mdat) || mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_ANTI_STONE_LIZARD]  || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_KATNISS]
+	if (bigmonst(mdat) || mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_ANTI_STONE_LIZARD]  || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_KATNISS]
 		   || is_golem(mdat)
 		   || is_mplayer(mdat)
 		   || is_umplayer(mdat)
@@ -2743,7 +2748,7 @@ xkilled(mtmp, dest)
 		/* might be here after swallowed */
 
 		/* Throw a bone to vampiric and ghast players who cannot unstone themselves easily. --Amy */
-		if ((mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ANTI_STONE_LIZARD]) && !rn2(5)) otmp = mksobj_at(POT_ACID, x, y, TRUE, FALSE);
+		if ((mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ANTI_STONE_LIZARD]) && !rn2(5)) otmp = mksobj_at(POT_ACID, x, y, TRUE, FALSE);
 		/* of course the acid potions are useful for other races too, if they run out of lizard corpses */
 
 		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20)) otmp = mksobj_at(CARROT, x, y, TRUE, FALSE);

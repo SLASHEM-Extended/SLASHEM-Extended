@@ -868,7 +868,7 @@ register int after;
 	int  omx = mtmp->mx, omy = mtmp->my;
 	struct obj *mw_tmp;
 
-	if (mtmp->data->mlet == S_TURRET || mtmp->data == &mons[PM_BUS] || mtmp->data == &mons[PM_EMPIRE_STATE_BUILDING] || mtmp->data == &mons[PM_DIVISION_THIEF] || mtmp->data == &mons[PM_DIVISION_JEDI] || mtmp->data == &mons[PM_CAR_DRIVING_SUPERTHIEF] || mtmp->data == &mons[PM_SUPERTHIEF] || mtmp->data == &mons[PM_HUGE_OGRE_THIEF] || mtmp->data == &mons[PM_SUPERJEDI] || mtmp->data == &mons[PM_CRITICALLY_INJURED_JEDI] || mtmp->data == &mons[PM_CRITICALLY_INJURED_THIEF] || mtmp->data == &mons[PM_TRAILER] || mtmp->data == &mons[PM_DEMONIC_ENTITY] || mtmp->data == &mons[PM_LAVA_GAZER] || mtmp->data == &mons[PM_ATHENA_BLOCKER] || mtmp->data == &mons[PM_ATHENA_BASHER] || mtmp->data == &mons[PM_ATHENA_GUARDIAN] || mtmp->data == &mons[PM_ATHENA_PROTECTOR] || mtmp->data == &mons[PM_ATHENA_GIANT] || mtmp->data == &mons[PM_DEATH_SPECTRE] || mtmp->data == &mons[PM_STYGIAN_WATCHER] || mtmp->data == &mons[PM_RIVER_STALKER] || mtmp->data == &mons[PM_WAR_ASSHOLE] || mtmp->data == &mons[PM_TRAPPED_SOUL] || mtmp->data == &mons[PM_WATER_WATCHER] ) return(0); /* stationary turrets --Amy */
+	if (mtmp->data->mlet == S_TURRET || mtmp->data == &mons[PM_BUS] || mtmp->data == &mons[PM_HAND_DRUJ] || mtmp->data == &mons[PM_SKULL_DRUJ] || mtmp->data == &mons[PM_EYE_DRUJ] || mtmp->data == &mons[PM_EMPIRE_STATE_BUILDING] || mtmp->data == &mons[PM_DIVISION_THIEF] || mtmp->data == &mons[PM_DIVISION_JEDI] || mtmp->data == &mons[PM_CAR_DRIVING_SUPERTHIEF] || mtmp->data == &mons[PM_SUPERTHIEF] || mtmp->data == &mons[PM_HUGE_OGRE_THIEF] || mtmp->data == &mons[PM_SUPERJEDI] || mtmp->data == &mons[PM_CRITICALLY_INJURED_JEDI] || mtmp->data == &mons[PM_CRITICALLY_INJURED_THIEF] || mtmp->data == &mons[PM_TRAILER] || mtmp->data == &mons[PM_DEMONIC_ENTITY] || mtmp->data == &mons[PM_LAVA_GAZER] || mtmp->data == &mons[PM_ATHENA_BLOCKER] || mtmp->data == &mons[PM_ATHENA_BASHER] || mtmp->data == &mons[PM_ATHENA_GUARDIAN] || mtmp->data == &mons[PM_ATHENA_PROTECTOR] || mtmp->data == &mons[PM_ATHENA_GIANT] || mtmp->data == &mons[PM_DEATH_SPECTRE] || mtmp->data == &mons[PM_STYGIAN_WATCHER] || mtmp->data == &mons[PM_RIVER_STALKER] || mtmp->data == &mons[PM_WAR_ASSHOLE] || mtmp->data == &mons[PM_TRAPPED_SOUL] || mtmp->data == &mons[PM_WATER_WATCHER] || mtmp->data == &mons[PM_SILENT_WATCHER] || mtmp->data == &mons[PM_GREY_MUSHROOM_PATCH] || mtmp->data == &mons[PM_SHRIEKER_MUSHROOM_PATCH] || mtmp->data == &mons[PM_MEMORY_MOSS] || mtmp->data == &mons[PM_MAGIC_MUSHROOM_PATCH] || mtmp->data == &mons[PM_CLEAR_MUSHROOM_PATCH] || mtmp->data == &mons[PM_PURPLE_MUSHROOM_PATCH] || mtmp->data == &mons[PM_SPOTTED_MUSHROOM_PATCH] || mtmp->data == &mons[PM_YELLOW_MUSHROOM_PATCH] ) return(0); /* stationary turrets --Amy */
 
 	if(mtmp->mtrapped) {
 	    int i = mintrap(mtmp);
@@ -1463,7 +1463,7 @@ postmov:
 
 		/* Maybe a cube ate just about anything */
 		/* KMH -- Taz likes organics, too! */
-		if (ptr == &mons[PM_GELATINOUS_CUBE] || ptr == &mons[PM_GELATINOUS_GLOB] || ptr == &mons[PM_AMUSING_TYPE] || ptr == &mons[PM_MINOCUBE] || ptr == &mons[PM_GELATINOUS_DICE] || ptr == &mons[PM_TASMANIAN_ZOMBIE]
+		if (ptr == &mons[PM_GELATINOUS_CUBE] || ptr == &mons[PM_GELATINOUS_GLOB] || ptr == &mons[PM_OOZE_ELEMENTAL] || ptr == &mons[PM_AMUSING_TYPE] || ptr == &mons[PM_MINOCUBE] || ptr == &mons[PM_GELATINOUS_DICE] || ptr == &mons[PM_TASMANIAN_ZOMBIE]
 		|| ptr == &mons[PM_GELATINOUS_THIEF] ||	ptr == &mons[PM_TASMANIAN_DEVIL]) {
 		    if (meatobj(mtmp) == 2) return 2;	/* it died */
 		}

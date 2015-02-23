@@ -5295,7 +5295,7 @@ u_init()
 	/*shambler->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*shambler->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	shambler->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shambler->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shambler->mflags2 |= (1 << rn2(31));
 	}
@@ -5355,7 +5355,7 @@ u_init()
 	/*shamblerp->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*shamblerp->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	shamblerp->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblerp->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblerp->mflags2 |= (1 << rn2(31));
 	}
@@ -5415,7 +5415,7 @@ u_init()
 	/*pokshambler->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*pokshambler->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	pokshambler->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	pokshambler->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		pokshambler->mflags2 |= (1 << rn2(31));
 	}
@@ -5475,7 +5475,7 @@ u_init()
 	/*pokshamblerp->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*pokshamblerp->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	pokshamblerp->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	pokshamblerp->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		pokshamblerp->mflags2 |= (1 << rn2(31));
 	}
@@ -5537,7 +5537,7 @@ u_init()
 	/*shamblera->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*shamblera->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	shamblera->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblera->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblera->mflags2 |= (1 << rn2(31));
 	}
@@ -5597,7 +5597,7 @@ u_init()
 	/*shamblerap->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*shamblerap->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	shamblerap->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblerap->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblerap->mflags2 |= (1 << rn2(31));
 	}
@@ -5656,7 +5656,7 @@ u_init()
 	}
 	shamblerb->mflags1 &= ~M1_CARNIVORE;				/* must be herbivore */
 
-	shamblerb->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblerb->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblerb->mflags2 |= (1 << rn2(31));
 	}
@@ -5715,7 +5715,7 @@ u_init()
 	}
 	shamblerb->mflags1 &= ~M1_CARNIVORE;				/* must be herbivore */
 
-	shamblerbp->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblerbp->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblerbp->mflags2 |= (1 << rn2(31));
 	}
@@ -5778,7 +5778,7 @@ u_init()
 	/*shamblers->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*shamblers->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	shamblers->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblers->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblers->mflags2 |= (1 << rn2(31));
 	}
@@ -5838,7 +5838,7 @@ u_init()
 	/*shamblersp->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*shamblersp->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	shamblersp->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblersp->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblersp->mflags2 |= (1 << rn2(31));
 	}
@@ -5898,7 +5898,7 @@ u_init()
 	/*pokshamblers->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*pokshamblers->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	pokshamblers->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	pokshamblers->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		pokshamblers->mflags2 |= (1 << rn2(31));
 	}
@@ -5958,7 +5958,7 @@ u_init()
 	/*pokshamblersp->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*pokshamblersp->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	pokshamblersp->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	pokshamblersp->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		pokshamblersp->mflags2 |= (1 << rn2(31));
 	}
@@ -6019,7 +6019,7 @@ u_init()
 	/*pokshamblerxts->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*pokshamblerxts->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	pokshamblerxts->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	pokshamblerxts->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		pokshamblerxts->mflags2 |= (1 << rn2(31));
 	}
@@ -6079,7 +6079,7 @@ u_init()
 	/*pokshamblerxtsp->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*pokshamblerxtsp->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	pokshamblerxtsp->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	pokshamblerxtsp->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		pokshamblerxtsp->mflags2 |= (1 << rn2(31));
 	}
@@ -6139,7 +6139,7 @@ u_init()
 	/*shamblerz->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*shamblerz->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	shamblerz->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblerz->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblerz->mflags2 |= (1 << rn2(31));
 	}
@@ -6199,7 +6199,7 @@ u_init()
 	/*shamblerza->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*shamblerza->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	shamblerza->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblerza->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblerza->mflags2 |= (1 << rn2(31));
 	}
@@ -6262,7 +6262,7 @@ u_init()
 	/*shamblerr->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*shamblerr->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	shamblerr->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblerr->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblerr->mflags2 |= (1 << rn2(31));
 	}
@@ -6322,7 +6322,7 @@ u_init()
 	/*shamblerrp->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*shamblerrp->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	shamblerrp->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblerrp->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblerrp->mflags2 |= (1 << rn2(31));
 	}
@@ -6381,7 +6381,7 @@ u_init()
 		shamblert->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
 	}
 
-	shamblert->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblert->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblert->mflags2 |= (1 << rn2(31));
 	}
@@ -6440,7 +6440,7 @@ u_init()
 	}
 	shamblery->mflags1 &= ~M1_HIDE;				/* no hiding */
 
-	shamblery->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblery->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblery->mflags2 |= (1 << rn2(31));
 	}
@@ -6501,7 +6501,7 @@ u_init()
 	}
 	shamblertp->mflags1 &= ~M1_CARNIVORE;				/* must be herbivore */
 
-	shamblertp->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblertp->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblertp->mflags2 |= (1 << rn2(31));
 	}
@@ -6559,7 +6559,7 @@ u_init()
 		pokshamblert->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
 	}
 
-	pokshamblert->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	pokshamblert->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		pokshamblert->mflags2 |= (1 << rn2(31));
 	}
@@ -6618,7 +6618,7 @@ u_init()
 	}
 	pokshamblertp->mflags1 &= ~M1_CARNIVORE;				/* must be herbivore */
 
-	pokshamblertp->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	pokshamblertp->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		pokshamblertp->mflags2 |= (1 << rn2(31));
 	}
@@ -6677,7 +6677,7 @@ u_init()
 		shamblerta->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
 	}
 
-	shamblerta->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblerta->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblerta->mflags2 |= (1 << rn2(31));
 	}
@@ -6736,7 +6736,7 @@ u_init()
 	}
 	shamblerya->mflags1 &= ~M1_HIDE;				/* no hiding */
 
-	shamblerya->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblerya->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblerya->mflags2 |= (1 << rn2(31));
 	}
@@ -6795,7 +6795,7 @@ u_init()
 	}
 	shamblertpa->mflags1 &= ~M1_CARNIVORE;				/* must be herbivore */
 
-	shamblertpa->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblertpa->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblertpa->mflags2 |= (1 << rn2(31));
 	}
@@ -6855,7 +6855,7 @@ u_init()
 	/*shamblerl->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*shamblerl->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	shamblerl->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblerl->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblerl->mflags2 |= (1 << rn2(31));
 	}
@@ -6915,7 +6915,7 @@ u_init()
 	/*shamblerla->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*shamblerla->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	shamblerla->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblerla->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblerla->mflags2 |= (1 << rn2(31));
 	}
@@ -6975,7 +6975,7 @@ u_init()
 	/*pokshamblerl->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*pokshamblerl->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	pokshamblerl->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	pokshamblerl->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		pokshamblerl->mflags2 |= (1 << rn2(31));
 	}
@@ -7035,7 +7035,7 @@ u_init()
 	/*pokshamblerla->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*pokshamblerla->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	pokshamblerla->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	pokshamblerla->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		pokshamblerla->mflags2 |= (1 << rn2(31));
 	}
@@ -7097,7 +7097,7 @@ u_init()
 	/*shamblerx->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*shamblerx->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	shamblerx->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblerx->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblerx->mflags2 |= (1 << rn2(31));
 	}
@@ -7157,7 +7157,7 @@ u_init()
 	/*shamblerxa->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*shamblerxa->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	shamblerxa->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblerxa->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblerxa->mflags2 |= (1 << rn2(31));
 	}
@@ -7217,7 +7217,7 @@ u_init()
 	/*pokshamblerx->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*pokshamblerx->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	pokshamblerx->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	pokshamblerx->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		pokshamblerx->mflags2 |= (1 << rn2(31));
 	}
@@ -7277,7 +7277,7 @@ u_init()
 	/*pokshamblerxa->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*pokshamblerxa->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	pokshamblerxa->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	pokshamblerxa->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		pokshamblerxa->mflags2 |= (1 << rn2(31));
 	}
@@ -7338,7 +7338,7 @@ u_init()
 	/*shamblerm->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*shamblerm->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	shamblerm->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblerm->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblerm->mflags2 |= (1 << rn2(31));
 	}
@@ -7398,7 +7398,7 @@ u_init()
 	/*shamblerma->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*shamblerma->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	shamblerma->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblerma->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblerma->mflags2 |= (1 << rn2(31));
 	}
@@ -7458,7 +7458,7 @@ u_init()
 	/*shamblern->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*shamblern->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	shamblern->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblern->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblern->mflags2 |= (1 << rn2(31));
 	}
@@ -7518,7 +7518,7 @@ u_init()
 	/*shamblerna->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*shamblerna->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	shamblerna->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	shamblerna->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		shamblerna->mflags2 |= (1 << rn2(31));
 	}
@@ -7580,7 +7580,7 @@ u_init()
 	/*pokshamblerm->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*pokshamblerm->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	pokshamblerm->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	pokshamblerm->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		pokshamblerm->mflags2 |= (1 << rn2(31));
 	}
@@ -7640,7 +7640,7 @@ u_init()
 	/*pokshamblerma->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
 	/*pokshamblerma->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
-	pokshamblerma->mflags2 = M2_NOPOLY | M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	pokshamblerma->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		pokshamblerma->mflags2 |= (1 << rn2(31));
 	}
@@ -9001,7 +9001,7 @@ u_init()
 		randomkop->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
 	}
 
-	randomkop->mflags2 = M2_HUMAN|M2_STALK|M2_NOPOLY|M2_HOSTILE|M2_STRONG|M2_NEUTER|M2_NASTY;		/* Don't let the player be one of these yet. */
+	randomkop->mflags2 = M2_HUMAN|M2_STALK|M2_HOSTILE|M2_STRONG|M2_NEUTER|M2_NASTY;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		randomkop->mflags2 |= (1 << rn2(31));
 	}
@@ -9052,7 +9052,7 @@ u_init()
 		randomkopb->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
 	}
 
-	randomkopb->mflags2 = M2_HUMAN|M2_STALK|M2_NOPOLY|M2_HOSTILE|M2_STRONG|M2_NEUTER|M2_NASTY;		/* Don't let the player be one of these yet. */
+	randomkopb->mflags2 = M2_HUMAN|M2_STALK|M2_HOSTILE|M2_STRONG|M2_NEUTER|M2_NASTY;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		randomkopb->mflags2 |= (1 << rn2(31));
 	}
@@ -9103,7 +9103,7 @@ u_init()
 		randomkopc->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
 	}
 
-	randomkopc->mflags2 = M2_HUMAN|M2_STALK|M2_NOPOLY|M2_HOSTILE|M2_STRONG|M2_NEUTER|M2_NASTY;		/* Don't let the player be one of these yet. */
+	randomkopc->mflags2 = M2_HUMAN|M2_STALK|M2_HOSTILE|M2_STRONG|M2_NEUTER|M2_NASTY;		/* Don't let the player be one of these yet. */
 	for (i = 0; i < rnd(17); i++) {
 		randomkopc->mflags2 |= (1 << rn2(31));
 	}

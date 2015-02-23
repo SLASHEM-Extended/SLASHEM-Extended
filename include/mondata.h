@@ -109,7 +109,7 @@
 #define herbivorous(ptr)	(((ptr)->mflags1 & M1_HERBIVORE) != 0L)
 #define metallivorous(ptr)	(((ptr)->mflags1 & M1_METALLIVORE) != 0L)
 #define monpolyok(ptr)		(((ptr)->mflags2 & M2_NOPOLY) == 0L) /* monsters may poly into this */
-#define polyok(ptr)		(((ptr)->mflags2 & M2_NOPOLY) == 0L && (ptr)->mlevel < 30 && (ptr) != &mons[PM_LEPRECHAUN_KING] && (ptr) != &mons[PM_NYMPH_QUEEN] && (ptr) != &mons[PM_MIGO_QUEEN] && (ptr) != &mons[PM_MIGO_EMPRESS] && (ptr) != &mons[PM_QUEEN_BEE] && (ptr) != &mons[PM_CATOBLEPAS] && (ptr) != &mons[PM_DEEP_THOUGHT] && (ptr) != &mons[PM_EDDIE] && (ptr) != &mons[PM_ANCIENT_MULTI_HUED_DRAGON] && (ptr) != &mons[PM_DRAGON_LORD] && (ptr) != &mons[PM_VORPAL_JABBERWOCK] && (ptr) != &mons[PM_KOP_KATCHER] && (ptr) != &mons[PM_POLICEMAN_KATCHER] && (ptr) != &mons[PM_OFFICER_KATCHER] && (ptr) != &mons[PM_WARDER_KATCHER] && (ptr) != &mons[PM_DETECTIVE_KATCHER] && (ptr) != &mons[PM_PROSTETNIK_VOGON_JELTZ] && (ptr) != &mons[PM_MARVIN] && (ptr) != &mons[PM_AK_THIEF_IS_DEAD_] && (ptr) != &mons[PM_UN_IN_PROTECT_MODE] && (ptr) != &mons[PM_ZAPHOD_BREEBLEBROX] && (ptr) != &mons[PM_SIZZLE] && (ptr) != &mons[PM_UNDEAD_KATCHER] && (ptr) != &mons[PM_MULTICOLOR_GRUE] && (ptr) != &mons[PM_LOW_PRIEST] && (ptr) != &mons[PM_WHITE_MARKETEER] && (ptr) != &mons[PM_INSPECTOR_KATCHER] && (ptr) != &mons[PM_UNIFORM_KATCHER] && (ptr) != &mons[PM_BLACK_MISSINGNO] && (ptr) != &mons[PM_GRAY_MISSINGNO] && (ptr) != &mons[PM_WHITE_MISSINGNO] && (ptr) != &mons[PM_RED_MISSINGNO] && (ptr) != &mons[PM_BROWN_MISSINGNO] && (ptr) != &mons[PM_CYAN_MISSINGNO] && (ptr) != &mons[PM_MAGENTA_MISSINGNO] && (ptr) != &mons[PM_GREEN_MISSINGNO] && (ptr) != &mons[PM_ORANGE_MISSINGNO] && (ptr) != &mons[PM_YELLOW_MISSINGNO] && (ptr) != &mons[PM_BRIGHT_GREEN_MISSINGNO] && (ptr) != &mons[PM_BRIGHT_MAGENTA_MISSINGNO] && (ptr) != &mons[PM_BRIGHT_BLUE_MISSINGNO] && (ptr) != &mons[PM_BRIGHT_CYAN_MISSINGNO] ) /* players may poly into this */
+#define polyok(ptr)		(((ptr)->mflags2 & M2_NOPOLY) == 0L && (ptr)->mlevel < 30 && (ptr) != &mons[PM_LEPRECHAUN_KING] && (ptr) != &mons[PM_NYMPH_QUEEN] && (ptr) != &mons[PM_MIGO_QUEEN] && (ptr) != &mons[PM_MIGO_EMPRESS] && (ptr) != &mons[PM_QUEEN_BEE] && (ptr) != &mons[PM_ONG_SEPHIRAH] && (ptr) != &mons[PM_KRONG_SEPHIRAH] && (ptr) != &mons[PM_ZAKRONG_SEPHIRAH] && (ptr) != &mons[PM_CATOBLEPAS] && (ptr) != &mons[PM_RAINBOW_MODE_DRAGON] && (ptr) != &mons[PM_MULTICOLOR_GRUE] && (ptr) != &mons[PM_COLORLESS_MOLD] && (ptr) != &mons[PM_COLORLESS_FUNGUS] && (ptr) != &mons[PM_SIZZLING_VORTEX] && (ptr) != &mons[PM_SHINING_PIERCER] && (ptr) != &mons[PM_DEEP_THOUGHT] && (ptr) != &mons[PM_EDDIE] && (ptr) != &mons[PM_SHADE] && (ptr) != &mons[PM_ROBOT] && (ptr) != &mons[PM_SHADOW_WARRIOR] && (ptr) != &mons[PM_ANCIENT_MULTI_HUED_DRAGON] && (ptr) != &mons[PM_DRAGON_LORD] && (ptr) != &mons[PM_VORPAL_JABBERWOCK] && (ptr) != &mons[PM_KOP_KATCHER] && (ptr) != &mons[PM_BOOJUM] && (ptr) != &mons[PM_HELLFIRE_COLOSSUS] && (ptr) != &mons[PM_POLICEMAN_KATCHER] && (ptr) != &mons[PM_OFFICER_KATCHER] && (ptr) != &mons[PM_WARDER_KATCHER] && (ptr) != &mons[PM_DETECTIVE_KATCHER] && (ptr) != &mons[PM_PROSTETNIK_VOGON_JELTZ] && (ptr) != &mons[PM_MARVIN] && (ptr) != &mons[PM_MASTER_ARCHON] && (ptr) != &mons[PM_GRANDMASTER_ARCHON] && (ptr) != &mons[PM_AK_THIEF_IS_DEAD_] && (ptr) != &mons[PM_UN_IN_PROTECT_MODE] && (ptr) != &mons[PM_ZAPHOD_BREEBLEBROX] && (ptr) != &mons[PM_SIZZLE] && (ptr) != &mons[PM_PLANETAR] && (ptr) != &mons[PM_UNDEAD_KATCHER] && (ptr) != &mons[PM_MULTICOLOR_GRUE] && (ptr) != &mons[PM_LOW_PRIEST] && (ptr) != &mons[PM_WHITE_MARKETEER] && (ptr) != &mons[PM_TRACKER_JACKER] && (ptr) != &mons[PM_MYSTIC_EYE] && (ptr) != &mons[PM_INSPECTOR_KATCHER] && (ptr) != &mons[PM_UNIFORM_KATCHER] && (ptr) !=&mons[PM_NITROHACK_HORROR] && (ptr) != &mons[PM_SPEEDHACK_HORROR] && (ptr) != &mons[PM_NETHACKFOUR_HORROR] && (ptr) != &mons[PM_DEVTEAM_HORROR] && (ptr) != &mons[PM_DNETHACK_HORROR] && (ptr) != &mons[PM_NETHACKBRASS_HORROR] && (ptr) != &mons[PM_INTERHACK_HORROR] && (ptr) != &mons[PM_NHTNG_HORROR] && (ptr) != &mons[PM_UNNETHACK_HORROR] && (ptr) != &mons[PM_UNNETHACKPLUS_HORROR] && (ptr) != &mons[PM_ANGBAND_HORROR] && (ptr) != &mons[PM_ADOM_HORROR] && (ptr) != &mons[PM_PETTY_ANGBAND_HORROR] && (ptr) != &mons[PM_PETTY_ADOM_HORROR] && (ptr) != &mons[PM_SPORKHACK_HORROR] && (ptr) != &mons[PM_SLASHEM_HORROR] && (ptr) != &mons[PM_NETHACK_HORROR] && (ptr) != &mons[PM_ROGUE_HORROR] && (ptr) != &mons[PM_GRUNTHACK_HORROR] && (ptr) != &mons[PM_ACEHACK_HORROR] && (ptr) != &mons[PM_MAIDENHACK_HORROR] && (ptr) != &mons[PM_YASD_HORROR] && (ptr) != &mons[PM_PETTY_GRUNTHACK_HORROR] && (ptr) != &mons[PM_PETTY_ACEHACK_HORROR] && (ptr) != &mons[PM_STONE_COLD_HORROR] && (ptr) != &mons[PM_PETROGRAPHY_HORROR] && (ptr) != &mons[PM_PUPURIN] && (ptr) != &mons[PM_SAPUSAUR] && (ptr) != &mons[PM_ODDOSHISHI] && (ptr) != &mons[PM_TSUBOTSUBO] && (ptr) != &mons[PM_OKUTAN] && (ptr) != &mons[PM_RATICLAW] && (ptr) != &mons[PM_PSYBUR] && (ptr) != &mons[PM_HARISEN] && (ptr) != &mons[PM_SUIKUN] && (ptr) != &mons[PM_HOUOU] && (ptr) != &mons[PM_LOCUSTOD] && (ptr) != &mons[PM_FORETOSU] && (ptr) != &mons[PM_CHARCOLT] && (ptr) != &mons[PM_MILLENUM] && (ptr) != &mons[PM_BLACK_MISSINGNO] && (ptr) != &mons[PM_GRAY_MISSINGNO] && (ptr) != &mons[PM_WHITE_MISSINGNO] && (ptr) != &mons[PM_RED_MISSINGNO] && (ptr) != &mons[PM_BROWN_MISSINGNO] && (ptr) != &mons[PM_CYAN_MISSINGNO] && (ptr) != &mons[PM_MAGENTA_MISSINGNO] && (ptr) != &mons[PM_GREEN_MISSINGNO] && (ptr) != &mons[PM_ORANGE_MISSINGNO] && (ptr) != &mons[PM_YELLOW_MISSINGNO] && (ptr) != &mons[PM_BRIGHT_GREEN_MISSINGNO] && (ptr) != &mons[PM_BRIGHT_MAGENTA_MISSINGNO] && (ptr) != &mons[PM_BRIGHT_BLUE_MISSINGNO] && (ptr) != &mons[PM_BRIGHT_CYAN_MISSINGNO] ) /* players may poly into this */
 #define is_undead(ptr)		(((ptr)->mflags2 & M2_UNDEAD) != 0L)
 #define is_were(ptr)		(((ptr)->mflags2 & M2_WERE) != 0L)
 #define is_vampire(ptr)		(((ptr)->mflags2 & M2_VAMPIRE) != 0L)
@@ -198,17 +198,22 @@
 				 (ptr) == &mons[PM_DEATH_WIDOW] || \
 				 (ptr) == &mons[PM_SPIDERMAN] || \
 				 (ptr) == &mons[PM_TARANTULA] || \
+				 (ptr) == &mons[PM_GIANT_TARANTULA] || \
 				 (ptr) == &mons[PM_PETTY_GIANT_SPIDER] || \
 				 (ptr) == &mons[PM_WERESPIDER] || \
 				 (ptr) == &mons[PM_ALL_COMMON_TRAPDOOR_SPIDER] || \
 				 (ptr) == &mons[PM_SUPER_TRAPDOOR_SPIDER] || \
 				 (ptr) == &mons[PM_USA_PRESIDENT] || \
+				 (ptr) == &mons[PM_ARANEA] || \
+				 (ptr) == &mons[PM_ELDER_ARANEA] || \
 				 (ptr) == &mons[PM_BLACK_WIDOW] || \
 				 (ptr) == &mons[PM_PETTY_BLACK_WIDOW] || \
 				 (ptr) == &mons[PM_ARACH] || \
 				 (ptr) == &mons[PM_SAND_FISHER] || \
 				 (ptr) == &mons[PM_SAND_SPIDER] || \
 				 (ptr) == &mons[PM_TUNNEL_SPIDER] || \
+				 (ptr) == &mons[PM_WOOD_SPIDER] || \
+				 (ptr) == &mons[PM_MIRKWOOD_SPIDER] || \
 				 (ptr) == &mons[PM_CARRION_FANG] || \
 				 (ptr) == &mons[PM_GREENER_SPIDER] || \
 				 (ptr) == &mons[PM_ULTRA_SPIDER] || \
@@ -247,7 +252,7 @@
 				 (ptr) == &mons[PM_GIANT] || \
 				 (ptr) == &mons[PM_ELF] || \
 				 (ptr) == &mons[PM_HUMAN])
-#define is_nonmoving(ptr) ((ptr)->mmove < 1 || (ptr)->mlet == S_TURRET || (ptr) == &mons[PM_BUS] || (ptr) == &mons[PM_EMPIRE_STATE_BUILDING] || (ptr) == &mons[PM_DIVISION_THIEF] || (ptr) == &mons[PM_DIVISION_JEDI] || (ptr) == &mons[PM_STYGIAN_WATCHER] || (ptr) == &mons[PM_RIVER_STALKER] || (ptr) == &mons[PM_CAR_DRIVING_SUPERTHIEF] || (ptr) == &mons[PM_SUPERTHIEF] || (ptr) == &mons[PM_HUGE_OGRE_THIEF] || (ptr) == &mons[PM_SUPERJEDI] || (ptr) == &mons[PM_DEATH_SPECTRE] || (ptr) == &mons[PM_CRITICALLY_INJURED_JEDI] || (ptr) == &mons[PM_CRITICALLY_INJURED_THIEF] || (ptr) == &mons[PM_WAR_ASSHOLE] || (ptr) == &mons[PM_TRAPPED_SOUL] || (ptr) == &mons[PM_WATER_WATCHER] || (ptr) == &mons[PM_TRAILER] || (ptr) == &mons[PM_DEMONIC_ENTITY] || (ptr) == &mons[PM_LAVA_GAZER] || (ptr) == &mons[PM_ATHENA_BASHER] || (ptr) == &mons[PM_ATHENA_BLOCKER] || (ptr) == &mons[PM_ATHENA_PROTECTOR] || (ptr) == &mons[PM_ATHENA_GIANT] || (ptr) == &mons[PM_ATHENA_GUARDIAN] )
+#define is_nonmoving(ptr) ((ptr)->mmove < 1 || (ptr)->mlet == S_TURRET || (ptr) == &mons[PM_BUS] || (ptr) == &mons[PM_HAND_DRUJ] || (ptr) == &mons[PM_EYE_DRUJ] || (ptr) == &mons[PM_SKULL_DRUJ] || (ptr) == &mons[PM_EMPIRE_STATE_BUILDING] || (ptr) == &mons[PM_DIVISION_THIEF] || (ptr) == &mons[PM_DIVISION_JEDI] || (ptr) == &mons[PM_STYGIAN_WATCHER] || (ptr) == &mons[PM_RIVER_STALKER] || (ptr) == &mons[PM_CAR_DRIVING_SUPERTHIEF] || (ptr) == &mons[PM_SUPERTHIEF] || (ptr) == &mons[PM_HUGE_OGRE_THIEF] || (ptr) == &mons[PM_SUPERJEDI] || (ptr) == &mons[PM_DEATH_SPECTRE] || (ptr) == &mons[PM_CRITICALLY_INJURED_JEDI] || (ptr) == &mons[PM_CRITICALLY_INJURED_THIEF] || (ptr) == &mons[PM_WAR_ASSHOLE] || (ptr) == &mons[PM_TRAPPED_SOUL] || (ptr) == &mons[PM_WATER_WATCHER] || (ptr) == &mons[PM_SILENT_WATCHER] || (ptr) == &mons[PM_TRAILER] || (ptr) == &mons[PM_DEMONIC_ENTITY] || (ptr) == &mons[PM_LAVA_GAZER] || (ptr) == &mons[PM_ATHENA_BASHER] || (ptr) == &mons[PM_ATHENA_BLOCKER] || (ptr) == &mons[PM_ATHENA_PROTECTOR] || (ptr) == &mons[PM_ATHENA_GIANT] || (ptr) == &mons[PM_GREY_MUSHROOM_PATCH] || (ptr) == &mons[PM_SHRIEKER_MUSHROOM_PATCH] || (ptr) == &mons[PM_MEMORY_MOSS] || (ptr) == &mons[PM_MAGIC_MUSHROOM_PATCH] || (ptr) == &mons[PM_PURPLE_MUSHROOM_PATCH] || (ptr) == &mons[PM_SPOTTED_MUSHROOM_PATCH] || (ptr) == &mons[PM_YELLOW_MUSHROOM_PATCH] || (ptr) == &mons[PM_CLEAR_MUSHROOM_PATCH] || (ptr) == &mons[PM_ATHENA_GUARDIAN] )
 #define is_eel(ptr)	((ptr)->mlet == S_EEL)
 
 /* return TRUE if the monster tends to revive */
@@ -319,6 +324,8 @@
 				 ptr == &mons[PM_ARMED_COCKATRICE] || \
 				 ptr == &mons[PM_HIDDEN_COCKATRICE] || \
 				 ptr == &mons[PM_BASILISK] || \
+				 ptr == &mons[PM_DRACOLISK] || \
+				 ptr == &mons[PM_GREATER_BASILISK] || \
 				 ptr == &mons[PM_CHICKATRICE] || \
 				 ptr == &mons[PM_WERECOCKATRICE] || \
 				 ptr == &mons[PM_HUMAN_WERECOCKATRICE] || \

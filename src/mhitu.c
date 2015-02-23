@@ -1100,8 +1100,11 @@ mattacku(mtmp)
 			 *
 			 * RJ
 			 */
-			if (!range2 && (!rn2(5)) ) /* greatly reduced chance --Amy */
+			if (!range2 && (!rn2(5)) ) { /* greatly reduced chance --Amy */
+
+			    pline("%s multiplies!",Monnam(mtmp) );
 			    clone_mon(mtmp, 0, 0);
+				}
 			break;
 		case AT_WEAP:
 			if(range2) {
@@ -3457,7 +3460,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			    if (!Blind) Your(vision_clears);
 			} else
 			    /* keep him blind until disgorged */
-			    make_blinded(Blinded+1,FALSE);
+				/* Amy edit - but also add the actual damage */
+			    make_blinded(Blinded+1+(long)tmp,FALSE);
 		    }
 		    tmp = 0;
 		    break;
