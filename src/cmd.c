@@ -1324,6 +1324,10 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("Your leg damage ", "is", "was", buf);
 	}
 
+	if (u.youpolyamount > 0) { Sprintf(buf, " %d", u.youpolyamount);
+		enl_msg("Your remaining amount of free polymorphs ", "is", "was", buf);
+	}
+
 	if (wizard || (!rn2(10)) || final >= 1 ) { Sprintf(buf, " turn %d", u.monstertimeout);
 		enl_msg("Monster spawn increase ", "start at", "would have started at", buf);
 	}

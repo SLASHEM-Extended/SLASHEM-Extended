@@ -3892,6 +3892,15 @@ u_init()
 	u.statuetrapname = rn2(NUMMONS);
 
 	u.wormpolymorph = 0; /* if this is non-zero, the player's next polymorph will be into the specified monster */
+
+	u.youpolyamount = 0;	/* amount of uses for #youpoly command --Amy */
+
+	if (Race_if(PM_DOPPELGANGER)) u.youpolyamount = 10;
+	else if (Race_if(PM_HEMI_DOPPELGANGER)) u.youpolyamount = 20;
+	else if (Race_if(PM_DEATHMOLD)) u.youpolyamount = 50;
+	else if (Race_if(PM_UNGENOMOLD)) u.youpolyamount = 100;
+	else if (Race_if(PM_MOULD)) u.youpolyamount = 250;
+
 	u.eeveelution = PM_VAPOREON; /* failsafe */
 	if (u.monstertimefinish % 42 == 0) u.eeveelution = PM_VOLAREON;
 	else if (u.monstertimefinish % 23 == 0) u.eeveelution = PM_INSECTEON;

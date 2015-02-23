@@ -383,6 +383,8 @@ struct you {
 	int urealedibility;	/* no longer a boolean --Amy */
 	int wormpolymorph;	/* for worm that walks race */
 
+	int youpolyamount;	/* how many times you can use #youpoly --Amy */
+
 	int eeveelution;		/* mainly for pokemon role but might be useful for others */
 
 #ifdef NOARTIFACTWISH
