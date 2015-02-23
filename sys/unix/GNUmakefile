@@ -29,7 +29,6 @@ CPPFLAGS += -DNO_SUSPEND
 
 .DELETE_ON_ERROR:
 
-.DEFAULT_GOAL: all
 .PHONY: all
 all: src/$(GAME) util/recover dat/nhshare dat/nhushare
 
