@@ -1479,8 +1479,8 @@ struct permonst *ptr;
 {
 	int	i, tmp2, n, tmp = ptr->mlevel;
 
-	if(tmp > 49)		/* special fixed hp monster */
-	    tmp = 2*(tmp - 6) / 4;
+	/*if(tmp > 49)*/		/* special fixed hp monster */
+	    /*tmp = 2*(tmp - 6) / 4;*/ 	/* what the heck does that have to do with monster difficulty?! --Amy */
 
 /*	For creation in groups */
 	n = (!!(ptr->geno & G_SGROUP));
@@ -1527,6 +1527,8 @@ struct permonst *ptr;
 	if(n == 0) tmp--;
 	else if(n >= 6) tmp += ( n / 2 );
 	else tmp += ( n / 3 + 1);
+
+	if (tmp > 75) tmp = 75;
 
 	return((tmp >= 0) ? tmp : 0);
 }
