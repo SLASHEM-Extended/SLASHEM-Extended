@@ -2265,7 +2265,10 @@ struct monst *mtmp;
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 		m_using = FALSE;
 /*                }*/
+
+		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		}
 		return (mtmp->mhp <= 0) ? 1 : 2;
 	case MUSE_FIRE_HORN:
 	case MUSE_FROST_HORN:
@@ -2280,7 +2283,9 @@ struct monst *mtmp;
 			rn1(6,6), mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 		m_using = FALSE;
+		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		}
 		return (mtmp->mhp <= 0) ? 1 : 2;
 /*      case MUSE_WAN_TELEPORTATION:*/
 	case MUSE_WAN_STRIKING:
