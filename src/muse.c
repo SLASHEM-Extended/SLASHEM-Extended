@@ -2308,7 +2308,7 @@ struct monst *mtmp;
 		m_using = TRUE;
 		mbhitm(&youmonst,otmp);
 		m_using = FALSE;
-		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		/*if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);*/ /* This was crashing too often. --Amy */
 		return 2;
 	case MUSE_SCR_TRAP_CREATION:
 
