@@ -559,6 +559,7 @@ const struct innate {
 		     {   1, &(HSleep_resistance), "", "" },
 		     {   1, &(HPoison_resistance), "", "" },
 		     {   1, &(HDisint_resistance), "", "" },
+		     {   1, &(HStone_resistance), "", "" },
 		     {   1, &(HUndead_warning), "", "" },
 		     {   0, 0, 0, 0 } },
 
