@@ -4018,8 +4018,10 @@ uchar aatyp;
 	for(i = 0; ; i++) {
 	    if(i >= NATTK) return(malive | mhit);	/* no passive attacks */
 	    if(ptr->mattk[i].aatyp == AT_NONE /*||
-	       ptr->mattk[i].aatyp == AT_BOOM*/) break; /* try this one */
-	}
+	       ptr->mattk[i].aatyp == AT_BOOM*/) { /* try this one */
+
+	/*}*/ /* the above allows multiple passive attacks on a single monster; code from FHS --Amy */
+
 	/* Note: tmp not always used */
 	if (ptr->mattk[i].damn)
 	    tmp = d((int)ptr->mattk[i].damn, (int)ptr->mattk[i].damd);
@@ -4577,15 +4579,20 @@ uchar aatyp;
 	    	break;
 	      default:
 		break;
-	    }
-	}
+	    }	/* attack switch */
+	  }	/*if(ptr->mattk[i].aatyp == AT_NONE) {*/
+	} 	/*for(i = 0; ; i++) {*/
 
 	/*if (randattackC == 1) {
 		ptr->mattk[i].adtyp = AD_RBRE;
 		randattackC = 0;
 	}*/
 
+	}
+
 	return(malive | mhit);
+
+
 }
 
 /*
