@@ -246,11 +246,11 @@ clean:
 	rm -f $(AUTO_BIN)
 	rm -f $(ALL_O)
 
-	rm -f $(AUTO_DAT)
-	rm -f dat/*.lev
-
 	rm -f $(AUTO_H)
 	rm -f $(AUTO_C)
+
+	rm -f $(AUTO_DAT)
+	rm -f dat/*.lev
 
 .PHONY: cleandeps
 cleandeps: clean
