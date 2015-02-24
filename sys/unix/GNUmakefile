@@ -167,7 +167,7 @@ util/dgn_lex.o: include/dgn_comp.h
 util/lev_lex.o: include/lev_comp.h include/onames.h include/pm.h
 
 # for missing headers during the first automatic dependency generation
-$(AUTO_H:include/%.h=%.h): %.h: include/%.h
+$(AUTO_H:include/%.h=%.h): %.h: include/%.h ;
 
 # empty "bootstrap" dependency files are fine here, they'll be fixed
 # during the first compilation
