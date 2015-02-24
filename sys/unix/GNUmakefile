@@ -67,9 +67,6 @@ standalone: all
 
 ##### BINARIES #####
 
-SYSUNIXOBJ = unixmain.o unixres.o unixunix.o
-SYSSHAREOBJ = ioctl.o unixtty.o
-WINTTYOBJ = getline.o termcap.o topl.o wintty.o
 SRCOBJ = allmain.o alloc.o apply.o artifact.o attrib.o ball.o bones.o	\
  botl.o cmd.o dbridge.o decl.o detect.o dig.o display.o dlb.o do.o	\
  do_name.o do_wear.o dog.o dogmove.o dokick.o dothrow.o drawing.o	\
@@ -85,9 +82,13 @@ SRCOBJ = allmain.o alloc.o apply.o artifact.o attrib.o ball.o bones.o	\
  timeout.o topten.o track.o trap.o u_init.o uhitm.o vault.o version.o	\
  vision.o weapon.o were.o wield.o windows.o wizard.o worm.o worn.o	\
  write.o zap.o
+SYSUNIXOBJ = unixmain.o unixres.o unixunix.o
+SYSSHAREOBJ = ioctl.o unixtty.o
+WINTTYOBJ = getline.o termcap.o topl.o wintty.o
 
-GAME_O = $(SYSUNIXOBJ:%=sys/unix/%) $(SYSSHAREOBJ:%=sys/share/%)	\
-         $(WINTTYOBJ:%=win/tty/%) $(SRCOBJ:%=src/%)
+GAME_O = $(SRCOBJ:%.o=src/%.o) $(SYSUNIXOBJ:%.o=sys/unix/%.o)	\
+         $(SYSSHAREOBJ:%.o=sys/share/%.o)			\
+         $(WINTTYOBJ:%.o=win/tty/%.o)
 src/$(GAME): $(GAME_O)
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -lncurses -o $@
 AUTO_BIN += src/$(GAME)
