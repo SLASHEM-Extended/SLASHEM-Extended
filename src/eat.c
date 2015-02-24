@@ -1959,7 +1959,8 @@ gluttonous()
 		You(Hallucination ? "feel that your belly's gonna burst!" : "feel like a glutton!");
 	}
 
-	if (Race_if(PM_VEELA)) badeffect();
+	if ((u.uhs == SATIATED) && Race_if(PM_VEELA)) {	badeffect();
+	}
 
 	if (u.uhs == SATIATED && (Role_if(PM_TOPMODEL) || Role_if(PM_GOFF)) ) { /* They aren't used to eat much. --Amy */
 
