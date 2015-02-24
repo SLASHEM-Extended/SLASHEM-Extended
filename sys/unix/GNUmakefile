@@ -36,15 +36,31 @@ CPPFLAGS += -DNO_SUSPEND
 .PHONY: all
 all: src/$(GAME) util/recover dat/nhshare dat/nhushare dat/license
 
+.PHONY: install
+install: $(if $(MASTERDIR),slave,standalone)
+
 ATOMIC_LN = ln $(1) $(2).new && mv $(2).new $(2)
 
-.PHONY: install
-install: all
+.PHONY: slave
+slave: all
 	$(INSTALL_DIR) $(GAMEDIR) $(VARDIR) $(VARDIR)/save
 	$(call ATOMIC_LN,$(MASTERDIR)/perm,$(VARDIR)/perm)
 	$(call ATOMIC_LN,$(MASTERDIR)/record,$(VARDIR)/record)
 	$(call ATOMIC_LN,$(MASTERDIR)/logfile,$(VARDIR)/logfile)
 	$(call ATOMIC_LN,$(MASTERDIR)/xlogfile,$(VARDIR)/xlogfile)
+	$(INSTALL_GAME) src/$(GAME) $(GAMEDIR)
+	$(INSTALL_PROGRAM) util/recover $(GAMEDIR)
+	$(INSTALL_DATA) dat/nhshare dat/nhushare dat/license $(GAMEDIR)
+
+TOUCH_NEW = test -e $(1) || $(INSTALL_DATA) /dev/null $(1)
+
+.PHONY: standalone
+standalone: all
+	$(INSTALL_DIR) $(GAMEDIR) $(VARDIR) $(VARDIR)/save
+	$(call TOUCH_NEW,$(VARDIR)/perm)
+	$(call TOUCH_NEW,$(VARDIR)/record)
+	$(call TOUCH_NEW,$(VARDIR)/logfile)
+	$(call TOUCH_NEW,$(VARDIR)/xlogfile)
 	$(INSTALL_GAME) src/$(GAME) $(GAMEDIR)
 	$(INSTALL_PROGRAM) util/recover $(GAMEDIR)
 	$(INSTALL_DATA) dat/nhshare dat/nhushare dat/license $(GAMEDIR)
