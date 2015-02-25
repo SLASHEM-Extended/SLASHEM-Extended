@@ -1030,7 +1030,7 @@ CONTAINER("bag of digestion","bag",     0, 1, 0, 0,   5, 5, 100, CLOTH, HI_CLOTH
 CONTAINER("bag of tricks", "bag",       0, 1, 1, 0,  20, 5, 100, CLOTH, HI_CLOTH),
 
 /* Unlocking tools */
-TOOL("skeleton key", "key",     0, 0, 0, 0,  80,  0,  10, IRON, HI_METAL),
+TOOL("skeleton key", "key",     0, 0, 0, 0,  75,  0,  10, IRON, HI_METAL),
 #ifdef TOURIST
 TOOL("lock pick", (char *)0,    1, 0, 0, 0,  60,  0,  20, IRON, HI_METAL),
 TOOL("credit card", (char *)0,  1, 0, 0, 0,  15,  0,  10, PLASTIC, CLR_WHITE),
@@ -1049,7 +1049,7 @@ TOOL("magic lamp", "lamp",      0, 0, 1, 0,  10, 0,100, COPPER, CLR_YELLOW),
 
 /* Instruments */
 /* KMH -- made less common */
-TOOL("tin whistle", "whistle",  0, 0, 0, 0,  59,  0,  10, METAL, HI_METAL),
+TOOL("tin whistle", "whistle",  0, 0, 0, 0,  54,  0,  10, METAL, HI_METAL),
 TOOL("magic whistle", "whistle",0, 0, 1, 0,  25,  0,  10, METAL, HI_METAL),
 /* "If tin whistles are made out of tin, what do they make foghorns out of?" */
 TOOL("wooden flute", "flute",   0, 0, 0, 0,   2,  0,  50, WOOD, HI_WOOD),
@@ -1080,14 +1080,14 @@ WEPTOOL("spoon", (char *)0,
 #ifdef LIGHTSABERS
 # ifdef D_SABER
 WEPTOOL("pick-axe", (char *)0,
-	1, 0, 0, 0, 15, 32,   50,  6,  3, 0, WHACK,  P_PICK_AXE, IRON, HI_METAL),
+	1, 0, 0, 0, 35, 32,   50,  6,  3, 0, WHACK,  P_PICK_AXE, IRON, HI_METAL),
 # else
 WEPTOOL("pick-axe", (char *)0,
-	1, 0, 0, 0, 16, 32,   50,  6,  3, 0, WHACK,  P_PICK_AXE, IRON, HI_METAL),
+	1, 0, 0, 0, 36, 32,   50,  6,  3, 0, WHACK,  P_PICK_AXE, IRON, HI_METAL),
 # endif
 #else	/* LIGHTSABERS */
 WEPTOOL("pick-axe", (char *)0,
-	1, 0, 0, 0, 19, 32,   50,  6,  3, 0, WHACK,  P_PICK_AXE, IRON, HI_METAL),
+	1, 0, 0, 0, 39, 32,   50,  6,  3, 0, WHACK,  P_PICK_AXE, IRON, HI_METAL),
 #endif
 WEPTOOL("fishing pole", (char *)0,
 	1, 0, 0, 0,  5,  12,  50,  2,  6, 0, WHACK,  P_POLEARMS, METAL, HI_METAL),
@@ -1140,9 +1140,9 @@ WEPTOOL("white lightsaber",  "lightsaber",
 #ifdef TOURIST
 TOOL("expensive camera", (char *)0,
 				1, 0, 0, 1,  10, 0, 200, PLASTIC, CLR_BLACK),
-TOOL("mirror", "looking glass", 0, 0, 0, 0,  40, 0,  10, GLASS, HI_SILVER),
+TOOL("mirror", "looking glass", 0, 0, 0, 0,  30, 0,  10, GLASS, HI_SILVER),
 #else
-TOOL("mirror", "looking glass", 0, 0, 0, 0,  50, 0,  10, GLASS, HI_SILVER),
+TOOL("mirror", "looking glass", 0, 0, 0, 0,  40, 0,  10, GLASS, HI_SILVER),
 #endif
 TOOL("crystal ball", "glass orb",
 								0, 0, 1, 1,  10,0,  60, GLASS, HI_GLASS),

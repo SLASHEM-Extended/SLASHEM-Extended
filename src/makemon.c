@@ -228,9 +228,13 @@ register struct monst *mtmp;
 		if (!rn2(20)) (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
 		if(strongmonst(ptr)) (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
 		break;
+	    case 9:
+		if (!rn2(50)) (void) mongets(mtmp, PICK_AXE);
 	    default:
 		break;
 	}
+
+	if (needspick(ptr) && !rn2(40) ) (void) mongets(mtmp, PICK_AXE);
 
 	return;
 }
