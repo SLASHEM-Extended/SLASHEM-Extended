@@ -1391,22 +1391,26 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("You resist", "", "ed", " hallucinations");
 	/*if (final) { */
 	if (Hallucination) {
-		Sprintf(buf, "hallucinating");
+		if (HeavyHallu) Sprintf(buf, "badly hallucinating");
+		else Sprintf(buf, "hallucinating");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HHallucination);
 		you_are(buf);
 	}
 	if (Stunned) {
-		Sprintf(buf, "stunned");
+		if (HeavyStunned) Sprintf(buf, "badly stunned");
+		else Sprintf(buf, "stunned");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HStun);
 		you_are(buf);
 	}
 	if (Confusion) {
-		Sprintf(buf, "confused");
+		if (HeavyConfusion) Sprintf(buf, "badly confused");
+		else Sprintf(buf, "confused");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HConfusion);
 		you_are(buf);
 	}
 	if (Blind) {
-		Sprintf(buf, "blinded");
+		if (HeavyBlind) Sprintf(buf, "badly blinded");
+		else Sprintf(buf, "blinded");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Blinded);
 		you_are(buf);
 	}
@@ -1423,22 +1427,26 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_are(buf);
 	}
 	if (Feared) {
-		Sprintf(buf, "stricken with fear");
+		if (HeavyFeared) Sprintf(buf, "stricken with very strong fear");
+		else Sprintf(buf, "stricken with fear");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HFeared);
 		you_are(buf);
 	}
 	if (Numbed) {
-		Sprintf(buf, "numbed");
+		if (HeavyNumbed) Sprintf(buf, "badly numbed");
+		else Sprintf(buf, "numbed");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HNumbed);
 		you_are(buf);
 	}
 	if (Frozen) {
-		Sprintf(buf, "frozen solid");
+		if (HeavyFrozen) Sprintf(buf, "frozen rigid and solid");
+		else Sprintf(buf, "frozen solid");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HFrozen);
 		you_are(buf);
 	}
 	if (Burned) {
-		Sprintf(buf, "burned");
+		if (HeavyBurned) Sprintf(buf, "badly burned");
+		else Sprintf(buf, "burned");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HBurned);
 		you_are(buf);
 	}

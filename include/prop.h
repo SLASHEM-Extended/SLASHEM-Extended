@@ -147,7 +147,16 @@
 #define DEAC_FEAR_FACTOR 135
 #define DEAC_BURNOPATHY 136
 
-#define SECOND_CHANCE		137
+#define HEAVY_STUNNED 137
+#define HEAVY_CONFUSION 138
+#define HEAVY_NUMBED 139
+#define HEAVY_FEARED 140
+#define HEAVY_FROZEN 141
+#define HEAVY_BURNED 142
+#define HEAVY_BLIND 143
+#define HEAVY_HALLU 144
+
+#define SECOND_CHANCE		145
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

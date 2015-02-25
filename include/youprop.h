@@ -112,38 +112,45 @@
 /* Those implemented solely as timeouts (we use just intrinsic) */
 #define HStun			u.uprops[STUNNED].intrinsic
 #define EStun			u.uprops[STUNNED].extrinsic
-#define Stunned			(HStun || EStun || ((u.umonnum == PM_STALKER || youmonst.data->mlet == S_BAT) && !Race_if(PM_TRANSFORMER) ) )
+#define Stunned			(HStun || EStun || HeavyStunned || ((u.umonnum == PM_STALKER || youmonst.data->mlet == S_BAT) && !Race_if(PM_TRANSFORMER) ) )
 		/* Note: birds will also be stunned */
+#define HeavyStunned		u.uprops[HEAVY_STUNNED].intrinsic
 
 #define HConfusion		u.uprops[CONFUSION].intrinsic
 #define EConfusion		u.uprops[CONFUSION].extrinsic
-#define Confusion		(HConfusion || EConfusion)
+#define Confusion		(HConfusion || EConfusion || HeavyConfusion)
+#define HeavyConfusion		u.uprops[HEAVY_CONFUSION].intrinsic
 
 #define HNumbed		u.uprops[NUMBED].intrinsic
 #define ENumbed		u.uprops[NUMBED].extrinsic
-#define Numbed		(HNumbed || ENumbed)
+#define Numbed		(HNumbed || ENumbed || HeavyNumbed)
+#define HeavyNumbed		u.uprops[HEAVY_NUMBED].intrinsic
 
 #define HFeared		u.uprops[FEARED].intrinsic
 #define EFeared		u.uprops[FEARED].extrinsic
-#define Feared		(!strncmpi(plname, "Dudley", 6) || ((HFeared || EFeared) && !Fear_resistance) )
+#define Feared		(!strncmpi(plname, "Dudley", 6) || ((HFeared || EFeared || HeavyFeared) && !Fear_resistance) )
+#define HeavyFeared		u.uprops[HEAVY_FEARED].intrinsic
 
 #define HFrozen		u.uprops[FROZEN].intrinsic
 #define EFrozen		u.uprops[FROZEN].extrinsic
-#define Frozen		(HFrozen || EFrozen)
+#define Frozen		(HFrozen || EFrozen || HeavyFrozen)
+#define HeavyFrozen		u.uprops[HEAVY_FROZEN].intrinsic
 
 #define HBurned		u.uprops[BURNED].intrinsic
 #define EBurned		u.uprops[BURNED].extrinsic
-#define Burned		(HBurned || EBurned)
+#define Burned		(HBurned || EBurned || HeavyBurned)
+#define HeavyBurned		u.uprops[HEAVY_BURNED].intrinsic
 
 #define Blinded			u.uprops[BLINDED].intrinsic
 #define EBlinded			u.uprops[BLINDED].extrinsic
 #define Blindfolded		(ublindf && ublindf->otyp != LENSES)
 		/* ...means blind because of a cover */
-#define Blind	((Blinded || EBlinded || Blindfolded || !strncmpi(plname, "Blindfox", 8) || (!haseyes(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) && \
+#define Blind	((Blinded || EBlinded || Blindfolded || HeavyBlind || !strncmpi(plname, "Blindfox", 8) || (!haseyes(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) && \
 		 !(ublindf && ublindf->oartifact == ART_EYES_OF_THE_OVERWORLD && strncmpi(plname, "Blindfox", 8) ))
 		/* ...the Eyes operate even when you really are blind
 		    or don't have any eyes */
 /* added possibility of playing the entire game blind --Amy*/
+#define HeavyBlind		u.uprops[HEAVY_BLIND].intrinsic
 
 #define Sick			u.uprops[SICK].intrinsic
 #define Stoned			u.uprops[STONED].intrinsic
@@ -173,8 +180,9 @@
 #define EHalluc_resistance	u.uprops[HALLUC_RES].extrinsic
 #define Halluc_resistance	(EHalluc_resistance || \
 				 (Upolyd && dmgtype(youmonst.data, AD_HALU)))
-#define Hallucination		((HHallucination && !Halluc_resistance) || (EHallucination && !Halluc_resistance) || !strncmpi(plname, "Hippie", 6) )
+#define Hallucination		((HHallucination && !Halluc_resistance) || (HeavyHallu && !Halluc_resistance) || (EHallucination && !Halluc_resistance) || !strncmpi(plname, "Hippie", 6) )
 /* added possibility of playing the entire game hallucinating --Amy*/
+#define HeavyHallu		u.uprops[HEAVY_HALLU].intrinsic
 
 /* Timeout, plus a worn mask */
 #define HFumbling		u.uprops[FUMBLING].intrinsic

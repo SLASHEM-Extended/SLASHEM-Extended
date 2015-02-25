@@ -74,13 +74,17 @@ boolean talk;
 	long old = HConfusion;
 
 	if (!xtime && old) {
-		if (talk)
+		if (talk && (HeavyConfusion < 2) )
 		    You_feel("less %s now.",
 			Hallucination ? "trippy" : "confused");
 	}
 	if ((xtime && !old) || (!xtime && old)) flags.botl = TRUE;
 
 	set_itimeout(&HConfusion, xtime);
+	if (xtime && !rn2(1000)) {
+		pline(Hallucination ? "Huh? Who? Where? What? Is something going on?" : "You're badly confused!");
+		set_itimeout(&HeavyConfusion, xtime);
+	}
 }
 
 void
@@ -91,7 +95,7 @@ boolean talk;
 	long old = HStun;
 
 	if (!xtime && old) {
-		if (talk)
+		if (talk && (HeavyStunned < 2) )
 		    You_feel("%s now.",
 			Hallucination ? "less wobbly" : "a bit steadier");
 	}
@@ -108,6 +112,10 @@ boolean talk;
 	if ((!xtime && old) || (xtime && !old)) flags.botl = TRUE;
 
 	set_itimeout(&HStun, xtime);
+	if (xtime && !rn2(1000)) {
+		pline(Hallucination ? "It's all wobbly! The world keeps on turning and spinning around..." : "You're badly staggering!");
+		set_itimeout(&HeavyStunned, xtime);
+	}
 }
 
 void
@@ -118,7 +126,7 @@ boolean talk;
 	long old = HNumbed;
 
 	if (!xtime && old) {
-		if (talk)
+		if (talk && (HeavyNumbed < 2) )
 		    You_feel("%s.",
 			Hallucination ? "numbed yer" : "your numbness fading out");
 	}
@@ -130,6 +138,10 @@ boolean talk;
 	if ((!xtime && old) || (xtime && !old)) flags.botl = TRUE;
 
 	set_itimeout(&HNumbed, xtime);
+	if (xtime && !rn2(1000)) {
+		pline(Hallucination ? "You can't move! Okay, you can, but it's very difficult..." : "You feel badly numbed!");
+		set_itimeout(&HeavyNumbed, xtime);
+	}
 }
 
 void
@@ -140,7 +152,7 @@ boolean talk;
 	long old = HFeared;
 
 	if (!xtime && old) {
-		if (talk)
+		if (talk && (HeavyFeared < 2) )
 		    pline("%s",
 			Hallucination ? "You're ready to rumble again!" : "You're no longer afraid.");
 	}
@@ -158,6 +170,10 @@ boolean talk;
 	if ((!xtime && old) || (xtime && !old)) flags.botl = TRUE;
 
 	set_itimeout(&HFeared, xtime);
+	if (xtime && !rn2(1000)) {
+		pline(Hallucination ? "ARRRRRGH! HELP! THERE'S A CRAZY AXE-SWINGING MURDERER CHASING AFTER YOU! RUN!!!" : "You're trembling heavily!");
+		set_itimeout(&HeavyFeared, xtime);
+	}
 }
 
 void
@@ -168,7 +184,7 @@ boolean talk;
 	long old = HFrozen;
 
 	if (!xtime && old) {
-		if (talk)
+		if (talk && (HeavyFrozen < 2) )
 		    pline(Hallucination ? "Aww... the tasty-looking ice disappeared." : "You are defrosted.");
 	}
 	if (xtime && !old) {
@@ -181,6 +197,10 @@ boolean talk;
 	if (xtime && Burned) make_burned(0L, TRUE);
 
 	set_itimeout(&HFrozen, xtime);
+	if (xtime && !rn2(1000)) {
+		pline(Hallucination ? "So many ice-cream cones, and they're all supposed to belong to you... let's eat!" : "The ice is really freezing you rigid!");
+		set_itimeout(&HeavyFrozen, xtime);
+	}
 }
 
 /* Burn and freezing cancel each other out. --Amy */
@@ -193,7 +213,7 @@ boolean talk;
 	long old = HBurned;
 
 	if (!xtime && old) {
-		if (talk)
+		if (talk && (HeavyBurned < 2) )
 		    pline(Hallucination ? "Oh no, someone put out the fire!" : "Your burns disappear.");
 	}
 	if (xtime && !old) {
@@ -207,6 +227,10 @@ boolean talk;
 	if (xtime) burn_away_slime();
 
 	set_itimeout(&HBurned, xtime);
+	if (xtime && !rn2(1000)) {
+		pline(Hallucination ? "Uhh... the fire's getting a little bit too hot, even for your tastes!" : "You're badly burned!");
+		set_itimeout(&HeavyBurned, xtime);
+	}
 }
 
 void
@@ -344,6 +368,10 @@ boolean talk;
 	}
 
 	set_itimeout(&Blinded, xtime);
+	if (xtime && !rn2(1000)) {
+		pline(Hallucination ? "Aww, even the images in your mind have disappeared!" : "The darkness seems definite and impenetrable!");
+		set_itimeout(&HeavyBlind, xtime);
+	}
 
 	if (u_could_see ^ can_see_now) {  /* one or the other but not both */
 	    flags.botl = 1;
@@ -375,6 +403,10 @@ long mask;	/* nonzero if resistance status should change by mask */
 	    if (!EHalluc_resistance && (!!HHallucination != !!xtime))
 		changed = TRUE;
 	    set_itimeout(&HHallucination, xtime);
+		if (xtime && !rn2(1000)) {
+			pline("Now that was some fucked up shit you did there, huh? But who cares? Let's enjoy the colors!");
+			set_itimeout(&HeavyHallu, xtime);
+		}
 
 	    /* clearing temporary hallucination without toggling vision */
 	    if (!changed && !HHallucination && old && talk) {

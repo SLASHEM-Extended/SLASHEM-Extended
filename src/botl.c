@@ -507,8 +507,10 @@ bot2str(char *newbot2)
 */
 	/* KMH -- changed to Lev */
 	if (Levitation)    Sprintf(nb = eos(nb), " Lev");
-	if(Confusion)
+	if(Confusion && !HeavyConfusion)
 		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Cnf" : " Conf");
+	if(Confusion && HeavyConfusion)
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " XCnf" : " XConf");
 	if(Sick) {
 		if (u.usick_type & SICK_VOMITABLE)
 			   Sprintf(nb = eos(nb),
@@ -517,24 +519,38 @@ bot2str(char *newbot2)
 			   Sprintf(nb = eos(nb), " Ill");
 	}
 
-	if(Blind)
+	if(Blind && !HeavyBlind)
 		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Bnd" : " Blind");
+	if(Blind && HeavyBlind)
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " XBnd" : " XBlind");
 	if(sengr_at("Elbereth", u.ux, u.uy))
 		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Elb" : " Elbereth");
 	/* Yes I know, this should have a "is the player blind?" check. But I'm lenient. --Amy */
 
-	if(Feared)
+	if(Feared && !HeavyFeared)
 		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Fea" : " Fear");
-	if(Numbed)
+	if(Feared && HeavyFeared)
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " XFea" : " XFear");
+	if(Numbed && !HeavyNumbed)
 		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Nmb" : " Numb");
-	if(Frozen)
+	if(Numbed && HeavyNumbed)
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " XNmb" : " XNumb");
+	if(Frozen && !HeavyFrozen)
 		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Frz" : " Freeze");
-	if(Burned)
+	if(Frozen && HeavyFrozen)
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " XFrz" : " XFreeze");
+	if(Burned && !HeavyBurned)
 		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Brn" : " Burn");
-	if(Stunned)
+	if(Burned && HeavyBurned)
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " XBrn" : " XBurn");
+	if(Stunned && !HeavyStunned)
 		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Stn" : " Stun");
-	if(Hallucination)
+	if(Stunned && HeavyStunned)
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " XStn" : " XStun");
+	if(Hallucination && !HeavyHallu)
 		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Hal" : " Hallu");
+	if(Hallucination && HeavyHallu)
+		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " XHal" : " XHallu");
 	if(Slimed)
 		Sprintf(nb = eos(nb), bot2_abbrev >= 2 ? " Slm" : " Slime");
 	if(Stoned)
