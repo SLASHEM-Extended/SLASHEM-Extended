@@ -122,7 +122,7 @@ util/lev_comp: $(LEV_COMP_O)
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
 AUTO_BIN += util/lev_comp
 
-ALL_O = $(GAME_O) $(RECOVER_O) $(MAKEDEFS_O) $(DLB_O) $(DGN_COMP)	\
+ALL_O = $(GAME_O) $(RECOVER_O) $(MAKEDEFS_O) $(DLB_O) $(DGN_COMP_O)	\
         $(LEV_COMP_O)
 
 ##### BASIC RULES AND AUTOMATIC DEPENDENCY GENERATION #####
