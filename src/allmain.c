@@ -479,6 +479,9 @@ moveloop()
 			    if (rn2(3) != 0) moveamt += NORMAL_SPEED / 2;
 			}
 
+			if (Fear_factor && Feared) {
+			    if (rn2(3) != 0) moveamt += NORMAL_SPEED / 2;
+			}
 
 			if (tech_inuse(T_BLINK)) { /* TECH: Blinking! */
 			    /* Case    Average  Variance

@@ -1712,6 +1712,60 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_are(buf);
 	}
 
+	if (NoHallu_party) {
+		Sprintf(buf, "prevented from hallu partying");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_HALLU_PARTY].intrinsic);
+		you_are(buf);
+	}
+
+	if (NoDrunken_boxing) {
+		Sprintf(buf, "prevented from drunken boxing");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DRUNKEN_BOXING].intrinsic);
+		you_are(buf);
+	}
+
+	if (NoStunnopathy) {
+		Sprintf(buf, "prevented from having stunnopathy");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_STUNNOPATHY].intrinsic);
+		you_are(buf);
+	}
+
+	if (NoNumbopathy) {
+		Sprintf(buf, "prevented from having numbopathy");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_NUMBOPATHY].intrinsic);
+		you_are(buf);
+	}
+
+	if (NoFreezopathy) {
+		Sprintf(buf, "prevented from having freezopathy");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FREEZOPATHY].intrinsic);
+		you_are(buf);
+	}
+
+	if (NoStoned_chiller) {
+		Sprintf(buf, "prevented from being a stoned chiller");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_STONED_CHILLER].intrinsic);
+		you_are(buf);
+	}
+
+	if (NoCorrosivity) {
+		Sprintf(buf, "prevented from having corrosivity");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_CORROSIVITY].intrinsic);
+		you_are(buf);
+	}
+
+	if (NoFear_factor) {
+		Sprintf(buf, "prevented from having an increased fear factor");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FEAR_FACTOR].intrinsic);
+		you_are(buf);
+	}
+
+	if (NoBurnopathy) {
+		Sprintf(buf, "prevented from having burnopathy");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_BURNOPATHY].intrinsic);
+		you_are(buf);
+	}
+
 	if (Fumbling) enl_msg("You fumble", "", "d", "");
 	if (Wounded_legs
 #ifdef STEED
@@ -1736,6 +1790,17 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	/*** Vision and senses ***/
 	if (See_invisible) enl_msg(You_, "see", "saw", " invisible");
 	if (Blind_telepat) you_are("telepathic");
+
+	if (Hallu_party) you_are("hallu partying");
+	if (Drunken_boxing) you_are("a drunken boxer");
+	if (Stunnopathy) you_are("stunnopathic");
+	if (Numbopathy) you_are("numbopathic");
+	if (Freezopathy) you_are("freezopathic");
+	if (Stoned_chiller) you_are("a stoned chiller");
+	if (Corrosivity) you_are("extremely corrosive");
+	if (Fear_factor) you_have("an increased fear factor");
+	if (Burnopathy) you_are("burnopathic");
+
 	if (Warning) you_are("warned");
 	if (Warn_of_mon && flags.warntype) {
 	    /* [ALI] Add support for undead */

@@ -315,7 +315,7 @@ dig()
 	    return(0);
 	}
 
-	bonus = 10 + rn2(5) + abon() + uwep->spe - greatest_erosion(uwep) + u.udaminc;
+	bonus = 10 + rn2(5) + abon() + uwep->spe - greatest_erosion(uwep) + u.udaminc + (Drunken_boxing && Confusion);
 	if (Race_if(PM_DWARF))
 	    bonus *= 2;
 #ifdef LIGHTSABERS

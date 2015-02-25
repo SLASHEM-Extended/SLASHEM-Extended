@@ -1813,7 +1813,7 @@ hitmu(mtmp, mattk)
 	    case AD_DISE:
 		hitmsg(mtmp, mattk);
 		if (rn2(3)) break;
-                if (!diseasemu(mdat) || Invulnerable) dmg = 0;
+                if (!diseasemu(mdat) || Invulnerable || (Stoned_chiller && Stoned)) dmg = 0;
 		break;
 	    case AD_NGRA:
 		hitmsg(mtmp, mattk);
@@ -2434,7 +2434,7 @@ dopois:
 		if (Disint_resistance && rn2(100)) {
 		    You("are not disintegrated.");
 		    break;
-            } else if (Invulnerable) {
+            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
                 pline("You are unharmed!");
                 break;
 		} else if (uarms) {
@@ -2673,7 +2673,7 @@ dopois:
 		(void) diseasemu(mdat); /* plus the normal damage */
 		/* No damage if invulnerable; setting dmg zero prevents
 		 * "You are unharmed!" after a sickness inducing attack */
-		if (Invulnerable) dmg = 0;
+		if (Invulnerable || (Stoned_chiller && Stoned)) dmg = 0;
 		break;
 	    case AD_FAMN:
 		pline("%s reaches out, and your body shrivels.",
@@ -3556,7 +3556,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		if (Disint_resistance && rn2(100)) {
 		    You("are not disintegrated.");
 		    break;
-            } else if (Invulnerable) {
+            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
                 pline("You are unharmed!");
                 break;
 		}
@@ -3915,7 +3915,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (Disint_resistance && rn2(100)) {
 		    You("are not disintegrated.");
 		    break;
-            } else if (Invulnerable) {
+            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
                 pline("You are unharmed!");
                 break;
 		} else if (uarms) {
@@ -4601,7 +4601,7 @@ register int n;
 
 	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */
 
-	if (Invulnerable) n=0;
+	if (Invulnerable || (Stoned_chiller && Stoned)) n=0;
 	if (n == 0) {
 		pline("You are unharmed.");
 		return;
@@ -5154,6 +5154,18 @@ register struct attack *mattk;
 {
 	int i, tmp;
 
+	if (Slimed && Corrosivity) {
+
+		pline("%s is covered with a corrosive substance!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(u.ulevel) ) <= 0) {
+			pline("%s dies!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+
+	}
+
 	for(i = 0; ; i++) {
 	    if(i >= NATTK) return 1;
 	    if (olduasmon->mattk[i].aatyp == AT_NONE ||
@@ -5299,6 +5311,7 @@ register struct attack *mattk;
 	else tmp = 0;
 
     assess_dmg:
+
 	if((mtmp->mhp -= tmp) <= 0) {
 		pline("%s dies!", Monnam(mtmp));
 		xkilled(mtmp,0);

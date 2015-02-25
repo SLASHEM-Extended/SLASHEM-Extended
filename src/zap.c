@@ -3043,7 +3043,7 @@ boolean ordinary;
 			  : "You seem no deader than before.");
 			break;
 		    }
-		    if (Invulnerable) {
+		    if (Invulnerable || (Stoned_chiller && Stoned)) {
 			pline("You are unharmed!");
 			break;
 		    }
@@ -4297,7 +4297,7 @@ xchar sx, sy;
 		if (Disint_resistance && rn2(100)) {
 		    You("are not disintegrated.");
 		    break;
-            } else if (Invulnerable) {
+            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
                 pline("You are unharmed!");
                 break;
 		} else if (uarms) {
@@ -4328,7 +4328,7 @@ xchar sx, sy;
 			u.uhpmax -= dam/2;
 	            pline("You resist the attack, but it hurts!");
             break;
-            } else if (Invulnerable) {
+            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
                 dam = 0;
                 pline("You are unharmed!");
                 break;

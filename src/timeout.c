@@ -656,6 +656,33 @@ nh_timeout()
 		case DEAC_FREE_ACTION:
 			pline("You are no longer prevented from having free action.");
 			break;
+		case DEAC_HALLU_PARTY:
+			pline("You are no longer prevented from hallu partying.");
+			break;
+		case DEAC_DRUNKEN_BOXING:
+			pline("You are no longer prevented from drunken boxing.");
+			break;
+		case DEAC_STUNNOPATHY:
+			pline("You are no longer prevented from having stunnopathy.");
+			break;
+		case DEAC_NUMBOPATHY:
+			pline("You are no longer prevented from having numbopathy.");
+			break;
+		case DEAC_FREEZOPATHY:
+			pline("You are no longer prevented from having freezopathy.");
+			break;
+		case DEAC_STONED_CHILLER:
+			pline("You are no longer prevented from being a stoned chiller.");
+			break;
+		case DEAC_CORROSIVITY:
+			pline("You are no longer prevented from having corrosivity.");
+			break;
+		case DEAC_FEAR_FACTOR:
+			pline("You are no longer prevented from having an increased fear factor.");
+			break;
+		case DEAC_BURNOPATHY:
+			pline("You are no longer prevented from having burnopathy.");
+			break;
 
 		}
 	}

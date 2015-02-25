@@ -1020,6 +1020,26 @@ register struct permonst *ptr;
 #else
 		return(telepathic(ptr));
 #endif
+
+	    case HALLU_PARTY:
+		return(dmgtype(ptr, AD_HALU) );
+	    case DRUNKEN_BOXING:
+		return(dmgtype(ptr, AD_CONF) );
+	    case STUNNOPATHY:
+		return(dmgtype(ptr, AD_STUN) );
+	    case NUMBOPATHY:
+		return(dmgtype(ptr, AD_NUMB) );
+	    case FREEZOPATHY:
+		return(dmgtype(ptr, AD_FRZE) );
+	    case STONED_CHILLER:
+		return(dmgtype(ptr, AD_STON) );
+	    case CORROSIVITY:
+		return(dmgtype(ptr, AD_SLIM) );
+	    case FEAR_FACTOR:
+		return(dmgtype(ptr, AD_FEAR) );
+	    case BURNOPATHY:
+		return(dmgtype(ptr, AD_BURN) );
+
 	    default:
 		return(FALSE);
 	}
@@ -1213,6 +1233,80 @@ register struct permonst *ptr;
 			if (Blind) see_monsters();
 		}
 		break;
+
+	    case HALLU_PARTY:
+		if(!(HHallu_party & FROMOUTSIDE)) {
+			You_feel(Hallucination ?
+			    "like throwing wild parties with lots of sexy girls! Yeah!" :
+			    "a strange desire to celebrate.");
+			HHallu_party |= FROMOUTSIDE;
+		}
+		break;
+	    case DRUNKEN_BOXING:
+		if(!(HDrunken_boxing & FROMOUTSIDE)) {
+			You_feel(Hallucination ?
+			    "like Mike Tyson!" :
+			    "ready for a good brawl.");
+			HDrunken_boxing |= FROMOUTSIDE;
+		}
+		break;
+	    case STUNNOPATHY:
+		if(!(HStunnopathy & FROMOUTSIDE)) {
+			You_feel(Hallucination ?
+			    "a controlled wobbling! Feels like being on a bouncy ship!" :
+			    "steadily observant.");
+			HStunnopathy |= FROMOUTSIDE;
+		}
+		break;
+	    case NUMBOPATHY:
+		if(!(HNumbopathy & FROMOUTSIDE)) {
+			You_feel(Hallucination ?
+			    "as if a sweet woman were clamping your toes with a block-heeled combat boot!" :
+			    "a numb feeling spreading through your body. Somehow, it doesn't feel bad at all...");
+			HNumbopathy |= FROMOUTSIDE;
+		}
+		break;
+	    case FREEZOPATHY:
+		if(!(HFreezopathy & FROMOUTSIDE)) {
+			You_feel(Hallucination ?
+			    "like eating a big cone of ice-cream - mmmmmmmm!" :
+			    "icy.");
+			HFreezopathy |= FROMOUTSIDE;
+		}
+		break;
+	    case STONED_CHILLER:
+		if(!(HStoned_chiller & FROMOUTSIDE)) {
+			You_feel(Hallucination ?
+			    "that you're simply the best - yeah, no shit, man!" :
+			    "like relaxing on a couch.");
+			HStoned_chiller |= FROMOUTSIDE;
+		}
+		break;
+	    case CORROSIVITY:
+		if(!(HCorrosivity & FROMOUTSIDE)) {
+			You_feel(Hallucination ?
+			    "like you just got splashed with gunks of acid!" :
+			    "an acidic burning.");
+			HCorrosivity |= FROMOUTSIDE;
+		}
+		break;
+	    case FEAR_FACTOR:
+		if(!(HFear_factor & FROMOUTSIDE)) {
+			You_feel(Hallucination ?
+			    "like you're always running - from something! And the 'something' is a prostitute." :
+			    "ready to face your fears.");
+			HFear_factor |= FROMOUTSIDE;
+		}
+		break;
+	    case BURNOPATHY:
+		if(!(HBurnopathy & FROMOUTSIDE)) {
+			You_feel(Hallucination ?
+			    "super burninated by enemy with very tired!" :
+			    "a burning inside. Strangely, it feels quite soothing.");
+			HBurnopathy |= FROMOUTSIDE;
+		}
+		break;
+
 	    default:
 #ifdef DEBUG
 		debugpline("Tried to give an impossible intrinsic");

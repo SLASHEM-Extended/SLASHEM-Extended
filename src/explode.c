@@ -571,7 +571,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 
 		if (Role_if(PM_BLEEDER)) damu = damu * 2; /* bleeders are harder than hard mode */
 
-		if (Invulnerable) {
+		if (Invulnerable || (Stoned_chiller && Stoned)) {
 		    damu = 0;
 		    You("are unharmed!");
 		} else if (Half_physical_damage && adtyp == AD_PHYS && rn2(2) )

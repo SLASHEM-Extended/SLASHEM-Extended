@@ -174,6 +174,9 @@ lookat(x, y, buf, monbuf)
 		    (mtmp->mtame && accurate) ? "tame " :
 		    (mtmp->mpeaceful && accurate) ? "peaceful " : "",
 		    name);
+	    if (Hallu_party && Hallucination)
+		    Sprintf(eos(buf), ", real color: %s", (mtmp->data->mcolor == CLR_BLACK) ? "black" : (mtmp->data->mcolor == CLR_RED) ? "red" : (mtmp->data->mcolor == CLR_GREEN) ? "green" : (mtmp->data->mcolor == CLR_BROWN) ? "brown" : (mtmp->data->mcolor == CLR_BLUE) ? "blue" : (mtmp->data->mcolor == CLR_MAGENTA) ? "magenta" : (mtmp->data->mcolor == CLR_CYAN) ? "cyan" : (mtmp->data->mcolor == CLR_GRAY) ? "gray" : (mtmp->data->mcolor == NO_COLOR) ? "colorless" : (mtmp->data->mcolor == CLR_ORANGE) ? "orange" : (mtmp->data->mcolor == CLR_BRIGHT_GREEN) ? "bright green" : (mtmp->data->mcolor == CLR_YELLOW) ? "yellow" : (mtmp->data->mcolor == CLR_BRIGHT_BLUE) ? "bright blue" : (mtmp->data->mcolor == CLR_BRIGHT_CYAN) ? "bright cyan" : (mtmp->data->mcolor == CLR_BRIGHT_MAGENTA) ? "bright magenta" : (mtmp->data->mcolor == CLR_WHITE) ? "white" : (mtmp->data->mcolor == CLR_MAX) ? "max" : "unknown" );
+
 	    if (mon_wounds(mtmp)) { 
 		Strcat(buf, ", "); 
 		Strcat(buf, mon_wounds(mtmp)); 
@@ -221,7 +224,30 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Detect_monsters)
 		    ways_seen++;
-		if (MATCH_WARN_OF_MON(mtmp))
+		if (MATCH_WARN_OF_MON(mtmp) || (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && is_undead(mtmp->data) ))		    ways_seen++;
+		if (Role_if(PM_ACTIVISTOR) && mtmp->data == &mons[PM_TOPMODEL] )
+		    ways_seen++;
+		if (Role_if(PM_ACTIVISTOR) && type_is_pname(mtmp->data) && uwep && is_quest_artifact(uwep) )
+		    ways_seen++;
+		if (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mtmp->data))
+		    ways_seen++;
+		if (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mtmp->data))
+		    ways_seen++;
+		if (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && is_covetous(mtmp->data))
+		    ways_seen++;
+		if (Role_if(PM_PALADIN) && is_demon(mtmp->data))
+		    ways_seen++;
+		if (Race_if(PM_VORTEX) && unsolid(mtmp->data))
+		    ways_seen++;
+		if (Race_if(PM_VORTEX) && nolimbs(mtmp->data))
+		    ways_seen++;
+		if (Stunnopathy && Stunned && always_hostile(mtmp->data) && (mtmp)->mhp % 4 != 0)
+		    ways_seen++;
+		if (Numbopathy && Numbed && avoid_player(mtmp->data) )
+		    ways_seen++;
+		if (Freezopathy && Frozen && mtmp->data->mcolor == CLR_WHITE )
+		    ways_seen++;
+		if (Burnopathy && Burned && infravision(mtmp->data) )
 		    ways_seen++;
 
 		if (ways_seen > 1 || !normal) {
@@ -285,6 +311,24 @@ lookat(x, y, buf, monbuf)
 			Strcat(monbuf, "warned of creatures without limbs");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
+
+		    if (Stunnopathy && Stunned && always_hostile(mtmp->data) && (mtmp)->mhp % 4 != 0) {
+			Strcat(monbuf, "stunnopathy");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (Numbopathy && Numbed && avoid_player(mtmp->data) ) {
+			Strcat(monbuf, "numbopathy");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (Freezopathy && Frozen && mtmp->data->mcolor == CLR_WHITE ) {
+			Strcat(monbuf, "freezopathy");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (Burnopathy && Burned && infravision(mtmp->data) ) {
+			Strcat(monbuf, "burnopathy");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+
 		    if (MATCH_WARN_OF_MON(mtmp) || (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && is_undead(mtmp->data) )) {
 		    	char wbuf[BUFSZ];
 			if (Hallucination)

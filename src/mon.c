@@ -3128,7 +3128,7 @@ int  typ, fatal;
 	}
 	i = rn2(fatal + 20*thrown_weapon);
 	if(i == 0 && !Poison_resistance && typ != A_CHA && !rn2(100)) {
-		if (Invulnerable)
+		if (Invulnerable || (Stoned_chiller && Stoned))
 		   pline("You are unharmed!");
 		else {
 		u.uhp = -1;

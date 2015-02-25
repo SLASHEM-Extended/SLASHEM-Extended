@@ -209,6 +209,42 @@
 #define Unblind_telepat		(ETelepat && !NoTelepat)
 #define NoTelepat	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_TELEPAT].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
+#define HHallu_party	u.uprops[HALLU_PARTY].intrinsic
+#define Hallu_party	(HHallu_party && !NoHallu_party)
+#define NoHallu_party	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_HALLU_PARTY].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HDrunken_boxing		u.uprops[DRUNKEN_BOXING].intrinsic
+#define Drunken_boxing		(HDrunken_boxing && !NoDrunken_boxing)
+#define NoDrunken_boxing	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DRUNKEN_BOXING].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HStunnopathy	u.uprops[STUNNOPATHY].intrinsic
+#define Stunnopathy	(HStunnopathy && !NoStunnopathy)
+#define NoStunnopathy	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_STUNNOPATHY].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HNumbopathy	u.uprops[NUMBOPATHY].intrinsic
+#define Numbopathy	(HNumbopathy && !NoNumbopathy)
+#define NoNumbopathy	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_NUMBOPATHY].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HFreezopathy	u.uprops[FREEZOPATHY].intrinsic
+#define Freezopathy	(HFreezopathy && !NoFreezopathy)
+#define NoFreezopathy	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FREEZOPATHY].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HStoned_chiller		u.uprops[STONED_CHILLER].intrinsic
+#define Stoned_chiller		(HStoned_chiller && !NoStoned_chiller)
+#define NoStoned_chiller	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_STONED_CHILLER].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HCorrosivity	u.uprops[CORROSIVITY].intrinsic
+#define Corrosivity	(HCorrosivity && !NoCorrosivity)
+#define NoCorrosivity	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_CORROSIVITY].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HFear_factor	u.uprops[FEAR_FACTOR].intrinsic
+#define Fear_factor	(HFear_factor && !NoFear_factor)
+#define NoFear_factor	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FEAR_FACTOR].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HBurnopathy	u.uprops[BURNOPATHY].intrinsic
+#define Burnopathy	(HBurnopathy && !NoBurnopathy)
+#define NoBurnopathy	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_BURNOPATHY].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
 #define HWarning		u.uprops[WARNING].intrinsic
 #define EWarning		u.uprops[WARNING].extrinsic
 #define Warning			(( (HWarning || EWarning) && !NoWarning && (!Role_if(PM_TOPMODEL) || !flags.female)) || ( Role_if(PM_TOPMODEL) && ((uarmf && uarmf->otyp == WEDGE_SANDALS) || (uarmf && uarmf->otyp == FEMININE_PUMPS) || (uarmf && uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf && uarmf->otyp == HIPPIE_HEELS) || (uarmf && uarmf->otyp == COMBAT_STILETTOS) )))

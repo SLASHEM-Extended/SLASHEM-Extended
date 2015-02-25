@@ -1419,7 +1419,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			return TRUE;
 		} else {
 			/* Invulnerable player won't be bisected */
-			if (bigmonst(youmonst.data) || Invulnerable) {
+			if (bigmonst(youmonst.data) || Invulnerable || (Stoned_chiller && Stoned) ) {
 				pline("%s cuts deeply into you!",
 				      magr ? Monnam(magr) : wepdesc);
 				*dmgptr *= 2;
@@ -1482,7 +1482,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			}
 			*dmgptr = 2 * (Upolyd ? u.mh : u.uhp)
 				  + FATAL_DAMAGE_MODIFIER;
-			if (Invulnerable) {
+			if (Invulnerable || (Stoned_chiller && Stoned)) {
 				pline("%s slices into your %s.",
 				      wepdesc, body_part(NECK));
 				return TRUE;

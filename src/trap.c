@@ -1999,7 +1999,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 			seetrap(trap);
 			pline("You stepped on a trigger!");
 
-		 switch (rnd(99)) {
+		 switch (rnd(108)) {
 
 			case 1:
 			case 2:
@@ -2207,6 +2207,42 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 			case 99:
 				u.uprops[DEAC_FREE_ACTION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 				pline("You are prevented from having free action!");
+				break;
+			case 100:
+				u.uprops[DEAC_HALLU_PARTY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from hallu partying!");
+				break;
+			case 101:
+				u.uprops[DEAC_DRUNKEN_BOXING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from drunken boxing!");
+				break;
+			case 102:
+				u.uprops[DEAC_STUNNOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having stunnopathy!");
+				break;
+			case 103:
+				u.uprops[DEAC_NUMBOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having numbopathy!");
+				break;
+			case 104:
+				u.uprops[DEAC_FREEZOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having freezopathy!");
+				break;
+			case 105:
+				u.uprops[DEAC_STONED_CHILLER].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from being a stoned chiller!");
+				break;
+			case 106:
+				u.uprops[DEAC_CORROSIVITY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having corrosivity!");
+				break;
+			case 107:
+				u.uprops[DEAC_FEAR_FACTOR].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having an increased fear factor!");
+				break;
+			case 108:
+				u.uprops[DEAC_BURNOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having burnopathy!");
 				break;
 			}
 

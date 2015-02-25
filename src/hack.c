@@ -3084,7 +3084,7 @@ int k_format; /* WAC k_format is an int */
 	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */
 
 	/* [max] Invulnerable no dmg */
-	if (Invulnerable) {
+	if (Invulnerable || (Stoned_chiller && Stoned)) {
 		n = 0;
 		pline("You are unharmed!");
 		/* NOTE: DO NOT RETURN - losehp is also called to check for death 

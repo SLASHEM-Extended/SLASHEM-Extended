@@ -1494,6 +1494,7 @@ int thrown;
 
 	if (get_dmg_bonus && tmp > 0) {
 		tmp += u.udaminc;
+		tmp += (Drunken_boxing && Confusion);
 		/* If you throw using a propellor, you don't get a strength
 		 * bonus but you do get an increase-damage bonus.
 		 */
@@ -4435,7 +4436,7 @@ uchar aatyp;
 		if (Disint_resistance && rn2(100)) {
 		    You("are mildly shaked.");
 		    break;
-            } else if (Invulnerable) {
+            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
                 pline("You are unharmed!");
                 break;
 		} else if (uarms) {
