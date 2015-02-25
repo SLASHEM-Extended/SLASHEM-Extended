@@ -7,18 +7,16 @@ GAMEGID = acehack
 INSTALL = install
 BISON = bison
 FLEX = flex
+CHOWN = chown
 
 PREFIX = /srv/acehack
 GAMEDIR = $(PREFIX)/slex-$(VERSION)
 VARDIR = $(GAMEDIR)
 MASTERDIR = $(PREFIX)/slexdir
 
-INSTALL_OWNER = $(INSTALL) -o $(GAMEUID) -g $(GAMEGID)
-
-INSTALL_PROGRAM = $(INSTALL_OWNER)
-INSTALL_GAME = $(INSTALL_PROGRAM)
-INSTALL_DATA = $(INSTALL_OWNER) -m 644
-INSTALL_DIR = $(INSTALL_OWNER) -d
+INSTALL_PROGRAM = $(INSTALL)
+INSTALL_GAME = $(INSTALL) $(if $(SGID),-g $(GAMEGID) -m 2755)
+INSTALL_DATA = $(INSTALL) -m 644
 
 WIZARD = $(GAMEUID)
 
@@ -36,34 +34,38 @@ CPPFLAGS += -DNO_SUSPEND
 .PHONY: all
 all: src/$(GAME) util/recover dat/nhshare dat/nhushare dat/license
 
+define TOUCH_VAR =
+touch $(1)
+$(CHOWN) $(GAMEUID):$(GAMEGID) $(1)
+endef
+
 .PHONY: install
-install: $(if $(MASTERDIR),slave,standalone)
+install: all
+	mkdir -p $(GAMEDIR)
+	$(INSTALL_GAME) src/$(GAME) $(GAMEDIR)
+	$(INSTALL_PROGRAM) util/recover $(GAMEDIR)
+	$(INSTALL_DATA) dat/nhshare dat/nhushare dat/license $(GAMEDIR)
+	mkdir -p $(VARDIR)
+	$(CHOWN) $(GAMEUID):$(GAMEGID) $(VARDIR)
+	$(call TOUCH_VAR,$(VARDIR)/perm)
+	$(call TOUCH_VAR,$(VARDIR)/record)
+	$(call TOUCH_VAR,$(VARDIR)/logfile)
+	$(call TOUCH_VAR,$(VARDIR)/xlogfile)
+	mkdir -p $(VARDIR)/save
+	$(CHOWN) $(GAMEUID):$(GAMEGID) $(VARDIR)/save
 
 ATOMIC_LN = ln $(1) $(2).new && mv $(2).new $(2)
 
 .PHONY: slave
-slave: all
-	$(INSTALL_DIR) $(GAMEDIR) $(VARDIR) $(VARDIR)/save
+slave:
+	mkdir -p $(VARDIR)
+	$(CHOWN) $(GAMEUID):$(GAMEGID) $(VARDIR)
 	$(call ATOMIC_LN,$(MASTERDIR)/perm,$(VARDIR)/perm)
 	$(call ATOMIC_LN,$(MASTERDIR)/record,$(VARDIR)/record)
 	$(call ATOMIC_LN,$(MASTERDIR)/logfile,$(VARDIR)/logfile)
 	$(call ATOMIC_LN,$(MASTERDIR)/xlogfile,$(VARDIR)/xlogfile)
-	$(INSTALL_GAME) src/$(GAME) $(GAMEDIR)
-	$(INSTALL_PROGRAM) util/recover $(GAMEDIR)
-	$(INSTALL_DATA) dat/nhshare dat/nhushare dat/license $(GAMEDIR)
-
-TOUCH_NEW = test -e $(1) || $(INSTALL_DATA) /dev/null $(1)
-
-.PHONY: standalone
-standalone: all
-	$(INSTALL_DIR) $(GAMEDIR) $(VARDIR) $(VARDIR)/save
-	$(call TOUCH_NEW,$(VARDIR)/perm)
-	$(call TOUCH_NEW,$(VARDIR)/record)
-	$(call TOUCH_NEW,$(VARDIR)/logfile)
-	$(call TOUCH_NEW,$(VARDIR)/xlogfile)
-	$(INSTALL_GAME) src/$(GAME) $(GAMEDIR)
-	$(INSTALL_PROGRAM) util/recover $(GAMEDIR)
-	$(INSTALL_DATA) dat/nhshare dat/nhushare dat/license $(GAMEDIR)
+	mkdir -p $(VARDIR)/save
+	$(CHOWN) $(GAMEUID):$(GAMEGID) $(VARDIR)/save
 
 ##### BINARIES #####
 
