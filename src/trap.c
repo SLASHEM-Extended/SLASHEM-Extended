@@ -1999,7 +1999,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 			seetrap(trap);
 			pline("You stepped on a trigger!");
 
-		 switch (rnd(108)) {
+		 switch (rnd(109)) {
 
 			case 1:
 			case 2:
@@ -2243,6 +2243,10 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 			case 108:
 				u.uprops[DEAC_BURNOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 				pline("You are prevented from having burnopathy!");
+				break;
+			case 109:
+				u.uprops[DEAC_SICKOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having sickopathy!");
 				break;
 			}
 

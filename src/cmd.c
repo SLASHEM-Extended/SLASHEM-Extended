@@ -1774,6 +1774,12 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_are(buf);
 	}
 
+	if (NoSickopathy) {
+		Sprintf(buf, "prevented from having sickopathy");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SICKOPATHY].intrinsic);
+		you_are(buf);
+	}
+
 	if (Fumbling) enl_msg("You fumble", "", "d", "");
 	if (Wounded_legs
 #ifdef STEED
@@ -1808,6 +1814,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if (Corrosivity) you_are("extremely corrosive");
 	if (Fear_factor) you_have("an increased fear factor");
 	if (Burnopathy) you_are("burnopathic");
+	if (Sickopathy) you_are("sickopathic");
 
 	if (Warning) you_are("warned");
 	if (Warn_of_mon && flags.warntype) {

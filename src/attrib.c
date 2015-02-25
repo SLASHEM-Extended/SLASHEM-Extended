@@ -545,6 +545,7 @@ const struct innate {
 		     {   1, &(HCorrosivity), "", "" },
 		     {   1, &(HFear_factor), "", "" },
 		     {   1, &(HBurnopathy), "", "" },
+		     {   1, &(HSickopathy), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	wra_abil[] = { {  1, &(HSick_resistance), "", "" },

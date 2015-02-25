@@ -1518,7 +1518,7 @@ int spellnum;
 	break;
     case CLC_VULN_YOU: /* inspired by Sporkhack but enhanced by Amy */
 	dmg *= 10;
-	switch (rnd(108)) {
+	switch (rnd(109)) {
 
 		case 1:
 		case 2:
@@ -1762,6 +1762,10 @@ int spellnum;
 		case 108:
 			u.uprops[DEAC_BURNOPATHY].intrinsic += rnz(dmg);
 			pline("You are prevented from having burnopathy!");
+			break;
+		case 109:
+			u.uprops[DEAC_SICKOPATHY].intrinsic += rnz(dmg);
+			pline("You are prevented from having sickopathy!");
 			break;
 	}
 	dmg = 0;

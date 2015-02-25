@@ -249,6 +249,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Burnopathy && Burned && infravision(mtmp->data) )
 		    ways_seen++;
+		if (Sickopathy && Sick && extra_nasty(mtmp->data) )
+		    ways_seen++;
 		if (Race_if(PM_LEVITATOR) && is_flyer(mtmp->data) )
 		    ways_seen++;
 
@@ -332,6 +334,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (Burnopathy && Burned && infravision(mtmp->data) ) {
 			Strcat(monbuf, "burnopathy");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (Sickopathy && Sick && extra_nasty(mtmp->data) ) {
+			Strcat(monbuf, "sickopathy");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
 

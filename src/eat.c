@@ -1039,6 +1039,8 @@ register struct permonst *ptr;
 		return(dmgtype(ptr, AD_FEAR) );
 	    case BURNOPATHY:
 		return(dmgtype(ptr, AD_BURN) );
+	    case SICKOPATHY:
+		return(dmgtype(ptr, AD_DISE) );
 
 	    default:
 		return(FALSE);
@@ -1304,6 +1306,14 @@ register struct permonst *ptr;
 			    "super burninated by enemy with very tired!" :
 			    "a burning inside. Strangely, it feels quite soothing.");
 			HBurnopathy |= FROMOUTSIDE;
+		}
+		break;
+	    case SICKOPATHY:
+		if(!(HSickopathy & FROMOUTSIDE)) {
+			You_feel(Hallucination ?
+			    "that you just ate some really wacky stuff! What the heck was in there?" :
+			    "ill for a moment, but get the feeling that you know more about diseases now.");
+			HSickopathy |= FROMOUTSIDE;
 		}
 		break;
 

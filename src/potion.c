@@ -255,6 +255,7 @@ int type;
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    }
 	    set_itimeout(&Sick, xtime);
+	    if (Sickopathy) pline("You have %d turns to live.", Sick);
 	    u.usick_type |= type;
 	    flags.botl = TRUE;
 	} else if (old && (type & u.usick_type)) {
@@ -977,7 +978,7 @@ badeffect()
 		case 214:
 		case 215:
 
-		switch (rnd(108)) {
+		switch (rnd(109)) {
 
 			case 1:
 			case 2:
@@ -1221,6 +1222,10 @@ badeffect()
 			case 108:
 				u.uprops[DEAC_BURNOPATHY].intrinsic += rnz(200);
 				pline("You are prevented from having burnopathy!");
+				break;
+			case 109:
+				u.uprops[DEAC_SICKOPATHY].intrinsic += rnz(200);
+				pline("You are prevented from having sickopathy!");
 				break;
 			}
 		break;

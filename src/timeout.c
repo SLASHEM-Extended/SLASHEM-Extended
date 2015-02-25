@@ -683,6 +683,9 @@ nh_timeout()
 		case DEAC_BURNOPATHY:
 			pline("You are no longer prevented from having burnopathy.");
 			break;
+		case DEAC_SICKOPATHY:
+			pline("You are no longer prevented from having sickopathy.");
+			break;
 
 		}
 	}
