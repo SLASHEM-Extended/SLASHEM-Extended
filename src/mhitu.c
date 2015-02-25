@@ -3808,6 +3808,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 {
 	register struct engr *ep = engr_at(u.ux,u.uy);
 	char	 buf[BUFSZ];
+	int dmgplus;
 
 	/*int randattackB = 0;*/
 	uchar atttypB;
@@ -3821,6 +3822,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			atttypB = randattack(); }
 		/*randattack = 1;*/
 	}
+
+	dmgplus = d((int)mattk->damn, (int)mattk->damd);	/* why the heck did gaze attacks have fixed damage??? --Amy */
 
 	switch(atttypB) {
 	    case AD_STON:
@@ -3903,7 +3906,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			pline("A hail of magic missiles narrowly misses you!");
 		    } else {
 			You("are hit by magic missiles appearing from thin air!");
-	            mdamageu(mtmp, d(4,6));
+	            if (rn2(4)) mdamageu(mtmp, d(4,6));
+			else mdamageu(mtmp, (d(4,6) + dmgplus));
 		    }
 		}
 	    break;
@@ -3963,6 +3967,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			exercise(A_STR, FALSE);
 		if (Stoned) fix_petrification();
 		    int dmg = d(2,6);
+		    if (!rn2(10)) dmg += dmgplus;
 		    if (dmg) mdamageu(mtmp, dmg);
 		    }
 			if(rn2(30)) erode_armor(&youmonst, TRUE);
@@ -3975,6 +3980,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!rn2(7) && (!Drain_resistance || !rn2(20) )  ) {
 				pline("%s seems to drain your life with its gaze!", Monnam(mtmp));
 			    losexp("life drainage", FALSE);
+				if (!rn2(4)) mdamageu(mtmp, dmgplus);
 			}
 		}
 		break;
@@ -3983,7 +3989,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
  		{
 			pline("%s seems to drain your energy with its gaze!", Monnam(mtmp));
-			if (!rn2(4)) {drain_en(10);
+			if (!rn2(4)) {drain_en(10); if (!rn2(5)) drain_en(dmgplus);
 			}
 		}
 		break;
@@ -4007,7 +4013,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		/* hurt the player's hands --Amy */
 		pline("%s telepathically twists your hands!", Monnam(mtmp));
-		incr_itimeout(&Glib, (int)mattk->damd );
+		incr_itimeout(&Glib, dmgplus );
 
 		}
 		break;
@@ -4100,6 +4106,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    else
 			You("are getting more and more confused.");
 		    make_confused(HConfusion + conf, FALSE);
+		    if (!rn2(4)) make_confused(HConfusion + dmgplus, FALSE);
 		    stop_occupation();
 		}
 		break;
@@ -4108,7 +4115,10 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		pline("%s gazes at you with its hungry eyes!",
 			Monnam(mtmp));
 		exercise(A_CON, FALSE);
-		if (!is_fainted()) morehungry(rnz(40));
+		if (!is_fainted()) {
+			morehungry(rnz(40));
+			if (!rn2(5)) morehungry(dmgplus);
+		}
 		/* plus the normal damage */
 		}
 		break;
@@ -4225,6 +4235,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    mtmp->mspec_used = mtmp->mspec_used + (stun + rn2(6));
 		    pline("%s stares piercingly at you!", Monnam(mtmp));
 		    make_stunned(HStun + stun, TRUE);
+		    if (!rn2(4)) make_stunned(HStun + dmgplus, FALSE);
 		    stop_occupation();
 		}
 		break;
@@ -4237,6 +4248,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    mtmp->mspec_used = mtmp->mspec_used + (numb + rn2(6));
 		    pline("%s stares numbingly at you!", Monnam(mtmp));
 		    make_numbed(HNumbed + numb, TRUE);
+		    if (!rn2(4)) make_numbed(HNumbed + dmgplus, FALSE);
 		    stop_occupation();
 		}
 		break;
@@ -4250,6 +4262,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    mtmp->mspec_used = mtmp->mspec_used + (frze + rn2(6));
 		    pline("%s stares freezingly at you!", Monnam(mtmp));
 		    make_frozen(HFrozen + frze, TRUE);
+		    if (!rn2(4)) make_frozen(HFrozen + dmgplus, FALSE);
 		    stop_occupation();
 		}
 		break;
@@ -4263,6 +4276,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    mtmp->mspec_used = mtmp->mspec_used + (burn + rn2(6));
 		    pline("%s stares burningly at you!", Monnam(mtmp));
 		    make_burned(HBurned + burn, TRUE);
+		    if (!rn2(4)) make_burned(HBurned + dmgplus, FALSE);
 		    stop_occupation();
 		}
 		break;
@@ -4276,6 +4290,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    mtmp->mspec_used = mtmp->mspec_used + (fearing + rn2(6));
 		    pline("%s stares terrifyingly at you!", Monnam(mtmp));
 		    make_feared(HFeared + fearing, TRUE);
+		    if (!rn2(4)) make_feared(HFeared + dmgplus, FALSE);
 		    stop_occupation();
 		}
 		break;
@@ -4301,6 +4316,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			couldsee(mtmp->mx, mtmp->my) &&
 			mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
 		    int dmg = d(2,6);
+		    if (!rn2(10)) dmg += dmgplus;
 
 		    pline("%s attacks you with a fiery gaze!", Monnam(mtmp));
 		    stop_occupation();
@@ -4330,6 +4346,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			couldsee(mtmp->mx, mtmp->my) &&
 			mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
 		    int dmg = d(2,6);
+		    if (!rn2(10)) dmg += dmgplus;
 
 		    pline("%s attacks you with an icy gaze!", Monnam(mtmp));
 		    stop_occupation();
@@ -4348,6 +4365,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			couldsee(mtmp->mx, mtmp->my) &&
 			mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
 		    int dmg = d(2,6);
+		    if (!rn2(10)) dmg += dmgplus;
 
 		    pline("%s attacks you with a shocking gaze!", Monnam(mtmp));
 		    stop_occupation();
@@ -4390,7 +4408,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		   couldsee(mtmp->mx, mtmp->my) && mtmp->mcansee &&
 		   multi >= 0 && !rn2(5) && !Sleep_resistance) {
 
-		    fall_asleep(-rnd(10), TRUE);
+		    fall_asleep(-rnd(rn2(10) ? 10 : (10+dmgplus) ), TRUE);
 		    pline("%s gaze makes you very sleepy...",
 			  s_suffix(Monnam(mtmp)));
 		}
@@ -4434,7 +4452,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    } else if (Sleep_resistance && rn2(20)) {
 			pline("You yawn.");
 		    } else {
-			nomul(-rnd(10));
+			nomul(-rnd(rn2(10) ? 10 : (10+dmgplus) ));
 			u.usleep = 1;
 			nomovemsg = "You wake up.";
 			if (Blind)  You("are put to sleep!");
@@ -4473,7 +4491,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    } else if (rn2(5) ) {
 			/* Still does normal damage */
 			pline("It is pitch black...");
-			losehp(15, "black gaze", KILLED_BY_AN);
+			losehp(15 + dmgplus, "black gaze", KILLED_BY_AN);
 			u.uhpmax -= 2;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			break;
@@ -4499,7 +4517,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	                }
 	                if (!Blind) pline("%s gazes directly at you!",Monnam(mtmp));
 	                pline("You are wracked with pains!");
-	                mdamageu(mtmp, d(3,8));
+	                mdamageu(mtmp, d(3,8) + dmgplus);
 	        }
 	        break;
 	    case AD_DRST:
@@ -4533,7 +4551,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    boolean chg;
 		    if (!Hallucination)
 			You("suddenly see a mess of colors!");
-		    chg = make_hallucinated(HHallucination + (int)mattk->damd*10,FALSE,0L);
+		    chg = make_hallucinated(HHallucination + dmgplus,FALSE,0L);
 		    You("%s.", chg ? "are getting very trippy" : "seem to get even more trippy");
 		}
 		break;
