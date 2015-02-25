@@ -34,10 +34,7 @@ CPPFLAGS += -DNO_SUSPEND
 .PHONY: all
 all: src/$(GAME) util/recover dat/nhshare dat/nhushare dat/license
 
-define TOUCH_VAR =
-touch $(1)
-$(CHOWN) $(GAMEUID):$(GAMEGID) $(1)
-endef
+TOUCH_VAR = touch $(1) && $(CHOWN) $(GAMEUID):$(GAMEGID) $(1)
 
 .PHONY: install
 install: all
