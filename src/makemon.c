@@ -9108,6 +9108,8 @@ register struct permonst *ptr;
 
 	if (!always_hostile(ptr) && Race_if(PM_ANGBANDER) && !Role_if(PM_CONVICT) && rn2(2)) return TRUE;
 
+	if (telepathic(ptr) && Race_if(PM_LEVITATOR) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
+
 	if (is_undead(ptr) && !mindless(ptr) && Race_if(PM_HUMAN_WRAITH) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (is_undead(ptr) && mindless(ptr) && Race_if(PM_HUMAN_WRAITH) && !Role_if(PM_CONVICT) && rn2(4)) return TRUE;
 

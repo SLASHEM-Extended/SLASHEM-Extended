@@ -100,7 +100,7 @@
 #define perceives(ptr)		(((ptr)->mflags1 & M1_SEE_INVIS) != 0L)
 #define can_teleport(ptr)	(((ptr)->mflags1 & M1_TPORT) != 0L)
 #define control_teleport(ptr)	(((ptr)->mflags1 & M1_TPORT_CNTRL) != 0L)
-#define telepathic(ptr)		((ptr) == &mons[PM_FLOATING_EYE] || (ptr) == &mons[PM_SWEEPING_EYE] || (ptr) == &mons[PM_FLOATING_MERMAN] || (ptr) == &mons[PM_TELEPATHIC_EYE] || (ptr) == &mons[PM_PSION] || (ptr) == &mons[PM_UNDEAD_PSION] || \
+#define telepathic(ptr)		((ptr) == &mons[PM_FLOATING_EYE] || (ptr) == &mons[PM_SWEEPING_EYE] || (ptr) == &mons[PM_FLOATING_MERMAN] || (ptr) == &mons[PM_TELEPATHIC_EYE] || (ptr) == &mons[PM_PSION] || (ptr) == &mons[PM_LEVITATOR] || (ptr) == &mons[PM_UNDEAD_PSION] || \
 				 is_mind_flayer(ptr))
 #define is_armed(ptr)		(attacktype(ptr, AT_WEAP) || (ptr) == &mons[PM_ANIMATED_WEDGE_SANDAL] || (ptr) == &mons[PM_ANIMATED_SEXY_LEATHER_PUMP] || (ptr) == &mons[PM_ANIMATED_LEATHER_PEEP_TOE] || (ptr) == &mons[PM_ANIMATED_COMBAT_STILETTO])
 #define acidic(ptr)		(((ptr)->mflags1 & M1_ACID) != 0L)

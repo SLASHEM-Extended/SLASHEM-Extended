@@ -853,7 +853,7 @@ dodown()
 		return(0);
 	} else
 #endif
-	if (Levitation) {
+	if (Levitation && !Race_if(PM_LEVITATOR) ) { /* levitators are hard enough already --Amy */
 	    if ((HLevitation & I_SPECIAL) || (ELevitation & W_ARTI)) {
 		/* end controlled levitation */
 		if (ELevitation & W_ARTI) {

@@ -1481,7 +1481,7 @@ dosacrifice()
 
 	/* fix for new races since they're MH_HUMAN but not actually supposed to count as same race --Amy */
 
-	if (your_race(ptr) && !Race_if(PM_ALIEN) && !Race_if(PM_CURSER) && !Race_if(PM_GASTLY) && !Race_if(PM_GIGANT) && !Race_if(PM_INSECTOID) && !Race_if(PM_KOBOLT) && !Race_if(PM_MOULD) && !Race_if(PM_HUMANLIKE_DRAGON) && !Race_if(PM_HUMANLIKE_NAGA) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_OGRO) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_TROLLOR) && !Race_if(PM_VORTEX) && !Race_if(PM_HUMANOID_DEVIL) && !Race_if(PM_MUMMY) && !Race_if(PM_LICH_WARRIOR) && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_UNALIGNMENT_THING) ) {
+	if (your_race(ptr) && !Race_if(PM_ALIEN) && !Race_if(PM_CURSER) && !Race_if(PM_GASTLY) && !Race_if(PM_GIGANT) && !Race_if(PM_INSECTOID) && !Race_if(PM_KOBOLT) && !Race_if(PM_MOULD) && !Race_if(PM_HUMANLIKE_DRAGON) && !Race_if(PM_HUMANLIKE_NAGA) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_OGRO) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_TROLLOR) && !Race_if(PM_VORTEX) && !Race_if(PM_HUMANOID_DEVIL) && !Race_if(PM_MUMMY) && !Race_if(PM_LICH_WARRIOR) && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_LEVITATOR) && !Race_if(PM_UNALIGNMENT_THING) ) {
 	    if (is_demon(youmonst.data) || Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_AK_THIEF_IS_DEAD_) || Role_if(PM_LUNATIC)) {
 		You("find the idea very satisfying.");
 		exercise(A_WIS, TRUE);

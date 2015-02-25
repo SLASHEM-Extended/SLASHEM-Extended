@@ -535,6 +535,18 @@ const struct innate {
 		     {   1, &(HUndead_warning), "", "" },
 		     {   0, 0, 0, 0 } },
 
+	lev_abil[] = { {  1, &(HTelepat), "", "" },
+		     {   1, &(HHallu_party), "", "" },
+		     {   1, &(HDrunken_boxing), "", "" },
+		     {   1, &(HStunnopathy), "", "" },
+		     {   1, &(HNumbopathy), "", "" },
+		     {   1, &(HFreezopathy), "", "" },
+		     {   1, &(HStoned_chiller), "", "" },
+		     {   1, &(HCorrosivity), "", "" },
+		     {   1, &(HFear_factor), "", "" },
+		     {   1, &(HBurnopathy), "", "" },
+		     {   0, 0, 0, 0 } },
+
 	wra_abil[] = { {  1, &(HSick_resistance), "", "" },
 		     {   1, &(HCold_resistance), "", "" },
 		     {   1, &(HSleep_resistance), "", "" },
@@ -1187,6 +1199,7 @@ int oldlevel, newlevel;
 	case PM_NORD:	rabil = nor_abil;	break;
 	case PM_ALBAE:	rabil = alb_abil;	break;
 	case PM_VORTEX:	rabil = vor_abil;	break;
+	case PM_LEVITATOR:	rabil = lev_abil;	break;
 	case PM_HUMANOID_ANGEL:	rabil = ang_abil;	break;
 	case PM_HUMANOID_DEVIL:	rabil = dev_abil;	break;
 	case PM_HUMAN:

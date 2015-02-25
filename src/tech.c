@@ -518,6 +518,18 @@ static const struct innate_tech
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_DRAW_BLOOD, 1},
 		       {   0, 0, 0} },
+	lev_tech[] = { {   1, T_DAZZLE, 1},
+		       {   1, T_VANISH, 1},
+		       {   1, T_TELEKINESIS, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   5, T_ATTIRE_CHARM, 1},
+		       {   10, T_BLINK, 1},
+		       {   15, T_BLESSING, 1},
+		       {   20, T_LIQUID_LEAP, 1},
+		       {   25, T_DRAW_ENERGY, 1},
+		       {   30, T_SUMMON_TEAM_ANT, 1},
+		       {   0, 0, 0} },
 	ang_tech[] = { {   1, T_DAZZLE, 1},
 		       {   1, T_APPRAISAL, 1},
 		       {   1, T_TURN_UNDEAD, 1},
@@ -2749,6 +2761,7 @@ race_tech()
 		case PM_HUMAN_WEREWOLF:	return (lyc_tech);
 		case PM_HUMAN_MONKEY:	return (hmo_tech);
 		case PM_VAMPIRE:	return (vam_tech);
+		case PM_LEVITATOR:	return (lev_tech);
 		case PM_HUMANOID_ANGEL:	return (ang_tech);
 		default: 		/*return ((struct innate_tech *) 0)*/return (def_tech);
 	}

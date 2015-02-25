@@ -1849,6 +1849,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if (Role_if(PM_PALADIN) ) you_are("aware of the presence of demons");
 	if (Race_if(PM_VORTEX) ) you_are("aware of the presence of unsolid creatures");
 	if (Race_if(PM_VORTEX) ) you_are("aware of the presence of creatures without limbs");
+	if (Race_if(PM_LEVITATOR) ) you_are("aware of the presence of flying monsters");
 
 	if (Searching) you_have("automatic searching");
 

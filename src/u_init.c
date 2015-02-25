@@ -1146,6 +1146,31 @@ static struct trobj SupermarketB[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj LevitatorItem[] = {
+	{ BULLWHIP, UNDEF_SPE, WEAPON_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj LevitatorItemB[] = {
+	{ BULLWHIP, UNDEF_SPE, WEAPON_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj LevitatorItemC[] = {
+	{ FISHING_POLE, UNDEF_SPE, TOOL_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj LevitatorItemD[] = {
+	{ GRAPPLING_HOOK, UNDEF_SPE, TOOL_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj LevitatorItemE[] = {
+	{ UNICORN_HORN, -5, TOOL_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj KoboltItem[] = {
 	{ DART, 0, WEAPON_CLASS, 15, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -5024,6 +5049,14 @@ u_init()
           ini_inv(KoboltItemB);		
           ini_inv(KoboltItemC);		
 		HSleeping = 5;
+		break;
+	case PM_LEVITATOR:
+          ini_inv(LevitatorItem);		
+          ini_inv(LevitatorItemB);		
+          ini_inv(LevitatorItemC);		
+          ini_inv(LevitatorItemD);		
+          ini_inv(LevitatorItemE);		
+
 		break;
 	case PM_GASTLY:
           ini_inv(GhastFood);		
@@ -9283,9 +9316,9 @@ register struct trobj *trop;
 				|| otyp == nocreate2
 				|| otyp == nocreate3
 				|| otyp == nocreate4
-#ifdef ELBERETH
+/*#ifdef ELBERETH
 				|| otyp == RIN_LEVITATION
-#endif
+#endif*/
 	/*			|| ((Role_if(PM_FLAME_MAGE) || Role_if(PM_ICE_MAGE))
 						&&
 				    (otyp == RIN_FIRE_RESISTANCE || 
@@ -9363,9 +9396,9 @@ register struct trobj *trop;
 				|| otyp == nocreate2
 				|| otyp == nocreate3
 				|| otyp == nocreate4
-#ifdef ELBERETH
+/*#ifdef ELBERETH
 				|| otyp == RIN_LEVITATION
-#endif
+#endif*/
 	/*			|| ((Role_if(PM_FLAME_MAGE) || Role_if(PM_ICE_MAGE))
 						&&
 				    (otyp == RIN_FIRE_RESISTANCE || 
@@ -9519,6 +9552,9 @@ register struct trobj *trop;
             if (objX->otyp == WAN_TELEPORTATION && (Race_if(PM_MAIA) ) ) {
                 objX->cursed = TRUE;
             }
+            if (objX->otyp == UNICORN_HORN && (Race_if(PM_LEVITATOR) ) ) {
+                objX->cursed = TRUE;
+            }
             if (objX->otyp == LUMP_OF_ROYAL_JELLY && (Race_if(PM_INSECTOID) ) ) {
                 objX->cursed = TRUE;
             }
@@ -9557,6 +9593,9 @@ register struct trobj *trop;
                 obj->cursed = TRUE;
             }
             if (obj->otyp == LOADSTONE ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == UNICORN_HORN && (Race_if(PM_LEVITATOR) ) ) {
                 obj->cursed = TRUE;
             }
             if (obj->otyp == WAN_DEATH && (Role_if(PM_DEATH_EATER) || Race_if(PM_UNGENOMOLD) ) ) {

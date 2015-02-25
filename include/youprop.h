@@ -333,10 +333,10 @@
 
 #define HLevitation		u.uprops[LEVITATION].intrinsic
 #define ELevitation		u.uprops[LEVITATION].extrinsic
-#define Levitation		(HLevitation || ELevitation || \
+#define Levitation		(HLevitation || ELevitation || Race_if(PM_LEVITATOR) || \
 				 (is_floater(youmonst.data) && !Race_if(PM_TRANSFORMER) ) )
 	/* Can't touch surface, can't go under water; overrides all others */
-#define Lev_at_will		(((HLevitation & I_SPECIAL) != 0L || \
+#define Lev_at_will		(!Race_if(PM_LEVITATOR) && ((HLevitation & I_SPECIAL) != 0L || \
 				 (ELevitation & W_ARTI) != 0L) && \
 				 (HLevitation & ~(I_SPECIAL|TIMEOUT)) == 0L && \
 				 (ELevitation & ~W_ARTI) == 0L && \

@@ -249,6 +249,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Burnopathy && Burned && infravision(mtmp->data) )
 		    ways_seen++;
+		if (Race_if(PM_LEVITATOR) && is_flyer(mtmp->data) )
+		    ways_seen++;
 
 		if (ways_seen > 1 || !normal) {
 		    if (normal) {
@@ -309,6 +311,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (Race_if(PM_VORTEX) && nolimbs(mtmp->data)) {
 			Strcat(monbuf, "warned of creatures without limbs");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (Race_if(PM_LEVITATOR) && is_flyer(mtmp->data) ) {
+			Strcat(monbuf, "warned of flying monsters");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
 
