@@ -372,7 +372,7 @@ init_sco_cons()
 		sco_mapoff();
 		switch_graphics(IBM_GRAPHICS);
 #  ifdef TEXTCOLOR
-		if (has_colors())
+		if (tigetnum("colors") > 0)
 			iflags.use_color = TRUE;
 #  endif
 	}
@@ -429,7 +429,7 @@ init_linux_cons()
 		atexit(linux_mapon);
 		linux_mapoff();
 #  ifdef TEXTCOLOR
-		if (has_colors())
+		if (tigetnum("colors") > 0)
 			iflags.use_color = TRUE;
 #  endif
 	}
