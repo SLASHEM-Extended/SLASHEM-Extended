@@ -310,6 +310,10 @@ char *argv[];
 		case 'D':
 		case 'Z':
 #ifdef WIZARD
+# ifdef PUBLIC_SERVER
+                    wizard = TRUE;
+                    break;
+# else
 			{
 			  char *user;
 			  int uid;
@@ -338,6 +342,7 @@ char *argv[];
 			}
 			/* otherwise fall thru to discover */
 			wiz_error_flag = TRUE;
+# endif /* PUBLIC_SERVER */
 #endif
 		case 'X':
 			discover = TRUE;

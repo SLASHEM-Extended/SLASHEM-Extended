@@ -2252,7 +2252,7 @@ doattributes()
 static const struct menu_tab game_menu[] = {
 	{'O', TRUE, doset, "Options"},
 	{'r', TRUE, doredraw, "Redraw Screen"},
-#ifndef NO_EXPLORE_MODE
+#ifndef PUBLIC_SERVER
 	{'x', TRUE, enter_explore_mode, "Enter Explore Mode"},
 #endif
 #ifdef SHELL
@@ -2828,7 +2828,7 @@ struct ext_func_tab extcmdlist[] = {
 #if 0
 	{"ethics", "list which challenges you have adhered to", doethics, TRUE},
 #endif
-#ifndef NO_EXPLORE_MODE
+#ifndef PUBLIC_SERVER
 	{"explore", "enter explore mode", enter_explore_mode, TRUE},
 #endif
 	{"force", "force a lock", doforce, FALSE},

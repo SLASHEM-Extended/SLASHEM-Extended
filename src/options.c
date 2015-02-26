@@ -81,7 +81,7 @@ static struct Bool_Opt
 	{"color",         &iflags.wc_color, FALSE, SET_IN_GAME},	/*WC*/
 # endif
 	{"confirm",&flags.confirm, TRUE, SET_IN_GAME},
-#ifndef NO_EXPLORE_MODE
+#ifndef PUBLIC_SERVER
 	{"death_explore", &iflags.death_expl, TRUE, SET_IN_GAME},
 #endif
 #if defined(TERMLIB) && !defined(MAC_GRAPHICS_ENV)
