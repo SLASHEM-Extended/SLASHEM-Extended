@@ -13,7 +13,7 @@
 #define LEVEL_COMPILER	1	/* Enable definition of internal structures */
 
 #include "hack.h"
-#include "date.h"
+#include "verinfo.h"
 #include "sp_lev.h"
 #ifdef STRICT_REF_DEF
 #include "tcap.h"

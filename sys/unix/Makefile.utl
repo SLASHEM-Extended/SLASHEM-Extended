@@ -192,6 +192,8 @@ makedefs.o: makedefs.c $(CONFIG_H) ../include/permonst.h \
 	./makedefs -m
 ../include/vis_tab.h: makedefs
 	./makedefs -z
+../include/verinfo.h: makedefs
+	./makedefs -w
 # makedefs -z makes both vis_tab.h and vis_tab.c, but writes the .h first
 ../src/vis_tab.c: ../include/vis_tab.h
 
@@ -215,7 +217,7 @@ lev_comp:  $(SPLEVOBJS)
 
 lev_yacc.o:  lev_yacc.c $(HACK_H) ../include/sp_lev.h
 lev_main.o:  lev_main.c $(HACK_H) ../include/sp_lev.h ../include/tcap.h \
-		../include/date.h ../include/artilist.h
+		../include/verinfo.h ../include/artilist.h
 
 # see lev_comp.l for WEIRD_LEX discussion
 # egrep will return failure if it doesn't find anything, but we know there
@@ -246,7 +248,7 @@ lintlev:
 dgn_comp:  $(DGNCOMPOBJS)
 	$(CC) $(LFLAGS) -o dgn_comp $(DGNCOMPOBJS) $(LIBS)
 
-dgn_yacc.o:  dgn_yacc.c $(CONFIG_H) ../include/dgn_file.h ../include/date.h
+dgn_yacc.o:  dgn_yacc.c $(CONFIG_H) ../include/dgn_file.h ../include/verinfo.h
 dgn_main.o:  dgn_main.c $(CONFIG_H) ../include/dlb.h
 
 # see dgn_comp.l for WEIRD_LEX discussion

@@ -23,7 +23,7 @@
 #endif
 
 #include "config.h"
-#include "date.h"
+#include "verinfo.h"
 #include "dgn_file.h"
 
 void FDECL(yyerror, (const char *));

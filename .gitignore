@@ -20,6 +20,7 @@ include/filename.h
 include/lev_comp.h
 include/onames.h
 include/pm.h
+include/verinfo.h
 include/vis_tab.h
 src/Sysunix
 src/config.h-t
