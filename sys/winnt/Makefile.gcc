@@ -588,7 +588,7 @@ util: utility.tag
 
 install: install.tag
 
-utility.tag: $(INCL)\date.h $(INCL)\trap.h    $(INCL)\onames.h	       \
+utility.tag: $(INCL)\date.h $(INCL)\trap.h    $(INCL)\onames.h	$(INCL)\verinfo.h  \
 	$(INCL)\pm.h	  monstr.c   vis_tab.c	$(INCL)\filename.h\
 	lev_comp.exe	 dgn_comp.exe	 recover.exe $(TILEUTIL)
 	$(ECHO) utilities made > utility.tag
@@ -893,6 +893,9 @@ spotless: clean
 
 $(INCL)\date.h : makedefs.exe
 	-makedefs -v
+
+$(INCL)\verinfo.h : makedefs.exe
+	-makedefs -w
 
 $(INCL)\onames.h: makedefs.exe
 	-makedefs -o
