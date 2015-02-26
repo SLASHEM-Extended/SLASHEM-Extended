@@ -2771,9 +2771,7 @@ static const struct func_tab cmdlist[] = {
 	{'W', FALSE, dowear},
 	{M('w'), FALSE, dowipe},
 	{'x', FALSE, doswapweapon},                    /* [Tom] */        
-#ifndef NO_EXPLORE_MODE
-	{'X', TRUE, enter_explore_mode},
-#endif
+	{'X', FALSE, dotwoweapon},
 #if 0
         {M('x'), TRUE, dovspell},                  /* Mike Stephenson */
 #endif
