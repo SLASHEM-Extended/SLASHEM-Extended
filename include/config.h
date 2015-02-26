@@ -270,7 +270,7 @@
  */
 # ifndef HACKDIR
 #  ifdef __APPLE__
-#    define HACKDIR "nethackdir"      /* nethack directory */
+#    define HACKDIR "."      /* nethack directory */
 #  else
 #    define HACKDIR "."
 #  endif
