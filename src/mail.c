@@ -91,7 +91,7 @@ void
 getmailstatus()
 {
 	if(!mailbox && !(mailbox = nh_getenv("MAIL"))) {
-#  ifdef MAILPATH
+#  if defined(MAILPATH) && !defined(PUBLIC_SERVER)
 #   ifdef AMS
 	        struct passwd ppasswd;
 
