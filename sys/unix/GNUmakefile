@@ -5,8 +5,6 @@ GAME = slashem
 #GAMEGID =
 
 INSTALL = install
-BISON = bison
-FLEX = flex
 
 PREFIX = $(HOME)/slex
 GAMEDIR = $(PREFIX)/slex-$(VERSION)
@@ -168,7 +166,9 @@ AUTO_C += src/monstr.c
 
 include/dgn_comp.h include/lev_comp.h: include/%_comp.h: util/%_yacc.c
 util/dgn_yacc.c util/lev_yacc.c: util/%_yacc.c: util/%_comp.y
-	$(BISON) --defines=include/$*_comp.h -o util/$*_yacc.c util/$*_comp.y
+	$(YACC) $(YFLAGS) -d -b $* $<
+	mv $*.tab.c util/$*_yacc.c
+	mv $*.tab.h include/$*_comp.h
 AUTO_H += include/dgn_comp.h include/lev_comp.h
 AUTO_C += util/dgn_yacc.c util/lev_yacc.c
 
@@ -176,7 +176,7 @@ util/dgn_yacc.o: include/verinfo.h
 util/lev_yacc.o: include/onames.h include/pm.h
 
 util/dgn_lex.c util/lev_lex.c: util/%_lex.c: util/%_comp.l
-	$(FLEX) -o$@ $<
+	$(LEX) $(LFLAGS) -t $< > $@
 AUTO_C += util/dgn_lex.c util/lev_lex.c
 
 util/dgn_lex.o: include/dgn_comp.h
