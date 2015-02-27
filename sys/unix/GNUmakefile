@@ -19,10 +19,10 @@ INSTALL_DATA = $(INSTALL) -m 644
 
 CFLAGS = -g -O2
 
-WINTTYLIB = -ltinfo
-
 CPPFLAGS += -Iinclude
 CPPFLAGS += -DDLB
+
+GAMELIBS = -lncurses
 
 LOCAL_MK = local.mk
 -include $(LOCAL_MK)
@@ -92,7 +92,7 @@ GAME_O = $(SRCOBJ:%.o=src/%.o) $(SYSUNIXOBJ:%.o=sys/unix/%.o)	\
          $(SYSSHAREOBJ:%.o=sys/share/%.o)			\
          $(WINTTYOBJ:%.o=win/tty/%.o)
 src/$(GAME): $(GAME_O)
-	$(CC) $(LDFLAGS) $^ $(LDLIBS) $(WINTTYLIB) -o $@
+	$(CC) $(LDFLAGS) $^ $(LDLIBS) $(GAMELIBS) -o $@
 AUTO_BIN += src/$(GAME)
 
 RECOVER_O = util/recover_main.o src/recover.o
