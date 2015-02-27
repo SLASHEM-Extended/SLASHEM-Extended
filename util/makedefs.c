@@ -325,6 +325,12 @@ char	*options;
 		case 'w':
 		case 'W':	do_date(1);
 				break;
+		case 't':
+		case 'T':	do_options();
+				break;
+		case 'a':
+		case 'A':	do_date(0);
+				break;
 		case 'p':
 		case 'P':	do_permonst();
 				break;

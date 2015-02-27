@@ -144,7 +144,7 @@ ALL_D = $(ALL_O:%.o=%.d)
 export VCS_DESCRIPTION := $(shell git describe --always 2>/dev/null)
 .git/index: ;
 include/date.h: util/makedefs .git/index $(filter-out src/version.o,$(GAME_O))
-	cd util && ./makedefs -v  # include/date.h dat/options
+	cd util && ./makedefs -a  # include/date.h
 include/filename.h: util/makedefs
 	cd util && ./makedefs -f  # include/filename.h
 include/onames.h: util/makedefs
@@ -243,8 +243,8 @@ AUTO_DAT += dat/nhushare
 
 dat/data: dat/data.base util/makedefs
 	cd util && ./makedefs -d  # dat/data
-dat/options: include/date.h # util/makedefs
-#	cd util && ./makedefs -v  # include/date.h dat/options
+dat/options: util/makedefs
+	cd util && ./makedefs -t  # dat/options
 dat/oracles: dat/oracles.txt util/makedefs
 	cd util && ./makedefs -h  # dat/oracles
 dat/quest.dat: dat/quest.txt util/makedefs
