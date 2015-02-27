@@ -1324,7 +1324,7 @@ boolean uncomp;
 		}
 		(void) setgid(getgid());
 		(void) setuid(getuid());
-		(void) execvp(args[0], (char *const *) args);
+		(void) execv(args[0], (char *const *) args);
 		perror((char *)0);
 		(void) fprintf(stderr, "Exec to %scompress %s failed.\n",
 			uncomp ? "un" : "", filename);
