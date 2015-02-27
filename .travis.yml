@@ -1,6 +1,9 @@
 language: c
 sudo: false
 script: make -f sys/unix/GNUmakefile install
+compiler:
+  - gcc
+  - clang
 notifications:
   irc:
     channels: "chat.freenode.net#acehack.de"
