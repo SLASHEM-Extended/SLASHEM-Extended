@@ -1,3 +1,6 @@
 #!/bin/sh
 
-printf "%s.%s.%s" $( echo -e '#include "include/patchlevel.h"\nVERSION_MAJOR VERSION_MINOR PATCHLEVEL' | gcc -E - | tail -n1 )
+cc -E - <<EOF | tail -n1 | sed "s/ /./g"
+#include "include/patchlevel.h"
+VERSION_MAJOR VERSION_MINOR PATCHLEVEL
+EOF
