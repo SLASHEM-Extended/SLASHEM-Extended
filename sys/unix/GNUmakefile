@@ -80,12 +80,13 @@ SRCOBJ = allmain.o alloc.o apply.o artifact.o attrib.o ball.o bones.o	\
 SYSUNIXOBJ = unixmain.o unixres.o unixunix.o
 SYSSHAREOBJ = ioctl.o unixtty.o
 WINTTYOBJ = getline.o termcap.o topl.o wintty.o
+WINTTYLIB = -ltinfo
 
 GAME_O = $(SRCOBJ:%.o=src/%.o) $(SYSUNIXOBJ:%.o=sys/unix/%.o)	\
          $(SYSSHAREOBJ:%.o=sys/share/%.o)			\
          $(WINTTYOBJ:%.o=win/tty/%.o)
 src/$(GAME): $(GAME_O)
-	$(CC) $(LDFLAGS) $^ $(LDLIBS) -ltinfo -o $@
+	$(CC) $(LDFLAGS) $^ $(LDLIBS) $(WINTTYLIB) -o $@
 AUTO_BIN += src/$(GAME)
 
 RECOVER_O = util/recover_main.o src/recover.o
