@@ -1325,7 +1325,7 @@ char *
 get_description_of_attack_type(uchar id)
 {
 	switch(id){
-		case AT_ANY: return "fake attack; dmgtype_fromattack wildcard";
+		/*case AT_ANY: return "fake attack; dmgtype_fromattack wildcard";*/ /* no monster has that... --Amy */
 		case AT_NONE: return "passive";
 		case AT_CLAW: return "claw (punch, hit, etc.)";
 		case AT_BITE: return "bite";
