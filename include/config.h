@@ -229,6 +229,7 @@
  *	compression.
  */
 
+#if 0 /* why bother? it's 2015 */
 #ifdef UNIX
 /* path and file name extension for compression program */
 /* # define COMPRESS "/usr/bin/compress" */ /* Lempel-Ziv compression */
@@ -243,6 +244,7 @@
 #endif
 #ifndef COMPRESS
 # define INTERNAL_COMP	/* control use of NetHack's compression routines */
+#endif
 #endif
 
 /*
