@@ -48,6 +48,7 @@ doc/Makefile
 src/Makefile
 util/Makefile
 /GNUmakefile
+/local.mk
 
 # documentation for distribution
 # this needs to be tracked, because some build systems don't generate it

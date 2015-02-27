@@ -25,6 +25,8 @@ WINTTYLIB = -ltinfo
 CPPFLAGS += -Iinclude
 CPPFLAGS += -DDLB
 
+-include local.mk
+
 .DELETE_ON_ERROR:
 
 .PHONY: all
