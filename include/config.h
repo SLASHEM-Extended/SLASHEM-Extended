@@ -238,7 +238,7 @@
 /* # define COMPRESS "/usr/local/bin/gzip" */   /* FSF gzip compression */
 /* # define COMPRESS_EXTENSION ".gz" */	     /* normal gzip extension */
 
-# define COMPRESS "/bin/bzip2"		/* bzip2 compression */
+# define COMPRESS "bzip2"		/* bzip2 compression */
 # define COMPRESS_EXTENSION ".bz2"	/* bzip2 extension */
 #endif
 #ifndef COMPRESS
