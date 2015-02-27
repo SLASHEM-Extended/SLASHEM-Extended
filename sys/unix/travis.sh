@@ -1,10 +1,7 @@
 #!/bin/bash
 set -ev
 
-sh sys/unix/setup.sh
-
-sed "s/WINTTYLIB = -ltermlib/WINTTYLIB = -lncurses/" -i src/Makefile
-sed "s/\/\* #define LINUX \*\//#define LINUX/" -i include/unixconf.h
+ln -s sys/unix/GNUmakefile
 
 make
 sudo make install
