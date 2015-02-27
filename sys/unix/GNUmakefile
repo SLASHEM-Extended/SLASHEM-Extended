@@ -18,12 +18,12 @@ INSTALL_PROGRAM = $(INSTALL)
 INSTALL_GAME = $(INSTALL) $(if $(SGID),-g $(GAMEGID) -m 2755)
 INSTALL_DATA = $(INSTALL) -m 644
 
-CFLAGS = -g -O2
+CFLAGS = -g -O2 -DPUBLIC_SERVER
+
+WINTTYLIB = -ltinfo
 
 CPPFLAGS += -Iinclude
 CPPFLAGS += -DDLB
-
-CPPFLAGS += -DPUBLIC_SERVER
 
 .DELETE_ON_ERROR:
 
@@ -80,7 +80,6 @@ SRCOBJ = allmain.o alloc.o apply.o artifact.o attrib.o ball.o bones.o	\
 SYSUNIXOBJ = unixmain.o unixres.o unixunix.o
 SYSSHAREOBJ = ioctl.o unixtty.o
 WINTTYOBJ = getline.o termcap.o topl.o wintty.o
-WINTTYLIB = -ltinfo
 
 GAME_O = $(SRCOBJ:%.o=src/%.o) $(SYSUNIXOBJ:%.o=sys/unix/%.o)	\
          $(SYSSHAREOBJ:%.o=sys/share/%.o)			\
