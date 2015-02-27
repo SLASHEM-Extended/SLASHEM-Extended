@@ -3,12 +3,10 @@ VERSION := $(shell util/version.sh)
 GAME = slashem
 #GAMEUID =
 #GAMEGID =
-#CHOWN = chown
 
 INSTALL = install
 BISON = bison
 FLEX = flex
-CHOWN = true
 
 PREFIX = $(HOME)/slex
 GAMEDIR = $(PREFIX)/slex-$(VERSION)
@@ -34,7 +32,16 @@ LOCAL_MK = local.mk
 .PHONY: all
 all: src/$(GAME) util/recover dat/nhshare dat/nhushare dat/license
 
-TOUCH_VAR = touch $(1) && $(CHOWN) $(GAMEUID):$(GAMEGID) $(1)
+TOUCH_VAR = touch $(1)
+MKDIR_VAR = mkdir -p $(1)
+ifneq ($(strip $(GAMEUID)),)
+TOUCH_VAR += && chown $(GAMEUID) $(1)
+MKDIR_VAR += && chown $(GAMEUID) $(1)
+endif
+ifneq ($(strip $(GAMEGID)),)
+TOUCH_VAR += && chgrp $(GAMEGID) $(1)
+MKDIR_VAR += && chgrp $(GAMEGID) $(1)
+endif
 
 .PHONY: install
 install: all
@@ -42,27 +49,23 @@ install: all
 	$(INSTALL_GAME) src/$(GAME) $(GAMEDIR)
 	$(INSTALL_PROGRAM) util/recover $(GAMEDIR)
 	$(INSTALL_DATA) dat/nhshare dat/nhushare dat/license $(GAMEDIR)
-	mkdir -p $(VARDIR)
-	$(CHOWN) $(GAMEUID):$(GAMEGID) $(VARDIR)
+	$(call MKDIR_VAR,$(VARDIR))
 	$(call TOUCH_VAR,$(VARDIR)/perm)
 	$(call TOUCH_VAR,$(VARDIR)/record)
 	$(call TOUCH_VAR,$(VARDIR)/logfile)
 	$(call TOUCH_VAR,$(VARDIR)/xlogfile)
-	mkdir -p $(VARDIR)/save
-	$(CHOWN) $(GAMEUID):$(GAMEGID) $(VARDIR)/save
+	$(call MKDIR_VAR,$(VARDIR)/save)
 
 ATOMIC_LN = ln $(1) $(2).new && mv $(2).new $(2)
 
 .PHONY: slave
 slave:
-	mkdir -p $(VARDIR)
-	$(CHOWN) $(GAMEUID):$(GAMEGID) $(VARDIR)
+	$(call MKDIR_VAR,$(VARDIR))
 	$(call ATOMIC_LN,$(MASTERDIR)/perm,$(VARDIR)/perm)
 	$(call ATOMIC_LN,$(MASTERDIR)/record,$(VARDIR)/record)
 	$(call ATOMIC_LN,$(MASTERDIR)/logfile,$(VARDIR)/logfile)
 	$(call ATOMIC_LN,$(MASTERDIR)/xlogfile,$(VARDIR)/xlogfile)
-	mkdir -p $(VARDIR)/save
-	$(CHOWN) $(GAMEUID):$(GAMEGID) $(VARDIR)/save
+	$(call MKDIR_VAR,$(VARDIR)/save)
 
 ##### BINARIES #####
 
