@@ -176,7 +176,7 @@ util/dgn_yacc.o: include/verinfo.h
 util/lev_yacc.o: include/onames.h include/pm.h
 
 util/dgn_lex.c util/lev_lex.c: util/%_lex.c: util/%_comp.l
-	$(FLEX) -o $@ $<
+	$(FLEX) -o$@ $<
 AUTO_C += util/dgn_lex.c util/lev_lex.c
 
 util/dgn_lex.o: include/dgn_comp.h
