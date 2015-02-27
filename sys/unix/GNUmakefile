@@ -1,31 +1,33 @@
 VERSION := $(shell util/version.sh)
 
 GAME = slashem
-GAMEUID = acehack
-GAMEGID = acehack
+#GAMEUID =
+#GAMEGID =
+#CHOWN = chown
 
 INSTALL = install
 BISON = bison
 FLEX = flex
-CHOWN = chown
+CHOWN = true
 
-PREFIX = /srv/acehack
+PREFIX = $(HOME)/slex
 GAMEDIR = $(PREFIX)/slex-$(VERSION)
 VARDIR = $(GAMEDIR)
-MASTERDIR = $(PREFIX)/slexdir
+#MASTERDIR = $(PREFIX)/slexdir
 
 INSTALL_PROGRAM = $(INSTALL)
 INSTALL_GAME = $(INSTALL) $(if $(SGID),-g $(GAMEGID) -m 2755)
 INSTALL_DATA = $(INSTALL) -m 644
 
-CFLAGS = -g -O2 -DPUBLIC_SERVER
+CFLAGS = -g -O2
 
 WINTTYLIB = -ltinfo
 
 CPPFLAGS += -Iinclude
 CPPFLAGS += -DDLB
 
--include local.mk
+LOCAL_MK = local.mk
+-include $(LOCAL_MK)
 
 .DELETE_ON_ERROR:
 
