@@ -468,7 +468,7 @@ moveloop()
 				moveamt /= 2;
 			}
 
-			if (moveamt < 0) moveamt == 0;
+			if (moveamt < 0) moveamt = 0;
 
 			if (Very_fast && !SpeedBug) {	/* speed boots or potion */
 			    /* average movement is 1.67 times normal */

@@ -516,7 +516,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		    killer_format = KILLED_BY_AN;
 		    killer = "Avada Kedavra curse";
 		    done(DIED);
-		    return; /* lifesaved */
+		    return 1; /* lifesaved */
 		}
 		break;
 	    case AD_MAGM:

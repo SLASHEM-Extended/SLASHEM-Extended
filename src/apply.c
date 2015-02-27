@@ -198,7 +198,7 @@ int rx, ry, *resp;
 	 * The overcomplex wording is because all the monster-naming functions operate
 	 * on actual instances of the monsters, and we're dealing with just an index
 	 * so we can avoid things like "a owlbear", etc. */
-	if (otmp = sobj_at(EGG,rx,ry)) {
+	if ((otmp = sobj_at(EGG,rx,ry)) != 0) {
 		if (Hallucination || !rn2(20) ) { /* Let's make it fail sometimes. --Amy */
 			pline("You listen to the egg and guess... %s?",rndmonnam());
 		} else {
@@ -236,7 +236,7 @@ use_stethoscope(obj)
 	    useup(obj);
 	    pline("Your stethoscope breaks!");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		return;
+		return 0;
 		}
 
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {	/* should also check for no ears and/or deaf */
@@ -312,7 +312,7 @@ use_stethoscope(obj)
 	    pline("Your stethoscope breaks, and you scream in terror!");
 		wake_nearby();
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		return;
+		return 0;
 		}
 
 
@@ -4163,7 +4163,7 @@ doapply()
 			if (!Race_if(PM_HAXOR)) u.ublesscnt += rn2(20);
 			else u.ublesscnt += rn2(10);
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-			return;
+			return 0;
 			}
 
 		if (Blind) {

@@ -727,7 +727,7 @@ register struct monst *mtmp;
 		break;
 	}
 
-	if (!obj) return; /* really fixing the damn bug with the "bug" and similar monster types! --Amy */
+	if (!obj) return (struct obj *)0; /* really fixing the damn bug with the "bug" and similar monster types! --Amy */
 
 	/* All special cases should precede the G_NOCORPSE check */
 
