@@ -1,5 +1,6 @@
 language: c
-script: sys/unix/travis.sh 
+sudo: false
+script: make -f sys/unix/GNUmakefile CHOWN=true PREFIX=/tmp install
 notifications:
   irc:
     channels: "chat.freenode.net#acehack.de"
