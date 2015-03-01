@@ -1,4 +1,4 @@
-VERSION := $(shell util/version.sh)
+VERSION := $(shell util/version.sh $(CC))
 
 GAME = slashem
 #GAMEUID =
