@@ -3,6 +3,7 @@ VERSION := $(shell util/version.sh $(CC))
 GAME = slashem
 #GAMEUID =
 #GAMEGID =
+#GAMEPERM =
 
 INSTALL = install
 
@@ -12,8 +13,14 @@ VARDIR = $(GAMEDIR)
 #MASTERDIR = $(PREFIX)/slexdir
 
 INSTALL_PROGRAM = $(INSTALL)
-INSTALL_GAME = $(INSTALL) $(if $(SGID),-g $(GAMEGID) -m 2755)
+INSTALL_GAME = $(INSTALL) $(GAMEPERM:%=-m %) $(GAMEGID:%=-g %)
 INSTALL_DATA = $(INSTALL) -m 644
+INSTALL_DIR = $(INSTALL) -d
+INSTALL_VARDIR = $(INSTALL) -d $(GAMEUID:%=-o %) $(GAMEGID:%=-g %)
+
+TOUCH_VARDATA = touch $(1)
+TOUCH_VARDATA += $(if $(GAMEUID),&& chown $(GAMEUID) $(1))
+TOUCH_VARDATA += $(if $(GAMEGID),&& chgrp $(GAMEGID) $(1))
 
 CFLAGS = -g -O2
 
@@ -30,40 +37,27 @@ LOCAL_MK = local.mk
 .PHONY: all
 all: src/$(GAME) util/recover dat/nhshare dat/nhushare dat/license
 
-TOUCH_VAR = touch $(1)
-MKDIR_VAR = mkdir -p $(1)
-ifneq ($(strip $(GAMEUID)),)
-TOUCH_VAR += && chown $(GAMEUID) $(1)
-MKDIR_VAR += && chown $(GAMEUID) $(1)
-endif
-ifneq ($(strip $(GAMEGID)),)
-TOUCH_VAR += && chgrp $(GAMEGID) $(1)
-MKDIR_VAR += && chgrp $(GAMEGID) $(1)
-endif
-
 .PHONY: install
-install: all
-	mkdir -p $(GAMEDIR)
+install: all $(if $(MASTERDIR),slave)
+	$(INSTALL_DIR) $(GAMEDIR)
 	$(INSTALL_GAME) src/$(GAME) $(GAMEDIR)
 	$(INSTALL_PROGRAM) util/recover $(GAMEDIR)
 	$(INSTALL_DATA) dat/nhshare dat/nhushare dat/license $(GAMEDIR)
-	$(call MKDIR_VAR,$(VARDIR))
-	$(call TOUCH_VAR,$(VARDIR)/perm)
-	$(call TOUCH_VAR,$(VARDIR)/record)
-	$(call TOUCH_VAR,$(VARDIR)/logfile)
-	$(call TOUCH_VAR,$(VARDIR)/xlogfile)
-	$(call MKDIR_VAR,$(VARDIR)/save)
+	$(INSTALL_VARDIR) $(VARDIR) $(VARDIR)/save
+	$(call TOUCH_VARDATA,$(VARDIR)/perm)
+	$(call TOUCH_VARDATA,$(VARDIR)/record)
+	$(call TOUCH_VARDATA,$(VARDIR)/logfile)
+	$(call TOUCH_VARDATA,$(VARDIR)/xlogfile)
 
 ATOMIC_LN = ln $(1) $(2).new && mv $(2).new $(2)
 
 .PHONY: slave
 slave:
-	$(call MKDIR_VAR,$(VARDIR))
+	$(INSTALL_VARDIR) $(VARDIR) $(VARDIR)/save
 	$(call ATOMIC_LN,$(MASTERDIR)/perm,$(VARDIR)/perm)
 	$(call ATOMIC_LN,$(MASTERDIR)/record,$(VARDIR)/record)
 	$(call ATOMIC_LN,$(MASTERDIR)/logfile,$(VARDIR)/logfile)
 	$(call ATOMIC_LN,$(MASTERDIR)/xlogfile,$(VARDIR)/xlogfile)
-	$(call MKDIR_VAR,$(VARDIR)/save)
 
 ##### BINARIES #####
 

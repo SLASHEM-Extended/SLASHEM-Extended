@@ -349,7 +349,7 @@ typedef unsigned char	uchar;
 
 #define RECORD_CONDUCT /* Record conduct challenges in logfile and xlogfile */
 
-/* #define REALTIME_ON_BOTL */  /* Show elapsed time on bottom line.  Note:
+#define REALTIME_ON_BOTL  /* Show elapsed time on bottom line.  Note:
                                  * this breaks savefile compatibility. */
 
 /* The options in this section require the extended logfile support */
