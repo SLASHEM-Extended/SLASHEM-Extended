@@ -310,7 +310,7 @@
 				 (ptr) == &mons[PM_RATTATA] || (ptr) == &mons[PM_RATICATE] || \
 				 (ptr) == &mons[PM_PIKACHU] || (ptr) == &mons[PM_RAICHU] || \
 				 (ptr) == &mons[PM_ENORMOUS_RAT] || \
-				 (ptr) == &mons[PM_EEVEE] || /* actually a hare... */\ 
+				 (ptr) == &mons[PM_EEVEE] || /* actually a hare... */\
 				 (ptr) == &mons[PM_RODENT_OF_UNUSUAL_SIZE])
 #endif /* CONVICT */
 
