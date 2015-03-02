@@ -38,8 +38,6 @@ util/lev_comp.c
 util/lev_lex.c
 util/lev_yacc.c
 util/makedefs
-util/recover
-sys/unix/unixmain
 
 # the build system itself
 /Makefile

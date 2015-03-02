@@ -60,6 +60,14 @@ char *argv[];
 #endif
 	boolean exact_username;
 
+        if (argc > 1 && !strcmp(argv[1], "--recover")) {
+#ifdef UNIX
+            setgid(getgid());
+            setuid(getuid());
+#endif
+            return recover_main(argc - 1, argv + 1);
+        }
+
 #ifdef SIMPLE_MAIL
 	char *e_simple = NULL;
 	/* figure this out early */

@@ -12,7 +12,6 @@ GAMEDIR = $(PREFIX)/slex-$(VERSION)
 VARDIR = $(GAMEDIR)
 #MASTERDIR = $(PREFIX)/slexdir
 
-INSTALL_PROGRAM = $(INSTALL)
 INSTALL_GAME = $(INSTALL) $(GAMEPERM:%=-m %) $(GAMEGID:%=-g %)
 INSTALL_DATA = $(INSTALL) -m 644
 INSTALL_DIR = $(INSTALL) -d
@@ -35,13 +34,12 @@ LOCAL_MK = local.mk
 .DELETE_ON_ERROR:
 
 .PHONY: all
-all: src/$(GAME) util/recover dat/nhshare dat/nhushare dat/license
+all: src/$(GAME) dat/nhshare dat/nhushare dat/license
 
 .PHONY: install
 install: all $(if $(MASTERDIR),slave)
 	$(INSTALL_DIR) $(GAMEDIR)
 	$(INSTALL_GAME) src/$(GAME) $(GAMEDIR)
-	$(INSTALL_PROGRAM) util/recover $(GAMEDIR)
 	$(INSTALL_DATA) dat/nhshare dat/nhushare dat/license $(GAMEDIR)
 	$(INSTALL_VARDIR) $(VARDIR) $(VARDIR)/save
 	$(call TOUCH_VARDATA,$(VARDIR)/perm)
@@ -87,11 +85,6 @@ src/$(GAME): $(GAME_O)
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) $(GAMELIBS) -o $@
 AUTO_BIN += src/$(GAME)
 
-RECOVER_O = util/recover_main.o src/recover.o
-util/recover: $(RECOVER_O)
-	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
-AUTO_BIN += util/recover
-
 MAKEDEFS_O = util/makedefs.o src/alloc.o src/monst.o src/objects.o	\
              util/panic.o
 util/makedefs: $(MAKEDEFS_O)
@@ -116,8 +109,7 @@ util/lev_comp: $(LEV_COMP_O)
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
 AUTO_BIN += util/lev_comp
 
-ALL_O = $(GAME_O) $(RECOVER_O) $(MAKEDEFS_O) $(DLB_O) $(DGN_COMP_O)	\
-        $(LEV_COMP_O)
+ALL_O = $(GAME_O) $(MAKEDEFS_O) $(DLB_O) $(DGN_COMP_O) $(LEV_COMP_O)
 
 ##### BASIC RULES AND AUTOMATIC DEPENDENCY GENERATION #####
 
