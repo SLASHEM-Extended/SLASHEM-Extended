@@ -49,6 +49,8 @@ static void NDECL(wd_message);
 static boolean wiz_error_flag = FALSE;
 #endif
 
+extern int recover_main(int, char **);
+
 int
 main(argc,argv)
 int argc;
