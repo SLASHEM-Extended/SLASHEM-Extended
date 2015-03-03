@@ -1340,9 +1340,17 @@ boolean atme;
 
 	/* gain skill for successful cast */
 	use_skill(skill, spellev(spell));
+	if (rn2(2)) use_skill(skill, spellev(spell)); /* let's make gaining spellcasting skill a little bit easier --Amy */
+	if (!rn2(50)) use_skill(skill, (spellev(spell) * 10) ); /* jackpot! */
 
 	/* WAC successful casting increases solidity of knowledge */
 	boostknow(spell,CAST_BOOST);
+	if ((rnd(spellev(spell) + 5)) > 5) boostknow(spell,CAST_BOOST); /* higher-level spells boost more --Amy */
+	if (!rn2(52 - (spellev(spell) * 2) ) ) { /* jackpot! */
+		boostknow(spell, (CAST_BOOST * 5) );
+		boostknow(spell, (CAST_BOOST * spellev(spell) ) );
+	}
+
 	if (Role_if(PM_MAHOU_SHOUJO)) boostknow(spell,CAST_BOOST);
 
 	obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
@@ -1629,6 +1637,16 @@ struct obj *obj;
 	        spl_book[i].sp_lev = objects[obj->otyp].oc_level;
 	        incrnknow(i);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
+
+			/* high-level starting spells will be known for a longer time
+			 * since you might not be able to cast them at all when you're just starting --Amy */
+			if (spl_book[i].sp_lev == 3) incrnknow(i);
+			if (spl_book[i].sp_lev == 4) { incrnknow(i); incrnknow(i);}
+			if (spl_book[i].sp_lev == 5) { incrnknow(i); incrnknow(i); incrnknow(i);}
+			if (spl_book[i].sp_lev == 6) { incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i);}
+			if (spl_book[i].sp_lev == 7) { incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i);}
+			if (spl_book[i].sp_lev == 8) { incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i);}
+
 	        return;
 	    }
 	}
