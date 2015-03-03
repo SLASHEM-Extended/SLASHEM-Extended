@@ -28,8 +28,8 @@ d_level *lev;
 		|| !dungeons[lev->dnum].boneid
 		   /* no bones on the last or multiway branch levels */
 		   /* in any dungeon (level 1 isn't multiway).       */
-		|| Is_botlevel(lev) || (Is_branchlev(lev) && lev->dlevel > 1)
-		|| (lev->dlevel < 2)  /* no bones on 1st level */
+		|| (Is_botlevel(lev) && In_V_tower(lev) ) || (Is_branchlev(lev) && lev->dlevel > 1)
+		|| (lev->dlevel < 2 && In_V_tower(lev) )  /* no bones on 1st level */
 		   /* no bones in the invocation level               */
 		|| (In_hell(lev) && lev->dlevel == dunlevs_in_dungeon(lev) - 1)
 		);

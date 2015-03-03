@@ -287,16 +287,16 @@ DESCRIPTION:    mazelike
 LEVEL:          "spiders" "S" @ (1, 0) 20
 
 ### The Sunless Sea ###
-DUNGEON:        "The Sunless Sea" "none" (1, 0)
+DUNGEON:        "The Sunless Sea" "U" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
-LEVEL:          "sea" "none" @ (1, 0) 20
+LEVEL:          "sea" "S" @ (1, 0) 20
 
 ### The Temple of Moloch ###
-DUNGEON:        "The Temple of Moloch" "none" (1, 0)
+DUNGEON:        "The Temple of Moloch" "C" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
-LEVEL:          "mtemple" "none" @ (1, 0) 25
+LEVEL:          "mtemple" "T" @ (1, 0) 25
 
 ### The Giant Caverns ###
 DUNGEON:        "The Giant Caverns" "H" (1, 0)
@@ -313,10 +313,10 @@ ALIGNMENT:      chaotic
 
 
 ### Dr Frankenstein's Lab ###
-DUNGEON:        "Frankenstein's Lab" "none" (1, 0)
+DUNGEON:        "Frankenstein's Lab" "F" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
-LEVEL:          "frnknstn" "none" @ (1, 0) 50
+LEVEL:          "frnknstn" "L" @ (1, 0) 50
 
 
 DUNGEON:        "Sheol" "V" (6, 2)
