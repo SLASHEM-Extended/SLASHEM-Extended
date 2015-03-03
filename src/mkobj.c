@@ -464,11 +464,11 @@ boolean artif;
 		if (otmp->otyp == ROCKET) otmp->quan += rnd(5);
 		if (otmp->otyp == CROSSBOW_BOLT || otmp->otyp == DROVEN_BOLT) otmp->quan += rnd(10);
 		if (otmp->otyp == SHURIKEN) otmp->quan += rnd(100);
-		if(!rn2(Race_if(PM_HAXOR) ? 4 : 8)) {
+		if(!rn2(Race_if(PM_HAXOR) ? 3 : 6)) {
 			otmp->spe = rne(2);
 			if (rn2(2)) otmp->blessed = rn2(2);
 			 else	blessorcurse(otmp, 3);
-		} else if(!rn2(Race_if(PM_HAXOR) ? 5 : 10)) {
+		} else if(!rn2(Race_if(PM_HAXOR) ? 4 : 8)) {
 			if (rn2(10)) curse(otmp);
 			 else	blessorcurse(otmp, 3);
 			otmp->spe = -rne(2);
@@ -621,11 +621,21 @@ boolean artif;
 #endif
 #endif
 		case RED_LIGHTSABER:
-					otmp->lamplit = 0;
-					otmp->age = (long) rn1(500,1000);
-					if (Race_if(PM_HAXOR)) otmp->age *= 2;
-					blessorcurse(otmp, 2);
-					break;
+			otmp->lamplit = 0;
+			otmp->age = (long) rn1(500,1000);
+			if (Race_if(PM_HAXOR)) otmp->age *= 2;
+
+			if(!rn2(Race_if(PM_HAXOR) ? 3 : 6)) {
+				otmp->spe = rne(2);
+				if (rn2(2)) otmp->blessed = rn2(2);
+				 else	blessorcurse(otmp, 3);
+			} else if(!rn2(Race_if(PM_HAXOR) ? 4 : 8)) {
+				if (rn2(10)) curse(otmp);
+				 else	blessorcurse(otmp, 3);
+				otmp->spe = -rne(2);
+			} else	blessorcurse(otmp, 10);
+
+		break;
 #endif
 		case CHEST:
 		case LARGE_BOX:
@@ -695,11 +705,11 @@ boolean artif;
 			blessorcurse(otmp, 10);
 					break;
 		default: /* all the other tools --Amy */
-		if(!rn2(Race_if(PM_HAXOR) ? 4 : 8)) {
+		if(!rn2(Race_if(PM_HAXOR) ? 3 : 6)) {
 			otmp->spe = rne(2);
 			if (rn2(2)) otmp->blessed = rn2(2);
 			 else	blessorcurse(otmp, 3);
-		} else if(!rn2(Race_if(PM_HAXOR) ? 5 : 10)) {
+		} else if(!rn2(Race_if(PM_HAXOR) ? 4 : 8)) {
 			if (rn2(10)) curse(otmp);
 			 else	blessorcurse(otmp, 3);
 			otmp->spe = -rne(2);
@@ -722,11 +732,11 @@ boolean artif;
 		break;
 	case CHAIN_CLASS:
 	case BALL_CLASS:
-		if(!rn2(Race_if(PM_HAXOR) ? 4 : 8)) {
+		if(!rn2(Race_if(PM_HAXOR) ? 3 : 6)) {
 			otmp->spe = rne(2);
 			if (rn2(2)) otmp->blessed = rn2(2);
 			 else	blessorcurse(otmp, 3);
-		} else if(!rn2(Race_if(PM_HAXOR) ? 5 : 10)) {
+		} else if(!rn2(Race_if(PM_HAXOR) ? 4 : 8)) {
 			if (rn2(10)) curse(otmp);
 			 else	blessorcurse(otmp, 3);
 			otmp->spe = -rne(2);
