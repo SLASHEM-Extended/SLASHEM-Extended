@@ -1403,7 +1403,7 @@ SCROLL("gain mana",         "DAMN IT",            P_DIVINATION_SPELL, 1,  5, 300
 /* Enchantment */
 SCROLL("confuse monster",       "NR 9",                 P_ENCHANTMENT_SPELL,  1,  18, 300, CLR_MAGENTA),
 SCROLL("scare monster",         "XIXAXA XOXAXA XUXAXA", P_ENCHANTMENT_SPELL,  1,  35, 300, CLR_BRIGHT_BLUE),
-SCROLL("enchant weapon",        "DAIYEN FOOELS",        P_ENCHANTMENT_SPELL,  1,  75, 300, CLR_RED),
+SCROLL("enchant weapon",        "DAIYEN FOOELS",        P_ENCHANTMENT_SPELL,  1,  85, 300, CLR_RED),
 SCROLL("enchant armor",         "ZELGO MER",            P_ENCHANTMENT_SPELL,  1,  63, 300, CLR_GREEN),
 /* Protection */
 SCROLL("remove curse",          "PRATYAVAYAH",          P_PROTECTION_SPELL, 1,  60, 300, CLR_BRIGHT_MAGENTA),
@@ -1412,7 +1412,7 @@ SCROLL("teleportation",         "VENZAR BORGAVVE",      P_BODY_SPELL, 1,  55, 30
 SCROLL("tele level",         "GON GET YA",      P_BODY_SPELL, 1,  5, 300, CLR_BRIGHT_CYAN),
 SCROLL("warping",         "MY SPUTA WILL FLOW DOWN",      P_BODY_SPELL, 1,  5, 300, CLR_BRIGHT_CYAN),
 /* Matter */
-SCROLL("fire",                  "ANDOVA BEGARIN",       P_MATTER_SPELL, 1,  33, 300, CLR_WHITE),
+SCROLL("fire",                  "ANDOVA BEGARIN",       P_MATTER_SPELL, 1,  23, 300, CLR_WHITE),
 SCROLL("earth",                 "KIRJE",                P_MATTER_SPELL, 1,  20, 300, CLR_CYAN),
 
 SCROLL("destroy armor",         "JUYED AWK YACC",       P_NONE, 1,  20, 300, CLR_YELLOW),
