@@ -238,7 +238,7 @@ dat/rumors: dat/rumors.tru dat/rumors.fal util/makedefs
 AUTO_DAT += dat/data dat/options dat/oracles dat/quest.dat dat/rumors
 
 dat/dungeon: dat/dungeon.pdf util/dgn_comp
-	cd dat && ../util/dgn_comp dungeon.pdf  # dat/dungeon
+	util/dgn_comp < $< > $@
 dat/dungeon.pdf: dat/dungeon.def util/makedefs
 	cd util && ./makedefs -e  # dat/dungeon.pdf
 AUTO_DAT += dat/dungeon dat/dungeon.pdf
