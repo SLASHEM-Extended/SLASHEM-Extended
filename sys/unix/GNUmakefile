@@ -32,11 +32,10 @@ LOCAL_MK = local.mk
 -include $(LOCAL_MK)
 
 .DELETE_ON_ERROR:
+.PHONY: all install slave clean cleandeps
 
-.PHONY: all
 all: src/$(GAME) dat/nhshare dat/nhushare dat/license
 
-.PHONY: install
 install: all $(if $(MASTERDIR),slave)
 	$(INSTALL_DIR) $(GAMEDIR)
 	$(INSTALL_GAME) src/$(GAME) $(GAMEDIR)
@@ -49,7 +48,6 @@ install: all $(if $(MASTERDIR),slave)
 
 ATOMIC_LN = ln $(1) $(2).new && mv $(2).new $(2)
 
-.PHONY: slave
 slave:
 	$(INSTALL_VARDIR) $(VARDIR) $(VARDIR)/save
 	$(call ATOMIC_LN,$(MASTERDIR)/perm,$(VARDIR)/perm)
@@ -247,7 +245,6 @@ AUTO_DAT += dat/dungeon dat/dungeon.pdf
 
 ##### CLEANING UP #####
 
-.PHONY: clean
 clean:
 	rm -f $(AUTO_BIN)
 	rm -f $(ALL_O)
@@ -258,6 +255,5 @@ clean:
 	rm -f $(AUTO_DAT)
 	rm -f dat/*.lev
 
-.PHONY: cleandeps
 cleandeps: clean
 	rm -f $(ALL_D)
