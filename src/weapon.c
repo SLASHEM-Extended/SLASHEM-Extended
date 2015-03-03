@@ -176,10 +176,42 @@ struct monst *mon;
 	/* KMH, balance patch -- new macro */
 	if (is_spear(otmp) && index(kebabable, ptr->mlet)) tmp += 2;
 
+	/* iron chains give bonus versus thick-skinned monsters --Amy */
+	if (otmp->otyp == IRON_CHAIN && thick_skinned(ptr)) tmp += 4;
+	if (otmp->otyp == ROTATING_CHAIN && thick_skinned(ptr)) tmp += 8;
+	if (otmp->otyp == SCOURGE && thick_skinned(ptr)) tmp += 15;
+	if (otmp->otyp == NUNCHIAKU && thick_skinned(ptr)) tmp += 24;
+
 	/* KMH -- Paddles are effective against insects */
-	if (Is_weapon && (objects[otmp->otyp].oc_skill == P_PADDLE) &&
-			(ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
-		tmp += 2;
+	if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
+		tmp += 5;
+	if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
+		tmp += 12;
+
+	/* blunt weapons versus undead (Diablo 2) */
+	if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) tmp += 3;
+	if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr)) tmp += 8;
+
+	/* as well as silver bullets */
+	if (otmp->otyp == SILVER_BULLET && is_undead(ptr)) tmp += 8;
+
+	/* lances versus animals */
+	if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr)) tmp += 3;
+
+	/* polearms versus golems */
+	if (objects[otmp->otyp].oc_skill == P_POLEARMS && ptr->mlet == S_GOLEM) tmp += 3;
+
+	/* electric sword versus quantum mechanic */
+	if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH) tmp += 10;
+
+	/* shotgun versus bears or other quadrupeds */
+	if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED) tmp += 10;
+
+	/* axes versus umber hulks */
+	if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER) tmp += 3;
+
+	/* whips for lashing people's asses :P */
+	if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN) tmp += 2;
 
 	/* trident is highly effective against swimmers */
 	if (otmp->otyp == TRIDENT && is_swimmer(ptr)) {
@@ -403,8 +435,9 @@ struct monst *mon;
 	    /* Ralf Engels - added more special cases*/
 	    /* You can kill a eye with a needle */
 	    /* WAC--currently disabled since spheres and gas spores are S_EYE too */
-/*	    if((objects[otyp].oc_dir & (PIERCE) ) && (ptr->mlet == S_EYE))
-		  	bonus += 2; */
+	    /* Amy edit - re-enabled since floating eyes are annoying enough already if you're low-level */
+	    if((objects[otyp].oc_dir & (PIERCE) ) && (ptr->mlet == S_EYE))
+		  	bonus += 2;
 	    /* You cut worms */
 	    if((objects[otyp].oc_dir & (SLASH) ) && (ptr->mlet == S_WORM))
 			bonus += 2;
@@ -423,6 +456,56 @@ struct monst *mon;
 			bonus += 2; 
 	    if (is_pick(otmp) && made_of_rock(ptr) ) 
 			bonus += 3;
+
+	    if (is_spear(otmp) && index(kebabable, ptr->mlet)) bonus += rnd(2) ;
+
+	    /* iron chains give bonus versus thick-skinned monsters --Amy */
+	    if (otmp->otyp == IRON_CHAIN && thick_skinned(ptr)) bonus += rnd(4) ;
+	    if (otmp->otyp == ROTATING_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
+	    if (otmp->otyp == SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
+	    if (otmp->otyp == NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
+
+	    /* KMH -- Paddles are effective against insects */
+	    if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
+		bonus += rnd(5);
+	    if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
+		bonus += rnd(12);
+
+	    /* trident is highly effective against swimmers */
+	    if (otmp->otyp == TRIDENT && is_swimmer(ptr)) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 4;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+	    }
+
+	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr)) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 10;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
+	    }
+
+	    /* blunt weapons versus undead (Diablo 2) */
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) bonus += rnd(2);
+	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr)) bonus += rnd(6);
+
+	    /* as well as silver bullets */
+	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr)) bonus += 8;
+
+	    /* lances versus animals */
+	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr)) bonus += rnd(2);
+
+	    /* polearms versus golems */
+	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && ptr->mlet == S_GOLEM) bonus += rnd(2);
+
+	    /* electric sword versus quantum mechanic */
+	    if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH) bonus += rnd(10);
+
+	    /* shotgun versus bears or other quadrupeds */
+	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED) bonus += (10 + rnd(10));
+
+	    /* axes versus umber hulks */
+	    if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER) bonus += rnd(2);
+
+	    /* whips for lashing people's asses :P */
+	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN) bonus += 1;
 
 	    /* if the weapon is going to get a double damage bonus, adjust
 	       this bonus so that effectively it's added after the doubling */
@@ -2058,26 +2141,178 @@ struct obj *weapon;
 	/* Transvestites can whack enemies using heels --Amy */
 	if (Role_if(PM_TRANSVESTITE) && weapon && weapon_type(weapon) == P_HAMMER){
 
-
-
 		bonus += 2;
-    if (u.ulevel >= 15) bonus += 1;
-    if (u.ulevel >= 30) bonus += 1;
+		if (u.ulevel >= 15) bonus += 1;
+		if (u.ulevel >= 30) bonus += 1;
 	}
 
 	/* boomerang damage bonus for Batman */
 	if (Race_if(PM_BATMAN) && weapon && weapon_type(weapon) == P_BOOMERANG){
 
 		bonus += 2;
-    if (u.ulevel >= 15) bonus += 2;
-    if (u.ulevel >= 30) bonus += 2;
+		if (u.ulevel >= 15) bonus += 2;
+		if (u.ulevel >= 30) bonus += 2;
 	}
+
+	/* more boomerang damage bonus */
+
+	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SKILLED) ) bonus += rnd(4);
+	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_EXPERT) ) bonus += rnd(10);
+	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_MASTER) ) bonus += rnd(20);
+	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_GRAND_MASTER) ) bonus += rnd(40);
 
 	/* add a little damage bonus for higher-level characters so the stronger monsters aren't too overpowered --Amy */
 
-    if (u.ulevel >= 10) bonus += 1;
-    if (u.ulevel >= 20) bonus += 1;
-    if (u.ulevel >= 30) bonus += 1;
+	if (u.ulevel >= 10) bonus += 1;
+	if (u.ulevel >= 20) bonus += 1;
+	if (u.ulevel >= 30) bonus += 1;
+
+    return bonus;
+}
+
+/*
+ * Return damage bonus for using melee weapons. Added by Amy to make the later parts of the game less unplayable.
+ */
+int
+melee_dam_bonus(weapon)
+struct obj *weapon;
+
+{
+    int type, wep_type, bonus = 0;
+
+    if (!weapon) return 0;
+
+    wep_type = weapon_type(weapon);
+
+    type = wep_type;
+    if (type == P_NONE) {
+	bonus = 0;
+    } else if (!u.twoweap && type <= P_LAST_WEAPON) {	/* bonus for highly skilled, non-dual-wielded weapon */
+	switch (P_SKILL(type)) {
+	    case P_EXPERT:	bonus =  1; break;
+	    case P_MASTER:	bonus =  2; break;
+	    case P_GRAND_MASTER:bonus =  3; break;
+	    default: bonus = 0; break;
+	}
+    }
+
+	if (weapon && weapon_type(weapon) == P_DAGGER && (P_SKILL(P_DAGGER) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon_type(weapon) == P_DAGGER && (P_SKILL(P_DAGGER) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon_type(weapon) == P_DAGGER && (P_SKILL(P_DAGGER) == P_MASTER) ) bonus += rnd(4);
+	if (weapon && weapon_type(weapon) == P_DAGGER && (P_SKILL(P_DAGGER) == P_GRAND_MASTER) ) bonus += rnd(6);
+
+	if (weapon && weapon->otyp == GREAT_DAGGER && (P_SKILL(P_DAGGER) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == GREAT_DAGGER && (P_SKILL(P_DAGGER) == P_EXPERT) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == GREAT_DAGGER && (P_SKILL(P_DAGGER) == P_MASTER) ) bonus += rnd(8);
+	if (weapon && weapon->otyp == GREAT_DAGGER && (P_SKILL(P_DAGGER) == P_GRAND_MASTER) ) bonus += rnd(14);
+
+	if (weapon && weapon->otyp == WOODEN_STAKE && (P_SKILL(P_DAGGER) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == WOODEN_STAKE && (P_SKILL(P_DAGGER) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == WOODEN_STAKE && (P_SKILL(P_DAGGER) == P_MASTER) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == WOODEN_STAKE && (P_SKILL(P_DAGGER) == P_GRAND_MASTER) ) bonus += rnd(8);
+
+	if (weapon && weapon_type(weapon) == P_KNIFE && (P_SKILL(P_KNIFE) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon_type(weapon) == P_KNIFE && (P_SKILL(P_KNIFE) == P_EXPERT) ) bonus += rnd(3);
+	if (weapon && weapon_type(weapon) == P_KNIFE && (P_SKILL(P_KNIFE) == P_MASTER) ) bonus += rnd(5);
+	if (weapon && weapon_type(weapon) == P_KNIFE && (P_SKILL(P_KNIFE) == P_GRAND_MASTER) ) bonus += rnd(9);
+
+	if (weapon && weapon->otyp == BATTLE_AXE && (P_SKILL(P_AXE) == P_SKILLED) ) bonus += rnd(8);
+	if (weapon && weapon->otyp == BATTLE_AXE && (P_SKILL(P_AXE) == P_EXPERT) ) bonus += rnd(16);
+	if (weapon && weapon->otyp == BATTLE_AXE && (P_SKILL(P_AXE) == P_MASTER) ) bonus += rnd(26);
+	if (weapon && weapon->otyp == BATTLE_AXE && (P_SKILL(P_AXE) == P_GRAND_MASTER) ) bonus += rnd(38);
+
+	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(8);
+	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(14);
+	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(20);
+	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(30);
+
+	if (weapon && weapon->otyp == PICK_AXE && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == PICK_AXE && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(8);
+	if (weapon && weapon->otyp == PICK_AXE && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == PICK_AXE && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(18);
+
+	if (weapon && weapon->otyp == TSURUGI && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(8);
+	if (weapon && weapon->otyp == TSURUGI && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(16);
+	if (weapon && weapon->otyp == TSURUGI && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(24);
+	if (weapon && weapon->otyp == TSURUGI && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(34);
+
+	if (weapon && weapon->otyp == TWO_HANDED_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(8);
+	if (weapon && weapon->otyp == TWO_HANDED_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(16);
+	if (weapon && weapon->otyp == TWO_HANDED_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(24);
+	if (weapon && weapon->otyp == TWO_HANDED_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(34);
+
+	if (weapon && weapon->otyp == GOLDEN_SABER && (P_SKILL(P_SABER) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == GOLDEN_SABER && (P_SKILL(P_SABER) == P_EXPERT) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == GOLDEN_SABER && (P_SKILL(P_SABER) == P_MASTER) ) bonus += rnd(7);
+	if (weapon && weapon->otyp == GOLDEN_SABER && (P_SKILL(P_SABER) == P_GRAND_MASTER) ) bonus += rnd(10);
+
+	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_EXPERT) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_MASTER) ) bonus += rnd(7);
+	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_GRAND_MASTER) ) bonus += rnd(10);
+
+	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SKILLED) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_EXPERT) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_MASTER) ) bonus += rnd(20);
+	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_GRAND_MASTER) ) bonus += rnd(30);
+
+	if (weapon && weapon_type(weapon) == P_POLEARMS && (P_SKILL(P_POLEARMS) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon_type(weapon) == P_POLEARMS && (P_SKILL(P_POLEARMS) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon_type(weapon) == P_POLEARMS && (P_SKILL(P_POLEARMS) == P_MASTER) ) bonus += rnd(4);
+	if (weapon && weapon_type(weapon) == P_POLEARMS && (P_SKILL(P_POLEARMS) == P_GRAND_MASTER) ) bonus += rnd(6);
+
+	if (weapon && weapon_type(weapon) == P_TRIDENT && (P_SKILL(P_TRIDENT) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon_type(weapon) == P_TRIDENT && (P_SKILL(P_TRIDENT) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon_type(weapon) == P_TRIDENT && (P_SKILL(P_TRIDENT) == P_MASTER) ) bonus += rnd(4);
+	if (weapon && weapon_type(weapon) == P_TRIDENT && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) bonus += rnd(6);
+
+	if (weapon && weapon_type(weapon) == P_LANCE && (P_SKILL(P_LANCE) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon_type(weapon) == P_LANCE && (P_SKILL(P_LANCE) == P_EXPERT) ) bonus += rnd(3);
+	if (weapon && weapon_type(weapon) == P_LANCE && (P_SKILL(P_LANCE) == P_MASTER) ) bonus += rnd(5);
+	if (weapon && weapon_type(weapon) == P_LANCE && (P_SKILL(P_LANCE) == P_GRAND_MASTER) ) bonus += rnd(9);
+
+	if (weapon && weapon_type(weapon) == P_WHIP && (P_SKILL(P_WHIP) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon_type(weapon) == P_WHIP && (P_SKILL(P_WHIP) == P_EXPERT) ) bonus += rnd(4);
+	if (weapon && weapon_type(weapon) == P_WHIP && (P_SKILL(P_WHIP) == P_MASTER) ) bonus += rnd(7);
+	if (weapon && weapon_type(weapon) == P_WHIP && (P_SKILL(P_WHIP) == P_GRAND_MASTER) ) bonus += rnd(10);
+
+    return bonus;
+}
+
+/*
+ * Return damage bonus for using ranged weapons. Added by Amy to make the later parts of the game less unplayable.
+ */
+int
+ranged_dam_bonus(weapon)
+struct obj *weapon;
+
+{
+    int bonus = 0;
+
+    if (!weapon) return 0;
+
+	if (weapon && weapon->otyp == GREAT_DAGGER && (P_SKILL(P_DAGGER) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == GREAT_DAGGER && (P_SKILL(P_DAGGER) == P_MASTER) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == GREAT_DAGGER && (P_SKILL(P_DAGGER) == P_GRAND_MASTER) ) bonus += rnd(12);
+
+	/* crysknife reverts when thrown, so give lots of extra damage if you still decide to throw it */
+	if (weapon && weapon->otyp == CRYSKNIFE && (P_SKILL(P_KNIFE) == P_SKILLED) ) bonus += rnd(16);
+	if (weapon && weapon->otyp == CRYSKNIFE && (P_SKILL(P_KNIFE) == P_EXPERT) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == CRYSKNIFE && (P_SKILL(P_KNIFE) == P_MASTER) ) bonus += rnd(50);
+	if (weapon && weapon->otyp == CRYSKNIFE && (P_SKILL(P_KNIFE) == P_GRAND_MASTER) ) bonus += rnd(80);
+
+	if (weapon && weapon->otyp == SPIRIT_THROWER && (P_SKILL(P_JAVELIN) == P_SKILLED) ) bonus += rnd(8);
+	if (weapon && weapon->otyp == SPIRIT_THROWER && (P_SKILL(P_JAVELIN) == P_EXPERT) ) bonus += rnd(14);
+	if (weapon && weapon->otyp == SPIRIT_THROWER && (P_SKILL(P_JAVELIN) == P_MASTER) ) bonus += rnd(20);
+	if (weapon && weapon->otyp == SPIRIT_THROWER && (P_SKILL(P_JAVELIN) == P_GRAND_MASTER) ) bonus += rnd(30);
+
+	if (weapon && weapon->otyp == TORPEDO && (P_SKILL(P_JAVELIN) == P_SKILLED) ) bonus += rnd(14);
+	if (weapon && weapon->otyp == TORPEDO && (P_SKILL(P_JAVELIN) == P_EXPERT) ) bonus += rnd(24);
+	if (weapon && weapon->otyp == TORPEDO && (P_SKILL(P_JAVELIN) == P_MASTER) ) bonus += rnd(36);
+	if (weapon && weapon->otyp == TORPEDO && (P_SKILL(P_JAVELIN) == P_GRAND_MASTER) ) bonus += rnd(50);
+
+	if (weapon && weapon->otyp == SHURIKEN && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
+	if (weapon && weapon->otyp == SHURIKEN && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += 2;
 
     return bonus;
 }

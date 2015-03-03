@@ -1525,6 +1525,9 @@ int thrown;
 	    /* to be valid a projectile must have had the correct projector */
 	    wep = PROJECTILE(obj) ? launcher : obj;
 	    tmp += weapon_dam_bonus(wep);
+	    if (!thrown) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
+	    if (thrown) tmp += ranged_dam_bonus(wep);	/* ditto */
+
 	    /* [this assumes that `!thrown' implies wielded...] */
 	    wtype = weapon_type(wep);
 	    if (thrown || !u.twoweap || !rn2(2)) use_skill(wtype, 1);

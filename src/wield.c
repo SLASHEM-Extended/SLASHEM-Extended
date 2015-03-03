@@ -260,7 +260,7 @@ boolean put_away;
 /*** Commands to change particular slot(s) ***/
 
 static NEARDATA const char wield_objs[] =
-	{ ALL_CLASSES, ALLOW_NONE, WEAPON_CLASS, TOOL_CLASS, 0 };
+	{ ALL_CLASSES, ALLOW_NONE, WEAPON_CLASS, TOOL_CLASS, BALL_CLASS, CHAIN_CLASS, 0 };
 static NEARDATA const char ready_objs[] =
 	{ ALL_CLASSES, ALLOW_NONE, WEAPON_CLASS, 0 };
 static NEARDATA const char bullets[] =	/* (note: different from dothrow.c) */
