@@ -118,7 +118,7 @@ MAKEFLAGS += --no-builtin-rules
 	$(CC) $(CFLAGS) $(CPPFLAGS) -MMD -MP -c -o $@ $<
 
 %.d:
-	$(CC) $(CFLAGS) $(CPPFLAGS) -MM -MP -MG -MT $*.o -MF $@ $*.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -MM -MP -MG -MT $*.o -MF $*.d $*.c
 
 ALL_D = $(ALL_O:%.o=%.d)
 -include $(ALL_D)
