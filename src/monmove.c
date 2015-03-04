@@ -676,7 +676,7 @@ toofar:
 		&& !Is_blackmarket(&u.uz)
 #endif
 	)) {
-	    if(inrange && !noattacks(mdat) && u.uhp > 0 && !scared && tmp != 3)
+	    if(/*inrange && */!noattacks(mdat) && u.uhp > 0 && !scared && tmp != 3)
 		if(mattacku(mtmp)) return(1); /* monster died (e.g. exploded) */
 
 	    if(mtmp->wormno) wormhitu(mtmp);

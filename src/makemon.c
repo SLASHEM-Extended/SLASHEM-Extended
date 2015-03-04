@@ -677,7 +677,7 @@ register struct monst *mtmp;
 		  	  m_initthrow(mtmp, BULLET, 25);
 		  	  m_initthrow(mtmp, BULLET, 25);
 			  w2 = rn2(2) ? KNIFE : DAGGER;
-			  (void) mongets(mtmp, FRAG_GRENADE);
+			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
 			  break;
 #endif
 			case PM_WATCHMAN:
@@ -712,10 +712,10 @@ register struct monst *mtmp;
 			  	m_initthrow(mtmp, BULLET, 30);
 			  }
 			  w2 = rn2(2) ? KNIFE : DAGGER;
-			  if (rn2(2)) {
+			  if (!rn2(4)) {
 			  	(void) mongets(mtmp, FRAG_GRENADE);
 			  	(void) mongets(mtmp, FRAG_GRENADE);
-			  } else {
+			  } else if (!rn2(4)) {
 			  	(void) mongets(mtmp, GAS_GRENADE);
 			  	(void) mongets(mtmp, GAS_GRENADE);
 			  }
@@ -733,12 +733,13 @@ register struct monst *mtmp;
 			  	m_initthrow(mtmp, BULLET, 30);
 			  }
 			  w2= rn2(2) ? DAGGER : KNIFE;
-			  if (rn2(2)) {
+			  if (!rn2(5)) {
 			  	m_initthrow(mtmp, FRAG_GRENADE, 5);
-			  } else {
+				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
+			  } else if (!rn2(5)) {
 			  	m_initthrow(mtmp, GAS_GRENADE, 5);
+				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
 			  }
-			  if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
 			  break;
 #endif
 #ifdef YEOMAN
@@ -769,7 +770,7 @@ register struct monst *mtmp;
 			  if (rn2(2)) {
 				  w2 = ROCKET_LAUNCHER;
 			  	  m_initthrow(mtmp, ROCKET, 5);
-			  } else if (rn2(2)) {
+			  } else if (!rn2(4)) {
 				  (void) mongets(mtmp, GRENADE_LAUNCHER);			  
 			  	  m_initthrow(mtmp, 
 			  	  	(rn2(2) ? FRAG_GRENADE : GAS_GRENADE), 
@@ -5041,7 +5042,7 @@ register struct monst *mtmp;
 		  	  m_initthrow(mtmp, BULLET, 25);
 		  	  m_initthrow(mtmp, BULLET, 25);
 			  (void) mongets(mtmp, rn2(2) ? KNIFE : DAGGER);
-			  (void) mongets(mtmp, FRAG_GRENADE);
+			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
 			  break;
 #endif
 			case PM_LEGION_DEVIL_SOLDIER:
@@ -5060,10 +5061,10 @@ register struct monst *mtmp;
 			  	m_initthrow(mtmp, BULLET, 30);
 			  }
 			  (void) mongets(mtmp, rn2(2) ? KNIFE : DAGGER);
-			  if (rn2(2)) {
+			  if (!rn2(4)) {
 			  	(void) mongets(mtmp, FRAG_GRENADE);
 			  	(void) mongets(mtmp, FRAG_GRENADE);
-			  } else {
+			  } else if (!rn2(4)) {
 			  	(void) mongets(mtmp, GAS_GRENADE);
 			  	(void) mongets(mtmp, GAS_GRENADE);
 			  }
@@ -5084,12 +5085,13 @@ register struct monst *mtmp;
 			  	m_initthrow(mtmp, BULLET, 30);
 			  }
 			  (void) mongets(mtmp, rn2(2) ? DAGGER : KNIFE);
-			  if (rn2(2)) {
+			  if (!rn2(5)) {
 			  	m_initthrow(mtmp, FRAG_GRENADE, 5);
-			  } else {
+			  	if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
+			  } else if (!rn2(5)) {
 			  	m_initthrow(mtmp, GAS_GRENADE, 5);
+			  	if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
 			  }
-			  if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
 			  break;
 #endif
 			case PM_LEGION_DEVIL_CAPTAIN:
@@ -5113,7 +5115,7 @@ register struct monst *mtmp;
 			  if (rn2(2)) {
 				  (void) mongets(mtmp, ROCKET_LAUNCHER);
 			  	  m_initthrow(mtmp, ROCKET, 5);
-			  } else if (rn2(2)) {
+			  } else if (!rn2(4)) {
 				  (void) mongets(mtmp, GRENADE_LAUNCHER);			  
 			  	  m_initthrow(mtmp, 
 			  	  	(rn2(2) ? FRAG_GRENADE : GAS_GRENADE), 

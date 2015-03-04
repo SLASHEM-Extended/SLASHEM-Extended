@@ -658,7 +658,7 @@ struct monst *mtmp;
 	/* WAC Catch this since rn2(0) is illegal */
 	chance = (BOLT_LIM - distmin(x,y,mtmp->mux,mtmp->muy) > 0) ?
 		BOLT_LIM - distmin(x,y,mtmp->mux,mtmp->muy) : 1;
-	if (!lined_up(mtmp) || (URETREATING(x,y) && rn2(chance)))
+	if (!lined_upB(mtmp) || (URETREATING(x,y) && rn2(chance)))
 	    return;
 
 	skill = objects[otmp->otyp].oc_skill;
@@ -666,8 +666,12 @@ struct monst *mtmp;
 
 	if (ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range &&
 		dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) >
-		objects[mwep->otyp].oc_range * objects[mwep->otyp].oc_range)
-	    return; /* Out of range */
+		objects[mwep->otyp].oc_range * objects[mwep->otyp].oc_range) 
+		return; /* Out of range */
+
+	/* monsters were throwing darts way across the map, that is, distances of 70+ squares.
+	 * This was obviously not intended; they should just be able to fire sniper rifles at their actual range. --Amy */
+	else if ( !(ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) > ((BOLT_LIM + strongmonst(mtmp->data) ) * (BOLT_LIM + strongmonst(mtmp->data) )) ) return;
 
 	/* Multishot calculations */
 	multishot = 1;
@@ -969,10 +973,36 @@ register xchar ax, ay, bx, by;
 }
 
 boolean
+linedupB(ax, ay, bx, by) /* without the distance check --Amy */
+register xchar ax, ay, bx, by;
+{
+	tbx = ax - bx;	/* These two values are set for use */
+	tby = ay - by;	/* after successful return.	    */
+
+	/* sometimes displacement makes a monster think that you're at its
+	   own location; prevent it from throwing and zapping in that case */
+	if (!tbx && !tby) return FALSE;
+
+	if((!tbx || !tby || abs(tbx) == abs(tby))) /* straight line or diagonal */
+	{
+	    if(ax == u.ux && ay == u.uy) return((boolean)(couldsee(bx,by)));
+	    else if(clear_path(ax,ay,bx,by)) return TRUE;
+	}
+	return FALSE;
+}
+
+boolean
 lined_up(mtmp)		/* is mtmp in position to use ranged attack? */
 	register struct monst *mtmp;
 {
 	return(linedup(mtmp->mux,mtmp->muy,mtmp->mx,mtmp->my));
+}
+
+boolean
+lined_upB(mtmp)		/* is mtmp in position to use ranged attack? */
+	register struct monst *mtmp;
+{
+	return(linedupB(mtmp->mux,mtmp->muy,mtmp->mx,mtmp->my));
 }
 
 #endif /* OVL1 */

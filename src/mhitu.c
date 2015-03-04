@@ -1023,7 +1023,7 @@ mattacku(mtmp)
 		case AT_HUGS:	/* automatic if prev two attacks succeed */
 			/* Note: if displaced, prev attacks never succeeded */
 		/* Note by Amy: come on, allow it to hit sometimes even if there are no previous attacks (shambling horror)! */
-		                if((!range2 && i>=2 && sum[i-1] && sum[i-2]) || mtmp == u.ustuck || !rn2(20) )
+		                if((!range2 && i>=2 && sum[i-1] && sum[i-2]) || mtmp == u.ustuck || (!rn2(20) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM) ) )
 				sum[i]= hitmu(mtmp, mattk);
 		/* This has the side effect of AT_HUGS hitting from far away. I decided to declare this "bug" a feature. */
 			break;
