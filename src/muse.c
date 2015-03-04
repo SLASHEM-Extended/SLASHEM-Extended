@@ -3089,9 +3089,9 @@ struct monst *mtmp;
 			m.misc = obj;
 			m.has_misc = MUSE_POT_SPEED;
 		}
-		nomore(MUSE_WAN_POLYMORPH);
+		nomore(MUSE_WAN_POLYMORPH);	/* will also be used if high-level monster is low on health --Amy */
 		if(obj->otyp == WAN_POLYMORPH && obj->spe > 0 && !mtmp->cham
-				&& monstr[monsndx(mdat)] < 6) {
+				&& ((monstr[monsndx(mdat)] < 6) || (mtmp->mhp*3 < mtmp->mhpmax) ) ) {
 			m.misc = obj;
 			m.has_misc = MUSE_WAN_POLYMORPH;
 		}
@@ -3100,9 +3100,9 @@ struct monst *mtmp;
 			m.misc = obj;
 			m.has_misc = MUSE_WAN_CLONE_MONSTER;
 		}
-		nomore(MUSE_POT_POLYMORPH);
+		nomore(MUSE_POT_POLYMORPH);	/* will also be used if high-level monster is low on health --Amy */
 		if(obj->otyp == POT_POLYMORPH && !mtmp->cham
-				&& monstr[monsndx(mdat)] < 6) {
+				&& ((monstr[monsndx(mdat)] < 6) || (mtmp->mhp*3 < mtmp->mhpmax) ) ) {
 			m.misc = obj;
 			m.has_misc = MUSE_POT_POLYMORPH;
 		}
