@@ -25,6 +25,8 @@ CFLAGS = -g -O2
 
 CPPFLAGS += -Iinclude
 CPPFLAGS += -DDLB
+CPPFLAGS += -DDLBFILE=\"nhdat\"
+CPPFLAGS += -DDLBAREA=FILE_AREA_SHARE
 
 GAMELIBS = -lncurses
 
@@ -34,12 +36,12 @@ LOCAL_MK = local.mk
 .DELETE_ON_ERROR:
 .PHONY: all install slave clean cleandeps
 
-all: src/$(GAME) dat/nhshare dat/nhushare dat/license
+all: src/$(GAME) dat/nhdat dat/license
 
 install: all $(if $(MASTERDIR),slave)
 	$(INSTALL_DIR) $(GAMEDIR)
 	$(INSTALL_GAME) src/$(GAME) $(GAMEDIR)
-	$(INSTALL_DATA) dat/nhshare dat/nhushare dat/license $(GAMEDIR)
+	$(INSTALL_DATA) dat/nhdat dat/license $(GAMEDIR)
 	$(INSTALL_VARDIR) $(VARDIR) $(VARDIR)/save
 	$(call TOUCH_VARDATA,$(VARDIR)/perm)
 	$(call TOUCH_VARDATA,$(VARDIR)/record)
@@ -214,16 +216,11 @@ $(ALL_TAG): dat/%.tag: dat/%.des util/lev_comp
 	cd dat && ../util/lev_comp $(<F) && touch $(@F)
 AUTO_DAT += $(ALL_TAG)
 
-DAT_NHSHARE = cmdhelp data gypsy.txt help hh history opthelp options	\
-              oracles quest.dat rumors wizhelp
-dat/nhshare: util/dlb $(DAT_NHSHARE:%=dat/%)
-	cd dat && ../util/dlb cf nhshare $(DAT_NHSHARE)
-AUTO_DAT += dat/nhshare
-
-DAT_NHUSHARE = dungeon
-dat/nhushare: util/dlb $(DAT_NHUSHARE:%=dat/%) $(ALL_TAG)
-	cd dat && ../util/dlb cf nhushare $(DAT_NHUSHARE) *.lev
-AUTO_DAT += dat/nhushare
+DAT_NHDAT = cmdhelp data dungeon gypsy.txt help hh history opthelp	\
+              options oracles quest.dat rumors wizhelp
+dat/nhdat: util/dlb $(DAT_NHDAT:%=dat/%) $(ALL_TAG)
+	cd dat && ../util/dlb cf nhdat $(DAT_NHDAT) *.lev
+AUTO_DAT += dat/nhdat
 
 dat/data: dat/data.base util/makedefs
 	cd util && ./makedefs -d  # dat/data
