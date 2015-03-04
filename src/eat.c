@@ -2016,6 +2016,12 @@ register int pm;
 		  }
 		}
 
+	/* luck is also harder to get; eating luck-reducing monsters sometimes grants a boost --Amy */
+		if (dmgtype(ptr, AD_LUCK) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 105 : 35) && rn2(4) ) ) {
+			change_luck(1);
+			pline("You feel lucky.");
+		}
+
 		 count = 0;	/* number of possible intrinsics */
 		 tmp = 0;	/* which one we will try to give */
 		 for (i = 1; i <= LAST_PROP; i++) {
@@ -3367,9 +3373,27 @@ register struct obj *otmp;
 		}
 		break;
 	    case FORTUNE_COOKIE:
+
+		if (rn2(2)) {	/* sometimes change the player's luck --Amy */
+
+			pline("You feel your luck is turning...");
+	
+			if (bcsign(otmp) == -1)	change_luck(-1);
+			else if (bcsign(otmp) == 0) change_luck(rn2(2) ? -1 : 1);
+			else if (bcsign(otmp) == 1) change_luck(1);
+
+		}
+
 	    	if (yn("Read the fortune?") == 'y') {
-		outrumor(bcsign(otmp), BY_COOKIE);
-		if (!Blind) u.uconduct.literate++;
+
+			/* reading it might influence your luck --Amy */
+
+			if (bcsign(otmp) == -1)	change_luck(-1);
+			else if (rn2(2) && bcsign(otmp) == 0) change_luck(1);
+			else if (bcsign(otmp) == 1) change_luck(1);
+
+			outrumor(bcsign(otmp), BY_COOKIE);
+			if (!Blind) u.uconduct.literate++;
 		}
 		break;
 /* STEHPEN WHITE'S NEW CODE */            
@@ -3425,6 +3449,13 @@ register struct obj *otmp;
 
 	if (!rn2(25)) { /* more random fortunes --Amy */
 		if (yn("Somehow, a strip of paper appeared in your food! Read it?") == 'y') {
+
+		/* reading it will influence the player's luck --Amy */
+
+		if (bcsign(otmp) == -1)	change_luck(-1);
+		else if (rn2(2) && bcsign(otmp) == 0) change_luck(1);
+		else if (bcsign(otmp) == 1) change_luck(1);
+
 		outrumor(bcsign(otmp), BY_PAPER);
 		if (!Blind) u.uconduct.literate++;
 		}
