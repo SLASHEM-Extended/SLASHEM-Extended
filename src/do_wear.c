@@ -2081,14 +2081,37 @@ find_ac()
 	}
 
 	/* A higher-level player will have a small AC boost to compensate for monsters being more dangerous. --Amy */
-    if (u.ulevel >= 5) uac -= 1;
-    if (u.ulevel >= 10) uac -= 1;
-    if (u.ulevel >= 15) uac -= 1;
-    if (u.ulevel >= 20) uac -= 1;
-    if (u.ulevel >= 25) uac -= 1;
-    if (u.ulevel >= 30) uac -= 1;
+	if (u.ulevel >= 5) uac -= 1;
+	if (u.ulevel >= 10) uac -= 1;
+	if (u.ulevel >= 15) uac -= 1;
+	if (u.ulevel >= 20) uac -= 1;
+	if (u.ulevel >= 25) uac -= 1;
+	if (u.ulevel >= 30) uac -= 1;
 
 	/* After all, a couatl or archon can still hit a -40 AC player without any problems... */
+
+	/* bonus for wearing racial armor */
+
+	if (Race_if(PM_DWARF) && uarm && uarm->otyp == DWARVISH_MITHRIL_COAT) uac -= 1;
+	if (Race_if(PM_DROW) && uarm && uarm->otyp == DARK_ELVEN_MITHRIL_COAT) uac -= 1;
+	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarm && uarm->otyp == ELVEN_MITHRIL_COAT) uac -= 1;
+	if (Race_if(PM_GNOME) && uarm && uarm->otyp == GNOMISH_SUIT) uac -= 2;
+	if (Race_if(PM_ORC) && uarm && (uarm->otyp == ORCISH_CHAIN_MAIL || uarm->otyp == ORCISH_RING_MAIL) ) uac -= 1;
+
+	if (Race_if(PM_ORC) && uarmc && uarmc->otyp == ORCISH_CLOAK ) uac -= 1;
+	if (Race_if(PM_DWARF) && uarmc && uarmc->otyp == DWARVISH_CLOAK ) uac -= 1;
+	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmc && uarmc->otyp == ELVEN_CLOAK) uac -= 1;
+
+	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmh && uarmh->otyp == ELVEN_LEATHER_HELM) uac -= 1;
+	if (Race_if(PM_GNOME) && uarmh && uarmh->otyp == GNOMISH_HELM) uac -= 2;
+	if (Race_if(PM_ORC) && uarmh && uarmh->otyp == ORCISH_HELM) uac -= 1;
+	if (Race_if(PM_DWARF) && uarmh && uarmh->otyp == DWARVISH_IRON_HELM) uac -= 1;
+
+	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarms && uarms->otyp == ELVEN_SHIELD) uac -= 1;
+	if (Race_if(PM_ORC) && uarms && (uarms->otyp == ORCISH_SHIELD || uarms->otyp == URUK_HAI_SHIELD) ) uac -= 1;
+	if (Race_if(PM_DWARF) && uarms && uarms->otyp == DWARVISH_ROUNDSHIELD) uac -= 1;
+
+	if (Race_if(PM_GNOME) && uarmf && uarmf->otyp == GNOMISH_BOOTS) uac -= 2;
 
 	if(uac != u.uac){
 		u.uac = uac;

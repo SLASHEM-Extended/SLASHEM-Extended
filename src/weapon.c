@@ -2167,6 +2167,15 @@ struct obj *weapon;
 	if (u.ulevel >= 20) bonus += 1;
 	if (u.ulevel >= 30) bonus += 1;
 
+	/* damage bonus for using racial equipment */
+
+	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && weapon && (weapon->otyp == ELVEN_DAGGER || weapon->otyp == ELVEN_BOW || weapon->otyp == ELVEN_ARROW || weapon->otyp == ELVEN_SPEAR || weapon->otyp == ELVEN_SHORT_SWORD || weapon->otyp == ELVEN_BROADSWORD) ) bonus += 1;
+	if (Race_if(PM_DROW) && weapon && (weapon->otyp == DARK_ELVEN_DAGGER || weapon->otyp == DROVEN_CROSSBOW || weapon->otyp == DROVEN_BOLT || weapon->otyp == DROVEN_BOW || weapon->otyp == DROVEN_ARROW || weapon->otyp == DARK_ELVEN_ARROW || weapon->otyp == DARK_ELVEN_BOW || weapon->otyp == DARK_ELVEN_SHORT_SWORD) ) bonus += 1;
+	if (Race_if(PM_ORC) && weapon && (weapon->otyp == ORCISH_DAGGER || weapon->otyp == ORCISH_BOW || weapon->otyp == ORCISH_ARROW || weapon->otyp == ORCISH_SPEAR || weapon->otyp == ORCISH_SHORT_SWORD ) ) bonus += 1;
+	if (Race_if(PM_DWARF) && weapon && (weapon->otyp == DWARVISH_SHORT_SWORD || weapon->otyp == DWARVISH_SPEAR) ) bonus += 1;
+	if (Race_if(PM_GNOME) && weapon && (weapon->otyp == AKLYS || weapon->otyp == CROSSBOW || weapon->otyp == CROSSBOW_BOLT) ) bonus += 1;
+	if (Race_if(PM_HOBBIT) && weapon && (weapon->otyp == SLING || weapon_type(weapon) == -P_SLING) ) bonus += 1;
+
     return bonus;
 }
 
