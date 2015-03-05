@@ -451,7 +451,7 @@ boolean artif;
 		otmp->known = 1;
 #ifdef INVISIBLE_OBJECTS
 	otmp->oinvis = !always_visible(otmp) && \
-		(otmp->otyp != BOULDER || !In_sokoban(&u.uz)) && !rn2(1250);
+		/*(otmp->otyp != BOULDER || !In_sokoban(&u.uz)) && */ !rn2(1250);
 #endif
 	if (init) switch (let) {
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */                   
