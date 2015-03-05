@@ -48,6 +48,67 @@ const char *name;	/* if null, then format `obj' */
 	int kprefix = KILLED_BY_AN;
 	char onmbuf[BUFSZ], knmbuf[BUFSZ];
 
+	int shieldblockrate = 0;
+
+	if (uarms) {
+
+		switch (uarms->otyp) {
+
+		case SMALL_SHIELD:
+			shieldblockrate = 20;
+			break;
+		case ELVEN_SHIELD:
+			shieldblockrate = 30;
+			if (Race_if(PM_ELF) || Race_if(PM_DROW) || Role_if(PM_ELPH)) shieldblockrate += 5;
+			break;
+		case URUK_HAI_SHIELD:
+			shieldblockrate = 32;
+			if (Race_if(PM_ORC)) shieldblockrate += 5;
+			break;
+		case ORCISH_SHIELD:
+			shieldblockrate = 28;
+			if (Race_if(PM_ORC)) shieldblockrate += 5;
+			break;
+		case DWARVISH_ROUNDSHIELD:
+			shieldblockrate = 34;
+			if (Race_if(PM_DWARF)) shieldblockrate += 5;
+			break;
+		case LARGE_SHIELD:
+			shieldblockrate = 35;
+			break;
+		case STEEL_SHIELD:
+			shieldblockrate = 40;
+			break;
+		case SHIELD_OF_REFLECTION:
+			shieldblockrate = 35;
+			break;
+		case FLAME_SHIELD:
+			shieldblockrate = 40;
+			break;
+		case ICE_SHIELD:
+			shieldblockrate = 40;
+			break;
+		case LIGHTNING_SHIELD:
+			shieldblockrate = 40;
+			break;
+		case VENOM_SHIELD:
+			shieldblockrate = 40;
+			break;
+		case SHIELD_OF_LIGHT:
+			shieldblockrate = 40;
+			break;
+		case SHIELD_OF_MOBILITY:
+			shieldblockrate = 40;
+			break;
+		default: impossible("Unknown type of shield (%d)", uarms->otyp);
+
+		}
+
+		if (uarms->cursed) shieldblockrate /= 2;
+		if (uarms->blessed) shieldblockrate += 5;
+
+	}
+
 	if (!name) {
 	    if (!obj) panic("thitu: name & obj both null?");
 	    name = strcpy(onmbuf,
@@ -74,6 +135,14 @@ const char *name;	/* if null, then format `obj' */
 		if(Blind || !flags.verbose) pline("Your armor deflects a projectile.");
 		else You("deflect %s with your armor.", onm);
 		return(0);
+
+	} else if (rnd(100) < shieldblockrate) {
+
+			/* a good shield allows you to block projectiles --Amy */
+			if(Blind || !flags.verbose) pline("You block a projectile with your shield.");
+			else You("block %s with your shield.", onm);
+			return(0);
+
 #ifdef JEDI
 	} else if (Role_if(PM_JEDI) && uwep && is_lightsaber(uwep) &&
 		uwep->lamplit && P_SKILL(weapon_type(uwep)) >= P_SKILLED &&
@@ -82,6 +151,13 @@ const char *name;	/* if null, then format `obj' */
 		You("dodge %s with %s.", onm, yname(uwep));
 		return(0);
 #endif
+	} else if (rnd(30) < (2 + (u.ulevel / 2) ) ) {
+
+			/* depending on your character level, you may be able to dodge --Amy */
+			if(Blind || !flags.verbose) pline("You dodge a projectile.");
+			else You("dodge %s.", onm);
+			return(0);
+
 	} else {
 		if(Blind || !flags.verbose) You("are hit!");
 		else You("are hit by %s%s", onm, exclam(dam));
