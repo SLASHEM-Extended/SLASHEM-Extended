@@ -51,6 +51,12 @@ static long nulls[10];
 #define HUP
 #endif
 
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+extern const struct percent_color_option *hp_colors;
+extern const struct percent_color_option *pw_colors;
+extern const struct text_color_option *text_colors;
+#endif
+
 #ifdef MENU_COLOR
 extern struct menucoloring *menu_colorings;
 #endif
@@ -1141,6 +1147,36 @@ register int fd, mode;
 	    ffruit = 0;
 }
 
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+
+void
+free_percent_color_options(list_head)
+const struct percent_color_option *list_head;
+{
+	if (list_head == NULL) return;
+	free_percent_color_options(list_head->next);
+	free(list_head);
+}
+
+void
+free_text_color_options(list_head)
+const struct text_color_option *list_head;
+{
+	if (list_head == NULL) return;
+	free_text_color_options(list_head->next);
+	free(list_head->text);
+	free(list_head);
+}
+
+void
+free_status_colors()
+{
+	free_percent_color_options(hp_colors); hp_colors = NULL;
+	free_percent_color_options(pw_colors); pw_colors = NULL;
+	free_text_color_options(text_colors); text_colors = NULL;
+}
+#endif
+
 /* also called by prscore(); this probably belongs in dungeon.c... */
 /*
  * [ALI] Also called by init_dungeons() for the sake of the GTK interface
@@ -1180,6 +1216,9 @@ free_menu_coloring()
 void
 freedynamicdata()
 {
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+	free_status_colors();
+#endif
 	unload_qtlist();
 	free_invbuf();	/* let_to_name (invent.c) */
 	free_youbuf();	/* You_buf,&c (pline.c) */
