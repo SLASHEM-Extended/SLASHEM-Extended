@@ -675,20 +675,25 @@ set_bonesfile_name(file, lev)
 char *file;
 d_level *lev;
 {
+	static char bonesid[16]; 
 	s_level *sptr;
 	char *dptr;
 
-	Sprintf(file, "bon%c%s", dungeons[lev->dnum].boneid,
+	Sprintf(bonesid, "%c%s", dungeons[lev->dnum].boneid,
 			In_quest(lev) ? urole.filecode : "0");
-	dptr = eos(file);
+	dptr = eos(bonesid);
 	if ((sptr = Is_special(lev)) != 0)
 	    Sprintf(dptr, ".%c", sptr->boneid);
 	else
 	    Sprintf(dptr, ".%d", lev->dlevel);
-#ifdef VMS
-	Strcat(dptr, ";1");
+	Sprintf(file, "bon%s", bonesid); 
+#ifdef BONES_POOL 
+	Sprintf(eos(file), ".%d", (u.ubirthday % 10)); 
 #endif
-	return(dptr-2);
+#ifdef VMS
+	Strcat(file, ";1");
+#endif
+	return(bonesid);
 }
 
 /* set up temporary file name for writing bones, to avoid another game's
