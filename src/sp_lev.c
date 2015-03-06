@@ -345,7 +345,7 @@ rndtrap()
 				break;
 	     case TRAPDOOR:	if (!Can_dig_down(&u.uz)) rtrap = ROCKTRAP;
 				break;
-	     case LEVEL_TELEP:	if (level.flags.noteleport) rtrap = ANTI_MAGIC;
+	     case LEVEL_TELEP:	if (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) )  rtrap = ANTI_MAGIC;
 				break;
 	     case TELEP_TRAP:	if (level.flags.noteleport) rtrap = SQKY_BOARD;
 				break;

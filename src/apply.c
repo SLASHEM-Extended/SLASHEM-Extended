@@ -3386,6 +3386,8 @@ wand_explode(obj, hero_broke)
 	    if ((obj->spe > 2) && rn2(obj->spe - 2) && !level.flags.noteleport &&
 		    !u.uswallow && !On_stairs(u.ux, u.uy) && (!IS_FURNITURE(levl[u.ux][u.uy].typ) &&
 		    !IS_ROCK(levl[u.ux][u.uy].typ) &&
+		    !Is_knox(&u.uz) && !Is_blackmarket(&u.uz) && !Is_aligned_quest(&u.uz) &&
+		    !In_endgame(&u.uz) && !In_sokoban(&u.uz) &&
 		    !closed_door(u.ux, u.uy) && !t_at(u.ux, u.uy))) {
 
 			struct trap *ttmp;

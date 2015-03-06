@@ -1181,7 +1181,7 @@ int spellnum;
 				if (rtrap == HOLE) rtrap = PIT;
 				if (rtrap == MAGIC_PORTAL) rtrap = PIT;
 				if (rtrap == TRAPDOOR && !Can_dig_down(&u.uz)) rtrap = PIT;
-				if (rtrap == LEVEL_TELEP && level.flags.noteleport) rtrap = SQKY_BOARD;
+				if (rtrap == LEVEL_TELEP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) rtrap = SQKY_BOARD;
 				if (rtrap == TELEP_TRAP && level.flags.noteleport) rtrap = SQKY_BOARD;
 				if (rtrap == ROLLING_BOULDER_TRAP) rtrap = ROCKTRAP;
 				if (rtrap == NO_TRAP) rtrap = ARROW_TRAP;

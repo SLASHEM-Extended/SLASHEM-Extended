@@ -2023,7 +2023,7 @@ coord *tm;
 		    case SLP_GAS_TRAP:
 			/* if (lvl < 2) kind = NO_TRAP; */ break;
 		    case LEVEL_TELEP:
-			if (level.flags.noteleport) kind = ANTI_MAGIC; break;
+			if (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) kind = ANTI_MAGIC; break;
 		    case SPIKED_PIT:
 			/* if (lvl < 5) kind = NO_TRAP; */ break;
 		    case LANDMINE:
