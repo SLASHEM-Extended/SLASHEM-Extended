@@ -554,7 +554,7 @@ bot2str(char *newbot2)
 		nb = newbot2;
 
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	Strcat(nb = eos(newbot2), " HP");
+	Strcat(nb = eos(newbot2), "HP");
 	curs(WIN_STATUS, 1, 1);
 	putstr(WIN_STATUS, 0, newbot2);
 	flags.botlx = 0;
@@ -562,7 +562,7 @@ bot2str(char *newbot2)
 	Sprintf(nb = eos(nb), "%d(%d)", hp, hpmax);
 	apply_color_option(percentage_color_of(hp, hpmax, hp_colors), newbot2);
 #else
-	Sprintf(nb = eos(nb), " HP%d(%d)", hp, hpmax);
+	Sprintf(nb = eos(nb), "HP%d(%d)", hp, hpmax);
 #endif
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	Strcat(nb = eos(nb), " Pw");
@@ -597,7 +597,7 @@ bot2str(char *newbot2)
 #endif
 
 	if(flags.time && bot2_abbrev < 3)
-	        Sprintf(nb = eos(nb), " T%ld ", moves);
+	        Sprintf(nb = eos(nb), " T%ld", moves);
 
 #ifdef REALTIME_ON_BOTL
   if(iflags.showrealtime) {
@@ -854,11 +854,12 @@ const char *str;
 unsigned int len;
 {
     static char cbuf[MAXCO];
-    for(bot2_abbrev = 1; bot2_abbrev <= 4; bot2_abbrev++) {
+    /*for(bot2_abbrev = 1; bot2_abbrev <= 4; bot2_abbrev++) {
 	bot2str(cbuf);
 	if (strlen(cbuf) <= len)
 	    break;
-    }
+    }*/
+    bot2_abbrev = 5;
     if (bot2_abbrev > 4)
 	cbuf[len] = '\0';	/* If all else fails, truncate the line */
     bot2_abbrev = 0;
