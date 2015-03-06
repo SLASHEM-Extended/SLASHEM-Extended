@@ -204,6 +204,8 @@ int thrown;
 		if (skill == P_SLING) {multishot++;
 		if (P_SKILL(weapon_type(obj)) >= P_SKILLED) multishot++;
 		if (P_SKILL(weapon_type(obj)) >= P_EXPERT) multishot++;
+		if (P_SKILL(weapon_type(obj)) >= P_MASTER) multishot++;
+		if (P_SKILL(weapon_type(obj)) >= P_GRAND_MASTER) multishot++;
 		}
 		break;
 	    case PM_ELPH: /* elf role --Amy */
@@ -227,6 +229,9 @@ int thrown;
 		if (obj->otyp == ORCISH_ARROW && uwep &&
 				uwep->otyp == ORCISH_BOW) multishot++;
 		break;
+	    case PM_HOBBIT:	/* slings are retarded weapons according to Jacob Black, so a little bonus is in order... --Amy */
+		if (skill == P_SLING) multishot++;
+		break;
 	    default:
 		break;	/* No bonus */
 	    }
@@ -239,7 +244,7 @@ int thrown;
 	       
 	    /* Tech: Flurry */
 	    if ( (objects[obj->otyp].oc_skill == -P_BOW || objects[obj->otyp].oc_skill == -P_CROSSBOW || objects[obj->otyp].oc_skill == -P_SLING) && tech_inuse(T_FLURRY)) {
-		multishot += 1; /* Let'em rip! */
+		multishot += 1; multishot += rnd(multishot); /* Let'em rip! Extra bonus added by Amy. */
 
 		/* more than usual == volley */
 		if (((shotlimit <= 0) || (shotlimit >= multishot)) && 
