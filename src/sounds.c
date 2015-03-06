@@ -553,7 +553,7 @@ int lev;
     if (verb) {
 	pline("%s %s%c", Monnam(mtmp), vtense((char *)0, verb),
 		lev>1?'!':'.');
-	if (flags.run) nomul(0);
+	if (flags.run) nomul(0, 0);
 	wake_nearto(mtmp->mx,mtmp->my,mtmp->data->mlevel*6*lev);
     }
 }
@@ -935,7 +935,7 @@ register struct monst *mtmp;
 	case MS_BONES:
 	    pline("%s rattles noisily.", Monnam(mtmp));
 	    You("freeze for a moment.");
-	    nomul(-2);
+	    nomul(-2, "scared by rattling");
 	    nomovemsg = 0;
 	    break;
 	case MS_LAUGH:

@@ -480,7 +480,7 @@ ghost_from_bottle()
 		Hallucination ? rndmonnam() : (const char *)"ghost");
 	if(flags.verbose)
 	    You("are frightened to death, and unable to move.");
-	nomul(-3);
+	nomul(-3, "being frightened to death");
 	make_feared(HFeared + rnd(30 + (monster_difficulty() * 3) ),TRUE);
 	nomovemsg = "You regain your composure.";
 	make_bottle(FALSE);
@@ -616,7 +616,7 @@ badeffect()
 		case 75:
 		pline("The world spins and goes dark.");
 		flags.soundok = 0;
-		nomul(-rnd(10));
+		nomul(-rnd(10), "helplessly knocked out");
 		nomovemsg = "You are conscious again.";
 		afternmv = Hear_again;
 		break;
@@ -1671,7 +1671,7 @@ peffects(otmp)
 		    else
 			Your("%s are frozen to the %s!",
 			     makeplural(body_part(FOOT)), surface(u.ux, u.uy));
-		    nomul(-(rn1(10, 25 - 12*bcsign(otmp))));
+		    nomul(-(rn1(10, 25 - 12*bcsign(otmp))), "frozen by a potion");
 		    nomovemsg = You_can_move_again;
 		    exercise(A_DEX, FALSE);
 		}
@@ -1908,7 +1908,7 @@ peffects(otmp)
 				/* But using the new system to cheat the necessity to invoke would be even cheaper. */
 				if(ledger_no(&u.uz) == 64 && u.uevent.udemigod && !u.uevent.invoked) {
 				    pline("You crash into the floor.");
-					nomul(-rnd(10));
+					nomul(-rnd(10), "lying on the floor, unable to get up");
 					nomovemsg = "You finally get up again.";
 				    break;
 				}
@@ -2858,7 +2858,7 @@ register struct obj *obj;
 		kn++;
 		if (!Free_action) {
 		    pline("%s seems to be holding you.", Something);
-		    nomul(-rnd(5));
+		    nomul(-rnd(5), "frozen by breathing a potion");
 		    nomovemsg = You_can_move_again;
 		    exercise(A_DEX, FALSE);
 		} else You("stiffen momentarily.");
@@ -2867,7 +2867,7 @@ register struct obj *obj;
 		kn++;
 		if (!Free_action && !Sleep_resistance) {
 		    You_feel("rather tired.");
-		    nomul(-rnd(5));
+		    nomul(-rnd(5), "sleeping off a magical draught");
 		    nomovemsg = You_can_move_again;
 		    exercise(A_DEX, FALSE);
 		} else You("yawn.");

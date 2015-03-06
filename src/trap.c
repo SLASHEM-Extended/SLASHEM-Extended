@@ -1023,7 +1023,7 @@ unsigned trflags;
 	/* Traps are 50% more likely to fail for a pickpocket */
 	if (!In_sokoban(&u.uz) && Role_if(PM_PICKPOCKET) && rn2(2)) return;
 
-	nomul(0);
+	nomul(0, 0);
 
 	/* KMH -- You can't escape the Sokoban level traps */
 	if (In_sokoban(&u.uz) &&
@@ -2298,7 +2298,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 				    } else {
 					pline("It hurts like hell! You pass out from the intense pain.");            
 					nomovemsg = "You finally manage to get up again.";
-					nomul(-(rnd(monster_difficulty() + 1)) );
+					nomul(-(rnd(monster_difficulty() + 1)), "knocked out by a peep-toe trap" );
 					exercise(A_DEX, FALSE);
 				    }
 				}
@@ -2407,7 +2407,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 					    } else {
 						pline("You're knocked out and helplessly drop to the floor.");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(5));
+						nomul(-rnd(5), "knocked out by a geta trap");
 						exercise(A_DEX, FALSE);
 						    }
 						}
@@ -3125,7 +3125,7 @@ int style;
 				break;
 			}
 		} else if (bhitpos.x == u.ux && bhitpos.y == u.uy) {
-			if (multi) nomul(0);
+			if (multi) nomul(0, 0);
 			if (thitu(9 + singleobj->spe,
 				  dmgval(singleobj, &youmonst),
 				  singleobj, (char *)0))
@@ -4569,7 +4569,7 @@ struct obj *box;        /* at the moment only for floor traps */
 		if ( !rn2(100) || (!Free_action && !rn2(10)))	{
 			You("inhale the intense smell of shit! The world spins and goes dark.");
 			nomovemsg = "You are conscious again.";	/* default: "you can move again" */
-			nomul(-rnd(10));
+			nomul(-rnd(10), "unconscious from smelling dog shit");
 			exercise(A_DEX, FALSE);
 		}
 
@@ -6385,7 +6385,7 @@ boolean disarm;
 			if (!Free_action) {                        
 			if (!Free_action) {                        
 			pline("Suddenly you are frozen in place!");
-			nomul(-d(5, 6));
+			nomul(-d(5, 6), "frozen by a container trap");
 			exercise(A_DEX, FALSE);
 			nomovemsg = You_can_move_again;
 			} else You("momentarily stiffen.");

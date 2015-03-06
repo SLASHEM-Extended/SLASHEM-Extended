@@ -410,7 +410,7 @@ gotobj:
 				}
 			named++;
 			/* the following is to set multi for later on */
-			nomul(-armordelay);
+			nomul(-armordelay, "being seduced into taking off your clothes");
 			nomovemsg = 0;
 			remove_worn_item(otmp, TRUE);
 			otmp->cursed = curssv;

@@ -1047,7 +1047,7 @@ char *hittee;			/* target's name: "you" or mon_nam(mdef) */
 	    if (Antimagic) {
 		resisted = TRUE;
 	    } else {
-		nomul(-3);
+		nomul(-3, "being scared stiff");
 		nomovemsg = "";
 		if (magr && magr == u.ustuck && sticks(youmonst.data)) {
 		    setustuck((struct monst *)0);

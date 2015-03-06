@@ -103,7 +103,7 @@ int sig_unused;
 		clear_nhwindow(WIN_MESSAGE);
 		curs_on_u();
 		wait_synch();
-		if(multi > 0) nomul(0);
+		if(multi > 0) nomul(0, 0);
 	} else {
 		(void)done2();
 	}
@@ -129,7 +129,7 @@ done2()
 		clear_nhwindow(WIN_MESSAGE);
 		curs_on_u();
 		wait_synch();
-		if(multi > 0) nomul(0);
+		if(multi > 0) nomul(0, 0);
 		if(multi == 0) {
 		    u.uinvulnerable = FALSE;	/* avoid ctrl-C bug -dlc */
 		    u.usleep = 0;
@@ -241,7 +241,13 @@ register struct monst *mtmp;
 		    Sprintf(eos(buf), " called %s", NAME(mtmp));
 	}
 
-		if (multi) Strcat(buf,", while helpless");
+	if (multi) {
+	  if (strlen(multi_txt) > 0)
+	    Sprintf(eos(buf), ", while %s", multi_txt);
+	  else
+	    Strcat(buf, ", while helpless");
+	}
+
 	} else {
 		killer_format = KILLED_BY;
 		Strcat(buf,", while blind");

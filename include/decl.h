@@ -27,6 +27,7 @@ E char SAVEP[];
 E NEARDATA int bases[MAXOCLASSES];
 
 E NEARDATA int multi;
+E char multi_txt[BUFSZ];
 #if 0
 E NEARDATA int warnlevel;
 #endif

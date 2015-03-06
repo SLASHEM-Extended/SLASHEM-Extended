@@ -2707,7 +2707,7 @@ register struct obj	*sobj;
 			if (u.ublesscnt > 0) {pline("The map reveals nothing."); break;}
 			if(sobj->age > monstermoves){
 				pline("The map %s hard to see.", vtense((char *)0,"are"));
-				nomul(rnd(3));
+				nomul(-(rnd(3)), "reading an artifact map");
 				sobj->age += (long) d(3,10);
 			} else sobj->age = monstermoves + (long) d(3,10);
 			do_vicinity_map();

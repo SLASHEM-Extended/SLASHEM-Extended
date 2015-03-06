@@ -980,7 +980,7 @@ rehumanize()
 	}
 
 	if (!uarmg) selftouch("No longer petrify-resistant, you");
-	nomul(0);
+	nomul(0, 0);
 
 	flags.botl = 1;
 	vision_full_recalc = 1;
@@ -1446,10 +1446,7 @@ dogaze()
 			if (!Free_action) {
 			    You("are frozen by %s gaze!",
 					     s_suffix(mon_nam(mtmp)));
-			    nomul((u.ulevel > 6 || rn2(4)) ?
-				    -d((int)mtmp->m_lev+1,
-					    (int)mtmp->data->mattk[0].damd)
-				    : -200);
+			    nomul(-d((int)mtmp->m_lev+1, (int)mtmp->data->mattk[0].damd), "frozen by stupidly gazing at a floating eye");
 			    return 1;
 			} else
 			    You("stiffen momentarily under %s gaze.",
@@ -1942,7 +1939,7 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 		u.uen -= EN_DOPP;
 		if (multi >= 0) {
 		    if (occupation) stop_occupation();
-		    else nomul(0);
+		    else nomul(0, 0);
 		}
 		polyself(FALSE);
 		if (Upolyd) { /* You actually polymorphed */
@@ -1973,7 +1970,7 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 		if (!Upolyd) {
 		    if (multi >= 0) {
 			if (occupation) stop_occupation();
-			else nomul(0);
+			else nomul(0, 0);
 		    }
 		    you_were();
 		} else {

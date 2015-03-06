@@ -787,7 +787,7 @@ E void FDECL(check_special_room, (BOOLEAN_P));
 E int NDECL(dopickup);
 E void NDECL(lookaround);
 E int NDECL(monster_nearby);
-E void FDECL(nomul, (int));
+E void FDECL(nomul, (int, const char *));
 E void FDECL(unmul, (const char *));
 #ifdef SHOW_DMG
 E void FDECL(showdmg, (int));

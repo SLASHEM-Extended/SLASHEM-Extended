@@ -398,7 +398,7 @@ moverock()
 
 	rx = u.ux + 2 * u.dx;	/* boulder destination position */
 	ry = u.uy + 2 * u.dy;
-	nomul(0);
+	nomul(0, 0);
 	if (Levitation || Is_airlevel(&u.uz)) {
 		if (Blind) feel_location(sx,sy);
 	    You("don't have enough leverage to push %s.", the(xname(otmp)));
@@ -672,7 +672,7 @@ still_chewing(x,y)
     if (!boulder && IS_ROCK(lev->typ) && !may_dig(x,y)) {
 	You("hurt your teeth on the %s.",
 	    IS_TREE(lev->typ) ? "tree" : "hard stone");
-	nomul(0);
+	nomul(0, 0);
 	return 1;
     } else if (digging.pos.x != x || digging.pos.y != y ||
 		!on_level(&digging.level, &u.uz)) {
@@ -1104,7 +1104,7 @@ boolean guess;
 	if (test_move(u.ux, u.uy, u.tx-u.ux, u.ty-u.uy, TEST_MOVE)) {
 	    u.dx = u.tx-u.ux;
 	    u.dy = u.ty-u.uy;
-	    nomul(0);
+	    nomul(0, 0);
 	    iflags.travelcc.x = iflags.travelcc.y = -1;
 	    return TRUE;
 	}
@@ -1170,7 +1170,7 @@ boolean guess;
 				u.dx = x-ux;
 				u.dy = y-uy;
 				if (x == u.tx && y == u.ty) {
-				    nomul(0);
+				    nomul(0, 0);
 				    /* reset run so domove run checks work */
 				    flags.run = 8;
 				    iflags.travelcc.x = iflags.travelcc.y = -1;
@@ -1240,7 +1240,7 @@ boolean guess;
 found:
     u.dx = 0;
     u.dy = 0;
-    nomul(0);
+    nomul(0, 0);
     return FALSE;
 }
 
@@ -1341,7 +1341,7 @@ domove()
 		exercise(A_CON, FALSE);
 	    } else
 		You("collapse under your load.");
-	    nomul(0);
+	    nomul(0, 0);
 	    return;
 	}
 	if(u.uswallow) {
@@ -1392,7 +1392,7 @@ domove()
 		/* Check if your steed can move */
 		if (u.usteed && (!u.usteed->mcanmove || u.usteed->msleeping)) {
 		    Your("steed doesn't respond!");
-		    nomul(0);
+		    nomul(0, 0);
 		    return;
 		}
 #endif
@@ -1405,7 +1405,7 @@ domove()
 
 			do {
 				if(tries++ > 50) {
-					nomul(0);
+					nomul(0, 0);
 					return;
 				}
 				confdir();
@@ -1417,14 +1417,14 @@ domove()
 		if (u.uinwater) {
 			water_friction();
 			if (!u.dx && !u.dy) {
-				nomul(0);
+				nomul(0, 0);
 				return;
 			}
 			x = u.ux + u.dx;
 			y = u.uy + u.dy;
 		}
 		if(!isok(x, y)) {
-			nomul(0);
+			nomul(0, 0);
 			return;
 		}
 		if (((trap = t_at(x, y)) && trap->tseen) ||
@@ -1432,11 +1432,11 @@ domove()
 		     !is_clinger(youmonst.data) &&
 		     (is_pool(x, y) || is_lava(x, y)) && levl[x][y].seenv)) {
 			if(flags.run >= 2) {
-				nomul(0);
+				nomul(0, 0);
 				flags.move = 0;
 				return;
 			} else
-				nomul(0);
+				nomul(0, 0);
 		}
 
 		if (u.ustuck && (x != u.ustuck->mx || y != u.ustuck->my)) {
@@ -1477,7 +1477,7 @@ domove()
 				!Conflict && !u.ustuck->mconf)
 				goto pull_free;
 			    You("cannot escape from %s!", mon_nam(u.ustuck));
-			    nomul(0);
+			    nomul(0, 0);
 			    return;
 			}
 		    }
@@ -1493,7 +1493,7 @@ domove()
 				mtmp->m_ap_type != M_AP_OBJECT) ||
 			       Protection_from_shape_changers)) ||
 			     sensemon(mtmp))) {
-				nomul(0);
+				nomul(0, 0);
 				flags.move = 0;
 				return;
 			}
@@ -1506,7 +1506,7 @@ domove()
 	tmpr = &levl[x][y];
 	/* attack monster */
 	if(mtmp) {
-	    nomul(0);
+	    nomul(0, 0);
 	    /* only attack if we know it's there */
 	    /* or if we used the 'F' command to fight blindly */
 	    /* or if it hides_under, in which case we call attack() to print
@@ -1572,7 +1572,7 @@ domove()
 		    is_pool(x,y) ? "empty water" : buf);
 		unmap_object(x, y); /* known empty -- remove 'I' if present */
 		newsym(x, y);
-		nomul(0);
+		nomul(0, 0);
 		if (expl) {
 		    u.mh = -1;		/* dead in the current form */
 		    rehumanize();
@@ -1589,7 +1589,7 @@ domove()
 #ifdef STEED
 	if (u.usteed && !u.usteed->mcanmove && (u.dx || u.dy)) {
 		pline("%s won't move!", upstart(y_monnam(u.usteed)));
-		nomul(0);
+		nomul(0, 0);
 		return;
 	} else
 #endif
@@ -1600,7 +1600,7 @@ domove()
 		You("are rooted %s.",
 		    Levitation || Is_airlevel(&u.uz) || Is_waterlevel(&u.uz) ?
 		    "in place" : "to the ground");
-		nomul(0);
+		nomul(0, 0);
 		return;
 	}
 	if(u.utrap) {
@@ -1732,7 +1732,7 @@ domove()
 
 	if (!test_move(u.ux, u.uy, x-u.ux, y-u.uy, DO_MOVE)) {
 	    flags.move = 0;
-	    nomul(0);
+	    nomul(0, 0);
 	    return;
 	}
 
@@ -1744,7 +1744,7 @@ domove()
 				locomotion(youmonst.data, "step"),
 				defsyms[trap_to_defsym(trap->ttyp)].explanation);
 		if (yn(qbuf) != 'y') {
-			nomul(0);
+			nomul(0, 0);
 			flags.move = 0;
 			return;
 		}
@@ -1754,7 +1754,7 @@ domove()
 
 		if (Role_if(PM_TOPMODEL) && Is_qlocate(&u.uz) ) {
 		if (yn("There is a strong wind above the water. It seems dangerous. Really step there?") != 'y') {
-			nomul(0);
+			nomul(0, 0);
 			flags.move = 0;
 			return;
 			}
@@ -1762,7 +1762,7 @@ domove()
 
 		else {
 		if (yn("This is a water tile that can cause you to drown. Really step on it?") != 'y') {
-			nomul(0);
+			nomul(0, 0);
 			flags.move = 0;
 			return;
 			}
@@ -1773,7 +1773,7 @@ domove()
 	if (ask_about_lava(x, y)) {
 
 		if (yn("This is a lava tile that can burn you to a crisp. Really step on it?") != 'y') {
-			nomul(0);
+			nomul(0, 0);
 			flags.move = 0;
 			return;
 		}
@@ -1786,7 +1786,7 @@ domove()
 	     */
 	    if (!attack(mtmp)) {
 		flags.move = 0;
-		nomul(0);
+		nomul(0, 0);
 	    }
 	    return;
 	}
@@ -1932,7 +1932,7 @@ domove()
 	    if ( flags.run < 8 )
 		if (IS_DOOR(tmpr->typ) || IS_ROCK(tmpr->typ) ||
 			IS_FURNITURE(tmpr->typ))
-		    nomul(0);
+		    nomul(0, 0);
 	}
 
 	if (hides_under(youmonst.data))
@@ -1970,7 +1970,7 @@ domove()
 	/* delay next move because of ball dragging */
 	/* must come after we finished picking up, in spoteffects() */
 	if (cause_delay) {
-	    nomul(-2);
+	    nomul(-2, "dragging an iron ball");
 	    nomovemsg = "";
 	}
 
@@ -1998,7 +1998,7 @@ invocation_message()
 	    char buf[BUFSZ];
 	    struct obj *otmp = carrying(CANDELABRUM_OF_INVOCATION);
 
-	    nomul(0);		/* stop running or travelling */
+	    nomul(0, 0);		/* stop running or travelling */
 	    if (Hallucination)
 		pline("You're picking up good vibrations!");
 	    else {
@@ -2825,7 +2825,7 @@ lookaround()
     /* Grid bugs stop if trying to move diagonal, even if blind.  Maybe */
     /* they polymorphed while in the middle of a long move. */
     if ((u.umonnum == PM_GRID_BUG || u.umonnum == PM_GRID_XORN)&& u.dx && u.dy) {
-	nomul(0);
+	nomul(0, 0);
 	return;
     }
 
@@ -2903,7 +2903,7 @@ bcorr:
 	       continue;
 	}
 stop:
-	nomul(0);
+	nomul(0, 0);
 	return;
     } /* end for loops */
 
@@ -2997,13 +2997,18 @@ maybe_wail()
 }
 
 void
-nomul(nval)
+nomul(nval, txt)
 	register int nval;
+	const char *txt;
 {
 	if(multi < nval) return;	/* This is a bug fix by ab@unido */
 	u.uinvulnerable = FALSE;	/* Kludge to avoid ctrl-C bug -dlc */
 	u.usleep = 0;
 	multi = nval;
+	if (txt && txt[0])
+	  (void) strncpy(multi_txt, txt, BUFSZ);
+	else
+	  (void) memset(multi_txt, 0, BUFSZ);
 	flags.travel = iflags.travel1 = flags.mv = flags.run = 0;
 }
 
@@ -3013,6 +3018,7 @@ unmul(msg_override)
 const char *msg_override;
 {
 	multi = 0;	/* caller will usually have done this already */
+	(void) memset(multi_txt, 0, BUFSZ);
 	if (msg_override) nomovemsg = msg_override;
 	else if (!nomovemsg) nomovemsg = You_can_move_again;
 	if (*nomovemsg) pline(nomovemsg);

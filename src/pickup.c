@@ -275,7 +275,7 @@ boolean picked_some;
 
 	/* If there are objects here, take a look. */
 	if (ct) {
-	    if (flags.run) nomul(0);
+	    if (flags.run) nomul(0, 0);
 	    flush_screen(1);
 	    (void) look_here(ct, picked_some);
 	} else {
@@ -460,7 +460,7 @@ int what;		/* should be a long */
 		}
 
 		/* if there's anything here, stop running */
-		if (OBJ_AT(u.ux,u.uy) && flags.run && flags.run != 8 && !flags.nopick) nomul(0);
+		if (OBJ_AT(u.ux,u.uy) && flags.run && flags.run != 8 && !flags.nopick) nomul(0, 0);
 	}
 
 	add_valid_menu_class(0);	/* reset */
@@ -1342,7 +1342,7 @@ boolean telekinesis;	/* not picking it up directly by hand */
 		    obj->quan -= count;
 	    }
 	    flags.botl = 1;
-	    if (flags.run) nomul(0);
+	    if (flags.run) nomul(0, 0);
 	    return 1;
 #endif
 	} else if (obj->otyp == CORPSE) {
@@ -2360,7 +2360,7 @@ int held;
 				pline("You feel a wrenching sensation.");
 				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 				flags.soundok = 0;
-				nomul(-rnd(10));
+				nomul(-rnd(10), "wrenched in a container");
 				nomovemsg = "You are conscious again.";
 				afternmv = Hear_again;
 		    return 1;}
@@ -2380,7 +2380,7 @@ int held;
 	    (void) chest_trap(obj, HAND, FALSE);
 	    /* even if the trap fails, you've used up this turn */
 	    if (multi >= 0) {	/* in case we didn't become paralyzed */
-		nomul(-1);
+		nomul(-1, "opening a trapped container");
 		nomovemsg = "";
 	    }
 	    return 1;

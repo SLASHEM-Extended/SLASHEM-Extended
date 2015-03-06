@@ -980,7 +980,7 @@ moveloop()
 				if (occupation)
 				    stop_occupation();
 				else
-				    nomul(0);
+				    nomul(0, 0);
 				if (change == 1) polyself(FALSE);
 				else you_were();
 				change = 0;
@@ -1165,7 +1165,7 @@ stop_occupation()
 		sync_hunger();
 */
 #ifdef REDO
-		nomul(0);
+		nomul(0, 0);
 		pushch(0);
 #endif
 	}

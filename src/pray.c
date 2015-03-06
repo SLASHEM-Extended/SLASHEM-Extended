@@ -1556,13 +1556,13 @@ dosacrifice()
 			  case 2: 
 			  case 3:
 			       You("are terrified, and unable to move.");
-			       nomul(-3);
+			       nomul(-3, "being terrified of a demon");
 			       nomovemsg = 0;
 			       break;                
 			  case 11:
 			       dmon->mpeaceful = FALSE;
 			       You("are terrified, and unable to move.");
-			       nomul(-3);
+			       nomul(-3, "being terrified of a hostile demon");
 			       nomovemsg = 0;
 			       break;                
 			  case 4:
@@ -2060,7 +2060,7 @@ dopray()
 	}
     }
 #endif
-    nomul(-3);
+    nomul(-3, "praying unsuccessfully"); /* note by Amy: if successfully, you're invulnerable... */
     nomovemsg = "You finish your prayer.";
     afternmv = prayer_done;
 
@@ -2240,7 +2240,7 @@ turn_undead()
 		    }
 	    }
 	}
-	nomul(-(1 + rnd(4))); /* used to always be -2 which felt a little overpowered --Amy */
+	nomul(-(1 + rnd(4)), "trying to turn undead monsters"); /* used to always be -2 which felt a little overpowered --Amy */
 	nomovemsg = 0;
 	return(1);
 }

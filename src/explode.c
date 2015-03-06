@@ -784,7 +784,7 @@ struct obj *obj;			/* only scatter this obj        */
 				if (scflags & MAY_HITYOU) {
 				    int hitvalu, hitu;
 
-				    if (multi) nomul(0);
+				    if (multi) nomul(0, 0);
 				    hitvalu = 8 + stmp->obj->spe;
 				    if (bigmonst(youmonst.data)) hitvalu++;
 				    hitu = thitu(hitvalu,

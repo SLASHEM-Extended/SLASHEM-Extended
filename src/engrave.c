@@ -996,7 +996,7 @@ boolean read_it; /* Read any sensed engraving */
 
 		You("%s: \"%s\".",
 		      (Blind) ? "feel the words" : "read",  et);
-		if(flags.run > 1) nomul(0);
+		if(flags.run > 1) nomul(0, 0);
 		return TRUE;
 	    }
 	}

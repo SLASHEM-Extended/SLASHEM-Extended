@@ -1696,7 +1696,7 @@ int tech_no;
 			}
 		    You("reform!");
 		    teleds(cc.x, cc.y, FALSE);
-		    nomul(-1);
+		    nomul(-1, "liquid leaping");
 		    nomovemsg = "";
 	    	}
 		t_timeout = rnz(1500);
@@ -1779,7 +1779,7 @@ int tech_no;
 			}
 		    }
 		}
-		nomul(-2); /* You need to recover */
+		nomul(-2, "recovering from an attempt to raise zombies"); /* You need to recover */
 		nomovemsg = 0;
 		t_timeout = rnz(1500);
 		break;

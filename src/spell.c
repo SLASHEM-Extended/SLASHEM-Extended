@@ -372,7 +372,7 @@ learn()
 	if (Confusion) {		/* became confused while learning */
 	    (void) confused_book(book);
 	    book = 0;			/* no longer studying */
-	    nomul(delay - end_delay);	/* remaining delay is uninterrupted */
+	    nomul((delay - end_delay), "reading a confusing book");	/* remaining delay is uninterrupted */
 	    delay = end_delay;
 	    return(0);
 	}
@@ -528,7 +528,7 @@ register struct obj *spellbook;
 		if (too_hard && ( (spellbook->cursed && !Role_if(PM_LIBRARIAN) ) || !spellbook->spe)) {
 		    boolean gone = cursed_book(spellbook);
 
-		    nomul(delay);			/* study time */
+		    nomul(delay, "reading a cursed book");			/* study time */
 		    delay = 0;
 		    if(gone || !rn2(3)) {
 			if (!gone) pline_The("spellbook crumbles to dust!");
@@ -544,7 +544,7 @@ register struct obj *spellbook;
 		    if (!confused_book(spellbook)) {
 			spellbook->in_use = FALSE;
 		    }
-		    nomul(delay);
+		    nomul(delay, "reading a book while confused");
 		    delay = 0;
 		    return(1);
 		}

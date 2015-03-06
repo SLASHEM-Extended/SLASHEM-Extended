@@ -2847,7 +2847,7 @@ register struct attack *mattk;
 			pline("You yawn.");
 			break;
 		    } else {
-			nomul(-rnd(10));
+			nomul(-rnd(10), "sleeping from your own reflected gaze");
 			u.usleep = 1;
 			nomovemsg = "You wake up.";
 			if (Blind)  You("are put to sleep!");
@@ -3181,7 +3181,7 @@ register struct attack *mattk;
 				 */
 				You("digest %s.", mon_nam(mdef));
 				if (Slow_digestion) tmp *= 2;
-				nomul(-tmp);
+				nomul(-tmp, "digesting a monster");
 				nomovemsg = msgbuf;
 			    } else pline("%s", msgbuf);
 			    if (mdef->data == &mons[PM_GREEN_SLIME]) {
@@ -4488,7 +4488,7 @@ uchar aatyp;
 			else {
 			    You("are frozen by %s gaze!",
 				  s_suffix(mon_nam(mon)));
-			    nomul(-tmp);
+			    nomul(-tmp, "paralyzed by a monster's passive gaze");
 			}
 		    } else {
 			pline("%s cannot defend itself.",
@@ -4500,7 +4500,7 @@ uchar aatyp;
 		} else { /* gelatinous cube */
 		    You("are frozen by %s!", mon_nam(mon));
 	    	    nomovemsg = 0;	/* default: "you can move again" */
-		    nomul(-tmp);
+		    nomul(-tmp, "paralyzed by a monster's passive attack");
 		    exercise(A_DEX, FALSE);
 		}
 		break;

@@ -500,7 +500,7 @@ struct attack *mattk;
 		mhp = mdef->mhp;
 		buzz((int)(-20 - (typ-1)), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ),
 			magr->mx, magr->my, sgn(tbx), sgn(tby));
-		nomul(0);
+		nomul(0, 0);
 		/* breath runs out sometimes. */
 		if (!rn2(3))
 		    magr->mspec_used = 10+rn2(20);
@@ -552,7 +552,7 @@ struct attack *mattk;
 	    mhp = mdef->mhp;
 	    m_throw(magr, magr->mx, magr->my, sgn(tbx), sgn(tby),
 		    distmin(magr->mx, magr->my, mdef->mx, mdef->my), obj);
-	    nomul(0);
+	    nomul(0, 0);
 	    return (mdef->mhp < 1 ? MM_DEF_DIED : 0) |
 		   (mdef->mhp < mhp ? MM_HIT : 0) |
 		   (magr->mhp < 1 ? MM_AGR_DIED : 0);
@@ -738,7 +738,7 @@ struct monst *magr, *mdef;
     m_shot.o = STRANGE_OBJECT;
     m_shot.s = FALSE;
 
-    nomul(0);
+    nomul(0, 0);
 
     return (mdef->mhp < 1 ? MM_DEF_DIED : 0) | (mdef->mhp < mhp ? MM_HIT : 0) |
 	   (magr->mhp < 1 ? MM_AGR_DIED : 0);
