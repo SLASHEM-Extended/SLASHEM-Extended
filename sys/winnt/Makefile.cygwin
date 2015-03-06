@@ -292,7 +292,7 @@ VOBJ19 = trap.o     u_init.o   uhitm.o    vault.o    vision.o
 VOBJ20 = vis_tab.o  weapon.o   were.o	  wield.o    windows.o
 VOBJ21 = wizard.o   worm.o	  worn.o     write.o
 VOBJ22 = zap.o	    light.o    dlb.o      dig.o      teleport.o
-VOBJ23 = region.o   tech.o     gypsy.o
+VOBJ23 = region.o   tech.o     gypsy.o	livelog.o
 
 SOBJ   = winnt.o    sys.o      unix.o     nttty.o
 #	 $(SOUND)   mapimail.o nhlan.o random.o
@@ -1199,5 +1199,6 @@ worm.o:	     $(HACK_H) $(INCL)/lev.h
 worn.o:	     $(HACK_H)
 write.o:     $(HACK_H)
 zap.o:	     $(HACK_H)
+livelog.o:	     $(HACK_H)
 
 # end of file

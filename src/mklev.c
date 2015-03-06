@@ -2653,6 +2653,9 @@ mkinvokearea()
 
 #ifdef RECORD_ACHIEVE
     achieve.perform_invocation = 1;
+#ifdef LIVELOGFILE
+    livelog_achieve_update();
+#endif
 #endif
 }
 

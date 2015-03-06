@@ -101,6 +101,11 @@ extern int NDECL(dowieldquiver); /**/
 extern int NDECL(dowieldquiver); /**/
 extern int NDECL(dozap); /**/
 extern int NDECL(doorganize); /**/
+
+#ifdef LIVELOG_SHOUT
+extern int NDECL(doshout); /**/
+#endif
+
 extern int NDECL(dolistvanq); /**/
 
 #endif /* DUMB */
@@ -2842,6 +2847,9 @@ struct ext_func_tab extcmdlist[] = {
 	{"ride", "ride (or stop riding) a monster", doride, FALSE},
 #endif
 	{"rub", "rub a lamp or a stone", dorub, FALSE},
+#ifdef LIVELOG_SHOUT
+	{"shout", "shout something", doshout, FALSE},
+#endif
 	{"sit", "sit down", dosit, FALSE},
 #ifdef SHOUT
 	{"shout", "say something loud", doyell, TRUE}, /* jrn */

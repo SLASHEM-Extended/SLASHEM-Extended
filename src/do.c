@@ -2318,6 +2318,9 @@ boolean at_stairs, falling, portal;
 
 #ifdef RECORD_ACHIEVE
             achieve.enter_gehennom = 1;
+#ifdef LIVELOGFILE
+	livelog_achieve_update();
+#endif
 #endif
 	}
 

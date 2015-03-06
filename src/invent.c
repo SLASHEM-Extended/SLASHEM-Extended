@@ -309,24 +309,36 @@ struct obj *obj;
 		u.uhave.amulet = 1;
 #ifdef RECORD_ACHIEVE
                 achieve.get_amulet = 1;
+#ifdef LIVELOGFILE
+		livelog_achieve_update();
+#endif
 #endif
 	} else if (obj->otyp == CANDELABRUM_OF_INVOCATION) {
 		if (u.uhave.menorah) impossible("already have candelabrum?");
 		u.uhave.menorah = 1;
 #ifdef RECORD_ACHIEVE
                 achieve.get_candelabrum = 1;
+#ifdef LIVELOGFILE
+		livelog_achieve_update();
+#endif
 #endif
 	} else if (obj->otyp == BELL_OF_OPENING) {
 		if (u.uhave.bell) impossible("already have silver bell?");
 		u.uhave.bell = 1;
 #ifdef RECORD_ACHIEVE
                 achieve.get_bell = 1;
+#ifdef LIVELOGFILE
+		livelog_achieve_update();
+#endif
 #endif
 	} else if (obj->otyp == SPE_BOOK_OF_THE_DEAD) {
 		if (u.uhave.book) impossible("already have the book?");
 		u.uhave.book = 1;
 #ifdef RECORD_ACHIEVE
                 achieve.get_book = 1;
+#ifdef LIVELOGFILE
+		livelog_achieve_update();
+#endif
 #endif
 	} else if (obj->oartifact) {
 		if (is_quest_artifact(obj)) {
@@ -346,11 +358,17 @@ struct obj *obj;
         if(obj->otyp == LUCKSTONE && obj->record_achieve_special) {
                 achieve.get_luckstone = 1;
                 obj->record_achieve_special = 0;
+#ifdef LIVELOGFILE
+		livelog_achieve_update();
+#endif
         } else if((obj->otyp == AMULET_OF_REFLECTION ||
                    obj->otyp == BAG_OF_HOLDING) &&
                   obj->record_achieve_special) {
                 achieve.finish_sokoban = 1;
                 obj->record_achieve_special = 0;
+#ifdef LIVELOGFILE
+		livelog_achieve_update();
+#endif
         }
 #endif /* RECORD_ACHIEVE */
 

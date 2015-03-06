@@ -5533,6 +5533,9 @@ void
 makewish()
 {
 	char buf[BUFSZ];
+#ifdef LIVELOGFILE
+	char rawbuf[BUFSZ]; /* for exact livelog reporting */
+#endif
 	struct obj *otmp, nothing;
 	int tries = 0;
 
@@ -5540,6 +5543,9 @@ makewish()
 	if (flags.verbose) { (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) ? pline("Shiver me timbers! Ye may wish for an object!") : You("may wish for an object."); }
 retry:
 	getlin("For what do you wish?", buf);
+#ifdef LIVELOGFILE
+	Strcpy(rawbuf, buf);
+#endif
 	if(buf[0] == '\033') buf[0] = 0;
 	/*
 	 *  Note: if they wished for and got a non-object successfully,
@@ -5557,11 +5563,19 @@ retry:
 	} else if (otmp == &nothing) {
 	    /* explicitly wished for "nothing", presumeably attempting
 	       to retain wishless conduct */
+#ifdef LIVELOGFILE
+	    livelog_wish(buf);
+#endif
 	    return;
 	}
 
 	/* KMH, conduct */
 	u.uconduct.wishes++;
+
+	/* Livelog patch */
+#ifdef LIVELOGFILE
+	livelog_wish(rawbuf);
+#endif
 
 	if (otmp != &zeroobj) {
 	    /* The(aobjnam()) is safe since otmp is unidentified -dlc */

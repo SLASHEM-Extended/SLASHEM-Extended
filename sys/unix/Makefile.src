@@ -461,7 +461,7 @@ HACKCSRC = allmain.c alloc.c apply.c artifact.c attrib.c ball.c bones.c \
 	   rnd.c role.c rumors.c save.c shk.c shknam.c sit.c sounds.c sp_lev.c \
 	   spell.c steal.c steed.c teleport.c timeout.c topten.c track.c trap.c \
 	   u_init.c uhitm.c vault.c version.c vision.c weapon.c were.c wield.c \
-	   windows.c wizard.c worm.c worn.c write.c zap.c \
+	   windows.c wizard.c worm.c worn.c write.c zap.c livelog.c \
 	   gypsy.c tech.c
 
 # all operating-system-dependent .c (for dependencies and such)
@@ -521,7 +521,7 @@ HOBJ = $(FIRSTOBJ) allmain.o apply.o artifact.o attrib.o ball.o \
 	role.o rumors.o save.o shk.o shknam.o sit.o sounds.o sp_lev.o spell.o \
 	steal.o steed.o teleport.o timeout.o topten.o track.o trap.o u_init.o \
 	uhitm.o vault.o vision.o vis_tab.o weapon.o were.o wield.o windows.o \
-	wizard.o worm.o worn.o write.o zap.o \
+	wizard.o worm.o worn.o write.o zap.o livelog.o \
 	gypsy.o tech.o \
 	$(RANDOBJ) $(SYSOBJ) $(WINOBJ) version.o
 # the .o files from the HACKCSRC, SYSSRC, and WINSRC lists
@@ -1123,6 +1123,7 @@ worm.o: worm.c $(HACK_H) ../include/lev.h
 worn.o: worn.c $(HACK_H)
 write.o: write.c $(HACK_H)
 zap.o: zap.c $(HACK_H)
+livelog.o: livelog.c $(HACK_H)
 gypsy.o: gypsy.c $(HACK_H) ../include/egyp.h ../include/qtext.h
 tech.o: tech.c $(HACK_H)
 # DEPENDENCIES MUST END AT END OF FILE

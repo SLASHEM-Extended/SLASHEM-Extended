@@ -1500,6 +1500,10 @@ boolean new_game;	/* false => restoring an old game */
 
 	u.stethocheat = moves;
 
+	#ifdef LIVELOGFILE
+	/* Start live reporting */
+		  livelog_start();
+	#endif
 }
 
 #ifdef POSITIONBAR

@@ -2634,6 +2634,17 @@ E void NDECL(makewish);
 E void FDECL(zap_strike_fx, (XCHAR_P, XCHAR_P, int));
 E void NDECL(throwspell);
 
+/* ### livelog.c ### */
+#ifdef LIVELOGFILE
+E boolean NDECL(livelog_start);
+E void NDECL(livelog_achieve_update);
+E void FDECL(livelog_wish, (char*));
+#ifdef LIVELOG_SHOUT
+E int NDECL(doshout);
+#endif
+#endif
+
+
 #endif /* !MAKEDEFS_C && !LEV_LEX_C */
 
 #undef E

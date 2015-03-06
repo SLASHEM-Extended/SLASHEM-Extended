@@ -2351,6 +2351,9 @@ register struct monst *mtmp;
             achieve.killed_dagon = 1;
         if(mtmp->data == &mons[PM_MOTHER_HYDRA])
             achieve.killed_hydra = 1;
+#ifdef LIVELOGFILE
+		livelog_achieve_update();
+#endif
 #endif
 
 	if(memory_is_invisible(mtmp->mx, mtmp->my))

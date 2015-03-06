@@ -433,7 +433,7 @@ VOBJ23 = $(O)teleport.o $(O)timeout.o  $(O)topten.o   $(O)track.o
 VOBJ24 = $(O)trap.o     $(O)u_init.o   $(O)uhitm.o    $(O)vault.o   
 VOBJ25 = $(O)vis_tab.o  $(O)vision.o   $(O)weapon.o   $(O)were.o    
 VOBJ26 = $(O)wield.o    $(O)windows.o  $(O)wizard.o   $(O)worm.o    
-VOBJ27 = $(O)worn.o     $(O)write.o    $(O)zap.o     
+VOBJ27 = $(O)worn.o     $(O)write.o    $(O)zap.o	$(O)livelog.o     
 
 DLBOBJ = $(O)dlb.o
 
@@ -1373,6 +1373,7 @@ $(O)worm.o: worm.c $(HACK_H) $(INCL)\lev.h
 $(O)worn.o: worn.c $(HACK_H)
 $(O)write.o: write.c $(HACK_H)
 $(O)zap.o: zap.c $(HACK_H)
+$(O)livelog.o: livelog.c $(HACK_H)
 
 # end of file
 
