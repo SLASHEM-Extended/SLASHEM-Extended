@@ -813,7 +813,7 @@ dotele()
 	    }
 
 	    energy = objects[SPE_TELEPORT_AWAY].oc_level * 5;
-	    if (u.uen <= energy) {
+	    if (u.uen < energy) {
 #ifdef WIZARD
 		if (wizard)
 			energy = u.uen;
