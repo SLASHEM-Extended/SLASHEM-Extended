@@ -47,6 +47,7 @@ install: all $(if $(MASTERDIR),slave)
 	$(call TOUCH_VARDATA,$(VARDIR)/record)
 	$(call TOUCH_VARDATA,$(VARDIR)/logfile)
 	$(call TOUCH_VARDATA,$(VARDIR)/xlogfile)
+	$(call TOUCH_VARDATA,$(VARDIR)/livelog)
 
 ATOMIC_LN = ln $(1) $(2).new && mv $(2).new $(2)
 
@@ -56,6 +57,7 @@ slave:
 	$(call ATOMIC_LN,$(MASTERDIR)/record,$(VARDIR)/record)
 	$(call ATOMIC_LN,$(MASTERDIR)/logfile,$(VARDIR)/logfile)
 	$(call ATOMIC_LN,$(MASTERDIR)/xlogfile,$(VARDIR)/xlogfile)
+	$(call ATOMIC_LN,$(MASTERDIR)/livelog,$(VARDIR)/livelog)
 
 ##### BINARIES #####
 
