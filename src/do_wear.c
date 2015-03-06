@@ -100,8 +100,9 @@ register struct obj *otmp;
 int
 Boots_on()
 {
-    long oldprop =
-	u.uprops[objects[uarmf->otyp].oc_oprop].extrinsic & ~WORN_BOOTS;
+    long oldprop; 
+    if (!uarmf) return 0; 
+    oldprop = u.uprops[objects[uarmf->otyp].oc_oprop].extrinsic & ~WORN_BOOTS;
 
     switch(uarmf->otyp) {
 #ifdef JEDI
@@ -254,8 +255,9 @@ Boots_off()
 int
 Cloak_on()
 {
-    long oldprop =
-	u.uprops[objects[uarmc->otyp].oc_oprop].extrinsic & ~WORN_CLOAK;
+    long oldprop;
+	if (!uarmc) return 0;
+	oldprop = u.uprops[objects[uarmc->otyp].oc_oprop].extrinsic & ~WORN_CLOAK;
 
     switch(uarmc->otyp) {
 	case ELVEN_CLOAK:
@@ -388,6 +390,7 @@ Cloak_off()
 int
 Helmet_on()
 {
+    if (!uarmh) return 0; 
     switch(uarmh->otyp) {
 	case FEDORA:
 		set_moreluck();
@@ -510,8 +513,9 @@ Helmet_off()
 int
 Gloves_on()
 {
-    long oldprop =
-	u.uprops[objects[uarmg->otyp].oc_oprop].extrinsic & ~WORN_GLOVES;
+    long oldprop; 
+    if (!uarmg) return 0; 
+    oldprop = u.uprops[objects[uarmg->otyp].oc_oprop].extrinsic & ~WORN_GLOVES;
 
     switch(uarmg->otyp) {
 #ifdef JEDI
@@ -763,8 +767,9 @@ Armor_gone()
 void
 Amulet_on()
 {
-    long oldprop =
-	u.uprops[objects[uamul->otyp].oc_oprop].extrinsic & ~WORN_AMUL;
+    long oldprop;
+	if (!uamul) return;
+	oldprop = u.uprops[objects[uamul->otyp].oc_oprop].extrinsic & ~WORN_AMUL;
 
     switch(uamul->otyp) {
 	case AMULET_OF_ESP:
