@@ -160,4 +160,28 @@ doshout()
 
 #endif /* LIVELOG_SHOUT */
 
+#ifdef LIVELOG_BONES_KILLER 
+void 
+livelog_bones_killed(mtmp) 
+struct monst *mtmp; 
+{ 
+	char *name = NAME(mtmp); 
+ 
+	if (name && mtmp->former_rank) { 
+		/* $player killed the $bones_monst of $bones_killed the former 
+		 * $bones_rank on $turns on dungeon level $dlev! */ 
+		snprintf(strbuf, STRBUF_LEN, 
+				"player=%s:turns=%ld:dlev=%d:" 
+				"bones_killed=%s:bones_rank=%s:bones_monst=%s\n", 
+				plname, 
+				moves, 
+				depth(&u.uz), 
+				name, 
+				mtmp->former_rank, 
+				mtmp->data->mname); 
+		livelog_write_string(strbuf); 
+	} 
+} 
+#endif /* LIVELOG_BONES_KILLER */ 
+
 #endif /* LIVELOGFILE */

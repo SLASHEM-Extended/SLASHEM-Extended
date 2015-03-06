@@ -2979,6 +2979,10 @@ cleanup:
 
 	/* malign was already adjusted for u.ualign.type and randomization */
 	adjalign(mtmp->malign);
+
+#ifdef LIVELOG_BONES_KILLER 
+	livelog_bones_killed(mtmp); 
+#endif 
 }
 
 /* changes the monster into a stone monster of the same type */

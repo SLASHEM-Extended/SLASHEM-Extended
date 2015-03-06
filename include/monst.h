@@ -149,6 +149,10 @@ struct monst {
 	long misc_worn_check;
 	xchar weapon_check;
 
+#ifdef LIVELOG_BONES_KILLER 
+	char former_rank[50];	/* for bones' ghost rank in the former life */ 
+#endif 
+ 
         /*
          * NOTE: DO NOT ADD PARTS TO MONST STRUCT AFTER THIS POINT!
          * ALL ADDITIONS SHOULD GO BEFORE!!
