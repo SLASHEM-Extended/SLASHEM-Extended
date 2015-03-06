@@ -220,7 +220,9 @@
 #define LIVELOG_BONES_KILLER	/* Report if a ghost of a former player is 
                                * killed - Patric Mueller (15 Aug 2009) */ 
 
-/* #define LIVELOG_SHOUT */
+#ifdef PUBLIC_SERVER
+#define LIVELOG_SHOUT
+#endif
 
 /*
  *	If COMPRESS is defined, it should contain the full path name of your
