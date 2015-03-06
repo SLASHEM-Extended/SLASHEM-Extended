@@ -6442,10 +6442,12 @@ register struct trap *trap;
 {
 	register struct trap *ttmp;
 
+	if (!trap) return; 
 	if(trap == ftrap)
 		ftrap = ftrap->ntrap;
 	else {
-		for(ttmp = ftrap; ttmp->ntrap != trap; ttmp = ttmp->ntrap) ;
+		for(ttmp = ftrap; ttmp && ttmp->ntrap != trap; ttmp = ttmp->ntrap) ;
+		if (!trap) return; 
 		ttmp->ntrap = trap->ntrap;
 	}
 	dealloc_trap(trap);
