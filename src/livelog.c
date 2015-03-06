@@ -180,6 +180,19 @@ struct monst *mtmp;
 				mtmp->former_rank, 
 				mtmp->data->mname); 
 		livelog_write_string(strbuf); 
+	} else if ((mtmp->data->geno & G_UNIQ) 
+#ifdef BLACKMARKET 
+	           || (mtmp->data == &mons[PM_BLACK_MARKETEER]) 
+#endif 
+		  ) { 
+		char *n = noit_mon_nam(mtmp); 
+		/* $player killed a uniq monster */ 
+		snprintf(strbuf, STRBUF_LEN, 
+				"player=%s:turns=%ld:killed_uniq=%s\n", 
+				plname, 
+				moves, 
+				n); 
+		livelog_write_string(strbuf); 
 	} 
 } 
 #endif /* LIVELOG_BONES_KILLER */ 
