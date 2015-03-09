@@ -136,7 +136,7 @@ void
 livelog_avert_death()
 {
 	snprintf(strbuf, STRBUF_LEN,
-		"player=%s:role=%s:race=%s:gender=%s:align=%s:turns=%ld:%s\n",
+		"player=%s:role=%s:race=%s:gender=%s:align=%s:turns=%ld:message=%s\n",
 		plname,
 		urole.filecode, urace.filecode, genders[flags.female].filecode, aligns[1-u.ualign.type].filecode,
 		moves,
