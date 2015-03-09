@@ -2746,6 +2746,8 @@ dlb *fd;
 		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
 	}
 
+	if (Race_if(PM_AQUATIC_MONSTER) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
+
 	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 
@@ -2753,6 +2755,8 @@ dlb *fd;
 		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 	}
+
+	if (Race_if(PM_AQUATIC_MONSTER) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 
 	return TRUE;
 }
@@ -3457,6 +3461,8 @@ dlb *fd;
 		if (!rn2(250) && !In_endgame(&u.uz) ) mkriversX();
 	}
 
+	if (Race_if(PM_AQUATIC_MONSTER) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
+
 	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 
@@ -3464,6 +3470,8 @@ dlb *fd;
 		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 	}
+
+	if (Race_if(PM_AQUATIC_MONSTER) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 
     return TRUE;
 }

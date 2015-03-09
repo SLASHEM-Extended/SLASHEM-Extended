@@ -330,6 +330,7 @@
 				 ptr == &mons[PM_WERECOCKATRICE] || \
 				 ptr == &mons[PM_HUMAN_WERECOCKATRICE] || \
 				 ptr == &mons[PM_ASPHYNX] || \
+				 ptr == &mons[PM_STONING_MONSTER] || \
 				 ptr == &mons[PM_GORGON_FLY] || \
 				 ptr == &mons[PM_GORGON_BEETLE] || \
 				 ptr == &mons[PM_PETRO_CENTIPEDE] || \

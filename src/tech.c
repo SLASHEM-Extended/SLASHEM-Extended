@@ -452,6 +452,16 @@ static const struct innate_tech
 		       {   15, T_PRIMAL_ROAR, 1},
 		       {   20, T_CRIT_STRIKE, 1},
 		       {   0, 0, 0} },
+	alc_tech[] = { {   1, T_RESEARCH, 1},
+		       {   1, T_TINKER, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   10, T_SURGERY, 1},
+		       {   20, T_SUMMON_TEAM_ANT, 1},
+		       {   25, T_DRAW_ENERGY, 1},
+		       {   30, T_EGG_BOMB, 1},
+		       {   0, 0, 0} },
+
 	ung_tech[] = { {   1, T_WORLD_FALL, 1},
 		       {   1, T_APPRAISAL, 1},
 		       {   1, T_INVOKE_DEITY, 1},
@@ -534,6 +544,11 @@ static const struct innate_tech
 		       {   1, T_APPRAISAL, 1},
 		       {   1, T_TURN_UNDEAD, 1},
 		       {   1, T_INVOKE_DEITY, 1},
+		       {   0, 0, 0} },
+	hrb_tech[] = { {   1, T_SURGERY, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {  20, T_REVIVE, 1},
 		       {   0, 0, 0} },
 	mum_tech[] = { {   1, T_RAISE_ZOMBIES, 1},
 		       {   1, T_APPRAISAL, 1},
@@ -2762,6 +2777,8 @@ race_tech()
 		case PM_HUMAN_MONKEY:	return (hmo_tech);
 		case PM_VAMPIRE:	return (vam_tech);
 		case PM_LEVITATOR:	return (lev_tech);
+		case PM_HERBALIST:		return (hrb_tech);
+		case PM_ALCHEMIST: 		return (alc_tech);
 		case PM_HUMANOID_ANGEL:	return (ang_tech);
 		default: 		/*return ((struct innate_tech *) 0)*/return (def_tech);
 	}

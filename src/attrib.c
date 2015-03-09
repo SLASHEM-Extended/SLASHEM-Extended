@@ -439,6 +439,9 @@ const struct innate {
 		     {	 25, &(HEnergy_regeneration), "charged with mana", "a loss of mana" },
 		     {   0, 0, 0, 0 } },
 
+	alc_abil[] = { {	 1, &(HAcid_resistance), "", "" },
+		     {	 0, 0, 0, 0 } },
+
 	ang_abil[] = { {   1, &(HAntimagic), "", "" },
 		     {   1, &(HFlying), "", "" },
 		     {   1, &(HCold_resistance), "", "" },
@@ -472,6 +475,10 @@ const struct innate {
 	hob_abil[] = { {  1, &(HStealth), "", "" },
 		     {   7, &(HFast), "quick", "slow" },
 		     {   0, 0, 0, 0 } },
+
+	hrb_abil[] = { {	 1, &(HPoison_resistance), "", "" },
+		     {	15, &(HWarning), "sensitive", "careless" },
+		     {	 0, 0, 0, 0 } },
 
 	bat_abil[] = { {  1, &(HFlying), "", "" },
 		     {  1, &(HDrain_resistance), "", "" },
@@ -565,6 +572,15 @@ const struct innate {
 		     {   1, &(HRegeneration), "", "" },
 		     {   1, &(HTeleportation), "", "" },
 		     {   1, &(HTeleport_control), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	rod_abil[] = { {   1, &(HFire_resistance), "", "" },
+		     {   1, &(HPoison_resistance), "", "" },
+		     {   1, &(HMagical_breathing), "", "" },
+		     {   1, &(HRegeneration), "", "" },
+		     {   1, &(HTeleportation), "", "" },
+		     {   1, &(HTeleport_control), "", "" },
+		     {   1, &(HSee_invisible), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	esp_abil[] = { {  1, &(HSick_resistance), "", "" },
@@ -1188,16 +1204,19 @@ int oldlevel, newlevel;
 	case PM_HUMAN_WRAITH:            rabil = wra_abil;	break;
 	case PM_LICH_WARRIOR:            rabil = lic_abil;	break;
 	case PM_SPIRIT:            rabil = esp_abil;	break;
+	case PM_RODNEYAN:            rabil = rod_abil;	break;
 	case PM_GIGANT:            rabil = gig_abil;	break;
 	case PM_NYMPH:            rabil = nym_abil;	break;
 	case PM_GNOME:		rabil = gno_abil;	break;
 	case PM_BATMAN:		rabil = bat_abil;	break;
+	case PM_HERBALIST:         rabil = hrb_abil;	break;
 	case PM_HOBBIT:		rabil = hob_abil;	break;
 	case PM_ORC:            rabil = orc_abil;	break;
 	case PM_HUMAN_WEREWOLF:	rabil = lyc_abil;	break;
 	case PM_FENEK:	rabil = fen_abil;	break;
 	case PM_ARMED_COCKATRICE:	rabil = coc_abil;	break;
 	case PM_NORD:	rabil = nor_abil;	break;
+	case PM_ALCHEMIST:           rabil = alc_abil;	break;
 	case PM_ALBAE:	rabil = alb_abil;	break;
 	case PM_VORTEX:	rabil = vor_abil;	break;
 	case PM_LEVITATOR:	rabil = lev_abil;	break;

@@ -964,6 +964,8 @@ register const char *s;
 		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversY();
 	}
 
+	if (Race_if(PM_AQUATIC_MONSTER) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversY();
+
 	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
 	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
 
@@ -971,6 +973,8 @@ register const char *s;
 		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
 		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
 	}
+
+	if (Race_if(PM_AQUATIC_MONSTER) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
 
 }
 

@@ -106,6 +106,9 @@ register boolean clumsy;
 	if (uarmf) dmg += uarmf->spe;
 	dmg += u.udaminc;	/* add ring(s) of increase damage */
 	dmg += (Drunken_boxing && Confusion);
+
+	if (Race_if(PM_RODNEYAN)) dmg += (1 + (u.ulevel / 3) );
+
 	if (dmg > 0) {
 		mon->mhp -= dmg;
 #ifdef SHOW_DMG

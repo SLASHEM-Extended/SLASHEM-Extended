@@ -509,16 +509,18 @@ struct mkroom	*sroom;
 	if (Is_blackmarket(&u.uz)) {
 	  shk = makemon(&mons[PM_BLACK_MARKETEER], sx, sy, NO_MM_FLAGS);
 	}
+	/* deepy wants shopkeepers to start out hostile to a venture capitalist --Amy */
 	if (!shk) {
-	  if(!(shk = makemon(&mons[PM_SHOPKEEPER], sx, sy, NO_MM_FLAGS)))
+	  if(!(shk = makemon(&mons[PM_SHOPKEEPER], sx, sy, Race_if(PM_VENTURE_CAPITALIST) ? MM_ANGRY : NO_MM_FLAGS)))
 		return(-1);
 	}        
 #else  /* BLACKMARKET */
-	if(!(shk = makemon(&mons[PM_SHOPKEEPER], sx, sy, NO_MM_FLAGS)))
+	if(!(shk = makemon(&mons[PM_SHOPKEEPER], sx, sy, Race_if(PM_VENTURE_CAPITALIST) ? MM_ANGRY : NO_MM_FLAGS)))
 		return(-1);
 #endif /* BLACKMARKET */
   
 	shk->isshk = shk->mpeaceful = 1;
+	if (Race_if(PM_VENTURE_CAPITALIST)) shk->mpeaceful = 0;
 	set_malign(shk);
 	shk->msleeping = 0;
 	shk->mtrapseen = ~0;	/* we know all the traps already */
@@ -589,6 +591,8 @@ struct mkroom	*sroom;
 	  mpickobj(shk, otmp);
 	}
 #endif /* BLACKMARKET */
+
+	if (Race_if(PM_VENTURE_CAPITALIST)) hot_pursuit(shk);
 
 	return(sh);
 }

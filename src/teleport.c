@@ -661,7 +661,7 @@ tele()
 	coord cc;
 
 	/* Disable teleportation in stronghold && Vlad's Tower */
-	if (level.flags.noteleport) {
+	if (level.flags.noteleport && !Race_if(PM_RODNEYAN) ) {
 #ifdef WIZARD
 		if (!wizard) {
 #endif
@@ -729,7 +729,7 @@ void
 teleX()
 {
 	/* Disable teleportation in stronghold && Vlad's Tower */
-	if (level.flags.noteleport) {
+	if (level.flags.noteleport && !Race_if(PM_RODNEYAN) ) {
 		    pline("A mysterious force prevents you from teleporting!");
 		    return;
 	}
@@ -777,7 +777,7 @@ dotele()
 	    boolean castit = FALSE;
 	    register int sp_no = 0, energy = 0;
 
-	    if (!Teleportation || (u.ulevel < (Race_if(PM_LICH_WARRIOR) ? 1 : Role_if(PM_WIZARD) ? 8 : 12)
+	    if (!Teleportation || (u.ulevel < (Race_if(PM_LICH_WARRIOR) ? 1 : Race_if(PM_RODNEYAN) ? 1 : Role_if(PM_WIZARD) ? 8 : 12)
 					&& !can_teleport(youmonst.data))) {
 		/* Try to use teleport away spell. */
 		if (objects[SPE_TELEPORT_AWAY].oc_name_known && !Confusion)

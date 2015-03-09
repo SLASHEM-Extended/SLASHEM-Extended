@@ -171,6 +171,7 @@ moveloop()
 			/* make sure we don't fall off the bottom */
 			if (monclock < 15) { monclock = 15; }
 			if (Race_if(PM_HAXOR) || Race_if(PM_LICH_WARRIOR) ) monclock /= 2;
+			if (Race_if(PM_RODNEYAN)) monclock /= 4;
 			if (Race_if(PM_SUXXOR)) monclock *= 2;
 
 			/* TODO: adj difficulty in makemon */
@@ -197,6 +198,7 @@ moveloop()
 			/* make sure we don't fall off the bottom */
 			if (xtraclock < 4500) { xtraclock = 4500; }
 			if (Race_if(PM_HAXOR) || Race_if(PM_LICH_WARRIOR) ) xtraclock /= 2;
+			if (Race_if(PM_RODNEYAN)) xtraclock /= 4;
 			if (Race_if(PM_SUXXOR)) xtraclock *= 2;
 
 			/* new group spawn system by Amy */
@@ -692,6 +694,7 @@ moveloop()
 				(!(moves%((MAXULEV + 15 - u.ulevel) *                                    
 				(Role_if(PM_WIZARD) ? 3 : 4) / 6)))))) {
 			u.uen += rn1((int)(ACURR(A_WIS) + ACURR(A_INT)) / 15 + 1,1);
+
 #ifdef WIZ_PATCH_DEBUG
                 pline("mana was = %d now = %d",temp,u.uen);
 #endif
@@ -699,6 +702,12 @@ moveloop()
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 		    }
+
+			if (Race_if(PM_RODNEYAN)) { /* rodney has special built-in energy regeneration --Amy */
+				u.uen++;
+				if (u.uen > u.uenmax)  u.uen = u.uenmax;
+				flags.botl = 1;
+			}
 
 		/* leveling up will give a small boost to mana regeneration now --Amy */
 		    if ( !Burned && u.uen < u.uenmax && ( 
@@ -963,6 +972,16 @@ moveloop()
 #endif
 			    }
 			}
+
+			if (Race_if(PM_RODNEYAN) && !rn2(1000)) {	/* levelteleportitis --Amy */
+
+				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+				pline("A mysterious force surrounds you...");
+			      if (strncmpi(plname, "lostsoul", 8) && strncmpi(plname, "uberlostsoul", 12)) level_tele();
+				else pline("You feel very disoriented but decide to move on.");
+
+			}
+
 			/* delayed change may not be valid anymore */
 			if ((change == 1 && !Polymorph) ||
 			    (change == 2 && u.ulycn == NON_PM))

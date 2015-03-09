@@ -1125,6 +1125,8 @@ makelevel()
 	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrivers();
 		}
 
+		if (Race_if(PM_AQUATIC_MONSTER)) mkrivers();
+
 	    if ( u_depth > 13 && !rn2(7)) mkrandrivers();
 	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrandrivers();
 
@@ -1132,6 +1134,9 @@ makelevel()
 	    if ( u_depth > 13 && !rn2(7)) mkrandrivers();
 	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrandrivers();
 		}
+
+		if (Race_if(PM_AQUATIC_MONSTER)) mkrandrivers();
+
 	/*}*/
 
 #ifdef REINCARNATION
@@ -2655,6 +2660,10 @@ mkinvokearea()
     achieve.perform_invocation = 1;
 #ifdef LIVELOGFILE
     livelog_achieve_update();
+
+	/* let's spice things up a bit... --Amy */
+    (void) makemon(&mons[PM_CHAOS_MONKEY], 0, 0, NO_MM_FLAGS);
+
 #endif
 #endif
 }

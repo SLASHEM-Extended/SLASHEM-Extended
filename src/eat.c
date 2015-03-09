@@ -61,8 +61,8 @@ char msgbuf[BUFSZ];
 
 /* also used to see if you're allowed to eat cats and dogs */
 #define CANNIBAL_ALLOWED() (Role_if(PM_CAVEMAN) || Role_if(PM_LUNATIC) || Race_if(PM_ORC) || \
-Race_if(PM_CURSER) || Race_if(PM_ALIEN) || Race_if(PM_TROLLOR) || Race_if(PM_VORTEX) || Race_if(PM_HUMANOID_DEVIL) || Race_if(PM_MUMMY) || Race_if(PM_LICH_WARRIOR) || Race_if(PM_KOBOLT) || Race_if(PM_GIGANT) || Race_if(PM_OGRO) || \
- Race_if(PM_INSECTOID) || Race_if(PM_MOULD) || Race_if(PM_MISSINGNO) || Race_if(PM_HUMANLIKE_DRAGON) || Race_if(PM_HUMANLIKE_NAGA) || Race_if(PM_DEATHMOLD) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_UNGENOMOLD) || Race_if(PM_UNALIGNMENT_THING) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || \
+Race_if(PM_CURSER) || Race_if(PM_ALIEN) || Race_if(PM_TROLLOR) || Race_if(PM_VORTEX) || Race_if(PM_HUMANOID_DEVIL) || Race_if(PM_MUMMY) || Race_if(PM_LICH_WARRIOR) || Race_if(PM_KOBOLT) || Race_if(PM_GIGANT) || Race_if(PM_RODNEYAN) || Race_if(PM_OGRO) || \
+ Race_if(PM_INSECTOID) || Race_if(PM_MOULD) || Race_if(PM_MISSINGNO) || Race_if(PM_HUMANLIKE_DRAGON) || Race_if(PM_HUMANLIKE_NAGA) || Race_if(PM_DEATHMOLD) || Race_if(PM_AQUATIC_MONSTER) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_UNGENOMOLD) || Race_if(PM_UNALIGNMENT_THING) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || \
  Race_if(PM_SNAKEMAN) || Race_if(PM_SPIDERMAN) || Race_if(PM_VAMPIRE) || Race_if(PM_LEVITATOR) || Race_if(PM_CLOCKWORK_AUTOMATON))
 
 #ifndef OVLB
@@ -1374,6 +1374,14 @@ register int pm;
 			pline("You feel more %s!", flags.female ? "pretty" : "attractive");
 			(void) adjattrib(A_CHA, 1, FALSE);
 			}
+		break;
+
+	    case PM_STONING_MONSTER:
+		if (ABASE(A_CON) < ATTRMAX(A_CON)) {
+			pline("You feel tougher!");
+			(void) adjattrib(A_CON, 1, FALSE);
+			}
+
 		break;
 
 	    case PM_NEWT:
@@ -4229,11 +4237,11 @@ boolean incr;
 				  "You still have the munchies." :
       "The munchies are interfering with your motor capabilities.");
 			else if (incr &&
-				(Role_if(PM_WIZARD) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Role_if(PM_COURIER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CONVICT) || Race_if(PM_ELF) || Race_if(PM_ASGARDIAN) || Race_if(PM_HAXOR) || Race_if(PM_HERETIC) || Race_if(PM_ALBAE) ||
+				(Role_if(PM_WIZARD) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Role_if(PM_COURIER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CONVICT) || Race_if(PM_ELF) || Race_if(PM_ASGARDIAN) || Race_if(PM_HAXOR) || Race_if(PM_HERETIC) || Race_if(PM_ALBAE) || Race_if(PM_RODNEYAN) ||
 				 Role_if(PM_VALKYRIE)))
 			    pline("%s needs food, badly!", (!rn2(10)) ? urace.noun/*urole.name.m*/ :
 				  (Role_if(PM_WIZARD) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Role_if(PM_COURIER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CONVICT) || Race_if(PM_ASGARDIAN) || Race_if(PM_HAXOR) || Race_if(PM_HERETIC) || Race_if(PM_ALBAE) || Role_if(PM_VALKYRIE)) ?
-				  urole.name.m : "Elf");
+				  urole.name.m : Race_if(PM_RODNEYAN) ? "Wizard of Yendor" : "Elf");
 			else
 			    You((!incr) ? "feel weak now." :
 				  (u.uhunger < 45) ? "feel weak." :

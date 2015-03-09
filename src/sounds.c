@@ -1134,6 +1134,21 @@ register struct monst *mtmp;
 	case MS_CUSS:
 	    if (!mtmp->mpeaceful)
 		cuss(mtmp);
+
+	    if (mtmp->mpeaceful && monsndx(ptr) == PM_WIZARD_OF_YENDOR && Race_if(PM_RODNEYAN) )	{
+
+			if (mon_has_amulet(mtmp) )	{
+				verbalize("Here, take the amulet and use it well, %s!", flags.female ? "sister" : "brother");
+				mdrop_special_objs(mtmp);
+			}
+			else if (mon_has_special(mtmp) )	{
+				verbalize("Here %s, I got a nice artifact for you!", flags.female ? "sister" : "brother");
+				mdrop_special_objs(mtmp);
+			}
+			else verbalize("Good luck on your quest, %s!", flags.female ? "sister" : "brother");
+
+		}
+
 	    break;
 	case MS_GYPSY:	/* KMH */
 		if (mtmp->mpeaceful) {
@@ -1151,7 +1166,7 @@ register struct monst *mtmp;
 		|| is_weptool(uswapwep))))
 		verbl_msg = "Put that weapon away before you hurt someone!";
 	    else if (uarmc || uarm || uarmh || uarms || uarmg || uarmf)
-		verbl_msg = Role_if(PM_HEALER) ?
+		verbl_msg = (Role_if(PM_HEALER) || Race_if(PM_HERBALIST)) ?
 			  "Doc, I can't help you unless you cooperate." :
 			  "Please undress so I can examine you.";
 #ifdef TOURIST

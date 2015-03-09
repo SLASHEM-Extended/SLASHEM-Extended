@@ -974,6 +974,7 @@ boolean hitsroof;
 	if (dmg > 1 && less_damage) dmg = 1;
 	if (dmg > 0) dmg += u.udaminc;
 	if (dmg > 0) dmg += (Drunken_boxing && Confusion);
+	if (dmg > 0 && Race_if(PM_RODNEYAN)) dmg += (1 + (u.ulevel / 3) );
 	if (dmg < 0) dmg = 0;	/* beware negative rings of increase damage */
 	if (Half_physical_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 

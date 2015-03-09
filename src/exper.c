@@ -298,6 +298,14 @@ newexplevel()
 		}
 		if (u.uen < u.uenmax) u.uen = u.uenmax;
 
+		if (Race_if(PM_RODNEYAN) && u.ulevel > u.urmaxlvl) {
+
+		u.urmaxlvl = u.ulevel;
+
+		if (!rn2(2)) {ubook = mkobj(SPBOOK_CLASS, FALSE); dropy(ubook); pline("A book appeared at your feet!"); }
+
+		}
+
 		if (Race_if(PM_ASGARDIAN) && u.ulevel > u.urmaxlvl) {
 
 		u.urmaxlvl = u.ulevel;

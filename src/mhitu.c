@@ -2531,7 +2531,7 @@ dopois:
 		    }
 		    dmg = 0;
 		} else {
-		    if (Role_if(PM_HEALER)) {
+		    if (Role_if(PM_HEALER) || Race_if(PM_HERBALIST)) {
 			if (flags.soundok && !(moves % 5))
 		      verbalize("Doc, I can't help you unless you cooperate.");
 			dmg = 0;

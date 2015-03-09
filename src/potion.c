@@ -1725,7 +1725,7 @@ peffects(otmp)
 		if (otmp->blessed) {
 		    pline("(But in fact it was mildly stale %s.)",
 			  fruitname(TRUE));
-		    if (!Role_if(PM_HEALER)) {
+		    if (!Role_if(PM_HEALER) && !Race_if(PM_HERBALIST)) {
 			/* NB: blessed otmp->fromsink is not possible */
 			losehp(1, "mildly contaminated potion", KILLED_BY_AN);
 		    }
@@ -1734,7 +1734,7 @@ peffects(otmp)
 			pline(
 			  "(But in fact it was biologically contaminated %s.)",
 			      fruitname(TRUE));
-		    if (Role_if(PM_HEALER))
+		    if (Role_if(PM_HEALER) || Race_if(PM_HERBALIST))
 			pline("Fortunately, you have been immunized.");
 		    else {
 			int typ = rn2(A_MAX);
@@ -2783,7 +2783,7 @@ register struct obj *obj;
 		exercise(A_CON, TRUE);
 		break;
 	case POT_SICKNESS:
-		if (!Role_if(PM_HEALER)) {
+		if (!Role_if(PM_HEALER) && !Race_if(PM_HERBALIST)) {
 			if (Upolyd) {
 			    if (u.mh <= 5) u.mh = 1; else u.mh -= 5;
 			} else {

@@ -403,6 +403,8 @@ clonewiz()
 	if ((mtmp2 = makemon(&mons[PM_WIZARD_OF_YENDOR],
 				u.ux, u.uy, NO_MM_FLAGS)) != 0) {
 	    mtmp2->msleeping = mtmp2->mtame = mtmp2->mpeaceful = 0;
+		if (Race_if(PM_RODNEYAN)) mtmp2->mpeaceful = 1;
+
 	    if (!u.uhave.amulet && rn2(2)) {  /* give clone a fake */
 		(void) add_to_minv(mtmp2, mksobj(FAKE_AMULET_OF_YENDOR,
 					TRUE, FALSE));
@@ -519,9 +521,11 @@ resurrect()
 
 	if (mtmp) {
 		mtmp->msleeping = mtmp->mtame = mtmp->mpeaceful = 0;
+		if (Race_if(PM_RODNEYAN)) mtmp->mpeaceful = 1;
 		set_malign(mtmp);
 		pline("A voice booms out...");
-		verbalize("So thou thought thou couldst %s me, fool.", verb);
+		if (!Race_if(PM_RODNEYAN)) verbalize("So thou thought thou couldst %s me, fool.", verb);
+		else verbalize("Hi there again, %s", flags.female ? "sister" : "brother");
 	}
 
 }

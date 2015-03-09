@@ -219,6 +219,19 @@ struct obj *box;
 		if (otmp->oclass == COIN_CLASS) {
 		    /* 2.5 x level's usual amount; weight adjusted below */
 		    otmp->quan = (long)(rnd(level_difficulty()+5) * rnd(10));
+
+			if (Race_if(PM_VENTURE_CAPITALIST)) {	/* they get extra money, idea by deepy */
+
+				if (rn2(2)) otmp->quan *= 2;
+				if (!rn2(5)) otmp->quan *= 3;
+				if (!rn2(20)) otmp->quan *= 5;
+				if (!rn2(200)) otmp->quan *= 10;
+				if (!rn2(1000)) otmp->quan *= 20;
+				if (!rn2(5000)) otmp->quan *= 50;
+				if (!rn2(25000)) otmp->quan *= 100;
+
+			}
+
 		    otmp->owt = weight(otmp);
 		} else while (otmp->otyp == ROCK) {
 		    otmp->otyp = rnd_class(DILITHIUM_CRYSTAL, LOADSTONE);
@@ -1158,6 +1171,18 @@ int x, y;
 
     if (amount <= 0L)
 	amount = (long)(1 + rnd(level_difficulty()+2) * rnd(5));
+
+	if (Race_if(PM_VENTURE_CAPITALIST)) {	/* they get extra money, idea by deepy */
+
+		if (rn2(2)) amount *= 2;
+		if (!rn2(5)) amount *= 3;
+		if (!rn2(20)) amount *= 5;
+		if (!rn2(200)) amount *= 10;
+		if (!rn2(1000)) amount *= 20;
+		if (!rn2(5000)) amount *= 50;
+		if (!rn2(25000)) amount *= 100;
+	}
+
     if (gold) {
 	gold->quan += amount;
     } else {

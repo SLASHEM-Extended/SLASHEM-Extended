@@ -1091,6 +1091,136 @@ static struct trobj Yeoman[] = {
  *	Optional extra inventory items.
  */
 
+static struct trobj HerbalistItem[] = {
+	{ SCALPEL, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj HerbalistItemB[] = {
+	{ STETHOSCOPE, 0, TOOL_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj HerbalistItemC[] = {
+	{ MEDICAL_KIT, 0, TOOL_CLASS, 1, 0 },        
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj HerbalistItemD[] = {
+	{ POT_HEALING, 0, POTION_CLASS, 4, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj HerbalistItemE[] = {
+	{ POT_EXTRA_HEALING, 0, POTION_CLASS, 4, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj HerbalistItemF[] = {
+	{ WAN_SLEEP, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj HerbalistItemG[] = {
+	{ WAN_HEALING, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj HerbalistItemH[] = {
+	{ SPE_HEALING, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj HerbalistItemI[] = {
+	{ SPE_STONE_TO_FLESH, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj HerbalistItemJ[] = {
+	{ APPLE, 0, FOOD_CLASS, 10, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj AlchemistItem[] = {
+	{ SCALPEL, 1, WEAPON_CLASS, 1, 1},
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj AlchemistItemB[] = {
+	{ GAUNTLETS_OF_FUMBLING, 5, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj AlchemistItemC[] = {
+	{ LAB_COAT, 5, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj AlchemistItemD[] = {
+	{ POT_RADIUM, 0, POTION_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj AlchemistItemE[] = {
+	{ POT_CYANIDE, 0, POTION_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj AlchemistItemF[] = {
+	{ POT_PARALYSIS, 0, POTION_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj AlchemistItemG[] = {
+	{ POT_ACID, 0, POTION_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj AlchemistItemH[] = {
+	{ POT_SICKNESS, 0, POTION_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj AlchemistItemI[] = {
+	{ BOTTLE, 0, TOOL_CLASS, 3, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj AlchemistItemJ[] = {
+	{ SPE_CHEMISTRY, 5, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj AlchemistItemK[] = {
+	{ CHEMISTRY_SET, 40, TOOL_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj RodneyItem[] = {
+	{ UNDEF_TYP, 5, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj RodneyItemB[] = {
+	{ UNDEF_TYP, 5, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj RodneyItemC[] = {
+	{ UNDEF_TYP, 5, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj RodneyItemD[] = {
+	{ UNDEF_TYP, 5, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj RodneyItemE[] = {
+	{ UNDEF_TYP, 5, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj AlienItem[] = {
 	{ LOADSTONE, 0, GEM_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -4981,6 +5111,24 @@ u_init()
 
 	   break;
 
+	case PM_ALCHEMIST:	/* a racial version of the scientist --Amy */
+
+		knows_classX(POTION_CLASS);
+
+          ini_inv(AlchemistItem);		
+          ini_inv(AlchemistItemB);		
+          ini_inv(AlchemistItemC);		
+          ini_inv(AlchemistItemD);		
+          ini_inv(AlchemistItemE);		
+          ini_inv(AlchemistItemF);		
+          ini_inv(AlchemistItemG);		
+          ini_inv(AlchemistItemH);		
+          ini_inv(AlchemistItemI);		
+          ini_inv(AlchemistItemJ);		
+          ini_inv(AlchemistItemK);		
+
+	   break;
+
 	case PM_ANGBANDER:
 
 		ini_inv(AngbandItem);
@@ -5087,8 +5235,35 @@ u_init()
 	case PM_OGRO:
           ini_inv(OgroItem);		
 		break;
+	case PM_HERBALIST:	/* a racial version of the healer --Amy */
+          ini_inv(HerbalistItem);		
+          ini_inv(HerbalistItemB);		
+          ini_inv(HerbalistItemC);		
+          ini_inv(HerbalistItemD);		
+          ini_inv(HerbalistItemE);		
+          ini_inv(HerbalistItemF);		
+          ini_inv(HerbalistItemG);		
+          ini_inv(HerbalistItemH);		
+          ini_inv(HerbalistItemI);		
+          ini_inv(HerbalistItemJ);		
+		break;
+
+	case PM_RODNEYAN:	/* idea by FIQ - playable rodney */
+
+          ini_inv(RodneyItem);		
+          ini_inv(RodneyItemB);		
+          ini_inv(RodneyItemC);		
+          ini_inv(RodneyItemD);		
+          ini_inv(RodneyItemE);		
+
+		break;
+
 	case PM_BATMAN:
           ini_inv(BatmanItem);		
+		break;
+
+	case PM_VENTURE_CAPITALIST:	/* idea by deepy */
+          u.ugold += rnd(5000);		
 		break;
 
 	case PM_HUMANLIKE_DRAGON:
@@ -5219,6 +5394,7 @@ u_init()
 	case PM_GIGANT: racebounus = rnz(12); break;
 	case PM_HOBBIT: racebounus = rnz(8); break;
 	case PM_KOBOLT: racebounus = rnz(8); break;
+	case PM_ALCHEMIST: racebounus = rnz(7); break;
 	case PM_HUMAN_WEREWOLF: racebounus = rnz(15); break;
 	case PM_AK_THIEF_IS_DEAD_: racebounus = rnz(15); break;
 	case PM_MOULD: racebounus = rnz(12); break;

@@ -177,7 +177,7 @@ int rx, ry, *resp;
 	    You_hear("a voice say, \"It's dead, Jim.\"");
 	    *resp = 1;
 	    return TRUE;
-	} else if (Role_if(PM_HEALER) && ((otmp = sobj_at(CORPSE, rx, ry)) != 0 ||
+	} else if ( (Role_if(PM_HEALER) || Race_if(PM_HERBALIST)) && ((otmp = sobj_at(CORPSE, rx, ry)) != 0 ||
 				    (otmp = sobj_at(STATUE, rx, ry)) != 0)) {
 	    /* possibly should check uppermost {corpse,statue} in the pile
 	       if both types are present, but it's not worth the effort */
@@ -230,7 +230,7 @@ use_stethoscope(obj)
 	struct rm *lev;
 	int rx, ry, res;
 	boolean interference = (u.uswallow && is_whirly(u.ustuck->data) &&
-				!rn2(Role_if(PM_HEALER) ? 10 : 3));
+				!rn2(Role_if(PM_HEALER) ? 10 : Race_if(PM_HERBALIST) ? 10 : 3));
 
 	if (!rn2(100)) {
 	    useup(obj);
@@ -3948,7 +3948,7 @@ doapply()
 		res = do_play_instrument(obj);
 		break;
 	case MEDICAL_KIT:        
-		if (Role_if(PM_HEALER)) can_use = TRUE;
+		if (Role_if(PM_HEALER) || Race_if(PM_HERBALIST) ) can_use = TRUE;
 		else if ((Role_if(PM_PRIEST) || Role_if(PM_MONK) ||
 			Role_if(PM_UNDEAD_SLAYER) || Role_if(PM_SAMURAI)) &&
 			!rn2(2)) can_use = TRUE;

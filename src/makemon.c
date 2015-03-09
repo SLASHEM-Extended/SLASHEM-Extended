@@ -6793,6 +6793,29 @@ register struct	monst	*mtmp;
 			otmp->owt = weight(otmp);
 			mpickobj(mtmp,otmp);
 		}
+
+		if (ptr == &mons[PM_CHAOS_MONKEY]) { /* idea by deepy */
+
+			(void) mongets(mtmp, POT_POLYMORPH);
+			(void) mongets(mtmp, RIN_TIMELY_BACKUP);
+			(void) mongets(mtmp, AMULET_OF_DATA_STORAGE);
+			(void) mongets(mtmp, POT_STUNNING);
+			(void) mongets(mtmp, POT_FULL_HEALING);
+			(void) mongets(mtmp, SCR_CREATE_MONSTER);
+			(void) mongets(mtmp, SCR_FLOOD);
+			(void) mongets(mtmp, SCR_EARTH);
+			(void) mongets(mtmp, SCR_WARPING);
+			(void) mongets(mtmp, SCR_BAD_EFFECT);
+			(void) mongets(mtmp, SCR_LAVA);
+			(void) mongets(mtmp, SCR_BARRHING);
+			(void) mongets(mtmp, SCR_LOCKOUT);
+			(void) mongets(mtmp, SCR_TRAP_CREATION);
+			(void) mongets(mtmp, WAN_SUMMON_UNDEAD);
+			(void) mongets(mtmp, WAN_CREATE_HORDE);
+			(void) mongets(mtmp, WAN_DIGGING);
+
+		}
+
  		break;
 	    case S_EYE:
 		if (ptr == &mons[PM_OAK_SAGE]) (void) mongets(mtmp, POT_FULL_HEALING);
@@ -8037,6 +8060,8 @@ register int	mmflags;
 		flags.no_of_wizards++;
 		if (flags.no_of_wizards == 1 && Is_earthlevel(&u.uz))
 			mitem = SPE_DIG;
+		if (Race_if(PM_RODNEYAN)) mtmp->mpeaceful = 1;
+
 	} else if (mndx == PM_DJINNI) {
 		flags.djinni_count++;
 	} else if (mndx == PM_GHOST) {
@@ -8313,6 +8338,14 @@ register struct permonst *ptr;
 	if (Race_if(PM_LICH_WARRIOR) && ptr->mlevel > 19) alshift++;
 	if (Race_if(PM_LICH_WARRIOR) && ptr->mlevel > 29) alshift++;
 	if (Race_if(PM_LICH_WARRIOR) && ptr->mlevel > 39) alshift += 2;
+
+	/* and also for rodney players */
+
+	if (Race_if(PM_RODNEYAN) && ptr->mlevel > 9) alshift++;
+	if (Race_if(PM_RODNEYAN) && ptr->mlevel > 19) alshift += 2;
+	if (Race_if(PM_RODNEYAN) && ptr->mlevel > 29) alshift += 4;
+	if (Race_if(PM_RODNEYAN) && ptr->mlevel > 39) alshift += 10;
+	if (Race_if(PM_RODNEYAN) && ptr->mlevel > 49) alshift += 25;
 
     return alshift;
 }
@@ -9077,7 +9110,7 @@ boolean
 peace_minded(ptr)
 register struct permonst *ptr;
 {
-	if (Race_if(PM_ALBAE)) return FALSE; /* albae are hated by all other races --Amy */
+	if (Race_if(PM_ALBAE) || Race_if(PM_RODNEYAN) ) return FALSE; /* albae are hated by all other races --Amy */
 	if (Role_if(PM_CRUEL_ABUSER) && Qstats(killed_nemesis) ) return FALSE; /* you murderer! */
 	if (ptr->msound == MS_NEMESIS)	return FALSE;
 
@@ -9109,6 +9142,11 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_CENTAUR && Race_if(PM_HUMANOID_CENTAUR) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_DRAGON && Race_if(PM_HUMANLIKE_DRAGON) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_NAGA && Race_if(PM_HUMANLIKE_NAGA) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
+
+	if (ptr->mlet == S_EEL && Race_if(PM_AQUATIC_MONSTER) && !Role_if(PM_CONVICT) && rn2(50)) return TRUE;
+	if (ptr->mlet == S_FLYFISH && Race_if(PM_AQUATIC_MONSTER) && !Role_if(PM_CONVICT) && rn2(50)) return TRUE;
+	if (ptr->mlet == S_RUSTMONST && Race_if(PM_AQUATIC_MONSTER) && !Role_if(PM_CONVICT) && rn2(50)) return TRUE;
+	if ((is_swimmer(ptr) || (ptr)->mflags1 & M1_AMPHIBIOUS) && Race_if(PM_AQUATIC_MONSTER) && !Role_if(PM_CONVICT) && rn2(2)) return TRUE;
 
 	if (!always_hostile(ptr) && Race_if(PM_ANGBANDER) && !Role_if(PM_CONVICT) && rn2(2)) return TRUE;
 
