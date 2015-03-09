@@ -49,7 +49,14 @@ travel         enable the command to travel to a map location via [TRUE]
                a shortest-path algorithm, usually invoked by '_'.
 verbose        print more commentary during the game              [TRUE]
 
-
+gehenna        game always behaves like you were in Gehennom      [FALSE]
+dudley         your luck is fixed at -13, and you're constantly   [FALSE]
+               afraid
+iwbtg          you die as soon as you take damage, and can jump   [FALSE]
+hippie         you are constantly hallucinating                   [FALSE]
+blindfox       you are constantly blinded                         [FALSE]
+lostsoul       you start at medusa depth instead of dlvl1         [FALSE]
+uberlostsoul   you start at invocation depth instead of dlvl1     [FALSE]
 
 There are further boolean options controlled by compilation flags.
 

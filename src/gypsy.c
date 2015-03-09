@@ -341,7 +341,7 @@ fortune (mtmp)
 			if (gypsy_offer(mtmp, 5000L,
 					"teleport you to a level of your choosing")) {
 				incr_itimeout(&HTeleport_control, 1);
-				    if (strncmpi(plname, "lostsoul", 8) && strncmpi(plname, "uberlostsoul", 12)) level_tele();
+				    if (!flags.lostsoul && !flags.uberlostsoul) level_tele();
 				else pline("But unfortunately you aren't allowed to level teleport.");
 			}
 			break;

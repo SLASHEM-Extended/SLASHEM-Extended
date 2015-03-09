@@ -8026,7 +8026,7 @@ register int	mmflags;
 
 			if (mndx == PM_INVISIBLE_CC) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
-			if ((Race_if(PM_IMPERIAL) || (Inhell && !Race_if(PM_HERETIC) ) || !strncmpi(plname, "Gehenna", 7)) && is_bat(ptr))
+			if ((Race_if(PM_IMPERIAL) || (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna) && is_bat(ptr))
 			    mon_adjust_speed(mtmp, 2, (struct obj *)0);
 			break;
 		case S_VAMPIRE:

@@ -128,7 +128,7 @@
 
 #define HFeared		u.uprops[FEARED].intrinsic
 #define EFeared		u.uprops[FEARED].extrinsic
-#define Feared		(!strncmpi(plname, "Dudley", 6) || ((HFeared || EFeared || HeavyFeared) && !Fear_resistance) )
+#define Feared		(flags.dudley || ((HFeared || EFeared || HeavyFeared) && !Fear_resistance) )
 #define HeavyFeared		u.uprops[HEAVY_FEARED].intrinsic
 
 #define HFrozen		u.uprops[FROZEN].intrinsic
@@ -145,8 +145,8 @@
 #define EBlinded			u.uprops[BLINDED].extrinsic
 #define Blindfolded		(ublindf && ublindf->otyp != LENSES)
 		/* ...means blind because of a cover */
-#define Blind	((Blinded || EBlinded || Blindfolded || HeavyBlind || !strncmpi(plname, "Blindfox", 8) || (!haseyes(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) && \
-		 !(ublindf && ublindf->oartifact == ART_EYES_OF_THE_OVERWORLD && strncmpi(plname, "Blindfox", 8) ))
+#define Blind	((Blinded || EBlinded || Blindfolded || HeavyBlind || flags.blindfox || (!haseyes(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) && \
+		 !(ublindf && ublindf->oartifact == ART_EYES_OF_THE_OVERWORLD && !flags.blindfox ))
 		/* ...the Eyes operate even when you really are blind
 		    or don't have any eyes */
 /* added possibility of playing the entire game blind --Amy*/
@@ -180,7 +180,7 @@
 #define EHalluc_resistance	u.uprops[HALLUC_RES].extrinsic
 #define Halluc_resistance	(EHalluc_resistance || \
 				 (Upolyd && dmgtype(youmonst.data, AD_HALU)))
-#define Hallucination		((HHallucination && !Halluc_resistance) || (HeavyHallu && !Halluc_resistance) || (EHallucination && !Halluc_resistance) || !strncmpi(plname, "Hippie", 6) )
+#define Hallucination		((HHallucination && !Halluc_resistance) || (HeavyHallu && !Halluc_resistance) || (EHallucination && !Halluc_resistance) || flags.hippie )
 /* added possibility of playing the entire game hallucinating --Amy*/
 #define HeavyHallu		u.uprops[HEAVY_HALLU].intrinsic
 
@@ -329,7 +329,7 @@
 /*** Transportation ***/
 #define HJumping		u.uprops[JUMPING].intrinsic
 #define EJumping		u.uprops[JUMPING].extrinsic
-#define Jumping			((HJumping || EJumping || !strncmpi(plname, "IWBTG", 5) ) && !NoJumping)
+#define Jumping			((HJumping || EJumping || flags.iwbtg ) && !NoJumping)
 #define NoJumping	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_JUMPING].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HTeleportation		u.uprops[TELEPORT].intrinsic

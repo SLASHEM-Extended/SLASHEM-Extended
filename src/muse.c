@@ -2012,7 +2012,7 @@ register struct obj *otmp;
 
 		if (zap_oseen) makeknown(WAN_BANISHMENT);
 
-		if (!strncmpi(plname, "lostsoul", 8) || !strncmpi(plname, "uberlostsoul", 12)) { 
+		if (flags.lostsoul || flags.uberlostsoul) { 
 		pline("Somehow, the banishment beam doesn't do anything."); break;}
 
 		if (u.usteed) {dismount_steed(DISMOUNT_GENERIC); } /* seems to crash if the player stays on the horse?! */

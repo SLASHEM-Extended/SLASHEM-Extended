@@ -256,6 +256,15 @@ static struct Bool_Opt
 #endif
 	{"verbose", &flags.verbose, TRUE, SET_IN_GAME},
 	{"wraptext", &iflags.wc2_wraptext, FALSE, SET_IN_GAME},
+
+	{"blindfox", &flags.blindfox, FALSE, DISP_IN_GAME},
+	{"dudley", &flags.dudley, FALSE, DISP_IN_GAME},
+	{"gehenna", &flags.gehenna, FALSE, DISP_IN_GAME},
+	{"hippie", &flags.hippie, FALSE, DISP_IN_GAME},
+	{"iwbtg", &flags.iwbtg, FALSE, DISP_IN_GAME},
+	{"lostsoul", &flags.lostsoul, FALSE, DISP_IN_GAME},
+	{"uberlostsoul", &flags.uberlostsoul, FALSE, DISP_IN_GAME},
+
 	{(char *)0, (boolean *)0, FALSE, 0}
 };
 

@@ -3070,7 +3070,7 @@ register int n;
 register const char *knam;
 int k_format; /* WAC k_format is an int */
 {
-	if (!strncmpi(plname, "IWBTG", 5)) {
+	if (flags.iwbtg) {
 		killer_format = k_format;
 		killer = knam;		/* the thing that killed you */
 		You("explode in a fountain of red pixels!");

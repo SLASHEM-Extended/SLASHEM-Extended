@@ -3018,7 +3018,7 @@ boolean ordinary;
 		case WAN_BANISHMENT:
 			makeknown(obj->otyp);
 			if (u.uevent.udemigod) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
-			if (!strncmpi(plname, "lostsoul", 8) || !strncmpi(plname, "uberlostsoul", 12)) {
+			if (flags.lostsoul || flags.uberlostsoul) {
 			 pline("For some reason you resist the banishment!"); break;}
 
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -3189,7 +3189,7 @@ struct obj *obj;	/* wand or spell */
 		case WAN_BANISHMENT:
 			makeknown(obj->otyp);
 			if (u.uevent.udemigod) { pline("You shudder for a moment."); break;}
-			if (!strncmpi(plname, "lostsoul", 8) || !strncmpi(plname, "uberlostsoul", 12)) {
+			if (flags.lostsoul || flags.uberlostsoul) {
 			pline("For some reason you resist the banishment!"); break;}
 
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */

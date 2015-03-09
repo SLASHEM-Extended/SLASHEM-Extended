@@ -5296,13 +5296,13 @@ u_init()
           ini_inv(AlwaysStartItemC); /* and one that restores mana */
           ini_inv(AlwaysStartItemD); /* and a curing scroll for those pesky delayed instadeaths */
 
-	if (!strncmpi(plname, "lostsoul", 8)) { 
+	if (flags.lostsoul && !flags.uberlostsoul) { 
           ini_inv(LostSoulItem);  /* In Angband or TOME these would be scrolls of cure hunger instead of food rations. */
           ini_inv(LostSoulItemX);
           ini_inv(LostSoulItemY);
 	} 
 
-	if (!strncmpi(plname, "uberlostsoul", 12)) { /* lots of items, but you're gonna need them! --Amy */
+	if (flags.uberlostsoul) { /* lots of items, but you're gonna need them! --Amy */
           ini_inv(LostSoulItem);
           ini_inv(LostSoulItemX);
           ini_inv(LostSoulItemY);

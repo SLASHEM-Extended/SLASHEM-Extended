@@ -977,7 +977,7 @@ moveloop()
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (strncmpi(plname, "lostsoul", 8) && strncmpi(plname, "uberlostsoul", 12)) level_tele();
+			      if (!flags.lostsoul && !flags.uberlostsoul) level_tele();
 				else pline("You feel very disoriented but decide to move on.");
 
 			}
@@ -1457,12 +1457,12 @@ boolean new_game;	/* false => restoring an old game */
 		}
 	}
 
-	if (!strncmpi(plname, "lostsoul", 8) && new_game) { 
+	if (flags.lostsoul && !flags.uberlostsoul && new_game) { 
 	goto_level(&medusa_level, TRUE, FALSE, FALSE); /* inspired by Tome, an Angband mod --Amy */
 	pline("These are the halls of Mandos... err, Medusa. Good luck making your way back up!");
 	}
 
-	if (!strncmpi(plname, "uberlostsoul", 12) && new_game) { 
+	if (flags.uberlostsoul && new_game) { 
 
 	goto_level((&sanctum_level - 1), TRUE, FALSE, FALSE);
 	pline("These are the halls of Mandos... err, Gehennom. Looks nice, huh?");

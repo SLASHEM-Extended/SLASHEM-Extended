@@ -1505,7 +1505,7 @@ level_difficulty()
 		retvalue = (100 + (u.ulevel/2) );
 	else if (u.uhave.amulet)
 		retvalue = 100;
-	else if (Race_if(PM_IMPERIAL) || (Inhell && !Race_if(PM_HERETIC) ) || !strncmpi(plname, "Gehenna", 7))
+	else if (Race_if(PM_IMPERIAL) || (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna)
 		retvalue = (depth(&u.uz) + rn2(u.ulevel) + 2 );
 	else
 		retvalue = depth(&u.uz);

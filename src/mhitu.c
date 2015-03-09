@@ -4601,7 +4601,7 @@ mdamageu(mtmp, n)	/* mtmp hits you for n points damage */
 register struct monst *mtmp;
 register int n;
 {
-	if (!strncmpi(plname, "IWBTG", 5)) {
+	if (flags.iwbtg) {
 
 		You("explode in a fountain of red pixels!");
 		pline("GAME OVER - press R to try again");
