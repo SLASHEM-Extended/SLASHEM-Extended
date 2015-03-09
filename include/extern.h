@@ -2640,6 +2640,7 @@ E void NDECL(throwspell);
 E boolean NDECL(livelog_start);
 E void NDECL(livelog_achieve_update);
 E void FDECL(livelog_wish, (char*));
+E void NDECL(livelog_avert_death);
 #ifdef LIVELOG_SHOUT
 E int NDECL(doshout);
 #endif

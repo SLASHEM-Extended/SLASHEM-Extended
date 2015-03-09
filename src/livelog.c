@@ -129,6 +129,18 @@ char *item;
 	livelog_write_string(strbuf);
 }
 
+/* Reports wishes */
+void
+livelog_avert_death()
+{
+	snprintf(strbuf, STRBUF_LEN,
+		"player=%s:turns=%ld:%s",
+		plname,
+		moves,
+		"averted death");
+	livelog_write_string(strbuf);
+}
+
 /* Shout */
 #ifdef LIVELOG_SHOUT
 
