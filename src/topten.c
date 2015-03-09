@@ -413,6 +413,25 @@ struct toptenentry *tt;
           aligns[1 - u.ualignbase[A_ORIGINAL]].filecode);
 #endif
 
+  (void)fprintf(rfile, SEP "modes=");
+  (void)fprintf(rfile, (wizard ? "wizard" :
+                        discover ? "explore" :
+                        "normal"));
+  if (flags.gehenna)
+      (void)fprintf(rfile, ",gehenna");
+  if (flags.dudley)
+      (void)fprintf(rfile, ",dudley");
+  if (flags.iwbtg)
+      (void)fprintf(rfile, ",iwbtg");
+  if (flags.hippie)
+      (void)fprintf(rfile, ",hippie");
+  if (flags.blindfox)
+      (void)fprintf(rfile, ",blindfox");
+  if (flags.uberlostsoul)
+      (void)fprintf(rfile, ",uberlostsoul");
+  else if (flags.lostsoul)
+      (void)fprintf(rfile, ",lostsoul");
+
   (void)fprintf(rfile, "\n");
 
 }
