@@ -2487,7 +2487,10 @@ register struct obj	*sobj;
 	case SCR_GENOCIDE:
 		You("have found a scroll of genocide!");
 		known = TRUE;
-		if (sobj->blessed) do_class_genocide();
+		if (sobj->blessed) {	/* improvement by Amy */
+			do_genocide(1);
+			do_class_genocide();
+			}
 		else do_genocide(!sobj->cursed | (2 * !!Confusion));
 		break;
 	case SCR_LIGHT:
@@ -2916,6 +2919,9 @@ register struct obj	*sobj;
 		known = TRUE;
 		You("have found a scroll of mass murder.");
 		do_genocide(sobj->cursed ? 8 : 9);
+		if (sobj->blessed) { /* improvement by Amy */
+			do_genocide(9);
+		}
 		break;
 	case SCR_UNDO_GENOCIDE:
 		known = TRUE;
