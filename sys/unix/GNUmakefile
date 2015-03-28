@@ -1,6 +1,6 @@
 VERSION := $(shell util/version.sh $(CC))
 
-GAME = slashem
+GAME = slex
 #GAMEUID =
 #GAMEGID =
 #GAMEPERM =
