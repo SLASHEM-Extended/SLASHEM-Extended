@@ -177,6 +177,8 @@
 #define likes_magic(ptr)	(((ptr)->mflags2 & M2_MAGIC) != 0L)
 #define webmaker(ptr)		((ptr) == &mons[PM_CAVE_SPIDER] || \
 				 (ptr) == &mons[PM_RECLUSE_SPIDER] || \
+				 (ptr) == &mons[PM_LAND_SPIDER] || \
+				 (ptr) == &mons[PM_MUD_SPIDER] || \
 				 (ptr) == &mons[PM_SHADOW_RECLUSE] || \
 				 (ptr) == &mons[PM_TUNNEL_QUEEN] || \
 				 (ptr) == &mons[PM_LARGE_SPIDER] || \
@@ -214,6 +216,7 @@
 				 (ptr) == &mons[PM_TUNNEL_SPIDER] || \
 				 (ptr) == &mons[PM_WOOD_SPIDER] || \
 				 (ptr) == &mons[PM_MIRKWOOD_SPIDER] || \
+				 (ptr) == &mons[PM_LENG_SPIDER] || \
 				 (ptr) == &mons[PM_CARRION_FANG] || \
 				 (ptr) == &mons[PM_GREENER_SPIDER] || \
 				 (ptr) == &mons[PM_ULTRA_SPIDER] || \
@@ -252,7 +255,7 @@
 				 (ptr) == &mons[PM_GIANT] || \
 				 (ptr) == &mons[PM_ELF] || \
 				 (ptr) == &mons[PM_HUMAN])
-#define is_nonmoving(ptr) ((ptr)->mmove < 1 || (ptr)->mlet == S_TURRET || (ptr) == &mons[PM_BUS] || (ptr) == &mons[PM_HAND_DRUJ] || (ptr) == &mons[PM_EYE_DRUJ] || (ptr) == &mons[PM_SKULL_DRUJ] || (ptr) == &mons[PM_EMPIRE_STATE_BUILDING] || (ptr) == &mons[PM_DIVISION_THIEF] || (ptr) == &mons[PM_DIVISION_JEDI] || (ptr) == &mons[PM_STYGIAN_WATCHER] || (ptr) == &mons[PM_RIVER_STALKER] || (ptr) == &mons[PM_CAR_DRIVING_SUPERTHIEF] || (ptr) == &mons[PM_SUPERTHIEF] || (ptr) == &mons[PM_HUGE_OGRE_THIEF] || (ptr) == &mons[PM_SUPERJEDI] || (ptr) == &mons[PM_DEATH_SPECTRE] || (ptr) == &mons[PM_CRITICALLY_INJURED_JEDI] || (ptr) == &mons[PM_CRITICALLY_INJURED_THIEF] || (ptr) == &mons[PM_WAR_ASSHOLE] || (ptr) == &mons[PM_TRAPPED_SOUL] || (ptr) == &mons[PM_WATER_WATCHER] || (ptr) == &mons[PM_SILENT_WATCHER] || (ptr) == &mons[PM_TRAILER] || (ptr) == &mons[PM_DEMONIC_ENTITY] || (ptr) == &mons[PM_LAVA_GAZER] || (ptr) == &mons[PM_ATHENA_BASHER] || (ptr) == &mons[PM_ATHENA_BLOCKER] || (ptr) == &mons[PM_ATHENA_PROTECTOR] || (ptr) == &mons[PM_ATHENA_GIANT] || (ptr) == &mons[PM_GREY_MUSHROOM_PATCH] || (ptr) == &mons[PM_SHRIEKER_MUSHROOM_PATCH] || (ptr) == &mons[PM_MEMORY_MOSS] || (ptr) == &mons[PM_MAGIC_MUSHROOM_PATCH] || (ptr) == &mons[PM_PURPLE_MUSHROOM_PATCH] || (ptr) == &mons[PM_SPOTTED_MUSHROOM_PATCH] || (ptr) == &mons[PM_YELLOW_MUSHROOM_PATCH] || (ptr) == &mons[PM_CLEAR_MUSHROOM_PATCH] || (ptr) == &mons[PM_ATHENA_GUARDIAN] )
+#define is_nonmoving(ptr) ((ptr)->mmove < 1 || (ptr)->mlet == S_TURRET || (ptr) == &mons[PM_BUS] || (ptr) == &mons[PM_LANDMINE] || (ptr) == &mons[PM_HAND_DRUJ] || (ptr) == &mons[PM_EYE_DRUJ] || (ptr) == &mons[PM_DWELLER_ON_THE_THRESHOLD] || (ptr) == &mons[PM_QUIVER_SLOT] || (ptr) == &mons[PM_SKULL_DRUJ] || (ptr) == &mons[PM_DEATH_SWORD] || (ptr) == &mons[PM_EMPIRE_STATE_BUILDING] || (ptr) == &mons[PM_DIVISION_THIEF] || (ptr) == &mons[PM_DIVISION_JEDI] || (ptr) == &mons[PM_STYGIAN_WATCHER] || (ptr) == &mons[PM_RIVER_STALKER] || (ptr) == &mons[PM_CAR_DRIVING_SUPERTHIEF] || (ptr) == &mons[PM_SUPERTHIEF] || (ptr) == &mons[PM_HUGE_OGRE_THIEF] || (ptr) == &mons[PM_SUPERJEDI] || (ptr) == &mons[PM_DEATH_SPECTRE] || (ptr) == &mons[PM_CRITICALLY_INJURED_JEDI] || (ptr) == &mons[PM_CRITICALLY_INJURED_THIEF] || (ptr) == &mons[PM_WAR_ASSHOLE] || (ptr) == &mons[PM_TRAPPED_SOUL] || (ptr) == &mons[PM_WATER_WATCHER] || (ptr) == &mons[PM_SILENT_WATCHER] || (ptr) == &mons[PM_TRAILER] || (ptr) == &mons[PM_DEMONIC_ENTITY] || (ptr) == &mons[PM_LAVA_GAZER] || (ptr) == &mons[PM_ATHENA_BASHER] || (ptr) == &mons[PM_ATHENA_BLOCKER] || (ptr) == &mons[PM_ATHENA_PROTECTOR] || (ptr) == &mons[PM_ATHENA_GIANT] || (ptr) == &mons[PM_GREY_MUSHROOM_PATCH] || (ptr) == &mons[PM_SHRIEKER_MUSHROOM_PATCH] || (ptr) == &mons[PM_MEMORY_MOSS] || (ptr) == &mons[PM_MAGIC_MUSHROOM_PATCH] || (ptr) == &mons[PM_PURPLE_MUSHROOM_PATCH] || (ptr) == &mons[PM_SPOTTED_MUSHROOM_PATCH] || (ptr) == &mons[PM_YELLOW_MUSHROOM_PATCH] || (ptr) == &mons[PM_CLEAR_MUSHROOM_PATCH] || (ptr) == &mons[PM_ATHENA_GUARDIAN] )
 #define is_eel(ptr)	((ptr)->mlet == S_EEL)
 
 /* return TRUE if the monster tends to revive */
@@ -316,7 +319,7 @@
 
 #define nonliving(ptr)		(is_golem(ptr) || is_undead(ptr) || \
 				 (ptr)->mlet == S_VORTEX || \
-				 (ptr) == &mons[PM_MANES])
+				 (ptr) == &mons[PM_MANES] || (ptr) == &mons[PM_SPECTRAL_WARRIOR])
 
 #define touch_petrifies(ptr)	(ptr == &mons[PM_COCKATRICE] || \
 				 ptr == &mons[PM_PETTY_COCKATRICE] || \

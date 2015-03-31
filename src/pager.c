@@ -86,7 +86,7 @@ lookat(x, y, buf, monbuf)
 	Sprintf(buf, "%s%s%s called %s",
 		Invis ? "invisible " : "",
 		race,
-		mons[u.umonnum].mname,
+		(!missingnoprotect || !Upolyd) ? mons[u.umonnum].mname : "undefined creature",
 		plname);
 	/* file lookup can't distinguish between "gnomish wizard" monster
 	   and correspondingly named player character, always picking the
@@ -108,7 +108,7 @@ lookat(x, y, buf, monbuf)
 	if (!Upolyd) {
 	    Sprintf(race, "%s ", urace.adj);
 	    Sprintf(role, "%s ", urole.name);
-	} else Sprintf(race, "%s ", mons[u.umonnum].mname);
+	} else Sprintf(race, "%s ", (!missingnoprotect || !Upolyd) ? mons[u.umonnum].mname : "undefined creature");
 
 	Sprintf(buf, "%s%s%s called %s",
 		Invis ? "invisible " : "",
@@ -241,6 +241,10 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Race_if(PM_VORTEX) && nolimbs(mtmp->data))
 		    ways_seen++;
+		if (Race_if(PM_RODNEYAN) && mon_has_amulet(mtmp))
+		    ways_seen++;
+		if (Race_if(PM_RODNEYAN) && mon_has_special(mtmp))
+		    ways_seen++;
 		if (Stunnopathy && Stunned && always_hostile(mtmp->data) && (mtmp)->mhp % 4 != 0)
 		    ways_seen++;
 		if (Numbopathy && Numbed && avoid_player(mtmp->data) )
@@ -317,6 +321,14 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (Race_if(PM_LEVITATOR) && is_flyer(mtmp->data) ) {
 			Strcat(monbuf, "warned of flying monsters");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (Race_if(PM_RODNEYAN) && mon_has_amulet(mtmp) ) {
+			Strcat(monbuf, "amulet of yendor");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (Race_if(PM_RODNEYAN) && mon_has_special(mtmp) ) {
+			Strcat(monbuf, "covetous");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
 
@@ -1347,7 +1359,11 @@ get_description_of_attack_type(uchar id)
 		case AT_WEAP: return "uses weapon";
 		case AT_MAGC: return "uses magic spell(s)";
 		case AT_MULTIPLY: return "multiplies";
-		default: impossible("bug in get_description_of_attack_type(%d)", id); return "<MISSING DECRIPTION, THIS IS A BUG>";
+		default: 
+		if (!missingnoprotect) {
+		impossible("bug in get_description_of_attack_type(%d)", id); return "<MISSING DECRIPTION, THIS IS A BUG>";
+		}
+		else return "undefined attack";
 	}
 }
 
@@ -1418,7 +1434,11 @@ get_description_of_damage_type(uchar id)
 		case AD_FEAR: return "causes fear";
 		case AD_DISP: return "pushes you away";
 		case AD_ENDS: return "placeholder attack";
-		default: impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";
+		default:
+		if (!missingnoprotect) {
+		impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";
+		}
+		else return "undefined damage";
 	}
 }
 
@@ -1465,7 +1485,7 @@ get_description_of_monster_type(struct permonst * ptr, char * description)
 	char main_temp_buf[BUFSZ] = "";
 
 	temp_buf[0]='\0';
-	sprintf(temp_buf, "Accessing Pokedex entry for %s... ", ptr->mname);
+	sprintf(temp_buf, "Accessing Pokedex entry for %s... ", (!missingnoprotect || !Upolyd || ((int)ptr < NUMMONS) ) ? ptr->mname : "this weird creature");
 	strcat(description, temp_buf);
 	append_newline_to_pline_string(description);
 	strcat(description, " ");

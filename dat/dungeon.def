@@ -52,8 +52,8 @@ BRANCH:	"Town" @ (10, 3) up -1
 
 # Levels between the Oracle and the Quest.
 #   There's no guarantee that all will be created.
-LEVEL:		"rats" "R" @ (10, 2) 20
-RNDLEVEL:	"kobold" "K" @ (11, 2) 20 2
+RNDLEVEL:		"rats" "R" @ (10, 2) 20 3
+RNDLEVEL:	"kobold" "K" @ (11, 2) 20 6
 BRANCH: 	"Grund's Stronghold" @ (12, 2)
 
 
@@ -85,14 +85,14 @@ BRANCH: 	"The Lost Tomb" @ (21, 19)
 BRANCH: 	"The Wyrm Caves" @ (20, 20)
 
 #   And the levels...
-LEVEL:		"nymph" "N" @ (23, 17) 25
-RNDLEVEL:	"bigrm" "B" @ (20, 20) 75 23
+RNDLEVEL:		"nymph" "N" @ (23, 17) 25 5
+RNDLEVEL:	"bigrm" "B" @ (20, 20) 75 39
 RNDLEVEL:	"exmall" "Y" @ (25, 15) 75 6
 LEVALIGN:		chaotic
 LEVELDESC:	town
 #   Storage room (treasure) on levels 19-26, 66% of the time
 #   "Unused 'cause they suck"?
-RNDLEVEL:	"stor" "S" @ (19, 21) 30 3
+RNDLEVEL:	"stor" "S" @ (19, 21) 30 6
 #   Rounding out the bottom levels
 LEVEL:		"guild" "G" @ (26, 14) 10
 
@@ -184,6 +184,8 @@ RNDLEVEL:          "heck" "Q" @ (2, 22) 90 87
 RNDLEVEL:          "heck" "Q" @ (2, 22) 90 87
 RNDLEVEL:          "heck" "Q" @ (2, 22) 90 87
 RNDLEVEL:		"school" "C" @ (2, 22) 20 5
+
+RNDLEVEL:	"ghbgr" "I" @ (2, 22) 90 39
 
 ### Gnomish Mines ###
 # (The Mines of the Gnomes of Zurich.)

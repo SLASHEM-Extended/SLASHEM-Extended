@@ -275,8 +275,6 @@ struct obj {
 || (otmp)->otyp == WAN_CREATE_MONSTER\
 || (otmp)->otyp == SCR_CREATE_MONSTER\
 || (otmp)->otyp == WAN_TELEPORTATION\
-|| (otmp)->otyp == BUGLE\
-|| (otmp)->otyp == UNICORN_HORN\
 || (otmp)->otyp == POT_FULL_HEALING\
 || (otmp)->otyp == WAN_HEALING\
 || (otmp)->otyp == WAN_EXTRA_HEALING\
@@ -340,7 +338,6 @@ struct obj {
 || (otmp)->otyp == WAN_POLYMORPH\
 || (otmp)->otyp == POT_SPEED\
 || (otmp)->otyp == WAN_SPEED_MONSTER\
-|| (otmp)->otyp == BULLWHIP\
 || (otmp)->otyp == POT_POLYMORPH\
 || (otmp)->otyp == WAN_CLONE_MONSTER\
 || (otmp)->otyp == WAN_HASTE_MONSTER)

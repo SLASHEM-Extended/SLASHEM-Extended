@@ -58,8 +58,8 @@ STATIC_DCL void FDECL(mkfeature,(int,int));
 
 #define sq(x) ((x)*(x))
 
-#define XLIM	4
-#define YLIM	3
+#define XLIM	1
+#define YLIM	1
 
 #define Fread	(void)dlb_fread
 #define Fgetc	(schar)dlb_fgetc
@@ -614,6 +614,34 @@ boolean vault;
 	xlim = XLIM + (vault ? 1 : 0);
 	ylim = YLIM + (vault ? 1 : 0);
 
+	if (!((moves + u.eeveelution) % 19)) {
+
+		xlim = xlim - 1;
+		ylim = ylim - 1;
+
+	}
+
+	if (!((moves + u.eeveelution) % 91)) {
+
+		xlim = xlim - 2;
+		ylim = ylim - 2;
+
+	}
+
+	if (!((moves + u.eeveelution) % 464)) {
+
+		xlim = xlim - 5;
+		ylim = ylim - 5;
+
+	}
+
+	if (!((moves + u.eeveelution) % 2209)) {
+
+		xlim = xlim - 10;
+		ylim = ylim - 10;
+
+	}
+
 	if (*lowx < 3)		*lowx = 3;
 	if (*lowy < 2)		*lowy = 2;
 	if (hix > COLNO-3)	hix = COLNO-3;
@@ -670,6 +698,34 @@ xchar	rtype, rlit;
 	int	trycnt = 0;
 	boolean	vault = FALSE;
 	int	xlim = XLIM, ylim = YLIM;
+
+	if (!((moves + u.eeveelution) % 19)) {
+
+		xlim = xlim - 1;
+		ylim = ylim - 1;
+
+	}
+
+	if (!((moves + u.eeveelution) % 91)) {
+
+		xlim = xlim - 2;
+		ylim = ylim - 2;
+
+	}
+
+	if (!((moves + u.eeveelution) % 464)) {
+
+		xlim = xlim - 5;
+		ylim = ylim - 5;
+
+	}
+
+	if (!((moves + u.eeveelution) % 2209)) {
+
+		xlim = xlim - 10;
+		ylim = ylim - 10;
+
+	}
 
 	if (rtype == -1)	/* Is the type random ? */
 	    rtype = OROOM;

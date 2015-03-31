@@ -720,7 +720,7 @@ boolean called;
 	    if (mdat == &mons[PM_GHOST]) {
 		Sprintf(eos(buf), "%s ghost", s_suffix(name));
 		name_at_start = TRUE;
-	    } else if (called) {
+	    } else if (called && !is_mplayer(mdat) ) {
 		Sprintf(eos(buf), "%s called %s", mdat->mname, name);
 		name_at_start = (boolean)type_is_pname(mdat);
 	    } else if (is_mplayer(mdat) && (bp = strstri(name, " the ")) != 0) {
@@ -735,11 +735,18 @@ boolean called;
 		Strcpy(buf, pbuf);
 		article = ARTICLE_NONE;
 		name_at_start = TRUE;
+	    } else if (is_mplayer(mdat) /*&& !In_endgame(&u.uz)*/) {	/* always include the rank, no matter what --Amy */
+	      char pbuf[BUFSZ];
+		Sprintf(eos(buf), "%s called %s", mdat->mname, name);
+	      Strcpy(pbuf, rank_of((int)mtmp->m_lev, monsndx(mdat), (boolean)mtmp->female));
+	      Strcat(buf, " the ");
+	      Strcat(buf, lcase(pbuf));
+	      name_at_start = FALSE;
 	    } else {
 		Strcat(buf, name);
 		name_at_start = TRUE;
 	    }
-	} else if (is_mplayer(mdat) && !In_endgame(&u.uz)) {
+	} else if (is_mplayer(mdat) /*&& !In_endgame(&u.uz)*/) {
 	    char pbuf[BUFSZ];
 	    Strcpy(pbuf, rank_of((int)mtmp->m_lev,
 				 monsndx(mdat),

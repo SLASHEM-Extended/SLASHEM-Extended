@@ -879,7 +879,9 @@ register int after;	/* this is extra fast monster movement */
 			  || mtmp2->data->msound == MS_GUARDIAN
 			  || mtmp2->data->msound == MS_LEADER) &&
 	/* the activistor quest shouldn't be trivialized by bringing a high-level pet or using charm monster. --Amy */
-			 mtmp2->mpeaceful && !Conflict) || mtmp2->data == &mons[PM_TOPMODEL] ||
+			 mtmp2->mpeaceful && !Conflict) ||
+			 (Role_if(PM_ACTIVISTOR) && mtmp2->data == &mons[PM_TOPMODEL]) || 
+			 (mtmp2->data == &mons[PM_WIZARD_OF_YENDOR] && Race_if(PM_RODNEYAN)) ||
 			   (touch_petrifies(mtmp2->data) &&
 				!resists_ston(mtmp)))
 			continue;

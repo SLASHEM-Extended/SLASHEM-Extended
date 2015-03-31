@@ -930,6 +930,7 @@ register struct obj *obj;
 					    && obj->corpsenm != PM_LIZARD
 					    && obj->corpsenm != PM_CAVE_LIZARD
 					    && obj->corpsenm != PM_CHAOS_LIZARD
+					    && obj->corpsenm != PM_LIZARD_KING
 					    && obj->corpsenm != PM_LIZARD_EEL
 					    && obj->corpsenm != PM_EEL_LIZARD
 					    && obj->corpsenm != PM_SQUIRREL

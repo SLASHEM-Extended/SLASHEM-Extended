@@ -956,6 +956,7 @@ doclose()		/* try to close a door */
 
 	if (u.utrap && u.utraptype == TT_PIT) {
 	    You_cant("reach over the edge of the pit.");
+	    display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return 0;
 	}
 

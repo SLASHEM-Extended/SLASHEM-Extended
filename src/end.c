@@ -769,6 +769,59 @@ int how;
 
 	}
 
+	if (Race_if(PM_RODNEYAN) && how < GENOCIDED) {
+		pline("But you're Rodney, so your death isn't permanent!");
+
+		if (yn_function("Revive?", ynchars, 'y') == 'y' ) {
+
+			if (u.ulevel > 2) {
+			    losexp("Rodneyan resurrection", TRUE);
+			    losexp("Rodneyan resurrection", TRUE);
+			    pline("You reappear in good health!");
+			    if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
+			    savelife(how);
+			    killer = 0;
+			    killer_format = 0;
+
+				/* lose all items */
+
+			while (invent) {
+			    for (otmp = invent; otmp; otmp = otmp2) {
+			      otmp2 = otmp->nobj;
+
+				if (evades_destruction(otmp) ) dropx(otmp);
+				else {
+				delete_contents(otmp);
+				useup(otmp);}
+			    }
+			}
+
+				/* lose all spells */
+				for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++) {
+			    spellid(n) = NO_SPELL;
+				}
+
+				(void) makemon(mkclass(S_HUMAN,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_HUMANOID,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_GNOME,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_OGRE,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_GIANT,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_ORC,0), u.ux, u.uy, NO_MM_FLAGS);
+			    (void) safe_teleds(FALSE);
+
+#ifdef LIVELOGFILE
+			    livelog_avert_death();
+#endif
+			    return;
+			}
+
+			else pline("Too bad! Your experience level is too low for revival to work...");
+
+		}
+
+	}
 
 	bones_ok = (how < GENOCIDED) && can_make_bones(); /* dthexpl patch */
 

@@ -666,7 +666,7 @@ char *outbuf;
 	if (!rn2(3) || !(rumor = getrumor(0, outbuf, TRUE)) || !*rumor) /* increased random rumor chance --Amy */
 	    Strcpy(outbuf, random_mesg[rn2(SIZE(random_mesg))]);
 
-	if (!rn2(5)) wipeout_text(outbuf, (int)(strlen(outbuf) / 4), 0);
+	if (!rn2(5)) wipeout_text(outbuf, (int)(strlen(outbuf) / (8 + rn2(5)) ), 0); /* wipe out less, idea by Soviet5lo */
 	return outbuf;
 }
 

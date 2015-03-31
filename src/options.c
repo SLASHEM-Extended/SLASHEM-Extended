@@ -166,6 +166,9 @@ static struct Bool_Opt
 #else
 	{"menu_tab_sep", (boolean *)0, FALSE, SET_IN_FILE},
 #endif
+
+	{"missing_safety", &flags.missing_safety, TRUE, SET_IN_GAME},
+
 #ifdef WIZARD
 	{"mon_polycontrol", &iflags.mon_polycontrol, FALSE, SET_IN_GAME},
 #else
@@ -257,13 +260,13 @@ static struct Bool_Opt
 	{"verbose", &flags.verbose, TRUE, SET_IN_GAME},
 	{"wraptext", &iflags.wc2_wraptext, FALSE, SET_IN_GAME},
 
-	{"blindfox", &flags.blindfox, FALSE, DISP_IN_GAME},
-	{"dudley", &flags.dudley, FALSE, DISP_IN_GAME},
-	{"gehenna", &flags.gehenna, FALSE, DISP_IN_GAME},
-	{"hippie", &flags.hippie, FALSE, DISP_IN_GAME},
-	{"iwbtg", &flags.iwbtg, FALSE, DISP_IN_GAME},
-	{"lostsoul", &flags.lostsoul, FALSE, DISP_IN_GAME},
-	{"uberlostsoul", &flags.uberlostsoul, FALSE, DISP_IN_GAME},
+	{"blindfox", &flags.blindfox, FALSE, DISP_IN_GAME}, 
+	{"dudley", &flags.dudley, FALSE, DISP_IN_GAME}, 
+	{"gehenna", &flags.gehenna, FALSE, DISP_IN_GAME}, 
+	{"hippie", &flags.hippie, FALSE, DISP_IN_GAME}, 
+	{"iwbtg", &flags.iwbtg, FALSE, DISP_IN_GAME}, 
+	{"lostsoul", &flags.lostsoul, FALSE, DISP_IN_GAME}, 
+	{"uberlostsoul", &flags.uberlostsoul, FALSE, DISP_IN_GAME}, 
 
 	{(char *)0, (boolean *)0, FALSE, 0}
 };

@@ -1444,7 +1444,7 @@ $(DAT)\quest.dat: utility.tag  $(DAT)\quest.txt
 $(DAT)\oracles:	     utility.tag    $(DAT)\oracles.txt
 	-makedefs -h
 
-sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\bigroom.des \
+sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\bigroom.des $(DAT)\ghbigrm.des \
 		$(DAT)\blkmar.des   $(DAT)\castle.des   $(DAT)\bleeder.des   $(DAT)\grund.des \
 		$(DAT)\dragons.des  $(DAT)\endgame.des  $(DAT)\exmall.des  $(DAT)\gehennom.des \
 		$(DAT)\giants.des   $(DAT)\guild.des    $(DAT)\intpla.des    $(DAT)\knox.des \
@@ -1526,6 +1526,7 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 	lev_comp $(DDAT)/gradu.des
 	lev_comp $(DDAT)/beholder.des
 	lev_comp $(DDAT)/bigroom.des
+	lev_comp $(DDAT)/ghbigrm.des
 	lev_comp $(DDAT)/blkmar.des
 	lev_comp $(DDAT)/bleeder.des
 	lev_comp $(DDAT)/castle.des

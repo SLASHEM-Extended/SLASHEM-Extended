@@ -1870,6 +1870,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if (Race_if(PM_VORTEX) ) you_are("aware of the presence of unsolid creatures");
 	if (Race_if(PM_VORTEX) ) you_are("aware of the presence of creatures without limbs");
 	if (Race_if(PM_LEVITATOR) ) you_are("aware of the presence of flying monsters");
+	if (Race_if(PM_RODNEYAN) ) you_are("able to sense monsters possessing coveted objects");
 
 	if (Searching) you_have("automatic searching");
 
@@ -1994,7 +1995,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		Strcpy(buf, an(mons[u.ulycn].mname));
 		you_are(buf);
 	}
-	if (Upolyd) {
+	if (Upolyd && !missingnoprotect) {
 	    if (u.umonnum == u.ulycn) Strcpy(buf, "in beast form");
 	    else Sprintf(buf, "polymorphed into %s", an(youmonst.data->mname));
 #ifdef WIZARD
@@ -2187,7 +2188,7 @@ minimal_enlightenment()
 	/* Current name, race, role, gender */
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, "", FALSE);
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings, "Current", FALSE);
-	Sprintf(buf, fmtstr, "race", Upolyd ? youmonst.data->mname : urace.noun);
+	Sprintf(buf, fmtstr, "race", (Upolyd && !missingnoprotect) ? youmonst.data->mname : urace.noun);
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, FALSE);
 	if (Upolyd) {
 	    Sprintf(buf, fmtstr, "role (base)",

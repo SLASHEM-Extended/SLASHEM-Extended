@@ -54,6 +54,7 @@
 #define MS_COW		43	/* cows and bulls */
 #define MS_PARROT	44	/* parrots */
 #define MS_WHORE	45	/* sexy prostitute talking to you */
+#define MS_SUPERMAN	46	/* fearful superman */
 /* MS_DOUGLAS_ADAMS used to be 42, however I fear the DevTeam eventually 
 ** reaching that number.  - sk */
 #define MS_DOUGLAS_ADAMS 95	/* "42"; "Nice day"; etc. */

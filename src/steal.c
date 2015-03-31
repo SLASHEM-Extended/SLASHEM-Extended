@@ -638,7 +638,8 @@ boolean is_pet;		/* If true, pet should keep wielded/worn items */
 		}
 
 		/* reduce amount of musable items the player can use --Amy */
-		if (is_musable(otmp) && rn2(2) && !is_pet) delobj(otmp);
+		/* item stealers usually won't delete stuff, since their stuff might actually be your original stuff! */
+		if (is_musable(otmp) && rn2(2) && !is_pet && !dmgtype(mtmp->data, AD_SEDU) && !dmgtype(mtmp->data, AD_SITM) && (!dmgtype(mtmp->data, AD_SSEX) || rn2(3) ) && (!dmgtype(mtmp->data, AD_SGLD) || rn2(4) ) ) delobj(otmp);
 		else mdrop_obj(mtmp, otmp, is_pet && flags.verbose);
 	}
 

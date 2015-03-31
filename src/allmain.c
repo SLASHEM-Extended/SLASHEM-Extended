@@ -1362,7 +1362,7 @@ boolean new_game;	/* false => restoring an old game */
 	  (currentgend && urole.name.f) ? urole.name.f : urole.name.m, 
 	  DEF_GAME_NAME);
 
-	if (Race_if(PM_MISSINGNO)) pline("WARNING: As a Missingno, you will experience frequent game crashes of various kinds. Please save your game often, especially after killing a difficult monster or finding a rare item. Also, back up your savegames - some of those random crashes can prevent the emergency savegame files from being loaded! --Amy");
+	if (Race_if(PM_MISSINGNO)) pline("Caution! The missingno might still be an unstable race. I tried to fix all the crashes but some may still remain. You can disable the missing_safety option if you deliberately want the game to be crashy. --Amy");
 
 	if ((Role_if(PM_ACTIVISTOR) || Role_if(PM_MYSTIC)) && new_game) {
 

@@ -4048,6 +4048,8 @@ u_init()
 
 	u.wormpolymorph = 0; /* if this is non-zero, the player's next polymorph will be into the specified monster */
 
+	u.ughmemory = 0;	/* if this is non-zero, the player is protected from segfaults as long as missing_safety is on */
+
 	u.youpolyamount = 0;	/* amount of uses for #youpoly command --Amy */
 
 	if (Race_if(PM_DOPPELGANGER)) u.youpolyamount = 10;

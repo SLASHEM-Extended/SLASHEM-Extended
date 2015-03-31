@@ -199,6 +199,7 @@ int mndx;
 	case PM_SANDESTIN:	mcham = CHAM_SANDESTIN; break;
 	case PM_MISSINGNO:	mcham = CHAM_MISSINGNO; break;
 	case PM_TRANSFORMER:	mcham = CHAM_TRANSFORMER; break;
+	case PM_CHAOS_SHAPECHANGER:	mcham = CHAM_CHAOS_SHAPECHANGER; break;
 	case PM_GIANT_CHAMELEON:	mcham = CHAM_GIANT_CHAMELEON; break;
 	default: mcham = CHAM_ORDINARY; break;
 	}
@@ -214,6 +215,7 @@ STATIC_VAR short cham_to_pm[] = {
 		PM_SANDESTIN,
 		PM_MISSINGNO,
 		PM_TRANSFORMER,
+		PM_CHAOS_SHAPECHANGER,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -1450,6 +1452,7 @@ mpickstuff(mtmp, str)
 			otmp->corpsenm != PM_CHAOS_LIZARD &&
 			otmp->corpsenm != PM_LIZARD_EEL &&
 			otmp->corpsenm != PM_LIZARD_MAN &&
+			otmp->corpsenm != PM_LIZARD_KING &&
 			otmp->corpsenm != PM_EEL_LIZARD &&
 			otmp->corpsenm != PM_ANTI_STONE_LIZARD &&
 			otmp->corpsenm != PM_HUGE_LIZARD &&
@@ -2436,7 +2439,7 @@ boolean was_swallowed;			/* digestion */
 	if (LEVEL_SPECIFIC_NOCORPSE(mdat))
 		return FALSE;
 
-	if (bigmonst(mdat) || mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_ANTI_STONE_LIZARD]  || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_KATNISS]
+	if (bigmonst(mdat) || mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_ANTI_STONE_LIZARD]  || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_KATNISS]
 		   || is_golem(mdat)
 		   || is_mplayer(mdat)
 		   || is_umplayer(mdat)
@@ -2535,7 +2538,8 @@ register struct monst *mdef;
 		    oldminvent = obj->nobj;
 
 		/* reduce amount of musable items the player can use --Amy */
-			if (is_musable(obj) && rn2(2)) delobj(obj);
+		/* item stealers usually won't delete stuff, since their stuff might actually be your original stuff! */
+			if (is_musable(obj) && rn2(2) && !dmgtype(mdef->data, AD_SEDU) && !dmgtype(mdef->data, AD_SITM) && (!dmgtype(mdef->data, AD_SSEX) || rn2(3) ) && (!dmgtype(mdef->data, AD_SGLD) || rn2(4) ) ) delobj(obj);
 		    else (void) add_to_container(otmp, obj);
 		}
 #ifndef GOLDOBJ
@@ -2751,7 +2755,7 @@ xkilled(mtmp, dest)
 		/* might be here after swallowed */
 
 		/* Throw a bone to vampiric and ghast players who cannot unstone themselves easily. --Amy */
-		if ((mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ANTI_STONE_LIZARD]) && !rn2(5)) otmp = mksobj_at(POT_ACID, x, y, TRUE, FALSE);
+		if ((mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_LIZARD_MAN]  || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ANTI_STONE_LIZARD]) && !rn2(5)) otmp = mksobj_at(POT_ACID, x, y, TRUE, FALSE);
 		/* of course the acid potions are useful for other races too, if they run out of lizard corpses */
 
 		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20)) otmp = mksobj_at(CARROT, x, y, TRUE, FALSE);
@@ -3485,6 +3489,7 @@ struct monst *mon;
 
 	switch (mon->cham) {
 	    case CHAM_SANDESTIN:
+	    case CHAM_CHAOS_SHAPECHANGER:
 	    case CHAM_DOPPLEZON:
 		if (!rn2(7)) mndx = pick_nasty();
 		break;

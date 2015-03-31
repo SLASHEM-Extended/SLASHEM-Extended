@@ -17,12 +17,14 @@ struct permonst *ptr;
 int flag;
 {
     mon->data = ptr;
+
     if (flag == -1) return;		/* "don't care" */
 
     if (flag == 1)
 	mon->mintrinsics |= (ptr->mresists & MR_TYPEMASK);
     else
 	mon->mintrinsics = (ptr->mresists & MR_TYPEMASK);
+
     return;
 }
 
@@ -387,7 +389,7 @@ monsndx(ptr)		/* return an index into the mons array */
 	if (ptr == &upermonst) return PM_PLAYERMON;
 
 	i = (int)(ptr - &mons[0]);
-	if (i < LOW_PM || i >= NUMMONS) {
+	if ((i < LOW_PM || i >= NUMMONS) && !Race_if(PM_MISSINGNO) && !u.ughmemory ) {
 		/* ought to switch this to use `fmt_ptr' */
 	    panic("monsndx - could not index monster (%d)",
 		  i);
@@ -719,6 +721,8 @@ static const short grownups[][2] = {
 
 	{PM_WILD_WOLF, PM_HUNTING_WOLF},
 
+	{PM_EAGLE, PM_GREAT_EAGLE},
+
 	{PM_BORLOTH, PM_MOONBEAST},	{PM_MOONBEAST, PM_SPACE_BORLOTH},
 
 	{PM_TUNNEL_SPIDER, PM_CARRION_FANG},
@@ -758,6 +762,7 @@ static const short grownups[][2] = {
 	{PM_BABY_STONE_DRAGON, PM_STONE_DRAGON},
 	{PM_BABY_CYAN_DRAGON, PM_CYAN_DRAGON},
 	{PM_RED_NAGA_HATCHLING, PM_RED_NAGA},
+	{PM_WATER_NAGA_HATCHLING, PM_WATER_NAGA},
 	{PM_STRIPPER_GIRL, PM_STRIPPER_LADY},
 	{PM_GRUESOME_NAGA_HATCHLING, PM_GRUESOME_NAGA},
 	{PM_UNDEAD_NAGA_HATCHLING, PM_UNDEAD_NAGA},
@@ -805,6 +810,7 @@ static const short grownups[][2] = {
 	{PM_DOMESTIC_NAGA_HATCHLING, PM_DOMESTIC_NAGA},
 	{PM_BLUE_NAGA_HATCHLING, PM_BLUE_NAGA},
 	{PM_BLACK_NAGA_HATCHLING, PM_BLACK_NAGA},
+	{PM_DARK_NAGA_HATCHLING, PM_DARK_NAGA},
 	{PM_GOLDEN_NAGA_HATCHLING, PM_GOLDEN_NAGA},
 	{PM_GREMLIN, PM_GREMLIN_LEADER}, 	{PM_GREMLIN_LEADER, PM_GREMLIN_WARLORD},
 	{PM_GREMLIN_WARLORD, PM_GREMLIN_DEATHSUCKER},

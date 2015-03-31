@@ -3613,7 +3613,7 @@ const char *str;
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "RNG-endowed mirror on a stick");
 	    return TRUE;
-	} else if (mon->data == &mons[PM_SHAMBLING_MOUND] || mon->data == &mons[PM_SILVER_WOLF] || mon->data == &mons[PM_VENOM_ATRONACH] || mon->data == &mons[PM_DIVISION_THIEF] || mon->data == &mons[PM_DIVISION_JEDI] || mon->data == &mons[PM_ECM_NERVE_HEAD] || mon->data == &mons[PM_ECM_ARCHER] || mon->data == &mons[PM_ILLUSION_WEAVER] || mon->data == &mons[PM_SEDUCER_SAINT]) {
+	} else if (mon->data == &mons[PM_SHAMBLING_MOUND] || mon->data == &mons[PM_GREAT_WYRM_OF_POWER] || mon->data == &mons[PM_SILVER_WOLF] || mon->data == &mons[PM_VENOM_ATRONACH] || mon->data == &mons[PM_DIVISION_THIEF] || mon->data == &mons[PM_DIVISION_JEDI] || mon->data == &mons[PM_ECM_NERVE_HEAD] || mon->data == &mons[PM_ECM_ARCHER] || mon->data == &mons[PM_ILLUSION_WEAVER] || mon->data == &mons[PM_SEDUCER_SAINT]) {
 		/* in ADOM this thing would absorb bolts instead */
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "absorbing shell");
@@ -3668,7 +3668,7 @@ const char *fmt, *str;
 	    if (fmt && str)
 	    	pline(fmt, str, "scales");
 	    return TRUE;
-	} else if (youmonst.data == &mons[PM_SHAMBLING_MOUND] || youmonst.data == &mons[PM_SILVER_WOLF] || youmonst.data == &mons[PM_VENOM_ATRONACH] || youmonst.data == &mons[PM_DIVISION_THIEF] || youmonst.data == &mons[PM_DIVISION_JEDI] || youmonst.data == &mons[PM_ECM_NERVE_HEAD] || youmonst.data == &mons[PM_ECM_ARCHER] || youmonst.data == &mons[PM_ILLUSION_WEAVER]) {
+	} else if (youmonst.data == &mons[PM_SHAMBLING_MOUND] || youmonst.data == &mons[PM_GREAT_WYRM_OF_POWER] || youmonst.data == &mons[PM_SILVER_WOLF] || youmonst.data == &mons[PM_VENOM_ATRONACH] || youmonst.data == &mons[PM_DIVISION_THIEF] || youmonst.data == &mons[PM_DIVISION_JEDI] || youmonst.data == &mons[PM_ECM_NERVE_HEAD] || youmonst.data == &mons[PM_ECM_ARCHER] || youmonst.data == &mons[PM_ILLUSION_WEAVER]) {
 	    if (fmt && str)
 	    	pline(fmt, str, "surface");
 	    return TRUE;

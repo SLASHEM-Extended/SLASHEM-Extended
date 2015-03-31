@@ -475,6 +475,7 @@
 				  youmonst.data == &mons[PM_CRYSTAL_GOLEM] ||\
 				  youmonst.data == &mons[PM_SAPPHIRE_GOLEM] ||\
 				  youmonst.data == &mons[PM_SHAMBLING_MOUND] ||\
+				  youmonst.data == &mons[PM_GREAT_WYRM_OF_POWER] ||\
 				  youmonst.data == &mons[PM_SILVER_WOLF] ||\
 				  youmonst.data == &mons[PM_VENOM_ATRONACH] ||\
 				  youmonst.data == &mons[PM_DIVISION_THIEF] ||\

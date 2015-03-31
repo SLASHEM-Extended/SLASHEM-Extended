@@ -313,7 +313,7 @@ botl_player()
     player[10] = 0;
     Sprintf(nb = eos(player)," the ");
 
-	if (Upolyd) {
+	if (Upolyd && !missingnoprotect) {
 
 	(void) strncpy(mbot, mons[u.umonnum].mname, SIZE(mbot) - 1);
 
@@ -858,8 +858,8 @@ unsigned int len;
 	    break;
     }*/
     bot2_abbrev = 5;
-    if (bot2_abbrev > 4)
-	cbuf[len] = '\0';	/* If all else fails, truncate the line */
+    /*if (bot2_abbrev > 4)
+	cbuf[len] = '\0';*/	/* If all else fails, truncate the line */
     bot2_abbrev = 0;
     return cbuf;
 }

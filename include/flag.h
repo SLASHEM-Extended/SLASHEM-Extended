@@ -61,6 +61,7 @@ struct flag {
 	boolean  lit_corridor;	/* show a dark corr as lit if it is in sight */
 	boolean  made_amulet;
 	boolean  menu_on_esc;	/* show menu when hitting esc */
+	boolean  missing_safety;	/* don't show the player's polymorphed species as a missingno */
 	boolean  mon_moving;	/* monsters' turn to move */
 	boolean  move;
 	boolean  mv;
@@ -104,14 +105,14 @@ struct flag {
 	unsigned ident;		/* social security number for each monster */
 	unsigned moonphase;
 	unsigned long suppress_alert;
-
-	boolean gehenna;
-	boolean dudley;
-	boolean iwbtg;
-	boolean hippie;
-	boolean blindfox;
-	boolean lostsoul;
-	boolean uberlostsoul;
+ 
+	boolean gehenna; 
+	boolean dudley; 
+	boolean iwbtg; 
+	boolean hippie; 
+	boolean blindfox; 
+	boolean lostsoul; 
+	boolean uberlostsoul; 
 
 #define NEW_MOON	0
 #define FULL_MOON	4

@@ -1665,6 +1665,9 @@ int thrown;
 			broken = !rn2(50);
 		    if (obj->blessed && !rnl(4))
 			broken = 0;
+			/* also save uncursed ones sometimes --Amy */
+		    if (!obj->blessed && !obj->cursed && !rn2(5) && !rnl(4))
+			broken = 0;
 
 		    if (broken) {
 			if (*u.ushops)

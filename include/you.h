@@ -387,6 +387,8 @@ struct you {
 
 	int eeveelution;		/* mainly for pokemon role but might be useful for others */
 
+	int ughmemory;		/* set to 1 if you eat an ugh memory to create inventory window */
+
 #ifdef NOARTIFACTWISH
 	int usacrifice;                 /* number of sacrifices so far */
 #endif

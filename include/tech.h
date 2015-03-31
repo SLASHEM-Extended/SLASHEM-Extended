@@ -100,14 +100,16 @@ struct blitz_tab {
 
 #define T_INVOKE_DEITY	50
 
+#define T_DOUBLE_TROUBLE	51
+
 #ifdef JEDI
-#define T_JEDI_JUMP	51
-#define T_CHARGE_SABER	52
-#define T_TELEKINESIS	53
+#define T_JEDI_JUMP	52
+#define T_CHARGE_SABER	53
+#define T_TELEKINESIS	54
  
-#define MAXTECH 54
+#define MAXTECH 55
 #else /* JEDI */
-#define MAXTECH 51
+#define MAXTECH 52
 #endif /* JEDI */
 
 

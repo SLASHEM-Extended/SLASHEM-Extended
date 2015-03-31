@@ -155,6 +155,8 @@ char *genbuf;
 	for(i = rnd(2); i > 0; i--) {
 	   switch(pm) {
 
+		/* no concealing monsters due to possibility of abuse --Amy */
+
 		case PM_WERERAT:
 		case PM_HUMAN_WERERAT:
 			typ = rn2(3) ? PM_SEWER_RAT : rn2(3) ? PM_GIANT_RAT : PM_RABID_RAT ;
@@ -182,12 +184,12 @@ char *genbuf;
 			break;
 		case PM_WERESNAKE:
 		case PM_HUMAN_WERESNAKE:
-			typ = rn2(5) ? PM_SNAKE : PM_PIT_VIPER ;
+			typ = rn2(5) ? PM_STANDARD_SNAKE : PM_CHASM_VIPER ;
 			if (genbuf) Strcpy(genbuf, "snake");
 			break;
 		case PM_WERESPIDER:
 		case PM_HUMAN_WERESPIDER:
-			typ = rn2(5) ? PM_CAVE_SPIDER : PM_RECLUSE_SPIDER ;
+			typ = rn2(5) ? PM_LAND_SPIDER : PM_MUD_SPIDER ;
 			if (genbuf) Strcpy(genbuf, "spider");
 			break;
 		case PM_WEREGHOST:

@@ -758,6 +758,34 @@ toofar:
 		verbalize(whore_msgs[rn2(SIZE(whore_msgs))]);
 		}
 
+	    if(inrange && mtmp->data->msound == MS_SUPERMAN && !mtmp->mpeaceful && !rn2(5))
+
+		{
+		static const char *superman_msgs[] = {
+			"FRONTAL ATTACK!!!",
+			"YOU DON'T STAND A CHANCE!",
+			"YOU WILL DIE A SLOW, SLOW, DEATH...",
+			"COME OUT! WE WILL HURT YOU!",
+			"GRRRRRRRRRAAAAAAAAAAHHH!",
+			"CHARRRRRRRRRGE!",
+			"FEAR ME!!!",
+			"DIE YOU SON OF A BITCH!", /* too lazy to check for female PC --Amy */
+			"I AM YOUR DOOM!",
+			"YOUR LIFE IS GONNA END NOW!",
+			"YOU WILL CEASE TO EXIST!",
+			"I'M GOING TO EAT YOU!",
+			"RAAAAAAAAAAAARGH!",
+			"ATTACK PATTERN ALPHA!",
+			"YOU CAN'T HIDE!",
+			"THERE'S NO ESCAPE!",
+			"BE AFRAID OF ME!",
+			"ATTAAAAAAAAAAAAACK!",
+		};
+
+		verbalize(superman_msgs[rn2(SIZE(superman_msgs))]);
+		badeffect();
+		}
+
 	    if(inrange && mtmp->data->msound == MS_PRINCIPAL && !mtmp->mpeaceful &&
 		/*couldsee(mtmp->mx, mtmp->my) && !mtmp->minvis &&*/ !rn2(5))
 
@@ -868,7 +896,7 @@ register int after;
 	int  omx = mtmp->mx, omy = mtmp->my;
 	struct obj *mw_tmp;
 
-	if (mtmp->data->mlet == S_TURRET || mtmp->data == &mons[PM_BUS] || mtmp->data == &mons[PM_HAND_DRUJ] || mtmp->data == &mons[PM_SKULL_DRUJ] || mtmp->data == &mons[PM_EYE_DRUJ] || mtmp->data == &mons[PM_EMPIRE_STATE_BUILDING] || mtmp->data == &mons[PM_DIVISION_THIEF] || mtmp->data == &mons[PM_DIVISION_JEDI] || mtmp->data == &mons[PM_CAR_DRIVING_SUPERTHIEF] || mtmp->data == &mons[PM_SUPERTHIEF] || mtmp->data == &mons[PM_HUGE_OGRE_THIEF] || mtmp->data == &mons[PM_SUPERJEDI] || mtmp->data == &mons[PM_CRITICALLY_INJURED_JEDI] || mtmp->data == &mons[PM_CRITICALLY_INJURED_THIEF] || mtmp->data == &mons[PM_TRAILER] || mtmp->data == &mons[PM_DEMONIC_ENTITY] || mtmp->data == &mons[PM_LAVA_GAZER] || mtmp->data == &mons[PM_ATHENA_BLOCKER] || mtmp->data == &mons[PM_ATHENA_BASHER] || mtmp->data == &mons[PM_ATHENA_GUARDIAN] || mtmp->data == &mons[PM_ATHENA_PROTECTOR] || mtmp->data == &mons[PM_ATHENA_GIANT] || mtmp->data == &mons[PM_DEATH_SPECTRE] || mtmp->data == &mons[PM_STYGIAN_WATCHER] || mtmp->data == &mons[PM_RIVER_STALKER] || mtmp->data == &mons[PM_WAR_ASSHOLE] || mtmp->data == &mons[PM_TRAPPED_SOUL] || mtmp->data == &mons[PM_WATER_WATCHER] || mtmp->data == &mons[PM_SILENT_WATCHER] || mtmp->data == &mons[PM_GREY_MUSHROOM_PATCH] || mtmp->data == &mons[PM_SHRIEKER_MUSHROOM_PATCH] || mtmp->data == &mons[PM_MEMORY_MOSS] || mtmp->data == &mons[PM_MAGIC_MUSHROOM_PATCH] || mtmp->data == &mons[PM_CLEAR_MUSHROOM_PATCH] || mtmp->data == &mons[PM_PURPLE_MUSHROOM_PATCH] || mtmp->data == &mons[PM_SPOTTED_MUSHROOM_PATCH] || mtmp->data == &mons[PM_YELLOW_MUSHROOM_PATCH] ) return(0); /* stationary turrets --Amy */
+	if (mtmp->data->mlet == S_TURRET || mtmp->data == &mons[PM_BUS] || mtmp->data == &mons[PM_LANDMINE] || mtmp->data == &mons[PM_QUIVER_SLOT] || mtmp->data == &mons[PM_HAND_DRUJ] || mtmp->data == &mons[PM_SKULL_DRUJ] || mtmp->data == &mons[PM_DWELLER_ON_THE_THRESHOLD] || mtmp->data == &mons[PM_EYE_DRUJ] || mtmp->data == &mons[PM_EMPIRE_STATE_BUILDING] || mtmp->data == &mons[PM_DIVISION_THIEF] || mtmp->data == &mons[PM_DIVISION_JEDI] || mtmp->data == &mons[PM_CAR_DRIVING_SUPERTHIEF] || mtmp->data == &mons[PM_SUPERTHIEF] || mtmp->data == &mons[PM_HUGE_OGRE_THIEF] || mtmp->data == &mons[PM_SUPERJEDI] || mtmp->data == &mons[PM_CRITICALLY_INJURED_JEDI] || mtmp->data == &mons[PM_CRITICALLY_INJURED_THIEF] || mtmp->data == &mons[PM_TRAILER] || mtmp->data == &mons[PM_DEMONIC_ENTITY] || mtmp->data == &mons[PM_LAVA_GAZER] || mtmp->data == &mons[PM_ATHENA_BLOCKER] || mtmp->data == &mons[PM_ATHENA_BASHER] || mtmp->data == &mons[PM_ATHENA_GUARDIAN] || mtmp->data == &mons[PM_ATHENA_PROTECTOR] || mtmp->data == &mons[PM_ATHENA_GIANT] || mtmp->data == &mons[PM_DEATH_SPECTRE] || mtmp->data == &mons[PM_STYGIAN_WATCHER] || mtmp->data == &mons[PM_RIVER_STALKER] || mtmp->data == &mons[PM_WAR_ASSHOLE] || mtmp->data == &mons[PM_TRAPPED_SOUL] || mtmp->data == &mons[PM_WATER_WATCHER] || mtmp->data == &mons[PM_SILENT_WATCHER] || mtmp->data == &mons[PM_GREY_MUSHROOM_PATCH] || mtmp->data == &mons[PM_SHRIEKER_MUSHROOM_PATCH] || mtmp->data == &mons[PM_MEMORY_MOSS] || mtmp->data == &mons[PM_MAGIC_MUSHROOM_PATCH] || mtmp->data == &mons[PM_CLEAR_MUSHROOM_PATCH] || mtmp->data == &mons[PM_DEATH_SWORD] || mtmp->data == &mons[PM_PURPLE_MUSHROOM_PATCH] || mtmp->data == &mons[PM_SPOTTED_MUSHROOM_PATCH] || mtmp->data == &mons[PM_YELLOW_MUSHROOM_PATCH] ) return(0); /* stationary turrets --Amy */
 
 	if(mtmp->mtrapped) {
 	    int i = mintrap(mtmp);
@@ -963,7 +991,7 @@ register int after;
 #endif
 
 	/* teleport if that lies in our nature */
-	if( (ptr == &mons[PM_TENGU] || ptr == &mons[PM_BLINK] || ptr == &mons[PM_KING_OF_PORN] || ptr == &mons[PM_MAGNET_ELEMENTAL] || ptr == &mons[PM_PHASE_KNIGHT] || ptr == &mons[PM_TELEPORTING_DEMON] || ptr == &mons[PM_BEAMING_UFO_PART] || ptr == &mons[PM_BEAMER]) && !rn2(25) && !mtmp->mcan &&
+	if( (ptr == &mons[PM_TENGU] || ptr == &mons[PM_CHEERFUL_LEPRECHAUN] || ptr == &mons[PM_BLINK] || ptr == &mons[PM_VORPAL_BUNNY] || ptr == &mons[PM_KING_OF_PORN] || ptr == &mons[PM_DIMENSIONAL_SHAMBLER] || ptr == &mons[PM_MAGNET_ELEMENTAL] || ptr == &mons[PM_PHASE_KNIGHT] || ptr == &mons[PM_TELEPORTING_DEMON] || ptr == &mons[PM_BEAMING_UFO_PART] || ptr == &mons[PM_BEAMER]) && !rn2(25) && !mtmp->mcan &&
 	   !tele_restrict(mtmp)) {
 	    if(mtmp->mhp < 7 || mtmp->mpeaceful || rn2(2))
 		(void) rloc(mtmp, FALSE);

@@ -793,6 +793,22 @@ register struct obj *obj;
 		return;
 	}
 	if (uwep && uwep == obj) setnotworn(obj); /* this hopefully fixes cream pie bugs and similar things --Amy */
+
+	/* to be on the safe side, let's include this check for all the other inventory slots too... */
+	if (uswapwep && uswapwep == obj) uswapwepgone();
+	if (uquiver && uquiver == obj) uqwepgone();
+	if (uarm && uarm == obj) remove_worn_item(obj, TRUE);
+	if (uarmc && uarmc == obj) remove_worn_item(obj, TRUE);
+	if (uarmh && uarmh == obj) remove_worn_item(obj, TRUE);
+	if (uarms && uarms == obj) remove_worn_item(obj, TRUE);
+	if (uarmg && uarmg == obj) remove_worn_item(obj, TRUE);
+	if (uarmf && uarmf == obj) remove_worn_item(obj, TRUE);
+	if (uarmu && uarmu == obj) remove_worn_item(obj, TRUE);
+	if (uamul && uamul == obj) remove_worn_item(obj, TRUE);
+	if (uleft && uleft == obj) remove_worn_item(obj, TRUE);
+	if (uright && uright == obj) remove_worn_item(obj, TRUE);
+	if (ublindf && ublindf == obj) remove_worn_item(obj, TRUE);
+
 	update_map = (obj->where == OBJ_FLOOR || Has_contents(obj) &&
 		(obj->where == OBJ_INVENT || obj->where == OBJ_MINVENT));
 	if (Has_contents(obj)) delete_contents(obj);
@@ -854,6 +870,8 @@ have_lizard()
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_LIZARD_EEL)
 			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_LIZARD_MAN)
+			return(TRUE);
+		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_LIZARD_KING)
 			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_EEL_LIZARD)
 			return(TRUE);
@@ -4429,7 +4447,7 @@ struct obj *obj;
 			case PANCAKE: 
 				pline("This vegetarian type of food provides relatively good nutrition."); break;
 			case UGH_MEMORY_TO_CREATE_INVENTORY: 
-				pline("Eating this item might be a bad idea. Save your game before you do, and create a backup of that savegame file!"); break;
+				pline("An edible item with an unknown effect. If you disabled the missing_safety option (it defaults to on), eating it might crash the game."); break;
 			case TORTILLA: 
 				pline("A rarely seen vegetarian food item that provides relatively little nutrition."); break;
 			case CHEESE: 

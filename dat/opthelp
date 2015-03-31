@@ -21,6 +21,7 @@ legacy         print introductory message                         [TRUE]
 lit_corridor   show a dark corridor as lit if in sight            [FALSE]
 lootabc        use a/b/c rather than o/i/b when looting           [FALSE]
 mail           enable the mail daemon                             [TRUE]
+missing_safety prevents segfaults for missingno characters        [TRUE]
 null           allow nulls to be sent to your terminal            [TRUE]
                try turning this option off (forcing NetHack to use its own
                delay code) if moving objects seem to teleport across rooms
@@ -49,14 +50,15 @@ travel         enable the command to travel to a map location via [TRUE]
                a shortest-path algorithm, usually invoked by '_'.
 verbose        print more commentary during the game              [TRUE]
 
-gehenna        game always behaves like you were in Gehennom      [FALSE]
-dudley         your luck is fixed at -13, and you're constantly   [FALSE]
-               afraid
-iwbtg          you die as soon as you take damage, and can jump   [FALSE]
-hippie         you are constantly hallucinating                   [FALSE]
-blindfox       you are constantly blinded                         [FALSE]
-lostsoul       you start at medusa depth instead of dlvl1         [FALSE]
-uberlostsoul   you start at invocation depth instead of dlvl1     [FALSE]
+gehenna        game always behaves like you were in Gehennom      [FALSE] 
+dudley         your luck is fixed at -13, and you're constantly   [FALSE] 
+               afraid 
+iwbtg          you die as soon as you take damage, and can jump   [FALSE] 
+hippie         you are constantly hallucinating                   [FALSE] 
+blindfox       you are constantly blinded                         [FALSE] 
+lostsoul       you start at medusa depth instead of dlvl1         [FALSE] 
+uberlostsoul   you start at invocation depth instead of dlvl1     [FALSE] 
+
 
 There are further boolean options controlled by compilation flags.
 

@@ -3623,7 +3623,7 @@ int how;
 
 	which = "all ";
 	if (Hallucination) {
-	    if (Upolyd)
+	    if (Upolyd && !missingnoprotect)
 		Strcpy(buf,youmonst.data->mname);
 	    else {
 		Strcpy(buf, (flags.female && urole.name.f) ?

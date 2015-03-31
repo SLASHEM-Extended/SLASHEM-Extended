@@ -791,7 +791,7 @@ mattacku(mtmp)
 			newsym(u.ux,u.uy);
 		    } else {
 			pline("%s is killed by a falling %s (you)!",
-					Monnam(mtmp), youmonst.data->mname);
+					Monnam(mtmp), !missingnoprotect ? youmonst.data->mname : "creature");
 			killed(mtmp);
 			newsym(u.ux,u.uy);
 			if (mtmp->mhp > 0) return 0;
@@ -835,10 +835,10 @@ mattacku(mtmp)
 			    }
 			    if (youmonst.data->mlet == S_EEL)
 		pline("Wait, %s!  There's a hidden %s named %s there!",
-				m_monnam(mtmp), youmonst.data->mname, plname);
+				m_monnam(mtmp), !missingnoprotect ? youmonst.data->mname : "creature", plname);
 			    else
 	     pline("Wait, %s!  There's a %s named %s hiding under %s!",
-				m_monnam(mtmp), youmonst.data->mname, plname,
+				m_monnam(mtmp), !missingnoprotect ? youmonst.data->mname : "creature", plname,
 				doname(level.objects[u.ux][u.uy]));
 			    if (obj) obj->spe = save_spe;
 			} else
@@ -852,7 +852,7 @@ mattacku(mtmp)
 		    !range2 && foundyou && !u.uswallow) {
 		if (!youseeit) pline("It gets stuck on you.");
 		else pline("Wait, %s!  That's a %s named %s!",
-			   m_monnam(mtmp), youmonst.data->mname, plname);
+			   m_monnam(mtmp), !missingnoprotect ? youmonst.data->mname : "creature", plname);
 		setustuck(mtmp);
 		youmonst.m_ap_type = M_AP_NOTHING;
 		youmonst.mappearance = 0;
@@ -869,12 +869,12 @@ mattacku(mtmp)
 	    else pline("Wait, %s!  That %s is really %s named %s!",
 			m_monnam(mtmp),
 			mimic_obj_name(&youmonst),
-			an(mons[u.umonnum].mname),
+			!missingnoprotect ? an(mons[u.umonnum].mname) : "a polymorphed missingno",
 			plname);
 	    if (multi < 0) {	/* this should always be the case */
 		char buf[BUFSZ];
 		Sprintf(buf, "You appear to be %s again.",
-			Upolyd ? (const char *) an(youmonst.data->mname) :
+			(Upolyd && !missingnoprotect) ? (const char *) an(youmonst.data->mname) :
 			    (const char *) "yourself");
 		unmul(buf);	/* immediately stop mimicking */
 	    }
@@ -3696,6 +3696,12 @@ common:
 
 		water_damage(invent, FALSE, FALSE);
 
+		break;
+
+	    case AD_DRLI:
+
+		if (!Drain_resistance || !rn2(20) )
+		    losexp("draining explosion", FALSE);
 		break;
 
 	    case AD_DRST:

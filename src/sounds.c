@@ -795,7 +795,7 @@ register struct monst *mtmp;
 	    			verbl_msg = verbuf;
 			    } else if (vampindex == 1) {
 				Sprintf(verbuf, vampmsg[vampindex],
-					Upolyd ? an(mons[u.umonnum].mname) : an(racenoun));
+					(Upolyd && !missingnoprotect) ? an(mons[u.umonnum].mname) : an(racenoun));
 	    			verbl_msg = verbuf;
 		    	    } else
 			    	verbl_msg = vampmsg[vampindex];
@@ -1293,6 +1293,35 @@ register struct monst *mtmp;
 		}
 		break;
 
+	case MS_SUPERMAN:
+
+		if (!mtmp->mpeaceful) {
+		static const char *superman_msgs[] = {
+			"FRONTAL ATTACK!!!",
+			"YOU DON'T STAND A CHANCE!",
+			"YOU WILL DIE A SLOW, SLOW, DEATH...",
+			"COME OUT! WE WILL HURT YOU!",
+			"GRRRRRRRRRAAAAAAAAAAHHH!",
+			"CHARRRRRRRRRGE!",
+			"FEAR ME!!!",
+			"DIE YOU SON OF A BITCH!", /* too lazy to check for female PC --Amy */
+			"I AM YOUR DOOM!",
+			"YOUR LIFE IS GONNA END NOW!",
+			"YOU WILL CEASE TO EXIST!",
+			"I'M GOING TO EAT YOU!",
+			"RAAAAAAAAAAAARGH!",
+			"ATTACK PATTERN ALPHA!",
+			"YOU CAN'T HIDE!",
+			"THERE'S NO ESCAPE!",
+			"BE AFRAID OF ME!",
+			"ATTAAAAAAAAAAAAACK!",
+		};
+
+		verbalize(superman_msgs[rn2(SIZE(superman_msgs))]);
+		badeffect();
+		}
+		break;
+
 	case MS_TEACHER:
 		{
 	   	 static const char *teacher_msgs[] = {
@@ -1390,7 +1419,7 @@ dochat()
     struct obj *otmp;
 
     if (is_silent(youmonst.data)) {
-	pline("As %s, you cannot speak.", an(youmonst.data->mname));
+	pline("As %s, you cannot speak.", !missingnoprotect ? an(youmonst.data->mname) : "this weird creature");
 	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return(0);
     }

@@ -412,25 +412,25 @@ struct toptenentry *tt;
   (void)fprintf(rfile, SEP "align0=%s", 
           aligns[1 - u.ualignbase[A_ORIGINAL]].filecode);
 #endif
+  (void)fprintf(rfile, SEP "modes="); 
+  (void)fprintf(rfile, (wizard ? "wizard" : 
+                        discover ? "explore" : 
+                        "normal")); 
+  if (flags.gehenna) 
+      (void)fprintf(rfile, ",gehenna"); 
+  if (flags.dudley) 
+      (void)fprintf(rfile, ",dudley"); 
+  if (flags.iwbtg) 
+      (void)fprintf(rfile, ",iwbtg"); 
+  if (flags.hippie) 
+      (void)fprintf(rfile, ",hippie"); 
+  if (flags.blindfox) 
+      (void)fprintf(rfile, ",blindfox"); 
+  if (flags.uberlostsoul) 
+      (void)fprintf(rfile, ",uberlostsoul"); 
+  else if (flags.lostsoul) 
+      (void)fprintf(rfile, ",lostsoul"); 
 
-  (void)fprintf(rfile, SEP "modes=");
-  (void)fprintf(rfile, (wizard ? "wizard" :
-                        discover ? "explore" :
-                        "normal"));
-  if (flags.gehenna)
-      (void)fprintf(rfile, ",gehenna");
-  if (flags.dudley)
-      (void)fprintf(rfile, ",dudley");
-  if (flags.iwbtg)
-      (void)fprintf(rfile, ",iwbtg");
-  if (flags.hippie)
-      (void)fprintf(rfile, ",hippie");
-  if (flags.blindfox)
-      (void)fprintf(rfile, ",blindfox");
-  if (flags.uberlostsoul)
-      (void)fprintf(rfile, ",uberlostsoul");
-  else if (flags.lostsoul)
-      (void)fprintf(rfile, ",lostsoul");
 
   (void)fprintf(rfile, "\n");
 
@@ -929,7 +929,7 @@ boolean so;
 		Sprintf(eos(linebuf), fmt, arg);
 	    } else {
 		Sprintf(eos(linebuf), " in %s", dungeons[t1->deathdnum].dname);
-		if (t1->deathdnum != knox_level.dnum)
+		/*if (t1->deathdnum != knox_level.dnum)*/	/* not working for some reason, so let's just remove the check */
 		    Sprintf(eos(linebuf), " on level %d", t1->deathlev);
 		if (t1->deathlev != t1->maxlvl)
 		    Sprintf(eos(linebuf), " [max %d]", t1->maxlvl);

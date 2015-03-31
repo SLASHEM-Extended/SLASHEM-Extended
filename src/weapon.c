@@ -188,6 +188,9 @@ struct monst *mon;
 	if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
 		tmp += 12;
 
+	if (otmp->otyp == FLY_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) tmp += 25;
+	if (otmp->otyp == INSECT_SQUASHER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) tmp += 50;
+
 	/* blunt weapons versus undead (Diablo 2) */
 	if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) tmp += 3;
 	if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr)) tmp += 8;
@@ -470,6 +473,9 @@ struct monst *mon;
 		bonus += rnd(5);
 	    if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
 		bonus += rnd(12);
+
+	    if (otmp->otyp == FLY_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(25);
+	    if (otmp->otyp == INSECT_SQUASHER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(50);
 
 	    /* trident is highly effective against swimmers */
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr)) {

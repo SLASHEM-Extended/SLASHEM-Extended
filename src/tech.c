@@ -93,6 +93,7 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"egg bomb",
 	"booze",
 	"invoke deity",
+	"double trouble",
 #ifdef JEDI
 	"jedi jump",
 	"charge saber",
@@ -566,6 +567,10 @@ static const struct innate_tech
 		       {   1, T_PRACTICE, 1},
 		       {   1, T_DRAW_BLOOD, 1},
 		       {   0, 0, 0} },
+	rod_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   10, T_DOUBLE_TROUBLE, 1},
+		       {   0, 0, 0} },
 	def_tech[] = { {   1, T_APPRAISAL, 1}, /* everyone is supposed to get this --Amy */
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} };
@@ -951,6 +956,10 @@ dotech()
 
 		case T_INVOKE_DEITY:
 			pline("Invoke your deity for healing. If successful, some or all of your hit point damage will be restored, but there may be negative outcomes depending on certain circumstances.");
+			break;
+
+		case T_DOUBLE_TROUBLE:
+			pline("Create a clone of yourself with this technique. At higher technique levels you might summon some familiars too.");
 			break;
 
 		case T_APPRAISAL:
@@ -2289,6 +2298,33 @@ int tech_no;
 
 		t_timeout = rnz(1000);
 		break;
+
+	    case T_DOUBLE_TROUBLE:	/* inspired by Khor */
+
+		pline("Double Trouble...");
+
+		int familiardone;
+		familiardone = 0;
+
+		if (!rn2(5)) mtmp = makemon(&mons[PM_RODNEYAN], u.ux, u.uy, NO_MM_FLAGS);
+		else if (Upolyd) mtmp = makemon(&mons[u.umonnum], u.ux, u.uy, NO_MM_FLAGS);
+		else mtmp = makemon(&mons[urole.malenum], u.ux, u.uy, NO_MM_FLAGS);
+		if (mtmp) (void) tamedog(mtmp, (struct obj *) 0, TRUE);
+
+		if ((techlev(tech_no)) < rnd(50)) familiardone = 1;
+		else pline("Sent in some familiars too.");
+
+		while (familiardone == 0) {
+
+	 	      mtmp = makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+			if (mtmp) (void) tamedog(mtmp, (struct obj *) 0, TRUE);
+
+			if ((techlev(tech_no)) < rnd(50)) familiardone = 1;
+		}
+
+		t_timeout = rnz(5000);
+		break;
+
 	    case T_ATTIRE_CHARM:
 
 		if (u.uswallow) {
@@ -2766,6 +2802,7 @@ race_tech()
 		case PM_KOBOLT:		return (kob_tech);
 		case PM_OGRO:		return (ogr_tech);
 		case PM_BATMAN:		return (bat_tech);
+		case PM_RODNEYAN:		return (rod_tech);
 		case PM_UNGENOMOLD:		return (ung_tech);
 		case PM_ARGONIAN:		return (arg_tech);
 		case PM_ARMED_COCKATRICE:		return (coc_tech);

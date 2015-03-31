@@ -60,6 +60,7 @@ set_uasmon()
 {
 	set_mon_data(&youmonst, ((u.umonnum == u.umonster) ? 
 					&upermonst : &mons[u.umonnum]), 0);
+
 	bot_reconfig();
 }
 
@@ -213,8 +214,13 @@ newman()
 	 * 9 - rn2(19): random change of -9 to +9 hit points
 	 */
 #ifndef LINT
+	if (u.ulevel <= oldlvl)	/* drain for gain exploit fixed by Amy */
 	u.uhpmax = ((u.uhpmax - 10) * (long)u.ulevel / oldlvl + 10) +
 		(9 - rn2(19));
+
+	else
+	u.uhpmax = (u.uhpmax + rnd(12));
+
 #endif
 
 #ifdef LINT
@@ -225,7 +231,12 @@ newman()
 
 	tmp = u.uenmax;
 #ifndef LINT
+	if (u.ulevel <= oldlvl)	/* drain for gain exploit fixed by Amy */
 	u.uenmax = u.uenmax * (long)u.ulevel / oldlvl + 9 - rn2(19);
+
+	else
+	u.uenmax = (u.uenmax + rnd(5));
+
 #endif
 	if (u.uenmax < 0) u.uenmax = 0;
 #ifndef LINT
@@ -473,6 +484,8 @@ int	mntmp;
 
 	}
 
+	if (mntmp < NUMMONS) u.ughmemory = 0;
+
 	if (mvitals[mntmp].mvflags & G_GENOD) {	/* allow G_EXTINCT */
 		You_feel("rather %s-ish.",mons[mntmp].mname);
 		exercise(A_WIS, TRUE);
@@ -530,7 +543,7 @@ int	mntmp;
 		if(!rn2(10)) dochange = TRUE;
 	}
 
-	if (!Race_if(PM_MISSINGNO)) {
+	if (!Race_if(PM_MISSINGNO) && !u.ughmemory) {
 	if (dochange) {
 		flags.female = !flags.female;
 		You("%s %s%s!",
@@ -556,6 +569,7 @@ int	mntmp;
 
 	u.mtimedone = /*rn1(500, 500)*/rnz(1000);
 	u.umonnum = mntmp;
+
 	set_uasmon();
 
 	/* New stats for monster, to last only as long as polymorphed.
@@ -959,6 +973,8 @@ rehumanize()
 	if (emits_light(youmonst.data))
 	    del_light_source(LS_MONSTER, (genericptr_t)&youmonst);
 	polyman("return to %s form!", urace.adj);
+
+	u.ughmemory = 0;
 
 	if (u.uhp < 1) {
 	    char kbuf[256];
