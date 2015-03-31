@@ -3645,12 +3645,12 @@ boolean msg;
 	}
 
 	hpn = mtmp->mhp;
-	hpd = (mtmp->m_lev < 50) ? ((int)mtmp->m_lev)*8 : mdat->mlevel;
+	hpd = (int)mtmp->m_lev*8;	/* The "level < 50" check was screwing up the chameleons. --Amy */
 	if(!hpd) hpd = 4;
 
 	mtmp->m_lev = adj_lev(mdat);		/* new monster level */
 
-	mhp = (mtmp->m_lev < 50) ? ((int)mtmp->m_lev)*8 : mdat->mlevel;
+	mhp = (int)mtmp->m_lev*8;
 	if(!mhp) mhp = 4;
 
 	/* new hp: same fraction of max as before */
