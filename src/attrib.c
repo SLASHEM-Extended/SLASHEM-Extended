@@ -498,6 +498,11 @@ const struct innate {
 		     {  1, &(HShock_resistance), "", "" },
 		     {   0, 0, 0, 0 } },
 
+	elm_abil[] = { {  1, &(HFire_resistance), "", "" },
+		     {   1, &(HCold_resistance), "", "" },
+		     {  1, &(HShock_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
+
 	red_abil[] = { {  1, &(HSick_resistance), "", "" },
 		     {   1, &(HPoison_resistance), "", "" },
 		     {   0, 0, 0, 0 } },
@@ -1192,6 +1197,7 @@ int oldlevel, newlevel;
 	case PM_CLOCKWORK_AUTOMATON:            rabil = clk_abil;	break;
 	case PM_KOBOLT:            rabil = kob_abil;	break;
 	case PM_BRETON:            rabil = bre_abil;	break;
+	case PM_ELEMENTAL:            rabil = elm_abil;	break;
 	case PM_REDGUARD:            rabil = red_abil;	break;
 	case PM_TROLLOR:            rabil = tro_abil;	break;
 	case PM_SNAKEMAN:            rabil = sna_abil;	break;

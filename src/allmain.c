@@ -175,13 +175,15 @@ moveloop()
 			if (Race_if(PM_SUXXOR)) monclock *= 2;
 
 			/* TODO: adj difficulty in makemon */
-			if (!rn2(monclock)) {
+			if (!rn2(monclock) && !Race_if(PM_HOMICIDER) ) {
 				if (u.uevent.udemigod && xupstair && rn2(10)) {
 					(void) makemon((struct permonst *)0, xupstair, yupstair, MM_ADJACENTOK);
 				} else {
 					(void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
 				}
 			}
+
+			if (!rn2(monclock) && Race_if(PM_HOMICIDER) ) makerandomtrap();
 
 			xtraclock = 15000;
 			if (u.uevent.udemigod) {
@@ -414,8 +416,11 @@ moveloop()
 				}
 
 		    if(!rn2(u.uevent.udemigod ? 125 :
-			    (depth(&u.uz) > depth(&stronghold_level)) ? 250 : 340))
-			(void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
+			    (depth(&u.uz) > depth(&stronghold_level)) ? 250 : 340)) {
+			if (!Race_if(PM_HOMICIDER)) (void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
+			else makerandomtrap();
+			}
+
 	/* still keeping the old monstermaking routine up, but drastically reducing their spawn rate. --Amy */
 
 		    /* calculate how much time passed. */
@@ -450,6 +455,10 @@ moveloop()
 			if (Frozen && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* frozen characters move at half speed --Amy */
+			}
+			if (Race_if(PM_TURTLE) && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2; /* turtles are very slow too --Amy */
 			}
 
 			if (SpeedBug && moveamt > 1) { /* speed bug messes up the player's speed --Amy */

@@ -1282,7 +1282,7 @@ mattacku(mtmp)
 			}
 			break;
 		case AT_MAGC:
-			if (!rn2(4)) /* yeah they need to be toned down a lot */{
+			if (!rn2(Race_if(PM_WARPER) ? 2 : 4)) /* yeah they need to be toned down a lot */{
 
 			if (range2) {
 			    if (!blue_on_blue(mtmp))

@@ -78,8 +78,9 @@ struct monst {
 #define CHAM_SANDESTIN		4	/* demon */
 #define CHAM_MISSINGNO		5	/* pokemon */
 #define CHAM_TRANSFORMER		6	/* humanlike */
-#define CHAM_CHAOS_SHAPECHANGER		7	/* humanlike */
-#define CHAM_GIANT_CHAMELEON		8	/* animal */
+#define CHAM_WARPER		7	/* humanlike */
+#define CHAM_CHAOS_SHAPECHANGER		8	/* humanlike */
+#define CHAM_GIANT_CHAMELEON		9	/* animal */
 #define CHAM_MAX_INDX		CHAM_GIANT_CHAMELEON
 	Bitfield(mundetected,1);	/* not seen in present hiding place */
 				/* implies one of M1_CONCEAL or M1_HIDE,

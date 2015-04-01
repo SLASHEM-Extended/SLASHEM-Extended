@@ -182,7 +182,7 @@ newman()
 	u.ulevel = u.ulevel + rn1(5, -2);
 	if (u.ulevel > 127 || u.ulevel < 1) { /* level went below 0? */
 	    u.ulevel = oldlvl; /* restore old level in case they lifesave */
-	    if (!Race_if(PM_UNGENOMOLD) && !Race_if(PM_MOULD) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_MISSINGNO)) goto dead;
+	    if (!Race_if(PM_UNGENOMOLD) && !Race_if(PM_MOULD) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_WARPER) && !Race_if(PM_MISSINGNO)) goto dead;
 	}
 	/* Moulds, including ungenomolds, are resistant to bad polymorphs but have uncurable polymorphitis. --Amy
 	   They cannot suffer from system shock either. Since ungenomolds automatically genocide their own race
@@ -257,7 +257,7 @@ newman()
 		if (u.uenmax <= u.ulevel) u.uenmax = u.ulevel;
 	}
 	if (u.uhp <= 0 || u.uhpmax <= 0) {
-		if (Polymorph_control || Race_if(PM_MOULD) || Race_if(PM_DEATHMOLD) || Race_if(PM_MISSINGNO) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_UNGENOMOLD) ) {
+		if (Polymorph_control || Race_if(PM_MOULD) || Race_if(PM_DEATHMOLD) || Race_if(PM_MISSINGNO) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_WARPER) || Race_if(PM_UNGENOMOLD) ) {
 		    if (u.uhp <= 0) u.uhp = 1;
 		    if (u.uhpmax <= 0) u.uhpmax = 1;
 		} else {
@@ -304,7 +304,7 @@ boolean forcecontrol;
 
 	if(!Polymorph_control && !forcecontrol && !draconian && !iswere &&
 			!isvamp && !Race_if(PM_DOPPELGANGER) && !Race_if(PM_HEMI_DOPPELGANGER)) {
-		if ( (rn2(12) > ACURR(A_CON) || !rn2(50)) && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_MOULD) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WORM_THAT_WALKS) ) {
+		if ( (rn2(12) > ACURR(A_CON) || !rn2(50)) && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_MOULD) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_WARPER) ) {
 
 		You(shudder_for_moment);
 		losehp(rnd(30), "system shock", KILLED_BY_AN);
@@ -315,6 +315,7 @@ boolean forcecontrol;
 	old_light = Upolyd ? emits_light(youmonst.data) : 0;
 
 	if (Race_if(PM_MISSINGNO)) mntmp = (NUMMONS + rnz(rnd(5000)));
+	else if (Race_if(PM_WARPER) && !u.wormpolymorph) mntmp = rn2(NUMMONS);
 	else if (Race_if(PM_DEATHMOLD)) mntmp = (PM_WHITE_MISSINGNO + rn2(14) );
 	else if ((Polymorph_control || forcecontrol) && rn2(5)) {
 		do {
@@ -421,12 +422,12 @@ boolean forcecontrol;
 	}
 	if (u.wormpolymorph) mntmp = u.wormpolymorph;
 
-	if (!u.wormpolymorph && !Race_if(PM_MISSINGNO) && !Race_if(PM_DEATHMOLD) && mntmp < LOW_PM) {
+	if (!u.wormpolymorph && !Race_if(PM_MISSINGNO) && !Race_if(PM_WARPER) && !Race_if(PM_DEATHMOLD) && mntmp < LOW_PM) {
 		tries = 0;
 		do {
 			/* randomly pick an "ordinary" monster */
 			mntmp = rn1(SPECIAL_PM - LOW_PM, LOW_PM);
-		} while((!polyok(&mons[mntmp]) || is_placeholder(&mons[mntmp]) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) && (Race_if(PM_UNGENOMOLD) || Race_if(PM_MOULD) || Race_if(PM_WORM_THAT_WALKS) ) ) || ( is_eel(&mons[mntmp]) && rn2(20) && (Race_if(PM_UNGENOMOLD) || Race_if(PM_MOULD) || Race_if(PM_WORM_THAT_WALKS)) ) )
+		} while((!polyok(&mons[mntmp]) || is_placeholder(&mons[mntmp]) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) && (Race_if(PM_UNGENOMOLD) || Race_if(PM_MOULD) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_WARPER) ) ) || ( is_eel(&mons[mntmp]) && rn2(20) && (Race_if(PM_UNGENOMOLD) || Race_if(PM_MOULD) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_WARPER) ) ) )
 	/* Polymorphing into a nonmoving monster can really ruin your day as an ungenomold character, so the chances
 	 * of ending up as one are greatly reduced now. Eels are sucky polymorph forms too. --Amy */
 				&& tries++ < 200);
@@ -436,14 +437,14 @@ boolean forcecontrol;
 	 * we deliberately chose something illegal to force newman().
 	 */
         /* WAC Doppelgangers go through a 1/20 check rather than 1/5 */
-        if ( !u.wormpolymorph && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_MISSINGNO) && !Race_if(PM_DEATHMOLD) && (!polyok(&mons[mntmp]) ||
+        if ( !u.wormpolymorph && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WARPER) && !Race_if(PM_DEATHMOLD) && (!polyok(&mons[mntmp]) ||
 			((Race_if(PM_DOPPELGANGER) || Race_if(PM_HEMI_DOPPELGANGER)) ? (
         			((u.ulevel < mons[mntmp].mlevel)
 #ifdef EATEN_MEMORY
         			 || !mvitals[mntmp].eaten
 #endif
-        			 ) && !rn2(20)) : (Race_if(PM_MOULD) || Race_if(PM_WORM_THAT_WALKS)) ? !rn2(20) :
-				   !rn2(5)) || (your_race(&mons[mntmp]) && !Race_if(PM_MOULD) && !Race_if(PM_TRANSFORMER) && !Race_if(PM_WORM_THAT_WALKS) && rn2(5) ) ) ) /* polymorphitis races can always polymorph into everything, others can sometimes poly into their own race --Amy */
+        			 ) && !rn2(20)) : (Race_if(PM_MOULD) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_WARPER)) ? !rn2(20) :
+				   !rn2(5)) || (your_race(&mons[mntmp]) && !Race_if(PM_MOULD) && !Race_if(PM_TRANSFORMER) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_WARPER) && rn2(5) ) ) ) /* polymorphitis races can always polymorph into everything, others can sometimes poly into their own race --Amy */
 		newman();
 	else if(!polymon(mntmp)) { u.wormpolymorph = 0; return; }
 
@@ -644,6 +645,7 @@ int	mntmp;
 	}
 
 	if (Race_if(PM_HAXOR)) u.mtimedone *= 2;
+	if (Race_if(PM_WARPER)) u.mtimedone /= 2;
 
 
 #ifdef EATEN_MEMORY

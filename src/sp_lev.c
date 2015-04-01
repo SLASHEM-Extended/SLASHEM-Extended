@@ -385,6 +385,67 @@ rndtrap()
 }
 
 /*
+ * Select a random trap (extended) --Amy
+ */
+int
+randomtrap()
+{
+	int rtrap;
+
+	do {
+	    rtrap = rnd(TRAPNUM-1);
+		if (rtrap == HOLE) rtrap = PIT;
+		if (rtrap == MAGIC_PORTAL) rtrap = PIT;
+		if (rtrap == TRAPDOOR && !Can_dig_down(&u.uz)) rtrap = PIT;
+		if (rtrap == LEVEL_TELEP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) rtrap = SQKY_BOARD;
+		if (rtrap == TELEP_TRAP && level.flags.noteleport) rtrap = SQKY_BOARD;
+		if (rtrap == ROLLING_BOULDER_TRAP) rtrap = ROCKTRAP;
+		if (rtrap == NO_TRAP) rtrap = ARROW_TRAP;
+		if (rtrap == RMB_LOSS_TRAP && !Role_if(PM_SPACEWARS_FIGHTER) && rn2(2)) rtrap = ACID_POOL;
+		if (rtrap == DISPLAY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3)) rtrap = GLYPH_OF_WARDING;
+		if (rtrap == SPELL_LOSS_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4)) rtrap = SLOW_GAS_TRAP;
+		if (rtrap == YELLOW_SPELL_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 5)) rtrap = POISON_GAS_TRAP;
+
+		if (rtrap == MENU_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8)) rtrap = FIRE_TRAP;
+		if (rtrap == SPEED_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40)) rtrap = ICE_TRAP;
+		if (rtrap == AUTOMATIC_SWITCHER && rn2(Race_if(PM_HAXOR) ? (Role_if(PM_GRADUATE) ? 125 : Role_if(PM_SPACEWARS_FIGHTER) ? 250 : Role_if(PM_GEEK) ? 250 : 500) : (Role_if(PM_GRADUATE) ? 250 : Role_if(PM_SPACEWARS_FIGHTER) ? 500 : Role_if(PM_GEEK) ? 500 : 1000) )) rtrap = SHOCK_TRAP;
+
+		if (rtrap == AUTO_DESTRUCT_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10)) rtrap = WATER_POOL;
+		if (rtrap == MEMORY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20)) rtrap = SCYTHING_BLADE;
+		if (rtrap == INVENTORY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50)) rtrap = ANIMATION_TRAP;
+		if (rtrap == BLACK_NG_WALL_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 50 : 100)) rtrap = UNKNOWN_TRAP;
+		if (rtrap == SUPERSCROLLER_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 100 : 200)) rtrap = WEB;
+		if (rtrap == ACTIVE_SUPERSCROLLER_TRAP) rtrap = RUST_TRAP;
+	} while (rtrap == NO_TRAP);
+	return rtrap;
+}
+
+/*
+ * Create a trap on some random empty location --Amy
+ */
+
+void
+makerandomtrap()
+{
+
+	int rtrap;
+	rtrap = randomtrap();
+	int tryct = 0;
+	int x, y;
+
+	for (tryct = 0; tryct < 2000; tryct++) {
+		x = rn1(COLNO-3,2);
+		y = rn2(ROWNO);
+
+		if (x && y && isok(x, y) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !(t_at(x, y)) ) {
+			(void) maketrap(x, y, rtrap);
+			break;
+			}
+
+	}
+}
+
+/*
  * Coordinates in special level files are handled specially:
  *
  *	if x or y is -11, we generate a random coordinate.
@@ -614,33 +675,37 @@ boolean vault;
 	xlim = XLIM + (vault ? 1 : 0);
 	ylim = YLIM + (vault ? 1 : 0);
 
-	if (!((moves + u.eeveelution) % 19)) {
+	/* Allow rooms to be closer together. For warper race characters this will be the case even more often. --Amy */
+
+	if (!((moves + u.eeveelution) % (Race_if(PM_WARPER) ? 7 : 19) )) {
 
 		xlim = xlim - 1;
 		ylim = ylim - 1;
 
 	}
 
-	if (!((moves + u.eeveelution) % 91)) {
+	if (!((moves + u.eeveelution) % (Race_if(PM_WARPER) ? 13 : 91) )) {
 
 		xlim = xlim - 2;
 		ylim = ylim - 2;
 
 	}
 
-	if (!((moves + u.eeveelution) % 464)) {
+	if (!((moves + u.eeveelution) % (Race_if(PM_WARPER) ? 19 : 464) )) {
 
 		xlim = xlim - 5;
 		ylim = ylim - 5;
 
 	}
 
-	if (!((moves + u.eeveelution) % 2209)) {
+	if (!((moves + u.eeveelution) % (Race_if(PM_WARPER) ? 29 : 2209) )) {
 
 		xlim = xlim - 10;
 		ylim = ylim - 10;
 
 	}
+
+	/* After all, a warped dungeon is what we'd expect from a character called warper... */
 
 	if (*lowx < 3)		*lowx = 3;
 	if (*lowy < 2)		*lowy = 2;
@@ -699,28 +764,28 @@ xchar	rtype, rlit;
 	boolean	vault = FALSE;
 	int	xlim = XLIM, ylim = YLIM;
 
-	if (!((moves + u.eeveelution) % 19)) {
+	if (!((moves + u.eeveelution) % (Race_if(PM_WARPER) ? 7 : 19) )) {
 
 		xlim = xlim - 1;
 		ylim = ylim - 1;
 
 	}
 
-	if (!((moves + u.eeveelution) % 91)) {
+	if (!((moves + u.eeveelution) % (Race_if(PM_WARPER) ? 13 : 91) )) {
 
 		xlim = xlim - 2;
 		ylim = ylim - 2;
 
 	}
 
-	if (!((moves + u.eeveelution) % 464)) {
+	if (!((moves + u.eeveelution) % (Race_if(PM_WARPER) ? 19 : 464) )) {
 
 		xlim = xlim - 5;
 		ylim = ylim - 5;
 
 	}
 
-	if (!((moves + u.eeveelution) % 2209)) {
+	if (!((moves + u.eeveelution) % (Race_if(PM_WARPER) ? 29 : 2209) )) {
 
 		xlim = xlim - 10;
 		ylim = ylim - 10;
@@ -1792,8 +1857,10 @@ schar ftyp, btyp;
 			/* else (mktrap(0,1,(struct mkroom *) 0, (coord*) 0) ) ;*/
 		    else if(/*nxcor &&*/ !rn2(Race_if(PM_HAXOR) ? 150 : 300)) 
 				(void) maketrap(xx, yy, rndtrap());
-		    else if(/*nxcor &&*/ !rn2(Race_if(PM_HAXOR) ? 100 : 200)) 
-				(void) makemon((struct permonst *)0, xx, yy, NO_MM_FLAGS);
+		    else if(/*nxcor &&*/ !rn2(Race_if(PM_HAXOR) ? 100 : 200)) {
+				if (!Race_if(PM_HOMICIDER)) (void) makemon((struct permonst *)0, xx, yy, NO_MM_FLAGS);
+				else makerandomtrap_at(xx, yy);
+				}
 		    else if(/*nxcor &&*/ !rn2(Race_if(PM_HAXOR) ? 10 : 20)) 
 				(void) mkfeature(xx, yy);
 		} else {
@@ -3441,12 +3508,14 @@ dlb *fd;
 			}
 	    for (x = rn2(2); x; x--) { if (depth(&u.uz) > depth(&medusa_level)) {
 		maze1xy(&mm, DRY);
-		(void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
+		if (!Race_if(PM_HOMICIDER)) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
+		else makerandomtrap_at(mm.x, mm.y);
 		} /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	    }
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
 		    maze1xy(&mm, WET|DRY);
-		    (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
+		    if (!Race_if(PM_HOMICIDER)) (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
+		    else makerandomtrap_at(mm.x, mm.y);
 	    }
 	    for(x = rn2((int) (15 * mapfact) / 100); x; x--) {
 		    maze1xy(&mm, DRY);
@@ -3482,12 +3551,14 @@ dlb *fd;
 			}
 	    for (x = rn2(2); x; x--) { if (depth(&u.uz) > depth(&medusa_level)) {
 		maze1xy(&mm, DRY);
-		(void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
+		if (!Race_if(PM_HOMICIDER)) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
+		else makerandomtrap_at(mm.x, mm.y);
 		} /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	    }
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
 		    maze1xy(&mm, WET|DRY);
-		    (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
+		    if (!Race_if(PM_HOMICIDER)) (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
+		    else makerandomtrap_at(mm.x, mm.y);
 	    }
 	    for(x = rn2((int) (15 * mapfact) / 100); x; x--) {
 		    maze1xy(&mm, DRY);

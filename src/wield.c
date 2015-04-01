@@ -197,6 +197,7 @@ boolean put_away;
 		 */
 		long dummy = wep->owornmask;
 		wep->owornmask |= W_WEP;
+		if (Race_if(PM_ELEMENTAL) && wep && weapon_type(wep) != P_NONE) wep->known = TRUE;	/* elementals will recognize enchantment --Amy */
 		prinv((char *)0, wep, 0L);
 		wep->owornmask = dummy;
 	    }

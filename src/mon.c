@@ -199,6 +199,7 @@ int mndx;
 	case PM_SANDESTIN:	mcham = CHAM_SANDESTIN; break;
 	case PM_MISSINGNO:	mcham = CHAM_MISSINGNO; break;
 	case PM_TRANSFORMER:	mcham = CHAM_TRANSFORMER; break;
+	case PM_WARPER:	mcham = CHAM_WARPER; break;
 	case PM_CHAOS_SHAPECHANGER:	mcham = CHAM_CHAOS_SHAPECHANGER; break;
 	case PM_GIANT_CHAMELEON:	mcham = CHAM_GIANT_CHAMELEON; break;
 	default: mcham = CHAM_ORDINARY; break;
@@ -215,6 +216,7 @@ STATIC_VAR short cham_to_pm[] = {
 		PM_SANDESTIN,
 		PM_MISSINGNO,
 		PM_TRANSFORMER,
+		PM_WARPER,
 		PM_CHAOS_SHAPECHANGER,
 		PM_GIANT_CHAMELEON,
 };
@@ -721,7 +723,7 @@ register struct monst *mtmp;
 		break;
 	    default_1:
 	    default: /* worm that walks has a chance to get a corpse even from G_NOCORPSE monsters --Amy */
-		if ((mvitals[mndx].mvflags & G_NOCORPSE) && (!Race_if(PM_WORM_THAT_WALKS) || !polyok(mdat) || rn2(5) ) )
+		if ((mvitals[mndx].mvflags & G_NOCORPSE) && ( ((!Race_if(PM_WORM_THAT_WALKS) || !polyok(mdat)) && !Race_if(PM_WARPER)) || rn2(5) ) )
 		    return (struct obj *)0;
 		else	/* preserve the unique traits of some creatures */
 		    obj = mkcorpstat(CORPSE, KEEPTRAITS(mtmp) ? mtmp : 0,
@@ -3492,6 +3494,9 @@ struct monst *mon;
 	    case CHAM_CHAOS_SHAPECHANGER:
 	    case CHAM_DOPPLEZON:
 		if (!rn2(7)) mndx = pick_nasty();
+		break;
+	    case CHAM_WARPER:
+		if (!rn2(7)) mndx = rn2(NUMMONS);
 		break;
 	    case CHAM_DOPPELGANGER:
 	    case CHAM_MISSINGNO:

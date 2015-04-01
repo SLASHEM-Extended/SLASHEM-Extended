@@ -2047,6 +2047,8 @@ E void FDECL(create_secret_door, (struct mkroom *,XCHAR_P));
 E boolean FDECL(dig_corridor, (coord *,coord *,BOOLEAN_P,SCHAR_P,SCHAR_P));
 E void FDECL(fill_room, (struct mkroom *,BOOLEAN_P));
 E boolean FDECL(load_special, (const char *));
+E int NDECL(randomtrap);
+E void NDECL(makerandomtrap);
 
 /* ### spell.c ### */
 
@@ -2225,6 +2227,7 @@ E boolean FDECL(wither_dmg, (struct obj *,const char *,int,BOOLEAN_P,struct mons
 
 E void FDECL(grease_protect, (struct obj *,const char *,struct monst *));
 E struct trap *FDECL(maketrap, (int,int,int));
+E void FDECL(makerandomtrap_at, (int,int));
 E void FDECL(fall_through, (BOOLEAN_P));
 E struct monst *FDECL(animate_statue, (struct obj *,XCHAR_P,XCHAR_P,int,int *));
 E struct monst *FDECL(activate_statue_trap,

@@ -63,7 +63,7 @@ char msgbuf[BUFSZ];
 #define CANNIBAL_ALLOWED() (Role_if(PM_CAVEMAN) || Role_if(PM_LUNATIC) || Race_if(PM_ORC) || \
 Race_if(PM_CURSER) || Race_if(PM_ALIEN) || Race_if(PM_TROLLOR) || Race_if(PM_VORTEX) || Race_if(PM_HUMANOID_DEVIL) || Race_if(PM_MUMMY) || Race_if(PM_LICH_WARRIOR) || Race_if(PM_KOBOLT) || Race_if(PM_GIGANT) || Race_if(PM_RODNEYAN) || Race_if(PM_OGRO) || \
  Race_if(PM_INSECTOID) || Race_if(PM_MOULD) || Race_if(PM_MISSINGNO) || Race_if(PM_HUMANLIKE_DRAGON) || Race_if(PM_HUMANLIKE_NAGA) || Race_if(PM_DEATHMOLD) || Race_if(PM_AQUATIC_MONSTER) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_UNGENOMOLD) || Race_if(PM_UNALIGNMENT_THING) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || \
- Race_if(PM_SNAKEMAN) || Race_if(PM_SPIDERMAN) || Race_if(PM_VAMPIRE) || Race_if(PM_LEVITATOR) || Race_if(PM_CLOCKWORK_AUTOMATON))
+ Race_if(PM_SNAKEMAN) || Race_if(PM_SPIDERMAN) || Race_if(PM_RACE_X) || Race_if(PM_VAMPIRE) || Race_if(PM_LEVITATOR) || Race_if(PM_CLOCKWORK_AUTOMATON))
 
 #ifndef OVLB
 
@@ -641,6 +641,22 @@ boolean message;
 			} else polyself(FALSE);
 
 		} else if (!rn2(5)) polyself(FALSE);
+
+	}
+
+	if(Race_if(PM_WARPER)) { /* 20% chance to polymorph into the depicted monster --Amy */
+
+		if(victual.piece->otyp == CORPSE && !rn2(5) ) {
+
+			u.wormpolymorph = victual.piece->corpsenm;
+			polyself(FALSE);
+
+		} else if(victual.piece->otyp == EGG && victual.piece->corpsenm != NON_PM && !rn2(5) ) {
+
+			u.wormpolymorph = victual.piece->corpsenm;
+			polyself(FALSE);
+
+		}
 
 	}
 
@@ -1900,6 +1916,7 @@ register int pm;
 	    case PM_DOPPLEZON:
 	    case PM_TRANSFORMER:
 	    case PM_CHAOS_SHAPECHANGER:
+	    case PM_WARPER:
 	 /* case PM_SANDESTIN: */
 	    case PM_GIANT_CHAMELEON:
 		if (!Unchanging) {
@@ -2430,6 +2447,15 @@ opentin()		/* called during each move whilst opening a tin */
 				polyself(FALSE);
 				}
 			} else polyself(FALSE);
+		}
+
+		if (Race_if(PM_WARPER)) { /* chance to polymorph into the tinned monster --Amy */
+			if (!rn2(5) ) {
+
+				u.wormpolymorph = tin.tin->corpsenm;
+				polyself(FALSE);
+
+			}
 		}
 
 	    if(r == 0 || r == FRENCH_FRIED_TIN || r == FRENCH_FRIED_TINX) {
@@ -3304,6 +3330,23 @@ eatspecial() /* called after eating non-food */
 			polyself(FALSE);
 			}
 		} else polyself(FALSE);
+	}
+
+	if (Race_if(PM_WARPER) && otmp->otyp == FIGURINE) {/* chance to polymorph into the depicted monster --Amy */
+		if (!rn2(5)) {
+
+			u.wormpolymorph = otmp->corpsenm;
+			polyself(FALSE);
+
+		}
+	}
+	if (Race_if(PM_WARPER) && otmp->otyp == STATUE) {
+		if (!rn2(5)) {
+
+			u.wormpolymorph = otmp->corpsenm;
+			polyself(FALSE);
+
+		}
 	}
 
 	if (otmp == uwep && otmp->quan == 1L) uwepgone();

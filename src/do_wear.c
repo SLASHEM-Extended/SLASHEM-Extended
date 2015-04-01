@@ -2076,6 +2076,7 @@ find_ac()
 	if ((Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Role_if(PM_LUNATIC)) && !uarm) uac -= (u.ulevel / 4) + 1;
 
 	if (Race_if(PM_HUMAN_WRAITH)) uac -= u.ulevel;
+	if (Race_if(PM_TURTLE)) uac -= u.ulevel;
 
 	/* Harlow - make sure it doesn't wrap around ;) */
 	uac = (uac < UAC_MIN ? UAC_MIN : (uac > UAC_LIM ? UAC_LIM : uac));

@@ -1134,16 +1134,21 @@ boolean incr;	/* true iff via incremental experience growth */
 	struct obj *ubookz;
 
 	if (!incr) You_feel("more experienced.");
+
+	if (!Race_if(PM_HOMICIDER) || rn2(2)) {	/* homicider only gains hp/pw 50% of the time --Amy */
+	/* a.k.a. "bullshit downside that every fun new race gets" (term coined by Khor) */
+
 	num = newhp();
 	u.uhpmax += num;
 	u.uhp += num;
 	u.uhpmax += rnz(2);
-	if (u.uhp < u.uhpmax) u.uhp = u.uhpmax;
+
+	if ((u.ulevel >= u.urmaxlvlUP && u.ulevel < 30) && (u.uhp < u.uhpmax)) u.uhp = u.uhpmax;
 	if (Upolyd) {
 	    num = rnz(8); /* unfortunately will be lost upon unpolymorphing --Amy */
 	    u.mhmax += num;
 	    u.mh += num;
-		if (u.mh < u.mhmax) u.mh = u.mhmax;
+		if ((u.ulevel >= u.urmaxlvlUP && u.ulevel < 30) && (u.mh < u.mhmax)) u.mh = u.mhmax;
 	}
 	if (u.ulevel < urole.xlev)
 	    num = rn1((int)ACURR(A_WIS)/2 + urole.enadv.lornd + urace.enadv.lornd,
@@ -1155,7 +1160,11 @@ boolean incr;	/* true iff via incremental experience growth */
 	u.uenmax += num;
 	u.uen += num;
 	u.uenmax += (rn2(3) ? rnz(1) : rnz(2));
-	if (u.uen < u.uenmax) u.uen = u.uenmax;
+	if ((u.ulevel >= u.urmaxlvlUP && u.ulevel < 30) && (u.uen < u.uenmax)) u.uen = u.uenmax;
+
+	} /* homicider check */
+
+	if (u.ulevel >= u.urmaxlvlUP && u.ulevel < 30) u.urmaxlvlUP = (u.ulevel + 1);
 	
 	if(u.ulevel < MAXULEV) {
 	    if (incr) {

@@ -216,11 +216,13 @@ nh_timeout()
 
 	if (flags.friday13) baseluck -= 1;
 
-	if (Race_if(PM_DOPPELGANGER) && moves % 5000 == 0) u.youpolyamount++; /* always time out once per 1000 turns --Amy */
-	if (Race_if(PM_HEMI_DOPPELGANGER) && moves % 4000 == 0) u.youpolyamount++; /* always time out once per 1000 turns --Amy */
-	if (Race_if(PM_DEATHMOLD) && moves % 3000 == 0) u.youpolyamount++; /* always time out once per 1000 turns --Amy */
-	if (Race_if(PM_UNGENOMOLD) && moves % 2000 == 0) u.youpolyamount++; /* always time out once per 1000 turns --Amy */
-	if (Race_if(PM_MOULD) && moves % 1000 == 0) u.youpolyamount++; /* always time out once per 1000 turns --Amy */
+	/* get extra uses out of the (now limited) #youpoly command after a while --Amy */
+	if (Race_if(PM_WARPER) && moves % 10000 == 0) u.youpolyamount++;
+	if (Race_if(PM_DOPPELGANGER) && moves % 5000 == 0) u.youpolyamount++;
+	if (Race_if(PM_HEMI_DOPPELGANGER) && moves % 4000 == 0) u.youpolyamount++;
+	if (Race_if(PM_DEATHMOLD) && moves % 3000 == 0) u.youpolyamount++;
+	if (Race_if(PM_UNGENOMOLD) && moves % 2000 == 0) u.youpolyamount++;
+	if (Race_if(PM_MOULD) && moves % 1000 == 0) u.youpolyamount++;
 
 	if (u.legscratching > 1 && !Role_if(PM_BLEEDER) && moves % 1000 == 0) u.legscratching--; /* always time out once per 1000 turns --Amy */
 

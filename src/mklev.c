@@ -1156,17 +1156,21 @@ skip0:
 		   we have to check for monsters on the stairs anyway. */
 		if(u.uhave.amulet || !rn2(3)) {
 		    x = somex(croom); y = somey(croom);
-		    tmonst = makemon((struct permonst *) 0, x,y,NO_MM_FLAGS);
+		    if (!Race_if(PM_HOMICIDER)) { tmonst = makemon((struct permonst *) 0, x,y,NO_MM_FLAGS);
 		    if (tmonst && webmaker(tmonst->data) /*== &mons[PM_GIANT_SPIDER]*/ &&
 			    !occupied(x, y))
 			(void) maketrap(x, y, WEB);
+		    }
+		    if (Race_if(PM_HOMICIDER)) (void) makerandomtrap_at(x, y);
 		}
 		if(Race_if(PM_HAXOR) && (u.uhave.amulet || !rn2(3)) ) {
 		    x = somex(croom); y = somey(croom);
-		    tmonst = makemon((struct permonst *) 0, x,y,NO_MM_FLAGS);
+		    if (!Race_if(PM_HOMICIDER)) { tmonst = makemon((struct permonst *) 0, x,y,NO_MM_FLAGS);
 		    if (tmonst && webmaker(tmonst->data) /*== &mons[PM_GIANT_SPIDER]*/ &&
 			    !occupied(x, y))
 			(void) maketrap(x, y, WEB);
+		    }
+		    if (Race_if(PM_HOMICIDER)) (void) makerandomtrap_at(x, y);
 		}
 		/* put traps and mimics inside */
 		goldseen = FALSE;
@@ -1497,6 +1501,8 @@ mineralize()
 			(levl[x][y].typ == MOAT && !rn2(30)))
 	    	    (void)mksobj_at(KELP_FROND, x, y, TRUE, FALSE);
 
+		if (!Race_if(PM_HOMICIDER)) {
+
 		/* Random sea monsters if there is water. --Amy */
 
 		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 10 : Race_if(PM_SUXXOR) ? 40 : 20)) ||
@@ -1639,6 +1645,150 @@ mineralize()
 
 		if ((levl[x][y].typ == ALTAR && !rn2(Race_if(PM_HAXOR) ? 3 : Race_if(PM_SUXXOR) ? 10 : 5)) )
 			makemon((struct permonst *)0, x, y, NO_MM_FLAGS);
+
+		}
+
+		if (Race_if(PM_HOMICIDER)) {	/* idea by deepy - a race for which monsters don't spawn normally */
+
+		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 10 : Race_if(PM_SUXXOR) ? 40 : 20)) ||
+			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 10 : Race_if(PM_SUXXOR) ? 40 : 20)))
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) && level_difficulty() > 4 ) ||
+			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) && level_difficulty() > 4 ))
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) && level_difficulty() > 9 ) ||
+			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) && level_difficulty() > 9 ))
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) && level_difficulty() > 19 ) ||
+			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) && level_difficulty() > 19 ))
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) ) ||
+			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) ))
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 17 ) ||
+			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 17 ))
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 10 ) ||
+			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 10 ))
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 20 ) ||
+			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 20 ))
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 12 ) ||
+			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 12 ))
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 25 ) ||
+			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 25 ))
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 15 ) ||
+			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 15 ))
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 15 ) ||
+			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 15 ))
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == LAVAPOOL && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == LAVAPOOL && !rn2(Race_if(PM_HAXOR) ? 2000 : Race_if(PM_SUXXOR) ? 8000 : 4000) && level_difficulty() > 23 ) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == LAVAPOOL && !rn2(Race_if(PM_HAXOR) ? 5000 : Race_if(PM_SUXXOR) ? 20000 : 10000) && level_difficulty() > 7 ) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == ROOM && !rn2( (Race_if(PM_HAXOR) ? 1000 : Race_if(PM_SUXXOR) ? 4000 : 2000) / level_difficulty() )) )
+			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == CORR && !rn2( (Race_if(PM_HAXOR) ? 1000 : Race_if(PM_SUXXOR) ? 4000 : 2000) / level_difficulty() )) )
+			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == ICE && !rn2( (Race_if(PM_HAXOR) ? 250 : Race_if(PM_SUXXOR) ? 1000 : 500) / level_difficulty() )) )
+			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == AIR && !rn2( (Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) / level_difficulty() )) )
+			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == CLOUD && !rn2( (Race_if(PM_HAXOR) ? 200 : Race_if(PM_SUXXOR) ? 800 : 400) / level_difficulty() )) )
+			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == CORR && !rn2(Race_if(PM_HAXOR) ? 1000 : Race_if(PM_SUXXOR) ? 4000 : 2000)) )
+			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == CORR && !rn2(Race_if(PM_HAXOR) ? 1000 : Race_if(PM_SUXXOR) ? 4000 : 2000 )) )
+			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == TREE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
+			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == FOUNTAIN && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == FOUNTAIN && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == FOUNTAIN && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == FOUNTAIN && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == FOUNTAIN && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 10 : Race_if(PM_SUXXOR) ? 40 : 20)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 5000 : Race_if(PM_SUXXOR) ? 20000 : 10000)) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == SINK && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == SINK && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == SINK && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == SINK && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == SINK && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == TOILET && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == TOILET && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == TOILET && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == TOILET && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == TOILET && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == GRAVE && !rn2(Race_if(PM_HAXOR) ? 5 : Race_if(PM_SUXXOR) ? 20 : 10)) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == ALTAR && !rn2(Race_if(PM_HAXOR) ? 3 : Race_if(PM_SUXXOR) ? 10 : 5)) )
+			makerandomtrap_at(x, y);
+		}
 
 		}
 

@@ -376,6 +376,7 @@ struct you {
 	int urmaxlvlB;		/* for cyborg role */
 	int urmaxlvlC;		/* for binder role */
 	int urmaxlvlD;		/* for bard role */
+	int urmaxlvlUP;		/* for determining whether levelups refill your HP and Pw */
 	int uhereticgodinit;
 	int uhereticgodlawful;
 	int uhereticgodneutral;

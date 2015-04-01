@@ -571,6 +571,24 @@ static const struct innate_tech
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_DOUBLE_TROUBLE, 1},
 		       {   0, 0, 0} },
+
+	tur_tech[] = { {   1, T_PUMMEL, 1},
+			 {   1, T_APPRAISAL, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_DASH, 1},
+		       {   1, T_BLITZ, 1},
+		       {   2, T_CHI_STRIKE, 1},
+	  	       {   4, T_CHI_HEALING, 1},
+	  	       {   6, T_E_FIST, 1},
+		       {   8, T_DRAW_ENERGY, 1},
+		       {  10, T_G_SLAM, 1},
+		       {  11, T_WARD_FIRE, 1},
+		       {  13, T_WARD_COLD, 1},
+		       {  15, T_WARD_ELEC, 1},
+		       {  17, T_SPIRIT_BOMB, 1},
+		       {  20, T_POWER_SURGE, 1},
+		       {   0, 0, 0} },
+
 	def_tech[] = { {   1, T_APPRAISAL, 1}, /* everyone is supposed to get this --Amy */
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} };
@@ -2803,6 +2821,7 @@ race_tech()
 		case PM_OGRO:		return (ogr_tech);
 		case PM_BATMAN:		return (bat_tech);
 		case PM_RODNEYAN:		return (rod_tech);
+		case PM_TURTLE:		return (tur_tech);
 		case PM_UNGENOMOLD:		return (ung_tech);
 		case PM_ARGONIAN:		return (arg_tech);
 		case PM_ARMED_COCKATRICE:		return (coc_tech);

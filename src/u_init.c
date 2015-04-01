@@ -1196,6 +1196,16 @@ static struct trobj AlchemistItemK[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj RaceXItem[] = {
+	{ SPE_LIGHTNING, 5, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj RaceXItemB[] = {
+	{ FRAG_GRENADE, UNDEF_SPE, WEAPON_CLASS, 5, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj RodneyItem[] = {
 	{ UNDEF_TYP, 5, SPBOOK_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
@@ -4052,7 +4062,8 @@ u_init()
 
 	u.youpolyamount = 0;	/* amount of uses for #youpoly command --Amy */
 
-	if (Race_if(PM_DOPPELGANGER)) u.youpolyamount = 10;
+	if (Race_if(PM_WARPER)) u.youpolyamount = 5;
+	else if (Race_if(PM_DOPPELGANGER)) u.youpolyamount = 10;
 	else if (Race_if(PM_HEMI_DOPPELGANGER)) u.youpolyamount = 20;
 	else if (Race_if(PM_DEATHMOLD)) u.youpolyamount = 50;
 	else if (Race_if(PM_UNGENOMOLD)) u.youpolyamount = 100;
@@ -4074,6 +4085,7 @@ u_init()
 	u.urmaxlvlB = 1; /* will go up if a cyborg role player levels up */
 	u.urmaxlvlC = 1; /* will go up if a binder role player levels up */
 	u.urmaxlvlD = 1; /* will go up if a bard role player levels up */
+	u.urmaxlvlUP = 1; /* will go up whenever any player levels up */
 
 	u.uhereticgodinit = 0; /* for heretic race */
 	u.uhereticgodlawful = randrole(); /* for heretic race */
@@ -5260,6 +5272,13 @@ u_init()
 
 		break;
 
+	case PM_RACE_X:	/* from Half-Life addon Opposing Force */
+
+          ini_inv(RaceXItem);
+          ini_inv(RaceXItemB);
+
+		break;
+
 	case PM_BATMAN:
           ini_inv(BatmanItem);		
 		break;
@@ -5395,6 +5414,7 @@ u_init()
 	case PM_ELF: racebounus = rnz(11); break;
 	case PM_GIGANT: racebounus = rnz(12); break;
 	case PM_HOBBIT: racebounus = rnz(8); break;
+	case PM_HOMICIDER: racebounus = rnz(8); break;
 	case PM_KOBOLT: racebounus = rnz(8); break;
 	case PM_ALCHEMIST: racebounus = rnz(7); break;
 	case PM_HUMAN_WEREWOLF: racebounus = rnz(15); break;
@@ -5411,6 +5431,8 @@ u_init()
 	case PM_ASGARDIAN: racebounus = rnz(15); break;
 	case PM_HAXOR: racebounus = rnz(15); break;
 	case PM_SUXXOR: racebounus = rnz(16); break;
+	case PM_RACE_X: racebounus = rnz(12); break;
+	case PM_TURTLE: racebounus = rnz(11); break;
 	default:	racebounus = rnz(10); break;
 
 	}

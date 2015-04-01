@@ -613,7 +613,7 @@ toofar:
 	   && !Is_blackmarket(&u.uz)
 #endif
 	   ) ||
-	   (!mtmp->mcansee && !rn2(4)) || mtmp->mpeaceful) {
+	   (!mtmp->mcansee && !rn2(Race_if(PM_WARPER) ? 2 : 4)) || mtmp->mpeaceful) {
 		/* Possibly cast an undirected spell if not attacking you */
 		/* note that most of the time castmu() will pick a directed
 		   spell and do nothing, so the monster moves normally */
